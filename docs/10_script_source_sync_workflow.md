@@ -14,6 +14,7 @@ This workflow exports the important Studio data in one pass:
 - All `Script`, `LocalScript`, and `ModuleScript` sources.
 - Metadata such as `ClassName`, Studio path, `Disabled` state, attributes, source line counts, byte counts, and checksums.
 - A local HTTP receiver path so you do not have to manually copy dozens of `StringValue` chunks.
+- Automatic HTTP chunking under Roblox Studio's 1024 KB post limit.
 - Chunked `StringValue`s in `ReplicatedStorage` as a fallback if local HTTP is unavailable.
 
 This is a mirror, not live Rojo sync. Editing files under `roblox/exported_scripts/` does not automatically update Studio.
@@ -34,10 +35,10 @@ If `python` is not on your PATH, try:
 py scripts/receive_studio_full_snapshot_export.py
 ```
 
-Leave that PowerShell window open. It waits for one Studio export at:
+Leave that PowerShell window open. It waits for Studio export chunks at:
 
 ```text
-http://127.0.0.1:8765/ntr-studio-export
+http://127.0.0.1:8765/ntr-studio-export-chunk
 ```
 
 ### 2. Enable Studio HTTP Requests If Needed
@@ -58,7 +59,7 @@ In Roblox Studio, paste and run this whole file in the Command Bar:
 scripts/roblox_studio_export_full_snapshot_for_github_v2.lua
 ```
 
-If the local receiver is running, Studio posts the full export to it. The receiver then automatically writes/imports:
+If the local receiver is running, Studio posts the full export to it in smaller HTTP chunks. The receiver then automatically writes/imports:
 
 ```text
 docs/studio-full-export-paste.txt
@@ -66,10 +67,10 @@ roblox/exported_scripts/
 roblox/studio_snapshot/
 ```
 
-In Studio output, the good message is:
+In Studio output, the good message looks like:
 
 ```text
-[NTR Studio Export V2] Sent to local receiver: http://127.0.0.1:8765/ntr-studio-export
+[NTR Studio Export V2] Sent to local receiver in 13 chunks: http://127.0.0.1:8765/ntr-studio-export-chunk
 ```
 
 In PowerShell, the good message is:
