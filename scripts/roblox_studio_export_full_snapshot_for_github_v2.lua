@@ -4,7 +4,7 @@
 -- Best workflow:
 -- - Run scripts/receive_studio_full_snapshot_export.py locally first.
 -- - Run this script in Studio.
--- - Studio will try to send the export to the local receiver automatically.
+-- - Studio sends the export to the local receiver in HTTP chunks under Roblox's 1024 KB post limit.
 --
 -- Fallback workflow:
 -- - If local HTTP is unavailable, this writes chunked StringValues to
@@ -24,7 +24,8 @@ local EXPORT_FOLDER_NAME = "NTR_STUDIO_FULL_EXPORT_V2"
 local EXPORT_CHUNK_PREFIX = "StudioExport_"
 local CHUNK_LIMIT = 18000
 local TRY_LOCAL_HTTP_RECEIVER = true
-local LOCAL_RECEIVER_URL = "http://127.0.0.1:8765/ntr-studio-export"
+local LOCAL_RECEIVER_CHUNK_URL = "http://127.0.0.1:8765/ntr-studio-export-chunk"
+local HTTP_CHUNK_LIMIT = 700000
 
 local INCLUDE_DISABLED_SCRIPTS = true
 local INCLUDE_TEST_WIP_ASSETS = true
@@ -279,15 +280,40 @@ local payload = {
 
 local exportText = "NTR_STUDIO_FULL_EXPORT_V2\n" .. HttpService:JSONEncode(payload) .. "\nNTR_STUDIO_FULL_EXPORT_END\n"
 
+local function sendToLocalReceiverInChunks(text)
+	local total = math.ceil(#text / HTTP_CHUNK_LIMIT)
+	local exportId = tostring(game.PlaceId) .. "_" .. tostring(os.time()) .. "_" .. tostring(math.random(100000, 999999))
+	local finalResponse = ""
+
+	for index = 1, total do
+		local cursor = ((index - 1) * HTTP_CHUNK_LIMIT) + 1
+		local chunk = text:sub(cursor, cursor + HTTP_CHUNK_LIMIT - 1)
+		local body = HttpService:JSONEncode({
+			export_id = exportId,
+			index = index,
+			total = total,
+			data = chunk,
+		})
+		local response = HttpService:PostAsync(LOCAL_RECEIVER_CHUNK_URL, body, Enum.HttpContentType.ApplicationJson, false)
+		finalResponse = tostring(response)
+		print("[NTR Studio Export V2] Sent HTTP chunk " .. tostring(index) .. " of " .. tostring(total))
+	end
+
+	return finalResponse, total
+end
+
 local sentToReceiver = false
 local receiverMessage = ""
+local receiverChunkCount = 0
 if TRY_LOCAL_HTTP_RECEIVER then
-	local ok, response = pcall(function()
-		return HttpService:PostAsync(LOCAL_RECEIVER_URL, exportText, Enum.HttpContentType.TextPlain, false)
+	local ok, response, chunkCount = pcall(function()
+		local message, count = sendToLocalReceiverInChunks(exportText)
+		return message, count
 	end)
 	if ok then
 		sentToReceiver = true
 		receiverMessage = tostring(response)
+		receiverChunkCount = tonumber(chunkCount) or 0
 	else
 		receiverMessage = tostring(response)
 	end
@@ -312,10 +338,11 @@ readme.Name = "README_HOW_TO_IMPORT"
 
 if sentToReceiver then
 	readme.Value = table.concat({
-		"Export was sent to the local receiver successfully.",
+		"Export was sent to the local receiver successfully in HTTP chunks.",
 		"You do not need to copy StudioExport chunks for this run.",
 		"Check PowerShell for the import result.",
 		"",
+		"Chunks sent: " .. tostring(receiverChunkCount),
 		"Receiver response:",
 		receiverMessage,
 	}, "\n")
@@ -355,7 +382,7 @@ print("[NTR Studio Export V2] Export complete.")
 print("[NTR Studio Export V2] Scripts exported: " .. tostring(#scriptRecords))
 print("[NTR Studio Export V2] Skipped entries: " .. tostring(#skipped))
 if sentToReceiver then
-	print("[NTR Studio Export V2] Sent to local receiver: " .. LOCAL_RECEIVER_URL)
+	print("[NTR Studio Export V2] Sent to local receiver in " .. tostring(receiverChunkCount) .. " chunks: " .. LOCAL_RECEIVER_CHUNK_URL)
 else
 	print("[NTR Studio Export V2] Local receiver unavailable; copy fallback chunks from ReplicatedStorage." .. EXPORT_FOLDER_NAME)
 	print("[NTR Studio Export V2] Receiver error: " .. receiverMessage)
