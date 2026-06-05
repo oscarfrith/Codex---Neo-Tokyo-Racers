@@ -178,7 +178,6 @@ end
 
 local scriptRecords = {}
 local skipped = {}
-local scriptIndexByPath = {}
 
 local function makeNode(instance)
 	local fullPath = instance:GetFullName()
@@ -217,7 +216,6 @@ local function makeNode(instance)
 				source_base64 = base64Encode(source),
 			}
 			table.insert(scriptRecords, scriptRecord)
-			scriptIndexByPath[fullPath] = scriptRecord.id
 			node.script_id = scriptRecord.id
 			node.disabled = disabled
 			node.source_lines = scriptRecord.source_lines
@@ -252,16 +250,9 @@ for _, serviceName in ipairs(serviceNamesToScan) do
 	end
 end
 
-table.sort(scriptRecords, function(a, b)
-	return a.path < b.path
-end)
 table.sort(skipped, function(a, b)
 	return a.path < b.path
 end)
-
-for index, record in ipairs(scriptRecords) do
-	record.id = "script_" .. string.format("%04d", index)
-end
 
 local payload = {
 	format = "NTR_STUDIO_FULL_EXPORT_V2",
