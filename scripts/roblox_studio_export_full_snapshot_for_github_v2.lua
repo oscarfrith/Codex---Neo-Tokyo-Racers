@@ -1,22 +1,30 @@
 -- Neo Tokyo Racers - Export Full Studio Snapshot For GitHub
 -- Paste this whole script into the Roblox Studio Command Bar.
 --
+-- Best workflow:
+-- - Run scripts/receive_studio_full_snapshot_export.py locally first.
+-- - Run this script in Studio.
+-- - Studio will try to send the export to the local receiver automatically.
+--
+-- Fallback workflow:
+-- - If local HTTP is unavailable, this writes chunked StringValues to
+--   ReplicatedStorage.NTR_STUDIO_FULL_EXPORT_V2 for manual copying.
+--
 -- What this does:
 -- - Captures a hierarchy snapshot for the main game services.
 -- - Exports all Script, LocalScript, and ModuleScript sources from those services.
 -- - Records useful metadata: ClassName, path parts, Disabled state, attributes,
 --   source line counts, simple checksums, and source byte counts.
--- - Writes chunked StringValues to ReplicatedStorage.NTR_STUDIO_FULL_EXPORT_V2.
 --
 -- What this does NOT do:
 -- - It does not move, rename, disable, delete, clone, or edit gameplay objects.
 -- - It only replaces its own export StringValues/folder in ReplicatedStorage.
--- - It does not write to your local filesystem; Studio command-bar scripts cannot
---   write directly into your GitHub repo folder.
 
 local EXPORT_FOLDER_NAME = "NTR_STUDIO_FULL_EXPORT_V2"
 local EXPORT_CHUNK_PREFIX = "StudioExport_"
 local CHUNK_LIMIT = 18000
+local TRY_LOCAL_HTTP_RECEIVER = true
+local LOCAL_RECEIVER_URL = "http://127.0.0.1:8765/ntr-studio-export"
 
 local INCLUDE_DISABLED_SCRIPTS = true
 local INCLUDE_TEST_WIP_ASSETS = true
@@ -271,6 +279,20 @@ local payload = {
 
 local exportText = "NTR_STUDIO_FULL_EXPORT_V2\n" .. HttpService:JSONEncode(payload) .. "\nNTR_STUDIO_FULL_EXPORT_END\n"
 
+local sentToReceiver = false
+local receiverMessage = ""
+if TRY_LOCAL_HTTP_RECEIVER then
+	local ok, response = pcall(function()
+		return HttpService:PostAsync(LOCAL_RECEIVER_URL, exportText, Enum.HttpContentType.TextPlain, false)
+	end)
+	if ok then
+		sentToReceiver = true
+		receiverMessage = tostring(response)
+	else
+		receiverMessage = tostring(response)
+	end
+end
+
 local replicatedStorage = game:GetService("ReplicatedStorage")
 local exportFolder = replicatedStorage:FindFirstChild(EXPORT_FOLDER_NAME)
 if not exportFolder then
@@ -287,30 +309,54 @@ end
 
 local readme = Instance.new("StringValue")
 readme.Name = "README_HOW_TO_IMPORT"
-readme.Value = table.concat({
-	"Copy StudioExport_001, StudioExport_002, StudioExport_003, etc. in order.",
-	"Paste the values into docs/studio-full-export-paste.txt on your computer.",
-	"Then run from the repo folder:",
-	"python scripts/import_studio_full_snapshot_export.py docs/studio-full-export-paste.txt",
-	"The importer refreshes roblox/exported_scripts/ and roblox/studio_snapshot/.",
-}, "\n")
-readme.Parent = exportFolder
 
-local chunkIndex = 1
-local cursor = 1
-while cursor <= #exportText do
-	local chunk = exportText:sub(cursor, cursor + CHUNK_LIMIT - 1)
-	local valueObject = Instance.new("StringValue")
-	valueObject.Name = EXPORT_CHUNK_PREFIX .. string.format("%03d", chunkIndex)
-	valueObject.Value = chunk
-	valueObject.Parent = exportFolder
+if sentToReceiver then
+	readme.Value = table.concat({
+		"Export was sent to the local receiver successfully.",
+		"You do not need to copy StudioExport chunks for this run.",
+		"Check PowerShell for the import result.",
+		"",
+		"Receiver response:",
+		receiverMessage,
+	}, "\n")
+	readme.Parent = exportFolder
+else
+	readme.Value = table.concat({
+		"Local receiver was not used or did not respond, so chunk fallback was created.",
+		"Common fix: run python scripts/receive_studio_full_snapshot_export.py first and enable Studio HTTP requests.",
+		"",
+		"Copy StudioExport_001, StudioExport_002, StudioExport_003, etc. in order.",
+		"Paste the values into docs/studio-full-export-paste.txt on your computer.",
+		"Then run from the repo folder:",
+		"python scripts/import_studio_full_snapshot_export.py docs/studio-full-export-paste.txt",
+		"",
+		"Local receiver error:",
+		receiverMessage,
+	}, "\n")
+	readme.Parent = exportFolder
 
-	cursor = cursor + CHUNK_LIMIT
-	chunkIndex = chunkIndex + 1
+	local chunkIndex = 1
+	local cursor = 1
+	while cursor <= #exportText do
+		local chunk = exportText:sub(cursor, cursor + CHUNK_LIMIT - 1)
+		local valueObject = Instance.new("StringValue")
+		valueObject.Name = EXPORT_CHUNK_PREFIX .. string.format("%03d", chunkIndex)
+		valueObject.Value = chunk
+		valueObject.Parent = exportFolder
+
+		cursor = cursor + CHUNK_LIMIT
+		chunkIndex = chunkIndex + 1
+	end
+
+	print("[NTR Studio Export V2] Chunks written: " .. tostring(chunkIndex - 1))
 end
 
 print("[NTR Studio Export V2] Export complete.")
 print("[NTR Studio Export V2] Scripts exported: " .. tostring(#scriptRecords))
 print("[NTR Studio Export V2] Skipped entries: " .. tostring(#skipped))
-print("[NTR Studio Export V2] Chunks written: " .. tostring(chunkIndex - 1))
-print("[NTR Studio Export V2] Copy chunks from ReplicatedStorage." .. EXPORT_FOLDER_NAME)
+if sentToReceiver then
+	print("[NTR Studio Export V2] Sent to local receiver: " .. LOCAL_RECEIVER_URL)
+else
+	print("[NTR Studio Export V2] Local receiver unavailable; copy fallback chunks from ReplicatedStorage." .. EXPORT_FOLDER_NAME)
+	print("[NTR Studio Export V2] Receiver error: " .. receiverMessage)
+end
