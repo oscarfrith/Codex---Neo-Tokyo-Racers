@@ -10,6 +10,11 @@ This file is intentionally conservative. Items are included only when they were 
 - Mobile auto-sprint is prepared in `scripts/roblox_character_sprint_controller_install.lua`; verify on a mobile device/emulator that `MobileSprintMoveThreshold` feels right.
 - VFX Phase AJ is prepared to repair thrust VFX preview after the dealership preview root moved; run and verify `scripts/roblox_vfx_phaseAJ_thrust_preview_root_repair.lua` if thrust VFX is missing in the customisation menu.
 
+## Studio Export Mirror
+
+- `roblox/exported_scripts/` appears stale until the V2 full snapshot workflow is run in Studio. The current GitHub mirror still contains old paths such as `ReplicatedStorage.HOVER_RACING_V2_KIT`, while project docs say that kit was removed and the active client moved into `StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient`.
+- Run `scripts/roblox_studio_export_full_snapshot_for_github_v2.lua`, paste the chunks into `docs/studio-full-export-paste.txt`, then run `python scripts/import_studio_full_snapshot_export.py docs/studio-full-export-paste.txt` before treating the exported mirror as current truth.
+
 ## Camera
 
 Resolved direction:
