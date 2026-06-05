@@ -1,0 +1,2184 @@
+[
+  {
+    "id": "script_0001",
+    "roblox_path": "ReplicatedStorage.NeoTokyoRacers.Compatibility.LiveSystemRegistry",
+    "path_parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Compatibility",
+      "LiveSystemRegistry"
+    ],
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "attributes": {
+      "PhaseNSourcePatchedBy": {
+        "value": "roblox_architecture_phaseN_runtime_world_path_repair",
+        "type": "string"
+      },
+      "CreatedBy": {
+        "value": "NTR_Phase2_LiveReferencesRegistry_2026_05_28",
+        "type": "string"
+      },
+      "PhaseKSourcePatchedAt": {
+        "value": "2026-05-29 17:31:59",
+        "type": "string"
+      },
+      "PhaseKSourcePatchedBy": {
+        "value": "roblox_architecture_phaseK_migrate_hover_kit_to_neotokyo",
+        "type": "string"
+      },
+      "PhaseNSourcePatchedAt": {
+        "value": "2026-05-29 18:36:09",
+        "type": "string"
+      }
+    },
+    "source_lines": 170,
+    "source_bytes": 5432,
+    "source_checksum": "289968383",
+    "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Compatibility/LiveSystemRegistry.module.lua"
+  },
+  {
+    "id": "script_0002",
+    "roblox_path": "ReplicatedStorage.NeoTokyoRacers.Compatibility.PathResolver",
+    "path_parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Compatibility",
+      "PathResolver"
+    ],
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "attributes": {
+      "PhaseNSourcePatchedBy": {
+        "value": "roblox_architecture_phaseN_runtime_world_path_repair",
+        "type": "string"
+      },
+      "CreatedBy": {
+        "value": "NTR_Phase1_ArchitectureResolver_2026_05_28",
+        "type": "string"
+      },
+      "PhaseKSourcePatchedAt": {
+        "value": "2026-05-29 17:31:59",
+        "type": "string"
+      },
+      "PhaseKSourcePatchedBy": {
+        "value": "roblox_architecture_phaseK_migrate_hover_kit_to_neotokyo",
+        "type": "string"
+      },
+      "PhaseNSourcePatchedAt": {
+        "value": "2026-05-29 18:36:09",
+        "type": "string"
+      }
+    },
+    "source_lines": 123,
+    "source_bytes": 3988,
+    "source_checksum": "705547160",
+    "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Compatibility/PathResolver.module.lua"
+  },
+  {
+    "id": "script_0003",
+    "roblox_path": "ReplicatedStorage.NeoTokyoRacers.Shared.Config.ConfigRegistry",
+    "path_parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Config",
+      "ConfigRegistry"
+    ],
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "attributes": {
+      "CreatedBy": {
+        "value": "NTR_Phase3_ConfigRegistryMirrors_2026_05_28",
+        "type": "string"
+      },
+      "PhaseKSourcePatchedBy": {
+        "value": "roblox_architecture_phaseK_migrate_hover_kit_to_neotokyo",
+        "type": "string"
+      },
+      "PhaseKSourcePatchedAt": {
+        "value": "2026-05-29 17:31:59",
+        "type": "string"
+      }
+    },
+    "source_lines": 176,
+    "source_bytes": 6426,
+    "source_checksum": "827938715",
+    "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Config/ConfigRegistry.module.lua"
+  },
+  {
+    "id": "script_0004",
+    "roblox_path": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Controllers.DrivingControllerV47",
+    "path_parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Modules",
+      "Client",
+      "Controllers",
+      "DrivingControllerV47"
+    ],
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "attributes": {
+      "PhaseNSourcePatchedBy": {
+        "value": "roblox_architecture_phaseN_runtime_world_path_repair",
+        "type": "string"
+      },
+      "HoverRacingVersion": {
+        "value": "V75_BoostDelayHoverWobble",
+        "type": "string"
+      },
+      "PhaseKSourcePatchedAt": {
+        "value": "2026-05-29 17:31:59",
+        "type": "string"
+      },
+      "PhaseKSourcePatchedBy": {
+        "value": "roblox_architecture_phaseK_migrate_hover_kit_to_neotokyo",
+        "type": "string"
+      },
+      "PhaseNSourcePatchedAt": {
+        "value": "2026-05-29 18:36:09",
+        "type": "string"
+      }
+    },
+    "source_lines": 848,
+    "source_bytes": 32274,
+    "source_checksum": "426414861",
+    "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Client/Controllers/DrivingControllerV47.module.lua"
+  },
+  {
+    "id": "script_0005",
+    "roblox_path": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Controllers.DrivingFallbackController",
+    "path_parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Modules",
+      "Client",
+      "Controllers",
+      "DrivingFallbackController"
+    ],
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "attributes": {
+      "PhaseNSourcePatchedAt": {
+        "value": "2026-05-29 18:36:09",
+        "type": "string"
+      },
+      "PhaseNSourcePatchedBy": {
+        "value": "roblox_architecture_phaseN_runtime_world_path_repair",
+        "type": "string"
+      }
+    },
+    "source_lines": 461,
+    "source_bytes": 16282,
+    "source_checksum": "168569475",
+    "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Client/Controllers/DrivingFallbackController.module.lua"
+  },
+  {
+    "id": "script_0006",
+    "roblox_path": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Controllers.MobileDriveInputState",
+    "path_parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Modules",
+      "Client",
+      "Controllers",
+      "MobileDriveInputState"
+    ],
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "attributes": {},
+    "source_lines": 39,
+    "source_bytes": 1086,
+    "source_checksum": "51490029",
+    "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Client/Controllers/MobileDriveInputState.module.lua"
+  },
+  {
+    "id": "script_0007",
+    "roblox_path": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Controllers.ReentryThrottle",
+    "path_parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Modules",
+      "Client",
+      "Controllers",
+      "ReentryThrottle"
+    ],
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "attributes": {
+      "HoverRacingVersion": {
+        "value": "V22",
+        "type": "string"
+      }
+    },
+    "source_lines": 24,
+    "source_bytes": 484,
+    "source_checksum": "10245212",
+    "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Client/Controllers/ReentryThrottle.module.lua"
+  },
+  {
+    "id": "script_0008",
+    "roblox_path": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.UI.UIFactory",
+    "path_parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Modules",
+      "Client",
+      "UI",
+      "UIFactory"
+    ],
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "attributes": {
+      "TemplateFromOrganizer": {
+        "value": true,
+        "type": "boolean"
+      },
+      "PhaseKSourcePatchedBy": {
+        "value": "roblox_architecture_phaseK_migrate_hover_kit_to_neotokyo",
+        "type": "string"
+      },
+      "PhaseKSourcePatchedAt": {
+        "value": "2026-05-29 17:31:59",
+        "type": "string"
+      }
+    },
+    "source_lines": 69,
+    "source_bytes": 2156,
+    "source_checksum": "206065276",
+    "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Client/UI/UIFactory.module.lua"
+  },
+  {
+    "id": "script_0009",
+    "roblox_path": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.UI.UIPool",
+    "path_parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Modules",
+      "Client",
+      "UI",
+      "UIPool"
+    ],
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "attributes": {
+      "HoverRacingVersion": {
+        "value": "V22",
+        "type": "string"
+      }
+    },
+    "source_lines": 99,
+    "source_bytes": 1848,
+    "source_checksum": "145077465",
+    "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Client/UI/UIPool.module.lua"
+  },
+  {
+    "id": "script_0010",
+    "roblox_path": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.VFX.VehicleVFXController",
+    "path_parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Modules",
+      "Client",
+      "VFX",
+      "VehicleVFXController"
+    ],
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "attributes": {
+      "HoverRacingVersion": {
+        "value": "V36_SafeDirectionalStabiliserController",
+        "type": "string"
+      },
+      "PhaseKSourcePatchedBy": {
+        "value": "roblox_architecture_phaseK_migrate_hover_kit_to_neotokyo",
+        "type": "string"
+      },
+      "PhaseKSourcePatchedAt": {
+        "value": "2026-05-29 17:31:59",
+        "type": "string"
+      }
+    },
+    "source_lines": 509,
+    "source_bytes": 17359,
+    "source_checksum": "831348072",
+    "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Client/VFX/VehicleVFXController.module.lua"
+  },
+  {
+    "id": "script_0011",
+    "roblox_path": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Visuals.CachedThrustVisualRuntime",
+    "path_parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Modules",
+      "Client",
+      "Visuals",
+      "CachedThrustVisualRuntime"
+    ],
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "attributes": {
+      "PhasePSourcePatchedBy": {
+        "value": "roblox_architecture_phaseP_garage_runtime_startup_repair",
+        "type": "string"
+      },
+      "PhaseNSourcePatchedBy": {
+        "value": "roblox_architecture_phaseN_runtime_world_path_repair",
+        "type": "string"
+      },
+      "PhasePSourcePatchedAt": {
+        "value": "2026-06-02 09:46:31",
+        "type": "string"
+      },
+      "PhaseNSourcePatchedAt": {
+        "value": "2026-05-29 18:36:09",
+        "type": "string"
+      },
+      "PhaseAJNewSourceHash": {
+        "value": "53436536",
+        "type": "string"
+      },
+      "PhaseKSourcePatchedAt": {
+        "value": "2026-05-29 17:31:59",
+        "type": "string"
+      },
+      "PhaseAJOldSourceHash": {
+        "value": "c9d61dc0",
+        "type": "string"
+      },
+      "PhaseAJPatchedAt": {
+        "value": "2026-06-05 11:45:58",
+        "type": "string"
+      },
+      "PhaseKSourcePatchedBy": {
+        "value": "roblox_architecture_phaseK_migrate_hover_kit_to_neotokyo",
+        "type": "string"
+      },
+      "PhaseAJPatchedBy": {
+        "value": "roblox_vfx_phaseAJ_thrust_preview_root_repair",
+        "type": "string"
+      }
+    },
+    "source_lines": 712,
+    "source_bytes": 20703,
+    "source_checksum": "366529197",
+    "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Client/Visuals/CachedThrustVisualRuntime.module.lua"
+  },
+  {
+    "id": "script_0012",
+    "roblox_path": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.ConfigReader",
+    "path_parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Modules",
+      "Common",
+      "ConfigReader"
+    ],
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "attributes": {
+      "TemplateFromOrganizer": {
+        "value": true,
+        "type": "boolean"
+      }
+    },
+    "source_lines": 39,
+    "source_bytes": 976,
+    "source_checksum": "41778235",
+    "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Common/ConfigReader.module.lua"
+  },
+  {
+    "id": "script_0013",
+    "roblox_path": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.DriveTuning",
+    "path_parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Modules",
+      "Common",
+      "DriveTuning"
+    ],
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "attributes": {
+      "TemplateFromOrganizer": {
+        "value": true,
+        "type": "boolean"
+      },
+      "PhaseKSourcePatchedBy": {
+        "value": "roblox_architecture_phaseK_migrate_hover_kit_to_neotokyo",
+        "type": "string"
+      },
+      "PhaseKSourcePatchedAt": {
+        "value": "2026-05-29 17:31:59",
+        "type": "string"
+      }
+    },
+    "source_lines": 25,
+    "source_bytes": 1221,
+    "source_checksum": "63255702",
+    "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Common/DriveTuning.module.lua"
+  },
+  {
+    "id": "script_0014",
+    "roblox_path": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.UITheme",
+    "path_parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Modules",
+      "Common",
+      "UITheme"
+    ],
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "attributes": {
+      "TemplateFromOrganizer": {
+        "value": true,
+        "type": "boolean"
+      },
+      "PhaseKSourcePatchedBy": {
+        "value": "roblox_architecture_phaseK_migrate_hover_kit_to_neotokyo",
+        "type": "string"
+      },
+      "PhaseKSourcePatchedAt": {
+        "value": "2026-05-29 17:31:59",
+        "type": "string"
+      }
+    },
+    "source_lines": 51,
+    "source_bytes": 2311,
+    "source_checksum": "222840690",
+    "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Common/UITheme.module.lua"
+  },
+  {
+    "id": "script_0015",
+    "roblox_path": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.VehicleData",
+    "path_parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Modules",
+      "Common",
+      "VehicleData"
+    ],
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "attributes": {
+      "TemplateFromOrganizer": {
+        "value": true,
+        "type": "boolean"
+      },
+      "PhaseKSourcePatchedBy": {
+        "value": "roblox_architecture_phaseK_migrate_hover_kit_to_neotokyo",
+        "type": "string"
+      },
+      "PhaseKSourcePatchedAt": {
+        "value": "2026-05-29 17:31:59",
+        "type": "string"
+      }
+    },
+    "source_lines": 34,
+    "source_bytes": 1200,
+    "source_checksum": "64087799",
+    "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Common/VehicleData.module.lua"
+  },
+  {
+    "id": "script_0016",
+    "roblox_path": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.VehicleStatsCache",
+    "path_parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Modules",
+      "Common",
+      "VehicleStatsCache"
+    ],
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "attributes": {
+      "HoverRacingVersion": {
+        "value": "V22",
+        "type": "string"
+      }
+    },
+    "source_lines": 45,
+    "source_bytes": 1466,
+    "source_checksum": "90629628",
+    "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Common/VehicleStatsCache.module.lua"
+  },
+  {
+    "id": "script_0017",
+    "roblox_path": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Core.PathResolver",
+    "path_parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Modules",
+      "Core",
+      "PathResolver"
+    ],
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "attributes": {
+      "CreatedBy": {
+        "value": "roblox_architecture_phaseK_migrate_hover_kit_to_neotokyo",
+        "type": "string"
+      },
+      "PhaseNSourcePatchedBy": {
+        "value": "roblox_architecture_phaseN_runtime_world_path_repair",
+        "type": "string"
+      },
+      "MigrationStatus": {
+        "value": "LivePathResolver",
+        "type": "string"
+      },
+      "PhaseNSourcePatchedAt": {
+        "value": "2026-05-29 18:36:09",
+        "type": "string"
+      }
+    },
+    "source_lines": 98,
+    "source_bytes": 2155,
+    "source_checksum": "202047543",
+    "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Core/PathResolver.module.lua"
+  },
+  {
+    "id": "script_0018",
+    "roblox_path": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data.ConfigRegistry",
+    "path_parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Modules",
+      "Data",
+      "ConfigRegistry"
+    ],
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "attributes": {
+      "CreatedBy": {
+        "value": "NTR_Phase3_ConfigRegistryMirrors_2026_05_28",
+        "type": "string"
+      },
+      "PhaseKSourcePatchedBy": {
+        "value": "roblox_architecture_phaseK_migrate_hover_kit_to_neotokyo",
+        "type": "string"
+      },
+      "PhaseKSourcePatchedAt": {
+        "value": "2026-05-29 17:31:59",
+        "type": "string"
+      }
+    },
+    "source_lines": 176,
+    "source_bytes": 6426,
+    "source_checksum": "827938715",
+    "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Data/ConfigRegistry.module.lua"
+  },
+  {
+    "id": "script_0019",
+    "roblox_path": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.UI.ArrowScroller",
+    "path_parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Modules",
+      "UI",
+      "ArrowScroller"
+    ],
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "attributes": {
+      "DoNotSwitchLiveUIAutomatically": {
+        "value": true,
+        "type": "boolean"
+      },
+      "MigrationStatus": {
+        "value": "PreparedForFutureUse",
+        "type": "string"
+      },
+      "CreatedBy": {
+        "value": "roblox_hierarchy_phase7_shared_ui_helpers_promote",
+        "type": "string"
+      }
+    },
+    "source_lines": 68,
+    "source_bytes": 2210,
+    "source_checksum": "206185196",
+    "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/UI/ArrowScroller.module.lua"
+  },
+  {
+    "id": "script_0020",
+    "roblox_path": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.UI.ColourUtils",
+    "path_parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Modules",
+      "UI",
+      "ColourUtils"
+    ],
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "attributes": {
+      "DoNotSwitchLiveUIAutomatically": {
+        "value": true,
+        "type": "boolean"
+      },
+      "MigrationStatus": {
+        "value": "PreparedForFutureUse",
+        "type": "string"
+      },
+      "CreatedBy": {
+        "value": "roblox_hierarchy_phase7_shared_ui_helpers_promote",
+        "type": "string"
+      }
+    },
+    "source_lines": 21,
+    "source_bytes": 440,
+    "source_checksum": "8074351",
+    "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/UI/ColourUtils.module.lua"
+  },
+  {
+    "id": "script_0021",
+    "roblox_path": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.UI.ResponsiveLayout",
+    "path_parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Modules",
+      "UI",
+      "ResponsiveLayout"
+    ],
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "attributes": {
+      "DoNotSwitchLiveUIAutomatically": {
+        "value": true,
+        "type": "boolean"
+      },
+      "MigrationStatus": {
+        "value": "PreparedForFutureUse",
+        "type": "string"
+      },
+      "CreatedBy": {
+        "value": "roblox_hierarchy_phase7_shared_ui_helpers_promote",
+        "type": "string"
+      }
+    },
+    "source_lines": 44,
+    "source_bytes": 1413,
+    "source_checksum": "83833330",
+    "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/UI/ResponsiveLayout.module.lua"
+  },
+  {
+    "id": "script_0022",
+    "roblox_path": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.UI.StatBars",
+    "path_parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Modules",
+      "UI",
+      "StatBars"
+    ],
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "attributes": {
+      "DoNotSwitchLiveUIAutomatically": {
+        "value": true,
+        "type": "boolean"
+      },
+      "MigrationStatus": {
+        "value": "PreparedForFutureUse",
+        "type": "string"
+      },
+      "CreatedBy": {
+        "value": "roblox_hierarchy_phase7_shared_ui_helpers_promote",
+        "type": "string"
+      }
+    },
+    "source_lines": 49,
+    "source_bytes": 1687,
+    "source_checksum": "110398672",
+    "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/UI/StatBars.module.lua"
+  },
+  {
+    "id": "script_0023",
+    "roblox_path": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.UI.UIFactory",
+    "path_parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Modules",
+      "UI",
+      "UIFactory"
+    ],
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "attributes": {
+      "DoNotSwitchLiveUIAutomatically": {
+        "value": true,
+        "type": "boolean"
+      },
+      "MigrationStatus": {
+        "value": "PreparedForFutureUse",
+        "type": "string"
+      },
+      "CreatedBy": {
+        "value": "roblox_hierarchy_phase7_shared_ui_helpers_promote",
+        "type": "string"
+      }
+    },
+    "source_lines": 93,
+    "source_bytes": 2861,
+    "source_checksum": "361501021",
+    "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/UI/UIFactory.module.lua"
+  },
+  {
+    "id": "script_0024",
+    "roblox_path": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.UI.UIPool",
+    "path_parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Modules",
+      "UI",
+      "UIPool"
+    ],
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "attributes": {
+      "DoNotSwitchLiveUIAutomatically": {
+        "value": true,
+        "type": "boolean"
+      },
+      "MigrationStatus": {
+        "value": "PreparedForFutureUse",
+        "type": "string"
+      },
+      "CreatedBy": {
+        "value": "roblox_hierarchy_phase7_shared_ui_helpers_promote",
+        "type": "string"
+      }
+    },
+    "source_lines": 99,
+    "source_bytes": 1848,
+    "source_checksum": "145077465",
+    "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/UI/UIPool.module.lua"
+  },
+  {
+    "id": "script_0025",
+    "roblox_path": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.UI.UITheme",
+    "path_parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Modules",
+      "UI",
+      "UITheme"
+    ],
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "attributes": {
+      "CreatedBy": {
+        "value": "roblox_hierarchy_phase7_shared_ui_helpers_promote",
+        "type": "string"
+      },
+      "DoNotSwitchLiveUIAutomatically": {
+        "value": true,
+        "type": "boolean"
+      },
+      "MigrationStatus": {
+        "value": "PreparedForFutureUse",
+        "type": "string"
+      },
+      "PhaseKSourcePatchedBy": {
+        "value": "roblox_architecture_phaseK_migrate_hover_kit_to_neotokyo",
+        "type": "string"
+      },
+      "PhaseKSourcePatchedAt": {
+        "value": "2026-05-29 17:31:59",
+        "type": "string"
+      }
+    },
+    "source_lines": 92,
+    "source_bytes": 3484,
+    "source_checksum": "524450560",
+    "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/UI/UITheme.module.lua"
+  },
+  {
+    "id": "script_0026",
+    "roblox_path": "ReplicatedStorage.Shared.LightingPresets.LightingPresets",
+    "path_parts": [
+      "ReplicatedStorage",
+      "Shared",
+      "LightingPresets",
+      "LightingPresets"
+    ],
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "attributes": {
+      "PhaseRFogColorPatchedAt": {
+        "value": "2026-06-02 10:17:53",
+        "type": "string"
+      },
+      "PhaseRFogColorPatchedBy": {
+        "value": "roblox_lighting_phaseR_fogcolor_property_repair",
+        "type": "string"
+      }
+    },
+    "source_lines": 105,
+    "source_bytes": 2375,
+    "source_checksum": "192036227",
+    "file": "roblox/exported_scripts/ReplicatedStorage/Shared/LightingPresets/LightingPresets.module.lua"
+  },
+  {
+    "id": "script_0027",
+    "roblox_path": "ServerScriptService.NeoTokyoRacers.Services.Dealership.IntroProgressService_Active",
+    "path_parts": [
+      "ServerScriptService",
+      "NeoTokyoRacers",
+      "Services",
+      "Dealership",
+      "IntroProgressService_Active"
+    ],
+    "class_name": "Script",
+    "disabled": false,
+    "attributes": {
+      "InstalledBy": {
+        "value": "roblox_dealership_intro_phase8_dynamic_arrow_tether_once",
+        "type": "string"
+      },
+      "InstalledAt": {
+        "value": "2026-06-05 11:27:52",
+        "type": "string"
+      }
+    },
+    "source_lines": 208,
+    "source_bytes": 6098,
+    "source_checksum": "614103834",
+    "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Dealership/IntroProgressService_Active.server.lua"
+  },
+  {
+    "id": "script_0028",
+    "roblox_path": "ServerScriptService.NeoTokyoRacers.Services.Garage.GarageActionController_Shadow_Disabled",
+    "path_parts": [
+      "ServerScriptService",
+      "NeoTokyoRacers",
+      "Services",
+      "Garage",
+      "GarageActionController_Shadow_Disabled"
+    ],
+    "class_name": "Script",
+    "disabled": false,
+    "attributes": {
+      "PhaseNSourcePatchedBy": {
+        "value": "roblox_architecture_phaseN_runtime_world_path_repair",
+        "type": "string"
+      },
+      "PhaseADSourcePatchedAt": {
+        "value": "2026-06-02 16:52:15",
+        "type": "string"
+      },
+      "DoNotEnableWithLegacyServer": {
+        "value": true,
+        "type": "boolean"
+      },
+      "PhaseAESourcePatchedAt": {
+        "value": "2026-06-02 17:50:04",
+        "type": "string"
+      },
+      "MigrationStatus": {
+        "value": "ShadowSwitchCandidate",
+        "type": "string"
+      },
+      "SourceHash": {
+        "value": "3be69270",
+        "type": "string"
+      },
+      "SourceScriptPath": {
+        "value": "ServerScriptService.HOVER_RACING_V2_SERVER.HOVER_RACING_V2_Server",
+        "type": "string"
+      },
+      "DealershipIntroPhase6PatchedBy": {
+        "value": "roblox_dealership_intro_phase6_vehicle_exit_spawn_marker",
+        "type": "string"
+      },
+      "PhasePSourcePatchedBy": {
+        "value": "roblox_architecture_phaseP_garage_runtime_startup_repair",
+        "type": "string"
+      },
+      "LiveEnabled": {
+        "value": true,
+        "type": "boolean"
+      },
+      "CreatedBy": {
+        "value": "roblox_hierarchy_phase14_server_shadow_action_controller",
+        "type": "string"
+      },
+      "PhaseACSourcePatchedAt": {
+        "value": "2026-06-02 15:42:29",
+        "type": "string"
+      },
+      "PhasePSourcePatchedAt": {
+        "value": "2026-06-02 09:46:31",
+        "type": "string"
+      },
+      "PhaseADSourcePatchedBy": {
+        "value": "roblox_vehicle_phaseAD_root_attached_cockpit_spotlights",
+        "type": "string"
+      },
+      "PhaseNSourcePatchedAt": {
+        "value": "2026-05-29 18:36:09",
+        "type": "string"
+      },
+      "PhaseAESourcePatchedBy": {
+        "value": "roblox_vehicle_phaseAE_fresh_root_only_cockpit_spotlights",
+        "type": "string"
+      },
+      "PhaseACSourcePatchedBy": {
+        "value": "roblox_vehicle_phaseAC_cockpit_light_weld_paint_stability",
+        "type": "string"
+      },
+      "PhaseQHeaderRepairedAt": {
+        "value": "2026-06-02 10:07:39",
+        "type": "string"
+      },
+      "PhaseQHeaderRepairedBy": {
+        "value": "roblox_architecture_phaseQ_garage_controller_header_repair",
+        "type": "string"
+      },
+      "ServerActionOwner": {
+        "value": true,
+        "type": "boolean"
+      },
+      "DealershipIntroPhase6PatchedAt": {
+        "value": "2026-06-03 21:12:49",
+        "type": "string"
+      },
+      "PhaseKSourcePatchedBy": {
+        "value": "roblox_architecture_phaseK_migrate_hover_kit_to_neotokyo",
+        "type": "string"
+      },
+      "PhaseKSourcePatchedAt": {
+        "value": "2026-05-29 17:31:59",
+        "type": "string"
+      }
+    },
+    "source_lines": 868,
+    "source_bytes": 37355,
+    "source_checksum": "784870960",
+    "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Garage/GarageActionController_Shadow_Disabled.server.lua"
+  },
+  {
+    "id": "script_0029",
+    "roblox_path": "ServerScriptService.NeoTokyoRacers.Services.Vehicle.DriverSeatPositionService_Active",
+    "path_parts": [
+      "ServerScriptService",
+      "NeoTokyoRacers",
+      "Services",
+      "Vehicle",
+      "DriverSeatPositionService_Active"
+    ],
+    "class_name": "Script",
+    "disabled": false,
+    "attributes": {
+      "PhasePSourcePatchedBy": {
+        "value": "roblox_architecture_phaseP_garage_runtime_startup_repair",
+        "type": "string"
+      },
+      "PhaseNSourcePatchedBy": {
+        "value": "roblox_architecture_phaseN_runtime_world_path_repair",
+        "type": "string"
+      },
+      "LiveReplacementFor": {
+        "value": "HOVER_RACING_V2_DriverSeatPosition",
+        "type": "string"
+      },
+      "PhasePSourcePatchedAt": {
+        "value": "2026-06-02 09:46:31",
+        "type": "string"
+      },
+      "PhaseNSourcePatchedAt": {
+        "value": "2026-05-29 18:36:09",
+        "type": "string"
+      },
+      "SourceHash": {
+        "value": "9c0e34d8",
+        "type": "string"
+      },
+      "SourceScriptPath": {
+        "value": "ServerScriptService.HOVER_RACING_V2_SERVER.HOVER_RACING_V2_DriverSeatPosition",
+        "type": "string"
+      },
+      "CreatedBy": {
+        "value": "roblox_hierarchy_phase17_driver_seat_owner_switch",
+        "type": "string"
+      },
+      "MigrationStatus": {
+        "value": "DriverSeatOwnerSwitchCandidate",
+        "type": "string"
+      },
+      "PhaseKSourcePatchedBy": {
+        "value": "roblox_architecture_phaseK_migrate_hover_kit_to_neotokyo",
+        "type": "string"
+      },
+      "PhaseKSourcePatchedAt": {
+        "value": "2026-05-29 17:31:59",
+        "type": "string"
+      }
+    },
+    "source_lines": 234,
+    "source_bytes": 6224,
+    "source_checksum": "659061694",
+    "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Vehicle/DriverSeatPositionService_Active.server.lua"
+  },
+  {
+    "id": "script_0030",
+    "roblox_path": "ServerScriptService.NeoTokyoRacers.Services.World.Lighting.LightingService_Active",
+    "path_parts": [
+      "ServerScriptService",
+      "NeoTokyoRacers",
+      "Services",
+      "World",
+      "Lighting",
+      "LightingService_Active"
+    ],
+    "class_name": "Script",
+    "disabled": false,
+    "attributes": {
+      "PhaseRFogColorPatchedBy": {
+        "value": "roblox_lighting_phaseR_fogcolor_property_repair",
+        "type": "string"
+      },
+      "SourceHash": {
+        "value": "a259a9f0",
+        "type": "string"
+      },
+      "SourceScriptPath": {
+        "value": "ServerScriptService.Lighting.LightingController",
+        "type": "string"
+      },
+      "LiveReplacementFor": {
+        "value": "LightingController",
+        "type": "string"
+      },
+      "MigrationStatus": {
+        "value": "LightingServiceOwnerSwitchCandidate",
+        "type": "string"
+      },
+      "PhaseRFogColorPatchedAt": {
+        "value": "2026-06-02 10:17:53",
+        "type": "string"
+      },
+      "CreatedBy": {
+        "value": "roblox_hierarchy_phase19_lighting_service_owner_switch",
+        "type": "string"
+      }
+    },
+    "source_lines": 104,
+    "source_bytes": 2505,
+    "source_checksum": "276684162",
+    "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/World/Lighting/LightingService_Active.server.lua"
+  },
+  {
+    "id": "script_0031",
+    "roblox_path": "ServerScriptService.NeoTokyoRacers.Services.World.Traffic.TrafficLightService",
+    "path_parts": [
+      "ServerScriptService",
+      "NeoTokyoRacers",
+      "Services",
+      "World",
+      "Traffic",
+      "TrafficLightService"
+    ],
+    "class_name": "Script",
+    "disabled": false,
+    "attributes": {
+      "MigratedBy": {
+        "value": "roblox_hierarchy_phase6_world_services_migration",
+        "type": "string"
+      },
+      "MigrationStatus": {
+        "value": "Live",
+        "type": "string"
+      },
+      "MigratedFrom": {
+        "value": "ServerScriptService.Traffic Lights",
+        "type": "string"
+      }
+    },
+    "source_lines": 46,
+    "source_bytes": 1076,
+    "source_checksum": "47694172",
+    "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/World/Traffic/TrafficLightService.server.lua"
+  },
+  {
+    "id": "script_0032",
+    "roblox_path": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Core.CatalogClient",
+    "path_parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Core",
+      "CatalogClient"
+    ],
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "attributes": {
+      "LastUpdated": {
+        "value": "2026-05-29 09:17:16",
+        "type": "string"
+      },
+      "MigrationStatus": {
+        "value": "PhaseA_CoreBoundary",
+        "type": "string"
+      },
+      "LiveEnabled": {
+        "value": false,
+        "type": "boolean"
+      },
+      "CreatedBy": {
+        "value": "roblox_client_phaseA_core_boundary_modules",
+        "type": "string"
+      }
+    },
+    "source_lines": 110,
+    "source_bytes": 2824,
+    "source_checksum": "344425177",
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Core/CatalogClient.module.lua"
+  },
+  {
+    "id": "script_0033",
+    "roblox_path": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Core.ClientState",
+    "path_parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Core",
+      "ClientState"
+    ],
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "attributes": {
+      "LastUpdated": {
+        "value": "2026-05-29 09:17:16",
+        "type": "string"
+      },
+      "MigrationStatus": {
+        "value": "PhaseA_CoreBoundary",
+        "type": "string"
+      },
+      "LiveEnabled": {
+        "value": false,
+        "type": "boolean"
+      },
+      "CreatedBy": {
+        "value": "roblox_client_phaseA_core_boundary_modules",
+        "type": "string"
+      }
+    },
+    "source_lines": 75,
+    "source_bytes": 1604,
+    "source_checksum": "109187488",
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Core/ClientState.module.lua"
+  },
+  {
+    "id": "script_0034",
+    "roblox_path": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Core.ClientThemeAdapter",
+    "path_parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Core",
+      "ClientThemeAdapter"
+    ],
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "attributes": {
+      "LiveEnabled": {
+        "value": false,
+        "type": "boolean"
+      },
+      "CreatedBy": {
+        "value": "roblox_client_phaseA_core_boundary_modules",
+        "type": "string"
+      },
+      "LastUpdated": {
+        "value": "2026-05-29 09:17:16",
+        "type": "string"
+      },
+      "MigrationStatus": {
+        "value": "PhaseA_CoreBoundary",
+        "type": "string"
+      },
+      "PhaseKSourcePatchedBy": {
+        "value": "roblox_architecture_phaseK_migrate_hover_kit_to_neotokyo",
+        "type": "string"
+      },
+      "PhaseKSourcePatchedAt": {
+        "value": "2026-05-29 17:31:59",
+        "type": "string"
+      }
+    },
+    "source_lines": 69,
+    "source_bytes": 3304,
+    "source_checksum": "480603587",
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Core/ClientThemeAdapter.module.lua"
+  },
+  {
+    "id": "script_0035",
+    "roblox_path": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Core.GarageApiClient",
+    "path_parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Core",
+      "GarageApiClient"
+    ],
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "attributes": {
+      "LastUpdated": {
+        "value": "2026-05-29 09:17:16",
+        "type": "string"
+      },
+      "MigrationStatus": {
+        "value": "PhaseA_CoreBoundary",
+        "type": "string"
+      },
+      "LiveEnabled": {
+        "value": false,
+        "type": "boolean"
+      },
+      "CreatedBy": {
+        "value": "roblox_client_phaseA_core_boundary_modules",
+        "type": "string"
+      }
+    },
+    "source_lines": 38,
+    "source_bytes": 1007,
+    "source_checksum": "43882494",
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Core/GarageApiClient.module.lua"
+  },
+  {
+    "id": "script_0036",
+    "roblox_path": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Core.PaintClient",
+    "path_parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Core",
+      "PaintClient"
+    ],
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "attributes": {
+      "PhaseADSourcePatchedAt": {
+        "value": "2026-06-02 16:52:15",
+        "type": "string"
+      },
+      "PhaseAESourcePatchedAt": {
+        "value": "2026-06-02 17:50:04",
+        "type": "string"
+      },
+      "MigrationStatus": {
+        "value": "PhaseA_CoreBoundary",
+        "type": "string"
+      },
+      "PhaseAESourcePatchedBy": {
+        "value": "roblox_vehicle_phaseAE_fresh_root_only_cockpit_spotlights",
+        "type": "string"
+      },
+      "PhaseACSourcePatchedBy": {
+        "value": "roblox_vehicle_phaseAC_cockpit_light_weld_paint_stability",
+        "type": "string"
+      },
+      "LastUpdated": {
+        "value": "2026-05-29 09:17:16",
+        "type": "string"
+      },
+      "PhaseADSourcePatchedBy": {
+        "value": "roblox_vehicle_phaseAD_root_attached_cockpit_spotlights",
+        "type": "string"
+      },
+      "PhaseACSourcePatchedAt": {
+        "value": "2026-06-02 15:42:29",
+        "type": "string"
+      },
+      "LiveEnabled": {
+        "value": false,
+        "type": "boolean"
+      },
+      "CreatedBy": {
+        "value": "roblox_client_phaseA_core_boundary_modules",
+        "type": "string"
+      }
+    },
+    "source_lines": 142,
+    "source_bytes": 4589,
+    "source_checksum": "870140572",
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Core/PaintClient.module.lua"
+  },
+  {
+    "id": "script_0037",
+    "roblox_path": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Intro.DealershipIntroClient_Active",
+    "path_parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Intro",
+      "DealershipIntroClient_Active"
+    ],
+    "class_name": "LocalScript",
+    "disabled": false,
+    "attributes": {
+      "DealershipIntroPhase3PatchedBy": {
+        "value": "roblox_dealership_intro_phase3_gate_garage_startup",
+        "type": "string"
+      },
+      "DealershipIntroPhase3PatchedAt": {
+        "value": "2026-06-03 19:49:54",
+        "type": "string"
+      },
+      "InstalledAt": {
+        "value": "2026-06-05 11:27:52",
+        "type": "string"
+      },
+      "DealershipIntroPhase7PatchedAt": {
+        "value": "2026-06-03 21:33:56",
+        "type": "string"
+      },
+      "DealershipIntroPhase7PatchedBy": {
+        "value": "roblox_dealership_intro_phase7_exit_button_reopen_gate",
+        "type": "string"
+      },
+      "InstalledBy": {
+        "value": "roblox_dealership_intro_phase8_dynamic_arrow_tether_once",
+        "type": "string"
+      },
+      "DynamicArrowTetherPhase": {
+        "value": 8,
+        "type": "number"
+      },
+      "GarageOpenIntegration": {
+        "value": "Uses local OpenGarageFromIntro BindableEvent installed by Phase 3/7",
+        "type": "string"
+      }
+    },
+    "source_lines": 698,
+    "source_bytes": 24820,
+    "source_checksum": "769666661",
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Intro/DealershipIntroClient_Active.client.lua"
+  },
+  {
+    "id": "script_0038",
+    "roblox_path": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Preview.ThrustPreviewController_Active",
+    "path_parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Preview",
+      "ThrustPreviewController_Active"
+    ],
+    "class_name": "LocalScript",
+    "disabled": false,
+    "attributes": {
+      "PhasePSourcePatchedBy": {
+        "value": "roblox_architecture_phaseP_garage_runtime_startup_repair",
+        "type": "string"
+      },
+      "PhaseNSourcePatchedBy": {
+        "value": "roblox_architecture_phaseN_runtime_world_path_repair",
+        "type": "string"
+      },
+      "CreatedBy": {
+        "value": "roblox_hierarchy_phase20_thrust_preview_owner_switch",
+        "type": "string"
+      },
+      "LiveReplacementFor": {
+        "value": "HOVER_RACING_V46_ThrustPreviewOnly",
+        "type": "string"
+      },
+      "MigrationStatus": {
+        "value": "ThrustPreviewOwnerSwitchCandidate",
+        "type": "string"
+      },
+      "PhaseNSourcePatchedAt": {
+        "value": "2026-05-29 18:36:09",
+        "type": "string"
+      },
+      "PhaseAJOldSourceHash": {
+        "value": "82b4a553",
+        "type": "string"
+      },
+      "PhaseAJPatchedBy": {
+        "value": "roblox_vfx_phaseAJ_thrust_preview_root_repair",
+        "type": "string"
+      },
+      "PhasePSourcePatchedAt": {
+        "value": "2026-06-02 09:46:31",
+        "type": "string"
+      },
+      "PhaseAJNewSourceHash": {
+        "value": "09e3bd40",
+        "type": "string"
+      },
+      "SourceScriptPath": {
+        "value": "StarterPlayer.StarterPlayerScripts.HOVER_RACING_V46_ThrustPreviewOnly",
+        "type": "string"
+      },
+      "SourceHash": {
+        "value": "60df64f0",
+        "type": "string"
+      },
+      "PhaseAJPatchedAt": {
+        "value": "2026-06-05 11:45:58",
+        "type": "string"
+      },
+      "PhaseKSourcePatchedBy": {
+        "value": "roblox_architecture_phaseK_migrate_hover_kit_to_neotokyo",
+        "type": "string"
+      },
+      "PhaseKSourcePatchedAt": {
+        "value": "2026-05-29 17:31:59",
+        "type": "string"
+      }
+    },
+    "source_lines": 207,
+    "source_bytes": 6631,
+    "source_checksum": "902509041",
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Preview/ThrustPreviewController_Active.client.lua"
+  },
+  {
+    "id": "script_0039",
+    "roblox_path": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Preview.PreviewCameraController",
+    "path_parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Preview",
+      "PreviewCameraController"
+    ],
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "attributes": {
+      "Description": {
+        "value": "Future preview camera orbit and module-section focus controller.",
+        "type": "string"
+      },
+      "LiveEnabled": {
+        "value": false,
+        "type": "boolean"
+      },
+      "MigrationStatus": {
+        "value": "PhaseB_PreviewColourBoundary",
+        "type": "string"
+      },
+      "LastUpdated": {
+        "value": "2026-05-29 09:31:49",
+        "type": "string"
+      },
+      "CreatedBy": {
+        "value": "roblox_client_phaseB_preview_colour_modules",
+        "type": "string"
+      }
+    },
+    "source_lines": 96,
+    "source_bytes": 3541,
+    "source_checksum": "564232651",
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Preview/PreviewCameraController.module.lua"
+  },
+  {
+    "id": "script_0040",
+    "roblox_path": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Preview.PreviewVehicleController",
+    "path_parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Preview",
+      "PreviewVehicleController"
+    ],
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "attributes": {
+      "Description": {
+        "value": "Future local garage preview vehicle builder/controller.",
+        "type": "string"
+      },
+      "LiveEnabled": {
+        "value": false,
+        "type": "boolean"
+      },
+      "MigrationStatus": {
+        "value": "PhaseB_PreviewColourBoundary",
+        "type": "string"
+      },
+      "LastUpdated": {
+        "value": "2026-05-29 09:31:49",
+        "type": "string"
+      },
+      "CreatedBy": {
+        "value": "roblox_client_phaseB_preview_colour_modules",
+        "type": "string"
+      }
+    },
+    "source_lines": 168,
+    "source_bytes": 5867,
+    "source_checksum": "528832226",
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Preview/PreviewVehicleController.module.lua"
+  },
+  {
+    "id": "script_0041",
+    "roblox_path": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Runtime.CharacterSprintController_Active",
+    "path_parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Runtime",
+      "CharacterSprintController_Active"
+    ],
+    "class_name": "LocalScript",
+    "disabled": false,
+    "attributes": {},
+    "source_lines": 342,
+    "source_bytes": 8280,
+    "source_checksum": "989635251",
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Runtime/CharacterSprintController_Active.client.lua"
+  },
+  {
+    "id": "script_0042",
+    "roblox_path": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Runtime.DriveHudController_Active",
+    "path_parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Runtime",
+      "DriveHudController_Active"
+    ],
+    "class_name": "LocalScript",
+    "disabled": false,
+    "attributes": {
+      "CreatedBy": {
+        "value": "roblox_hierarchy_phase16_runtime_helper_owner_switch",
+        "type": "string"
+      },
+      "SourceHash": {
+        "value": "08cd62b8",
+        "type": "string"
+      },
+      "SourceScriptPath": {
+        "value": "StarterPlayer.StarterPlayerScripts.HOVER_RACING_V71_MobilePcHudSuppressor",
+        "type": "string"
+      },
+      "LiveReplacementFor": {
+        "value": "HOVER_RACING_V71_MobilePcHudSuppressor",
+        "type": "string"
+      },
+      "MigrationStatus": {
+        "value": "RuntimeOwnerSwitchCandidate",
+        "type": "string"
+      },
+      "PhaseKSourcePatchedBy": {
+        "value": "roblox_architecture_phaseK_migrate_hover_kit_to_neotokyo",
+        "type": "string"
+      },
+      "PhaseKSourcePatchedAt": {
+        "value": "2026-05-29 17:31:59",
+        "type": "string"
+      }
+    },
+    "source_lines": 261,
+    "source_bytes": 7329,
+    "source_checksum": "256142247",
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Runtime/DriveHudController_Active.client.lua"
+  },
+  {
+    "id": "script_0043",
+    "roblox_path": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Runtime.MobileDriveControlsController_Active",
+    "path_parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Runtime",
+      "MobileDriveControlsController_Active"
+    ],
+    "class_name": "LocalScript",
+    "disabled": false,
+    "attributes": {
+      "CreatedBy": {
+        "value": "roblox_hierarchy_phase16_runtime_helper_owner_switch",
+        "type": "string"
+      },
+      "SourceHash": {
+        "value": "e5a61e70",
+        "type": "string"
+      },
+      "SourceScriptPath": {
+        "value": "StarterPlayer.StarterPlayerScripts.HOVER_RACING_V67_MobileDriveControls",
+        "type": "string"
+      },
+      "LiveReplacementFor": {
+        "value": "HOVER_RACING_V67_MobileDriveControls",
+        "type": "string"
+      },
+      "MigrationStatus": {
+        "value": "RuntimeOwnerSwitchCandidate",
+        "type": "string"
+      },
+      "PhaseKSourcePatchedBy": {
+        "value": "roblox_architecture_phaseK_migrate_hover_kit_to_neotokyo",
+        "type": "string"
+      },
+      "PhaseKSourcePatchedAt": {
+        "value": "2026-05-29 17:31:59",
+        "type": "string"
+      }
+    },
+    "source_lines": 495,
+    "source_bytes": 14984,
+    "source_checksum": "342420254",
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Runtime/MobileDriveControlsController_Active.client.lua"
+  },
+  {
+    "id": "script_0044",
+    "roblox_path": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Runtime.RuntimeVFXController_Active",
+    "path_parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Runtime",
+      "RuntimeVFXController_Active"
+    ],
+    "class_name": "LocalScript",
+    "disabled": false,
+    "attributes": {
+      "CreatedBy": {
+        "value": "roblox_hierarchy_phase16_runtime_helper_owner_switch",
+        "type": "string"
+      },
+      "SourceHash": {
+        "value": "c96e3398",
+        "type": "string"
+      },
+      "SourceScriptPath": {
+        "value": "StarterPlayer.StarterPlayerScripts.HOVER_RACING_V64_CachedThrustVisualRuntime",
+        "type": "string"
+      },
+      "LiveReplacementFor": {
+        "value": "HOVER_RACING_V64_CachedThrustVisualRuntime",
+        "type": "string"
+      },
+      "MigrationStatus": {
+        "value": "RuntimeOwnerSwitchCandidate",
+        "type": "string"
+      },
+      "PhaseKSourcePatchedBy": {
+        "value": "roblox_architecture_phaseK_migrate_hover_kit_to_neotokyo",
+        "type": "string"
+      },
+      "PhaseKSourcePatchedAt": {
+        "value": "2026-05-29 17:31:59",
+        "type": "string"
+      }
+    },
+    "source_lines": 15,
+    "source_bytes": 520,
+    "source_checksum": "11700773",
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Runtime/RuntimeVFXController_Active.client.lua"
+  },
+  {
+    "id": "script_0045",
+    "roblox_path": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.CockpitPaintUIController",
+    "path_parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "UI",
+      "CockpitPaintUIController"
+    ],
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "attributes": {
+      "Description": {
+        "value": "Future cockpit paint screen controller.",
+        "type": "string"
+      },
+      "LiveEnabled": {
+        "value": false,
+        "type": "boolean"
+      },
+      "MigrationStatus": {
+        "value": "PhaseC_GarageScreenBoundary",
+        "type": "string"
+      },
+      "LastUpdated": {
+        "value": "2026-05-29 09:40:36",
+        "type": "string"
+      },
+      "CreatedBy": {
+        "value": "roblox_client_phaseC_garage_screen_controllers",
+        "type": "string"
+      }
+    },
+    "source_lines": 46,
+    "source_bytes": 1659,
+    "source_checksum": "124718322",
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/UI/CockpitPaintUIController.module.lua"
+  },
+  {
+    "id": "script_0046",
+    "roblox_path": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.ColourPickerController",
+    "path_parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "UI",
+      "ColourPickerController"
+    ],
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "attributes": {
+      "Description": {
+        "value": "Future shared HSB/default colour picker controller.",
+        "type": "string"
+      },
+      "LiveEnabled": {
+        "value": false,
+        "type": "boolean"
+      },
+      "MigrationStatus": {
+        "value": "PhaseB_PreviewColourBoundary",
+        "type": "string"
+      },
+      "LastUpdated": {
+        "value": "2026-05-29 09:31:49",
+        "type": "string"
+      },
+      "CreatedBy": {
+        "value": "roblox_client_phaseB_preview_colour_modules",
+        "type": "string"
+      }
+    },
+    "source_lines": 277,
+    "source_bytes": 8825,
+    "source_checksum": "323383580",
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/UI/ColourPickerController.module.lua"
+  },
+  {
+    "id": "script_0047",
+    "roblox_path": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.CustomisationUIController",
+    "path_parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "UI",
+      "CustomisationUIController"
+    ],
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "attributes": {
+      "Description": {
+        "value": "Future vehicle customisation screen controller.",
+        "type": "string"
+      },
+      "LiveEnabled": {
+        "value": false,
+        "type": "boolean"
+      },
+      "MigrationStatus": {
+        "value": "PhaseC_GarageScreenBoundary",
+        "type": "string"
+      },
+      "LastUpdated": {
+        "value": "2026-05-29 09:40:36",
+        "type": "string"
+      },
+      "CreatedBy": {
+        "value": "roblox_client_phaseC_garage_screen_controllers",
+        "type": "string"
+      }
+    },
+    "source_lines": 127,
+    "source_bytes": 4599,
+    "source_checksum": "927414294",
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/UI/CustomisationUIController.module.lua"
+  },
+  {
+    "id": "script_0048",
+    "roblox_path": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.DealershipUIController",
+    "path_parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "UI",
+      "DealershipUIController"
+    ],
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "attributes": {
+      "Description": {
+        "value": "Future dealership category/cockpit screen controller.",
+        "type": "string"
+      },
+      "LiveEnabled": {
+        "value": false,
+        "type": "boolean"
+      },
+      "MigrationStatus": {
+        "value": "PhaseC_GarageScreenBoundary",
+        "type": "string"
+      },
+      "LastUpdated": {
+        "value": "2026-05-29 09:40:36",
+        "type": "string"
+      },
+      "CreatedBy": {
+        "value": "roblox_client_phaseC_garage_screen_controllers",
+        "type": "string"
+      }
+    },
+    "source_lines": 87,
+    "source_bytes": 2931,
+    "source_checksum": "383997099",
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/UI/DealershipUIController.module.lua"
+  },
+  {
+    "id": "script_0049",
+    "roblox_path": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.ModuleShopUIController",
+    "path_parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "UI",
+      "ModuleShopUIController"
+    ],
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "attributes": {
+      "Description": {
+        "value": "Future fixed-slot module shop screen controller.",
+        "type": "string"
+      },
+      "LiveEnabled": {
+        "value": false,
+        "type": "boolean"
+      },
+      "MigrationStatus": {
+        "value": "PhaseC_GarageScreenBoundary",
+        "type": "string"
+      },
+      "LastUpdated": {
+        "value": "2026-05-29 09:40:36",
+        "type": "string"
+      },
+      "CreatedBy": {
+        "value": "roblox_client_phaseC_garage_screen_controllers",
+        "type": "string"
+      }
+    },
+    "source_lines": 109,
+    "source_bytes": 3541,
+    "source_checksum": "554853668",
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/UI/ModuleShopUIController.module.lua"
+  },
+  {
+    "id": "script_0050",
+    "roblox_path": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.NavigationController",
+    "path_parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "UI",
+      "NavigationController"
+    ],
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "attributes": {
+      "Description": {
+        "value": "Future next/back stage routing controller.",
+        "type": "string"
+      },
+      "LiveEnabled": {
+        "value": false,
+        "type": "boolean"
+      },
+      "MigrationStatus": {
+        "value": "PhaseC_GarageScreenBoundary",
+        "type": "string"
+      },
+      "LastUpdated": {
+        "value": "2026-05-29 09:40:36",
+        "type": "string"
+      },
+      "CreatedBy": {
+        "value": "roblox_client_phaseC_garage_screen_controllers",
+        "type": "string"
+      }
+    },
+    "source_lines": 49,
+    "source_bytes": 1270,
+    "source_checksum": "72257256",
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/UI/NavigationController.module.lua"
+  },
+  {
+    "id": "script_0051",
+    "roblox_path": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.StatsPanelController",
+    "path_parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "UI",
+      "StatsPanelController"
+    ],
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "attributes": {
+      "Description": {
+        "value": "Future stat bar and preview delta controller.",
+        "type": "string"
+      },
+      "LiveEnabled": {
+        "value": false,
+        "type": "boolean"
+      },
+      "MigrationStatus": {
+        "value": "PhaseC_GarageScreenBoundary",
+        "type": "string"
+      },
+      "LastUpdated": {
+        "value": "2026-05-29 09:40:36",
+        "type": "string"
+      },
+      "CreatedBy": {
+        "value": "roblox_client_phaseC_garage_screen_controllers",
+        "type": "string"
+      }
+    },
+    "source_lines": 51,
+    "source_bytes": 1315,
+    "source_checksum": "73845836",
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/UI/StatsPanelController.module.lua"
+  },
+  {
+    "id": "script_0052",
+    "roblox_path": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.World.LODClient_Active",
+    "path_parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "World",
+      "LODClient_Active"
+    ],
+    "class_name": "LocalScript",
+    "disabled": false,
+    "attributes": {
+      "LiveReplacementFor": {
+        "value": "LOD System",
+        "type": "string"
+      },
+      "CityRootMigrationHash": {
+        "value": "9a805710",
+        "type": "string"
+      },
+      "FarLOD5AssetsMigrationHash": {
+        "value": "17c78da8",
+        "type": "string"
+      },
+      "FarLOD5AssetsPath": {
+        "value": "ReplicatedStorage.NeoTokyoRacers.Assets.World.FarLOD5Proxies",
+        "type": "string"
+      },
+      "CityRootMigrationPatchedAt": {
+        "value": "2026-05-29 10:18:53",
+        "type": "string"
+      },
+      "CityRootMigrationPatchedBy": {
+        "value": "roblox_world_phaseF_city_hierarchy_lod_migration",
+        "type": "string"
+      },
+      "SourceHash": {
+        "value": "5b73f1a8",
+        "type": "string"
+      },
+      "SourceScriptPath": {
+        "value": "StarterPlayer.StarterPlayerScripts.LOD System",
+        "type": "string"
+      },
+      "FarLOD5AssetsMigrationPatchedAt": {
+        "value": "2026-05-29 11:02:33",
+        "type": "string"
+      },
+      "FarLOD5AssetsMigrationPatchedBy": {
+        "value": "roblox_world_phaseJ_far_lod5_assets_migration",
+        "type": "string"
+      },
+      "MigrationStatus": {
+        "value": "LODClientOwnerSwitchCandidate",
+        "type": "string"
+      },
+      "CreatedBy": {
+        "value": "roblox_hierarchy_phase18_lod_client_owner_switch",
+        "type": "string"
+      }
+    },
+    "source_lines": 365,
+    "source_bytes": 8871,
+    "source_checksum": "223745690",
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/World/LODClient_Active.client.lua"
+  },
+  {
+    "id": "script_0053",
+    "roblox_path": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.NeoTokyoRacersClient_Bootstrap_Shadow_Disabled",
+    "path_parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "NeoTokyoRacersClient_Bootstrap_Shadow_Disabled"
+    ],
+    "class_name": "LocalScript",
+    "disabled": false,
+    "attributes": {
+      "PhaseNSourcePatchedBy": {
+        "value": "roblox_architecture_phaseN_runtime_world_path_repair",
+        "type": "string"
+      },
+      "DealershipIntroPhase4PatchedBy": {
+        "value": "roblox_dealership_intro_phase4_preview_after_purchase",
+        "type": "string"
+      },
+      "MigrationStatus": {
+        "value": "PhaseD_MainClientShadow",
+        "type": "string"
+      },
+      "DealershipIntroPhase4PatchedAt": {
+        "value": "2026-06-03 20:19:11",
+        "type": "string"
+      },
+      "DealershipIntroPhase3PatchedBy": {
+        "value": "roblox_dealership_intro_phase3_gate_garage_startup",
+        "type": "string"
+      },
+      "DealershipIntroPhase4FragilePatch": {
+        "value": true,
+        "type": "boolean"
+      },
+      "SourceHash": {
+        "value": "d81bd5ce",
+        "type": "string"
+      },
+      "SourceScriptPath": {
+        "value": "StarterPlayer.StarterPlayerScripts.HOVER_RACING_V2_Client",
+        "type": "string"
+      },
+      "DealershipIntroPhase5PatchedBy": {
+        "value": "roblox_dealership_intro_phase5_restore_preview_orbit_camera",
+        "type": "string"
+      },
+      "PhasePSourcePatchedBy": {
+        "value": "roblox_architecture_phaseP_garage_runtime_startup_repair",
+        "type": "string"
+      },
+      "DealershipIntroPhase5PatchedAt": {
+        "value": "2026-06-03 20:26:43",
+        "type": "string"
+      },
+      "LiveEnabled": {
+        "value": true,
+        "type": "boolean"
+      },
+      "PhasePSourcePatchedAt": {
+        "value": "2026-06-02 09:46:31",
+        "type": "string"
+      },
+      "DoNotEnableWithLegacyClient": {
+        "value": true,
+        "type": "boolean"
+      },
+      "PhaseNSourcePatchedAt": {
+        "value": "2026-05-29 18:36:09",
+        "type": "string"
+      },
+      "MainClientOwner": {
+        "value": true,
+        "type": "boolean"
+      },
+      "CreatedBy": {
+        "value": "roblox_client_phaseD_main_client_owner_switch",
+        "type": "string"
+      },
+      "DealershipIntroPhase3PatchedAt": {
+        "value": "2026-06-03 19:49:54",
+        "type": "string"
+      },
+      "DealershipIntroPhase7PatchedBy": {
+        "value": "roblox_dealership_intro_phase7_exit_button_reopen_gate",
+        "type": "string"
+      },
+      "DealershipIntroPhase7PatchedAt": {
+        "value": "2026-06-03 21:33:56",
+        "type": "string"
+      },
+      "PhaseKSourcePatchedBy": {
+        "value": "roblox_architecture_phaseK_migrate_hover_kit_to_neotokyo",
+        "type": "string"
+      },
+      "PhaseKSourcePatchedAt": {
+        "value": "2026-05-29 17:31:59",
+        "type": "string"
+      }
+    },
+    "source_lines": 2785,
+    "source_bytes": 116697,
+    "source_checksum": "729620696",
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/NeoTokyoRacersClient_Bootstrap_Shadow_Disabled.client.lua"
+  },
+  {
+    "id": "script_0054",
+    "roblox_path": "StarterPlayer.StarterPlayerScripts.TEMP_LightingPreview",
+    "path_parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "TEMP_LightingPreview"
+    ],
+    "class_name": "LocalScript",
+    "disabled": false,
+    "attributes": {},
+    "source_lines": 119,
+    "source_bytes": 2956,
+    "source_checksum": "383649521",
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/TEMP_LightingPreview.client.lua"
+  }
+]

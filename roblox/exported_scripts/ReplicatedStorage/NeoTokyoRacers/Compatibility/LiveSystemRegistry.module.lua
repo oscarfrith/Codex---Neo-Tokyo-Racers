@@ -14,10 +14,10 @@ Registry.Systems = {
 		status = "LiveLegacy",
 		description = "Dealership, garage, customisation, spawn, economy/action handling.",
 		livePaths = {
-			"ReplicatedStorage.HOVER_RACING_V2_KIT",
+			"ReplicatedStorage.NeoTokyoRacers",
 			"ServerScriptService.HOVER_RACING_V2_SERVER.HOVER_RACING_V2_Server",
 			"StarterPlayer.StarterPlayerScripts.HOVER_RACING_V2_Client",
-			"Workspace.HOVER_RACING_V2_WORLD",
+			"Workspace.NeoTokyoRacersWorld",
 		},
 		targetRoots = {
 			"ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles",
@@ -32,8 +32,8 @@ Registry.Systems = {
 		status = "LiveLegacyWithConfirmedV47Controller",
 		description = "Hover driving, mobile controls, camera assist, boost delay, low-speed wobble.",
 		livePaths = {
-			"ReplicatedStorage.HOVER_RACING_V2_KIT.CLIENT_MODULES.Controllers.DrivingControllerV47",
-			"ReplicatedStorage.HOVER_RACING_V2_KIT.CLIENT_MODULES.Controllers.MobileDriveInputState",
+			"ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Controllers.DrivingControllerV47",
+			"ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Controllers.MobileDriveInputState",
 			"StarterPlayer.StarterPlayerScripts.HOVER_RACING_V67_MobileDriveControls",
 			"StarterPlayer.StarterPlayerScripts.HOVER_RACING_V71_MobilePcHudSuppressor",
 		},
@@ -49,9 +49,9 @@ Registry.Systems = {
 		status = "LiveLegacyWithCachedRuntime",
 		description = "Engine, boost, stabiliser, hover dust, thrust colour, optional neon runtime.",
 		livePaths = {
-			"ReplicatedStorage.HOVER_RACING_V2_KIT.VFX_TEMPLATES",
-			"ReplicatedStorage.HOVER_RACING_V2_KIT.CLIENT_MODULES.VFX.VehicleVFXController",
-			"ReplicatedStorage.HOVER_RACING_V2_KIT.CLIENT_MODULES.Visuals.CachedThrustVisualRuntime",
+			"ReplicatedStorage.NeoTokyoRacers.Assets.VFX.VehicleTemplates",
+			"ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.VFX.VehicleVFXController",
+			"ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Visuals.CachedThrustVisualRuntime",
 		},
 		targetRoots = {
 			"ReplicatedStorage.NeoTokyoRacers.Assets.VFX",
