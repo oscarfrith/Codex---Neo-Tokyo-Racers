@@ -1,7 +1,7 @@
 # Studio Source Sync Workflow
 
 **Updated:** 2026-06-05  
-**Status:** Single Studio full-snapshot export/import workflow  
+**Status:** Local receiver full-snapshot export/import workflow  
 **Purpose:** Capture the current Roblox Studio hierarchy and all script sources into GitHub with minimal manual copying.
 
 ## Why This Exists
@@ -13,13 +13,44 @@ This workflow exports the important Studio data in one pass:
 - A hierarchy snapshot for the main game services.
 - All `Script`, `LocalScript`, and `ModuleScript` sources.
 - Metadata such as `ClassName`, Studio path, `Disabled` state, attributes, source line counts, byte counts, and checksums.
-- Chunked `StringValue`s in `ReplicatedStorage` so the export can be copied from Studio into one local text file.
+- A local HTTP receiver path so you do not have to manually copy dozens of `StringValue` chunks.
+- Chunked `StringValue`s in `ReplicatedStorage` as a fallback if local HTTP is unavailable.
 
 This is a mirror, not live Rojo sync. Editing files under `roblox/exported_scripts/` does not automatically update Studio.
 
 ## Current Best Workflow
 
-### 1. Run The Studio Exporter
+### 1. Start The Local Receiver
+
+In PowerShell, from the repo folder, run:
+
+```text
+python scripts/receive_studio_full_snapshot_export.py
+```
+
+If `python` is not on your PATH, try:
+
+```text
+py scripts/receive_studio_full_snapshot_export.py
+```
+
+Leave that PowerShell window open. It waits for one Studio export at:
+
+```text
+http://127.0.0.1:8765/ntr-studio-export
+```
+
+### 2. Enable Studio HTTP Requests If Needed
+
+In Roblox Studio, make sure HTTP requests are enabled:
+
+```text
+Game Settings > Security > Allow HTTP Requests
+```
+
+If Studio HTTP is disabled, the exporter will still make fallback chunks, but the receiver will not get the export automatically.
+
+### 3. Run The Studio Exporter
 
 In Roblox Studio, paste and run this whole file in the Command Bar:
 
@@ -27,7 +58,31 @@ In Roblox Studio, paste and run this whole file in the Command Bar:
 scripts/roblox_studio_export_full_snapshot_for_github_v2.lua
 ```
 
-The script creates or refreshes this folder:
+If the local receiver is running, Studio posts the full export to it. The receiver then automatically writes/imports:
+
+```text
+docs/studio-full-export-paste.txt
+roblox/exported_scripts/
+roblox/studio_snapshot/
+```
+
+In Studio output, the good message is:
+
+```text
+[NTR Studio Export V2] Sent to local receiver: http://127.0.0.1:8765/ntr-studio-export
+```
+
+In PowerShell, the good message is:
+
+```text
+Studio export received and imported successfully.
+```
+
+## Fallback Chunk Workflow
+
+Use this only if the local receiver cannot be used.
+
+The Studio exporter creates or refreshes this folder:
 
 ```text
 ReplicatedStorage.NTR_STUDIO_FULL_EXPORT_V2
@@ -43,44 +98,27 @@ StudioExport_003
 ...
 ```
 
-The exporter does not patch gameplay scripts. It only replaces its own export folder/chunks.
-
-### 2. Paste The Export Chunks Locally
-
 Create this local file in the repo:
 
 ```text
 docs/studio-full-export-paste.txt
 ```
 
-Copy the **Value** from each `StudioExport_###` StringValue in order and paste them into that one file:
+Copy the **Value** from each `StudioExport_###` StringValue in order and paste them into that one file. Do not copy the StringValue names, just the values.
 
-```text
-StudioExport_001 value first
-StudioExport_002 value second
-StudioExport_003 value third
-...
-```
-
-Do not copy the StringValue names, just the values. It is okay if there are no blank lines between chunks.
-
-The real paste file is intentionally not meant to be committed because it can become large.
-
-### 3. Run The Local Importer
-
-From the repo folder, run:
+Then run:
 
 ```text
 python scripts/import_studio_full_snapshot_export.py docs/studio-full-export-paste.txt
 ```
 
-If `python` is not on your PATH, try:
+or:
 
 ```text
 py scripts/import_studio_full_snapshot_export.py docs/studio-full-export-paste.txt
 ```
 
-### 4. What The Importer Writes
+## What The Importer Writes
 
 The importer refreshes:
 
@@ -101,7 +139,7 @@ roblox/studio_snapshot/checksums.json
 
 ## How To Verify It Worked
 
-After running the importer, check these files:
+After running the receiver/exporter, check these files:
 
 ```text
 roblox/exported_scripts/MANIFEST.md
@@ -134,6 +172,7 @@ After a successful import, commit these paths:
 ```text
 scripts/roblox_studio_export_full_snapshot_for_github_v2.lua
 scripts/import_studio_full_snapshot_export.py
+scripts/receive_studio_full_snapshot_export.py
 docs/10_script_source_sync_workflow.md
 roblox/exported_scripts/
 roblox/studio_snapshot/
@@ -154,7 +193,7 @@ Add Studio full snapshot export workflow
 Suggested commit description:
 
 ```text
-Adds a single Studio Command Bar exporter and local importer for capturing the Roblox hierarchy, script sources, metadata, manifests, and checksums into GitHub. Refreshes the workflow docs so the exported_scripts mirror and studio_snapshot folder can be regenerated from one pasted export file.
+Adds a local receiver, Studio Command Bar exporter, and importer for capturing the Roblox hierarchy, script sources, metadata, manifests, and checksums into GitHub without manually copying chunked StringValues.
 ```
 
 ## Safety Notes
