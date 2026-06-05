@@ -1,0 +1,314 @@
+[
+  {
+    "roblox_path": "ReplicatedStorage.HOVER_RACING_V2_KIT.CLIENT_MODULES.Controllers.DrivingControllerV47",
+    "class_name": "ModuleScript",
+    "disabled": "false",
+    "source_lines": "847",
+    "source_checksum": "166921140",
+    "file": "roblox/exported_scripts/ReplicatedStorage/HOVER_RACING_V2_KIT/CLIENT_MODULES/Controllers/DrivingControllerV47.module.lua"
+  },
+  {
+    "roblox_path": "ReplicatedStorage.HOVER_RACING_V2_KIT.CLIENT_MODULES.Controllers.DrivingFallbackController",
+    "class_name": "ModuleScript",
+    "disabled": "false",
+    "source_lines": "460",
+    "source_checksum": "96157042",
+    "file": "roblox/exported_scripts/ReplicatedStorage/HOVER_RACING_V2_KIT/CLIENT_MODULES/Controllers/DrivingFallbackController.module.lua"
+  },
+  {
+    "roblox_path": "ReplicatedStorage.HOVER_RACING_V2_KIT.CLIENT_MODULES.Controllers.MobileDriveInputState",
+    "class_name": "ModuleScript",
+    "disabled": "false",
+    "source_lines": "39",
+    "source_checksum": "51490029",
+    "file": "roblox/exported_scripts/ReplicatedStorage/HOVER_RACING_V2_KIT/CLIENT_MODULES/Controllers/MobileDriveInputState.module.lua"
+  },
+  {
+    "roblox_path": "ReplicatedStorage.HOVER_RACING_V2_KIT.CLIENT_MODULES.Controllers.ReentryThrottle",
+    "class_name": "ModuleScript",
+    "disabled": "false",
+    "source_lines": "24",
+    "source_checksum": "10245212",
+    "file": "roblox/exported_scripts/ReplicatedStorage/HOVER_RACING_V2_KIT/CLIENT_MODULES/Controllers/ReentryThrottle.module.lua"
+  },
+  {
+    "roblox_path": "ReplicatedStorage.HOVER_RACING_V2_KIT.CLIENT_MODULES.UI.UIFactory",
+    "class_name": "ModuleScript",
+    "disabled": "false",
+    "source_lines": "69",
+    "source_checksum": "199553946",
+    "file": "roblox/exported_scripts/ReplicatedStorage/HOVER_RACING_V2_KIT/CLIENT_MODULES/UI/UIFactory.module.lua"
+  },
+  {
+    "roblox_path": "ReplicatedStorage.HOVER_RACING_V2_KIT.CLIENT_MODULES.UI.UIPool",
+    "class_name": "ModuleScript",
+    "disabled": "false",
+    "source_lines": "99",
+    "source_checksum": "145077465",
+    "file": "roblox/exported_scripts/ReplicatedStorage/HOVER_RACING_V2_KIT/CLIENT_MODULES/UI/UIPool.module.lua"
+  },
+  {
+    "roblox_path": "ReplicatedStorage.HOVER_RACING_V2_KIT.CLIENT_MODULES.VFX.VehicleVFXController",
+    "class_name": "ModuleScript",
+    "disabled": "false",
+    "source_lines": "509",
+    "source_checksum": "816331015",
+    "file": "roblox/exported_scripts/ReplicatedStorage/HOVER_RACING_V2_KIT/CLIENT_MODULES/VFX/VehicleVFXController.module.lua"
+  },
+  {
+    "roblox_path": "ReplicatedStorage.HOVER_RACING_V2_KIT.CLIENT_MODULES.Visuals.CachedThrustVisualRuntime",
+    "class_name": "ModuleScript",
+    "disabled": "false",
+    "source_lines": "707",
+    "source_checksum": "642771385",
+    "file": "roblox/exported_scripts/ReplicatedStorage/HOVER_RACING_V2_KIT/CLIENT_MODULES/Visuals/CachedThrustVisualRuntime.module.lua"
+  },
+  {
+    "roblox_path": "ReplicatedStorage.HOVER_RACING_V2_KIT.SHARED_MODULES.ConfigReader",
+    "class_name": "ModuleScript",
+    "disabled": "false",
+    "source_lines": "39",
+    "source_checksum": "41778235",
+    "file": "roblox/exported_scripts/ReplicatedStorage/HOVER_RACING_V2_KIT/SHARED_MODULES/ConfigReader.module.lua"
+  },
+  {
+    "roblox_path": "ReplicatedStorage.HOVER_RACING_V2_KIT.SHARED_MODULES.DriveTuning",
+    "class_name": "ModuleScript",
+    "disabled": "false",
+    "source_lines": "25",
+    "source_checksum": "58090773",
+    "file": "roblox/exported_scripts/ReplicatedStorage/HOVER_RACING_V2_KIT/SHARED_MODULES/DriveTuning.module.lua"
+  },
+  {
+    "roblox_path": "ReplicatedStorage.HOVER_RACING_V2_KIT.SHARED_MODULES.UITheme",
+    "class_name": "ModuleScript",
+    "disabled": "false",
+    "source_lines": "51",
+    "source_checksum": "218683369",
+    "file": "roblox/exported_scripts/ReplicatedStorage/HOVER_RACING_V2_KIT/SHARED_MODULES/UITheme.module.lua"
+  },
+  {
+    "roblox_path": "ReplicatedStorage.HOVER_RACING_V2_KIT.SHARED_MODULES.VehicleData",
+    "class_name": "ModuleScript",
+    "disabled": "false",
+    "source_lines": "34",
+    "source_checksum": "60253727",
+    "file": "roblox/exported_scripts/ReplicatedStorage/HOVER_RACING_V2_KIT/SHARED_MODULES/VehicleData.module.lua"
+  },
+  {
+    "roblox_path": "ReplicatedStorage.HOVER_RACING_V2_KIT.SHARED_MODULES.VehicleStatsCache",
+    "class_name": "ModuleScript",
+    "disabled": "false",
+    "source_lines": "45",
+    "source_checksum": "90629628",
+    "file": "roblox/exported_scripts/ReplicatedStorage/HOVER_RACING_V2_KIT/SHARED_MODULES/VehicleStatsCache.module.lua"
+  },
+  {
+    "roblox_path": "ReplicatedStorage.NeoTokyoRacers.Compatibility.LiveSystemRegistry",
+    "class_name": "ModuleScript",
+    "disabled": "false",
+    "source_lines": "170",
+    "source_checksum": "277722422",
+    "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Compatibility/LiveSystemRegistry.module.lua"
+  },
+  {
+    "roblox_path": "ReplicatedStorage.NeoTokyoRacers.Compatibility.PathResolver",
+    "class_name": "ModuleScript",
+    "disabled": "false",
+    "source_lines": "123",
+    "source_checksum": "695926965",
+    "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Compatibility/PathResolver.module.lua"
+  },
+  {
+    "roblox_path": "ReplicatedStorage.NeoTokyoRacers.Shared.Config.ConfigRegistry",
+    "class_name": "ModuleScript",
+    "disabled": "false",
+    "source_lines": "176",
+    "source_checksum": "836426083",
+    "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Config/ConfigRegistry.module.lua"
+  },
+  {
+    "roblox_path": "ReplicatedStorage.NeoTokyoRacers.Shared.Config.World.Lighting.LightingPresets_Mirror.LightingPresets",
+    "class_name": "ModuleScript",
+    "disabled": "false",
+    "source_lines": "99",
+    "source_checksum": "172017219",
+    "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Config/World/Lighting/LightingPresets_Mirror/LightingPresets.module.lua"
+  },
+  {
+    "roblox_path": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data.ConfigRegistry",
+    "class_name": "ModuleScript",
+    "disabled": "false",
+    "source_lines": "176",
+    "source_checksum": "836426083",
+    "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Data/ConfigRegistry.module.lua"
+  },
+  {
+    "roblox_path": "ReplicatedStorage.Shared.LightingPresets.LightingPresets",
+    "class_name": "ModuleScript",
+    "disabled": "false",
+    "source_lines": "99",
+    "source_checksum": "172017219",
+    "file": "roblox/exported_scripts/ReplicatedStorage/Shared/LightingPresets/LightingPresets.module.lua"
+  },
+  {
+    "roblox_path": "ServerScriptService.HOVER_RACING_V2_SERVER.HOVER_RACING_V2_DriverSeatPosition",
+    "class_name": "Script",
+    "disabled": "false",
+    "source_lines": "233",
+    "source_checksum": "599758891",
+    "file": "roblox/exported_scripts/ServerScriptService/HOVER_RACING_V2_SERVER/HOVER_RACING_V2_DriverSeatPosition.server.lua"
+  },
+  {
+    "roblox_path": "ServerScriptService.HOVER_RACING_V2_SERVER.HOVER_RACING_V2_Server",
+    "class_name": "Script",
+    "disabled": "false",
+    "source_lines": "1430",
+    "source_checksum": "21679632",
+    "file": "roblox/exported_scripts/ServerScriptService/HOVER_RACING_V2_SERVER/HOVER_RACING_V2_Server.server.lua"
+  },
+  {
+    "roblox_path": "ServerScriptService.Lighting.LightingController",
+    "class_name": "Script",
+    "disabled": "false",
+    "source_lines": "100",
+    "source_checksum": "256314958",
+    "file": "roblox/exported_scripts/ServerScriptService/Lighting/LightingController.server.lua"
+  },
+  {
+    "roblox_path": "ServerScriptService.Traffic Lights",
+    "class_name": "Script",
+    "disabled": "false",
+    "source_lines": "46",
+    "source_checksum": "47694172",
+    "file": "roblox/exported_scripts/ServerScriptService/Traffic Lights.server.lua"
+  },
+  {
+    "roblox_path": "ServerStorage.NeoTokyoRacers_LegacyArchive.DisabledScripts.ServerScriptService.ServerScriptService_HOVER_RACING_SERVER.HOVER_RACING_Server_Consolidated",
+    "class_name": "Script",
+    "disabled": "true",
+    "source_lines": "968",
+    "source_checksum": "858282396",
+    "file": "roblox/exported_scripts/ServerStorage/NeoTokyoRacers_LegacyArchive/DisabledScripts/ServerScriptService/ServerScriptService_HOVER_RACING_SERVER/HOVER_RACING_Server_Consolidated.server.lua"
+  },
+  {
+    "roblox_path": "ServerStorage.NeoTokyoRacers_LegacyArchive.DisabledScripts.StarterPlayerScripts.StarterPlayer_StarterPlayerScripts.HOVER_RACING_Client_Consolidated",
+    "class_name": "LocalScript",
+    "disabled": "true",
+    "source_lines": "2405",
+    "source_checksum": "87700852",
+    "file": "roblox/exported_scripts/ServerStorage/NeoTokyoRacers_LegacyArchive/DisabledScripts/StarterPlayerScripts/StarterPlayer_StarterPlayerScripts/HOVER_RACING_Client_Consolidated.client.lua"
+  },
+  {
+    "roblox_path": "ServerStorage.NeoTokyoRacers_LegacyArchive.DisabledScripts.StarterPlayerScripts.StarterPlayer_StarterPlayerScripts.HOVER_RACING_MobileDriveControls",
+    "class_name": "LocalScript",
+    "disabled": "true",
+    "source_lines": "419",
+    "source_checksum": "973806951",
+    "file": "roblox/exported_scripts/ServerStorage/NeoTokyoRacers_LegacyArchive/DisabledScripts/StarterPlayerScripts/StarterPlayer_StarterPlayerScripts/HOVER_RACING_MobileDriveControls.client.lua"
+  },
+  {
+    "roblox_path": "ServerStorage.NeoTokyoRacers_LegacyArchive.DisabledScripts.StarterPlayerScripts.StarterPlayer_StarterPlayerScripts.HOVER_RACING_V37_MobileAndThrustHelper_DISABLED_BY_V38",
+    "class_name": "LocalScript",
+    "disabled": "true",
+    "source_lines": "105",
+    "source_checksum": "685182596",
+    "file": "roblox/exported_scripts/ServerStorage/NeoTokyoRacers_LegacyArchive/DisabledScripts/StarterPlayerScripts/StarterPlayer_StarterPlayerScripts/HOVER_RACING_V37_MobileAndThrustHelper_DISABLED_BY_V38.client.lua"
+  },
+  {
+    "roblox_path": "ServerStorage.NeoTokyoRacers_LegacyArchive.DisabledScripts.StarterPlayerScripts.StarterPlayer_StarterPlayerScripts.HOVER_RACING_V38_MobileLandscapeThrustHelper_DISABLED_BY_V39",
+    "class_name": "LocalScript",
+    "disabled": "true",
+    "source_lines": "121",
+    "source_checksum": "841552527",
+    "file": "roblox/exported_scripts/ServerStorage/NeoTokyoRacers_LegacyArchive/DisabledScripts/StarterPlayerScripts/StarterPlayer_StarterPlayerScripts/HOVER_RACING_V38_MobileLandscapeThrustHelper_DISABLED_BY_V39.client.lua"
+  },
+  {
+    "roblox_path": "ServerStorage.NeoTokyoRacers_LegacyArchive.DisabledScripts.StarterPlayerScripts.StarterPlayer_StarterPlayerScripts.HOVER_RACING_V39_CameraThrustPreviewHelper",
+    "class_name": "LocalScript",
+    "disabled": "true",
+    "source_lines": "185",
+    "source_checksum": "327837325",
+    "file": "roblox/exported_scripts/ServerStorage/NeoTokyoRacers_LegacyArchive/DisabledScripts/StarterPlayerScripts/StarterPlayer_StarterPlayerScripts/HOVER_RACING_V39_CameraThrustPreviewHelper.client.lua"
+  },
+  {
+    "roblox_path": "ServerStorage.NeoTokyoRacers_LegacyArchive.DisabledScripts.StarterPlayerScripts.StarterPlayer_StarterPlayerScripts.HOVER_RACING_V41_PreviewColourSync",
+    "class_name": "LocalScript",
+    "disabled": "true",
+    "source_lines": "241",
+    "source_checksum": "384846952",
+    "file": "roblox/exported_scripts/ServerStorage/NeoTokyoRacers_LegacyArchive/DisabledScripts/StarterPlayerScripts/StarterPlayer_StarterPlayerScripts/HOVER_RACING_V41_PreviewColourSync.client.lua"
+  },
+  {
+    "roblox_path": "ServerStorage.NeoTokyoRacers_LegacyArchive.DisabledScripts.StarterPlayerScripts.StarterPlayer_StarterPlayerScripts.HOVER_RACING_V42_PreviewColourSync",
+    "class_name": "LocalScript",
+    "disabled": "true",
+    "source_lines": "245",
+    "source_checksum": "366590193",
+    "file": "roblox/exported_scripts/ServerStorage/NeoTokyoRacers_LegacyArchive/DisabledScripts/StarterPlayerScripts/StarterPlayer_StarterPlayerScripts/HOVER_RACING_V42_PreviewColourSync.client.lua"
+  },
+  {
+    "roblox_path": "ServerStorage.NeoTokyoRacers_LegacyArchive.DisabledScripts.StarterPlayerScripts.StarterPlayer_StarterPlayerScripts.HOVER_RACING_V44_PreviewSafetyHelper",
+    "class_name": "LocalScript",
+    "disabled": "true",
+    "source_lines": "228",
+    "source_checksum": "99886633",
+    "file": "roblox/exported_scripts/ServerStorage/NeoTokyoRacers_LegacyArchive/DisabledScripts/StarterPlayerScripts/StarterPlayer_StarterPlayerScripts/HOVER_RACING_V44_PreviewSafetyHelper.client.lua"
+  },
+  {
+    "roblox_path": "StarterPlayer.StarterPlayerScripts.HOVER_RACING_V2_Client",
+    "class_name": "LocalScript",
+    "disabled": "false",
+    "source_lines": "2559",
+    "source_checksum": "950522602",
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/HOVER_RACING_V2_Client.client.lua"
+  },
+  {
+    "roblox_path": "StarterPlayer.StarterPlayerScripts.HOVER_RACING_V46_ThrustPreviewOnly",
+    "class_name": "LocalScript",
+    "disabled": "false",
+    "source_lines": "202",
+    "source_checksum": "705487159",
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/HOVER_RACING_V46_ThrustPreviewOnly.client.lua"
+  },
+  {
+    "roblox_path": "StarterPlayer.StarterPlayerScripts.HOVER_RACING_V64_CachedThrustVisualRuntime",
+    "class_name": "LocalScript",
+    "disabled": "false",
+    "source_lines": "15",
+    "source_checksum": "10138636",
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/HOVER_RACING_V64_CachedThrustVisualRuntime.client.lua"
+  },
+  {
+    "roblox_path": "StarterPlayer.StarterPlayerScripts.HOVER_RACING_V67_MobileDriveControls",
+    "class_name": "LocalScript",
+    "disabled": "false",
+    "source_lines": "495",
+    "source_checksum": "299639223",
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/HOVER_RACING_V67_MobileDriveControls.client.lua"
+  },
+  {
+    "roblox_path": "StarterPlayer.StarterPlayerScripts.HOVER_RACING_V71_MobilePcHudSuppressor",
+    "class_name": "LocalScript",
+    "disabled": "false",
+    "source_lines": "261",
+    "source_checksum": "234848688",
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/HOVER_RACING_V71_MobilePcHudSuppressor.client.lua"
+  },
+  {
+    "roblox_path": "StarterPlayer.StarterPlayerScripts.LOD System",
+    "class_name": "LocalScript",
+    "disabled": "false",
+    "source_lines": "340",
+    "source_checksum": "777082972",
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/LOD System.client.lua"
+  },
+  {
+    "roblox_path": "StarterPlayer.StarterPlayerScripts.TEMP_LightingPreview",
+    "class_name": "LocalScript",
+    "disabled": "false",
+    "source_lines": "119",
+    "source_checksum": "383649521",
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/TEMP_LightingPreview.client.lua"
+  }
+]

@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1700" height="1100" viewBox="0 0 1700 1100">
+  <defs>
+    <style>
+      .bg{fill:#080b12}
+      .title{font:700 36px Arial, sans-serif;fill:#f3efff}
+      .sub{font:500 18px Arial, sans-serif;fill:#cdbdff}
+      .head{font:700 24px Arial, sans-serif;fill:#10071f}
+      .label{font:700 18px Arial, sans-serif;fill:#f4efff}
+      .small{font:600 14px Arial, sans-serif;fill:#ddd0ff}
+      .tiny{font:500 12px Arial, sans-serif;fill:#c6badc}
+      .box{stroke:#b78cff;stroke-width:2;rx:12}
+      .slot{stroke:#74f6d2;stroke-width:2;rx:10}
+      .paint{stroke:#ffd36c;stroke-width:2;rx:10}
+      .attr{stroke:#ff9f7c;stroke-width:2;rx:10}
+      .line{stroke:#b78cff;stroke-width:3;fill:none;opacity:.75}
+    </style>
+  </defs>
+  <rect class="bg" width="1700" height="1100"/>
+  <rect x="34" y="28" width="1632" height="86" rx="18" fill="#171020" stroke="#b78cff" stroke-width="2"/>
+  <text x="58" y="78" class="title">Vehicle Asset Folder System</text>
+  <text x="58" y="103" class="sub">How cockpits, compatible module slots, paint groups, and interchangeable module assets should be organised.</text>
+
+  <g transform="translate(50 155)">
+    <rect class="box" x="0" y="0" width="520" height="845" fill="#171020"/>
+    <rect x="0" y="0" width="520" height="56" rx="12" fill="#b78cff"/>
+    <text x="24" y="37" class="head">VEHICLE_CATEGORIES</text>
+    <text x="38" y="96" class="label">Bruiser</text>
+    <rect class="box" x="36" y="125" width="448" height="665" fill="#090812"/>
+    <text x="60" y="160" class="label">Cockpits</text>
+    <text x="88" y="200" class="small">Bruiser Forge</text>
+    <text x="88" y="226" class="small">Bruiser Nightline</text>
+    <text x="88" y="252" class="small">Bruiser Origin</text>
+    <text x="88" y="278" class="small">Bruiser Rally</text>
+    <text x="88" y="304" class="small">Bruiser Vector</text>
+
+    <rect class="slot" x="72" y="340" width="376" height="184" fill="#071512"/>
+    <text x="94" y="375" class="label">Each Cockpit Model</text>
+    <text x="112" y="412" class="small">CockpitRoot_DoNotRename</text>
+    <text x="112" y="438" class="small">FIXED_MODULE_SLOTS_DoNotRename</text>
+    <text x="138" y="464" class="tiny">SLOT_Engine1 / SLOT_Engine2</text>
+    <text x="138" y="486" class="tiny">SLOT_Stabilisers / SLOT_Boost</text>
+    <text x="138" y="508" class="tiny">SLOT_FrontBumper / SLOT_RearBumper</text>
+
+    <rect class="paint" x="72" y="552" width="376" height="150" fill="#171207"/>
+    <text x="94" y="587" class="label">Paint Groups In Model</text>
+    <text x="112" y="624" class="small">Primary / Secondary / Detail</text>
+    <text x="112" y="650" class="small">Neon / FrontLights / RearLights</text>
+    <text x="112" y="676" class="tiny">Use part names or PaintChannel attributes</text>
+
+    <rect class="attr" x="72" y="724" width="376" height="48" fill="#1d0d08"/>
+    <text x="94" y="755" class="small">Attributes: Price, TopSpeed, Acceleration, Handling, Drift, Braking, Weight, Boost</text>
+  </g>
+
+  <g transform="translate(610 155)">
+    <rect class="box" x="0" y="0" width="520" height="845" fill="#171020"/>
+    <rect x="0" y="0" width="520" height="56" rx="12" fill="#b78cff"/>
+    <text x="24" y="37" class="head">MODULES_InterchangeableWithinCategory</text>
+    <text x="38" y="96" class="label">Bruiser</text>
+
+    <rect class="slot" x="36" y="125" width="448" height="350" fill="#071512"/>
+    <text x="60" y="160" class="label">Fixed Slot Folders</text>
+    <text x="88" y="202" class="small">FrontEngine</text>
+    <text x="88" y="228" class="small">RearEngine</text>
+    <text x="88" y="254" class="small">Stabilisers</text>
+    <text x="88" y="280" class="small">Boost</text>
+    <text x="88" y="306" class="small">FrontBumper</text>
+    <text x="88" y="332" class="small">RearBumper</text>
+    <text x="88" y="358" class="small">RearSpoiler</text>
+    <text x="88" y="384" class="small">SidePods</text>
+    <text x="88" y="430" class="tiny">Engine V1 for FrontEngine should not appear in RearEngine unless duplicated there.</text>
+
+    <rect class="box" x="36" y="510" width="448" height="210" fill="#090812"/>
+    <text x="60" y="545" class="label">Each Module Option</text>
+    <text x="88" y="582" class="small">Engine V1 / Engine V2 / etc.</text>
+    <text x="88" y="608" class="small">ModuleRoot_DoNotRename</text>
+    <text x="88" y="634" class="small">MountAttachment</text>
+    <text x="88" y="660" class="small">Primary / Secondary / Detail / Neon parts</text>
+    <text x="88" y="686" class="tiny">Must line up with cockpit slot MountAttachment</text>
+
+    <rect class="attr" x="36" y="748" width="448" height="48" fill="#1d0d08"/>
+    <text x="60" y="779" class="small">Attributes directly affect performance and shop price.</text>
+  </g>
+
+  <g transform="translate(1170 155)">
+    <rect class="box" x="0" y="0" width="480" height="845" fill="#171020"/>
+    <rect x="0" y="0" width="480" height="56" rx="12" fill="#ffd36c"/>
+    <text x="24" y="37" class="head">Asset Creation Rules</text>
+
+    <text x="34" y="104" class="label">Compatibility</text>
+    <text x="58" y="140" class="small">All Bruiser cockpits share the same slot names.</text>
+    <text x="58" y="166" class="small">Modules in Bruiser folders fit all Bruiser cockpits.</text>
+
+    <text x="34" y="222" class="label">Performance</text>
+    <text x="58" y="258" class="small">Target max: 40 parts / 40k triangles per car.</text>
+    <text x="58" y="284" class="small">Keep only root/hitbox collision active.</text>
+    <text x="58" y="310" class="small">Set visual parts CanCollide/Touch/Query false.</text>
+
+    <text x="34" y="366" class="label">Colour Customisation</text>
+    <text x="58" y="402" class="small">Primary: main body colour.</text>
+    <text x="58" y="428" class="small">Secondary: panels/stripes.</text>
+    <text x="58" y="454" class="small">Detail: bolts, vents, trim.</text>
+    <text x="58" y="480" class="small">Neon: lights and emissive pieces.</text>
+
+    <text x="34" y="536" class="label">Good Naming</text>
+    <text x="58" y="572" class="small">SLOT_FrontEngine</text>
+    <text x="58" y="598" class="small">Engine V1</text>
+    <text x="58" y="624" class="small">engine primary / engine secondary</text>
+    <text x="58" y="650" class="small">engine detail / engine neon</text>
+
+    <text x="34" y="706" class="label">Why This Works</text>
+    <text x="58" y="742" class="small">The cockpit defines where modules attach.</text>
+    <text x="58" y="768" class="small">The module only needs one matching mount.</text>
+    <text x="58" y="794" class="small">Stats are read from attributes and cached.</text>
+  </g>
+</svg>

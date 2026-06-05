@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="980" viewBox="0 0 1600 980">
+  <defs>
+    <style>
+      .bg{fill:#07100d}
+      .title{font:700 36px Arial, sans-serif;fill:#ecffef}
+      .sub{font:500 18px Arial, sans-serif;fill:#b9f5c8}
+      .head{font:700 24px Arial, sans-serif;fill:#07100d}
+      .label{font:700 18px Arial, sans-serif;fill:#ecffef}
+      .small{font:600 14px Arial, sans-serif;fill:#d6ffe0}
+      .tiny{font:500 12px Arial, sans-serif;fill:#b8d8bf}
+      .edit{stroke:#a8ffc0;stroke-width:2;rx:12}
+      .theme{stroke:#9fffc0;stroke-width:2;rx:10}
+      .cash{stroke:#ffd34d;stroke-width:2;rx:10}
+      .drive{stroke:#54f2e2;stroke-width:2;rx:10}
+      .line{stroke:#a8ffc0;stroke-width:3;fill:none;opacity:.85;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#a8ffc0"/>
+    </marker>
+  </defs>
+  <rect class="bg" width="1600" height="980"/>
+  <rect x="34" y="28" width="1532" height="86" rx="18" fill="#0d1b17" stroke="#a8ffc0" stroke-width="2"/>
+  <text x="58" y="78" class="title">Editable Config + Visual Theme System</text>
+  <text x="58" y="103" class="sub">The folders you should edit most often while balancing the game or changing the UI look.</text>
+
+  <g transform="translate(50 155)">
+    <rect class="edit" x="0" y="0" width="470" height="720" fill="#0d1b17"/>
+    <rect x="0" y="0" width="470" height="56" rx="12" fill="#a8ffc0"/>
+    <text x="24" y="37" class="head">00_EDIT_ME_FIRST</text>
+    <text x="36" y="104" class="label">01_GAME_BALANCE_Editable</text>
+
+    <rect class="cash" x="54" y="145" width="360" height="150" fill="#1b1706"/>
+    <text x="76" y="181" class="label">Economy</text>
+    <text x="100" y="218" class="small">StartingCash</text>
+    <text x="100" y="244" class="small">DefaultCockpitPrice</text>
+    <text x="100" y="270" class="small">UpgradePriceMultiplier</text>
+
+    <rect class="drive" x="54" y="335" width="360" height="210" fill="#062020"/>
+    <text x="76" y="371" class="label">Driving</text>
+    <text x="100" y="408" class="small">HoverHeightStuds</text>
+    <text x="100" y="434" class="small">TopSpeedMPH</text>
+    <text x="100" y="460" class="small">ReverseLimitMPH</text>
+    <text x="100" y="486" class="small">BoostDurationSeconds</text>
+    <text x="100" y="512" class="small">BankingDegrees</text>
+
+    <rect class="drive" x="54" y="585" width="360" height="90" fill="#062020"/>
+    <text x="76" y="621" class="label">Camera + MobileControls</text>
+    <text x="100" y="654" class="small">garage distance, mobile button sizes</text>
+  </g>
+
+  <g transform="translate(570 155)">
+    <rect class="theme" x="0" y="0" width="470" height="720" fill="#071512"/>
+    <rect x="0" y="0" width="470" height="56" rx="12" fill="#9fffc0"/>
+    <text x="24" y="37" class="head">UI_THEME_DoNotRename</text>
+
+    <text x="36" y="104" class="label">Colour3Value Objects</text>
+    <text x="64" y="144" class="small">Panel / PanelSoft / Card</text>
+    <text x="64" y="170" class="small">Selected / Text / Muted</text>
+    <text x="64" y="196" class="small">Accent / Cash / Danger / Buy / Disabled</text>
+
+    <text x="36" y="270" class="label">NumberValue Objects</text>
+    <text x="64" y="310" class="small">PanelTransparency</text>
+    <text x="64" y="336" class="small">ButtonTransparency</text>
+    <text x="64" y="362" class="small">PanelStrokeTransparency</text>
+    <text x="64" y="388" class="small">ButtonStrokeTransparency</text>
+    <text x="64" y="414" class="small">StrokeWidth</text>
+    <text x="64" y="440" class="small">PanelCornerRadius / ButtonCornerRadius</text>
+
+    <text x="36" y="514" class="label">StringValue</text>
+    <text x="64" y="554" class="small">FontFamily</text>
+    <text x="64" y="580" class="tiny">Example: rbxasset://fonts/families/Michroma.json</text>
+
+    <rect x="54" y="625" width="360" height="54" rx="10" fill="#0d1b17" stroke="#a8ffc0" stroke-width="2"/>
+    <text x="76" y="659" class="small">Use Roblox Properties panel colour picker.</text>
+  </g>
+
+  <g transform="translate(1090 155)">
+    <rect class="edit" x="0" y="0" width="460" height="720" fill="#0d1b17"/>
+    <rect x="0" y="0" width="460" height="56" rx="12" fill="#a8ffc0"/>
+    <text x="24" y="37" class="head">Important Links + Notes</text>
+
+    <text x="36" y="104" class="label">02_IMPORTANT_LINKS_DoNotRename</text>
+    <text x="64" y="144" class="small">UI_THEME_DoNotRename</text>
+    <text x="64" y="170" class="small">VehicleCategories</text>
+    <text x="64" y="196" class="small">ModuleAssets</text>
+    <text x="64" y="222" class="small">Remotes</text>
+    <text x="64" y="248" class="small">ServerFolder</text>
+
+    <text x="36" y="324" class="label">03_READ_ME</text>
+    <text x="64" y="364" class="small">Where to edit UI</text>
+    <text x="64" y="390" class="small">Where to edit cockpits</text>
+    <text x="64" y="416" class="small">Where to edit modules</text>
+    <text x="64" y="442" class="small">Next code split order</text>
+
+    <rect class="cash" x="54" y="520" width="350" height="120" fill="#1b1706"/>
+    <text x="76" y="556" class="label">Best Editing Habit</text>
+    <text x="76" y="590" class="small">Use values and attributes first.</text>
+    <text x="76" y="616" class="small">Only edit code when behaviour changes.</text>
+  </g>
+
+  <path class="line" d="M520 500 H570"/>
+  <path class="line" d="M1040 500 H1090"/>
+</svg>

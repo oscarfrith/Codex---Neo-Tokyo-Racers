@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1050" viewBox="0 0 1600 1050">
+  <defs>
+    <style>
+      .bg{fill:#07100d}
+      .title{font:700 36px Arial, sans-serif;fill:#eaffef}
+      .sub{font:500 18px Arial, sans-serif;fill:#a9d8bd}
+      .h{font:700 24px Arial, sans-serif;fill:#07100d}
+      .boxText{font:700 18px Arial, sans-serif;fill:#eaffef}
+      .small{font:600 14px Arial, sans-serif;fill:#c8f4d4}
+      .tiny{font:500 12px Arial, sans-serif;fill:#b7dcc4}
+      .service{stroke:#a8ffc0;stroke-width:3;rx:16}
+      .folder{stroke:#7beea4;stroke-width:2;rx:10}
+      .line{stroke:#7beea4;stroke-width:3;fill:none;opacity:.8}
+      .legend{font:700 14px Arial, sans-serif;fill:#eaffef}
+    </style>
+  </defs>
+  <rect class="bg" width="1600" height="1050"/>
+  <rect x="34" y="28" width="1532" height="86" rx="18" fill="#0d1b17" stroke="#a8ffc0" stroke-width="2"/>
+  <text x="58" y="78" class="title">Hover Racing V2 Folder System - Project Overview</text>
+  <text x="58" y="103" class="sub">High-level Roblox services and the main folders created by the current V21/V22 setup.</text>
+
+  <g transform="translate(50 155)">
+    <rect class="service" x="0" y="0" width="500" height="790" fill="#12201c"/>
+    <rect x="0" y="0" width="500" height="54" rx="16" fill="#9fffc0"/>
+    <text x="24" y="36" class="h">ReplicatedStorage</text>
+    <rect class="folder" x="24" y="82" width="452" height="670" fill="#07100d"/>
+    <text x="48" y="116" class="boxText">HOVER_RACING_V2_KIT</text>
+    <text x="70" y="160" class="small">00_EDIT_ME_FIRST</text>
+    <text x="94" y="187" class="tiny">01_GAME_BALANCE_Editable</text>
+    <text x="94" y="211" class="tiny">02_IMPORTANT_LINKS_DoNotRename</text>
+    <text x="94" y="235" class="tiny">03_READ_ME</text>
+    <text x="70" y="280" class="small">UI_THEME_DoNotRename</text>
+    <text x="94" y="307" class="tiny">Color3Value / NumberValue / FontFamily</text>
+    <text x="70" y="352" class="small">VEHICLE_CATEGORIES</text>
+    <text x="94" y="379" class="tiny">Bruiser / future categories / cockpit folders</text>
+    <text x="70" y="424" class="small">MODULES_InterchangeableWithinCategory</text>
+    <text x="94" y="451" class="tiny">Bruiser module slot folders</text>
+    <text x="70" y="496" class="small">SHARED_MODULES</text>
+    <text x="94" y="523" class="tiny">UITheme / VehicleData / DriveTuning / VehicleStatsCache</text>
+    <text x="70" y="568" class="small">CLIENT_MODULES</text>
+    <text x="94" y="595" class="tiny">UI / Controllers / Input</text>
+    <text x="70" y="640" class="small">REMOTES_DoNotRename</text>
+    <text x="94" y="667" class="tiny">GarageInvoke</text>
+    <text x="70" y="712" class="small">SCRIPT_BACKUPS_DoNotRename</text>
+  </g>
+
+  <g transform="translate(590 155)">
+    <rect class="service" x="0" y="0" width="300" height="360" fill="#121b22"/>
+    <rect x="0" y="0" width="300" height="54" rx="16" fill="#55d6ff"/>
+    <text x="24" y="36" class="h">StarterPlayer</text>
+    <rect class="folder" x="24" y="82" width="252" height="230" fill="#07100d"/>
+    <text x="46" y="116" class="boxText">StarterPlayerScripts</text>
+    <text x="62" y="160" class="small">HOVER_RACING_V2_Client</text>
+    <text x="86" y="187" class="tiny">active garage / driving client</text>
+    <text x="62" y="232" class="small">HOVER_RACING_V2_CLIENT</text>
+    <text x="86" y="259" class="tiny">future split LocalScripts</text>
+  </g>
+
+  <g transform="translate(930 155)">
+    <rect class="service" x="0" y="0" width="300" height="360" fill="#211515"/>
+    <rect x="0" y="0" width="300" height="54" rx="16" fill="#ff7777"/>
+    <text x="24" y="36" class="h">ServerScriptService</text>
+    <rect class="folder" x="24" y="82" width="252" height="230" fill="#07100d"/>
+    <text x="46" y="116" class="boxText">HOVER_RACING_V2_SERVER</text>
+    <text x="62" y="160" class="small">HOVER_RACING_V2_Server</text>
+    <text x="86" y="187" class="tiny">active buying / spawning server</text>
+    <text x="62" y="232" class="small">SERVER_MODULES</text>
+    <text x="86" y="259" class="tiny">future services / assemblers</text>
+  </g>
+
+  <g transform="translate(590 555)">
+    <rect class="service" x="0" y="0" width="640" height="390" fill="#111b21"/>
+    <rect x="0" y="0" width="640" height="54" rx="16" fill="#54f2e2"/>
+    <text x="24" y="36" class="h">Workspace</text>
+    <rect class="folder" x="24" y="82" width="592" height="256" fill="#07100d"/>
+    <text x="46" y="116" class="boxText">HOVER_RACING_V2_WORLD</text>
+    <text x="70" y="160" class="small">PLAYER_VEHICLES_Runtime</text>
+    <text x="94" y="187" class="tiny">one spawned vehicle per player</text>
+    <text x="70" y="232" class="small">HOVER_RACING_V2_LOCAL_PREVIEW</text>
+    <text x="94" y="259" class="tiny">garage/dealership preview vehicle</text>
+    <text x="70" y="304" class="small">race checkpoints / map objects</text>
+  </g>
+
+  <g transform="translate(1270 155)">
+    <rect x="0" y="0" width="280" height="790" rx="16" fill="#0d1b17" stroke="#a8ffc0" stroke-width="2"/>
+    <text x="24" y="40" class="boxText">Colour Key</text>
+    <rect x="24" y="75" width="28" height="28" fill="#9fffc0" rx="5"/><text x="66" y="95" class="legend">Editable data/config</text>
+    <rect x="24" y="125" width="28" height="28" fill="#b78cff" rx="5"/><text x="66" y="145" class="legend">Vehicle assets</text>
+    <rect x="24" y="175" width="28" height="28" fill="#55d6ff" rx="5"/><text x="66" y="195" class="legend">Client/local systems</text>
+    <rect x="24" y="225" width="28" height="28" fill="#ff7777" rx="5"/><text x="66" y="245" class="legend">Server systems</text>
+    <rect x="24" y="275" width="28" height="28" fill="#54f2e2" rx="5"/><text x="66" y="295" class="legend">Runtime workspace</text>
+    <rect x="24" y="325" width="28" height="28" fill="#ffd34d" rx="5"/><text x="66" y="345" class="legend">Economy/cash</text>
+    <text x="24" y="410" class="small">Rule of thumb</text>
+    <text x="24" y="442" class="tiny">ReplicatedStorage stores templates,</text>
+    <text x="24" y="464" class="tiny">config, remotes, and modules.</text>
+    <text x="24" y="506" class="tiny">Workspace stores only active runtime</text>
+    <text x="24" y="528" class="tiny">objects: previews, spawned cars,</text>
+    <text x="24" y="550" class="tiny">checkpoints, and the map.</text>
+    <text x="24" y="592" class="tiny">ServerScriptService owns purchases,</text>
+    <text x="24" y="614" class="tiny">saving, and trusted spawning.</text>
+  </g>
+</svg>

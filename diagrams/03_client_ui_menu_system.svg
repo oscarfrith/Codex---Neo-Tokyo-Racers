@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1700" height="1050" viewBox="0 0 1700 1050">
+  <defs>
+    <style>
+      .bg{fill:#061018}
+      .title{font:700 36px Arial, sans-serif;fill:#ecfbff}
+      .sub{font:500 18px Arial, sans-serif;fill:#bcefff}
+      .head{font:700 24px Arial, sans-serif;fill:#061018}
+      .label{font:700 18px Arial, sans-serif;fill:#ecfbff}
+      .small{font:600 14px Arial, sans-serif;fill:#c9f5ff}
+      .tiny{font:500 12px Arial, sans-serif;fill:#afd2dc}
+      .box{stroke:#55d6ff;stroke-width:2;rx:12}
+      .module{stroke:#a8ffc0;stroke-width:2;rx:10}
+      .ui{stroke:#55d6ff;stroke-width:2;rx:10}
+      .cash{stroke:#ffd34d;stroke-width:2;rx:10}
+      .line{stroke:#55d6ff;stroke-width:3;fill:none;opacity:.8;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#55d6ff"/>
+    </marker>
+  </defs>
+  <rect class="bg" width="1700" height="1050"/>
+  <rect x="34" y="28" width="1632" height="86" rx="18" fill="#0b1b24" stroke="#55d6ff" stroke-width="2"/>
+  <text x="58" y="78" class="title">Client UI + Menu Gameplay System</text>
+  <text x="58" y="103" class="sub">How the local player moves through dealership, paint, modules, customisation, and driving.</text>
+
+  <g transform="translate(50 155)">
+    <rect class="box" x="0" y="0" width="370" height="770" fill="#0b1b24"/>
+    <rect x="0" y="0" width="370" height="56" rx="12" fill="#55d6ff"/>
+    <text x="24" y="37" class="head">StarterPlayerScripts</text>
+    <text x="36" y="105" class="label">HOVER_RACING_V2_Client</text>
+    <text x="58" y="142" class="small">Currently active LocalScript</text>
+    <text x="58" y="168" class="small">Creates PlayerGui screens</text>
+    <text x="58" y="194" class="small">Controls garage camera</text>
+    <text x="58" y="220" class="small">Calls server through GarageInvoke</text>
+
+    <rect class="module" x="36" y="275" width="298" height="300" fill="#071512"/>
+    <text x="58" y="310" class="label">CLIENT_MODULES</text>
+    <text x="82" y="350" class="small">UI / UIPool</text>
+    <text x="106" y="375" class="tiny">reuses repeated menu buttons</text>
+    <text x="82" y="420" class="small">Controllers / ReentryThrottle</text>
+    <text x="106" y="445" class="tiny">reduces re-entry checks per second</text>
+    <text x="82" y="490" class="small">Input</text>
+    <text x="106" y="515" class="tiny">future keyboard/gamepad/mobile split</text>
+
+    <rect class="module" x="36" y="620" width="298" height="90" fill="#071512"/>
+    <text x="58" y="655" class="label">SHARED_MODULES</text>
+    <text x="82" y="690" class="small">UITheme / VehicleData / VehicleStatsCache</text>
+  </g>
+
+  <g transform="translate(480 155)">
+    <rect class="ui" x="0" y="0" width="760" height="770" fill="#07131a"/>
+    <rect x="0" y="0" width="760" height="56" rx="12" fill="#55d6ff"/>
+    <text x="24" y="37" class="head">PlayerGui Screens</text>
+
+    <g transform="translate(42 100)">
+      <rect class="ui" x="0" y="0" width="210" height="80" fill="#102532"/>
+      <text x="22" y="34" class="label">Loading</text>
+      <text x="22" y="60" class="tiny">game name + loading bar</text>
+
+      <rect class="ui" x="270" y="0" width="210" height="80" fill="#102532"/>
+      <text x="292" y="34" class="label">Dealership</text>
+      <text x="292" y="60" class="tiny">category + cockpit grid</text>
+
+      <rect class="ui" x="540" y="0" width="210" height="80" fill="#102532"/>
+      <text x="562" y="34" class="label">Paint Cockpit</text>
+      <text x="562" y="60" class="tiny">primary / secondary / detail</text>
+
+      <rect class="ui" x="0" y="170" width="210" height="80" fill="#102532"/>
+      <text x="22" y="204" class="label">Build Modules</text>
+      <text x="22" y="230" class="tiny">front engine / rear engine / etc.</text>
+
+      <rect class="ui" x="270" y="170" width="210" height="80" fill="#102532"/>
+      <text x="292" y="204" class="label">Module Options</text>
+      <text x="292" y="230" class="tiny">preview, buy, equip</text>
+
+      <rect class="ui" x="540" y="170" width="210" height="80" fill="#102532"/>
+      <text x="562" y="204" class="label">Customise</text>
+      <text x="562" y="230" class="tiny">colours, cosmetics, upgrades</text>
+
+      <rect class="ui" x="270" y="340" width="210" height="80" fill="#102532"/>
+      <text x="292" y="374" class="label">Start Driving</text>
+      <text x="292" y="400" class="tiny">spawn car + attach drive HUD</text>
+
+      <path class="line" d="M210 40 H270"/>
+      <path class="line" d="M480 40 H540"/>
+      <path class="line" d="M645 80 V145 H105 V170"/>
+      <path class="line" d="M210 210 H270"/>
+      <path class="line" d="M480 210 H540"/>
+      <path class="line" d="M645 250 V380 H480"/>
+    </g>
+
+    <rect class="cash" x="42" y="610" width="300" height="92" fill="#1b1706"/>
+    <text x="64" y="646" class="label">Available Cash UI</text>
+    <text x="64" y="674" class="small">Shows balance, only spends on confirmed buy/spawn.</text>
+
+    <rect class="module" x="390" y="610" width="320" height="92" fill="#071512"/>
+    <text x="412" y="646" class="label">UI_THEME_DoNotRename</text>
+    <text x="412" y="674" class="small">Editable colour/font/corner values.</text>
+  </g>
+
+  <g transform="translate(1290 155)">
+    <rect class="box" x="0" y="0" width="360" height="770" fill="#0b1b24"/>
+    <rect x="0" y="0" width="360" height="56" rx="12" fill="#a8ffc0"/>
+    <text x="24" y="37" class="head">Data Used By UI</text>
+    <text x="34" y="104" class="label">Catalog</text>
+    <text x="58" y="140" class="small">Categories</text>
+    <text x="58" y="166" class="small">Cockpits</text>
+    <text x="58" y="192" class="small">Slots</text>
+    <text x="58" y="218" class="small">Module options</text>
+
+    <text x="34" y="284" class="label">Profile</text>
+    <text x="58" y="320" class="small">Cash</text>
+    <text x="58" y="346" class="small">OwnedCockpits</text>
+    <text x="58" y="372" class="small">OwnedModules</text>
+    <text x="58" y="398" class="small">InstalledModules</text>
+    <text x="58" y="424" class="small">CockpitColors</text>
+    <text x="58" y="450" class="small">ModuleColors</text>
+
+    <text x="34" y="516" class="label">Important Rule</text>
+    <text x="58" y="552" class="small">Client previews and displays.</text>
+    <text x="58" y="578" class="small">Server confirms buying, cash,</text>
+    <text x="58" y="604" class="small">ownership, and spawning.</text>
+  </g>
+</svg>

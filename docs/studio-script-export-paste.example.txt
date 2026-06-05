@@ -1,0 +1,11 @@
+Paste the values from ReplicatedStorage.NTR_GITHUB_SCRIPT_EXPORT.ScriptExport_001, ScriptExport_002, etc. into:
+
+docs/studio-script-export-paste.txt
+
+Then run:
+
+python scripts/import_studio_script_export.py docs/studio-script-export-paste.txt
+
+If you do not have Python, ask Codex to run the importer with the bundled runtime.
+
+The real paste file is ignored by Git because it can become very large.

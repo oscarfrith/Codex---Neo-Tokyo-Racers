@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1700" height="1050" viewBox="0 0 1700 1050">
+  <defs>
+    <style>
+      .bg{fill:#061414}
+      .title{font:700 36px Arial, sans-serif;fill:#ecfffb}
+      .sub{font:500 18px Arial, sans-serif;fill:#b7fff1}
+      .head{font:700 24px Arial, sans-serif;fill:#061414}
+      .label{font:700 18px Arial, sans-serif;fill:#ecfffb}
+      .small{font:600 14px Arial, sans-serif;fill:#c8fff5}
+      .tiny{font:500 12px Arial, sans-serif;fill:#a7d4cf}
+      .runtime{stroke:#54f2e2;stroke-width:2;rx:12}
+      .physics{stroke:#ffcc66;stroke-width:2;rx:10}
+      .client{stroke:#55d6ff;stroke-width:2;rx:10}
+      .module{stroke:#a8ffc0;stroke-width:2;rx:10}
+      .line{stroke:#54f2e2;stroke-width:3;fill:none;opacity:.85;marker-end:url(#arrow)}
+      .warn{fill:#251b07;stroke:#ffcc66;stroke-width:2;rx:10}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#54f2e2"/>
+    </marker>
+  </defs>
+  <rect class="bg" width="1700" height="1050"/>
+  <rect x="34" y="28" width="1632" height="86" rx="18" fill="#09201f" stroke="#54f2e2" stroke-width="2"/>
+  <text x="58" y="78" class="title">Driving Runtime + Hover Physics System</text>
+  <text x="58" y="103" class="sub">What exists while a player is actually driving, and which pieces run locally every frame.</text>
+
+  <g transform="translate(50 155)">
+    <rect class="runtime" x="0" y="0" width="440" height="770" fill="#09201f"/>
+    <rect x="0" y="0" width="440" height="56" rx="12" fill="#54f2e2"/>
+    <text x="24" y="37" class="head">Workspace Runtime</text>
+    <text x="36" y="104" class="label">HOVER_RACING_V2_WORLD</text>
+    <rect class="runtime" x="36" y="135" width="368" height="580" fill="#061414"/>
+    <text x="60" y="170" class="label">PLAYER_VEHICLES_Runtime</text>
+    <text x="84" y="210" class="small">PlayerVehicle_Model</text>
+    <text x="110" y="238" class="tiny">OwnerUserId attribute</text>
+    <text x="110" y="262" class="tiny">PrimaryPart = CockpitRoot_DoNotRename</text>
+    <text x="110" y="286" class="tiny">DriverSeat</text>
+    <text x="110" y="310" class="tiny">INSTALLED_MODULES_Runtime</text>
+    <text x="110" y="334" class="tiny">TOTAL_STATS_Runtime</text>
+    <text x="110" y="358" class="tiny">visual parts welded to root</text>
+
+    <rect class="warn" x="64" y="430" width="310" height="122"/>
+    <text x="86" y="465" class="label">Performance Rule</text>
+    <text x="86" y="496" class="small">Only root / hitbox should collide.</text>
+    <text x="86" y="522" class="small">Visual module parts should not query,</text>
+    <text x="86" y="548" class="small">touch, or collide.</text>
+  </g>
+
+  <g transform="translate(540 155)">
+    <rect class="client" x="0" y="0" width="520" height="770" fill="#07131a"/>
+    <rect x="0" y="0" width="520" height="56" rx="12" fill="#55d6ff"/>
+    <text x="24" y="37" class="head">Local Driving Controller</text>
+
+    <rect class="module" x="36" y="92" width="448" height="106" fill="#071512"/>
+    <text x="60" y="128" class="label">VehicleStatsCache</text>
+    <text x="60" y="158" class="small">Snapshots stats once when driving starts.</text>
+    <text x="60" y="182" class="tiny">TopSpeed, Acceleration, Handling, Drift, Braking, Weight, Boost</text>
+
+    <rect class="client" x="36" y="238" width="448" height="150" fill="#07131a"/>
+    <text x="60" y="274" class="label">Input Sources</text>
+    <text x="84" y="312" class="small">Keyboard: W/S/A/D, Shift drift, Space boost</text>
+    <text x="84" y="338" class="small">Controller: triggers, thumbstick, A/B/Y</text>
+    <text x="84" y="364" class="small">Mobile: pedals, arrows, drift buttons, boost</text>
+
+    <rect class="physics" x="36" y="428" width="448" height="210" fill="#201807"/>
+    <text x="60" y="464" class="label">Per-Heartbeat Physics</text>
+    <text x="84" y="502" class="small">4 corner raycasts</text>
+    <text x="84" y="528" class="small">VectorForce for lift at each corner</text>
+    <text x="84" y="554" class="small">VectorForce for acceleration/braking/boost</text>
+    <text x="84" y="580" class="small">AlignOrientation for slope levelling and bank tilt</text>
+    <text x="84" y="606" class="small">HUD updates for MPH and boost bar</text>
+
+    <rect class="module" x="36" y="672" width="448" height="54" fill="#071512"/>
+    <text x="60" y="706" class="label">ReentryThrottle: walk-in checks run every 0.15s</text>
+  </g>
+
+  <g transform="translate(1110 155)">
+    <rect class="runtime" x="0" y="0" width="540" height="770" fill="#09201f"/>
+    <rect x="0" y="0" width="540" height="56" rx="12" fill="#54f2e2"/>
+    <text x="24" y="37" class="head">Vehicle Physics Objects</text>
+
+    <rect class="physics" x="42" y="100" width="456" height="102" fill="#201807"/>
+    <text x="64" y="136" class="label">Drive_CenterAttachment</text>
+    <text x="64" y="166" class="small">Central attachment on CockpitRoot.</text>
+
+    <rect class="physics" x="42" y="238" width="456" height="102" fill="#201807"/>
+    <text x="64" y="274" class="label">Drive_ForwardForce</text>
+    <text x="64" y="304" class="small">Acceleration, braking, boost, lateral grip, drift push.</text>
+
+    <rect class="physics" x="42" y="376" width="456" height="102" fill="#201807"/>
+    <text x="64" y="412" class="label">Drive_TerrainYawAlign</text>
+    <text x="64" y="442" class="small">Yaw, ground parallel levelling, and banking.</text>
+
+    <rect class="physics" x="42" y="514" width="456" height="130" fill="#201807"/>
+    <text x="64" y="550" class="label">4 Hover Corner Forces</text>
+    <text x="64" y="580" class="small">Front-left / front-right / rear-left / rear-right</text>
+    <text x="64" y="606" class="small">Each corner raycasts downward to hold 3 studs hover height.</text>
+
+    <rect class="client" x="42" y="684" width="456" height="54" fill="#07131a"/>
+    <text x="64" y="718" class="label">DriveHUD + MobileDriveControls</text>
+  </g>
+
+  <path class="line" d="M490 530 H540"/>
+  <path class="line" d="M1060 530 H1110"/>
+</svg>

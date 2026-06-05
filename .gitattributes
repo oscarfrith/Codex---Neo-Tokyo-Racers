@@ -1,2 +1,10 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+*.md text eol=lf
+*.lua text eol=lf
+*.svg text eol=lf
+*.json text eol=lf
+
+# Roblox binary place files can be large. If you decide to store .rbxl/.rbxm
+# files in GitHub later, consider enabling Git LFS first.
+*.rbxl binary
+*.rbxm binary
+

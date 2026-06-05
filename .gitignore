@@ -1,0 +1,42 @@
+# Neo Tokyo Racers Roblox repo hygiene
+
+# Keep the repo focused on the curated handoff folders.
+# The root folder contains many historical command-bar patch scripts; the latest
+# important scripts are copied into /scripts.
+/roblox_hover_racing*.lua
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+*.temp
+*.bak
+*.backup
+*.log
+
+# Roblox Studio local/autosave-style files
+*.autosave
+*.rbxl.lock
+*.rbxlx.lock
+
+# Codex/local scratch
+.codex/
+BACKUPS_*/
+*_Backup_*
+__pycache__/
+*.pyc
+
+# Temporary Roblox Studio export paste blob.
+docs/studio-script-export-paste.txt
+
+# Archived legacy Studio scripts are documented, but their exported mirror paths
+# can exceed Windows/Git path limits and are not needed as live source.
+roblox/exported_scripts/ServerStorage/NeoTokyoRacers_LegacyArchive/
+
+# Keep these project folders tracked
+!/docs/
+!/scripts/
+!/diagrams/
+!AGENTS.md
+!README.md

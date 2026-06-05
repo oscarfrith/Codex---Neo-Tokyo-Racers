@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1700" height="1050" viewBox="0 0 1700 1050">
+  <defs>
+    <style>
+      .bg{fill:#120707}
+      .title{font:700 36px Arial, sans-serif;fill:#fff1f1}
+      .sub{font:500 18px Arial, sans-serif;fill:#ffc8c8}
+      .head{font:700 24px Arial, sans-serif;fill:#160707}
+      .label{font:700 18px Arial, sans-serif;fill:#fff1f1}
+      .small{font:600 14px Arial, sans-serif;fill:#ffe0e0}
+      .tiny{font:500 12px Arial, sans-serif;fill:#dcb8b8}
+      .server{stroke:#ff7777;stroke-width:2;rx:12}
+      .remote{stroke:#ffd34d;stroke-width:2;rx:10}
+      .data{stroke:#a8ffc0;stroke-width:2;rx:10}
+      .runtime{stroke:#54f2e2;stroke-width:2;rx:10}
+      .line{stroke:#ff7777;stroke-width:3;fill:none;opacity:.85;marker-end:url(#arrow)}
+      .goldLine{stroke:#ffd34d;stroke-width:3;fill:none;opacity:.85;marker-end:url(#goldArrow)}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#ff7777"/>
+    </marker>
+    <marker id="goldArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#ffd34d"/>
+    </marker>
+  </defs>
+  <rect class="bg" width="1700" height="1050"/>
+  <rect x="34" y="28" width="1632" height="86" rx="18" fill="#211010" stroke="#ff7777" stroke-width="2"/>
+  <text x="58" y="78" class="title">Server, Profile, Economy + Spawn System</text>
+  <text x="58" y="103" class="sub">The trusted side of the game: money, ownership, installation, colours, upgrades, and vehicle spawning.</text>
+
+  <g transform="translate(50 155)">
+    <rect class="remote" x="0" y="0" width="340" height="770" fill="#1b1608"/>
+    <rect x="0" y="0" width="340" height="56" rx="12" fill="#ffd34d"/>
+    <text x="24" y="37" class="head">Client Requests</text>
+    <text x="34" y="105" class="label">GarageInvoke</text>
+    <text x="58" y="145" class="small">GetProfile</text>
+    <text x="58" y="171" class="small">BuyCockpit</text>
+    <text x="58" y="197" class="small">SetCockpitColor</text>
+    <text x="58" y="223" class="small">BuyModule</text>
+    <text x="58" y="249" class="small">SetModuleColor</text>
+    <text x="58" y="275" class="small">BuyCosmetic</text>
+    <text x="58" y="301" class="small">UpgradeSystem</text>
+    <text x="58" y="327" class="small">SpawnVehicle</text>
+    <text x="58" y="353" class="small">ExitVehicle / ReEnterVehicle</text>
+
+    <rect class="data" x="34" y="438" width="270" height="150" fill="#071512"/>
+    <text x="56" y="474" class="label">Important Security</text>
+    <text x="56" y="506" class="small">Client may preview.</text>
+    <text x="56" y="532" class="small">Server decides if player</text>
+    <text x="56" y="558" class="small">can afford or equip it.</text>
+  </g>
+
+  <g transform="translate(450 155)">
+    <rect class="server" x="0" y="0" width="500" height="770" fill="#211010"/>
+    <rect x="0" y="0" width="500" height="56" rx="12" fill="#ff7777"/>
+    <text x="24" y="37" class="head">ServerScriptService</text>
+    <text x="36" y="105" class="label">HOVER_RACING_V2_SERVER</text>
+    <text x="58" y="142" class="small">HOVER_RACING_V2_Server</text>
+    <text x="58" y="168" class="tiny">current active trusted script</text>
+
+    <rect class="server" x="36" y="220" width="428" height="188" fill="#120707"/>
+    <text x="58" y="255" class="label">SERVER_MODULES</text>
+    <text x="82" y="292" class="small">Services / PurchaseService</text>
+    <text x="82" y="318" class="small">Services / ProfileService</text>
+    <text x="82" y="344" class="small">Assemblers / VehicleAssembler</text>
+    <text x="82" y="370" class="tiny">future clean split targets</text>
+
+    <rect class="data" x="36" y="460" width="428" height="216" fill="#071512"/>
+    <text x="58" y="495" class="label">Profile Table</text>
+    <text x="82" y="532" class="small">Cash</text>
+    <text x="82" y="558" class="small">OwnedCockpits / CurrentCockpit</text>
+    <text x="82" y="584" class="small">OwnedModules / InstalledModules</text>
+    <text x="82" y="610" class="small">CockpitColors / ModuleColors</text>
+    <text x="82" y="636" class="small">NeonOwned / UpgradeLevels</text>
+  </g>
+
+  <g transform="translate(1010 155)">
+    <rect class="data" x="0" y="0" width="300" height="770" fill="#071512"/>
+    <rect x="0" y="0" width="300" height="56" rx="12" fill="#a8ffc0"/>
+    <text x="24" y="37" class="head">Template Data</text>
+    <text x="34" y="105" class="label">ReplicatedStorage</text>
+    <text x="58" y="145" class="small">VEHICLE_CATEGORIES</text>
+    <text x="82" y="171" class="tiny">cockpit templates</text>
+    <text x="82" y="195" class="tiny">slot definitions</text>
+    <text x="82" y="219" class="tiny">cockpit stats and price</text>
+
+    <text x="58" y="278" class="small">MODULES_InterchangeableWithinCategory</text>
+    <text x="82" y="304" class="tiny">module templates</text>
+    <text x="82" y="328" class="tiny">module stats and price</text>
+    <text x="82" y="352" class="tiny">slot compatibility</text>
+
+    <text x="58" y="412" class="small">00_EDIT_ME_FIRST</text>
+    <text x="82" y="438" class="tiny">economy and tuning notes</text>
+
+    <text x="58" y="498" class="small">UI_THEME_DoNotRename</text>
+    <text x="82" y="524" class="tiny">client reads style values</text>
+  </g>
+
+  <g transform="translate(1370 155)">
+    <rect class="runtime" x="0" y="0" width="280" height="770" fill="#062020"/>
+    <rect x="0" y="0" width="280" height="56" rx="12" fill="#54f2e2"/>
+    <text x="24" y="37" class="head">Spawn Output</text>
+    <text x="34" y="105" class="label">Workspace</text>
+    <text x="58" y="145" class="small">PLAYER_VEHICLES_Runtime</text>
+    <text x="82" y="181" class="tiny">old player car removed</text>
+    <text x="82" y="205" class="tiny">cockpit cloned</text>
+    <text x="82" y="229" class="tiny">owned modules cloned</text>
+    <text x="82" y="253" class="tiny">slots attached</text>
+    <text x="82" y="277" class="tiny">colours applied</text>
+    <text x="82" y="301" class="tiny">stats totalled</text>
+    <text x="82" y="325" class="tiny">seat prepared</text>
+
+    <rect class="runtime" x="34" y="410" width="212" height="130" fill="#061414"/>
+    <text x="56" y="446" class="label">One Car Rule</text>
+    <text x="56" y="478" class="small">Only one active car</text>
+    <text x="56" y="504" class="small">per player at a time.</text>
+  </g>
+
+  <path class="goldLine" d="M390 300 H450"/>
+  <path class="line" d="M950 300 H1010"/>
+  <path class="line" d="M950 560 C1080 560 1220 560 1370 560"/>
+</svg>
