@@ -4,6 +4,9 @@ This is a high-level summary, not a complete changelog of every script.
 
 ## Documentation
 
+- 2026-06-08: Added Vehicle Phase AN module-specific upgrade installer, audit, and opt-in purchase smoke test. Upgrade ownership is keyed by module ID and upgrade ID, purchases are server-authoritative, catalogue/profile responses expose Phase AO data, and spawned module clones receive purchased Phase AM performance deltas.
+- 2026-06-08: Phase AN read-only and purchase smoke tests passed for `MODULE_ENGINE_BRUISER_01_STANDARD`: Fuel Injection level 1 cost `$4000`, purchase succeeded, level advanced to 1, and profile rating increased from `D 407` to `D 410`. Added a final spawned-upgrade audit.
+- 2026-06-08: Phase AN spawned-upgrade audit passed with 0 warnings. The spawned engine carried Fuel Injection level 1, EngineOutput `+2`, TopSpeed `+1`, and runtime rating `D 410`, confirming end-to-end upgrade effects.
 - 2026-06-08: Added Vehicle Phase AM gated runtime integration, audit, and physics activation scripts. Phase AM writes full-build raw/normalized/headline/rating data to spawned vehicles, adds cockpit override/module delta tuning attributes, and bridges detailed variables into V75 driving behind a disabled-by-default compatibility switch.
 - 2026-06-08: Added `scripts/roblox_vehicle_phaseAM_runtime_writer_repair.lua` after fresh spawned vehicles still lacked Phase AM runtime folders. The repair installs an isolated server vehicle-spawn watcher instead of applying another fragile garage controller patch.
 - 2026-06-08: Vehicle Phase AM passed its runtime and physics gates. `VehiclePerformanceRuntimeService_Active` wrote all 17 raw variables, 17 normalized variables, 6 headline stats, and a `D 407` rating with 0 warnings; detailed V75 physics was enabled and reported working well.

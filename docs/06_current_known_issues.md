@@ -8,6 +8,9 @@ This file is intentionally conservative. Items are included only when they were 
 - Vehicle Phase AM is confirmed working. The isolated spawned-vehicle writer produced `17/17` raw variables, `17/17` normalized variables, `6/6` headline stats, a `D 407` test rating, and 0 audit warnings. Detailed physics was enabled and reported working well.
 - Keep `VehiclePerformanceRuntimeService_Active` as the current runtime owner. The earlier garage-controller write hook did not produce the Phase AM folders on fresh spawn.
 - Mobile/gamepad comparison and broader balance testing across Lightweight/Standard/Power builds remain useful follow-up verification.
+- Vehicle Phase AN is confirmed working. Fuel Injection level 1 cost `$4000`, advanced the module from level 0 to 1, changed the profile and spawned rating from `D 407` to `D 410`, and reached the spawned engine as EngineOutput `+2` and TopSpeed `+1` with 0 audit warnings.
+- Phase AO must remove the visible Brakes, Converter, Fuel System, and generic module Upgrade controls without removing the confirmed Phase AN server/data contract.
+- The current garage profile is session-memory only. Phase AN module upgrade ownership has the same lifetime as existing cash, cockpit, and module ownership until a unified garage profile DataStore is introduced.
 - Vehicle Phase AK and its follow-up repairs were reported working by the user. Keep mobile verification open for the centered required-modules popup and small-screen module option scrolling.
 - Phase AK recovery scripts remain available for the resolved register-limit, server core-gate, rear-engine catalogue, camera, per-cockpit default colour, and spawned module colour-sync problems. Do not rerun them unless the matching regression returns.
 - `V75` boost recharge delay and hover wobble were generated after `V74`, but no later user confirmation is present in this chat history.
@@ -18,8 +21,8 @@ This file is intentionally conservative. Items are included only when they were 
 
 ## Studio Export Mirror
 
-- `roblox/exported_scripts/` appears stale until the V2 full snapshot workflow is run in Studio. The current GitHub mirror still contains old paths such as `ReplicatedStorage.HOVER_RACING_V2_KIT`, while project docs say that kit was removed and the active client moved into `StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient`.
-- Run `scripts/roblox_studio_export_full_snapshot_for_github_v2.lua`, paste the chunks into `docs/studio-full-export-paste.txt`, then run `python scripts/import_studio_full_snapshot_export.py docs/studio-full-export-paste.txt` before treating the exported mirror as current truth.
+- The Studio mirror was refreshed and pushed after confirmed Phase AM. It includes 59 scripts, the four shared performance modules, and `VehiclePerformanceRuntimeService_Active`.
+- Refresh the mirror again after Phase AN changes before final handoff.
 
 ## Camera
 

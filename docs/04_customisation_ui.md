@@ -119,7 +119,16 @@ Colour channels should be detected from the actual module contents where possibl
 
 Upgrade buttons should preview stat changes first, then commit on buy.
 
-Phase AL prepares contextual module mappings and planned upgrade definitions only. The existing Brakes, Converter, Fuel System, and generic Upgrade UI remain active until the Phase AO UI cutover.
+Phase AN prepares the live module-specific purchase/effect layer. Upgrade levels belong to each module ID, so an upgraded module keeps its progression when equipped on another compatible cockpit. The existing Brakes, Converter, Fuel System, and generic Upgrade UI remain visible until the Phase AO UI cutover.
+
+Phase AO should consume:
+
+- Module `Upgrades` from the catalogue response.
+- `Profile.ModuleUpgradeLevels`.
+- `Profile.Performance`.
+- The server `UpgradeModule` action.
+
+Phase AN is confirmed end to end. Phase AO can now replace the old controls without changing the server purchase/effect behavior.
 
 ## Mobile Driving UI
 

@@ -1,7 +1,7 @@
--- Phase AL data only. Phase AN will connect these definitions to purchases.
+-- Phase AN module-specific upgrade catalogue and pricing.
 local UpgradeDefinitions = {}
 
-UpgradeDefinitions.EnabledForPurchases = false
+UpgradeDefinitions.EnabledForPurchases = true
 
 UpgradeDefinitions.ByModuleType = {
 	Engine = {
@@ -60,5 +60,9 @@ function UpgradeDefinitions.PriceForLevel(definition, nextLevel)
 	local level = math.max(1, tonumber(nextLevel) or 1)
 	return math.floor((definition.BasePrice or 0) * ((definition.PriceMultiplier or 1) ^ (level - 1)))
 end
+
+UpgradeDefinitions.EnabledForPurchases = true
+
+UpgradeDefinitions.EnabledForPurchases = true
 
 return UpgradeDefinitions

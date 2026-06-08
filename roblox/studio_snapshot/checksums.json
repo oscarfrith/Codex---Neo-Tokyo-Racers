@@ -87,6 +87,14 @@
     "source_bytes": 20703,
     "source_checksum": "366529197"
   },
+  "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.Performance.VehicleModuleUpgradeRuntime": {
+    "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Common/Performance/VehicleModuleUpgradeRuntime.module.lua",
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "source_lines": 106,
+    "source_bytes": 4344,
+    "source_checksum": "843852000"
+  },
   "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.Performance.VehiclePerformanceCalculator": {
     "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Common/Performance/VehiclePerformanceCalculator.module.lua",
     "class_name": "ModuleScript",
@@ -115,9 +123,9 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Common/Performance/VehicleUpgradeDefinitions.module.lua",
     "class_name": "ModuleScript",
     "disabled": false,
-    "source_lines": 65,
-    "source_bytes": 5174,
-    "source_checksum": "108275601"
+    "source_lines": 68,
+    "source_bytes": 5248,
+    "source_checksum": "146115125"
   },
   "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.ConfigReader": {
     "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Common/ConfigReader.module.lua",
@@ -251,9 +259,9 @@
     "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Garage/GarageActionController_Shadow_Disabled.server.lua",
     "class_name": "Script",
     "disabled": false,
-    "source_lines": 1010,
-    "source_bytes": 43462,
-    "source_checksum": "237862551"
+    "source_lines": 1047,
+    "source_bytes": 44814,
+    "source_checksum": "130432771"
   },
   "ServerScriptService.NeoTokyoRacers.Services.Vehicle.DriverSeatPositionService_Active": {
     "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Vehicle/DriverSeatPositionService_Active.server.lua",

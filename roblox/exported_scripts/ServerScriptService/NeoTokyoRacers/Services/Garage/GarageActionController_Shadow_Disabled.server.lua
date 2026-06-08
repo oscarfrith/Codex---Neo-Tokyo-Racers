@@ -40,6 +40,14 @@ local V56_STARTING_CASH = V56_kit:GetAttribute("StartingCash") or 140000
 	local V56_PREVIEW_POS = Vector3.new(V56_kit:GetAttribute("PreviewX") or 860, V56_kit:GetAttribute("PreviewY") or 104, V56_kit:GetAttribute("PreviewZ") or -1749)
 	local V56_profiles = {}
 
+	-- NTR_VEHICLE_PHASE_AN_ISOLATED_UPGRADES
+	local V77_ModuleUpgrades = require(V56_kit
+		:WaitForChild("Shared")
+		:WaitForChild("Modules")
+		:WaitForChild("Common")
+		:WaitForChild("Performance")
+		:WaitForChild("VehicleModuleUpgradeRuntime"))
+
 	local function V56_value(item, name)
 		if not item then return nil end
 		local attr = item:GetAttribute(name)
@@ -96,6 +104,9 @@ local V56_STARTING_CASH = V56_kit:GetAttribute("StartingCash") or 140000
 			ModuleColors = {},
 			NeonOwned = {},
 			UpgradeLevels = { Brakes = 0, Converter = 0, FuelSystem = 0 },
+			ModuleUpgradeLevels = {},
+			ModuleUpgradeLevels = {},
+			ModuleUpgradeLevels = {},
 		}
 	end
 
@@ -109,6 +120,9 @@ local V56_STARTING_CASH = V56_kit:GetAttribute("StartingCash") or 140000
 		profile.ModuleColors = profile.ModuleColors or {}
 		profile.NeonOwned = profile.NeonOwned or {}
 		profile.UpgradeLevels = profile.UpgradeLevels or { Brakes = 0, Converter = 0, FuelSystem = 0 }
+		profile.ModuleUpgradeLevels = profile.ModuleUpgradeLevels or {}
+		profile.ModuleUpgradeLevels = profile.ModuleUpgradeLevels or {}
+		profile.ModuleUpgradeLevels = profile.ModuleUpgradeLevels or {}
 		profile.CockpitColors = profile.CockpitColors or {}
 		profile.CockpitColors.Primary = profile.CockpitColors.Primary or Color3.fromRGB(0, 205, 230)
 		profile.CockpitColors.Secondary = profile.CockpitColors.Secondary or Color3.fromRGB(235, 247, 204)
@@ -396,6 +410,7 @@ local V56_STARTING_CASH = V56_kit:GetAttribute("StartingCash") or 140000
 			Boost = V56_number(item, "Boost", 0),
 			BoostDuration = V56_number(item, "BoostDuration", 0),
 			BoostRecharge = V56_number(item, "BoostRecharge", 0),
+			Upgrades = V77_ModuleUpgrades.CatalogForModuleType(moduleType),
 		}
 	end
 
@@ -533,6 +548,15 @@ local V56_STARTING_CASH = V56_kit:GetAttribute("StartingCash") or 140000
 			ModuleColors = profile.ModuleColors,
 			NeonOwned = profile.NeonOwned,
 			UpgradeLevels = profile.UpgradeLevels,
+			ModuleUpgradeLevels = V77_ModuleUpgrades.GetLevels(profile._Player),
+			Performance = V77_ModuleUpgrades.CalculateProfile(
+				profile._Player,
+				profile,
+				V56_totalStats(profile),
+				V56_findCockpit(profile.CurrentCategory, profile.CurrentCockpit),
+				V56_findModule,
+				V56_moduleTypeForModel
+			),
 			TotalStats = V56_totalStats(profile),
 		}
 	end
@@ -771,6 +795,7 @@ local V56_STARTING_CASH = V56_kit:GetAttribute("StartingCash") or 140000
 				local moduleClone = moduleTemplate:Clone()
 				moduleClone.Name = "INSTALLED_" .. tostring(slotId) .. "_" .. moduleTemplate.Name
 				moduleClone:SetAttribute("InstalledSlotId", slotId)
+				V77_ModuleUpgrades.ApplyToClone(player, moduleTemplate, moduleClone, V56_moduleTypeForModel)
 				moduleClone.Parent = installedRoot
 				V56_pivotModuleToSlot(moduleClone, mount)
 				local moduleColors = profile.ModuleColors[slotId] or {
@@ -843,6 +868,7 @@ local V56_STARTING_CASH = V56_kit:GetAttribute("StartingCash") or 140000
 		args = typeof(args) == "table" and args or {}
 		local okCall, result = pcall(function()
 			local profile = V56_getProfile(player)
+			profile._Player = player
 			V76_grantDefaultModulesForCurrentCockpit(profile)
 			local ok, message
 			if action == "GetInitial" then
@@ -933,6 +959,17 @@ local V56_STARTING_CASH = V56_kit:GetAttribute("StartingCash") or 140000
 					end
 					ok, message = true, "Colour updated."
 				end
+			elseif action == "UpgradeModule" then
+				ok, message = V77_ModuleUpgrades.Purchase(
+					player,
+					profile,
+					tostring(args.SlotId or ""),
+					tostring(args.ModuleId or ""),
+					tostring(args.UpgradeId or ""),
+					V56_findModule,
+					V56_moduleTypeForModel
+				)
+				V56_setLeaderstats(player, profile)
 			elseif action == "Upgrade" then
 				local upgradeId = tostring(args.UpgradeId or "")
 				local category = V56_categoryFolder(profile.CurrentCategory)

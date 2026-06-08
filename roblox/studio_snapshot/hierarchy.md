@@ -1,7 +1,7 @@
 # Roblox Studio Hierarchy Snapshot
 
-Generated in Studio: 2026-06-08 14:09:23
-Scripts exported: 59
+Generated in Studio: 2026-06-08 14:47:11
+Scripts exported: 60
 Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, StarterGui, Workspace, ServerStorage, Lighting
 
 ## Hierarchy
@@ -2366,27 +2366,28 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - CachedThrustVisualRuntime (ModuleScript) [script_0011, 712 lines, 10 attrs]
         - Common (Folder) [1 attrs]
           - Performance (Folder) [2 attrs]
-            - VehiclePerformanceCalculator (ModuleScript) [script_0012, 170 lines, 1 attrs]
-            - VehiclePerformanceDefinitions (ModuleScript) [script_0013, 150 lines, 1 attrs]
-            - VehiclePerformanceRuntime (ModuleScript) [script_0014, 93 lines, 1 attrs]
-            - VehicleUpgradeDefinitions (ModuleScript) [script_0015, 65 lines]
-          - ConfigReader (ModuleScript) [script_0016, 39 lines, 1 attrs]
-          - DriveTuning (ModuleScript) [script_0017, 25 lines, 3 attrs]
-          - UITheme (ModuleScript) [script_0018, 51 lines, 3 attrs]
-          - VehicleData (ModuleScript) [script_0019, 34 lines, 3 attrs]
-          - VehicleStatsCache (ModuleScript) [script_0020, 45 lines, 1 attrs]
+            - VehicleModuleUpgradeRuntime (ModuleScript) [script_0012, 106 lines, 1 attrs]
+            - VehiclePerformanceCalculator (ModuleScript) [script_0013, 170 lines, 1 attrs]
+            - VehiclePerformanceDefinitions (ModuleScript) [script_0014, 150 lines, 1 attrs]
+            - VehiclePerformanceRuntime (ModuleScript) [script_0015, 93 lines, 1 attrs]
+            - VehicleUpgradeDefinitions (ModuleScript) [script_0016, 68 lines, 2 attrs]
+          - ConfigReader (ModuleScript) [script_0017, 39 lines, 1 attrs]
+          - DriveTuning (ModuleScript) [script_0018, 25 lines, 3 attrs]
+          - UITheme (ModuleScript) [script_0019, 51 lines, 3 attrs]
+          - VehicleData (ModuleScript) [script_0020, 34 lines, 3 attrs]
+          - VehicleStatsCache (ModuleScript) [script_0021, 45 lines, 1 attrs]
         - Core (Folder)
-          - PathResolver (ModuleScript) [script_0021, 98 lines, 4 attrs]
+          - PathResolver (ModuleScript) [script_0022, 98 lines, 4 attrs]
         - Data (Folder) [3 attrs]
-          - ConfigRegistry (ModuleScript) [script_0022, 176 lines, 3 attrs]
+          - ConfigRegistry (ModuleScript) [script_0023, 176 lines, 3 attrs]
         - UI (Folder) [3 attrs]
-          - ArrowScroller (ModuleScript) [script_0023, 68 lines, 3 attrs]
-          - ColourUtils (ModuleScript) [script_0024, 21 lines, 3 attrs]
-          - ResponsiveLayout (ModuleScript) [script_0025, 44 lines, 3 attrs]
-          - StatBars (ModuleScript) [script_0026, 49 lines, 3 attrs]
-          - UIFactory (ModuleScript) [script_0027, 93 lines, 3 attrs]
-          - UIPool (ModuleScript) [script_0028, 99 lines, 3 attrs]
-          - UITheme (ModuleScript) [script_0029, 92 lines, 5 attrs]
+          - ArrowScroller (ModuleScript) [script_0024, 68 lines, 3 attrs]
+          - ColourUtils (ModuleScript) [script_0025, 21 lines, 3 attrs]
+          - ResponsiveLayout (ModuleScript) [script_0026, 44 lines, 3 attrs]
+          - StatBars (ModuleScript) [script_0027, 49 lines, 3 attrs]
+          - UIFactory (ModuleScript) [script_0028, 93 lines, 3 attrs]
+          - UIPool (ModuleScript) [script_0029, 99 lines, 3 attrs]
+          - UITheme (ModuleScript) [script_0030, 92 lines, 5 attrs]
           - ArrowScroller_Module (ObjectValue)
           - ColourUtils_Module (ObjectValue)
           - ResponsiveLayout_Module (ObjectValue)
@@ -2411,7 +2412,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
     - README_Phase2 (StringValue) [1 attrs]
   - Shared (Folder)
     - LightingPresets (Folder)
-      - LightingPresets (ModuleScript) [script_0030, 105 lines, 2 attrs]
+      - LightingPresets (ModuleScript) [script_0031, 105 lines, 2 attrs]
     - SkyPresets (Folder)
       - ActiveSky (Sky)
       - ClearNightSky (Sky)
@@ -2420,19 +2421,19 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
   - NeoTokyoRacers (Folder) [5 attrs]
     - Services (Folder) [3 attrs]
       - Dealership (Folder)
-        - IntroProgressService_Active (Script) [script_0031, 208 lines, 2 attrs]
+        - IntroProgressService_Active (Script) [script_0032, 208 lines, 2 attrs]
       - Economy (Folder)
       - Garage (Folder)
-        - GarageActionController_Shadow_Disabled (Script) [script_0032, 1010 lines, 23 attrs]
+        - GarageActionController_Shadow_Disabled (Script) [script_0033, 1047 lines, 24 attrs]
       - Player (Folder)
       - Vehicle (Folder)
-        - DriverSeatPositionService_Active (Script) [script_0033, 234 lines, 11 attrs]
-        - VehiclePerformanceRuntimeService_Active (Script) [script_0034, 95 lines, 2 attrs]
+        - DriverSeatPositionService_Active (Script) [script_0034, 234 lines, 11 attrs]
+        - VehiclePerformanceRuntimeService_Active (Script) [script_0035, 95 lines, 2 attrs]
       - World (Folder)
         - Lighting (Folder)
-          - LightingService_Active (Script) [script_0035, 104 lines, 7 attrs]
+          - LightingService_Active (Script) [script_0036, 104 lines, 7 attrs]
         - Traffic (Folder)
-          - TrafficLightService (Script) [script_0036, 46 lines, 3 attrs]
+          - TrafficLightService (Script) [script_0037, 46 lines, 3 attrs]
           - README_MigrationNotes (StringValue)
     - State (Folder)
 - StarterPlayer (StarterPlayer)
@@ -2441,38 +2442,38 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
     - NeoTokyoRacersClient (Folder) [6 attrs]
       - Controllers (Folder) [3 attrs]
         - Core (Folder)
-          - CatalogClient (ModuleScript) [script_0037, 110 lines, 4 attrs]
-          - ClientState (ModuleScript) [script_0038, 75 lines, 4 attrs]
-          - ClientThemeAdapter (ModuleScript) [script_0039, 69 lines, 6 attrs]
-          - GarageApiClient (ModuleScript) [script_0040, 38 lines, 4 attrs]
-          - PaintClient (ModuleScript) [script_0041, 142 lines, 10 attrs]
+          - CatalogClient (ModuleScript) [script_0038, 110 lines, 4 attrs]
+          - ClientState (ModuleScript) [script_0039, 75 lines, 4 attrs]
+          - ClientThemeAdapter (ModuleScript) [script_0040, 69 lines, 6 attrs]
+          - GarageApiClient (ModuleScript) [script_0041, 38 lines, 4 attrs]
+          - PaintClient (ModuleScript) [script_0042, 142 lines, 10 attrs]
         - Garage (Folder)
         - Intro (Folder)
-          - DealershipIntroClient_Active (LocalScript) [script_0042, 698 lines, 8 attrs]
+          - DealershipIntroClient_Active (LocalScript) [script_0043, 698 lines, 8 attrs]
         - Preview (Folder)
-          - ThrustPreviewController_Active (LocalScript) [script_0043, 207 lines, 15 attrs]
-          - PreviewCameraController (ModuleScript) [script_0044, 96 lines, 5 attrs]
-          - PreviewVehicleController (ModuleScript) [script_0045, 168 lines, 5 attrs]
+          - ThrustPreviewController_Active (LocalScript) [script_0044, 207 lines, 15 attrs]
+          - PreviewCameraController (ModuleScript) [script_0045, 96 lines, 5 attrs]
+          - PreviewVehicleController (ModuleScript) [script_0046, 168 lines, 5 attrs]
         - Runtime (Folder)
-          - CharacterSprintController_Active (LocalScript) [script_0046, 342 lines]
-          - DriveHudController_Active (LocalScript) [script_0047, 261 lines, 7 attrs]
-          - MobileDriveControlsController_Active (LocalScript) [script_0048, 495 lines, 7 attrs]
-          - RuntimeVFXController_Active (LocalScript) [script_0049, 15 lines, 7 attrs]
+          - CharacterSprintController_Active (LocalScript) [script_0047, 342 lines]
+          - DriveHudController_Active (LocalScript) [script_0048, 261 lines, 7 attrs]
+          - MobileDriveControlsController_Active (LocalScript) [script_0049, 495 lines, 7 attrs]
+          - RuntimeVFXController_Active (LocalScript) [script_0050, 15 lines, 7 attrs]
         - UI (Folder)
-          - CockpitPaintUIController (ModuleScript) [script_0050, 46 lines, 5 attrs]
-          - ColourPickerController (ModuleScript) [script_0051, 277 lines, 5 attrs]
-          - CustomisationUIController (ModuleScript) [script_0052, 127 lines, 5 attrs]
-          - DealershipUIController (ModuleScript) [script_0053, 87 lines, 5 attrs]
-          - ModuleShopUIController (ModuleScript) [script_0054, 109 lines, 5 attrs]
-          - NavigationController (ModuleScript) [script_0055, 49 lines, 5 attrs]
-          - StatsPanelController (ModuleScript) [script_0056, 51 lines, 5 attrs]
+          - CockpitPaintUIController (ModuleScript) [script_0051, 46 lines, 5 attrs]
+          - ColourPickerController (ModuleScript) [script_0052, 277 lines, 5 attrs]
+          - CustomisationUIController (ModuleScript) [script_0053, 127 lines, 5 attrs]
+          - DealershipUIController (ModuleScript) [script_0054, 87 lines, 5 attrs]
+          - ModuleShopUIController (ModuleScript) [script_0055, 109 lines, 5 attrs]
+          - NavigationController (ModuleScript) [script_0056, 49 lines, 5 attrs]
+          - StatsPanelController (ModuleScript) [script_0057, 51 lines, 5 attrs]
           - README_TargetControllers (StringValue)
         - World (Folder)
-          - LODClient_Active (LocalScript) [script_0057, 365 lines, 12 attrs]
+          - LODClient_Active (LocalScript) [script_0058, 365 lines, 12 attrs]
       - RuntimeState (Folder)
       - State (Folder)
-      - NeoTokyoRacersClient_Bootstrap_Shadow_Disabled (LocalScript) [script_0058, 2877 lines, 22 attrs]
-    - TEMP_LightingPreview (LocalScript) [script_0059, 119 lines]
+      - NeoTokyoRacersClient_Bootstrap_Shadow_Disabled (LocalScript) [script_0059, 2877 lines, 22 attrs]
+    - TEMP_LightingPreview (LocalScript) [script_0060, 119 lines]
 - StarterGui (StarterGui)
   - NeoTokyoRacersUI (ScreenGui) [2 attrs]
     - Components (Folder) [1 attrs]

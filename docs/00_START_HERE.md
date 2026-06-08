@@ -34,6 +34,7 @@ Known from chat:
 - Vehicle Phase AK was installed and confirmed working through its follow-up repairs. Bruiser modules now use per-cockpit Standard/Lightweight/Power front engine, rear engine, stabiliser, and boost sets plus Lvl 1-3 bumpers/spoilers/side pods. Cockpit purchase grants standard core modules, dealership stats include them, required modules are gated, camera entry views are corrected, per-cockpit default colours live on cockpit attributes, and spawned module colours match preview.
 - Vehicle Phase AL was installed and its read-only audit passed on 2026-06-08: 5 cockpits, 72 active modules, 23 planned upgrades, and 0 warnings.
 - Vehicle Phase AM was installed and confirmed working on 2026-06-08. The isolated `VehiclePerformanceRuntimeService_Active` writes complete-build raw/normalized/headline/rating data; the audit passed `17/17`, `17/17`, `6/6`, and 0 warnings with a test rating of `D 407`. Detailed-variable V75 physics was then enabled and reported working well.
+- Vehicle Phase AN was installed and confirmed working on 2026-06-08. Module-ID-scoped Fuel Injection level 1 cost `$4000`, changed the profile rating from `D 407` to `D 410`, reached the spawned engine as EngineOutput `+2` and TopSpeed `+1`, and passed the spawned-effect audit with 0 warnings. The visible generic upgrade UI remains until Phase AO.
 - Dealership Intro Phases 1-7 were installed and confirmed working by the user on 2026-06-03. The flow now uses editable dealership markers, opens the full garage only at `GarageDeskTrigger`, delays the local preview until cockpit purchase/select succeeds, restores preview orbit camera behavior, spawns the final drivable vehicle from `VehicleExitSpawnPoint`, and includes an Exit button that only reopens after the player leaves and re-enters the desk zone. Phase 8 is generated in Git as the next Studio install/test step: it replaces fixed path arrows with a dynamic client-only arrow tether to the desk and persists first desk-objective completion.
 - Phase 15 successfully moved live server action ownership to `ServerScriptService.NeoTokyoRacers.Services.Garage.GarageActionController_Shadow_Disabled`. The old `HOVER_RACING_V2_Server` remains available for rollback but is no longer the live server action owner.
 - `V74` restored the pre-V72/default Roblox driving camera feel and added a light camera assist. The user confirmed this worked well.
@@ -108,6 +109,7 @@ Recommended baseline:
 - Vehicle Phase AK Bruiser modular defaults: `docs/vehicle-phaseAK-bruiser-modular-defaults-2026-06-05.md`
 - Vehicle Phase AL performance foundation: `docs/vehicle-phaseAL-performance-foundation-2026-06-08.md`
 - Vehicle Phase AM runtime integration: `docs/vehicle-phaseAM-runtime-integration-2026-06-08.md`
+- Vehicle Phase AN module upgrades: `docs/vehicle-phaseAN-module-upgrades-2026-06-08.md`
 - Cleanup Phase G full hierarchy audit: `docs/cleanup-phaseG-full-hierarchy-audit-2026-05-29.md`
 - Cleanup Phase H legacy inactive deletion: `docs/cleanup-phaseH-delete-legacy-inactive-items-2026-05-29.md`
 - Cleanup Phase I aggressive migration cleanup: `docs/cleanup-phaseI-aggressive-migration-cleanup-2026-05-29.md`
