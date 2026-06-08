@@ -4,6 +4,7 @@ This is a high-level summary, not a complete changelog of every script.
 
 ## Documentation
 
+- 2026-06-08: Added Vehicle Phase AL performance foundation and audit scripts. Phase AL installs isolated shared definitions/calculator/upgrade-definition modules plus editable normalization, headline weight, overall rating, tier, compatibility, and module-context config. It does not switch active driving, UI, purchases, or profile behavior.
 - 2026-06-05: Added `scripts/roblox_vehicle_phaseAK_bruiser_modular_defaults.lua` and `docs/vehicle-phaseAK-bruiser-modular-defaults-2026-06-05.md`. Phase AK prepares the Bruiser module catalogue as per-cockpit Standard/Lightweight/Power engines, stabilisers, and boost plus Lvl 1-3 bumpers/spoilers/side pods; grants standard core modules with cockpit purchase/select; previews included defaults in dealership stats; and gates Customise Modules until engine/stabilisers/boost are equipped.
 - 2026-06-05: Added `scripts/roblox_vehicle_phaseAK_register_limit_repair.lua` after Studio reported the active client bootstrap exceeded Roblox's local-register limit near the V75 driving block. The repair keeps the Phase AK UI behavior but moves helper functions onto one phase table to reduce top-level locals.
 - 2026-06-05: Added `scripts/roblox_vehicle_phaseAK_server_core_gate_repair.lua` after Studio reported `SpawnVehicle` failing with a nil call inside the Phase AK server core-module gate. The repair removes the forward-local dependency and refreshes Engine1/Engine2 slot attributes to use the shared Engines catalogue.

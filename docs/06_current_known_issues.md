@@ -4,6 +4,7 @@ This file is intentionally conservative. Items are included only when they were 
 
 ## Needs Play-Test Confirmation
 
+- Vehicle Phase AL is prepared but not yet confirmed installed. Run the foundation installer and read-only audit; do not begin Phase AM until the audit reports valid weights, ranges, tiers, and zero warnings.
 - Vehicle Phase AK and its follow-up repairs were reported working by the user. Keep mobile verification open for the centered required-modules popup and small-screen module option scrolling.
 - Phase AK recovery scripts remain available for the resolved register-limit, server core-gate, rear-engine catalogue, camera, per-cockpit default colour, and spawned module colour-sync problems. Do not rerun them unless the matching regression returns.
 - `V75` boost recharge delay and hover wobble were generated after `V74`, but no later user confirmation is present in this chat history.

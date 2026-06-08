@@ -151,6 +151,32 @@ Bruiser cockpits can declare included standard modules with:
 - `BoostRecharge`
 - `BoostRechargeDelay`
 
+## Phase AL Performance Foundation
+
+Prepared shared paths:
+
+```text
+ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.Performance
+ReplicatedStorage.NeoTokyoRacers.Shared.Config.VehiclePerformance_EditAttributes
+```
+
+Phase AL introduces detailed raw variables without switching live driving yet:
+
+- `EngineOutput`
+- `LateralGrip`
+- `SteeringResponse`
+- `HoverStability`
+- `DriftControl`
+- `DriftGrip`
+- `DriftChargeRate`
+- `BrakingForce`
+- `BoostForce`
+- `BoostEfficiency`
+- `Drag`
+- `Downforce`
+
+The shared calculator converts these into Speed, Acceleration, Handling, Drift, Braking, Boost, and the overall E-S performance rating.
+
 ## Spawn Markers
 
 `Workspace.NeoTokyoRacersWorld.SpawnPoints.VehicleSpawnPoint` is the migrated general vehicle spawn marker from Architecture Phase N.
