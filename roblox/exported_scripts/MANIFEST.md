@@ -4,7 +4,7 @@ Generated from the Roblox Studio full snapshot export.
 
 These files are a GitHub-readable mirror of Studio scripts. Treat Studio as live until a Rojo/source-sync migration is explicitly completed.
 
-Script count: 54
+Script count: 59
 
 - `ReplicatedStorage.NeoTokyoRacers.Compatibility.LiveSystemRegistry` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Compatibility/LiveSystemRegistry.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Compatibility.PathResolver` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Compatibility/PathResolver.module.lua`
@@ -17,6 +17,10 @@ Script count: 54
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.UI.UIPool` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Client/UI/UIPool.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.VFX.VehicleVFXController` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Client/VFX/VehicleVFXController.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Visuals.CachedThrustVisualRuntime` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Client/Visuals/CachedThrustVisualRuntime.module.lua`
+- `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.Performance.VehiclePerformanceCalculator` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Common/Performance/VehiclePerformanceCalculator.module.lua`
+- `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.Performance.VehiclePerformanceDefinitions` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Common/Performance/VehiclePerformanceDefinitions.module.lua`
+- `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.Performance.VehiclePerformanceRuntime` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Common/Performance/VehiclePerformanceRuntime.module.lua`
+- `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.Performance.VehicleUpgradeDefinitions` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Common/Performance/VehicleUpgradeDefinitions.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.ConfigReader` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Common/ConfigReader.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.DriveTuning` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Common/DriveTuning.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.UITheme` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Common/UITheme.module.lua`
@@ -35,6 +39,7 @@ Script count: 54
 - `ServerScriptService.NeoTokyoRacers.Services.Dealership.IntroProgressService_Active` (Script, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Dealership/IntroProgressService_Active.server.lua`
 - `ServerScriptService.NeoTokyoRacers.Services.Garage.GarageActionController_Shadow_Disabled` (Script, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Garage/GarageActionController_Shadow_Disabled.server.lua`
 - `ServerScriptService.NeoTokyoRacers.Services.Vehicle.DriverSeatPositionService_Active` (Script, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Vehicle/DriverSeatPositionService_Active.server.lua`
+- `ServerScriptService.NeoTokyoRacers.Services.Vehicle.VehiclePerformanceRuntimeService_Active` (Script, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Vehicle/VehiclePerformanceRuntimeService_Active.server.lua`
 - `ServerScriptService.NeoTokyoRacers.Services.World.Lighting.LightingService_Active` (Script, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/World/Lighting/LightingService_Active.server.lua`
 - `ServerScriptService.NeoTokyoRacers.Services.World.Traffic.TrafficLightService` (Script, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/World/Traffic/TrafficLightService.server.lua`
 - `StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Core.CatalogClient` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Core/CatalogClient.module.lua`

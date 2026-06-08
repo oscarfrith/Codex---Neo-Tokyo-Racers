@@ -402,6 +402,81 @@ local function setNextText(text)
 	UI.Next.Text = string.upper(text or "NEXT")
 end
 
+-- NTR_VEHICLE_PHASE_AK_CLIENT_BEGIN
+-- NTR_VEHICLE_PHASE_AK_CLIENT_REGISTER_REPAIR
+NTRVehiclePhaseAK = NTRVehiclePhaseAK or {}
+
+function NTRVehiclePhaseAK.statsCopy(stats)
+	local copy = {}
+	for key, value in pairs(stats or {}) do
+		if typeof(value) == "number" then copy[key] = value end
+	end
+	return copy
+end
+
+function NTRVehiclePhaseAK.addModuleStats(total, moduleId, times)
+	local module = moduleId and getModule(moduleId)
+	if not module then return end
+	for _, stat in ipairs({ "TopSpeed", "Acceleration", "Handling", "Drift", "Braking", "Weight", "Boost" }) do
+		total[stat] = (total[stat] or 0) + ((module[stat] or 0) * (times or 1))
+	end
+end
+
+function NTRVehiclePhaseAK.dealershipStatsWithIncludedDefaults(cockpit)
+	local stats = NTRVehiclePhaseAK.statsCopy(cockpit)
+	-- NTR_VEHICLE_PHASE_AK_REAR_ENGINE_CLIENT_REPAIR
+	NTRVehiclePhaseAK.addModuleStats(stats, cockpit and (cockpit.DefaultFrontEngineModuleId or cockpit.DefaultEngineModuleId), 1)
+	NTRVehiclePhaseAK.addModuleStats(stats, cockpit and (cockpit.DefaultRearEngineModuleId or cockpit.DefaultEngineModuleId), 1)
+	NTRVehiclePhaseAK.addModuleStats(stats, cockpit and cockpit.DefaultStabilisersModuleId, 1)
+	NTRVehiclePhaseAK.addModuleStats(stats, cockpit and cockpit.DefaultBoostModuleId, 1)
+	return stats
+end
+
+function NTRVehiclePhaseAK.coreModuleEquipState()
+	local installed = (State.Profile and State.Profile.InstalledModules) or {}
+	local hasEngine, hasStabilisers, hasBoost = false, false, false
+	for _, moduleId in pairs(installed) do
+		local module = getModule(moduleId)
+		local moduleType = module and module.ModuleType
+		if moduleType == "Engine" then hasEngine = true end
+		if moduleType == "Stabilisers" or moduleType == "Stabiliser" then hasStabilisers = true end
+		if moduleType == "Boost" then hasBoost = true end
+	end
+	return hasEngine, hasStabilisers, hasBoost
+end
+
+function NTRVehiclePhaseAK.showCoreModuleRequiredPopup()
+	if not UI.Gui then return end
+	if UI.RequireModulesPopup and UI.RequireModulesPopup.Parent then
+		UI.RequireModulesPopup:Destroy()
+	end
+	local width = UserInputService.TouchEnabled and 310 or 430
+	local height = UserInputService.TouchEnabled and 126 or 132
+	local popup = panel(UI.Gui, "RequireCoreModulesPopup", UDim2.fromOffset(width, height), UDim2.fromScale(0.5, 0.5), Vector2.new(0.5, 0.5))
+	popup.ZIndex = 80
+	pad(popup, 14)
+	UI.RequireModulesPopup = popup
+	local title = label(popup, "Modules Required", UDim2.new(1, 0, 0, 30), UDim2.fromOffset(0, 4), UserInputService.TouchEnabled and 13 or 15, Enum.TextXAlignment.Center)
+	title.ZIndex = 81
+	local body = label(popup, "Equip at least one engine, stabilisers, and boost before customising.", UDim2.new(1, -18, 0, 44), UDim2.fromOffset(9, 38), UserInputService.TouchEnabled and 10 or 12, Enum.TextXAlignment.Center)
+	body.ZIndex = 81
+	local ok = button(popup, "OK", UDim2.new(1, -90, 0, UserInputService.TouchEnabled and 38 or 34), UDim2.new(0, 45, 1, UserInputService.TouchEnabled and -42 or -38), Theme.CardHot)
+	ok.ZIndex = 81
+	ok.MouseButton1Click:Connect(function()
+		if UI.RequireModulesPopup then
+			UI.RequireModulesPopup:Destroy()
+			UI.RequireModulesPopup = nil
+		end
+	end)
+	task.delay(3.2, function()
+		if UI.RequireModulesPopup == popup then
+			popup:Destroy()
+			UI.RequireModulesPopup = nil
+		end
+	end)
+end
+-- NTR_VEHICLE_PHASE_AK_CLIENT_END
+
 -- NTR_DEALERSHIP_INTRO_PHASE4_PREVIEW_AFTER_PURCHASE_BEGIN
 local buildPreview
 local NTR_PHASE4_CLIENT_ROOT_NAME = "_NTR_ClientOnly"
@@ -795,7 +870,7 @@ end
 
 local function currentStats()
 	if State.Stage == "CockpitShop" then
-		return getCockpit(State.SelectedCockpit) or {}
+		return NTRVehiclePhaseAK.dealershipStatsWithIncludedDefaults(getCockpit(State.SelectedCockpit) or {})
 	end
 	local base = (State.Profile and State.Profile.TotalStats) or getCockpit(State.SelectedCockpit) or {}
 	if State.Stage == "ModuleShop" and State.ModuleMode == "Options" and State.SelectedSlot and State.SelectedModuleId then
@@ -1043,7 +1118,7 @@ local function renderDealershipPanel()
 	applyDealershipLayout()
 	clear(UI.StatsPanel)
 	local cockpit = getCockpit(State.SelectedCockpit) or {}
-	renderStatsOnly(UI.StatsPanel, cockpit)
+	renderStatsOnly(UI.StatsPanel, NTRVehiclePhaseAK.dealershipStatsWithIncludedDefaults(cockpit))
 	label(UI.StatsPanel, "Module Slots", UDim2.new(1, 0, 0, 24), UDim2.fromOffset(0, 238), 12, Enum.TextXAlignment.Left)
 	local y = 268
 	local counts = { Engine = 0, Stabilisers = 0, Boost = 0, BodyKit = 0 }
@@ -1074,6 +1149,8 @@ local function renderDealershipPanel()
 		local result = callServer("BuyCockpit", { CockpitId = State.SelectedCockpit })
 		if result.Success then
 			NTR_phase4UnlockPreviewAfterPurchase()
+			-- NTR_VEHICLE_PHASE_AK_COCKPIT_PAINT_CAMERA_REPAIR
+			setCameraSection("Engine1")
 			showStage("CockpitPaint")
 			renderCockpitPaint()
 		else
@@ -1302,6 +1379,13 @@ renderCockpitPaint = function()
 	renderColourPicker(UI.CockpitPaintPicker, { "Primary", "Secondary", "Detail" }, function(channel, color)
 		callServer("SetCockpitColor", { Channel = channel, Color = color })
 		if State.Profile and State.Profile.CockpitColors then State.Profile.CockpitColors[channel] = color end
+		-- NTR_VEHICLE_PHASE_AK_PREVIEW_MODULE_COLOUR_SYNC
+		if State.Profile and State.Profile.InstalledModules and State.Profile.ModuleColors and (channel == "Primary" or channel == "Secondary" or channel == "Detail") then
+			for slotId in pairs(State.Profile.InstalledModules) do
+				State.Profile.ModuleColors[slotId] = State.Profile.ModuleColors[slotId] or {}
+				State.Profile.ModuleColors[slotId][channel] = color
+			end
+		end
 		buildPreview()
 		renderStatsPanel()
 	end)
@@ -2518,9 +2602,17 @@ makeArrowScroller(UI.CockpitGridPanel, UI.CockpitGrid, "Y", 296)
 		if State.Stage == "CockpitPaint" then
 			clearPreviewModules()
 			State.ModuleMode = "Slots"
+			-- NTR_VEHICLE_PHASE_AK_MODULE_ENTRY_CAMERA_REPAIR
+			setCameraSection("Engine1")
 			showStage("ModuleShop")
 			renderModuleShop()
 		elseif State.Stage == "ModuleShop" then
+			local hasEngine, hasStabilisers, hasBoost = NTRVehiclePhaseAK.coreModuleEquipState()
+			if not (hasEngine and hasStabilisers and hasBoost) then
+				NTRVehiclePhaseAK.showCoreModuleRequiredPopup()
+				UI.Subtitle.Text = "Equip one engine, stabilisers, and boost first."
+				return
+			end
 			clearPreviewModules()
 			State.CustomizeTarget = "ALL"
 			State.CustomizeMode = "Colour"

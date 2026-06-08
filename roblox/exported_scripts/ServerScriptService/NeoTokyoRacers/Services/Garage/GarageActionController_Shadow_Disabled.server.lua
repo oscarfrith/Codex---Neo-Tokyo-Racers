@@ -129,6 +129,68 @@ local V56_STARTING_CASH = V56_kit:GetAttribute("StartingCash") or 140000
 		return V56_normalizeProfile(profile)
 	end
 
+	-- NTR_VEHICLE_PHASE_AK_PER_COCKPIT_COLOURS
+	local function V76_findCockpitForDefaultColours(categoryId, cockpitId)
+		for _, category in ipairs(V56_categoriesRoot:GetChildren()) do
+			local categoryMatches = category:GetAttribute("CategoryId") == categoryId
+				or category.Name == categoryId
+				or string.lower(category.Name) == string.lower(tostring(categoryId))
+			if categoryMatches then
+				local root = category:FindFirstChild("COCKPITS_ReplaceAssetsHere") or category:FindFirstChild("Cockpits") or category:FindFirstChild("COCKPITS")
+				for _, item in ipairs((root or category):GetDescendants()) do
+					if item:IsA("Model") and item:GetAttribute("CockpitId") == cockpitId then
+						return item
+					end
+				end
+			end
+		end
+	end
+
+	local function V76_colorAttribute(item, name, fallback)
+		local value = item and item:GetAttribute(name)
+		if typeof(value) == "Color3" then
+			return value
+		end
+		return fallback
+	end
+
+	local function V76_defaultCockpitColorsFor(profile)
+		local cockpit = V76_findCockpitForDefaultColours(profile.CurrentCategory or "bruiser", profile.CurrentCockpit or "bruiser_01")
+		return {
+			Primary = V76_colorAttribute(cockpit, "DefaultPrimaryColor", Color3.fromRGB(0, 205, 230)),
+			Secondary = V76_colorAttribute(cockpit, "DefaultSecondaryColor", Color3.fromRGB(235, 247, 204)),
+			Detail = V76_colorAttribute(cockpit, "DefaultDetailColor", Color3.fromRGB(38, 44, 50)),
+			Neon = V76_colorAttribute(cockpit, "DefaultNeonColor", Color3.fromRGB(255, 255, 255)),
+			FrontLights = V76_colorAttribute(cockpit, "DefaultFrontLightsColor", Color3.fromRGB(252, 250, 255)),
+			RearLights = V76_colorAttribute(cockpit, "DefaultRearLightsColor", Color3.fromRGB(255, 116, 116)),
+		}
+	end
+
+	local function V76_syncInstalledModulePaintFromCockpit(profile, channel)
+		if not profile then return end
+		profile.ModuleColors = profile.ModuleColors or {}
+		local cockpitColors = profile.CockpitColors or {}
+		for slotId in pairs(profile.InstalledModules or {}) do
+			profile.ModuleColors[slotId] = profile.ModuleColors[slotId] or {}
+			local moduleColors = profile.ModuleColors[slotId]
+			if channel then
+				moduleColors[channel] = cockpitColors[channel]
+			else
+				moduleColors.Primary = cockpitColors.Primary
+				moduleColors.Secondary = cockpitColors.Secondary
+				moduleColors.Detail = cockpitColors.Detail
+			end
+			moduleColors.Neon = moduleColors.Neon or Color3.fromRGB(255, 255, 255)
+			moduleColors.ThrustColor = profile.ThrustColor
+		end
+	end
+
+	local function V76_applyDefaultCockpitColors(profile)
+		profile.CockpitColors = V76_defaultCockpitColorsFor(profile)
+		-- NTR_VEHICLE_PHASE_AK_SPAWN_MODULE_COLOUR_SYNC
+		V76_syncInstalledModulePaintFromCockpit(profile)
+	end
+
 	local function V56_setLeaderstats(player, profile)
 		local stats = player:FindFirstChild("leaderstats")
 		if not stats then
@@ -181,6 +243,71 @@ local V56_STARTING_CASH = V56_kit:GetAttribute("StartingCash") or 140000
 		local root = category and (category:FindFirstChild("MODULES_InterchangeableWithinCategory") or category)
 		return V56_findByAttribute(root, "ModuleId", moduleId)
 	end
+
+	-- NTR_VEHICLE_PHASE_AK_SERVER_BEGIN
+	local function V76_moduleIsCatalogVisible(module)
+		return module and module:GetAttribute("RetiredFromCatalog") ~= true
+	end
+
+	local function V76_defaultModuleIdsForCockpit(cockpit)
+		if not cockpit then return {} end
+		-- NTR_VEHICLE_PHASE_AK_REAR_ENGINE_SERVER_REPAIR
+		return {
+			Engine = V56_string(cockpit, "DefaultFrontEngineModuleId", V56_string(cockpit, "DefaultEngineModuleId", nil)),
+			RearEngine = V56_string(cockpit, "DefaultRearEngineModuleId", V56_string(cockpit, "DefaultEngineModuleId", nil)),
+			Stabilisers = V56_string(cockpit, "DefaultStabilisersModuleId", nil),
+			Boost = V56_string(cockpit, "DefaultBoostModuleId", nil),
+		}
+	end
+
+	local function V76_grantDefaultModulesForCurrentCockpit(profile)
+		if not profile then return end
+		local cockpit = V56_findCockpit(profile.CurrentCategory, profile.CurrentCockpit)
+		local defaults = V76_defaultModuleIdsForCockpit(cockpit)
+		profile.OwnedModules = profile.OwnedModules or {}
+		profile.InstalledModules = profile.InstalledModules or {}
+		for _, moduleId in pairs(defaults) do
+			if moduleId and V56_findModule(profile.CurrentCategory, moduleId) then
+				profile.OwnedModules[moduleId] = true
+			end
+		end
+		if defaults.Engine then
+			profile.InstalledModules.Engine1 = profile.InstalledModules.Engine1 or defaults.Engine
+		end
+		if defaults.RearEngine then
+			profile.InstalledModules.Engine2 = profile.InstalledModules.Engine2 or defaults.RearEngine
+		end
+		if defaults.Stabilisers then
+			profile.InstalledModules.Stabilisers = profile.InstalledModules.Stabilisers or defaults.Stabilisers
+		end
+		if defaults.Boost then
+			profile.InstalledModules.Boost = profile.InstalledModules.Boost or defaults.Boost
+		end
+	end
+
+	-- NTR_VEHICLE_PHASE_AK_CORE_GATE_REPAIR
+	local function V76_coreModulesEquipped(profile)
+		local hasEngine, hasStabilisers, hasBoost = false, false, false
+		for _, moduleId in pairs((profile and profile.InstalledModules) or {}) do
+			local module = V56_findModule(profile.CurrentCategory, moduleId)
+			local moduleType = module and module:GetAttribute("ModuleType")
+			if moduleType == nil or moduleType == "" then
+				local text = string.lower(tostring(moduleId or "") .. " " .. tostring(module and module.Name or ""))
+				if string.find(text, "engine", 1, true) then
+					moduleType = "Engine"
+				elseif string.find(text, "stabiliser", 1, true) or string.find(text, "stabilizer", 1, true) then
+					moduleType = "Stabilisers"
+				elseif string.find(text, "boost", 1, true) then
+					moduleType = "Boost"
+				end
+			end
+			if moduleType == "Engine" then hasEngine = true end
+			if moduleType == "Stabilisers" or moduleType == "Stabiliser" then hasStabilisers = true end
+			if moduleType == "Boost" then hasBoost = true end
+		end
+		return hasEngine and hasStabilisers and hasBoost
+	end
+	-- NTR_VEHICLE_PHASE_AK_SERVER_END
 
 	local function V56_moduleTypeFromText(text)
 		text = string.lower(tostring(text or ""))
@@ -335,7 +462,7 @@ local V56_STARTING_CASH = V56_kit:GetAttribute("StartingCash") or 140000
 				local moduleRoot = categoryFolder:FindFirstChild("MODULES_InterchangeableWithinCategory")
 				if moduleRoot then
 					for _, module in ipairs(moduleRoot:GetDescendants()) do
-						if module:IsA("Model") and module:GetAttribute("ModuleId") then
+						if module:IsA("Model") and module:GetAttribute("ModuleId") and V76_moduleIsCatalogVisible(module) then
 							local item = V56_readModule(module, moduleRoot)
 							category.Modules[item.ModuleType] = category.Modules[item.ModuleType] or {}
 							table.insert(category.Modules[item.ModuleType], item)
@@ -716,6 +843,7 @@ local V56_STARTING_CASH = V56_kit:GetAttribute("StartingCash") or 140000
 		args = typeof(args) == "table" and args or {}
 		local okCall, result = pcall(function()
 			local profile = V56_getProfile(player)
+			V76_grantDefaultModulesForCurrentCockpit(profile)
 			local ok, message
 			if action == "GetInitial" then
 				V56_setLeaderstats(player, profile)
@@ -732,7 +860,11 @@ local V56_STARTING_CASH = V56_kit:GetAttribute("StartingCash") or 140000
 							ok, message = true, "Cockpit selected."
 						end
 					else ok, message = true, "Cockpit selected." end
-					if ok then profile.CurrentCockpit = cockpitId end
+					if ok then
+						profile.CurrentCockpit = cockpitId
+						V76_applyDefaultCockpitColors(profile)
+						V76_grantDefaultModulesForCurrentCockpit(profile)
+					end
 					V56_setLeaderstats(player, profile)
 				end
 			elseif action == "SetCockpitColor" then
@@ -740,7 +872,13 @@ local V56_STARTING_CASH = V56_kit:GetAttribute("StartingCash") or 140000
 				local color = args.Color
 				if typeof(color) ~= "Color3" then ok, message = false, "Invalid colour."
 				elseif channel ~= "Primary" and channel ~= "Secondary" and channel ~= "Detail" and channel ~= "Neon" and channel ~= "FrontLights" and channel ~= "RearLights" then ok, message = false, "Invalid colour channel."
-				else profile.CockpitColors[channel] = color; ok, message = true, "Colour updated." end
+				else
+					profile.CockpitColors[channel] = color
+					if channel == "Primary" or channel == "Secondary" or channel == "Detail" then
+						V76_syncInstalledModulePaintFromCockpit(profile, channel)
+					end
+					ok, message = true, "Colour updated."
+				end
 			elseif action == "BuyModule" then
 				local slotId = tostring(args.SlotId or "")
 				local moduleId = tostring(args.ModuleId or "")
@@ -842,8 +980,12 @@ local V56_STARTING_CASH = V56_kit:GetAttribute("StartingCash") or 140000
 			elseif action == "ReEnterVehicle" then
 				ok, message = V56_reEnterVehicle(player)
 			elseif action == "SpawnVehicle" then
-				local vehicle, err = V56_buildVehicle(player, profile)
-				ok, message = vehicle ~= nil, err or "Vehicle spawned."
+				if not V76_coreModulesEquipped(profile) then
+					ok, message = false, "Equip at least one engine, stabilisers, and boost before customising or driving."
+				else
+					local vehicle, err = V56_buildVehicle(player, profile)
+					ok, message = vehicle ~= nil, err or "Vehicle spawned."
+				end
 			else
 				ok, message = false, "Unknown garage action."
 			end

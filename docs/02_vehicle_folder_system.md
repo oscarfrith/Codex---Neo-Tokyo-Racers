@@ -1,5 +1,23 @@
 # Vehicle Folder System
 
+## Phase AM Performance Attributes
+
+Vehicle Phase AM keeps the Phase AK folder layout unchanged. It adds zero-value tuning attributes directly to active cockpit and module models:
+
+```text
+PerformanceDelta_<RawVariableName>
+```
+
+Cockpits receive the detailed chassis variables. Modules receive only variables relevant to their `ModuleType`. These values are additive to the Phase AK legacy totals, so leaving them at `0` preserves the existing balance.
+
+For a cockpit that must replace rather than add to a calculated value, use:
+
+```text
+PerformanceOverride_<RawVariableName>
+```
+
+Modules remain interchangeable across cockpits in the same vehicle category. Their performance deltas travel with the module template and are applied to whichever compatible cockpit equips it.
+
 ## High-Level Structure
 
 The current vehicle asset system lives under `ReplicatedStorage.NeoTokyoRacers`:

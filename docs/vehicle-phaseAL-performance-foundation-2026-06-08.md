@@ -1,6 +1,13 @@
 # Vehicle Phase AL Performance Foundation
 
-Status: ready for Studio install and audit.
+Status: installed and audit passed on 2026-06-08.
+
+Confirmed audit:
+
+- Cockpits: `5`
+- Active modules: `72`
+- Planned module upgrades: `23`
+- Warnings: `0`
 
 ## Purpose
 

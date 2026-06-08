@@ -9,6 +9,27 @@ Confirmed by chat:
 - `V74` restored the pre-V72/default Roblox camera feel and worked well.
 - `V75` adds boost delay and hover wobble but needs play-test confirmation unless confirmed later.
 
+Vehicle Phase AM is the confirmed bridge from legacy totals into the detailed Phase AL performance variables. Its spawned-vehicle audit passed, detailed physics was enabled, and the user reported the driving behavior working well.
+
+## Phase AM Detailed Variables
+
+When enabled, Phase AM maps:
+
+- `EngineOutput` to acceleration force.
+- `SteeringResponse` to turn rate.
+- `BrakingForce` to braking/reverse force.
+- `BoostForce` to boost thrust.
+- `LateralGrip` to normal lateral grip.
+- `DriftGrip` to lateral grip while drifting.
+- `HoverStability` to terrain alignment responsiveness.
+- `DriftControl` to drift turning.
+- `DriftChargeRate` to mini-boost charge speed.
+- `Drag` to velocity damping.
+- `Downforce` to high-speed grip contribution.
+- `BoostEfficiency` to boost drain and recharge efficiency.
+
+Initial compatibility values are compared with the matching legacy Handling or Drift value, producing a neutral multiplier until detailed attributes are intentionally tuned.
+
 ## Hover System
 
 The vehicle hovers using four corner raycasts from the cockpit/root area.

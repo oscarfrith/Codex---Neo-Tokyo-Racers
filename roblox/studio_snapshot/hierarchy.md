@@ -1,7 +1,7 @@
 # Roblox Studio Hierarchy Snapshot
 
-Generated in Studio: 2026-06-05 13:21:43
-Scripts exported: 54
+Generated in Studio: 2026-06-08 14:09:23
+Scripts exported: 59
 Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, StarterGui, Workspace, ServerStorage, Lighting
 
 ## Hierarchy
@@ -167,9 +167,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
         - Categories (Folder) [4 attrs]
           - BRUISER (Folder) [4 attrs]
             - COCKPITS_ReplaceAssetsHere (Folder)
-              - COCKPIT_BRUISER_01 (Model) [18 attrs]
+              - COCKPIT_BRUISER_01 (Model) [43 attrs]
                 - FIXED_MODULE_SLOTS_DoNotRename (Folder)
-                  - SLOT_Boost (Folder) [6 attrs]
+                  - SLOT_Boost (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
                   - SLOT_Engine1 (Folder) [7 attrs]
@@ -178,19 +178,19 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - SLOT_Engine2 (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
-                  - SLOT_FrontBumper (Folder) [6 attrs]
+                  - SLOT_FrontBumper (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
-                  - SLOT_RearBumper (Folder) [6 attrs]
+                  - SLOT_RearBumper (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
-                  - SLOT_RearSpoiler (Folder) [6 attrs]
+                  - SLOT_RearSpoiler (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
-                  - SLOT_SidePods (Folder) [6 attrs]
+                  - SLOT_SidePods (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
-                  - SLOT_Stabilisers (Folder) [6 attrs]
+                  - SLOT_Stabilisers (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
                 - INSTALLED_MODULES_Runtime (Folder)
@@ -214,9 +214,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - VFX_HoverDust_FrontRight (Attachment) [2 attrs]
                     - VFX_HoverDust_RearLeft (Attachment) [2 attrs]
                     - VFX_HoverDust_RearRight (Attachment) [2 attrs]
-              - COCKPIT_BRUISER_02 (Model) [18 attrs]
+              - COCKPIT_BRUISER_02 (Model) [43 attrs]
                 - FIXED_MODULE_SLOTS_DoNotRename (Folder)
-                  - SLOT_Boost (Folder) [6 attrs]
+                  - SLOT_Boost (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
                   - SLOT_Engine1 (Folder) [7 attrs]
@@ -225,19 +225,19 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - SLOT_Engine2 (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
-                  - SLOT_FrontBumper (Folder) [6 attrs]
+                  - SLOT_FrontBumper (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
-                  - SLOT_RearBumper (Folder) [6 attrs]
+                  - SLOT_RearBumper (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
-                  - SLOT_RearSpoiler (Folder) [6 attrs]
+                  - SLOT_RearSpoiler (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
-                  - SLOT_SidePods (Folder) [6 attrs]
+                  - SLOT_SidePods (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
-                  - SLOT_Stabilisers (Folder) [6 attrs]
+                  - SLOT_Stabilisers (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
                 - INSTALLED_MODULES_Runtime (Folder)
@@ -262,9 +262,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - VFX_HoverDust_FrontRight (Attachment) [2 attrs]
                     - VFX_HoverDust_RearLeft (Attachment) [2 attrs]
                     - VFX_HoverDust_RearRight (Attachment) [2 attrs]
-              - COCKPIT_BRUISER_03 (Model) [18 attrs]
+              - COCKPIT_BRUISER_03 (Model) [43 attrs]
                 - FIXED_MODULE_SLOTS_DoNotRename (Folder)
-                  - SLOT_Boost (Folder) [6 attrs]
+                  - SLOT_Boost (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
                   - SLOT_Engine1 (Folder) [7 attrs]
@@ -273,19 +273,19 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - SLOT_Engine2 (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
-                  - SLOT_FrontBumper (Folder) [6 attrs]
+                  - SLOT_FrontBumper (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
-                  - SLOT_RearBumper (Folder) [6 attrs]
+                  - SLOT_RearBumper (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
-                  - SLOT_RearSpoiler (Folder) [6 attrs]
+                  - SLOT_RearSpoiler (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
-                  - SLOT_SidePods (Folder) [6 attrs]
+                  - SLOT_SidePods (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
-                  - SLOT_Stabilisers (Folder) [6 attrs]
+                  - SLOT_Stabilisers (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
                 - INSTALLED_MODULES_Runtime (Folder)
@@ -309,9 +309,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - VFX_HoverDust_FrontRight (Attachment) [2 attrs]
                     - VFX_HoverDust_RearLeft (Attachment) [2 attrs]
                     - VFX_HoverDust_RearRight (Attachment) [2 attrs]
-              - COCKPIT_BRUISER_04 (Model) [18 attrs]
+              - COCKPIT_BRUISER_04 (Model) [43 attrs]
                 - FIXED_MODULE_SLOTS_DoNotRename (Folder)
-                  - SLOT_Boost (Folder) [6 attrs]
+                  - SLOT_Boost (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
                   - SLOT_Engine1 (Folder) [7 attrs]
@@ -320,19 +320,19 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - SLOT_Engine2 (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
-                  - SLOT_FrontBumper (Folder) [6 attrs]
+                  - SLOT_FrontBumper (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
-                  - SLOT_RearBumper (Folder) [6 attrs]
+                  - SLOT_RearBumper (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
-                  - SLOT_RearSpoiler (Folder) [6 attrs]
+                  - SLOT_RearSpoiler (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
-                  - SLOT_SidePods (Folder) [6 attrs]
+                  - SLOT_SidePods (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
-                  - SLOT_Stabilisers (Folder) [6 attrs]
+                  - SLOT_Stabilisers (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
                 - INSTALLED_MODULES_Runtime (Folder)
@@ -356,9 +356,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - VFX_HoverDust_FrontRight (Attachment) [2 attrs]
                     - VFX_HoverDust_RearLeft (Attachment) [2 attrs]
                     - VFX_HoverDust_RearRight (Attachment) [2 attrs]
-              - COCKPIT_BRUISER_05 (Model) [18 attrs]
+              - COCKPIT_BRUISER_05 (Model) [43 attrs]
                 - FIXED_MODULE_SLOTS_DoNotRename (Folder)
-                  - SLOT_Boost (Folder) [6 attrs]
+                  - SLOT_Boost (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
                   - SLOT_Engine1 (Folder) [7 attrs]
@@ -367,19 +367,19 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - SLOT_Engine2 (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
-                  - SLOT_FrontBumper (Folder) [6 attrs]
+                  - SLOT_FrontBumper (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
-                  - SLOT_RearBumper (Folder) [6 attrs]
+                  - SLOT_RearBumper (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
-                  - SLOT_RearSpoiler (Folder) [6 attrs]
+                  - SLOT_RearSpoiler (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
-                  - SLOT_SidePods (Folder) [6 attrs]
+                  - SLOT_SidePods (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
-                  - SLOT_Stabilisers (Folder) [6 attrs]
+                  - SLOT_Stabilisers (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
                 - INSTALLED_MODULES_Runtime (Folder)
@@ -405,7 +405,222 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - VFX_HoverDust_RearRight (Attachment) [2 attrs]
             - MODULES_InterchangeableWithinCategory (Folder)
               - Boost (Folder) [3 attrs]
-                - MODULE_BOOST_A (Model) [25 attrs]
+                - Bruiser_01 (Folder)
+                  - MODULE_BOOST_BRUISER_01_LIGHTWEIGHT (Model) [38 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - boost detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - boost primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - boost secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - boost thrust neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - VFX_BoostJet_Back (Attachment) [2 attrs]
+                  - MODULE_BOOST_BRUISER_01_POWER (Model) [38 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - boost detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - boost primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - boost secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - boost thrust neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - VFX_BoostJet_Back (Attachment) [2 attrs]
+                  - MODULE_BOOST_BRUISER_01_STANDARD (Model) [38 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - boost detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - boost primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - boost secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - boost thrust neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - VFX_BoostJet_Back (Attachment) [2 attrs]
+                - Bruiser_02 (Folder)
+                  - MODULE_BOOST_BRUISER_02_LIGHTWEIGHT (Model) [38 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - boost detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - boost primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - boost secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - boost thrust neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - VFX_BoostJet_Back (Attachment) [2 attrs]
+                  - MODULE_BOOST_BRUISER_02_POWER (Model) [38 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - boost detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - boost primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - boost secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - boost thrust neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - VFX_BoostJet_Back (Attachment) [2 attrs]
+                  - MODULE_BOOST_BRUISER_02_STANDARD (Model) [38 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - boost detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - boost primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - boost secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - boost thrust neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - VFX_BoostJet_Back (Attachment) [2 attrs]
+                - Bruiser_03 (Folder)
+                  - MODULE_BOOST_BRUISER_03_LIGHTWEIGHT (Model) [38 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - boost detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - boost primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - boost secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - boost thrust neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - VFX_BoostJet_Back (Attachment) [2 attrs]
+                  - MODULE_BOOST_BRUISER_03_POWER (Model) [38 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - boost detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - boost primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - boost secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - boost thrust neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - VFX_BoostJet_Back (Attachment) [2 attrs]
+                  - MODULE_BOOST_BRUISER_03_STANDARD (Model) [38 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - boost detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - boost primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - boost secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - boost thrust neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - VFX_BoostJet_Back (Attachment) [2 attrs]
+                - Bruiser_04 (Folder)
+                  - MODULE_BOOST_BRUISER_04_LIGHTWEIGHT (Model) [38 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - boost detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - boost primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - boost secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - boost thrust neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - VFX_BoostJet_Back (Attachment) [2 attrs]
+                  - MODULE_BOOST_BRUISER_04_POWER (Model) [38 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - boost detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - boost primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - boost secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - boost thrust neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - VFX_BoostJet_Back (Attachment) [2 attrs]
+                  - MODULE_BOOST_BRUISER_04_STANDARD (Model) [38 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - boost detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - boost primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - boost secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - boost thrust neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - VFX_BoostJet_Back (Attachment) [2 attrs]
+                - Bruiser_05 (Folder)
+                  - MODULE_BOOST_BRUISER_05_LIGHTWEIGHT (Model) [38 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - boost detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - boost primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - boost secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - boost thrust neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - VFX_BoostJet_Back (Attachment) [2 attrs]
+                  - MODULE_BOOST_BRUISER_05_POWER (Model) [38 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - boost detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - boost primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - boost secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - boost thrust neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - VFX_BoostJet_Back (Attachment) [2 attrs]
+                  - MODULE_BOOST_BRUISER_05_STANDARD (Model) [38 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - boost detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - boost primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - boost secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - boost thrust neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - VFX_BoostJet_Back (Attachment) [2 attrs]
+                - MODULE_BOOST_A (Model) [26 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                     - boost detail (MeshPart) [1 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
@@ -419,7 +634,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - VFX_BoostJet_Back (Attachment) [2 attrs]
-                - MODULE_BOOST_B (Model) [25 attrs]
+                - MODULE_BOOST_B (Model) [26 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                     - boost mk2 detail template (Part) [3 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
@@ -433,7 +648,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - VFX_BoostJet_Back (Attachment) [2 attrs]
-                - MODULE_BOOST_C (Model) [25 attrs]
+                - MODULE_BOOST_C (Model) [26 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                     - boost mk3 detail template (Part) [3 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
@@ -447,7 +662,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - VFX_BoostJet_Back (Attachment) [2 attrs]
-                - MODULE_BOOST_D (Model) [25 attrs]
+                - MODULE_BOOST_D (Model) [26 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                     - boost mk4 detail template (Part) [3 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
@@ -462,7 +677,267 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - MountAttachment (Attachment)
                     - VFX_BoostJet_Back (Attachment) [2 attrs]
               - Engines (Folder) [3 attrs]
-                - MODULE_ENGINE_A (Model) [23 attrs]
+                - Bruiser_01 (Folder)
+                  - MODULE_ENGINE_BRUISER_01_LIGHTWEIGHT (Model) [34 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - engine a detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                      - engine a neon (MeshPart) [1 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - engine a primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - engine a secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - engine a thruster neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - ThrustAttachment (Attachment)
+                      - VFX_EngineJet_Left (Attachment) [2 attrs]
+                      - VFX_EngineJet_Right (Attachment) [2 attrs]
+                  - MODULE_ENGINE_BRUISER_01_POWER (Model) [34 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - engine a detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                      - engine a neon (MeshPart) [1 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - engine a primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - engine a secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - engine a thruster neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - ThrustAttachment (Attachment)
+                      - VFX_EngineJet_Left (Attachment) [2 attrs]
+                      - VFX_EngineJet_Right (Attachment) [2 attrs]
+                  - MODULE_ENGINE_BRUISER_01_STANDARD (Model) [34 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - engine a detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                      - engine a neon (MeshPart) [1 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - engine a primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - engine a secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - engine a thruster neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - ThrustAttachment (Attachment)
+                      - VFX_EngineJet_Left (Attachment) [2 attrs]
+                      - VFX_EngineJet_Right (Attachment) [2 attrs]
+                - Bruiser_02 (Folder)
+                  - MODULE_ENGINE_BRUISER_02_LIGHTWEIGHT (Model) [34 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - engine a detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                      - engine a neon (MeshPart) [1 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - engine a primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - engine a secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - engine a thruster neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - ThrustAttachment (Attachment)
+                      - VFX_EngineJet_Left (Attachment) [2 attrs]
+                      - VFX_EngineJet_Right (Attachment) [2 attrs]
+                  - MODULE_ENGINE_BRUISER_02_POWER (Model) [34 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - engine a detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                      - engine a neon (MeshPart) [1 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - engine a primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - engine a secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - engine a thruster neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - ThrustAttachment (Attachment)
+                      - VFX_EngineJet_Left (Attachment) [2 attrs]
+                      - VFX_EngineJet_Right (Attachment) [2 attrs]
+                  - MODULE_ENGINE_BRUISER_02_STANDARD (Model) [34 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - engine a detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                      - engine a neon (MeshPart) [1 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - engine a primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - engine a secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - engine a thruster neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - ThrustAttachment (Attachment)
+                      - VFX_EngineJet_Left (Attachment) [2 attrs]
+                      - VFX_EngineJet_Right (Attachment) [2 attrs]
+                - Bruiser_03 (Folder)
+                  - MODULE_ENGINE_BRUISER_03_LIGHTWEIGHT (Model) [34 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - engine a detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                      - engine a neon (MeshPart) [1 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - engine a primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - engine a secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - engine a thruster neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - ThrustAttachment (Attachment)
+                      - VFX_EngineJet_Left (Attachment) [2 attrs]
+                      - VFX_EngineJet_Right (Attachment) [2 attrs]
+                  - MODULE_ENGINE_BRUISER_03_POWER (Model) [34 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - engine a detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                      - engine a neon (MeshPart) [1 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - engine a primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - engine a secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - engine a thruster neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - ThrustAttachment (Attachment)
+                      - VFX_EngineJet_Left (Attachment) [2 attrs]
+                      - VFX_EngineJet_Right (Attachment) [2 attrs]
+                  - MODULE_ENGINE_BRUISER_03_STANDARD (Model) [34 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - engine a detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                      - engine a neon (MeshPart) [1 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - engine a primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - engine a secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - engine a thruster neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - ThrustAttachment (Attachment)
+                      - VFX_EngineJet_Left (Attachment) [2 attrs]
+                      - VFX_EngineJet_Right (Attachment) [2 attrs]
+                - Bruiser_04 (Folder)
+                  - MODULE_ENGINE_BRUISER_04_LIGHTWEIGHT (Model) [34 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - engine a detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                      - engine a neon (MeshPart) [1 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - engine a primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - engine a secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - engine a thruster neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - ThrustAttachment (Attachment)
+                      - VFX_EngineJet_Left (Attachment) [2 attrs]
+                      - VFX_EngineJet_Right (Attachment) [2 attrs]
+                  - MODULE_ENGINE_BRUISER_04_POWER (Model) [34 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - engine a detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                      - engine a neon (MeshPart) [1 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - engine a primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - engine a secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - engine a thruster neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - ThrustAttachment (Attachment)
+                      - VFX_EngineJet_Left (Attachment) [2 attrs]
+                      - VFX_EngineJet_Right (Attachment) [2 attrs]
+                  - MODULE_ENGINE_BRUISER_04_STANDARD (Model) [34 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - engine a detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                      - engine a neon (MeshPart) [1 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - engine a primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - engine a secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - engine a thruster neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - ThrustAttachment (Attachment)
+                      - VFX_EngineJet_Left (Attachment) [2 attrs]
+                      - VFX_EngineJet_Right (Attachment) [2 attrs]
+                - Bruiser_05 (Folder)
+                  - MODULE_ENGINE_BRUISER_05_LIGHTWEIGHT (Model) [34 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - engine a detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                      - engine a neon (MeshPart) [1 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - engine a primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - engine a secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - engine a thruster neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - ThrustAttachment (Attachment)
+                      - VFX_EngineJet_Left (Attachment) [2 attrs]
+                      - VFX_EngineJet_Right (Attachment) [2 attrs]
+                  - MODULE_ENGINE_BRUISER_05_POWER (Model) [34 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - engine a detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                      - engine a neon (MeshPart) [1 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - engine a primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - engine a secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - engine a thruster neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - ThrustAttachment (Attachment)
+                      - VFX_EngineJet_Left (Attachment) [2 attrs]
+                      - VFX_EngineJet_Right (Attachment) [2 attrs]
+                  - MODULE_ENGINE_BRUISER_05_STANDARD (Model) [34 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - engine a detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                      - engine a neon (MeshPart) [1 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - engine a primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - engine a secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - engine a thruster neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - ThrustAttachment (Attachment)
+                      - VFX_EngineJet_Left (Attachment) [2 attrs]
+                      - VFX_EngineJet_Right (Attachment) [2 attrs]
+                - MODULE_ENGINE_A (Model) [24 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                     - engine a detail (MeshPart) [1 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
@@ -479,7 +954,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - ThrustAttachment (Attachment)
                     - VFX_EngineJet_Left (Attachment) [2 attrs]
                     - VFX_EngineJet_Right (Attachment) [2 attrs]
-                - MODULE_ENGINE_B (Model) [23 attrs]
+                - MODULE_ENGINE_B (Model) [24 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                     - engine a detail (MeshPart)
                     - engine a detail.001 (MeshPart)
@@ -497,7 +972,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - MountAttachment (Attachment)
                     - ThrustAttachment (Attachment)
                     - VFX_EngineJet_Back (Attachment) [2 attrs]
-                - MODULE_ENGINE_C (Model) [23 attrs]
+                - MODULE_ENGINE_C (Model) [24 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                     - engine v3 detail template (Part) [3 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
@@ -512,7 +987,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - MountAttachment (Attachment)
                     - ThrustAttachment (Attachment)
                     - VFX_EngineJet_Back (Attachment) [2 attrs]
-                - MODULE_ENGINE_D (Model) [23 attrs]
+                - MODULE_ENGINE_D (Model) [24 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                     - engine v4 detail template (Part) [3 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
@@ -528,7 +1003,267 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - ThrustAttachment (Attachment)
                     - VFX_EngineJet_Back (Attachment) [2 attrs]
               - Engines_B (Folder) [5 attrs]
-                - MODULE_ENGINE_B_01 (Model) [23 attrs]
+                - Bruiser_01 (Folder)
+                  - MODULE_ENGINE_B_BRUISER_01_LIGHTWEIGHT (Model) [35 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - engine b detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                      - engine b neon (MeshPart) [1 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - engine b primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - engine b secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - engine b thruster neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - ThrustAttachment (Attachment)
+                      - VFX_EngineJet_Left (Attachment) [2 attrs]
+                      - VFX_EngineJet_Right (Attachment) [2 attrs]
+                  - MODULE_ENGINE_B_BRUISER_01_POWER (Model) [35 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - engine b detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                      - engine b neon (MeshPart) [1 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - engine b primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - engine b secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - engine b thruster neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - ThrustAttachment (Attachment)
+                      - VFX_EngineJet_Left (Attachment) [2 attrs]
+                      - VFX_EngineJet_Right (Attachment) [2 attrs]
+                  - MODULE_ENGINE_B_BRUISER_01_STANDARD (Model) [35 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - engine b detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                      - engine b neon (MeshPart) [1 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - engine b primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - engine b secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - engine b thruster neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - ThrustAttachment (Attachment)
+                      - VFX_EngineJet_Left (Attachment) [2 attrs]
+                      - VFX_EngineJet_Right (Attachment) [2 attrs]
+                - Bruiser_02 (Folder)
+                  - MODULE_ENGINE_B_BRUISER_02_LIGHTWEIGHT (Model) [35 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - engine b detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                      - engine b neon (MeshPart) [1 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - engine b primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - engine b secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - engine b thruster neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - ThrustAttachment (Attachment)
+                      - VFX_EngineJet_Left (Attachment) [2 attrs]
+                      - VFX_EngineJet_Right (Attachment) [2 attrs]
+                  - MODULE_ENGINE_B_BRUISER_02_POWER (Model) [35 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - engine b detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                      - engine b neon (MeshPart) [1 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - engine b primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - engine b secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - engine b thruster neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - ThrustAttachment (Attachment)
+                      - VFX_EngineJet_Left (Attachment) [2 attrs]
+                      - VFX_EngineJet_Right (Attachment) [2 attrs]
+                  - MODULE_ENGINE_B_BRUISER_02_STANDARD (Model) [35 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - engine b detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                      - engine b neon (MeshPart) [1 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - engine b primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - engine b secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - engine b thruster neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - ThrustAttachment (Attachment)
+                      - VFX_EngineJet_Left (Attachment) [2 attrs]
+                      - VFX_EngineJet_Right (Attachment) [2 attrs]
+                - Bruiser_03 (Folder)
+                  - MODULE_ENGINE_B_BRUISER_03_LIGHTWEIGHT (Model) [35 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - engine b detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                      - engine b neon (MeshPart) [1 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - engine b primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - engine b secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - engine b thruster neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - ThrustAttachment (Attachment)
+                      - VFX_EngineJet_Left (Attachment) [2 attrs]
+                      - VFX_EngineJet_Right (Attachment) [2 attrs]
+                  - MODULE_ENGINE_B_BRUISER_03_POWER (Model) [35 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - engine b detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                      - engine b neon (MeshPart) [1 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - engine b primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - engine b secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - engine b thruster neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - ThrustAttachment (Attachment)
+                      - VFX_EngineJet_Left (Attachment) [2 attrs]
+                      - VFX_EngineJet_Right (Attachment) [2 attrs]
+                  - MODULE_ENGINE_B_BRUISER_03_STANDARD (Model) [35 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - engine b detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                      - engine b neon (MeshPart) [1 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - engine b primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - engine b secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - engine b thruster neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - ThrustAttachment (Attachment)
+                      - VFX_EngineJet_Left (Attachment) [2 attrs]
+                      - VFX_EngineJet_Right (Attachment) [2 attrs]
+                - Bruiser_04 (Folder)
+                  - MODULE_ENGINE_B_BRUISER_04_LIGHTWEIGHT (Model) [35 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - engine b detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                      - engine b neon (MeshPart) [1 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - engine b primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - engine b secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - engine b thruster neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - ThrustAttachment (Attachment)
+                      - VFX_EngineJet_Left (Attachment) [2 attrs]
+                      - VFX_EngineJet_Right (Attachment) [2 attrs]
+                  - MODULE_ENGINE_B_BRUISER_04_POWER (Model) [35 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - engine b detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                      - engine b neon (MeshPart) [1 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - engine b primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - engine b secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - engine b thruster neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - ThrustAttachment (Attachment)
+                      - VFX_EngineJet_Left (Attachment) [2 attrs]
+                      - VFX_EngineJet_Right (Attachment) [2 attrs]
+                  - MODULE_ENGINE_B_BRUISER_04_STANDARD (Model) [35 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - engine b detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                      - engine b neon (MeshPart) [1 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - engine b primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - engine b secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - engine b thruster neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - ThrustAttachment (Attachment)
+                      - VFX_EngineJet_Left (Attachment) [2 attrs]
+                      - VFX_EngineJet_Right (Attachment) [2 attrs]
+                - Bruiser_05 (Folder)
+                  - MODULE_ENGINE_B_BRUISER_05_LIGHTWEIGHT (Model) [35 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - engine b detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                      - engine b neon (MeshPart) [1 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - engine b primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - engine b secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - engine b thruster neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - ThrustAttachment (Attachment)
+                      - VFX_EngineJet_Left (Attachment) [2 attrs]
+                      - VFX_EngineJet_Right (Attachment) [2 attrs]
+                  - MODULE_ENGINE_B_BRUISER_05_POWER (Model) [35 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - engine b detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                      - engine b neon (MeshPart) [1 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - engine b primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - engine b secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - engine b thruster neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - ThrustAttachment (Attachment)
+                      - VFX_EngineJet_Left (Attachment) [2 attrs]
+                      - VFX_EngineJet_Right (Attachment) [2 attrs]
+                  - MODULE_ENGINE_B_BRUISER_05_STANDARD (Model) [35 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - engine b detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                      - engine b neon (MeshPart) [1 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - engine b primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - engine b secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - engine b thruster neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - ThrustAttachment (Attachment)
+                      - VFX_EngineJet_Left (Attachment) [2 attrs]
+                      - VFX_EngineJet_Right (Attachment) [2 attrs]
+                - MODULE_ENGINE_B_01 (Model) [24 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                     - engine b detail (MeshPart) [1 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
@@ -545,7 +1280,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - ThrustAttachment (Attachment)
                     - VFX_EngineJet_Left (Attachment) [2 attrs]
                     - VFX_EngineJet_Right (Attachment) [2 attrs]
-                - MODULE_ENGINE_B_02 (Model) [23 attrs]
+                - MODULE_ENGINE_B_02 (Model) [24 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                     - engine b detail (MeshPart)
                     - engine b detail.002 (MeshPart)
@@ -563,7 +1298,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - MountAttachment (Attachment)
                     - ThrustAttachment (Attachment)
                     - VFX_EngineJet_Back (Attachment) [2 attrs]
-                - MODULE_ENGINE_B_03 (Model) [23 attrs]
+                - MODULE_ENGINE_B_03 (Model) [24 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                     - engine v3 detail template (Part) [3 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
@@ -578,7 +1313,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - MountAttachment (Attachment)
                     - ThrustAttachment (Attachment)
                     - VFX_EngineJet_Back (Attachment) [2 attrs]
-                - MODULE_ENGINE_B_04 (Model) [23 attrs]
+                - MODULE_ENGINE_B_04 (Model) [24 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                     - engine v4 detail template (Part) [3 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
@@ -594,7 +1329,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - ThrustAttachment (Attachment)
                     - VFX_EngineJet_Back (Attachment) [2 attrs]
               - FrontBumpers (Folder) [3 attrs]
-                - MODULE_FRONTBUMPER_A (Model) [23 attrs]
+                - MODULE_FRONTBUMPER_A (Model) [24 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                     - bumper front detail (MeshPart) [1 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
@@ -606,7 +1341,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
-                - MODULE_FRONTBUMPER_B (Model) [23 attrs]
+                - MODULE_FRONTBUMPER_B (Model) [24 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                     - front bumper type b detail template (Part) [3 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
@@ -618,7 +1353,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
-                - MODULE_FRONTBUMPER_C (Model) [23 attrs]
+                - MODULE_FRONTBUMPER_C (Model) [24 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                     - front bumper type c detail template (Part) [3 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
@@ -630,7 +1365,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
-                - MODULE_FRONTBUMPER_D (Model) [23 attrs]
+                - MODULE_FRONTBUMPER_D (Model) [24 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                     - front bumper type d detail template (Part) [3 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
@@ -642,8 +1377,44 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
+                - MODULE_FRONTBUMPER_LVL1 (Model) [34 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - bumper front detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - bumper front neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - bumper front primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - bumper front secondary (MeshPart) [1 attrs]
+                  - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                - MODULE_FRONTBUMPER_LVL2 (Model) [34 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - bumper front detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - bumper front neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - bumper front primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - bumper front secondary (MeshPart) [1 attrs]
+                  - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                - MODULE_FRONTBUMPER_LVL3 (Model) [34 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - bumper front detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - bumper front neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - bumper front primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - bumper front secondary (MeshPart) [1 attrs]
+                  - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
               - RearBumpers (Folder) [3 attrs]
-                - MODULE_REARBUMPER_A (Model) [23 attrs]
+                - MODULE_REARBUMPER_A (Model) [24 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
                     - bumper rear neon (MeshPart) [1 attrs]
@@ -653,7 +1424,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
-                - MODULE_REARBUMPER_B (Model) [23 attrs]
+                - MODULE_REARBUMPER_B (Model) [24 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                     - rear bumper type b detail template (Part) [3 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
@@ -665,7 +1436,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
-                - MODULE_REARBUMPER_C (Model) [23 attrs]
+                - MODULE_REARBUMPER_C (Model) [24 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                     - rear bumper type c detail template (Part) [3 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
@@ -677,7 +1448,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
-                - MODULE_REARBUMPER_D (Model) [23 attrs]
+                - MODULE_REARBUMPER_D (Model) [24 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                     - rear bumper type d detail template (Part) [3 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
@@ -689,8 +1460,38 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
+                - MODULE_REARBUMPER_LVL1 (Model) [34 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - bumper rear neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - bumper rear primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                  - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                - MODULE_REARBUMPER_LVL2 (Model) [34 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - bumper rear neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - bumper rear primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                  - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                - MODULE_REARBUMPER_LVL3 (Model) [34 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - bumper rear neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - bumper rear primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                  - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
               - RearSpoilers (Folder) [3 attrs]
-                - MODULE_REARSPOILER_A (Model) [23 attrs]
+                - MODULE_REARSPOILER_A (Model) [24 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                     - spoiler detail (MeshPart) [1 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
@@ -702,7 +1503,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
-                - MODULE_REARSPOILER_B (Model) [23 attrs]
+                - MODULE_REARSPOILER_B (Model) [24 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                     - spoiler detail (MeshPart)
                     - spoiler detail.001 (MeshPart)
@@ -716,7 +1517,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
-                - MODULE_REARSPOILER_C (Model) [23 attrs]
+                - MODULE_REARSPOILER_C (Model) [24 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                     - spoiler type c detail template (Part) [3 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
@@ -728,7 +1529,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
-                - MODULE_REARSPOILER_D (Model) [23 attrs]
+                - MODULE_REARSPOILER_D (Model) [24 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                     - spoiler type d detail template (Part) [3 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
@@ -740,8 +1541,44 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
+                - MODULE_REARSPOILER_LVL1 (Model) [37 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - spoiler detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - spoiler neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - spoiler primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - spoiler secondary (MeshPart) [1 attrs]
+                  - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                - MODULE_REARSPOILER_LVL2 (Model) [37 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - spoiler detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - spoiler neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - spoiler primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - spoiler secondary (MeshPart) [1 attrs]
+                  - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                - MODULE_REARSPOILER_LVL3 (Model) [37 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - spoiler detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - spoiler neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - spoiler primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - spoiler secondary (MeshPart) [1 attrs]
+                  - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
               - SidePods (Folder) [3 attrs]
-                - MODULE_SIDEPODS_A (Model) [23 attrs]
+                - MODULE_SIDEPODS_A (Model) [24 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
                     - sidepods neon (MeshPart) [1 attrs]
@@ -752,7 +1589,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
-                - MODULE_SIDEPODS_B (Model) [23 attrs]
+                - MODULE_SIDEPODS_B (Model) [24 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                     - side pods type b detail template (Part) [3 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
@@ -764,7 +1601,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
-                - MODULE_SIDEPODS_C (Model) [23 attrs]
+                - MODULE_SIDEPODS_C (Model) [24 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                     - side pods type c detail template (Part) [3 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
@@ -776,7 +1613,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
-                - MODULE_SIDEPODS_D (Model) [23 attrs]
+                - MODULE_SIDEPODS_D (Model) [24 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                     - side pods type d detail template (Part) [3 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
@@ -788,8 +1625,271 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
+                - MODULE_SIDEPODS_LVL1 (Model) [36 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - sidepods neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - sidepods primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - sidepods secondary (MeshPart) [1 attrs]
+                  - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                - MODULE_SIDEPODS_LVL2 (Model) [36 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - sidepods neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - sidepods primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - sidepods secondary (MeshPart) [1 attrs]
+                  - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                - MODULE_SIDEPODS_LVL3 (Model) [36 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - sidepods neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - sidepods primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - sidepods secondary (MeshPart) [1 attrs]
+                  - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
               - Stabilisers (Folder) [3 attrs]
-                - MODULE_STABILISER_A (Model) [23 attrs]
+                - Bruiser_01 (Folder)
+                  - MODULE_STABILISER_BRUISER_01_LIGHTWEIGHT (Model) [36 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - stabilisers detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - stabilisers primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - stabilisers secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - stabilisers thrust neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - VFX_StabiliserJet_Left (Attachment) [2 attrs]
+                      - VFX_StabiliserJet_Right (Attachment) [2 attrs]
+                  - MODULE_STABILISER_BRUISER_01_POWER (Model) [36 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - stabilisers detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - stabilisers primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - stabilisers secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - stabilisers thrust neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - VFX_StabiliserJet_Left (Attachment) [2 attrs]
+                      - VFX_StabiliserJet_Right (Attachment) [2 attrs]
+                  - MODULE_STABILISER_BRUISER_01_STANDARD (Model) [36 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - stabilisers detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - stabilisers primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - stabilisers secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - stabilisers thrust neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - VFX_StabiliserJet_Left (Attachment) [2 attrs]
+                      - VFX_StabiliserJet_Right (Attachment) [2 attrs]
+                - Bruiser_02 (Folder)
+                  - MODULE_STABILISER_BRUISER_02_LIGHTWEIGHT (Model) [36 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - stabilisers detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - stabilisers primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - stabilisers secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - stabilisers thrust neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - VFX_StabiliserJet_Left (Attachment) [2 attrs]
+                      - VFX_StabiliserJet_Right (Attachment) [2 attrs]
+                  - MODULE_STABILISER_BRUISER_02_POWER (Model) [36 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - stabilisers detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - stabilisers primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - stabilisers secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - stabilisers thrust neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - VFX_StabiliserJet_Left (Attachment) [2 attrs]
+                      - VFX_StabiliserJet_Right (Attachment) [2 attrs]
+                  - MODULE_STABILISER_BRUISER_02_STANDARD (Model) [36 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - stabilisers detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - stabilisers primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - stabilisers secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - stabilisers thrust neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - VFX_StabiliserJet_Left (Attachment) [2 attrs]
+                      - VFX_StabiliserJet_Right (Attachment) [2 attrs]
+                - Bruiser_03 (Folder)
+                  - MODULE_STABILISER_BRUISER_03_LIGHTWEIGHT (Model) [36 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - stabilisers detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - stabilisers primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - stabilisers secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - stabilisers thrust neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - VFX_StabiliserJet_Left (Attachment) [2 attrs]
+                      - VFX_StabiliserJet_Right (Attachment) [2 attrs]
+                  - MODULE_STABILISER_BRUISER_03_POWER (Model) [36 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - stabilisers detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - stabilisers primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - stabilisers secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - stabilisers thrust neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - VFX_StabiliserJet_Left (Attachment) [2 attrs]
+                      - VFX_StabiliserJet_Right (Attachment) [2 attrs]
+                  - MODULE_STABILISER_BRUISER_03_STANDARD (Model) [36 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - stabilisers detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - stabilisers primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - stabilisers secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - stabilisers thrust neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - VFX_StabiliserJet_Left (Attachment) [2 attrs]
+                      - VFX_StabiliserJet_Right (Attachment) [2 attrs]
+                - Bruiser_04 (Folder)
+                  - MODULE_STABILISER_BRUISER_04_LIGHTWEIGHT (Model) [36 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - stabilisers detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - stabilisers primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - stabilisers secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - stabilisers thrust neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - VFX_StabiliserJet_Left (Attachment) [2 attrs]
+                      - VFX_StabiliserJet_Right (Attachment) [2 attrs]
+                  - MODULE_STABILISER_BRUISER_04_POWER (Model) [36 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - stabilisers detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - stabilisers primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - stabilisers secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - stabilisers thrust neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - VFX_StabiliserJet_Left (Attachment) [2 attrs]
+                      - VFX_StabiliserJet_Right (Attachment) [2 attrs]
+                  - MODULE_STABILISER_BRUISER_04_STANDARD (Model) [36 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - stabilisers detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - stabilisers primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - stabilisers secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - stabilisers thrust neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - VFX_StabiliserJet_Left (Attachment) [2 attrs]
+                      - VFX_StabiliserJet_Right (Attachment) [2 attrs]
+                - Bruiser_05 (Folder)
+                  - MODULE_STABILISER_BRUISER_05_LIGHTWEIGHT (Model) [36 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - stabilisers detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - stabilisers primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - stabilisers secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - stabilisers thrust neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - VFX_StabiliserJet_Left (Attachment) [2 attrs]
+                      - VFX_StabiliserJet_Right (Attachment) [2 attrs]
+                  - MODULE_STABILISER_BRUISER_05_POWER (Model) [36 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - stabilisers detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - stabilisers primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - stabilisers secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - stabilisers thrust neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - VFX_StabiliserJet_Left (Attachment) [2 attrs]
+                      - VFX_StabiliserJet_Right (Attachment) [2 attrs]
+                  - MODULE_STABILISER_BRUISER_05_STANDARD (Model) [36 attrs]
+                    - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                      - stabilisers detail (MeshPart) [1 attrs]
+                    - NEON_OptionalLights (Folder) [4 attrs]
+                    - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                      - stabilisers primary (MeshPart) [1 attrs]
+                    - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                      - stabilisers secondary (MeshPart) [1 attrs]
+                    - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                      - stabilisers thrust neon (MeshPart) [1 attrs]
+                    - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - ModuleRoot_DoNotRename (Part) [1 attrs]
+                      - MountAttachment (Attachment)
+                      - VFX_StabiliserJet_Left (Attachment) [2 attrs]
+                      - VFX_StabiliserJet_Right (Attachment) [2 attrs]
+                - MODULE_STABILISER_A (Model) [24 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                     - stabilisers detail (MeshPart) [1 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
@@ -804,7 +1904,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - MountAttachment (Attachment)
                     - VFX_StabiliserJet_Left (Attachment) [2 attrs]
                     - VFX_StabiliserJet_Right (Attachment) [2 attrs]
-                - MODULE_STABILISER_B (Model) [23 attrs]
+                - MODULE_STABILISER_B (Model) [24 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                     - stabilisers mk2 detail template (Part) [3 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
@@ -819,7 +1919,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - MountAttachment (Attachment)
                     - VFX_StabiliserJet_Left (Attachment) [2 attrs]
                     - VFX_StabiliserJet_Right (Attachment) [2 attrs]
-                - MODULE_STABILISER_C (Model) [23 attrs]
+                - MODULE_STABILISER_C (Model) [24 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                     - stabilisers mk3 detail template (Part) [3 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
@@ -834,7 +1934,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - MountAttachment (Attachment)
                     - VFX_StabiliserJet_Left (Attachment) [2 attrs]
                     - VFX_StabiliserJet_Right (Attachment) [2 attrs]
-                - MODULE_STABILISER_D (Model) [23 attrs]
+                - MODULE_STABILISER_D (Model) [24 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                     - stabilisers mk4 detail template (Part) [3 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
@@ -849,8 +1949,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - MountAttachment (Attachment)
                     - VFX_StabiliserJet_Left (Attachment) [2 attrs]
                     - VFX_StabiliserJet_Right (Attachment) [2 attrs]
-              - FBX - Bruiser 02 Test (Model) [1 attrs]
-                - bumper rear primary (MeshPart)
             - UPGRADES_InvisiblePerformance (Folder)
               - UPGRADE_Brakes (Folder) [7 attrs]
               - UPGRADE_Converter (Folder) [7 attrs]
@@ -1181,6 +2279,44 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - StabiliserVFXDirection_Notes (StringValue) [1 attrs]
           - StabiliserVFXDirection_Status (StringValue) [1 attrs]
         - Vehicle (Folder)
+        - VehiclePerformance_EditAttributes (Folder) [4 attrs]
+          - CompatibilityDefaults (Folder) [6 attrs]
+          - HeadlineWeights (Folder)
+            - Acceleration (Folder) [3 attrs]
+            - Boost (Folder) [5 attrs]
+            - Braking (Folder) [4 attrs]
+            - Drift (Folder) [4 attrs]
+            - Handling (Folder) [5 attrs]
+            - Speed (Folder) [3 attrs]
+          - ModuleContexts (Folder)
+            - Boost (Folder) [5 attrs]
+            - Engine (Folder) [5 attrs]
+            - FrontBumper (Folder) [5 attrs]
+            - RearBumper (Folder) [5 attrs]
+            - RearSpoiler (Folder) [5 attrs]
+            - SidePods (Folder) [5 attrs]
+            - Stabilisers (Folder) [5 attrs]
+          - Normalization (Folder)
+            - BoostDuration (Folder) [6 attrs]
+            - BoostEfficiency (Folder) [6 attrs]
+            - BoostForce (Folder) [6 attrs]
+            - BoostRecharge (Folder) [6 attrs]
+            - BoostRechargeDelay (Folder) [6 attrs]
+            - BrakingForce (Folder) [6 attrs]
+            - Downforce (Folder) [6 attrs]
+            - Drag (Folder) [6 attrs]
+            - DriftChargeRate (Folder) [6 attrs]
+            - DriftControl (Folder) [6 attrs]
+            - DriftGrip (Folder) [6 attrs]
+            - EngineOutput (Folder) [6 attrs]
+            - HoverStability (Folder) [6 attrs]
+            - LateralGrip (Folder) [6 attrs]
+            - SteeringResponse (Folder) [6 attrs]
+            - TopSpeed (Folder) [6 attrs]
+            - Weight (Folder) [6 attrs]
+          - OverallRating (Folder) [10 attrs]
+          - RuntimeIntegration (Folder) [9 attrs]
+          - TierBands (Folder) [6 attrs]
         - Vehicles (Folder) [4 attrs]
           - DriverSeatPosition_LivePath (StringValue) [3 attrs]
           - DriverSeatPosition_Notes (StringValue) [1 attrs]
@@ -1229,23 +2365,28 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - Visuals (Folder)
             - CachedThrustVisualRuntime (ModuleScript) [script_0011, 712 lines, 10 attrs]
         - Common (Folder) [1 attrs]
-          - ConfigReader (ModuleScript) [script_0012, 39 lines, 1 attrs]
-          - DriveTuning (ModuleScript) [script_0013, 25 lines, 3 attrs]
-          - UITheme (ModuleScript) [script_0014, 51 lines, 3 attrs]
-          - VehicleData (ModuleScript) [script_0015, 34 lines, 3 attrs]
-          - VehicleStatsCache (ModuleScript) [script_0016, 45 lines, 1 attrs]
+          - Performance (Folder) [2 attrs]
+            - VehiclePerformanceCalculator (ModuleScript) [script_0012, 170 lines, 1 attrs]
+            - VehiclePerformanceDefinitions (ModuleScript) [script_0013, 150 lines, 1 attrs]
+            - VehiclePerformanceRuntime (ModuleScript) [script_0014, 93 lines, 1 attrs]
+            - VehicleUpgradeDefinitions (ModuleScript) [script_0015, 65 lines]
+          - ConfigReader (ModuleScript) [script_0016, 39 lines, 1 attrs]
+          - DriveTuning (ModuleScript) [script_0017, 25 lines, 3 attrs]
+          - UITheme (ModuleScript) [script_0018, 51 lines, 3 attrs]
+          - VehicleData (ModuleScript) [script_0019, 34 lines, 3 attrs]
+          - VehicleStatsCache (ModuleScript) [script_0020, 45 lines, 1 attrs]
         - Core (Folder)
-          - PathResolver (ModuleScript) [script_0017, 98 lines, 4 attrs]
+          - PathResolver (ModuleScript) [script_0021, 98 lines, 4 attrs]
         - Data (Folder) [3 attrs]
-          - ConfigRegistry (ModuleScript) [script_0018, 176 lines, 3 attrs]
+          - ConfigRegistry (ModuleScript) [script_0022, 176 lines, 3 attrs]
         - UI (Folder) [3 attrs]
-          - ArrowScroller (ModuleScript) [script_0019, 68 lines, 3 attrs]
-          - ColourUtils (ModuleScript) [script_0020, 21 lines, 3 attrs]
-          - ResponsiveLayout (ModuleScript) [script_0021, 44 lines, 3 attrs]
-          - StatBars (ModuleScript) [script_0022, 49 lines, 3 attrs]
-          - UIFactory (ModuleScript) [script_0023, 93 lines, 3 attrs]
-          - UIPool (ModuleScript) [script_0024, 99 lines, 3 attrs]
-          - UITheme (ModuleScript) [script_0025, 92 lines, 5 attrs]
+          - ArrowScroller (ModuleScript) [script_0023, 68 lines, 3 attrs]
+          - ColourUtils (ModuleScript) [script_0024, 21 lines, 3 attrs]
+          - ResponsiveLayout (ModuleScript) [script_0025, 44 lines, 3 attrs]
+          - StatBars (ModuleScript) [script_0026, 49 lines, 3 attrs]
+          - UIFactory (ModuleScript) [script_0027, 93 lines, 3 attrs]
+          - UIPool (ModuleScript) [script_0028, 99 lines, 3 attrs]
+          - UITheme (ModuleScript) [script_0029, 92 lines, 5 attrs]
           - ArrowScroller_Module (ObjectValue)
           - ColourUtils_Module (ObjectValue)
           - ResponsiveLayout_Module (ObjectValue)
@@ -1270,7 +2411,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
     - README_Phase2 (StringValue) [1 attrs]
   - Shared (Folder)
     - LightingPresets (Folder)
-      - LightingPresets (ModuleScript) [script_0026, 105 lines, 2 attrs]
+      - LightingPresets (ModuleScript) [script_0030, 105 lines, 2 attrs]
     - SkyPresets (Folder)
       - ActiveSky (Sky)
       - ClearNightSky (Sky)
@@ -1279,18 +2420,19 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
   - NeoTokyoRacers (Folder) [5 attrs]
     - Services (Folder) [3 attrs]
       - Dealership (Folder)
-        - IntroProgressService_Active (Script) [script_0027, 208 lines, 2 attrs]
+        - IntroProgressService_Active (Script) [script_0031, 208 lines, 2 attrs]
       - Economy (Folder)
       - Garage (Folder)
-        - GarageActionController_Shadow_Disabled (Script) [script_0028, 868 lines, 23 attrs]
+        - GarageActionController_Shadow_Disabled (Script) [script_0032, 1010 lines, 23 attrs]
       - Player (Folder)
       - Vehicle (Folder)
-        - DriverSeatPositionService_Active (Script) [script_0029, 234 lines, 11 attrs]
+        - DriverSeatPositionService_Active (Script) [script_0033, 234 lines, 11 attrs]
+        - VehiclePerformanceRuntimeService_Active (Script) [script_0034, 95 lines, 2 attrs]
       - World (Folder)
         - Lighting (Folder)
-          - LightingService_Active (Script) [script_0030, 104 lines, 7 attrs]
+          - LightingService_Active (Script) [script_0035, 104 lines, 7 attrs]
         - Traffic (Folder)
-          - TrafficLightService (Script) [script_0031, 46 lines, 3 attrs]
+          - TrafficLightService (Script) [script_0036, 46 lines, 3 attrs]
           - README_MigrationNotes (StringValue)
     - State (Folder)
 - StarterPlayer (StarterPlayer)
@@ -1299,38 +2441,38 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
     - NeoTokyoRacersClient (Folder) [6 attrs]
       - Controllers (Folder) [3 attrs]
         - Core (Folder)
-          - CatalogClient (ModuleScript) [script_0032, 110 lines, 4 attrs]
-          - ClientState (ModuleScript) [script_0033, 75 lines, 4 attrs]
-          - ClientThemeAdapter (ModuleScript) [script_0034, 69 lines, 6 attrs]
-          - GarageApiClient (ModuleScript) [script_0035, 38 lines, 4 attrs]
-          - PaintClient (ModuleScript) [script_0036, 142 lines, 10 attrs]
+          - CatalogClient (ModuleScript) [script_0037, 110 lines, 4 attrs]
+          - ClientState (ModuleScript) [script_0038, 75 lines, 4 attrs]
+          - ClientThemeAdapter (ModuleScript) [script_0039, 69 lines, 6 attrs]
+          - GarageApiClient (ModuleScript) [script_0040, 38 lines, 4 attrs]
+          - PaintClient (ModuleScript) [script_0041, 142 lines, 10 attrs]
         - Garage (Folder)
         - Intro (Folder)
-          - DealershipIntroClient_Active (LocalScript) [script_0037, 698 lines, 8 attrs]
+          - DealershipIntroClient_Active (LocalScript) [script_0042, 698 lines, 8 attrs]
         - Preview (Folder)
-          - ThrustPreviewController_Active (LocalScript) [script_0038, 207 lines, 15 attrs]
-          - PreviewCameraController (ModuleScript) [script_0039, 96 lines, 5 attrs]
-          - PreviewVehicleController (ModuleScript) [script_0040, 168 lines, 5 attrs]
+          - ThrustPreviewController_Active (LocalScript) [script_0043, 207 lines, 15 attrs]
+          - PreviewCameraController (ModuleScript) [script_0044, 96 lines, 5 attrs]
+          - PreviewVehicleController (ModuleScript) [script_0045, 168 lines, 5 attrs]
         - Runtime (Folder)
-          - CharacterSprintController_Active (LocalScript) [script_0041, 342 lines]
-          - DriveHudController_Active (LocalScript) [script_0042, 261 lines, 7 attrs]
-          - MobileDriveControlsController_Active (LocalScript) [script_0043, 495 lines, 7 attrs]
-          - RuntimeVFXController_Active (LocalScript) [script_0044, 15 lines, 7 attrs]
+          - CharacterSprintController_Active (LocalScript) [script_0046, 342 lines]
+          - DriveHudController_Active (LocalScript) [script_0047, 261 lines, 7 attrs]
+          - MobileDriveControlsController_Active (LocalScript) [script_0048, 495 lines, 7 attrs]
+          - RuntimeVFXController_Active (LocalScript) [script_0049, 15 lines, 7 attrs]
         - UI (Folder)
-          - CockpitPaintUIController (ModuleScript) [script_0045, 46 lines, 5 attrs]
-          - ColourPickerController (ModuleScript) [script_0046, 277 lines, 5 attrs]
-          - CustomisationUIController (ModuleScript) [script_0047, 127 lines, 5 attrs]
-          - DealershipUIController (ModuleScript) [script_0048, 87 lines, 5 attrs]
-          - ModuleShopUIController (ModuleScript) [script_0049, 109 lines, 5 attrs]
-          - NavigationController (ModuleScript) [script_0050, 49 lines, 5 attrs]
-          - StatsPanelController (ModuleScript) [script_0051, 51 lines, 5 attrs]
+          - CockpitPaintUIController (ModuleScript) [script_0050, 46 lines, 5 attrs]
+          - ColourPickerController (ModuleScript) [script_0051, 277 lines, 5 attrs]
+          - CustomisationUIController (ModuleScript) [script_0052, 127 lines, 5 attrs]
+          - DealershipUIController (ModuleScript) [script_0053, 87 lines, 5 attrs]
+          - ModuleShopUIController (ModuleScript) [script_0054, 109 lines, 5 attrs]
+          - NavigationController (ModuleScript) [script_0055, 49 lines, 5 attrs]
+          - StatsPanelController (ModuleScript) [script_0056, 51 lines, 5 attrs]
           - README_TargetControllers (StringValue)
         - World (Folder)
-          - LODClient_Active (LocalScript) [script_0052, 365 lines, 12 attrs]
+          - LODClient_Active (LocalScript) [script_0057, 365 lines, 12 attrs]
       - RuntimeState (Folder)
       - State (Folder)
-      - NeoTokyoRacersClient_Bootstrap_Shadow_Disabled (LocalScript) [script_0053, 2785 lines, 22 attrs]
-    - TEMP_LightingPreview (LocalScript) [script_0054, 119 lines]
+      - NeoTokyoRacersClient_Bootstrap_Shadow_Disabled (LocalScript) [script_0058, 2877 lines, 22 attrs]
+    - TEMP_LightingPreview (LocalScript) [script_0059, 119 lines]
 - StarterGui (StarterGui)
   - NeoTokyoRacersUI (ScreenGui) [2 attrs]
     - Components (Folder) [1 attrs]
@@ -1954,9 +3096,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                 - TKY_SIMPLE_POP_BB_08_shiro_fit_MEDIUM_2X1_H (Model) [18 attrs]
                   - BillboardPanel (Part)
                   - BillboardPanel (Part)
+                  - BillboardPanel (Part)
                     - FrontSurfaceGui (SurfaceGui)
                       - AtlasImageLabel (ImageLabel)
-                  - BillboardPanel (Part)
                 - TKY_SIMPLE_POP_BB_13_roku_mode_MEDIUM_2X1_H (Model) [18 attrs]
                   - BillboardPanel (Part)
                     - FrontSurfaceGui (SurfaceGui)
@@ -4348,6 +5490,15 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                         - truss_25_b (MeshPart)
                           - SA_Racing_Metal_Trim_a (SurfaceAppearance)
                     - left side (Model)
+                      - Battery (Model)
+                        - Battery (MeshPart)
+                          - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                      - Battery (Model)
+                        - Battery (MeshPart)
+                          - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                      - Battery (Model)
+                        - Battery (MeshPart)
+                          - SA_Racing_Metal_Trim_a (SurfaceAppearance)
                       - Box_A (Model)
                         - Box_A (MeshPart)
                           - SA_Racing_Metal_Trim_a (SurfaceAppearance)
@@ -4468,8 +5619,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                         - Locker_B (MeshPart)
                           - SA_Racing_Metal_Trim_a (SurfaceAppearance)
                       - Locker_B (Model)
-                        - Locker_B (MeshPart)
-                          - SA_Racing_Metal_Trim_a (SurfaceAppearance)
                       - Screwdriver_Set_A (Model)
                         - Screwdriver_Set_A (MeshPart)
                           - SA_Racing_Metal_Trim_a (SurfaceAppearance)
@@ -4507,6 +5656,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                         - Shelf.001 (Model)
                           - Shelf (MeshPart)
                             - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                      - Shelf.001 (Model)
+                        - Shelf (MeshPart)
+                          - SA_Racing_Metal_Trim_a (SurfaceAppearance)
                       - Shelf_A (Model)
                         - Shelf_A (MeshPart)
                           - SA_Racing_Metal_Trim_a (SurfaceAppearance)
@@ -4607,15 +5759,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                         - StripLightBulb (Part)
                           - SurfaceLight (SurfaceLight)
                     - left side (Model)
-                      - Battery (Model)
-                        - Battery (MeshPart)
-                          - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-                      - Battery (Model)
-                        - Battery (MeshPart)
-                          - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-                      - Battery (Model)
-                        - Battery (MeshPart)
-                          - SA_Racing_Metal_Trim_a (SurfaceAppearance)
                       - Box_A (Model)
                         - Box_A (MeshPart)
                           - SA_Racing_Metal_Trim_a (SurfaceAppearance)
@@ -4724,6 +5867,8 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                         - Locker_B (MeshPart)
                           - SA_Racing_Metal_Trim_a (SurfaceAppearance)
                       - Locker_B (Model)
+                        - Locker_B (MeshPart)
+                          - SA_Racing_Metal_Trim_a (SurfaceAppearance)
                       - Locker_B (Model)
                         - Locker_B (MeshPart)
                           - SA_Racing_Metal_Trim_a (SurfaceAppearance)
@@ -4773,9 +5918,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                         - Shelf.001 (Model)
                           - Shelf (MeshPart)
                             - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-                      - Shelf.001 (Model)
-                        - Shelf (MeshPart)
-                          - SA_Racing_Metal_Trim_a (SurfaceAppearance)
                       - Shelf_A (Model)
                         - Shelf_A (MeshPart)
                           - SA_Racing_Metal_Trim_a (SurfaceAppearance)
@@ -5680,55 +6822,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                         - trunk small bamboo (MeshPart)
                           - SurfaceAppearance Trunk (SurfaceAppearance)
                       - Tree Base Concrete (UnionOperation)
-                - bamboo group a (Model)
-                  - bamboo (Model)
-                    - Tree Small Bamboo Group (Model)
-                      - Tree_Small_Bamboo_LOD3 (Model)
-                        - leaves small bamboo (MeshPart)
-                          - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
-                        - trunk small bamboo (MeshPart)
-                          - SurfaceAppearance Trunk (SurfaceAppearance)
-                      - Tree Base Concrete (UnionOperation)
-                  - bamboo (Model)
-                    - Tree Small Bamboo Group (Model)
-                      - Tree_Small_Bamboo_LOD3 (Model)
-                        - leaves small bamboo (MeshPart)
-                          - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
-                        - trunk small bamboo (MeshPart)
-                          - SurfaceAppearance Trunk (SurfaceAppearance)
-                      - Tree Base Concrete (UnionOperation)
-                  - bamboo (Model)
-                    - Tree Small Bamboo Group (Model)
-                      - Tree_Small_Bamboo_LOD3 (Model)
-                        - leaves small bamboo (MeshPart)
-                          - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
-                        - trunk small bamboo (MeshPart)
-                          - SurfaceAppearance Trunk (SurfaceAppearance)
-                      - Tree Base Concrete (UnionOperation)
-                  - bamboo (Model)
-                    - Tree Small Bamboo Group (Model)
-                      - Tree_Small_Bamboo_LOD3 (Model)
-                        - leaves small bamboo (MeshPart)
-                          - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
-                        - trunk small bamboo (MeshPart)
-                          - SurfaceAppearance Trunk (SurfaceAppearance)
-                      - Tree Base Concrete (UnionOperation)
-                  - bamboo (Model)
-                    - Tree Small Bamboo Group (Model)
-                      - Tree_Small_Bamboo_LOD3 (Model)
-                        - leaves small bamboo (MeshPart)
-                          - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
-                        - trunk small bamboo (MeshPart)
-                          - SurfaceAppearance Trunk (SurfaceAppearance)
-                      - Tree Base Concrete (UnionOperation)
-                  - bamboo (Model)
-                    - Tree Small Bamboo Group (Model)
-                      - Tree_Small_Bamboo_LOD3 (Model)
-                        - leaves small bamboo (MeshPart)
-                          - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
-                        - trunk small bamboo (MeshPart)
-                          - SurfaceAppearance Trunk (SurfaceAppearance)
-                      - Tree Base Concrete (UnionOperation)
                   - bamboo (Model)
                     - Tree Small Bamboo Group (Model)
                       - Tree_Small_Bamboo_LOD3 (Model)
@@ -5794,6 +6887,55 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                         - trunk small bamboo (MeshPart)
                           - SurfaceAppearance Trunk (SurfaceAppearance)
                       - Tree Base Concrete (UnionOperation)
+                  - bamboo (Model)
+                    - Tree Small Bamboo Group (Model)
+                      - Tree_Small_Bamboo_LOD3 (Model)
+                        - leaves small bamboo (MeshPart)
+                          - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
+                        - trunk small bamboo (MeshPart)
+                          - SurfaceAppearance Trunk (SurfaceAppearance)
+                      - Tree Base Concrete (UnionOperation)
+                  - bamboo (Model)
+                    - Tree Small Bamboo Group (Model)
+                      - Tree_Small_Bamboo_LOD3 (Model)
+                        - leaves small bamboo (MeshPart)
+                          - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
+                        - trunk small bamboo (MeshPart)
+                          - SurfaceAppearance Trunk (SurfaceAppearance)
+                      - Tree Base Concrete (UnionOperation)
+                  - bamboo (Model)
+                    - Tree Small Bamboo Group (Model)
+                      - Tree_Small_Bamboo_LOD3 (Model)
+                        - leaves small bamboo (MeshPart)
+                          - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
+                        - trunk small bamboo (MeshPart)
+                          - SurfaceAppearance Trunk (SurfaceAppearance)
+                      - Tree Base Concrete (UnionOperation)
+                  - bamboo (Model)
+                    - Tree Small Bamboo Group (Model)
+                      - Tree_Small_Bamboo_LOD3 (Model)
+                        - leaves small bamboo (MeshPart)
+                          - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
+                        - trunk small bamboo (MeshPart)
+                          - SurfaceAppearance Trunk (SurfaceAppearance)
+                      - Tree Base Concrete (UnionOperation)
+                  - bamboo (Model)
+                    - Tree Small Bamboo Group (Model)
+                      - Tree_Small_Bamboo_LOD3 (Model)
+                        - leaves small bamboo (MeshPart)
+                          - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
+                        - trunk small bamboo (MeshPart)
+                          - SurfaceAppearance Trunk (SurfaceAppearance)
+                      - Tree Base Concrete (UnionOperation)
+                  - bamboo (Model)
+                    - Tree Small Bamboo Group (Model)
+                      - Tree_Small_Bamboo_LOD3 (Model)
+                        - leaves small bamboo (MeshPart)
+                          - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
+                        - trunk small bamboo (MeshPart)
+                          - SurfaceAppearance Trunk (SurfaceAppearance)
+                      - Tree Base Concrete (UnionOperation)
+                - bamboo group a (Model)
                   - bamboo (Model)
                     - Tree Small Bamboo Group (Model)
                       - Tree_Small_Bamboo_LOD3 (Model)
@@ -6146,10 +7288,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - Garage Bollard Yellow (Part)
                   - Garage Sign (Model)
                     - Garage Sign (Part)
-                    - Garage Sign (Part)
-                    - Garage Sign (Part)
                       - SurfaceGui (SurfaceGui)
                         - TextLabel (TextLabel)
+                    - Garage Sign (Part)
+                    - Garage Sign (Part)
                     - Garage Sign (Part)
                     - Garage Sign Clearance (Part)
                       - SurfaceGui (SurfaceGui)
@@ -6637,20 +7779,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - bush walls (UnionOperation)
                     - bush walls detail (UnionOperation)
                 - Trees Back (Model)
-                  - Tree Large Maple (Model)
-                    - Tree_Large_Maple_LOD3 (Model)
-                      - LeavesMapleBottom1 (MeshPart)
-                        - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                      - LeavesMapleShadow2 (MeshPart)
-                        - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                      - TrunkLargeMaple1 (MeshPart)
-                        - SurfaceAppearance Trunk (SurfaceAppearance)
-                    - Tree Base Concrete (UnionOperation)
-                  - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
-                    - Leaves_Large_Poplar (MeshPart)
-                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                    - Trunk_Large_Poplar (MeshPart)
-                      - SurfaceAppearance Trunk (SurfaceAppearance)
                   - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
                     - Leaves_Large_Poplar (MeshPart)
                       - SurfaceAppearance Leaves Maple (SurfaceAppearance)
@@ -6682,6 +7810,20 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - Trunk_Large_Poplar (MeshPart)
                       - SurfaceAppearance Trunk (SurfaceAppearance)
                 - Trees Back (Model)
+                  - Tree Large Maple (Model)
+                    - Tree_Large_Maple_LOD3 (Model)
+                      - LeavesMapleBottom1 (MeshPart)
+                        - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                      - LeavesMapleShadow2 (MeshPart)
+                        - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                      - TrunkLargeMaple1 (MeshPart)
+                        - SurfaceAppearance Trunk (SurfaceAppearance)
+                    - Tree Base Concrete (UnionOperation)
+                  - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
+                    - Leaves_Large_Poplar (MeshPart)
+                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                    - Trunk_Large_Poplar (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
                   - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
                     - Leaves_Large_Poplar (MeshPart)
                       - SurfaceAppearance Leaves Maple (SurfaceAppearance)
@@ -7400,16 +8542,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - SurfaceAppearance Leaves Maple (SurfaceAppearance)
           - leaves bush large (MeshPart)
             - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-          - leaves bush large (MeshPart)
-            - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-          - leaves bush large (MeshPart)
-            - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-          - leaves bush large (MeshPart)
-            - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-          - leaves bush large (MeshPart)
-            - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-          - leaves bush large (MeshPart)
-            - SurfaceAppearance Leaves Maple (SurfaceAppearance)
           - Road Central Divider Detail (Part)
           - Road Central Divider Detail (Part)
           - Road Central Divider Detail (Part)
@@ -7448,6 +8580,16 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - Road Central Divider Main (Part)
           - Road Central Divider Main (Part)
         - Road Central Divider (Model)
+          - leaves bush large (MeshPart)
+            - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+          - leaves bush large (MeshPart)
+            - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+          - leaves bush large (MeshPart)
+            - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+          - leaves bush large (MeshPart)
+            - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+          - leaves bush large (MeshPart)
+            - SurfaceAppearance Leaves Maple (SurfaceAppearance)
           - leaves bush large (MeshPart)
             - SurfaceAppearance Leaves Maple (SurfaceAppearance)
           - leaves bush large (MeshPart)
@@ -9501,15 +10643,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - BillboardPanel (Part)
               - FrontSurfaceGui (SurfaceGui)
                 - AtlasImageLabel (ImageLabel)
-          - TKY_SIMPLE_POP_BB_09_pon_tech_MEDIUM_2X1_H (Model) [18 attrs]
-            - BillboardPanel (Part)
-              - FrontSurfaceGui (SurfaceGui)
-                - AtlasImageLabel (ImageLabel)
           - TKY_SIMPLE_POP_BB_10_machi_bank_MEDIUM_2X1_H (Model) [18 attrs]
-            - BillboardPanel (Part)
-              - FrontSurfaceGui (SurfaceGui)
-                - AtlasImageLabel (ImageLabel)
-          - TKY_SIMPLE_POP_BB_11_sato_snack_MEDIUM_2X1_H (Model) [18 attrs]
             - BillboardPanel (Part)
               - FrontSurfaceGui (SurfaceGui)
                 - AtlasImageLabel (ImageLabel)
@@ -9547,10 +10681,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - FrontSurfaceGui (SurfaceGui)
                 - AtlasImageLabel (ImageLabel)
           - TKY_SIMPLE_POP_BB_03_coco_room_MEDIUM_1X2_V (Model) [18 attrs]
-            - BillboardPanel (Part)
-              - FrontSurfaceGui (SurfaceGui)
-                - AtlasImageLabel (ImageLabel)
-          - TKY_SIMPLE_POP_BB_04_mira_mart_MEDIUM_1X2_V (Model) [18 attrs]
             - BillboardPanel (Part)
               - FrontSurfaceGui (SurfaceGui)
                 - AtlasImageLabel (ImageLabel)
@@ -9645,12 +10775,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                 - EnglishBrandText (TextLabel)
                   - UITextSizeConstraint (UITextSizeConstraint)
                 - JapaneseBrandText (TextLabel)
-          - TKY_JP_TEXT_BB_07_KumoBin_CloudDelivery_1X2_V (Model) [11 attrs]
-            - BillboardPanel (Part)
-              - FrontSurfaceGui (SurfaceGui)
-                - EnglishBrandText (TextLabel)
-                  - UITextSizeConstraint (UITextSizeConstraint)
-                - JapaneseBrandText (TextLabel)
           - TKY_JP_TEXT_BB_08_KuroIchi_BlackMarket_1X2_V (Model) [11 attrs]
             - BillboardPanel (Part)
               - FrontSurfaceGui (SurfaceGui)
@@ -9701,10 +10825,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - BillboardPanel (Part)
               - FrontSurfaceGui (SurfaceGui)
                 - JapaneseBrandText (TextLabel)
-          - TKY_JP_TEXT_BB_16_EdoGames_EdoGames_1X2_V (Model) [11 attrs]
-            - BillboardPanel (Part)
-              - FrontSurfaceGui (SurfaceGui)
-                - JapaneseBrandText (TextLabel)
         - Ratio_2x1 (Folder)
           - TKY_JP_TEXT_BB_01_SeiunDo_BlueCloudHall_2X1_H (Model) [11 attrs]
             - BillboardPanel (Part)
@@ -9726,12 +10846,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - BillboardPanel (Part)
               - FrontSurfaceGui (SurfaceGui)
                 - JapaneseBrandText (TextLabel)
-          - TKY_JP_TEXT_BB_05_ShinbashiYakkyoku_ShinbashiPharmacy_2X1_H (Model) [11 attrs]
-            - BillboardPanel (Part)
-              - FrontSurfaceGui (SurfaceGui)
-                - JapaneseBrandText (TextLabel)
-                - SmallJapaneseText (TextLabel)
-                  - UITextSizeConstraint (UITextSizeConstraint)
           - TKY_JP_TEXT_BB_05_ShinbashiYakkyoku_ShinbashiPharmacy_2X1_H (Model) [11 attrs]
             - BillboardPanel (Part)
               - FrontSurfaceGui (SurfaceGui)
@@ -9784,27 +10898,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                 - JapaneseBrandText (TextLabel)
                 - SmallJapaneseText (TextLabel)
                   - UITextSizeConstraint (UITextSizeConstraint)
-          - TKY_JP_TEXT_BB_14_KazeHotel_WindHotel_2X1_H (Model) [11 attrs]
-            - BillboardPanel (Part)
-              - FrontSurfaceGui (SurfaceGui)
-                - JapaneseBrandText (TextLabel)
-          - TKY_JP_TEXT_BB_14_KazeHotel_WindHotel_2X1_H (Model) [11 attrs]
-            - BillboardPanel (Part)
-              - FrontSurfaceGui (SurfaceGui)
-                - EnglishBrandText (TextLabel)
-                  - UITextSizeConstraint (UITextSizeConstraint)
-                - JapaneseBrandText (TextLabel)
-          - TKY_JP_TEXT_BB_14_KazeHotel_WindHotel_2X1_H (Model) [11 attrs]
-            - BillboardPanel (Part)
-              - FrontSurfaceGui (SurfaceGui)
-                - EnglishBrandText (TextLabel)
-                  - UITextSizeConstraint (UITextSizeConstraint)
-          - TKY_JP_TEXT_BB_14_KazeHotel_WindHotel_2X1_H (Model) [11 attrs]
-            - BillboardPanel (Part)
-              - FrontSurfaceGui (SurfaceGui)
-                - EnglishBrandText (TextLabel)
-                  - UITextSizeConstraint (UITextSizeConstraint)
-                - JapaneseBrandText (TextLabel)
           - TKY_JP_TEXT_BB_14_KazeHotel_WindHotel_2X1_H (Model) [11 attrs]
             - BillboardPanel (Part)
               - FrontSurfaceGui (SurfaceGui)
@@ -9910,10 +11003,59 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - BillboardPanel (Part)
               - FrontSurfaceGui (SurfaceGui)
                 - JapaneseBrandText (TextLabel)
-          - TKY_JP_TEXT_BB_16_EdoGames_EdoGames_3X2_H (Model) [11 attrs]
-            - BillboardPanel (Part)
-              - FrontSurfaceGui (SurfaceGui)
-                - JapaneseBrandText (TextLabel)
+      - TKY_JP_TEXT_BB_05_ShinbashiYakkyoku_ShinbashiPharmacy_2X1_H (Model) [11 attrs]
+        - BillboardPanel (Part)
+          - FrontSurfaceGui (SurfaceGui)
+            - JapaneseBrandText (TextLabel)
+            - SmallJapaneseText (TextLabel)
+              - UITextSizeConstraint (UITextSizeConstraint)
+      - TKY_JP_TEXT_BB_07_KumoBin_CloudDelivery_1X2_V (Model) [11 attrs]
+        - BillboardPanel (Part)
+          - FrontSurfaceGui (SurfaceGui)
+            - EnglishBrandText (TextLabel)
+              - UITextSizeConstraint (UITextSizeConstraint)
+            - JapaneseBrandText (TextLabel)
+      - TKY_JP_TEXT_BB_14_KazeHotel_WindHotel_2X1_H (Model) [11 attrs]
+        - BillboardPanel (Part)
+          - FrontSurfaceGui (SurfaceGui)
+            - EnglishBrandText (TextLabel)
+              - UITextSizeConstraint (UITextSizeConstraint)
+            - JapaneseBrandText (TextLabel)
+      - TKY_JP_TEXT_BB_14_KazeHotel_WindHotel_2X1_H (Model) [11 attrs]
+        - BillboardPanel (Part)
+          - FrontSurfaceGui (SurfaceGui)
+            - JapaneseBrandText (TextLabel)
+      - TKY_JP_TEXT_BB_14_KazeHotel_WindHotel_2X1_H (Model) [11 attrs]
+        - BillboardPanel (Part)
+          - FrontSurfaceGui (SurfaceGui)
+            - EnglishBrandText (TextLabel)
+              - UITextSizeConstraint (UITextSizeConstraint)
+            - JapaneseBrandText (TextLabel)
+      - TKY_JP_TEXT_BB_14_KazeHotel_WindHotel_2X1_H (Model) [11 attrs]
+        - BillboardPanel (Part)
+          - FrontSurfaceGui (SurfaceGui)
+            - EnglishBrandText (TextLabel)
+              - UITextSizeConstraint (UITextSizeConstraint)
+      - TKY_JP_TEXT_BB_16_EdoGames_EdoGames_1X2_V (Model) [11 attrs]
+        - BillboardPanel (Part)
+          - FrontSurfaceGui (SurfaceGui)
+            - JapaneseBrandText (TextLabel)
+      - TKY_JP_TEXT_BB_16_EdoGames_EdoGames_3X2_H (Model) [11 attrs]
+        - BillboardPanel (Part)
+          - FrontSurfaceGui (SurfaceGui)
+            - JapaneseBrandText (TextLabel)
+      - TKY_SIMPLE_POP_BB_04_mira_mart_MEDIUM_1X2_V (Model) [18 attrs]
+        - BillboardPanel (Part)
+          - FrontSurfaceGui (SurfaceGui)
+            - AtlasImageLabel (ImageLabel)
+      - TKY_SIMPLE_POP_BB_09_pon_tech_MEDIUM_2X1_H (Model) [18 attrs]
+        - BillboardPanel (Part)
+          - FrontSurfaceGui (SurfaceGui)
+            - AtlasImageLabel (ImageLabel)
+      - TKY_SIMPLE_POP_BB_11_sato_snack_MEDIUM_2X1_H (Model) [18 attrs]
+        - BillboardPanel (Part)
+          - FrontSurfaceGui (SurfaceGui)
+            - AtlasImageLabel (ImageLabel)
       - GeneratedCityBlocks_CurrentLive (ObjectValue) [5 attrs]
     - Dealership (Folder)
       - Intro (Folder) [40 attrs]
@@ -11522,17 +12664,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Road (Part)
               - Road (Part)
               - Road (Part)
-              - RoadFillW (Part)
-              - RoadFillW (Part)
-              - RoadFillW (Part)
-              - RoadFillW (Part)
-              - RoadFillW (Part)
-              - RoadFillW (Part)
-            - Model (Model)
-              - Road (Part)
-              - Road (Part)
-              - Road (Part)
-              - Road (Part)
               - Road (Part)
               - RoadFillW (Part)
               - RoadFillW (Part)
@@ -11545,6 +12676,16 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Road (Part)
               - Road (Part)
               - Road (Part)
+              - RoadFillW (Part)
+              - RoadFillW (Part)
+              - RoadFillW (Part)
+              - RoadFillW (Part)
+              - RoadFillW (Part)
+              - RoadFillW (Part)
+            - Model (Model)
+              - Road (Part)
+              - Road (Part)
+              - Road (Part)
               - Road (Part)
               - RoadFillW (Part)
               - RoadFillW (Part)
@@ -11553,6 +12694,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - RoadFillW (Part)
               - RoadFillW (Part)
             - Model (Model)
+              - Road (Part)
               - Road (Part)
               - Road (Part)
               - Road (Part)
@@ -11569,17 +12711,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Road (Part)
               - Road (Part)
               - Road (Part)
-              - RoadFillW (Part)
-              - RoadFillW (Part)
-              - RoadFillW (Part)
-              - RoadFillW (Part)
-              - RoadFillW (Part)
-              - RoadFillW (Part)
-            - Model (Model)
-              - Road (Part)
-              - Road (Part)
-              - Road (Part)
-              - Road (Part)
               - Road (Part)
               - RoadFillW (Part)
               - RoadFillW (Part)
@@ -11600,6 +12731,17 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - RoadFillW (Part)
             - Model (Model)
               - Road (Part)
+              - Road (Part)
+              - Road (Part)
+              - Road (Part)
+              - Road (Part)
+              - RoadFillW (Part)
+              - RoadFillW (Part)
+              - RoadFillW (Part)
+              - RoadFillW (Part)
+              - RoadFillW (Part)
+              - RoadFillW (Part)
+            - Model (Model)
               - Road (Part)
               - Road (Part)
               - Road (Part)
@@ -11716,6 +12858,45 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - RoadFillW (Part)
           - RoadFillW (Part)
         - Model (Model)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+        - Model (Model)
           - Road (Part)
           - Road (Part)
           - Road (Part)
@@ -11728,99 +12909,60 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - Road (Part)
           - Road (Part)
           - Road (Part)
+        - Model (Model)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+        - Model (Model)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
         - Model (Model)
           - Roundabout (Part)
-        - Model (Model)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-        - Model (Model)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-        - Model (Model)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
         - circle building (Model)
           - circle building (Model)
             - Part (Part)
@@ -12918,6 +14060,11 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - Path Wall Concrete Stylised Wedge (Part)
           - Path Wall Concrete Stylised Wedge (Part)
       - Model (Model)
+        - Part (Part)
+        - Part (Part)
+        - Part (Part)
+        - Part (Part)
+      - Model (Model)
         - FBX - Crossroads 9 degrees v3 (Model)
           - Plane.001 (MeshPart)
         - FBX - Crossroads 9 degrees v3 (Model)
@@ -12929,6 +14076,11 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
         - FBX - Crossroads 9 degrees v3 (Model)
           - Plane.001 (MeshPart)
         - Road (Part)
+      - Model (Model)
+        - Part (Part)
+        - Part (Part)
+        - Part (Part)
+        - Part (Part)
       - Model (Model)
         - Humanoid (Humanoid)
         - Head (Part)
@@ -12938,16 +14090,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
         - Right Arm (Part)
         - Right Leg (Part)
         - Torso (Part)
-      - Model (Model)
-        - Part (Part)
-        - Part (Part)
-        - Part (Part)
-        - Part (Part)
-      - Model (Model)
-        - Part (Part)
-        - Part (Part)
-        - Part (Part)
-        - Part (Part)
       - Union (UnionOperation)
     - THE BLOCKS (Folder)
       - Block C2 Group (Folder)
@@ -13779,11 +14921,11 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -13861,10 +15003,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -15661,11 +16803,315 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
+                - SurfaceGui (SurfaceGui)
+                  - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign Clearance (Part)
+                - SurfaceGui (SurfaceGui)
+                  - TextLabel (TextLabel)
+            - Garage Shutters (Part)
+            - Garage Shutters Bottom (Part)
+            - Garage Shutters Top (Part)
+            - Garage Walls (Part)
+            - Garage Walls (Part)
+            - Garage Walls Top (Part)
+          - Parking Garage left B (Model)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Sign (Model)
+              - Garage Sign (Part)
               - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign Clearance (Part)
+                - SurfaceGui (SurfaceGui)
+                  - TextLabel (TextLabel)
+            - Garage Shutters (Part)
+            - Garage Shutters Bottom (Part)
+            - Garage Shutters Top (Part)
+            - Garage Walls (Part)
+            - Garage Walls (Part)
+            - Garage Walls Top (Part)
+          - Parking Garage right A (Model)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Sign (Model)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+                - SurfaceGui (SurfaceGui)
+                  - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign Clearance (Part)
+                - SurfaceGui (SurfaceGui)
+                  - TextLabel (TextLabel)
+            - Garage Shutters (Part)
+            - Garage Shutters Bottom (Part)
+            - Garage Shutters Top (Part)
+            - Garage Walls (Part)
+            - Garage Walls (Part)
+            - Garage Walls Top (Part)
+          - Parking Garage right B (Model)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Sign (Model)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+                - SurfaceGui (SurfaceGui)
+                  - TextLabel (TextLabel)
+              - Garage Sign Clearance (Part)
+                - SurfaceGui (SurfaceGui)
+                  - TextLabel (TextLabel)
+            - Garage Shutters (Part)
+            - Garage Shutters Bottom (Part)
+            - Garage Shutters Top (Part)
+            - Garage Walls (Part)
+            - Garage Walls (Part)
+            - Garage Walls Top (Part)
+          - bridge large (Model)
+            - bridge large base (MeshPart)
+            - bridge large detail (MeshPart)
+            - bridge large detail dark (MeshPart)
+            - bridge large floors (MeshPart)
+            - bridge large neon (MeshPart)
+            - bridge large windows (MeshPart)
+              - SurfaceAppearance Windows (SurfaceAppearance)
+          - bridge small a (Model)
+            - bridge small detail (MeshPart)
+            - bridge small main (MeshPart)
+            - bridge small neon (MeshPart)
+          - bridge small b (Model)
+            - bridge small detail (MeshPart)
+            - bridge small main (MeshPart)
+            - bridge small neon (MeshPart)
+          - bush left side (Model)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+          - bush right side (Model)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+          - level 1 (Model)
+            - level1 base (MeshPart)
+            - level1 base top (MeshPart)
+            - level1 neon (MeshPart)
+            - level1 planters dark detail (MeshPart)
+            - level1 planters dirt (MeshPart)
+            - level1 planters light (MeshPart)
+            - level1 window still lower (MeshPart)
+            - level1 window still upper (MeshPart)
+            - level1 windows (MeshPart)
+              - SurfaceAppearance Windows (SurfaceAppearance)
+          - level 2 (Model)
+            - level2 base (MeshPart)
+            - level2 dark ceiling (MeshPart)
+            - level2 detail back (MeshPart)
+            - level2 detail corner (MeshPart)
+            - level2 detail front (MeshPart)
+            - level2 detail left (MeshPart)
+            - level2 detail right (MeshPart)
+            - level2 floors  (MeshPart)
+            - level2 windows (MeshPart)
+              - SurfaceAppearance Windows (SurfaceAppearance)
+          - level 3 (Model)
+            - level3 base (MeshPart)
+            - level3 detail back (MeshPart)
+            - level3 detail corner (MeshPart)
+            - level3 detail front (MeshPart)
+            - level3 detail left (MeshPart)
+            - level3 detail right (MeshPart)
+            - level3 floors (MeshPart)
+            - level3 windows (MeshPart)
+              - SurfaceAppearance Windows (SurfaceAppearance)
+          - pillars (Model)
+            - pillar dark (MeshPart)
+            - pillar dark (MeshPart)
+            - pillar dark (MeshPart)
+            - pillar detail (MeshPart)
+            - pillar detail (MeshPart)
+            - pillar ground roof (MeshPart)
+            - pillar ground roof (MeshPart)
+            - pillar ground roof (MeshPart)
+            - pillar ground windows (MeshPart)
+              - SurfaceAppearance Windows (SurfaceAppearance)
+            - pillar ground windows (MeshPart)
+              - SurfaceAppearance Windows (SurfaceAppearance)
+            - pillar ground windows (MeshPart)
+              - SurfaceAppearance Windows (SurfaceAppearance)
+            - pillar light (MeshPart)
+            - pillar light (MeshPart)
+            - pillar light (MeshPart)
+        - Brutalist Block D1 (Model)
+          - neon upper (MeshPart)
+          - Parking Garage left A (Model)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Sign (Model)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+                - SurfaceGui (SurfaceGui)
+                  - TextLabel (TextLabel)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -16006,618 +17452,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign Clearance (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-            - Garage Shutters (Part)
-            - Garage Shutters Bottom (Part)
-            - Garage Shutters Top (Part)
-            - Garage Walls (Part)
-            - Garage Walls (Part)
-            - Garage Walls Top (Part)
-          - Parking Garage right A (Model)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Sign (Model)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign Clearance (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-            - Garage Shutters (Part)
-            - Garage Shutters Bottom (Part)
-            - Garage Shutters Top (Part)
-            - Garage Walls (Part)
-            - Garage Walls (Part)
-            - Garage Walls Top (Part)
-          - Parking Garage right B (Model)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Sign (Model)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign Clearance (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-            - Garage Shutters (Part)
-            - Garage Shutters Bottom (Part)
-            - Garage Shutters Top (Part)
-            - Garage Walls (Part)
-            - Garage Walls (Part)
-            - Garage Walls Top (Part)
-          - bridge large (Model)
-            - bridge large base (MeshPart)
-            - bridge large detail (MeshPart)
-            - bridge large detail dark (MeshPart)
-            - bridge large floors (MeshPart)
-            - bridge large neon (MeshPart)
-            - bridge large windows (MeshPart)
-              - SurfaceAppearance Windows (SurfaceAppearance)
-          - bridge small a (Model)
-            - bridge small detail (MeshPart)
-            - bridge small main (MeshPart)
-            - bridge small neon (MeshPart)
-          - bridge small b (Model)
-            - bridge small detail (MeshPart)
-            - bridge small main (MeshPart)
-            - bridge small neon (MeshPart)
-          - bush left side (Model)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-          - bush right side (Model)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-          - level 1 (Model)
-            - level1 base (MeshPart)
-            - level1 base top (MeshPart)
-            - level1 neon (MeshPart)
-            - level1 planters dark detail (MeshPart)
-            - level1 planters dirt (MeshPart)
-            - level1 planters light (MeshPart)
-            - level1 window still lower (MeshPart)
-            - level1 window still upper (MeshPart)
-            - level1 windows (MeshPart)
-              - SurfaceAppearance Windows (SurfaceAppearance)
-          - level 2 (Model)
-            - level2 base (MeshPart)
-            - level2 dark ceiling (MeshPart)
-            - level2 detail back (MeshPart)
-            - level2 detail corner (MeshPart)
-            - level2 detail front (MeshPart)
-            - level2 detail left (MeshPart)
-            - level2 detail right (MeshPart)
-            - level2 floors  (MeshPart)
-            - level2 windows (MeshPart)
-              - SurfaceAppearance Windows (SurfaceAppearance)
-          - level 3 (Model)
-            - level3 base (MeshPart)
-            - level3 detail back (MeshPart)
-            - level3 detail corner (MeshPart)
-            - level3 detail front (MeshPart)
-            - level3 detail left (MeshPart)
-            - level3 detail right (MeshPart)
-            - level3 floors (MeshPart)
-            - level3 windows (MeshPart)
-              - SurfaceAppearance Windows (SurfaceAppearance)
-          - pillars (Model)
-            - pillar dark (MeshPart)
-            - pillar dark (MeshPart)
-            - pillar dark (MeshPart)
-            - pillar detail (MeshPart)
-            - pillar detail (MeshPart)
-            - pillar ground roof (MeshPart)
-            - pillar ground roof (MeshPart)
-            - pillar ground roof (MeshPart)
-            - pillar ground windows (MeshPart)
-              - SurfaceAppearance Windows (SurfaceAppearance)
-            - pillar ground windows (MeshPart)
-              - SurfaceAppearance Windows (SurfaceAppearance)
-            - pillar ground windows (MeshPart)
-              - SurfaceAppearance Windows (SurfaceAppearance)
-            - pillar light (MeshPart)
-            - pillar light (MeshPart)
-            - pillar light (MeshPart)
-        - Brutalist Block D1 (Model)
-          - neon upper (MeshPart)
-          - Parking Garage left A (Model)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Sign (Model)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign Clearance (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-            - Garage Shutters (Part)
-            - Garage Shutters Bottom (Part)
-            - Garage Shutters Top (Part)
-            - Garage Walls (Part)
-            - Garage Walls (Part)
-            - Garage Walls Top (Part)
-          - Parking Garage left B (Model)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Sign (Model)
-              - Garage Sign (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign Clearance (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-            - Garage Shutters (Part)
-            - Garage Shutters Bottom (Part)
-            - Garage Shutters Top (Part)
-            - Garage Walls (Part)
-            - Garage Walls (Part)
-            - Garage Walls Top (Part)
-          - Parking Garage right A (Model)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Sign (Model)
-              - Garage Sign (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign Clearance (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-            - Garage Shutters (Part)
-            - Garage Shutters Bottom (Part)
-            - Garage Shutters Top (Part)
-            - Garage Walls (Part)
-            - Garage Walls (Part)
-            - Garage Walls Top (Part)
-          - Parking Garage right B (Model)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Sign (Model)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-              - Garage Sign Clearance (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-            - Garage Shutters (Part)
-            - Garage Shutters Bottom (Part)
-            - Garage Shutters Top (Part)
-            - Garage Walls (Part)
-            - Garage Walls (Part)
-            - Garage Walls Top (Part)
-          - bridge large (Model)
-            - bridge large base (MeshPart)
-            - bridge large detail (MeshPart)
-            - bridge large detail dark (MeshPart)
-            - bridge large floors (MeshPart)
-            - bridge large neon (MeshPart)
-            - bridge large windows (MeshPart)
-              - SurfaceAppearance Windows (SurfaceAppearance)
-          - bridge small a (Model)
-            - bridge small detail (MeshPart)
-            - bridge small main (MeshPart)
-            - bridge small neon (MeshPart)
-          - bridge small b (Model)
-            - bridge small detail (MeshPart)
-            - bridge small main (MeshPart)
-            - bridge small neon (MeshPart)
-          - bush left side (Model)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-          - bush right side (Model)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-          - level 1 (Model)
-            - level1 base (MeshPart)
-            - level1 base top (MeshPart)
-            - level1 neon (MeshPart)
-            - level1 planters dark detail (MeshPart)
-            - level1 planters dirt (MeshPart)
-            - level1 planters light (MeshPart)
-            - level1 window still lower (MeshPart)
-            - level1 window still upper (MeshPart)
-            - level1 windows (MeshPart)
-              - SurfaceAppearance Windows (SurfaceAppearance)
-          - level 2 (Model)
-            - level2 base (MeshPart)
-            - level2 dark ceiling (MeshPart)
-            - level2 detail back (MeshPart)
-            - level2 detail corner (MeshPart)
-            - level2 detail front (MeshPart)
-            - level2 detail left (MeshPart)
-            - level2 detail right (MeshPart)
-            - level2 floors  (MeshPart)
-            - level2 windows (MeshPart)
-              - SurfaceAppearance Windows (SurfaceAppearance)
-          - level 3 (Model)
-            - level3 base (MeshPart)
-            - level3 detail back (MeshPart)
-            - level3 detail corner (MeshPart)
-            - level3 detail front (MeshPart)
-            - level3 detail left (MeshPart)
-            - level3 detail right (MeshPart)
-            - level3 floors (MeshPart)
-            - level3 windows (MeshPart)
-              - SurfaceAppearance Windows (SurfaceAppearance)
-          - pillars (Model)
-            - pillar dark (MeshPart)
-            - pillar dark (MeshPart)
-            - pillar dark (MeshPart)
-            - pillar detail (MeshPart)
-            - pillar detail (MeshPart)
-            - pillar ground roof (MeshPart)
-            - pillar ground roof (MeshPart)
-            - pillar ground roof (MeshPart)
-            - pillar ground windows (MeshPart)
-              - SurfaceAppearance Windows (SurfaceAppearance)
-            - pillar ground windows (MeshPart)
-              - SurfaceAppearance Windows (SurfaceAppearance)
-            - pillar ground windows (MeshPart)
-              - SurfaceAppearance Windows (SurfaceAppearance)
-            - pillar light (MeshPart)
-            - pillar light (MeshPart)
-            - pillar light (MeshPart)
-        - Brutalist Block D1 (Model)
-          - neon upper (MeshPart)
-          - Parking Garage left A (Model)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Sign (Model)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-              - Garage Sign Clearance (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-            - Garage Shutters (Part)
-            - Garage Shutters Bottom (Part)
-            - Garage Shutters Top (Part)
-            - Garage Walls (Part)
-            - Garage Walls (Part)
-            - Garage Walls Top (Part)
-          - Parking Garage left B (Model)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Sign (Model)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -16878,10 +17716,314 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
+                - SurfaceGui (SurfaceGui)
+                  - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign Clearance (Part)
+                - SurfaceGui (SurfaceGui)
+                  - TextLabel (TextLabel)
+            - Garage Shutters (Part)
+            - Garage Shutters Bottom (Part)
+            - Garage Shutters Top (Part)
+            - Garage Walls (Part)
+            - Garage Walls (Part)
+            - Garage Walls Top (Part)
+          - Parking Garage left B (Model)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Sign (Model)
+              - Garage Sign (Part)
               - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
               - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign Clearance (Part)
+                - SurfaceGui (SurfaceGui)
+                  - TextLabel (TextLabel)
+            - Garage Shutters (Part)
+            - Garage Shutters Bottom (Part)
+            - Garage Shutters Top (Part)
+            - Garage Walls (Part)
+            - Garage Walls (Part)
+            - Garage Walls Top (Part)
+          - Parking Garage right A (Model)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Sign (Model)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+                - SurfaceGui (SurfaceGui)
+                  - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign Clearance (Part)
+                - SurfaceGui (SurfaceGui)
+                  - TextLabel (TextLabel)
+            - Garage Shutters (Part)
+            - Garage Shutters Bottom (Part)
+            - Garage Shutters Top (Part)
+            - Garage Walls (Part)
+            - Garage Walls (Part)
+            - Garage Walls Top (Part)
+          - Parking Garage right B (Model)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Sign (Model)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+                - SurfaceGui (SurfaceGui)
+                  - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign Clearance (Part)
+                - SurfaceGui (SurfaceGui)
+                  - TextLabel (TextLabel)
+            - Garage Shutters (Part)
+            - Garage Shutters Bottom (Part)
+            - Garage Shutters Top (Part)
+            - Garage Walls (Part)
+            - Garage Walls (Part)
+            - Garage Walls Top (Part)
+          - bridge large (Model)
+            - bridge large base (MeshPart)
+            - bridge large detail (MeshPart)
+            - bridge large detail dark (MeshPart)
+            - bridge large floors (MeshPart)
+            - bridge large neon (MeshPart)
+            - bridge large windows (MeshPart)
+              - SurfaceAppearance Windows (SurfaceAppearance)
+          - bridge small a (Model)
+            - bridge small detail (MeshPart)
+            - bridge small main (MeshPart)
+            - bridge small neon (MeshPart)
+          - bridge small b (Model)
+            - bridge small detail (MeshPart)
+            - bridge small main (MeshPart)
+            - bridge small neon (MeshPart)
+          - bush left side (Model)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+          - bush right side (Model)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+          - level 1 (Model)
+            - level1 base (MeshPart)
+            - level1 base top (MeshPart)
+            - level1 neon (MeshPart)
+            - level1 planters dark detail (MeshPart)
+            - level1 planters dirt (MeshPart)
+            - level1 planters light (MeshPart)
+            - level1 window still lower (MeshPart)
+            - level1 window still upper (MeshPart)
+            - level1 windows (MeshPart)
+              - SurfaceAppearance Windows (SurfaceAppearance)
+          - level 2 (Model)
+            - level2 base (MeshPart)
+            - level2 dark ceiling (MeshPart)
+            - level2 detail back (MeshPart)
+            - level2 detail corner (MeshPart)
+            - level2 detail front (MeshPart)
+            - level2 detail left (MeshPart)
+            - level2 detail right (MeshPart)
+            - level2 floors  (MeshPart)
+            - level2 windows (MeshPart)
+              - SurfaceAppearance Windows (SurfaceAppearance)
+          - level 3 (Model)
+            - level3 base (MeshPart)
+            - level3 detail back (MeshPart)
+            - level3 detail corner (MeshPart)
+            - level3 detail front (MeshPart)
+            - level3 detail left (MeshPart)
+            - level3 detail right (MeshPart)
+            - level3 floors (MeshPart)
+            - level3 windows (MeshPart)
+              - SurfaceAppearance Windows (SurfaceAppearance)
+          - pillars (Model)
+            - pillar dark (MeshPart)
+            - pillar dark (MeshPart)
+            - pillar dark (MeshPart)
+            - pillar detail (MeshPart)
+            - pillar detail (MeshPart)
+            - pillar ground roof (MeshPart)
+            - pillar ground roof (MeshPart)
+            - pillar ground roof (MeshPart)
+            - pillar ground windows (MeshPart)
+              - SurfaceAppearance Windows (SurfaceAppearance)
+            - pillar ground windows (MeshPart)
+              - SurfaceAppearance Windows (SurfaceAppearance)
+            - pillar ground windows (MeshPart)
+              - SurfaceAppearance Windows (SurfaceAppearance)
+            - pillar light (MeshPart)
+            - pillar light (MeshPart)
+            - pillar light (MeshPart)
+        - Brutalist Block D1 (Model)
+          - neon upper (MeshPart)
+          - Parking Garage left A (Model)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Sign (Model)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+                - SurfaceGui (SurfaceGui)
+                  - TextLabel (TextLabel)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -16959,10 +18101,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -17222,9 +18364,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
@@ -17265,9 +18407,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -17306,9 +18448,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -18566,10 +19708,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -18606,9 +19748,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
@@ -18647,9 +19789,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
@@ -18690,9 +19832,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -20696,10 +21838,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -20737,9 +21879,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
@@ -20780,9 +21922,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -21002,9 +22144,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -21082,11 +22224,11 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -21315,18 +22457,18 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - SurfaceAppearance (SurfaceAppearance)
         - Model (Model)
           - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
         - Model (Model)
           - Road Marking White (Part)
         - Model (Model)
+          - Road Marking White (Part)
+          - Road Marking White (Part)
+          - Road Marking White (Part)
+          - Road Marking White (Part)
+          - Road Marking White (Part)
+          - Road Marking White (Part)
+          - Road Marking White (Part)
+          - Road Marking White (Part)
+          - Road Marking White (Part)
           - Road Marking White (Part)
         - Road Asphalt (Part)
         - Road Marking White (Part)
@@ -22575,9 +23717,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                 - Garage Bollard Yellow (Part)
               - Garage Sign (Model)
                 - Garage Sign (Part)
+                - Garage Sign (Part)
                   - SurfaceGui (SurfaceGui)
                     - TextLabel (TextLabel)
-                - Garage Sign (Part)
                 - Garage Sign (Part)
                 - Garage Sign (Part)
                 - Garage Sign Clearance (Part)
@@ -22617,10 +23759,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Sign (Model)
                 - Garage Sign (Part)
                 - Garage Sign (Part)
+                - Garage Sign (Part)
+                - Garage Sign (Part)
                   - SurfaceGui (SurfaceGui)
                     - TextLabel (TextLabel)
-                - Garage Sign (Part)
-                - Garage Sign (Part)
                 - Garage Sign Clearance (Part)
                   - SurfaceGui (SurfaceGui)
                     - TextLabel (TextLabel)
@@ -22659,9 +23801,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                 - Garage Sign (Part)
                 - Garage Sign (Part)
                 - Garage Sign (Part)
+                - Garage Sign (Part)
                   - SurfaceGui (SurfaceGui)
                     - TextLabel (TextLabel)
-                - Garage Sign (Part)
                 - Garage Sign Clearance (Part)
                   - SurfaceGui (SurfaceGui)
                     - TextLabel (TextLabel)
@@ -22944,6 +24086,114 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
       - stabilisers neon (MeshPart)
       - stabilisers primary (MeshPart)
       - stabilisers secondary (MeshPart)
+    - FBx - Test Base Vehicle v3 (Model) [1 attrs]
+      - boost detail (MeshPart)
+      - boost neon (MeshPart)
+      - boost primary (MeshPart)
+      - boost secondary (MeshPart)
+      - cockpit detail (MeshPart)
+      - cockpit glass (MeshPart)
+      - cockpit neon front (MeshPart)
+      - cockpit neon rear (MeshPart)
+      - cockpit primary (MeshPart)
+      - cockpit secondary (MeshPart)
+      - diffuser neon (MeshPart)
+      - diffuser primary (MeshPart)
+      - engine a detail (MeshPart)
+      - engine a neon (MeshPart)
+      - engine a primary (MeshPart)
+      - engine a secondary (MeshPart)
+      - engine b detail (MeshPart)
+      - engine b neon (MeshPart)
+      - engine b primary (MeshPart)
+      - engine b secondary (MeshPart)
+      - sidepods neon (MeshPart)
+      - sidepods primary (MeshPart)
+      - sidepods secondary (MeshPart)
+      - splitter detail (MeshPart)
+      - splitter neon (MeshPart)
+      - splitter primary (MeshPart)
+      - splitter secondary (MeshPart)
+      - spoiler detail (MeshPart)
+      - spoiler neon (MeshPart)
+      - spoiler primary (MeshPart)
+      - spoiler secondary (MeshPart)
+      - stabilisers detail (MeshPart)
+      - stabilisers neon (MeshPart)
+      - stabilisers primary (MeshPart)
+      - stabilisers secondary (MeshPart)
+    - FBx - Test Base Vehicle v3 (Model) [1 attrs]
+      - boost detail (MeshPart)
+      - boost neon (MeshPart)
+      - boost primary (MeshPart)
+      - boost secondary (MeshPart)
+      - cockpit detail (MeshPart)
+      - cockpit glass (MeshPart)
+      - cockpit neon front (MeshPart)
+      - cockpit neon rear (MeshPart)
+      - cockpit primary (MeshPart)
+      - cockpit secondary (MeshPart)
+      - diffuser neon (MeshPart)
+      - diffuser primary (MeshPart)
+      - engine a detail (MeshPart)
+      - engine a neon (MeshPart)
+      - engine a primary (MeshPart)
+      - engine a secondary (MeshPart)
+      - engine b detail (MeshPart)
+      - engine b neon (MeshPart)
+      - engine b primary (MeshPart)
+      - engine b secondary (MeshPart)
+      - sidepods neon (MeshPart)
+      - sidepods primary (MeshPart)
+      - sidepods secondary (MeshPart)
+      - splitter detail (MeshPart)
+      - splitter neon (MeshPart)
+      - splitter primary (MeshPart)
+      - splitter secondary (MeshPart)
+      - spoiler detail (MeshPart)
+      - spoiler neon (MeshPart)
+      - spoiler primary (MeshPart)
+      - spoiler secondary (MeshPart)
+      - stabilisers detail (MeshPart)
+      - stabilisers neon (MeshPart)
+      - stabilisers primary (MeshPart)
+      - stabilisers secondary (MeshPart)
+    - FBx - Test Base Vehicle v3 (Model) [1 attrs]
+      - boost detail (MeshPart)
+      - boost neon (MeshPart)
+      - boost primary (MeshPart)
+      - boost secondary (MeshPart)
+      - cockpit detail (MeshPart)
+      - cockpit glass (MeshPart)
+      - cockpit neon front (MeshPart)
+      - cockpit neon rear (MeshPart)
+      - cockpit primary (MeshPart)
+      - cockpit secondary (MeshPart)
+      - diffuser neon (MeshPart)
+      - diffuser primary (MeshPart)
+      - engine a detail (MeshPart)
+      - engine a neon (MeshPart)
+      - engine a primary (MeshPart)
+      - engine a secondary (MeshPart)
+      - engine b detail (MeshPart)
+      - engine b neon (MeshPart)
+      - engine b primary (MeshPart)
+      - engine b secondary (MeshPart)
+      - sidepods neon (MeshPart)
+      - sidepods primary (MeshPart)
+      - sidepods secondary (MeshPart)
+      - splitter detail (MeshPart)
+      - splitter neon (MeshPart)
+      - splitter primary (MeshPart)
+      - splitter secondary (MeshPart)
+      - spoiler detail (MeshPart)
+      - spoiler neon (MeshPart)
+      - spoiler primary (MeshPart)
+      - spoiler secondary (MeshPart)
+      - stabilisers detail (MeshPart)
+      - stabilisers neon (MeshPart)
+      - stabilisers primary (MeshPart)
+      - stabilisers secondary (MeshPart)
       - boost (Part)
         - TemplateAttachmentLong (Attachment)
           - BoostOn_Beam Flame (Beam) [6 attrs]
@@ -23012,118 +24262,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
       - stabilisers neon (MeshPart)
       - stabilisers primary (MeshPart)
       - stabilisers secondary (MeshPart)
-    - FBx - Test Base Vehicle v3 (Model) [1 attrs]
-      - boost detail (MeshPart)
-      - boost neon (MeshPart)
-      - boost primary (MeshPart)
-      - boost secondary (MeshPart)
-      - cockpit detail (MeshPart)
-      - cockpit glass (MeshPart)
-      - cockpit neon front (MeshPart)
-      - cockpit neon rear (MeshPart)
-      - cockpit primary (MeshPart)
-      - cockpit secondary (MeshPart)
-      - diffuser neon (MeshPart)
-      - diffuser primary (MeshPart)
-      - engine a detail (MeshPart)
-      - engine a neon (MeshPart)
-      - engine a primary (MeshPart)
-      - engine a secondary (MeshPart)
-      - engine b detail (MeshPart)
-      - engine b neon (MeshPart)
-      - engine b primary (MeshPart)
-      - engine b secondary (MeshPart)
-      - sidepods neon (MeshPart)
-      - sidepods primary (MeshPart)
-      - sidepods secondary (MeshPart)
-      - splitter detail (MeshPart)
-      - splitter neon (MeshPart)
-      - splitter primary (MeshPart)
-      - splitter secondary (MeshPart)
-      - spoiler detail (MeshPart)
-      - spoiler neon (MeshPart)
-      - spoiler primary (MeshPart)
-      - spoiler secondary (MeshPart)
-      - stabilisers detail (MeshPart)
-      - stabilisers neon (MeshPart)
-      - stabilisers primary (MeshPart)
-      - stabilisers secondary (MeshPart)
-    - FBx - Test Base Vehicle v3 (Model) [1 attrs]
-      - boost detail (MeshPart)
-      - boost neon (MeshPart)
-      - boost primary (MeshPart)
-      - boost secondary (MeshPart)
-      - cockpit detail (MeshPart)
-      - cockpit glass (MeshPart)
-      - cockpit neon front (MeshPart)
-      - cockpit neon rear (MeshPart)
-      - cockpit primary (MeshPart)
-      - cockpit secondary (MeshPart)
-      - diffuser neon (MeshPart)
-      - diffuser primary (MeshPart)
-      - engine a detail (MeshPart)
-      - engine a neon (MeshPart)
-      - engine a primary (MeshPart)
-      - engine a secondary (MeshPart)
-      - engine b detail (MeshPart)
-      - engine b neon (MeshPart)
-      - engine b primary (MeshPart)
-      - engine b secondary (MeshPart)
-      - sidepods neon (MeshPart)
-      - sidepods primary (MeshPart)
-      - sidepods secondary (MeshPart)
-      - splitter detail (MeshPart)
-      - splitter neon (MeshPart)
-      - splitter primary (MeshPart)
-      - splitter secondary (MeshPart)
-      - spoiler detail (MeshPart)
-      - spoiler neon (MeshPart)
-      - spoiler primary (MeshPart)
-      - spoiler secondary (MeshPart)
-      - stabilisers detail (MeshPart)
-      - stabilisers neon (MeshPart)
-      - stabilisers primary (MeshPart)
-      - stabilisers secondary (MeshPart)
-    - FBx - Test Base Vehicle v3 (Model) [1 attrs]
-      - boost detail (MeshPart)
-      - boost neon (MeshPart)
-      - boost primary (MeshPart)
-      - boost secondary (MeshPart)
-      - cockpit detail (MeshPart)
-      - cockpit glass (MeshPart)
-      - cockpit neon front (MeshPart)
-      - cockpit neon rear (MeshPart)
-      - cockpit primary (MeshPart)
-      - cockpit secondary (MeshPart)
-      - diffuser neon (MeshPart)
-      - diffuser primary (MeshPart)
-      - engine a detail (MeshPart)
-      - engine a neon (MeshPart)
-      - engine a primary (MeshPart)
-      - engine a secondary (MeshPart)
-      - engine b detail (MeshPart)
-      - engine b neon (MeshPart)
-      - engine b primary (MeshPart)
-      - engine b secondary (MeshPart)
-      - sidepods neon (MeshPart)
-      - sidepods primary (MeshPart)
-      - sidepods secondary (MeshPart)
-      - splitter detail (MeshPart)
-      - splitter neon (MeshPart)
-      - splitter primary (MeshPart)
-      - splitter secondary (MeshPart)
-      - spoiler detail (MeshPart)
-      - spoiler neon (MeshPart)
-      - spoiler primary (MeshPart)
-      - spoiler secondary (MeshPart)
-      - stabilisers detail (MeshPart)
-      - stabilisers neon (MeshPart)
-      - stabilisers primary (MeshPart)
-      - stabilisers secondary (MeshPart)
   - Terrain (Terrain)
 - ServerStorage (ServerStorage)
   - HOVER_RACING_SAVED_CARS_Runtime (Folder)
-- Lighting (Lighting) [2 attrs]
+- Lighting (Lighting) [1 attrs]
   - Atmosphere (Atmosphere)
   - Bloom (BloomEffect)
   - ColorCorrection (ColorCorrectionEffect)
@@ -23133,4 +24275,4 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
 
 ## Skipped
 
-None
+- `ReplicatedStorage.NTR_STUDIO_FULL_EXPORT_V2` - export folder
