@@ -157,14 +157,9 @@ Good signs:
 
 ## Current Staleness Warning
 
-The existing `roblox/exported_scripts/` mirror in GitHub appears stale until this V2 workflow is run again in Studio. It still includes old paths such as:
+The committed mirror is current through confirmed Vehicle Phase AN, but stale relative to confirmed Vehicle Phase AO. The mirrored main client bootstrap does not yet contain the Phase AO marker or UI source, and `roblox/studio_snapshot/hierarchy.md` is empty.
 
-```text
-ReplicatedStorage.HOVER_RACING_V2_KIT
-StarterPlayer.StarterPlayerScripts.HOVER_RACING_V2_Client
-```
-
-Project docs say `HOVER_RACING_V2_KIT` was removed and the active main client moved into `StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient`. Refresh the export before using the mirror as current truth.
+Run the receiver/exporter workflow before using the mirror as the source for another guarded client patch.
 
 ## What To Commit In GitHub Desktop
 

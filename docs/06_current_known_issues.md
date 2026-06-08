@@ -9,8 +9,8 @@ This file is intentionally conservative. Items are included only when they were 
 - Keep `VehiclePerformanceRuntimeService_Active` as the current runtime owner. The earlier garage-controller write hook did not produce the Phase AM folders on fresh spawn.
 - Mobile/gamepad comparison and broader balance testing across Lightweight/Standard/Power builds remain useful follow-up verification.
 - Vehicle Phase AN is confirmed working. Fuel Injection level 1 cost `$4000`, advanced the module from level 0 to 1, changed the profile and spawned rating from `D 407` to `D 410`, and reached the spawned engine as EngineOutput `+2` and TopSpeed `+1` with 0 audit warnings.
-- Phase AO is prepared for Studio install. Verify that it removes the visible Brakes, Converter, Fuel System, and generic module Upgrade controls without changing the confirmed Phase AN server/data contract.
-- Phase AO needs desktop and mobile verification for tier/index display, contextual detailed variables, horizontal upgrade-card scrolling, preview values, purchase refresh, and on-screen popup placement.
+- Vehicle Phase AO was installed and reported working well. The legacy Brakes, Converter, Fuel System, and generic module Upgrade controls are no longer the current visible UI.
+- Broader mobile/device verification remains useful for contextual detailed variables, horizontal upgrade-card scrolling, text fit, and Buy popup placement.
 - The current garage profile is session-memory only. Phase AN module upgrade ownership has the same lifetime as existing cash, cockpit, and module ownership until a unified garage profile DataStore is introduced.
 - Vehicle Phase AK and its follow-up repairs were reported working by the user. Keep mobile verification open for the centered required-modules popup and small-screen module option scrolling.
 - Phase AK recovery scripts remain available for the resolved register-limit, server core-gate, rear-engine catalogue, camera, per-cockpit default colour, and spawned module colour-sync problems. Do not rerun them unless the matching regression returns.
@@ -22,8 +22,8 @@ This file is intentionally conservative. Items are included only when they were 
 
 ## Studio Export Mirror
 
-- The Studio mirror was refreshed and pushed after confirmed Phase AN. It includes the module upgrade runtime helper and the confirmed Phase AN garage hooks.
-- Refresh the mirror again after Phase AO is installed and confirmed.
+- The committed Studio mirror is stale relative to confirmed Phase AO. `roblox/exported_scripts/MANIFEST.md` still reports the 60-script Phase AN-era export, the mirrored main bootstrap is 2,877 lines and does not contain the Phase AO marker, and `roblox/studio_snapshot/hierarchy.md` is empty.
+- Run the full receiver/exporter workflow after Phase AO, verify the manifest/hierarchy/checksums, and commit the generated `roblox/exported_scripts/` and `roblox/studio_snapshot/` changes. Do not commit `docs/studio-full-export-paste.txt`.
 
 ## Camera
 
@@ -105,7 +105,7 @@ Known sensitive areas:
 
 - Default cockpit colours are edited on each cockpit model with `DefaultPrimaryColor`, `DefaultSecondaryColor`, `DefaultDetailColor`, `DefaultNeonColor`, `DefaultFrontLightsColor`, and `DefaultRearLightsColor`.
 - Phase AK uses guarded source text replacement against the active garage server controller and client bootstrap. If either source changed since the current mirror, refresh the Studio export before running or editing the installer.
-- Phase AM also uses guarded source replacement against the active garage server controller and `DrivingControllerV47`. The current mirror is stale, so any exact-match failure must be treated as a request for a refreshed Studio export, not bypassed with a broad replacement.
+- Phase AM and Phase AO use guarded source replacement against live scripts. Until the post-AO mirror refresh is committed, any future exact-match failure must be treated as a request for a fresh Studio export, not bypassed with a broad replacement.
 - Buyable modules need valid `Price` attributes.
 - Boost modules should have `Boost`, `BoostDuration`, `BoostRecharge`, and `BoostRechargeDelay`.
 - Module folder shape should stay simple and not reintroduce redundant colour-channel folders.

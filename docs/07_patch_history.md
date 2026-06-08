@@ -5,6 +5,7 @@ This is a high-level summary, not a complete changelog of every script.
 ## Documentation
 
 - 2026-06-08: Added Vehicle Phase AO module upgrade UI installer and audit. Phase AO removes the visible legacy Brakes, Converter, Fuel System, and generic upgrade controls; adds module-specific upgrade cards and preview/purchase flow; and replaces the right stats panel with an always-visible tier/index header plus contextual headline and detailed-variable rows.
+- 2026-06-08: Vehicle Phase AO was installed and reported working well. The AL-AO performance, module-upgrade, contextual-stats, tier/index, and customisation UI sequence is now the confirmed vehicle baseline. A post-AO Studio mirror refresh remains required.
 - 2026-06-08: Added Vehicle Phase AN module-specific upgrade installer, audit, and opt-in purchase smoke test. Upgrade ownership is keyed by module ID and upgrade ID, purchases are server-authoritative, catalogue/profile responses expose Phase AO data, and spawned module clones receive purchased Phase AM performance deltas.
 - 2026-06-08: Phase AN read-only and purchase smoke tests passed for `MODULE_ENGINE_BRUISER_01_STANDARD`: Fuel Injection level 1 cost `$4000`, purchase succeeded, level advanced to 1, and profile rating increased from `D 407` to `D 410`. Added a final spawned-upgrade audit.
 - 2026-06-08: Phase AN spawned-upgrade audit passed with 0 warnings. The spawned engine carried Fuel Injection level 1, EngineOutput `+2`, TopSpeed `+1`, and runtime rating `D 410`, confirming end-to-end upgrade effects.

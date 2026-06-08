@@ -467,9 +467,9 @@
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/NeoTokyoRacersClient_Bootstrap_Shadow_Disabled.client.lua",
     "class_name": "LocalScript",
     "disabled": false,
-    "source_lines": 2877,
-    "source_bytes": 121016,
-    "source_checksum": "29931865"
+    "source_lines": 3158,
+    "source_bytes": 131577,
+    "source_checksum": "137133952"
   },
   "StarterPlayer.StarterPlayerScripts.TEMP_LightingPreview": {
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/TEMP_LightingPreview.client.lua",

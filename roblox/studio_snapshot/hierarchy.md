@@ -1,6 +1,6 @@
 # Roblox Studio Hierarchy Snapshot
 
-Generated in Studio: 2026-06-08 14:47:11
+Generated in Studio: 2026-06-08 15:05:33
 Scripts exported: 60
 Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, StarterGui, Workspace, ServerStorage, Lighting
 
@@ -2472,7 +2472,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - LODClient_Active (LocalScript) [script_0058, 365 lines, 12 attrs]
       - RuntimeState (Folder)
       - State (Folder)
-      - NeoTokyoRacersClient_Bootstrap_Shadow_Disabled (LocalScript) [script_0059, 2877 lines, 22 attrs]
+      - NeoTokyoRacersClient_Bootstrap_Shadow_Disabled (LocalScript) [script_0059, 3158 lines, 23 attrs]
     - TEMP_LightingPreview (LocalScript) [script_0060, 119 lines]
 - StarterGui (StarterGui)
   - NeoTokyoRacersUI (ScreenGui) [2 attrs]

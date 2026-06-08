@@ -1,6 +1,6 @@
 # Vehicle Phase AO Upgrade UI
 
-Status: prepared for Studio install and testing.
+Status: installed and confirmed working on 2026-06-08.
 
 ## Purpose
 
@@ -65,6 +65,8 @@ It preflights every replacement and performs exactly one `Script.Source` assignm
 
 ## Install
 
+The install and audit were completed successfully. Keep these scripts as recovery/history tools; do not rerun the installer on the confirmed working place unless Phase AO has been rolled back.
+
 Run in Edit mode:
 
 ```text
@@ -86,6 +88,8 @@ Expected audit:
 - Warnings: `0`.
 
 ## Play Test
+
+The user reported the installed Phase AO flow working well. Keep the checklist below for regression and device testing:
 
 1. Start a fresh Play session.
 2. Open the dealership and continue to Customise.
@@ -115,7 +119,7 @@ Rolling back Phase AO only removes the new presentation layer. Phase AN purchase
 
 ## Mirror Refresh
 
-After Phase AO is confirmed:
+The committed mirror is still the pre-AO/Phase AN-era export. Refresh it now:
 
 1. Run `py scripts/receive_studio_full_snapshot_export.py`.
 2. Run `scripts/roblox_studio_export_full_snapshot_for_github_v2.lua` in the Studio Command Bar.
