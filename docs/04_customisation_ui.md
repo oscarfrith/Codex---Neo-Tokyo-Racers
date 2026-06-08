@@ -130,6 +130,12 @@ Phase AO should consume:
 
 Phase AN is confirmed end to end. Phase AO can now replace the old controls without changing the server purchase/effect behavior.
 
+Phase AO is prepared for Studio install. It replaces the visible legacy upgrade controls with a `Performance` screen on each installed module. Upgrade cards show level, next price, and detailed effects; selecting a card previews one additional level before purchase.
+
+The Phase AO right-hand stats panel always shows the E-S tier and performance index at the top. General screens show the six headline stats. Selecting a module switches the panel to the most relevant headline stats and the detailed variables affected by that module's upgrades.
+
+The module upgrade list is horizontally scrollable for mobile. The existing left module list remains vertically scrollable.
+
 ## Mobile Driving UI
 
 Known mobile driving UI:

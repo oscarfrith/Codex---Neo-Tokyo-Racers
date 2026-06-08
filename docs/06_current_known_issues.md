@@ -9,7 +9,8 @@ This file is intentionally conservative. Items are included only when they were 
 - Keep `VehiclePerformanceRuntimeService_Active` as the current runtime owner. The earlier garage-controller write hook did not produce the Phase AM folders on fresh spawn.
 - Mobile/gamepad comparison and broader balance testing across Lightweight/Standard/Power builds remain useful follow-up verification.
 - Vehicle Phase AN is confirmed working. Fuel Injection level 1 cost `$4000`, advanced the module from level 0 to 1, changed the profile and spawned rating from `D 407` to `D 410`, and reached the spawned engine as EngineOutput `+2` and TopSpeed `+1` with 0 audit warnings.
-- Phase AO must remove the visible Brakes, Converter, Fuel System, and generic module Upgrade controls without removing the confirmed Phase AN server/data contract.
+- Phase AO is prepared for Studio install. Verify that it removes the visible Brakes, Converter, Fuel System, and generic module Upgrade controls without changing the confirmed Phase AN server/data contract.
+- Phase AO needs desktop and mobile verification for tier/index display, contextual detailed variables, horizontal upgrade-card scrolling, preview values, purchase refresh, and on-screen popup placement.
 - The current garage profile is session-memory only. Phase AN module upgrade ownership has the same lifetime as existing cash, cockpit, and module ownership until a unified garage profile DataStore is introduced.
 - Vehicle Phase AK and its follow-up repairs were reported working by the user. Keep mobile verification open for the centered required-modules popup and small-screen module option scrolling.
 - Phase AK recovery scripts remain available for the resolved register-limit, server core-gate, rear-engine catalogue, camera, per-cockpit default colour, and spawned module colour-sync problems. Do not rerun them unless the matching regression returns.
@@ -21,8 +22,8 @@ This file is intentionally conservative. Items are included only when they were 
 
 ## Studio Export Mirror
 
-- The Studio mirror was refreshed and pushed after confirmed Phase AM. It includes 59 scripts, the four shared performance modules, and `VehiclePerformanceRuntimeService_Active`.
-- Refresh the mirror again after Phase AN changes before final handoff.
+- The Studio mirror was refreshed and pushed after confirmed Phase AN. It includes the module upgrade runtime helper and the confirmed Phase AN garage hooks.
+- Refresh the mirror again after Phase AO is installed and confirmed.
 
 ## Camera
 
