@@ -1,6 +1,6 @@
 # Neo Tokyo Racers Project Context
 
-Last updated: 2026-06-05
+Last updated: 2026-06-08
 
 This folder is the handoff pack for new Codex or ChatGPT sessions. Read this file first, then use the other docs only as needed.
 
@@ -31,6 +31,7 @@ Known from chat:
 - Lighting Phase R is prepared to repair `Fogcolor` typo warnings by changing lighting presets to Roblox's valid `FogColor` property and adding a compatibility alias in `LightingService_Active`.
 - Vehicle Phase AI removes/deprioritises the cockpit car-light experiments from Phases S through AH. No cockpit SpotLight, Beam, smoother, projector, or diagnostic runtime should be considered current. Ordinary cosmetic neon colour channels remain.
 - VFX Phase AJ is prepared to repair thrust VFX preview after Dealership Intro Phase 4 moved the local preview vehicle to `Workspace._NTR_ClientOnly.VehiclePreview`. Run `scripts/roblox_vfx_phaseAJ_thrust_preview_root_repair.lua` if thrust VFX no longer previews while editing thrust colour in the customisation menu.
+- Vehicle Phase AK was installed and confirmed working through its follow-up repairs. Bruiser modules now use per-cockpit Standard/Lightweight/Power front engine, rear engine, stabiliser, and boost sets plus Lvl 1-3 bumpers/spoilers/side pods. Cockpit purchase grants standard core modules, dealership stats include them, required modules are gated, camera entry views are corrected, per-cockpit default colours live on cockpit attributes, and spawned module colours match preview.
 - Dealership Intro Phases 1-7 were installed and confirmed working by the user on 2026-06-03. The flow now uses editable dealership markers, opens the full garage only at `GarageDeskTrigger`, delays the local preview until cockpit purchase/select succeeds, restores preview orbit camera behavior, spawns the final drivable vehicle from `VehicleExitSpawnPoint`, and includes an Exit button that only reopens after the player leaves and re-enters the desk zone. Phase 8 is generated in Git as the next Studio install/test step: it replaces fixed path arrows with a dynamic client-only arrow tether to the desk and persists first desk-objective completion.
 - Phase 15 successfully moved live server action ownership to `ServerScriptService.NeoTokyoRacers.Services.Garage.GarageActionController_Shadow_Disabled`. The old `HOVER_RACING_V2_Server` remains available for rollback but is no longer the live server action owner.
 - `V74` restored the pre-V72/default Roblox driving camera feel and added a light camera assist. The user confirmed this worked well.
@@ -44,6 +45,7 @@ Recommended baseline:
 - Use `scripts/roblox_hover_racing_v74_pre_v72_camera_assist.lua` if camera stability is the priority.
 - Use `scripts/roblox_hover_racing_v75_boost_delay_hover_wobble.lua` as the latest generated patch, then play-test fresh in Roblox Studio.
 - Use `scripts/roblox_character_sprint_controller_install.lua` to install or roll back the on-foot sprint controller. It writes tuning attributes under `ReplicatedStorage.NeoTokyoRacers.Shared.Config.CharacterMovement_EditAttributes`.
+- Phase AK is installed. Keep its main installer and targeted repair scripts as recovery/history tools; do not rerun them on the confirmed live baseline unless the matching problem returns. These scripts use guarded source text replacement.
 
 ## Important Working Style
 
@@ -101,6 +103,7 @@ Recommended baseline:
 - Vehicle Phase AI cockpit light system removal: `docs/vehicle-phaseAI-cockpit-light-system-removal-2026-06-03.md`
 - Dealership intro flow marker setup: `docs/dealership-intro-flow-2026-06-03.md`
 - Character sprint controller handoff: `docs/character-sprint-controller-2026-06-04.md`
+- Vehicle Phase AK Bruiser modular defaults: `docs/vehicle-phaseAK-bruiser-modular-defaults-2026-06-05.md`
 - Cleanup Phase G full hierarchy audit: `docs/cleanup-phaseG-full-hierarchy-audit-2026-05-29.md`
 - Cleanup Phase H legacy inactive deletion: `docs/cleanup-phaseH-delete-legacy-inactive-items-2026-05-29.md`
 - Cleanup Phase I aggressive migration cleanup: `docs/cleanup-phaseI-aggressive-migration-cleanup-2026-05-29.md`

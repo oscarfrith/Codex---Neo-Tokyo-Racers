@@ -57,6 +57,39 @@ Vehicle Phase AI removes the experimental cockpit SpotLight/Beam/projector syste
 
 ## Module Assets
 
+Prepared Phase AK Bruiser shape:
+
+```text
+MODULES_InterchangeableWithinCategory
+  Engines
+    Bruiser_01
+      MODULE_ENGINE_BRUISER_01_STANDARD
+      MODULE_ENGINE_BRUISER_01_LIGHTWEIGHT
+      MODULE_ENGINE_BRUISER_01_POWER
+    ...
+  Stabilisers
+    Bruiser_01
+      MODULE_STABILISER_BRUISER_01_STANDARD
+      MODULE_STABILISER_BRUISER_01_LIGHTWEIGHT
+      MODULE_STABILISER_BRUISER_01_POWER
+    ...
+  Boost
+    Bruiser_01
+      MODULE_BOOST_BRUISER_01_STANDARD
+      MODULE_BOOST_BRUISER_01_LIGHTWEIGHT
+      MODULE_BOOST_BRUISER_01_POWER
+    ...
+  FrontBumpers
+    MODULE_FRONTBUMPER_LVL1
+    MODULE_FRONTBUMPER_LVL2
+    MODULE_FRONTBUMPER_LVL3
+  RearBumpers
+  RearSpoilers
+  SidePods
+```
+
+Modules remain interchangeable within `BRUISER`; the per-cockpit folders are catalogue organisation and visual family groupings, not compatibility locks.
+
 Current clean module folder shape requested by the user:
 
 ```text
@@ -95,6 +128,21 @@ Known module/cockpit stat attributes used by server/driving logic:
 - `BoostDuration`
 - `BoostRecharge`
 - `BoostRechargeDelay`
+
+Phase AK also adds editable balancing metadata:
+
+- `Tier`
+- `Level`
+- `Power`
+- `NeonPrice`
+- `BalanceEditable`
+- `BalanceNote`
+
+Bruiser cockpits can declare included standard modules with:
+
+- `DefaultEngineModuleId`
+- `DefaultStabilisersModuleId`
+- `DefaultBoostModuleId`
 
 `V75` adds missing Boost module attributes where possible:
 

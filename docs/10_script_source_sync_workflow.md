@@ -1,6 +1,6 @@
 # Studio Source Sync Workflow
 
-**Updated:** 2026-06-05  
+**Updated:** 2026-06-08  
 **Status:** Local receiver full-snapshot export/import workflow  
 **Purpose:** Capture the current Roblox Studio hierarchy and all script sources into GitHub with minimal manual copying.
 

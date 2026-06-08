@@ -33,6 +33,7 @@ Known dealership structure:
 - Phase 6 adds `Workspace.NeoTokyoRacersWorld.Dealership.Spawn.VehicleExitSpawnPoint` for the final server-created drivable vehicle after customisation. This is separate from the client-only preview marker.
 - Phase 7 adds an Exit button to the first cockpit-buy menu. It should sit in the bottom-right right column, aligned with the vehicle stats panel right edge and the Available Cash panel bottom edge, and reopen only after the player leaves and re-enters the desk zone.
 - VFX Phase AJ keeps thrust VFX preview attached to the Phase 4 local-only preview root: `Workspace._NTR_ClientOnly.VehiclePreview`.
+- Vehicle Phase AK makes dealership cockpit stats include the selected cockpit's standard engine pair, standard stabilisers, and standard boost so the bars reflect what the cockpit includes when purchased.
 - The user confirmed Phase 1-7 working on 2026-06-03.
 
 For mobile:
@@ -48,6 +49,21 @@ Known cockpit paint channels:
 - Primary
 - Secondary
 - Detail
+
+After running Phase AK per-cockpit defaults, default cockpit colours are editable directly on each cockpit model, for example:
+
+```text
+ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.BRUISER.COCKPITS_ReplaceAssetsHere.COCKPIT_BRUISER_01
+```
+
+Attributes:
+
+- `DefaultPrimaryColor`
+- `DefaultSecondaryColor`
+- `DefaultDetailColor`
+- `DefaultNeonColor`
+- `DefaultFrontLightsColor`
+- `DefaultRearLightsColor`
 
 Cockpit front/rear cosmetic neon defaults were requested:
 
@@ -79,6 +95,7 @@ When selecting modules:
 - Selecting a slot should show options for that slot.
 - Engine A/B assets should not be interchangeable between front/rear unless the folder/slot rules explicitly allow it.
 - Buy/equip should install the module and return to the slot menu.
+- Phase AK gates the Customise Modules button until at least one engine, stabilisers, and boost are equipped. If not, the UI shows a centered popup in the existing menu style.
 
 ## Customise Modules
 

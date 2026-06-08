@@ -4,6 +4,8 @@ This file is intentionally conservative. Items are included only when they were 
 
 ## Needs Play-Test Confirmation
 
+- Vehicle Phase AK and its follow-up repairs were reported working by the user. Keep mobile verification open for the centered required-modules popup and small-screen module option scrolling.
+- Phase AK recovery scripts remain available for the resolved register-limit, server core-gate, rear-engine catalogue, camera, per-cockpit default colour, and spawned module colour-sync problems. Do not rerun them unless the matching regression returns.
 - `V75` boost recharge delay and hover wobble were generated after `V74`, but no later user confirmation is present in this chat history.
 - Confirm that `BoostRechargeDelay` is being read from installed Boost modules at runtime.
 - Confirm that low-speed wobble is subtle enough and fades out by `20 MPH`.
@@ -93,6 +95,8 @@ Known sensitive areas:
 
 Known sensitive areas:
 
+- Default cockpit colours are edited on each cockpit model with `DefaultPrimaryColor`, `DefaultSecondaryColor`, `DefaultDetailColor`, `DefaultNeonColor`, `DefaultFrontLightsColor`, and `DefaultRearLightsColor`.
+- Phase AK uses guarded source text replacement against the active garage server controller and client bootstrap. If either source changed since the current mirror, refresh the Studio export before running or editing the installer.
 - Buyable modules need valid `Price` attributes.
 - Boost modules should have `Boost`, `BoostDuration`, `BoostRecharge`, and `BoostRechargeDelay`.
 - Module folder shape should stay simple and not reintroduce redundant colour-channel folders.
