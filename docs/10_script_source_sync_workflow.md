@@ -155,11 +155,11 @@ Good signs:
 - `checksums.json` exists and has one entry per exported script.
 - Old removed paths, such as `ReplicatedStorage.HOVER_RACING_V2_KIT`, should disappear after a fresh export if they are no longer in Studio.
 
-## Current Staleness Warning
+## Current Mirror Status
 
-The committed mirror is current through confirmed Vehicle Phase AN, but stale relative to confirmed Vehicle Phase AO. The mirrored main client bootstrap does not yet contain the Phase AO marker or UI source, and `roblox/studio_snapshot/hierarchy.md` is empty.
+The Studio mirror was refreshed on 2026-06-08 after confirmed Vehicle Phase AO. `roblox/studio_snapshot/hierarchy.md` is populated, and the exported mobile runtime controller/input module were used as the guarded baseline for `scripts/roblox_mobile_drive_thumbstick_install.lua`.
 
-Run the receiver/exporter workflow before using the mirror as the source for another guarded client patch.
+The V1 thumbstick was installed afterward, so the committed mirror currently still shows the pre-thumbstick arrow controller. After installing `scripts/roblox_mobile_drive_thumbstick_v2_visual_refinement.lua`, run the receiver/exporter workflow again before treating the repository mirror as current.
 
 ## What To Commit In GitHub Desktop
 

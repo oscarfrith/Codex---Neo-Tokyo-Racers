@@ -4,6 +4,7 @@ This file is intentionally conservative. Items are included only when they were 
 
 ## Needs Play-Test Confirmation
 
+- The fixed mobile steering thumbstick V1 is installed and visually liked by the user. The current update uses a `1.8x`-radius darker translucent drift ring, light-green idle cues, coordinated red drift cues, full outer-edge pointer travel, and `1.275x` pedals. Installed V2/V2.1 places should run `scripts/roblox_mobile_drive_thumbstick_v2_2_drift_feedback.lua`. Verify exact boundary activation, edge travel, hysteresis, pedal fit, multi-touch, and small-screen overlap.
 - Vehicle Phase AL was installed and its audit passed with 5 cockpits, 72 active modules, 23 planned upgrades, and 0 warnings.
 - Vehicle Phase AM is confirmed working. The isolated spawned-vehicle writer produced `17/17` raw variables, `17/17` normalized variables, `6/6` headline stats, a `D 407` test rating, and 0 audit warnings. Detailed physics was enabled and reported working well.
 - Keep `VehiclePerformanceRuntimeService_Active` as the current runtime owner. The earlier garage-controller write hook did not produce the Phase AM folders on fresh spawn.
@@ -22,8 +23,8 @@ This file is intentionally conservative. Items are included only when they were 
 
 ## Studio Export Mirror
 
-- The committed Studio mirror is stale relative to confirmed Phase AO. `roblox/exported_scripts/MANIFEST.md` still reports the 60-script Phase AN-era export, the mirrored main bootstrap is 2,877 lines and does not contain the Phase AO marker, and `roblox/studio_snapshot/hierarchy.md` is empty.
-- Run the full receiver/exporter workflow after Phase AO, verify the manifest/hierarchy/checksums, and commit the generated `roblox/exported_scripts/` and `roblox/studio_snapshot/` changes. Do not commit `docs/studio-full-export-paste.txt`.
+- The Studio mirror was refreshed on 2026-06-08 after confirmed Phase AO. `roblox/studio_snapshot/hierarchy.md` is populated and the exported runtime mobile controller/input module were used as the thumbstick installer baseline.
+- The current committed mirror still shows the pre-thumbstick arrow controller, so it is stale relative to installed V1. After installing V2, run the full receiver/exporter workflow again and commit the generated `roblox/exported_scripts/` and `roblox/studio_snapshot/` changes. Do not commit `docs/studio-full-export-paste.txt`.
 
 ## Camera
 
@@ -81,6 +82,22 @@ Known sensitive areas:
 ## Lighting
 
 - After running `scripts/roblox_lighting_phaseR_fogcolor_property_repair.lua`, confirm the `Lighting Fogcolor` warning no longer appears during Play startup.
+- Lighting Phase AP was installed and user-confirmed working. Tagged windows
+  switch between `Windows Day` and `Windows Night` with the lighting mode.
+- Edit-mode day/night preview scripts were added and need a quick Studio check
+  that both apply the intended sky, post effects, and tagged window material.
+- The night lamppost SurfaceLight installer is generated and needs Studio
+  verification. Confirm it finds the intended single template, copies it to all
+  `lamppost neon` MeshParts, enables the lights at night, and disables them in
+  day mode.
+- The first lamppost installer run found four duplicate template lights under
+  the same source MeshPart and aborted without changes. The installer now keeps
+  the first light as the template and removes duplicate siblings during install.
+- Phase AP removes matching SurfaceAppearance objects and clears MeshPart texture
+  content. Use Roblox place version history for rollback; no in-game backups are
+  created.
+- After Phase AP is installed, refresh the Studio mirror so the new controller,
+  tags, material assignments, and hierarchy are captured.
 
 ## VFX
 
@@ -105,7 +122,7 @@ Known sensitive areas:
 
 - Default cockpit colours are edited on each cockpit model with `DefaultPrimaryColor`, `DefaultSecondaryColor`, `DefaultDetailColor`, `DefaultNeonColor`, `DefaultFrontLightsColor`, and `DefaultRearLightsColor`.
 - Phase AK uses guarded source text replacement against the active garage server controller and client bootstrap. If either source changed since the current mirror, refresh the Studio export before running or editing the installer.
-- Phase AM and Phase AO use guarded source replacement against live scripts. Until the post-AO mirror refresh is committed, any future exact-match failure must be treated as a request for a fresh Studio export, not bypassed with a broad replacement.
+- Phase AM, Phase AO, and the mobile thumbstick installer use guarded source replacement against live scripts. The post-AO mirror was refreshed on 2026-06-08; after later Studio changes, any exact-match failure must be treated as a request for another fresh export, not bypassed with a broad replacement.
 - Buyable modules need valid `Price` attributes.
 - Boost modules should have `Boost`, `BoostDuration`, `BoostRecharge`, and `BoostRechargeDelay`.
 - Module folder shape should stay simple and not reintroduce redundant colour-channel folders.

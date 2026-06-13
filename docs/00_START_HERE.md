@@ -1,6 +1,6 @@
 # Neo Tokyo Racers Project Context
 
-Last updated: 2026-06-08
+Last updated: 2026-06-11
 
 This folder is the handoff pack for new Codex or ChatGPT sessions. Read this file first, then use the other docs only as needed.
 
@@ -29,6 +29,10 @@ Known from chat:
 - Architecture Phase P is present in the Git repo as the conservative first garage runtime startup repair, but it is superseded by Phase Q if the line 23 garage controller error remains.
 - Architecture Phase Q repaired the post-Phase-N/P garage startup regression where `GarageActionController_Shadow_Disabled` errors near line 23 and the garage UI does not load. The user reported Phase Q worked.
 - Lighting Phase R is prepared to repair `Fogcolor` typo warnings by changing lighting presets to Roblox's valid `FogColor` property and adding a compatibility alias in `LightingService_Active`.
+- Lighting Phase AP was installed and user-confirmed working. Building window
+  MeshParts now use `Windows Day` / `Windows Night` MaterialVariants and switch
+  with lighting mode. Separate Command Bar scripts preview either complete
+  condition in Studio edit mode.
 - Vehicle Phase AI removes/deprioritises the cockpit car-light experiments from Phases S through AH. No cockpit SpotLight, Beam, smoother, projector, or diagnostic runtime should be considered current. Ordinary cosmetic neon colour channels remain.
 - VFX Phase AJ is prepared to repair thrust VFX preview after Dealership Intro Phase 4 moved the local preview vehicle to `Workspace._NTR_ClientOnly.VehiclePreview`. Run `scripts/roblox_vfx_phaseAJ_thrust_preview_root_repair.lua` if thrust VFX no longer previews while editing thrust colour in the customisation menu.
 - Vehicle Phase AK was installed and confirmed working through its follow-up repairs. Bruiser modules now use per-cockpit Standard/Lightweight/Power front engine, rear engine, stabiliser, and boost sets plus Lvl 1-3 bumpers/spoilers/side pods. Cockpit purchase grants standard core modules, dealership stats include them, required modules are gated, camera entry views are corrected, per-cockpit default colours live on cockpit attributes, and spawned module colours match preview.
@@ -41,6 +45,7 @@ Known from chat:
 - `V74` restored the pre-V72/default Roblox driving camera feel and added a light camera assist. The user confirmed this worked well.
 - `V75` was generated next to add boost recharge delay and low-speed hover wobble. At the time of writing, no later user confirmation is present in this chat history.
 - Character sprint install was run and reported working on 2026-06-04. The live runtime hierarchy now includes `StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Runtime.CharacterSprintController_Active`; Shift sprint works on foot and Shift drift remains available while seated in a `VehicleSeat`. Mobile auto-sprint support is prepared in the installer and needs mobile/emulator verification.
+- The fixed mobile steering thumbstick V1 is installed and the user likes its current behavior/UI. The current design uses an outer drift ring with `1.8x` the inner radius, a darker translucent band, light-green idle cues, coordinated red drift cues, full outer-edge pointer travel, and `1.275x` frameless pedals. Installed V2/V2.1 places should run `scripts/roblox_mobile_drive_thumbstick_v2_2_drift_feedback.lua`.
 
 Recommended baseline:
 
@@ -49,8 +54,9 @@ Recommended baseline:
 - Use `scripts/roblox_hover_racing_v74_pre_v72_camera_assist.lua` if camera stability is the priority.
 - Use `scripts/roblox_hover_racing_v75_boost_delay_hover_wobble.lua` as the latest generated patch, then play-test fresh in Roblox Studio.
 - Use `scripts/roblox_character_sprint_controller_install.lua` to install or roll back the on-foot sprint controller. It writes tuning attributes under `ReplicatedStorage.NeoTokyoRacers.Shared.Config.CharacterMovement_EditAttributes`.
+- Use `scripts/roblox_mobile_drive_thumbstick_v2_visual_refinement.lua` on the installed V1 mobile controller as the next mobile UI test. It is a guarded exact-source follow-up; refresh the Studio mirror after running it.
 - Phase AK is installed. Keep its main installer and targeted repair scripts as recovery/history tools; do not rerun them on the confirmed live baseline unless the matching problem returns. These scripts use guarded source text replacement.
-- Phases AL-AO are the confirmed current vehicle performance/customisation baseline. Do not rerun their installers on the working place unless recovering from a matching rollback. The next required repository task is a post-AO Studio mirror refresh.
+- Phases AL-AO are the confirmed current vehicle performance/customisation baseline. Do not rerun their installers on the working place unless recovering from a matching rollback. The post-AO Studio mirror was refreshed on 2026-06-08.
 
 ## Important Working Style
 

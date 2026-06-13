@@ -142,7 +142,11 @@ Known mobile driving UI:
 
 - Accelerator button bottom right.
 - Smaller brake pedal nearby.
-- Left-side steering/drift controls.
+- A fixed horizontal steering thumbstick on the left replaces the four steering/drift arrow buttons after running `scripts/roblox_mobile_drive_thumbstick_install.lua`.
+- Steering begins only when the player touches the visible thumbstick or its forgiving enlarged hit area.
+- Run `scripts/roblox_mobile_drive_thumbstick_v2_visual_refinement.lua` after V1 to add a second outer drift ring. The border between the green regular-turn ring and outer drift ring matches the configured drift threshold.
+- The outer drift ring has `1.8x` the inner radius with a darker translucent band. Its idle border and `DRIFT` text use the light-green HUD accent. When the pointer crosses into the outer band, the pointer, text, and outer border all turn red, and the pointer can travel to the usable outer edge.
+- V2 raises the MPH/boost stack and sizes both pedals at `1.275x` while hiding their surrounding button frames.
 - Boost button also acts as boost meter.
 - MPH text shown above boost button.
 - PC bottom-left drive HUD should be hidden on mobile.

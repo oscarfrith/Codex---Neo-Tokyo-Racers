@@ -1,7 +1,7 @@
 # Day / Night Lighting Preset System
 
 **Created / first designed:** 2026-05-26  
-**Last updated:** 2026-05-28  
+**Last updated:** 2026-06-13  
 **Current status:** Partially working / night sky issue unresolved  
 **Relevant docs file:** `docs/lighting-and-atmosphere.md`  
 **Relevant files to edit:** Lighting preset modules/scripts only. Do not edit vehicle, LOD, or race files unless specifically requested.
@@ -107,6 +107,19 @@ Important design note:
   - Separate `Sky_Day` and `Sky_Night`
   - Or clone the correct sky from storage into `Lighting`
   - Or remove the sky entirely for night if using atmosphere/fog only
+- Lighting Phase AP was installed and user-confirmed working. It migrates
+  matching building window MeshParts to `Windows Day` / `Windows Night`
+  MaterialVariants and installs an event-driven client controller.
+- Separate day and night Command Bar scripts are available for applying the
+  complete preset and window materials while remaining in Studio edit mode.
+- A lamppost SurfaceLight installer is generated to distribute the
+  `SurfaceLight lamppost` template onto every `lamppost neon` MeshPart. Its
+  isolated client controller keeps the tagged lights disabled during day and
+  enabled during night.
+- The current ClearNight preset uses `ClockTime = 12.1`, so window night-mode
+  detection cannot safely use ClockTime. Phase AP prefers the
+  `NTR_LightingPreset` Lighting attribute and uses Brightness as compatibility
+  fallback for the existing N/M preview tool.
 
 ## Confirmed Working
 
@@ -132,3 +145,6 @@ Important design note:
 - If a lighting script name is `TBC`, inspect Studio before renaming or patching.
 - Treat the skybox issue as unresolved until night mode is verified in Studio or a published client.
 - Do not rename or remove `TEMP_LightingPreview` during general cleanup unless the lighting workflow has been replaced by a cleaner tool.
+- Before running Phase AP, confirm both MaterialVariants exist and use the same
+  BaseMaterial. The migration removes matching SurfaceAppearance children and
+  clears MeshPart texture content, so Roblox version history is the rollback.

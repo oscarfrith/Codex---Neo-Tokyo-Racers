@@ -48,11 +48,46 @@ Known behaviour:
 Current drift design:
 
 - `SHIFT` activates drift on keyboard.
+- Mobile steering uses a fixed horizontal thumbstick after running `scripts/roblox_mobile_drive_thumbstick_install.lua`. Moving beyond the configured drift threshold requests drift; hysteresis uses a lower exit threshold to prevent rapid toggling.
 - Character sprint may also use `LeftShift` while on foot, but `scripts/roblox_character_sprint_controller_install.lua` installs it as an on-foot-only controller. It does not bind/sink the key with `ContextActionService`, and it suspends itself when the humanoid is seated in a `VehicleSeat`, so vehicle drift can continue reading Shift directly.
 - Drift does not activate while reversing.
 - Drift slows the vehicle more than normal driving.
 - Drift improves turning while held.
 - Longer drift charges a stronger/longer post-drift mini boost.
+
+## Mobile Steering Thumbstick
+
+Prepared installer:
+
+- `scripts/roblox_mobile_drive_thumbstick_install.lua`
+
+The V1 installer replaces the four left steering/drift arrow buttons with one fixed horizontal thumbstick. A touch must begin on the visible thumbstick or its forgiving invisible hit area. Once captured, that touch remains responsible for steering until release, even if it moves outside the hit area.
+
+The V2 visual refinement is installed afterward with:
+
+- `scripts/roblox_mobile_drive_thumbstick_v2_visual_refinement.lua`
+
+The current design keeps the existing green ring as the normal-turn zone and adds an outer drift ring with `1.8x` the inner radius. The outer band has a darker translucent fill. At rest, its border and `DRIFT` text use the light-green HUD accent. The pointer travels to the usable outer edge; crossing the inner-ring boundary activates drift and changes the pointer, text, and outer border to red together.
+
+The thumbstick writes analog `Steer` and threshold-based `Drift` through the existing `MobileDriveInputState` contract. It does not change driving physics or the keyboard/gamepad input paths.
+
+Editable config folder:
+
+```text
+ReplicatedStorage.NeoTokyoRacers.Shared.Config.MobileDriveControls_EditAttributes
+```
+
+Attributes:
+
+- `ThumbstickSizePixels`
+- `TouchHitAreaMultiplier`
+- `ThumbstickTravelRatio`
+- `SteeringDeadzone`
+- `SteeringResponseExponent`
+- `DriftEnterThreshold`
+- `DriftExitThreshold`
+- `PedalScale`
+- `HudLiftPixels`
 
 ## Character Sprint
 
