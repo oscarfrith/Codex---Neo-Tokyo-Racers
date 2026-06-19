@@ -59,6 +59,8 @@ Each script applies the complete matching lighting preset, sky, post effects,
 Lighting preset attribute, and tagged window MaterialVariant. This makes it
 possible to edit and save the place while viewing either condition.
 
+Both edit-mode preview scripts were user-confirmed working.
+
 ## Verification
 
 1. Confirm `MaterialService` contains `Windows Day` and `Windows Night`.

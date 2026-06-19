@@ -112,6 +112,9 @@ Important design note:
   MaterialVariants and installs an event-driven client controller.
 - Separate day and night Command Bar scripts are available for applying the
   complete preset and window materials while remaining in Studio edit mode.
+- Separate capture scripts save the current edit-mode Lighting, atmosphere,
+  post effects, and active Sky back into either the `Day` or `ClearNight`
+  runtime preset for the next Play session.
 - A lamppost SurfaceLight installer is generated to distribute the
   `SurfaceLight lamppost` template onto every `lamppost neon` MeshPart. Its
   isolated client controller keeps the tagged lights disabled during day and

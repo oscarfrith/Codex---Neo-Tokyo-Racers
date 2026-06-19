@@ -4,6 +4,7 @@ This is a high-level summary, not a complete changelog of every script.
 
 ## Documentation
 
+- 2026-06-14: Added separate edit-mode lighting capture scripts for Day and ClearNight. Each captures the current Lighting properties, atmosphere, post effects, and active Sky, then rewrites the runtime preset module without exact source-text matching so the next fresh Play session uses the edited condition.
 - 2026-06-13: Repaired the lamppost SurfaceLight installer after Studio found four same-named light children under the source MeshPart. The installer now selects the first light as its template, cleans duplicate siblings, and refreshes every target to exactly one cloned light.
 - 2026-06-13: Added a rerunnable lamppost SurfaceLight installer. It clones the single `SurfaceLight lamppost` template onto every `lamppost neon` MeshPart, tags installed lights, and installs an event-driven client controller that enables them only during night mode.
 - 2026-06-13: Lighting Phase AP was installed and user-confirmed working. Added separate edit-mode day and night Command Bar preview scripts that apply the full lighting preset, sky, post effects, preset attribute, and matching tagged-window MaterialVariant without entering Play mode.

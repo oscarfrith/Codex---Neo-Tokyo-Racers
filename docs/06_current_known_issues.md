@@ -84,8 +84,10 @@ Known sensitive areas:
 - After running `scripts/roblox_lighting_phaseR_fogcolor_property_repair.lua`, confirm the `Lighting Fogcolor` warning no longer appears during Play startup.
 - Lighting Phase AP was installed and user-confirmed working. Tagged windows
   switch between `Windows Day` and `Windows Night` with the lighting mode.
-- Edit-mode day/night preview scripts were added and need a quick Studio check
-  that both apply the intended sky, post effects, and tagged window material.
+- Edit-mode day/night preview scripts were user-confirmed working.
+- Edit-mode capture-to-Day and capture-to-Night scripts were added. Verify each
+  in a fresh Play session after capture, and refresh the Studio mirror because
+  these scripts change the live LightingPresets ModuleScript and stored Sky.
 - The night lamppost SurfaceLight installer is generated and needs Studio
   verification. Confirm it finds the intended single template, copies it to all
   `lamppost neon` MeshParts, enables the lights at night, and disables them in
