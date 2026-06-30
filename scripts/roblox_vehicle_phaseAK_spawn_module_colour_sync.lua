@@ -104,7 +104,7 @@ if not string.find(clientSource, "NTR_VEHICLE_PHASE_AK_PREVIEW_MODULE_COLOUR_SYN
 			for slotId in pairs(State.Profile.InstalledModules) do
 				State.Profile.ModuleColors[slotId] = State.Profile.ModuleColors[slotId] or {}
 				State.Profile.ModuleColors[slotId][channel] = color
-			end
+	 		end
 		end
 		buildPreview()]],
 		"client cockpit paint preview module colour sync")
