@@ -14,6 +14,18 @@ local M = require(game:GetService("ReplicatedStorage")
 	:WaitForChild("MobileDriveInputState"))
 
 local TOUCH = UserInputService.TouchEnabled
+local configFolder = ReplicatedStorage
+	:WaitForChild("NeoTokyoRacers")
+	:WaitForChild("Shared")
+	:WaitForChild("Config")
+	:WaitForChild("MobileDriveControls_EditAttributes")
+
+local function configNumber(name, fallback, minimum, maximum)
+	local value = configFolder:GetAttribute(name)
+	if typeof(value) ~= "number" then value = fallback end
+	return math.clamp(value, minimum, maximum)
+end
+
 local HUD_PANEL = Color3.fromRGB(5, 9, 7)
 local HUD_PANEL_SOFT = Color3.fromRGB(13, 25, 21)
 local HUD_TEXT = Color3.fromRGB(218, 255, 231)
@@ -137,17 +149,94 @@ boostText.ZIndex = boostButton.ZIndex + 2
 applyText(boostText)
 boostText.Parent = boostButton
 
-local driftLeft = button(leftPanel, "DriftLeft", "<<")
-local turnLeft = button(leftPanel, "TurnLeft", "<")
-local turnRight = button(leftPanel, "TurnRight", ">")
-local driftRight = button(leftPanel, "DriftRight", ">>")
+local thumbHitArea = Instance.new("TextButton")
+thumbHitArea.Name = "SteeringThumbstickHitArea"
+thumbHitArea.AutoButtonColor = false
+thumbHitArea.BackgroundTransparency = 1
+thumbHitArea.BorderSizePixel = 0
+thumbHitArea.Text = ""
+thumbHitArea.Active = true
+thumbHitArea.Parent = leftPanel
+
+local thumbOuterRing = Instance.new("Frame")
+thumbOuterRing.Name = "SteeringDriftOuterRing"
+thumbOuterRing.AnchorPoint = Vector2.new(0.5, 0.5)
+thumbOuterRing.Position = UDim2.fromScale(0.5, 0.5)
+thumbOuterRing.BackgroundColor3 = Color3.fromRGB(48, 68, 57)
+thumbOuterRing.BackgroundTransparency = 0.68
+thumbOuterRing.BorderSizePixel = 0
+thumbOuterRing.Active = false
+thumbOuterRing.Parent = thumbHitArea
+corner(thumbOuterRing, 999)
+local thumbOuterStroke = stroke(thumbOuterRing, HUD_ACCENT, 0.24, 2)
+
+local thumbBase = Instance.new("Frame")
+thumbBase.Name = "SteeringThumbstickBase"
+thumbBase.AnchorPoint = Vector2.new(0.5, 0.5)
+thumbBase.Position = UDim2.fromScale(0.5, 0.5)
+thumbBase.BackgroundColor3 = HUD_PANEL_SOFT
+thumbBase.BackgroundTransparency = 0.18
+thumbBase.BorderSizePixel = 0
+thumbBase.Active = false
+thumbBase.ZIndex = thumbOuterRing.ZIndex + 1
+thumbBase.Parent = thumbOuterRing
+corner(thumbBase, 999)
+local thumbBaseStroke = stroke(thumbBase, HUD_ACCENT, 0.22, 2)
+
+local thumbGuide = Instance.new("Frame")
+thumbGuide.Name = "HorizontalGuide"
+thumbGuide.AnchorPoint = Vector2.new(0.5, 0.5)
+thumbGuide.Position = UDim2.fromScale(0.5, 0.5)
+thumbGuide.Size = UDim2.fromScale(0.62, 0.035)
+thumbGuide.BackgroundColor3 = HUD_ACCENT
+thumbGuide.BackgroundTransparency = 0.58
+thumbGuide.BorderSizePixel = 0
+thumbGuide.Active = false
+thumbGuide.ZIndex = thumbBase.ZIndex + 1
+thumbGuide.Parent = thumbBase
+corner(thumbGuide, 999)
+
+local thumbKnob = Instance.new("Frame")
+thumbKnob.Name = "SteeringThumbstickKnob"
+thumbKnob.AnchorPoint = Vector2.new(0.5, 0.5)
+thumbKnob.Position = UDim2.fromScale(0.5, 0.5)
+thumbKnob.BackgroundColor3 = HUD_ACCENT
+thumbKnob.BackgroundTransparency = 0.08
+thumbKnob.BorderSizePixel = 0
+thumbKnob.Active = false
+thumbKnob.ZIndex = thumbBase.ZIndex + 3
+thumbKnob.Parent = thumbOuterRing
+corner(thumbKnob, 999)
+local thumbKnobStroke = stroke(thumbKnob, HUD_TEXT, 0.2, 1)
+
+local driftText = Instance.new("TextLabel")
+driftText.Name = "DriftThresholdLabel"
+driftText.AnchorPoint = Vector2.new(0.5, 0)
+driftText.Position = UDim2.fromScale(0.5, 0.015)
+driftText.Size = UDim2.fromScale(0.72, 0.1)
+driftText.BackgroundTransparency = 1
+driftText.BorderSizePixel = 0
+driftText.Text = "DRIFT"
+driftText.TextColor3 = HUD_ACCENT
+driftText.TextTransparency = 0.08
+driftText.TextSize = 10
+driftText.ZIndex = thumbKnob.ZIndex + 1
+driftText.Active = false
+applyText(driftText)
+driftText.Parent = thumbOuterRing
+
+local thumbTravelPixels = 1
+local thumbDriftThreshold = 0.82
 
 local function makePedal(name, label, colour)
 	local b = button(rightPanel, name, "")
+	b.BackgroundTransparency = 1
+	local outerStroke = b:FindFirstChild("HUDStroke")
+	if outerStroke then outerStroke.Transparency = 1 end
 	local pad = Instance.new("Frame")
 	pad.Name = "RubberPad"
-	pad.Position = UDim2.fromScale(0.16, 0.1)
-	pad.Size = UDim2.fromScale(0.68, 0.72)
+	pad.Position = UDim2.fromScale(0.08, 0.05)
+	pad.Size = UDim2.fromScale(0.84, 0.86)
 	pad.BackgroundColor3 = HUD_PANEL
 	pad.BackgroundTransparency = 0.02
 	pad.BorderSizePixel = 0
@@ -190,15 +279,28 @@ local accel = makePedal("AcceleratorPedal", "", HUD_ACCENT)
 local buttonMap = {
 	[accel] = "Accelerate",
 	[brake] = "Brake",
-	[turnLeft] = "TurnLeft",
-	[turnRight] = "TurnRight",
-	[driftLeft] = "DriftLeft",
-	[driftRight] = "DriftRight",
 	[boostButton] = "Boost",
 }
 
 local function setPressed(b, active)
+	if b == accel or b == brake then
+		b.BackgroundTransparency = 1
+		local outerStroke = b:FindFirstChild("HUDStroke")
+		if outerStroke then outerStroke.Transparency = 1 end
+		local pad = b:FindFirstChild("RubberPad")
+		if pad then
+			pad.BackgroundTransparency = active and 0 or 0.02
+			local padStroke = pad:FindFirstChild("HUDStroke")
+			if padStroke then
+				padStroke.Transparency = active and 0.12 or 0.48
+				padStroke.Thickness = active and 2 or 1
+			end
+		end
+		return
+	end
+
 	b.BackgroundColor3 = active and HUD_ACCENT or HUD_PANEL_SOFT
+	b.BackgroundTransparency = active and 0.03 or 0.03
 	b.TextColor3 = active and HUD_PANEL or HUD_TEXT
 	local s = b:FindFirstChild("HUDStroke")
 	if s then
@@ -230,6 +332,109 @@ local function setAction(b, active)
 	refreshInput()
 end
 
+local activeSteeringInput = nil
+local mouseSteering = false
+local driftRequested = false
+
+local function publishSteering(steer, drift)
+	if typeof(M.SetSteering) == "function" then
+		M.SetSteering(steer, drift)
+	else
+		M.Steer = steer
+		M.Drift = drift
+	end
+end
+
+local function setThumbVisual(steer, drift)
+	thumbKnob.Position = UDim2.fromOffset(
+		thumbOuterRing.AbsoluteSize.X * 0.5 + steer * thumbTravelPixels,
+		thumbOuterRing.AbsoluteSize.Y * 0.5
+	)
+	local activeColour = drift and HUD_RED or HUD_ACCENT
+	thumbKnob.BackgroundColor3 = activeColour
+	thumbBaseStroke.Color = drift and HUD_RED or HUD_ACCENT
+	thumbBaseStroke.Transparency = math.abs(steer) > 0.01 and 0.08 or 0.22
+	thumbOuterStroke.Color = drift and HUD_RED or HUD_ACCENT
+	thumbOuterStroke.Transparency = drift and 0.04 or 0.24
+	thumbOuterStroke.Thickness = drift and 3 or 2
+	thumbKnobStroke.Thickness = drift and 2 or 1
+	driftText.TextColor3 = drift and HUD_RED or HUD_ACCENT
+	driftText.TextTransparency = drift and 0 or 0.08
+end
+
+local function updateSteering(position)
+	local centerX = thumbOuterRing.AbsolutePosition.X + thumbOuterRing.AbsoluteSize.X * 0.5
+	local raw = math.clamp((position.X - centerX) / math.max(thumbTravelPixels, 1), -1, 1)
+	local magnitude = math.abs(raw)
+	local deadzone = configNumber("SteeringDeadzone", 0.12, 0, 0.45)
+	local steer = 0
+	if magnitude > deadzone then
+		local scaled = math.clamp((magnitude - deadzone) / math.max(1 - deadzone, 0.01), 0, 1)
+		local exponent = configNumber("SteeringResponseExponent", 1.15, 0.5, 3)
+		steer = math.sign(raw) * (scaled ^ exponent)
+	end
+
+	local configuredEnter = configNumber("DriftEnterThreshold", 0.82, 0.5, 1)
+	local configuredExit = math.min(
+		configNumber("DriftExitThreshold", 0.70, 0.35, 0.95),
+		configuredEnter
+	)
+	local enterThreshold = thumbDriftThreshold
+	local exitThreshold = enterThreshold * math.clamp(
+		configuredExit / math.max(configuredEnter, 0.01),
+		0.55,
+		0.98
+	)
+	if driftRequested then
+		driftRequested = math.abs(steer) >= exitThreshold
+	else
+		driftRequested = math.abs(steer) >= enterThreshold
+	end
+
+	publishSteering(steer, driftRequested)
+	setThumbVisual(steer, driftRequested)
+end
+
+local function releaseSteering()
+	activeSteeringInput = nil
+	mouseSteering = false
+	driftRequested = false
+	if typeof(M.ReleaseSteering) == "function" then
+		M.ReleaseSteering()
+	else
+		M.Steer = 0
+		M.Drift = false
+	end
+	setThumbVisual(0, false)
+end
+
+thumbHitArea.InputBegan:Connect(function(input)
+	if activeSteeringInput then return end
+	if input.UserInputType == Enum.UserInputType.Touch then
+		activeSteeringInput = input
+		updateSteering(input.Position)
+	elseif input.UserInputType == Enum.UserInputType.MouseButton1 then
+		activeSteeringInput = input
+		mouseSteering = true
+		updateSteering(input.Position)
+	end
+end)
+
+UserInputService.InputChanged:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.Touch and input == activeSteeringInput then
+		updateSteering(input.Position)
+	elseif mouseSteering and input.UserInputType == Enum.UserInputType.MouseMovement then
+		updateSteering(input.Position)
+	end
+end)
+
+UserInputService.InputEnded:Connect(function(input)
+	if input == activeSteeringInput
+		or (mouseSteering and input.UserInputType == Enum.UserInputType.MouseButton1) then
+		releaseSteering()
+	end
+end)
+
 for b in pairs(buttonMap) do
 	b.InputBegan:Connect(function(input)
 		if input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseButton1 then
@@ -256,6 +461,7 @@ local function resetInput()
 	for b in pairs(buttonMap) do
 		setPressed(b, false)
 	end
+	releaseSteering()
 end
 
 local function findGarageVisible()
@@ -421,33 +627,48 @@ local function layout()
 	local margin = tiny and 13 or 20
 	local gap = tiny and 6 or 8
 
-	local arrow = math.floor(math.clamp(width * 0.088, tiny and 42 or 50, tiny and 55 or 64) + 0.5)
-	local rowWidth = arrow * 4 + gap * 3
+	local configuredSize = configNumber("ThumbstickSizePixels", 118, 82, 180)
+	local thumbSize = math.floor(math.clamp(configuredSize * (tiny and 0.88 or 1), 82, 160) + 0.5)
+	local knobSize = math.floor(thumbSize * 0.42 + 0.5)
+	local enterThreshold = configNumber("DriftEnterThreshold", 0.82, 0.5, 1)
+	local outerSize = math.floor(thumbSize * 1.8 + 0.5)
+	local regularTravel = math.max((thumbSize - knobSize) * 0.5, 1)
+	thumbTravelPixels = math.max((outerSize - knobSize) * 0.5, 1)
+	thumbDriftThreshold = math.clamp(regularTravel / thumbTravelPixels, 0.05, 0.95)
+	local hitMultiplier = configNumber("TouchHitAreaMultiplier", 1.35, 1, 1.75)
+	local hitSize = math.floor(outerSize * hitMultiplier + 0.5)
+	local panelWidth = math.max(hitSize, outerSize)
 	local mphH = tiny and 20 or 25
-	local boostW = math.floor(math.clamp(rowWidth * 0.58, 92, 140) + 0.5)
-	local boostH = math.floor(math.clamp(arrow * 0.72, 32, 46) + 0.5)
+	local boostW = math.floor(math.clamp(thumbSize * 0.94, 92, 140) + 0.5)
+	local boostH = math.floor(math.clamp(thumbSize * 0.34, 32, 46) + 0.5)
+	local hudLift = math.floor(configNumber("HudLiftPixels", 12, 0, 40) + 0.5)
+	local controlsY = mphH + boostH + gap * 2 + hudLift
+	local totalHeight = controlsY + hitSize
 
-	leftPanel.Position = UDim2.fromOffset(margin, height - margin - arrow - boostH - mphH - gap * 2)
-	leftPanel.Size = UDim2.fromOffset(rowWidth, arrow + boostH + mphH + gap * 2)
+	leftPanel.Position = UDim2.fromOffset(margin, height - margin - totalHeight)
+	leftPanel.Size = UDim2.fromOffset(panelWidth, totalHeight)
 
-	mphLabel.Position = UDim2.fromOffset(math.floor((rowWidth - boostW) * 0.5), 0)
+	mphLabel.Position = UDim2.fromOffset(math.floor((panelWidth - boostW) * 0.5), 0)
 	mphLabel.Size = UDim2.fromOffset(boostW, mphH)
 	mphLabel.TextSize = tiny and 13 or 15
 
-	boostButton.Position = UDim2.fromOffset(math.floor((rowWidth - boostW) * 0.5), mphH + gap)
+	boostButton.Position = UDim2.fromOffset(math.floor((panelWidth - boostW) * 0.5), mphH + gap)
 	boostButton.Size = UDim2.fromOffset(boostW, boostH)
 	boostText.TextSize = tiny and 11 or 12
 
-	local y = mphH + boostH + gap * 2
-	local row = { driftLeft, turnLeft, turnRight, driftRight }
-	for index, b in ipairs(row) do
-		b.Position = UDim2.fromOffset((index - 1) * (arrow + gap), y)
-		b.Size = UDim2.fromOffset(arrow, arrow)
-		b.TextSize = (b == turnLeft or b == turnRight) and (tiny and 22 or 27) or (tiny and 17 or 21)
-	end
+	thumbHitArea.Position = UDim2.fromOffset(math.floor((panelWidth - hitSize) * 0.5), controlsY)
+	thumbHitArea.Size = UDim2.fromOffset(hitSize, hitSize)
+	thumbOuterRing.Size = UDim2.fromOffset(outerSize, outerSize)
+	thumbBase.Size = UDim2.fromOffset(thumbSize, thumbSize)
+	thumbKnob.Size = UDim2.fromOffset(knobSize, knobSize)
+	driftText.TextSize = tiny and 9 or 10
+	setThumbVisual(M.Steer or 0, M.Drift == true)
 
-	local accelW = math.floor(math.clamp(width * 0.1, tiny and 55 or 66, tiny and 72 or 86) + 0.5)
-	local accelH = math.floor(math.clamp(height * 0.18, tiny and 88 or 108, tiny and 122 or 148) + 0.5)
+	local pedalScale = configNumber("PedalScale", 1.275, 1, 1.75)
+	local baseAccelW = math.clamp(width * 0.1, tiny and 55 or 66, tiny and 72 or 86)
+	local baseAccelH = math.clamp(height * 0.18, tiny and 88 or 108, tiny and 122 or 148)
+	local accelW = math.floor(math.min(baseAccelW * pedalScale, width * 0.16) + 0.5)
+	local accelH = math.floor(math.min(baseAccelH * pedalScale, height * 0.34) + 0.5)
 	local brakeW = math.floor(accelW * 0.86 + 0.5)
 	local brakeH = math.floor(accelH * 0.86 + 0.5)
 	local pedalW = accelW + brakeW + gap

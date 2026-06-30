@@ -1,104 +1,93 @@
-local LightingPresets = {}
-
-LightingPresets.Day = {
-	SkyName = "DaySky",
-	
-	Lighting = {
-		ClockTime = 12,
-		Brightness = 5.150000095367432,
-		Ambient = Color3.fromRGB(105, 187, 255),
-		OutdoorAmbient = Color3.fromRGB(156, 214, 232),
-		ColorShift_Top = Color3.fromRGB(255, 243, 212),
-		ColorShift_Bottom = Color3.fromRGB(0, 0, 0),
-		EnvironmentDiffuseScale = 0.47099998593330383,
-		EnvironmentSpecularScale = 1,
-		ExposureCompensation = 0.10000000149011612,
-		FogColor = Color3.fromRGB(192, 192, 192),
-		FogEnd = 100000,
-		FogStart = 0,
-		ShadowSoftness = 0.20000000298023224,
-		GlobalShadows = true,
+local LightingPresets = {
+	ClearNight = {
+		Atmosphere = {
+			Color = Color3.new(0.54117649793624878, 0.48627454042434692, 0.42352944612503052),
+			Decay = Color3.new(0.30980393290519714, 0.29019609093666077, 0.22352942824363708),
+			Density = 0.24400000274181366,
+			Glare = 4.230000019073486,
+			Haze = 3.9700000286102295,
+			Offset = 0.28200000524520874,
+		},
+		Bloom = {
+			Enabled = true,
+			Intensity = 0.30000001192092896,
+			Size = 9,
+			Threshold = 0.9890000224113464,
+		},
+		ColorCorrection = {
+			Brightness = 0.10000000149011612,
+			Contrast = 0.5,
+			Enabled = true,
+			Saturation = 0.20000000298023224,
+			TintColor = Color3.new(1, 0.83921575546264648, 0.70980393886566162),
+		},
+		DepthOfField = {
+			Enabled = false,
+			FarIntensity = 0.08399999886751175,
+			FocusDistance = 0.05000000074505806,
+			InFocusRadius = 10,
+			NearIntensity = 0.75,
+		},
+		Lighting = {
+			Ambient = Color3.new(0.28235295414924622, 0.32549020648002625, 0.41568630933761597),
+			Brightness = 0.20000000298023224,
+			ClockTime = 0,
+			ColorShift_Bottom = Color3.new(0.16470588743686676, 0.13333334028720856, 0.20392158627510071),
+			ColorShift_Top = Color3.new(0.27058824896812439, 0.29803922772407532, 0.42745101451873779),
+			EnvironmentDiffuseScale = 0,
+			EnvironmentSpecularScale = 1,
+			ExposureCompensation = 2.4600000381469727,
+			FogColor = Color3.new(0.62745100259780884, 0.65490198135375977, 0.75294119119644165),
+			FogEnd = 50000,
+			FogStart = 0,
+			GlobalShadows = false,
+			OutdoorAmbient = Color3.new(0.21568629145622253, 0.22352942824363708, 0.29019609093666077),
+			ShadowSoftness = 0.44999998807907104,
+		},
+		SkyName = "ClearNightSky",
+		SunRays = {
+			Enabled = false,
+			Intensity = 0.05000000074505806,
+			Spread = 0.7129999995231628,
+		},
 	},
-
-	Atmosphere = {
-		Density = 0.2199999988079071,
-		Offset = 0.20000000298023224,
-		Color = Color3.fromRGB(199, 199, 199),
-		Decay = Color3.fromRGB(106, 112, 125),
-		Glare = 0,
-		Haze = 0,
-	},
-
-	ColorCorrection = {
-		Brightness = 0.05000000074505806,
-		Contrast = 0,
-		Saturation = 0.4000000059604645,
-		TintColor = Color3.fromRGB(255, 255, 255),
-	},
-
-	Bloom = {
-		Intensity = 0.6499999761581421,
-		Size = 10,
-		Threshold = 1.9040000438690186,
-	},
-}
-
-LightingPresets.ClearNight = {
-	SkyName = "ClearNightSky",
-
-	Lighting = {
-		ClockTime = 12.1,
-		Brightness = 0.23999999463558197,
-		Ambient = Color3.fromRGB(65, 78, 125),
-		OutdoorAmbient = Color3.fromRGB(123, 125, 163),
-		ColorShift_Top = Color3.fromRGB(162, 176, 255),
-		ColorShift_Bottom = Color3.fromRGB(67, 54, 83),
-		EnvironmentDiffuseScale = 0.3230000138282776,
-		EnvironmentSpecularScale = 1,
-		ExposureCompensation = .8,
-		FogColor = Color3.fromRGB(160, 167, 192),
-		FogEnd = 50000,
-		FogStart = 0,
-		ShadowSoftness = 0.44999998807907104,
-		GlobalShadows = true,
-	},
-
-	Atmosphere = {
-		Density = 0.3199999988079071,
-		Offset = 0.30000000298023224,
-		Color = Color3.fromRGB(180, 183, 218),
-		Decay = Color3.fromRGB(93, 97, 125),
-		Glare = 0,
-		Haze = 0,
-	},
-
-	ColorCorrection = {
-		Brightness = 0.4000000059604645,
-		Contrast = 1,
-		Saturation = 0.10000000149011612,
-		TintColor = Color3.fromRGB(195, 195, 195),
-		Enabled = true,
-	},
-
-	Bloom = {
-		Intensity = 0.65,
-		Size = 1,
-		Threshold = 1.8,
-		Enabled = true,
-	},
-
-	SunRays = {
-		Intensity = 0.05000000074505806,
-		Spread = 0.7129999995231628,
-		Enabled = false,
-	},
-
-	DepthOfField = {
-		FarIntensity = 0.08399999886751175,
-		FocusDistance = 0.05000000074505806,
-		InFocusRadius = 10,
-		NearIntensity = 0.75,
-		Enabled = false,
+	Day = {
+		Atmosphere = {
+			Color = Color3.new(0.78039216995239258, 0.78039216995239258, 0.78039216995239258),
+			Decay = Color3.new(0.41568627953529358, 0.43921568989753723, 0.49019607901573181),
+			Density = 0.2199999988079071,
+			Glare = 0,
+			Haze = 0,
+			Offset = 0.20000000298023224,
+		},
+		Bloom = {
+			Intensity = 0.6499999761581421,
+			Size = 10,
+			Threshold = 1.9040000438690186,
+		},
+		ColorCorrection = {
+			Brightness = 0.05000000074505806,
+			Contrast = 0,
+			Saturation = 0.4000000059604645,
+			TintColor = Color3.new(1, 1, 1),
+		},
+		Lighting = {
+			Ambient = Color3.new(0.4117647111415863, 0.73333334922790527, 1),
+			Brightness = 5.150000095367432,
+			ClockTime = 12,
+			ColorShift_Bottom = Color3.new(0, 0, 0),
+			ColorShift_Top = Color3.new(1, 0.9529411792755127, 0.83137255907058716),
+			EnvironmentDiffuseScale = 0.47099998593330383,
+			EnvironmentSpecularScale = 1,
+			ExposureCompensation = 0.10000000149011612,
+			FogColor = Color3.new(0.75294119119644165, 0.75294119119644165, 0.75294119119644165),
+			FogEnd = 100000,
+			FogStart = 0,
+			GlobalShadows = true,
+			OutdoorAmbient = Color3.new(0.61176472902297974, 0.83921569585800171, 0.90980392694473267),
+			ShadowSoftness = 0.20000000298023224,
+		},
+		SkyName = "DaySky",
 	},
 }
 

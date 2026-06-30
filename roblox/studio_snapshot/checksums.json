@@ -43,9 +43,9 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Client/Controllers/MobileDriveInputState.module.lua",
     "class_name": "ModuleScript",
     "disabled": false,
-    "source_lines": 39,
-    "source_bytes": 1086,
-    "source_checksum": "51490029"
+    "source_lines": 67,
+    "source_bytes": 1845,
+    "source_checksum": "151878447"
   },
   "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Controllers.ReentryThrottle": {
     "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Client/Controllers/ReentryThrottle.module.lua",
@@ -243,9 +243,9 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Shared/LightingPresets/LightingPresets.module.lua",
     "class_name": "ModuleScript",
     "disabled": false,
-    "source_lines": 105,
-    "source_bytes": 2375,
-    "source_checksum": "192036227"
+    "source_lines": 95,
+    "source_bytes": 3041,
+    "source_checksum": "292986082"
   },
   "ServerScriptService.NeoTokyoRacers.Services.Dealership.IntroProgressService_Active": {
     "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Dealership/IntroProgressService_Active.server.lua",
@@ -387,9 +387,9 @@
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Runtime/MobileDriveControlsController_Active.client.lua",
     "class_name": "LocalScript",
     "disabled": false,
-    "source_lines": 495,
-    "source_bytes": 14984,
-    "source_checksum": "342420254"
+    "source_lines": 716,
+    "source_bytes": 22829,
+    "source_checksum": "965644691"
   },
   "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Runtime.RuntimeVFXController_Active": {
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Runtime/RuntimeVFXController_Active.client.lua",
@@ -463,6 +463,22 @@
     "source_bytes": 8871,
     "source_checksum": "223745690"
   },
+  "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.World.NightLamppostLightController_Active": {
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/World/NightLamppostLightController_Active.client.lua",
+    "class_name": "LocalScript",
+    "disabled": false,
+    "source_lines": 63,
+    "source_bytes": 1529,
+    "source_checksum": "101975414"
+  },
+  "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.World.WindowMaterialController_Active": {
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/World/WindowMaterialController_Active.client.lua",
+    "class_name": "LocalScript",
+    "disabled": false,
+    "source_lines": 84,
+    "source_bytes": 2161,
+    "source_checksum": "204211113"
+  },
   "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.NeoTokyoRacersClient_Bootstrap_Shadow_Disabled": {
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/NeoTokyoRacersClient_Bootstrap_Shadow_Disabled.client.lua",
     "class_name": "LocalScript",
@@ -471,6 +487,14 @@
     "source_bytes": 131577,
     "source_checksum": "137133952"
   },
+  "StarterPlayer.StarterPlayerScripts.LocalScript": {
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/LocalScript.client.lua",
+    "class_name": "LocalScript",
+    "disabled": false,
+    "source_lines": 203,
+    "source_bytes": 4758,
+    "source_checksum": "950655290"
+  },
   "StarterPlayer.StarterPlayerScripts.TEMP_LightingPreview": {
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/TEMP_LightingPreview.client.lua",
     "class_name": "LocalScript",
@@ -478,5 +502,21 @@
     "source_lines": 119,
     "source_bytes": 2956,
     "source_checksum": "383649521"
+  },
+  "StarterPlayer.StarterPlayerScripts.TrailerMode.client.lua": {
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/TrailerMode.client.lua.client.lua",
+    "class_name": "LocalScript",
+    "disabled": false,
+    "source_lines": 73,
+    "source_bytes": 1678,
+    "source_checksum": "119603940"
+  },
+  "StarterPlayer.StarterPlayerScripts.TrailerShot01Camera": {
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/TrailerShot01Camera.client.lua",
+    "class_name": "LocalScript",
+    "disabled": false,
+    "source_lines": 92,
+    "source_bytes": 2225,
+    "source_checksum": "211621477"
   }
 }

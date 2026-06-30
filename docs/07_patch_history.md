@@ -4,6 +4,7 @@ This is a high-level summary, not a complete changelog of every script.
 
 ## Documentation
 
+- 2026-06-30: Cleaned up `prompts/01_start_every_session.md` with the current local repo path and normal repo-relative file paths, then refreshed the Studio full snapshot mirror. The fresh export was generated in Studio at 11:10:17 and imported 65 scripts, including the mobile thumbstick controller, window material controller, and night lamppost light controller.
 - 2026-06-14: Added separate edit-mode lighting capture scripts for Day and ClearNight. Each captures the current Lighting properties, atmosphere, post effects, and active Sky, then rewrites the runtime preset module without exact source-text matching so the next fresh Play session uses the edited condition.
 - 2026-06-13: Repaired the lamppost SurfaceLight installer after Studio found four same-named light children under the source MeshPart. The installer now selects the first light as its template, cleans duplicate siblings, and refreshes every target to exactly one cloned light.
 - 2026-06-13: Added a rerunnable lamppost SurfaceLight installer. It clones the single `SurfaceLight lamppost` template onto every `lamppost neon` MeshPart, tags installed lights, and installs an event-driven client controller that enables them only during night mode.

@@ -1,6 +1,6 @@
 # Studio Source Sync Workflow
 
-**Updated:** 2026-06-08  
+**Updated:** 2026-06-30  
 **Status:** Local receiver full-snapshot export/import workflow  
 **Purpose:** Capture the current Roblox Studio hierarchy and all script sources into GitHub with minimal manual copying.
 
@@ -157,9 +157,9 @@ Good signs:
 
 ## Current Mirror Status
 
-The Studio mirror was refreshed on 2026-06-08 after confirmed Vehicle Phase AO. `roblox/studio_snapshot/hierarchy.md` is populated, and the exported mobile runtime controller/input module were used as the guarded baseline for `scripts/roblox_mobile_drive_thumbstick_install.lua`.
+The Studio mirror was refreshed on 2026-06-30 at 11:10:17 and imported 65 scripts. `roblox/studio_snapshot/hierarchy.md` is populated, and the exported runtime now includes the mobile thumbstick controller, Lighting Phase AP window material controller, and night lamppost SurfaceLight controller.
 
-The V1 thumbstick was installed afterward, so the committed mirror currently still shows the pre-thumbstick arrow controller. After installing `scripts/roblox_mobile_drive_thumbstick_v2_visual_refinement.lua`, run the receiver/exporter workflow again before treating the repository mirror as current.
+The fresh mirror also shows active loose `StarterPlayerScripts` filming/camera helpers (`LocalScript`, `TrailerMode.client.lua`, and `TrailerShot01Camera`). Treat them as review items before publishing a normal gameplay build unless they are intentionally kept enabled.
 
 ## What To Commit In GitHub Desktop
 

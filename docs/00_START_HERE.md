@@ -1,6 +1,6 @@
 # Neo Tokyo Racers Project Context
 
-Last updated: 2026-06-11
+Last updated: 2026-06-30
 
 This folder is the handoff pack for new Codex or ChatGPT sessions. Read this file first, then use the other docs only as needed.
 
@@ -56,7 +56,7 @@ Recommended baseline:
 - Use `scripts/roblox_character_sprint_controller_install.lua` to install or roll back the on-foot sprint controller. It writes tuning attributes under `ReplicatedStorage.NeoTokyoRacers.Shared.Config.CharacterMovement_EditAttributes`.
 - Use `scripts/roblox_mobile_drive_thumbstick_v2_visual_refinement.lua` on the installed V1 mobile controller as the next mobile UI test. It is a guarded exact-source follow-up; refresh the Studio mirror after running it.
 - Phase AK is installed. Keep its main installer and targeted repair scripts as recovery/history tools; do not rerun them on the confirmed live baseline unless the matching problem returns. These scripts use guarded source text replacement.
-- Phases AL-AO are the confirmed current vehicle performance/customisation baseline. Do not rerun their installers on the working place unless recovering from a matching rollback. The post-AO Studio mirror was refreshed on 2026-06-08.
+- Phases AL-AO are the confirmed current vehicle performance/customisation baseline. Do not rerun their installers on the working place unless recovering from a matching rollback. The Studio mirror was refreshed on 2026-06-30 at 11:10:17 and now includes the mobile thumbstick controller plus Lighting Phase AP window/lamppost controllers.
 
 ## Important Working Style
 
