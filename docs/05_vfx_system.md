@@ -96,3 +96,33 @@ Known performance choices:
 - A weld leak in cached thrust visuals was fixed in V66.
 - Particle rates should stay moderate on mobile.
 - Beams are generally efficient, but lots of animated textures/particles across many cars still need profiling.
+
+## Mobile Late-Socket Repair
+
+Prepared repair:
+
+- `scripts/roblox_vfx_mobile_late_socket_rescan_repair.lua`
+
+Observed issue:
+
+- Engine, boost, or stabiliser VFX can intermittently fail to appear on mobile.
+
+Likely root cause from the current mirror:
+
+- `VehicleVFXController.Attach` attaches template VFX only to sockets present during the first scan.
+- On mobile, vehicle/module descendants or the vehicle root can arrive later than the initial attach, so engine/boost/stabiliser sockets or the visibility root may be missed.
+- Once missed, the controller keeps running but does not attach templates to the late sockets, and a missing root can keep template VFX culled.
+
+Fix intent:
+
+- Track sockets already handled by `VehicleVFXController`.
+- Periodically rescan the vehicle for new `VFXSocket` / `VFX_` attachments.
+- Attach template VFX only to newly discovered sockets, avoiding duplicate hosts.
+- Refresh the controller root if it was not available during the first attach.
+
+Verification:
+
+- Run the repair in Studio edit mode.
+- Start a fresh mobile/emulator Play session.
+- Spawn a complete vehicle and confirm engine idle/on, boost, and left/right stabiliser drift VFX appear.
+- Repeat once or twice after respawn/re-enter because the bug was intermittent.

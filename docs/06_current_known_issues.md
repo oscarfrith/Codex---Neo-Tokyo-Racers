@@ -108,6 +108,7 @@ Known sensitive areas:
 
 Known sensitive areas:
 
+- A repair script is prepared for intermittent missing engine/boost/stabiliser VFX on mobile: `scripts/roblox_vfx_mobile_late_socket_rescan_repair.lua`. Root cause from the current mirror: `VehicleVFXController.Attach` scans VFX sockets and captures the vehicle root only once, so late-replicated mobile module sockets/root parts can be missed permanently. Verify fresh mobile/emulator Play, respawn/re-enter, boost, acceleration, and left/right drift after running it.
 - Dealership Phase 4 moved the local preview vehicle to `Workspace._NTR_ClientOnly.VehiclePreview`; thrust VFX preview helpers must resolve this root before the old `Workspace.HOVER_RACING_V2_LOCAL_PREVIEW` fallback.
 - Thrust colour should not flicker back to default after editing.
 - Cosmetic neon and thrust-colour neon must remain separate.
