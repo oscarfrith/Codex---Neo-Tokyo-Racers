@@ -46,6 +46,7 @@ Known from chat:
 - `V75` was generated next to add boost recharge delay and low-speed hover wobble. At the time of writing, no later user confirmation is present in this chat history.
 - Character sprint install was run and reported working on 2026-06-04. The live runtime hierarchy now includes `StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Runtime.CharacterSprintController_Active`; Shift sprint works on foot and Shift drift remains available while seated in a `VehicleSeat`. Mobile auto-sprint support is prepared in the installer and needs mobile/emulator verification.
 - The fixed mobile steering thumbstick V1 is installed and the user likes its current behavior/UI. The current design uses an outer drift ring with `1.8x` the inner radius, a darker translucent band, light-green idle cues, coordinated red drift cues, full outer-edge pointer travel, and `1.275x` frameless pedals. Installed V2/V2.1 places should run `scripts/roblox_mobile_drive_thumbstick_v2_2_drift_feedback.lua`.
+- Mobile thumbstick V2.3 was tested and reported much better, but still needed a larger visible control and later drift entry. V2.4 is generated as the next Studio test: it keeps zero deadzone/linear steering, enlarges the inner circle to `1.4x`, makes the outer drift ring `1.35x` the enlarged inner circle, and triggers drift at `0.95x` outer-ring travel with a `0.88` exit threshold.
 
 Recommended baseline:
 
@@ -55,6 +56,7 @@ Recommended baseline:
 - Use `scripts/roblox_hover_racing_v75_boost_delay_hover_wobble.lua` as the latest generated patch, then play-test fresh in Roblox Studio.
 - Use `scripts/roblox_character_sprint_controller_install.lua` to install or roll back the on-foot sprint controller. It writes tuning attributes under `ReplicatedStorage.NeoTokyoRacers.Shared.Config.CharacterMovement_EditAttributes`.
 - Use `scripts/roblox_mobile_drive_thumbstick_v2_visual_refinement.lua` on the installed V1 mobile controller as the next mobile UI test. It is a guarded exact-source follow-up; refresh the Studio mirror after running it.
+- Use `scripts/roblox_mobile_drive_thumbstick_v2_4_large_edge_drift.lua` after the tested V2.3 mobile thumbstick if the control still needs a larger visible touch target and later drift activation. It is a guarded exact-source follow-up; refresh the Studio mirror after running and confirming it.
 - Phase AK is installed. Keep its main installer and targeted repair scripts as recovery/history tools; do not rerun them on the confirmed live baseline unless the matching problem returns. These scripts use guarded source text replacement.
 - Phases AL-AO are the confirmed current vehicle performance/customisation baseline. Do not rerun their installers on the working place unless recovering from a matching rollback. The Studio mirror was refreshed on 2026-06-30 at 11:10:17 and now includes the mobile thumbstick controller plus Lighting Phase AP window/lamppost controllers.
 

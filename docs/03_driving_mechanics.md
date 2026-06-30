@@ -67,7 +67,28 @@ The V2 visual refinement is installed afterward with:
 
 - `scripts/roblox_mobile_drive_thumbstick_v2_visual_refinement.lua`
 
-The current design keeps the existing green ring as the normal-turn zone and adds an outer drift ring with `1.8x` the inner radius. The outer band has a darker translucent fill. At rest, its border and `DRIFT` text use the light-green HUD accent. The pointer travels to the usable outer edge; crossing the inner-ring boundary activates drift and changes the pointer, text, and outer border to red together.
+The current installed V2.2 design keeps the existing green ring as the normal-turn zone and adds an outer drift ring with `1.8x` the inner radius. The outer band has a darker translucent fill. At rest, its border and `DRIFT` text use the light-green HUD accent. The pointer travels to the usable outer edge; crossing the inner-ring boundary activates drift and changes the pointer, text, and outer border to red together.
+
+The V2.3 follow-up was:
+
+- `scripts/roblox_mobile_drive_thumbstick_v2_3_snappy_steering.lua`
+
+V2.3 removes the steering deadzone by default, changes the default steering
+response exponent to linear `1`, shrinks the outer drift ring to `1.25x` the
+inner ring, reduces the invisible touch hit area, and lowers the boost button so
+it sits just above the visible outer ring with a small buffer. It needs
+mobile/emulator play-testing before treating it as the confirmed baseline.
+
+The next generated follow-up is:
+
+- `scripts/roblox_mobile_drive_thumbstick_v2_4_large_edge_drift.lua`
+
+V2.4 targets the user feedback that V2.3 is much better but still not quite
+large/direct enough. It keeps zero deadzone and linear steering, enlarges the
+inner circle to `1.4x`, makes the outer ring `1.35x` the enlarged inner circle,
+and moves drift entry out near the usable edge with a default enter threshold of
+`0.95` and exit threshold of `0.88`. It needs mobile/emulator play-testing for
+small-screen fit, boost overlap, touch jitter, and whether drift feels too late.
 
 The thumbstick writes analog `Steer` and threshold-based `Drift` through the existing `MobileDriveInputState` contract. It does not change driving physics or the keyboard/gamepad input paths.
 
@@ -80,6 +101,8 @@ ReplicatedStorage.NeoTokyoRacers.Shared.Config.MobileDriveControls_EditAttribute
 Attributes:
 
 - `ThumbstickSizePixels`
+- `ThumbstickInnerScale`
+- `ThumbstickOuterRingScale`
 - `TouchHitAreaMultiplier`
 - `ThumbstickTravelRatio`
 - `SteeringDeadzone`
@@ -88,6 +111,7 @@ Attributes:
 - `DriftExitThreshold`
 - `PedalScale`
 - `HudLiftPixels`
+- `BoostToOuterRingBufferPixels`
 
 ## Character Sprint
 
