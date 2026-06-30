@@ -12,6 +12,30 @@ The UI direction is futuristic, compact, and readable. It uses:
 
 Avoid oversized landing-page style UI. The garage/customisation UI should be functional and scan-friendly.
 
+## Shared UI Theme
+
+The current editable UI colour source is:
+
+```text
+ReplicatedStorage.NeoTokyoRacers.Config.UI.Theme
+```
+
+The mirrored shared helper path is kept for compatibility:
+
+```text
+ReplicatedStorage.NeoTokyoRacers.Shared.Config.UI.Theme
+```
+
+Use `scripts/roblox_ui_shared_theme_back_exit_and_intro.lua` to add dedicated `Back` and `Exit` `Color3Value`s to both theme folders and patch the active UI scripts to read them. After that script is installed, `ReplicatedStorage.NeoTokyoRacers.Config.UI.Theme` is the practical place to edit colours for the live UI and the shared UI helper prefers it first.
+
+After the patch:
+
+- dealership Back buttons use `Theme.Back`;
+- Exit and close buttons use `Theme.Exit`;
+- the dealership intro objective UI reads the same shared panel, text, accent, transparency, corner, and font values as the dealership UI.
+
+The installer is a guarded exact-source patch against the active dealership bootstrap, the isolated intro client, and shared UI theme modules. If it cannot find the expected source shape, stop and refresh the Studio mirror before attempting another UI patch.
+
 ## Dealership Flow
 
 Known dealership structure:
@@ -34,6 +58,7 @@ Known dealership structure:
 - Phase 7 adds an Exit button to the first cockpit-buy menu. It should sit in the bottom-right right column, aligned with the vehicle stats panel right edge and the Available Cash panel bottom edge, and reopen only after the player leaves and re-enters the desk zone.
 - VFX Phase AJ keeps thrust VFX preview attached to the Phase 4 local-only preview root: `Workspace._NTR_ClientOnly.VehiclePreview`.
 - Vehicle Phase AK makes dealership cockpit stats include the selected cockpit's standard engine pair, standard stabilisers, and standard boost so the bars reflect what the cockpit includes when purchased.
+- `scripts/roblox_dealership_remove_cockpit_module_slots_text.lua` removes the extra cockpit module-slot count text from the selected cockpit stats panel because it can overlap other dealership UI. The stats still include default modules, and the later Build Modules flow is unchanged.
 - The user confirmed Phase 1-7 working on 2026-06-03.
 
 For mobile:
@@ -41,6 +66,7 @@ For mobile:
 - Cockpit cards should scale to fit a `3x3` style grid where possible.
 - Left/category UI should not overlap the cash UI.
 - Right stats panel should remain readable and aligned with the rest of the layout.
+- The selected cockpit panel should not show the old module-slot count list under the stats.
 
 ## Paint Cockpit
 

@@ -12,6 +12,8 @@ UITheme.Default = {
 	Accent = Color3.fromRGB(172, 255, 197),
 	Cash = Color3.fromRGB(255, 193, 50),
 	Danger = Color3.fromRGB(175, 70, 68),
+	Back = Color3.fromRGB(24, 35, 42),
+	Exit = Color3.fromRGB(175, 70, 68),
 	Buy = Color3.fromRGB(8, 145, 112),
 	Disabled = Color3.fromRGB(62, 72, 73),
 	PanelTransparency = 0.12,
@@ -25,16 +27,22 @@ UITheme.Default = {
 }
 
 local function findThemeFolder()
-	local ntr = ReplicatedStorage:FindFirstChild("NeoTokyoRacers")
-	local shared = ntr and ntr:FindFirstChild("Shared")
-	local config = shared and shared:FindFirstChild("Config")
+	local kit = ReplicatedStorage:FindFirstChild("NeoTokyoRacers")
+	local config = kit and kit:FindFirstChild("Config")
 	local ui = config and config:FindFirstChild("UI")
-	local theme = ui and ui:FindFirstChild("Theme")
-	if theme then
-		return theme
+	local liveTheme = ui and ui:FindFirstChild("Theme")
+	if liveTheme then
+		return liveTheme
 	end
 
-	local kit = ReplicatedStorage:FindFirstChild("NeoTokyoRacers")
+	local shared = kit and kit:FindFirstChild("Shared")
+	local sharedConfig = shared and shared:FindFirstChild("Config")
+	local sharedUI = sharedConfig and sharedConfig:FindFirstChild("UI")
+	local sharedTheme = sharedUI and sharedUI:FindFirstChild("Theme")
+	if sharedTheme then
+		return sharedTheme
+	end
+
 	return kit and kit:WaitForChild("Config"):WaitForChild("UI"):WaitForChild("Theme")
 end
 
@@ -75,6 +83,8 @@ function UITheme.Read()
 		Accent = color(folder, "Accent", defaults.Accent),
 		Cash = color(folder, "Cash", defaults.Cash),
 		Danger = color(folder, "Danger", defaults.Danger),
+		Back = color(folder, "Back", defaults.Back, "BackButton"),
+		Exit = color(folder, "Exit", defaults.Exit, "ExitButton"),
 		Buy = color(folder, "Buy", defaults.Buy),
 		Disabled = color(folder, "Disabled", defaults.Disabled),
 		PanelTransparency = number(folder, "PanelTransparency", defaults.PanelTransparency, 0, 1),

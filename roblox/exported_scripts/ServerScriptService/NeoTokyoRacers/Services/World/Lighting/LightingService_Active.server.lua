@@ -1,6 +1,7 @@
 local Lighting = game:GetService("Lighting")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
+local PRESET_ATTRIBUTE = "NTR_LightingPreset"
 local Shared = ReplicatedStorage:WaitForChild("Shared")
 
 local LightingPresets = require(
@@ -16,7 +17,6 @@ local CURRENT_PRESET = "Day"
 
 local function getOrCreateEffect(className, name)
 	local existing = Lighting:FindFirstChild(name)
-
 	if existing then
 		return existing
 	end
@@ -24,7 +24,6 @@ local function getOrCreateEffect(className, name)
 	local newEffect = Instance.new(className)
 	newEffect.Name = name
 	newEffect.Parent = Lighting
-
 	return newEffect
 end
 
@@ -68,7 +67,6 @@ local function applySky(skyName)
 	end
 
 	local skyTemplate = SkyPresets:FindFirstChild(skyName)
-
 	if not skyTemplate then
 		warn("Sky preset not found:", skyName)
 		return
@@ -83,11 +81,13 @@ end
 
 local function applyLightingPreset(presetName)
 	local preset = LightingPresets[presetName]
-
 	if not preset then
 		warn("Lighting preset does not exist:", presetName)
 		return
 	end
+
+	Lighting:SetAttribute(PRESET_ATTRIBUTE, nil)
+	Lighting:SetAttribute(PRESET_ATTRIBUTE, presetName)
 
 	applyProperties(Lighting, preset.Lighting)
 	applyProperties(atmosphere, preset.Atmosphere)
@@ -95,8 +95,10 @@ local function applyLightingPreset(presetName)
 	applyProperties(bloom, preset.Bloom)
 	applyProperties(sunRays, preset.SunRays)
 	applyProperties(depthOfField, preset.DepthOfField)
-
 	applySky(preset.SkyName)
+
+	Lighting:SetAttribute(PRESET_ATTRIBUTE, nil)
+	Lighting:SetAttribute(PRESET_ATTRIBUTE, presetName)
 
 	print("Applied lighting preset:", presetName)
 end

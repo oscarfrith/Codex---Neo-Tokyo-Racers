@@ -32,6 +32,7 @@ local function globalSettings(templates)
 		MobileParticleScale = readValue(folder, "MobileParticleScale", 0.55),
 		UpdateRateHz = math.clamp(readValue(folder, "UpdateRateHz", 30), 8, 60),
 		CullDistanceStuds = readValue(folder, "CullDistanceStuds", 260),
+		MobileInitialAttachDelaySeconds = math.clamp(readValue(folder, "MobileInitialAttachDelaySeconds", 0.45), 0, 2),
 	}
 end
 
@@ -223,6 +224,7 @@ local function topLevelTemplateParts(template)
 end
 
 local function prepRuntimeHost(part)
+	part:SetAttribute("NTR_VFXRuntimeHost", true)
 	part.Anchored = false
 	part.CanCollide = false
 	part.CanTouch = false
@@ -390,6 +392,42 @@ local function attachWholeTemplate(self, socket, template, templateName)
 	end
 end
 
+local function isRuntimeHostDescendant(instance)
+	local current = instance
+	while current do
+		if current:GetAttribute("NTR_VFXRuntimeHost") == true then
+			return true
+		end
+		current = current.Parent
+	end
+	return false
+end
+
+local function attachVehicleSocketsOnce(self)
+	if self.Destroyed or self.SocketAttachDone then return end
+	self.SocketAttachDone = true
+
+	local vehicle = self.Vehicle
+	local templates = self.Templates
+	if not vehicle or not vehicle.Parent or not templates then
+		return
+	end
+
+	self.Root = vehicle.PrimaryPart or vehicle:FindFirstChild("CockpitRoot_DoNotRename", true) or self.Root
+
+	for _, socket in ipairs(vehicle:GetDescendants()) do
+		if socket:IsA("Attachment")
+			and not isRuntimeHostDescendant(socket)
+			and (socket:GetAttribute("VFXSocket") == true or string.sub(socket.Name, 1, 4) == "VFX_") then
+			local templateName = templateNameFromSocket(socket)
+			local template = templateName and templates:FindFirstChild(templateName)
+			if template then
+				attachWholeTemplate(self, socket, template, templateName)
+			end
+		end
+	end
+end
+
 function VehicleVFXController.Attach(vehicle, templates, isMobile)
 	local self = setmetatable({
 		Vehicle = vehicle,
@@ -400,20 +438,21 @@ function VehicleVFXController.Attach(vehicle, templates, isMobile)
 		Elapsed = 0,
 		Globals = globalSettings(templates),
 		Root = vehicle and (vehicle.PrimaryPart or vehicle:FindFirstChild("CockpitRoot_DoNotRename", true)),
+		SocketAttachDone = false,
+		Destroyed = false,
 	}, VehicleVFXController)
 
 	if not vehicle or not templates then
 		return self
 	end
 
-	for _, socket in ipairs(vehicle:GetDescendants()) do
-		if socket:IsA("Attachment") and (socket:GetAttribute("VFXSocket") == true or string.sub(socket.Name, 1, 4) == "VFX_") then
-			local templateName = templateNameFromSocket(socket)
-			local template = templateName and templates:FindFirstChild(templateName)
-			if template then
-				attachWholeTemplate(self, socket, template, templateName)
-			end
-		end
+	local delaySeconds = self.IsMobile and self.Globals.MobileInitialAttachDelaySeconds or 0
+	if delaySeconds > 0 then
+		task.delay(delaySeconds, function()
+			attachVehicleSocketsOnce(self)
+		end)
+	else
+		attachVehicleSocketsOnce(self)
 	end
 
 	return self
@@ -491,6 +530,7 @@ function VehicleVFXController:Update(dt, state)
 end
 
 function VehicleVFXController:Destroy()
+	self.Destroyed = true
 	for _, record in ipairs(self.Items) do
 		if record.Object then
 			record.Object.Enabled = false
@@ -506,3 +546,4 @@ function VehicleVFXController:Destroy()
 end
 
 return VehicleVFXController
+

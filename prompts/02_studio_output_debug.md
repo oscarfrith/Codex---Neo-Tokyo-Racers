@@ -6,7 +6,7 @@ Use this when you paste Studio Output, errors, audit reports, or command-bar res
 I am pasting Roblox Studio output for Neo Tokyo Racers.
 
 Active repo path:
-H:\My Drive\Roblox\Neo Tokyo Racers\Codex - Neo Tokyo Racers
+C:\Users\Oscar\Documents\LUCIDITY\Codex---Neo-Tokyo-Racers
 
 GitHub repo:
 https://github.com/oscarfrith/Codex---Neo-Tokyo-Racers

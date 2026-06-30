@@ -6,7 +6,7 @@ Use this after Roblox Studio changes, or whenever `roblox/exported_scripts/` / `
 Please help me refresh the Neo Tokyo Racers Studio mirror in GitHub.
 
 Active repo path:
-H:\My Drive\Roblox\Neo Tokyo Racers\Codex - Neo Tokyo Racers
+C:\Users\Oscar\Documents\LUCIDITY\Codex---Neo-Tokyo-Racers
 
 GitHub repo:
 https://github.com/oscarfrith/Codex---Neo-Tokyo-Racers

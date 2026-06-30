@@ -12,3 +12,4 @@ if ok and typeof(runtime) == "table" and typeof(runtime.Start) == "function" the
 else
 	warn("[V64] Cached thrust visual runtime failed to start: " .. tostring(runtime))
 end
+

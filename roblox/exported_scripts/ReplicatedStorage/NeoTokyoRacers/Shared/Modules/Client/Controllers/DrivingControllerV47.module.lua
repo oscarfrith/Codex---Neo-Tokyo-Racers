@@ -606,6 +606,13 @@ local handleResetAction
 function Controller.Stop()
 	state.IsDriving = false
 	ContextActionService:UnbindAction("HOVER_RACING_V2_V47_Reset")
+	if state.Vehicle then
+		state.Vehicle:SetAttribute("DriveReady", false)
+		state.Vehicle:SetAttribute("Accelerating", false)
+		state.Vehicle:SetAttribute("Boosting", false)
+		state.Vehicle:SetAttribute("DriftingLeft", false)
+		state.Vehicle:SetAttribute("DriftingRight", false)
+	end
 	if state.Connection then state.Connection:Disconnect(); state.Connection = nil end
 	if state.Controls and state.Controls.Root then cleanupDriveForces(state.Controls.Root) end
 	stopCameraAssist()
@@ -627,6 +634,11 @@ function Controller.Start(context)
 	end
 
 	state.IsDriving = true
+	state.Vehicle:SetAttribute("DriveReady", true)
+	state.Vehicle:SetAttribute("Accelerating", false)
+	state.Vehicle:SetAttribute("Boosting", false)
+	state.Vehicle:SetAttribute("DriftingLeft", false)
+	state.Vehicle:SetAttribute("DriftingRight", false)
 	setJumpLocked(true)
 	showExistingDriveUi()
 	state.Boost = 100

@@ -157,7 +157,7 @@ Good signs:
 
 ## Current Mirror Status
 
-The Studio mirror was refreshed on 2026-06-30 at 11:10:17 and imported 65 scripts. `roblox/studio_snapshot/hierarchy.md` is populated, and the exported runtime now includes the mobile thumbstick controller, Lighting Phase AP window material controller, and night lamppost SurfaceLight controller.
+The Studio mirror was refreshed on 2026-06-30 at 17:37:33 and imported 65 scripts. `roblox/studio_snapshot/hierarchy.md` is populated, and the exported runtime now includes the confirmed mobile thumbstick, UI theme, lighting, and VFX delayed attach-once changes.
 
 The fresh mirror also shows active loose `StarterPlayerScripts` filming/camera helpers (`LocalScript`, `TrailerMode.client.lua`, and `TrailerShot01Camera`). Treat them as review items before publishing a normal gameplay build unless they are intentionally kept enabled.
 

@@ -97,32 +97,39 @@ Known performance choices:
 - Particle rates should stay moderate on mobile.
 - Beams are generally efficient, but lots of animated textures/particles across many cars still need profiling.
 
-## Mobile Late-Socket Repair
+## Mobile Attach Reliability
 
-Prepared repair:
+Current confirmed baseline:
 
-- `scripts/roblox_vfx_mobile_late_socket_rescan_repair.lua`
+- `scripts/roblox_vfx_restore_mirror_known_good_baseline.lua` restored the known-good VFX source baseline after the failed rescan/rebuild repair sequence.
+- `scripts/roblox_vfx_mobile_delayed_attach_once.lua` was installed next and reported working.
+- Engine idle/on, boost, and stabiliser/drift VFX toggle correctly again.
+- `RuntimeVFXController_Active` no longer grows continuously, and the 3-5 second VFX cut-out/reappear cycle is resolved.
 
-Observed issue:
+Observed original issue:
 
-- Engine, boost, or stabiliser VFX can intermittently fail to appear on mobile.
+- Engine, boost, or stabiliser VFX could intermittently fail to appear on mobile.
 
-Likely root cause from the current mirror:
+Likely cause:
 
-- `VehicleVFXController.Attach` attaches template VFX only to sockets present during the first scan.
-- On mobile, vehicle/module descendants or the vehicle root can arrive later than the initial attach, so engine/boost/stabiliser sockets or the visibility root may be missed.
-- Once missed, the controller keeps running but does not attach templates to the late sockets, and a missing root can keep template VFX culled.
+- On mobile, vehicle/module descendants or the vehicle root can arrive shortly after the first `VehicleVFXController.Attach` scan.
+- A continuous rescan/rebuild approach is unsafe for this system because cloned runtime VFX hosts contain descendants that can be mistaken for fresh VFX targets.
 
-Fix intent:
+Current fix:
 
-- Track sockets already handled by `VehicleVFXController`.
-- Periodically rescan the vehicle for new `VFXSocket` / `VFX_` attachments.
-- Attach template VFX only to newly discovered sockets, avoiding duplicate hosts.
-- Refresh the controller root if it was not available during the first attach.
+- `scripts/roblox_vfx_mobile_delayed_attach_once.lua` adds `MobileInitialAttachDelaySeconds` under `VehicleTemplates.00_GLOBAL_VFX_SETTINGS`.
+- Mobile `VehicleVFXController.Attach` waits briefly, then performs one socket attach pass only.
+- Desktop attach remains immediate.
+- The fix does not continuously rescan sockets, clear hosts, rebuild hosts, or add another VFX owner.
 
 Verification:
 
-- Run the repair in Studio edit mode.
 - Start a fresh mobile/emulator Play session.
+- Expect mobile VFX to appear roughly `0.45s` after vehicle/preview creation.
 - Spawn a complete vehicle and confirm engine idle/on, boost, and left/right stabiliser drift VFX appear.
-- Repeat once or twice after respawn/re-enter because the bug was intermittent.
+- Repeat after respawn/re-enter because the original bug was intermittent.
+- Watch `RuntimeVFXController_Active`, total instance count, and unparented Beam count for 60-120 seconds. They should not climb continuously.
+
+Do not rerun:
+
+- The previous late-socket/rescan/rebuild repair ladder is retained only in Git history if committed. Do not treat it as the active repair path unless deliberately reproducing the failed experiment.

@@ -6,7 +6,7 @@ Use this when GitHub Desktop shows changed files and you want a clean commit tit
 Please inspect the current Git changes for Neo Tokyo Racers and give me a precise GitHub Desktop commit title and description.
 
 Active repo path:
-H:\My Drive\Roblox\Neo Tokyo Racers\Codex - Neo Tokyo Racers
+C:\Users\Oscar\Documents\LUCIDITY\Codex---Neo-Tokyo-Racers
 
 GitHub repo:
 https://github.com/oscarfrith/Codex---Neo-Tokyo-Racers

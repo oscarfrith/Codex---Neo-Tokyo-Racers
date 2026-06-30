@@ -31,6 +31,8 @@ local DefaultTheme = {
 	Accent = Color3.fromRGB(172, 255, 197),
 	Cash = Color3.fromRGB(255, 193, 50),
 	Danger = Color3.fromRGB(175, 70, 68),
+	Back = Color3.fromRGB(24, 35, 42),
+	Exit = Color3.fromRGB(175, 70, 68),
 	Buy = Color3.fromRGB(8, 145, 112),
 	Disabled = Color3.fromRGB(62, 72, 73),
 	PanelTransparency = 0.12,
@@ -70,6 +72,8 @@ local function refreshThemeFromValues()
 	Theme.Accent = readThemeColor("Accent", DefaultTheme.Accent)
 	Theme.Cash = readThemeColor("Cash", DefaultTheme.Cash)
 	Theme.Danger = readThemeColor("Danger", DefaultTheme.Danger)
+	Theme.Back = readThemeColor("Back", DefaultTheme.Back, "BackButton")
+	Theme.Exit = readThemeColor("Exit", DefaultTheme.Exit, "ExitButton")
 	Theme.Buy = readThemeColor("Buy", DefaultTheme.Buy)
 	Theme.Disabled = readThemeColor("Disabled", DefaultTheme.Disabled)
 	Theme.PanelTransparency = math.clamp(readThemeNumber("PanelTransparency", DefaultTheme.PanelTransparency), 0, 1)
@@ -1436,29 +1440,7 @@ local function renderDealershipPanel()
 	clear(UI.StatsPanel)
 	local cockpit = getCockpit(State.SelectedCockpit) or {}
 	NTRVehiclePhaseAO.renderStats(UI.StatsPanel, NTRVehiclePhaseAK.dealershipStatsWithIncludedDefaults(cockpit))
-	label(UI.StatsPanel, "Module Slots", UDim2.new(1, 0, 0, 24), UDim2.fromOffset(0, 238), 12, Enum.TextXAlignment.Left)
-	local y = 268
-	local counts = { Engine = 0, Stabilisers = 0, Boost = 0, BodyKit = 0 }
-	for _, slot in ipairs(sortedSlots()) do
-		local slotId = slot.SlotId or ""
-		local moduleType = slot.ModuleType or ""
-		if moduleType == "Engine" then
-			counts.Engine += 1
-		elseif moduleType == "Stabilisers" or moduleType == "Stabiliser" or slotId == "Stabilisers" then
-			counts.Stabilisers += 1
-		elseif moduleType == "Boost" then
-			counts.Boost += 1
-		elseif moduleType == "FrontBumper" or moduleType == "RearBumper" or moduleType == "RearSpoiler" or moduleType == "SidePods" or string.find(slotId, "Bumper", 1, true) or string.find(slotId, "Spoiler", 1, true) or string.find(slotId, "SidePods", 1, true) then
-			counts.BodyKit += 1
-		end
-	end
-	for _, item in ipairs({ { "Engine", counts.Engine }, { "Stabilisers", counts.Stabilisers }, { "Boost", counts.Boost }, { "Body Kit", counts.BodyKit } }) do
-		local count = item[2] or 0
-		if count > 0 then
-			label(UI.StatsPanel, item[1] .. " x" .. tostring(count), UDim2.new(1, 0, 0, 20), UDim2.fromOffset(0, y), 10, Enum.TextXAlignment.Left)
-			y += 22
-		end
-	end
+	-- NTR_DEALERSHIP_MODULE_SLOTS_TEXT_REMOVED
 	local owned = State.Profile and State.Profile.OwnedCockpits and State.Profile.OwnedCockpits[State.SelectedCockpit]
 	local text = owned and "Select" or ("Buy $" .. tostring(cockpit.Price or 0))
 	local selectButton = button(UI.StatsPanel, text, UDim2.new(1, 0, 0, UserInputService.TouchEnabled and 58 or 76), UDim2.new(0, 0, 1, UserInputService.TouchEnabled and -70 or -88), owned and Theme.CardHot or Theme.Buy)
@@ -2364,7 +2346,7 @@ local function ensureDriveHud()
 	driftLabel = label(driveHud, "SHIFT drift | SPACE boost | R reset", UDim2.new(1, -28, 0, 20), UDim2.fromOffset(14, 59), 10, Enum.TextXAlignment.Left)
 
 	driveMenu = panel(driveGui, "DriveMenu", UDim2.fromOffset(96, 48), UDim2.new(1, -18, 0, 74), Vector2.new(1, 0))
-	local exit = button(driveMenu, "Exit", UDim2.new(1, -12, 1, -12), UDim2.fromOffset(6, 6), Theme.Danger)
+	local exit = button(driveMenu, "Exit", UDim2.new(1, -12, 1, -12), UDim2.fromOffset(6, 6), Theme.Exit)
 	exit.MouseButton1Click:Connect(function()
 		callServer("ExitVehicle", {})
 		stopDriving()
@@ -2804,10 +2786,10 @@ local function setupUI()
 
 	UI.NextPanel = panel(gui, "NextPinnedBottomRight", UDim2.fromOffset(178, BOTTOM_HEIGHT), UDim2.new(1, -18, 1, -BOTTOM_MARGIN), Vector2.new(1, 1))
 	UI.Next = button(UI.NextPanel, "Next", UDim2.new(1, -18, 0, 42), UDim2.fromOffset(9, 9), Theme.Buy)
-	UI.Back = button(UI.NextPanel, "Back", UDim2.new(1, -18, 0, 38), UDim2.fromOffset(9, 58), Theme.Card)
+	UI.Back = button(UI.NextPanel, "Back", UDim2.new(1, -18, 0, 38), UDim2.fromOffset(9, 58), Theme.Back)
 	UI.DealershipExitPanel = panel(UI.CockpitShop or gui, "DealershipExitPinnedBottomRight", UDim2.fromOffset(270, BOTTOM_HEIGHT), UDim2.new(1, -18, 1, -BOTTOM_MARGIN), Vector2.new(1, 1))
 	UI.DealershipExitPanel.Visible = true
-	UI.DealershipExitButton = button(UI.DealershipExitPanel, "Exit", UDim2.new(1, -18, 0, 42), UDim2.new(0, 9, 0.5, -21), Theme.Danger)
+	UI.DealershipExitButton = button(UI.DealershipExitPanel, "Exit", UDim2.new(1, -18, 0, 42), UDim2.new(0, 9, 0.5, -21), Theme.Exit)
 	local centerPanelSize = UDim2.new(1, -420, 0, BOTTOM_HEIGHT)
 	local centerPanelPosition = UDim2.new(0, 216, 1, -BOTTOM_MARGIN)
 
@@ -2821,7 +2803,7 @@ local function setupUI()
 	UI.CashShop.Visible = false
 	pad(UI.CashShop, 14)
 	UI.CashShopBody = new("Frame", { BackgroundTransparency = 1, Size = UDim2.fromScale(1, 1) }, UI.CashShop)
-	local closeCash = button(UI.CashShop, "X", UDim2.fromOffset(34, 30), UDim2.new(1, -36, 0, 2), Theme.Danger)
+	local closeCash = button(UI.CashShop, "X", UDim2.fromOffset(34, 30), UDim2.new(1, -36, 0, 2), Theme.Exit)
 	closeCash.MouseButton1Click:Connect(function() UI.CashShop.Visible = false end)
 
 	UI.CockpitShop = new("Frame", { BackgroundTransparency = 1, Size = UDim2.fromScale(1, 1) }, gui)

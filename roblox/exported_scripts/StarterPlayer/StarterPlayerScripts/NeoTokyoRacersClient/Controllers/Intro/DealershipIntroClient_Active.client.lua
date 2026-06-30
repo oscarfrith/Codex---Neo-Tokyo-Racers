@@ -25,6 +25,36 @@ local COMPLETE_REMOTE_NAME = "CompleteDealershipIntroObjective"
 
 local player = Players.LocalPlayer or Players.PlayerAdded:Wait()
 
+local function readUITheme()
+	local fallback = {
+		Panel = Color3.fromRGB(5, 9, 7),
+		Text = Color3.fromRGB(218, 255, 231),
+		Accent = Color3.fromRGB(172, 255, 197),
+		PanelTransparency = 0.12,
+		PanelStrokeTransparency = 0.2,
+		StrokeWidth = 1,
+		PanelCornerRadius = 5,
+		FontFamily = "rbxasset://fonts/families/Michroma.json",
+	}
+
+	local ok, theme = pcall(function()
+		local kit = ReplicatedStorage:WaitForChild("NeoTokyoRacers")
+		local module = kit:WaitForChild("Shared"):WaitForChild("Modules"):WaitForChild("UI"):WaitForChild("UITheme")
+		return require(module).Read()
+	end)
+
+	if ok and type(theme) == "table" then
+		for key, value in pairs(fallback) do
+			if theme[key] == nil then
+				theme[key] = value
+			end
+		end
+		return theme
+	end
+
+	return fallback
+end
+
 local function log(message)
 	print(LOG_PREFIX .. " " .. message)
 end
@@ -131,6 +161,7 @@ local function createObjectiveGui(config)
 		return nil
 	end
 
+	local theme = readUITheme()
 	local playerGui = player:WaitForChild("PlayerGui")
 	local gui = Instance.new("ScreenGui")
 	gui.Name = OBJECTIVE_GUI_NAME
@@ -145,8 +176,8 @@ local function createObjectiveGui(config)
 	root.AnchorPoint = Vector2.new(0.5, 0)
 	root.Position = UDim2.new(0.5, 0, 0, 18)
 	root.Size = UDim2.new(0, 360, 0, 46)
-	root.BackgroundColor3 = Color3.fromRGB(5, 9, 7)
-	root.BackgroundTransparency = 0.18
+	root.BackgroundColor3 = theme.Panel
+	root.BackgroundTransparency = theme.PanelTransparency
 	root.BorderSizePixel = 0
 	root.Parent = gui
 
@@ -155,13 +186,13 @@ local function createObjectiveGui(config)
 	scale.Parent = root
 
 	local corner = Instance.new("UICorner")
-	corner.CornerRadius = UDim.new(0, 6)
+	corner.CornerRadius = UDim.new(0, theme.PanelCornerRadius)
 	corner.Parent = root
 
 	local stroke = Instance.new("UIStroke")
-	stroke.Color = Color3.fromRGB(172, 255, 197)
-	stroke.Thickness = 1
-	stroke.Transparency = 0.28
+	stroke.Color = theme.Accent
+	stroke.Thickness = theme.StrokeWidth
+	stroke.Transparency = theme.PanelStrokeTransparency
 	stroke.Parent = root
 
 	local label = Instance.new("TextLabel")
@@ -169,9 +200,9 @@ local function createObjectiveGui(config)
 	label.BackgroundTransparency = 1
 	label.Position = UDim2.fromOffset(12, 5)
 	label.Size = UDim2.new(1, -24, 1, -10)
-	label.FontFace = Font.new("rbxasset://fonts/families/Michroma.json")
+	label.FontFace = Font.new(theme.FontFamily)
 	label.Text = config.IntroObjectiveText
-	label.TextColor3 = Color3.fromRGB(218, 255, 231)
+	label.TextColor3 = theme.Text
 	label.TextSize = 13
 	label.TextWrapped = true
 	label.TextXAlignment = Enum.TextXAlignment.Center

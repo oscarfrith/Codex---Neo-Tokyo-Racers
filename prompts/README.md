@@ -7,7 +7,7 @@ Use these prompts to keep ChatGPT and Codex aligned around the same project cont
 Local shared repo path:
 
 ```text
-H:\My Drive\Roblox\Neo Tokyo Racers\Codex - Neo Tokyo Racers
+C:\Users\Oscar\Documents\LUCIDITY\Codex---Neo-Tokyo-Racers
 ```
 
 GitHub repo:

@@ -366,24 +366,18 @@ local function updateSteering(position)
 	local centerX = thumbOuterRing.AbsolutePosition.X + thumbOuterRing.AbsoluteSize.X * 0.5
 	local raw = math.clamp((position.X - centerX) / math.max(thumbTravelPixels, 1), -1, 1)
 	local magnitude = math.abs(raw)
-	local deadzone = configNumber("SteeringDeadzone", 0.12, 0, 0.45)
+	local deadzone = configNumber("SteeringDeadzone", 0, 0, 0.25)
 	local steer = 0
 	if magnitude > deadzone then
 		local scaled = math.clamp((magnitude - deadzone) / math.max(1 - deadzone, 0.01), 0, 1)
-		local exponent = configNumber("SteeringResponseExponent", 1.15, 0.5, 3)
+		local exponent = configNumber("SteeringResponseExponent", 1, 0.5, 2)
 		steer = math.sign(raw) * (scaled ^ exponent)
 	end
 
-	local configuredEnter = configNumber("DriftEnterThreshold", 0.82, 0.5, 1)
-	local configuredExit = math.min(
-		configNumber("DriftExitThreshold", 0.70, 0.35, 0.95),
-		configuredEnter
-	)
-	local enterThreshold = thumbDriftThreshold
-	local exitThreshold = enterThreshold * math.clamp(
-		configuredExit / math.max(configuredEnter, 0.01),
-		0.55,
-		0.98
+	local enterThreshold = configNumber("DriftEnterThreshold", 0.90, 0.65, 0.98)
+	local exitThreshold = math.min(
+		configNumber("DriftExitThreshold", 0.82, 0.55, 0.95),
+		enterThreshold
 	)
 	if driftRequested then
 		driftRequested = math.abs(steer) >= exitThreshold
@@ -628,22 +622,23 @@ local function layout()
 	local gap = tiny and 6 or 8
 
 	local configuredSize = configNumber("ThumbstickSizePixels", 118, 82, 180)
-	local thumbSize = math.floor(math.clamp(configuredSize * (tiny and 0.88 or 1), 82, 160) + 0.5)
+	local innerScale = configNumber("ThumbstickInnerScale", 1.4, 1, 1.6)
+	local thumbSize = math.floor(math.clamp(configuredSize * innerScale * (tiny and 0.82 or 1), 100, 220) + 0.5)
 	local knobSize = math.floor(thumbSize * 0.42 + 0.5)
-	local enterThreshold = configNumber("DriftEnterThreshold", 0.82, 0.5, 1)
-	local outerSize = math.floor(thumbSize * 1.8 + 0.5)
-	local regularTravel = math.max((thumbSize - knobSize) * 0.5, 1)
+	local outerScale = configNumber("ThumbstickOuterRingScale", 1.5, 1.25, 1.75)
+	local outerSize = math.floor(thumbSize * outerScale + 0.5)
 	thumbTravelPixels = math.max((outerSize - knobSize) * 0.5, 1)
-	thumbDriftThreshold = math.clamp(regularTravel / thumbTravelPixels, 0.05, 0.95)
-	local hitMultiplier = configNumber("TouchHitAreaMultiplier", 1.35, 1, 1.75)
+	thumbDriftThreshold = math.clamp(configNumber("DriftEnterThreshold", 0.90, 0.65, 0.98), 0.05, 0.98)
+	local hitMultiplier = configNumber("TouchHitAreaMultiplier", 1.05, 1, 1.2)
 	local hitSize = math.floor(outerSize * hitMultiplier + 0.5)
 	local panelWidth = math.max(hitSize, outerSize)
 	local mphH = tiny and 20 or 25
 	local boostW = math.floor(math.clamp(thumbSize * 0.94, 92, 140) + 0.5)
 	local boostH = math.floor(math.clamp(thumbSize * 0.34, 32, 46) + 0.5)
 	local hudLift = math.floor(configNumber("HudLiftPixels", 12, 0, 40) + 0.5)
-	local controlsY = mphH + boostH + gap * 2 + hudLift
-	local totalHeight = controlsY + hitSize
+	local boostBuffer = tiny and 4 or 6
+	local controlsY = mphH + gap + boostH + boostBuffer
+	local totalHeight = controlsY + hitSize + hudLift
 
 	leftPanel.Position = UDim2.fromOffset(margin, height - margin - totalHeight)
 	leftPanel.Size = UDim2.fromOffset(panelWidth, totalHeight)

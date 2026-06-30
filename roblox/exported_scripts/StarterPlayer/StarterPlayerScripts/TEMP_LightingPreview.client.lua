@@ -2,6 +2,8 @@ local UserInputService = game:GetService("UserInputService")
 local Lighting = game:GetService("Lighting")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
+local PRESET_ATTRIBUTE = "NTR_LightingPreset"
+
 local Shared = ReplicatedStorage:WaitForChild("Shared")
 
 local LightingPresets = require(
@@ -14,7 +16,6 @@ local SkyPresets = Shared:WaitForChild("SkyPresets")
 
 local function getOrCreateEffect(className, name)
 	local existing = Lighting:FindFirstChild(name)
-
 	if existing then
 		return existing
 	end
@@ -22,7 +23,6 @@ local function getOrCreateEffect(className, name)
 	local newEffect = Instance.new(className)
 	newEffect.Name = name
 	newEffect.Parent = Lighting
-
 	return newEffect
 end
 
@@ -38,6 +38,10 @@ local function applyProperties(instance, properties)
 	end
 
 	for propertyName, value in pairs(properties) do
+		if instance == Lighting and propertyName == "Fogcolor" then
+			propertyName = "FogColor"
+		end
+
 		local success, err = pcall(function()
 			instance[propertyName] = value
 		end)
@@ -63,7 +67,6 @@ local function applySky(skyName)
 	end
 
 	local skyTemplate = SkyPresets:FindFirstChild(skyName)
-
 	if not skyTemplate then
 		warn("[Lighting Preview] Sky preset not found:", skyName)
 		return
@@ -79,17 +82,18 @@ local function applySky(skyName)
 	local newSky = skyTemplate:Clone()
 	newSky.Name = "ActiveSky"
 	newSky.Parent = Lighting
-
 	print("[Lighting Preview] Applied sky:", skyName)
 end
 
 local function applyPreset(presetName)
 	local preset = LightingPresets[presetName]
-
 	if not preset then
 		warn("[Lighting Preview] Preset does not exist:", presetName)
 		return
 	end
+
+	Lighting:SetAttribute(PRESET_ATTRIBUTE, nil)
+	Lighting:SetAttribute(PRESET_ATTRIBUTE, presetName)
 
 	applyProperties(Lighting, preset.Lighting)
 	applyProperties(atmosphere, preset.Atmosphere)
@@ -97,8 +101,12 @@ local function applyPreset(presetName)
 	applyProperties(bloom, preset.Bloom)
 	applyProperties(sunRays, preset.SunRays)
 	applyProperties(depthOfField, preset.DepthOfField)
-
 	applySky(preset.SkyName)
+
+	-- Pulse it again after the property pass so listeners receive a clean mode
+	-- signal even if the attribute already had this value.
+	Lighting:SetAttribute(PRESET_ATTRIBUTE, nil)
+	Lighting:SetAttribute(PRESET_ATTRIBUTE, presetName)
 
 	print("[Lighting Preview] Applied preset:", presetName)
 end

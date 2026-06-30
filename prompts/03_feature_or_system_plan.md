@@ -6,7 +6,7 @@ Use this when starting a new system, gameplay feature, UI flow, architecture mov
 I want to plan a Neo Tokyo Racers feature/system before coding.
 
 Active repo path:
-H:\My Drive\Roblox\Neo Tokyo Racers\Codex - Neo Tokyo Racers
+C:\Users\Oscar\Documents\LUCIDITY\Codex---Neo-Tokyo-Racers
 
 GitHub repo:
 https://github.com/oscarfrith/Codex---Neo-Tokyo-Racers
