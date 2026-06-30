@@ -46,6 +46,21 @@ preset uses `ClockTime = 12.1`, so ClockTime cannot identify that preset.
 There is no frame loop. The controller updates only when the preset attribute,
 Brightness, or tagged streamed instances change.
 
+## Regression Repair
+
+If Play-mode `N` / `M` lighting still changes the environment but tagged
+windows no longer switch material, run:
+
+```text
+scripts/roblox_lighting_night_mode_signal_repair.lua
+```
+
+The fresh 2026-06-30 mirror showed that `TEMP_LightingPreview` and
+`LightingService_Active` applied presets without reliably publishing
+`Lighting.NTR_LightingPreset`. The repair restores that signal, refreshes the
+isolated window/lamppost controllers, and retags existing managed window parts
+without rebuilding assets.
+
 ## Edit Mode Preview
 
 Use these separate Command Bar scripts while Studio is not playing:

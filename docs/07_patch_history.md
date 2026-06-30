@@ -4,6 +4,7 @@ This is a high-level summary, not a complete changelog of every script.
 
 ## Documentation
 
+- 2026-06-30: Added `scripts/roblox_lighting_night_mode_signal_repair.lua` for the Play-mode regression where night mode no longer switches street lights or window materials. The repair patches the lighting mode signal source, refreshes the isolated window/lamppost client controllers, and retags existing managed windows/lamppost lights without deleting assets.
 - 2026-06-30: Cleaned up `prompts/01_start_every_session.md` with the current local repo path and normal repo-relative file paths, then refreshed the Studio full snapshot mirror. The fresh export was generated in Studio at 11:10:17 and imported 65 scripts, including the mobile thumbstick controller, window material controller, and night lamppost light controller.
 - 2026-06-14: Added separate edit-mode lighting capture scripts for Day and ClearNight. Each captures the current Lighting properties, atmosphere, post effects, and active Sky, then rewrites the runtime preset module without exact source-text matching so the next fresh Play session uses the edited condition.
 - 2026-06-13: Repaired the lamppost SurfaceLight installer after Studio found four same-named light children under the source MeshPart. The installer now selects the first light as its template, cleans duplicate siblings, and refreshes every target to exactly one cloned light.

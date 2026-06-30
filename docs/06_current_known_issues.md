@@ -82,6 +82,7 @@ Known sensitive areas:
 
 ## Lighting
 
+- A repair script is prepared for the regression where Play-mode `N`/`M` lighting changes no longer switch windows or lamppost lights: run `scripts/roblox_lighting_night_mode_signal_repair.lua`. Root cause from the fresh mirror: `TEMP_LightingPreview` and `LightingService_Active` apply presets but do not reliably publish the `Lighting.NTR_LightingPreset` attribute that the Phase AP window/lamppost controllers watch.
 - After running `scripts/roblox_lighting_phaseR_fogcolor_property_repair.lua`, confirm the `Lighting Fogcolor` warning no longer appears during Play startup.
 - Lighting Phase AP was installed and user-confirmed working. Tagged windows
   switch between `Windows Day` and `Windows Night` with the lighting mode.

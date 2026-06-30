@@ -28,6 +28,19 @@ template to be tuned and then redistributed. On its first successful run, the
 installer marks the source light with `NTRLamppostLightTemplate` so later runs
 can distinguish it from the copies.
 
+## Regression Repair
+
+If Play-mode night mode no longer enables tagged street lights, run:
+
+```text
+scripts/roblox_lighting_night_mode_signal_repair.lua
+```
+
+The repair does not clone or delete lamppost assets. It retags existing
+`SurfaceLight lamppost` children under `lamppost neon` MeshParts, refreshes the
+isolated client controller, and restores the shared `Lighting.NTR_LightingPreset`
+signal used by both lamppost lights and window materials.
+
 ## Verification
 
 1. Run the installer and confirm it prints the intended template path.
