@@ -122,6 +122,14 @@ When selecting modules:
 - Engine A/B assets should not be interchangeable between front/rear unless the folder/slot rules explicitly allow it.
 - Buy/equip should install the module and return to the slot menu.
 - Phase AK gates the Customise Modules button until at least one engine, stabilisers, and boost are equipped. If not, the UI shows a centered popup in the existing menu style.
+- Persistence Phase 16 sorts module option cards by player usefulness: owned/free compatible copies first, unlocked buyable modules next, and source-cockpit-locked modules last on the right.
+- Owned compatible modules from other cockpit families should still appear for the selected slot. For example, owned Bruiser B engine modules should appear while editing a compatible Bruiser A engine slot.
+- Locked module cards should remain visible with a clear cockpit requirement, rather than disappearing from the carousel.
+- Persistence Phase 17 separates the bottom module picker into `OWNED MODULES` and `BUY MODULES`. Owned module cards represent individual module instances/copies so future upgrades, colours, and decorations can belong to a specific copy.
+- `BUY MODULES` should use a simple `BUY` action that purchases a new module instance and auto-equips it. `OWNED MODULES` should use a BUY-coloured `EQUIP` action.
+- Front engine slots should show only front engines. Rear engine slots should show only rear engines.
+- Front/rear engine filtering should prefer the explicit `EnginePosition` catalog field and only fall back to folder/name checks for older templates.
+- Clicking any module card, including locked buy-module cards, should preview it on the vehicle.
 
 ## Customise Modules
 

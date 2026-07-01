@@ -106,7 +106,14 @@ MODULES_InterchangeableWithinCategory
   SidePods
 ```
 
-Modules remain interchangeable within `BRUISER`; the per-cockpit folders are catalogue organisation and visual family groupings, not compatibility locks.
+Modules remain interchangeable within `BRUISER`; the per-cockpit folders are catalogue organisation, visual family groupings, and purchase-unlock families, not equip compatibility locks.
+
+Persistence Phase 16 direction:
+
+- a module from `Bruiser_02` can be equipped on a compatible `Bruiser_01` cockpit if the player owns that module copy;
+- buying a new module copy from `Bruiser_02` is locked until the player owns the `bruiser_02` cockpit family;
+- each cockpit purchase grants one included Standard starter set for that cockpit instance;
+- buying extra Standard module copies must cost money, preferably through explicit `ExtraCopyPrice`, `ModuleCopyPrice`, `PurchasePrice`, or `Price` attributes on the module template.
 
 Current clean module folder shape requested by the user:
 
@@ -155,6 +162,22 @@ Phase AK also adds editable balancing metadata:
 - `NeonPrice`
 - `BalanceEditable`
 - `BalanceNote`
+
+Persistence Phase 16 reads optional module economy/sorting metadata:
+
+- `SourceCockpitId`
+- `VariantName`
+- `VariantOrder`
+- `ExtraCopyPrice`
+- `ModuleCopyPrice`
+- `PurchasePrice`
+
+Persistence Phase 17 should treat engine position as explicit metadata rather than inferring it only from names:
+
+- Front engines live under `Engines` and should have `EnginePosition = "Front"` plus `RearEngine = false`.
+- Rear engines live under `Engines_B` and should have `EnginePosition = "Rear"` plus `RearEngine = true`.
+- `SLOT_Engine1` should use `AllowedModuleFolder = "Engines"` and `EnginePosition = "Front"`.
+- `SLOT_Engine2` should use `AllowedModuleFolder = "Engines_B"` and `EnginePosition = "Rear"`.
 
 Bruiser cockpits can declare included standard modules with:
 
