@@ -4,6 +4,7 @@ This is a high-level summary, not a complete changelog of every script.
 
 ## Documentation
 
+- 2026-07-02: Added `docs/12_continuous_improvement_workflow.md` and updated the new-chat/source-sync instructions after the Phase 17 popup and Phase 23-28 garage MVP work. Future chats now have explicit rules for learning from each phase, avoiding repeated source-anchor guesses, preferring isolated services or canonical replacement, condensing Studio scripts safely, and treating raw Studio paste files as non-commit artifacts.
 - 2026-07-02: Confirmed Persistence Phase 28 final garage MVP audit. The smoke reported `Access UI present`, `VisitGarage OK`, `Customization UI visible`, `Customization persisted and UI reflected state. summary=SURFACES 2  DECOR 1`, `Interior state OK`, and `ReturnToCity OK`, completing the Phase 21-28 private garage MVP stack pending final mirror refresh/save-rejoin handoff.
 - 2026-07-02: Added `scripts/roblox_persistence_phase28_garage_mvp_final_audit.lua` as the final garage MVP hardening checkpoint. The dual-mode script audits Phase 21-27 runtime objects in Edit mode and, in Play, checks access UI, owner garage entry, display vehicle, customization persistence/UI summary, interior state, return-to-city, and cleanup back to Private.
 - 2026-07-02: Confirmed Phase 27 same-server garage access UI. The client smoke reported `Access UI shell visible`, `SetAccessMode OK. mode=Public`, `VisitGarage OK`, `State OK. inGarage=true visitingOwner=7915427645 accessMode=Public`, and `ReturnToCity OK`.

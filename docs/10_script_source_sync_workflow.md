@@ -1,6 +1,6 @@
 # Studio Source Sync Workflow
 
-**Updated:** 2026-06-30  
+**Updated:** 2026-07-02
 **Status:** Local receiver full-snapshot export/import workflow  
 **Purpose:** Capture the current Roblox Studio hierarchy and all script sources into GitHub with minimal manual copying.
 
@@ -34,6 +34,8 @@ If `python` is not on your PATH, try:
 ```text
 py scripts/receive_studio_full_snapshot_export.py
 ```
+
+In Codex desktop sessions, if neither `python` nor `py` is available on PATH, use the bundled workspace Python path reported by the app/runtime. The receiver does not require internet access.
 
 Leave that PowerShell window open. It waits for Studio export chunks at:
 
@@ -78,6 +80,8 @@ In PowerShell, the good message is:
 ```text
 Studio export received and imported successfully.
 ```
+
+If the receiver reports that it could not write `docs/studio-full-export-paste.txt` but still says it is continuing with in-memory import, that is acceptable. The important outputs are the refreshed `roblox/exported_scripts/` and `roblox/studio_snapshot/` folders. The raw paste file is only a fallback artifact and should not be committed.
 
 ## Fallback Chunk Workflow
 
@@ -180,6 +184,8 @@ Do not commit:
 docs/studio-full-export-paste.txt
 ```
 
+If `docs/studio-full-export-paste.txt` appears modified after a mirror refresh, leave it unstaged or restore it before committing. The useful committed mirror state is under `roblox/exported_scripts/` and `roblox/studio_snapshot/`.
+
 Suggested commit title:
 
 ```text
@@ -198,6 +204,7 @@ Adds a local receiver, Studio Command Bar exporter, and importer for capturing t
 - This exporter does not create in-game backup folders or patch live gameplay scripts.
 - The importer refreshes the local mirror folders so stale removed Studio paths do not remain in GitHub after a fresh export.
 - When a script is intentionally changed in Studio, run the export/import workflow again.
+- If mirror import fails after all chunks arrive, inspect the receiver error before asking for repeated exports. The receiver now supports in-memory import when raw paste-file writing fails.
 
 ## Older Script-Only Workflow
 

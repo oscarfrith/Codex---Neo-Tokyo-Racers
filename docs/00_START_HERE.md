@@ -143,6 +143,8 @@ Recommended baseline:
 - Do not create in-game backup copies unless explicitly asked. Roblox version history is the preferred backup.
 - Avoid large fragile patches against the main client script when a ModuleScript replacement or config folder can solve it.
 - If a patch depends on a specific older script shape and may fail, say that before writing the script.
+- Read `docs/12_continuous_improvement_workflow.md` for the current rules on learning from each phase, handling failed source anchors, condensing Studio scripts safely, and refreshing the mirror.
+- If two or more source-anchor repairs fail in the same live script, stop and inspect the live source/mirror before creating another patch; prefer an isolated canonical replacement when practical.
 
 ## Quick Links
 
@@ -158,6 +160,7 @@ Recommended baseline:
 - Patch history: `docs/07_patch_history.md`
 - Script source sync workflow: `docs/10_script_source_sync_workflow.md`
 - Manual script copy map: `docs/11_manual_script_copy_map.md`
+- Continuous improvement workflow: `docs/12_continuous_improvement_workflow.md`
 - Script architecture review: `docs/script-architecture-review-2026-05-28.md`
 - Phase 5 UI migration plan: `docs/phase5-ui-migration-plan-2026-05-28.md`
 - Phase 7 shared UI helpers: `docs/phase7-shared-ui-helpers-2026-05-28.md`

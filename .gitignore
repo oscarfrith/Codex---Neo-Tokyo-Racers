@@ -29,6 +29,7 @@ __pycache__/
 
 # Temporary Roblox Studio export paste blob.
 docs/studio-script-export-paste.txt
+docs/studio-full-export-paste.txt
 
 # Archived legacy Studio scripts are documented, but their exported mirror paths
 # can exceed Windows/Git path limits and are not needed as live source.
