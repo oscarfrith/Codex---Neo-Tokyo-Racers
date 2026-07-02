@@ -2516,9 +2516,9 @@
     "class_name": "LocalScript",
     "disabled": false,
     "attributes": {
-      "LastUpdatedBy": {
-        "value": "NTR_VFX_SINGLE_CACHED_RUNTIME_OWNER_2026_06_30",
-        "type": "string"
+      "PersistencePhase17ModuleCarouselClipPopupOverlayRepair": {
+        "value": true,
+        "type": "boolean"
       },
       "PhaseNSourcePatchedBy": {
         "value": "roblox_architecture_phaseN_runtime_world_path_repair",
@@ -2548,7 +2548,7 @@
         "value": true,
         "type": "boolean"
       },
-      "PersistencePhase15DuplicateCopyUI": {
+      "PersistencePhase17ModulePopupTrackerRegisterRepair": {
         "value": true,
         "type": "boolean"
       },
@@ -2556,7 +2556,19 @@
         "value": true,
         "type": "boolean"
       },
-      "PersistencePhase17ModuleButtonLayoutPolish": {
+      "PersistencePhase17CockpitPaintStageScopeRepair": {
+        "value": true,
+        "type": "boolean"
+      },
+      "PhasePSourcePatchedAt": {
+        "value": "2026-06-02 09:46:31",
+        "type": "string"
+      },
+      "DealershipIntroPhase7PatchedAt": {
+        "value": "2026-06-03 21:33:56",
+        "type": "string"
+      },
+      "PersistencePhase15DuplicateCopyUI": {
         "value": true,
         "type": "boolean"
       },
@@ -2568,9 +2580,21 @@
         "value": "AO",
         "type": "string"
       },
+      "PersistencePhase17ModulePopupCardChildRepair": {
+        "value": true,
+        "type": "boolean"
+      },
+      "PersistencePhase17ColorPickerColor3Repair": {
+        "value": true,
+        "type": "boolean"
+      },
       "DealershipIntroPhase7PatchedBy": {
         "value": "roblox_dealership_intro_phase7_exit_button_reopen_gate",
         "type": "string"
+      },
+      "PersistencePhase17ColorSliderSignalRepair": {
+        "value": true,
+        "type": "boolean"
       },
       "PhaseKSourcePatchedBy": {
         "value": "roblox_architecture_phaseK_migrate_hover_kit_to_neotokyo",
@@ -2580,7 +2604,15 @@
         "value": "roblox_client_phaseD_main_client_owner_switch",
         "type": "string"
       },
+      "PersistencePhase17FrontEngineFamilyAndCardText": {
+        "value": true,
+        "type": "boolean"
+      },
       "PersistencePhase10GarageUILayoutModal": {
+        "value": true,
+        "type": "boolean"
+      },
+      "PersistencePhase12GarageMenuController": {
         "value": true,
         "type": "boolean"
       },
@@ -2588,12 +2620,16 @@
         "value": true,
         "type": "boolean"
       },
-      "DealershipIntroPhase7PatchedAt": {
-        "value": "2026-06-03 21:33:56",
-        "type": "string"
+      "PersistencePhase17RepairV3": {
+        "value": true,
+        "type": "boolean"
       },
-      "PhasePSourcePatchedAt": {
-        "value": "2026-06-02 09:46:31",
+      "PersistencePhase17ModuleActionRailRepair": {
+        "value": true,
+        "type": "boolean"
+      },
+      "LastUpdatedBy": {
+        "value": "NTR_VFX_SINGLE_CACHED_RUNTIME_OWNER_2026_06_30",
         "type": "string"
       },
       "DealershipIntroPhase3PatchedBy": {
@@ -2620,7 +2656,7 @@
         "value": "2026-06-30 13:03:24",
         "type": "string"
       },
-      "PersistencePhase17ColorPickerColor3Repair": {
+      "DoNotEnableWithLegacyClient": {
         "value": true,
         "type": "boolean"
       },
@@ -2632,15 +2668,15 @@
         "value": "roblox_dealership_intro_phase5_restore_preview_orbit_camera",
         "type": "string"
       },
-      "PersistencePhase9GaragePropertyMenu": {
-        "value": true,
-        "type": "boolean"
+      "PhasePSourcePatchedBy": {
+        "value": "roblox_architecture_phaseP_garage_runtime_startup_repair",
+        "type": "string"
       },
       "DealershipIntroPhase5PatchedAt": {
         "value": "2026-06-03 20:26:43",
         "type": "string"
       },
-      "PersistencePhase17ColorSliderSignalRepair": {
+      "PersistencePhase9GaragePropertyMenu": {
         "value": true,
         "type": "boolean"
       },
@@ -2648,11 +2684,11 @@
         "value": true,
         "type": "boolean"
       },
-      "PersistencePhase17FrontEngineFamilyAndCardText": {
-        "value": true,
-        "type": "boolean"
+      "PhaseKSourcePatchedAt": {
+        "value": "2026-05-29 17:31:59",
+        "type": "string"
       },
-      "DoNotEnableWithLegacyClient": {
+      "PersistencePhase8CapacityUI": {
         "value": true,
         "type": "boolean"
       },
@@ -2668,38 +2704,38 @@
         "value": true,
         "type": "boolean"
       },
-      "PersistencePhase17RepairV3": {
+      "PersistencePhase17ModulePopupDestroyedInstanceRepair": {
         "value": true,
         "type": "boolean"
       },
-      "PersistencePhase12GarageMenuController": {
+      "PersistencePhase17ModulePopupTrackerLayerRepair": {
         "value": true,
         "type": "boolean"
       },
-      "PhaseKSourcePatchedAt": {
-        "value": "2026-05-29 17:31:59",
-        "type": "string"
-      },
-      "PersistencePhase8CapacityUI": {
+      "PersistencePhase17ModuleButtonLayoutPolish": {
         "value": true,
         "type": "boolean"
       },
-      "PhasePSourcePatchedBy": {
-        "value": "roblox_architecture_phaseP_garage_runtime_startup_repair",
-        "type": "string"
+      "PersistencePhase17ModuleCardColourPopupRepair": {
+        "value": true,
+        "type": "boolean"
+      },
+      "PersistencePhase17ModulePopupScreenLayerRepair": {
+        "value": true,
+        "type": "boolean"
       },
       "DealershipIntroPhase3PatchedAt": {
         "value": "2026-06-03 19:49:54",
         "type": "string"
       },
-      "PersistencePhase17ModuleCardColourPopupRepair": {
+      "PersistencePhase17ModulePopupCardAnchorRepair": {
         "value": true,
         "type": "boolean"
       }
     },
-    "source_lines": 3797,
-    "source_bytes": 154646,
-    "source_checksum": "468468746",
+    "source_lines": 3890,
+    "source_bytes": 157562,
+    "source_checksum": "141309527",
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/NeoTokyoRacersClient_Bootstrap_Shadow_Disabled.client.lua"
   },
   {
