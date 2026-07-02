@@ -98,6 +98,8 @@ Cockpit front/rear cosmetic neon defaults were requested:
 
 Front/rear cockpit neon should not be editable during initial cockpit paint, but can be revisited later in module/customisation menus. Long-range cockpit driving lights are currently deferred after Phase AI removed the S-AH light experiments.
 
+After a cockpit is bought or selected, the Paint Cockpit step should not allow returning to the dealership cockpit list. Hide the Back button on Paint Cockpit only, while keeping the Next button visible so the player can continue to Build Modules and then spawn.
+
 ## Build Modules
 
 Known module selection slots:
@@ -130,6 +132,12 @@ When selecting modules:
 - Front engine slots should show only front engines. Rear engine slots should show only rear engines.
 - Front/rear engine filtering should prefer the explicit `EnginePosition` catalog field and only fall back to folder/name checks for older templates.
 - Clicking any module card, including locked buy-module cards, should preview it on the vehicle.
+- Module option cards should show the source cockpit family and variant on the top line, for example `Bruiser Origin / Standard`, the module price in green on the middle line, and `Owned xN` on the bottom line. Owned module cards still represent individual copies, but the count line shows the total copies of that module template.
+- Module option cards need enough vertical room for all three lines; avoid clipping the bottom `Owned xN` / `Locked` line. The first `OWNED MODULES` / `BUY MODULES` tab buttons should use the same 72px-tall compact button feel as the Customise section controls, with one vertically centred label and no owned-count sublabel.
+- In the `BUY MODULES` view, buyable cards should use the lighter normal card colour and locked cards should use the darker disabled colour. Locked cards should keep the green price visible but show `Locked` on the bottom line in the muted owned-text colour.
+- The live theme currently makes `Theme.Disabled` lighter than `Theme.Card`, so the buy-module UI intentionally uses the lighter disabled swatch for buyable cards and the darker card swatch for locked cards. Locked cards should mute the title and use a darker green price.
+- BUY/LOCKED/EQUIP popups should be centred from the rendered card position, not from scroll-content math. Reposition them again after Roblox layout settles, place them above the bottom module-options frame with a small gap, and hide them if the module carousel scrolls while a popup is open.
+- Sprint/Shift camera FOV should be blocked while any garage/customisation menu is open.
 
 ## Customise Modules
 

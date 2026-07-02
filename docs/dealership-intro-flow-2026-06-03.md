@@ -166,6 +166,8 @@ The marker controls the final server-created drivable vehicle only. It does not 
 
 When Exit is clicked, the garage UI closes, preview/camera cleanup runs through the existing `closeGarage()` path, and the intro client arms a local reopen gate. The menu should not immediately reopen while the player is still standing inside `GarageDeskTrigger`. The player must walk out past the reset distance and then back into the desk zone.
 
+Persistence Phase 17 recovery note: if Start Driving successfully calls `SpawnVehicle` but the vehicle is not hover/drivable and the client stack points to `closeGarage`, run `scripts/roblox_persistence_phase17_close_garage_drive_handoff_repair.lua`. It makes garage UI cleanup tolerant of missing optional colour-picker helpers and ensures the driving controller starts after a successful spawn.
+
 ## Phase 8 Dynamic Arrow Tether Once
 
 `roblox_dealership_intro_phase8_dynamic_arrow_tether_once.lua` replaces the isolated `DealershipIntroClient_Active` with a Phase 8 version and adds `ServerScriptService.NeoTokyoRacers.Services.Dealership.IntroProgressService_Active`.

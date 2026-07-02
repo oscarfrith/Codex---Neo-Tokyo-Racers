@@ -503,6 +503,69 @@ function NTRPersistencePhase15.OwnedModuleInstancesForSlot(profile, slotInfo, ge
 	return result
 end
 
+
+-- NTR_PERSISTENCE_PHASE17_CLIENT_SLOT_LOOKUP_REPAIR
+local function getCategory()
+	for _, category in ipairs((State.Catalog and State.Catalog.Categories) or {}) do
+		if category.CategoryId == State.CategoryId then
+			return category
+		end
+	end
+	local categories = State.Catalog and State.Catalog.Categories
+	if typeof(categories) == "table" and categories[1] then
+		State.CategoryId = categories[1].CategoryId
+		return categories[1]
+	end
+end
+
+local function sortedSlots()
+	local category = getCategory()
+	local slots = cloneArray(category and category.Slots)
+	if #slots == 0 then
+		slots = {
+			{ SlotId = "Engine1", DisplayName = "Front Engine", ModuleType = "Engine", AllowedModuleFolder = "Engines", EnginePosition = "Front", Order = 1 },
+			{ SlotId = "Engine2", DisplayName = "Rear Engine", ModuleType = "Engine", AllowedModuleFolder = "Engines_B", EnginePosition = "Rear", Order = 2 },
+			{ SlotId = "Stabilisers", DisplayName = "Stabilisers", ModuleType = "Stabilisers", Order = 3 },
+			{ SlotId = "Boost", DisplayName = "Boost", ModuleType = "Boost", Order = 4 },
+			{ SlotId = "FrontBumper", DisplayName = "Front Bumper", ModuleType = "FrontBumper", Order = 5 },
+			{ SlotId = "RearBumper", DisplayName = "Rear Bumper", ModuleType = "RearBumper", Order = 6 },
+			{ SlotId = "RearSpoiler", DisplayName = "Rear Spoiler", ModuleType = "RearSpoiler", Order = 7 },
+			{ SlotId = "SidePods", DisplayName = "Side Pods", ModuleType = "SidePods", Order = 8 },
+		}
+	end
+	table.sort(slots, function(a, b)
+		return (tonumber(a.Order) or 99) < (tonumber(b.Order) or 99)
+	end)
+	return slots
+end
+
+local function getSlot(slotId)
+	for _, slot in ipairs(sortedSlots()) do
+		if slot.SlotId == slotId then
+			return slot
+		end
+	end
+end
+
+local function getCockpit(cockpitId)
+	local category = getCategory()
+	for _, cockpit in ipairs((category and category.Cockpits) or {}) do
+		if cockpit.CockpitId == cockpitId then
+			return cockpit
+		end
+	end
+end
+
+local function getModule(moduleId)
+	local category = getCategory()
+	for _, list in pairs((category and category.Modules) or {}) do
+		for _, module in ipairs(list) do
+			if module.ModuleId == moduleId then
+				return module
+			end
+		end
+	end
+end
 local function modulesForSlot(slotId)
 	local slotInfo = getSlot(slotId)
 	local category = getCategory()
@@ -1593,6 +1656,9 @@ end
 local function updateNav()
 	local showNav = State.Stage ~= "CockpitShop"
 	UI.NextPanel.Visible = showNav
+	if UI.Back then
+		UI.Back.Visible = showNav and State.Stage ~= "CockpitPaint"
+	end
 	if UI.DealershipExitPanel then
 		UI.DealershipExitPanel.Visible = State.Stage == "CockpitShop"
 	end
@@ -1800,59 +1866,6 @@ renderCockpitShop = function()
 	applyDealershipLayout()
 end
 
-local function toHSV(color)
-	local ok, h, s, v = pcall(function() return color:ToHSV() end)
-	if ok then return h, s, v end
-	return Color3.toHSV(color)
-end
-
-local function syncPicker(color)
-	local h, s, v = toHSV(color)
-	State.Hue, State.Saturation, State.Brightness = h, s, v
-end
-
-local function pickerColor()
-	return Color3.fromHSV(State.Hue, State.Saturation, State.Brightness)
-end
-
-local function makeSlider(parent, name, y, value, update)
-	local short = name == "Hue" and "H" or (name == "Saturation" and "S" or (name == "Brightness" and "B" or name))
-	label(parent, short, UDim2.fromOffset(18, 20), UDim2.fromOffset(0, y), 10, Enum.TextXAlignment.Left)
-	local track = new("TextButton", { AutoButtonColor = false, Text = "", BackgroundColor3 = Color3.fromRGB(255, 255, 255), Size = UDim2.new(1, -76, 0, 15), Position = UDim2.fromOffset(26, y + 3), BorderSizePixel = 0 }, parent)
-	corner(track, 5)
-	stroke(track, Theme.Accent, 0.35, 1)
-	local gradient = new("UIGradient", {}, track)
-	local knob = new("Frame", { BackgroundColor3 = Theme.Accent, Size = UDim2.fromOffset(11, 22), AnchorPoint = Vector2.new(0.5, 0.5), Position = UDim2.fromScale(value, 0.5), BorderSizePixel = 0 }, track)
-	corner(knob, 4)
-	local valueLabel = label(parent, name == "Hue" and tostring(math.floor(value * 360)) or (tostring(math.floor(value * 100)) .. "%"), UDim2.fromOffset(46, 20), UDim2.new(1, -46, 0, y), 10, Enum.TextXAlignment.Left)
-	local dragging = false
-	local function setFromX(x)
-		local rel = math.clamp((x - track.AbsolutePosition.X) / math.max(track.AbsoluteSize.X, 1), 0, 1)
-		knob.Position = UDim2.fromScale(rel, 0.5)
-		valueLabel.Text = name == "Hue" and tostring(math.floor(rel * 360)) or (tostring(math.floor(rel * 100)) .. "%")
-		update(rel)
-	end
-	track.InputBegan:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-			dragging = true
-			setFromX(input.Position.X)
-		end
-	end)
-	track.InputEnded:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-			dragging = false
-		end
-	end)
-	local move = UserInputService.InputChanged:Connect(function(input)
-		if dragging and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
-			setFromX(input.Position.X)
-		end
-	end)
-	table.insert(pickerConnections, move)
-	return gradient
-end
-
-
 local function channelTitle(channel)
 	if channel == "Neon" then return "Neon" end
 	if channel == "ThrustColor" then return "Thrust" end
@@ -1861,56 +1874,148 @@ local function channelTitle(channel)
 	return channel
 end
 
+-- NTR_PERSISTENCE_PHASE17_COLOR_PICKER_HSB_RESTORE
+NTRPersistencePhase15 = NTRPersistencePhase15 or {}
+
+function NTRPersistencePhase15.ColorComponent(value)
+	local numberValue = tonumber(value)
+	if not numberValue then
+		return nil
+	end
+	if numberValue > 1 then
+		numberValue = numberValue / 255
+	end
+	return math.clamp(numberValue, 0, 1)
+end
+
+function NTRPersistencePhase15.Color3Value(value, fallback)
+	if typeof(value) == "Color3" then
+		return value
+	end
+	if typeof(value) == "table" then
+		local r = NTRPersistencePhase15.ColorComponent(value.R or value.r or value.Red or value.red or value[1])
+		local g = NTRPersistencePhase15.ColorComponent(value.G or value.g or value.Green or value.green or value[2])
+		local b = NTRPersistencePhase15.ColorComponent(value.B or value.b or value.Blue or value.blue or value[3])
+		if r and g and b then
+			return Color3.new(r, g, b)
+		end
+	end
+	return fallback or Color3.fromRGB(255, 255, 255)
+end
+
+function NTRPersistencePhase15.SafeConnectPicker(signal, callback)
+	if not signal or not signal.Connect then
+		return nil
+	end
+	local ok, connection = pcall(function()
+		return signal:Connect(callback)
+	end)
+	if ok and connection then
+		table.insert(pickerConnections, connection)
+		return connection
+	end
+	return nil
+end
+
 local function renderColourPicker(parent, channels, applyCallback)
-	disconnectPickerInputs()
+	if disconnectPickerInputs then
+		pcall(disconnectPickerInputs)
+	end
 	clear(parent)
 	channels = channels or { "Primary", "Secondary", "Detail" }
-	if not table.find(channels, State.ColorChannel) then State.ColorChannel = channels[1] end
+	if not table.find(channels, State.ColorChannel) then
+		State.ColorChannel = channels[1]
+	end
 
 	local baseColors = State.Profile and State.Profile.CockpitColors or {}
 	if State.ColorChannel == "ThrustColor" then
-		baseColors = { ThrustColor = (State.Profile and State.Profile.ThrustColor) or Color3.fromRGB(255, 255, 255) }
+		baseColors = { ThrustColor = NTRPersistencePhase15.Color3Value((State.Profile and State.Profile.ThrustColor) or Color3.fromRGB(255, 255, 255)) }
 	elseif State.Stage == "Customise" and State.CustomizeTarget and State.CustomizeTarget ~= "ALL" and State.CustomizeTarget ~= "Cockpit" and State.CustomizeTarget ~= "THRUST_COLOR" then
 		local moduleColorSet = State.Profile and State.Profile.ModuleColors and State.Profile.ModuleColors[State.CustomizeTarget]
-		if moduleColorSet then baseColors = moduleColorSet end
+		if moduleColorSet then
+			baseColors = moduleColorSet
+		end
 	end
-	local current = baseColors[State.ColorChannel] or Color3.fromRGB(255, 255, 255)
-	syncPicker(current)
+
+	local current = NTRPersistencePhase15.Color3Value(baseColors[State.ColorChannel], Color3.fromRGB(255, 255, 255))
+	State.Hue, State.Saturation, State.Brightness = current:ToHSV()
 
 	clear(UI.ColorChannelFloat)
 	UI.ColorChannelFloat.Visible = true
 	for _, channel in ipairs(channels) do
-		local b = button(UI.ColorChannelFloat, channelTitle(channel), UDim2.fromOffset(126, 30), UDim2.fromScale(0, 0), State.ColorChannel == channel and Theme.CardHot or Theme.Card)
-		b.MouseButton1Click:Connect(function()
+		local channelButton = button(UI.ColorChannelFloat, channelTitle(channel), UDim2.fromOffset(126, 30), UDim2.fromScale(0, 0), State.ColorChannel == channel and Theme.CardHot or Theme.Card)
+		NTRPersistencePhase15.SafeConnectPicker(channelButton.MouseButton1Click, function()
 			State.ColorChannel = channel
 			renderColourPicker(parent, channels, applyCallback)
 		end)
 	end
 
-	local swatchPanel = new("Frame", { BackgroundTransparency = 1, Size = UDim2.fromOffset(214, 78), Position = UDim2.fromOffset(6, 10) }, parent)
+	local swatchPanel = new("Frame", {
+		BackgroundTransparency = 1,
+		Size = UDim2.fromOffset(214, 78),
+		Position = UDim2.fromOffset(6, 10),
+	}, parent)
 	for i, preset in ipairs((State.Catalog and State.Catalog.PaintPresets) or {}) do
 		local col = (i - 1) % 4
-		local row = math.floor((i - 1) / 4)
-		local swatch = new("TextButton", { Text = "", BackgroundColor3 = preset.Color, Size = UDim2.fromOffset(35, 26), Position = UDim2.fromOffset(col * 44, row * 34), BorderSizePixel = 0 }, swatchPanel)
+		local rowIndex = math.floor((i - 1) / 4)
+		local presetColor = NTRPersistencePhase15.Color3Value(preset.Color, Color3.fromRGB(255, 255, 255))
+		local swatch = new("TextButton", {
+			Text = "",
+			BackgroundColor3 = presetColor,
+			Size = UDim2.fromOffset(35, 26),
+			Position = UDim2.fromOffset(col * 44, rowIndex * 34),
+			BorderSizePixel = 0,
+		}, swatchPanel)
 		corner(swatch, 4)
 		stroke(swatch, Theme.Accent, 0.2, 1)
-		swatch.MouseButton1Click:Connect(function()
-			syncPicker(preset.Color)
-			applyCallback(State.ColorChannel, preset.Color)
+		NTRPersistencePhase15.SafeConnectPicker(swatch.MouseButton1Click, function()
+			current = presetColor
+			State.Hue, State.Saturation, State.Brightness = current:ToHSV()
+			applyCallback(State.ColorChannel, current)
 			renderColourPicker(parent, channels, applyCallback)
 		end)
 	end
 
-	local sliderPanel = new("Frame", { BackgroundTransparency = 1, Size = UDim2.new(1, -236, 1, -8), Position = UDim2.fromOffset(226, 5) }, parent)
-	local hueGradient, satGradient, briGradient
+	local sliderPanel = new("Frame", {
+		BackgroundTransparency = 1,
+		Size = UDim2.new(1, -236, 1, -8),
+		Position = UDim2.fromOffset(226, 5),
+	}, parent)
+
+	local hueGradient
+	local satGradient
+	local briGradient
+
+	local function pickerColor()
+		return Color3.fromHSV(tonumber(State.Hue) or 0, tonumber(State.Saturation) or 0, tonumber(State.Brightness) or 1)
+	end
+
+	local function applyCurrent()
+		current = pickerColor()
+		applyCallback(State.ColorChannel, current)
+	end
 
 	local function compactSlider(name, y, value, update)
+		value = tonumber(value) or 0
 		label(sliderPanel, name, UDim2.fromOffset(18, 20), UDim2.fromOffset(0, y), 10, Enum.TextXAlignment.Left)
-		local track = new("TextButton", { AutoButtonColor = false, Text = "", BackgroundColor3 = Color3.fromRGB(255, 255, 255), Size = UDim2.new(1, -72, 0, 15), Position = UDim2.fromOffset(24, y + 3), BorderSizePixel = 0 }, sliderPanel)
+		local track = new("TextButton", {
+			AutoButtonColor = false,
+			Text = "",
+			BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+			Size = UDim2.new(1, -72, 0, 15),
+			Position = UDim2.fromOffset(24, y + 3),
+			BorderSizePixel = 0,
+		}, sliderPanel)
 		corner(track, 5)
 		stroke(track, Theme.Accent, 0.35, 1)
 		local gradient = new("UIGradient", {}, track)
-		local knob = new("Frame", { BackgroundColor3 = Theme.Accent, Size = UDim2.fromOffset(11, 22), AnchorPoint = Vector2.new(0.5, 0.5), Position = UDim2.fromScale(value, 0.5), BorderSizePixel = 0 }, track)
+		local knob = new("Frame", {
+			BackgroundColor3 = Theme.Accent,
+			Size = UDim2.fromOffset(11, 22),
+			AnchorPoint = Vector2.new(0.5, 0.5),
+			Position = UDim2.fromScale(math.clamp(value, 0, 1), 0.5),
+			BorderSizePixel = 0,
+		}, track)
 		corner(knob, 4)
 		local valueLabel = label(sliderPanel, name == "H" and tostring(math.floor(value * 360)) or (tostring(math.floor(value * 100)) .. "%"), UDim2.fromOffset(42, 20), UDim2.new(1, -42, 0, y), 10, Enum.TextXAlignment.Left)
 		local dragging = false
@@ -1919,53 +2024,63 @@ local function renderColourPicker(parent, channels, applyCallback)
 			knob.Position = UDim2.fromScale(rel, 0.5)
 			valueLabel.Text = name == "H" and tostring(math.floor(rel * 360)) or (tostring(math.floor(rel * 100)) .. "%")
 			update(rel)
+			applyCurrent()
 		end
-		track.InputBegan:Connect(function(input)
+		NTRPersistencePhase15.SafeConnectPicker(track.InputBegan, function(input)
 			if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
 				dragging = true
 				setFromX(input.Position.X)
 			end
 		end)
-		track.InputEnded:Connect(function(input)
-			if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then dragging = false end
+		NTRPersistencePhase15.SafeConnectPicker(track.InputEnded, function(input)
+			if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+				dragging = false
+			end
 		end)
-		local move = UserInputService.InputChanged:Connect(function(input)
+		NTRPersistencePhase15.SafeConnectPicker(UserInputService.InputEnded, function(input)
+			if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+				dragging = false
+			end
+		end)
+		NTRPersistencePhase15.SafeConnectPicker(UserInputService.InputChanged, function(input)
 			if dragging and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
 				setFromX(input.Position.X)
 			end
 		end)
-		table.insert(pickerConnections, move)
 		return gradient
 	end
 
 	local function refreshGradients()
-		if not hueGradient or not satGradient or not briGradient then return end
-		hueGradient.Color = ColorSequence.new({
-			ColorSequenceKeypoint.new(0, Color3.fromHSV(0, 1, 1)),
-			ColorSequenceKeypoint.new(0.17, Color3.fromHSV(0.17, 1, 1)),
-			ColorSequenceKeypoint.new(0.34, Color3.fromHSV(0.34, 1, 1)),
-			ColorSequenceKeypoint.new(0.51, Color3.fromHSV(0.51, 1, 1)),
-			ColorSequenceKeypoint.new(0.68, Color3.fromHSV(0.68, 1, 1)),
-			ColorSequenceKeypoint.new(0.85, Color3.fromHSV(0.85, 1, 1)),
-			ColorSequenceKeypoint.new(1, Color3.fromHSV(1, 1, 1)),
-		})
-		satGradient.Color = ColorSequence.new(Color3.fromHSV(State.Hue, 0, 1), Color3.fromHSV(State.Hue, 1, 1))
-		briGradient.Color = ColorSequence.new(Color3.fromRGB(0, 0, 0), Color3.fromHSV(State.Hue, math.max(State.Saturation, 0.06), 1))
+		if hueGradient then
+			hueGradient.Color = ColorSequence.new({
+				ColorSequenceKeypoint.new(0, Color3.fromHSV(0, 1, 1)),
+				ColorSequenceKeypoint.new(0.17, Color3.fromHSV(0.17, 1, 1)),
+				ColorSequenceKeypoint.new(0.34, Color3.fromHSV(0.34, 1, 1)),
+				ColorSequenceKeypoint.new(0.51, Color3.fromHSV(0.51, 1, 1)),
+				ColorSequenceKeypoint.new(0.68, Color3.fromHSV(0.68, 1, 1)),
+				ColorSequenceKeypoint.new(0.85, Color3.fromHSV(0.85, 1, 1)),
+				ColorSequenceKeypoint.new(1, Color3.fromHSV(1, 1, 1)),
+			})
+		end
+		if satGradient then
+			satGradient.Color = ColorSequence.new(Color3.fromHSV(State.Hue, 0, math.max(State.Brightness, 0.2)), Color3.fromHSV(State.Hue, 1, math.max(State.Brightness, 0.2)))
+		end
+		if briGradient then
+			briGradient.Color = ColorSequence.new(Color3.fromRGB(0, 0, 0), Color3.fromHSV(State.Hue, math.max(State.Saturation, 0.06), 1))
+		end
 	end
+
 	hueGradient = compactSlider("H", 5, State.Hue, function(v)
 		State.Hue = v
 		refreshGradients()
-		applyCallback(State.ColorChannel, pickerColor())
 	end)
 	satGradient = compactSlider("S", 34, State.Saturation, function(v)
 		State.Saturation = v
 		refreshGradients()
-		applyCallback(State.ColorChannel, pickerColor())
 	end)
 	briGradient = compactSlider("B", 63, State.Brightness, function(v)
 		State.Brightness = v
 		refreshGradients()
-		applyCallback(State.ColorChannel, pickerColor())
 	end)
 	refreshGradients()
 end
@@ -2017,6 +2132,42 @@ local function renderSlotSelection()
 	slotPool:End()
 end
 
+-- NTR_PERSISTENCE_PHASE17_MODULE_POPUP_ABOVE_FRAME
+local function NTR_positionModulePopupAboveCard(card)
+	if not (UI and UI.ModulePopup and UI.ModuleOptionsPanel and card) then
+		return
+	end
+	local popupWidth = UI.ModulePopup.AbsoluteSize.X
+	if popupWidth <= 0 then
+		popupWidth = 126
+	end
+	local popupHeight = UI.ModulePopup.AbsoluteSize.Y
+	if popupHeight <= 0 then
+		popupHeight = 30
+	end
+	local panelWidth = UI.ModuleOptionsPanel.AbsoluteSize.X
+	if panelWidth <= 0 then
+		panelWidth = popupWidth
+	end
+	local cardCenter = (card.AbsolutePosition.X - UI.ModuleOptionsPanel.AbsolutePosition.X) + (card.AbsoluteSize.X * 0.5)
+	local popupX = math.clamp(cardCenter - (popupWidth * 0.5), 0, math.max(0, panelWidth - popupWidth))
+	UI.ModulePopup.Position = UDim2.fromOffset(popupX, -(popupHeight + 8))
+end
+
+local function NTR_deferModulePopupPosition(card)
+	NTR_positionModulePopupAboveCard(card)
+	task.spawn(function()
+		if RunService and RunService.RenderStepped then
+			RunService.RenderStepped:Wait()
+		else
+			task.wait()
+		end
+		if UI and UI.ModulePopup and UI.ModulePopup.Visible then
+			NTR_positionModulePopupAboveCard(card)
+		end
+	end)
+end
+
 local function renderModuleOptions()
 	local optionPool = buttonPool("ModuleOptions", UI.ModuleOptions)
 	optionPool:Begin()
@@ -2047,9 +2198,8 @@ local function renderModuleOptions()
 	end
 
 	if State.ModuleOptionMode ~= "Owned" and State.ModuleOptionMode ~= "Buy" then
-		local ownedButton = pooledButton(optionPool, "", UDim2.fromOffset(260, 72), UDim2.fromOffset(6, 7), Theme.Card)
-		pooledLabel(ownedButton, "OWNED MODULES", UDim2.new(1, -12, 0, 34), UDim2.fromOffset(6, 9), 13, Enum.TextXAlignment.Center)
-		pooledLabel(ownedButton, "owned x" .. tostring(#ownedInstances), UDim2.new(1, -12, 0, 22), UDim2.fromOffset(6, 43), 11, Enum.TextXAlignment.Center).TextColor3 = Theme.Accent
+		local ownedButton = pooledButton(optionPool, "", UDim2.fromOffset(170, 72), UDim2.fromOffset(6, 8), Theme.Card)
+		pooledLabel(ownedButton, "OWNED MODULES", UDim2.new(1, -12, 1, 0), UDim2.fromOffset(6, 0), 13, Enum.TextXAlignment.Center)
 		optionPool:Connect(ownedButton, ownedButton.MouseButton1Click, function()
 			State.ModuleOptionMode = "Owned"
 			State.SelectedModuleId = nil
@@ -2058,9 +2208,8 @@ local function renderModuleOptions()
 			renderModuleOptions()
 		end)
 
-		local buyButton = pooledButton(optionPool, "", UDim2.fromOffset(260, 72), UDim2.fromOffset(278, 7), Theme.Buy)
-		pooledLabel(buyButton, "BUY MODULES", UDim2.new(1, -12, 0, 34), UDim2.fromOffset(6, 9), 13, Enum.TextXAlignment.Center)
-		pooledLabel(buyButton, "owned x" .. tostring(#ownedInstances), UDim2.new(1, -12, 0, 22), UDim2.fromOffset(6, 43), 11, Enum.TextXAlignment.Center).TextColor3 = Theme.Cash
+		local buyButton = pooledButton(optionPool, "", UDim2.fromOffset(170, 72), UDim2.fromOffset(188, 8), Theme.Card)
+		pooledLabel(buyButton, "BUY MODULES", UDim2.new(1, -12, 1, 0), UDim2.fromOffset(6, 0), 13, Enum.TextXAlignment.Center)
 		optionPool:Connect(buyButton, buyButton.MouseButton1Click, function()
 			State.ModuleOptionMode = "Buy"
 			State.SelectedModuleId = nil
@@ -2070,7 +2219,7 @@ local function renderModuleOptions()
 		end)
 
 		optionPool:End()
-		UI.ModuleOptions.CanvasSize = UDim2.fromOffset(math.max(550, UI.ModuleOptions.AbsoluteSize.X), 0)
+		UI.ModuleOptions.CanvasSize = UDim2.fromOffset(math.max(370, UI.ModuleOptions.AbsoluteSize.X), 0)
 		UI.ModuleOptions.CanvasPosition = Vector2.zero
 		renderStatsPanel()
 		return
@@ -2096,17 +2245,20 @@ local function renderModuleOptions()
 			elseif selected then
 				cardColor = Theme.CardHot
 			end
-			local card = pooledButton(optionPool, "", UDim2.fromOffset(184, 76), UDim2.fromOffset(x, 5), cardColor)
+			local card = pooledButton(optionPool, "", UDim2.fromOffset(184, 86), UDim2.fromOffset(x, 3), cardColor)
 			card.AutoButtonColor = not isInstalledHere
-			pooledLabel(card, tostring(moduleInfo and (moduleInfo.DisplayName or moduleInfo.ModuleId) or instanceInfo.TemplateId), UDim2.new(1, -10, 0, 28), UDim2.fromOffset(5, 7), 10, Enum.TextXAlignment.Center)
-			pooledLabel(card, "#" .. tostring(index) .. " / " .. tostring(moduleInfo and (moduleInfo.VariantName or "") or ""), UDim2.new(1, -10, 0, 18), UDim2.fromOffset(5, 32), 9, Enum.TextXAlignment.Center).TextColor3 = Theme.Muted
-			local status = "owned"
+			local familyText = tostring(moduleInfo and (moduleInfo.SourceCockpitDisplayName or moduleInfo.SourceCockpitId) or "")
+			local variantText = tostring(moduleInfo and (moduleInfo.VariantName or "") or "")
+			local ownedCount = moduleInfo and NTRPersistencePhase15.CountModuleCopies(State.Profile, moduleInfo.ModuleId) or 1
+			local bottomText = "Owned x" .. tostring(ownedCount)
 			if isInstalledHere then
-				status = "equipped here"
+				bottomText = bottomText .. " / equipped"
 			elseif equippedElsewhere then
-				status = "in another car"
+				bottomText = bottomText .. " / in use"
 			end
-			pooledLabel(card, status, UDim2.new(1, -10, 0, 20), UDim2.fromOffset(5, 54), 10, Enum.TextXAlignment.Center).TextColor3 = isInstalledHere and Theme.Accent or Theme.Cash
+			pooledLabel(card, familyText .. " / " .. variantText, UDim2.new(1, -10, 0, 24), UDim2.fromOffset(5, 9), 10, Enum.TextXAlignment.Center)
+			pooledLabel(card, "$" .. tostring(moduleInfo and (moduleInfo.Price or 0) or 0), UDim2.new(1, -10, 0, 22), UDim2.fromOffset(5, 35), 10, Enum.TextXAlignment.Center).TextColor3 = Theme.Cash
+			pooledLabel(card, bottomText, UDim2.new(1, -10, 0, 22), UDim2.fromOffset(5, 61), 10, Enum.TextXAlignment.Center).TextColor3 = isInstalledHere and Theme.Accent or Theme.Muted
 			optionPool:Connect(card, card.MouseButton1Click, function()
 				if not moduleInfo then return end
 				State.SelectedModuleId = moduleInfo.ModuleId
@@ -2118,8 +2270,7 @@ local function renderModuleOptions()
 			if selected and not isInstalledHere then
 				UI.ModulePopup.Visible = true
 				UI.ModulePopup.Size = UDim2.fromOffset(126, 30)
-				local popupX = math.clamp(x + 29 - UI.ModuleOptions.CanvasPosition.X, 0, math.max(0, UI.ModuleOptionsPanel.AbsoluteSize.X - 126))
-				UI.ModulePopup.Position = UDim2.fromOffset(popupX, -28)
+				NTR_deferModulePopupPosition(card)
 				local equip = button(UI.ModulePopup, "EQUIP", UDim2.fromScale(1, 1), UDim2.fromScale(0, 0), Theme.Buy)
 				equip.MouseButton1Click:Connect(function()
 					finishModuleInstall(callServer("EquipModuleInstance", {
@@ -2137,22 +2288,25 @@ local function renderModuleOptions()
 			local lockText = NTRPersistencePhase15.ModuleLockText(State.Profile, moduleInfo)
 			local isLocked = lockText ~= nil
 			local selected = State.SelectedModuleId == moduleInfo.ModuleId and State.SelectedModuleInstanceId == nil
-			local cardColor = Theme.Card
-			if isLocked or isInstalled then
-				cardColor = Theme.Disabled
+			local cardColor = Theme.Disabled
+			if isLocked then
+				cardColor = Theme.Card
 			elseif selected then
 				cardColor = Theme.CardHot
 			end
-			local card = pooledButton(optionPool, "", UDim2.fromOffset(184, 76), UDim2.fromOffset(x, 5), cardColor)
+			local card = pooledButton(optionPool, "", UDim2.fromOffset(184, 86), UDim2.fromOffset(x, 3), cardColor)
 			card.AutoButtonColor = not isInstalled
-			pooledLabel(card, moduleInfo.DisplayName or moduleInfo.ModuleId, UDim2.new(1, -10, 0, 28), UDim2.fromOffset(5, 7), 10, Enum.TextXAlignment.Center)
 			local familyText = tostring(moduleInfo.SourceCockpitDisplayName or moduleInfo.SourceCockpitId or "")
-			pooledLabel(card, familyText .. " / " .. tostring(moduleInfo.VariantName or ""), UDim2.new(1, -10, 0, 18), UDim2.fromOffset(5, 32), 9, Enum.TextXAlignment.Center).TextColor3 = Theme.Muted
-			local statusText = "$" .. tostring(moduleInfo.Price or 0)
+			local variantText = tostring(moduleInfo.VariantName or "")
+			local ownedCount = NTRPersistencePhase15.CountModuleCopies(State.Profile, moduleInfo.ModuleId)
+			local bottomText = isLocked and "Locked" or ("Owned x" .. tostring(ownedCount))
+			local titleLabel = pooledLabel(card, familyText .. " / " .. variantText, UDim2.new(1, -10, 0, 24), UDim2.fromOffset(5, 9), 10, Enum.TextXAlignment.Center)
 			if isLocked then
-				statusText = lockText
+				titleLabel.TextColor3 = Theme.Muted
 			end
-			pooledLabel(card, statusText, UDim2.new(1, -10, 0, 20), UDim2.fromOffset(5, 54), 10, Enum.TextXAlignment.Center).TextColor3 = isLocked and Theme.Danger or Theme.Cash
+			local priceLabel = pooledLabel(card, "$" .. tostring(moduleInfo.Price or 0), UDim2.new(1, -10, 0, 22), UDim2.fromOffset(5, 35), 10, Enum.TextXAlignment.Center)
+			priceLabel.TextColor3 = isLocked and Theme.Cash:Lerp(Theme.Muted, 0.55) or Theme.Cash
+			pooledLabel(card, bottomText, UDim2.new(1, -10, 0, 22), UDim2.fromOffset(5, 61), 10, Enum.TextXAlignment.Center).TextColor3 = Theme.Muted
 			optionPool:Connect(card, card.MouseButton1Click, function()
 				State.SelectedModuleId = moduleInfo.ModuleId
 				State.SelectedModuleInstanceId = nil
@@ -2166,8 +2320,7 @@ local function renderModuleOptions()
 			if selected and not isInstalled then
 				UI.ModulePopup.Visible = true
 				UI.ModulePopup.Size = UDim2.fromOffset(126, 30)
-				local popupX = math.clamp(x + 29 - UI.ModuleOptions.CanvasPosition.X, 0, math.max(0, UI.ModuleOptionsPanel.AbsoluteSize.X - 126))
-				UI.ModulePopup.Position = UDim2.fromOffset(popupX, -28)
+				NTR_deferModulePopupPosition(card)
 				local buyColor = Theme.Buy
 				if isLocked then
 					buyColor = Theme.Disabled
@@ -3132,20 +3285,28 @@ RunService.Heartbeat:Connect(function()
 	end
 end)
 
+-- NTR_PERSISTENCE_PHASE17_CLOSE_GARAGE_DRIVE_HANDOFF_REPAIR
 local function closeGarage()
 	State.GarageCameraActive = false
-	if Preview.Root then
+	if Preview and Preview.Root then
 		Preview.Root:Destroy()
 		Preview.Root = nil
 		Preview.Vehicle = nil
 	end
-	if UI.Gui then UI.Gui.Enabled = false end
-	disconnectPickerInputs()
+	if UI and UI.Gui then
+		UI.Gui.Enabled = false
+	end
+	if typeof(disconnectPickerInputs) == "function" then
+		local ok, err = pcall(disconnectPickerInputs)
+		if not ok then
+			warn("[NTR Phase 17] closeGarage picker cleanup warning: " .. tostring(err))
+		end
+	end
 	if camera then
 		camera.CameraType = Enum.CameraType.Custom
-		local vehicle = getPlayerVehicle()
+		local vehicle = typeof(getPlayerVehicle) == "function" and getPlayerVehicle() or nil
 		local seat = vehicle and vehicle:FindFirstChild("DriverSeat", true)
-		local humanoid = getHumanoid()
+		local humanoid = typeof(getHumanoid) == "function" and getHumanoid() or nil
 		if seat and seat:IsA("VehicleSeat") then
 			camera.CameraSubject = seat
 		elseif humanoid then
@@ -3325,10 +3486,15 @@ makeArrowScroller(UI.CockpitGridPanel, UI.CockpitGrid, "Y", 296)
 
 	UI.ModuleOptionsPanel = panel(UI.ModuleShop, "ModuleOptions", centerPanelSize, centerPanelPosition, Vector2.new(0, 1))
 	pad(UI.ModuleOptionsPanel, 10)
-	UI.ModuleOptions = new("ScrollingFrame", { Name = "ModuleOptionsScroll", BackgroundTransparency = 1, BorderSizePixel = 0, ScrollBarThickness = 0, ScrollBarImageTransparency = 1, CanvasSize = UDim2.fromOffset(0, 0), AutomaticCanvasSize = Enum.AutomaticSize.None, Size = UDim2.new(1, 0, 0, 78), Position = UDim2.new(0, 0, 0.5, 0), AnchorPoint = Vector2.new(0, 0.5), ClipsDescendants = true }, UI.ModuleOptionsPanel)
+	UI.ModuleOptions = new("ScrollingFrame", { Name = "ModuleOptionsScroll", BackgroundTransparency = 1, BorderSizePixel = 0, ScrollBarThickness = 0, ScrollBarImageTransparency = 1, CanvasSize = UDim2.fromOffset(0, 0), AutomaticCanvasSize = Enum.AutomaticSize.None, Size = UDim2.new(1, 0, 0, 92), Position = UDim2.new(0, 0, 0.5, 0), AnchorPoint = Vector2.new(0, 0.5), ClipsDescendants = true }, UI.ModuleOptionsPanel)
 	makeArrowScroller(UI.ModuleOptionsPanel, UI.ModuleOptions, "X", 344)
 	UI.ModulePopup = panel(UI.ModuleOptionsPanel, "ModulePopup", UDim2.fromOffset(126, 30), UDim2.fromOffset(0, -28), Vector2.zero)
 	UI.ModulePopup.Visible = false
+	UI.ModuleOptions:GetPropertyChangedSignal("CanvasPosition"):Connect(function()
+		if UI.ModulePopup then
+			UI.ModulePopup.Visible = false
+		end
+	end)
 
 	UI.Customise = new("Frame", { BackgroundTransparency = 1, Size = UDim2.fromScale(1, 1), Visible = false }, gui)
 	UI.CustomiseLeft = panel(UI.Customise, "CustomiseLeft", UDim2.fromOffset(190, 470), UDim2.fromOffset(18, 112), Vector2.zero)
@@ -3372,7 +3538,10 @@ makeArrowScroller(UI.CockpitGridPanel, UI.CockpitGrid, "Y", 296)
 		elseif State.Stage == "Customise" then
 			local result = callServer("SpawnVehicle", {})
 			if result.Success then
-				closeGarage()
+				local closeOk, closeErr = pcall(closeGarage)
+				if not closeOk then
+					warn("[NTR Phase 17] closeGarage failed after SpawnVehicle, starting driving anyway: " .. tostring(closeErr))
+				end
 				task.defer(startDriving)
 			else
 				UI.Subtitle.Text = result.Message or "Could not spawn vehicle."

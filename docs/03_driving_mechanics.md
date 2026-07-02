@@ -8,6 +8,7 @@ Confirmed by chat:
 
 - `V74` restored the pre-V72/default Roblox camera feel and worked well.
 - `V75` adds boost delay and hover wobble but needs play-test confirmation unless confirmed later.
+- Persistence Phase 17 garage/customisation recovery can expose a client `closeGarage` error when pressing Start Driving. If the server spawns the vehicle but driving does not start, use `scripts/roblox_persistence_phase17_close_garage_drive_handoff_repair.lua`; it repairs the UI-to-driving handoff without changing driving physics.
 
 Vehicle Phase AM is the confirmed bridge from legacy totals into the detailed Phase AL performance variables. Its spawned-vehicle audit passed, detailed physics was enabled, and the user reported the driving behavior working well.
 
@@ -162,6 +163,7 @@ Important behaviour:
 - Mobile auto-sprint can start sprinting when the standard Roblox left thumbstick/move vector is pushed beyond `MobileSprintMoveThreshold`, default `0.85`.
 - The installer removes the earlier broken `StarterPlayer.StarterCharacterScripts.NTR_CharacterSprintDefaults` script if present.
 - The sprint installer was reported working on 2026-06-04 after the user moved/renamed the runtime hierarchy into the clean `NeoTokyoRacersClient.Controllers.Runtime` structure.
+- Persistence Phase 17 UI polish adds a guard so sprint/FOV changes do not trigger while `HOVER_RACING_V2_GarageUI` is open. Shift should still be available for vehicle drift while seated and for normal sprinting outside menus.
 
 ## Boost
 

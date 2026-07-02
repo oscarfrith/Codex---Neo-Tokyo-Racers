@@ -1108,9 +1108,9 @@
     "class_name": "Script",
     "disabled": false,
     "attributes": {
-      "PhaseNSourcePatchedBy": {
-        "value": "roblox_architecture_phaseN_runtime_world_path_repair",
-        "type": "string"
+      "PersistencePhase17GarageFoundationRepair": {
+        "value": true,
+        "type": "boolean"
       },
       "PhaseADSourcePatchedAt": {
         "value": "2026-06-02 16:52:15",
@@ -1128,41 +1128,61 @@
         "value": "ShadowSwitchCandidate",
         "type": "string"
       },
+      "CreatedBy": {
+        "value": "roblox_hierarchy_phase14_server_shadow_action_controller",
+        "type": "string"
+      },
+      "PersistencePhase17DuplicateAttachHeaderRepair": {
+        "value": true,
+        "type": "boolean"
+      },
       "PhaseADSourcePatchedBy": {
         "value": "roblox_vehicle_phaseAD_root_attached_cockpit_spotlights",
         "type": "string"
+      },
+      "PersistencePhase17TotalStatsRepair": {
+        "value": true,
+        "type": "boolean"
+      },
+      "PersistencePhase17StartupDependencyRepair": {
+        "value": true,
+        "type": "boolean"
       },
       "SourceScriptPath": {
         "value": "ServerScriptService.HOVER_RACING_V2_SERVER.HOVER_RACING_V2_Server",
         "type": "string"
       },
+      "PersistencePhase13GaragePropertyOwnershipRepair": {
+        "value": true,
+        "type": "boolean"
+      },
       "DealershipIntroPhase6PatchedBy": {
         "value": "roblox_dealership_intro_phase6_vehicle_exit_spawn_marker",
         "type": "string"
       },
-      "CreatedBy": {
-        "value": "roblox_hierarchy_phase14_server_shadow_action_controller",
-        "type": "string"
-      },
-      "SourceHash": {
-        "value": "3be69270",
-        "type": "string"
-      },
-      "PhasePSourcePatchedBy": {
-        "value": "roblox_architecture_phaseP_garage_runtime_startup_repair",
+      "DealershipIntroPhase6PatchedAt": {
+        "value": "2026-06-03 21:12:49",
         "type": "string"
       },
       "LiveEnabled": {
         "value": true,
         "type": "boolean"
       },
+      "PhasePSourcePatchedBy": {
+        "value": "roblox_architecture_phaseP_garage_runtime_startup_repair",
+        "type": "string"
+      },
+      "SourceHash": {
+        "value": "3be69270",
+        "type": "string"
+      },
       "VehicleUpgradePhase": {
         "value": "AN_Isolated",
         "type": "string"
       },
-      "ServerActionOwner": {
-        "value": true,
-        "type": "boolean"
+      "PhaseACSourcePatchedAt": {
+        "value": "2026-06-02 15:42:29",
+        "type": "string"
       },
       "PersistencePhase14InstanceInventoryBridge": {
         "value": true,
@@ -1172,9 +1192,9 @@
         "value": "2026-06-02 09:46:31",
         "type": "string"
       },
-      "DealershipIntroPhase6PatchedAt": {
-        "value": "2026-06-03 21:12:49",
-        "type": "string"
+      "PersistencePhase17CatalogRepair": {
+        "value": true,
+        "type": "boolean"
       },
       "PhaseNSourcePatchedAt": {
         "value": "2026-05-29 18:36:09",
@@ -1196,12 +1216,12 @@
         "value": "roblox_architecture_phaseQ_garage_controller_header_repair",
         "type": "string"
       },
-      "PersistencePhase13GaragePropertyOwnershipRepair": {
+      "ServerActionOwner": {
         "value": true,
         "type": "boolean"
       },
-      "PhaseACSourcePatchedAt": {
-        "value": "2026-06-02 15:42:29",
+      "PhaseNSourcePatchedBy": {
+        "value": "roblox_architecture_phaseN_runtime_world_path_repair",
         "type": "string"
       },
       "PhaseKSourcePatchedBy": {
@@ -1213,9 +1233,9 @@
         "type": "string"
       }
     },
-    "source_lines": 1450,
-    "source_bytes": 60224,
-    "source_checksum": "88037523",
+    "source_lines": 1933,
+    "source_bytes": 80711,
+    "source_checksum": "766003509",
     "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Garage/GarageActionController_Shadow_Disabled.server.lua"
   },
   {
@@ -1877,10 +1897,15 @@
     ],
     "class_name": "LocalScript",
     "disabled": false,
-    "attributes": {},
-    "source_lines": 342,
-    "source_bytes": 8280,
-    "source_checksum": "989635251",
+    "attributes": {
+      "PersistencePhase17GarageMenuSprintGuard": {
+        "value": true,
+        "type": "boolean"
+      }
+    },
+    "source_lines": 360,
+    "source_bytes": 8835,
+    "source_checksum": "392594522",
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Runtime/CharacterSprintController_Active.client.lua"
   },
   {
@@ -2499,6 +2524,10 @@
         "value": "roblox_architecture_phaseN_runtime_world_path_repair",
         "type": "string"
       },
+      "PersistencePhase17ColorPickerHSBRestore": {
+        "value": true,
+        "type": "boolean"
+      },
       "PersistencePhase17ModuleTabs": {
         "value": true,
         "type": "boolean"
@@ -2507,9 +2536,9 @@
         "value": "roblox_dealership_intro_phase4_preview_after_purchase",
         "type": "string"
       },
-      "PersistencePhase17RepairV3": {
-        "value": true,
-        "type": "boolean"
+      "MigrationStatus": {
+        "value": "PhaseD_MainClientShadow",
+        "type": "string"
       },
       "DealershipIntroPhase4PatchedAt": {
         "value": "2026-06-03 20:19:11",
@@ -2527,11 +2556,11 @@
         "value": true,
         "type": "boolean"
       },
-      "PhasePSourcePatchedAt": {
-        "value": "2026-06-02 09:46:31",
-        "type": "string"
+      "PersistencePhase17ModuleButtonLayoutPolish": {
+        "value": true,
+        "type": "boolean"
       },
-      "PersistencePhase8CapacityUI": {
+      "PersistencePhase17ColorPickerRegisterRepair": {
         "value": true,
         "type": "boolean"
       },
@@ -2555,11 +2584,27 @@
         "value": true,
         "type": "boolean"
       },
+      "PersistencePhase17PopupAboveFramePaintBackLock": {
+        "value": true,
+        "type": "boolean"
+      },
+      "DealershipIntroPhase7PatchedAt": {
+        "value": "2026-06-03 21:33:56",
+        "type": "string"
+      },
+      "PhasePSourcePatchedAt": {
+        "value": "2026-06-02 09:46:31",
+        "type": "string"
+      },
       "DealershipIntroPhase3PatchedBy": {
         "value": "roblox_dealership_intro_phase3_gate_garage_startup",
         "type": "string"
       },
       "DealershipIntroPhase4FragilePatch": {
+        "value": true,
+        "type": "boolean"
+      },
+      "PersistencePhase17ClientSlotLookupRepair": {
         "value": true,
         "type": "boolean"
       },
@@ -2575,6 +2620,14 @@
         "value": "2026-06-30 13:03:24",
         "type": "string"
       },
+      "PersistencePhase17ColorPickerColor3Repair": {
+        "value": true,
+        "type": "boolean"
+      },
+      "PersistencePhase17CloseGarageDriveHandoffRepair": {
+        "value": true,
+        "type": "boolean"
+      },
       "DealershipIntroPhase5PatchedBy": {
         "value": "roblox_dealership_intro_phase5_restore_preview_orbit_camera",
         "type": "string"
@@ -2587,7 +2640,23 @@
         "value": "2026-06-03 20:26:43",
         "type": "string"
       },
+      "PersistencePhase17ColorSliderSignalRepair": {
+        "value": true,
+        "type": "boolean"
+      },
+      "PersistencePhase17ColorPickerRootRepair": {
+        "value": true,
+        "type": "boolean"
+      },
+      "PersistencePhase17FrontEngineFamilyAndCardText": {
+        "value": true,
+        "type": "boolean"
+      },
       "DoNotEnableWithLegacyClient": {
+        "value": true,
+        "type": "boolean"
+      },
+      "PersistencePhase9RegisterLimitRepair": {
         "value": true,
         "type": "boolean"
       },
@@ -2599,9 +2668,9 @@
         "value": true,
         "type": "boolean"
       },
-      "DealershipIntroPhase7PatchedAt": {
-        "value": "2026-06-03 21:33:56",
-        "type": "string"
+      "PersistencePhase17RepairV3": {
+        "value": true,
+        "type": "boolean"
       },
       "PersistencePhase12GarageMenuController": {
         "value": true,
@@ -2611,26 +2680,26 @@
         "value": "2026-05-29 17:31:59",
         "type": "string"
       },
-      "PersistencePhase9RegisterLimitRepair": {
+      "PersistencePhase8CapacityUI": {
         "value": true,
         "type": "boolean"
       },
-      "MigrationStatus": {
-        "value": "PhaseD_MainClientShadow",
+      "PhasePSourcePatchedBy": {
+        "value": "roblox_architecture_phaseP_garage_runtime_startup_repair",
         "type": "string"
       },
       "DealershipIntroPhase3PatchedAt": {
         "value": "2026-06-03 19:49:54",
         "type": "string"
       },
-      "PhasePSourcePatchedBy": {
-        "value": "roblox_architecture_phaseP_garage_runtime_startup_repair",
-        "type": "string"
+      "PersistencePhase17ModuleCardColourPopupRepair": {
+        "value": true,
+        "type": "boolean"
       }
     },
-    "source_lines": 3628,
-    "source_bytes": 150830,
-    "source_checksum": "329792006",
+    "source_lines": 3797,
+    "source_bytes": 154646,
+    "source_checksum": "468468746",
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/NeoTokyoRacersClient_Bootstrap_Shadow_Disabled.client.lua"
   },
   {

@@ -283,9 +283,9 @@
     "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Garage/GarageActionController_Shadow_Disabled.server.lua",
     "class_name": "Script",
     "disabled": false,
-    "source_lines": 1450,
-    "source_bytes": 60224,
-    "source_checksum": "88037523"
+    "source_lines": 1933,
+    "source_bytes": 80711,
+    "source_checksum": "766003509"
   },
   "ServerScriptService.NeoTokyoRacers.Services.Player.LegacyGarageProfileBridge_Active": {
     "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Player/LegacyGarageProfileBridge_Active.server.lua",
@@ -411,9 +411,9 @@
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Runtime/CharacterSprintController_Active.client.lua",
     "class_name": "LocalScript",
     "disabled": false,
-    "source_lines": 342,
-    "source_bytes": 8280,
-    "source_checksum": "989635251"
+    "source_lines": 360,
+    "source_bytes": 8835,
+    "source_checksum": "392594522"
   },
   "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Runtime.DriveHudController_Active": {
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Runtime/DriveHudController_Active.client.lua",
@@ -531,9 +531,9 @@
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/NeoTokyoRacersClient_Bootstrap_Shadow_Disabled.client.lua",
     "class_name": "LocalScript",
     "disabled": false,
-    "source_lines": 3628,
-    "source_bytes": 150830,
-    "source_checksum": "329792006"
+    "source_lines": 3797,
+    "source_bytes": 154646,
+    "source_checksum": "468468746"
   },
   "StarterPlayer.StarterPlayerScripts.LocalScript": {
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/LocalScript.client.lua",

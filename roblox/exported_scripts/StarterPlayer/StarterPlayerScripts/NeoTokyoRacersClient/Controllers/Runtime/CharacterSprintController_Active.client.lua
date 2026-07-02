@@ -117,8 +117,15 @@ local function moveInputMagnitude()
 	return humanoid and math.clamp(humanoid.MoveDirection.Magnitude, 0, 1) or 0
 end
 
+-- NTR_PERSISTENCE_PHASE17_GARAGE_MENU_SPRINT_GUARD
+local function garageMenuOpen()
+	local playerGui = PLAYER:FindFirstChild("PlayerGui")
+	local gui = playerGui and playerGui:FindFirstChild("HOVER_RACING_V2_GarageUI")
+	return gui and gui:IsA("ScreenGui") and gui.Enabled == true
+end
+
 local function shouldSprint()
-	return shiftHeld or mobileAutoSprint
+	return not garageMenuOpen() and (shiftHeld or mobileAutoSprint)
 end
 
 local updateSprintState = nil
@@ -191,6 +198,12 @@ local function startSprint()
 end
 
 updateSprintState = function()
+	if garageMenuOpen() then
+		shiftHeld = false
+		mobileAutoSprint = false
+		stopSprint({ restoreFov = true })
+		return
+	end
 	if shouldSprint() then
 		startSprint()
 	else
@@ -272,7 +285,7 @@ local function disconnectCharacterSignals()
 end
 
 local function updateMobileAutoSprint()
-	if not mobileAutoSprintEnabled() or not humanoid or humanoid.Health <= 0 or isVehicleSeated() then
+	if garageMenuOpen() or not mobileAutoSprintEnabled() or not humanoid or humanoid.Health <= 0 or isVehicleSeated() then
 		if mobileAutoSprint then
 			mobileAutoSprint = false
 			updateSprintState()
@@ -323,6 +336,11 @@ UserInputService.InputBegan:Connect(function(input, gameProcessed)
 		return
 	end
 	if input.KeyCode == sprintKeyCode() then
+		if garageMenuOpen() then
+			shiftHeld = false
+			stopSprint({ restoreFov = true })
+			return
+		end
 		shiftHeld = true
 		updateSprintState()
 	end

@@ -1,12 +1,14 @@
 # Roblox Studio Hierarchy Snapshot
 
-Generated in Studio: 2026-07-01 15:27:30
+Generated in Studio: 2026-07-02 10:33:01
 Scripts exported: 116
 Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, StarterGui, Workspace, ServerStorage, Lighting
 
 ## Hierarchy
 
 - ReplicatedStorage (ReplicatedStorage)
+  - NTR_DEBUG (Folder)
+    - PHASE17_GARAGE_LINE1445_DUMP (StringValue)
   - NeoTokyoRacers (Folder) [16 attrs]
     - Assets (Folder) [1 attrs]
       - UI (Folder) [1 attrs]
@@ -173,10 +175,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - SLOT_Boost (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
-                  - SLOT_Engine1 (Folder) [7 attrs]
+                  - SLOT_Engine1 (Folder) [8 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
-                  - SLOT_Engine2 (Folder) [7 attrs]
+                  - SLOT_Engine2 (Folder) [8 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
                   - SLOT_FrontBumper (Folder) [7 attrs]
@@ -226,10 +228,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - SLOT_Boost (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
-                  - SLOT_Engine1 (Folder) [7 attrs]
+                  - SLOT_Engine1 (Folder) [8 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
-                  - SLOT_Engine2 (Folder) [7 attrs]
+                  - SLOT_Engine2 (Folder) [8 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
                   - SLOT_FrontBumper (Folder) [7 attrs]
@@ -274,10 +276,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - SLOT_Boost (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
-                  - SLOT_Engine1 (Folder) [7 attrs]
+                  - SLOT_Engine1 (Folder) [8 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
-                  - SLOT_Engine2 (Folder) [7 attrs]
+                  - SLOT_Engine2 (Folder) [8 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
                   - SLOT_FrontBumper (Folder) [7 attrs]
@@ -321,10 +323,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - SLOT_Boost (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
-                  - SLOT_Engine1 (Folder) [7 attrs]
+                  - SLOT_Engine1 (Folder) [8 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
-                  - SLOT_Engine2 (Folder) [7 attrs]
+                  - SLOT_Engine2 (Folder) [8 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
                   - SLOT_FrontBumper (Folder) [7 attrs]
@@ -368,10 +370,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - SLOT_Boost (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
-                  - SLOT_Engine1 (Folder) [7 attrs]
+                  - SLOT_Engine1 (Folder) [8 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
-                  - SLOT_Engine2 (Folder) [7 attrs]
+                  - SLOT_Engine2 (Folder) [8 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
                       - MountAttachment (Attachment)
                   - SLOT_FrontBumper (Folder) [7 attrs]
@@ -685,7 +687,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - VFX_BoostJet_Back (Attachment) [2 attrs]
               - Engines (Folder) [3 attrs]
                 - Bruiser_01 (Folder)
-                  - MODULE_ENGINE_BRUISER_01_LIGHTWEIGHT (Model) [34 attrs]
+                  - MODULE_ENGINE_BRUISER_01_LIGHTWEIGHT (Model) [42 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - engine a detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -702,7 +704,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - ThrustAttachment (Attachment)
                       - VFX_EngineJet_Left (Attachment) [2 attrs]
                       - VFX_EngineJet_Right (Attachment) [2 attrs]
-                  - MODULE_ENGINE_BRUISER_01_POWER (Model) [34 attrs]
+                  - MODULE_ENGINE_BRUISER_01_POWER (Model) [42 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - engine a detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -719,7 +721,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - ThrustAttachment (Attachment)
                       - VFX_EngineJet_Left (Attachment) [2 attrs]
                       - VFX_EngineJet_Right (Attachment) [2 attrs]
-                  - MODULE_ENGINE_BRUISER_01_STANDARD (Model) [34 attrs]
+                  - MODULE_ENGINE_BRUISER_01_STANDARD (Model) [42 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - engine a detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -737,7 +739,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - VFX_EngineJet_Left (Attachment) [2 attrs]
                       - VFX_EngineJet_Right (Attachment) [2 attrs]
                 - Bruiser_02 (Folder)
-                  - MODULE_ENGINE_BRUISER_02_LIGHTWEIGHT (Model) [34 attrs]
+                  - MODULE_ENGINE_BRUISER_02_LIGHTWEIGHT (Model) [42 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - engine a detail (MeshPart)
                       - engine a detail.001 (MeshPart)
@@ -756,7 +758,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - ThrustAttachment (Attachment)
                       - VFX_EngineJet_Left (Attachment) [2 attrs]
                       - VFX_EngineJet_Right (Attachment) [2 attrs]
-                  - MODULE_ENGINE_BRUISER_02_POWER (Model) [34 attrs]
+                  - MODULE_ENGINE_BRUISER_02_POWER (Model) [42 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - engine a detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -773,7 +775,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - ThrustAttachment (Attachment)
                       - VFX_EngineJet_Left (Attachment) [2 attrs]
                       - VFX_EngineJet_Right (Attachment) [2 attrs]
-                  - MODULE_ENGINE_BRUISER_02_STANDARD (Model) [34 attrs]
+                  - MODULE_ENGINE_BRUISER_02_STANDARD (Model) [42 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - engine a detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -791,7 +793,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - VFX_EngineJet_Left (Attachment) [2 attrs]
                       - VFX_EngineJet_Right (Attachment) [2 attrs]
                 - Bruiser_03 (Folder)
-                  - MODULE_ENGINE_BRUISER_03_LIGHTWEIGHT (Model) [34 attrs]
+                  - MODULE_ENGINE_BRUISER_03_LIGHTWEIGHT (Model) [42 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - engine a detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -808,7 +810,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - ThrustAttachment (Attachment)
                       - VFX_EngineJet_Left (Attachment) [2 attrs]
                       - VFX_EngineJet_Right (Attachment) [2 attrs]
-                  - MODULE_ENGINE_BRUISER_03_POWER (Model) [34 attrs]
+                  - MODULE_ENGINE_BRUISER_03_POWER (Model) [42 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - engine a detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -825,7 +827,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - ThrustAttachment (Attachment)
                       - VFX_EngineJet_Left (Attachment) [2 attrs]
                       - VFX_EngineJet_Right (Attachment) [2 attrs]
-                  - MODULE_ENGINE_BRUISER_03_STANDARD (Model) [34 attrs]
+                  - MODULE_ENGINE_BRUISER_03_STANDARD (Model) [42 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - engine a detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -843,7 +845,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - VFX_EngineJet_Left (Attachment) [2 attrs]
                       - VFX_EngineJet_Right (Attachment) [2 attrs]
                 - Bruiser_04 (Folder)
-                  - MODULE_ENGINE_BRUISER_04_LIGHTWEIGHT (Model) [34 attrs]
+                  - MODULE_ENGINE_BRUISER_04_LIGHTWEIGHT (Model) [42 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - engine a detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -860,7 +862,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - ThrustAttachment (Attachment)
                       - VFX_EngineJet_Left (Attachment) [2 attrs]
                       - VFX_EngineJet_Right (Attachment) [2 attrs]
-                  - MODULE_ENGINE_BRUISER_04_POWER (Model) [34 attrs]
+                  - MODULE_ENGINE_BRUISER_04_POWER (Model) [42 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - engine a detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -877,7 +879,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - ThrustAttachment (Attachment)
                       - VFX_EngineJet_Left (Attachment) [2 attrs]
                       - VFX_EngineJet_Right (Attachment) [2 attrs]
-                  - MODULE_ENGINE_BRUISER_04_STANDARD (Model) [34 attrs]
+                  - MODULE_ENGINE_BRUISER_04_STANDARD (Model) [42 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - engine a detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -895,7 +897,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - VFX_EngineJet_Left (Attachment) [2 attrs]
                       - VFX_EngineJet_Right (Attachment) [2 attrs]
                 - Bruiser_05 (Folder)
-                  - MODULE_ENGINE_BRUISER_05_LIGHTWEIGHT (Model) [34 attrs]
+                  - MODULE_ENGINE_BRUISER_05_LIGHTWEIGHT (Model) [42 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - engine a detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -912,7 +914,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - ThrustAttachment (Attachment)
                       - VFX_EngineJet_Left (Attachment) [2 attrs]
                       - VFX_EngineJet_Right (Attachment) [2 attrs]
-                  - MODULE_ENGINE_BRUISER_05_POWER (Model) [34 attrs]
+                  - MODULE_ENGINE_BRUISER_05_POWER (Model) [42 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - engine a detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -929,7 +931,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - ThrustAttachment (Attachment)
                       - VFX_EngineJet_Left (Attachment) [2 attrs]
                       - VFX_EngineJet_Right (Attachment) [2 attrs]
-                  - MODULE_ENGINE_BRUISER_05_STANDARD (Model) [34 attrs]
+                  - MODULE_ENGINE_BRUISER_05_STANDARD (Model) [42 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - engine a detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -946,7 +948,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - ThrustAttachment (Attachment)
                       - VFX_EngineJet_Left (Attachment) [2 attrs]
                       - VFX_EngineJet_Right (Attachment) [2 attrs]
-                - MODULE_ENGINE_A (Model) [24 attrs]
+                - MODULE_ENGINE_A (Model) [28 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                     - engine a detail (MeshPart) [1 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
@@ -963,7 +965,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - ThrustAttachment (Attachment)
                     - VFX_EngineJet_Left (Attachment) [2 attrs]
                     - VFX_EngineJet_Right (Attachment) [2 attrs]
-                - MODULE_ENGINE_B (Model) [24 attrs]
+                - MODULE_ENGINE_B (Model) [28 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                     - engine a detail (MeshPart)
                     - engine a detail.001 (MeshPart)
@@ -981,7 +983,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - MountAttachment (Attachment)
                     - ThrustAttachment (Attachment)
                     - VFX_EngineJet_Back (Attachment) [2 attrs]
-                - MODULE_ENGINE_C (Model) [24 attrs]
+                - MODULE_ENGINE_C (Model) [28 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                     - engine v3 detail template (Part) [3 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
@@ -996,7 +998,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - MountAttachment (Attachment)
                     - ThrustAttachment (Attachment)
                     - VFX_EngineJet_Back (Attachment) [2 attrs]
-                - MODULE_ENGINE_D (Model) [24 attrs]
+                - MODULE_ENGINE_D (Model) [28 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                     - engine v4 detail template (Part) [3 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
@@ -1013,7 +1015,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - VFX_EngineJet_Back (Attachment) [2 attrs]
               - Engines_B (Folder) [5 attrs]
                 - Bruiser_01 (Folder)
-                  - MODULE_ENGINE_B_BRUISER_01_LIGHTWEIGHT (Model) [35 attrs]
+                  - MODULE_ENGINE_B_BRUISER_01_LIGHTWEIGHT (Model) [40 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - engine b detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -1030,7 +1032,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - ThrustAttachment (Attachment)
                       - VFX_EngineJet_Left (Attachment) [2 attrs]
                       - VFX_EngineJet_Right (Attachment) [2 attrs]
-                  - MODULE_ENGINE_B_BRUISER_01_POWER (Model) [35 attrs]
+                  - MODULE_ENGINE_B_BRUISER_01_POWER (Model) [40 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - engine b detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -1047,7 +1049,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - ThrustAttachment (Attachment)
                       - VFX_EngineJet_Left (Attachment) [2 attrs]
                       - VFX_EngineJet_Right (Attachment) [2 attrs]
-                  - MODULE_ENGINE_B_BRUISER_01_STANDARD (Model) [35 attrs]
+                  - MODULE_ENGINE_B_BRUISER_01_STANDARD (Model) [40 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - engine b detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -1065,7 +1067,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - VFX_EngineJet_Left (Attachment) [2 attrs]
                       - VFX_EngineJet_Right (Attachment) [2 attrs]
                 - Bruiser_02 (Folder)
-                  - MODULE_ENGINE_B_BRUISER_02_LIGHTWEIGHT (Model) [35 attrs]
+                  - MODULE_ENGINE_B_BRUISER_02_LIGHTWEIGHT (Model) [40 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - engine b detail (MeshPart)
                       - engine b detail.002 (MeshPart)
@@ -1084,7 +1086,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - ThrustAttachment (Attachment)
                       - VFX_EngineJet_Left (Attachment) [2 attrs]
                       - VFX_EngineJet_Right (Attachment) [2 attrs]
-                  - MODULE_ENGINE_B_BRUISER_02_POWER (Model) [35 attrs]
+                  - MODULE_ENGINE_B_BRUISER_02_POWER (Model) [40 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - engine b detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -1101,7 +1103,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - ThrustAttachment (Attachment)
                       - VFX_EngineJet_Left (Attachment) [2 attrs]
                       - VFX_EngineJet_Right (Attachment) [2 attrs]
-                  - MODULE_ENGINE_B_BRUISER_02_STANDARD (Model) [35 attrs]
+                  - MODULE_ENGINE_B_BRUISER_02_STANDARD (Model) [40 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - engine b detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -1119,7 +1121,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - VFX_EngineJet_Left (Attachment) [2 attrs]
                       - VFX_EngineJet_Right (Attachment) [2 attrs]
                 - Bruiser_03 (Folder)
-                  - MODULE_ENGINE_B_BRUISER_03_LIGHTWEIGHT (Model) [35 attrs]
+                  - MODULE_ENGINE_B_BRUISER_03_LIGHTWEIGHT (Model) [40 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - engine b detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -1136,7 +1138,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - ThrustAttachment (Attachment)
                       - VFX_EngineJet_Left (Attachment) [2 attrs]
                       - VFX_EngineJet_Right (Attachment) [2 attrs]
-                  - MODULE_ENGINE_B_BRUISER_03_POWER (Model) [35 attrs]
+                  - MODULE_ENGINE_B_BRUISER_03_POWER (Model) [40 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - engine b detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -1153,7 +1155,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - ThrustAttachment (Attachment)
                       - VFX_EngineJet_Left (Attachment) [2 attrs]
                       - VFX_EngineJet_Right (Attachment) [2 attrs]
-                  - MODULE_ENGINE_B_BRUISER_03_STANDARD (Model) [35 attrs]
+                  - MODULE_ENGINE_B_BRUISER_03_STANDARD (Model) [40 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - engine b detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -1171,7 +1173,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - VFX_EngineJet_Left (Attachment) [2 attrs]
                       - VFX_EngineJet_Right (Attachment) [2 attrs]
                 - Bruiser_04 (Folder)
-                  - MODULE_ENGINE_B_BRUISER_04_LIGHTWEIGHT (Model) [35 attrs]
+                  - MODULE_ENGINE_B_BRUISER_04_LIGHTWEIGHT (Model) [40 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - engine b detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -1188,7 +1190,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - ThrustAttachment (Attachment)
                       - VFX_EngineJet_Left (Attachment) [2 attrs]
                       - VFX_EngineJet_Right (Attachment) [2 attrs]
-                  - MODULE_ENGINE_B_BRUISER_04_POWER (Model) [35 attrs]
+                  - MODULE_ENGINE_B_BRUISER_04_POWER (Model) [40 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - engine b detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -1205,7 +1207,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - ThrustAttachment (Attachment)
                       - VFX_EngineJet_Left (Attachment) [2 attrs]
                       - VFX_EngineJet_Right (Attachment) [2 attrs]
-                  - MODULE_ENGINE_B_BRUISER_04_STANDARD (Model) [35 attrs]
+                  - MODULE_ENGINE_B_BRUISER_04_STANDARD (Model) [40 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - engine b detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -1223,7 +1225,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - VFX_EngineJet_Left (Attachment) [2 attrs]
                       - VFX_EngineJet_Right (Attachment) [2 attrs]
                 - Bruiser_05 (Folder)
-                  - MODULE_ENGINE_B_BRUISER_05_LIGHTWEIGHT (Model) [35 attrs]
+                  - MODULE_ENGINE_B_BRUISER_05_LIGHTWEIGHT (Model) [40 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - engine b detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -1240,7 +1242,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - ThrustAttachment (Attachment)
                       - VFX_EngineJet_Left (Attachment) [2 attrs]
                       - VFX_EngineJet_Right (Attachment) [2 attrs]
-                  - MODULE_ENGINE_B_BRUISER_05_POWER (Model) [35 attrs]
+                  - MODULE_ENGINE_B_BRUISER_05_POWER (Model) [40 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - engine b detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -1257,7 +1259,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - ThrustAttachment (Attachment)
                       - VFX_EngineJet_Left (Attachment) [2 attrs]
                       - VFX_EngineJet_Right (Attachment) [2 attrs]
-                  - MODULE_ENGINE_B_BRUISER_05_STANDARD (Model) [35 attrs]
+                  - MODULE_ENGINE_B_BRUISER_05_STANDARD (Model) [40 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - engine b detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -1274,7 +1276,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - ThrustAttachment (Attachment)
                       - VFX_EngineJet_Left (Attachment) [2 attrs]
                       - VFX_EngineJet_Right (Attachment) [2 attrs]
-                - MODULE_ENGINE_B_01 (Model) [24 attrs]
+                - MODULE_ENGINE_B_01 (Model) [26 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                     - engine b detail (MeshPart) [1 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
@@ -1291,7 +1293,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - ThrustAttachment (Attachment)
                     - VFX_EngineJet_Left (Attachment) [2 attrs]
                     - VFX_EngineJet_Right (Attachment) [2 attrs]
-                - MODULE_ENGINE_B_02 (Model) [24 attrs]
+                - MODULE_ENGINE_B_02 (Model) [26 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                     - engine b detail (MeshPart)
                     - engine b detail.002 (MeshPart)
@@ -1309,7 +1311,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - MountAttachment (Attachment)
                     - ThrustAttachment (Attachment)
                     - VFX_EngineJet_Back (Attachment) [2 attrs]
-                - MODULE_ENGINE_B_03 (Model) [24 attrs]
+                - MODULE_ENGINE_B_03 (Model) [26 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                     - engine v3 detail template (Part) [3 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
@@ -1324,7 +1326,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - MountAttachment (Attachment)
                     - ThrustAttachment (Attachment)
                     - VFX_EngineJet_Back (Attachment) [2 attrs]
-                - MODULE_ENGINE_B_04 (Model) [24 attrs]
+                - MODULE_ENGINE_B_04 (Model) [26 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                     - engine v4 detail template (Part) [3 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
@@ -2451,7 +2453,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
         - IntroProgressService_Active (Script) [script_0035, 208 lines, 2 attrs]
       - Economy (Folder)
       - Garage (Folder)
-        - GarageActionController_Shadow_Disabled (Script) [script_0036, 1450 lines, 26 attrs]
+        - GarageActionController_Shadow_Disabled (Script) [script_0036, 1933 lines, 31 attrs]
       - Player (Folder)
         - LegacyGarageProfileBridge_Active (Script) [script_0037, 61 lines]
         - ProfileService_Active (Script) [script_0038, 328 lines]
@@ -2485,7 +2487,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - PreviewCameraController (ModuleScript) [script_0050, 96 lines, 5 attrs]
           - PreviewVehicleController (ModuleScript) [script_0051, 168 lines, 5 attrs]
         - Runtime (Folder)
-          - CharacterSprintController_Active (LocalScript) [script_0052, 342 lines]
+          - CharacterSprintController_Active (LocalScript) [script_0052, 360 lines, 1 attrs]
           - DriveHudController_Active (LocalScript) [script_0053, 261 lines, 7 attrs]
           - MobileDriveControlsController_Active (LocalScript) [script_0054, 711 lines, 10 attrs]
           - RuntimeVFXController_Active (LocalScript) [script_0055, 16 lines, 9 attrs]
@@ -2505,7 +2507,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - WindowMaterialController_Active (LocalScript) [script_0066, 101 lines, 2 attrs]
       - RuntimeState (Folder)
       - State (Folder)
-      - NeoTokyoRacersClient_Bootstrap_Shadow_Disabled (LocalScript) [script_0067, 3628 lines, 34 attrs]
+      - NeoTokyoRacersClient_Bootstrap_Shadow_Disabled (LocalScript) [script_0067, 3797 lines, 45 attrs]
     - LocalScript (LocalScript) [script_0068, 203 lines]
     - PlayerScriptsLoader (LocalScript) [script_0069, 8 lines]
     - RbxCharacterSounds (LocalScript) [script_0070, 456 lines]
@@ -7750,9 +7752,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - Garage Bollard Yellow (Part)
                   - Garage Sign (Model)
                     - Garage Sign (Part)
-                    - Garage Sign (Part)
                       - SurfaceGui (SurfaceGui)
                         - TextLabel (TextLabel)
+                    - Garage Sign (Part)
                     - Garage Sign (Part)
                     - Garage Sign (Part)
                     - Garage Sign Clearance (Part)
@@ -13998,6 +14000,17 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Road (Part)
             - Road (Part)
             - Road (Part)
+          - columns (Model)
+            - Road (Part)
+            - Road (Part)
+            - Road (Part)
+            - Road (Part)
+            - Road (Part)
+            - Road (Part)
+            - Road (Part)
+            - Road (Part)
+            - Road (Part)
+            - Road (Part)
           - curve left (Model)
             - Road (Part)
             - Road (Part)
@@ -14090,6 +14103,39 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Road (Part)
             - Road (Part)
             - Road (Part)
+        - Road (Part)
+        - Road (Part)
+        - Road (Part)
+        - Road (Part)
+        - Road (Part)
+        - Road (Part)
+        - Road (Part)
+        - Road (Part)
+        - Road (Part)
+        - Road (Part)
+        - Road (Part)
+        - Road (Part)
+        - Road (Part)
+        - Road (Part)
+        - Road (Part)
+        - Road (Part)
+        - Road (Part)
+        - Road (Part)
+        - Road (Part)
+        - Road (Part)
+        - Road (Part)
+        - Road (Part)
+        - Road (Part)
+        - Road (Part)
+        - Road (Part)
+        - Road (Part)
+        - Road (Part)
+        - Road (Part)
+        - Road (Part)
+        - Road (Part)
+        - Road (Part)
+        - Road (Part)
+        - Road (Part)
         - Road (Part)
         - Road (Part)
         - Road (Part)
@@ -16059,9 +16105,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -16141,9 +16187,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -17974,9 +18020,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
@@ -18057,10 +18103,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -18097,10 +18143,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -18263,11 +18309,11 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -18305,9 +18351,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -18346,10 +18392,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -18386,11 +18432,11 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -18553,11 +18599,11 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -18596,9 +18642,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -18635,9 +18681,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
@@ -18677,10 +18723,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -18852,9 +18898,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -18932,10 +18978,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -18974,9 +19020,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -19142,9 +19188,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -19183,9 +19229,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -19263,9 +19309,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
@@ -19423,9 +19469,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -19545,11 +19591,11 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -20791,9 +20837,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
@@ -20833,9 +20879,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -22915,10 +22961,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -22958,9 +23004,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -22999,9 +23045,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -23038,10 +23084,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -23212,10 +23258,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -23294,11 +23340,11 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -24741,9 +24787,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                 - Garage Sign (Part)
                 - Garage Sign (Part)
                 - Garage Sign (Part)
-                - Garage Sign (Part)
                   - SurfaceGui (SurfaceGui)
                     - TextLabel (TextLabel)
+                - Garage Sign (Part)
                 - Garage Sign Clearance (Part)
                   - SurfaceGui (SurfaceGui)
                     - TextLabel (TextLabel)
@@ -24782,9 +24828,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                 - Garage Sign (Part)
                 - Garage Sign (Part)
                 - Garage Sign (Part)
+                - Garage Sign (Part)
                   - SurfaceGui (SurfaceGui)
                     - TextLabel (TextLabel)
-                - Garage Sign (Part)
                 - Garage Sign Clearance (Part)
                   - SurfaceGui (SurfaceGui)
                     - TextLabel (TextLabel)
@@ -24823,9 +24869,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                 - Garage Sign (Part)
                 - Garage Sign (Part)
                 - Garage Sign (Part)
-                - Garage Sign (Part)
                   - SurfaceGui (SurfaceGui)
                     - TextLabel (TextLabel)
+                - Garage Sign (Part)
                 - Garage Sign Clearance (Part)
                   - SurfaceGui (SurfaceGui)
                     - TextLabel (TextLabel)

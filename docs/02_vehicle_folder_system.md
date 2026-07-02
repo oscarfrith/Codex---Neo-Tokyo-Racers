@@ -178,6 +178,7 @@ Persistence Phase 17 should treat engine position as explicit metadata rather th
 - Rear engines live under `Engines_B` and should have `EnginePosition = "Rear"` plus `RearEngine = true`.
 - `SLOT_Engine1` should use `AllowedModuleFolder = "Engines"` and `EnginePosition = "Front"`.
 - `SLOT_Engine2` should use `AllowedModuleFolder = "Engines_B"` and `EnginePosition = "Rear"`.
+- The old flat front-engine catalogue entries such as `Engine V1` through `Engine V4` should be retired/hidden rather than deleted. The visible front-engine list should use the same per-cockpit family style as rear engines, for example Bruiser family Standard/Lightweight/Power entries under `Engines/Bruiser_01` through `Engines/Bruiser_05`.
 
 Bruiser cockpits can declare included standard modules with:
 
