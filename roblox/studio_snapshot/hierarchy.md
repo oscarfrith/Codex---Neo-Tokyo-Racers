@@ -1,7 +1,7 @@
 # Roblox Studio Hierarchy Snapshot
 
-Generated in Studio: 2026-07-02 12:20:22
-Scripts exported: 116
+Generated in Studio: 2026-07-02 18:16:10
+Scripts exported: 123
 Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, StarterGui, Workspace, ServerStorage, Lighting
 
 ## Hierarchy
@@ -9,7 +9,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
 - ReplicatedStorage (ReplicatedStorage)
   - NTR_DEBUG (Folder)
     - PHASE17_GARAGE_LINE1445_DUMP (StringValue)
-  - NeoTokyoRacers (Folder) [16 attrs]
+  - NeoTokyoRacers (Folder) [17 attrs]
     - Assets (Folder) [1 attrs]
       - UI (Folder) [1 attrs]
         - Theme (Folder) [1 attrs]
@@ -2431,7 +2431,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - GetDealershipIntroObjectiveComplete (RemoteFunction)
         - Economy (Folder) [3 attrs]
         - Garage (Folder) [3 attrs]
+          - GarageInteriorTransition (RemoteEvent) [1 attrs]
           - GaragePush (RemoteEvent)
+          - GarageInteriorCustomizationInvoke (RemoteFunction) [1 attrs]
+          - GarageInteriorInvoke (RemoteFunction) [1 attrs]
           - GarageInvoke (RemoteFunction)
         - Racing (Folder) [3 attrs]
         - UI (Folder) [1 attrs]
@@ -2453,18 +2456,22 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
         - IntroProgressService_Active (Script) [script_0035, 208 lines, 2 attrs]
       - Economy (Folder)
       - Garage (Folder)
-        - GarageActionController_Shadow_Disabled (Script) [script_0036, 1933 lines, 31 attrs]
+        - GarageDisplayRuntime (ModuleScript) [script_0036, 299 lines, 1 attrs]
+        - GarageProfileRuntime (ModuleScript) [script_0037, 136 lines, 1 attrs]
+        - GarageActionController_Shadow_Disabled (Script) [script_0038, 2113 lines, 34 attrs]
+        - GarageInteriorCustomizationService_Active (Script) [script_0039, 472 lines, 1 attrs]
+        - GarageInteriorService_Active (Script) [script_0040, 407 lines, 4 attrs]
       - Player (Folder)
-        - LegacyGarageProfileBridge_Active (Script) [script_0037, 61 lines]
-        - ProfileService_Active (Script) [script_0038, 328 lines]
+        - LegacyGarageProfileBridge_Active (Script) [script_0041, 61 lines]
+        - ProfileService_Active (Script) [script_0042, 328 lines]
       - Vehicle (Folder)
-        - DriverSeatPositionService_Active (Script) [script_0039, 234 lines, 11 attrs]
-        - VehiclePerformanceRuntimeService_Active (Script) [script_0040, 95 lines, 2 attrs]
+        - DriverSeatPositionService_Active (Script) [script_0043, 234 lines, 11 attrs]
+        - VehiclePerformanceRuntimeService_Active (Script) [script_0044, 95 lines, 2 attrs]
       - World (Folder)
         - Lighting (Folder)
-          - LightingService_Active (Script) [script_0041, 107 lines, 9 attrs]
+          - LightingService_Active (Script) [script_0045, 107 lines, 9 attrs]
         - Traffic (Folder)
-          - TrafficLightService (Script) [script_0042, 46 lines, 3 attrs]
+          - TrafficLightService (Script) [script_0046, 46 lines, 3 attrs]
           - README_MigrationNotes (StringValue)
     - State (Folder)
       - RuntimeProfiles (Folder)
@@ -2474,90 +2481,93 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
     - NeoTokyoRacersClient (Folder) [6 attrs]
       - Controllers (Folder) [3 attrs]
         - Core (Folder)
-          - CatalogClient (ModuleScript) [script_0043, 110 lines, 4 attrs]
-          - ClientState (ModuleScript) [script_0044, 75 lines, 4 attrs]
-          - ClientThemeAdapter (ModuleScript) [script_0045, 73 lines, 6 attrs]
-          - GarageApiClient (ModuleScript) [script_0046, 38 lines, 4 attrs]
-          - PaintClient (ModuleScript) [script_0047, 142 lines, 10 attrs]
+          - CatalogClient (ModuleScript) [script_0047, 110 lines, 4 attrs]
+          - ClientState (ModuleScript) [script_0048, 75 lines, 4 attrs]
+          - ClientThemeAdapter (ModuleScript) [script_0049, 73 lines, 6 attrs]
+          - GarageApiClient (ModuleScript) [script_0050, 38 lines, 4 attrs]
+          - PaintClient (ModuleScript) [script_0051, 142 lines, 10 attrs]
         - Garage (Folder)
         - Intro (Folder)
-          - DealershipIntroClient_Active (LocalScript) [script_0048, 729 lines, 8 attrs]
+          - DealershipIntroClient_Active (LocalScript) [script_0052, 729 lines, 8 attrs]
         - Preview (Folder)
-          - ThrustPreviewController_Active (LocalScript) [script_0049, 208 lines, 17 attrs]
-          - PreviewCameraController (ModuleScript) [script_0050, 96 lines, 5 attrs]
-          - PreviewVehicleController (ModuleScript) [script_0051, 168 lines, 5 attrs]
+          - ThrustPreviewController_Active (LocalScript) [script_0053, 208 lines, 17 attrs]
+          - PreviewCameraController (ModuleScript) [script_0054, 96 lines, 5 attrs]
+          - PreviewVehicleController (ModuleScript) [script_0055, 168 lines, 5 attrs]
         - Runtime (Folder)
-          - CharacterSprintController_Active (LocalScript) [script_0052, 360 lines, 1 attrs]
-          - DriveHudController_Active (LocalScript) [script_0053, 261 lines, 7 attrs]
-          - MobileDriveControlsController_Active (LocalScript) [script_0054, 711 lines, 10 attrs]
-          - RuntimeVFXController_Active (LocalScript) [script_0055, 16 lines, 9 attrs]
+          - CharacterSprintController_Active (LocalScript) [script_0056, 360 lines, 1 attrs]
+          - DriveHudController_Active (LocalScript) [script_0057, 261 lines, 7 attrs]
+          - MobileDriveControlsController_Active (LocalScript) [script_0058, 711 lines, 10 attrs]
+          - RuntimeVFXController_Active (LocalScript) [script_0059, 16 lines, 9 attrs]
         - UI (Folder)
-          - CockpitPaintUIController (ModuleScript) [script_0056, 46 lines, 5 attrs]
-          - ColourPickerController (ModuleScript) [script_0057, 277 lines, 5 attrs]
-          - CustomisationUIController (ModuleScript) [script_0058, 127 lines, 5 attrs]
-          - DealershipUIController (ModuleScript) [script_0059, 87 lines, 5 attrs]
-          - GaragePropertyMenuController (ModuleScript) [script_0060, 172 lines, 2 attrs]
-          - ModuleShopUIController (ModuleScript) [script_0061, 109 lines, 5 attrs]
-          - NavigationController (ModuleScript) [script_0062, 49 lines, 5 attrs]
-          - StatsPanelController (ModuleScript) [script_0063, 51 lines, 5 attrs]
+          - CockpitPaintUIController (ModuleScript) [script_0060, 46 lines, 5 attrs]
+          - ColourPickerController (ModuleScript) [script_0061, 277 lines, 5 attrs]
+          - CustomisationUIController (ModuleScript) [script_0062, 127 lines, 5 attrs]
+          - DealershipUIController (ModuleScript) [script_0063, 87 lines, 5 attrs]
+          - GaragePropertyMenuController (ModuleScript) [script_0064, 172 lines, 2 attrs]
+          - ModuleShopUIController (ModuleScript) [script_0065, 109 lines, 5 attrs]
+          - NavigationController (ModuleScript) [script_0066, 49 lines, 5 attrs]
+          - StatsPanelController (ModuleScript) [script_0067, 51 lines, 5 attrs]
           - README_TargetControllers (StringValue)
         - World (Folder)
-          - LODClient_Active (LocalScript) [script_0064, 365 lines, 12 attrs]
-          - NightLamppostLightController_Active (LocalScript) [script_0065, 101 lines, 2 attrs]
-          - WindowMaterialController_Active (LocalScript) [script_0066, 101 lines, 2 attrs]
+          - GarageAccessClient_Active (LocalScript) [script_0068, 279 lines, 1 attrs]
+          - GarageInteriorClient_Active (LocalScript) [script_0069, 92 lines, 2 attrs]
+          - GarageInteriorCustomizationClient_Active (LocalScript) [script_0070, 273 lines, 1 attrs]
+          - LODClient_Active (LocalScript) [script_0071, 365 lines, 12 attrs]
+          - NightLamppostLightController_Active (LocalScript) [script_0072, 101 lines, 2 attrs]
+          - WindowMaterialController_Active (LocalScript) [script_0073, 101 lines, 2 attrs]
       - RuntimeState (Folder)
       - State (Folder)
-      - NeoTokyoRacersClient_Bootstrap_Shadow_Disabled (LocalScript) [script_0067, 4024 lines, 58 attrs]
-    - LocalScript (LocalScript) [script_0068, 203 lines]
-    - PlayerScriptsLoader (LocalScript) [script_0069, 8 lines]
-    - RbxCharacterSounds (LocalScript) [script_0070, 456 lines]
-      - AtomicBinding (ModuleScript) [script_0071, 277 lines]
-    - TEMP_LightingPreview (LocalScript) [script_0072, 127 lines, 2 attrs]
-    - TrailerMode.client.lua (LocalScript) [script_0073, 73 lines]
-    - TrailerShot01Camera (LocalScript) [script_0074, 92 lines]
-    - PlayerModule (ModuleScript) [script_0075, 32 lines]
+      - NeoTokyoRacersClient_Bootstrap_Shadow_Disabled (LocalScript) [script_0074, 4024 lines, 61 attrs]
+    - LocalScript (LocalScript) [script_0075, 203 lines]
+    - PlayerScriptsLoader (LocalScript) [script_0076, 8 lines]
+    - RbxCharacterSounds (LocalScript) [script_0077, 456 lines]
+      - AtomicBinding (ModuleScript) [script_0078, 277 lines]
+    - TEMP_LightingPreview (LocalScript) [script_0079, 127 lines, 2 attrs]
+    - TrailerMode.client.lua (LocalScript) [script_0080, 73 lines]
+    - TrailerShot01Camera (LocalScript) [script_0081, 92 lines]
+    - PlayerModule (ModuleScript) [script_0082, 32 lines]
       - CommonUtils (Folder)
-        - CameraWrapper (ModuleScript) [script_0076, 115 lines]
-        - CameraWrapper.spec (ModuleScript) [script_0077, 34 lines]
-        - CharacterUtil (ModuleScript) [script_0078, 156 lines]
-        - ConnectionUtil (ModuleScript) [script_0079, 62 lines]
-        - ConnectionUtil.spec (ModuleScript) [script_0080, 104 lines]
-        - FlagUtil (ModuleScript) [script_0081, 18 lines]
-      - CameraModule (ModuleScript) [script_0082, 632 lines]
-        - BaseCamera (ModuleScript) [script_0083, 763 lines]
-        - BaseOcclusion (ModuleScript) [script_0084, 48 lines]
-        - CameraInput (ModuleScript) [script_0085, 572 lines]
-        - CameraToggleStateController (ModuleScript) [script_0086, 78 lines]
-        - CameraUI (ModuleScript) [script_0087, 38 lines]
-        - CameraUtils (ModuleScript) [script_0088, 310 lines]
-        - ClassicCamera (ModuleScript) [script_0089, 232 lines]
-        - Invisicam (ModuleScript) [script_0090, 628 lines]
-        - LegacyCamera (ModuleScript) [script_0091, 118 lines]
-        - MouseLockController (ModuleScript) [script_0092, 212 lines]
-        - OrbitalCamera (ModuleScript) [script_0093, 287 lines]
-        - Poppercam (ModuleScript) [script_0094, 128 lines]
-        - TransparencyController (ModuleScript) [script_0095, 230 lines]
-        - VRBaseCamera (ModuleScript) [script_0096, 425 lines]
-        - VRCamera (ModuleScript) [script_0097, 429 lines]
-        - VRVehicleCamera (ModuleScript) [script_0098, 514 lines]
-        - VehicleCamera (ModuleScript) [script_0099, 216 lines]
-          - VehicleCameraConfig (ModuleScript) [script_0100, 58 lines]
-          - VehicleCameraCore (ModuleScript) [script_0101, 183 lines]
-        - ZoomController (ModuleScript) [script_0102, 138 lines]
-          - Popper (ModuleScript) [script_0103, 474 lines]
-      - ControlModule (ModuleScript) [script_0104, 674 lines]
-        - AvatarAbilitiesInterface (ModuleScript) [script_0105, 67 lines]
-        - BaseCharacterController (ModuleScript) [script_0106, 65 lines]
-        - ClickToMoveController (ModuleScript) [script_0107, 1240 lines]
-        - ClickToMoveDisplay (ModuleScript) [script_0108, 517 lines]
-        - DynamicThumbstick (ModuleScript) [script_0109, 636 lines]
-        - Gamepad (ModuleScript) [script_0110, 213 lines]
-        - Keyboard (ModuleScript) [script_0111, 154 lines]
-        - PathDisplay (ModuleScript) [script_0112, 153 lines]
-        - TouchJump (ModuleScript) [script_0113, 283 lines]
-        - TouchThumbstick (ModuleScript) [script_0114, 229 lines]
-        - VRNavigation (ModuleScript) [script_0115, 483 lines]
-        - VehicleController (ModuleScript) [script_0116, 190 lines]
+        - CameraWrapper (ModuleScript) [script_0083, 115 lines]
+        - CameraWrapper.spec (ModuleScript) [script_0084, 34 lines]
+        - CharacterUtil (ModuleScript) [script_0085, 156 lines]
+        - ConnectionUtil (ModuleScript) [script_0086, 62 lines]
+        - ConnectionUtil.spec (ModuleScript) [script_0087, 104 lines]
+        - FlagUtil (ModuleScript) [script_0088, 18 lines]
+      - CameraModule (ModuleScript) [script_0089, 632 lines]
+        - BaseCamera (ModuleScript) [script_0090, 763 lines]
+        - BaseOcclusion (ModuleScript) [script_0091, 48 lines]
+        - CameraInput (ModuleScript) [script_0092, 572 lines]
+        - CameraToggleStateController (ModuleScript) [script_0093, 78 lines]
+        - CameraUI (ModuleScript) [script_0094, 38 lines]
+        - CameraUtils (ModuleScript) [script_0095, 310 lines]
+        - ClassicCamera (ModuleScript) [script_0096, 232 lines]
+        - Invisicam (ModuleScript) [script_0097, 628 lines]
+        - LegacyCamera (ModuleScript) [script_0098, 118 lines]
+        - MouseLockController (ModuleScript) [script_0099, 212 lines]
+        - OrbitalCamera (ModuleScript) [script_0100, 287 lines]
+        - Poppercam (ModuleScript) [script_0101, 128 lines]
+        - TransparencyController (ModuleScript) [script_0102, 230 lines]
+        - VRBaseCamera (ModuleScript) [script_0103, 425 lines]
+        - VRCamera (ModuleScript) [script_0104, 429 lines]
+        - VRVehicleCamera (ModuleScript) [script_0105, 514 lines]
+        - VehicleCamera (ModuleScript) [script_0106, 216 lines]
+          - VehicleCameraConfig (ModuleScript) [script_0107, 58 lines]
+          - VehicleCameraCore (ModuleScript) [script_0108, 183 lines]
+        - ZoomController (ModuleScript) [script_0109, 138 lines]
+          - Popper (ModuleScript) [script_0110, 474 lines]
+      - ControlModule (ModuleScript) [script_0111, 674 lines]
+        - AvatarAbilitiesInterface (ModuleScript) [script_0112, 67 lines]
+        - BaseCharacterController (ModuleScript) [script_0113, 65 lines]
+        - ClickToMoveController (ModuleScript) [script_0114, 1240 lines]
+        - ClickToMoveDisplay (ModuleScript) [script_0115, 517 lines]
+        - DynamicThumbstick (ModuleScript) [script_0116, 636 lines]
+        - Gamepad (ModuleScript) [script_0117, 213 lines]
+        - Keyboard (ModuleScript) [script_0118, 154 lines]
+        - PathDisplay (ModuleScript) [script_0119, 153 lines]
+        - TouchJump (ModuleScript) [script_0120, 283 lines]
+        - TouchThumbstick (ModuleScript) [script_0121, 229 lines]
+        - VRNavigation (ModuleScript) [script_0122, 483 lines]
+        - VehicleController (ModuleScript) [script_0123, 190 lines]
 - StarterGui (StarterGui)
   - NeoTokyoRacersUI (ScreenGui) [2 attrs]
     - Components (Folder) [1 attrs]
@@ -4122,8 +4132,8 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - Road Marking White (Part)
                     - Road Marking White (Part)
                     - Road Marking White (Part)
-                    - Road Marking White (Part)
                   - Road Marking Dashed Line (Model)
+                    - Road Marking White (Part)
                     - Road Marking White (Part)
                     - Road Marking White (Part)
                     - Road Marking White (Part)
@@ -7752,11 +7762,11 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - Garage Bollard Yellow (Part)
                   - Garage Sign (Model)
                     - Garage Sign (Part)
+                    - Garage Sign (Part)
+                    - Garage Sign (Part)
+                    - Garage Sign (Part)
                       - SurfaceGui (SurfaceGui)
                         - TextLabel (TextLabel)
-                    - Garage Sign (Part)
-                    - Garage Sign (Part)
-                    - Garage Sign (Part)
                     - Garage Sign Clearance (Part)
                       - SurfaceGui (SurfaceGui)
                         - TextLabel (TextLabel)
@@ -8140,12 +8150,12 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                         - JapaneseBrandText (TextLabel)
                   - TKY_JP_TEXT_BB_11_GinClock_SilverClock_3X2_H (Model) [11 attrs]
                     - BillboardPanel (Part)
+                    - BillboardPanel (Part)
+                    - BillboardPanel (Part)
                       - FrontSurfaceGui (SurfaceGui)
                         - EnglishBrandText (TextLabel)
                           - UITextSizeConstraint (UITextSizeConstraint)
                         - JapaneseBrandText (TextLabel)
-                    - BillboardPanel (Part)
-                    - BillboardPanel (Part)
                     - BillboardPanel (Part)
                   - TKY_JP_TEXT_BB_12_NijiCamera_RainbowCamera_2X1_H (Model) [11 attrs]
                     - BillboardPanel (Part)
@@ -12231,6 +12241,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
       - GaragePreviewPad (Part) [1 attrs]
       - VehicleSpawnPoint (Part) [1 attrs]
     - Interactives (Folder)
+      - GarageInteriorElevatorMVP (Part) [2 attrs]
+        - EnterPrivateGaragePrompt (ProximityPrompt) [1 attrs]
+    - Interiors (Folder)
+      - GarageInstances (Folder) [3 attrs]
     - RaceRoutes (Folder) [1 attrs]
     - References (Folder)
     - Routes (Folder)
@@ -13212,6 +13226,11 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - Block C4 (Folder)
           - Block C5 (Folder)
           - Block C6 (Folder)
+            - blockout part (Part)
+            - blockout part (Part)
+            - blockout part (Part)
+            - blockout part (Part)
+            - blockout part (Part)
             - blockout part (Part)
             - blockout part (Part)
           - Block C7 (Folder)
@@ -16215,9 +16234,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -16256,9 +16275,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -16296,9 +16315,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
@@ -16337,11 +16356,11 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -18173,9 +18192,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -18213,10 +18232,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -18253,10 +18272,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -18421,9 +18440,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -18502,9 +18521,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -18542,9 +18561,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
@@ -18751,10 +18770,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -18792,9 +18811,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -19008,9 +19027,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -19049,9 +19068,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -19089,9 +19108,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -19130,9 +19149,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -19339,9 +19358,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -19380,9 +19399,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -19420,9 +19439,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -19578,9 +19597,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
@@ -19661,9 +19680,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -19701,11 +19720,11 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -20988,9 +21007,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
@@ -21072,9 +21091,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -23112,11 +23131,11 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -23194,10 +23213,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -23368,10 +23387,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -23410,10 +23429,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -23450,10 +23469,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -23492,10 +23511,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -24896,9 +24915,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Sign (Model)
                 - Garage Sign (Part)
                 - Garage Sign (Part)
-                - Garage Sign (Part)
                   - SurfaceGui (SurfaceGui)
                     - TextLabel (TextLabel)
+                - Garage Sign (Part)
                 - Garage Sign (Part)
                 - Garage Sign Clearance (Part)
                   - SurfaceGui (SurfaceGui)
@@ -24938,9 +24957,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                 - Garage Sign (Part)
                 - Garage Sign (Part)
                 - Garage Sign (Part)
-                - Garage Sign (Part)
                   - SurfaceGui (SurfaceGui)
                     - TextLabel (TextLabel)
+                - Garage Sign (Part)
                 - Garage Sign Clearance (Part)
                   - SurfaceGui (SurfaceGui)
                     - TextLabel (TextLabel)
@@ -25020,9 +25039,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                 - Garage Sign (Part)
                 - Garage Sign (Part)
                 - Garage Sign (Part)
-                - Garage Sign (Part)
                   - SurfaceGui (SurfaceGui)
                     - TextLabel (TextLabel)
+                - Garage Sign (Part)
                 - Garage Sign Clearance (Part)
                   - SurfaceGui (SurfaceGui)
                     - TextLabel (TextLabel)
@@ -26063,11 +26082,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                 - lamppost main (MeshPart)
                 - lamppost neon (MeshPart)
                   - SurfaceLight lamppost (SurfaceLight)
-            - Traffic Light Tall A (Model)
-              - traffic light light orange (MeshPart)
-              - traffic light light red (MeshPart)
-              - traffic light main (MeshPart)
-              - traffic light neon green (MeshPart)
           - Roads (Folder)
         - LOD3 (Folder)
           - Buildings (Folder)
@@ -26172,15 +26186,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - SurfaceAppearance (SurfaceAppearance)
                 - bush walls (UnionOperation)
                 - bush walls detail (UnionOperation)
-            - Tree Large Maple (Model)
-              - Tree_Large_Maple_LOD3 (Model)
-                - LeavesMapleBottom1 (MeshPart)
-                  - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                - LeavesMapleShadow2 (MeshPart)
-                  - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                - TrunkLargeMaple1 (MeshPart)
-                  - SurfaceAppearance Trunk (SurfaceAppearance)
-              - Tree Base Concrete (UnionOperation)
             - Tree Large Maple (Model)
               - Tree_Large_Maple_LOD3 (Model)
                 - LeavesMapleBottom1 (MeshPart)
@@ -26890,7 +26895,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
   - Terrain (Terrain)
 - ServerStorage (ServerStorage)
   - HOVER_RACING_SAVED_CARS_Runtime (Folder)
-- Lighting (Lighting) [3 attrs]
+- Lighting (Lighting) [2 attrs]
   - Atmosphere (Atmosphere)
   - Bloom (BloomEffect)
   - ColorCorrection (ColorCorrectionEffect)

@@ -89,9 +89,27 @@ class ExportReceiver(BaseHTTPRequestHandler):
             raise ValueError("Request body does not look like an NTR Studio full export.")
 
         self.paste_file.parent.mkdir(parents=True, exist_ok=True)
-        self.paste_file.write_text(export_text, encoding="utf-8", newline="\n")
+        try:
+            self.paste_file.write_text(export_text, encoding="utf-8", newline="\n")
+            payload = importer.read_payload(self.paste_file)
+        except OSError as exc:
+            print(f"Warning: could not write raw paste file {self.paste_file}: {exc}")
+            print("Continuing with in-memory import; raw paste file will not be refreshed.")
+            start = export_text.find(importer.EXPORT_START)
+            if start < 0:
+                raise ValueError(f"Export text does not contain {importer.EXPORT_START}.") from exc
 
-        payload = importer.read_payload(self.paste_file)
+            start += len(importer.EXPORT_START)
+            end = export_text.find(importer.EXPORT_END, start)
+            json_text = export_text[start:] if end < 0 else export_text[start:end]
+            json_text = json_text.strip()
+            if not json_text:
+                raise ValueError("Export marker was found, but no JSON payload followed it.") from exc
+
+            payload = json.loads(json_text)
+            if payload.get("format") != importer.EXPORT_START:
+                raise ValueError(f"Unexpected export format: {payload.get('format')!r}") from exc
+
         scripts = importer.decode_scripts(payload)
         manifest = importer.write_scripts(scripts, importer.DEFAULT_SCRIPTS_DIR)
         importer.write_snapshot(payload, manifest, importer.DEFAULT_SNAPSHOT_DIR)

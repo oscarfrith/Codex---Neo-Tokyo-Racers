@@ -178,6 +178,14 @@ The Phase AO right-hand stats panel always shows the E-S tier and performance in
 
 The module upgrade list is horizontally scrollable for mobile. The existing left module list remains vertically scrollable.
 
+## Garage Interior Customisation
+
+Persistence Phase 24 prepares the backend/runtime layer only. It installs `GarageInteriorCustomizationInvoke` and `GarageInteriorCustomizationService_Active` so garage interiors can store/apply simple floor/wall surface colours/materials and decoration anchors under `Garage.Customisation`.
+
+Persistence Phase 25 prepares the first player-facing control surface for that backend: an owner-only in-garage panel installed as `GarageInteriorCustomizationClient_Active`. It stays separate from the dealership/customisation bootstrap and calls the Phase 24 remote directly.
+
+Persistence Phase 27 prepares a separate same-server garage access panel installed as `GarageAccessClient_Active`. It handles entering the owner's garage, setting public/private access, visiting a typed same-server owner user ID, and returning to the city. It does not replace the dealership menu or the Phase 25 customization panel.
+
 ## Mobile Driving UI
 
 Known mobile driving UI:

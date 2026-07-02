@@ -1,8 +1,8 @@
 # Open World LOD / Far Proxy System
 
 **Created / first designed:** Before 2026-04-29  
-**Last updated:** 2026-05-29  
-**Current status:** Implemented / City root migrated / Far LOD5 asset migration prepared  
+**Last updated:** 2026-07-02
+**Current status:** Implemented / City root migrated / Far LOD5 asset migration prepared / private garage interior/display/visit MVP confirmed / garage surface-decor service confirmed
 **Relevant docs file:** `docs/world-streaming-and-lod.md`  
 **Relevant files to edit:** LOD scripts, LOD folders, foliage proxy setup only. Do not edit vehicle or lighting files unless specifically requested.
 
@@ -28,6 +28,8 @@ Workspace
   - City
     - Block S#
       - Block_S#_R#_B#
+  - Interiors
+    - GarageInstances
 
 Workspace
 - GeneratedCityBlocks (legacy fallback root; do not delete yet)
@@ -53,6 +55,38 @@ Current active script:
 ```text
 StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.World.LODClient_Active
 ```
+
+Persistence Phase 21 prepares the first private garage interior shell:
+
+```text
+Workspace.NeoTokyoRacersWorld.Interiors.GarageInstances
+StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.World.GarageInteriorClient_Active
+ServerScriptService.NeoTokyoRacers.Services.Garage.GarageInteriorService_Active
+```
+
+The Phase 21 client helper only handles the loading fade and `Workspace:RequestStreamAroundAsync` around the private garage spawn. It does not replace the city LOD client yet. A later garage mode should explicitly pause city far-LOD work while inside interiors.
+
+Persistence Phase 22 prepares the first garage display vehicle runtime:
+
+```text
+ServerScriptService.NeoTokyoRacers.Services.Garage.GarageDisplayRuntime
+Workspace.NeoTokyoRacersWorld.Interiors.GarageInstances.<owner>.DisplayVehicle_Runtime
+```
+
+Display vehicles are intended to be anchored/non-drivable interior props, not full runtime vehicles. They should stay separate from `Workspace.NeoTokyoRacersWorld.Runtime.PlayerVehicles`.
+
+Persistence Phase 23 is confirmed through the canonical `GarageInteriorService_Active` repair path. Same-server self-visits, public access mode, display refresh, and return-to-city passed in Studio on 2026-07-02.
+
+Persistence Phase 24 confirms the first garage surface/decor customization runtime as a separate service instead of another patch to the interior service:
+
+```text
+ReplicatedStorage.NeoTokyoRacers.Shared.Remotes.Garage.GarageInteriorCustomizationInvoke
+ServerScriptService.NeoTokyoRacers.Services.Garage.GarageInteriorCustomizationService_Active
+Workspace.NeoTokyoRacersWorld.Interiors.GarageInstances.<owner>.DecorationAnchors_Runtime
+Workspace.NeoTokyoRacersWorld.Interiors.GarageInstances.<owner>.Decorations_Runtime
+```
+
+It applies simple floor/wall material colours and one MVP decoration prop from profile-backed `Garage.Customisation` data. The client smoke passed on 2026-07-02 with `surfaces=2`, `decorations=1`, and `persisted=true`. It does not change city LOD behavior yet.
 
 The LOD client should resolve `Workspace.NeoTokyoRacersWorld.City` first, with fallback to `Workspace.GeneratedCityBlocks`.
 

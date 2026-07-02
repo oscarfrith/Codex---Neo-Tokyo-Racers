@@ -1,7 +1,7 @@
 # Persistence And Garage Profile Plan
 
 **Created:** 2026-06-30  
-**Current phase:** Phase 1-16 installed/tested; Phase 17 owned/buy module tabs prepared  
+**Current phase:** Phase 28 final garage MVP audit confirmed; garage MVP stack complete pending mirror refresh/save-rejoin handoff
 **Installer:** `scripts/roblox_persistence_phase1_profile_schema.lua`  
 **Audit:** `scripts/roblox_persistence_phase1_profile_schema_audit.lua`
 **Phase 2 installer:** `scripts/roblox_persistence_phase2_profile_service.lua`  
@@ -49,6 +49,12 @@
 **Phase 16 module family locks/sorting client smoke:** `scripts/roblox_persistence_phase16_module_family_locks_and_sorting_client_smoke.lua`
 **Phase 17 owned/buy module tabs installer:** `scripts/roblox_persistence_phase17_module_owned_buy_tabs.lua`  
 **Phase 17 owned/buy module tabs client smoke:** `scripts/roblox_persistence_phase17_module_owned_buy_tabs_client_smoke.lua`
+**Phase 18 ProfileService source handoff installer/smoke:** `scripts/roblox_persistence_phase18_profile_source_handoff.lua`
+**Phase 19 instance compatibility sync installer/smoke:** `scripts/roblox_persistence_phase19_instance_compat_sync.lua`
+**Phase 20 garage profile runtime extraction installer/smoke:** `scripts/roblox_persistence_phase20_garage_profile_runtime_extract.lua`
+**Phase 21 private garage interior MVP installer/smoke:** `scripts/roblox_persistence_phase21_private_garage_interior_mvp.lua`
+**Phase 22 garage display vehicle MVP installer/smoke:** `scripts/roblox_persistence_phase22_garage_display_vehicle_mvp.lua`
+**Phase 23 same-server garage visits installer/smoke:** `scripts/roblox_persistence_phase23_same_server_garage_visits.lua`
 
 ## Goal
 
@@ -454,6 +460,195 @@ Merged behavior:
 - `Buy Copy`, `Equip Copy`, and `No Free Copy` are removed from the current module picker;
 - selecting any card, including locked buy-module cards, previews that template on the vehicle.
 
+Phase 17 was installed and stabilised on 2026-07-02 after follow-up repairs for client parse recovery, engine metadata, colour picker stability, garage-server startup helpers, module-card layout, and the clipped-carousel popup. The final popup baseline keeps the carousel clipped, uses a selected-card `ModulePopupAnchor`, and applies a scale-aware absolute correction so BUY/LOCKED/EQUIP stays centred above the clicked card across screen sizes.
+
+## Phase 18 Scope
+
+Phase 18 is the source-of-truth handoff before building garage interiors.
+
+It patches:
+
+```text
+ServerScriptService.NeoTokyoRacers.Services.Garage.GarageActionController_Shadow_Disabled
+```
+
+and uses one dual-mode Studio script:
+
+```text
+scripts/roblox_persistence_phase18_profile_source_handoff.lua
+```
+
+Run it in Edit mode to install. After restarting Play, run the same file from the CLIENT Command Bar to smoke-check.
+
+Merged behavior:
+
+- on first garage profile access, the active garage session asks `ProfileService_Active` for the loaded saved profile;
+- if the saved profile contains instance data such as `Vehicles`, `OwnedCockpitInstances`, `OwnedModuleInstances`, or owned garage properties, it hydrates the active V56-compatible session from that saved profile;
+- if no saved instance profile exists, the current default legacy session path remains unchanged;
+- saved instance fields are copied through to the live session so current UI paths still see `Vehicles`, `CurrentVehicleId`, `OwnedCockpitInstances`, and `OwnedModuleInstances`;
+- legacy compatibility fields such as `OwnedCockpits`, `OwnedModules`, `InstalledModules`, module colours, neon flags, and garage capacity are rebuilt from the saved instance profile;
+- mutating garage actions still mirror back into `ProfileService` through the existing Phase 4/5 import path.
+
+This phase intentionally does not add garage interiors, visits, decoration ownership, or a new garage UI. The purpose is to stop treating saved persistence as a passive mirror before future systems depend on it.
+
+Phase 18 was installed and smoke-tested on 2026-07-02. The client smoke reported `Hydrated=true`, `source=ProfileService`, `savedVehicles=1`, `CurrentVehicleId=vehicle_4b9422b7a5cb`, `vehicles=1`, and `moduleInstances=4`.
+
+## Phase 19 Scope
+
+Phase 19 consolidates legacy UI/customisation writes back into instance data before saving.
+
+It patches:
+
+```text
+ServerScriptService.NeoTokyoRacers.Services.Garage.GarageActionController_Shadow_Disabled
+```
+
+and uses one dual-mode Studio script:
+
+```text
+scripts/roblox_persistence_phase19_instance_compat_sync.lua
+```
+
+Run it in Edit mode to install. After restarting Play, run the same file from the CLIENT Command Bar to smoke-check.
+
+Merged behavior:
+
+- keeps Phase 18 hydration as the active baseline;
+- before `GetInitial` mirrors to `ProfileService`, the current vehicle instance is synced from the active legacy compatibility fields;
+- before successful mutating actions mirror to `ProfileService`, the same sync runs again;
+- current vehicle `CockpitColors` and `ThrustColor` are updated from the active profile fields;
+- installed legacy slot entries are matched to real owned module instances on the current vehicle;
+- module instance `Colors`, `NeonOwned`, `UpgradeLevels`, and `EquippedVehicleId` are updated from the current UI/action fields;
+- `OwnedCockpits` and `OwnedModules` compatibility tables are replenished from owned instance data so old UI paths keep working.
+
+This phase does not remove the legacy fields yet. It makes them compatibility fields rather than the only place where edits live, which prepares the garage display/interior work to read from instance data safely.
+
+Phase 19 was installed and smoke-tested on 2026-07-02. The client smoke reported `CurrentVehicleId=vehicle_4b9422b7a5cb`, `installedInstanceSlots=4`, `missingInstances=0`, `Phase19Synced=true`, and `syncCount=4`.
+
+## Phase 20 Scope
+
+Phase 20 is the first server-helper extraction before garage interiors.
+
+It installs:
+
+```text
+ServerScriptService.NeoTokyoRacers.Services.Garage.GarageProfileRuntime
+```
+
+and patches:
+
+```text
+ServerScriptService.NeoTokyoRacers.Services.Garage.GarageActionController_Shadow_Disabled
+```
+
+with one dual-mode Studio script:
+
+```text
+scripts/roblox_persistence_phase20_garage_profile_runtime_extract.lua
+```
+
+Run it in Edit mode to install. After restarting Play, run the same file from the CLIENT Command Bar to smoke-check.
+
+Merged behavior:
+
+- moves the stable Phase 19 instance compatibility sync into a dedicated `GarageProfileRuntime` ModuleScript;
+- keeps the big garage action controller behavior the same by replacing the inline sync helper with a small delegation wrapper;
+- preserves Phase 19 smoke attributes and adds Phase 20 attributes so the client smoke can confirm `RuntimeModule=GarageProfileRuntime`;
+- keeps the same current-vehicle/module-instance validation, expecting `missingInstances=0`.
+
+This phase deliberately extracts only the proven profile sync helper. Purchases, UI, spawning, garage properties, and future interiors still run through the existing controller until later phases move them behind modules one piece at a time.
+
+Phase 20 was installed and smoke-tested on 2026-07-02. The client smoke reported `CurrentVehicleId=vehicle_4b9422b7a5cb`, `installedInstanceSlots=4`, `missingInstances=0`, `RuntimeModule=GarageProfileRuntime`, and `syncCount=4`.
+
+## Phase 21 Scope
+
+Phase 21 is the first private garage interior MVP. It stays intentionally small and owner-only so the teleport/streaming shell can be proved before adding display vehicles, decorations, visits, or access modes.
+
+It installs:
+
+```text
+ServerScriptService.NeoTokyoRacers.Services.Garage.GarageInteriorService_Active
+StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.World.GarageInteriorClient_Active
+Workspace.NeoTokyoRacersWorld.Interiors.GarageInstances
+Workspace.NeoTokyoRacersWorld.Interactives.GarageInteriorElevatorMVP
+ReplicatedStorage.NeoTokyoRacers.Shared.Remotes.Garage.GarageInteriorInvoke
+ReplicatedStorage.NeoTokyoRacers.Shared.Remotes.Garage.GarageInteriorTransition
+```
+
+with one dual-mode Studio script:
+
+```text
+scripts/roblox_persistence_phase21_private_garage_interior_mvp.lua
+```
+
+Merged behavior:
+
+- creates/reuses one private runtime garage interior per owner under `GarageInstances`;
+- adds a temporary dealership-adjacent elevator prompt that calls the new interior runtime without patching the main garage action controller;
+- moves the character to a simple private garage room, asks the client helper to stream around the garage spawn, then fades back in;
+- adds a return pad/prompt inside the garage and a remote `ReturnToCity` action;
+- keeps visits, garage display cars, decorations, and public access modes deferred to later phases.
+
+Phase 21 was installed and smoke-tested on 2026-07-02. The client smoke reported `EnterOwnGarage OK`, `State InGarage=true`, and `ReturnToCity OK`. It also reported `streamOk=false`; Phase 22 adds stream error diagnostics so this can be identified as a Studio/streaming availability issue or a real streaming call problem.
+
+## Phase 22 Scope
+
+Phase 22 adds the first lightweight garage display vehicle.
+
+It installs:
+
+```text
+ServerScriptService.NeoTokyoRacers.Services.Garage.GarageDisplayRuntime
+```
+
+and patches:
+
+```text
+ServerScriptService.NeoTokyoRacers.Services.Garage.GarageInteriorService_Active
+StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.World.GarageInteriorClient_Active
+```
+
+with one dual-mode Studio script:
+
+```text
+scripts/roblox_persistence_phase22_garage_display_vehicle_mvp.lua
+```
+
+Merged behavior:
+
+- entering the private garage refreshes `DisplayVehicle_Runtime` inside the player's private interior;
+- the display clone is built from the current saved cockpit and installed modules, then anchored and made non-drivable;
+- scripts/seats are stripped from the display clone and all parts are non-colliding;
+- cockpit/module colours are applied from saved profile compatibility fields;
+- Phase 21 stream handling records `NTR_Phase21LastStreamError` when `RequestStreamAroundAsync` fails.
+
+Phase 22 was installed and smoke-tested on 2026-07-02. The client smoke reported `Garage GetInitial OK before display smoke`, `displayOk=true`, `displayExists=true`, `displaySource=ProfileServiceCurrentVehicle`, and `ReturnToCity OK`.
+
+## Phase 23 Scope
+
+Phase 23 adds the first same-server garage access and visit shell.
+
+It patches:
+
+```text
+ServerScriptService.NeoTokyoRacers.Services.Garage.GarageInteriorService_Active
+```
+
+with one dual-mode Studio script:
+
+```text
+scripts/roblox_persistence_phase23_same_server_garage_visits.lua
+```
+
+Merged behavior:
+
+- adds `SetAccessMode`, `InviteVisitor`, and `VisitGarage` actions to `GarageInteriorInvoke`;
+- supports the initial `Private`, `FriendsOnly`, `InviteOnly`, and `Public` modes on the runtime interior model;
+- keeps visits same-server only, by owner `UserId`;
+- refreshes the owner's display vehicle before a visitor enters;
+- records `NTR_Phase23VisitingGarageOwnerUserId` and `NTR_Phase23VisitAccessMode` on the visiting player for smoke/debug;
+- keeps cross-server discovery, UI, persistent invite lists, and decorative ownership deferred.
+
 ## Profile Direction
 
 Ownership should be instance-based, not boolean unlock-based.
@@ -559,17 +754,24 @@ Recommended order:
 10. Repair Phase 9 register pressure and left-column/modal layout. Done on 2026-07-01.
 11. Hide Garage Spaces outside cockpit selection. Done on 2026-07-01.
 12. Extract garage property menu rendering into a dedicated client ModuleScript/controller before expanding UI complexity. Done on 2026-07-01.
-13. Add server-side `BuyGarageProperty` action, owned-property profile data, capacity calculated from owned properties, and the UI backend switch. Prepared as one merged phase on 2026-07-01.
+13. Add server-side `BuyGarageProperty` action, owned-property profile data, capacity calculated from owned properties, and the UI backend switch. Done on 2026-07-01.
 14. Convert cockpit/module ownership to instances while preserving current UI response shape. Done on 2026-07-01.
 15. Add visible duplicate-copy UI for cockpit/module instances. Done on 2026-07-01.
 16. Add module source-cockpit purchase locks, paid extra Standard copies, included starter module instances, and owned-first module sorting. Done on 2026-07-01, with Phase 17 UI repairs prepared afterward.
-17. Split the module picker into owned/buy tabs, per-instance owned module cards, and front/rear engine slot filtering. Prepared as Phase 17 on 2026-07-01.
-18. Add garage instance pool and teleport flow.
-19. Add streaming/LOD garage mode.
-20. Add display vehicles.
-21. Add same-server privacy and visits.
-22. Add garage surface colours/materials.
-23. Add decoration anchors and decoration ownership.
+17. Split the module picker into owned/buy tabs, per-instance owned module cards, front/rear engine slot filtering, and robust selected-card popup alignment. Done/stabilised on 2026-07-02.
+18. Make `ProfileService_Active` hydrate the active garage session from saved instance data on first use, while retaining legacy compatibility fields. Done on 2026-07-02.
+19. Sync legacy UI/customisation writes back into current vehicle/module instance data before mirroring/saving. Done on 2026-07-02.
+20. Extract the stable garage profile instance-sync helper into `GarageProfileRuntime` and delegate from the big garage action controller. Done on 2026-07-02.
+21. Add a private owner-only garage interior MVP as one bundled phase: instance pool, elevator/loading teleport, streaming request, and simple return-to-city path. Done on 2026-07-02; stream diagnostic follow-up prepared in Phase 22.
+22. Add lightweight garage display vehicles using saved display spaces. Done on 2026-07-02.
+23. Add same-server access modes and visits. Done on 2026-07-02 through the canonical `GarageInteriorService_Active` repair path after incremental anchor patches proved too brittle.
+24. Add garage surface colours/materials and decoration anchors/ownership. Done on 2026-07-02 as an isolated customization remote/service so Phase 23's confirmed interior service does not need another source-text patch.
+25. Add an owner-only in-garage customization UI MVP that calls the Phase 24 remote without patching the main dealership bootstrap. Done on 2026-07-02 after a timing repair.
+26. Validate the Phase 24 backend and Phase 25 UI summary stay in sync after applying owner customization presets. Done on 2026-07-02.
+27. Add same-server visitor/access UI so players can open their garage, set access, and visit a same-server public garage without Command Bar calls. Done on 2026-07-02.
+28. Final garage MVP hardening: runtime stack audit, owner path smoke, save/rejoin note, mirror refresh, cleanup of temporary known-issue notes, and rollback notes. Prepared on 2026-07-02.
+
+At this point the original persistence/garage plan is complete through its listed Phase 24 goal, and the owner-facing UI extension is complete through Phase 27. Phase 28 is the final hardening/audit step for this garage MVP run.
 
 ## Verification
 
@@ -1022,3 +1224,338 @@ scripts/roblox_persistence_phase17_module_owned_buy_tabs_client_smoke.lua
 - buy-card popup says `BUY` and auto-equips the newly bought copy;
 - locked buy cards still preview the module but cannot buy;
 - `Buy Copy`, `Equip Copy`, and `No Free Copy` no longer appear.
+
+Phase 18 merged test order:
+
+1. Run the dual-mode script in Studio Edit mode:
+
+```text
+scripts/roblox_persistence_phase18_profile_source_handoff.lua
+```
+
+2. Restart Play and run the same file from the **CLIENT** Command Bar:
+
+```text
+scripts/roblox_persistence_phase18_profile_source_handoff.lua
+```
+
+3. For a true persistence handoff test:
+
+- enable DataStore saves if they are currently disabled;
+- enter the garage and make a persistent change such as buying a garage property, cockpit copy, or module copy;
+- force/save through the existing Phase 5 save path or leave/restart cleanly;
+- start a fresh Play session and run the Phase 18 smoke from the CLIENT Command Bar;
+- the smoke should report `Hydrated=true`, `source=ProfileService`, and a saved vehicle/module/property count matching the saved profile.
+
+4. Manual verification:
+
+- the dealership UI still opens normally;
+- owned cockpits/modules/properties return after the fresh Play session;
+- Build Modules still shows owned/buy tabs and correct front/rear engine filtering;
+- BUY/LOCKED/EQUIP popups remain centred across desktop and small screen sizes;
+- new garage actions still mirror back into ProfileService after the handoff.
+
+Phase 19 merged test order:
+
+1. Run the dual-mode script in Studio Edit mode:
+
+```text
+scripts/roblox_persistence_phase19_instance_compat_sync.lua
+```
+
+2. Restart Play and run the same file from the **CLIENT** Command Bar:
+
+```text
+scripts/roblox_persistence_phase19_instance_compat_sync.lua
+```
+
+3. Manual persistence verification:
+
+- change a cockpit colour, module colour, thrust colour, module neon, or module upgrade;
+- save/restart through the current ProfileService/DataStore path;
+- confirm the same edit returns after hydration;
+- confirm Build Modules still shows owned/buy tabs, correct installed modules, and centred BUY/LOCKED/EQUIP popups.
+
+Phase 20 merged test order:
+
+1. Run the dual-mode script in Studio Edit mode:
+
+```text
+scripts/roblox_persistence_phase20_garage_profile_runtime_extract.lua
+```
+
+2. Restart Play and run the same file from the **CLIENT** Command Bar:
+
+```text
+scripts/roblox_persistence_phase20_garage_profile_runtime_extract.lua
+```
+
+3. Expected smoke:
+
+- `Smoke GetInitial OK`;
+- `missingInstances=0`;
+- `RuntimeModule=GarageProfileRuntime`;
+- a non-zero sync count if the current vehicle has installed modules.
+
+4. Manual verification:
+
+- dealership/customisation still opens normally;
+- Build Modules still shows owned/buy tabs and installed module copies;
+- colour/thrust/neon/upgrade edits still persist through save/restart;
+- no visible UI, driving, or VFX behavior changes.
+
+Phase 21 merged test order:
+
+1. Run the dual-mode script in Studio Edit mode:
+
+```text
+scripts/roblox_persistence_phase21_private_garage_interior_mvp.lua
+```
+
+2. Restart Play and run the same file from the **CLIENT** Command Bar:
+
+```text
+scripts/roblox_persistence_phase21_private_garage_interior_mvp.lua
+```
+
+3. Expected smoke:
+
+- `EnterOwnGarage OK`;
+- `State InGarage=true`;
+- `streamOk=true` where available;
+- `ReturnToCity OK`.
+
+4. Manual verification:
+
+- the temporary `Private Garage` elevator prompt appears near the dealership/city exit marker;
+- using the prompt moves the character into a simple private garage room;
+- the room is under `Workspace.NeoTokyoRacersWorld.Interiors.GarageInstances`;
+- the interior `Return` prompt brings the character back to the city/dealership fallback;
+- dealership/customisation, driving, UI, and VFX still behave normally after returning.
+
+Phase 22 merged test order:
+
+1. Run the dual-mode script in Studio Edit mode:
+
+```text
+scripts/roblox_persistence_phase22_garage_display_vehicle_mvp.lua
+```
+
+2. Restart Play and run the same file from the **CLIENT** Command Bar:
+
+```text
+scripts/roblox_persistence_phase22_garage_display_vehicle_mvp.lua
+```
+
+3. Expected smoke:
+
+- `EnterOwnGarage OK`;
+- `Garage GetInitial OK before display smoke`;
+- `displayOk=true`;
+- `displayExists=true`;
+- `ReturnToCity OK`.
+
+4. Manual verification:
+
+- the private garage contains one visible vehicle on `VehicleDisplayPad`;
+- the display vehicle uses the current saved cockpit/module setup;
+- it is anchored, non-colliding, and not drivable;
+- the `streamError=` text explains the Phase 21 `streamOk=false` result if Studio rejects the streaming request;
+- returning to the city still leaves dealership/customisation/driving behavior unchanged.
+
+Phase 23 merged test order:
+
+1. Preferred current install/repair path: run the canonical dual-mode script in Studio Edit mode:
+
+```text
+scripts/roblox_persistence_phase23_garage_interior_service_canonical_repair.lua
+```
+
+2. Restart Play and run the same file from the **CLIENT** Command Bar:
+
+```text
+scripts/roblox_persistence_phase23_garage_interior_service_canonical_repair.lua
+```
+
+3. Expected smoke:
+
+- `Garage GetInitial OK before visit smoke`;
+- `SetAccessMode OK. mode=Public`;
+- `VisitGarage OK`;
+- `visitingOwner=<your user id>`;
+- `ReturnToCity OK`;
+- cleanup `SetAccessMode OK. mode=Private`.
+
+4. Manual verification:
+
+- in a two-player local/server test, player A sets access to `Public` and player B can `VisitGarage` with player A's `UserId`;
+- `Private` blocks non-owner visitors;
+- `FriendsOnly` and `InviteOnly` can be checked later with the relevant account setup;
+- visitor return path works through the remote and return prompt;
+- display vehicle remains visible in the visited garage.
+
+Phase 24 merged test order:
+
+1. Run the dual-mode script in Studio Edit mode:
+
+```text
+scripts/roblox_persistence_phase24_garage_surfaces_decor_mvp.lua
+```
+
+2. Restart Play and run the same file from the **CLIENT** Command Bar:
+
+```text
+scripts/roblox_persistence_phase24_garage_surfaces_decor_mvp.lua
+```
+
+3. Expected smoke:
+
+- `Garage GetInitial OK before customization smoke`;
+- `VisitGarage OK`;
+- `SetSurfaceStyle` succeeds for floor and walls;
+- `SetDecorationAnchor` succeeds for `BackWallCenter` / `NeonSign`;
+- `Customization state OK` with at least two surfaces and one decoration;
+- `ReturnToCity OK`;
+- cleanup `SetAccessMode OK. mode=Private`.
+
+4. Manual verification:
+
+- the private garage floor/walls visibly use the smoke-test material colours;
+- a simple neon sign appears on the back-wall anchor;
+- the new `GarageInteriorCustomizationService_Active` exists beside the interior service rather than replacing it;
+- dealership/customisation, driving, UI, VFX, and same-server visiting still behave normally.
+
+Phase 24 was installed and smoke-tested on 2026-07-02. The first smoke applied the surface/decor changes but failed the state readback because it counted only profile table entries. After repairing `GetCustomization` to count live model attributes as well, the follow-up smoke reported `Applied surfaces/decor. surfaces=4`, `Customization state OK. surfaces=2 decorations=1 persisted=true`, and `ReturnToCity OK`.
+
+Phase 25 merged test order:
+
+1. Run the dual-mode script in Studio Edit mode:
+
+```text
+scripts/roblox_persistence_phase25_garage_customization_ui_mvp.lua
+```
+
+2. Restart Play and run the same file from the **CLIENT** Command Bar:
+
+```text
+scripts/roblox_persistence_phase25_garage_customization_ui_mvp.lua
+```
+
+3. Expected smoke:
+
+- `Garage GetInitial OK before UI smoke`;
+- `VisitGarage OK`;
+- `UI panel visible`;
+- `Customization backend OK`;
+- `ReturnToCity OK`;
+- cleanup `SetAccessMode OK. mode=Private`.
+
+4. Manual verification:
+
+- the owner sees a compact `GARAGE CUSTOMISE` panel only while inside their own garage;
+- floor/wall preset buttons visibly update the garage surfaces;
+- decor buttons place/clear the simple MVP props through the Phase 24 backend;
+- visitors do not get owner customization controls;
+- dealership/customisation, driving, UI, VFX, and same-server visiting still behave normally.
+
+Phase 25 was installed and smoke-tested on 2026-07-02. The first smoke found the UI ScreenGui but failed because the owner panel had not become visible yet; after the timing repair, the follow-up smoke reported `UI panel visible`, `Customization backend OK`, and `ReturnToCity OK`.
+
+Phase 26 merged test order:
+
+1. Run the dual-mode preflight in Studio Edit mode:
+
+```text
+scripts/roblox_persistence_phase26_garage_customization_validation.lua
+```
+
+2. Restart Play and run the same file from the **CLIENT** Command Bar:
+
+```text
+scripts/roblox_persistence_phase26_garage_customization_validation.lua
+```
+
+3. Expected smoke:
+
+- `Garage GetInitial OK before customization validation`;
+- `VisitGarage OK`;
+- `UI panel visible before applying validation presets`;
+- `Applied validation presets`;
+- `UI summary reflected backend state`;
+- `ReturnToCity OK`;
+- cleanup `SetAccessMode OK. mode=Private`.
+
+4. Manual verification:
+
+- the panel's floor/wall/decor buttons also work when clicked manually;
+- the floor, walls, and simple prop remain visible while inside the garage;
+- after a save/rejoin test, the same selected surface/decor state returns or the next phase captures what still needs persistence repair.
+
+Phase 26 was installed and smoke-tested on 2026-07-02. The client smoke reported `Applied validation presets. floor=true walls=true decor=true`, `UI summary reflected backend state. summary=SURFACES 2  DECOR 1 persisted=true`, and `ReturnToCity OK`.
+
+Phase 27 merged test order:
+
+1. Run the dual-mode script in Studio Edit mode:
+
+```text
+scripts/roblox_persistence_phase27_garage_access_ui_mvp.lua
+```
+
+2. Restart Play and run the same file from the **CLIENT** Command Bar:
+
+```text
+scripts/roblox_persistence_phase27_garage_access_ui_mvp.lua
+```
+
+3. Expected smoke:
+
+- `Garage GetInitial OK before access UI smoke`;
+- `Access UI shell visible`;
+- `SetAccessMode OK. mode=Public`;
+- `VisitGarage OK`;
+- `State OK`;
+- `ReturnToCity OK`;
+- cleanup `SetAccessMode OK. mode=Private`.
+
+4. Manual verification:
+
+- click the `GARAGE` toggle to open the compact access panel;
+- `ENTER MINE` opens your own garage;
+- `SET PUBLIC` and `SET PRIVATE` update access mode;
+- with two players in a local/server test, set player A to `Public`, enter player A's user ID on player B, and click `VISIT USER ID`;
+- `RETURN CITY` brings the player back without breaking dealership/customisation/driving behavior.
+
+Phase 27 was installed and smoke-tested on 2026-07-02. The client smoke reported `Access UI shell visible`, `SetAccessMode OK. mode=Public`, `VisitGarage OK`, `State OK. inGarage=true`, and `ReturnToCity OK`.
+
+Phase 28 merged test order:
+
+1. Run the dual-mode audit in Studio Edit mode:
+
+```text
+scripts/roblox_persistence_phase28_garage_mvp_final_audit.lua
+```
+
+2. Restart Play and run the same file from the **CLIENT** Command Bar:
+
+```text
+scripts/roblox_persistence_phase28_garage_mvp_final_audit.lua
+```
+
+3. Expected smoke:
+
+- `Garage GetInitial OK before final audit`;
+- `Access UI present`;
+- `VisitGarage OK`;
+- `Customization UI visible`;
+- `Customization persisted and UI reflected state`;
+- `Interior state OK`;
+- `ReturnToCity OK`;
+- cleanup `SetAccessMode OK. mode=Private`.
+
+Phase 28 was smoke-tested on 2026-07-02. The client smoke reported `Access UI present`, `VisitGarage OK`, `Customization UI visible`, `Customization persisted and UI reflected state. summary=SURFACES 2  DECOR 1`, `Interior state OK. accessMode=Public displayExists=true`, and `ReturnToCity OK`.
+
+4. Final manual handoff:
+
+- if DataStore is enabled in Studio/published test, save/rejoin and verify the selected floor/wall/decor state returns;
+- refresh the Studio mirror after Phase 28 passes;
+- do not commit `docs/studio-full-export-paste.txt`;
+- rollback for the garage MVP UI extension is to disable/remove `GarageAccessClient_Active` and `GarageInteriorCustomizationClient_Active`; backend rollback is to disable/remove `GarageInteriorCustomizationService_Active` and `GarageInteriorCustomizationInvoke`, leaving Phase 23's canonical interior service intact.

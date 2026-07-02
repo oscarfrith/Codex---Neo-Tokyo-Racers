@@ -39,6 +39,7 @@ local V56_STARTING_CASH = V56_kit:GetAttribute("StartingCash") or 140000
 	end
 	local V56_PREVIEW_POS = Vector3.new(V56_kit:GetAttribute("PreviewX") or 860, V56_kit:GetAttribute("PreviewY") or 104, V56_kit:GetAttribute("PreviewZ") or -1749)
 	local V56_profiles = {}
+	local V89_GarageProfileRuntime = require(script.Parent:WaitForChild("GarageProfileRuntime"))
 
 	-- NTR_VEHICLE_PHASE_AN_ISOLATED_UPGRADES
 	local V77_ModuleUpgrades = require(V56_kit
@@ -149,10 +150,165 @@ local V56_STARTING_CASH = V56_kit:GetAttribute("StartingCash") or 140000
 		return profile
 	end
 
+	-- NTR_PERSISTENCE_PHASE18_PROFILE_SOURCE_HANDOFF
+	local function V87_cloneValue(value)
+		if typeof(value) == "table" then
+			local copy = {}
+			for key, child in pairs(value) do
+				copy[key] = V87_cloneValue(child)
+			end
+			return copy
+		end
+		return value
+	end
+
+	local function V87_countDictionary(dictionary)
+		local count = 0
+		for _ in pairs(dictionary or {}) do
+			count += 1
+		end
+		return count
+	end
+
+	local function V87_getProfileServiceProfile(player)
+		local getProfile = nil
+		local deadline = os.clock() + 5
+		while os.clock() < deadline do
+			local servicesRoot = script.Parent and script.Parent.Parent
+			local playerServices = servicesRoot and servicesRoot:FindFirstChild("Player")
+			local profileBindings = playerServices and playerServices:FindFirstChild("ProfileServiceBindings")
+			getProfile = profileBindings and profileBindings:FindFirstChild("GetProfile")
+			if getProfile and getProfile:IsA("BindableFunction") then
+				local ok, profileOrError = pcall(function()
+					return getProfile:Invoke(player)
+				end)
+				if ok and typeof(profileOrError) == "table" then
+					return profileOrError, nil
+				end
+				if not ok then
+					return nil, tostring(profileOrError)
+				end
+			end
+			task.wait(0.1)
+		end
+		return nil, "ProfileService profile not loaded"
+	end
+
+	local function V87_profileHasSavedInstanceData(savedProfile)
+		if typeof(savedProfile) ~= "table" then
+			return false
+		end
+		if V87_countDictionary(savedProfile.Vehicles) > 0 then
+			return true
+		end
+		if V87_countDictionary(savedProfile.OwnedCockpitInstances) > 0 then
+			return true
+		end
+		if V87_countDictionary(savedProfile.OwnedModuleInstances) > 0 then
+			return true
+		end
+		local garage = savedProfile.Garage
+		if typeof(garage) == "table" and V87_countDictionary(garage.OwnedGarageProperties) > 0 then
+			return true
+		end
+		return false
+	end
+
+	local function V87_currentVehicleFromSavedProfile(savedProfile)
+		local vehicles = typeof(savedProfile.Vehicles) == "table" and savedProfile.Vehicles or {}
+		local vehicleId = savedProfile.CurrentVehicleId ~= nil and tostring(savedProfile.CurrentVehicleId) or nil
+		local vehicle = vehicleId and vehicles[vehicleId] or nil
+		if typeof(vehicle) == "table" then
+			return vehicleId, vehicle
+		end
+		for fallbackVehicleId, fallbackVehicle in pairs(vehicles) do
+			if typeof(fallbackVehicle) == "table" then
+				return tostring(fallbackVehicleId), fallbackVehicle
+			end
+		end
+		return nil, nil
+	end
+
+	local function V87_savedProfileToLegacySession(savedProfile)
+		local legacy = V56_defaultProfile()
+		legacy.Cash = typeof(savedProfile.Cash) == "number" and savedProfile.Cash or legacy.Cash
+		local garage = typeof(savedProfile.Garage) == "table" and savedProfile.Garage or {}
+		legacy.GarageCapacity = math.max(1, math.floor(tonumber(garage.Capacity) or legacy.GarageCapacity or 2))
+		legacy.OwnedGarageProperties = V87_cloneValue(garage.OwnedGarageProperties or {})
+		legacy.GarageDisplaySpaces = V87_cloneValue(garage.DisplaySpaces or {})
+		legacy.Vehicles = V87_cloneValue(savedProfile.Vehicles or {})
+		legacy.OwnedCockpitInstances = V87_cloneValue(savedProfile.OwnedCockpitInstances or {})
+		legacy.OwnedModuleInstances = V87_cloneValue(savedProfile.OwnedModuleInstances or {})
+		legacy.CurrentVehicleId = savedProfile.CurrentVehicleId ~= nil and tostring(savedProfile.CurrentVehicleId) or nil
+		legacy.ModuleUpgradeLevels = {}
+
+		local currentVehicleId, currentVehicle = V87_currentVehicleFromSavedProfile(savedProfile)
+		if currentVehicleId then
+			legacy.CurrentVehicleId = currentVehicleId
+		end
+		if typeof(currentVehicle) == "table" then
+			legacy.CurrentCategory = tostring(currentVehicle.CategoryId or legacy.CurrentCategory or "bruiser")
+			legacy.CockpitColors = V87_cloneValue(currentVehicle.CockpitColors or legacy.CockpitColors)
+			legacy.ThrustColor = currentVehicle.ThrustColor or legacy.ThrustColor
+			local cockpitInstance = currentVehicle.CockpitInstanceId and legacy.OwnedCockpitInstances[currentVehicle.CockpitInstanceId] or nil
+			if typeof(cockpitInstance) == "table" and cockpitInstance.TemplateId then
+				legacy.CurrentCockpit = tostring(cockpitInstance.TemplateId)
+			end
+		end
+
+		legacy.OwnedCockpits = {}
+		for _, cockpitInstance in pairs(legacy.OwnedCockpitInstances) do
+			if typeof(cockpitInstance) == "table" and cockpitInstance.TemplateId then
+				legacy.OwnedCockpits[tostring(cockpitInstance.TemplateId)] = true
+			end
+		end
+		legacy.OwnedCockpits[legacy.CurrentCockpit or "bruiser_01"] = true
+
+		legacy.OwnedModules = {}
+		legacy.InstalledModules = {}
+		legacy.ModuleColors = {}
+		legacy.NeonOwned = {}
+		local installedInstances = typeof(currentVehicle) == "table" and typeof(currentVehicle.InstalledModules) == "table" and currentVehicle.InstalledModules or {}
+		for instanceId, moduleInstance in pairs(legacy.OwnedModuleInstances) do
+			if typeof(moduleInstance) == "table" and moduleInstance.TemplateId then
+				local moduleId = tostring(moduleInstance.TemplateId)
+				legacy.OwnedModules[moduleId] = true
+				if typeof(moduleInstance.UpgradeLevels) == "table" then
+					legacy.ModuleUpgradeLevels[moduleId] = V87_cloneValue(moduleInstance.UpgradeLevels)
+				end
+				for slotId, installedInstanceId in pairs(installedInstances) do
+					if tostring(installedInstanceId) == tostring(instanceId) then
+						legacy.InstalledModules[slotId] = moduleId
+						legacy.ModuleColors[slotId] = V87_cloneValue(moduleInstance.Colors or {})
+						legacy.NeonOwned[slotId] = moduleInstance.NeonOwned == true
+					end
+				end
+			end
+		end
+
+		return V56_normalizeProfile(legacy)
+	end
+
+	local function V87_tryHydrateProfileFromPersistence(player)
+		local savedProfile, loadMessage = V87_getProfileServiceProfile(player)
+		if not V87_profileHasSavedInstanceData(savedProfile) then
+			player:SetAttribute("NTR_PersistencePhase18Hydrated", false)
+			player:SetAttribute("NTR_PersistencePhase18HydrationSource", tostring(loadMessage or "NoSavedInstanceData"))
+			player:SetAttribute("NTR_PersistencePhase18SavedVehicleCount", 0)
+			return nil
+		end
+		local legacy = V87_savedProfileToLegacySession(savedProfile)
+		player:SetAttribute("NTR_PersistencePhase18Hydrated", true)
+		player:SetAttribute("NTR_PersistencePhase18HydrationSource", "ProfileService")
+		player:SetAttribute("NTR_PersistencePhase18SavedVehicleCount", V87_countDictionary(savedProfile.Vehicles))
+		player:SetAttribute("NTR_PersistencePhase18SavedModuleInstanceCount", V87_countDictionary(savedProfile.OwnedModuleInstances))
+		return legacy
+	end
+
 	local function V56_getProfile(player)
 		local profile = V56_profiles[player.UserId]
 		if not profile then
-			profile = V56_defaultProfile()
+			profile = V87_tryHydrateProfileFromPersistence(player) or V56_defaultProfile()
 			V56_profiles[player.UserId] = profile
 		end
 		return V56_normalizeProfile(profile)
@@ -921,6 +1077,28 @@ local V56_STARTING_CASH = V56_kit:GetAttribute("StartingCash") or 140000
 				end
 			end
 		end
+	end
+
+	-- NTR_PERSISTENCE_PHASE19_INSTANCE_COMPAT_SYNC
+	-- NTR_PERSISTENCE_PHASE20_GARAGE_PROFILE_RUNTIME_EXTRACT
+	local function V88_syncInstanceDataFromLegacy(profile)
+		local result = V89_GarageProfileRuntime.SyncInstanceDataFromLegacy(profile, {
+			GenerateId = V84_generateId,
+			CloneDictionary = V84_cloneDictionary,
+			EnsureInstanceInventory = V84_ensureInstanceInventory,
+		})
+		local syncCount = typeof(result) == "table" and tonumber(result.SyncCount) or 0
+		local vehicleId = typeof(result) == "table" and result.VehicleId or nil
+		local player = profile and profile._Player
+		if player then
+			player:SetAttribute("NTR_PersistencePhase19Synced", true)
+			player:SetAttribute("NTR_PersistencePhase19VehicleId", tostring(vehicleId or ""))
+			player:SetAttribute("NTR_PersistencePhase19ModuleSyncCount", syncCount or 0)
+			player:SetAttribute("NTR_PersistencePhase20RuntimeModule", "GarageProfileRuntime")
+			player:SetAttribute("NTR_PersistencePhase20VehicleId", tostring(vehicleId or ""))
+			player:SetAttribute("NTR_PersistencePhase20ModuleSyncCount", syncCount or 0)
+		end
+		return syncCount or 0
 	end
 
 	-- NTR_PERSISTENCE_PHASE17_STARTUP_DEPENDENCY_REPAIR_DEFAULT_MODULES
@@ -1730,6 +1908,7 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 			local ok, message
 			if action == "GetInitial" then
 				V56_setLeaderstats(player, profile)
+				V88_syncInstanceDataFromLegacy(profile)
 				V80_mirrorLegacyProfileToPersistence(player, profile, action, false)
 				return { Success = true, Catalog = V56_catalog(), Profile = V56_profileForClient(profile) }
 			elseif action == "BuyCockpitInstance" then
@@ -1910,6 +2089,7 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 				ok, message = false, "Unknown garage action."
 			end
 			if ok == true then
+				V88_syncInstanceDataFromLegacy(profile)
 				V80_mirrorLegacyProfileToPersistence(player, profile, action, V80_mutatingActions[action] == true)
 			end
 			return { Success = ok == true, Message = message, Profile = V56_profileForClient(profile) }
