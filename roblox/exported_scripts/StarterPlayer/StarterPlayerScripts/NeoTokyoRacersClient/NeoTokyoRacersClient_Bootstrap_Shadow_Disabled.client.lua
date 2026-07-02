@@ -299,6 +299,12 @@ local function pooledButton(pool, text, size, position, color)
 		return button(pool.Container, text, size, position, color)
 	end)
 	clearPooledDynamicChildren(b)
+	b:SetAttribute("NTRModuleCard", nil)
+	b:SetAttribute("NTRModulePopupTarget", nil)
+	local oldPopupAnchor = b:FindFirstChild("ModulePopupAnchor")
+	if oldPopupAnchor then
+		oldPopupAnchor:Destroy()
+	end
 	b.Text = string.upper(text or "")
 	b.Size = size
 	b.Position = position or UDim2.fromScale(0, 0)
@@ -2135,8 +2141,9 @@ local function renderSlotSelection()
 	slotPool:End()
 end
 
--- NTR_PERSISTENCE_PHASE17_MODULE_ACTION_RAIL
+-- NTR_PERSISTENCE_PHASE17_MODULE_POPUP_ANCHOR_TARGET
 NTRPersistencePhase15.ModulePopupActiveCard = nil
+NTRPersistencePhase15.ModulePopupTrackerConnection = nil
 
 function NTRPersistencePhase15.EnsureModulePopupLayer()
 	if not UI then
@@ -2146,7 +2153,9 @@ function NTRPersistencePhase15.EnsureModulePopupLayer()
 		return UI.ModulePopupLayer
 	end
 	if UI.ModulePopupLayer then
-		UI.ModulePopupLayer:Destroy()
+		pcall(function()
+			UI.ModulePopupLayer:Destroy()
+		end)
 		UI.ModulePopupLayer = nil
 	end
 	if not UI.ModuleShop then
@@ -2197,12 +2206,54 @@ function NTRPersistencePhase15.EnsureModulePopupObject()
 	return popup
 end
 
-function NTRPersistencePhase15.HideModulePopup()
+function NTRPersistencePhase15.EnsureModulePopupAnchor(card)
+	if not (card and card:IsA("GuiObject")) then
+		return nil
+	end
+	local anchor = card:FindFirstChild("ModulePopupAnchor")
+	if anchor and anchor:IsA("Frame") then
+		return anchor
+	end
+	if anchor then
+		anchor:Destroy()
+	end
+	anchor = Instance.new("Frame")
+	anchor.Name = "ModulePopupAnchor"
+	anchor.BackgroundTransparency = 1
+	anchor.BorderSizePixel = 0
+	anchor.Size = UDim2.fromOffset(2, 2)
+	anchor.AnchorPoint = Vector2.new(0.5, 0.5)
+	anchor.Position = UDim2.new(0.5, 0, 0, -6)
+	anchor.ZIndex = math.max((card.ZIndex or 1) + 1, 71)
+	anchor.Parent = card
+	return anchor
+end
+
+function NTRPersistencePhase15.FindModulePopupTargetCard()
+	if UI and UI.ModuleOptions then
+		for _, item in ipairs(UI.ModuleOptions:GetChildren()) do
+			if item:IsA("GuiButton") and item.Visible and item:GetAttribute("NTRModulePopupTarget") == true then
+				return item
+			end
+		end
+	end
+	local card = NTRPersistencePhase15.ModulePopupActiveCard
+	if card and card.Parent and card:IsA("GuiObject") and card.Visible then
+		return card
+	end
+	return nil
+end
+
+function NTRPersistencePhase15.StopModulePopupTracker()
 	NTRPersistencePhase15.ModulePopupActiveCard = nil
 	if NTRPersistencePhase15.ModulePopupTrackerConnection then
 		NTRPersistencePhase15.ModulePopupTrackerConnection:Disconnect()
 		NTRPersistencePhase15.ModulePopupTrackerConnection = nil
 	end
+end
+
+function NTRPersistencePhase15.HideModulePopup()
+	NTRPersistencePhase15.StopModulePopupTracker()
 	local popup = NTRPersistencePhase15.EnsureModulePopupObject()
 	if not popup then
 		return
@@ -2221,9 +2272,87 @@ function NTRPersistencePhase15.HideModulePopup()
 	end
 end
 
-function NTRPersistencePhase15.PositionModulePopupAboveCard(_card)
+function NTRPersistencePhase15.UpdateModulePopupPosition()
 	local popup = NTRPersistencePhase15.EnsureModulePopupObject()
-	if not popup then
+	local card = NTRPersistencePhase15.FindModulePopupTargetCard()
+	if not (popup and popup.Visible and card and UI and UI.ModuleOptions) then
+		return
+	end
+	local layer = NTRPersistencePhase15.EnsureModulePopupLayer()
+	if not layer then
+		return
+	end
+	UI.ModuleOptions.ClipsDescendants = true
+
+	local anchor = NTRPersistencePhase15.EnsureModulePopupAnchor(card)
+	if not anchor then
+		NTRPersistencePhase15.HideModulePopup()
+		return
+	end
+
+	local cardLeft = card.AbsolutePosition.X
+	local cardRight = cardLeft + card.AbsoluteSize.X
+	local carouselLeft = UI.ModuleOptions.AbsolutePosition.X
+	local carouselRight = carouselLeft + UI.ModuleOptions.AbsoluteSize.X
+	local visibleLeft = math.max(cardLeft, carouselLeft)
+	local visibleRight = math.min(cardRight, carouselRight)
+	if visibleRight - visibleLeft < math.min(36, card.AbsoluteSize.X * 0.6) then
+		NTRPersistencePhase15.HideModulePopup()
+		return
+	end
+
+	local anchorX = anchor.AbsolutePosition.X + anchor.AbsoluteSize.X * 0.5
+	local anchorY = anchor.AbsolutePosition.Y + anchor.AbsoluteSize.Y * 0.5
+	if anchorX < carouselLeft or anchorX > carouselRight then
+		NTRPersistencePhase15.HideModulePopup()
+		return
+	end
+
+	popup.Parent = layer
+	popup.AnchorPoint = Vector2.new(0.5, 1)
+	popup.Size = UDim2.fromOffset(126, 30)
+	popup.Position = UDim2.fromOffset(
+		math.floor((anchorX - layer.AbsolutePosition.X) + 0.5),
+		math.floor((anchorY - layer.AbsolutePosition.Y) + 0.5)
+	)
+	for _ = 1, 8 do
+		local currentCenterX = popup.AbsolutePosition.X + popup.AbsoluteSize.X * 0.5
+		local currentBottomY = popup.AbsolutePosition.Y + popup.AbsoluteSize.Y
+		local dx = anchorX - currentCenterX
+		local dy = anchorY - currentBottomY
+		if math.abs(dx) < 0.5 and math.abs(dy) < 0.5 then
+			break
+		end
+		local basePosition = popup.Position
+		local probe = 100
+		popup.Position = UDim2.fromOffset(basePosition.X.Offset + probe, basePosition.Y.Offset + probe)
+		local probedCenterX = popup.AbsolutePosition.X + popup.AbsoluteSize.X * 0.5
+		local probedBottomY = popup.AbsolutePosition.Y + popup.AbsoluteSize.Y
+		local scaleX = (probedCenterX - currentCenterX) / probe
+		local scaleY = (probedBottomY - currentBottomY) / probe
+		if math.abs(scaleX) < 0.01 then
+			scaleX = 1
+		end
+		if math.abs(scaleY) < 0.01 then
+			scaleY = 1
+		end
+		popup.Position = basePosition
+		popup.Position = UDim2.fromOffset(
+			math.floor((basePosition.X.Offset + dx / scaleX) + 0.5),
+			math.floor((basePosition.Y.Offset + dy / scaleY) + 0.5)
+		)
+	end
+	popup.ZIndex = 72
+	for _, child in ipairs(popup:GetDescendants()) do
+		if child:IsA("GuiObject") then
+			child.ZIndex = 73
+		end
+	end
+end
+
+function NTRPersistencePhase15.PositionModulePopupAboveCard(card)
+	local popup = NTRPersistencePhase15.EnsureModulePopupObject()
+	if not (popup and card) then
 		return
 	end
 	local layer = NTRPersistencePhase15.EnsureModulePopupLayer()
@@ -2233,27 +2362,26 @@ function NTRPersistencePhase15.PositionModulePopupAboveCard(_card)
 	if UI.ModuleOptions then
 		UI.ModuleOptions.ClipsDescendants = true
 	end
+	NTRPersistencePhase15.EnsureModulePopupAnchor(card)
 	popup.Parent = layer
-	popup.AnchorPoint = Vector2.new(0.5, 1)
-	popup.Size = UDim2.fromOffset(126, 30)
-	local anchorPanel = UI.ModuleOptionsPanel or UI.ModuleSlotPanel or UI.ModuleShop
-	local popupX = (anchorPanel.AbsolutePosition.X + (anchorPanel.AbsoluteSize.X * 0.5)) - layer.AbsolutePosition.X
-	local popupY = anchorPanel.AbsolutePosition.Y - layer.AbsolutePosition.Y - 6
-	popup.Position = UDim2.fromOffset(math.floor(popupX + 0.5), math.floor(popupY + 0.5))
-	popup.ZIndex = 72
-	for _, child in ipairs(popup:GetDescendants()) do
-		if child:IsA("GuiObject") then
-			child.ZIndex = 73
-		end
-	end
+	NTRPersistencePhase15.ModulePopupActiveCard = card
+	NTRPersistencePhase15.UpdateModulePopupPosition()
 end
 
 function NTRPersistencePhase15.DeferModulePopupPosition(card)
 	NTRPersistencePhase15.PositionModulePopupAboveCard(card)
+	if not NTRPersistencePhase15.ModulePopupTrackerConnection then
+		NTRPersistencePhase15.ModulePopupTrackerConnection = game:GetService("RunService").RenderStepped:Connect(function()
+			local activeCard = NTRPersistencePhase15.FindModulePopupTargetCard()
+			if not (UI and UI.ModulePopup and UI.ModulePopup.Visible and activeCard and activeCard.Parent) then
+				NTRPersistencePhase15.StopModulePopupTracker()
+				return
+			end
+			NTRPersistencePhase15.UpdateModulePopupPosition()
+		end)
+	end
 	task.defer(function()
-		if UI and UI.ModulePopup and UI.ModulePopup.Visible then
-			NTRPersistencePhase15.PositionModulePopupAboveCard(card)
-		end
+		NTRPersistencePhase15.UpdateModulePopupPosition()
 	end)
 end
 
@@ -2336,6 +2464,9 @@ local function renderModuleOptions()
 				cardColor = Theme.CardHot
 			end
 			local card = pooledButton(optionPool, "", UDim2.fromOffset(184, 86), UDim2.fromOffset(x, 3), cardColor)
+			card:SetAttribute("NTRModuleCard", true)
+			card:SetAttribute("NTRModulePopupTarget", selected and not isInstalledHere)
+			NTRPersistencePhase15.EnsureModulePopupAnchor(card)
 			card.AutoButtonColor = not isInstalledHere
 			local familyText = tostring(moduleInfo and (moduleInfo.SourceCockpitDisplayName or moduleInfo.SourceCockpitId) or "")
 			local variantText = tostring(moduleInfo and (moduleInfo.VariantName or "") or "")
@@ -2385,6 +2516,9 @@ local function renderModuleOptions()
 				cardColor = Theme.CardHot
 			end
 			local card = pooledButton(optionPool, "", UDim2.fromOffset(184, 86), UDim2.fromOffset(x, 3), cardColor)
+			card:SetAttribute("NTRModuleCard", true)
+			card:SetAttribute("NTRModulePopupTarget", selected and not isInstalled)
+			NTRPersistencePhase15.EnsureModulePopupAnchor(card)
 			card.AutoButtonColor = not isInstalled
 			local familyText = tostring(moduleInfo.SourceCockpitDisplayName or moduleInfo.SourceCockpitId or "")
 			local variantText = tostring(moduleInfo.VariantName or "")
@@ -3579,7 +3713,7 @@ makeArrowScroller(UI.CockpitGridPanel, UI.CockpitGrid, "Y", 296)
 	UI.ModuleOptions = new("ScrollingFrame", { Name = "ModuleOptionsScroll", BackgroundTransparency = 1, BorderSizePixel = 0, ScrollBarThickness = 0, ScrollBarImageTransparency = 1, CanvasSize = UDim2.fromOffset(0, 0), AutomaticCanvasSize = Enum.AutomaticSize.None, Size = UDim2.new(1, 0, 0, 92), Position = UDim2.new(0, 0, 0.5, 0), AnchorPoint = Vector2.new(0, 0.5), ClipsDescendants = true }, UI.ModuleOptionsPanel)
 	makeArrowScroller(UI.ModuleOptionsPanel, UI.ModuleOptions, "X", 344)
 	-- NTR_PERSISTENCE_PHASE17_MODULE_POPUP_SCREEN_LAYER_CREATE
-	UI.ModulePopupLayer = new("Frame", { Name = "ModulePopupLayer", BackgroundTransparency = 1, BorderSizePixel = 0, Size = UDim2.fromScale(1, 1), Position = UDim2.fromScale(0, 0), ClipsDescendants = false, ZIndex = 70 }, gui)
+	UI.ModulePopupLayer = new("Frame", { Name = "ModulePopupLayer", BackgroundTransparency = 1, BorderSizePixel = 0, Size = UDim2.fromScale(1, 1), Position = UDim2.fromScale(0, 0), ClipsDescendants = false, ZIndex = 70 }, UI.ModuleShop)
 	UI.ModulePopup = panel(UI.ModulePopupLayer, "ModulePopup", UDim2.fromOffset(126, 30), UDim2.fromOffset(0, 0), Vector2.zero)
 	UI.ModulePopup.ZIndex = 72
 	UI.ModulePopup.Visible = false

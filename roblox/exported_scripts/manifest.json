@@ -2528,13 +2528,13 @@
         "value": true,
         "type": "boolean"
       },
-      "PersistencePhase17ModuleTabs": {
+      "PersistencePhase17ModuleActionRailRepair": {
         "value": true,
         "type": "boolean"
       },
-      "DealershipIntroPhase4PatchedBy": {
-        "value": "roblox_dealership_intro_phase4_preview_after_purchase",
-        "type": "string"
+      "PersistencePhase17ModulePopupDestroyedInstanceRepair": {
+        "value": true,
+        "type": "boolean"
       },
       "MigrationStatus": {
         "value": "PhaseD_MainClientShadow",
@@ -2552,6 +2552,18 @@
         "value": true,
         "type": "boolean"
       },
+      "DealershipIntroPhase7PatchedAt": {
+        "value": "2026-06-03 21:33:56",
+        "type": "string"
+      },
+      "PersistencePhase17ModulePopupTrackerLayerRepair": {
+        "value": true,
+        "type": "boolean"
+      },
+      "PersistencePhase17ColorPickerColor3Repair": {
+        "value": true,
+        "type": "boolean"
+      },
       "LiveEnabled": {
         "value": true,
         "type": "boolean"
@@ -2560,19 +2572,23 @@
         "value": true,
         "type": "boolean"
       },
+      "PersistencePhase17ColorSliderSignalRepair": {
+        "value": true,
+        "type": "boolean"
+      },
       "PhasePSourcePatchedAt": {
         "value": "2026-06-02 09:46:31",
         "type": "string"
       },
-      "DealershipIntroPhase7PatchedAt": {
-        "value": "2026-06-03 21:33:56",
-        "type": "string"
-      },
-      "PersistencePhase15DuplicateCopyUI": {
+      "PersistencePhase17FrontEngineFamilyAndCardText": {
         "value": true,
         "type": "boolean"
       },
-      "PersistencePhase17ColorPickerRegisterRepair": {
+      "PersistencePhase12GarageMenuController": {
+        "value": true,
+        "type": "boolean"
+      },
+      "PersistencePhase17ModulePopupAnchorTargetRepair": {
         "value": true,
         "type": "boolean"
       },
@@ -2584,7 +2600,7 @@
         "value": true,
         "type": "boolean"
       },
-      "PersistencePhase17ColorPickerColor3Repair": {
+      "PersistencePhase17RepairV3": {
         "value": true,
         "type": "boolean"
       },
@@ -2592,9 +2608,9 @@
         "value": "roblox_dealership_intro_phase7_exit_button_reopen_gate",
         "type": "string"
       },
-      "PersistencePhase17ColorSliderSignalRepair": {
-        "value": true,
-        "type": "boolean"
+      "DealershipIntroPhase4PatchedBy": {
+        "value": "roblox_dealership_intro_phase4_preview_after_purchase",
+        "type": "string"
       },
       "PhaseKSourcePatchedBy": {
         "value": "roblox_architecture_phaseK_migrate_hover_kit_to_neotokyo",
@@ -2604,7 +2620,7 @@
         "value": "roblox_client_phaseD_main_client_owner_switch",
         "type": "string"
       },
-      "PersistencePhase17FrontEngineFamilyAndCardText": {
+      "PersistencePhase17ModuleTabs": {
         "value": true,
         "type": "boolean"
       },
@@ -2612,7 +2628,7 @@
         "value": true,
         "type": "boolean"
       },
-      "PersistencePhase12GarageMenuController": {
+      "DoNotEnableWithLegacyClient": {
         "value": true,
         "type": "boolean"
       },
@@ -2620,17 +2636,17 @@
         "value": true,
         "type": "boolean"
       },
-      "PersistencePhase17RepairV3": {
+      "PersistencePhase17ModulePopupCardTrackedOverlayRepair": {
         "value": true,
         "type": "boolean"
       },
-      "PersistencePhase17ModuleActionRailRepair": {
-        "value": true,
-        "type": "boolean"
-      },
-      "LastUpdatedBy": {
-        "value": "NTR_VFX_SINGLE_CACHED_RUNTIME_OWNER_2026_06_30",
+      "PhaseKSourcePatchedAt": {
+        "value": "2026-05-29 17:31:59",
         "type": "string"
+      },
+      "PersistencePhase9GaragePropertyMenu": {
+        "value": true,
+        "type": "boolean"
       },
       "DealershipIntroPhase3PatchedBy": {
         "value": "roblox_dealership_intro_phase3_gate_garage_startup",
@@ -2656,7 +2672,7 @@
         "value": "2026-06-30 13:03:24",
         "type": "string"
       },
-      "DoNotEnableWithLegacyClient": {
+      "PersistencePhase8CapacityUI": {
         "value": true,
         "type": "boolean"
       },
@@ -2672,25 +2688,25 @@
         "value": "roblox_architecture_phaseP_garage_runtime_startup_repair",
         "type": "string"
       },
+      "PersistencePhase17ModulePopupAbsoluteCorrectionRepair": {
+        "value": true,
+        "type": "boolean"
+      },
       "DealershipIntroPhase5PatchedAt": {
         "value": "2026-06-03 20:26:43",
         "type": "string"
-      },
-      "PersistencePhase9GaragePropertyMenu": {
-        "value": true,
-        "type": "boolean"
       },
       "PersistencePhase17ColorPickerRootRepair": {
         "value": true,
         "type": "boolean"
       },
-      "PhaseKSourcePatchedAt": {
-        "value": "2026-05-29 17:31:59",
-        "type": "string"
-      },
-      "PersistencePhase8CapacityUI": {
+      "PersistencePhase17ModuleButtonLayoutPolish": {
         "value": true,
         "type": "boolean"
+      },
+      "LastUpdatedBy": {
+        "value": "NTR_VFX_SINGLE_CACHED_RUNTIME_OWNER_2026_06_30",
+        "type": "string"
       },
       "PersistencePhase9RegisterLimitRepair": {
         "value": true,
@@ -2704,19 +2720,11 @@
         "value": true,
         "type": "boolean"
       },
-      "PersistencePhase17ModulePopupDestroyedInstanceRepair": {
-        "value": true,
-        "type": "boolean"
-      },
-      "PersistencePhase17ModulePopupTrackerLayerRepair": {
-        "value": true,
-        "type": "boolean"
-      },
-      "PersistencePhase17ModuleButtonLayoutPolish": {
-        "value": true,
-        "type": "boolean"
-      },
       "PersistencePhase17ModuleCardColourPopupRepair": {
+        "value": true,
+        "type": "boolean"
+      },
+      "PersistencePhase17ModulePopupPoolTargetResetRepair": {
         "value": true,
         "type": "boolean"
       },
@@ -2724,18 +2732,26 @@
         "value": true,
         "type": "boolean"
       },
+      "PersistencePhase17ModulePopupCardAnchorRepair": {
+        "value": true,
+        "type": "boolean"
+      },
+      "PersistencePhase15DuplicateCopyUI": {
+        "value": true,
+        "type": "boolean"
+      },
       "DealershipIntroPhase3PatchedAt": {
         "value": "2026-06-03 19:49:54",
         "type": "string"
       },
-      "PersistencePhase17ModulePopupCardAnchorRepair": {
+      "PersistencePhase17ColorPickerRegisterRepair": {
         "value": true,
         "type": "boolean"
       }
     },
-    "source_lines": 3890,
-    "source_bytes": 157562,
-    "source_checksum": "141309527",
+    "source_lines": 4024,
+    "source_bytes": 162148,
+    "source_checksum": "553187382",
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/NeoTokyoRacersClient_Bootstrap_Shadow_Disabled.client.lua"
   },
   {

@@ -1,7 +1,7 @@
 # Persistence/Garage Phase 17 UI Handoff
 
 **Created:** 2026-07-02  
-**Status:** Stop patching from stale context; refresh Studio mirror before the next UI repair.
+**Status:** Studio mirror refreshed; next repair script prepared for Studio testing.
 
 ## Why This Handoff Exists
 
@@ -14,23 +14,17 @@ The Persistence/Garage Phase 17 module picker is mostly working, but the BUY/LOC
 
 The user wants the action button directly above the module card they clicked, with a small gap matching the Paint Cockpit primary/secondary/detail button spacing. The module carousel must stay clipped inside the bottom frame and must not overlap the cash panel or the right-side controls.
 
-## Current Live Studio State To Capture
+## Current Live Studio State
 
-The latest Studio state likely includes `scripts/roblox_persistence_phase17_module_popup_action_rail_repair.lua`, because the user reported the BUY/LOCKED button is now centred in the screen/frame instead of above the clicked card. Treat that as a rejected workaround, not the desired baseline.
+The refreshed Studio mirror includes `scripts/roblox_persistence_phase17_module_popup_action_rail_repair.lua`, because the user reported the BUY/LOCKED button is now centred in the screen/frame instead of above the clicked card. Treat that as a rejected workaround, not the desired baseline.
 
-Before another popup fix, refresh the Studio mirror so the next chat can inspect the actual live source:
-
-```text
-py scripts/receive_studio_full_snapshot_export.py
-```
-
-Then run this whole file in the Roblox Studio Command Bar:
+The next prepared repair after the card-tracked overlay diagnostic is:
 
 ```text
-scripts/roblox_studio_export_full_snapshot_for_github_v2.lua
+scripts/roblox_persistence_phase17_module_popup_anchor_target_repair.lua
 ```
 
-Commit the generated `roblox/exported_scripts/` and `roblox/studio_snapshot/` changes after import. Do not commit `docs/studio-full-export-paste.txt`.
+It replaces the card-tracked overlay helper with explicit selected-card popup anchors. After running and play-testing it in Studio, refresh the mirror again with `scripts/roblox_studio_export_full_snapshot_for_github_v2.lua` and commit the generated `roblox/exported_scripts/` and `roblox/studio_snapshot/` changes. Do not commit `docs/studio-full-export-paste.txt`.
 
 ## Confirmed Working Progress To Preserve
 
@@ -53,9 +47,9 @@ In Build Modules, when the user clicks a module card in `BUY MODULES` or `OWNED 
 - it should hide when the player scrolls the carousel, presses previous/next arrows, changes stage, presses Back/Next, or when the card list rerenders;
 - module cards must remain clipped inside the carousel frame.
 
-## Recommended Next Technical Direction
+## Recommended Technical Direction
 
-Do not continue adding coordinate patches to stale source. After the fresh mirror, inspect the active client bootstrap and decide whether to replace the popup code rather than layering another repair.
+Do not continue adding coordinate patches on top of the rejected action rail. Replace the action-rail helper with one clean card-tracked overlay owner.
 
 Preferred robust fix:
 
@@ -73,6 +67,9 @@ If this still fights the giant bootstrap, the cleaner future-proof step is to ex
 
 These scripts are useful history/recovery references, but they should not be blindly rerun as the current baseline:
 
+- `scripts/roblox_persistence_phase17_module_popup_anchor_target_repair.lua` - current prepared next fix after diagnostic showed `dx=-47.3` and `gap=57.5`.
+- `scripts/roblox_persistence_phase17_module_popup_alignment_diagnostic.lua` - read-only Play-mode measurement script; rerun after the anchor-target repair and expect `dx` near 0 and `gap` near 6.
+- `scripts/roblox_persistence_phase17_module_popup_card_tracked_overlay_repair.lua` - restored carousel clipping but still produced offset/high popup placement in Studio.
 - `scripts/roblox_persistence_phase17_module_popup_position_and_cockpit_back_lock.lua`
 - `scripts/roblox_persistence_phase17_module_popup_screen_layer_repair.lua`
 - `scripts/roblox_persistence_phase17_module_popup_card_anchor_repair.lua`

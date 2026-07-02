@@ -1,6 +1,6 @@
 # Roblox Studio Hierarchy Snapshot
 
-Generated in Studio: 2026-07-02 11:29:23
+Generated in Studio: 2026-07-02 12:20:22
 Scripts exported: 116
 Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, StarterGui, Workspace, ServerStorage, Lighting
 
@@ -2507,7 +2507,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - WindowMaterialController_Active (LocalScript) [script_0066, 101 lines, 2 attrs]
       - RuntimeState (Folder)
       - State (Folder)
-      - NeoTokyoRacersClient_Bootstrap_Shadow_Disabled (LocalScript) [script_0067, 3890 lines, 54 attrs]
+      - NeoTokyoRacersClient_Bootstrap_Shadow_Disabled (LocalScript) [script_0067, 4024 lines, 58 attrs]
     - LocalScript (LocalScript) [script_0068, 203 lines]
     - PlayerScriptsLoader (LocalScript) [script_0069, 8 lines]
     - RbxCharacterSounds (LocalScript) [script_0070, 456 lines]
@@ -14013,6 +14013,11 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Road (Part)
             - Road (Part)
             - Road (Part)
+            - Road (Part)
+            - Road (Part)
+            - Road (Part)
+            - Road (Part)
+            - Road (Part)
           - curve left (Model)
             - Road (Part)
             - Road (Part)
@@ -14110,6 +14115,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Roundabout (Part)
           - Model (Model)
             - Roundabout (Part)
+        - Road (Part)
         - Road (Part)
         - Road (Part)
         - Road (Part)

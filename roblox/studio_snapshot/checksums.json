@@ -531,9 +531,9 @@
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/NeoTokyoRacersClient_Bootstrap_Shadow_Disabled.client.lua",
     "class_name": "LocalScript",
     "disabled": false,
-    "source_lines": 3890,
-    "source_bytes": 157562,
-    "source_checksum": "141309527"
+    "source_lines": 4024,
+    "source_bytes": 162148,
+    "source_checksum": "553187382"
   },
   "StarterPlayer.StarterPlayerScripts.LocalScript": {
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/LocalScript.client.lua",
