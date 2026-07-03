@@ -9,7 +9,7 @@ local RunService = game:GetService("RunService")
 
 local player = Players.LocalPlayer
 
-local REVERSE_MAX_MPH = 20
+local REVERSE_MAX_MPH = 40
 local HOVER_HEIGHT = 3
 local SENSOR_START_HEIGHT = 2
 local SENSOR_LENGTH = 24
@@ -710,31 +710,70 @@ function Controller.Start(context)
 		braking *= math.clamp(115 / weight, 0.68, 1.15)
 
 		local maxForwardStuds = maxMph / MPH_PER_STUD
-		local maxReverseStuds = REVERSE_MAX_MPH / MPH_PER_STUD
+		-- NTR_DRIFT_BOOST_ACCEL_GATE_REVERSE_40_V1_REVERSE_BEGIN
+		local reverseMaxMph = configNumber("DRIVING_MECHANICS_EditAttributes", "ReverseMaxMph", REVERSE_MAX_MPH, 5, 80)
+		local maxReverseStuds = reverseMaxMph / MPH_PER_STUD
+		-- NTR_DRIFT_BOOST_ACCEL_GATE_REVERSE_40_V1_REVERSE_END
+		-- NTR_SLOPE_HOVER_HEIGHT_COMPENSATION_V1_BEGIN
 		local hitPositions = {}
 		local normalSum = Vector3.zero
 		local hits = 0
 		local liftPerCorner = mass * Workspace.Gravity / 4
+		local hoverResults = {}
 
 		for index, corner in ipairs(state.Controls.Corners) do
 			local origin = root.CFrame:PointToWorldSpace(corner.Offset) + Vector3.new(0, SENSOR_START_HEIGHT, 0)
 			local result = Workspace:Raycast(origin, Vector3.new(0, -SENSOR_LENGTH, 0), state.RayParams)
+			hoverResults[index] = result
 			if result then
-				local targetDistance = HOVER_HEIGHT + SENSOR_START_HEIGHT
-				local heightError = targetDistance - result.Distance
-				local pointVelocityY = root:GetVelocityAtPosition(origin).Y
-				local forceAmount = liftPerCorner + mass * (heightError * 48 - pointVelocityY * 6)
-				corner.Force.Force = Vector3.new(0, math.clamp(forceAmount, 0, liftPerCorner * 4.25), 0)
 				hitPositions[index] = result.Position
 				normalSum += result.Normal
 				hits += 1
-			else
-				corner.Force.Force = Vector3.new(0, liftPerCorner * 0.05, 0)
 			end
 		end
 
 		local terrainForward, groundNormal = getTerrainFrame(root, hitPositions, normalSum, hits)
 		local grounded = hits >= 2
+		local slopeHoverEnabled = configBool("DRIVING_MECHANICS_EditAttributes", "SlopeHoverCompensationEnabled", true)
+		local tangentVelocity = velocity - groundNormal * velocity:Dot(groundNormal)
+		local expectedSlopeYVelocity = slopeHoverEnabled and tangentVelocity.Y or 0
+		local velocityCompensation = configNumber("DRIVING_MECHANICS_EditAttributes", "SlopeHoverVelocityCompensation", 1.0, 0, 1.5)
+		local heightStiffness = configNumber("DRIVING_MECHANICS_EditAttributes", "SlopeHoverHeightStiffness", 54, 8, 140)
+		local normalVelocityDamping = configNumber("DRIVING_MECHANICS_EditAttributes", "SlopeHoverNormalVelocityDamping", 7, 0, 30)
+		local maxLiftMultiplier = configNumber("DRIVING_MECHANICS_EditAttributes", "SlopeHoverMaxLiftMultiplier", 4.5, 1, 10)
+		local missLiftMultiplier = configNumber("DRIVING_MECHANICS_EditAttributes", "SlopeHoverMissLiftMultiplier", 0.05, 0, 1)
+		local forceAlongGroundNormal = configBool("DRIVING_MECHANICS_EditAttributes", "SlopeHoverForceAlongGroundNormal", false)
+		local lastRelativeYVelocity = 0
+
+		for index, corner in ipairs(state.Controls.Corners) do
+			local result = hoverResults[index]
+			if result then
+				local targetDistance = HOVER_HEIGHT + SENSOR_START_HEIGHT
+				local heightError = targetDistance - result.Distance
+				local origin = root.CFrame:PointToWorldSpace(corner.Offset) + Vector3.new(0, SENSOR_START_HEIGHT, 0)
+				local pointVelocityY = root:GetVelocityAtPosition(origin).Y
+				local relativeYVelocity = pointVelocityY - expectedSlopeYVelocity * velocityCompensation
+				lastRelativeYVelocity = relativeYVelocity
+				local forceAmount = liftPerCorner + mass * (heightError * heightStiffness - relativeYVelocity * normalVelocityDamping)
+				forceAmount = math.clamp(forceAmount, 0, liftPerCorner * maxLiftMultiplier)
+				if forceAlongGroundNormal and groundNormal.Y > 0.15 then
+					corner.Force.Force = groundNormal * (forceAmount / math.max(groundNormal.Y, 0.25))
+				else
+					corner.Force.Force = Vector3.new(0, forceAmount, 0)
+				end
+			else
+				corner.Force.Force = Vector3.new(0, liftPerCorner * missLiftMultiplier, 0)
+			end
+		end
+
+		if configBool("DRIVING_MECHANICS_EditAttributes", "SlopeHoverDebugAttributes", true) then
+			state.Vehicle:SetAttribute("SlopeHoverExpectedYVelocity", expectedSlopeYVelocity)
+			state.Vehicle:SetAttribute("SlopeHoverRelativeYVelocity", lastRelativeYVelocity)
+			state.Vehicle:SetAttribute("SlopeHoverGroundNormalY", groundNormal.Y)
+			state.Vehicle:SetAttribute("SlopeHoverTerrainForwardY", terrainForward.Y)
+			state.Vehicle:SetAttribute("SlopeHoverHits", hits)
+		end
+		-- NTR_SLOPE_HOVER_HEIGHT_COMPENSATION_V1_END
 		local steeringInput = steer
 		if forwardSpeed < -4 then steeringInput = -steer end
 
@@ -774,12 +813,21 @@ function Controller.Start(context)
 			driveForce += right * (-steeringInput) * mass * 34 * state.DriftBlend
 			state.DriftCharge = math.min(3.25, state.DriftCharge + dt * (0.95 + math.abs(steeringInput) * 1.15) * state.DriftBlend)
 		elseif not state.DriftHeld and state.DriftCharge > 0 then
-			if state.DriftCharge > 0.72 then
+			-- NTR_DRIFT_BOOST_ACCEL_GATE_REVERSE_40_V1_DRIFT_BEGIN
+			local requiresAcceleration = configBool("DRIVING_MECHANICS_EditAttributes", "DriftMiniBoostRequiresAcceleration", true)
+			local accelerationThreshold = configNumber("DRIVING_MECHANICS_EditAttributes", "DriftMiniBoostAccelerationThreshold", 0.05, 0, 1)
+			local acceleratingOnDriftExit = throttle > accelerationThreshold
+			if state.DriftCharge > 0.72 and (not requiresAcceleration or acceleratingOnDriftExit) then
 				local charge = state.DriftCharge
 				state.MiniBoostTimer = math.clamp(0.22 + charge * 0.48, 0.35, 1.85)
 				state.MiniBoostPower = math.clamp(48 + charge * 27, 58, 136)
 			end
+			if configBool("DRIVING_MECHANICS_EditAttributes", "DriftMiniBoostDebugAttributes", true) then
+				state.Vehicle:SetAttribute("DriftMiniBoostAcceleratingOnExit", acceleratingOnDriftExit)
+				state.Vehicle:SetAttribute("DriftMiniBoostRequiresAcceleration", requiresAcceleration)
+			end
 			state.DriftCharge = 0
+			-- NTR_DRIFT_BOOST_ACCEL_GATE_REVERSE_40_V1_DRIFT_END
 		end
 
 		local boostHeld = UserInputService:IsKeyDown(Enum.KeyCode.Space) or state.GamepadBoostHeld
@@ -810,11 +858,71 @@ function Controller.Start(context)
 		state.Vehicle:SetAttribute("DriftingLeft", drifting and steeringInput < -0.05)
 		state.Vehicle:SetAttribute("DriftingRight", drifting and steeringInput > 0.05)
 		state.Controls.DriveForce.Force = driveForce
-
+		-- NTR_SPEED_SENSITIVE_STEERING_V1_BEGIN
 		local speedFactor = math.clamp(math.abs(forwardSpeed) * MPH_PER_STUD / 45, 0.35, 1.35)
 		local turnRate = (handling / 58) * 1.08 * speedFactor
+		local speedSteeringMultiplier = 1
+		if configBool("DRIVING_MECHANICS_EditAttributes", "SpeedSteeringEnabled", true) then
+			local lowSpeedMph = configNumber("DRIVING_MECHANICS_EditAttributes", "SpeedSteeringLowSpeedMph", 0, 0, 260)
+			local highSpeedMph = configNumber("DRIVING_MECHANICS_EditAttributes", "SpeedSteeringHighSpeedMph", 115, 1, 320)
+			if highSpeedMph <= lowSpeedMph + 1 then
+				highSpeedMph = lowSpeedMph + 1
+			end
+
+			local lowMultiplier = configNumber("DRIVING_MECHANICS_EditAttributes", "SpeedSteeringLowMultiplier", 1.45, 0.1, 4)
+			local highMultiplier = configNumber("DRIVING_MECHANICS_EditAttributes", "SpeedSteeringHighMultiplier", 0.72, 0.1, 4)
+			local curveExponent = configNumber("DRIVING_MECHANICS_EditAttributes", "SpeedSteeringCurveExponent", 1.85, 0.1, 8)
+			local reverseMultiplier = configNumber("DRIVING_MECHANICS_EditAttributes", "ReverseSteeringMultiplier", 1.18, 0.1, 4)
+			local reverseUsesCurve = configBool("DRIVING_MECHANICS_EditAttributes", "ReverseSteeringUsesSpeedCurve", true)
+
+			local speedAlpha = math.clamp((speedMph - lowSpeedMph) / (highSpeedMph - lowSpeedMph), 0, 1)
+			local lowSpeedInfluence = (1 - speedAlpha) ^ curveExponent
+			local targetMultiplier = highMultiplier + (lowMultiplier - highMultiplier) * lowSpeedInfluence
+
+			if forwardSpeed < -4 then
+				if reverseUsesCurve then
+					targetMultiplier *= reverseMultiplier
+				else
+					targetMultiplier = reverseMultiplier
+				end
+			end
+
+			if drifting then
+				local driftMinimum = configNumber("DRIVING_MECHANICS_EditAttributes", "SpeedSteeringDriftMinimumMultiplier", 0.92, 0.1, 4)
+				targetMultiplier = math.max(targetMultiplier, driftMinimum)
+			end
+
+			local smoothing = configNumber("DRIVING_MECHANICS_EditAttributes", "SpeedSteeringSmoothing", 7, 0, 30)
+			if smoothing > 0 then
+				local previous = state.SpeedSteeringMultiplier or targetMultiplier
+				local alpha = math.clamp(dt * smoothing, 0, 1)
+				speedSteeringMultiplier = previous + (targetMultiplier - previous) * alpha
+			else
+				speedSteeringMultiplier = targetMultiplier
+			end
+			state.SpeedSteeringMultiplier = speedSteeringMultiplier
+
+			if configBool("DRIVING_MECHANICS_EditAttributes", "SpeedSteeringDebugAttributes", true) then
+				state.Vehicle:SetAttribute("SpeedSteeringMultiplier", speedSteeringMultiplier)
+				state.Vehicle:SetAttribute("SpeedSteeringSpeedMph", speedMph)
+			end
+		else
+			state.SpeedSteeringMultiplier = 1
+		end
+		local boostSteeringMultiplier = 1
+		if state.Vehicle:GetAttribute("Boosting") == true then
+			boostSteeringMultiplier = configNumber("DRIVING_MECHANICS_EditAttributes", "BoostSteeringMultiplier", 0.8, 0.1, 4)
+			speedSteeringMultiplier *= boostSteeringMultiplier
+		end
+		if configBool("DRIVING_MECHANICS_EditAttributes", "SpeedSteeringDebugAttributes", true) then
+			state.Vehicle:SetAttribute("SpeedSteeringMultiplier", speedSteeringMultiplier)
+			state.Vehicle:SetAttribute("SpeedSteeringSpeedMph", speedMph)
+			state.Vehicle:SetAttribute("BoostSteeringMultiplier", boostSteeringMultiplier)
+		end
+		turnRate *= speedSteeringMultiplier
 		if drifting then turnRate *= 1.34 + (driftControl / 170) end
 		state.YawHeading += -steeringInput * turnRate * dt
+		-- NTR_SPEED_SENSITIVE_STEERING_V1_END
 
 		local bankInput = forwardSpeed < -4 and -steeringInput or steeringInput
 		local targetBank = math.rad(math.clamp(-bankInput * 12, -12, 12))
@@ -823,7 +931,48 @@ function Controller.Start(context)
 
 		terrainForward, groundNormal = getTerrainFrame(root, hitPositions, normalSum, hits)
 		local wobblePitch, wobbleRoll = updateHoverWobble(dt, speedMph, grounded)
-		state.Controls.Align.CFrame = CFrame.lookAt(root.Position, root.Position + terrainForward, groundNormal) * CFrame.Angles(wobblePitch, 0, state.CurrentBank + wobbleRoll)
+		-- NTR_ACCEL_BRAKE_PITCH_TILT_V1_BEGIN
+		local accelBrakePitch = 0
+		if configBool("DRIVING_MECHANICS_EditAttributes", "AccelBrakeTiltEnabled", true) then
+			local throttleDeadzone = configNumber("DRIVING_MECHANICS_EditAttributes", "AccelBrakeTiltThrottleDeadzone", 0.05, 0, 0.5)
+			local brakeForwardSpeedMph = configNumber("DRIVING_MECHANICS_EditAttributes", "BrakeTiltForwardSpeedMph", 4, 0, 80)
+			local targetPitchDegrees = 0
+
+			if throttle > throttleDeadzone then
+				targetPitchDegrees = configNumber("DRIVING_MECHANICS_EditAttributes", "AccelerationTiltDegrees", 2.5, -12, 12) * math.clamp(throttle, 0, 1)
+			elseif throttle < -throttleDeadzone then
+				if forwardSpeed * MPH_PER_STUD > brakeForwardSpeedMph then
+					targetPitchDegrees = configNumber("DRIVING_MECHANICS_EditAttributes", "BrakeTiltDegrees", -3.5, -12, 12) * math.clamp(math.abs(throttle), 0, 1)
+				else
+					targetPitchDegrees = configNumber("DRIVING_MECHANICS_EditAttributes", "ReverseAccelerationTiltDegrees", -1.5, -12, 12) * math.clamp(math.abs(throttle), 0, 1)
+				end
+			end
+
+			if state.Vehicle:GetAttribute("Boosting") == true then
+				targetPitchDegrees += configNumber("DRIVING_MECHANICS_EditAttributes", "BoostExtraTiltDegrees", 1.0, -12, 12)
+			end
+
+			local maxTiltDegrees = configNumber("DRIVING_MECHANICS_EditAttributes", "AccelBrakeTiltMaxDegrees", 5, 0, 16)
+			targetPitchDegrees = math.clamp(targetPitchDegrees, -maxTiltDegrees, maxTiltDegrees)
+
+			local smoothing = configNumber("DRIVING_MECHANICS_EditAttributes", "AccelBrakeTiltSmoothing", 7, 0, 30)
+			if smoothing > 0 then
+				local previous = state.AccelBrakePitchDegrees or targetPitchDegrees
+				local alpha = math.clamp(dt * smoothing, 0, 1)
+				state.AccelBrakePitchDegrees = previous + (targetPitchDegrees - previous) * alpha
+			else
+				state.AccelBrakePitchDegrees = targetPitchDegrees
+			end
+
+			accelBrakePitch = math.rad(state.AccelBrakePitchDegrees or 0)
+			if configBool("DRIVING_MECHANICS_EditAttributes", "AccelBrakeTiltDebugAttributes", true) then
+				state.Vehicle:SetAttribute("AccelBrakePitchDegrees", state.AccelBrakePitchDegrees or 0)
+			end
+		else
+			state.AccelBrakePitchDegrees = 0
+		end
+		state.Controls.Align.CFrame = CFrame.lookAt(root.Position, root.Position + terrainForward, groundNormal) * CFrame.Angles(wobblePitch + accelBrakePitch, 0, state.CurrentBank + wobbleRoll)
+		-- NTR_ACCEL_BRAKE_PITCH_TILT_V1_END
 
 		setVehicleCamera(state.Vehicle)
 

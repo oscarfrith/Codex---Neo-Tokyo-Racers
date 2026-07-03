@@ -86,6 +86,10 @@ This file is intentionally conservative. Items are included only when they were 
 - `V75` boost recharge delay and hover wobble were generated after `V74`, but no later user confirmation is present in this chat history.
 - Confirm that `BoostRechargeDelay` is being read from installed Boost modules at runtime.
 - Confirm that low-speed wobble is subtle enough and fades out by `20 MPH`.
+- `scripts/roblox_driving_speed_sensitive_steering_curve.lua` was reported working nicely by the user. Keep broader balance testing open for different cockpit/module builds, mobile steering, reverse handling, and boost/drift mini-boost turn feel.
+- `scripts/roblox_driving_accel_brake_pitch_tilt.lua` was reported looking great by the user. Keep broader balance checks open for different cockpit/module builds and whether boost extra pitch remains subtle at high speed.
+- `scripts/roblox_driving_drift_boost_accel_gate_reverse_speed.lua` was reported working and looking good by the user. Keep broader checks open for reverse control at `40 MPH`, drift-exit boost timing on mobile, and different module builds.
+- `scripts/roblox_driving_slope_hover_height_compensation.lua` was reported working well by the user. Keep broader checks open for very steep slopes, uneven terrain, high-speed slope transitions, and whether steering bank/brake pitch/boost pitch/hover wobble still layer cleanly across all builds.
 - Mobile auto-sprint is prepared in `scripts/roblox_character_sprint_controller_install.lua`; verify on a mobile device/emulator that `MobileSprintMoveThreshold` feels right.
 - VFX Phase AJ is prepared to repair thrust VFX preview after the dealership preview root moved; run and verify `scripts/roblox_vfx_phaseAJ_thrust_preview_root_repair.lua` if thrust VFX is missing in the customisation menu.
 
