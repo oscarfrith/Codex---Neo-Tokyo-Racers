@@ -1,6 +1,6 @@
 # Neo Tokyo Racers Project Context
 
-Last updated: 2026-07-02
+Last updated: 2026-07-03
 
 This folder is the handoff pack for new Codex or ChatGPT sessions. Read this file first, then use the other docs only as needed.
 
@@ -81,6 +81,7 @@ Known from chat:
 - Persistence Phase 26 was smoke-tested on 2026-07-02. `scripts/roblox_persistence_phase26_garage_customization_validation.lua` applied owner customization presets through the Phase 24 backend and confirmed the Phase 25 UI summary reflected `SURFACES 2  DECOR 1`.
 - Persistence Phase 27 was installed and smoke-tested on 2026-07-02. `scripts/roblox_persistence_phase27_garage_access_ui_mvp.lua` installs an isolated same-server garage access UI for entering your own garage, setting access mode, visiting an owner user ID, and returning to the city without Command Bar calls; the client smoke reported the UI shell visible, `VisitGarage OK`, and `ReturnToCity OK`.
 - Persistence Phase 28 was smoke-tested on 2026-07-02 and completes the garage MVP run. `scripts/roblox_persistence_phase28_garage_mvp_final_audit.lua` verified the Phase 21-27 runtime stack, access UI, owner garage entry, display vehicle, customization UI, persisted surfaces/decor summary, interior state, and return-to-city path. The remaining handoff work is a DataStore-enabled save/rejoin check when practical plus final Studio mirror refresh.
+- Free Roam Map Stack Phase 2 is generated in Git as `scripts/roblox_freeroam_map_stack_phase2.lua`. It supersedes the Phase 1 left rail with an isolated top-right stack: square map placeholder, full-width car button, and 2x2 Shop/Race/Home/Settings buttons. The Phase 2.11 repair preserves uploaded icon IDs, keeps icons as square centred overlays, makes the desktop/laptop stack about 20% smaller, makes the car row match the other button row height/icon scale, layers stack buttons as dark base plus pink outline plus inset configurable gradient plus hover overlay plus icon, preserves existing `FreeRoamNav` Bool/Number/Color tuning values on rerun, removes old button bevel bars, keeps pop-out action buttons as solid fills without gradients, adds local free-roam text-glow controls, makes action pop-outs match the full stack height, shrinks/tucks the mobile layout into the top-right corner, patches the isolated mobile drive controls for stable visibility, bottom-centred boost/MPH, lower edge placement, shared UI theme colours, gas-pedal alignment with the map stack right edge, shows the stack during normal on-foot and driving free roam, hides it while dealership/customisation UI is open, and repairs the mobile desktop-HUD helper block if Phase 2.4 removed it. It keeps using `ReplicatedStorage.NeoTokyoRacers.Config.UI.FreeRoamNav`, suppresses the old top-right drive exit menu and old `NTR_GarageAccessUI` toggle, and needs Studio install/client smoke before being treated as stable. The actual minimap image/calibration/movement is intentionally deferred. Broader dealership/customisation text glow should be handled as a separate shared UI theme phase.
 
 Recommended baseline:
 

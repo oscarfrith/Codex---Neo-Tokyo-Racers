@@ -26,11 +26,19 @@ local function configNumber(name, fallback, minimum, maximum)
 	return math.clamp(value, minimum, maximum)
 end
 
-local HUD_PANEL = Color3.fromRGB(5, 9, 7)
-local HUD_PANEL_SOFT = Color3.fromRGB(13, 25, 21)
-local HUD_TEXT = Color3.fromRGB(218, 255, 231)
-local HUD_ACCENT = Color3.fromRGB(172, 255, 197)
-local HUD_RED = Color3.fromRGB(194, 67, 62)
+local function themeColor(name, fallback, alternate)
+	local kit = ReplicatedStorage:FindFirstChild("NeoTokyoRacers")
+	local themeFolder = kit and kit:FindFirstChild("Config") and kit.Config:FindFirstChild("UI") and kit.Config.UI:FindFirstChild("Theme")
+	local item = themeFolder and (themeFolder:FindFirstChild(name) or (alternate and themeFolder:FindFirstChild(alternate)))
+	return item and item:IsA("Color3Value") and item.Value or fallback
+end
+
+local HUD_PANEL = themeColor("Panel", Color3.fromRGB(5, 9, 7))
+local HUD_PANEL_SOFT = themeColor("Card", Color3.fromRGB(24, 35, 42))
+local HUD_TEXT = themeColor("Text", Color3.fromRGB(218, 255, 231))
+local HUD_ACCENT = themeColor("Accent", Color3.fromRGB(172, 255, 197))
+local HUD_RED = themeColor("Exit", Color3.fromRGB(194, 67, 62), "Danger")
+local HUD_PINK = themeColor("Selected", Color3.fromRGB(230, 88, 205), "CardHot")
 
 local fontFace
 pcall(function()
@@ -462,21 +470,34 @@ local function findGarageVisible()
 	for _, guiObject in ipairs(playerGui:GetChildren()) do
 		if guiObject:IsA("ScreenGui") and guiObject.Enabled then
 			local name = string.lower(guiObject.Name)
-			if string.find(name, "garage", 1, true) or string.find(name, "dealership", 1, true) then
-				return true
-			end
-			local rootObject = guiObject:FindFirstChild("GarageRoot", true) or guiObject:FindFirstChild("DealershipRoot", true)
-			if rootObject and rootObject:IsA("GuiObject") and rootObject.Visible then
-				return true
+			if name ~= "ntr_freeroamleftnav"
+				and name ~= "hover_racing_v2_drivehud"
+				and name ~= "hover_racing_v67_mobiledrivecontrolsui" then
+				local rootObject = guiObject:FindFirstChild("GarageRoot", true) or guiObject:FindFirstChild("DealershipRoot", true)
+				if rootObject and rootObject:IsA("GuiObject") and rootObject.Visible then
+					return true
+				end
 			end
 		end
 	end
 	return false
 end
+local function playerLooksDriving()
+	local character = player.Character
+	local humanoid = character and character:FindFirstChildOfClass("Humanoid")
+	if humanoid and humanoid.SeatPart and humanoid.SeatPart:IsA("VehicleSeat") then
+		return true
+	end
+	local driveGui = playerGui:FindFirstChild("HOVER_RACING_V2_DriveHUD")
+	return driveGui and driveGui.Enabled == true
+end
+
+local function shouldShow()
+	return TOUCH and (M.IsDriving == true or playerLooksDriving()) and not findGarageVisible()
+end
+-- V69_MOBILE_HUD_VISIBILITY_END
 
 
-
--- V69_MOBILE_HUD_VISIBILITY_BEGIN
 local function lowerText(value)
 	return string.lower(tostring(value or ""))
 end
@@ -571,12 +592,6 @@ local function findDriveHudCandidates()
 	return results
 end
 
-local function shouldShow()
-	return TOUCH and M.IsDriving == true and not findGarageVisible()
-end
--- V69_MOBILE_HUD_VISIBILITY_END
-
-
 local hiddenDesktop = {}
 local function setDesktopDriveHudVisible(visible)
 	if not TOUCH then return end
@@ -618,12 +633,24 @@ local function layout()
 	local width = math.max(size.X, 1)
 	local height = math.max(size.Y, 1)
 	local tiny = width < 740 or height < 430
-	local margin = tiny and 13 or 20
-	local gap = tiny and 6 or 8
+	local edge = tiny and 8 or 10
+	local gap = tiny and 5 or 7
+
+	local navConfig = ReplicatedStorage:FindFirstChild("NeoTokyoRacers")
+		and ReplicatedStorage.NeoTokyoRacers:FindFirstChild("Config")
+		and ReplicatedStorage.NeoTokyoRacers.Config:FindFirstChild("UI")
+		and ReplicatedStorage.NeoTokyoRacers.Config.UI:FindFirstChild("FreeRoamNav")
+	local mapRightEdge = edge
+	if navConfig then
+		local item = navConfig:FindFirstChild("MapStackRightMarginTouch")
+		if item and item:IsA("NumberValue") then
+			mapRightEdge = math.max(0, item.Value)
+		end
+	end
 
 	local configuredSize = configNumber("ThumbstickSizePixels", 118, 82, 180)
 	local innerScale = configNumber("ThumbstickInnerScale", 1.4, 1, 1.6)
-	local thumbSize = math.floor(math.clamp(configuredSize * innerScale * (tiny and 0.82 or 1), 100, 220) + 0.5)
+	local thumbSize = math.floor(math.clamp(configuredSize * innerScale * (tiny and 0.72 or 0.9), 92, 190) + 0.5)
 	local knobSize = math.floor(thumbSize * 0.42 + 0.5)
 	local outerScale = configNumber("ThumbstickOuterRingScale", 1.5, 1.25, 1.75)
 	local outerSize = math.floor(thumbSize * outerScale + 0.5)
@@ -631,51 +658,59 @@ local function layout()
 	thumbDriftThreshold = math.clamp(configNumber("DriftEnterThreshold", 0.90, 0.65, 0.98), 0.05, 0.98)
 	local hitMultiplier = configNumber("TouchHitAreaMultiplier", 1.05, 1, 1.2)
 	local hitSize = math.floor(outerSize * hitMultiplier + 0.5)
-	local panelWidth = math.max(hitSize, outerSize)
-	local mphH = tiny and 20 or 25
-	local boostW = math.floor(math.clamp(thumbSize * 0.94, 92, 140) + 0.5)
-	local boostH = math.floor(math.clamp(thumbSize * 0.34, 32, 46) + 0.5)
-	local hudLift = math.floor(configNumber("HudLiftPixels", 12, 0, 40) + 0.5)
-	local boostBuffer = tiny and 4 or 6
-	local controlsY = mphH + gap + boostH + boostBuffer
-	local totalHeight = controlsY + hitSize + hudLift
 
-	leftPanel.Position = UDim2.fromOffset(margin, height - margin - totalHeight)
-	leftPanel.Size = UDim2.fromOffset(panelWidth, totalHeight)
+	leftPanel.Position = UDim2.fromOffset(0, 0)
+	leftPanel.Size = UDim2.fromOffset(width, height)
 
-	mphLabel.Position = UDim2.fromOffset(math.floor((panelWidth - boostW) * 0.5), 0)
+	local boostW = math.floor(math.clamp(width * (tiny and 0.17 or 0.15), 94, 142) + 0.5)
+	local boostH = tiny and 32 or 38
+	local mphH = tiny and 18 or 22
+	local boostX = math.floor((width - boostW) * 0.5)
+	local boostY = height - edge - boostH
+
+	mphLabel.Position = UDim2.fromOffset(boostX, boostY - mphH - 3)
 	mphLabel.Size = UDim2.fromOffset(boostW, mphH)
-	mphLabel.TextSize = tiny and 13 or 15
-
-	boostButton.Position = UDim2.fromOffset(math.floor((panelWidth - boostW) * 0.5), mphH + gap)
+	mphLabel.TextSize = tiny and 12 or 14
+	boostButton.Position = UDim2.fromOffset(boostX, boostY)
 	boostButton.Size = UDim2.fromOffset(boostW, boostH)
-	boostText.TextSize = tiny and 11 or 12
+	boostButton.BackgroundColor3 = HUD_PANEL_SOFT
+	boostText.TextSize = tiny and 10 or 11
 
-	thumbHitArea.Position = UDim2.fromOffset(math.floor((panelWidth - hitSize) * 0.5), controlsY)
+	thumbHitArea.Position = UDim2.fromOffset(edge, height - edge - hitSize)
 	thumbHitArea.Size = UDim2.fromOffset(hitSize, hitSize)
 	thumbOuterRing.Size = UDim2.fromOffset(outerSize, outerSize)
 	thumbBase.Size = UDim2.fromOffset(thumbSize, thumbSize)
 	thumbKnob.Size = UDim2.fromOffset(knobSize, knobSize)
-	driftText.TextSize = tiny and 9 or 10
+	driftText.TextSize = tiny and 8 or 9
 	setThumbVisual(M.Steer or 0, M.Drift == true)
 
 	local pedalScale = configNumber("PedalScale", 1.275, 1, 1.75)
-	local baseAccelW = math.clamp(width * 0.1, tiny and 55 or 66, tiny and 72 or 86)
-	local baseAccelH = math.clamp(height * 0.18, tiny and 88 or 108, tiny and 122 or 148)
-	local accelW = math.floor(math.min(baseAccelW * pedalScale, width * 0.16) + 0.5)
-	local accelH = math.floor(math.min(baseAccelH * pedalScale, height * 0.34) + 0.5)
-	local brakeW = math.floor(accelW * 0.86 + 0.5)
-	local brakeH = math.floor(accelH * 0.86 + 0.5)
+	local baseAccelW = math.clamp(width * 0.088, tiny and 46 or 56, tiny and 64 or 78)
+	local baseAccelH = math.clamp(height * 0.17, tiny and 76 or 96, tiny and 108 or 132)
+	local accelW = math.floor(math.min(baseAccelW * pedalScale, width * 0.14) + 0.5)
+	local accelH = math.floor(math.min(baseAccelH * pedalScale, height * 0.31) + 0.5)
+	local brakeW = math.floor(accelW * 0.82 + 0.5)
+	local brakeH = math.floor(accelH * 0.82 + 0.5)
 	local pedalW = accelW + brakeW + gap
 
-	rightPanel.Position = UDim2.fromOffset(width - margin - pedalW, height - margin - accelH)
+	rightPanel.Position = UDim2.fromOffset(width - mapRightEdge - pedalW, height - edge - accelH)
 	rightPanel.Size = UDim2.fromOffset(pedalW, accelH)
 	brake.Position = UDim2.fromOffset(0, accelH - brakeH)
 	brake.Size = UDim2.fromOffset(brakeW, brakeH)
 	accel.Position = UDim2.fromOffset(brakeW + gap, 0)
 	accel.Size = UDim2.fromOffset(accelW, accelH)
-end
 
+	local accelPad = accel:FindFirstChild("RubberPad")
+	if accelPad then
+		local s = accelPad:FindFirstChild("HUDStroke")
+		if s then s.Color = HUD_PINK end
+	end
+	local brakePad = brake:FindFirstChild("RubberPad")
+	if brakePad then
+		local s = brakePad:FindFirstChild("HUDStroke")
+		if s then s.Color = HUD_PINK end
+	end
+end
 local cameraConnection
 local function connectCamera()
 	if cameraConnection then

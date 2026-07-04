@@ -36,6 +36,37 @@ After the patch:
 
 The installer is a guarded exact-source patch against the active dealership bootstrap, the isolated intro client, and shared UI theme modules. If it cannot find the expected source shape, stop and refresh the Studio mirror before attempting another UI patch.
 
+## Free Roam Left Navigation
+
+Phase 1 is generated as `scripts/roblox_freeroam_left_nav_phase1.lua` and documented in `docs/freeroam-left-nav-phase1-2026-07-03.md`.
+
+Phase 2 is generated as `scripts/roblox_freeroam_map_stack_phase2.lua` and documented in `docs/freeroam-map-stack-phase2-2026-07-03.md`. It supersedes the left rail layout with a top-right map stack based on the user's sketch:
+
+```text
+MAP
+CAR
+SHOP | RACE
+HOME | SETTINGS
+```
+
+The goal is a themed top-right free-roam/driving stack with five icon buttons:
+
+- Car
+- Race
+- Garage/Home
+- Settings
+- Dealership
+
+The implementation is intentionally isolated in `StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.FreeRoamNavController_Active` and reads config from `ReplicatedStorage.NeoTokyoRacers.Config.UI.FreeRoamNav`. It does not patch the large dealership bootstrap.
+
+Phase 2's map area is only a placeholder. The actual Illustrator map image, world-bounds calibration, player-position panning, and heading rotation should be handled in a later minimap phase.
+
+The stack suppresses the old free-roam `DriveMenu` exit panel and the old right-side `NTR_GarageAccessUI` toggle, while preserving the speed/boost HUD and mobile driving controls. Phase 2.11 shows the stack during normal on-foot and driving free roam, hides it while dealership/customisation UI is open, makes the desktop/laptop stack about 20% smaller, keeps the car button height/icon scale consistent with the grid buttons, gives action pop-outs the same height as the full stack, layers stack buttons as dark base plus visible pink outline plus inset configurable gradient plus hover overlay plus icon, keeps pop-out action buttons as solid fills without gradients, and adds local text-glow controls for free-roam pop-out labels/action buttons. The installer also repairs the mobile desktop-HUD helper block if the earlier Phase 2.4 anchor removed it and now preserves existing `FreeRoamNav` Bool/Number/Color tuning values on rerun.
+
+The glow around `ENTER GARAGE` / `RETURN CITY` text would be a good shared UI theme improvement for dealership and customisation too, but should be handled as its own guarded phase because it touches the larger dealership/customisation UI scripts rather than only this isolated free-roam controller.
+
+Preferred plain white overlay icon PNGs are stored under `assets/ui/icons/freeroam_nav_plain/`. Upload the five `freeroam_plain_*.png` icons to Roblox and paste the resulting `rbxassetid://...` values into the matching `*Icon` StringValues under `FreeRoamNav`; until then the UI uses compact text fallbacks. These icons are transparent and should sit on top of Roblox-made dark grey/pink beveled UI frames.
+
 ## Dealership Flow
 
 Known dealership structure:
