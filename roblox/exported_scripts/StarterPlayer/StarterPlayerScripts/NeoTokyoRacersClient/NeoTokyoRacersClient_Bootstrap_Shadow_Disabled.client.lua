@@ -1264,7 +1264,9 @@ function NTRVehiclePhaseAO.drawBar(parent, name, value, baseValue, y)
 	else
 		fill.Size = UDim2.fromScale(amount, 1)
 	end
-	label(bar, tostring(math.floor((tonumber(value) or 0) + 0.5)), UDim2.fromScale(1, 1), UDim2.fromScale(0, 0), 8, Enum.TextXAlignment.Center)
+	local valueLabel = label(bar, tostring(math.floor((tonumber(value) or 0) + 0.5)), UDim2.new(1, -6, 1, 0), UDim2.fromOffset(4, 0), 8, Enum.TextXAlignment.Left)
+	valueLabel.TextColor3 = Color3.fromRGB(8, 10, 12)
+	valueLabel.ZIndex = bar.ZIndex + 4
 end
 
 function NTRVehiclePhaseAO.formatRaw(variableName, value)
@@ -1697,6 +1699,375 @@ local renderCockpitPaint
 local renderModuleShop
 local renderCustomise
 
+-- NTR_DEALERSHIP_CUSTOMISATION_SPLIT_PHASE10_RESPONSIVE_LAYOUT_POLISH
+-- NTR_DEALERSHIP_CUSTOMISATION_SPLIT_PHASE11_SORTED_COCKPIT_CARDS
+function NTR_phase6CardConfig()
+	local config = kit:FindFirstChild("Config")
+	local ui = config and config:FindFirstChild("UI")
+	return ui and ui:FindFirstChild("CockpitMenuCards") or nil
+end
+
+function NTR_phase6RawConfigNumber(name, fallback)
+	local folder = NTR_phase6CardConfig()
+	local item = folder and folder:FindFirstChild(name)
+	return item and item:IsA("NumberValue") and item.Value or fallback
+end
+
+function NTR_phase6ShouldScaleConfig(name)
+	local folder = NTR_phase6CardConfig()
+	local scaleFlag = folder and folder:FindFirstChild("ResponsiveCardScaleEnabled")
+	if scaleFlag and scaleFlag:IsA("BoolValue") and not scaleFlag.Value then
+		return false
+	end
+	return name == "ImageBoxX"
+		or name == "ImageBoxY"
+		or name == "ImageBoxSize"
+		or name == "ImageInnerPadding"
+		or name == "ImageCornerRadius"
+		or name == "FallbackBarWidth"
+		or name == "FallbackBarHeight"
+		or name == "NameX"
+		or name == "NameY"
+		or name == "NameHeight"
+		or name == "NameTextSize"
+		or name == "PriceY"
+		or name == "RatingY"
+		or name == "RatingX"
+		or name == "TierBadgeX"
+		or name == "TierBadgeY"
+		or name == "TierBadgeWidth"
+		or name == "TierBadgeHeight"
+end
+
+function NTR_phase6CardScale()
+	local baseWidth = math.max(1, NTR_phase6RawConfigNumber("CardWidth", 118))
+	local currentWidth = tonumber(NTR_phase6CurrentCardWidth) or baseWidth
+	return math.clamp(currentWidth / baseWidth, 0.55, 2)
+end
+
+function NTR_phase6ConfigNumber(name, fallback)
+	local value = NTR_phase6RawConfigNumber(name, fallback)
+	if NTR_phase6ShouldScaleConfig(name) then
+		return math.max(0, math.floor(value * NTR_phase6CardScale() + 0.5))
+	end
+	return value
+end
+
+function NTR_phase6ConfigBool(name, fallback)
+	local folder = NTR_phase6CardConfig()
+	local item = folder and folder:FindFirstChild(name)
+	return item and item:IsA("BoolValue") and item.Value or fallback
+end
+
+function NTR_phase6ConfigString(name, fallback)
+	local folder = NTR_phase6CardConfig()
+	local item = folder and folder:FindFirstChild(name)
+	return item and item:IsA("StringValue") and item.Value or fallback
+end
+
+function NTR_phase6AssetImage(value)
+	local text = tostring(value or "")
+	if text == "" then return "" end
+	if string.find(text, "rbxassetid://", 1, true) or string.find(text, "rbxthumb://", 1, true) then
+		return text
+	end
+	if tonumber(text) then
+		return "rbxassetid://" .. text
+	end
+	return text
+end
+
+function NTR_phase5AssetImage(value)
+	return NTR_phase6AssetImage(value)
+end
+
+function NTR_phase6ReadImageObject(object)
+	if not object then return "" end
+	for _, name in ipairs({ "MenuImage", "CockpitImage", "ThumbnailImage", "ImageId", "Image" }) do
+		local image = NTR_phase6AssetImage(object:GetAttribute(name))
+		if image ~= "" then return image end
+		local child = object:FindFirstChild(name)
+		if child then
+			if child:IsA("StringValue") then
+				image = NTR_phase6AssetImage(child.Value)
+			elseif child:IsA("Decal") or child:IsA("Texture") then
+				image = NTR_phase6AssetImage(child.Texture)
+			elseif child:IsA("ImageLabel") or child:IsA("ImageButton") then
+				image = NTR_phase6AssetImage(child.Image)
+			end
+			if image ~= "" then return image end
+		end
+	end
+	for _, child in ipairs(object:GetDescendants()) do
+		local lower = string.lower(child.Name)
+		if string.find(lower, "menuimage", 1, true) or string.find(lower, "cockpitimage", 1, true) or string.find(lower, "thumbnail", 1, true) then
+			local image = ""
+			if child:IsA("StringValue") then
+				image = NTR_phase6AssetImage(child.Value)
+			elseif child:IsA("Decal") or child:IsA("Texture") then
+				image = NTR_phase6AssetImage(child.Texture)
+			elseif child:IsA("ImageLabel") or child:IsA("ImageButton") then
+				image = NTR_phase6AssetImage(child.Image)
+			end
+			if image ~= "" then return image end
+		end
+	end
+	return ""
+end
+
+function NTR_phase6FindCockpitModel(cockpit)
+	local cockpitId = cockpit and tostring(cockpit.CockpitId or cockpit.CockpitID or cockpit.Id or cockpit.Name or "")
+	if cockpitId == "" then return nil end
+	for _, category in ipairs(categoriesRoot:GetChildren()) do
+		local root = category:FindFirstChild("COCKPITS_ReplaceAssetsHere") or category:FindFirstChild("Cockpits") or category:FindFirstChild("COCKPITS")
+		if root then
+			for _, candidate in ipairs(root:GetDescendants()) do
+				if candidate:IsA("Model") then
+					local candidateId = tostring(candidate:GetAttribute("CockpitId") or candidate.Name)
+					if candidateId == cockpitId or candidate.Name == cockpitId then
+						return candidate
+					end
+				end
+			end
+		end
+	end
+	return nil
+end
+
+function NTR_phase6ReadModelOrAncestors(model)
+	local image = NTR_phase6ReadImageObject(model)
+	if image ~= "" then return image end
+	local current = model and model.Parent
+	while current and current ~= categoriesRoot do
+		image = NTR_phase6ReadImageObject(current)
+		if image ~= "" then return image end
+		current = current.Parent
+	end
+	return ""
+end
+
+function NTR_phase5CockpitMenuImage(cockpit)
+	local fromCatalog = NTR_phase6AssetImage(cockpit and (cockpit.MenuImage or cockpit.CockpitImage or cockpit.ThumbnailImage or cockpit.ImageId or cockpit.Image) or "")
+	if fromCatalog ~= "" then return fromCatalog end
+	return NTR_phase6ReadModelOrAncestors(NTR_phase6FindCockpitModel(cockpit))
+end
+
+function NTR_phase6GridColumns()
+	local fallback = UserInputService.TouchEnabled and 3 or 4
+	local key = UserInputService.TouchEnabled and "MobileColumns" or "DesktopColumns"
+	return math.max(1, math.floor(NTR_phase6RawConfigNumber(key, fallback) + 0.5))
+end
+
+function NTR_phase8CardScaleForWidth(width)
+	local base = math.max(1, NTR_phase6RawConfigNumber("CardWidth", 118))
+	local maxScale = UserInputService.TouchEnabled and NTR_phase6RawConfigNumber("MobileCardScaleMax", 1.12) or NTR_phase6RawConfigNumber("DesktopCardScaleMax", 1.35)
+	return math.clamp((tonumber(width) or base) / base, 0.85, maxScale)
+end
+
+function NTR_phase8ScaledNumber(name, fallback, width)
+	return math.max(0, math.floor(NTR_phase6RawConfigNumber(name, fallback) * NTR_phase8CardScaleForWidth(width) + 0.5))
+end
+
+function NTR_phase10DeviceNumber(desktopName, mobileName, fallback)
+	local key = UserInputService.TouchEnabled and mobileName or desktopName
+	return NTR_phase6RawConfigNumber(key, fallback)
+end
+
+function NTR_phase8CardLayout(width)
+	width = tonumber(width) or tonumber(NTR_phase6CurrentCardWidth) or NTR_phase6RawConfigNumber("CardWidth", 118)
+	local pad = math.max(4, NTR_phase8ScaledNumber("CardOuterPadding", 8, width))
+	local imageSize = math.max(1, width - pad * 2)
+	local nameY = pad + imageSize + NTR_phase8ScaledNumber("ImageToTextGap", 5, width)
+	local nameKey = UserInputService.TouchEnabled and "MobileNameHeight" or "DesktopNameHeight"
+	local nameFallback = NTR_phase10DeviceNumber("DesktopNameHeight", "MobileNameHeight", 16)
+	local nameH = math.max(12, NTR_phase8ScaledNumber(nameKey, nameFallback, width))
+	local priceY = nameY + nameH + NTR_phase8ScaledNumber("PriceLineGap", 2, width)
+	local cardH = priceY + nameH + NTR_phase8ScaledNumber("CardBottomPadding", 6, width)
+	return {
+		Width = width,
+		Padding = pad,
+		ImageSize = imageSize,
+		ImageY = pad,
+		NameY = nameY,
+		NameHeight = nameH,
+		PriceY = priceY,
+		Height = cardH,
+	}
+end
+
+function NTR_phase6GridCellSize(defaultWidth, availableWidth)
+	local columns = NTR_phase6GridColumns()
+	local gap = NTR_phase6RawConfigNumber("GridCellPadding", 10)
+	local widthAvailable = tonumber(availableWidth) or 0
+	if widthAvailable <= 0 and UI and UI.CockpitGrid then
+		widthAvailable = UI.CockpitGrid.AbsoluteSize.X
+	end
+	if widthAvailable <= 0 then
+		widthAvailable = (tonumber(defaultWidth) or NTR_phase6RawConfigNumber("CardWidth", 118)) * columns + gap * (columns - 1)
+	end
+	local rawWidth = math.floor((math.max(1, widthAvailable) - gap * (columns - 1)) / columns)
+	local minKey = UserInputService.TouchEnabled and "MobileMinCardWidth" or "DesktopMinCardWidth"
+	local maxKey = UserInputService.TouchEnabled and "MobileMaxCardWidth" or "DesktopMaxCardWidth"
+	local width = math.clamp(rawWidth, NTR_phase6RawConfigNumber(minKey, 70), NTR_phase6RawConfigNumber(maxKey, 1000))
+	NTR_phase6CurrentCardWidth = width
+	NTR_phase6CurrentCardHeight = NTR_phase8CardLayout(width).Height
+	return UDim2.fromOffset(width, NTR_phase6CurrentCardHeight)
+end
+
+function NTR_phase6CockpitCardSize()
+	local width = tonumber(NTR_phase6CurrentCardWidth) or NTR_phase6RawConfigNumber("CardWidth", 118)
+	local layout = NTR_phase8CardLayout(width)
+	NTR_phase6CurrentCardWidth = layout.Width
+	NTR_phase6CurrentCardHeight = layout.Height
+	return UDim2.fromOffset(layout.Width, layout.Height)
+end
+
+function NTR_phase6ScaleType()
+	local value = string.lower(NTR_phase6ConfigString("ImageScaleType", "Fit"))
+	return value == "crop" and Enum.ScaleType.Crop or Enum.ScaleType.Fit
+end
+
+function NTR_phase9TextSize(name, fallback)
+	local layout = NTR_phase8CardLayout()
+	local base = fallback
+	local key = name
+	if name == "NameTextSize" then
+		key = UserInputService.TouchEnabled and "MobileNameTextSize" or "DesktopNameTextSize"
+		base = UserInputService.TouchEnabled and NTR_phase6RawConfigNumber("MobileNameTextSize", 10) or NTR_phase6RawConfigNumber("DesktopNameTextSize", 12)
+	end
+	return math.max(7, NTR_phase8ScaledNumber(key, base, layout.Width))
+end
+
+function NTR_phase9TierColor(tier)
+	local badgeColor = Theme.Accent
+	if NTRVehiclePhaseAO and typeof(NTRVehiclePhaseAO.tierColor) == "function" then
+		local ok, color = pcall(function()
+			return NTRVehiclePhaseAO.tierColor(tier)
+		end)
+		if ok and typeof(color) == "Color3" then
+			badgeColor = color
+		end
+	end
+	return badgeColor
+end
+
+function NTR_phase5RenderCockpitMenuImage(card, cockpit)
+	local layout = NTR_phase8CardLayout()
+	local icon = new("Frame", {
+		BackgroundColor3 = Color3.fromRGB(18, 27, 31),
+		Size = UDim2.fromOffset(layout.ImageSize, layout.ImageSize),
+		Position = UDim2.fromOffset(layout.Padding, layout.ImageY),
+		BorderSizePixel = 0,
+		ClipsDescendants = true,
+	}, card)
+	icon:SetAttribute("PooledDynamic", true)
+	corner(icon, NTR_phase6ConfigNumber("ImageCornerRadius", 4))
+	stroke(icon, Theme.Accent, 0.75, 1)
+	local imageId = NTR_phase5CockpitMenuImage(cockpit)
+	if imageId ~= "" then
+		local inset = NTR_phase6ConfigNumber("ImageInnerPadding", 4)
+		local zoom = math.clamp(NTR_phase6ConfigNumber("ImageZoom", 1), 0.5, 2)
+		local image = new("ImageLabel", {
+			BackgroundTransparency = 1,
+			Image = imageId,
+			ScaleType = NTR_phase6ScaleType(),
+			AnchorPoint = Vector2.new(0.5, 0.5),
+			Size = UDim2.new(zoom, -inset * 2, zoom, -inset * 2),
+			Position = UDim2.fromScale(0.5, 0.5),
+			BorderSizePixel = 0,
+		}, icon)
+		image:SetAttribute("PooledDynamic", true)
+	else
+		local carShape = new("Frame", {
+			BackgroundColor3 = Theme.Accent,
+			BorderSizePixel = 0,
+			Size = UDim2.fromOffset(NTR_phase6ConfigNumber("FallbackBarWidth", 72), NTR_phase6ConfigNumber("FallbackBarHeight", 18)),
+			AnchorPoint = Vector2.new(0.5, 0.5),
+			Position = UDim2.fromScale(0.5, 0.5),
+		}, icon)
+		carShape:SetAttribute("PooledDynamic", true)
+		corner(carShape, 3)
+	end
+end
+
+function NTR_phase8CockpitRatingParts(cockpit)
+	if NTRVehiclePhaseAK and typeof(NTRVehiclePhaseAK.dealershipStatsWithIncludedDefaults) == "function"
+		and NTRVehiclePhaseAO and typeof(NTRVehiclePhaseAO.performanceModules) == "function" then
+		local statsOk, stats = pcall(function()
+			return NTRVehiclePhaseAK.dealershipStatsWithIncludedDefaults(cockpit or {})
+		end)
+		local _, Calculator = NTRVehiclePhaseAO.performanceModules()
+		if statsOk and Calculator and typeof(Calculator.CalculateLegacy) == "function" then
+			local ok, performance = pcall(function()
+				return Calculator.CalculateLegacy(stats or {})
+			end)
+			local overall = ok and performance and performance.Overall or nil
+			if overall then
+				local tier = tostring(overall.Tier or "--")
+				local index = tonumber(overall.PerformanceIndex)
+				return tier, (index and tostring(math.floor(index)) or "---")
+			end
+		end
+	end
+	if NTRVehiclePhaseAO and typeof(NTRVehiclePhaseAO.performanceModules) == "function" then
+		local _, Calculator = NTRVehiclePhaseAO.performanceModules()
+		if Calculator and typeof(Calculator.CalculateLegacy) == "function" then
+			local ok, performance = pcall(function()
+				return Calculator.CalculateLegacy(cockpit or {})
+			end)
+			local overall = ok and performance and performance.Overall or nil
+			if overall then
+				local tier = tostring(overall.Tier or "--")
+				local index = tonumber(overall.PerformanceIndex)
+				return tier, (index and tostring(math.floor(index)) or "---")
+			end
+		end
+	end
+	local tier = tostring((cockpit and (cockpit.Tier or cockpit.PerformanceTier or cockpit.RatingTier)) or "--")
+	local index = tonumber(cockpit and (cockpit.PerformanceIndex or cockpit.Rating or cockpit.OverallRating))
+	return tier, (index and tostring(math.floor(index)) or "---")
+end
+
+function NTR_phase9RenderImageRatingBadge(card, tier, ratingIndex)
+	local layout = NTR_phase8CardLayout()
+	local scale = NTR_phase8CardScaleForWidth(layout.Width)
+	local badgeW = math.max(42, NTR_phase8ScaledNumber("RatingBadgeWidth", 58, layout.Width))
+	local badgeH = math.max(16, NTR_phase8ScaledNumber("RatingBadgeHeight", 20, layout.Width))
+	local topInset = math.max(3, NTR_phase8ScaledNumber("RatingBadgeTopInset", 6, layout.Width))
+	local rightInset = math.max(3, NTR_phase8ScaledNumber("RatingBadgeRightInset", 6, layout.Width))
+	local x = layout.Padding + layout.ImageSize - rightInset - badgeW
+	local y = layout.ImageY + topInset
+	local badge = new("Frame", {
+		BackgroundColor3 = NTR_phase9TierColor(tier),
+		BackgroundTransparency = 0.02,
+		BorderSizePixel = 0,
+		Size = UDim2.fromOffset(badgeW, badgeH),
+		Position = UDim2.fromOffset(x, y),
+		ZIndex = (card.ZIndex or 1) + 14,
+	}, card)
+	badge:SetAttribute("PooledDynamic", true)
+	corner(badge, NTR_phase6ConfigNumber("BadgeCornerRadius", 4))
+	local text = pooledLabel(badge, tostring(tier or "--") .. " " .. tostring(ratingIndex or "---"), UDim2.fromScale(1, 1), UDim2.fromScale(0, 0), math.max(8, math.floor(NTR_phase6RawConfigNumber("RatingTextSize", 10) * scale + 0.5)), Enum.TextXAlignment.Center)
+	text.TextColor3 = Color3.fromRGB(244, 250, 255)
+	text.ZIndex = badge.ZIndex + 1
+end
+
+function NTR_phase8RenderCardTitleRating(card, titleText, tier, ratingIndex)
+	local layout = NTR_phase8CardLayout()
+	NTR_phase9RenderImageRatingBadge(card, tier, ratingIndex)
+	pooledLabel(card, titleText, UDim2.new(1, -layout.Padding * 2, 0, layout.NameHeight), UDim2.fromOffset(layout.Padding, layout.NameY), NTR_phase9TextSize("NameTextSize", 10), Enum.TextXAlignment.Left)
+end
+
+function NTR_phase8RenderCockpitTitleRating(card, cockpit)
+	local tier, ratingIndex = NTR_phase8CockpitRatingParts(cockpit)
+	NTR_phase8RenderCardTitleRating(card, cockpit and (cockpit.DisplayName or cockpit.CockpitId) or "", tier, ratingIndex)
+end
+
+function NTR_phase8RenderCockpitPrice(card, priceText)
+	local layout = NTR_phase8CardLayout()
+	pooledLabel(card, priceText, UDim2.new(1, -layout.Padding * 2, 0, layout.NameHeight), UDim2.fromOffset(layout.Padding, layout.PriceY), NTR_phase9TextSize("NameTextSize", 10), Enum.TextXAlignment.Left).TextColor3 = Theme.Cash
+end
+
 applyDealershipLayout = function()
 	if not UI.CockpitShop or not camera then return end
 	local scale = UI.Scale and UI.Scale.Scale or 1
@@ -1707,7 +2078,7 @@ applyDealershipLayout = function()
 	local gap = 16
 	local topY = 112
 	local leftW = 190
-	local rightW = 270
+	local rightW = UserInputService.TouchEnabled and NTR_phase6RawConfigNumber("MobileStatsPanelWidth", 230) or NTR_phase6RawConfigNumber("DesktopStatsPanelWidth", 270)
 	local bottomY = vh - BOTTOM_MARGIN
 	-- NTR_PERSISTENCE_PHASE10_GARAGE_UI_LAYOUT_MODAL
 	local leftPanelH = BOTTOM_HEIGHT
@@ -1720,7 +2091,9 @@ applyDealershipLayout = function()
 	local rightLeft = vw - margin - rightW
 	local centerW = math.max(300, rightLeft - gap - centerX)
 	local centerH = math.max(240, bottomY - topY)
-	local exitPanelH = BOTTOM_HEIGHT
+	local exitButtonH = UserInputService.TouchEnabled and 48 or 42
+	local exitPad = math.max(5, NTR_phase6RawConfigNumber("ExitPanelVerticalPadding", 9))
+	local exitPanelH = exitButtonH + exitPad * 2
 	local exitTopY = bottomY - exitPanelH
 	local statsH = math.min(520, math.max(1, exitTopY - gap - topY))
 
@@ -1754,36 +2127,17 @@ applyDealershipLayout = function()
 		UI.DealershipExitPanel.Size = UDim2.fromOffset(rightW, exitPanelH)
 	end
 	if UI.DealershipExitButton then
-		UI.DealershipExitButton.Size = UDim2.new(1, -18, 0, UserInputService.TouchEnabled and 48 or 42)
-		UI.DealershipExitButton.Position = UDim2.new(0, 9, 0.5, UserInputService.TouchEnabled and -24 or -21)
+		UI.DealershipExitButton.Size = UDim2.new(1, -18, 0, exitButtonH)
+		UI.DealershipExitButton.Position = UDim2.new(0, 9, 1, -exitPad - exitButtonH)
 	end
 	if UI.CockpitGridLayout then
 		local innerW = math.max(1, centerW - 20)
 		local innerH = math.max(1, centerH - 20)
-		local minCard = UserInputService.TouchEnabled and 82 or 128
-		local maxCard = UserInputService.TouchEnabled and 132 or 178
-		local cardSize = math.floor(math.clamp(math.min((innerW - 20) / 3, (innerH - 20) / 3), minCard, maxCard))
-		UI.CockpitGridLayout.CellPadding = UDim2.fromOffset(10, 10)
-		UI.CockpitGridLayout.CellSize = UDim2.fromOffset(cardSize, cardSize)
-	end
-end
-
-local function showCashShop()
-	UI.CashShop.Visible = true
-	clear(UI.CashShopBody)
-	label(UI.CashShopBody, "Cash Shop", UDim2.new(1, 0, 0, 34), UDim2.fromOffset(0, 0), 18, Enum.TextXAlignment.Center)
-	label(UI.CashShopBody, "Add Developer Product IDs to these buttons later.", UDim2.new(1, -20, 0, 34), UDim2.fromOffset(10, 38), 11, Enum.TextXAlignment.Center)
-	for i, amount in ipairs({ 25000, 75000, 200000 }) do
-		local b = button(UI.CashShopBody, "$" .. tostring(amount), UDim2.new(1, -28, 0, 44), UDim2.fromOffset(14, 78 + (i - 1) * 54), Theme.Buy)
-		b:SetAttribute("ProductId", 0)
-		b.MouseButton1Click:Connect(function()
-			local productId = b:GetAttribute("ProductId")
-			if typeof(productId) == "number" and productId > 0 then
-				MarketplaceService:PromptProductPurchase(player, productId)
-			else
-				UI.Subtitle.Text = "Set this cash button's ProductId attribute first."
-			end
-		end)
+		local columns = NTR_phase6GridColumns()
+		local cardSize = math.max(70, math.floor((innerW - NTR_phase6RawConfigNumber("GridCellPadding", 10) * (columns - 1)) / columns))
+		UI.CockpitGridLayout.CellSize = NTR_phase6GridCellSize(cardSize, innerW)
+		UI.CockpitGridLayout.CellPadding = UDim2.fromOffset(NTR_phase6RawConfigNumber("GridCellPadding", 10), NTR_phase6RawConfigNumber("GridCellPadding", 10))
+		UI.CockpitGrid.CanvasSize = UDim2.fromOffset(0, math.max(innerH, UI.CockpitGridLayout.AbsoluteContentSize.Y + 10))
 	end
 end
 
@@ -1792,83 +2146,228 @@ local function renderDealershipPanel()
 	applyDealershipLayout()
 	clear(UI.StatsPanel)
 	local cockpit = getCockpit(State.SelectedCockpit) or {}
+	local customisationMode = State.ShopMode == "Customisation"
 	NTRVehiclePhaseAO.renderStats(UI.StatsPanel, NTRVehiclePhaseAK.dealershipStatsWithIncludedDefaults(cockpit))
 	-- NTR_DEALERSHIP_MODULE_SLOTS_TEXT_REMOVED
+	-- NTR_DEALERSHIP_CUSTOMISATION_SPLIT_PHASE1_BUY_ONLY
+	-- NTR_DEALERSHIP_CUSTOMISATION_SPLIT_PHASE2_OWNED_ZONE
+	-- NTR_DEALERSHIP_CUSTOMISATION_SPLIT_PHASE3_INSTANCE_CARDS
 	local owned = State.Profile and State.Profile.OwnedCockpits and State.Profile.OwnedCockpits[State.SelectedCockpit]
-	local copyCount = NTRPersistencePhase15.CountCockpitCopies(State.Profile, State.SelectedCockpit)
-	if owned then
-		local copyText = label(UI.StatsPanel, "Owned copies: " .. tostring(copyCount), UDim2.new(1, 0, 0, 22), UDim2.new(0, 0, 1, UserInputService.TouchEnabled and -132 or -142), 10, Enum.TextXAlignment.Center)
-		copyText.TextColor3 = Theme.Muted
+	if customisationMode then
+		if not State.SelectedVehicleId then
+			label(UI.StatsPanel, "No owned cockpits yet.", UDim2.new(1, -12, 0, 44), UDim2.new(0, 6, 1, UserInputService.TouchEnabled and -92 or -110), 12, Enum.TextXAlignment.Center).TextColor3 = Theme.Muted
+			return
+		end
+		-- NTR_DEALERSHIP_CUSTOMISATION_SPLIT_PHASE6_RIGHT_PANEL_RATING_REMOVED
+		local panelActionH = UserInputService.TouchEnabled and 58 or 76
+		local panelActionPad = math.max(4, NTR_phase6RawConfigNumber("PanelActionBottomPadding", 8))
+		local customiseButton = button(UI.StatsPanel, "Customise", UDim2.new(1, 0, 0, panelActionH), UDim2.new(0, 0, 1, -panelActionPad - panelActionH), Theme.Buy)
+		customiseButton.MouseButton1Click:Connect(function()
+			local result = callServer("SelectVehicleInstance", { VehicleId = State.SelectedVehicleId, CockpitId = State.SelectedCockpit })
+			if result.Success then
+				NTR_phase4UnlockPreviewAfterPurchase()
+				State.ModuleMode = "Slots"
+				State.SelectedModuleId = nil
+				State.SelectedModuleInstanceId = nil
+				State.CustomizeTarget = "ALL"
+				State.CustomizeMode = "Colour"
+				local firstSlot = sortedSlots()[1]
+				State.SelectedSlot = firstSlot and firstSlot.SlotId or State.SelectedSlot or "Engine1"
+				setCameraSection(State.SelectedSlot or "Engine1")
+				showStage("ModuleShop")
+				renderModuleShop()
+			else
+				UI.Subtitle.Text = result.Message or "Could not open build modules."
+				renderDealershipPanel()
+			end
+		end)
+		return
 	end
-	local text = owned and "Select" or ("Buy $" .. tostring(cockpit.Price or 0))
-	local selectHeight = owned and (UserInputService.TouchEnabled and 42 or 46) or (UserInputService.TouchEnabled and 58 or 76)
-	local selectY = owned and (UserInputService.TouchEnabled and -104 or -112) or (UserInputService.TouchEnabled and -70 or -88)
-	local selectButton = button(UI.StatsPanel, text, UDim2.new(1, 0, 0, selectHeight), UDim2.new(0, 0, 1, selectY), owned and Theme.CardHot or Theme.Buy)
-	selectButton.MouseButton1Click:Connect(function()
-		local result = callServer("BuyCockpit", { CockpitId = State.SelectedCockpit })
+	local actionText = (owned and "Buy Another $" or "Buy $") .. tostring(cockpit.Price or 0)
+	local panelActionH = UserInputService.TouchEnabled and 58 or 76
+	local panelActionPad = math.max(4, NTR_phase6RawConfigNumber("PanelActionBottomPadding", 8))
+	local actionButton = button(UI.StatsPanel, actionText, UDim2.new(1, 0, 0, panelActionH), UDim2.new(0, 0, 1, -panelActionPad - panelActionH), Theme.Buy)
+	actionButton.MouseButton1Click:Connect(function()
+		local result = callServer("BuyCockpitInstance", { CockpitId = State.SelectedCockpit })
 		if result.Success then
 			NTR_phase4UnlockPreviewAfterPurchase()
-			-- NTR_VEHICLE_PHASE_AK_COCKPIT_PAINT_CAMERA_REPAIR
+			if owned then
+				UI.Subtitle.Text = "Bought another " .. tostring(cockpit.DisplayName or "cockpit") .. "."
+			end
 			setCameraSection("Engine1")
 			showStage("CockpitPaint")
 			renderCockpitPaint()
 		else
-			UI.Subtitle.Text = result.Message or "Could not buy cockpit."
+			UI.Subtitle.Text = result.Message or (owned and "Could not buy another cockpit." or "Could not buy cockpit.")
+			renderDealershipPanel()
 		end
 	end)
-	if owned then
-		local buyAnother = button(UI.StatsPanel, "Buy Another $" .. tostring(cockpit.Price or 0), UDim2.new(1, 0, 0, UserInputService.TouchEnabled and 42 or 46), UDim2.new(0, 0, 1, UserInputService.TouchEnabled and -54 or -56), Theme.Buy)
-		buyAnother.MouseButton1Click:Connect(function()
-			local result = callServer("BuyCockpitInstance", { CockpitId = State.SelectedCockpit })
-			if result.Success then
-				NTR_phase4UnlockPreviewAfterPurchase()
-				UI.Subtitle.Text = "Bought another " .. tostring(cockpit.DisplayName or "cockpit") .. "."
-				setCameraSection("Engine1")
-				showStage("CockpitPaint")
-				renderCockpitPaint()
-			else
-				UI.Subtitle.Text = result.Message or "Could not buy another cockpit."
-				renderDealershipPanel()
-			end
-		end)
-	end
 end
 
 renderCockpitShop = function()
-	showTop("Dealership", "Choose a vehicle category, then pick a cockpit.")
+	local customisationMode = State.ShopMode == "Customisation"
+	showTop(customisationMode and "Customisation" or "Dealership", customisationMode and "Choose one of your owned cockpits to customise." or "Choose a vehicle category, then pick a cockpit.")
 	updateNav()
 	local categoryPool = buttonPool("CategoryList", UI.CategoryList)
 	local cockpitPool = buttonPool("CockpitGrid", UI.CockpitGrid)
 	categoryPool:Begin()
 	cockpitPool:Begin()
 	UI.CockpitGrid.CanvasPosition = Vector2.zero
+
+	local function cockpitIdForVehicle(vehicle)
+		local cockpitInstance = vehicle and vehicle.CockpitInstanceId and State.Profile and State.Profile.OwnedCockpitInstances and State.Profile.OwnedCockpitInstances[vehicle.CockpitInstanceId]
+		return cockpitInstance and tostring(cockpitInstance.TemplateId or "") or ""
+	end
+
+	local function vehicleRatingParts(vehicleId)
+		local summary = State.Profile and State.Profile.VehicleSummaries and State.Profile.VehicleSummaries[vehicleId]
+		local overall = summary and summary.Overall or {}
+		local tier = tostring(overall.Tier or "--")
+		local index = tonumber(overall.PerformanceIndex)
+		return tier, (index and tostring(math.floor(index)) or "---")
+	end
+
+	local function vehicleRating(vehicleId)
+		local tier, index = vehicleRatingParts(vehicleId)
+		return tier .. " " .. index
+	end
+
+	local function tierBadgeColor(tier)
+		if NTRVehiclePhaseAO and typeof(NTRVehiclePhaseAO.tierColor) == "function" then
+			return NTRVehiclePhaseAO.tierColor(tier)
+		end
+		return Theme.Accent
+	end
+
+	local function cockpitInCategory(category, cockpitId)
+		for _, cockpit in ipairs((category and category.Cockpits) or {}) do
+			if cockpit.CockpitId == cockpitId then
+				return cockpit
+			end
+		end
+		return nil
+	end
+
+	if customisationMode then
+		local selectedVehicle = State.SelectedVehicleId and State.Profile and State.Profile.Vehicles and State.Profile.Vehicles[State.SelectedVehicleId]
+		if not selectedVehicle then
+			State.SelectedVehicleId = State.Profile and State.Profile.CurrentVehicleId or nil
+		end
+		local currentCategory = getCategory()
+		local selectedInCategory = false
+		if State.SelectedVehicleId and currentCategory then
+			local vehicle = State.Profile and State.Profile.Vehicles and State.Profile.Vehicles[State.SelectedVehicleId]
+			selectedInCategory = cockpitInCategory(currentCategory, cockpitIdForVehicle(vehicle)) ~= nil
+		end
+		if not selectedInCategory then
+			State.SelectedVehicleId = nil
+			for vehicleId, vehicle in pairs((State.Profile and State.Profile.Vehicles) or {}) do
+				local cockpitId = cockpitIdForVehicle(vehicle)
+				if cockpitInCategory(currentCategory, cockpitId) then
+					State.SelectedVehicleId = vehicleId
+					State.SelectedCockpit = cockpitId
+					break
+				end
+			end
+		else
+			State.SelectedCockpit = cockpitIdForVehicle(State.Profile.Vehicles[State.SelectedVehicleId])
+		end
+	end
+
 	applyDealershipLayout()
 	renderDealershipPanel()
 
+	local sortedCategories = {}
 	for _, category in ipairs((State.Catalog and State.Catalog.Categories) or {}) do
+		table.insert(sortedCategories, category)
+	end
+	table.sort(sortedCategories, function(a, b)
+		local aName = tostring((a and (a.DisplayName or a.CategoryId)) or "")
+		local bName = tostring((b and (b.DisplayName or b.CategoryId)) or "")
+		if aName == bName then
+			return tostring((a and a.CategoryId) or "") < tostring((b and b.CategoryId) or "")
+		end
+		return aName < bName
+	end)
+
+	for _, category in ipairs(sortedCategories) do
 		local b = pooledButton(categoryPool, category.DisplayName or category.CategoryId, UDim2.new(1, 0, 0, 54), UDim2.fromScale(0, 0), category.CategoryId == State.CategoryId and Theme.CardHot or Theme.Card)
 		categoryPool:Connect(b, b.MouseButton1Click, function()
 			State.CategoryId = category.CategoryId
+			State.SelectedVehicleId = nil
 			renderCockpitShop()
 		end)
 	end
 
 	local category = getCategory()
-	for _, cockpit in ipairs((category and category.Cockpits) or {}) do
-		local card = pooledButton(cockpitPool, "", UDim2.fromOffset(118, 118), UDim2.fromScale(0, 0), cockpit.CockpitId == State.SelectedCockpit and Theme.CardHot or Theme.Card)
-		local icon = new("Frame", { BackgroundColor3 = Color3.fromRGB(18, 27, 31), Size = UDim2.new(1, -18, 0, 42), Position = UDim2.fromOffset(9, 9), BorderSizePixel = 0 }, card)
-		icon:SetAttribute("PooledDynamic", true)
-		corner(icon, 4)
-		stroke(icon, Theme.Accent, 0.75, 1)
-		local carShape = new("Frame", { BackgroundColor3 = Theme.Accent, BorderSizePixel = 0, Size = UDim2.fromOffset(72, 18), AnchorPoint = Vector2.new(0.5, 0.5), Position = UDim2.fromScale(0.5, 0.55) }, icon)
-		corner(carShape, 3)
-		pooledLabel(card, cockpit.DisplayName or cockpit.CockpitId, UDim2.new(1, -14, 0, 30), UDim2.fromOffset(7, 55), 9, Enum.TextXAlignment.Left)
-		pooledLabel(card, "$" .. tostring(cockpit.Price or 0), UDim2.new(1, -14, 0, 20), UDim2.fromOffset(7, 86), 9, Enum.TextXAlignment.Left).TextColor3 = Theme.Cash
-		cockpitPool:Connect(card, card.MouseButton1Click, function()
-			State.SelectedCockpit = cockpit.CockpitId
-			buildPreview()
-			renderCockpitShop()
+	if customisationMode then
+		local rows = {}
+		for vehicleId, vehicle in pairs((State.Profile and State.Profile.Vehicles) or {}) do
+			local cockpitId = cockpitIdForVehicle(vehicle)
+			local cockpit = cockpitInCategory(category, cockpitId)
+			if cockpit then
+				table.insert(rows, { VehicleId = vehicleId, Vehicle = vehicle, Cockpit = cockpit, CockpitId = cockpitId })
+			end
+		end
+		table.sort(rows, function(a, b)
+			local aSummary = State.Profile and State.Profile.VehicleSummaries and State.Profile.VehicleSummaries[a.VehicleId]
+			local bSummary = State.Profile and State.Profile.VehicleSummaries and State.Profile.VehicleSummaries[b.VehicleId]
+			local aRating = tonumber(aSummary and aSummary.Overall and aSummary.Overall.PerformanceIndex) or -math.huge
+			local bRating = tonumber(bSummary and bSummary.Overall and bSummary.Overall.PerformanceIndex) or -math.huge
+			if aRating ~= bRating then
+				return aRating > bRating
+			end
+			local aName = tostring((a.Cockpit and a.Cockpit.DisplayName) or a.CockpitId or "")
+			local bName = tostring((b.Cockpit and b.Cockpit.DisplayName) or b.CockpitId or "")
+			if aName == bName then
+				return tostring(a.VehicleId) < tostring(b.VehicleId)
+			end
+			return aName < bName
 		end)
+		for index, row in ipairs(rows) do
+			local card = pooledButton(cockpitPool, "", NTR_phase6CockpitCardSize(), UDim2.fromScale(0, 0), row.VehicleId == State.SelectedVehicleId and Theme.CardHot or Theme.Card)
+			NTR_phase5RenderCockpitMenuImage(card, row.Cockpit)
+			local nameText = tostring(row.Cockpit.DisplayName or row.CockpitId) .. " #" .. tostring(index)
+			local tier, ratingIndex = vehicleRatingParts(row.VehicleId)
+			NTR_phase8RenderCardTitleRating(card, nameText, tier, ratingIndex)
+			cockpitPool:Connect(card, card.MouseButton1Click, function()
+				State.SelectedVehicleId = row.VehicleId
+				State.SelectedCockpit = row.CockpitId
+				buildPreview()
+				renderCockpitShop()
+			end)
+		end
+	else
+		local sortedCockpits = {}
+		for _, cockpit in ipairs((category and category.Cockpits) or {}) do
+			table.insert(sortedCockpits, cockpit)
+		end
+		table.sort(sortedCockpits, function(a, b)
+			local aPrice = tonumber(a and a.Price) or math.huge
+			local bPrice = tonumber(b and b.Price) or math.huge
+			if aPrice ~= bPrice then
+				return aPrice < bPrice
+			end
+			local aName = tostring((a and (a.DisplayName or a.CockpitId)) or "")
+			local bName = tostring((b and (b.DisplayName or b.CockpitId)) or "")
+			if aName == bName then
+				return tostring((a and a.CockpitId) or "") < tostring((b and b.CockpitId) or "")
+			end
+			return aName < bName
+		end)
+
+		for _, cockpit in ipairs(sortedCockpits) do
+			local card = pooledButton(cockpitPool, "", NTR_phase6CockpitCardSize(), UDim2.fromScale(0, 0), cockpit.CockpitId == State.SelectedCockpit and Theme.CardHot or Theme.Card)
+			NTR_phase5RenderCockpitMenuImage(card, cockpit)
+			NTR_phase8RenderCockpitTitleRating(card, cockpit)
+			NTR_phase8RenderCockpitPrice(card, "$" .. tostring(cockpit.Price or 0))
+			cockpitPool:Connect(card, card.MouseButton1Click, function()
+				State.SelectedCockpit = cockpit.CockpitId
+				State.SelectedVehicleId = nil
+				buildPreview()
+				renderCockpitShop()
+			end)
+		end
 	end
 	categoryPool:End()
 	cockpitPool:End()
@@ -3685,8 +4184,8 @@ local function setupUI()
 	end
 	UI.CategoryPanel = panel(UI.CockpitShop, "Categories", UDim2.fromOffset(190, 560), UDim2.fromOffset(24, 112), Vector2.zero)
 	pad(UI.CategoryPanel, 10)
-	label(UI.CategoryPanel, "Categories", UDim2.new(1, 0, 0, 28), UDim2.fromOffset(0, 0), 13, Enum.TextXAlignment.Left)
-	UI.CategoryList = new("ScrollingFrame", { BackgroundTransparency = 1, BorderSizePixel = 0, ScrollBarThickness = 0, CanvasSize = UDim2.fromOffset(0, 0), AutomaticCanvasSize = Enum.AutomaticSize.Y, Size = UDim2.new(1, 0, 1, -36), Position = UDim2.fromOffset(0, 36) }, UI.CategoryPanel)
+	-- NTR_DEALERSHIP_CUSTOMISATION_SPLIT_PHASE10_CATEGORY_HEADER_REMOVED
+	UI.CategoryList = new("ScrollingFrame", { BackgroundTransparency = 1, BorderSizePixel = 0, ScrollBarThickness = 0, CanvasSize = UDim2.fromOffset(0, 0), AutomaticCanvasSize = Enum.AutomaticSize.Y, Size = UDim2.new(1, 0, 1, 0), Position = UDim2.fromOffset(0, 0) }, UI.CategoryPanel)
 	new("UIListLayout", { Padding = UDim.new(0, 8), SortOrder = Enum.SortOrder.LayoutOrder }, UI.CategoryList)
 	makeArrowScroller(UI.CategoryPanel, UI.CategoryList, "Y", 124)
 
@@ -3879,9 +4378,11 @@ end
 
 -- NTR_DEALERSHIP_INTRO_PHASE3_GATE_BEGIN
 local NTR_DEALERSHIP_INTRO_OPEN_EVENT_NAME = "OpenGarageFromIntro"
+local NTR_CUSTOMISATION_OPEN_EVENT_NAME = "OpenOwnedCockpitCustomisation"
 local NTR_dealershipIntroGarageInitialized = false
 
-local function NTR_openGarageFromDealershipIntro()
+local function NTR_openGarageWithMode(mode)
+	State.ShopMode = mode or "Dealership"
 	if NTR_dealershipIntroGarageInitialized then
 		if UI and UI.Gui then
 			UI.Gui.Enabled = true
@@ -3906,6 +4407,14 @@ local function NTR_openGarageFromDealershipIntro()
 	task.defer(init)
 end
 
+local function NTR_openGarageFromDealershipIntro()
+	NTR_openGarageWithMode("Dealership")
+end
+
+local function NTR_openOwnedCockpitCustomisation()
+	NTR_openGarageWithMode("Customisation")
+end
+
 task.spawn(function()
 	local clientRoot = script.Parent
 	local controllers = clientRoot and clientRoot:WaitForChild("Controllers", 10)
@@ -3928,9 +4437,23 @@ task.spawn(function()
 	end
 
 	openEvent.Event:Connect(NTR_openGarageFromDealershipIntro)
+
+	local customisationEvent = introFolder:FindFirstChild(NTR_CUSTOMISATION_OPEN_EVENT_NAME)
+	if customisationEvent and not customisationEvent:IsA("BindableEvent") then
+		warn("[NTR Dealership Customisation Split Phase 2] " .. customisationEvent:GetFullName() .. " exists but is " .. customisationEvent.ClassName .. ", expected BindableEvent.")
+		return
+	end
+	if not customisationEvent then
+		customisationEvent = Instance.new("BindableEvent")
+		customisationEvent.Name = NTR_CUSTOMISATION_OPEN_EVENT_NAME
+		customisationEvent.Parent = introFolder
+	end
+	customisationEvent.Event:Connect(NTR_openOwnedCockpitCustomisation)
+
 	script:SetAttribute("DealershipIntroGarageGateActive", true)
 	script:SetAttribute("DealershipIntroPhase7ReopenGateActive", true)
-	print("[NTR Dealership Intro Phase 7] Garage opens at desk and can reopen after exit once the player leaves and re-enters the desk zone.")
+	script:SetAttribute("DealershipCustomisationSplitPhase2Active", true)
+	print("[NTR Dealership Customisation Split Phase 2] Dealership opens in buy mode; customisation zone opens owned-cockpit mode.")
 end)
 -- NTR_DEALERSHIP_INTRO_PHASE3_GATE_END
 

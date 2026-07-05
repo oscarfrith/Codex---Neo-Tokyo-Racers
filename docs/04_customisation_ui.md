@@ -67,6 +67,18 @@ The glow around `ENTER GARAGE` / `RETURN CITY` text would be a good shared UI th
 
 Preferred plain white overlay icon PNGs are stored under `assets/ui/icons/freeroam_nav_plain/`. Upload the five `freeroam_plain_*.png` icons to Roblox and paste the resulting `rbxassetid://...` values into the matching `*Icon` StringValues under `FreeRoamNav`; until then the UI uses compact text fallbacks. These icons are transparent and should sit on top of Roblox-made dark grey/pink beveled UI frames.
 
+Free Roam Car Menu Phase 3 is prepared as `scripts/roblox_freeroam_car_menu_phase3_owned_cockpit_cards.lua` and documented in `docs/freeroam-car-menu-phase3-owned-cockpit-cards-2026-07-05.md`. It keeps the isolated free-roam nav controller but changes the `Car` pop-out to use owned cockpit image cards with per-vehicle tier/rating badges, 2 columns on desktop/laptop, 1 column on mobile, and a fixed bottom `Despawn` button. It removes the old vehicle-id text, `Exit Vehicle`, and `Customise` buttons from that pop-out.
+
+Free Roam Car Menu Phase 4 is prepared as `scripts/roblox_freeroam_car_menu_phase4_card_scaling_sort_future_spawn.lua` and documented in `docs/freeroam-car-menu-phase4-card-scaling-sort-future-spawn-2026-07-05.md`. It enlarges cockpit images, changes the car pop-out to 3 columns on desktop/laptop and 2 on mobile, removes badge text glow, uses the normal pink card outline instead of tier-coloured/cyan selected outlines, sorts by rating descending, and adds `VehicleId` / `CockpitId` card attributes for the next spawn/select phase.
+
+Free Roam Car Menu Phase 5 is prepared as `scripts/roblox_freeroam_car_menu_phase5_image_fit_border_padding.lua` and documented in `docs/freeroam-car-menu-phase5-image-fit-border-padding-2026-07-05.md`. It replaces the Phase 4 image zoom/crop-style approach with `Fit` plus a fixed inner padding, makes image-box/card outlines match the pink free-roam frame border style, and moves the `Despawn` layout down so bottom padding matches the side padding.
+
+Free Roam Car Menu Phase 6 is prepared as `scripts/roblox_freeroam_car_menu_phase6_card_surface_root_fix.lua` and documented in `docs/freeroam-car-menu-phase6-card-surface-root-fix-2026-07-05.md`. It addresses the clipped/weird cockpit-card border at the root by making the grid click cell transparent and moving the visible background/border onto an inner `CardSurface`. The card surface wraps the image and text, desktop keeps the liked larger image size, mobile image max size is reduced, and future spawn/select card attributes are preserved.
+
+Free Roam Car Menu Phase 7 is prepared as `scripts/roblox_freeroam_car_menu_phase7_borderless_card_frames_compact_width.lua` and documented in `docs/freeroam-car-menu-phase7-borderless-card-frames-2026-07-05.md`. It removes `UIStroke` from the free-roam cockpit cards and image boxes entirely, replacing those borders with normal filled frame layers to avoid clipping inside the scroll/grid layout. It also narrows the default car pop-out to fit 3 compact desktop cards or 2 mobile cards.
+
+Free Roam Vehicle Spawn Phase 1 is prepared as `scripts/roblox_freeroam_vehicle_spawn_phase1_audit.lua` and documented in `docs/freeroam-vehicle-spawn-phase1-audit-2026-07-05.md`. It is read-only and should be run before implementing cockpit-card click-to-spawn. The intended next behavior is for each owned cockpit card to spawn/swap that vehicle, with the server enforcing ownership, a `10 mph` speed limit, current-vehicle despawn, nearest-road placement, and automatic seating.
+
 ## Dealership Flow
 
 Known dealership structure:
@@ -92,9 +104,90 @@ Known dealership structure:
 - `scripts/roblox_dealership_remove_cockpit_module_slots_text.lua` removes the extra cockpit module-slot count text from the selected cockpit stats panel because it can overlap other dealership UI. The stats still include default modules, and the later Build Modules flow is unchanged.
 - The user confirmed Phase 1-7 working on 2026-06-03.
 
+Dealership / Customisation Split Phase 1 was run by the user and reported working on 2026-07-04. `scripts/roblox_dealership_customisation_split_phase1_buy_only.lua` makes the dealership buy-only: unowned cockpits show `Buy`, owned cockpits show `Buy Another`, and the old dealership `Select` button is removed. It also sets the starter Bruiser cockpit to `$15000` and stops fresh session profiles from owning `bruiser_01` for free. Existing saved/test players who already own the starter cockpit keep that ownership.
+
+Dealership / Customisation Split Phase 2 was run by the user and reported working as intended on 2026-07-04. `scripts/roblox_dealership_customisation_split_phase2_owned_customisation_zone.lua` adds a separate customisation trigger zone, an isolated zone client, a `SelectVehicleInstance` server action, and a customisation-mode cockpit grid that reuses the dealership look while showing owned cockpits.
+
+Dealership / Customisation Split Phase 3 is prepared as `scripts/roblox_dealership_customisation_split_phase3_instance_cards.lua` and documented in `docs/dealership-customisation-split-phase3-2026-07-04.md`. It refines the customisation grid to show one card per owned vehicle instance, removes the aggregated `Owned xN` text, displays per-vehicle tier/index labels such as `A 920`, and passes `VehicleId` into `SelectVehicleInstance` so duplicate cockpits are distinct.
+
+Dealership / Customisation Split Phase 4 is prepared as `scripts/roblox_dealership_customisation_split_phase4_rating_badge_build_modules.lua` and documented in `docs/dealership-customisation-split-phase4-2026-07-04.md`. It corrects the per-instance rating fallback, adds a colour-coded tier badge to each owned vehicle card, and changes the customisation-zone action to open the Build Modules menu instead of the final colour/customise screen.
+
+Dealership / Customisation Split Phase 5 is prepared as `scripts/roblox_dealership_customisation_split_phase5_cockpit_menu_images.lua` and documented in `docs/dealership-customisation-split-phase5-2026-07-04.md`. It keeps the customisation-zone destination as `ModuleShop` but changes the selected cockpit button text to `Customise`. It also adds a shared cockpit thumbnail source:
+
+```text
+ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.BRUISER.COCKPITS_ReplaceAssetsHere.COCKPIT_BRUISER_01.MenuImage
+```
+
+Set the `MenuImage` attribute on each cockpit model to a Roblox image asset such as `rbxassetid://123456789`. Dealership cards, customisation duplicate-owned cards, and the free-roam car button should all read this same cockpit attribute. If the attribute is empty, dealership/customisation cards fall back to the simple car shape and free roam falls back to `ReplicatedStorage.NeoTokyoRacers.Config.UI.FreeRoamNav.CarIcon`.
+
+Dealership / Customisation Split Phase 6 is prepared as `scripts/roblox_dealership_customisation_split_phase6_square_images.lua` and documented in `docs/dealership-customisation-split-phase6-2026-07-04.md`. It repairs the image path if the UI still shows the fallback pink bar by reading the actual cockpit model as well as the catalogue row. It accepts cockpit image attributes, matching child `StringValue`s, and matching `Decal` / `Texture` / `ImageLabel` objects. It also changes cockpit cards to use a configurable square thumbnail box and removes the duplicate selected-cockpit rating above the right-panel `Customise` button.
+
+If Play reports `Out of local registers when trying to allocate init` after installing Phase 6, run `scripts/roblox_dealership_customisation_split_phase6_register_limit_repair.lua` in Edit mode. The first Phase 6 helper block used top-level local functions inside the already-large client bootstrap; the repair keeps the same UI behavior while reducing local-register pressure.
+
+Dealership / Customisation Split Phase 7 is prepared as `scripts/roblox_dealership_customisation_split_phase7_responsive_cockpit_grid.lua` and documented in `docs/dealership-customisation-split-phase7-2026-07-04.md`. It keeps the Phase 6 square-image card style but makes the grid responsive: desktop/laptop defaults to 4 cards across, mobile defaults to 3 cards across, and additional cards scroll vertically. It also scales image boxes, text positions, tier badges, and rating labels from the calculated card width.
+
+Dealership / Customisation Split Phase 8 is prepared as `scripts/roblox_dealership_customisation_split_phase8_compact_card_polish.lua` and documented in `docs/dealership-customisation-split-phase8-2026-07-04.md`. It supersedes Phase 7's tall card-height ratio by calculating card height from content, making the image box fill the card width with even padding, and adding base cockpit tier/rating on the right of the dealership card title row. Owned/customisation cards keep per-vehicle tier/rating on the same title row.
+
+Dealership / Customisation Split Phase 9 is prepared as `scripts/roblox_dealership_customisation_split_phase9_badge_overlay_tight_cards.lua` and documented in `docs/dealership-customisation-split-phase9-2026-07-05.md`. It moves tier/rating into one wider coloured badge over the top-right of the cockpit image, tightens the image/name/price/card-bottom gaps, uses the dealership included-default-module stat path for buyable cockpit ratings, and restores the free-roam car button to the configured plain `FreeRoamNav.CarIcon` by default.
+
+Dealership / Customisation Split Phase 10 is prepared as `scripts/roblox_dealership_customisation_split_phase10_responsive_layout_polish.lua` and documented in `docs/dealership-customisation-split-phase10-2026-07-05.md`. It narrows the mobile stats panel, gives the centre cockpit grid more width, shortens the bottom-right Exit frame, removes the `Categories` heading, moves the right-panel action button down slightly, makes desktop cockpit-card text larger without changing the liked mobile scale much, places stat values on the left inside bars in dark text, and matches the free-roam car icon size to the other free-roam icons.
+
+Dealership / Customisation Split Phase 11 is prepared as `scripts/roblox_dealership_customisation_split_phase11_sorted_cockpit_cards.lua` and documented in `docs/dealership-customisation-split-phase11-2026-07-05.md`. It sorts dealership cockpit cards by price from lowest to highest, sorts owned customisation cards by per-vehicle rating from highest to lowest, and sorts category buttons alphabetically. The grid fills left-to-right, then top-to-bottom.
+
+Cockpit menu image/card tuning lives at:
+
+```text
+ReplicatedStorage.NeoTokyoRacers.Config.UI.CockpitMenuCards
+```
+
+Key values:
+
+- `CardWidth`
+- `CardHeight`
+- `ImageBoxSize`
+- `ImageInnerPadding`
+- `ImageScaleType`
+- `NameY`
+- `PriceY`
+- `TierBadgeY`
+- `RatingY`
+- `FreeRoamCarIconScale`
+- `DesktopColumns`
+- `MobileColumns`
+- `DesktopMinCardWidth`
+- `DesktopMaxCardWidth`
+- `MobileMinCardWidth`
+- `MobileMaxCardWidth`
+- `ResponsiveCardScaleEnabled`
+- `CardOuterPadding`
+- `ImageZoom`
+- `ImageToTextGap`
+- `PriceLineGap`
+- `CardBottomPadding`
+- `RatingTotalWidth`
+- `RatingBadgeWidth`
+- `RatingBadgeHeight`
+- `RatingBadgeTopInset`
+- `RatingBadgeRightInset`
+- `RatingGap`
+- `RatingTextSize`
+- `BadgeCornerRadius`
+- `FreeRoamUsesCockpitMenuImage`
+- `DesktopNameTextSize`
+- `MobileNameTextSize`
+- `DesktopNameHeight`
+- `MobileNameHeight`
+- `DesktopCardScaleMax`
+- `MobileCardScaleMax`
+- `DesktopStatsPanelWidth`
+- `MobileStatsPanelWidth`
+- `ExitPanelVerticalPadding`
+- `PanelActionBottomPadding`
+- Free roam car menu values under `Config.UI.FreeRoamNav`: `CarPanelWidthDesktop`, `CarPanelWidthTouch`, `CarPanelCardGap`, `CarPanelPadding`, `CarPanelDespawnHeight`, `CarPanelDesktopColumns`, `CarPanelMobileColumns`, `CarPanelDesktopImageMaxSize`, `CarPanelMobileImageMaxSize`, `CarPanelBorderThickness`, `CarPanelImageZoom`, `CarPanelImageFitScale`, `CarPanelImageInnerPadding`, and `CarPanelClickAction`
+
 For mobile:
 
-- Cockpit cards should scale to fit a `3x3` style grid where possible.
+- Cockpit cards should scale to fit 3 columns where possible.
 - Left/category UI should not overlap the cash UI.
 - Right stats panel should remain readable and aligned with the rest of the layout.
 - The selected cockpit panel should not show the old module-slot count list under the stats.
@@ -115,6 +208,7 @@ ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.BRUISER.COCKPITS_Rep
 
 Attributes:
 
+- `MenuImage`
 - `DefaultPrimaryColor`
 - `DefaultSecondaryColor`
 - `DefaultDetailColor`

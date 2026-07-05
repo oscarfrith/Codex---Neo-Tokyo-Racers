@@ -90,7 +90,7 @@ local V56_STARTING_CASH = V56_kit:GetAttribute("StartingCash") or 140000
 			Cash = V56_STARTING_CASH,
 			CurrentCategory = "bruiser",
 			CurrentCockpit = "bruiser_01",
-			OwnedCockpits = { bruiser_01 = true },
+			OwnedCockpits = {}, -- NTR_DEALERSHIP_CUSTOMISATION_SPLIT_PHASE1_BUY_ONLY
 			CockpitColors = {
 				Primary = Color3.fromRGB(0, 205, 230),
 				Secondary = Color3.fromRGB(235, 247, 204),
@@ -123,7 +123,7 @@ local V56_STARTING_CASH = V56_kit:GetAttribute("StartingCash") or 140000
 		profile.Cash = typeof(profile.Cash) == "number" and profile.Cash or V56_STARTING_CASH
 		profile.CurrentCategory = profile.CurrentCategory or "bruiser"
 		profile.CurrentCockpit = profile.CurrentCockpit or "bruiser_01"
-		profile.OwnedCockpits = profile.OwnedCockpits or { bruiser_01 = true }
+		profile.OwnedCockpits = profile.OwnedCockpits or {} -- NTR_DEALERSHIP_CUSTOMISATION_SPLIT_PHASE1_BUY_ONLY
 		profile.OwnedModules = profile.OwnedModules or {}
 		profile.InstalledModules = profile.InstalledModules or {}
 		profile.ModuleColors = profile.ModuleColors or {}
@@ -1307,6 +1307,197 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		return true, "Module instance equipped."
 	end
 
+	-- NTR_DEALERSHIP_CUSTOMISATION_SPLIT_PHASE2_OWNED_ZONE
+	local function V89_syncLegacyFromCurrentVehicle(profile)
+		V84_ensureInstanceInventory(profile)
+		local vehicleId = profile.CurrentVehicleId
+		local vehicle = vehicleId and profile.Vehicles and profile.Vehicles[vehicleId]
+		if typeof(vehicle) ~= "table" then
+			return false, "Vehicle instance not found."
+		end
+		local cockpitInstance = vehicle.CockpitInstanceId and profile.OwnedCockpitInstances and profile.OwnedCockpitInstances[vehicle.CockpitInstanceId]
+		if typeof(cockpitInstance) ~= "table" then
+			return false, "Cockpit instance not found."
+		end
+		local cockpitId = tostring(cockpitInstance.TemplateId or "")
+		if cockpitId == "" then
+			return false, "Cockpit template missing."
+		end
+		profile.CurrentCategory = tostring(vehicle.CategoryId or profile.CurrentCategory or "bruiser")
+		profile.CurrentCockpit = cockpitId
+		profile.OwnedCockpits = typeof(profile.OwnedCockpits) == "table" and profile.OwnedCockpits or {}
+		profile.OwnedCockpits[cockpitId] = true
+		profile.CockpitColors = V84_cloneDictionary(vehicle.CockpitColors or profile.CockpitColors or {})
+		profile.ThrustColor = vehicle.ThrustColor or profile.ThrustColor
+		profile.InstalledModules = {}
+		profile.ModuleColors = {}
+		profile.NeonOwned = {}
+		for slotId, moduleInstanceId in pairs(vehicle.InstalledModules or {}) do
+			local moduleInstance = profile.OwnedModuleInstances and profile.OwnedModuleInstances[moduleInstanceId]
+			if typeof(moduleInstance) == "table" and moduleInstance.TemplateId then
+				profile.InstalledModules[slotId] = tostring(moduleInstance.TemplateId)
+				profile.ModuleColors[slotId] = V84_cloneDictionary(moduleInstance.Colors or {})
+				profile.NeonOwned[slotId] = moduleInstance.NeonOwned == true
+			end
+		end
+		return true, "Vehicle selected."
+	end
+
+	local function V89_selectVehicleInstance(profile, args)
+		args = typeof(args) == "table" and args or {}
+		V84_ensureInstanceInventory(profile)
+		local requestedVehicleId = tostring(args.VehicleId or "")
+		local requestedCockpitId = tostring(args.CockpitId or "")
+		local selectedVehicleId = nil
+		if requestedVehicleId ~= "" and profile.Vehicles[requestedVehicleId] then
+			selectedVehicleId = requestedVehicleId
+		elseif requestedCockpitId ~= "" then
+			for vehicleId, vehicle in pairs(profile.Vehicles or {}) do
+				local cockpitInstance = vehicle.CockpitInstanceId and profile.OwnedCockpitInstances and profile.OwnedCockpitInstances[vehicle.CockpitInstanceId]
+				if typeof(cockpitInstance) == "table" and tostring(cockpitInstance.TemplateId or "") == requestedCockpitId then
+					selectedVehicleId = vehicleId
+					break
+				end
+			end
+		end
+		if not selectedVehicleId then
+			return false, "Owned vehicle not found."
+		end
+		profile.CurrentVehicleId = selectedVehicleId
+		local ok, message = V89_syncLegacyFromCurrentVehicle(profile)
+		if ok then
+			V85_attachDefaultModuleInstancesToCurrentVehicle(profile)
+			V89_syncLegacyFromCurrentVehicle(profile)
+		end
+		return ok, message
+	end
+
+	-- NTR_DEALERSHIP_CUSTOMISATION_SPLIT_PHASE3_INSTANCE_CARDS
+	local function V90_cloneForSummary(value)
+		if typeof(value) == "table" then
+			local copy = {}
+			for key, child in pairs(value) do
+				copy[key] = V90_cloneForSummary(child)
+			end
+			return copy
+		end
+		return value
+	end
+
+	local function V90_restoreProfileSelection(profile, snapshot)
+		profile.CurrentVehicleId = snapshot.CurrentVehicleId
+		profile.CurrentCategory = snapshot.CurrentCategory
+		profile.CurrentCockpit = snapshot.CurrentCockpit
+		profile.CockpitColors = V90_cloneForSummary(snapshot.CockpitColors)
+		profile.ThrustColor = snapshot.ThrustColor
+		profile.InstalledModules = V90_cloneForSummary(snapshot.InstalledModules)
+		profile.ModuleColors = V90_cloneForSummary(snapshot.ModuleColors)
+		profile.NeonOwned = V90_cloneForSummary(snapshot.NeonOwned)
+	end
+
+	-- NTR_DEALERSHIP_CUSTOMISATION_SPLIT_PHASE3_SUMMARY_REPAIR
+	local function V90_numberAttribute(instance, name, fallback)
+		local value = instance and instance:GetAttribute(name)
+		return typeof(value) == "number" and value or fallback
+	end
+
+	local function V90_addModuleStats(totals, module)
+		if not module then return totals end
+		for _, name in ipairs({ "TopSpeed", "Acceleration", "Handling", "Drift", "Braking", "Weight", "Boost", "BoostForce", "EngineOutput", "LateralGrip", "SteeringResponse", "HoverStability", "DriftControl", "DriftGrip", "DriftChargeRate", "BrakingForce", "BoostDuration", "BoostRecharge", "BoostRechargeDelay", "BoostEfficiency", "Drag", "Downforce" }) do
+			local value = module:GetAttribute(name)
+			if typeof(value) == "number" then
+				totals[name] = (totals[name] or 0) + value
+			end
+			local delta = module:GetAttribute("PerformanceDelta_" .. name)
+			if typeof(delta) == "number" then
+				totals[name] = (totals[name] or 0) + delta
+			end
+		end
+		return totals
+	end
+
+	local function V90_summaryTotals(profile)
+		-- NTR_DEALERSHIP_CUSTOMISATION_SPLIT_PHASE4_RATING_BADGE_BUILD_MODULES
+		if typeof(V56_totalStats) == "function" then
+			return V56_totalStats(profile)
+		end
+		local cockpit = V56_findCockpit(profile.CurrentCategory, profile.CurrentCockpit)
+		local totals = {
+			TopSpeed = V90_numberAttribute(cockpit, "TopSpeed", V90_numberAttribute(cockpit, "MaxSpeed", 126)),
+			Acceleration = V90_numberAttribute(cockpit, "Acceleration", 42),
+			Handling = V90_numberAttribute(cockpit, "Handling", 48),
+			Drift = V90_numberAttribute(cockpit, "Drift", 46),
+			Braking = V90_numberAttribute(cockpit, "Braking", 44),
+			Weight = V90_numberAttribute(cockpit, "Weight", 118),
+			Boost = V90_numberAttribute(cockpit, "Boost", 0),
+			BoostDuration = V90_numberAttribute(cockpit, "BoostDuration", 2),
+			BoostRecharge = V90_numberAttribute(cockpit, "BoostRecharge", 9),
+			BoostRechargeDelay = V90_numberAttribute(cockpit, "BoostRechargeDelay", 0),
+		}
+		for _, moduleId in pairs(profile.InstalledModules or {}) do
+			local module = V56_findModule(profile.CurrentCategory, moduleId)
+			if module then
+				for _, stat in ipairs({ "TopSpeed", "Acceleration", "Handling", "Drift", "Braking", "Weight", "Boost", "BoostDuration", "BoostRecharge", "BoostRechargeDelay" }) do
+					totals[stat] = (totals[stat] or 0) + V90_numberAttribute(module, stat, 0)
+				end
+			end
+		end
+		local category = V56_categoryFolder(profile.CurrentCategory)
+		local upgradeRoot = category and category:FindFirstChild("UPGRADES_InvisiblePerformance")
+		if upgradeRoot then
+			for upgradeId, level in pairs(profile.UpgradeLevels or {}) do
+				local upgrade = upgradeRoot:FindFirstChild("UPGRADE_" .. tostring(upgradeId))
+				if upgrade then
+					local statName = V56_string(upgrade, "StatName", V56_string(upgrade, "Stat", nil))
+					local amount = V56_number(upgrade, "AmountPerLevel", V56_number(upgrade, "Amount", 0))
+					if statName then
+						totals[statName] = (totals[statName] or 0) + amount * (tonumber(level) or 0)
+					end
+				end
+			end
+		end
+		return totals
+	end
+
+	local function V90_vehicleSummaries(profile)
+		V84_ensureInstanceInventory(profile)
+		local snapshot = {
+			CurrentVehicleId = profile.CurrentVehicleId,
+			CurrentCategory = profile.CurrentCategory,
+			CurrentCockpit = profile.CurrentCockpit,
+			CockpitColors = V90_cloneForSummary(profile.CockpitColors or {}),
+			ThrustColor = profile.ThrustColor,
+			InstalledModules = V90_cloneForSummary(profile.InstalledModules or {}),
+			ModuleColors = V90_cloneForSummary(profile.ModuleColors or {}),
+			NeonOwned = V90_cloneForSummary(profile.NeonOwned or {}),
+		}
+		local summaries = {}
+		for vehicleId, vehicle in pairs(profile.Vehicles or {}) do
+			if typeof(vehicle) == "table" then
+				profile.CurrentVehicleId = vehicleId
+				local ok = V89_syncLegacyFromCurrentVehicle(profile)
+				if ok then
+					local cockpit = V56_findCockpit(profile.CurrentCategory, profile.CurrentCockpit)
+					local performance = V77_ModuleUpgrades.CalculateProfile(
+						profile._Player,
+						profile,
+						V90_summaryTotals(profile),
+						cockpit,
+						V56_findModule,
+						V56_moduleTypeForModel
+					)
+					summaries[vehicleId] = {
+						VehicleId = vehicleId,
+						CockpitId = profile.CurrentCockpit,
+						DisplayName = vehicle.DisplayName or profile.CurrentCockpit,
+						Overall = performance and performance.Overall or nil,
+					}
+				end
+			end
+		end
+		V90_restoreProfileSelection(profile, snapshot)
+		return summaries
+	end
 
 	-- NTR_PERSISTENCE_PHASE17_TOTAL_STATS_REPAIR
 	-- NTR_PERSISTENCE_PHASE17_CATALOG_REPAIR
@@ -1565,6 +1756,7 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 			Vehicles = profile.Vehicles,
 			OwnedCockpitInstances = profile.OwnedCockpitInstances,
 			OwnedModuleInstances = profile.OwnedModuleInstances,
+			VehicleSummaries = V90_vehicleSummaries(profile),
 			OwnedCockpits = profile.OwnedCockpits,
 			CockpitColors = profile.CockpitColors,
 			ThrustColor = profile.ThrustColor,
@@ -1911,6 +2103,9 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 				V88_syncInstanceDataFromLegacy(profile)
 				V80_mirrorLegacyProfileToPersistence(player, profile, action, false)
 				return { Success = true, Catalog = V56_catalog(), Profile = V56_profileForClient(profile) }
+			elseif action == "SelectVehicleInstance" then
+				ok, message = V89_selectVehicleInstance(profile, args)
+				V56_setLeaderstats(player, profile)
 			elseif action == "BuyCockpitInstance" then
 				ok, message = V84_buyCockpitInstance(profile, args)
 				V56_setLeaderstats(player, profile)
