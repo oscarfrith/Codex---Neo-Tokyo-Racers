@@ -1,7 +1,7 @@
 # Roblox Studio Hierarchy Snapshot
 
-Generated in Studio: 2026-07-05 19:21:52
-Scripts exported: 125
+Generated in Studio: 2026-07-06 10:42:35
+Scripts exported: 128
 Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, StarterGui, Workspace, ServerStorage, Lighting
 
 ## Hierarchy
@@ -2146,6 +2146,15 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - YawDeadzone (NumberValue)
       - Runtime (Folder) [2 attrs]
         - DRIVING_MECHANICS_EditAttributes (Folder) [38 attrs]
+        - FreeRoamVehicleSpawn (Folder)
+          - AllowFallbackToPlayerOffset (BoolValue)
+          - MaxSpawnSpeedMph (NumberValue)
+          - RoadSearchRadius (NumberValue)
+          - SpawnClearanceRadius (NumberValue)
+          - SpawnCooldownSeconds (NumberValue)
+          - SpawnHeightOffset (NumberValue)
+          - SpawnMarkerHeightOffset (NumberValue)
+          - StudsPerSecondToMph (NumberValue)
       - UI (Folder)
         - CockpitMenuCards (Folder)
           - FreeRoamUsesCockpitMenuImage (BoolValue)
@@ -2584,7 +2593,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
       - Garage (Folder)
         - GarageDisplayRuntime (ModuleScript) [script_0036, 299 lines, 1 attrs]
         - GarageProfileRuntime (ModuleScript) [script_0037, 136 lines, 1 attrs]
-        - GarageActionController_Shadow_Disabled (Script) [script_0038, 2308 lines, 34 attrs]
+        - GarageActionController_Shadow_Disabled (Script) [script_0038, 2585 lines, 34 attrs]
         - GarageInteriorCustomizationService_Active (Script) [script_0039, 472 lines, 1 attrs]
         - GarageInteriorService_Active (Script) [script_0040, 407 lines, 4 attrs]
       - Player (Folder)
@@ -2592,12 +2601,13 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
         - ProfileService_Active (Script) [script_0042, 328 lines]
       - Vehicle (Folder)
         - DriverSeatPositionService_Active (Script) [script_0043, 234 lines, 11 attrs]
-        - VehiclePerformanceRuntimeService_Active (Script) [script_0044, 95 lines, 2 attrs]
+        - VehicleAccessPromptService_Active (Script) [script_0044, 130 lines]
+        - VehiclePerformanceRuntimeService_Active (Script) [script_0045, 95 lines, 2 attrs]
       - World (Folder)
         - Lighting (Folder)
-          - LightingService_Active (Script) [script_0045, 107 lines, 9 attrs]
+          - LightingService_Active (Script) [script_0046, 107 lines, 9 attrs]
         - Traffic (Folder)
-          - TrafficLightService (Script) [script_0046, 46 lines, 3 attrs]
+          - TrafficLightService (Script) [script_0047, 46 lines, 3 attrs]
           - README_MigrationNotes (StringValue)
     - State (Folder)
       - RuntimeProfiles (Folder)
@@ -2607,95 +2617,97 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
     - NeoTokyoRacersClient (Folder) [6 attrs]
       - Controllers (Folder) [3 attrs]
         - Core (Folder)
-          - CatalogClient (ModuleScript) [script_0047, 110 lines, 4 attrs]
-          - ClientState (ModuleScript) [script_0048, 75 lines, 4 attrs]
-          - ClientThemeAdapter (ModuleScript) [script_0049, 73 lines, 6 attrs]
-          - GarageApiClient (ModuleScript) [script_0050, 38 lines, 4 attrs]
-          - PaintClient (ModuleScript) [script_0051, 142 lines, 10 attrs]
+          - CatalogClient (ModuleScript) [script_0048, 110 lines, 4 attrs]
+          - ClientState (ModuleScript) [script_0049, 75 lines, 4 attrs]
+          - ClientThemeAdapter (ModuleScript) [script_0050, 73 lines, 6 attrs]
+          - GarageApiClient (ModuleScript) [script_0051, 38 lines, 4 attrs]
+          - PaintClient (ModuleScript) [script_0052, 142 lines, 10 attrs]
         - Garage (Folder)
         - Intro (Folder)
-          - CockpitCustomisationZoneClient_Active (LocalScript) [script_0052, 77 lines, 1 attrs]
-          - DealershipIntroClient_Active (LocalScript) [script_0053, 729 lines, 8 attrs]
+          - CockpitCustomisationZoneClient_Active (LocalScript) [script_0053, 77 lines, 1 attrs]
+          - DealershipIntroClient_Active (LocalScript) [script_0054, 729 lines, 8 attrs]
         - Preview (Folder)
-          - ThrustPreviewController_Active (LocalScript) [script_0054, 208 lines, 17 attrs]
-          - PreviewCameraController (ModuleScript) [script_0055, 96 lines, 5 attrs]
-          - PreviewVehicleController (ModuleScript) [script_0056, 168 lines, 5 attrs]
+          - ThrustPreviewController_Active (LocalScript) [script_0055, 208 lines, 17 attrs]
+          - PreviewCameraController (ModuleScript) [script_0056, 96 lines, 5 attrs]
+          - PreviewVehicleController (ModuleScript) [script_0057, 168 lines, 5 attrs]
         - Runtime (Folder)
-          - CharacterSprintController_Active (LocalScript) [script_0057, 360 lines, 1 attrs]
-          - DriveHudController_Active (LocalScript) [script_0058, 261 lines, 7 attrs]
-          - MobileDriveControlsController_Active (LocalScript) [script_0059, 746 lines, 13 attrs]
-          - RuntimeVFXController_Active (LocalScript) [script_0060, 16 lines, 9 attrs]
+          - CharacterSprintController_Active (LocalScript) [script_0058, 360 lines, 1 attrs]
+          - DriveHudController_Active (LocalScript) [script_0059, 261 lines, 7 attrs]
+          - FreeRoamParkedHoverController_Active (LocalScript) [script_0060, 209 lines]
+          - MobileDriveControlsController_Active (LocalScript) [script_0061, 746 lines, 13 attrs]
+          - RuntimeVFXController_Active (LocalScript) [script_0062, 16 lines, 9 attrs]
         - UI (Folder)
-          - FreeRoamNavController_Active (LocalScript) [script_0061, 1256 lines, 3 attrs]
-          - CockpitPaintUIController (ModuleScript) [script_0062, 46 lines, 5 attrs]
-          - ColourPickerController (ModuleScript) [script_0063, 277 lines, 5 attrs]
-          - CustomisationUIController (ModuleScript) [script_0064, 127 lines, 5 attrs]
-          - DealershipUIController (ModuleScript) [script_0065, 87 lines, 5 attrs]
-          - GaragePropertyMenuController (ModuleScript) [script_0066, 172 lines, 2 attrs]
-          - ModuleShopUIController (ModuleScript) [script_0067, 109 lines, 5 attrs]
-          - NavigationController (ModuleScript) [script_0068, 49 lines, 5 attrs]
-          - StatsPanelController (ModuleScript) [script_0069, 51 lines, 5 attrs]
+          - FreeRoamNavController_Active (LocalScript) [script_0063, 1316 lines, 3 attrs]
+          - FreeRoamVehicleExitButton_Active (LocalScript) [script_0064, 115 lines]
+          - CockpitPaintUIController (ModuleScript) [script_0065, 46 lines, 5 attrs]
+          - ColourPickerController (ModuleScript) [script_0066, 277 lines, 5 attrs]
+          - CustomisationUIController (ModuleScript) [script_0067, 127 lines, 5 attrs]
+          - DealershipUIController (ModuleScript) [script_0068, 87 lines, 5 attrs]
+          - GaragePropertyMenuController (ModuleScript) [script_0069, 172 lines, 2 attrs]
+          - ModuleShopUIController (ModuleScript) [script_0070, 109 lines, 5 attrs]
+          - NavigationController (ModuleScript) [script_0071, 49 lines, 5 attrs]
+          - StatsPanelController (ModuleScript) [script_0072, 51 lines, 5 attrs]
           - README_TargetControllers (StringValue)
         - World (Folder)
-          - GarageAccessClient_Active (LocalScript) [script_0070, 279 lines, 1 attrs]
-          - GarageInteriorClient_Active (LocalScript) [script_0071, 92 lines, 2 attrs]
-          - GarageInteriorCustomizationClient_Active (LocalScript) [script_0072, 273 lines, 1 attrs]
-          - LODClient_Active (LocalScript) [script_0073, 365 lines, 12 attrs]
-          - NightLamppostLightController_Active (LocalScript) [script_0074, 101 lines, 2 attrs]
-          - WindowMaterialController_Active (LocalScript) [script_0075, 101 lines, 2 attrs]
+          - GarageAccessClient_Active (LocalScript) [script_0073, 279 lines, 1 attrs]
+          - GarageInteriorClient_Active (LocalScript) [script_0074, 92 lines, 2 attrs]
+          - GarageInteriorCustomizationClient_Active (LocalScript) [script_0075, 273 lines, 1 attrs]
+          - LODClient_Active (LocalScript) [script_0076, 365 lines, 12 attrs]
+          - NightLamppostLightController_Active (LocalScript) [script_0077, 101 lines, 2 attrs]
+          - WindowMaterialController_Active (LocalScript) [script_0078, 101 lines, 2 attrs]
       - RuntimeState (Folder)
       - State (Folder)
-      - NeoTokyoRacersClient_Bootstrap_Shadow_Disabled (LocalScript) [script_0076, 4547 lines, 61 attrs]
-    - LocalScript (LocalScript) [script_0077, 203 lines]
-    - PlayerScriptsLoader (LocalScript) [script_0078, 8 lines]
-    - RbxCharacterSounds (LocalScript) [script_0079, 456 lines]
-      - AtomicBinding (ModuleScript) [script_0080, 277 lines]
-    - TEMP_LightingPreview (LocalScript) [script_0081, 127 lines, 2 attrs]
-    - TrailerMode.client.lua (LocalScript) [script_0082, 73 lines]
-    - TrailerShot01Camera (LocalScript) [script_0083, 92 lines]
-    - PlayerModule (ModuleScript) [script_0084, 32 lines]
+      - NeoTokyoRacersClient_Bootstrap_Shadow_Disabled (LocalScript) [script_0079, 4616 lines, 61 attrs]
+    - LocalScript (LocalScript) [script_0080, 203 lines]
+    - PlayerScriptsLoader (LocalScript) [script_0081, 8 lines]
+    - RbxCharacterSounds (LocalScript) [script_0082, 456 lines]
+      - AtomicBinding (ModuleScript) [script_0083, 277 lines]
+    - TEMP_LightingPreview (LocalScript) [script_0084, 127 lines, 2 attrs]
+    - TrailerMode.client.lua (LocalScript) [script_0085, 73 lines]
+    - TrailerShot01Camera (LocalScript) [script_0086, 92 lines]
+    - PlayerModule (ModuleScript) [script_0087, 32 lines]
       - CommonUtils (Folder)
-        - CameraWrapper (ModuleScript) [script_0085, 115 lines]
-        - CameraWrapper.spec (ModuleScript) [script_0086, 34 lines]
-        - CharacterUtil (ModuleScript) [script_0087, 156 lines]
-        - ConnectionUtil (ModuleScript) [script_0088, 62 lines]
-        - ConnectionUtil.spec (ModuleScript) [script_0089, 104 lines]
-        - FlagUtil (ModuleScript) [script_0090, 18 lines]
-      - CameraModule (ModuleScript) [script_0091, 632 lines]
-        - BaseCamera (ModuleScript) [script_0092, 763 lines]
-        - BaseOcclusion (ModuleScript) [script_0093, 48 lines]
-        - CameraInput (ModuleScript) [script_0094, 572 lines]
-        - CameraToggleStateController (ModuleScript) [script_0095, 78 lines]
-        - CameraUI (ModuleScript) [script_0096, 38 lines]
-        - CameraUtils (ModuleScript) [script_0097, 310 lines]
-        - ClassicCamera (ModuleScript) [script_0098, 232 lines]
-        - Invisicam (ModuleScript) [script_0099, 628 lines]
-        - LegacyCamera (ModuleScript) [script_0100, 118 lines]
-        - MouseLockController (ModuleScript) [script_0101, 212 lines]
-        - OrbitalCamera (ModuleScript) [script_0102, 287 lines]
-        - Poppercam (ModuleScript) [script_0103, 128 lines]
-        - TransparencyController (ModuleScript) [script_0104, 230 lines]
-        - VRBaseCamera (ModuleScript) [script_0105, 425 lines]
-        - VRCamera (ModuleScript) [script_0106, 429 lines]
-        - VRVehicleCamera (ModuleScript) [script_0107, 514 lines]
-        - VehicleCamera (ModuleScript) [script_0108, 216 lines]
-          - VehicleCameraConfig (ModuleScript) [script_0109, 58 lines]
-          - VehicleCameraCore (ModuleScript) [script_0110, 183 lines]
-        - ZoomController (ModuleScript) [script_0111, 138 lines]
-          - Popper (ModuleScript) [script_0112, 474 lines]
-      - ControlModule (ModuleScript) [script_0113, 674 lines]
-        - AvatarAbilitiesInterface (ModuleScript) [script_0114, 67 lines]
-        - BaseCharacterController (ModuleScript) [script_0115, 65 lines]
-        - ClickToMoveController (ModuleScript) [script_0116, 1240 lines]
-        - ClickToMoveDisplay (ModuleScript) [script_0117, 517 lines]
-        - DynamicThumbstick (ModuleScript) [script_0118, 636 lines]
-        - Gamepad (ModuleScript) [script_0119, 213 lines]
-        - Keyboard (ModuleScript) [script_0120, 154 lines]
-        - PathDisplay (ModuleScript) [script_0121, 153 lines]
-        - TouchJump (ModuleScript) [script_0122, 283 lines]
-        - TouchThumbstick (ModuleScript) [script_0123, 229 lines]
-        - VRNavigation (ModuleScript) [script_0124, 483 lines]
-        - VehicleController (ModuleScript) [script_0125, 190 lines]
+        - CameraWrapper (ModuleScript) [script_0088, 115 lines]
+        - CameraWrapper.spec (ModuleScript) [script_0089, 34 lines]
+        - CharacterUtil (ModuleScript) [script_0090, 156 lines]
+        - ConnectionUtil (ModuleScript) [script_0091, 62 lines]
+        - ConnectionUtil.spec (ModuleScript) [script_0092, 104 lines]
+        - FlagUtil (ModuleScript) [script_0093, 18 lines]
+      - CameraModule (ModuleScript) [script_0094, 632 lines]
+        - BaseCamera (ModuleScript) [script_0095, 763 lines]
+        - BaseOcclusion (ModuleScript) [script_0096, 48 lines]
+        - CameraInput (ModuleScript) [script_0097, 572 lines]
+        - CameraToggleStateController (ModuleScript) [script_0098, 78 lines]
+        - CameraUI (ModuleScript) [script_0099, 38 lines]
+        - CameraUtils (ModuleScript) [script_0100, 310 lines]
+        - ClassicCamera (ModuleScript) [script_0101, 232 lines]
+        - Invisicam (ModuleScript) [script_0102, 628 lines]
+        - LegacyCamera (ModuleScript) [script_0103, 118 lines]
+        - MouseLockController (ModuleScript) [script_0104, 212 lines]
+        - OrbitalCamera (ModuleScript) [script_0105, 287 lines]
+        - Poppercam (ModuleScript) [script_0106, 128 lines]
+        - TransparencyController (ModuleScript) [script_0107, 230 lines]
+        - VRBaseCamera (ModuleScript) [script_0108, 425 lines]
+        - VRCamera (ModuleScript) [script_0109, 429 lines]
+        - VRVehicleCamera (ModuleScript) [script_0110, 514 lines]
+        - VehicleCamera (ModuleScript) [script_0111, 216 lines]
+          - VehicleCameraConfig (ModuleScript) [script_0112, 58 lines]
+          - VehicleCameraCore (ModuleScript) [script_0113, 183 lines]
+        - ZoomController (ModuleScript) [script_0114, 138 lines]
+          - Popper (ModuleScript) [script_0115, 474 lines]
+      - ControlModule (ModuleScript) [script_0116, 674 lines]
+        - AvatarAbilitiesInterface (ModuleScript) [script_0117, 67 lines]
+        - BaseCharacterController (ModuleScript) [script_0118, 65 lines]
+        - ClickToMoveController (ModuleScript) [script_0119, 1240 lines]
+        - ClickToMoveDisplay (ModuleScript) [script_0120, 517 lines]
+        - DynamicThumbstick (ModuleScript) [script_0121, 636 lines]
+        - Gamepad (ModuleScript) [script_0122, 213 lines]
+        - Keyboard (ModuleScript) [script_0123, 154 lines]
+        - PathDisplay (ModuleScript) [script_0124, 153 lines]
+        - TouchJump (ModuleScript) [script_0125, 283 lines]
+        - TouchThumbstick (ModuleScript) [script_0126, 229 lines]
+        - VRNavigation (ModuleScript) [script_0127, 483 lines]
+        - VehicleController (ModuleScript) [script_0128, 190 lines]
 - StarterGui (StarterGui)
   - NeoTokyoRacersUI (ScreenGui) [2 attrs]
     - Components (Folder) [1 attrs]
@@ -7891,10 +7903,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - Garage Bollard Yellow (Part)
                   - Garage Sign (Model)
                     - Garage Sign (Part)
-                    - Garage Sign (Part)
-                    - Garage Sign (Part)
                       - SurfaceGui (SurfaceGui)
                         - TextLabel (TextLabel)
+                    - Garage Sign (Part)
+                    - Garage Sign (Part)
                     - Garage Sign (Part)
                     - Garage Sign Clearance (Part)
                       - SurfaceGui (SurfaceGui)
@@ -8279,13 +8291,13 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                         - JapaneseBrandText (TextLabel)
                   - TKY_JP_TEXT_BB_11_GinClock_SilverClock_3X2_H (Model) [11 attrs]
                     - BillboardPanel (Part)
-                    - BillboardPanel (Part)
-                    - BillboardPanel (Part)
-                    - BillboardPanel (Part)
                       - FrontSurfaceGui (SurfaceGui)
                         - EnglishBrandText (TextLabel)
                           - UITextSizeConstraint (UITextSizeConstraint)
                         - JapaneseBrandText (TextLabel)
+                    - BillboardPanel (Part)
+                    - BillboardPanel (Part)
+                    - BillboardPanel (Part)
                   - TKY_JP_TEXT_BB_12_NijiCamera_RainbowCamera_2X1_H (Model) [11 attrs]
                     - BillboardPanel (Part)
                       - FrontSurfaceGui (SurfaceGui)
@@ -12383,6 +12395,666 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
       - PlayerVehicles (Folder) [1 attrs]
       - PlayerVehicles_CurrentLive (ObjectValue) [6 attrs]
     - SpawnPoints (Folder) [3 attrs]
+      - RoadSpawnMarkers (Folder) [4 attrs]
+        - RoadSpawn_0001 (Part) [7 attrs]
+        - RoadSpawn_0002 (Part) [7 attrs]
+        - RoadSpawn_0003 (Part) [7 attrs]
+        - RoadSpawn_0004 (Part) [7 attrs]
+        - RoadSpawn_0005 (Part) [7 attrs]
+        - RoadSpawn_0006 (Part) [7 attrs]
+        - RoadSpawn_0007 (Part) [7 attrs]
+        - RoadSpawn_0008 (Part) [7 attrs]
+        - RoadSpawn_0009 (Part) [7 attrs]
+        - RoadSpawn_0010 (Part) [7 attrs]
+        - RoadSpawn_0011 (Part) [7 attrs]
+        - RoadSpawn_0012 (Part) [7 attrs]
+        - RoadSpawn_0013 (Part) [7 attrs]
+        - RoadSpawn_0014 (Part) [7 attrs]
+        - RoadSpawn_0015 (Part) [7 attrs]
+        - RoadSpawn_0016 (Part) [7 attrs]
+        - RoadSpawn_0017 (Part) [7 attrs]
+        - RoadSpawn_0018 (Part) [7 attrs]
+        - RoadSpawn_0019 (Part) [7 attrs]
+        - RoadSpawn_0020 (Part) [7 attrs]
+        - RoadSpawn_0021 (Part) [7 attrs]
+        - RoadSpawn_0022 (Part) [7 attrs]
+        - RoadSpawn_0023 (Part) [7 attrs]
+        - RoadSpawn_0024 (Part) [7 attrs]
+        - RoadSpawn_0025 (Part) [7 attrs]
+        - RoadSpawn_0026 (Part) [7 attrs]
+        - RoadSpawn_0027 (Part) [7 attrs]
+        - RoadSpawn_0028 (Part) [7 attrs]
+        - RoadSpawn_0029 (Part) [7 attrs]
+        - RoadSpawn_0030 (Part) [7 attrs]
+        - RoadSpawn_0031 (Part) [7 attrs]
+        - RoadSpawn_0032 (Part) [7 attrs]
+        - RoadSpawn_0033 (Part) [7 attrs]
+        - RoadSpawn_0034 (Part) [7 attrs]
+        - RoadSpawn_0035 (Part) [7 attrs]
+        - RoadSpawn_0036 (Part) [7 attrs]
+        - RoadSpawn_0037 (Part) [7 attrs]
+        - RoadSpawn_0038 (Part) [7 attrs]
+        - RoadSpawn_0039 (Part) [7 attrs]
+        - RoadSpawn_0040 (Part) [7 attrs]
+        - RoadSpawn_0041 (Part) [7 attrs]
+        - RoadSpawn_0042 (Part) [7 attrs]
+        - RoadSpawn_0043 (Part) [7 attrs]
+        - RoadSpawn_0044 (Part) [7 attrs]
+        - RoadSpawn_0045 (Part) [7 attrs]
+        - RoadSpawn_0046 (Part) [7 attrs]
+        - RoadSpawn_0047 (Part) [7 attrs]
+        - RoadSpawn_0048 (Part) [7 attrs]
+        - RoadSpawn_0049 (Part) [7 attrs]
+        - RoadSpawn_0050 (Part) [7 attrs]
+        - RoadSpawn_0051 (Part) [7 attrs]
+        - RoadSpawn_0052 (Part) [7 attrs]
+        - RoadSpawn_0053 (Part) [7 attrs]
+        - RoadSpawn_0054 (Part) [7 attrs]
+        - RoadSpawn_0055 (Part) [7 attrs]
+        - RoadSpawn_0056 (Part) [7 attrs]
+        - RoadSpawn_0057 (Part) [7 attrs]
+        - RoadSpawn_0058 (Part) [7 attrs]
+        - RoadSpawn_0059 (Part) [7 attrs]
+        - RoadSpawn_0060 (Part) [7 attrs]
+        - RoadSpawn_0061 (Part) [7 attrs]
+        - RoadSpawn_0062 (Part) [7 attrs]
+        - RoadSpawn_0063 (Part) [7 attrs]
+        - RoadSpawn_0064 (Part) [7 attrs]
+        - RoadSpawn_0065 (Part) [7 attrs]
+        - RoadSpawn_0066 (Part) [7 attrs]
+        - RoadSpawn_0067 (Part) [7 attrs]
+        - RoadSpawn_0068 (Part) [7 attrs]
+        - RoadSpawn_0069 (Part) [7 attrs]
+        - RoadSpawn_0070 (Part) [7 attrs]
+        - RoadSpawn_0071 (Part) [7 attrs]
+        - RoadSpawn_0072 (Part) [7 attrs]
+        - RoadSpawn_0073 (Part) [7 attrs]
+        - RoadSpawn_0074 (Part) [7 attrs]
+        - RoadSpawn_0075 (Part) [7 attrs]
+        - RoadSpawn_0076 (Part) [7 attrs]
+        - RoadSpawn_0077 (Part) [7 attrs]
+        - RoadSpawn_0078 (Part) [7 attrs]
+        - RoadSpawn_0079 (Part) [7 attrs]
+        - RoadSpawn_0080 (Part) [7 attrs]
+        - RoadSpawn_0081 (Part) [7 attrs]
+        - RoadSpawn_0082 (Part) [7 attrs]
+        - RoadSpawn_0083 (Part) [7 attrs]
+        - RoadSpawn_0084 (Part) [7 attrs]
+        - RoadSpawn_0085 (Part) [7 attrs]
+        - RoadSpawn_0086 (Part) [7 attrs]
+        - RoadSpawn_0087 (Part) [7 attrs]
+        - RoadSpawn_0088 (Part) [7 attrs]
+        - RoadSpawn_0089 (Part) [7 attrs]
+        - RoadSpawn_0090 (Part) [7 attrs]
+        - RoadSpawn_0091 (Part) [7 attrs]
+        - RoadSpawn_0092 (Part) [7 attrs]
+        - RoadSpawn_0093 (Part) [7 attrs]
+        - RoadSpawn_0094 (Part) [7 attrs]
+        - RoadSpawn_0095 (Part) [7 attrs]
+        - RoadSpawn_0096 (Part) [7 attrs]
+        - RoadSpawn_0097 (Part) [7 attrs]
+        - RoadSpawn_0098 (Part) [7 attrs]
+        - RoadSpawn_0099 (Part) [7 attrs]
+        - RoadSpawn_0100 (Part) [7 attrs]
+        - RoadSpawn_0101 (Part) [7 attrs]
+        - RoadSpawn_0102 (Part) [7 attrs]
+        - RoadSpawn_0103 (Part) [7 attrs]
+        - RoadSpawn_0104 (Part) [7 attrs]
+        - RoadSpawn_0105 (Part) [7 attrs]
+        - RoadSpawn_0106 (Part) [7 attrs]
+        - RoadSpawn_0107 (Part) [7 attrs]
+        - RoadSpawn_0108 (Part) [7 attrs]
+        - RoadSpawn_0109 (Part) [7 attrs]
+        - RoadSpawn_0110 (Part) [7 attrs]
+        - RoadSpawn_0111 (Part) [7 attrs]
+        - RoadSpawn_0112 (Part) [7 attrs]
+        - RoadSpawn_0113 (Part) [7 attrs]
+        - RoadSpawn_0114 (Part) [7 attrs]
+        - RoadSpawn_0115 (Part) [7 attrs]
+        - RoadSpawn_0116 (Part) [7 attrs]
+        - RoadSpawn_0117 (Part) [7 attrs]
+        - RoadSpawn_0118 (Part) [7 attrs]
+        - RoadSpawn_0119 (Part) [7 attrs]
+        - RoadSpawn_0120 (Part) [7 attrs]
+        - RoadSpawn_0121 (Part) [7 attrs]
+        - RoadSpawn_0122 (Part) [7 attrs]
+        - RoadSpawn_0123 (Part) [7 attrs]
+        - RoadSpawn_0124 (Part) [7 attrs]
+        - RoadSpawn_0125 (Part) [7 attrs]
+        - RoadSpawn_0126 (Part) [7 attrs]
+        - RoadSpawn_0127 (Part) [7 attrs]
+        - RoadSpawn_0128 (Part) [7 attrs]
+        - RoadSpawn_0129 (Part) [7 attrs]
+        - RoadSpawn_0130 (Part) [7 attrs]
+        - RoadSpawn_0131 (Part) [7 attrs]
+        - RoadSpawn_0132 (Part) [7 attrs]
+        - RoadSpawn_0133 (Part) [7 attrs]
+        - RoadSpawn_0134 (Part) [7 attrs]
+        - RoadSpawn_0135 (Part) [7 attrs]
+        - RoadSpawn_0136 (Part) [7 attrs]
+        - RoadSpawn_0137 (Part) [7 attrs]
+        - RoadSpawn_0138 (Part) [7 attrs]
+        - RoadSpawn_0139 (Part) [7 attrs]
+        - RoadSpawn_0140 (Part) [7 attrs]
+        - RoadSpawn_0141 (Part) [7 attrs]
+        - RoadSpawn_0142 (Part) [7 attrs]
+        - RoadSpawn_0143 (Part) [7 attrs]
+        - RoadSpawn_0144 (Part) [7 attrs]
+        - RoadSpawn_0145 (Part) [7 attrs]
+        - RoadSpawn_0146 (Part) [7 attrs]
+        - RoadSpawn_0147 (Part) [7 attrs]
+        - RoadSpawn_0148 (Part) [7 attrs]
+        - RoadSpawn_0149 (Part) [7 attrs]
+        - RoadSpawn_0150 (Part) [7 attrs]
+        - RoadSpawn_0151 (Part) [7 attrs]
+        - RoadSpawn_0152 (Part) [7 attrs]
+        - RoadSpawn_0153 (Part) [7 attrs]
+        - RoadSpawn_0154 (Part) [7 attrs]
+        - RoadSpawn_0155 (Part) [7 attrs]
+        - RoadSpawn_0156 (Part) [7 attrs]
+        - RoadSpawn_0157 (Part) [7 attrs]
+        - RoadSpawn_0158 (Part) [7 attrs]
+        - RoadSpawn_0159 (Part) [7 attrs]
+        - RoadSpawn_0160 (Part) [7 attrs]
+        - RoadSpawn_0161 (Part) [7 attrs]
+        - RoadSpawn_0162 (Part) [7 attrs]
+        - RoadSpawn_0163 (Part) [7 attrs]
+        - RoadSpawn_0164 (Part) [7 attrs]
+        - RoadSpawn_0165 (Part) [7 attrs]
+        - RoadSpawn_0166 (Part) [7 attrs]
+        - RoadSpawn_0167 (Part) [7 attrs]
+        - RoadSpawn_0168 (Part) [7 attrs]
+        - RoadSpawn_0169 (Part) [7 attrs]
+        - RoadSpawn_0170 (Part) [7 attrs]
+        - RoadSpawn_0171 (Part) [7 attrs]
+        - RoadSpawn_0172 (Part) [7 attrs]
+        - RoadSpawn_0173 (Part) [7 attrs]
+        - RoadSpawn_0174 (Part) [7 attrs]
+        - RoadSpawn_0175 (Part) [7 attrs]
+        - RoadSpawn_0176 (Part) [7 attrs]
+        - RoadSpawn_0177 (Part) [7 attrs]
+        - RoadSpawn_0178 (Part) [7 attrs]
+        - RoadSpawn_0179 (Part) [7 attrs]
+        - RoadSpawn_0180 (Part) [7 attrs]
+        - RoadSpawn_0181 (Part) [7 attrs]
+        - RoadSpawn_0182 (Part) [7 attrs]
+        - RoadSpawn_0183 (Part) [7 attrs]
+        - RoadSpawn_0184 (Part) [7 attrs]
+        - RoadSpawn_0185 (Part) [7 attrs]
+        - RoadSpawn_0186 (Part) [7 attrs]
+        - RoadSpawn_0187 (Part) [7 attrs]
+        - RoadSpawn_0188 (Part) [7 attrs]
+        - RoadSpawn_0189 (Part) [7 attrs]
+        - RoadSpawn_0190 (Part) [7 attrs]
+        - RoadSpawn_0191 (Part) [7 attrs]
+        - RoadSpawn_0192 (Part) [7 attrs]
+        - RoadSpawn_0193 (Part) [7 attrs]
+        - RoadSpawn_0194 (Part) [7 attrs]
+        - RoadSpawn_0195 (Part) [7 attrs]
+        - RoadSpawn_0196 (Part) [7 attrs]
+        - RoadSpawn_0197 (Part) [7 attrs]
+        - RoadSpawn_0198 (Part) [7 attrs]
+        - RoadSpawn_0199 (Part) [7 attrs]
+        - RoadSpawn_0200 (Part) [7 attrs]
+        - RoadSpawn_0201 (Part) [7 attrs]
+        - RoadSpawn_0202 (Part) [7 attrs]
+        - RoadSpawn_0203 (Part) [7 attrs]
+        - RoadSpawn_0204 (Part) [7 attrs]
+        - RoadSpawn_0205 (Part) [7 attrs]
+        - RoadSpawn_0206 (Part) [7 attrs]
+        - RoadSpawn_0207 (Part) [7 attrs]
+        - RoadSpawn_0208 (Part) [7 attrs]
+        - RoadSpawn_0209 (Part) [7 attrs]
+        - RoadSpawn_0210 (Part) [7 attrs]
+        - RoadSpawn_0211 (Part) [7 attrs]
+        - RoadSpawn_0212 (Part) [7 attrs]
+        - RoadSpawn_0213 (Part) [7 attrs]
+        - RoadSpawn_0214 (Part) [7 attrs]
+        - RoadSpawn_0215 (Part) [7 attrs]
+        - RoadSpawn_0216 (Part) [7 attrs]
+        - RoadSpawn_0217 (Part) [7 attrs]
+        - RoadSpawn_0218 (Part) [7 attrs]
+        - RoadSpawn_0219 (Part) [7 attrs]
+        - RoadSpawn_0220 (Part) [7 attrs]
+        - RoadSpawn_0221 (Part) [7 attrs]
+        - RoadSpawn_0222 (Part) [7 attrs]
+        - RoadSpawn_0223 (Part) [7 attrs]
+        - RoadSpawn_0224 (Part) [7 attrs]
+        - RoadSpawn_0225 (Part) [7 attrs]
+        - RoadSpawn_0226 (Part) [7 attrs]
+        - RoadSpawn_0227 (Part) [7 attrs]
+        - RoadSpawn_0228 (Part) [7 attrs]
+        - RoadSpawn_0229 (Part) [7 attrs]
+        - RoadSpawn_0230 (Part) [7 attrs]
+        - RoadSpawn_0231 (Part) [7 attrs]
+        - RoadSpawn_0232 (Part) [7 attrs]
+        - RoadSpawn_0233 (Part) [7 attrs]
+        - RoadSpawn_0234 (Part) [7 attrs]
+        - RoadSpawn_0235 (Part) [7 attrs]
+        - RoadSpawn_0236 (Part) [7 attrs]
+        - RoadSpawn_0237 (Part) [7 attrs]
+        - RoadSpawn_0238 (Part) [7 attrs]
+        - RoadSpawn_0239 (Part) [7 attrs]
+        - RoadSpawn_0240 (Part) [7 attrs]
+        - RoadSpawn_0241 (Part) [7 attrs]
+        - RoadSpawn_0242 (Part) [7 attrs]
+        - RoadSpawn_0243 (Part) [7 attrs]
+        - RoadSpawn_0244 (Part) [7 attrs]
+        - RoadSpawn_0245 (Part) [7 attrs]
+        - RoadSpawn_0246 (Part) [7 attrs]
+        - RoadSpawn_0247 (Part) [7 attrs]
+        - RoadSpawn_0248 (Part) [7 attrs]
+        - RoadSpawn_0249 (Part) [7 attrs]
+        - RoadSpawn_0250 (Part) [7 attrs]
+        - RoadSpawn_0251 (Part) [7 attrs]
+        - RoadSpawn_0252 (Part) [7 attrs]
+        - RoadSpawn_0253 (Part) [7 attrs]
+        - RoadSpawn_0254 (Part) [7 attrs]
+        - RoadSpawn_0255 (Part) [7 attrs]
+        - RoadSpawn_0256 (Part) [7 attrs]
+        - RoadSpawn_0257 (Part) [7 attrs]
+        - RoadSpawn_0258 (Part) [7 attrs]
+        - RoadSpawn_0259 (Part) [7 attrs]
+        - RoadSpawn_0260 (Part) [7 attrs]
+        - RoadSpawn_0261 (Part) [7 attrs]
+        - RoadSpawn_0262 (Part) [7 attrs]
+        - RoadSpawn_0263 (Part) [7 attrs]
+        - RoadSpawn_0264 (Part) [7 attrs]
+        - RoadSpawn_0265 (Part) [7 attrs]
+        - RoadSpawn_0266 (Part) [7 attrs]
+        - RoadSpawn_0267 (Part) [7 attrs]
+        - RoadSpawn_0268 (Part) [7 attrs]
+        - RoadSpawn_0269 (Part) [7 attrs]
+        - RoadSpawn_0270 (Part) [7 attrs]
+        - RoadSpawn_0271 (Part) [7 attrs]
+        - RoadSpawn_0272 (Part) [7 attrs]
+        - RoadSpawn_0273 (Part) [7 attrs]
+        - RoadSpawn_0274 (Part) [7 attrs]
+        - RoadSpawn_0275 (Part) [7 attrs]
+        - RoadSpawn_0276 (Part) [7 attrs]
+        - RoadSpawn_0277 (Part) [7 attrs]
+        - RoadSpawn_0278 (Part) [7 attrs]
+        - RoadSpawn_0279 (Part) [7 attrs]
+        - RoadSpawn_0280 (Part) [7 attrs]
+        - RoadSpawn_0281 (Part) [7 attrs]
+        - RoadSpawn_0282 (Part) [7 attrs]
+        - RoadSpawn_0283 (Part) [7 attrs]
+        - RoadSpawn_0284 (Part) [7 attrs]
+        - RoadSpawn_0285 (Part) [7 attrs]
+        - RoadSpawn_0286 (Part) [7 attrs]
+        - RoadSpawn_0287 (Part) [7 attrs]
+        - RoadSpawn_0288 (Part) [7 attrs]
+        - RoadSpawn_0289 (Part) [7 attrs]
+        - RoadSpawn_0290 (Part) [7 attrs]
+        - RoadSpawn_0291 (Part) [7 attrs]
+        - RoadSpawn_0292 (Part) [7 attrs]
+        - RoadSpawn_0293 (Part) [7 attrs]
+        - RoadSpawn_0294 (Part) [7 attrs]
+        - RoadSpawn_0295 (Part) [7 attrs]
+        - RoadSpawn_0296 (Part) [7 attrs]
+        - RoadSpawn_0297 (Part) [7 attrs]
+        - RoadSpawn_0298 (Part) [7 attrs]
+        - RoadSpawn_0299 (Part) [7 attrs]
+        - RoadSpawn_0300 (Part) [7 attrs]
+        - RoadSpawn_0301 (Part) [7 attrs]
+        - RoadSpawn_0302 (Part) [7 attrs]
+        - RoadSpawn_0303 (Part) [7 attrs]
+        - RoadSpawn_0304 (Part) [7 attrs]
+        - RoadSpawn_0305 (Part) [7 attrs]
+        - RoadSpawn_0306 (Part) [7 attrs]
+        - RoadSpawn_0307 (Part) [7 attrs]
+        - RoadSpawn_0308 (Part) [7 attrs]
+        - RoadSpawn_0309 (Part) [7 attrs]
+        - RoadSpawn_0310 (Part) [7 attrs]
+        - RoadSpawn_0311 (Part) [7 attrs]
+        - RoadSpawn_0312 (Part) [7 attrs]
+        - RoadSpawn_0313 (Part) [7 attrs]
+        - RoadSpawn_0314 (Part) [7 attrs]
+        - RoadSpawn_0315 (Part) [7 attrs]
+        - RoadSpawn_0316 (Part) [7 attrs]
+        - RoadSpawn_0317 (Part) [7 attrs]
+        - RoadSpawn_0318 (Part) [7 attrs]
+        - RoadSpawn_0319 (Part) [7 attrs]
+        - RoadSpawn_0320 (Part) [7 attrs]
+        - RoadSpawn_0321 (Part) [7 attrs]
+        - RoadSpawn_0322 (Part) [7 attrs]
+        - RoadSpawn_0323 (Part) [7 attrs]
+        - RoadSpawn_0324 (Part) [7 attrs]
+        - RoadSpawn_0325 (Part) [7 attrs]
+        - RoadSpawn_0326 (Part) [7 attrs]
+        - RoadSpawn_0327 (Part) [7 attrs]
+        - RoadSpawn_0328 (Part) [7 attrs]
+        - RoadSpawn_0329 (Part) [7 attrs]
+        - RoadSpawn_0330 (Part) [7 attrs]
+        - RoadSpawn_0331 (Part) [7 attrs]
+        - RoadSpawn_0332 (Part) [7 attrs]
+        - RoadSpawn_0333 (Part) [7 attrs]
+        - RoadSpawn_0334 (Part) [7 attrs]
+        - RoadSpawn_0335 (Part) [7 attrs]
+        - RoadSpawn_0336 (Part) [7 attrs]
+        - RoadSpawn_0337 (Part) [7 attrs]
+        - RoadSpawn_0338 (Part) [7 attrs]
+        - RoadSpawn_0339 (Part) [7 attrs]
+        - RoadSpawn_0340 (Part) [7 attrs]
+        - RoadSpawn_0341 (Part) [7 attrs]
+        - RoadSpawn_0342 (Part) [7 attrs]
+        - RoadSpawn_0343 (Part) [7 attrs]
+        - RoadSpawn_0344 (Part) [7 attrs]
+        - RoadSpawn_0345 (Part) [7 attrs]
+        - RoadSpawn_0346 (Part) [7 attrs]
+        - RoadSpawn_0347 (Part) [7 attrs]
+        - RoadSpawn_0348 (Part) [7 attrs]
+        - RoadSpawn_0349 (Part) [7 attrs]
+        - RoadSpawn_0350 (Part) [7 attrs]
+        - RoadSpawn_0351 (Part) [7 attrs]
+        - RoadSpawn_0352 (Part) [7 attrs]
+        - RoadSpawn_0353 (Part) [7 attrs]
+        - RoadSpawn_0354 (Part) [7 attrs]
+        - RoadSpawn_0355 (Part) [7 attrs]
+        - RoadSpawn_0356 (Part) [7 attrs]
+        - RoadSpawn_0357 (Part) [7 attrs]
+        - RoadSpawn_0358 (Part) [7 attrs]
+        - RoadSpawn_0359 (Part) [7 attrs]
+        - RoadSpawn_0360 (Part) [7 attrs]
+        - RoadSpawn_0361 (Part) [7 attrs]
+        - RoadSpawn_0362 (Part) [7 attrs]
+        - RoadSpawn_0363 (Part) [7 attrs]
+        - RoadSpawn_0364 (Part) [7 attrs]
+        - RoadSpawn_0365 (Part) [7 attrs]
+        - RoadSpawn_0366 (Part) [7 attrs]
+        - RoadSpawn_0367 (Part) [7 attrs]
+        - RoadSpawn_0368 (Part) [7 attrs]
+        - RoadSpawn_0369 (Part) [7 attrs]
+        - RoadSpawn_0370 (Part) [7 attrs]
+        - RoadSpawn_0371 (Part) [7 attrs]
+        - RoadSpawn_0372 (Part) [7 attrs]
+        - RoadSpawn_0373 (Part) [7 attrs]
+        - RoadSpawn_0374 (Part) [7 attrs]
+        - RoadSpawn_0375 (Part) [7 attrs]
+        - RoadSpawn_0376 (Part) [7 attrs]
+        - RoadSpawn_0377 (Part) [7 attrs]
+        - RoadSpawn_0378 (Part) [7 attrs]
+        - RoadSpawn_0379 (Part) [7 attrs]
+        - RoadSpawn_0380 (Part) [7 attrs]
+        - RoadSpawn_0381 (Part) [7 attrs]
+        - RoadSpawn_0382 (Part) [7 attrs]
+        - RoadSpawn_0383 (Part) [7 attrs]
+        - RoadSpawn_0384 (Part) [7 attrs]
+        - RoadSpawn_0385 (Part) [7 attrs]
+        - RoadSpawn_0386 (Part) [7 attrs]
+        - RoadSpawn_0387 (Part) [7 attrs]
+        - RoadSpawn_0388 (Part) [7 attrs]
+        - RoadSpawn_0389 (Part) [7 attrs]
+        - RoadSpawn_0390 (Part) [7 attrs]
+        - RoadSpawn_0391 (Part) [7 attrs]
+        - RoadSpawn_0392 (Part) [7 attrs]
+        - RoadSpawn_0393 (Part) [7 attrs]
+        - RoadSpawn_0394 (Part) [7 attrs]
+        - RoadSpawn_0395 (Part) [7 attrs]
+        - RoadSpawn_0396 (Part) [7 attrs]
+        - RoadSpawn_0397 (Part) [7 attrs]
+        - RoadSpawn_0398 (Part) [7 attrs]
+        - RoadSpawn_0399 (Part) [7 attrs]
+        - RoadSpawn_0400 (Part) [7 attrs]
+        - RoadSpawn_0401 (Part) [7 attrs]
+        - RoadSpawn_0402 (Part) [7 attrs]
+        - RoadSpawn_0403 (Part) [7 attrs]
+        - RoadSpawn_0404 (Part) [7 attrs]
+        - RoadSpawn_0405 (Part) [7 attrs]
+        - RoadSpawn_0406 (Part) [7 attrs]
+        - RoadSpawn_0407 (Part) [7 attrs]
+        - RoadSpawn_0408 (Part) [7 attrs]
+        - RoadSpawn_0409 (Part) [7 attrs]
+        - RoadSpawn_0410 (Part) [7 attrs]
+        - RoadSpawn_0411 (Part) [7 attrs]
+        - RoadSpawn_0412 (Part) [7 attrs]
+        - RoadSpawn_0413 (Part) [7 attrs]
+        - RoadSpawn_0414 (Part) [7 attrs]
+        - RoadSpawn_0415 (Part) [7 attrs]
+        - RoadSpawn_0416 (Part) [7 attrs]
+        - RoadSpawn_0417 (Part) [7 attrs]
+        - RoadSpawn_0418 (Part) [7 attrs]
+        - RoadSpawn_0419 (Part) [7 attrs]
+        - RoadSpawn_0420 (Part) [7 attrs]
+        - RoadSpawn_0421 (Part) [7 attrs]
+        - RoadSpawn_0422 (Part) [7 attrs]
+        - RoadSpawn_0423 (Part) [7 attrs]
+        - RoadSpawn_0424 (Part) [7 attrs]
+        - RoadSpawn_0425 (Part) [7 attrs]
+        - RoadSpawn_0426 (Part) [7 attrs]
+        - RoadSpawn_0427 (Part) [7 attrs]
+        - RoadSpawn_0428 (Part) [7 attrs]
+        - RoadSpawn_0429 (Part) [7 attrs]
+        - RoadSpawn_0430 (Part) [7 attrs]
+        - RoadSpawn_0431 (Part) [7 attrs]
+        - RoadSpawn_0432 (Part) [7 attrs]
+        - RoadSpawn_0433 (Part) [7 attrs]
+        - RoadSpawn_0434 (Part) [7 attrs]
+        - RoadSpawn_0435 (Part) [7 attrs]
+        - RoadSpawn_0436 (Part) [7 attrs]
+        - RoadSpawn_0437 (Part) [7 attrs]
+        - RoadSpawn_0438 (Part) [7 attrs]
+        - RoadSpawn_0439 (Part) [7 attrs]
+        - RoadSpawn_0440 (Part) [7 attrs]
+        - RoadSpawn_0441 (Part) [7 attrs]
+        - RoadSpawn_0442 (Part) [7 attrs]
+        - RoadSpawn_0443 (Part) [7 attrs]
+        - RoadSpawn_0444 (Part) [7 attrs]
+        - RoadSpawn_0445 (Part) [7 attrs]
+        - RoadSpawn_0446 (Part) [7 attrs]
+        - RoadSpawn_0447 (Part) [7 attrs]
+        - RoadSpawn_0448 (Part) [7 attrs]
+        - RoadSpawn_0449 (Part) [7 attrs]
+        - RoadSpawn_0450 (Part) [7 attrs]
+        - RoadSpawn_0451 (Part) [7 attrs]
+        - RoadSpawn_0452 (Part) [7 attrs]
+        - RoadSpawn_0453 (Part) [7 attrs]
+        - RoadSpawn_0454 (Part) [7 attrs]
+        - RoadSpawn_0455 (Part) [7 attrs]
+        - RoadSpawn_0456 (Part) [7 attrs]
+        - RoadSpawn_0457 (Part) [7 attrs]
+        - RoadSpawn_0458 (Part) [7 attrs]
+        - RoadSpawn_0459 (Part) [7 attrs]
+        - RoadSpawn_0460 (Part) [7 attrs]
+        - RoadSpawn_0461 (Part) [7 attrs]
+        - RoadSpawn_0462 (Part) [7 attrs]
+        - RoadSpawn_0463 (Part) [7 attrs]
+        - RoadSpawn_0464 (Part) [7 attrs]
+        - RoadSpawn_0465 (Part) [7 attrs]
+        - RoadSpawn_0466 (Part) [7 attrs]
+        - RoadSpawn_0467 (Part) [7 attrs]
+        - RoadSpawn_0468 (Part) [7 attrs]
+        - RoadSpawn_0469 (Part) [7 attrs]
+        - RoadSpawn_0470 (Part) [7 attrs]
+        - RoadSpawn_0471 (Part) [7 attrs]
+        - RoadSpawn_0472 (Part) [7 attrs]
+        - RoadSpawn_0473 (Part) [7 attrs]
+        - RoadSpawn_0474 (Part) [7 attrs]
+        - RoadSpawn_0475 (Part) [7 attrs]
+        - RoadSpawn_0476 (Part) [7 attrs]
+        - RoadSpawn_0477 (Part) [7 attrs]
+        - RoadSpawn_0478 (Part) [7 attrs]
+        - RoadSpawn_0479 (Part) [7 attrs]
+        - RoadSpawn_0480 (Part) [7 attrs]
+        - RoadSpawn_0481 (Part) [7 attrs]
+        - RoadSpawn_0482 (Part) [7 attrs]
+        - RoadSpawn_0483 (Part) [7 attrs]
+        - RoadSpawn_0484 (Part) [7 attrs]
+        - RoadSpawn_0485 (Part) [7 attrs]
+        - RoadSpawn_0486 (Part) [7 attrs]
+        - RoadSpawn_0487 (Part) [7 attrs]
+        - RoadSpawn_0488 (Part) [7 attrs]
+        - RoadSpawn_0489 (Part) [7 attrs]
+        - RoadSpawn_0490 (Part) [7 attrs]
+        - RoadSpawn_0491 (Part) [7 attrs]
+        - RoadSpawn_0492 (Part) [7 attrs]
+        - RoadSpawn_0493 (Part) [7 attrs]
+        - RoadSpawn_0494 (Part) [7 attrs]
+        - RoadSpawn_0495 (Part) [7 attrs]
+        - RoadSpawn_0496 (Part) [7 attrs]
+        - RoadSpawn_0497 (Part) [7 attrs]
+        - RoadSpawn_0498 (Part) [7 attrs]
+        - RoadSpawn_0499 (Part) [7 attrs]
+        - RoadSpawn_0500 (Part) [7 attrs]
+        - RoadSpawn_0501 (Part) [7 attrs]
+        - RoadSpawn_0502 (Part) [7 attrs]
+        - RoadSpawn_0503 (Part) [7 attrs]
+        - RoadSpawn_0504 (Part) [7 attrs]
+        - RoadSpawn_0505 (Part) [7 attrs]
+        - RoadSpawn_0506 (Part) [7 attrs]
+        - RoadSpawn_0507 (Part) [7 attrs]
+        - RoadSpawn_0508 (Part) [7 attrs]
+        - RoadSpawn_0509 (Part) [7 attrs]
+        - RoadSpawn_0510 (Part) [7 attrs]
+        - RoadSpawn_0511 (Part) [7 attrs]
+        - RoadSpawn_0512 (Part) [7 attrs]
+        - RoadSpawn_0513 (Part) [7 attrs]
+        - RoadSpawn_0514 (Part) [7 attrs]
+        - RoadSpawn_0515 (Part) [7 attrs]
+        - RoadSpawn_0516 (Part) [7 attrs]
+        - RoadSpawn_0517 (Part) [7 attrs]
+        - RoadSpawn_0518 (Part) [7 attrs]
+        - RoadSpawn_0519 (Part) [7 attrs]
+        - RoadSpawn_0520 (Part) [7 attrs]
+        - RoadSpawn_0521 (Part) [7 attrs]
+        - RoadSpawn_0522 (Part) [7 attrs]
+        - RoadSpawn_0523 (Part) [7 attrs]
+        - RoadSpawn_0524 (Part) [7 attrs]
+        - RoadSpawn_0525 (Part) [7 attrs]
+        - RoadSpawn_0526 (Part) [7 attrs]
+        - RoadSpawn_0527 (Part) [7 attrs]
+        - RoadSpawn_0528 (Part) [7 attrs]
+        - RoadSpawn_0529 (Part) [7 attrs]
+        - RoadSpawn_0530 (Part) [7 attrs]
+        - RoadSpawn_0531 (Part) [7 attrs]
+        - RoadSpawn_0532 (Part) [7 attrs]
+        - RoadSpawn_0533 (Part) [7 attrs]
+        - RoadSpawn_0534 (Part) [7 attrs]
+        - RoadSpawn_0535 (Part) [7 attrs]
+        - RoadSpawn_0536 (Part) [7 attrs]
+        - RoadSpawn_0537 (Part) [7 attrs]
+        - RoadSpawn_0538 (Part) [7 attrs]
+        - RoadSpawn_0539 (Part) [7 attrs]
+        - RoadSpawn_0540 (Part) [7 attrs]
+        - RoadSpawn_0541 (Part) [7 attrs]
+        - RoadSpawn_0542 (Part) [7 attrs]
+        - RoadSpawn_0543 (Part) [7 attrs]
+        - RoadSpawn_0544 (Part) [7 attrs]
+        - RoadSpawn_0545 (Part) [7 attrs]
+        - RoadSpawn_0546 (Part) [7 attrs]
+        - RoadSpawn_0547 (Part) [7 attrs]
+        - RoadSpawn_0548 (Part) [7 attrs]
+        - RoadSpawn_0549 (Part) [7 attrs]
+        - RoadSpawn_0550 (Part) [7 attrs]
+        - RoadSpawn_0551 (Part) [7 attrs]
+        - RoadSpawn_0552 (Part) [7 attrs]
+        - RoadSpawn_0553 (Part) [7 attrs]
+        - RoadSpawn_0554 (Part) [7 attrs]
+        - RoadSpawn_0555 (Part) [7 attrs]
+        - RoadSpawn_0556 (Part) [7 attrs]
+        - RoadSpawn_0557 (Part) [7 attrs]
+        - RoadSpawn_0558 (Part) [7 attrs]
+        - RoadSpawn_0559 (Part) [7 attrs]
+        - RoadSpawn_0560 (Part) [7 attrs]
+        - RoadSpawn_0561 (Part) [7 attrs]
+        - RoadSpawn_0562 (Part) [7 attrs]
+        - RoadSpawn_0563 (Part) [7 attrs]
+        - RoadSpawn_0564 (Part) [7 attrs]
+        - RoadSpawn_0565 (Part) [7 attrs]
+        - RoadSpawn_0566 (Part) [7 attrs]
+        - RoadSpawn_0567 (Part) [7 attrs]
+        - RoadSpawn_0568 (Part) [7 attrs]
+        - RoadSpawn_0569 (Part) [7 attrs]
+        - RoadSpawn_0570 (Part) [7 attrs]
+        - RoadSpawn_0571 (Part) [7 attrs]
+        - RoadSpawn_0572 (Part) [7 attrs]
+        - RoadSpawn_0573 (Part) [7 attrs]
+        - RoadSpawn_0574 (Part) [7 attrs]
+        - RoadSpawn_0575 (Part) [7 attrs]
+        - RoadSpawn_0576 (Part) [7 attrs]
+        - RoadSpawn_0577 (Part) [7 attrs]
+        - RoadSpawn_0578 (Part) [7 attrs]
+        - RoadSpawn_0579 (Part) [7 attrs]
+        - RoadSpawn_0580 (Part) [7 attrs]
+        - RoadSpawn_0581 (Part) [7 attrs]
+        - RoadSpawn_0582 (Part) [7 attrs]
+        - RoadSpawn_0583 (Part) [7 attrs]
+        - RoadSpawn_0584 (Part) [7 attrs]
+        - RoadSpawn_0585 (Part) [7 attrs]
+        - RoadSpawn_0586 (Part) [7 attrs]
+        - RoadSpawn_0587 (Part) [7 attrs]
+        - RoadSpawn_0588 (Part) [7 attrs]
+        - RoadSpawn_0589 (Part) [7 attrs]
+        - RoadSpawn_0590 (Part) [7 attrs]
+        - RoadSpawn_0591 (Part) [7 attrs]
+        - RoadSpawn_0592 (Part) [7 attrs]
+        - RoadSpawn_0593 (Part) [7 attrs]
+        - RoadSpawn_0594 (Part) [7 attrs]
+        - RoadSpawn_0595 (Part) [7 attrs]
+        - RoadSpawn_0596 (Part) [7 attrs]
+        - RoadSpawn_0597 (Part) [7 attrs]
+        - RoadSpawn_0598 (Part) [7 attrs]
+        - RoadSpawn_0599 (Part) [7 attrs]
+        - RoadSpawn_0600 (Part) [7 attrs]
+        - RoadSpawn_0601 (Part) [7 attrs]
+        - RoadSpawn_0602 (Part) [7 attrs]
+        - RoadSpawn_0603 (Part) [7 attrs]
+        - RoadSpawn_0604 (Part) [7 attrs]
+        - RoadSpawn_0605 (Part) [7 attrs]
+        - RoadSpawn_0606 (Part) [7 attrs]
+        - RoadSpawn_0607 (Part) [7 attrs]
+        - RoadSpawn_0608 (Part) [7 attrs]
+        - RoadSpawn_0609 (Part) [7 attrs]
+        - RoadSpawn_0610 (Part) [7 attrs]
+        - RoadSpawn_0611 (Part) [7 attrs]
+        - RoadSpawn_0612 (Part) [7 attrs]
+        - RoadSpawn_0613 (Part) [7 attrs]
+        - RoadSpawn_0614 (Part) [7 attrs]
+        - RoadSpawn_0615 (Part) [7 attrs]
+        - RoadSpawn_0616 (Part) [7 attrs]
+        - RoadSpawn_0617 (Part) [7 attrs]
+        - RoadSpawn_0618 (Part) [7 attrs]
+        - RoadSpawn_0619 (Part) [7 attrs]
+        - RoadSpawn_0620 (Part) [7 attrs]
+        - RoadSpawn_0621 (Part) [7 attrs]
+        - RoadSpawn_0622 (Part) [7 attrs]
+        - RoadSpawn_0623 (Part) [7 attrs]
+        - RoadSpawn_0624 (Part) [7 attrs]
+        - RoadSpawn_0625 (Part) [7 attrs]
+        - RoadSpawn_0626 (Part) [7 attrs]
+        - RoadSpawn_0627 (Part) [7 attrs]
+        - RoadSpawn_0628 (Part) [7 attrs]
+        - RoadSpawn_0629 (Part) [7 attrs]
+        - RoadSpawn_0630 (Part) [7 attrs]
+        - RoadSpawn_0631 (Part) [7 attrs]
+        - RoadSpawn_0632 (Part) [7 attrs]
+        - RoadSpawn_0633 (Part) [7 attrs]
+        - RoadSpawn_0634 (Part) [7 attrs]
+        - RoadSpawn_0635 (Part) [7 attrs]
+        - RoadSpawn_0636 (Part) [7 attrs]
+        - RoadSpawn_0637 (Part) [7 attrs]
+        - RoadSpawn_0638 (Part) [7 attrs]
+        - RoadSpawn_0639 (Part) [7 attrs]
+        - RoadSpawn_0640 (Part) [7 attrs]
+        - RoadSpawn_0641 (Part) [7 attrs]
+        - RoadSpawn_0642 (Part) [7 attrs]
+        - RoadSpawn_0643 (Part) [7 attrs]
+        - RoadSpawn_0644 (Part) [7 attrs]
+        - RoadSpawn_0645 (Part) [7 attrs]
+        - RoadSpawn_0646 (Part) [7 attrs]
+        - RoadSpawn_0647 (Part) [7 attrs]
+        - RoadSpawn_0648 (Part) [7 attrs]
+        - RoadSpawn_0649 (Part) [7 attrs]
+        - RoadSpawn_0650 (Part) [7 attrs]
+        - RoadSpawn_0651 (Part) [7 attrs]
+        - RoadSpawn_0652 (Part) [7 attrs]
+        - RoadSpawn_0653 (Part) [7 attrs]
+        - RoadSpawn_0654 (Part) [7 attrs]
+        - RoadSpawn_0655 (Part) [7 attrs]
+        - RoadSpawn_0656 (Part) [7 attrs]
+        - RoadSpawn_0657 (Part) [7 attrs]
+        - RoadSpawn_0658 (Part) [7 attrs]
+        - RoadSpawn_0659 (Part) [7 attrs]
       - VehicleSpawnPoint_CurrentLive (ObjectValue) [6 attrs]
       - VehicleSpawnPoint (Part) [3 attrs]
       - SpawnLocation (SpawnLocation)
@@ -16398,9 +17070,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
@@ -16439,11 +17111,11 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -16480,11 +17152,11 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -18275,9 +18947,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -18397,9 +19069,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -18562,9 +19234,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
@@ -18645,10 +19317,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -18685,11 +19357,11 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -18894,10 +19566,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -18975,9 +19647,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
@@ -19150,10 +19822,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -19190,9 +19862,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
@@ -19439,9 +20111,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
@@ -19480,10 +20152,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -19564,9 +20236,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -19721,10 +20393,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -19804,10 +20476,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -21090,9 +21762,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
@@ -21132,10 +21804,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -21174,9 +21846,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -21215,9 +21887,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -23215,10 +23887,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -23255,10 +23927,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -23297,10 +23969,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -23339,9 +24011,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -23511,11 +24183,11 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -23553,10 +24225,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -23634,10 +24306,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -25038,9 +25710,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                 - Garage Bollard Yellow (Part)
               - Garage Sign (Model)
                 - Garage Sign (Part)
-                - Garage Sign (Part)
                   - SurfaceGui (SurfaceGui)
                     - TextLabel (TextLabel)
+                - Garage Sign (Part)
                 - Garage Sign (Part)
                 - Garage Sign (Part)
                 - Garage Sign Clearance (Part)
@@ -25080,9 +25752,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Sign (Model)
                 - Garage Sign (Part)
                 - Garage Sign (Part)
-                - Garage Sign (Part)
                   - SurfaceGui (SurfaceGui)
                     - TextLabel (TextLabel)
+                - Garage Sign (Part)
                 - Garage Sign (Part)
                 - Garage Sign Clearance (Part)
                   - SurfaceGui (SurfaceGui)

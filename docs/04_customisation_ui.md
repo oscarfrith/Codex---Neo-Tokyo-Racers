@@ -79,6 +79,12 @@ Free Roam Car Menu Phase 7 is prepared as `scripts/roblox_freeroam_car_menu_phas
 
 Free Roam Vehicle Spawn Phase 1 is prepared as `scripts/roblox_freeroam_vehicle_spawn_phase1_audit.lua` and documented in `docs/freeroam-vehicle-spawn-phase1-audit-2026-07-05.md`. It is read-only and should be run before implementing cockpit-card click-to-spawn. The intended next behavior is for each owned cockpit card to spawn/swap that vehicle, with the server enforcing ownership, a `10 mph` speed limit, current-vehicle despawn, nearest-road placement, and automatic seating.
 
+Free Roam Vehicle Spawn Phase 2 is prepared as `scripts/roblox_freeroam_vehicle_spawn_phase2_road_spawn_markers.lua` and documented in `docs/freeroam-vehicle-spawn-phase2-road-markers-2026-07-05.md`. It creates explicit invisible `NTR_RoadSpawnPoint` markers from safer exact road/asphalt parts and seeds `ReplicatedStorage.NeoTokyoRacers.Config.Runtime.FreeRoamVehicleSpawn`. Phase 3 should use those tagged markers rather than broad road-edge meshes.
+
+Preferred Phase 2 first pass: `scripts/roblox_freeroam_vehicle_spawn_phase2_blockout_road_markers.lua`, documented in `docs/freeroam-vehicle-spawn-phase2-blockout-road-markers-2026-07-05.md`. It uses the curated `Workspace.Test + WIP Assets.Blockout.Roads` folder and creates one lightweight invisible marker above each `Road` part centre only when the part colour is `RGB(95, 95, 95)` / `#5f5f5f`. This is safer than scanning the whole city because the source folder already represents intended road surfaces and differently coloured wall pieces are skipped.
+
+Free Roam Vehicle Spawn Phase 3 is prepared as `scripts/roblox_freeroam_vehicle_spawn_phase3_click_spawn.lua` and documented in `docs/freeroam-vehicle-spawn-phase3-click-spawn-2026-07-05.md`. It adds the guarded server action `SpawnOwnedVehicleFromFreeRoam` and wires owned cockpit cards to spawn/swap into that vehicle at the nearest clear `NTR_RoadSpawnPoint`, with a server-side speed gate defaulting to `10 MPH`.
+
 ## Dealership Flow
 
 Known dealership structure:
@@ -325,3 +331,19 @@ Known mobile driving UI:
 - Boost button also acts as boost meter.
 - MPH text shown above boost button.
 - PC bottom-left drive HUD should be hidden on mobile.
+
+## Free Roam Vehicle Menu
+
+Free Roam Vehicle Spawn Phase 4 separates three vehicle states:
+
+- Clicking an owned cockpit card in the free-roam car menu should spawn/swap into that vehicle and auto-seat the player.
+- The car-menu `DESPAWN` button should destroy the currently spawned vehicle after safely unseating/moving the player.
+- The driving-only `EXIT VEHICLE` button should park the player 10 studs left of the driver seat and leave the car spawned for meet-ups/showcase.
+
+Parked vehicles should be re-entered through a server-validated owner `ProximityPrompt` (`E` on keyboard, touch prompt on mobile), not by automatic seat touch. Phase 4 sets driver-seat `CanTouch=false` so the hidden seat should not auto-enter when bumped. Phase 4B also disables the older bootstrap distance-based `ReEnterVehicle` loop, so prompt entry is the only walk-up entry path.
+
+Phase 4B adds an explicit `FreeRoamVehicleSpawned` bindable handoff from the free-roam cockpit-card UI into the existing `startDriving()` path. This replaces relying on the old auto re-entry fallback and should make the first cockpit-card spawn immediately hover/drive. Parked vehicles set `DriveReady=true` and `ParkedShowcase=true`; if Play testing shows hover/VFX still stop while unoccupied, add a small isolated parked-hover/VFX keeper service rather than changing the free-roam cockpit card UI again.
+
+Phase 4C adds that first parked-hover keeper as `FreeRoamParkedHoverController_Active`. Exiting now fires `FreeRoamVehicleExited`, the main bootstrap calls `stopDriving()` to remove controls/HUD and restore camera to the humanoid, and the parked-hover keeper applies only hover/alignment forces while `ParkedShowcase=true` and `DriverUserId=nil`. It should not apply throttle, steering, drift, boost, or braking. Prompt re-entry detects the player being seated again and fires the same `FreeRoamVehicleSpawned` drive handoff as cockpit-card spawning. Phase 4C also hides the free-roam car pop-out after a successful cockpit-card spawn.
+
+Phase 4D keeps parked/despawn behaviour player-centred: `DespawnVehicle` only moves the player if they are currently seated in the vehicle being despawned, and the `10 MPH` spawn gate plus vehicle-position spawn anchor apply only while actively seated/driving. If the player has exited and is on foot, spawning/despawning should use the player's position/state rather than the parked car. Phase 4D also narrows the desktop car pop-out to three compact cards and removes the pink outline layers from free-roam cockpit card/image boxes while preserving the selected magenta fill.

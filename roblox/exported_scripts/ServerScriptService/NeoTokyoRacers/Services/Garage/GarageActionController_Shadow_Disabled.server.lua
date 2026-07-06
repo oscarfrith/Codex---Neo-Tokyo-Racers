@@ -8,6 +8,7 @@ do
 	local Players = game:GetService("Players")
 	local ReplicatedStorage = game:GetService("ReplicatedStorage")
 	local Workspace = game:GetService("Workspace")
+	local CollectionService = game:GetService("CollectionService")
 
 	local V56_KIT_NAME = "NeoTokyoRacers"
 	local V56_WORLD_NAME = "NeoTokyoRacersWorld"
@@ -572,7 +573,9 @@ local V56_STARTING_CASH = V56_kit:GetAttribute("StartingCash") or 140000
 		BuyNeon = true,
 		SetThrustColor = true,
 		SpawnVehicle = false,
+		SpawnOwnedVehicleFromFreeRoam = true,
 		ExitVehicle = false,
+		DespawnVehicle = false,
 		ReEnterVehicle = false,
 		GetInitial = false,		BuyCockpitInstance = true,
 		BuyModuleInstance = true,
@@ -1946,6 +1949,7 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 			seat.Transparency = 1
 			seat.CanCollide = false
 			seat.CanQuery = false
+			seat.CanTouch = false
 			seat.Massless = true
 			return seat
 		end
@@ -1955,6 +1959,7 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		seat.Transparency = 1
 		seat.CanCollide = false
 		seat.CanQuery = false
+		seat.CanTouch = false
 		seat.Massless = true
 		seat.Anchored = false
 		seat.CFrame = root.CFrame * CFrame.new(0, 2.2, 8)
@@ -1988,7 +1993,7 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		return false
 	end
 
-	local function V56_buildVehicle(player, profile)
+	local function V56_buildVehicle(player, profile, spawnCFrameOverride)
 		V56_normalizeProfile(profile)
 		local cockpit = V56_findCockpit(profile.CurrentCategory, profile.CurrentCockpit)
 		if not cockpit then return nil, "Cockpit template not found." end
@@ -2050,27 +2055,295 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 
 		local seat = V56_makeDriverSeat(vehicle, root)
 		V56_weldVehicle(vehicle, root)
-		vehicle:PivotTo(V56_spawnCFrame())
+		vehicle:PivotTo(spawnCFrameOverride or V56_spawnCFrame())
 		V56_seatPlayer(player, vehicle, seat)
 		return vehicle
 	end
 
-	local function V56_exitVehicle(player)
-		local vehicle
-		for _, candidate in ipairs(V56_vehiclesRoot:GetChildren()) do
-			if candidate:GetAttribute("OwnerUserId") == player.UserId then vehicle = candidate; break end
+	-- NTR_FREEROAM_VEHICLE_SPAWN_PHASE3_SERVER
+	local V91_lastFreeRoamSpawnByUserId = {}
+	local V91_ROAD_SPAWN_TAG = "NTR_RoadSpawnPoint"
+	local V91_ROAD_GREY = Vector3.new(95, 95, 95)
+
+	local function V91_spawnConfigRoot()
+		local config = V56_kit:FindFirstChild("Config")
+		local runtime = config and config:FindFirstChild("Runtime")
+		return runtime and runtime:FindFirstChild("FreeRoamVehicleSpawn")
+	end
+
+	local function V91_configNumber(name, fallback)
+		local root = V91_spawnConfigRoot()
+		local item = root and root:FindFirstChild(name)
+		if item and item:IsA("NumberValue") then
+			return item.Value
 		end
+		return fallback
+	end
+
+	local function V91_configBool(name, fallback)
+		local root = V91_spawnConfigRoot()
+		local item = root and root:FindFirstChild(name)
+		if item and item:IsA("BoolValue") then
+			return item.Value
+		end
+		return fallback
+	end
+
+	local function V91_playerVehicle(player)
+		for _, candidate in ipairs(V56_vehiclesRoot:GetChildren()) do
+			if candidate:GetAttribute("OwnerUserId") == player.UserId then
+				return candidate
+			end
+		end
+		return nil
+	end
+
+	local function V91_rootPart(model)
+		if not model then
+			return nil
+		end
+		return model.PrimaryPart or model:FindFirstChild("CockpitRoot_DoNotRename", true)
+	end
+
+	local function V91_playerSpeedMph(player)
+		local studsToMph = V91_configNumber("StudsPerSecondToMph", 0.625)
+		local vehicleRoot = V91_rootPart(V91_playerVehicle(player))
+		if vehicleRoot and vehicleRoot:IsA("BasePart") then
+			return vehicleRoot.AssemblyLinearVelocity.Magnitude * studsToMph
+		end
+		local character = player.Character
+		local humanoidRoot = character and character:FindFirstChild("HumanoidRootPart")
+		if humanoidRoot and humanoidRoot:IsA("BasePart") then
+			return humanoidRoot.AssemblyLinearVelocity.Magnitude * studsToMph
+		end
+		return 0
+	end
+
+
+	-- NTR_FREEROAM_VEHICLE_SPAWN_PHASE4D_SPEED_GATE_DRIVING_ONLY
+	local function V94_playerIsDrivingOwnedVehicle(player)
+		local vehicle = V91_playerVehicle(player)
+		if not vehicle then return false end
+		local character = player.Character
+		local humanoid = character and character:FindFirstChildOfClass("Humanoid")
+		local seat = humanoid and humanoid.SeatPart
+		return seat ~= nil and seat:IsA("VehicleSeat") and seat:IsDescendantOf(vehicle)
+	end
+	local function V91_requestPosition(player)
+		if V94_playerIsDrivingOwnedVehicle(player) then
+			local vehicleRoot = V91_rootPart(V91_playerVehicle(player))
+			if vehicleRoot and vehicleRoot:IsA("BasePart") then
+				return vehicleRoot.Position
+			end
+		end
+		local character = player.Character
+		local humanoidRoot = character and character:FindFirstChild("HumanoidRootPart")
+		if humanoidRoot and humanoidRoot:IsA("BasePart") then
+			return humanoidRoot.Position
+		end
+		return V56_FALLBACK_SPAWN_POS
+	end
+
+	local function V91_colorRgb(color)
+		return Vector3.new(math.floor(color.R * 255 + 0.5), math.floor(color.G * 255 + 0.5), math.floor(color.B * 255 + 0.5))
+	end
+
+	local function V91_isAllowedRoadPart(part)
+		local lower = string.lower(part.Name)
+		if lower == "road" then
+			local rgb = V91_colorRgb(part.Color)
+			return math.abs(rgb.X - V91_ROAD_GREY.X) <= 3
+				and math.abs(rgb.Y - V91_ROAD_GREY.Y) <= 3
+				and math.abs(rgb.Z - V91_ROAD_GREY.Z) <= 3
+		end
+		return string.find(lower, "road marking", 1, true) ~= nil
+	end
+
+	local function V91_markerEnabled(marker)
+		if marker:GetAttribute("SpawnEnabled") == false then
+			return false
+		end
+		if marker:GetAttribute("Disabled") == true then
+			return false
+		end
+		return true
+	end
+
+	local function V91_markerSpawnCFrame(marker)
+		local heightOffset = V91_configNumber("SpawnHeightOffset", 4)
+		local position = marker.Position + Vector3.new(0, heightOffset, 0)
+		return CFrame.lookAt(position, position + marker.CFrame.LookVector)
+	end
+
+	local function V91_spawnIsClear(player, spawnCFrame)
+		local clearanceRadius = V91_configNumber("SpawnClearanceRadius", 16)
+		local querySize = Vector3.new(clearanceRadius * 2, 10, clearanceRadius * 2)
+		local params = OverlapParams.new()
+		params.FilterType = Enum.RaycastFilterType.Exclude
+		local excludes = { V56_vehiclesRoot }
+		if player.Character then
+			table.insert(excludes, player.Character)
+		end
+		local spawnPoints = V56_world:FindFirstChild("SpawnPoints")
+		local roadMarkers = spawnPoints and spawnPoints:FindFirstChild("RoadSpawnMarkers")
+		if roadMarkers then
+			table.insert(excludes, roadMarkers)
+		end
+		params.FilterDescendantsInstances = excludes
+
+		local parts = Workspace:GetPartBoundsInBox(spawnCFrame, querySize, params)
+		for _, part in ipairs(parts) do
+			if part:IsA("BasePart") and part.CanCollide and not V91_isAllowedRoadPart(part) then
+				return false, part:GetFullName()
+			end
+		end
+		return true, nil
+	end
+
+	local function V91_nearestRoadSpawnCFrame(player)
+		local origin = V91_requestPosition(player)
+		local radius = V91_configNumber("RoadSearchRadius", 350)
+		local markers = {}
+		for _, marker in ipairs(CollectionService:GetTagged(V91_ROAD_SPAWN_TAG)) do
+			if marker:IsA("BasePart") and marker:IsDescendantOf(Workspace) and V91_markerEnabled(marker) then
+				local offset = marker.Position - origin
+				local flatDistance = Vector3.new(offset.X, 0, offset.Z).Magnitude
+				if flatDistance <= radius then
+					table.insert(markers, { Marker = marker, Distance = flatDistance })
+				end
+			end
+		end
+		table.sort(markers, function(a, b)
+			return a.Distance < b.Distance
+		end)
+		for _, entry in ipairs(markers) do
+			local cf = V91_markerSpawnCFrame(entry.Marker)
+			local clear = V91_spawnIsClear(player, cf)
+			if clear then
+				return cf, entry.Marker
+			end
+		end
+		if V91_configBool("AllowFallbackToPlayerOffset", false) then
+			local position = origin + Vector3.new(0, V91_configNumber("SpawnHeightOffset", 4), 0)
+			return CFrame.lookAt(position, position + Vector3.new(0, 0, -1)), nil
+		end
+		return nil, nil
+	end
+
+	local function V91_spawnOwnedVehicleFromFreeRoam(player, profile, args)
+		args = typeof(args) == "table" and args or {}
+		local now = os.clock()
+		local cooldown = V91_configNumber("SpawnCooldownSeconds", 1)
+		local last = V91_lastFreeRoamSpawnByUserId[player.UserId] or 0
+		if now - last < cooldown then
+			return false, "Spawn is cooling down."
+		end
+
+		local maxSpeed = V91_configNumber("MaxSpawnSpeedMph", 10)
+		if V94_playerIsDrivingOwnedVehicle(player) then
+			local speedMph = V91_playerSpeedMph(player)
+			if speedMph > maxSpeed then
+				return false, "Slow below " .. tostring(math.floor(maxSpeed + 0.5)) .. " MPH to spawn."
+			end
+		end
+
+		local okSelect, selectMessage = V89_selectVehicleInstance(profile, args)
+		if not okSelect then
+			return false, selectMessage
+		end
+		if not V76_coreModulesEquipped(profile) then
+			return false, "Equip at least one engine, stabilisers, and boost before driving."
+		end
+
+		local spawnCFrame, marker = V91_nearestRoadSpawnCFrame(player)
+		if not spawnCFrame then
+			return false, "No clear road spawn nearby."
+		end
+
+		V91_lastFreeRoamSpawnByUserId[player.UserId] = now
+		local vehicle, err = V56_buildVehicle(player, profile, spawnCFrame)
+		if not vehicle then
+			return false, err or "Vehicle spawn failed."
+		end
+		if marker then
+			vehicle:SetAttribute("FreeRoamSpawnMarker", marker:GetFullName())
+		end
+		return true, "Vehicle spawned."
+	end
+
+	-- NTR_FREEROAM_VEHICLE_SPAWN_PHASE4_SERVER
+	local function V92_playerVehicle(player)
+		for _, candidate in ipairs(V56_vehiclesRoot:GetChildren()) do
+			if candidate:GetAttribute("OwnerUserId") == player.UserId then
+				return candidate
+			end
+		end
+		return nil
+	end
+
+	local function V92_vehicleExitCFrame(vehicle)
+		if not vehicle then return nil end
+		local seat = vehicle:FindFirstChild("DriverSeat", true)
+		if seat and seat:IsA("VehicleSeat") then
+			return seat.CFrame * CFrame.new(-10, 3, 0)
+		end
+		local root = vehicle.PrimaryPart or vehicle:FindFirstChild("CockpitRoot_DoNotRename", true)
+		if root and root:IsA("BasePart") then
+			return root.CFrame * CFrame.new(-10, 3, 0)
+		end
+		return nil
+	end
+
+	local function V92_unseatAndMovePlayer(player, vehicle)
 		local character = player.Character
 		local humanoid = character and character:FindFirstChildOfClass("Humanoid")
 		local humanoidRoot = character and character:FindFirstChild("HumanoidRootPart")
-		local root = vehicle and (vehicle.PrimaryPart or vehicle:FindFirstChild("CockpitRoot_DoNotRename", true))
-		if humanoid then humanoid.Sit = false end
-		if humanoidRoot and root then humanoidRoot.CFrame = root.CFrame * CFrame.new(-14, 3, 0) end
+		local exitCFrame = V92_vehicleExitCFrame(vehicle)
+		if humanoid then
+			humanoid.Sit = false
+		end
+		if humanoidRoot and exitCFrame then
+			humanoidRoot.CFrame = exitCFrame
+		end
+	end
+
+	local function V56_exitVehicle(player)
+		local vehicle = V92_playerVehicle(player)
+		V92_unseatAndMovePlayer(player, vehicle)
 		if vehicle then
-			vehicle:SetAttribute("DriveReady", false)
+			vehicle:SetAttribute("DriveReady", true)
 			vehicle:SetAttribute("DriverUserId", nil)
+			vehicle:SetAttribute("ParkedShowcase", true)
+			vehicle:SetAttribute("EngineVFXActive", true)
 		end
 		return true, "Exited vehicle."
+	end
+
+
+	-- NTR_FREEROAM_VEHICLE_SPAWN_PHASE4D_DESPAWN_ONLY_MOVE_IF_SEATED
+	local function V94_playerIsSeatedInVehicle(player, vehicle)
+		if not vehicle then return false end
+		local character = player.Character
+		local humanoid = character and character:FindFirstChildOfClass("Humanoid")
+		local seat = humanoid and humanoid.SeatPart
+		return seat ~= nil and seat:IsA("VehicleSeat") and seat:IsDescendantOf(vehicle)
+	end
+	local function V92_despawnVehicle(player)
+		local vehicle = V92_playerVehicle(player)
+		if not vehicle then
+			return false, "No vehicle to despawn."
+		end
+		if V94_playerIsSeatedInVehicle(player, vehicle) then
+			V92_unseatAndMovePlayer(player, vehicle)
+		else
+			local character = player.Character
+			local humanoid = character and character:FindFirstChildOfClass("Humanoid")
+			if humanoid and humanoid.SeatPart and humanoid.SeatPart:IsDescendantOf(vehicle) then
+				humanoid.Sit = false
+			end
+		end
+		vehicle:Destroy()
+		return true, "Vehicle despawned."
 	end
 
 	local function V56_reEnterVehicle(player)
@@ -2269,10 +2542,14 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 					end
 					ok, message = true, "Thrust colour updated."
 				end
+			elseif action == "DespawnVehicle" then
+				ok, message = V92_despawnVehicle(player)
 			elseif action == "ExitVehicle" then
 				ok, message = V56_exitVehicle(player)
 			elseif action == "ReEnterVehicle" then
 				ok, message = V56_reEnterVehicle(player)
+			elseif action == "SpawnOwnedVehicleFromFreeRoam" then
+				ok, message = V91_spawnOwnedVehicleFromFreeRoam(player, profile, args)
 			elseif action == "SpawnVehicle" then
 				if not V76_coreModulesEquipped(profile) then
 					ok, message = false, "Equip at least one engine, stabilisers, and boost before customising or driving."

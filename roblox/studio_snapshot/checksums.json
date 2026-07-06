@@ -299,9 +299,9 @@
     "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Garage/GarageActionController_Shadow_Disabled.server.lua",
     "class_name": "Script",
     "disabled": false,
-    "source_lines": 2308,
-    "source_bytes": 97148,
-    "source_checksum": "411153170"
+    "source_lines": 2585,
+    "source_bytes": 106523,
+    "source_checksum": "840607793"
   },
   "ServerScriptService.NeoTokyoRacers.Services.Garage.GarageInteriorCustomizationService_Active": {
     "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Garage/GarageInteriorCustomizationService_Active.server.lua",
@@ -342,6 +342,14 @@
     "source_lines": 234,
     "source_bytes": 6224,
     "source_checksum": "659061694"
+  },
+  "ServerScriptService.NeoTokyoRacers.Services.Vehicle.VehicleAccessPromptService_Active": {
+    "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Vehicle/VehicleAccessPromptService_Active.server.lua",
+    "class_name": "Script",
+    "disabled": false,
+    "source_lines": 130,
+    "source_bytes": 3743,
+    "source_checksum": "606738515"
   },
   "ServerScriptService.NeoTokyoRacers.Services.Vehicle.VehiclePerformanceRuntimeService_Active": {
     "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Vehicle/VehiclePerformanceRuntimeService_Active.server.lua",
@@ -463,6 +471,14 @@
     "source_bytes": 7329,
     "source_checksum": "256142247"
   },
+  "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Runtime.FreeRoamParkedHoverController_Active": {
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Runtime/FreeRoamParkedHoverController_Active.client.lua",
+    "class_name": "LocalScript",
+    "disabled": false,
+    "source_lines": 209,
+    "source_bytes": 7168,
+    "source_checksum": "190489678"
+  },
   "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Runtime.MobileDriveControlsController_Active": {
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Runtime/MobileDriveControlsController_Active.client.lua",
     "class_name": "LocalScript",
@@ -483,9 +499,17 @@
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/UI/FreeRoamNavController_Active.client.lua",
     "class_name": "LocalScript",
     "disabled": false,
-    "source_lines": 1256,
-    "source_bytes": 48884,
-    "source_checksum": "94619792"
+    "source_lines": 1316,
+    "source_bytes": 51070,
+    "source_checksum": "356327033"
+  },
+  "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.FreeRoamVehicleExitButton_Active": {
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/UI/FreeRoamVehicleExitButton_Active.client.lua",
+    "class_name": "LocalScript",
+    "disabled": false,
+    "source_lines": 115,
+    "source_bytes": 3765,
+    "source_checksum": "620285266"
   },
   "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.CockpitPaintUIController": {
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/UI/CockpitPaintUIController.module.lua",
@@ -603,9 +627,9 @@
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/NeoTokyoRacersClient_Bootstrap_Shadow_Disabled.client.lua",
     "class_name": "LocalScript",
     "disabled": false,
-    "source_lines": 4547,
-    "source_bytes": 183581,
-    "source_checksum": "266801394"
+    "source_lines": 4616,
+    "source_bytes": 185787,
+    "source_checksum": "74000504"
   },
   "StarterPlayer.StarterPlayerScripts.LocalScript": {
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/LocalScript.client.lua",

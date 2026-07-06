@@ -264,6 +264,21 @@ local function exitVehicle()
 	setStatus((result.Success == false and result.Message) or "EXIT VEHICLE SENT", result.Success ~= false)
 end
 
+
+-- NTR_FREEROAM_VEHICLE_SPAWN_PHASE4_CLIENT
+local function despawnVehicle()
+	local result = callGarage("DespawnVehicle", {})
+	local character = player.Character
+	local humanoid = character and character:FindFirstChildOfClass("Humanoid")
+	if humanoid then
+		humanoid.Sit = false
+	end
+	if result.Success == true then
+		cachedProfile = result.Profile or cachedProfile
+		lastProfileRead = os.clock()
+	end
+	setStatus((result.Success == false and result.Message) or "VEHICLE DESPAWNED", result.Success ~= false)
+end
 local function isGuiActuallyVisible(object, stopAt)
 	local current = object
 	while current and current ~= stopAt do
@@ -781,10 +796,49 @@ local function carPanelLayoutForWidth(width)
 	return pad, imageSize, nameY, nameH, cardH, visualWidth
 end
 
+
+-- NTR_FREEROAM_VEHICLE_SPAWN_PHASE4B_CLIENT_FIRE
+local function fireFreeRoamVehicleSpawned()
+	local playerScripts = player:FindFirstChild("PlayerScripts")
+	local clientRoot = playerScripts and playerScripts:FindFirstChild("NeoTokyoRacersClient")
+	local controllers = clientRoot and clientRoot:FindFirstChild("Controllers")
+	local uiFolder = controllers and controllers:FindFirstChild("UI")
+	local event = uiFolder and uiFolder:FindFirstChild("FreeRoamVehicleSpawned")
+	if event and event:IsA("BindableEvent") then
+		event:Fire()
+	end
+end
+-- NTR_FREEROAM_VEHICLE_SPAWN_PHASE3_CLIENT
+local function spawnOwnedVehicleFromCard(row)
+	if not row or not row.VehicleId then
+		setStatus("VEHICLE CARD MISSING ID", false)
+		return
+	end
+	setStatus("SPAWNING VEHICLE...", true)
+	local result = callGarage("SpawnOwnedVehicleFromFreeRoam", {
+		VehicleId = tostring(row.VehicleId or ""),
+		CockpitId = tostring(row.CockpitId or ""),
+	})
+	if result.Success == true then
+		cachedProfile = result.Profile or cachedProfile
+		lastProfileRead = os.clock()
+		setStatus("VEHICLE SPAWNED", true)
+		fireFreeRoamVehicleSpawned()
+		-- NTR_FREEROAM_VEHICLE_SPAWN_PHASE4C_HIDE_CAR_MENU
+		if actionPanel then
+			actionPanel.Visible = false
+			activePanel = nil
+		end
+	else
+		setStatus(tostring(result.Message or "SPAWN FAILED"), false)
+	end
+end
+
 local function carPanelRenderCockpitCard(parent, row, width)
 	local pad, imageSize, nameY, nameH, cardH, visualWidth = carPanelLayoutForWidth(width)
-	local border = math.max(1, math.floor(carPanelNumber("CarPanelBorderThickness", 2) + 0.5))
-	local outlineColor = readColor(config, "ButtonOutline", Color3.fromRGB(230, 88, 205))
+	-- NTR_FREEROAM_VEHICLE_SPAWN_PHASE4D_COMPACT_BORDERLESS_CARDS
+	local border = 0
+	local outlineColor = row.Selected and theme.Selected or theme.Card
 	local card = Instance.new("TextButton")
 	card.Name = "VehicleCell_" .. tostring(row.VehicleId)
 	card.AutoButtonColor = true
@@ -803,7 +857,7 @@ local function carPanelRenderCockpitCard(parent, row, width)
 	local surfaceBorder = Instance.new("Frame")
 	surfaceBorder.Name = "CardSurface"
 	surfaceBorder.BackgroundColor3 = outlineColor
-	surfaceBorder.BackgroundTransparency = row.Selected and 0.08 or 0.18
+	surfaceBorder.BackgroundTransparency = row.Selected and 0.02 or theme.ButtonTransparency
 	surfaceBorder.BorderSizePixel = 0
 	surfaceBorder.ClipsDescendants = false
 	surfaceBorder.Position = UDim2.fromOffset(0, 0)
@@ -818,16 +872,16 @@ local function carPanelRenderCockpitCard(parent, row, width)
 	surface.BackgroundTransparency = row.Selected and 0.08 or theme.ButtonTransparency
 	surface.BorderSizePixel = 0
 	surface.ClipsDescendants = false
-	surface.Position = UDim2.fromOffset(border, border)
-	surface.Size = UDim2.new(1, -border * 2, 1, -border * 2)
+	surface.Position = UDim2.fromOffset(0, 0)
+	surface.Size = UDim2.fromScale(1, 1)
 	surface.ZIndex = surfaceBorder.ZIndex + 1
 	surface.Parent = surfaceBorder
 	corner(surface, math.max(3, 6 - border))
 
 	local imageBorder = Instance.new("Frame")
 	imageBorder.Name = "ImageBox"
-	imageBorder.BackgroundColor3 = outlineColor
-	imageBorder.BackgroundTransparency = 0.18
+	imageBorder.BackgroundColor3 = Color3.fromRGB(18, 27, 31)
+	imageBorder.BackgroundTransparency = 0
 	imageBorder.BorderSizePixel = 0
 	imageBorder.ClipsDescendants = false
 	imageBorder.Position = UDim2.fromOffset(pad, pad)
@@ -841,8 +895,8 @@ local function carPanelRenderCockpitCard(parent, row, width)
 	imageBox.BackgroundColor3 = Color3.fromRGB(18, 27, 31)
 	imageBox.BorderSizePixel = 0
 	imageBox.ClipsDescendants = true
-	imageBox.Position = UDim2.fromOffset(border, border)
-	imageBox.Size = UDim2.new(1, -border * 2, 1, -border * 2)
+	imageBox.Position = UDim2.fromOffset(0, 0)
+	imageBox.Size = UDim2.fromScale(1, 1)
 	imageBox.ZIndex = imageBorder.ZIndex + 1
 	imageBox.Parent = imageBorder
 	corner(imageBox, math.max(2, carPanelCardConfigNumber("ImageCornerRadius", 4) - border))
@@ -907,11 +961,11 @@ local function carPanelRenderCockpitCard(parent, row, width)
 	name.ZIndex = surfaceBorder.ZIndex + 4
 
 	card.MouseButton1Click:Connect(function()
-		local action = readString(config, "CarPanelClickAction", "PreviewOnly")
+		local action = readString(config, "CarPanelClickAction", "SpawnOwnedVehicle")
 		if action == "PreviewOnly" then
 			setStatus(row.Selected and "CURRENT VEHICLE" or "SPAWN / SELECT COMING NEXT", row.Selected)
 		else
-			setStatus("READY FOR " .. string.upper(action), true)
+			spawnOwnedVehicleFromCard(row)
 		end
 	end)
 	return card
@@ -980,7 +1034,7 @@ local function carPanelRender()
 		end
 	end
 
-	makeActionButton(actionBody, "DespawnVehicle", "DESPAWN", 0, theme.Exit, exitVehicle)
+	makeActionButton(actionBody, "DespawnVehicle", "DESPAWN", 0, theme.Exit, despawnVehicle)
 	carPanelLayoutExisting()
 end
 
@@ -1216,8 +1270,14 @@ local function updateLayout()
 	local defaultPanelW = math.max(touch and 164 or 190, math.min(touch and 212 or 244, stackW * 0.98))
 	local panelW = defaultPanelW
 	if activePanel == "Car" and actionPanel.Visible then
-		local desiredW = touch and carPanelNumber("CarPanelWidthTouch", 260) or carPanelNumber("CarPanelWidthDesktop", 512)
-		local minPanelW = touch and carPanelNumber("CarPanelMinWidthTouch", 240) or carPanelNumber("CarPanelMinWidthDesktop", 430)
+		local columns = touch and carPanelNumber("CarPanelMobileColumns", 2) or carPanelNumber("CarPanelDesktopColumns", 3)
+		columns = math.max(1, math.floor(columns + 0.5))
+		local pad = carPanelNumber("CarPanelPadding", 8)
+		local gap = carPanelNumber("CarPanelCardGap", 8)
+		local maxCard = touch and carPanelNumber("CarPanelMaxCardWidthTouch", 118) or carPanelNumber("CarPanelMaxCardWidthDesktop", 146)
+		local fittedW = pad * 2 + columns * maxCard + gap * math.max(columns - 1, 0)
+		local desiredW = touch and carPanelNumber("CarPanelWidthTouch", fittedW) or fittedW
+		local minPanelW = touch and carPanelNumber("CarPanelMinWidthTouch", math.min(240, fittedW)) or fittedW
 		local maxAvailableW = math.max(minPanelW, viewport.X - rightMargin - stackW - 18)
 		panelW = math.floor(math.clamp(desiredW, minPanelW, maxAvailableW))
 	end

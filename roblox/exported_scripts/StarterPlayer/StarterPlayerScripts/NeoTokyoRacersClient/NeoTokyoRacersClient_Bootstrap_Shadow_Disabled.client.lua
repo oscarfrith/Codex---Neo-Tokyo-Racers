@@ -3984,6 +3984,74 @@ local function startDriving()
 	end)
 end
 
+
+-- NTR_FREEROAM_VEHICLE_SPAWN_PHASE4B_DRIVE_HANDOFF
+local function V93_freeRoamVehicleSpawnedEvent()
+	local clientRoot = script.Parent
+	local controllers = clientRoot and clientRoot:FindFirstChild("Controllers")
+	local uiFolder = controllers and controllers:FindFirstChild("UI")
+	if not uiFolder then return nil end
+	local event = uiFolder:FindFirstChild("FreeRoamVehicleSpawned")
+	if event and not event:IsA("BindableEvent") then
+		warn("[NTR Phase 4B] FreeRoamVehicleSpawned exists but is " .. event.ClassName .. ", expected BindableEvent.")
+		return nil
+	end
+	if not event then
+		event = Instance.new("BindableEvent")
+		event.Name = "FreeRoamVehicleSpawned"
+		event.Parent = uiFolder
+	end
+	return event
+end
+
+local V93_spawnedEvent = V93_freeRoamVehicleSpawnedEvent()
+if V93_spawnedEvent then
+	V93_spawnedEvent.Event:Connect(function()
+		task.defer(startDriving)
+	end)
+end
+
+-- NTR_FREEROAM_VEHICLE_SPAWN_PHASE4C_EXIT_STOP
+local function V94_freeRoamVehicleExitedEvent()
+	local clientRoot = script.Parent
+	local controllers = clientRoot and clientRoot:FindFirstChild("Controllers")
+	local uiFolder = controllers and controllers:FindFirstChild("UI")
+	if not uiFolder then return nil end
+	local event = uiFolder:FindFirstChild("FreeRoamVehicleExited")
+	if event and not event:IsA("BindableEvent") then
+		warn("[NTR Phase 4C] FreeRoamVehicleExited exists but is " .. event.ClassName .. ", expected BindableEvent.")
+		return nil
+	end
+	if not event then
+		event = Instance.new("BindableEvent")
+		event.Name = "FreeRoamVehicleExited"
+		event.Parent = uiFolder
+	end
+	return event
+end
+
+local V94_exitedEvent = V94_freeRoamVehicleExitedEvent()
+if V94_exitedEvent then
+	V94_exitedEvent.Event:Connect(function()
+		local vehicle = currentVehicle
+		if vehicle then
+			vehicle:SetAttribute("ParkedShowcase", true)
+			vehicle:SetAttribute("DriverUserId", nil)
+			vehicle:SetAttribute("DriveReady", true)
+		end
+		stopDriving()
+		local humanoid = getHumanoid()
+		if humanoid then
+			humanoid.Sit = false
+		end
+		if camera then
+			camera.CameraType = Enum.CameraType.Custom
+			if humanoid then
+				camera.CameraSubject = humanoid
+			end
+		end
+	end)
+end
 RunService.Heartbeat:Connect(function()
 	local now = os.clock()
 	if not reentryProbe:ShouldRun(now) then return end
@@ -3998,7 +4066,8 @@ RunService.Heartbeat:Connect(function()
 	local seat = vehicle and vehicle:FindFirstChild("DriverSeat", true)
 	local targetPart = (seat and seat:IsA("BasePart")) and seat or root
 	if not targetPart then return end
-	if (humanoidRoot.Position - targetPart.Position).Magnitude <= 6.5 then
+	-- NTR_FREEROAM_VEHICLE_SPAWN_PHASE4B_PROMPT_ONLY_REENTRY
+	if false and (humanoidRoot.Position - targetPart.Position).Magnitude <= 6.5 then
 		reentryCooldown = now + 1.25
 		reentryProbe:Cooldown(1.25)
 		local result = callServer("ReEnterVehicle", {})
