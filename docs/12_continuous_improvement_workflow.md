@@ -55,6 +55,18 @@ When a command-bar script patches source text:
 
 If two or more source-anchor repairs fail in the same live script, stop and prefer a canonical replacement of the isolated script, or refresh the Studio mirror and inspect the live source before continuing.
 
+## Client Bootstrap Register-Limit Rule
+
+`StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.NeoTokyoRacersClient_Bootstrap_Shadow_Disabled` is a register-limited legacy bridge. Roblox can fail Play startup with `Out of local registers` when new top-level local helpers are added, even if the feature itself is small.
+
+For future work:
+
+- do not add new top-level local functions, local constants, or bulky UI/feature helpers to the bootstrap;
+- put new behavior in isolated LocalScripts or ModuleScripts under `Controllers`;
+- if the bootstrap must be touched, add the smallest possible bridge and prefer a single table-backed/global phase namespace over multiple locals;
+- after any unavoidable bootstrap bridge, restart Play specifically to check for `Out of local registers` before continuing;
+- if the error returns, repair by removing/moving bootstrap locals, not by adding another patch on top.
+
 ## Condensing Phases Safely
 
 It is good to reduce the number of Studio Command Bar inputs, but do not merge unrelated risk.

@@ -4484,6 +4484,88 @@ local function NTR_openOwnedCockpitCustomisation()
 	NTR_openGarageWithMode("Customisation")
 end
 
+-- NTR_DRIVE_IN_CUSTOMISATION_PHASE1_BOOTSTRAP
+-- NTR_DRIVE_IN_CUSTOMISATION_PHASE2_ENTRY_HANDOFF
+_G.NTRDriveInCustomisationPhase1 = _G.NTRDriveInCustomisationPhase1 or {}
+_G.NTRDriveInCustomisationPhase1.OpenEventName = "OpenDrivingVehicleCustomisation"
+
+function _G.NTRDriveInCustomisationPhase1.RefreshProfile()
+	local result = callServer("GetInitial", {})
+	if result.Success ~= false then
+		if result.Catalog then State.Catalog = result.Catalog end
+		if result.Profile then State.Profile = result.Profile end
+	end
+	return result
+end
+
+function _G.NTRDriveInCustomisationPhase1.OpenDrivenVehicleModuleShop()
+	local selectedVehicleId = State.Profile and State.Profile.CurrentVehicleId
+	local refresh = _G.NTRDriveInCustomisationPhase1.RefreshProfile()
+	if refresh.Profile and refresh.Profile.CurrentVehicleId then
+		selectedVehicleId = refresh.Profile.CurrentVehicleId
+	end
+	if not selectedVehicleId or selectedVehicleId == "" then
+		warn("[NTR Drive-In Customisation] No current vehicle id available; opening owned customisation picker instead.")
+		NTR_openOwnedCockpitCustomisation()
+		return
+	end
+
+	callServer("DespawnVehicle", {})
+	stopDriving()
+	local humanoid = getHumanoid()
+	if humanoid then
+		humanoid.Sit = false
+	end
+	player:SetAttribute("NTR_DriveInCustomisationActive", true)
+
+	NTR_openGarageWithMode("Customisation")
+	task.spawn(function()
+		for _ = 1, 100 do
+			if UI and UI.Gui and typeof(showStage) == "function" and typeof(renderModuleShop) == "function" and typeof(sortedSlots) == "function" and typeof(buildPreview) == "function" then
+				break
+			end
+			task.wait(0.05)
+		end
+
+		local getResult = _G.NTRDriveInCustomisationPhase1.RefreshProfile()
+		if getResult.Profile and getResult.Profile.CurrentVehicleId then
+			selectedVehicleId = getResult.Profile.CurrentVehicleId
+		end
+		local selectResult = callServer("SelectVehicleInstance", { VehicleId = selectedVehicleId })
+		if selectResult.Success == false then
+			player:SetAttribute("NTR_DriveInCustomisationActive", false)
+			if UI and UI.Subtitle then
+				UI.Subtitle.Text = selectResult.Message or "Could not open build modules."
+			end
+			NTR_openOwnedCockpitCustomisation()
+			return
+		end
+
+		State.ShopMode = "Customisation"
+		State.ModuleMode = "Slots"
+		State.SelectedModuleId = nil
+		State.SelectedModuleInstanceId = nil
+		State.CustomizeTarget = "ALL"
+		State.CustomizeMode = "Colour"
+		State.NoPreviewYet = false
+		State.GarageCameraActive = true
+		State.Phase5PreviewOrbitInitialized = false
+		State.PreviewModules = {}
+		local firstSlot = sortedSlots()[1]
+		State.SelectedSlot = firstSlot and firstSlot.SlotId or State.SelectedSlot or "Engine1"
+		if UI and UI.Gui then
+			UI.Gui.Enabled = true
+		end
+		buildPreview()
+		NTR_phase4ApplyGaragePreviewCamera()
+		setCameraSection(State.SelectedSlot or "Engine1")
+		showStage("ModuleShop")
+		renderModuleShop()
+	end)
+end
+-- NTR_DRIVE_IN_CUSTOMISATION_PHASE1_BOOTSTRAP_END
+
+
 task.spawn(function()
 	local clientRoot = script.Parent
 	local controllers = clientRoot and clientRoot:WaitForChild("Controllers", 10)
@@ -4518,6 +4600,20 @@ task.spawn(function()
 		customisationEvent.Parent = introFolder
 	end
 	customisationEvent.Event:Connect(NTR_openOwnedCockpitCustomisation)
+
+	_G.NTRDriveInCustomisationPhase1.Event = introFolder:FindFirstChild(_G.NTRDriveInCustomisationPhase1.OpenEventName)
+	if _G.NTRDriveInCustomisationPhase1.Event and not _G.NTRDriveInCustomisationPhase1.Event:IsA("BindableEvent") then
+		warn("[NTR Drive-In Customisation Phase 1] " .. _G.NTRDriveInCustomisationPhase1.Event:GetFullName() .. " exists but is " .. _G.NTRDriveInCustomisationPhase1.Event.ClassName .. ", expected BindableEvent.")
+		return
+	end
+	if not _G.NTRDriveInCustomisationPhase1.Event then
+		_G.NTRDriveInCustomisationPhase1.Event = Instance.new("BindableEvent")
+		_G.NTRDriveInCustomisationPhase1.Event.Name = _G.NTRDriveInCustomisationPhase1.OpenEventName
+		_G.NTRDriveInCustomisationPhase1.Event.Parent = introFolder
+	end
+	_G.NTRDriveInCustomisationPhase1.Event.Event:Connect(function()
+		_G.NTRDriveInCustomisationPhase1.OpenDrivenVehicleModuleShop()
+	end)
 
 	script:SetAttribute("DealershipIntroGarageGateActive", true)
 	script:SetAttribute("DealershipIntroPhase7ReopenGateActive", true)

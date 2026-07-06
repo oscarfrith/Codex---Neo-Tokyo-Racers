@@ -18,6 +18,7 @@ Working rules:
 * If a script depends on fragile text replacement, say so before writing it.
 * If reverting to an older Roblox version would be cleaner, tell the user before creating another patch.
 * If two or more source-anchor repairs fail in the same live script, stop and inspect the live source/mirror before writing another patch; prefer an isolated canonical replacement when possible.
+* Treat `StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.NeoTokyoRacersClient_Bootstrap_Shadow_Disabled` as register-limited. Do not add new top-level local helpers or large feature blocks to it; use isolated controller scripts/modules plus a tiny table-backed event bridge if a bootstrap hook is unavoidable.
 * After each confirmed phase, update the docs with the lesson learned so future chats start from the better workflow.
 
 Known current baseline:

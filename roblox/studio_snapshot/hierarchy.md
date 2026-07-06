@@ -1,7 +1,7 @@
 # Roblox Studio Hierarchy Snapshot
 
-Generated in Studio: 2026-07-06 10:42:35
-Scripts exported: 128
+Generated in Studio: 2026-07-06 11:44:24
+Scripts exported: 130
 Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, StarterGui, Workspace, ServerStorage, Lighting
 
 ## Hierarchy
@@ -2146,6 +2146,16 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - YawDeadzone (NumberValue)
       - Runtime (Folder) [2 attrs]
         - DRIVING_MECHANICS_EditAttributes (Folder) [38 attrs]
+        - DriveInCustomisation (Folder)
+          - Enabled (BoolValue)
+          - TriggerVfxOnlyWhileDriving (BoolValue)
+          - UseWorldPrompt (BoolValue)
+          - CooldownSeconds (NumberValue)
+          - CountdownSeconds (NumberValue)
+          - PollSeconds (NumberValue)
+          - PromptHeightOffset (NumberValue)
+          - PromptMaxDistance (NumberValue)
+          - ReenterBufferStuds (NumberValue)
         - FreeRoamVehicleSpawn (Folder)
           - AllowFallbackToPlayerOffset (BoolValue)
           - MaxSpawnSpeedMph (NumberValue)
@@ -2213,6 +2223,17 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - TierBadgeY (NumberValue)
           - ImageScaleType (StringValue)
           - README (StringValue)
+        - DriveInCustomisation (Folder)
+          - AccentColor (Color3Value)
+          - PanelColor (Color3Value)
+          - TextColor (Color3Value)
+          - ZoneColor (Color3Value)
+          - PanelTransparency (NumberValue)
+          - ZoneTransparency (NumberValue)
+          - CountdownTitle (StringValue)
+          - IdleAction (StringValue)
+          - IdleTitle (StringValue)
+          - PromptPrefix (StringValue)
         - FreeRoamNav (Folder) [1 attrs]
           - Enabled (BoolValue)
           - HideLegacyDriveMenu (BoolValue)
@@ -2593,21 +2614,22 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
       - Garage (Folder)
         - GarageDisplayRuntime (ModuleScript) [script_0036, 299 lines, 1 attrs]
         - GarageProfileRuntime (ModuleScript) [script_0037, 136 lines, 1 attrs]
-        - GarageActionController_Shadow_Disabled (Script) [script_0038, 2585 lines, 34 attrs]
-        - GarageInteriorCustomizationService_Active (Script) [script_0039, 472 lines, 1 attrs]
-        - GarageInteriorService_Active (Script) [script_0040, 407 lines, 4 attrs]
+        - DriveInCustomisationSessionService_Active (Script) [script_0038, 104 lines]
+        - GarageActionController_Shadow_Disabled (Script) [script_0039, 2585 lines, 34 attrs]
+        - GarageInteriorCustomizationService_Active (Script) [script_0040, 472 lines, 1 attrs]
+        - GarageInteriorService_Active (Script) [script_0041, 407 lines, 4 attrs]
       - Player (Folder)
-        - LegacyGarageProfileBridge_Active (Script) [script_0041, 61 lines]
-        - ProfileService_Active (Script) [script_0042, 328 lines]
+        - LegacyGarageProfileBridge_Active (Script) [script_0042, 61 lines]
+        - ProfileService_Active (Script) [script_0043, 328 lines]
       - Vehicle (Folder)
-        - DriverSeatPositionService_Active (Script) [script_0043, 234 lines, 11 attrs]
-        - VehicleAccessPromptService_Active (Script) [script_0044, 130 lines]
-        - VehiclePerformanceRuntimeService_Active (Script) [script_0045, 95 lines, 2 attrs]
+        - DriverSeatPositionService_Active (Script) [script_0044, 234 lines, 11 attrs]
+        - VehicleAccessPromptService_Active (Script) [script_0045, 130 lines]
+        - VehiclePerformanceRuntimeService_Active (Script) [script_0046, 95 lines, 2 attrs]
       - World (Folder)
         - Lighting (Folder)
-          - LightingService_Active (Script) [script_0046, 107 lines, 9 attrs]
+          - LightingService_Active (Script) [script_0047, 107 lines, 9 attrs]
         - Traffic (Folder)
-          - TrafficLightService (Script) [script_0047, 46 lines, 3 attrs]
+          - TrafficLightService (Script) [script_0048, 46 lines, 3 attrs]
           - README_MigrationNotes (StringValue)
     - State (Folder)
       - RuntimeProfiles (Folder)
@@ -2617,97 +2639,98 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
     - NeoTokyoRacersClient (Folder) [6 attrs]
       - Controllers (Folder) [3 attrs]
         - Core (Folder)
-          - CatalogClient (ModuleScript) [script_0048, 110 lines, 4 attrs]
-          - ClientState (ModuleScript) [script_0049, 75 lines, 4 attrs]
-          - ClientThemeAdapter (ModuleScript) [script_0050, 73 lines, 6 attrs]
-          - GarageApiClient (ModuleScript) [script_0051, 38 lines, 4 attrs]
-          - PaintClient (ModuleScript) [script_0052, 142 lines, 10 attrs]
+          - CatalogClient (ModuleScript) [script_0049, 110 lines, 4 attrs]
+          - ClientState (ModuleScript) [script_0050, 75 lines, 4 attrs]
+          - ClientThemeAdapter (ModuleScript) [script_0051, 73 lines, 6 attrs]
+          - GarageApiClient (ModuleScript) [script_0052, 38 lines, 4 attrs]
+          - PaintClient (ModuleScript) [script_0053, 142 lines, 10 attrs]
         - Garage (Folder)
         - Intro (Folder)
-          - CockpitCustomisationZoneClient_Active (LocalScript) [script_0053, 77 lines, 1 attrs]
-          - DealershipIntroClient_Active (LocalScript) [script_0054, 729 lines, 8 attrs]
+          - CockpitCustomisationZoneClient_Active (LocalScript) [script_0054, 77 lines, 1 attrs]
+          - DealershipIntroClient_Active (LocalScript) [script_0055, 729 lines, 8 attrs]
+          - DriveInCustomisationZoneClient_Active (LocalScript) [script_0056, 343 lines]
         - Preview (Folder)
-          - ThrustPreviewController_Active (LocalScript) [script_0055, 208 lines, 17 attrs]
-          - PreviewCameraController (ModuleScript) [script_0056, 96 lines, 5 attrs]
-          - PreviewVehicleController (ModuleScript) [script_0057, 168 lines, 5 attrs]
+          - ThrustPreviewController_Active (LocalScript) [script_0057, 208 lines, 17 attrs]
+          - PreviewCameraController (ModuleScript) [script_0058, 96 lines, 5 attrs]
+          - PreviewVehicleController (ModuleScript) [script_0059, 168 lines, 5 attrs]
         - Runtime (Folder)
-          - CharacterSprintController_Active (LocalScript) [script_0058, 360 lines, 1 attrs]
-          - DriveHudController_Active (LocalScript) [script_0059, 261 lines, 7 attrs]
-          - FreeRoamParkedHoverController_Active (LocalScript) [script_0060, 209 lines]
-          - MobileDriveControlsController_Active (LocalScript) [script_0061, 746 lines, 13 attrs]
-          - RuntimeVFXController_Active (LocalScript) [script_0062, 16 lines, 9 attrs]
+          - CharacterSprintController_Active (LocalScript) [script_0060, 360 lines, 1 attrs]
+          - DriveHudController_Active (LocalScript) [script_0061, 261 lines, 7 attrs]
+          - FreeRoamParkedHoverController_Active (LocalScript) [script_0062, 209 lines]
+          - MobileDriveControlsController_Active (LocalScript) [script_0063, 746 lines, 13 attrs]
+          - RuntimeVFXController_Active (LocalScript) [script_0064, 16 lines, 9 attrs]
         - UI (Folder)
-          - FreeRoamNavController_Active (LocalScript) [script_0063, 1316 lines, 3 attrs]
-          - FreeRoamVehicleExitButton_Active (LocalScript) [script_0064, 115 lines]
-          - CockpitPaintUIController (ModuleScript) [script_0065, 46 lines, 5 attrs]
-          - ColourPickerController (ModuleScript) [script_0066, 277 lines, 5 attrs]
-          - CustomisationUIController (ModuleScript) [script_0067, 127 lines, 5 attrs]
-          - DealershipUIController (ModuleScript) [script_0068, 87 lines, 5 attrs]
-          - GaragePropertyMenuController (ModuleScript) [script_0069, 172 lines, 2 attrs]
-          - ModuleShopUIController (ModuleScript) [script_0070, 109 lines, 5 attrs]
-          - NavigationController (ModuleScript) [script_0071, 49 lines, 5 attrs]
-          - StatsPanelController (ModuleScript) [script_0072, 51 lines, 5 attrs]
+          - FreeRoamNavController_Active (LocalScript) [script_0065, 1316 lines, 3 attrs]
+          - FreeRoamVehicleExitButton_Active (LocalScript) [script_0066, 115 lines]
+          - CockpitPaintUIController (ModuleScript) [script_0067, 46 lines, 5 attrs]
+          - ColourPickerController (ModuleScript) [script_0068, 277 lines, 5 attrs]
+          - CustomisationUIController (ModuleScript) [script_0069, 127 lines, 5 attrs]
+          - DealershipUIController (ModuleScript) [script_0070, 87 lines, 5 attrs]
+          - GaragePropertyMenuController (ModuleScript) [script_0071, 172 lines, 2 attrs]
+          - ModuleShopUIController (ModuleScript) [script_0072, 109 lines, 5 attrs]
+          - NavigationController (ModuleScript) [script_0073, 49 lines, 5 attrs]
+          - StatsPanelController (ModuleScript) [script_0074, 51 lines, 5 attrs]
           - README_TargetControllers (StringValue)
         - World (Folder)
-          - GarageAccessClient_Active (LocalScript) [script_0073, 279 lines, 1 attrs]
-          - GarageInteriorClient_Active (LocalScript) [script_0074, 92 lines, 2 attrs]
-          - GarageInteriorCustomizationClient_Active (LocalScript) [script_0075, 273 lines, 1 attrs]
-          - LODClient_Active (LocalScript) [script_0076, 365 lines, 12 attrs]
-          - NightLamppostLightController_Active (LocalScript) [script_0077, 101 lines, 2 attrs]
-          - WindowMaterialController_Active (LocalScript) [script_0078, 101 lines, 2 attrs]
+          - GarageAccessClient_Active (LocalScript) [script_0075, 279 lines, 1 attrs]
+          - GarageInteriorClient_Active (LocalScript) [script_0076, 92 lines, 2 attrs]
+          - GarageInteriorCustomizationClient_Active (LocalScript) [script_0077, 273 lines, 1 attrs]
+          - LODClient_Active (LocalScript) [script_0078, 365 lines, 12 attrs]
+          - NightLamppostLightController_Active (LocalScript) [script_0079, 101 lines, 2 attrs]
+          - WindowMaterialController_Active (LocalScript) [script_0080, 101 lines, 2 attrs]
       - RuntimeState (Folder)
       - State (Folder)
-      - NeoTokyoRacersClient_Bootstrap_Shadow_Disabled (LocalScript) [script_0079, 4616 lines, 61 attrs]
-    - LocalScript (LocalScript) [script_0080, 203 lines]
-    - PlayerScriptsLoader (LocalScript) [script_0081, 8 lines]
-    - RbxCharacterSounds (LocalScript) [script_0082, 456 lines]
-      - AtomicBinding (ModuleScript) [script_0083, 277 lines]
-    - TEMP_LightingPreview (LocalScript) [script_0084, 127 lines, 2 attrs]
-    - TrailerMode.client.lua (LocalScript) [script_0085, 73 lines]
-    - TrailerShot01Camera (LocalScript) [script_0086, 92 lines]
-    - PlayerModule (ModuleScript) [script_0087, 32 lines]
+      - NeoTokyoRacersClient_Bootstrap_Shadow_Disabled (LocalScript) [script_0081, 4712 lines, 61 attrs]
+    - LocalScript (LocalScript) [script_0082, 203 lines]
+    - PlayerScriptsLoader (LocalScript) [script_0083, 8 lines]
+    - RbxCharacterSounds (LocalScript) [script_0084, 456 lines]
+      - AtomicBinding (ModuleScript) [script_0085, 277 lines]
+    - TEMP_LightingPreview (LocalScript) [script_0086, 127 lines, 2 attrs]
+    - TrailerMode.client.lua (LocalScript) [script_0087, 73 lines]
+    - TrailerShot01Camera (LocalScript) [script_0088, 92 lines]
+    - PlayerModule (ModuleScript) [script_0089, 32 lines]
       - CommonUtils (Folder)
-        - CameraWrapper (ModuleScript) [script_0088, 115 lines]
-        - CameraWrapper.spec (ModuleScript) [script_0089, 34 lines]
-        - CharacterUtil (ModuleScript) [script_0090, 156 lines]
-        - ConnectionUtil (ModuleScript) [script_0091, 62 lines]
-        - ConnectionUtil.spec (ModuleScript) [script_0092, 104 lines]
-        - FlagUtil (ModuleScript) [script_0093, 18 lines]
-      - CameraModule (ModuleScript) [script_0094, 632 lines]
-        - BaseCamera (ModuleScript) [script_0095, 763 lines]
-        - BaseOcclusion (ModuleScript) [script_0096, 48 lines]
-        - CameraInput (ModuleScript) [script_0097, 572 lines]
-        - CameraToggleStateController (ModuleScript) [script_0098, 78 lines]
-        - CameraUI (ModuleScript) [script_0099, 38 lines]
-        - CameraUtils (ModuleScript) [script_0100, 310 lines]
-        - ClassicCamera (ModuleScript) [script_0101, 232 lines]
-        - Invisicam (ModuleScript) [script_0102, 628 lines]
-        - LegacyCamera (ModuleScript) [script_0103, 118 lines]
-        - MouseLockController (ModuleScript) [script_0104, 212 lines]
-        - OrbitalCamera (ModuleScript) [script_0105, 287 lines]
-        - Poppercam (ModuleScript) [script_0106, 128 lines]
-        - TransparencyController (ModuleScript) [script_0107, 230 lines]
-        - VRBaseCamera (ModuleScript) [script_0108, 425 lines]
-        - VRCamera (ModuleScript) [script_0109, 429 lines]
-        - VRVehicleCamera (ModuleScript) [script_0110, 514 lines]
-        - VehicleCamera (ModuleScript) [script_0111, 216 lines]
-          - VehicleCameraConfig (ModuleScript) [script_0112, 58 lines]
-          - VehicleCameraCore (ModuleScript) [script_0113, 183 lines]
-        - ZoomController (ModuleScript) [script_0114, 138 lines]
-          - Popper (ModuleScript) [script_0115, 474 lines]
-      - ControlModule (ModuleScript) [script_0116, 674 lines]
-        - AvatarAbilitiesInterface (ModuleScript) [script_0117, 67 lines]
-        - BaseCharacterController (ModuleScript) [script_0118, 65 lines]
-        - ClickToMoveController (ModuleScript) [script_0119, 1240 lines]
-        - ClickToMoveDisplay (ModuleScript) [script_0120, 517 lines]
-        - DynamicThumbstick (ModuleScript) [script_0121, 636 lines]
-        - Gamepad (ModuleScript) [script_0122, 213 lines]
-        - Keyboard (ModuleScript) [script_0123, 154 lines]
-        - PathDisplay (ModuleScript) [script_0124, 153 lines]
-        - TouchJump (ModuleScript) [script_0125, 283 lines]
-        - TouchThumbstick (ModuleScript) [script_0126, 229 lines]
-        - VRNavigation (ModuleScript) [script_0127, 483 lines]
-        - VehicleController (ModuleScript) [script_0128, 190 lines]
+        - CameraWrapper (ModuleScript) [script_0090, 115 lines]
+        - CameraWrapper.spec (ModuleScript) [script_0091, 34 lines]
+        - CharacterUtil (ModuleScript) [script_0092, 156 lines]
+        - ConnectionUtil (ModuleScript) [script_0093, 62 lines]
+        - ConnectionUtil.spec (ModuleScript) [script_0094, 104 lines]
+        - FlagUtil (ModuleScript) [script_0095, 18 lines]
+      - CameraModule (ModuleScript) [script_0096, 632 lines]
+        - BaseCamera (ModuleScript) [script_0097, 763 lines]
+        - BaseOcclusion (ModuleScript) [script_0098, 48 lines]
+        - CameraInput (ModuleScript) [script_0099, 572 lines]
+        - CameraToggleStateController (ModuleScript) [script_0100, 78 lines]
+        - CameraUI (ModuleScript) [script_0101, 38 lines]
+        - CameraUtils (ModuleScript) [script_0102, 310 lines]
+        - ClassicCamera (ModuleScript) [script_0103, 232 lines]
+        - Invisicam (ModuleScript) [script_0104, 628 lines]
+        - LegacyCamera (ModuleScript) [script_0105, 118 lines]
+        - MouseLockController (ModuleScript) [script_0106, 212 lines]
+        - OrbitalCamera (ModuleScript) [script_0107, 287 lines]
+        - Poppercam (ModuleScript) [script_0108, 128 lines]
+        - TransparencyController (ModuleScript) [script_0109, 230 lines]
+        - VRBaseCamera (ModuleScript) [script_0110, 425 lines]
+        - VRCamera (ModuleScript) [script_0111, 429 lines]
+        - VRVehicleCamera (ModuleScript) [script_0112, 514 lines]
+        - VehicleCamera (ModuleScript) [script_0113, 216 lines]
+          - VehicleCameraConfig (ModuleScript) [script_0114, 58 lines]
+          - VehicleCameraCore (ModuleScript) [script_0115, 183 lines]
+        - ZoomController (ModuleScript) [script_0116, 138 lines]
+          - Popper (ModuleScript) [script_0117, 474 lines]
+      - ControlModule (ModuleScript) [script_0118, 674 lines]
+        - AvatarAbilitiesInterface (ModuleScript) [script_0119, 67 lines]
+        - BaseCharacterController (ModuleScript) [script_0120, 65 lines]
+        - ClickToMoveController (ModuleScript) [script_0121, 1240 lines]
+        - ClickToMoveDisplay (ModuleScript) [script_0122, 517 lines]
+        - DynamicThumbstick (ModuleScript) [script_0123, 636 lines]
+        - Gamepad (ModuleScript) [script_0124, 213 lines]
+        - Keyboard (ModuleScript) [script_0125, 154 lines]
+        - PathDisplay (ModuleScript) [script_0126, 153 lines]
+        - TouchJump (ModuleScript) [script_0127, 283 lines]
+        - TouchThumbstick (ModuleScript) [script_0128, 229 lines]
+        - VRNavigation (ModuleScript) [script_0129, 483 lines]
+        - VehicleController (ModuleScript) [script_0130, 190 lines]
 - StarterGui (StarterGui)
   - NeoTokyoRacersUI (ScreenGui) [2 attrs]
     - Components (Folder) [1 attrs]
@@ -12366,6 +12389,14 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
     - Dealership (Folder)
       - Customisation (Folder)
         - CustomisationDeskTrigger (Part) [3 attrs]
+        - DriveInCustomisationPlayerHoldPoint (Part)
+        - DriveInCustomisationTrigger (Part) [3 attrs]
+          - vfx _aura (Part)
+            - Attachment (Attachment)
+              - ParticleEmitter (ParticleEmitter)
+          - vfx_aura (Part)
+            - Attachment (Attachment)
+              - ParticleEmitter (ParticleEmitter)
       - Intro (Folder) [40 attrs]
         - Camera (Folder)
           - DealershipLookCameraPoint (Part) [5 attrs]

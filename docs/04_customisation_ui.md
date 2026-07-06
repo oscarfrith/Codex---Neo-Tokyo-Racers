@@ -347,3 +347,32 @@ Phase 4B adds an explicit `FreeRoamVehicleSpawned` bindable handoff from the fre
 Phase 4C adds that first parked-hover keeper as `FreeRoamParkedHoverController_Active`. Exiting now fires `FreeRoamVehicleExited`, the main bootstrap calls `stopDriving()` to remove controls/HUD and restore camera to the humanoid, and the parked-hover keeper applies only hover/alignment forces while `ParkedShowcase=true` and `DriverUserId=nil`. It should not apply throttle, steering, drift, boost, or braking. Prompt re-entry detects the player being seated again and fires the same `FreeRoamVehicleSpawned` drive handoff as cockpit-card spawning. Phase 4C also hides the free-roam car pop-out after a successful cockpit-card spawn.
 
 Phase 4D keeps parked/despawn behaviour player-centred: `DespawnVehicle` only moves the player if they are currently seated in the vehicle being despawned, and the `10 MPH` spawn gate plus vehicle-position spawn anchor apply only while actively seated/driving. If the player has exited and is on foot, spawning/despawning should use the player's position/state rather than the parked car. Phase 4D also narrows the desktop car pop-out to three compact cards and removes the pink outline layers from free-roam cockpit card/image boxes while preserving the selected magenta fill.
+
+## Drive-In Customisation
+
+Drive-In Customisation Phase 1 is prepared as `scripts/roblox_drive_in_customisation_phase1.lua`. It creates a movable invisible trigger at:
+
+```text
+Workspace.NeoTokyoRacersWorld.Dealership.Customisation.DriveInCustomisationTrigger
+```
+
+The trigger is tagged `NTR_DriveCustomisationZone`. The visible bay marker is client-only and appears only while the local player is driving their own vehicle. Entering the zone starts a local countdown UI, defaulting to `ENTERING CUSTOMISATION IN 3`, then `2`, then `1`. Leaving the zone, exiting the vehicle, despawning, or opening another menu cancels the countdown.
+
+On completion, the bootstrap handoff despawns the live driven vehicle, stops driving state, and opens the existing garage UI directly to `Build Modules` / `ModuleShop` for the current driven vehicle instance. This avoids editing modules while a duplicate live version of the same vehicle remains outside.
+
+If Play reports `Out of local registers when trying to allocate okController`, run `scripts/roblox_drive_in_customisation_phase1_register_limit_repair.lua` in Edit mode, restart Play, and retest. The first Phase 1 handoff added too many top-level local helpers to the already register-limited client bootstrap; future customisation work should keep new behavior in isolated controllers/modules and use only tiny table-backed bootstrap bridges when unavoidable.
+
+Config lives at:
+
+```text
+ReplicatedStorage.NeoTokyoRacers.Config.Runtime.DriveInCustomisation
+ReplicatedStorage.NeoTokyoRacers.Config.UI.DriveInCustomisation
+```
+
+Important values include `CountdownSeconds`, `PollSeconds`, `CooldownSeconds`, `PromptPrefix`, `PanelColor`, `TextColor`, `AccentColor`, `ZoneColor`, and `ZoneTransparency`.
+
+Drive-In Customisation Phase 2 is prepared as `scripts/roblox_drive_in_customisation_phase2_garage_entry_world_prompt.lua`. It supersedes Phase 1's screen countdown with a local `BillboardGui` world prompt on `DriveInCustomisationTrigger`, so the countdown appears like an in-world interaction prompt. It also toggles attached trigger VFX locally while the player is driving, instead of changing the trigger part transparency.
+
+Phase 2 installs `DriveInCustomisationSessionService_Active` and a hidden `DriveInCustomisationPlayerHoldPoint`. When the countdown completes, the live vehicle is despawned, the player is hidden/frozen at the hold point while the garage UI is open, and the existing garage preview camera/preview vehicle are restored before opening Build Modules.
+
+Drive-In Customisation Phase 3 is prepared as `scripts/roblox_drive_in_customisation_phase3_countdown_unlock_repair.lua`. It replaces the isolated prompt client again so the world prompt is countdown-only and appears only once the driven vehicle is actually inside the trigger. It also patches the existing garage `Start Driving` path to set `NTR_DriveInCustomisationActive` false before calling `SpawnVehicle`, because the Phase 2 hold lock can otherwise keep the character anchored/frozen during the spawn/seat handoff. This Phase 3 bootstrap patch is intentionally tiny and does not add top-level locals to the register-limited client bootstrap.

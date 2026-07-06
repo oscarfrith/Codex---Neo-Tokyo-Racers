@@ -295,6 +295,14 @@
     "source_bytes": 5418,
     "source_checksum": "294247601"
   },
+  "ServerScriptService.NeoTokyoRacers.Services.Garage.DriveInCustomisationSessionService_Active": {
+    "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Garage/DriveInCustomisationSessionService_Active.server.lua",
+    "class_name": "Script",
+    "disabled": false,
+    "source_lines": 104,
+    "source_bytes": 3194,
+    "source_checksum": "449020639"
+  },
   "ServerScriptService.NeoTokyoRacers.Services.Garage.GarageActionController_Shadow_Disabled": {
     "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Garage/GarageActionController_Shadow_Disabled.server.lua",
     "class_name": "Script",
@@ -430,6 +438,14 @@
     "source_lines": 729,
     "source_bytes": 25626,
     "source_checksum": "555338823"
+  },
+  "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Intro.DriveInCustomisationZoneClient_Active": {
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Intro/DriveInCustomisationZoneClient_Active.client.lua",
+    "class_name": "LocalScript",
+    "disabled": false,
+    "source_lines": 343,
+    "source_bytes": 12418,
+    "source_checksum": "693338679"
   },
   "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Preview.ThrustPreviewController_Active": {
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Preview/ThrustPreviewController_Active.client.lua",
@@ -627,9 +643,9 @@
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/NeoTokyoRacersClient_Bootstrap_Shadow_Disabled.client.lua",
     "class_name": "LocalScript",
     "disabled": false,
-    "source_lines": 4616,
-    "source_bytes": 185787,
-    "source_checksum": "74000504"
+    "source_lines": 4712,
+    "source_bytes": 189571,
+    "source_checksum": "925182025"
   },
   "StarterPlayer.StarterPlayerScripts.LocalScript": {
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/LocalScript.client.lua",
