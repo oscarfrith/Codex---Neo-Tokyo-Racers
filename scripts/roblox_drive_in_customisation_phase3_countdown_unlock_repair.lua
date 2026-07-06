@@ -453,37 +453,37 @@ local function patchBootstrapSpawnUnlock()
 		return
 	end
 
-	local oldBlock = [=[		elseif State.Stage == "Customise" then
-			local result = callServer("SpawnVehicle", {})
-			if result.Success then
-				local closeOk, closeErr = pcall(closeGarage)
-				if not closeOk then
-					warn("[NTR Phase 17] closeGarage failed after SpawnVehicle, starting driving anyway: " .. tostring(closeErr))
-				end
-				task.defer(startDriving)
-			else
-				UI.Subtitle.Text = result.Message or "Could not spawn vehicle."
-			end]=]
+	local branchNeedle = 'elseif State.Stage == "Customise" then'
+	local spawnNeedle = 'local result = callServer("SpawnVehicle", {})'
+	local branchIndex = nil
+	local spawnIndex = nil
+	local searchFrom = 1
+	while true do
+		local candidate = string.find(source, branchNeedle, searchFrom, true)
+		if not candidate then
+			break
+		end
+		local candidateSpawn = string.find(source, spawnNeedle, candidate, true)
+		if candidateSpawn and candidateSpawn - candidate < 700 then
+			branchIndex = candidate
+			spawnIndex = candidateSpawn
+			break
+		end
+		searchFrom = candidate + #branchNeedle
+	end
+	assert(branchIndex and spawnIndex, "Could not find Customise Start Driving SpawnVehicle branch. Refresh the Studio mirror before creating another patch.")
 
-	local newBlock = [=[		elseif State.Stage == "Customise" then
-			-- NTR_DRIVE_IN_CUSTOMISATION_PHASE3_UNLOCK_BEFORE_SPAWN
-			if player:GetAttribute("NTR_DriveInCustomisationActive") == true then
-				player:SetAttribute("NTR_DriveInCustomisationActive", false)
-				task.wait(0.1)
-			end
-			local result = callServer("SpawnVehicle", {})
-			if result.Success then
-				local closeOk, closeErr = pcall(closeGarage)
-				if not closeOk then
-					warn("[NTR Phase 17] closeGarage failed after SpawnVehicle, starting driving anyway: " .. tostring(closeErr))
-				end
-				task.defer(startDriving)
-			else
-				UI.Subtitle.Text = result.Message or "Could not spawn vehicle."
-			end]=]
+	local lineStart = string.find(string.reverse(string.sub(source, 1, spawnIndex)), "\n", 1, true)
+	lineStart = lineStart and (spawnIndex - lineStart + 2) or spawnIndex
+	local indent = string.match(string.sub(source, lineStart, spawnIndex - 1), "^(%s*)") or "\t\t\t"
+	local unlockBlock = indent .. [=[-- NTR_DRIVE_IN_CUSTOMISATION_PHASE3_UNLOCK_BEFORE_SPAWN
+]=] .. indent .. [=[if player:GetAttribute("NTR_DriveInCustomisationActive") == true then
+]=] .. indent .. [=[	player:SetAttribute("NTR_DriveInCustomisationActive", false)
+]=] .. indent .. [=[	task.wait(0.1)
+]=] .. indent .. [=[end
+]=]
 
-	local replaced, count = string.gsub(source, oldBlock, newBlock, 1)
-	assert(count == 1, "Could not find exact Start Driving SpawnVehicle block. Refresh the Studio mirror before creating another patch.")
+	local replaced = string.sub(source, 1, spawnIndex - 1) .. unlockBlock .. string.sub(source, spawnIndex)
 	scriptObject.Source = replaced
 	info("Patched Start Driving to release drive-in hold before SpawnVehicle.")
 end

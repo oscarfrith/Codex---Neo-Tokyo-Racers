@@ -52,6 +52,7 @@ When a command-bar script patches source text:
 - stop on unknown source shape;
 - print useful live-source diagnostics rather than guessing another patch;
 - make reruns safe after partial installs.
+- avoid unescaped Lua pattern matching for large exact source blocks. `string.gsub` treats punctuation in the source as pattern syntax, so a block can fail to match even when the live source is present. Prefer `string.find(..., plain=true)` plus line-window insertion, or escape every pattern character deliberately.
 
 If two or more source-anchor repairs fail in the same live script, stop and prefer a canonical replacement of the isolated script, or refresh the Studio mirror and inspect the live source before continuing.
 
@@ -130,3 +131,10 @@ When a phase or fix is confirmed:
 - The Phase 24-28 garage MVP was smoother when new behavior lived in separate services/client scripts instead of the large garage controller or main client bootstrap.
 - The mirror receiver should not block the mirror import just because the raw paste file cannot be written. `scripts/receive_studio_full_snapshot_export.py` now falls back to in-memory import for that case.
 - Final audit scripts are worth keeping. Phase 28 caught the whole stack in one smoke and gave a clear completion signal.
+
+## Current Lessons From Drive-In Customisation
+
+- Phase 1 confirmed again that `NeoTokyoRacersClient_Bootstrap_Shadow_Disabled` is register-limited. New systems should live in isolated controllers/services, with only tiny table-backed bootstrap bridges when unavoidable.
+- Phase 2 showed that UI/camera correctness can require a full session state handoff, not just opening an existing menu. If a vehicle is despawned into garage customisation, explicitly handle player hold/freeze, camera, preview vehicle, and eventual unlock.
+- Phase 3/3B showed that drive-in session locks must be released before the normal garage `SpawnVehicle` handoff. Otherwise seating/spawn can race an anchored hidden character and produce undriveable vehicles or streaming focus issues.
+- The Phase 3 partial install showed why command-bar source patchers should not use unescaped `string.gsub` for punctuation-heavy Lua source. The safer repair used plain matching to find the `Customise -> SpawnVehicle` branch and inserted the smallest unlock block before the call.

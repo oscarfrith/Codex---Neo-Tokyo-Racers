@@ -4330,7 +4330,12 @@ makeArrowScroller(UI.CockpitGridPanel, UI.CockpitGrid, "Y", 296)
 			showStage("Customise")
 			renderCustomise()
 		elseif State.Stage == "Customise" then
-			local result = callServer("SpawnVehicle", {})
+						-- NTR_DRIVE_IN_CUSTOMISATION_PHASE3_UNLOCK_BEFORE_SPAWN
+			if player:GetAttribute("NTR_DriveInCustomisationActive") == true then
+				player:SetAttribute("NTR_DriveInCustomisationActive", false)
+				task.wait(0.1)
+			end
+local result = callServer("SpawnVehicle", {})
 			if result.Success then
 				local closeOk, closeErr = pcall(closeGarage)
 				if not closeOk then

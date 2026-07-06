@@ -3146,9 +3146,9 @@
         "type": "boolean"
       }
     },
-    "source_lines": 4712,
-    "source_bytes": 189571,
-    "source_checksum": "925182025",
+    "source_lines": 4717,
+    "source_bytes": 189795,
+    "source_checksum": "374912180",
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/NeoTokyoRacersClient_Bootstrap_Shadow_Disabled.client.lua"
   },
   {

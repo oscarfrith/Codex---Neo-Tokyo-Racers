@@ -1,10 +1,12 @@
 # Drive-In Customisation Phase 3
 
-Prepared: 2026-07-06
+Prepared: 2026-07-06  
+Confirmed working: 2026-07-06
 
 Script:
 
 - `scripts/roblox_drive_in_customisation_phase3_countdown_unlock_repair.lua`
+- If the first Phase 3 run already installed the countdown client but failed on the bootstrap anchor, run `scripts/roblox_drive_in_customisation_phase3b_spawn_unlock_anchor_repair.lua`.
 
 ## Goal
 
@@ -58,6 +60,8 @@ Added/normalised UI values:
 
 ## Verification
 
+The user confirmed Phase 3B working on 2026-07-06 after refreshing the Studio mirror. Future regression checks:
+
 1. Run the script in Edit mode.
 2. Restart Play.
 3. Spawn/drive a vehicle and approach the drive-in bay.
@@ -73,3 +77,11 @@ Added/normalised UI values:
 The prompt repair is an isolated client replacement. The only fragile part is one guarded exact-source patch in the large bootstrap around the existing `State.Stage == "Customise"` / `SpawnVehicle` block. It adds only an inline attribute unlock and short wait, with no new top-level locals or helpers.
 
 If the bootstrap source anchor is missing, refresh the Studio mirror before creating another repair.
+
+## Phase 3B Anchor Repair
+
+The first Phase 3 installer used pattern-based `string.gsub` for the bootstrap source block. The fresh Studio mirror showed the expected `Customise -> SpawnVehicle` branch was present, but Lua pattern characters in the multi-line block prevented the match.
+
+`scripts/roblox_drive_in_customisation_phase3b_spawn_unlock_anchor_repair.lua` is the targeted repair for that partial install. It does not replace the prompt client again. It finds the `Customise` branch that contains `local result = callServer("SpawnVehicle", {})` using plain source matching and inserts only the `NTR_DriveInCustomisationActive` unlock block before that call.
+
+Lesson: do not use unescaped Lua pattern matching for large exact-source repairs. Use `string.find(..., plain=true)`, line-window insertion, or escape all pattern characters before calling `string.gsub`.
