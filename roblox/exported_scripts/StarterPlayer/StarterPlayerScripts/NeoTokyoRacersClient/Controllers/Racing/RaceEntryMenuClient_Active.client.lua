@@ -748,7 +748,10 @@ local resultBest = label(resultPanel, "", UDim2.new(1, -36, 0, 36), UDim2.fromOf
 resultBest.TextXAlignment = Enum.TextXAlignment.Center
 local resultNext = label(resultPanel, "", UDim2.new(1, -36, 0, 42), UDim2.fromOffset(18, 178), touch and 11 or 13, theme.Muted, false)
 resultNext.TextXAlignment = Enum.TextXAlignment.Center
-local resultSplits = label(resultPanel, "", UDim2.new(1, -36, 0, 82), UDim2.fromOffset(18, 226), touch and 10 or 12, theme.Text, false)
+-- NTR_RACING_PHASE6_REWARD_RESULT_UI
+local resultReward = label(resultPanel, "", UDim2.new(1, -36, 0, 28), UDim2.fromOffset(18, 218), touch and 12 or 14, theme.Accent, true)
+resultReward.TextXAlignment = Enum.TextXAlignment.Center
+local resultSplits = label(resultPanel, "", UDim2.new(1, -36, 0, 58), UDim2.fromOffset(18, 252), touch and 10 or 12, theme.Text, false)
 resultSplits.TextYAlignment = Enum.TextYAlignment.Top
 
 local resultRetry = button(resultPanel, "RETRY", UDim2.new(0.5, -18, 0, 46), UDim2.new(0, 14, 1, -60), theme.Buy)
@@ -817,6 +820,14 @@ local function showResult(payload)
 		resultNext.Text = "Platinum target cleared."
 	else
 		resultNext.Text = "No medal targets configured for this tier yet."
+	end
+	local rewardAmount = tonumber(payload.RewardAmount) or 0
+	if payload.RewardGranted == true and rewardAmount > 0 then
+		resultReward.Text = "REWARD  $" .. tostring(math.floor(rewardAmount + 0.5))
+	elseif payload.RewardMessage and payload.RewardMessage ~= "" then
+		resultReward.Text = tostring(payload.RewardMessage)
+	else
+		resultReward.Text = "No cash reward this run."
 	end
 	resultSplits.Text = splitSummary(payload.Splits)
 	resultRetry.Visible = payload.CanRetry ~= false

@@ -86,6 +86,14 @@ scripts/roblox_racing_phase5e_world_text_only_checkpoint_guide.lua
 
 It restores text above the physical checkpoint, removes the backing panel/frame, and leaves generated checkpoint frames off by default.
 
+Phase 5F supersedes Phase 5E as the preferred visual if readability needs a backing element:
+
+```text
+scripts/roblox_racing_phase5f_checkpoint_pill_label.lua
+```
+
+It keeps the text above the physical checkpoint and adds a small configurable transparent black pill behind only the text. Default `CheckpointPillBackgroundTransparency = 0.8`, which means 20% opacity.
+
 ## Phase 5B Follow-Up
 
 If two checkpoint markers appear after Phase 5, run:

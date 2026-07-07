@@ -727,6 +727,47 @@ local V56_STARTING_CASH = V56_kit:GetAttribute("StartingCash") or 140000
 		cash.Value = math.floor(profile.Cash or 0)
 	end
 
+	-- NTR_RACING_PHASE6_GARAGE_CASH_BRIDGE
+	local V91_RaceRewardBridgeReady = false
+	local function V91_ensureRaceRewardCashBridge()
+		if V91_RaceRewardBridgeReady then
+			return
+		end
+		local bindings = script.Parent:FindFirstChild("GarageProfileMutationBindings")
+		if not bindings then
+			bindings = Instance.new("Folder")
+			bindings.Name = "GarageProfileMutationBindings"
+			bindings.Parent = script.Parent
+		end
+		local grantCash = bindings:FindFirstChild("GrantCash")
+		if not grantCash then
+			grantCash = Instance.new("BindableFunction")
+			grantCash.Name = "GrantCash"
+			grantCash.Parent = bindings
+		end
+		grantCash.OnInvoke = function(action, payload)
+			if action ~= "GrantCash" then
+				return { Ok = false, Success = false, Message = "Unknown garage mutation action." }
+			end
+			payload = typeof(payload) == "table" and payload or {}
+			local player = payload.Player
+			local amount = math.floor((tonumber(payload.Amount) or 0) + 0.5)
+			if not player or amount <= 0 then
+				return { Ok = false, Success = false, Message = "Missing player or positive amount." }
+			end
+			local profile = V56_getProfile(player)
+			profile.Cash = math.max(0, math.floor((tonumber(profile.Cash) or 0) + amount))
+			V56_setLeaderstats(player, profile)
+			V80_mirrorLegacyProfileToPersistence(player, profile, tostring(payload.Reason or "RaceRewardGrant"), true)
+			player:SetAttribute("NTR_LastRaceRewardAmount", amount)
+			player:SetAttribute("NTR_LastRaceRewardRunId", tostring(payload.RunId or ""))
+			player:SetAttribute("NTR_LastRaceRewardEventId", tostring(payload.EventId or ""))
+			return { Ok = true, Success = true, Amount = amount, Cash = profile.Cash }
+		end
+		V91_RaceRewardBridgeReady = true
+	end
+	V91_ensureRaceRewardCashBridge()
+
 	local function V56_slug(name)
 		name = string.lower(tostring(name or ""))
 		name = string.gsub(name, "%s+", "_")

@@ -12,6 +12,45 @@ local raceEvent = racingRemotes:WaitForChild("RaceEvent")
 local racingModules = kit:WaitForChild("Shared"):WaitForChild("Modules"):WaitForChild("Racing")
 local RouteDefinition = require(racingModules:WaitForChild("RaceRouteDefinition"))
 local RaceConfigReader = require(racingModules:WaitForChild("RaceConfigReader"))
+-- NTR_RACING_PHASE6_REWARD_HELPERS
+local function getRaceRewardBinding()
+	local serverRoot = game:GetService("ServerScriptService"):FindFirstChild("NeoTokyoRacers")
+	local services = serverRoot and serverRoot:FindFirstChild("Services")
+	local racing = services and services:FindFirstChild("Racing")
+	local bindings = racing and racing:FindFirstChild("RaceRewardBindings")
+	local grant = bindings and bindings:FindFirstChild("GrantTimeTrialReward")
+	if grant and grant:IsA("BindableFunction") then
+		return grant
+	end
+	return nil
+end
+
+local function grantTimeTrialReward(player, run, elapsed, medal, isPersonalBest)
+	local grant = getRaceRewardBinding()
+	if not grant then
+		return { Ok = false, Granted = false, Amount = 0, Message = "Reward service unavailable." }
+	end
+	local ok, result = pcall(function()
+		return grant:Invoke("GrantTimeTrialReward", {
+			Player = player,
+			RunId = run.RunId,
+			EventId = run.EventId,
+			RouteId = run.RouteId,
+			DisplayName = run.DisplayName,
+			VehicleTier = run.VehicleTier,
+			VehicleIndex = run.VehicleIndex,
+			SelectedVehicleId = run.SelectedVehicleId,
+			Elapsed = elapsed,
+			Medal = medal,
+			IsPersonalBest = isPersonalBest == true,
+		})
+	end)
+	if ok and typeof(result) == "table" then
+		return result
+	end
+	return { Ok = false, Granted = false, Amount = 0, Message = "Reward grant failed: " .. tostring(result) }
+end
+
 
 local PHASE = "NTR Racing Phase 3"
 local OLD_PROMPT_NAME = "NTR_TimeTrialStartPrompt"
@@ -345,6 +384,8 @@ local function finishRun(player)
 		bucket.UpdatedClock = os.clock()
 	end
 
+	local reward = grantTimeTrialReward(player, run, elapsed, medal, isPersonalBest)
+
 	fire(player, {
 		Type = "TimeTrialFinished",
 		EventId = run.EventId,
@@ -369,7 +410,11 @@ local function finishRun(player)
 		IsPersonalBest = isPersonalBest,
 		Splits = run.Splits or {},
 		CanRetry = true,
-		Message = isPersonalBest and "New personal best!" or "Finished.",
+		RewardGranted = reward.Granted == true,
+		RewardAmount = tonumber(reward.Amount) or 0,
+		RewardCash = reward.Cash,
+		RewardMessage = reward.Message,
+		Message = (reward.Granted == true and ("New personal best!  $" .. tostring(reward.Amount or 0) .. " earned")) or (isPersonalBest and "New personal best!" or tostring(reward.Message or "Finished.")),
 	})
 	info(player.Name .. " finished " .. tostring(run.EventId) .. " in " .. string.format("%.3f", elapsed) .. "s medal=" .. tostring(medal) .. " pb=" .. tostring(isPersonalBest))
 end

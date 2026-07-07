@@ -1,7 +1,7 @@
 # Race And Time Trial System Plan
 
-**Created:** 2026-07-06  
-**Status:** Phase 4 user-confirmed working / Phase 5D generated as the preferred minimal route-guide visual repair  
+**Created:** 2026-07-06
+**Status:** Phase 4 user-confirmed working / Phase 5F visual baseline / Phase 6 rewards generated for testing
 **Scope:** Race entry, matchmaking, checkpoints, timing, rewards, UI, anti-cheat, and future progression.
 
 ## Context Read
@@ -138,14 +138,25 @@ MaxPlayers = 6
 Laps = 1
 EntryFee = 0
 BaseReward = 500
-RewardTierMultiplier_E = 1.00
-RewardTierMultiplier_D = 1.25
-RewardTierMultiplier_C = 1.60
-RewardTierMultiplier_B = 2.10
-RewardTierMultiplier_A = 2.75
-RewardTierMultiplier_S = 3.50
-RepeatRewardMultiplier = 0.35
 DailyFirstWinMultiplier = 2.00
+```
+
+Reward multipliers should be global across tracks:
+
+```text
+Config.Racing.Rewards.TimeTrial
+  RewardRoundToNearest = 250
+  BronzeRewardMultiplier = 0.55
+  SilverRewardMultiplier = 0.75
+  GoldRewardMultiplier = 1.00
+  PlatinumRewardMultiplier = 1.30
+  RepeatRewardMultiplier = 0.35
+  TierMultiplier_E = 1.00
+  TierMultiplier_D = 1.15
+  TierMultiplier_C = 1.35
+  TierMultiplier_B = 1.60
+  TierMultiplier_A = 1.90
+  TierMultiplier_S = 2.25
 ```
 
 Time trial medal attributes should live per event and per vehicle tier:
@@ -161,9 +172,11 @@ D_GoldSeconds = 65.0
 D_PlatinumSeconds = 60.0
 ```
 
-Race placement reward attributes:
+Race placement reward attributes should also be global:
 
 ```text
+Config.Racing.Rewards.Race
+RewardRoundToNearest = 250
 BronzePlaceMax = 3
 SilverPlaceMax = 2
 GoldPlaceMax = 1
@@ -173,7 +186,7 @@ GoldRewardMultiplier = 1.00
 DNFRewardMultiplier = 0
 ```
 
-This keeps balancing editable without patching source. If the attribute list gets too large, move event definitions to `RaceCatalog` ModuleScripts and keep only route object placement in Workspace.
+This keeps balancing editable without patching source: each track gets a `BaseReward`, while the medal/tier/placement/repeat multipliers stay consistent globally. If the event attribute list gets too large, move event definitions to `RaceCatalog` ModuleScripts and keep only route object placement in Workspace.
 
 Track and map media should be optional at first. If `TrackImage` or `MapImage` is empty, the race entry menu should show a themed placeholder rather than blocking the event.
 
@@ -711,7 +724,7 @@ Generated as:
 scripts/roblox_racing_phase5_route_guidance_session_assets.lua
 ```
 
-The generated Phase 5 keeps the first pass visual/local only: checkpoint/finish frames, dynamic next-gate chevrons, authored `ArrowMarkers`, wrong-way prompt, route-guide config attributes, and authoring folders. Phase 5B then disables the older Phase 3/4 checkpoint marker so the new route guide is the single visual owner. Phase 5D is now the preferred visual direction: large in-world checkpoint labels are disabled by default, checkpoint text moves to a small top-screen badge, the world marker becomes faint corner ticks, and `WRONG WAY` appears only after `3` seconds of sustained wrong-way driving. Collidable ramps, jump pads, boost strips, gates, and barriers are intentionally deferred until the race-pocket/collision-group layer is stronger.
+The generated Phase 5 keeps the first pass visual/local only: checkpoint/finish frames, dynamic next-gate chevrons, authored `ArrowMarkers`, wrong-way prompt, route-guide config attributes, and authoring folders. Phase 5B then disables the older Phase 3/4 checkpoint marker so the new route guide is the single visual owner. Phase 5F is now the preferred visual direction: checkpoint text appears above the physical checkpoint with a small configurable transparent black pill behind only the text, generated checkpoint frames are off by default, dynamic arrows remain active, and `WRONG WAY` appears only after `3` seconds of sustained wrong-way driving. Collidable ramps, jump pads, boost strips, gates, and barriers are intentionally deferred until the race-pocket/collision-group layer is stronger.
 
 ### Phase 6 - Rewards Pack
 
@@ -724,6 +737,14 @@ Install rewards after result-state idempotency is proven:
 - placement rewards for multiplayer races once Phase 8 lands.
 
 Verify reward cannot be double-claimed by touching finish repeatedly, retrying quickly, rejoining, or sending repeated client events.
+
+Generated as:
+
+```text
+scripts/roblox_racing_phase6_time_trial_rewards_pack.lua
+```
+
+The generated Phase 6 installs a guarded time-trial reward service, creates `Config.Racing.Rewards`, adds a tiny server-only garage cash bridge so rewards update the usable garage cash profile, patches Phase 4 finish payloads with reward fields, and adds a payout line to the result panel. Phase 6B (`scripts/roblox_racing_phase6b_global_reward_config_rounding.lua`) is the preferred balancing follow-up: it rounds prizes to the nearest `$250`, moves multipliers into `Config.Racing.Rewards.TimeTrial` and `Config.Racing.Rewards.Race`, removes old per-track multiplier attributes, and leaves event folders with track-specific `BaseReward`.
 
 ### Phase 7 - Free-Roam Race Panel Integration
 
@@ -789,7 +810,7 @@ Add after official races, rewards, and multiplayer are stable:
 ## Worries / Doubts
 
 - The user moved the first route zones/checkpoints in Studio after Phase 1 and refreshed the repo mirror before Phase 2 was generated. The mirror now shows `ShiftedCanalSprint` with 14 checkpoints, start zones, spawn grid, and finish line.
-- The user confirmed Phase 4's time-trial medal/results/retry flow is working well. Phase 5 added route guidance and local-only session visuals; Phase 5B fixed duplicate old/new checkpoint markers, Phase 5C was not enough to solve visual obstruction, and Phase 5D is prepared as the preferred minimal route-guide design.
+- The user confirmed Phase 4's time-trial medal/results/retry flow is working well. Phase 5 added route guidance and local-only session visuals; Phase 5B fixed duplicate old/new checkpoint markers, Phase 5C was not enough to solve visual obstruction, Phase 5D's fixed badge lost the spatial cue, Phase 5E restored world-space text, and Phase 5F is the preferred configurable small pill label. Phase 6 was reported working well, and Phase 6B is generated to move reward multipliers into global `Rewards.TimeTrial` / `Rewards.Race` folders and round prizes to the nearest `$250`.
 - The GDD PDF could not be read from this environment, so exact design requirements from that document still need confirmation.
 - Player-created races are future-proofed at the data-contract level only. The actual creator UI, validation, moderation, and published-route storage are intentionally deferred until after official races prove the loop.
 - Arrow assets are planned as both route hints and participant-only session visuals, but actual art style and asset IDs still need choosing/uploading before the route-guide phase.

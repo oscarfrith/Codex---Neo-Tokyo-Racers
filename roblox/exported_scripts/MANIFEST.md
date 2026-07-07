@@ -4,7 +4,7 @@ Generated from the Roblox Studio full snapshot export.
 
 These files are a GitHub-readable mirror of Studio scripts. Treat Studio as live until a Rojo/source-sync migration is explicitly completed.
 
-Script count: 136
+Script count: 92
 
 - `ReplicatedStorage.NeoTokyoRacers.Compatibility.LiveSystemRegistry` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Compatibility/LiveSystemRegistry.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Compatibility.PathResolver` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Compatibility/PathResolver.module.lua`
@@ -51,6 +51,7 @@ Script count: 136
 - `ServerScriptService.NeoTokyoRacers.Services.Garage.GarageInteriorService_Active` (Script, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Garage/GarageInteriorService_Active.server.lua`
 - `ServerScriptService.NeoTokyoRacers.Services.Player.LegacyGarageProfileBridge_Active` (Script, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Player/LegacyGarageProfileBridge_Active.server.lua`
 - `ServerScriptService.NeoTokyoRacers.Services.Player.ProfileService_Active` (Script, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Player/ProfileService_Active.server.lua`
+- `ServerScriptService.NeoTokyoRacers.Services.Racing.RaceRewardService_Active` (Script, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Racing/RaceRewardService_Active.server.lua`
 - `ServerScriptService.NeoTokyoRacers.Services.Racing.TimeTrialService_Active` (Script, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Racing/TimeTrialService_Active.server.lua`
 - `ServerScriptService.NeoTokyoRacers.Services.Vehicle.DriverSeatPositionService_Active` (Script, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Vehicle/DriverSeatPositionService_Active.server.lua`
 - `ServerScriptService.NeoTokyoRacers.Services.Vehicle.VehicleAccessPromptService_Active` (Script, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Vehicle/VehicleAccessPromptService_Active.server.lua`
@@ -94,51 +95,6 @@ Script count: 136
 - `StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.World.WindowMaterialController_Active` (LocalScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/World/WindowMaterialController_Active.client.lua`
 - `StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.NeoTokyoRacersClient_Bootstrap_Shadow_Disabled` (LocalScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/NeoTokyoRacersClient_Bootstrap_Shadow_Disabled.client.lua`
 - `StarterPlayer.StarterPlayerScripts.LocalScript` (LocalScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/LocalScript.client.lua`
-- `StarterPlayer.StarterPlayerScripts.PlayerScriptsLoader` (LocalScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/PlayerScriptsLoader.client.lua`
-- `StarterPlayer.StarterPlayerScripts.RbxCharacterSounds` (LocalScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/RbxCharacterSounds.client.lua`
-- `StarterPlayer.StarterPlayerScripts.RbxCharacterSounds.AtomicBinding` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/RbxCharacterSounds/AtomicBinding.module.lua`
 - `StarterPlayer.StarterPlayerScripts.TEMP_LightingPreview` (LocalScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/TEMP_LightingPreview.client.lua`
 - `StarterPlayer.StarterPlayerScripts.TrailerMode.client.lua` (LocalScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/TrailerMode.client.lua.client.lua`
 - `StarterPlayer.StarterPlayerScripts.TrailerShot01Camera` (LocalScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/TrailerShot01Camera.client.lua`
-- `StarterPlayer.StarterPlayerScripts.PlayerModule` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/PlayerModule.module.lua`
-- `StarterPlayer.StarterPlayerScripts.PlayerModule.CommonUtils.CameraWrapper` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/PlayerModule/CommonUtils/CameraWrapper.module.lua`
-- `StarterPlayer.StarterPlayerScripts.PlayerModule.CommonUtils.CameraWrapper.spec` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/PlayerModule/CommonUtils/CameraWrapper.spec.module.lua`
-- `StarterPlayer.StarterPlayerScripts.PlayerModule.CommonUtils.CharacterUtil` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/PlayerModule/CommonUtils/CharacterUtil.module.lua`
-- `StarterPlayer.StarterPlayerScripts.PlayerModule.CommonUtils.ConnectionUtil` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/PlayerModule/CommonUtils/ConnectionUtil.module.lua`
-- `StarterPlayer.StarterPlayerScripts.PlayerModule.CommonUtils.ConnectionUtil.spec` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/PlayerModule/CommonUtils/ConnectionUtil.spec.module.lua`
-- `StarterPlayer.StarterPlayerScripts.PlayerModule.CommonUtils.FlagUtil` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/PlayerModule/CommonUtils/FlagUtil.module.lua`
-- `StarterPlayer.StarterPlayerScripts.PlayerModule.CameraModule` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule.module.lua`
-- `StarterPlayer.StarterPlayerScripts.PlayerModule.CameraModule.BaseCamera` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/BaseCamera.module.lua`
-- `StarterPlayer.StarterPlayerScripts.PlayerModule.CameraModule.BaseOcclusion` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/BaseOcclusion.module.lua`
-- `StarterPlayer.StarterPlayerScripts.PlayerModule.CameraModule.CameraInput` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/CameraInput.module.lua`
-- `StarterPlayer.StarterPlayerScripts.PlayerModule.CameraModule.CameraToggleStateController` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/CameraToggleStateController.module.lua`
-- `StarterPlayer.StarterPlayerScripts.PlayerModule.CameraModule.CameraUI` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/CameraUI.module.lua`
-- `StarterPlayer.StarterPlayerScripts.PlayerModule.CameraModule.CameraUtils` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/CameraUtils.module.lua`
-- `StarterPlayer.StarterPlayerScripts.PlayerModule.CameraModule.ClassicCamera` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/ClassicCamera.module.lua`
-- `StarterPlayer.StarterPlayerScripts.PlayerModule.CameraModule.Invisicam` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/Invisicam.module.lua`
-- `StarterPlayer.StarterPlayerScripts.PlayerModule.CameraModule.LegacyCamera` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/LegacyCamera.module.lua`
-- `StarterPlayer.StarterPlayerScripts.PlayerModule.CameraModule.MouseLockController` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/MouseLockController.module.lua`
-- `StarterPlayer.StarterPlayerScripts.PlayerModule.CameraModule.OrbitalCamera` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/OrbitalCamera.module.lua`
-- `StarterPlayer.StarterPlayerScripts.PlayerModule.CameraModule.Poppercam` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/Poppercam.module.lua`
-- `StarterPlayer.StarterPlayerScripts.PlayerModule.CameraModule.TransparencyController` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/TransparencyController.module.lua`
-- `StarterPlayer.StarterPlayerScripts.PlayerModule.CameraModule.VRBaseCamera` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/VRBaseCamera.module.lua`
-- `StarterPlayer.StarterPlayerScripts.PlayerModule.CameraModule.VRCamera` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/VRCamera.module.lua`
-- `StarterPlayer.StarterPlayerScripts.PlayerModule.CameraModule.VRVehicleCamera` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/VRVehicleCamera.module.lua`
-- `StarterPlayer.StarterPlayerScripts.PlayerModule.CameraModule.VehicleCamera` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/VehicleCamera.module.lua`
-- `StarterPlayer.StarterPlayerScripts.PlayerModule.CameraModule.VehicleCamera.VehicleCameraConfig` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/VehicleCamera/VehicleCameraConfig.module.lua`
-- `StarterPlayer.StarterPlayerScripts.PlayerModule.CameraModule.VehicleCamera.VehicleCameraCore` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/VehicleCamera/VehicleCameraCore.module.lua`
-- `StarterPlayer.StarterPlayerScripts.PlayerModule.CameraModule.ZoomController` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/ZoomController.module.lua`
-- `StarterPlayer.StarterPlayerScripts.PlayerModule.CameraModule.ZoomController.Popper` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/PlayerModule/CameraModule/ZoomController/Popper.module.lua`
-- `StarterPlayer.StarterPlayerScripts.PlayerModule.ControlModule` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule.module.lua`
-- `StarterPlayer.StarterPlayerScripts.PlayerModule.ControlModule.AvatarAbilitiesInterface` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/AvatarAbilitiesInterface.module.lua`
-- `StarterPlayer.StarterPlayerScripts.PlayerModule.ControlModule.BaseCharacterController` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/BaseCharacterController.module.lua`
-- `StarterPlayer.StarterPlayerScripts.PlayerModule.ControlModule.ClickToMoveController` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/ClickToMoveController.module.lua`
-- `StarterPlayer.StarterPlayerScripts.PlayerModule.ControlModule.ClickToMoveDisplay` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/ClickToMoveDisplay.module.lua`
-- `StarterPlayer.StarterPlayerScripts.PlayerModule.ControlModule.DynamicThumbstick` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/DynamicThumbstick.module.lua`
-- `StarterPlayer.StarterPlayerScripts.PlayerModule.ControlModule.Gamepad` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/Gamepad.module.lua`
-- `StarterPlayer.StarterPlayerScripts.PlayerModule.ControlModule.Keyboard` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/Keyboard.module.lua`
-- `StarterPlayer.StarterPlayerScripts.PlayerModule.ControlModule.PathDisplay` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/PathDisplay.module.lua`
-- `StarterPlayer.StarterPlayerScripts.PlayerModule.ControlModule.TouchJump` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/TouchJump.module.lua`
-- `StarterPlayer.StarterPlayerScripts.PlayerModule.ControlModule.TouchThumbstick` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/TouchThumbstick.module.lua`
-- `StarterPlayer.StarterPlayerScripts.PlayerModule.ControlModule.VRNavigation` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/VRNavigation.module.lua`
-- `StarterPlayer.StarterPlayerScripts.PlayerModule.ControlModule.VehicleController` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/PlayerModule/ControlModule/VehicleController.module.lua`

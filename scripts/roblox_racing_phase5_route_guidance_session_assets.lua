@@ -174,7 +174,7 @@ local function part(name, size, cf, color, transparency)
 end
 
 local function makeBillboard(name, adornee, text, color)
-	-- NTR_RACING_PHASE5E_WORLD_TEXT_ONLY_LABEL
+	-- NTR_RACING_PHASE5F_WORLD_PILL_LABEL
 	if not boolAttr("ShowWorldCheckpointLabel", true) then
 		return nil
 	end
@@ -182,13 +182,14 @@ local function makeBillboard(name, adornee, text, color)
 	gui.Name = name
 	gui.Adornee = adornee
 	gui.AlwaysOnTop = boolAttr("CheckpointWorldTextAlwaysOnTop", true)
-	gui.Size = UDim2.fromOffset(190, 38)
-	local yOffset = numberAttr("CheckpointWorldTextYOffset", 7)
+	gui.Size = UDim2.fromOffset(numberAttr("CheckpointPillWidth", 168), numberAttr("CheckpointPillHeight", 28))
+	local yOffset = numberAttr("CheckpointPillYOffset", 7)
 	gui.StudsOffset = Vector3.new(0, math.max(yOffset, adornee and adornee.Size.Y * 0.5 + yOffset or yOffset), 0)
 	gui.Parent = ensureRenderRoot()
 
 	local label = Instance.new("TextLabel")
-	label.BackgroundTransparency = 1
+	label.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+	label.BackgroundTransparency = numberAttr("CheckpointPillBackgroundTransparency", 0.8)
 	label.BorderSizePixel = 0
 	label.Size = UDim2.fromScale(1, 1)
 	label.Text = text
@@ -203,6 +204,16 @@ local function makeBillboard(name, adornee, text, color)
 		label.FontFace = Font.new("rbxasset://fonts/families/Michroma.json")
 	end)
 	label.Parent = gui
+
+	local corner = Instance.new("UICorner")
+	corner.CornerRadius = UDim.new(0, numberAttr("CheckpointPillCornerRadius", 8))
+	corner.Parent = label
+
+	local stroke = Instance.new("UIStroke")
+	stroke.Color = color
+	stroke.Thickness = numberAttr("CheckpointPillStrokeThickness", 1)
+	stroke.Transparency = numberAttr("CheckpointPillStrokeTransparency", 0.7)
+	stroke.Parent = label
 	return gui
 end
 
@@ -244,7 +255,7 @@ local function drawGateFrame(gate)
 	local z = math.max(7, gatePart.Size.Z + 5)
 	local cf = gatePart.CFrame * CFrame.new(0, lift, 0)
 
-	-- NTR_RACING_PHASE5E_OPTIONAL_CORNER_TICK_FRAME
+	-- NTR_RACING_PHASE5F_OPTIONAL_CORNER_TICK_FRAME
 	part("NextGateCorner_FL_X", Vector3.new(tickLength, thickness, thickness), cf * CFrame.new(-x * 0.5 + tickLength * 0.5, 0, -z * 0.5), color, frameTransparency)
 	part("NextGateCorner_FR_X", Vector3.new(tickLength, thickness, thickness), cf * CFrame.new(x * 0.5 - tickLength * 0.5, 0, -z * 0.5), color, frameTransparency)
 	part("NextGateCorner_BL_X", Vector3.new(tickLength, thickness, thickness), cf * CFrame.new(-x * 0.5 + tickLength * 0.5, 0, z * 0.5), color, frameTransparency)
@@ -479,8 +490,14 @@ local function ensureConfig()
 	routeGuide:SetAttribute("CheckpointFrameTransparency", 0.94)
 	routeGuide:SetAttribute("CheckpointCornerTickLength", 5)
 	routeGuide:SetAttribute("CheckpointCornerTickThickness", 0.16)
+	routeGuide:SetAttribute("CheckpointPillWidth", 168)
+	routeGuide:SetAttribute("CheckpointPillHeight", 28)
+	routeGuide:SetAttribute("CheckpointPillYOffset", 7)
+	routeGuide:SetAttribute("CheckpointPillBackgroundTransparency", 0.8)
+	routeGuide:SetAttribute("CheckpointPillCornerRadius", 8)
+	routeGuide:SetAttribute("CheckpointPillStrokeTransparency", 0.7)
+	routeGuide:SetAttribute("CheckpointPillStrokeThickness", 1)
 	routeGuide:SetAttribute("CheckpointWorldTextSize", 15)
-	routeGuide:SetAttribute("CheckpointWorldTextYOffset", 7)
 	routeGuide:SetAttribute("CheckpointWorldTextStrokeTransparency", 0.35)
 	routeGuide:SetAttribute("CheckpointWorldTextAlwaysOnTop", true)
 	routeGuide:SetAttribute("DynamicArrowBackStuds", 26)
