@@ -428,9 +428,11 @@ Time trials are simply sessions with one participant. Races are sessions with mu
 Participant-only race assets:
 
 - arrows, rings, route signs, and wrong-way indicators should render locally only for the active participant/session;
-- collidable jumps, barriers, ramps, and boost pads should be created inside `RaceInstances.<RunId>.SessionAssets`;
+- collidable jumps, barriers, ramps, boost pads, and time-trial corner blockers should be created inside `RaceInstances.<RunId>.SessionAssets` from server-owned templates;
 - free-roam versions of those objects should be invisible/non-collidable or absent;
 - future player-created races should only allow approved whitelisted asset templates.
+
+For mobile performance, do not leave full race asset sets active in the shared open world and merely hide them. Use lightweight authoring markers under the route, approved templates in server storage or a non-active template folder, and clone only the needed simple collision boxes/assets into the active run's `SessionAssets`. Visual dressing can be local-only; physics should use simple anchored box colliders rather than detailed MeshPart collision.
 
 The recommended next implementation should replace Phase 2's instant-start behavior with this menu/session flow before adding money rewards. It is a better foundation than paying rewards on top of a flow that will immediately be replaced.
 
@@ -800,7 +802,39 @@ The generated first pass installs queue remotes, `Config.Racing.Matchmaking`, `R
 
 Phase 8B (`scripts/roblox_racing_phase8b_multiplayer_race_drive_handoff_repair.lua`) repairs the first multiplayer start regression: the queue worked, but at `GO` the local driving controller/streaming handoff was not re-fired for `RaceStarted`, so cars could stop hovering and become undrivable while nearby route content streamed oddly. The repair adds the same handoff shape used by Phase 3E time trials and makes race staging freeze root-only.
 
-### Phase 9 - Competitive Features
+Phase 8C (`scripts/roblox_racing_phase8c_session_controls_polish.lua`) is the next session-control polish layer after Phase 8B:
+
+- `RESET TO LAST CHECKPOINT` for races and time trials;
+- `EXIT TO START` that returns the player to the route teleport/start point and safely despawns the race vehicle;
+- first-start staging/camera repair by removing the selected-vehicle pre-staging free-roam driving handoff and waiting for the `GO` handoff;
+- server-side reset/exit validation in `TimeTrialService_Active` and `RaceMatchmakingService_Active`.
+
+### Phase 9 - Route Type And Gran Turismo-Style Time Trial Sessions
+
+Add after Phase 8C is stable:
+
+- `RouteType = "Circuit" | "PointToPoint"`;
+- point-to-point events finish after the ordered route once;
+- circuit events allow lap choice `1-10`, plus `Infinite`;
+- time-trial sessions keep the player running and track best lap/best run until they quit;
+- quitting a time-trial session shows the best medal achieved and prize summary;
+- rewards are granted from the best session result, not every lap, to avoid infinite cash farming.
+
+### Phase 10 - Server-Side Session Asset And Collision Layer
+
+Add after the lap/session rules are stable:
+
+- route authoring markers under `RaceRoutes.<RouteId>.SessionAssetMarkers`;
+- approved runtime templates under a server-owned template folder;
+- server clones only the needed blockers/assets into `RaceInstances.<RunId>.SessionAssets`;
+- simple anchored box colliders for time-trial corner blockers and race barriers;
+- participant collision groups so active racers/time-trial players collide with their session assets while free-roam players do not;
+- client visibility filtering so only participants see the active race assets;
+- cleanup on finish, quit, disconnect, and timeout.
+
+Keep this system separate from route-guide config, reward config, and checkpoint timing. It is infrastructure for official routes, future player-created races, shortcut blockers, jumps, boost pads, and event props.
+
+### Phase 11 - Competitive Features
 
 Add after MVP stability:
 
@@ -812,7 +846,7 @@ Add after MVP stability:
 - optional spec/loaner/ranked race variants if open-category fairness or late-game dominance becomes a real issue;
 - route difficulty labels and recommended tier.
 
-### Phase 10 - Player-Created Race Foundation
+### Phase 12 - Player-Created Race Foundation
 
 Add after official races, rewards, and multiplayer are stable:
 
@@ -830,6 +864,8 @@ Add after official races, rewards, and multiplayer are stable:
 - Render checkpoint rings/arrows locally.
 - Render decorative route arrows locally from normalized `ArrowMarkers`; do not make them server physics objects during races.
 - Keep collidable race-only assets in session instances/pockets, not in the shared free-roam route.
+- For time-trial corner blockers, use simple anchored box colliders and optional local visual meshes/signage. Avoid detailed MeshPart collision for mobile performance.
+- Spawn or enable session assets only on session start/checkpoint-window changes/end; do not scan or toggle every frame.
 - Avoid per-frame visibility work over every descendant. Cache participant vehicles/characters and update on session membership changes, character spawn, vehicle spawn, and a modest heartbeat if needed.
 - Do not create/destroy lots of UI every frame; update labels and reuse frames.
 - Avoid unbounded race logs in memory.
@@ -848,6 +884,7 @@ Add after official races, rewards, and multiplayer are stable:
 - Multiplayer race fairness depends on Roblox networking and vehicle physics authority. Server timing/checkpoints can be authoritative, but moment-to-moment vehicle movement remains client/network-owner sensitive.
 - Multiplayer races are now intentionally open-category at launch, so the main fairness risk is high-tier vehicles dominating open races. Watch live/local-server testing before adding spec, loaner, ranked, or restricted events; avoid tier brackets until the player population can support extra queues.
 - Checkpoint volumes must be forgiving enough for hovercar speed, especially mobile steering, but not so huge that shortcuts become normal.
+- Collidable time-trial blockers in the shared open world need careful collision scoping. The preferred MVP is simple server-spawned blockers under the active run's session assets, with fixed participant/free-roam collision groups and low asset counts. Full per-player physical isolation should still move toward route pockets or reserved race servers later.
 
 ## Rollback Strategy
 

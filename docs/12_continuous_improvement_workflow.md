@@ -21,6 +21,26 @@ Then check `git status --short`.
 
 If the task touches a specific area, read its topic doc before writing a script.
 
+## Implementation Triage And Chat Modes
+
+Apply this to all implementation work, including new systems, phased plans, fixes, UI tweaks, balance changes, refinements, and polish.
+
+Before changing files or writing a Studio command-bar script, classify the request:
+
+- **Do now:** blockers, broken tests, regressions, confusing entry flow, or anything needed to verify the current task safely.
+- **Do now if small:** isolated config, copy, layout, or tuning changes that do not disturb confirmed baselines or unrelated systems.
+- **Suggest later:** polish, balancing, broad visual refinement, non-blocking UX cleanup, or anything better batched after the core loop is stable.
+- **Pause and discuss:** architecture, data ownership, persistence, economy, matchmaking, anti-cheat, player-created content, live-source ambiguity, or changes that may fight a confirmed working baseline.
+
+When the user asks for a mid-stream adjustment or refinement, do not blindly implement it. If the better workflow is to batch it later, say that before creating a patch, explain the stability/efficiency/future-proofing reason, and let the user decide whether to do it now anyway.
+
+Chat-mode prefixes:
+
+- `follow:` means execute the requested task directly, using the normal project safety checks, docs, mirror awareness, and rollback judgement. If the request is risky, stale, or likely to damage the baseline, warn before implementation rather than treating `follow:` as permission to be reckless.
+- `suggest:` means do not jump straight to implementation. Compare practical options using the project context and relevant Roblox/racing/open-world patterns, then recommend the best path with tradeoffs and a clear next step.
+
+If the user gives no prefix, use the smart default: implement straightforward safe work, but pause with a recommendation when a request looks like polish, scope drift, architectural change, or a risky interruption to the current system.
+
 ## What To Learn Each Time
 
 After each task, record only useful lessons:
