@@ -348,6 +348,25 @@ Phase 4C adds that first parked-hover keeper as `FreeRoamParkedHoverController_A
 
 Phase 4D keeps parked/despawn behaviour player-centred: `DespawnVehicle` only moves the player if they are currently seated in the vehicle being despawned, and the `10 MPH` spawn gate plus vehicle-position spawn anchor apply only while actively seated/driving. If the player has exited and is on foot, spawning/despawning should use the player's position/state rather than the parked car. Phase 4D also narrows the desktop car pop-out to three compact cards and removes the pink outline layers from free-roam cockpit card/image boxes while preserving the selected magenta fill.
 
+## Race Entry Menu
+
+The amended racing plan makes the next race UI a themed entry flow instead of an instant prompt start. Pressing `E` / touch on a race zone should open an isolated `Controllers.Racing` menu with:
+
+- track image and track map;
+- route/event details, tier eligibility, rewards, and medal/placement preview;
+- bottom buttons `START RACE`, `START TIME TRIAL`, and `EXIT`;
+- owned vehicle selection using the dealership/customisation cockpit-card style with image, name, tier/rating badge, and selected state.
+
+This should read from `ReplicatedStorage.NeoTokyoRacers.Config.UI.Theme` and the existing cockpit/card config where practical, but the implementation should live in isolated racing controllers such as `RaceEntryMenuClient_Active` and `RaceVehicleSelectClient_Active`. Do not add a large race menu block to `NeoTokyoRacersClient_Bootstrap_Shadow_Disabled`.
+
+Racing Phase 3 is generated as `scripts/roblox_racing_phase3_entry_menu_staging_session.lua`. It installs the first version of this menu as `RaceEntryMenuClient_Active`, with owned vehicle cards read from the existing garage profile and selected vehicle spawning handled through existing garage actions before the Racing service stages the vehicle at the start line.
+
+If Phase 3/3B server Output shows the start-zone prompt is firing but the menu does not appear, use `scripts/roblox_racing_phase3c_client_event_repair.lua`. It patches only the isolated race menu client so event listening starts before garage vehicle data is needed, and it installs a tiny client probe to show whether `OpenRaceEntry` reaches the player.
+
+If `START TIME TRIAL` from `RaceStartZone` spawns the selected vehicle into free roam/customisation instead of the race start grid, use `scripts/roblox_racing_phase3d_time_trial_event_pairing_repair.lua`. It resolves the paired time-trial event before the garage spawn and makes the server tolerant of race event ids on the solo time-trial path.
+
+If the time-trial countdown completes but the vehicle is not drivable or nearby world assets stream/flicker, use `scripts/roblox_racing_phase3e_release_drive_handoff_repair.lua`. It repairs the post-`GO` handoff by preparing the vehicle for driving, restoring client streaming focus around the route, and re-firing the existing free-roam driving handoff after Racing releases the car.
+
 ## Drive-In Customisation
 
 Drive-In Customisation Phase 1 is prepared as `scripts/roblox_drive_in_customisation_phase1.lua`. It creates a movable invisible trigger at:

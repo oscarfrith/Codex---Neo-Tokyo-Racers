@@ -1,7 +1,7 @@
 # Roblox Studio Hierarchy Snapshot
 
-Generated in Studio: 2026-07-06 11:53:42
-Scripts exported: 130
+Generated in Studio: 2026-07-07 01:01:39
+Scripts exported: 136
 Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, StarterGui, Workspace, ServerStorage, Lighting
 
 ## Hierarchy
@@ -2144,6 +2144,15 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - DirectionSign (NumberValue)
           - InputDeadzone (NumberValue)
           - YawDeadzone (NumberValue)
+      - Racing (Folder)
+        - RaceCatalog (Folder)
+          - ShiftedCanalSprint (Folder) [26 attrs]
+        - Rewards (Folder) [6 attrs]
+        - RouteGuide (Folder) [32 attrs]
+        - TierRules (Folder) [5 attrs]
+        - TimeTrialCatalog (Folder)
+          - ShiftedCanalSprint (Folder) [43 attrs]
+        - UI (Folder) [6 attrs]
       - Runtime (Folder) [2 attrs]
         - DRIVING_MECHANICS_EditAttributes (Folder) [38 attrs]
         - DriveInCustomisation (Folder)
@@ -2565,14 +2574,17 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - GaragePropertyCatalog (ModuleScript) [script_0024, 81 lines, 1 attrs]
           - LegacyGarageProfileMapper (ModuleScript) [script_0025, 248 lines, 1 attrs]
           - PlayerProfileSchema (ModuleScript) [script_0026, 276 lines]
+        - Racing (Folder)
+          - RaceConfigReader (ModuleScript) [script_0027, 119 lines]
+          - RaceRouteDefinition (ModuleScript) [script_0028, 228 lines]
         - UI (Folder) [3 attrs]
-          - ArrowScroller (ModuleScript) [script_0027, 68 lines, 3 attrs]
-          - ColourUtils (ModuleScript) [script_0028, 21 lines, 3 attrs]
-          - ResponsiveLayout (ModuleScript) [script_0029, 44 lines, 3 attrs]
-          - StatBars (ModuleScript) [script_0030, 49 lines, 3 attrs]
-          - UIFactory (ModuleScript) [script_0031, 93 lines, 3 attrs]
-          - UIPool (ModuleScript) [script_0032, 99 lines, 3 attrs]
-          - UITheme (ModuleScript) [script_0033, 102 lines, 5 attrs]
+          - ArrowScroller (ModuleScript) [script_0029, 68 lines, 3 attrs]
+          - ColourUtils (ModuleScript) [script_0030, 21 lines, 3 attrs]
+          - ResponsiveLayout (ModuleScript) [script_0031, 44 lines, 3 attrs]
+          - StatBars (ModuleScript) [script_0032, 49 lines, 3 attrs]
+          - UIFactory (ModuleScript) [script_0033, 93 lines, 3 attrs]
+          - UIPool (ModuleScript) [script_0034, 99 lines, 3 attrs]
+          - UITheme (ModuleScript) [script_0035, 102 lines, 5 attrs]
           - ArrowScroller_Module (ObjectValue)
           - ColourUtils_Module (ObjectValue)
           - ResponsiveLayout_Module (ObjectValue)
@@ -2593,6 +2605,8 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - GarageInteriorInvoke (RemoteFunction) [1 attrs]
           - GarageInvoke (RemoteFunction)
         - Racing (Folder) [3 attrs]
+          - RaceEvent (RemoteEvent)
+          - RaceRequest (RemoteFunction)
         - UI (Folder) [1 attrs]
         - Vehicles (Folder) [3 attrs]
     - DO_NOT_TOUCH_Test_WIP_Assets (StringValue) [1 attrs]
@@ -2600,7 +2614,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
     - README_Phase2 (StringValue) [1 attrs]
   - Shared (Folder)
     - LightingPresets (Folder)
-      - LightingPresets (ModuleScript) [script_0034, 95 lines, 2 attrs]
+      - LightingPresets (ModuleScript) [script_0036, 95 lines, 2 attrs]
     - SkyPresets (Folder)
       - ActiveSky (Sky)
       - ClearNightSky (Sky)
@@ -2609,27 +2623,29 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
   - NeoTokyoRacers (Folder) [5 attrs]
     - Services (Folder) [3 attrs]
       - Dealership (Folder)
-        - IntroProgressService_Active (Script) [script_0035, 208 lines, 2 attrs]
+        - IntroProgressService_Active (Script) [script_0037, 208 lines, 2 attrs]
       - Economy (Folder)
       - Garage (Folder)
-        - GarageDisplayRuntime (ModuleScript) [script_0036, 299 lines, 1 attrs]
-        - GarageProfileRuntime (ModuleScript) [script_0037, 136 lines, 1 attrs]
-        - DriveInCustomisationSessionService_Active (Script) [script_0038, 104 lines]
-        - GarageActionController_Shadow_Disabled (Script) [script_0039, 2585 lines, 34 attrs]
-        - GarageInteriorCustomizationService_Active (Script) [script_0040, 472 lines, 1 attrs]
-        - GarageInteriorService_Active (Script) [script_0041, 407 lines, 4 attrs]
+        - GarageDisplayRuntime (ModuleScript) [script_0038, 299 lines, 1 attrs]
+        - GarageProfileRuntime (ModuleScript) [script_0039, 136 lines, 1 attrs]
+        - DriveInCustomisationSessionService_Active (Script) [script_0040, 104 lines]
+        - GarageActionController_Shadow_Disabled (Script) [script_0041, 2585 lines, 34 attrs]
+        - GarageInteriorCustomizationService_Active (Script) [script_0042, 472 lines, 1 attrs]
+        - GarageInteriorService_Active (Script) [script_0043, 407 lines, 4 attrs]
       - Player (Folder)
-        - LegacyGarageProfileBridge_Active (Script) [script_0042, 61 lines]
-        - ProfileService_Active (Script) [script_0043, 328 lines]
+        - LegacyGarageProfileBridge_Active (Script) [script_0044, 61 lines]
+        - ProfileService_Active (Script) [script_0045, 328 lines]
+      - Racing (Folder)
+        - TimeTrialService_Active (Script) [script_0046, 707 lines]
       - Vehicle (Folder)
-        - DriverSeatPositionService_Active (Script) [script_0044, 234 lines, 11 attrs]
-        - VehicleAccessPromptService_Active (Script) [script_0045, 130 lines]
-        - VehiclePerformanceRuntimeService_Active (Script) [script_0046, 95 lines, 2 attrs]
+        - DriverSeatPositionService_Active (Script) [script_0047, 234 lines, 11 attrs]
+        - VehicleAccessPromptService_Active (Script) [script_0048, 130 lines]
+        - VehiclePerformanceRuntimeService_Active (Script) [script_0049, 95 lines, 2 attrs]
       - World (Folder)
         - Lighting (Folder)
-          - LightingService_Active (Script) [script_0047, 107 lines, 9 attrs]
+          - LightingService_Active (Script) [script_0050, 107 lines, 9 attrs]
         - Traffic (Folder)
-          - TrafficLightService (Script) [script_0048, 46 lines, 3 attrs]
+          - TrafficLightService (Script) [script_0051, 46 lines, 3 attrs]
           - README_MigrationNotes (StringValue)
     - State (Folder)
       - RuntimeProfiles (Folder)
@@ -2639,98 +2655,102 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
     - NeoTokyoRacersClient (Folder) [6 attrs]
       - Controllers (Folder) [3 attrs]
         - Core (Folder)
-          - CatalogClient (ModuleScript) [script_0049, 110 lines, 4 attrs]
-          - ClientState (ModuleScript) [script_0050, 75 lines, 4 attrs]
-          - ClientThemeAdapter (ModuleScript) [script_0051, 73 lines, 6 attrs]
-          - GarageApiClient (ModuleScript) [script_0052, 38 lines, 4 attrs]
-          - PaintClient (ModuleScript) [script_0053, 142 lines, 10 attrs]
+          - CatalogClient (ModuleScript) [script_0052, 110 lines, 4 attrs]
+          - ClientState (ModuleScript) [script_0053, 75 lines, 4 attrs]
+          - ClientThemeAdapter (ModuleScript) [script_0054, 73 lines, 6 attrs]
+          - GarageApiClient (ModuleScript) [script_0055, 38 lines, 4 attrs]
+          - PaintClient (ModuleScript) [script_0056, 142 lines, 10 attrs]
         - Garage (Folder)
         - Intro (Folder)
-          - CockpitCustomisationZoneClient_Active (LocalScript) [script_0054, 77 lines, 1 attrs]
-          - DealershipIntroClient_Active (LocalScript) [script_0055, 729 lines, 8 attrs]
-          - DriveInCustomisationZoneClient_Active (LocalScript) [script_0056, 343 lines]
+          - CockpitCustomisationZoneClient_Active (LocalScript) [script_0057, 77 lines, 1 attrs]
+          - DealershipIntroClient_Active (LocalScript) [script_0058, 729 lines, 8 attrs]
+          - DriveInCustomisationZoneClient_Active (LocalScript) [script_0059, 343 lines]
         - Preview (Folder)
-          - ThrustPreviewController_Active (LocalScript) [script_0057, 208 lines, 17 attrs]
-          - PreviewCameraController (ModuleScript) [script_0058, 96 lines, 5 attrs]
-          - PreviewVehicleController (ModuleScript) [script_0059, 168 lines, 5 attrs]
+          - ThrustPreviewController_Active (LocalScript) [script_0060, 208 lines, 17 attrs]
+          - PreviewCameraController (ModuleScript) [script_0061, 96 lines, 5 attrs]
+          - PreviewVehicleController (ModuleScript) [script_0062, 168 lines, 5 attrs]
+        - Racing (Folder)
+          - RaceClient_Active (LocalScript) [script_0063, Disabled, 276 lines]
+          - RaceEntryMenuClient_Active (LocalScript) [script_0064, 1004 lines]
+          - RaceRouteGuideClient_Active (LocalScript) [script_0065, 468 lines]
         - Runtime (Folder)
-          - CharacterSprintController_Active (LocalScript) [script_0060, 360 lines, 1 attrs]
-          - DriveHudController_Active (LocalScript) [script_0061, 261 lines, 7 attrs]
-          - FreeRoamParkedHoverController_Active (LocalScript) [script_0062, 209 lines]
-          - MobileDriveControlsController_Active (LocalScript) [script_0063, 746 lines, 13 attrs]
-          - RuntimeVFXController_Active (LocalScript) [script_0064, 16 lines, 9 attrs]
+          - CharacterSprintController_Active (LocalScript) [script_0066, 360 lines, 1 attrs]
+          - DriveHudController_Active (LocalScript) [script_0067, 261 lines, 7 attrs]
+          - FreeRoamParkedHoverController_Active (LocalScript) [script_0068, 209 lines]
+          - MobileDriveControlsController_Active (LocalScript) [script_0069, 746 lines, 13 attrs]
+          - RuntimeVFXController_Active (LocalScript) [script_0070, 16 lines, 9 attrs]
         - UI (Folder)
-          - FreeRoamNavController_Active (LocalScript) [script_0065, 1316 lines, 3 attrs]
-          - FreeRoamVehicleExitButton_Active (LocalScript) [script_0066, 115 lines]
-          - CockpitPaintUIController (ModuleScript) [script_0067, 46 lines, 5 attrs]
-          - ColourPickerController (ModuleScript) [script_0068, 277 lines, 5 attrs]
-          - CustomisationUIController (ModuleScript) [script_0069, 127 lines, 5 attrs]
-          - DealershipUIController (ModuleScript) [script_0070, 87 lines, 5 attrs]
-          - GaragePropertyMenuController (ModuleScript) [script_0071, 172 lines, 2 attrs]
-          - ModuleShopUIController (ModuleScript) [script_0072, 109 lines, 5 attrs]
-          - NavigationController (ModuleScript) [script_0073, 49 lines, 5 attrs]
-          - StatsPanelController (ModuleScript) [script_0074, 51 lines, 5 attrs]
+          - FreeRoamNavController_Active (LocalScript) [script_0071, 1316 lines, 3 attrs]
+          - FreeRoamVehicleExitButton_Active (LocalScript) [script_0072, 115 lines]
+          - CockpitPaintUIController (ModuleScript) [script_0073, 46 lines, 5 attrs]
+          - ColourPickerController (ModuleScript) [script_0074, 277 lines, 5 attrs]
+          - CustomisationUIController (ModuleScript) [script_0075, 127 lines, 5 attrs]
+          - DealershipUIController (ModuleScript) [script_0076, 87 lines, 5 attrs]
+          - GaragePropertyMenuController (ModuleScript) [script_0077, 172 lines, 2 attrs]
+          - ModuleShopUIController (ModuleScript) [script_0078, 109 lines, 5 attrs]
+          - NavigationController (ModuleScript) [script_0079, 49 lines, 5 attrs]
+          - StatsPanelController (ModuleScript) [script_0080, 51 lines, 5 attrs]
           - README_TargetControllers (StringValue)
         - World (Folder)
-          - GarageAccessClient_Active (LocalScript) [script_0075, 279 lines, 1 attrs]
-          - GarageInteriorClient_Active (LocalScript) [script_0076, 92 lines, 2 attrs]
-          - GarageInteriorCustomizationClient_Active (LocalScript) [script_0077, 273 lines, 1 attrs]
-          - LODClient_Active (LocalScript) [script_0078, 365 lines, 12 attrs]
-          - NightLamppostLightController_Active (LocalScript) [script_0079, 101 lines, 2 attrs]
-          - WindowMaterialController_Active (LocalScript) [script_0080, 101 lines, 2 attrs]
+          - GarageAccessClient_Active (LocalScript) [script_0081, 279 lines, 1 attrs]
+          - GarageInteriorClient_Active (LocalScript) [script_0082, 92 lines, 2 attrs]
+          - GarageInteriorCustomizationClient_Active (LocalScript) [script_0083, 273 lines, 1 attrs]
+          - LODClient_Active (LocalScript) [script_0084, 365 lines, 12 attrs]
+          - NightLamppostLightController_Active (LocalScript) [script_0085, 101 lines, 2 attrs]
+          - WindowMaterialController_Active (LocalScript) [script_0086, 101 lines, 2 attrs]
       - RuntimeState (Folder)
       - State (Folder)
-      - NeoTokyoRacersClient_Bootstrap_Shadow_Disabled (LocalScript) [script_0081, 4717 lines, 61 attrs]
-    - LocalScript (LocalScript) [script_0082, 203 lines]
-    - PlayerScriptsLoader (LocalScript) [script_0083, 8 lines]
-    - RbxCharacterSounds (LocalScript) [script_0084, 456 lines]
-      - AtomicBinding (ModuleScript) [script_0085, 277 lines]
-    - TEMP_LightingPreview (LocalScript) [script_0086, 127 lines, 2 attrs]
-    - TrailerMode.client.lua (LocalScript) [script_0087, 73 lines]
-    - TrailerShot01Camera (LocalScript) [script_0088, 92 lines]
-    - PlayerModule (ModuleScript) [script_0089, 32 lines]
+      - NeoTokyoRacersClient_Bootstrap_Shadow_Disabled (LocalScript) [script_0087, 4717 lines, 61 attrs]
+    - LocalScript (LocalScript) [script_0088, 203 lines]
+    - PlayerScriptsLoader (LocalScript) [script_0089, 8 lines]
+    - RbxCharacterSounds (LocalScript) [script_0090, 456 lines]
+      - AtomicBinding (ModuleScript) [script_0091, 277 lines]
+    - TEMP_LightingPreview (LocalScript) [script_0092, 127 lines, 2 attrs]
+    - TrailerMode.client.lua (LocalScript) [script_0093, 73 lines]
+    - TrailerShot01Camera (LocalScript) [script_0094, 92 lines]
+    - PlayerModule (ModuleScript) [script_0095, 32 lines]
       - CommonUtils (Folder)
-        - CameraWrapper (ModuleScript) [script_0090, 115 lines]
-        - CameraWrapper.spec (ModuleScript) [script_0091, 34 lines]
-        - CharacterUtil (ModuleScript) [script_0092, 156 lines]
-        - ConnectionUtil (ModuleScript) [script_0093, 62 lines]
-        - ConnectionUtil.spec (ModuleScript) [script_0094, 104 lines]
-        - FlagUtil (ModuleScript) [script_0095, 18 lines]
-      - CameraModule (ModuleScript) [script_0096, 632 lines]
-        - BaseCamera (ModuleScript) [script_0097, 763 lines]
-        - BaseOcclusion (ModuleScript) [script_0098, 48 lines]
-        - CameraInput (ModuleScript) [script_0099, 572 lines]
-        - CameraToggleStateController (ModuleScript) [script_0100, 78 lines]
-        - CameraUI (ModuleScript) [script_0101, 38 lines]
-        - CameraUtils (ModuleScript) [script_0102, 310 lines]
-        - ClassicCamera (ModuleScript) [script_0103, 232 lines]
-        - Invisicam (ModuleScript) [script_0104, 628 lines]
-        - LegacyCamera (ModuleScript) [script_0105, 118 lines]
-        - MouseLockController (ModuleScript) [script_0106, 212 lines]
-        - OrbitalCamera (ModuleScript) [script_0107, 287 lines]
-        - Poppercam (ModuleScript) [script_0108, 128 lines]
-        - TransparencyController (ModuleScript) [script_0109, 230 lines]
-        - VRBaseCamera (ModuleScript) [script_0110, 425 lines]
-        - VRCamera (ModuleScript) [script_0111, 429 lines]
-        - VRVehicleCamera (ModuleScript) [script_0112, 514 lines]
-        - VehicleCamera (ModuleScript) [script_0113, 216 lines]
-          - VehicleCameraConfig (ModuleScript) [script_0114, 58 lines]
-          - VehicleCameraCore (ModuleScript) [script_0115, 183 lines]
-        - ZoomController (ModuleScript) [script_0116, 138 lines]
-          - Popper (ModuleScript) [script_0117, 474 lines]
-      - ControlModule (ModuleScript) [script_0118, 674 lines]
-        - AvatarAbilitiesInterface (ModuleScript) [script_0119, 67 lines]
-        - BaseCharacterController (ModuleScript) [script_0120, 65 lines]
-        - ClickToMoveController (ModuleScript) [script_0121, 1240 lines]
-        - ClickToMoveDisplay (ModuleScript) [script_0122, 517 lines]
-        - DynamicThumbstick (ModuleScript) [script_0123, 636 lines]
-        - Gamepad (ModuleScript) [script_0124, 213 lines]
-        - Keyboard (ModuleScript) [script_0125, 154 lines]
-        - PathDisplay (ModuleScript) [script_0126, 153 lines]
-        - TouchJump (ModuleScript) [script_0127, 283 lines]
-        - TouchThumbstick (ModuleScript) [script_0128, 229 lines]
-        - VRNavigation (ModuleScript) [script_0129, 483 lines]
-        - VehicleController (ModuleScript) [script_0130, 190 lines]
+        - CameraWrapper (ModuleScript) [script_0096, 115 lines]
+        - CameraWrapper.spec (ModuleScript) [script_0097, 34 lines]
+        - CharacterUtil (ModuleScript) [script_0098, 156 lines]
+        - ConnectionUtil (ModuleScript) [script_0099, 62 lines]
+        - ConnectionUtil.spec (ModuleScript) [script_0100, 104 lines]
+        - FlagUtil (ModuleScript) [script_0101, 18 lines]
+      - CameraModule (ModuleScript) [script_0102, 632 lines]
+        - BaseCamera (ModuleScript) [script_0103, 763 lines]
+        - BaseOcclusion (ModuleScript) [script_0104, 48 lines]
+        - CameraInput (ModuleScript) [script_0105, 572 lines]
+        - CameraToggleStateController (ModuleScript) [script_0106, 78 lines]
+        - CameraUI (ModuleScript) [script_0107, 38 lines]
+        - CameraUtils (ModuleScript) [script_0108, 310 lines]
+        - ClassicCamera (ModuleScript) [script_0109, 232 lines]
+        - Invisicam (ModuleScript) [script_0110, 628 lines]
+        - LegacyCamera (ModuleScript) [script_0111, 118 lines]
+        - MouseLockController (ModuleScript) [script_0112, 212 lines]
+        - OrbitalCamera (ModuleScript) [script_0113, 287 lines]
+        - Poppercam (ModuleScript) [script_0114, 128 lines]
+        - TransparencyController (ModuleScript) [script_0115, 230 lines]
+        - VRBaseCamera (ModuleScript) [script_0116, 425 lines]
+        - VRCamera (ModuleScript) [script_0117, 429 lines]
+        - VRVehicleCamera (ModuleScript) [script_0118, 514 lines]
+        - VehicleCamera (ModuleScript) [script_0119, 216 lines]
+          - VehicleCameraConfig (ModuleScript) [script_0120, 58 lines]
+          - VehicleCameraCore (ModuleScript) [script_0121, 183 lines]
+        - ZoomController (ModuleScript) [script_0122, 138 lines]
+          - Popper (ModuleScript) [script_0123, 474 lines]
+      - ControlModule (ModuleScript) [script_0124, 674 lines]
+        - AvatarAbilitiesInterface (ModuleScript) [script_0125, 67 lines]
+        - BaseCharacterController (ModuleScript) [script_0126, 65 lines]
+        - ClickToMoveController (ModuleScript) [script_0127, 1240 lines]
+        - ClickToMoveDisplay (ModuleScript) [script_0128, 517 lines]
+        - DynamicThumbstick (ModuleScript) [script_0129, 636 lines]
+        - Gamepad (ModuleScript) [script_0130, 213 lines]
+        - Keyboard (ModuleScript) [script_0131, 154 lines]
+        - PathDisplay (ModuleScript) [script_0132, 153 lines]
+        - TouchJump (ModuleScript) [script_0133, 283 lines]
+        - TouchThumbstick (ModuleScript) [script_0134, 229 lines]
+        - VRNavigation (ModuleScript) [script_0135, 483 lines]
+        - VehicleController (ModuleScript) [script_0136, 190 lines]
 - StarterGui (StarterGui)
   - NeoTokyoRacersUI (ScreenGui) [2 attrs]
     - Components (Folder) [1 attrs]
@@ -2756,7 +2776,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
     - Theme (Folder) [1 attrs]
 - Workspace (Workspace)
   - Camera (Camera)
-  - Decal (Decal)
   - NeoTokyoRacersWorld (Folder) [3 attrs]
     - City (Folder) [3 attrs]
       - Block S1 (Folder)
@@ -3391,10 +3410,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                         - UITextSizeConstraint (UITextSizeConstraint)
                 - TKY_SIMPLE_POP_BB_08_shiro_fit_MEDIUM_2X1_H (Model) [18 attrs]
                   - BillboardPanel (Part)
+                  - BillboardPanel (Part)
+                  - BillboardPanel (Part)
                     - FrontSurfaceGui (SurfaceGui)
                       - AtlasImageLabel (ImageLabel)
-                  - BillboardPanel (Part)
-                  - BillboardPanel (Part)
                 - TKY_SIMPLE_POP_BB_13_roku_mode_MEDIUM_2X1_H (Model) [18 attrs]
                   - BillboardPanel (Part)
                     - FrontSurfaceGui (SurfaceGui)
@@ -4914,6 +4933,74 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - SurfaceAppearance (SurfaceAppearance)
                   - bush long (MeshPart)
                     - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - Road Central Divider (Part)
+                  - Road Central Divider Circle (Part)
+                  - Road Central Divider Circle (Part)
+                - Road Central Divider (Model)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - Road Central Divider (Part)
+                  - Road Central Divider Circle (Part)
+                  - Road Central Divider Circle (Part)
+                - Road Central Divider (Model)
                   - bush long (MeshPart)
                     - SurfaceAppearance (SurfaceAppearance)
                   - bush long (MeshPart)
@@ -7926,10 +8013,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - Garage Bollard Yellow (Part)
                   - Garage Sign (Model)
                     - Garage Sign (Part)
+                    - Garage Sign (Part)
+                    - Garage Sign (Part)
                       - SurfaceGui (SurfaceGui)
                         - TextLabel (TextLabel)
-                    - Garage Sign (Part)
-                    - Garage Sign (Part)
                     - Garage Sign (Part)
                     - Garage Sign Clearance (Part)
                       - SurfaceGui (SurfaceGui)
@@ -10060,13 +10147,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - Road Marking White (Part)
         - S2_R3 Group Paths FBX (Model)
           - path detail edge (MeshPart)
-          - path detail edge.002 (MeshPart)
           - path detail edge.003 (MeshPart)
           - path main.001 (MeshPart)
-          - path main.003 (MeshPart)
           - path main.004 (MeshPart)
           - path road edge.001 (MeshPart)
-          - path road edge.002 (MeshPart)
           - path road edge.003 (MeshPart)
       - Block S3 (Folder)
         - Block_S3_R1_B1 (Model) [3 attrs]
@@ -12419,7 +12503,40 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
         - EnterPrivateGaragePrompt (ProximityPrompt) [1 attrs]
     - Interiors (Folder)
       - GarageInstances (Folder) [3 attrs]
-    - RaceRoutes (Folder) [1 attrs]
+    - RaceInstances (Folder)
+    - RaceRoutes (Folder) [2 attrs]
+      - ShiftedCanalSprint (Folder) [3 attrs]
+        - ArrowMarkers (Folder) [1 attrs]
+        - Checkpoints (Folder)
+          - Checkpoint_001 (Part) [4 attrs]
+          - Checkpoint_002 (Part) [4 attrs]
+          - Checkpoint_003 (Part) [4 attrs]
+          - Checkpoint_004 (Part) [4 attrs]
+          - Checkpoint_005 (Part) [4 attrs]
+          - Checkpoint_006 (Part) [4 attrs]
+          - Checkpoint_007 (Part) [4 attrs]
+          - Checkpoint_008 (Part) [4 attrs]
+          - Checkpoint_009 (Part) [4 attrs]
+          - Checkpoint_010 (Part) [4 attrs]
+          - Checkpoint_011 (Part) [4 attrs]
+          - Checkpoint_012 (Part) [4 attrs]
+          - Checkpoint_013 (Part) [4 attrs]
+          - Checkpoint_014 (Part) [4 attrs]
+        - Media (Folder)
+          - MapImage (StringValue)
+          - TrackImage (StringValue)
+        - SessionAssetTemplates (Folder) [1 attrs]
+        - SpawnGrid (Folder)
+          - Grid_01 (Part) [2 attrs]
+          - Grid_02 (Part) [2 attrs]
+          - Grid_03 (Part) [2 attrs]
+          - Grid_04 (Part) [2 attrs]
+          - Grid_05 (Part) [2 attrs]
+          - Grid_06 (Part) [2 attrs]
+        - StartZones (Folder)
+          - RaceStartZone (Part) [5 attrs]
+          - TimeTrialStartZone (Part) [5 attrs]
+        - FinishLine (Part) [4 attrs]
     - References (Folder)
     - Routes (Folder)
     - Runtime (Folder) [3 attrs]
@@ -14413,6 +14530,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - blockout part (Part)
           - blockout part (Part)
           - blockout part (Part)
+          - blockout part (Part)
+          - blockout part (Part)
+          - blockout part (Part)
         - Block Group D (Folder)
           - blockout part (Part)
           - blockout part (Part)
@@ -14864,6 +14984,12 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Road (Part)
             - Road (Part)
             - Road (Part)
+            - Road (Part)
+            - Road (Part)
+            - Road (Part)
+            - Road (Part)
+            - Road (Part)
+            - Road (Part)
           - curve left (Model)
             - Road (Part)
             - Road (Part)
@@ -14886,6 +15012,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Road (Part)
           - curve right (Model)
             - Model (Model)
+              - Road (Part)
               - Road (Part)
               - Road (Part)
               - Road (Part)
@@ -17062,9 +17189,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -17102,9 +17229,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -17142,11 +17269,11 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -17185,9 +17312,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -19017,10 +19144,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -19060,9 +19187,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -19099,9 +19226,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
@@ -19120,6 +19247,14 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - bridge large floors (MeshPart)
             - bridge large neon (MeshPart)
             - bridge large windows (MeshPart) [1 attrs]
+          - bridge small a (Model)
+            - bridge small detail (MeshPart)
+            - bridge small main (MeshPart)
+            - bridge small neon (MeshPart)
+          - bridge small b (Model)
+            - bridge small detail (MeshPart)
+            - bridge small main (MeshPart)
+            - bridge small neon (MeshPart)
           - bush left side (Model)
             - bush long (MeshPart)
               - SurfaceAppearance (SurfaceAppearance)
@@ -19266,10 +19401,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -19306,11 +19441,11 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -19557,9 +19692,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -19678,10 +19813,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -19692,21 +19827,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Walls (Part)
             - Garage Walls (Part)
             - Garage Walls Top (Part)
-          - bridge large (Model)
-            - bridge large base (MeshPart)
-            - bridge large detail (MeshPart)
-            - bridge large detail dark (MeshPart)
-            - bridge large floors (MeshPart)
-            - bridge large neon (MeshPart)
-            - bridge large windows (MeshPart) [1 attrs]
-          - bridge small a (Model)
-            - bridge small detail (MeshPart)
-            - bridge small main (MeshPart)
-            - bridge small neon (MeshPart)
-          - bridge small b (Model)
-            - bridge small detail (MeshPart)
-            - bridge small main (MeshPart)
-            - bridge small neon (MeshPart)
           - bush left side (Model)
             - bush long (MeshPart)
               - SurfaceAppearance (SurfaceAppearance)
@@ -19852,9 +19972,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
@@ -19935,9 +20055,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -19975,10 +20095,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -19997,577 +20117,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - bridge small detail (MeshPart)
             - bridge small main (MeshPart)
             - bridge small neon (MeshPart)
-          - bush left side (Model)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-          - bush right side (Model)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-          - level 1 (Model)
-            - level1 base (MeshPart)
-            - level1 base top (MeshPart)
-            - level1 neon (MeshPart)
-            - level1 planters dark detail (MeshPart)
-            - level1 planters dirt (MeshPart)
-            - level1 planters light (MeshPart)
-            - level1 window still lower (MeshPart)
-            - level1 window still upper (MeshPart)
-            - level1 windows (MeshPart) [1 attrs]
-          - level 2 (Model)
-            - level2 base (MeshPart)
-            - level2 dark ceiling (MeshPart)
-            - level2 detail back (MeshPart)
-            - level2 detail corner (MeshPart)
-            - level2 detail front (MeshPart)
-            - level2 detail left (MeshPart)
-            - level2 detail right (MeshPart)
-            - level2 floors  (MeshPart)
-            - level2 windows (MeshPart) [1 attrs]
-          - level 3 (Model)
-            - level3 base (MeshPart)
-            - level3 detail back (MeshPart)
-            - level3 detail corner (MeshPart)
-            - level3 detail front (MeshPart)
-            - level3 detail left (MeshPart)
-            - level3 detail right (MeshPart)
-            - level3 floors (MeshPart)
-            - level3 windows (MeshPart) [1 attrs]
-          - pillars (Model)
-            - pillar dark (MeshPart)
-            - pillar dark (MeshPart)
-            - pillar dark (MeshPart)
-            - pillar detail (MeshPart)
-            - pillar detail (MeshPart)
-            - pillar ground roof (MeshPart)
-            - pillar ground roof (MeshPart)
-            - pillar ground roof (MeshPart)
-            - pillar ground windows (MeshPart) [1 attrs]
-            - pillar ground windows (MeshPart) [1 attrs]
-            - pillar ground windows (MeshPart) [1 attrs]
-            - pillar light (MeshPart)
-            - pillar light (MeshPart)
-            - pillar light (MeshPart)
-        - Brutalist Block D1 (Model)
-          - neon upper (MeshPart)
-          - Parking Garage left A (Model)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Sign (Model)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign Clearance (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-            - Garage Shutters (Part)
-            - Garage Shutters Bottom (Part)
-            - Garage Shutters Top (Part)
-            - Garage Walls (Part)
-            - Garage Walls (Part)
-            - Garage Walls Top (Part)
-          - Parking Garage left B (Model)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Sign (Model)
-              - Garage Sign (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign Clearance (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-            - Garage Shutters (Part)
-            - Garage Shutters Bottom (Part)
-            - Garage Shutters Top (Part)
-            - Garage Walls (Part)
-            - Garage Walls (Part)
-            - Garage Walls Top (Part)
-          - Parking Garage right A (Model)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Sign (Model)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-              - Garage Sign Clearance (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-            - Garage Shutters (Part)
-            - Garage Shutters Bottom (Part)
-            - Garage Shutters Top (Part)
-            - Garage Walls (Part)
-            - Garage Walls (Part)
-            - Garage Walls Top (Part)
-          - Parking Garage right B (Model)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Sign (Model)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign Clearance (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-            - Garage Shutters (Part)
-            - Garage Shutters Bottom (Part)
-            - Garage Shutters Top (Part)
-            - Garage Walls (Part)
-            - Garage Walls (Part)
-            - Garage Walls Top (Part)
-          - bush left side (Model)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-          - bush right side (Model)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-          - level 1 (Model)
-            - level1 base (MeshPart)
-            - level1 base top (MeshPart)
-            - level1 neon (MeshPart)
-            - level1 planters dark detail (MeshPart)
-            - level1 planters dirt (MeshPart)
-            - level1 planters light (MeshPart)
-            - level1 window still lower (MeshPart)
-            - level1 window still upper (MeshPart)
-            - level1 windows (MeshPart) [1 attrs]
-          - level 2 (Model)
-            - level2 base (MeshPart)
-            - level2 dark ceiling (MeshPart)
-            - level2 detail back (MeshPart)
-            - level2 detail corner (MeshPart)
-            - level2 detail front (MeshPart)
-            - level2 detail left (MeshPart)
-            - level2 detail right (MeshPart)
-            - level2 floors  (MeshPart)
-            - level2 windows (MeshPart) [1 attrs]
-          - level 3 (Model)
-            - level3 base (MeshPart)
-            - level3 detail back (MeshPart)
-            - level3 detail corner (MeshPart)
-            - level3 detail front (MeshPart)
-            - level3 detail left (MeshPart)
-            - level3 detail right (MeshPart)
-            - level3 floors (MeshPart)
-            - level3 windows (MeshPart) [1 attrs]
-          - pillars (Model)
-            - pillar dark (MeshPart)
-            - pillar dark (MeshPart)
-            - pillar dark (MeshPart)
-            - pillar detail (MeshPart)
-            - pillar detail (MeshPart)
-            - pillar ground roof (MeshPart)
-            - pillar ground roof (MeshPart)
-            - pillar ground roof (MeshPart)
-            - pillar ground windows (MeshPart) [1 attrs]
-            - pillar ground windows (MeshPart) [1 attrs]
-            - pillar ground windows (MeshPart) [1 attrs]
-            - pillar light (MeshPart)
-            - pillar light (MeshPart)
-            - pillar light (MeshPart)
-        - Brutalist Block D1 (Model)
-          - neon upper (MeshPart)
-          - Parking Garage left A (Model)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Sign (Model)
-              - Garage Sign (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign Clearance (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-            - Garage Shutters (Part)
-            - Garage Shutters Bottom (Part)
-            - Garage Shutters Top (Part)
-            - Garage Walls (Part)
-            - Garage Walls (Part)
-            - Garage Walls Top (Part)
-          - Parking Garage left B (Model)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Sign (Model)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign Clearance (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-            - Garage Shutters (Part)
-            - Garage Shutters Bottom (Part)
-            - Garage Shutters Top (Part)
-            - Garage Walls (Part)
-            - Garage Walls (Part)
-            - Garage Walls Top (Part)
-          - Parking Garage right A (Model)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Sign (Model)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-              - Garage Sign Clearance (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-            - Garage Shutters (Part)
-            - Garage Shutters Bottom (Part)
-            - Garage Shutters Top (Part)
-            - Garage Walls (Part)
-            - Garage Walls (Part)
-            - Garage Walls Top (Part)
-          - Parking Garage right B (Model)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Sign (Model)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign Clearance (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-            - Garage Shutters (Part)
-            - Garage Shutters Bottom (Part)
-            - Garage Shutters Top (Part)
-            - Garage Walls (Part)
-            - Garage Walls (Part)
-            - Garage Walls Top (Part)
-          - bridge large (Model)
-            - bridge large base (MeshPart)
-            - bridge large detail (MeshPart)
-            - bridge large detail dark (MeshPart)
-            - bridge large floors (MeshPart)
-            - bridge large neon (MeshPart)
-            - bridge large windows (MeshPart) [1 attrs]
           - bush left side (Model)
             - bush long (MeshPart)
               - SurfaceAppearance (SurfaceAppearance)
@@ -21834,9 +21383,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
@@ -21877,9 +21426,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -21917,9 +21466,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -23958,10 +23507,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -24000,10 +23549,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -24042,9 +23591,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -24215,10 +23764,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -24257,9 +23806,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -24296,9 +23845,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
@@ -24337,10 +23886,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -25782,9 +25331,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                 - Garage Bollard Yellow (Part)
               - Garage Sign (Model)
                 - Garage Sign (Part)
-                - Garage Sign (Part)
                   - SurfaceGui (SurfaceGui)
                     - TextLabel (TextLabel)
+                - Garage Sign (Part)
                 - Garage Sign (Part)
                 - Garage Sign (Part)
                 - Garage Sign Clearance (Part)
@@ -25823,11 +25372,11 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                 - Garage Bollard Yellow (Part)
               - Garage Sign (Model)
                 - Garage Sign (Part)
+                - Garage Sign (Part)
+                - Garage Sign (Part)
+                - Garage Sign (Part)
                   - SurfaceGui (SurfaceGui)
                     - TextLabel (TextLabel)
-                - Garage Sign (Part)
-                - Garage Sign (Part)
-                - Garage Sign (Part)
                 - Garage Sign Clearance (Part)
                   - SurfaceGui (SurfaceGui)
                     - TextLabel (TextLabel)
@@ -25866,9 +25415,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                 - Garage Sign (Part)
                 - Garage Sign (Part)
                 - Garage Sign (Part)
+                - Garage Sign (Part)
                   - SurfaceGui (SurfaceGui)
                     - TextLabel (TextLabel)
-                - Garage Sign (Part)
                 - Garage Sign Clearance (Part)
                   - SurfaceGui (SurfaceGui)
                     - TextLabel (TextLabel)
@@ -26783,22 +26332,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - TrunkLargeMaple1 (MeshPart)
                     - SurfaceAppearance Trunk (SurfaceAppearance)
                 - Tree Base Concrete (UnionOperation)
-              - Tree Large Maple (Model)
-                - Tree_Large_Maple_LOD3 (Model)
-                  - LeavesMapleBottom1 (MeshPart)
-                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                  - LeavesMapleShadow2 (MeshPart)
-                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                  - TrunkLargeMaple1 (MeshPart)
-                    - SurfaceAppearance Trunk (SurfaceAppearance)
-                - Tree Base Concrete (UnionOperation)
-              - Tree Large Poplar Group (Model)
-                - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
-                  - Leaves_Large_Poplar (MeshPart)
-                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                  - Trunk_Large_Poplar (MeshPart)
-                    - SurfaceAppearance Trunk (SurfaceAppearance)
-                - Tree Base Concrete (UnionOperation)
               - Tree Large Poplar Group (Model)
                 - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
                   - Leaves_Large_Poplar (MeshPart)
@@ -26877,7 +26410,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - Props (Folder)
             - Street Lights Group Front (Model)
               - Street Lamp Tall A (Model)
-                - lamppost main (MeshPart)
                 - lamppost neon (MeshPart)
                   - SurfaceLight lamppost (SurfaceLight)
               - Street Lamp Tall A (Model)
@@ -27006,22 +26538,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - SurfaceAppearance (SurfaceAppearance)
                 - bush walls (UnionOperation)
                 - bush walls detail (UnionOperation)
-              - path bush group B (Model)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush walls (UnionOperation)
-                - bush walls detail (UnionOperation)
-            - Tree Large Maple (Model)
-              - Tree_Large_Maple_LOD3 (Model)
-                - LeavesMapleBottom1 (MeshPart)
-                  - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                - LeavesMapleShadow2 (MeshPart)
-                  - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                - TrunkLargeMaple1 (MeshPart)
-                  - SurfaceAppearance Trunk (SurfaceAppearance)
-              - Tree Base Concrete (UnionOperation)
             - Tree Large Maple (Model)
               - Tree_Large_Maple_LOD3 (Model)
                 - LeavesMapleBottom1 (MeshPart)
@@ -27750,27 +27266,22 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
         - lamppost main (MeshPart)
         - lamppost neon (MeshPart)
           - SurfaceLight lamppost (SurfaceLight)
-      - Street Lamp Tall A (Model)
-        - lamppost main (MeshPart)
-        - lamppost neon (MeshPart)
-          - SurfaceLight lamppost (SurfaceLight)
-  - S2_R4_B4 Parking Lot FBX v1 (Model) [1 attrs]
-    - Plane (MeshPart)
-    - Plane.001 (MeshPart)
-    - Plane.002 (MeshPart)
-    - column main inner a (MeshPart)
-    - column main inner b (MeshPart)
-    - column main inner c (MeshPart)
-    - column main inner d (MeshPart)
-    - columns main back (MeshPart)
-    - columns main front (MeshPart)
-    - columns main left (MeshPart)
-    - columns main right (MeshPart)
-    - columns side back (MeshPart)
-    - columns side front (MeshPart)
-    - columns side right (MeshPart)
+  - S2_R4_B4 Parking Lot FBX v3 (Model) [1 attrs]
+    - ceiling main (MeshPart)
+    - column main (MeshPart)
+    - detail panels (MeshPart)
+    - detail panels.001 (MeshPart)
     - floor main (MeshPart)
-    - floor side (MeshPart)
+    - lines white parking (MeshPart)
+    - neon lights exterior (MeshPart)
+    - neon lights interior (MeshPart)
+    - railing main (MeshPart)
+    - walls interior (MeshPart)
+    - S2_R4_B4 Paths (Model)
+      - path detail edge (MeshPart)
+      - path main red (MeshPart)
+      - path parking asphalt (MeshPart)
+      - path road edge (MeshPart)
   - Terrain (Terrain)
 - ServerStorage (ServerStorage)
   - HOVER_RACING_SAVED_CARS_Runtime (Folder)

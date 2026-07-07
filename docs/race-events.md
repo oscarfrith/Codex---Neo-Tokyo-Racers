@@ -1,9 +1,9 @@
 # Race Events / First Race Prototype
 
-**Created / first designed:** 2026-05-26  
-**Last updated:** 2026-05-26  
-**Current status:** Planned / not confirmed implemented  
-**Relevant docs file:** `docs/race-events.md`  
+**Created / first designed:** 2026-05-26
+**Last updated:** 2026-07-06
+**Current status:** Superseded by the race/time-trial system plan
+**Relevant docs file:** `docs/race-events.md`
 **Relevant files to edit:** Race route folders, checkpoint scripts, race server/client scripts only.
 
 ## What The System Does
@@ -18,7 +18,19 @@ The first race event is intended to prove the core gameplay loop:
 
 This is the most important prototype feature still needing focus because it turns the open world and vehicle controller into an actual game loop.
 
-## Current Folder / Script Names
+## Current Plan
+
+The newer system plan is:
+
+```text
+docs/race-time-trial-system-plan-2026-07-06.md
+```
+
+Use that document for the recommended architecture, tiered time trials, multiplayer race matchmaking, rewards, anti-cheat, UI, and phased implementation path.
+
+This older file remains as a small historical prototype note only.
+
+## Older Folder / Script Names
 
 Exact folder/script names TBC.
 
