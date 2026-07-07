@@ -454,13 +454,14 @@ end
 raceEvent.OnClientEvent:Connect(function(payload)
 	if typeof(payload) ~= "table" then return end
 	local kind = payload.Type
-	if kind == "TimeTrialStaged" or kind == "TimeTrialCountdown" or kind == "TimeTrialStarted" then
+	if kind == "TimeTrialStaged" or kind == "TimeTrialCountdown" or kind == "TimeTrialStarted" or kind == "RaceStaged" or kind == "RaceCountdown" or kind == "RaceStarted" then
 		setActive(payload)
-	elseif kind == "TimeTrialCheckpoint" then
+	elseif kind == "TimeTrialCheckpoint" or kind == "RaceCheckpoint" then
 		setActive(payload)
-	elseif kind == "TimeTrialFinished" or kind == "TimeTrialEnded" or kind == "TimeTrialError" then
+	elseif kind == "TimeTrialFinished" or kind == "TimeTrialEnded" or kind == "TimeTrialError" or kind == "RaceFinished" or kind == "RaceEnded" then
 		clearActive()
 	end
+	-- NTR_RACING_PHASE8_ROUTE_GUIDE_RACE_EVENTS
 end)
 
 heartbeat = RunService.Heartbeat:Connect(function(dt)

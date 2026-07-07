@@ -1,7 +1,7 @@
 # Race And Time Trial System Plan
 
 **Created:** 2026-07-06
-**Status:** Phase 4 user-confirmed working / Phase 5F visual baseline / Phase 6 rewards generated for testing
+**Status:** Phase 7B teleport-to-start confirmed working / Phase 8 open-category multiplayer race MVP generated for testing
 **Scope:** Race entry, matchmaking, checkpoints, timing, rewards, UI, anti-cheat, and future progression.
 
 ## Context Read
@@ -734,7 +734,7 @@ Install rewards after result-state idempotency is proven:
 - server cash/profile grant path;
 - first-time medal bonuses for time trials;
 - reduced repeat rewards;
-- placement rewards for multiplayer races once Phase 8 lands.
+- placement rewards for multiplayer races after the Phase 8 queue/placement loop is verified.
 
 Verify reward cannot be double-claimed by touching finish repeatedly, retrying quickly, rejoining, or sending repeated client events.
 
@@ -759,6 +759,24 @@ Features:
 
 This is a UI phase and should not change checkpoint timing.
 
+Generated as:
+
+```text
+scripts/roblox_racing_phase7_free_roam_race_browser.lua
+```
+
+The generated Phase 7 uses the safer extracted-controller route: it installs `RaceBrowserClient_Active`, adds an `OpenRaceBrowser` BindableEvent under the existing `Controllers.UI` folder, and makes the free-roam `RACE` tile fire that event. The browser lists time-trial and race events from the current catalogs, displays event `BaseReward`, recommended/open category information, checkpoint/arrow counts, and recommended-tier medal targets for time trials. Phase 7 initially used `TRACK START` to create a local waypoint above the matching start zone.
+
+Phase 7B supersedes that waypoint behavior:
+
+```text
+scripts/roblox_racing_phase7b_race_browser_teleport.lua
+```
+
+Phase 7B changes the browser detail action to `TELEPORT TO START`, creates editable `RaceRoutes.<RouteId>.TeleportPoints.RaceBrowserTeleportPoint` parts, installs `RaceBrowserTeleportService_Active`, and moves/despawns safely on the server. The server unseats the player, briefly anchors and pivots the character to the route teleport point, then destroys the player's old spawned vehicle after the character is clear. The player still enters the physical zone and presses `E` / taps the prompt to open the Phase 3 entry menu.
+
+This phase intentionally does not edit `Config.Racing.Rewards`, event reward multipliers, `Config.Racing.RouteGuide`, checkpoint timing, payouts, or race-start validation.
+
 ### Phase 8 - Open-Category Multiplayer Race MVP
 
 Install:
@@ -768,9 +786,19 @@ Install:
 - queue UI showing open category, recommended performance, min/max players, and timeout;
 - grid spawn/freeze/release;
 - placement scoring;
-- race result rewards.
+- race finish UI with cash rewards deferred until the queue/placement loop is verified.
 
 Verify in local server with 2-4 players.
+
+Generated as:
+
+```text
+scripts/roblox_racing_phase8_open_category_multiplayer_race_mvp.lua
+```
+
+The generated first pass installs queue remotes, `Config.Racing.Matchmaking`, `RaceMatchmakingService_Active`, `RaceQueueClient_Active`, selected-vehicle queue entry from the existing race menu, grid staging, countdown, server-owned checkpoint placement, and finish UI. It intentionally does not grant race cash rewards yet and does not edit `Config.Racing.Rewards`; the safer next step after local-server race testing is a guarded race reward grant path keyed by `RunId + UserId`.
+
+Phase 8B (`scripts/roblox_racing_phase8b_multiplayer_race_drive_handoff_repair.lua`) repairs the first multiplayer start regression: the queue worked, but at `GO` the local driving controller/streaming handoff was not re-fired for `RaceStarted`, so cars could stop hovering and become undrivable while nearby route content streamed oddly. The repair adds the same handoff shape used by Phase 3E time trials and makes race staging freeze root-only.
 
 ### Phase 9 - Competitive Features
 

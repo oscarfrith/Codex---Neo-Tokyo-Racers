@@ -359,6 +359,22 @@
     "source_bytes": 9559,
     "source_checksum": "39364894"
   },
+  "ServerScriptService.NeoTokyoRacers.Services.Racing.RaceBrowserTeleportService_Active": {
+    "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Racing/RaceBrowserTeleportService_Active.server.lua",
+    "class_name": "Script",
+    "disabled": false,
+    "source_lines": 224,
+    "source_bytes": 7541,
+    "source_checksum": "480298506"
+  },
+  "ServerScriptService.NeoTokyoRacers.Services.Racing.RaceMatchmakingService_Active": {
+    "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Racing/RaceMatchmakingService_Active.server.lua",
+    "class_name": "Script",
+    "disabled": false,
+    "source_lines": 779,
+    "source_bytes": 23164,
+    "source_checksum": "227406796"
+  },
   "ServerScriptService.NeoTokyoRacers.Services.Racing.RaceRewardService_Active": {
     "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Racing/RaceRewardService_Active.server.lua",
     "class_name": "Script",
@@ -503,6 +519,14 @@
     "source_bytes": 5867,
     "source_checksum": "528832226"
   },
+  "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceBrowserClient_Active": {
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Racing/RaceBrowserClient_Active.client.lua",
+    "class_name": "LocalScript",
+    "disabled": false,
+    "source_lines": 525,
+    "source_bytes": 17834,
+    "source_checksum": "35011786"
+  },
   "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceClient_Active": {
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Racing/RaceClient_Active.client.lua",
     "class_name": "LocalScript",
@@ -515,17 +539,25 @@
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Racing/RaceEntryMenuClient_Active.client.lua",
     "class_name": "LocalScript",
     "disabled": false,
-    "source_lines": 1015,
-    "source_bytes": 36585,
-    "source_checksum": "334082464"
+    "source_lines": 1051,
+    "source_bytes": 37996,
+    "source_checksum": "722172061"
+  },
+  "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceQueueClient_Active": {
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Racing/RaceQueueClient_Active.client.lua",
+    "class_name": "LocalScript",
+    "disabled": false,
+    "source_lines": 295,
+    "source_bytes": 10045,
+    "source_checksum": "251922152"
   },
   "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceRouteGuideClient_Active": {
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Racing/RaceRouteGuideClient_Active.client.lua",
     "class_name": "LocalScript",
     "disabled": false,
-    "source_lines": 479,
-    "source_bytes": 17151,
-    "source_checksum": "665953459"
+    "source_lines": 480,
+    "source_bytes": 17350,
+    "source_checksum": "942395195"
   },
   "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Runtime.CharacterSprintController_Active": {
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Runtime/CharacterSprintController_Active.client.lua",
@@ -571,9 +603,9 @@
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/UI/FreeRoamNavController_Active.client.lua",
     "class_name": "LocalScript",
     "disabled": false,
-    "source_lines": 1316,
-    "source_bytes": 51070,
-    "source_checksum": "356327033"
+    "source_lines": 1321,
+    "source_bytes": 51211,
+    "source_checksum": "950540896"
   },
   "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.FreeRoamVehicleExitButton_Active": {
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/UI/FreeRoamVehicleExitButton_Active.client.lua",

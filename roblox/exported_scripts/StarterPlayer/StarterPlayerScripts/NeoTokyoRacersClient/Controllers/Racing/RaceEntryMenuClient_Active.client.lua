@@ -15,6 +15,8 @@ local remotes = shared:WaitForChild("Remotes")
 local racingRemotes = remotes:WaitForChild("Racing")
 local raceRequest = racingRemotes:WaitForChild("RaceRequest")
 local raceEvent = racingRemotes:WaitForChild("RaceEvent")
+local startRaceQueueEvent = script.Parent:WaitForChild("StartRaceQueueRequest")
+-- NTR_RACING_PHASE8_ENTRY_QUEUE_PATCH
 local garageInvoke = nil
 local racingModules = shared:WaitForChild("Modules"):WaitForChild("Racing")
 local RouteDefinition = require(racingModules:WaitForChild("RaceRouteDefinition"))
@@ -479,13 +481,47 @@ local function showVehicleSelect(mode)
 		setOpen(false)
 	end)
 	start.MouseButton1Click:Connect(function()
-		if mode == "Race" then
-			statusText("Multiplayer matchmaking is coming after the time-trial entry flow is stable.", false)
-			return
-		end
 		local row = state.SelectedRow
 		if not row then
 			statusText("Choose a vehicle first.", false)
+			return
+		end
+		if mode == "Race" then
+			local raceEventId = tostring(state.Entry and state.Entry.EventId or "shifted_canal_sprint_race")
+			statusText("Spawning selected vehicle for race queue...", true)
+			local spawn = callGarage("SpawnOwnedVehicleFromFreeRoam", {
+				VehicleId = row.VehicleId,
+				CockpitId = row.CockpitId,
+			})
+			if spawn.Success ~= true and spawn.Ok ~= true then
+				local selectResult = callGarage("SelectVehicleInstance", {
+					VehicleId = row.VehicleId,
+					CockpitId = row.CockpitId,
+				})
+				if selectResult.Success ~= true and selectResult.Ok ~= true then
+					statusText(selectResult.Message or selectResult.Error or spawn.Message or "Could not select vehicle.", false)
+					return
+				end
+				spawn = callGarage("SpawnVehicle", {})
+				if spawn.Success ~= true and spawn.Ok ~= true then
+					statusText(spawn.Message or spawn.Error or "Could not spawn selected vehicle.", false)
+					return
+				end
+			end
+			local clientRoot = script.Parent.Parent
+			local uiFolder = clientRoot and clientRoot:FindFirstChild("UI")
+			local spawnedEvent = uiFolder and uiFolder:FindFirstChild("FreeRoamVehicleSpawned")
+			if spawnedEvent and spawnedEvent:IsA("BindableEvent") then
+				spawnedEvent:Fire()
+			end
+			task.wait(0.35)
+			startRaceQueueEvent:Fire({
+				EventId = raceEventId,
+				VehicleId = row.VehicleId,
+				CockpitId = row.CockpitId,
+				DisplayName = state.Entry and state.Entry.Summary and state.Entry.Summary.DisplayName,
+			})
+			setOpen(false)
 			return
 		end
 		local timeTrialEventId = timeTrialEventIdForStart()
@@ -578,7 +614,7 @@ function showEntry(payload)
 	local exit = button(actionRail, "EXIT", UDim2.new(0.333, -8, 1, 0), UDim2.new(0.667, 8, 0, 0), theme.Exit)
 
 	startRace.MouseButton1Click:Connect(function()
-		statusText("Race matchmaking is coming next. Time trial is available now.", false)
+		showVehicleSelect("Race")
 	end)
 	startTT.MouseButton1Click:Connect(function()
 		showVehicleSelect("TimeTrial")

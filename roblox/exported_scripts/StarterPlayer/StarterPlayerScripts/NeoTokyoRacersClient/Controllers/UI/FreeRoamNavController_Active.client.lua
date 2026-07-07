@@ -1166,7 +1166,12 @@ local function ensureGui()
 		showActionPanel("Shop")
 	end)
 	makeStackButton(actionGrid, "RaceButton", "RaceIcon", "RACE", function()
-		showActionPanel("Race")
+		local event = script.Parent:FindFirstChild("OpenRaceBrowser")
+		if event and event:IsA("BindableEvent") then
+			event:Fire()
+		else
+			showActionPanel("Race")
+		end
 	end)
 	makeStackButton(actionGrid, "HomeButton", "GarageIcon", "HOME", function()
 		showActionPanel("Home")
