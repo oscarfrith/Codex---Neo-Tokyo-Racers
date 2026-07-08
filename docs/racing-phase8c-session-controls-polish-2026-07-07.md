@@ -1,7 +1,7 @@
 # Racing Phase 8C Session Controls Polish
 
 **Script:** `scripts/roblox_racing_phase8c_session_controls_polish.lua`  
-**Status:** Generated for Studio install/testing after Phase 8B was confirmed working  
+**Status:** Installed, but transition/camera issues remain and should be handled by Phase 8D
 **Scope:** Race/time-trial exit, reset-to-last-checkpoint, and first-start staging handoff polish
 
 ## Purpose
@@ -13,7 +13,9 @@ Phase 8C keeps the working Phase 8B race loop intact while fixing the rough sess
 - reset vehicles server-side to the last completed checkpoint, or the start grid before checkpoint 1;
 - stop the entry menu from firing the free-roam driving handoff immediately after selected-vehicle spawn.
 
-The first-start camera/spawn spin was likely caused by that early handoff running before Racing teleported/froze/released the car. Retry already skipped that path, which is why Retry looked cleaner. Phase 8C makes first start behave more like Retry by waiting for `TimeTrialStarted` / `RaceStarted` at `GO` before the local driving handoff runs.
+The first-start camera/spawn spin was likely caused by that early handoff running before Racing teleported/froze/released the car. Testing after the Phase 8C fix showed this was incomplete: first start still has the issue, and quitting can leave the local camera fixed at the old race location after the server despawns/teleports correctly.
+
+Treat the remaining issue as a broader session transition/camera ownership problem. The next planned phase is Phase 8D (`docs/racing-phase8d-session-transition-camera-fade-plan-2026-07-07.md`), which should rename the quit button, restore camera state, add fade transitions, and hide free-roam HUD during active sessions.
 
 ## What It Installs/Patches
 
@@ -64,6 +66,8 @@ Race checks:
 ## Risks
 
 - This phase uses guarded exact source patches against isolated Racing scripts. If an anchor fails, refresh the Studio mirror before another repair.
+- The first generated installer could abort with `Could not find second source anchor: pre-stage handoff block`. The updated installer fixes the root cause by handling the race and time-trial pre-stage handoff blocks separately; they contain the same logic, but the time-trial branch is indented one level differently.
+- Phase 8C did not fully solve the first-start camera/spawn issue. Do not assume removing the early handoff is sufficient; Phase 8D needs camera-state diagnostics and explicit camera restoration.
 - Reset currently has no time penalty. That is intentional for this polish phase; a future competitive phase should add a configurable reset penalty for races and possibly for time-trial best validation.
 - Exit does not show a time-trial medal/prize summary yet. That belongs with the Gran Turismo-style lap/infinite time-trial session phase.
 

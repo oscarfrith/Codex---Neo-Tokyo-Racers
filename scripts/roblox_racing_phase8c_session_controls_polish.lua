@@ -291,31 +291,49 @@ local function patchEntryMenuClient()
 		fail("RaceEntryMenuClient_Active is not a LocalScript")
 	end
 	local source = client.Source
-	if string.find(source, "NTR_RACING_PHASE8C_NO_PRE_STAGE_HANDOFF", 1, true) then
-		return
-	end
-	local oldBlock = [[			local clientRoot = script.Parent.Parent
+	local oldRaceBlock = [[			local clientRoot = script.Parent.Parent
 			local uiFolder = clientRoot and clientRoot:FindFirstChild("UI")
 			local spawnedEvent = uiFolder and uiFolder:FindFirstChild("FreeRoamVehicleSpawned")
 			if spawnedEvent and spawnedEvent:IsA("BindableEvent") then
 				spawnedEvent:Fire()
 			end
 			task.wait(0.35)]]
-	local newBlock = [[			-- NTR_RACING_PHASE8C_NO_PRE_STAGE_HANDOFF
+	local newRaceBlock = [[			-- NTR_RACING_PHASE8C_NO_PRE_STAGE_HANDOFF
 			-- Do not fire the free-roam driving handoff before Racing teleports/freezes the car.
 			-- TimeTrialStarted/RaceStarted fire the handoff at GO, matching the cleaner retry path.
 			task.wait(0.35)]]
-	local first = string.find(source, oldBlock, 1, true)
-	if not first then
-		fail("Could not find source anchor: pre-stage handoff block. Refresh the Studio mirror before another repair.")
+	local oldTimeTrialBlock = [[		local clientRoot = script.Parent.Parent
+		local uiFolder = clientRoot and clientRoot:FindFirstChild("UI")
+		local spawnedEvent = uiFolder and uiFolder:FindFirstChild("FreeRoamVehicleSpawned")
+		if spawnedEvent and spawnedEvent:IsA("BindableEvent") then
+			spawnedEvent:Fire()
+		end
+		task.wait(0.35)]]
+	local newTimeTrialBlock = [[		-- NTR_RACING_PHASE8C_NO_PRE_STAGE_HANDOFF
+		-- Do not fire the free-roam driving handoff before Racing teleports/freezes the car.
+		-- TimeTrialStarted/RaceStarted fire the handoff at GO, matching the cleaner retry path.
+		task.wait(0.35)]]
+	local markerPresent = string.find(source, "NTR_RACING_PHASE8C_NO_PRE_STAGE_HANDOFF", 1, true) ~= nil
+	local replaced = 0
+	local function replaceAll(oldBlock, newBlock)
+		while true do
+			local found = string.find(source, oldBlock, 1, true)
+			if not found then
+				break
+			end
+			source = string.sub(source, 1, found - 1) .. newBlock .. string.sub(source, found + #oldBlock)
+			replaced += 1
+		end
 	end
-	source = string.sub(source, 1, first - 1) .. newBlock .. string.sub(source, first + #oldBlock)
-	local second = string.find(source, oldBlock, 1, true)
-	if not second then
-		fail("Could not find second source anchor: pre-stage handoff block. Refresh the Studio mirror before another repair.")
+	replaceAll(oldRaceBlock, newRaceBlock)
+	replaceAll(oldTimeTrialBlock, newTimeTrialBlock)
+	if replaced == 0 and not markerPresent then
+		fail("Could not find any known pre-stage handoff blocks. Refresh the Studio mirror before another repair.")
 	end
-	source = string.sub(source, 1, second - 1) .. newBlock .. string.sub(source, second + #oldBlock)
-	client.Source = source
+	if replaced > 0 then
+		client.Source = source
+	end
+	print(("[NTR Racing Phase 8C] Entry menu pre-stage handoff blocks repaired: %d."):format(replaced))
 end
 
 local timeTrialHelpers = [====[

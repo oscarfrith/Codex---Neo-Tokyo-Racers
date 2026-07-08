@@ -1,7 +1,7 @@
 # Race And Time Trial System Plan
 
 **Created:** 2026-07-06
-**Status:** Phase 7B teleport-to-start confirmed working / Phase 8 open-category multiplayer race MVP generated for testing
+**Status:** Phase 8D transition/camera polish generated for Studio install before larger lap/session work
 **Scope:** Race entry, matchmaking, checkpoints, timing, rewards, UI, anti-cheat, and future progression.
 
 ## Context Read
@@ -568,7 +568,8 @@ During run:
 - current lap/checkpoint;
 - next checkpoint arrow;
 - route arrow assets from `ArrowMarkers`;
-- speed/boost HUD remains visible;
+- driving-critical HUD/controls remain visible where needed, such as MPH, boost, and mobile drive controls;
+- free-roam nav, free-roam car menu, and free-roam `EXIT VEHICLE` HUD are hidden while an active race/time-trial session is running;
 - compact medal target display for time trials;
 - position list for races;
 - wrong-way/missed checkpoint prompt.
@@ -809,9 +810,44 @@ Phase 8C (`scripts/roblox_racing_phase8c_session_controls_polish.lua`) is the ne
 - first-start staging/camera repair by removing the selected-vehicle pre-staging free-roam driving handoff and waiting for the `GO` handoff;
 - server-side reset/exit validation in `TimeTrialService_Active` and `RaceMatchmakingService_Active`.
 
+Phase 8C did not fully fix the first-start camera/spawn issue, and quitting could leave the camera fixed at the old race location after the car despawned and the player teleported. Treat that as a transition-state bug, not a reason to keep adding one-off button patches.
+
+### Phase 8D - Session Transition, Camera Restore, HUD Suppression, And Fade
+
+Generated as `scripts/roblox_racing_phase8d_session_transition_camera_fade.lua`. Add before Phase 9 because it stabilizes the player-facing transitions that every later racing feature will depend on.
+
+Install through isolated Racing/UI controllers where practical:
+
+- rename the session control button from `EXIT TO START` to `QUIT RACE`;
+- on quit, reset the local camera after teleport/despawn by restoring Roblox default camera ownership (`CameraType = Custom`, sane `CameraSubject`, and any race-specific camera/session state cleared);
+- add a small race transition/fade client that can fade to black and unfade around start staging, checkpoint reset, quit race, browser teleport-to-start, and later race-pocket teleports;
+- hide free-roam nav HUD, free-roam car menu, and free-roam `EXIT VEHICLE` HUD while the player is in a race/time-trial session;
+- keep driving-critical HUD and controls available during the race, especially mobile controls, MPH, and boost;
+- add a lightweight diagnostic print or smoke check around camera subject/type before and after quit/reset/start, because Phase 8C proved the earlier suspected cause was incomplete;
+- keep reward config, route-guide config, checkpoint timing, and route attributes untouched.
+
+Generated implementation shape:
+
+- Install a new isolated `RaceTransitionClient_Active` for fade/camera/HUD requests.
+- Canonically replace the small isolated `RaceSessionControlsClient_Active`.
+- Use a guarded exact source patch only for the isolated `RaceBrowserClient_Active` teleport function.
+- Use existing Racing session events (`TimeTrialStaged`, `TimeTrialStarted`, `TimeTrialEnded`, `RaceStaged`, `RaceStarted`, `RaceDNF`, `RaceEnded`) rather than polling every frame.
+- If existing free-roam HUD scripts already expose open/visible events or attributes, use those. If not, add a tiny local bridge or shared BoolValue/attribute; do not patch the register-limited bootstrap.
+- Use server actions only for validated movement/despawn. Fade and HUD hiding are local presentation; the server should not wait on client fade to perform anti-cheat-critical state changes.
+
+Verify:
+
+- `QUIT RACE` label appears in race/time-trial sessions.
+- Pressing `QUIT RACE` fades to black, despawns the race vehicle, teleports the player to the route start/teleport point, restores the camera to the player, then unfades.
+- `RESET TO LAST CHECKPOINT` fades briefly and returns control/camera cleanly.
+- First race/time-trial start fades during staging, then unfades for countdown or `GO` without camera spin.
+- Free-roam nav and `EXIT VEHICLE` UI are hidden during active race/time-trial sessions and return afterward.
+- Mobile drive controls, MPH, and boost remain usable during the run.
+- Teleporting from the free-roam Race browser to the start uses the same quick fade pattern.
+
 ### Phase 9 - Route Type And Gran Turismo-Style Time Trial Sessions
 
-Add after Phase 8C is stable:
+Add after Phase 8D is stable:
 
 - `RouteType = "Circuit" | "PointToPoint"`;
 - point-to-point events finish after the ordered route once;

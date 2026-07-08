@@ -187,10 +187,16 @@ end
 local function spawnCFrameForIndex(route, index)
 	local grid = route and route.SpawnGrid
 	local item = grid and grid[index]
-	if item and item.Part then
-		return item.Part.CFrame
+	local base = item and item.Part and item.Part.CFrame or RouteDefinition.GetFirstSpawnCFrame(route) * CFrame.new((index - 1) * 10, 0, 0)
+	local gate = RouteDefinition.GetGate(route, 1)
+	if gate and gate.Part then
+		local position = base.Position
+		local target = Vector3.new(gate.Part.Position.X, position.Y, gate.Part.Position.Z)
+		if (target - position).Magnitude > 1 then
+			return CFrame.lookAt(position, target)
+		end
 	end
-	return RouteDefinition.GetFirstSpawnCFrame(route) * CFrame.new((index - 1) * 10, 0, 0)
+	return base
 end
 
 local function createSessionFolder(race)
@@ -297,6 +303,256 @@ local function allFinished(race)
 	end
 	return true
 end
+-- NTR_RACING_PHASE8C_SESSION_CONTROL_HELPERS
+local function zeroModelVelocity(model)
+	for _, descendant in ipairs(model and model:GetDescendants() or {}) do
+		if descendant:IsA("BasePart") then
+			descendant.AssemblyLinearVelocity = Vector3.zero
+			descendant.AssemblyAngularVelocity = Vector3.zero
+		end
+	end
+end
+
+local function flatLookCFrame(baseCFrame, targetPosition)
+	local position = baseCFrame.Position
+	if typeof(targetPosition) ~= "Vector3" then
+		return baseCFrame
+	end
+	local target = Vector3.new(targetPosition.X, position.Y, targetPosition.Z)
+	if (target - position).Magnitude < 1 then
+		return baseCFrame
+	end
+	return CFrame.lookAt(position, target)
+end
+
+local function firstBasePart(folder)
+	for _, item in ipairs(folder and folder:GetChildren() or {}) do
+		if item:IsA("BasePart") then
+			return item
+		end
+	end
+	return nil
+end
+
+local function routeTeleportPoint(route, mode)
+	local folder = route and route.Folder
+	local points = folder and folder:FindFirstChild("TeleportPoints")
+	if not points then return nil end
+	mode = tostring(mode or "Race")
+	local preferred = points:FindFirstChild(mode .. "TeleportPoint")
+		or points:FindFirstChild(mode .. "StartTeleport")
+		or points:FindFirstChild("RaceBrowserTeleportPoint")
+		or points:FindFirstChild("StartTeleportPoint")
+	if preferred and preferred:IsA("BasePart") then
+		return preferred
+	end
+	return firstBasePart(points)
+end
+
+local function startCFrameForRoute(route, gateIndex)
+	local base = RouteDefinition.GetFirstSpawnCFrame(route)
+	local gate = RouteDefinition.GetGate(route, gateIndex or 1)
+	if gate and gate.Part then
+		return flatLookCFrame(base, gate.Part.Position)
+	end
+	return base
+end
+
+local function returnCFrameForRoute(route, mode)
+	local point = routeTeleportPoint(route, mode)
+	if point then
+		return point.CFrame * CFrame.new(0, 4, 0)
+	end
+	return startCFrameForRoute(route, 1) * CFrame.new(0, 4, 0)
+end
+
+local function resetCFrameForEntry(race, entry)
+	-- NTR_RACING_PHASE8D_CHECKPOINT_FACING
+	-- Completed-checkpoint resets should use the checkpoint part's authored facing.
+	local completedGateIndex = tonumber(entry and entry.LastCompletedGateIndex) or 0
+	if completedGateIndex <= 0 then
+		return spawnCFrameForIndex(race.Route, entry.GridIndex or 1) * CFrame.new(0, 4, 0)
+	end
+	local gate = RouteDefinition.GetGate(race.Route, completedGateIndex)
+	if gate and gate.Part then
+		return gate.Part.CFrame * CFrame.new(0, 4, 0)
+	end
+	return spawnCFrameForIndex(race.Route, entry.GridIndex or 1) * CFrame.new(0, 4, 0)
+end
+
+local function pivotVehicleForRace(player, vehicle, targetCFrame, frozen)
+	local root = vehicleRootPart(vehicle)
+	if not root then
+		return false, "Vehicle root missing."
+	end
+	vehicle.PrimaryPart = root
+	vehicle:PivotTo(targetCFrame)
+	zeroModelVelocity(vehicle)
+	seatPlayer(player, vehicle)
+	task.wait(0.06)
+	if frozen == true then
+		setVehicleFrozen(vehicle, true)
+		zeroModelVelocity(vehicle)
+	else
+		prepareVehicleForDriving(player, vehicle)
+		-- NTR_RACING_PHASE8D_RESET_STATIONARY
+		-- Reset should return the vehicle to a clean stationary checkpoint state,
+		-- even if the driving handoff applies one more physics step after seating.
+		task.delay(0.08, function()
+			if vehicle and vehicle.Parent then
+				zeroModelVelocity(vehicle)
+			end
+		end)
+		task.delay(0.24, function()
+			if vehicle and vehicle.Parent then
+				zeroModelVelocity(vehicle)
+			end
+		end)
+	end
+	return true, "Vehicle moved."
+end
+
+local function unseatPlayer(player)
+	local character = player.Character
+	local humanoid = character and character:FindFirstChildOfClass("Humanoid")
+	if humanoid then
+		humanoid.Sit = false
+		humanoid.PlatformStand = false
+	end
+end
+
+local function teleportCharacterTo(player, targetCFrame)
+	local character = player.Character
+	local root = character and character:FindFirstChild("HumanoidRootPart")
+	if not (root and root:IsA("BasePart")) then
+		return false, "Character root not ready."
+	end
+	local wasAnchored = root.Anchored
+	root.Anchored = true
+	zeroModelVelocity(character)
+	character:PivotTo(targetCFrame)
+	zeroModelVelocity(character)
+	task.delay(0.2, function()
+		if root and root.Parent then
+			root.Anchored = wasAnchored
+		end
+	end)
+	return true, "Teleported."
+end
+
+local function destroyVehicleAfterUnseat(player, vehicle)
+	if not (vehicle and vehicle.Parent) then return end
+	vehicle:SetAttribute("DriverUserId", nil)
+	vehicle:SetAttribute("DriveReady", false)
+	vehicle:SetAttribute("NTR_RaceRunId", nil)
+	vehicle:SetAttribute("NTR_RaceParticipant", nil)
+	vehicle:SetAttribute("NTR_RaceMode", nil)
+	unseatPlayer(player)
+	task.wait(0.08)
+	if vehicle and vehicle.Parent then
+		vehicle:Destroy()
+	end
+end
+
+local function entryForPlayer(race, player)
+	for _, entry in ipairs(race and race.Participants or {}) do
+		if entry.Player == player then
+			return entry
+		end
+	end
+	return nil
+end
+
+local function fireActiveRaceVisibility(race)
+	local participants = {}
+	for _, entry in ipairs(race and race.Participants or {}) do
+		if entry.Player and entry.DNF ~= true then
+			table.insert(participants, entry.Player.UserId)
+		end
+	end
+	raceEvent:FireAllClients({
+		Type = "RaceVisibilityUpdate",
+		Active = #participants > 0,
+		RunId = race and race.RunId or "",
+		Participants = participants,
+	})
+end
+
+local function resetRacePlayer(player)
+	local race = activeRaceByPlayer[player]
+	local entry = entryForPlayer(race, player)
+	if not (race and entry) then
+		return { Ok = false, Success = false, Message = "No active race." }
+	end
+	if entry.Finished == true then
+		return { Ok = false, Success = false, Message = "Race already finished." }
+	end
+	if not (race.State == "Running" or race.State == "Staging") then
+		return { Ok = false, Success = false, Message = "Race cannot reset right now." }
+	end
+	if os.clock() - (entry.LastResetClock or 0) < 1.5 then
+		return { Ok = false, Success = false, Message = "Reset is cooling down." }
+	end
+	entry.LastResetClock = os.clock()
+	local ok, message = pivotVehicleForRace(player, entry.Vehicle, resetCFrameForEntry(race, entry), race.State == "Staging")
+	if ok then
+		fire(player, {
+			Type = "RaceReset",
+			RunId = race.RunId,
+			EventId = race.EventId,
+			RouteId = race.RouteId,
+			NextGateIndex = entry.NextGateIndex,
+			GateCount = race.GateCount,
+			ResetCFrame = resetCFrameForEntry(race, entry), -- NTR_RACING_PHASE8D_RESET_CFRAME_PAYLOAD
+			Message = "Reset to last checkpoint.",
+		})
+		fireRace(player, {
+			Type = "RaceReset",
+			RunId = race.RunId,
+			EventId = race.EventId,
+			RouteId = race.RouteId,
+			NextGateIndex = entry.NextGateIndex,
+			GateCount = race.GateCount,
+			ResetCFrame = resetCFrameForEntry(race, entry), -- NTR_RACING_PHASE8D_RESET_CFRAME_PAYLOAD
+		})
+	end
+	return { Ok = ok, Success = ok, Message = message }
+end
+
+local function exitRacePlayer(player)
+	local race = activeRaceByPlayer[player]
+	local entry = entryForPlayer(race, player)
+	if not (race and entry) then
+		return { Ok = false, Success = false, Message = "No active race." }
+	end
+	entry.Finished = true
+	entry.DNF = true
+	activeRaceByPlayer[player] = nil
+	local target = returnCFrameForRoute(race.Route, "Race")
+	fire(player, {
+		Type = "RaceDNF",
+		RunId = race.RunId,
+		EventId = race.EventId,
+		Message = "Exited race.",
+	})
+	fireRace(player, {
+		Type = "RaceEnded",
+		RunId = race.RunId,
+		EventId = race.EventId,
+		RouteId = race.RouteId,
+		Reason = "Exited race",
+	})
+	destroyVehicleAfterUnseat(player, entry.Vehicle)
+	entry.Vehicle = nil
+	teleportCharacterTo(player, target)
+	fireActiveRaceVisibility(race)
+	broadcastPositions(race)
+	if allFinished(race) then
+		cleanupRace(race, "All racers finished or exited.")
+	end
+	return { Ok = true, Success = true, Message = "Exited to race start." }
+end
+
 
 local function finishEntry(race, entry)
 	if entry.Finished then return end
@@ -346,6 +602,7 @@ local function advanceCheckpoint(race, entry, touchedPart)
 		finishEntry(race, entry)
 		return
 	end
+	entry.LastCompletedGateIndex = entry.NextGateIndex
 	entry.NextGateIndex += 1
 	fire(entry.Player, {
 		Type = "RaceCheckpoint",
@@ -461,6 +718,8 @@ local function startRace(queue)
 				Vehicle = vehicle,
 				SelectedVehicleId = tostring(queue.VehicleIds[player] or ""),
 				NextGateIndex = 1,
+				LastCompletedGateIndex = 0,
+				GridIndex = #participants + 1,
 				LastTouchClock = 0,
 				LastProgressElapsed = 0,
 			})
@@ -753,6 +1012,10 @@ queueRequest.OnServerInvoke = function(player, action, payload)
 			MaxPlayers = queue and queue.MaxPlayers or 0,
 			SecondsRemaining = queue and math.max(0, math.ceil((queue.Deadline or now()) - now())) or 0,
 		}
+	elseif action == "ResetToLastCheckpoint" then
+		return resetRacePlayer(player)
+	elseif action == "ExitRaceToStart" then
+		return exitRacePlayer(player)
 	end
 	return { Ok = false, Message = "Unknown queue action." }
 end

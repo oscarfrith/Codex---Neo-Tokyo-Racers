@@ -508,12 +508,9 @@ local function showVehicleSelect(mode)
 					return
 				end
 			end
-			local clientRoot = script.Parent.Parent
-			local uiFolder = clientRoot and clientRoot:FindFirstChild("UI")
-			local spawnedEvent = uiFolder and uiFolder:FindFirstChild("FreeRoamVehicleSpawned")
-			if spawnedEvent and spawnedEvent:IsA("BindableEvent") then
-				spawnedEvent:Fire()
-			end
+			-- NTR_RACING_PHASE8C_NO_PRE_STAGE_HANDOFF
+			-- Do not fire the free-roam driving handoff before Racing teleports/freezes the car.
+			-- TimeTrialStarted/RaceStarted fire the handoff at GO, matching the cleaner retry path.
 			task.wait(0.35)
 			startRaceQueueEvent:Fire({
 				EventId = raceEventId,
@@ -553,12 +550,9 @@ local function showVehicleSelect(mode)
 				return
 			end
 		end
-		local clientRoot = script.Parent.Parent
-		local uiFolder = clientRoot and clientRoot:FindFirstChild("UI")
-		local spawnedEvent = uiFolder and uiFolder:FindFirstChild("FreeRoamVehicleSpawned")
-		if spawnedEvent and spawnedEvent:IsA("BindableEvent") then
-			spawnedEvent:Fire()
-		end
+		-- NTR_RACING_PHASE8C_NO_PRE_STAGE_HANDOFF
+		-- Do not fire the free-roam driving handoff before Racing teleports/freezes the car.
+		-- TimeTrialStarted/RaceStarted fire the handoff at GO, matching the cleaner retry path.
 		task.wait(0.35)
 		statusText("Staging at start line...", true)
 		local startResult = callRace("StartStagedTimeTrial", {

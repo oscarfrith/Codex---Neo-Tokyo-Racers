@@ -282,6 +282,15 @@ local function fireFreeRoamVehicleExited()
 		event:Fire()
 	end
 end
+local function fireRaceTransition(step, payload)
+	-- NTR_RACING_PHASE8D_BROWSER_TELEPORT_FADE
+	local event = script.Parent and script.Parent:FindFirstChild("RaceTransitionRequest")
+	if event and event:IsA("BindableEvent") then
+		payload = payload or {}
+		payload.Step = step
+		event:Fire(payload)
+	end
+end
 
 local function teleportToStart(row)
 	if teleportBusy then
@@ -293,6 +302,8 @@ local function teleportToStart(row)
 	end
 	teleportBusy = true
 	subtitle.Text = "Teleporting and clearing your current vehicle..."
+	fireRaceTransition("FadeOut", { Reason = "BrowserTeleport", Label = "TELEPORTING" })
+	task.wait(0.25)
 	local ok, result = pcall(function()
 		return raceBrowserTeleportInvoke:InvokeServer("TeleportToRaceStart", {
 			EventId = row.Summary.EventId,
@@ -301,6 +312,7 @@ local function teleportToStart(row)
 	end)
 	teleportBusy = false
 	if not ok or typeof(result) ~= "table" or (result.Ok ~= true and result.Success ~= true) then
+		fireRaceTransition("FadeIn", { Reason = "BrowserTeleportFailed", Delay = 0.08 })
 		subtitle.Text = (typeof(result) == "table" and tostring(result.Message or result.Error)) or "Teleport failed."
 		return
 	end
@@ -308,6 +320,8 @@ local function teleportToStart(row)
 	if setOpen then
 		setOpen(false)
 	end
+	fireRaceTransition("RestoreCamera", { Reason = "BrowserTeleport" })
+	fireRaceTransition("FadeIn", { Reason = "BrowserTeleport", Delay = 0.3 })
 	subtitle.Text = "Teleported. Enter the start zone and press E / tap to open the entry menu."
 end
 

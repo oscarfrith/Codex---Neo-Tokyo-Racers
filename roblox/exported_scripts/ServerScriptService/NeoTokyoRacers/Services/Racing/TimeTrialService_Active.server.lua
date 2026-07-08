@@ -318,15 +318,219 @@ local function prepareVehicleForDriving(player, vehicle)
 	end)
 	seatPlayer(player, vehicle)
 end
+-- NTR_RACING_PHASE8C_SESSION_CONTROL_HELPERS
+local function zeroModelVelocity(model)
+	for _, descendant in ipairs(model and model:GetDescendants() or {}) do
+		if descendant:IsA("BasePart") then
+			descendant.AssemblyLinearVelocity = Vector3.zero
+			descendant.AssemblyAngularVelocity = Vector3.zero
+		end
+	end
+end
+
+local function flatLookCFrame(baseCFrame, targetPosition)
+	local position = baseCFrame.Position
+	if typeof(targetPosition) ~= "Vector3" then
+		return baseCFrame
+	end
+	local target = Vector3.new(targetPosition.X, position.Y, targetPosition.Z)
+	if (target - position).Magnitude < 1 then
+		return baseCFrame
+	end
+	return CFrame.lookAt(position, target)
+end
+
+local function firstBasePart(folder)
+	for _, item in ipairs(folder and folder:GetChildren() or {}) do
+		if item:IsA("BasePart") then
+			return item
+		end
+	end
+	return nil
+end
+
+local function routeTeleportPoint(route, mode)
+	local folder = route and route.Folder
+	local points = folder and folder:FindFirstChild("TeleportPoints")
+	if not points then return nil end
+	mode = tostring(mode or "TimeTrial")
+	local preferred = points:FindFirstChild(mode .. "TeleportPoint")
+		or points:FindFirstChild(mode .. "StartTeleport")
+		or points:FindFirstChild("RaceBrowserTeleportPoint")
+		or points:FindFirstChild("StartTeleportPoint")
+	if preferred and preferred:IsA("BasePart") then
+		return preferred
+	end
+	return firstBasePart(points)
+end
+
+local function startCFrameForRoute(route, gateIndex)
+	local base = RouteDefinition.GetFirstSpawnCFrame(route)
+	local gate = RouteDefinition.GetGate(route, gateIndex or 1)
+	if gate and gate.Part then
+		return flatLookCFrame(base, gate.Part.Position)
+	end
+	return base
+end
+
+local function returnCFrameForRoute(route, mode)
+	local point = routeTeleportPoint(route, mode)
+	if point then
+		return point.CFrame * CFrame.new(0, 4, 0)
+	end
+	return startCFrameForRoute(route, 1) * CFrame.new(0, 4, 0)
+end
+
+local function resetCFrameForRun(run)
+	-- NTR_RACING_PHASE8D_CHECKPOINT_FACING
+	-- Completed-checkpoint resets should use the checkpoint part's authored facing.
+	local completedGateIndex = tonumber(run and run.LastCompletedGateIndex) or 0
+	if completedGateIndex <= 0 then
+		return startCFrameForRoute(run.Route, 1) * CFrame.new(0, 4, 0)
+	end
+	local gate = RouteDefinition.GetGate(run.Route, completedGateIndex)
+	if gate and gate.Part then
+		return gate.Part.CFrame * CFrame.new(0, 4, 0)
+	end
+	return startCFrameForRoute(run.Route, 1) * CFrame.new(0, 4, 0)
+end
+
+local function pivotVehicleForSession(player, vehicle, targetCFrame, frozen)
+	local root = vehicleRootPart(vehicle)
+	if not root then
+		return false, "Vehicle root missing."
+	end
+	vehicle.PrimaryPart = root
+	vehicle:PivotTo(targetCFrame)
+	zeroModelVelocity(vehicle)
+	seatPlayer(player, vehicle)
+	task.wait(0.06)
+	if frozen == true then
+		setVehicleFrozen(vehicle, true)
+		zeroModelVelocity(vehicle)
+	else
+		prepareVehicleForDriving(player, vehicle)
+		-- NTR_RACING_PHASE8D_RESET_STATIONARY
+		-- Reset should return the vehicle to a clean stationary checkpoint state,
+		-- even if the driving handoff applies one more physics step after seating.
+		task.delay(0.08, function()
+			if vehicle and vehicle.Parent then
+				zeroModelVelocity(vehicle)
+			end
+		end)
+		task.delay(0.24, function()
+			if vehicle and vehicle.Parent then
+				zeroModelVelocity(vehicle)
+			end
+		end)
+	end
+	return true, "Vehicle moved."
+end
+
+local function unseatPlayer(player)
+	local character = player.Character
+	local humanoid = character and character:FindFirstChildOfClass("Humanoid")
+	if humanoid then
+		humanoid.Sit = false
+		humanoid.PlatformStand = false
+	end
+end
+
+local function teleportCharacterTo(player, targetCFrame)
+	local character = player.Character
+	local root = character and character:FindFirstChild("HumanoidRootPart")
+	if not (root and root:IsA("BasePart")) then
+		return false, "Character root not ready."
+	end
+	local wasAnchored = root.Anchored
+	root.Anchored = true
+	zeroModelVelocity(character)
+	character:PivotTo(targetCFrame)
+	zeroModelVelocity(character)
+	task.delay(0.2, function()
+		if root and root.Parent then
+			root.Anchored = wasAnchored
+		end
+	end)
+	return true, "Teleported."
+end
+
+local function destroyVehicleAfterUnseat(player, vehicle)
+	if not (vehicle and vehicle.Parent) then return end
+	vehicle:SetAttribute("DriverUserId", nil)
+	vehicle:SetAttribute("DriveReady", false)
+	vehicle:SetAttribute("NTR_RaceRunId", nil)
+	vehicle:SetAttribute("NTR_RaceParticipant", nil)
+	vehicle:SetAttribute("NTR_RaceMode", nil)
+	unseatPlayer(player)
+	task.wait(0.08)
+	if vehicle and vehicle.Parent then
+		vehicle:Destroy()
+	end
+end
+
+local function resetActiveTimeTrial(player)
+	local run = activeRuns[player]
+	if not run then
+		return { Ok = false, Success = false, Message = "No active time trial." }
+	end
+	if not (run.State == "Running" or run.State == "Staging") then
+		return { Ok = false, Success = false, Message = "Time trial cannot reset right now." }
+	end
+	if os.clock() - (run.LastResetClock or 0) < 1.5 then
+		return { Ok = false, Success = false, Message = "Reset is cooling down." }
+	end
+	run.LastResetClock = os.clock()
+	local ok, message = pivotVehicleForSession(player, run.Vehicle, resetCFrameForRun(run), run.State == "Staging")
+	if ok then
+		fire(player, {
+			Type = "TimeTrialReset",
+			RunId = run.RunId,
+			EventId = run.EventId,
+			RouteId = run.RouteId,
+			NextGateIndex = run.NextGateIndex,
+			GateCount = run.GateCount,
+			ResetCFrame = resetCFrameForRun(run), -- NTR_RACING_PHASE8D_RESET_CFRAME_PAYLOAD
+			Message = "Reset to last checkpoint.",
+		})
+	end
+	return { Ok = ok, Success = ok, Message = message }
+end
+
+local function exitActiveTimeTrial(player)
+	local run = activeRuns[player]
+	if not run then
+		return { Ok = false, Success = false, Message = "No active time trial." }
+	end
+	activeRuns[player] = nil
+	activeRunsById[run.RunId] = nil
+	if run.Vehicle then
+		setVehicleFrozen(run.Vehicle, false)
+	end
+	fireVisibility(run, false)
+	clearSessionFolder(run)
+	fire(player, {
+		Type = "TimeTrialEnded",
+		RunId = run.RunId,
+		EventId = run.EventId,
+		RouteId = run.RouteId,
+		Reason = "Exited to start",
+	})
+	local target = returnCFrameForRoute(run.Route, "TimeTrial")
+	destroyVehicleAfterUnseat(player, run.Vehicle)
+	teleportCharacterTo(player, target)
+	return { Ok = true, Success = true, Message = "Exited to race start." }
+end
+
 
 local function stageVehicle(player, vehicle, route)
 	local root = vehicleRootPart(vehicle)
 	if not root then
 		return false, "Vehicle root missing."
 	end
-	local stageCFrame = RouteDefinition.GetFirstSpawnCFrame(route)
+	local stageCFrame = startCFrameForRoute(route, 1)
 	vehicle.PrimaryPart = root
-	vehicle:PivotTo(stageCFrame + Vector3.new(0, 4, 0))
+	vehicle:PivotTo(stageCFrame * CFrame.new(0, 4, 0))
 	vehicle:SetAttribute("ParkedShowcase", nil)
 	vehicle:SetAttribute("DriverUserId", player.UserId)
 	seatPlayer(player, vehicle)
@@ -438,6 +642,7 @@ local function advanceCheckpoint(player, touchedPart)
 		CheckpointIndex = gate.Index,
 		Elapsed = splitElapsed,
 	})
+	run.LastCompletedGateIndex = run.NextGateIndex
 	run.NextGateIndex += 1
 	fire(player, {
 		Type = "TimeTrialCheckpoint",
@@ -535,6 +740,7 @@ local function beginStagedTimeTrial(player, eventId, vehicleId)
 		VehicleTier = tier,
 		VehicleIndex = index,
 		NextGateIndex = 1,
+		LastCompletedGateIndex = 0,
 		GateCount = RouteDefinition.GetGateCount(route),
 		Splits = {},
 	}
@@ -718,6 +924,10 @@ raceRequest.OnServerInvoke = function(player, action, payload)
 	elseif action == "CancelTimeTrial" then
 		endRun(player, "Cancelled")
 		return { Ok = true, Success = true, Message = "Cancelled" }
+	elseif action == "ResetActiveTimeTrial" then
+		return resetActiveTimeTrial(player)
+	elseif action == "ExitActiveTimeTrial" then
+		return exitActiveTimeTrial(player)
 	elseif action == "GetRouteSummary" then
 		local route, routeError = RaceConfigReader.GetRouteForEvent(tostring(payload.EventId or "shifted_canal_sprint_tt"), "TimeTrial")
 		if not route then

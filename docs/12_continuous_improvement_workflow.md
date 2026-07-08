@@ -158,3 +158,8 @@ When a phase or fix is confirmed:
 - Phase 2 showed that UI/camera correctness can require a full session state handoff, not just opening an existing menu. If a vehicle is despawned into garage customisation, explicitly handle player hold/freeze, camera, preview vehicle, and eventual unlock.
 - Phase 3/3B showed that drive-in session locks must be released before the normal garage `SpawnVehicle` handoff. Otherwise seating/spawn can race an anchored hidden character and produce undriveable vehicles or streaming focus issues.
 - The Phase 3 partial install showed why command-bar source patchers should not use unescaped `string.gsub` for punctuation-heavy Lua source. The safer repair used plain matching to find the `Customise -> SpawnVehicle` branch and inserted the smallest unlock block before the call.
+
+## Current Lessons From Racing
+
+- Phase 8C showed that repeated logic blocks may not be text-identical once they sit in different branches. Duplicate source-anchor repairs should handle each known branch shape explicitly, accept already-repaired markers, and print the replacement count, so partial or slightly drifted live source does not force another guessed patch.
+- Phase 8C testing also showed that fixing a suspected vehicle handoff is not enough when the symptom is camera/UI transition state. Future racing transition repairs should log and restore camera type/subject plus HUD visibility before and after start/reset/quit, then keep fade/camera/HUD presentation in an isolated client controller.
