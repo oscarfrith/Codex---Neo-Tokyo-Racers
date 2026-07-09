@@ -322,6 +322,84 @@ local function raceEventIdForStart()
 	end
 	return eventId ~= "" and eventId or "shifted_canal_sprint_race"
 end
+
+-- NTR_RACING_PHASE11N_PB_READOUT_CLIENT
+local pbReadoutCache = {}
+
+local function formatPBReadoutTime(seconds)
+	seconds = tonumber(seconds) or 0
+	if seconds <= 0 then
+		return "--"
+	end
+	local minutes = math.floor(seconds / 60)
+	local rest = seconds - minutes * 60
+	return string.format("%d:%06.3f", minutes, rest)
+end
+
+local function pbCacheKey(eventId, tier)
+	return tostring(eventId or "") .. "::" .. string.upper(tostring(tier or ""))
+end
+
+local function timeTrialPBForTier(eventId, tier)
+	eventId = tostring(eventId or "")
+	tier = string.upper(tostring(tier or ""))
+	local key = pbCacheKey(eventId, tier)
+	if pbReadoutCache[key] ~= nil then
+		return pbReadoutCache[key]
+	end
+	if eventId == "" or tier == "" or tier == "--" then
+		pbReadoutCache[key] = { Ok = true, Found = false, Message = "No tier selected." }
+		return pbReadoutCache[key]
+	end
+	local result = callRace("GetTimeTrialPersonalBest", {
+		EventId = eventId,
+		VehicleTier = tier,
+	})
+	if type(result) ~= "table" then
+		result = { Ok = false, Found = false, Message = "PB lookup failed." }
+	end
+	pbReadoutCache[key] = result
+	return result
+end
+
+local function pbReadoutText(result, compact)
+	if type(result) ~= "table" then
+		return compact and "PB --" or "Personal best: --"
+	end
+	local best = tonumber(result.BestSeconds or (result.Record and result.Record.BestSeconds))
+	if result.Found == true and best then
+		local medal = tostring(result.BestMedal or (result.Record and result.Record.BestMedal) or "")
+		local suffix = medal ~= "" and (" / " .. string.upper(medal)) or ""
+		return (compact and "PB " or "Personal best: ") .. formatPBReadoutTime(best) .. suffix
+	end
+	if result.Ok == false and result.Message and result.Message ~= "" then
+		return compact and "PB unavailable" or tostring(result.Message)
+	end
+	return compact and "PB --" or "Personal best: --"
+end
+
+local function rememberPBFromResultPayload(payload)
+	if type(payload) ~= "table" then
+		return
+	end
+	local eventId = tostring(payload.EventId or "")
+	local tier = string.upper(tostring(payload.VehicleTier or ""))
+	if eventId == "" or tier == "" or tier == "--" then
+		return
+	end
+	local best = tonumber(payload.PersonalBestSeconds)
+	if not best then
+		return
+	end
+	pbReadoutCache[pbCacheKey(eventId, tier)] = {
+		Ok = true,
+		Found = true,
+		BestSeconds = best,
+		BestMedal = tostring(payload.PersonalBestMedal or payload.Medal or "Finished"),
+		EventId = eventId,
+		VehicleTier = tier,
+	}
+end
 local function ownedRows()
 	local profile = refreshProfile() or {}
 	local rows = {}
@@ -553,18 +631,31 @@ local function showVehicleSelect(mode)
 		badgeText.TextXAlignment = Enum.TextXAlignment.Center
 
 		label(card, row.Name, UDim2.new(1, -20, 0, 34), UDim2.fromOffset(10, touch and 120 or 154), touch and 10 or 12, theme.Text, true)
-		label(card, row.CockpitId, UDim2.new(1, -20, 0, 22), UDim2.fromOffset(10, touch and 154 or 190), touch and 9 or 10, theme.Muted, false)
+		label(card, row.CockpitId, UDim2.new(1, -20, 0, 22), UDim2.fromOffset(10, touch and 150 or 184), touch and 8 or 9, theme.Muted, false)
+		local pbText = ""
+		if mode == "TimeTrial" then
+			pbText = pbReadoutText(timeTrialPBForTier(timeTrialEventIdForStart(), row.Tier), true)
+		end
+		local pbLabel = label(card, pbText, UDim2.new(1, -20, 0, 22), UDim2.fromOffset(10, touch and 166 or 204), touch and 8 or 9, theme.Accent, true)
+		pbLabel.TextXAlignment = Enum.TextXAlignment.Left
 
 		card.MouseButton1Click:Connect(function()
 			state.SelectedRow = row
 			redrawSelection()
-			statusText("Selected " .. row.Name .. " (" .. row.Tier .. " " .. row.RatingIndex .. ")", true)
+			if mode == "TimeTrial" then
+				statusText("Selected " .. row.Name .. " (" .. row.Tier .. " " .. row.RatingIndex .. ")  " .. pbReadoutText(timeTrialPBForTier(timeTrialEventIdForStart(), row.Tier), false), true)
+			else
+				statusText("Selected " .. row.Name .. " (" .. row.Tier .. " " .. row.RatingIndex .. ")", true)
+			end
 		end)
 		if row.Selected and not state.SelectedRow then
 			state.SelectedRow = row
 		end
 	end
 	redrawSelection()
+	if mode == "TimeTrial" and state.SelectedRow then
+		statusText("Selected " .. state.SelectedRow.Name .. " (" .. state.SelectedRow.Tier .. " " .. state.SelectedRow.RatingIndex .. ")  " .. pbReadoutText(timeTrialPBForTier(timeTrialEventIdForStart(), state.SelectedRow.Tier), false), true)
+	end
 
 	local back = button(actionRail, "BACK", UDim2.new(0.25, -8, 1, 0), UDim2.fromScale(0, 0), theme.Card)
 	local start = button(actionRail, mode == "Race" and "START RACE" or "START TIME TRIAL", UDim2.new(0.5, -8, 1, 0), UDim2.new(0.25, 4, 0, 0), theme.Buy)
@@ -858,7 +949,8 @@ local resultSplits = label(resultPanel, "", UDim2.new(1, -36, 0, 58), UDim2.from
 resultSplits.TextYAlignment = Enum.TextYAlignment.Top
 
 local resultRetry = button(resultPanel, "RETRY", UDim2.new(0.5, -18, 0, 46), UDim2.new(0, 14, 1, -60), theme.Buy)
-local resultExit = button(resultPanel, "EXIT", UDim2.new(0.5, -18, 0, 46), UDim2.new(0.5, 4, 1, -60), theme.Exit)
+local resultExit = button(resultPanel, "EXIT TO START", UDim2.new(0.5, -18, 0, 46), UDim2.new(0.5, 4, 1, -60), theme.Exit)
+-- NTR_RACING_PHASE11P_RESULT_COACH_TEXT
 local lastFinishedRun = nil
 
 local function medalColor(medal)
@@ -915,28 +1007,41 @@ local function showResult(payload)
 	resultMedal.Text = medalLabel(medal)
 	resultMedal.TextColor3 = medalColor(medal)
 	resultTime.Text = formatTime(payload.Elapsed)
+	local elapsed = tonumber(payload.Elapsed) or 0
+	local previousBest = tonumber(payload.PreviousBestSeconds)
 	local best = tonumber(payload.PersonalBestSeconds)
 	if payload.IsPersonalBest == true then
-		resultBest.Text = "NEW PERSONAL BEST  " .. formatTime(best or payload.Elapsed)
+		local delta = previousBest and elapsed > 0 and (previousBest - elapsed) or nil
+		if delta and delta > 0.0005 then
+			resultBest.Text = "NEW PERSONAL BEST  " .. formatTime(best or elapsed) .. "  (-" .. formatTime(delta) .. ")"
+		else
+			resultBest.Text = "NEW PERSONAL BEST  " .. formatTime(best or elapsed)
+		end
 	elseif best then
-		resultBest.Text = "PERSONAL BEST  " .. formatTime(best)
+		local gap = elapsed > 0 and (elapsed - best) or nil
+		if gap and gap > 0.0005 then
+			resultBest.Text = "PERSONAL BEST  " .. formatTime(best) .. "  (+" .. formatTime(gap) .. ")"
+		else
+			resultBest.Text = "PERSONAL BEST  " .. formatTime(best)
+		end
 	else
 		resultBest.Text = "PERSONAL BEST  --"
 	end
+	local nextDelta = math.abs(tonumber(payload.NextMedalDelta) or 0)
 	if payload.NextMedalName and payload.NextMedalSeconds then
-		resultNext.Text = "Next medal: " .. tostring(payload.NextMedalName) .. " at " .. formatTime(payload.NextMedalSeconds) .. "  (" .. formatTime(math.abs(tonumber(payload.NextMedalDelta) or 0)) .. " faster)"
+		resultNext.Text = "NEXT " .. string.upper(tostring(payload.NextMedalName)) .. "  " .. formatTime(payload.NextMedalSeconds) .. "  |  NEED -" .. formatTime(nextDelta)
 	elseif medal == "Platinum" then
-		resultNext.Text = "Platinum target cleared."
+		resultNext.Text = "PLATINUM TARGET CLEARED."
 	else
 		resultNext.Text = "No medal targets configured for this tier yet."
 	end
 	local rewardAmount = tonumber(payload.RewardAmount) or 0
 	if payload.RewardGranted == true and rewardAmount > 0 then
-		resultReward.Text = "REWARD  $" .. tostring(math.floor(rewardAmount + 0.5))
+		resultReward.Text = "PRIZE  $" .. tostring(math.floor(rewardAmount + 0.5))
 	elseif payload.RewardMessage and payload.RewardMessage ~= "" then
 		resultReward.Text = tostring(payload.RewardMessage)
 	else
-		resultReward.Text = "No cash reward this run."
+		resultReward.Text = "No cash prize this run."
 	end
 	if payload.LapTimes and #payload.LapTimes > 0 then
 		local laps = {}
@@ -1114,6 +1219,7 @@ raceEvent.OnClientEvent:Connect(function(payload)
 		hudStatus.Text = "CHECKPOINT " .. tostring(payload.CheckpointIndex or "")
 		updateNextGate()
 	elseif kind == "TimeTrialFinished" then
+		rememberPBFromResultPayload(payload)
 		stopTicker()
 		clearMarker()
 		state.ActiveRun = nil

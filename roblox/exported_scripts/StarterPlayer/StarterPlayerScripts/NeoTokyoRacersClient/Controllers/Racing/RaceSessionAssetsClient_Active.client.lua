@@ -1,4 +1,4 @@
--- NTR_RACING_PHASE11L_ARROW_VISUAL_PROXY_SYNC
+-- NTR_RACING_PHASE11L_ARROW_VISUAL_PROXY_SYNC_V2_TRANSPARENCY_RESTORE
 
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -90,7 +90,9 @@ local function setFolderVisible(folder, visible)
 	for _, item in ipairs(folder and folder:GetDescendants() or {}) do
 		if item:IsA("BasePart") then
 			if visible then
+				local original = tonumber(item:GetAttribute("NTR_ArrowOriginalTransparency"))
 				item.LocalTransparencyModifier = 0
+				item.Transparency = original ~= nil and original or 0
 			else
 				item.LocalTransparencyModifier = 1
 			end

@@ -25,7 +25,8 @@ The Phase 11L client arrow visual script could still rely too heavily on its own
 - Reads the server `ArrowBarrierProxies.ParticipantSegments` value for the local player's current `RunId`.
 - Uses that server segment as the source of truth/fallback for which `ArrowMarkers.CheckpointA-B` folders should be visible.
 - Reapplies the visual window lightly while a local race/time-trial run is active, so missed checkpoint events do not leave arrows stuck.
-- Uses local transparency only and does not rewrite the authored arrow assets' actual transparency, position, rotation, size, or folder placement.
+- Restores visible arrow parts to their saved `NTR_ArrowOriginalTransparency` value, because Phase 10B intentionally keeps world arrow parts hidden at `Transparency = 1` until a local active session shows them.
+- Does not rewrite arrow position, rotation, size, folder placement, or segment attributes.
 
 ## What It Does Not Change
 
@@ -60,7 +61,9 @@ Restart Play after installing.
 
 ## Rollback
 
-If this causes no arrows to display, roll back `RaceSessionAssetsClient_Active` through Roblox version history or rerun the original Phase 11L script:
+If this causes no arrows to display, confirm the installed client marker is `NTR_RACING_PHASE11L_ARROW_VISUAL_PROXY_SYNC_V2_TRANSPARENCY_RESTORE`. The first proxy-sync version did not restore the saved part `Transparency`, which left arrows invisible when their replicated baseline was `Transparency = 1`.
+
+If needed, roll back `RaceSessionAssetsClient_Active` through Roblox version history or rerun the original Phase 11L script:
 
 ```text
 scripts/roblox_racing_phase11l_multi_session_visibility_owner.lua

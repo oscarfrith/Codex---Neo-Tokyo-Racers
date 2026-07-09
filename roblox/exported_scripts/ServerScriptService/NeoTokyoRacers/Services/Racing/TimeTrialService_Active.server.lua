@@ -85,6 +85,26 @@ local function recordPersistentPersonalBest(player, run, elapsed, medal)
 	return { Ok = false, Message = "Persistent PB service failed: " .. tostring(result) }
 end
 
+-- NTR_RACING_PHASE11N_PB_READOUT_SERVER
+local function getPersistentPersonalBest(player, eventId, vehicleTier)
+	local binding = getPersonalBestBinding("GetTimeTrialBest")
+	if not binding then
+		return { Ok = false, Found = false, Message = "Personal best service unavailable." }
+	end
+	local ok, result = pcall(function()
+		return binding:Invoke(player, {
+			EventId = tostring(eventId or ""),
+			VehicleTier = tostring(vehicleTier or ""),
+		})
+	end)
+	if ok and typeof(result) == "table" then
+		result.EventId = tostring(eventId or "")
+		result.VehicleTier = tostring(vehicleTier or "")
+		return result
+	end
+	return { Ok = false, Found = false, Message = "Personal best lookup failed: " .. tostring(result), EventId = tostring(eventId or ""), VehicleTier = tostring(vehicleTier or "") }
+end
+
 
 local PHASE = "NTR Racing Phase 3"
 local OLD_PROMPT_NAME = "NTR_TimeTrialStartPrompt"
@@ -1266,6 +1286,17 @@ raceRequest.OnServerInvoke = function(player, action, payload)
 			return { Ok = false, Message = summaryError or "Event unavailable." }
 		end
 		return { Ok = true, Summary = summary }
+	elseif action == "GetTimeTrialPersonalBest" then
+		local eventId = tostring(payload.EventId or "shifted_canal_sprint_tt")
+		local vehicleTier = string.upper(tostring(payload.VehicleTier or ""))
+		local summary, summaryError = RaceConfigReader.GetEventSummary(eventId, "TimeTrial")
+		if not summary then
+			return { Ok = false, Found = false, Message = summaryError or "Time trial event unavailable." }
+		end
+		if vehicleTier == "" or vehicleTier == "--" then
+			return { Ok = true, Found = false, Message = "Choose a vehicle tier to view PB.", EventId = eventId, VehicleTier = vehicleTier }
+		end
+		return getPersistentPersonalBest(player, eventId, vehicleTier)
 	elseif action == "StartStagedTimeTrial" then
 		local eventId = tostring(payload.EventId or "shifted_canal_sprint_tt")
 		local ok, message = beginStagedTimeTrial(player, eventId, payload.VehicleId, payload.LapCount)

@@ -1076,7 +1076,7 @@ Phase 11L Arrow Visual Proxy Sync Repair is generated as:
 scripts/roblox_racing_phase11l_arrow_visual_proxy_sync_repair.lua
 ```
 
-It follows Phase 11L when solo time-trial arrows stop advancing even though `RaceSessionAssetService_Active` still creates and clears arrow/barrier proxies. The repair keeps the isolated `RaceSessionAssetsClient_Active` as the route-arrow visual owner, but syncs its visible segment window from the server `RaceInstances.<RunId>.SessionAssets.ArrowBarrierProxies.ParticipantSegments` attribute. Future route-arrow visual fixes should prefer this server-owned segment state over a separate client-only checkpoint counter.
+It follows Phase 11L when solo time-trial arrows stop advancing even though `RaceSessionAssetService_Active` still creates and clears arrow/barrier proxies. The repair keeps the isolated `RaceSessionAssetsClient_Active` as the route-arrow visual owner, but syncs its visible segment window from the server `RaceInstances.<RunId>.SessionAssets.ArrowBarrierProxies.ParticipantSegments` attribute. Its V2 marker restores visible arrow parts from `NTR_ArrowOriginalTransparency`, because Phase 10B intentionally stores the shared world arrows hidden at `Transparency = 1`. Future route-arrow visual fixes should prefer this server-owned segment state over a separate client-only checkpoint counter while preserving the saved transparency restore.
 
 Phase 11M is generated as:
 
@@ -1086,7 +1086,31 @@ scripts/roblox_racing_phase11m_time_trial_personal_best_persistence.lua
 
 It adds the first persistent competitive record slice for time trials. `RacePersonalBestService_Active` owns server-authoritative PB records per player/event/tier, exposes `RacePersonalBestBindings`, and `TimeTrialService_Active` records each finished result before reward calculation so `IsPersonalBest` reflects the saved best rather than only the current session table. `Config.Racing.PersonalBests` owns DataStore toggles and defaults DataStore writes off for prototype safety.
 
-The next recommended feature phase after a clean Phase 11M is a small PB display/leaderboard readout layer, with OrderedDataStore global leaderboards deferred until DataStore behavior is confirmed.
+Phase 11N is generated as:
+
+```text
+scripts/roblox_racing_phase11n_time_trial_pb_readout.lua
+```
+
+It adds the first lightweight PB readout layer without global leaderboard scope. `TimeTrialService_Active` exposes `GetTimeTrialPersonalBest`, backed by the Phase 11M PB service binding. `RaceEntryMenuClient_Active` shows each owned time-trial vehicle card's current PB for that event and vehicle tier, caches lookup results by event+tier, and refreshes the cache from `TimeTrialFinished` so new PBs appear the next time the picker opens. OrderedDataStore global/friends leaderboards, ghosts, ranked seasonal records, and private-server competitive infrastructure remain deferred.
+
+Phase 11O is generated as:
+
+```text
+scripts/roblox_racing_phase11o_time_trial_pb_board.lua
+```
+
+It adds a small isolated local-player `MY TIME TRIAL BESTS` board beside the race entry flow. The board listens for `OpenRaceEntry`, resolves the paired time-trial event, calls Phase 11N's `GetTimeTrialPersonalBest` action for tiers `E` through `S`, hides when staging/session flow begins, and in V2 also hides when the player exits the entry menu without starting. This gives leaderboard-like context without global OrderedDataStore scope and avoids another source patch to the working entry menu.
+
+Phase 11P is generated as:
+
+```text
+scripts/roblox_racing_phase11p_time_trial_result_coach.lua
+```
+
+It is the prototype polish pass after Phase 11O. Phase 11P keeps the existing result panel but clarifies the competitive feedback: new-PB improvement, slower-than-PB gap, next-medal required improvement, prize wording, and `EXIT TO START`. It intentionally does not change timing, PB storage, rewards, arrows, VFX, matchmaking, driving, DataStores, global/friends leaderboards, or private-server scope.
+
+The next recommended feature phase after a clean Phase 11P is a DataStore-enabled save/rejoin verification for PBs, or a broader time-trial UI pass if result/menu readability still feels rough in Studio.
 
 ### Phase 12 - Player-Created Race Foundation
 

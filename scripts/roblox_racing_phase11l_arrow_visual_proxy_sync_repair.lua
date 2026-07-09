@@ -3,6 +3,8 @@
 --
 -- Fixes a Phase 11L regression where local arrow visuals could stop advancing
 -- in solo time trials even though server arrow/barrier proxies were still alive.
+-- Follow-up: visible segments must restore the saved original Transparency,
+-- because Phase 10B intentionally stores route arrows hidden at Transparency=1.
 --
 -- Scope:
 --   Canonically replaces only RaceSessionAssetsClient_Active.
@@ -38,7 +40,7 @@ local function getScript(path)
 end
 
 local SESSION_ASSETS_CLIENT_SOURCE = [==[
--- NTR_RACING_PHASE11L_ARROW_VISUAL_PROXY_SYNC
+-- NTR_RACING_PHASE11L_ARROW_VISUAL_PROXY_SYNC_V2_TRANSPARENCY_RESTORE
 
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -130,7 +132,9 @@ local function setFolderVisible(folder, visible)
 	for _, item in ipairs(folder and folder:GetDescendants() or {}) do
 		if item:IsA("BasePart") then
 			if visible then
+				local original = tonumber(item:GetAttribute("NTR_ArrowOriginalTransparency"))
 				item.LocalTransparencyModifier = 0
+				item.Transparency = original ~= nil and original or 0
 			else
 				item.LocalTransparencyModifier = 1
 			end
@@ -297,12 +301,12 @@ print("[NTR Racing Phase 11L Client] Arrow visuals sync from server proxy segmen
 
 local function install()
 	local scriptObject = getScript("StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceSessionAssetsClient_Active")
-	if string.find(scriptObject.Source, "NTR_RACING_PHASE11L_ARROW_VISUAL_PROXY_SYNC", 1, true) then
-		print("[" .. PHASE .. "] RaceSessionAssetsClient already has proxy sync repair.")
+	if string.find(scriptObject.Source, "NTR_RACING_PHASE11L_ARROW_VISUAL_PROXY_SYNC_V2_TRANSPARENCY_RESTORE", 1, true) then
+		print("[" .. PHASE .. "] RaceSessionAssetsClient already has proxy sync transparency restore repair.")
 		return false
 	end
 	scriptObject.Source = SESSION_ASSETS_CLIENT_SOURCE
-	print("[" .. PHASE .. "] Replaced RaceSessionAssetsClient with proxy-synced arrow visibility.")
+	print("[" .. PHASE .. "] Replaced RaceSessionAssetsClient with proxy-synced arrow visibility and transparency restore.")
 	return true
 end
 

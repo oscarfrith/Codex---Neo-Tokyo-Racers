@@ -162,6 +162,10 @@ When a phase or fix is confirmed:
 ## Current Lessons From Racing Session Assets
 
 - Phase 11L arrow visual regression showed that when server collision/session proxies already own progression state, client visuals should sync from that server state instead of maintaining an independent checkpoint counter. If arrows/barriers collide correctly but display incorrectly, inspect `RaceInstances.<RunId>.SessionAssets.ArrowBarrierProxies.ParticipantSegments` before patching route folders or checkpoint events.
+- Phase 11L arrow proxy-sync V1 also showed that route arrow visuals must restore saved `NTR_ArrowOriginalTransparency` when shown. Phase 10B hides shared arrow parts by setting real `Transparency = 1`, so `LocalTransparencyModifier = 0` alone is not enough to make them visible again.
+- Phase 11N keeps competitive readout work prototype-safe by reading local player PBs through the existing server PB binding and caching by event+tier. Do not jump to global/friends leaderboards until DataStore-enabled save/rejoin behavior is confirmed.
+- Phase 11O keeps the broader PB board isolated in a new client instead of patching the confirmed entry menu again. Prefer isolated UI companions when the underlying menu is already working and the feature can listen to existing remotes. Companion UI must also observe the owning menu's closed state, not only session-start/session-end events, so close-without-start paths do not leave orphan panels on screen.
+- Phase 11P shows that result-screen polish can be useful before adding global leaderboard scope, but because the result UI lives inside the isolated entry client, keep these changes small and guarded. If result UI polish expands beyond copy/label changes, prefer a canonical replacement or a new isolated result client rather than repeated source splices.
 
 ## Current Lessons From Racing
 
