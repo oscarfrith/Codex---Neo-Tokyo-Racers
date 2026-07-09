@@ -1,6 +1,6 @@
 # Roblox Studio Hierarchy Snapshot
 
-Generated in Studio: 2026-07-09 17:58:43
+Generated in Studio: 2026-07-09 20:07:11
 Scripts exported: 101
 Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, StarterGui, Workspace, ServerStorage, Lighting
 
@@ -2575,7 +2575,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - VFX (Folder)
             - VehicleVFXController (ModuleScript) [script_0010, 550 lines, 5 attrs]
           - Visuals (Folder)
-            - CachedThrustVisualRuntime (ModuleScript) [script_0011, 713 lines, 12 attrs]
+            - CachedThrustVisualRuntime (ModuleScript) [script_0011, 780 lines, 12 attrs]
         - Common (Folder) [1 attrs]
           - Performance (Folder) [2 attrs]
             - VehicleModuleUpgradeRuntime (ModuleScript) [script_0012, 106 lines, 1 attrs]
@@ -2661,10 +2661,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
         - ProfileService_Active (Script) [script_0045, 328 lines]
       - Racing (Folder)
         - RaceBrowserTeleportService_Active (Script) [script_0046, 224 lines]
-        - RaceMatchmakingService_Active (Script) [script_0047, 1299 lines]
+        - RaceMatchmakingService_Active (Script) [script_0047, 1306 lines]
         - RaceRewardService_Active (Script) [script_0048, 367 lines]
-        - RaceSessionAssetService_Active (Script) [script_0049, 356 lines]
-        - TimeTrialService_Active (Script) [script_0050, 1232 lines]
+        - RaceSessionAssetService_Active (Script) [script_0049, 372 lines]
+        - TimeTrialService_Active (Script) [script_0050, 1278 lines]
       - Vehicle (Folder)
         - DriverSeatPositionService_Active (Script) [script_0051, 234 lines, 11 attrs]
         - VehicleAccessPromptService_Active (Script) [script_0052, 130 lines]
@@ -2703,8 +2703,8 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - StartRaceQueueRequest (BindableEvent)
           - RaceBrowserClient_Active (LocalScript) [script_0067, 539 lines]
           - RaceClient_Active (LocalScript) [script_0068, Disabled, 276 lines]
-          - RaceEntryMenuClient_Active (LocalScript) [script_0069, 1141 lines]
-          - RaceParticipantVisibilityClient_Active (LocalScript) [script_0070, 116 lines]
+          - RaceEntryMenuClient_Active (LocalScript) [script_0069, 1145 lines]
+          - RaceParticipantVisibilityClient_Active (LocalScript) [script_0070, 274 lines]
           - RaceQueueClient_Active (LocalScript) [script_0071, 361 lines]
           - RaceRouteGuideClient_Active (LocalScript) [script_0072, 480 lines]
           - RaceSessionAssetsClient_Active (LocalScript) [script_0073, 172 lines]

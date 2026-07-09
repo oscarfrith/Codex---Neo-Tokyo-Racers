@@ -59,6 +59,7 @@ local COUNTDOWN_SECONDS = 3
 
 local activeRuns = {}
 local activeRunsById = {}
+local finishedRunsByPlayer = {} -- NTR_RACING_PHASE11K_TT_FINISHED_EXIT_CLEANUP
 local gateConnections = {}
 
 -- NTR_RACING_PHASE4_RESULTS_PACK
@@ -526,6 +527,41 @@ local function destroyVehicleAfterUnseat(player, vehicle)
 	end
 end
 
+local function clearFinishedRunForPlayer(player)
+	finishedRunsByPlayer[player] = nil
+end
+
+local function storeFinishedRunForExit(player, run)
+	if not (player and run) then return end
+	finishedRunsByPlayer[player] = run
+end
+
+local function exitFinishedTimeTrial(player)
+	-- NTR_RACING_PHASE11K_TT_FINISHED_EXIT_CLEANUP
+	local run = finishedRunsByPlayer[player]
+	if not run then
+		return { Ok = true, Success = true, Message = "No finished time trial cleanup pending." }
+	end
+	finishedRunsByPlayer[player] = nil
+	fireVisibility(run, false)
+	clearSessionFolder(run)
+	local target = returnCFrameForRoute(run.Route, "TimeTrial")
+	destroyVehicleAfterUnseat(player, run.Vehicle)
+	local ok, message = teleportCharacterTo(player, target)
+	fire(player, {
+		Type = "TimeTrialEnded",
+		RunId = run.RunId,
+		EventId = run.EventId,
+		RouteId = run.RouteId,
+		Reason = "Exited results",
+	})
+	return {
+		Ok = ok == true,
+		Success = ok == true,
+		Message = ok and "Exited to race start." or tostring(message or "Exit cleanup failed."),
+	}
+end
+
 local function resetActiveTimeTrial(player)
 	local run = activeRuns[player]
 	if not run then
@@ -619,6 +655,7 @@ local function stageVehicle(player, vehicle, route)
 end
 
 local function endRun(player, reason)
+	clearFinishedRunForPlayer(player)
 	local run = activeRuns[player]
 	if not run then return end
 	activeRuns[player] = nil
@@ -701,6 +738,7 @@ local function finishRun(player, resultElapsed, finishReason)
 	-- NTR_RACING_PHASE9A_FINISH_BEST_SESSION_RESULT
 	local run = activeRuns[player]
 	if not run then return end
+	clearFinishedRunForPlayer(player)
 	local elapsed = tonumber(resultElapsed) or run.BestLapSeconds or (os.clock() - run.StartClock)
 	activeRuns[player] = nil
 	activeRunsById[run.RunId] = nil
@@ -713,6 +751,7 @@ local function finishRun(player, resultElapsed, finishReason)
 	end
 	fireVisibility(run, false)
 	clearSessionFolder(run)
+	storeFinishedRunForExit(player, run)
 	sendTimeTrialResult(player, run, elapsed, finishReason or "Finished", true)
 end
 
@@ -944,6 +983,7 @@ end
 
 local function beginStagedTimeTrial(player, eventId, vehicleId, requestedLapCount)
 	-- NTR_RACING_PHASE9A_BEGIN_SESSION
+	clearFinishedRunForPlayer(player)
 	eventId = resolveTimeTrialEventId(eventId)
 	if activeRuns[player] then
 		return false, "Already in a race/time trial."
@@ -1192,8 +1232,13 @@ raceRequest.OnServerInvoke = function(player, action, payload)
 		local ok, message = beginStagedTimeTrial(player, eventId, payload.VehicleId, payload.LapCount)
 		return { Ok = ok, Success = ok, Message = message }
 	elseif action == "CancelTimeTrial" then
-		endRun(player, "Cancelled")
-		return { Ok = true, Success = true, Message = "Cancelled" }
+		if activeRuns[player] then
+			endRun(player, "Cancelled")
+			return { Ok = true, Success = true, Message = "Cancelled" }
+		end
+		return exitFinishedTimeTrial(player)
+	elseif action == "ExitFinishedTimeTrial" then
+		return exitFinishedTimeTrial(player)
 	elseif action == "ResetActiveTimeTrial" then
 		return resetActiveTimeTrial(player)
 	elseif action == "ExitActiveTimeTrial" then
@@ -1217,6 +1262,7 @@ end
 
 Players.PlayerRemoving:Connect(function(player)
 	personalBests[player.UserId] = nil
+	clearFinishedRunForPlayer(player)
 	endRun(player, "Player left")
 end)
 

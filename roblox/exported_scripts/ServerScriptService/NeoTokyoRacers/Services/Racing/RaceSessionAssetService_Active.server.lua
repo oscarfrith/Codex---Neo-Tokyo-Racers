@@ -27,11 +27,20 @@ local function ensureGroup(name)
 	pcall(function() PhysicsService:RegisterCollisionGroup(name) end)
 end
 
+local function tableCount(t)
+	local count = 0
+	for _ in pairs(t or {}) do
+		count += 1
+	end
+	return count
+end
+
 local function configureCollisionGroups()
 	ensureGroup(ASSET_GROUP)
 	ensureGroup(PARTICIPANT_GROUP)
 	pcall(function() PhysicsService:CollisionGroupSetCollidable(ASSET_GROUP, "Default", false) end)
 	pcall(function() PhysicsService:CollisionGroupSetCollidable(ASSET_GROUP, PARTICIPANT_GROUP, true) end)
+	pcall(function() PhysicsService:CollisionGroupSetCollidable(PARTICIPANT_GROUP, PARTICIPANT_GROUP, false) end) -- NTR_RACING_PHASE11E_COLLISION_POLICY
 	pcall(function() PhysicsService:CollisionGroupSetCollidable(PARTICIPANT_GROUP, "Default", true) end)
 end
 
@@ -212,6 +221,13 @@ local function rebuildProxies(state)
 	end
 	state.ProxyFolder:SetAttribute("ActiveProxyCount", created)
 	state.ProxyFolder:SetAttribute("LastRebuiltClock", os.clock())
+	state.ProxyFolder:SetAttribute("ActiveSegmentCount", tableCount and tableCount(union) or 0)
+	local segmentText = {}
+	for userId, segment in pairs(state.ParticipantSegments) do
+		table.insert(segmentText, tostring(userId) .. ":" .. tostring(segment))
+	end
+	table.sort(segmentText)
+	state.ProxyFolder:SetAttribute("ParticipantSegments", table.concat(segmentText, ","))
 end
 
 local function applyParticipants(runId, participants)
@@ -245,9 +261,9 @@ local function removeParticipant(payload)
 	end
 	local player = payload.Player
 	local userId = tonumber(payload.UserId) or (player and player.UserId) or 0
-	if userId > 0 then
+	if userId ~= 0 then
 		state.ParticipantSegments[userId] = nil
-	end
+	end -- NTR_RACING_PHASE11G_STUDIO_USERID_FIX
 	if player and player.Character then
 		restoreModelGroup(player.Character)
 	end
@@ -320,7 +336,7 @@ local function updateParticipantSegment(payload)
 	local state = sessions[runId]
 	if not state then return { Ok = false, Message = "No session for run." } end
 	local userId = tonumber(payload.UserId) or 0
-	if userId <= 0 then return { Ok = false, Message = "Missing UserId." } end
+	if userId == 0 then return { Ok = false, Message = "Missing UserId." } end
 	state.ParticipantSegments[userId] = math.max(0, math.floor(tonumber(payload.CurrentSegment) or 0))
 	rebuildProxies(state)
 	return { Ok = true, Created = #state.Assets }

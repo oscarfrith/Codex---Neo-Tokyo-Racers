@@ -1013,6 +1013,57 @@ scripts/roblox_racing_phase11d_session_boundary_cleanup.lua
 
 It fixes the session-boundary issues exposed by the first working multiplayer race load: finished racers must leave active arrow/collision/visibility participation immediately, race result UI should hold over a black fade until `EXIT`, the race vehicle should despawn while hidden, and free-roam players should not see race/time-trial vehicle VFX. Phase 11D keeps this outside reward config, route-guide config, arrow folder layout, reset architecture, and the main bootstrap.
 
+Phase 11E is generated as:
+
+```text
+scripts/roblox_racing_phase11e_race_collision_vfx_isolation.lua
+```
+
+It repairs the remaining multiplayer race isolation issues after Phase 11D testing: race checkpoint progress now reapplies participant collision before rebuilding later arrow/barrier segment proxies, participant-vs-participant collision is disabled for active race/session participants, and `CachedThrustVisualRuntime` gates VFX based on `RaceVisibilityUpdate` so the VFX owner stops re-enabling hidden race/time-trial vehicle effects. A truly global "all player vehicles never collide" policy is deferred to a later vehicle/runtime collision phase so free-roam vehicle behavior is changed deliberately.
+
+Phase 11F/11G diagnostic and root fix:
+
+```text
+scripts/roblox_racing_phase11f_runtime_isolation_diagnostic.lua
+scripts/roblox_racing_phase11g_studio_userid_session_asset_fix.lua
+```
+
+Phase 11F showed that local multiplayer race proxies kept rebuilding only the start-window segments while `ParticipantSegments` stayed `-1:0,-2:0`. The root was not the arrow folders or collision groups; Studio local-server players use negative UserIds, and `RaceSessionAssetService_Active` rejected `UserId <= 0` during segment update/removal. Phase 11G accepts any non-zero numeric UserId so local test races advance collision windows and remove participants cleanly, matching production positive-UserId behavior.
+
+Phase 11H is generated as:
+
+```text
+scripts/roblox_racing_phase11h_visibility_vfx_nametag_gate.lua
+```
+
+It closes the remaining same-server presentation leaks by canonically replacing the isolated participant visibility client. The client now hides characters, vehicles, VFX, lights, Billboard/SurfaceGuis, highlights, and humanoid name/health displays across race/time-trial boundaries, and it runs as a late-frame gate while active so VFX owners cannot re-enable hidden effects before presentation. This keeps free roam visually separate from race/time-trial sessions without touching driving, reward config, route-guide config, or matchmaking.
+
+Phase 11I is generated as:
+
+```text
+scripts/roblox_racing_phase11i_idle_engine_vfx_flush.lua
+```
+
+It tightens Phase 11H for idle engine effects by clearing hidden `ParticleEmitter` / `Trail` remnants every frame and forcing `NTR_VFXRuntimeHost` parts transparent while hidden. This targets the case where `Enabled=false` stopped new particles but existing idle engine particles remained visible for their lifetime.
+
+Phase 11J is generated as:
+
+```text
+scripts/roblox_racing_phase11j_prototype_baseline_audit.lua
+```
+
+It is a read-only prototype baseline audit before adding persistence or more competitive UX. It checks racing remotes/config, route structure, arrow segment folders, collision groups, key source markers through Phase 11I, and optional runtime race instance/vehicle state. For prototype scope, same-server races remain acceptable; private/reserved race servers are a launch architecture direction but are deferred. Advanced session assets and player-created race tooling are also deferred.
+
+Phase 11K is generated as:
+
+```text
+scripts/roblox_racing_phase11k_time_trial_result_exit_cleanup.lua
+```
+
+It fixes the time-trial result-exit cleanup gap exposed during 2-player testing. Finished time trials are now cached until the result-panel `EXIT` action runs a server cleanup path that destroys the finished race vehicle, teleports the player back to the route teleport/start point, clears visibility/session state, and emits `TimeTrialEnded`. This preserves rewards, route-guide config, arrows, VFX isolation, matchmaking, and driving.
+
+The next recommended feature phase after a clean Phase 11K is personal-best persistence for time trials.
+
 ### Phase 12 - Player-Created Race Foundation
 
 Add after official races, rewards, and multiplayer are stable:

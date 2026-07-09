@@ -770,11 +770,18 @@ local function advanceCheckpoint(race, entry, touchedPart)
 	entry.NextGateIndex += 1
 
 	-- NTR_RACING_PHASE10B_CHECKPOINT_SEGMENT_UPDATE
+	callSessionAssetService("ApplyParticipants", {
+		RunId = race.RunId,
+		Participants = {
+			{ Player = entry.Player, Vehicle = entry.Vehicle },
+		},
+	}) -- NTR_RACING_PHASE11E_CHECKPOINT_COLLISION_REAPPLY
 	callSessionAssetService("UpdateParticipantSegment", {
 		RunId = race.RunId,
 		UserId = entry.Player.UserId,
 		CurrentSegment = math.max(0, (tonumber(entry.NextGateIndex) or 1) - 1),
-	})	fire(entry.Player, {
+	})
+	fire(entry.Player, {
 		Type = "RaceCheckpoint",
 		RunId = race.RunId,
 		EventId = race.EventId,

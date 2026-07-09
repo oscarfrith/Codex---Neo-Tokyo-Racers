@@ -975,12 +975,16 @@ resultRetry.MouseButton1Click:Connect(function()
 end)
 
 resultExit.MouseButton1Click:Connect(function()
+	-- NTR_RACING_PHASE11K_RESULT_EXIT_ACTION
 	hideResult()
 	stopTicker()
 	clearMarker()
 	state.ActiveRun = nil
 	hud.Visible = false
-	callRace("CancelTimeTrial", {})
+	local result = callRace("ExitFinishedTimeTrial", {})
+	if result.Ok ~= true and result.Success ~= true then
+		callRace("CancelTimeTrial", {})
+	end
 end)
 
 local function toSet(list)
