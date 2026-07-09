@@ -966,10 +966,21 @@ scripts/roblox_racing_phase10a_session_asset_collision_foundation.lua
 
 It implements the first safe slice: hidden route `SessionAssetMarkers`, server-owned `SessionAssetTemplates`, fixed `NTR_RaceSessionAsset` / `NTR_RaceParticipant` collision groups, runtime cloning into `RaceInstances.<RunId>.SessionAssets`, and cleanup on session end. It is intentionally focused on simple collidable barriers/blockers before richer mesh/VFX assets, boost pads, jump pads, or route-pocket isolation.
 
+Phase 10B is generated as:
+
+```text
+scripts/roblox_racing_phase10b_folder_arrow_barriers.lua
+```
+
+It supersedes the example-blocker path for route edge arrows. The route authoring workflow is now `ArrowMarkers.CheckpointA-B` folders, with loose existing arrow groups moved into `Unassigned_Arrows` for manual sorting. At runtime, free-roam players see/collide with none of these arrows; active race/time-trial players locally see only nearby segment folders, and the server creates invisible simple box collision proxies from those same nearby segment folders. Default visibility/collision window is one segment behind, current segment, and one segment ahead. For circuit routes, final folders such as `Checkpoint14-0` wrap around so the final segment can appear near the start of a lap.
+
+Future Phase 10 work should build on this folder segment contract instead of editing route-guide attributes or reward config. Jumps, boost pads, richer race props, and player-created-route validation should use the same route segment idea where practical.
+
 ### Phase 11 - Competitive Features
 
 Add after MVP stability:
 
+- race placement rewards from the existing `Config.Racing.Rewards.Race` folder;
 - daily/weekly time trial;
 - friends/global leaderboard through OrderedDataStore;
 - ghost data if performance allows;
@@ -977,6 +988,22 @@ Add after MVP stability:
 - party/private race queue;
 - optional spec/loaner/ranked race variants if open-category fairness or late-game dominance becomes a real issue;
 - route difficulty labels and recommended tier.
+
+Phase 11A is generated as:
+
+```text
+scripts/roblox_racing_phase11a_race_placement_rewards.lua
+```
+
+It implements the safe first competitive slice: race finish placement rewards using existing global `Rewards.Race` config and each event's `BaseReward`. It does not edit reward config, route-guide config, route arrows, reset behavior, or leaderboard/DataStore systems.
+
+Phase 11C is generated as:
+
+```text
+scripts/roblox_racing_phase11c_server_grid_vehicle_spawn.lua
+```
+
+It fixes the race-entry ownership problem exposed after Phase 11B: the menu should not spawn/free-roam-select the vehicle before staging. The client now sends selected vehicle intent only, the garage server exposes a small `RaceVehicleSpawner` binding that reuses the proven vehicle builder, and the racing services spawn the selected vehicle directly at the time-trial start or race grid when countdown staging begins. Future start-flow work should preserve this ownership split: client selects, server validates, server grid-spawns, racing controls countdown/release.
 
 ### Phase 12 - Player-Created Race Foundation
 

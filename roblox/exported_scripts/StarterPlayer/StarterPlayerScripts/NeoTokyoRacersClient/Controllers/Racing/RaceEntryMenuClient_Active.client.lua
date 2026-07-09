@@ -308,6 +308,20 @@ local function timeTrialEventIdForStart()
 	return eventId ~= "" and eventId or "shifted_canal_sprint_tt"
 end
 
+
+local function raceEventIdForStart()
+	-- NTR_RACING_PHASE11B_RACE_EVENT_ID_PAIRING
+	local entry = state.Entry or {}
+	local paired = tostring(entry.RaceEventId or "")
+	if paired ~= "" then
+		return paired
+	end
+	local eventId = tostring(entry.EventId or "shifted_canal_sprint_race")
+	if eventId:sub(-3) == "_tt" then
+		return eventId:sub(1, -4) .. "_race"
+	end
+	return eventId ~= "" and eventId or "shifted_canal_sprint_race"
+end
 local function ownedRows()
 	local profile = refreshProfile() or {}
 	local rows = {}
@@ -571,27 +585,17 @@ local function showVehicleSelect(mode)
 			return
 		end
 		if mode == "Race" then
-			local raceEventId = tostring(state.Entry and state.Entry.EventId or "shifted_canal_sprint_race")
-			statusText("Spawning selected vehicle for race queue...", true)
-			local spawn = callGarage("SpawnOwnedVehicleFromFreeRoam", {
-				VehicleId = row.VehicleId,
-				CockpitId = row.CockpitId,
+			local raceEventId = raceEventIdForStart()
+			local eventCheck = callRace("GetEntryDetails", {
+				EventId = raceEventId,
+				Mode = "Race",
 			})
-			if spawn.Success ~= true and spawn.Ok ~= true then
-				local selectResult = callGarage("SelectVehicleInstance", {
-					VehicleId = row.VehicleId,
-					CockpitId = row.CockpitId,
-				})
-				if selectResult.Success ~= true and selectResult.Ok ~= true then
-					statusText(selectResult.Message or selectResult.Error or spawn.Message or "Could not select vehicle.", false)
-					return
-				end
-				spawn = callGarage("SpawnVehicle", {})
-				if spawn.Success ~= true and spawn.Ok ~= true then
-					statusText(spawn.Message or spawn.Error or "Could not spawn selected vehicle.", false)
-					return
-				end
+			if eventCheck.Ok ~= true and eventCheck.Success ~= true then
+				statusText(eventCheck.Message or "Race event is not available.", false)
+				return
 			end
+			statusText("Joining race queue. Your selected vehicle will spawn on the grid.", true)
+			-- NTR_RACING_PHASE11C_CLIENT_RACE_NO_SPAWN
 			-- NTR_RACING_PHASE8C_NO_PRE_STAGE_HANDOFF
 			-- Do not fire the free-roam driving handoff before Racing teleports/freezes the car.
 			-- TimeTrialStarted/RaceStarted fire the handoff at GO, matching the cleaner retry path.
@@ -614,26 +618,8 @@ local function showVehicleSelect(mode)
 			statusText(eventCheck.Message or "Time trial event is not available.", false)
 			return
 		end
-		statusText("Spawning selected vehicle...", true)
-		local spawn = callGarage("SpawnOwnedVehicleFromFreeRoam", {
-			VehicleId = row.VehicleId,
-			CockpitId = row.CockpitId,
-		})
-		if spawn.Success ~= true and spawn.Ok ~= true then
-			local selectResult = callGarage("SelectVehicleInstance", {
-				VehicleId = row.VehicleId,
-				CockpitId = row.CockpitId,
-			})
-			if selectResult.Success ~= true and selectResult.Ok ~= true then
-				statusText(selectResult.Message or selectResult.Error or spawn.Message or "Could not select vehicle.", false)
-				return
-			end
-			spawn = callGarage("SpawnVehicle", {})
-			if spawn.Success ~= true and spawn.Ok ~= true then
-				statusText(spawn.Message or spawn.Error or "Could not spawn selected vehicle.", false)
-				return
-			end
-		end
+		statusText("Staging selected vehicle at the start line.", true)
+		-- NTR_RACING_PHASE11C_CLIENT_TT_NO_SPAWN
 		-- NTR_RACING_PHASE8C_NO_PRE_STAGE_HANDOFF
 		-- Do not fire the free-roam driving handoff before Racing teleports/freezes the car.
 		-- TimeTrialStarted/RaceStarted fire the handoff at GO, matching the cleaner retry path.
@@ -657,6 +643,7 @@ function showEntry(payload)
 	local summary = payload.Summary or {}
 	state.Entry = {
 		EventId = payload.EventId or summary.EventId or "shifted_canal_sprint_tt",
+		RaceEventId = payload.RaceEventId, -- NTR_RACING_PHASE11B_STATE_RACE_EVENT_ID
 		TimeTrialEventId = payload.TimeTrialEventId,
 		Mode = payload.Mode or summary.Mode or "TimeTrial",
 		Summary = summary,

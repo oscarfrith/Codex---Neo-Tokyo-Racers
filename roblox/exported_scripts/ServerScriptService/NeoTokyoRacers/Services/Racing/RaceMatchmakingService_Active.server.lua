@@ -5,6 +5,7 @@ local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Workspace = game:GetService("Workspace")
 
+local ServerScriptService = game:GetService("ServerScriptService")
 local kit = ReplicatedStorage:WaitForChild("NeoTokyoRacers")
 local racingRemotes = kit:WaitForChild("Shared"):WaitForChild("Remotes"):WaitForChild("Racing")
 local queueRequest = racingRemotes:WaitForChild("RaceQueueRequest")
@@ -215,6 +216,7 @@ local function callSessionAssetService(action, payload)
 	warn("[NTR Racing Phase 10A] Session asset service failed: " .. tostring(result))
 	return nil
 end
+
 
 local function createSessionFolder(race)
 	local root = raceInstancesRoot()
@@ -561,7 +563,13 @@ local function resetRacePlayer(player)
 				{ Player = player, Vehicle = entry.Vehicle },
 			},
 		})
-		fire(player, {
+
+		-- NTR_RACING_PHASE10B_RESET_SEGMENT_UPDATE
+		callSessionAssetService("UpdateParticipantSegment", {
+			RunId = race.RunId,
+			UserId = player.UserId,
+			CurrentSegment = math.max(0, (tonumber(entry.NextGateIndex) or 1) - 1),
+		})		fire(player, {
 			Type = "RaceReset",
 			RunId = race.RunId,
 			EventId = race.EventId,
@@ -619,12 +627,40 @@ local function exitRacePlayer(player)
 end
 
 
+local function callRaceRewardService(action, payload)
+	-- NTR_RACING_PHASE11A_RACE_REWARD_BRIDGE_CANONICAL
+	local bindings = script.Parent:FindFirstChild("RaceRewardBindings")
+	local binding = bindings and bindings:FindFirstChild("GrantRaceReward")
+	if not (binding and binding:IsA("BindableFunction")) then
+		return nil
+	end
+	local ok, result = pcall(function()
+		return binding:Invoke(action, payload or {})
+	end)
+	if ok then
+		return result
+	end
+	warn("[NTR Racing Phase 11A] Race reward service failed: " .. tostring(result))
+	return nil
+end
+
+
 local function finishEntry(race, entry)
+	-- NTR_RACING_PHASE11A_FINISH_ENTRY_CANONICAL
 	if entry.Finished then return end
 	entry.Finished = true
 	entry.FinishElapsed = now() - race.StartClock
 	entry.FinishPlace = race.NextFinishPlace
 	race.NextFinishPlace += 1
+	local rewardResult = callRaceRewardService("GrantRaceReward", {
+		Player = entry.Player,
+		RunId = race.RunId,
+		EventId = race.EventId,
+		RouteId = race.RouteId,
+		Place = entry.FinishPlace,
+		ParticipantCount = #race.Participants,
+		Elapsed = entry.FinishElapsed,
+	}) or {}
 	if entry.Vehicle then
 		prepareVehicleForDriving(entry.Player, entry.Vehicle)
 	end
@@ -638,6 +674,10 @@ local function finishEntry(race, entry)
 		ParticipantCount = #race.Participants,
 		Elapsed = entry.FinishElapsed,
 		GateCount = race.GateCount,
+		RaceMedal = rewardResult.Medal,
+		RewardGranted = rewardResult.Granted == true,
+		RewardAmount = tonumber(rewardResult.Amount) or 0,
+		RewardMessage = tostring(rewardResult.Message or ""),
 	})
 	fireRace(entry.Player, {
 		Type = "RaceFinished",
@@ -655,6 +695,7 @@ local function finishEntry(race, entry)
 	end
 end
 
+
 local function advanceCheckpoint(race, entry, touchedPart)
 	if not (race and race.State == "Running" and entry and entry.Finished ~= true) then return end
 	local gate = RouteDefinition.GetGate(race.Route, entry.NextGateIndex)
@@ -669,7 +710,13 @@ local function advanceCheckpoint(race, entry, touchedPart)
 	end
 	entry.LastCompletedGateIndex = entry.NextGateIndex
 	entry.NextGateIndex += 1
-	fire(entry.Player, {
+
+	-- NTR_RACING_PHASE10B_CHECKPOINT_SEGMENT_UPDATE
+	callSessionAssetService("UpdateParticipantSegment", {
+		RunId = race.RunId,
+		UserId = entry.Player.UserId,
+		CurrentSegment = math.max(0, (tonumber(entry.NextGateIndex) or 1) - 1),
+	})	fire(entry.Player, {
 		Type = "RaceCheckpoint",
 		RunId = race.RunId,
 		EventId = race.EventId,
@@ -753,6 +800,77 @@ local function removeFromQueue(player, reason)
 	return true, "Left queue."
 end
 
+-- NTR_RACING_PHASE11C_SERVER_GRID_SPAWN_HELPERS
+-- NTR_RACING_PHASE11C_BINDING_LOOKUP_REPAIR
+local function getRaceVehicleSpawner()
+	local okService, serverScriptService = pcall(function()
+		return game:GetService("ServerScriptService")
+	end)
+	if not okService or not serverScriptService then
+		return nil, "ServerScriptService unavailable."
+	end
+	local serverRoot = serverScriptService:FindFirstChild("NeoTokyoRacers")
+	if not serverRoot then
+		return nil, "NeoTokyoRacers server root missing."
+	end
+	local services = serverRoot:FindFirstChild("Services")
+	if not services then
+		return nil, "NeoTokyoRacers services folder missing."
+	end
+	local garage = services:FindFirstChild("Garage")
+	if not garage then
+		return nil, "Garage services folder missing."
+	end
+	local action = garage:FindFirstChild("GarageActionController_Shadow_Disabled")
+	if not action then
+		return nil, "Garage action controller missing."
+	end
+	local binding = action:FindFirstChild("RaceVehicleSpawner")
+	if binding and binding:IsA("BindableFunction") then
+		return binding, nil
+	end
+	return nil, "RaceVehicleSpawner binding missing. Run Phase 11C in Edit mode, then restart Play."
+end
+
+local function invokeRaceVehicleSpawner(action, payload)
+	local binding, bindingError = getRaceVehicleSpawner()
+	if not binding then
+		return { Ok = false, Success = false, Message = bindingError or "Race vehicle spawner is not ready." }
+	end
+	local ok, result = pcall(function()
+		return binding:Invoke(action, payload or {})
+	end)
+	if ok and typeof(result) == "table" then
+		return result
+	end
+	return { Ok = false, Success = false, Message = "Race vehicle spawner failed: " .. tostring(result) }
+end
+
+local function validateRaceVehicleForPlayer(player, vehicleId, cockpitId)
+	local result = invokeRaceVehicleSpawner("ValidateForRace", {
+		Player = player,
+		VehicleId = vehicleId,
+		CockpitId = cockpitId,
+	})
+	if result.Ok == true or result.Success == true then
+		return true, result.Message or "Vehicle ready.", result.VehicleId
+	end
+	return false, result.Message or "Selected vehicle is not ready."
+end
+
+local function spawnRaceVehicleForPlayer(player, vehicleId, cockpitId, spawnCFrame)
+	local result = invokeRaceVehicleSpawner("SpawnForRace", {
+		Player = player,
+		VehicleId = vehicleId,
+		CockpitId = cockpitId,
+		SpawnCFrame = spawnCFrame,
+	})
+	if (result.Ok == true or result.Success == true) and result.Vehicle then
+		return result.Vehicle, nil, result.VehicleId
+	end
+	return nil, result.Message or "Could not spawn selected vehicle at grid.", result.VehicleId
+end
+
 local function raceEventSummary(eventId)
 	local summary, summaryError = RaceConfigReader.GetEventSummary(eventId, "Race")
 	if not summary then
@@ -776,15 +894,18 @@ local function startRace(queue)
 	local participants = {}
 	for _, player in ipairs(queue.Players) do
 		queuedByPlayer[player] = nil
-		local vehicle, vehicleError = currentVehicleForPlayer(player)
+		local gridIndex = #participants + 1
+		local selectedVehicleId = tostring(queue.VehicleIds[player] or "")
+		local spawnCFrame = spawnCFrameForIndex(queue.Route, gridIndex) * CFrame.new(0, 4, 0)
+		local vehicle, vehicleError, spawnedVehicleId = spawnRaceVehicleForPlayer(player, selectedVehicleId, nil, spawnCFrame)
 		if vehicle then
 			table.insert(participants, {
 				Player = player,
 				Vehicle = vehicle,
-				SelectedVehicleId = tostring(queue.VehicleIds[player] or ""),
+				SelectedVehicleId = tostring(spawnedVehicleId or selectedVehicleId or ""),
 				NextGateIndex = 1,
 				LastCompletedGateIndex = 0,
-				GridIndex = #participants + 1,
+				GridIndex = gridIndex,
 				LastTouchClock = 0,
 				LastProgressElapsed = 0,
 			})
@@ -792,10 +913,10 @@ local function startRace(queue)
 			fire(player, {
 				Type = "RaceQueueError",
 				EventId = queue.EventId,
-				Message = vehicleError or "Vehicle unavailable before race start.",
+				Message = vehicleError or "Could not spawn selected vehicle at race grid.",
 			})
 		end
-	end
+	end -- NTR_RACING_PHASE11C_RACE_GRID_SPAWN
 
 	local minPlayers = queue.MinPlayers
 	if #participants < minPlayers and boolValue(matchmakingConfig, "AllowSoloRaceDebug", false) ~= true then
@@ -981,11 +1102,11 @@ local function joinQueue(player, eventId, vehicleId)
 	if queuedByPlayer[player] then
 		return false, "Already queued."
 	end
-	local vehicle, vehicleError = currentVehicleForPlayer(player)
-	if not vehicle then
-		return false, vehicleError
+	local selectedOk, selectedMessage, selectedVehicleId = validateRaceVehicleForPlayer(player, vehicleId, nil)
+	if not selectedOk then
+		return false, selectedMessage
 	end
-	local summary, route, eventError = raceEventSummary(eventId)
+	local summary, route, eventError = raceEventSummary(eventId) -- NTR_RACING_PHASE11C_JOIN_VALIDATE_SELECTED
 	if not summary then
 		return false, eventError
 	end
@@ -1020,7 +1141,7 @@ local function joinQueue(player, eventId, vehicleId)
 		return false, "Race queue is full."
 	end
 	queue.Joined[player] = true
-	queue.VehicleIds[player] = tostring(vehicleId or "")
+	queue.VehicleIds[player] = tostring(selectedVehicleId or vehicleId or "")
 	table.insert(queue.Players, player)
 	queuedByPlayer[player] = eventId
 	fire(player, {

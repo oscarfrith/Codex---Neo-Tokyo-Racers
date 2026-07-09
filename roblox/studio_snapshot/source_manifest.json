@@ -1379,9 +1379,9 @@
         "type": "string"
       }
     },
-    "source_lines": 2626,
-    "source_bytes": 108265,
-    "source_checksum": "602400273",
+    "source_lines": 2710,
+    "source_bytes": 111255,
+    "source_checksum": "786598468",
     "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Garage/GarageActionController_Shadow_Disabled.server.lua"
   },
   {
@@ -1509,9 +1509,9 @@
     "class_name": "Script",
     "disabled": false,
     "attributes": {},
-    "source_lines": 1107,
-    "source_bytes": 33501,
-    "source_checksum": "837539792",
+    "source_lines": 1228,
+    "source_bytes": 38067,
+    "source_checksum": "703386262",
     "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Racing/RaceMatchmakingService_Active.server.lua"
   },
   {
@@ -1527,9 +1527,9 @@
     "class_name": "Script",
     "disabled": false,
     "attributes": {},
-    "source_lines": 274,
-    "source_bytes": 10288,
-    "source_checksum": "563368664",
+    "source_lines": 367,
+    "source_bytes": 15647,
+    "source_checksum": "551600026",
     "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Racing/RaceRewardService_Active.server.lua"
   },
   {
@@ -1545,9 +1545,9 @@
     "class_name": "Script",
     "disabled": false,
     "attributes": {},
-    "source_lines": 252,
-    "source_bytes": 7956,
-    "source_checksum": "732202534",
+    "source_lines": 330,
+    "source_bytes": 11188,
+    "source_checksum": "469332351",
     "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Racing/RaceSessionAssetService_Active.server.lua"
   },
   {
@@ -1563,9 +1563,9 @@
     "class_name": "Script",
     "disabled": false,
     "attributes": {},
-    "source_lines": 1142,
-    "source_bytes": 36333,
-    "source_checksum": "140602881",
+    "source_lines": 1232,
+    "source_bytes": 39696,
+    "source_checksum": "89554634",
     "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Racing/TimeTrialService_Active.server.lua"
   },
   {
@@ -2291,9 +2291,9 @@
     "class_name": "LocalScript",
     "disabled": false,
     "attributes": {},
-    "source_lines": 1154,
-    "source_bytes": 42171,
-    "source_checksum": "708204975",
+    "source_lines": 1141,
+    "source_bytes": 41554,
+    "source_checksum": "494492249",
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Racing/RaceEntryMenuClient_Active.client.lua"
   },
   {
@@ -2310,9 +2310,9 @@
     "class_name": "LocalScript",
     "disabled": false,
     "attributes": {},
-    "source_lines": 295,
-    "source_bytes": 10045,
-    "source_checksum": "251922152",
+    "source_lines": 305,
+    "source_bytes": 10532,
+    "source_checksum": "656747095",
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Racing/RaceQueueClient_Active.client.lua"
   },
   {
@@ -2348,9 +2348,9 @@
     "class_name": "LocalScript",
     "disabled": false,
     "attributes": {},
-    "source_lines": 61,
-    "source_bytes": 1920,
-    "source_checksum": "159093227",
+    "source_lines": 171,
+    "source_bytes": 5721,
+    "source_checksum": "401644713",
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Racing/RaceSessionAssetsClient_Active.client.lua"
   },
   {

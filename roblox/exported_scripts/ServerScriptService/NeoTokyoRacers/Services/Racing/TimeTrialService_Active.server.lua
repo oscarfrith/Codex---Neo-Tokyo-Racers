@@ -550,7 +550,13 @@ local function resetActiveTimeTrial(player)
 				{ Player = player, Vehicle = run.Vehicle },
 			},
 		})
-		fire(player, {
+
+		-- NTR_RACING_PHASE10B_RESET_SEGMENT_UPDATE
+		callSessionAssetService("UpdateParticipantSegment", {
+			RunId = run.RunId,
+			UserId = player.UserId,
+			CurrentSegment = math.max(0, (tonumber(run.NextGateIndex) or 1) - 1),
+		})		fire(player, {
 			Type = "TimeTrialReset",
 			RunId = run.RunId,
 			EventId = run.EventId,
@@ -759,7 +765,13 @@ local function advanceCheckpoint(player, touchedPart)
 			run.NextGateIndex = 1
 			run.LastCompletedGateIndex = 0
 			run.Splits = {}
-			fire(player, {
+
+			-- NTR_RACING_PHASE10B_LAP_SEGMENT_UPDATE
+			callSessionAssetService("UpdateParticipantSegment", {
+				RunId = run.RunId,
+				UserId = player.UserId,
+				CurrentSegment = 0,
+			})			fire(player, {
 				Type = "TimeTrialCheckpoint",
 				EventId = run.EventId,
 				RouteId = run.RouteId,
@@ -786,7 +798,13 @@ local function advanceCheckpoint(player, touchedPart)
 	})
 	run.LastCompletedGateIndex = run.NextGateIndex
 	run.NextGateIndex += 1
-	fire(player, {
+
+	-- NTR_RACING_PHASE10B_CHECKPOINT_SEGMENT_UPDATE
+	callSessionAssetService("UpdateParticipantSegment", {
+		RunId = run.RunId,
+		UserId = player.UserId,
+		CurrentSegment = math.max(0, (tonumber(run.NextGateIndex) or 1) - 1),
+	})	fire(player, {
 		Type = "TimeTrialCheckpoint",
 		EventId = run.EventId,
 		RouteId = run.RouteId,
@@ -853,15 +871,82 @@ local function resolveTimeTrialEventId(eventId)
 	return "shifted_canal_sprint_tt"
 end
 
+-- NTR_RACING_PHASE11C_SERVER_GRID_SPAWN_HELPERS
+-- NTR_RACING_PHASE11C_BINDING_LOOKUP_REPAIR
+local function getRaceVehicleSpawner()
+	local okService, serverScriptService = pcall(function()
+		return game:GetService("ServerScriptService")
+	end)
+	if not okService or not serverScriptService then
+		return nil, "ServerScriptService unavailable."
+	end
+	local serverRoot = serverScriptService:FindFirstChild("NeoTokyoRacers")
+	if not serverRoot then
+		return nil, "NeoTokyoRacers server root missing."
+	end
+	local services = serverRoot:FindFirstChild("Services")
+	if not services then
+		return nil, "NeoTokyoRacers services folder missing."
+	end
+	local garage = services:FindFirstChild("Garage")
+	if not garage then
+		return nil, "Garage services folder missing."
+	end
+	local action = garage:FindFirstChild("GarageActionController_Shadow_Disabled")
+	if not action then
+		return nil, "Garage action controller missing."
+	end
+	local binding = action:FindFirstChild("RaceVehicleSpawner")
+	if binding and binding:IsA("BindableFunction") then
+		return binding, nil
+	end
+	return nil, "RaceVehicleSpawner binding missing. Run Phase 11C in Edit mode, then restart Play."
+end
+
+local function invokeRaceVehicleSpawner(action, payload)
+	local binding, bindingError = getRaceVehicleSpawner()
+	if not binding then
+		return { Ok = false, Success = false, Message = bindingError or "Race vehicle spawner is not ready." }
+	end
+	local ok, result = pcall(function()
+		return binding:Invoke(action, payload or {})
+	end)
+	if ok and typeof(result) == "table" then
+		return result
+	end
+	return { Ok = false, Success = false, Message = "Race vehicle spawner failed: " .. tostring(result) }
+end
+
+local function validateRaceVehicleForPlayer(player, vehicleId, cockpitId)
+	local result = invokeRaceVehicleSpawner("ValidateForRace", {
+		Player = player,
+		VehicleId = vehicleId,
+		CockpitId = cockpitId,
+	})
+	if result.Ok == true or result.Success == true then
+		return true, result.Message or "Vehicle ready.", result.VehicleId
+	end
+	return false, result.Message or "Selected vehicle is not ready."
+end
+
+local function spawnRaceVehicleForPlayer(player, vehicleId, cockpitId, spawnCFrame)
+	local result = invokeRaceVehicleSpawner("SpawnForRace", {
+		Player = player,
+		VehicleId = vehicleId,
+		CockpitId = cockpitId,
+		SpawnCFrame = spawnCFrame,
+	})
+	if (result.Ok == true or result.Success == true) and result.Vehicle then
+		return result.Vehicle, nil, result.VehicleId
+	end
+	return nil, result.Message or "Could not spawn selected vehicle at grid.", result.VehicleId
+end
+
 local function beginStagedTimeTrial(player, eventId, vehicleId, requestedLapCount)
 	-- NTR_RACING_PHASE9A_BEGIN_SESSION
 	eventId = resolveTimeTrialEventId(eventId)
 	if activeRuns[player] then
 		return false, "Already in a race/time trial."
-	end
-	local vehicle, vehicleError = currentVehicleForPlayer(player)
-	if not vehicle then
-		return false, vehicleError
 	end
 	local route, routeError = RaceConfigReader.GetRouteForEvent(eventId, "TimeTrial")
 	if not route then
@@ -885,7 +970,12 @@ local function beginStagedTimeTrial(player, eventId, vehicleId, requestedLapCoun
 	else
 		lapTarget = math.clamp(math.floor(lapTarget or tonumber(summary.DefaultLapCount) or 1), minLapCount, maxLapCount)
 	end
-	local tier = tostring(vehicle:GetAttribute("PerformanceTier") or "")
+	local stageCFrame = startCFrameForRoute(route, 1) * CFrame.new(0, 4, 0)
+	local vehicle, vehicleError, selectedVehicleId = spawnRaceVehicleForPlayer(player, vehicleId, nil, stageCFrame)
+	if not vehicle then
+		return false, vehicleError
+	end
+	local tier = tostring(vehicle:GetAttribute("PerformanceTier") or "") -- NTR_RACING_PHASE11C_TT_GRID_SPAWN
 	local index = tonumber(vehicle:GetAttribute("PerformanceIndex")) or tonumber(vehicle:GetAttribute("PerformanceScore")) or 0
 	local runId = "TT_" .. tostring(player.UserId) .. "_" .. tostring(math.floor(os.clock() * 1000))
 	local run = {
@@ -902,7 +992,7 @@ local function beginStagedTimeTrial(player, eventId, vehicleId, requestedLapCoun
 		CompletedLapCount = 0,
 		LapTimes = {},
 		Vehicle = vehicle,
-		SelectedVehicleId = tostring(vehicleId or ""),
+		SelectedVehicleId = tostring(selectedVehicleId or vehicleId or ""),
 		VehicleTier = tier,
 		VehicleIndex = index,
 		NextGateIndex = 1,

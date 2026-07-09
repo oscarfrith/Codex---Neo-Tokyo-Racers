@@ -272,7 +272,17 @@ queueEvent.OnClientEvent:Connect(function(payload)
 		state.ActiveRun = nil
 		title.Text = tostring(payload.DisplayName or "RACE COMPLETE")
 		status.Text = "FINISHED  P" .. tostring(payload.Place or "?") .. "/" .. tostring(payload.ParticipantCount or "?")
-		details.Text = "Time: " .. formatTime(payload.Elapsed) .. "\nRace rewards are deferred to the guarded reward phase."
+		local rewardAmount = tonumber(payload.RewardAmount) or 0
+		local medal = tostring(payload.RaceMedal or "")
+		local rewardLine
+		if payload.RewardGranted == true and rewardAmount > 0 then
+			rewardLine = (medal ~= "" and (medal .. "  |  ") or "") .. "REWARD  $" .. tostring(math.floor(rewardAmount + 0.5))
+		elseif payload.RewardMessage and payload.RewardMessage ~= "" then
+			rewardLine = tostring(payload.RewardMessage)
+		else
+			rewardLine = "No cash reward for this placement."
+		end
+		details.Text = "Time: " .. formatTime(payload.Elapsed) .. "\n" .. rewardLine -- NTR_RACING_PHASE11A_RACE_REWARD_UI
 		setVisible(true)
 	elseif kind == "RaceDNF" then
 		stopTicker()

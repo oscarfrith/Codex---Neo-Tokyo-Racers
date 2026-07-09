@@ -2312,6 +2312,90 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		return true, "Vehicle spawned."
 	end
 
+
+	-- NTR_RACING_PHASE11C_GRID_VEHICLE_BINDING
+	local function V95_selectedRaceVehicleReady(profile, args)
+		args = typeof(args) == "table" and args or {}
+		local okSelect, selectMessage = V89_selectVehicleInstance(profile, {
+			VehicleId = args.VehicleId,
+			CockpitId = args.CockpitId,
+		})
+		if not okSelect then
+			return false, selectMessage
+		end
+		if not V76_coreModulesEquipped(profile) then
+			return false, "Equip at least one engine, stabilisers, and boost before racing."
+		end
+		return true, "Vehicle ready."
+	end
+
+	local function V95_spawnOwnedVehicleForRace(player, profile, args)
+		args = typeof(args) == "table" and args or {}
+		local spawnCFrame = args.SpawnCFrame
+		if typeof(spawnCFrame) ~= "CFrame" then
+			return { Ok = false, Success = false, Message = "Race spawn CFrame missing." }
+		end
+		local okReady, readyMessage = V95_selectedRaceVehicleReady(profile, args)
+		if not okReady then
+			return { Ok = false, Success = false, Message = readyMessage }
+		end
+		local vehicle, err = V56_buildVehicle(player, profile, spawnCFrame)
+		if not vehicle then
+			return { Ok = false, Success = false, Message = err or "Race vehicle spawn failed." }
+		end
+		vehicle:SetAttribute("NTR_RaceGridSpawned", true)
+		vehicle:SetAttribute("DriveReady", false)
+		return {
+			Ok = true,
+			Success = true,
+			Message = "Race vehicle spawned.",
+			Vehicle = vehicle,
+			VehicleId = tostring(profile.CurrentVehicleId or ""),
+		}
+	end
+
+	local function V95_ensureRaceVehicleSpawnBinding()
+		local binding = script:FindFirstChild("RaceVehicleSpawner")
+		if binding and not binding:IsA("BindableFunction") then
+			binding:Destroy()
+			binding = nil
+		end
+		if not binding then
+			binding = Instance.new("BindableFunction")
+			binding.Name = "RaceVehicleSpawner"
+			binding.Parent = script
+		end
+		binding.OnInvoke = function(action, payload)
+			payload = typeof(payload) == "table" and payload or {}
+			local player = payload.Player
+			if not (player and player:IsA("Player")) then
+				return { Ok = false, Success = false, Message = "Player missing." }
+			end
+			local profile = V56_getProfile(player)
+			if action == "ValidateForRace" then
+				local okReady, readyMessage = V95_selectedRaceVehicleReady(profile, payload)
+				if okReady then
+					V88_syncInstanceDataFromLegacy(profile)
+					V80_mirrorLegacyProfileToPersistence(player, profile, "SelectVehicleInstance", false)
+				end
+				return {
+					Ok = okReady == true,
+					Success = okReady == true,
+					Message = readyMessage,
+					VehicleId = tostring(profile.CurrentVehicleId or ""),
+				}
+			elseif action == "SpawnForRace" then
+				local result = V95_spawnOwnedVehicleForRace(player, profile, payload)
+				if result.Ok == true then
+					V88_syncInstanceDataFromLegacy(profile)
+					V80_mirrorLegacyProfileToPersistence(player, profile, "SpawnRaceVehicle", false)
+				end
+				return result
+			end
+			return { Ok = false, Success = false, Message = "Unknown race vehicle action." }
+		end
+	end
+	V95_ensureRaceVehicleSpawnBinding()
 	-- NTR_FREEROAM_VEHICLE_SPAWN_PHASE4_SERVER
 	local function V92_playerVehicle(player)
 		for _, candidate in ipairs(V56_vehiclesRoot:GetChildren()) do
