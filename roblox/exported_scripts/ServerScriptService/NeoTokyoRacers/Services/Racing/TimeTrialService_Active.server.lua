@@ -51,6 +51,40 @@ local function grantTimeTrialReward(player, run, elapsed, medal, isPersonalBest)
 	return { Ok = false, Granted = false, Amount = 0, Message = "Reward grant failed: " .. tostring(result) }
 end
 
+-- NTR_RACING_PHASE11M_PERSISTENT_PB_HELPERS
+local function getPersonalBestBinding(name)
+	local bindings = script.Parent:FindFirstChild("RacePersonalBestBindings")
+	local binding = bindings and bindings:FindFirstChild(name)
+	if binding and binding:IsA("BindableFunction") then
+		return binding
+	end
+	return nil
+end
+
+local function recordPersistentPersonalBest(player, run, elapsed, medal)
+	local binding = getPersonalBestBinding("RecordTimeTrialBest")
+	if not binding then
+		return nil
+	end
+	local ok, result = pcall(function()
+		return binding:Invoke(player, {
+			RunId = run.RunId,
+			EventId = run.EventId,
+			RouteId = run.RouteId,
+			DisplayName = run.DisplayName,
+			VehicleTier = run.VehicleTier,
+			VehicleIndex = run.VehicleIndex,
+			SelectedVehicleId = run.SelectedVehicleId,
+			Elapsed = elapsed,
+			Medal = medal,
+		})
+	end)
+	if ok and typeof(result) == "table" then
+		return result
+	end
+	return { Ok = false, Message = "Persistent PB service failed: " .. tostring(result) }
+end
+
 
 local PHASE = "NTR Racing Phase 3"
 local OLD_PROMPT_NAME = "NTR_TimeTrialStartPrompt"
@@ -689,6 +723,15 @@ sendTimeTrialResult = function(player, run, elapsed, finishReason, canRetry)
 		bucket.BestVehicleId = run.SelectedVehicleId
 		bucket.BestVehicleTier = run.VehicleTier
 		bucket.UpdatedClock = os.clock()
+	end
+
+	local persistentBest = recordPersistentPersonalBest(player, run, elapsed, medal)
+	if persistentBest and persistentBest.Ok == true then
+		previousBest = tonumber(persistentBest.PreviousBestSeconds)
+		isPersonalBest = persistentBest.IsPersonalBest == true
+		bucket.BestSeconds = tonumber(persistentBest.PersonalBestSeconds) or bucket.BestSeconds
+		bucket.BestMedal = persistentBest.PersonalBestMedal or bucket.BestMedal
+		bucket.BestVehicleId = persistentBest.PersonalBestVehicleId or bucket.BestVehicleId
 	end
 
 	local reward = grantTimeTrialReward(player, run, elapsed, medal, isPersonalBest)

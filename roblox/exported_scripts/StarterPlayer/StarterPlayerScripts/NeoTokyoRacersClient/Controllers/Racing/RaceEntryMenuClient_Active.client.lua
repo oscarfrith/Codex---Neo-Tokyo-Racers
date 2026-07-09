@@ -1035,12 +1035,10 @@ local function applyVisibility()
 	end
 end
 
-task.spawn(function()
-	while true do
-		applyVisibility()
-		task.wait(0.5)
-	end
-end)
+-- NTR_RACING_PHASE11L_ENTRY_MENU_LEGACY_VIS_DISABLED
+-- Visibility is owned by RaceParticipantVisibilityClient_Active.
+-- Keep the old helper definitions inert so this menu client cannot fight the
+-- multi-session VFX/name-tag gate when races and time trials overlap.
 
 raceEvent.OnClientEvent:Connect(function(payload)
 	if typeof(payload) ~= "table" then return end
@@ -1132,12 +1130,8 @@ raceEvent.OnClientEvent:Connect(function(payload)
 		state.ActiveRun = nil
 		hud.Visible = false
 	elseif kind == "RaceVisibilityUpdate" then
-		state.Visibility = {
-			Active = payload.Active == true,
-			RunId = payload.RunId,
-			Participants = payload.Participants or {},
-		}
-		applyVisibility()
+		-- NTR_RACING_PHASE11L_ENTRY_MENU_LEGACY_VIS_DISABLED
+		-- Dedicated RaceParticipantVisibilityClient_Active owns session hiding.
 	end
 end)
 

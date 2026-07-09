@@ -159,6 +159,10 @@ When a phase or fix is confirmed:
 - Phase 3/3B showed that drive-in session locks must be released before the normal garage `SpawnVehicle` handoff. Otherwise seating/spawn can race an anchored hidden character and produce undriveable vehicles or streaming focus issues.
 - The Phase 3 partial install showed why command-bar source patchers should not use unescaped `string.gsub` for punctuation-heavy Lua source. The safer repair used plain matching to find the `Customise -> SpawnVehicle` branch and inserted the smallest unlock block before the call.
 
+## Current Lessons From Racing Session Assets
+
+- Phase 11L arrow visual regression showed that when server collision/session proxies already own progression state, client visuals should sync from that server state instead of maintaining an independent checkpoint counter. If arrows/barriers collide correctly but display incorrectly, inspect `RaceInstances.<RunId>.SessionAssets.ArrowBarrierProxies.ParticipantSegments` before patching route folders or checkpoint events.
+
 ## Current Lessons From Racing
 
 - Phase 8C showed that repeated logic blocks may not be text-identical once they sit in different branches. Duplicate source-anchor repairs should handle each known branch shape explicitly, accept already-repaired markers, and print the replacement count, so partial or slightly drifted live source does not force another guessed patch.

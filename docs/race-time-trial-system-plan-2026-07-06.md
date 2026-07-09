@@ -1062,7 +1062,31 @@ scripts/roblox_racing_phase11k_time_trial_result_exit_cleanup.lua
 
 It fixes the time-trial result-exit cleanup gap exposed during 2-player testing. Finished time trials are now cached until the result-panel `EXIT` action runs a server cleanup path that destroys the finished race vehicle, teleports the player back to the route teleport/start point, clears visibility/session state, and emits `TimeTrialEnded`. This preserves rewards, route-guide config, arrows, VFX isolation, matchmaking, and driving.
 
-The next recommended feature phase after a clean Phase 11K is personal-best persistence for time trials.
+Phase 11L is generated as:
+
+```text
+scripts/roblox_racing_phase11l_multi_session_visibility_owner.lua
+```
+
+It fixes overlapping same-server race/time-trial visibility by making `RaceParticipantVisibilityClient_Active` the single multi-session visibility owner keyed by `RunId`. The older simple visibility loop inside `RaceEntryMenuClient_Active` is disabled so it cannot fight the VFX/name-tag gate. `RaceSessionAssetsClient_Active` is also made multi-session-aware so another session's visibility update cannot hide route arrows for the player still racing. Local players in a session should now only see participants sharing that session; free-roam players should not see active race/time-trial participants.
+
+Phase 11L Arrow Visual Proxy Sync Repair is generated as:
+
+```text
+scripts/roblox_racing_phase11l_arrow_visual_proxy_sync_repair.lua
+```
+
+It follows Phase 11L when solo time-trial arrows stop advancing even though `RaceSessionAssetService_Active` still creates and clears arrow/barrier proxies. The repair keeps the isolated `RaceSessionAssetsClient_Active` as the route-arrow visual owner, but syncs its visible segment window from the server `RaceInstances.<RunId>.SessionAssets.ArrowBarrierProxies.ParticipantSegments` attribute. Future route-arrow visual fixes should prefer this server-owned segment state over a separate client-only checkpoint counter.
+
+Phase 11M is generated as:
+
+```text
+scripts/roblox_racing_phase11m_time_trial_personal_best_persistence.lua
+```
+
+It adds the first persistent competitive record slice for time trials. `RacePersonalBestService_Active` owns server-authoritative PB records per player/event/tier, exposes `RacePersonalBestBindings`, and `TimeTrialService_Active` records each finished result before reward calculation so `IsPersonalBest` reflects the saved best rather than only the current session table. `Config.Racing.PersonalBests` owns DataStore toggles and defaults DataStore writes off for prototype safety.
+
+The next recommended feature phase after a clean Phase 11M is a small PB display/leaderboard readout layer, with OrderedDataStore global leaderboards deferred until DataStore behavior is confirmed.
 
 ### Phase 12 - Player-Created Race Foundation
 

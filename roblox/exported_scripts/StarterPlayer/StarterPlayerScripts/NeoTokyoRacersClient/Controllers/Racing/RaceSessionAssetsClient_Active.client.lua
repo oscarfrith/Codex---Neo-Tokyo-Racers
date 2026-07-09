@@ -1,4 +1,4 @@
--- NTR_RACING_PHASE10B_FOLDER_ARROW_VISIBILITY_CLIENT
+-- NTR_RACING_PHASE11L_ARROW_VISUAL_PROXY_SYNC
 
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -9,14 +9,22 @@ local kit = ReplicatedStorage:WaitForChild("NeoTokyoRacers")
 local racingRemotes = kit:WaitForChild("Shared"):WaitForChild("Remotes"):WaitForChild("Racing")
 local raceEvent = racingRemotes:WaitForChild("RaceEvent")
 
-local activeRunId = nil
-local activeRouteId = nil
-local currentSegment = 0
-local activeParticipants = {}
+local sessionsByRunId = {}
+local localRuns = {}
+local lastApplyClock = 0
+
+local function worldRoot()
+	return Workspace:FindFirstChild("NeoTokyoRacersWorld")
+end
 
 local function raceRoutesRoot()
-	local world = Workspace:FindFirstChild("NeoTokyoRacersWorld")
+	local world = worldRoot()
 	return world and world:FindFirstChild("RaceRoutes")
+end
+
+local function raceInstancesRoot()
+	local world = worldRoot()
+	return world and world:FindFirstChild("RaceInstances")
 end
 
 local function parseSegmentFolder(folder)
@@ -82,9 +90,7 @@ local function setFolderVisible(folder, visible)
 	for _, item in ipairs(folder and folder:GetDescendants() or {}) do
 		if item:IsA("BasePart") then
 			if visible then
-				local original = tonumber(item:GetAttribute("NTR_ArrowOriginalTransparency"))
 				item.LocalTransparencyModifier = 0
-				item.Transparency = original ~= nil and original or 0
 			else
 				item.LocalTransparencyModifier = 1
 			end
@@ -109,18 +115,87 @@ local function hideAll()
 	end
 end
 
-local function isLocalParticipant()
-	return activeParticipants[player.UserId] == true
+local function participantSet(list)
+	local set = {}
+	for _, userId in ipairs(list or {}) do
+		local numeric = tonumber(userId)
+		if numeric ~= nil then
+			set[numeric] = true
+		end
+	end
+	return set
+end
+
+local function updateVisibilitySession(payload)
+	local runId = tostring(payload.RunId or "")
+	if runId == "" then return end
+	if payload.Active == true then
+		sessionsByRunId[runId] = {
+			RunId = runId,
+			Participants = participantSet(payload.Participants or {}),
+		}
+	else
+		sessionsByRunId[runId] = nil
+		localRuns[runId] = nil
+	end
+end
+
+local function localIsParticipant(runId)
+	local session = sessionsByRunId[tostring(runId or "")]
+	if session and session.Participants and session.Participants[player.UserId] == true then
+		return true
+	end
+	-- If the local player has direct run events, keep visuals alive even if a
+	-- visibility update arrives late or is cleared before the end event.
+	return localRuns[tostring(runId or "")] ~= nil
+end
+
+local function bestLocalRun()
+	for runId, state in pairs(localRuns) do
+		if localIsParticipant(runId) then
+			return runId, state
+		end
+	end
+	return nil, nil
+end
+
+local function proxyFolderForRun(runId)
+	local instances = raceInstancesRoot()
+	local runFolder = instances and instances:FindFirstChild(tostring(runId or ""))
+	local assets = runFolder and runFolder:FindFirstChild("SessionAssets")
+	local proxies = assets and assets:FindFirstChild("ArrowBarrierProxies")
+	return proxies
+end
+
+local function proxySegmentForRun(runId)
+	local proxies = proxyFolderForRun(runId)
+	local text = tostring(proxies and proxies:GetAttribute("ParticipantSegments") or "")
+	local localUser = tostring(player.UserId)
+	for userId, segment in string.gmatch(text, "([^:,]+):([^,]+)") do
+		if tostring(userId) == localUser then
+			local numeric = tonumber(segment)
+			if numeric ~= nil then
+				return math.max(0, math.floor(numeric))
+			end
+		end
+	end
+	return nil
 end
 
 local function apply()
 	hideAll()
-	if not (activeRunId and activeRouteId and isLocalParticipant()) then return end
+	local runId, state = bestLocalRun()
+	if not (runId and state and state.RouteId and state.RouteId ~= "") then return end
 	local routes = raceRoutesRoot()
-	local routeFolder = routes and routes:FindFirstChild(activeRouteId)
+	local routeFolder = routes and routes:FindFirstChild(state.RouteId)
 	local arrowRoot = routeFolder and routeFolder:FindFirstChild("ArrowMarkers")
 	if not arrowRoot then return end
-	local keys = visibleKeys(routeFolder, currentSegment)
+	local segmentIndex = proxySegmentForRun(runId)
+	if segmentIndex == nil then
+		segmentIndex = state.CurrentSegment or 0
+	end
+	state.LastAppliedSegment = segmentIndex
+	local keys = visibleKeys(routeFolder, segmentIndex)
 	for _, child in ipairs(arrowRoot:GetChildren()) do
 		local segment = parseSegmentFolder(child)
 		if segment and keys[segment.Key] == true then
@@ -129,38 +204,47 @@ local function apply()
 	end
 end
 
-local function updateSegmentFromPayload(payload)
+local function updateLocalRunFromPayload(payload)
+	local runId = tostring(payload.RunId or "")
+	if runId == "" then return end
+	localRuns[runId] = localRuns[runId] or { RunId = runId, CurrentSegment = 0 }
+	localRuns[runId].RouteId = tostring(payload.RouteId or localRuns[runId].RouteId or "")
 	local nextGate = tonumber(payload.NextGateIndex) or 1
-	currentSegment = math.max(0, nextGate - 1)
+	localRuns[runId].CurrentSegment = math.max(0, nextGate - 1)
+end
+
+local function removeLocalRun(runId)
+	runId = tostring(runId or "")
+	if runId ~= "" then
+		localRuns[runId] = nil
+	end
 end
 
 raceEvent.OnClientEvent:Connect(function(payload)
 	if typeof(payload) ~= "table" then return end
-	local kind = payload.Type
+	local kind = tostring(payload.Type or "")
 	if kind == "RaceVisibilityUpdate" then
-		table.clear(activeParticipants)
-		for _, userId in ipairs(payload.Participants or {}) do
-			activeParticipants[tonumber(userId)] = true
-		end
-		if payload.Active ~= true then
-			activeRunId = nil
-			activeRouteId = nil
-		end
+		updateVisibilitySession(payload)
 		apply()
 		return
 	end
 	if kind == "TimeTrialStaged" or kind == "TimeTrialStarted" or kind == "TimeTrialCheckpoint" or kind == "TimeTrialLapCompleted" or kind == "TimeTrialReset"
 		or kind == "RaceStaged" or kind == "RaceStarted" or kind == "RaceCheckpoint" or kind == "RaceReset" then
-		activeRunId = tostring(payload.RunId or activeRunId or "")
-		activeRouteId = tostring(payload.RouteId or activeRouteId or "")
-		updateSegmentFromPayload(payload)
+		updateLocalRunFromPayload(payload)
 		apply()
 	elseif kind == "TimeTrialEnded" or kind == "TimeTrialFinished" or kind == "RaceFinished" or kind == "RaceEnded" or kind == "RaceDNF" or kind == "RaceExitedToStart" then
-		-- NTR_RACING_PHASE11D_ARROW_CLIENT_CLEAR_FINISH
-		activeRunId = nil
-		activeRouteId = nil
-		currentSegment = 0
+		removeLocalRun(payload.RunId)
 		apply()
+	end
+end)
+
+task.spawn(function()
+	while true do
+		if next(localRuns) ~= nil and os.clock() - lastApplyClock > 0.2 then
+			lastApplyClock = os.clock()
+			apply()
+		end
+		task.wait(0.1)
 	end
 end)
 
@@ -168,4 +252,4 @@ task.defer(function()
 	hideAll()
 end)
 
-print("[NTR Racing Phase 10B Client] Folder arrow segment visibility active.")
+print("[NTR Racing Phase 11L Client] Arrow visuals sync from server proxy segments.")

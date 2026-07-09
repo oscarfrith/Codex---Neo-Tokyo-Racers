@@ -1,4 +1,4 @@
--- NTR_RACING_PHASE11H_VISIBILITY_VFX_NAMETAG_GATE
+-- NTR_RACING_PHASE11L_MULTI_SESSION_VISIBILITY_OWNER
 
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -13,9 +13,7 @@ local raceEvent = racingRemotes:WaitForChild("RaceEvent")
 local RENDER_BIND_NAME = "NTR_RaceParticipantVisibilityGate"
 local LATE_RENDER_PRIORITY = 10000
 
-local active = false
-local activeRunId = nil
-local activeParticipants = {}
+local sessionsByRunId = {}
 local originals = setmetatable({}, { __mode = "k" })
 local lastRestoreClock = 0
 
@@ -23,20 +21,6 @@ local function runtimeVehiclesRoot()
 	local world = Workspace:FindFirstChild("NeoTokyoRacersWorld")
 	local runtime = world and world:FindFirstChild("Runtime")
 	return runtime and runtime:FindFirstChild("PlayerVehicles")
-end
-
-local function clearParticipants()
-	table.clear(activeParticipants)
-end
-
-local function setParticipants(list)
-	clearParticipants()
-	for _, userId in ipairs(list or {}) do
-		local numeric = tonumber(userId)
-		if numeric ~= nil then
-			activeParticipants[numeric] = true
-		end
-	end
 end
 
 local function remember(instance, key, value)
@@ -59,6 +43,105 @@ local function originalValue(instance, key, fallback)
 	return fallback
 end
 
+local function participantSet(list)
+	local set = {}
+	for _, userId in ipairs(list or {}) do
+		local numeric = tonumber(userId)
+		if numeric ~= nil then
+			set[numeric] = true
+		end
+	end
+	return set
+end
+
+local function addOrUpdateSession(payload)
+	local runId = tostring(payload.RunId or "")
+	if runId == "" then
+		return
+	end
+	if payload.Active == true then
+		sessionsByRunId[runId] = {
+			RunId = runId,
+			Participants = participantSet(payload.Participants or {}),
+			UpdatedClock = os.clock(),
+		}
+	else
+		sessionsByRunId[runId] = nil
+	end
+end
+
+local function removeLocalFromRun(runId)
+	runId = tostring(runId or "")
+	if runId == "" then return end
+	local session = sessionsByRunId[runId]
+	if session and session.Participants then
+		session.Participants[player.UserId] = nil
+		if next(session.Participants) == nil then
+			sessionsByRunId[runId] = nil
+		end
+	end
+end
+
+local function hasAnyActiveSession()
+	return next(sessionsByRunId) ~= nil
+end
+
+local function localSessionSet()
+	local set = {}
+	for runId, session in pairs(sessionsByRunId) do
+		if session.Participants and session.Participants[player.UserId] == true then
+			set[runId] = true
+		end
+	end
+	return set
+end
+
+local function localIsInSession()
+	return next(localSessionSet()) ~= nil
+end
+
+local function participantRunsForUserId(userId)
+	local runs = {}
+	userId = tonumber(userId)
+	if userId == nil then
+		return runs
+	end
+	for runId, session in pairs(sessionsByRunId) do
+		if session.Participants and session.Participants[userId] == true then
+			runs[runId] = true
+		end
+	end
+	return runs
+end
+
+local function sharesAnyRun(a, b)
+	for runId in pairs(a or {}) do
+		if b and b[runId] == true then
+			return true
+		end
+	end
+	return false
+end
+
+local function shouldHideRuns(subjectRuns, explicitRunId)
+	if not hasAnyActiveSession() then
+		return false
+	end
+
+	local localRuns = localSessionSet()
+	local localInSession = next(localRuns) ~= nil
+	if explicitRunId and explicitRunId ~= "" then
+		subjectRuns = subjectRuns or {}
+		subjectRuns[explicitRunId] = true
+	end
+
+	local subjectInSession = next(subjectRuns or {}) ~= nil
+	if localInSession then
+		return not sharesAnyRun(localRuns, subjectRuns)
+	end
+	return subjectInSession
+end
+
 local function isToggleable(instance)
 	return instance:IsA("ParticleEmitter")
 		or instance:IsA("Beam")
@@ -72,7 +155,6 @@ local function isToggleable(instance)
 end
 
 local function flushLingeringVfx(instance)
-	-- NTR_RACING_PHASE11I_IDLE_VFX_FLUSH
 	if instance:IsA("ParticleEmitter") or instance:IsA("Trail") then
 		pcall(function()
 			instance:Clear()
@@ -137,8 +219,6 @@ local function setInstanceHidden(instance, hidden)
 		remember(instance, "Transparency", instance.Transparency)
 		instance.Transparency = hidden and 1 or originalValue(instance, "Transparency", instance.Transparency)
 	elseif isToggleable(instance) then
-		-- Do not restore VFX/light Enabled here. The real VFX owner should decide
-		-- when visible again; this gate only forces hidden session effects off.
 		if hidden then
 			instance.Enabled = false
 			flushLingeringVfx(instance)
@@ -162,44 +242,25 @@ local function setModelHidden(model, hidden)
 	end
 end
 
-local function localIsParticipant()
-	return activeParticipants[player.UserId] == true
-end
-
-local function playerIsParticipant(other)
-	return activeParticipants[other.UserId] == true
-end
-
 local function vehicleOwnerUserId(vehicle)
 	return tonumber(vehicle and vehicle:GetAttribute("OwnerUserId"))
 end
 
-local function vehicleIsParticipant(vehicle)
-	local ownerId = vehicleOwnerUserId(vehicle)
-	return (ownerId ~= nil and activeParticipants[ownerId] == true)
-		or (vehicle and vehicle:GetAttribute("NTR_RaceParticipant") == true)
-end
-
-local function shouldHideParticipantState(isParticipant)
-	if active ~= true then
-		return false
-	end
-	local localParticipant = localIsParticipant()
-	if localParticipant then
-		return not isParticipant
-	end
-	return isParticipant
+local function vehicleRunId(vehicle)
+	return tostring(vehicle and vehicle:GetAttribute("NTR_RaceRunId") or "")
 end
 
 local function applyVisibility()
 	for _, other in ipairs(Players:GetPlayers()) do
-		setModelHidden(other.Character, shouldHideParticipantState(playerIsParticipant(other)))
+		local runs = participantRunsForUserId(other.UserId)
+		setModelHidden(other.Character, shouldHideRuns(runs, nil))
 	end
 
 	local vehiclesRoot = runtimeVehiclesRoot()
 	for _, vehicle in ipairs(vehiclesRoot and vehiclesRoot:GetChildren() or {}) do
 		if vehicle:IsA("Model") then
-			setModelHidden(vehicle, shouldHideParticipantState(vehicleIsParticipant(vehicle)))
+			local runs = participantRunsForUserId(vehicleOwnerUserId(vehicle))
+			setModelHidden(vehicle, shouldHideRuns(runs, vehicleRunId(vehicle)))
 		end
 	end
 end
@@ -216,30 +277,21 @@ local function restoreVisibility()
 	end
 end
 
-local function removeLocalParticipantAndMaybeDeactivate()
-	activeParticipants[player.UserId] = nil
-	if next(activeParticipants) == nil then
-		active = false
-		activeRunId = nil
-	end
-end
-
 raceEvent.OnClientEvent:Connect(function(payload)
 	if typeof(payload) ~= "table" then return end
 	local kind = tostring(payload.Type or "")
 	if kind == "RaceVisibilityUpdate" then
-		active = payload.Active == true
-		activeRunId = tostring(payload.RunId or "")
-		setParticipants(payload.Participants or {})
+		addOrUpdateSession(payload)
 		applyVisibility()
 	elseif kind == "RaceFinished"
 		or kind == "RaceDNF"
 		or kind == "RaceExitedToStart"
 		or kind == "RaceEnded"
 		or kind == "TimeTrialFinished"
-		or kind == "TimeTrialEnded" then
-		removeLocalParticipantAndMaybeDeactivate()
-		if active then
+		or kind == "TimeTrialEnded"
+		or kind == "TimeTrialError" then
+		removeLocalFromRun(payload.RunId)
+		if hasAnyActiveSession() then
 			applyVisibility()
 		else
 			restoreVisibility()
@@ -260,9 +312,7 @@ for _, other in ipairs(Players:GetPlayers()) do
 end
 
 RunService:BindToRenderStep(RENDER_BIND_NAME, LATE_RENDER_PRIORITY, function()
-	if active then
-		-- Run late every frame while a race/time-trial visibility boundary exists.
-		-- This wins over VFX controllers that re-enable particles during RenderStepped.
+	if hasAnyActiveSession() then
 		applyVisibility()
 	elseif os.clock() - lastRestoreClock > 0.5 then
 		lastRestoreClock = os.clock()
@@ -270,4 +320,4 @@ RunService:BindToRenderStep(RENDER_BIND_NAME, LATE_RENDER_PRIORITY, function()
 	end
 end)
 
-print("[NTR Racing Phase 11H Client] Race participant visibility, VFX, and name tag gate active.")
+print("[NTR Racing Phase 11L Client] Multi-session race/time-trial visibility owner active.")
