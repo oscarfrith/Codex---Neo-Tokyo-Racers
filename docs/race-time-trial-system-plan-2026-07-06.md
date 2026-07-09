@@ -1005,6 +1005,14 @@ scripts/roblox_racing_phase11c_server_grid_vehicle_spawn.lua
 
 It fixes the race-entry ownership problem exposed after Phase 11B: the menu should not spawn/free-roam-select the vehicle before staging. The client now sends selected vehicle intent only, the garage server exposes a small `RaceVehicleSpawner` binding that reuses the proven vehicle builder, and the racing services spawn the selected vehicle directly at the time-trial start or race grid when countdown staging begins. Future start-flow work should preserve this ownership split: client selects, server validates, server grid-spawns, racing controls countdown/release.
 
+Phase 11D is generated as:
+
+```text
+scripts/roblox_racing_phase11d_session_boundary_cleanup.lua
+```
+
+It fixes the session-boundary issues exposed by the first working multiplayer race load: finished racers must leave active arrow/collision/visibility participation immediately, race result UI should hold over a black fade until `EXIT`, the race vehicle should despawn while hidden, and free-roam players should not see race/time-trial vehicle VFX. Phase 11D keeps this outside reward config, route-guide config, arrow folder layout, reset architecture, and the main bootstrap.
+
 ### Phase 12 - Player-Created Race Foundation
 
 Add after official races, rewards, and multiplayer are stable:

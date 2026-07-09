@@ -155,7 +155,8 @@ raceEvent.OnClientEvent:Connect(function(payload)
 		activeRouteId = tostring(payload.RouteId or activeRouteId or "")
 		updateSegmentFromPayload(payload)
 		apply()
-	elseif kind == "TimeTrialEnded" or kind == "TimeTrialFinished" or kind == "RaceEnded" or kind == "RaceDNF" then
+	elseif kind == "TimeTrialEnded" or kind == "TimeTrialFinished" or kind == "RaceFinished" or kind == "RaceEnded" or kind == "RaceDNF" or kind == "RaceExitedToStart" then
+		-- NTR_RACING_PHASE11D_ARROW_CLIENT_CLEAR_FINISH
 		activeRunId = nil
 		activeRouteId = nil
 		currentSegment = 0

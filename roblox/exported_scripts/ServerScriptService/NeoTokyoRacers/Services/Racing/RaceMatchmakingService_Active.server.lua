@@ -22,6 +22,7 @@ local queues = {}
 local queuedByPlayer = {}
 local activeRaceByPlayer = {}
 local activeRaces = {}
+local finishedReturnByPlayer = {} -- NTR_RACING_PHASE11D_FINISHED_RETURN_STATE
 local gateConnections = {}
 
 local function numberValue(folder, name, fallback)
@@ -521,9 +522,10 @@ local function entryForPlayer(race, player)
 end
 
 local function fireActiveRaceVisibility(race)
+	-- NTR_RACING_PHASE11D_ACTIVE_VISIBILITY
 	local participants = {}
 	for _, entry in ipairs(race and race.Participants or {}) do
-		if entry.Player and entry.DNF ~= true then
+		if entry.Player and entry.DNF ~= true and entry.Finished ~= true then
 			table.insert(participants, entry.Player.UserId)
 		end
 	end
@@ -593,31 +595,69 @@ local function resetRacePlayer(player)
 end
 
 local function exitRacePlayer(player)
+	-- NTR_RACING_PHASE11D_EXIT_TO_START
 	local race = activeRaceByPlayer[player]
 	local entry = entryForPlayer(race, player)
 	if not (race and entry) then
+		local finishedReturn = finishedReturnByPlayer[player]
+		if finishedReturn then
+			finishedReturnByPlayer[player] = nil
+			teleportCharacterTo(player, finishedReturn.Target)
+			fireRace(player, {
+				Type = "RaceExitedToStart",
+				RunId = finishedReturn.RunId,
+				EventId = finishedReturn.EventId,
+				RouteId = finishedReturn.RouteId,
+				Reason = "Exited results",
+			})
+			fire(player, {
+				Type = "RaceExitedToStart",
+				RunId = finishedReturn.RunId,
+				EventId = finishedReturn.EventId,
+				RouteId = finishedReturn.RouteId,
+				Message = "Returned to race start.",
+			})
+			return { Ok = true, Success = true, Message = "Exited to race start." }
+		end
 		return { Ok = false, Success = false, Message = "No active race." }
 	end
+	local wasFinished = entry.Finished == true and entry.DNF ~= true
 	entry.Finished = true
-	entry.DNF = true
+	entry.DNF = wasFinished and false or true
 	activeRaceByPlayer[player] = nil
 	local target = returnCFrameForRoute(race.Route, "Race")
-	fire(player, {
-		Type = "RaceDNF",
+	finishedReturnByPlayer[player] = nil
+	callSessionAssetService("RemoveParticipant", {
 		RunId = race.RunId,
-		EventId = race.EventId,
-		Message = "Exited race.",
+		UserId = player.UserId,
+		Player = player,
+		Vehicle = entry.Vehicle,
 	})
-	fireRace(player, {
-		Type = "RaceEnded",
-		RunId = race.RunId,
-		EventId = race.EventId,
-		RouteId = race.RouteId,
-		Reason = "Exited race",
-	})
+	if wasFinished ~= true then
+		fire(player, {
+			Type = "RaceDNF",
+			RunId = race.RunId,
+			EventId = race.EventId,
+			Message = "Exited race.",
+		})
+	end
 	destroyVehicleAfterUnseat(player, entry.Vehicle)
 	entry.Vehicle = nil
 	teleportCharacterTo(player, target)
+	fireRace(player, {
+		Type = "RaceExitedToStart",
+		RunId = race.RunId,
+		EventId = race.EventId,
+		RouteId = race.RouteId,
+		Reason = wasFinished and "Exited results" or "Exited race",
+	})
+	fire(player, {
+		Type = "RaceExitedToStart",
+		RunId = race.RunId,
+		EventId = race.EventId,
+		RouteId = race.RouteId,
+		Message = "Returned to race start.",
+	})
 	fireActiveRaceVisibility(race)
 	broadcastPositions(race)
 	if allFinished(race) then
@@ -646,12 +686,27 @@ end
 
 
 local function finishEntry(race, entry)
-	-- NTR_RACING_PHASE11A_FINISH_ENTRY_CANONICAL
+	-- NTR_RACING_PHASE11D_FINISH_BOUNDARY
 	if entry.Finished then return end
 	entry.Finished = true
+	entry.DNF = false
 	entry.FinishElapsed = now() - race.StartClock
 	entry.FinishPlace = race.NextFinishPlace
 	race.NextFinishPlace += 1
+	local finishVehicle = entry.Vehicle
+	finishedReturnByPlayer[entry.Player] = {
+		RunId = race.RunId,
+		EventId = race.EventId,
+		RouteId = race.RouteId,
+		Target = returnCFrameForRoute(race.Route, "Race"),
+	}
+	callSessionAssetService("RemoveParticipant", {
+		RunId = race.RunId,
+		UserId = entry.Player and entry.Player.UserId,
+		Player = entry.Player,
+		Vehicle = finishVehicle,
+	})
+	fireActiveRaceVisibility(race)
 	local rewardResult = callRaceRewardService("GrantRaceReward", {
 		Player = entry.Player,
 		RunId = race.RunId,
@@ -661,9 +716,6 @@ local function finishEntry(race, entry)
 		ParticipantCount = #race.Participants,
 		Elapsed = entry.FinishElapsed,
 	}) or {}
-	if entry.Vehicle then
-		prepareVehicleForDriving(entry.Player, entry.Vehicle)
-	end
 	fire(entry.Player, {
 		Type = "RaceFinished",
 		RunId = race.RunId,
@@ -687,6 +739,12 @@ local function finishEntry(race, entry)
 		NextGateIndex = race.GateCount,
 		GateCount = race.GateCount,
 	})
+	task.delay(0.45, function()
+		if finishVehicle and finishVehicle.Parent and entry.Vehicle == finishVehicle then
+			destroyVehicleAfterUnseat(entry.Player, finishVehicle)
+			entry.Vehicle = nil
+		end
+	end)
 	broadcastPositions(race)
 	if allFinished(race) then
 		task.delay(5, function()
@@ -963,6 +1021,18 @@ local function startRace(queue)
 		setVehicleFrozen(entry.Vehicle, true)
 	end
 
+	callSessionAssetService("ApplyParticipants", {
+		RunId = race.RunId,
+		Participants = participants,
+	})
+	for _, entry in ipairs(participants) do
+		callSessionAssetService("UpdateParticipantSegment", {
+			RunId = race.RunId,
+			UserId = entry.Player.UserId,
+			CurrentSegment = 0,
+		})
+	end
+
 	fireVisibility(race, true)
 	for _, entry in ipairs(participants) do
 		fire(entry.Player, {
@@ -1207,6 +1277,7 @@ queueRequest.OnServerInvoke = function(player, action, payload)
 end
 
 Players.PlayerRemoving:Connect(function(player)
+	finishedReturnByPlayer[player] = nil
 	removeFromQueue(player, "Player left.")
 	local race = activeRaceByPlayer[player]
 	if race then

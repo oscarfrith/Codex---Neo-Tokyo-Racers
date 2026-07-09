@@ -119,7 +119,9 @@ local state = {
 	Queued = false,
 	ActiveRun = nil,
 	StartLocalClock = nil,
+	FinishedRun = nil, -- NTR_RACING_PHASE11D_FINISH_EXIT_UI
 }
+
 
 local ticker = nil
 
@@ -208,15 +210,30 @@ startQueueEvent.Event:Connect(function(payload)
 end)
 
 leave.MouseButton1Click:Connect(function()
-	local result = invokeQueue("LeaveQueue", {})
+	-- NTR_RACING_PHASE11D_FINISH_EXIT_UI
+	if state.FinishedRun then
+		leave.Active = false
+		leave.AutoButtonColor = false
+		status.Text = "RETURNING TO START"
+		local result = invokeQueue("ExitRaceToStart", {})
+		if result.Ok ~= true and result.Success ~= true then
+			leave.Active = true
+			leave.AutoButtonColor = true
+			status.Text = tostring(result.Message or "Could not exit race.")
+		end
+		return
+	end
+	local action = state.ActiveRun and "ExitRaceToStart" or "LeaveQueue"
+	local result = invokeQueue(action, {})
 	state.Queued = false
 	status.Text = tostring(result.Message or "Left queue.")
 	task.delay(1.2, function()
-		if state.Queued ~= true and not state.ActiveRun then
+		if state.Queued ~= true and not state.ActiveRun and not state.FinishedRun then
 			setVisible(false)
 		end
 	end)
 end)
+
 
 queueEvent.OnClientEvent:Connect(function(payload)
 	if typeof(payload) ~= "table" then return end
@@ -224,26 +241,38 @@ queueEvent.OnClientEvent:Connect(function(payload)
 	if kind == "QueueJoined" or kind == "QueueUpdate" then
 		state.Queued = true
 		state.ActiveRun = nil
+		state.FinishedRun = nil
+		gui.DisplayOrder = 88
+		leave.Text = "LEAVE"
+		leave.Active = true
+		leave.AutoButtonColor = true
 		stopTicker()
 		setQueueText(payload)
 	elseif kind == "QueueLeft" then
 		state.Queued = false
+		state.FinishedRun = nil
 		status.Text = tostring(payload.Message or "Left queue.")
 		task.delay(1.2, function()
-			if state.Queued ~= true and not state.ActiveRun then
+			if state.Queued ~= true and not state.ActiveRun and not state.FinishedRun then
 				setVisible(false)
 			end
 		end)
 	elseif kind == "RaceQueueError" then
 		state.Queued = false
 		state.ActiveRun = nil
+		state.FinishedRun = nil
 		stopTicker()
 		status.Text = tostring(payload.Message or "Race queue unavailable.")
 		setVisible(true)
 	elseif kind == "RaceStaged" then
 		state.Queued = false
 		state.ActiveRun = payload
+		state.FinishedRun = nil
 		state.StartLocalClock = nil
+		gui.DisplayOrder = 88
+		leave.Text = "QUIT RACE"
+		leave.Active = true
+		leave.AutoButtonColor = true
 		title.Text = tostring(payload.DisplayName or "RACE")
 		status.Text = "STAGING"
 		details.Text = "Racers: " .. tostring(payload.ParticipantCount or "?") .. "  |  Checkpoints: " .. tostring(payload.GateCount or "?")
@@ -255,6 +284,11 @@ queueEvent.OnClientEvent:Connect(function(payload)
 		setVisible(true)
 	elseif kind == "RaceStarted" then
 		state.ActiveRun = payload
+		state.FinishedRun = nil
+		gui.DisplayOrder = 88
+		leave.Text = "QUIT RACE"
+		leave.Active = true
+		leave.AutoButtonColor = true
 		state.StartLocalClock = os.clock()
 		title.Text = tostring(payload.DisplayName or "RACE")
 		details.Text = "Position updates appear at checkpoints."
@@ -268,8 +302,14 @@ queueEvent.OnClientEvent:Connect(function(payload)
 	elseif kind == "RacePositionUpdate" then
 		status.Text = "POSITION  " .. tostring(payload.Place or "?") .. "/" .. tostring(payload.ParticipantCount or "?")
 	elseif kind == "RaceFinished" then
+		-- NTR_RACING_PHASE11D_FINISH_EXIT_UI
 		stopTicker()
 		state.ActiveRun = nil
+		state.FinishedRun = payload
+		gui.DisplayOrder = 230
+		leave.Text = "EXIT"
+		leave.Active = true
+		leave.AutoButtonColor = true
 		title.Text = tostring(payload.DisplayName or "RACE COMPLETE")
 		status.Text = "FINISHED  P" .. tostring(payload.Place or "?") .. "/" .. tostring(payload.ParticipantCount or "?")
 		local rewardAmount = tonumber(payload.RewardAmount) or 0
@@ -282,23 +322,39 @@ queueEvent.OnClientEvent:Connect(function(payload)
 		else
 			rewardLine = "No cash reward for this placement."
 		end
-		details.Text = "Time: " .. formatTime(payload.Elapsed) .. "\n" .. rewardLine -- NTR_RACING_PHASE11A_RACE_REWARD_UI
+		details.Text = "Time: " .. formatTime(payload.Elapsed) .. "\n" .. rewardLine
 		setVisible(true)
 	elseif kind == "RaceDNF" then
 		stopTicker()
 		state.ActiveRun = nil
+		state.FinishedRun = nil
 		status.Text = "DNF"
 		details.Text = tostring(payload.Message or "Race ended.")
+	elseif kind == "RaceExitedToStart" then
+		stopTicker()
+		state.Queued = false
+		state.ActiveRun = nil
+		state.FinishedRun = nil
+		gui.DisplayOrder = 88
+		leave.Text = "LEAVE"
+		leave.Active = true
+		leave.AutoButtonColor = true
+		setVisible(false)
 	elseif kind == "RaceEnded" then
 		stopTicker()
 		state.Queued = false
 		state.ActiveRun = nil
+		if state.FinishedRun then
+			setVisible(true)
+			return
+		end
 		task.delay(4, function()
-			if state.Queued ~= true and not state.ActiveRun then
+			if state.Queued ~= true and not state.ActiveRun and not state.FinishedRun then
 				setVisible(false)
 			end
 		end)
 	end
 end)
+
 
 print("[NTR Racing Phase 8 Client] Race queue client active.")

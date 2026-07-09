@@ -22,6 +22,7 @@ local sessionActive = false
 local lastHudPulse = 0
 local savedHudEnabled = {}
 local currentFadeTween = nil
+local finishHold = false -- NTR_RACING_PHASE11D_FINISH_HOLD
 
 local gui = Instance.new("ScreenGui")
 gui.Name = "NTR_RaceTransitionFade_Phase8H"
@@ -195,19 +196,35 @@ local function handleRacePayload(payload)
 	if typeof(payload) ~= "table" then return end
 	local kind = tostring(payload.Type or "")
 	if kind == "TimeTrialStaged" or kind == "RaceStaged" then
+		finishHold = false
 		startTransition(kind)
 	elseif kind == "TimeTrialCountdown" or kind == "RaceCountdown" then
 		setSessionActive(true, kind)
 		suppressFreeRoamHud()
 		restoreCamera(kind)
 	elseif kind == "TimeTrialStarted" or kind == "RaceStarted" then
+		finishHold = false
 		setSessionActive(true, kind)
 		suppressFreeRoamHud()
 		finishTransition(kind)
 	elseif kind == "TimeTrialReset" or kind == "RaceReset" then
 		resetTransition(kind)
+	elseif kind == "RaceFinished" then
+		-- NTR_RACING_PHASE11D_FINISH_HOLD
+		finishHold = true
+		setSessionActive(true, kind)
+		suppressFreeRoamHud()
+		fadeOut("")
+	elseif kind == "RaceExitedToStart" then
+		finishHold = false
+		setSessionActive(false, kind)
+		restoreCamera(kind)
+		fadeIn(0.28)
+	elseif kind == "RaceEnded" and finishHold then
+		suppressFreeRoamHud()
 	elseif kind == "TimeTrialFinished" or kind == "TimeTrialEnded" or kind == "TimeTrialError"
-		or kind == "RaceFinished" or kind == "RaceDNF" or kind == "RaceEnded" or kind == "RaceQueueError" then
+		or kind == "RaceDNF" or kind == "RaceEnded" or kind == "RaceQueueError" then
+		finishHold = false
 		setSessionActive(false, kind)
 		restoreCamera(kind)
 		fadeIn(0.18)

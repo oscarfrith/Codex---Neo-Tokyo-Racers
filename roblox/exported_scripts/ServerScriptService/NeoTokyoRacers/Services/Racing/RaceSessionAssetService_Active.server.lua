@@ -235,6 +235,30 @@ local function applyParticipants(runId, participants)
 	rebuildProxies(state)
 end
 
+local function removeParticipant(payload)
+	-- NTR_RACING_PHASE11D_REMOVE_PARTICIPANT
+	payload = typeof(payload) == "table" and payload or {}
+	local runId = tostring(payload.RunId or "")
+	local state = sessions[runId]
+	if not state then
+		return { Ok = true, Removed = false, Message = "No active session." }
+	end
+	local player = payload.Player
+	local userId = tonumber(payload.UserId) or (player and player.UserId) or 0
+	if userId > 0 then
+		state.ParticipantSegments[userId] = nil
+	end
+	if player and player.Character then
+		restoreModelGroup(player.Character)
+	end
+	local vehicle = payload.Vehicle
+	if vehicle then
+		restoreModelGroup(vehicle)
+	end
+	rebuildProxies(state)
+	return { Ok = true, Removed = true }
+end
+
 local function clearForRun(payload)
 	payload = typeof(payload) == "table" and payload or {}
 	local runId = tostring(payload.RunId or "")
@@ -313,6 +337,8 @@ sessionBinding.OnInvoke = function(action, payload)
 		return { Ok = true }
 	elseif action == "UpdateParticipantSegment" then
 		return updateParticipantSegment(payload)
+	elseif action == "RemoveParticipant" then
+		return removeParticipant(payload)
 	end
 	return { Ok = false, Message = "Unknown session asset action." }
 end
