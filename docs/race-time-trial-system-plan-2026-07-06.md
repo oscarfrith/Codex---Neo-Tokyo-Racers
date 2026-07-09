@@ -1108,9 +1108,17 @@ Phase 11P is generated as:
 scripts/roblox_racing_phase11p_time_trial_result_coach.lua
 ```
 
-It is the prototype polish pass after Phase 11O. Phase 11P keeps the existing result panel but clarifies the competitive feedback: new-PB improvement, slower-than-PB gap, next-medal required improvement, prize wording, and `EXIT TO START`. It intentionally does not change timing, PB storage, rewards, arrows, VFX, matchmaking, driving, DataStores, global/friends leaderboards, or private-server scope.
+It was the first attempted prototype polish pass after Phase 11O. Phase 11P installed, but testing reported the result flow still failed and exiting could leave the client in driving HUD/state. Do not treat Phase 11P as a confirmed baseline.
 
-The next recommended feature phase after a clean Phase 11P is a DataStore-enabled save/rejoin verification for PBs, or a broader time-trial UI pass if result/menu readability still feels rough in Studio.
+Phase 11Q is generated as:
+
+```text
+scripts/roblox_racing_phase11q_time_trial_finish_exit_handoff_repair.lua
+```
+
+It rolls back Phase 11P result-copy polish and fixes the real finish/exit state leak: race start fires `FreeRoamVehicleSpawned`, so time-trial finish/result exit/end must fire the matching `FreeRoamVehicleExited` handoff. This should clear the main driving HUD/controller before result exit, re-entry, or Race browser teleport.
+
+The next recommended feature phase after a clean Phase 11Q is a stability smoke/audit of finish, retry, result exit, Race browser teleport, and re-entry. Result-panel polish should wait until that baseline is confirmed.
 
 ### Phase 12 - Player-Created Race Foundation
 

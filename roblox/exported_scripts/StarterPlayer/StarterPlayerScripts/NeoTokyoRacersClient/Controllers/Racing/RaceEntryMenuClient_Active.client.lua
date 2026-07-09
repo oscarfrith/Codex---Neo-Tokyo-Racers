@@ -849,6 +849,14 @@ local function fireDrivingHandoff()
 		spawnedEvent:Fire()
 	end
 end
+local function fireDrivingExitHandoff()
+	-- NTR_RACING_PHASE11Q_TT_EXIT_DRIVING_HANDOFF	local clientRoot = script.Parent.Parent
+	local uiFolder = clientRoot and clientRoot:FindFirstChild("UI")
+	local exitedEvent = uiFolder and uiFolder:FindFirstChild("FreeRoamVehicleExited")
+	if exitedEvent and exitedEvent:IsA("BindableEvent") then
+		exitedEvent:Fire()
+	end
+end
 
 local routeForActive
 
@@ -949,8 +957,7 @@ local resultSplits = label(resultPanel, "", UDim2.new(1, -36, 0, 58), UDim2.from
 resultSplits.TextYAlignment = Enum.TextYAlignment.Top
 
 local resultRetry = button(resultPanel, "RETRY", UDim2.new(0.5, -18, 0, 46), UDim2.new(0, 14, 1, -60), theme.Buy)
-local resultExit = button(resultPanel, "EXIT TO START", UDim2.new(0.5, -18, 0, 46), UDim2.new(0.5, 4, 1, -60), theme.Exit)
--- NTR_RACING_PHASE11P_RESULT_COACH_TEXT
+local resultExit = button(resultPanel, "EXIT", UDim2.new(0.5, -18, 0, 46), UDim2.new(0.5, 4, 1, -60), theme.Exit)
 local lastFinishedRun = nil
 
 local function medalColor(medal)
@@ -1007,41 +1014,28 @@ local function showResult(payload)
 	resultMedal.Text = medalLabel(medal)
 	resultMedal.TextColor3 = medalColor(medal)
 	resultTime.Text = formatTime(payload.Elapsed)
-	local elapsed = tonumber(payload.Elapsed) or 0
-	local previousBest = tonumber(payload.PreviousBestSeconds)
 	local best = tonumber(payload.PersonalBestSeconds)
 	if payload.IsPersonalBest == true then
-		local delta = previousBest and elapsed > 0 and (previousBest - elapsed) or nil
-		if delta and delta > 0.0005 then
-			resultBest.Text = "NEW PERSONAL BEST  " .. formatTime(best or elapsed) .. "  (-" .. formatTime(delta) .. ")"
-		else
-			resultBest.Text = "NEW PERSONAL BEST  " .. formatTime(best or elapsed)
-		end
+		resultBest.Text = "NEW PERSONAL BEST  " .. formatTime(best or payload.Elapsed)
 	elseif best then
-		local gap = elapsed > 0 and (elapsed - best) or nil
-		if gap and gap > 0.0005 then
-			resultBest.Text = "PERSONAL BEST  " .. formatTime(best) .. "  (+" .. formatTime(gap) .. ")"
-		else
-			resultBest.Text = "PERSONAL BEST  " .. formatTime(best)
-		end
+		resultBest.Text = "PERSONAL BEST  " .. formatTime(best)
 	else
 		resultBest.Text = "PERSONAL BEST  --"
 	end
-	local nextDelta = math.abs(tonumber(payload.NextMedalDelta) or 0)
 	if payload.NextMedalName and payload.NextMedalSeconds then
-		resultNext.Text = "NEXT " .. string.upper(tostring(payload.NextMedalName)) .. "  " .. formatTime(payload.NextMedalSeconds) .. "  |  NEED -" .. formatTime(nextDelta)
+		resultNext.Text = "Next medal: " .. tostring(payload.NextMedalName) .. " at " .. formatTime(payload.NextMedalSeconds) .. "  (" .. formatTime(math.abs(tonumber(payload.NextMedalDelta) or 0)) .. " faster)"
 	elseif medal == "Platinum" then
-		resultNext.Text = "PLATINUM TARGET CLEARED."
+		resultNext.Text = "Platinum target cleared."
 	else
 		resultNext.Text = "No medal targets configured for this tier yet."
 	end
 	local rewardAmount = tonumber(payload.RewardAmount) or 0
 	if payload.RewardGranted == true and rewardAmount > 0 then
-		resultReward.Text = "PRIZE  $" .. tostring(math.floor(rewardAmount + 0.5))
+		resultReward.Text = "REWARD  $" .. tostring(math.floor(rewardAmount + 0.5))
 	elseif payload.RewardMessage and payload.RewardMessage ~= "" then
 		resultReward.Text = tostring(payload.RewardMessage)
 	else
-		resultReward.Text = "No cash prize this run."
+		resultReward.Text = "No cash reward this run."
 	end
 	if payload.LapTimes and #payload.LapTimes > 0 then
 		local laps = {}
@@ -1082,6 +1076,7 @@ end)
 resultExit.MouseButton1Click:Connect(function()
 	-- NTR_RACING_PHASE11K_RESULT_EXIT_ACTION
 	hideResult()
+	fireDrivingExitHandoff()
 	stopTicker()
 	clearMarker()
 	state.ActiveRun = nil
@@ -1220,6 +1215,7 @@ raceEvent.OnClientEvent:Connect(function(payload)
 		updateNextGate()
 	elseif kind == "TimeTrialFinished" then
 		rememberPBFromResultPayload(payload)
+		fireDrivingExitHandoff()
 		stopTicker()
 		clearMarker()
 		state.ActiveRun = nil
@@ -1231,6 +1227,7 @@ raceEvent.OnClientEvent:Connect(function(payload)
 		showResult(payload)
 	elseif kind == "TimeTrialEnded" then
 		hideResult()
+		fireDrivingExitHandoff()
 		stopTicker()
 		clearMarker()
 		state.ActiveRun = nil

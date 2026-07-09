@@ -1,6 +1,6 @@
 # Roblox Studio Hierarchy Snapshot
 
-Generated in Studio: 2026-07-10 00:39:23
+Generated in Studio: 2026-07-10 00:51:33
 Scripts exported: 103
 Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, StarterGui, Workspace, ServerStorage, Lighting
 
@@ -2708,7 +2708,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - StartRaceQueueRequest (BindableEvent)
           - RaceBrowserClient_Active (LocalScript) [script_0068, 539 lines]
           - RaceClient_Active (LocalScript) [script_0069, Disabled, 276 lines]
-          - RaceEntryMenuClient_Active (LocalScript) [script_0070, 1245 lines]
+          - RaceEntryMenuClient_Active (LocalScript) [script_0070, 1242 lines]
           - RaceParticipantVisibilityClient_Active (LocalScript) [script_0071, 324 lines]
           - RacePersonalBestBoardClient_Active (LocalScript) [script_0072, 311 lines]
           - RaceQueueClient_Active (LocalScript) [script_0073, 361 lines]

@@ -165,7 +165,7 @@ When a phase or fix is confirmed:
 - Phase 11L arrow proxy-sync V1 also showed that route arrow visuals must restore saved `NTR_ArrowOriginalTransparency` when shown. Phase 10B hides shared arrow parts by setting real `Transparency = 1`, so `LocalTransparencyModifier = 0` alone is not enough to make them visible again.
 - Phase 11N keeps competitive readout work prototype-safe by reading local player PBs through the existing server PB binding and caching by event+tier. Do not jump to global/friends leaderboards until DataStore-enabled save/rejoin behavior is confirmed.
 - Phase 11O keeps the broader PB board isolated in a new client instead of patching the confirmed entry menu again. Prefer isolated UI companions when the underlying menu is already working and the feature can listen to existing remotes. Companion UI must also observe the owning menu's closed state, not only session-start/session-end events, so close-without-start paths do not leave orphan panels on screen.
-- Phase 11P shows that result-screen polish can be useful before adding global leaderboard scope, but because the result UI lives inside the isolated entry client, keep these changes small and guarded. If result UI polish expands beyond copy/label changes, prefer a canonical replacement or a new isolated result client rather than repeated source splices.
+- Phase 11P should not be treated as a stable baseline. It showed that even small result UI polish can distract from a deeper lifecycle problem. When finish/exit leaves the player in driving HUD/state, inspect handoff pairs first: racing start uses `FreeRoamVehicleSpawned`, so racing finish/exit must fire the matching `FreeRoamVehicleExited`.
 
 ## Current Lessons From Racing
 
