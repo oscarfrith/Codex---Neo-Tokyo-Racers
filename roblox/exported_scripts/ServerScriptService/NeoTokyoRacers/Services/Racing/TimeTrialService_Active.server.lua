@@ -248,6 +248,23 @@ local function fireVisibility(run, active)
 	})
 end
 
+local function callSessionAssetService(action, payload)
+	-- NTR_RACING_PHASE10A_SESSION_ASSET_BRIDGE
+	local bindings = script.Parent:FindFirstChild("RaceSessionAssetBindings")
+	local binding = bindings and bindings:FindFirstChild("SessionAssets")
+	if not (binding and binding:IsA("BindableFunction")) then
+		return nil
+	end
+	local ok, result = pcall(function()
+		return binding:Invoke(action, payload or {})
+	end)
+	if ok then
+		return result
+	end
+	warn("[NTR Racing Phase 10A] Session asset service failed: " .. tostring(result))
+	return nil
+end
+
 local function createSessionFolder(run)
 	local root = raceInstancesRoot()
 	if not root then return nil end
@@ -265,12 +282,25 @@ local function createSessionFolder(run)
 	local assets = Instance.new("Folder")
 	assets.Name = "SessionAssets"
 	assets.Parent = folder
+	callSessionAssetService("CreateForRun", {
+		RunId = run.RunId,
+		EventId = run.EventId,
+		RouteId = run.RouteId,
+		Route = run.Route,
+		RouteFolder = run.Route and run.Route.Folder,
+		SessionFolder = folder,
+		Mode = "TimeTrial",
+		Participants = {
+			{ Player = run.Player, Vehicle = run.Vehicle },
+		},
+	})
 	return folder
 end
 
 local function clearSessionFolder(run)
 	local folder = run and run.SessionFolder
 	if folder and folder.Parent then
+		callSessionAssetService("ClearForRun", { RunId = run.RunId })
 		folder:Destroy()
 	end
 end
@@ -396,37 +426,64 @@ local function resetCFrameForRun(run)
 end
 
 local function pivotVehicleForSession(player, vehicle, targetCFrame, frozen)
+	-- NTR_RACING_PHASE8H_RESPAWN_RESET
+	local vehiclesRoot = runtimeVehiclesRoot()
 	local root = vehicleRootPart(vehicle)
-	if not root then
+	if not (vehiclesRoot and vehicle and vehicle.Parent and root) then
 		return false, "Vehicle root missing."
 	end
-	vehicle.PrimaryPart = root
-	vehicle:PivotTo(targetCFrame)
-	zeroModelVelocity(vehicle)
-	seatPlayer(player, vehicle)
-	task.wait(0.06)
+
+	local oldName = vehicle.Name
+	local oldArchivable = vehicle.Archivable
+	vehicle.Archivable = true
+	local replacement = vehicle:Clone()
+	vehicle.Archivable = oldArchivable
+	if not replacement then
+		return false, "Could not clone race vehicle."
+	end
+
+	local humanoid = player.Character and player.Character:FindFirstChildOfClass("Humanoid")
+	if humanoid then
+		humanoid.Sit = false
+		humanoid.PlatformStand = false
+	end
+	vehicle:SetAttribute("DriverUserId", nil)
+	vehicle:SetAttribute("DriveReady", false)
+	vehicle:Destroy()
+
+	replacement.Name = oldName
+	replacement.Parent = vehiclesRoot
+	local replacementRoot = vehicleRootPart(replacement)
+	if not replacementRoot then
+		replacement:Destroy()
+		return false, "Replacement vehicle root missing."
+	end
+	replacement.PrimaryPart = replacementRoot
+	replacement:SetAttribute("NTR_RaceFrozen", false)
+	replacement:SetAttribute("DriveReady", false)
+	replacement:SetAttribute("DriverUserId", player.UserId)
+	replacement:PivotTo(targetCFrame)
+	zeroModelVelocity(replacement)
+	seatPlayer(player, replacement)
+	task.wait(0.08)
 	if frozen == true then
-		setVehicleFrozen(vehicle, true)
-		zeroModelVelocity(vehicle)
+		setVehicleFrozen(replacement, true)
+		zeroModelVelocity(replacement)
 	else
-		prepareVehicleForDriving(player, vehicle)
-		-- NTR_RACING_PHASE8D_RESET_STATIONARY
-		-- Reset should return the vehicle to a clean stationary checkpoint state,
-		-- even if the driving handoff applies one more physics step after seating.
+		prepareVehicleForDriving(player, replacement)
 		task.delay(0.08, function()
-			if vehicle and vehicle.Parent then
-				zeroModelVelocity(vehicle)
+			if replacement and replacement.Parent then
+				zeroModelVelocity(replacement)
 			end
 		end)
 		task.delay(0.24, function()
-			if vehicle and vehicle.Parent then
-				zeroModelVelocity(vehicle)
+			if replacement and replacement.Parent then
+				zeroModelVelocity(replacement)
 			end
 		end)
 	end
-	return true, "Vehicle moved."
+	return true, "Vehicle respawned.", replacement
 end
-
 local function unseatPlayer(player)
 	local character = player.Character
 	local humanoid = character and character:FindFirstChildOfClass("Humanoid")
@@ -481,8 +538,18 @@ local function resetActiveTimeTrial(player)
 		return { Ok = false, Success = false, Message = "Reset is cooling down." }
 	end
 	run.LastResetClock = os.clock()
-	local ok, message = pivotVehicleForSession(player, run.Vehicle, resetCFrameForRun(run), run.State == "Staging")
+	local ok, message, replacementVehicle = pivotVehicleForSession(player, run.Vehicle, resetCFrameForRun(run), run.State == "Staging")
+	if ok and replacementVehicle then
+		run.Vehicle = replacementVehicle
+	end
 	if ok then
+		-- NTR_RACING_PHASE10A_RESET_COLLISION_REAPPLY
+		callSessionAssetService("ApplyParticipants", {
+			RunId = run.RunId,
+			Participants = {
+				{ Player = player, Vehicle = run.Vehicle },
+			},
+		})
 		fire(player, {
 			Type = "TimeTrialReset",
 			RunId = run.RunId,
@@ -497,7 +564,9 @@ local function resetActiveTimeTrial(player)
 	return { Ok = ok, Success = ok, Message = message }
 end
 
+local sendTimeTrialResult
 local function exitActiveTimeTrial(player)
+	-- NTR_RACING_PHASE9A_QUIT_WITH_BEST_LAP_RESULT
 	local run = activeRuns[player]
 	if not run then
 		return { Ok = false, Success = false, Message = "No active time trial." }
@@ -509,17 +578,21 @@ local function exitActiveTimeTrial(player)
 	end
 	fireVisibility(run, false)
 	clearSessionFolder(run)
-	fire(player, {
-		Type = "TimeTrialEnded",
-		RunId = run.RunId,
-		EventId = run.EventId,
-		RouteId = run.RouteId,
-		Reason = "Exited to start",
-	})
+	if run.BestLapSeconds then
+		sendTimeTrialResult(player, run, run.BestLapSeconds, "Quit", true)
+	else
+		fire(player, {
+			Type = "TimeTrialEnded",
+			RunId = run.RunId,
+			EventId = run.EventId,
+			RouteId = run.RouteId,
+			Reason = "Exited to start",
+		})
+	end
 	local target = returnCFrameForRoute(run.Route, "TimeTrial")
 	destroyVehicleAfterUnseat(player, run.Vehicle)
 	teleportCharacterTo(player, target)
-	return { Ok = true, Success = true, Message = "Exited to race start." }
+	return { Ok = true, Success = true, Message = run.BestLapSeconds and "Session complete." or "Exited to race start." }
 end
 
 
@@ -558,22 +631,9 @@ local function endRun(player, reason)
 	})
 end
 
-local function finishRun(player)
-	local run = activeRuns[player]
-	if not run then return end
-	local elapsed = os.clock() - run.StartClock
-	activeRuns[player] = nil
-	activeRunsById[run.RunId] = nil
-	if run.Vehicle then
-		setVehicleFrozen(run.Vehicle, false)
-		run.Vehicle:SetAttribute("NTR_RaceRunId", nil)
-		run.Vehicle:SetAttribute("NTR_RaceParticipant", nil)
-		run.Vehicle:SetAttribute("NTR_RaceMode", nil)
-		run.Vehicle:SetAttribute("DriveReady", true)
-	end
-	fireVisibility(run, false)
-	clearSessionFolder(run)
-
+sendTimeTrialResult = function(player, run, elapsed, finishReason, canRetry)
+	-- NTR_RACING_PHASE9A_SESSION_RESULT
+	elapsed = tonumber(elapsed) or 0
 	local medals = RaceConfigReader.GetTimeTrialMedals(run.EventId, run.VehicleTier)
 	local medal, medalTarget = medalForElapsed(elapsed, medals)
 	local nextName, nextSeconds, nextDelta = nextMedalTarget(elapsed, medal, medals)
@@ -613,17 +673,46 @@ local function finishRun(player)
 		PersonalBestMedal = bucket.BestMedal,
 		IsPersonalBest = isPersonalBest,
 		Splits = run.Splits or {},
-		CanRetry = true,
+		LapTimes = run.LapTimes or {},
+		BestLapSeconds = run.BestLapSeconds,
+		BestLapIndex = run.BestLapIndex,
+		CompletedLapCount = run.CompletedLapCount or 0,
+		CurrentLap = run.CurrentLap or 1,
+		LapTarget = run.LapTarget or 1,
+		RouteType = run.RouteType or "Circuit",
+		FinishReason = finishReason or "Finished",
+		CanRetry = canRetry ~= false,
 		RewardGranted = reward.Granted == true,
 		RewardAmount = tonumber(reward.Amount) or 0,
 		RewardCash = reward.Cash,
 		RewardMessage = reward.Message,
-		Message = (reward.Granted == true and ("New personal best!  $" .. tostring(reward.Amount or 0) .. " earned")) or (isPersonalBest and "New personal best!" or tostring(reward.Message or "Finished.")),
+		Message = (reward.Granted == true and ("Best session result!  $" .. tostring(reward.Amount or 0) .. " earned")) or (isPersonalBest and "New personal best!" or tostring(reward.Message or "Finished.")),
 	})
-	info(player.Name .. " finished " .. tostring(run.EventId) .. " in " .. string.format("%.3f", elapsed) .. "s medal=" .. tostring(medal) .. " pb=" .. tostring(isPersonalBest))
+	info(player.Name .. " finished " .. tostring(run.EventId) .. " result=" .. string.format("%.3f", elapsed) .. "s reason=" .. tostring(finishReason or "Finished") .. " medal=" .. tostring(medal) .. " pb=" .. tostring(isPersonalBest))
 end
 
+local function finishRun(player, resultElapsed, finishReason)
+	-- NTR_RACING_PHASE9A_FINISH_BEST_SESSION_RESULT
+	local run = activeRuns[player]
+	if not run then return end
+	local elapsed = tonumber(resultElapsed) or run.BestLapSeconds or (os.clock() - run.StartClock)
+	activeRuns[player] = nil
+	activeRunsById[run.RunId] = nil
+	if run.Vehicle then
+		setVehicleFrozen(run.Vehicle, false)
+		run.Vehicle:SetAttribute("NTR_RaceRunId", nil)
+		run.Vehicle:SetAttribute("NTR_RaceParticipant", nil)
+		run.Vehicle:SetAttribute("NTR_RaceMode", nil)
+		run.Vehicle:SetAttribute("DriveReady", true)
+	end
+	fireVisibility(run, false)
+	clearSessionFolder(run)
+	sendTimeTrialResult(player, run, elapsed, finishReason or "Finished", true)
+end
+
+
 local function advanceCheckpoint(player, touchedPart)
+	-- NTR_RACING_PHASE9A_LAP_ADVANCE
 	local run = activeRuns[player]
 	if not (run and run.State == "Running") then return end
 	local gate = RouteDefinition.GetGate(run.Route, run.NextGateIndex)
@@ -633,14 +722,67 @@ local function advanceCheckpoint(player, touchedPart)
 	run.LastTouchClock = now
 
 	if gate.IsFinish then
-		finishRun(player)
+		if tostring(run.RouteType or "Circuit") == "Circuit" then
+			local lapElapsed = now - (run.LapStartedClock or run.StartClock or now)
+			run.CompletedLapCount = (run.CompletedLapCount or 0) + 1
+			run.LapTimes = run.LapTimes or {}
+			table.insert(run.LapTimes, {
+				Lap = run.CompletedLapCount,
+				Elapsed = lapElapsed,
+			})
+			if not run.BestLapSeconds or lapElapsed < run.BestLapSeconds then
+				run.BestLapSeconds = lapElapsed
+				run.BestLapIndex = run.CompletedLapCount
+			end
+			run.LastCompletedGateIndex = run.NextGateIndex
+			fire(player, {
+				Type = "TimeTrialLapCompleted",
+				EventId = run.EventId,
+				RouteId = run.RouteId,
+				RunId = run.RunId,
+				Lap = run.CompletedLapCount,
+				NextLap = run.CompletedLapCount + 1,
+				LapTarget = run.LapTarget or 1,
+				InfiniteLaps = (run.LapTarget or 1) == 0,
+				Elapsed = lapElapsed,
+				BestLapSeconds = run.BestLapSeconds,
+				BestLapIndex = run.BestLapIndex,
+				GateCount = run.GateCount,
+				NextGateIndex = 1,
+			})
+			if (run.LapTarget or 1) > 0 and run.CompletedLapCount >= run.LapTarget then
+				finishRun(player, run.BestLapSeconds or lapElapsed, "LapTarget")
+				return
+			end
+			run.CurrentLap = run.CompletedLapCount + 1
+			run.LapStartedClock = now
+			run.NextGateIndex = 1
+			run.LastCompletedGateIndex = 0
+			run.Splits = {}
+			fire(player, {
+				Type = "TimeTrialCheckpoint",
+				EventId = run.EventId,
+				RouteId = run.RouteId,
+				NextGateIndex = run.NextGateIndex,
+				GateCount = run.GateCount,
+				CheckpointIndex = gate.Index,
+				Elapsed = lapElapsed,
+				Splits = run.Splits,
+				CurrentLap = run.CurrentLap,
+				LapTarget = run.LapTarget or 1,
+				InfiniteLaps = (run.LapTarget or 1) == 0,
+			})
+			return
+		end
+		finishRun(player, nil, "PointToPoint")
 		return
 	end
 
-	local splitElapsed = now - run.StartClock
+	local splitElapsed = now - (run.LapStartedClock or run.StartClock or now)
 	table.insert(run.Splits, {
 		CheckpointIndex = gate.Index,
 		Elapsed = splitElapsed,
+		Lap = run.CurrentLap or 1,
 	})
 	run.LastCompletedGateIndex = run.NextGateIndex
 	run.NextGateIndex += 1
@@ -653,8 +795,12 @@ local function advanceCheckpoint(player, touchedPart)
 		CheckpointIndex = gate.Index,
 		Elapsed = splitElapsed,
 		Splits = run.Splits,
+		CurrentLap = run.CurrentLap or 1,
+		LapTarget = run.LapTarget or 1,
+		InfiniteLaps = (run.LapTarget or 1) == 0,
 	})
 end
+
 
 local function connectRouteTouches(route)
 	for _, gate in ipairs(route.Gates or {}) do
@@ -707,7 +853,8 @@ local function resolveTimeTrialEventId(eventId)
 	return "shifted_canal_sprint_tt"
 end
 
-local function beginStagedTimeTrial(player, eventId, vehicleId)
+local function beginStagedTimeTrial(player, eventId, vehicleId, requestedLapCount)
+	-- NTR_RACING_PHASE9A_BEGIN_SESSION
 	eventId = resolveTimeTrialEventId(eventId)
 	if activeRuns[player] then
 		return false, "Already in a race/time trial."
@@ -724,6 +871,20 @@ local function beginStagedTimeTrial(player, eventId, vehicleId)
 		return false, "Route needs checkpoints and a finish line."
 	end
 	local summary = RaceConfigReader.GetEventSummary(eventId, "TimeTrial") or {}
+	local routeType = tostring(summary.RouteType or route.RouteType or "Circuit")
+	if routeType ~= "PointToPoint" then
+		routeType = "Circuit"
+	end
+	local maxLapCount = math.clamp(tonumber(summary.MaxLapCount) or 10, 1, 10)
+	local minLapCount = math.clamp(tonumber(summary.MinLapCount) or 1, 1, maxLapCount)
+	local lapTarget = tonumber(requestedLapCount)
+	if routeType == "PointToPoint" then
+		lapTarget = 1
+	elseif lapTarget == 0 and summary.AllowInfiniteLaps == true then
+		lapTarget = 0
+	else
+		lapTarget = math.clamp(math.floor(lapTarget or tonumber(summary.DefaultLapCount) or 1), minLapCount, maxLapCount)
+	end
 	local tier = tostring(vehicle:GetAttribute("PerformanceTier") or "")
 	local index = tonumber(vehicle:GetAttribute("PerformanceIndex")) or tonumber(vehicle:GetAttribute("PerformanceScore")) or 0
 	local runId = "TT_" .. tostring(player.UserId) .. "_" .. tostring(math.floor(os.clock() * 1000))
@@ -735,6 +896,11 @@ local function beginStagedTimeTrial(player, eventId, vehicleId)
 		RouteId = route.RouteId,
 		DisplayName = summary.DisplayName or route.DisplayName,
 		Route = route,
+		RouteType = routeType,
+		LapTarget = lapTarget,
+		CurrentLap = 1,
+		CompletedLapCount = 0,
+		LapTimes = {},
 		Vehicle = vehicle,
 		SelectedVehicleId = tostring(vehicleId or ""),
 		VehicleTier = tier,
@@ -771,6 +937,10 @@ local function beginStagedTimeTrial(player, eventId, vehicleId)
 		VehicleTier = tier,
 		VehicleIndex = index,
 		Medals = RaceConfigReader.GetTimeTrialMedals(eventId, tier),
+		RouteType = routeType,
+		LapTarget = lapTarget,
+		CurrentLap = 1,
+		InfiniteLaps = lapTarget == 0,
 	})
 
 	task.spawn(function()
@@ -786,6 +956,10 @@ local function beginStagedTimeTrial(player, eventId, vehicleId)
 				Countdown = seconds,
 				GateCount = run.GateCount,
 				NextGateIndex = 1,
+				RouteType = routeType,
+				LapTarget = lapTarget,
+				CurrentLap = 1,
+				InfiniteLaps = lapTarget == 0,
 			})
 			task.wait(1)
 		end
@@ -798,6 +972,7 @@ local function beginStagedTimeTrial(player, eventId, vehicleId)
 		end
 		live.State = "Running"
 		live.StartClock = os.clock()
+		live.LapStartedClock = live.StartClock
 		live.LastTouchClock = 0
 		prepareVehicleForDriving(player, vehicle)
 		fire(player, {
@@ -809,11 +984,16 @@ local function beginStagedTimeTrial(player, eventId, vehicleId)
 			StartServerClock = live.StartClock,
 			GateCount = run.GateCount,
 			NextGateIndex = 1,
+			RouteType = routeType,
+			LapTarget = lapTarget,
+			CurrentLap = 1,
+			InfiniteLaps = lapTarget == 0,
 		})
 	end)
 
-	return true, "Staging time trial."
+	return true, lapTarget == 0 and "Staging infinite time trial." or ("Staging " .. tostring(lapTarget) .. "-lap time trial.")
 end
+
 
 local function eventIdForZone(zone)
 	if not zone then return "shifted_canal_sprint_tt" end
@@ -915,11 +1095,11 @@ raceRequest.OnServerInvoke = function(player, action, payload)
 		return { Ok = true, Summary = summary }
 	elseif action == "StartStagedTimeTrial" then
 		local eventId = tostring(payload.EventId or "shifted_canal_sprint_tt")
-		local ok, message = beginStagedTimeTrial(player, eventId, payload.VehicleId)
+		local ok, message = beginStagedTimeTrial(player, eventId, payload.VehicleId, payload.LapCount)
 		return { Ok = ok, Success = ok, Message = message }
 	elseif action == "StartTimeTrial" then
 		local eventId = tostring(payload.EventId or "shifted_canal_sprint_tt")
-		local ok, message = beginStagedTimeTrial(player, eventId, payload.VehicleId)
+		local ok, message = beginStagedTimeTrial(player, eventId, payload.VehicleId, payload.LapCount)
 		return { Ok = ok, Success = ok, Message = message }
 	elseif action == "CancelTimeTrial" then
 		endRun(player, "Cancelled")

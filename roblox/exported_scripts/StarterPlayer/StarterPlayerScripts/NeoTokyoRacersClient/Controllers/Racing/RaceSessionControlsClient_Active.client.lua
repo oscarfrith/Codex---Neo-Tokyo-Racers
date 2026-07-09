@@ -62,10 +62,10 @@ local function stroke(parent, color, thickness, transparency)
 end
 
 local function applyFont(label, bold)
+	-- NTR_RACING_PHASE8F_CLEAN_BUTTON_TEXT
+	-- Michroma at this small size rasterises unevenly in Roblox buttons.
 	label.Font = bold and Enum.Font.GothamBold or Enum.Font.Gotham
-	pcall(function()
-		label.FontFace = Font.new("rbxasset://fonts/families/Michroma.json", bold and Enum.FontWeight.Bold or Enum.FontWeight.Regular)
-	end)
+	label.TextStrokeTransparency = 1
 end
 
 local function makeButton(parent, name, text, color)
@@ -77,8 +77,11 @@ local function makeButton(parent, name, text, color)
 	button.BorderSizePixel = 0
 	button.Text = text
 	button.TextColor3 = theme.Text
-	button.TextSize = touch and 10 or 12
-	button.TextWrapped = true
+	button.TextSize = touch and 11 or 13
+	button.TextWrapped = false
+	button.TextScaled = false
+	button.TextStrokeTransparency = 1
+	button.LineHeight = 1
 	applyFont(button, true)
 	button.Parent = parent
 	corner(button, 6)
@@ -193,7 +196,8 @@ local function doAction(kind)
 	end
 	local ok = result and (result.Ok == true or result.Success == true)
 	if ok and kind == "Reset" then
-		fireTransition("StopVehicle", { Reason = kind })
+		-- NTR_RACING_PHASE8G_NO_CLIENT_RESET_STOP
+		-- The reset event from the server owns presentation; do not also poke the vehicle here.
 	end
 	fireTransition("RestoreCamera", { Reason = kind })
 	fireTransition("FadeIn", { Reason = kind, Delay = ok and 0.3 or 0.08 })

@@ -178,6 +178,7 @@ function RouteDefinition.GetRouteDefinition(routeId)
 	return {
 		RouteId = stringAttribute(route, "RouteId", tostring(routeId)),
 		DisplayName = stringAttribute(route, "DisplayName", tostring(routeId)),
+		RouteType = stringAttribute(route, "RouteType", "Circuit"),
 		SourceType = stringAttribute(route, "SourceType", "Official"),
 		CreatorUserId = numberAttribute(route, "CreatorUserId", 0),
 		Version = numberAttribute(route, "Version", 1),

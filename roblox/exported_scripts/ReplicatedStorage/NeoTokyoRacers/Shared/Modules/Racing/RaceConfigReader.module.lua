@@ -73,6 +73,7 @@ function Reader.GetRouteForEvent(eventId, mode)
 	return RouteDefinition.GetRouteDefinition(routeId)
 end
 
+-- NTR_RACING_PHASE9A_CONFIG_READER
 function Reader.GetEventSummary(eventId, mode)
 	local event, eventError = Reader.GetEvent(mode or "TimeTrial", eventId)
 	if not event then
@@ -81,16 +82,27 @@ function Reader.GetEventSummary(eventId, mode)
 	local routeId = stringAttribute(event, "RouteId", "")
 	local route = routeId ~= "" and RouteDefinition.GetRouteDefinition(routeId) or nil
 	local media = route and route.Media or {}
+	local defaultLapCount = numberAttribute(event, "DefaultLapCount", numberAttribute(event, "Laps", 1))
+	local minLapCount = numberAttribute(event, "MinLapCount", 1)
+	local maxLapCount = numberAttribute(event, "MaxLapCount", 10)
+	if maxLapCount < minLapCount then
+		maxLapCount = minLapCount
+	end
 	return {
 		EventId = stringAttribute(event, "EventId", tostring(eventId)),
 		DisplayName = stringAttribute(event, "DisplayName", event.Name),
 		Mode = stringAttribute(event, "Mode", mode or "TimeTrial"),
 		RouteId = routeId,
 		RouteDisplayName = route and route.DisplayName or routeId,
+		RouteType = route and route.RouteType or stringAttribute(event, "RouteType", "Circuit"),
 		AllowedVehicleTiers = stringAttribute(event, "AllowedVehicleTiers", "E,D,C,B,A,S"),
 		RecommendedTier = stringAttribute(event, "RecommendedTier", "D"),
 		BaseReward = numberAttribute(event, "BaseReward", 0),
-		Laps = numberAttribute(event, "Laps", 1),
+		Laps = defaultLapCount,
+		DefaultLapCount = defaultLapCount,
+		MinLapCount = minLapCount,
+		MaxLapCount = maxLapCount,
+		AllowInfiniteLaps = event:GetAttribute("AllowInfiniteLaps") ~= false,
 		MinPlayers = numberAttribute(event, "MinPlayers", 1),
 		MaxPlayers = numberAttribute(event, "MaxPlayers", 1),
 		TrackImage = stringAttribute(event, "TrackImage", media.TrackImage or ""),
@@ -100,6 +112,7 @@ function Reader.GetEventSummary(eventId, mode)
 		ArrowCount = route and #(route.ArrowMarkers or {}) or 0,
 	}
 end
+
 
 function Reader.GetTimeTrialMedals(eventId, tier)
 	local event = Reader.GetTimeTrialEvent(eventId)

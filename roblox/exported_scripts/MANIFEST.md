@@ -4,7 +4,7 @@ Generated from the Roblox Studio full snapshot export.
 
 These files are a GitHub-readable mirror of Studio scripts. Treat Studio as live until a Rojo/source-sync migration is explicitly completed.
 
-Script count: 98
+Script count: 100
 
 - `ReplicatedStorage.NeoTokyoRacers.Compatibility.LiveSystemRegistry` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Compatibility/LiveSystemRegistry.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Compatibility.PathResolver` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Compatibility/PathResolver.module.lua`
@@ -54,6 +54,7 @@ Script count: 98
 - `ServerScriptService.NeoTokyoRacers.Services.Racing.RaceBrowserTeleportService_Active` (Script, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Racing/RaceBrowserTeleportService_Active.server.lua`
 - `ServerScriptService.NeoTokyoRacers.Services.Racing.RaceMatchmakingService_Active` (Script, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Racing/RaceMatchmakingService_Active.server.lua`
 - `ServerScriptService.NeoTokyoRacers.Services.Racing.RaceRewardService_Active` (Script, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Racing/RaceRewardService_Active.server.lua`
+- `ServerScriptService.NeoTokyoRacers.Services.Racing.RaceSessionAssetService_Active` (Script, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Racing/RaceSessionAssetService_Active.server.lua`
 - `ServerScriptService.NeoTokyoRacers.Services.Racing.TimeTrialService_Active` (Script, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Racing/TimeTrialService_Active.server.lua`
 - `ServerScriptService.NeoTokyoRacers.Services.Vehicle.DriverSeatPositionService_Active` (Script, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Vehicle/DriverSeatPositionService_Active.server.lua`
 - `ServerScriptService.NeoTokyoRacers.Services.Vehicle.VehicleAccessPromptService_Active` (Script, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Vehicle/VehicleAccessPromptService_Active.server.lua`
@@ -76,6 +77,7 @@ Script count: 98
 - `StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceEntryMenuClient_Active` (LocalScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Racing/RaceEntryMenuClient_Active.client.lua`
 - `StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceQueueClient_Active` (LocalScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Racing/RaceQueueClient_Active.client.lua`
 - `StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceRouteGuideClient_Active` (LocalScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Racing/RaceRouteGuideClient_Active.client.lua`
+- `StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceSessionAssetsClient_Active` (LocalScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Racing/RaceSessionAssetsClient_Active.client.lua`
 - `StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceSessionControlsClient_Active` (LocalScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Racing/RaceSessionControlsClient_Active.client.lua`
 - `StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceTransitionClient_Active` (LocalScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Racing/RaceTransitionClient_Active.client.lua`
 - `StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Runtime.CharacterSprintController_Active` (LocalScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Runtime/CharacterSprintController_Active.client.lua`

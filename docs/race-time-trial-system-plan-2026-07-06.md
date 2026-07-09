@@ -1,7 +1,7 @@
 # Race And Time Trial System Plan
 
 **Created:** 2026-07-06
-**Status:** Phase 8D transition/camera polish generated for Studio install before larger lap/session work
+**Status:** Phase 10A session asset/collision foundation generated after Phase 9A was user-confirmed working
 **Scope:** Race entry, matchmaking, checkpoints, timing, rewards, UI, anti-cheat, and future progression.
 
 ## Context Read
@@ -845,9 +845,89 @@ Verify:
 - Mobile drive controls, MPH, and boost remain usable during the run.
 - Teleporting from the free-roam Race browser to the start uses the same quick fade pattern.
 
+### Phase 8E - Reset Handoff And Driving Yaw Sync
+
+Generated as `scripts/roblox_racing_phase8e_reset_handoff_yaw_sync.lua` after Phase 8D testing showed reset spin was gone, but the vehicle still faced its pre-reset driving direction.
+
+Root cause from the refreshed mirror: the active driving loop keeps a local `yawHeading` after driving starts. Server-side checkpoint `PivotTo` can move the car, but the next driving heartbeat can apply the old yaw through `Drive_TerrainYawAlign`, rotating the vehicle back toward its previous direction.
+
+Install before Phase 9:
+
+- keep the server authoritative for reset pose and validation;
+- remove the client reset `PivotTo` from `RaceTransitionClient_Active`;
+- briefly give server ownership of the vehicle root, anchor during the reset pivot, zero momentum, seat the player, then release through the normal driving preparation path;
+- after the reset event reaches the client, fire the existing `FreeRoamVehicleSpawned` handoff once so the driving loop rebuilds controls and reads `yawHeading` from the reset pose;
+- keep fade/camera/HUD behavior from Phase 8D;
+- keep rewards, route-guide config, checkpoint visuals, route attributes, and the register-limited bootstrap untouched.
+
+Verification:
+
+- pass a checkpoint, turn away from the route, press `RESET TO LAST CHECKPOINT`, and confirm the car faces the checkpoint/reset pose direction rather than the old driving direction;
+- repeat before checkpoint 1 and in a 2-player local race;
+- confirm Output prints `[NTR Racing Phase 8E] Fired driving yaw sync after reset`;
+- watch for whether reset refills transient drive state such as boost/drift charge, because Phase 8E intentionally reuses the existing drive handoff instead of adding a new bootstrap bridge.
+
+### Phase 8F - Yaw-Only Reset Bridge And Button Text Repair
+
+Generated as `scripts/roblox_racing_phase8f_reset_yaw_bridge_and_button_text_repair.lua` after Phase 8E testing showed the full driving handoff during reset could disable the car/camera and disturb streaming.
+
+Install before Phase 9:
+
+- keep server-authoritative reset movement from Phase 8E;
+- replace the reset transition client so it requests a yaw-only sync instead of firing the full spawn/start-driving handoff;
+- add a tiny payload branch to the register-limited bootstrap's existing `FreeRoamVehicleSpawned` event connection:
+  - `Action = "SyncDrivingYaw"` updates `yawHeading` from the current vehicle root and returns;
+  - normal payload-less fires still run the existing full `startDriving` path;
+- clean the session reset button text by using fixed `GothamBold`, disabling wrapping/scaling, and avoiding the tiny Michroma button rendering path.
+
+Verification:
+
+- reset after a checkpoint and confirm the car remains drivable, camera stays attached, streaming stays normal, and the vehicle faces the checkpoint/reset pose direction;
+- confirm Output prints `[NTR Racing Phase 8F] Synced driving yaw only after reset.`;
+- confirm the reset button text no longer looks like mixed-size characters.
+
+### Phase 8G - Reset Stability Rollback
+
+Generated as `scripts/roblox_racing_phase8g_reset_stability_rollback.lua` after Phase 8F still left reset-to-checkpoint disabling the car/camera and making the world stream low-res/weird.
+
+Install before Phase 9 and before any more reset-facing work:
+
+- make `RaceTransitionClient_Active` presentation-only for reset: fade, camera, HUD only;
+- remove client-side velocity zeroing, yaw sync, and streaming requests from reset;
+- ignore/reset-remove the duplicate `StopVehicle` transition fired by the reset button;
+- restore the bootstrap `FreeRoamVehicleSpawned` handler if Phase 8F's yaw bridge is present;
+- roll back Phase 8E anchored/network-owner reset helper blocks if they are present in the live Racing services.
+
+Verification:
+
+- press `RESET TO LAST CHECKPOINT` and confirm the car remains drivable, camera stays attached, and the world does not drop low-res;
+- confirm reset Output no longer includes `Local reset momentum stop`, `Requested yaw-only driving sync`, or `Synced driving yaw only after reset`;
+- accept that checkpoint-facing may regress temporarily; a safer reset-pose system should handle that after stability is confirmed.
+
+### Phase 8H - Respawn-On-Reset System
+
+Generated as `scripts/roblox_racing_phase8h_respawn_reset_system.lua` after the user chose the systematic reset solution.
+
+Installed/tested by the user and reported working well. Treat this as the preferred reset architecture:
+
+- client reset transition is presentation-only: fade, camera restore, HUD suppression;
+- server clones the active race vehicle while it still contains the selected build/stats/modules;
+- server destroys the old physics assembly so old velocity cannot survive;
+- server parents/pivots the clean replacement at the reset CFrame;
+- server zeroes velocity, reseats the player, runs normal race driving prep, and updates the active session's `Vehicle` reference;
+- the fade delay doubles as a small reset penalty.
+
+Verification:
+
+- reset at speed after a checkpoint and confirm no old momentum survives;
+- confirm the replacement remains drivable, camera stays attached, and streaming stays normal;
+- confirm the replacement faces the reset CFrame direction;
+- test before checkpoint 1 and in a 2-player local race;
+- if facing is still wrong, inspect authored checkpoint orientation or add explicit `ResetPose` parts rather than patching vehicle handoff again.
+
 ### Phase 9 - Route Type And Gran Turismo-Style Time Trial Sessions
 
-Add after Phase 8D is stable:
+Add after Phase 8H is stable:
 
 - `RouteType = "Circuit" | "PointToPoint"`;
 - point-to-point events finish after the ordered route once;
@@ -855,6 +935,14 @@ Add after Phase 8D is stable:
 - time-trial sessions keep the player running and track best lap/best run until they quit;
 - quitting a time-trial session shows the best medal achieved and prize summary;
 - rewards are granted from the best session result, not every lap, to avoid infinite cash farming.
+
+Phase 9A was installed/tested by the user and reported working well. The generated script was:
+
+```text
+scripts/roblox_racing_phase9a_route_type_lap_sessions.lua
+```
+
+It implements the safe first slice: route `RouteType`, time-trial lap selection (`1-10` plus `Infinite`), circuit looping, best-lap session results, and one reward on final/quit result. Future Phase 9 follow-ups should preserve the Phase 8H respawn-reset architecture, should not edit reward multiplier config, and should only extend session scoring/HUD if Phase 9A tests cleanly.
 
 ### Phase 10 - Server-Side Session Asset And Collision Layer
 
@@ -869,6 +957,14 @@ Add after the lap/session rules are stable:
 - cleanup on finish, quit, disconnect, and timeout.
 
 Keep this system separate from route-guide config, reward config, and checkpoint timing. It is infrastructure for official routes, future player-created races, shortcut blockers, jumps, boost pads, and event props.
+
+Phase 10A is generated as:
+
+```text
+scripts/roblox_racing_phase10a_session_asset_collision_foundation.lua
+```
+
+It implements the first safe slice: hidden route `SessionAssetMarkers`, server-owned `SessionAssetTemplates`, fixed `NTR_RaceSessionAsset` / `NTR_RaceParticipant` collision groups, runtime cloning into `RaceInstances.<RunId>.SessionAssets`, and cleanup on session end. It is intentionally focused on simple collidable barriers/blockers before richer mesh/VFX assets, boost pads, jump pads, or route-pocket isolation.
 
 ### Phase 11 - Competitive Features
 

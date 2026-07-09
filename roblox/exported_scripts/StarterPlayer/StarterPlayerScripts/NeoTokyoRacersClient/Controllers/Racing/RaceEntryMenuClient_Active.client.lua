@@ -48,6 +48,7 @@ local state = {
 	SelectedRow = nil,
 	ActiveRun = nil,
 	Visibility = nil,
+	SelectedLapCount = nil,
 }
 
 local function themeFolder()
@@ -367,6 +368,89 @@ local function imageOrPlaceholder(parent, image, text)
 	return holder
 end
 
+local function lapLabel(count)
+	count = tonumber(count)
+	if count == 0 then
+		return "INFINITE"
+	end
+	return tostring(math.clamp(math.floor(count or 1), 1, 10)) .. " LAP"
+end
+
+local function lapSettings()
+	local summary = state.Entry and state.Entry.Summary or {}
+	local minLap = math.clamp(math.floor(tonumber(summary.MinLapCount) or 1), 1, 10)
+	local maxLap = math.clamp(math.floor(tonumber(summary.MaxLapCount) or 10), minLap, 10)
+	local defaultLap = math.clamp(math.floor(tonumber(summary.DefaultLapCount or summary.Laps) or 1), minLap, maxLap)
+	return {
+		RouteType = tostring(summary.RouteType or "Circuit"),
+		Min = minLap,
+		Max = maxLap,
+		Default = defaultLap,
+		AllowInfinite = summary.AllowInfiniteLaps ~= false,
+	}
+end
+
+local function makeLapSelector(parent, position)
+	-- NTR_RACING_PHASE9A_LAP_SELECTOR
+	local settings = lapSettings()
+	state.SelectedLapCount = settings.Default
+	if settings.RouteType == "PointToPoint" then
+		state.SelectedLapCount = 1
+	end
+
+	local wrap = Instance.new("Frame")
+	wrap.Name = "LapSelector"
+	wrap.BackgroundColor3 = theme.Card
+	wrap.BackgroundTransparency = 0.1
+	wrap.BorderSizePixel = 0
+	wrap.Position = position or UDim2.fromOffset(0, 160)
+	wrap.Size = UDim2.new(1, 0, 0, touch and 82 or 92)
+	wrap.Parent = parent
+	corner(wrap, 6)
+	stroke(wrap, theme.Accent, 1, 0.48)
+
+	local title = label(wrap, settings.RouteType == "PointToPoint" and "POINT TO POINT" or "TIME TRIAL LAPS", UDim2.new(1, -16, 0, 22), UDim2.fromOffset(8, 6), touch and 9 or 11, theme.Accent, true)
+	title.TextXAlignment = Enum.TextXAlignment.Center
+
+	local selected = label(wrap, lapLabel(state.SelectedLapCount), UDim2.new(1, -16, 0, 22), UDim2.fromOffset(8, 27), touch and 12 or 14, theme.Text, true)
+	selected.TextXAlignment = Enum.TextXAlignment.Center
+
+	if settings.RouteType == "PointToPoint" then
+		local note = label(wrap, "This route finishes once.", UDim2.new(1, -16, 0, 22), UDim2.fromOffset(8, 54), touch and 9 or 10, theme.Muted, false)
+		note.TextXAlignment = Enum.TextXAlignment.Center
+		return wrap
+	end
+
+	local minus = button(wrap, "-", UDim2.fromOffset(42, 30), UDim2.new(0, 8, 1, -36), theme.Panel)
+	local plus = button(wrap, "+", UDim2.fromOffset(42, 30), UDim2.new(1, -50, 1, -36), theme.Panel)
+	local infinite = button(wrap, "INFINITE", UDim2.new(1, -116, 0, 30), UDim2.new(0, 58, 1, -36), theme.Card)
+	infinite.Visible = settings.AllowInfinite
+
+	local function refresh()
+		selected.Text = lapLabel(state.SelectedLapCount)
+		infinite.BackgroundColor3 = state.SelectedLapCount == 0 and theme.CardHot or theme.Card
+	end
+
+	minus.MouseButton1Click:Connect(function()
+		if state.SelectedLapCount == 0 then
+			state.SelectedLapCount = settings.Max
+		else
+			state.SelectedLapCount = math.max(settings.Min, (tonumber(state.SelectedLapCount) or settings.Default) - 1)
+		end
+		refresh()
+	end)
+	plus.MouseButton1Click:Connect(function()
+		state.SelectedLapCount = math.min(settings.Max, (tonumber(state.SelectedLapCount) or settings.Default) + 1)
+		refresh()
+	end)
+	infinite.MouseButton1Click:Connect(function()
+		state.SelectedLapCount = 0
+		refresh()
+	end)
+	refresh()
+	return wrap
+end
+
 local showEntry
 
 local function showVehicleSelect(mode)
@@ -558,6 +642,7 @@ local function showVehicleSelect(mode)
 		local startResult = callRace("StartStagedTimeTrial", {
 			EventId = timeTrialEventId,
 			VehicleId = row.VehicleId,
+			LapCount = state.SelectedLapCount or 1,
 		})
 		if startResult.Ok ~= true and startResult.Success ~= true then
 			statusText(startResult.Message or "Could not start time trial.", false)
@@ -601,7 +686,8 @@ function showEntry(payload)
 	label(right, "Allowed tiers: " .. tostring(summary.AllowedVehicleTiers or "All"), UDim2.new(1, 0, 0, 28), UDim2.fromOffset(0, 72), touch and 10 or 12, theme.Muted, false)
 	label(right, "Checkpoints: " .. tostring(summary.CheckpointCount or 0) .. "   Route gates: " .. tostring(summary.GateCount or 0), UDim2.new(1, 0, 0, 28), UDim2.fromOffset(0, 102), touch and 10 or 12, theme.Muted, false)
 	label(right, "Base reward: $" .. tostring(summary.BaseReward or 0), UDim2.new(1, 0, 0, 28), UDim2.fromOffset(0, 132), touch and 10 or 12, theme.Muted, false)
-	label(right, "Time trials are solo and staged away from free-roam clutter. Multiplayer race matchmaking will use the same menu after the solo flow is stable.", UDim2.new(1, 0, 0, 120), UDim2.fromOffset(0, 176), touch and 10 or 12, theme.Text, false)
+	makeLapSelector(right, UDim2.fromOffset(0, 164))
+	label(right, "Time trials are solo. Circuit sessions use your best completed lap for medals and one payout when the session ends, so Infinite is for practice without per-lap cash farming.", UDim2.new(1, 0, 0, 116), UDim2.fromOffset(0, 266), touch and 10 or 12, theme.Text, false)
 
 	local startRace = button(actionRail, "START RACE", UDim2.new(0.333, -8, 1, 0), UDim2.fromScale(0, 0), theme.Card)
 	local startTT = button(actionRail, "START TIME TRIAL", UDim2.new(0.334, -8, 1, 0), UDim2.new(0.333, 4, 0, 0), theme.Buy)
@@ -832,7 +918,13 @@ end
 local function showResult(payload)
 	lastFinishedRun = payload
 	local medal = tostring(payload.Medal or "Finished")
-	resultTitle.Text = tostring(payload.DisplayName or "TIME TRIAL COMPLETE")
+	if tostring(payload.FinishReason or "") == "Quit" then
+		resultTitle.Text = tostring(payload.DisplayName or "TIME TRIAL SESSION")
+	elseif tostring(payload.RouteType or "") == "Circuit" and tonumber(payload.CompletedLapCount) and tonumber(payload.CompletedLapCount) > 1 then
+		resultTitle.Text = tostring(payload.DisplayName or "BEST LAP")
+	else
+		resultTitle.Text = tostring(payload.DisplayName or "TIME TRIAL COMPLETE")
+	end
 	resultMedal.Text = medalLabel(medal)
 	resultMedal.TextColor3 = medalColor(medal)
 	resultTime.Text = formatTime(payload.Elapsed)
@@ -859,7 +951,16 @@ local function showResult(payload)
 	else
 		resultReward.Text = "No cash reward this run."
 	end
-	resultSplits.Text = splitSummary(payload.Splits)
+	if payload.LapTimes and #payload.LapTimes > 0 then
+		local laps = {}
+		for _, lap in ipairs(payload.LapTimes) do
+			if #laps >= 4 then break end
+			table.insert(laps, "LAP " .. tostring(lap.Lap or "?") .. "  " .. formatTime(lap.Elapsed))
+		end
+		resultSplits.Text = table.concat(laps, "\n")
+	else
+		resultSplits.Text = splitSummary(payload.Splits)
+	end
 	resultRetry.Visible = payload.CanRetry ~= false
 	resultPanel.Visible = true
 end
@@ -1009,6 +1110,14 @@ raceEvent.OnClientEvent:Connect(function(payload)
 		task.defer(fireDrivingHandoff)
 		task.delay(0.25, fireDrivingHandoff)
 		startTicker()
+	elseif kind == "TimeTrialLapCompleted" then
+		if not state.ActiveRun then return end
+		state.ActiveRun.NextGateIndex = 1
+		state.ActiveRun.GateCount = payload.GateCount or state.ActiveRun.GateCount
+		state.ActiveRun.StartLocalClock = os.clock()
+		hudStatus.Text = "BEST LAP " .. formatTime(payload.BestLapSeconds or payload.Elapsed)
+		hudTimer.Text = "0.000"
+		updateNextGate()
 	elseif kind == "TimeTrialCheckpoint" then
 		if not state.ActiveRun then return end
 		state.ActiveRun.NextGateIndex = payload.NextGateIndex or state.ActiveRun.NextGateIndex

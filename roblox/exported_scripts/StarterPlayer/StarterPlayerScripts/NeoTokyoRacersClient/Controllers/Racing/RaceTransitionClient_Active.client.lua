@@ -1,5 +1,4 @@
--- Neo Tokyo Racers - Racing Phase 8D Transition Client
--- NTR_RACING_PHASE8D_TRANSITION_CLIENT
+-- NTR_RACING_PHASE8H_TRANSITION_CLIENT
 
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -25,7 +24,7 @@ local savedHudEnabled = {}
 local currentFadeTween = nil
 
 local gui = Instance.new("ScreenGui")
-gui.Name = "NTR_RaceTransitionFade_Phase8D"
+gui.Name = "NTR_RaceTransitionFade_Phase8H"
 gui.IgnoreGuiInset = true
 gui.ResetOnSpawn = false
 gui.DisplayOrder = 210
@@ -67,17 +66,13 @@ local suppressGuiNames = {
 
 local function fireState()
 	if transitionStateChanged and transitionStateChanged:IsA("BindableEvent") then
-		transitionStateChanged:Fire({
-			Active = sessionActive,
-		})
+		transitionStateChanged:Fire({ Active = sessionActive })
 	end
 end
 
 local function setSessionActive(active, reason)
 	active = active == true
-	if sessionActive == active then
-		return
-	end
+	if sessionActive == active then return end
 	sessionActive = active
 	if not active then
 		for guiObject, original in pairs(savedHudEnabled) do
@@ -88,7 +83,7 @@ local function setSessionActive(active, reason)
 		table.clear(savedHudEnabled)
 	end
 	fireState()
-	print(("[NTR Racing Phase 8D] Session HUD state active=%s reason=%s"):format(tostring(active), tostring(reason or "")))
+	print(("[NTR Racing Phase 8H] Session HUD state active=%s reason=%s"):format(tostring(active), tostring(reason or "")))
 end
 
 local function suppressFreeRoamHud()
@@ -116,9 +111,7 @@ local function tweenFade(targetTransparency, duration)
 	currentFadeTween:Play()
 	currentFadeTween.Completed:Once(function()
 		currentFadeTween = nil
-		if targetTransparency >= 1 then
-			fade.Visible = false
-		end
+		if targetTransparency >= 1 then fade.Visible = false end
 	end)
 end
 
@@ -146,54 +139,6 @@ local function vehicleFromSeat(seat)
 	return nil
 end
 
-local function currentOwnedVehicle()
-	local character = player.Character
-	local humanoid = character and character:FindFirstChildOfClass("Humanoid")
-	local seat = humanoid and humanoid.SeatPart
-	if seat and seat:IsA("VehicleSeat") then
-		local vehicle = vehicleFromSeat(seat)
-		if vehicle and tonumber(vehicle:GetAttribute("OwnerUserId")) == player.UserId then
-			return vehicle
-		end
-	end
-	return nil
-end
-
-local function zeroVehicleVelocity(vehicle)
-	if not (vehicle and vehicle.Parent) then
-		return false
-	end
-	local stopped = false
-	for _, descendant in ipairs(vehicle:GetDescendants()) do
-		if descendant:IsA("BasePart") then
-			descendant.AssemblyLinearVelocity = Vector3.zero
-			descendant.AssemblyAngularVelocity = Vector3.zero
-			stopped = true
-		end
-	end
-	return stopped
-end
-
-local function stopOwnedVehicleMomentum(reason, resetCFrame)
-	local vehicle = currentOwnedVehicle()
-	if not vehicle then
-		return
-	end
-	local hasResetCFrame = typeof(resetCFrame) == "CFrame"
-	if hasResetCFrame then
-		vehicle:PivotTo(resetCFrame)
-	end
-	local schedule = { 0, 0.03, 0.1, 0.22, 0.45, 0.75 }
-	for _, delaySeconds in ipairs(schedule) do
-		task.delay(delaySeconds, function()
-			if zeroVehicleVelocity(vehicle) then
-				vehicle:SetAttribute("NTR_RaceResetStationaryClient", os.clock())
-			end
-		end)
-	end
-	print(("[NTR Racing Phase 8D] Local reset momentum stop reason=%s cframe=%s vehicle=%s"):format(tostring(reason or ""), tostring(hasResetCFrame), vehicle:GetFullName()))
-end
-
 local function preferredCameraSubject()
 	local character = player.Character
 	local humanoid = character and character:FindFirstChildOfClass("Humanoid")
@@ -209,38 +154,26 @@ end
 
 local function restoreCameraOnce(reason)
 	local camera = Workspace.CurrentCamera
-	if not camera then
-		return
-	end
+	if not camera then return end
 	local subject = preferredCameraSubject()
 	camera.CameraType = Enum.CameraType.Custom
-	if subject then
-		camera.CameraSubject = subject
-	end
+	if subject then camera.CameraSubject = subject end
 	local subjectName = subject and subject:GetFullName() or "nil"
-	print(("[NTR Racing Phase 8D] Camera restore reason=%s type=%s subject=%s"):format(tostring(reason or ""), tostring(camera.CameraType), subjectName))
+	print(("[NTR Racing Phase 8H] Camera restore reason=%s type=%s subject=%s"):format(tostring(reason or ""), tostring(camera.CameraType), subjectName))
 end
 
 local function restoreCamera(reason)
 	restoreCameraOnce(reason)
-	task.delay(0.12, function()
-		restoreCameraOnce(reason)
-	end)
-	task.delay(0.45, function()
-		restoreCameraOnce(reason)
-	end)
+	task.delay(0.12, function() restoreCameraOnce(reason) end)
+	task.delay(0.45, function() restoreCameraOnce(reason) end)
 end
 
 local function startTransition(reason)
 	setSessionActive(true, reason)
 	suppressFreeRoamHud()
 	fadeOut("STAGING")
-	task.delay(0.22, function()
-		restoreCamera(reason)
-	end)
-	task.delay(0.78, function()
-		fadeIn(0)
-	end)
+	task.delay(0.22, function() restoreCamera(reason) end)
+	task.delay(0.78, function() fadeIn(0) end)
 end
 
 local function finishTransition(reason)
@@ -248,10 +181,18 @@ local function finishTransition(reason)
 	fadeIn(0.18)
 end
 
-local function handleRacePayload(payload, sourceName)
-	if typeof(payload) ~= "table" then
-		return
-	end
+local function resetTransition(reason)
+	-- NTR_RACING_PHASE8H_RESET_PRESENTATION_ONLY
+	-- Server respawns the race vehicle. Client only covers it with fade/camera.
+	setSessionActive(true, reason)
+	suppressFreeRoamHud()
+	fadeOut("RESETTING")
+	task.delay(0.32, function() restoreCamera(reason) end)
+	fadeIn(0.82)
+end
+
+local function handleRacePayload(payload)
+	if typeof(payload) ~= "table" then return end
 	local kind = tostring(payload.Type or "")
 	if kind == "TimeTrialStaged" or kind == "RaceStaged" then
 		startTransition(kind)
@@ -264,10 +205,7 @@ local function handleRacePayload(payload, sourceName)
 		suppressFreeRoamHud()
 		finishTransition(kind)
 	elseif kind == "TimeTrialReset" or kind == "RaceReset" then
-		setSessionActive(true, kind)
-		suppressFreeRoamHud()
-		stopOwnedVehicleMomentum(kind, payload.ResetCFrame)
-		restoreCamera(kind)
+		resetTransition(kind)
 	elseif kind == "TimeTrialFinished" or kind == "TimeTrialEnded" or kind == "TimeTrialError"
 		or kind == "RaceFinished" or kind == "RaceDNF" or kind == "RaceEnded" or kind == "RaceQueueError" then
 		setSessionActive(false, kind)
@@ -277,15 +215,11 @@ local function handleRacePayload(payload, sourceName)
 end
 
 transitionRequest.Event:Connect(function(payload)
-	if typeof(payload) ~= "table" then
-		return
-	end
+	if typeof(payload) ~= "table" then return end
 	local step = tostring(payload.Step or "")
 	if step == "SessionActive" then
 		setSessionActive(payload.Active == true, payload.Reason or step)
-		if sessionActive then
-			suppressFreeRoamHud()
-		end
+		if sessionActive then suppressFreeRoamHud() end
 	elseif step == "FadeOut" then
 		fadeOut(payload.Label or "")
 	elseif step == "FadeIn" then
@@ -293,18 +227,18 @@ transitionRequest.Event:Connect(function(payload)
 	elseif step == "RestoreCamera" then
 		restoreCamera(payload.Reason or step)
 	elseif step == "StopVehicle" then
-		stopOwnedVehicleMomentum(payload.Reason or step, payload.ResetCFrame)
+		print("[NTR Racing Phase 8H] Ignored StopVehicle transition; reset respawns server-side.")
 	elseif step == "StartTransition" then
 		startTransition(payload.Reason or step)
 	end
 end)
 
 raceEvent.OnClientEvent:Connect(function(payload)
-	handleRacePayload(payload, "RaceEvent")
+	handleRacePayload(payload)
 end)
 
 queueEvent.OnClientEvent:Connect(function(payload)
-	handleRacePayload(payload, "RaceQueueEvent")
+	handleRacePayload(payload)
 end)
 
 RunService.Heartbeat:Connect(function()
@@ -317,10 +251,8 @@ end)
 player.CharacterAdded:Connect(function()
 	task.delay(0.35, function()
 		restoreCamera("CharacterAdded")
-		if not sessionActive then
-			fadeIn(0)
-		end
+		if not sessionActive then fadeIn(0) end
 	end)
 end)
 
-print("[NTR Racing Phase 8D Client] Transition fade/camera/HUD controller active.")
+print("[NTR Racing Phase 8H Client] Transition/camera controller active; reset respawns server-side.")

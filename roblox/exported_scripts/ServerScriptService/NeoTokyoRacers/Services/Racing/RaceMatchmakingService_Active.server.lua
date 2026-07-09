@@ -199,6 +199,23 @@ local function spawnCFrameForIndex(route, index)
 	return base
 end
 
+local function callSessionAssetService(action, payload)
+	-- NTR_RACING_PHASE10A_SESSION_ASSET_BRIDGE
+	local bindings = script.Parent:FindFirstChild("RaceSessionAssetBindings")
+	local binding = bindings and bindings:FindFirstChild("SessionAssets")
+	if not (binding and binding:IsA("BindableFunction")) then
+		return nil
+	end
+	local ok, result = pcall(function()
+		return binding:Invoke(action, payload or {})
+	end)
+	if ok then
+		return result
+	end
+	warn("[NTR Racing Phase 10A] Session asset service failed: " .. tostring(result))
+	return nil
+end
+
 local function createSessionFolder(race)
 	local root = raceInstancesRoot()
 	if not root then return nil end
@@ -214,6 +231,16 @@ local function createSessionFolder(race)
 	local assets = Instance.new("Folder")
 	assets.Name = "SessionAssets"
 	assets.Parent = folder
+	callSessionAssetService("CreateForRun", {
+		RunId = race.RunId,
+		EventId = race.EventId,
+		RouteId = race.RouteId,
+		Route = race.Route,
+		RouteFolder = race.Route and race.Route.Folder,
+		SessionFolder = folder,
+		Mode = "Race",
+		Participants = race.Participants,
+	})
 	return folder
 end
 
@@ -243,6 +270,7 @@ local function cleanupRace(race, reason)
 	end
 	fireVisibility(race, false)
 	if race.SessionFolder and race.SessionFolder.Parent then
+		callSessionAssetService("ClearForRun", { RunId = race.RunId })
 		race.SessionFolder:Destroy()
 	end
 end
@@ -381,37 +409,64 @@ local function resetCFrameForEntry(race, entry)
 end
 
 local function pivotVehicleForRace(player, vehicle, targetCFrame, frozen)
+	-- NTR_RACING_PHASE8H_RESPAWN_RESET
+	local vehiclesRoot = runtimeVehiclesRoot()
 	local root = vehicleRootPart(vehicle)
-	if not root then
+	if not (vehiclesRoot and vehicle and vehicle.Parent and root) then
 		return false, "Vehicle root missing."
 	end
-	vehicle.PrimaryPart = root
-	vehicle:PivotTo(targetCFrame)
-	zeroModelVelocity(vehicle)
-	seatPlayer(player, vehicle)
-	task.wait(0.06)
+
+	local oldName = vehicle.Name
+	local oldArchivable = vehicle.Archivable
+	vehicle.Archivable = true
+	local replacement = vehicle:Clone()
+	vehicle.Archivable = oldArchivable
+	if not replacement then
+		return false, "Could not clone race vehicle."
+	end
+
+	local humanoid = player.Character and player.Character:FindFirstChildOfClass("Humanoid")
+	if humanoid then
+		humanoid.Sit = false
+		humanoid.PlatformStand = false
+	end
+	vehicle:SetAttribute("DriverUserId", nil)
+	vehicle:SetAttribute("DriveReady", false)
+	vehicle:Destroy()
+
+	replacement.Name = oldName
+	replacement.Parent = vehiclesRoot
+	local replacementRoot = vehicleRootPart(replacement)
+	if not replacementRoot then
+		replacement:Destroy()
+		return false, "Replacement vehicle root missing."
+	end
+	replacement.PrimaryPart = replacementRoot
+	replacement:SetAttribute("NTR_RaceFrozen", false)
+	replacement:SetAttribute("DriveReady", false)
+	replacement:SetAttribute("DriverUserId", player.UserId)
+	replacement:PivotTo(targetCFrame)
+	zeroModelVelocity(replacement)
+	seatPlayer(player, replacement)
+	task.wait(0.08)
 	if frozen == true then
-		setVehicleFrozen(vehicle, true)
-		zeroModelVelocity(vehicle)
+		setVehicleFrozen(replacement, true)
+		zeroModelVelocity(replacement)
 	else
-		prepareVehicleForDriving(player, vehicle)
-		-- NTR_RACING_PHASE8D_RESET_STATIONARY
-		-- Reset should return the vehicle to a clean stationary checkpoint state,
-		-- even if the driving handoff applies one more physics step after seating.
+		prepareVehicleForDriving(player, replacement)
 		task.delay(0.08, function()
-			if vehicle and vehicle.Parent then
-				zeroModelVelocity(vehicle)
+			if replacement and replacement.Parent then
+				zeroModelVelocity(replacement)
 			end
 		end)
 		task.delay(0.24, function()
-			if vehicle and vehicle.Parent then
-				zeroModelVelocity(vehicle)
+			if replacement and replacement.Parent then
+				zeroModelVelocity(replacement)
 			end
 		end)
 	end
-	return true, "Vehicle moved."
+	return true, "Vehicle respawned.", replacement
 end
-
 local function unseatPlayer(player)
 	local character = player.Character
 	local humanoid = character and character:FindFirstChildOfClass("Humanoid")
@@ -494,8 +549,18 @@ local function resetRacePlayer(player)
 		return { Ok = false, Success = false, Message = "Reset is cooling down." }
 	end
 	entry.LastResetClock = os.clock()
-	local ok, message = pivotVehicleForRace(player, entry.Vehicle, resetCFrameForEntry(race, entry), race.State == "Staging")
+	local ok, message, replacementVehicle = pivotVehicleForRace(player, entry.Vehicle, resetCFrameForEntry(race, entry), race.State == "Staging")
+	if ok and replacementVehicle then
+		entry.Vehicle = replacementVehicle
+	end
 	if ok then
+		-- NTR_RACING_PHASE10A_RESET_COLLISION_REAPPLY
+		callSessionAssetService("ApplyParticipants", {
+			RunId = race.RunId,
+			Participants = {
+				{ Player = player, Vehicle = entry.Vehicle },
+			},
+		})
 		fire(player, {
 			Type = "RaceReset",
 			RunId = race.RunId,
