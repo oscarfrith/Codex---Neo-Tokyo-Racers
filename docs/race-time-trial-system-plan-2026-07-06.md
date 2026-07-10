@@ -1118,7 +1118,61 @@ scripts/roblox_racing_phase11q_time_trial_finish_exit_handoff_repair.lua
 
 It rolls back Phase 11P result-copy polish and fixes the real finish/exit state leak: race start fires `FreeRoamVehicleSpawned`, so time-trial finish/result exit/end must fire the matching `FreeRoamVehicleExited` handoff. This should clear the main driving HUD/controller before result exit, re-entry, or Race browser teleport.
 
-The next recommended feature phase after a clean Phase 11Q is a stability smoke/audit of finish, retry, result exit, Race browser teleport, and re-entry. Result-panel polish should wait until that baseline is confirmed.
+Phase 11Q was confirmed working by the user. The refreshed mirror then showed the helper source shape needed a tiny repair because the marker comment and `local clientRoot` collapsed onto one line.
+
+Phase 11R is generated as:
+
+```text
+scripts/roblox_racing_phase11r_time_trial_exit_handoff_helper_repair.lua
+```
+
+It repairs only that helper source shape. Phase 11R was confirmed working by the user from playtest output.
+
+Phase 11S is generated as:
+
+```text
+scripts/roblox_racing_phase11s_stability_baseline_audit.lua
+```
+
+It is a read-only stability baseline audit of finish, reward, result exit, Race browser teleport, re-entry, PB readouts/board, session assets/arrows, visibility/VFX gating, and race matchmaking/reward service presence. Treat `fail=0` as the gate before the next feature phase. Result-panel polish should wait until that baseline is confirmed.
+
+Phase 11T is generated as:
+
+```text
+scripts/roblox_racing_phase11t_isolated_time_trial_result_coach.lua
+```
+
+It reintroduces result-panel polish as an isolated companion client instead of patching the confirmed race entry client again. The coach listens for `TimeTrialFinished`, hides the old local result panel, shows a clearer medal/time/PB/next-medal/prize/lap summary, and owns retry/exit through existing racing actions. If the old and new result panels overlap, fix the isolated coach's hide timing rather than patching `RaceEntryMenuClient_Active`.
+
+Phase 11U is generated as:
+
+```text
+scripts/roblox_racing_phase11u_time_trial_hud_exit_cleanup.lua
+```
+
+It follows Phase 11T after testing showed the old top `NTR_RaceHud_Phase3` finished-time card could remain visible after `EXIT TO START`. Phase 11U installs a tiny isolated local cleanup client that hides known legacy race HUD/result/control panels on finish/end/exit/error events and the existing `FreeRoamVehicleExited` handoff. Keep this cleanup isolated unless the whole race entry HUD is later redesigned.
+
+Phase 11U V2 narrows that cleanup after V1 could hide medal/result fallback UI and block proper exit cleanup. V2 hides only `NTR_RaceHud_Phase3.Panel` and leaves result/medal/exit panels visible/owned by Phase 11T or the legacy result client.
+
+Phase 11U V2 was confirmed working by the user on 2026-07-10. Keep this as the result/HUD cleanup baseline before adding more competitive features.
+
+Phase 11V is generated as:
+
+```text
+scripts/roblox_racing_phase11v_prototype_release_audit.lua
+```
+
+It is a read-only post-11U audit covering remotes/config, server services/source markers, PBs, rewards, result exit, result coach, narrow HUD cleanup, route arrows, collision groups, visibility markers, runtime `RaceInstances`, and Play-client UI state. Run it in Edit mode and after a Play finish/exit smoke; use `fail=0` as the gate before DataStore PB verification or broader polish/multiplayer tests. V2 treats unregistered runtime collision groups as Edit-mode warnings because the registering service may not have run yet.
+
+Phase 11V V2 passed from a Play-client smoke on 2026-07-10 with `pass=79 warn=1 fail=0`. The one warning was expected because server scripts are not replicated to Play clients.
+
+Phase 11W is generated as:
+
+```text
+scripts/roblox_racing_phase11w_time_trial_pb_datastore_verification.lua
+```
+
+It verifies the time-trial PB DataStore path without adding gameplay code. Default `MODE = "AUDIT"` is read-only and checks PB config, service markers, bindings, player attributes, PB lookup, and forced-save messaging. `MODE = "ENABLE_DATASTORE_TEST"` deliberately enables `Config.Racing.PersonalBests.DataStoreEnabled` and, by default, points Studio testing at `NTR_TimeTrialPersonalBests_StudioTest_v1`; `MODE = "DISABLE_DATASTORE_TEST"` turns saved PB testing off again. V2 treats missing `RacePersonalBestBindings` as expected in Edit mode because the PB service creates those at Play/runtime. Use this as the save/rejoin gate before global/friends leaderboards, ghosts, ranked seasonal records, or wider competitive systems.
 
 ### Phase 12 - Player-Created Race Foundation
 

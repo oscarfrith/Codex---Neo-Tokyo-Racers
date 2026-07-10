@@ -850,7 +850,8 @@ local function fireDrivingHandoff()
 	end
 end
 local function fireDrivingExitHandoff()
-	-- NTR_RACING_PHASE11Q_TT_EXIT_DRIVING_HANDOFF	local clientRoot = script.Parent.Parent
+	-- NTR_RACING_PHASE11Q_TT_EXIT_DRIVING_HANDOFF
+	local clientRoot = script.Parent.Parent
 	local uiFolder = clientRoot and clientRoot:FindFirstChild("UI")
 	local exitedEvent = uiFolder and uiFolder:FindFirstChild("FreeRoamVehicleExited")
 	if exitedEvent and exitedEvent:IsA("BindableEvent") then

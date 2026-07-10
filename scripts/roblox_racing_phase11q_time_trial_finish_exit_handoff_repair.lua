@@ -144,17 +144,16 @@ local function installHandoff(source)
 	end
 end]]
 
-	local handoffReplacement = handoffAnchor .. [[
-
-local function fireDrivingExitHandoff()
-	-- ]] .. MARKER .. [[
-	local clientRoot = script.Parent.Parent
-	local uiFolder = clientRoot and clientRoot:FindFirstChild("UI")
-	local exitedEvent = uiFolder and uiFolder:FindFirstChild("FreeRoamVehicleExited")
-	if exitedEvent and exitedEvent:IsA("BindableEvent") then
-		exitedEvent:Fire()
-	end
-end]]
+	local handoffReplacement = handoffAnchor
+		.. "\n\nlocal function fireDrivingExitHandoff()\n"
+		.. "\t-- " .. MARKER .. "\n"
+		.. "\tlocal clientRoot = script.Parent.Parent\n"
+		.. "\tlocal uiFolder = clientRoot and clientRoot:FindFirstChild(\"UI\")\n"
+		.. "\tlocal exitedEvent = uiFolder and uiFolder:FindFirstChild(\"FreeRoamVehicleExited\")\n"
+		.. "\tif exitedEvent and exitedEvent:IsA(\"BindableEvent\") then\n"
+		.. "\t\texitedEvent:Fire()\n"
+		.. "\tend\n"
+		.. "end"
 
 	source = replaceOnce(source, handoffAnchor, handoffReplacement, "FreeRoamVehicleExited handoff helper")
 
