@@ -1581,9 +1581,9 @@
     "class_name": "Script",
     "disabled": false,
     "attributes": {},
-    "source_lines": 1352,
-    "source_bytes": 44102,
-    "source_checksum": "49595134",
+    "source_lines": 1400,
+    "source_bytes": 46170,
+    "source_checksum": "25053853",
     "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Racing/TimeTrialService_Active.server.lua"
   },
   {
@@ -2461,9 +2461,9 @@
     "class_name": "LocalScript",
     "disabled": false,
     "attributes": {},
-    "source_lines": 346,
-    "source_bytes": 12009,
-    "source_checksum": "30868419",
+    "source_lines": 355,
+    "source_bytes": 12339,
+    "source_checksum": "362343059",
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Racing/RaceTimeTrialResultCoachClient_Active.client.lua"
   },
   {

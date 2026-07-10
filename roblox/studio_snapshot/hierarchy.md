@@ -1,6 +1,6 @@
 # Roblox Studio Hierarchy Snapshot
 
-Generated in Studio: 2026-07-10 10:33:47
+Generated in Studio: 2026-07-10 11:28:52
 Scripts exported: 105
 Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, StarterGui, Workspace, ServerStorage, Lighting
 
@@ -2669,7 +2669,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
         - RacePersonalBestService_Active (Script) [script_0048, 392 lines]
         - RaceRewardService_Active (Script) [script_0049, 367 lines]
         - RaceSessionAssetService_Active (Script) [script_0050, 372 lines]
-        - TimeTrialService_Active (Script) [script_0051, 1352 lines]
+        - TimeTrialService_Active (Script) [script_0051, 1400 lines]
       - Vehicle (Folder)
         - DriverSeatPositionService_Active (Script) [script_0052, 234 lines, 11 attrs]
         - VehicleAccessPromptService_Active (Script) [script_0053, 130 lines]
@@ -2716,7 +2716,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - RaceRouteGuideClient_Active (LocalScript) [script_0075, 480 lines]
           - RaceSessionAssetsClient_Active (LocalScript) [script_0076, 258 lines]
           - RaceSessionControlsClient_Active (LocalScript) [script_0077, 254 lines]
-          - RaceTimeTrialResultCoachClient_Active (LocalScript) [script_0078, 346 lines]
+          - RaceTimeTrialResultCoachClient_Active (LocalScript) [script_0078, 355 lines]
           - RaceTransitionClient_Active (LocalScript) [script_0079, 276 lines]
         - Runtime (Folder)
           - CharacterSprintController_Active (LocalScript) [script_0080, 360 lines, 1 attrs]

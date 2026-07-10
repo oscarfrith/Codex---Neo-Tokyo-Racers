@@ -323,12 +323,21 @@ retry.MouseButton1Click:Connect(function()
 end)
 
 exit.MouseButton1Click:Connect(function()
+	-- NTR_RACING_PHASE11Y_RESULT_COACH_CONFIRMED_EXIT
 	fireDrivingExitHandoff()
 	status.Text = "Returning to start..."
-	hide()
 	local result = callRace("ExitFinishedTimeTrial", {})
-	if result.Ok ~= true and result.Success ~= true then
-		callRace("CancelTimeTrial", {})
+	if result.Ok == true or result.Success == true then
+		hide()
+		task.delay(0.12, fireDrivingExitHandoff)
+		return
+	end
+	local fallback = callRace("CancelTimeTrial", {})
+	if fallback.Ok == true or fallback.Success == true then
+		hide()
+		task.delay(0.12, fireDrivingExitHandoff)
+	else
+		status.Text = tostring(result.Message or fallback.Message or "Exit failed. Try again.")
 	end
 end)
 

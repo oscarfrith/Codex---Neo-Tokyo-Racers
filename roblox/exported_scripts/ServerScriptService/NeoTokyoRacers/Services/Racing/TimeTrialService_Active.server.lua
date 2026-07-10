@@ -574,11 +574,30 @@ local function destroyVehicleAfterUnseat(player, vehicle)
 	vehicle:SetAttribute("NTR_RaceRunId", nil)
 	vehicle:SetAttribute("NTR_RaceParticipant", nil)
 	vehicle:SetAttribute("NTR_RaceMode", nil)
+	vehicle:SetAttribute("NTR_RaceFinishedPendingExit", nil) -- NTR_RACING_PHASE11Y_TT_FINISH_LIFECYCLE_RECOVERY
 	unseatPlayer(player)
 	task.wait(0.08)
 	if vehicle and vehicle.Parent then
 		vehicle:Destroy()
 	end
+end
+
+local function cleanupPendingFinishedVehiclesForPlayer(player)
+	-- NTR_RACING_PHASE11Y_TT_FINISH_LIFECYCLE_RECOVERY
+	local root = runtimeVehiclesRoot()
+	local cleaned = 0
+	for _, vehicle in ipairs(root and root:GetChildren() or {}) do
+		local ownerMatches = tonumber(vehicle:GetAttribute("OwnerUserId")) == player.UserId
+		local pendingFinished = vehicle:GetAttribute("NTR_RaceFinishedPendingExit") == true
+		local orphanGridVehicle = vehicle:GetAttribute("NTR_RaceGridSpawned") == true
+			and vehicle:GetAttribute("NTR_RaceRunId") == nil
+			and vehicle:GetAttribute("NTR_RaceParticipant") ~= true
+		if ownerMatches and (pendingFinished or orphanGridVehicle) then
+			cleaned += 1
+			destroyVehicleAfterUnseat(player, vehicle)
+		end
+	end
+	return cleaned
 end
 
 local function clearFinishedRunForPlayer(player)
@@ -592,9 +611,21 @@ end
 
 local function exitFinishedTimeTrial(player)
 	-- NTR_RACING_PHASE11K_TT_FINISHED_EXIT_CLEANUP
+	-- NTR_RACING_PHASE11Y_TT_FINISH_LIFECYCLE_RECOVERY
 	local run = finishedRunsByPlayer[player]
 	if not run then
-		return { Ok = true, Success = true, Message = "No finished time trial cleanup pending." }
+		local cleaned = cleanupPendingFinishedVehiclesForPlayer(player)
+		if cleaned > 0 then
+			fire(player, {
+				Type = "TimeTrialEnded",
+				Reason = "Recovered stale finished time trial",
+			})
+		end
+		return {
+			Ok = true,
+			Success = true,
+			Message = cleaned > 0 and "Recovered stale finished time trial cleanup." or "No finished time trial cleanup pending.",
+		}
 	end
 	finishedRunsByPlayer[player] = nil
 	fireVisibility(run, false)
@@ -806,11 +837,20 @@ local function finishRun(player, resultElapsed, finishReason)
 	activeRuns[player] = nil
 	activeRunsById[run.RunId] = nil
 	if run.Vehicle then
-		setVehicleFrozen(run.Vehicle, false)
-		run.Vehicle:SetAttribute("NTR_RaceRunId", nil)
-		run.Vehicle:SetAttribute("NTR_RaceParticipant", nil)
-		run.Vehicle:SetAttribute("NTR_RaceMode", nil)
-		run.Vehicle:SetAttribute("DriveReady", true)
+		-- NTR_RACING_PHASE11Y_TT_FINISH_LIFECYCLE_RECOVERY
+		-- A finished time-trial vehicle is pending result-exit cleanup, not a
+		-- normal free-roam car. Keep it still/unusable and unseat the player so
+		-- camera, HUD, race-browser teleport, and future entry prompts recover
+		-- even if the result panel exit is clicked late or twice.
+		setVehicleFrozen(run.Vehicle, true)
+		run.Vehicle:SetAttribute("NTR_RaceRunId", run.RunId)
+		run.Vehicle:SetAttribute("NTR_RaceParticipant", true)
+		run.Vehicle:SetAttribute("NTR_RaceMode", "TimeTrialFinished")
+		run.Vehicle:SetAttribute("NTR_RaceFinishedPendingExit", true)
+		run.Vehicle:SetAttribute("DriverUserId", nil)
+		run.Vehicle:SetAttribute("DriveReady", false)
+		run.Vehicle:SetAttribute("EngineVFXActive", false)
+		unseatPlayer(player)
 	end
 	fireVisibility(run, false)
 	clearSessionFolder(run)
@@ -1207,6 +1247,14 @@ local function modeForZone(zone)
 end
 
 local function sendEntryMenu(player, zone)
+	-- NTR_RACING_PHASE11Y_TT_FINISH_LIFECYCLE_RECOVERY
+	-- If a previous result-exit click was missed, pressing the start prompt is
+	-- allowed to self-heal before opening the next entry menu.
+	if finishedRunsByPlayer[player] then
+		exitFinishedTimeTrial(player)
+	else
+		cleanupPendingFinishedVehiclesForPlayer(player)
+	end
 	local mode = modeForZone(zone)
 	local eventId = eventIdForZone(zone)
 	local summary = RaceConfigReader.GetEventSummary(eventId, mode)

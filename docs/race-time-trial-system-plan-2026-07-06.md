@@ -1172,7 +1172,31 @@ Phase 11W is generated as:
 scripts/roblox_racing_phase11w_time_trial_pb_datastore_verification.lua
 ```
 
-It verifies the time-trial PB DataStore path without adding gameplay code. Default `MODE = "AUDIT"` is read-only and checks PB config, service markers, bindings, player attributes, PB lookup, and forced-save messaging. `MODE = "ENABLE_DATASTORE_TEST"` deliberately enables `Config.Racing.PersonalBests.DataStoreEnabled` and, by default, points Studio testing at `NTR_TimeTrialPersonalBests_StudioTest_v1`; `MODE = "DISABLE_DATASTORE_TEST"` turns saved PB testing off again. V2 treats missing `RacePersonalBestBindings` as expected in Edit mode because the PB service creates those at Play/runtime. Use this as the save/rejoin gate before global/friends leaderboards, ghosts, ranked seasonal records, or wider competitive systems.
+It verifies the time-trial PB DataStore path without adding gameplay code. Default `MODE = "AUDIT"` is read-only and checks PB config, service markers, bindings, player attributes, PB lookup, and forced-save messaging. `MODE = "ENABLE_DATASTORE_TEST"` deliberately enables `Config.Racing.PersonalBests.DataStoreEnabled` and, by default, points Studio testing at `NTR_TimeTrialPersonalBests_StudioTest_v1`; `MODE = "DISABLE_DATASTORE_TEST"` turns saved PB testing off again. V2 treats missing `RacePersonalBestBindings` as expected in Edit mode because the PB service creates those at Play/runtime. Phase 11W V2 was confirmed working by the user after PB save/rejoin testing.
+
+Phase 11X is generated as:
+
+```text
+scripts/roblox_racing_phase11x_prototype_release_candidate_audit.lua
+```
+
+It is the post-PB-save release-candidate audit for the current racing prototype. It is read-only and checks remotes, config, server service markers, client controller markers, `ShiftedCanalSprint` route structure, arrow segment folders, runtime `RaceInstances`, collision groups, local PB lookup, stale race HUD visibility, and result coach presence. Run it in Edit mode and again after a solo time-trial finish/exit plus a 2-player same-server race smoke. Use `fail=0` as the gate before choosing the next branch: small racing polish, multiplayer reliability/balance, global/friends leaderboards, ghosts, or other larger systems.
+
+Phase 11Y is generated as:
+
+```text
+scripts/roblox_racing_phase11y_time_trial_finish_lifecycle_recovery.lua
+```
+
+It repairs the remaining repeated time-trial finish/exit lifecycle issue found after Phase 11X initially passed. A finished time-trial vehicle now stays frozen, drive-disabled, and marked as pending result-exit cleanup instead of becoming a normal owner vehicle before cleanup completes. The isolated result coach also waits for server cleanup confirmation before hiding its exit UI. After 11Y, rerun a repeated finish/exit smoke before treating 11X as the release-candidate gate again.
+
+Phase 11Y was confirmed working by the user on 2026-07-10 after repeated finish/exit testing. Phase 11Z is generated as:
+
+```text
+scripts/roblox_racing_phase11z_post_11y_release_candidate_audit.lua
+```
+
+It supersedes Phase 11X as the immediate release-candidate gate. It is read-only and adds 11Y marker checks plus runtime detection for stale finished-pending or orphan grid-spawned vehicles. Run it after repeated solo time-trial finish/exit and a 2-player same-server race smoke before choosing the next branch.
 
 ### Phase 12 - Player-Created Race Foundation
 

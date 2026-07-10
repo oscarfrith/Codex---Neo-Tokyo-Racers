@@ -174,6 +174,9 @@ When a phase or fix is confirmed:
 - Phase 11V V2 confirmed the value of context-aware audits: a Play-client run passed with `pass=79 warn=1 fail=0`, and the only warning was expected server-source visibility. Treat `fail=0` plus understood warnings as the gate, not a demand for zero warnings in every Studio context.
 - Phase 11W keeps DataStore testing explicit. Persistence verification should start as audit/config control and require a deliberate enable mode plus restart, so prototype sessions do not quietly start writing saved PB data while unrelated racing polish is being tested.
 - Phase 11W V2 clarified that runtime-created BindableFunctions should not be required in Edit-mode audits. If a service creates support folders/bindings on startup, Edit-mode audits should verify the service source marker and report missing runtime children as warnings, then reserve hard binding checks for Play/server context.
+- Phase 11W V2 was confirmed working after the saved PB rejoin path succeeded. After persistence is confirmed, the safer next move is a release-candidate audit/smoke gate before adding new competitive features, because saved records, rewards, queueing, result cleanup, arrows, and visibility now interact as one prototype loop.
+- Phase 11Y showed that a passing audit plus one clean finish/exit loop is not enough for lifecycle bugs. If a session-finished vehicle remains in Workspace while result cleanup is pending, it must stay explicitly marked as pending cleanup and drive-disabled; do not let it become a normal free-roam owner vehicle before exit/teleport cleanup completes.
+- Phase 11Z applies that lesson by adding runtime vehicle-state checks to the release-candidate audit. Future audits for lifecycle-sensitive systems should inspect live runtime leftovers, not only source markers and static config.
 
 ## Current Lessons From Racing
 
