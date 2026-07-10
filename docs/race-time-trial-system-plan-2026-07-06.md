@@ -1198,6 +1198,14 @@ scripts/roblox_racing_phase11z_post_11y_release_candidate_audit.lua
 
 It supersedes Phase 11X as the immediate release-candidate gate. It is read-only and adds 11Y marker checks plus runtime detection for stale finished-pending or orphan grid-spawned vehicles. Run it after repeated solo time-trial finish/exit and a 2-player same-server race smoke before choosing the next branch.
 
+Phase 11Z was confirmed working by the user on 2026-07-10 after the Studio mirror was refreshed and Git was pushed. Treat 11Z as the locked racing prototype release-candidate baseline for new chats. The quick handoff is:
+
+```text
+docs/racing-next-chat-handoff-2026-07-10.md
+```
+
+Recommended next branches are small racing UI/UX polish, multiplayer reliability/balance, competitive layer planning, track content scaling, or deferred reserved-server/player-created-race architecture. Keep each branch separate unless the changes are low-risk and share the same owner.
+
 ### Phase 12 - Player-Created Race Foundation
 
 Add after official races, rewards, and multiplayer are stable:

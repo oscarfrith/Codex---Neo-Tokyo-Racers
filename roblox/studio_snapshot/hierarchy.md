@@ -1,7 +1,7 @@
 # Roblox Studio Hierarchy Snapshot
 
-Generated in Studio: 2026-07-10 11:28:52
-Scripts exported: 105
+Generated in Studio: 2026-07-10 16:05:48
+Scripts exported: 106
 Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, StarterGui, Workspace, ServerStorage, Lighting
 
 ## Hierarchy
@@ -2252,6 +2252,60 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - TierBadgeY (NumberValue)
           - ImageScaleType (StringValue)
           - README (StringValue)
+        - DesktopFreeRoamHud (Folder)
+          - Enabled (BoolValue)
+          - Assets (Folder)
+            - CarIcon (StringValue)
+            - DealershipIcon (StringValue)
+            - GarageIcon (StringValue)
+            - MapFeatherImage (StringValue)
+            - MapImage (StringValue)
+            - RaceIcon (StringValue)
+            - SettingsIcon (StringValue)
+          - Colours (Folder)
+            - Danger (Color3Value)
+            - Disabled (Color3Value)
+            - ElectricBlue (Color3Value)
+            - HighSpeed (Color3Value)
+            - Muted (Color3Value)
+            - Outline (Color3Value)
+            - OutlineSoft (Color3Value)
+            - Panel (Color3Value)
+            - PanelBlue (Color3Value)
+            - PanelDeep (Color3Value)
+            - PanelSoft (Color3Value)
+            - Telemetry (Color3Value)
+            - Text (Color3Value)
+          - Defaults (Folder)
+            - HudOpacityPercent (NumberValue)
+            - MusicPercent (NumberValue)
+            - SfxPercent (NumberValue)
+            - UiScalePercent (NumberValue)
+            - Category (StringValue)
+            - Graphics (StringValue)
+            - Lighting (StringValue)
+            - Minimap (StringValue)
+            - Sort (StringValue)
+            - SpeedUnit (StringValue)
+          - Layout (Folder)
+            - ActionButtonSize (NumberValue)
+            - ActionGap (NumberValue)
+            - BaseHeight (NumberValue)
+            - BaseWidth (NumberValue)
+            - CarPanelBottomMargin (NumberValue)
+            - CarPanelTop (NumberValue)
+            - CarPanelWidth (NumberValue)
+            - CashHeight (NumberValue)
+            - CashWidth (NumberValue)
+            - EdgeMargin (NumberValue)
+            - MaxScale (NumberValue)
+            - MinScale (NumberValue)
+            - MinimapSize (NumberValue)
+            - ModalDimTransparency (NumberValue)
+            - ProfileRefreshSeconds (NumberValue)
+            - SpeedGaugeMaxMph (NumberValue)
+            - TopMargin (NumberValue)
+          - InstalledPhase (StringValue)
         - DriveInCustomisation (Folder)
           - AccentColor (Color3Value)
           - PanelColor (Color3Value)
@@ -2726,31 +2780,32 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - RuntimeVFXController_Active (LocalScript) [script_0084, 16 lines, 9 attrs]
         - UI (Folder)
           - OpenRaceBrowser (BindableEvent)
-          - FreeRoamNavController_Active (LocalScript) [script_0085, 1321 lines, 3 attrs]
-          - FreeRoamVehicleExitButton_Active (LocalScript) [script_0086, 115 lines]
-          - CockpitPaintUIController (ModuleScript) [script_0087, 46 lines, 5 attrs]
-          - ColourPickerController (ModuleScript) [script_0088, 277 lines, 5 attrs]
-          - CustomisationUIController (ModuleScript) [script_0089, 127 lines, 5 attrs]
-          - DealershipUIController (ModuleScript) [script_0090, 87 lines, 5 attrs]
-          - GaragePropertyMenuController (ModuleScript) [script_0091, 172 lines, 2 attrs]
-          - ModuleShopUIController (ModuleScript) [script_0092, 109 lines, 5 attrs]
-          - NavigationController (ModuleScript) [script_0093, 49 lines, 5 attrs]
-          - StatsPanelController (ModuleScript) [script_0094, 51 lines, 5 attrs]
+          - DesktopFreeRoamHudController_Active (LocalScript) [script_0085, 793 lines, 2 attrs]
+          - FreeRoamNavController_Active (LocalScript) [script_0086, 1321 lines, 3 attrs]
+          - FreeRoamVehicleExitButton_Active (LocalScript) [script_0087, 115 lines]
+          - CockpitPaintUIController (ModuleScript) [script_0088, 46 lines, 5 attrs]
+          - ColourPickerController (ModuleScript) [script_0089, 277 lines, 5 attrs]
+          - CustomisationUIController (ModuleScript) [script_0090, 127 lines, 5 attrs]
+          - DealershipUIController (ModuleScript) [script_0091, 87 lines, 5 attrs]
+          - GaragePropertyMenuController (ModuleScript) [script_0092, 172 lines, 2 attrs]
+          - ModuleShopUIController (ModuleScript) [script_0093, 109 lines, 5 attrs]
+          - NavigationController (ModuleScript) [script_0094, 49 lines, 5 attrs]
+          - StatsPanelController (ModuleScript) [script_0095, 51 lines, 5 attrs]
           - README_TargetControllers (StringValue)
         - World (Folder)
-          - GarageAccessClient_Active (LocalScript) [script_0095, 279 lines, 1 attrs]
-          - GarageInteriorClient_Active (LocalScript) [script_0096, 92 lines, 2 attrs]
-          - GarageInteriorCustomizationClient_Active (LocalScript) [script_0097, 273 lines, 1 attrs]
-          - LODClient_Active (LocalScript) [script_0098, 365 lines, 12 attrs]
-          - NightLamppostLightController_Active (LocalScript) [script_0099, 101 lines, 2 attrs]
-          - WindowMaterialController_Active (LocalScript) [script_0100, 101 lines, 2 attrs]
+          - GarageAccessClient_Active (LocalScript) [script_0096, 279 lines, 1 attrs]
+          - GarageInteriorClient_Active (LocalScript) [script_0097, 92 lines, 2 attrs]
+          - GarageInteriorCustomizationClient_Active (LocalScript) [script_0098, 273 lines, 1 attrs]
+          - LODClient_Active (LocalScript) [script_0099, 365 lines, 12 attrs]
+          - NightLamppostLightController_Active (LocalScript) [script_0100, 101 lines, 2 attrs]
+          - WindowMaterialController_Active (LocalScript) [script_0101, 101 lines, 2 attrs]
       - RuntimeState (Folder)
       - State (Folder)
-      - NeoTokyoRacersClient_Bootstrap_Shadow_Disabled (LocalScript) [script_0101, 4717 lines, 61 attrs]
-    - LocalScript (LocalScript) [script_0102, 203 lines]
-    - TEMP_LightingPreview (LocalScript) [script_0103, 127 lines, 2 attrs]
-    - TrailerMode.client.lua (LocalScript) [script_0104, 73 lines]
-    - TrailerShot01Camera (LocalScript) [script_0105, 92 lines]
+      - NeoTokyoRacersClient_Bootstrap_Shadow_Disabled (LocalScript) [script_0102, 4717 lines, 61 attrs]
+    - LocalScript (LocalScript) [script_0103, 203 lines]
+    - TEMP_LightingPreview (LocalScript) [script_0104, 127 lines, 2 attrs]
+    - TrailerMode.client.lua (LocalScript) [script_0105, 73 lines]
+    - TrailerShot01Camera (LocalScript) [script_0106, 92 lines]
 - StarterGui (StarterGui)
   - NeoTokyoRacersUI (ScreenGui) [2 attrs]
     - Components (Folder) [1 attrs]
@@ -12972,6 +13027,8 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - IntroSpawnPoint (Part) [5 attrs]
       - Spawn (Folder)
         - VehicleExitSpawnPoint (Part) [5 attrs]
+      - TeleportPoints (Folder)
+        - FreeRoamHudTeleportPoint (Part) [2 attrs]
     - Garages (Folder) [3 attrs]
       - GaragePreviewPad_CurrentLive (ObjectValue) [4 attrs]
       - GaragePreviewPad (Part) [1 attrs]

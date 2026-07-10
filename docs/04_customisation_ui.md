@@ -12,6 +12,25 @@ The UI direction is futuristic, compact, and readable. It uses:
 
 Avoid oversized landing-page style UI. The garage/customisation UI should be functional and scan-friendly.
 
+## Approved PC Free-Roam UI Design Baseline
+
+On 2026-07-10 the user approved a six-screen PC free-roam visual family covering the main HUD, car menu, dealership teleport confirmation, controls, cash store, and settings. The concepts and authoritative colour/component rules are documented in:
+
+```text
+docs/ui-free-roam-pc-design-system-2026-07-10.md
+assets/ui/mockups/free_roam_pc/
+```
+
+This is a design baseline only and has not been installed in Studio. Future implementation must use the shared token rules from that document, preserve the existing E-S vehicle tier colours, keep presentation in isolated controllers/modules, and avoid adding UI construction helpers to the register-limited client bootstrap.
+
+Before generating the visual-shell installer, run the read-only audit:
+
+```text
+scripts/roblox_ui_freeroam_pc_phase0_audit.lua
+```
+
+Phase 0 passed in Studio Edit mode on 2026-07-10 with `pass=35 warn=2 fail=0`. The two warnings were expected missing setup objects. Phase 1 is generated as `scripts/roblox_ui_freeroam_pc_phase1_visual_shell.lua` and documented in `docs/ui-free-roam-pc-phase1-visual-shell-2026-07-10.md`. It installs the isolated configurable PC presentation and real existing free-roam actions without patching the register-limited bootstrap. Moving minimap, final boost telemetry, server dealership teleport, cash receipts, and persisted settings remain later phases.
+
 ## Shared UI Theme
 
 The current editable UI colour source is:

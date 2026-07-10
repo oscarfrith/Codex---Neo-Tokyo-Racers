@@ -146,6 +146,8 @@ When a phase or fix is confirmed:
 
 ## Current Lessons From The Garage MVP Run
 
+- The PC free-roam UI overhaul established that visual concepts should be locked into shared semantic tokens before implementation. Pink owns structure/navigation, cyan or blue owns active/live state, red owns destructive actions, and existing tier colours remain informational. Future UI pages should reuse those meanings instead of choosing accents page by page.
+
 - The Phase 17 module popup issue needed runtime-coordinate diagnostics, not repeated visual guesses. Future UI placement bugs should print absolute positions, parent, scale, selected target, and visible bounds before another repair.
 - The Phase 23 access work showed that repeated anchor repairs against a drifting isolated service are worse than a canonical replacement. For isolated scripts, canonical replacement is often safer after partial installs.
 - The Phase 24-28 garage MVP was smoother when new behavior lived in separate services/client scripts instead of the large garage controller or main client bootstrap.
@@ -177,6 +179,7 @@ When a phase or fix is confirmed:
 - Phase 11W V2 was confirmed working after the saved PB rejoin path succeeded. After persistence is confirmed, the safer next move is a release-candidate audit/smoke gate before adding new competitive features, because saved records, rewards, queueing, result cleanup, arrows, and visibility now interact as one prototype loop.
 - Phase 11Y showed that a passing audit plus one clean finish/exit loop is not enough for lifecycle bugs. If a session-finished vehicle remains in Workspace while result cleanup is pending, it must stay explicitly marked as pending cleanup and drive-disabled; do not let it become a normal free-roam owner vehicle before exit/teleport cleanup completes.
 - Phase 11Z applies that lesson by adding runtime vehicle-state checks to the release-candidate audit. Future audits for lifecycle-sensitive systems should inspect live runtime leftovers, not only source markers and static config.
+- Phase 11Z was confirmed and locked as the racing prototype release-candidate baseline before moving future adjustments into new chats. When a long phased implementation reaches a stable gate, create a short next-chat handoff doc that names the locked baseline, key scripts, preserved architecture rules, recommended next branches, and remaining risks.
 
 ## Current Lessons From Racing
 

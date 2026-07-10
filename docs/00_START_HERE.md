@@ -1,6 +1,6 @@
 # Neo Tokyo Racers Project Context
 
-Last updated: 2026-07-07
+Last updated: 2026-07-10
 
 This folder is the handoff pack for new Codex or ChatGPT sessions. Read this file first, then use the other docs only as needed.
 
@@ -9,6 +9,12 @@ This folder is the handoff pack for new Codex or ChatGPT sessions. Read this fil
 Neo Tokyo Racers is a Roblox open-world hover racing game with modular hovercars. The main vehicle category currently being built is `BRUISER`.
 
 The vehicle system is category-based: cockpits and modules inside the same category share fixed slot locations, so modules can be swapped between similar cockpits.
+
+## Approved PC Free-Roam UI Design Baseline
+
+The user approved the PC free-roam HUD, car menu, dealership teleport modal, controls, cash store, and settings concepts on 2026-07-10. The authoritative colour/component specification is `docs/ui-free-roam-pc-design-system-2026-07-10.md`, and the six reference images are under `assets/ui/mockups/free_roam_pc/`. This visual family is not installed in Studio yet. Run `scripts/roblox_ui_freeroam_pc_phase0_audit.lua` before generating the first installer.
+
+The Phase 0 audit subsequently passed `35/2/0` (`pass/warn/fail`); both warnings were expected missing minimap/teleport setup objects. Phase 1 is generated as `scripts/roblox_ui_freeroam_pc_phase1_visual_shell.lua`. It is not installed or confirmed yet.
 
 ## Current Script State
 
@@ -89,9 +95,9 @@ Known from chat:
 - Racing Phase 11U V2 was confirmed working by the user on 2026-07-10. It is generated in Git as `scripts/roblox_racing_phase11u_time_trial_hud_exit_cleanup.lua`. Current result/HUD baseline: Phase 11T result coach remains visible, Phase 11U V2 hides only the stale top `NTR_RaceHud_Phase3.Panel`, and re-entry/teleport are restored.
 - Racing Phase 11V V2 passed from a Play-client smoke on 2026-07-10 with `pass=79 warn=1 fail=0`; the only warning was expected because `ServerScriptService` is not replicated to Play clients. Keep Phase 11T + 11U V2 as the current result/HUD baseline.
 - Racing Phase 11W V2 was confirmed working by the user on 2026-07-10 after PB save/rejoin testing. It is generated in Git as `scripts/roblox_racing_phase11w_time_trial_pb_datastore_verification.lua`; keep it as the PB persistence verification/control script.
-- Racing Phase 11X is generated in Git as `scripts/roblox_racing_phase11x_prototype_release_candidate_audit.lua`. It is the next read-only release-candidate audit for the whole current racing prototype loop before choosing UI polish, multiplayer reliability/balance, leaderboards/ghosts, or other larger features.
+- Racing Phase 11X is generated in Git as `scripts/roblox_racing_phase11x_prototype_release_candidate_audit.lua`. It was superseded as the current gate by Phase 11Z after the Phase 11Y lifecycle recovery.
 - Racing Phase 11Y was confirmed working by the user on 2026-07-10. It is generated in Git as `scripts/roblox_racing_phase11y_time_trial_finish_lifecycle_recovery.lua` and fixes repeated time-trial finish/exit loops that could leave the player unable to re-enter, teleport, or spawn. Root cause from the mirror: `finishRun()` could make the finished time-trial vehicle drive-ready while result-exit cleanup was still pending. Keep finished TT vehicles frozen/drive-disabled/pending cleanup until result exit confirms.
-- Racing Phase 11Z is generated in Git as `scripts/roblox_racing_phase11z_post_11y_release_candidate_audit.lua`. It is the next read-only post-11Y release-candidate audit, extending Phase 11X with 11Y source marker checks and runtime stale finished-pending/orphan grid vehicle detection.
+- Racing Phase 11Z was confirmed working by the user on 2026-07-10, after the Studio mirror was refreshed and Git was pushed. It is generated in Git as `scripts/roblox_racing_phase11z_post_11y_release_candidate_audit.lua` and is the locked racing prototype release-candidate baseline. It extends Phase 11X with 11Y source marker checks and runtime stale finished-pending/orphan grid vehicle detection. Start future racing chats from `docs/racing-next-chat-handoff-2026-07-10.md`.
 - Drive-In Customisation Phase 1 is prepared as `scripts/roblox_drive_in_customisation_phase1.lua`. It creates `Workspace.NeoTokyoRacersWorld.Dealership.Customisation.DriveInCustomisationTrigger`, shows a local-only visible zone while driving, runs a `3` second countdown, then despawns the live driven vehicle and opens the existing garage UI directly to `Build Modules` for the driven vehicle instance.
 - Drive-In Customisation Phase 2 is prepared as `scripts/roblox_drive_in_customisation_phase2_garage_entry_world_prompt.lua`. It replaces the screen countdown with a world-space prompt on `DriveInCustomisationTrigger`, toggles trigger VFX descendants locally while driving, installs a small session-lock service to hide/freeze the player, and repairs the drive-in handoff so the live car despawns and the normal garage preview camera/vehicle are active in Build Modules.
 - Drive-In Customisation Phase 3/3B was installed and confirmed working on 2026-07-06. The active baseline now has a countdown-only in-world prompt that appears only once the driven vehicle is inside `DriveInCustomisationTrigger`, opens Build Modules with the normal garage preview/hold behavior, and releases the drive-in hold before the normal garage `SpawnVehicle` handoff so `Start Driving` returns to a drivable car. `scripts/roblox_drive_in_customisation_phase3b_spawn_unlock_anchor_repair.lua` is the targeted repair for the partial Phase 3 installer failure caused by Lua pattern matching.
