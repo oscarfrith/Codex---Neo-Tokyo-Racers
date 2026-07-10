@@ -2718,18 +2718,18 @@
     "class_name": "LocalScript",
     "disabled": false,
     "attributes": {
-      "InstalledBy": {
-        "value": "NTR_PC_FREEROAM_UI_PHASE1_VISUAL_SHELL",
+      "InstalledAt": {
+        "value": "2026-07-10T19:47:25Z",
         "type": "string"
       },
-      "InstalledAt": {
-        "value": "2026-07-10T14:34:55Z",
+      "InstalledBy": {
+        "value": "NTR_PC_FREEROAM_UI_PHASE2C_INSET_VISIBILITY_CARD_EDGE_REPAIR",
         "type": "string"
       }
     },
-    "source_lines": 793,
-    "source_bytes": 38402,
-    "source_checksum": "408470316",
+    "source_lines": 918,
+    "source_bytes": 45513,
+    "source_checksum": "148377269",
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/UI/DesktopFreeRoamHudController_Active.client.lua"
   },
   {

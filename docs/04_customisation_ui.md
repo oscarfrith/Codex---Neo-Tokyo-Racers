@@ -21,7 +21,7 @@ docs/ui-free-roam-pc-design-system-2026-07-10.md
 assets/ui/mockups/free_roam_pc/
 ```
 
-This is a design baseline only and has not been installed in Studio. Future implementation must use the shared token rules from that document, preserve the existing E-S vehicle tier colours, keep presentation in isolated controllers/modules, and avoid adding UI construction helpers to the register-limited client bootstrap.
+This remains the approved design target. Phase 1 has now been installed as a first working shell, but its first screenshot review did not accept the implementation as the final visual baseline. Future implementation must use the shared token rules from that document, preserve the existing E-S vehicle tier colours, keep presentation in isolated controllers/modules, and avoid adding UI construction helpers to the register-limited client bootstrap.
 
 Before generating the visual-shell installer, run the read-only audit:
 
@@ -29,7 +29,9 @@ Before generating the visual-shell installer, run the read-only audit:
 scripts/roblox_ui_freeroam_pc_phase0_audit.lua
 ```
 
-Phase 0 passed in Studio Edit mode on 2026-07-10 with `pass=35 warn=2 fail=0`. The two warnings were expected missing setup objects. Phase 1 is generated as `scripts/roblox_ui_freeroam_pc_phase1_visual_shell.lua` and documented in `docs/ui-free-roam-pc-phase1-visual-shell-2026-07-10.md`. It installs the isolated configurable PC presentation and real existing free-roam actions without patching the register-limited bootstrap. Moving minimap, final boost telemetry, server dealership teleport, cash receipts, and persisted settings remain later phases.
+Phase 0 passed in Studio Edit mode on 2026-07-10 with `pass=35 warn=2 fail=0`. The two warnings were expected missing setup objects. Phase 1 was installed from `scripts/roblox_ui_freeroam_pc_phase1_visual_shell.lua` and is documented in `docs/ui-free-roam-pc-phase1-visual-shell-2026-07-10.md`. It installs the isolated configurable PC presentation and real existing free-roam actions without patching the register-limited bootstrap. Moving minimap, final boost telemetry, server dealership teleport, cash receipts, and persisted settings remain later phases.
+
+The Phase 1 screenshot review found structural layout issues rather than isolated colour tweaks. Phase 2A completed across a short/wide viewport and a normal driving viewport with no failures. Phase 2B was installed and audited at `pass=42 warn=1 fail=0`; its main design-system corrections worked. Phase 2C is generated as `scripts/roblox_ui_freeroam_pc_phase2c_inset_visibility_card_edge_repair.lua` with handoff `docs/ui-free-roam-pc-phase2c-inset-visibility-card-edge-repair-2026-07-10.md`. It restores the intended full-screen inset alignment, narrows major-menu suppression to real semantic roots, supports touch-capable keyboard/mouse laptops, adds viewport-change recovery, and gives card strokes safe rendering space without breaking dropdown alignment.
 
 ## Shared UI Theme
 

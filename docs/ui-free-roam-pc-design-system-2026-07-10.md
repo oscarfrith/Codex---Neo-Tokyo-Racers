@@ -1,7 +1,7 @@
 # PC Free-Roam UI Design System
 
 **Created:** 2026-07-10  
-**Status:** User-approved visual baseline; not installed in Studio  
+**Status:** User-approved visual baseline; Phase 2B installed/reviewed, Phase 2C repair generated and awaiting Studio verification
 **Scope:** PC free-roam HUD, car menu, shared modals, cash store, and settings
 
 ## Approved Concept Images

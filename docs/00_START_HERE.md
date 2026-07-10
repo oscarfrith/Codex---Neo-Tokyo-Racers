@@ -12,9 +12,9 @@ The vehicle system is category-based: cockpits and modules inside the same categ
 
 ## Approved PC Free-Roam UI Design Baseline
 
-The user approved the PC free-roam HUD, car menu, dealership teleport modal, controls, cash store, and settings concepts on 2026-07-10. The authoritative colour/component specification is `docs/ui-free-roam-pc-design-system-2026-07-10.md`, and the six reference images are under `assets/ui/mockups/free_roam_pc/`. This visual family is not installed in Studio yet. Run `scripts/roblox_ui_freeroam_pc_phase0_audit.lua` before generating the first installer.
+The user approved the PC free-roam HUD, car menu, dealership teleport modal, controls, cash store, and settings concepts on 2026-07-10. The authoritative colour/component specification is `docs/ui-free-roam-pc-design-system-2026-07-10.md`, and the six reference images are under `assets/ui/mockups/free_roam_pc/`.
 
-The Phase 0 audit subsequently passed `35/2/0` (`pass/warn/fail`); both warnings were expected missing minimap/teleport setup objects. Phase 1 is generated as `scripts/roblox_ui_freeroam_pc_phase1_visual_shell.lua`. It is not installed or confirmed yet.
+The Phase 0 audit passed `35/2/0` (`pass/warn/fail`); both warnings were expected missing minimap/teleport setup objects. Phase 1 was installed and reviewed, and Phase 2A completed across two viewports with `fail=0`. Phase 2B was then installed and audited at `pass=42 warn=1 fail=0`; its hierarchy, typography, cash/map, speed arc, and driving visibility were substantially improved. Screenshots exposed a full-screen inset shift, clipped vehicle-card strokes, and intermittent/Laptop-emulator visibility. Phase 2C is generated as `scripts/roblox_ui_freeroam_pc_phase2c_inset_visibility_card_edge_repair.lua`, documented in `docs/ui-free-roam-pc-phase2c-inset-visibility-card-edge-repair-2026-07-10.md`, and is the next Studio install/test step.
 
 ## Current Script State
 
