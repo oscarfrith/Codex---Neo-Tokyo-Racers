@@ -1,7 +1,7 @@
 # PC Free-Roam UI Design System
 
 **Created:** 2026-07-10  
-**Status:** User-approved visual baseline; Phase 2B installed/reviewed, Phase 2C repair generated and awaiting Studio verification
+**Status:** User-approved visual baseline; Phase 2C installed/reviewed, Phase 2D component polish generated and awaiting Studio verification
 **Scope:** PC free-roam HUD, car menu, shared modals, cash store, and settings
 
 ## Approved Concept Images
@@ -99,6 +99,8 @@ Tier badges are informational. They must not recolour whole vehicle cards or rep
 - Keep supporting sentences in sentence case.
 - Avoid `TextScaled` for dense PC panels; use explicit sizes plus responsive scale rules and `UITextSizeConstraint` where needed.
 - Numerical HUD text should remain stable in width and should not resize every frame.
+- Configure weight and style by semantic role rather than by individual label. Current roles are Heading, Button, Body, Caption, Metric, MetricUnit, and CashMetric.
+- The selected font family controls whether bold and italic variants visibly exist; Michroma may not render every requested combination.
 
 ## Component Rules
 
@@ -116,6 +118,8 @@ Tier badges are informational. They must not recolour whole vehicle cards or rep
 - Selected/positive: cyan or electric-blue inner fill/glow while retaining the pink family outline where practical.
 - Destructive: `Danger` fill with restrained pink/red depth.
 - Disabled: greyed surface, no glow, and visibly reduced contrast.
+- All button families may use the same subtle neutral grey overlay gradient. The gradient must preserve the semantic base fill colour rather than replacing it.
+- When a state changes a border to cyan/blue, the associated outer glow must change to the same colour.
 
 ### Vehicle Cards
 
@@ -131,6 +135,7 @@ Tier badges are informational. They must not recolour whole vehicle cards or rep
 - Category and sort controls share identical height and width.
 - The label is small and muted; the active value is larger and white.
 - The dropdown list uses the same panel/card tokens rather than a Roblox-default visual.
+- Dropdown list shells use a neutral grey surface without a pink outer border/glow. Clicking the already-open dropdown header closes it.
 
 ### Modals
 

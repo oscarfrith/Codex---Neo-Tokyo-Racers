@@ -1,4 +1,4 @@
--- NTR_PC_FREEROAM_UI_PHASE2C_INSET_VISIBILITY_CARD_EDGE_REPAIR
+-- NTR_PC_FREEROAM_UI_PHASE2I_BORDERLESS_BOOST_ICON
 
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -25,6 +25,7 @@ local garageRemotes = kit:WaitForChild("Shared"):WaitForChild("Remotes"):WaitFor
 local garageInvoke = garageRemotes:WaitForChild("GarageInvoke")
 local interiorInvoke = garageRemotes:FindFirstChild("GarageInteriorInvoke")
 local categoriesRoot = kit:WaitForChild("Assets"):WaitForChild("Vehicles"):WaitForChild("Categories")
+local mobileDriveInputState = require(kit:WaitForChild("Shared"):WaitForChild("Modules"):WaitForChild("Client"):WaitForChild("Controllers"):WaitForChild("MobileDriveInputState"))
 
 local FONT = Enum.Font.Michroma
 local BODY_FONT = Enum.Font.Michroma
@@ -40,10 +41,15 @@ local controlsButton
 local exitButton
 local telemetry
 local mphLabel
+local boostIconBox
+local boostIconImage
+local boostTrack
 local boostFill
+local displayedBoostAlpha = 1
 local gaugeSegments = {}
 local carPanel
 local carScroll
+local carContent
 local carGrid
 local carButton
 local categoryButton
@@ -53,6 +59,7 @@ local modalLayer
 local modalBackdrop
 local modalPanels = {}
 local choiceList
+local choiceAnchor
 local toast
 local activeModal
 local selectedCategory = "ALL"
@@ -88,8 +95,27 @@ local function E(name, fallback)
 	return tonumber(readValue(effects, name, fallback)) or fallback
 end
 
+local function B(folder, name, fallback)
+	local value = readValue(folder, name, fallback)
+	return value == true
+end
+
 FONT = Enum.Font[tostring(readValue(typography, "PrimaryFont", "Michroma"))] or Enum.Font.Michroma
 BODY_FONT = Enum.Font[tostring(readValue(typography, "BodyFont", "Michroma"))] or FONT
+
+local function fontFace(font, role)
+	local base = Font.fromEnum(font or FONT)
+	local weight = B(typography, role .. "Bold", false) and Enum.FontWeight.Bold or Enum.FontWeight.Regular
+	local style = B(typography, role .. "Italic", false) and Enum.FontStyle.Italic or Enum.FontStyle.Normal
+	return Font.new(base.Family, weight, style)
+end
+
+local function roleForSize(textSize)
+	for _, role in ipairs({ "Heading", "Body", "Caption", "Metric", "MetricUnit", "CashMetric" }) do
+		if textSize == T(role, -1) then return role end
+	end
+	return "Body"
+end
 
 local function asset(name)
 	local text = tostring(readValue(assetConfig, name, "") or "")
@@ -132,6 +158,31 @@ local function addGlow(parent, color)
 	return stroke(parent, color, 4, E("GlowTransparency", 0.82), "GlowStroke")
 end
 
+local function buttonGradient(parent)
+	local strength = math.clamp(E("ButtonGradientStrength", 0.10), 0, 0.35)
+	local overlay = new("Frame", {
+		Name = "GradientOverlay", Active = false, BackgroundColor3 = Color3.new(1, 1, 1),
+		BackgroundTransparency = 1 - strength, BorderSizePixel = 0,
+		Size = UDim2.fromScale(1, 1), ZIndex = parent.ZIndex,
+	}, parent)
+	corner(overlay, 6)
+	new("UIGradient", {
+		Color = ColorSequence.new(Color3.new(1, 1, 1), Color3.fromRGB(95, 95, 95)),
+		Transparency = NumberSequence.new({
+			NumberSequenceKeypoint.new(0, 0.20), NumberSequenceKeypoint.new(0.52, 0.70),
+			NumberSequenceKeypoint.new(1, 0.28),
+		}), Rotation = E("ButtonGradientRotation", 90),
+	}, overlay)
+	return overlay
+end
+
+local function setAccent(parent, color)
+	local main = parent:FindFirstChild("Stroke")
+	local glow = parent:FindFirstChild("GlowStroke")
+	if main and main:IsA("UIStroke") then main.Color = color end
+	if glow and glow:IsA("UIStroke") then glow.Color = color end
+end
+
 local function addFacetPattern(parent)
 	local pattern = new("Frame", {
 		Name = "FacetPattern", BackgroundTransparency = 1, BorderSizePixel = 0,
@@ -150,8 +201,8 @@ local function addFacetPattern(parent)
 	return pattern
 end
 
-local function label(parent, name, text, size, position, textSize, color, alignment, font)
-	return new("TextLabel", {
+local function label(parent, name, text, size, position, textSize, color, alignment, font, role)
+	local item = new("TextLabel", {
 		Name = name,
 		BackgroundTransparency = 1,
 		BorderSizePixel = 0,
@@ -162,9 +213,10 @@ local function label(parent, name, text, size, position, textSize, color, alignm
 		TextSize = textSize or 12,
 		TextXAlignment = alignment or Enum.TextXAlignment.Left,
 		TextYAlignment = Enum.TextYAlignment.Center,
-		Font = font or FONT,
+		FontFace = fontFace(font or FONT, role or roleForSize(textSize)),
 		ZIndex = parent.ZIndex + 1,
 	}, parent)
+	return item
 end
 
 local function button(parent, name, text, size, position, fill, outline)
@@ -179,10 +231,11 @@ local function button(parent, name, text, size, position, fill, outline)
 		Text = text or "",
 		TextColor3 = C("Text", Color3.new(1, 1, 1)),
 		TextSize = T("Button", 13),
-		Font = FONT,
+		FontFace = fontFace(FONT, "Button"),
 		ZIndex = parent.ZIndex + 1,
 	}, parent)
 	corner(item, 6)
+	buttonGradient(item)
 	local itemStroke = stroke(item, outline or C("Outline", Color3.fromRGB(244, 46, 151)), 1.4, 0.08)
 	local glow = addGlow(item, outline or C("Outline"))
 	item.MouseEnter:Connect(function()
@@ -196,6 +249,18 @@ local function button(parent, name, text, size, position, fill, outline)
 		glow.Transparency = E("GlowTransparency", 0.82)
 	end)
 	return item, itemStroke
+end
+
+local function neutralSurface(parent, name, size, position, anchor, z)
+	local item = new("Frame", {
+		Name = name, BackgroundColor3 = C("PanelSoft"),
+		BackgroundTransparency = E("DropdownTransparency", 0.06), BorderSizePixel = 0,
+		ClipsDescendants = true, Size = size, Position = position,
+		AnchorPoint = anchor or Vector2.zero, ZIndex = z or 30,
+	}, parent)
+	corner(item, 7)
+	surfaceGradient(item, C("PanelSoft"), C("Panel"), 90)
+	return item
 end
 
 local function panel(parent, name, size, position, anchor, z)
@@ -328,6 +393,7 @@ end
 
 local function closeChoiceList()
 	if choiceList then choiceList:Destroy(); choiceList = nil end
+	choiceAnchor = nil
 end
 
 local function closeModal()
@@ -509,13 +575,27 @@ local function tierColor(tier)
 end
 
 local function showChoice(anchor, options, onPick)
+	if choiceList and choiceAnchor == anchor then
+		closeChoiceList()
+		return
+	end
 	closeChoiceList()
+	choiceAnchor = anchor
 	local scale = rootScale.Scale
 	local logicalPosition = (anchor.AbsolutePosition - root.AbsolutePosition) / scale
-	choiceList = panel(root, "ChoiceList", UDim2.fromOffset(anchor.AbsoluteSize.X / scale, #options * 38 + 10), UDim2.fromOffset(logicalPosition.X, logicalPosition.Y + anchor.AbsoluteSize.Y / scale + 6), Vector2.zero, 30)
+	choiceList = neutralSurface(root, "ChoiceList", UDim2.fromOffset(anchor.AbsoluteSize.X / scale, #options * 38 + 10), UDim2.fromOffset(logicalPosition.X, logicalPosition.Y + anchor.AbsoluteSize.Y / scale + L("DropdownGap", 6)), Vector2.zero, 30)
 	for index, option in ipairs(options) do
-		local item = button(choiceList, "Choice" .. index, option, UDim2.new(1, -10, 0, 34), UDim2.fromOffset(5, 5 + (index - 1) * 38), C("Panel"), C("OutlineSoft"))
-		item.TextSize = T("Button", 13)
+		local item = new("TextButton", {
+			Name = "Choice" .. index, AutoButtonColor = false,
+			BackgroundColor3 = C("Panel"), BackgroundTransparency = 0.12, BorderSizePixel = 0,
+			Size = UDim2.new(1, -10, 0, 34), Position = UDim2.fromOffset(5, 5 + (index - 1) * 38),
+			Text = option, TextColor3 = C("Text"), TextSize = T("Button", 13),
+			FontFace = fontFace(FONT, "Button"), ZIndex = choiceList.ZIndex + 1,
+		}, choiceList)
+		corner(item, 5)
+		buttonGradient(item)
+		item.MouseEnter:Connect(function() item.TextColor3 = C("Telemetry"); item.BackgroundTransparency = 0.03 end)
+		item.MouseLeave:Connect(function() item.TextColor3 = C("Text"); item.BackgroundTransparency = 0.12 end)
 		item.Activated:Connect(function() closeChoiceList(); onPick(option) end)
 	end
 end
@@ -575,7 +655,7 @@ local function makeCarCard(parent, row, order)
 end
 
 renderCars = function()
-	for _, item in ipairs(carScroll:GetChildren()) do
+	for _, item in ipairs(carContent:GetChildren()) do
 		if item ~= carGrid then item:Destroy() end
 	end
 	local rows = rowsFromProfile()
@@ -595,16 +675,20 @@ renderCars = function()
 		end
 		return a.Name < b.Name
 	end)
-	local buyMore = button(carScroll, "BuyMore", "", UDim2.fromOffset(220, 194), UDim2.fromOffset(0, 0), C("Panel"), C("Outline"))
+	local buyMore = button(carContent, "BuyMore", "", UDim2.fromOffset(220, 194), UDim2.fromOffset(0, 0), C("Panel"), C("Outline"))
 	buyMore.LayoutOrder = 1
 	local plusLabel = label(buyMore, "PlusMark", "+", UDim2.new(1, 0, 0, 82), UDim2.fromOffset(0, 30), 36, C("Telemetry"), Enum.TextXAlignment.Center)
 	plusLabel.ZIndex = buyMore.ZIndex + 3
 	local buyLabel = label(buyMore, "Name", "BUY MORE", UDim2.new(1, -18, 0, 42), UDim2.new(0, 9, 1, -54), 15, C("Text"), Enum.TextXAlignment.Center)
 	buyLabel.ZIndex = buyMore.ZIndex + 3
 	buyMore.Activated:Connect(function() openModal("Teleport") end)
-	for index, row in ipairs(filtered) do makeCarCard(carScroll, row, index + 1) end
+	for index, row in ipairs(filtered) do makeCarCard(carContent, row, index + 1) end
 	task.defer(function()
-		if carGrid and carGrid.Parent then carScroll.CanvasSize = UDim2.fromOffset(0, carGrid.AbsoluteContentSize.Y + 12) end
+		if carGrid and carGrid.Parent then
+			local contentHeight = carGrid.AbsoluteContentSize.Y
+			carContent.Size = UDim2.new(1, 0, 0, contentHeight)
+			carScroll.CanvasSize = UDim2.fromOffset(0, L("CardTopSafePadding", 8) + contentHeight + 12)
+		end
 	end)
 	local categoryOptions = {}
 	for name in pairs(categories) do table.insert(categoryOptions, name) end
@@ -633,11 +717,16 @@ local function buildCarPanel()
 		ScrollBarImageColor3 = C("Telemetry"), ScrollingDirection = Enum.ScrollingDirection.Y,
 		ZIndex = 13,
 	}, carPanel)
+	carContent = new("Frame", {
+		Name = "CardContent", BackgroundTransparency = 1, BorderSizePixel = 0,
+		Position = UDim2.fromOffset(0, L("CardTopSafePadding", 8)),
+		Size = UDim2.new(1, 0, 0, 0), ZIndex = 13,
+	}, carScroll)
 	carGrid = new("UIGridLayout", {
 		CellSize = UDim2.fromOffset(220, 194), CellPadding = UDim2.fromOffset(L("CardGap", 12), L("CardGap", 12)),
 		FillDirectionMaxCells = 2, SortOrder = Enum.SortOrder.LayoutOrder,
 		HorizontalAlignment = Enum.HorizontalAlignment.Center, VerticalAlignment = Enum.VerticalAlignment.Top,
-	}, carScroll)
+	}, carContent)
 	despawnButton = button(carPanel, "Despawn", "DESPAWN", UDim2.new(1, -36, 0, 50), UDim2.new(0, 18, 1, -64), C("Danger"), C("Outline"))
 	despawnButton.TextSize = T("Button", 13)
 	despawnButton.Activated:Connect(function()
@@ -681,7 +770,7 @@ local function buildMainHud()
 		closeChoiceList()
 		carPanel.Visible = not carPanel.Visible
 		leftCluster.Visible = not carPanel.Visible
-		carStroke.Color = carPanel.Visible and C("Telemetry") or C("Outline")
+		setAccent(carButton, carPanel.Visible and C("Telemetry") or C("Outline"))
 		if carPanel.Visible then renderCars() end
 	end, carWidth)
 	carButton.LayoutOrder = 1
@@ -742,7 +831,7 @@ local function buildMainHud()
 	edgeFade("EdgeRight", UDim2.new(1, -48, 0, 0), UDim2.new(0, 48, 1, 0), 180)
 	edgeFade("EdgeTop", UDim2.fromScale(0, 0), UDim2.new(1, 0, 0, 48), 90)
 	edgeFade("EdgeBottom", UDim2.new(0, 0, 1, -48), UDim2.new(1, 0, 0, 48), -90)
-	stroke(minimap, C("OutlineSoft"), 1.1, 0.55)
+	-- Intentionally borderless: the directional fade overlays define the map edge.
 
 	bottomActions = new("Frame", { Name = "BottomActions", BackgroundTransparency = 1, BorderSizePixel = 0, Size = UDim2.fromOffset(360, 38), AnchorPoint = Vector2.new(0.5, 1), Visible = false, ZIndex = 9 }, root)
 	controlsButton = button(bottomActions, "Controls", "CONTROLS", UDim2.fromOffset(150, 32), UDim2.fromOffset(10, 3), C("PanelDeep"), C("OutlineSoft"))
@@ -767,10 +856,13 @@ local function buildMainHud()
 	end)
 
 	telemetry = new("Frame", { Name = "Telemetry", BackgroundTransparency = 1, BorderSizePixel = 0, Size = UDim2.fromOffset(420, 250), AnchorPoint = Vector2.new(1, 1), Visible = false, ZIndex = 8 }, root)
-	label(telemetry, "BoostLabel", "BOOST  >", UDim2.fromOffset(110, 28), UDim2.fromOffset(20, 45), T("Caption", 11), C("Text"), Enum.TextXAlignment.Right)
-	local boostBack = new("Frame", { Name = "BoostTrack", BackgroundColor3 = C("PanelSoft"), BorderSizePixel = 0, Position = UDim2.fromOffset(140, 53), Size = UDim2.fromOffset(180, 12), ZIndex = 9 }, telemetry)
-	corner(boostBack, 6)
-	boostFill = new("Frame", { Name = "BoostFill", BackgroundColor3 = C("Telemetry"), BorderSizePixel = 0, Size = UDim2.fromScale(1, 1), ZIndex = 10 }, boostBack)
+	boostIconBox = new("Frame", { Name = "BoostIconContainer", BackgroundTransparency = 1, BorderSizePixel = 0, Size = UDim2.fromOffset(32, 32), ZIndex = 9 }, telemetry)
+	boostIconImage = new("ImageLabel", { Name = "BoostIcon", BackgroundTransparency = 1, BorderSizePixel = 0, Image = asset("BoostIcon"), ImageColor3 = C("Text"), ScaleType = Enum.ScaleType.Fit, Size = UDim2.fromScale(1, 1), ZIndex = 10 }, boostIconBox)
+	local boostFallback = label(boostIconBox, "Fallback", "⚡", UDim2.fromScale(1, 1), UDim2.fromOffset(0, 0), 18, C("Telemetry"), Enum.TextXAlignment.Center)
+	boostFallback.Visible = boostIconImage.Image == ""
+	boostTrack = new("Frame", { Name = "BoostTrack", BackgroundColor3 = C("PanelSoft"), BorderSizePixel = 0, Position = UDim2.fromOffset(140, 53), Size = UDim2.fromOffset(180, 12), ZIndex = 9 }, telemetry)
+	corner(boostTrack, 8)
+	boostFill = new("Frame", { Name = "BoostFill", BackgroundColor3 = C("Telemetry"), BorderSizePixel = 0, Size = UDim2.fromScale(1, 1), ZIndex = 10 }, boostTrack)
 	corner(boostFill, 6)
 	surfaceGradient(boostFill, C("ElectricBlue"), C("Telemetry"), 0)
 	mphLabel = label(telemetry, "Mph", "0", UDim2.fromOffset(200, 94), UDim2.fromOffset(102, 82), T("Metric", 64), C("Text"), Enum.TextXAlignment.Center)
@@ -825,6 +917,16 @@ local function updateLayout()
 	leftCluster.Position = UDim2.fromOffset(edge, logicalH - edge)
 	bottomActions.Position = UDim2.fromOffset(logicalW * 0.5, logicalH - edge)
 	telemetry.Position = UDim2.fromOffset(logicalW - edge, logicalH - edge)
+	local boostX = L("BoostBarOffsetX", 90)
+	local boostY = L("BoostBarOffsetY", 67)
+	local boostWidth = math.max(80, L("BoostBarWidth", 210))
+	local boostHeight = math.max(6, L("BoostBarHeight", 24))
+	local boostIconSize = math.max(boostHeight + 2, L("BoostIconSize", 32))
+	local boostIconGap = math.max(0, L("BoostIconGap", 8))
+	boostTrack.Position = UDim2.fromOffset(boostX, boostY)
+	boostTrack.Size = UDim2.fromOffset(boostWidth, boostHeight)
+	boostIconBox.Position = UDim2.fromOffset(boostX - boostIconSize - boostIconGap, boostY + math.floor((boostHeight - boostIconSize) * 0.5))
+	boostIconBox.Size = UDim2.fromOffset(boostIconSize, boostIconSize)
 	local panelWidth = L("CarPanelWidth", 500)
 	local panelTop = math.max(L("CarPanelTop", 88), top + L("ActionButtonSize", 54) + 16)
 	local panelHeight = math.max(620, logicalH - panelTop - L("CarPanelBottomMargin", 20))
@@ -840,18 +942,24 @@ local function updateLayout()
 	sortButton.Size = UDim2.fromOffset(dropdownWidth, 64)
 	local headerHeight = math.max(L("CarHeaderHeight", 154), 154)
 	local cardStrokeSafePadding = math.max(0, L("CardStrokeSafePadding", 5))
+	local cardTopSafePadding = math.max(0, L("CardTopSafePadding", 8))
 	carScroll.Position = UDim2.fromOffset(innerInset - cardStrokeSafePadding, headerHeight)
 	carScroll.Size = UDim2.new(1, -(innerInset - cardStrokeSafePadding) * 2, 1, -(headerHeight + 78))
+	carContent.Position = UDim2.fromOffset(0, cardTopSafePadding)
 	local cellWidth = math.floor((innerWidth - gap) * 0.5)
 	local cellHeight = math.floor(cellWidth * 0.88)
 	carGrid.CellSize = UDim2.fromOffset(cellWidth, cellHeight)
 	carGrid.CellPadding = UDim2.fromOffset(gap, gap)
 	task.defer(function()
-		if carGrid and carGrid.Parent then carScroll.CanvasSize = UDim2.fromOffset(0, carGrid.AbsoluteContentSize.Y + gap) end
+		if carGrid and carGrid.Parent then
+			local contentHeight = carGrid.AbsoluteContentSize.Y
+			carContent.Size = UDim2.new(1, 0, 0, contentHeight)
+			carScroll.CanvasSize = UDim2.fromOffset(0, cardTopSafePadding + contentHeight + gap)
+		end
 	end)
 end
 
-local function updateRuntime()
+local function updateRuntime(dt)
 	suppressLegacyDesktop()
 	local currentCamera = Workspace.CurrentCamera
 	local currentViewport = currentCamera and currentCamera.ViewportSize or lastViewport
@@ -870,8 +978,14 @@ local function updateRuntime()
 	controlsButton.Visible = driving
 	exitButton.Visible = driving
 	telemetry.Visible = driving
+	if not driving then displayedBoostAlpha = 1 end
 	despawnButton.BackgroundColor3 = vehicle and C("Danger") or C("Disabled")
 	if vehicle then
+		local boostTarget = math.clamp((tonumber(mobileDriveInputState.BoostPercent) or 100) / 100, 0, 1)
+		local boostSmoothing = math.max(0, L("BoostBarSmoothing", 14))
+		local boostStep = boostSmoothing <= 0 and 1 or math.clamp((dt or 1 / 60) * boostSmoothing, 0, 1)
+		displayedBoostAlpha += (boostTarget - displayedBoostAlpha) * boostStep
+		boostFill.Size = UDim2.fromScale(math.clamp(displayedBoostAlpha, 0, 1), 1)
 		local rootPart = vehicle.PrimaryPart or vehicle:FindFirstChild("CockpitRoot_DoNotRename", true)
 		local speed = rootPart and rootPart:IsA("BasePart") and rootPart.AssemblyLinearVelocity.Magnitude * 0.625 or 0
 		mphLabel.Text = tostring(math.floor(speed + 0.5))
@@ -912,6 +1026,12 @@ end)
 
 pcall(function() RunService:UnbindFromRenderStep("NTR_PCFreeRoamHudPhase1") end)
 pcall(function() RunService:UnbindFromRenderStep("NTR_PCFreeRoamHudPhase2B") end)
-RunService:BindToRenderStep("NTR_PCFreeRoamHudPhase2C", 3000, function()
-	updateRuntime()
+pcall(function() RunService:UnbindFromRenderStep("NTR_PCFreeRoamHudPhase2C") end)
+pcall(function() RunService:UnbindFromRenderStep("NTR_PCFreeRoamHudPhase2D") end)
+pcall(function() RunService:UnbindFromRenderStep("NTR_PCFreeRoamHudPhase2E") end)
+pcall(function() RunService:UnbindFromRenderStep("NTR_PCFreeRoamHudPhase2F") end)
+pcall(function() RunService:UnbindFromRenderStep("NTR_PCFreeRoamHudPhase2G") end)
+pcall(function() RunService:UnbindFromRenderStep("NTR_PCFreeRoamHudPhase2H") end)
+RunService:BindToRenderStep("NTR_PCFreeRoamHudPhase2I", 3000, function(dt)
+	updateRuntime(dt)
 end)

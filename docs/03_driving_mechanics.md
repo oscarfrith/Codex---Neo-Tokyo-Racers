@@ -336,6 +336,8 @@ Boost-related attributes:
 - `BoostRecharge`
 - `BoostRechargeDelay`
 
+PC Free-Roam UI Phase 2G connects the isolated desktop boost bar to the existing `MobileDriveInputState.BoostPercent` publication made by `DrivingControllerV47`. Despite the module's historical mobile-oriented name, `PublishMobile` is called from the shared V75 update path for keyboard/gamepad driving as well, so the desktop HUD can consume the same percentage without patching the driving controller or register-limited bootstrap. Phase 2G adds only presentation smoothing; boost drain/recharge authority remains in `DrivingControllerV47`.
+
 ## Camera
 
 `V74` camera approach:
