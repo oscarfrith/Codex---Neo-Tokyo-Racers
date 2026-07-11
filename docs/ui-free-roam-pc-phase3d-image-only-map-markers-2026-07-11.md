@@ -1,7 +1,7 @@
 # PC Free-Roam UI Phase 3D Image-Only Map Markers
 
 Date: 2026-07-11  
-Status: Generated; awaiting Studio verification
+Status: Installed and confirmed working; current pre-teleport HUD baseline
 
 Run in Edit mode:
 

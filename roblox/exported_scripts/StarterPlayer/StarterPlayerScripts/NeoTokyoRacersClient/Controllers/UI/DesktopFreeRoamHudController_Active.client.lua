@@ -1,4 +1,4 @@
--- NTR_PC_FREEROAM_UI_PHASE3D_IMAGE_ONLY_MAP_MARKERS
+-- NTR_PC_FREEROAM_UI_PHASE4A_DEALERSHIP_TELEPORT
 
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -23,6 +23,7 @@ local typography = config:WaitForChild("Typography")
 local effects = config:WaitForChild("Effects")
 local garageRemotes = kit:WaitForChild("Shared"):WaitForChild("Remotes"):WaitForChild("Garage")
 local garageInvoke = garageRemotes:WaitForChild("GarageInvoke")
+local teleportInvoke = kit:WaitForChild("Shared"):WaitForChild("Remotes"):WaitForChild("UI"):WaitForChild("FreeRoamHudTeleportInvoke")
 local interiorInvoke = garageRemotes:FindFirstChild("GarageInteriorInvoke")
 local categoriesRoot = kit:WaitForChild("Assets"):WaitForChild("Vehicles"):WaitForChild("Categories")
 local mobileDriveInputState = require(kit:WaitForChild("Shared"):WaitForChild("Modules"):WaitForChild("Client"):WaitForChild("Controllers"):WaitForChild("MobileDriveInputState"))
@@ -450,8 +451,21 @@ local function buildModals()
 	local yes = button(teleport, "Yes", "YES", UDim2.fromOffset(270, 54), UDim2.fromOffset(350, 182), C("PanelBlue"), C("Telemetry"))
 	no.Activated:Connect(closeModal)
 	yes.Activated:Connect(function()
+		if busy then return end
+		busy = true
 		closeModal()
-		showToast("TELEPORT SERVICE INSTALLS IN A LATER PHASE", false)
+		showToast("TELEPORTING...", true)
+		local ok, result = pcall(function()
+			return teleportInvoke:InvokeServer("TeleportToDealership")
+		end)
+		if ok and typeof(result) == "table" and result.Success == true then
+			fireUiEvent("FreeRoamVehicleExited")
+			lastProfileRead = 0
+			showToast(result.Message or "TELEPORTED TO DEALERSHIP", true)
+		else
+			showToast((typeof(result) == "table" and (result.Message or result.Error)) or "DEALERSHIP TELEPORT FAILED", false)
+		end
+		busy = false
 	end)
 
 	local controls = modalShell("Controls", "CONTROLS", 900, 550)
@@ -1090,6 +1104,7 @@ pcall(function() RunService:UnbindFromRenderStep("NTR_PCFreeRoamHudPhase2I") end
 pcall(function() RunService:UnbindFromRenderStep("NTR_PCFreeRoamHudPhase3A") end)
 pcall(function() RunService:UnbindFromRenderStep("NTR_PCFreeRoamHudPhase3B") end)
 pcall(function() RunService:UnbindFromRenderStep("NTR_PCFreeRoamHudPhase3C") end)
-RunService:BindToRenderStep("NTR_PCFreeRoamHudPhase3D", 3000, function(dt)
+pcall(function() RunService:UnbindFromRenderStep("NTR_PCFreeRoamHudPhase3D") end)
+RunService:BindToRenderStep("NTR_PCFreeRoamHudPhase4A", 3000, function(dt)
 	updateRuntime(dt)
 end)
