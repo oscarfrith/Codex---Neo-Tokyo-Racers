@@ -1,6 +1,6 @@
 # Neo Tokyo Racers Project Context
 
-Last updated: 2026-07-10
+Last updated: 2026-07-11
 
 This folder is the handoff pack for new Codex or ChatGPT sessions. Read this file first, then use the other docs only as needed.
 
@@ -14,7 +14,7 @@ The vehicle system is category-based: cockpits and modules inside the same categ
 
 The user approved the PC free-roam HUD, car menu, dealership teleport modal, controls, cash store, and settings concepts on 2026-07-10. The authoritative colour/component specification is `docs/ui-free-roam-pc-design-system-2026-07-10.md`, and the six reference images are under `assets/ui/mockups/free_roam_pc/`.
 
-The Phase 0 audit passed `35/2/0` (`pass/warn/fail`); Phase 2 stabilised the responsive visual system and live boost telemetry. Phase 3D's north-up four-tile map plus image-only player/north markers was confirmed working and the Studio mirror was refreshed. Phase 4A is generated as `scripts/roblox_ui_freeroam_pc_phase4a_dealership_teleport.lua`, documented in `docs/ui-free-roam-pc-phase4a-dealership-teleport-2026-07-11.md`, and is the next Studio step. It connects the approved modal to an isolated server-authoritative service with cooldown, race guards, vehicle despawn, safe character teleport, and existing driving-state handoff.
+The Phase 0 audit passed `35/2/0` (`pass/warn/fail`); Phase 2 stabilised the responsive visual system and live boost telemetry. Phase 3D's north-up four-tile map plus image-only player/north markers and Phase 4A's server-authoritative dealership teleport were installed and confirmed working. The Studio mirror was refreshed and Git was pushed after confirmation. Phase 4A is the current PC free-roam UI baseline; later free-roam phases are intentionally deferred while work moves to race/time-trial menus and prize presentation. The Racing UI desktop and responsive design gates were approved on 2026-07-11; use `docs/racing-ui-design-system-2026-07-11.md` and run `scripts/roblox_racing_ui_phase0_preinstall_audit.lua` before the first installer. Start that work from `docs/racing-next-chat-handoff-2026-07-10.md` and `docs/ui-free-roam-pc-final-handoff-2026-07-11.md`.
 
 ## Current Script State
 

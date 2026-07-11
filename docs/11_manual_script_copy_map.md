@@ -55,9 +55,13 @@ StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Runtime.Driv
 StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Runtime.MobileDriveControlsController_Active
 StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Runtime.RuntimeVFXController_Active
 StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Preview.ThrustPreviewController_Active
+StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.DesktopFreeRoamHudController_Active
 StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.World.LODClient_Active
+ServerScriptService.NeoTokyoRacers.Services.UI.FreeRoamHudTeleportService_Active
 StarterPlayer.StarterPlayerScripts.TEMP_LightingPreview
 ```
+
+The two free-roam UI entries above are the confirmed Phase 4A client/server owners. Refresh them together after any later free-roam HUD or dealership-teleport change. Race UI work should also refresh the isolated scripts under `Controllers.Racing` and `Services.Racing` together with their remotes/config hierarchy; use the generated manifest for exact current paths rather than maintaining a second handwritten list here.
 
 After dealership intro changes, refresh the active client bootstrap, intro client, and garage server controller mirror together. Phases 1-7 were installed and user-confirmed working on 2026-06-03.
 

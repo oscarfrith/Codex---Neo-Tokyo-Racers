@@ -147,6 +147,9 @@ When a phase or fix is confirmed:
 ## Current Lessons From The Garage MVP Run
 
 - The PC free-roam UI overhaul established that visual concepts should be locked into shared semantic tokens before implementation. Pink owns structure/navigation, cyan or blue owns active/live state, red owns destructive actions, and existing tier colours remain informational. Future UI pages should reuse those meanings instead of choosing accents page by page.
+- The PC free-roam UI run also established a stable implementation order: lock mockups and semantic tokens, audit live owners, install one isolated canonical controller, diagnose responsive layout with absolute runtime measurements, then add gameplay integrations as isolated server-authoritative services. Avoid accumulating visual source-patch ladders after the isolated controller exists.
+- For Roblox minimaps made from supplied 2D artwork, a north-up translated tile canvas preserves clipping, colour, and predictable coordinates more reliably than rotating ImageLabel descendants or rendering the artwork through a lit ViewportFrame. Keep player heading on the centre marker and keep map rotation independent from coordinate calibration.
+- Treat a confirmed phase plus refreshed mirror plus pushed Git as a deliberate handoff boundary. Update startup/current-issues/topic/history docs at that point, remove superseded warnings, record the rollback baseline, and move a different system into a new chat rather than carrying a long experimental history forward.
 
 - The Phase 17 module popup issue needed runtime-coordinate diagnostics, not repeated visual guesses. Future UI placement bugs should print absolute positions, parent, scale, selected target, and visible bounds before another repair.
 - The Phase 23 access work showed that repeated anchor repairs against a drifting isolated service are worse than a canonical replacement. For isolated scripts, canonical replacement is often safer after partial installs.

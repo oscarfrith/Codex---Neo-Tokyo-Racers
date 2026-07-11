@@ -1,7 +1,7 @@
 # PC Free-Roam UI Phase 3D Image-Only Map Markers
 
 Date: 2026-07-11  
-Status: Installed and confirmed working; current pre-teleport HUD baseline
+Status: Installed and confirmed working; locked pre-teleport rollback baseline
 
 Run in Edit mode:
 
@@ -27,4 +27,4 @@ Asset values accept a numeric image ID or complete `rbxassetid://...` value. Res
 
 Verify that only the supplied images appear, both backgrounds remain transparent, the north arrow stays inside the lower-right corner, player heading rotates correctly, and map clipping/zoom remains unchanged.
 
-Rollback by rerunning `scripts/roblox_ui_freeroam_pc_phase3c_north_up_2d_minimap.lua`. Refresh the Studio mirror after Phase 3D is accepted.
+Rollback from Phase 4A by rerunning this Phase 3D installer, then disable `FreeRoamHudTeleportService_Active` if the server-side teleport must also be removed. The accepted Phase 4A mirror retains this script as the clean pre-teleport rollback.

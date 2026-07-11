@@ -239,6 +239,14 @@
     "source_bytes": 440,
     "source_checksum": "8074351"
   },
+  "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.UI.RacingUIComponents": {
+    "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/UI/RacingUIComponents.module.lua",
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "source_lines": 180,
+    "source_bytes": 6916,
+    "source_checksum": "103444223"
+  },
   "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.UI.ResponsiveLayout": {
     "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/UI/ResponsiveLayout.module.lua",
     "class_name": "ModuleScript",
@@ -366,6 +374,14 @@
     "source_lines": 224,
     "source_bytes": 7541,
     "source_checksum": "480298506"
+  },
+  "ServerScriptService.NeoTokyoRacers.Services.Racing.RaceDisplayNameService_Active": {
+    "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Racing/RaceDisplayNameService_Active.server.lua",
+    "class_name": "Script",
+    "disabled": false,
+    "source_lines": 79,
+    "source_bytes": 2585,
+    "source_checksum": "294538438"
   },
   "ServerScriptService.NeoTokyoRacers.Services.Racing.RaceMatchmakingService_Active": {
     "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Racing/RaceMatchmakingService_Active.server.lua",
@@ -547,9 +563,9 @@
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Racing/RaceBrowserClient_Active.client.lua",
     "class_name": "LocalScript",
     "disabled": false,
-    "source_lines": 539,
-    "source_bytes": 18470,
-    "source_checksum": "992876545"
+    "source_lines": 620,
+    "source_bytes": 22483,
+    "source_checksum": "449117176"
   },
   "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceClient_Active": {
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Racing/RaceClient_Active.client.lua",

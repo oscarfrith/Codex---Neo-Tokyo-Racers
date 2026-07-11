@@ -1,7 +1,7 @@
 # PC Free-Roam UI Phase 4A Dealership Teleport
 
 Date: 2026-07-11  
-Status: Generated; awaiting Studio verification
+Status: Installed and confirmed working; current PC free-roam UI baseline
 
 ## Studio script
 
@@ -44,7 +44,11 @@ Under `Config.Runtime.FreeRoamHudTeleport`:
 
 Move `FreeRoamHudTeleportPoint` in Studio to change the arrival position and facing direction.
 
-## Verification
+## Confirmed verification
+
+The user confirmed Phase 4A working on 2026-07-11, refreshed the full Studio mirror, and pushed Git. The mirror contains the Phase 4A client marker, remote, config hierarchy, and enabled isolated server service.
+
+Future regression checks:
 
 1. Stop Play, run Phase 4A, and restart Play.
 2. Open the dealership modal and press `NO`; confirm nothing else happens.
@@ -59,4 +63,4 @@ Move `FreeRoamHudTeleportPoint` in Studio to change the arrival position and fac
 
 The server intentionally destroys the current runtime vehicle on success. It does not change owned profile data. Roll back the client by rerunning `scripts/roblox_ui_freeroam_pc_phase3d_image_only_map_markers.lua`; disable `FreeRoamHudTeleportService_Active` if a complete Phase 4A rollback is required.
 
-Refresh the Studio mirror after Phase 4A is accepted.
+The Studio mirror was refreshed after acceptance. Later free-roam phases are intentionally deferred while race/time-trial UI work proceeds.

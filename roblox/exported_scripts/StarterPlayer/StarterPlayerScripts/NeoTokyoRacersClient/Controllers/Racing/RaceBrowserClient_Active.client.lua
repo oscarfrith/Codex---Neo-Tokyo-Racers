@@ -1,11 +1,20 @@
--- Neo Tokyo Racers - Racing Phase 7 Free-Roam Race Browser
--- NTR_RACING_PHASE7_RACE_BROWSER
+-- Neo Tokyo Racers - Racing UI Phase 1 Race Browser
+-- NTR_RACING_UI_PHASE1_SHARED_SHELL_BROWSER
+-- NTR_RACING_UI_PHASE1B_BROWSER_VISUAL_REFINEMENT
+-- NTR_RACING_UI_PHASE1C_CARD_INSET_BUTTON_LAYER_REPAIR
+-- NTR_RACING_UI_PHASE1D_FOOTER_BUTTON_STYLE_SPACING
+-- NTR_RACING_UI_PHASE1E_HEADER_CARD_GRADIENT_POLISH
+-- NTR_RACING_UI_PHASE1G_DETAIL_ICONS_EVENT_MEDIA
+-- NTR_RACING_UI_PHASE1H_ATLAS_FRAME_GLOW_FOCUS
+-- NTR_RACING_UI_PHASE1I_DETAIL_ALIGNMENT_BACKGROUND_GUARD
+-- NTR_RACING_UI_PHASE1J_OPTICAL_OFFSETS_DEFAULT_SELECTION
+-- NTR_RACING_UI_PHASE1K_DETAIL_PRIZE_POLISH
+-- NTR_RACING_PHASE7B_TELEPORT_CLIENT
 
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
-local Workspace = game:GetService("Workspace")
 
 local player = Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
@@ -13,278 +22,369 @@ local touch = UserInputService.TouchEnabled
 
 local kit = ReplicatedStorage:WaitForChild("NeoTokyoRacers")
 local shared = kit:WaitForChild("Shared")
-local racingModules = shared:WaitForChild("Modules"):WaitForChild("Racing")
+local modules = shared:WaitForChild("Modules")
+local racingModules = modules:WaitForChild("Racing")
+local uiModules = modules:WaitForChild("UI")
 local RaceConfigReader = require(racingModules:WaitForChild("RaceConfigReader"))
-local RouteDefinition = require(racingModules:WaitForChild("RaceRouteDefinition"))
+local UI = require(uiModules:WaitForChild("RacingUIComponents"))
 
 local controllers = script.Parent.Parent
-local uiFolder = controllers:WaitForChild("UI")
-local openEvent = uiFolder:WaitForChild("OpenRaceBrowser")
-local raceBrowserTeleportInvoke = shared:WaitForChild("Remotes"):WaitForChild("Racing"):WaitForChild("RaceBrowserTeleportInvoke")
--- NTR_RACING_PHASE7B_TELEPORT_CLIENT
+local uiControllers = controllers:WaitForChild("UI")
+local openEvent = uiControllers:WaitForChild("OpenRaceBrowser")
+local racingRemotes = shared:WaitForChild("Remotes"):WaitForChild("Racing")
+local teleportInvoke = racingRemotes:WaitForChild("RaceBrowserTeleportInvoke")
+local racingConfig = kit:WaitForChild("Config"):WaitForChild("Racing")
 
-local config = kit:WaitForChild("Config")
-local racingConfig = config:WaitForChild("Racing")
-local uiConfig = config:WaitForChild("UI")
-local browserConfig = uiConfig:WaitForChild("RaceBrowser")
-
-local defaultTheme = {
-	Panel = Color3.fromRGB(6, 10, 13),
-	PanelSoft = Color3.fromRGB(10, 15, 20),
-	Card = Color3.fromRGB(18, 27, 31),
-	Text = Color3.fromRGB(240, 255, 249),
-	Muted = Color3.fromRGB(145, 170, 165),
-	Accent = Color3.fromRGB(70, 255, 190),
-	Selected = Color3.fromRGB(255, 68, 196),
-	Buy = Color3.fromRGB(35, 200, 125),
-	Back = Color3.fromRGB(24, 35, 42),
-	Exit = Color3.fromRGB(230, 74, 116),
-}
-
-local activeTab = "TimeTrial"
-local selectedRow = nil
+local gui
+local overlay
+local shell
+local content
+local list
+local detail
+local status
+local exitButton
+local teleportButton
+local selected
 local teleportBusy = false
-local setOpen = nil -- NTR_RACING_PHASE7B_CLOSE_ON_TELEPORT
+local rows = {}
+local suppressedGuis = {}
+local suppressionHeartbeat
+local suppressionChildAdded
 
-local gui, overlay, root, title, subtitle, tabRail, list, detail, closeButton
-
-local function readColor(folder, name, fallback, alternate)
-	local item = folder and (folder:FindFirstChild(name) or (alternate and folder:FindFirstChild(alternate)))
-	return item and item:IsA("Color3Value") and item.Value or fallback
-end
-
-local function readNumber(folder, name, fallback)
-	local item = folder and folder:FindFirstChild(name)
-	return item and item:IsA("NumberValue") and item.Value or fallback
-end
-
-local function readString(folder, name, fallback)
-	local item = folder and folder:FindFirstChild(name)
-	return item and item:IsA("StringValue") and item.Value or fallback
-end
-
-local function assetImage(value)
-	local text = tostring(value or "")
-	if text == "" then return "" end
-	if string.find(text, "rbxassetid://", 1, true) or string.find(text, "rbxthumb://", 1, true) then
-		return text
-	end
-	if tonumber(text) then
-		return "rbxassetid://" .. text
-	end
-	return text
-end
-
-local function themeFolder()
-	return uiConfig and uiConfig:FindFirstChild("Theme")
-end
-
-local function theme()
-	local folder = themeFolder()
-	return {
-		Panel = readColor(folder, "Panel", defaultTheme.Panel),
-		PanelSoft = readColor(folder, "PanelSoft", defaultTheme.PanelSoft),
-		Card = readColor(folder, "Card", defaultTheme.Card),
-		Text = readColor(folder, "Text", defaultTheme.Text),
-		Muted = readColor(folder, "Muted", defaultTheme.Muted, "MutedText"),
-		Accent = readColor(folder, "Accent", defaultTheme.Accent),
-		Selected = readColor(folder, "Selected", defaultTheme.Selected, "CardHot"),
-		Buy = readColor(folder, "Buy", defaultTheme.Buy),
-		Back = readColor(folder, "Back", defaultTheme.Back, "BackButton"),
-		Exit = readColor(folder, "Exit", defaultTheme.Exit, "ExitButton"),
-		FontFamily = readString(folder, "FontFamily", "rbxasset://fonts/families/Michroma.json"),
-		PanelTransparency = readNumber(folder, "PanelTransparency", 0.08),
-	}
-end
-
-local function applyFont(object, bold)
-	object.Font = bold and Enum.Font.GothamBold or Enum.Font.Gotham
-	local family = theme().FontFamily
-	if family and family ~= "" then
-		pcall(function()
-			object.FontFace = Font.new(family, bold and Enum.FontWeight.Bold or Enum.FontWeight.Regular)
-		end)
-	end
-end
-
-local function corner(parent, radius)
-	local c = Instance.new("UICorner")
-	c.CornerRadius = UDim.new(0, radius or 7)
-	c.Parent = parent
-	return c
-end
-
-local function stroke(parent, color, thickness, transparency)
-	local s = Instance.new("UIStroke")
-	s.Color = color
-	s.Thickness = thickness or 1
-	s.Transparency = transparency or 0.25
-	s.Parent = parent
-	return s
-end
-
-local function label(parent, text, size, position, textSize, color, bold)
-	local t = theme()
-	local item = Instance.new("TextLabel")
-	item.BackgroundTransparency = 1
-	item.BorderSizePixel = 0
-	item.Position = position or UDim2.fromOffset(0, 0)
-	item.Size = size or UDim2.fromScale(1, 1)
-	item.Text = tostring(text or "")
-	item.TextColor3 = color or t.Text
-	item.TextSize = textSize or 12
-	item.TextWrapped = true
-	item.TextXAlignment = Enum.TextXAlignment.Left
-	item.TextYAlignment = Enum.TextYAlignment.Center
-	applyFont(item, bold)
-	item.Parent = parent
-	return item
-end
-
-local function button(parent, name, text, color)
-	local t = theme()
-	local item = Instance.new("TextButton")
-	item.Name = name
-	item.AutoButtonColor = true
-	item.BackgroundColor3 = color or t.Card
-	item.BackgroundTransparency = 0.05
-	item.BorderSizePixel = 0
-	item.Text = text or ""
-	item.TextColor3 = Color3.fromRGB(245, 255, 250)
-	item.TextSize = touch and 10 or 12
-	item.TextWrapped = true
-	applyFont(item, true)
-	item.Parent = parent
-	corner(item, 6)
-	stroke(item, t.Accent, 1, 0.45)
-	return item
-end
+local C = function(name) return UI.Colour(name) end
+local L = function(name, fallback) return UI.Layout(name, fallback) end
+local T = function(name, fallback) return UI.Type(name, fallback) end
 
 local function clear(parent)
-	for _, child in ipairs(parent:GetChildren()) do
-		child:Destroy()
-	end
+	for _, child in ipairs(parent:GetChildren()) do child:Destroy() end
 end
 
-local function eventChildren(catalogName)
-	local folder = racingConfig:FindFirstChild(catalogName)
-	local rows = {}
-	for _, event in ipairs(folder and folder:GetChildren() or {}) do
-		if event:IsA("Folder") or event:IsA("Configuration") then
-			table.insert(rows, event)
-		end
-	end
-	table.sort(rows, function(a, b)
-		local aName = tostring(a:GetAttribute("DisplayName") or a.Name)
-		local bName = tostring(b:GetAttribute("DisplayName") or b.Name)
-		return aName < bName
-	end)
-	return rows
-end
-
-local function distanceTo(part)
-	local character = player.Character
-	local rootPart = character and character:FindFirstChild("HumanoidRootPart")
-	if not (rootPart and part) then return math.huge end
-	return (rootPart.Position - part.Position).Magnitude
-end
-
-local function startZoneFor(summary, mode)
-	local route = nil
-	pcall(function()
-		route = RouteDefinition.GetRouteDefinition(summary.RouteId)
-	end)
-	if not route then return nil end
-	local eventId = tostring(summary.EventId or "")
-	local fallback = nil
-	for _, zone in ipairs(route.StartZones or {}) do
-		local zoneMode = tostring(zone.Mode or "")
-		local zoneEvent = tostring(zone.EventId or "")
-		if not fallback and zoneMode == mode then
-			fallback = zone.Part
-		end
-		if zoneEvent ~= "" and zoneEvent == eventId then
-			return zone.Part
-		end
-	end
-	return fallback or ((route.StartZones and route.StartZones[1] and route.StartZones[1].Part) or nil)
-end
-
-local function makeRows(mode)
-	local rows = {}
-	local catalogName = mode == "Race" and "RaceCatalog" or "TimeTrialCatalog"
-	for _, event in ipairs(eventChildren(catalogName)) do
-		local eventId = tostring(event:GetAttribute("EventId") or event.Name)
-		local ok, summary = pcall(function()
-			return RaceConfigReader.GetEventSummary(eventId, mode)
-		end)
-		if ok and type(summary) == "table" then
-			local zone = startZoneFor(summary, mode)
-			summary.Mode = mode
-			table.insert(rows, {
-				Event = event,
-				Summary = summary,
-				StartZone = zone,
-				Distance = distanceTo(zone),
-			})
-		end
-	end
-	table.sort(rows, function(a, b)
-		local aDist = a.Distance or math.huge
-		local bDist = b.Distance or math.huge
-		if math.abs(aDist - bDist) > 8 then
-			return aDist < bDist
-		end
-		return tostring(a.Summary.DisplayName) < tostring(b.Summary.DisplayName)
-	end)
-	return rows
-end
-
-local function formatMoney(value)
-	value = math.floor((tonumber(value) or 0) + 0.5)
-	local text = tostring(value)
-	while true do
-		local nextText, count = string.gsub(text, "^(-?%d+)(%d%d%d)", "%1,%2")
-		text = nextText
-		if count == 0 then break end
-	end
+local function formatMoney(amount)
+	local text = tostring(math.floor((tonumber(amount) or 0) + 0.5))
+	repeat
+		local changed
+		text, changed = string.gsub(text, "^(-?%d+)(%d%d%d)", "%1,%2")
+	until changed == 0
 	return "$" .. text
 end
 
-local function formatDistance(studs)
-	if not studs or studs == math.huge then return "--" end
-	return tostring(math.floor(studs + 0.5)) .. " studs"
+local function catalogEvents(name)
+	local catalog = racingConfig:FindFirstChild(name)
+	local result = {}
+	for _, event in ipairs(catalog and catalog:GetChildren() or {}) do
+		if event:IsA("Folder") or event:IsA("Configuration") then table.insert(result, event) end
+	end
+	return result
 end
 
-local function recommendedMedals(summary)
-	if summary.Mode ~= "TimeTrial" then
-		return "Placement rewards: Gold 1st, Silver 2nd, Bronze 3rd."
-	end
-	local tier = tostring(summary.RecommendedTier or "D")
-	local medals = RaceConfigReader.GetTimeTrialMedals(summary.EventId, tier)
-	local parts = {}
-	for _, name in ipairs({ "Bronze", "Silver", "Gold", "Platinum" }) do
-		local value = tonumber(medals[name])
-		if value and value > 0 then
-			table.insert(parts, name .. " " .. string.format("%.1fs", value))
+local function addMode(byRoute, mode, catalog)
+	for _, event in ipairs(catalogEvents(catalog)) do
+		local eventId = tostring(event:GetAttribute("EventId") or event.Name)
+		local ok, summary = pcall(function() return RaceConfigReader.GetEventSummary(eventId, mode) end)
+		if ok and type(summary) == "table" then
+			local key = tostring(summary.RouteId or eventId)
+			local row = byRoute[key]
+			if not row then
+				row = { Key = key, DisplayName = tostring(summary.DisplayName or summary.RouteDisplayName or key) }
+				byRoute[key] = row
+			end
+			row[mode] = summary
+			if mode == "TimeTrial" or not row.Primary then row.Primary = summary end
 		end
 	end
-	if #parts == 0 then
-		return "No medal targets configured for tier " .. tier .. " yet."
-	end
-	return tier .. " targets: " .. table.concat(parts, "  ")
 end
 
-local function fireFreeRoamVehicleExited()
-	local ui = controllers and controllers:FindFirstChild("UI")
-	local event = ui and ui:FindFirstChild("FreeRoamVehicleExited")
-	if event and event:IsA("BindableEvent") then
-		event:Fire()
+local function buildRows()
+	local byRoute = {}
+	addMode(byRoute, "TimeTrial", "TimeTrialCatalog")
+	addMode(byRoute, "Race", "RaceCatalog")
+	rows = {}
+	for _, row in pairs(byRoute) do table.insert(rows, row) end
+	table.sort(rows, function(a, b) return string.lower(a.DisplayName) < string.lower(b.DisplayName) end)
+	-- Rebuilt row tables must never retain a stale selected-table reference.
+	-- The browser intentionally opens on the first sorted event every time.
+	selected = rows[1]
+end
+
+local function imageSlot(parent, name, image, position, size, placeholder, noStroke)
+	local frame = UI.Panel(parent, {
+		Name = name,
+		Position = position,
+		Size = size,
+		Color = C("PanelDeep"),
+		Transparency = 0.08,
+		StrokeColor = C("Outline"),
+		StrokeTransparency = 0.2,
+		Clips = true,
+		NoStroke = noStroke == true,
+	})
+	image = UI.Asset(image)
+	if image ~= "" then
+		local picture = Instance.new("ImageLabel")
+		picture.Name = "Image"
+		picture.BackgroundTransparency = 1
+		local inset = noStroke == true and 0 or 2
+		picture.Position = UDim2.fromOffset(inset, inset)
+		picture.Size = UDim2.new(1, -inset * 2, 1, -inset * 2)
+		picture.Image = image
+		picture.ScaleType = Enum.ScaleType.Crop
+		UI.Corner(picture, math.max(1, L("CornerRadius", 5) - 1))
+		picture.Parent = frame
+	else
+		local text = UI.Label(frame, {
+			Text = placeholder,
+			Size = UDim2.fromScale(1, 1),
+			Color = C("Muted"),
+			TextSize = T("Caption", 11),
+			Role = "Heading",
+			XAlignment = Enum.TextXAlignment.Center,
+		})
+		text.TextTransparency = 0.25
+	end
+	return frame
+end
+
+local ICON_CELLS = {
+	-- Optical offsets are measured at the 33 px desktop reference size.
+	-- They scale with the rendered icon, then the shell UIScale handles viewport scaling.
+	Circuit = { Cell = Vector2.new(2, 0), X = 1.0, Y = -4.5 },
+	PointToPoint = { Cell = Vector2.new(3, 0), X = 3.8, Y = -4.3 },
+	Laps = { Cell = Vector2.new(0, 1), X = -2.6, Y = -5.3 },
+	Checkpoints = { Cell = Vector2.new(1, 1), X = -0.9, Y = -5.0 },
+	Players = { Cell = Vector2.new(2, 1), X = 1.2, Y = -5.8 },
+	Prize = { Cell = Vector2.new(0, 2), X = -2.7, Y = -6.6 },
+}
+
+local function detailIcon(parent, name, position, size)
+	local atlas = UI.Asset(UI.AssetValue("RacingIconAtlas", ""))
+	if atlas == "" then return nil end
+	local spec = ICON_CELLS[name]
+	if not spec then return nil end
+	local cellSize = math.max(1, tonumber(UI.AssetValue("RacingIconCellSize", "256")) or 256)
+	local renderSize = math.max(1, size.X.Offset)
+	local opticalScale = renderSize / 33
+	local icon = Instance.new("ImageLabel")
+	icon.Name = name .. "Icon"
+	icon.BackgroundTransparency = 1
+	icon.BorderSizePixel = 0
+	icon.Position = position + UDim2.fromOffset(spec.X * opticalScale, spec.Y * opticalScale)
+	icon.Size = size
+	icon.Image = atlas
+	icon.ImageRectOffset = Vector2.new(spec.Cell.X * cellSize, spec.Cell.Y * cellSize)
+	icon.ImageRectSize = Vector2.new(cellSize, cellSize)
+	icon.ScaleType = Enum.ScaleType.Fit
+	icon.ZIndex = parent.ZIndex + 2
+	icon.Parent = parent
+	return icon
+end
+
+local function mediaFor(row, field)
+	local raceValue = row.Race and tostring(row.Race[field] or "") or ""
+	if raceValue ~= "" then return raceValue end
+	local timeTrialValue = row.TimeTrial and tostring(row.TimeTrial[field] or "") or ""
+	if timeTrialValue ~= "" then return timeTrialValue end
+	return row.Primary and tostring(row.Primary[field] or "") or ""
+end
+
+local function availabilityText(row)
+	local modes = {}
+	if row.TimeTrial then table.insert(modes, "TIME TRIAL") end
+	if row.Race then table.insert(modes, "RACE") end
+	return table.concat(modes, "  •  ")
+end
+
+local function routeDescriptor(row)
+	local summary = row.Race or row.TimeTrial or row.Primary
+	local routeType = string.upper(tostring(summary.RouteType or "CIRCUIT"))
+	if routeType == "CIRCUIT" then
+		return "CIRCUIT  •  " .. tostring(summary.Laps or 1) .. " LAPS"
+	end
+	return "POINT-TO-POINT  •  " .. tostring(summary.CheckpointCount or 0) .. " CHECKPOINTS"
+end
+
+local function cardGradient(parent)
+	local overlay = Instance.new("Frame")
+	overlay.Name = "GradientOverlay"
+	overlay.Active = false
+	overlay.BackgroundColor3 = Color3.new(1, 1, 1)
+	overlay.BackgroundTransparency = 0.9
+	overlay.BorderSizePixel = 0
+	overlay.Size = UDim2.fromScale(1, 1)
+	overlay.ZIndex = parent.ZIndex
+	overlay.Parent = parent
+	UI.Corner(overlay, L("CornerRadius", 5))
+	local gradient = Instance.new("UIGradient")
+	gradient.Color = ColorSequence.new(Color3.new(1, 1, 1), Color3.fromRGB(95, 95, 95))
+	gradient.Transparency = NumberSequence.new({
+		NumberSequenceKeypoint.new(0, 0.2),
+		NumberSequenceKeypoint.new(0.52, 0.7),
+		NumberSequenceKeypoint.new(1, 0.28),
+	})
+	gradient.Rotation = 90
+	gradient.Parent = overlay
+end
+
+local function renderDetail()
+	clear(detail)
+	if not selected then
+		UI.Label(detail, { Text = "NO EVENTS AVAILABLE", Position = UDim2.fromOffset(16, 16), Size = UDim2.new(1, -32, 0, 40), Color = C("Muted"), Role = "Heading" })
+		teleportButton.Active = false
+		teleportButton.TextColor3 = C("Disabled")
+		return
+	end
+	teleportButton.Active = true
+	teleportButton.TextColor3 = C("Text")
+	local summary = selected.Primary
+	local heroHeight = touch and 104 or 240
+	imageSlot(detail, "TrackImage", mediaFor(selected, "TrackImage"), UDim2.fromOffset(0, 0), UDim2.new(1, 0, 0, heroHeight), "TRACK IMAGE")
+	UI.Label(detail, {
+		Text = string.upper(selected.DisplayName),
+		Position = UDim2.fromOffset(14, 10),
+		Size = UDim2.new(1, -28, 0, 30),
+		TextSize = touch and 13 or T("Heading", 20),
+		Role = "Heading",
+	})
+
+	local lowerY = heroHeight + L("Gap", 16)
+	local lowerH = -lowerY
+	local mapWidth = touch and 0.48 or 0.56
+	imageSlot(detail, "TrackMap", mediaFor(selected, "MapImage"), UDim2.fromOffset(0, lowerY), UDim2.new(mapWidth, -8, 1, lowerH), "TRACK MAP")
+	local info = UI.Panel(detail, {
+		Name = "EventDetails",
+		Position = UDim2.new(mapWidth, 8, 0, lowerY),
+		Size = UDim2.new(1 - mapWidth, -8, 1, lowerH),
+		Color = C("Panel"),
+		Transparency = 0.04,
+		StrokeColor = C("Outline"),
+		StrokeTransparency = 0.2,
+	})
+	cardGradient(info)
+	local detailsHeading = UI.Label(info, { Text = "EVENT DETAILS", Position = UDim2.fromOffset(16, 10), Size = UDim2.new(1, -32, 0, touch and 22 or 30), Color = C("Text"), TextSize = touch and 12 or 16, Role = "Heading" })
+	detailsHeading.ZIndex = info.ZIndex + 3
+	local raceSummary = selected.Race or summary
+	local facts = {
+		{ Icon = string.upper(tostring(summary.RouteType or "CIRCUIT")) == "CIRCUIT" and "Circuit" or "PointToPoint", Text = string.upper(tostring(summary.RouteType or "CIRCUIT")) },
+		{ Icon = "Laps", Text = tostring(raceSummary.Laps or 1) .. " LAPS" },
+		{ Icon = "Checkpoints", Text = tostring(summary.CheckpointCount or 0) .. " CHECKPOINTS" },
+		{ Icon = "Players", Text = tostring(raceSummary.MinPlayers or 1) .. "-" .. tostring(raceSummary.MaxPlayers or 1) .. " PLAYERS" },
+		{ Icon = "Prize", Text = "PRIZE", Amount = formatMoney(raceSummary.BaseReward or summary.BaseReward), Prize = true },
+	}
+	for index, fact in ipairs(facts) do
+		local rowHeight = touch and 30 or 40
+		local iconSize = touch and 24 or 33
+		local y = (touch and 48 or 60) + (index - 1) * rowHeight
+		local factRow = Instance.new("Frame")
+		factRow.Name = fact.Icon .. "Row"
+		factRow.BackgroundTransparency = 1
+		factRow.BorderSizePixel = 0
+		factRow.Position = UDim2.fromOffset(0, y)
+		factRow.Size = UDim2.new(1, 0, 0, rowHeight)
+		factRow.ZIndex = info.ZIndex + 2
+		factRow.Parent = info
+		local icon = detailIcon(factRow, fact.Icon, UDim2.new(0, touch and 25 or 29, 0.5, 0), UDim2.fromOffset(iconSize, iconSize))
+		if icon then icon.AnchorPoint = Vector2.new(0.5, 0.5) end
+		local textX = touch and 45 or 54
+		local factLabel = UI.Label(factRow, {
+			Text = fact.Text,
+			Position = UDim2.fromOffset(textX, 0),
+			Size = fact.Prize and UDim2.fromOffset(touch and 45 or 56, rowHeight) or UDim2.new(1, touch and -53 or -66, 1, 0),
+			TextSize = touch and 10 or T("Body", 14),
+			Color = C("Text"),
+			Role = "Heading",
+		})
+		factLabel.ZIndex = factRow.ZIndex + 1
+		if fact.Prize then
+			local amountX = textX + (touch and 47 or 60)
+			local amountLabel = UI.Label(factRow, {
+				Name = "PrizeAmount",
+				Text = fact.Amount,
+				Position = UDim2.fromOffset(amountX, 0),
+				Size = UDim2.new(1, -(amountX + 8), 1, 0),
+				TextSize = touch and 10 or T("Body", 14),
+				Color = C("Telemetry"),
+				Role = "Metric",
+			})
+			amountLabel.ZIndex = factRow.ZIndex + 2
+			local amountGlow = Instance.new("UIStroke")
+			amountGlow.Name = "TextGlow"
+			amountGlow.ApplyStrokeMode = Enum.ApplyStrokeMode.Contextual
+			amountGlow.Color = C("Telemetry")
+			amountGlow.Thickness = touch and 1 or 1.5
+			amountGlow.Transparency = 0.62
+			amountGlow.Parent = amountLabel
+		end
 	end
 end
-local function fireRaceTransition(step, payload)
+
+local function renderList()
+	clear(list)
+	local layout = Instance.new("UIListLayout")
+	layout.Padding = UDim.new(0, touch and 8 or 12)
+	layout.SortOrder = Enum.SortOrder.LayoutOrder
+	layout.Parent = list
+	for index, row in ipairs(rows) do
+		local isSelected = selected == row
+		local card = UI.Panel(list, {
+			Name = "Event_" .. row.Key,
+			Size = UDim2.new(1, 0, 0, touch and 82 or 126),
+			Color = isSelected and C("Telemetry") or C("Panel"),
+			Transparency = isSelected and 0.82 or 0.1,
+			StrokeColor = isSelected and C("Telemetry") or C("Outline"),
+			StrokeWidth = isSelected and 2 or 1.2,
+			StrokeTransparency = isSelected and 0 or 0.22,
+		})
+		card.LayoutOrder = index
+		cardGradient(card)
+		local click = Instance.new("TextButton")
+		click.Name = "Select"
+		click.BackgroundTransparency = 1
+		click.Text = ""
+		click.Size = UDim2.fromScale(1, 1)
+		click.ZIndex = 8
+		click.Parent = card
+		local thumbW = touch and 102 or 162
+		local cardMap = mediaFor(row, "MapImage")
+		local cardImage = cardMap ~= "" and cardMap or mediaFor(row, "TrackImage")
+		imageSlot(card, "Thumbnail", cardImage, UDim2.fromOffset(0, 0), UDim2.fromOffset(thumbW, touch and 82 or 126), "", true)
+		UI.Label(card, {
+			Text = string.upper(row.DisplayName),
+			Position = UDim2.fromOffset(thumbW + 14, 9),
+			Size = UDim2.new(1, -(thumbW + 24), 0, touch and 18 or 26),
+			TextSize = touch and 10 or T("Body", 14),
+			Role = "Heading",
+		})
+		UI.Label(card, {
+			Text = availabilityText(row),
+			Position = UDim2.fromOffset(thumbW + 14, touch and 31 or 42),
+			Size = UDim2.new(1, -(thumbW + 28), 0, touch and 18 or 24),
+			Color = C("Muted"),
+			TextSize = touch and 10 or T("Body", 14),
+			Role = "Body",
+		})
+		UI.Label(card, {
+			Text = routeDescriptor(row),
+			Position = UDim2.fromOffset(thumbW + 14, touch and 55 or 78),
+			Size = UDim2.new(1, -(thumbW + 24), 0, touch and 16 or 26),
+			Color = C("Telemetry"),
+			TextSize = touch and 10 or T("Body", 14),
+			Role = "Metric",
+		})
+		click.MouseButton1Click:Connect(function()
+			selected = row
+			renderList()
+			renderDetail()
+		end)
+	end
+end
+
+local function fireDrivingExit()
+	local event = uiControllers:FindFirstChild("FreeRoamVehicleExited")
+	if event and event:IsA("BindableEvent") then event:Fire() end
+end
+
+local function transition(step, payload)
 	-- NTR_RACING_PHASE8D_BROWSER_TELEPORT_FADE
-	local event = script.Parent and script.Parent:FindFirstChild("RaceTransitionRequest")
+	local event = script.Parent:FindFirstChild("RaceTransitionRequest")
 	if event and event:IsA("BindableEvent") then
 		payload = payload or {}
 		payload.Step = step
@@ -292,247 +392,228 @@ local function fireRaceTransition(step, payload)
 	end
 end
 
-local function teleportToStart(row)
-	if teleportBusy then
-		return
+local function setOpen(open)
+	if open then
+		table.clear(suppressedGuis)
+		local function suppress(child)
+			if child:IsA("ScreenGui") and child ~= gui then
+				if suppressedGuis[child] == nil then suppressedGuis[child] = child.Enabled end
+				child.Enabled = false
+			end
+		end
+		for _, child in ipairs(playerGui:GetChildren()) do suppress(child) end
+		suppressionChildAdded = playerGui.ChildAdded:Connect(suppress)
+		suppressionHeartbeat = RunService.Heartbeat:Connect(function()
+			for otherGui in pairs(suppressedGuis) do
+				if otherGui.Parent and otherGui.Enabled then otherGui.Enabled = false end
+			end
+		end)
+	else
+		if suppressionHeartbeat then suppressionHeartbeat:Disconnect() suppressionHeartbeat = nil end
+		if suppressionChildAdded then suppressionChildAdded:Disconnect() suppressionChildAdded = nil end
+		for otherGui, wasEnabled in pairs(suppressedGuis) do
+			if otherGui and otherGui.Parent then otherGui.Enabled = wasEnabled end
+		end
+		table.clear(suppressedGuis)
 	end
-	if not row then
-		subtitle.Text = "Select an event first."
-		return
+	overlay.Visible = open
+	if open then
+		buildRows()
+		renderList()
+		renderDetail()
+		status.Visible = false
 	end
+end
+
+local function teleportSelected()
+	if teleportBusy or not selected then return end
+	local summary = selected.TimeTrial or selected.Race
+	if not summary then return end
 	teleportBusy = true
-	subtitle.Text = "Teleporting and clearing your current vehicle..."
-	fireRaceTransition("FadeOut", { Reason = "BrowserTeleport", Label = "TELEPORTING" })
+	teleportButton.Text = "TELEPORTING..."
+	status.Visible = false
+	transition("FadeOut", { Reason = "BrowserTeleport", Label = "TELEPORTING" })
 	task.wait(0.25)
+	local mode = selected.TimeTrial and "TimeTrial" or "Race"
 	local ok, result = pcall(function()
-		return raceBrowserTeleportInvoke:InvokeServer("TeleportToRaceStart", {
-			EventId = row.Summary.EventId,
-			Mode = row.Summary.Mode,
-		})
+		return teleportInvoke:InvokeServer("TeleportToRaceStart", { EventId = summary.EventId, Mode = mode })
 	end)
 	teleportBusy = false
-	if not ok or typeof(result) ~= "table" or (result.Ok ~= true and result.Success ~= true) then
-		fireRaceTransition("FadeIn", { Reason = "BrowserTeleportFailed", Delay = 0.08 })
-		subtitle.Text = (typeof(result) == "table" and tostring(result.Message or result.Error)) or "Teleport failed."
+	teleportButton.Text = "TELEPORT"
+	if not ok or type(result) ~= "table" or (result.Ok ~= true and result.Success ~= true) then
+		transition("FadeIn", { Reason = "BrowserTeleportFailed", Delay = 0.08 })
+		status.Text = type(result) == "table" and tostring(result.Message or result.Error or "TELEPORT FAILED") or "TELEPORT FAILED"
+		status.Visible = true
 		return
 	end
-	fireFreeRoamVehicleExited()
-	if setOpen then
-		setOpen(false)
-	end
-	fireRaceTransition("RestoreCamera", { Reason = "BrowserTeleport" })
-	fireRaceTransition("FadeIn", { Reason = "BrowserTeleport", Delay = 0.3 })
-	subtitle.Text = "Teleported. Enter the start zone and press E / tap to open the entry menu."
+	fireDrivingExit()
+	setOpen(false)
+	transition("RestoreCamera", { Reason = "BrowserTeleport" })
+	transition("FadeIn", { Reason = "BrowserTeleport", Delay = 0.3 })
 end
 
-local function renderDetail(row)
-	clear(detail)
-	local t = theme()
-	if not row then
-		label(detail, "Select a race or time trial.", UDim2.new(1, -20, 0, 48), UDim2.fromOffset(10, 10), 13, t.Muted, true)
-		return
-	end
-	local summary = row.Summary
-	local image = assetImage(summary.TrackImage)
-	local media = Instance.new("Frame")
-	media.Name = "TrackMedia"
-	media.BackgroundColor3 = Color3.fromRGB(8, 12, 17)
-	media.BorderSizePixel = 0
-	media.Position = UDim2.fromOffset(10, 10)
-	media.Size = UDim2.new(1, -20, 0, touch and 104 or 140)
-	media.Parent = detail
-	corner(media, 6)
-	stroke(media, t.Selected, 1, 0.45)
-	if image ~= "" then
-		local img = Instance.new("ImageLabel")
-		img.BackgroundTransparency = 1
-		img.Image = image
-		img.ScaleType = Enum.ScaleType.Fit
-		img.Size = UDim2.new(1, -10, 1, -10)
-		img.Position = UDim2.fromOffset(5, 5)
-		img.Parent = media
-	else
-		local noImage = label(media, "TRACK IMAGE", UDim2.fromScale(1, 1), UDim2.fromOffset(0, 0), 13, t.Muted, true)
-		noImage.TextXAlignment = Enum.TextXAlignment.Center
-	end
-
-	local y = touch and 126 or 166
-	label(detail, tostring(summary.DisplayName or summary.EventId), UDim2.new(1, -20, 0, 30), UDim2.fromOffset(10, y), touch and 13 or 16, t.Text, true)
-	y += 36
-	label(detail, "Route: " .. tostring(summary.RouteDisplayName or summary.RouteId), UDim2.new(1, -20, 0, 24), UDim2.fromOffset(10, y), 11, t.Muted, false)
-	y += 26
-	local category = summary.Mode == "Race" and "Open category race" or ("Tiered time trial. Recommended " .. tostring(summary.RecommendedTier or "--"))
-	label(detail, category, UDim2.new(1, -20, 0, 24), UDim2.fromOffset(10, y), 11, t.Accent, true)
-	y += 26
-	label(detail, "Checkpoints: " .. tostring(summary.CheckpointCount or 0) .. "   Arrows: " .. tostring(summary.ArrowCount or 0) .. "   Base reward: " .. formatMoney(summary.BaseReward), UDim2.new(1, -20, 0, 28), UDim2.fromOffset(10, y), 10, t.Muted, false)
-	y += 34
-	label(detail, recommendedMedals(summary), UDim2.new(1, -20, 0, 74), UDim2.fromOffset(10, y), touch and 10 or 11, t.Text, false)
-
-	local track = button(detail, "TrackStart", "TELEPORT TO START", t.Buy)
-	track.Position = UDim2.new(0, 10, 1, -50)
-	track.Size = UDim2.new(1, -20, 0, 40)
-	track.MouseButton1Click:Connect(function()
-		teleportToStart(row)
-	end)
-end
-
-local function renderCards()
-	clear(list)
-	local t = theme()
-	local rows = makeRows(activeTab)
-	if #rows == 0 then
-		label(list, "No " .. (activeTab == "Race" and "race" or "time trial") .. " events found.", UDim2.new(1, -20, 0, 44), UDim2.fromOffset(10, 10), 12, t.Muted, true)
-		selectedRow = nil
-		renderDetail(nil)
-		return
-	end
-	if not selectedRow or selectedRow.Summary.Mode ~= activeTab then
-		selectedRow = rows[1]
-	end
-	for index, row in ipairs(rows) do
-		local summary = row.Summary
-		local selected = selectedRow and selectedRow.Summary.EventId == summary.EventId and selectedRow.Summary.Mode == summary.Mode
-		local card = Instance.new("TextButton")
-		card.Name = "Event_" .. tostring(summary.EventId)
-		card.LayoutOrder = index
-		card.AutoButtonColor = true
-		card.Text = ""
-		card.BackgroundColor3 = selected and t.Selected or t.Card
-		card.BackgroundTransparency = selected and 0.02 or 0.07
-		card.BorderSizePixel = 0
-		card.Size = UDim2.new(1, -8, 0, touch and 84 or 94)
-		card.Parent = list
-		corner(card, 6)
-		stroke(card, selected and t.Selected or t.Accent, 1.1, selected and 0.08 or 0.45)
-
-		label(card, tostring(summary.DisplayName or summary.EventId), UDim2.new(1, -18, 0, 24), UDim2.fromOffset(9, 7), touch and 10 or 12, t.Text, true)
-		local line2 = summary.Mode == "Race" and "OPEN RACE" or ("TT  REC " .. tostring(summary.RecommendedTier or "--"))
-		label(card, line2 .. "   " .. formatMoney(summary.BaseReward), UDim2.new(1, -18, 0, 22), UDim2.fromOffset(9, 32), touch and 9 or 10, t.Accent, true)
-		label(card, "Start: " .. formatDistance(row.Distance), UDim2.new(1, -18, 0, 22), UDim2.fromOffset(9, 56), touch and 9 or 10, t.Muted, false)
-
-		card.MouseButton1Click:Connect(function()
-			selectedRow = row
-			renderCards()
-		end)
-	end
-	renderDetail(selectedRow)
-end
-
-local function renderTabs()
-	clear(tabRail)
-	local t = theme()
-	local timeTrial = button(tabRail, "TimeTrialsTab", "TIME TRIALS", activeTab == "TimeTrial" and t.Selected or t.Card)
-	timeTrial.Size = UDim2.new(0.5, -5, 1, 0)
-	timeTrial.Position = UDim2.fromOffset(0, 0)
-	timeTrial.MouseButton1Click:Connect(function()
-		activeTab = "TimeTrial"
-		selectedRow = nil
-		renderTabs()
-		renderCards()
-	end)
-	local race = button(tabRail, "RacesTab", "RACES", activeTab == "Race" and t.Selected or t.Card)
-	race.Size = UDim2.new(0.5, -5, 1, 0)
-	race.Position = UDim2.new(0.5, 5, 0, 0)
-	race.MouseButton1Click:Connect(function()
-		activeTab = "Race"
-		selectedRow = nil
-		renderTabs()
-		renderCards()
-	end)
-end
-
-setOpen = function(open)
-	overlay.Visible = open
-	root.Visible = open
-	if open then
-		subtitle.Text = "Browse events, teleport near the start, then enter the zone to open the race entry menu."
-		renderTabs()
-		renderCards()
-	end
-end
-
-local function ensureGui()
-	if gui and gui.Parent then return end
-	local t = theme()
+local function buildGui()
+	local old = playerGui:FindFirstChild("NTR_RaceBrowser")
+	if old then old:Destroy() end
 	gui = Instance.new("ScreenGui")
 	gui.Name = "NTR_RaceBrowser"
 	gui.IgnoreGuiInset = true
 	gui.ResetOnSpawn = false
-	gui.DisplayOrder = 77
-	gui.Enabled = true
+	gui.DisplayOrder = 170
 	gui.Parent = playerGui
 
 	overlay = Instance.new("Frame")
 	overlay.Name = "Overlay"
-	overlay.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+	overlay.BackgroundColor3 = Color3.new(0, 0, 0)
 	overlay.BackgroundTransparency = 0.38
 	overlay.BorderSizePixel = 0
 	overlay.Size = UDim2.fromScale(1, 1)
 	overlay.Visible = false
 	overlay.Parent = gui
 
-	root = Instance.new("Frame")
-	root.Name = "Root"
-	root.AnchorPoint = Vector2.new(0.5, 0.5)
-	root.Position = UDim2.fromScale(0.5, 0.5)
-	root.Size = touch and UDim2.new(0.92, 0, 0.72, 0) or UDim2.fromOffset(760, 500)
-	root.BackgroundColor3 = t.Panel
-	root.BackgroundTransparency = t.PanelTransparency
-	root.BorderSizePixel = 0
-	root.Visible = false
-	root.Parent = overlay
-	corner(root, 8)
-	stroke(root, t.Selected, 1.6, 0.12)
+	shell = UI.Panel(overlay, {
+		Name = "RacingShell",
+		Color = C("PanelDeep"),
+		Transparency = L("PanelTransparency", 0.08),
+		StrokeColor = C("Outline"),
+		StrokeWidth = L("ShellStrokeWidth", 2),
+		StrokeTransparency = 0.02,
+		Clips = true,
+	})
+	shell.AnchorPoint = Vector2.new(0.5, 0.5)
+	shell.Position = UDim2.fromScale(0.5, 0.5)
 
-	title = label(root, "RACES", UDim2.new(1, -94, 0, 30), UDim2.fromOffset(16, 12), touch and 15 or 18, t.Text, true)
-	subtitle = label(root, "", UDim2.new(1, -32, 0, 40), UDim2.fromOffset(16, 42), touch and 9 or 11, t.Muted, false)
+	local shellScale
+	if touch then
+		shell.Size = UDim2.new(1, -16, 1, -16)
+	else
+		shell.Size = UDim2.fromOffset(L("ShellWidth", 1200), L("ShellHeight", 720))
+		shellScale = Instance.new("UIScale")
+		shellScale.Parent = shell
+		local camera = workspace.CurrentCamera
+		local function resize()
+			local viewport = camera and camera.ViewportSize or Vector2.new(1920, 1080)
+			local scale = math.min((viewport.X - 48) / L("ShellWidth", 1200), (viewport.Y - 48) / L("ShellHeight", 720))
+			shellScale.Scale = math.clamp(scale, L("ScaleMin", 0.72), L("ScaleMax", 1.15))
+		end
+		resize()
+		if camera then camera:GetPropertyChangedSignal("ViewportSize"):Connect(resize) end
+	end
 
-	closeButton = button(root, "Close", "EXIT", t.Exit)
-	closeButton.AnchorPoint = Vector2.new(1, 0)
-	closeButton.Position = UDim2.new(1, -14, 0, 12)
-	closeButton.Size = UDim2.fromOffset(72, 30)
-	closeButton.MouseButton1Click:Connect(function()
-		setOpen(false)
-	end)
+	local headerH = touch and 44 or L("HeaderHeight", 64)
+	UI.Label(shell, {
+		Name = "Title",
+		Text = "RACE BROWSER",
+		Position = UDim2.fromOffset(touch and 12 or 24, 0),
+		Size = UDim2.new(0.45, 0, 0, headerH),
+		TextSize = touch and 16 or T("Heading", 22),
+		Role = "Heading",
+	})
+	local close = UI.Button(shell, {
+		Name = "Close",
+		Text = "×",
+		Position = UDim2.new(1, touch and -48 or -64, 0, 0),
+		Size = UDim2.fromOffset(touch and 48 or 64, headerH),
+		Color = C("PanelDeep"),
+		StrokeColor = C("Danger"),
+		FocusColor = C("Danger"),
+		TextColor = C("Danger"),
+		TextSize = touch and 24 or 30,
+		StrokeTransparency = 1,
+	})
+	close.MouseButton1Click:Connect(function() setOpen(false) end)
+	local divider = Instance.new("Frame")
+	divider.BorderSizePixel = 0
+	divider.BackgroundColor3 = C("Outline")
+	divider.BackgroundTransparency = 0.5
+	divider.Position = UDim2.fromOffset(0, headerH)
+	divider.Size = UDim2.new(1, 0, 0, 1)
+	divider.Parent = shell
 
-	tabRail = Instance.new("Frame")
-	tabRail.Name = "Tabs"
-	tabRail.BackgroundTransparency = 1
-	tabRail.Position = UDim2.fromOffset(16, 88)
-	tabRail.Size = UDim2.new(0.39, -24, 0, 36)
-	tabRail.Parent = root
+	local pad = touch and 12 or L("OuterPadding", 24)
+	local footerH = touch and 52 or L("FooterHeight", 72)
+	content = Instance.new("Frame")
+	content.Name = "Content"
+	content.BackgroundTransparency = 1
+	content.Position = UDim2.fromOffset(pad, headerH + pad)
+	content.Size = UDim2.new(1, -pad * 2, 1, -(headerH + footerH + pad + 8))
+	content.Parent = shell
 
-	list = Instance.new("ScrollingFrame")
-	list.Name = "EventList"
+	local listFraction = touch and 0.38 or L("BrowserListFraction", 0.38)
+	local gap = touch and 10 or L("Gap", 16)
+	local listPanel = Instance.new("Frame")
+	listPanel.Name = "AvailableEvents"
+	listPanel.BackgroundTransparency = 1
+	listPanel.BorderSizePixel = 0
+	listPanel.Position = UDim2.fromOffset(0, 0)
+	listPanel.Size = UDim2.new(listFraction, -gap / 2, 1, 0)
+	listPanel.Parent = content
+	local listScroller = Instance.new("ScrollingFrame")
+	listScroller.Name = "EventList"
+	listScroller.BackgroundTransparency = 1
+	listScroller.BorderSizePixel = 0
+	listScroller.Position = UDim2.fromOffset(0, 0)
+	listScroller.Size = UDim2.fromScale(1, 1)
+	listScroller.CanvasSize = UDim2.fromOffset(0, 0)
+	listScroller.AutomaticCanvasSize = Enum.AutomaticSize.Y
+	listScroller.ScrollBarThickness = touch and 4 or 6
+	listScroller.ScrollBarImageColor3 = C("Outline")
+	listScroller.Parent = listPanel
+	list = Instance.new("Frame")
+	list.Name = "CardContent"
 	list.BackgroundTransparency = 1
 	list.BorderSizePixel = 0
-	list.ScrollBarThickness = touch and 3 or 5
-	list.Position = UDim2.fromOffset(16, 134)
-	list.Size = UDim2.new(0.39, -24, 1, -150)
-	list.CanvasSize = UDim2.fromOffset(0, 0)
-	list.AutomaticCanvasSize = Enum.AutomaticSize.Y
-	list.Parent = root
-	local layout = Instance.new("UIListLayout")
-	layout.Padding = UDim.new(0, 8)
-	layout.SortOrder = Enum.SortOrder.LayoutOrder
-	layout.Parent = list
+	list.Position = UDim2.fromOffset(4, 4)
+	list.Size = UDim2.new(1, -(touch and 12 or 16), 0, 0)
+	list.AutomaticSize = Enum.AutomaticSize.Y
+	list.Parent = listScroller
 
 	detail = Instance.new("Frame")
 	detail.Name = "EventDetail"
-	detail.BackgroundColor3 = t.Card
-	detail.BackgroundTransparency = 0.12
-	detail.BorderSizePixel = 0
-	detail.Position = UDim2.new(0.39, 8, 0, 88)
-	detail.Size = UDim2.new(0.61, -24, 1, -104)
-	detail.Parent = root
-	corner(detail, 7)
-	stroke(detail, t.Accent, 1, 0.42)
+	detail.BackgroundTransparency = 1
+	detail.Position = UDim2.new(listFraction, gap / 2, 0, 0)
+	detail.Size = UDim2.new(1 - listFraction, -gap / 2, 1, 0)
+	detail.Parent = content
+
+	status = UI.Label(shell, {
+		Name = "Status",
+		Text = "",
+		Position = UDim2.fromOffset(pad, -footerH + L("ShellHeight", 720)),
+		Size = UDim2.new(1, -pad * 2, 0, touch and 0 or 18),
+		Color = C("Danger"),
+		TextSize = T("Caption", 11),
+		Role = "Heading",
+	})
+	status.AnchorPoint = Vector2.new(0, 1)
+	status.Position = UDim2.new(0, pad, 1, -footerH + (touch and 0 or 14))
+	status.Visible = false
+
+	local buttonY = touch and -48 or -64
+	exitButton = UI.Button(shell, {
+		Name = "Exit",
+		Text = "EXIT",
+		Position = UDim2.new(0, pad, 1, buttonY),
+		Size = UDim2.new(0.5, -(pad + gap / 2), 0, touch and 40 or 48),
+		Color = C("PanelSoft"),
+		StrokeColor = C("Outline"),
+		FocusColor = C("Telemetry"),
+	})
+	exitButton.MouseButton1Click:Connect(function() setOpen(false) end)
+	teleportButton = UI.Button(shell, {
+		Name = "TeleportToStart",
+		Text = "TELEPORT",
+		Position = UDim2.new(0.5, gap / 2, 1, buttonY),
+		Size = UDim2.new(0.5, -(pad + gap / 2), 0, touch and 40 or 48),
+		Color = C("PanelBlue"),
+		StrokeColor = C("Telemetry"),
+		FocusColor = C("Telemetry"),
+	})
+	teleportButton.MouseButton1Click:Connect(teleportSelected)
 end
 
 openEvent.Event:Connect(function()
-	ensureGui()
-	setOpen(not (root and root.Visible))
+	setOpen(not overlay.Visible)
 end)
 
-ensureGui()
-print("[NTR Racing Phase 7] Race browser client active.")
+buildGui()
+print("[NTR Racing UI Phase 1] Shared-shell Race Browser active.")

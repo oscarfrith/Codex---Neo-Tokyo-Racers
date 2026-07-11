@@ -4,7 +4,7 @@ Generated from the Roblox Studio full snapshot export.
 
 These files are a GitHub-readable mirror of Studio scripts. Treat Studio as live until a Rojo/source-sync migration is explicitly completed.
 
-Script count: 107
+Script count: 109
 
 - `ReplicatedStorage.NeoTokyoRacers.Compatibility.LiveSystemRegistry` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Compatibility/LiveSystemRegistry.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Compatibility.PathResolver` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Compatibility/PathResolver.module.lua`
@@ -36,6 +36,7 @@ Script count: 107
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Racing.RaceRouteDefinition` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Racing/RaceRouteDefinition.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.UI.ArrowScroller` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/UI/ArrowScroller.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.UI.ColourUtils` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/UI/ColourUtils.module.lua`
+- `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.UI.RacingUIComponents` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/UI/RacingUIComponents.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.UI.ResponsiveLayout` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/UI/ResponsiveLayout.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.UI.StatBars` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/UI/StatBars.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.UI.UIFactory` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/UI/UIFactory.module.lua`
@@ -52,6 +53,7 @@ Script count: 107
 - `ServerScriptService.NeoTokyoRacers.Services.Player.LegacyGarageProfileBridge_Active` (Script, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Player/LegacyGarageProfileBridge_Active.server.lua`
 - `ServerScriptService.NeoTokyoRacers.Services.Player.ProfileService_Active` (Script, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Player/ProfileService_Active.server.lua`
 - `ServerScriptService.NeoTokyoRacers.Services.Racing.RaceBrowserTeleportService_Active` (Script, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Racing/RaceBrowserTeleportService_Active.server.lua`
+- `ServerScriptService.NeoTokyoRacers.Services.Racing.RaceDisplayNameService_Active` (Script, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Racing/RaceDisplayNameService_Active.server.lua`
 - `ServerScriptService.NeoTokyoRacers.Services.Racing.RaceMatchmakingService_Active` (Script, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Racing/RaceMatchmakingService_Active.server.lua`
 - `ServerScriptService.NeoTokyoRacers.Services.Racing.RacePersonalBestService_Active` (Script, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Racing/RacePersonalBestService_Active.server.lua`
 - `ServerScriptService.NeoTokyoRacers.Services.Racing.RaceRewardService_Active` (Script, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Racing/RaceRewardService_Active.server.lua`

@@ -65,6 +65,35 @@ Choose one branch per new chat where possible:
 4. Track content scaling: tooling for more routes, checkpoint validation, route audit scripts, arrow-folder creation for new checkpoint counts, reward/base-time balancing helpers.
 5. Deferred architecture: private/reserved race servers, cross-lobby matchmaking, and player-created races. These are not needed for the current prototype unless explicitly chosen.
 
+## Next Requested Branch: Race And Prize UI
+
+As of 2026-07-11, the user has paused later PC free-roam UI phases and wants the next chat to focus on race/time-trial menus and prize presentation. Begin with a read-only audit of the Phase 11Z racing mirror and preserve its lifecycle/reward ownership. Compare the current entry menu, time-trial HUD, countdown, result coach, rewards, PB display, race browser, and multiplayer result flow against the shared PC UI design system before proposing changes.
+
+Use the confirmed Phase 4A free-roam design language and semantic tokens, but implement racing presentation in isolated Racing UI controllers. Do not rewrite `TimeTrialService_Active`, reward idempotency, Phase 8H reset, Phase 11Y finish cleanup, or the register-limited bootstrap merely to restyle screens. Separate visual/menu work from any economy, reward-balance, persistence, or matchmaking changes.
+
+### Approved Racing UI Design Gate (2026-07-11)
+
+The user approved the desktop entry/records/vehicle/race overview layouts, the
+equal-column race and time-trial results, the simplified free-roam Race Browser,
+and the responsive/component direction. The authoritative specification is:
+
+```text
+docs/racing-ui-design-system-2026-07-11.md
+```
+
+The pre-install audit passed `103/1/0`. The first visible installer is now:
+
+```text
+scripts/roblox_racing_ui_phase1_shared_shell_browser.lua
+```
+
+It safely combines shared Racing UI semantic config/components with the
+canonical isolated Race Browser replacement. Entry presentation was deliberately
+kept out of the first install because the existing entry owner also contains
+confirmed PB, vehicle-selection, retry, and exit behavior. Do not combine global
+leaderboard persistence, new race telemetry, rewards, matchmaking, reset, or
+finish lifecycle changes into the visual installer.
+
 ## Workflow Notes For Next Chat
 
 - Apply the project `follow:` / `suggest:` rule from `docs/12_continuous_improvement_workflow.md`.
