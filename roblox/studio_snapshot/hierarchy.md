@@ -1,6 +1,6 @@
 # Roblox Studio Hierarchy Snapshot
 
-Generated in Studio: 2026-07-10 23:37:42
+Generated in Studio: 2026-07-11 01:35:39
 Scripts exported: 106
 Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, StarterGui, Workspace, ServerStorage, Lighting
 
@@ -2260,6 +2260,12 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - DealershipIcon (StringValue)
             - GarageIcon (StringValue)
             - MapImage (StringValue)
+            - MapNorthArrow (StringValue)
+            - MapPlayerIcon (StringValue)
+            - MapTileBottomLeft (StringValue)
+            - MapTileBottomRight (StringValue)
+            - MapTileTopLeft (StringValue)
+            - MapTileTopRight (StringValue)
             - RaceIcon (StringValue)
             - SettingsIcon (StringValue)
           - Colours (Folder)
@@ -2277,6 +2283,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Telemetry (Color3Value)
             - Text (Color3Value)
           - Defaults (Folder)
+            - MapFlipX (BoolValue)
+            - MapFlipZ (BoolValue)
+            - MapPlayerIconRotates (BoolValue)
             - HudOpacityPercent (NumberValue)
             - MusicPercent (NumberValue)
             - SfxPercent (NumberValue)
@@ -2319,6 +2328,19 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - CashHeight (NumberValue)
             - DropdownGap (NumberValue)
             - EdgeMargin (NumberValue)
+            - MapCalibrationPixels (NumberValue)
+            - MapCalibrationStuds (NumberValue)
+            - MapCoordinateRotationDegrees (NumberValue)
+            - MapNorthArrowMargin (NumberValue)
+            - MapNorthArrowSize (NumberValue)
+            - MapPixels (NumberValue)
+            - MapPlayerIconSize (NumberValue)
+            - MapRotationOffsetDegrees (NumberValue)
+            - MapSmoothing (NumberValue)
+            - MapViewportFieldOfView (NumberValue)
+            - MapVisibleStuds (NumberValue)
+            - MapWorldCenterX (NumberValue)
+            - MapWorldCenterZ (NumberValue)
             - MaxScale (NumberValue)
             - MinScale (NumberValue)
             - MinimapSize (NumberValue)
@@ -2825,7 +2847,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - RuntimeVFXController_Active (LocalScript) [script_0084, 16 lines, 9 attrs]
         - UI (Folder)
           - OpenRaceBrowser (BindableEvent)
-          - DesktopFreeRoamHudController_Active (LocalScript) [script_0085, 1038 lines, 2 attrs]
+          - DesktopFreeRoamHudController_Active (LocalScript) [script_0085, 1096 lines, 2 attrs]
           - FreeRoamNavController_Active (LocalScript) [script_0086, 1321 lines, 3 attrs]
           - FreeRoamVehicleExitButton_Active (LocalScript) [script_0087, 115 lines]
           - CockpitPaintUIController (ModuleScript) [script_0088, 46 lines, 5 attrs]
@@ -2877,10 +2899,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
 - Workspace (Workspace)
   - Camera (Camera)
   - Decal (Decal)
-  - Decal (Decal)
-  - Decal (Decal)
-  - Decal (Decal)
-  - Decal (Decal)
+  - north (Decal)
   - NeoTokyoRacersWorld (Folder) [3 attrs]
     - City (Folder) [3 attrs]
       - Block S1 (Folder)
@@ -9557,6 +9576,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - SurfaceLight lamppost (SurfaceLight)
                   - neon lights interior (Part)
                     - SurfaceLight lamppost (SurfaceLight)
+                  - lights top frame (UnionOperation)
+                  - lights top frame (UnionOperation)
+                  - lights top frame (UnionOperation)
                 - 3f lights interior (Model)
                   - neon lights interior (Part)
                     - SurfaceLight lamppost (SurfaceLight)

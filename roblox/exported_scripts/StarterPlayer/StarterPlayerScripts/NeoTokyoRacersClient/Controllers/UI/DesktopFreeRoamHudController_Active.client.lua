@@ -1,4 +1,4 @@
--- NTR_PC_FREEROAM_UI_PHASE2I_BORDERLESS_BOOST_ICON
+-- NTR_PC_FREEROAM_UI_PHASE3D_IMAGE_ONLY_MAP_MARKERS
 
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -36,6 +36,12 @@ local actionBar
 local leftCluster
 local moneyLabel
 local minimap
+local mapCanvas
+local playerMarker
+local northArrow
+local mapMissingLabel
+local displayedMapPosition
+local displayedPlayerHeading
 local bottomActions
 local controlsButton
 local exitButton
@@ -809,20 +815,23 @@ local function buildMainHud()
 
 	minimap = new("Frame", { Name = "Minimap", BackgroundColor3 = C("PanelDeep"), BackgroundTransparency = 0.28, BorderSizePixel = 0, Position = UDim2.fromOffset(0, cashHeight + 8), Size = UDim2.fromOffset(mapSize, mapSize), ClipsDescendants = true, ZIndex = 8 }, leftCluster)
 	corner(minimap, 9)
-	local mapImage = asset("MapImage")
-	if mapImage ~= "" then
-		new("ImageLabel", { Name = "MapImage", BackgroundTransparency = 1, BorderSizePixel = 0, Image = mapImage, ImageColor3 = C("Muted"), ImageTransparency = 0.15, ScaleType = Enum.ScaleType.Crop, Size = UDim2.fromScale(1, 1), ZIndex = 9 }, minimap)
-	else
-		for index, road in ipairs({
-			{ 22, 45, 200, 5, 22 }, { 8, 120, 220, 6, -13 }, { 65, 10, 5, 220, 7 },
-			{ 150, 18, 5, 210, -18 }, { 34, 178, 180, 5, 35 }, { 95, 70, 110, 4, -42 },
-		}) do
-			local roadItem = new("Frame", { Name = "Road" .. index, BackgroundColor3 = C("Muted"), BackgroundTransparency = 0.35, BorderSizePixel = 0, Position = UDim2.fromOffset(road[1], road[2]), Size = UDim2.fromOffset(road[3], road[4]), Rotation = road[5], ZIndex = 9 }, minimap)
-			corner(roadItem, 3)
-		end
+	mapCanvas = new("Frame", { Name = "MapCanvas", AnchorPoint = Vector2.new(0.5, 0.5), BackgroundTransparency = 1, BorderSizePixel = 0, Position = UDim2.fromOffset(mapSize * 0.5, mapSize * 0.5), Size = UDim2.fromOffset(mapSize, mapSize), ZIndex = 9 }, minimap)
+	local tileNames = { "MapTileTopLeft", "MapTileTopRight", "MapTileBottomLeft", "MapTileBottomRight" }
+	local tilePositions = { UDim2.fromScale(0, 0), UDim2.fromScale(0.5, 0), UDim2.fromScale(0, 0.5), UDim2.fromScale(0.5, 0.5) }
+	local completeTiles = true
+	for index, tileName in ipairs(tileNames) do
+		local image = asset(tileName)
+		if image == "" then completeTiles = false end
+		new("ImageLabel", { Name = tileName, BackgroundTransparency = 1, BorderSizePixel = 0, Image = image, ImageTransparency = 0, ScaleType = Enum.ScaleType.Stretch, Position = tilePositions[index], Size = UDim2.fromScale(0.5, 0.5), ZIndex = 9 }, mapCanvas)
 	end
-	local arrow = label(minimap, "PlayerArrow", "^", UDim2.fromOffset(34, 34), UDim2.new(0.5, -17, 0.5, -17), 25, C("Telemetry"), Enum.TextXAlignment.Center)
-	arrow.ZIndex = 16
+	mapMissingLabel = label(minimap, "MapMissing", "ADD 4 MAP TILE IDS", UDim2.new(1, -24, 0, 32), UDim2.new(0, 12, 0.5, -16), T("Caption", 11), C("Muted"), Enum.TextXAlignment.Center)
+	mapMissingLabel.Visible = not completeTiles
+	mapMissingLabel.ZIndex = 12
+	local markerSize = math.max(8, L("MapPlayerIconSize", 22))
+	playerMarker = new("ImageLabel", { Name = "PlayerMarker", AnchorPoint = Vector2.new(0.5, 0.5), BackgroundTransparency = 1, BorderSizePixel = 0, Image = asset("MapPlayerIcon"), ImageColor3 = C("Text"), ScaleType = Enum.ScaleType.Fit, Position = UDim2.fromScale(0.5, 0.5), Size = UDim2.fromOffset(markerSize, markerSize), ZIndex = 15 }, minimap)
+	local northSize = math.max(8, L("MapNorthArrowSize", 28))
+	local northMargin = math.max(0, L("MapNorthArrowMargin", 10))
+	northArrow = new("ImageLabel", { Name = "NorthArrow", AnchorPoint = Vector2.new(1, 1), BackgroundTransparency = 1, BorderSizePixel = 0, Image = asset("MapNorthArrow"), ImageColor3 = C("Text"), ScaleType = Enum.ScaleType.Fit, Position = UDim2.new(1, -northMargin, 1, -northMargin), Size = UDim2.fromOffset(northSize, northSize), ZIndex = 15 }, minimap)
 	local function edgeFade(name, position, size, rotation)
 		local edge = new("Frame", { Name = name, BackgroundColor3 = C("PanelDeep"), BackgroundTransparency = 0, BorderSizePixel = 0, Position = position, Size = size, ZIndex = 14 }, minimap)
 		new("UIGradient", { Transparency = NumberSequence.new({ NumberSequenceKeypoint.new(0, 1 - E("MinimapEdgeOpacity", 0.82)), NumberSequenceKeypoint.new(1, 1) }), Rotation = rotation }, edge)
@@ -915,6 +924,12 @@ local function updateLayout()
 	local edge, top = L("EdgeMargin", 20), L("TopMargin", 18)
 	actionBar.Position = UDim2.fromOffset(logicalW - actionBar.Size.X.Offset - edge, top)
 	leftCluster.Position = UDim2.fromOffset(edge, logicalH - edge)
+	local markerSize = math.max(8, L("MapPlayerIconSize", 22))
+	playerMarker.Size = UDim2.fromOffset(markerSize, markerSize)
+	local northSize = math.max(8, L("MapNorthArrowSize", 28))
+	local northMargin = math.max(0, L("MapNorthArrowMargin", 10))
+	northArrow.Size = UDim2.fromOffset(northSize, northSize)
+	northArrow.Position = UDim2.new(1, -northMargin, 1, -northMargin)
 	bottomActions.Position = UDim2.fromOffset(logicalW * 0.5, logicalH - edge)
 	telemetry.Position = UDim2.fromOffset(logicalW - edge, logicalH - edge)
 	local boostX = L("BoostBarOffsetX", 90)
@@ -978,6 +993,45 @@ local function updateRuntime(dt)
 	controlsButton.Visible = driving
 	exitButton.Visible = driving
 	telemetry.Visible = driving
+	local character = player.Character
+	local characterRoot = character and character:FindFirstChild("HumanoidRootPart")
+	local mapSubject = vehicle and (vehicle.PrimaryPart or vehicle:FindFirstChild("CockpitRoot_DoNotRename", true)) or characterRoot
+	if mapSubject and mapSubject:IsA("BasePart") then
+		local mapSize = L("MinimapSize", 245)
+		local mapPixels = math.max(1, L("MapPixels", 2048))
+		local calibrationPixels = math.max(1, L("MapCalibrationPixels", 207))
+		local calibrationStuds = math.max(1, L("MapCalibrationStuds", 2850))
+		local fullMapStuds = mapPixels * calibrationStuds / calibrationPixels
+		local visibleStuds = math.max(100, L("MapVisibleStuds", 2850))
+		local uiPerStud = mapSize / visibleStuds
+		local canvasSize = fullMapStuds * uiPerStud
+		mapCanvas.Size = UDim2.fromOffset(canvasSize, canvasSize)
+		local position = mapSubject.Position
+		local dx = position.X - L("MapWorldCenterX", 0)
+		local dz = position.Z - L("MapWorldCenterZ", 0)
+		if B(defaults, "MapFlipX", false) then dx = -dx end
+		if B(defaults, "MapFlipZ", false) then dz = -dz end
+		local coordinateRadians = math.rad(L("MapCoordinateRotationDegrees", 90))
+		local mappedX = dx * math.cos(coordinateRadians) - dz * math.sin(coordinateRadians)
+		local mappedZ = dx * math.sin(coordinateRadians) + dz * math.cos(coordinateRadians)
+		local look = mapSubject.CFrame.LookVector
+		local lookX, lookZ = look.X, look.Z
+		if B(defaults, "MapFlipX", false) then lookX = -lookX end
+		if B(defaults, "MapFlipZ", false) then lookZ = -lookZ end
+		local mappedLookX = lookX * math.cos(coordinateRadians) - lookZ * math.sin(coordinateRadians)
+		local mappedLookZ = lookX * math.sin(coordinateRadians) + lookZ * math.cos(coordinateRadians)
+		local targetHeading = math.deg(math.atan2(mappedLookX, -mappedLookZ)) + L("MapRotationOffsetDegrees", 0)
+		local targetPosition = Vector2.new(mapSize * 0.5, mapSize * 0.5) - Vector2.new(mappedX * uiPerStud, mappedZ * uiPerStud)
+		local smoothing = math.max(0, L("MapSmoothing", 10))
+		local alpha = smoothing <= 0 and 1 or math.clamp((dt or 1 / 60) * smoothing, 0, 1)
+		displayedMapPosition = displayedMapPosition and displayedMapPosition:Lerp(targetPosition, alpha) or targetPosition
+		if displayedPlayerHeading == nil then displayedPlayerHeading = targetHeading end
+		local headingDelta = (targetHeading - displayedPlayerHeading + 180) % 360 - 180
+		displayedPlayerHeading += headingDelta * alpha
+		mapCanvas.Position = UDim2.fromOffset(displayedMapPosition.X, displayedMapPosition.Y)
+		mapCanvas.Rotation = 0
+		playerMarker.Rotation = B(defaults, "MapPlayerIconRotates", true) and displayedPlayerHeading or 0
+	end
 	if not driving then displayedBoostAlpha = 1 end
 	despawnButton.BackgroundColor3 = vehicle and C("Danger") or C("Disabled")
 	if vehicle then
@@ -1032,6 +1086,10 @@ pcall(function() RunService:UnbindFromRenderStep("NTR_PCFreeRoamHudPhase2E") end
 pcall(function() RunService:UnbindFromRenderStep("NTR_PCFreeRoamHudPhase2F") end)
 pcall(function() RunService:UnbindFromRenderStep("NTR_PCFreeRoamHudPhase2G") end)
 pcall(function() RunService:UnbindFromRenderStep("NTR_PCFreeRoamHudPhase2H") end)
-RunService:BindToRenderStep("NTR_PCFreeRoamHudPhase2I", 3000, function(dt)
+pcall(function() RunService:UnbindFromRenderStep("NTR_PCFreeRoamHudPhase2I") end)
+pcall(function() RunService:UnbindFromRenderStep("NTR_PCFreeRoamHudPhase3A") end)
+pcall(function() RunService:UnbindFromRenderStep("NTR_PCFreeRoamHudPhase3B") end)
+pcall(function() RunService:UnbindFromRenderStep("NTR_PCFreeRoamHudPhase3C") end)
+RunService:BindToRenderStep("NTR_PCFreeRoamHudPhase3D", 3000, function(dt)
 	updateRuntime(dt)
 end)

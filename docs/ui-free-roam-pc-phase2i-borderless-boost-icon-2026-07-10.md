@@ -1,7 +1,7 @@
 # PC Free-Roam UI Phase 2I Borderless Boost Icon
 
 Date: 2026-07-10  
-Status: Generated; awaiting Studio verification
+Status: Installed and approved; current pre-minimap HUD baseline
 
 Run in Edit mode:
 

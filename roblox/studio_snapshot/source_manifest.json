@@ -2719,17 +2719,17 @@
     "disabled": false,
     "attributes": {
       "InstalledAt": {
-        "value": "2026-07-10T22:17:10Z",
+        "value": "2026-07-11T00:20:24Z",
         "type": "string"
       },
       "InstalledBy": {
-        "value": "NTR_PC_FREEROAM_UI_PHASE2I_BORDERLESS_BOOST_ICON",
+        "value": "NTR_PC_FREEROAM_UI_PHASE3D_IMAGE_ONLY_MAP_MARKERS",
         "type": "string"
       }
     },
-    "source_lines": 1038,
-    "source_bytes": 51387,
-    "source_checksum": "956029541",
+    "source_lines": 1096,
+    "source_bytes": 55893,
+    "source_checksum": "847195401",
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/UI/DesktopFreeRoamHudController_Active.client.lua"
   },
   {

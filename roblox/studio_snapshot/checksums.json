@@ -675,9 +675,9 @@
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/UI/DesktopFreeRoamHudController_Active.client.lua",
     "class_name": "LocalScript",
     "disabled": false,
-    "source_lines": 1038,
-    "source_bytes": 51387,
-    "source_checksum": "956029541"
+    "source_lines": 1096,
+    "source_bytes": 55893,
+    "source_checksum": "847195401"
   },
   "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.FreeRoamNavController_Active": {
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/UI/FreeRoamNavController_Active.client.lua",
