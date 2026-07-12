@@ -739,6 +739,14 @@ function showEntry(payload)
 		Mode = payload.Mode or summary.Mode or "TimeTrial",
 		Summary = summary,
 	}
+	-- NTR_RACING_UI_PHASE2_ENTRY_PRESENTATION_BRIDGE
+	local presentationRequest = script.Parent:FindFirstChild("RaceEntryPresentationRequest")
+	if presentationRequest and presentationRequest:IsA("BindableEvent") then
+		setOpen(false)
+		gui.Enabled = false -- NTR_RACING_UI_PHASE2_V3_LEGACY_GUI_SUPPRESSION
+		presentationRequest:Fire(payload)
+		return
+	end
 	title.Text = tostring(summary.DisplayName or "RACE MENU")
 	statusText(payload.Message or "Review the track, then choose a mode.", true)
 
@@ -782,6 +790,50 @@ function showEntry(payload)
 	end)
 
 	setOpen(true)
+end
+
+-- NTR_RACING_UI_PHASE2_ENTRY_ACTION_BRIDGE
+local presentationAction = script.Parent:FindFirstChild("RaceEntryLegacyAction")
+if presentationAction and presentationAction:IsA("BindableEvent") then
+	presentationAction.Event:Connect(function(action, data)
+		data = type(data) == "table" and data or {}
+		if action == "ChooseVehicle" then
+			gui.Enabled = true
+			state.SelectedLapCount = tonumber(data.LapCount) or state.SelectedLapCount or 1
+			showVehicleSelect(tostring(data.Mode) == "Race" and "Race" or "TimeTrial")
+			setOpen(true)
+		elseif action == "StartSelectedVehicle" then
+			-- NTR_RACING_UI_PHASE2_V10_DIRECT_START_BRIDGE
+			local mode = tostring(data.Mode) == "Race" and "Race" or "TimeTrial"
+			local selected
+			for _, row in ipairs(ownedRows()) do if tostring(row.VehicleId) == tostring(data.VehicleId or "") then selected = row break end end
+			if not selected then warn("[NTR Racing UI V10] Selected vehicle is no longer owned.") return end
+			state.SelectedRow = selected
+			state.SelectedLapCount = tonumber(data.LapCount) or state.SelectedLapCount or 1
+			local spawn = callGarage("SpawnOwnedVehicleFromFreeRoam", { VehicleId = selected.VehicleId, CockpitId = selected.CockpitId })
+			if spawn.Success ~= true and spawn.Ok ~= true then
+				local selectResult = callGarage("SelectVehicleInstance", { VehicleId = selected.VehicleId, CockpitId = selected.CockpitId })
+				if selectResult.Success ~= true and selectResult.Ok ~= true then warn("[NTR Racing UI V10] " .. tostring(selectResult.Message or spawn.Message or "Vehicle selection failed.")) return end
+				spawn = callGarage("SpawnVehicle", {})
+				if spawn.Success ~= true and spawn.Ok ~= true then warn("[NTR Racing UI V10] " .. tostring(spawn.Message or "Vehicle spawn failed.")) return end
+			end
+			local clientRoot = script.Parent.Parent
+			local uiFolder = clientRoot and clientRoot:FindFirstChild("UI")
+			local spawnedEvent = uiFolder and uiFolder:FindFirstChild("FreeRoamVehicleSpawned")
+			if spawnedEvent and spawnedEvent:IsA("BindableEvent") then spawnedEvent:Fire() end
+			task.wait(0.35)
+			if mode == "Race" then
+				startRaceQueueEvent:Fire({ EventId = tostring(data.EventId or (state.Entry and state.Entry.EventId) or "shifted_canal_sprint_race"), VehicleId = selected.VehicleId, CockpitId = selected.CockpitId, DisplayName = state.Entry and state.Entry.Summary and state.Entry.Summary.DisplayName })
+			else
+				local result = callRace("StartStagedTimeTrial", { EventId = tostring(data.EventId or timeTrialEventIdForStart()), VehicleId = selected.VehicleId, LapCount = state.SelectedLapCount })
+				if result.Ok ~= true and result.Success ~= true then warn("[NTR Racing UI V10] " .. tostring(result.Message or "Time trial start failed.")) return end
+			end
+			setOpen(false)
+		elseif action == "Close" then
+			gui.Enabled = true
+			setOpen(false)
+		end
+	end)
 end
 
 local hudGui = Instance.new("ScreenGui")

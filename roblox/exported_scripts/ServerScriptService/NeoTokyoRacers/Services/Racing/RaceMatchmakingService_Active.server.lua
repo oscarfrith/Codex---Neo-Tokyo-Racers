@@ -279,25 +279,17 @@ local function cleanupRace(race, reason)
 end
 
 local function sortedPlacements(race)
+	-- NTR_RACING_PHASE15_CONFIG_DRIVEN_MULTIPLAYER_LAPS
 	local list = {}
-	for _, entry in ipairs(race.Participants or {}) do
-		table.insert(list, entry)
-	end
+	for _, entry in ipairs(race.Participants or {}) do table.insert(list, entry) end
 	table.sort(list, function(a, b)
-		if (a.Finished == true) ~= (b.Finished == true) then
-			return a.Finished == true
-		end
-		if a.FinishPlace and b.FinishPlace then
-			return a.FinishPlace < b.FinishPlace
-		end
-		local aGate = tonumber(a.NextGateIndex) or 1
-		local bGate = tonumber(b.NextGateIndex) or 1
-		if aGate ~= bGate then
-			return aGate > bGate
-		end
-		local aElapsed = tonumber(a.LastProgressElapsed) or 0
-		local bElapsed = tonumber(b.LastProgressElapsed) or 0
-		return aElapsed < bElapsed
+		if (a.Finished == true) ~= (b.Finished == true) then return a.Finished == true end
+		if a.FinishPlace and b.FinishPlace then return a.FinishPlace < b.FinishPlace end
+		local aLaps = tonumber(a.CompletedLapCount) or 0 local bLaps = tonumber(b.CompletedLapCount) or 0
+		if aLaps ~= bLaps then return aLaps > bLaps end
+		local aGate = tonumber(a.NextGateIndex) or 1 local bGate = tonumber(b.NextGateIndex) or 1
+		if aGate ~= bGate then return aGate > bGate end
+		return (tonumber(a.LastProgressElapsed) or 0) < (tonumber(b.LastProgressElapsed) or 0)
 	end)
 	return list
 end
@@ -313,14 +305,25 @@ local function broadcastPositions(race)
 			Place = index,
 			Finished = entry.Finished == true,
 			NextGateIndex = entry.NextGateIndex,
+			CurrentLap = entry.CurrentLap or 1,
+			CompletedLapCount = entry.CompletedLapCount or 0,
+			LapTarget = race.LapTarget or 1,
+			FinishElapsed = tonumber(entry.FinishElapsed),
+			VehicleId = tostring(entry.SelectedVehicleId or ""),
+			VehicleName = tostring(entry.VehicleDisplayName or entry.SelectedVehicleId or ""), -- NTR_RACING_UI_PHASE12_RESULT_SNAPSHOT_BRIDGE
 		})
 	end
 	for _, entry in ipairs(race.Participants or {}) do
 		fire(entry.Player, {
-			Type = "RacePositionUpdate",
-			RunId = race.RunId,
-			Place = entry.CurrentPlace or 1,
-			ParticipantCount = #race.Participants,
+			Type = "RacePositionUpdate", RunId = race.RunId, Place = entry.CurrentPlace or 1,
+			ParticipantCount = #race.Participants, CurrentLap = entry.CurrentLap or 1,
+			CompletedLapCount = entry.CompletedLapCount or 0, LapTarget = race.LapTarget or 1,
+			Positions = payloadPositions,
+		})
+		fireRace(entry.Player, {
+			Type = "RacePositionUpdate", RunId = race.RunId, Place = entry.CurrentPlace or 1,
+			ParticipantCount = #race.Participants, CurrentLap = entry.CurrentLap or 1,
+			CompletedLapCount = entry.CompletedLapCount or 0, LapTarget = race.LapTarget or 1,
 			Positions = payloadPositions,
 		})
 	end
@@ -688,120 +691,49 @@ end
 local function finishEntry(race, entry)
 	-- NTR_RACING_PHASE11D_FINISH_BOUNDARY
 	if entry.Finished then return end
-	entry.Finished = true
-	entry.DNF = false
-	entry.FinishElapsed = now() - race.StartClock
-	entry.FinishPlace = race.NextFinishPlace
-	race.NextFinishPlace += 1
+	entry.Finished = true entry.DNF = false entry.FinishElapsed = now() - race.StartClock entry.FinishPlace = race.NextFinishPlace race.NextFinishPlace += 1
 	local finishVehicle = entry.Vehicle
-	finishedReturnByPlayer[entry.Player] = {
-		RunId = race.RunId,
-		EventId = race.EventId,
-		RouteId = race.RouteId,
-		Target = returnCFrameForRoute(race.Route, "Race"),
-	}
-	callSessionAssetService("RemoveParticipant", {
-		RunId = race.RunId,
-		UserId = entry.Player and entry.Player.UserId,
-		Player = entry.Player,
-		Vehicle = finishVehicle,
-	})
+	finishedReturnByPlayer[entry.Player] = { RunId=race.RunId, EventId=race.EventId, RouteId=race.RouteId, Target=returnCFrameForRoute(race.Route,"Race") }
+	callSessionAssetService("RemoveParticipant", { RunId=race.RunId, UserId=entry.Player and entry.Player.UserId, Player=entry.Player, Vehicle=finishVehicle })
 	fireActiveRaceVisibility(race)
-	local rewardResult = callRaceRewardService("GrantRaceReward", {
-		Player = entry.Player,
-		RunId = race.RunId,
-		EventId = race.EventId,
-		RouteId = race.RouteId,
-		Place = entry.FinishPlace,
-		ParticipantCount = #race.Participants,
-		Elapsed = entry.FinishElapsed,
-	}) or {}
-	fire(entry.Player, {
-		Type = "RaceFinished",
-		RunId = race.RunId,
-		EventId = race.EventId,
-		RouteId = race.RouteId,
-		DisplayName = race.DisplayName,
-		Place = entry.FinishPlace,
-		ParticipantCount = #race.Participants,
-		Elapsed = entry.FinishElapsed,
-		GateCount = race.GateCount,
-		RaceMedal = rewardResult.Medal,
-		RewardGranted = rewardResult.Granted == true,
-		RewardAmount = tonumber(rewardResult.Amount) or 0,
-		RewardMessage = tostring(rewardResult.Message or ""),
-	})
-	fireRace(entry.Player, {
-		Type = "RaceFinished",
-		RunId = race.RunId,
-		EventId = race.EventId,
-		RouteId = race.RouteId,
-		NextGateIndex = race.GateCount,
-		GateCount = race.GateCount,
-	})
-	task.delay(0.45, function()
-		if finishVehicle and finishVehicle.Parent and entry.Vehicle == finishVehicle then
-			destroyVehicleAfterUnseat(entry.Player, finishVehicle)
-			entry.Vehicle = nil
-		end
-	end)
+	local rewardResult = callRaceRewardService("GrantRaceReward", { Player=entry.Player, RunId=race.RunId, EventId=race.EventId, RouteId=race.RouteId, Place=entry.FinishPlace, ParticipantCount=#race.Participants, Elapsed=entry.FinishElapsed }) or {}
+	local payload = {
+		Type="RaceFinished", RunId=race.RunId, EventId=race.EventId, RouteId=race.RouteId, DisplayName=race.DisplayName,
+		Place=entry.FinishPlace, ParticipantCount=#race.Participants, Elapsed=entry.FinishElapsed,
+		GateCount=race.GateCount, NextGateIndex=race.GateCount, CurrentLap=entry.CurrentLap or race.LapTarget or 1,
+		CompletedLapCount=entry.CompletedLapCount or race.LapTarget or 1, LapTarget=race.LapTarget or 1,
+		LapTimes=entry.LapTimes or {}, BestLapSeconds=entry.BestLapSeconds, BestLapIndex=entry.BestLapIndex,
+		RaceMedal=rewardResult.Medal, RewardGranted=rewardResult.Granted==true, RewardAmount=tonumber(rewardResult.Amount) or 0,
+		RewardMessage=tostring(rewardResult.Message or ""), SelectedVehicleId=tostring(entry.SelectedVehicleId or ""),
+	}
+	fire(entry.Player,payload) fireRace(entry.Player,payload) -- preserves Phase 12 presentation payload ownership
+	task.delay(.45,function() if finishVehicle and finishVehicle.Parent and entry.Vehicle==finishVehicle then destroyVehicleAfterUnseat(entry.Player,finishVehicle) entry.Vehicle=nil end end)
 	broadcastPositions(race)
-	if allFinished(race) then
-		task.delay(5, function()
-			cleanupRace(race, "Finished")
-		end)
-	end
+	if allFinished(race) then task.delay(5,function() cleanupRace(race,"Finished") end) end
 end
 
-
 local function advanceCheckpoint(race, entry, touchedPart)
-	if not (race and race.State == "Running" and entry and entry.Finished ~= true) then return end
-	local gate = RouteDefinition.GetGate(race.Route, entry.NextGateIndex)
-	if not (gate and gate.Part == touchedPart) then return end
-	local clock = now()
-	if clock - (entry.LastTouchClock or 0) < 0.12 then return end
-	entry.LastTouchClock = clock
-	entry.LastProgressElapsed = clock - race.StartClock
+	if not (race and race.State=="Running" and entry and entry.Finished~=true) then return end
+	local gate=RouteDefinition.GetGate(race.Route,entry.NextGateIndex) if not (gate and gate.Part==touchedPart) then return end
+	local clock=now() if clock-(entry.LastTouchClock or 0)<.12 then return end
+	entry.LastTouchClock=clock entry.LastProgressElapsed=clock-race.StartClock
 	if gate.IsFinish then
-		finishEntry(race, entry)
-		return
+		local lapElapsed=clock-(entry.LapStartedClock or race.StartClock or clock)
+		entry.CompletedLapCount=(entry.CompletedLapCount or 0)+1 entry.LapTimes=entry.LapTimes or {}
+		table.insert(entry.LapTimes,{Lap=entry.CompletedLapCount,Elapsed=lapElapsed})
+		if not entry.BestLapSeconds or lapElapsed<entry.BestLapSeconds then entry.BestLapSeconds=lapElapsed entry.BestLapIndex=entry.CompletedLapCount end
+		entry.LastCompletedGateIndex=gate.Index
+		if entry.CompletedLapCount>=(race.LapTarget or 1) then finishEntry(race,entry) return end
+		entry.CurrentLap=entry.CompletedLapCount+1 entry.LapStartedClock=clock entry.NextGateIndex=1
+		callSessionAssetService("UpdateParticipantSegment",{RunId=race.RunId,UserId=entry.Player.UserId,CurrentSegment=0})
+		local payload={Type="RaceLapCompleted",RunId=race.RunId,EventId=race.EventId,RouteId=race.RouteId,Lap=entry.CompletedLapCount,CurrentLap=entry.CurrentLap,LapTarget=race.LapTarget or 1,LapElapsed=lapElapsed,LapTimes=entry.LapTimes,BestLapSeconds=entry.BestLapSeconds,BestLapIndex=entry.BestLapIndex,NextGateIndex=1,GateCount=race.GateCount}
+		fire(entry.Player,payload) fireRace(entry.Player,payload) broadcastPositions(race) return
 	end
-	entry.LastCompletedGateIndex = entry.NextGateIndex
-	entry.NextGateIndex += 1
-
-	-- NTR_RACING_PHASE10B_CHECKPOINT_SEGMENT_UPDATE
-	callSessionAssetService("ApplyParticipants", {
-		RunId = race.RunId,
-		Participants = {
-			{ Player = entry.Player, Vehicle = entry.Vehicle },
-		},
-	}) -- NTR_RACING_PHASE11E_CHECKPOINT_COLLISION_REAPPLY
-	callSessionAssetService("UpdateParticipantSegment", {
-		RunId = race.RunId,
-		UserId = entry.Player.UserId,
-		CurrentSegment = math.max(0, (tonumber(entry.NextGateIndex) or 1) - 1),
-	})
-	fire(entry.Player, {
-		Type = "RaceCheckpoint",
-		RunId = race.RunId,
-		EventId = race.EventId,
-		RouteId = race.RouteId,
-		NextGateIndex = entry.NextGateIndex,
-		GateCount = race.GateCount,
-		CheckpointIndex = gate.Index,
-		Elapsed = entry.LastProgressElapsed,
-	})
-	fireRace(entry.Player, {
-		Type = "RaceCheckpoint",
-		RunId = race.RunId,
-		EventId = race.EventId,
-		RouteId = race.RouteId,
-		NextGateIndex = entry.NextGateIndex,
-		GateCount = race.GateCount,
-		CheckpointIndex = gate.Index,
-		Elapsed = entry.LastProgressElapsed,
-	})
-	broadcastPositions(race)
+	entry.LastCompletedGateIndex=entry.NextGateIndex entry.NextGateIndex+=1
+	callSessionAssetService("ApplyParticipants",{RunId=race.RunId,Participants={{Player=entry.Player,Vehicle=entry.Vehicle}}}) -- NTR_RACING_PHASE11E_CHECKPOINT_COLLISION_REAPPLY
+	callSessionAssetService("UpdateParticipantSegment",{RunId=race.RunId,UserId=entry.Player.UserId,CurrentSegment=math.max(0,(tonumber(entry.NextGateIndex) or 1)-1)})
+	local payload={Type="RaceCheckpoint",RunId=race.RunId,EventId=race.EventId,RouteId=race.RouteId,NextGateIndex=entry.NextGateIndex,GateCount=race.GateCount,CheckpointIndex=gate.Index,Elapsed=entry.LastProgressElapsed,LapElapsed=clock-(entry.LapStartedClock or race.StartClock or clock),CurrentLap=entry.CurrentLap or 1,LapTarget=race.LapTarget or 1}
+	fire(entry.Player,payload) fireRace(entry.Player,payload) broadcastPositions(race)
 end
 
 local function connectRouteTouches(route)
@@ -973,6 +905,9 @@ local function startRace(queue)
 				GridIndex = gridIndex,
 				LastTouchClock = 0,
 				LastProgressElapsed = 0,
+				CurrentLap = 1,
+				CompletedLapCount = 0,
+				LapTimes = {},
 			})
 		else
 			fire(player, {
@@ -1003,7 +938,8 @@ local function startRace(queue)
 		RouteId = queue.Route.RouteId,
 		DisplayName = queue.Summary.DisplayName or queue.Route.DisplayName,
 		Route = queue.Route,
-		GateCount = RouteDefinition.GetGateCount(queue.Route),
+		GateCount = RouteDefinition.GetGateCount(queue.Route),		RouteType = tostring(queue.Summary.RouteType or queue.Route.RouteType or "Circuit"),
+		LapTarget = tostring(queue.Summary.RouteType or queue.Route.RouteType or "Circuit") == "PointToPoint" and 1 or math.clamp(math.floor(tonumber(queue.Summary.Laps or queue.Summary.DefaultLapCount) or 1), 1, 99),
 		Participants = participants,
 		NextFinishPlace = 1,
 	}
@@ -1051,7 +987,7 @@ local function startRace(queue)
 			ParticipantCount = #participants,
 			Countdown = numberValue(matchmakingConfig, "CountdownSeconds", 3),
 			GateCount = race.GateCount,
-			NextGateIndex = 1,
+			NextGateIndex = 1, CurrentLap = 1, LapTarget = race.LapTarget,
 		})
 		fireRace(entry.Player, {
 			Type = "RaceStaged",
@@ -1060,7 +996,7 @@ local function startRace(queue)
 			RouteId = race.RouteId,
 			DisplayName = race.DisplayName,
 			GateCount = race.GateCount,
-			NextGateIndex = 1,
+			NextGateIndex = 1, CurrentLap = 1, LapTarget = race.LapTarget,
 		})
 	end
 	broadcastPositions(race)
@@ -1078,7 +1014,7 @@ local function startRace(queue)
 					DisplayName = race.DisplayName,
 					Countdown = seconds,
 					GateCount = race.GateCount,
-					NextGateIndex = 1,
+					NextGateIndex = 1, CurrentLap = 1, LapTarget = race.LapTarget,
 				})
 				fireRace(entry.Player, {
 					Type = "RaceCountdown",
@@ -1088,14 +1024,14 @@ local function startRace(queue)
 					DisplayName = race.DisplayName,
 					Countdown = seconds,
 					GateCount = race.GateCount,
-					NextGateIndex = 1,
+					NextGateIndex = 1, CurrentLap = 1, LapTarget = race.LapTarget,
 				})
 			end
 			task.wait(1)
 		end
 		if race.State ~= "Staging" then return end
 		race.State = "Running"
-		race.StartClock = now()
+		race.StartClock = now()		for _, entry in ipairs(participants) do entry.LapStartedClock = race.StartClock end
 		for _, entry in ipairs(participants) do
 			prepareVehicleForDriving(entry.Player, entry.Vehicle)
 			fire(entry.Player, {
@@ -1106,7 +1042,7 @@ local function startRace(queue)
 				DisplayName = race.DisplayName,
 				StartServerClock = race.StartClock,
 				GateCount = race.GateCount,
-				NextGateIndex = 1,
+				NextGateIndex = 1, CurrentLap = 1, LapTarget = race.LapTarget,
 				ParticipantCount = #participants,
 			})
 			fireRace(entry.Player, {
@@ -1117,7 +1053,7 @@ local function startRace(queue)
 				DisplayName = race.DisplayName,
 				StartServerClock = race.StartClock,
 				GateCount = race.GateCount,
-				NextGateIndex = 1,
+				NextGateIndex = 1, CurrentLap = 1, LapTarget = race.LapTarget,
 			})
 		end
 		task.delay(numberValue(matchmakingConfig, "RaceFinishTimeoutSeconds", 300), function()

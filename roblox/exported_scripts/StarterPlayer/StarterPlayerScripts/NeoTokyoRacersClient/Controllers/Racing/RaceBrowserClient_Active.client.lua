@@ -483,21 +483,12 @@ local function buildGui()
 	shell.AnchorPoint = Vector2.new(0.5, 0.5)
 	shell.Position = UDim2.fromScale(0.5, 0.5)
 
-	local shellScale
+	-- NTR_RACING_UI_BROWSER_SHARED_RESPONSIVE_SCALE_V1
 	if touch then
 		shell.Size = UDim2.new(1, -16, 1, -16)
 	else
 		shell.Size = UDim2.fromOffset(L("ShellWidth", 1200), L("ShellHeight", 720))
-		shellScale = Instance.new("UIScale")
-		shellScale.Parent = shell
-		local camera = workspace.CurrentCamera
-		local function resize()
-			local viewport = camera and camera.ViewportSize or Vector2.new(1920, 1080)
-			local scale = math.min((viewport.X - 48) / L("ShellWidth", 1200), (viewport.Y - 48) / L("ShellHeight", 720))
-			shellScale.Scale = math.clamp(scale, L("ScaleMin", 0.72), L("ScaleMax", 1.15))
-		end
-		resize()
-		if camera then camera:GetPropertyChangedSignal("ViewportSize"):Connect(resize) end
+		UI.AttachResponsiveScale(shell)
 	end
 
 	local headerH = touch and 44 or L("HeaderHeight", 64)

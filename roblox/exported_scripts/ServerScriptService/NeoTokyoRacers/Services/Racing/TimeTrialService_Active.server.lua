@@ -61,25 +61,24 @@ local function getPersonalBestBinding(name)
 	return nil
 end
 
+-- NTR_RACING_UI_PHASE9A_PB_TO_GLOBAL_BRIDGE
+local function globalLeaderboardBinding(name)
+	local folder = script.Parent:FindFirstChild("GlobalTimeTrialLeaderboardBindings")
+	local binding = folder and folder:FindFirstChild(name)
+	return binding and binding:IsA("BindableFunction") and binding or nil
+end
+
 local function recordPersistentPersonalBest(player, run, elapsed, medal)
 	local binding = getPersonalBestBinding("RecordTimeTrialBest")
-	if not binding then
-		return nil
-	end
+	if not binding then return nil end
 	local ok, result = pcall(function()
-		return binding:Invoke(player, {
-			RunId = run.RunId,
-			EventId = run.EventId,
-			RouteId = run.RouteId,
-			DisplayName = run.DisplayName,
-			VehicleTier = run.VehicleTier,
-			VehicleIndex = run.VehicleIndex,
-			SelectedVehicleId = run.SelectedVehicleId,
-			Elapsed = elapsed,
-			Medal = medal,
-		})
+		return binding:Invoke(player, { RunId = run.RunId, EventId = run.EventId, RouteId = run.RouteId, DisplayName = run.DisplayName, VehicleTier = run.VehicleTier, VehicleIndex = run.VehicleIndex, SelectedVehicleId = run.SelectedVehicleId, Elapsed = elapsed, Medal = medal })
 	end)
 	if ok and typeof(result) == "table" then
+		if result.IsPersonalBest == true then
+			local global = globalLeaderboardBinding("RecordTimeTrialBest")
+			if global then task.spawn(function() pcall(function() global:Invoke(player, { EventId = run.EventId, VehicleTier = run.VehicleTier, BestSeconds = result.PersonalBestSeconds or elapsed, VehicleId = result.PersonalBestVehicleId or run.SelectedVehicleId, VehicleName = tostring(run.Vehicle and (run.Vehicle:GetAttribute("DisplayName") or run.Vehicle:GetAttribute("CockpitId") or run.Vehicle.Name) or "") }) end) end) end
+		end
 		return result
 	end
 	return { Ok = false, Message = "Persistent PB service failed: " .. tostring(result) }
@@ -1345,6 +1344,12 @@ raceRequest.OnServerInvoke = function(player, action, payload)
 			return { Ok = true, Found = false, Message = "Choose a vehicle tier to view PB.", EventId = eventId, VehicleTier = vehicleTier }
 		end
 		return getPersistentPersonalBest(player, eventId, vehicleTier)
+	elseif action == "GetTimeTrialLeaderboard" then
+		-- NTR_RACING_UI_PHASE9A_GLOBAL_READ_ACTION
+		local binding = globalLeaderboardBinding("GetTimeTrialLeaderboard")
+		if not binding then return { Ok = false, Available = false, Entries = {}, Message = "Global leaderboard service unavailable." } end
+		local ok, result = pcall(function() return binding:Invoke(player, payload) end)
+		return ok and typeof(result) == "table" and result or { Ok = false, Available = false, Entries = {}, Message = tostring(result) }
 	elseif action == "StartStagedTimeTrial" then
 		local eventId = tostring(payload.EventId or "shifted_canal_sprint_tt")
 		local ok, message = beginStagedTimeTrial(player, eventId, payload.VehicleId, payload.LapCount)

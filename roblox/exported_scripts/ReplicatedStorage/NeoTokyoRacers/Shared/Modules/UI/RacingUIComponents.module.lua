@@ -176,4 +176,27 @@ function Components.Button(parent, properties)
 	return item, stroke
 end
 
+-- NTR_RACING_UI_SHARED_RESPONSIVE_SCALE_V1
+function Components.AttachResponsiveScale(shell)
+	local scale = shell:FindFirstChild("ResponsiveScale")
+	if not scale then
+		scale = Instance.new("UIScale")
+		scale.Name = "ResponsiveScale"
+		scale.Parent = shell
+	end
+	local function resize()
+		local camera = workspace.CurrentCamera
+		local viewport = camera and camera.ViewportSize or Vector2.new(1920, 1080)
+		local edgeX = math.max(48, viewport.X * Components.Layout("DesktopEdgeBufferXRatio", 0.10))
+		local edgeY = math.max(48, viewport.Y * Components.Layout("DesktopEdgeBufferYRatio", 0.08))
+		local fitX = (viewport.X - edgeX * 2) / Components.Layout("ShellWidth", 1200)
+		local fitY = (viewport.Y - edgeY * 2) / Components.Layout("ShellHeight", 720)
+		scale.Scale = math.clamp(math.min(fitX, fitY), Components.Layout("ResponsiveScaleMin", 0.55), Components.Layout("ScaleMax", 1.15))
+	end
+	resize()
+	local camera = workspace.CurrentCamera
+	if camera then camera:GetPropertyChangedSignal("ViewportSize"):Connect(resize) end
+	return scale
+end
+
 return Components

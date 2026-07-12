@@ -217,6 +217,29 @@ function Components.Button(parent, properties)
 	return item, stroke
 end
 
+-- NTR_RACING_UI_SHARED_RESPONSIVE_SCALE_V1
+function Components.AttachResponsiveScale(shell)
+	local scale = shell:FindFirstChild("ResponsiveScale")
+	if not scale then
+		scale = Instance.new("UIScale")
+		scale.Name = "ResponsiveScale"
+		scale.Parent = shell
+	end
+	local function resize()
+		local camera = workspace.CurrentCamera
+		local viewport = camera and camera.ViewportSize or Vector2.new(1920, 1080)
+		local edgeX = math.max(48, viewport.X * Components.Layout("DesktopEdgeBufferXRatio", 0.10))
+		local edgeY = math.max(48, viewport.Y * Components.Layout("DesktopEdgeBufferYRatio", 0.08))
+		local fitX = (viewport.X - edgeX * 2) / Components.Layout("ShellWidth", 1200)
+		local fitY = (viewport.Y - edgeY * 2) / Components.Layout("ShellHeight", 720)
+		scale.Scale = math.clamp(math.min(fitX, fitY), Components.Layout("ResponsiveScaleMin", 0.55), Components.Layout("ScaleMax", 1.15))
+	end
+	resize()
+	local camera = workspace.CurrentCamera
+	if camera then camera:GetPropertyChangedSignal("ViewportSize"):Connect(resize) end
+	return scale
+end
+
 return Components
 ]====]
 end
@@ -708,21 +731,12 @@ local function buildGui()
 	shell.AnchorPoint = Vector2.new(0.5, 0.5)
 	shell.Position = UDim2.fromScale(0.5, 0.5)
 
-	local shellScale
+	-- NTR_RACING_UI_BROWSER_SHARED_RESPONSIVE_SCALE_V1
 	if touch then
 		shell.Size = UDim2.new(1, -16, 1, -16)
 	else
 		shell.Size = UDim2.fromOffset(L("ShellWidth", 1200), L("ShellHeight", 720))
-		shellScale = Instance.new("UIScale")
-		shellScale.Parent = shell
-		local camera = workspace.CurrentCamera
-		local function resize()
-			local viewport = camera and camera.ViewportSize or Vector2.new(1920, 1080)
-			local scale = math.min((viewport.X - 48) / L("ShellWidth", 1200), (viewport.Y - 48) / L("ShellHeight", 720))
-			shellScale.Scale = math.clamp(scale, L("ScaleMin", 0.72), L("ScaleMax", 1.15))
-		end
-		resize()
-		if camera then camera:GetPropertyChangedSignal("ViewportSize"):Connect(resize) end
+		UI.AttachResponsiveScale(shell)
 	end
 
 	local headerH = touch and 44 or L("HeaderHeight", 64)
@@ -885,6 +899,9 @@ local function installConfig(kit)
 	value(layout, "NumberValue", "BrowserListFraction", 0.38)
 	value(layout, "NumberValue", "ScaleMin", 0.72)
 	value(layout, "NumberValue", "ScaleMax", 1.15)
+	value(layout, "NumberValue", "DesktopEdgeBufferXRatio", 0.10)
+	value(layout, "NumberValue", "DesktopEdgeBufferYRatio", 0.08)
+	value(layout, "NumberValue", "ResponsiveScaleMin", 0.55)
 	value(layout, "NumberValue", "MobileBreakpoint", 900)
 
 	value(typography, "StringValue", "FontFamily", "rbxasset://fonts/families/Michroma.json")
