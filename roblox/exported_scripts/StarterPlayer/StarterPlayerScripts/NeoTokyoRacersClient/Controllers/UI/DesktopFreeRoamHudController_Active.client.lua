@@ -1,4 +1,5 @@
 -- NTR_PC_FREEROAM_UI_PHASE4A_DEALERSHIP_TELEPORT
+-- NTR_RACING_UI_PHASE16D_PRESENTATION_PERFORMANCE
 
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -15,6 +16,7 @@ local player = Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
 local kit = ReplicatedStorage:WaitForChild("NeoTokyoRacers")
 local config = kit:WaitForChild("Config"):WaitForChild("UI"):WaitForChild("DesktopFreeRoamHud")
+local racingPerformanceConfig = kit:WaitForChild("Config"):WaitForChild("Racing"):WaitForChild("PresentationPerformance")
 local colours = config:WaitForChild("Colours")
 local layoutConfig = config:WaitForChild("Layout")
 local assetConfig = config:WaitForChild("Assets")
@@ -68,6 +70,7 @@ local modalPanels = {}
 local choiceList
 local choiceAnchor
 local toast
+local racingPresentationActive = false -- NTR_PC_FREEROAM_RACING_PRESENTATION_BRIDGE
 local activeModal
 local selectedCategory = "ALL"
 local selectedSort = "RATING"
@@ -1003,48 +1006,54 @@ local function updateRuntime(dt)
 	if not enabled then closeChoiceList(); return end
 	local _, vehicle = ownedVehicleSeat()
 	local driving = vehicle ~= nil
-	bottomActions.Visible = driving
-	controlsButton.Visible = driving
-	exitButton.Visible = driving
+	actionBar.Visible = not racingPresentationActive
+	if racingPresentationActive then carPanel.Visible = false end
+	leftCluster.Visible = not racingPresentationActive and not carPanel.Visible
+	bottomActions.Visible = driving and not racingPresentationActive
+	controlsButton.Visible = driving and not racingPresentationActive
+	exitButton.Visible = driving and not racingPresentationActive
 	telemetry.Visible = driving
-	local character = player.Character
-	local characterRoot = character and character:FindFirstChild("HumanoidRootPart")
-	local mapSubject = vehicle and (vehicle.PrimaryPart or vehicle:FindFirstChild("CockpitRoot_DoNotRename", true)) or characterRoot
-	if mapSubject and mapSubject:IsA("BasePart") then
-		local mapSize = L("MinimapSize", 245)
-		local mapPixels = math.max(1, L("MapPixels", 2048))
-		local calibrationPixels = math.max(1, L("MapCalibrationPixels", 207))
-		local calibrationStuds = math.max(1, L("MapCalibrationStuds", 2850))
-		local fullMapStuds = mapPixels * calibrationStuds / calibrationPixels
-		local visibleStuds = math.max(100, L("MapVisibleStuds", 2850))
-		local uiPerStud = mapSize / visibleStuds
-		local canvasSize = fullMapStuds * uiPerStud
-		mapCanvas.Size = UDim2.fromOffset(canvasSize, canvasSize)
-		local position = mapSubject.Position
-		local dx = position.X - L("MapWorldCenterX", 0)
-		local dz = position.Z - L("MapWorldCenterZ", 0)
-		if B(defaults, "MapFlipX", false) then dx = -dx end
-		if B(defaults, "MapFlipZ", false) then dz = -dz end
-		local coordinateRadians = math.rad(L("MapCoordinateRotationDegrees", 90))
-		local mappedX = dx * math.cos(coordinateRadians) - dz * math.sin(coordinateRadians)
-		local mappedZ = dx * math.sin(coordinateRadians) + dz * math.cos(coordinateRadians)
-		local look = mapSubject.CFrame.LookVector
-		local lookX, lookZ = look.X, look.Z
-		if B(defaults, "MapFlipX", false) then lookX = -lookX end
-		if B(defaults, "MapFlipZ", false) then lookZ = -lookZ end
-		local mappedLookX = lookX * math.cos(coordinateRadians) - lookZ * math.sin(coordinateRadians)
-		local mappedLookZ = lookX * math.sin(coordinateRadians) + lookZ * math.cos(coordinateRadians)
-		local targetHeading = math.deg(math.atan2(mappedLookX, -mappedLookZ)) + L("MapRotationOffsetDegrees", 0)
-		local targetPosition = Vector2.new(mapSize * 0.5, mapSize * 0.5) - Vector2.new(mappedX * uiPerStud, mappedZ * uiPerStud)
-		local smoothing = math.max(0, L("MapSmoothing", 10))
-		local alpha = smoothing <= 0 and 1 or math.clamp((dt or 1 / 60) * smoothing, 0, 1)
-		displayedMapPosition = displayedMapPosition and displayedMapPosition:Lerp(targetPosition, alpha) or targetPosition
-		if displayedPlayerHeading == nil then displayedPlayerHeading = targetHeading end
-		local headingDelta = (targetHeading - displayedPlayerHeading + 180) % 360 - 180
-		displayedPlayerHeading += headingDelta * alpha
-		mapCanvas.Position = UDim2.fromOffset(displayedMapPosition.X, displayedMapPosition.Y)
-		mapCanvas.Rotation = 0
-		playerMarker.Rotation = B(defaults, "MapPlayerIconRotates", true) and displayedPlayerHeading or 0
+	if not (racingPresentationActive and readValue(racingPerformanceConfig, "PauseFreeRoamMapDuringRace", true) == true) then
+		local character = player.Character
+		local characterRoot = character and character:FindFirstChild("HumanoidRootPart")
+		local mapSubject = vehicle and (vehicle.PrimaryPart or vehicle:FindFirstChild("CockpitRoot_DoNotRename", true)) or characterRoot
+		if mapSubject and mapSubject:IsA("BasePart") then
+			local mapSize = L("MinimapSize", 245)
+			local mapPixels = math.max(1, L("MapPixels", 2048))
+			local calibrationPixels = math.max(1, L("MapCalibrationPixels", 207))
+			local calibrationStuds = math.max(1, L("MapCalibrationStuds", 2850))
+			local fullMapStuds = mapPixels * calibrationStuds / calibrationPixels
+			local visibleStuds = math.max(100, L("MapVisibleStuds", 2850))
+			local uiPerStud = mapSize / visibleStuds
+			local canvasSize = fullMapStuds * uiPerStud
+			mapCanvas.Size = UDim2.fromOffset(canvasSize, canvasSize)
+			local position = mapSubject.Position
+			local dx = position.X - L("MapWorldCenterX", 0)
+			local dz = position.Z - L("MapWorldCenterZ", 0)
+			if B(defaults, "MapFlipX", false) then dx = -dx end
+			if B(defaults, "MapFlipZ", false) then dz = -dz end
+			local coordinateRadians = math.rad(L("MapCoordinateRotationDegrees", 90))
+			local mappedX = dx * math.cos(coordinateRadians) - dz * math.sin(coordinateRadians)
+			local mappedZ = dx * math.sin(coordinateRadians) + dz * math.cos(coordinateRadians)
+			local look = mapSubject.CFrame.LookVector
+			local lookX, lookZ = look.X, look.Z
+			if B(defaults, "MapFlipX", false) then lookX = -lookX end
+			if B(defaults, "MapFlipZ", false) then lookZ = -lookZ end
+			local mappedLookX = lookX * math.cos(coordinateRadians) - lookZ * math.sin(coordinateRadians)
+			local mappedLookZ = lookX * math.sin(coordinateRadians) + lookZ * math.cos(coordinateRadians)
+			local targetHeading = math.deg(math.atan2(mappedLookX, -mappedLookZ)) + L("MapRotationOffsetDegrees", 0)
+			local targetPosition = Vector2.new(mapSize * 0.5, mapSize * 0.5) - Vector2.new(mappedX * uiPerStud, mappedZ * uiPerStud)
+			local smoothing = math.max(0, L("MapSmoothing", 10))
+			local alpha = smoothing <= 0 and 1 or math.clamp((dt or 1 / 60) * smoothing, 0, 1)
+			displayedMapPosition = displayedMapPosition and displayedMapPosition:Lerp(targetPosition, alpha) or targetPosition
+			if displayedPlayerHeading == nil then displayedPlayerHeading = targetHeading end
+			local headingDelta = (targetHeading - displayedPlayerHeading + 180) % 360 - 180
+			displayedPlayerHeading += headingDelta * alpha
+			mapCanvas.Position = UDim2.fromOffset(displayedMapPosition.X, displayedMapPosition.Y)
+			mapCanvas.Rotation = 0
+			playerMarker.Rotation = B(defaults, "MapPlayerIconRotates", true) and displayedPlayerHeading or 0
+		end
+
 	end
 	if not driving then displayedBoostAlpha = 1 end
 	despawnButton.BackgroundColor3 = vehicle and C("Danger") or C("Disabled")
@@ -1064,7 +1073,7 @@ local function updateRuntime(dt)
 			segment.BackgroundTransparency = index <= activeCount and 0 or 0.42
 		end
 	end
-	if not profileReadPending and os.clock() - lastProfileRead >= L("ProfileRefreshSeconds", 2) then
+	if not (racingPresentationActive and readValue(racingPerformanceConfig, "PauseFreeRoamProfileDuringRace", true) == true) and not profileReadPending and os.clock() - lastProfileRead >= L("ProfileRefreshSeconds", 2) then
 		profileReadPending = true
 		lastProfileRead = os.clock()
 		task.spawn(function()
@@ -1091,6 +1100,14 @@ Workspace:GetPropertyChangedSignal("CurrentCamera"):Connect(function()
 	local current = Workspace.CurrentCamera
 	if current then current:GetPropertyChangedSignal("ViewportSize"):Connect(updateLayout) end
 end)
+
+local presentationEvent=script.Parent:FindFirstChild("FreeRoamHudPresentationMode")
+if presentationEvent and presentationEvent:IsA("BindableEvent") then
+	presentationEvent.Event:Connect(function(mode)
+		racingPresentationActive=tostring(mode)=="Racing"
+		if racingPresentationActive then carPanel.Visible=false closeChoiceList() closeModal() end
+	end)
+end
 
 pcall(function() RunService:UnbindFromRenderStep("NTR_PCFreeRoamHudPhase1") end)
 pcall(function() RunService:UnbindFromRenderStep("NTR_PCFreeRoamHudPhase2B") end)
