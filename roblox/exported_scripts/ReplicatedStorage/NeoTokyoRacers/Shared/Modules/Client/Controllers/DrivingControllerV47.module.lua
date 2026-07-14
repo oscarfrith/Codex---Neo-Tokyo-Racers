@@ -9,6 +9,28 @@ local RunService = game:GetService("RunService")
 
 local player = Players.LocalPlayer
 
+local VehicleDynamicsModel
+do
+	local dynamicsModule = script.Parent:FindFirstChild("VehicleDynamicsModel")
+	local ok, result = false, nil
+	if dynamicsModule and dynamicsModule:IsA("ModuleScript") then
+		ok, result = pcall(require, dynamicsModule)
+	end
+	if ok and typeof(result) == "table" and typeof(result.ResolveStats) == "function" and typeof(result.StepLongitudinal) == "function" then
+		VehicleDynamicsModel = result
+	else
+		warn("[NTR Driving Feel Phase 1] VehicleDynamicsModel unavailable; using legacy-force fallback: " .. tostring(result))
+		VehicleDynamicsModel = {
+			ResolveStats = function(_, legacyStats)
+				return legacyStats
+			end,
+			StepLongitudinal = function()
+				return { Enabled = false }
+			end,
+		}
+	end
+end
+
 local REVERSE_MAX_MPH = 40
 local HOVER_HEIGHT = 3
 local SENSOR_START_HEIGHT = 2
@@ -353,15 +375,32 @@ local function cameraNumber(name, fallback, minimum, maximum)
 	return value
 end
 
+-- NTR_DRIVING_FEEL_FLAT_CATEGORY_CONFIG_READER
+local categorisedConfigNumberCaches = setmetatable({}, {__mode = "k"})
+local function categorisedConfigNumber(folder, name)
+	if not folder then return nil end
+	local cache = categorisedConfigNumberCaches[folder]
+	if not cache then
+		cache = {}
+		for _, category in ipairs(folder:GetChildren()) do
+			if category:IsA("Folder") then
+				for attributeName, attributeValue in pairs(category:GetAttributes()) do
+					if typeof(attributeValue) == "number" then cache[attributeName] = category end
+				end
+			end
+		end
+		categorisedConfigNumberCaches[folder] = cache
+	end
+	local category = cache[name]
+	return category and category:GetAttribute(name) or nil
+end
+
 function configNumber(folderName, name, fallback, minimum, maximum)
 	local folder = configFolder(folderName)
-	local value = folder and folder:GetAttribute(name)
-	if typeof(value) ~= "number" then
-		value = fallback
-	end
-	if minimum and maximum then
-		return math.clamp(value, minimum, maximum)
-	end
+	local value = categorisedConfigNumber(folder, name)
+	if typeof(value) ~= "number" then value = folder and folder:GetAttribute(name) end
+	if typeof(value) ~= "number" then value = fallback end
+	if minimum and maximum then return math.clamp(value, minimum, maximum) end
 	return value
 end
 
@@ -647,6 +686,7 @@ function Controller.Start(context)
 	state.MiniBoostTimer = 0
 	state.MiniBoostPower = 0
 	state.BoostRechargeDelayTimer = 0
+	state.ReverseHoldTimer = 0
 	state.CurrentBank = 0
 	state.WobbleTime = 0
 	state.WobblePitch = 0
@@ -694,19 +734,47 @@ function Controller.Start(context)
 		local forwardSpeed = velocity:Dot(forward)
 		local sideSpeed = velocity:Dot(right)
 
-		local maxMph = math.clamp(stat("TopSpeed", 126), 40, 260)
-		local acceleration = math.max(stat("Acceleration", 42), 8)
-		local braking = math.max(stat("Braking", 44), 16)
-		local handling = math.max(stat("Handling", 48), 10)
-		local driftControl = math.max(stat("Drift", 46), 10)
-		local boostPower = math.max(stat("Boost", 0), 0)
-		local boostDuration = math.max(stat("BoostDuration", 2), 1)
-		local boostRecharge = math.max(stat("BoostRecharge", 9), 0.5)
-		local weight = math.clamp(stat("Weight", 118), 60, 260)
+		-- NTR_VEHICLE_PHASE_AM_PHYSICS_BRIDGE
+		-- NTR_DRIVING_FEEL_PHASE1_DETAILED_STATS
+		local legacyDynamicsStats = {
+			TopSpeed = stat("TopSpeed", 126),
+			EngineOutput = stat("Acceleration", 42),
+			Weight = stat("Weight", 118),
+			SteeringResponse = stat("SteeringResponse", stat("Handling", 48)),
+			LateralGrip = stat("LateralGrip", stat("Handling", 48)),
+			HoverStability = stat("HoverStability", stat("Handling", 48)),
+			DriftControl = stat("DriftControl", stat("Drift", 46)),
+			DriftGrip = stat("DriftGrip", stat("Drift", 46)),
+			DriftChargeRate = stat("DriftChargeRate", stat("Drift", 46)),
+			BrakingForce = stat("Braking", 44),
+			BoostForce = stat("Boost", 0),
+			BoostDuration = stat("BoostDuration", 2),
+			BoostRecharge = stat("BoostRecharge", 9),
+			BoostRechargeDelay = stat("BoostRechargeDelay", 0.5),
+			Drag = 50,
+			Downforce = stat("Downforce", 50),
+		}
+		local dynamicsStats = VehicleDynamicsModel.ResolveStats(state.Vehicle, legacyDynamicsStats)
+		local maxMph = math.clamp(dynamicsStats.TopSpeed, 40, 260)
+		local acceleration = math.max(legacyDynamicsStats.EngineOutput, 8)
+		local braking = math.max(legacyDynamicsStats.BrakingForce, 16)
+		local handling = math.max(dynamicsStats.SteeringResponse, 10)
+		local driftControl = math.max(dynamicsStats.DriftControl, 10)
+		local boostPower = math.max(dynamicsStats.BoostForce, 0)
+		local boostDuration = math.max(dynamicsStats.BoostDuration, 1)
+		local boostRecharge = math.max(dynamicsStats.BoostRecharge, 0.5)
+		local weight = math.clamp(dynamicsStats.Weight, 60, 260)
+		-- Use the bounded V2 delay resolved by VehicleDynamicsModel instead of the raw tier value cached at spawn.
+		state.BoostRechargeDelaySeconds = math.clamp(dynamicsStats.BoostRechargeDelay, 0, 5)
 		local weightFactor = math.clamp(118 / weight, 0.58, 1.25)
 		acceleration *= weightFactor
-		handling *= math.clamp(125 / weight, 0.62, 1.22)
-		driftControl *= math.clamp(122 / weight, 0.65, 1.2)
+		-- NTR_DRIVING_FEEL_PHASE3_TIER_SAFE_WEIGHT
+		local steeringWeightExponent = configNumber("VehicleDynamics_EditAttributes", "SteeringWeightInfluenceExponent", 0.12, 0, 1)
+		local steeringWeightFactor = math.clamp((118 / math.max(weight, 1)) ^ steeringWeightExponent,
+			configNumber("VehicleDynamics_EditAttributes", "SteeringWeightMinMultiplier", 0.88, 0.5, 1.5),
+			configNumber("VehicleDynamics_EditAttributes", "SteeringWeightMaxMultiplier", 1.12, 0.5, 1.5))
+		handling *= steeringWeightFactor
+		driftControl *= steeringWeightFactor
 		braking *= math.clamp(115 / weight, 0.68, 1.15)
 
 		local maxForwardStuds = maxMph / MPH_PER_STUD
@@ -782,36 +850,98 @@ function Controller.Start(context)
 		state.DriftBlend += (targetDriftBlend - state.DriftBlend) * math.clamp(dt * 5.2, 0, 1)
 		local drifting = state.DriftBlend > 0.12
 
+		-- NTR_DRIVING_FEEL_PHASE1_DYNAMICS_BRIDGE
 		local driveForce = Vector3.zero
-		if throttle > 0 and forwardSpeed < maxForwardStuds then
-			local speedLimiter = math.clamp(1 - (math.max(forwardSpeed, 0) / maxForwardStuds), 0.08, 1)
-			driveForce += forward * mass * acceleration * 3.1 * speedLimiter
-			state.Vehicle:SetAttribute("Accelerating", true)
-		elseif throttle < 0 and forwardSpeed > -maxReverseStuds then
-			local reverseLimiter = math.clamp(1 - (math.abs(math.min(forwardSpeed, 0)) / maxReverseStuds), 0.08, 1)
-			driveForce -= forward * mass * braking * 1.1 * reverseLimiter
-			state.Vehicle:SetAttribute("Accelerating", false)
+		local dynamicsStep = VehicleDynamicsModel.StepLongitudinal({
+			Vehicle = state.Vehicle,
+			DeltaTime = dt,
+			Throttle = throttle,
+			ForwardSpeed = forwardSpeed,
+			MaxMph = maxMph,
+			ReverseMaxMph = reverseMaxMph,
+			Stats = dynamicsStats,
+			ReverseHoldTimer = state.ReverseHoldTimer or 0,
+		})
+
+		if dynamicsStep.Enabled then
+			state.ReverseHoldTimer = dynamicsStep.ReverseHoldTimer
+			driveForce += forward * mass * dynamicsStep.LongitudinalAcceleration
+			state.Vehicle:SetAttribute("Accelerating", dynamicsStep.Accelerating)
+			state.Vehicle:SetAttribute("Braking", dynamicsStep.Braking)
+			if dynamicsStep.SnapForwardStop then
+				root.AssemblyLinearVelocity = velocity - forward * forwardSpeed
+				forwardSpeed = 0
+			end
 		else
-			state.Vehicle:SetAttribute("Accelerating", false)
+			if throttle > 0 and forwardSpeed < maxForwardStuds then
+				local speedLimiter = math.clamp(1 - (math.max(forwardSpeed, 0) / maxForwardStuds), 0.08, 1)
+				driveForce += forward * mass * acceleration * 3.1 * speedLimiter
+				state.Vehicle:SetAttribute("Accelerating", true)
+			elseif throttle < 0 and forwardSpeed > -maxReverseStuds then
+				local reverseLimiter = math.clamp(1 - (math.abs(math.min(forwardSpeed, 0)) / maxReverseStuds), 0.08, 1)
+				driveForce -= forward * mass * braking * 1.1 * reverseLimiter
+				state.Vehicle:SetAttribute("Accelerating", false)
+			else
+				state.Vehicle:SetAttribute("Accelerating", false)
+			end
+
+			if forwardSpeed > maxForwardStuds then
+				driveForce -= forward * mass * (forwardSpeed - maxForwardStuds) * 8
+			elseif forwardSpeed < -maxReverseStuds then
+				local lateralVelocity = velocity - forward * forwardSpeed
+				root.AssemblyLinearVelocity = lateralVelocity - forward * maxReverseStuds
+				driveForce += forward * mass * (math.abs(forwardSpeed) - maxReverseStuds) * 12
+			end
+			state.Vehicle:SetAttribute("Braking", false)
 		end
 
-		if forwardSpeed > maxForwardStuds then
-			driveForce -= forward * mass * (forwardSpeed - maxForwardStuds) * 8
-		elseif forwardSpeed < -maxReverseStuds then
-			local lateralVelocity = velocity - forward * forwardSpeed
-			root.AssemblyLinearVelocity = lateralVelocity - forward * maxReverseStuds
-			driveForce += forward * mass * (math.abs(forwardSpeed) - maxReverseStuds) * 12
-		end
-
-		local lateralGrip = 6.6 + (1.05 - 6.6) * state.DriftBlend
+		-- NTR_DRIVING_FEEL_PHASE2_HANDLING_BRIDGE
+		local handlingStep = typeof(VehicleDynamicsModel.StepHandling) == "function" and VehicleDynamicsModel.StepHandling({
+			Vehicle = state.Vehicle,
+			Stats = dynamicsStats,
+			SpeedMph = speedMph,
+			DriftBlend = state.DriftBlend,
+		}) or { Enabled = false }
+		local lateralGrip = handlingStep.Enabled and handlingStep.LateralGrip or (6.6 + (1.05 - 6.6) * state.DriftBlend)
 		driveForce += -right * sideSpeed * mass * lateralGrip
-		driveForce += -velocity * mass * (0.16 + 0.10 * state.DriftBlend)
+		if not dynamicsStep.Enabled then
+			driveForce += -velocity * mass * (0.16 + 0.10 * state.DriftBlend)
+		end
 
+		-- NTR_DRIVING_FEEL_PHASE2_1_DRIFT_MOMENTUM
+		-- NTR_DRIVING_FEEL_PHASE3_DRIFT_DRIVE
+		local driftForwardDragBase = configNumber("VehicleDynamics_EditAttributes", "DriftForwardDragBase", 0.10, 0, 2)
+		local driftForwardDragBlendExtra = configNumber("VehicleDynamics_EditAttributes", "DriftForwardDragBlendExtra", 0.06, 0, 2)
+		local driftForwardDragCoefficient = 0
 		if drifting then
-			local forwardDriftSlow = math.max(forwardSpeed, 0) * mass * (0.72 + 0.42 * state.DriftBlend)
-			driveForce -= forward * forwardDriftSlow * state.DriftBlend
-			driveForce += right * (-steeringInput) * mass * 34 * state.DriftBlend
-			state.DriftCharge = math.min(3.25, state.DriftCharge + dt * (0.95 + math.abs(steeringInput) * 1.15) * state.DriftBlend)
+			driftForwardDragCoefficient = (driftForwardDragBase + driftForwardDragBlendExtra * state.DriftBlend) * state.DriftBlend
+			local forwardDriftSlow = math.max(forwardSpeed, 0) * mass * driftForwardDragCoefficient
+			driveForce -= forward * forwardDriftSlow
+			local driftSideForce = handlingStep.Enabled and handlingStep.DriftSideForce or 26
+			local driftChargeMultiplier = handlingStep.Enabled and handlingStep.DriftChargeMultiplier or 1
+			driveForce += right * (-steeringInput) * mass * driftSideForce * state.DriftBlend
+
+			local driftThrottleMinimum = configNumber("VehicleDynamics_EditAttributes", "DriftThrottleMinimum", 0.05, 0, 1)
+			local driftThrottleAlpha = math.clamp((throttle - driftThrottleMinimum) / math.max(1 - driftThrottleMinimum, 0.001), 0, 1)
+			if driftThrottleAlpha > 0 then
+				local engineAssist = handlingStep.Enabled and handlingStep.DriftEngineAssist or 0.20
+				if dynamicsStep.Enabled and dynamicsStep.LongitudinalAcceleration > 0 then
+					driveForce += forward * mass * dynamicsStep.LongitudinalAcceleration * engineAssist * state.DriftBlend * driftThrottleAlpha
+				end
+				local alignmentRate = handlingStep.Enabled and handlingStep.DriftVelocityAlignmentRate or 2.0
+				local alignmentMax = handlingStep.Enabled and handlingStep.DriftVelocityAlignmentMaxAcceleration or 30
+				local horizontalSpeed = tangentVelocity.Magnitude
+				if horizontalSpeed > 1 then
+					local desiredVelocity = terrainForward * horizontalSpeed
+					local alignmentAcceleration = (desiredVelocity - tangentVelocity) * alignmentRate * state.DriftBlend * driftThrottleAlpha
+					if alignmentAcceleration.Magnitude > alignmentMax then alignmentAcceleration = alignmentAcceleration.Unit * alignmentMax end
+					driveForce += alignmentAcceleration * mass
+					state.Vehicle:SetAttribute("DynamicsDriftAlignmentAcceleration", alignmentAcceleration.Magnitude)
+				end
+			end
+			state.Vehicle:SetAttribute("DynamicsDriftForwardDragCoefficient", driftForwardDragCoefficient)
+			state.Vehicle:SetAttribute("DynamicsDriftThrottleAlpha", driftThrottleAlpha)
+			state.DriftCharge = math.min(3.25, state.DriftCharge + dt * (0.95 + math.abs(steeringInput) * 1.15) * state.DriftBlend * driftChargeMultiplier)
 		elseif not state.DriftHeld and state.DriftCharge > 0 then
 			-- NTR_DRIFT_BOOST_ACCEL_GATE_REVERSE_40_V1_DRIFT_BEGIN
 			local requiresAcceleration = configBool("DRIVING_MECHANICS_EditAttributes", "DriftMiniBoostRequiresAcceleration", true)
@@ -920,7 +1050,10 @@ function Controller.Start(context)
 			state.Vehicle:SetAttribute("BoostSteeringMultiplier", boostSteeringMultiplier)
 		end
 		turnRate *= speedSteeringMultiplier
-		if drifting then turnRate *= 1.34 + (driftControl / 170) end
+		if drifting then
+			local driftTurnMultiplier = handlingStep.Enabled and handlingStep.DriftTurnMultiplier or 1
+			turnRate *= (1.34 + (driftControl / 170)) * driftTurnMultiplier
+		end
 		state.YawHeading += -steeringInput * turnRate * dt
 		-- NTR_SPEED_SENSITIVE_STEERING_V1_END
 
@@ -970,6 +1103,11 @@ function Controller.Start(context)
 			end
 		else
 			state.AccelBrakePitchDegrees = 0
+		end
+		if handlingStep.Enabled then
+			state.Controls.Align.Responsiveness = handlingStep.AlignResponsiveness
+		else
+			state.Controls.Align.Responsiveness = 22
 		end
 		state.Controls.Align.CFrame = CFrame.lookAt(root.Position, root.Position + terrainForward, groundNormal) * CFrame.Angles(wobblePitch + accelBrakePitch, 0, state.CurrentBank + wobbleRoll)
 		-- NTR_ACCEL_BRAKE_PITCH_TILT_V1_END

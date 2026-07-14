@@ -1,126 +1,38 @@
+-- NTR Lighting Phase AR runtime preview: 1-8 select stages; N=Night, M=Day.
 local UserInputService = game:GetService("UserInputService")
 local Lighting = game:GetService("Lighting")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-
-local PRESET_ATTRIBUTE = "NTR_LightingPreset"
-
-local Shared = ReplicatedStorage:WaitForChild("Shared")
-
-local LightingPresets = require(
-	Shared
-		:WaitForChild("LightingPresets")
-		:WaitForChild("LightingPresets")
-)
-
-local SkyPresets = Shared:WaitForChild("SkyPresets")
-
-local function getOrCreateEffect(className, name)
-	local existing = Lighting:FindFirstChild(name)
-	if existing then
-		return existing
-	end
-
-	local newEffect = Instance.new(className)
-	newEffect.Name = name
-	newEffect.Parent = Lighting
-	return newEffect
+local shared = ReplicatedStorage:WaitForChild("Shared")
+local presets = require(shared:WaitForChild("LightingPresets"):WaitForChild("LightingPresets"))
+local skies = shared:WaitForChild("SkyPresets")
+local schedule = require(shared:WaitForChild("LightingCycleConfig"):WaitForChild("LightingCycleSchedule"))
+local effects = {}
+for section, spec in pairs({Atmosphere={"Atmosphere","Atmosphere"},ColorCorrection={"ColorCorrectionEffect","ColorCorrection"},Bloom={"BloomEffect","Bloom"},SunRays={"SunRaysEffect","SunRays"},DepthOfField={"DepthOfFieldEffect","DepthOfField"}}) do
+	local effect = Lighting:FindFirstChild(spec[2]) or Instance.new(spec[1]); effect.Name=spec[2]; effect.Parent=Lighting; effects[section]=effect
 end
-
-local atmosphere = getOrCreateEffect("Atmosphere", "Atmosphere")
-local colorCorrection = getOrCreateEffect("ColorCorrectionEffect", "ColorCorrection")
-local bloom = getOrCreateEffect("BloomEffect", "Bloom")
-local sunRays = getOrCreateEffect("SunRaysEffect", "SunRays")
-local depthOfField = getOrCreateEffect("DepthOfFieldEffect", "DepthOfField")
-
-local function applyProperties(instance, properties)
-	if not properties then
-		return
-	end
-
-	for propertyName, value in pairs(properties) do
-		if instance == Lighting and propertyName == "Fogcolor" then
-			propertyName = "FogColor"
-		end
-
-		local success, err = pcall(function()
-			instance[propertyName] = value
-		end)
-
-		if not success then
-			warn("[Lighting Preview] Could not apply property:", instance.Name, propertyName, err)
-		end
-	end
+local function props(instance, values)
+	for name, value in pairs(values or {}) do pcall(function() instance[name=="Fogcolor" and "FogColor" or name]=value end) end
 end
-
-local function clearCurrentSky()
-	for _, child in ipairs(Lighting:GetChildren()) do
-		if child:IsA("Sky") then
-			child:Destroy()
-		end
+local function apply(index)
+	local stage=schedule[index]; if not stage then return end
+	local preset=presets[stage.Preset]; if not preset then warn("Missing preset",stage.Preset) return end
+	props(Lighting,preset.Lighting); for section,effect in pairs(effects) do props(effect,preset[section]) end
+	if preset.SkyName then
+		local template=skies:FindFirstChild(preset.SkyName)
+		if template then for _,child in ipairs(Lighting:GetChildren()) do if child:IsA("Sky") then child:Destroy() end end; local sky=template:Clone(); sky.Name="ActiveSky"; sky.Parent=Lighting end
 	end
+	Lighting:SetAttribute("NTR_LightingPreset",stage.Preset)
+	Lighting:SetAttribute("NTR_StreetLightsOn",stage.StreetLightsOn==true)
+	Lighting:SetAttribute("NTR_WindowMode",stage.WindowMode or "Day")
+	print("[NTR Lighting Preview] Applied",stage.DisplayName or stage.Preset)
 end
-
-local function applySky(skyName)
-	if not skyName then
-		warn("[Lighting Preview] Preset has no SkyName.")
-		return
-	end
-
-	local skyTemplate = SkyPresets:FindFirstChild(skyName)
-	if not skyTemplate then
-		warn("[Lighting Preview] Sky preset not found:", skyName)
-		return
-	end
-
-	if not skyTemplate:IsA("Sky") then
-		warn("[Lighting Preview] Sky preset is not a Sky object:", skyName, skyTemplate.ClassName)
-		return
-	end
-
-	clearCurrentSky()
-
-	local newSky = skyTemplate:Clone()
-	newSky.Name = "ActiveSky"
-	newSky.Parent = Lighting
-	print("[Lighting Preview] Applied sky:", skyName)
-end
-
-local function applyPreset(presetName)
-	local preset = LightingPresets[presetName]
-	if not preset then
-		warn("[Lighting Preview] Preset does not exist:", presetName)
-		return
-	end
-
-	Lighting:SetAttribute(PRESET_ATTRIBUTE, nil)
-	Lighting:SetAttribute(PRESET_ATTRIBUTE, presetName)
-
-	applyProperties(Lighting, preset.Lighting)
-	applyProperties(atmosphere, preset.Atmosphere)
-	applyProperties(colorCorrection, preset.ColorCorrection)
-	applyProperties(bloom, preset.Bloom)
-	applyProperties(sunRays, preset.SunRays)
-	applyProperties(depthOfField, preset.DepthOfField)
-	applySky(preset.SkyName)
-
-	-- Pulse it again after the property pass so listeners receive a clean mode
-	-- signal even if the attribute already had this value.
-	Lighting:SetAttribute(PRESET_ATTRIBUTE, nil)
-	Lighting:SetAttribute(PRESET_ATTRIBUTE, presetName)
-
-	print("[Lighting Preview] Applied preset:", presetName)
-end
-
-UserInputService.InputBegan:Connect(function(input, gameProcessed)
-	if gameProcessed then
-		return
-	end
-
-	if input.KeyCode == Enum.KeyCode.N then
-		applyPreset("ClearNight")
-	elseif input.KeyCode == Enum.KeyCode.M then
-		applyPreset("Day")
-	end
+local function findPreset(name) for index,stage in ipairs(schedule) do if stage.Preset==name then return index end end end
+local keys={[Enum.KeyCode.One]=1,[Enum.KeyCode.Two]=2,[Enum.KeyCode.Three]=3,[Enum.KeyCode.Four]=4,[Enum.KeyCode.Five]=5,[Enum.KeyCode.Six]=6,[Enum.KeyCode.Seven]=7,[Enum.KeyCode.Eight]=8}
+UserInputService.InputBegan:Connect(function(input,processed)
+	if processed then return end
+	local index=keys[input.KeyCode]
+	if input.KeyCode==Enum.KeyCode.M then index=findPreset("Day") end
+	if input.KeyCode==Enum.KeyCode.N then index=findPreset("ClearNight") end
+	if index then apply(index) end
 end)
-
-print("[Lighting Preview] Press N for ClearNight, M for Day.")
+print("[NTR Lighting Preview] 1 7AM, 2 10AM, 3 Day, 4 3PM, 5 5PM, 6 8PM, 7 Night, 8 4AM; N Night, M Day")

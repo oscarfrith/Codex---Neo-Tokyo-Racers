@@ -1,5 +1,7 @@
 # Racing Next Chat Handoff
 
+> Superseded for current Racing UI work by `docs/racing-ui-final-handoff-2026-07-13.md`. Keep this file as the locked Phase 11Z gameplay-history reference.
+
 **Created:** 2026-07-10  
 **Status:** Phase 11Z locked as the current racing prototype baseline  
 **Mirror:** User refreshed the Studio mirror and pushed to Git before this handoff.

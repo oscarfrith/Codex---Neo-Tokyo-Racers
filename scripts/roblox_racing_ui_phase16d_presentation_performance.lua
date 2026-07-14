@@ -345,6 +345,10 @@ local function preflight(session,assets,freeRoam)
 	end
 	if not string.find(session.Source,MARKER,1,true) then
 		requireAnchor(session.Source,"NTR_RACING_UI_PHASE16C2_MAP_OPACITY_EDGE_ALIGNMENT","confirmed Phase 16C2 marker")
+		if not string.find(session.Source,'local racingConfig=kit.Config.Racing',1,true)
+			and not string.find(session.Source,'local racingConfig=kit.Config:WaitForChild("Racing")',1,true) then
+			fail("Preflight could not find either supported session racing-config owner. No additional controller sources were changed; refresh the Studio mirror before another repair.")
+		end
 		requireAnchor(session.Source,"local function resetHudMapMarker()","HUD map runtime start")
 		requireAnchor(session.Source,"local function show(payload,mode)","HUD map runtime end")
 		requireAnchor(session.Source,'mapArt.Image=hudMapImage(mode,active.EventId) resetHudMapMarker() canvas.Visible=true',"session cache preparation")
@@ -383,7 +387,15 @@ local function patchSessionController(item)
 	if string.find(source,MARKER,1,true) then log("Cached session map already installed") return end
 	if not string.find(source,"NTR_RACING_UI_PHASE16C2_MAP_OPACITY_EDGE_ALIGNMENT",1,true) then fail("Confirmed Phase 16C2 marker missing. Install/confirm Phase 16C2 first.") end
 	source=replaceOnce(source,"-- NTR_RACING_UI_PHASE16C2_MAP_OPACITY_EDGE_ALIGNMENT","-- NTR_RACING_UI_PHASE16C2_MAP_OPACITY_EDGE_ALIGNMENT\n-- "..MARKER,"session phase marker")
-	source=replaceOnce(source,'local racingConfig=kit.Config.Racing','local racingConfig=kit.Config.Racing\nlocal performanceConfig=racingConfig:WaitForChild("PresentationPerformance")',"session performance config")
+	local directConfig='local racingConfig=kit.Config.Racing'
+	local waitedConfig='local racingConfig=kit.Config:WaitForChild("Racing")'
+	if string.find(source,directConfig,1,true) then
+		source=replaceOnce(source,directConfig,directConfig..'\nlocal performanceConfig=racingConfig:WaitForChild("PresentationPerformance")',"direct session performance config")
+	elseif string.find(source,waitedConfig,1,true) then
+		source=replaceOnce(source,waitedConfig,waitedConfig..'\nlocal performanceConfig=racingConfig:WaitForChild("PresentationPerformance")',"waited session performance config")
+	else
+		fail("Could not find either supported session performance config anchor. Refresh the Studio mirror before another source repair.")
+	end
 	source=replaceRange(source,"local function resetHudMapMarker()","local function show(payload,mode)",MAP_RUNTIME,"HUD map runtime")
 	source=replaceOnce(source,'mapArt.Image=hudMapImage(mode,active.EventId) resetHudMapMarker() canvas.Visible=true','prepareHudMapSession(mode,active.EventId) mapArt.Image=hudMapImage(mode,active.EventId) resetHudMapMarker() canvas.Visible=true',"session cache preparation")
 	source=replaceOnce(source,'local function hide(restoreLegacy) active=nil canvas.Visible=false','local function hide(restoreLegacy) active=nil clearHudMapState() canvas.Visible=false',"session cache cleanup")

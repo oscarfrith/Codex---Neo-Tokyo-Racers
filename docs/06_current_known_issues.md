@@ -4,6 +4,22 @@ This file is intentionally conservative. Items are included only when they were 
 
 ## Needs Play-Test Confirmation
 
+- Driving Feel Phase 3 organised tuning is generated as `scripts/roblox_driving_feel_phase3_organized_tuning_values.lua`. Run it only after the Phase 3 tier-curve installer. It performs two related fragile exact-source reader replacements, but preflights both before mutation and preserves the current live numbers rather than restoring defaults. The revised canonical version uses only seven category folders; selecting one shows alternating numeric and `<Name>_RaisingThisDoes` string attributes without per-setting folders. It also safely flattens the earlier generated nested layout if that version was already run. Restart Play and confirm driving feel is unchanged. The local `2026-07-14 00:15:37` mirror predates the user's latest Phase 3 tuning and must be refreshed after installation.
+
+- Mobile Free-Roam UI Phase 1N is generated and awaits device confirmation. Verify equal square Accelerator/Brake images, bottom alignment, size/right/bottom/gap tuning, no short-screen overlap, and unchanged accelerate/brake/reverse hit behavior. The pre-install mirror is current at `2026-07-13 21:09:59`; refresh again after confirmation.
+
+- Mobile Free-Roam UI Phase 1M is installed and present in the `2026-07-13 21:09:59` mirror. Preserve its borderless gradient arrows, opacity attributes, invisible pedal cards, pressed feedback, and unchanged Thumbstick/Tilt behavior while testing Phase 1N geometry.
+
+- Mobile Free-Roam UI Phase 1L was user-confirmed looking good and is present in the `2026-07-13 20:22:34` mirror. Preserve its centred Settings, PC-parity Cash, confirmation layout, safe-area response, and disabled-product behavior while testing Phase 1M controls.
+
+- Mobile Racing UI Phases 1/1B were installed and user-confirmed working. Browser, Entry submenus, and unified Results reuse the scaled PC composition, and `SafeTop = 72` leaves the approved small gap beneath Roblox controls. Preserve this safe-area baseline while testing Phase 1L popups.
+
+- Mobile Free-Roam UI Phase 1K was user-confirmed looking good and is present in the `2026-07-13 19:38:44` mirror. Keep its boost target/input behavior, circular plate layering, Exit alignment, speed/boost telemetry, arrows, pedals, Thumbstick, Tilt, and menu suppression intact while testing the separate mobile racing-menu phase.
+
+- Racing UI Phase 16E and Phase 16F are installed, user-confirmed, and present in the refreshed mirror. The driving lag is much better and local authored course arrows appear. Phase 16F fixed an empty StreamingEnabled segment-part cache, retries missing streamed routes, and normalizes route lookup without restoring opponent markers or broad polling. LOD remains intentionally untouched.
+- Driving Feel Phase 0 passed `11/10/0` (`pass/warn/fail`) in Edit mode. Its client Play run validly captured the spawned `C 538` vehicle stats and collidable `Default` root, but reported two false failures because `ServerScriptService` is hidden from the Client Command Bar; the canonical audit now skips server-only checks in client context. The first Phase 1 install patched the controller, but Play reported `Infinite yield possible ... WaitForChild("VehicleDynamicsModel")` and bootstrap `startDriving` nil calls because the new module was absent at runtime. Rerun the updated canonical `scripts/roblox_driving_feel_phase1_core_dynamics.lua` in Edit mode: it recreates the module and upgrades the require to a guarded non-yielding legacy fallback. Do not patch the bootstrap and do not rerun the older Phase AM installer.
+- Driving Feel Phase 2.1 was installed and the user confirmed the revised drift momentum/reverse behavior feels much better. Its post-confirmation Studio mirror still needs refreshing before the next source patch. Wider Standard/Lightweight/Power balance comparison remains deferred; current tuning is documented in `docs/driving-feel-tuning-reference-2026-07-13.md`.
+
 - PC free-roam UI Phase 4A is installed and confirmed working. The refreshed mirror contains the Phase 4A desktop HUD controller, north-up four-tile minimap, live speed/boost presentation, image-only map markers, responsive car menu, shared dealership confirmation flow, `FreeRoamHudTeleportInvoke`, and `FreeRoamHudTeleportService_Active`.
 - Later free-roam UI phases are intentionally deferred while race/time-trial UI work proceeds. Do not reopen the superseded Phase 1-3 visual repair ladder unless Phase 4A regresses; use `scripts/roblox_ui_freeroam_pc_phase3d_image_only_map_markers.lua` only as the documented pre-teleport rollback.
 - Cash product purchases and persisted settings remain non-functional visual concepts. They require separate server-authoritative receipt/persistence designs and must not be implied by the confirmed Phase 4A baseline.
@@ -232,6 +248,36 @@ Known sensitive areas:
 
 ## Lighting
 
+- FivePM and SevenAM in the current mirror still show the incorrect bright blue
+  Picture 1 snapshot. Run
+  `scripts/roblox_lighting_replace_5pm_7am_with_warm_snapshot.lua` to install the
+  later warm Picture 2 snapshot, verify both Edit previews, then refresh mirror.
+- The current-lighting text snapshot tool is installed and mirrored. The
+  `2026-07-14 00:15:37` snapshot contains
+  `LightingCycleConfig.CurrentLightingCaptureText` with the expected V1 marker.
+- Lighting Phase AS is installed and mirrored; runtime verification remains.
+  It creates `LightingCycleConfig.StageVisuals.<Preset>` folders with editable
+  `WindowMode`, `StreetLightsEnabled`, and `StreetLightBrightness` attributes.
+  Run it after Phase AR, then run the updated capture/preview tools and audit.
+- Running the selected-stage preview before Phase AS produced an infinite-yield
+  warning on `LightingCycleConfig:WaitForChild("StageVisuals")`. Root cause:
+  StageVisuals had not been installed yet. The preview now fails immediately
+  with the exact Phase AS installer instruction instead of waiting indefinitely.
+- Lighting Phase AR is installed and mirrored; runtime verification remains.
+  It adds TenAM and ThreePM as independent Day copies and expands the schedule
+  to eight stages without recapturing FivePM. Run the updated Phase AQ audit
+  afterward and refresh the Studio mirror.
+- Lighting Phase AQ was installed and user-confirmed working on 2026-07-13,
+  including the initial Edit-mode FivePM capture. The system is represented in
+  the `2026-07-14 00:15:37` Studio mirror.
+- The refreshed mirror has `BaseDurationSeconds = 5`, which is suitable for a
+  rapid cycle test but probably not production timing. Restore the intended
+  production duration after verification (the original default was `300`).
+- Phase AQ controls every managed street light carrying the
+  `NTR_NightLamppostLight` tag. If a particular street light does not follow
+  8 PM/Night/4 AM, treat it as an asset tagging/install issue rather than adding
+  a whole-world runtime scan.
+
 - A repair script is prepared for the regression where Play-mode `N`/`M` lighting changes no longer switch windows or lamppost lights: run `scripts/roblox_lighting_night_mode_signal_repair.lua`. Root cause from the fresh mirror: `TEMP_LightingPreview` and `LightingService_Active` apply presets but do not reliably publish the `Lighting.NTR_LightingPreset` attribute that the Phase AP window/lamppost controllers watch.
 - After running `scripts/roblox_lighting_phaseR_fogcolor_property_repair.lua`, confirm the `Lighting Fogcolor` warning no longer appears during Play startup.
 - Lighting Phase AP was installed and user-confirmed working. Tagged windows
@@ -276,6 +322,22 @@ Known sensitive areas:
 ## Data/Folders
 
 Known sensitive areas:
+
+- Vehicle Performance V2 remains shadow-only. The live V1 calculator remains linear/capped and `VehicleDynamicsModel` still has separate factor clamps; do not switch rating or physics until both consume one shared V2 curve definition.
+- Vehicle Performance V2 Phase 0 passed live at `21 PASS / 2 WARN / 0 FAIL`. It found `ReverseEngageDelaySeconds = 0.3`; Phase 1 subsequently restored it to `1.0`, and the `2026-07-13 20:22:34` mirror confirms that value. Drift remains correct at full-drift coefficient `0.28`.
+- The six target PI values and prices in the Sheet are guides, not authored ratings or live economy values. Current cockpit prices must remain unchanged during Phase 0.
+- Upgrade-point migration to six points per module is deferred. Phase 5 defines and audits the paths only in shadow config; existing live definitions still use their current three-level behaviour until a later isolated migration is designed and tested.
+- Vehicle Performance V2 Phase 1 passed `12/0/0` and the `2026-07-13 20:22:34` mirror contains its objects plus `ReverseEngageDelaySeconds = 1.0`. Phase 2 is generated as `scripts/roblox_vehicle_performance_v2_phase2_catalogue_calibration.lua`; it uses one guarded exact replacement inside the isolated V2 calculator, so an absent/duplicate anchor is a hard stop requiring mirror inspection.
+- Phase 2's six builds and price values are shadow calibration guides only. Do not copy them onto live cockpit/module assets, create Zenith, change garage prices, or enable V2 runtime until the Phase 2 output passes and its mirror is refreshed.
+- The first Phase 2 audit reported `6 PASS / 0 WARN / 6 FAIL` with correct headline values but inflated PI. Studio had reused the Phase 1 cached calculator after the installer changed its source, so the old zero-origin equation consumed the new smaller scale. The canonical Phase 2 installer now requires a short-lived calculator clone for validation and destroys it immediately. Rerun the canonical script; do not alter the calibrated values to compensate for cached output.
+- Phase 2 later passed `8/0/0` and was mirrored at `20:53:08`. Phase 3 is generated as `scripts/roblox_vehicle_performance_v2_phase3_component_allocation.lua`; it is config-only and must pass its recombination and donor-ladder checks before Lightweight/Power variants, Zenith assets, live prices/stats, or runtime switching.
+- Phase 3 was subsequently completed and mirrored at `21:01:42`. Phase 4 then passed `7/0/0` and was mirrored at `21:21:01`; all 48 variants improved PI, Lightweight/Power pairs stayed within `1.5 PI`, and all donor ladders were monotonic.
+- Phase 5 is generated as `scripts/roblox_vehicle_performance_v2_phase5_upgrade_paths.lua`. It is config-only and defines three three-point paths, six total points, primary `3%` raw changes, a half-strength `1.5%` supporting change on engine Efficiency, and increasing tier-scaled point costs. Do not migrate live upgrades, assets, prices, rating, physics, or UI until its Output passes and the mirror is refreshed.
+- The first Phase 5 run returned `9/0/12`. Every failure was an engine Lightweighting point at A/S because the complete build was already at the Weight curve's technical minimum, making further Weight reduction PI-neutral. The canonical script now replaces that path with Efficiency: Weight `-3%` plus EngineOutput `+1.5%` per point. Rerun the same script; do not lower the global Weight technical minimum or recalibrate confirmed stock profiles.
+- Vehicle Performance V2 Phase 7 was user-confirmed working after its two validation-only checks were repaired in the same canonical script. Phase 8 is now generated as the single final stage: `scripts/roblox_vehicle_performance_v2_phase8_atomic_live_launch.lua`. Run it with `MODE = "PUBLISH"` in Edit mode, restart Play, then verify the complete dealership/customisation/cross-tier module/six-point upgrade/spawn/driving/racing/save-rejoin flow. It contains one fragile but hard-preflighted garage catalogue-call replacement. The server charges the exact configured next-point cost, but the legacy Phase AO card can display a static first-point price after mixed-path spending; report any mismatch before further UI work. The locally received mirror still shows `21:51:45`, so refresh it after the Phase 8 test. If live behavior regresses, rerun the same script with `MODE = "ROLLBACK_SWITCHES"`; full catalogue asset rollback uses Roblox version history because no in-game backups are created.
+- The Studio cash grant helper is generated as `scripts/roblox_studio_cash_grant_hotkey.lua`. It is intentionally hard-disabled outside Studio, defaults to `=` / `$100,000` / `LucidityStudios`, and uses the existing garage cash/persistence bridge. After installation, restart Play and verify one press changes cash and leaderstats by exactly `$100,000`. Refresh the Studio mirror because it adds isolated config, remote, service, and client objects.
+- Driving Feel Phase 3 is generated as `scripts/roblox_driving_feel_phase3_tier_curve_drift_drive.lua` but is not yet confirmed. It is intentionally one stage and contains two fragile exact controller replacements; both are hard-preflighted before mutation. Run in Edit mode, restart Play, and compare Forge E, Viper C, and Zenith S acceleration zones, steering, full boost drain/recharge, and 50–70 MPH throttle-held drift. Confirm braking, parking, one-second reverse, mini-boost, camera, VFX, UI, mobile, and racing remain healthy. The local mirror is still timestamped `2026-07-13 21:51:45`, so refresh it after the test.
+- The first Phase 7 Edit run installed successfully but ended `15/0/2`. Both failures were false validation assumptions: PI preview used a zero-stat vehicle context, and the shadow guard looked for the V2 write marker in the service caller instead of the runtime write owner. The canonical Phase 7 installer now previews inside the complete Viper build and audits both correct sources. Rerun the same script; no rollback or separate repair script is required. Live V1 sources/hierarchy and all disabled V2 switches already passed.
 
 - Default cockpit colours are edited on each cockpit model with `DefaultPrimaryColor`, `DefaultSecondaryColor`, `DefaultDetailColor`, `DefaultNeonColor`, `DefaultFrontLightsColor`, and `DefaultRearLightsColor`.
 - Phase AK uses guarded source text replacement against the active garage server controller and client bootstrap. If either source changed since the current mirror, refresh the Studio export before running or editing the installer.

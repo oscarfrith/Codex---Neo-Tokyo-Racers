@@ -1,100 +1,20 @@
-local CollectionService = game:GetService("CollectionService")
-local Lighting = game:GetService("Lighting")
-local MaterialService = game:GetService("MaterialService")
-
-local WINDOW_TAG = "NTR_WindowMaterial"
-local LIGHT_TAG = "NTR_NightLamppostLight"
-local DAY_VARIANT_NAME = "Windows Day"
-local NIGHT_VARIANT_NAME = "Windows Night"
-local PRESET_ATTRIBUTE = "NTR_LightingPreset"
-local NIGHT_BRIGHTNESS_THRESHOLD = 1
-
-local function findMaterialVariant(name)
-	local candidate = MaterialService:FindFirstChild(name, true)
-	if candidate and candidate:IsA("MaterialVariant") then
-		return candidate
-	end
-	return nil
+-- NTR Lighting Phase AS - config-backed street-light-only visual owner
+local CollectionService=game:GetService("CollectionService")
+local Lighting=game:GetService("Lighting")
+local ReplicatedStorage=game:GetService("ReplicatedStorage")
+local TAG="NTR_NightLamppostLight"
+local visuals=ReplicatedStorage:WaitForChild("Shared"):WaitForChild("LightingCycleConfig"):WaitForChild("StageVisuals")
+local function settings()
+	local name=Lighting:GetAttribute("NTR_LightingPreset"); local folder=type(name)=="string" and visuals:FindFirstChild(name) or nil
+	local enabled=folder and folder:GetAttribute("StreetLightsEnabled"); if type(enabled)~="boolean" then enabled=Lighting:GetAttribute("NTR_StreetLightsOn")==true end
+	local brightness=folder and tonumber(folder:GetAttribute("StreetLightBrightness")); if not brightness then brightness=1 end
+	return enabled,math.max(0,brightness)
 end
-
-local function readNightMode()
-	local presetName = Lighting:GetAttribute(PRESET_ATTRIBUTE)
-	if type(presetName) == "string" then
-		local normalized = string.lower(presetName)
-		if string.find(normalized, "night", 1, true) then
-			return true
-		end
-		if string.find(normalized, "day", 1, true) then
-			return false
-		end
-	end
-
-	if Lighting.Brightness <= NIGHT_BRIGHTNESS_THRESHOLD then
-		return true
-	end
-
-	local clockTime = Lighting.ClockTime
-	return clockTime < 6 or clockTime >= 18
-end
-
-local currentNightMode = nil
-
-local function applyWindow(instance, isNight)
-	if not instance:IsA("MeshPart") then
-		return
-	end
-
-	local variant = findMaterialVariant(isNight and NIGHT_VARIANT_NAME or DAY_VARIANT_NAME)
-	if not variant then
-		warn("[NTR Lighting Runtime] Missing MaterialVariant:", isNight and NIGHT_VARIANT_NAME or DAY_VARIANT_NAME)
-		return
-	end
-
-	instance.Material = variant.BaseMaterial
-	instance.MaterialVariant = variant.Name
-end
-
-local function applyLight(instance, isNight)
-	if instance:IsA("SurfaceLight") then
-		instance.Enabled = isNight
-	end
-end
-
-local function refreshAll(force)
-	local isNight = readNightMode()
-	if not force and currentNightMode == isNight then
-		return
-	end
-
-	currentNightMode = isNight
-
-	for _, instance in ipairs(CollectionService:GetTagged(WINDOW_TAG)) do
-		applyWindow(instance, isNight)
-	end
-
-	for _, instance in ipairs(CollectionService:GetTagged(LIGHT_TAG)) do
-		applyLight(instance, isNight)
-	end
-end
-
-CollectionService:GetInstanceAddedSignal(WINDOW_TAG):Connect(function(instance)
-	applyWindow(instance, readNightMode())
-end)
-
-CollectionService:GetInstanceAddedSignal(LIGHT_TAG):Connect(function(instance)
-	applyLight(instance, readNightMode())
-end)
-
-Lighting:GetAttributeChangedSignal(PRESET_ATTRIBUTE):Connect(function()
-	refreshAll(false)
-end)
-
-Lighting:GetPropertyChangedSignal("Brightness"):Connect(function()
-	refreshAll(false)
-end)
-
-Lighting:GetPropertyChangedSignal("ClockTime"):Connect(function()
-	refreshAll(false)
-end)
-
-refreshAll(true)
+local function apply(instance) if instance:IsA("Light") then local enabled,brightness=settings(); instance.Brightness=brightness; instance.Enabled=enabled end end
+local function refresh() for _,instance in ipairs(CollectionService:GetTagged(TAG)) do apply(instance) end end
+local function watch(folder) if folder:IsA("Folder") then folder.AttributeChanged:Connect(refresh) end end
+for _,folder in ipairs(visuals:GetChildren()) do watch(folder) end
+visuals.ChildAdded:Connect(function(folder) watch(folder); refresh() end)
+CollectionService:GetInstanceAddedSignal(TAG):Connect(apply)
+Lighting:GetAttributeChangedSignal("NTR_LightingPreset"):Connect(refresh)
+refresh()

@@ -1,3 +1,5 @@
+-- NTR_RACING_UI_MOBILE_PHASE1_SCALED_DESKTOP_TRIAL
+-- NTR_RACING_UI_PHASE16E_RUNTIME_OWNERSHIP
 -- Neo Tokyo Racers - Racing UI Phase 2 Time Trial Startup Presentation
 -- NTR_RACING_UI_PHASE2_TIME_TRIAL_STARTUP_PRESENTATION
 -- NTR_RACING_UI_PHASE2_V4_EQUAL_COLUMNS_COMPACT_TARGETS
@@ -18,7 +20,7 @@ local UserInputService = game:GetService("UserInputService")
 
 local player = Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
-local touch = UserInputService.TouchEnabled
+local touchDevice = UserInputService.TouchEnabled
 local kit = ReplicatedStorage:WaitForChild("NeoTokyoRacers")
 local shared = kit:WaitForChild("Shared")
 local remotes = shared:WaitForChild("Remotes")
@@ -27,7 +29,11 @@ local raceRequest = racingRemotes:WaitForChild("RaceRequest")
 local garageInvoke = remotes:WaitForChild("Garage"):WaitForChild("GarageInvoke")
 local racingModules = shared:WaitForChild("Modules"):WaitForChild("Racing")
 local RaceConfigReader = require(racingModules:WaitForChild("RaceConfigReader"))
-local UI = require(shared:WaitForChild("Modules"):WaitForChild("UI"):WaitForChild("RacingUIComponents"))
+local entryUIModules = shared:WaitForChild("Modules"):WaitForChild("UI")
+local UI = require(entryUIModules:WaitForChild("RacingUIComponents"))
+local MobileScaledDesktop = require(entryUIModules:WaitForChild("RacingMobileScaledDesktopLayout"))
+local scaledDesktop = MobileScaledDesktop.IsEnabled(touchDevice)
+local touch = touchDevice and not scaledDesktop
 local racingUIConfig = kit:WaitForChild("Config"):WaitForChild("UI"):WaitForChild("Racing")
 local copyConfig = racingUIConfig:FindFirstChild("Copy")
 local racingConfig = kit:WaitForChild("Config"):WaitForChild("Racing")
@@ -339,28 +345,23 @@ local function raceCatalogAttribute(name)
 	return event and event:GetAttribute(name)
 end
 
+local function publishPresentation(open)
+	local folder=script.Parent.Parent:FindFirstChild("UI")
+	local event=folder and folder:FindFirstChild("FreeRoamHudPresentationMode")
+	if event and event:IsA("BindableEvent") then event:Fire({Owner="RaceEntry",Active=open==true,KeepTelemetry=false}) end
+end
 local function suppressOthers(open)
+	if not touch then publishPresentation(open) return end
+	-- Mobile keeps its independent compatibility suppression.
 	if open then
 		table.clear(suppressed)
-		local function suppress(item)
-			if item:IsA("ScreenGui") and item ~= gui then
-				if suppressed[item] == nil then suppressed[item] = item.Enabled end
-				item.Enabled = false
-			end
-		end
-		for _, item in ipairs(playerGui:GetChildren()) do suppress(item) end
-		suppressAdded = playerGui.ChildAdded:Connect(suppress)
-		suppressHeartbeat = RunService.Heartbeat:Connect(function()
-			for item in pairs(suppressed) do if item.Parent and item.Enabled then item.Enabled = false end end
-		end)
+		local function suppress(item) if item:IsA("ScreenGui") and item~=gui then if suppressed[item]==nil then suppressed[item]=item.Enabled end item.Enabled=false end end
+		for _,item in ipairs(playerGui:GetChildren()) do suppress(item) end suppressAdded=playerGui.ChildAdded:Connect(suppress)
 	else
-		if suppressHeartbeat then suppressHeartbeat:Disconnect() suppressHeartbeat = nil end
-		if suppressAdded then suppressAdded:Disconnect() suppressAdded = nil end
-		for item, enabled in pairs(suppressed) do if item.Parent then item.Enabled = enabled end end
-		table.clear(suppressed)
+		if suppressAdded then suppressAdded:Disconnect() suppressAdded=nil end
+		for item,enabled in pairs(suppressed) do if item.Parent then item.Enabled=enabled end end table.clear(suppressed)
 	end
 end
-
 local function setOpen(open)
 	suppressOthers(open)
 	overlay.Visible = open
@@ -680,7 +681,9 @@ local function renderVehiclePage()
 	start.MouseButton1Click:Connect(function()
 		if selectedVehicleId == "" then return end
 		setOpen(false)
-		legacyAction:Fire("StartSelectedVehicle", { Mode = selectedMode, EventId = pairedEventId(selectedMode), VehicleId = selectedVehicleId, Tier = selectedTier, LapCount = selectedLap })
+		local selectedRow
+		for _,row in ipairs(racingVehicleRows()) do if row.VehicleId==selectedVehicleId then selectedRow=row break end end
+		legacyAction:Fire("StartSelectedVehicle", { Mode = selectedMode, EventId = pairedEventId(selectedMode), VehicleId = selectedVehicleId, CockpitId = selectedRow and selectedRow.CockpitId, Tier = selectedTier, LapCount = selectedLap })
 	end)
 end
 
@@ -844,8 +847,12 @@ local function buildGui()
 	shell = UI.Panel(overlay, { Color = C("PanelDeep"), Transparency = L("PanelTransparency", 0.08), StrokeColor = C("Outline"), StrokeWidth = L("ShellStrokeWidth", 2), StrokeTransparency = 0.02, Clips = true })
 	shell.AnchorPoint = Vector2.new(0.5, 0.5)
 	shell.Position = UDim2.fromScale(0.5, 0.5)
-	shell.Size = touch and UDim2.new(1, -16, 1, -16) or UDim2.fromOffset(L("ShellWidth", 1200), L("ShellHeight", 720))
-	if not touch then
+	if scaledDesktop then
+		MobileScaledDesktop.Attach(shell)
+	elseif touch then
+		shell.Size = UDim2.new(1, -16, 1, -16)
+	else
+		shell.Size = UDim2.fromOffset(L("ShellWidth", 1200), L("ShellHeight", 720))
 		UI.AttachResponsiveScale(shell)
 	end
 	local headerH = touch and 44 or L("HeaderHeight", 64)

@@ -33,6 +33,96 @@ Phase 0 passed in Studio Edit mode on 2026-07-10 with `pass=35 warn=2 fail=0`. T
 
 The Phase 1 screenshot review found structural layout issues rather than isolated colour tweaks. Phase 2 established the responsive visual system and live boost telemetry. Phase 3D's north-up 2D map with transparent image-only markers and Phase 4A's shared dealership-confirmation/teleport flow were installed and confirmed working. Phase 4A is the current PC free-roam UI baseline in the refreshed Studio mirror. Later free-roam phases are intentionally deferred; preserve the shared theme/config and isolated-controller approach when race/time-trial UI adopts the same design language.
 
+## Mobile Free-Roam UI Phase 1
+
+The first canonical mobile free-roam redesign is generated in:
+
+```text
+scripts/roblox_ui_freeroam_mobile_phase0_audit.lua
+scripts/roblox_ui_freeroam_mobile_phase1_canonical_hud_controls.lua
+docs/ui-free-roam-mobile-phase1-canonical-hud-controls-2026-07-13.md
+```
+
+It replaces the retired Phase 16E compatibility loaders with isolated touch-only
+HUD and control owners, reuses the Phase 4A map/theme/action contracts, and puts
+`Arrows | Thumbstick | Tilt` at the top of mobile Settings. Arrows are the
+default; Tilt is gyroscope-gated and includes held Drift plus Recenter. The four
+upload-ready transparent control images live under
+`assets/ui/icons/mobile_controls/`. Phase 1 is not the confirmed baseline until
+the audit, Device Emulator checks, real-device Tilt test, and mirror refresh pass.
+
+Phase 1 was installed and mirrored at `2026-07-13 14:58:02`. Screenshot review
+then identified five concrete parity issues: incorrect map transform/missing
+fades, vertical navigation, approximate telemetry, undersized controls, and the
+bootstrap-created legacy DriveHUD remaining visible. Phase 1B upgrades the same
+canonical installer with exact Phase 4A component contracts and exact-child
+legacy HUD suppression while preserving the ScreenGui driving-state signal. Use
+`docs/ui-free-roam-mobile-phase1b-pc-component-parity-2026-07-13.md` for the next
+Studio rerun and verification.
+
+Phase 1C supersedes Phase 1B as the next rerun. It keeps the same canonical
+owners and contracts, aligns the action row left of the top-right map, moves cash
+directly below the map, widens arrows `1.5x`, moves the real lightning boost
+target above the steering cluster, and rebuilds bottom telemetry around a shallow
+overhead speed arc and vertical boost meter. Use
+`docs/ui-free-roam-mobile-phase1c-layout-refinement-2026-07-13.md`.
+
+Phase 1C was user-approved and mirrored at `15:33:06`. Phase 1D adds the mobile
+car menu inside the same canonical HUD owner. It scales the PC two-column menu
+onto the left beneath Roblox controls and reuses PC profile/category/sort/card,
+tier, selection, Buy More, spawn, and Despawn contracts. The world is not
+darkened; a transparent outside-tap layer leaves the top HUD visible but blocks
+its actions and closes the menu. See
+`docs/ui-free-roam-mobile-phase1d-pc-parity-car-menu-2026-07-13.md`.
+
+Phase 1D worked overall, but its cards were sized only from horizontal width and
+could be clipped by the grid/footer boundary. Phase 1E uses the available grid
+height to fit three complete rows while preserving the PC card aspect ratio and
+adds the PC stroke/top/bottom safety-padding system. It also ports the PC
+effects-driven panel/card/button gradients and replaces pink-outlined expanded
+dropdown options with the PC borderless neutral surface. See
+`docs/ui-free-roam-mobile-phase1e-responsive-car-menu-parity-2026-07-13.md`.
+
+Phase 1E dropdown styling was approved, but three complete rows made cards too
+small. Phase 1F targets two complete rows and derives the entire panel width from
+two larger cards plus one compact gap and side padding. It also compacts the
+title, dropdowns, Despawn, footer, internal card spacing, and screen-edge margins.
+The open dropdown now closes when its own field is tapped again. See
+`docs/ui-free-roam-mobile-phase1f-fitted-car-menu-layout-2026-07-13.md`.
+
+Launched-phone testing of Phase 1F confirmed the overall menu but exposed clipped
+long vehicle names and excess chrome. Phase 1G keeps each name complete on one
+self-fitting line, reduces target cards to `160 px`, removes the menu title and
+field captions, moves shorter dropdowns to the top, shortens Despawn, and removes
+the outer-panel/Despawn borders and glow while retaining the approved gradients,
+card borders, and dropdown toggle. See
+`docs/ui-free-roam-mobile-phase1g-compact-borderless-car-menu-2026-07-13.md`.
+
+Phase 1G looked better in follow-up testing, but its cards still occupied too
+much space and long cash balances could escape the card. Phase 1H reduces target
+cards to `108 x 95`, scales the badge, rating, vehicle name, fallback, stroke, and
+Buy More content with them, and constrains cash to a self-scaling region left of
+the Plus button with card clipping as a final guard. See
+`docs/ui-free-roam-mobile-phase1h-smaller-cards-cash-fit-2026-07-13.md`.
+
+Phase 1H screenshot review showed that smaller target dimensions alone were not
+enough: the height solver still reserved only two rows. Phase 1I explicitly sets
+`CarMenuVisibleRows = 3`, targets `92 x 80` cards, and lets short screens reduce
+them further so three complete rows fit above Despawn. See
+`docs/ui-free-roam-mobile-phase1i-guaranteed-three-card-rows-2026-07-13.md`.
+
+Phase 1I's three-row layout was user-confirmed looking great. Phase 1J moves only
+the vehicle artwork slightly lower within each card and strengthens the existing
+background-only Despawn gradient while keeping its border and glow removed. Both
+values are editable config attributes. See
+`docs/ui-free-roam-mobile-phase1j-card-art-despawn-gradient-2026-07-13.md`.
+
+Phase 1J was user-confirmed good. Phase 1K keeps the Boost hit target unchanged,
+reduces only the visible lightning icon, adds a circular blue-to-cyan plate that
+matches the boost bar, and dynamically aligns Exit's bottom with the lower
+turning buttons. See
+`docs/ui-free-roam-mobile-phase1k-boost-plate-exit-alignment-2026-07-13.md`.
+
 ## Shared UI Theme
 
 The current editable UI colour source is:
@@ -107,6 +197,10 @@ Preferred Phase 2 first pass: `scripts/roblox_freeroam_vehicle_spawn_phase2_bloc
 Free Roam Vehicle Spawn Phase 3 is prepared as `scripts/roblox_freeroam_vehicle_spawn_phase3_click_spawn.lua` and documented in `docs/freeroam-vehicle-spawn-phase3-click-spawn-2026-07-05.md`. It adds the guarded server action `SpawnOwnedVehicleFromFreeRoam` and wires owned cockpit cards to spawn/swap into that vehicle at the nearest clear `NTR_RoadSpawnPoint`, with a server-side speed gate defaulting to `10 MPH`.
 
 ## Dealership Flow
+
+### Studio cash testing helper
+
+`scripts/roblox_studio_cash_grant_hotkey.lua` installs an isolated Studio-only test helper for dealership/economy balancing. The `LucidityStudios` player can press `=` to add `$100,000` through the existing authoritative garage cash/persistence bridge. Amount, key, account name, enabled state, and cooldown are attributes under `Config.Runtime.StudioCashGrant`. The server contains a non-configurable `RunService:IsStudio()` guard, so the remote cannot grant cash in published servers. See `docs/studio-cash-grant-hotkey-2026-07-13.md`.
 
 Known dealership structure:
 
@@ -353,6 +447,12 @@ Known mobile driving UI:
 - MPH text shown above boost button.
 - PC bottom-left drive HUD should be hidden on mobile.
 
+Mobile Free-Roam UI Phase 1L is generated for the central popup family. Settings keeps Mobile Controls first and uses a fixed `720 x 420` reference; Get Cash ports the PC `840 x 650` balance/four-card composition; Dealership confirmation uses `650 x 270`. Each shell scales and centres inside the same `72/10/10 px` top/bottom/side safe area approved for mobile racing menus. Cash buttons remain visual-only and must not invoke a purchase. See `docs/ui-free-roam-mobile-phase1l-modal-safe-area-pc-cash-2026-07-13.md`.
+
+Mobile Free-Roam UI Phase 1M is generated as a visual-only controls refinement. All four turn/drift arrow cards become borderless gradient surfaces with `ArrowCardOpacity` and `ArrowImageOpacity`; Accelerator/Brake cards use `PedalCardOpacity = 0` by default so only artwork remains, with `PedalImageOpacity` available for tuning. Opacity is `0 = invisible`, `1 = opaque`. Hitboxes, layout and input behavior remain unchanged.
+
+Mobile Free-Roam UI Phase 1N makes Accelerator and Brake equal `PedalSize x PedalSize` image slots. Both share `PedalBottomOffset`; Accelerator is `PedalRightOffset` from the right edge and Brake is separated to its left by `PedalGap`. The image asset values and Phase 1M card/image opacity attributes are unchanged.
+
 ## Free Roam Vehicle Menu
 
 Free Roam Vehicle Spawn Phase 4 separates three vehicle states:
@@ -370,6 +470,8 @@ Phase 4C adds that first parked-hover keeper as `FreeRoamParkedHoverController_A
 Phase 4D keeps parked/despawn behaviour player-centred: `DespawnVehicle` only moves the player if they are currently seated in the vehicle being despawned, and the `10 MPH` spawn gate plus vehicle-position spawn anchor apply only while actively seated/driving. If the player has exited and is on foot, spawning/despawning should use the player's position/state rather than the parked car. Phase 4D also narrows the desktop car pop-out to three compact cards and removes the pink outline layers from free-roam cockpit card/image boxes while preserving the selected magenta fill.
 
 ## Race Entry Menu
+
+Mobile Racing UI Phase 1 was installed and user-confirmed working as a shared scaled-desktop system. Instead of rebuilding Browser, race/time-trial setup, placement prizes, records, vehicle selection, and unified Results, touch devices select the existing approved PC composition and fit its fixed `1200 x 720` shell into a configurable safe area. Phase 1B tightens the gap beneath Roblox's built-in controls by changing only `SafeTop` from `84` to `72`. The isolated helper is `RacingMobileScaledDesktopLayout`; tuning lives at `Config.UI.Racing.MobileScaledDesktop`. The in-race HUD and all racing gameplay/data owners remain outside this phase.
 
 The amended racing plan makes the next race UI a themed entry flow instead of an instant prompt start. Pressing `E` / touch on a race zone should open an isolated `Controllers.Racing` menu with:
 

@@ -77,4 +77,4 @@ For a complete Phase 4A rollback, also disable `FreeRoamHudTeleportService_Activ
 
 ## Next Chat
 
-Start from `docs/racing-next-chat-handoff-2026-07-10.md`. Audit the existing Phase 11Z racing UI and ownership before changing it. The intended branch is race/time-trial entry menus, in-race presentation, finish/results screens, rewards and prize presentation, and replay/exit UX. Preserve confirmed racing lifecycle, reset, reward, PB, and cleanup behavior while reusing the Phase 4A design system through isolated Racing UI controllers.
+The race/time-trial UI branch described here was completed and confirmed through Phase 16F. Start current Racing UI work from `docs/racing-ui-final-handoff-2026-07-13.md`; use `docs/racing-next-chat-handoff-2026-07-10.md` only for the locked Phase 11Z gameplay history. Phase 4A remains the visual/token baseline, while Phase 16E now owns the rule that obsolete PC presentation objects, loops, and connections are not constructed.

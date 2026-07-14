@@ -1,745 +1,198 @@
-local Players = game:GetService("Players")
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local RunService = game:GetService("RunService")
-local UserInputService = game:GetService("UserInputService")
-local Workspace = game:GetService("Workspace")
+-- NTR_MOBILE_FREEROAM_UI_PHASE1N_SQUARE_PEDAL_LAYOUT
+-- NTR_MOBILE_FREEROAM_UI_PHASE1M_CONTROL_SURFACE_OPACITY
+-- NTR_MOBILE_FREEROAM_UI_PHASE1K_BOOST_PLATE_EXIT_ALIGNMENT
+local Players=game:GetService("Players")
+local ReplicatedStorage=game:GetService("ReplicatedStorage")
+local RunService=game:GetService("RunService")
+local UserInputService=game:GetService("UserInputService")
+if not UserInputService.TouchEnabled then return end
 
-local player = Players.LocalPlayer
-local playerGui = player:WaitForChild("PlayerGui")
+local player=Players.LocalPlayer
+local playerGui=player:WaitForChild("PlayerGui")
+local kit=ReplicatedStorage:WaitForChild("NeoTokyoRacers")
+local config=kit:WaitForChild("Config"):WaitForChild("UI"):WaitForChild("MobileFreeRoamHud")
+local assets=config:WaitForChild("Assets")
+local desktopAssets=kit.Config.UI:WaitForChild("DesktopFreeRoamHud"):WaitForChild("Assets")
+local M=require(kit:WaitForChild("Shared"):WaitForChild("Modules"):WaitForChild("Client"):WaitForChild("Controllers"):WaitForChild("MobileDriveInputState"))
 
-local M = require(game:GetService("ReplicatedStorage")
-	:WaitForChild("NeoTokyoRacers")
-	:WaitForChild("Shared"):WaitForChild("Modules"):WaitForChild("Client")
-	:WaitForChild("Controllers")
-	:WaitForChild("MobileDriveInputState"))
+local PANEL=Color3.fromRGB(15,19,24)
+local SOFT=Color3.fromRGB(24,29,36)
+local PINK=Color3.fromRGB(244,46,151)
+local CYAN=Color3.fromRGB(43,225,218)
+local BLUE=Color3.fromRGB(25,116,255)
+local WHITE=Color3.fromRGB(246,248,252)
+local MUTED=Color3.fromRGB(163,171,184)
+local FONT=Enum.Font.Michroma
 
-local TOUCH = UserInputService.TouchEnabled
-local configFolder = ReplicatedStorage
-	:WaitForChild("NeoTokyoRacers")
-	:WaitForChild("Shared")
-	:WaitForChild("Config")
-	:WaitForChild("MobileDriveControls_EditAttributes")
-
-local function configNumber(name, fallback, minimum, maximum)
-	local value = configFolder:GetAttribute(name)
-	if typeof(value) ~= "number" then value = fallback end
-	return math.clamp(value, minimum, maximum)
+local function A(name, fallback) local v=config:GetAttribute(name); if v==nil then return fallback end return v end
+local function sourceAsset(folder,name) local v=folder:FindFirstChild(name); local s=tostring(v and v.Value or ""); if tonumber(s) then return "rbxassetid://"..s end return s end
+local function asset(name) return sourceAsset(assets,name) end
+local function new(class,props,parent) local x=Instance.new(class); for k,v in pairs(props or {}) do x[k]=v end x.Parent=parent; return x end
+local function corner(parent,r) return new("UICorner",{CornerRadius=UDim.new(0,r or 12)},parent) end
+local function stroke(parent,color,width,transparency) return new("UIStroke",{Color=color,Thickness=width or 2,Transparency=transparency or 0,ApplyStrokeMode=Enum.ApplyStrokeMode.Border},parent) end
+local function label(parent,name,text,size,pos,textSize,color)
+	return new("TextLabel",{Name=name,BackgroundTransparency=1,BorderSizePixel=0,Size=size,Position=pos,Text=text,TextColor3=color or WHITE,TextSize=textSize or 12,Font=FONT,TextScaled=false,ZIndex=parent.ZIndex+2},parent)
 end
 
-local function themeColor(name, fallback, alternate)
-	local kit = ReplicatedStorage:FindFirstChild("NeoTokyoRacers")
-	local themeFolder = kit and kit:FindFirstChild("Config") and kit.Config:FindFirstChild("UI") and kit.Config.UI:FindFirstChild("Theme")
-	local item = themeFolder and (themeFolder:FindFirstChild(name) or (alternate and themeFolder:FindFirstChild(alternate)))
-	return item and item:IsA("Color3Value") and item.Value or fallback
+local old=playerGui:FindFirstChild("NTR_MobileDriveControls_Phase1"); if old then old:Destroy() end
+local gui=new("ScreenGui",{Name="NTR_MobileDriveControls_Phase1",IgnoreGuiInset=true,ResetOnSpawn=false,DisplayOrder=96,ZIndexBehavior=Enum.ZIndexBehavior.Sibling},playerGui)
+local root=new("Frame",{Name="Root",BackgroundTransparency=1,BorderSizePixel=0,Size=UDim2.fromScale(1,1),Visible=false,ZIndex=1},gui)
+
+local allButtons={}
+local function visualKind(name)
+	if name=="TurnLeft" or name=="TurnRight" or name=="DriftLeft" or name=="DriftRight" then return "Arrow" end
+	if name=="Accelerator" or name=="Brake" then return "Pedal" end
+	return "Default"
 end
-
-local HUD_PANEL = themeColor("Panel", Color3.fromRGB(5, 9, 7))
-local HUD_PANEL_SOFT = themeColor("Card", Color3.fromRGB(24, 35, 42))
-local HUD_TEXT = themeColor("Text", Color3.fromRGB(218, 255, 231))
-local HUD_ACCENT = themeColor("Accent", Color3.fromRGB(172, 255, 197))
-local HUD_RED = themeColor("Exit", Color3.fromRGB(194, 67, 62), "Danger")
-local HUD_PINK = themeColor("Selected", Color3.fromRGB(230, 88, 205), "CardHot")
-
-local fontFace
-pcall(function()
-	fontFace = Font.new("rbxasset://fonts/families/Michroma.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal)
-end)
-
-local function applyText(object)
-	if fontFace then
-		pcall(function() object.FontFace = fontFace end)
-	else
-		object.Font = Enum.Font.GothamBold
-	end
-	object.TextStrokeColor3 = Color3.fromRGB(0, 10, 5)
-	object.TextStrokeTransparency = 0.72
-end
-
-local function corner(parent, radius)
-	local c = Instance.new("UICorner")
-	c.CornerRadius = UDim.new(0, radius or 5)
-	c.Parent = parent
-	return c
-end
-
-local function stroke(parent, colour, transparency, thickness)
-	local s = Instance.new("UIStroke")
-	s.Name = "HUDStroke"
-	s.Color = colour or HUD_ACCENT
-	s.Transparency = transparency or 0.32
-	s.Thickness = thickness or 1
-	s.Parent = parent
-	return s
-end
-
-local old = playerGui:FindFirstChild("HOVER_RACING_V67_MobileDriveControlsUI")
-if old then old:Destroy() end
-
-local gui = Instance.new("ScreenGui")
-gui.Name = "HOVER_RACING_V67_MobileDriveControlsUI"
-gui.ResetOnSpawn = false
-gui.IgnoreGuiInset = true
-gui.DisplayOrder = 140
-gui.Enabled = TOUCH
-gui.Parent = playerGui
-
-local root = Instance.new("Frame")
-root.Name = "Root"
-root.Size = UDim2.fromScale(1, 1)
-root.BackgroundTransparency = 1
-root.BorderSizePixel = 0
-root.Visible = false
-root.Parent = gui
-
-local leftPanel = Instance.new("Frame")
-leftPanel.Name = "LeftControls"
-leftPanel.BackgroundTransparency = 1
-leftPanel.BorderSizePixel = 0
-leftPanel.Parent = root
-
-local rightPanel = Instance.new("Frame")
-rightPanel.Name = "Pedals"
-rightPanel.BackgroundTransparency = 1
-rightPanel.BorderSizePixel = 0
-rightPanel.Parent = root
-
-local mphLabel = Instance.new("TextLabel")
-mphLabel.Name = "MphLabel"
-mphLabel.BackgroundTransparency = 1
-mphLabel.BorderSizePixel = 0
-mphLabel.Text = "0 MPH"
-mphLabel.TextColor3 = HUD_ACCENT
-mphLabel.TextSize = 15
-mphLabel.TextXAlignment = Enum.TextXAlignment.Center
-mphLabel.TextYAlignment = Enum.TextYAlignment.Center
-applyText(mphLabel)
-mphLabel.Parent = leftPanel
-
-local function button(parent, name, text)
-	local b = Instance.new("TextButton")
-	b.Name = name
-	b.AutoButtonColor = false
-	b.BackgroundColor3 = HUD_PANEL_SOFT
-	b.BackgroundTransparency = 0.03
-	b.BorderSizePixel = 0
-	b.Text = text
-	b.TextColor3 = HUD_TEXT
-	b.TextSize = 18
-	b.TextWrapped = true
-	b.ClipsDescendants = true
-	applyText(b)
-	b.Parent = parent
-	corner(b, 5)
-	stroke(b, HUD_ACCENT, 0.3, 1)
+local function opacity(name,fallback) return math.clamp(tonumber(A(name,fallback)) or fallback,0,1) end
+local function controlButton(name,imageName,fallback,rotation)
+	local kind=visualKind(name); local cardOpacity=kind=="Arrow" and opacity("ArrowCardOpacity",.72) or kind=="Pedal" and opacity("PedalCardOpacity",0) or .88
+	local b=new("TextButton",{Name=name,Text="",AutoButtonColor=false,BackgroundColor3=PANEL,BackgroundTransparency=1-cardOpacity,BorderSizePixel=0,ClipsDescendants=true,ZIndex=5},root); b:SetAttribute("NTRControlVisual",kind)
+	corner(b,16); local s=nil
+	if kind~="Arrow" and kind~="Pedal" then s=stroke(b,PINK,2,.05) end
+	if kind=="Arrow" then new("UIGradient",{Name="CardGradient",Color=ColorSequence.new(SOFT,PANEL),Rotation=tonumber(A("ArrowCardGradientRotation",90)) or 90},b) end
+	local image=asset(imageName); local imageOpacity=kind=="Arrow" and opacity("ArrowImageOpacity",.92) or kind=="Pedal" and opacity("PedalImageOpacity",.92) or 1
+	if image~="" then new("ImageLabel",{Name="Art",BackgroundTransparency=1,BorderSizePixel=0,Image=image,ImageTransparency=1-imageOpacity,Rotation=rotation or 0,ScaleType=Enum.ScaleType.Fit,Size=UDim2.fromScale(1,1),ZIndex=6},b)
+	else local fallbackSize=(name=="Accelerator" or name=="Brake") and 10 or name=="Boost" and 9 or name:find("Drift") and 22 or 28; local t=label(b,"Fallback",fallback,UDim2.fromScale(1,1),UDim2.fromScale(0,0),fallbackSize,WHITE); t.TextWrapped=true; t.TextTransparency=1-imageOpacity; t.Rotation=rotation or 0 end
+	allButtons[b]=s
 	return b
 end
-
-local boostButton = button(leftPanel, "BoostButton", "")
-local boostFill = Instance.new("Frame")
-boostFill.Name = "BoostFill"
-boostFill.BackgroundColor3 = HUD_ACCENT
-boostFill.BackgroundTransparency = 0.26
-boostFill.BorderSizePixel = 0
-boostFill.Size = UDim2.fromScale(1, 1)
-boostFill.ZIndex = boostButton.ZIndex + 1
-boostFill.Parent = boostButton
-corner(boostFill, 5)
-
-local boostText = Instance.new("TextLabel")
-boostText.Name = "BoostText"
-boostText.BackgroundTransparency = 1
-boostText.BorderSizePixel = 0
-boostText.Size = UDim2.fromScale(1, 1)
-boostText.Text = "BOOST"
-boostText.TextColor3 = HUD_TEXT
-boostText.TextSize = 12
-boostText.ZIndex = boostButton.ZIndex + 2
-applyText(boostText)
-boostText.Parent = boostButton
-
-local thumbHitArea = Instance.new("TextButton")
-thumbHitArea.Name = "SteeringThumbstickHitArea"
-thumbHitArea.AutoButtonColor = false
-thumbHitArea.BackgroundTransparency = 1
-thumbHitArea.BorderSizePixel = 0
-thumbHitArea.Text = ""
-thumbHitArea.Active = true
-thumbHitArea.Parent = leftPanel
-
-local thumbOuterRing = Instance.new("Frame")
-thumbOuterRing.Name = "SteeringDriftOuterRing"
-thumbOuterRing.AnchorPoint = Vector2.new(0.5, 0.5)
-thumbOuterRing.Position = UDim2.fromScale(0.5, 0.5)
-thumbOuterRing.BackgroundColor3 = Color3.fromRGB(48, 68, 57)
-thumbOuterRing.BackgroundTransparency = 0.68
-thumbOuterRing.BorderSizePixel = 0
-thumbOuterRing.Active = false
-thumbOuterRing.Parent = thumbHitArea
-corner(thumbOuterRing, 999)
-local thumbOuterStroke = stroke(thumbOuterRing, HUD_ACCENT, 0.24, 2)
-
-local thumbBase = Instance.new("Frame")
-thumbBase.Name = "SteeringThumbstickBase"
-thumbBase.AnchorPoint = Vector2.new(0.5, 0.5)
-thumbBase.Position = UDim2.fromScale(0.5, 0.5)
-thumbBase.BackgroundColor3 = HUD_PANEL_SOFT
-thumbBase.BackgroundTransparency = 0.18
-thumbBase.BorderSizePixel = 0
-thumbBase.Active = false
-thumbBase.ZIndex = thumbOuterRing.ZIndex + 1
-thumbBase.Parent = thumbOuterRing
-corner(thumbBase, 999)
-local thumbBaseStroke = stroke(thumbBase, HUD_ACCENT, 0.22, 2)
-
-local thumbGuide = Instance.new("Frame")
-thumbGuide.Name = "HorizontalGuide"
-thumbGuide.AnchorPoint = Vector2.new(0.5, 0.5)
-thumbGuide.Position = UDim2.fromScale(0.5, 0.5)
-thumbGuide.Size = UDim2.fromScale(0.62, 0.035)
-thumbGuide.BackgroundColor3 = HUD_ACCENT
-thumbGuide.BackgroundTransparency = 0.58
-thumbGuide.BorderSizePixel = 0
-thumbGuide.Active = false
-thumbGuide.ZIndex = thumbBase.ZIndex + 1
-thumbGuide.Parent = thumbBase
-corner(thumbGuide, 999)
-
-local thumbKnob = Instance.new("Frame")
-thumbKnob.Name = "SteeringThumbstickKnob"
-thumbKnob.AnchorPoint = Vector2.new(0.5, 0.5)
-thumbKnob.Position = UDim2.fromScale(0.5, 0.5)
-thumbKnob.BackgroundColor3 = HUD_ACCENT
-thumbKnob.BackgroundTransparency = 0.08
-thumbKnob.BorderSizePixel = 0
-thumbKnob.Active = false
-thumbKnob.ZIndex = thumbBase.ZIndex + 3
-thumbKnob.Parent = thumbOuterRing
-corner(thumbKnob, 999)
-local thumbKnobStroke = stroke(thumbKnob, HUD_TEXT, 0.2, 1)
-
-local driftText = Instance.new("TextLabel")
-driftText.Name = "DriftThresholdLabel"
-driftText.AnchorPoint = Vector2.new(0.5, 0)
-driftText.Position = UDim2.fromScale(0.5, 0.015)
-driftText.Size = UDim2.fromScale(0.72, 0.1)
-driftText.BackgroundTransparency = 1
-driftText.BorderSizePixel = 0
-driftText.Text = "DRIFT"
-driftText.TextColor3 = HUD_ACCENT
-driftText.TextTransparency = 0.08
-driftText.TextSize = 10
-driftText.ZIndex = thumbKnob.ZIndex + 1
-driftText.Active = false
-applyText(driftText)
-driftText.Parent = thumbOuterRing
-
-local thumbTravelPixels = 1
-local thumbDriftThreshold = 0.82
-
-local function makePedal(name, label, colour)
-	local b = button(rightPanel, name, "")
-	b.BackgroundTransparency = 1
-	local outerStroke = b:FindFirstChild("HUDStroke")
-	if outerStroke then outerStroke.Transparency = 1 end
-	local pad = Instance.new("Frame")
-	pad.Name = "RubberPad"
-	pad.Position = UDim2.fromScale(0.08, 0.05)
-	pad.Size = UDim2.fromScale(0.84, 0.86)
-	pad.BackgroundColor3 = HUD_PANEL
-	pad.BackgroundTransparency = 0.02
-	pad.BorderSizePixel = 0
-	pad.ZIndex = b.ZIndex + 1
-	pad.Parent = b
-	corner(pad, 5)
-	stroke(pad, colour or HUD_ACCENT, 0.48, 1)
-	for index = 1, 5 do
-		local rib = Instance.new("Frame")
-		rib.Name = "GripRib"
-		rib.AnchorPoint = Vector2.new(0.5, 0.5)
-		rib.Position = UDim2.fromScale(0.5, 0.14 + index * 0.13)
-		rib.Size = UDim2.fromScale(0.68, 0.035)
-		rib.BackgroundColor3 = colour or HUD_ACCENT
-		rib.BackgroundTransparency = 0.42
-		rib.BorderSizePixel = 0
-		rib.ZIndex = pad.ZIndex + 1
-		rib.Parent = pad
-		corner(rib, 3)
-	end
-	local text = Instance.new("TextLabel")
-	text.Name = "PedalIcon"
-	text.BackgroundTransparency = 1
-	text.BorderSizePixel = 0
-	text.AnchorPoint = Vector2.new(0.5, 1)
-	text.Position = UDim2.fromScale(0.5, 0.98)
-	text.Size = UDim2.fromScale(0.9, 0.22)
-	text.Text = label
-	text.TextColor3 = HUD_TEXT
-	text.TextSize = 11
-	text.ZIndex = b.ZIndex + 2
-	applyText(text)
-	text.Parent = b
-	return b
-end
-
-local brake = makePedal("BrakePedal", "", HUD_RED)
-local accel = makePedal("AcceleratorPedal", "", HUD_ACCENT)
-
-local buttonMap = {
-	[accel] = "Accelerate",
-	[brake] = "Brake",
-	[boostButton] = "Boost",
-}
-
-local function setPressed(b, active)
-	if b == accel or b == brake then
-		b.BackgroundTransparency = 1
-		local outerStroke = b:FindFirstChild("HUDStroke")
-		if outerStroke then outerStroke.Transparency = 1 end
-		local pad = b:FindFirstChild("RubberPad")
-		if pad then
-			pad.BackgroundTransparency = active and 0 or 0.02
-			local padStroke = pad:FindFirstChild("HUDStroke")
-			if padStroke then
-				padStroke.Transparency = active and 0.12 or 0.48
-				padStroke.Thickness = active and 2 or 1
-			end
-		end
-		return
-	end
-
-	b.BackgroundColor3 = active and HUD_ACCENT or HUD_PANEL_SOFT
-	b.BackgroundTransparency = active and 0.03 or 0.03
-	b.TextColor3 = active and HUD_PANEL or HUD_TEXT
-	local s = b:FindFirstChild("HUDStroke")
-	if s then
-		s.Transparency = active and 0.06 or 0.3
-		s.Thickness = active and 2 or 1
-	end
-	if b == boostButton then
-		boostText.TextColor3 = active and HUD_PANEL or HUD_TEXT
-	end
-end
-
-local function refreshInput()
-	if typeof(M.Refresh) == "function" then
-		M.Refresh()
+local function pressed(b,on)
+	local s=allButtons[b]
+	if b.Name=="Boost" then b.BackgroundTransparency=1; if s then s.Transparency=1 end; return end
+	local kind=tostring(b:GetAttribute("NTRControlVisual") or "Default")
+	if kind=="Arrow" then
+		local cardOpacity=math.clamp(opacity("ArrowCardOpacity",.72)+(on and opacity("ArrowPressedOpacityBoost",.12) or 0),0,1); b.BackgroundTransparency=1-cardOpacity
+	elseif kind=="Pedal" then
+		b.BackgroundTransparency=1-opacity("PedalCardOpacity",0)
 	else
-		local s = M.State
-		M.Throttle = math.clamp((s.Accelerate and 1 or 0) - (s.Brake and 1 or 0), -1, 1)
-		M.Steer = math.clamp(((s.TurnRight or s.DriftRight) and 1 or 0) - ((s.TurnLeft or s.DriftLeft) and 1 or 0), -1, 1)
-		M.Drift = s.DriftLeft or s.DriftRight
-		M.Boost = s.Boost
+		b.BackgroundTransparency=on and 0 or .12; if s then s.Color=on and CYAN or PINK; s.Thickness=on and 3 or 2 end
 	end
+	local imageOpacity=kind=="Arrow" and opacity("ArrowImageOpacity",.92) or kind=="Pedal" and opacity("PedalImageOpacity",.92) or .92
+	if on and (kind=="Arrow" or kind=="Pedal") then imageOpacity=math.clamp(imageOpacity+opacity("ControlPressedImageOpacityBoost",.08),0,1) end
+	local art=b:FindFirstChild("Art"); if art then art.ImageTransparency=1-imageOpacity end
+	local fallback=b:FindFirstChild("Fallback"); if fallback and (kind=="Arrow" or kind=="Pedal") then fallback.TextTransparency=1-imageOpacity end
 end
 
-local function setAction(b, active)
-	local action = buttonMap[b]
-	if not action then return end
-	M.State[action] = active
-	setPressed(b, active)
-	refreshInput()
-end
 
-local activeSteeringInput = nil
-local mouseSteering = false
-local driftRequested = false
+local turnLeft=controlButton("TurnLeft","TurnArrowImage","<",0)
+local turnRight=controlButton("TurnRight","TurnArrowImage",">",180)
+local driftLeft=controlButton("DriftLeft","DriftArrowImage","<<",0)
+local driftRight=controlButton("DriftRight","DriftArrowImage",">>",180)
+local accelerator=controlButton("Accelerator","AcceleratorImage","ACCEL",0)
+local brake=controlButton("Brake","BrakeImage","BRAKE",0)
+local boost=controlButton("Boost","","",0)
+local boostPlateScale=math.clamp(tonumber(A("BoostPlateScale",.84)) or .84,.5,1)
+local boostPlate=new("Frame",{Name="BoostPlate",AnchorPoint=Vector2.new(.5,.5),BackgroundColor3=CYAN,BackgroundTransparency=.04,BorderSizePixel=0,Position=UDim2.fromScale(.5,.5),Size=UDim2.fromScale(boostPlateScale,boostPlateScale),ZIndex=6},boost); corner(boostPlate,999); new("UIGradient",{Color=ColorSequence.new(BLUE,CYAN),Rotation=tonumber(A("BoostPlateGradientRotation",45)) or 45},boostPlate)
+local boostIconScale=tonumber(A("BoostIconScale",1.05)) or 1.05
+local boostArt=new("ImageLabel",{Name="BoostIcon",AnchorPoint=Vector2.new(.5,.5),BackgroundTransparency=1,BorderSizePixel=0,Image=sourceAsset(desktopAssets,"BoostIcon"),ImageColor3=WHITE,Position=UDim2.fromScale(.5,.5),ScaleType=Enum.ScaleType.Fit,Size=UDim2.fromOffset(32*boostIconScale,32*boostIconScale),ZIndex=7},boost)
+local boostFallback=boost:FindFirstChild("Fallback"); boostFallback.Text="BOOST"; boostFallback.TextColor3=CYAN; boostFallback.TextXAlignment=Enum.TextXAlignment.Center; boostFallback.Visible=boostArt.Image==""
 
-local function publishSteering(steer, drift)
-	if typeof(M.SetSteering) == "function" then
-		M.SetSteering(steer, drift)
-	else
-		M.Steer = steer
-		M.Drift = drift
+local thumbHit=new("TextButton",{Name="ThumbstickHit",Text="",AutoButtonColor=false,BackgroundTransparency=1,BorderSizePixel=0,ZIndex=4},root)
+local thumbOuter=new("Frame",{Name="OuterDriftRing",AnchorPoint=Vector2.new(.5,.5),Position=UDim2.fromScale(.5,.5),BackgroundColor3=PANEL,BackgroundTransparency=.36,BorderSizePixel=0,ZIndex=4},thumbHit); corner(thumbOuter,999); local outerStroke=stroke(thumbOuter,PINK,3,.08)
+local thumbInner=new("Frame",{Name="InnerTurnRing",AnchorPoint=Vector2.new(.5,.5),Position=UDim2.fromScale(.5,.5),BackgroundColor3=SOFT,BackgroundTransparency=.2,BorderSizePixel=0,ZIndex=5},thumbOuter); corner(thumbInner,999); stroke(thumbInner,CYAN,2,.12)
+local thumbKnob=new("Frame",{Name="Knob",AnchorPoint=Vector2.new(.5,.5),Position=UDim2.fromScale(.5,.5),BackgroundColor3=CYAN,BackgroundTransparency=.05,BorderSizePixel=0,ZIndex=7},thumbOuter); corner(thumbKnob,999); stroke(thumbKnob,WHITE,2,.12)
+local thumbLabel=label(thumbOuter,"DriftLabel","DRIFT",UDim2.fromScale(.8,.18),UDim2.fromScale(.1,.77),9,PINK)
+
+local tiltDrift=controlButton("TiltDrift","","DRIFT",0)
+local tiltRecenter=controlButton("TiltRecenter","","RECENTER",0)
+local tiltStatus=label(root,"TiltStatus","TILT STEERING",UDim2.fromOffset(180,20),UDim2.fromOffset(0,0),9,MUTED)
+
+local buttonAction={[turnLeft]="TurnLeft",[turnRight]="TurnRight",[driftLeft]="DriftLeft",[driftRight]="DriftRight",[accelerator]="Accelerate",[brake]="Brake",[boost]="Boost",[tiltDrift]="TiltDrift"}
+local activeInputs={}
+local function refresh()
+	if M.Refresh then M.Refresh() else
+		local s=M.State; M.Throttle=(s.Accelerate and 1 or 0)-(s.Brake and 1 or 0); M.Steer=((s.TurnRight or s.DriftRight) and 1 or 0)-((s.TurnLeft or s.DriftLeft) and 1 or 0); M.Drift=s.DriftLeft or s.DriftRight; M.Boost=s.Boost
 	end
 end
-
-local function setThumbVisual(steer, drift)
-	thumbKnob.Position = UDim2.fromOffset(
-		thumbOuterRing.AbsoluteSize.X * 0.5 + steer * thumbTravelPixels,
-		thumbOuterRing.AbsoluteSize.Y * 0.5
-	)
-	local activeColour = drift and HUD_RED or HUD_ACCENT
-	thumbKnob.BackgroundColor3 = activeColour
-	thumbBaseStroke.Color = drift and HUD_RED or HUD_ACCENT
-	thumbBaseStroke.Transparency = math.abs(steer) > 0.01 and 0.08 or 0.22
-	thumbOuterStroke.Color = drift and HUD_RED or HUD_ACCENT
-	thumbOuterStroke.Transparency = drift and 0.04 or 0.24
-	thumbOuterStroke.Thickness = drift and 3 or 2
-	thumbKnobStroke.Thickness = drift and 2 or 1
-	driftText.TextColor3 = drift and HUD_RED or HUD_ACCENT
-	driftText.TextTransparency = drift and 0 or 0.08
+local function setButton(b,on)
+	local action=buttonAction[b]; if not action then return end
+	if action=="TiltDrift" then M.AnalogDrift=on else M.State[action]=on end
+	pressed(b,on); refresh()
 end
-
-local function updateSteering(position)
-	local centerX = thumbOuterRing.AbsolutePosition.X + thumbOuterRing.AbsoluteSize.X * 0.5
-	local raw = math.clamp((position.X - centerX) / math.max(thumbTravelPixels, 1), -1, 1)
-	local magnitude = math.abs(raw)
-	local deadzone = configNumber("SteeringDeadzone", 0, 0, 0.25)
-	local steer = 0
-	if magnitude > deadzone then
-		local scaled = math.clamp((magnitude - deadzone) / math.max(1 - deadzone, 0.01), 0, 1)
-		local exponent = configNumber("SteeringResponseExponent", 1, 0.5, 2)
-		steer = math.sign(raw) * (scaled ^ exponent)
-	end
-
-	local enterThreshold = configNumber("DriftEnterThreshold", 0.90, 0.65, 0.98)
-	local exitThreshold = math.min(
-		configNumber("DriftExitThreshold", 0.82, 0.55, 0.95),
-		enterThreshold
-	)
-	if driftRequested then
-		driftRequested = math.abs(steer) >= exitThreshold
-	else
-		driftRequested = math.abs(steer) >= enterThreshold
-	end
-
-	publishSteering(steer, driftRequested)
-	setThumbVisual(steer, driftRequested)
+for b in pairs(buttonAction) do
+	b.InputBegan:Connect(function(input) if input.UserInputType==Enum.UserInputType.Touch or input.UserInputType==Enum.UserInputType.MouseButton1 then activeInputs[input]=b; setButton(b,true) end end)
+	b.InputEnded:Connect(function(input) if activeInputs[input]==b then activeInputs[input]=nil; setButton(b,false) end end)
 end
+UserInputService.InputEnded:Connect(function(input) local b=activeInputs[input]; if b then activeInputs[input]=nil; setButton(b,false) end end)
 
-local function releaseSteering()
-	activeSteeringInput = nil
-	mouseSteering = false
-	driftRequested = false
-	if typeof(M.ReleaseSteering) == "function" then
-		M.ReleaseSteering()
-	else
-		M.Steer = 0
-		M.Drift = false
-	end
-	setThumbVisual(0, false)
+local activeThumb=nil
+local thumbSteer=0
+local thumbDrift=false
+local function publishSteering(steer,drift) thumbSteer=steer; thumbDrift=drift; if M.SetSteering then M.SetSteering(steer,drift) else M.AnalogSteer=steer; M.AnalogDrift=drift; refresh() end end
+local function updateThumb(position)
+	local center=thumbOuter.AbsolutePosition+thumbOuter.AbsoluteSize*.5
+	local delta=position-center
+	local radius=math.max(thumbOuter.AbsoluteSize.X*.5-thumbKnob.AbsoluteSize.X*.45,1)
+	local raw=math.clamp(delta.X/radius,-1,1)
+	local enter=tonumber(kit.Shared.Config.MobileDriveControls_EditAttributes:GetAttribute("DriftEnterThreshold")) or .95
+	local exit=tonumber(kit.Shared.Config.MobileDriveControls_EditAttributes:GetAttribute("DriftExitThreshold")) or .88
+	if thumbDrift then thumbDrift=math.abs(raw)>=exit else thumbDrift=math.abs(raw)>=enter end
+	thumbKnob.Position=UDim2.fromScale(.5+raw*.34,.5)
+	thumbKnob.BackgroundColor3=thumbDrift and PINK or CYAN; outerStroke.Color=thumbDrift and CYAN or PINK
+	publishSteering(raw,thumbDrift)
 end
+local function releaseThumb() activeThumb=nil; thumbKnob.Position=UDim2.fromScale(.5,.5); thumbKnob.BackgroundColor3=CYAN; outerStroke.Color=PINK; publishSteering(0,false) end
+thumbHit.InputBegan:Connect(function(input) if activeThumb then return end; if input.UserInputType==Enum.UserInputType.Touch or input.UserInputType==Enum.UserInputType.MouseButton1 then activeThumb=input; updateThumb(input.Position) end end)
+UserInputService.InputChanged:Connect(function(input) if input==activeThumb then updateThumb(input.Position) elseif activeThumb and activeThumb.UserInputType==Enum.UserInputType.MouseButton1 and input.UserInputType==Enum.UserInputType.MouseMovement then updateThumb(input.Position) end end)
+UserInputService.InputEnded:Connect(function(input) if input==activeThumb then releaseThumb() end end)
 
-thumbHitArea.InputBegan:Connect(function(input)
-	if activeSteeringInput then return end
-	if input.UserInputType == Enum.UserInputType.Touch then
-		activeSteeringInput = input
-		updateSteering(input.Position)
-	elseif input.UserInputType == Enum.UserInputType.MouseButton1 then
-		activeSteeringInput = input
-		mouseSteering = true
-		updateSteering(input.Position)
-	end
+local neutralRoll=0
+local tiltTarget=0
+local tiltCurrent=0
+local latestRoll=0
+local function normalizeAngle(x) while x>math.pi do x-=math.pi*2 end while x< -math.pi do x+=math.pi*2 end return x end
+local function calibrate() neutralRoll=latestRoll; tiltTarget=0; tiltCurrent=0; tiltStatus.Text="TILT CALIBRATED" end
+tiltRecenter.Activated:Connect(calibrate)
+UserInputService.DeviceRotationChanged:Connect(function(_rotation,cf)
+	local _,_,roll=cf:ToOrientation(); latestRoll=roll
+	if tostring(player:GetAttribute("NTRMobileControlMode") or "")~="Tilt" then return end
+	local degrees=math.deg(normalizeAngle(roll-neutralRoll)); local dead=tonumber(A("TiltDeadzoneDegrees",3)) or 3; local maximum=math.max(dead+1,tonumber(A("TiltMaxDegrees",28)) or 28)
+	local sign=degrees<0 and -1 or 1; local mag=math.abs(degrees); tiltTarget=mag<=dead and 0 or sign*math.clamp((mag-dead)/(maximum-dead),0,1)
 end)
 
-UserInputService.InputChanged:Connect(function(input)
-	if input.UserInputType == Enum.UserInputType.Touch and input == activeSteeringInput then
-		updateSteering(input.Position)
-	elseif mouseSteering and input.UserInputType == Enum.UserInputType.MouseMovement then
-		updateSteering(input.Position)
-	end
-end)
-
-UserInputService.InputEnded:Connect(function(input)
-	if input == activeSteeringInput
-		or (mouseSteering and input.UserInputType == Enum.UserInputType.MouseButton1) then
-		releaseSteering()
-	end
-end)
-
-for b in pairs(buttonMap) do
-	b.InputBegan:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseButton1 then
-			setAction(b, true)
-		end
-	end)
-	b.InputEnded:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseButton1 then
-			setAction(b, false)
-		end
-	end)
-	b.MouseLeave:Connect(function()
-		setAction(b, false)
-	end)
+local currentMode=""
+local function clearInputs()
+	for b in pairs(buttonAction) do pressed(b,false) end
+	for key in pairs(M.State) do M.State[key]=false end
+	M.AnalogDrift=false; releaseThumb(); refresh()
 end
-
-local function resetInput()
-	if typeof(M.Reset) == "function" then
-		M.Reset()
-	else
-		for action in pairs(M.State) do M.State[action] = false end
-		M.Throttle, M.Steer, M.Drift, M.Boost = 0, 0, false, false
-	end
-	for b in pairs(buttonMap) do
-		setPressed(b, false)
-	end
-	releaseSteering()
+local function setMode(raw)
+	local mode=tostring(raw or A("DefaultControlMode","Arrows")); if mode~="Arrows" and mode~="Thumbstick" and mode~="Tilt" then mode="Arrows" end
+	if mode=="Tilt" and not UserInputService.GyroscopeEnabled then mode="Arrows"; player:SetAttribute("NTRMobileControlMode","Arrows") end
+	if mode==currentMode then return end; clearInputs(); currentMode=mode
+	local arrow=mode=="Arrows"; turnLeft.Visible=arrow; turnRight.Visible=arrow; driftLeft.Visible=arrow; driftRight.Visible=arrow
+	thumbHit.Visible=mode=="Thumbstick"; tiltDrift.Visible=mode=="Tilt"; tiltRecenter.Visible=mode=="Tilt"; tiltStatus.Visible=mode=="Tilt"
+	if mode=="Tilt" then local _,cf=UserInputService:GetDeviceRotation(); local _,_,roll=cf:ToOrientation(); latestRoll=roll; calibrate() end
 end
+player:GetAttributeChangedSignal("NTRMobileControlMode"):Connect(function() setMode(player:GetAttribute("NTRMobileControlMode")) end)
+if not player:GetAttribute("NTRMobileControlMode") then player:SetAttribute("NTRMobileControlMode",A("DefaultControlMode","Arrows")) end
+setMode(player:GetAttribute("NTRMobileControlMode"))
 
-local function findGarageVisible()
-	for _, guiObject in ipairs(playerGui:GetChildren()) do
-		if guiObject:IsA("ScreenGui") and guiObject.Enabled then
-			local name = string.lower(guiObject.Name)
-			if name ~= "ntr_freeroamleftnav"
-				and name ~= "hover_racing_v2_drivehud"
-				and name ~= "hover_racing_v67_mobiledrivecontrolsui" then
-				local rootObject = guiObject:FindFirstChild("GarageRoot", true) or guiObject:FindFirstChild("DealershipRoot", true)
-				if rootObject and rootObject:IsA("GuiObject") and rootObject.Visible then
-					return true
-				end
-			end
-		end
-	end
-	return false
-end
-local function playerLooksDriving()
-	local character = player.Character
-	local humanoid = character and character:FindFirstChildOfClass("Humanoid")
-	if humanoid and humanoid.SeatPart and humanoid.SeatPart:IsA("VehicleSeat") then
-		return true
-	end
-	local driveGui = playerGui:FindFirstChild("HOVER_RACING_V2_DriveHUD")
-	return driveGui and driveGui.Enabled == true
-end
-
-local function shouldShow()
-	return TOUCH and (M.IsDriving == true or playerLooksDriving()) and not findGarageVisible()
-end
--- V69_MOBILE_HUD_VISIBILITY_END
-
-
-local function lowerText(value)
-	return string.lower(tostring(value or ""))
-end
-
-local function isOwnMobileUi(item)
-	return item == gui or item == root or item:IsDescendantOf(root) or item:IsDescendantOf(gui)
-end
-
-local function textLooksLikeDesktopDriveHud(item)
-	if not (item:IsA("TextLabel") or item:IsA("TextButton")) then return false end
-	local text = lowerText(item.Text)
-	if text == "" then return false end
-	return string.find(text, "wasd", 1, true) ~= nil
-		or string.find(text, "shift", 1, true) ~= nil
-		or string.find(text, "space", 1, true) ~= nil
-		or string.find(text, "speed", 1, true) ~= nil
-		or string.find(text, "drift", 1, true) ~= nil
-		or string.find(text, "mph", 1, true) ~= nil
-end
-
-local function nameLooksLikeDesktopDriveHud(item)
-	local name = lowerText(item.Name)
-	return string.find(name, "desktopdrive", 1, true) ~= nil
-		or string.find(name, "drivepanel", 1, true) ~= nil
-		or string.find(name, "speedpanel", 1, true) ~= nil
-		or string.find(name, "boostpanel", 1, true) ~= nil
-		or string.find(name, "speedhud", 1, true) ~= nil
-		or string.find(name, "boosthud", 1, true) ~= nil
-		or string.find(name, "controlshint", 1, true) ~= nil
-end
-
-local function descendantLooksLikeDesktopDriveHud(item)
-	for _, descendant in ipairs(item:GetDescendants()) do
-		if descendant:IsA("GuiObject") and not isOwnMobileUi(descendant) then
-			local name = lowerText(descendant.Name)
-			if nameLooksLikeDesktopDriveHud(descendant)
-				or string.find(name, "speedlabel", 1, true) ~= nil
-				or string.find(name, "driftlabel", 1, true) ~= nil
-				or textLooksLikeDesktopDriveHud(descendant) then
-				return true
-			end
-		end
-	end
-	return false
-end
-
-local function nearestSmallDesktopPanel(item)
-	local current = item
-	local best = item
-	while current and current ~= playerGui do
-		if current:IsA("GuiObject") and not isOwnMobileUi(current) then
-			local name = lowerText(current.Name)
-			if name ~= "drivehud" and name ~= "root" then
-				best = current
-			end
-			if current:IsA("Frame") and name ~= "drivehud" and name ~= "root" then
-				local styled = current.BackgroundTransparency < 1
-					or current:FindFirstChildOfClass("UICorner") ~= nil
-					or current:FindFirstChildOfClass("UIStroke") ~= nil
-				if styled then
-					return current
-				end
-			end
-		end
-		current = current.Parent
-	end
-	return best
-end
-
-local function findDriveHudCandidates()
-	local results = {}
-	local seen = {}
-	local function add(item)
-		if item and item:IsA("GuiObject") and not isOwnMobileUi(item) and not seen[item] then
-			seen[item] = true
-			table.insert(results, item)
-		end
-	end
-
-	for _, item in ipairs(playerGui:GetDescendants()) do
-		if item:IsA("GuiObject") and not isOwnMobileUi(item) then
-			if nameLooksLikeDesktopDriveHud(item) then
-				add(item)
-			elseif textLooksLikeDesktopDriveHud(item) then
-				add(nearestSmallDesktopPanel(item))
-			elseif item:IsA("Frame") and descendantLooksLikeDesktopDriveHud(item) then
-				add(item)
-			end
-		end
-	end
-
-	return results
-end
-
-local hiddenDesktop = {}
-local function setDesktopDriveHudVisible(visible)
-	if not TOUCH then return end
-	for _, object in ipairs(findDriveHudCandidates()) do
-		if object ~= root and not object:IsDescendantOf(root) then
-			if not visible then
-				if hiddenDesktop[object] == nil then
-					hiddenDesktop[object] = object.Visible
-				end
-				object.Visible = false
-			elseif hiddenDesktop[object] ~= nil then
-				object.Visible = hiddenDesktop[object]
-				hiddenDesktop[object] = nil
-			end
-		end
-	end
-end
-
-local function setRobloxTouchControls(enabled)
-	local touchGui = playerGui:FindFirstChild("TouchGui")
-	if touchGui and touchGui:IsA("ScreenGui") then
-		touchGui.Enabled = enabled
-	end
-end
-
-local function updateVisibility()
-	local show = shouldShow()
-	root.Visible = show
-	setDesktopDriveHudVisible(not show)
-	setRobloxTouchControls(not (show or findGarageVisible()))
-	if not show then
-		resetInput()
-	end
-end
-
+local lastSize=Vector2.zero
 local function layout()
-	local camera = Workspace.CurrentCamera
-	local size = camera and camera.ViewportSize or Vector2.new(1280, 720)
-	local width = math.max(size.X, 1)
-	local height = math.max(size.Y, 1)
-	local tiny = width < 740 or height < 430
-	local edge = tiny and 8 or 10
-	local gap = tiny and 5 or 7
-
-	local navConfig = ReplicatedStorage:FindFirstChild("NeoTokyoRacers")
-		and ReplicatedStorage.NeoTokyoRacers:FindFirstChild("Config")
-		and ReplicatedStorage.NeoTokyoRacers.Config:FindFirstChild("UI")
-		and ReplicatedStorage.NeoTokyoRacers.Config.UI:FindFirstChild("FreeRoamNav")
-	local mapRightEdge = edge
-	if navConfig then
-		local item = navConfig:FindFirstChild("MapStackRightMarginTouch")
-		if item and item:IsA("NumberValue") then
-			mapRightEdge = math.max(0, item.Value)
-		end
-	end
-
-	local configuredSize = configNumber("ThumbstickSizePixels", 118, 82, 180)
-	local innerScale = configNumber("ThumbstickInnerScale", 1.4, 1, 1.6)
-	local thumbSize = math.floor(math.clamp(configuredSize * innerScale * (tiny and 0.72 or 0.9), 92, 190) + 0.5)
-	local knobSize = math.floor(thumbSize * 0.42 + 0.5)
-	local outerScale = configNumber("ThumbstickOuterRingScale", 1.5, 1.25, 1.75)
-	local outerSize = math.floor(thumbSize * outerScale + 0.5)
-	thumbTravelPixels = math.max((outerSize - knobSize) * 0.5, 1)
-	thumbDriftThreshold = math.clamp(configNumber("DriftEnterThreshold", 0.90, 0.65, 0.98), 0.05, 0.98)
-	local hitMultiplier = configNumber("TouchHitAreaMultiplier", 1.05, 1, 1.2)
-	local hitSize = math.floor(outerSize * hitMultiplier + 0.5)
-
-	leftPanel.Position = UDim2.fromOffset(0, 0)
-	leftPanel.Size = UDim2.fromOffset(width, height)
-
-	local boostW = math.floor(math.clamp(width * (tiny and 0.17 or 0.15), 94, 142) + 0.5)
-	local boostH = tiny and 32 or 38
-	local mphH = tiny and 18 or 22
-	local boostX = math.floor((width - boostW) * 0.5)
-	local boostY = height - edge - boostH
-
-	mphLabel.Position = UDim2.fromOffset(boostX, boostY - mphH - 3)
-	mphLabel.Size = UDim2.fromOffset(boostW, mphH)
-	mphLabel.TextSize = tiny and 12 or 14
-	boostButton.Position = UDim2.fromOffset(boostX, boostY)
-	boostButton.Size = UDim2.fromOffset(boostW, boostH)
-	boostButton.BackgroundColor3 = HUD_PANEL_SOFT
-	boostText.TextSize = tiny and 10 or 11
-
-	thumbHitArea.Position = UDim2.fromOffset(edge, height - edge - hitSize)
-	thumbHitArea.Size = UDim2.fromOffset(hitSize, hitSize)
-	thumbOuterRing.Size = UDim2.fromOffset(outerSize, outerSize)
-	thumbBase.Size = UDim2.fromOffset(thumbSize, thumbSize)
-	thumbKnob.Size = UDim2.fromOffset(knobSize, knobSize)
-	driftText.TextSize = tiny and 8 or 9
-	setThumbVisual(M.Steer or 0, M.Drift == true)
-
-	local pedalScale = configNumber("PedalScale", 1.275, 1, 1.75)
-	local baseAccelW = math.clamp(width * 0.088, tiny and 46 or 56, tiny and 64 or 78)
-	local baseAccelH = math.clamp(height * 0.17, tiny and 76 or 96, tiny and 108 or 132)
-	local accelW = math.floor(math.min(baseAccelW * pedalScale, width * 0.14) + 0.5)
-	local accelH = math.floor(math.min(baseAccelH * pedalScale, height * 0.31) + 0.5)
-	local brakeW = math.floor(accelW * 0.82 + 0.5)
-	local brakeH = math.floor(accelH * 0.82 + 0.5)
-	local pedalW = accelW + brakeW + gap
-
-	rightPanel.Position = UDim2.fromOffset(width - mapRightEdge - pedalW, height - edge - accelH)
-	rightPanel.Size = UDim2.fromOffset(pedalW, accelH)
-	brake.Position = UDim2.fromOffset(0, accelH - brakeH)
-	brake.Size = UDim2.fromOffset(brakeW, brakeH)
-	accel.Position = UDim2.fromOffset(brakeW + gap, 0)
-	accel.Size = UDim2.fromOffset(accelW, accelH)
-
-	local accelPad = accel:FindFirstChild("RubberPad")
-	if accelPad then
-		local s = accelPad:FindFirstChild("HUDStroke")
-		if s then s.Color = HUD_PINK end
-	end
-	local brakePad = brake:FindFirstChild("RubberPad")
-	if brakePad then
-		local s = brakePad:FindFirstChild("HUDStroke")
-		if s then s.Color = HUD_PINK end
-	end
-end
-local cameraConnection
-local function connectCamera()
-	if cameraConnection then
-		cameraConnection:Disconnect()
-	end
-	local camera = Workspace.CurrentCamera
-	if camera then
-		cameraConnection = camera:GetPropertyChangedSignal("ViewportSize"):Connect(layout)
-	end
+	local camera=workspace.CurrentCamera; local vp=camera and camera.ViewportSize or Vector2.new(1280,720); if vp==lastSize then return end; lastSize=vp
+	local tiny=vp.Y<500; local margin=tiny and 10 or 16; local unit=math.floor(math.clamp(vp.Y*.118,tiny and 60 or 68,tiny and 76 or 90)); local gap=tiny and 7 or 10; local arrowW=math.floor(unit*(tonumber(A("ArrowWidthMultiplier",1.5)) or 1.5))
+	local leftY=vp.Y-margin-unit*2-gap; local leftX=margin
+	driftLeft.Position=UDim2.fromOffset(leftX,leftY); driftLeft.Size=UDim2.fromOffset(arrowW,unit)
+	driftRight.Position=UDim2.fromOffset(leftX+arrowW+gap,leftY); driftRight.Size=UDim2.fromOffset(arrowW,unit)
+	turnLeft.Position=UDim2.fromOffset(leftX,leftY+unit+gap); turnLeft.Size=UDim2.fromOffset(arrowW,unit)
+	turnRight.Position=UDim2.fromOffset(leftX+arrowW+gap,leftY+unit+gap); turnRight.Size=UDim2.fromOffset(arrowW,unit)
+	local boostHit=tiny and 44 or 52; local arrowClusterW=arrowW*2+gap; boost.Position=UDim2.fromOffset(leftX+math.floor((arrowClusterW-boostHit)/2),leftY-boostHit-(tiny and 8 or 12)); boost.Size=UDim2.fromOffset(boostHit,boostHit); boost.BackgroundTransparency=1; local boostStroke=allButtons[boost]; if boostStroke then boostStroke.Transparency=1 end
+	local stick=math.floor(math.clamp(vp.Y*.265,132,188)); thumbHit.Position=UDim2.fromOffset(margin,vp.Y-margin-stick); thumbHit.Size=UDim2.fromOffset(stick,stick); thumbOuter.Size=UDim2.fromScale(1,1); thumbInner.Size=UDim2.fromScale(.73,.73); thumbKnob.Size=UDim2.fromScale(.28,.28)
+	tiltDrift.Position=UDim2.fromOffset(margin,vp.Y-margin-unit); tiltDrift.Size=UDim2.fromOffset(unit*1.45,unit)
+	tiltRecenter.Position=UDim2.fromOffset(margin,vp.Y-margin-unit*2-gap); tiltRecenter.Size=UDim2.fromOffset(unit*1.45,unit*.72); tiltStatus.Position=UDim2.fromOffset(margin,vp.Y-margin-unit*2-gap-22)
+	local pedalSize=math.max(44,math.floor(tonumber(A("PedalSize",104)) or 104)); local pedalBottom=math.max(0,math.floor(tonumber(A("PedalBottomOffset",10)) or 10)); local pedalRight=math.max(0,math.floor(tonumber(A("PedalRightOffset",10)) or 10)); local pedalGap=math.max(0,math.floor(tonumber(A("PedalGap",10)) or 10))
+	accelerator.Position=UDim2.fromOffset(vp.X-pedalRight-pedalSize,vp.Y-pedalBottom-pedalSize); accelerator.Size=UDim2.fromOffset(pedalSize,pedalSize)
+	brake.Position=UDim2.fromOffset(vp.X-pedalRight-pedalSize*2-pedalGap,vp.Y-pedalBottom-pedalSize); brake.Size=UDim2.fromOffset(pedalSize,pedalSize)
 end
 
-Workspace:GetPropertyChangedSignal("CurrentCamera"):Connect(function()
-	connectCamera()
-	task.defer(layout)
-end)
-connectCamera()
-
-local timer = 0
+local wasDriving=false
+local wasMenuBlocked=false
 RunService.RenderStepped:Connect(function(dt)
-	if root.Visible then
-		mphLabel.Text = tostring(math.floor((M.SpeedMph or 0) + 0.5)) .. " MPH"
-		boostFill.Size = UDim2.fromScale(math.clamp((M.BoostPercent or 100) / 100, 0, 1), 1)
-	end
-	timer += dt
-	if timer >= 0.1 then
-		timer = 0
-		updateVisibility()
-	end
+	layout(); local driving=M.IsDriving==true; local menuBlocked=player:GetAttribute("NTRMobileFreeRoamCarMenuOpen")==true; root.Visible=driving and not menuBlocked
+	if menuBlocked then if not wasMenuBlocked then clearInputs() end; wasMenuBlocked=true; return end; wasMenuBlocked=false
+	if not driving then if wasDriving then clearInputs() end; wasDriving=false; return end; wasDriving=true
+	if currentMode=="Tilt" then local smoothing=math.max(0,tonumber(A("TiltSmoothing",10)) or 10); local alpha=1-math.exp(-smoothing*dt); tiltCurrent+=(tiltTarget-tiltCurrent)*alpha; publishSteering(tiltCurrent,M.AnalogDrift==true) end
 end)
-
-task.defer(layout)
-task.defer(updateVisibility)
+print("[NTR Mobile Free-Roam UI Phase 1K] Compact boost plate and touch controls active.")

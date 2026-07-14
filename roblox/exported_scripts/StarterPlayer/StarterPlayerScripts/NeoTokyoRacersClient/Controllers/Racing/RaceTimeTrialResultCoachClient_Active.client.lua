@@ -1,3 +1,5 @@
+-- NTR_RACING_UI_MOBILE_PHASE1_SCALED_DESKTOP_TRIAL
+-- NTR_RACING_UI_PHASE16E_RUNTIME_OWNERSHIP
 -- Neo Tokyo Racers - Unified Race / Time Trial Results Presentation
 -- NTR_RACING_UI_PHASE11_UNIFIED_RESULTS_PRESENTATION
 
@@ -7,14 +9,18 @@ local UserInputService = game:GetService("UserInputService")
 
 local player = Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
-local touch = UserInputService.TouchEnabled
+local touchDevice = UserInputService.TouchEnabled
 local kit = ReplicatedStorage:WaitForChild("NeoTokyoRacers")
 local shared = kit:WaitForChild("Shared")
 local racingRemotes = shared:WaitForChild("Remotes"):WaitForChild("Racing")
 local raceEvent = racingRemotes:WaitForChild("RaceEvent")
 local raceRequest = racingRemotes:WaitForChild("RaceRequest")
 local queueRequest = racingRemotes:WaitForChild("RaceQueueRequest")
-local UI = require(shared:WaitForChild("Modules"):WaitForChild("UI"):WaitForChild("RacingUIComponents"))
+local resultUIModules = shared:WaitForChild("Modules"):WaitForChild("UI")
+local UI = require(resultUIModules:WaitForChild("RacingUIComponents"))
+local MobileScaledDesktop = require(resultUIModules:WaitForChild("RacingMobileScaledDesktopLayout"))
+local scaledDesktop = MobileScaledDesktop.IsEnabled(touchDevice)
+local touch = touchDevice and not scaledDesktop
 local C, L, T = UI.Colour, UI.Layout, UI.Type
 
 local gui, overlay, shell, body, footer, title, complete
@@ -79,23 +85,14 @@ local function avatar(parent, userId, position, size)
 	return image
 end
 
-local function setSuppressed(open)
-	for _, name in ipairs({ "NTR_RaceQueue_Phase8" }) do
-		local other = playerGui:FindFirstChild(name)
-		if other and other ~= gui then
-			if open and suppressed[other] == nil then
-				suppressed[other] = other.Enabled other.Enabled = false
-			elseif not open and suppressed[other] ~= nil then
-				other.Enabled = suppressed[other]
-				suppressed[other] = nil
-			end
-		end
-	end
+local function publishPresentation(open)
+	local folder=script.Parent.Parent:FindFirstChild("UI")
+	local event=folder and folder:FindFirstChild("FreeRoamHudPresentationMode")
+	if event and event:IsA("BindableEvent") then event:Fire({Owner="RaceResults",Active=open==true,KeepTelemetry=false}) end
 end
-local function hideLegacyResultPanel()
-	local legacy = playerGui:FindFirstChild("NTR_RaceResults_Phase4")
-	local panelObject = legacy and legacy:FindFirstChild("Panel")
-	if panelObject and panelObject:IsA("GuiObject") then panelObject.Visible = false end
+local function setSuppressed(open)
+	if not touch then publishPresentation(open) return end
+	local other=playerGui:FindFirstChild("NTR_RaceQueue_Phase8") if other and other~=gui then if open and suppressed[other]==nil then suppressed[other]=other.Enabled other.Enabled=false elseif not open and suppressed[other]~=nil then other.Enabled=suppressed[other] suppressed[other]=nil end end
 end
 local function fireDrivingExit()
 	local root = script.Parent.Parent local uiFolder = root and root:FindFirstChild("UI") local event = uiFolder and uiFolder:FindFirstChild("FreeRoamVehicleExited")
@@ -186,14 +183,14 @@ end
 
 local function show(mode,payload)
 	lastResult=payload activeMode=mode setSuppressed(true) overlay.Visible=true
-	for _, delaySeconds in ipairs({0,0.05,0.2,0.5}) do task.delay(delaySeconds,function() if overlay.Visible then hideLegacyResultPanel() end end) end
 	if mode=="Race" then renderRace(payload) else renderTimeTrial(payload) end
 end
 
 local function build()
 	gui=Instance.new("ScreenGui") gui.Name="NTR_UnifiedRaceResults" gui.IgnoreGuiInset=true gui.ResetOnSpawn=false gui.DisplayOrder=220 gui.Parent=playerGui
 	overlay=Instance.new("Frame") overlay.BackgroundColor3=Color3.new(0,0,0) overlay.BackgroundTransparency=.32 overlay.BorderSizePixel=0 overlay.Size=UDim2.fromScale(1,1) overlay.Visible=false overlay.Parent=gui
-	shell=UI.Panel(overlay,{Color=C("PanelDeep"),Transparency=L("PanelTransparency",.08),StrokeColor=C("Outline"),StrokeWidth=L("ShellStrokeWidth",2),StrokeTransparency=.02,Clips=true}) shell.AnchorPoint=Vector2.new(.5,.5) shell.Position=UDim2.fromScale(.5,.5) shell.Size=touch and UDim2.new(1,-16,1,-16) or UDim2.fromOffset(L("ShellWidth",1200),L("ShellHeight",720)) if not touch then UI.AttachResponsiveScale(shell) end
+	shell=UI.Panel(overlay,{Color=C("PanelDeep"),Transparency=L("PanelTransparency",.08),StrokeColor=C("Outline"),StrokeWidth=L("ShellStrokeWidth",2),StrokeTransparency=.02,Clips=true}) shell.AnchorPoint=Vector2.new(.5,.5) shell.Position=UDim2.fromScale(.5,.5)
+	if scaledDesktop then MobileScaledDesktop.Attach(shell) elseif touch then shell.Size=UDim2.new(1,-16,1,-16) else shell.Size=UDim2.fromOffset(L("ShellWidth",1200),L("ShellHeight",720)) UI.AttachResponsiveScale(shell) end
 	local headerH=touch and 44 or L("HeaderHeight",64) title=UI.Label(shell,{Text="RESULTS",Position=UDim2.fromOffset(touch and 12 or 24,0),Size=UDim2.new(.42,0,0,headerH),TextSize=touch and 14 or T("Heading",22),Role="Heading"}) complete=UI.Label(shell,{Text="COMPLETE",Position=UDim2.new(.38,0,0,0),Size=UDim2.new(.32,0,0,headerH),TextSize=touch and 10 or 14,Color=C("Telemetry"),Role="Heading",XAlignment=Enum.TextXAlignment.Center})
 	local close=UI.Button(shell,{Text="×",Position=UDim2.new(1,touch and -48 or -64,0,0),Size=UDim2.fromOffset(touch and 48 or 64,headerH),Color=C("PanelDeep"),StrokeColor=C("Danger"),TextColor=C("Danger"),StrokeTransparency=1,TextSize=touch and 24 or 30}) close.MouseButton1Click:Connect(function() if activeMode=="Race" then invoke(queueRequest,"ExitRaceToStart",{}) else invoke(raceRequest,"ExitFinishedTimeTrial",{}) end hide() end)
 	local divider=Instance.new("Frame") divider.BorderSizePixel=0 divider.BackgroundColor3=C("Outline") divider.BackgroundTransparency=.5 divider.Position=UDim2.fromOffset(0,headerH) divider.Size=UDim2.new(1,0,0,1) divider.Parent=shell

@@ -16,6 +16,36 @@ Confirmed by chat:
 
 Vehicle Phase AM is the confirmed bridge from legacy totals into the detailed Phase AL performance variables. Its spawned-vehicle audit passed, detailed physics was enabled, and the user reported the driving behavior working well.
 
+## 2026-07-13 Driving Feel Rework Audit
+
+The fresh Studio mirror generated on 2026-07-13 at 10:59:59 does not contain the documented `NTR_VEHICLE_PHASE_AM_PHYSICS_BRIDGE` in the active `DrivingControllerV47`, even though `RuntimeIntegration.PhysicsEnabled` remains true and `VehiclePerformanceRuntimeService_Active` still exists. Treat the detailed-physics connection as a live verification issue rather than assuming the June confirmation still matches the current source.
+
+The current source also confirms the reported feel has mechanical causes: initial force uses `Acceleration * 3.1`, the top-speed limiter falls linearly to an `0.08` force floor, brake and reverse share one negative-throttle branch, neutral drag is low, parked hover has no explicit planar settling, the vehicle root remains character-collidable, and exit uses a fixed offset.
+
+The Phase 0 Edit audit passed `11/10/0` (`pass/warn/fail`) and confirmed the mirror findings. The valid client runtime evidence showed a `C 538` vehicle with `EngineOutput 81`, `TopSpeed 139`, `BrakingForce 106`, `Weight 137`, and a collidable `Default` root. The two client Play failures were server-visibility false negatives and the audit now skips those checks in client context.
+
+The condensed rework plan is `docs/driving-feel-rework-plan-2026-07-13.md`. Phase 1 is generated as `scripts/roblox_driving_feel_phase1_core_dynamics.lua`; it installs an isolated dynamics model plus a small guarded controller bridge for detailed stats, progressive acceleration/top-speed approach, coasting, braking, stopped hold, and delayed reverse. Do not rerun the older Phase AM integration installer unchanged against the current controller source.
+
+Phase 1 was installed and user-confirmed working well. The post-confirmation Studio mirror was refreshed at 2026-07-13 12:30:18 and includes the new dynamics module/config plus guarded controller bridge. Phase 2 is generated as `scripts/roblox_driving_feel_phase2_handling_drift_calibration.lua`; it keeps Phase 1 longitudinal behavior and connects detailed grip, drift, downforce, charge, and hover-stability variables through an independently switchable handling model.
+
+Phase 2 was installed and its handling was reported good overall. Its post-install mirror confirmed that poor drift momentum came mainly from the fixed full-blend forward-drag coefficient `1.14`, not the low vehicle Drift stat, and that reverse force was cancelled because stopped velocity snapping continued after Reverse mode began. Phase 2.1 is generated as `scripts/roblox_driving_feel_phase2_1_drift_momentum_reverse_repair.lua`: configurable full-drift forward drag defaults to `0.28`, and stopped hold releases into reverse after a `1.0 s` continuous brake hold.
+
+Vehicle Performance V2 Phase 0 audited the later live config at 2026-07-13 20:11:53. Drift remains at the intended `0.18 + 0.10 = 0.28`, but `ReverseEngageDelaySeconds` is currently `0.3`. The source repair remains installed, so restoring the preferred one-second behaviour is a config-only change; do not stack another source patch for this discrepancy.
+
+Vehicle Performance V2 Phase 1 performs that config-only restoration to `ReverseEngageDelaySeconds = 1.0`. Its new V2 curve/calculator modules remain shadow-only and do not change `VehicleDynamicsModel`, `DrivingControllerV47`, or any live physics factor during this phase.
+
+## Driving Feel Phase 3 tier-safe physical curves
+
+After Vehicle Performance V2 went live, Forge E and Zenith S exposed that the rating curve's diminishing returns were not mirrored by every physics consumer. Raw SteeringResponse (`15–210`) and boost timing (`0.55–6` duration, `14–4` recharge) produced unusably wide feel differences. Acceleration still began at maximum force and only declined, while drift reduced grip heavily and pushed sideways without rotating momentum through the corner.
+
+`scripts/roblox_driving_feel_phase3_tier_curve_drift_drive.lua` is the single consolidated correction. It keeps raw stats and PI unchanged, maps them into bounded physical steering/boost ranges, creates a soft-launch then mid-speed power-band acceleration curve with tier-dependent high-speed pull and quadratic aero resistance, and adds throttle-only force-based drift engine/velocity alignment. Important tuning remains flat attributes under `VehicleDynamics_EditAttributes`; the plain-language map is `docs/driving-feel-phase3-tier-curves-drift-drive-2026-07-14.md`.
+
+Phase 1 subsequently passed `12/0/0` and the refreshed `2026-07-13 20:22:34` mirror confirms the one-second config value. Phase 2 remains shadow-only: its TopSpeed reference, performance origin, rating scale, and six stock profiles affect only `VehiclePerformanceV2Calculator`; detailed live driving factors still use the confirmed V1/Driving Feel path.
+
+Mobile Free-Roam UI Phase 1G is a presentation-only refinement of the isolated mobile car menu. It retains the established `NTRMobileFreeRoamCarMenuOpen` handoff, which clears and hides touch driving inputs while the menu is open and restores them on close. It does not change `MobileDriveInputState`, steering, pedals, boost, drift, Tilt, Thumbstick, or driving physics.
+
+Mobile Free-Roam UI Phase 1K changes only touch-driving presentation: the Boost hit target remains `44/52 px` while its smaller icon sits on a circular boost-bar-colour gradient plate, and Exit is vertically aligned to the steering-cluster bottom through responsive layout math. The Boost action, `MobileDriveInputState`, steering, drift, pedals, Tilt, Thumbstick, speed/boost telemetry values, and physics are unchanged.
+
 ## Phase AM Detailed Variables
 
 When enabled, Phase AM maps:
@@ -213,6 +243,38 @@ Tuning guidance:
 
 ## Mobile Steering Thumbstick
 
+Mobile Free-Roam UI Phase 1 now supersedes the old thumbstick-only patch ladder
+as the next installation path. It canonically supports default digital arrows,
+the existing analog thumbstick concept, and gyroscope Tilt through the shared
+`MobileDriveInputState` contract without changing physics. Do not rerun the old
+V1-V2.4 thumbstick patch scripts after installing Phase 1; use
+`docs/ui-free-roam-mobile-phase1-canonical-hud-controls-2026-07-13.md`.
+
+Phase 1B keeps the same input contract and control modes, enlarges the touch
+targets, constrains text fallbacks, and turns the shared PC boost icon into the
+mobile boost touch target. It changes presentation and exact legacy-HUD
+suppression only; steering, drift, throttle, boost, and vehicle physics remain
+owned by the same shared input/dynamics paths. See
+`docs/ui-free-roam-mobile-phase1b-pc-component-parity-2026-07-13.md`.
+
+Phase 1C leaves the input contract and vehicle dynamics unchanged. It widens the
+four arrow touch targets without changing their digital steering/drift actions
+and moves the existing boost action to the PC lightning icon centred above the
+arrow cluster. Thumbstick and Tilt continue to use the same shared state. See
+`docs/ui-free-roam-mobile-phase1c-layout-refinement-2026-07-13.md`.
+
+Phase 1D adds no driving-physics changes. While the mobile car menu is open it
+sets `NTRMobileFreeRoamCarMenuOpen`; the existing isolated controls owner clears
+held throttle, brake, steering, drift, and boost state and hides its root. Closing
+the menu restores controls only if `MobileDriveInputState.IsDriving` remains
+true. See `docs/ui-free-roam-mobile-phase1d-pc-parity-car-menu-2026-07-13.md`.
+
+Phase 1E changes car-menu sizing and styling only. The Phase 1D menu-open input
+clear/hide/restore contract is unchanged.
+
+Phase 1F also changes car-menu layout and dropdown interaction only; the driving
+input clear/hide/restore contract remains unchanged.
+
 Prepared installer:
 
 - `scripts/roblox_mobile_drive_thumbstick_install.lua`
@@ -399,6 +461,10 @@ Known attributes:
 - `WobblePitchMultiplier`
 - `WobbleRollMultiplier`
 - `WobbleSmoothing`
+
+## 2026-07-14 Organised Driving Tuning
+
+`scripts/roblox_driving_feel_phase3_organized_tuning_values.lua` is the one-stage post-Phase-3 tuning-layout migration. It reads and preserves current live numeric values, creates ordered Acceleration, Handling, Drifting, Boost, Braking/Reverse/Parking, Grip/Hover, and Advanced folders, and places all settings directly on their category as Attributes. Every numeric setting has an adjacent `<Name>_RaisingThisDoes` string explanation. The dynamics module and controller read these category Attributes directly with legacy flat-attribute fallback. The installer accepts the original Phase 3 layout or the superseded per-setting-folder layout, preflights both related exact-source anchors before hierarchy mutation, and removes obsolete layouts only after verification. Boolean switches and metadata remain at the root.
 
 ## Current Diagrams
 

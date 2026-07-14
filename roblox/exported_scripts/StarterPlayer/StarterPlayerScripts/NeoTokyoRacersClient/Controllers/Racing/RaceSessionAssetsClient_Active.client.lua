@@ -1,3 +1,5 @@
+-- NTR_RACING_UI_PHASE16F_STREAMING_SAFE_ARROWS
+-- NTR_RACING_UI_PHASE16E_RUNTIME_OWNERSHIP
 -- NTR_RACING_PHASE11L_ARROW_VISUAL_PROXY_SYNC_V2_TRANSPARENCY_RESTORE
 -- NTR_RACING_UI_PHASE16D_PRESENTATION_PERFORMANCE
 
@@ -44,51 +46,82 @@ local function parseSegmentFolder(folder)
 	return {Folder=folder,From=from,To=to,Key=key,Parts=nil,Visible=nil}
 end
 
+local function applyPart(record,visible)
+	local item=record.Part
+	if not item.Parent then return end
+	item.LocalTransparencyModifier=visible and 0 or 1
+	if visible then item.Transparency=record.Original end
+	item.CanCollide=false item.CanTouch=false item.CanQuery=false
+end
+
+local function registerSegmentPart(segment,item)
+	if not item:IsA("BasePart") or segment.PartSet[item] then return end
+	segment.PartSet[item]=true
+	local record={Part=item,Original=tonumber(item:GetAttribute("NTR_ArrowOriginalTransparency")) or 0}
+	table.insert(segment.Parts,record)
+	applyPart(record,segment.Visible==true)
+end
+
 local function segmentParts(segment)
 	if segment.Parts then return segment.Parts end
-	local parts={}
-	for _,item in ipairs(segment.Folder:GetDescendants()) do
-		if item:IsA("BasePart") then
-			table.insert(parts,{Part=item,Original=tonumber(item:GetAttribute("NTR_ArrowOriginalTransparency")) or item.Transparency})
-		end
-	end
-	segment.Parts=parts
-	return parts
+	segment.Parts={}
+	segment.PartSet=setmetatable({},{__mode="k"})
+	for _,item in ipairs(segment.Folder:GetDescendants()) do registerSegmentPart(segment,item) end
+	segment.DescendantAdded=segment.Folder.DescendantAdded:Connect(function(item)
+		registerSegmentPart(segment,item)
+	end)
+	return segment.Parts
 end
 
 local function setSegmentVisible(segment,visible)
-	if segment.Visible==visible then return end
 	segment.Visible=visible
-	for _,record in ipairs(segmentParts(segment)) do
-		local item=record.Part
-		if item.Parent then
-			item.LocalTransparencyModifier=visible and 0 or 1
-			if visible then item.Transparency=record.Original end
-			item.CanCollide=false item.CanTouch=false item.CanQuery=false
-		end
-	end
+	for _,record in ipairs(segmentParts(segment)) do applyPart(record,visible) end
 end
+
 
 local function routeCache(routeFolder)
 	local cached=routeCaches[routeFolder]
-	if cached then return cached end
+	if cached and cached.ArrowRoot and cached.ArrowRoot.Parent then return cached end
 	local arrowRoot=routeFolder and routeFolder:FindFirstChild("ArrowMarkers")
-	cached={ArrowRoot=arrowRoot,ByIndex={},ByKey={},MaxFrom=0,Wraps=false,Behind=1,Ahead=1}
-	if arrowRoot then
-		cached.Behind=tonumber(arrowRoot:GetAttribute("SegmentWindowBehind")) or 1
-		cached.Ahead=tonumber(arrowRoot:GetAttribute("SegmentWindowAhead")) or 1
-		for _,child in ipairs(arrowRoot:GetChildren()) do
-			local segment=parseSegmentFolder(child)
-			if segment and child:GetAttribute("Enabled")~=false then
-				cached.ByIndex[segment.From]=segment cached.ByKey[segment.Key]=segment
-				if segment.From>cached.MaxFrom then cached.MaxFrom=segment.From end
-				if segment.To==0 then cached.Wraps=true end
-			end
-		end
+	if not arrowRoot then routeCaches[routeFolder]=nil return nil end
+	cached={ArrowRoot=arrowRoot,ByIndex={},ByKey={},MaxFrom=0,Wraps=false,Behind=tonumber(arrowRoot:GetAttribute("SegmentWindowBehind")) or 1,Ahead=tonumber(arrowRoot:GetAttribute("SegmentWindowAhead")) or 1}
+	local function registerSegment(child)
+		local segment=parseSegmentFolder(child)
+		if not segment or child:GetAttribute("Enabled")==false then return end
+		cached.ByIndex[segment.From]=segment cached.ByKey[segment.Key]=segment
+		if segment.From>cached.MaxFrom then cached.MaxFrom=segment.From end
+		if segment.To==0 then cached.Wraps=true end
+		segmentParts(segment)
 	end
+	for _,child in ipairs(arrowRoot:GetChildren()) do registerSegment(child) end
+	cached.ChildAdded=arrowRoot.ChildAdded:Connect(function(child)
+		registerSegment(child)
+		activeSignature=nil
+	end)
+	cached.ChildRemoved=arrowRoot.ChildRemoved:Connect(function()
+		routeCaches[routeFolder]=nil
+		activeSignature=nil
+	end)
 	routeCaches[routeFolder]=cached
 	return cached
 end
+
+local function normalizedRouteId(value)
+	return string.lower((tostring(value or ""):gsub("[^%w]","")))
+end
+
+local function findRouteFolder(routes,routeId)
+	if not routes then return nil end
+	local exact=routes:FindFirstChild(tostring(routeId or ""))
+	if exact then return exact end
+	local wanted=normalizedRouteId(routeId)
+	if wanted=="" then return nil end
+	for _,candidate in ipairs(routes:GetChildren()) do
+		if normalizedRouteId(candidate.Name)==wanted or normalizedRouteId(candidate:GetAttribute("RouteId"))==wanted then return candidate end
+	end
+	return nil
+end
+
 
 local function desiredSegments(cached,segmentIndex)
 	local desired={}
@@ -111,12 +144,15 @@ local function hideAllOnce()
 	local routes=raceRoutesRoot()
 	for _,routeFolder in ipairs(routes and routes:GetChildren() or {}) do
 		local cached=routeCache(routeFolder)
-		for _,segment in pairs(cached.ByKey) do setSegmentVisible(segment,false) end
-		for _,item in ipairs(cached.ArrowRoot and cached.ArrowRoot:GetChildren() or {}) do
-			if item:IsA("BasePart") then item.LocalTransparencyModifier=1 item.CanCollide=false item.CanTouch=false item.CanQuery=false end
+		if cached then
+			for _,segment in pairs(cached.ByKey) do setSegmentVisible(segment,false) end
+			for _,item in ipairs(cached.ArrowRoot:GetChildren()) do
+				if item:IsA("BasePart") then item.LocalTransparencyModifier=1 item.CanCollide=false item.CanTouch=false item.CanQuery=false end
+			end
 		end
 	end
 end
+
 
 local function participantSet(list)
 	local set={}
@@ -162,9 +198,9 @@ local function apply(force)
 	segmentIndex=math.max(0,math.floor(tonumber(segmentIndex) or 0))
 	local signature=tostring(runId).."|"..tostring(state.RouteId).."|"..tostring(segmentIndex)
 	if not force and signature==activeSignature then return end
-	local routes=raceRoutesRoot() local routeFolder=routes and routes:FindFirstChild(state.RouteId)
+	local routes=raceRoutesRoot() local routeFolder=findRouteFolder(routes,state.RouteId)
 	local cached=routeFolder and routeCache(routeFolder)
-	if not (cached and cached.ArrowRoot) then clearVisible() activeSignature=signature return end
+	if not (cached and cached.ArrowRoot) then clearVisible() activeSignature=nil return end
 	local desired=desiredSegments(cached,segmentIndex)
 	for segment in pairs(visibleSegments) do
 		if not desired[segment] then setSegmentVisible(segment,false) visibleSegments[segment]=nil end

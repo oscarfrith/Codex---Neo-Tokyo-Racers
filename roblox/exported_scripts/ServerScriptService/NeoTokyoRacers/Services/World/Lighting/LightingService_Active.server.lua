@@ -1,106 +1,114 @@
+-- NTR Lighting Phase AQ - isolated six-stage server owner
 local Lighting = game:GetService("Lighting")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
-local PRESET_ATTRIBUTE = "NTR_LightingPreset"
-local Shared = ReplicatedStorage:WaitForChild("Shared")
-
-local LightingPresets = require(
-	Shared
-		:WaitForChild("LightingPresets")
-		:WaitForChild("LightingPresets")
-)
-
-local SkyPresets = Shared:WaitForChild("SkyPresets")
-
--- Change this between "Day" and "ClearNight" for testing.
-local CURRENT_PRESET = "Day"
+local shared = ReplicatedStorage:WaitForChild("Shared")
+local presets = require(shared:WaitForChild("LightingPresets"):WaitForChild("LightingPresets"))
+local skyPresets = shared:WaitForChild("SkyPresets")
+local config = shared:WaitForChild("LightingCycleConfig")
+local schedule = require(config:WaitForChild("LightingCycleSchedule"))
 
 local function getOrCreateEffect(className, name)
 	local existing = Lighting:FindFirstChild(name)
-	if existing then
+	if existing and existing.ClassName == className then
 		return existing
 	end
-
-	local newEffect = Instance.new(className)
-	newEffect.Name = name
-	newEffect.Parent = Lighting
-	return newEffect
+	if existing then existing:Destroy() end
+	local effect = Instance.new(className)
+	effect.Name = name
+	effect.Parent = Lighting
+	return effect
 end
 
-local atmosphere = getOrCreateEffect("Atmosphere", "Atmosphere")
-local colorCorrection = getOrCreateEffect("ColorCorrectionEffect", "ColorCorrection")
-local bloom = getOrCreateEffect("BloomEffect", "Bloom")
-local sunRays = getOrCreateEffect("SunRaysEffect", "SunRays")
-local depthOfField = getOrCreateEffect("DepthOfFieldEffect", "DepthOfField")
+local effects = {
+	Atmosphere = getOrCreateEffect("Atmosphere", "Atmosphere"),
+	ColorCorrection = getOrCreateEffect("ColorCorrectionEffect", "ColorCorrection"),
+	Bloom = getOrCreateEffect("BloomEffect", "Bloom"),
+	SunRays = getOrCreateEffect("SunRaysEffect", "SunRays"),
+	DepthOfField = getOrCreateEffect("DepthOfFieldEffect", "DepthOfField"),
+}
 
 local function applyProperties(instance, properties)
-	if not properties then
-		return
-	end
-
-	for propertyName, value in pairs(properties) do
-		if instance == Lighting and propertyName == "Fogcolor" then
-			propertyName = "FogColor"
-		end
-
-		local success, err = pcall(function()
-			instance[propertyName] = value
-		end)
-
-		if not success then
-			warn("Could not apply property:", instance.Name, propertyName, err)
-		end
+	for propertyName, value in pairs(properties or {}) do
+		if instance == Lighting and propertyName == "Fogcolor" then propertyName = "FogColor" end
+		local ok, err = pcall(function() instance[propertyName] = value end)
+		if not ok then warn("[NTR Lighting AQ] Could not apply", instance.Name, propertyName, err) end
 	end
 end
 
-local function clearCurrentSky()
+local function applySky(name)
+	if not name then return end
+	local template = skyPresets:FindFirstChild(name)
+	if not template or not template:IsA("Sky") then
+		warn("[NTR Lighting AQ] Missing Sky preset:", name)
+		return
+	end
 	for _, child in ipairs(Lighting:GetChildren()) do
-		if child:IsA("Sky") then
-			child:Destroy()
-		end
+		if child:IsA("Sky") then child:Destroy() end
 	end
+	local clone = template:Clone()
+	clone.Name = "ActiveSky"
+	clone.Parent = Lighting
 end
 
-local function applySky(skyName)
-	if not skyName then
-		return
-	end
-
-	local skyTemplate = SkyPresets:FindFirstChild(skyName)
-	if not skyTemplate then
-		warn("Sky preset not found:", skyName)
-		return
-	end
-
-	clearCurrentSky()
-
-	local newSky = skyTemplate:Clone()
-	newSky.Name = "ActiveSky"
-	newSky.Parent = Lighting
-end
-
-local function applyLightingPreset(presetName)
-	local preset = LightingPresets[presetName]
+local currentPreset
+local function applyStage(stage, index, endsAtUnix)
+	local preset = presets[stage.Preset]
 	if not preset then
-		warn("Lighting preset does not exist:", presetName)
+		warn("[NTR Lighting AQ] Missing preset:", stage.Preset)
 		return
 	end
-
-	Lighting:SetAttribute(PRESET_ATTRIBUTE, nil)
-	Lighting:SetAttribute(PRESET_ATTRIBUTE, presetName)
-
-	applyProperties(Lighting, preset.Lighting)
-	applyProperties(atmosphere, preset.Atmosphere)
-	applyProperties(colorCorrection, preset.ColorCorrection)
-	applyProperties(bloom, preset.Bloom)
-	applyProperties(sunRays, preset.SunRays)
-	applyProperties(depthOfField, preset.DepthOfField)
-	applySky(preset.SkyName)
-
-	Lighting:SetAttribute(PRESET_ATTRIBUTE, nil)
-	Lighting:SetAttribute(PRESET_ATTRIBUTE, presetName)
-
-	print("Applied lighting preset:", presetName)
+	if currentPreset ~= stage.Preset then
+		applyProperties(Lighting, preset.Lighting)
+		for section, effect in pairs(effects) do applyProperties(effect, preset[section]) end
+		applySky(preset.SkyName)
+		currentPreset = stage.Preset
+		print("[NTR Lighting AQ] Applied stage:", stage.DisplayName or stage.Preset)
+	end
+	Lighting:SetAttribute("NTR_LightingPreset", stage.Preset)
+	Lighting:SetAttribute("NTR_StreetLightsOn", stage.StreetLightsOn == true)
+	Lighting:SetAttribute("NTR_WindowMode", stage.WindowMode or "Day")
+	Lighting:SetAttribute("NTR_LightingStageIndex", index)
+	Lighting:SetAttribute("NTR_LightingStageEndsAtUnix", endsAtUnix or 0)
 end
 
-applyLightingPreset(CURRENT_PRESET)
+local localCycleStartedAt = os.clock()
+local function stageFromCycle()
+	local base = math.max(1, tonumber(config:GetAttribute("BaseDurationSeconds")) or 300)
+	local total = 0
+	for _, stage in ipairs(schedule) do total += base * math.max(0.01, tonumber(stage.DurationWeight) or 1) end
+	local synchronized = config:GetAttribute("SynchronizeAcrossServers") ~= false
+	local now = synchronized and os.time() or (os.clock() - localCycleStartedAt)
+	local position = now % total
+	local cursor = 0
+	for index, stage in ipairs(schedule) do
+		local duration = base * math.max(0.01, tonumber(stage.DurationWeight) or 1)
+		if position < cursor + duration then
+			local remaining = cursor + duration - position
+			return stage, index, synchronized and (os.time() + math.ceil(remaining)) or 0
+		end
+		cursor += duration
+	end
+	return schedule[1], 1, 0
+end
+
+local function manualStage()
+	local wanted = tostring(config:GetAttribute("ManualStage") or "Day")
+	for index, stage in ipairs(schedule) do
+		if stage.Preset == wanted then return stage, index end
+	end
+	warn("[NTR Lighting AQ] Invalid ManualStage; using Day:", wanted)
+	return schedule[1], 1
+end
+
+while true do
+	local stage, index, endsAt
+	if config:GetAttribute("AutoCycleEnabled") == false then
+		stage, index = manualStage()
+		endsAt = 0
+	else
+		stage, index, endsAt = stageFromCycle()
+	end
+	applyStage(stage, index, endsAt)
+	task.wait(1)
+end

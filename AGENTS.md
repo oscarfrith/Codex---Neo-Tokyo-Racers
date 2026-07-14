@@ -20,6 +20,7 @@ Working rules:
 * If two or more source-anchor repairs fail in the same live script, stop and inspect the live source/mirror before writing another patch; prefer an isolated canonical replacement when possible.
 * Treat `StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.NeoTokyoRacersClient_Bootstrap_Shadow_Disabled` as register-limited. Do not add new top-level local helpers or large feature blocks to it; use isolated controller scripts/modules plus a tiny table-backed event bridge if a bootstrap hook is unavoidable.
 * Apply the project-wide implementation triage rule from `docs/12_continuous_improvement_workflow.md` to all features, systems, tweaks, and refinements. `follow:` means execute with normal safety checks; `suggest:` means compare better options and recommend a stable path before implementation.
+* Once the user approves a phase or task scope, do not subdivide it into additional phases, patches, or user-run tasks without asking first. Keep necessary repairs in the same canonical script/phase unless the user approves a split.
 * After each confirmed phase, update the docs with the lesson learned so future chats start from the better workflow.
 
 Known current baseline:

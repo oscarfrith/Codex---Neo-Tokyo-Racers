@@ -71,6 +71,8 @@ local choiceList
 local choiceAnchor
 local toast
 local racingPresentationActive = false -- NTR_PC_FREEROAM_RACING_PRESENTATION_BRIDGE
+local racingTelemetryOnly = false
+local presentationOwners = {} -- NTR_RACING_UI_PHASE16E_RUNTIME_OWNERSHIP
 local activeModal
 local selectedCategory = "ALL"
 local selectedSort = "RATING"
@@ -387,20 +389,7 @@ local function fireUiEvent(name)
 	return false
 end
 
-local function suppressLegacyDesktop()
-	local oldNav = playerGui:FindFirstChild("NTR_FreeRoamLeftNav")
-	if oldNav and oldNav:IsA("ScreenGui") then oldNav.Enabled = false end
-	local oldExit = playerGui:FindFirstChild("NTR_FreeRoamVehicleExitButton")
-	if oldExit and oldExit:IsA("ScreenGui") then oldExit.Enabled = false end
-	local oldDrive = playerGui:FindFirstChild("HOVER_RACING_V2_DriveHUD")
-	if oldDrive then
-		local oldHud = oldDrive:FindFirstChild("DriveHUD", true)
-		local oldMenu = oldDrive:FindFirstChild("DriveMenu", true)
-		if oldHud and oldHud:IsA("GuiObject") then oldHud.Visible = false end
-		if oldMenu and oldMenu:IsA("GuiObject") then oldMenu.Visible = false end
-	end
-end
-
+local function suppressLegacyDesktop() end -- NTR_RACING_UI_PHASE16E_RUNTIME_OWNERSHIP
 local function closeChoiceList()
 	if choiceList then choiceList:Destroy(); choiceList = nil end
 	choiceAnchor = nil
@@ -992,7 +981,8 @@ local function updateLayout()
 end
 
 local function updateRuntime(dt)
-	suppressLegacyDesktop()
+	if racingPresentationActive and not racingTelemetryOnly then gui.Enabled=false return end
+	gui.Enabled=true
 	local currentCamera = Workspace.CurrentCamera
 	local currentViewport = currentCamera and currentCamera.ViewportSize or lastViewport
 	if currentViewport ~= lastViewport then updateLayout() end
@@ -1103,9 +1093,14 @@ end)
 
 local presentationEvent=script.Parent:FindFirstChild("FreeRoamHudPresentationMode")
 if presentationEvent and presentationEvent:IsA("BindableEvent") then
-	presentationEvent.Event:Connect(function(mode)
-		racingPresentationActive=tostring(mode)=="Racing"
+	presentationEvent.Event:Connect(function(message)
+		if typeof(message)=="table" then
+			local owner=tostring(message.Owner or "Racing") presentationOwners[owner]=message.Active==true and {KeepTelemetry=message.KeepTelemetry==true} or nil
+		else presentationOwners.Racing=tostring(message)=="Racing" and {KeepTelemetry=true} or nil end
+		racingPresentationActive=next(presentationOwners)~=nil racingTelemetryOnly=racingPresentationActive
+		for _,state in pairs(presentationOwners) do if not state.KeepTelemetry then racingTelemetryOnly=false break end end
 		if racingPresentationActive then carPanel.Visible=false closeChoiceList() closeModal() end
+		if not racingPresentationActive then gui.Enabled=true end
 	end)
 end
 

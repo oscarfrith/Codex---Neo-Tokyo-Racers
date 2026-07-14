@@ -3651,7 +3651,9 @@ local function ensureMobileDriveControls()
 end
 
 local function ensureDriveHud()
+	-- NTR_RACING_UI_PHASE16E_RUNTIME_OWNERSHIP
 	if driveGui and driveGui.Parent then return end
+	if not UserInputService.TouchEnabled then driveGui={Name="NTR_HeadlessDriveHudProxy",Parent=player:WaitForChild("PlayerGui"),Enabled=false} driveHud=nil return end
 	driveGui = new("ScreenGui", { Name = "HOVER_RACING_V2_DriveHUD", ResetOnSpawn = false, IgnoreGuiInset = true }, player:WaitForChild("PlayerGui"))
 	driveHud = panel(driveGui, "DriveHUD", UDim2.fromOffset(250, 86), UDim2.new(0, 18, 1, -22), Vector2.new(0, 1))
 	mphLabel = label(driveHud, "0 MPH", UDim2.new(1, -28, 0, 28), UDim2.fromOffset(14, 8), 15, Enum.TextXAlignment.Left)

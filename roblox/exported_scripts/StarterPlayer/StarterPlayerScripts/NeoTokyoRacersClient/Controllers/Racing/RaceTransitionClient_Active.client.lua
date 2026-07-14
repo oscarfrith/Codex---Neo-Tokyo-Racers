@@ -87,17 +87,7 @@ local function setSessionActive(active, reason)
 	print(("[NTR Racing Phase 8H] Session HUD state active=%s reason=%s"):format(tostring(active), tostring(reason or "")))
 end
 
-local function suppressFreeRoamHud()
-	for _, child in ipairs(playerGui:GetChildren()) do
-		if child:IsA("ScreenGui") and suppressGuiNames[child.Name] then
-			if savedHudEnabled[child] == nil then
-				savedHudEnabled[child] = child.Enabled
-			end
-			child.Enabled = false
-		end
-	end
-end
-
+local function suppressFreeRoamHud() end -- NTR_RACING_UI_PHASE16E_RUNTIME_OWNERSHIP
 local function tweenFade(targetTransparency, duration)
 	if currentFadeTween then
 		currentFadeTween:Cancel()
@@ -258,12 +248,7 @@ queueEvent.OnClientEvent:Connect(function(payload)
 	handleRacePayload(payload)
 end)
 
-RunService.Heartbeat:Connect(function()
-	if sessionActive and os.clock() - lastHudPulse > 0.2 then
-		lastHudPulse = os.clock()
-		suppressFreeRoamHud()
-	end
-end)
+-- NTR_RACING_UI_PHASE16E_RUNTIME_OWNERSHIP: no HUD suppression heartbeat; presentation owners publish lifecycle state.
 
 player.CharacterAdded:Connect(function()
 	task.delay(0.35, function()

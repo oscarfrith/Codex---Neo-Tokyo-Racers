@@ -1642,7 +1642,7 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 			BoostDuration = V56_number(item, "BoostDuration", 0),
 			BoostRecharge = V56_number(item, "BoostRecharge", 0),
 			BoostRechargeDelay = V56_number(item, "BoostRechargeDelay", 0),
-			Upgrades = V77_ModuleUpgrades.CatalogForModuleType(moduleType),
+			Upgrades = V77_ModuleUpgrades.CatalogForModuleType(moduleType, item), -- NTR_VEHICLE_PERFORMANCE_V2_PHASE8_MODULE_CATALOG
 		}
 	end
 

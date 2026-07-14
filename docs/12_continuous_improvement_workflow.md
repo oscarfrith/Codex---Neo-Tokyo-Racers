@@ -92,6 +92,8 @@ For future work:
 
 It is good to reduce the number of Studio Command Bar inputs, but do not merge unrelated risk.
 
+Once the user approves a phase or task scope, treat that boundary as fixed. Do not create additional phases, sub-phases, repair phases, or separate user-run tasks without asking first. If implementation or testing reveals a defect, update the same canonical installer and handoff by default. A new phase requires explicit user approval even when a split would be technically convenient.
+
 Good merged phase:
 
 - one installer plus one smoke in the same dual-mode script;

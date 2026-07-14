@@ -1,6 +1,6 @@
 # Neo Tokyo Racers Project Context
 
-Last updated: 2026-07-11
+Last updated: 2026-07-13
 
 This folder is the handoff pack for new Codex or ChatGPT sessions. Read this file first, then use the other docs only as needed.
 
@@ -14,12 +14,15 @@ The vehicle system is category-based: cockpits and modules inside the same categ
 
 The user approved the PC free-roam HUD, car menu, dealership teleport modal, controls, cash store, and settings concepts on 2026-07-10. The authoritative colour/component specification is `docs/ui-free-roam-pc-design-system-2026-07-10.md`, and the six reference images are under `assets/ui/mockups/free_roam_pc/`.
 
-The Phase 0 audit passed `35/2/0` (`pass/warn/fail`); Phase 2 stabilised the responsive visual system and live boost telemetry. Phase 3D's north-up four-tile map plus image-only player/north markers and Phase 4A's server-authoritative dealership teleport were installed and confirmed working. The Studio mirror was refreshed and Git was pushed after confirmation. Phase 4A is the current PC free-roam UI baseline; later free-roam phases are intentionally deferred while work moves to race/time-trial menus and prize presentation. The Racing UI desktop and responsive design gates were approved on 2026-07-11; use `docs/racing-ui-design-system-2026-07-11.md` and run `scripts/roblox_racing_ui_phase0_preinstall_audit.lua` before the first installer. Start that work from `docs/racing-next-chat-handoff-2026-07-10.md` and `docs/ui-free-roam-pc-final-handoff-2026-07-11.md`.
+The Phase 0 audit passed `35/2/0` (`pass/warn/fail`); Phase 2 stabilised the responsive visual system and live boost telemetry. Phase 3D's north-up four-tile map plus image-only player/north markers and Phase 4A's server-authoritative dealership teleport were installed and confirmed working. Phase 4A remains the PC free-roam visual baseline. The race/time-trial UI stream is now confirmed through Phase 16F; start new Racing UI work from `docs/racing-ui-final-handoff-2026-07-13.md`, with `docs/racing-next-chat-handoff-2026-07-10.md` retained as the Phase 11Z gameplay-history reference.
 
 ## Current Script State
 
 Known from chat:
 
+- Mobile Free-Roam UI Phases 1L/1M and Mobile Racing UI Phases 1/1B were installed and mirrored through `2026-07-13 21:09:59`. Mobile Free-Roam Phase 1N is the next generated step: Accelerator and Brake become equal square image slots with configurable size, bottom/right offsets, and gap while preserving Phase 1M opacity and input behavior. Install and verify it from `docs/ui-free-roam-mobile-phase1n-square-pedal-layout-2026-07-13.md`.
+
+- Racing UI is confirmed through Phase 16F and Mobile Racing UI Phases 1/1B. The scaled PC compositions work across Browser, Entry submenus, and unified Results, and the confirmed `SafeTop = 72` keeps them close beneath Roblox's built-in buttons. The `2026-07-13 20:07:14` mirror contains this state.
 - Architecture migration Phases 15-21 were committed after successful testing. Main client extraction Phase A-E later removed the final active legacy-named `HOVER_RACING` owner from live use.
 - Main client extraction Phase A-E has passed. Phase D switched the active main client owner to `StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.NeoTokyoRacersClient_Bootstrap_Shadow_Disabled`; Phase E audit passed cleanly with no active legacy-named `HOVER_RACING` scripts. The old `HOVER_RACING_V2_Client` is disabled and kept as rollback.
 - Architecture Phase K completed successfully on 2026-05-29 at 17:31:59 in Studio: `ReplicatedStorage.HOVER_RACING_V2_KIT` contents moved into `ReplicatedStorage.NeoTokyoRacers`, 20 source objects patched, 112 replacements applied, and final legacy source hits were 0.
@@ -39,12 +42,40 @@ Known from chat:
   MeshParts now use `Windows Day` / `Windows Night` MaterialVariants and switch
   with lighting mode. Separate Command Bar scripts preview either complete
   condition in Studio edit mode.
+- Lighting Phase AQ was installed and user-confirmed working on 2026-07-13. The
+  isolated synchronized cycle contains Day, 5 PM, 8 PM, Night, 4 AM, and 7 AM;
+  Day/Night last twice as long. Reusable selected-stage capture/preview tools
+  are the preferred editing workflow. The confirmed system is mirrored through
+  `2026-07-14 00:15:37`; see `docs/lighting-phaseAQ-six-stage-cycle-2026-07-13.md`.
+- Lighting Phase AR is installed and mirrored through `2026-07-14 00:15:37`,
+  adding independent 10 AM and 3 PM presets copied from Day and expanding the
+  chronological cycle to eight stages. Runtime verification remains recommended.
+- Lighting Phase AS is installed and mirrored through `2026-07-14 00:15:37`,
+  making window Day/Night material selection,
+  managed street-light enabled state, and street-light brightness explicit
+  per-stage config attributes. Environmental capture preserves these attributes;
+  preview/runtime applies them from config. Run
+  `scripts/roblox_lighting_phaseAS_stage_visual_config.lua` after Phase AR.
+- Use `scripts/roblox_lighting_capture_current_to_text_value.lua` to capture the
+  current Edit-mode environment and current stage visual config into the
+  `LightingCycleConfig.CurrentLightingCaptureText` StringValue without changing
+  any preset or runtime owner.
+- The refreshed mirror proves FivePM and SevenAM already contain the same pasted
+  environment snapshot (separate Sky names) and both have Day windows, managed
+  street lights disabled, and brightness `2`; screenshot comparison subsequently
+  proved this is the incorrect bright Picture 1 state. The correct warm Picture
+  2 replacement is generated as
+  `scripts/roblox_lighting_replace_5pm_7am_with_warm_snapshot.lua` and awaits
+  Studio installation/verification.
 - Vehicle Phase AI removes/deprioritises the cockpit car-light experiments from Phases S through AH. No cockpit SpotLight, Beam, smoother, projector, or diagnostic runtime should be considered current. Ordinary cosmetic neon colour channels remain.
 - VFX Phase AJ is prepared to repair thrust VFX preview after Dealership Intro Phase 4 moved the local preview vehicle to `Workspace._NTR_ClientOnly.VehiclePreview`. Run `scripts/roblox_vfx_phaseAJ_thrust_preview_root_repair.lua` if thrust VFX no longer previews while editing thrust colour in the customisation menu.
 - VFX baseline was restored from the repo mirror after the late-socket/rescan repair sequence caused memory growth and VFX cut-outs. The confirmed follow-up is `scripts/roblox_vfx_mobile_delayed_attach_once.lua`, which delays mobile-only `VehicleVFXController.Attach` briefly and then performs one attach pass without continuous rescans or rebuild loops. The user reported VFX working again after this sequence.
 - Vehicle Phase AK was installed and confirmed working through its follow-up repairs. Bruiser modules now use per-cockpit Standard/Lightweight/Power front engine, rear engine, stabiliser, and boost sets plus Lvl 1-3 bumpers/spoilers/side pods. Cockpit purchase grants standard core modules, dealership stats include them, required modules are gated, camera entry views are corrected, per-cockpit default colours live on cockpit attributes, and spawned module colours match preview.
 - Vehicle Phase AL was installed and its read-only audit passed on 2026-06-08: 5 cockpits, 72 active modules, 23 planned upgrades, and 0 warnings.
 - Vehicle Phase AM was installed and confirmed working on 2026-06-08. The isolated `VehiclePerformanceRuntimeService_Active` writes complete-build raw/normalized/headline/rating data; the audit passed `17/17`, `17/17`, `6/6`, and 0 warnings with a test rating of `D 407`. Detailed-variable V75 physics was then enabled and reported working well.
+- Driving Feel Phases 1 and 2 are installed; Phase 2 handling was reported good overall. Phase 2.1 reduced/configured drift forward drag and repaired one-second delayed reverse, and the user confirmed it feels much better. Use `docs/driving-feel-tuning-reference-2026-07-13.md` for the attribute map and `docs/driving-feel-phase2-1-drift-momentum-reverse-2026-07-13.md` for verification/rollback. Refresh the post-Phase-2.1 mirror before the next driving patch; do not rerun the older Phase AM installer unchanged.
+- Driving Feel Phase 3 is generated as one consolidated V2-tier calibration stage after live E/S testing showed extreme steering/boost ranges, weak acceleration, and boat-like drift. `scripts/roblox_driving_feel_phase3_tier_curve_drift_drive.lua` canonically replaces the isolated dynamics model and hard-preflights two controller anchors before adding bounded E-S handling/boost mappings, a soft-launch/mid-range/high-speed acceleration curve, and throttle-driven drift velocity alignment. After Phase 3, `scripts/roblox_driving_feel_phase3_organized_tuning_values.lua` preserves all current edited numbers while migrating them into seven ordered category folders. Selecting one category shows all its numeric Attributes, each followed by a matching `<Name>_RaisingThisDoes` string; no per-setting folders remain. See `docs/driving-feel-phase3-tier-curves-drift-drive-2026-07-14.md`. Do not treat either installer as confirmed until Forge/Viper/Zenith Play tests and a mirror refresh pass.
+- Vehicle Performance V2 Phase 7 was user-confirmed working after its two validation-only checks were corrected in the same canonical installer. V2 rating, compatibility, six-point allocation, upgrade/migration previews, and spawned shadow comparison now form the confirmed disabled baseline. Phase 8 is generated as the single final live boundary: `scripts/roblox_vehicle_performance_v2_phase8_atomic_live_launch.lua` installs switch-aware isolated owners, publishes the six Viper-based cockpits/72 core modules, migrates module-instance upgrades lazily with legacy values preserved, and enables all live V2 switches last. It includes `ROLLBACK_SWITCHES` mode in the same script and creates no in-game backups. The locally received mirror still reports `2026-07-13 21:51:45`; refresh it after Phase 8 verification.
 - Vehicle Phase AN was installed and confirmed working on 2026-06-08. Module-ID-scoped Fuel Injection level 1 cost `$4000`, changed the profile rating from `D 407` to `D 410`, reached the spawned engine as EngineOutput `+2` and TopSpeed `+1`, and passed the spawned-effect audit with 0 warnings.
 - Vehicle Phase AO was installed and confirmed working on 2026-06-08. The visible legacy Brakes, Converter, Fuel System, and generic upgrade controls are replaced by per-module Performance cards, next-level previews, and purchases through the confirmed Phase AN action. The stats panel now keeps the E-S tier/index visible and shows contextual detailed variables for the selected module.
 - Dealership Intro Phases 1-7 were installed and confirmed working by the user on 2026-06-03. The flow now uses editable dealership markers, opens the full garage only at `GarageDeskTrigger`, delays the local preview until cockpit purchase/select succeeds, restores preview orbit camera behavior, spawns the final drivable vehicle from `VehicleExitSpawnPoint`, and includes an Exit button that only reopens after the player leaves and re-enters the desk zone. Phase 8 is generated in Git as the next Studio install/test step: it replaces fixed path arrows with a dynamic client-only arrow tether to the desk and persists first desk-objective completion.
@@ -274,6 +305,14 @@ Recommended baseline:
 - Vehicle Phase AM runtime integration: `docs/vehicle-phaseAM-runtime-integration-2026-06-08.md`
 - Vehicle Phase AN module upgrades: `docs/vehicle-phaseAN-module-upgrades-2026-06-08.md`
 - Vehicle Phase AO upgrade UI: `docs/vehicle-phaseAO-upgrade-ui-2026-06-08.md`
+- Vehicle Performance V2 Phase 0 audit/simulation: `docs/vehicle-performance-v2-phase0-audit-simulation-2026-07-13.md`
+- Vehicle Performance V2 Phase 1 shadow calculator: `docs/vehicle-performance-v2-phase1-shadow-calculator-2026-07-13.md`
+- Vehicle Performance V2 Phase 2 catalogue calibration: `docs/vehicle-performance-v2-phase2-catalogue-calibration-2026-07-13.md`
+- Vehicle Performance V2 Phase 3 component allocation: `docs/vehicle-performance-v2-phase3-component-allocation-2026-07-13.md`
+- Vehicle Performance V2 Phase 4 variant calibration: `docs/vehicle-performance-v2-phase4-variant-calibration-2026-07-13.md`
+- Vehicle Performance V2 Phase 5 upgrade paths: `docs/vehicle-performance-v2-phase5-upgrade-paths-2026-07-13.md`
+- Vehicle Performance V2 Phase 6 staged assets: `docs/vehicle-performance-v2-phase6-asset-materialisation-staging-2026-07-13.md`
+- Vehicle Performance V2 Phase 7 integrated shadow migration: `docs/vehicle-performance-v2-phase7-integrated-shadow-migration-2026-07-13.md`
 - Persistence and garage profile plan: `docs/persistence-garage-profile-plan-2026-06-30.md`
 - Cleanup Phase G full hierarchy audit: `docs/cleanup-phaseG-full-hierarchy-audit-2026-05-29.md`
 - Cleanup Phase H legacy inactive deletion: `docs/cleanup-phaseH-delete-legacy-inactive-items-2026-05-29.md`

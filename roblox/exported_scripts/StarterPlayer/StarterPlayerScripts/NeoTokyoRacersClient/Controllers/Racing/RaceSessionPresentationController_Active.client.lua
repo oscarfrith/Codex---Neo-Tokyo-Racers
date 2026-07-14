@@ -5,6 +5,7 @@
 -- NTR_RACING_UI_PHASE16B2A_ENDLOCAL_PARSE_REPAIR
 -- NTR_RACING_UI_PHASE16C_CONFIG_DRIVEN_HUD_MAP
 -- NTR_RACING_UI_PHASE16C2_MAP_OPACITY_EDGE_ALIGNMENT
+-- NTR_RACING_UI_PHASE16D_PRESENTATION_PERFORMANCE
 
 local Players=game:GetService("Players")
 local ReplicatedStorage=game:GetService("ReplicatedStorage")
@@ -16,6 +17,7 @@ local racingRemotes=shared:WaitForChild("Remotes"):WaitForChild("Racing") local 
 local UI=require(shared:WaitForChild("Modules"):WaitForChild("UI"):WaitForChild("RacingUIComponents")) local C,L,T=UI.Colour,UI.Layout,UI.Type
 local config=kit:WaitForChild("Config"):WaitForChild("UI"):WaitForChild("Racing"):WaitForChild("InRace")
 local racingConfig=kit.Config:WaitForChild("Racing")
+local performanceConfig=racingConfig:WaitForChild("PresentationPerformance")
 local function N(name,fallback) local item=config:FindFirstChild(name) return item and item:IsA("NumberValue") and item.Value or fallback end
 local function timeText(seconds) seconds=tonumber(seconds) if not seconds or seconds<0 then return "--:--.---" end local m=math.floor(seconds/60) return string.format("%02d:%06.3f",m,seconds-m*60) end
 local function asset(value) value=tostring(value or "") if value=="" then return "" end if string.find(value,"rbxassetid://",1,true) then return value end local id=string.match(value,"%d+") return id and "rbxassetid://"..id or value end
@@ -74,7 +76,7 @@ local canvas=Instance.new("Frame") canvas.Name="ReferenceCanvas" canvas.AnchorPo
 local scale=Instance.new("UIScale") scale.Parent=canvas
 local function updateScale() local camera=Workspace.CurrentCamera local v=camera and camera.ViewportSize or Vector2.new(1920,1080) scale.Scale=math.min(v.X/1920,v.Y/1080) end updateScale() if Workspace.CurrentCamera then Workspace.CurrentCamera:GetPropertyChangedSignal("ViewportSize"):Connect(updateScale) end
 local suppressed={}
-local function suppress(active) for _,name in ipairs({"NTR_RaceHud","NTR_RaceHud_Phase3","NTR_RaceCheckpointBadge_Phase5D","NTR_RaceQueue_Phase8","NTR_RaceSessionControls_Phase8D"}) do local other=playerGui:FindFirstChild(name) if other and other:IsA("ScreenGui") then if active and suppressed[other]==nil then suppressed[other]=other.Enabled other.Enabled=false elseif not active and suppressed[other]~=nil then other.Enabled=suppressed[other] suppressed[other]=nil end end end end
+local function suppress(_active) end -- NTR_RACING_UI_PHASE16E_RUNTIME_OWNERSHIP
 local function panel(name,pos,size) return UI.Panel(canvas,{Name=name,Position=pos,Size=size,Color=C("PanelDeep"),Transparency=N("PanelTransparency",.16),StrokeColor=C("Outline"),StrokeTransparency=.16,Clips=true}) end
 local function borderless(object) object.BackgroundTransparency=1 for _,child in ipairs(object:GetChildren()) do if child:IsA("UIStroke") then child.Transparency=1 end end return object end
 local function metricCard(object)
@@ -112,7 +114,7 @@ local active=nil
 local queueRequest=racingRemotes:WaitForChild("RaceQueueRequest")
 local transitionRequest=script.Parent:FindFirstChild("RaceTransitionRequest")
 local uiFolder=script.Parent.Parent:FindFirstChild("UI") local freeRoamMode=uiFolder and uiFolder:FindFirstChild("FreeRoamHudPresentationMode")
-local function presentationMode(enabled) if freeRoamMode and freeRoamMode:IsA("BindableEvent") then freeRoamMode:Fire(enabled and "Racing" or "FreeRoam") end end
+local function presentationMode(enabled) if freeRoamMode and freeRoamMode:IsA("BindableEvent") then freeRoamMode:Fire({Owner="RaceSession",Active=enabled==true,KeepTelemetry=true}) end end
 local controls=Instance.new("Frame") controls.Name="SessionControls" controls.BackgroundTransparency=1 controls.AnchorPoint=Vector2.new(.5,1) controls.Position=UDim2.new(.5,0,1,-N("BottomY",30)) controls.Size=UDim2.fromOffset(360,38) controls.Parent=canvas
 local resetButton=UI.Button(controls,{Text="RESET",Position=UDim2.fromOffset(10,3),Size=UDim2.fromOffset(150,32),Color=C("PanelDeep"),StrokeColor=C("OutlineSoft"),TextSize=13}) resetButton.BackgroundTransparency=.48 resetButton.TextTransparency=.12
 local exitButton=UI.Button(controls,{Text="EXIT",Position=UDim2.fromOffset(180,3),Size=UDim2.fromOffset(170,32),Color=C("PanelDeep"),StrokeColor=C("OutlineSoft"),TextSize=13}) exitButton.BackgroundTransparency=.48 exitButton.TextTransparency=.12
@@ -138,36 +140,72 @@ noButton.Activated:Connect(function() modalShade.Visible=false end) yesButton.Ac
 local avatarCache={}
 local function avatar(parent,userId,pos,size) local image=Instance.new("ImageLabel") image.BackgroundColor3=C("PanelSoft") image.BackgroundTransparency=.15 image.BorderSizePixel=0 image.Position=pos image.Size=size image.ScaleType=Enum.ScaleType.Crop image.Parent=parent local corner=Instance.new("UICorner") corner.CornerRadius=UDim.new(0,5) corner.Parent=image userId=tonumber(userId) if not userId then return end if avatarCache[userId] then image.Image=avatarCache[userId] return end task.spawn(function() local ok,url=pcall(function() return Players:GetUserThumbnailAsync(userId,Enum.ThumbnailType.HeadShot,Enum.ThumbnailSize.Size100x100) end) if ok then avatarCache[userId]=url if image.Parent then image.Image=url end end end) end
 local function clear(parent) for _,child in ipairs(parent:GetChildren()) do child:Destroy() end end
+local hudMapState={Enabled=false,Subject=nil,NextSubjectResolve=0}
+local mapOpacityValue=config:FindFirstChild("MapOpacity")
+if mapOpacityValue and mapOpacityValue:IsA("NumberValue") then
+	mapOpacityValue.Changed:Connect(function(value) mapArt.ImageTransparency=1-math.clamp(tonumber(value) or .78,0,1) end)
+end
 local function resetHudMapMarker()
 	displayedMapMarkerPosition=nil displayedMapMarkerHeading=nil playerMapMarker.Visible=false
 end
+local function clearHudMapState()
+	hudMapState={Enabled=false,Subject=nil,NextSubjectResolve=0}
+	resetHudMapMarker()
+end
+local function prepareHudMapSession(mode,eventId)
+	local folder=hudMapConfig(mode,eventId)
+	local routeId=routeIdFor(mode,eventId)
+	local imageWidth=math.max(1,mapValue(folder,"ImageWidthPixels","NumberValue",1024))
+	local imageHeight=math.max(1,mapValue(folder,"ImageHeightPixels","NumberValue",1024))
+	local radians=math.rad(mapValue(folder,"MapRotationDegrees","NumberValue",0))
+	hudMapState={
+		Enabled=folder~=nil and mapValue(folder,"Enabled","BoolValue",false),Folder=folder,Mode=mode,EventId=tostring(eventId or ""),RouteId=routeId,
+		Anchor=mapAnchor(folder,routeId),ImageWidth=imageWidth,ImageHeight=imageHeight,StudsPerPixel=math.max(.0001,mapValue(folder,"StudsPerPixel","NumberValue",1)),
+		Radians=radians,Cos=math.cos(radians),Sin=math.sin(radians),FlipX=mapValue(folder,"FlipX","BoolValue",false),FlipY=mapValue(folder,"FlipY","BoolValue",false),
+		StartPixelX=mapValue(folder,"StartPixelX","NumberValue",imageWidth*.5),StartPixelY=mapValue(folder,"StartPixelY","NumberValue",imageHeight*.5),
+		Clamp=mapValue(folder,"ClampMarkersToMap","BoolValue",true),Smoothing=math.max(0,mapValue(folder,"Smoothing","NumberValue",12)),
+		MarkerRotationOffset=mapValue(folder,"MarkerRotationOffsetDegrees","NumberValue",0),PlayerMarkerScale=math.max(.1,mapValue(folder,"PlayerMarkerScale","NumberValue",1)),
+		Subject=mapSubject(),NextSubjectResolve=0,
+	}
+	mapArt.ImageTransparency=1-math.clamp(N("MapOpacity",.78),0,1)
+end
 local function updateHudMapMarker(dt)
 	if not active then resetHudMapMarker() return end
-	local folder=hudMapConfig(active.Mode,active.EventId)
-	if not (folder and mapValue(folder,"Enabled","BoolValue",false)) then resetHudMapMarker() return end
-	local subject=mapSubject() local routeId=routeIdFor(active.Mode,active.EventId) local anchor=mapAnchor(folder,routeId)
-	if not (subject and anchor) then resetHudMapMarker() return end
-	local imageWidth=math.max(1,mapValue(folder,"ImageWidthPixels","NumberValue",1024)) local imageHeight=math.max(1,mapValue(folder,"ImageHeightPixels","NumberValue",1024))
-	local studsPerPixel=math.max(.0001,mapValue(folder,"StudsPerPixel","NumberValue",1)) local radians=math.rad(mapValue(folder,"MapRotationDegrees","NumberValue",0))
-	local delta=subject.Position-anchor local mappedX=delta.X*math.cos(radians)-delta.Z*math.sin(radians) local mappedY=delta.X*math.sin(radians)+delta.Z*math.cos(radians)
-	if mapValue(folder,"FlipX","BoolValue",false) then mappedX=-mappedX end if mapValue(folder,"FlipY","BoolValue",false) then mappedY=-mappedY end
-	local sourceX=mapValue(folder,"StartPixelX","NumberValue",imageWidth*.5)+mappedX/studsPerPixel local sourceY=mapValue(folder,"StartPixelY","NumberValue",imageHeight*.5)+mappedY/studsPerPixel
-	local x=sourceX/imageWidth local y=sourceY/imageHeight
-	local rendered=mapArt.AbsoluteSize if rendered.X>0 and rendered.Y>0 then
-		local frameAspect=rendered.X/rendered.Y local imageAspect=imageWidth/imageHeight
+	if hudMapState.Mode~=active.Mode or hudMapState.EventId~=tostring(active.EventId or "") then prepareHudMapSession(active.Mode,active.EventId) end
+	local state=hudMapState
+	if not (state.Enabled and state.Anchor) then resetHudMapMarker() return end
+	local subject=state.Subject
+	if not (subject and subject.Parent and subject:IsA("BasePart")) then
+		if os.clock()<state.NextSubjectResolve then resetHudMapMarker() return end
+		state.NextSubjectResolve=os.clock()+math.max(.1,mapValue(performanceConfig,"HudMapSubjectResolveSeconds","NumberValue",.5))
+		state.Subject=mapSubject() subject=state.Subject
+	end
+	if not subject then resetHudMapMarker() return end
+	local delta=subject.Position-state.Anchor
+	local mappedX=delta.X*state.Cos-delta.Z*state.Sin local mappedY=delta.X*state.Sin+delta.Z*state.Cos
+	if state.FlipX then mappedX=-mappedX end if state.FlipY then mappedY=-mappedY end
+	local x=(state.StartPixelX+mappedX/state.StudsPerPixel)/state.ImageWidth
+	local y=(state.StartPixelY+mappedY/state.StudsPerPixel)/state.ImageHeight
+	local rendered=mapArt.AbsoluteSize
+	if rendered.X>0 and rendered.Y>0 then
+		local frameAspect=rendered.X/rendered.Y local imageAspect=state.ImageWidth/state.ImageHeight
 		if imageAspect>frameAspect then local heightFraction=frameAspect/imageAspect y=(1-heightFraction)*.5+y*heightFraction else local widthFraction=imageAspect/frameAspect x=(1-widthFraction)*.5+x*widthFraction end
 	end
-	if mapValue(folder,"ClampMarkersToMap","BoolValue",true) then x=math.clamp(x,0,1) y=math.clamp(y,0,1) end
-	local targetPosition=Vector2.new(x,y) local look=subject.CFrame.LookVector local lookX=look.X*math.cos(radians)-look.Z*math.sin(radians) local lookY=look.X*math.sin(radians)+look.Z*math.cos(radians)
-	if mapValue(folder,"FlipX","BoolValue",false) then lookX=-lookX end if mapValue(folder,"FlipY","BoolValue",false) then lookY=-lookY end
-	local targetHeading=math.deg(math.atan2(lookX,-lookY))+mapValue(folder,"MarkerRotationOffsetDegrees","NumberValue",0) local smoothing=math.max(0,mapValue(folder,"Smoothing","NumberValue",12)) local alpha=smoothing<=0 and 1 or math.clamp((dt or 1/60)*smoothing,0,1)
+	if state.Clamp then x=math.clamp(x,0,1) y=math.clamp(y,0,1) end
+	local targetPosition=Vector2.new(x,y) local look=subject.CFrame.LookVector
+	local lookX=look.X*state.Cos-look.Z*state.Sin local lookY=look.X*state.Sin+look.Z*state.Cos
+	if state.FlipX then lookX=-lookX end if state.FlipY then lookY=-lookY end
+	local targetHeading=math.deg(math.atan2(lookX,-lookY))+state.MarkerRotationOffset
+	local alpha=state.Smoothing<=0 and 1 or math.clamp((dt or 1/60)*state.Smoothing,0,1)
 	displayedMapMarkerPosition=displayedMapMarkerPosition and displayedMapMarkerPosition:Lerp(targetPosition,alpha) or targetPosition
-	if displayedMapMarkerHeading==nil then displayedMapMarkerHeading=targetHeading end local headingDelta=(targetHeading-displayedMapMarkerHeading+180)%360-180 displayedMapMarkerHeading+=headingDelta*alpha
-	local baseSize=math.max(8,mapValue(freeRoamMapLayout,"MapPlayerIconSize","NumberValue",22)) local size=baseSize*math.max(.1,mapValue(folder,"PlayerMarkerScale","NumberValue",1))
-	mapArt.ImageTransparency=1-math.clamp(N("MapOpacity",.78),0,1) playerMapMarker.Size=UDim2.fromOffset(size,size) playerMapMarker.Position=UDim2.fromScale(displayedMapMarkerPosition.X,displayedMapMarkerPosition.Y) playerMapMarker.Rotation=displayedMapMarkerHeading playerMapMarker.Visible=mapArt.Image~=""
+	if displayedMapMarkerHeading==nil then displayedMapMarkerHeading=targetHeading end
+	local headingDelta=(targetHeading-displayedMapMarkerHeading+180)%360-180 displayedMapMarkerHeading+=headingDelta*alpha
+	local baseSize=math.max(8,mapValue(freeRoamMapLayout,"MapPlayerIconSize","NumberValue",22)) local size=baseSize*state.PlayerMarkerScale
+	playerMapMarker.Size=UDim2.fromOffset(size,size) playerMapMarker.Position=UDim2.fromScale(displayedMapMarkerPosition.X,displayedMapMarkerPosition.Y)
+	playerMapMarker.Rotation=displayedMapMarkerHeading playerMapMarker.Visible=mapArt.Image~=""
 end
-local function show(payload,mode) active=active or {} active.Mode=mode active.RunId=payload.RunId active.EventId=payload.EventId active.VehicleTier=payload.VehicleTier or active.VehicleTier active.CurrentLap=tonumber(payload.CurrentLap) or active.CurrentLap or 1 active.LapTarget=tonumber(payload.LapTarget) or active.LapTarget or 1 active.ParticipantCount=tonumber(payload.ParticipantCount) or active.ParticipantCount or 1 active.LapTimes=active.LapTimes or {} active.Positions=active.Positions or {} mapArt.Image=hudMapImage(mode,active.EventId) resetHudMapMarker() canvas.Visible=true suppress(true) presentationMode(true) end
-local function hide(restoreLegacy) active=nil canvas.Visible=false modalShade.Visible=false busy=false if restoreLegacy~=false then suppress(false) presentationMode(false) end clear(boardBody) end
+local function show(payload,mode) active=active or {} active.Mode=mode active.RunId=payload.RunId active.EventId=payload.EventId active.VehicleTier=payload.VehicleTier or active.VehicleTier active.CurrentLap=tonumber(payload.CurrentLap) or active.CurrentLap or 1 active.LapTarget=tonumber(payload.LapTarget) or active.LapTarget or 1 active.ParticipantCount=tonumber(payload.ParticipantCount) or active.ParticipantCount or 1 active.LapTimes=active.LapTimes or {} active.Positions=active.Positions or {} prepareHudMapSession(mode,active.EventId) mapArt.Image=hudMapImage(mode,active.EventId) resetHudMapMarker() canvas.Visible=true suppress(true) presentationMode(true) end
+local function hide(_restoreLegacy) active=nil clearHudMapState() canvas.Visible=false modalShade.Visible=false busy=false suppress(false) presentationMode(false) clear(boardBody) end
 local function queryPB() if not (active and active.Mode=="TimeTrial" and active.VehicleTier) then return end local result=call("GetTimeTrialPersonalBest",{EventId=active.EventId,VehicleTier=active.VehicleTier}) active.PersonalBest=tonumber(result.BestSeconds or (result.Record and result.Record.BestSeconds)) end
 local function renderTimeTrialBoard()
 	clear(boardBody)
@@ -214,5 +252,5 @@ raceEvent.OnClientEvent:Connect(function(payload)
 	elseif kind=="TimeTrialFinished" or kind=="RaceFinished" or kind=="RaceEnded" then hide(false)
 	elseif kind=="TimeTrialEnded" or kind=="TimeTrialError" or kind=="RaceExitedToStart" then hide(true) end
 end)
-RunService.RenderStepped:Connect(function(dt) updateHudMapMarker(dt) if active and active.Mode=="TimeTrial" and active.Running and active.LapLocalStart then metricValue.Text=timeText(os.clock()-active.LapLocalStart) end end)
+RunService.RenderStepped:Connect(function(dt) if not active then return end updateHudMapMarker(dt) if active.Mode=="TimeTrial" and active.Running and active.LapLocalStart then metricValue.Text=timeText(os.clock()-active.LapLocalStart) end end)
 print("[NTR Racing UI Phase 16A] Shared in-race HUD active.")

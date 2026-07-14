@@ -1,8 +1,8 @@
 # Day / Night Lighting Preset System
 
 **Created / first designed:** 2026-05-26  
-**Last updated:** 2026-06-13  
-**Current status:** Partially working / night sky issue unresolved  
+**Last updated:** 2026-07-13
+**Current status:** Eight-stage AQ/AR/AS cycle installed and mirrored; runtime verification still recommended
 **Relevant docs file:** `docs/lighting-and-atmosphere.md`  
 **Relevant files to edit:** Lighting preset modules/scripts only. Do not edit vehicle, LOD, or race files unless specifically requested.
 
@@ -101,6 +101,12 @@ Important design note:
 
 ## Current Known Issues
 
+- Lighting Phase AQ was installed and user-confirmed working on 2026-07-13. It
+  extends the system to Day, 5 PM, 8 PM, Night, 4 AM, and 7 AM with explicit
+  window and managed street-light signals. The Studio mirror still needs a
+  post-Phase-AQ refresh. See
+  `docs/lighting-phaseAQ-six-stage-cycle-2026-07-13.md`.
+
 - Night mode was still showing the day sky as of 2026-05-26.
 - The likely cause is that the preset switch changes Lighting/Atmosphere values but does not swap, remove, or disable the day `Sky` object.
 - Need to confirm final `Sky` handling:
@@ -123,6 +129,56 @@ Important design note:
   detection cannot safely use ClockTime. Phase AP prefers the
   `NTR_LightingPreset` Lighting attribute and uses Brightness as compatibility
   fallback for the existing N/M preview tool.
+
+## Six-Stage Phase AQ Design
+
+Phase AQ keeps the confirmed preset/capture workflow and adds an editable
+`LightingCycleConfig` Folder plus ordered schedule ModuleScript. Day and Night
+use duration weight `2`; 5 PM, 8 PM, 4 AM, and 7 AM use weight `1`. Explicit
+`NTR_StreetLightsOn` and `NTR_WindowMode` attributes replace fragile darkness
+inference for the new preset names.
+
+The installer captures the current Edit-mode condition into `FivePM`, initially
+copies it into independent `SevenAM` data, and initializes independent EightPM
+and FourAM data from ClearNight. A reusable multi-target capture tool and a
+single selected-stage Edit-mode preview tool replace the need for duplicate
+per-stage capture/preview scripts.
+
+Phase AR adds independent `TenAM` and `ThreePM` presets copied from Day and
+expands the chronological cycle to eight stages. Install it from
+`docs/lighting-phaseAR-10am-3pm-day-copies-2026-07-13.md`.
+
+Phase AS adds per-stage `StageVisuals` folders for explicit window mode,
+street-light enabled state, and street-light brightness. Environmental capture
+does not overwrite them; preview/runtime reads them as the sole visual-state
+configuration owner.
+See `docs/lighting-phaseAS-stage-visual-config-2026-07-13.md`.
+
+## Text Snapshot Tool
+
+Run `scripts/roblox_lighting_capture_current_to_text_value.lua` in Edit mode to
+write the current environment into:
+
+```text
+ReplicatedStorage.Shared.LightingCycleConfig.CurrentLightingCaptureText
+```
+
+The StringValue contains a deterministic Lua table with Lighting, atmosphere,
+post-effects, active Sky properties, current preset name, and the current
+preset's config-owned StageVisual settings when available. The tool does not
+change presets or runtime behavior; rerunning it refreshes the same StringValue.
+
+The `2026-07-14 00:15:37` mirror confirms the text snapshot tool output and all
+AQ/AR/AS config folders. The pasted `FivePM` snapshot is already present in both
+`FivePM` and `SevenAM`; their environment tables are identical except for their
+separate `FivePMSky` / `SevenAMSky` names. Both StageVisual folders use Day
+windows, street lights disabled, and brightness `2`.
+
+Follow-up screenshot comparison proved that mirrored state was the incorrect
+bright Picture 1 look. The intended warm Picture 2 state is the later
+`2026-07-13T23:28:12Z` text snapshot. A targeted importer is generated as
+`scripts/roblox_lighting_replace_5pm_7am_with_warm_snapshot.lua`; it replaces
+only FivePM/SevenAM environment and Sky data while preserving StageVisual config.
 
 ## Confirmed Working
 

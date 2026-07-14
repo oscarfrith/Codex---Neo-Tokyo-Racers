@@ -1,3 +1,5 @@
+-- NTR_RACING_UI_MOBILE_PHASE1_SCALED_DESKTOP_TRIAL
+-- NTR_RACING_UI_PHASE16E_RUNTIME_OWNERSHIP
 -- Neo Tokyo Racers - Racing UI Phase 1 Race Browser
 -- NTR_RACING_UI_PHASE1_SHARED_SHELL_BROWSER
 -- NTR_RACING_UI_PHASE1B_BROWSER_VISUAL_REFINEMENT
@@ -18,7 +20,7 @@ local UserInputService = game:GetService("UserInputService")
 
 local player = Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
-local touch = UserInputService.TouchEnabled
+local touchDevice = UserInputService.TouchEnabled
 
 local kit = ReplicatedStorage:WaitForChild("NeoTokyoRacers")
 local shared = kit:WaitForChild("Shared")
@@ -27,6 +29,9 @@ local racingModules = modules:WaitForChild("Racing")
 local uiModules = modules:WaitForChild("UI")
 local RaceConfigReader = require(racingModules:WaitForChild("RaceConfigReader"))
 local UI = require(uiModules:WaitForChild("RacingUIComponents"))
+local MobileScaledDesktop = require(uiModules:WaitForChild("RacingMobileScaledDesktopLayout"))
+local scaledDesktop = MobileScaledDesktop.IsEnabled(touchDevice)
+local touch = touchDevice and not scaledDesktop
 
 local controllers = script.Parent.Parent
 local uiControllers = controllers:WaitForChild("UI")
@@ -392,39 +397,25 @@ local function transition(step, payload)
 	end
 end
 
-local function setOpen(open)
-	if open then
-		table.clear(suppressedGuis)
-		local function suppress(child)
-			if child:IsA("ScreenGui") and child ~= gui then
-				if suppressedGuis[child] == nil then suppressedGuis[child] = child.Enabled end
-				child.Enabled = false
-			end
-		end
-		for _, child in ipairs(playerGui:GetChildren()) do suppress(child) end
-		suppressionChildAdded = playerGui.ChildAdded:Connect(suppress)
-		suppressionHeartbeat = RunService.Heartbeat:Connect(function()
-			for otherGui in pairs(suppressedGuis) do
-				if otherGui.Parent and otherGui.Enabled then otherGui.Enabled = false end
-			end
-		end)
-	else
-		if suppressionHeartbeat then suppressionHeartbeat:Disconnect() suppressionHeartbeat = nil end
-		if suppressionChildAdded then suppressionChildAdded:Disconnect() suppressionChildAdded = nil end
-		for otherGui, wasEnabled in pairs(suppressedGuis) do
-			if otherGui and otherGui.Parent then otherGui.Enabled = wasEnabled end
-		end
-		table.clear(suppressedGuis)
-	end
-	overlay.Visible = open
-	if open then
-		buildRows()
-		renderList()
-		renderDetail()
-		status.Visible = false
-	end
+local function publishPresentation(open)
+	local folder=script.Parent.Parent:FindFirstChild("UI")
+	local event=folder and folder:FindFirstChild("FreeRoamHudPresentationMode")
+	if event and event:IsA("BindableEvent") then event:Fire({Owner="RaceBrowser",Active=open==true,KeepTelemetry=false}) end
 end
-
+local function setOpen(open)
+	if not touch then
+		publishPresentation(open)
+	else
+		if open then
+			table.clear(suppressedGuis) local function suppress(child) if child:IsA("ScreenGui") and child~=gui then if suppressedGuis[child]==nil then suppressedGuis[child]=child.Enabled end child.Enabled=false end end
+			for _,child in ipairs(playerGui:GetChildren()) do suppress(child) end suppressionChildAdded=playerGui.ChildAdded:Connect(suppress)
+		else
+			if suppressionChildAdded then suppressionChildAdded:Disconnect() suppressionChildAdded=nil end for otherGui,wasEnabled in pairs(suppressedGuis) do if otherGui.Parent then otherGui.Enabled=wasEnabled end end table.clear(suppressedGuis)
+		end
+	end
+	overlay.Visible=open
+	if open then buildRows() renderList() renderDetail() status.Visible=false end
+end
 local function teleportSelected()
 	if teleportBusy or not selected then return end
 	local summary = selected.TimeTrial or selected.Race
@@ -484,7 +475,9 @@ local function buildGui()
 	shell.Position = UDim2.fromScale(0.5, 0.5)
 
 	-- NTR_RACING_UI_BROWSER_SHARED_RESPONSIVE_SCALE_V1
-	if touch then
+	if scaledDesktop then
+		MobileScaledDesktop.Attach(shell)
+	elseif touch then
 		shell.Size = UDim2.new(1, -16, 1, -16)
 	else
 		shell.Size = UDim2.fromOffset(L("ShellWidth", 1200), L("ShellHeight", 720))

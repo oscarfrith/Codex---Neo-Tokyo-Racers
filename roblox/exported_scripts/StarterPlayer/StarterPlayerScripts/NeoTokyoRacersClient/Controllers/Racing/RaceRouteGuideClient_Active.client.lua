@@ -115,64 +115,9 @@ end
 
 local checkpointHudLabel = nil
 
-local function ensureCheckpointHud()
-	if checkpointHudLabel and checkpointHudLabel.Parent then
-		return checkpointHudLabel
-	end
-	local gui = Instance.new("ScreenGui")
-	gui.Name = "NTR_RaceCheckpointBadge_Phase5D"
-	gui.IgnoreGuiInset = true
-	gui.ResetOnSpawn = false
-	gui.DisplayOrder = 77
-	gui.Parent = playerGui
-
-	local label = Instance.new("TextLabel")
-	label.Name = "CheckpointBadge"
-	label.AnchorPoint = Vector2.new(0.5, 0)
-	label.Position = UDim2.new(0.5, 0, 0, 96)
-	label.Size = UDim2.fromOffset(210, 28)
-	label.BackgroundColor3 = Color3.fromRGB(5, 8, 12)
-	label.BackgroundTransparency = numberAttr("CheckpointHudBackgroundTransparency", 0.38)
-	label.BorderSizePixel = 0
-	label.TextColor3 = colorAttr("CheckpointColor", Color3.fromRGB(70, 255, 190))
-	label.TextTransparency = numberAttr("CheckpointHudTextTransparency", 0)
-	label.TextSize = 13
-	label.TextWrapped = false
-	label.Font = Enum.Font.GothamBold
-	pcall(function()
-		label.FontFace = Font.new("rbxasset://fonts/families/Michroma.json")
-	end)
-	label.Visible = false
-	label.Parent = gui
-	local corner = Instance.new("UICorner")
-	corner.CornerRadius = UDim.new(0, 6)
-	corner.Parent = label
-	local stroke = Instance.new("UIStroke")
-	stroke.Color = label.TextColor3
-	stroke.Thickness = 0.8
-	stroke.Transparency = 0.45
-	stroke.Parent = label
-	checkpointHudLabel = label
-	return label
+local function setCheckpointHud(_text,_color)
+	-- NTR_RACING_UI_PHASE16E_RUNTIME_OWNERSHIP: presentation owned by RaceSessionPresentationController_Active.
 end
-
-local function setCheckpointHud(text, color)
-	if not boolAttr("ShowCheckpointHudBadge", true) then
-		if checkpointHudLabel then checkpointHudLabel.Visible = false end
-		return
-	end
-	local label = ensureCheckpointHud()
-	label.Text = tostring(text or "")
-	label.TextColor3 = color
-	label.TextTransparency = numberAttr("CheckpointHudTextTransparency", 0)
-	label.BackgroundTransparency = numberAttr("CheckpointHudBackgroundTransparency", 0.38)
-	local stroke = label:FindFirstChildOfClass("UIStroke")
-	if stroke then
-		stroke.Color = color
-	end
-	label.Visible = text ~= nil and text ~= ""
-end
-
 local function makeBillboard(name, adornee, text, color)
 	-- NTR_RACING_PHASE5F_WORLD_PILL_LABEL
 	if not boolAttr("ShowWorldCheckpointLabel", true) then
