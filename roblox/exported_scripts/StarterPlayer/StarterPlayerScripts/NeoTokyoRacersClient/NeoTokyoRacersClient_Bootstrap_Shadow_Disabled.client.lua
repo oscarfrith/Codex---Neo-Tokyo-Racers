@@ -512,6 +512,19 @@ end
 
 -- NTR_PERSISTENCE_PHASE17_CLIENT_SLOT_LOOKUP_REPAIR
 local function getCategory()
+	-- NTR_GARAGE_CANONICAL_ALL_CATEGORY
+	if State.BrowseAll == true then
+		local combined = { CategoryId = "__ALL", DisplayName = "ALL", Cockpits = {}, Slots = {} }
+		for _, sourceCategory in ipairs((State.Catalog and State.Catalog.Categories) or {}) do
+			for _, sourceCockpit in ipairs(sourceCategory.Cockpits or {}) do
+				local copy = {}
+				for key, value in pairs(sourceCockpit) do copy[key] = value end
+				copy.NTRCategoryId = sourceCategory.CategoryId
+				table.insert(combined.Cockpits, copy)
+			end
+		end
+		return combined
+	end
 	for _, category in ipairs((State.Catalog and State.Catalog.Categories) or {}) do
 		if category.CategoryId == State.CategoryId then
 			return category
@@ -699,6 +712,7 @@ function NTRPersistencePhase9.Context()
 		callServer = callServer,
 		capacitySummary = NTR_phase8GarageCapacitySummary,
 		renderGarageCapacityPanel = NTR_phase8RenderGarageCapacityPanel,
+		onProfileChanged = function() if UI.CanonicalGarageRefresh then UI.CanonicalGarageRefresh() end end,
 	}
 end
 
@@ -883,29 +897,20 @@ local function NTR_phase4PreviewPosition()
 end
 
 local function NTR_phase4ApplyGaragePreviewCamera()
-	if not State or State.NoPreviewYet == true or State.Phase5PreviewOrbitInitialized == true then
+	if not State or State.Phase5PreviewOrbitInitialized == true then -- NTR_GARAGE_CANONICAL_EARLY_CAMERA
 		return false
 	end
 
 	local focus = NTR_phase4PreviewPosition()
-	local intro = NTR_phase4Intro()
-	local cameraFolder = intro and intro:FindFirstChild("Camera")
-	local cameraPoint = cameraFolder and cameraFolder:FindFirstChild("GaragePreviewCameraPoint")
-
+	-- NTR_GARAGE_CANONICAL_COCKPIT_CAMERA: match Cockpit Colour / Engine1 framing.
 	State.TargetFocus = focus
 	State.CameraFocus = focus
-
-	if cameraPoint and cameraPoint:IsA("BasePart") then
-		local offset = cameraPoint.Position - focus
-		local distance = math.max(offset.Magnitude, 8)
-		State.TargetDistance = distance
-		State.CameraDistance = distance
-		State.TargetYaw = math.atan2(offset.X, offset.Z)
-		State.CameraYaw = State.TargetYaw
-		State.TargetPitch = math.clamp(math.asin(math.clamp(-offset.Y / distance, -1, 1)), math.rad(-45), math.rad(10))
-		State.CameraPitch = State.TargetPitch
-	end
-
+	State.TargetYaw = math.rad(135)
+	State.CameraYaw = State.TargetYaw
+	State.TargetPitch = math.rad(-12)
+	State.CameraPitch = State.TargetPitch
+	State.TargetDistance = 33
+	State.CameraDistance = State.TargetDistance
 	State.Phase5PreviewOrbitInitialized = true
 	return false
 end
@@ -1229,44 +1234,34 @@ function NTRVehiclePhaseAO.tierColor(tier)
 end
 
 function NTRVehiclePhaseAO.drawBar(parent, name, value, baseValue, y)
-	label(parent, name, UDim2.new(0.43, 0, 0, 18), UDim2.fromOffset(0, y), 9, Enum.TextXAlignment.Left)
-	local bar = new("Frame", {
-		BackgroundColor3 = Color3.fromRGB(39, 48, 49),
-		BorderSizePixel = 0,
-		Size = UDim2.new(0.54, 0, 0, 10),
-		Position = UDim2.new(0.45, 0, 0, y + 4),
-	}, parent)
-	corner(bar, 3)
-	local amount = math.clamp((tonumber(value) or 0) / 100, 0, 1)
-	local baseAmount = math.clamp((tonumber(baseValue) or tonumber(value) or 0) / 100, 0, 1)
-	local fill = new("Frame", {
-		BackgroundColor3 = Theme.Accent,
-		BorderSizePixel = 0,
-		Size = UDim2.fromScale(math.min(amount, baseAmount), 1),
-	}, bar)
-	corner(fill, 3)
-	if amount > baseAmount + 0.002 then
-		local delta = new("Frame", {
-			BackgroundColor3 = Color3.fromRGB(84, 255, 126),
-			BorderSizePixel = 0,
-			Position = UDim2.fromScale(baseAmount, 0),
-			Size = UDim2.fromScale(amount - baseAmount, 1),
-		}, bar)
-		corner(delta, 3)
-	elseif amount < baseAmount - 0.002 then
-		local delta = new("Frame", {
-			BackgroundColor3 = Color3.fromRGB(230, 64, 74),
-			BorderSizePixel = 0,
-			Position = UDim2.fromScale(amount, 0),
-			Size = UDim2.fromScale(baseAmount - amount, 1),
-		}, bar)
-		corner(delta, 3)
-	else
-		fill.Size = UDim2.fromScale(amount, 1)
+	-- NTR_GARAGE_CANONICAL_LAYOUT_V3
+	local numericValue = tonumber(value) or 0
+	local numericBase = tonumber(baseValue) or numericValue
+	local difference = numericValue - numericBase
+	local deltaText = "-"
+	if math.abs(difference) >= 0.05 then deltaText = (difference > 0 and "+" or "") .. tostring(math.round(difference)) end
+	if State.Stage ~= "CockpitShop" then
+		label(parent, string.upper(tostring(name)), UDim2.new(0.29, 0, 0, 18), UDim2.fromOffset(0, y), 8, Enum.TextXAlignment.Left)
+		local bar = new("Frame", { BackgroundColor3 = Color3.fromRGB(39, 48, 49), BorderSizePixel = 0, Size = UDim2.new(0.40, 0, 0, 10), Position = UDim2.new(0.29, 0, 0, y + 4) }, parent)
+		corner(bar, 3)
+		local amount = math.clamp(numericValue / 100, 0, 1)
+		local fill = new("Frame", { BackgroundColor3 = Theme.Accent, BorderSizePixel = 0, Size = UDim2.fromScale(amount, 1) }, bar)
+		corner(fill, 3)
+		label(parent, tostring(math.floor(numericValue + 0.5)), UDim2.new(0.14, 0, 0, 18), UDim2.new(0.71, 0, 0, y), 9, Enum.TextXAlignment.Right)
+		local deltaLabel = label(parent, deltaText, UDim2.new(0.13, 0, 0, 18), UDim2.new(0.87, 0, 0, y), 9, Enum.TextXAlignment.Right)
+		deltaLabel.TextColor3 = difference > 0.05 and Color3.fromRGB(84, 255, 126) or difference < -0.05 and Color3.fromRGB(230, 90, 98) or Theme.Muted
+		return
 	end
-	local valueLabel = label(bar, tostring(math.floor((tonumber(value) or 0) + 0.5)), UDim2.new(1, -6, 1, 0), UDim2.fromOffset(4, 0), 8, Enum.TextXAlignment.Left)
-	valueLabel.TextColor3 = Color3.fromRGB(8, 10, 12)
-	valueLabel.ZIndex = bar.ZIndex + 4
+	label(parent, string.upper(tostring(name)), UDim2.new(0.58, 0, 0, 18), UDim2.fromOffset(0, y), 8, Enum.TextXAlignment.Left)
+	label(parent, tostring(math.floor(numericValue + 0.5)), UDim2.new(0.20, 0, 0, 18), UDim2.new(0.58, 0, 0, y), 9, Enum.TextXAlignment.Right)
+	local deltaLabel = label(parent, deltaText, UDim2.new(0.20, 0, 0, 18), UDim2.new(0.80, 0, 0, y), 9, Enum.TextXAlignment.Right)
+	deltaLabel.TextColor3 = difference > 0.05 and Color3.fromRGB(84, 255, 126) or difference < -0.05 and Color3.fromRGB(230, 90, 98) or Theme.Muted
+	local bar = new("Frame", { Name = "NTRGarageStatTrack", BackgroundColor3 = Color3.fromRGB(39, 48, 49), BorderSizePixel = 0, Size = UDim2.new(1, 0, 0, 10), Position = UDim2.fromOffset(0, y + 21) }, parent)
+	corner(bar, 5)
+	local reference = math.max(1, tonumber(parent:GetAttribute("NTRGarageStatReference")) or 180)
+	local amount = math.clamp(numericValue / reference, 0, 1)
+	local fill = new("Frame", { Name = "NTRGarageStatFill", BackgroundColor3 = Theme.Accent, BorderSizePixel = 0, Size = UDim2.fromScale(amount, 1) }, bar)
+	corner(fill, 5)
 end
 
 function NTRVehiclePhaseAO.formatRaw(variableName, value)
@@ -1386,7 +1381,7 @@ function NTRVehiclePhaseAO.renderStats(parent, legacyStats)
 				basePerformance.Headline[headlineName],
 				y
 			)
-			y += 28
+			y += State.Stage == "CockpitShop" and 40 or 28
 		end
 	end
 end
@@ -1684,6 +1679,8 @@ local function showStage(stage)
 		UI.ModulePopup.Visible = false
 	end
 	State.Stage = stage
+	if UI.CanonicalGarageBrowser and stage ~= "CockpitShop" then UI.CanonicalGarageBrowser:Hide() end
+	if UI.CanonicalGarageWorkspace and stage == "CockpitShop" then UI.CanonicalGarageWorkspace:Hide() end
 	UI.CockpitShop.Visible = stage == "CockpitShop"
 	UI.CockpitPaint.Visible = stage == "CockpitPaint"
 	UI.ModuleShop.Visible = stage == "ModuleShop"
@@ -2069,81 +2066,26 @@ function NTR_phase8RenderCockpitPrice(card, priceText)
 end
 
 applyDealershipLayout = function()
-	if not UI.CockpitShop or not camera then return end
-	local scale = UI.Scale and UI.Scale.Scale or 1
-	local viewport = camera.ViewportSize
-	local vw = viewport.X / math.max(scale, 0.1)
-	local vh = viewport.Y / math.max(scale, 0.1)
-	local margin = 18
-	local gap = 16
-	local topY = 112
-	local leftW = 190
-	local rightW = UserInputService.TouchEnabled and NTR_phase6RawConfigNumber("MobileStatsPanelWidth", 230) or NTR_phase6RawConfigNumber("DesktopStatsPanelWidth", 270)
-	local bottomY = vh - BOTTOM_MARGIN
-	-- NTR_PERSISTENCE_PHASE10_GARAGE_UI_LAYOUT_MODAL
-	local leftPanelH = BOTTOM_HEIGHT
-	local leftStackGap = 10
-	local cashBottomY = bottomY
-	local garageBottomY = cashBottomY - leftPanelH - leftStackGap
-	local categoryBottomY = garageBottomY - leftPanelH - gap
-	local categoryH = math.max(96, categoryBottomY - topY)
-	local centerX = margin + leftW + gap
-	local rightLeft = vw - margin - rightW
-	local centerW = math.max(300, rightLeft - gap - centerX)
-	local centerH = math.max(240, bottomY - topY)
-	local exitButtonH = UserInputService.TouchEnabled and 48 or 42
-	local exitPad = math.max(5, NTR_phase6RawConfigNumber("ExitPanelVerticalPadding", 9))
-	local exitPanelH = exitButtonH + exitPad * 2
-	local exitTopY = bottomY - exitPanelH
-	local statsH = math.min(520, math.max(1, exitTopY - gap - topY))
-
-	if UI.CategoryPanel then
-		UI.CategoryPanel.Position = UDim2.fromOffset(margin, topY)
-		UI.CategoryPanel.Size = UDim2.fromOffset(leftW, categoryH)
-	end
-	if UI.GarageCapacityPanel then
-		UI.GarageCapacityPanel.AnchorPoint = Vector2.new(0, 1)
-		UI.GarageCapacityPanel.Position = UDim2.fromOffset(margin, garageBottomY)
-		UI.GarageCapacityPanel.Size = UDim2.fromOffset(leftW, leftPanelH)
-	end
-	if UI.CashPanel then
-		UI.CashPanel.AnchorPoint = Vector2.new(0, 1)
-		UI.CashPanel.Position = UDim2.fromOffset(margin, cashBottomY)
-		UI.CashPanel.Size = UDim2.fromOffset(leftW, leftPanelH)
-	end
-	if UI.CockpitGridPanel then
-		UI.CockpitGridPanel.AnchorPoint = Vector2.new(0, 1)
-		UI.CockpitGridPanel.Position = UDim2.fromOffset(centerX, bottomY)
-		UI.CockpitGridPanel.Size = UDim2.fromOffset(centerW, centerH)
-	end
-	if UI.StatsPanel and State.Stage == "CockpitShop" then
-		UI.StatsPanel.AnchorPoint = Vector2.new(1, 0)
-		UI.StatsPanel.Position = UDim2.fromOffset(vw - margin, topY)
-		UI.StatsPanel.Size = UDim2.fromOffset(rightW, statsH)
-	end
-	if UI.DealershipExitPanel then
-		UI.DealershipExitPanel.AnchorPoint = Vector2.new(1, 1)
-		UI.DealershipExitPanel.Position = UDim2.fromOffset(vw - margin, bottomY)
-		UI.DealershipExitPanel.Size = UDim2.fromOffset(rightW, exitPanelH)
-	end
-	if UI.DealershipExitButton then
-		UI.DealershipExitButton.Size = UDim2.new(1, -18, 0, exitButtonH)
-		UI.DealershipExitButton.Position = UDim2.new(0, 9, 1, -exitPad - exitButtonH)
+	-- NTR_GARAGE_CANONICAL_BOTTOM_CAROUSEL_OWNER
+	-- NTR_GARAGE_CANONICAL_PRESENTATION_OWNS_GEOMETRY
+	-- The isolated GarageExperienceController owns all cockpit-browser geometry.
+	-- Keep only scroll-axis invariants here so render calls cannot restore legacy positions.
+	if UI.CockpitGrid then
+		UI.CockpitGrid.AutomaticCanvasSize = Enum.AutomaticSize.X
+		UI.CockpitGrid.ScrollingDirection = Enum.ScrollingDirection.X
+		UI.CockpitGrid.CanvasSize = UDim2.fromOffset(0, 0)
+		UI.CockpitGrid.CanvasPosition = Vector2.new(UI.CockpitGrid.CanvasPosition.X, 0)
 	end
 	if UI.CockpitGridLayout then
-		local innerW = math.max(1, centerW - 20)
-		local innerH = math.max(1, centerH - 20)
-		local columns = NTR_phase6GridColumns()
-		local cardSize = math.max(70, math.floor((innerW - NTR_phase6RawConfigNumber("GridCellPadding", 10) * (columns - 1)) / columns))
-		UI.CockpitGridLayout.CellSize = NTR_phase6GridCellSize(cardSize, innerW)
-		UI.CockpitGridLayout.CellPadding = UDim2.fromOffset(NTR_phase6RawConfigNumber("GridCellPadding", 10), NTR_phase6RawConfigNumber("GridCellPadding", 10))
-		UI.CockpitGrid.CanvasSize = UDim2.fromOffset(0, math.max(innerH, UI.CockpitGridLayout.AbsoluteContentSize.Y + 10))
+		UI.CockpitGridLayout.FillDirection = Enum.FillDirection.Vertical
+		UI.CockpitGridLayout.FillDirectionMaxCells = 1
 	end
 end
 
 local function renderDealershipPanel()
 	if not UI.StatsPanel then return end
 	applyDealershipLayout()
+	if UI.VehicleActionButton then UI.VehicleActionButton:Destroy(); UI.VehicleActionButton = nil end
 	clear(UI.StatsPanel)
 	local cockpit = getCockpit(State.SelectedCockpit) or {}
 	local customisationMode = State.ShopMode == "Customisation"
@@ -2161,7 +2103,9 @@ local function renderDealershipPanel()
 		-- NTR_DEALERSHIP_CUSTOMISATION_SPLIT_PHASE6_RIGHT_PANEL_RATING_REMOVED
 		local panelActionH = UserInputService.TouchEnabled and 58 or 76
 		local panelActionPad = math.max(4, NTR_phase6RawConfigNumber("PanelActionBottomPadding", 8))
-		local customiseButton = button(UI.StatsPanel, "Customise", UDim2.new(1, 0, 0, panelActionH), UDim2.new(0, 0, 1, -panelActionPad - panelActionH), Theme.Buy)
+		local customiseButton = button(UI.CockpitShop, "Customise", UDim2.fromOffset(180, 36), UDim2.fromOffset(0, 0), Theme.Buy)
+		customiseButton.Name = "VehicleActionButton"
+		UI.VehicleActionButton = customiseButton
 		customiseButton.MouseButton1Click:Connect(function()
 			local result = callServer("SelectVehicleInstance", { VehicleId = State.SelectedVehicleId, CockpitId = State.SelectedCockpit })
 			if result.Success then
@@ -2174,8 +2118,8 @@ local function renderDealershipPanel()
 				local firstSlot = sortedSlots()[1]
 				State.SelectedSlot = firstSlot and firstSlot.SlotId or State.SelectedSlot or "Engine1"
 				setCameraSection(State.SelectedSlot or "Engine1")
-				showStage("ModuleShop")
-				renderModuleShop()
+				showStage("CockpitPaint")
+				renderCockpitPaint() -- NTR_GARAGE_CANONICAL_OWNED_STARTS_AT_PAINT
 			else
 				UI.Subtitle.Text = result.Message or "Could not open build modules."
 				renderDealershipPanel()
@@ -2186,9 +2130,11 @@ local function renderDealershipPanel()
 	local actionText = (owned and "Buy Another $" or "Buy $") .. tostring(cockpit.Price or 0)
 	local panelActionH = UserInputService.TouchEnabled and 58 or 76
 	local panelActionPad = math.max(4, NTR_phase6RawConfigNumber("PanelActionBottomPadding", 8))
-	local actionButton = button(UI.StatsPanel, actionText, UDim2.new(1, 0, 0, panelActionH), UDim2.new(0, 0, 1, -panelActionPad - panelActionH), Theme.Buy)
+	local actionButton = button(UI.CockpitShop, actionText, UDim2.fromOffset(180, 36), UDim2.fromOffset(0, 0), Theme.Buy)
+	actionButton.Name = "VehicleActionButton"
+	UI.VehicleActionButton = actionButton
 	actionButton.MouseButton1Click:Connect(function()
-		local result = callServer("BuyCockpitInstance", { CockpitId = State.SelectedCockpit })
+		local result = callServer("BuyCockpitInstance", { CockpitId = State.SelectedCockpit, CategoryId = cockpit.NTRCategoryId or State.CategoryId })
 		if result.Success then
 			NTR_phase4UnlockPreviewAfterPurchase()
 			if owned then
@@ -2205,173 +2151,38 @@ local function renderDealershipPanel()
 end
 
 renderCockpitShop = function()
+	-- NTR_GARAGE_REPLACEMENT_BROWSER_BRIDGE_V1
+	-- NTR_GARAGE_PRESENTATION_OWNER_BRIDGE_V1
+	if not UI.CanonicalGarageBrowser then
+		UI.CanonicalGarageBrowser = require(script.Parent:WaitForChild("Controllers"):WaitForChild("UI"):WaitForChild("GarageBrowserController")).new()
+	end
 	local customisationMode = State.ShopMode == "Customisation"
-	showTop(customisationMode and "Customisation" or "Dealership", customisationMode and "Choose one of your owned cockpits to customise." or "Choose a vehicle category, then pick a cockpit.")
-	updateNav()
-	local categoryPool = buttonPool("CategoryList", UI.CategoryList)
-	local cockpitPool = buttonPool("CockpitGrid", UI.CockpitGrid)
-	categoryPool:Begin()
-	cockpitPool:Begin()
-	UI.CockpitGrid.CanvasPosition = Vector2.zero
-
-	local function cockpitIdForVehicle(vehicle)
-		local cockpitInstance = vehicle and vehicle.CockpitInstanceId and State.Profile and State.Profile.OwnedCockpitInstances and State.Profile.OwnedCockpitInstances[vehicle.CockpitInstanceId]
-		return cockpitInstance and tostring(cockpitInstance.TemplateId or "") or ""
-	end
-
-	local function vehicleRatingParts(vehicleId)
-		local summary = State.Profile and State.Profile.VehicleSummaries and State.Profile.VehicleSummaries[vehicleId]
-		local overall = summary and summary.Overall or {}
-		local tier = tostring(overall.Tier or "--")
-		local index = tonumber(overall.PerformanceIndex)
-		return tier, (index and tostring(math.floor(index)) or "---")
-	end
-
-	local function vehicleRating(vehicleId)
-		local tier, index = vehicleRatingParts(vehicleId)
-		return tier .. " " .. index
-	end
-
-	local function tierBadgeColor(tier)
-		if NTRVehiclePhaseAO and typeof(NTRVehiclePhaseAO.tierColor) == "function" then
-			return NTRVehiclePhaseAO.tierColor(tier)
-		end
-		return Theme.Accent
-	end
-
-	local function cockpitInCategory(category, cockpitId)
-		for _, cockpit in ipairs((category and category.Cockpits) or {}) do
-			if cockpit.CockpitId == cockpitId then
-				return cockpit
-			end
-		end
-		return nil
-	end
-
-	if customisationMode then
-		local selectedVehicle = State.SelectedVehicleId and State.Profile and State.Profile.Vehicles and State.Profile.Vehicles[State.SelectedVehicleId]
-		if not selectedVehicle then
-			State.SelectedVehicleId = State.Profile and State.Profile.CurrentVehicleId or nil
-		end
-		local currentCategory = getCategory()
-		local selectedInCategory = false
-		if State.SelectedVehicleId and currentCategory then
-			local vehicle = State.Profile and State.Profile.Vehicles and State.Profile.Vehicles[State.SelectedVehicleId]
-			selectedInCategory = cockpitInCategory(currentCategory, cockpitIdForVehicle(vehicle)) ~= nil
-		end
-		if not selectedInCategory then
-			State.SelectedVehicleId = nil
-			for vehicleId, vehicle in pairs((State.Profile and State.Profile.Vehicles) or {}) do
-				local cockpitId = cockpitIdForVehicle(vehicle)
-				if cockpitInCategory(currentCategory, cockpitId) then
-					State.SelectedVehicleId = vehicleId
-					State.SelectedCockpit = cockpitId
-					break
-				end
-			end
-		else
-			State.SelectedCockpit = cockpitIdForVehicle(State.Profile.Vehicles[State.SelectedVehicleId])
-		end
-	end
-
-	applyDealershipLayout()
-	renderDealershipPanel()
-
-	local sortedCategories = {}
-	for _, category in ipairs((State.Catalog and State.Catalog.Categories) or {}) do
-		table.insert(sortedCategories, category)
-	end
-	table.sort(sortedCategories, function(a, b)
-		local aName = tostring((a and (a.DisplayName or a.CategoryId)) or "")
-		local bName = tostring((b and (b.DisplayName or b.CategoryId)) or "")
-		if aName == bName then
-			return tostring((a and a.CategoryId) or "") < tostring((b and b.CategoryId) or "")
-		end
-		return aName < bName
-	end)
-
-	for _, category in ipairs(sortedCategories) do
-		local b = pooledButton(categoryPool, category.DisplayName or category.CategoryId, UDim2.new(1, 0, 0, 54), UDim2.fromScale(0, 0), category.CategoryId == State.CategoryId and Theme.CardHot or Theme.Card)
-		categoryPool:Connect(b, b.MouseButton1Click, function()
-			State.CategoryId = category.CategoryId
-			State.SelectedVehicleId = nil
-			renderCockpitShop()
-		end)
-	end
-
 	local category = getCategory()
-	if customisationMode then
-		local rows = {}
-		for vehicleId, vehicle in pairs((State.Profile and State.Profile.Vehicles) or {}) do
-			local cockpitId = cockpitIdForVehicle(vehicle)
-			local cockpit = cockpitInCategory(category, cockpitId)
-			if cockpit then
-				table.insert(rows, { VehicleId = vehicleId, Vehicle = vehicle, Cockpit = cockpit, CockpitId = cockpitId })
+	local ownedCount, capacity = NTR_phase8GarageCapacitySummary()
+	UI.CanonicalGarageRefresh = function() renderCockpitShop() end
+	UI.CanonicalGarageBrowser:Show({
+		Mode = customisationMode and "Customisation" or "Dealership", State = State, Category = category,
+		Cash = State.Profile and State.Profile.Cash or 0, CapacityText = tostring(ownedCount) .. "/" .. tostring(capacity) .. " Spaces", AutoPreview = State.NoPreviewYet == true,
+		Legacy = { UI.Top, UI.CashPanel, UI.GarageCapacityPanel, UI.StatsPanel, UI.CockpitShop, UI.DealershipExitPanel, UI.NextPanel },
+		ResolveImage = function(cockpit) return NTR_phase5CockpitMenuImage(cockpit) end,
+		ResolvePerformance = function(cockpit) local _, calculator = NTRVehiclePhaseAO.performanceModules(); return calculator.CalculateLegacy(NTRVehiclePhaseAK.dealershipStatsWithIncludedDefaults(cockpit)) end,
+		TierColor = function(tier) return NTRVehiclePhaseAO.tierColor(tier) end,
+		OwnedCount = function(cockpitId) local count = 0; for _, vehicle in pairs((State.Profile and State.Profile.Vehicles) or {}) do local instance = vehicle.CockpitInstanceId and State.Profile.OwnedCockpitInstances and State.Profile.OwnedCockpitInstances[vehicle.CockpitInstanceId]; if instance and tostring(instance.TemplateId) == tostring(cockpitId) then count += 1 end end; return count end,
+		OnCategory = function(categoryId, browseAll) State.BrowseAll = browseAll == true; if categoryId then State.CategoryId = categoryId end; State.SelectedVehicleId = nil; State.NoPreviewYet = true; renderCockpitShop() end,
+		OnSelect = function(row) State.SelectedCockpit = row.CockpitId; State.SelectedVehicleId = row.VehicleId; if row.CategoryId then State.CategoryId = row.CategoryId end; State.NoPreviewYet = false; State.GarageCameraActive = true; State.Phase5PreviewOrbitInitialized = false; buildPreview(); NTR_phase4ApplyGaragePreviewCamera(); renderCockpitShop() end,
+		OnPrimary = function(row)
+			if customisationMode then
+				local result = callServer("SelectVehicleInstance", { VehicleId = row.VehicleId, CockpitId = row.CockpitId })
+				if not result.Success then UI.CanonicalGarageBrowser.Subtitle.Text = result.Message or "Could not customise vehicle."; return end
+			else
+				local result = callServer("BuyCockpitInstance", { CockpitId = row.CockpitId, CategoryId = row.CategoryId or State.CategoryId })
+				if not result.Success then UI.CanonicalGarageBrowser.Subtitle.Text = result.Message or "Could not buy cockpit."; return end
 			end
-		end
-		table.sort(rows, function(a, b)
-			local aSummary = State.Profile and State.Profile.VehicleSummaries and State.Profile.VehicleSummaries[a.VehicleId]
-			local bSummary = State.Profile and State.Profile.VehicleSummaries and State.Profile.VehicleSummaries[b.VehicleId]
-			local aRating = tonumber(aSummary and aSummary.Overall and aSummary.Overall.PerformanceIndex) or -math.huge
-			local bRating = tonumber(bSummary and bSummary.Overall and bSummary.Overall.PerformanceIndex) or -math.huge
-			if aRating ~= bRating then
-				return aRating > bRating
-			end
-			local aName = tostring((a.Cockpit and a.Cockpit.DisplayName) or a.CockpitId or "")
-			local bName = tostring((b.Cockpit and b.Cockpit.DisplayName) or b.CockpitId or "")
-			if aName == bName then
-				return tostring(a.VehicleId) < tostring(b.VehicleId)
-			end
-			return aName < bName
-		end)
-		for index, row in ipairs(rows) do
-			local card = pooledButton(cockpitPool, "", NTR_phase6CockpitCardSize(), UDim2.fromScale(0, 0), row.VehicleId == State.SelectedVehicleId and Theme.CardHot or Theme.Card)
-			NTR_phase5RenderCockpitMenuImage(card, row.Cockpit)
-			local nameText = tostring(row.Cockpit.DisplayName or row.CockpitId) .. " #" .. tostring(index)
-			local tier, ratingIndex = vehicleRatingParts(row.VehicleId)
-			NTR_phase8RenderCardTitleRating(card, nameText, tier, ratingIndex)
-			cockpitPool:Connect(card, card.MouseButton1Click, function()
-				State.SelectedVehicleId = row.VehicleId
-				State.SelectedCockpit = row.CockpitId
-				buildPreview()
-				renderCockpitShop()
-			end)
-		end
-	else
-		local sortedCockpits = {}
-		for _, cockpit in ipairs((category and category.Cockpits) or {}) do
-			table.insert(sortedCockpits, cockpit)
-		end
-		table.sort(sortedCockpits, function(a, b)
-			local aPrice = tonumber(a and a.Price) or math.huge
-			local bPrice = tonumber(b and b.Price) or math.huge
-			if aPrice ~= bPrice then
-				return aPrice < bPrice
-			end
-			local aName = tostring((a and (a.DisplayName or a.CockpitId)) or "")
-			local bName = tostring((b and (b.DisplayName or b.CockpitId)) or "")
-			if aName == bName then
-				return tostring((a and a.CockpitId) or "") < tostring((b and b.CockpitId) or "")
-			end
-			return aName < bName
-		end)
-
-		for _, cockpit in ipairs(sortedCockpits) do
-			local card = pooledButton(cockpitPool, "", NTR_phase6CockpitCardSize(), UDim2.fromScale(0, 0), cockpit.CockpitId == State.SelectedCockpit and Theme.CardHot or Theme.Card)
-			NTR_phase5RenderCockpitMenuImage(card, cockpit)
-			NTR_phase8RenderCockpitTitleRating(card, cockpit)
-			NTR_phase8RenderCockpitPrice(card, "$" .. tostring(cockpit.Price or 0))
-			cockpitPool:Connect(card, card.MouseButton1Click, function()
-				State.SelectedCockpit = cockpit.CockpitId
-				State.SelectedVehicleId = nil
-				buildPreview()
-				renderCockpitShop()
-			end)
-		end
-	end
-	categoryPool:End()
-	cockpitPool:End()
-	applyDealershipLayout()
+			NTR_phase4UnlockPreviewAfterPurchase(); UI.CanonicalGarageBrowser:Hide(); State.ModuleMode = "Slots"; State.SelectedModuleId = nil; State.SelectedModuleInstanceId = nil; State.CustomizeTarget = "ALL"; State.CustomizeMode = "Colour"; local firstSlot = sortedSlots()[1]; State.SelectedSlot = firstSlot and firstSlot.SlotId or "Engine1"; setCameraSection(State.SelectedSlot); showStage("CockpitPaint"); renderCockpitPaint()
+		end,
+		OnExit = function() if UI.CanonicalGarageExit then UI.CanonicalGarageExit() end end,
+		OnCash = function() showCashShop() end, OnCapacity = function() NTRPersistencePhase9.OpenGaragePropertyShop() end,
+	})
 end
 
 local function channelTitle(channel)
@@ -2595,51 +2406,30 @@ end
 
 
 renderCockpitPaint = function()
-	showTop("Paint Cockpit", "Choose primary, secondary, and detail colours.")
-	UI.ColorChannelFloat.Visible = true
-	State.ThrustPreviewActive = false
-	renderStatsPanel()
-	renderColourPicker(UI.CockpitPaintPicker, { "Primary", "Secondary", "Detail" }, function(channel, color)
-		callServer("SetCockpitColor", { Channel = channel, Color = color })
-		if State.Profile and State.Profile.CockpitColors then State.Profile.CockpitColors[channel] = color end
-		-- NTR_VEHICLE_PHASE_AK_PREVIEW_MODULE_COLOUR_SYNC
-		if State.Profile and State.Profile.InstalledModules and State.Profile.ModuleColors and (channel == "Primary" or channel == "Secondary" or channel == "Detail") then
-			for slotId in pairs(State.Profile.InstalledModules) do
-				State.Profile.ModuleColors[slotId] = State.Profile.ModuleColors[slotId] or {}
-				State.Profile.ModuleColors[slotId][channel] = color
-			end
-		end
-		buildPreview()
-		renderStatsPanel()
-	end)
+	-- NTR_GARAGE_WORKSPACE_BRIDGE_V1
+	-- NTR_GARAGE_WORKSPACE_SHARED_REUSE_V2
+	-- NTR_GARAGE_INDEPENDENT_HOST_AND_ARTWORK_V3
+	if not UI.CanonicalGarageWorkspace then UI.CanonicalGarageWorkspace = require(script.Parent.Controllers.UI:WaitForChild("GarageWorkspaceController")).new() end
+	local ownedCount, capacity = NTR_phase8GarageCapacitySummary()
+	local channels = { "Primary", "Secondary", "Detail" }
+	UI.CanonicalGarageRefresh = function() renderCockpitPaint() end
+	UI.CanonicalGarageWorkspace:Show({
+		Title = "Paint Cockpit", Subtitle = "Choose primary, secondary, and detail colours.", ShowLeft = false, BackVisible = false, ExitVisible = false, NextText = "Build Modules",
+		Cash = State.Profile and State.Profile.Cash or 0, CapacityText = tostring(ownedCount) .. "/" .. tostring(capacity) .. " Spaces", ColorChannels = channels, SelectedChannel = State.SelectedColorChannel or channels[1], Colors = State.Profile and State.Profile.CockpitColors or {},
+		Legacy = { UI.Top, UI.CashPanel, UI.GarageCapacityPanel, UI.StatsPanel, UI.CockpitPaint, UI.CockpitPaintPicker, UI.ColorChannelFloat, UI.NextPanel },
+		RenderStats = function(parent) local stats, base = currentStats(); local _, Calculator = NTRVehiclePhaseAO.performanceModules(); UI.CanonicalGarageWorkspace:DrawPerformance(parent, Calculator.CalculateLegacy(stats or {}), Calculator.CalculateLegacy(base or stats or {}), NTRVehiclePhaseAO.tierColor) end,
+		OnChannel = function(channel) State.SelectedColorChannel = channel; renderCockpitPaint() end,
+		OnColor = function(channel, color)
+			callServer("SetCockpitColor", { Channel = channel, Color = color }); if State.Profile and State.Profile.CockpitColors then State.Profile.CockpitColors[channel] = color end
+			if State.Profile and State.Profile.InstalledModules and State.Profile.ModuleColors then for slotId in pairs(State.Profile.InstalledModules) do State.Profile.ModuleColors[slotId] = State.Profile.ModuleColors[slotId] or {}; State.Profile.ModuleColors[slotId][channel] = color end end
+			buildPreview()
+		end,
+		OnNext = function() clearPreviewModules(); State.ModuleMode = "Slots"; setCameraSection("Engine1"); showStage("ModuleShop"); renderModuleShop() end,
+		OnExit = function() UI.CanonicalGarageWorkspace:Hide(); closeGarage(); NTR_phase7SignalDealershipExit() end, OnCash = function() showCashShop() end, OnCapacity = function() NTRPersistencePhase9.OpenGaragePropertyShop() end,
+	})
 end
 
-
-local function renderSlotSelection()
-	local slotPool = buttonPool("ModuleSlotBar", UI.ModuleSlotBar)
-	slotPool:Begin()
-	UI.ColorChannelFloat.Visible = false
-	for _, slot in ipairs(sortedSlots()) do
-		local installed = State.Profile and State.Profile.InstalledModules and State.Profile.InstalledModules[slot.SlotId]
-		local text = slotDisplayName(slot)
-		local bg = Theme.Card
-		if installed then
-			text = text .. "\nequipped"
-			bg = Theme.Disabled
-		end
-		local b = pooledButton(slotPool, text, UDim2.fromOffset(150, 72), UDim2.fromScale(0, 0), bg)
-		slotPool:Connect(b, b.MouseButton1Click, function()
-			clearPreviewModules()
-			State.SelectedSlot = slot.SlotId
-			State.ModuleMode = "Options"
-			State.ModuleOptionMode = nil
-			setCameraSection(slot.SlotId)
-			renderModuleShop()
-		end)
-	end
-	slotPool:End()
-end
-
+-- NTR_GARAGE_WORKSPACE_RETIRED_LEGACY_SLOT_RENDERER
 -- NTR_PERSISTENCE_PHASE17_MODULE_POPUP_ANCHOR_TARGET
 NTRPersistencePhase15.ModulePopupActiveCard = nil
 NTRPersistencePhase15.ModulePopupTrackerConnection = nil
@@ -2884,261 +2674,59 @@ function NTRPersistencePhase15.DeferModulePopupPosition(card)
 	end)
 end
 
-local function renderModuleOptions()
-	NTRPersistencePhase15.HideModulePopup()
-	local optionPool = buttonPool("ModuleOptions", UI.ModuleOptions)
-	optionPool:Begin()
-	if UI.ModulePopup then
-		clear(UI.ModulePopup)
-		UI.ModulePopup.Visible = false
-		UI.ModulePopup.Size = UDim2.fromOffset(126, 30)
+-- NTR_GARAGE_WORKSPACE_RETIRED_LEGACY_MODULE_OPTIONS_RENDERER
+renderModuleShop = function()
+	if not UI.CanonicalGarageWorkspace then UI.CanonicalGarageWorkspace = require(script.Parent.Controllers.UI:WaitForChild("GarageWorkspaceController")).new() end
+	local ownedCount, capacity = NTR_phase8GarageCapacitySummary()
+	local cards, leftItems = {}, {}
+	local function redraw() renderModuleShop() end
+	UI.CanonicalGarageRefresh = redraw
+	local function installedTemplateForSlot(slotId)
+		local profile = State.Profile or {}; local currentVehicle = profile.CurrentVehicleId and profile.Vehicles and profile.Vehicles[profile.CurrentVehicleId]; local instanceId = currentVehicle and currentVehicle.InstalledModules and currentVehicle.InstalledModules[slotId]; local instance = instanceId and profile.OwnedModuleInstances and profile.OwnedModuleInstances[instanceId]; local templateId = instance and instance.TemplateId
+		if templateId == nil or tostring(templateId) == "" then templateId = profile.InstalledModules and profile.InstalledModules[slotId] end
+		return templateId, instanceId
 	end
-	UI.ColorChannelFloat.Visible = false
-	local slotInfo = getSlot(State.SelectedSlot)
-	local ownedInstances = NTRPersistencePhase15.OwnedModuleInstancesForSlot(State.Profile, slotInfo, getModule)
-	local buyList = modulesForSlot(State.SelectedSlot)
-	local installed = State.Profile and State.Profile.InstalledModules and State.Profile.InstalledModules[State.SelectedSlot]
-	local currentVehicle = State.Profile and State.Profile.CurrentVehicleId and State.Profile.Vehicles and State.Profile.Vehicles[State.Profile.CurrentVehicleId]
-	local installedInstanceId = currentVehicle and currentVehicle.InstalledModules and currentVehicle.InstalledModules[State.SelectedSlot]
-
-	local function finishModuleInstall(result)
-		if result.Success then
-			clearPreviewModules()
-			State.ModuleMode = "Slots"
-			State.ModuleOptionMode = nil
-			buildPreview()
-			renderStatsPanel()
-			renderModuleShop()
-		else
-			UI.Subtitle.Text = result.Message or "Could not install module."
-		end
+	local function coreModuleReadiness()
+		local engine1 = installedTemplateForSlot("Engine1"); local engine2 = installedTemplateForSlot("Engine2"); local stabilisers = installedTemplateForSlot("Stabilisers"); local boost = installedTemplateForSlot("Boost")
+		local function present(value) return value ~= nil and tostring(value) ~= "" end
+		return present(engine1) or present(engine2), present(stabilisers), present(boost)
 	end
-
-	if State.ModuleOptionMode ~= "Owned" and State.ModuleOptionMode ~= "Buy" then
-		local ownedButton = pooledButton(optionPool, "", UDim2.fromOffset(170, 72), UDim2.fromOffset(6, 8), Theme.Card)
-		pooledLabel(ownedButton, "OWNED MODULES", UDim2.new(1, -12, 1, 0), UDim2.fromOffset(6, 0), 13, Enum.TextXAlignment.Center)
-		optionPool:Connect(ownedButton, ownedButton.MouseButton1Click, function()
-			State.ModuleOptionMode = "Owned"
-			State.SelectedModuleId = nil
-			State.SelectedModuleInstanceId = nil
-			clearPreviewModules()
-			renderModuleOptions()
-		end)
-
-		local buyButton = pooledButton(optionPool, "", UDim2.fromOffset(170, 72), UDim2.fromOffset(188, 8), Theme.Card)
-		pooledLabel(buyButton, "BUY MODULES", UDim2.new(1, -12, 1, 0), UDim2.fromOffset(6, 0), 13, Enum.TextXAlignment.Center)
-		optionPool:Connect(buyButton, buyButton.MouseButton1Click, function()
-			State.ModuleOptionMode = "Buy"
-			State.SelectedModuleId = nil
-			State.SelectedModuleInstanceId = nil
-			clearPreviewModules()
-			renderModuleOptions()
-		end)
-
-		optionPool:End()
-		UI.ModuleOptions.CanvasSize = UDim2.fromOffset(math.max(370, UI.ModuleOptions.AbsoluteSize.X), 0)
-		UI.ModuleOptions.CanvasPosition = Vector2.zero
-		renderStatsPanel()
-		return
-	end
-
-	local x = 6
-	if State.ModuleOptionMode == "Owned" then
-		if #ownedInstances == 0 then
-			local empty = pooledButton(optionPool, "No owned modules", UDim2.fromOffset(190, 72), UDim2.fromOffset(x, 7), Theme.Disabled)
-			empty.AutoButtonColor = false
-			x += 202
-		end
-		for index, ownedRecord in ipairs(ownedInstances) do
-			local moduleInfo = ownedRecord.Module
-			local instanceInfo = ownedRecord.Instance
-			local instanceId = ownedRecord.InstanceId
-			local isInstalledHere = installedInstanceId == instanceId
-			local equippedElsewhere = instanceInfo.EquippedVehicleId ~= nil and instanceInfo.EquippedVehicleId ~= "" and instanceInfo.EquippedVehicleId ~= (State.Profile and State.Profile.CurrentVehicleId)
-			local selected = State.SelectedModuleInstanceId == instanceId
-			local cardColor = Theme.Card
-			if isInstalledHere then
-				cardColor = Theme.Disabled
-			elseif selected then
-				cardColor = Theme.CardHot
-			end
-			local card = pooledButton(optionPool, "", UDim2.fromOffset(184, 86), UDim2.fromOffset(x, 3), cardColor)
-			card:SetAttribute("NTRModuleCard", true)
-			card:SetAttribute("NTRModulePopupTarget", selected and not isInstalledHere)
-			NTRPersistencePhase15.EnsureModulePopupAnchor(card)
-			card.AutoButtonColor = not isInstalledHere
-			local familyText = tostring(moduleInfo and (moduleInfo.SourceCockpitDisplayName or moduleInfo.SourceCockpitId) or "")
-			local variantText = tostring(moduleInfo and (moduleInfo.VariantName or "") or "")
-			local ownedCount = moduleInfo and NTRPersistencePhase15.CountModuleCopies(State.Profile, moduleInfo.ModuleId) or 1
-			local bottomText = "Owned x" .. tostring(ownedCount)
-			if isInstalledHere then
-				bottomText = bottomText .. " / equipped"
-			elseif equippedElsewhere then
-				bottomText = bottomText .. " / in use"
-			end
-			pooledLabel(card, familyText .. " / " .. variantText, UDim2.new(1, -10, 0, 24), UDim2.fromOffset(5, 9), 10, Enum.TextXAlignment.Center)
-			pooledLabel(card, "$" .. tostring(moduleInfo and (moduleInfo.Price or 0) or 0), UDim2.new(1, -10, 0, 22), UDim2.fromOffset(5, 35), 10, Enum.TextXAlignment.Center).TextColor3 = Theme.Cash
-			pooledLabel(card, bottomText, UDim2.new(1, -10, 0, 22), UDim2.fromOffset(5, 61), 10, Enum.TextXAlignment.Center).TextColor3 = isInstalledHere and Theme.Accent or Theme.Muted
-			optionPool:Connect(card, card.MouseButton1Click, function()
-				if not moduleInfo then return end
-				State.SelectedModuleId = moduleInfo.ModuleId
-				State.SelectedModuleInstanceId = instanceId
-				State.PreviewModules = { [State.SelectedSlot] = moduleInfo.ModuleId }
-				buildPreview()
-				renderModuleOptions()
-			end)
-			if selected and not isInstalledHere then
-				UI.ModulePopup.Visible = true
-				UI.ModulePopup.Size = UDim2.fromOffset(126, 30)
-				NTRPersistencePhase15.DeferModulePopupPosition(card)
-				local equip = button(UI.ModulePopup, "EQUIP", UDim2.fromScale(1, 1), UDim2.fromScale(0, 0), Theme.Buy)
-				equip.MouseButton1Click:Connect(function()
-					finishModuleInstall(callServer("EquipModuleInstance", {
-						ModuleInstanceId = instanceId,
-						VehicleId = State.Profile and State.Profile.CurrentVehicleId,
-						SlotId = State.SelectedSlot,
-					}))
-				end)
-			end
-			x += 196
+	if State.ModuleMode == "Slots" then
+		table.insert(leftItems, { Id = "Slots", Text = "Module Slots", Selected = true })
+		for _, artworkItem in ipairs(UI.CanonicalGarageWorkspace:ArtworkDefinitions("Build")) do
+			local slot = getSlot(artworkItem.TargetId)
+			if slot then local installedId = installedTemplateForSlot(slot.SlotId); table.insert(cards, { Id = slot.SlotId, ImageKey = artworkItem.TargetId, DisplayName = artworkItem.DisplayName, Badge = installedId and "EQUIPPED" or nil, BadgeColor = Theme.Accent, OnSelect = function() clearPreviewModules(); State.SelectedSlot = slot.SlotId; State.ModuleMode = "Options"; State.ModuleOptionMode = "Owned"; State.SelectedModuleId = nil; State.SelectedModuleInstanceId = nil; setCameraSection(slot.SlotId); redraw() end }) end
 		end
 	else
-		for _, moduleInfo in ipairs(buyList) do
-			local isInstalled = installed == moduleInfo.ModuleId
-			local lockText = NTRPersistencePhase15.ModuleLockText(State.Profile, moduleInfo)
-			local isLocked = lockText ~= nil
-			local selected = State.SelectedModuleId == moduleInfo.ModuleId and State.SelectedModuleInstanceId == nil
-			local cardColor = Theme.Disabled
-			if isLocked then
-				cardColor = Theme.Card
-			elseif selected then
-				cardColor = Theme.CardHot
+		table.insert(leftItems, { Id = "Slots", Text = "Module Slots", OnSelect = function() clearPreviewModules(); State.ModuleMode = "Slots"; State.ModuleOptionMode = nil; redraw() end })
+		for _, mode in ipairs({"Owned", "Buy"}) do table.insert(leftItems, { Id = mode, Text = mode .. " Modules", Selected = State.ModuleOptionMode == mode, OnSelect = function() State.ModuleOptionMode = mode; State.SelectedModuleId = nil; State.SelectedModuleInstanceId = nil; clearPreviewModules(); redraw() end }) end
+		local slotInfo = getSlot(State.SelectedSlot); local installed, installedInstanceId = installedTemplateForSlot(State.SelectedSlot)
+		local function finish(result) if result.Success then clearPreviewModules(); State.ModuleMode = "Slots"; State.ModuleOptionMode = nil; buildPreview(); redraw() else UI.CanonicalGarageWorkspace:Message(result.Message or "Could not install module.") end end
+		if State.ModuleOptionMode == "Owned" then
+			for _, record in ipairs(NTRPersistencePhase15.OwnedModuleInstancesForSlot(State.Profile, slotInfo, getModule)) do
+				local info, instance, instanceId = record.Module, record.Instance, record.InstanceId; local equippedHere = installedInstanceId == instanceId; local inUse = instance.EquippedVehicleId ~= nil and instance.EquippedVehicleId ~= "" and instance.EquippedVehicleId ~= (State.Profile and State.Profile.CurrentVehicleId); local selected = State.SelectedModuleInstanceId == instanceId
+				local count = info and NTRPersistencePhase15.CountModuleCopies(State.Profile, info.ModuleId) or 1; local badge = equippedHere and "EQUIPPED" or (inUse and "IN USE" or ("OWNED x" .. tostring(count)))
+				table.insert(cards, { Id = instanceId, ImageKey = State.SelectedSlot, DisplayName = tostring(info and (info.SourceCockpitDisplayName or info.SourceCockpitId) or "") .. " " .. tostring(info and info.VariantName or ""), Badge = badge, BadgeColor = equippedHere and Theme.Accent or Theme.CardHot, Selected = selected, ActionText = selected and not equippedHere and "EQUIP" or nil, OnSelect = function() if not info then return end; State.SelectedModuleId = info.ModuleId; State.SelectedModuleInstanceId = instanceId; State.PreviewModules = { [State.SelectedSlot] = info.ModuleId }; buildPreview(); redraw() end, OnAction = function() finish(callServer("EquipModuleInstance", { ModuleInstanceId = instanceId, VehicleId = State.Profile and State.Profile.CurrentVehicleId, SlotId = State.SelectedSlot })) end })
 			end
-			local card = pooledButton(optionPool, "", UDim2.fromOffset(184, 86), UDim2.fromOffset(x, 3), cardColor)
-			card:SetAttribute("NTRModuleCard", true)
-			card:SetAttribute("NTRModulePopupTarget", selected and not isInstalled)
-			NTRPersistencePhase15.EnsureModulePopupAnchor(card)
-			card.AutoButtonColor = not isInstalled
-			local familyText = tostring(moduleInfo.SourceCockpitDisplayName or moduleInfo.SourceCockpitId or "")
-			local variantText = tostring(moduleInfo.VariantName or "")
-			local ownedCount = NTRPersistencePhase15.CountModuleCopies(State.Profile, moduleInfo.ModuleId)
-			local bottomText = isLocked and "Locked" or ("Owned x" .. tostring(ownedCount))
-			local titleLabel = pooledLabel(card, familyText .. " / " .. variantText, UDim2.new(1, -10, 0, 24), UDim2.fromOffset(5, 9), 10, Enum.TextXAlignment.Center)
-			if isLocked then
-				titleLabel.TextColor3 = Theme.Muted
+		else
+			for _, info in ipairs(modulesForSlot(State.SelectedSlot)) do
+				local equipped = installed == info.ModuleId; local lockText = NTRPersistencePhase15.ModuleLockText(State.Profile, info); local selected = State.SelectedModuleId == info.ModuleId and State.SelectedModuleInstanceId == nil; local count = NTRPersistencePhase15.CountModuleCopies(State.Profile, info.ModuleId)
+				local function buy() if lockText then UI.CanonicalGarageWorkspace:Message(lockText); return end; local before = State.Profile; local result = callServer("BuyModuleInstance", { ModuleId = info.ModuleId }); if not result.Success then UI.CanonicalGarageWorkspace:Message(result.Message or "Could not buy module."); return end; local instanceId = NTRPersistencePhase15.FindNewModuleCopyId(before, State.Profile, info.ModuleId); if not instanceId then UI.CanonicalGarageWorkspace:Message("Bought module, but could not find the new copy to equip."); redraw(); return end; finish(callServer("EquipModuleInstance", { ModuleInstanceId = instanceId, VehicleId = State.Profile and State.Profile.CurrentVehicleId, SlotId = State.SelectedSlot })) end
+				table.insert(cards, { Id = info.ModuleId, ImageKey = State.SelectedSlot, DisplayName = tostring(info.SourceCockpitDisplayName or info.SourceCockpitId or "") .. " " .. tostring(info.VariantName or ""), Badge = equipped and "EQUIPPED" or (lockText and "LOCKED" or ("$" .. tostring(info.Price or 0))), BadgeColor = equipped and Theme.Accent or (lockText and Theme.Disabled or Theme.Cash), Selected = selected, ActionText = selected and not equipped and (lockText and "LOCKED" or "BUY") or nil, OnSelect = function() State.SelectedModuleId = info.ModuleId; State.SelectedModuleInstanceId = nil; State.PreviewModules = { [State.SelectedSlot] = info.ModuleId }; buildPreview(); redraw(); if lockText then UI.CanonicalGarageWorkspace:Message(lockText) end end, OnAction = buy })
 			end
-			local priceLabel = pooledLabel(card, "$" .. tostring(moduleInfo.Price or 0), UDim2.new(1, -10, 0, 22), UDim2.fromOffset(5, 35), 10, Enum.TextXAlignment.Center)
-			priceLabel.TextColor3 = isLocked and Theme.Cash:Lerp(Theme.Muted, 0.55) or Theme.Cash
-			pooledLabel(card, bottomText, UDim2.new(1, -10, 0, 22), UDim2.fromOffset(5, 61), 10, Enum.TextXAlignment.Center).TextColor3 = Theme.Muted
-			optionPool:Connect(card, card.MouseButton1Click, function()
-				State.SelectedModuleId = moduleInfo.ModuleId
-				State.SelectedModuleInstanceId = nil
-				State.PreviewModules = { [State.SelectedSlot] = moduleInfo.ModuleId }
-				buildPreview()
-				renderModuleOptions()
-				if isLocked then
-					UI.Subtitle.Text = lockText or "Buy the source cockpit before buying this module."
-				end
-			end)
-			if selected and not isInstalled then
-				UI.ModulePopup.Visible = true
-				UI.ModulePopup.Size = UDim2.fromOffset(126, 30)
-				NTRPersistencePhase15.DeferModulePopupPosition(card)
-				local buyColor = Theme.Buy
-				if isLocked then
-					buyColor = Theme.Disabled
-				end
-				local buy = button(UI.ModulePopup, isLocked and "LOCKED" or "BUY", UDim2.fromScale(1, 1), UDim2.fromScale(0, 0), buyColor)
-				buy.AutoButtonColor = not isLocked
-				buy.MouseButton1Click:Connect(function()
-					if isLocked then
-						UI.Subtitle.Text = lockText or "Buy the source cockpit before buying this module."
-						return
-					end
-					local beforeProfile = State.Profile
-					local buyResult = callServer("BuyModuleInstance", { ModuleId = moduleInfo.ModuleId })
-					if not buyResult.Success then
-						UI.Subtitle.Text = buyResult.Message or "Could not buy module."
-						return
-					end
-					local instanceId = NTRPersistencePhase15.FindNewModuleCopyId(beforeProfile, State.Profile, moduleInfo.ModuleId)
-					if not instanceId then
-						UI.Subtitle.Text = "Bought module, but could not find the new copy to equip."
-						renderModuleOptions()
-						return
-					end
-					finishModuleInstall(callServer("EquipModuleInstance", {
-						ModuleInstanceId = instanceId,
-						VehicleId = State.Profile and State.Profile.CurrentVehicleId,
-						SlotId = State.SelectedSlot,
-					}))
-				end)
-			end
-			x += 196
 		end
 	end
-	optionPool:End()
-	local contentWidth = x + 6
-	UI.ModuleOptions.CanvasSize = UDim2.fromOffset(math.max(contentWidth, UI.ModuleOptions.AbsoluteSize.X), 0)
-	if contentWidth <= UI.ModuleOptions.AbsoluteSize.X + 2 then
-		UI.ModuleOptions.CanvasPosition = Vector2.zero
-	end
-	renderStatsPanel()
+	UI.CanonicalGarageWorkspace:Show({
+		Title = "Build Modules", Subtitle = State.ModuleMode == "Options" and "Preview, then buy or equip." or "Choose a fixed module slot.", ShowLeft = State.ModuleMode ~= "Slots", ExitVisible = false, LeftItems = leftItems, Cards = cards, EmptyMessage = State.ModuleMode == "Options" and "No compatible modules are available." or nil, NextText = "Customise",
+		Cash = State.Profile and State.Profile.Cash or 0, CapacityText = tostring(ownedCount) .. "/" .. tostring(capacity) .. " Spaces", Legacy = { UI.Top, UI.CashPanel, UI.GarageCapacityPanel, UI.StatsPanel, UI.ModuleShop, UI.ModuleSlotPanel, UI.ModuleOptionsPanel, UI.NextPanel },
+		RenderStats = function(parent) local stats, base = currentStats(); local _, Calculator = NTRVehiclePhaseAO.performanceModules(); UI.CanonicalGarageWorkspace:DrawPerformance(parent, Calculator.CalculateLegacy(stats or {}), Calculator.CalculateLegacy(base or stats or {}), NTRVehiclePhaseAO.tierColor) end,
+		OnBack = function() if State.ModuleMode == "Options" then clearPreviewModules(); State.ModuleMode = "Slots"; State.ModuleOptionMode = nil; setCameraSection(nil); buildPreview(); redraw() else showStage("CockpitPaint"); renderCockpitPaint() end end,
+		OnNext = function() local hasEngine, hasStabilisers, hasBoost = coreModuleReadiness(); if not (hasEngine and hasStabilisers and hasBoost) then UI.CanonicalGarageWorkspace:Message("Equip one engine, stabilisers, and boost first."); return end; clearPreviewModules(); State.CustomizeTarget = "ALL"; State.CustomizeMode = "Colour"; showStage("Customise"); renderCustomise() end,
+		OnExit = function() UI.CanonicalGarageWorkspace:Hide(); closeGarage(); NTR_phase7SignalDealershipExit() end, OnCash = function() showCashShop() end, OnCapacity = function() NTRPersistencePhase9.OpenGaragePropertyShop() end,
+	})
 end
 
-renderModuleShop = function()
-	showTop("Build Modules", State.ModuleMode == "Options" and "Preview, then BUY or EQUIP." or "Choose a fixed module slot.")
-	setNextText("Customise Modules")
-	renderStatsPanel()
-	UI.ModuleSlotPanel.Visible = State.ModuleMode == "Slots"
-	UI.ModuleOptionsPanel.Visible = State.ModuleMode == "Options"
-	if State.ModuleMode == "Slots" then renderSlotSelection() else renderModuleOptions() end
-end
-
-local function renderCustomiseLeft()
-	clear(UI.CustomiseList)
-	local all = button(UI.CustomiseList, "Customise All", UDim2.new(1, 0, 0, 42), UDim2.fromScale(0, 0), State.CustomizeTarget == "ALL" and Theme.CardHot or Theme.Card)
-	all.MouseButton1Click:Connect(function()
-		State.CustomizeTarget = "ALL"
-		State.CustomizeMode = "Colour"
-		setCameraSection(nil)
-		renderCustomise()
-	end)
-
-	local thrust = button(UI.CustomiseList, "Thrust Color", UDim2.new(1, 0, 0, 42), UDim2.fromScale(0, 0), State.CustomizeTarget == "THRUST_COLOR" and Theme.CardHot or Theme.Card)
-	thrust.MouseButton1Click:Connect(function()
-		State.CustomizeTarget = "THRUST_COLOR"
-		State.CustomizeMode = "Colour"
-		setCameraSection(nil)
-		renderCustomise()
-	end)
-
-	local cockpit = button(UI.CustomiseList, "Cockpit", UDim2.new(1, 0, 0, 42), UDim2.fromScale(0, 0), State.CustomizeTarget == "Cockpit" and Theme.CardHot or Theme.Card)
-	cockpit.MouseButton1Click:Connect(function()
-		State.CustomizeTarget = "Cockpit"
-		State.CustomizeMode = "Overview"
-		setCameraSection(nil)
-		renderCustomise()
-	end)
-
-	local installed = (State.Profile and State.Profile.InstalledModules) or {}
-	for _, slot in ipairs(sortedSlots()) do
-		if installed[slot.SlotId] then
-			local b = button(UI.CustomiseList, slotDisplayName(slot), UDim2.new(1, 0, 0, 42), UDim2.fromScale(0, 0), State.CustomizeTarget == slot.SlotId and Theme.CardHot or Theme.Card)
-			b.MouseButton1Click:Connect(function()
-				State.CustomizeTarget = slot.SlotId
-				State.SelectedSlot = slot.SlotId
-				State.CustomizeMode = "Overview"
-				setCameraSection(slot.SlotId)
-				renderCustomise()
-			end)
-		end
-	end
-
-	-- Phase AO: performance upgrades now live on each installed module.
-end
-
-
+-- NTR_GARAGE_WORKSPACE_RETIRED_LEGACY_CUSTOMISE_LEFT_RENDERER
 local function folderHasBuyableNeon(folder)
 	if not folder then return false end
 	for _, descendant in ipairs(folder:GetDescendants()) do
@@ -3208,129 +2796,36 @@ local function colourChannelsForTarget(target)
 end
 
 
-local function renderCosmetics()
-	clear(UI.CustomiseContent)
-	UI.ColorChannelFloat.Visible = false
-	State.PreviewUpgradeId = nil
-	local target = State.CustomizeTarget
-	if target == "Cockpit" or target == "ALL" or target == "THRUST_COLOR" then
-		label(UI.CustomiseContent, "No purchasable cosmetics for this target.", UDim2.new(1, 0, 0, 34), UDim2.fromOffset(6, 10), 12, Enum.TextXAlignment.Left)
-		return
-	end
-
-	local installedId = State.Profile and State.Profile.InstalledModules and State.Profile.InstalledModules[target]
-	local template = installedId and findTemplateByAttribute(categoriesRoot, "ModuleId", installedId)
-	if not templateHasChannel(template, "Neon") then
-		label(UI.CustomiseContent, "This module has no optional neon.", UDim2.new(1, 0, 0, 34), UDim2.fromOffset(6, 10), 12, Enum.TextXAlignment.Left)
-		return
-	end
-
-	local neonOwned = State.Profile and State.Profile.NeonOwned and State.Profile.NeonOwned[target]
-	local card = button(UI.CustomiseContent, "", UDim2.fromOffset(170, 72), UDim2.fromOffset(6, 7), neonOwned and Theme.Disabled or Theme.Card)
-	label(card, "Neon Lights", UDim2.new(1, -10, 0, 26), UDim2.fromOffset(5, 11), 11, Enum.TextXAlignment.Center)
-	label(card, neonOwned and "owned" or "$5000", UDim2.new(1, -10, 0, 20), UDim2.fromOffset(5, 39), 11, Enum.TextXAlignment.Center).TextColor3 = neonOwned and Theme.Accent or Theme.Cash
-	if not neonOwned then
-		card.MouseButton1Click:Connect(function()
-			State.PreviewNeonSlot = target
-			buildPreview()
-			clear(UI.CosmeticPopup)
-			UI.CosmeticPopup.Visible = true
-			UI.CosmeticPopup.Position = UDim2.fromOffset(28, -32)
-			local buy = button(UI.CosmeticPopup, "Buy", UDim2.fromScale(1, 1), UDim2.fromScale(0, 0), Theme.Danger)
-			buy.MouseButton1Click:Connect(function()
-				local result = callServer("BuyNeon", { SlotId = target })
-				UI.Subtitle.Text = result.Message or ""
-				State.PreviewNeonSlot = nil
-				UI.CosmeticPopup.Visible = false
-				buildPreview()
-				renderCustomise()
-			end)
-		end)
-	end
-end
-
-
+-- NTR_GARAGE_WORKSPACE_RETIRED_LEGACY_COSMETICS_RENDERER
 renderCustomise = function()
-	showTop("Customise", "Tune installed modules, change colours, or unlock lights.")
-	setNextText("Start Driving")
-	renderStatsPanel()
-	renderCustomiseLeft()
-	clear(UI.CustomiseContent)
-	clear(UI.CustomiseColourPicker)
-	UI.CosmeticPopup.Visible = false
-
-	local target = State.CustomizeTarget
-	State.ThrustPreviewActive = target == "THRUST_COLOR" and State.CustomizeMode == "Colour"
-	if State.CustomizeMode ~= "ModuleUpgrades" then State.PreviewUpgradeId = nil end
-	if State.CustomizeMode ~= "Cosmetics" then State.PreviewNeonSlot = nil end
-	buildPreview()
-
+	if not UI.CanonicalGarageWorkspace then UI.CanonicalGarageWorkspace = require(script.Parent.Controllers.UI:WaitForChild("GarageWorkspaceController")).new() end
+	local ownedCount, capacity = NTR_phase8GarageCapacitySummary(); local target = State.CustomizeTarget; local leftItems, cards = {}, {}
+	local function choose(newTarget, mode, cameraSlot) State.CustomizeTarget = newTarget; State.CustomizeMode = mode; State.SelectedSlot = cameraSlot or State.SelectedSlot; setCameraSection(cameraSlot); renderCustomise() end
+	UI.CanonicalGarageRefresh = function() renderCustomise() end
+	for _, artworkItem in ipairs(UI.CanonicalGarageWorkspace:ArtworkDefinitions("Customise")) do
+		local targetId = artworkItem.TargetId; local special = targetId == "ALL" or targetId == "THRUST_COLOR" or targetId == "Cockpit"; local installed = State.Profile and State.Profile.InstalledModules and State.Profile.InstalledModules[targetId]
+		if special or installed then table.insert(leftItems, { Id = targetId, Text = artworkItem.DisplayName, Selected = target == targetId, OnSelect = function() if targetId == "ALL" or targetId == "THRUST_COLOR" then choose(targetId, "Colour", nil) elseif targetId == "Cockpit" then choose(targetId, "Overview", nil) else choose(targetId, "Overview", targetId) end end }) end
+	end
+	State.ThrustPreviewActive = target == "THRUST_COLOR" and State.CustomizeMode == "Colour"; if State.CustomizeMode ~= "ModuleUpgrades" then State.PreviewUpgradeId = nil end; if State.CustomizeMode ~= "Cosmetics" then State.PreviewNeonSlot = nil end; buildPreview()
+	local context = { Title = "Customise", Subtitle = "Tune installed modules, change colours, or unlock lights.", LeftItems = leftItems, Cards = cards, NextText = "Start Driving", ExitVisible = false, Cash = State.Profile and State.Profile.Cash or 0, CapacityText = tostring(ownedCount) .. "/" .. tostring(capacity) .. " Spaces", Legacy = { UI.Top, UI.CashPanel, UI.GarageCapacityPanel, UI.StatsPanel, UI.Customise, UI.CustomiseLeft, UI.CustomisePanel, UI.ColorChannelFloat, UI.NextPanel }, RenderStats = function(parent) local stats, base = currentStats(); local _, Calculator = NTRVehiclePhaseAO.performanceModules(); UI.CanonicalGarageWorkspace:DrawPerformance(parent, Calculator.CalculateLegacy(stats or {}), Calculator.CalculateLegacy(base or stats or {}), NTRVehiclePhaseAO.tierColor) end, OnCash = function() showCashShop() end, OnCapacity = function() NTRPersistencePhase9.OpenGaragePropertyShop() end }
+	context.OnExit = function() UI.CanonicalGarageWorkspace:Hide(); closeGarage(); NTR_phase7SignalDealershipExit() end
+	context.OnNext = function() if player:GetAttribute("NTR_DriveInCustomisationActive") == true then player:SetAttribute("NTR_DriveInCustomisationActive", false); task.wait(.1) end; local result = callServer("SpawnVehicle", {}); if result.Success then UI.CanonicalGarageWorkspace:Hide(); local ok, err = pcall(closeGarage); if not ok then warn("[NTR Garage Workspace] closeGarage failed: " .. tostring(err)) end; task.defer(startDriving) else UI.CanonicalGarageWorkspace:Message(result.Message or "Could not spawn vehicle.") end end
+	context.OnBack = function() if (State.CustomizeMode == "Colour" and target ~= "ALL") or State.CustomizeMode == "Cosmetics" or State.CustomizeMode == "ModuleUpgrades" then State.CustomizeMode = "Overview"; renderCustomise() else State.ModuleMode = "Slots"; showStage("ModuleShop"); renderModuleShop() end end
 	if target == "ALL" or target == "THRUST_COLOR" or State.CustomizeMode == "Colour" then
-		UI.CustomiseColourPicker.Visible = true
-		local channels = colourChannelsForTarget(target)
-		renderColourPicker(UI.CustomiseColourPicker, channels, function(channel, color)
-			if target == "THRUST_COLOR" or channel == "ThrustColor" then
-				if State.Profile then State.Profile.ThrustColor = color end
-				callServer("SetThrustColor", { Color = color })
-				local previewRootObject = Preview.Root or Workspace:FindFirstChild("HOVER_RACING_V2_LOCAL_PREVIEW")
-				if previewRootObject then
-					previewRootObject:SetAttribute("ThrustColor", color)
-					previewRootObject:SetAttribute("ForceThrustPreview", true)
-				end
-			elseif target == "ALL" then
-				callServer("SetModuleColor", { SlotId = "ALL", Channel = channel, Color = color })
-				if channel ~= "Neon" then callServer("SetCockpitColor", { Channel = channel, Color = color }) end
-			elseif target == "Cockpit" then
-				callServer("SetCockpitColor", { Channel = channel, Color = color })
-				if State.Profile and State.Profile.CockpitColors then State.Profile.CockpitColors[channel] = color end
-			else
-				callServer("SetModuleColor", { SlotId = target, Channel = channel, Color = color })
-				if State.Profile and State.Profile.ModuleColors then
-					State.Profile.ModuleColors[target] = State.Profile.ModuleColors[target] or {}
-					State.Profile.ModuleColors[target][channel] = color
-				end
-			end
-			buildPreview()
-			renderStatsPanel()
-		end)
-		return
+		local channels = colourChannelsForTarget(target); local colors = {}; for _, channel in ipairs(channels) do if target == "THRUST_COLOR" or channel == "ThrustColor" then colors[channel] = State.Profile and State.Profile.ThrustColor or Color3.new(1,1,1) elseif target == "Cockpit" or target == "ALL" then colors[channel] = State.Profile and State.Profile.CockpitColors and State.Profile.CockpitColors[channel] or Color3.new(1,1,1) else colors[channel] = State.Profile and State.Profile.ModuleColors and State.Profile.ModuleColors[target] and State.Profile.ModuleColors[target][channel] or Color3.new(1,1,1) end end
+		context.ColorChannels = channels; context.SelectedChannel = State.SelectedColorChannel or channels[1]; context.Colors = colors; context.OnChannel = function(channel) State.SelectedColorChannel = channel; renderCustomise() end
+		context.OnColor = function(channel, color) if target == "THRUST_COLOR" or channel == "ThrustColor" then if State.Profile then State.Profile.ThrustColor = color end; callServer("SetThrustColor", { Color = color }); local root = Preview.Root or Workspace:FindFirstChild("HOVER_RACING_V2_LOCAL_PREVIEW"); if root then root:SetAttribute("ThrustColor", color); root:SetAttribute("ForceThrustPreview", true) end elseif target == "ALL" then callServer("SetModuleColor", { SlotId = "ALL", Channel = channel, Color = color }); if channel ~= "Neon" then callServer("SetCockpitColor", { Channel = channel, Color = color }) end elseif target == "Cockpit" then callServer("SetCockpitColor", { Channel = channel, Color = color }); if State.Profile and State.Profile.CockpitColors then State.Profile.CockpitColors[channel] = color end else callServer("SetModuleColor", { SlotId = target, Channel = channel, Color = color }); if State.Profile and State.Profile.ModuleColors then State.Profile.ModuleColors[target] = State.Profile.ModuleColors[target] or {}; State.Profile.ModuleColors[target][channel] = color end end; buildPreview() end
+	elseif State.CustomizeMode == "Cosmetics" then
+		local installedId = State.Profile and State.Profile.InstalledModules and State.Profile.InstalledModules[target]; local template = installedId and findTemplateByAttribute(categoriesRoot, "ModuleId", installedId); local owned = State.Profile and State.Profile.NeonOwned and State.Profile.NeonOwned[target]
+		if target == "Cockpit" or target == "ALL" or target == "THRUST_COLOR" then context.EmptyMessage = "No purchasable cosmetics for this target." elseif not templateHasChannel(template, "Neon") then context.EmptyMessage = "This module has no optional neon." else table.insert(cards, { Id = "Neon", ImageKey = target, DisplayName = "Neon Lights", Badge = owned and "OWNED" or "$5000", BadgeColor = owned and Theme.Accent or Theme.Cash, Selected = State.PreviewNeonSlot == target, ActionText = State.PreviewNeonSlot == target and not owned and "BUY" or nil, OnSelect = function() if not owned then State.PreviewNeonSlot = target; buildPreview(); renderCustomise() end end, OnAction = function() local result = callServer("BuyNeon", { SlotId = target }); State.PreviewNeonSlot = nil; buildPreview(); if not result.Success then UI.CanonicalGarageWorkspace:Message(result.Message or "Could not buy neon.") else renderCustomise() end end }) end
+	elseif State.CustomizeMode == "ModuleUpgrades" then
+		local slotId, moduleId, module = NTRVehiclePhaseAO.installedModule(); for _, upgrade in ipairs((module and module.Upgrades) or {}) do local level = NTRVehiclePhaseAO.moduleLevel(moduleId, upgrade.UpgradeId); local maxLevel = tonumber(upgrade.MaxLevel) or 3; local maximum = level >= maxLevel; local price = math.floor((tonumber(upgrade.BasePrice) or 0) * ((tonumber(upgrade.PriceMultiplier) or 1) ^ level)); local selected = State.PreviewUpgradeId == upgrade.UpgradeId; table.insert(cards, { Id = upgrade.UpgradeId, ImageKey = slotId, DisplayName = upgrade.DisplayName or upgrade.UpgradeId, Badge = "LVL " .. tostring(level) .. "/" .. tostring(maxLevel), BadgeColor = maximum and Theme.Accent or Theme.Cash, Selected = selected, ActionText = selected and not maximum and ("BUY $" .. tostring(price)) or nil, OnSelect = function() if not maximum then State.PreviewUpgradeId = upgrade.UpgradeId; renderCustomise() end end, OnAction = function() local result = callServer("UpgradeModule", { SlotId = slotId, ModuleId = moduleId, UpgradeId = upgrade.UpgradeId }); if result.Success then State.PreviewUpgradeId = nil; renderCustomise() else UI.CanonicalGarageWorkspace:Message(result.Message or "Could not buy upgrade.") end end }) end; if #cards == 0 then context.EmptyMessage = "No upgrades are available for this module." end
+	else
+		table.insert(cards, { Id = "Colour", ImageKey = target, DisplayName = target == "Cockpit" and "Change Colour" or "Colour", OnSelect = function() State.CustomizeMode = "Colour"; renderCustomise() end })
+		if target ~= "Cockpit" then table.insert(cards, { Id = "Cosmetics", ImageKey = "Neon", DisplayName = "Cosmetics", OnSelect = function() State.CustomizeMode = "Cosmetics"; renderCustomise() end }); table.insert(cards, { Id = "Performance", ImageKey = target, DisplayName = "Performance", OnSelect = function() State.CustomizeMode = "ModuleUpgrades"; State.PreviewUpgradeId = nil; renderCustomise() end }) end
 	end
-
-	UI.CustomiseColourPicker.Visible = false
-	UI.ColorChannelFloat.Visible = false
-	if State.CustomizeMode == "Cosmetics" then
-		renderCosmetics()
-		return
-	end
-	if State.CustomizeMode == "ModuleUpgrades" then
-		NTRVehiclePhaseAO.renderModuleUpgrades(
-			UI.CustomiseContent,
-			function() renderCustomise() end,
-			function() renderStatsPanel() end
-		)
-		return
-	end
-
-	local colour = button(UI.CustomiseContent, target == "Cockpit" and "Change Colour" or "Colour", UDim2.fromOffset(170, 72), UDim2.fromOffset(6, 8), Theme.Card)
-	colour.MouseButton1Click:Connect(function()
-		State.CustomizeMode = "Colour"
-		renderCustomise()
-	end)
-	if target ~= "Cockpit" then
-		local cosmetics = button(UI.CustomiseContent, "Cosmetics", UDim2.fromOffset(170, 72), UDim2.fromOffset(188, 8), Theme.Card)
-		local upgrades = button(UI.CustomiseContent, "Performance", UDim2.fromOffset(190, 72), UDim2.fromOffset(370, 8), Theme.Buy)
-		cosmetics.MouseButton1Click:Connect(function()
-			State.CustomizeMode = "Cosmetics"
-			renderCustomise()
-		end)
-		upgrades.MouseButton1Click:Connect(function()
-			State.CustomizeMode = "ModuleUpgrades"
-			State.PreviewUpgradeId = nil
-			renderCustomise()
-		end)
-	end
+	UI.CanonicalGarageWorkspace:Show(context)
 end
-
 
 local function getHumanoid()
 	local character = player.Character
@@ -4264,7 +3759,7 @@ UI.CockpitGridPanel = panel(UI.CockpitShop, "CockpitGridPanel", UDim2.new(1, -59
 pad(UI.CockpitGridPanel, 10)
 UI.CockpitGrid = new("ScrollingFrame", { BackgroundTransparency = 1, BorderSizePixel = 0, ScrollBarThickness = 0, CanvasSize = UDim2.fromOffset(0, 0), AutomaticCanvasSize = Enum.AutomaticSize.Y, Size = UDim2.fromScale(1, 1) }, UI.CockpitGridPanel)
 UI.CockpitGridLayout = new("UIGridLayout", { CellPadding = UDim2.fromOffset(10, 10), CellSize = UDim2.fromOffset(118, 118), SortOrder = Enum.SortOrder.LayoutOrder }, UI.CockpitGrid)
-makeArrowScroller(UI.CockpitGridPanel, UI.CockpitGrid, "Y", 296)
+makeArrowScroller(UI.CockpitGridPanel, UI.CockpitGrid, "X", 204) -- NTR_GARAGE_CANONICAL_BOTTOM_CAROUSEL_ARROWS
 
 	UI.CockpitPaint = new("Frame", { BackgroundTransparency = 1, Size = UDim2.fromScale(1, 1), Visible = false }, gui)
 	UI.CockpitPaintPanel = panel(UI.CockpitPaint, "CockpitPaintPanel", centerPanelSize, centerPanelPosition, Vector2.new(0, 1))
@@ -4440,8 +3935,9 @@ local function init()
 	State.Catalog = result.Catalog
 	State.Profile = result.Profile
 	State.SelectedCockpit = State.Profile.CurrentCockpit or "bruiser_01"
+	State.BrowseAll = true
 	State.NoPreviewYet = true
-	State.GarageCameraActive = false
+	State.GarageCameraActive = true
 	NTR_phase4ClearPreview()
 	local firstSlot = sortedSlots()[1]
 	State.SelectedSlot = firstSlot and firstSlot.SlotId or "Engine1"
@@ -4458,12 +3954,15 @@ local NTR_CUSTOMISATION_OPEN_EVENT_NAME = "OpenOwnedCockpitCustomisation"
 local NTR_dealershipIntroGarageInitialized = false
 
 local function NTR_openGarageWithMode(mode)
+	-- NTR_GARAGE_EXISTING_INSTANCE_GATE_V1
+	if true then return end
 	State.ShopMode = mode or "Dealership"
 	if NTR_dealershipIntroGarageInitialized then
 		if UI and UI.Gui then
 			UI.Gui.Enabled = true
 			if State then
-				State.GarageCameraActive = false
+				State.GarageCameraActive = true
+				State.BrowseAll = true
 				State.NoPreviewYet = true
 				State.Phase5PreviewOrbitInitialized = false
 			end
@@ -4506,6 +4005,8 @@ function _G.NTRDriveInCustomisationPhase1.RefreshProfile()
 end
 
 function _G.NTRDriveInCustomisationPhase1.OpenDrivenVehicleModuleShop()
+	-- NTR_GARAGE_EXISTING_INSTANCE_DRIVE_IN_GATE_V1
+	if true then return end
 	local selectedVehicleId = State.Profile and State.Profile.CurrentVehicleId
 	local refresh = _G.NTRDriveInCustomisationPhase1.RefreshProfile()
 	if refresh.Profile and refresh.Profile.CurrentVehicleId then
@@ -4566,8 +4067,8 @@ function _G.NTRDriveInCustomisationPhase1.OpenDrivenVehicleModuleShop()
 		buildPreview()
 		NTR_phase4ApplyGaragePreviewCamera()
 		setCameraSection(State.SelectedSlot or "Engine1")
-		showStage("ModuleShop")
-		renderModuleShop()
+		showStage("CockpitPaint")
+		renderCockpitPaint() -- NTR_GARAGE_CANONICAL_DRIVE_STARTS_AT_PAINT
 	end)
 end
 -- NTR_DRIVE_IN_CUSTOMISATION_PHASE1_BOOTSTRAP_END
@@ -4716,3 +4217,9 @@ do
 	end
 end
 -- V75_BOOST_WOBBLE_DRIVING_END
+
+-- NTR_GARAGE_EXISTING_INSTANCE_STARTUP_BRIDGE_V1
+task.defer(function()
+	local ok,result=pcall(function() return require(script.Parent:WaitForChild("Controllers"):WaitForChild("UI"):WaitForChild("ModuleShopUIController")) end)
+	if not ok then warn("[NTR Canonical Garage] STARTUP FAIL "..tostring(result)) elseif typeof(result)~="table" or result.Active~=true then warn("[NTR Canonical Garage] STARTUP FAIL application host returned an invalid contract") else print("[NTR Canonical Garage] STARTUP PASS existing ModuleShopUIController host") end
+end)

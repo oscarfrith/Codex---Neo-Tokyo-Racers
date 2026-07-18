@@ -1,3 +1,4 @@
+-- NTR_RACING_FLOW_COUNTDOWN_QUEUE_EXIT_OWNERSHIP
 -- Neo Tokyo Racers - Racing Phase 8 Open-Category Matchmaking Service
 -- NTR_RACING_PHASE8_MATCHMAKING_SERVICE
 
@@ -767,6 +768,7 @@ local function removeFromQueue(player, reason)
 	end
 	local queue = queues[eventId]
 	queuedByPlayer[player] = nil
+	player:SetAttribute("NTR_RaceQueueActive",false)
 	if queue then
 		queue.Joined[player] = nil
 		for index = #queue.Players, 1, -1 do
@@ -891,6 +893,7 @@ local function startRace(queue)
 	local participants = {}
 	for _, player in ipairs(queue.Players) do
 		queuedByPlayer[player] = nil
+		player:SetAttribute("NTR_RaceQueueActive",false)
 		local gridIndex = #participants + 1
 		local selectedVehicleId = tostring(queue.VehicleIds[player] or "")
 		local spawnCFrame = spawnCFrameForIndex(queue.Route, gridIndex) * CFrame.new(0, 4, 0)
@@ -1157,6 +1160,7 @@ local function joinQueue(player, eventId, vehicleId)
 	queue.VehicleIds[player] = tostring(selectedVehicleId or vehicleId or "")
 	table.insert(queue.Players, player)
 	queuedByPlayer[player] = eventId
+	player:SetAttribute("NTR_RaceQueueActive",true)
 	fire(player, {
 		Type = "QueueJoined",
 		EventId = eventId,

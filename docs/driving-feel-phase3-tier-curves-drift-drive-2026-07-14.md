@@ -98,6 +98,8 @@ Raw boost stats still determine where each build sits within these physical boun
 
 ## Organised Studio tuning layout
 
+The canonical organiser also includes the stat-scaled post-drift reward values under `03_Drifting`. Category values remain authoritative, so rerunning it preserves live edits while retaining the specific duration/force descriptions instead of treating these settings as unknown advanced values.
+
 After Phase 3 is installed, run `scripts/roblox_driving_feel_phase3_organized_tuning_values.lua` once in Edit mode. It preserves every current numeric value and migrates the flat tuning attributes into ordered category folders:
 
 ```text
@@ -119,6 +121,29 @@ BaseForwardAcceleration_RaisingThisDoes = "Increases forward acceleration across
 ```
 
 The migration supports the original flat Phase 3 layout, the earlier generated per-setting-folder layout, and this final flat-category layout. Existing category numbers win first, then prior `01_Value` NumberValues, then original root numeric attributes, then defaults. Source readers are changed only after hierarchy verification, and obsolete per-setting folders are removed only after both readers are installed. Reruns preserve existing category attributes. Boolean rollback/debug switches and string metadata remain as root attributes.
+
+## Physical top-speed curve
+
+The same canonical organiser adds six new `01_Acceleration` attributes without changing any existing edited value:
+
+| Attribute | Initial value | Raise it |
+|---|---:|---|
+| `PhysicalTopSpeedAtReferenceMph` | `140` | Raises physical top speed around the reference stat for every vehicle |
+| `TopSpeedRawReference` | `137` | Reduces mapped speed for the same raw TopSpeed stat |
+| `PhysicalTopSpeedExponent` | `0.55` | Widens the physical speed difference below and above the reference |
+| `PhysicalTopSpeedMinMph` | `60` | Raises the lowest result the mapping can produce |
+| `PhysicalTopSpeedMaxMph` | `300` | Raises the normal configurable physical ceiling |
+| `AbsoluteTopSpeedSafetyMph` | `320` | Raises the final safety ceiling when the physical maximum is also high enough |
+
+The physical target is:
+
+```text
+PhysicalTopSpeedAtReferenceMph * (RawTopSpeed / TopSpeedRawReference) ^ PhysicalTopSpeedExponent
+```
+
+It is then constrained by the editable physical minimum, physical maximum, and absolute safety maximum. Raw TopSpeed remains unchanged for V2 rating, module swapping, and upgrade calculations. With the initial values, the six stock raw speeds map to approximately Forge `86`, Vector `114`, Viper `140`, Nightline `169`, Rally `207`, and Zenith `238 MPH`. The old hidden fixed `260 MPH` controller/module caps are replaced by the mapped result and configurable safety value.
+
+Useful debug attributes on a spawned vehicle are `DynamicsRawTopSpeed` and `DynamicsMappedTopSpeedMph`. The mapped target is not guaranteed road speed: acceleration fade and `AerodynamicDragPerMphSquared` still determine whether the car has enough force to reach it. The refreshed pre-patch mirror records a user-edited aerodynamic coefficient of `0.015`, versus the original Phase 3 default `0.00012`; this is intentionally preserved and can create a much lower aerodynamic equilibrium speed.
 
 ## Verification
 

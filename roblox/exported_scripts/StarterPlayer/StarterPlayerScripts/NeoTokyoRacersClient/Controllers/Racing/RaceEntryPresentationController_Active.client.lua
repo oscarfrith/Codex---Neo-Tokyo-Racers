@@ -1,3 +1,4 @@
+-- NTR_RACING_FLOW_COUNTDOWN_QUEUE_EXIT_OWNERSHIP
 -- NTR_RACING_UI_MOBILE_PHASE1_SCALED_DESKTOP_TRIAL
 -- NTR_RACING_UI_PHASE16E_RUNTIME_OWNERSHIP
 -- Neo Tokyo Racers - Racing UI Phase 2 Time Trial Startup Presentation
@@ -875,9 +876,8 @@ local function buildGui()
 	preserveSelectedTab(raceTab, "Race")
 	timeTrialTab.MouseButton1Click:Connect(function() selectedMode = "TimeTrial" currentPage = "Setup" render() end)
 	raceTab.MouseButton1Click:Connect(function() selectedMode = "Race" currentPage = "Setup" render() end)
-	local close = UI.Button(shell, { Text = "×", Position = UDim2.new(1, touch and -48 or -64, 0, 0), Size = UDim2.fromOffset(touch and 48 or 64, headerH), Color = C("PanelDeep"), StrokeColor = C("Danger"), FocusColor = C("Danger"), TextColor = C("Danger"), TextSize = touch and 24 or 30, StrokeTransparency = 1 })
-	close.MouseButton1Click:Connect(function() setOpen(false) legacyAction:Fire("Close") end)
-	local divider = Instance.new("Frame") divider.BorderSizePixel = 0 divider.BackgroundColor3 = C("Outline") divider.BackgroundTransparency = 0.5 divider.Position = UDim2.fromOffset(0, headerH) divider.Size = UDim2.new(1, 0, 0, 1) divider.Parent = shell
+	-- NTR_RACING_FLOW_COUNTDOWN_QUEUE_EXIT_OWNERSHIP: entry exit/back is footer-only.
+local divider = Instance.new("Frame") divider.BorderSizePixel = 0 divider.BackgroundColor3 = C("Outline") divider.BackgroundTransparency = 0.5 divider.Position = UDim2.fromOffset(0, headerH) divider.Size = UDim2.new(1, 0, 0, 1) divider.Parent = shell
 	local pad = touch and 12 or L("OuterPadding", 24)
 	local footerH = touch and 40 or 48
 	local contentFooterGap = touch and 10 or L("Gap", 16)

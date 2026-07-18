@@ -47,23 +47,32 @@ These are the most important active gameplay scripts to refresh after major Stud
 
 ```text
 ServerScriptService.NeoTokyoRacers.Services.Garage.GarageActionController_Shadow_Disabled
+ServerScriptService.NeoTokyoRacers.Services.Garage.GarageSessionService_Active (after canonical garage install)
 ServerScriptService.NeoTokyoRacers.Services.Vehicle.DriverSeatPositionKeeper_Active
 StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.NeoTokyoRacersClient_Bootstrap_Shadow_Disabled
 StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Intro.DealershipIntroClient_Active
+StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Intro.GarageEntranceController_Active (after canonical garage install)
+StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.GarageExperienceController_Active (after canonical garage install)
 StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Runtime.CharacterSprintController_Active
 StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Runtime.DriveHudController_Active
 StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Runtime.MobileDriveControlsController_Active
 StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Runtime.RuntimeVFXController_Active
 StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Preview.ThrustPreviewController_Active
 StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.DesktopFreeRoamHudController_Active
+StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.MobileFreeRoamHudController_Active
+StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceCountdownPresentationController_Active
+StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceQueueClient_Active
+StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceRouteGuideClient_Active
+StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceSessionPresentationController_Active
+StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceTimeTrialResultCoachClient_Active
 StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.World.LODClient_Active
 ServerScriptService.NeoTokyoRacers.Services.UI.FreeRoamHudTeleportService_Active
 StarterPlayer.StarterPlayerScripts.TEMP_LightingPreview
 ```
 
-The two free-roam UI entries above are the confirmed Phase 4A client/server owners. Refresh them together after any later free-roam HUD or dealership-teleport change. Race UI work should also refresh the isolated scripts under `Controllers.Racing` and `Services.Racing` together with their remotes/config hierarchy; use the generated manifest for exact current paths rather than maintaining a second handwritten list here.
+The desktop/mobile free-roam UI entries and their relevant server bridge are the current isolated presentation owners. Refresh them together after any later free-roam HUD or dealership-teleport change. The listed Racing owners are the critical latest mobile/race-flow sources; refresh all scripts under `Controllers.Racing` and `Services.Racing` together with their remotes/config hierarchy. Use `docs/mobile-ui-racing-flow-handoff-2026-07-14.md` and the generated manifest for exact current paths.
 
-After dealership intro changes, refresh the active client bootstrap, intro client, and garage server controller mirror together. Phases 1-7 were installed and user-confirmed working on 2026-06-03.
+After the corrected canonical dealership/customisation rerun, refresh the active client bootstrap, garage action/session services, dealership intro, canonical entrance/presentation owners, config hierarchy and preview owners together. The `2026-07-14 20:05:44` mirror contains initial V1; the next refresh must capture the bottom-carousel, early-camera, ascending-rating and leftmost-preview markers.
 
 Important active module roots:
 

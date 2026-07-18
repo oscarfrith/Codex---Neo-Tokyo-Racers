@@ -1,3 +1,4 @@
+-- NTR_GARAGE_PREVIEW_VFX_SINGLE_OWNER_V1
 local Runtime = {}
 
 local Players = game:GetService("Players")
@@ -245,15 +246,19 @@ local function runtimeState(cache)
 	local driftLeft = readAttr(cache, "DriftingLeft") == true
 	local driftRight = readAttr(cache, "DriftingRight") == true
 
-	if preview and forcePreview then
+	if preview then
+		-- PreviewVFXMode is the only garage VFX state contract. The legacy
+		-- ForceThrustPreview flag must never turn every effect on in a preview.
+		local mode=tostring(readAttr(cache,"PreviewVFXMode") or "Idle")
+		local full=mode=="ThrustColour"
 		return {
-			Driving = true,
-			ForcePreview = true,
-			Accelerating = true,
-			Boosting = true,
-			DriftLeft = true,
-			DriftRight = true,
-			AnyDrift = true,
+			Driving=true,
+			ForcePreview=false,
+			Accelerating=full,
+			Boosting=full,
+			DriftLeft=full,
+			DriftRight=full,
+			AnyDrift=full,
 		}
 	end
 
@@ -558,6 +563,9 @@ local function trackModel(model)
 		table.insert(cache.Connections, controlRoot:GetAttributeChangedSignal("ForceThrustPreview"):Connect(function()
 			cache.LastStateKey = nil
 		end))
+		table.insert(cache.Connections, controlRoot:GetAttributeChangedSignal("PreviewVFXMode"):Connect(function()
+			cache.LastStateKey = nil
+		end))
 	end
 	table.insert(cache.Connections, model:GetAttributeChangedSignal("ThrustColor"):Connect(function()
 		cache.NeedsColour = true
@@ -622,8 +630,7 @@ local function playerVehicle()
 end
 
 local function garageOpen()
-	local gui = LOCAL_PLAYER:FindFirstChild("PlayerGui") and LOCAL_PLAYER.PlayerGui:FindFirstChild("HOVER_RACING_V2_GarageUI")
-	return gui and gui.Enabled == true
+	return LOCAL_PLAYER:GetAttribute("NTR_GarageSessionActive") == true
 end
 
 local function driveOpen()

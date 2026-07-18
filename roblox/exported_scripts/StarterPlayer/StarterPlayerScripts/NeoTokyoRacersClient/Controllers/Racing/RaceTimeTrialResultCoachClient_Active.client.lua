@@ -1,3 +1,4 @@
+-- NTR_RACING_FLOW_COUNTDOWN_QUEUE_EXIT_OWNERSHIP
 -- NTR_RACING_UI_MOBILE_PHASE1_SCALED_DESKTOP_TRIAL
 -- NTR_RACING_UI_PHASE16E_RUNTIME_OWNERSHIP
 -- Neo Tokyo Racers - Unified Race / Time Trial Results Presentation
@@ -136,7 +137,7 @@ local function renderTimeTrial(payload)
 	local global=invoke(raceRequest,"GetTimeTrialLeaderboard",{EventId=payload.EventId,VehicleTier=payload.VehicleTier,Limit=20}) local entries=type(global.Entries)=="table" and global.Entries or {}
 	if #entries==0 then UI.Label(board,{Text=global.Ok and "NO GLOBAL RECORDS YET" or "GLOBAL RANKINGS UNAVAILABLE",Size=UDim2.new(1,-10,0,60),TextSize=touch and 10 or 13,Color=C("Muted"),Role="Heading",XAlignment=Enum.TextXAlignment.Center}) end
 	local rowH=touch and 28 or 34 for index,entry in ipairs(entries) do local row=Instance.new("Frame") local you=tonumber(entry.UserId)==player.UserId row.BackgroundColor3=you and C("PanelBlue") or C("PanelSoft") row.BackgroundTransparency=you and .35 or (index%2==0 and .65 or 1) row.BorderSizePixel=0 row.Position=UDim2.fromOffset(0,(index-1)*rowH) row.Size=UDim2.new(1,-6,0,rowH) row.Parent=board local values={{tostring(entry.Rank or index),0,.12},{string.upper(tostring(entry.DisplayName or entry.Username or "PLAYER")),.12,.43},{timeText(entry.BestSeconds),.55,.25},{string.upper(tostring(entry.VehicleName or entry.VehicleId or "--")),.80,.20}} for _,v in ipairs(values) do UI.Label(row,{Text=v[1],Position=UDim2.new(v[2],6,0,0),Size=UDim2.new(v[3],-12,1,0),TextSize=touch and 8 or 10,Color=you and C("Telemetry") or C("Text"),Role="Heading"}) end end
-	footerButtons("EXIT TO START","TRY AGAIN",function() hide() fireDrivingExit() local result=invoke(raceRequest,"ExitFinishedTimeTrial",{}) if result.Ok~=true and result.Success~=true then invoke(raceRequest,"CancelTimeTrial",{}) end end,function() local result=invoke(raceRequest,"StartStagedTimeTrial",{EventId=payload.EventId,VehicleId=payload.SelectedVehicleId,LapCount=payload.LapTarget}) if result.Ok==true or result.Success==true then hide() end end)
+	footerButtons("EXIT TO START","TRY AGAIN",function() complete.Text="EXITING..." local result=invoke(raceRequest,"ExitFinishedTimeTrial",{}) if result.Ok==true or result.Success==true then fireDrivingExit() hide() else complete.Text=string.upper(tostring(result.Message or "EXIT FAILED")) end end,function() local result=invoke(raceRequest,"StartStagedTimeTrial",{EventId=payload.EventId,VehicleId=payload.SelectedVehicleId,LapCount=payload.LapTarget}) if result.Ok==true or result.Success==true then hide() end end)
 end
 
 local function renderRace(payload)
@@ -178,7 +179,7 @@ local function renderRace(payload)
 		UI.Label(row,{Text=finish,Position=UDim2.new(.55,6,0,0),Size=UDim2.new(.25,-12,1,0),TextSize=touch and 9 or 12,Color=you and C("Telemetry") or C("Text"),Role="Heading"})
 		UI.Label(row,{Text=vehicle,Position=UDim2.new(.80,6,0,0),Size=UDim2.new(.20,-12,1,0),TextSize=touch and 8 or 10,Color=you and C("Telemetry") or C("Text"),Role="Heading"})
 	end
-	footerButtons("EXIT TO START","RACE AGAIN",function() hide() invoke(queueRequest,"ExitRaceToStart",{}) end,function() local eventId=tostring(player:GetAttribute("NTR_LastRacingEventId") or payload.EventId or "") local vehicleId=tostring(player:GetAttribute("NTR_LastRacingVehicleId") or "") local root=script.Parent local start=root:FindFirstChild("StartRaceQueueRequest") if start and start:IsA("BindableEvent") and eventId~="" and vehicleId~="" then hide() start:Fire({EventId=eventId,VehicleId=vehicleId,DisplayName=payload.DisplayName}) end end)
+	footerButtons("EXIT TO START","RACE AGAIN",function() complete.Text="EXITING..." local result=invoke(queueRequest,"ExitRaceToStart",{}) if result.Ok==true or result.Success==true then hide() else complete.Text=string.upper(tostring(result.Message or "EXIT FAILED")) end end,function() local eventId=tostring(player:GetAttribute("NTR_LastRacingEventId") or payload.EventId or "") local vehicleId=tostring(player:GetAttribute("NTR_LastRacingVehicleId") or "") local root=script.Parent local start=root:FindFirstChild("StartRaceQueueRequest") if start and start:IsA("BindableEvent") and eventId~="" and vehicleId~="" then hide() start:Fire({EventId=eventId,VehicleId=vehicleId,DisplayName=payload.DisplayName}) end end)
 end
 
 local function show(mode,payload)
@@ -192,8 +193,8 @@ local function build()
 	shell=UI.Panel(overlay,{Color=C("PanelDeep"),Transparency=L("PanelTransparency",.08),StrokeColor=C("Outline"),StrokeWidth=L("ShellStrokeWidth",2),StrokeTransparency=.02,Clips=true}) shell.AnchorPoint=Vector2.new(.5,.5) shell.Position=UDim2.fromScale(.5,.5)
 	if scaledDesktop then MobileScaledDesktop.Attach(shell) elseif touch then shell.Size=UDim2.new(1,-16,1,-16) else shell.Size=UDim2.fromOffset(L("ShellWidth",1200),L("ShellHeight",720)) UI.AttachResponsiveScale(shell) end
 	local headerH=touch and 44 or L("HeaderHeight",64) title=UI.Label(shell,{Text="RESULTS",Position=UDim2.fromOffset(touch and 12 or 24,0),Size=UDim2.new(.42,0,0,headerH),TextSize=touch and 14 or T("Heading",22),Role="Heading"}) complete=UI.Label(shell,{Text="COMPLETE",Position=UDim2.new(.38,0,0,0),Size=UDim2.new(.32,0,0,headerH),TextSize=touch and 10 or 14,Color=C("Telemetry"),Role="Heading",XAlignment=Enum.TextXAlignment.Center})
-	local close=UI.Button(shell,{Text="×",Position=UDim2.new(1,touch and -48 or -64,0,0),Size=UDim2.fromOffset(touch and 48 or 64,headerH),Color=C("PanelDeep"),StrokeColor=C("Danger"),TextColor=C("Danger"),StrokeTransparency=1,TextSize=touch and 24 or 30}) close.MouseButton1Click:Connect(function() if activeMode=="Race" then invoke(queueRequest,"ExitRaceToStart",{}) else invoke(raceRequest,"ExitFinishedTimeTrial",{}) end hide() end)
-	local divider=Instance.new("Frame") divider.BorderSizePixel=0 divider.BackgroundColor3=C("Outline") divider.BackgroundTransparency=.5 divider.Position=UDim2.fromOffset(0,headerH) divider.Size=UDim2.new(1,0,0,1) divider.Parent=shell
+	-- NTR_RACING_FLOW_COUNTDOWN_QUEUE_EXIT_OWNERSHIP: results exit is footer-only.
+local divider=Instance.new("Frame") divider.BorderSizePixel=0 divider.BackgroundColor3=C("Outline") divider.BackgroundTransparency=.5 divider.Position=UDim2.fromOffset(0,headerH) divider.Size=UDim2.new(1,0,0,1) divider.Parent=shell
 	local pad=touch and 12 or L("OuterPadding",24) local footerH=touch and 40 or 48 local footerGap=touch and 10 or L("Gap",16)
 	body=Instance.new("Frame") body.BackgroundTransparency=1 body.Position=UDim2.fromOffset(pad,headerH+pad) body.Size=UDim2.new(1,-pad*2,1,-(headerH+pad*2+footerH+footerGap)) body.Parent=shell
 	footer=Instance.new("Frame") footer.BackgroundTransparency=1 footer.Position=UDim2.new(0,pad,1,-(pad+footerH)) footer.Size=UDim2.new(1,-pad*2,0,footerH) footer.Parent=shell
@@ -204,7 +205,7 @@ raceEvent.OnClientEvent:Connect(function(payload)
 	if kind=="RacePositionUpdate" then lastPositions=payload.Positions or lastPositions if activeMode=="Race" and lastResult then renderRace(lastResult) end
 	elseif kind=="RaceFinished" then show("Race",payload)
 	elseif kind=="TimeTrialFinished" then show("TimeTrial",payload)
-	elseif kind=="TimeTrialEnded" and not overlay.Visible then show("TimeTrial",{DisplayName="TIME TRIAL",EventId=tostring(player:GetAttribute("NTR_LastRacingEventId") or payload.EventId or ""),SelectedVehicleId=tostring(player:GetAttribute("NTR_LastRacingVehicleId") or ""),LapTarget=tonumber(player:GetAttribute("NTR_LastRacingLapCount")) or 1,VehicleTier="--",FinishReason="Quit",RewardAmount=0,LapTimes={},CanRetry=true})
+	elseif kind=="TimeTrialEnded" then hide() -- no fallback result reopen
 	elseif kind=="RaceStaged" or kind=="RaceStarted" or kind=="TimeTrialStaged" or kind=="TimeTrialStarted" or kind=="RaceExitedToStart" then hide() end
 end)
 

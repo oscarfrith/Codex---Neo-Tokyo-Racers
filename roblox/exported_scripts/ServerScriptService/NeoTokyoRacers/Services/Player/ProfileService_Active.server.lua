@@ -1,8 +1,10 @@
+-- NTR_UI_PERFORMANCE_HARDENING_PHASE2_V1
 -- Neo Tokyo Racers ProfileService foundation.
 -- Persistence Phase 2. Session profile lifecycle plus optional DataStore plumbing.
 -- DataStoreEnabled defaults to false through Persistence_EditAttributes.
 
 local DataStoreService = game:GetService("DataStoreService")
+local HttpService = game:GetService("HttpService")
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
@@ -68,9 +70,12 @@ local getSummaryBinding = ensureBindableFunction(bindings, "GetSummary")
 local markDirtyBinding = ensureBindableFunction(bindings, "MarkDirty")
 local saveNowBinding = ensureBindableFunction(bindings, "SaveNow")
 local importProfileSnapshotBinding = ensureBindableFunction(bindings, "ImportProfileSnapshot")
+local garageCleanupTransactionBinding = ensureBindableFunction(bindings, "GarageModuleInventoryCleanupTransaction") -- NTR_GARAGE_MODULE_INVENTORY_IMPORT_LOCK_V1
 local isLoadedBinding = ensureBindableFunction(bindings, "IsLoaded")
 
 local sessions = {}
+local garageCleanupTransactions = {}
+local profileLoadsInFlight = {} -- NTR_PROFILE_SERVICE_SINGLE_FLIGHT_LOAD_V1
 local shuttingDown = false
 
 local function getAttr(name, fallback)
@@ -113,8 +118,13 @@ local function sessionFor(player)
 	if not player then
 		return nil
 	end
-	return sessions[player.UserId]
-end
+	local userId = player.UserId
+	local cleanupTransaction = garageCleanupTransactions[userId]
+	if cleanupTransaction and cleanupTransaction.PinnedSession then
+		return cleanupTransaction.PinnedSession
+	end
+	return sessions[userId]
+end -- NTR_PROFILE_SERVICE_SESSION_OWNERSHIP_HARDENING_V1
 
 local function updateRuntimeMarker(player, session)
 	local marker = runtimeProfilesFolder:FindFirstChild(tostring(player.UserId))
@@ -137,6 +147,18 @@ local function updateRuntimeMarker(player, session)
 end
 
 local function loadProfile(player)
+	local userId = player.UserId
+	local existingSession = sessions[userId]
+	if existingSession then
+		log("PROFILE LOAD REUSED existing session player=" .. player.Name)
+		return existingSession
+	end
+	if profileLoadsInFlight[userId] then
+		warnLine("DUPLICATE PROFILE LOAD SUPPRESSED player=" .. player.Name)
+		return nil
+	end
+	profileLoadsInFlight[userId] = true
+
 	local loadedData = nil
 	local loadError = nil
 	if dataStoreEnabled() then
@@ -161,7 +183,14 @@ local function loadProfile(player)
 		LastError = loadError,
 		DataStoreEnabledAtLoad = dataStoreEnabled(),
 	}
-	sessions[player.UserId] = session
+	local activeSession = sessions[userId]
+	if activeSession then
+		profileLoadsInFlight[userId] = nil
+		warnLine("LATE PROFILE LOAD DISCARDED player=" .. player.Name)
+		return activeSession
+	end
+	sessions[userId] = session
+	profileLoadsInFlight[userId] = nil
 	player:SetAttribute("NTR_ProfileServiceLoaded", true)
 	player:SetAttribute("NTR_ProfileSchemaVersion", schema.SchemaVersion)
 	player:SetAttribute("NTR_ProfileDataStoreEnabled", dataStoreEnabled())
@@ -182,6 +211,14 @@ end
 
 local function importProfileSnapshot(player, snapshot, reason, dirty)
 	-- NTR_PERSISTENCE_PHASE5_IMPORT_PROFILE_SNAPSHOT
+	local cleanupTransaction = player and garageCleanupTransactions[player.UserId]
+	if cleanupTransaction then
+		cleanupTransaction.BlockedCount += 1
+		cleanupTransaction.LastBlockedReason = tostring(reason or "unspecified")
+		warnLine("PROFILE IMPORT BLOCKED during garage inventory cleanup player=" .. player.Name
+			.. " reason=" .. cleanupTransaction.LastBlockedReason)
+		return false, "Profile import blocked during garage inventory cleanup transaction."
+	end
 	local session = sessionFor(player)
 	if not session then
 		return false, "Profile is not loaded."
@@ -213,11 +250,17 @@ local function saveProfile(player, force)
 	end
 	session.LastSaveAttemptUnix = now
 
-	local safe, encodedOrError = schema.AssertDataStoreSafe(session.Profile)
+	local encodeStarted = os.clock()
+	local converted, encodedOrError = pcall(schema.ToDataStore, session.Profile)
+	local encoded = converted and encodedOrError or nil
+	local safe, jsonOrError = false, encodedOrError
+	if converted then safe, jsonOrError = pcall(function() return HttpService:JSONEncode(encoded) end) end
+	local encodeMilliseconds = (os.clock() - encodeStarted) * 1000
+	if encodeMilliseconds >= math.max(1, tonumber(getAttr("ProfileEncodeWarnMilliseconds", 16)) or 16) then warnLine("PROFILE ENCODE SLOW " .. string.format("%.1f", encodeMilliseconds) .. "ms player=" .. player.Name .. " reason=" .. tostring(session.LastDirtyReason or "unknown")) end
 	if not safe then
-		session.LastError = tostring(encodedOrError)
+		session.LastError = tostring(jsonOrError)
 		updateRuntimeMarker(player, session)
-		return false, "Profile is not DataStore-safe: " .. tostring(encodedOrError)
+		return false, "Profile is not DataStore-safe: " .. tostring(jsonOrError)
 	end
 
 	if not dataStoreEnabled() then
@@ -228,7 +271,6 @@ local function saveProfile(player, force)
 		return true, "DataStore disabled; dry-run save only."
 	end
 
-	local encoded = schema.ToDataStore(session.Profile)
 	local ok, result = pcall(function()
 		return getStore():UpdateAsync(profileKey(player), function()
 			return encoded
@@ -278,6 +320,36 @@ importProfileSnapshotBinding.OnInvoke = function(player, snapshot, reason, dirty
 	return importProfileSnapshot(player, snapshot, reason, dirty)
 end
 
+garageCleanupTransactionBinding.OnInvoke = function(player, mode)
+	if not player then return false, "Player is required." end
+	local userId = player.UserId
+	if mode == "Begin" then
+		if garageCleanupTransactions[userId] then
+			return false, "A garage inventory cleanup transaction is already active."
+		end
+		local currentSession = sessions[userId]
+		if not currentSession then
+			return false, "Profile is not loaded."
+		end
+		garageCleanupTransactions[userId] = {
+			BlockedCount = 0,
+			LastBlockedReason = "",
+			PinnedSession = currentSession,
+		}
+		return true, "Garage inventory cleanup transaction started."
+	elseif mode == "End" then
+		local result = garageCleanupTransactions[userId]
+		if result and result.PinnedSession then
+			result.ReplacedSessionDuringTransaction = sessions[userId] ~= result.PinnedSession
+			sessions[userId] = result.PinnedSession
+			result.PinnedSession = nil
+		end
+		garageCleanupTransactions[userId] = nil
+		return true, result or {BlockedCount = 0, LastBlockedReason = "", ReplacedSessionDuringTransaction = false}
+	end
+	return false, "Unknown garage inventory cleanup transaction mode."
+end
+
 isLoadedBinding.OnInvoke = function(player)
 	local session = sessionFor(player)
 	return session ~= nil and session.Loaded == true
@@ -324,4 +396,4 @@ game:BindToClose(function()
 	end
 end)
 
-log("ProfileService foundation active. DataStoreEnabled=" .. tostring(dataStoreEnabled()))
+log("ProfileService foundation active. DataStoreEnabled=" .. tostring(dataStoreEnabled()) .. " AutosaveSeconds=" .. tostring(autosaveSeconds()) .. " EncodeWarnMs=" .. tostring(getAttr("ProfileEncodeWarnMilliseconds",16))) 

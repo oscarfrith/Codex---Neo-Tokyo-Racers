@@ -1,5 +1,23 @@
 # Driving Mechanics
 
+## Stat-scaled post-drift reward (generated 2026-07-14; awaiting Studio test)
+
+`scripts/roblox_driving_drift_mini_boost_stat_scaling.lua` replaces the universal hard-coded reward with bounded charge quality, `BoostForce` acceleration scaling, and mapped `BoostDuration` duration scaling. Normal boost retains priority but no longer pauses/queues the reward timer. Defaults reduce the full reference reward to `72` acceleration before a bounded boost-module multiplier/final `0.85` application multiplier, and cap duration at `0.90 s`.
+
+All new tuning values and descriptions live in `VehicleDynamics_EditAttributes.03_Drifting`. Existing config values are snapshotted and verified unchanged. See `docs/driving-drift-mini-boost-stat-scaling-2026-07-14.md`.
+
+## Roblox-owned default vehicle camera (V6.1 confirmed and mirrored)
+
+Camera V4 and the attempted V5 attachment approach did not improve the reported hitch. The mirrored V4 source also moved the camera position forward by planar velocity prediction; at speed this cancelled much of the requested trailing distance and made the camera move closer while accelerating.
+
+`scripts/roblox_driving_camera_default_vehicle_system.lua` is the canonical replacement. It changes only the isolated `DrivingCameraController` and retains the existing V47 start/stop bridge. During driving it selects `CameraType.Custom` with `DriverSeat` as `CameraSubject`, then Roblox owns all continuous `Camera.CFrame`, collision, orbit, and platform-input work. The NTR controller changes only the player's locked zoom bounds and `FieldOfView`; it writes `Camera.CFrame` once on entry to establish the configured starting angle.
+
+Tune the replacement in `ReplicatedStorage.NeoTokyoRacers.Config.Runtime.DrivingCamera_Default_EditAttributes`. It contains normal/acceleration/high-speed/boost distances and FOVs, speed thresholds, response speeds, initial pitch/yaw/height/look target, zoom lock, trailer-key compatibility, and optional simple diagnostics. Every value has a paired description. The old `DrivingCamera_EditAttributes` folder remains untouched for rollback history and is not read by V6.
+
+See `docs/driving-camera-system-2026-07-14.md` for installation, verification and rollback.
+
+The user confirmed V6 removed the driving hitch. Initial Framing V6.1 then repaired the ineffective one-time angle setup by applying configured framing immediately before Roblox's camera step for only `InitialLookApplyFrames` frames, default `3`. Editing pitch, yaw, height, look-ahead, or look-target height during Play queues the same bounded one-shot operation. The user confirmed the final result looks good, and the `2026-07-17 10:13:20` mirror contains exact V6.1. Preserve this baseline.
+
 ## Current Baseline
 
 The current driving system is based on the V47/V62-style hover controller, restored and extended in later scripts.
@@ -465,6 +483,8 @@ Known attributes:
 ## 2026-07-14 Organised Driving Tuning
 
 `scripts/roblox_driving_feel_phase3_organized_tuning_values.lua` is the one-stage post-Phase-3 tuning-layout migration. It reads and preserves current live numeric values, creates ordered Acceleration, Handling, Drifting, Boost, Braking/Reverse/Parking, Grip/Hover, and Advanced folders, and places all settings directly on their category as Attributes. Every numeric setting has an adjacent `<Name>_RaisingThisDoes` string explanation. The dynamics module and controller read these category Attributes directly with legacy flat-attribute fallback. The installer accepts the original Phase 3 layout or the superseded per-setting-folder layout, preflights both related exact-source anchors before hierarchy mutation, and removes obsolete layouts only after verification. Boolean switches and metadata remain at the root.
+
+The organiser now also owns the physical TopSpeed mapping. Raw V2 TopSpeed remains the rating/module input; physics uses a configurable reference/exponent curve plus editable minimum, maximum, and absolute safety values. This replaces the raw-stat-as-MPH behavior and the hidden `260 MPH` controller/module clamps. Existing acceleration attributes are never reset: the `2026-07-14 10:29:30` pre-patch mirror records the user's live values and installer reruns prefer those category attributes over defaults.
 
 ## Current Diagrams
 

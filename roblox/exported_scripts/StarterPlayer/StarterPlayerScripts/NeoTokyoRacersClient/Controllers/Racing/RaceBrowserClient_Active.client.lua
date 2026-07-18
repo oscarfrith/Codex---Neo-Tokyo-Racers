@@ -1,3 +1,4 @@
+-- NTR_RACING_FLOW_COUNTDOWN_QUEUE_EXIT_OWNERSHIP
 -- NTR_RACING_UI_MOBILE_PHASE1_SCALED_DESKTOP_TRIAL
 -- NTR_RACING_UI_PHASE16E_RUNTIME_OWNERSHIP
 -- Neo Tokyo Racers - Racing UI Phase 1 Race Browser
@@ -493,20 +494,8 @@ local function buildGui()
 		TextSize = touch and 16 or T("Heading", 22),
 		Role = "Heading",
 	})
-	local close = UI.Button(shell, {
-		Name = "Close",
-		Text = "×",
-		Position = UDim2.new(1, touch and -48 or -64, 0, 0),
-		Size = UDim2.fromOffset(touch and 48 or 64, headerH),
-		Color = C("PanelDeep"),
-		StrokeColor = C("Danger"),
-		FocusColor = C("Danger"),
-		TextColor = C("Danger"),
-		TextSize = touch and 24 or 30,
-		StrokeTransparency = 1,
-	})
-	close.MouseButton1Click:Connect(function() setOpen(false) end)
-	local divider = Instance.new("Frame")
+	-- NTR_RACING_FLOW_COUNTDOWN_QUEUE_EXIT_OWNERSHIP: browser exit is footer-only.
+local divider = Instance.new("Frame")
 	divider.BorderSizePixel = 0
 	divider.BackgroundColor3 = C("Outline")
 	divider.BackgroundTransparency = 0.5

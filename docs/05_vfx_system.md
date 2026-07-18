@@ -1,5 +1,17 @@
 # VFX System
 
+## Confirmed Garage Preview VFX Ownership — 2026-07-18
+
+Garage preview VFX now have one template attachment and state owner: `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Visuals.CachedThrustVisualRuntime`.
+
+- `PreviewVFXMode="Idle"` keeps engine idle and hover presentation active while acceleration, boost and stabiliser effects are off.
+- `PreviewVFXMode="ThrustColour"` enables acceleration, boost and stabiliser effects for thrust-colour editing.
+- `ThrustPreviewController_Active` remains enabled for colour/input compatibility but may not attach or update another `VehicleVFXController`.
+- `GaragePreviewPresentationController_Active` keeps `ForceThrustPreview=false`; that attribute is no longer the garage preview mode contract.
+- `scripts/roblox_ui_garage_preview_vfx_single_owner_installer.lua` is the final confirmed ownership repair. The earlier camera/VFX V1 and name-based V1.1 gating are superseded as VFX ownership solutions, although their confirmed camera changes remain in the live source.
+
+The refreshed `2026-07-18 23:14:48` mirror contains `NTR_GARAGE_PREVIEW_VFX_SINGLE_OWNER_V1` in the cached runtime, preview bridge and garage presentation owner. Do not add another preview attachment, rescan/rebuild loop or enabled-state writer.
+
 ## Current Direction
 
 The VFX system is intended to support:

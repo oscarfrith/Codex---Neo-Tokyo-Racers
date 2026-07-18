@@ -160,6 +160,8 @@ function GaragePropertyMenuController.Render(ctx)
 				end
 				ui.Subtitle.Text = "Garage property purchased."
 				ctx.renderGarageCapacityPanel()
+				-- NTR_GARAGE_PROPERTY_CANONICAL_REFRESH_V1
+				if ctx.onProfileChanged then ctx.onProfileChanged() end
 				GaragePropertyMenuController.Render(ctx)
 			else
 				ui.Subtitle.Text = result.Message or "Could not buy this garage property."

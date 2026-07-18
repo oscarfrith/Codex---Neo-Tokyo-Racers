@@ -119,9 +119,7 @@ end
 
 -- NTR_PERSISTENCE_PHASE17_GARAGE_MENU_SPRINT_GUARD
 local function garageMenuOpen()
-	local playerGui = PLAYER:FindFirstChild("PlayerGui")
-	local gui = playerGui and playerGui:FindFirstChild("HOVER_RACING_V2_GarageUI")
-	return gui and gui:IsA("ScreenGui") and gui.Enabled == true
+	return PLAYER:GetAttribute("NTR_GarageSessionActive") == true
 end
 
 local function shouldSprint()

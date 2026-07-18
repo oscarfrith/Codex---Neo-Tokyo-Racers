@@ -161,7 +161,7 @@ Good signs:
 
 ## Current Mirror Status
 
-The Studio mirror was refreshed on 2026-06-30 at 17:37:33 and imported 65 scripts. `roblox/studio_snapshot/hierarchy.md` is populated, and the exported runtime now includes the confirmed mobile thumbstick, UI theme, lighting, and VFX delayed attach-once changes.
+The Studio mirror was refreshed on 2026-07-14 at 20:05:44 and imported 128 scripts. It contains the initial canonical garage owners and bridges. That mirror exposed the remaining legacy layout/camera ownership, and is the source baseline for the corrected rerun of the same installer.
 
 The fresh mirror also shows active loose `StarterPlayerScripts` filming/camera helpers (`LocalScript`, `TrailerMode.client.lua`, and `TrailerShot01Camera`). Treat them as review items before publishing a normal gameplay build unless they are intentionally kept enabled.
 
@@ -205,6 +205,20 @@ Adds a local receiver, Studio Command Bar exporter, and importer for capturing t
 - The importer refreshes the local mirror folders so stale removed Studio paths do not remain in GitHub after a fresh export.
 - When a script is intentionally changed in Studio, run the export/import workflow again.
 - If mirror import fails after all chunks arrive, inspect the receiver error before asking for repeated exports. The receiver now supports in-memory import when raw paste-file writing fails.
+
+## Current Pending Refresh: Canonical Garage After Installation
+
+The `2026-07-14 15:34:29` snapshot contains the required mobile/racing source markers:
+
+```text
+NTR_RACING_FLOW_COUNTDOWN_VISUAL_V2
+NTR_RACING_FLOW_COUNTDOWN_GUIDE_GATE_V2
+NTR_MOBILE_FREEROAM_UI_PHASE1O_MAJOR_MENU_SUPPRESSION
+```
+
+After installing `scripts/roblox_ui_garage_canonical_experience.lua`, refresh again and confirm the new garage session, entrance and presentation owners plus the `NTR_GARAGE_CANONICAL_EXPERIENCE_V1` bridges are present before generating any repair.
+
+Leave `docs/studio-full-export-paste.txt` unstaged as usual.
 
 ## Older Script-Only Workflow
 

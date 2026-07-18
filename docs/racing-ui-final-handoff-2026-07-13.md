@@ -1,5 +1,7 @@
 # Racing UI Final Handoff
 
+> Superseded for current mobile/racing-flow work by `docs/mobile-ui-racing-flow-handoff-2026-07-14.md`. Retain this document for the confirmed Phase 16F PC architecture and performance history.
+
 **Date:** 2026-07-13  
 **Status:** Racing UI through Phase 16F confirmed working  
 **Baseline:** Phase 4A PC free-roam presentation plus the current isolated Racing presentation

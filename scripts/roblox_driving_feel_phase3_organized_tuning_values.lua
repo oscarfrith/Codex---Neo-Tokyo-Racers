@@ -6,7 +6,8 @@
 --   SettingName (number) / SettingName_RaisingThisDoes (string)
 -- Existing category values, nested organiser values, and flat live attributes
 -- all win over defaults in that order. Reruns preserve organised values.
--- This script creates no backups and changes no driving formula.
+-- This script creates no backups. It preserves every existing tuning number and
+-- adds only the configurable raw-to-physical TopSpeed mapping approved by the user.
 
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
@@ -181,6 +182,40 @@ local function numberAttribute(folder, name, fallback, minimum, maximum)
 	return value
 end]]
 
+local moduleTopSpeedOld = [[	local result = {
+		TopSpeed = value("TopSpeed", "TopSpeed", 126), EngineOutput = value("EngineOutput", "EngineOutput", 42), Weight = value("Weight", "Weight", 118),]]
+
+local moduleTopSpeedNew = [[	-- NTR_DRIVING_FEEL_PHYSICAL_TOP_SPEED_CURVE
+	local rawTopSpeed = value("TopSpeed", "TopSpeed", 126)
+	local physicalTopSpeed = rawTopSpeed
+	if boolAttribute(config, "Enabled", true) then
+		local rawReference = numberAttribute(config, "TopSpeedRawReference", 137, 1, 1000)
+		local physicalAtReference = numberAttribute(config, "PhysicalTopSpeedAtReferenceMph", 140, 20, 500)
+		local exponent = numberAttribute(config, "PhysicalTopSpeedExponent", 0.55, 0.05, 2)
+		physicalTopSpeed = physicalAtReference * (math.max(rawTopSpeed, 0.001) / rawReference) ^ exponent
+		local minimumMph = numberAttribute(config, "PhysicalTopSpeedMinMph", 60, 20, 300)
+		local maximumMph = numberAttribute(config, "PhysicalTopSpeedMaxMph", 300, 40, 500)
+		local safetyMph = numberAttribute(config, "AbsoluteTopSpeedSafetyMph", 320, 80, 500)
+		local upperMph = math.min(maximumMph, safetyMph)
+		physicalTopSpeed = math.clamp(physicalTopSpeed, math.min(minimumMph, upperMph), upperMph)
+	end
+	if vehicle and boolAttribute(config, "DebugAttributes", true) then
+		vehicle:SetAttribute("DynamicsRawTopSpeed", rawTopSpeed)
+		vehicle:SetAttribute("DynamicsMappedTopSpeedMph", physicalTopSpeed)
+	end
+	local result = {
+		TopSpeed = physicalTopSpeed, RawTopSpeed = rawTopSpeed, EngineOutput = value("EngineOutput", "EngineOutput", 42), Weight = value("Weight", "Weight", 118),]]
+
+local moduleLimitOld = [[	local maxMph = math.clamp(tonumber(params.MaxMph) or stats.TopSpeed or 126, 40, 260)]]
+local moduleLimitNew = [[	-- NTR_DRIVING_FEEL_PHYSICAL_TOP_SPEED_SAFETY_LIMIT
+	local absoluteTopSpeedSafetyMph = numberAttribute(config, "AbsoluteTopSpeedSafetyMph", 320, 80, 500)
+	local maxMph = math.clamp(tonumber(params.MaxMph) or stats.TopSpeed or 126, 40, absoluteTopSpeedSafetyMph)]]
+
+local controllerLimitOld = [[		local maxMph = math.clamp(dynamicsStats.TopSpeed, 40, 260)]]
+local controllerLimitNew = [[		-- NTR_DRIVING_FEEL_PHYSICAL_TOP_SPEED_CONTROLLER_LIMIT
+		local absoluteTopSpeedSafetyMph = configNumber("VehicleDynamics_EditAttributes", "AbsoluteTopSpeedSafetyMph", 320, 80, 500)
+		local maxMph = math.clamp(dynamicsStats.TopSpeed, 40, absoluteTopSpeedSafetyMph)]]
+
 local controllerHasFlat = string.find(driving.Source, "NTR_DRIVING_FEEL_FLAT_CATEGORY_CONFIG_READER", 1, true) ~= nil
 local moduleHasFlat = string.find(dynamics.Source, "NTR_DRIVING_FEEL_FLAT_CATEGORY_CONFIG_READER", 1, true) ~= nil
 local controllerHasNested = string.find(driving.Source, "NTR_DRIVING_FEEL_ORGANISED_CONFIG_READER", 1, true) ~= nil
@@ -194,7 +229,17 @@ elseif not controllerHasFlat then
 	assert(countPlain(driving.Source, controllerOld) == 1, "Controller config reader differs from the confirmed Phase 3 shape")
 	assert(countPlain(dynamics.Source, moduleOld) == 1, "Dynamics config reader differs from the confirmed Phase 3 shape")
 end
-info("PASS - Phase 3 markers and both flat-category reader anchors preflighted.")
+local moduleHasTopSpeedCurve = string.find(dynamics.Source, "NTR_DRIVING_FEEL_PHYSICAL_TOP_SPEED_CURVE", 1, true) ~= nil
+local moduleHasTopSpeedLimit = string.find(dynamics.Source, "NTR_DRIVING_FEEL_PHYSICAL_TOP_SPEED_SAFETY_LIMIT", 1, true) ~= nil
+local controllerHasTopSpeedLimit = string.find(driving.Source, "NTR_DRIVING_FEEL_PHYSICAL_TOP_SPEED_CONTROLLER_LIMIT", 1, true) ~= nil
+assert(moduleHasTopSpeedCurve == moduleHasTopSpeedLimit and moduleHasTopSpeedLimit == controllerHasTopSpeedLimit,
+	"Partial physical top-speed install detected; refresh the mirror before repair")
+if not moduleHasTopSpeedCurve then
+	assert(countPlain(dynamics.Source, moduleTopSpeedOld) == 1, "Dynamics TopSpeed result anchor differs from the refreshed mirror")
+	assert(countPlain(dynamics.Source, moduleLimitOld) == 1, "Dynamics 260 MPH limiter anchor differs from the refreshed mirror")
+	assert(countPlain(driving.Source, controllerLimitOld) == 1, "Controller 260 MPH limiter anchor differs from the refreshed mirror")
+end
+info("PASS - Phase 3 readers and all physical top-speed anchors preflighted.")
 
 local C = {
 	ACCELERATION = "01_Acceleration",
@@ -207,6 +252,17 @@ local C = {
 }
 for _, categoryName in ipairs({C.ACCELERATION,C.HANDLING,C.DRIFTING,C.BOOST,C.BRAKING,C.GRIP,C.ADVANCED}) do
 	ensureFolder(config, categoryName)
+end
+local preexistingCategoryNumbers, preexistingCategoryNumberCount = {}, 0
+for _, category in ipairs(config:GetChildren()) do
+	if category:IsA("Folder") then
+		for name, value in pairs(category:GetAttributes()) do
+			if typeof(value) == "number" then
+				preexistingCategoryNumbers[category.Name .. "\0" .. name] = {Category = category, Name = name, Value = value}
+				preexistingCategoryNumberCount += 1
+			end
+		end
+	end
 end
 
 -- name, category, effective Phase 3 fallback, effect of raising the value
@@ -231,6 +287,12 @@ local definitions = {
 	{"AerodynamicDragStatExponent",C.ACCELERATION,0.35,"Makes the vehicle Drag stat influence air resistance more strongly."},
 	{"DragReference",C.ACCELERATION,50,"Requires a higher Drag stat to reach the neutral air-resistance point."},
 	{"SoftLimiterStrength",C.ACCELERATION,2.5,"Pushes the vehicle back under its forward or reverse speed limit more strongly."},
+	{"PhysicalTopSpeedAtReferenceMph",C.ACCELERATION,140,"Raises the physical top speed of every vehicle around the reference stat."},
+	{"TopSpeedRawReference",C.ACCELERATION,137,"Reduces mapped physical speed for the same raw TopSpeed stat."},
+	{"PhysicalTopSpeedExponent",C.ACCELERATION,0.55,"Widens tier speed differences: below-reference vehicles become slower and above-reference vehicles become faster."},
+	{"PhysicalTopSpeedMinMph",C.ACCELERATION,60,"Raises the lowest physical top speed the curve can produce."},
+	{"PhysicalTopSpeedMaxMph",C.ACCELERATION,300,"Raises the normal configurable ceiling for mapped physical top speed."},
+	{"AbsoluteTopSpeedSafetyMph",C.ACCELERATION,320,"Raises the final safety ceiling, but only when PhysicalTopSpeedMaxMph is also high enough."},
 
 	{"BasePhysicalSteeringResponse",C.HANDLING,58,"Makes every vehicle turn more quickly."},
 	{"SteeringResponseReference",C.HANDLING,50,"Requires more SteeringResponse stat to reach neutral steering."},
@@ -259,6 +321,26 @@ local definitions = {
 	{"DriftVelocityAlignmentRate",C.DRIFTING,2.0,"Pulls vehicle momentum around the direction of the corner more quickly."},
 	{"DriftVelocityAlignmentMaxAcceleration",C.DRIFTING,30,"Allows a stronger maximum momentum-alignment force during a drift."},
 	{"DriftThrottleMinimum",C.DRIFTING,0.05,"Requires more accelerator input before drift drive and alignment activate."},
+	{"DriftMiniBoostStatScalingEnabled",C.DRIFTING,1,"Enables the new charge, BoostForce, and BoostDuration scaling when raised to 1; set 0 for the legacy reward formula."},
+	{"DriftMiniBoostExpiresDuringNormalBoost",C.DRIFTING,1,"Makes the post-drift reward expire instead of queueing behind normal boost when raised to 1."},
+	{"DriftMiniBoostMinimumCharge",C.DRIFTING,0.72,"Requires more earned drift charge before any post-drift reward is granted."},
+	{"DriftMiniBoostChargeForFullReward",C.DRIFTING,3.25,"Requires a longer or faster-charging drift to reach the full reward."},
+	{"DriftMiniBoostRewardExponent",C.DRIFTING,0.85,"Makes partially charged drifts produce less duration and force."},
+	{"DriftMiniBoostBaseMinDurationSeconds",C.DRIFTING,0.18,"Makes the shortest charge-based post-drift boost last longer."},
+	{"DriftMiniBoostBaseMaxDurationSeconds",C.DRIFTING,0.70,"Makes a fully charged reference post-drift boost last longer before stat scaling."},
+	{"DriftMiniBoostBoostDurationReferenceSeconds",C.DRIFTING,3.0,"Requires a higher mapped BoostDuration to reach the neutral duration multiplier."},
+	{"DriftMiniBoostBoostDurationExponent",C.DRIFTING,0.50,"Widens post-drift duration differences between low- and high-duration boost modules."},
+	{"DriftMiniBoostBoostDurationMinMultiplier",C.DRIFTING,0.80,"Raises the duration floor for low-duration boost modules."},
+	{"DriftMiniBoostBoostDurationMaxMultiplier",C.DRIFTING,1.20,"Raises the duration multiplier ceiling for high-duration boost modules."},
+	{"DriftMiniBoostAbsoluteMinDurationSeconds",C.DRIFTING,0.12,"Raises the absolute shortest post-drift boost duration."},
+	{"DriftMiniBoostAbsoluteMaxDurationSeconds",C.DRIFTING,0.90,"Raises the final safety cap for post-drift boost duration."},
+	{"DriftMiniBoostMinAcceleration",C.DRIFTING,32,"Makes the weakest qualifying post-drift boost accelerate harder."},
+	{"DriftMiniBoostMaxAcceleration",C.DRIFTING,72,"Makes a fully charged reference post-drift boost accelerate harder."},
+	{"DriftMiniBoostBoostForceReference",C.DRIFTING,30,"Requires a higher BoostForce stat to reach the neutral post-drift force multiplier."},
+	{"DriftMiniBoostBoostForceExponent",C.DRIFTING,0.55,"Widens post-drift power differences between low- and high-force boost modules."},
+	{"DriftMiniBoostBoostForceMinMultiplier",C.DRIFTING,0.65,"Raises the post-drift power floor for low-force boost modules."},
+	{"DriftMiniBoostBoostForceMaxMultiplier",C.DRIFTING,1.25,"Raises the post-drift power multiplier ceiling for high-force boost modules."},
+	{"DriftMiniBoostForceApplicationMultiplier",C.DRIFTING,0.85,"Raises the final physical force applied by every post-drift boost."},
 
 	{"BoostDurationReferenceSeconds",C.BOOST,3.0,"Makes the reference boost charge last longer."},
 	{"BoostDurationExponent",C.BOOST,0.32,"Widens boost-duration differences between low- and high-stat vehicles."},
@@ -358,7 +440,12 @@ for name, migrated in pairs(migratedValues) do
 	assert(migrated.Category:GetAttribute(name) == migrated.Value, "Categorised value verification failed for " .. name)
 	assert(typeof(migrated.Category:GetAttribute(name .. "_RaisingThisDoes")) == "string", "Description verification failed for " .. name)
 end
+for _, preserved in pairs(preexistingCategoryNumbers) do
+	assert(preserved.Category:GetAttribute(preserved.Name) == preserved.Value,
+		"Existing edited value was altered: " .. preserved.Category.Name .. "." .. preserved.Name)
+end
 info("PASS - Preserved and flattened " .. tostring(#definitions) .. " numeric settings (" .. tostring(createdAttributes) .. " category attributes newly created).")
+info("PASS - Verified " .. tostring(preexistingCategoryNumberCount) .. " pre-existing category numbers were unchanged.")
 
 if not controllerHasFlat then
 	local controllerAnchor = controllerHasNested and controllerNested or controllerOld
@@ -369,8 +456,19 @@ if not controllerHasFlat then
 	dynamics.Source = patchedDynamics
 end
 
+if not moduleHasTopSpeedCurve then
+	local patchedDynamics = replacePlainOnce(dynamics.Source, moduleTopSpeedOld, moduleTopSpeedNew, "physical TopSpeed curve")
+	patchedDynamics = replacePlainOnce(patchedDynamics, moduleLimitOld, moduleLimitNew, "configurable dynamics top-speed safety limit")
+	local patchedController = replacePlainOnce(driving.Source, controllerLimitOld, controllerLimitNew, "mapped controller top-speed limit")
+	dynamics.Source = patchedDynamics
+	driving.Source = patchedController
+end
+
 assert(string.find(driving.Source, "NTR_DRIVING_FEEL_FLAT_CATEGORY_CONFIG_READER", 1, true), "Controller flat-category reader marker missing")
 assert(string.find(dynamics.Source, "NTR_DRIVING_FEEL_FLAT_CATEGORY_CONFIG_READER", 1, true), "Dynamics flat-category reader marker missing")
+assert(string.find(dynamics.Source, "NTR_DRIVING_FEEL_PHYSICAL_TOP_SPEED_CURVE", 1, true), "Physical top-speed curve marker missing")
+assert(string.find(dynamics.Source, "NTR_DRIVING_FEEL_PHYSICAL_TOP_SPEED_SAFETY_LIMIT", 1, true), "Dynamics top-speed safety marker missing")
+assert(string.find(driving.Source, "NTR_DRIVING_FEEL_PHYSICAL_TOP_SPEED_CONTROLLER_LIMIT", 1, true), "Controller top-speed marker missing")
 
 -- Category Attributes are now authoritative. Clear migrated flat numbers and remove
 -- only the obsolete per-setting folders created by the V1 organiser.
@@ -396,5 +494,6 @@ config:SetAttribute("OrganisedTuningVersion", "PHASE3_FLAT_CATEGORY_ATTRIBUTES_V
 config:SetAttribute("OrganisedTuningNote", "Select one category Folder and edit its numeric Attributes. Each matching _RaisingThisDoes string explains the higher-value effect.")
 
 info("PASS - Flat category Attributes are now the numeric source of truth; removed " .. tostring(removedSettingFolders) .. " obsolete setting folders.")
-info("PASS - Existing edited numbers were preserved exactly and no driving formula was changed.")
+info("PASS - Existing edited numbers were preserved exactly; no acceleration, handling, drift, boost, braking, grip, or hover value was overwritten.")
+info("PASS - Added configurable raw-to-physical top-speed mapping and removed the hidden fixed 260 MPH cap.")
 info("Restart Play and verify acceleration, handling, drifting, boost, braking, reverse, grip, and hover behavior.")

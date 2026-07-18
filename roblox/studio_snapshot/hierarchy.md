@@ -1,7 +1,7 @@
 # Roblox Studio Hierarchy Snapshot
 
-Generated in Studio: 2026-07-14 10:29:30
-Scripts exported: 124
+Generated in Studio: 2026-07-18 23:48:19
+Scripts exported: 140
 Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, StarterGui, Workspace, ServerStorage, Lighting
 
 ## Hierarchy
@@ -527,7 +527,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - ModuleRoot_DoNotRename (Part) [1 attrs]
                       - MountAttachment (Attachment)
                       - VFX_BoostJet_Back (Attachment) [2 attrs]
-                  - MODULE_BOOST_BRUISER_01_STANDARD (Model) [66 attrs]
+                  - MODULE_BOOST_BRUISER_01_STANDARD (Model) [69 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - boost detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -538,6 +538,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                       - boost thrust neon (MeshPart) [1 attrs]
                     - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - VehiclePerformanceV2UpgradePaths (Folder)
+                      - Burst (Folder) [5 attrs]
+                      - Endurance (Folder) [6 attrs]
+                      - Recovery (Folder) [7 attrs]
                     - ModuleRoot_DoNotRename (Part) [1 attrs]
                       - MountAttachment (Attachment)
                       - VFX_BoostJet_Back (Attachment) [2 attrs]
@@ -578,7 +582,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - ModuleRoot_DoNotRename (Part) [1 attrs]
                       - MountAttachment (Attachment)
                       - VFX_BoostJet_Back (Attachment) [2 attrs]
-                  - MODULE_BOOST_BRUISER_02_STANDARD (Model) [66 attrs]
+                  - MODULE_BOOST_BRUISER_02_STANDARD (Model) [69 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - boost detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -589,6 +593,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                       - boost thrust neon (MeshPart) [1 attrs]
                     - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - VehiclePerformanceV2UpgradePaths (Folder)
+                      - Burst (Folder) [5 attrs]
+                      - Endurance (Folder) [6 attrs]
+                      - Recovery (Folder) [7 attrs]
                     - ModuleRoot_DoNotRename (Part) [1 attrs]
                       - MountAttachment (Attachment)
                       - VFX_BoostJet_Back (Attachment) [2 attrs]
@@ -629,7 +637,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - ModuleRoot_DoNotRename (Part) [1 attrs]
                       - MountAttachment (Attachment)
                       - VFX_BoostJet_Back (Attachment) [2 attrs]
-                  - MODULE_BOOST_BRUISER_03_STANDARD (Model) [66 attrs]
+                  - MODULE_BOOST_BRUISER_03_STANDARD (Model) [69 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - boost detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -640,6 +648,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                       - boost thrust neon (MeshPart) [1 attrs]
                     - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - VehiclePerformanceV2UpgradePaths (Folder)
+                      - Burst (Folder) [5 attrs]
+                      - Endurance (Folder) [6 attrs]
+                      - Recovery (Folder) [7 attrs]
                     - ModuleRoot_DoNotRename (Part) [1 attrs]
                       - MountAttachment (Attachment)
                       - VFX_BoostJet_Back (Attachment) [2 attrs]
@@ -680,7 +692,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - ModuleRoot_DoNotRename (Part) [1 attrs]
                       - MountAttachment (Attachment)
                       - VFX_BoostJet_Back (Attachment) [2 attrs]
-                  - MODULE_BOOST_BRUISER_04_STANDARD (Model) [66 attrs]
+                  - MODULE_BOOST_BRUISER_04_STANDARD (Model) [69 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - boost detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -691,6 +703,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                       - boost thrust neon (MeshPart) [1 attrs]
                     - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - VehiclePerformanceV2UpgradePaths (Folder)
+                      - Burst (Folder) [5 attrs]
+                      - Endurance (Folder) [6 attrs]
+                      - Recovery (Folder) [7 attrs]
                     - ModuleRoot_DoNotRename (Part) [1 attrs]
                       - MountAttachment (Attachment)
                       - VFX_BoostJet_Back (Attachment) [2 attrs]
@@ -731,7 +747,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - ModuleRoot_DoNotRename (Part) [1 attrs]
                       - MountAttachment (Attachment)
                       - VFX_BoostJet_Back (Attachment) [2 attrs]
-                  - MODULE_BOOST_BRUISER_05_STANDARD (Model) [66 attrs]
+                  - MODULE_BOOST_BRUISER_05_STANDARD (Model) [69 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - boost detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -742,6 +758,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                       - boost thrust neon (MeshPart) [1 attrs]
                     - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - VehiclePerformanceV2UpgradePaths (Folder)
+                      - Burst (Folder) [5 attrs]
+                      - Endurance (Folder) [6 attrs]
+                      - Recovery (Folder) [7 attrs]
                     - ModuleRoot_DoNotRename (Part) [1 attrs]
                       - MountAttachment (Attachment)
                       - VFX_BoostJet_Back (Attachment) [2 attrs]
@@ -782,7 +802,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - ModuleRoot_DoNotRename (Part) [1 attrs]
                       - MountAttachment (Attachment)
                       - VFX_BoostJet_Back (Attachment) [2 attrs]
-                  - MODULE_BOOST_BRUISER_06_STANDARD (Model) [66 attrs]
+                  - MODULE_BOOST_BRUISER_06_STANDARD (Model) [69 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - boost detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -793,6 +813,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                       - boost thrust neon (MeshPart) [1 attrs]
                     - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - VehiclePerformanceV2UpgradePaths (Folder)
+                      - Burst (Folder) [5 attrs]
+                      - Endurance (Folder) [6 attrs]
+                      - Recovery (Folder) [7 attrs]
                     - ModuleRoot_DoNotRename (Part) [1 attrs]
                       - MountAttachment (Attachment)
                       - VFX_BoostJet_Back (Attachment) [2 attrs]
@@ -896,7 +920,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - ThrustAttachment (Attachment)
                       - VFX_EngineJet_Left (Attachment) [2 attrs]
                       - VFX_EngineJet_Right (Attachment) [2 attrs]
-                  - MODULE_ENGINE_BRUISER_01_STANDARD (Model) [64 attrs]
+                  - MODULE_ENGINE_BRUISER_01_STANDARD (Model) [67 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - engine a detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -908,6 +932,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                       - engine a thruster neon (MeshPart) [1 attrs]
                     - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - VehiclePerformanceV2UpgradePaths (Folder)
+                      - Efficiency (Folder) [6 attrs]
+                      - Output (Folder) [5 attrs]
+                      - Velocity (Folder) [5 attrs]
                     - ModuleRoot_DoNotRename (Part) [1 attrs]
                       - MountAttachment (Attachment)
                       - ThrustAttachment (Attachment)
@@ -956,7 +984,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - ThrustAttachment (Attachment)
                       - VFX_EngineJet_Left (Attachment) [2 attrs]
                       - VFX_EngineJet_Right (Attachment) [2 attrs]
-                  - MODULE_ENGINE_BRUISER_02_STANDARD (Model) [64 attrs]
+                  - MODULE_ENGINE_BRUISER_02_STANDARD (Model) [67 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - engine a detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -968,6 +996,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                       - engine a thruster neon (MeshPart) [1 attrs]
                     - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - VehiclePerformanceV2UpgradePaths (Folder)
+                      - Efficiency (Folder) [6 attrs]
+                      - Output (Folder) [5 attrs]
+                      - Velocity (Folder) [5 attrs]
                     - ModuleRoot_DoNotRename (Part) [1 attrs]
                       - MountAttachment (Attachment)
                       - ThrustAttachment (Attachment)
@@ -1016,7 +1048,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - ThrustAttachment (Attachment)
                       - VFX_EngineJet_Left (Attachment) [2 attrs]
                       - VFX_EngineJet_Right (Attachment) [2 attrs]
-                  - MODULE_ENGINE_BRUISER_03_STANDARD (Model) [64 attrs]
+                  - MODULE_ENGINE_BRUISER_03_STANDARD (Model) [67 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - engine a detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -1028,6 +1060,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                       - engine a thruster neon (MeshPart) [1 attrs]
                     - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - VehiclePerformanceV2UpgradePaths (Folder)
+                      - Efficiency (Folder) [6 attrs]
+                      - Output (Folder) [5 attrs]
+                      - Velocity (Folder) [5 attrs]
                     - ModuleRoot_DoNotRename (Part) [1 attrs]
                       - MountAttachment (Attachment)
                       - ThrustAttachment (Attachment)
@@ -1076,7 +1112,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - ThrustAttachment (Attachment)
                       - VFX_EngineJet_Left (Attachment) [2 attrs]
                       - VFX_EngineJet_Right (Attachment) [2 attrs]
-                  - MODULE_ENGINE_BRUISER_04_STANDARD (Model) [64 attrs]
+                  - MODULE_ENGINE_BRUISER_04_STANDARD (Model) [67 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - engine a detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -1088,6 +1124,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                       - engine a thruster neon (MeshPart) [1 attrs]
                     - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - VehiclePerformanceV2UpgradePaths (Folder)
+                      - Efficiency (Folder) [6 attrs]
+                      - Output (Folder) [5 attrs]
+                      - Velocity (Folder) [5 attrs]
                     - ModuleRoot_DoNotRename (Part) [1 attrs]
                       - MountAttachment (Attachment)
                       - ThrustAttachment (Attachment)
@@ -1136,7 +1176,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - ThrustAttachment (Attachment)
                       - VFX_EngineJet_Left (Attachment) [2 attrs]
                       - VFX_EngineJet_Right (Attachment) [2 attrs]
-                  - MODULE_ENGINE_BRUISER_05_STANDARD (Model) [64 attrs]
+                  - MODULE_ENGINE_BRUISER_05_STANDARD (Model) [67 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - engine a detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -1148,6 +1188,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                       - engine a thruster neon (MeshPart) [1 attrs]
                     - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - VehiclePerformanceV2UpgradePaths (Folder)
+                      - Efficiency (Folder) [6 attrs]
+                      - Output (Folder) [5 attrs]
+                      - Velocity (Folder) [5 attrs]
                     - ModuleRoot_DoNotRename (Part) [1 attrs]
                       - MountAttachment (Attachment)
                       - ThrustAttachment (Attachment)
@@ -1196,7 +1240,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - ThrustAttachment (Attachment)
                       - VFX_EngineJet_Left (Attachment) [2 attrs]
                       - VFX_EngineJet_Right (Attachment) [2 attrs]
-                  - MODULE_ENGINE_BRUISER_06_STANDARD (Model) [64 attrs]
+                  - MODULE_ENGINE_BRUISER_06_STANDARD (Model) [67 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - engine a detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -1208,6 +1252,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                       - engine a thruster neon (MeshPart) [1 attrs]
                     - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - VehiclePerformanceV2UpgradePaths (Folder)
+                      - Efficiency (Folder) [6 attrs]
+                      - Output (Folder) [5 attrs]
+                      - Velocity (Folder) [5 attrs]
                     - ModuleRoot_DoNotRename (Part) [1 attrs]
                       - MountAttachment (Attachment)
                       - ThrustAttachment (Attachment)
@@ -1322,7 +1370,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - ThrustAttachment (Attachment)
                       - VFX_EngineJet_Left (Attachment) [2 attrs]
                       - VFX_EngineJet_Right (Attachment) [2 attrs]
-                  - MODULE_ENGINE_B_BRUISER_01_STANDARD (Model) [64 attrs]
+                  - MODULE_ENGINE_B_BRUISER_01_STANDARD (Model) [67 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - engine b detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -1334,6 +1382,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                       - engine b thruster neon (MeshPart) [1 attrs]
                     - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - VehiclePerformanceV2UpgradePaths (Folder)
+                      - Efficiency (Folder) [6 attrs]
+                      - Output (Folder) [5 attrs]
+                      - Velocity (Folder) [5 attrs]
                     - ModuleRoot_DoNotRename (Part) [1 attrs]
                       - MountAttachment (Attachment)
                       - ThrustAttachment (Attachment)
@@ -1382,7 +1434,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - ThrustAttachment (Attachment)
                       - VFX_EngineJet_Left (Attachment) [2 attrs]
                       - VFX_EngineJet_Right (Attachment) [2 attrs]
-                  - MODULE_ENGINE_B_BRUISER_02_STANDARD (Model) [64 attrs]
+                  - MODULE_ENGINE_B_BRUISER_02_STANDARD (Model) [67 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - engine b detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -1394,6 +1446,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                       - engine b thruster neon (MeshPart) [1 attrs]
                     - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - VehiclePerformanceV2UpgradePaths (Folder)
+                      - Efficiency (Folder) [6 attrs]
+                      - Output (Folder) [5 attrs]
+                      - Velocity (Folder) [5 attrs]
                     - ModuleRoot_DoNotRename (Part) [1 attrs]
                       - MountAttachment (Attachment)
                       - ThrustAttachment (Attachment)
@@ -1442,7 +1498,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - ThrustAttachment (Attachment)
                       - VFX_EngineJet_Left (Attachment) [2 attrs]
                       - VFX_EngineJet_Right (Attachment) [2 attrs]
-                  - MODULE_ENGINE_B_BRUISER_03_STANDARD (Model) [64 attrs]
+                  - MODULE_ENGINE_B_BRUISER_03_STANDARD (Model) [67 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - engine b detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -1454,6 +1510,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                       - engine b thruster neon (MeshPart) [1 attrs]
                     - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - VehiclePerformanceV2UpgradePaths (Folder)
+                      - Efficiency (Folder) [6 attrs]
+                      - Output (Folder) [5 attrs]
+                      - Velocity (Folder) [5 attrs]
                     - ModuleRoot_DoNotRename (Part) [1 attrs]
                       - MountAttachment (Attachment)
                       - ThrustAttachment (Attachment)
@@ -1502,7 +1562,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - ThrustAttachment (Attachment)
                       - VFX_EngineJet_Left (Attachment) [2 attrs]
                       - VFX_EngineJet_Right (Attachment) [2 attrs]
-                  - MODULE_ENGINE_B_BRUISER_04_STANDARD (Model) [64 attrs]
+                  - MODULE_ENGINE_B_BRUISER_04_STANDARD (Model) [67 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - engine b detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -1514,6 +1574,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                       - engine b thruster neon (MeshPart) [1 attrs]
                     - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - VehiclePerformanceV2UpgradePaths (Folder)
+                      - Efficiency (Folder) [6 attrs]
+                      - Output (Folder) [5 attrs]
+                      - Velocity (Folder) [5 attrs]
                     - ModuleRoot_DoNotRename (Part) [1 attrs]
                       - MountAttachment (Attachment)
                       - ThrustAttachment (Attachment)
@@ -1562,7 +1626,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - ThrustAttachment (Attachment)
                       - VFX_EngineJet_Left (Attachment) [2 attrs]
                       - VFX_EngineJet_Right (Attachment) [2 attrs]
-                  - MODULE_ENGINE_B_BRUISER_05_STANDARD (Model) [64 attrs]
+                  - MODULE_ENGINE_B_BRUISER_05_STANDARD (Model) [67 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - engine b detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -1574,6 +1638,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                       - engine b thruster neon (MeshPart) [1 attrs]
                     - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - VehiclePerformanceV2UpgradePaths (Folder)
+                      - Efficiency (Folder) [6 attrs]
+                      - Output (Folder) [5 attrs]
+                      - Velocity (Folder) [5 attrs]
                     - ModuleRoot_DoNotRename (Part) [1 attrs]
                       - MountAttachment (Attachment)
                       - ThrustAttachment (Attachment)
@@ -1622,7 +1690,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - ThrustAttachment (Attachment)
                       - VFX_EngineJet_Left (Attachment) [2 attrs]
                       - VFX_EngineJet_Right (Attachment) [2 attrs]
-                  - MODULE_ENGINE_B_BRUISER_06_STANDARD (Model) [64 attrs]
+                  - MODULE_ENGINE_B_BRUISER_06_STANDARD (Model) [67 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - engine b detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -1634,6 +1702,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                       - engine b thruster neon (MeshPart) [1 attrs]
                     - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - VehiclePerformanceV2UpgradePaths (Folder)
+                      - Efficiency (Folder) [6 attrs]
+                      - Output (Folder) [5 attrs]
+                      - Velocity (Folder) [5 attrs]
                     - ModuleRoot_DoNotRename (Part) [1 attrs]
                       - MountAttachment (Attachment)
                       - ThrustAttachment (Attachment)
@@ -1753,7 +1825,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
-                - MODULE_FRONTBUMPER_LVL1 (Model) [34 attrs]
+                - MODULE_FRONTBUMPER_LVL1 (Model) [70 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                     - bumper front detail (MeshPart) [1 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
@@ -1763,9 +1835,13 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
                     - bumper front secondary (MeshPart) [1 attrs]
                   - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - BrakeDucts (Folder) [6 attrs]
+                    - FrontSplitter (Folder) [6 attrs]
+                    - LightweightMounts (Folder) [6 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
-                - MODULE_FRONTBUMPER_LVL2 (Model) [34 attrs]
+                - MODULE_FRONTBUMPER_LVL2 (Model) [70 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                     - bumper front detail (MeshPart) [1 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
@@ -1775,9 +1851,13 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
                     - bumper front secondary (MeshPart) [1 attrs]
                   - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - BrakeDucts (Folder) [6 attrs]
+                    - FrontSplitter (Folder) [6 attrs]
+                    - LightweightMounts (Folder) [6 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
-                - MODULE_FRONTBUMPER_LVL3 (Model) [34 attrs]
+                - MODULE_FRONTBUMPER_LVL3 (Model) [70 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                     - bumper front detail (MeshPart) [1 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
@@ -1787,6 +1867,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
                     - bumper front secondary (MeshPart) [1 attrs]
                   - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - BrakeDucts (Folder) [6 attrs]
+                    - FrontSplitter (Folder) [6 attrs]
+                    - LightweightMounts (Folder) [6 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
               - RearBumpers (Folder) [3 attrs]
@@ -1836,7 +1920,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
-                - MODULE_REARBUMPER_LVL1 (Model) [34 attrs]
+                - MODULE_REARBUMPER_LVL1 (Model) [70 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
                     - bumper rear neon (MeshPart) [1 attrs]
@@ -1844,9 +1928,12 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - bumper rear primary (MeshPart) [1 attrs]
                   - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
                   - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - LightweightMounts (Folder) [5 attrs]
+                    - RearDiffuser (Folder) [7 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
-                - MODULE_REARBUMPER_LVL2 (Model) [34 attrs]
+                - MODULE_REARBUMPER_LVL2 (Model) [70 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
                     - bumper rear neon (MeshPart) [1 attrs]
@@ -1854,9 +1941,12 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - bumper rear primary (MeshPart) [1 attrs]
                   - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
                   - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - LightweightMounts (Folder) [5 attrs]
+                    - RearDiffuser (Folder) [7 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
-                - MODULE_REARBUMPER_LVL3 (Model) [34 attrs]
+                - MODULE_REARBUMPER_LVL3 (Model) [70 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
                     - bumper rear neon (MeshPart) [1 attrs]
@@ -1864,6 +1954,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - bumper rear primary (MeshPart) [1 attrs]
                   - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
                   - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - LightweightMounts (Folder) [5 attrs]
+                    - RearDiffuser (Folder) [7 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
               - RearSpoilers (Folder) [3 attrs]
@@ -1919,7 +2012,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
-                - MODULE_REARSPOILER_LVL1 (Model) [37 attrs]
+                - MODULE_REARSPOILER_LVL1 (Model) [70 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                     - spoiler detail (MeshPart) [1 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
@@ -1929,9 +2022,13 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
                     - spoiler secondary (MeshPart) [1 attrs]
                   - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - DownforcePackage (Folder) [7 attrs]
+                    - DriftAero (Folder) [7 attrs]
+                    - LowDragProfile (Folder) [6 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
-                - MODULE_REARSPOILER_LVL2 (Model) [37 attrs]
+                - MODULE_REARSPOILER_LVL2 (Model) [70 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                     - spoiler detail (MeshPart) [1 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
@@ -1941,9 +2038,13 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
                     - spoiler secondary (MeshPart) [1 attrs]
                   - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - DownforcePackage (Folder) [7 attrs]
+                    - DriftAero (Folder) [7 attrs]
+                    - LowDragProfile (Folder) [6 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
-                - MODULE_REARSPOILER_LVL3 (Model) [37 attrs]
+                - MODULE_REARSPOILER_LVL3 (Model) [70 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                     - spoiler detail (MeshPart) [1 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
@@ -1953,6 +2054,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
                     - spoiler secondary (MeshPart) [1 attrs]
                   - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - DownforcePackage (Folder) [7 attrs]
+                    - DriftAero (Folder) [7 attrs]
+                    - LowDragProfile (Folder) [6 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
               - SidePods (Folder) [3 attrs]
@@ -2003,7 +2108,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
-                - MODULE_SIDEPODS_LVL1 (Model) [36 attrs]
+                - MODULE_SIDEPODS_LVL1 (Model) [70 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
                     - sidepods neon (MeshPart) [1 attrs]
@@ -2012,9 +2117,13 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
                     - sidepods secondary (MeshPart) [1 attrs]
                   - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - AirflowChannels (Folder) [6 attrs]
+                    - CorneringVanes (Folder) [6 attrs]
+                    - LightweightShells (Folder) [5 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
-                - MODULE_SIDEPODS_LVL2 (Model) [36 attrs]
+                - MODULE_SIDEPODS_LVL2 (Model) [70 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
                     - sidepods neon (MeshPart) [1 attrs]
@@ -2023,9 +2132,13 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
                     - sidepods secondary (MeshPart) [1 attrs]
                   - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - AirflowChannels (Folder) [6 attrs]
+                    - CorneringVanes (Folder) [6 attrs]
+                    - LightweightShells (Folder) [5 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
-                - MODULE_SIDEPODS_LVL3 (Model) [36 attrs]
+                - MODULE_SIDEPODS_LVL3 (Model) [70 attrs]
                   - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                   - NEON_OptionalLights (Folder) [4 attrs]
                     - sidepods neon (MeshPart) [1 attrs]
@@ -2034,6 +2147,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
                     - sidepods secondary (MeshPart) [1 attrs]
                   - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - AirflowChannels (Folder) [6 attrs]
+                    - CorneringVanes (Folder) [6 attrs]
+                    - LightweightShells (Folder) [5 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
               - Stabilisers (Folder) [3 attrs]
@@ -2076,7 +2193,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - MountAttachment (Attachment)
                       - VFX_StabiliserJet_Left (Attachment) [2 attrs]
                       - VFX_StabiliserJet_Right (Attachment) [2 attrs]
-                  - MODULE_STABILISER_BRUISER_01_STANDARD (Model) [65 attrs]
+                  - MODULE_STABILISER_BRUISER_01_STANDARD (Model) [68 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - stabilisers detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -2087,6 +2204,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                       - stabilisers thrust neon (MeshPart) [1 attrs]
                     - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - VehiclePerformanceV2UpgradePaths (Folder)
+                      - Drift (Folder) [8 attrs]
+                      - Grip (Folder) [7 attrs]
+                      - Response (Folder) [6 attrs]
                     - ModuleRoot_DoNotRename (Part) [1 attrs]
                       - MountAttachment (Attachment)
                       - VFX_StabiliserJet_Left (Attachment) [2 attrs]
@@ -2130,7 +2251,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - MountAttachment (Attachment)
                       - VFX_StabiliserJet_Left (Attachment) [2 attrs]
                       - VFX_StabiliserJet_Right (Attachment) [2 attrs]
-                  - MODULE_STABILISER_BRUISER_02_STANDARD (Model) [65 attrs]
+                  - MODULE_STABILISER_BRUISER_02_STANDARD (Model) [68 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - stabilisers detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -2141,6 +2262,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                       - stabilisers thrust neon (MeshPart) [1 attrs]
                     - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - VehiclePerformanceV2UpgradePaths (Folder)
+                      - Drift (Folder) [8 attrs]
+                      - Grip (Folder) [7 attrs]
+                      - Response (Folder) [6 attrs]
                     - ModuleRoot_DoNotRename (Part) [1 attrs]
                       - MountAttachment (Attachment)
                       - VFX_StabiliserJet_Left (Attachment) [2 attrs]
@@ -2184,7 +2309,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - MountAttachment (Attachment)
                       - VFX_StabiliserJet_Left (Attachment) [2 attrs]
                       - VFX_StabiliserJet_Right (Attachment) [2 attrs]
-                  - MODULE_STABILISER_BRUISER_03_STANDARD (Model) [65 attrs]
+                  - MODULE_STABILISER_BRUISER_03_STANDARD (Model) [68 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - stabilisers detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -2195,6 +2320,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                       - stabilisers thrust neon (MeshPart) [1 attrs]
                     - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - VehiclePerformanceV2UpgradePaths (Folder)
+                      - Drift (Folder) [8 attrs]
+                      - Grip (Folder) [7 attrs]
+                      - Response (Folder) [6 attrs]
                     - ModuleRoot_DoNotRename (Part) [1 attrs]
                       - MountAttachment (Attachment)
                       - VFX_StabiliserJet_Left (Attachment) [2 attrs]
@@ -2238,7 +2367,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - MountAttachment (Attachment)
                       - VFX_StabiliserJet_Left (Attachment) [2 attrs]
                       - VFX_StabiliserJet_Right (Attachment) [2 attrs]
-                  - MODULE_STABILISER_BRUISER_04_STANDARD (Model) [65 attrs]
+                  - MODULE_STABILISER_BRUISER_04_STANDARD (Model) [68 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - stabilisers detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -2249,6 +2378,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                       - stabilisers thrust neon (MeshPart) [1 attrs]
                     - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - VehiclePerformanceV2UpgradePaths (Folder)
+                      - Drift (Folder) [8 attrs]
+                      - Grip (Folder) [7 attrs]
+                      - Response (Folder) [6 attrs]
                     - ModuleRoot_DoNotRename (Part) [1 attrs]
                       - MountAttachment (Attachment)
                       - VFX_StabiliserJet_Left (Attachment) [2 attrs]
@@ -2292,7 +2425,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - MountAttachment (Attachment)
                       - VFX_StabiliserJet_Left (Attachment) [2 attrs]
                       - VFX_StabiliserJet_Right (Attachment) [2 attrs]
-                  - MODULE_STABILISER_BRUISER_05_STANDARD (Model) [65 attrs]
+                  - MODULE_STABILISER_BRUISER_05_STANDARD (Model) [68 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - stabilisers detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -2303,6 +2436,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                       - stabilisers thrust neon (MeshPart) [1 attrs]
                     - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - VehiclePerformanceV2UpgradePaths (Folder)
+                      - Drift (Folder) [8 attrs]
+                      - Grip (Folder) [7 attrs]
+                      - Response (Folder) [6 attrs]
                     - ModuleRoot_DoNotRename (Part) [1 attrs]
                       - MountAttachment (Attachment)
                       - VFX_StabiliserJet_Left (Attachment) [2 attrs]
@@ -2346,7 +2483,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - MountAttachment (Attachment)
                       - VFX_StabiliserJet_Left (Attachment) [2 attrs]
                       - VFX_StabiliserJet_Right (Attachment) [2 attrs]
-                  - MODULE_STABILISER_BRUISER_06_STANDARD (Model) [65 attrs]
+                  - MODULE_STABILISER_BRUISER_06_STANDARD (Model) [68 attrs]
                     - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
                       - stabilisers detail (MeshPart) [1 attrs]
                     - NEON_OptionalLights (Folder) [4 attrs]
@@ -2357,6 +2494,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                       - stabilisers thrust neon (MeshPart) [1 attrs]
                     - VFX_ATTACHMENTS_DoNotRename (Folder) [1 attrs]
+                    - VehiclePerformanceV2UpgradePaths (Folder)
+                      - Drift (Folder) [8 attrs]
+                      - Grip (Folder) [7 attrs]
+                      - Response (Folder) [6 attrs]
                     - ModuleRoot_DoNotRename (Part) [1 attrs]
                       - MountAttachment (Attachment)
                       - VFX_StabiliserJet_Left (Attachment) [2 attrs]
@@ -2609,6 +2750,17 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - TeleportHeightOffset (NumberValue)
           - UnseatSettleSeconds (NumberValue)
           - VehicleDespawnDelaySeconds (NumberValue)
+        - FlowUI (Folder)
+          - CountdownCardSize (NumberValue)
+          - CountdownCardTransparency (NumberValue)
+          - CountdownGradientRotation (NumberValue)
+          - CountdownSeconds (NumberValue)
+          - CountdownTextSize (NumberValue)
+          - GoDuration (NumberValue)
+          - GoTextSize (NumberValue)
+          - QueueBannerHeight (NumberValue)
+          - QueueBannerTop (NumberValue)
+          - QueueBannerWidth (NumberValue)
         - HudMapCatalog (Folder)
           - ShiftedCanalSprint (Folder)
             - ClampMarkersToMap (BoolValue) [1 attrs]
@@ -2675,6 +2827,8 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - PromptHeightOffset (NumberValue)
           - PromptMaxDistance (NumberValue)
           - ReenterBufferStuds (NumberValue)
+        - DrivingCamera_Default_EditAttributes (Folder) [54 attrs]
+        - DrivingCamera_EditAttributes (Folder) [116 attrs]
         - FreeRoamHudTeleport (Folder)
           - CharacterUnfreezeDelaySeconds (NumberValue)
           - CooldownSeconds (NumberValue)
@@ -2693,9 +2847,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - StudsPerSecondToMph (NumberValue)
         - StudioCashGrant (Folder) [7 attrs]
         - VehicleDynamics_EditAttributes (Folder) [15 attrs]
-          - 01_Acceleration (Folder) [40 attrs]
+          - 01_Acceleration (Folder) [52 attrs]
           - 02_Handling (Folder) [16 attrs]
-          - 03_Drifting (Folder) [36 attrs]
+          - 03_Drifting (Folder) [76 attrs]
           - 04_Boost (Folder) [24 attrs]
           - 05_Braking_Reverse_Parking (Folder) [24 attrs]
           - 06_Grip_Hover (Folder) [22 attrs]
@@ -2958,6 +3112,101 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - RaceIcon (StringValue)
           - SettingsIcon (StringValue)
           - UploadNote (StringValue)
+        - GarageExperience (Folder)
+          - Danger (Color3Value) [1 attrs]
+          - Muted (Color3Value) [1 attrs]
+          - Panel (Color3Value) [1 attrs]
+          - PanelDeep (Color3Value) [1 attrs]
+          - PanelSoft (Color3Value) [1 attrs]
+          - Purchase (Color3Value) [1 attrs]
+          - Selected (Color3Value) [1 attrs]
+          - Structure (Color3Value) [1 attrs]
+          - Text (Color3Value) [1 attrs]
+          - ModuleDiagrams (Folder)
+            - BRUISER (Folder)
+              - Boost (Folder)
+                - Image (StringValue) [1 attrs]
+                - Label (StringValue) [1 attrs]
+              - Engine1 (Folder)
+                - Image (StringValue) [1 attrs]
+                - Label (StringValue) [1 attrs]
+              - Engine2 (Folder)
+                - Image (StringValue) [1 attrs]
+                - Label (StringValue) [1 attrs]
+              - FrontBumper (Folder)
+                - Image (StringValue) [1 attrs]
+                - Label (StringValue) [1 attrs]
+              - RearBumper (Folder)
+                - Image (StringValue) [1 attrs]
+                - Label (StringValue) [1 attrs]
+              - RearSpoiler (Folder)
+                - Image (StringValue) [1 attrs]
+                - Label (StringValue) [1 attrs]
+              - SidePods (Folder)
+                - Image (StringValue) [1 attrs]
+                - Label (StringValue) [1 attrs]
+              - Stabilisers (Folder)
+                - Image (StringValue) [1 attrs]
+                - Label (StringValue) [1 attrs]
+          - BaseHeight (NumberValue) [1 attrs]
+          - BaseWidth (NumberValue) [1 attrs]
+          - CarouselArrowWidth (NumberValue) [1 attrs]
+          - CarouselCardHeight (NumberValue) [1 attrs]
+          - CarouselCardWidth (NumberValue) [1 attrs]
+          - CarouselHeight (NumberValue) [1 attrs]
+          - CategoryCarouselGap (NumberValue) [1 attrs]
+          - CategoryWidth (NumberValue) [1 attrs]
+          - EconomyChipHeight (NumberValue) [1 attrs]
+          - Gap (NumberValue) [1 attrs]
+          - HeaderHeight (NumberValue) [1 attrs]
+          - HeaderWidth (NumberValue) [1 attrs]
+          - Margin (NumberValue) [1 attrs]
+          - MaxScale (NumberValue) [1 attrs]
+          - MinScale (NumberValue) [1 attrs]
+          - MobileMinScale (NumberValue) [1 attrs]
+          - PromptDistance (NumberValue) [1 attrs]
+          - StatBarReference (NumberValue) [1 attrs]
+          - StatsHeight (NumberValue) [1 attrs]
+          - StatsWidth (NumberValue) [1 attrs]
+          - FontFamily (StringValue) [1 attrs]
+        - GarageReplacement (Folder) [100 attrs]
+          - ModuleArtwork (Folder)
+            - All (Folder) [6 attrs]
+            - Boost (Folder) [6 attrs]
+            - Cockpit (Folder) [6 attrs]
+            - FrontBumper (Folder) [6 attrs]
+            - FrontEngine (Folder) [6 attrs]
+            - RearBumper (Folder) [6 attrs]
+            - RearEngine (Folder) [6 attrs]
+            - SidePods (Folder) [6 attrs]
+            - Spoiler (Folder) [6 attrs]
+            - Stabilisers (Folder) [6 attrs]
+            - ThrustColour (Folder) [6 attrs]
+          - NavigationIcons (Folder) [8 attrs]
+          - ArrowHeight (NumberValue) [1 attrs]
+          - ArrowWidth (NumberValue) [1 attrs]
+          - BaseHeight (NumberValue) [1 attrs]
+          - BaseWidth (NumberValue) [1 attrs]
+          - CardHeight (NumberValue) [1 attrs]
+          - CardImageHeight (NumberValue) [1 attrs]
+          - CardWidth (NumberValue) [1 attrs]
+          - CarouselHeight (NumberValue) [1 attrs]
+          - CategoryButtonHeight (NumberValue) [1 attrs]
+          - CategoryCarouselClearance (NumberValue) [1 attrs]
+          - CategoryWidth (NumberValue) [1 attrs]
+          - DesktopMinScale (NumberValue) [1 attrs]
+          - EconomyHeight (NumberValue) [1 attrs]
+          - Gap (NumberValue) [1 attrs]
+          - Margin (NumberValue) [1 attrs]
+          - MaxScale (NumberValue) [1 attrs]
+          - MobileMinScale (NumberValue) [1 attrs]
+          - ModuleCardImageHeight (NumberValue) [1 attrs]
+          - StatReference (NumberValue) [1 attrs]
+          - StatsWidth (NumberValue) [1 attrs]
+          - WorkspaceCardHeight (NumberValue)
+          - WorkspaceCardWidth (NumberValue)
+          - WorkspacePaintWidth (NumberValue)
+          - WorkspaceStatsHeight (NumberValue)
         - MobileFreeRoamHud (Folder) [65 attrs]
           - Assets (Folder)
             - AcceleratorImage (StringValue)
@@ -3011,6 +3260,32 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - FirstPlaceColor (Color3Value)
             - SecondPlaceColor (Color3Value)
             - ThirdPlaceColor (Color3Value)
+            - Mobile (Folder)
+              - Enabled (BoolValue) [1 attrs]
+              - BoardAvatarSize (NumberValue) [1 attrs]
+              - BoardHeight (NumberValue) [1 attrs]
+              - BoardOffsetX (NumberValue) [1 attrs]
+              - BoardOffsetY (NumberValue) [1 attrs]
+              - BoardWidth (NumberValue) [1 attrs]
+              - DataRowGap (NumberValue) [1 attrs]
+              - DataRowHeight (NumberValue) [1 attrs]
+              - DataRowMetricSize (NumberValue) [1 attrs]
+              - DataRowTextSize (NumberValue) [1 attrs]
+              - MetricHeadingSize (NumberValue) [1 attrs]
+              - MetricHeight (NumberValue) [1 attrs]
+              - MetricOffsetY (NumberValue) [1 attrs]
+              - MetricValueSize (NumberValue) [1 attrs]
+              - MetricWidth (NumberValue) [1 attrs]
+              - ProgressHeight (NumberValue) [1 attrs]
+              - ProgressOffsetX (NumberValue) [1 attrs]
+              - ProgressOffsetY (NumberValue) [1 attrs]
+              - ProgressWidth (NumberValue) [1 attrs]
+              - SessionButtonGap (NumberValue) [1 attrs]
+              - SessionButtonHeight (NumberValue) [1 attrs]
+              - SessionButtonTextSize (NumberValue) [1 attrs]
+              - SessionButtonWidth (NumberValue) [1 attrs]
+              - SessionControlsBottomOffset (NumberValue) [1 attrs]
+              - SessionControlsCenterX (NumberValue) [1 attrs]
             - BoardAvatarSize (NumberValue)
             - BoardHeadingSize (NumberValue)
             - BoardHeight (NumberValue)
@@ -3181,7 +3456,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
         - Mobile (Folder) [4 attrs]
           - README_Mobile (StringValue) [1 attrs]
         - MobileDriveControls_EditAttributes (Folder) [13 attrs]
-        - Persistence_EditAttributes (Folder) [16 attrs]
+        - Persistence_EditAttributes (Folder) [17 attrs]
         - Racing (Folder) [4 attrs]
           - README_Racing (StringValue) [1 attrs]
         - UI (Folder) [4 attrs]
@@ -3661,59 +3936,61 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
       - Modules (Folder) [1 attrs]
         - Client (Folder) [1 attrs]
           - Controllers (Folder)
-            - DrivingControllerV47 (ModuleScript) [script_0004, 1147 lines, 19 attrs]
-            - DrivingFallbackController (ModuleScript) [script_0005, 461 lines, 2 attrs]
-            - MobileDriveInputState (ModuleScript) [script_0006, 67 lines, 1 attrs]
-            - ReentryThrottle (ModuleScript) [script_0007, 24 lines, 1 attrs]
-            - VehicleDynamicsModel (ModuleScript) [script_0008, 208 lines, 5 attrs]
+            - DrivingCameraController (ModuleScript) [script_0004, 287 lines]
+            - DrivingControllerV47 (ModuleScript) [script_0005, 1138 lines, 19 attrs]
+            - DrivingFallbackController (ModuleScript) [script_0006, 461 lines, 2 attrs]
+            - MobileDriveInputState (ModuleScript) [script_0007, 67 lines, 1 attrs]
+            - ReentryThrottle (ModuleScript) [script_0008, 24 lines, 1 attrs]
+            - VehicleDynamicsModel (ModuleScript) [script_0009, 228 lines, 5 attrs]
             - DriveController_README (StringValue)
             - GarageController_README (StringValue)
           - Input (Folder)
             - Input_README (StringValue)
           - UI (Folder)
-            - UIFactory (ModuleScript) [script_0009, 69 lines, 3 attrs]
-            - UIPool (ModuleScript) [script_0010, 99 lines, 1 attrs]
+            - UIFactory (ModuleScript) [script_0010, 69 lines, 3 attrs]
+            - UIPool (ModuleScript) [script_0011, 99 lines, 1 attrs]
           - VFX (Folder)
-            - VehicleVFXController (ModuleScript) [script_0011, 550 lines, 5 attrs]
+            - VehicleVFXController (ModuleScript) [script_0012, 550 lines, 5 attrs]
           - Visuals (Folder)
-            - CachedThrustVisualRuntime (ModuleScript) [script_0012, 780 lines, 12 attrs]
+            - CachedThrustVisualRuntime (ModuleScript) [script_0013, 787 lines, 12 attrs]
         - Common (Folder) [1 attrs]
           - Performance (Folder) [2 attrs]
-            - VehicleModuleUpgradeRuntime (ModuleScript) [script_0013, 58 lines, 1 attrs]
-            - VehiclePerformanceCalculator (ModuleScript) [script_0014, 35 lines, 1 attrs]
-            - VehiclePerformanceDefinitions (ModuleScript) [script_0015, 150 lines, 1 attrs]
-            - VehiclePerformanceRuntime (ModuleScript) [script_0016, 25 lines, 1 attrs]
-            - VehiclePerformanceV2Calculator (ModuleScript) [script_0017, 169 lines, 2 attrs]
-            - VehiclePerformanceV2Definitions (ModuleScript) [script_0018, 90 lines, 2 attrs]
-            - VehiclePerformanceV2DynamicsAdapter (ModuleScript) [script_0019, 34 lines, 1 attrs]
-            - VehiclePerformanceV2Runtime (ModuleScript) [script_0020, 108 lines, 1 attrs]
-            - VehiclePerformanceV2UpgradeRuntime (ModuleScript) [script_0021, 177 lines, 1 attrs]
-            - VehicleUpgradeDefinitions (ModuleScript) [script_0022, 68 lines, 2 attrs]
-          - ConfigReader (ModuleScript) [script_0023, 39 lines, 1 attrs]
-          - DriveTuning (ModuleScript) [script_0024, 25 lines, 3 attrs]
-          - UITheme (ModuleScript) [script_0025, 55 lines, 3 attrs]
-          - VehicleData (ModuleScript) [script_0026, 34 lines, 3 attrs]
-          - VehicleStatsCache (ModuleScript) [script_0027, 45 lines, 1 attrs]
+            - VehicleModuleUpgradeRuntime (ModuleScript) [script_0014, 118 lines, 1 attrs]
+            - VehiclePerformanceCalculator (ModuleScript) [script_0015, 35 lines, 1 attrs]
+            - VehiclePerformanceDefinitions (ModuleScript) [script_0016, 150 lines, 1 attrs]
+            - VehiclePerformanceResolver (ModuleScript) [script_0017, 121 lines]
+            - VehiclePerformanceRuntime (ModuleScript) [script_0018, 44 lines, 1 attrs]
+            - VehiclePerformanceV2Calculator (ModuleScript) [script_0019, 169 lines, 2 attrs]
+            - VehiclePerformanceV2Definitions (ModuleScript) [script_0020, 90 lines, 2 attrs]
+            - VehiclePerformanceV2DynamicsAdapter (ModuleScript) [script_0021, 34 lines, 1 attrs]
+            - VehiclePerformanceV2Runtime (ModuleScript) [script_0022, 108 lines, 1 attrs]
+            - VehiclePerformanceV2UpgradeRuntime (ModuleScript) [script_0023, 195 lines, 1 attrs]
+            - VehicleUpgradeDefinitions (ModuleScript) [script_0024, 68 lines, 2 attrs]
+          - ConfigReader (ModuleScript) [script_0025, 39 lines, 1 attrs]
+          - DriveTuning (ModuleScript) [script_0026, 25 lines, 3 attrs]
+          - UITheme (ModuleScript) [script_0027, 55 lines, 3 attrs]
+          - VehicleData (ModuleScript) [script_0028, 34 lines, 3 attrs]
+          - VehicleStatsCache (ModuleScript) [script_0029, 45 lines, 1 attrs]
         - Core (Folder)
-          - PathResolver (ModuleScript) [script_0028, 98 lines, 4 attrs]
+          - PathResolver (ModuleScript) [script_0030, 98 lines, 4 attrs]
         - Data (Folder) [3 attrs]
-          - ConfigRegistry (ModuleScript) [script_0029, 176 lines, 3 attrs]
-          - GaragePropertyCatalog (ModuleScript) [script_0030, 81 lines, 1 attrs]
-          - LegacyGarageProfileMapper (ModuleScript) [script_0031, 248 lines, 1 attrs]
-          - PlayerProfileSchema (ModuleScript) [script_0032, 276 lines]
+          - ConfigRegistry (ModuleScript) [script_0031, 176 lines, 3 attrs]
+          - GaragePropertyCatalog (ModuleScript) [script_0032, 81 lines, 1 attrs]
+          - LegacyGarageProfileMapper (ModuleScript) [script_0033, 248 lines, 1 attrs]
+          - PlayerProfileSchema (ModuleScript) [script_0034, 276 lines]
         - Racing (Folder)
-          - RaceConfigReader (ModuleScript) [script_0033, 132 lines]
-          - RaceRouteDefinition (ModuleScript) [script_0034, 229 lines]
+          - RaceConfigReader (ModuleScript) [script_0035, 132 lines]
+          - RaceRouteDefinition (ModuleScript) [script_0036, 229 lines]
         - UI (Folder) [3 attrs]
-          - ArrowScroller (ModuleScript) [script_0035, 68 lines, 3 attrs]
-          - ColourUtils (ModuleScript) [script_0036, 21 lines, 3 attrs]
-          - RacingMobileScaledDesktopLayout (ModuleScript) [script_0037, 90 lines]
-          - RacingUIComponents (ModuleScript) [script_0038, 203 lines]
-          - ResponsiveLayout (ModuleScript) [script_0039, 44 lines, 3 attrs]
-          - StatBars (ModuleScript) [script_0040, 49 lines, 3 attrs]
-          - UIFactory (ModuleScript) [script_0041, 93 lines, 3 attrs]
-          - UIPool (ModuleScript) [script_0042, 99 lines, 3 attrs]
-          - UITheme (ModuleScript) [script_0043, 102 lines, 5 attrs]
+          - ArrowScroller (ModuleScript) [script_0037, 68 lines, 3 attrs]
+          - ColourUtils (ModuleScript) [script_0038, 21 lines, 3 attrs]
+          - RacingMobileScaledDesktopLayout (ModuleScript) [script_0039, 90 lines]
+          - RacingUIComponents (ModuleScript) [script_0040, 203 lines]
+          - ResponsiveLayout (ModuleScript) [script_0041, 44 lines, 3 attrs]
+          - StatBars (ModuleScript) [script_0042, 49 lines, 3 attrs]
+          - UIFactory (ModuleScript) [script_0043, 93 lines, 3 attrs]
+          - UIPool (ModuleScript) [script_0044, 99 lines, 3 attrs]
+          - UITheme (ModuleScript) [script_0045, 102 lines, 5 attrs]
           - ArrowScroller_Module (ObjectValue)
           - ColourUtils_Module (ObjectValue)
           - ResponsiveLayout_Module (ObjectValue)
@@ -3758,10 +4035,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
         - SevenAM (Folder) [3 attrs]
         - TenAM (Folder) [3 attrs]
         - ThreePM (Folder) [3 attrs]
-      - LightingCycleSchedule (ModuleScript) [script_0044, 13 lines]
+      - LightingCycleSchedule (ModuleScript) [script_0046, 13 lines]
       - CurrentLightingCaptureText (StringValue) [3 attrs]
     - LightingPresets (Folder)
-      - LightingPresets (ModuleScript) [script_0045, 407 lines, 4 attrs]
+      - LightingPresets (ModuleScript) [script_0047, 407 lines, 4 attrs]
     - SkyPresets (Folder)
       - ActiveSky (Sky)
       - ClearNightSky (Sky)
@@ -3776,44 +4053,47 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
   - NeoTokyoRacers (Folder) [5 attrs]
     - Services (Folder) [3 attrs]
       - Dealership (Folder)
-        - IntroProgressService_Active (Script) [script_0046, 208 lines, 2 attrs]
+        - IntroProgressService_Active (Script) [script_0048, 208 lines, 2 attrs]
       - Debug (Folder)
-        - StudioCashGrantService_Active (Script) [script_0047, 65 lines]
+        - StudioCashGrantService_Active (Script) [script_0049, 65 lines]
       - Economy (Folder)
       - Garage (Folder)
-        - GarageDisplayRuntime (ModuleScript) [script_0048, 299 lines, 1 attrs]
-        - GarageProfileRuntime (ModuleScript) [script_0049, 136 lines, 1 attrs]
-        - DriveInCustomisationSessionService_Active (Script) [script_0050, 104 lines]
-        - GarageActionController_Shadow_Disabled (Script) [script_0051, 2710 lines, 34 attrs]
-        - GarageInteriorCustomizationService_Active (Script) [script_0052, 472 lines, 1 attrs]
-        - GarageInteriorService_Active (Script) [script_0053, 407 lines, 4 attrs]
+        - GarageDisplayRuntime (ModuleScript) [script_0050, 299 lines, 1 attrs]
+        - GarageModuleInstanceCustomizationRuntime (ModuleScript) [script_0051, 88 lines]
+        - GarageModuleInventoryRuntime (ModuleScript) [script_0052, 238 lines, 1 attrs]
+        - GarageModuleTransactionRuntime (ModuleScript) [script_0053, 124 lines]
+        - GarageProfileRuntime (ModuleScript) [script_0054, 136 lines, 1 attrs]
+        - GarageActionController_Shadow_Disabled (Script) [script_0055, 2705 lines, 36 attrs]
+        - GarageInteriorCustomizationService_Active (Script) [script_0056, 472 lines, 1 attrs]
+        - GarageInteriorService_Active (Script) [script_0057, 407 lines, 4 attrs]
+        - GarageSessionService_Active (Script) [script_0058, 99 lines, 1 attrs]
       - Player (Folder)
-        - LegacyGarageProfileBridge_Active (Script) [script_0054, 61 lines]
-        - ProfileService_Active (Script) [script_0055, 328 lines]
+        - LegacyGarageProfileBridge_Active (Script) [script_0059, 61 lines]
+        - ProfileService_Active (Script) [script_0060, 400 lines, 3 attrs]
       - Racing (Folder)
         - GlobalTimeTrialLeaderboardBindings (Folder)
           - GetTimeTrialLeaderboard (BindableFunction)
           - RecordTimeTrialBest (BindableFunction)
-        - GlobalTimeTrialLeaderboardService_Active (Script) [script_0056, 101 lines]
-        - RaceBrowserTeleportService_Active (Script) [script_0057, 224 lines]
-        - RaceDisplayNameService_Active (Script) [script_0058, 79 lines]
-        - RaceMatchmakingService_Active (Script) [script_0059, 1242 lines]
-        - RacePersonalBestService_Active (Script) [script_0060, 392 lines]
-        - RaceRewardService_Active (Script) [script_0061, 367 lines]
-        - RaceSessionAssetService_Active (Script) [script_0062, 372 lines]
-        - TimeTrialService_Active (Script) [script_0063, 1405 lines]
+        - GlobalTimeTrialLeaderboardService_Active (Script) [script_0061, 101 lines]
+        - RaceBrowserTeleportService_Active (Script) [script_0062, 224 lines]
+        - RaceDisplayNameService_Active (Script) [script_0063, 79 lines]
+        - RaceMatchmakingService_Active (Script) [script_0064, 1246 lines]
+        - RacePersonalBestService_Active (Script) [script_0065, 392 lines]
+        - RaceRewardService_Active (Script) [script_0066, 367 lines]
+        - RaceSessionAssetService_Active (Script) [script_0067, 372 lines]
+        - TimeTrialService_Active (Script) [script_0068, 1408 lines]
       - UI (Folder)
-        - FreeRoamHudTeleportService_Active (Script) [script_0064, 126 lines, 2 attrs]
+        - FreeRoamHudTeleportService_Active (Script) [script_0069, 126 lines, 2 attrs]
       - Vehicle (Folder)
-        - DriverSeatPositionService_Active (Script) [script_0065, 234 lines, 11 attrs]
-        - VehicleAccessPromptService_Active (Script) [script_0066, 130 lines]
-        - VehiclePerformanceRuntimeService_Active (Script) [script_0067, 95 lines, 2 attrs]
-        - VehiclePerformanceV2ShadowService_Active (Script) [script_0068, 34 lines, 1 attrs]
+        - DriverSeatPositionService_Active (Script) [script_0070, 234 lines, 11 attrs]
+        - VehicleAccessPromptService_Active (Script) [script_0071, 130 lines]
+        - VehiclePerformanceRuntimeService_Active (Script) [script_0072, 35 lines, 2 attrs]
+        - VehiclePerformanceV2ShadowService_Active (Script) [script_0073, 34 lines, 1 attrs]
       - World (Folder)
         - Lighting (Folder)
-          - LightingService_Active (Script) [script_0069, 115 lines, 9 attrs]
+          - LightingService_Active (Script) [script_0074, 115 lines, 9 attrs]
         - Traffic (Folder)
-          - TrafficLightService (Script) [script_0070, 46 lines, 3 attrs]
+          - TrafficLightService (Script) [script_0075, 46 lines, 3 attrs]
           - README_MigrationNotes (StringValue)
     - State (Folder)
       - RuntimeProfiles (Folder)
@@ -3823,78 +4103,88 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
     - NeoTokyoRacersClient (Folder) [6 attrs]
       - Controllers (Folder) [3 attrs]
         - Core (Folder)
-          - CatalogClient (ModuleScript) [script_0071, 110 lines, 4 attrs]
-          - ClientState (ModuleScript) [script_0072, 75 lines, 4 attrs]
-          - ClientThemeAdapter (ModuleScript) [script_0073, 73 lines, 6 attrs]
-          - GarageApiClient (ModuleScript) [script_0074, 38 lines, 4 attrs]
-          - PaintClient (ModuleScript) [script_0075, 142 lines, 10 attrs]
+          - CatalogClient (ModuleScript) [script_0076, 110 lines, 4 attrs]
+          - ClientState (ModuleScript) [script_0077, 75 lines, 4 attrs]
+          - ClientThemeAdapter (ModuleScript) [script_0078, 73 lines, 6 attrs]
+          - GarageApiClient (ModuleScript) [script_0079, 38 lines, 4 attrs]
+          - PaintClient (ModuleScript) [script_0080, 142 lines, 10 attrs]
         - Debug (Folder)
-          - StudioCashGrantClient_Active (LocalScript) [script_0076, 47 lines]
+          - StudioCashGrantClient_Active (LocalScript) [script_0081, 47 lines]
         - Garage (Folder)
         - Intro (Folder)
-          - CockpitCustomisationZoneClient_Active (LocalScript) [script_0077, 77 lines, 1 attrs]
-          - DealershipIntroClient_Active (LocalScript) [script_0078, 729 lines, 8 attrs]
-          - DriveInCustomisationZoneClient_Active (LocalScript) [script_0079, 343 lines]
+          - CockpitCustomisationZoneClient_Active (LocalScript) [script_0082, Disabled, 77 lines, 2 attrs]
+          - DealershipIntroClient_Active (LocalScript) [script_0083, 725 lines, 9 attrs]
+          - DriveInCustomisationZoneClient_Active (LocalScript) [script_0084, Disabled, 343 lines, 1 attrs]
+          - GarageEntranceController_Active (LocalScript) [script_0085, 187 lines, 1 attrs]
         - Preview (Folder)
-          - ThrustPreviewController_Active (LocalScript) [script_0080, 208 lines, 17 attrs]
-          - PreviewCameraController (ModuleScript) [script_0081, 96 lines, 5 attrs]
-          - PreviewVehicleController (ModuleScript) [script_0082, 168 lines, 5 attrs]
+          - GaragePreviewPresentationController_Active (LocalScript) [script_0086, 317 lines]
+          - ThrustPreviewController_Active (LocalScript) [script_0087, 74 lines, 17 attrs]
+          - GarageModuleInstancePreviewAdapter (ModuleScript) [script_0088, 98 lines]
+          - GarageVehiclePreviewProfile (ModuleScript) [script_0089, 75 lines]
+          - PreviewCameraController (ModuleScript) [script_0090, 56 lines, 5 attrs]
+          - PreviewVehicleController (ModuleScript) [script_0091, 80 lines, 5 attrs]
         - Racing (Folder)
           - RaceEntryLegacyAction (BindableEvent)
           - RaceEntryPresentationRequest (BindableEvent)
           - RaceTransitionRequest (BindableEvent)
           - RaceTransitionStateChanged (BindableEvent)
           - StartRaceQueueRequest (BindableEvent)
-          - RaceBrowserClient_Active (LocalScript) [script_0083, 604 lines]
-          - RaceClient_Active (LocalScript) [script_0084, Disabled, 276 lines]
-          - RaceEntryMenuClient_Active (LocalScript) [script_0085, 88 lines]
-          - RaceEntryPresentationController_Active (LocalScript) [script_0086, 904 lines]
-          - RaceHudExitCleanupClient_Active (LocalScript) [script_0087, 81 lines]
-          - RaceParticipantVisibilityClient_Active (LocalScript) [script_0088, 66 lines]
-          - RacePersonalBestBoardClient_Active (LocalScript) [script_0089, 311 lines]
-          - RaceQueueClient_Active (LocalScript) [script_0090, 361 lines]
-          - RaceRouteGuideClient_Active (LocalScript) [script_0091, 425 lines]
-          - RaceSessionAssetsClient_Active (LocalScript) [script_0092, 244 lines]
-          - RaceSessionControlsClient_Active (LocalScript) [script_0093, 254 lines]
-          - RaceSessionPresentationController_Active (LocalScript) [script_0094, 257 lines]
-          - RaceTimeTrialResultCoachClient_Active (LocalScript) [script_0095, 213 lines]
-          - RaceTransitionClient_Active (LocalScript) [script_0096, 261 lines]
+          - RaceBrowserClient_Active (LocalScript) [script_0092, 593 lines]
+          - RaceClient_Active (LocalScript) [script_0093, Disabled, 276 lines]
+          - RaceCountdownPresentationController_Active (LocalScript) [script_0094, 36 lines]
+          - RaceEntryMenuClient_Active (LocalScript) [script_0095, 88 lines]
+          - RaceEntryPresentationController_Active (LocalScript) [script_0096, 904 lines]
+          - RaceHudExitCleanupClient_Active (LocalScript) [script_0097, 81 lines]
+          - RaceParticipantVisibilityClient_Active (LocalScript) [script_0098, 66 lines]
+          - RacePersonalBestBoardClient_Active (LocalScript) [script_0099, 311 lines]
+          - RaceQueueClient_Active (LocalScript) [script_0100, 49 lines]
+          - RaceRouteGuideClient_Active (LocalScript) [script_0101, 427 lines]
+          - RaceSessionAssetsClient_Active (LocalScript) [script_0102, 244 lines]
+          - RaceSessionControlsClient_Active (LocalScript) [script_0103, 254 lines]
+          - RaceSessionPresentationController_Active (LocalScript) [script_0104, 282 lines]
+          - RaceTimeTrialResultCoachClient_Active (LocalScript) [script_0105, 214 lines]
+          - RaceTransitionClient_Active (LocalScript) [script_0106, 261 lines]
         - Runtime (Folder)
-          - CharacterSprintController_Active (LocalScript) [script_0097, 360 lines, 1 attrs]
-          - DriveHudController_Active (LocalScript) [script_0098, 3 lines, 7 attrs]
-          - FreeRoamParkedHoverController_Active (LocalScript) [script_0099, 209 lines]
-          - MobileDriveControlsController_Active (LocalScript) [script_0100, 199 lines, 13 attrs]
-          - RuntimeVFXController_Active (LocalScript) [script_0101, 16 lines, 9 attrs]
+          - CharacterSprintController_Active (LocalScript) [script_0107, 358 lines, 1 attrs]
+          - DriveHudController_Active (LocalScript) [script_0108, 3 lines, 7 attrs]
+          - FreeRoamParkedHoverController_Active (LocalScript) [script_0109, 209 lines]
+          - MobileDriveControlsController_Active (LocalScript) [script_0110, 200 lines, 13 attrs]
+          - RuntimeVFXController_Active (LocalScript) [script_0111, 16 lines, 9 attrs]
         - UI (Folder)
           - FreeRoamHudPresentationMode (BindableEvent)
           - OpenRaceBrowser (BindableEvent)
-          - DesktopFreeRoamHudController_Active (LocalScript) [script_0102, 1123 lines, 2 attrs]
-          - FreeRoamNavController_Active (LocalScript) [script_0103, 3 lines, 3 attrs]
-          - FreeRoamVehicleExitButton_Active (LocalScript) [script_0104, 3 lines]
-          - MobileFreeRoamHudController_Active (LocalScript) [script_0105, 291 lines, 2 attrs]
-          - CockpitPaintUIController (ModuleScript) [script_0106, 46 lines, 5 attrs]
-          - ColourPickerController (ModuleScript) [script_0107, 277 lines, 5 attrs]
-          - CustomisationUIController (ModuleScript) [script_0108, 127 lines, 5 attrs]
-          - DealershipUIController (ModuleScript) [script_0109, 87 lines, 5 attrs]
-          - GaragePropertyMenuController (ModuleScript) [script_0110, 172 lines, 2 attrs]
-          - ModuleShopUIController (ModuleScript) [script_0111, 109 lines, 5 attrs]
-          - NavigationController (ModuleScript) [script_0112, 49 lines, 5 attrs]
-          - StatsPanelController (ModuleScript) [script_0113, 51 lines, 5 attrs]
+          - DesktopFreeRoamHudController_Active (LocalScript) [script_0112, 1142 lines, 2 attrs]
+          - FreeRoamNavController_Active (LocalScript) [script_0113, 3 lines, 3 attrs]
+          - FreeRoamVehicleExitButton_Active (LocalScript) [script_0114, 3 lines]
+          - GarageExperienceController_Active (LocalScript) [script_0115, Disabled, 206 lines, 3 attrs]
+          - MobileFreeRoamHudController_Active (LocalScript) [script_0116, 314 lines, 2 attrs]
+          - CockpitPaintUIController (ModuleScript) [script_0117, 46 lines, 5 attrs]
+          - ColourPickerController (ModuleScript) [script_0118, 277 lines, 5 attrs]
+          - CustomisationUIController (ModuleScript) [script_0119, 127 lines, 5 attrs]
+          - DealershipUIController (ModuleScript) [script_0120, 87 lines, 5 attrs]
+          - GarageBrowserController (ModuleScript) [script_0121, 133 lines]
+          - GarageModuleCardViewModel (ModuleScript) [script_0122, 61 lines]
+          - GaragePropertyMenuController (ModuleScript) [script_0123, 174 lines, 2 attrs]
+          - GarageReplacementComponents (ModuleScript) [script_0124, 235 lines]
+          - GarageWorkspaceController (ModuleScript) [script_0125, 268 lines]
+          - ModuleShopUIController (ModuleScript) [script_0126, 272 lines, 5 attrs]
+          - NavigationController (ModuleScript) [script_0127, 49 lines, 5 attrs]
+          - StatsPanelController (ModuleScript) [script_0128, 51 lines, 5 attrs]
           - README_TargetControllers (StringValue)
         - World (Folder)
-          - GarageAccessClient_Active (LocalScript) [script_0114, 279 lines, 1 attrs]
-          - GarageInteriorClient_Active (LocalScript) [script_0115, 92 lines, 2 attrs]
-          - GarageInteriorCustomizationClient_Active (LocalScript) [script_0116, 273 lines, 1 attrs]
-          - LODClient_Active (LocalScript) [script_0117, 365 lines, 12 attrs]
-          - NightLamppostLightController_Active (LocalScript) [script_0118, 21 lines, 2 attrs]
-          - WindowMaterialController_Active (LocalScript) [script_0119, 28 lines, 2 attrs]
+          - GarageAccessClient_Active (LocalScript) [script_0129, 279 lines, 1 attrs]
+          - GarageInteriorClient_Active (LocalScript) [script_0130, 92 lines, 2 attrs]
+          - GarageInteriorCustomizationClient_Active (LocalScript) [script_0131, 273 lines, 1 attrs]
+          - LODClient_Active (LocalScript) [script_0132, 365 lines, 12 attrs]
+          - NightLamppostLightController_Active (LocalScript) [script_0133, 21 lines, 2 attrs]
+          - WindowMaterialController_Active (LocalScript) [script_0134, 28 lines, 2 attrs]
       - RuntimeState (Folder)
       - State (Folder)
-      - NeoTokyoRacersClient_Bootstrap_Shadow_Disabled (LocalScript) [script_0120, 4719 lines, 61 attrs]
-    - LocalScript (LocalScript) [script_0121, 203 lines]
-    - TEMP_LightingPreview (LocalScript) [script_0122, 39 lines, 2 attrs]
-    - TrailerMode.client.lua (LocalScript) [script_0123, 73 lines]
-    - TrailerShot01Camera (LocalScript) [script_0124, 92 lines]
+      - NeoTokyoRacersClient_Bootstrap_Shadow_Disabled (LocalScript) [script_0135, 4226 lines, 64 attrs]
+    - LocalScript (LocalScript) [script_0136, 203 lines]
+    - TEMP_LightingPreview (LocalScript) [script_0137, 39 lines, 2 attrs]
+    - TrailerMode.client.lua (LocalScript) [script_0138, 73 lines]
+    - TrailerShot01Camera (LocalScript) [script_0139, 92 lines]
 - StarterGui (StarterGui)
   - NeoTokyoRacersUI (ScreenGui) [2 attrs]
     - Components (Folder) [1 attrs]
@@ -3920,10 +4210,19 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
     - Theme (Folder) [1 attrs]
 - Workspace (Workspace)
   - Camera (Camera)
-  - Decal (Decal)
-  - Decal (Decal)
-  - Decal (Decal)
-  - Decal (Decal)
+  - back (Decal)
+  - build (Decal)
+  - build2 (Decal)
+  - buy cart (Decal)
+  - buy2 (Decal)
+  - cosmetics (Decal)
+  - cosmetics2 (Decal)
+  - drive (Decal)
+  - exit (Decal)
+  - locked (Decal)
+  - neon (Decal)
+  - owned (Decal)
+  - performance (Decal)
   - NeoTokyoRacersWorld (Folder) [3 attrs]
     - City (Folder) [3 attrs]
       - Block S1 (Folder)
@@ -4625,8 +4924,8 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - Road Marking White (Part)
                     - Road Marking White (Part)
                     - Road Marking White (Part)
-                  - Road Marking Dashed Line (Model)
                     - Road Marking White (Part)
+                  - Road Marking Dashed Line (Model)
                     - Road Marking White (Part)
                     - Road Marking White (Part)
                     - Road Marking White (Part)
@@ -4919,11 +5218,11 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - Street Lamp Tall A (Model)
                     - lamppost main (MeshPart)
                     - lamppost neon (MeshPart)
-                      - SurfaceLight lamppost (SurfaceLight)
+                      - SurfaceLight lamppost (SurfaceLight) [1 attrs]
                   - Street Lamp Tall A (Model)
                     - lamppost main (MeshPart)
                     - lamppost neon (MeshPart)
-                      - SurfaceLight lamppost (SurfaceLight) [1 attrs]
+                      - SurfaceLight lamppost (SurfaceLight)
                 - Street Lights Group Front (Model)
                   - Street Lamp Tall A (Model)
                     - lamppost main (MeshPart)
@@ -5463,8 +5762,8 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - Road Marking White (Part)
                     - Road Marking White (Part)
                     - Road Marking White (Part)
-                  - Road Marking Dashed Line (Model)
                     - Road Marking White (Part)
+                  - Road Marking Dashed Line (Model)
                     - Road Marking White (Part)
                     - Road Marking White (Part)
                     - Road Marking White (Part)
@@ -5588,28 +5887,28 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                 - Tree_Small_Bamboo_LOD4 (Model)
                   - Tree_Small_Bamboo_LOD4 (MeshPart)
                     - SurfaceAppearance (SurfaceAppearance)
+                - Tree_Small_Bamboo_LOD4 (Model)
+                  - Tree_Small_Bamboo_LOD4 (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                - Tree_Small_Bamboo_LOD4 (Model)
+                  - Tree_Small_Bamboo_LOD4 (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                - Tree_Small_Bamboo_LOD4 (Model)
+                  - Tree_Small_Bamboo_LOD4 (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                - Tree_Small_Bamboo_LOD4 (Model)
+                  - Tree_Small_Bamboo_LOD4 (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                - Tree_Small_Bamboo_LOD4 (Model)
+                  - Tree_Small_Bamboo_LOD4 (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                - Tree_Small_Bamboo_LOD4 (Model)
+                  - Tree_Small_Bamboo_LOD4 (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                - Tree_Small_Bamboo_LOD4 (Model)
+                  - Tree_Small_Bamboo_LOD4 (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
               - Foliage Small LOD4 (Model)
-                - Tree_Small_Bamboo_LOD4 (Model)
-                  - Tree_Small_Bamboo_LOD4 (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
-                - Tree_Small_Bamboo_LOD4 (Model)
-                  - Tree_Small_Bamboo_LOD4 (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
-                - Tree_Small_Bamboo_LOD4 (Model)
-                  - Tree_Small_Bamboo_LOD4 (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
-                - Tree_Small_Bamboo_LOD4 (Model)
-                  - Tree_Small_Bamboo_LOD4 (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
-                - Tree_Small_Bamboo_LOD4 (Model)
-                  - Tree_Small_Bamboo_LOD4 (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
-                - Tree_Small_Bamboo_LOD4 (Model)
-                  - Tree_Small_Bamboo_LOD4 (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
-                - Tree_Small_Bamboo_LOD4 (Model)
-                  - Tree_Small_Bamboo_LOD4 (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
                 - Tree_Small_Bamboo_LOD4 (Model)
                   - Tree_Small_Bamboo_LOD4 (MeshPart)
                     - SurfaceAppearance (SurfaceAppearance)
@@ -5685,7 +5984,40 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - Street Lamp Tall A (Model)
                     - lamppost main (MeshPart)
                     - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight) [1 attrs]
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
                       - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                - Street Lights Group Back (Model)
                   - Street Lamp Tall A (Model)
                     - lamppost main (MeshPart)
                     - lamppost neon (MeshPart)
@@ -5710,6 +6042,51 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - lamppost main (MeshPart)
                     - lamppost neon (MeshPart)
                       - SurfaceLight lamppost (SurfaceLight) [1 attrs]
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                - Street Lights Group Back (Model)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight) [1 attrs]
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
                 - Street Lights Group Left (Model)
                   - Street Lamp Tall A (Model)
                     - lamppost main (MeshPart)
@@ -5780,8 +6157,8 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - SurfaceAppearance (SurfaceAppearance)
                   - bush long (MeshPart)
                     - SurfaceAppearance (SurfaceAppearance)
-                  - bush long (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
+                  - path bush walls (Part)
+                  - path bush walls (Part)
                   - path bush walls (Part)
                   - path bush walls (Part)
                   - path bush walls (Part)
@@ -5824,8 +6201,8 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - SurfaceAppearance (SurfaceAppearance)
                   - bush long (MeshPart)
                     - SurfaceAppearance (SurfaceAppearance)
-                  - path bush walls (Part)
-                  - path bush walls (Part)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
                   - path bush walls (Part)
                   - path bush walls (Part)
                   - path bush walls (Part)
@@ -5969,15 +6346,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - TrunkLargeMaple1 (MeshPart)
                         - SurfaceAppearance Trunk (SurfaceAppearance)
                     - Tree Base Concrete (UnionOperation)
-                  - Tree Large Maple (Model)
-                    - Tree_Large_Maple_LOD3 (Model)
-                      - LeavesMapleBottom1 (MeshPart)
-                        - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                      - LeavesMapleShadow2 (MeshPart)
-                        - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                      - TrunkLargeMaple1 (MeshPart)
-                        - SurfaceAppearance Trunk (SurfaceAppearance)
-                    - Tree Base Concrete (UnionOperation)
                   - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
                     - Leaves_Large_Poplar (MeshPart)
                       - SurfaceAppearance Leaves Maple (SurfaceAppearance)
@@ -6014,6 +6382,15 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - Trunk_Large_Poplar (MeshPart)
                       - SurfaceAppearance Trunk (SurfaceAppearance)
                 - Trees Back (Model)
+                  - Tree Large Maple (Model)
+                    - Tree_Large_Maple_LOD3 (Model)
+                      - LeavesMapleBottom1 (MeshPart)
+                        - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                      - LeavesMapleShadow2 (MeshPart)
+                        - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                      - TrunkLargeMaple1 (MeshPart)
+                        - SurfaceAppearance Trunk (SurfaceAppearance)
+                    - Tree Base Concrete (UnionOperation)
                   - Tree Large Maple (Model)
                     - Tree_Large_Maple_LOD3 (Model)
                       - LeavesMapleBottom1 (MeshPart)
@@ -6191,6 +6568,54 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - SurfaceAppearance (SurfaceAppearance)
                   - bush long (MeshPart)
                     - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - Road Central Divider (Part)
+                  - Road Central Divider Circle (Part)
+                  - Road Central Divider Circle (Part)
+                - Road Central Divider (Model)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
                   - Road Central Divider (Part)
                   - Road Central Divider Circle (Part)
                   - Road Central Divider Circle (Part)
@@ -6205,44 +6630,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - SurfaceAppearance (SurfaceAppearance)
                   - bush long (MeshPart)
                     - SurfaceAppearance (SurfaceAppearance)
-                  - bush long (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
-                  - bush long (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
-                  - bush long (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
-                  - bush long (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
-                  - bush long (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
-                  - bush long (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
-                  - bush long (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
-                  - bush long (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
-                  - bush long (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
-                  - bush long (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
-                  - bush long (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
-                  - bush long (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
-                  - bush long (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
-                  - bush long (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
-                  - bush long (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
-                  - bush long (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
-                  - bush long (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
-                  - Road Central Divider (Part)
-                  - Road Central Divider Circle (Part)
-                  - Road Central Divider Circle (Part)
-                - Road Central Divider (Model)
                   - bush long (MeshPart)
                     - SurfaceAppearance (SurfaceAppearance)
                   - bush long (MeshPart)
@@ -6372,6 +6759,14 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - SurfaceAppearance (SurfaceAppearance)
                     - bush long (MeshPart)
                       - SurfaceAppearance (SurfaceAppearance)
+                  - TKY_SIMPLE_POP_BB_04_mira_mart_MEDIUM_1X2_V (Model) [18 attrs]
+                    - BillboardPanel (Part)
+                      - FrontSurfaceGui (SurfaceGui)
+                        - AtlasImageLabel (ImageLabel)
+                  - TKY_SIMPLE_POP_BB_11_sato_snack_MEDIUM_2X1_H (Model) [18 attrs]
+                    - BillboardPanel (Part)
+                      - FrontSurfaceGui (SurfaceGui)
+                        - AtlasImageLabel (ImageLabel)
                 - Block_S1_R4_B4 Building B (Model)
                   - beams detail (MeshPart)
                   - beams detail support bottom (MeshPart)
@@ -6689,6 +7084,18 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Foliage (Folder)
               - Paths (Folder)
               - Props (Folder)
+                - Street Lamp Tall A (Model)
+                  - lamppost main (MeshPart)
+                  - lamppost neon (MeshPart)
+                    - SurfaceLight lamppost (SurfaceLight)
+                - Street Lamp Tall A (Model)
+                  - lamppost main (MeshPart)
+                  - lamppost neon (MeshPart)
+                    - SurfaceLight lamppost (SurfaceLight)
+                - Street Lamp Tall A (Model)
+                  - lamppost main (MeshPart)
+                  - lamppost neon (MeshPart)
+                    - SurfaceLight lamppost (SurfaceLight)
                 - Street Lights Group Front (Model)
                   - Street Lamp Tall A (Model)
                     - lamppost main (MeshPart)
@@ -6868,18 +7275,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - SurfaceAppearance Crossing (SurfaceAppearance)
                 - Road Marking Crossing (MeshPart)
                   - SurfaceAppearance Crossing (SurfaceAppearance)
-                - Road Marking Crossing (MeshPart)
-                  - SurfaceAppearance Crossing (SurfaceAppearance)
-                - Road Marking Crossing (MeshPart)
-                  - SurfaceAppearance Crossing (SurfaceAppearance)
-                - Road Marking Crossing (MeshPart)
-                  - SurfaceAppearance Crossing (SurfaceAppearance)
-                - Road Marking Crossing (MeshPart)
-                  - SurfaceAppearance Crossing (SurfaceAppearance)
-                - Road Marking Crossing (MeshPart)
-                  - SurfaceAppearance Crossing (SurfaceAppearance)
-                - Road Marking Crossing (MeshPart)
-                  - SurfaceAppearance Crossing (SurfaceAppearance)
                 - Road Marking White (Part)
                 - Road Marking Yellow (Part)
             - LOD4 (Folder)
@@ -7025,20 +7420,8 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                         - Battery (Model)
                           - Battery (MeshPart)
                             - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-                        - Battery (Model)
-                          - Battery (MeshPart)
-                            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-                        - Battery (Model)
-                          - Battery (MeshPart)
-                            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
                         - Gascan (Model)
                           - Gascan (MeshPart)
-                            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-                        - Gascan (Model)
-                          - Gascan (MeshPart)
-                            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-                        - Shelf.001 (Model)
-                          - Shelf (MeshPart)
                             - SA_Racing_Metal_Trim_a (SurfaceAppearance)
                         - Shelf.001 (Model)
                           - Shelf (MeshPart)
@@ -7069,8 +7452,20 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                         - Battery (Model)
                           - Battery (MeshPart)
                             - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                        - Battery (Model)
+                          - Battery (MeshPart)
+                            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                        - Battery (Model)
+                          - Battery (MeshPart)
+                            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
                         - Gascan (Model)
                           - Gascan (MeshPart)
+                            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                        - Gascan (Model)
+                          - Gascan (MeshPart)
+                            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                        - Shelf.001 (Model)
+                          - Shelf (MeshPart)
                             - SA_Racing_Metal_Trim_a (SurfaceAppearance)
                         - Shelf.001 (Model)
                           - Shelf (MeshPart)
@@ -7252,15 +7647,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                         - truss_25_b (MeshPart)
                           - SA_Racing_Metal_Trim_a (SurfaceAppearance)
                     - left side (Model)
-                      - Battery (Model)
-                        - Battery (MeshPart)
-                          - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-                      - Battery (Model)
-                        - Battery (MeshPart)
-                          - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-                      - Battery (Model)
-                        - Battery (MeshPart)
-                          - SA_Racing_Metal_Trim_a (SurfaceAppearance)
                       - Box_A (Model)
                         - Box_A (MeshPart)
                           - SA_Racing_Metal_Trim_a (SurfaceAppearance)
@@ -7369,6 +7755,8 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                         - Locker_B (MeshPart)
                           - SA_Racing_Metal_Trim_a (SurfaceAppearance)
                       - Locker_B (Model)
+                        - Locker_B (MeshPart)
+                          - SA_Racing_Metal_Trim_a (SurfaceAppearance)
                       - Locker_B (Model)
                         - Locker_B (MeshPart)
                           - SA_Racing_Metal_Trim_a (SurfaceAppearance)
@@ -7418,9 +7806,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                         - Shelf.001 (Model)
                           - Shelf (MeshPart)
                             - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-                      - Shelf.001 (Model)
-                        - Shelf (MeshPart)
-                          - SA_Racing_Metal_Trim_a (SurfaceAppearance)
                       - Shelf_A (Model)
                         - Shelf_A (MeshPart)
                           - SA_Racing_Metal_Trim_a (SurfaceAppearance)
@@ -7521,6 +7906,15 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                         - StripLightBulb (Part)
                           - SurfaceLight (SurfaceLight)
                     - left side (Model)
+                      - Battery (Model)
+                        - Battery (MeshPart)
+                          - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                      - Battery (Model)
+                        - Battery (MeshPart)
+                          - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                      - Battery (Model)
+                        - Battery (MeshPart)
+                          - SA_Racing_Metal_Trim_a (SurfaceAppearance)
                       - Box_A (Model)
                         - Box_A (MeshPart)
                           - SA_Racing_Metal_Trim_a (SurfaceAppearance)
@@ -7632,8 +8026,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                         - Locker_B (MeshPart)
                           - SA_Racing_Metal_Trim_a (SurfaceAppearance)
                       - Locker_B (Model)
-                        - Locker_B (MeshPart)
-                          - SA_Racing_Metal_Trim_a (SurfaceAppearance)
                       - Locker_B (Model)
                         - Locker_B (MeshPart)
                           - SA_Racing_Metal_Trim_a (SurfaceAppearance)
@@ -7680,6 +8072,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                         - Shelf.001 (Model)
                           - Shelf (MeshPart)
                             - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                      - Shelf.001 (Model)
+                        - Shelf (MeshPart)
+                          - SA_Racing_Metal_Trim_a (SurfaceAppearance)
                       - Shelf_A (Model)
                         - Shelf_A (MeshPart)
                           - SA_Racing_Metal_Trim_a (SurfaceAppearance)
@@ -8884,12 +9279,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - SurfaceAppearance Crossing (SurfaceAppearance)
                 - Road Marking Crossing (MeshPart)
                   - SurfaceAppearance Crossing (SurfaceAppearance)
-                - Road Marking Crossing (MeshPart)
-                  - SurfaceAppearance Crossing (SurfaceAppearance)
-                - Road Marking Crossing (MeshPart)
-                  - SurfaceAppearance Crossing (SurfaceAppearance)
-                - Road Marking Crossing (MeshPart)
-                  - SurfaceAppearance Crossing (SurfaceAppearance)
                 - Road Marking White  (Model)
                   - Road Marking White (Part)
                   - Road Marking White (Part)
@@ -9059,13 +9448,188 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Foliage (Folder)
               - Paths (Folder)
               - Props (Folder)
+                - Street Lamp Tall A (Model)
+                  - lamppost main (MeshPart)
+                  - lamppost neon (MeshPart)
+                    - SurfaceLight lamppost (SurfaceLight)
+                - Street Lamp Tall A (Model)
+                  - lamppost main (MeshPart)
+                  - lamppost neon (MeshPart)
+                    - SurfaceLight lamppost (SurfaceLight)
+                - Street Lamp Tall A (Model)
+                  - lamppost main (MeshPart)
+                  - lamppost neon (MeshPart)
+                    - SurfaceLight lamppost (SurfaceLight)
+                - Street Lights Group Front (Model)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
               - Roads (Folder)
             - LOD3 (Folder)
               - Buildings (Folder)
               - Foliage (Folder)
+                - Bush Group Front (Model)
+                  - path bush group B (Model)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush walls (UnionOperation)
+                    - bush walls detail (UnionOperation)
+                  - path bush group B (Model)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush walls (UnionOperation)
+                    - bush walls detail (UnionOperation)
+                  - path bush group B (Model)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush walls (UnionOperation)
+                    - bush walls detail (UnionOperation)
+                  - path bush group B (Model)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush walls (UnionOperation)
+                    - bush walls detail (UnionOperation)
+                - Tree Large Maple (Model)
+                  - Tree_Large_Maple_LOD3 (Model)
+                    - LeavesMapleBottom1 (MeshPart)
+                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                    - LeavesMapleShadow2 (MeshPart)
+                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                    - TrunkLargeMaple1 (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree Base Concrete (UnionOperation)
+                - Tree Large Maple (Model)
+                  - Tree_Large_Maple_LOD3 (Model)
+                    - LeavesMapleBottom1 (MeshPart)
+                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                    - LeavesMapleShadow2 (MeshPart)
+                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                    - TrunkLargeMaple1 (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree Base Concrete (UnionOperation)
+                - Tree Large Maple (Model)
+                  - Tree_Large_Maple_LOD3 (Model)
+                    - LeavesMapleBottom1 (MeshPart)
+                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                    - LeavesMapleShadow2 (MeshPart)
+                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                    - TrunkLargeMaple1 (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree Base Concrete (UnionOperation)
+                - Tree Large Poplar Group (Model)
+                  - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
+                    - Leaves_Large_Poplar (MeshPart)
+                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                    - Trunk_Large_Poplar (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree Base Concrete (UnionOperation)
+                - Tree Large Poplar Group (Model)
+                  - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
+                    - Leaves_Large_Poplar (MeshPart)
+                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                    - Trunk_Large_Poplar (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree Base Concrete (UnionOperation)
+                - Tree Large Poplar Group (Model)
+                  - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
+                    - Leaves_Large_Poplar (MeshPart)
+                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                    - Trunk_Large_Poplar (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree Base Concrete (UnionOperation)
+                - Trees Left (Model)
+                  - Tree Large Maple (Model)
+                    - Tree_Large_Maple_LOD3 (Model)
+                      - LeavesMapleBottom1 (MeshPart)
+                        - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                      - LeavesMapleShadow2 (MeshPart)
+                        - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                      - TrunkLargeMaple1 (MeshPart)
+                        - SurfaceAppearance Trunk (SurfaceAppearance)
+                    - Tree Base Concrete (UnionOperation)
+                  - Tree Large Maple (Model)
+                    - Tree_Large_Maple_LOD3 (Model)
+                      - LeavesMapleBottom1 (MeshPart)
+                        - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                      - LeavesMapleShadow2 (MeshPart)
+                        - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                      - TrunkLargeMaple1 (MeshPart)
+                        - SurfaceAppearance Trunk (SurfaceAppearance)
+                    - Tree Base Concrete (UnionOperation)
+                  - Tree_Small_Bamboo_LOD3 (Model)
+                    - leaves small bamboo (MeshPart)
+                      - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
+                    - trunk small bamboo (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree_Small_Bamboo_LOD3 (Model)
+                    - leaves small bamboo (MeshPart)
+                      - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
+                    - trunk small bamboo (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree Base Concrete (UnionOperation)
+                  - Tree Base Concrete (UnionOperation)
               - Paths (Folder)
+                - S2_R3 Group Paths FBX (Model)
+                  - path detail edge (MeshPart)
+                  - path main.001 (MeshPart)
+                  - path road edge.001 (MeshPart)
               - Props (Folder)
               - Roads (Folder)
+                - Road Marking Crossing (MeshPart)
+                  - SurfaceAppearance Crossing (SurfaceAppearance)
+                - Road Marking Crossing (MeshPart)
+                  - SurfaceAppearance Crossing (SurfaceAppearance)
+                - Road Marking Crossing (MeshPart)
+                  - SurfaceAppearance Crossing (SurfaceAppearance)
+                - Road Marking Dashed Line (Model)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                - Road Marking Dashed Line (Model)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
             - LOD4 (Folder)
               - Buildings (Folder)
               - Foliage (Folder)
@@ -9265,9 +9829,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - Garage Bollard Yellow (Part)
                   - Garage Sign (Model)
                     - Garage Sign (Part)
+                    - Garage Sign (Part)
                       - SurfaceGui (SurfaceGui)
                         - TextLabel (TextLabel)
-                    - Garage Sign (Part)
                     - Garage Sign (Part)
                     - Garage Sign (Part)
                     - Garage Sign Clearance (Part)
@@ -9362,62 +9926,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - bush walls (UnionOperation)
                     - bush walls detail (UnionOperation)
                 - Path Bush Group Back B (Model)
-                  - path bush group A (Model)
-                    - bush long (MeshPart)
-                      - SurfaceAppearance (SurfaceAppearance)
-                    - bush long (MeshPart)
-                      - SurfaceAppearance (SurfaceAppearance)
-                    - bush walls (UnionOperation)
-                    - bush walls detail (UnionOperation)
-                  - path bush group A (Model)
-                    - bush long (MeshPart)
-                      - SurfaceAppearance (SurfaceAppearance)
-                    - bush long (MeshPart)
-                      - SurfaceAppearance (SurfaceAppearance)
-                    - bush walls (UnionOperation)
-                    - bush walls detail (UnionOperation)
-                  - path bush group A (Model)
-                    - bush long (MeshPart)
-                      - SurfaceAppearance (SurfaceAppearance)
-                    - bush long (MeshPart)
-                      - SurfaceAppearance (SurfaceAppearance)
-                    - bush walls (UnionOperation)
-                    - bush walls detail (UnionOperation)
-                  - path bush group A (Model)
-                    - bush long (MeshPart)
-                      - SurfaceAppearance (SurfaceAppearance)
-                    - bush long (MeshPart)
-                      - SurfaceAppearance (SurfaceAppearance)
-                    - bush walls (UnionOperation)
-                    - bush walls detail (UnionOperation)
-                  - path bush group A (Model)
-                    - bush long (MeshPart)
-                      - SurfaceAppearance (SurfaceAppearance)
-                    - bush long (MeshPart)
-                      - SurfaceAppearance (SurfaceAppearance)
-                    - bush walls (UnionOperation)
-                    - bush walls detail (UnionOperation)
-                  - path bush group A (Model)
-                    - bush long (MeshPart)
-                      - SurfaceAppearance (SurfaceAppearance)
-                    - bush long (MeshPart)
-                      - SurfaceAppearance (SurfaceAppearance)
-                    - bush walls (UnionOperation)
-                    - bush walls detail (UnionOperation)
-                  - path bush group A (Model)
-                    - bush long (MeshPart)
-                      - SurfaceAppearance (SurfaceAppearance)
-                    - bush long (MeshPart)
-                      - SurfaceAppearance (SurfaceAppearance)
-                    - bush walls (UnionOperation)
-                    - bush walls detail (UnionOperation)
-                  - path bush group A (Model)
-                    - bush long (MeshPart)
-                      - SurfaceAppearance (SurfaceAppearance)
-                    - bush long (MeshPart)
-                      - SurfaceAppearance (SurfaceAppearance)
-                    - bush walls (UnionOperation)
-                    - bush walls detail (UnionOperation)
                   - path bush group A (Model)
                     - bush long (MeshPart)
                       - SurfaceAppearance (SurfaceAppearance)
@@ -9595,46 +10103,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
                     - trunk small bamboo (MeshPart)
                       - SurfaceAppearance Trunk (SurfaceAppearance)
-                  - Tree_Small_Bamboo_LOD3 (Model)
-                    - leaves small bamboo (MeshPart)
-                      - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
-                    - trunk small bamboo (MeshPart)
-                      - SurfaceAppearance Trunk (SurfaceAppearance)
-                  - Tree_Small_Bamboo_LOD3 (Model)
-                    - leaves small bamboo (MeshPart)
-                      - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
-                    - trunk small bamboo (MeshPart)
-                      - SurfaceAppearance Trunk (SurfaceAppearance)
-                  - Tree_Small_Bamboo_LOD3 (Model)
-                    - leaves small bamboo (MeshPart)
-                      - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
-                    - trunk small bamboo (MeshPart)
-                      - SurfaceAppearance Trunk (SurfaceAppearance)
-                  - Tree_Small_Bamboo_LOD3 (Model)
-                    - leaves small bamboo (MeshPart)
-                      - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
-                    - trunk small bamboo (MeshPart)
-                      - SurfaceAppearance Trunk (SurfaceAppearance)
-                  - Tree_Small_Bamboo_LOD3 (Model)
-                    - leaves small bamboo (MeshPart)
-                      - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
-                    - trunk small bamboo (MeshPart)
-                      - SurfaceAppearance Trunk (SurfaceAppearance)
-                  - Tree_Small_Bamboo_LOD3 (Model)
-                    - leaves small bamboo (MeshPart)
-                      - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
-                    - trunk small bamboo (MeshPart)
-                      - SurfaceAppearance Trunk (SurfaceAppearance)
-                  - Tree_Small_Bamboo_LOD3 (Model)
-                    - leaves small bamboo (MeshPart)
-                      - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
-                    - trunk small bamboo (MeshPart)
-                      - SurfaceAppearance Trunk (SurfaceAppearance)
-                  - Tree_Small_Bamboo_LOD3 (Model)
-                    - leaves small bamboo (MeshPart)
-                      - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
-                    - trunk small bamboo (MeshPart)
-                      - SurfaceAppearance Trunk (SurfaceAppearance)
               - Paths (Folder)
                 - Road (Part)
                 - Path Detail Edge (UnionOperation)
@@ -9655,11 +10123,11 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - BillboardPanel (Part)
                     - BillboardPanel (Part)
                     - BillboardPanel (Part)
+                    - BillboardPanel (Part)
                       - FrontSurfaceGui (SurfaceGui)
                         - EnglishBrandText (TextLabel)
                           - UITextSizeConstraint (UITextSizeConstraint)
                         - JapaneseBrandText (TextLabel)
-                    - BillboardPanel (Part)
                   - TKY_JP_TEXT_BB_12_NijiCamera_RainbowCamera_2X1_H (Model) [11 attrs]
                     - BillboardPanel (Part)
                       - FrontSurfaceGui (SurfaceGui)
@@ -9688,6 +10156,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - FrontSurfaceGui (SurfaceGui)
                         - EnglishBrandText (TextLabel)
                           - UITextSizeConstraint (UITextSizeConstraint)
+                        - JapaneseBrandText (TextLabel)
+                  - TKY_JP_TEXT_BB_16_EdoGames_EdoGames_1X2_V (Model) [11 attrs]
+                    - BillboardPanel (Part)
+                      - FrontSurfaceGui (SurfaceGui)
                         - JapaneseBrandText (TextLabel)
                   - TKY_JP_TEXT_BB_16_EdoGames_EdoGames_1X2_V (Model) [11 attrs]
                     - BillboardPanel (Part)
@@ -9889,6 +10361,39 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - lamppost main (MeshPart)
                     - lamppost neon (MeshPart)
                       - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                - Street Lights Group Left (Model)
                   - Street Lamp Tall A (Model)
                     - lamppost main (MeshPart)
                     - lamppost neon (MeshPart)
@@ -10183,37 +10688,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - SurfaceAppearance Leaves Maple (SurfaceAppearance)
                     - Trunk_Large_Poplar (MeshPart)
                       - SurfaceAppearance Trunk (SurfaceAppearance)
-                - Trees Back (Model)
-                  - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
-                    - Leaves_Large_Poplar (MeshPart)
-                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                    - Trunk_Large_Poplar (MeshPart)
-                      - SurfaceAppearance Trunk (SurfaceAppearance)
-                  - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
-                    - Leaves_Large_Poplar (MeshPart)
-                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                    - Trunk_Large_Poplar (MeshPart)
-                      - SurfaceAppearance Trunk (SurfaceAppearance)
-                  - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
-                    - Leaves_Large_Poplar (MeshPart)
-                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                    - Trunk_Large_Poplar (MeshPart)
-                      - SurfaceAppearance Trunk (SurfaceAppearance)
-                  - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
-                    - Leaves_Large_Poplar (MeshPart)
-                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                    - Trunk_Large_Poplar (MeshPart)
-                      - SurfaceAppearance Trunk (SurfaceAppearance)
-                  - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
-                    - Leaves_Large_Poplar (MeshPart)
-                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                    - Trunk_Large_Poplar (MeshPart)
-                      - SurfaceAppearance Trunk (SurfaceAppearance)
-                  - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
-                    - Leaves_Large_Poplar (MeshPart)
-                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                    - Trunk_Large_Poplar (MeshPart)
-                      - SurfaceAppearance Trunk (SurfaceAppearance)
                 - Trees Back B (Model)
                   - Tree_Small_Bamboo_LOD3 (Model)
                     - leaves small bamboo (MeshPart)
@@ -10325,10 +10799,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - path detail edge.004 (MeshPart)
                   - path main.005 (MeshPart)
                   - path road edge.004 (MeshPart)
+                  - path detail red (Part)
               - Props (Folder)
               - Roads (Folder)
-                - Road Marking Crossing (MeshPart)
-                  - SurfaceAppearance Crossing (SurfaceAppearance)
                 - Road Marking Crossing (MeshPart)
                   - SurfaceAppearance Crossing (SurfaceAppearance)
                 - Road Marking Crossing (MeshPart)
@@ -10356,6 +10829,31 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - entrance roof (MeshPart)
                     - entrance window frames (MeshPart)
                     - entrance windows (MeshPart) [1 attrs]
+                  - Building Entrance (Model)
+                    - entrance doors (MeshPart)
+                    - entrance roof (MeshPart)
+                    - entrance window frames (MeshPart)
+                    - entrance windows (MeshPart) [1 attrs]
+                  - TKY_JP_TEXT_BB_05_ShinbashiYakkyoku_ShinbashiPharmacy_2X1_H (Model) [11 attrs]
+                    - BillboardPanel (Part)
+                      - FrontSurfaceGui (SurfaceGui)
+                        - JapaneseBrandText (TextLabel)
+                        - SmallJapaneseText (TextLabel)
+                          - UITextSizeConstraint (UITextSizeConstraint)
+                  - TKY_JP_TEXT_BB_07_KumoBin_CloudDelivery_1X2_V (Model) [11 attrs]
+                    - BillboardPanel (Part)
+                      - FrontSurfaceGui (SurfaceGui)
+                        - EnglishBrandText (TextLabel)
+                          - UITextSizeConstraint (UITextSizeConstraint)
+                        - JapaneseBrandText (TextLabel)
+                  - TKY_JP_TEXT_BB_16_EdoGames_EdoGames_3X2_H (Model) [11 attrs]
+                    - BillboardPanel (Part)
+                      - FrontSurfaceGui (SurfaceGui)
+                        - JapaneseBrandText (TextLabel)
+                  - TKY_SIMPLE_POP_BB_09_pon_tech_MEDIUM_2X1_H (Model) [18 attrs]
+                    - BillboardPanel (Part)
+                      - FrontSurfaceGui (SurfaceGui)
+                        - AtlasImageLabel (ImageLabel)
                   - neon (Part)
                   - neon (Part)
                   - neon (Part)
@@ -10375,6 +10873,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - neon (Part)
                   - neon (Part)
                   - neon (Part)
+                  - walls bottom (Part)
                   - walls bottom (Part)
                   - walls bottom (Part)
                   - walls bottom (Part)
@@ -10388,6 +10887,21 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - building d walls back main (MeshPart)
                   - building d walls front.001 (MeshPart)
                   - building d windows main (MeshPart) [1 attrs]
+                  - TKY_JP_TEXT_BB_14_KazeHotel_WindHotel_2X1_H (Model) [11 attrs]
+                    - BillboardPanel (Part)
+                      - FrontSurfaceGui (SurfaceGui)
+                        - EnglishBrandText (TextLabel)
+                          - UITextSizeConstraint (UITextSizeConstraint)
+                        - JapaneseBrandText (TextLabel)
+                  - TKY_JP_TEXT_BB_14_KazeHotel_WindHotel_2X1_H (Model) [11 attrs]
+                    - BillboardPanel (Part)
+                      - FrontSurfaceGui (SurfaceGui)
+                        - EnglishBrandText (TextLabel)
+                          - UITextSizeConstraint (UITextSizeConstraint)
+                  - TKY_JP_TEXT_BB_14_KazeHotel_WindHotel_2X1_H (Model) [11 attrs]
+                    - BillboardPanel (Part)
+                      - FrontSurfaceGui (SurfaceGui)
+                        - JapaneseBrandText (TextLabel)
               - Foliage (Folder)
               - Paths (Folder)
               - Props (Folder)
@@ -10410,15 +10924,402 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Foliage (Folder)
               - Paths (Folder)
               - Props (Folder)
+                - Railings Left (Model)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                - Street Lights Group Curve (Model)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                - Street Lights Group Left (Model)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
               - Roads (Folder)
             - LOD3 (Folder)
               - Buildings (Folder)
               - Foliage (Folder)
+                - Path Bush Group Left A (Model)
+                  - path bush group A (Model)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush walls (UnionOperation)
+                    - bush walls detail (UnionOperation)
+                  - path bush group A (Model)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush walls (UnionOperation)
+                    - bush walls detail (UnionOperation)
+                  - path bush group A (Model)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush walls (UnionOperation)
+                    - bush walls detail (UnionOperation)
+                  - path bush group A (Model)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush walls (UnionOperation)
+                    - bush walls detail (UnionOperation)
+                  - path bush group A (Model)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush walls (UnionOperation)
+                    - bush walls detail (UnionOperation)
+                  - path bush group A (Model)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush walls (UnionOperation)
+                    - bush walls detail (UnionOperation)
+                  - path bush group A (Model)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush walls (UnionOperation)
+                    - bush walls detail (UnionOperation)
+                  - path bush group A (Model)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush walls (UnionOperation)
+                    - bush walls detail (UnionOperation)
+                - Tree Large Maple (Model)
+                  - Tree_Large_Maple_LOD3 (Model)
+                    - LeavesMapleBottom1 (MeshPart)
+                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                    - LeavesMapleShadow2 (MeshPart)
+                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                    - TrunkLargeMaple1 (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree Base Concrete (UnionOperation)
+                - Tree Large Maple (Model)
+                  - Tree_Large_Maple_LOD3 (Model)
+                    - LeavesMapleBottom1 (MeshPart)
+                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                    - LeavesMapleShadow2 (MeshPart)
+                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                    - TrunkLargeMaple1 (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree Base Concrete (UnionOperation)
+                - Tree Large Maple (Model)
+                  - Tree_Large_Maple_LOD3 (Model)
+                    - LeavesMapleBottom1 (MeshPart)
+                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                    - LeavesMapleShadow2 (MeshPart)
+                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                    - TrunkLargeMaple1 (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree Base Concrete (UnionOperation)
+                - Tree Large Maple (Model)
+                  - Tree_Large_Maple_LOD3 (Model)
+                    - LeavesMapleBottom1 (MeshPart)
+                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                    - LeavesMapleShadow2 (MeshPart)
+                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                    - TrunkLargeMaple1 (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree Base Concrete (UnionOperation)
+                - Trees Group Side (Model)
+                  - Tree_Small_Bamboo_LOD3 (Model)
+                    - leaves small bamboo (MeshPart)
+                      - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
+                    - trunk small bamboo (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree_Small_Bamboo_LOD3 (Model)
+                    - leaves small bamboo (MeshPart)
+                      - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
+                    - trunk small bamboo (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree_Small_Bamboo_LOD3 (Model)
+                    - leaves small bamboo (MeshPart)
+                      - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
+                    - trunk small bamboo (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree_Small_Bamboo_LOD3 (Model)
+                    - leaves small bamboo (MeshPart)
+                      - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
+                    - trunk small bamboo (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree_Small_Bamboo_LOD3 (Model)
+                    - leaves small bamboo (MeshPart)
+                      - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
+                    - trunk small bamboo (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree_Small_Bamboo_LOD3 (Model)
+                    - leaves small bamboo (MeshPart)
+                      - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
+                    - trunk small bamboo (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree_Small_Bamboo_LOD3 (Model)
+                    - leaves small bamboo (MeshPart)
+                      - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
+                    - trunk small bamboo (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree_Small_Bamboo_LOD3 (Model)
+                    - leaves small bamboo (MeshPart)
+                      - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
+                    - trunk small bamboo (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                - Trees Left (Model)
+                  - Tree Large Maple (Model)
+                    - Tree_Large_Maple_LOD3 (Model)
+                      - LeavesMapleBottom1 (MeshPart)
+                        - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                      - LeavesMapleShadow2 (MeshPart)
+                        - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                      - TrunkLargeMaple1 (MeshPart)
+                        - SurfaceAppearance Trunk (SurfaceAppearance)
+                    - Tree Base Concrete (UnionOperation)
+                  - Tree Large Maple (Model)
+                    - Tree_Large_Maple_LOD3 (Model)
+                      - LeavesMapleBottom1 (MeshPart)
+                        - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                      - LeavesMapleShadow2 (MeshPart)
+                        - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                      - TrunkLargeMaple1 (MeshPart)
+                        - SurfaceAppearance Trunk (SurfaceAppearance)
+                    - Tree Base Concrete (UnionOperation)
+                  - Tree Large Maple (Model)
+                    - Tree_Large_Maple_LOD3 (Model)
+                      - LeavesMapleBottom1 (MeshPart)
+                        - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                      - LeavesMapleShadow2 (MeshPart)
+                        - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                      - TrunkLargeMaple1 (MeshPart)
+                        - SurfaceAppearance Trunk (SurfaceAppearance)
+                    - Tree Base Concrete (UnionOperation)
+                  - Tree Large Maple (Model)
+                    - Tree_Large_Maple_LOD3 (Model)
+                      - LeavesMapleBottom1 (MeshPart)
+                        - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                      - LeavesMapleShadow2 (MeshPart)
+                        - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                      - TrunkLargeMaple1 (MeshPart)
+                        - SurfaceAppearance Trunk (SurfaceAppearance)
+                    - Tree Base Concrete (UnionOperation)
+                  - Tree_Small_Bamboo_LOD3 (Model)
+                    - leaves small bamboo (MeshPart)
+                      - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
+                    - trunk small bamboo (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree_Small_Bamboo_LOD3 (Model)
+                    - leaves small bamboo (MeshPart)
+                      - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
+                    - trunk small bamboo (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree_Small_Bamboo_LOD3 (Model)
+                    - leaves small bamboo (MeshPart)
+                      - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
+                    - trunk small bamboo (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree_Small_Bamboo_LOD3 (Model)
+                    - leaves small bamboo (MeshPart)
+                      - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
+                    - trunk small bamboo (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree Base Concrete (UnionOperation)
+                  - Tree Base Concrete (UnionOperation)
+                  - Tree Base Concrete (UnionOperation)
+                  - Tree Base Concrete (UnionOperation)
+                - path bush group side (Model)
+                  - path bush group A (Model)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush walls (UnionOperation)
+                    - bush walls detail (UnionOperation)
+                  - path bush group A (Model)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush walls (UnionOperation)
+                    - bush walls detail (UnionOperation)
+                  - path bush group A (Model)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush walls (UnionOperation)
+                    - bush walls detail (UnionOperation)
+                  - path bush group A (Model)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush walls (UnionOperation)
+                    - bush walls detail (UnionOperation)
+                  - path bush group A (Model)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush walls (UnionOperation)
+                    - bush walls detail (UnionOperation)
+                  - path bush group A (Model)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush walls (UnionOperation)
+                    - bush walls detail (UnionOperation)
+                  - path bush group A (Model)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush walls (UnionOperation)
+                    - bush walls detail (UnionOperation)
+                  - path bush group A (Model)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush walls (UnionOperation)
+                    - bush walls detail (UnionOperation)
               - Paths (Folder)
+                - S2_R4_B3 Paths (Model)
+                  - path detail edge.003 (MeshPart)
+                  - path main.004 (MeshPart)
+                  - path road edge.003 (MeshPart)
               - Props (Folder)
               - Roads (Folder)
+                - Road Marking Crossing (MeshPart)
+                  - SurfaceAppearance Crossing (SurfaceAppearance)
+                - Road Marking Crossing (MeshPart)
+                  - SurfaceAppearance Crossing (SurfaceAppearance)
             - LOD4 (Folder)
               - Buildings (Folder)
+                - FBX - S2_R4_B3 Tower (Model) [1 attrs]
+                  - lower detail a.001 (MeshPart)
+                  - lower detail b.001 (MeshPart)
+                  - lower neon lights.001 (MeshPart)
+                  - lower structure floors (MeshPart) [1 attrs]
+                  - lower windows a.001 (MeshPart) [1 attrs]
+                  - lower windows b.001 (MeshPart)
+                  - main structure columns (MeshPart)
+                  - tower detail (MeshPart)
+                  - tower neon lights (MeshPart)
+                  - tower structure floors (MeshPart)
+                  - tower windows (MeshPart) [1 attrs]
+                  - TKY_JP_TEXT_BB_06_ShiroNeko_WhiteCat_2X1_H (Model) [11 attrs]
+                    - BillboardPanel (Part)
+                      - FrontSurfaceGui (SurfaceGui)
+                        - EnglishBrandText (TextLabel)
+                          - UITextSizeConstraint (UITextSizeConstraint)
+                        - JapaneseBrandText (TextLabel)
+                  - TKY_JP_TEXT_BB_06_ShiroNeko_WhiteCat_2X1_H (Model) [11 attrs]
+                    - BillboardPanel (Part)
+                      - FrontSurfaceGui (SurfaceGui)
+                        - EnglishBrandText (TextLabel)
+                          - UITextSizeConstraint (UITextSizeConstraint)
+                        - JapaneseBrandText (TextLabel)
+                  - TKY_JP_TEXT_BB_12_NijiCamera_RainbowCamera_2X1_H (Model) [11 attrs]
+                    - BillboardPanel (Part)
+                      - FrontSurfaceGui (SurfaceGui)
+                        - EnglishBrandText (TextLabel)
+                          - UITextSizeConstraint (UITextSizeConstraint)
+                        - JapaneseBrandText (TextLabel)
+                  - TKY_JP_TEXT_BB_13_TamaBooks_TamaBookstore_2X1_H (Model) [11 attrs]
+                    - BillboardPanel (Part)
+                      - FrontSurfaceGui (SurfaceGui)
+                        - JapaneseBrandText (TextLabel)
+                        - SmallJapaneseText (TextLabel)
+                          - UITextSizeConstraint (UITextSizeConstraint)
+                  - TKY_SIMPLE_POP_BB_16_nova_capsule_MEDIUM_1X2_V (Model) [18 attrs]
+                    - BillboardPanel (Part)
+                      - FrontSurfaceGui (SurfaceGui)
+                        - AtlasImageLabel (ImageLabel)
               - Foliage (Folder)
               - Paths (Folder)
               - Props (Folder)
@@ -10798,6 +11699,42 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - path road edge (MeshPart)
               - Props (Folder)
               - Roads (Folder)
+                - Road Marking Crossing (MeshPart)
+                  - SurfaceAppearance Crossing (SurfaceAppearance)
+                - Road Marking Crossing (MeshPart)
+                  - SurfaceAppearance Crossing (SurfaceAppearance)
+                - Road Marking Crossing (MeshPart)
+                  - SurfaceAppearance Crossing (SurfaceAppearance)
+                - Road Marking Crossing (MeshPart)
+                  - SurfaceAppearance Crossing (SurfaceAppearance)
+                - Road Marking Dashed Line (Model)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                - Road Marking Dashed Line (Model)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
+                  - Road Marking White (Part)
             - LOD4 (Folder)
               - Buildings (Folder)
                 - S2_R4_B4 Parking Lot FBX v3 (Model) [1 attrs]
@@ -10811,6 +11748,12 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - neon lights interior (MeshPart)
                   - railing main (MeshPart)
                   - walls interior (MeshPart)
+                - TKY_JP_TEXT_BB_09_AkaneBus_RedBus_3X2_H (Model) [11 attrs]
+                  - BillboardPanel (Part)
+                    - FrontSurfaceGui (SurfaceGui)
+                      - EnglishBrandText (TextLabel)
+                        - UITextSizeConstraint (UITextSizeConstraint)
+                      - JapaneseBrandText (TextLabel)
               - Foliage (Folder)
               - Paths (Folder)
               - Props (Folder)
@@ -11036,6 +11979,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                         - SurfaceAppearance Leaves Maple (SurfaceAppearance)
                       - TrunkLargeMaple1 (MeshPart)
                         - SurfaceAppearance Trunk (SurfaceAppearance)
+                    - Tree Base Concrete (UnionOperation)
                   - Tree Large Maple (Model)
                     - Tree_Large_Maple_LOD3 (Model)
                       - LeavesMapleBottom1 (MeshPart)
@@ -11044,7 +11988,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                         - SurfaceAppearance Leaves Maple (SurfaceAppearance)
                       - TrunkLargeMaple1 (MeshPart)
                         - SurfaceAppearance Trunk (SurfaceAppearance)
-                    - Tree Base Concrete (UnionOperation)
                   - Tree_Small_Bamboo_LOD3 (Model)
                     - leaves small bamboo (MeshPart)
                       - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
@@ -11077,9 +12020,44 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - path detail red (Part)
                   - path detail red (Part)
                   - path detail red (Part)
-                  - path detail red (Part)
               - Props (Folder)
               - Roads (Folder)
+                - Road Central Divider (Model)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - Road Central Divider (Part)
+                  - Road Central Divider Circle (Part)
+                  - Road Central Divider Circle (Part)
                 - Road Central Divider (Model)
                   - bush long (MeshPart)
                     - SurfaceAppearance (SurfaceAppearance)
@@ -11136,6 +12114,12 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - building c walls main (MeshPart)
                   - building c walls side (MeshPart)
                   - building c windows main (MeshPart) [1 attrs]
+                  - TKY_JP_TEXT_BB_14_KazeHotel_WindHotel_2X1_H (Model) [11 attrs]
+                    - BillboardPanel (Part)
+                      - FrontSurfaceGui (SurfaceGui)
+                        - EnglishBrandText (TextLabel)
+                          - UITextSizeConstraint (UITextSizeConstraint)
+                        - JapaneseBrandText (TextLabel)
               - Foliage (Folder)
               - Paths (Folder)
               - Props (Folder)
@@ -11358,6 +12342,37 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - Road Central Divider Main (Part)
                   - Road Central Divider Main (Part)
                   - Road Central Divider Main (Part)
+                - Trees Back (Model)
+                  - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
+                    - Leaves_Large_Poplar (MeshPart)
+                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                    - Trunk_Large_Poplar (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
+                    - Leaves_Large_Poplar (MeshPart)
+                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                    - Trunk_Large_Poplar (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
+                    - Leaves_Large_Poplar (MeshPart)
+                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                    - Trunk_Large_Poplar (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
+                    - Leaves_Large_Poplar (MeshPart)
+                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                    - Trunk_Large_Poplar (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
+                    - Leaves_Large_Poplar (MeshPart)
+                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                    - Trunk_Large_Poplar (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
+                    - Leaves_Large_Poplar (MeshPart)
+                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                    - Trunk_Large_Poplar (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
                 - Trees Left (Model)
                   - Tree Large Maple (Model)
                     - Tree_Large_Maple_LOD3 (Model)
@@ -11471,6 +12486,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - neon (Part)
                   - neon (Part)
                   - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
                 - TKY_JP_TEXT_BB_06_ShiroNeko_WhiteCat_1X2_V (Model) [11 attrs]
                   - BillboardPanel (Part)
                     - FrontSurfaceGui (SurfaceGui)
@@ -11492,39 +12510,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - LOD4_Foliage (Folder)
           - _Metadata (Folder)
             - CenterPart (Part)
-          - Street Lights Group Left (Model)
-            - Street Lamp Tall A (Model)
-              - lamppost main (MeshPart)
-              - lamppost neon (MeshPart)
-                - SurfaceLight lamppost (SurfaceLight)
-            - Street Lamp Tall A (Model)
-              - lamppost main (MeshPart)
-              - lamppost neon (MeshPart)
-                - SurfaceLight lamppost (SurfaceLight)
-            - Street Lamp Tall A (Model)
-              - lamppost main (MeshPart)
-              - lamppost neon (MeshPart)
-                - SurfaceLight lamppost (SurfaceLight)
-            - Street Lamp Tall A (Model)
-              - lamppost main (MeshPart)
-              - lamppost neon (MeshPart)
-                - SurfaceLight lamppost (SurfaceLight)
-            - Street Lamp Tall A (Model)
-              - lamppost main (MeshPart)
-              - lamppost neon (MeshPart)
-                - SurfaceLight lamppost (SurfaceLight)
-            - Street Lamp Tall A (Model)
-              - lamppost main (MeshPart)
-              - lamppost neon (MeshPart)
-                - SurfaceLight lamppost (SurfaceLight)
-            - Street Lamp Tall A (Model)
-              - lamppost main (MeshPart)
-              - lamppost neon (MeshPart)
-                - SurfaceLight lamppost (SurfaceLight)
-            - Street Lamp Tall A (Model)
-              - lamppost main (MeshPart)
-              - lamppost neon (MeshPart)
-                - SurfaceLight lamppost (SurfaceLight)
           - Root (Part)
         - Block_S2_R5_B3 (Model) [3 attrs]
           - Assets (Folder)
@@ -11540,15 +12525,346 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Foliage (Folder)
               - Paths (Folder)
               - Props (Folder)
+                - Railings Left (Model)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                  - Railing A (MeshPart)
+                - Street Lights Group Left (Model)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
               - Roads (Folder)
             - LOD3 (Folder)
               - Buildings (Folder)
               - Foliage (Folder)
+                - Path Bush Group Back (Model)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - path bush walls (Part)
+                  - path bush walls (Part)
+                  - path bush walls (Part)
+                - Path Bush Group Left A (Model)
+                  - path bush group A (Model)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush walls (UnionOperation)
+                    - bush walls detail (UnionOperation)
+                  - path bush group A (Model)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush walls (UnionOperation)
+                    - bush walls detail (UnionOperation)
+                  - path bush group A (Model)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush walls (UnionOperation)
+                    - bush walls detail (UnionOperation)
+                  - path bush group A (Model)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush walls (UnionOperation)
+                    - bush walls detail (UnionOperation)
+                  - path bush group A (Model)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush walls (UnionOperation)
+                    - bush walls detail (UnionOperation)
+                  - path bush group A (Model)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush walls (UnionOperation)
+                    - bush walls detail (UnionOperation)
+                  - path bush group A (Model)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush walls (UnionOperation)
+                    - bush walls detail (UnionOperation)
+                  - path bush group A (Model)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush long (MeshPart)
+                      - SurfaceAppearance (SurfaceAppearance)
+                    - bush walls (UnionOperation)
+                    - bush walls detail (UnionOperation)
+                - Path Bush Large Group (Model)
+                  - leaves bush large (MeshPart)
+                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                  - leaves bush large (MeshPart)
+                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                  - leaves bush large (MeshPart)
+                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                  - leaves bush large (MeshPart)
+                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                  - leaves bush large (MeshPart)
+                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                  - leaves bush large (MeshPart)
+                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                  - leaves bush large (MeshPart)
+                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                  - leaves bush large (MeshPart)
+                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                  - leaves bush large (MeshPart)
+                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                  - leaves bush large (MeshPart)
+                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                  - leaves bush large (MeshPart)
+                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                  - leaves bush large (MeshPart)
+                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                  - leaves bush large (MeshPart)
+                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                  - leaves bush large (MeshPart)
+                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                  - Road Central Divider Detail (Part)
+                  - Road Central Divider Detail (Part)
+                  - Road Central Divider Detail (Part)
+                  - Road Central Divider Dirt (Part)
+                  - Road Central Divider Dirt (Part)
+                  - Road Central Divider Dirt (Part)
+                  - Road Central Divider Main (Part)
+                  - Road Central Divider Main (Part)
+                  - Road Central Divider Main (Part)
+                - Trees Back (Model)
+                  - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
+                    - Leaves_Large_Poplar (MeshPart)
+                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                    - Trunk_Large_Poplar (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
+                    - Leaves_Large_Poplar (MeshPart)
+                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                    - Trunk_Large_Poplar (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
+                    - Leaves_Large_Poplar (MeshPart)
+                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                    - Trunk_Large_Poplar (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
+                    - Leaves_Large_Poplar (MeshPart)
+                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                    - Trunk_Large_Poplar (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
+                    - Leaves_Large_Poplar (MeshPart)
+                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                    - Trunk_Large_Poplar (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
+                    - Leaves_Large_Poplar (MeshPart)
+                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                    - Trunk_Large_Poplar (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                - Trees Left (Model)
+                  - Tree Large Maple (Model)
+                    - Tree_Large_Maple_LOD3 (Model)
+                      - LeavesMapleBottom1 (MeshPart)
+                        - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                      - LeavesMapleShadow2 (MeshPart)
+                        - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                      - TrunkLargeMaple1 (MeshPart)
+                        - SurfaceAppearance Trunk (SurfaceAppearance)
+                    - Tree Base Concrete (UnionOperation)
+                  - Tree Large Maple (Model)
+                    - Tree_Large_Maple_LOD3 (Model)
+                      - LeavesMapleBottom1 (MeshPart)
+                        - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                      - LeavesMapleShadow2 (MeshPart)
+                        - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                      - TrunkLargeMaple1 (MeshPart)
+                        - SurfaceAppearance Trunk (SurfaceAppearance)
+                    - Tree Base Concrete (UnionOperation)
+                  - Tree Large Maple (Model)
+                    - Tree_Large_Maple_LOD3 (Model)
+                      - LeavesMapleBottom1 (MeshPart)
+                        - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                      - LeavesMapleShadow2 (MeshPart)
+                        - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                      - TrunkLargeMaple1 (MeshPart)
+                        - SurfaceAppearance Trunk (SurfaceAppearance)
+                    - Tree Base Concrete (UnionOperation)
+                  - Tree Large Maple (Model)
+                    - Tree_Large_Maple_LOD3 (Model)
+                      - LeavesMapleBottom1 (MeshPart)
+                        - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                      - LeavesMapleShadow2 (MeshPart)
+                        - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                      - TrunkLargeMaple1 (MeshPart)
+                        - SurfaceAppearance Trunk (SurfaceAppearance)
+                    - Tree Base Concrete (UnionOperation)
+                  - Tree_Small_Bamboo_LOD3 (Model)
+                    - leaves small bamboo (MeshPart)
+                      - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
+                    - trunk small bamboo (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree_Small_Bamboo_LOD3 (Model)
+                    - leaves small bamboo (MeshPart)
+                      - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
+                    - trunk small bamboo (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree_Small_Bamboo_LOD3 (Model)
+                    - leaves small bamboo (MeshPart)
+                      - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
+                    - trunk small bamboo (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree_Small_Bamboo_LOD3 (Model)
+                    - leaves small bamboo (MeshPart)
+                      - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
+                    - trunk small bamboo (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree Base Concrete (UnionOperation)
+                  - Tree Base Concrete (UnionOperation)
+                  - Tree Base Concrete (UnionOperation)
+                  - Tree Base Concrete (UnionOperation)
               - Paths (Folder)
+                - S2_R5_B2 Paths (Model) [1 attrs]
+                  - paths detail edge (MeshPart)
+                  - paths main (MeshPart)
+                  - paths road edge (MeshPart)
               - Props (Folder)
               - Roads (Folder)
+                - Road Marking Crossing (MeshPart)
+                  - SurfaceAppearance Crossing (SurfaceAppearance)
             - LOD4 (Folder)
               - Buildings (Folder)
+                - FBX - S2_R5_B3 Short Tower (Model) [1 attrs]
+                  - building b columns (MeshPart)
+                  - building b detail a (MeshPart)
+                  - building b detail b (MeshPart)
+                  - building b detail bottom (MeshPart)
+                  - building b floors (MeshPart)
+                  - building b structure (MeshPart)
+                  - building b walls bottom a (MeshPart)
+                  - building b walls bottom b (MeshPart)
+                  - building b walls corners (MeshPart)
+                  - building b windows main (MeshPart)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
+                - TKY_JP_TEXT_BB_08_KuroIchi_BlackMarket_1X2_V (Model) [11 attrs]
+                  - BillboardPanel (Part)
+                    - FrontSurfaceGui (SurfaceGui)
+                      - JapaneseBrandText (TextLabel)
+                - TKY_JP_TEXT_BB_08_KuroIchi_BlackMarket_1X2_V (Model) [11 attrs]
+                  - BillboardPanel (Part)
+                    - FrontSurfaceGui (SurfaceGui)
+                      - JapaneseBrandText (TextLabel)
+                - TKY_JP_TEXT_BB_16_EdoGames_EdoGames_3X2_H (Model) [11 attrs]
+                  - BillboardPanel (Part)
+                    - FrontSurfaceGui (SurfaceGui)
+                      - JapaneseBrandText (TextLabel)
+                - TKY_SIMPLE_POP_BB_08_shiro_fit_MEDIUM_1X2_V (Model) [18 attrs]
+                  - BillboardPanel (Part)
+                    - FrontSurfaceGui (SurfaceGui)
+                      - AtlasImageLabel (ImageLabel)
+                - BillboardPanel (Part)
+                  - Attachment (Attachment)
+                  - Attachment (Attachment)
+                  - Beam (Beam)
+                - BillboardPanel (Part)
+                  - Attachment (Attachment)
+                  - Attachment (Attachment)
+                  - Beam (Beam)
               - Foliage (Folder)
               - Paths (Folder)
               - Props (Folder)
@@ -11576,10 +12892,38 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Buildings (Folder)
               - Foliage (Folder)
               - Paths (Folder)
+                - S2_R5_B2 Paths (Model) [1 attrs]
+                  - paths detail edge (MeshPart)
+                  - paths main (MeshPart)
+                  - paths road edge (MeshPart)
               - Props (Folder)
               - Roads (Folder)
             - LOD4 (Folder)
               - Buildings (Folder)
+                - S1_R3_B3 Building (Model) [1 attrs]
+                  - detail bottom a (MeshPart)
+                  - detail bottom b (MeshPart)
+                  - detail columns ground (MeshPart)
+                  - detail fins (MeshPart)
+                  - neon main (MeshPart)
+                  - structure corners (MeshPart)
+                  - top (MeshPart)
+                  - walls corners (MeshPart)
+                  - walls main b (MeshPart)
+                  - walls main c (MeshPart)
+                  - windows main (MeshPart) [1 attrs]
+                  - TKY_JP_TEXT_BB_01_SeiunDo_BlueCloudHall_2X1_H (Model) [11 attrs]
+                    - BillboardPanel (Part)
+                      - FrontSurfaceGui (SurfaceGui)
+                        - EnglishBrandText (TextLabel)
+                          - UITextSizeConstraint (UITextSizeConstraint)
+                        - JapaneseBrandText (TextLabel)
+                  - TKY_JP_TEXT_BB_01_SeiunDo_BlueCloudHall_2X1_H (Model) [11 attrs]
+                    - BillboardPanel (Part)
+                      - FrontSurfaceGui (SurfaceGui)
+                        - EnglishBrandText (TextLabel)
+                          - UITextSizeConstraint (UITextSizeConstraint)
+                        - JapaneseBrandText (TextLabel)
               - Foliage (Folder)
               - Paths (Folder)
               - Props (Folder)
@@ -11607,16 +12951,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - SurfaceAppearance Leaves Maple (SurfaceAppearance)
           - leaves bush large (MeshPart)
             - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-          - leaves bush large (MeshPart)
-            - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-          - leaves bush large (MeshPart)
-            - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-          - leaves bush large (MeshPart)
-            - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-          - leaves bush large (MeshPart)
-            - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-          - leaves bush large (MeshPart)
-            - SurfaceAppearance Leaves Maple (SurfaceAppearance)
           - Road Central Divider Detail (Part)
           - Road Central Divider Detail (Part)
           - Road Central Divider Detail (Part)
@@ -11673,6 +13007,16 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - SurfaceAppearance Leaves Maple (SurfaceAppearance)
           - leaves bush large (MeshPart)
             - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+          - leaves bush large (MeshPart)
+            - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+          - leaves bush large (MeshPart)
+            - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+          - leaves bush large (MeshPart)
+            - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+          - leaves bush large (MeshPart)
+            - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+          - leaves bush large (MeshPart)
+            - SurfaceAppearance Leaves Maple (SurfaceAppearance)
           - Road Central Divider Detail (Part)
           - Road Central Divider Detail (Part)
           - Road Central Divider Detail (Part)
@@ -11738,69 +13082,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - Road Marking White (Part)
           - Road Marking White (Part)
           - Road Marking White (Part)
-        - Road Marking Dashed Line (Model)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-        - Road Marking Dashed Line (Model)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-        - Road Marking Dashed Line (Model)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-        - Road Marking Dashed Line (Model)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-        - S2_R3 Group Paths FBX (Model)
-          - path detail edge (MeshPart)
-          - path detail edge.003 (MeshPart)
-          - path main.001 (MeshPart)
-          - path main.004 (MeshPart)
-          - path road edge.001 (MeshPart)
-          - path road edge.003 (MeshPart)
       - Block S3 (Folder)
         - Block_S3_R1_B1 (Model) [3 attrs]
           - Assets (Folder)
@@ -14065,59 +15346,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - BillboardPanel (Part)
               - FrontSurfaceGui (SurfaceGui)
                 - JapaneseBrandText (TextLabel)
-      - TKY_JP_TEXT_BB_05_ShinbashiYakkyoku_ShinbashiPharmacy_2X1_H (Model) [11 attrs]
-        - BillboardPanel (Part)
-          - FrontSurfaceGui (SurfaceGui)
-            - JapaneseBrandText (TextLabel)
-            - SmallJapaneseText (TextLabel)
-              - UITextSizeConstraint (UITextSizeConstraint)
-      - TKY_JP_TEXT_BB_07_KumoBin_CloudDelivery_1X2_V (Model) [11 attrs]
-        - BillboardPanel (Part)
-          - FrontSurfaceGui (SurfaceGui)
-            - EnglishBrandText (TextLabel)
-              - UITextSizeConstraint (UITextSizeConstraint)
-            - JapaneseBrandText (TextLabel)
-      - TKY_JP_TEXT_BB_14_KazeHotel_WindHotel_2X1_H (Model) [11 attrs]
-        - BillboardPanel (Part)
-          - FrontSurfaceGui (SurfaceGui)
-            - EnglishBrandText (TextLabel)
-              - UITextSizeConstraint (UITextSizeConstraint)
-            - JapaneseBrandText (TextLabel)
-      - TKY_JP_TEXT_BB_14_KazeHotel_WindHotel_2X1_H (Model) [11 attrs]
-        - BillboardPanel (Part)
-          - FrontSurfaceGui (SurfaceGui)
-            - JapaneseBrandText (TextLabel)
-      - TKY_JP_TEXT_BB_14_KazeHotel_WindHotel_2X1_H (Model) [11 attrs]
-        - BillboardPanel (Part)
-          - FrontSurfaceGui (SurfaceGui)
-            - EnglishBrandText (TextLabel)
-              - UITextSizeConstraint (UITextSizeConstraint)
-      - TKY_JP_TEXT_BB_14_KazeHotel_WindHotel_2X1_H (Model) [11 attrs]
-        - BillboardPanel (Part)
-          - FrontSurfaceGui (SurfaceGui)
-            - EnglishBrandText (TextLabel)
-              - UITextSizeConstraint (UITextSizeConstraint)
-            - JapaneseBrandText (TextLabel)
-      - TKY_JP_TEXT_BB_16_EdoGames_EdoGames_1X2_V (Model) [11 attrs]
-        - BillboardPanel (Part)
-          - FrontSurfaceGui (SurfaceGui)
-            - JapaneseBrandText (TextLabel)
-      - TKY_JP_TEXT_BB_16_EdoGames_EdoGames_3X2_H (Model) [11 attrs]
-        - BillboardPanel (Part)
-          - FrontSurfaceGui (SurfaceGui)
-            - JapaneseBrandText (TextLabel)
-      - TKY_SIMPLE_POP_BB_04_mira_mart_MEDIUM_1X2_V (Model) [18 attrs]
-        - BillboardPanel (Part)
-          - FrontSurfaceGui (SurfaceGui)
-            - AtlasImageLabel (ImageLabel)
-      - TKY_SIMPLE_POP_BB_09_pon_tech_MEDIUM_2X1_H (Model) [18 attrs]
-        - BillboardPanel (Part)
-          - FrontSurfaceGui (SurfaceGui)
-            - AtlasImageLabel (ImageLabel)
-      - TKY_SIMPLE_POP_BB_11_sato_snack_MEDIUM_2X1_H (Model) [18 attrs]
-        - BillboardPanel (Part)
-          - FrontSurfaceGui (SurfaceGui)
-            - AtlasImageLabel (ImageLabel)
       - GeneratedCityBlocks_CurrentLive (ObjectValue) [5 attrs]
     - Dealership (Folder)
       - Customisation (Folder)
@@ -14135,7 +15363,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - DealershipLookCameraPoint (Part) [5 attrs]
           - GaragePreviewCameraPoint (Part) [5 attrs]
         - Desk (Folder)
-          - GarageDeskTrigger (Part) [7 attrs]
+          - GarageDeskTrigger (Part) [8 attrs]
         - Path (Folder)
         - Preview (Folder)
           - VehiclePreviewPoint (Part) [5 attrs]
@@ -14274,13 +15502,13 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                 - SurfaceAppearance (SurfaceAppearance)
               - Race Arrows Flipped (MeshPart)
                 - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows Flipped (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows Flipped (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows Flipped (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
             - race arrows group flipped (Model)
-              - Race Arrows Flipped (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows Flipped (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows Flipped (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
               - Race Arrows Flipped (MeshPart)
                 - SurfaceAppearance (SurfaceAppearance)
               - Race Arrows Flipped (MeshPart)
@@ -14321,6 +15549,19 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                 - SurfaceAppearance (SurfaceAppearance)
               - Race Arrows Flipped (MeshPart)
                 - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows Flipped (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows Flipped (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows Flipped (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows Flipped (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows Flipped (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows Flipped (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+            - race arrows group flipped (Model)
               - Race Arrows Flipped (MeshPart)
                 - SurfaceAppearance (SurfaceAppearance)
               - Race Arrows Flipped (MeshPart)
@@ -14390,9 +15631,23 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                 - SurfaceAppearance (SurfaceAppearance)
               - Race Arrows Flipped (MeshPart)
                 - SurfaceAppearance (SurfaceAppearance)
-            - race arrows group flipped (Model)
               - Race Arrows Flipped (MeshPart)
                 - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows Flipped (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows Flipped (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows Flipped (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows Flipped (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows Flipped (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows Flipped (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows Flipped (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+            - race arrows group flipped (Model)
               - Race Arrows Flipped (MeshPart)
                 - SurfaceAppearance (SurfaceAppearance)
               - Race Arrows Flipped (MeshPart)
@@ -14450,21 +15705,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                 - SurfaceAppearance (SurfaceAppearance)
               - Race Arrows (MeshPart)
                 - SurfaceAppearance (SurfaceAppearance)
-            - race arrows group (Model)
-              - Race Arrows (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
               - Race Arrows (MeshPart)
                 - SurfaceAppearance (SurfaceAppearance)
               - Race Arrows (MeshPart)
@@ -14492,9 +15732,24 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                 - SurfaceAppearance (SurfaceAppearance)
               - Race Arrows (MeshPart)
                 - SurfaceAppearance (SurfaceAppearance)
+            - race arrows group (Model)
+              - Race Arrows (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
               - Race Arrows (MeshPart)
                 - SurfaceAppearance (SurfaceAppearance)
             - race arrows group (Model)
+              - Race Arrows (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
               - Race Arrows (MeshPart)
                 - SurfaceAppearance (SurfaceAppearance)
               - Race Arrows (MeshPart)
@@ -14519,6 +15774,16 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                 - SurfaceAppearance (SurfaceAppearance)
               - Race Arrows (MeshPart)
                 - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
             - race arrows group (Model)
               - Race Arrows (MeshPart)
                 - SurfaceAppearance (SurfaceAppearance)
@@ -14526,17 +15791,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                 - SurfaceAppearance (SurfaceAppearance)
               - Race Arrows (MeshPart)
                 - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
             - race arrows group (Model)
-              - Race Arrows (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
               - Race Arrows (MeshPart)
                 - SurfaceAppearance (SurfaceAppearance)
               - Race Arrows (MeshPart)
@@ -15350,6 +16607,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
         - RoadSpawn_0636 (Part) [7 attrs]
         - RoadSpawn_0637 (Part) [7 attrs]
         - RoadSpawn_0638 (Part) [7 attrs]
+        - RoadSpawn_0639 (Part) [7 attrs]
+        - RoadSpawn_0639 (Part) [7 attrs]
+        - RoadSpawn_0639 (Part) [7 attrs]
         - RoadSpawn_0639 (Part) [7 attrs]
         - RoadSpawn_0640 (Part) [7 attrs]
         - RoadSpawn_0641 (Part) [7 attrs]
@@ -16338,6 +17598,11 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - blockout part (Part)
             - blockout part (Part)
             - blockout part (Part)
+            - blockout part (Part)
+            - blockout part (Part)
+            - blockout part (Part)
+            - blockout part (Part)
+            - blockout part (Part)
           - Block C3 (Folder)
             - blockout part (Part)
             - blockout part (Part)
@@ -16699,8 +17964,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - blockout part (Part)
           - blockout part (Part)
           - blockout part (Part)
-          - blockout part (Part)
-          - blockout part (Part)
         - Block Group D (Folder)
           - blockout part (Part)
           - blockout part (Part)
@@ -16825,6 +18088,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Road (Part)
               - Road (Part)
               - Road (Part)
+              - Road (Part)
               - RoadFillW (Part)
               - RoadFillW (Part)
               - RoadFillW (Part)
@@ -16832,7 +18096,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - RoadFillW (Part)
               - RoadFillW (Part)
             - Model (Model)
-              - Road (Part)
               - Road (Part)
               - Road (Part)
               - Road (Part)
@@ -16849,7 +18112,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Road (Part)
               - Road (Part)
               - Road (Part)
-              - Road (Part)
               - RoadFillW (Part)
               - RoadFillW (Part)
               - RoadFillW (Part)
@@ -16868,6 +18130,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - RoadFillW (Part)
               - RoadFillW (Part)
             - Model (Model)
+              - Road (Part)
               - Road (Part)
               - Road (Part)
               - Road (Part)
@@ -17008,6 +18271,58 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - Road (Part)
           - Road (Part)
           - Road (Part)
+        - Model (Model)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+        - Model (Model)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
         - Model (Model)
           - Model (Model)
             - Road (Part)
@@ -17049,58 +18364,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Road (Part)
         - Model (Model)
           - Roundabout (Part)
-        - Model (Model)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-        - Model (Model)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
         - circle building (Model)
           - circle building (Model)
             - Part (Part)
@@ -17135,18 +18398,18 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Road (Part)
             - Road (Part)
             - Road (Part)
+            - Road (Part)
+            - Road (Part)
+            - Road (Part)
+            - Road (Part)
+            - Road (Part)
+            - Road (Part)
+            - Road (Part)
+            - Road (Part)
+            - Road (Part)
+            - Road (Part)
+            - Road (Part)
           - columns (Model)
-            - Road (Part)
-            - Road (Part)
-            - Road (Part)
-            - Road (Part)
-            - Road (Part)
-            - Road (Part)
-            - Road (Part)
-            - Road (Part)
-            - Road (Part)
-            - Road (Part)
-            - Road (Part)
             - Road (Part)
             - Road (Part)
             - Road (Part)
@@ -17227,6 +18490,11 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Roundabout (Part)
           - Model (Model)
             - Roundabout (Part)
+        - roundabout (Model)
+          - Model (Model)
+            - Roundabout (Part)
+          - Model (Model)
+            - Roundabout (Part)
           - curb roundabout  (Model)
             - Road (Part)
             - Road (Part)
@@ -17251,11 +18519,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Road (Part)
             - Road (Part)
             - Road (Part)
-        - roundabout (Model)
-          - Model (Model)
-            - Roundabout (Part)
-          - Model (Model)
-            - Roundabout (Part)
+        - Road (Part)
+        - Road (Part)
+        - Road (Part)
         - Road (Part)
         - Road (Part)
         - Road (Part)
@@ -18549,6 +19815,15 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - Plane.001 (MeshPart)
         - Road (Part)
       - Model (Model)
+        - Humanoid (Humanoid)
+        - Head (Part)
+          - Mesh (SpecialMesh)
+        - Left Arm (Part)
+        - Left Leg (Part)
+        - Right Arm (Part)
+        - Right Leg (Part)
+        - Torso (Part)
+      - Model (Model)
         - FBX - Crossroads 9 degrees v3 (Model)
           - Plane.001 (MeshPart)
         - FBX - Crossroads 9 degrees v3 (Model)
@@ -18559,15 +19834,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
         - Part (Part)
         - Part (Part)
         - Part (Part)
-      - Model (Model)
-        - Humanoid (Humanoid)
-        - Head (Part)
-          - Mesh (SpecialMesh)
-        - Left Arm (Part)
-        - Left Leg (Part)
-        - Right Arm (Part)
-        - Right Leg (Part)
-        - Torso (Part)
       - Union (UnionOperation)
     - THE BLOCKS (Folder)
       - Block C2 Group (Folder)
@@ -19399,9 +20665,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
@@ -19481,9 +20747,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
@@ -21274,10 +22540,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -21356,11 +22622,11 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -21398,10 +22664,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -21556,9 +22822,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
@@ -21680,9 +22946,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -21855,9 +23121,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -21894,9 +23160,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
@@ -21936,10 +23202,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -22143,11 +23409,11 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -22186,9 +23452,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -23554,9 +24820,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
@@ -25638,9 +26904,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -25680,9 +26946,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -25721,9 +26987,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -25760,9 +27026,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
@@ -25934,9 +27200,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
@@ -25977,9 +27243,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -26057,11 +27323,11 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -27502,9 +28768,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                 - Garage Bollard Yellow (Part)
               - Garage Sign (Model)
                 - Garage Sign (Part)
-                - Garage Sign (Part)
                   - SurfaceGui (SurfaceGui)
                     - TextLabel (TextLabel)
+                - Garage Sign (Part)
                 - Garage Sign (Part)
                 - Garage Sign (Part)
                 - Garage Sign Clearance (Part)
@@ -27544,9 +28810,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Sign (Model)
                 - Garage Sign (Part)
                 - Garage Sign (Part)
-                - Garage Sign (Part)
                   - SurfaceGui (SurfaceGui)
                     - TextLabel (TextLabel)
+                - Garage Sign (Part)
                 - Garage Sign (Part)
                 - Garage Sign Clearance (Part)
                   - SurfaceGui (SurfaceGui)
@@ -27584,11 +28850,11 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                 - Garage Bollard Yellow (Part)
               - Garage Sign (Model)
                 - Garage Sign (Part)
+                - Garage Sign (Part)
+                - Garage Sign (Part)
+                - Garage Sign (Part)
                   - SurfaceGui (SurfaceGui)
                     - TextLabel (TextLabel)
-                - Garage Sign (Part)
-                - Garage Sign (Part)
-                - Garage Sign (Part)
                 - Garage Sign Clearance (Part)
                   - SurfaceGui (SurfaceGui)
                     - TextLabel (TextLabel)
@@ -27951,6 +29217,42 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
       - stabilisers neon (MeshPart)
       - stabilisers primary (MeshPart)
       - stabilisers secondary (MeshPart)
+    - FBx - Test Base Vehicle v3 (Model) [1 attrs]
+      - boost detail (MeshPart)
+      - boost neon (MeshPart)
+      - boost primary (MeshPart)
+      - boost secondary (MeshPart)
+      - cockpit detail (MeshPart)
+      - cockpit glass (MeshPart)
+      - cockpit neon front (MeshPart)
+      - cockpit neon rear (MeshPart)
+      - cockpit primary (MeshPart)
+      - cockpit secondary (MeshPart)
+      - diffuser neon (MeshPart)
+      - diffuser primary (MeshPart)
+      - engine a detail (MeshPart)
+      - engine a neon (MeshPart)
+      - engine a primary (MeshPart)
+      - engine a secondary (MeshPart)
+      - engine b detail (MeshPart)
+      - engine b neon (MeshPart)
+      - engine b primary (MeshPart)
+      - engine b secondary (MeshPart)
+      - sidepods neon (MeshPart)
+      - sidepods primary (MeshPart)
+      - sidepods secondary (MeshPart)
+      - splitter detail (MeshPart)
+      - splitter neon (MeshPart)
+      - splitter primary (MeshPart)
+      - splitter secondary (MeshPart)
+      - spoiler detail (MeshPart)
+      - spoiler neon (MeshPart)
+      - spoiler primary (MeshPart)
+      - spoiler secondary (MeshPart)
+      - stabilisers detail (MeshPart)
+      - stabilisers neon (MeshPart)
+      - stabilisers primary (MeshPart)
+      - stabilisers secondary (MeshPart)
       - EngineOff_Host (Part)
         - TemplateAttachmentLong (Attachment)
           - EngineOff_Fire (ParticleEmitter) [1 attrs]
@@ -28028,42 +29330,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - TemplateBeamEndLong (Attachment)
           - BoostOn_Beam Flame (Beam) [6 attrs]
           - BoostOn_Fire (ParticleEmitter)
-    - FBx - Test Base Vehicle v3 (Model) [1 attrs]
-      - boost detail (MeshPart)
-      - boost neon (MeshPart)
-      - boost primary (MeshPart)
-      - boost secondary (MeshPart)
-      - cockpit detail (MeshPart)
-      - cockpit glass (MeshPart)
-      - cockpit neon front (MeshPart)
-      - cockpit neon rear (MeshPart)
-      - cockpit primary (MeshPart)
-      - cockpit secondary (MeshPart)
-      - diffuser neon (MeshPart)
-      - diffuser primary (MeshPart)
-      - engine a detail (MeshPart)
-      - engine a neon (MeshPart)
-      - engine a primary (MeshPart)
-      - engine a secondary (MeshPart)
-      - engine b detail (MeshPart)
-      - engine b neon (MeshPart)
-      - engine b primary (MeshPart)
-      - engine b secondary (MeshPart)
-      - sidepods neon (MeshPart)
-      - sidepods primary (MeshPart)
-      - sidepods secondary (MeshPart)
-      - splitter detail (MeshPart)
-      - splitter neon (MeshPart)
-      - splitter primary (MeshPart)
-      - splitter secondary (MeshPart)
-      - spoiler detail (MeshPart)
-      - spoiler neon (MeshPart)
-      - spoiler primary (MeshPart)
-      - spoiler secondary (MeshPart)
-      - stabilisers detail (MeshPart)
-      - stabilisers neon (MeshPart)
-      - stabilisers primary (MeshPart)
-      - stabilisers secondary (MeshPart)
     - FBx - Test Base Vehicle v3 (Model) [1 attrs]
       - boost detail (MeshPart)
       - boost neon (MeshPart)
@@ -28480,161 +29746,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - Foliage (Folder)
           - Paths (Folder)
           - Props (Folder)
-            - Street Lights Group Front (Model)
-              - Street Lamp Tall A (Model)
-                - lamppost main (MeshPart)
-                - lamppost neon (MeshPart)
-                  - SurfaceLight lamppost (SurfaceLight)
-              - Street Lamp Tall A (Model)
-                - lamppost main (MeshPart)
-                - lamppost neon (MeshPart)
-                  - SurfaceLight lamppost (SurfaceLight)
-              - Street Lamp Tall A (Model)
-                - lamppost main (MeshPart)
-                - lamppost neon (MeshPart)
-                  - SurfaceLight lamppost (SurfaceLight)
-              - Street Lamp Tall A (Model)
-                - lamppost main (MeshPart)
-                - lamppost neon (MeshPart)
-                  - SurfaceLight lamppost (SurfaceLight)
           - Roads (Folder)
         - LOD3 (Folder)
           - Buildings (Folder)
           - Foliage (Folder)
-            - Bush Group Front (Model)
-              - path bush group B (Model)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush walls (UnionOperation)
-                - bush walls detail (UnionOperation)
-              - path bush group B (Model)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush walls (UnionOperation)
-                - bush walls detail (UnionOperation)
-              - path bush group B (Model)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush walls (UnionOperation)
-                - bush walls detail (UnionOperation)
-              - path bush group B (Model)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush walls (UnionOperation)
-                - bush walls detail (UnionOperation)
-              - path bush group B (Model)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush walls (UnionOperation)
-                - bush walls detail (UnionOperation)
-              - path bush group B (Model)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush walls (UnionOperation)
-                - bush walls detail (UnionOperation)
-              - path bush group B (Model)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush walls (UnionOperation)
-                - bush walls detail (UnionOperation)
-            - Tree Large Maple (Model)
-              - Tree_Large_Maple_LOD3 (Model)
-                - LeavesMapleBottom1 (MeshPart)
-                  - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                - LeavesMapleShadow2 (MeshPart)
-                  - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                - TrunkLargeMaple1 (MeshPart)
-                  - SurfaceAppearance Trunk (SurfaceAppearance)
-              - Tree Base Concrete (UnionOperation)
-            - Tree Large Maple (Model)
-              - Tree_Large_Maple_LOD3 (Model)
-                - LeavesMapleBottom1 (MeshPart)
-                  - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                - LeavesMapleShadow2 (MeshPart)
-                  - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                - TrunkLargeMaple1 (MeshPart)
-                  - SurfaceAppearance Trunk (SurfaceAppearance)
-              - Tree Base Concrete (UnionOperation)
-            - Tree Large Maple (Model)
-              - Tree_Large_Maple_LOD3 (Model)
-                - LeavesMapleBottom1 (MeshPart)
-                  - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                - LeavesMapleShadow2 (MeshPart)
-                  - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                - TrunkLargeMaple1 (MeshPart)
-                  - SurfaceAppearance Trunk (SurfaceAppearance)
-              - Tree Base Concrete (UnionOperation)
-            - Tree Large Maple (Model)
-              - Tree_Large_Maple_LOD3 (Model)
-                - LeavesMapleBottom1 (MeshPart)
-                  - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                - LeavesMapleShadow2 (MeshPart)
-                  - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                - TrunkLargeMaple1 (MeshPart)
-                  - SurfaceAppearance Trunk (SurfaceAppearance)
-              - Tree Base Concrete (UnionOperation)
-            - Tree Large Maple (Model)
-              - Tree_Large_Maple_LOD3 (Model)
-                - LeavesMapleBottom1 (MeshPart)
-                  - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                - LeavesMapleShadow2 (MeshPart)
-                  - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                - TrunkLargeMaple1 (MeshPart)
-                  - SurfaceAppearance Trunk (SurfaceAppearance)
-              - Tree Base Concrete (UnionOperation)
-            - Tree Large Maple (Model)
-              - Tree_Large_Maple_LOD3 (Model)
-                - LeavesMapleBottom1 (MeshPart)
-                  - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                - LeavesMapleShadow2 (MeshPart)
-                  - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                - TrunkLargeMaple1 (MeshPart)
-                  - SurfaceAppearance Trunk (SurfaceAppearance)
-              - Tree Base Concrete (UnionOperation)
-            - Tree Large Maple (Model)
-              - Tree_Large_Maple_LOD3 (Model)
-                - LeavesMapleBottom1 (MeshPart)
-                  - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                - LeavesMapleShadow2 (MeshPart)
-                  - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                - TrunkLargeMaple1 (MeshPart)
-                  - SurfaceAppearance Trunk (SurfaceAppearance)
-              - Tree Base Concrete (UnionOperation)
-            - Tree Large Poplar Group (Model)
-              - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
-                - Leaves_Large_Poplar (MeshPart)
-                  - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                - Trunk_Large_Poplar (MeshPart)
-                  - SurfaceAppearance Trunk (SurfaceAppearance)
-              - Tree Base Concrete (UnionOperation)
-            - Tree Large Poplar Group (Model)
-              - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
-                - Leaves_Large_Poplar (MeshPart)
-                  - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                - Trunk_Large_Poplar (MeshPart)
-                  - SurfaceAppearance Trunk (SurfaceAppearance)
-              - Tree Base Concrete (UnionOperation)
-            - Tree Large Poplar Group (Model)
-              - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
-                - Leaves_Large_Poplar (MeshPart)
-                  - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                - Trunk_Large_Poplar (MeshPart)
-                  - SurfaceAppearance Trunk (SurfaceAppearance)
-              - Tree Base Concrete (UnionOperation)
           - Paths (Folder)
           - Props (Folder)
         - LOD4 (Folder)
@@ -28661,441 +29776,11 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - Foliage (Folder)
           - Paths (Folder)
           - Props (Folder)
-            - Railings Left (Model)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-            - Railings Left (Model)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-            - Street Lights Group Left (Model)
-              - Street Lamp Tall A (Model)
-                - lamppost main (MeshPart)
-                - lamppost neon (MeshPart)
-                  - SurfaceLight lamppost (SurfaceLight)
-              - Street Lamp Tall A (Model)
-                - lamppost main (MeshPart)
-                - lamppost neon (MeshPart)
-                  - SurfaceLight lamppost (SurfaceLight)
-              - Street Lamp Tall A (Model)
-                - lamppost main (MeshPart)
-                - lamppost neon (MeshPart)
-                  - SurfaceLight lamppost (SurfaceLight)
-              - Street Lamp Tall A (Model)
-                - lamppost main (MeshPart)
-                - lamppost neon (MeshPart)
-                  - SurfaceLight lamppost (SurfaceLight)
           - Roads (Folder)
         - LOD3 (Folder)
           - Buildings (Folder)
           - Foliage (Folder)
-            - Path Bush Group Back (Model)
-              - bush long (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - bush long (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - bush long (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - bush long (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - bush long (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - bush long (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - bush long (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - bush long (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - bush long (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - bush long (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - bush long (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - bush long (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - bush long (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - bush long (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - bush long (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - bush long (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - bush long (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - path bush walls (Part)
-              - path bush walls (Part)
-              - path bush walls (Part)
-            - Path Bush Group Left A (Model)
-              - path bush group A (Model)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush walls (UnionOperation)
-                - bush walls detail (UnionOperation)
-              - path bush group A (Model)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush walls (UnionOperation)
-                - bush walls detail (UnionOperation)
-              - path bush group A (Model)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush walls (UnionOperation)
-                - bush walls detail (UnionOperation)
-              - path bush group A (Model)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush walls (UnionOperation)
-                - bush walls detail (UnionOperation)
-              - path bush group A (Model)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush walls (UnionOperation)
-                - bush walls detail (UnionOperation)
-              - path bush group A (Model)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush walls (UnionOperation)
-                - bush walls detail (UnionOperation)
-              - path bush group A (Model)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush walls (UnionOperation)
-                - bush walls detail (UnionOperation)
-              - path bush group A (Model)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush walls (UnionOperation)
-                - bush walls detail (UnionOperation)
-            - Path Bush Group Left A (Model)
-              - path bush group A (Model)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush walls (UnionOperation)
-                - bush walls detail (UnionOperation)
-              - path bush group A (Model)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush walls (UnionOperation)
-                - bush walls detail (UnionOperation)
-              - path bush group A (Model)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush walls (UnionOperation)
-                - bush walls detail (UnionOperation)
-              - path bush group A (Model)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush walls (UnionOperation)
-                - bush walls detail (UnionOperation)
-              - path bush group A (Model)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush walls (UnionOperation)
-                - bush walls detail (UnionOperation)
-              - path bush group A (Model)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush walls (UnionOperation)
-                - bush walls detail (UnionOperation)
-              - path bush group A (Model)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush walls (UnionOperation)
-                - bush walls detail (UnionOperation)
-              - path bush group A (Model)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush walls (UnionOperation)
-                - bush walls detail (UnionOperation)
-            - Path Bush Large Group (Model)
-              - leaves bush large (MeshPart)
-                - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-              - leaves bush large (MeshPart)
-                - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-              - leaves bush large (MeshPart)
-                - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-              - leaves bush large (MeshPart)
-                - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-              - leaves bush large (MeshPart)
-                - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-              - leaves bush large (MeshPart)
-                - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-              - leaves bush large (MeshPart)
-                - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-              - leaves bush large (MeshPart)
-                - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-              - leaves bush large (MeshPart)
-                - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-              - leaves bush large (MeshPart)
-                - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-              - leaves bush large (MeshPart)
-                - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-              - leaves bush large (MeshPart)
-                - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-              - leaves bush large (MeshPart)
-                - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-              - leaves bush large (MeshPart)
-                - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-              - Road Central Divider Detail (Part)
-              - Road Central Divider Detail (Part)
-              - Road Central Divider Detail (Part)
-              - Road Central Divider Dirt (Part)
-              - Road Central Divider Dirt (Part)
-              - Road Central Divider Dirt (Part)
-              - Road Central Divider Main (Part)
-              - Road Central Divider Main (Part)
-              - Road Central Divider Main (Part)
-            - Trees Left (Model)
-              - Tree Large Maple (Model)
-                - Tree_Large_Maple_LOD3 (Model)
-                  - LeavesMapleBottom1 (MeshPart)
-                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                  - LeavesMapleShadow2 (MeshPart)
-                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                  - TrunkLargeMaple1 (MeshPart)
-                    - SurfaceAppearance Trunk (SurfaceAppearance)
-                - Tree Base Concrete (UnionOperation)
-              - Tree Large Maple (Model)
-                - Tree_Large_Maple_LOD3 (Model)
-                  - LeavesMapleBottom1 (MeshPart)
-                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                  - LeavesMapleShadow2 (MeshPart)
-                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                  - TrunkLargeMaple1 (MeshPart)
-                    - SurfaceAppearance Trunk (SurfaceAppearance)
-                - Tree Base Concrete (UnionOperation)
-              - Tree_Small_Bamboo_LOD3 (Model)
-                - leaves small bamboo (MeshPart)
-                  - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
-                - trunk small bamboo (MeshPart)
-                  - SurfaceAppearance Trunk (SurfaceAppearance)
-              - Tree_Small_Bamboo_LOD3 (Model)
-                - leaves small bamboo (MeshPart)
-                  - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
-                - trunk small bamboo (MeshPart)
-                  - SurfaceAppearance Trunk (SurfaceAppearance)
-              - Tree_Small_Bamboo_LOD3 (Model)
-                - leaves small bamboo (MeshPart)
-                  - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
-                - trunk small bamboo (MeshPart)
-                  - SurfaceAppearance Trunk (SurfaceAppearance)
-              - Tree_Small_Bamboo_LOD3 (Model)
-                - leaves small bamboo (MeshPart)
-                  - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
-                - trunk small bamboo (MeshPart)
-                  - SurfaceAppearance Trunk (SurfaceAppearance)
-              - Tree Base Concrete (UnionOperation)
-              - Tree Base Concrete (UnionOperation)
-              - Tree Base Concrete (UnionOperation)
-              - Tree Base Concrete (UnionOperation)
-            - Trees Left (Model)
-              - Tree Large Maple (Model)
-                - Tree_Large_Maple_LOD3 (Model)
-                  - LeavesMapleBottom1 (MeshPart)
-                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                  - LeavesMapleShadow2 (MeshPart)
-                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                  - TrunkLargeMaple1 (MeshPart)
-                    - SurfaceAppearance Trunk (SurfaceAppearance)
-                - Tree Base Concrete (UnionOperation)
-              - Tree Large Maple (Model)
-                - Tree_Large_Maple_LOD3 (Model)
-                  - LeavesMapleBottom1 (MeshPart)
-                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                  - LeavesMapleShadow2 (MeshPart)
-                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                  - TrunkLargeMaple1 (MeshPart)
-                    - SurfaceAppearance Trunk (SurfaceAppearance)
-                - Tree Base Concrete (UnionOperation)
-              - Tree Large Maple (Model)
-                - Tree_Large_Maple_LOD3 (Model)
-                  - LeavesMapleBottom1 (MeshPart)
-                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                  - LeavesMapleShadow2 (MeshPart)
-                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                  - TrunkLargeMaple1 (MeshPart)
-                    - SurfaceAppearance Trunk (SurfaceAppearance)
-                - Tree Base Concrete (UnionOperation)
-              - Tree Large Maple (Model)
-                - Tree_Large_Maple_LOD3 (Model)
-                  - LeavesMapleBottom1 (MeshPart)
-                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                  - LeavesMapleShadow2 (MeshPart)
-                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                  - TrunkLargeMaple1 (MeshPart)
-                    - SurfaceAppearance Trunk (SurfaceAppearance)
-                - Tree Base Concrete (UnionOperation)
-              - Tree_Small_Bamboo_LOD3 (Model)
-                - leaves small bamboo (MeshPart)
-                  - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
-                - trunk small bamboo (MeshPart)
-                  - SurfaceAppearance Trunk (SurfaceAppearance)
-              - Tree_Small_Bamboo_LOD3 (Model)
-                - leaves small bamboo (MeshPart)
-                  - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
-                - trunk small bamboo (MeshPart)
-                  - SurfaceAppearance Trunk (SurfaceAppearance)
-              - Tree_Small_Bamboo_LOD3 (Model)
-                - leaves small bamboo (MeshPart)
-                  - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
-                - trunk small bamboo (MeshPart)
-                  - SurfaceAppearance Trunk (SurfaceAppearance)
-              - Tree_Small_Bamboo_LOD3 (Model)
-                - leaves small bamboo (MeshPart)
-                  - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
-                - trunk small bamboo (MeshPart)
-                  - SurfaceAppearance Trunk (SurfaceAppearance)
-              - Tree Base Concrete (UnionOperation)
-              - Tree Base Concrete (UnionOperation)
-              - Tree Base Concrete (UnionOperation)
-              - Tree Base Concrete (UnionOperation)
-            - Trees Left (Model)
-              - Tree Large Maple (Model)
-                - Tree_Large_Maple_LOD3 (Model)
-                  - LeavesMapleBottom1 (MeshPart)
-                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                  - LeavesMapleShadow2 (MeshPart)
-                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                  - TrunkLargeMaple1 (MeshPart)
-                    - SurfaceAppearance Trunk (SurfaceAppearance)
-                - Tree Base Concrete (UnionOperation)
-              - Tree Large Maple (Model)
-                - Tree_Large_Maple_LOD3 (Model)
-                  - LeavesMapleBottom1 (MeshPart)
-                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                  - LeavesMapleShadow2 (MeshPart)
-                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                  - TrunkLargeMaple1 (MeshPart)
-                    - SurfaceAppearance Trunk (SurfaceAppearance)
-                - Tree Base Concrete (UnionOperation)
-              - Tree Large Maple (Model)
-                - Tree_Large_Maple_LOD3 (Model)
-                  - LeavesMapleBottom1 (MeshPart)
-                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                  - LeavesMapleShadow2 (MeshPart)
-                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                  - TrunkLargeMaple1 (MeshPart)
-                    - SurfaceAppearance Trunk (SurfaceAppearance)
-                - Tree Base Concrete (UnionOperation)
-              - Tree Large Maple (Model)
-                - Tree_Large_Maple_LOD3 (Model)
-                  - LeavesMapleBottom1 (MeshPart)
-                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                  - LeavesMapleShadow2 (MeshPart)
-                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                  - TrunkLargeMaple1 (MeshPart)
-                    - SurfaceAppearance Trunk (SurfaceAppearance)
-                - Tree Base Concrete (UnionOperation)
-              - Tree_Small_Bamboo_LOD3 (Model)
-                - leaves small bamboo (MeshPart)
-                  - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
-                - trunk small bamboo (MeshPart)
-                  - SurfaceAppearance Trunk (SurfaceAppearance)
-              - Tree_Small_Bamboo_LOD3 (Model)
-                - leaves small bamboo (MeshPart)
-                  - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
-                - trunk small bamboo (MeshPart)
-                  - SurfaceAppearance Trunk (SurfaceAppearance)
-              - Tree_Small_Bamboo_LOD3 (Model)
-                - leaves small bamboo (MeshPart)
-                  - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
-                - trunk small bamboo (MeshPart)
-                  - SurfaceAppearance Trunk (SurfaceAppearance)
-              - Tree_Small_Bamboo_LOD3 (Model)
-                - leaves small bamboo (MeshPart)
-                  - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
-                - trunk small bamboo (MeshPart)
-                  - SurfaceAppearance Trunk (SurfaceAppearance)
-              - Tree Base Concrete (UnionOperation)
-              - Tree Base Concrete (UnionOperation)
-              - Tree Base Concrete (UnionOperation)
-              - Tree Base Concrete (UnionOperation)
           - Paths (Folder)
-            - S2_R5_B2 Paths (Model) [1 attrs]
-              - paths detail edge (MeshPart)
-              - paths main (MeshPart)
-              - paths road edge (MeshPart)
-            - S2_R5_B2 Paths (Model) [1 attrs]
-              - paths detail edge (MeshPart)
-              - paths main (MeshPart)
-              - paths road edge (MeshPart)
           - Props (Folder)
           - Roads (Folder)
         - LOD4 (Folder)
@@ -29107,93 +29792,12 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
         - LOD4_Foliage (Folder)
       - _Metadata (Folder)
         - CenterPart (Part)
-      - Street Lights Group Left (Model)
-        - Street Lamp Tall A (Model)
-          - lamppost main (MeshPart)
-          - lamppost neon (MeshPart)
-            - SurfaceLight lamppost (SurfaceLight)
-        - Street Lamp Tall A (Model)
-          - lamppost main (MeshPart)
-          - lamppost neon (MeshPart)
-            - SurfaceLight lamppost (SurfaceLight)
-        - Street Lamp Tall A (Model)
-          - lamppost main (MeshPart)
-          - lamppost neon (MeshPart)
-            - SurfaceLight lamppost (SurfaceLight)
-        - Street Lamp Tall A (Model)
-          - lamppost main (MeshPart)
-          - lamppost neon (MeshPart)
-            - SurfaceLight lamppost (SurfaceLight)
-        - Street Lamp Tall A (Model)
-          - lamppost main (MeshPart)
-          - lamppost neon (MeshPart)
-            - SurfaceLight lamppost (SurfaceLight)
       - Root (Part)
     - Street lights Group Curve (Model)
-      - Street Lamp Tall A (Model)
-        - lamppost main (MeshPart)
-        - lamppost neon (MeshPart)
-          - SurfaceLight lamppost (SurfaceLight)
-      - Street Lamp Tall A (Model)
-        - lamppost main (MeshPart)
-        - lamppost neon (MeshPart)
-          - SurfaceLight lamppost (SurfaceLight)
-      - Street Lamp Tall A (Model)
-        - lamppost main (MeshPart)
-        - lamppost neon (MeshPart)
-          - SurfaceLight lamppost (SurfaceLight)
-      - Street Lamp Tall A (Model)
-        - lamppost main (MeshPart)
-        - lamppost neon (MeshPart)
-          - SurfaceLight lamppost (SurfaceLight)
-      - Street Lamp Tall A (Model)
-        - lamppost main (MeshPart)
-        - lamppost neon (MeshPart)
-          - SurfaceLight lamppost (SurfaceLight)
-      - Street Lamp Tall A (Model)
-        - lamppost main (MeshPart)
-        - lamppost neon (MeshPart)
-          - SurfaceLight lamppost (SurfaceLight)
-      - Street Lamp Tall A (Model)
-        - lamppost main (MeshPart)
-        - lamppost neon (MeshPart)
-          - SurfaceLight lamppost (SurfaceLight)
-      - Street Lamp Tall A (Model)
-        - lamppost main (MeshPart)
-        - lamppost neon (MeshPart)
-          - SurfaceLight lamppost (SurfaceLight)
-      - Street Lamp Tall A (Model)
-        - lamppost main (MeshPart)
-        - lamppost neon (MeshPart)
-          - SurfaceLight lamppost (SurfaceLight)
-      - Street Lamp Tall A (Model)
-        - lamppost main (MeshPart)
-        - lamppost neon (MeshPart)
-          - SurfaceLight lamppost (SurfaceLight)
-      - Street Lamp Tall A (Model)
-        - lamppost main (MeshPart)
-        - lamppost neon (MeshPart)
-          - SurfaceLight lamppost (SurfaceLight)
-      - Street Lamp Tall A (Model)
-        - lamppost main (MeshPart)
-        - lamppost neon (MeshPart)
-          - SurfaceLight lamppost (SurfaceLight)
-      - Street Lamp Tall A (Model)
-        - lamppost main (MeshPart)
-        - lamppost neon (MeshPart)
-          - SurfaceLight lamppost (SurfaceLight)
-      - Street Lamp Tall A (Model)
-        - lamppost main (MeshPart)
-        - lamppost neon (MeshPart)
-          - SurfaceLight lamppost (SurfaceLight)
-      - Street Lamp Tall A (Model)
-        - lamppost main (MeshPart)
-        - lamppost neon (MeshPart)
-          - SurfaceLight lamppost (SurfaceLight)
-      - Street Lamp Tall A (Model)
-        - lamppost main (MeshPart)
-        - lamppost neon (MeshPart)
-          - SurfaceLight lamppost (SurfaceLight)
+  - FBX - 3D Lady Head v2 (Model) [1 attrs]
+    - headMesh.002 (MeshPart)
+      - SurfaceAppearance (SurfaceAppearance)
+    - Script (Script) [script_0140, 16 lines]
   - Terrain (Terrain)
 - ServerStorage (ServerStorage)
   - HOVER_RACING_SAVED_CARS_Runtime (Folder)

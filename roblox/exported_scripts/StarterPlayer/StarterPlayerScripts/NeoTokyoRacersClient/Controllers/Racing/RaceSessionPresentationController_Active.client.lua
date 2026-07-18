@@ -1,3 +1,6 @@
+-- NTR_RACING_FLOW_COUNTDOWN_QUEUE_EXIT_OWNERSHIP
+-- NTR_RACING_UI_MOBILE_PHASE2_LARGE_SESSION_CONTROLS
+-- NTR_RACING_UI_MOBILE_PHASE2_IN_RACE_HUD
 -- Neo Tokyo Racers - Shared In-Race Race / Time Trial HUD
 -- NTR_RACING_UI_PHASE16A_SHARED_IN_RACE_HUD
 -- NTR_RACING_UI_PHASE16B_GT_HUD_CONTROLS_SUPPRESSION
@@ -10,6 +13,7 @@
 local Players=game:GetService("Players")
 local ReplicatedStorage=game:GetService("ReplicatedStorage")
 local RunService=game:GetService("RunService")
+local UserInputService=game:GetService("UserInputService")
 local Workspace=game:GetService("Workspace")
 local player=Players.LocalPlayer local playerGui=player:WaitForChild("PlayerGui")
 local kit=ReplicatedStorage:WaitForChild("NeoTokyoRacers") local shared=kit:WaitForChild("Shared")
@@ -19,6 +23,11 @@ local config=kit:WaitForChild("Config"):WaitForChild("UI"):WaitForChild("Racing"
 local racingConfig=kit.Config:WaitForChild("Racing")
 local performanceConfig=racingConfig:WaitForChild("PresentationPerformance")
 local function N(name,fallback) local item=config:FindFirstChild(name) return item and item:IsA("NumberValue") and item.Value or fallback end
+local touch=UserInputService.TouchEnabled
+local mobileConfig=config:FindFirstChild("Mobile")
+local function MN(name,fallback) local item=mobileConfig and mobileConfig:FindFirstChild(name) return item and (item:IsA("NumberValue") or item:IsA("BoolValue")) and item.Value or fallback end
+touch=touch and MN("Enabled",true)
+local function HN(name,fallback) return touch and MN(name,fallback) or N(name,fallback) end
 local function timeText(seconds) seconds=tonumber(seconds) if not seconds or seconds<0 then return "--:--.---" end local m=math.floor(seconds/60) return string.format("%02d:%06.3f",m,seconds-m*60) end
 local function asset(value) value=tostring(value or "") if value=="" then return "" end if string.find(value,"rbxassetid://",1,true) then return value end local id=string.match(value,"%d+") return id and "rbxassetid://"..id or value end
 local function eventFolder(mode,eventId) local catalog=racingConfig:FindFirstChild(mode=="Race" and "RaceCatalog" or "TimeTrialCatalog") if not catalog then return nil end local direct=catalog:FindFirstChild(tostring(eventId or "")) if direct then return direct end for _,candidate in ipairs(catalog:GetChildren()) do if tostring(candidate:GetAttribute("EventId") or "")==tostring(eventId or "") then return candidate end end end
@@ -76,7 +85,14 @@ local canvas=Instance.new("Frame") canvas.Name="ReferenceCanvas" canvas.AnchorPo
 local scale=Instance.new("UIScale") scale.Parent=canvas
 local function updateScale() local camera=Workspace.CurrentCamera local v=camera and camera.ViewportSize or Vector2.new(1920,1080) scale.Scale=math.min(v.X/1920,v.Y/1080) end updateScale() if Workspace.CurrentCamera then Workspace.CurrentCamera:GetPropertyChangedSignal("ViewportSize"):Connect(updateScale) end
 local suppressed={}
-local function suppress(_active) end -- NTR_RACING_UI_PHASE16E_RUNTIME_OWNERSHIP
+local legacyHudNames={NTR_RaceHud=true,NTR_RaceHud_Phase3=true,NTR_RaceCheckpointBadge_Phase5D=true,NTR_RaceQueue_Phase8=true,NTR_RaceSessionControls_Phase8D=true}
+local function suppress(active)
+	if not (touch and active) then return end
+	for name in pairs(legacyHudNames) do
+		local other=playerGui:FindFirstChild(name)
+		if other and other:IsA("ScreenGui") then other.Enabled=false end
+	end
+end -- NTR_RACING_UI_PHASE16E_RUNTIME_OWNERSHIP
 local function panel(name,pos,size) return UI.Panel(canvas,{Name=name,Position=pos,Size=size,Color=C("PanelDeep"),Transparency=N("PanelTransparency",.16),StrokeColor=C("Outline"),StrokeTransparency=.16,Clips=true}) end
 local function borderless(object) object.BackgroundTransparency=1 for _,child in ipairs(object:GetChildren()) do if child:IsA("UIStroke") then child.Transparency=1 end end return object end
 local function metricCard(object)
@@ -96,18 +112,19 @@ local function placementColor(place)
 	local item=name and config:FindFirstChild(name) if item and item:IsA("Color3Value") then return item.Value end
 	if place==1 then return Color3.fromRGB(255,190,45) elseif place==2 then return Color3.fromRGB(205,215,225) elseif place==3 then return Color3.fromRGB(205,125,65) end return C("Text")
 end
-local left=metricCard(panel("LapProgress",UDim2.fromOffset(N("ProgressOffsetX",30),N("ProgressOffsetY",105)),UDim2.fromOffset(N("ProgressWidth",178),N("ProgressHeight",92))))
-local center=metricCard(panel("PrimaryMetric",UDim2.new(.5,-N("MetricWidth",300)/2,0,N("EdgeY",30)),UDim2.fromOffset(N("MetricWidth",300),N("MetricHeight",92))))
-local right=borderless(panel("SessionBoard",UDim2.new(1,-N("BoardOffsetX",30)-N("BoardWidth",380),0,N("BoardOffsetY",38)),UDim2.fromOffset(N("BoardWidth",380),N("BoardHeight",300))))
+local left=metricCard(panel("LapProgress",touch and UDim2.fromOffset(MN("ProgressOffsetX",30),MN("ProgressOffsetY",150)) or UDim2.fromOffset(N("ProgressOffsetX",30),N("ProgressOffsetY",105)),touch and UDim2.fromOffset(MN("ProgressWidth",150),MN("ProgressHeight",78)) or UDim2.fromOffset(N("ProgressWidth",178),N("ProgressHeight",92))))
+local center=metricCard(panel("PrimaryMetric",UDim2.new(.5,-HN("MetricWidth",touch and 260 or 300)/2,0,touch and MN("MetricOffsetY",28) or N("EdgeY",30)),UDim2.fromOffset(HN("MetricWidth",touch and 260 or 300),HN("MetricHeight",touch and 80 or 92))))
+local right=borderless(panel("SessionBoard",UDim2.new(1,-HN("BoardOffsetX",touch and 24 or 30)-HN("BoardWidth",touch and 330 or 380),0,HN("BoardOffsetY",touch and 30 or 38)),UDim2.fromOffset(HN("BoardWidth",touch and 330 or 380),HN("BoardHeight",touch and 280 or 300))))
 local map=borderless(panel("RaceMap",UDim2.new(0,N("MapOffsetX",30),1,-N("MapOffsetY",30)-N("MapHeight",210)),UDim2.fromOffset(N("MapWidth",280),N("MapHeight",210))))
+map.Visible=not touch
 local mapPadding=math.max(0,N("MapInnerPadding",0))
 local mapArt=Instance.new("ImageLabel") mapArt.Name="SimplifiedRaceMap" mapArt.BackgroundTransparency=1 mapArt.ImageTransparency=1-math.clamp(N("MapOpacity",.78),0,1) mapArt.Position=UDim2.fromOffset(mapPadding,mapPadding) mapArt.Size=UDim2.new(1,-mapPadding*2,1,-mapPadding*2) mapArt.ScaleType=Enum.ScaleType.Fit mapArt.Parent=map
 local playerMapMarker=Instance.new("ImageLabel") playerMapMarker.Name="PlayerMarker" playerMapMarker.AnchorPoint=Vector2.new(.5,.5) playerMapMarker.BackgroundTransparency=1 playerMapMarker.BorderSizePixel=0 playerMapMarker.Image=asset(mapValue(freeRoamMapAssets,"MapPlayerIcon","StringValue","")) playerMapMarker.ImageColor3=C("Text") playerMapMarker.ScaleType=Enum.ScaleType.Fit playerMapMarker.Size=UDim2.fromOffset(math.max(8,mapValue(freeRoamMapLayout,"MapPlayerIconSize","NumberValue",22)),math.max(8,mapValue(freeRoamMapLayout,"MapPlayerIconSize","NumberValue",22))) playerMapMarker.Position=UDim2.fromScale(.5,.5) playerMapMarker.ZIndex=20 playerMapMarker.Visible=false playerMapMarker.Parent=mapArt
 local displayedMapMarkerPosition=nil local displayedMapMarkerHeading=nil
-local lapHeading=UI.Label(left,{Text="LAP",Position=UDim2.fromOffset(0,6),Size=UDim2.new(1,0,0,26),TextSize=N("MetricHeadingSize",15),Color=C("Text"),Role="Heading",XAlignment=Enum.TextXAlignment.Center})
-local lapValue=UI.Label(left,{Text="1 / 1",Position=UDim2.fromOffset(0,30),Size=UDim2.new(1,0,1,-34),TextSize=N("MetricValueSize",36),Color=C("Text"),Role="Metric",XAlignment=Enum.TextXAlignment.Center})
-local metricHeading=UI.Label(center,{Text="CURRENT LAP",Position=UDim2.fromOffset(0,6),Size=UDim2.new(1,0,0,26),TextSize=N("MetricHeadingSize",15),Color=C("Text"),Role="Heading",XAlignment=Enum.TextXAlignment.Center})
-local metricValue=UI.Label(center,{Text="00:00.000",Position=UDim2.fromOffset(0,30),Size=UDim2.new(1,0,1,-34),TextSize=N("MetricValueSize",36),Color=C("Telemetry"),Role="Metric",XAlignment=Enum.TextXAlignment.Center})
+local lapHeading=UI.Label(left,{Text="LAP",Position=UDim2.fromOffset(0,6),Size=UDim2.new(1,0,0,26),TextSize=HN("MetricHeadingSize",15),Color=C("Text"),Role="Heading",XAlignment=Enum.TextXAlignment.Center})
+local lapValue=UI.Label(left,{Text="1 / 1",Position=UDim2.fromOffset(0,30),Size=UDim2.new(1,0,1,-34),TextSize=HN("MetricValueSize",36),Color=C("Text"),Role="Metric",XAlignment=Enum.TextXAlignment.Center})
+local metricHeading=UI.Label(center,{Text="CURRENT LAP",Position=UDim2.fromOffset(0,6),Size=UDim2.new(1,0,0,26),TextSize=HN("MetricHeadingSize",15),Color=C("Text"),Role="Heading",XAlignment=Enum.TextXAlignment.Center})
+local metricValue=UI.Label(center,{Text="00:00.000",Position=UDim2.fromOffset(0,30),Size=UDim2.new(1,0,1,-34),TextSize=HN("MetricValueSize",36),Color=C("Telemetry"),Role="Metric",XAlignment=Enum.TextXAlignment.Center})
 local boardTitle=UI.Label(right,{Text="",Size=UDim2.fromOffset(0,0),TextSize=1,Color=C("Telemetry"),Role="Heading"}) boardTitle.Visible=false
 local boardBody=Instance.new("Frame") boardBody.BackgroundTransparency=1 boardBody.Position=UDim2.fromOffset(0,0) boardBody.Size=UDim2.fromScale(1,1) boardBody.Parent=right
 local active=nil
@@ -118,6 +135,13 @@ local function presentationMode(enabled) if freeRoamMode and freeRoamMode:IsA("B
 local controls=Instance.new("Frame") controls.Name="SessionControls" controls.BackgroundTransparency=1 controls.AnchorPoint=Vector2.new(.5,1) controls.Position=UDim2.new(.5,0,1,-N("BottomY",30)) controls.Size=UDim2.fromOffset(360,38) controls.Parent=canvas
 local resetButton=UI.Button(controls,{Text="RESET",Position=UDim2.fromOffset(10,3),Size=UDim2.fromOffset(150,32),Color=C("PanelDeep"),StrokeColor=C("OutlineSoft"),TextSize=13}) resetButton.BackgroundTransparency=.48 resetButton.TextTransparency=.12
 local exitButton=UI.Button(controls,{Text="EXIT",Position=UDim2.fromOffset(180,3),Size=UDim2.fromOffset(170,32),Color=C("PanelDeep"),StrokeColor=C("OutlineSoft"),TextSize=13}) exitButton.BackgroundTransparency=.48 exitButton.TextTransparency=.12
+if touch then
+	local buttonWidth=MN("SessionButtonWidth",126) local buttonHeight=MN("SessionButtonHeight",48) local buttonGap=MN("SessionButtonGap",6) local buttonTextSize=MN("SessionButtonTextSize",15)
+	controls.Position=UDim2.fromOffset(MN("SessionControlsCenterX",760),1080-MN("SessionControlsBottomOffset",24))
+	controls.Size=UDim2.fromOffset(buttonWidth,buttonHeight*2+buttonGap)
+	resetButton.Position=UDim2.fromOffset(0,0) resetButton.Size=UDim2.fromOffset(buttonWidth,buttonHeight) resetButton.TextSize=buttonTextSize
+	exitButton.Position=UDim2.fromOffset(0,buttonHeight+buttonGap) exitButton.Size=UDim2.fromOffset(buttonWidth,buttonHeight) exitButton.TextSize=buttonTextSize
+end
 local modalShade=Instance.new("Frame") modalShade.Name="ExitConfirmationShade" modalShade.BackgroundColor3=Color3.new(0,0,0) modalShade.BackgroundTransparency=.34 modalShade.BorderSizePixel=0 modalShade.Size=UDim2.fromScale(1,1) modalShade.Visible=false modalShade.ZIndex=100 modalShade.Parent=canvas
 local modal=UI.Panel(modalShade,{Name="ExitConfirmation",Position=UDim2.fromScale(.5,.5),Size=UDim2.fromOffset(650,270),Color=C("PanelDeep"),Transparency=.04,StrokeColor=C("Outline"),StrokeTransparency=.02}) modal.AnchorPoint=Vector2.new(.5,.5) modal.Position=UDim2.fromScale(.5,.5) modal.Size=UDim2.fromOffset(650,270) modal.ZIndex=101
 local modalTitle=UI.Label(modal,{Text="EXIT RACE?",Position=UDim2.fromOffset(20,8),Size=UDim2.new(1,-40,0,54),TextSize=22,Color=C("Text"),Role="Heading",XAlignment=Enum.TextXAlignment.Center}) modalTitle.ZIndex=102
@@ -170,6 +194,7 @@ local function prepareHudMapSession(mode,eventId)
 	mapArt.ImageTransparency=1-math.clamp(N("MapOpacity",.78),0,1)
 end
 local function updateHudMapMarker(dt)
+	if touch then resetHudMapMarker() return end
 	if not active then resetHudMapMarker() return end
 	if hudMapState.Mode~=active.Mode or hudMapState.EventId~=tostring(active.EventId or "") then prepareHudMapSession(active.Mode,active.EventId) end
 	local state=hudMapState
@@ -204,32 +229,32 @@ local function updateHudMapMarker(dt)
 	playerMapMarker.Size=UDim2.fromOffset(size,size) playerMapMarker.Position=UDim2.fromScale(displayedMapMarkerPosition.X,displayedMapMarkerPosition.Y)
 	playerMapMarker.Rotation=displayedMapMarkerHeading playerMapMarker.Visible=mapArt.Image~=""
 end
-local function show(payload,mode) active=active or {} active.Mode=mode active.RunId=payload.RunId active.EventId=payload.EventId active.VehicleTier=payload.VehicleTier or active.VehicleTier active.CurrentLap=tonumber(payload.CurrentLap) or active.CurrentLap or 1 active.LapTarget=tonumber(payload.LapTarget) or active.LapTarget or 1 active.ParticipantCount=tonumber(payload.ParticipantCount) or active.ParticipantCount or 1 active.LapTimes=active.LapTimes or {} active.Positions=active.Positions or {} prepareHudMapSession(mode,active.EventId) mapArt.Image=hudMapImage(mode,active.EventId) resetHudMapMarker() canvas.Visible=true suppress(true) presentationMode(true) end
+local function show(payload,mode) active=active or {} active.Mode=mode active.RunId=payload.RunId active.EventId=payload.EventId active.VehicleTier=payload.VehicleTier or active.VehicleTier active.CurrentLap=tonumber(payload.CurrentLap) or active.CurrentLap or 1 active.LapTarget=tonumber(payload.LapTarget) or active.LapTarget or 1 active.ParticipantCount=tonumber(payload.ParticipantCount) or active.ParticipantCount or 1 active.LapTimes=active.LapTimes or {} active.Positions=active.Positions or {} prepareHudMapSession(mode,active.EventId) mapArt.Image=touch and "" or hudMapImage(mode,active.EventId) resetHudMapMarker() canvas.Visible=true suppress(true) presentationMode(true) end
 local function hide(_restoreLegacy) active=nil clearHudMapState() canvas.Visible=false modalShade.Visible=false busy=false suppress(false) presentationMode(false) clear(boardBody) end
 local function queryPB() if not (active and active.Mode=="TimeTrial" and active.VehicleTier) then return end local result=call("GetTimeTrialPersonalBest",{EventId=active.EventId,VehicleTier=active.VehicleTier}) active.PersonalBest=tonumber(result.BestSeconds or (result.Record and result.Record.BestSeconds)) end
 local function renderTimeTrialBoard()
 	clear(boardBody)
-	local rowH=N("DataRowHeight",42) local gap=N("DataRowGap",5)
+	local rowH=HN("DataRowHeight",42) local gap=HN("DataRowGap",5)
 	local pb=dataRow(boardBody,0,rowH)
-	UI.Label(pb,{Text="PERSONAL BEST",Position=UDim2.fromOffset(10,0),Size=UDim2.new(.56,-10,1,0),TextSize=N("DataRowTextSize",16),Color=C("Outline"),Role="Heading"})
-	UI.Label(pb,{Text=timeText(active and active.PersonalBest),Position=UDim2.new(.56,0,0,0),Size=UDim2.new(.44,-10,1,0),TextSize=N("DataRowMetricSize",18),Color=C("Outline"),Role="Metric",XAlignment=Enum.TextXAlignment.Right})
+	UI.Label(pb,{Text="PERSONAL BEST",Position=UDim2.fromOffset(10,0),Size=UDim2.new(.56,-10,1,0),TextSize=HN("DataRowTextSize",16),Color=C("Outline"),Role="Heading"})
+	UI.Label(pb,{Text=timeText(active and active.PersonalBest),Position=UDim2.new(.56,0,0,0),Size=UDim2.new(.44,-10,1,0),TextSize=HN("DataRowMetricSize",18),Color=C("Outline"),Role="Metric",XAlignment=Enum.TextXAlignment.Right})
 	for index,lap in ipairs(active and active.LapTimes or {}) do
 		local row=dataRow(boardBody,rowH+gap+(index-1)*(rowH+gap),rowH)
-		UI.Label(row,{Text=string.format("%02d",tonumber(lap.Lap) or index),Position=UDim2.fromOffset(10,0),Size=UDim2.new(.24,-10,1,0),TextSize=N("DataRowTextSize",16),Color=C("Text"),Role="Heading"})
-		UI.Label(row,{Text=timeText(lap.Elapsed),Position=UDim2.new(.34,0,0,0),Size=UDim2.new(.66,-10,1,0),TextSize=N("DataRowMetricSize",18),Color=C("Text"),Role="Metric",XAlignment=Enum.TextXAlignment.Right})
+		UI.Label(row,{Text=string.format("%02d",tonumber(lap.Lap) or index),Position=UDim2.fromOffset(10,0),Size=UDim2.new(.24,-10,1,0),TextSize=HN("DataRowTextSize",16),Color=C("Text"),Role="Heading"})
+		UI.Label(row,{Text=timeText(lap.Elapsed),Position=UDim2.new(.34,0,0,0),Size=UDim2.new(.66,-10,1,0),TextSize=HN("DataRowMetricSize",18),Color=C("Text"),Role="Metric",XAlignment=Enum.TextXAlignment.Right})
 	end
 end
 
 local function renderRaceBoard()
 	clear(boardBody)
-	local rowH=N("DataRowHeight",42) local gap=N("DataRowGap",5)
+	local rowH=HN("DataRowHeight",42) local gap=HN("DataRowGap",5)
 	for index,entry in ipairs(active and active.Positions or {}) do
 		if index>6 then break end local row=dataRow(boardBody,(index-1)*(rowH+gap),rowH) local you=tonumber(entry.UserId)==player.UserId
 		if you then row.BackgroundColor3=C("PanelBlue") row.BackgroundTransparency=N("LocalRowTransparency",.24) end
 		local place=tonumber(entry.Place) or index
-		UI.Label(row,{Text=tostring(place),Position=UDim2.fromOffset(8,0),Size=UDim2.fromOffset(30,rowH),TextSize=N("DataRowTextSize",16),Color=placementColor(place),Role="Heading"})
-		local avatarSize=N("BoardAvatarSize",30) avatar(row,entry.UserId,UDim2.fromOffset(40,(rowH-avatarSize)/2),UDim2.fromOffset(avatarSize,avatarSize))
-		UI.Label(row,{Text=string.upper(tostring(entry.Name or "PLAYER")),Position=UDim2.fromOffset(50+avatarSize,0),Size=UDim2.new(1,-(60+avatarSize),1,0),TextSize=N("DataRowTextSize",16),Color=you and C("Telemetry") or C("Text"),Role="Heading"})
+		UI.Label(row,{Text=tostring(place),Position=UDim2.fromOffset(8,0),Size=UDim2.fromOffset(30,rowH),TextSize=HN("DataRowTextSize",16),Color=placementColor(place),Role="Heading"})
+		local avatarSize=HN("BoardAvatarSize",30) avatar(row,entry.UserId,UDim2.fromOffset(40,(rowH-avatarSize)/2),UDim2.fromOffset(avatarSize,avatarSize))
+		UI.Label(row,{Text=string.upper(tostring(entry.Name or "PLAYER")),Position=UDim2.fromOffset(50+avatarSize,0),Size=UDim2.new(1,-(60+avatarSize),1,0),TextSize=HN("DataRowTextSize",16),Color=you and C("Telemetry") or C("Text"),Role="Heading"})
 	end
 end
 
@@ -244,7 +269,7 @@ raceEvent.OnClientEvent:Connect(function(payload)
 	elseif kind=="TimeTrialStarted" then show(payload,"TimeTrial") active.Running=true active.LapLocalStart=os.clock() queryPB() refresh()
 	elseif kind=="TimeTrialCheckpoint" then show(payload,"TimeTrial") refresh()
 	elseif kind=="TimeTrialLapCompleted" then show(payload,"TimeTrial") active.LapTimes=payload.LapTimes or active.LapTimes table.insert(active.LapTimes,{Lap=payload.Lap,Elapsed=payload.Elapsed}) active.CurrentLap=payload.NextLap or payload.CurrentLap or active.CurrentLap active.LapLocalStart=os.clock() refresh()
-	elseif kind=="TimeTrialReset" then if active then active.LapLocalStart=os.clock() end
+	elseif kind=="TimeTrialReset" then refresh() -- NTR_RACING_FLOW_COUNTDOWN_QUEUE_EXIT_OWNERSHIP: preserve lap clock on checkpoint reset
 	elseif kind=="RaceStaged" or kind=="RaceCountdown" then show(payload,"Race") refresh()
 	elseif kind=="RaceStarted" then show(payload,"Race") active.Running=true refresh()
 	elseif kind=="RaceCheckpoint" or kind=="RaceLapCompleted" then show(payload,"Race") refresh()

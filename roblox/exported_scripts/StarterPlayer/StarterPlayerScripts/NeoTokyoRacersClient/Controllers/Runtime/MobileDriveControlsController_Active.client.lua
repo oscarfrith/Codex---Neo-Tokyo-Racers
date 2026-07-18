@@ -1,3 +1,4 @@
+-- NTR_MOBILE_FREEROAM_UI_PHASE1O_MAJOR_MENU_SUPPRESSION
 -- NTR_MOBILE_FREEROAM_UI_PHASE1N_SQUARE_PEDAL_LAYOUT
 -- NTR_MOBILE_FREEROAM_UI_PHASE1M_CONTROL_SURFACE_OPACITY
 -- NTR_MOBILE_FREEROAM_UI_PHASE1K_BOOST_PLATE_EXIT_ALIGNMENT
@@ -190,7 +191,7 @@ end
 local wasDriving=false
 local wasMenuBlocked=false
 RunService.RenderStepped:Connect(function(dt)
-	layout(); local driving=M.IsDriving==true; local menuBlocked=player:GetAttribute("NTRMobileFreeRoamCarMenuOpen")==true; root.Visible=driving and not menuBlocked
+	layout(); local driving=M.IsDriving==true; local menuBlocked=player:GetAttribute("NTRMobileFreeRoamCarMenuOpen")==true or player:GetAttribute("NTRMobileMajorMenuOpen")==true or not gui.Enabled; root.Visible=driving and not menuBlocked
 	if menuBlocked then if not wasMenuBlocked then clearInputs() end; wasMenuBlocked=true; return end; wasMenuBlocked=false
 	if not driving then if wasDriving then clearInputs() end; wasDriving=false; return end; wasDriving=true
 	if currentMode=="Tilt" then local smoothing=math.max(0,tonumber(A("TiltSmoothing",10)) or 10); local alpha=1-math.exp(-smoothing*dt); tiltCurrent+=(tiltTarget-tiltCurrent)*alpha; publishSteering(tiltCurrent,M.AnalogDrift==true) end

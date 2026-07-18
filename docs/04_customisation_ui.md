@@ -1,5 +1,39 @@
 # Customisation UI
 
+## Canonical Garage Confirmed Baseline — 2026-07-18
+
+The dealership, owned customisation and drive-in flows are user-confirmed working in the refreshed `2026-07-18 23:14:48` mirror. Browser and Workspace share the approved shell, cards, stats, economy, action popups, responsive scaling and navigation contracts. Physical module instances retain their saved colours, neon and upgrades; temporary module/neon/colour previews clear on page transitions without mutating persistence.
+
+The final presentation uses the shared preview pad, orbit/zoom camera, category-relative camera views, hover wobble, 8 PM garage lighting and a single preview VFX owner. Start future work from `docs/garage-canonical-handoff-2026-07-18.md`. Sections below describing older phases as “next”, “prepared” or “awaiting verification” are retained as implementation history and do not override the handoff.
+
+## Shared Physical-Module Cards And Modal (Generated, Awaiting Studio Verification)
+
+`scripts/roblox_ui_garage_module_shared_cards_modal.lua` is generated against the user-confirmed atomic transaction mirror. The audit found that the catalogue and shared listing-card component already held the correct vehicle display name, price, semantic colours and physical ownership state; `GarageWorkspaceController` dropped those fields when building the shared card props. The installer forwards that existing contract rather than adding another card implementation.
+
+The same bounded client phase canonically replaces the small `GarageModuleCardViewModel` so Owned cards sort `Equipped -> Available -> In Use`, then highest rating first inside each group. `ModuleShopUIController` now consumes `SourceCockpitDisplayName` before fallback lookup and makes its existing shared modal fill the scaled canonical canvas, block background input and audit both full coverage and exact centring at runtime. No server, persistence, transaction, preview, bootstrap or gameplay source is changed.
+
+## Atomic Physical Module Transactions (Generated, Awaiting Studio Verification)
+
+`scripts/roblox_ui_garage_module_atomic_transactions.lua` is the next approved Studio installer. It adds an isolated `GarageModuleTransactionRuntime` and replaces only the existing physical-copy buy/equip functions plus the canonical Buy callback. Buy now creates exactly one fresh module copy and equips it immediately. Equip/reassignment snapshots the complete profile, treats vehicle slot references as canonical, preserves the selected copy's saved colours/neon/upgrades, and rolls back cash, inventory and references together on any fit or invariant failure.
+
+When a copy moves from another vehicle, the old slot receives the lowest-rated compatible available physical copy. Explicit rating fields win; the current source-vehicle/variant order is a deterministic fallback until the dedicated module-rating phase. If no replacement exists, a required Engine/Stabilisers/Boost configuration rejects and rolls back the move; an optional cosmetic slot may remain empty and is reported explicitly. Do not patch these rules back into the large controller after installation—the isolated transaction runtime is the shared authority.
+
+## Canonical Garage Phase 1 V3 Refinement (Awaiting Studio Verification)
+
+The current next Studio run is V3 of `scripts/roblox_ui_garage_phase1_transactional_canonical_application.lua`, documented in `docs/garage-phase1-transactional-canonical-application-2026-07-15.md`. It preserves the substantially improved V2 ownership bridge and existing-instance host. It moves previews to the authoritative GaragePreviewPad, adds isolated orbit/zoom/configurable fade behavior, shares image category cards between Build and Customise, and adds image-free grouped Owned/Shop listing cards with pink unselected and cyan selected outlines. Do not rerun the older remaining-menu or visual-repair installer ladder.
+
+## Superseded Canonical Garage Replacement V2
+
+The current path is `scripts/roblox_ui_garage_replacement_foundation_browser.lua` followed by the same consolidated `scripts/roblox_ui_garage_workspace_remaining_menus.lua`. V2 upgrades the installed workspace in place: vehicle selection, Paint, Build Modules and Customise use one shared shell layout and performance renderer; the module-slot page has no left rail; post-selection Exit is removed; Paint cannot go Back; module names are larger/bold; and the equipment badges and core progression gate resolve the same current-vehicle module instances. Do not return to the superseded canonical-experience/V3 visual repair ladder.
+
+## Canonical Dealership And Customisation Experience (Correction Awaiting Rerun)
+
+The approved consolidated replacement is `scripts/roblox_ui_garage_canonical_experience.lua`. Initial V1 is present in the refreshed `2026-07-14 20:05:44` mirror; its stats worked, but the legacy bootstrap layout and delayed camera still won at runtime. The same installer now owns the bottom-only carousel, activates the existing garage camera immediately, sorts rated vehicles lowest-to-highest from left to right, previews the leftmost vehicle on entry/category change, and keeps unrated entries last. It retains shared `E`/tap/controller prompts, server-visible hide/freeze/return, image/name/rating cards, selected-card-centred BUY/CUSTOMISE popup, four-column stats, `ALL` plus alphabetical categories, duplicate ownership text, category module diagrams, and Cockpit Colour-first flows. Existing garage API, persistence, inventory, Phase AO upgrades and spawn behavior remain authoritative.
+
+The latest refinement in that same installer replaces the generic preview-marker entry orbit with the exact Cockpit Colour framing, scales nested vehicle images to the full card image region, makes selected card state authoritative for BUY/CUSTOMISE popup visibility, and replaces the flat repaint pass with the approved `DesktopFreeRoamHud` colour/effect tokens, gradients, semantic strokes, restrained glow and hover states.
+
+The installer contains guarded exact-source bridges in the active bootstrap and garage server. Treat it as fragile and stop on any preflight/anchor failure. Repair the same canonical installer rather than creating additional phases without approval.
+
 ## Visual Style
 
 The UI direction is futuristic, compact, and readable. It uses:
@@ -434,24 +468,23 @@ Persistence Phase 27 prepares a separate same-server garage access panel install
 
 ## Mobile Driving UI
 
-Known mobile driving UI:
+Current mobile driving UI:
 
-- Accelerator button bottom right.
-- Smaller brake pedal nearby.
-- A fixed horizontal steering thumbstick on the left replaces the four steering/drift arrow buttons after running `scripts/roblox_mobile_drive_thumbstick_install.lua`.
-- Steering begins only when the player touches the visible thumbstick or its forgiving enlarged hit area.
-- Run `scripts/roblox_mobile_drive_thumbstick_v2_visual_refinement.lua` after V1 to add a second outer drift ring. The border between the green regular-turn ring and outer drift ring matches the configured drift threshold.
-- The outer drift ring has `1.8x` the inner radius with a darker translucent band. Its idle border and `DRIFT` text use the light-green HUD accent. When the pointer crosses into the outer band, the pointer, text, and outer border all turn red, and the pointer can travel to the usable outer edge.
-- V2 raises the MPH/boost stack and sizes both pedals at `1.275x` while hiding their surrounding button frames.
-- Boost button also acts as boost meter.
-- MPH text shown above boost button.
-- PC bottom-left drive HUD should be hidden on mobile.
+- Arrows are the default mode; Thumbstick and Tilt remain selectable at the top of mobile Settings.
+- Steering/drift, boost, equal square Accelerator/Brake images, speed and boost telemetry are independently owned but share explicit menu-block state.
+- The old `roblox_mobile_drive_thumbstick_install.lua` / V2 visual-refinement ladder is historical and must not be run over the confirmed Phase 1M/1N/1O owners.
+- PC-only driving HUD and legacy mobile controls remain suppressed.
+- Use `docs/mobile-ui-racing-flow-handoff-2026-07-14.md` for the complete current owner/config/installer contract.
 
-Mobile Free-Roam UI Phase 1L is generated for the central popup family. Settings keeps Mobile Controls first and uses a fixed `720 x 420` reference; Get Cash ports the PC `840 x 650` balance/four-card composition; Dealership confirmation uses `650 x 270`. Each shell scales and centres inside the same `72/10/10 px` top/bottom/side safe area approved for mobile racing menus. Cash buttons remain visual-only and must not invoke a purchase. See `docs/ui-free-roam-mobile-phase1l-modal-safe-area-pc-cash-2026-07-13.md`.
+Mobile Free-Roam UI Phase 1L is installed and confirmed for the central popup family. Settings keeps Mobile Controls first and uses a fixed `720 x 420` reference; Get Cash ports the PC `840 x 650` balance/four-card composition; Dealership confirmation uses `650 x 270`. Each shell scales and centres inside the same `72/10/10 px` top/bottom/side safe area approved for mobile racing menus. Cash buttons remain visual-only and must not invoke a purchase. See `docs/ui-free-roam-mobile-phase1l-modal-safe-area-pc-cash-2026-07-13.md`.
 
-Mobile Free-Roam UI Phase 1M is generated as a visual-only controls refinement. All four turn/drift arrow cards become borderless gradient surfaces with `ArrowCardOpacity` and `ArrowImageOpacity`; Accelerator/Brake cards use `PedalCardOpacity = 0` by default so only artwork remains, with `PedalImageOpacity` available for tuning. Opacity is `0 = invisible`, `1 = opaque`. Hitboxes, layout and input behavior remain unchanged.
+Mobile Free-Roam UI Phase 1M is installed as the confirmed visual controls refinement. All four turn/drift arrow cards use borderless gradient surfaces with `ArrowCardOpacity` and `ArrowImageOpacity`; Accelerator/Brake cards use `PedalCardOpacity = 0` by default so only artwork remains, with `PedalImageOpacity` available for tuning. Opacity is `0 = invisible`, `1 = opaque`. Hitboxes, layout and input behavior remain unchanged.
 
-Mobile Free-Roam UI Phase 1N makes Accelerator and Brake equal `PedalSize x PedalSize` image slots. Both share `PedalBottomOffset`; Accelerator is `PedalRightOffset` from the right edge and Brake is separated to its left by `PedalGap`. The image asset values and Phase 1M card/image opacity attributes are unchanged.
+Mobile Free-Roam UI Phase 1N is installed and confirmed: Accelerator and Brake are equal `PedalSize x PedalSize` image slots. Both share `PedalBottomOffset`; Accelerator is `PedalRightOffset` from the right edge and Brake is separated to its left by `PedalGap`. The image asset values and Phase 1M card/image opacity attributes are unchanged.
+
+Mobile Free-Roam UI Phase 1O gives major mobile menus one shared suppression boundary. Settings, Get Cash and the dealership confirmation keep their modal/shade visible while hiding navigation, map, cash, toast, telemetry, Exit and all vehicle controls. The separate control owner reads `NTRMobileMajorMenuOpen`, and also treats its `ScreenGui.Enabled=false` state as blocked so Race Browser/Entry suppression releases held inputs. Closing the final popup restores the correct on-foot/driving presentation automatically. Car-menu behaviour and PC UI are unchanged.
+
+Phase 1O was installed and user-confirmed working. The consolidated current handoff is `docs/mobile-ui-racing-flow-handoff-2026-07-14.md`; future mobile UI work should begin from that isolated-owner baseline rather than the earlier thumbstick/free-roam repair ladder.
 
 ## Free Roam Vehicle Menu
 
@@ -472,6 +505,8 @@ Phase 4D keeps parked/despawn behaviour player-centred: `DespawnVehicle` only mo
 ## Race Entry Menu
 
 Mobile Racing UI Phase 1 was installed and user-confirmed working as a shared scaled-desktop system. Instead of rebuilding Browser, race/time-trial setup, placement prizes, records, vehicle selection, and unified Results, touch devices select the existing approved PC composition and fit its fixed `1200 x 720` shell into a configurable safe area. Phase 1B tightens the gap beneath Roblox's built-in controls by changing only `SafeTop` from `84` to `72`. The isolated helper is `RacingMobileScaledDesktopLayout`; tuning lives at `Config.UI.Racing.MobileScaledDesktop`. The in-race HUD and all racing gameplay/data owners remain outside this phase.
+
+Unified Race Flow is generated as `scripts/roblox_racing_flow_countdown_queue_exit_ownership.lua`. It keeps the confirmed scaled Browser/Entry/Results compositions, removes their header X exits, makes footer actions the only exit path, and relies on the existing presentation-owner bridge to close car/settings/modal UI and hide free-roam UI underneath. Its responsive queue banner is the only queue presentation; the retired Phase 8 queue panel no longer doubles as an in-race or post-race menu. Race and Time Trial share a large configurable `5, 4, 3, 2, 1, GO!` overlay with a borderless racing-palette gradient and fully centred countdown text. Route-guide checkpoint presentation stays hidden until GO. The server owns `NTR_RaceQueueActive` and rejects vehicle changes until the player leaves the queue or staging begins. Time Trial RESET repositions the vehicle without restarting the shared PC/mobile lap display clock.
 
 The amended racing plan makes the next race UI a themed entry flow instead of an instant prompt start. Pressing `E` / touch on a race zone should open an isolated `Controllers.Racing` menu with:
 
@@ -520,3 +555,36 @@ Phase 2 installs `DriveInCustomisationSessionService_Active` and a hidden `Drive
 Drive-In Customisation Phase 3/3B was installed and confirmed working on 2026-07-06. It replaces the isolated prompt client again so the world prompt is countdown-only and appears only once the driven vehicle is actually inside the trigger. It also patches the existing garage `Start Driving` path to set `NTR_DriveInCustomisationActive` false before calling `SpawnVehicle`, because the Phase 2 hold lock can otherwise keep the character anchored/frozen during the spawn/seat handoff. This bootstrap patch is intentionally tiny and does not add top-level locals to the register-limited client bootstrap.
 
 The first Phase 3 script installed the prompt client but failed to patch the bootstrap because it used Lua pattern-based `string.gsub` for a multi-line source block. `scripts/roblox_drive_in_customisation_phase3b_spawn_unlock_anchor_repair.lua` fixed the partial install by using plain source matching around the current `Customise -> SpawnVehicle` branch. Use plain matching or line-window insertion for future source text repairs where punctuation-heavy Lua source is the anchor.
+
+## Canonical Module Instance Cards
+
+`scripts/roblox_ui_garage_module_instance_cards_and_actions.lua` is the next generated canonical garage phase. It installs an isolated `GarageModuleCardViewModel`, makes Owned Modules render every physical module instance as a separate card, and makes Owned and Buy use the same semantic card renderer.
+
+The interaction contract is explicit: `BuyModuleInstance` purchases an available copy and never calls Equip; the player then selects that copy under Owned Modules and uses the existing card-centred `EQUIP` popup. Moving a copy from another vehicle requires a central Yes/No confirmation, after which the server removes the old vehicle reference before assigning the new one. Equipped, available, in-use, locked and selected states keep distinct shared colours. Optional module rating fields are supported without requiring the rating system yet, and `GarageReplacement.ModuleLockIcon` is the transparent lock-art configuration value.
+
+This installer uses hard-preflighted plain source windows in the isolated garage application/shared renderer and one small server reassignment guard. It is generated but not yet confirmed in Play. Verify purchase-without-equip, individual copy cards, available equip, cross-vehicle confirmation, locked preview without Buy, card sorting and the centred popup before treating it as the baseline.
+
+### Revised module-instance implementation order
+
+Play verification of V1 exposed that `GarageWorkspaceController.RenderCards` does not forward the new `VehicleName`, `Price`, `SemanticState`, `Variant`, `Locked` and `LockImage` properties into the shared listing-card renderer. The card renderer therefore falls back to `UNIVERSAL`, cannot draw the green price, and cannot apply equipped/in-use colours. This is a property-forwarding defect, not a new visual-design phase.
+
+The remaining module work must proceed in this order:
+
+1. Make each `OwnedModuleInstances` record the authoritative owner of its colours, neon ownership and upgrade allocation. Colour/neon/upgrade mutations must resolve the installed instance ID and write that instance before compatibility slot tables are refreshed. Equipping must hydrate the current slot view from that instance. V2 upgrades already target physical instances; legacy compatibility paths still need an explicit audit and bridge.
+2. Replace multi-call purchase/equip and reassignment with one atomic server transaction. Buying should purchase and equip by default. Moving an in-use module should detach no references until validation succeeds, equip the requested copy, and backfill the previous vehicle with the lowest-rated compatible available copy. The displaced target-vehicle module is eligible for that backfill. The transaction must never manufacture a replacement; if no compatible copy exists, it must fail or leave an explicitly reported empty optional slot. Core slots should fail safely. Add post-transaction invariants for one reference per instance and matching `EquippedVehicleId`.
+3. Repair the shared card property contract and lineage resolution. Prefer the catalogue's `SourceCockpitDisplayName`, then resolve `SourceCockpitId`, and only use `UNIVERSAL` for genuinely universal modules. Forward price/state/lock/rating fields, sort Equipped then Available then In Use, and sort by rating within each state. Preserve pink equipped fill, pink available outline, grey in-use/locked outline and blue selected outline.
+4. Replace the fixed `1600x900` modal shade with the canonical host's full scaled canvas bounds and centre its panel through the same responsive shell contract. Reuse this modal for cross-vehicle reassignment and other garage confirmations.
+5. After the instance transaction passes save/rejoin tests, complete the already-approved presentation backlog: brighter true-colour sliders, content-fitted Owned/Buy rail, shared icon configuration, working performance cards, shorter Customise category cards, `Thrust` copy, and larger stats/economy/header typography.
+6. Author the dedicated module rating formula/data only after physical-instance persistence is stable. The current view model accepts an optional rating and can use deterministic fallback order until that system is calibrated.
+
+The first step is now generated as `scripts/roblox_ui_garage_module_instance_customisation_authority.lua`. It installs the isolated server-only `GarageModuleInstanceCustomizationRuntime` and small action-controller bridges. Colour, neon, thrust-colour compatibility and upgrade actions capture into the installed physical instance; vehicle selection/equip hydrates legacy slot views from that instance; and every successful garage mutation validates unique references plus `EquippedVehicleId` before persistence. It does not change card layout, auto-equip policy or reassignment/backfill behavior. The user confirmed this authority phase working well on 2026-07-16.
+
+The same authority installer now also reconciles the derived `EquippedVehicleId` field from canonical `Vehicles[*].InstalledModules` references before processing a garage request. This repairs stale owner flags left by an earlier equip/reassignment path without deleting, creating, moving or equipping any module. Missing instances and duplicate slot references remain hard failures. This was added after `SelectVehicleInstance` correctly detected `module_d93425e6b4a3` as equipped-but-unreferenced and blocked customisation.
+
+Before atomic buy/equip/backfill, add one isolated read-only selected-instance preview adapter. Module-card selection already records `SelectedModuleInstanceId`; the adapter should resolve that copy's saved colours, neon and upgrade allocation and apply them only to the local preview clone and preview-stat calculation. It must not copy preview data into current slot compatibility tables, invoke a garage mutation, change vehicle references or persist anything. Colour and neon are direct presentation data; performance upgrades should be represented by the preview stats/deltas unless an upgrade explicitly has authored visual geometry or VFX. Clear the selected preview instance when the slot, category, mode or screen changes, and audit a profile snapshot before/after repeated preview clicks to prove selection is mutation-free.
+
+That phase is now generated as `scripts/roblox_ui_garage_module_instance_readonly_preview.lua`. It installs `Controllers.Preview.GarageModuleInstancePreviewAdapter`, makes the existing preview clone use the selected physical copy's `Colors`, `NeonOwned` and upgrade allocation, and makes the existing performance panel compare the selected upgraded copy against the currently installed upgraded copy. The clone also receives the resolved upgraded raw attributes for future authored preview VFX/geometry readers. The adapter has no remote or mutation path, and each preview build fingerprints the client profile before and after to enforce that contract. The installer transactionally compiles and patches only `PreviewVehicleController` and `ModuleShopUIController` through exact known source anchors; Studio install and Play verification remain pending.
+
+The physical-instance authority, read-only preview, atomic purchase/equip/backfill, and shared card/modal stages were subsequently confirmed working by the user. The approved presentation stage is now generated as `scripts/roblox_ui_garage_module_presentation_refinement.lua`. It reuses the canonical garage shell and shared performance renderer to add bright dynamic HSV tracks, content-fitted Build navigation, a Customise rail aligned to the carousel bottom, shorter artwork cards, `Thrust` copy, larger shared typography, and configurable `ModuleColourIcon`, `ModuleCosmeticsIcon`, `ModulePerformanceIcon`, and `ModuleNeonIcon` attributes. It also makes Standard modules explicitly non-upgradeable while continuing to consume the existing Lightweight/Power V2 upgrade catalogues. This phase is client presentation/config only and deliberately does not alter module ownership, persistence, rating, prices, or server transactions.
+
+The presentation stage was user-confirmed substantially improved. Its Play test exposed two older state-ownership defects rather than presentation defects: browser card selection changed only selected IDs while preview construction kept reading the current profile, and `SetCockpitColor` copied whole-vehicle paint into legacy module tables without capturing the physical instances. The approved canonical repair is generated as `scripts/roblox_ui_garage_vehicle_preview_and_paint_scope.lua`. It adds one pure `GarageVehiclePreviewProfile` projection: Dealership cards use cockpit defaults plus the same four Standard core modules granted on purchase, while Customisation cards resolve the selected vehicle's cockpit state and physical module-instance colours, neon and upgrades without selecting that vehicle on the server. The same phase gives paint explicit `WholeVehicle`, `CockpitOnly`, `ALL`, thrust and single-slot scopes. Whole-vehicle commits update the vehicle cockpit state and capture every installed physical instance atomically; cockpit-only commits never touch modules; committed colour actions can return the authoritative refreshed profile. The initial page is renamed `Paint Vehicle` to describe its full-vehicle scope.

@@ -1,3 +1,4 @@
+-- NTR_UI_PERFORMANCE_HARDENING_PHASE1_V1
 -- NTR_PC_FREEROAM_UI_PHASE4A_DEALERSHIP_TELEPORT
 -- NTR_RACING_UI_PHASE16D_PRESENTATION_PERFORMANCE
 
@@ -351,9 +352,7 @@ end
 local function isMajorMenuOpen()
 	for _, screen in ipairs(playerGui:GetChildren()) do
 		if screen:IsA("ScreenGui") and screen ~= gui and screen.Enabled then
-			if screen.Name == "HOVER_RACING_V2_GarageUI" then
-				return true
-			end
+			if player:GetAttribute("NTR_GarageSessionActive") == true then return true end
 			local rootObject = screen:FindFirstChild("GarageRoot", true)
 				or screen:FindFirstChild("DealershipRoot", true)
 				or screen:FindFirstChild("CustomisationRoot", true)
@@ -658,6 +657,9 @@ local function makeCarCard(parent, row, order)
 			fireUiEvent("FreeRoamVehicleSpawned")
 			carPanel.Visible = false
 			leftCluster.Visible = true
+			cachedInitial = nil
+			cachedProfile = nil
+			cachedCatalog = nil
 			showToast("VEHICLE SPAWNED", true)
 		else
 			showToast(result.Message or result.Error or "VEHICLE SPAWN FAILED", false)
@@ -783,7 +785,14 @@ local function buildMainHud()
 		carPanel.Visible = not carPanel.Visible
 		leftCluster.Visible = not carPanel.Visible
 		setAccent(carButton, carPanel.Visible and C("Telemetry") or C("Outline"))
-		if carPanel.Visible then renderCars() end
+		if carPanel.Visible then
+			readInitial(true)
+			renderCars()
+		else
+			cachedInitial = nil
+			cachedProfile = nil
+			cachedCatalog = nil
+		end
 	end, carWidth)
 	carButton.LayoutOrder = 1
 	local garageAction = actionIcon("Garage", "GarageIcon", "HOME", function()
@@ -1063,25 +1072,35 @@ local function updateRuntime(dt)
 			segment.BackgroundTransparency = index <= activeCount and 0 or 0.42
 		end
 	end
-	if not (racingPresentationActive and readValue(racingPerformanceConfig, "PauseFreeRoamProfileDuringRace", true) == true) and not profileReadPending and os.clock() - lastProfileRead >= L("ProfileRefreshSeconds", 2) then
-		profileReadPending = true
-		lastProfileRead = os.clock()
-		task.spawn(function()
-			readInitial(true)
-			if moneyLabel and moneyLabel.Parent then
-				moneyLabel.Text = formatCash(cachedProfile and cachedProfile.Cash or 0)
-				local balanceChip = modalPanels.Cash and modalPanels.Cash:FindFirstChild("BalanceChip")
-				if balanceChip and balanceChip:IsA("TextButton") then balanceChip.Text = "BALANCE  " .. moneyLabel.Text end
-			end
-			profileReadPending = false
-		end)
-	end
+	-- Cash is replicated by leaderstats. Full garage profiles are fetched only when the vehicle panel opens.
 end
 
 ensureGui()
 updateLayout()
-readInitial(true)
-moneyLabel.Text = formatCash(cachedProfile and cachedProfile.Cash or 0)
+
+local cashConnection
+local function bindReplicatedCash()
+	if cashConnection then cashConnection:Disconnect(); cashConnection = nil end
+	local leaderstats = player:FindFirstChild("leaderstats")
+	local cash = leaderstats and leaderstats:FindFirstChild("Cash")
+	if not (cash and cash:IsA("IntValue")) then return false end
+	local function updateCash()
+		if not (moneyLabel and moneyLabel.Parent) then return end
+		moneyLabel.Text = formatCash(cash.Value)
+		local balanceChip = modalPanels.Cash and modalPanels.Cash:FindFirstChild("BalanceChip")
+		if balanceChip and balanceChip:IsA("TextButton") then balanceChip.Text = "BALANCE  " .. moneyLabel.Text end
+	end
+	updateCash()
+	cashConnection = cash:GetPropertyChangedSignal("Value"):Connect(updateCash)
+	return true
+end
+if not bindReplicatedCash() then
+	task.spawn(function()
+		local leaderstats = player:WaitForChild("leaderstats", 15)
+		if leaderstats then leaderstats:WaitForChild("Cash", 15) end
+		bindReplicatedCash()
+	end)
+end
 
 local camera = Workspace.CurrentCamera
 if camera then camera:GetPropertyChangedSignal("ViewportSize"):Connect(updateLayout) end

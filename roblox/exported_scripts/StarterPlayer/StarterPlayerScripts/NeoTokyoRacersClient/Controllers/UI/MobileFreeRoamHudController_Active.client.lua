@@ -1,3 +1,5 @@
+-- NTR_MOBILE_FREEROAM_UI_PHASE1O_MAJOR_MENU_SUPPRESSION
+-- NTR_RACING_UI_MOBILE_PHASE2_IN_RACE_HUD
 -- NTR_MOBILE_FREEROAM_UI_PHASE1L_MODAL_SAFE_AREA_PC_CASH
 -- NTR_MOBILE_FREEROAM_UI_PHASE1K_BOOST_PLATE_EXIT_ALIGNMENT
 local Players=game:GetService("Players")
@@ -161,9 +163,10 @@ end
 local function setModalReference(width,height)
 	modalReference=Vector2.new(width,height); modal.Size=UDim2.fromOffset(width,height); local camera=workspace.CurrentCamera; if camera then layoutModal(camera.ViewportSize) end
 end
-local function closeModal() shade.Visible=false; modal.Visible=false; clear(modalBody) end
+player:SetAttribute("NTRMobileMajorMenuOpen",false)
+local function closeModal() shade.Visible=false; modal.Visible=false; player:SetAttribute("NTRMobileMajorMenuOpen",false); clear(modalBody) end
 shade.Activated:Connect(closeModal)
-local function openModal(title,width,height) clear(modalBody); setModalReference(width,height); modalTitle.Text=title; shade.Visible=true; modal.Visible=true end
+local function openModal(title,width,height) clear(modalBody); setModalReference(width,height); modalTitle.Text=title; shade.Visible=true; modal.Visible=true; player:SetAttribute("NTRMobileMajorMenuOpen",true) end
 
 local function segmented(parent,y,titleText,options,selected,onPick,disabled)
 	label(parent,titleText.."Label",titleText,UDim2.new(1,-20,0,20),UDim2.fromOffset(10,y),10,WHITE)
@@ -261,8 +264,16 @@ exitButton.Activated:Connect(function() fire("FreeRoamVehicleExited"); local r=c
 
 local presentationOwners={}
 local presentation=uiFolder:FindFirstChild("FreeRoamHudPresentationMode")
-if presentation and presentation:IsA("BindableEvent") then presentation.Event:Connect(function(message) if typeof(message)=="table" then local owner=tostring(message.Owner or "Racing"); presentationOwners[owner]=message.Active==true and true or nil else presentationOwners.Racing=tostring(message)=="Racing" and true or nil end end) end
-local function majorMenu() local g=playerGui:FindFirstChild("HOVER_RACING_V2_GarageUI"); return g and g.Enabled end
+if presentation and presentation:IsA("BindableEvent") then presentation.Event:Connect(function(message)
+	if typeof(message)=="table" then
+		local owner=tostring(message.Owner or "Racing")
+		presentationOwners[owner]=message.Active==true and {KeepTelemetry=message.KeepTelemetry==true} or nil
+	else
+		presentationOwners.Racing=tostring(message)=="Racing" and {KeepTelemetry=true} or nil
+	end
+	if next(presentationOwners)~=nil then if carMenuOpen then setCarMenuOpen(false) end closeModal() end
+end) end
+local function majorMenu() return player:GetAttribute("NTR_GarageSessionActive")==true end
 local function subject() local c=player.Character; local h=c and c:FindFirstChildOfClass("Humanoid"); local seat=h and h.SeatPart; return seat or (c and c:FindFirstChild("HumanoidRootPart")) end
 local displayedPos=nil; local displayedHeading=0; local displayedBoost=1; local lastSize=Vector2.zero; local nextProfile=0
 local function layout()
@@ -281,8 +292,20 @@ local function layout()
 end
 
 RunService.RenderStepped:Connect(function(dt)
-	suppressExactLegacyHud(); layout(); local hidden=next(presentationOwners)~=nil or majorMenu(); if hidden and carMenuOpen then setCarMenuOpen(false) end; gui.Enabled=not hidden; if hidden then return end
-	local driving=drive.IsDriving==true; telemetry.Visible=driving and not carMenuOpen; exitButton.Visible=driving and not carMenuOpen
+	suppressExactLegacyHud(); layout()
+	local presentationActive=next(presentationOwners)~=nil
+	local telemetryOnly=presentationActive
+	for _,state in pairs(presentationOwners) do if not state.KeepTelemetry then telemetryOnly=false break end end
+	local hidden=(presentationActive and not telemetryOnly) or majorMenu()
+	if hidden and carMenuOpen then setCarMenuOpen(false) end
+	gui.Enabled=not hidden
+	local localMajorMenuOpen=modal.Visible or shade.Visible
+	mapFrame.Visible=not telemetryOnly and not localMajorMenuOpen cash.Visible=not telemetryOnly and not localMajorMenuOpen nav.Visible=not telemetryOnly and not localMajorMenuOpen
+	if telemetryOnly or localMajorMenuOpen then toast.Visible=false end
+	if hidden then return end
+	local driving=drive.IsDriving==true
+	telemetry.Visible=driving and not carMenuOpen and not localMajorMenuOpen
+	exitButton.Visible=driving and not carMenuOpen and not telemetryOnly and not localMajorMenuOpen
 	local s=subject(); if s then local position=s.Position; local mapSize=mapFrame.AbsoluteSize.X; local mapPixels=math.max(1,tonumber(read(desktopLayout,"MapPixels",2048))); local calPixels=math.max(1,tonumber(read(desktopLayout,"MapCalibrationPixels",207))); local calStuds=math.max(1,tonumber(read(desktopLayout,"MapCalibrationStuds",2850))); local fullStuds=mapPixels*calStuds/calPixels; local visible=math.max(100,tonumber(read(desktopLayout,"MapVisibleStuds",2850))); local uiPerStud=mapSize/visible; local canvasSize=fullStuds*uiPerStud; mapCanvas.Size=UDim2.fromOffset(canvasSize,canvasSize); local dx=position.X-tonumber(read(desktopLayout,"MapWorldCenterX",0)); local dz=position.Z-tonumber(read(desktopLayout,"MapWorldCenterZ",0)); if B(desktopDefaults,"MapFlipX",false) then dx=-dx end; if B(desktopDefaults,"MapFlipZ",false) then dz=-dz end; local angle=math.rad(tonumber(read(desktopLayout,"MapCoordinateRotationDegrees",90))); local mx=dx*math.cos(angle)-dz*math.sin(angle); local mz=dx*math.sin(angle)+dz*math.cos(angle); local target=Vector2.new(mapSize*.5,mapSize*.5)-Vector2.new(mx*uiPerStud,mz*uiPerStud); displayedPos=displayedPos and displayedPos:Lerp(target,1-math.exp(-10*dt)) or target; mapCanvas.Position=UDim2.fromOffset(displayedPos.X,displayedPos.Y); mapCanvas.Rotation=0; local look=s.CFrame.LookVector; local lookX,lookZ=look.X,look.Z; if B(desktopDefaults,"MapFlipX",false) then lookX=-lookX end; if B(desktopDefaults,"MapFlipZ",false) then lookZ=-lookZ end; local lx=lookX*math.cos(angle)-lookZ*math.sin(angle); local lz=lookX*math.sin(angle)+lookZ*math.cos(angle); local heading=math.deg(math.atan2(lx,-lz))+tonumber(read(desktopLayout,"MapRotationOffsetDegrees",0)); local diff=(heading-displayedHeading+180)%360-180; displayedHeading+=diff*(1-math.exp(-10*dt)); playerMarker.Rotation=B(desktopDefaults,"MapPlayerIconRotates",true) and displayedHeading or 0 end
 	if driving then local speed=math.max(0,tonumber(drive.SpeedMph) or 0); speedText.Text=tostring(math.floor(speed+.5)); local target=math.clamp((tonumber(drive.BoostPercent) or 100)/100,0,1); displayedBoost+=(target-displayedBoost)*(1-math.exp(-14*dt)); boostFill.Size=UDim2.fromScale(1,displayedBoost); local gaugeMax=math.max(1,tonumber(read(desktopLayout,"SpeedGaugeMaxMph",260)) or 260); local active=math.floor(math.clamp(speed/gaugeMax,0,1)*#gauge+.5); for i,g in ipairs(gauge) do g.BackgroundColor3=i<=active and (i>#gauge*.82 and PINK or CYAN) or Color3.fromRGB(81,88,99); g.BackgroundTransparency=i<=active and 0 or .42 end end
 	if os.clock()>=nextProfile then nextProfile=os.clock()+3; task.defer(function() local p=profile(false); cashText.Text="$"..tostring(math.floor(tonumber(p.Cash) or 0)) end) end

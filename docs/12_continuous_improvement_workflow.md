@@ -16,6 +16,7 @@ Before planning or patching, read:
 - `docs/10_script_source_sync_workflow.md`
 - `docs/11_manual_script_copy_map.md`
 - this file
+- `docs/13_efficient_feature_delivery_protocol.md` for risk lanes, one-install delivery, ownership gates, acceptance contracts, and reusable templates
 
 Then check `git status --short`.
 
@@ -38,8 +39,13 @@ Chat-mode prefixes:
 
 - `follow:` means execute the requested task directly, using the normal project safety checks, docs, mirror awareness, and rollback judgement. If the request is risky, stale, or likely to damage the baseline, warn before implementation rather than treating `follow:` as permission to be reckless.
 - `suggest:` means do not jump straight to implementation. Compare practical options using the project context and relevant Roblox/racing/open-world patterns, then recommend the best path with tradeoffs and a clear next step.
+- `audit:` means inspect and report without changing repo files, Studio objects, saved data, external state, or the active baseline. Read-only diagnostics and measurements are allowed.
+- `continue:` means the previous plan is approved. Identify and execute its next uncompleted recommended step using the existing scope, canonical installer, and proportional safety lane. Do not merely restate the plan, invent another phase, broaden scope, or bypass a newly discovered blocker.
+- `handoff:` means stop adding features, confirm what is actually working, update the startup/current-issues/history/topic docs, identify generated or superseded work, and prepare a concise next-chat baseline.
 
 If the user gives no prefix, use the smart default: implement straightforward safe work, but pause with a recommendation when a request looks like polish, scope drift, architectural change, or a risky interruption to the current system.
+
+The detailed delivery protocol is versioned separately in `docs/13_efficient_feature_delivery_protocol.md`. Future chats should improve that protocol when repeated evidence exposes a better rule, while keeping this file focused on durable project lessons.
 
 ## What To Learn Each Time
 
@@ -161,10 +167,13 @@ When a phase or fix is confirmed:
 
 ## Current Lessons From Drive-In Customisation
 
+- Confirmed UI reuse is an implementation rule, not a visual suggestion. When a later page should match an approved page, extract or extend the approved component/layout/renderer and make both pages call it. Copying coordinates or recreating the style in a second controller is considered drift-prone and requires a documented exception.
 - Phase 1 confirmed again that `NeoTokyoRacersClient_Bootstrap_Shadow_Disabled` is register-limited. New systems should live in isolated controllers/services, with only tiny table-backed bootstrap bridges when unavoidable.
 - Phase 2 showed that UI/camera correctness can require a full session state handoff, not just opening an existing menu. If a vehicle is despawned into garage customisation, explicitly handle player hold/freeze, camera, preview vehicle, and eventual unlock.
 - Phase 3/3B showed that drive-in session locks must be released before the normal garage `SpawnVehicle` handoff. Otherwise seating/spawn can race an anchored hidden character and produce undriveable vehicles or streaming focus issues.
 - The Phase 3 partial install showed why command-bar source patchers should not use unescaped `string.gsub` for punctuation-heavy Lua source. The safer repair used plain matching to find the `Customise -> SpawnVehicle` branch and inserted the smallest unlock block before the call.
+- The dealership V3 attempts showed that a nominal isolated presentation controller is not a true replacement while bootstrap rendering still creates, positions or refreshes the same visual surface. A clean UI replacement must have one geometry owner, hide/disable the superseded visual owner, retain only a small data/action bridge, and verify absolute runtime geometry before another visual iteration.
+- Card-relative actions are a shared component contract, not a page-by-page layout detail. BUY, EQUIP and CUSTOMISE popups should all derive their rendered centre from the selected card after scaling; module cards should reserve artwork space before assets exist so later images do not require a card redesign.
 
 ## Current Lessons From Racing Session Assets
 

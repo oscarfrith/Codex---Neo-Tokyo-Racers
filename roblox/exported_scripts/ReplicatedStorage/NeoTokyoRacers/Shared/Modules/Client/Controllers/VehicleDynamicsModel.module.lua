@@ -88,8 +88,26 @@ function Model.ResolveStats(vehicle, legacy)
 	recharge = math.clamp(recharge, numberAttribute(config, "BoostRechargeMinSeconds", 6.5, 0.5, 30), numberAttribute(config, "BoostRechargeMaxSeconds", 10.5, 0.5, 40))
 	local delay = 0.65 * curveMultiplier(rawDelay, 0.5, numberAttribute(config, "BoostRechargeDelayExponent", 0.25, 0.05, 1), 0.2, 3)
 	delay = math.clamp(delay, numberAttribute(config, "BoostRechargeDelayMinSeconds", 0.40, 0, 5), numberAttribute(config, "BoostRechargeDelayMaxSeconds", 1.0, 0, 5))
+	-- NTR_DRIVING_FEEL_PHYSICAL_TOP_SPEED_CURVE
+	local rawTopSpeed = value("TopSpeed", "TopSpeed", 126)
+	local physicalTopSpeed = rawTopSpeed
+	if boolAttribute(config, "Enabled", true) then
+		local rawReference = numberAttribute(config, "TopSpeedRawReference", 137, 1, 1000)
+		local physicalAtReference = numberAttribute(config, "PhysicalTopSpeedAtReferenceMph", 140, 20, 500)
+		local exponent = numberAttribute(config, "PhysicalTopSpeedExponent", 0.55, 0.05, 2)
+		physicalTopSpeed = physicalAtReference * (math.max(rawTopSpeed, 0.001) / rawReference) ^ exponent
+		local minimumMph = numberAttribute(config, "PhysicalTopSpeedMinMph", 60, 20, 300)
+		local maximumMph = numberAttribute(config, "PhysicalTopSpeedMaxMph", 300, 40, 500)
+		local safetyMph = numberAttribute(config, "AbsoluteTopSpeedSafetyMph", 320, 80, 500)
+		local upperMph = math.min(maximumMph, safetyMph)
+		physicalTopSpeed = math.clamp(physicalTopSpeed, math.min(minimumMph, upperMph), upperMph)
+	end
+	if vehicle and boolAttribute(config, "DebugAttributes", true) then
+		vehicle:SetAttribute("DynamicsRawTopSpeed", rawTopSpeed)
+		vehicle:SetAttribute("DynamicsMappedTopSpeedMph", physicalTopSpeed)
+	end
 	local result = {
-		TopSpeed = value("TopSpeed", "TopSpeed", 126), EngineOutput = value("EngineOutput", "EngineOutput", 42), Weight = value("Weight", "Weight", 118),
+		TopSpeed = physicalTopSpeed, RawTopSpeed = rawTopSpeed, EngineOutput = value("EngineOutput", "EngineOutput", 42), Weight = value("Weight", "Weight", 118),
 		SteeringResponse = numberAttribute(config, "BasePhysicalSteeringResponse", 58, 10, 150) * steeringFactor, RawSteeringResponse = rawSteering,
 		LateralGrip = value("LateralGrip", "LateralGrip", legacy.SteeringResponse or 48), HoverStability = value("HoverStability", "HoverStability", legacy.SteeringResponse or 48),
 		DriftControl = numberAttribute(config, "BasePhysicalDriftControl", 50, 10, 150) * driftControlFactor, RawDriftControl = rawDriftControl,
@@ -118,7 +136,9 @@ function Model.StepLongitudinal(params)
 	local forwardSpeed = tonumber(params.ForwardSpeed) or 0
 	local forwardMph, absoluteMph = forwardSpeed * MPH_PER_STUD, math.abs(forwardSpeed * MPH_PER_STUD)
 	local stats = params.Stats or {}
-	local maxMph = math.clamp(tonumber(params.MaxMph) or stats.TopSpeed or 126, 40, 260)
+	-- NTR_DRIVING_FEEL_PHYSICAL_TOP_SPEED_SAFETY_LIMIT
+	local absoluteTopSpeedSafetyMph = numberAttribute(config, "AbsoluteTopSpeedSafetyMph", 320, 80, 500)
+	local maxMph = math.clamp(tonumber(params.MaxMph) or stats.TopSpeed or 126, 40, absoluteTopSpeedSafetyMph)
 	local reverseMaxMph = math.clamp(tonumber(params.ReverseMaxMph) or 40, 5, 80)
 	local deadzone = numberAttribute(config, "ThrottleDeadzone", 0.05, 0, 0.3)
 	local stopThresholdMph = numberAttribute(config, "StopThresholdMph", 1.5, 0.1, 8)

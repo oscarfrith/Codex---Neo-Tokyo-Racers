@@ -1,3 +1,4 @@
+-- NTR_RACING_FLOW_COUNTDOWN_QUEUE_EXIT_OWNERSHIP
 -- Neo Tokyo Racers - Racing Phase 3 Staged Time Trial Service
 -- NTR_RACING_PHASE3_TIME_TRIAL_SERVICE
 
@@ -108,7 +109,9 @@ end
 local PHASE = "NTR Racing Phase 3"
 local OLD_PROMPT_NAME = "NTR_TimeTrialStartPrompt"
 local PROMPT_NAME = "NTR_RaceEntryPrompt"
-local COUNTDOWN_SECONDS = 3
+local flowUI=kit.Config.Racing:WaitForChild("FlowUI")
+local countdownValue=flowUI:WaitForChild("CountdownSeconds")
+local COUNTDOWN_SECONDS=math.max(1,math.floor(tonumber(countdownValue.Value) or 5))
 
 local activeRuns = {}
 local activeRunsById = {}

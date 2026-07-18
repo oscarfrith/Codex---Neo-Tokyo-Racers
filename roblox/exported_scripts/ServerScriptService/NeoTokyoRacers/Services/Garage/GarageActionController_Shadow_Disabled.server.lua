@@ -1,3 +1,5 @@
+-- NTR_UI_PERFORMANCE_HARDENING_PHASE1_V1
+-- NTR_RACING_FLOW_COUNTDOWN_QUEUE_EXIT_OWNERSHIP
 -- Neo Tokyo Racers shadow server action controller.
 -- Disabled switch candidate generated from the current V56 action block.
 -- Do not enable while HOVER_RACING_V2_Server still owns GarageInvoke.OnServerInvoke.
@@ -41,6 +43,9 @@ local V56_STARTING_CASH = V56_kit:GetAttribute("StartingCash") or 140000
 	local V56_PREVIEW_POS = Vector3.new(V56_kit:GetAttribute("PreviewX") or 860, V56_kit:GetAttribute("PreviewY") or 104, V56_kit:GetAttribute("PreviewZ") or -1749)
 	local V56_profiles = {}
 	local V89_GarageProfileRuntime = require(script.Parent:WaitForChild("GarageProfileRuntime"))
+	local V96_ModuleInventory = require(script.Parent:WaitForChild("GarageModuleInventoryRuntime")) -- NTR_GARAGE_MODULE_INVENTORY_GUARD_V1
+	local V97_ModuleInstances = require(script.Parent:WaitForChild("GarageModuleInstanceCustomizationRuntime")) -- NTR_GARAGE_MODULE_INSTANCE_CUSTOMISATION_BRIDGE_V1
+	local V98_ModuleTransactions = require(script.Parent:WaitForChild("GarageModuleTransactionRuntime")) -- NTR_GARAGE_MODULE_ATOMIC_TRANSACTIONS_V1
 
 	-- NTR_VEHICLE_PHASE_AN_ISOLATED_UPGRADES
 	local V77_ModuleUpgrades = require(V56_kit
@@ -313,6 +318,31 @@ local V56_STARTING_CASH = V56_kit:GetAttribute("StartingCash") or 140000
 			V56_profiles[player.UserId] = profile
 		end
 		return V56_normalizeProfile(profile)
+	end
+
+	-- NTR_GARAGE_MODULE_INVENTORY_DUAL_OWNER_BRIDGE_V1
+	-- The legacy garage session remains a compatibility owner. This tiny bridge
+	-- lets the reviewed one-time cleanup update it in the same transaction as
+	-- ProfileService, so its normal mirror cannot restore stale inventory.
+	local V97_cleanupBridge = script.Parent:FindFirstChild("GarageModuleInventoryCleanupBridge")
+	if V97_cleanupBridge and not V97_cleanupBridge:IsA("BindableFunction") then
+		error("GarageModuleInventoryCleanupBridge exists with the wrong class")
+	end
+	if not V97_cleanupBridge then
+		V97_cleanupBridge = Instance.new("BindableFunction")
+		V97_cleanupBridge.Name = "GarageModuleInventoryCleanupBridge"
+		V97_cleanupBridge.Parent = script.Parent
+	end
+	V97_cleanupBridge.OnInvoke = function(player, mode, expectedToken)
+		local profile = V56_getProfile(player)
+		if mode == "Apply" then
+			return V96_ModuleInventory.ApplyReviewedCleanup(profile, expectedToken)
+		elseif mode == "Rollback" then
+			return V96_ModuleInventory.RollbackReviewedCleanup(profile)
+		elseif mode == "Commit" then
+			return V96_ModuleInventory.CommitReviewedCleanup(profile)
+		end
+		return false, "Unknown cleanup bridge mode."
 	end
 
 	-- NTR_PERSISTENCE_PHASE6_GARAGE_CAPACITY_GATE
@@ -1048,79 +1078,9 @@ local V56_STARTING_CASH = V56_kit:GetAttribute("StartingCash") or 140000
 	end
 
 	local function V84_ensureInstanceInventory(profile)
-		profile.Vehicles = typeof(profile.Vehicles) == "table" and profile.Vehicles or {}
-		profile.OwnedCockpitInstances = typeof(profile.OwnedCockpitInstances) == "table" and profile.OwnedCockpitInstances or {}
-		profile.OwnedModuleInstances = typeof(profile.OwnedModuleInstances) == "table" and profile.OwnedModuleInstances or {}
-		profile.GarageDisplaySpaces = typeof(profile.GarageDisplaySpaces) == "table" and profile.GarageDisplaySpaces or {}
-		profile.OwnedCockpits = typeof(profile.OwnedCockpits) == "table" and profile.OwnedCockpits or {}
-		profile.OwnedModules = typeof(profile.OwnedModules) == "table" and profile.OwnedModules or {}
-		profile.InstalledModules = typeof(profile.InstalledModules) == "table" and profile.InstalledModules or {}
-		profile.ModuleUpgradeLevels = typeof(profile.ModuleUpgradeLevels) == "table" and profile.ModuleUpgradeLevels or {}
-		profile.ModuleColors = typeof(profile.ModuleColors) == "table" and profile.ModuleColors or {}
-		profile.NeonOwned = typeof(profile.NeonOwned) == "table" and profile.NeonOwned or {}
-
-		if next(profile.Vehicles) == nil then
-			for cockpitId, owned in pairs(profile.OwnedCockpits) do
-				if owned == true then
-					local oldCurrent = profile.CurrentCockpit
-					profile.CurrentCockpit = cockpitId
-					local vehicleId = V84_createVehicleInstance(profile, cockpitId, "LegacyOwnedCockpits")
-					profile.CurrentCockpit = oldCurrent
-					if cockpitId == (profile.CurrentCockpit or "bruiser_01") then
-						profile.CurrentVehicleId = vehicleId
-					end
-				end
-			end
-			if not profile.CurrentVehicleId then
-				for vehicleId in pairs(profile.Vehicles) do
-					profile.CurrentVehicleId = vehicleId
-					break
-				end
-			end
-		end
-
-		local currentVehicle = profile.CurrentVehicleId and profile.Vehicles[profile.CurrentVehicleId] or nil
-		if currentVehicle then
-			currentVehicle.InstalledModules = typeof(currentVehicle.InstalledModules) == "table" and currentVehicle.InstalledModules or {}
-			for slotId, moduleId in pairs(profile.InstalledModules) do
-				local existingInstanceId = currentVehicle.InstalledModules[slotId]
-				local existingInstance = existingInstanceId and profile.OwnedModuleInstances[existingInstanceId]
-				if not existingInstance or existingInstance.TemplateId ~= moduleId then
-					local moduleInstanceId = V84_generateId("module")
-					profile.OwnedModuleInstances[moduleInstanceId] = {
-						TemplateId = moduleId,
-						EquippedVehicleId = profile.CurrentVehicleId,
-						UpgradeLevels = V84_cloneDictionary((profile.ModuleUpgradeLevels or {})[moduleId] or {}),
-						Colors = V84_cloneDictionary((profile.ModuleColors or {})[slotId] or {}),
-						NeonOwned = profile.NeonOwned and profile.NeonOwned[slotId] == true or false,
-						Source = "LegacyInstalledModules",
-					}
-					currentVehicle.InstalledModules[slotId] = moduleInstanceId
-				end
-			end
-		end
-
-		for moduleId, owned in pairs(profile.OwnedModules) do
-			if owned == true then
-				local found = false
-				for _, moduleInstance in pairs(profile.OwnedModuleInstances) do
-					if moduleInstance.TemplateId == moduleId then
-						found = true
-						break
-					end
-				end
-				if not found then
-					profile.OwnedModuleInstances[V84_generateId("module")] = {
-						TemplateId = moduleId,
-						EquippedVehicleId = nil,
-						UpgradeLevels = V84_cloneDictionary((profile.ModuleUpgradeLevels or {})[moduleId] or {}),
-						Colors = {},
-						NeonOwned = false,
-						Source = "LegacyOwnedModules",
-					}
-				end
-			end
-		end
+		-- NTR_GARAGE_MODULE_INVENTORY_SHAPE_ONLY_V1
+		-- Creation is owned by explicit cockpit/module purchase paths, never reads or summaries.
+		return V96_ModuleInventory.EnsureShape(profile)
 	end
 
 	-- NTR_PERSISTENCE_PHASE19_INSTANCE_COMPAT_SYNC
@@ -1236,6 +1196,9 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 					Colors = V84_cloneDictionary(profile.CockpitColors or {}),
 					NeonOwned = false,
 					Source = "IncludedWithCockpit",
+					AcquisitionKind = "IncludedWithCockpit",
+					GrantedForVehicleId = tostring(vehicleId),
+					AcquiredAtUnix = os.time(),
 				}
 				vehicle.InstalledModules[slotId] = moduleInstanceId
 			end
@@ -1246,6 +1209,9 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 	end
 	local function V84_buyCockpitInstance(profile, args)
 		args = typeof(args) == "table" and args or {}
+		-- NTR_GARAGE_CANONICAL_CATEGORY_PURCHASE
+		local requestedCategory = tostring(args.CategoryId or profile.CurrentCategory or "")
+		if requestedCategory ~= "" then profile.CurrentCategory = requestedCategory end
 		local cockpitId = tostring(args.CockpitId or "")
 		local cockpit = V56_findCockpit(profile.CurrentCategory, cockpitId)
 		if not cockpit then
@@ -1271,84 +1237,82 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		return true, "Cockpit instance purchased."
 	end
 
-	local function V84_buyModuleInstance(profile, args)
-		args = typeof(args) == "table" and args or {}
-		local moduleId = tostring(args.ModuleId or "")
-		local module = V56_findModule(profile.CurrentCategory, moduleId)
-		if not module then
-			return false, "Module not found."
-		end
-		local lockMessage = V85_moduleLockedMessage(profile, module)
-		if lockMessage then
-			return false, lockMessage
-		end
-		local price = V85_modulePurchasePrice(module)
-		if profile.Cash < price then
-			return false, "Not enough cash."
-		end
-		profile.Cash -= price
-		profile.OwnedModules[moduleId] = true
-		local moduleInstanceId = V84_generateId("module")
-		profile.OwnedModuleInstances[moduleInstanceId] = {
-			TemplateId = moduleId,
-			EquippedVehicleId = nil,
-			UpgradeLevels = V84_cloneDictionary((profile.ModuleUpgradeLevels or {})[moduleId] or {}),
-			Colors = {},
-			NeonOwned = false,
-			Source = "BuyModuleInstance",
-		}
-		return true, "Module instance purchased.", moduleInstanceId
+	-- NTR_GARAGE_MODULE_ATOMIC_TRANSACTIONS_V1
+	local function V98_vehicleModuleContext(profile, vehicleId, slotId)
+		local vehicle=profile.Vehicles and profile.Vehicles[tostring(vehicleId)]
+		if typeof(vehicle)~="table" then return nil,nil,nil,"Vehicle instance not found." end
+		local cockpitInstance=profile.OwnedCockpitInstances and profile.OwnedCockpitInstances[vehicle.CockpitInstanceId]
+		local cockpit=cockpitInstance and V56_findCockpit(vehicle.CategoryId or profile.CurrentCategory,tostring(cockpitInstance.TemplateId or ""))
+		local mount=cockpit and cockpit:FindFirstChild("SLOT_"..tostring(slotId),true)
+		if not cockpit then return vehicle,nil,nil,"Cockpit template not found." end
+		if not mount then return vehicle,cockpit,nil,"Slot not found on this cockpit." end
+		return vehicle,cockpit,mount
 	end
 
-	local function V84_equipModuleInstance(profile, args)
-		args = typeof(args) == "table" and args or {}
-		V84_ensureInstanceInventory(profile)
-		local moduleInstanceId = tostring(args.ModuleInstanceId or "")
-		local vehicleId = tostring(args.VehicleId or profile.CurrentVehicleId or "")
-		local slotId = tostring(args.SlotId or "")
-		local moduleInstance = profile.OwnedModuleInstances[moduleInstanceId]
-		local vehicle = profile.Vehicles[vehicleId]
-		if not moduleInstance then
-			return false, "Module instance not found."
-		end
-		if not vehicle then
-			return false, "Vehicle instance not found."
-		end
-		if moduleInstance.EquippedVehicleId ~= nil and moduleInstance.EquippedVehicleId ~= vehicleId then
-			return false, "That module copy is already installed on another vehicle."
-		end
-		local module = V56_findModule(profile.CurrentCategory, tostring(moduleInstance.TemplateId or ""))
-		local cockpitInstance = profile.OwnedCockpitInstances[vehicle.CockpitInstanceId]
-		local cockpit = cockpitInstance and V56_findCockpit(vehicle.CategoryId or profile.CurrentCategory, cockpitInstance.TemplateId)
-		local mount = cockpit and cockpit:FindFirstChild("SLOT_" .. slotId, true)
-		local slotType = mount and V56_string(mount, "ModuleType", V56_moduleTypeFromText(slotId))
-		local moduleType = V56_moduleTypeForModel(module)
-		if not module then
-			return false, "Module template not found."
-		end
-		if not mount then
-			return false, "Slot not found on this cockpit."
-		end
-		if slotType and slotType ~= "" and moduleType ~= slotType then
-			return false, "That module does not fit this slot."
-		end
-		if not V86_moduleFitsSlot(module, slotId, mount and V56_string(mount, "AllowedModuleFolder", "")) then
-			return false, "That module does not fit this slot."
-		end
+	local function V98_instanceFits(profile,instance,vehicleId,slotId)
+		local vehicle,_,mount,contextMessage=V98_vehicleModuleContext(profile,vehicleId,slotId); if not mount then return false,contextMessage end
+		local module=V56_findModule(vehicle.CategoryId or profile.CurrentCategory,tostring(instance and instance.TemplateId or "")); if not module then return false,"Module template not found." end
+		local slotType=V56_string(mount,"ModuleType",V56_moduleTypeFromText(slotId)); local moduleType=V56_moduleTypeForModel(module)
+		if slotType and slotType~="" and moduleType~=slotType then return false,"That module does not fit this slot." end
+		if not V86_moduleFitsSlot(module,slotId,V56_string(mount,"AllowedModuleFolder","")) then return false,"That module does not fit this slot." end
+		return true
+	end
 
-		vehicle.InstalledModules = typeof(vehicle.InstalledModules) == "table" and vehicle.InstalledModules or {}
-		local previousInstanceId = vehicle.InstalledModules[slotId]
-		if previousInstanceId and profile.OwnedModuleInstances[previousInstanceId] then
-			profile.OwnedModuleInstances[previousInstanceId].EquippedVehicleId = nil
+	local function V98_instanceRating(profile,instance,vehicleId)
+		for _,key in ipairs({"Rating","PerformanceRating","PerformanceIndex","ModuleRating"}) do local value=tonumber(instance and instance[key]); if value then return value end end
+		local vehicle=profile.Vehicles and profile.Vehicles[tostring(vehicleId or "")]; local categoryId=vehicle and vehicle.CategoryId or profile.CurrentCategory
+		local module=V56_findModule(categoryId,tostring(instance and instance.TemplateId or "")); if not module then return math.huge end
+		for _,key in ipairs({"Rating","PerformanceRating","PerformanceIndex","ModuleRating"}) do local value=V56_number(module,key,nil); if value then return value end end
+		local sourceId,cockpit=V85_findSourceCockpit(profile,module); local sourceRating=cockpit and (V56_number(cockpit,"BaseRating",nil) or V56_number(cockpit,"PerformanceIndex",nil) or V56_number(cockpit,"Rating",nil))
+		if not sourceRating then local tier=string.upper(tostring(cockpit and cockpit:GetAttribute("Tier") or "")); sourceRating=({E=1000,D=2000,C=3000,B=4000,A=5000,S=6000})[tier] or (sourceId and 7000 or 0) end
+		return sourceRating+V85_moduleVariantOrder(module)
+	end
+
+	local function V98_coreSlotRequired(profile,vehicleId,slotId)
+		if slotId=="Stabilisers" or slotId=="Boost" then return true end
+		if slotId=="Engine1" or slotId=="Engine2" then
+			local vehicle=profile.Vehicles and profile.Vehicles[tostring(vehicleId)]; local other=slotId=="Engine1" and "Engine2" or "Engine1"
+			return not (vehicle and vehicle.InstalledModules and vehicle.InstalledModules[other])
 		end
-		vehicle.InstalledModules[slotId] = moduleInstanceId
-		moduleInstance.EquippedVehicleId = vehicleId
-		moduleInstance.Colors = typeof(moduleInstance.Colors) == "table" and moduleInstance.Colors or {}
-		if vehicleId == profile.CurrentVehicleId then
-			profile.InstalledModules[slotId] = moduleInstance.TemplateId
-			profile.ModuleColors[slotId] = moduleInstance.Colors
-		end
-		return true, "Module instance equipped."
+		return false
+	end
+
+	local function V98_afterModuleTransaction(profile)
+		local current=profile.Vehicles and profile.Vehicles[profile.CurrentVehicleId]; profile.InstalledModules={}
+		for slotId,instanceId in pairs((current and current.InstalledModules) or {}) do local instance=profile.OwnedModuleInstances and profile.OwnedModuleInstances[tostring(instanceId)]; if typeof(instance)=="table" then profile.InstalledModules[slotId]=tostring(instance.TemplateId or "") end end
+		return V97_ModuleInstances.HydrateAll(profile)
+	end
+
+	local function V98_transactionHooks(profile)
+		return {
+			Fits=function(instance,vehicleId,slotId) return V98_instanceFits(profile,instance,vehicleId,slotId) end,
+			Rating=function(instance,vehicleId) return V98_instanceRating(profile,instance,vehicleId) end,
+			IsCoreSlot=V98_coreSlotRequired,
+			After=V98_afterModuleTransaction,
+			Validate=function(value) return V97_ModuleInstances.Validate(value) end,
+		}
+	end
+
+	local function V98_captureCurrentModuleState(profile)
+		return V97_ModuleInstances.CaptureAll(profile,V77_ModuleUpgrades.GetLevels(profile._Player))
+	end
+
+	local function V84_buyModuleInstance(profile,args)
+		args=typeof(args)=="table" and args or {}; V84_ensureInstanceInventory(profile)
+		local moduleId=tostring(args.ModuleId or ""); local vehicleId=tostring(args.VehicleId or profile.CurrentVehicleId or ""); local slotId=tostring(args.SlotId or "")
+		local module=V56_findModule(profile.CurrentCategory,moduleId); if not module then return false,"Module not found." end
+		local lockMessage=V85_moduleLockedMessage(profile,module); if lockMessage then return false,lockMessage end
+		local fits,fitMessage=V98_instanceFits(profile,{TemplateId=moduleId},vehicleId,slotId); if not fits then return false,fitMessage end
+		local captured,captureMessage=V98_captureCurrentModuleState(profile); if not captured then return false,captureMessage end
+		local moduleInstanceId=V84_generateId("module")
+		local record={TemplateId=moduleId,EquippedVehicleId=nil,UpgradeLevels={},V2UpgradePoints={},Colors={},NeonOwned=false,Source="BuyModuleInstance",AcquisitionKind="Purchase",AcquiredAtUnix=os.time()}
+		return V98_ModuleTransactions.BuyAndEquip(profile,{InstanceId=moduleInstanceId,Record=record,Price=V85_modulePurchasePrice(module),VehicleId=vehicleId,SlotId=slotId},V98_transactionHooks(profile))
+	end
+
+	local function V84_equipModuleInstance(profile,args)
+		args=typeof(args)=="table" and args or {}; V84_ensureInstanceInventory(profile)
+		local captured,captureMessage=V98_captureCurrentModuleState(profile); if not captured then return false,captureMessage end
+		return V98_ModuleTransactions.Equip(profile,{InstanceId=tostring(args.ModuleInstanceId or ""),VehicleId=tostring(args.VehicleId or profile.CurrentVehicleId or ""),SlotId=tostring(args.SlotId or ""),AllowReassign=args.AllowReassign==true},V98_transactionHooks(profile))
 	end
 
 	-- NTR_DEALERSHIP_CUSTOMISATION_SPLIT_PHASE2_OWNED_ZONE
@@ -1384,6 +1348,7 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 				profile.NeonOwned[slotId] = moduleInstance.NeonOwned == true
 			end
 		end
+		local hydrated,hydrateMessage=V97_ModuleInstances.HydrateAll(profile); if not hydrated then return false,hydrateMessage end
 		return true, "Vehicle selected."
 	end
 
@@ -1535,6 +1500,8 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 						CockpitId = profile.CurrentCockpit,
 						DisplayName = vehicle.DisplayName or profile.CurrentCockpit,
 						Overall = performance and performance.Overall or nil,
+						-- NTR_GARAGE_REPLACEMENT_HEADLINE_SUMMARY_V1
+						Headline = performance and performance.Headline or nil,
 					}
 				end
 			end
@@ -2375,7 +2342,7 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 			if action == "ValidateForRace" then
 				local okReady, readyMessage = V95_selectedRaceVehicleReady(profile, payload)
 				if okReady then
-					V88_syncInstanceDataFromLegacy(profile)
+					-- NTR_GARAGE_LEGACY_TO_INSTANCE_SYNC_RETIRED_V1
 					V80_mirrorLegacyProfileToPersistence(player, profile, "SelectVehicleInstance", false)
 				end
 				return {
@@ -2387,7 +2354,7 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 			elseif action == "SpawnForRace" then
 				local result = V95_spawnOwnedVehicleForRace(player, profile, payload)
 				if result.Ok == true then
-					V88_syncInstanceDataFromLegacy(profile)
+					-- NTR_GARAGE_LEGACY_TO_INSTANCE_SYNC_RETIRED_V1
 					V80_mirrorLegacyProfileToPersistence(player, profile, "SpawnRaceVehicle", false)
 				end
 				return result
@@ -2489,16 +2456,19 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 
 	V56_invoke.OnServerInvoke = function(player, action, args)
 		args = typeof(args) == "table" and args or {}
+		if player:GetAttribute("NTR_RaceQueueActive")==true and (action=="SelectVehicleInstance" or action=="SpawnOwnedVehicleFromFreeRoam" or action=="SpawnVehicle" or action=="DespawnVehicle") then return {Ok=false,Success=false,Message="Leave the race queue before changing vehicles."} end
 		local okCall, result = pcall(function()
 			local profile = V56_getProfile(player)
 			profile._Player = player
-			V76_grantDefaultModulesForCurrentCockpit(profile)
-						V85_attachDefaultModuleInstancesToCurrentVehicle(profile)
-			V84_ensureInstanceInventory(profile)
+			V84_ensureInstanceInventory(profile) -- canonical shape only; no grants or migration
+			-- NTR_GARAGE_MODULE_REFERENCE_RECONCILE_V1
+			local referencesOk,referencesResult=V97_ModuleInstances.ReconcileReferences(profile)
+			if not referencesOk then return {Success=false,Message="Module inventory reference repair failed: "..tostring(referencesResult),Profile=V56_profileForClient(profile)} end
+			if tonumber(referencesResult) and referencesResult>0 then print("[NTR Module Instance Authority] Reconciled "..tostring(referencesResult).." stale owner flag(s) from canonical vehicle-slot references") end
 			local ok, message
 			if action == "GetInitial" then
 				V56_setLeaderstats(player, profile)
-				V88_syncInstanceDataFromLegacy(profile)
+				-- NTR_GARAGE_LEGACY_TO_INSTANCE_SYNC_RETIRED_V1
 				V80_mirrorLegacyProfileToPersistence(player, profile, action, false)
 				return { Success = true, Catalog = V56_catalog(), Profile = V56_profileForClient(profile) }
 			elseif action == "SelectVehicleInstance" then
@@ -2545,15 +2515,25 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 			elseif action == "SetCockpitColor" then
 				local channel = tostring(args.Channel or "Primary")
 				local color = args.Color
+				local scope = tostring(args.Scope or "WholeVehicle")
 				if typeof(color) ~= "Color3" then ok, message = false, "Invalid colour."
 				elseif channel ~= "Primary" and channel ~= "Secondary" and channel ~= "Detail" and channel ~= "Neon" and channel ~= "FrontLights" and channel ~= "RearLights" then ok, message = false, "Invalid colour channel."
+				elseif scope ~= "WholeVehicle" and scope ~= "CockpitOnly" then ok, message = false, "Invalid cockpit colour scope."
 				else
+					local oldCockpitColors=V84_cloneDictionary(profile.CockpitColors or {})
+					local oldModuleColors=V84_cloneDictionary(profile.ModuleColors or {})
+					local oldModuleInstances=V84_cloneDictionary(profile.OwnedModuleInstances or {})
+					local currentVehicle=profile.CurrentVehicleId and profile.Vehicles and profile.Vehicles[profile.CurrentVehicleId]
+					local oldVehicleCockpit=typeof(currentVehicle)=="table" and V84_cloneDictionary(currentVehicle.CockpitColors or {}) or nil
 					profile.CockpitColors[channel] = color
-					if channel == "Primary" or channel == "Secondary" or channel == "Detail" then
+					if typeof(currentVehicle)=="table" then currentVehicle.CockpitColors=V84_cloneDictionary(profile.CockpitColors) end
+					if scope == "WholeVehicle" and (channel == "Primary" or channel == "Secondary" or channel == "Detail") then
 						V76_syncInstalledModulePaintFromCockpit(profile, channel)
-					end
-					ok, message = true, "Colour updated."
+						local captured,captureMessage=V97_ModuleInstances.CaptureAll(profile,V77_ModuleUpgrades.GetLevels(player))
+						if not captured then profile.CockpitColors=oldCockpitColors; profile.ModuleColors=oldModuleColors; profile.OwnedModuleInstances=oldModuleInstances; if typeof(currentVehicle)=="table" then currentVehicle.CockpitColors=oldVehicleCockpit end; ok,message=false,captureMessage else ok,message=true,"Vehicle colour updated." end
+					else ok,message=true,"Cockpit colour updated." end
 				end
+				-- NTR_GARAGE_VEHICLE_PREVIEW_PAINT_SCOPE_V1
 			elseif action == "BuyModule" then
 				local slotId = tostring(args.SlotId or "")
 				local moduleId = tostring(args.ModuleId or "")
@@ -2614,6 +2594,7 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 					end
 					ok, message = true, "Colour updated."
 				end
+				if ok then if slotId=="ALL" then ok,message=V97_ModuleInstances.CaptureAll(profile,V77_ModuleUpgrades.GetLevels(player)) else ok,message=V97_ModuleInstances.CaptureSlot(profile,slotId,V77_ModuleUpgrades.GetLevels(player)) end end
 			elseif action == "UpgradeModule" then
 				ok, message = V77_ModuleUpgrades.Purchase(
 					player,
@@ -2625,6 +2606,7 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 					V56_moduleTypeForModel
 				)
 				V56_setLeaderstats(player, profile)
+				if ok then local captured,captureMessage=V97_ModuleInstances.CaptureSlot(profile,tostring(args.SlotId or ""),V77_ModuleUpgrades.GetLevels(player)); if not captured then ok,message=false,captureMessage end end
 			elseif action == "Upgrade" then
 				local upgradeId = tostring(args.UpgradeId or "")
 				local category = V56_categoryFolder(profile.CurrentCategory)
@@ -2657,15 +2639,23 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 					else ok, message = true, "Neon already unlocked." end
 					V56_setLeaderstats(player, profile)
 				end
+				if ok then local captured,captureMessage=V97_ModuleInstances.CaptureSlot(profile,slotId,V77_ModuleUpgrades.GetLevels(player)); if not captured then ok,message=false,captureMessage end end
 			elseif action == "SetThrustColor" then
 				local color = args.Color
 				if typeof(color) ~= "Color3" then ok, message = false, "Invalid thrust colour." else
+					local oldThrust=profile.ThrustColor
+					local oldModuleColors=V84_cloneDictionary(profile.ModuleColors or {})
+					local oldModuleInstances=V84_cloneDictionary(profile.OwnedModuleInstances or {})
+					local currentVehicle=profile.CurrentVehicleId and profile.Vehicles and profile.Vehicles[profile.CurrentVehicleId]
+					local oldVehicleThrust=typeof(currentVehicle)=="table" and currentVehicle.ThrustColor or nil
 					profile.ThrustColor = color
+					if typeof(currentVehicle)=="table" then currentVehicle.ThrustColor=color end
 					for slotId in pairs(profile.InstalledModules) do
 						profile.ModuleColors[slotId] = profile.ModuleColors[slotId] or {}
 						profile.ModuleColors[slotId].ThrustColor = color
 					end
-					ok, message = true, "Thrust colour updated."
+					local captured,captureMessage=V97_ModuleInstances.CaptureAll(profile,V77_ModuleUpgrades.GetLevels(player))
+					if not captured then profile.ThrustColor=oldThrust; profile.ModuleColors=oldModuleColors; profile.OwnedModuleInstances=oldModuleInstances; if typeof(currentVehicle)=="table" then currentVehicle.ThrustColor=oldVehicleThrust end; ok,message=false,captureMessage else ok,message=true,"Thrust colour updated." end
 				end
 			elseif action == "DespawnVehicle" then
 				ok, message = V92_despawnVehicle(player)
@@ -2686,8 +2676,13 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 				ok, message = false, "Unknown garage action."
 			end
 			if ok == true then
-				V88_syncInstanceDataFromLegacy(profile)
+				local validProfile,validationMessage=V97_ModuleInstances.Validate(profile); if not validProfile then error("Module instance invariant failed before persistence after "..tostring(action)..": "..tostring(validationMessage)) end
+				-- NTR_GARAGE_LEGACY_TO_INSTANCE_SYNC_RETIRED_V1
 				V80_mirrorLegacyProfileToPersistence(player, profile, action, V80_mutatingActions[action] == true)
+			end
+			if action == "SetCockpitColor" or action == "SetModuleColor" or action == "SetThrustColor" then
+				if args.ReturnProfile==true then return {Success=ok==true,Message=message,Profile=V56_profileForClient(profile)} end
+				return { Success = ok == true, Message = message, ColorOnly = true }
 			end
 			return { Success = ok == true, Message = message, Profile = V56_profileForClient(profile) }
 		end)

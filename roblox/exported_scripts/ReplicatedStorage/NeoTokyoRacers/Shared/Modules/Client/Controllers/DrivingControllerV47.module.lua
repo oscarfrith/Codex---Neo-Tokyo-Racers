@@ -473,99 +473,39 @@ local function connectCameraInput()
 	end))
 end
 
-local function updateCameraAssist(dt)
-	if not state.IsDriving or not state.Vehicle or not state.Vehicle.Parent or not state.Vehicle.PrimaryPart then return end
-	local cam = currentCamera()
-	if not cam then return end
-	local root = state.Vehicle.PrimaryPart
-
-	local savedFov = state.SavedFieldOfView or cam.FieldOfView or 70
-	local baseMultiplier = cameraNumber("BaseDrivingFovMultiplier", 1.15, 0.85, 1.6)
-	local accelMultiplier = cameraNumber("AccelerationFovMultiplier", 1.015, 1, 1.2)
-	local boostMultiplier = cameraNumber("BoostFovMultiplier", 1.07, 1, 1.35)
-	local accelZoom = cameraNumber("AccelerationZoomOutStuds", 0.7, 0, 8)
-	local boostZoom = cameraNumber("BoostZoomOutStuds", 3.2, 0, 14)
-	local recenterDelay = cameraNumber("RecenterDelaySeconds", 1.15, 0.2, 4)
-	local recenterSpeed = cameraNumber("RecenterSpeed", 2.15, 0.25, 8)
-	local defaultHeight = cameraNumber("CameraHeight", 7.25, 2, 18)
-	local defaultDistance = cameraNumber("CameraDistance", 29, 8, 90)
-
-	local speedMph = root.AssemblyLinearVelocity.Magnitude * MPH_PER_STUD
-	local moving = speedMph > 8
-	local accelTarget = (state.AccelCameraActive and moving) and 1 or 0
-	local boostTarget = state.BoostCameraActive and 1 or 0
-	state.AccelCameraBlend += (accelTarget - state.AccelCameraBlend) * math.clamp(dt * 4.5, 0, 1)
-	state.BoostCameraBlend += (boostTarget - state.BoostCameraBlend) * math.clamp(dt * 6.5, 0, 1)
-
-	local fovMultiplier = baseMultiplier
-	fovMultiplier *= 1 + (accelMultiplier - 1) * state.AccelCameraBlend
-	fovMultiplier *= 1 + (boostMultiplier - 1) * state.BoostCameraBlend
-	local targetFov = math.clamp(savedFov * fovMultiplier, 50, 110)
-	state.CurrentFov = state.CurrentFov and (state.CurrentFov + (targetFov - state.CurrentFov) * math.clamp(dt * 5.5, 0, 1)) or targetFov
-	cam.FieldOfView = state.CurrentFov
-
-	local secondsSinceInput = os.clock() - state.LastCameraInputTime
-	local shouldRecenter = moving and secondsSinceInput > recenterDelay
-
-	local rootPosition = root.Position
-	local currentDistance = (cam.CFrame.Position - rootPosition).Magnitude
-	if currentDistance < 4 or currentDistance > 160 then
-		currentDistance = defaultDistance
+-- NTR_DRIVING_CAMERA_SINGLE_OWNER_BRIDGE
+local drivingCameraController
+local function getDrivingCameraController()
+	if drivingCameraController then return drivingCameraController end
+	local moduleScript = script.Parent:FindFirstChild("DrivingCameraController")
+	if not moduleScript or not moduleScript:IsA("ModuleScript") then
+		warn("[NTR Driving Camera] DrivingCameraController missing; Roblox default camera remains active")
+		return nil
 	end
-	if state.PlayerAdjustedZoom and not shouldRecenter then
-		state.ManualCameraDistance = currentDistance
+	local ok, result = pcall(require, moduleScript)
+	if not ok or typeof(result) ~= "table" then
+		warn("[NTR Driving Camera] DrivingCameraController failed to load: " .. tostring(result))
+		return nil
 	end
-	if not shouldRecenter then return end
-
-	local look = root.CFrame.LookVector
-	local flatForward = Vector3.new(look.X, 0, look.Z)
-	if flatForward.Magnitude < 0.05 then return end
-	flatForward = flatForward.Unit
-
-	local visualZoom = state.AccelCameraBlend * accelZoom + state.BoostCameraBlend * boostZoom
-	local baseDistance = state.PlayerAdjustedZoom and (state.ManualCameraDistance or currentDistance) or defaultDistance
-	local targetDistance = math.clamp(baseDistance + visualZoom, 6, 180)
-	local targetHeight = math.min(defaultHeight, math.max(2.5, targetDistance * 0.55))
-	local horizontalDistance = math.sqrt(math.max((targetDistance * targetDistance) - (targetHeight * targetHeight), 36))
-	local targetPosition = rootPosition - flatForward * horizontalDistance + Vector3.new(0, targetHeight, 0)
-	local lookTarget = rootPosition + flatForward * 8 + Vector3.new(0, math.min(targetHeight * 0.55, 4.5), 0)
-	local targetCFrame = CFrame.lookAt(targetPosition, lookTarget)
-	local alpha = math.clamp(dt * recenterSpeed, 0, 1)
-	cam.CFrame = cam.CFrame:Lerp(targetCFrame, alpha)
+	drivingCameraController = result
+	return result
 end
 
 local function startCameraAssist()
-	local cam = currentCamera()
-	state.SavedFieldOfView = cam and cam.FieldOfView or 70
-	state.CurrentFov = state.SavedFieldOfView * cameraNumber("BaseDrivingFovMultiplier", 1.15, 0.85, 1.6)
-	state.AccelCameraBlend = 0
-	state.BoostCameraBlend = 0
-	state.PlayerAdjustedZoom = false
-	state.ManualCameraDistance = nil
-	state.LastCameraInputTime = os.clock() - cameraNumber("RecenterDelaySeconds", 1.15, 0.2, 4)
-	connectCameraInput()
-	if not state.CameraAssistBound then
-		state.CameraAssistBound = true
-		RunService:BindToRenderStep(CAMERA_RENDER_NAME, Enum.RenderPriority.Camera.Value + 2, updateCameraAssist)
+	local controller = getDrivingCameraController()
+	if controller and typeof(controller.Start) == "function" then
+		controller.Start({
+			Vehicle = state.Vehicle,
+			GetCamera = currentCamera,
+			GetCharacter = character,
+			IsAccelerating = function() return state.AccelCameraActive end,
+			IsBoosting = function() return state.BoostCameraActive end,
+		})
 	end
 end
 
 local function stopCameraAssist()
-	if state.CameraAssistBound then
-		RunService:UnbindFromRenderStep(CAMERA_RENDER_NAME)
-		state.CameraAssistBound = false
-	end
-	disconnectCameraInput()
-	local cam = currentCamera()
-	if cam and state.SavedFieldOfView then
-		cam.FieldOfView = state.SavedFieldOfView
-	end
-	state.SavedFieldOfView = nil
-	state.CurrentFov = nil
-	state.AccelCameraBlend = 0
-	state.BoostCameraBlend = 0
-	state.PlayerAdjustedZoom = false
-	state.ManualCameraDistance = nil
+	if drivingCameraController and typeof(drivingCameraController.Stop) == "function" then drivingCameraController.Stop() end
 	state.AccelCameraActive = false
 	state.BoostCameraActive = false
 	state.WobblePitch = 0
@@ -604,10 +544,10 @@ local function updateHoverWobble(dt, speedMph, grounded)
 	return state.WobblePitch, state.WobbleRoll
 end
 
+-- NTR_DRIVING_CAMERA_SINGLE_OWNER_DEFAULT_GUARD
 local function setVehicleCamera(vehicle)
-	local context = state.Context
 	local cam = currentCamera()
-	if not cam then return end
+	if not cam or cam:GetAttribute("NTRDrivingCameraManaged") == true then return end
 	local seat = vehicle and vehicle:FindFirstChild("DriverSeat", true)
 	cam.CameraType = Enum.CameraType.Custom
 	if seat and seat:IsA("VehicleSeat") then
@@ -755,7 +695,9 @@ function Controller.Start(context)
 			Downforce = stat("Downforce", 50),
 		}
 		local dynamicsStats = VehicleDynamicsModel.ResolveStats(state.Vehicle, legacyDynamicsStats)
-		local maxMph = math.clamp(dynamicsStats.TopSpeed, 40, 260)
+		-- NTR_DRIVING_FEEL_PHYSICAL_TOP_SPEED_CONTROLLER_LIMIT
+		local absoluteTopSpeedSafetyMph = configNumber("VehicleDynamics_EditAttributes", "AbsoluteTopSpeedSafetyMph", 320, 80, 500)
+		local maxMph = math.clamp(dynamicsStats.TopSpeed, 40, absoluteTopSpeedSafetyMph)
 		local acceleration = math.max(legacyDynamicsStats.EngineOutput, 8)
 		local braking = math.max(legacyDynamicsStats.BrakingForce, 16)
 		local handling = math.max(dynamicsStats.SteeringResponse, 10)
@@ -947,10 +889,53 @@ function Controller.Start(context)
 			local requiresAcceleration = configBool("DRIVING_MECHANICS_EditAttributes", "DriftMiniBoostRequiresAcceleration", true)
 			local accelerationThreshold = configNumber("DRIVING_MECHANICS_EditAttributes", "DriftMiniBoostAccelerationThreshold", 0.05, 0, 1)
 			local acceleratingOnDriftExit = throttle > accelerationThreshold
-			if state.DriftCharge > 0.72 and (not requiresAcceleration or acceleratingOnDriftExit) then
+			-- NTR_DRIFT_MINI_BOOST_STAT_SCALING_V1
+			local statScalingEnabled = configNumber("VehicleDynamics_EditAttributes", "DriftMiniBoostStatScalingEnabled", 1, 0, 1) >= 0.5
+			local minimumCharge = configNumber("VehicleDynamics_EditAttributes", "DriftMiniBoostMinimumCharge", 0.72, 0, 10)
+			if state.DriftCharge > minimumCharge and (not requiresAcceleration or acceleratingOnDriftExit) then
 				local charge = state.DriftCharge
-				state.MiniBoostTimer = math.clamp(0.22 + charge * 0.48, 0.35, 1.85)
-				state.MiniBoostPower = math.clamp(48 + charge * 27, 58, 136)
+				if statScalingEnabled then
+					local fullRewardCharge = math.max(configNumber("VehicleDynamics_EditAttributes", "DriftMiniBoostChargeForFullReward", 3.25, 0.01, 10), minimumCharge + 0.01)
+					local rewardExponent = configNumber("VehicleDynamics_EditAttributes", "DriftMiniBoostRewardExponent", 0.85, 0.05, 4)
+					local chargeQuality = math.clamp((charge - minimumCharge) / (fullRewardCharge - minimumCharge), 0, 1) ^ rewardExponent
+
+					local baseMinDuration = configNumber("VehicleDynamics_EditAttributes", "DriftMiniBoostBaseMinDurationSeconds", 0.18, 0.01, 3)
+					local baseMaxDuration = configNumber("VehicleDynamics_EditAttributes", "DriftMiniBoostBaseMaxDurationSeconds", 0.70, 0.01, 3)
+					if baseMaxDuration < baseMinDuration then baseMinDuration, baseMaxDuration = baseMaxDuration, baseMinDuration end
+					local durationReference = configNumber("VehicleDynamics_EditAttributes", "DriftMiniBoostBoostDurationReferenceSeconds", 3.0, 0.1, 12)
+					local durationExponent = configNumber("VehicleDynamics_EditAttributes", "DriftMiniBoostBoostDurationExponent", 0.50, 0.05, 2)
+					local durationMinMultiplier = configNumber("VehicleDynamics_EditAttributes", "DriftMiniBoostBoostDurationMinMultiplier", 0.80, 0.05, 3)
+					local durationMaxMultiplier = configNumber("VehicleDynamics_EditAttributes", "DriftMiniBoostBoostDurationMaxMultiplier", 1.20, 0.05, 3)
+					if durationMaxMultiplier < durationMinMultiplier then durationMinMultiplier, durationMaxMultiplier = durationMaxMultiplier, durationMinMultiplier end
+					local durationMultiplier = math.clamp((math.max(dynamicsStats.BoostDuration or durationReference, 0.01) / durationReference) ^ durationExponent, durationMinMultiplier, durationMaxMultiplier)
+					local absoluteMinDuration = configNumber("VehicleDynamics_EditAttributes", "DriftMiniBoostAbsoluteMinDurationSeconds", 0.12, 0.01, 3)
+					local absoluteMaxDuration = configNumber("VehicleDynamics_EditAttributes", "DriftMiniBoostAbsoluteMaxDurationSeconds", 0.90, 0.01, 3)
+					if absoluteMaxDuration < absoluteMinDuration then absoluteMinDuration, absoluteMaxDuration = absoluteMaxDuration, absoluteMinDuration end
+					local baseDuration = baseMinDuration + (baseMaxDuration - baseMinDuration) * chargeQuality
+					state.MiniBoostTimer = math.clamp(baseDuration * durationMultiplier, absoluteMinDuration, absoluteMaxDuration)
+
+					local minAcceleration = configNumber("VehicleDynamics_EditAttributes", "DriftMiniBoostMinAcceleration", 32, 0, 300)
+					local maxAcceleration = configNumber("VehicleDynamics_EditAttributes", "DriftMiniBoostMaxAcceleration", 72, 0, 300)
+					if maxAcceleration < minAcceleration then minAcceleration, maxAcceleration = maxAcceleration, minAcceleration end
+					local boostForceReference = configNumber("VehicleDynamics_EditAttributes", "DriftMiniBoostBoostForceReference", 30, 0.1, 300)
+					local boostForceExponent = configNumber("VehicleDynamics_EditAttributes", "DriftMiniBoostBoostForceExponent", 0.55, 0.05, 2)
+					local boostForceMinMultiplier = configNumber("VehicleDynamics_EditAttributes", "DriftMiniBoostBoostForceMinMultiplier", 0.65, 0.05, 3)
+					local boostForceMaxMultiplier = configNumber("VehicleDynamics_EditAttributes", "DriftMiniBoostBoostForceMaxMultiplier", 1.25, 0.05, 3)
+					if boostForceMaxMultiplier < boostForceMinMultiplier then boostForceMinMultiplier, boostForceMaxMultiplier = boostForceMaxMultiplier, boostForceMinMultiplier end
+					local boostForceMultiplier = math.clamp((math.max(dynamicsStats.BoostForce or 0, 0.01) / boostForceReference) ^ boostForceExponent, boostForceMinMultiplier, boostForceMaxMultiplier)
+					state.MiniBoostPower = (minAcceleration + (maxAcceleration - minAcceleration) * chargeQuality) * boostForceMultiplier
+
+					if configBool("DRIVING_MECHANICS_EditAttributes", "DriftMiniBoostDebugAttributes", true) then
+						state.Vehicle:SetAttribute("DriftMiniBoostChargeQuality", chargeQuality)
+						state.Vehicle:SetAttribute("DriftMiniBoostDurationMultiplier", durationMultiplier)
+						state.Vehicle:SetAttribute("DriftMiniBoostForceMultiplier", boostForceMultiplier)
+						state.Vehicle:SetAttribute("DriftMiniBoostDurationSeconds", state.MiniBoostTimer)
+						state.Vehicle:SetAttribute("DriftMiniBoostAcceleration", state.MiniBoostPower)
+					end
+				else
+					state.MiniBoostTimer = math.clamp(0.22 + charge * 0.48, 0.35, 1.85)
+					state.MiniBoostPower = math.clamp(48 + charge * 27, 58, 136)
+				end
 			end
 			if configBool("DRIVING_MECHANICS_EditAttributes", "DriftMiniBoostDebugAttributes", true) then
 				state.Vehicle:SetAttribute("DriftMiniBoostAcceleratingOnExit", acceleratingOnDriftExit)
@@ -961,15 +946,21 @@ function Controller.Start(context)
 		end
 
 		local boostHeld = UserInputService:IsKeyDown(Enum.KeyCode.Space) or state.GamepadBoostHeld
+		local miniBoostActive = state.MiniBoostTimer > 0
+		local expiresDuringNormalBoost = configNumber("VehicleDynamics_EditAttributes", "DriftMiniBoostExpiresDuringNormalBoost", 1, 0, 1) >= 0.5
+		if miniBoostActive and expiresDuringNormalBoost then
+			state.MiniBoostTimer = math.max(0, state.MiniBoostTimer - dt)
+		end
 		if boostHeld and state.Boost > 1 and forwardSpeed > -4 and boostPower > 0 then
 			state.Boost = math.max(0, state.Boost - (100 / boostDuration) * dt)
 			state.BoostRechargeDelayTimer = state.BoostRechargeDelaySeconds
 			driveForce += forward * mass * (boostPower + 32) * 0.75
 			state.Vehicle:SetAttribute("Boosting", true)
 			state.BoostCameraActive = true
-		elseif state.MiniBoostTimer > 0 then
-			state.MiniBoostTimer = math.max(0, state.MiniBoostTimer - dt)
-			driveForce += forward * mass * state.MiniBoostPower * 0.92
+		elseif miniBoostActive then
+			if not expiresDuringNormalBoost then state.MiniBoostTimer = math.max(0, state.MiniBoostTimer - dt) end
+			local forceMultiplier = configNumber("VehicleDynamics_EditAttributes", "DriftMiniBoostForceApplicationMultiplier", 0.85, 0, 3)
+			driveForce += forward * mass * state.MiniBoostPower * forceMultiplier
 			state.Vehicle:SetAttribute("Boosting", true)
 			state.BoostCameraActive = true
 		else

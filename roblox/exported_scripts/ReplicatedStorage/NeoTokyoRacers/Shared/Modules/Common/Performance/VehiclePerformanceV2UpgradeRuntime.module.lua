@@ -4,15 +4,19 @@ local Calculator = require(script.Parent:WaitForChild("VehiclePerformanceV2Calcu
 local LegacyDefinitions = require(script.Parent:WaitForChild("VehicleUpgradeDefinitions"))
 
 local Runtime = {}
-local legacyMap = {
+local legacyMap = { -- NTR_CANONICAL_PERFORMANCE_RESOLVER_MODULE_RATINGS_V1
 	FuelInjection = "Output", PowerConverter = "Velocity", LightweightInternals = "Efficiency", TorqueMapping = "Output",
 	VectoringFirmware = "Grip", DriftCalibration = "Drift", ReactiveDampers = "Response", LightweightArms = "Response",
 	HighFlowInjectors = "Burst", ExpandedCell = "Endurance", RapidRecharge = "Recovery", LightweightCell = "Endurance",
+	BrakeDucts = "BrakeDucts", FrontSplitter = "FrontSplitter", LightweightMounts = "LightweightMounts",
+	RearDiffuser = "RearDiffuser", DownforcePackage = "DownforcePackage", LowDragProfile = "LowDragProfile", DriftAero = "DriftAero",
+	CorneringVanes = "CorneringVanes", AirflowChannels = "AirflowChannels", LightweightShells = "LightweightShells",
 }
 local legacyOrder = {
 	"FuelInjection", "PowerConverter", "LightweightInternals", "TorqueMapping",
 	"VectoringFirmware", "DriftCalibration", "ReactiveDampers", "LightweightArms",
 	"HighFlowInjectors", "ExpandedCell", "RapidRecharge", "LightweightCell",
+	"BrakeDucts", "FrontSplitter", "LightweightMounts", "RearDiffuser", "DownforcePackage", "LowDragProfile", "DriftAero", "CorneringVanes", "AirflowChannels", "LightweightShells",
 }
 
 local function clone(value)
@@ -58,16 +62,28 @@ function Runtime.ApplyToModuleRaw(module, allocation)
 			for _, name in ipairs(Definitions.RawVariableOrder) do
 				local fraction = path:GetAttribute("DeltaFraction_" .. name)
 				if typeof(fraction) == "number" then raw[name] *= 1 + fraction * points end
+				local flat = path:GetAttribute("DeltaFlat_" .. name)
+				if typeof(flat) == "number" then raw[name] += flat * points end
 			end
 		end
 	end
 	return raw
 end
 
-function Runtime.NextPointCost(module, allocation)
-	local _, spent, capacity = Runtime.NormalizeAllocation(module, allocation)
+function Runtime.NextPointCost(module, allocation, pathId) -- NTR_GARAGE_UPGRADE_PATH_LOCAL_PRICING_V1
+	local normalized, spent, capacity = Runtime.NormalizeAllocation(module, allocation)
 	if spent >= capacity then return nil end
-	return tonumber(module:GetAttribute("Point" .. tostring(spent + 1) .. "CostGuide")) or 0
+	local point = spent + 1
+	if pathId ~= nil then
+		local id = tostring(pathId); local root = pathsRoot(module); local path = root and root:FindFirstChild(id)
+		if not path then return nil end
+		local level = math.max(0, math.floor(tonumber(normalized[id]) or 0)); local maximum = math.max(0, math.floor(tonumber(path:GetAttribute("MaxPoints")) or 3))
+		if level >= maximum then return nil end
+		point = level + 1
+		local override = path:GetAttribute("Point" .. tostring(point) .. "CostGuide")
+		if override ~= nil then return math.max(0, tonumber(override) or 0) end
+	end
+	return math.max(0, tonumber(module:GetAttribute("Point" .. tostring(point) .. "CostGuide")) or 0)
 end
 
 function Runtime.Catalog(module, allocation)
@@ -78,7 +94,7 @@ function Runtime.Catalog(module, allocation)
 		table.insert(result, {
 			PathId = id, DisplayName = tostring(path:GetAttribute("DisplayName") or id),
 			Points = normalized[id] or 0, MaxPoints = tonumber(path:GetAttribute("MaxPoints")) or 3,
-			TotalPoints = spent, Capacity = capacity, NextPointCost = Runtime.NextPointCost(module, normalized),
+			TotalPoints = spent, Capacity = capacity, NextPointCost = Runtime.NextPointCost(module, normalized, id),
 		})
 	end
 	return result
@@ -96,7 +112,7 @@ function Runtime.PreviewPoint(module, allocation, pathId, baseBuildRaw)
 	nextAllocation[pathId] = (nextAllocation[pathId] or 0) + 1
 	local beforeRaw, afterRaw = Runtime.ApplyToModuleRaw(module, normalized), Runtime.ApplyToModuleRaw(module, nextAllocation)
 	local rawDelta = {}; for _, name in ipairs(Definitions.RawVariableOrder) do rawDelta[name] = afterRaw[name] - beforeRaw[name] end
-	local preview = { Cost = Runtime.NextPointCost(module, normalized), Allocation = nextAllocation, RawDelta = rawDelta }
+	local preview = { Cost = Runtime.NextPointCost(module, normalized, pathId), Allocation = nextAllocation, RawDelta = rawDelta }
 	if typeof(baseBuildRaw) == "table" then
 		local beforeBuild, afterBuild = Calculator.CloneRaw(baseBuildRaw), Calculator.CloneRaw(baseBuildRaw)
 		Calculator.AddRaw(beforeBuild, beforeRaw); Calculator.AddRaw(afterBuild, afterRaw)
@@ -131,13 +147,15 @@ end
 
 function Runtime.MigrateModuleInstance(moduleInstance, module)
 	local migrated = clone(moduleInstance or {})
-	if typeof(migrated.V2UpgradePoints) == "table" then
+	local legacy = typeof(migrated.UpgradeLevels) == "table" and migrated.UpgradeLevels or {}
+	local hasLegacy = false; for _, level in pairs(legacy) do if (tonumber(level) or 0) > 0 then hasLegacy = true; break end end
+	local hasV2 = false; if typeof(migrated.V2UpgradePoints) == "table" then for _, points in pairs(migrated.V2UpgradePoints) do if (tonumber(points) or 0) > 0 then hasV2 = true; break end end end
+	if typeof(migrated.V2UpgradePoints) == "table" and (hasV2 or not hasLegacy) then
 		migrated.V2UpgradePoints = Runtime.NormalizeAllocation(module, migrated.V2UpgradePoints)
 		migrated.V2UpgradeVersion = "V2_PHASE7"
 		return migrated, { AlreadyV2 = true, ConvertedPoints = 0, RefundCredit = 0 }
 	end
 	local allocation, converted, refund = {}, 0, 0
-	local legacy = typeof(migrated.UpgradeLevels) == "table" and migrated.UpgradeLevels or {}
 	for _, upgradeId in ipairs(legacyOrder) do
 		local level = math.clamp(math.floor(tonumber(legacy[upgradeId]) or 0), 0, 3)
 		local definition = legacyDefinition(upgradeId)

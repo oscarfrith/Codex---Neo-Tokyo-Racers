@@ -399,7 +399,9 @@ end
 raceEvent.OnClientEvent:Connect(function(payload)
 	if typeof(payload) ~= "table" then return end
 	local kind = payload.Type
-	if kind == "TimeTrialStaged" or kind == "TimeTrialCountdown" or kind == "TimeTrialStarted" or kind == "RaceStaged" or kind == "RaceCountdown" or kind == "RaceStarted" then
+	if kind == "TimeTrialStaged" or kind == "TimeTrialCountdown" or kind == "RaceStaged" or kind == "RaceCountdown" then
+		clearActive() -- NTR_RACING_FLOW_COUNTDOWN_GUIDE_GATE_V2: hide checkpoint guidance until GO.
+	elseif kind == "TimeTrialStarted" or kind == "RaceStarted" then
 		setActive(payload)
 	elseif kind == "TimeTrialCheckpoint" or kind == "RaceCheckpoint" then
 		setActive(payload)

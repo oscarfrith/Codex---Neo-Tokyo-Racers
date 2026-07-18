@@ -609,11 +609,7 @@ local function tryOpenGarage(config)
 		warnOnce("missing-open-hook", "Reached dealership desk, but OpenGarageFromIntro BindableEvent was not found under " .. script.Parent:GetFullName() .. ". Run scripts/roblox_dealership_intro_phase3_gate_garage_startup.lua and scripts/roblox_dealership_intro_phase7_exit_button_reopen_gate.lua, then test in a fresh Play Solo session.")
 	end
 
-	local playerGui = player:FindFirstChild("PlayerGui")
-	local garageGui = playerGui and playerGui:FindFirstChild("HOVER_RACING_V2_GarageUI")
-	if garageGui and garageGui.Enabled then
-		warnOnce("garage-already-visible", "Garage UI is already visible. This likely means current startup still auto-opens/builds garage before the intro desk gate.")
-	end
+	-- Canonical garage ownership is tracked by NTR_GarageSessionActive, not a GUI name.
 end
 
 local function cleanup(objectiveGui, tether)
