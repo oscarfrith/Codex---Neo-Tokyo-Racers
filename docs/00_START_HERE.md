@@ -1,5 +1,12 @@
 # Neo Tokyo Racers Project Context
 
+## 2026-07-19 owned garage replacement Phase 6 prepared
+
+- Owned Garage Phase 5 passed and the refreshed `2026-07-19 12:14:59` mirror contains both hardened HUDs, external server guards, 44-pixel owned-UI touch handling and the two inert mode/transition controllers. Do not rerun Phases 0-5.
+- The next Studio command is corrected Phase 6 V1.1 in `scripts/roblox_owned_garage_phase6_atomic_activation.lua`. Its first run stopped safely during read-only preflight because Luau expanded `assert` message strings into a legacy-owner array; the single-return construction is now fixed. It also resolves the persistence ownership conflict by storing property/display state in `profile.OwnedGarage`, preserving the existing `profile.Garage` capacity contract and carrying the new namespace through vehicle snapshot imports.
+- Phase 6 atomically starts the canonical server/client owners, switches desktop/mobile HOME, binds the existing vehicle lifecycle helpers, retires only the five superseded physical-garage scripts plus their old prompt, and applies a one-token reset only to tester `7915427645`'s new owned-garage namespace. Vehicle, cockpit and module records are not reset.
+- Phase 6 requires Play verification before handoff. See `docs/owned-garage-canonical-replacement-plan.md` for the smoke matrix.
+
 ## 2026-07-18 canonical garage experience confirmed and handed off
 
 - The user confirmed the complete dealership/customisation garage experience working across the latest flow, shared UI, touch scaling, module instance actions/upgrades, preview lifecycle, navigation, camera presentation and VFX refinements. The refreshed `2026-07-18 23:14:48` mirror contains the final live sources and config.

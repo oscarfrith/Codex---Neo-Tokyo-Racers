@@ -1,7 +1,7 @@
 # Roblox Studio Hierarchy Snapshot
 
-Generated in Studio: 2026-07-18 23:48:19
-Scripts exported: 140
+Generated in Studio: 2026-07-19 13:35:35
+Scripts exported: 153
 Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, StarterGui, Workspace, ServerStorage, Lighting
 
 ## Hierarchy
@@ -2845,6 +2845,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - SpawnHeightOffset (NumberValue)
           - SpawnMarkerHeightOffset (NumberValue)
           - StudsPerSecondToMph (NumberValue)
+        - OwnedGarage_EditAttributes (Folder) [24 attrs]
         - StudioCashGrant (Folder) [7 attrs]
         - VehicleDynamics_EditAttributes (Folder) [15 attrs]
           - 01_Acceleration (Folder) [52 attrs]
@@ -3977,20 +3978,22 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - ConfigRegistry (ModuleScript) [script_0031, 176 lines, 3 attrs]
           - GaragePropertyCatalog (ModuleScript) [script_0032, 81 lines, 1 attrs]
           - LegacyGarageProfileMapper (ModuleScript) [script_0033, 248 lines, 1 attrs]
-          - PlayerProfileSchema (ModuleScript) [script_0034, 276 lines]
+          - OwnedGarageInteriorStyleCatalog (ModuleScript) [script_0034, 25 lines, 2 attrs]
+          - OwnedGaragePropertyCatalog (ModuleScript) [script_0035, 41 lines, 1 attrs]
+          - PlayerProfileSchema (ModuleScript) [script_0036, 276 lines]
         - Racing (Folder)
-          - RaceConfigReader (ModuleScript) [script_0035, 132 lines]
-          - RaceRouteDefinition (ModuleScript) [script_0036, 229 lines]
+          - RaceConfigReader (ModuleScript) [script_0037, 132 lines]
+          - RaceRouteDefinition (ModuleScript) [script_0038, 229 lines]
         - UI (Folder) [3 attrs]
-          - ArrowScroller (ModuleScript) [script_0037, 68 lines, 3 attrs]
-          - ColourUtils (ModuleScript) [script_0038, 21 lines, 3 attrs]
-          - RacingMobileScaledDesktopLayout (ModuleScript) [script_0039, 90 lines]
-          - RacingUIComponents (ModuleScript) [script_0040, 203 lines]
-          - ResponsiveLayout (ModuleScript) [script_0041, 44 lines, 3 attrs]
-          - StatBars (ModuleScript) [script_0042, 49 lines, 3 attrs]
-          - UIFactory (ModuleScript) [script_0043, 93 lines, 3 attrs]
-          - UIPool (ModuleScript) [script_0044, 99 lines, 3 attrs]
-          - UITheme (ModuleScript) [script_0045, 102 lines, 5 attrs]
+          - ArrowScroller (ModuleScript) [script_0039, 68 lines, 3 attrs]
+          - ColourUtils (ModuleScript) [script_0040, 21 lines, 3 attrs]
+          - RacingMobileScaledDesktopLayout (ModuleScript) [script_0041, 90 lines]
+          - RacingUIComponents (ModuleScript) [script_0042, 203 lines]
+          - ResponsiveLayout (ModuleScript) [script_0043, 44 lines, 3 attrs]
+          - StatBars (ModuleScript) [script_0044, 49 lines, 3 attrs]
+          - UIFactory (ModuleScript) [script_0045, 93 lines, 3 attrs]
+          - UIPool (ModuleScript) [script_0046, 99 lines, 3 attrs]
+          - UITheme (ModuleScript) [script_0047, 102 lines, 5 attrs]
           - ArrowScroller_Module (ObjectValue)
           - ColourUtils_Module (ObjectValue)
           - ResponsiveLayout_Module (ObjectValue)
@@ -4009,9 +4012,11 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
         - Garage (Folder) [3 attrs]
           - GarageInteriorTransition (RemoteEvent) [1 attrs]
           - GaragePush (RemoteEvent)
+          - OwnedGarageEvent (RemoteEvent) [3 attrs]
           - GarageInteriorCustomizationInvoke (RemoteFunction) [1 attrs]
           - GarageInteriorInvoke (RemoteFunction) [1 attrs]
           - GarageInvoke (RemoteFunction)
+          - OwnedGarageInvoke (RemoteFunction) [3 attrs]
         - Racing (Folder) [3 attrs]
           - RaceEvent (RemoteEvent)
           - RaceQueueEvent (RemoteEvent)
@@ -4035,10 +4040,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
         - SevenAM (Folder) [3 attrs]
         - TenAM (Folder) [3 attrs]
         - ThreePM (Folder) [3 attrs]
-      - LightingCycleSchedule (ModuleScript) [script_0046, 13 lines]
+      - LightingCycleSchedule (ModuleScript) [script_0048, 13 lines]
       - CurrentLightingCaptureText (StringValue) [3 attrs]
     - LightingPresets (Folder)
-      - LightingPresets (ModuleScript) [script_0047, 407 lines, 4 attrs]
+      - LightingPresets (ModuleScript) [script_0049, 407 lines, 4 attrs]
     - SkyPresets (Folder)
       - ActiveSky (Sky)
       - ClearNightSky (Sky)
@@ -4053,47 +4058,54 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
   - NeoTokyoRacers (Folder) [5 attrs]
     - Services (Folder) [3 attrs]
       - Dealership (Folder)
-        - IntroProgressService_Active (Script) [script_0048, 208 lines, 2 attrs]
+        - IntroProgressService_Active (Script) [script_0050, 208 lines, 2 attrs]
       - Debug (Folder)
-        - StudioCashGrantService_Active (Script) [script_0049, 65 lines]
+        - StudioCashGrantService_Active (Script) [script_0051, 65 lines]
       - Economy (Folder)
       - Garage (Folder)
-        - GarageDisplayRuntime (ModuleScript) [script_0050, 299 lines, 1 attrs]
-        - GarageModuleInstanceCustomizationRuntime (ModuleScript) [script_0051, 88 lines]
-        - GarageModuleInventoryRuntime (ModuleScript) [script_0052, 238 lines, 1 attrs]
-        - GarageModuleTransactionRuntime (ModuleScript) [script_0053, 124 lines]
-        - GarageProfileRuntime (ModuleScript) [script_0054, 136 lines, 1 attrs]
-        - GarageActionController_Shadow_Disabled (Script) [script_0055, 2705 lines, 36 attrs]
-        - GarageInteriorCustomizationService_Active (Script) [script_0056, 472 lines, 1 attrs]
-        - GarageInteriorService_Active (Script) [script_0057, 407 lines, 4 attrs]
-        - GarageSessionService_Active (Script) [script_0058, 99 lines, 1 attrs]
+        - OwnedGarageVehicleLifecycleBridge (BindableFunction) [3 attrs]
+        - GarageDisplayRuntime (ModuleScript) [script_0052, 299 lines, 1 attrs]
+        - GarageModuleInstanceCustomizationRuntime (ModuleScript) [script_0053, 88 lines]
+        - GarageModuleInventoryRuntime (ModuleScript) [script_0054, 238 lines, 1 attrs]
+        - GarageModuleTransactionRuntime (ModuleScript) [script_0055, 124 lines]
+        - GarageProfileRuntime (ModuleScript) [script_0056, 136 lines, 1 attrs]
+        - OwnedGarageDisplayAssignmentRuntime (ModuleScript) [script_0057, 30 lines, 1 attrs]
+        - OwnedGarageDisplayRuntime (ModuleScript) [script_0058, 105 lines, 1 attrs]
+        - OwnedGarageInteriorRuntime (ModuleScript) [script_0059, 56 lines, 1 attrs]
+        - OwnedGarageManagementRuntime (ModuleScript) [script_0060, 164 lines, 2 attrs]
+        - OwnedGarageProfileRuntime (ModuleScript) [script_0061, 109 lines, 2 attrs]
+        - GarageActionController_Shadow_Disabled (Script) [script_0062, 2732 lines, 38 attrs]
+        - GarageInteriorCustomizationService_Active (Script) [script_0063, Disabled, 472 lines, 4 attrs]
+        - GarageInteriorService_Active (Script) [script_0064, Disabled, 407 lines, 7 attrs]
+        - GarageSessionService_Active (Script) [script_0065, 99 lines, 1 attrs]
+        - OwnedGarageService_Active (Script) [script_0066, 7 lines, 2 attrs]
       - Player (Folder)
-        - LegacyGarageProfileBridge_Active (Script) [script_0059, 61 lines]
-        - ProfileService_Active (Script) [script_0060, 400 lines, 3 attrs]
+        - LegacyGarageProfileBridge_Active (Script) [script_0067, 61 lines]
+        - ProfileService_Active (Script) [script_0068, 400 lines, 3 attrs]
       - Racing (Folder)
         - GlobalTimeTrialLeaderboardBindings (Folder)
           - GetTimeTrialLeaderboard (BindableFunction)
           - RecordTimeTrialBest (BindableFunction)
-        - GlobalTimeTrialLeaderboardService_Active (Script) [script_0061, 101 lines]
-        - RaceBrowserTeleportService_Active (Script) [script_0062, 224 lines]
-        - RaceDisplayNameService_Active (Script) [script_0063, 79 lines]
-        - RaceMatchmakingService_Active (Script) [script_0064, 1246 lines]
-        - RacePersonalBestService_Active (Script) [script_0065, 392 lines]
-        - RaceRewardService_Active (Script) [script_0066, 367 lines]
-        - RaceSessionAssetService_Active (Script) [script_0067, 372 lines]
-        - TimeTrialService_Active (Script) [script_0068, 1408 lines]
+        - GlobalTimeTrialLeaderboardService_Active (Script) [script_0069, 101 lines]
+        - RaceBrowserTeleportService_Active (Script) [script_0070, 226 lines, 2 attrs]
+        - RaceDisplayNameService_Active (Script) [script_0071, 79 lines]
+        - RaceMatchmakingService_Active (Script) [script_0072, 1246 lines]
+        - RacePersonalBestService_Active (Script) [script_0073, 392 lines]
+        - RaceRewardService_Active (Script) [script_0074, 367 lines]
+        - RaceSessionAssetService_Active (Script) [script_0075, 372 lines]
+        - TimeTrialService_Active (Script) [script_0076, 1408 lines]
       - UI (Folder)
-        - FreeRoamHudTeleportService_Active (Script) [script_0069, 126 lines, 2 attrs]
+        - FreeRoamHudTeleportService_Active (Script) [script_0077, 128 lines, 4 attrs]
       - Vehicle (Folder)
-        - DriverSeatPositionService_Active (Script) [script_0070, 234 lines, 11 attrs]
-        - VehicleAccessPromptService_Active (Script) [script_0071, 130 lines]
-        - VehiclePerformanceRuntimeService_Active (Script) [script_0072, 35 lines, 2 attrs]
-        - VehiclePerformanceV2ShadowService_Active (Script) [script_0073, 34 lines, 1 attrs]
+        - DriverSeatPositionService_Active (Script) [script_0078, 234 lines, 11 attrs]
+        - VehicleAccessPromptService_Active (Script) [script_0079, 130 lines]
+        - VehiclePerformanceRuntimeService_Active (Script) [script_0080, 35 lines, 2 attrs]
+        - VehiclePerformanceV2ShadowService_Active (Script) [script_0081, 34 lines, 1 attrs]
       - World (Folder)
         - Lighting (Folder)
-          - LightingService_Active (Script) [script_0074, 115 lines, 9 attrs]
+          - LightingService_Active (Script) [script_0082, 115 lines, 9 attrs]
         - Traffic (Folder)
-          - TrafficLightService (Script) [script_0075, 46 lines, 3 attrs]
+          - TrafficLightService (Script) [script_0083, 46 lines, 3 attrs]
           - README_MigrationNotes (StringValue)
     - State (Folder)
       - RuntimeProfiles (Folder)
@@ -4103,88 +4115,95 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
     - NeoTokyoRacersClient (Folder) [6 attrs]
       - Controllers (Folder) [3 attrs]
         - Core (Folder)
-          - CatalogClient (ModuleScript) [script_0076, 110 lines, 4 attrs]
-          - ClientState (ModuleScript) [script_0077, 75 lines, 4 attrs]
-          - ClientThemeAdapter (ModuleScript) [script_0078, 73 lines, 6 attrs]
-          - GarageApiClient (ModuleScript) [script_0079, 38 lines, 4 attrs]
-          - PaintClient (ModuleScript) [script_0080, 142 lines, 10 attrs]
+          - CatalogClient (ModuleScript) [script_0084, 110 lines, 4 attrs]
+          - ClientState (ModuleScript) [script_0085, 75 lines, 4 attrs]
+          - ClientThemeAdapter (ModuleScript) [script_0086, 73 lines, 6 attrs]
+          - GarageApiClient (ModuleScript) [script_0087, 38 lines, 4 attrs]
+          - PaintClient (ModuleScript) [script_0088, 142 lines, 10 attrs]
         - Debug (Folder)
-          - StudioCashGrantClient_Active (LocalScript) [script_0081, 47 lines]
+          - StudioCashGrantClient_Active (LocalScript) [script_0089, 47 lines]
         - Garage (Folder)
         - Intro (Folder)
-          - CockpitCustomisationZoneClient_Active (LocalScript) [script_0082, Disabled, 77 lines, 2 attrs]
-          - DealershipIntroClient_Active (LocalScript) [script_0083, 725 lines, 9 attrs]
-          - DriveInCustomisationZoneClient_Active (LocalScript) [script_0084, Disabled, 343 lines, 1 attrs]
-          - GarageEntranceController_Active (LocalScript) [script_0085, 187 lines, 1 attrs]
+          - CockpitCustomisationZoneClient_Active (LocalScript) [script_0090, Disabled, 77 lines, 2 attrs]
+          - DealershipIntroClient_Active (LocalScript) [script_0091, 725 lines, 9 attrs]
+          - DriveInCustomisationZoneClient_Active (LocalScript) [script_0092, Disabled, 343 lines, 1 attrs]
+          - GarageEntranceController_Active (LocalScript) [script_0093, 187 lines, 1 attrs]
         - Preview (Folder)
-          - GaragePreviewPresentationController_Active (LocalScript) [script_0086, 317 lines]
-          - ThrustPreviewController_Active (LocalScript) [script_0087, 74 lines, 17 attrs]
-          - GarageModuleInstancePreviewAdapter (ModuleScript) [script_0088, 98 lines]
-          - GarageVehiclePreviewProfile (ModuleScript) [script_0089, 75 lines]
-          - PreviewCameraController (ModuleScript) [script_0090, 56 lines, 5 attrs]
-          - PreviewVehicleController (ModuleScript) [script_0091, 80 lines, 5 attrs]
+          - GaragePreviewPresentationController_Active (LocalScript) [script_0094, 317 lines]
+          - ThrustPreviewController_Active (LocalScript) [script_0095, 74 lines, 17 attrs]
+          - GarageModuleInstancePreviewAdapter (ModuleScript) [script_0096, 98 lines]
+          - GarageVehiclePreviewProfile (ModuleScript) [script_0097, 75 lines]
+          - PreviewCameraController (ModuleScript) [script_0098, 56 lines, 5 attrs]
+          - PreviewVehicleController (ModuleScript) [script_0099, 80 lines, 5 attrs]
         - Racing (Folder)
           - RaceEntryLegacyAction (BindableEvent)
           - RaceEntryPresentationRequest (BindableEvent)
           - RaceTransitionRequest (BindableEvent)
           - RaceTransitionStateChanged (BindableEvent)
           - StartRaceQueueRequest (BindableEvent)
-          - RaceBrowserClient_Active (LocalScript) [script_0092, 593 lines]
-          - RaceClient_Active (LocalScript) [script_0093, Disabled, 276 lines]
-          - RaceCountdownPresentationController_Active (LocalScript) [script_0094, 36 lines]
-          - RaceEntryMenuClient_Active (LocalScript) [script_0095, 88 lines]
-          - RaceEntryPresentationController_Active (LocalScript) [script_0096, 904 lines]
-          - RaceHudExitCleanupClient_Active (LocalScript) [script_0097, 81 lines]
-          - RaceParticipantVisibilityClient_Active (LocalScript) [script_0098, 66 lines]
-          - RacePersonalBestBoardClient_Active (LocalScript) [script_0099, 311 lines]
-          - RaceQueueClient_Active (LocalScript) [script_0100, 49 lines]
-          - RaceRouteGuideClient_Active (LocalScript) [script_0101, 427 lines]
-          - RaceSessionAssetsClient_Active (LocalScript) [script_0102, 244 lines]
-          - RaceSessionControlsClient_Active (LocalScript) [script_0103, 254 lines]
-          - RaceSessionPresentationController_Active (LocalScript) [script_0104, 282 lines]
-          - RaceTimeTrialResultCoachClient_Active (LocalScript) [script_0105, 214 lines]
-          - RaceTransitionClient_Active (LocalScript) [script_0106, 261 lines]
+          - RaceBrowserClient_Active (LocalScript) [script_0100, 593 lines]
+          - RaceClient_Active (LocalScript) [script_0101, Disabled, 276 lines]
+          - RaceCountdownPresentationController_Active (LocalScript) [script_0102, 36 lines]
+          - RaceEntryMenuClient_Active (LocalScript) [script_0103, 88 lines]
+          - RaceEntryPresentationController_Active (LocalScript) [script_0104, 904 lines]
+          - RaceHudExitCleanupClient_Active (LocalScript) [script_0105, 81 lines]
+          - RaceParticipantVisibilityClient_Active (LocalScript) [script_0106, 66 lines]
+          - RacePersonalBestBoardClient_Active (LocalScript) [script_0107, 311 lines]
+          - RaceQueueClient_Active (LocalScript) [script_0108, 49 lines]
+          - RaceRouteGuideClient_Active (LocalScript) [script_0109, 427 lines]
+          - RaceSessionAssetsClient_Active (LocalScript) [script_0110, 244 lines]
+          - RaceSessionControlsClient_Active (LocalScript) [script_0111, 254 lines]
+          - RaceSessionPresentationController_Active (LocalScript) [script_0112, 282 lines]
+          - RaceTimeTrialResultCoachClient_Active (LocalScript) [script_0113, 214 lines]
+          - RaceTransitionClient_Active (LocalScript) [script_0114, 261 lines]
         - Runtime (Folder)
-          - CharacterSprintController_Active (LocalScript) [script_0107, 358 lines, 1 attrs]
-          - DriveHudController_Active (LocalScript) [script_0108, 3 lines, 7 attrs]
-          - FreeRoamParkedHoverController_Active (LocalScript) [script_0109, 209 lines]
-          - MobileDriveControlsController_Active (LocalScript) [script_0110, 200 lines, 13 attrs]
-          - RuntimeVFXController_Active (LocalScript) [script_0111, 16 lines, 9 attrs]
+          - CharacterSprintController_Active (LocalScript) [script_0115, 358 lines, 1 attrs]
+          - DriveHudController_Active (LocalScript) [script_0116, 3 lines, 7 attrs]
+          - FreeRoamParkedHoverController_Active (LocalScript) [script_0117, 209 lines]
+          - MobileDriveControlsController_Active (LocalScript) [script_0118, 200 lines, 13 attrs]
+          - RuntimeVFXController_Active (LocalScript) [script_0119, 16 lines, 9 attrs]
         - UI (Folder)
           - FreeRoamHudPresentationMode (BindableEvent)
+          - OpenOwnedGarageBrowser (BindableEvent) [3 attrs]
+          - OpenOwnedGarageWorkspace (BindableEvent) [3 attrs]
           - OpenRaceBrowser (BindableEvent)
-          - DesktopFreeRoamHudController_Active (LocalScript) [script_0112, 1142 lines, 2 attrs]
-          - FreeRoamNavController_Active (LocalScript) [script_0113, 3 lines, 3 attrs]
-          - FreeRoamVehicleExitButton_Active (LocalScript) [script_0114, 3 lines]
-          - GarageExperienceController_Active (LocalScript) [script_0115, Disabled, 206 lines, 3 attrs]
-          - MobileFreeRoamHudController_Active (LocalScript) [script_0116, 314 lines, 2 attrs]
-          - CockpitPaintUIController (ModuleScript) [script_0117, 46 lines, 5 attrs]
-          - ColourPickerController (ModuleScript) [script_0118, 277 lines, 5 attrs]
-          - CustomisationUIController (ModuleScript) [script_0119, 127 lines, 5 attrs]
-          - DealershipUIController (ModuleScript) [script_0120, 87 lines, 5 attrs]
-          - GarageBrowserController (ModuleScript) [script_0121, 133 lines]
-          - GarageModuleCardViewModel (ModuleScript) [script_0122, 61 lines]
-          - GaragePropertyMenuController (ModuleScript) [script_0123, 174 lines, 2 attrs]
-          - GarageReplacementComponents (ModuleScript) [script_0124, 235 lines]
-          - GarageWorkspaceController (ModuleScript) [script_0125, 268 lines]
-          - ModuleShopUIController (ModuleScript) [script_0126, 272 lines, 5 attrs]
-          - NavigationController (ModuleScript) [script_0127, 49 lines, 5 attrs]
-          - StatsPanelController (ModuleScript) [script_0128, 51 lines, 5 attrs]
+          - DesktopFreeRoamHudController_Active (LocalScript) [script_0120, 1144 lines, 4 attrs]
+          - FreeRoamNavController_Active (LocalScript) [script_0121, 3 lines, 3 attrs]
+          - FreeRoamVehicleExitButton_Active (LocalScript) [script_0122, 3 lines]
+          - GarageExperienceController_Active (LocalScript) [script_0123, Disabled, 206 lines, 3 attrs]
+          - MobileFreeRoamHudController_Active (LocalScript) [script_0124, 317 lines, 4 attrs]
+          - OwnedGarageClient_Active (LocalScript) [script_0125, 6 lines, 2 attrs]
+          - CockpitPaintUIController (ModuleScript) [script_0126, 46 lines, 5 attrs]
+          - ColourPickerController (ModuleScript) [script_0127, 277 lines, 5 attrs]
+          - CustomisationUIController (ModuleScript) [script_0128, 127 lines, 5 attrs]
+          - DealershipUIController (ModuleScript) [script_0129, 87 lines, 5 attrs]
+          - GarageBrowserController (ModuleScript) [script_0130, 133 lines]
+          - GarageInteriorModeController (ModuleScript) [script_0131, 11 lines, 3 attrs]
+          - GarageInteriorTransitionController (ModuleScript) [script_0132, 14 lines, 3 attrs]
+          - GarageModuleCardViewModel (ModuleScript) [script_0133, 61 lines]
+          - GaragePropertyMenuController (ModuleScript) [script_0134, 174 lines, 2 attrs]
+          - GarageReplacementComponents (ModuleScript) [script_0135, 235 lines]
+          - GarageWorkspaceController (ModuleScript) [script_0136, 268 lines]
+          - ModuleShopUIController (ModuleScript) [script_0137, 272 lines, 5 attrs]
+          - NavigationController (ModuleScript) [script_0138, 49 lines, 5 attrs]
+          - OwnedGarageBrowserController (ModuleScript) [script_0139, 56 lines, 2 attrs]
+          - OwnedGarageWorkspaceController (ModuleScript) [script_0140, 51 lines, 2 attrs]
+          - StatsPanelController (ModuleScript) [script_0141, 51 lines, 5 attrs]
           - README_TargetControllers (StringValue)
         - World (Folder)
-          - GarageAccessClient_Active (LocalScript) [script_0129, 279 lines, 1 attrs]
-          - GarageInteriorClient_Active (LocalScript) [script_0130, 92 lines, 2 attrs]
-          - GarageInteriorCustomizationClient_Active (LocalScript) [script_0131, 273 lines, 1 attrs]
-          - LODClient_Active (LocalScript) [script_0132, 365 lines, 12 attrs]
-          - NightLamppostLightController_Active (LocalScript) [script_0133, 21 lines, 2 attrs]
-          - WindowMaterialController_Active (LocalScript) [script_0134, 28 lines, 2 attrs]
+          - GarageAccessClient_Active (LocalScript) [script_0142, Disabled, 279 lines, 4 attrs]
+          - GarageInteriorClient_Active (LocalScript) [script_0143, Disabled, 92 lines, 5 attrs]
+          - GarageInteriorCustomizationClient_Active (LocalScript) [script_0144, Disabled, 273 lines, 4 attrs]
+          - LODClient_Active (LocalScript) [script_0145, 365 lines, 12 attrs]
+          - NightLamppostLightController_Active (LocalScript) [script_0146, 21 lines, 2 attrs]
+          - WindowMaterialController_Active (LocalScript) [script_0147, 28 lines, 2 attrs]
       - RuntimeState (Folder)
       - State (Folder)
-      - NeoTokyoRacersClient_Bootstrap_Shadow_Disabled (LocalScript) [script_0135, 4226 lines, 64 attrs]
-    - LocalScript (LocalScript) [script_0136, 203 lines]
-    - TEMP_LightingPreview (LocalScript) [script_0137, 39 lines, 2 attrs]
-    - TrailerMode.client.lua (LocalScript) [script_0138, 73 lines]
-    - TrailerShot01Camera (LocalScript) [script_0139, 92 lines]
+      - NeoTokyoRacersClient_Bootstrap_Shadow_Disabled (LocalScript) [script_0148, 4226 lines, 64 attrs]
+    - LocalScript (LocalScript) [script_0149, 203 lines]
+    - TEMP_LightingPreview (LocalScript) [script_0150, 39 lines, 2 attrs]
+    - TrailerMode.client.lua (LocalScript) [script_0151, 73 lines]
+    - TrailerShot01Camera (LocalScript) [script_0152, 92 lines]
 - StarterGui (StarterGui)
   - NeoTokyoRacersUI (ScreenGui) [2 attrs]
     - Components (Folder) [1 attrs]
@@ -4857,9 +4876,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                         - UITextSizeConstraint (UITextSizeConstraint)
                 - TKY_SIMPLE_POP_BB_08_shiro_fit_MEDIUM_2X1_H (Model) [18 attrs]
                   - BillboardPanel (Part)
+                  - BillboardPanel (Part)
                     - FrontSurfaceGui (SurfaceGui)
                       - AtlasImageLabel (ImageLabel)
-                  - BillboardPanel (Part)
                   - BillboardPanel (Part)
                 - TKY_SIMPLE_POP_BB_13_roku_mode_MEDIUM_2X1_H (Model) [18 attrs]
                   - BillboardPanel (Part)
@@ -5210,15 +5229,15 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - Street Lamp Tall A (Model)
                     - lamppost main (MeshPart)
                     - lamppost neon (MeshPart)
-                      - SurfaceLight lamppost (SurfaceLight)
-                  - Street Lamp Tall A (Model)
-                    - lamppost main (MeshPart)
-                    - lamppost neon (MeshPart)
-                      - SurfaceLight lamppost (SurfaceLight)
-                  - Street Lamp Tall A (Model)
-                    - lamppost main (MeshPart)
-                    - lamppost neon (MeshPart)
                       - SurfaceLight lamppost (SurfaceLight) [1 attrs]
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
                   - Street Lamp Tall A (Model)
                     - lamppost main (MeshPart)
                     - lamppost neon (MeshPart)
@@ -5762,8 +5781,8 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - Road Marking White (Part)
                     - Road Marking White (Part)
                     - Road Marking White (Part)
-                    - Road Marking White (Part)
                   - Road Marking Dashed Line (Model)
+                    - Road Marking White (Part)
                     - Road Marking White (Part)
                     - Road Marking White (Part)
                     - Road Marking White (Part)
@@ -5984,40 +6003,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - Street Lamp Tall A (Model)
                     - lamppost main (MeshPart)
                     - lamppost neon (MeshPart)
-                      - SurfaceLight lamppost (SurfaceLight) [1 attrs]
-                  - Street Lamp Tall A (Model)
-                    - lamppost main (MeshPart)
-                    - lamppost neon (MeshPart)
                       - SurfaceLight lamppost (SurfaceLight)
-                  - Street Lamp Tall A (Model)
-                    - lamppost main (MeshPart)
-                    - lamppost neon (MeshPart)
-                      - SurfaceLight lamppost (SurfaceLight)
-                  - Street Lamp Tall A (Model)
-                    - lamppost main (MeshPart)
-                    - lamppost neon (MeshPart)
-                      - SurfaceLight lamppost (SurfaceLight)
-                  - Street Lamp Tall A (Model)
-                    - lamppost main (MeshPart)
-                    - lamppost neon (MeshPart)
-                      - SurfaceLight lamppost (SurfaceLight)
-                  - Street Lamp Tall A (Model)
-                    - lamppost main (MeshPart)
-                    - lamppost neon (MeshPart)
-                      - SurfaceLight lamppost (SurfaceLight)
-                  - Street Lamp Tall A (Model)
-                    - lamppost main (MeshPart)
-                    - lamppost neon (MeshPart)
-                      - SurfaceLight lamppost (SurfaceLight)
-                  - Street Lamp Tall A (Model)
-                    - lamppost main (MeshPart)
-                    - lamppost neon (MeshPart)
-                      - SurfaceLight lamppost (SurfaceLight)
-                  - Street Lamp Tall A (Model)
-                    - lamppost main (MeshPart)
-                    - lamppost neon (MeshPart)
-                      - SurfaceLight lamppost (SurfaceLight)
-                - Street Lights Group Back (Model)
                   - Street Lamp Tall A (Model)
                     - lamppost main (MeshPart)
                     - lamppost neon (MeshPart)
@@ -6042,10 +6028,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - lamppost main (MeshPart)
                     - lamppost neon (MeshPart)
                       - SurfaceLight lamppost (SurfaceLight) [1 attrs]
-                  - Street Lamp Tall A (Model)
-                    - lamppost main (MeshPart)
-                    - lamppost neon (MeshPart)
-                      - SurfaceLight lamppost (SurfaceLight)
                   - Street Lamp Tall A (Model)
                     - lamppost main (MeshPart)
                     - lamppost neon (MeshPart)
@@ -6075,6 +6057,43 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - lamppost main (MeshPart)
                     - lamppost neon (MeshPart)
                       - SurfaceLight lamppost (SurfaceLight) [1 attrs]
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                - Street Lights Group Back (Model)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight) [1 attrs]
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
                   - Street Lamp Tall A (Model)
                     - lamppost main (MeshPart)
                     - lamppost neon (MeshPart)
@@ -6157,50 +6176,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - SurfaceAppearance (SurfaceAppearance)
                   - bush long (MeshPart)
                     - SurfaceAppearance (SurfaceAppearance)
-                  - path bush walls (Part)
-                  - path bush walls (Part)
-                  - path bush walls (Part)
-                  - path bush walls (Part)
-                  - path bush walls (Part)
-                - Path Bush Group Back (Model)
-                  - bush long (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
-                  - bush long (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
-                  - bush long (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
-                  - bush long (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
-                  - bush long (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
-                  - bush long (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
-                  - bush long (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
-                  - bush long (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
-                  - bush long (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
-                  - bush long (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
-                  - bush long (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
-                  - bush long (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
-                  - bush long (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
-                  - bush long (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
-                  - bush long (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
-                  - bush long (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
-                  - bush long (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
-                  - bush long (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
-                  - bush long (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
                   - bush long (MeshPart)
                     - SurfaceAppearance (SurfaceAppearance)
                   - path bush walls (Part)
@@ -6247,6 +6222,50 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - SurfaceAppearance (SurfaceAppearance)
                   - bush long (MeshPart)
                     - SurfaceAppearance (SurfaceAppearance)
+                  - path bush walls (Part)
+                  - path bush walls (Part)
+                  - path bush walls (Part)
+                - Path Bush Group Back (Model)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - path bush walls (Part)
+                  - path bush walls (Part)
                   - path bush walls (Part)
                   - path bush walls (Part)
                   - path bush walls (Part)
@@ -6346,6 +6365,15 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - TrunkLargeMaple1 (MeshPart)
                         - SurfaceAppearance Trunk (SurfaceAppearance)
                     - Tree Base Concrete (UnionOperation)
+                  - Tree Large Maple (Model)
+                    - Tree_Large_Maple_LOD3 (Model)
+                      - LeavesMapleBottom1 (MeshPart)
+                        - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                      - LeavesMapleShadow2 (MeshPart)
+                        - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                      - TrunkLargeMaple1 (MeshPart)
+                        - SurfaceAppearance Trunk (SurfaceAppearance)
+                    - Tree Base Concrete (UnionOperation)
                   - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
                     - Leaves_Large_Poplar (MeshPart)
                       - SurfaceAppearance Leaves Maple (SurfaceAppearance)
@@ -6382,15 +6410,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - Trunk_Large_Poplar (MeshPart)
                       - SurfaceAppearance Trunk (SurfaceAppearance)
                 - Trees Back (Model)
-                  - Tree Large Maple (Model)
-                    - Tree_Large_Maple_LOD3 (Model)
-                      - LeavesMapleBottom1 (MeshPart)
-                        - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                      - LeavesMapleShadow2 (MeshPart)
-                        - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                      - TrunkLargeMaple1 (MeshPart)
-                        - SurfaceAppearance Trunk (SurfaceAppearance)
-                    - Tree Base Concrete (UnionOperation)
                   - Tree Large Maple (Model)
                     - Tree_Large_Maple_LOD3 (Model)
                       - LeavesMapleBottom1 (MeshPart)
@@ -6568,10 +6587,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                     - SurfaceAppearance (SurfaceAppearance)
                   - bush long (MeshPart)
                     - SurfaceAppearance (SurfaceAppearance)
-                  - bush long (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
-                  - bush long (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
                   - Road Central Divider (Part)
                   - Road Central Divider Circle (Part)
                   - Road Central Divider Circle (Part)
@@ -6620,6 +6635,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - Road Central Divider Circle (Part)
                   - Road Central Divider Circle (Part)
                 - Road Central Divider (Model)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
                   - bush long (MeshPart)
                     - SurfaceAppearance (SurfaceAppearance)
                   - bush long (MeshPart)
@@ -7420,16 +7439,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                         - Battery (Model)
                           - Battery (MeshPart)
                             - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-                        - Gascan (Model)
-                          - Gascan (MeshPart)
-                            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-                        - Shelf.001 (Model)
-                          - Shelf (MeshPart)
-                            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-                      - shelves group (Model)
-                        - Battery (Model)
-                          - Battery (MeshPart)
-                            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
                         - Battery (Model)
                           - Battery (MeshPart)
                             - SA_Racing_Metal_Trim_a (SurfaceAppearance)
@@ -7474,20 +7483,8 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                         - Battery (Model)
                           - Battery (MeshPart)
                             - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-                        - Battery (Model)
-                          - Battery (MeshPart)
-                            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-                        - Battery (Model)
-                          - Battery (MeshPart)
-                            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
                         - Gascan (Model)
                           - Gascan (MeshPart)
-                            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-                        - Gascan (Model)
-                          - Gascan (MeshPart)
-                            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-                        - Shelf.001 (Model)
-                          - Shelf (MeshPart)
                             - SA_Racing_Metal_Trim_a (SurfaceAppearance)
                         - Shelf.001 (Model)
                           - Shelf (MeshPart)
@@ -7498,6 +7495,28 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                             - SA_Racing_Metal_Trim_a (SurfaceAppearance)
                         - Gascan (Model)
                           - Gascan (MeshPart)
+                            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                        - Shelf.001 (Model)
+                          - Shelf (MeshPart)
+                            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                      - shelves group (Model)
+                        - Battery (Model)
+                          - Battery (MeshPart)
+                            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                        - Battery (Model)
+                          - Battery (MeshPart)
+                            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                        - Battery (Model)
+                          - Battery (MeshPart)
+                            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                        - Gascan (Model)
+                          - Gascan (MeshPart)
+                            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                        - Gascan (Model)
+                          - Gascan (MeshPart)
+                            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                        - Shelf.001 (Model)
+                          - Shelf (MeshPart)
                             - SA_Racing_Metal_Trim_a (SurfaceAppearance)
                         - Shelf.001 (Model)
                           - Shelf (MeshPart)
@@ -7647,6 +7666,15 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                         - truss_25_b (MeshPart)
                           - SA_Racing_Metal_Trim_a (SurfaceAppearance)
                     - left side (Model)
+                      - Battery (Model)
+                        - Battery (MeshPart)
+                          - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                      - Battery (Model)
+                        - Battery (MeshPart)
+                          - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                      - Battery (Model)
+                        - Battery (MeshPart)
+                          - SA_Racing_Metal_Trim_a (SurfaceAppearance)
                       - Box_A (Model)
                         - Box_A (MeshPart)
                           - SA_Racing_Metal_Trim_a (SurfaceAppearance)
@@ -7764,8 +7792,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                         - Locker_B (MeshPart)
                           - SA_Racing_Metal_Trim_a (SurfaceAppearance)
                       - Locker_B (Model)
-                        - Locker_B (MeshPart)
-                          - SA_Racing_Metal_Trim_a (SurfaceAppearance)
                       - Locker_B (Model)
                         - Locker_B (MeshPart)
                           - SA_Racing_Metal_Trim_a (SurfaceAppearance)
@@ -7806,6 +7832,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                         - Shelf.001 (Model)
                           - Shelf (MeshPart)
                             - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                      - Shelf.001 (Model)
+                        - Shelf (MeshPart)
+                          - SA_Racing_Metal_Trim_a (SurfaceAppearance)
                       - Shelf_A (Model)
                         - Shelf_A (MeshPart)
                           - SA_Racing_Metal_Trim_a (SurfaceAppearance)
@@ -7906,15 +7935,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                         - StripLightBulb (Part)
                           - SurfaceLight (SurfaceLight)
                     - left side (Model)
-                      - Battery (Model)
-                        - Battery (MeshPart)
-                          - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-                      - Battery (Model)
-                        - Battery (MeshPart)
-                          - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-                      - Battery (Model)
-                        - Battery (MeshPart)
-                          - SA_Racing_Metal_Trim_a (SurfaceAppearance)
                       - Box_A (Model)
                         - Box_A (MeshPart)
                           - SA_Racing_Metal_Trim_a (SurfaceAppearance)
@@ -8026,6 +8046,8 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                         - Locker_B (MeshPart)
                           - SA_Racing_Metal_Trim_a (SurfaceAppearance)
                       - Locker_B (Model)
+                        - Locker_B (MeshPart)
+                          - SA_Racing_Metal_Trim_a (SurfaceAppearance)
                       - Locker_B (Model)
                         - Locker_B (MeshPart)
                           - SA_Racing_Metal_Trim_a (SurfaceAppearance)
@@ -8072,9 +8094,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                         - Shelf.001 (Model)
                           - Shelf (MeshPart)
                             - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-                      - Shelf.001 (Model)
-                        - Shelf (MeshPart)
-                          - SA_Racing_Metal_Trim_a (SurfaceAppearance)
                       - Shelf_A (Model)
                         - Shelf_A (MeshPart)
                           - SA_Racing_Metal_Trim_a (SurfaceAppearance)
@@ -9177,39 +9196,39 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                         - trunk small bamboo (MeshPart)
                           - SurfaceAppearance Trunk (SurfaceAppearance)
                       - Tree Base Concrete (UnionOperation)
+                  - bamboo (Model)
+                    - Tree Small Bamboo Group (Model)
+                      - Tree_Small_Bamboo_LOD3 (Model)
+                        - leaves small bamboo (MeshPart)
+                          - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
+                        - trunk small bamboo (MeshPart)
+                          - SurfaceAppearance Trunk (SurfaceAppearance)
+                      - Tree Base Concrete (UnionOperation)
+                  - bamboo (Model)
+                    - Tree Small Bamboo Group (Model)
+                      - Tree_Small_Bamboo_LOD3 (Model)
+                        - leaves small bamboo (MeshPart)
+                          - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
+                        - trunk small bamboo (MeshPart)
+                          - SurfaceAppearance Trunk (SurfaceAppearance)
+                      - Tree Base Concrete (UnionOperation)
+                  - bamboo (Model)
+                    - Tree Small Bamboo Group (Model)
+                      - Tree_Small_Bamboo_LOD3 (Model)
+                        - leaves small bamboo (MeshPart)
+                          - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
+                        - trunk small bamboo (MeshPart)
+                          - SurfaceAppearance Trunk (SurfaceAppearance)
+                      - Tree Base Concrete (UnionOperation)
+                  - bamboo (Model)
+                    - Tree Small Bamboo Group (Model)
+                      - Tree_Small_Bamboo_LOD3 (Model)
+                        - leaves small bamboo (MeshPart)
+                          - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
+                        - trunk small bamboo (MeshPart)
+                          - SurfaceAppearance Trunk (SurfaceAppearance)
+                      - Tree Base Concrete (UnionOperation)
                 - bamboo group a (Model)
-                  - bamboo (Model)
-                    - Tree Small Bamboo Group (Model)
-                      - Tree_Small_Bamboo_LOD3 (Model)
-                        - leaves small bamboo (MeshPart)
-                          - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
-                        - trunk small bamboo (MeshPart)
-                          - SurfaceAppearance Trunk (SurfaceAppearance)
-                      - Tree Base Concrete (UnionOperation)
-                  - bamboo (Model)
-                    - Tree Small Bamboo Group (Model)
-                      - Tree_Small_Bamboo_LOD3 (Model)
-                        - leaves small bamboo (MeshPart)
-                          - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
-                        - trunk small bamboo (MeshPart)
-                          - SurfaceAppearance Trunk (SurfaceAppearance)
-                      - Tree Base Concrete (UnionOperation)
-                  - bamboo (Model)
-                    - Tree Small Bamboo Group (Model)
-                      - Tree_Small_Bamboo_LOD3 (Model)
-                        - leaves small bamboo (MeshPart)
-                          - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
-                        - trunk small bamboo (MeshPart)
-                          - SurfaceAppearance Trunk (SurfaceAppearance)
-                      - Tree Base Concrete (UnionOperation)
-                  - bamboo (Model)
-                    - Tree Small Bamboo Group (Model)
-                      - Tree_Small_Bamboo_LOD3 (Model)
-                        - leaves small bamboo (MeshPart)
-                          - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
-                        - trunk small bamboo (MeshPart)
-                          - SurfaceAppearance Trunk (SurfaceAppearance)
-                      - Tree Base Concrete (UnionOperation)
                   - bamboo (Model)
                     - Tree Small Bamboo Group (Model)
                       - Tree_Small_Bamboo_LOD3 (Model)
@@ -10122,12 +10141,12 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                   - TKY_JP_TEXT_BB_11_GinClock_SilverClock_3X2_H (Model) [11 attrs]
                     - BillboardPanel (Part)
                     - BillboardPanel (Part)
-                    - BillboardPanel (Part)
-                    - BillboardPanel (Part)
                       - FrontSurfaceGui (SurfaceGui)
                         - EnglishBrandText (TextLabel)
                           - UITextSizeConstraint (UITextSizeConstraint)
                         - JapaneseBrandText (TextLabel)
+                    - BillboardPanel (Part)
+                    - BillboardPanel (Part)
                   - TKY_JP_TEXT_BB_12_NijiCamera_RainbowCamera_2X1_H (Model) [11 attrs]
                     - BillboardPanel (Part)
                       - FrontSurfaceGui (SurfaceGui)
@@ -10892,15 +10911,15 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                       - FrontSurfaceGui (SurfaceGui)
                         - EnglishBrandText (TextLabel)
                           - UITextSizeConstraint (UITextSizeConstraint)
+                  - TKY_JP_TEXT_BB_14_KazeHotel_WindHotel_2X1_H (Model) [11 attrs]
+                    - BillboardPanel (Part)
+                      - FrontSurfaceGui (SurfaceGui)
                         - JapaneseBrandText (TextLabel)
                   - TKY_JP_TEXT_BB_14_KazeHotel_WindHotel_2X1_H (Model) [11 attrs]
                     - BillboardPanel (Part)
                       - FrontSurfaceGui (SurfaceGui)
                         - EnglishBrandText (TextLabel)
                           - UITextSizeConstraint (UITextSizeConstraint)
-                  - TKY_JP_TEXT_BB_14_KazeHotel_WindHotel_2X1_H (Model) [11 attrs]
-                    - BillboardPanel (Part)
-                      - FrontSurfaceGui (SurfaceGui)
                         - JapaneseBrandText (TextLabel)
               - Foliage (Folder)
               - Paths (Folder)
@@ -11961,7 +11980,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                         - SurfaceAppearance Leaves Maple (SurfaceAppearance)
                       - TrunkLargeMaple1 (MeshPart)
                         - SurfaceAppearance Trunk (SurfaceAppearance)
-                    - Tree Base Concrete (UnionOperation)
                   - Tree Large Maple (Model)
                     - Tree_Large_Maple_LOD3 (Model)
                       - LeavesMapleBottom1 (MeshPart)
@@ -11988,6 +12006,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                         - SurfaceAppearance Leaves Maple (SurfaceAppearance)
                       - TrunkLargeMaple1 (MeshPart)
                         - SurfaceAppearance Trunk (SurfaceAppearance)
+                    - Tree Base Concrete (UnionOperation)
                   - Tree_Small_Bamboo_LOD3 (Model)
                     - leaves small bamboo (MeshPart)
                       - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
@@ -12951,24 +12970,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - SurfaceAppearance Leaves Maple (SurfaceAppearance)
           - leaves bush large (MeshPart)
             - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-          - Road Central Divider Detail (Part)
-          - Road Central Divider Detail (Part)
-          - Road Central Divider Detail (Part)
-          - Road Central Divider Dirt (Part)
-          - Road Central Divider Dirt (Part)
-          - Road Central Divider Dirt (Part)
-          - Road Central Divider Main (Part)
-          - Road Central Divider Main (Part)
-          - Road Central Divider Main (Part)
-        - Road Central Divider (Model)
-          - leaves bush large (MeshPart)
-            - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-          - leaves bush large (MeshPart)
-            - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-          - leaves bush large (MeshPart)
-            - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-          - leaves bush large (MeshPart)
-            - SurfaceAppearance Leaves Maple (SurfaceAppearance)
           - leaves bush large (MeshPart)
             - SurfaceAppearance Leaves Maple (SurfaceAppearance)
           - leaves bush large (MeshPart)
@@ -12999,6 +13000,24 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - SurfaceAppearance Leaves Maple (SurfaceAppearance)
           - leaves bush large (MeshPart)
             - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+          - leaves bush large (MeshPart)
+            - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+          - leaves bush large (MeshPart)
+            - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+          - leaves bush large (MeshPart)
+            - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+          - leaves bush large (MeshPart)
+            - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+          - Road Central Divider Detail (Part)
+          - Road Central Divider Detail (Part)
+          - Road Central Divider Detail (Part)
+          - Road Central Divider Dirt (Part)
+          - Road Central Divider Dirt (Part)
+          - Road Central Divider Dirt (Part)
+          - Road Central Divider Main (Part)
+          - Road Central Divider Main (Part)
+          - Road Central Divider Main (Part)
+        - Road Central Divider (Model)
           - leaves bush large (MeshPart)
             - SurfaceAppearance Leaves Maple (SurfaceAppearance)
           - leaves bush large (MeshPart)
@@ -15379,7 +15398,7 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
       - VehicleSpawnPoint (Part) [1 attrs]
     - Interactives (Folder)
       - GarageInteriorElevatorMVP (Part) [2 attrs]
-        - EnterPrivateGaragePrompt (ProximityPrompt) [1 attrs]
+        - EnterPrivateGaragePrompt (ProximityPrompt) [4 attrs]
     - Interiors (Folder)
       - GarageInstances (Folder) [3 attrs]
     - RaceInstances (Folder)
@@ -15487,9 +15506,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                 - SurfaceAppearance (SurfaceAppearance)
               - Race Arrows Flipped (MeshPart)
                 - SurfaceAppearance (SurfaceAppearance)
+            - race arrows group flipped (Model)
               - Race Arrows Flipped (MeshPart)
                 - SurfaceAppearance (SurfaceAppearance)
-            - race arrows group flipped (Model)
               - Race Arrows Flipped (MeshPart)
                 - SurfaceAppearance (SurfaceAppearance)
               - Race Arrows Flipped (MeshPart)
@@ -15549,19 +15568,19 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                 - SurfaceAppearance (SurfaceAppearance)
               - Race Arrows Flipped (MeshPart)
                 - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows Flipped (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows Flipped (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows Flipped (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows Flipped (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows Flipped (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows Flipped (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
             - race arrows group flipped (Model)
+              - Race Arrows Flipped (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows Flipped (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows Flipped (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows Flipped (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows Flipped (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows Flipped (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
               - Race Arrows Flipped (MeshPart)
                 - SurfaceAppearance (SurfaceAppearance)
               - Race Arrows Flipped (MeshPart)
@@ -15660,23 +15679,23 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                 - SurfaceAppearance (SurfaceAppearance)
               - Race Arrows Flipped (MeshPart)
                 - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows Flipped (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows Flipped (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows Flipped (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows Flipped (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows Flipped (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows Flipped (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows Flipped (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows Flipped (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
             - race arrows group flipped (Model)
-              - Race Arrows Flipped (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows Flipped (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows Flipped (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows Flipped (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows Flipped (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows Flipped (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows Flipped (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows Flipped (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
               - Race Arrows Flipped (MeshPart)
                 - SurfaceAppearance (SurfaceAppearance)
               - Race Arrows Flipped (MeshPart)
@@ -15732,9 +15751,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                 - SurfaceAppearance (SurfaceAppearance)
               - Race Arrows (MeshPart)
                 - SurfaceAppearance (SurfaceAppearance)
-            - race arrows group (Model)
               - Race Arrows (MeshPart)
                 - SurfaceAppearance (SurfaceAppearance)
+            - race arrows group (Model)
               - Race Arrows (MeshPart)
                 - SurfaceAppearance (SurfaceAppearance)
               - Race Arrows (MeshPart)
@@ -15793,9 +15812,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                 - SurfaceAppearance (SurfaceAppearance)
               - Race Arrows (MeshPart)
                 - SurfaceAppearance (SurfaceAppearance)
-            - race arrows group (Model)
               - Race Arrows (MeshPart)
                 - SurfaceAppearance (SurfaceAppearance)
+            - race arrows group (Model)
               - Race Arrows (MeshPart)
                 - SurfaceAppearance (SurfaceAppearance)
               - Race Arrows (MeshPart)
@@ -18272,19 +18291,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - Road (Part)
           - Road (Part)
         - Model (Model)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-        - Model (Model)
           - Model (Model)
             - Road (Part)
           - Model (Model)
@@ -18362,6 +18368,19 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Road (Part)
           - Model (Model)
             - Road (Part)
+        - Model (Model)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
         - Model (Model)
           - Roundabout (Part)
         - circle building (Model)
@@ -18398,18 +18417,18 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Road (Part)
             - Road (Part)
             - Road (Part)
-            - Road (Part)
-            - Road (Part)
-            - Road (Part)
-            - Road (Part)
-            - Road (Part)
-            - Road (Part)
-            - Road (Part)
-            - Road (Part)
-            - Road (Part)
-            - Road (Part)
-            - Road (Part)
           - columns (Model)
+            - Road (Part)
+            - Road (Part)
+            - Road (Part)
+            - Road (Part)
+            - Road (Part)
+            - Road (Part)
+            - Road (Part)
+            - Road (Part)
+            - Road (Part)
+            - Road (Part)
+            - Road (Part)
             - Road (Part)
             - Road (Part)
             - Road (Part)
@@ -18490,11 +18509,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Roundabout (Part)
           - Model (Model)
             - Roundabout (Part)
-        - roundabout (Model)
-          - Model (Model)
-            - Roundabout (Part)
-          - Model (Model)
-            - Roundabout (Part)
           - curb roundabout  (Model)
             - Road (Part)
             - Road (Part)
@@ -18519,6 +18533,11 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Road (Part)
             - Road (Part)
             - Road (Part)
+        - roundabout (Model)
+          - Model (Model)
+            - Roundabout (Part)
+          - Model (Model)
+            - Roundabout (Part)
         - Road (Part)
         - Road (Part)
         - Road (Part)
@@ -19809,6 +19828,11 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
         - Part (Part)
         - Part (Part)
       - Model (Model)
+        - Part (Part)
+        - Part (Part)
+        - Part (Part)
+        - Part (Part)
+      - Model (Model)
         - FBX - Crossroads 9 degrees v3 (Model)
           - Plane.001 (MeshPart)
         - FBX - Crossroads 9 degrees v3 (Model)
@@ -19829,11 +19853,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
         - FBX - Crossroads 9 degrees v3 (Model)
           - Plane.001 (MeshPart)
         - Road (Part)
-      - Model (Model)
-        - Part (Part)
-        - Part (Part)
-        - Part (Part)
-        - Part (Part)
       - Union (UnionOperation)
     - THE BLOCKS (Folder)
       - Block C2 Group (Folder)
@@ -20626,9 +20645,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -20706,9 +20725,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
@@ -20747,10 +20766,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -22622,10 +22641,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -22664,10 +22683,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -22677,6 +22696,14 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Walls (Part)
             - Garage Walls (Part)
             - Garage Walls Top (Part)
+          - bridge small a (Model)
+            - bridge small detail (MeshPart)
+            - bridge small main (MeshPart)
+            - bridge small neon (MeshPart)
+          - bridge small b (Model)
+            - bridge small detail (MeshPart)
+            - bridge small main (MeshPart)
+            - bridge small neon (MeshPart)
           - bush left side (Model)
             - bush long (MeshPart)
               - SurfaceAppearance (SurfaceAppearance)
@@ -22822,10 +22849,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -22864,9 +22891,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -22904,11 +22931,11 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -22947,9 +22974,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -23119,11 +23146,11 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -23160,11 +23187,11 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -23243,9 +23270,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -23452,9 +23479,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -23492,10 +23519,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -23532,10 +23559,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -23546,14 +23573,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Walls (Part)
             - Garage Walls (Part)
             - Garage Walls Top (Part)
-          - bridge small a (Model)
-            - bridge small detail (MeshPart)
-            - bridge small main (MeshPart)
-            - bridge small neon (MeshPart)
-          - bridge small b (Model)
-            - bridge small detail (MeshPart)
-            - bridge small main (MeshPart)
-            - bridge small neon (MeshPart)
           - bush left side (Model)
             - bush long (MeshPart)
               - SurfaceAppearance (SurfaceAppearance)
@@ -24780,10 +24799,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -24821,10 +24840,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -24862,9 +24881,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -24903,9 +24922,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -26904,9 +26923,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -27200,9 +27219,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
@@ -27242,9 +27261,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -27282,11 +27301,11 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -27324,10 +27343,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -28729,9 +28748,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                 - Garage Sign (Part)
                 - Garage Sign (Part)
                 - Garage Sign (Part)
+                - Garage Sign (Part)
                   - SurfaceGui (SurfaceGui)
                     - TextLabel (TextLabel)
-                - Garage Sign (Part)
                 - Garage Sign Clearance (Part)
                   - SurfaceGui (SurfaceGui)
                     - TextLabel (TextLabel)
@@ -28768,10 +28787,10 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                 - Garage Bollard Yellow (Part)
               - Garage Sign (Model)
                 - Garage Sign (Part)
+                - Garage Sign (Part)
+                - Garage Sign (Part)
                   - SurfaceGui (SurfaceGui)
                     - TextLabel (TextLabel)
-                - Garage Sign (Part)
-                - Garage Sign (Part)
                 - Garage Sign (Part)
                 - Garage Sign Clearance (Part)
                   - SurfaceGui (SurfaceGui)
@@ -28809,9 +28828,9 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                 - Garage Bollard Yellow (Part)
               - Garage Sign (Model)
                 - Garage Sign (Part)
-                - Garage Sign (Part)
                   - SurfaceGui (SurfaceGui)
                     - TextLabel (TextLabel)
+                - Garage Sign (Part)
                 - Garage Sign (Part)
                 - Garage Sign (Part)
                 - Garage Sign Clearance (Part)
@@ -28850,11 +28869,11 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
                 - Garage Bollard Yellow (Part)
               - Garage Sign (Model)
                 - Garage Sign (Part)
-                - Garage Sign (Part)
-                - Garage Sign (Part)
-                - Garage Sign (Part)
                   - SurfaceGui (SurfaceGui)
                     - TextLabel (TextLabel)
+                - Garage Sign (Part)
+                - Garage Sign (Part)
+                - Garage Sign (Part)
                 - Garage Sign Clearance (Part)
                   - SurfaceGui (SurfaceGui)
                     - TextLabel (TextLabel)
@@ -29253,6 +29272,42 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
       - stabilisers neon (MeshPart)
       - stabilisers primary (MeshPart)
       - stabilisers secondary (MeshPart)
+    - FBx - Test Base Vehicle v3 (Model) [1 attrs]
+      - boost detail (MeshPart)
+      - boost neon (MeshPart)
+      - boost primary (MeshPart)
+      - boost secondary (MeshPart)
+      - cockpit detail (MeshPart)
+      - cockpit glass (MeshPart)
+      - cockpit neon front (MeshPart)
+      - cockpit neon rear (MeshPart)
+      - cockpit primary (MeshPart)
+      - cockpit secondary (MeshPart)
+      - diffuser neon (MeshPart)
+      - diffuser primary (MeshPart)
+      - engine a detail (MeshPart)
+      - engine a neon (MeshPart)
+      - engine a primary (MeshPart)
+      - engine a secondary (MeshPart)
+      - engine b detail (MeshPart)
+      - engine b neon (MeshPart)
+      - engine b primary (MeshPart)
+      - engine b secondary (MeshPart)
+      - sidepods neon (MeshPart)
+      - sidepods primary (MeshPart)
+      - sidepods secondary (MeshPart)
+      - splitter detail (MeshPart)
+      - splitter neon (MeshPart)
+      - splitter primary (MeshPart)
+      - splitter secondary (MeshPart)
+      - spoiler detail (MeshPart)
+      - spoiler neon (MeshPart)
+      - spoiler primary (MeshPart)
+      - spoiler secondary (MeshPart)
+      - stabilisers detail (MeshPart)
+      - stabilisers neon (MeshPart)
+      - stabilisers primary (MeshPart)
+      - stabilisers secondary (MeshPart)
       - EngineOff_Host (Part)
         - TemplateAttachmentLong (Attachment)
           - EngineOff_Fire (ParticleEmitter) [1 attrs]
@@ -29330,42 +29385,6 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
           - TemplateBeamEndLong (Attachment)
           - BoostOn_Beam Flame (Beam) [6 attrs]
           - BoostOn_Fire (ParticleEmitter)
-    - FBx - Test Base Vehicle v3 (Model) [1 attrs]
-      - boost detail (MeshPart)
-      - boost neon (MeshPart)
-      - boost primary (MeshPart)
-      - boost secondary (MeshPart)
-      - cockpit detail (MeshPart)
-      - cockpit glass (MeshPart)
-      - cockpit neon front (MeshPart)
-      - cockpit neon rear (MeshPart)
-      - cockpit primary (MeshPart)
-      - cockpit secondary (MeshPart)
-      - diffuser neon (MeshPart)
-      - diffuser primary (MeshPart)
-      - engine a detail (MeshPart)
-      - engine a neon (MeshPart)
-      - engine a primary (MeshPart)
-      - engine a secondary (MeshPart)
-      - engine b detail (MeshPart)
-      - engine b neon (MeshPart)
-      - engine b primary (MeshPart)
-      - engine b secondary (MeshPart)
-      - sidepods neon (MeshPart)
-      - sidepods primary (MeshPart)
-      - sidepods secondary (MeshPart)
-      - splitter detail (MeshPart)
-      - splitter neon (MeshPart)
-      - splitter primary (MeshPart)
-      - splitter secondary (MeshPart)
-      - spoiler detail (MeshPart)
-      - spoiler neon (MeshPart)
-      - spoiler primary (MeshPart)
-      - spoiler secondary (MeshPart)
-      - stabilisers detail (MeshPart)
-      - stabilisers neon (MeshPart)
-      - stabilisers primary (MeshPart)
-      - stabilisers secondary (MeshPart)
     - FBx - Test Base Vehicle v3 (Model) [1 attrs]
       - boost detail (MeshPart)
       - boost neon (MeshPart)
@@ -29797,11 +29816,46 @@ Services scanned: ReplicatedStorage, ServerScriptService, StarterPlayer, Starter
   - FBX - 3D Lady Head v2 (Model) [1 attrs]
     - headMesh.002 (MeshPart)
       - SurfaceAppearance (SurfaceAppearance)
-    - Script (Script) [script_0140, 16 lines]
+    - Script (Script) [script_0153, 16 lines]
   - Terrain (Terrain)
 - ServerStorage (ServerStorage)
   - HOVER_RACING_SAVED_CARS_Runtime (Folder)
   - NeoTokyoRacers (Folder)
+    - OwnedGarage (Folder)
+      - Templates (Folder)
+        - StarterTwoBay (Model) [4 attrs]
+          - DecorationAnchors (Folder)
+            - DecorationAnchor1 (Part) [2 attrs]
+            - DecorationAnchor2 (Part) [2 attrs]
+            - DecorationAnchor3 (Part) [2 attrs]
+          - DisplaySpaceMarkers (Folder)
+            - Space01 (Part) [2 attrs]
+            - Space02 (Part) [2 attrs]
+          - ManagementDesk (Model)
+            - DeskBase (Part)
+            - DeskPromptAnchor (Part) [1 attrs]
+              - ManageGaragePrompt (ProximityPrompt)
+            - DeskTop (Part)
+          - BackWall (Part) [1 attrs]
+          - CharacterSpawn (Part) [1 attrs]
+          - DisplayPadNeon_Space01 (Part) [1 attrs]
+          - DisplayPadNeon_Space02 (Part) [1 attrs]
+          - DisplayPad_Space01 (Part) [2 attrs]
+          - DisplayPad_Space02 (Part) [2 attrs]
+          - DriveInMarker (Part) [1 attrs]
+          - DriveOutMarker (Part) [1 attrs]
+          - Floor (Part) [1 attrs]
+          - FootExitMarker (Part) [1 attrs]
+            - FootExitPrompt (ProximityPrompt)
+          - FrontDoorLintel (Part) [1 attrs]
+          - FrontWallLeft (Part) [1 attrs]
+          - FrontWallRight (Part) [1 attrs]
+          - LeftWall (Part) [1 attrs]
+          - PersonnelDoor (Part) [1 attrs]
+          - RearNeonTrim (Part)
+          - RightWall (Part) [1 attrs]
+          - Roof (Part) [1 attrs]
+          - TemplateOrigin (Part) [1 attrs]
     - Racing (Folder)
       - SessionAssetTemplates (Folder)
         - SimpleBarrier (Part)

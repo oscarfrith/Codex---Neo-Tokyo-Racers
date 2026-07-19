@@ -665,6 +665,8 @@ local V56_STARTING_CASH = V56_kit:GetAttribute("StartingCash") or 140000
 			warn("[NTR Persistence Phase 4] Legacy profile conversion failed: " .. tostring(converted))
 			return
 		end
+		-- NTR_OWNED_GARAGE_PHASE6_PERSISTENCE_PRESERVE_V1
+		local currentSaved=bindings.GetProfile:Invoke(player); if typeof(currentSaved)=="table" and typeof(currentSaved.OwnedGarage)=="table" then converted.OwnedGarage=V87_cloneValue(currentSaved.OwnedGarage) end
 		local okImport, importOk, importMessage = pcall(function()
 			-- NTR_PERSISTENCE_PHASE5_IMPORT_PROFILE_SNAPSHOT
 			return bindings.ImportProfileSnapshot:Invoke(player, converted, "GarageAction:" .. tostring(action or "Unknown"), markDirty == true)
@@ -2454,9 +2456,34 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		return true, "Entered vehicle."
 	end
 
+	-- NTR_OWNED_GARAGE_PHASE6_LIFECYCLE_BRIDGE_V1
+	local V100_ownedGarageLifecycle=script.Parent:WaitForChild("OwnedGarageVehicleLifecycleBridge")
+	V100_ownedGarageLifecycle.OnInvoke=function(operation,payload)
+		payload=typeof(payload)=="table" and payload or {}; local player=payload.Player
+		if not (player and player:IsA("Player")) then return {Success=false,Message="Player is required."} end
+		local profile=V56_getProfile(player)
+		if operation=="GetDrivenVehicle" then
+			local vehicle=V92_playerVehicle(player); if not (vehicle and V94_playerIsSeatedInVehicle(player,vehicle)) then return {Success=false,Message="No driven vehicle."} end
+			local root=V91_rootPart(vehicle); local vehicleId=tostring(profile.CurrentVehicleId or ""); if vehicleId=="" then return {Success=false,Message="Driven vehicle identity is unavailable."} end
+			return {Success=true,VehicleId=vehicleId,SpeedMph=V91_playerSpeedMph(player),VehicleCFrame=root and root.CFrame or nil}
+		elseif operation=="DespawnForGarage" then
+			local requested=tostring(payload.VehicleId or ""); if requested=="" or requested~=tostring(profile.CurrentVehicleId or "") then return {Success=false,Message="Driven vehicle identity changed."} end
+			local ok,message=V92_despawnVehicle(player); return {Success=ok==true,Message=message}
+		elseif operation=="SpawnFromGarage" then
+			local vehicleId=tostring(payload.VehicleId or ""); local previousVehicleId=tostring(profile.CurrentVehicleId or ""); local selected,message=V89_selectVehicleInstance(profile,{VehicleId=vehicleId}); if not selected then return {Success=false,Message=message} end
+			if not V76_coreModulesEquipped(profile) then if previousVehicleId~="" then V89_selectVehicleInstance(profile,{VehicleId=previousVehicleId}) end; return {Success=false,Message="Equip at least one engine, stabilisers, and boost before driving."} end
+			local vehicle,buildMessage=V56_buildVehicle(player,profile,payload.SpawnCFrame); if not vehicle then if previousVehicleId~="" then V89_selectVehicleInstance(profile,{VehicleId=previousVehicleId}) end; return {Success=false,Message=buildMessage or "Vehicle spawn failed."} end
+			V80_mirrorLegacyProfileToPersistence(player,profile,"OwnedGarageDriveOut",true); return {Success=true,Message="Vehicle spawned from garage.",Vehicle=vehicle,VehicleId=vehicleId}
+		end
+		return {Success=false,Message="Unknown owned garage lifecycle operation."}
+	end
+	V100_ownedGarageLifecycle:SetAttribute("OwnedGarageLifecycleReady",true)
+
 	V56_invoke.OnServerInvoke = function(player, action, args)
 		args = typeof(args) == "table" and args or {}
 		if player:GetAttribute("NTR_RaceQueueActive")==true and (action=="SelectVehicleInstance" or action=="SpawnOwnedVehicleFromFreeRoam" or action=="SpawnVehicle" or action=="DespawnVehicle") then return {Ok=false,Success=false,Message="Leave the race queue before changing vehicles."} end
+		-- NTR_OWNED_GARAGE_PHASE5_EXTERNAL_ACTION_GUARD_V1
+		if player:GetAttribute("NTR_OwnedGarageInside")==true and (action=="SelectVehicleInstance" or action=="SpawnOwnedVehicleFromFreeRoam" or action=="SpawnVehicle" or action=="DespawnVehicle" or action=="ExitVehicle" or action=="ReEnterVehicle") then return {Ok=false,Success=false,Message="Use the garage display spaces or exit door while inside your garage."} end
 		local okCall, result = pcall(function()
 			local profile = V56_getProfile(player)
 			profile._Player = player

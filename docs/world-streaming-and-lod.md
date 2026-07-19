@@ -6,6 +6,10 @@
 **Relevant docs file:** `docs/world-streaming-and-lod.md`  
 **Relevant files to edit:** LOD scripts, LOD folders, foliage proxy setup only. Do not edit vehicle or lighting files unless specifically requested.
 
+## 2026-07-19 Owned Garage Replacement Planning
+
+The current Phase 21-27 physical garage MVP is approved for clean replacement. Phases 0-5 passed and are mirrored at `2026-07-19 12:14:59`. `StarterTwoBay` stays in ServerStorage and the explicit-pool interior runtime creates nothing in Workspace until Phase 6 starts its single lifecycle owner. Phase 4 adds persistent catalogue styles only to parts carrying a template `SurfaceGroup`. Phase 5 makes the existing desktop/mobile HUD owners skip minimap visibility and map-coordinate work while `NTR_OwnedGarageInside` is true; it adds no map or frame-loop owner. Phase 6 is prepared to retire the old physical-garage services/prompt, clone only occupied canonical interiors into `OwnedGarageInstances`, and unload after exit, death/reset or disconnect. The configurable grid begins at `Y=3200`, safely away from the city and below-map destruction boundaries. Display vehicles remain anchored, non-drivable, collision/query/shadow-free and VFX-free.
+
 ## What The System Does
 
 The LOD system manages world detail based on player/camera distance. It is intended to keep the large open-world city performant, especially on mobile, by reducing distant detail and using far LOD proxies.

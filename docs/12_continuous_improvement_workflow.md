@@ -1,5 +1,9 @@
 # Continuous Improvement Workflow
 
+## Studio Command Bar persistence fault lesson (2026-07-19)
+
+If an installer reports success but newly created instances disappear while edits to existing Script sources remain, stop changing feature code. Create a harmless uniquely named Folder in one Command Bar command and read it in a second command in the same place. If that generic probe also disappears, fully restart Studio and repeat it before repairing the installer. A passing post-restart probe identifies a session-level Studio transaction fault; do not add feature-specific recovery logic or blame the Command Bar history-size warning without independent evidence.
+
 **Created:** 2026-07-02  
 **Purpose:** Make each Neo Tokyo Racers chat safer, faster, and more useful than the last one.
 

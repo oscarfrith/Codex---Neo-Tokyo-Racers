@@ -795,10 +795,9 @@ local function buildMainHud()
 		end
 	end, carWidth)
 	carButton.LayoutOrder = 1
+	-- NTR_OWNED_GARAGE_PHASE6_HOME_SWITCH_V1
 	local garageAction = actionIcon("Garage", "GarageIcon", "HOME", function()
-		if not interiorInvoke then showToast("GARAGE SERVICE NOT READY", false); return end
-		local ok, result = pcall(function() return interiorInvoke:InvokeServer("VisitGarage", { OwnerUserId = player.UserId }) end)
-		showToast(ok and result and result.Ok and "ENTERED GARAGE" or "GARAGE ENTRY FAILED", ok and result and result.Ok == true)
+		if not fireUiEvent("OpenOwnedGarageBrowser") then showToast("MY GARAGES NOT READY", false) end
 	end)
 	garageAction.LayoutOrder = 2
 	local raceAction = actionIcon("Race", "RaceIcon", "RACE", function()
@@ -1007,12 +1006,15 @@ local function updateRuntime(dt)
 	local driving = vehicle ~= nil
 	actionBar.Visible = not racingPresentationActive
 	if racingPresentationActive then carPanel.Visible = false end
+	-- NTR_OWNED_GARAGE_PHASE5_HUD_POLICY_V1
+	local ownedGarageInside = player:GetAttribute("NTR_OwnedGarageInside") == true
 	leftCluster.Visible = not racingPresentationActive and not carPanel.Visible
+	if minimap then minimap.Visible = not ownedGarageInside end
 	bottomActions.Visible = driving and not racingPresentationActive
 	controlsButton.Visible = driving and not racingPresentationActive
 	exitButton.Visible = driving and not racingPresentationActive
 	telemetry.Visible = driving
-	if not (racingPresentationActive and readValue(racingPerformanceConfig, "PauseFreeRoamMapDuringRace", true) == true) then
+	if not ownedGarageInside and not (racingPresentationActive and readValue(racingPerformanceConfig, "PauseFreeRoamMapDuringRace", true) == true) then
 		local character = player.Character
 		local characterRoot = character and character:FindFirstChild("HumanoidRootPart")
 		local mapSubject = vehicle and (vehicle.PrimaryPart or vehicle:FindFirstChild("CockpitRoot_DoNotRename", true)) or characterRoot

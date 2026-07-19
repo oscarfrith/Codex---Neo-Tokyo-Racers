@@ -1,5 +1,13 @@
 # Driving Mechanics
 
+## Owned Garage Drive-In/Drive-Out Boundary
+
+The approved owned-garage replacement must not introduce another driving or vehicle-spawn owner. Garage entry will ask the existing lifecycle owner to hand off the current saved `VehicleId`, then place that vehicle in an empty display space or a confirmed replacement space. Phase 2 display vehicles are intentionally anchored and seatless. Phase 3 stages an unowned `OwnedGarageVehicleLifecycleBridge` contract for `GetDrivenVehicle`, `DespawnForGarage` and `SpawnFromGarage`; its management module performs assignment rollback if the lifecycle handoff fails. The bridge has no callback and the module is not started yet, so this checkpoint adds no driving connection or Workspace vehicle.
+
+Phase 5 adds a server-authoritative guard to the existing vehicle action owner: while `NTR_OwnedGarageInside` is true, free-roam select/spawn/despawn/exit/re-entry actions return a safe message rather than creating a second vehicle or bypassing the garage display/door flow. The owned garage still does not spawn vehicles itself; Phase 6 will bind its staged lifecycle contract to the existing local vehicle helpers in one atomic activation.
+
+Phase 6 binds that contract inside the existing action owner. Drive-in reads the currently seated saved `VehicleId`, validates speed, and invokes the existing despawn helper only after the display-assignment transaction can commit. Drive-out selects the referenced saved vehicle, invokes the existing builder at the configured city exit, seats the player and mirrors the selected vehicle through the existing persistence adapter. Failed lifecycle calls roll back the display transaction rather than creating a duplicate.
+
 ## Stat-scaled post-drift reward (generated 2026-07-14; awaiting Studio test)
 
 `scripts/roblox_driving_drift_mini_boost_stat_scaling.lua` replaces the universal hard-coded reward with bounded charge quality, `BoostForce` acceleration scaling, and mapped `BoostDuration` duration scaling. Normal boost retains priority but no longer pauses/queues the reward timer. Defaults reduce the full reference reward to `72` acceleration before a bounded boost-module multiplier/final `0.85` application multiplier, and cap duration at `0.90 s`.

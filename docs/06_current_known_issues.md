@@ -1,5 +1,18 @@
 # Current Known Issues
 
+## Owned garage Phase 6 atomic activation awaiting Studio run (2026-07-19)
+
+- The approved scope replaces the complete physical owned-garage MVP rather than preserving its access/customisation UI or runtime services. Existing test profile data does not require migration, but the confirmed ProfileService and vehicle/cockpit/module saving owners remain authoritative for new data.
+- Phase 0 passed `41/2/0` static, `3/0/0` server and `4/1/0` client. It proved the profile/vehicle/UI owners, found three valid display references with no duplicates/missing vehicles, and confirmed the expected interior minimap gap.
+- Phase 5 passed and the refreshed `2026-07-19 12:14:59` mirror contains its complete revision and both staged controllers.
+- Final preflight found a real persistence ownership conflict: replacing `profile.Garage` would remove or destabilise the existing vehicle-capacity/purchase contract. `scripts/roblox_owned_garage_phase6_atomic_activation.lua` corrects the staged Profile and Management modules to use `profile.OwnedGarage` and preserves that namespace whenever the vehicle adapter imports a new authoritative snapshot.
+- Phase 6 is a source-anchor-sensitive atomic transaction over five projected sources. It compiles them before mutation, creates two starters source-before-parent, snapshots every retired owner/prompt/attribute, and rolls back the complete Edit-mode transaction on failure.
+- The first Phase 6 command stopped during read-only preflight because raw multi-return `assert` calls inserted error-message strings into the legacy-owner array. The canonical installer is corrected in place as V1.1 with a single-return required-child helper. The transaction had not started, so that failed command left no partial Phase 6 state to revert or mirror.
+- The existing vehicle action owner remains authoritative. Its new lifecycle callback exposes only driven-vehicle identity, garage despawn and selected saved-vehicle spawn. Driving out mirrors the newly selected vehicle through the existing persistence bridge while preserving owned-garage state.
+- Display changes call the existing duplicate-safe assignment transaction; surface presets and access modes use the same profile snapshot/validation/dirty-marking path. Visitor admission is intentionally not enabled merely by selecting a saved access mode.
+- Activation resets only tester `7915427645`'s `OwnedGarage` namespace once per activation token. Existing vehicle/cockpit/module data and `profile.Garage` capacity are explicitly preserved.
+- After installer `PASS sources=5 starters=2 legacyRetired=6`, restart Play and complete foot entry/exit, drive-in, full replacement, both drive-out spaces, desk management, external-menu rejection, reset cleanup, touch layout and save/rejoin checks before treating Phase 6 as confirmed.
+
 ## Canonical garage confirmed baseline (2026-07-18 handoff)
 
 - No known blocking defect remains in the current dealership/customisation garage flow. The user confirmed the final UI, responsive touch presentation, module flow, camera views and preview VFX behaviour working, and the `2026-07-18 23:14:48` mirror includes the final live markers.

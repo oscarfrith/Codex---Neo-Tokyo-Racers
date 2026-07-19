@@ -140,6 +140,8 @@ local function targetCFrame(point)
 end
 
 local function teleportToEvent(player, payload)
+	-- NTR_OWNED_GARAGE_PHASE5_TELEPORT_GUARD_V1
+	if player:GetAttribute("NTR_OwnedGarageInside")==true then return {Ok=false,Success=false,Message="Exit your garage before teleporting to a race."} end
 	payload = typeof(payload) == "table" and payload or {}
 	local eventId = tostring(payload.EventId or "")
 	local mode = tostring(payload.Mode or "TimeTrial")

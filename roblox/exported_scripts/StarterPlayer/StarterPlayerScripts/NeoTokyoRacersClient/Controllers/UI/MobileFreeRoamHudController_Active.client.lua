@@ -259,7 +259,8 @@ carButton.Activated:Connect(function() setCarMenuOpen(true) end)
 settingsButton.Activated:Connect(showSettings)
 shopButton.Activated:Connect(showTeleport)
 raceButton.Activated:Connect(function() if not fire("OpenRaceBrowser") then showToast("RACE BROWSER NOT READY",false) end end)
-garageButton.Activated:Connect(function() if not interiorInvoke then showToast("GARAGE SERVICE NOT READY",false); return end; local ok,r=pcall(function() return interiorInvoke:InvokeServer("VisitGarage",{OwnerUserId=player.UserId}) end); showToast(ok and r and r.Ok and "ENTERED GARAGE" or "GARAGE ENTRY FAILED",ok and r and r.Ok==true) end)
+-- NTR_OWNED_GARAGE_PHASE6_HOME_SWITCH_V1
+garageButton.Activated:Connect(function() if not fire("OpenOwnedGarageBrowser") then showToast("MY GARAGES NOT READY",false) end end)
 exitButton.Activated:Connect(function() fire("FreeRoamVehicleExited"); local r=call("ExitVehicle",{}); showToast(r.Success==false and (r.Message or "EXIT FAILED") or "VEHICLE PARKED",r.Success~=false) end)
 
 local presentationOwners={}
@@ -300,7 +301,9 @@ RunService.RenderStepped:Connect(function(dt)
 	if hidden and carMenuOpen then setCarMenuOpen(false) end
 	gui.Enabled=not hidden
 	local localMajorMenuOpen=modal.Visible or shade.Visible
-	mapFrame.Visible=not telemetryOnly and not localMajorMenuOpen cash.Visible=not telemetryOnly and not localMajorMenuOpen nav.Visible=not telemetryOnly and not localMajorMenuOpen
+	-- NTR_OWNED_GARAGE_PHASE5_HUD_POLICY_V1
+	local ownedGarageInside=player:GetAttribute("NTR_OwnedGarageInside")==true
+	mapFrame.Visible=not ownedGarageInside and not telemetryOnly and not localMajorMenuOpen cash.Visible=not telemetryOnly and not localMajorMenuOpen nav.Visible=not telemetryOnly and not localMajorMenuOpen
 	if telemetryOnly or localMajorMenuOpen then toast.Visible=false end
 	if hidden then return end
 	local driving=drive.IsDriving==true

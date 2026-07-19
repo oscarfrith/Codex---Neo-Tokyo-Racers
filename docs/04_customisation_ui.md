@@ -1,5 +1,15 @@
 # Customisation UI
 
+## Owned Garage Browser Contract
+
+Owned Garage Phase 3 stages one inactive `OwnedGarageBrowserController`. It uses the real `RacingUIComponents`, `RacingMobileScaledDesktopLayout` and `GarageReplacementComponents` modules to build the Race Browser-sized `1200 x 720` My Garages shell. Property cards and detail presentation support image, title, district, description and display capacity; full drive-in replacement uses shared action buttons and explicitly states that the replaced display vehicle remains owned. All actions use `Activated`, and the single desktop composition is scaled for touch rather than duplicated into a separate mobile UI tree. The controller is a ModuleScript only and is not started at this checkpoint.
+
+Phase 4 stages one inactive `OwnedGarageWorkspaceController` for the interior desk. It directly constructs the existing `GarageWorkspaceController`, so Display Cars, Interior and Access use the same canonical host, layout function, cards, carousel, selected-card popup and responsive behavior as dealership/customisation. Display Cars is space-first and operates on saved vehicle IDs; Interior presents catalogue-driven surface presets; Access saves a future visitor policy while admission stays disabled. No page-specific copy of the shared workspace was introduced.
+
+Phase 4 recovery passed `18/0` and the refreshed `2026-07-19 12:04:54` mirror contains the style catalogue, workspace controller and open event. Phase 5 is `scripts/roblox_owned_garage_phase5_mobile_safety_hardening.lua`. It keeps the same browser/workspace composition, adds explicit `Close`/`IsOpen` contracts for transition cleanup, preserves `Activated`, and derives touch-button logical height from the live shared scale so the owned UI targets a configurable 44 physical pixels without creating a second mobile tree. The staged transition controller closes owned surfaces when another major presentation takes ownership; it contains no frame loop.
+
+Phase 5 passed in the refreshed `2026-07-19 12:14:59` mirror. Phase 6 starts the browser/workspace/mode/transition modules exactly once through one small client starter and replaces only the desktop/mobile HOME callbacks with `OpenOwnedGarageBrowser`. It disables the legacy physical-garage access/interior clients, but does not alter the confirmed dealership/customisation application, shared renderer, preview, camera or VFX owners.
+
 ## Canonical Garage Confirmed Baseline — 2026-07-18
 
 The dealership, owned customisation and drive-in flows are user-confirmed working in the refreshed `2026-07-18 23:14:48` mirror. Browser and Workspace share the approved shell, cards, stats, economy, action popups, responsive scaling and navigation contracts. Physical module instances retain their saved colours, neon and upgrades; temporary module/neon/colour previews clear on page transitions without mutating persistence.
@@ -459,6 +469,8 @@ The Phase AO right-hand stats panel always shows the E-S tier and performance in
 The module upgrade list is horizontally scrollable for mobile. The existing left module list remains vertically scrollable.
 
 ## Garage Interior Customisation
+
+The physical owned-garage MVP is now approved for clean replacement rather than visual repair. Phase 0 and inactive Phase 1 passed; Phase 2 now stages the editable two-bay template and server-only runtime modules without adding UI or activating the desk prompt. The later management workspace must reuse the actual dealership/racing components for a `1200 x 720` My Garages browser plus Display Cars, Interior and Access pages. Display slots persist only stable `VehicleId` references; replacing a display never deletes an owned vehicle. See `docs/owned-garage-canonical-replacement-plan.md`.
 
 Persistence Phase 24 prepares the backend/runtime layer only. It installs `GarageInteriorCustomizationInvoke` and `GarageInteriorCustomizationService_Active` so garage interiors can store/apply simple floor/wall surface colours/materials and decoration anchors under `Garage.Customisation`.
 

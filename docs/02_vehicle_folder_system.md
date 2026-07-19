@@ -1,5 +1,11 @@
 # Vehicle Folder System
 
+## Owned Garage Replacement Contract
+
+The approved physical owned-garage replacement stores display assignments as stable keys into the existing `profile.Vehicles` dictionary. A display slot never owns, copies or deletes vehicle data: moving a vehicle clears its former display reference, and replacing a full slot changes only that reference. Phase 2 adds an inactive `OwnedGarageDisplayRuntime` that resolves the requested cockpit/module instances from the same saved vehicle dictionaries and live asset catalogue, then removes seats, scripts, VFX, collision, queries and shadows from the anchored presentation. It rejects a second visual placement of the same `VehicleId`. Phase 3 stages the replacement transaction and passes only the stable `VehicleId` through an unowned lifecycle bridge. Phase 4 adds the space-first management UI and server actions but routes every assignment/clear through that same transaction; it adds no vehicle clone/spawn owner.
+
+Phase 6 keeps `profile.Garage` authoritative for vehicle capacity and existing cockpit purchase rules. Canonical property/display state lives separately at `profile.OwnedGarage`; the current vehicle snapshot-import path copies that namespace forward before replacing saved vehicle data. The lifecycle bridge calls the existing action owner's local build/despawn/select helpers and never creates another vehicle identity or save owner.
+
 ## Phase AM Performance Attributes
 
 Vehicle Phase AM keeps the Phase AK folder layout unchanged. It adds zero-value tuning attributes directly to active cockpit and module models:

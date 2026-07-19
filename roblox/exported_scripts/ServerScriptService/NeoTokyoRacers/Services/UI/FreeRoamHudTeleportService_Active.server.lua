@@ -71,6 +71,8 @@ local function destroyVehicle(player, vehicle)
 end
 
 local function performTeleport(player)
+	-- NTR_OWNED_GARAGE_PHASE5_TELEPORT_GUARD_V1
+	if player:GetAttribute("NTR_OwnedGarageInside")==true then return {Ok=false,Success=false,Message="Exit your garage before teleporting to the dealership."} end
 	local now = os.clock()
 	local cooldown = math.max(0, numberValue("CooldownSeconds", 2))
 	if now - (lastTeleportByUserId[player.UserId] or 0) < cooldown then
