@@ -1470,7 +1470,7 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		return totals
 	end
 
-	local function V90_vehicleSummaries(profile)
+	local function V90_vehicleSummaries(profile,summaryPlayer)
 		V84_ensureInstanceInventory(profile)
 		local snapshot = {
 			CurrentVehicleId = profile.CurrentVehicleId,
@@ -1490,7 +1490,7 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 				if ok then
 					local cockpit = V56_findCockpit(profile.CurrentCategory, profile.CurrentCockpit)
 					local performance = V77_ModuleUpgrades.CalculateProfile(
-						profile._Player,
+						summaryPlayer or profile._Player,
 						profile,
 						V90_summaryTotals(profile),
 						cockpit,
@@ -2422,22 +2422,21 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		local seat = humanoid and humanoid.SeatPart
 		return seat ~= nil and seat:IsA("VehicleSeat") and seat:IsDescendantOf(vehicle)
 	end
-	local function V92_despawnVehicle(player)
-		local vehicle = V92_playerVehicle(player)
-		if not vehicle then
-			return false, "No vehicle to despawn."
-		end
-		if V94_playerIsSeatedInVehicle(player, vehicle) then
-			V92_unseatAndMovePlayer(player, vehicle)
-		else
-			local character = player.Character
-			local humanoid = character and character:FindFirstChildOfClass("Humanoid")
-			if humanoid and humanoid.SeatPart and humanoid.SeatPart:IsDescendantOf(vehicle) then
-				humanoid.Sit = false
-			end
-		end
+	local function V92_despawnVehicle(player,options)
+		options=typeof(options)=="table" and options or {}; local vehicle=V92_playerVehicle(player)
+		if not vehicle then return false,"No vehicle to despawn.",false end
+		local character=player.Character; local humanoid=character and character:FindFirstChildOfClass("Humanoid")
+		if V94_playerIsSeatedInVehicle(player,vehicle) then
+			if options.PreserveCharacterPosition==true then if humanoid then humanoid.Sit=false end else V92_unseatAndMovePlayer(player,vehicle) end
+		elseif humanoid and humanoid.SeatPart and humanoid.SeatPart:IsDescendantOf(vehicle) then humanoid.Sit=false end
 		vehicle:Destroy()
-		return true, "Vehicle despawned."
+		local detached=true
+		if options.WaitForDetach==true and humanoid then
+			local deadline=os.clock()+math.clamp(tonumber(options.DetachTimeoutSeconds) or 1,.1,3)
+			while humanoid.Parent and humanoid.SeatPart and os.clock()<deadline do task.wait() end
+			detached=humanoid.SeatPart==nil
+		end
+		return true,detached and "Vehicle despawned." or "Vehicle removed but seat detachment was not confirmed.",detached
 	end
 
 	local function V56_reEnterVehicle(player)
@@ -2457,6 +2456,7 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 	end
 
 	-- NTR_OWNED_GARAGE_PHASE6_LIFECYCLE_BRIDGE_V1
+	-- NTR_OWNED_GARAGE_PHASE8_TRANSITION_DESPAWN_HANDSHAKE_V1
 	local V100_ownedGarageLifecycle=script.Parent:WaitForChild("OwnedGarageVehicleLifecycleBridge")
 	V100_ownedGarageLifecycle.OnInvoke=function(operation,payload)
 		payload=typeof(payload)=="table" and payload or {}; local player=payload.Player
@@ -2468,12 +2468,23 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 			return {Success=true,VehicleId=vehicleId,SpeedMph=V91_playerSpeedMph(player),VehicleCFrame=root and root.CFrame or nil}
 		elseif operation=="DespawnForGarage" then
 			local requested=tostring(payload.VehicleId or ""); if requested=="" or requested~=tostring(profile.CurrentVehicleId or "") then return {Success=false,Message="Driven vehicle identity changed."} end
-			local ok,message=V92_despawnVehicle(player); return {Success=ok==true,Message=message}
+			local ok,message,detached=V92_despawnVehicle(player,{PreserveCharacterPosition=payload.PreserveCharacterPosition==true,WaitForDetach=payload.WaitForDetach==true,DetachTimeoutSeconds=payload.DetachTimeoutSeconds}); return {Success=ok==true and detached~=false,VehicleRemoved=ok==true,Detached=detached~=false,Message=message}
 		elseif operation=="SpawnFromGarage" then
 			local vehicleId=tostring(payload.VehicleId or ""); local previousVehicleId=tostring(profile.CurrentVehicleId or ""); local selected,message=V89_selectVehicleInstance(profile,{VehicleId=vehicleId}); if not selected then return {Success=false,Message=message} end
 			if not V76_coreModulesEquipped(profile) then if previousVehicleId~="" then V89_selectVehicleInstance(profile,{VehicleId=previousVehicleId}) end; return {Success=false,Message="Equip at least one engine, stabilisers, and boost before driving."} end
 			local vehicle,buildMessage=V56_buildVehicle(player,profile,payload.SpawnCFrame); if not vehicle then if previousVehicleId~="" then V89_selectVehicleInstance(profile,{VehicleId=previousVehicleId}) end; return {Success=false,Message=buildMessage or "Vehicle spawn failed."} end
 			V80_mirrorLegacyProfileToPersistence(player,profile,"OwnedGarageDriveOut",true); return {Success=true,Message="Vehicle spawned from garage.",Vehicle=vehicle,VehicleId=vehicleId}
+		elseif operation=="GetOwnedGarageVehicleCards" then
+			-- NTR_OWNED_GARAGE_PHASE8_VEHICLE_CARD_BRIDGE
+			-- NTR_OWNED_GARAGE_PHASE8_VEHICLE_CARD_BRIDGE_V1_4_PLAYER_CONTEXT
+			local summaries=V90_vehicleSummaries(profile,player); local cards={}; local displayed={}
+			for garageId,property in pairs((profile.OwnedGarage and profile.OwnedGarage.Properties) or {}) do for slotId,vehicleId in pairs(property.DisplaySpaces or {}) do if vehicleId and vehicleId~=false and tostring(vehicleId)~="" then displayed[tostring(vehicleId)]={GarageId=tostring(garageId),SlotId=tostring(slotId)} end end end
+			for vehicleId,vehicle in pairs(profile.Vehicles or {}) do if typeof(vehicle)=="table" then
+				local id=tostring(vehicleId); local summary=summaries[id] or summaries[vehicleId] or {}; local cockpitInstance=vehicle.CockpitInstanceId and profile.OwnedCockpitInstances and profile.OwnedCockpitInstances[vehicle.CockpitInstanceId]; local cockpitId=tostring((cockpitInstance and cockpitInstance.TemplateId) or summary.CockpitId or vehicle.CockpitId or ""); local categoryId=tostring(vehicle.CategoryId or profile.CurrentCategory or "BRUISER"); local cockpit=V56_findCockpit(categoryId,cockpitId); local image=""
+				for _,key in ipairs({"MenuImage","CockpitImage","ThumbnailImage","ImageId","Image"}) do local value=cockpit and cockpit:GetAttribute(key); if value~=nil and tostring(value)~="" then image=tostring(value); break end; local child=cockpit and cockpit:FindFirstChild(key); if child and child:IsA("StringValue") and child.Value~="" then image=child.Value; break end end
+				local overall=summary.Overall or {}; local location=displayed[id]; table.insert(cards,{VehicleId=id,CockpitId=cockpitId,CategoryId=categoryId,DisplayName=tostring(cockpit and cockpit:GetAttribute("DisplayName") or summary.DisplayName or vehicle.DisplayName or cockpitId or id),Image=image,Tier=tostring(overall.Tier or "E"),Rating=math.floor(tonumber(overall.PerformanceIndex) or 0),DisplayedGarageId=location and location.GarageId or nil,DisplayedSlotId=location and location.SlotId or nil})
+			end end
+			return {Success=true,Vehicles=cards}
 		end
 		return {Success=false,Message="Unknown owned garage lifecycle operation."}
 	end
@@ -2494,9 +2505,8 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 			if tonumber(referencesResult) and referencesResult>0 then print("[NTR Module Instance Authority] Reconciled "..tostring(referencesResult).." stale owner flag(s) from canonical vehicle-slot references") end
 			local ok, message
 			if action == "GetInitial" then
+				-- NTR_PROFILE_SERVICE_READ_ONLY_IMPORT_GUARD_V1
 				V56_setLeaderstats(player, profile)
-				-- NTR_GARAGE_LEGACY_TO_INSTANCE_SYNC_RETIRED_V1
-				V80_mirrorLegacyProfileToPersistence(player, profile, action, false)
 				return { Success = true, Catalog = V56_catalog(), Profile = V56_profileForClient(profile) }
 			elseif action == "SelectVehicleInstance" then
 				ok, message = V89_selectVehicleInstance(profile, args)

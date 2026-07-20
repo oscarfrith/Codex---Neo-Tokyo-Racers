@@ -9,6 +9,7 @@ Before making changes:
 3. Prefer the newest confirmed working baseline over the newest untested script.
 4. Read `docs/12_continuous_improvement_workflow.md` before planning multi-step Studio work.
 5. Read `docs/13_efficient_feature_delivery_protocol.md` before planning any connected UI, runtime, persistence, VFX, architecture, or multi-system change.
+6. Read `docs/14_new_system_readiness_standard.md` before planning or implementing a new system, a substantial system expansion, or connected networking/persistence/runtime work. Use `docs/15_new_system_contract_template.md` for Standard and High-Risk work.
 
 Working rules:
 
@@ -22,6 +23,7 @@ Working rules:
 * If two or more source-anchor repairs fail in the same live script, stop and inspect the live source/mirror before writing another patch; prefer an isolated canonical replacement when possible.
 * Treat `StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.NeoTokyoRacersClient_Bootstrap_Shadow_Disabled` as register-limited. Do not add new top-level local helpers or large feature blocks to it; use isolated controller scripts/modules plus a tiny table-backed event bridge if a bootstrap hook is unavoidable.
 * Apply the project-wide implementation triage rule from `docs/12_continuous_improvement_workflow.md` and the proportional Fast/Standard/High-Risk lanes from `docs/13_efficient_feature_delivery_protocol.md`. Do not force high-risk ceremony onto isolated copy, icon, config, or tuning changes.
+* New systems and substantial expansions must also pass the proportional readiness rules in `docs/14_new_system_readiness_standard.md`. The assistant selects the lane, derives the contract and applies it for the duration of that task; `N/A` is allowed for irrelevant concerns, but remotes, authoritative gameplay, saved data, economy, rewards, ownership and lifecycle boundaries cannot bypass their applicable safeguards because a diff is small.
 * Chat prefixes are routing contracts: `follow:` implements directly with proportional safeguards; `suggest:` compares approaches and recommends without implementing; `audit:` is read-only; `continue:` executes the next uncompleted step of the already-approved plan; `handoff:` locks the confirmed baseline and updates the handoff. A prefix never authorises unrelated scope or bypasses a genuine safety blocker.
 * Optimise for one user-run Studio installer with internal preflight, compile, audit, idempotency, and rollback—not many user-run setup steps. Use a separate read-only Studio audit only when live runtime evidence cannot be established from the mirror or safely inside the installer.
 * Before connected changes, establish the intended owner for state, geometry, visibility, preview, runtime attachment, and persistence. Do not add a new owner to fix competing existing owners.

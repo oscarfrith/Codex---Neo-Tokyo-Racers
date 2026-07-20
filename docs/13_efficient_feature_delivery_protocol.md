@@ -1,6 +1,6 @@
 # Efficient Feature Delivery Protocol
 
-**Version:** 1.0  
+**Version:** 1.1
 **Created:** 2026-07-18  
 **Purpose:** Deliver Neo Tokyo Racers changes quickly, usually through one user-run Studio installer, while preventing patch ladders, competing owners, stale-baseline failures, and hard-to-edit one-off systems.
 
@@ -34,6 +34,8 @@ Required work:
 
 Do not require a formal owner map, separate audit phase, or long acceptance contract for genuinely isolated work.
 
+Fast Lane does not apply to remotes, saved data, economy, rewards, authoritative gameplay or lifecycle ownership merely because the diff is small. Apply the relevant universal safeguards in `docs/14_new_system_readiness_standard.md`.
+
 ### Standard Lane
 
 Use for connected menu flow, responsive layout, shared cards, preview behaviour, navigation, camera presentation, or changes affecting multiple pages.
@@ -46,6 +48,8 @@ Required work:
 - simulate or review source transformations before delivery where possible;
 - produce one transactional installer with embedded audit and rollback;
 - define a focused desktop/touch or transition test matrix.
+
+For a new system or substantial expansion, complete the compact Standard contract in `docs/15_new_system_contract_template.md`. Use `N/A` for irrelevant concerns rather than inventing speculative machinery.
 
 This is the default lane for most garage and UI work.
 
@@ -61,6 +65,8 @@ Required work:
 - use transactional mutation and validate invariants before persistence;
 - provide a rollback path appropriate to the system;
 - run the relevant repeated-transition, save/rejoin, memory, or multi-device smoke.
+
+For a new system or substantial expansion, complete the full High-Risk contract in `docs/15_new_system_contract_template.md`, including authority/security, stable data/API compatibility, scaling budgets, lifecycle, streaming, failure recovery and observability.
 
 A separate read-only Studio audit is acceptable here when live runtime evidence is required. It should be the exception, not an automatic extra phase.
 
@@ -114,6 +120,8 @@ Done when:
 ```
 
 Keep it concise. Do not delay an obvious small fix to fill every field.
+
+For a new system or substantial expansion, use the extended template in `docs/15_new_system_contract_template.md` and the readiness gates in `docs/14_new_system_readiness_standard.md`. The assistant selects the lane and drafts the contract from the current request and mirror.
 
 ## Ownership Gate
 
@@ -239,4 +247,5 @@ When changing the protocol:
 
 | Version | Date | Change |
 |---|---|---|
+| 1.1 | 2026-07-20 | Added mandatory proportional new-system readiness routing, compact/full system contracts, universal authority safeguards, and explicit protection against both small-diff risk bypass and unnecessary Fast-Lane ceremony. |
 | 1.0 | 2026-07-18 | Added proportional delivery lanes, one-install objective, owner and shared-component gates, five chat prefixes including `continue:`, runtime evidence, failure budget, acceptance/transition templates, challenge rule, and an explicit self-improvement process. |

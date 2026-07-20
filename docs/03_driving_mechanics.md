@@ -494,6 +494,12 @@ Known attributes:
 
 The organiser now also owns the physical TopSpeed mapping. Raw V2 TopSpeed remains the rating/module input; physics uses a configurable reference/exponent curve plus editable minimum, maximum, and absolute safety values. This replaces the raw-stat-as-MPH behavior and the hidden `260 MPH` controller/module clamps. Existing acceleration attributes are never reset: the `2026-07-14 10:29:30` pre-patch mirror records the user's live values and installer reruns prefer those category attributes over defaults.
 
+## Owned Garage Vehicle Transition Boundary
+
+`scripts/roblox_owned_garage_phase8_transition_completion.lua` does not replace normal free-roam despawning or driving physics. It adds options used only by `DespawnForGarage`: keep the character at the current position, destroy the owned live vehicle, wait up to the configured detachment timeout for `Humanoid.SeatPart` to clear, and return explicit `VehicleRemoved`/`Detached` evidence. Management teleports only after that handshake and verifies the character is within `GarageTeleportVerifyDistanceStuds`, retrying up to `GarageTeleportAttempts` before activating the interior.
+
+On failure, the transition restores the authoritative display assignment before respawning the captured vehicle whenever necessary. If assignment restoration itself fails, it leaves the vehicle stored rather than creating a live/display duplicate. Normal `V92_despawnVehicle(player)` callers keep their existing move-beside-vehicle behaviour because they pass no garage options.
+
 ## Current Diagrams
 
 - `diagrams/driving_runtime_system.svg`

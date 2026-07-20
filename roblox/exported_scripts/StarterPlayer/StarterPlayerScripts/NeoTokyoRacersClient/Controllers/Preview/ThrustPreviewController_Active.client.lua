@@ -2,6 +2,7 @@
 -- NTR_GARAGE_CAMERA_VFX_REFINEMENT_V1_1
 -- NTR_GARAGE_CAMERA_VFX_SCROLL_REFINEMENT_V1
 -- NTR_UI_PERFORMANCE_HARDENING_PHASE1_V1
+-- NTR_THRUST_PREVIEW_STALE_LIVE_CALL_REMOVED_V1
 local Players=game:GetService("Players")
 local ReplicatedStorage=game:GetService("ReplicatedStorage")
 local Workspace=game:GetService("Workspace")
@@ -61,7 +62,7 @@ local function refreshTargets()
 	-- deliberately never attaches a second VehicleVFXController.
 	if previewController then previewController:Destroy(); previewController=nil end
 	previewVehicle=vehicle
-	local playerVehicle=getPlayerVehicle(); local playerColor=playerVehicle and (playerVehicle:GetAttribute("ThrustColor") or Color3.new(1,1,1)); if playerVehicle~=cachedPlayerVehicle or playerColor~=cachedPlayerColor then cachedPlayerVehicle,cachedPlayerColor=playerVehicle,playerColor; applyThrustOnly(playerVehicle,playerColor or Color3.new(1,1,1),nil) end
+	local playerVehicle=getPlayerVehicle(); local playerColor=playerVehicle and (playerVehicle:GetAttribute("ThrustColor") or Color3.new(1,1,1)); if playerVehicle~=cachedPlayerVehicle or playerColor~=cachedPlayerColor then cachedPlayerVehicle,cachedPlayerColor=playerVehicle,playerColor end
 end
 local function forceDriveCamera() if not driveOpen() then return end; local camera=Workspace.CurrentCamera; if camera and camera:GetAttribute("NTRDrivingCameraManaged")==true then return end; local vehicle=cachedPlayerVehicle or getPlayerVehicle(); local seat=vehicle and vehicle:FindFirstChild("DriverSeat",true); if camera and seat and seat:IsA("VehicleSeat") then camera.CameraType=Enum.CameraType.Custom; camera.CameraSubject=seat end end
 requestLandscape(); refreshTargets()

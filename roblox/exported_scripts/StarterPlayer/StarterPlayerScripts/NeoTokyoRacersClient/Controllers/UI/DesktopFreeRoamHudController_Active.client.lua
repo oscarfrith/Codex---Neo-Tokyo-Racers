@@ -1,4 +1,6 @@
 -- NTR_UI_PERFORMANCE_HARDENING_PHASE1_V1
+-- NTR_OWNED_GARAGE_PHASE8_HUD_POLICY
+-- NTR_OWNED_GARAGE_MANAGEMENT_HUD_SUPPRESSION_V1_6
 -- NTR_PC_FREEROAM_UI_PHASE4A_DEALERSHIP_TELEPORT
 -- NTR_RACING_UI_PHASE16D_PRESENTATION_PERFORMANCE
 
@@ -39,6 +41,11 @@ local rootScale
 local actionBar
 local leftCluster
 local moneyLabel
+local moneyPanel
+local garageAction
+local raceAction
+local dealershipAction
+local settingsAction
 local minimap
 local mapCanvas
 local playerMarker
@@ -796,23 +803,24 @@ local function buildMainHud()
 	end, carWidth)
 	carButton.LayoutOrder = 1
 	-- NTR_OWNED_GARAGE_PHASE6_HOME_SWITCH_V1
-	local garageAction = actionIcon("Garage", "GarageIcon", "HOME", function()
+	garageAction = actionIcon("Garage", "GarageIcon", "HOME", function()
 		if not fireUiEvent("OpenOwnedGarageBrowser") then showToast("MY GARAGES NOT READY", false) end
 	end)
 	garageAction.LayoutOrder = 2
-	local raceAction = actionIcon("Race", "RaceIcon", "RACE", function()
+	raceAction = actionIcon("Race", "RaceIcon", "RACE", function()
 		if not fireUiEvent("OpenRaceBrowser") then showToast("RACE BROWSER NOT READY", false) end
 	end)
 	raceAction.LayoutOrder = 3
-	local dealershipAction = actionIcon("Dealership", "DealershipIcon", "SHOP", function() openModal("Teleport") end)
+	dealershipAction = actionIcon("Dealership", "DealershipIcon", "SHOP", function() openModal("Teleport") end)
 	dealershipAction.LayoutOrder = 4
-	local settingsAction = actionIcon("Settings", "SettingsIcon", "SET", function() openModal("Settings") end)
+	settingsAction = actionIcon("Settings", "SettingsIcon", "SET", function() openModal("Settings") end)
 	settingsAction.LayoutOrder = 5
 
 	local mapSize = L("MinimapSize", 245)
 	local cashHeight = L("CashHeight", 40)
 	leftCluster = new("Frame", { Name = "LeftCluster", BackgroundTransparency = 1, BorderSizePixel = 0, Size = UDim2.fromOffset(mapSize, mapSize + cashHeight + 8), AnchorPoint = Vector2.new(0, 1), ZIndex = 8 }, root)
 	local money = panel(leftCluster, "Money", UDim2.fromOffset(mapSize, cashHeight), UDim2.fromOffset(0, 0), Vector2.zero, 9)
+	moneyPanel=money
 	money.BackgroundColor3 = C("PanelBlue")
 	local moneyGradient = money:FindFirstChild("SurfaceGradient")
 	if moneyGradient and moneyGradient:IsA("UIGradient") then
@@ -998,18 +1006,20 @@ local function updateRuntime(dt)
 		nextVisibilityScan = os.clock() + 0.1
 		majorMenuOpen = isMajorMenuOpen()
 	end
-	local enabled = readValue(config, "Enabled", true) == true and not majorMenuOpen
+	local ownedGarageManagementOpen = playerGui:GetAttribute("NTR_OwnedGarageManagementOpen") == true
+	local enabled = readValue(config, "Enabled", true) == true and not majorMenuOpen and not ownedGarageManagementOpen
 	gui:SetAttribute("SuppressedByMajorMenu", majorMenuOpen)
 	gui.Enabled = enabled
 	if not enabled then closeChoiceList(); return end
 	local _, vehicle = ownedVehicleSeat()
 	local driving = vehicle ~= nil
-	actionBar.Visible = not racingPresentationActive
+	local ownedGarageInside = player:GetAttribute("NTR_OwnedGarageInside") == true
+	actionBar.Visible = not racingPresentationActive; if carButton then carButton.Visible=not ownedGarageInside end; if garageAction then garageAction.Visible=not ownedGarageInside end; if raceAction then raceAction.Visible=not ownedGarageInside end; if dealershipAction then dealershipAction.Visible=not ownedGarageInside end; if settingsAction then settingsAction.Visible=true end
 	if racingPresentationActive then carPanel.Visible = false end
 	-- NTR_OWNED_GARAGE_PHASE5_HUD_POLICY_V1
-	local ownedGarageInside = player:GetAttribute("NTR_OwnedGarageInside") == true
 	leftCluster.Visible = not racingPresentationActive and not carPanel.Visible
 	if minimap then minimap.Visible = not ownedGarageInside end
+	if moneyPanel then moneyPanel.Position=ownedGarageInside and UDim2.fromOffset(0,L("MinimapSize",245)+8) or UDim2.fromOffset(0,0) end
 	bottomActions.Visible = driving and not racingPresentationActive
 	controlsButton.Visible = driving and not racingPresentationActive
 	exitButton.Visible = driving and not racingPresentationActive

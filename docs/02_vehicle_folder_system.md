@@ -261,6 +261,8 @@ The corrected Phase 7 run was user-confirmed working. Phase 8 is generated as `s
 
 The dealership intro flow adds `Workspace.NeoTokyoRacersWorld.Dealership.Spawn.VehicleExitSpawnPoint` for the final server-created drivable vehicle after customisation. This gives the dealership exit its own editable placement and facing direction without changing the client-only preview spawn.
 
+Owned garages use a separate property-scoped exterior contract. The transition-completion installer creates `Workspace.NeoTokyoRacersWorld.OwnedGarageExteriors.STARTER_TWO_BAY.FootExitSpawn` and `VehicleExitSpawn`; `OwnedGaragePropertyCatalog.ExteriorSpawnId` selects the folder. Future garages must add their own two markers instead of sharing the dealership/general vehicle spawn or storing a CFrame in player data. `SpawnFromGarage` remains the existing vehicle-construction owner and receives the resolved marker CFrame through the narrow owned-garage lifecycle bridge.
+
 ## Current Diagrams
 
 - `diagrams/vehicle_asset_system.svg`

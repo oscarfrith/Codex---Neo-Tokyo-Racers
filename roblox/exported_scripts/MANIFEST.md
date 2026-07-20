@@ -4,7 +4,7 @@ Generated from the Roblox Studio full snapshot export.
 
 These files are a GitHub-readable mirror of Studio scripts. Treat Studio as live until a Rojo/source-sync migration is explicitly completed.
 
-Script count: 153
+Script count: 156
 
 - `ReplicatedStorage.NeoTokyoRacers.Compatibility.LiveSystemRegistry` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Compatibility/LiveSystemRegistry.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Compatibility.PathResolver` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Compatibility/PathResolver.module.lua`
@@ -39,7 +39,9 @@ Script count: 153
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data.ConfigRegistry` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Data/ConfigRegistry.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data.GaragePropertyCatalog` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Data/GaragePropertyCatalog.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data.LegacyGarageProfileMapper` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Data/LegacyGarageProfileMapper.module.lua`
+- `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data.OwnedGarageDecorationCatalog` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Data/OwnedGarageDecorationCatalog.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data.OwnedGarageInteriorStyleCatalog` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Data/OwnedGarageInteriorStyleCatalog.module.lua`
+- `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data.OwnedGarageLightingCatalog` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Data/OwnedGarageLightingCatalog.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data.OwnedGaragePropertyCatalog` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Data/OwnedGaragePropertyCatalog.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data.PlayerProfileSchema` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Data/PlayerProfileSchema.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Racing.RaceConfigReader` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Racing/RaceConfigReader.module.lua`
@@ -62,6 +64,7 @@ Script count: 153
 - `ServerScriptService.NeoTokyoRacers.Services.Garage.GarageModuleInventoryRuntime` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Garage/GarageModuleInventoryRuntime.module.lua`
 - `ServerScriptService.NeoTokyoRacers.Services.Garage.GarageModuleTransactionRuntime` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Garage/GarageModuleTransactionRuntime.module.lua`
 - `ServerScriptService.NeoTokyoRacers.Services.Garage.GarageProfileRuntime` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Garage/GarageProfileRuntime.module.lua`
+- `ServerScriptService.NeoTokyoRacers.Services.Garage.OwnedGarageAuthoritativeCommandRuntime` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Garage/OwnedGarageAuthoritativeCommandRuntime.module.lua`
 - `ServerScriptService.NeoTokyoRacers.Services.Garage.OwnedGarageDisplayAssignmentRuntime` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Garage/OwnedGarageDisplayAssignmentRuntime.module.lua`
 - `ServerScriptService.NeoTokyoRacers.Services.Garage.OwnedGarageDisplayRuntime` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Garage/OwnedGarageDisplayRuntime.module.lua`
 - `ServerScriptService.NeoTokyoRacers.Services.Garage.OwnedGarageInteriorRuntime` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Garage/OwnedGarageInteriorRuntime.module.lua`

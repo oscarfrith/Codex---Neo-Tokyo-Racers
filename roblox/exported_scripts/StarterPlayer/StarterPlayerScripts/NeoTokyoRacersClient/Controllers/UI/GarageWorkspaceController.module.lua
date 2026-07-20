@@ -5,6 +5,9 @@
 -- NTR_UI_PERFORMANCE_HARDENING_PHASE2_V1
 -- NTR_UI_PERFORMANCE_HARDENING_PHASE1_V1
 -- NTR_GARAGE_WORKSPACE_CONTROLLER_V3
+-- NTR_OWNED_GARAGE_PHASE8_INCREMENTAL_WORKSPACE
+-- NTR_OWNED_GARAGE_VEHICLE_CARD_KIND_V1_6
+-- NTR_OWNED_GARAGE_SELECTED_ACTION_CONTRACT_V1_7
 -- NTR_GARAGE_WORKSPACE_CATEGORY_LISTING_V3
 local ReplicatedStorage=game:GetService("ReplicatedStorage")
 local RunService=game:GetService("RunService")
@@ -131,13 +134,13 @@ function WorkspaceUI:RenderLeft(context)
 end
 function WorkspaceUI:RenderEconomy(context)
 	clear(self.Cash); clear(self.Capacity)
-	generated(Racing.Label(self.Cash,{Text=Shared.FormatMoney(context.Cash or 0),Position=UDim2.fromOffset(12,0),Size=UDim2.new(1,-54,1,0),TextSize=N("EconomyCashTextSize",17),Color=Color3.fromRGB(89,255,102),Role="Heading"})); local plus=generated(Racing.Button(self.Cash,{Text="+",Position=UDim2.new(1,-40,.5,-15),Size=UDim2.fromOffset(32,30),StrokeColor=Racing.Colour("ElectricBlue")})); plus.Activated:Connect(function() if context.OnCash then context.OnCash() end end)
+	generated(Racing.Label(self.Cash,{Text=Shared.FormatMoney(context.Cash or 0),Position=UDim2.fromOffset(12,0),Size=UDim2.new(1,-54,1,0),TextSize=N("EconomyCashTextSize",17),Color=Color3.fromRGB(89,255,102),Role="Heading"})); local plus=generated(Racing.Button(self.Cash,{Text="+",Position=UDim2.new(1,-40,.5,-15),Size=UDim2.fromOffset(32,30),StrokeColor=Racing.Colour("ElectricBlue")})); plus.Visible=context.ShowCashPlus~=false; plus.Activated:Connect(function() if context.OnCash then context.OnCash() end end)
 	local icon=generated(Instance.new("ImageLabel")); icon.BackgroundTransparency=1; icon.Image=asset("GarageIcon"); icon.ImageColor3=Racing.Colour("Text"); icon.Position=UDim2.fromOffset(9,9); icon.Size=UDim2.fromOffset(28,28); icon.Parent=self.Capacity
-	generated(Racing.Label(self.Capacity,{Text=context.CapacityText or "0/0 Spaces",Position=UDim2.fromOffset(42,0),Size=UDim2.new(1,-92,1,0),TextSize=N("EconomySpacesTextSize",13),Role="Heading"})); local gp=generated(Racing.Button(self.Capacity,{Text="+",Position=UDim2.new(1,-40,.5,-15),Size=UDim2.fromOffset(32,30),StrokeColor=Racing.Colour("ElectricBlue")})); gp.Activated:Connect(function() if context.OnCapacity then context.OnCapacity() end end)
+	generated(Racing.Label(self.Capacity,{Text=context.CapacityText or "0/0 Spaces",Position=UDim2.fromOffset(42,0),Size=UDim2.new(1,-92,1,0),TextSize=N("EconomySpacesTextSize",13),Role="Heading"})); local gp=generated(Racing.Button(self.Capacity,{Text="+",Position=UDim2.new(1,-40,.5,-15),Size=UDim2.fromOffset(32,30),StrokeColor=Racing.Colour("ElectricBlue")})); gp.Visible=context.ShowCapacityPlus~=false; gp.Activated:Connect(function() if context.OnCapacity then context.OnCapacity() end end)
 end
 
 function WorkspaceUI:DrawPerformance(parent,performance,baseline,tierColor) Shared.RenderPerformance(parent,{Performance=performance,Baseline=baseline,TierColor=tierColor,Reference=N("StatReference",180),GeneratedAttribute="GeneratedGarageWorkspace",RatingTextSize=N("PerformanceRatingTextSize",20),HeadingTextSize=N("PerformanceHeadingTextSize",11),StatNameTextSize=N("PerformanceStatNameTextSize",11),StatValueTextSize=N("PerformanceStatValueTextSize",12)}) end
-function WorkspaceUI:RenderStats(context) clear(self.Stats); if context.RenderStats then context.RenderStats(self.Stats) else self:DrawPerformance(self.Stats,context.Performance,context.BaselinePerformance,context.TierColor) end end
+function WorkspaceUI:RenderStats(context) clear(self.Stats); self.Stats.Visible=context.ShowStats~=false; if not self.Stats.Visible then return end; if context.RenderStats then context.RenderStats(self.Stats) else self:DrawPerformance(self.Stats,context.Performance,context.BaselinePerformance,context.TierColor) end end
 function WorkspaceUI:RenderBudget(context)
 	clear(self.Budget); local budget=context.UpgradeBudget; self.Budget.Visible=typeof(budget)=="table"; if not self.Budget.Visible then return end
 	local capacity=math.max(0,math.floor(tonumber(budget.Capacity) or 0)); local used=math.clamp(math.floor(tonumber(budget.Used) or 0),0,capacity); local width=self.BudgetWidth or (3*N("WorkspaceCardWidth",210)+24); local height=N("UpgradeBudgetHeight",42); local textSize=13
@@ -149,12 +152,13 @@ end -- NTR_GARAGE_RESPONSIVE_BUDGET_RENDERER_V1_2
 
 function WorkspaceUI:RenderCards(context)
 	-- NTR_GARAGE_ACTION_ICON_LOCKED_CARD_REFINEMENT_V1
-	self.Paint.Visible=false; self.Scroller.Visible=true; self:RenderBudget(context); clear(self.Scroller); self.Popup:Hide(); local selectedCard
+	self.Paint.Visible=false; self.Scroller.Visible=true; self:RenderBudget(context); clear(self.Scroller); self.Popup:Hide(); local selectedCard; local explicitActionCard; local legacyAction; local selectedAction=context.SelectedAction
 	for order,row in ipairs(context.Cards or {}) do
 		-- NTR_GARAGE_MODULE_SHARED_CARDS_MODAL_V1
-		local selected=row.Selected==true; local props={DisplayName=row.DisplayName or row.Id or "",Eyebrow=row.Eyebrow,Meta=row.Meta,Footer=row.Footer,Image=self:ResolveImage(row.ImageKey or row.Id,row.Image),Rating=row.Badge,RatingColor=row.BadgeColor,Badge=row.Badge,BadgeColor=row.BadgeColor,Selected=selected,VehicleName=row.VehicleName,Variant=row.Variant,TagText=row.TagText,TagColor=row.TagColor,Price=row.Price,PriceText=row.PriceText,PriceColor=row.PriceColor,SemanticState=row.SemanticState,LockImage=row.LockImage,LockIconSize=N("LockedModuleIconSize",68),LockIconYScale=N("LockedModuleIconYScale",.46),Size=UDim2.fromOffset(N("WorkspaceCardWidth",210),N("WorkspaceCardHeight",146)),ImageHeight=N("ModuleCardImageHeight",104),ImageZoom=row.ImageZoom or 1.04}
-		local card=generated(row.CardKind=="Listing" and Shared.ModuleListingCard(self.Scroller,props) or Shared.ModuleCategoryCard(self.Scroller,props)); card.LayoutOrder=order; card.Activated:Connect(function() if row.OnSelect then row.OnSelect() end end); if selected then selectedCard=card; if row.ActionText and row.OnAction then self.Popup:Set(card,row.ActionText,row.OnAction,self.Scale) end end
+		local selected=row.Selected==true; local vehicleCard=row.CardKind=="Vehicle"; local props={DisplayName=row.DisplayName or row.Id or "",EmptyPlus=row.EmptyPlus,Muted=row.Muted,Eyebrow=row.Eyebrow,Meta=row.Meta,Footer=row.Footer,Image=self:ResolveImage(row.ImageKey or row.Id,row.Image),Rating=row.Badge,RatingColor=row.BadgeColor,Badge=row.Badge,BadgeColor=row.BadgeColor,Selected=selected,VehicleName=row.VehicleName,Variant=row.Variant,TagText=row.TagText,TagColor=row.TagColor,Price=row.Price,PriceText=row.PriceText,PriceColor=row.PriceColor,SemanticState=row.SemanticState,LockImage=row.LockImage,LockIconSize=N("LockedModuleIconSize",68),LockIconYScale=N("LockedModuleIconYScale",.46),Size=vehicleCard and UDim2.fromOffset(N("CardWidth",226),N("CardHeight",146)) or UDim2.fromOffset(N("WorkspaceCardWidth",210),N("WorkspaceCardHeight",146)),ImageHeight=vehicleCard and N("CardImageHeight",136) or N("ModuleCardImageHeight",104),ImageZoom=row.ImageZoom or (vehicleCard and 1.06 or 1.04)}
+		local card=generated(row.CardKind=="Listing" and Shared.ModuleListingCard(self.Scroller,props) or (vehicleCard and Shared.Card(self.Scroller,props) or Shared.ModuleCategoryCard(self.Scroller,props))); card.LayoutOrder=order; card.Activated:Connect(function() if row.OnSelect then row.OnSelect() end end); if selected then selectedCard=card; if row.ActionText and row.OnAction then legacyAction={Card=card,Text=row.ActionText,OnActivate=row.OnAction} end end; if selectedAction and tostring(selectedAction.RowId or "")==tostring(row.Id or "") then explicitActionCard=card end
 	end
+	local action=selectedAction and explicitActionCard and {Card=explicitActionCard,Text=selectedAction.Text,OnActivate=selectedAction.OnActivate} or legacyAction; if action and action.Text and action.OnActivate then self.Popup:Set(action.Card,action.Text,action.OnActivate,self.Scale) end
 	if context.EmptyMessage and #(context.Cards or {})==0 then local empty=generated(Racing.Label(self.Scroller,{Text=context.EmptyMessage,Size=UDim2.fromOffset(420,80),TextSize=13,XAlignment=Enum.TextXAlignment.Center})); empty:SetAttribute("CanonicalGarageCard",true) end
 	self:QueueCarouselUpdate(); return selectedCard
 end
@@ -226,8 +230,9 @@ function WorkspaceUI:UpdateCarousel()
 	local cardWidth=N("WorkspaceCardWidth",210); local content=count*cardWidth+math.max(0,count-1)*12; local scale=math.max(self.LayoutScale or self.Scale.Scale,.01); local window=self.ReferenceCarouselWidth or self.Scroller.AbsoluteSize.X/scale; if self.Scroller.AbsoluteSize.X>0 then window=self.Scroller.AbsoluteSize.X/scale end
 	local side=content<window and math.max(6,(window-content)*.5) or 6; self.CardPad.PaddingLeft=UDim.new(0,side); self.CardPad.PaddingRight=UDim.new(0,side); self.Scroller.CanvasSize=UDim2.fromOffset(math.max(window,content+side*2),0); self.Updating=false; self:RefreshCarouselArrows()
 end
-function WorkspaceUI:Scroll(direction) local scale=math.max(self.LayoutScale or self.Scale.Scale,.01); local step=(N("WorkspaceCardWidth",210)+12)*scale; self.Scroller.CanvasPosition=Vector2.new(math.clamp(self.Scroller.CanvasPosition.X+direction*step,0,self.MaxScroll or 0),0); self:RefreshCarouselArrows() end
+function WorkspaceUI:Scroll(direction) local scale=math.max(self.LayoutScale or self.Scale.Scale,.01); local logicalWidth=N("WorkspaceCardWidth",210); for _,child in ipairs(self.Scroller:GetChildren()) do if child:GetAttribute("CanonicalGarageCard") then logicalWidth=child.AbsoluteSize.X/math.max(scale,.01); break end end; local step=(logicalWidth+12)*scale; self.Scroller.CanvasPosition=Vector2.new(math.clamp(self.Scroller.CanvasPosition.X+direction*step,0,self.MaxScroll or 0),0); self:RefreshCarouselArrows() end
 function WorkspaceUI:Audit(selectedCard)
+	if not (cfg:GetAttribute("RuntimeAuditEnabled")==true and (not self.Context or self.Context.RuntimeAudit~=false)) then return end
 	task.defer(function()
 		RunService.Heartbeat:Wait(); if not self.Root.Visible then return end; self:Layout(); RunService.Heartbeat:Wait(); if not self.Root.Visible then return end; self:UpdateCarousel()
 		local failures={}; local function expect(ok,message) if not ok then table.insert(failures,message) end end; local roots=0; for _,child in ipairs(self.Host.Canvas:GetChildren()) do if child.Name=="CanonicalGarageWorkspace" then roots+=1 end end; expect(roots==1,"expected one workspace root"); expect(self.Gui.Name=="CanonicalGarageGui","workspace is not in CanonicalGarageGui"); expect(self.Scale.Parent==self.Host.Canvas,"workspace does not use the shared canonical scale"); local artOk,artFailures=Artwork.Audit(); expect(artOk,"module artwork schema: "..table.concat(artFailures,", "))
@@ -254,6 +259,9 @@ function WorkspaceUI:QueueScrollRestore(context)
 		local y=context.CategoryScrollKey and self.ScrollMemory.Category[context.CategoryScrollKey]; if y then local maximum=math.max(0,self.CategoryList.AbsoluteCanvasSize.Y-self.CategoryList.AbsoluteWindowSize.Y); self.CategoryList.CanvasPosition=Vector2.new(0,math.clamp(y,0,maximum)) end
 		self:RefreshCarouselArrows(); self:UpdateCategoryArrows()
 	end)
+end
+function WorkspaceUI:RefreshCards(context)
+	self:CaptureScroll(); self:DisconnectDynamic(); self.Context=context; self.Title.Text=string.upper(context.Title or "GARAGE"); self.Subtitle.Text=context.Subtitle or ""; self.Back.Visible=context.BackVisible==true; Shared.SetActionButton(self.Back,context.BackText or "BACK",context.BackIcon,context.BackIconText or "<"); local selected=self:RenderCards(context); self:QueueScrollRestore(context); self:Audit(selected); return selected
 end
 function WorkspaceUI:Show(context)
 	self:CaptureScroll(); self:DisconnectDynamic(); self.Context=context

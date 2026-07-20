@@ -1,6 +1,129 @@
 # Owned Garage Canonical Replacement Plan
 
-Status: Phases 0-5 passed and are present in the refreshed `2026-07-19 12:14:59` mirror. Phase 6 atomic activation is generated and awaiting Studio execution and Play verification.
+Status: Phases 0-12 passed. Phase 12 Access and Invitations V1 is confirmed in Play and present in the refreshed `2026-07-20 10:49:01` mirror. Its approved V1.1 persistent-HUD dropdown refinement is generated and awaits Studio verification.
+
+## Reusable Garage Expansion Gate
+
+Before Phase 7 introduces definition-driven properties, revisioned transactions and cached state, run:
+
+```text
+scripts/roblox_profile_service_session_ownership_readonly_audit.lua
+```
+
+The initial gate returned `10/0/4` in Edit and `25/0/6` in fresh Play. Repair V1 persisted the ProfileService lifecycle, in-place import and read-only `GetInitial` source contracts; the refreshed mirror contains them. Follow-up was `19/0/2` Edit and `35/0/3` Play. Two failures were non-semantic convenience attributes discarded by Studio, while the remaining runtime failure exposed direct nested-table replacement in `OwnedGarageProfileRuntime.Ensure` and `Restore`.
+
+Run this separate game-wide repair once in Studio Edit mode:
+
+```text
+scripts/roblox_profile_service_authoritative_session_lifecycle_repair.lua
+```
+
+It does not belong to the garage Phase 7 installer. Corrected V1.1 preserves the already-installed ProfileService/GetInitial work and additionally reconciles owned-garage schema/reset and rollback updates into the existing nested table. Its audit uses durable source markers because Studio did not persist the convenience attributes. Final fresh-Play evidence passed `40/0/0`, including five seconds of stable server-owned session generation and identity. The gate is closed.
+
+## Phase 7 Reusable Property Framework
+
+Canonical installer:
+
+```text
+scripts/roblox_owned_garage_phase7_reusable_property_framework.lua
+```
+
+Phase 7 is a Standard-lane architecture foundation, not the visual overhaul. It keeps the Phase 6 interface and persistence schema intact while making later garages and management pages data-driven:
+
+- `OwnedGaragePropertyCatalog` becomes a validated, immutable version-2 definition contract for template, display slots, structure sections, surface groups, decoration anchors, capabilities and UI metadata.
+- Management state uses catalogue display-space IDs instead of hard-coded `Space01`/`Space02`, publishes API/definition versions and future access/decoration metadata, and caches a cloned projection by garage revision, active interior, vehicle signature and cash.
+- Mutations carry a unique request ID and the menu's base revision. Duplicate requests replay the same result, reused IDs with different payload context are rejected, and stale revisions return a conflict/current revision instead of overwriting newer state.
+- `GetState` and `GetManagementState` are read-only cooldown exemptions. Successful mutations invalidate the cache; player departure clears cache, request history and transaction locks.
+
+Done when the Edit installer reports PASS, Play preserves the Phase 6 browser/entry/exit/management flow, assign/clear/style/access operations refresh to a newer revision, repeated unchanged reads are safe, stale conflicts recover by refreshing, and the full Studio mirror is refreshed. Any source-anchor mismatch must stop before mutation; repair this same canonical installer rather than creating a Phase 7 patch ladder.
+
+Phase 7 is complete. The focused client check returned API/definition version `2/2`, an unchanged-read cache hit and correct stale mutation rejection, and the user refreshed the mirror at `15:32:55`.
+
+## Phase 8 Canonical Display Cars Vertical Slice
+
+Canonical installer:
+
+```text
+scripts/roblox_owned_garage_phase8_canonical_vertical_slice.lua
+```
+
+Phase 8 is the first reusable player-facing slice over the Phase 7 contract. It replaces the old owned-garage vehicle scan/full-render controller with authoritative dealership vehicle summaries, shared vehicle cards, rating ordering, cross-property usage state, preview-before-commit, move confirmation and revision-aware assignment. Browser and management opens become asynchronous/warm; card-only selection uses an incremental shared render; production audit and empty presentation loops are gated off.
+
+The same transaction makes desk, door and displayed-car prompts tap-only, suppresses all interior prompts while management/transitions own input, returns drive-out results, and applies the approved garage HUD policy on desktop/mobile. V1.4 uses the existing interior-mode controller and navigation-icon folder rather than depending on new hierarchy instances that failed to persist. V1.5 retains the visible workspace across transient refresh failures, coalesces mutation/push refresh ownership, and reuses the complete shared Build Modules rail sizing/alignment contract so all four category cards occupy the intended full-height rail. V1.6 completes component reuse with Build's `.5` rail icon scale and dealership's exact vehicle card route, makes preview/commit separate states, validates the saved response before success and hides the free-roam HUD during management. V1.7 makes the selected action and returned management projection explicit. V1.8 fixes the underlying write boundary: copied `GetProfile` results are immutable read models, while a ProfileService-owned command binding performs all garage mutations against the live session table. That command seam preserves the schema and UI contracts and can be moved behind a reorganised service layer after the submission. Config attributes remain optional tuning overrides with safe source defaults. Structure, Decorations, Lighting, Invitations and Visitors remain disabled until their dedicated phases.
+
+The transition-completion installer keeps Phase 8's UI and persistence owners intact. Entry becomes an explicit prepare/despawn-detach/commit/verified-teleport/render transaction. A vehicle already assigned to the selected property retains its slot without a redundant revision; a vehicle from elsewhere still uses the duplicate-safe authoritative move. Exterior placement is definition-driven through `ExteriorSpawnId` and two editable world markers per property, so future garages add data and placement rather than runtime branches. Foot and vehicle exits resolve their selected property's markers before mutating session or display state.
+
+Done when the Edit installer reports Phase 8 PASS; two distinct saved vehicles show correct identity/image/rating through the exact dealership card; previews do not change `0/2`; the shared `DISPLAY` action changes the saved count/revision and occupied-space card; two different vehicles remain in two slots after closing/reopening management; the same vehicle moves instead of duplicating; driving into the selected property detaches/despawns before a verified interior arrival and shows that vehicle in exactly one slot; foot and vehicle exits use the property's exterior markers; no thrust-preview error appears; all four shared category cards remain visible; and prompts/drive-out work on tap. Refresh the full mirror after those checks.
+
+Phase 8 is complete. The transition installer passed after its guarded mixed-state recovery, the user confirmed the flow working well, and the refreshed mirror contains 154 scripts plus `OwnedGarageExteriors.STARTER_TWO_BAY` with both attributed exit markers and all four transition source contracts.
+
+## Phase 9 Canonical Structure Vertical Slice
+
+Phase 9 replaces the coarse staged `SurfaceStyles` path; it must not expose that legacy path through the new UI. The current template labels every wall only as `SurfaceGroup="Walls"`, so it cannot independently address Front, Left, Right and Back. The current style catalogue also has no price, ownership, channel or template-compatibility contract, and the old `SetSurfaceStyle` mutation predates the ProfileService-owned authoritative command boundary.
+
+The canonical Phase 9 contract is:
+
+- `OwnedGarageInteriorStyleCatalog` becomes a versioned, immutable structure-definition catalogue keyed by stable `SectionId` and `StyleId`. The six sections are `FrontWall`, `LeftWall`, `RightWall`, `BackWall`, `Floor`, and `Ceiling`; every section initially exposes four ordered presets. Option 1 is granted by default. Other presets carry price, compatibility and Primary/Secondary/Detail defaults. Optional future asset/template identifiers are data, not runtime branches.
+- Saved state remains under each property and adds a normalised structure namespace containing selected styles, owned style IDs and per-section Primary/Secondary/Detail colour/material overrides. It is additive and must preserve display assignments, access, vehicles, cash and the current profile root identity.
+- Purchases, equips and channel edits execute only through `ExecuteOwnedGarageCommand` against the live ProfileService session. Buying validates cash and ownership atomically; selecting an owned style does not charge again. Every successful mutation increments the same garage revision, invalidates the same state cache and returns the immutable management projection.
+- Preview is session-owned and non-persistent. Selecting a style or channel option applies a temporary override to the active runtime interior; Back, Exit, category change, management close, transition or player cleanup restores the last committed structure state. Preview never writes compatibility tables or player data.
+- The `StarterTwoBay` template receives explicit `StructureSection` and `StructureChannel` attributes. Runtime application targets those attributes, not part names. Additional templates must satisfy their property definition's section contract; a missing required section fails preflight rather than silently recolouring another surface.
+- Physical variants live under `ServerStorage.NeoTokyoRacers.OwnedGarage.StructureAssets.<TemplateId>.<SectionId>.<AssetOption>` and align to `StructureSlots.<SectionId>` in the matching template. Runtime section models contain presentation/collision geometry only; desks, prompts, exits, display markers and other gameplay owners remain in the garage template. Placeholder assets are editable and preserved on installer rerun.
+- Structure first renders six shared module-style section cards. Selecting a section changes the left rail to the same six section cards and renders four shared upgrade-style preset cards with price/owned/current state. The existing shared selected-action popup supplies `BUY` or `CUSTOMISE`; no owned-garage-only card or modal clone is allowed.
+- Customise renders Material and Colour through the shared cosmetics-category composition. Both expose Primary, Secondary and Detail. Colour reuses the confirmed shared H/S/B slider component; Material uses the same panel bounds with catalogue-allowed material buttons. Current simple geometry may map multiple channels to authored parts, while future templates can add more attributed parts without changing UI, persistence or commands.
+- All controls use `Activated`, the existing scaled `1200 x 720` host, 44-pixel touch targets, incremental rerendering and no polling loop. Structure state is included in cache keys/revisions rather than fetched through a second remote.
+
+Done when all six sections are independently targetable; four presets appear per section; Option 1 is owned by default; preview is visible but mutation-free; Buy deducts once and survives close/rejoin; owned styles customise without another purchase; Primary/Secondary/Detail colour and material persist; cancelling restores committed presentation; Display Cars, entry/exit, prompts, HUD policy and two-slot persistence remain unchanged; desktop and phone layouts pass; and the refreshed mirror contains the catalogue, template attributes and source contracts.
+
+Phase 9 V1.1 is complete. The user confirmed its asset listing, preview, purchase and customisation flow working and refreshed the full mirror.
+
+## Phase 10 Canonical Decorations Vertical Slice
+
+Canonical installer:
+
+```text
+scripts/roblox_owned_garage_phase10_decorations_vertical_slice.lua
+```
+
+Phase 10 keeps decoration geometry, preview and persistence under the existing owners. It corrects StarterTwoBay to expose all three physical anchors, adds a versioned catalogue with Plants, Paintings, Furniture, Lighting, Storage and Signs, and creates two editable placeholder assets per category. Saved state is an owned-item unlock map plus one item reference per stable anchor; no world transforms are saved.
+
+The shared flow is category -> position -> item. Selecting an item creates a session-only physical preview. `BUY`, `PLACE` and `REMOVE` use the same revisioned ProfileService command boundary, return the committed immutable management state, and rebuild only `DecorationRuntime`. Runtime assets are bounded, anchored, non-collidable and stripped of scripts/prompts/seats. This is the mobile/scalability gate before any later constrained move/rotate editor.
+
+Done when all six categories and three positions render; starter items are owned; a locked item charges once and is placed; an owned item can replace one position without changing the other two; Remove affects one position; preview cancels on Back/category/Exit; three placements survive management close and save/rejoin; no duplicate runtime model remains per anchor; Structure, display cars and transitions regressions are absent; desktop/phone pass; and the mirror contains the catalogue, three canonical anchors, twelve asset models and Phase 10 source markers.
+
+Phase 10 is complete. The user confirmed the category/position/item flow and persistence working and refreshed the full mirror.
+
+## Phase 11 Canonical Garage Lighting Vertical Slice
+
+Canonical installer:
+
+```text
+scripts/roblox_owned_garage_phase11_lighting_vertical_slice.lua
+```
+
+Phase 11 separates room illumination from both decoration props and global environmental lighting. Each property definition exposes stable fixture-slot IDs. The garage template owns their placement; ServerStorage owns editable fixture assets; an immutable catalogue owns preset colour, brightness, range, price and intensity choices. Saved state contains owned preset IDs, the selected preset and one bounded intensity level.
+
+Preview remains session-only. Purchase, equip and intensity changes use the same revisioned ProfileService command and immutable response. Runtime creates at most one sanitised fixture per definition slot, with collision/query/touch/shadows disabled and range capped. It never edits the global `Lighting` service or the game's stage schedule.
+
+Done when Presets and Intensity use shared cards/actions; four presets preview distinctly; the default is owned; a locked preset charges once; Apply and intensity persist through close/rejoin; Back/Exit restores committed presentation; each active StarterTwoBay interior contains exactly four runtime fixtures; no global lighting stage/value changes; Structure, Decorations, Display Cars and transitions remain stable; desktop/phone pass; and the refreshed mirror contains API version 3, the catalogue, four slots, fixture asset and Phase 11 source contracts.
+
+Phase 11 V1.1 is complete. The user confirmed it working after a Studio restart and refreshed the full mirror.
+
+## Phase 12 Canonical Access and Invitations Vertical Slice
+
+Canonical installer:
+
+```text
+scripts/roblox_owned_garage_phase12_access_invitations.lua
+```
+
+Phase 12 activates the access data already present in each property instead of creating a second visitor system. Four access modes and a bounded, deduplicated invited-user list mutate through the same revisioned ProfileService-owned command boundary. V1 proved that contract through shared workspace pages; V1.1 moves the two entry interactions into anchored persistent-HUD dropdowns. Invitation candidates are other players in the current server, while saved offline IDs remain revokeable.
+
+The property definition and runtime config enable Access and Invitations, but Visitors remains false. The legacy `GarageInteriorService_Active` retains its older in-memory visit flow and must not become a competing owner. A later visitor phase must explicitly switch admission, destination/session state, teleport and return ownership onto the canonical property/access projection before Public, Friends Only or Invite Only affects entry.
+
+Done when all four modes persist; both HUD buttons open the correct anchored dropdowns without entering management; a second same-server player can be invited and revoked; duplicate/self invitations are rejected; offline saved IDs can be revoked; unchanged reads cache against both garage and player-list signatures; stale revisions conflict; cash/settings remain usable; phone targets and scrolling pass; prior garage categories and transitions regressions are absent; Visitors remains disabled; and the refreshed mirror reports API/definition version 4 plus the Phase 12/V1.1 source markers.
+
+Phase 12 V1 is complete. The user confirmed the saved access/invitation flow working and refreshed the mirror. V1.1 changes only presentation: both persistent HUD buttons use `GarageReplacementComponents.AnchoredDropdown`, call the same commands directly and never open management. Cash/Settings remain visible, the invite list refreshes on demand and scrolls after a configurable row cap, and viewport changes relayout through camera signals rather than a per-frame loop. V1.1 is done when desktop/mobile dropdown placement, touch size, outside dismissal, mode persistence, two-player invite/revoke and all prior garage flows pass, followed by another mirror refresh.
 
 ## Acceptance Contract
 

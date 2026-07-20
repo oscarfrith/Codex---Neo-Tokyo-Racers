@@ -1,5 +1,6 @@
 -- NTR_UI_PERFORMANCE_HARDENING_PHASE2_V1
 -- Neo Tokyo Racers ProfileService foundation.
+-- NTR_PROFILE_SERVICE_OWNED_GARAGE_COMMAND_OWNER_V1
 -- Persistence Phase 2. Session profile lifecycle plus optional DataStore plumbing.
 -- DataStoreEnabled defaults to false through Persistence_EditAttributes.
 
@@ -60,6 +61,7 @@ local config = ntr
 
 local serverRoot = ServerScriptService:WaitForChild("NeoTokyoRacers")
 local services = ensureFolder(serverRoot, "Services")
+local ownedGarageCommandRuntime = require(services:WaitForChild("Garage"):WaitForChild("OwnedGarageAuthoritativeCommandRuntime"))
 local playerServices = ensureFolder(services, "Player")
 local stateRoot = ensureFolder(serverRoot, "State")
 local runtimeProfilesFolder = ensureFolder(stateRoot, "RuntimeProfiles")
@@ -70,12 +72,15 @@ local getSummaryBinding = ensureBindableFunction(bindings, "GetSummary")
 local markDirtyBinding = ensureBindableFunction(bindings, "MarkDirty")
 local saveNowBinding = ensureBindableFunction(bindings, "SaveNow")
 local importProfileSnapshotBinding = ensureBindableFunction(bindings, "ImportProfileSnapshot")
+local executeOwnedGarageCommandBinding = ensureBindableFunction(bindings, "ExecuteOwnedGarageCommand")
 local garageCleanupTransactionBinding = ensureBindableFunction(bindings, "GarageModuleInventoryCleanupTransaction") -- NTR_GARAGE_MODULE_INVENTORY_IMPORT_LOCK_V1
 local isLoadedBinding = ensureBindableFunction(bindings, "IsLoaded")
 
 local sessions = {}
+local ownedGarageCommandLocks = {}
 local garageCleanupTransactions = {}
 local profileLoadsInFlight = {} -- NTR_PROFILE_SERVICE_SINGLE_FLIGHT_LOAD_V1
+local profileLoadGenerations = {} -- NTR_PROFILE_SERVICE_LIFECYCLE_GENERATION_V1
 local shuttingDown = false
 
 local function getAttr(name, fallback)
@@ -120,10 +125,17 @@ local function sessionFor(player)
 	end
 	local userId = player.UserId
 	local cleanupTransaction = garageCleanupTransactions[userId]
-	if cleanupTransaction and cleanupTransaction.PinnedSession then
+	if cleanupTransaction
+		and cleanupTransaction.Player == player
+		and cleanupTransaction.PinnedSession
+		and cleanupTransaction.PinnedSession.Player == player then
 		return cleanupTransaction.PinnedSession
 	end
-	return sessions[userId]
+	local session = sessions[userId]
+	if session and session.Player == player then
+		return session
+	end
+	return nil
 end -- NTR_PROFILE_SERVICE_SESSION_OWNERSHIP_HARDENING_V1
 
 local function updateRuntimeMarker(player, session)
@@ -134,6 +146,8 @@ local function updateRuntimeMarker(player, session)
 		marker.Parent = runtimeProfilesFolder
 	end
 	marker:SetAttribute("PlayerName", player.Name)
+	marker:SetAttribute("SessionGeneration", session.SessionGeneration)
+	marker:SetAttribute("SessionId", session.SessionId)
 	marker:SetAttribute("Loaded", session.Loaded == true)
 	marker:SetAttribute("Dirty", session.Dirty == true)
 	marker:SetAttribute("LastSaveUnix", session.LastSaveUnix or 0)
@@ -150,14 +164,22 @@ local function loadProfile(player)
 	local userId = player.UserId
 	local existingSession = sessions[userId]
 	if existingSession then
-		log("PROFILE LOAD REUSED existing session player=" .. player.Name)
-		return existingSession
+		if existingSession.Player == player then
+			log("PROFILE LOAD REUSED existing session player=" .. player.Name)
+			return existingSession
+		end
+		warnLine("PROFILE LOAD BLOCKED by a different player lifecycle userId=" .. tostring(userId))
+		return nil
 	end
 	if profileLoadsInFlight[userId] then
 		warnLine("DUPLICATE PROFILE LOAD SUPPRESSED player=" .. player.Name)
 		return nil
 	end
-	profileLoadsInFlight[userId] = true
+
+	local generation = (profileLoadGenerations[userId] or 0) + 1
+	profileLoadGenerations[userId] = generation
+	local loadTicket = {Player = player, Generation = generation}
+	profileLoadsInFlight[userId] = loadTicket
 
 	local loadedData = nil
 	local loadError = nil
@@ -173,8 +195,22 @@ local function loadProfile(player)
 		end
 	end
 
+	-- NTR_PROFILE_SERVICE_PLAYER_LIFECYCLE_GUARD_V1
+	local activeSession = sessions[userId]
+	local ownsTicket = profileLoadsInFlight[userId] == loadTicket
+	local generationIsCurrent = profileLoadGenerations[userId] == generation
+	if player.Parent ~= Players or not ownsTicket or not generationIsCurrent or activeSession then
+		if ownsTicket then profileLoadsInFlight[userId] = nil end
+		warnLine("LATE PROFILE LOAD DISCARDED player=" .. player.Name)
+		if activeSession and activeSession.Player == player then return activeSession end
+		return nil
+	end
+
 	local profile = schema.FromDataStore(loadedData, startingCash())
 	local session = {
+		Player = player,
+		SessionGeneration = generation,
+		SessionId = HttpService:GenerateGUID(false),
 		Profile = profile,
 		Loaded = true,
 		Dirty = false,
@@ -183,17 +219,13 @@ local function loadProfile(player)
 		LastError = loadError,
 		DataStoreEnabledAtLoad = dataStoreEnabled(),
 	}
-	local activeSession = sessions[userId]
-	if activeSession then
-		profileLoadsInFlight[userId] = nil
-		warnLine("LATE PROFILE LOAD DISCARDED player=" .. player.Name)
-		return activeSession
-	end
 	sessions[userId] = session
 	profileLoadsInFlight[userId] = nil
 	player:SetAttribute("NTR_ProfileServiceLoaded", true)
 	player:SetAttribute("NTR_ProfileSchemaVersion", schema.SchemaVersion)
 	player:SetAttribute("NTR_ProfileDataStoreEnabled", dataStoreEnabled())
+	player:SetAttribute("NTR_ProfileSessionGeneration", generation)
+	player:SetAttribute("NTR_ProfileSessionId", session.SessionId)
 	updateRuntimeMarker(player, session)
 	return session
 end
@@ -207,6 +239,25 @@ local function markDirty(player, reason)
 	session.LastDirtyReason = tostring(reason or "unspecified")
 	updateRuntimeMarker(player, session)
 	return true, "Marked dirty."
+end
+
+local function reconcileTableIdentity(target, source, visited)
+	-- Preserve all existing authoritative table identities while adopting normalized values.
+	if target == source then return end
+	visited = visited or {}
+	if visited[target] == source then return end
+	visited[target] = source
+	for key in pairs(target) do
+		if source[key] == nil then target[key] = nil end
+	end
+	for key, sourceValue in pairs(source) do
+		local targetValue = target[key]
+		if typeof(targetValue) == "table" and typeof(sourceValue) == "table" then
+			reconcileTableIdentity(targetValue, sourceValue, visited)
+		else
+			target[key] = sourceValue
+		end
+	end
 end
 
 local function importProfileSnapshot(player, snapshot, reason, dirty)
@@ -226,7 +277,10 @@ local function importProfileSnapshot(player, snapshot, reason, dirty)
 	if typeof(snapshot) ~= "table" then
 		return false, "Snapshot must be a table."
 	end
-	session.Profile = schema.Normalize(snapshot, startingCash())
+	local normalized = schema.Normalize(snapshot, startingCash())
+	if normalized ~= session.Profile then
+		reconcileTableIdentity(session.Profile, normalized)
+	end
 	session.LastImportReason = tostring(reason or "unspecified")
 	if dirty then
 		session.Dirty = true
@@ -290,6 +344,24 @@ local function saveProfile(player, force)
 	return false, tostring(result)
 end
 
+executeOwnedGarageCommandBinding.OnInvoke = function(player, command)
+	local session = sessionFor(player)
+	if not session then return {Success = false, Message = "Profile is not loaded."} end
+	local userId = player.UserId
+	if ownedGarageCommandLocks[userId] then return {Success = false, Message = "Owned garage command already in progress.", Busy = true} end
+	ownedGarageCommandLocks[userId] = session
+	local expectedGeneration = session.SessionGeneration
+	local ok, result = pcall(function() return ownedGarageCommandRuntime.Execute(player, session.Profile, command, function(reason)
+		local current = sessionFor(player)
+		if current ~= session or current.SessionGeneration ~= expectedGeneration then return false, "Profile session changed during owned garage command." end
+		return markDirty(player, reason)
+	end) end)
+	if ownedGarageCommandLocks[userId] == session then ownedGarageCommandLocks[userId] = nil end
+	if not ok then return {Success = false, Message = "Owned garage command failed: " .. tostring(result)} end
+	if type(result) == "table" then result.SessionGeneration = expectedGeneration; result.SessionId = session.SessionId end
+	return result
+end
+
 getProfileBinding.OnInvoke = function(player)
 	local session = sessionFor(player)
 	return session and session.Profile or nil
@@ -328,10 +400,12 @@ garageCleanupTransactionBinding.OnInvoke = function(player, mode)
 			return false, "A garage inventory cleanup transaction is already active."
 		end
 		local currentSession = sessions[userId]
-		if not currentSession then
-			return false, "Profile is not loaded."
+		if not currentSession or currentSession.Player ~= player then
+			return false, "Profile is not loaded for this player lifecycle."
 		end
 		garageCleanupTransactions[userId] = {
+			Player = player,
+			SessionGeneration = currentSession.SessionGeneration,
 			BlockedCount = 0,
 			LastBlockedReason = "",
 			PinnedSession = currentSession,
@@ -339,10 +413,13 @@ garageCleanupTransactionBinding.OnInvoke = function(player, mode)
 		return true, "Garage inventory cleanup transaction started."
 	elseif mode == "End" then
 		local result = garageCleanupTransactions[userId]
+		if result and result.Player ~= player then
+			return false, "Cleanup transaction belongs to a different player lifecycle."
+		end
 		if result and result.PinnedSession then
 			result.ReplacedSessionDuringTransaction = sessions[userId] ~= result.PinnedSession
-			sessions[userId] = result.PinnedSession
 			result.PinnedSession = nil
+			result.Player = nil
 		end
 		garageCleanupTransactions[userId] = nil
 		return true, result or {BlockedCount = 0, LastBlockedReason = "", ReplacedSessionDuringTransaction = false}
@@ -360,10 +437,23 @@ Players.PlayerAdded:Connect(function(player)
 end)
 
 Players.PlayerRemoving:Connect(function(player)
-	saveProfile(player, true)
-	sessions[player.UserId] = nil
-	local marker = runtimeProfilesFolder:FindFirstChild(tostring(player.UserId))
-	if marker then
+	local userId = player.UserId
+	ownedGarageCommandLocks[userId] = nil
+	ownedGarageCommandRuntime.ForgetPlayer(player)
+	local leavingSession = sessions[userId]
+	profileLoadGenerations[userId] = (profileLoadGenerations[userId] or 0) + 1
+	profileLoadsInFlight[userId] = nil
+	garageCleanupTransactions[userId] = nil
+	if leavingSession and leavingSession.Player == player then
+		saveProfile(player, true)
+		if sessions[userId] == leavingSession then sessions[userId] = nil end
+	end
+	player:SetAttribute("NTR_ProfileServiceLoaded", nil)
+	player:SetAttribute("NTR_ProfileSessionGeneration", nil)
+	player:SetAttribute("NTR_ProfileSessionId", nil)
+	local marker = runtimeProfilesFolder:FindFirstChild(tostring(userId))
+	if marker and not sessions[userId]
+		and (not leavingSession or marker:GetAttribute("SessionId") == leavingSession.SessionId) then
 		marker:Destroy()
 	end
 end)

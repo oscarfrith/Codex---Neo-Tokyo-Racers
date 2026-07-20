@@ -2,6 +2,7 @@
 -- NTR_GARAGE_FLOW_REFINEMENT_V2
 -- NTR_UI_PERFORMANCE_HARDENING_PHASE2_V1
 -- NTR_GARAGE_REPLACEMENT_SHARED_COMPONENTS_V1
+-- NTR_OWNED_GARAGE_PHASE8_SHARED_PRESENTATION
 local RunService=game:GetService("RunService")
 local UserInputService=game:GetService("UserInputService")
 local ReplicatedStorage=game:GetService("ReplicatedStorage")
@@ -40,7 +41,7 @@ function M.MetricCard(parent,name)
 	local p=Racing.Panel(parent,{Name=name,Color=Racing.Colour("PanelSoft",Color3.fromRGB(25,31,39)),Transparency=metricNumber("MetricCardTransparency",.34),NoStroke=true}); local corner=p:FindFirstChildOfClass("UICorner"); if corner then corner.CornerRadius=UDim.new(0,metricNumber("MetricCardCornerRadius",9)) end; local g=gradient(p,Racing.Colour("PanelSoft",Color3.fromRGB(25,31,39)),Racing.Colour("PanelDeep",Color3.fromRGB(9,12,16)),90); g.Transparency=NumberSequence.new({NumberSequenceKeypoint.new(0,.04),NumberSequenceKeypoint.new(1,.28)}); return p
 end
 function M.Card(parent,props)
-	props=props or {}; local selected=props.Selected==true; local accent=selected and Racing.Colour("Telemetry",Color3.fromRGB(43,225,218)) or Racing.Colour("OutlineSoft",Color3.fromRGB(214,74,175))
+	props=props or {}; local selected=props.Selected==true; local accent=selected and Racing.Colour("Telemetry",Color3.fromRGB(43,225,218)) or (props.Muted and Color3.fromRGB(132,142,145) or Racing.Colour("OutlineSoft",Color3.fromRGB(214,74,175)))
 	local card=Racing.Button(parent,{Name=props.Name or "GarageCard",Text="",Size=props.Size or UDim2.fromOffset(226,146),Color=selected and Color3.fromRGB(18,45,54) or Racing.Colour("Panel",Color3.fromRGB(15,19,24)),StrokeColor=accent,FocusColor=Racing.Colour("Telemetry"),StrokeWidth=selected and 2 or 1.2})
 	card:SetAttribute("CanonicalGarageCard",true); card.ClipsDescendants=false
 	local imageH=props.ImageHeight or 136
@@ -49,6 +50,7 @@ function M.Card(parent,props)
 	local imageZoom=props.ImageZoom or 1.06; local image=Instance.new("ImageLabel"); image.Name="Artwork"; image.BackgroundTransparency=1; image.BorderSizePixel=0; image.AnchorPoint=Vector2.new(.5,.5); image.Position=UDim2.fromScale(.5,.5); image.Size=UDim2.fromScale(imageZoom,imageZoom); image.ScaleType=props.ImageScaleType or Enum.ScaleType.Fit; image.Image=props.Image or ""; image.ZIndex=holder.ZIndex+1; image.Parent=holder; Racing.Corner(image,5)
 	local overlayName=props.NameOverlay~=false
 	if overlayName then local plate=Instance.new("Frame"); plate.Name="NamePlate"; plate.BackgroundColor3=Color3.fromRGB(5,8,12); plate.BackgroundTransparency=.16; plate.BorderSizePixel=0; plate.Position=UDim2.new(0,5,1,-29); plate.Size=UDim2.new(1,-10,0,25); plate.ZIndex=holder.ZIndex+2; plate.Parent=card; Racing.Corner(plate,4); local fade=Instance.new("UIGradient"); fade.Rotation=90; fade.Transparency=NumberSequence.new({NumberSequenceKeypoint.new(0,.46),NumberSequenceKeypoint.new(1,.06)}); fade.Parent=plate; local name=Racing.Label(plate,{Name="ItemName",Text=props.DisplayName or "",Position=UDim2.fromOffset(8,1),Size=UDim2.new(1,-16,1,-2),TextSize=12,XAlignment=Enum.TextXAlignment.Center,Truncate=Enum.TextTruncate.AtEnd,Role="Button"}); name.ZIndex=plate.ZIndex+1 else local name=Racing.Label(card,{Name="ItemName",Text=props.DisplayName or "",Position=UDim2.fromOffset(9,imageH+6),Size=UDim2.new(1,-18,0,20),TextSize=props.NameTextSize or 10,XAlignment=Enum.TextXAlignment.Center,Truncate=Enum.TextTruncate.AtEnd,Role=props.NameRole}); name.ZIndex=card.ZIndex+4 end
+	if props.EmptyPlus then local circle=Instance.new("Frame"); circle.Name="EmptyPlus"; circle.AnchorPoint=Vector2.new(.5,.5); circle.Position=UDim2.fromScale(.5,.43); circle.Size=UDim2.fromOffset(58,58); circle.BackgroundColor3=Racing.Colour("PanelSoft"); circle.BorderSizePixel=0; circle.ZIndex=card.ZIndex+5; circle.Parent=card; Racing.Corner(circle,29); local plus=Racing.Label(circle,{Text="+",Size=UDim2.fromScale(1,1),TextSize=34,Role="Heading",XAlignment=Enum.TextXAlignment.Center}); plus.ZIndex=circle.ZIndex+1 end
 	if props.Rating then local badge=Instance.new("Frame"); badge.Name="RatingBadge"; badge.AnchorPoint=Vector2.new(1,0); badge.Position=UDim2.new(1,-8,0,8); badge.Size=UDim2.fromOffset(68,21); badge.BackgroundColor3=props.RatingColor or accent; badge.BorderSizePixel=0; badge.ZIndex=card.ZIndex+6; badge.Parent=card; Racing.Corner(badge,4); local t=Racing.Label(badge,{Text=props.Rating,Size=UDim2.fromScale(1,1),TextSize=9,XAlignment=Enum.TextXAlignment.Center}); t.ZIndex=badge.ZIndex+1 end
 	return card
 end
@@ -101,7 +103,7 @@ function M.AcquirePresentation(owner, surfaces)
 	for _, object in pairs(surfaces or {}) do
 		if typeof(object) == "Instance" and object:IsA("GuiObject") then retiredSurfaces[object] = true; object.Visible = false end
 	end
-	if not ownerConnection then ownerConnection = RunService.RenderStepped:Connect(suppressRetiredSurfaces) end
+	if next(retiredSurfaces)~=nil and not ownerConnection then ownerConnection = RunService.RenderStepped:Connect(suppressRetiredSurfaces) end
 	suppressRetiredSurfaces()
 end
 function M.ReleasePresentation(owner)
@@ -110,6 +112,7 @@ function M.ReleasePresentation(owner)
 	if not presentationOwner and ownerConnection then ownerConnection:Disconnect(); ownerConnection=nil; table.clear(retiredSurfaces) end
 end
 function M.AuditPresentation(owner, labelText)
+	local cfg=kit.Config.UI:FindFirstChild("GarageReplacement"); if not (cfg and cfg:GetAttribute("RuntimeAuditEnabled")==true) then return end
 	task.defer(function()
 		RunService.Heartbeat:Wait(); suppressRetiredSurfaces(); local failures = {}
 		if presentationOwner ~= owner then table.insert(failures, "canonical owner changed") end
@@ -231,4 +234,42 @@ function M.CanonicalHost()
 	for _,child in ipairs(canvas:GetChildren()) do if child:IsA("UIScale") and child~=scale then child:Destroy() end end
 	canonicalHost={Gui=gui,Canvas=canvas,Scale=scale}; return canonicalHost
 end
+function M.ConfirmationModal(root,options)
+	options=options or {}; local shade=Instance.new("Frame"); shade.Name="CanonicalGarageConfirmation"; shade.Active=true; shade.BackgroundColor3=Color3.new(0,0,0); shade.BackgroundTransparency=.22; shade.BorderSizePixel=0; shade.Size=UDim2.fromScale(1,1); shade.ZIndex=300; shade.Parent=root
+	local panel=M.Panel(shade,"Panel",{StrokeColor=Racing.Colour("ElectricBlue"),NoGlow=true}); panel.AnchorPoint=Vector2.new(.5,.5); panel.Position=UDim2.fromScale(.5,.5); panel.Size=UDim2.fromOffset(620,320); panel.ZIndex=301
+	local title=Racing.Label(panel,{Text=options.Title or "CONFIRM",Position=UDim2.fromOffset(28,28),Size=UDim2.new(1,-56,0,42),TextSize=22,Role="Heading",XAlignment=Enum.TextXAlignment.Center}); title.ZIndex=302
+	local body=Racing.Label(panel,{Text=options.Body or "Continue?",Position=UDim2.fromOffset(42,88),Size=UDim2.new(1,-84,0,100),TextSize=14,XAlignment=Enum.TextXAlignment.Center}); body.TextWrapped=true; body.ZIndex=302
+	local no=Racing.Button(panel,{Text=options.CancelText or "NO",Position=UDim2.new(.5,-158,1,-72),Size=UDim2.fromOffset(142,44),Color=Color3.fromRGB(166,61,70),ZIndex=303}); local yes=Racing.Button(panel,{Text=options.ConfirmText or "YES",Position=UDim2.new(.5,16,1,-72),Size=UDim2.fromOffset(142,44),Color=Racing.Colour("PanelBlue"),StrokeColor=Racing.Colour("ElectricBlue"),ZIndex=303})
+	no.Activated:Connect(function() shade:Destroy(); if options.OnCancel then options.OnCancel() end end); yes.Activated:Connect(function() shade:Destroy(); if options.OnConfirm then options.OnConfirm() end end); return shade
+end
+-- NTR_OWNED_GARAGE_ANCHORED_DROPDOWN_V1
+function M.AnchoredDropdown(parent,options)
+	options=options or {}; local panel; local anchor; local outsideConnection; local rows={}; local callback; local metrics={}
+	local function inside(object,point)
+		if not (object and object.Parent and object.Visible) then return false end; local position=object.AbsolutePosition; local size=object.AbsoluteSize; return point.X>=position.X and point.X<=position.X+size.X and point.Y>=position.Y and point.Y<=position.Y+size.Y
+	end
+	local function hide()
+		if outsideConnection then outsideConnection:Disconnect(); outsideConnection=nil end; if panel then panel:Destroy(); panel=nil end; anchor=nil; rows={}; callback=nil
+	end
+	local function place()
+		if not (panel and anchor and anchor.Parent) then return end; local scale=math.max(.01,tonumber(options.Scale and options.Scale() or 1) or 1); local logical=(anchor.AbsolutePosition-parent.AbsolutePosition)/scale; local width=anchor.AbsoluteSize.X/scale; panel.Position=UDim2.fromOffset(logical.X,logical.Y+anchor.AbsoluteSize.Y/scale+(tonumber(metrics.Gap) or 5)); panel.Size=UDim2.fromOffset(width,panel.Size.Y.Offset)
+	end
+	local function show(target,newRows,onPick,newMetrics)
+		hide(); anchor=target; rows=type(newRows)=="table" and newRows or {}; callback=onPick; metrics=type(newMetrics)=="table" and newMetrics or {}; local rowHeight=math.max(34,tonumber(metrics.RowHeight) or 38); local maximum=math.max(1,math.floor(tonumber(metrics.MaxRows) or 5)); local visibleCount=math.max(1,math.min(#rows,maximum)); local padding=5
+		panel=M.Panel(parent,"AnchoredDropdown",{StrokeColor=Racing.Colour("OutlineSoft"),NoGlow=true}); panel.ClipsDescendants=true; panel.ZIndex=tonumber(options.ZIndex) or 80; panel.Size=UDim2.fromOffset(100,visibleCount*rowHeight+padding*2)
+		local scroll=Instance.new("ScrollingFrame"); scroll.Name="Choices"; scroll.BackgroundTransparency=1; scroll.BorderSizePixel=0; scroll.Position=UDim2.fromOffset(padding,padding); scroll.Size=UDim2.new(1,-padding*2,1,-padding*2); scroll.CanvasSize=UDim2.fromOffset(0,math.max(visibleCount,#rows)*rowHeight); scroll.ScrollBarThickness=#rows>maximum and 3 or 0; scroll.ScrollBarImageColor3=Racing.Colour("Telemetry"); scroll.ZIndex=panel.ZIndex+1; scroll.Parent=panel
+		local renderRows=#rows>0 and rows or {{Text="NO OPTIONS AVAILABLE",Disabled=true}}
+		for index,row in ipairs(renderRows) do
+			local selected=row.Selected==true; local button=Racing.Button(scroll,{Name="Choice"..index,Text="",Position=UDim2.fromOffset(0,(index-1)*rowHeight),Size=UDim2.new(1,-(#rows>maximum and 5 or 0),0,rowHeight-4),Color=selected and Racing.Colour("PanelBlue") or Racing.Colour("Panel"),StrokeColor=selected and Racing.Colour("Telemetry") or Racing.Colour("OutlineSoft"),FocusColor=Racing.Colour("Telemetry"),ZIndex=panel.ZIndex+2}); button.Active=row.Disabled~=true; button.Selectable=row.Disabled~=true
+			local text=Racing.Label(button,{Name="ChoiceText",Text=string.upper(tostring(row.Text or row.Id or "")),Position=UDim2.fromOffset(10,0),Size=UDim2.new(1,-88,1,0),TextSize=tonumber(metrics.TextSize) or 11,Role="Button",XAlignment=Enum.TextXAlignment.Left}); text.ZIndex=button.ZIndex+1
+			local detail=Racing.Label(button,{Name="Detail",Text=string.upper(tostring(row.Detail or "")),Position=UDim2.new(1,-78,0,0),Size=UDim2.fromOffset(68,rowHeight-4),TextSize=tonumber(metrics.DetailTextSize) or 9,Color=selected and Racing.Colour("Telemetry") or Racing.Colour("Muted"),Role="Metric",XAlignment=Enum.TextXAlignment.Right}); detail.ZIndex=button.ZIndex+1
+			if row.Disabled~=true then button.Activated:Connect(function() if callback then callback(row) end end) end
+		end
+		place(); outsideConnection=UserInputService.InputBegan:Connect(function(input)
+			if input.UserInputType~=Enum.UserInputType.MouseButton1 and input.UserInputType~=Enum.UserInputType.Touch then return end; local point=Vector2.new(input.Position.X,input.Position.Y); if not inside(panel,point) and not inside(anchor,point) then hide() end
+		end)
+	end
+	return {Show=function(_,target,newRows,onPick,newMetrics) show(target,newRows,onPick,newMetrics) end,Toggle=function(_,target,newRows,onPick,newMetrics) if panel and anchor==target then hide() else show(target,newRows,onPick,newMetrics) end end,Hide=function() hide() end,Relayout=function() place() end,IsOpenFor=function(_,target) return panel~=nil and anchor==target end,Destroy=function() hide() end}
+end
+
 return M

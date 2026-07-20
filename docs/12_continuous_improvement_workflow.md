@@ -4,6 +4,8 @@
 
 If an installer reports success but newly created instances disappear while edits to existing Script sources remain, stop changing feature code. Create a harmless uniquely named Folder in one Command Bar command and read it in a second command in the same place. If that generic probe also disappears, fully restart Studio and repeat it before repairing the installer. A passing post-restart probe identifies a session-level Studio transaction fault; do not add feature-specific recovery logic or blame the Command Bar history-size warning without independent evidence.
 
+If the same fault later recurs and the feature can reuse an existing intended owner, prefer a source-only canonical repair over another hierarchy recovery. Optional generated config/icon folders must use existing-folder or source-default fallbacks rather than hard `WaitForChild` dependencies, and companion HUD behaviour should be folded into the already-designated HUD-policy owner when that preserves ownership boundaries. Record the mixed source/hierarchy state in the mirror before repairing it.
+
 **Created:** 2026-07-02  
 **Purpose:** Make each Neo Tokyo Racers chat safer, faster, and more useful than the last one.
 
@@ -21,6 +23,8 @@ Before planning or patching, read:
 - `docs/11_manual_script_copy_map.md`
 - this file
 - `docs/13_efficient_feature_delivery_protocol.md` for risk lanes, one-install delivery, ownership gates, acceptance contracts, and reusable templates
+- `docs/14_new_system_readiness_standard.md` before new systems, substantial expansions, or connected networking/persistence/runtime work
+- `docs/15_new_system_contract_template.md` for the compact Standard or full High-Risk contract
 
 Then check `git status --short`.
 
@@ -50,6 +54,12 @@ Chat-mode prefixes:
 If the user gives no prefix, use the smart default: implement straightforward safe work, but pause with a recommendation when a request looks like polish, scope drift, architectural change, or a risky interruption to the current system.
 
 The detailed delivery protocol is versioned separately in `docs/13_efficient_feature_delivery_protocol.md`. Future chats should improve that protocol when repeated evidence exposes a better rule, while keeping this file focused on durable project lessons.
+
+## New System Readiness Rule
+
+New systems and substantial expansions must use the proportional readiness standard in `docs/14_new_system_readiness_standard.md`. The assistant chooses Fast, Standard or High-Risk from the actual authority, persistence, lifecycle, scale and dependency impact; the user should not need to classify the task or supply a technical specification.
+
+Keep Fast Lane fast. Standard work uses the compact contract in `docs/15_new_system_contract_template.md`. High-Risk work expands the same contract with explicit security, data compatibility, migration, performance, streaming, observability and rollback evidence. Use `N/A` instead of inventing irrelevant machinery, and document genuine deferred risks before another system depends on them.
 
 ## What To Learn Each Time
 

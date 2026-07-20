@@ -1,4 +1,6 @@
 -- NTR_MOBILE_FREEROAM_UI_PHASE1O_MAJOR_MENU_SUPPRESSION
+-- NTR_OWNED_GARAGE_PHASE8_HUD_POLICY
+-- NTR_OWNED_GARAGE_MANAGEMENT_HUD_SUPPRESSION_V1_6
 -- NTR_RACING_UI_MOBILE_PHASE2_IN_RACE_HUD
 -- NTR_MOBILE_FREEROAM_UI_PHASE1L_MODAL_SAFE_AREA_PC_CASH
 -- NTR_MOBILE_FREEROAM_UI_PHASE1K_BOOST_PLATE_EXIT_ALIGNMENT
@@ -274,16 +276,25 @@ if presentation and presentation:IsA("BindableEvent") then presentation.Event:Co
 	end
 	if next(presentationOwners)~=nil then if carMenuOpen then setCarMenuOpen(false) end closeModal() end
 end) end
-local function majorMenu() return player:GetAttribute("NTR_GarageSessionActive")==true end
+local function majorMenu() return player:GetAttribute("NTR_GarageSessionActive")==true or playerGui:GetAttribute("NTR_OwnedGarageManagementOpen")==true end
 local function subject() local c=player.Character; local h=c and c:FindFirstChildOfClass("Humanoid"); local seat=h and h.SeatPart; return seat or (c and c:FindFirstChild("HumanoidRootPart")) end
-local displayedPos=nil; local displayedHeading=0; local displayedBoost=1; local lastSize=Vector2.zero; local nextProfile=0
+local displayedPos=nil; local displayedHeading=0; local displayedBoost=1; local lastSize=Vector2.zero; local lastInside=nil
+local function bindCash() local stats=player:FindFirstChild("leaderstats"); local value=stats and stats:FindFirstChild("Cash"); if not value then return false end; local function update() cashText.Text="$"..tostring(math.floor(tonumber(value.Value) or 0)) end; update(); value:GetPropertyChangedSignal("Value"):Connect(update); return true end
+if not bindCash() then task.spawn(function() local stats=player:WaitForChild("leaderstats",15); if stats then stats:WaitForChild("Cash",15) end; bindCash() end) end
 local function layout()
-	local camera=workspace.CurrentCamera; local vp=camera and camera.ViewportSize or Vector2.new(1280,720); if vp==lastSize then return end; lastSize=vp
+	local camera=workspace.CurrentCamera; local vp=camera and camera.ViewportSize or Vector2.new(1280,720); local inside=player:GetAttribute("NTR_OwnedGarageInside")==true; if vp==lastSize and inside==lastInside then return end; lastSize=vp; lastInside=inside
 	local tiny=vp.Y<500; local margin=tiny and 10 or tonumber(read(config,"EdgeMargin",14)); local mapSize=math.floor(math.clamp(vp.Y*.27,tiny and 128 or 145,tiny and 160 or tonumber(read(config,"MinimapSize",180))))
 	local navSize=tiny and 34 or tonumber(read(config,"NavButtonSize",42)); local navGap=tiny and 4 or tonumber(read(config,"NavGap",6)); local carWidth=navSize*2+navGap; local navWidth=carWidth+navSize*4+navGap*4; local mapX=vp.X-margin-mapSize; local clusterGap=tiny and 4 or tonumber(read(config,"TopClusterGap",6)); nav.Position=UDim2.fromOffset(mapX-clusterGap-navWidth,margin); nav.Size=UDim2.fromOffset(navWidth,navSize)
 	local x=0; carButton.Position=UDim2.fromOffset(x,0); carButton.Size=UDim2.fromOffset(carWidth,navSize); x+=carWidth+navGap
 	for _,name in ipairs({"Garage","Race","Dealership","Settings"}) do local b=navButtons[name]; b.Position=UDim2.fromOffset(x,0); b.Size=UDim2.fromOffset(navSize,navSize); x+=navSize+navGap end
-	mapFrame.Position=UDim2.fromOffset(mapX,margin); mapFrame.Size=UDim2.fromOffset(mapSize,mapSize); cash.Position=UDim2.fromOffset(mapX,margin+mapSize+clusterGap); cash.Size=UDim2.fromOffset(mapSize,tiny and 30 or tonumber(read(config,"CashHeight",34)))
+	local cashHeight=tiny and 30 or tonumber(read(config,"CashHeight",34))
+	if inside then
+		nav.Position=UDim2.fromOffset(vp.X-margin-navSize,margin); nav.Size=UDim2.fromOffset(navSize,navSize); settingsButton.Position=UDim2.fromOffset(0,0)
+		cash.Position=UDim2.fromOffset(margin,vp.Y-margin-cashHeight); cash.Size=UDim2.fromOffset(mapSize,cashHeight)
+	else
+		mapFrame.Position=UDim2.fromOffset(mapX,margin); mapFrame.Size=UDim2.fromOffset(mapSize,mapSize)
+		cash.Position=UDim2.fromOffset(mapX,margin+mapSize+clusterGap); cash.Size=UDim2.fromOffset(mapSize,cashHeight)
+	end
 	local telemetryScaleValue=tiny and .62 or .72; local telemetryBottom=tonumber(read(config,"TelemetryBottomMargin",2)); telemetryScale.Scale=telemetryScaleValue; telemetry.Position=UDim2.fromOffset(vp.X*.5,vp.Y-telemetryBottom); local steeringBottomMargin=tiny and 10 or 16; local exitHeight=30; local exitY=math.floor(190+(telemetryBottom-steeringBottomMargin)/telemetryScaleValue-exitHeight+.5); exitButton.Position=UDim2.fromOffset(24,exitY)
 	local carTop=tiny and 68 or tonumber(read(config,"CarMenuTop",82)); local carBottom=math.max(0,tonumber(read(config,"CarMenuBottomMargin",2))); local carH=math.max(260,vp.Y-carTop-carBottom); local panelPad=math.max(3,tonumber(read(config,"CarMenuPanelPadding",5))); local cardGap=math.max(2,tonumber(read(config,"CarMenuCardGap",5))); local topSafe=math.max(0,tonumber(read(config,"CarMenuCardTopSafePadding",3))); local bottomSafe=math.max(0,tonumber(read(config,"CarMenuCardBottomSafePadding",3))); local strokeSafe=math.max(0,tonumber(read(config,"CarMenuCardStrokeSafePadding",5))); local visibleRows=math.max(1,math.floor(tonumber(read(config,"CarMenuVisibleRows",3))+.5)); local aspect=math.max(.4,tonumber(read(config,"CarMenuCardAspect",.88))); local targetCardW=math.max(64,tonumber(read(config,"CarMenuTargetCardWidth",92))); local despawnH=math.max(18,tonumber(read(config,"CarMenuDespawnHeight",20))); local footerGap=math.max(2,tonumber(read(config,"CarMenuFooterGap",3))); local footerBottom=math.max(2,math.floor(panelPad*.5)); local scrollY=math.max(30,tonumber(read(config,"CarMenuHeaderHeight",36))); local despawnY=carH-footerBottom-despawnH; local scrollBottom=despawnY-footerGap; local scrollH=math.max(60,scrollBottom-scrollY)
 	local heightFit=math.max(24,math.floor((scrollH-topSafe-bottomSafe-cardGap*(visibleRows-1))/visibleRows)); local maxPanelW=math.max(180,math.floor(vp.X*math.clamp(tonumber(read(config,"CarMenuMaxWidthRatio",.42)),.25,.6))); local viewportCardFit=math.floor((maxPanelW-panelPad*2-cardGap)/2); local cardW=math.max(64,math.min(targetCardW,viewportCardFit,math.floor(heightFit/aspect))); local cardH=math.max(24,math.floor(cardW*aspect)); local carW=panelPad*2+cardW*2+cardGap; local leftMargin=math.max(0,tonumber(read(config,"CarMenuLeftMargin",3))); carPanel.Position=UDim2.fromOffset(leftMargin,carTop); carPanel.Size=UDim2.fromOffset(carW,carH)
@@ -293,7 +304,7 @@ local function layout()
 end
 
 RunService.RenderStepped:Connect(function(dt)
-	suppressExactLegacyHud(); layout()
+	layout()
 	local presentationActive=next(presentationOwners)~=nil
 	local telemetryOnly=presentationActive
 	for _,state in pairs(presentationOwners) do if not state.KeepTelemetry then telemetryOnly=false break end end
@@ -303,7 +314,7 @@ RunService.RenderStepped:Connect(function(dt)
 	local localMajorMenuOpen=modal.Visible or shade.Visible
 	-- NTR_OWNED_GARAGE_PHASE5_HUD_POLICY_V1
 	local ownedGarageInside=player:GetAttribute("NTR_OwnedGarageInside")==true
-	mapFrame.Visible=not ownedGarageInside and not telemetryOnly and not localMajorMenuOpen cash.Visible=not telemetryOnly and not localMajorMenuOpen nav.Visible=not telemetryOnly and not localMajorMenuOpen
+	mapFrame.Visible=not ownedGarageInside and not telemetryOnly and not localMajorMenuOpen; cash.Visible=not telemetryOnly and not localMajorMenuOpen; nav.Visible=not telemetryOnly and not localMajorMenuOpen; carButton.Visible=not ownedGarageInside; garageButton.Visible=not ownedGarageInside; raceButton.Visible=not ownedGarageInside; shopButton.Visible=not ownedGarageInside; settingsButton.Visible=true
 	if telemetryOnly or localMajorMenuOpen then toast.Visible=false end
 	if hidden then return end
 	local driving=drive.IsDriving==true
@@ -311,6 +322,6 @@ RunService.RenderStepped:Connect(function(dt)
 	exitButton.Visible=driving and not carMenuOpen and not telemetryOnly and not localMajorMenuOpen
 	local s=subject(); if s then local position=s.Position; local mapSize=mapFrame.AbsoluteSize.X; local mapPixels=math.max(1,tonumber(read(desktopLayout,"MapPixels",2048))); local calPixels=math.max(1,tonumber(read(desktopLayout,"MapCalibrationPixels",207))); local calStuds=math.max(1,tonumber(read(desktopLayout,"MapCalibrationStuds",2850))); local fullStuds=mapPixels*calStuds/calPixels; local visible=math.max(100,tonumber(read(desktopLayout,"MapVisibleStuds",2850))); local uiPerStud=mapSize/visible; local canvasSize=fullStuds*uiPerStud; mapCanvas.Size=UDim2.fromOffset(canvasSize,canvasSize); local dx=position.X-tonumber(read(desktopLayout,"MapWorldCenterX",0)); local dz=position.Z-tonumber(read(desktopLayout,"MapWorldCenterZ",0)); if B(desktopDefaults,"MapFlipX",false) then dx=-dx end; if B(desktopDefaults,"MapFlipZ",false) then dz=-dz end; local angle=math.rad(tonumber(read(desktopLayout,"MapCoordinateRotationDegrees",90))); local mx=dx*math.cos(angle)-dz*math.sin(angle); local mz=dx*math.sin(angle)+dz*math.cos(angle); local target=Vector2.new(mapSize*.5,mapSize*.5)-Vector2.new(mx*uiPerStud,mz*uiPerStud); displayedPos=displayedPos and displayedPos:Lerp(target,1-math.exp(-10*dt)) or target; mapCanvas.Position=UDim2.fromOffset(displayedPos.X,displayedPos.Y); mapCanvas.Rotation=0; local look=s.CFrame.LookVector; local lookX,lookZ=look.X,look.Z; if B(desktopDefaults,"MapFlipX",false) then lookX=-lookX end; if B(desktopDefaults,"MapFlipZ",false) then lookZ=-lookZ end; local lx=lookX*math.cos(angle)-lookZ*math.sin(angle); local lz=lookX*math.sin(angle)+lookZ*math.cos(angle); local heading=math.deg(math.atan2(lx,-lz))+tonumber(read(desktopLayout,"MapRotationOffsetDegrees",0)); local diff=(heading-displayedHeading+180)%360-180; displayedHeading+=diff*(1-math.exp(-10*dt)); playerMarker.Rotation=B(desktopDefaults,"MapPlayerIconRotates",true) and displayedHeading or 0 end
 	if driving then local speed=math.max(0,tonumber(drive.SpeedMph) or 0); speedText.Text=tostring(math.floor(speed+.5)); local target=math.clamp((tonumber(drive.BoostPercent) or 100)/100,0,1); displayedBoost+=(target-displayedBoost)*(1-math.exp(-14*dt)); boostFill.Size=UDim2.fromScale(1,displayedBoost); local gaugeMax=math.max(1,tonumber(read(desktopLayout,"SpeedGaugeMaxMph",260)) or 260); local active=math.floor(math.clamp(speed/gaugeMax,0,1)*#gauge+.5); for i,g in ipairs(gauge) do g.BackgroundColor3=i<=active and (i>#gauge*.82 and PINK or CYAN) or Color3.fromRGB(81,88,99); g.BackgroundTransparency=i<=active and 0 or .42 end end
-	if os.clock()>=nextProfile then nextProfile=os.clock()+3; task.defer(function() local p=profile(false); cashText.Text="$"..tostring(math.floor(tonumber(p.Cash) or 0)) end) end
+	-- Cash is event-driven from leaderstats; no recurring profile request.
 end)
 print("[NTR Mobile Free-Roam UI Phase 1K] Compact boost plate and steering-bottom-aligned Exit active.")
