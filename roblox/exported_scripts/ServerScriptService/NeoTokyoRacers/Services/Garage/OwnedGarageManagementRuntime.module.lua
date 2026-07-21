@@ -122,7 +122,14 @@ function Runtime.Start()
 	end
 	local function configurePrompts(player,profile,session)
 		promptConnections[session.Interior]=promptConnections[session.Interior] or {}; local list=promptConnections[session.Interior]
-		local foot=session.Interior:FindFirstChild("FootExitPrompt",true); if foot then foot.HoldDuration=0; foot:SetAttribute("OwnedGarageAvailable",true); table.insert(list,foot.Triggered:Connect(function(triggeringPlayer) if triggeringPlayer==player then exitOnFoot(player) end end)) end
+		-- NTR_LOADING_SYSTEM_PHASE3_OWNED_GARAGE_FOOT_EXIT_RESULT_V1
+		local foot=session.Interior:FindFirstChild("FootExitPrompt",true)
+		if foot then
+			foot.HoldDuration=0; foot:SetAttribute("OwnedGarageAvailable",true)
+			table.insert(list,foot.Triggered:Connect(function(triggeringPlayer)
+				if triggeringPlayer==player then local result=exitOnFoot(player); push:FireClient(player,{Type="FootExitResult",Success=result.Success==true,Message=result.Message}) end
+			end))
+		end
 		local desk=session.Interior:FindFirstChild("ManageGaragePrompt",true); if desk then desk.HoldDuration=0; desk:SetAttribute("OwnedGarageAvailable",true); table.insert(list,desk.Triggered:Connect(function(triggeringPlayer) if triggeringPlayer==player then push:FireClient(player,{Type="OpenManagement",PropertyId=session.PropertyId}) end end)) end
 		return renderDisplays(player,profile,session)
 	end

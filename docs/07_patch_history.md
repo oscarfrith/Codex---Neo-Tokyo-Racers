@@ -1,5 +1,100 @@
 # Patch History
 
+## 2026-07-21 - Loading Phase 6 closure audit generated from fresh V1.3 mirror
+
+- Imported the user's full Studio mirror generated at `10:48:31`. It contains 163 scripts, configured start-client checksum `303682342`, V1.4 loading-view checksum `215716094`, all responsive/grid config attributes and all Phase 1-4 plus race-readiness markers.
+- Added one read-only Edit-mode audit covering source compilation/marker uniqueness, canonical hierarchy owners, responsive/grid config, complete six-tile artwork/fallback, SoundService groups and absence of persistent runtime UI/sound. It performs no writes, creates no Instances and executes no project module.
+- Added the Phase 6 closure handoff with device, included/excluded transition, rejection, repetition and low-end performance checks. The current `1.2`-second minimum versus the earlier `1.5` target and blank music are explicit non-blocking warnings.
+- Decided against `TeleportGui` for the current single-place in-place flows. Loading music and a second catalogue artwork remain optional post-closure work.
+- The user subsequently reported everything working as expected. Phase 6 is closed and handed off; the live `1.2`-second minimum is accepted, blank music remains intentional, and no post-audit mirror refresh is required because the closure audit was read-only.
+
+## 2026-07-21 - Loading start-button configured position V1.3 generated
+
+- The user confirmed the retryable Grid3x2 V1.2 repair working well and requested lower PLAY/SHOP placement with config-driven, mobile-consistent tuning.
+- Extended the existing config-only companion with `StartScreenButtonYScaleDesktop=0.82`, `StartScreenButtonYScaleLandscapePhone=0.84` and `StartScreenButtonYScalePortrait=0.80`. Existing values remain untouched; values are audited between `0.5` and `0.95`, and higher values move the menu down.
+- Updated the same canonical loading installer to `NTR_LOADING_SYSTEM_PHASE5_START_BUTTON_POSITION_V1_3`. It accepts only known V1/V1.1/V1.2 start-client sources, preserves the installed V1.4 Grid3x2 view, and replaces only the isolated initial/start client. All device branches call one safe-area position helper which clamps the entire menu to an eight-pixel bottom inset; button sizes and orientations are unchanged.
+- No loading runtime, artwork catalogue, transition, input, audio, racing, camera, server, persistence or economy owner changed. The user subsequently confirmed the resulting placement looking good. V1.3 is now the working Studio baseline; full device/transition closure and mirror refresh remain pending.
+
+## 2026-07-21 - Loading Grid3x2 fetch-status V1.2 repair generated
+
+- The user installed V1.1, restarted Studio and refreshed the mirror at `10:17:35`. The mirror contains all four `ReplicatedFirst.NTRLoading` sources, exact compact-button V1.1 and a `13,024`-byte start client, disproving a source-length failure. The two icon attributes are absent because V1.1 intentionally read optional keys without creating them.
+- The mirror contains all six Grid3x2 IDs/coordinates and the single fallback. Source diagnosis found the resolution/black-screen cause: V1.3 of `LoadingScreenView` keeps the grid hidden, performs one `PreloadAsync`, immediately requires every hidden ImageLabel's `IsLoaded`, and never retries or reports a failed tile. The low-resolution view can therefore remain the single fallback; removing it exposes the black backing.
+- Added config-only `scripts/roblox_ui_loading_start_screen_config.lua` to create both icon String attributes plus bounded grid attempts/retry/promotion timings without mixing config and source. It preserves existing values, audits types/ranges and rolls back only attributes it added.
+- Updated the canonical installer to source-only replace the exact V1.3/V1.4 view with `NTR_LOADING_SYSTEM_PHASE1_SCREEN_VIEW_V1_4_GRID_FETCH_STATUS`. It records final per-tile fetch statuses, retries boundedly, renders the fetched grid behind the opaque fallback before promotion, waits boundedly for all six ImageLabels, and logs exact tile/status/ID failures while safely retaining the fallback. Catalogue, runtime, V1.1 start client, racing, input, audio, server and persistence owners remain unchanged.
+
+## 2026-07-21 - Loading/start-screen Phase 5 V1.1 compact icon buttons generated
+
+- The user confirmed Phase 5 V1 working well. Screenshot review showed that the generated title/subtitle duplicated branding already present in the artwork and that a landscape phone's wide viewport selected the oversized desktop button branch.
+- Updated the same canonical installer to `NTR_LOADING_SYSTEM_PHASE5_INITIAL_START_SCREEN_V1_1_COMPACT_ICON_BUTTONS`. It accepts only the known V1/V1.1 client marker, replaces that one isolated source, removes both headings, lowers the button-only composition and preserves every confirmed loading/runtime/racing owner.
+- Added touch plus short-side phone detection: compact horizontal `188x40` actions in landscape and compact vertical `190x40` actions in portrait, with separate tablet/narrow and wide metrics. Both shared-theme buttons now support centred left icons through optional `LoadingSystem.StartScreenPlayIconAssetId` and `StartScreenShopIconAssetId` String attributes; absent IDs consume no icon space.
+- The installer deliberately does not write blank central attributes alongside source because the project has reproduced Studio's mixed source/attribute persistence fault. SHOP failure remains retryable without the removed description label by showing `SHOP - TRY AGAIN` and logging the detailed reason. Studio desktop/tablet/phone visual/action regression and refreshed `ReplicatedFirst` mirror remain pending.
+
+## 2026-07-21 - Loading/start-screen Phase 5 generated
+
+- The user confirmed the readiness-gated countdown working and refreshed the `09:20:03` full mirror; all four readiness markers are present. That gate is now the confirmed racing baseline.
+- Updated the same canonical `scripts/roblox_ui_loading_and_start_screen_system.lua` to Phase 5 revision `NTR_LOADING_SYSTEM_PHASE5_INITIAL_START_SCREEN_V1`. It adds one early `ReplicatedFirst` client and leaves the confirmed catalogue/view/runtime sources unchanged. The client applies artwork eligibility and a long timeout only to its local replicated config while beginning the retained generation, then restores those values immediately.
+- Initial progress waits boundedly for game/world/character readiness, then reveals a static responsive PLAY/SHOP composition inside the existing full-bleed/safe-area view. PLAY releases the existing fade; SHOP reuses the existing server-authoritative dealership teleport and remains retryable on rejection. Release restores the shared progress/status visibility and disconnects the responsive viewport listener before destroying the menu, preventing later loading-screen regressions. The start screen never writes camera or spawn state.
+- The first generated design used an internal `task.wait()` between hierarchy/config and source stages, but project history proves that pattern crosses Studio's Command Bar history boundary. It was removed before handoff. The final installer is hierarchy-only, no-yield, compile/audit/idempotent and rollback-scoped, with no backup Instances or existing-source/config mutation. The full exporter now scans `ReplicatedFirst`, repairing the blind spot in the `09:20:03` mirror so the required post-test refresh can capture all four loading-package scripts. Studio first-join/long-idle/button/device/audio/input/later-transition verification remains pending.
+
+## 2026-07-21 - Race staging readiness gate generated
+
+- The user confirmed Loading Phase 4 working and refreshed the `09:02:33` mirror, then reported that the race started with almost no visible countdown. Source inspection confirmed both authoritative race services count down immediately after staging while the full-screen loading cover remains active.
+- Added `scripts/roblox_racing_staging_readiness_gate.lua`, a guarded source-only transaction over the existing Time Trial server, Matchmaking server, race transition client and shared countdown presenter. It validates two client readiness phases per run and begins a server-time synchronized five-second countdown only after loading has fully faded for every active participant.
+- Added bounded preparation/server timeouts, stale run/membership/phase rejection, idempotent acknowledgements, disconnect exclusion and degraded-preload diagnostics. Missing readiness cancels staging through existing cleanup rather than unlocking behind the cover or leaving vehicles frozen.
+- No new remote/hierarchy owner, saved schema, economy, reward, PB, queue, checkpoint, reset, results or vehicle-construction path was added. Exact-anchor dry projection against the fresh mirror passes; Studio compile/install, Time Trial/two-client/disconnect/timeout/device regression and mirror refresh remain pending.
+
+## 2026-07-21 - Loading/start-screen Phase 4 racing transitions generated
+
+- The user confirmed Phase 3 working and refreshed the `08:39:10` mirror, which contains both owned-garage source markers and revision attributes. Phase 3 is now the rollback baseline.
+- Updated the same canonical installer to revision `NTR_LOADING_SYSTEM_PHASE4_RACING_TRANSITIONS_V1`. `RaceTransitionClient_Active` remains the camera/session-transition owner and delegates Race Browser teleport, time-trial start, post-queue Race staging, active exit and results Exit to Start to the shared loading runtime.
+- Multiplayer queue waiting remains visible and starts loading only at authoritative `RaceStaged`. Time-trial start covers immediately after the selected-vehicle action. Reset keeps the existing lightweight black fade; reset, retry/race-again, ordinary vehicle spawn/switch and non-relocating results remain excluded.
+- No remote, server staging, timing, checkpoint, matchmaking, result, reward, persistence, economy or vehicle-lifecycle contract changed. Eleven guarded source anchors match the refreshed mirror exactly once; projected/final Studio compilation, transaction rollback and desktop/touch lifecycle verification remain required.
+- The first Phase 4 install reached final source compilation but rolled back because Studio dropped the loading config `Revision` attribute, repeating the documented mixed source/attribute transaction fault. Repaired the same canonical installer as a no-yield source-only transaction: it read-only verifies the existing loading config, artwork and six foundation sources, writes only the four Racing sources, and uses their exact markers as Phase 4 revision evidence. No repair script or hierarchy recovery was added.
+
+## 2026-07-21 - Loading/start-screen Phase 3 owned-garage transitions generated
+
+- The user confirmed Phase 2 working and refreshed the `08:19:22` mirror, which contains its entrance and garage UI source markers plus scanned revision attributes. Phase 2 is now the rollback baseline.
+- Updated the same canonical installer to revision `NTR_LOADING_SYSTEM_PHASE3_OWNED_GARAGE_TRANSITIONS_V1`. `OwnedGarageBrowserController` wraps selected-property entry, replacement-space confirmation and browser Return-to-City; its event-driven prompt listener wraps physical Foot Exit and Drive Out.
+- `OwnedGarageManagementRuntime` retains all trusted prompt, teleport, saved assignment, compensation and vehicle lifecycle work. Its physical foot-exit callback now publishes success/failure through the existing owned-garage event, matching the existing drive-out result contract. No remote, schema, economy, geometry, management UI or visitor behaviour changed. Studio desktop/touch lifecycle, compensation, duplicate-safety and mirror verification remain pending.
+
+## 2026-07-21 - Loading/start-screen Phase 2 entry/exit integration generated
+
+- The user confirmed Phase 1 V1.3 motion looks good. The same canonical installer now targets revision `NTR_LOADING_SYSTEM_PHASE2_DEALERSHIP_CUSTOMISATION_ENTRY_EXIT_V1` and preserves all confirmed Phase 1 artwork, timing, progress, input, audio, HUD and teleport behaviour.
+- Added guarded integrations to the canonical `GarageEntranceController_Active` and `ModuleShopUIController`. Dealership, on-foot customisation and drive-in entry begin before the existing session request and complete after profile/camera/UI readiness; browser Exit and Drive-to-free-roam complete after existing session/vehicle readiness.
+- No remote, persistence, economy, vehicle constructor, camera owner or duplicated garage UI was added. Missing-core-module Drive rejection remains pre-loading; session/profile failures retain the current view. Drive returns the hidden character to the saved entrance under cover before invoking the existing exit-marker spawn, so a later spawn failure recovers to usable on-foot free roam. The user subsequently confirmed the complete Phase 2 flow working and refreshed the mirror.
+- The first run stopped safely in preflight because it checked an older canonical-installer marker on `GarageEntranceController_Active`. The refreshed source and Studio error agree that the isolated live owner uses `NTR_GARAGE_NATIVE_ENTRANCE_PROMPTS_V1`; the same installer now checks that exact marker. No mutation or rollback recovery was required.
+
+## 2026-07-21 - Loading/start-screen Phase 1 V1.3 motion tuning generated
+
+- The user confirmed V1.2 Grid3x2 working and refreshed the `07:57:44` mirror with all six tile IDs populated. The existing motion path was active but its 15-second `Sine InOut` opening produced almost imperceptible movement during the 1.5-second minimum.
+- Updated the same canonical installer to revision `NTR_LOADING_SYSTEM_PHASE1_DEALERSHIP_TELEPORT_V1_3_MOTION_TUNING`: five-second duration, `Sine Out`, `1.06→1.10` zoom and `1.2%` travel. Motion still targets the one common `ArtworkMotion` parent and remains disabled for the future start screen.
+- No grid, fallback, timing, progress, audio, input, driving, teleport or HUD ownership changed. The user subsequently confirmed the motion looks good; the mirror still predates V1.3 and omits `ReplicatedFirst`.
+
+## 2026-07-20 - Loading/start-screen Phase 1 V1.2 Grid3x2 generated
+
+- The user confirmed V1.1 timing/progress working and refreshed the `15:49:06` mirror, then verified that the visible softness persisted with a high-quality 4K source independent of preloading and motion scale. The current Roblox 4K streaming path does not include `ImageLabel`, so the same canonical installer now provides a tiled UI workaround.
+- Revision `NTR_LOADING_SYSTEM_PHASE1_DEALERSHIP_TELEPORT_V1_2_GRID3X2` adds six coordinate-owned tile config folders, catalogue readiness/signature data, a responsive 16:9 3x2 composite, common pan/zoom/fade ownership, one-pixel seam overlap and bounded warm pooling.
+- The grid is revealed only after all six IDs are populated and all six images load; otherwise the confirmed single image remains visible atomically. No driving, audio, teleport, HUD, server, persistence or later-phase source is changed. Studio install, six IDs, seam/fallback/device verification and mirror refresh remain pending.
+
+## 2026-07-20 - Loading/start-screen Phase 1 V1.1 smooth minimum generated
+
+- The user confirmed Phase 1 V1 working but reported that fast dealership transitions appeared and disappeared too abruptly. The refreshed `15:10:19` mirror contains the installed V1 sources for scanned services; `ReplicatedFirst` remains outside exporter coverage.
+- Updated the same canonical installer to revision `NTR_LOADING_SYSTEM_PHASE1_DEALERSHIP_TELEPORT_V1_1_SMOOTH_MINIMUM`: `MinimumVisibleSeconds=1.5`, `CompletionFillSeconds=0.2`, continuous render-frame progress, monotonic external progress adoption and completion-only `100%`.
+- Delayed music now checks whether the underlying transition is genuinely unfinished, so the visual minimum cannot trigger a short music burst. Image/music IDs, `0.3` second fade, neutral input, UI reveal, teleport authority and Phase 1 scope are preserved. Studio installation, Play verification and mirror refresh are pending.
+
+## 2026-07-20 - Loading/start-screen Phase 1 generated
+
+- Added the single canonical `scripts/roblox_ui_loading_and_start_screen_system.lua` and `docs/loading-and-start-screen-system-plan.md` from the approved six-phase High-Risk integration contract.
+- Phase 1 installs a versioned single-image artwork catalogue, full-bleed/safe-area boost-style view, retained generation state, neutral gameplay-input gate, delayed loading-music/category mixer and one dealership-teleport vertical slice for both active free-roam HUD owners.
+- The driving bridge returns throttle/brake/steer/drift/boost/reset intent to neutral and clears transition-triggered boost/drift rewards without anchoring, braking or changing velocity. The server teleport service and all garage/race/persistence owners remain unchanged.
+- The visible destination HUD is restored beneath a `0.3` second modal fade. Artwork/music IDs default blank, installer mutation is projected/compiled and rollback-safe, and Studio install/desktop-touch Play verification/full mirror refresh remain pending.
+
+## 2026-07-20 - Owned garage and readiness handoff locked
+
+- Added `docs/owned-garage-and-readiness-handoff-2026-07-20.md` and corrected the canonical status to the evidence in the refreshed `11:10:20` mirror: 156 scripts, all seven Phase 12 source contracts and current V1.1 revision `NTR_OWNED_GARAGE_PHASE12_ACCESS_INVITATIONS_V1_1_HUD_DROPDOWNS`.
+- Commit `c46ead4` is already on `main` and `origin/main` and contains the confirmed owned-garage mirror plus proportional new-system readiness workflow. V1.1 remains the rollback baseline; V1.2 is optional unconfirmed submission polish in the same canonical Phase 12 installer.
+- Recorded exact optional V1.2 verification, visitor/offline-search/readiness-audit deferrals, canonical owners and future-chat startup rules. Documentation only; no Studio source, hierarchy, config or saved data changed.
+
 ## 2026-07-20 - Proportional new-system readiness workflow adopted
 
 - Added `docs/14_new_system_readiness_standard.md` with optimised Fast, Standard and High-Risk gates plus ownership, server-authority, data/API compatibility, lifecycle, performance, mobile/input, streaming, failure-containment and observability rules.

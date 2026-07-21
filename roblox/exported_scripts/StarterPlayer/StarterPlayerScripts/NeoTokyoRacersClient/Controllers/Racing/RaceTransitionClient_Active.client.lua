@@ -1,6 +1,7 @@
 -- NTR_RACING_PHASE8H_TRANSITION_CLIENT
 
 local Players = game:GetService("Players")
+local ContentProvider = game:GetService("ContentProvider") -- NTR_RACING_STAGING_READINESS_GATE_V1
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 local TweenService = game:GetService("TweenService")
@@ -12,17 +13,24 @@ local playerGui = player:WaitForChild("PlayerGui")
 local racingFolder = script.Parent
 local transitionRequest = racingFolder:WaitForChild("RaceTransitionRequest")
 local transitionStateChanged = racingFolder:FindFirstChild("RaceTransitionStateChanged")
+local uiControllers = assert(racingFolder.Parent:FindFirstChild("UI"), "Racing loading UI folder missing")
+local loadingInvoke = uiControllers:WaitForChild("LoadingTransitionInvoke") -- NTR_LOADING_SYSTEM_PHASE4_RACE_TRANSITION_BRIDGE_V1
+local loadingGeneration = nil
+local loadingFinishing = false
 
 local kit = ReplicatedStorage:WaitForChild("NeoTokyoRacers")
 local racingRemotes = kit:WaitForChild("Shared"):WaitForChild("Remotes"):WaitForChild("Racing")
 local raceEvent = racingRemotes:WaitForChild("RaceEvent")
 local queueEvent = racingRemotes:WaitForChild("RaceQueueEvent")
+local raceRequest = racingRemotes:WaitForChild("RaceRequest")
+local queueRequest = racingRemotes:WaitForChild("RaceQueueRequest")
 
 local sessionActive = false
 local lastHudPulse = 0
 local savedHudEnabled = {}
 local currentFadeTween = nil
 local finishHold = false -- NTR_RACING_PHASE11D_FINISH_HOLD
+local activeStaging = nil
 
 local gui = Instance.new("ScreenGui")
 gui.Name = "NTR_RaceTransitionFade_Phase8H"
@@ -64,6 +72,33 @@ local suppressGuiNames = {
 	NTR_FreeRoamCarMenu = true,
 	NTR_FreeRoamCarMenu_Phase3 = true,
 }
+
+local function loadingAction(action, payload)
+	local ok, result = pcall(function() return loadingInvoke:Invoke(action, payload or {}) end)
+	if ok then return result end
+	warn("[NTR Racing Loading] " .. tostring(action) .. " failed: " .. tostring(result))
+	return nil
+end
+
+local function beginLoading(destination, status)
+	if loadingGeneration then return loadingGeneration end
+	loadingGeneration = loadingAction("Begin", { Destination = destination or "RaceSession", Status = status or "LOADING RACE" })
+	return loadingGeneration
+end
+
+local function finishLoading(success, status, reason)
+	local current = loadingGeneration
+	if not current then return loadingFinishing end
+	loadingGeneration = nil
+	loadingFinishing = true
+	loadingAction(success and "Complete" or "Fail", {
+		Generation = current,
+		Status = status or (success and "READY TO RACE" or "RETURNING"),
+		Reason = reason,
+	})
+	loadingFinishing = false
+	return true
+end
 
 local function fireState()
 	if transitionStateChanged and transitionStateChanged:IsA("BindableEvent") then
@@ -162,14 +197,13 @@ end
 local function startTransition(reason)
 	setSessionActive(true, reason)
 	suppressFreeRoamHud()
-	fadeOut("STAGING")
+	if not beginLoading(string.find(tostring(reason), "TimeTrial", 1, true) and "TimeTrialSession" or "RaceSession", "STAGING") then fadeOut("STAGING") end
 	task.delay(0.22, function() restoreCamera(reason) end)
-	task.delay(0.78, function() fadeIn(0) end)
 end
 
 local function finishTransition(reason)
 	restoreCamera(reason)
-	fadeIn(0.18)
+	if not finishLoading(true, "READY TO RACE", reason) then fadeIn(0.18) end
 end
 
 local function resetTransition(reason)
@@ -182,17 +216,109 @@ local function resetTransition(reason)
 	fadeIn(0.82)
 end
 
+local function acknowledgeStaging(stage, phase, degraded, detail)
+	if activeStaging ~= stage then return false end
+	local remote = stage.Mode == "TimeTrial" and raceRequest or queueRequest
+	local ok, result = pcall(function()
+		return remote:InvokeServer("AcknowledgeStagingReady", {
+			RunId = stage.RunId,
+			Phase = phase,
+			Degraded = degraded == true,
+			Detail = tostring(detail or ""),
+		})
+	end)
+	if not ok or typeof(result) ~= "table" or result.Ok ~= true then
+		warn(("[NTR Race Readiness] %s acknowledgement failed for %s: %s"):format(phase, stage.RunId, tostring(ok and result and result.Message or result)))
+		return false
+	end
+	return true
+end
+
+local function stagedVehicle(runId)
+	local character = player.Character
+	local humanoid = character and character:FindFirstChildOfClass("Humanoid")
+	local seat = humanoid and humanoid.SeatPart
+	if not (seat and seat:IsA("VehicleSeat")) then return nil end
+	local vehicle = vehicleFromSeat(seat)
+	if not vehicle or tonumber(vehicle:GetAttribute("OwnerUserId")) ~= player.UserId then return nil end
+	if tostring(vehicle:GetAttribute("NTR_RaceRunId") or "") ~= tostring(runId or "") then return nil end
+	if vehicle:GetAttribute("NTR_RaceParticipant") ~= true then return nil end
+	return vehicle
+end
+
+local function prepareStaging(payload, kind)
+	local runId = tostring(payload.RunId or "")
+	if runId == "" then return end
+	if activeStaging and activeStaging.RunId == runId then return end
+	local stage = { RunId = runId, Mode = kind == "TimeTrialStaged" and "TimeTrial" or "Race", RevealHandling = false }
+	activeStaging = stage
+	task.spawn(function()
+		local deadline = os.clock() + 7.5
+		local vehicle = nil
+		local presenter = racingFolder:FindFirstChild("RaceCountdownPresentationController_Active")
+		while activeStaging == stage and os.clock() < deadline do
+			vehicle = stagedVehicle(runId)
+			if vehicle and presenter and presenter:GetAttribute("NTR_CountdownPresentationReady") == true then break end
+			task.wait(0.05)
+		end
+		if activeStaging ~= stage then return end
+		local preparationFinished = false
+		local preparationOk = true
+		local preparationDetail = ""
+		task.spawn(function()
+			local ok, problem = pcall(function()
+				local streamPosition = payload.StreamPosition
+				if typeof(streamPosition) == "Vector3" then player:RequestStreamAroundAsync(streamPosition, 5) end
+				if vehicle and vehicle.Parent then ContentProvider:PreloadAsync({ vehicle }) end
+			end)
+			preparationOk = ok
+			preparationDetail = ok and "" or tostring(problem)
+			preparationFinished = true
+		end)
+		while activeStaging == stage and not preparationFinished and os.clock() < deadline do task.wait(0.05) end
+		if activeStaging ~= stage then return end
+		local presenterReady = presenter and presenter:GetAttribute("NTR_CountdownPresentationReady") == true
+		local degraded = not (vehicle and presenterReady and preparationFinished and preparationOk)
+		local detail = preparationDetail
+		if not vehicle then detail = "Staged vehicle/seat was not confirmed locally." elseif not presenterReady then detail = "Countdown presenter was not ready." elseif not preparationFinished then detail = "Streaming/preload preparation reached its client deadline." end
+		acknowledgeStaging(stage, "AssetsReady", degraded, detail)
+	end)
+end
+
+local function revealCountdown(payload, kind)
+	local stage = activeStaging
+	if not stage or stage.RunId ~= tostring(payload.RunId or "") or stage.RevealHandling then return end
+	stage.RevealHandling = true
+	task.spawn(function()
+		restoreCamera(kind)
+		local hadLoading = loadingGeneration ~= nil
+		finishTransition(kind)
+		if not hadLoading then task.wait(0.55) end
+		if activeStaging == stage then acknowledgeStaging(stage, "CountdownVisible", false, "") end
+	end)
+end
+
 local function handleRacePayload(payload)
 	if typeof(payload) ~= "table" then return end
 	local kind = tostring(payload.Type or "")
 	if kind == "TimeTrialStaged" or kind == "RaceStaged" then
 		finishHold = false
-		startTransition(kind)
+		if not activeStaging or activeStaging.RunId ~= tostring(payload.RunId or "") then
+			startTransition(kind)
+			prepareStaging(payload, kind)
+		end
+	elseif kind == "TimeTrialCountdownReveal" or kind == "RaceCountdownReveal" then
+		revealCountdown(payload, kind)
+	elseif kind == "TimeTrialCountdownScheduled" or kind == "RaceCountdownScheduled" then
+		setSessionActive(true, kind)
+		suppressFreeRoamHud()
+		restoreCamera(kind)
 	elseif kind == "TimeTrialCountdown" or kind == "RaceCountdown" then
 		setSessionActive(true, kind)
 		suppressFreeRoamHud()
 		restoreCamera(kind)
 	elseif kind == "TimeTrialStarted" or kind == "RaceStarted" then
+		activeStaging = nil
 		finishHold = false
 		setSessionActive(true, kind)
 		suppressFreeRoamHud()
@@ -209,7 +335,7 @@ local function handleRacePayload(payload)
 		finishHold = false
 		setSessionActive(false, kind)
 		restoreCamera(kind)
-		fadeIn(0.28)
+		if not finishLoading(true, "READY", kind) then fadeIn(0.28) end
 	elseif kind == "RaceEnded" and finishHold then
 		suppressFreeRoamHud()
 	elseif kind == "TimeTrialFinished" or kind == "TimeTrialEnded" or kind == "TimeTrialError"
@@ -217,7 +343,9 @@ local function handleRacePayload(payload)
 		finishHold = false
 		setSessionActive(false, kind)
 		restoreCamera(kind)
-		fadeIn(0.18)
+		activeStaging = nil
+		local success = kind ~= "TimeTrialError" and kind ~= "RaceQueueError"
+		if not finishLoading(success, success and "READY" or "RETURNING", kind) then fadeIn(0.18) end
 	end
 end
 
@@ -228,9 +356,20 @@ transitionRequest.Event:Connect(function(payload)
 		setSessionActive(payload.Active == true, payload.Reason or step)
 		if sessionActive then suppressFreeRoamHud() end
 	elseif step == "FadeOut" then
-		fadeOut(payload.Label or "")
+		if tostring(payload.Reason or "") == "Reset" then fadeOut(payload.Label or "")
+		else beginLoading(payload.Destination or "RaceStart", payload.Label or "LOADING") end
 	elseif step == "FadeIn" then
-		fadeIn(payload.Delay)
+		if tostring(payload.Reason or "") == "Reset" then fadeIn(payload.Delay)
+		else
+			local failed = payload.Success == false or string.find(tostring(payload.Reason or ""), "Failed", 1, true) ~= nil
+			finishLoading(not failed, failed and "RETURNING" or "READY", payload.Reason)
+		end
+	elseif step == "BeginLoading" then
+		if not beginLoading(payload.Destination, payload.Status) then fadeOut(payload.Status or "LOADING") end
+	elseif step == "CompleteLoading" then
+		if not finishLoading(true, payload.Status, payload.Reason) then fadeIn(payload.Delay) end
+	elseif step == "FailLoading" then
+		if not finishLoading(false, payload.Status, payload.Reason) then fadeIn(payload.Delay) end
 	elseif step == "RestoreCamera" then
 		restoreCamera(payload.Reason or step)
 	elseif step == "StopVehicle" then

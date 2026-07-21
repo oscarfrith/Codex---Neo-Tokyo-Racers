@@ -112,6 +112,8 @@ local PROMPT_NAME = "NTR_RaceEntryPrompt"
 local flowUI=kit.Config.Racing:WaitForChild("FlowUI")
 local countdownValue=flowUI:WaitForChild("CountdownSeconds")
 local COUNTDOWN_SECONDS=math.max(1,math.floor(tonumber(countdownValue.Value) or 5))
+local STAGING_READY_TIMEOUT_SECONDS = 18 -- NTR_RACING_STAGING_READINESS_GATE_V1
+local COUNTDOWN_VISIBLE_TIMEOUT_SECONDS = 8
 
 local activeRuns = {}
 local activeRunsById = {}
@@ -1144,6 +1146,7 @@ local function beginStagedTimeTrial(player, eventId, vehicleId, requestedLapCoun
 		LastCompletedGateIndex = 0,
 		GateCount = RouteDefinition.GetGateCount(route),
 		Splits = {},
+		Readiness = { AssetsReady = false, CountdownVisible = false },
 	}
 	activeRuns[player] = run
 	activeRunsById[runId] = run
@@ -1176,29 +1179,66 @@ local function beginStagedTimeTrial(player, eventId, vehicleId, requestedLapCoun
 		LapTarget = lapTarget,
 		CurrentLap = 1,
 		InfiniteLaps = lapTarget == 0,
+		StreamPosition = stageCFrame.Position,
 	})
 
 	task.spawn(function()
-		for seconds = COUNTDOWN_SECONDS, 1, -1 do
+		local assetsDeadline = os.clock() + STAGING_READY_TIMEOUT_SECONDS
+		while os.clock() < assetsDeadline do
 			local live = activeRuns[player]
 			if not (live and live.RunId == runId and live.State == "Staging") then return end
-			fire(player, {
-				Type = "TimeTrialCountdown",
-				RunId = runId,
-				EventId = eventId,
-				RouteId = route.RouteId,
-				DisplayName = run.DisplayName,
-				Countdown = seconds,
-				GateCount = run.GateCount,
-				NextGateIndex = 1,
-				RouteType = routeType,
-				LapTarget = lapTarget,
-				CurrentLap = 1,
-				InfiniteLaps = lapTarget == 0,
-			})
-			task.wait(1)
+			if live.Readiness and live.Readiness.AssetsReady == true then break end
+			task.wait(0.05)
 		end
 		local live = activeRuns[player]
+		if not (live and live.RunId == runId and live.State == "Staging") then return end
+		if not (live.Readiness and live.Readiness.AssetsReady == true) then
+			fire(player, { Type = "TimeTrialError", RunId = runId, EventId = eventId, Message = "Race start readiness timed out." })
+			endRun(player, "Race start readiness timed out.")
+			return
+		end
+
+		fire(player, {
+			Type = "TimeTrialCountdownReveal",
+			RunId = runId,
+			EventId = eventId,
+			RouteId = route.RouteId,
+			DisplayName = run.DisplayName,
+			Countdown = COUNTDOWN_SECONDS,
+		})
+
+		local visibleDeadline = os.clock() + COUNTDOWN_VISIBLE_TIMEOUT_SECONDS
+		while os.clock() < visibleDeadline do
+			live = activeRuns[player]
+			if not (live and live.RunId == runId and live.State == "Staging") then return end
+			if live.Readiness and live.Readiness.CountdownVisible == true then break end
+			task.wait(0.05)
+		end
+		live = activeRuns[player]
+		if not (live and live.RunId == runId and live.State == "Staging") then return end
+		if not (live.Readiness and live.Readiness.CountdownVisible == true) then
+			fire(player, { Type = "TimeTrialError", RunId = runId, EventId = eventId, Message = "Countdown presentation readiness timed out." })
+			endRun(player, "Countdown presentation readiness timed out.")
+			return
+		end
+
+		local goAt = Workspace:GetServerTimeNow() + COUNTDOWN_SECONDS
+		fire(player, {
+			Type = "TimeTrialCountdownScheduled",
+			RunId = runId,
+			EventId = eventId,
+			RouteId = route.RouteId,
+			DisplayName = run.DisplayName,
+			Countdown = COUNTDOWN_SECONDS,
+			GoAtServerTime = goAt,
+		})
+		while Workspace:GetServerTimeNow() < goAt do
+			live = activeRuns[player]
+			if not (live and live.RunId == runId and live.State == "Staging") then return end
+			task.wait(0.03)
+		end
+
+		live = activeRuns[player]
 		if not (live and live.RunId == runId and live.State == "Staging") then return end
 		local currentVehicle, currentError = currentVehicleForPlayer(player)
 		if currentVehicle ~= vehicle then
@@ -1217,6 +1257,7 @@ local function beginStagedTimeTrial(player, eventId, vehicleId, requestedLapCoun
 			RouteId = route.RouteId,
 			DisplayName = run.DisplayName,
 			StartServerClock = live.StartClock,
+			StartServerTime = goAt,
 			GateCount = run.GateCount,
 			NextGateIndex = 1,
 			RouteType = routeType,
@@ -1328,7 +1369,20 @@ end
 
 raceRequest.OnServerInvoke = function(player, action, payload)
 	payload = typeof(payload) == "table" and payload or {}
-	if action == "GetEntryDetails" then
+	if action == "AcknowledgeStagingReady" then
+		local run = activeRuns[player]
+		if not (run and run.State == "Staging" and tostring(payload.RunId or "") == run.RunId) then
+			return { Ok = false, Success = false, Message = "Stale or invalid time-trial readiness acknowledgement." }
+		end
+		local phase = tostring(payload.Phase or "")
+		if phase ~= "AssetsReady" and phase ~= "CountdownVisible" then
+			return { Ok = false, Success = false, Message = "Invalid readiness phase." }
+		end
+		run.Readiness = run.Readiness or {}
+		run.Readiness[phase] = true
+		if payload.Degraded == true then warn(("[NTR Race Readiness] Time trial %s reported degraded %s readiness: %s"):format(run.RunId, phase, tostring(payload.Detail or ""))) end
+		return { Ok = true, Success = true, RunId = run.RunId, Phase = phase }
+	elseif action == "GetEntryDetails" then
 		local mode = tostring(payload.Mode or "TimeTrial")
 		local eventId = tostring(payload.EventId or (mode == "Race" and "shifted_canal_sprint_race" or "shifted_canal_sprint_tt"))
 		local summary, summaryError = RaceConfigReader.GetEventSummary(eventId, mode)

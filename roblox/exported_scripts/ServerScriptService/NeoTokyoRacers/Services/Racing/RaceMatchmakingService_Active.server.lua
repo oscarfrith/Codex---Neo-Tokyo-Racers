@@ -18,6 +18,8 @@ local RaceConfigReader = require(racingModules:WaitForChild("RaceConfigReader"))
 
 local config = kit:WaitForChild("Config"):WaitForChild("Racing")
 local matchmakingConfig = config:WaitForChild("Matchmaking")
+local STAGING_READY_TIMEOUT_SECONDS = 18 -- NTR_RACING_STAGING_READINESS_GATE_V1
+local COUNTDOWN_VISIBLE_TIMEOUT_SECONDS = 8
 
 local queues = {}
 local queuedByPlayer = {}
@@ -945,6 +947,7 @@ local function startRace(queue)
 		LapTarget = tostring(queue.Summary.RouteType or queue.Route.RouteType or "Circuit") == "PointToPoint" and 1 or math.clamp(math.floor(tonumber(queue.Summary.Laps or queue.Summary.DefaultLapCount) or 1), 1, 99),
 		Participants = participants,
 		NextFinishPlace = 1,
+		Readiness = { AssetsReady = {}, CountdownVisible = {} },
 	}
 	activeRaces[runId] = race
 	race.SessionFolder = createSessionFolder(race)
@@ -988,7 +991,8 @@ local function startRace(queue)
 			RouteId = race.RouteId,
 			DisplayName = race.DisplayName,
 			ParticipantCount = #participants,
-			Countdown = numberValue(matchmakingConfig, "CountdownSeconds", 3),
+			Countdown = numberValue(matchmakingConfig, "CountdownSeconds", 5),
+			StreamPosition = spawnCFrameForIndex(queue.Route, entry.GridIndex or 1).Position,
 			GateCount = race.GateCount,
 			NextGateIndex = 1, CurrentLap = 1, LapTarget = race.LapTarget,
 		})
@@ -998,6 +1002,8 @@ local function startRace(queue)
 			EventId = queue.EventId,
 			RouteId = race.RouteId,
 			DisplayName = race.DisplayName,
+			Countdown = numberValue(matchmakingConfig, "CountdownSeconds", 5),
+			StreamPosition = spawnCFrameForIndex(queue.Route, entry.GridIndex or 1).Position,
 			GateCount = race.GateCount,
 			NextGateIndex = 1, CurrentLap = 1, LapTarget = race.LapTarget,
 		})
@@ -1005,70 +1011,91 @@ local function startRace(queue)
 	broadcastPositions(race)
 
 	task.spawn(function()
-		local countdown = math.max(1, math.floor(numberValue(matchmakingConfig, "CountdownSeconds", 3)))
-		for seconds = countdown, 1, -1 do
-			if race.State ~= "Staging" then return end
+		local function everyActiveParticipantReady(bucket)
 			for _, entry in ipairs(participants) do
-				fire(entry.Player, {
-					Type = "RaceCountdown",
-					RunId = runId,
-					EventId = queue.EventId,
-					RouteId = race.RouteId,
-					DisplayName = race.DisplayName,
-					Countdown = seconds,
-					GateCount = race.GateCount,
-					NextGateIndex = 1, CurrentLap = 1, LapTarget = race.LapTarget,
-				})
-				fireRace(entry.Player, {
-					Type = "RaceCountdown",
-					RunId = runId,
-					EventId = queue.EventId,
-					RouteId = race.RouteId,
-					DisplayName = race.DisplayName,
-					Countdown = seconds,
-					GateCount = race.GateCount,
-					NextGateIndex = 1, CurrentLap = 1, LapTarget = race.LapTarget,
-				})
+				if entry.Finished ~= true and entry.Player.Parent == Players and bucket[entry.Player.UserId] ~= true then return false end
 			end
-			task.wait(1)
+			return true
 		end
-		if race.State ~= "Staging" then return end
-		race.State = "Running"
-		race.StartClock = now()		for _, entry in ipairs(participants) do entry.LapStartedClock = race.StartClock end
+		local function cancelReadiness(reason)
+			if activeRaces[runId] ~= race or race.State ~= "Staging" then return end
+			for _, entry in ipairs(participants) do
+				if entry.Finished ~= true and entry.Player.Parent == Players then
+					local payload = { Type = "RaceQueueError", RunId = runId, EventId = queue.EventId, Message = reason }
+					fire(entry.Player, payload)
+					fireRace(entry.Player, payload)
+				end
+			end
+			cleanupRace(race, reason)
+		end
+
+		local assetsDeadline = now() + STAGING_READY_TIMEOUT_SECONDS
+		while now() < assetsDeadline do
+			if activeRaces[runId] ~= race or race.State ~= "Staging" then return end
+			if everyActiveParticipantReady(race.Readiness.AssetsReady) then break end
+			task.wait(0.05)
+		end
+		if activeRaces[runId] ~= race or race.State ~= "Staging" then return end
+		if not everyActiveParticipantReady(race.Readiness.AssetsReady) then
+			cancelReadiness("Race start readiness timed out.")
+			return
+		end
+
+		local countdown = math.max(1, math.floor(numberValue(matchmakingConfig, "CountdownSeconds", 5)))
 		for _, entry in ipairs(participants) do
-			prepareVehicleForDriving(entry.Player, entry.Vehicle)
-			fire(entry.Player, {
-				Type = "RaceStarted",
-				RunId = runId,
-				EventId = queue.EventId,
-				RouteId = race.RouteId,
-				DisplayName = race.DisplayName,
-				StartServerClock = race.StartClock,
-				GateCount = race.GateCount,
-				NextGateIndex = 1, CurrentLap = 1, LapTarget = race.LapTarget,
-				ParticipantCount = #participants,
-			})
-			fireRace(entry.Player, {
-				Type = "RaceStarted",
-				RunId = runId,
-				EventId = queue.EventId,
-				RouteId = race.RouteId,
-				DisplayName = race.DisplayName,
-				StartServerClock = race.StartClock,
-				GateCount = race.GateCount,
-				NextGateIndex = 1, CurrentLap = 1, LapTarget = race.LapTarget,
-			})
+			if entry.Finished ~= true and entry.Player.Parent == Players then
+				local payload = { Type = "RaceCountdownReveal", RunId = runId, EventId = queue.EventId, RouteId = race.RouteId, DisplayName = race.DisplayName, Countdown = countdown }
+				fire(entry.Player, payload)
+				fireRace(entry.Player, payload)
+			end
+		end
+
+		local visibleDeadline = now() + COUNTDOWN_VISIBLE_TIMEOUT_SECONDS
+		while now() < visibleDeadline do
+			if activeRaces[runId] ~= race or race.State ~= "Staging" then return end
+			if everyActiveParticipantReady(race.Readiness.CountdownVisible) then break end
+			task.wait(0.05)
+		end
+		if activeRaces[runId] ~= race or race.State ~= "Staging" then return end
+		if not everyActiveParticipantReady(race.Readiness.CountdownVisible) then
+			cancelReadiness("Countdown presentation readiness timed out.")
+			return
+		end
+
+		local goAt = Workspace:GetServerTimeNow() + countdown
+		for _, entry in ipairs(participants) do
+			if entry.Finished ~= true and entry.Player.Parent == Players then
+				local payload = { Type = "RaceCountdownScheduled", RunId = runId, EventId = queue.EventId, RouteId = race.RouteId, DisplayName = race.DisplayName, Countdown = countdown, GoAtServerTime = goAt }
+				fire(entry.Player, payload)
+				fireRace(entry.Player, payload)
+			end
+		end
+		while Workspace:GetServerTimeNow() < goAt do
+			if activeRaces[runId] ~= race or race.State ~= "Staging" then return end
+			task.wait(0.03)
+		end
+		if activeRaces[runId] ~= race or race.State ~= "Staging" then return end
+		race.State = "Running"
+		race.StartClock = now()
+		for _, entry in ipairs(participants) do entry.LapStartedClock = race.StartClock end
+		for _, entry in ipairs(participants) do
+			if entry.Finished ~= true and entry.Player.Parent == Players then
+				prepareVehicleForDriving(entry.Player, entry.Vehicle)
+				local payload = {
+					Type = "RaceStarted", RunId = runId, EventId = queue.EventId, RouteId = race.RouteId,
+					DisplayName = race.DisplayName, StartServerClock = race.StartClock, StartServerTime = goAt,
+					GateCount = race.GateCount, NextGateIndex = 1, CurrentLap = 1, LapTarget = race.LapTarget,
+					ParticipantCount = #participants,
+				}
+				fire(entry.Player, payload)
+				fireRace(entry.Player, payload)
+			end
 		end
 		task.delay(numberValue(matchmakingConfig, "RaceFinishTimeoutSeconds", 300), function()
 			if activeRaces[runId] == race and race.State == "Running" then
 				for _, entry in ipairs(participants) do
 					if entry.Finished ~= true then
-						fire(entry.Player, {
-							Type = "RaceDNF",
-							RunId = runId,
-							EventId = queue.EventId,
-							Message = "Race timed out.",
-						})
+						fire(entry.Player, { Type = "RaceDNF", RunId = runId, EventId = queue.EventId, Message = "Race timed out." })
 					end
 				end
 				cleanupRace(race, "Timed out")
@@ -1193,7 +1220,22 @@ end
 
 queueRequest.OnServerInvoke = function(player, action, payload)
 	payload = typeof(payload) == "table" and payload or {}
-	if action == "JoinQueue" then
+	if action == "AcknowledgeStagingReady" then
+		local race = activeRaceByPlayer[player]
+		local entry = entryForPlayer(race, player)
+		if not (race and entry and race.State == "Staging" and tostring(payload.RunId or "") == race.RunId) then
+			return { Ok = false, Success = false, Message = "Stale or invalid race readiness acknowledgement." }
+		end
+		local phase = tostring(payload.Phase or "")
+		if phase ~= "AssetsReady" and phase ~= "CountdownVisible" then
+			return { Ok = false, Success = false, Message = "Invalid readiness phase." }
+		end
+		race.Readiness = race.Readiness or { AssetsReady = {}, CountdownVisible = {} }
+		race.Readiness[phase] = race.Readiness[phase] or {}
+		race.Readiness[phase][player.UserId] = true
+		if payload.Degraded == true then warn(("[NTR Race Readiness] Race %s player %s reported degraded %s readiness: %s"):format(race.RunId, player.Name, phase, tostring(payload.Detail or ""))) end
+		return { Ok = true, Success = true, RunId = race.RunId, Phase = phase }
+	elseif action == "JoinQueue" then
 		local eventId = tostring(payload.EventId or "shifted_canal_sprint_race")
 		local ok, message = joinQueue(player, eventId, payload.VehicleId)
 		return { Ok = ok, Success = ok, Message = message }

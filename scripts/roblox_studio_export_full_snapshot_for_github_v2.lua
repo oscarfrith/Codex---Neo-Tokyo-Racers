@@ -33,6 +33,7 @@ local INCLUDE_TEST_WIP_ASSETS = true
 local HttpService = game:GetService("HttpService")
 
 local serviceNamesToScan = {
+	"ReplicatedFirst",
 	"ReplicatedStorage",
 	"ServerScriptService",
 	"StarterPlayer",

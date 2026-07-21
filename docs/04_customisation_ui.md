@@ -1,5 +1,15 @@
 # Customisation UI
 
+## Shared Loading Presentation Phases 1-5
+
+`scripts/roblox_ui_loading_and_start_screen_system.lua` is the canonical phased installer for major experience transitions and the initial Play/Shop start screen. Phases 1-4 and the readiness gate are confirmed; the user confirmed Phase 5 V1 working well. V1.1 refines only its isolated early client under `ReplicatedFirst.NTRLoading`.
+
+The loading owner suppresses the existing free-roam HUD through `FreeRoamHudPresentationMode`; it does not scan or recreate the HUD. V1.3 retains the six tiled ImageLabels under the same artwork owner and tunes that common parent's motion to a five-second `Sine Out`, `1.06→1.10` zoom and `1.2%` pan. Phase 2 keeps dealership/customisation navigation with its confirmed owners. Phase 3 keeps `OwnedGarageBrowserController` as the owned client transition owner and uses the existing management result push for physical prompt completion.
+
+Future UI owners observe retained `LoadingPresentationState` plus `LoadingPresentationChanged` rather than relying on an event they may miss during startup. Phase 5 V1.1 mounts only shared `RacingUIComponents.Button` actions inside the safe-content root; artwork remains full bleed and supplies all branding. Optional icon IDs come from `LoadingSystem.StartScreenPlayIconAssetId` and `StartScreenShopIconAssetId`. Desktop/tablet and phone portrait/landscape layouts share the same two buttons, with touch short-side detection preventing a landscape phone from using desktop metrics. PLAY releases the runtime; SHOP calls the existing dealership teleport. Camera, spawn and dealership geometry remain with their current owners.
+
+The refreshed `2026-07-21 10:48:31` mirror confirms V1.4 Grid3x2 and user-confirmed Phase 5 V1.3 button placement. V1.3 changes only the isolated initial/start client and uses three config Y-scales for desktop, landscape phone and portrait placement. Every branch calls the same safe-root clamping helper, retaining an eight-pixel bottom inset after device scaling rather than maintaining unrelated hard-coded positions. The user reports Phase 6 audit/manual behaviour working as expected, so this captured composition is handed off as the complete shared loading UI baseline; see `docs/loading-system-phase6-closure-handoff-2026-07-21.md`.
+
 ## Owned Garage Browser Contract
 
 Owned Garage Phase 3 stages one inactive `OwnedGarageBrowserController`. It uses the real `RacingUIComponents`, `RacingMobileScaledDesktopLayout` and `GarageReplacementComponents` modules to build the Race Browser-sized `1200 x 720` My Garages shell. Property cards and detail presentation support image, title, district, description and display capacity; full drive-in replacement uses shared action buttons and explicitly states that the replaced display vehicle remains owned. All actions use `Activated`, and the single desktop composition is scaled for touch rather than duplicated into a separate mobile UI tree. The controller is a ModuleScript only and is not started at this checkpoint.

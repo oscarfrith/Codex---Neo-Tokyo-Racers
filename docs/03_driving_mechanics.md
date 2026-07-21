@@ -1,5 +1,13 @@
 # Driving Mechanics
 
+## Loading Transition Input Boundary (Phases 1-5)
+
+Loading/start-screen Phase 1 adds one guarded read seam to `DrivingControllerV47`. `GameplayInputGate` is the sole transition lock owner; while locked, the controller consumes neutral throttle, braking/reverse, steering, drift, boost and reset intent, clears drift charge/mini-boost and publishes non-accelerating/non-boosting/non-drifting attributes. It does not anchor the vehicle, zero velocity, apply a parking force, alter hover forces or replace server teleport/vehicle lifecycle authority.
+
+The gate also clears mobile input and disables default on-foot controls. After the loading cover's `0.3` second fade, held keyboard/gamepad input must return to neutral before controls restore, with a bounded safety timeout. Phase 2 extends the gate to dealership/customisation entry and Drive; Phase 3 extends it to owned-garage driven entry and drive-out; Phase 4 extends it to race/time-trial staging and exit-to-start. It still does not stop vehicle momentum or become a vehicle-spawn owner; race/TT reset and ordinary free-roam vehicle spawning/replacement remain explicit exclusions.
+
+Phases 1-5, the readiness-gated countdown and Phase 6 closure are installed/user-confirmed. The refreshed `2026-07-21 10:48:31` mirror contains the configured V1.3 start client and V1.4 Grid3x2 view. These presentation changes retain the same input token while initial loading and PLAY/SHOP are present. They never anchor, brake, spawn or move a vehicle. PLAY/accepted SHOP release through the existing neutral-input rule; rejected SHOP keeps the token and start screen active. The user reports the closure behaviour working as expected, including input recovery; preserve `GameplayInputGate` as the sole transition lock owner.
+
 ## Owned Garage Drive-In/Drive-Out Boundary
 
 The approved owned-garage replacement must not introduce another driving or vehicle-spawn owner. Garage entry will ask the existing lifecycle owner to hand off the current saved `VehicleId`, then place that vehicle in an empty display space or a confirmed replacement space. Phase 2 display vehicles are intentionally anchored and seatless. Phase 3 stages an unowned `OwnedGarageVehicleLifecycleBridge` contract for `GetDrivenVehicle`, `DespawnForGarage` and `SpawnFromGarage`; its management module performs assignment rollback if the lifecycle handoff fails. The bridge has no callback and the module is not started yet, so this checkpoint adds no driving connection or Workspace vehicle.

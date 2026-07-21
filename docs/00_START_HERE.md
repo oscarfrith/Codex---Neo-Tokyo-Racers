@@ -1,5 +1,31 @@
 # Neo Tokyo Racers Project Context
 
+## 2026-07-21 loading/start-screen system Phase 6 complete and handed off
+
+- The user confirmed the race staging readiness gate working and refreshed the `09:20:03` mirror. All four `NTR_RACING_STAGING_READINESS_GATE_V1` markers are present, so the synchronized readiness-gated countdown is now the confirmed racing baseline.
+- The user confirmed the initial Phase 5 loading/start flow working well. Screenshot review then showed the title/subtitle duplicated artwork branding and landscape phones entered the oversized desktop branch. The same canonical installer now targets `NTR_LOADING_SYSTEM_PHASE5_INITIAL_START_SCREEN_V1_1_COMPACT_ICON_BUTTONS` and replaces only the known V1/V1.1 isolated client source.
+- V1.1 removes the generated title/subtitle, lowers the button-only composition, adds optional left-side icons from `LoadingSystem.StartScreenPlayIconAssetId` and `StartScreenShopIconAssetId`, and classifies phones by touch plus short-side viewport size. Landscape phones retain a compact horizontal pair; portrait phones use a compact vertical pair. Blank icon IDs hide cleanly.
+- PLAY releases the existing `0.3`-second loading fade into free roam. SHOP calls the existing authoritative `FreeRoamHudTeleportInvoke` action and fades only after dealership placement succeeds; failure keeps the start screen usable. Camera, spawn, dealership, persistence, economy and bootstrap ownership are unchanged.
+- The refreshed `10:17:35` mirror now captures all four `ReplicatedFirst.NTRLoading` sources and exact V1.1. It proves the missing icon config was intentional absence rather than script length: the live start client is only `13,024` source bytes and reads attributes that V1.1 did not create.
+- The same mirror also explains the low-resolution/black artwork result. All six tile IDs and coordinates are present, but V1.3 of `LoadingScreenView` performs one hidden preload and promotes only when all six `ImageLabel.IsLoaded` values are simultaneously true; there is no retry/status logging. Removing the single fallback therefore exposes black whenever atomic promotion misses, and the fallback can remain visible indefinitely.
+- The user confirmed the Grid3x2 fetch-status V1.2 repair working well. The `10:17:35` mirror predates that installation and therefore remains stale for the V1.4 view source/config attributes until the next full export.
+- The user confirmed configured-button Phase 5 V1.3 looking good. Its working defaults are `StartScreenButtonYScaleDesktop=0.82`, `StartScreenButtonYScaleLandscapePhone=0.84` and `StartScreenButtonYScalePortrait=0.80`; the shared safe-root clamp remains active.
+- The refreshed `2026-07-21 10:48:31` mirror captures Phase 5 V1.3, the V1.4 Grid3x2 view, 36 loading config attributes and all transition/readiness markers. It is current, not stale.
+- The user reports the Phase 6 audit and manual behaviour working as expected. The loading/start-screen system is complete and handed off at configured start-client V1.3 plus `LoadingScreenView` V1.4. `MinimumVisibleSeconds=1.2` is accepted as the live baseline; loading music remains blank by design.
+- Start future loading work from `docs/loading-system-phase6-closure-handoff-2026-07-21.md`. Do not rerun the installer for ordinary tuning. Optional future work is delayed loading music, then one additional catalogue artwork; cross-place `TeleportGui` remains deferred until another published PlaceId enters a real flow.
+
+## 2026-07-21 race staging readiness gate confirmed
+
+- The user confirmed `scripts/roblox_racing_staging_readiness_gate.lua` working. The refreshed `09:20:03` mirror contains its two-step, server-validated readiness barrier, loading-fade acknowledgement and shared server-time five-second countdown in all four target sources. Vehicles remain frozen until authoritative GO.
+- Scope is limited to `TimeTrialService_Active`, `RaceMatchmakingService_Active`, `RaceTransitionClient_Active` and `RaceCountdownPresentationController_Active`. Queue, reset, timing, checkpoints, results, rewards, PBs, persistence and vehicle ownership are preserved.
+- Preserve this refreshed readiness gate as the current racing rollback baseline. See `docs/racing-staging-readiness-gate-2026-07-21.md`.
+
+## 2026-07-21 loading/start-screen Phases 1-4 confirmed
+
+- Phase 4 is installed and user-confirmed. The refreshed `2026-07-21 09:02:33` mirror contains its four Racing source integrations; the exporter still omits `ReplicatedFirst` source.
+- The preserved Phase 4 integration revision is `NTR_LOADING_SYSTEM_PHASE4_RACING_TRANSITIONS_V1`. It covers Race Browser teleport-to-start, immediate selected time-trial start, multiplayer staging after the queue completes, active race/time-trial exit and finished-results Exit to Start. After Studio reproduced the mixed source/attribute transaction fault twice, that phase became a no-yield source-only transaction against four existing Racing presentation owners.
+- `RaceTransitionClient_Active` remains the race camera/session-transition owner and delegates only covered full-screen fades to the shared loading runtime. Queue waiting remains visible, while reset, retry/race-again and non-relocating results remain excluded. Preserve Phase 4 as the confirmed rollback baseline while the separate race-readiness gate is tested.
+
 ## 2026-07-20 proportional new-system readiness standard adopted
 
 - New chats must read `docs/14_new_system_readiness_standard.md` before planning or implementing a new system, substantial system expansion, or connected networking/persistence/runtime work. `AGENTS.md`, the continuous-improvement workflow and the efficient-delivery protocol all route to the same standard.
@@ -7,9 +33,9 @@
 - The assistant selects the lane and drafts the contract from the request and current mirror. `N/A` is allowed for irrelevant concerns; security, persistence ownership, authoritative results and lifecycle cleanup cannot be bypassed merely because a code change is small.
 - This is documentation governance only. It does not change the current Studio baseline, runtime hierarchy, script source, saved schema or owned-garage feature state.
 
-## 2026-07-20 owned garage Phase 12 confirmed; V1.2 HUD dropdown refinement ready
+## 2026-07-20 owned garage Phase 12 V1.1 confirmed; V1.2 HUD dropdown refinement ready
 
-- Phase 12 V1 is confirmed working by the user and present in the refreshed `2026-07-20 10:49:01` mirror with all seven source markers and revision `NTR_OWNED_GARAGE_PHASE12_ACCESS_INVITATIONS_V1`. It is the current rollback baseline.
+- Phase 12 V1.1 is the confirmed working baseline. The refreshed `2026-07-20 11:10:20` mirror contains 156 scripts, all seven access/invitation source contracts and revision `NTR_OWNED_GARAGE_PHASE12_ACCESS_INVITATIONS_V1_1_HUD_DROPDOWNS`. Commit `c46ead4` is on `main` and `origin/main`; start future owned-garage work from `docs/owned-garage-and-readiness-handoff-2026-07-20.md`.
 - The same canonical `scripts/roblox_owned_garage_phase12_access_invitations.lua` is now V1.2. Access and Invite remain owned by the persistent interior HUD but open responsive anchored dropdowns instead of the full management workspace. Cash and Settings remain visible because this interaction never sets management-open state.
 - V1.2 makes both dropdowns span the combined HUD-button width, removes their shell and row borders, uses standalone shared-theme gradient rows at exactly the top-button height, and adds right-side open-state chevrons plus configurable per-mode icons with glyph fallbacks. It retains the V1.1 revisioned commands, bounded invitation scrolling and `EnableVisitors=false`; no saved schema, server service, vehicle-sort menu or visitor lifecycle changes.
 

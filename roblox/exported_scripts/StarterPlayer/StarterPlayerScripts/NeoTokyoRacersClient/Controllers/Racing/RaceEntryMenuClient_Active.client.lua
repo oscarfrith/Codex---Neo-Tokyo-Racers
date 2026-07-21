@@ -14,7 +14,9 @@ local garageInvoke=remotes:WaitForChild("Garage"):WaitForChild("GarageInvoke")
 local presentationRequest=script.Parent:WaitForChild("RaceEntryPresentationRequest")
 local presentationAction=script.Parent:WaitForChild("RaceEntryLegacyAction")
 local startRaceQueueEvent=script.Parent:WaitForChild("StartRaceQueueRequest")
+local transitionRequest=script.Parent:WaitForChild("RaceTransitionRequest") -- NTR_LOADING_SYSTEM_PHASE4_TIME_TRIAL_START_V1
 local entry=nil
+local function transition(step,payload) payload=payload or {}; payload.Step=step; transitionRequest:Fire(payload) end
 
 local function call(remote, action, payload)
 	local ok,result=pcall(function() return remote:InvokeServer(action,payload or {}) end)
@@ -54,16 +56,24 @@ end
 presentationAction.Event:Connect(function(action,data)
 	data=type(data)=="table" and data or {}
 	if action~="StartSelectedVehicle" then return end
-	local ok,cockpitOrMessage=spawnVehicle(data)
-	if not ok then warn("[NTR Phase 16E Entry Bridge] "..cockpitOrMessage) return end
-	task.wait(0.35)
 	local mode=tostring(data.Mode)=="Race" and "Race" or "TimeTrial"
+	if mode=="TimeTrial" then transition("BeginLoading",{Destination="TimeTrialSession",Status="STAGING TIME TRIAL"}) end
+	local ok,cockpitOrMessage=spawnVehicle(data)
+	if not ok then
+		if mode=="TimeTrial" then transition("FailLoading",{Status="RETURNING",Reason=cockpitOrMessage}) end
+		warn("[NTR Phase 16E Entry Bridge] "..cockpitOrMessage)
+		return
+	end
+	task.wait(0.35)
 	local eventId=tostring(data.EventId or (entry and entry.EventId) or "")
 	if mode=="Race" then
 		startRaceQueueEvent:Fire({EventId=eventId,VehicleId=tostring(data.VehicleId),CockpitId=cockpitOrMessage,DisplayName=entry and entry.Summary and entry.Summary.DisplayName})
 	else
 		local result=call(raceRequest,"StartStagedTimeTrial",{EventId=eventId,VehicleId=tostring(data.VehicleId),LapCount=tonumber(data.LapCount) or 1})
-		if result.Success~=true and result.Ok~=true then warn("[NTR Phase 16E Entry Bridge] "..tostring(result.Message or "Time trial start failed.")) end
+		if result.Success~=true and result.Ok~=true then
+			transition("FailLoading",{Status="RETURNING",Reason=result.Message})
+			warn("[NTR Phase 16E Entry Bridge] "..tostring(result.Message or "Time trial start failed."))
+		end
 	end
 end)
 

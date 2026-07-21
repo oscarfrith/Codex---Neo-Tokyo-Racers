@@ -1,6 +1,6 @@
 # Owned Garage Canonical Replacement Plan
 
-Status: Phases 0-12 passed. Phase 12 Access and Invitations V1 is confirmed in Play and present in the refreshed `2026-07-20 10:49:01` mirror. Its approved V1.1 persistent-HUD dropdown refinement is generated and awaits Studio verification.
+Status: Phases 0-12 passed. Phase 12 Access and Invitations V1.1 is confirmed and present in the refreshed `2026-07-20 11:10:20` mirror with revision `NTR_OWNED_GARAGE_PHASE12_ACCESS_INVITATIONS_V1_1_HUD_DROPDOWNS`. Its optional V1.2 full-width icon-dropdown refinement is generated and awaits Studio verification. See `docs/owned-garage-and-readiness-handoff-2026-07-20.md`.
 
 ## Reusable Garage Expansion Gate
 
@@ -123,7 +123,7 @@ The property definition and runtime config enable Access and Invitations, but Vi
 
 Done when all four modes persist; both HUD buttons open the correct anchored dropdowns without entering management; a second same-server player can be invited and revoked; duplicate/self invitations are rejected; offline saved IDs can be revoked; unchanged reads cache against both garage and player-list signatures; stale revisions conflict; cash/settings remain usable; phone targets and scrolling pass; prior garage categories and transitions regressions are absent; Visitors remains disabled; and the refreshed mirror reports API/definition version 4 plus the Phase 12/V1.1 source markers.
 
-Phase 12 V1 is complete. The user confirmed the saved access/invitation flow working and refreshed the mirror. V1.1 changes only presentation: both persistent HUD buttons use `GarageReplacementComponents.AnchoredDropdown`, call the same commands directly and never open management. Cash/Settings remain visible, the invite list refreshes on demand and scrolls after a configurable row cap, and viewport changes relayout through camera signals rather than a per-frame loop. V1.1 is done when desktop/mobile dropdown placement, touch size, outside dismissal, mode persistence, two-player invite/revoke and all prior garage flows pass, followed by another mirror refresh.
+Phase 12 V1.1 is complete and is the confirmed rollback baseline. Both persistent HUD buttons use `GarageReplacementComponents.AnchoredDropdown`, call the same commands directly and never open management. Cash/Settings remain visible, the invite list refreshes on demand and scrolls after a configurable row cap, and viewport changes relayout through camera signals rather than a per-frame loop. The refreshed mirror contains the V1.1 revision and all seven access/invitation source contracts. Optional V1.2 changes only dropdown width/border/gradient/icon/chevron presentation and must pass the handoff verification matrix before becoming the new baseline.
 
 ## Acceptance Contract
 

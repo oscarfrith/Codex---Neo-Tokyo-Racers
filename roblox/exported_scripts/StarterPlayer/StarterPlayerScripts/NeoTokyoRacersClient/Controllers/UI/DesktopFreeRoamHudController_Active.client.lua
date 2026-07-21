@@ -29,6 +29,7 @@ local effects = config:WaitForChild("Effects")
 local garageRemotes = kit:WaitForChild("Shared"):WaitForChild("Remotes"):WaitForChild("Garage")
 local garageInvoke = garageRemotes:WaitForChild("GarageInvoke")
 local teleportInvoke = kit:WaitForChild("Shared"):WaitForChild("Remotes"):WaitForChild("UI"):WaitForChild("FreeRoamHudTeleportInvoke")
+local loadingInvoke = script.Parent:WaitForChild("LoadingTransitionInvoke") -- NTR_LOADING_SYSTEM_PHASE1_DEALERSHIP_TELEPORT_DESKTOP_V1
 local interiorInvoke = garageRemotes:FindFirstChild("GarageInteriorInvoke")
 local categoriesRoot = kit:WaitForChild("Assets"):WaitForChild("Vehicles"):WaitForChild("Categories")
 local mobileDriveInputState = require(kit:WaitForChild("Shared"):WaitForChild("Modules"):WaitForChild("Client"):WaitForChild("Controllers"):WaitForChild("MobileDriveInputState"))
@@ -395,6 +396,13 @@ local function fireUiEvent(name)
 	return false
 end
 
+local function loadingAction(action, payload)
+	local ok, result = pcall(function() return loadingInvoke:Invoke(action, payload or {}) end)
+	if ok then return result end
+	warn("[NTR Desktop HUD] Loading transition " .. tostring(action) .. " failed: " .. tostring(result))
+	return nil
+end
+
 local function suppressLegacyDesktop() end -- NTR_RACING_UI_PHASE16E_RUNTIME_OWNERSHIP
 local function closeChoiceList()
 	if choiceList then choiceList:Destroy(); choiceList = nil end
@@ -452,16 +460,19 @@ local function buildModals()
 		if busy then return end
 		busy = true
 		closeModal()
-		showToast("TELEPORTING...", true)
+		local generation = loadingAction("Begin", { Destination = "DealershipExterior", Status = "TRAVELLING TO DEALERSHIP" })
 		local ok, result = pcall(function()
 			return teleportInvoke:InvokeServer("TeleportToDealership")
 		end)
 		if ok and typeof(result) == "table" and result.Success == true then
 			fireUiEvent("FreeRoamVehicleExited")
 			lastProfileRead = 0
+			loadingAction("Complete", { Generation = generation, Status = "READY" })
 			showToast(result.Message or "TELEPORTED TO DEALERSHIP", true)
 		else
-			showToast((typeof(result) == "table" and (result.Message or result.Error)) or "DEALERSHIP TELEPORT FAILED", false)
+			local message = (typeof(result) == "table" and (result.Message or result.Error)) or "DEALERSHIP TELEPORT FAILED"
+			loadingAction("Fail", { Generation = generation, Status = "RETURNING", Reason = message })
+			showToast(message, false)
 		end
 		busy = false
 	end)

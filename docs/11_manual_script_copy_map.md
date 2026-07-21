@@ -49,6 +49,8 @@ These are the most important active gameplay scripts to refresh after major Stud
 ServerScriptService.NeoTokyoRacers.Services.Garage.GarageActionController_Shadow_Disabled
 ServerScriptService.NeoTokyoRacers.Services.Garage.GarageSessionService_Active (after canonical garage install)
 ServerScriptService.NeoTokyoRacers.Services.Vehicle.DriverSeatPositionKeeper_Active
+ServerScriptService.NeoTokyoRacers.Services.Racing.TimeTrialService_Active
+ServerScriptService.NeoTokyoRacers.Services.Racing.RaceMatchmakingService_Active
 StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.NeoTokyoRacersClient_Bootstrap_Shadow_Disabled
 StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Intro.DealershipIntroClient_Active
 StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Intro.GarageEntranceController_Active (after canonical garage install)
@@ -70,7 +72,9 @@ ServerScriptService.NeoTokyoRacers.Services.UI.FreeRoamHudTeleportService_Active
 StarterPlayer.StarterPlayerScripts.TEMP_LightingPreview
 ```
 
-The desktop/mobile free-roam UI entries and their relevant server bridge are the current isolated presentation owners. Refresh them together after any later free-roam HUD or dealership-teleport change. The listed Racing owners are the critical latest mobile/race-flow sources; refresh all scripts under `Controllers.Racing` and `Services.Racing` together with their remotes/config hierarchy. Use `docs/mobile-ui-racing-flow-handoff-2026-07-14.md` and the generated manifest for exact current paths.
+The desktop/mobile free-roam UI entries and their relevant server bridge are the current isolated presentation owners. Refresh them together after any later free-roam HUD or dealership-teleport change. The listed Racing owners are the critical latest mobile/race-flow sources; the staging-readiness gate specifically changes `TimeTrialService_Active`, `RaceMatchmakingService_Active`, `RaceTransitionClient_Active` and `RaceCountdownPresentationController_Active`. Refresh all scripts under `Controllers.Racing` and `Services.Racing` together with their remotes/config hierarchy. Use `docs/mobile-ui-racing-flow-handoff-2026-07-14.md`, `docs/racing-staging-readiness-gate-2026-07-21.md` and the generated manifest for exact current paths.
+
+The `10:48:31` mirror contains all four current `ReplicatedFirst.NTRLoading` scripts, exact V1.4 Grid3x2 and configured-position V1.3. The user reports Phase 6 working as expected, so no source copy or Studio mutation remains. Retain the config companion and canonical installer as transaction/source truth; use `scripts/roblox_ui_loading_phase6_readonly_audit.lua` only for future read-only regression checks and start from `docs/loading-system-phase6-closure-handoff-2026-07-21.md`.
 
 After the corrected canonical dealership/customisation rerun, refresh the active client bootstrap, garage action/session services, dealership intro, canonical entrance/presentation owners, config hierarchy and preview owners together. The `2026-07-14 20:05:44` mirror contains initial V1; the next refresh must capture the bottom-carousel, early-camera, ascending-rating and leftmost-preview markers.
 

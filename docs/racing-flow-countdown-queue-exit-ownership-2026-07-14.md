@@ -1,12 +1,18 @@
 # Unified Racing Flow: Countdown, Queue And Exit Ownership
 
 **Date:** 2026-07-14  
-**Status:** Installed and current presentation user-confirmed working; release regression and mirror refresh recommended  
+**Status:** Existing presentation baseline confirmed; readiness-gated scheduling generated and awaiting Studio verification
 **Installer:** `scripts/roblox_racing_flow_countdown_queue_exit_ownership.lua`
 
 This single coordinated installer preserves the confirmed racing gameplay baseline while repairing presentation and lifecycle ownership.
 
 The user accepted the final countdown/flow presentation and subsequently confirmed the completed mobile menu-suppression integration works well. Preserve this as the current racing-flow UI baseline. A two-player release regression and refreshed Studio export remain recommended.
+
+## 2026-07-21 Readiness-Gated Scheduling
+
+Loading Phase 4 exposed that the existing server countdown began at staging and was therefore mostly hidden behind the loading cover. `scripts/roblox_racing_staging_readiness_gate.lua` preserves this document's presentation and authoritative GO owners but changes scheduling: every active participant completes bounded local preparation, loading fully fades, clients acknowledge countdown visibility, and the server then publishes one `GoAtServerTime` timestamp for the shared five-second presenter.
+
+This is pending Studio verification. It does not change the queue, checkpoints, reset, timing, results, rewards, PBs or vehicle lifecycle. See `docs/racing-staging-readiness-gate-2026-07-21.md` for the contract and regression matrix.
 
 ## Changes
 

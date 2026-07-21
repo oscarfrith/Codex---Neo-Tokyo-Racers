@@ -9,6 +9,7 @@ local player = Players.LocalPlayer
 local kit = ReplicatedStorage:WaitForChild("NeoTokyoRacers")
 local request = kit:WaitForChild("Shared"):WaitForChild("Remotes"):WaitForChild("UI"):WaitForChild("GarageSessionRequest")
 local config = kit:WaitForChild("Config"):WaitForChild("UI"):WaitForChild("GarageExperience")
+local loadingInvoke = script.Parent.Parent:WaitForChild("UI"):WaitForChild("LoadingTransitionInvoke") -- NTR_LOADING_SYSTEM_PHASE2_GARAGE_ENTRY_V1
 
 local function colour(name, fallback)
 	local value = config:FindFirstChild(name)
@@ -97,6 +98,24 @@ end
 local entries = {}
 local busy = false
 
+local function loadingAction(action, payload)
+	local ok, result = pcall(function()
+		return loadingInvoke:Invoke(action, payload or {})
+	end)
+	if ok then return result end
+	warn("[NTR Garage Entrance] Loading transition " .. tostring(action) .. " failed: " .. tostring(result))
+	return nil
+end
+
+local function loadingDetails(mode)
+	if mode == "Dealership" then
+		return "Dealership", "ENTERING DEALERSHIP"
+	elseif mode == "DriveIn" then
+		return "DriveInCustomisation", "ENTERING CUSTOMISATION"
+	end
+	return "Customisation", "ENTERING CUSTOMISATION"
+end
+
 local function garageIsActive()
 	return player:GetAttribute("NTR_GarageEntryMode") ~= nil
 end
@@ -144,12 +163,16 @@ for _, definition in ipairs(entranceDefinitions()) do
 		end
 
 		busy = true
+		local destination, status = loadingDetails(definition.Mode)
+		local generation = loadingAction("Begin", { Destination = destination, Status = status })
 		local ok, result = pcall(function()
 			return request:InvokeServer("Begin", { Mode = definition.Mode })
 		end)
 		if not ok or not result or result.Success ~= true then
+			local message = (result and result.Message) or "Could not enter garage."
+			loadingAction("Fail", { Generation = generation, Status = "RETURNING", Reason = message })
 			busy = false
-			flash((result and result.Message) or "Could not enter garage.")
+			flash(message)
 			refreshPromptAvailability()
 			return
 		end
@@ -158,10 +181,11 @@ for _, definition in ipairs(entranceDefinitions()) do
 		refreshPromptAvailability()
 		local event = script.Parent:FindFirstChild(definition.Event) or script.Parent:WaitForChild(definition.Event, 5)
 		if event and event:IsA("BindableEvent") then
-			event:Fire()
+			event:Fire({ LoadingGeneration = generation, LoadingDestination = destination })
 		else
 			request:InvokeServer("End", { ReturnToEntry = true })
 			player:SetAttribute("NTR_GarageEntryMode", nil)
+			loadingAction("Fail", { Generation = generation, Status = "RETURNING", Reason = "Garage UI handoff unavailable" })
 			flash("Garage UI handoff is unavailable.")
 		end
 		busy = false

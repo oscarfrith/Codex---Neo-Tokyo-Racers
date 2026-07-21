@@ -242,30 +242,44 @@ function M.ConfirmationModal(root,options)
 	local no=Racing.Button(panel,{Text=options.CancelText or "NO",Position=UDim2.new(.5,-158,1,-72),Size=UDim2.fromOffset(142,44),Color=Color3.fromRGB(166,61,70),ZIndex=303}); local yes=Racing.Button(panel,{Text=options.ConfirmText or "YES",Position=UDim2.new(.5,16,1,-72),Size=UDim2.fromOffset(142,44),Color=Racing.Colour("PanelBlue"),StrokeColor=Racing.Colour("ElectricBlue"),ZIndex=303})
 	no.Activated:Connect(function() shade:Destroy(); if options.OnCancel then options.OnCancel() end end); yes.Activated:Connect(function() shade:Destroy(); if options.OnConfirm then options.OnConfirm() end end); return shade
 end
--- NTR_OWNED_GARAGE_ANCHORED_DROPDOWN_V1
+
+-- NTR_OWNED_GARAGE_ANCHORED_DROPDOWN_V2
+function M.AttachDropdownChevron(button)
+	local chevron=button:FindFirstChild("DropdownChevron")
+	if not chevron then chevron=Racing.Label(button,{Name="DropdownChevron",Text=utf8.char(9662),Position=UDim2.new(1,-30,0,0),Size=UDim2.new(0,22,1,0),TextSize=14,Role="Button",XAlignment=Enum.TextXAlignment.Center}); chevron.AnchorPoint=Vector2.new(0,.5); chevron.Position=UDim2.new(1,-30,.5,0); chevron.ZIndex=button.ZIndex+3 end
+	return chevron
+end
+function M.SetDropdownOpen(button,isOpen)
+	local chevron=M.AttachDropdownChevron(button); chevron.Rotation=isOpen and 180 or 0
+end
 function M.AnchoredDropdown(parent,options)
 	options=options or {}; local panel; local anchor; local outsideConnection; local rows={}; local callback; local metrics={}
+	local function notify(target,isOpen) if type(options.OnOpenChanged)=="function" then options.OnOpenChanged(target,isOpen) end end
 	local function inside(object,point)
 		if not (object and object.Parent and object.Visible) then return false end; local position=object.AbsolutePosition; local size=object.AbsoluteSize; return point.X>=position.X and point.X<=position.X+size.X and point.Y>=position.Y and point.Y<=position.Y+size.Y
 	end
 	local function hide()
-		if outsideConnection then outsideConnection:Disconnect(); outsideConnection=nil end; if panel then panel:Destroy(); panel=nil end; anchor=nil; rows={}; callback=nil
+		local closedAnchor=anchor; if outsideConnection then outsideConnection:Disconnect(); outsideConnection=nil end; if panel then panel:Destroy(); panel=nil end; anchor=nil; rows={}; callback=nil; if closedAnchor then notify(closedAnchor,false) end
 	end
 	local function place()
-		if not (panel and anchor and anchor.Parent) then return end; local scale=math.max(.01,tonumber(options.Scale and options.Scale() or 1) or 1); local logical=(anchor.AbsolutePosition-parent.AbsolutePosition)/scale; local width=anchor.AbsoluteSize.X/scale; panel.Position=UDim2.fromOffset(logical.X,logical.Y+anchor.AbsoluteSize.Y/scale+(tonumber(metrics.Gap) or 5)); panel.Size=UDim2.fromOffset(width,panel.Size.Y.Offset)
+		if not (panel and anchor and anchor.Parent) then return end; local scale=math.max(.01,tonumber(options.Scale and options.Scale() or 1) or 1); local logical=(anchor.AbsolutePosition-parent.AbsolutePosition)/scale; local width=parent.AbsoluteSize.X/scale; panel.Position=UDim2.fromOffset(0,logical.Y+anchor.AbsoluteSize.Y/scale+(tonumber(metrics.Gap) or 5)); panel.Size=UDim2.fromOffset(width,panel.Size.Y.Offset)
 	end
 	local function show(target,newRows,onPick,newMetrics)
-		hide(); anchor=target; rows=type(newRows)=="table" and newRows or {}; callback=onPick; metrics=type(newMetrics)=="table" and newMetrics or {}; local rowHeight=math.max(34,tonumber(metrics.RowHeight) or 38); local maximum=math.max(1,math.floor(tonumber(metrics.MaxRows) or 5)); local visibleCount=math.max(1,math.min(#rows,maximum)); local padding=5
-		panel=M.Panel(parent,"AnchoredDropdown",{StrokeColor=Racing.Colour("OutlineSoft"),NoGlow=true}); panel.ClipsDescendants=true; panel.ZIndex=tonumber(options.ZIndex) or 80; panel.Size=UDim2.fromOffset(100,visibleCount*rowHeight+padding*2)
-		local scroll=Instance.new("ScrollingFrame"); scroll.Name="Choices"; scroll.BackgroundTransparency=1; scroll.BorderSizePixel=0; scroll.Position=UDim2.fromOffset(padding,padding); scroll.Size=UDim2.new(1,-padding*2,1,-padding*2); scroll.CanvasSize=UDim2.fromOffset(0,math.max(visibleCount,#rows)*rowHeight); scroll.ScrollBarThickness=#rows>maximum and 3 or 0; scroll.ScrollBarImageColor3=Racing.Colour("Telemetry"); scroll.ZIndex=panel.ZIndex+1; scroll.Parent=panel
+		hide(); anchor=target; rows=type(newRows)=="table" and newRows or {}; callback=onPick; metrics=type(newMetrics)=="table" and newMetrics or {}; local rowHeight=math.max(40,tonumber(metrics.RowHeight) or 46); local rowGap=math.max(0,tonumber(metrics.RowGap) or 5); local maximum=math.max(1,math.floor(tonumber(metrics.MaxRows) or 5)); local visibleCount=math.max(1,math.min(#rows,maximum)); local panelHeight=visibleCount*rowHeight+math.max(0,visibleCount-1)*rowGap
+		panel=Instance.new("Frame"); panel.Name="AnchoredDropdown"; panel.BackgroundTransparency=1; panel.BorderSizePixel=0; panel.ClipsDescendants=true; panel.ZIndex=tonumber(options.ZIndex) or 80; panel.Size=UDim2.fromOffset(100,panelHeight); panel.Parent=parent
+		local scroll=Instance.new("ScrollingFrame"); scroll.Name="Choices"; scroll.BackgroundTransparency=1; scroll.BorderSizePixel=0; scroll.Size=UDim2.fromScale(1,1); scroll.CanvasSize=UDim2.fromOffset(0,math.max(1,#rows)*rowHeight+math.max(0,#rows-1)*rowGap); scroll.ScrollBarThickness=#rows>maximum and 3 or 0; scroll.ScrollBarImageColor3=Racing.Colour("Telemetry"); scroll.ZIndex=panel.ZIndex+1; scroll.Parent=panel
 		local renderRows=#rows>0 and rows or {{Text="NO OPTIONS AVAILABLE",Disabled=true}}
 		for index,row in ipairs(renderRows) do
-			local selected=row.Selected==true; local button=Racing.Button(scroll,{Name="Choice"..index,Text="",Position=UDim2.fromOffset(0,(index-1)*rowHeight),Size=UDim2.new(1,-(#rows>maximum and 5 or 0),0,rowHeight-4),Color=selected and Racing.Colour("PanelBlue") or Racing.Colour("Panel"),StrokeColor=selected and Racing.Colour("Telemetry") or Racing.Colour("OutlineSoft"),FocusColor=Racing.Colour("Telemetry"),ZIndex=panel.ZIndex+2}); button.Active=row.Disabled~=true; button.Selectable=row.Disabled~=true
-			local text=Racing.Label(button,{Name="ChoiceText",Text=string.upper(tostring(row.Text or row.Id or "")),Position=UDim2.fromOffset(10,0),Size=UDim2.new(1,-88,1,0),TextSize=tonumber(metrics.TextSize) or 11,Role="Button",XAlignment=Enum.TextXAlignment.Left}); text.ZIndex=button.ZIndex+1
-			local detail=Racing.Label(button,{Name="Detail",Text=string.upper(tostring(row.Detail or "")),Position=UDim2.new(1,-78,0,0),Size=UDim2.fromOffset(68,rowHeight-4),TextSize=tonumber(metrics.DetailTextSize) or 9,Color=selected and Racing.Colour("Telemetry") or Racing.Colour("Muted"),Role="Metric",XAlignment=Enum.TextXAlignment.Right}); detail.ZIndex=button.ZIndex+1
+			local selected=row.Selected==true; local button=Instance.new("TextButton"); button.Name="Choice"..index; button.AutoButtonColor=false; button.BorderSizePixel=0; button.BackgroundColor3=selected and Racing.Colour("PanelBlue") or Racing.Colour("PanelSoft"); button.BackgroundTransparency=.04; button.Position=UDim2.fromOffset(0,(index-1)*(rowHeight+rowGap)); button.Size=UDim2.new(1,-(#rows>maximum and 7 or 0),0,rowHeight); button.Text=""; button.ZIndex=panel.ZIndex+2; button.Active=row.Disabled~=true; button.Selectable=row.Disabled~=true; button.Parent=scroll; Racing.Corner(button,6)
+			local fill=Instance.new("UIGradient"); fill.Name="ChoiceGradient"; fill.Rotation=12; fill.Color=selected and ColorSequence.new(Racing.Colour("PanelBlue"),Racing.Colour("PanelSoft")) or ColorSequence.new(Racing.Colour("PanelSoft"),Racing.Colour("PanelDeep")); fill.Parent=button
+			local imageText=tostring(row.Icon or ""); local glyphText=tostring(row.IconText or ""); local image=Instance.new("ImageLabel"); image.Name="ChoiceIcon"; image.BackgroundTransparency=1; image.BorderSizePixel=0; image.Position=UDim2.fromOffset(12,math.floor((rowHeight-22)*.5)); image.Size=UDim2.fromOffset(22,22); image.Image=imageText; image.ImageColor3=Racing.Colour("Text"); image.Visible=imageText~=""; image.ZIndex=button.ZIndex+1; image.Parent=button
+			local glyph=Racing.Label(button,{Name="ChoiceGlyph",Text=glyphText,Position=UDim2.fromOffset(12,0),Size=UDim2.fromOffset(22,rowHeight),TextSize=18,Role="Heading",XAlignment=Enum.TextXAlignment.Center}); glyph.Visible=imageText=="" and glyphText~=""; glyph.ZIndex=button.ZIndex+1
+			local text=Racing.Label(button,{Name="ChoiceText",Text=string.upper(tostring(row.Text or row.Id or "")),Position=UDim2.fromOffset(44,0),Size=UDim2.new(1,-142,1,0),TextSize=tonumber(metrics.TextSize) or 11,Role="Button",XAlignment=Enum.TextXAlignment.Left}); text.ZIndex=button.ZIndex+1
+			local detail=Racing.Label(button,{Name="Detail",Text=string.upper(tostring(row.Detail or "")),Position=UDim2.new(1,-92,0,0),Size=UDim2.fromOffset(78,rowHeight),TextSize=tonumber(metrics.DetailTextSize) or 9,Color=selected and Racing.Colour("Telemetry") or Racing.Colour("Muted"),Role="Metric",XAlignment=Enum.TextXAlignment.Right}); detail.ZIndex=button.ZIndex+1
+			button.MouseEnter:Connect(function() if button.Active then button.BackgroundTransparency=0 end end); button.MouseLeave:Connect(function() button.BackgroundTransparency=.04 end)
 			if row.Disabled~=true then button.Activated:Connect(function() if callback then callback(row) end end) end
 		end
-		place(); outsideConnection=UserInputService.InputBegan:Connect(function(input)
+		place(); notify(anchor,true); outsideConnection=UserInputService.InputBegan:Connect(function(input)
 			if input.UserInputType~=Enum.UserInputType.MouseButton1 and input.UserInputType~=Enum.UserInputType.Touch then return end; local point=Vector2.new(input.Position.X,input.Position.Y); if not inside(panel,point) and not inside(anchor,point) then hide() end
 		end)
 	end

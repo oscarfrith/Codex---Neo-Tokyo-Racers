@@ -13,6 +13,7 @@ local uiFolder=script.Parent; local intro=uiFolder.Parent:WaitForChild("Intro");
 local Browser=require(uiFolder:WaitForChild("GarageBrowserController")); local WorkspaceUI=require(uiFolder:WaitForChild("GarageWorkspaceController")); local Shared=require(uiFolder:WaitForChild("GarageReplacementComponents")); local ModuleCards=require(uiFolder:WaitForChild("GarageModuleCardViewModel")); local replacementConfig=kit:WaitForChild("Config"):WaitForChild("UI"):WaitForChild("GarageReplacement")
 local garageInvoke=kit:WaitForChild("Shared"):WaitForChild("Remotes"):WaitForChild("Garage"):WaitForChild("GarageInvoke")
 local sessionRequest=kit:WaitForChild("Shared"):WaitForChild("Remotes"):WaitForChild("UI"):WaitForChild("GarageSessionRequest")
+local loadingInvoke=script.Parent:WaitForChild("LoadingTransitionInvoke") -- NTR_LOADING_SYSTEM_PHASE2_GARAGE_UI_TRANSITIONS_V1
 local Adapter={}; Adapter.__index=Adapter
 function Adapter.new(state) return setmetatable({State=state,Busy=false},Adapter) end
 function Adapter:Call(actionName,payload)
@@ -32,6 +33,13 @@ local PreviewVehicle=require(previewFolder:WaitForChild("PreviewVehicleControlle
 local performance=kit:WaitForChild("Shared"):WaitForChild("Modules"):WaitForChild("Common"):WaitForChild("Performance"); local PerformanceResolver=require(performance:WaitForChild("VehiclePerformanceResolver")); local Racing=require(kit.Shared.Modules.UI.RacingUIComponents) -- NTR_CANONICAL_PERFORMANCE_RESOLVER_MODULE_RATINGS_V1
 local State={Stage="Closed",ShopMode="Dealership",Catalog=nil,Profile=nil,CategoryId="bruiser",BrowseAll=true,SelectedCockpit=nil,SelectedVehicleId=nil,SelectedSlot="Engine1",SelectedModuleId=nil,SelectedModuleInstanceId=nil,ModuleMode="Slots",ModuleOptionMode=nil,CustomizeTarget="ALL",CustomizeMode="Colour",SelectedColorChannel="Primary",PreviewModules={},PreviewProfile=nil,GarageCameraActive=false}
 local action=Adapter.new(State); local browser=Browser.new(); local workspaceUI=WorkspaceUI.new(); local preview={}; local active=false; local modal
+local function loadingAction(actionName,payload) local ok,result=pcall(function() return loadingInvoke:Invoke(actionName,payload or {}) end); if ok then return result end; warn("[NTR Canonical Garage] Loading transition "..tostring(actionName).." failed: "..tostring(result)); return nil end
+local function entryLoading(mode,payload)
+	payload=typeof(payload)=="table" and payload or {}
+	if payload.LoadingGeneration then return payload.LoadingGeneration end
+	local destination=mode=="Dealership" and "Dealership" or (mode=="DriveIn" and "DriveInCustomisation" or "Customisation")
+	return loadingAction("Begin",{Destination=destination,Status=mode=="Dealership" and "ENTERING DEALERSHIP" or "ENTERING CUSTOMISATION"})
+end
 local tierColours={E=Color3.fromRGB(132,142,145),D=Color3.fromRGB(105,190,129),C=Color3.fromRGB(74,204,211),B=Color3.fromRGB(82,137,235),A=Color3.fromRGB(244,188,65),S=Color3.fromRGB(236,92,168)}
 local function tierColor(tier) return tierColours[tostring(tier)] or Color3.fromRGB(43,225,218) end
 local function allCategories() return (State.Catalog and State.Catalog.Categories) or {} end
@@ -151,14 +159,21 @@ local renderBrowser,renderPaint,renderHub,renderBuild,renderCustomise
 local function common(title) setPreviewVFXMode(State.Stage=="Customise" and State.CustomizeTarget=="THRUST_COLOR" and "ThrustColour" or "Idle"); local owned,cap=capacity(); return {Title=title,Cash=State.Profile and State.Profile.Cash or 0,CapacityText=tostring(owned).."/"..tostring(cap).." Spaces",RenderStats=stats,OnCash=showCash,OnCapacity=showProperties,ExitVisible=false,Legacy={}} end
 local function driveFromGarage()
 	local engine,stabilisers,boost=coreReady(); if not(engine and stabilisers and boost) then message("Equip one engine, stabilisers, and boost before driving."); return end
-	clearTransientModulePreview(); action:Session("End",{ReturnToEntry=false}); local result=action:Call("SpawnVehicle",{}); if not result.Success then message(result.Message); return end; active=false; hideAll(); closeCamera(); player:SetAttribute("NTR_GarageEntryMode",nil); fire("FreeRoamVehicleSpawned"); local event=intro:FindFirstChild("GarageClosedFromDealershipExit"); if event and event:IsA("BindableEvent") then event:Fire() end
+	local generation=loadingAction("Begin",{Destination="FreeRoamDrive",Status="PREPARING VEHICLE"})
+	clearTransientModulePreview()
+	local ended=action:Session("End",{ReturnToEntry=true})
+	if not ended or ended.Success~=true then local reason=(ended and ended.Message) or "Could not leave customisation."; loadingAction("Fail",{Generation=generation,Status="RETURNING",Reason=reason}); message(reason); return end
+	local result=action:Call("SpawnVehicle",{})
+	if not result.Success then local reason=result.Message or "Vehicle spawn failed"; active=false; hideAll(); closeCamera(); player:SetAttribute("NTR_GarageEntryMode",nil); local failedEvent=intro:FindFirstChild("GarageClosedFromDealershipExit"); if failedEvent and failedEvent:IsA("BindableEvent") then failedEvent:Fire() end; loadingAction("Fail",{Generation=generation,Status="RETURNING",Reason=reason}); warn("[NTR Canonical Garage] Drive exit failed safely: "..tostring(reason)); return end
+	active=false; hideAll(); closeCamera(); player:SetAttribute("NTR_GarageEntryMode",nil); fire("FreeRoamVehicleSpawned"); local event=intro:FindFirstChild("GarageClosedFromDealershipExit"); if event and event:IsA("BindableEvent") then event:Fire() end
+	loadingAction("Complete",{Generation=generation,Status="READY TO DRIVE"})
 end
 renderBrowser=function()
 	State.Stage="Browser"; setPreviewVFXMode("Idle"); hideAll(); local owned,cap=capacity(); browser:Show({Mode=State.ShopMode,State=State,CarouselScrollKey="Browser|"..tostring(State.ShopMode).."|"..tostring(State.BrowseAll and "ALL" or State.CategoryId),Category=browserCategory(),Cash=State.Profile.Cash,CapacityText=tostring(owned).."/"..tostring(cap).." Spaces",AutoPreview=State.NoPreviewYet,Legacy={},ResolveImage=cockpitImage,ResolvePerformance=performanceForCockpit,TierColor=tierColor,OwnedCount=ownedCockpitCount,
 	OnCategory=function(id,all) State.BrowseAll=all==true; if id then State.CategoryId=id end; State.SelectedVehicleId=nil; State.PreviewProfile=nil; State.NoPreviewYet=true; renderBrowser() end,
 	OnSelect=function(row) State.SelectedCockpit=row.CockpitId; State.SelectedVehicleId=row.VehicleId; State.CategoryId=row.CategoryId or State.CategoryId; State.PreviewProfile=PreviewProfiles.ForBrowser(State,row); State.NoPreviewYet=false; buildPreview(); PreviewCamera.Reset(State,State.TargetFocus,cameraTransition()); renderBrowser() end,
 	OnPrimary=function(row) local selectionMode=State.ShopMode; local selectingOwned=selectionMode=="Customisation"; local r;if selectingOwned then r=action:Call("SelectVehicleInstance",{VehicleId=row.VehicleId,CockpitId=row.CockpitId}) else r=action:Call("BuyCockpitInstance",{CockpitId=row.CockpitId,CategoryId=row.CategoryId}) end; if not r.Success then browser.Subtitle.Text=r.Message or "Could not select vehicle."; return end; State.PreviewProfile=nil; State.SelectedCockpit=State.Profile.CurrentCockpit or row.CockpitId; State.SelectedVehicleId=State.Profile.CurrentVehicleId; State.ModuleMode="Slots"; State.CustomizeTarget="ALL"; State.CustomizeMode="Overview"; buildPreview(); print("[NTR Garage Route] selection="..selectionMode.." destination="..(selectingOwned and "Hub" or "Paint")); if selectingOwned then renderHub() else renderPaint() end end, -- NTR_GARAGE_FLOW_REFINEMENT_V2
-	OnExit=function() action:Session("End",{ReturnToEntry=true}); active=false; hideAll(); closeCamera(); player:SetAttribute("NTR_GarageEntryMode",nil); local e=intro:FindFirstChild("GarageClosedFromDealershipExit"); if e and e:IsA("BindableEvent") then e:Fire() end end,OnCash=showCash,OnCapacity=showProperties})
+	OnExit=function() local generation=loadingAction("Begin",{Destination="DealershipExterior",Status="LEAVING GARAGE"}); local ended=action:Session("End",{ReturnToEntry=true}); if not ended or ended.Success~=true then local reason=(ended and ended.Message) or "Could not leave garage."; loadingAction("Fail",{Generation=generation,Status="RETURNING",Reason=reason}); message(reason); return end; active=false; hideAll(); closeCamera(); player:SetAttribute("NTR_GarageEntryMode",nil); local e=intro:FindFirstChild("GarageClosedFromDealershipExit"); if e and e:IsA("BindableEvent") then e:Fire() end; loadingAction("Complete",{Generation=generation,Status="READY"}) end,OnCash=showCash,OnCapacity=showProperties})
 end
 renderPaint=function()
 	if State.CameraSection~="ALL" then section("ALL") end
@@ -258,13 +273,16 @@ renderCustomise=function()
 	c.OnNext=driveFromGarage
 	buildPreview(); workspaceUI:Show(c)
 end
-local function open(mode)
-	if active then return end; local result=action:Refresh(); if not result.Success then warn("[NTR Canonical Garage] "..tostring(result.Message)); action:Session("End",{ReturnToEntry=true}); return end
+local function open(mode,payload)
+	if active then if typeof(payload)=="table" and payload.LoadingGeneration then loadingAction("Complete",{Generation=payload.LoadingGeneration,Status="READY"}) end; return end
+	local generation=entryLoading(mode,payload)
+	local result=action:Refresh(); if not result.Success then local reason=tostring(result.Message or "Garage data unavailable"); warn("[NTR Canonical Garage] "..reason); action:Session("End",{ReturnToEntry=true}); player:SetAttribute("NTR_GarageEntryMode",nil); loadingAction("Fail",{Generation=generation,Status="RETURNING",Reason=reason}); return end
 	active=true; State.ShopMode=mode=="Dealership" and "Dealership" or "Customisation"; State.CategoryId=State.Profile.CurrentCategory or (allCategories()[1] and allCategories()[1].CategoryId) or "bruiser"; State.SelectedCockpit=State.Profile.CurrentCockpit; State.SelectedVehicleId=nil; State.BrowseAll=true; State.NoPreviewYet=true; State.GarageCameraActive=true; startCamera()
 	if mode=="DriveIn" then local vehicleId=State.Profile.CurrentVehicleId; action:Call("DespawnVehicle",{}); fire("FreeRoamVehicleExited"); if vehicleId then action:Call("SelectVehicleInstance",{VehicleId=vehicleId}) end; State.SelectedVehicleId=State.Profile.CurrentVehicleId; State.SelectedCockpit=State.Profile.CurrentCockpit; State.NoPreviewYet=false; buildPreview(); renderHub() else renderBrowser() end
 	auditOwnership(mode)
+	loadingAction("Complete",{Generation=generation,Status="READY"})
 end
-local function bindGarageOpen(name,mode) introEvent(name).Event:Connect(function() print("[NTR Garage Route] event="..name.." mode="..mode); open(mode) end) end
+local function bindGarageOpen(name,mode) introEvent(name).Event:Connect(function(payload) print("[NTR Garage Route] event="..name.." mode="..mode); open(mode,payload) end) end
 bindGarageOpen("OpenGarageFromIntro","Dealership"); bindGarageOpen("OpenOwnedCockpitCustomisation","Customisation"); bindGarageOpen("OpenDrivingVehicleCustomisation","DriveIn") -- NTR_GARAGE_FLOW_REFINEMENT_V2
 -- Camera input and rendering are session-scoped by startCamera/stopCamera.
 task.defer(function() print("[NTR Canonical Garage] DEPENDENCY PASS existing-instance application") end)

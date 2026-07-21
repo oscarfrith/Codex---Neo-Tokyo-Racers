@@ -1,6 +1,7 @@
 -- NTR_RACING_FLOW_COUNTDOWN_QUEUE_EXIT_OWNERSHIP
 -- NTR_RACING_FLOW_COUNTDOWN_VISUAL_V2
--- Shared responsive 5-to-GO countdown for Race and Time Trial.
+-- NTR_RACING_STAGING_READINESS_GATE_V1
+-- Shared synchronized five-to-GO countdown for Race and Time Trial.
 local Players=game:GetService("Players")
 local ReplicatedStorage=game:GetService("ReplicatedStorage")
 local Workspace=game:GetService("Workspace")
@@ -25,11 +26,33 @@ local number=UI.Label(card,{Text="5",Position=UDim2.fromScale(0,0),Size=UDim2.fr
 local token=0
 local function hide() token+=1 card.Visible=false end
 local function show(text,isGo) token+=1 local mine=token card.Visible=true heading.Text=isGo and "" or "GET READY" number.Text=text number.TextSize=isGo and N("GoTextSize",96) or N("CountdownTextSize",130) number.TextColor3=isGo and C("Telemetry") or C("Text") if isGo then task.delay(N("GoDuration",.85),function() if token==mine then card.Visible=false end end) end end
+local function schedule(payload)
+	token+=1
+	local mine=token
+	local goAt=tonumber(payload.GoAtServerTime)
+	local maximum=math.max(1,math.floor(tonumber(payload.Countdown) or N("CountdownSeconds",5)))
+	if not goAt then show(tostring(maximum),false) return end
+	task.spawn(function()
+		local previous=nil
+		while token==mine do
+			local remaining=goAt-Workspace:GetServerTimeNow()
+			if remaining<=0 then return end
+			local seconds=math.clamp(math.ceil(remaining),1,maximum)
+			if seconds~=previous then
+				previous=seconds
+				card.Visible=true heading.Text="GET READY" number.Text=tostring(seconds) number.TextSize=N("CountdownTextSize",130) number.TextColor3=C("Text")
+			end
+			task.wait(.03)
+		end
+	end)
+end
 event.OnClientEvent:Connect(function(payload)
 	if type(payload)~="table" then return end local kind=tostring(payload.Type or "")
-	if kind=="TimeTrialStaged" or kind=="RaceStaged" then show(tostring(payload.Countdown or N("CountdownSeconds",5)),false)
+	if kind=="TimeTrialStaged" or kind=="RaceStaged" or kind=="TimeTrialCountdownReveal" or kind=="RaceCountdownReveal" then hide()
+	elseif kind=="TimeTrialCountdownScheduled" or kind=="RaceCountdownScheduled" then schedule(payload)
 	elseif kind=="TimeTrialCountdown" or kind=="RaceCountdown" then show(tostring(payload.Countdown or ""),false)
 	elseif kind=="TimeTrialStarted" or kind=="RaceStarted" then show("GO!",true)
-	elseif kind=="TimeTrialFinished" or kind=="TimeTrialEnded" or kind=="TimeTrialError" or kind=="RaceFinished" or kind=="RaceDNF" or kind=="RaceEnded" or kind=="RaceExitedToStart" then hide() end
+	elseif kind=="TimeTrialFinished" or kind=="TimeTrialEnded" or kind=="TimeTrialError" or kind=="RaceFinished" or kind=="RaceDNF" or kind=="RaceEnded" or kind=="RaceExitedToStart" or kind=="RaceQueueError" then hide() end
 end)
-print("[NTR Unified Race Flow] Central countdown active.")
+script:SetAttribute("NTR_CountdownPresentationReady",true)
+print("[NTR Race Readiness] Synchronized countdown presenter active.")

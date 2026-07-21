@@ -1,5 +1,11 @@
 # Vehicle Folder System
 
+## Loading Phase 3 Owned-Garage Vehicle Boundary
+
+Loading/start-screen Phase 3 does not create, destroy, assign or clear an owned vehicle. `OwnedGarageManagementRuntime` keeps the confirmed revisioned display assignment and compensation contract, while the existing lifecycle bridge remains the only `GetDrivenVehicle`, `DespawnForGarage` and `SpawnFromGarage` owner. The loading system wraps browser/prompt activation and waits for the existing authoritative result.
+
+Driven entry must still resolve one stable saved `VehicleId`, remove the live vehicle once, assign or retain one display slot and compensate on teleport/lifecycle failure. Drive-out must clear one saved display reference, spawn that same saved vehicle once at the property-owned `VehicleExitSpawn`, and restore the assignment if spawn fails. Phase 3 adds no asset folder, cockpit/module identity, spawn marker or saved field.
+
 ## Owned Garage Replacement Contract
 
 The approved physical owned-garage replacement stores display assignments as stable keys into the existing `profile.Vehicles` dictionary. A display slot never owns, copies or deletes vehicle data: moving a vehicle clears its former display reference, and replacing a full slot changes only that reference. Phase 2 adds an inactive `OwnedGarageDisplayRuntime` that resolves the requested cockpit/module instances from the same saved vehicle dictionaries and live asset catalogue, then removes seats, scripts, VFX, collision, queries and shadows from the anchored presentation. It rejects a second visual placement of the same `VehicleId`. Phase 3 stages the replacement transaction and passes only the stable `VehicleId` through an unowned lifecycle bridge. Phase 4 adds the space-first management UI and server actions but routes every assignment/clear through that same transaction; it adds no vehicle clone/spawn owner.

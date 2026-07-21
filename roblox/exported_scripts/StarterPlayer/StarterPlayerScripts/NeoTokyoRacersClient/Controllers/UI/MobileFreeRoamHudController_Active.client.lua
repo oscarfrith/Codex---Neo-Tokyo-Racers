@@ -25,6 +25,7 @@ local garage=remotes:WaitForChild("Garage")
 local garageInvoke=garage:WaitForChild("GarageInvoke")
 local interiorInvoke=garage:FindFirstChild("GarageInteriorInvoke")
 local teleportInvoke=remotes:WaitForChild("UI"):WaitForChild("FreeRoamHudTeleportInvoke")
+local loadingInvoke=script.Parent:WaitForChild("LoadingTransitionInvoke") -- NTR_LOADING_SYSTEM_PHASE1_DEALERSHIP_TELEPORT_MOBILE_V1
 local categories=kit:WaitForChild("Assets"):WaitForChild("Vehicles"):WaitForChild("Categories")
 local drive=require(kit.Shared.Modules.Client.Controllers:WaitForChild("MobileDriveInputState"))
 local uiFolder=script.Parent
@@ -61,6 +62,7 @@ local function styleCarButton(item,accent,thickness,withGlow)
 end
 local function call(action,payload) local ok,result=pcall(function() return garageInvoke:InvokeServer(action,payload or {}) end); if ok and typeof(result)=="table" then return result end return {Success=false,Message=tostring(result)} end
 local function fire(name,payload) local event=uiFolder:FindFirstChild(name); if event and event:IsA("BindableEvent") then event:Fire(payload); return true end return false end
+local function loadingAction(action,payload) local ok,result=pcall(function() return loadingInvoke:Invoke(action,payload or {}) end); if ok then return result end; warn("[NTR Mobile HUD] Loading transition "..tostring(action).." failed: "..tostring(result)); return nil end
 
 local old=playerGui:FindFirstChild("NTR_MobileFreeRoamHud_Phase1"); if old then old:Destroy() end
 local gui=new("ScreenGui",{Name="NTR_MobileFreeRoamHud_Phase1",IgnoreGuiInset=true,ResetOnSpawn=false,DisplayOrder=88,ZIndexBehavior=Enum.ZIndexBehavior.Sibling},playerGui)
@@ -204,11 +206,29 @@ local function showCash()
 end
 cashPlus.Activated:Connect(showCash)
 
+local teleportBusy=false
 local function showTeleport()
 	openModal("TELEPORT TO DEALERSHIP?",tonumber(read(config,"ConfirmModalWidth",650)) or 650,tonumber(read(config,"ConfirmModalHeight",270)) or 270)
 	label(modalBody,"Message","Your current vehicle will be despawned.",UDim2.new(1,-20,0,60),UDim2.fromOffset(10,46),12,WHITE,Enum.TextXAlignment.Center)
 	local no=button(modalBody,"No","NO",UDim2.fromOffset(270,54),UDim2.fromOffset(16,126),PINK); local yes=button(modalBody,"Yes","YES",UDim2.fromOffset(270,54),UDim2.fromOffset(336,126),CYAN); buttonGradient(no); buttonGradient(yes)
-	no.Activated:Connect(closeModal); yes.Activated:Connect(function() closeModal(); local ok,result=pcall(function() return teleportInvoke:InvokeServer("TeleportToDealership") end); if ok and typeof(result)=="table" and result.Success then fire("FreeRoamVehicleExited"); showToast(result.Message or "TELEPORTED",true) else showToast(typeof(result)=="table" and (result.Message or result.Error) or "TELEPORT FAILED",false) end end)
+	no.Activated:Connect(closeModal)
+	yes.Activated:Connect(function()
+		if teleportBusy then return end
+		teleportBusy=true
+		closeModal()
+		local generation=loadingAction("Begin",{Destination="DealershipExterior",Status="TRAVELLING TO DEALERSHIP"})
+		local ok,result=pcall(function() return teleportInvoke:InvokeServer("TeleportToDealership") end)
+		if ok and typeof(result)=="table" and result.Success then
+			fire("FreeRoamVehicleExited")
+			loadingAction("Complete",{Generation=generation,Status="READY"})
+			showToast(result.Message or "TELEPORTED",true)
+		else
+			local message=typeof(result)=="table" and (result.Message or result.Error) or "TELEPORT FAILED"
+			loadingAction("Fail",{Generation=generation,Status="RETURNING",Reason=message})
+			showToast(message,false)
+		end
+		teleportBusy=false
+	end)
 end
 
 

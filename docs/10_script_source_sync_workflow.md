@@ -142,6 +142,8 @@ roblox/studio_snapshot/checksums.json
 
 `roblox/exported_scripts/MANIFEST.md` lists every exported Studio script and the `.lua` file it maps to.
 
+The exporter now scans `ReplicatedFirst` as well as the previously covered services. Mirrors created before the 2026-07-21 loading/start-screen Phase 5 tooling update omit that service entirely; run the current exporter after installing Phase 5 so `NTRLoading` hierarchy and source are captured.
+
 ## How To Verify It Worked
 
 After running the receiver/exporter, check these files:
@@ -161,7 +163,7 @@ Good signs:
 
 ## Current Mirror Status
 
-The Studio mirror was refreshed on 2026-07-14 at 20:05:44 and imported 128 scripts. It contains the initial canonical garage owners and bridges. That mirror exposed the remaining legacy layout/camera ownership, and is the source baseline for the corrected rerun of the same installer.
+The Studio mirror was refreshed on 2026-07-21 at 10:48:31 and contains 163 exported scripts. It includes the complete four-script `ReplicatedFirst.NTRLoading` package, configured-button Phase 5 V1.3, `LoadingScreenView` V1.4, all responsive/grid attributes and all four race-staging readiness markers. The user reports Phase 6 working as expected, so this is the handed-off loading-system source baseline. The closure audit was read-only and does not require another export. The exporter does not scan `SoundService`; future regression audits check the six planned sound groups live.
 
 The fresh mirror also shows active loose `StarterPlayerScripts` filming/camera helpers (`LocalScript`, `TrailerMode.client.lua`, and `TrailerShot01Camera`). Treat them as review items before publishing a normal gameplay build unless they are intentionally kept enabled.
 

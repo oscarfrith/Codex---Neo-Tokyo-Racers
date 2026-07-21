@@ -1,19 +1,53 @@
 # Current Known Issues
 
+## Loading/start-screen Phase 6 complete; no active blocker (2026-07-21)
+
+- The user confirmed the Phase 5 V1 initial join loader and PLAY/SHOP flow working well. The same canonical installer now refines only that isolated client to V1.1 after the phone screenshot showed redundant headings and an oversized landscape layout.
+- Phase 5 V1 created one isolated `ReplicatedFirst` LocalScript; V1.1 is a guarded full-source replacement of only that known V1/V1.1 client. It consumes the confirmed catalogue/view/runtime unchanged and does not patch central config, the register-limited bootstrap, camera, spawn, dealership server, persistence or economy.
+- Verify V1.1 shows only PLAY/SHOP, positions the row slightly lower, renders configured icons left of their labels, and hides the icon space cleanly while IDs are blank. Landscape phones should use `188x40` buttons; portrait phones `190x40`; tablets/desktop retain larger layouts.
+- Confirm PLAY and SHOP behaviour, loading/audio/input release and all later transitions remain unchanged. SHOP rejection now reports the detailed reason to Output and changes its only visible copy to `SHOP - TRY AGAIN` because the removed description label no longer owns errors.
+- The refreshed `10:17:35` mirror contains exact V1.1 plus the full `ReplicatedFirst.NTRLoading` package. The start client is `13,024` bytes, so missing icon attributes are not a source-length failure; V1.1 only read them and did not create placeholders.
+- All six Grid3x2 IDs/coordinates are present. The confirmed defect is the one-shot hidden preload plus immediate `IsLoaded` gate in `LoadingScreenView` V1.3. A missed/failed tile leaves the single fallback active forever; deleting that fallback reveals black. Keep the fallback configured.
+- The user subsequently confirmed the V1.4 Grid3x2 fetch-status view working well. Keep the single fallback configured; the next mirror refresh must capture V1.4 because the current `10:17:35` export still contains V1.3.
+- Config V2 adds three responsive Y-scale attributes without overwriting existing values: desktop `0.82`, landscape phone `0.84`, and portrait `0.80`. The generated Phase 5 V1.3 start client reads those attributes live, retains all confirmed button sizes/orientations and clamps the complete menu inside the safe-content root with an eight-pixel bottom inset.
+- The `2026-07-21 10:48:31` mirror now captures the confirmed V1.3 client, V1.4 view, all responsive/grid/icon config and loading/readiness integration markers. Its source manifest contains 163 scripts. Preserve this as the current loading rollback baseline.
+- The user reports the Phase 6 audit and manual behaviour working as expected. There is no active loading-system blocker. Preserve configured start-client V1.3, view V1.4, the six tiles, populated single fallback and current transition/readiness markers.
+- `MinimumVisibleSeconds=1.2` and blank `LoadingMusicAssetId` are accepted baseline choices, not open defects. Future loading music and additional catalogue artwork are optional scoped enhancements, not unfinished Phase 6 work.
+- Cross-place `TeleportGui` is not recommended for the current one-place in-place transition architecture. Revisit it only when another published PlaceId enters a real player flow.
+
+## Race staging readiness gate confirmed (2026-07-21)
+
+- The user confirmed the readiness gate working. The refreshed `09:20:03` mirror contains per-run `AssetsReady` and `CountdownVisible` acknowledgements, bounded server waits and a server-time GO schedule in all four target sources.
+- Preserve the complete visible five-second Time Trial/Race countdown, input lock until GO, staging disconnect handling and unchanged reset/results/rewards/PB/exit behaviour.
+- The client preparation deadline is 7.5 seconds; server asset and countdown-visibility bounds are 18 and 8 seconds. Non-fatal streaming/preload failure is logged as degraded readiness. Missing/stale acknowledgement cancels rather than silently starting.
+- The installer depends on uniqueness-checked source anchors. Any future restore failure requires mirror inspection and repair of that same canonical installer. Do not reintroduce the former immediate countdown task.
+
+## Loading transition Phase 4 confirmed baseline (2026-07-21)
+
+- Phase 4 is installed, user-confirmed and present in the refreshed `09:02:33` mirror. `scripts/roblox_ui_loading_and_start_screen_system.lua` remains the canonical loading-system installer through revision `NTR_LOADING_SYSTEM_PHASE4_RACING_TRANSITIONS_V1`.
+- Phase 4 used guarded exact anchors in four isolated Racing presentation owners. Any future restore anchor failure is a hard stop requiring mirror refresh/inspection; do not broaden the replacement or create a repair script.
+- The first Phase 4 run reached final source compilation but Studio again dropped the loading config `Revision` attribute and triggered rollback. This is the second occurrence of the documented mixed source/attribute transaction fault. The same canonical installer is now source-only: it verifies the complete Phase 1-3 foundation/config read-only, changes only four existing Racing sources, yields nowhere, and treats the four source markers—not a newly written attribute—as Phase 4 revision evidence.
+- Preserve the confirmed Race Browser teleport-to-start, selected time-trial start, post-queue Race staging, active race/time-trial Exit and finished-results Exit to Start coverage. Queue waiting, reset, Try Again/Race Again and non-relocating finish presentation must not show the loading screen.
+- `RaceTransitionClient_Active` keeps camera/session-transition ownership. The shared loading runtime replaces its covered black fades, while the old lightweight fade remains for reset and the existing results background hold. Existing server staging, timing, checkpoints, matchmaking and cleanup remain authoritative.
+- Six `1024x864` decoded UI images carry a materially larger client texture-memory cost than the single fallback. `WarmPoolSize=1` bounds proactive loading to one artwork set; verify low-end phone memory/performance before adding further random Grid3x2 entries.
+- The Play/Shop start screen is now generated as Phase 5 above. Race/TT reset and ordinary vehicle spawn/switch remain excluded.
+- The `09:20:03` mirror is fresh for Phase 4 plus the confirmed race-readiness scanned targets but predates `ReplicatedFirst` exporter coverage. Use the now-updated full exporter after Phase 5 so catalogue/view/runtime/initial source enters both mirror outputs. Keep the canonical installer as source of truth and keep `docs/studio-full-export-paste.txt` unstaged.
+
 ## New-system readiness automation deferred (2026-07-20)
 
 - The proportional Fast/Standard/High-Risk rules, universal safeguards, readiness scorecard and reusable contract are now documented in `docs/14_new_system_readiness_standard.md` and `docs/15_new_system_contract_template.md`, with mandatory routing from `AGENTS.md` and the startup/delivery workflows.
 - This phase intentionally adds no runtime framework and no Studio audit script. A reusable read-only structural readiness audit remains a future workflow improvement after the documented checks have been exercised on real new systems; automate recurring high-signal checks rather than speculative or noisy warnings.
 - Until that audit exists, new chats must apply the documented contract and verification gates manually. This is a workflow limitation, not a gameplay or submission blocker.
 
-## Owned garage Phase 12 confirmed; V1.2 HUD dropdown refinement next (2026-07-20)
+## Owned garage Phase 12 V1.1 confirmed; V1.2 HUD dropdown refinement optional (2026-07-20)
 
-- The user confirmed Phase 12 V1 working and refreshed the mirror at `2026-07-20 10:49:01`. Treat `NTR_OWNED_GARAGE_PHASE12_ACCESS_INVITATIONS_V1` as the rollback baseline.
+- Phase 12 V1.1 is the confirmed rollback baseline. The refreshed `2026-07-20 11:10:20` mirror contains all seven access/invitation source contracts and revision `NTR_OWNED_GARAGE_PHASE12_ACCESS_INVITATIONS_V1_1_HUD_DROPDOWNS`; Git baseline `c46ead4` is pushed to `origin/main`.
 - The same canonical installer is now V1.2. It keeps the persistent interior HUD as the presentation owner and refines its reusable anchored dropdown: both menus span the combined button width, have no shell/row borders, use gradient-only rows at the exact live button height, show distinct left icons and drive shared right-side chevrons.
 - Access selection saves immediately and closes. Invite/revoke refreshes the same-server projection on open, updates in place, rejects duplicate/self invites through the existing server contract and displays a bounded scrolling list. Cash and Settings remain available because `NTR_OwnedGarageManagementOpen` is never changed.
 - V1.2 changes only `GarageReplacementComponents`, `GarageInteriorModeController` and editable config attributes. Verify both dropdowns align to the complete two-button width; rows have no enclosing dark panel or border; chevrons rotate/reset on button, selection and outside dismissal; all four access glyphs appear; desktop/tablet/phone rows equal their anchor height; Settings/Cash remain interactive; and invite/revoke plus access persistence still survive close/rejoin. Uploaded icon IDs are optional and currently default to distinct glyph fallbacks.
 - `GarageInteriorService_Active` still contains the legacy in-memory visitor/access path. Phase 12 does not patch, call or enable it, and keeps `EnableVisitors=false`; do not treat Public/Friends/Invite mode as visitor admission until a later phase explicitly transfers visitor lifecycle ownership.
 - Offline persisted invite IDs remain visible for revoke, but new offline username lookup/search is intentionally deferred to avoid yielding user queries in the HUD render path.
+- V1.2 is optional submission polish and remains uninstalled/unconfirmed. Do not replace V1.1 as the rollback baseline until V1.2 passes its desktop/tablet/phone, two-player, persistence and regression checks and a new full mirror is refreshed. See `docs/owned-garage-and-readiness-handoff-2026-07-20.md`.
 
 ## Owned garage Phase 9 confirmed; Phase 10 Decorations next (2026-07-19)
 

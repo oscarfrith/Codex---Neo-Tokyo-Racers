@@ -9,6 +9,9 @@ local RunService = game:GetService("RunService")
 
 local player = Players.LocalPlayer
 
+-- NTR_LOADING_SYSTEM_PHASE1_INPUT_GATE_V1
+local GameplayInputGate = require(script.Parent.Parent:WaitForChild("Input"):WaitForChild("GameplayInputGate"))
+
 local VehicleDynamicsModel
 do
 	local dynamicsModule = script.Parent:FindFirstChild("VehicleDynamicsModel")
@@ -334,6 +337,25 @@ local function mobileInput()
 end
 
 local function refreshInput()
+	if GameplayInputGate.IsLocked() then
+		state.GamepadSteer = 0
+		state.GamepadAccel = 0
+		state.GamepadBrake = 0
+		state.GamepadBoostHeld = false
+		state.DriftHeld = false
+		state.DriftCharge = 0
+		state.MiniBoostTimer = 0
+		state.MiniBoostPower = 0
+		state.AccelCameraActive = false
+		state.BoostCameraActive = false
+		if state.Vehicle then
+			state.Vehicle:SetAttribute("Accelerating", false)
+			state.Vehicle:SetAttribute("Boosting", false)
+			state.Vehicle:SetAttribute("DriftingLeft", false)
+			state.Vehicle:SetAttribute("DriftingRight", false)
+		end
+		return 0, 0
+	end
 	readGamepad()
 	local throttle = 0
 	if UserInputService:IsKeyDown(Enum.KeyCode.W) or UserInputService:IsKeyDown(Enum.KeyCode.Up) then throttle += 1 end
@@ -945,7 +967,7 @@ function Controller.Start(context)
 			-- NTR_DRIFT_BOOST_ACCEL_GATE_REVERSE_40_V1_DRIFT_END
 		end
 
-		local boostHeld = UserInputService:IsKeyDown(Enum.KeyCode.Space) or state.GamepadBoostHeld
+		local boostHeld = not GameplayInputGate.IsLocked() and (UserInputService:IsKeyDown(Enum.KeyCode.Space) or state.GamepadBoostHeld)
 		local miniBoostActive = state.MiniBoostTimer > 0
 		local expiresDuringNormalBoost = configNumber("VehicleDynamics_EditAttributes", "DriftMiniBoostExpiresDuringNormalBoost", 1, 0, 1) >= 0.5
 		if miniBoostActive and expiresDuringNormalBoost then
@@ -1127,7 +1149,7 @@ function Controller.ResetVehicle()
 end
 
 handleResetAction = function(_, inputState)
-	if inputState == Enum.UserInputState.Begin and state.IsDriving then
+	if inputState == Enum.UserInputState.Begin and state.IsDriving and not GameplayInputGate.IsLocked() then
 		Controller.ResetVehicle()
 		return Enum.ContextActionResult.Sink
 	end
