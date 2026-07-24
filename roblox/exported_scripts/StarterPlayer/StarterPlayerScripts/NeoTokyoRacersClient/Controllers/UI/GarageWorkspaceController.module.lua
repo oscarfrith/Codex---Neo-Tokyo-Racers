@@ -9,6 +9,9 @@
 -- NTR_OWNED_GARAGE_VEHICLE_CARD_KIND_V1_6
 -- NTR_OWNED_GARAGE_SELECTED_ACTION_CONTRACT_V1_7
 -- NTR_GARAGE_WORKSPACE_CATEGORY_LISTING_V3
+-- NTR_OWNED_GARAGE_PHASE13_V1_3_AUTHORED_DEFAULTS_MATERIAL_TABS
+-- NTR_OWNED_GARAGE_ICON_CONFIG_V1
+-- NTR_OWNED_GARAGE_STYLE_UX_V1_BATCH_STABLE_PREVIEW
 local ReplicatedStorage=game:GetService("ReplicatedStorage")
 local RunService=game:GetService("RunService")
 local UserInputService=game:GetService("UserInputService")
@@ -108,7 +111,7 @@ function WorkspaceUI:Layout()
 	self.Budget.AnchorPoint=Vector2.new(.5,1); self.Budget.Position=UDim2.fromOffset(shell.Width*.5,shell.CarouselTop-N("UpgradeBudgetPopupClearance",48)); self.Budget.Size=UDim2.fromOffset(budgetWidth,N("UpgradeBudgetHeight",42))
 	if self.Context and self.Categories.Visible then
 		if self.Context.LeftFitContent then local count=#(self.Context.LeftItems or {}); local buttonHeight=N("CategoryButtonHeight",46); local height=N("BuildLeftPanelPadding",14)*2+12+count*buttonHeight+math.max(0,count-1)*8; self.Categories.Size=UDim2.fromOffset(self.Categories.Size.X.Offset,height) end
-		if self.Context.LeftAlignCarouselBottom then local top=self.Categories.Position.Y.Offset; self.Categories.Size=UDim2.fromOffset(self.Categories.Size.X.Offset,math.max(170,shell.CarouselTop+N("CarouselHeight",166)-top)) end
+		if self.Context.LeftAlignCarouselBottom then local top=self.Categories.Position.Y.Offset; local bottom=shell.CarouselTop+N("CarouselHeight",166); if self.Context.MaterialChannels then bottom=shell.CarouselTop-math.max(0,tonumber(cfg:GetAttribute("MaterialRailTabClearance")) or 48) end; self.Categories.Size=UDim2.fromOffset(self.Categories.Size.X.Offset,math.max(170,bottom-top)) end
 	end
 	self:QueueCarouselUpdate()
 end
@@ -135,7 +138,7 @@ end
 function WorkspaceUI:RenderEconomy(context)
 	clear(self.Cash); clear(self.Capacity)
 	generated(Racing.Label(self.Cash,{Text=Shared.FormatMoney(context.Cash or 0),Position=UDim2.fromOffset(12,0),Size=UDim2.new(1,-54,1,0),TextSize=N("EconomyCashTextSize",17),Color=Color3.fromRGB(89,255,102),Role="Heading"})); local plus=generated(Racing.Button(self.Cash,{Text="+",Position=UDim2.new(1,-40,.5,-15),Size=UDim2.fromOffset(32,30),StrokeColor=Racing.Colour("ElectricBlue")})); plus.Visible=context.ShowCashPlus~=false; plus.Activated:Connect(function() if context.OnCash then context.OnCash() end end)
-	local icon=generated(Instance.new("ImageLabel")); icon.BackgroundTransparency=1; icon.Image=asset("GarageIcon"); icon.ImageColor3=Racing.Colour("Text"); icon.Position=UDim2.fromOffset(9,9); icon.Size=UDim2.fromOffset(28,28); icon.Parent=self.Capacity
+	local icon=generated(Instance.new("ImageLabel")); icon.BackgroundTransparency=1; icon.Image=(type(context.CapacityIcon)=="string" and context.CapacityIcon~="") and context.CapacityIcon or asset("GarageIcon"); icon.ImageColor3=Racing.Colour("Text"); icon.Position=UDim2.fromOffset(9,9); icon.Size=UDim2.fromOffset(28,28); icon.Parent=self.Capacity
 	generated(Racing.Label(self.Capacity,{Text=context.CapacityText or "0/0 Spaces",Position=UDim2.fromOffset(42,0),Size=UDim2.new(1,-92,1,0),TextSize=N("EconomySpacesTextSize",13),Role="Heading"})); local gp=generated(Racing.Button(self.Capacity,{Text="+",Position=UDim2.new(1,-40,.5,-15),Size=UDim2.fromOffset(32,30),StrokeColor=Racing.Colour("ElectricBlue")})); gp.Visible=context.ShowCapacityPlus~=false; gp.Activated:Connect(function() if context.OnCapacity then context.OnCapacity() end end)
 end
 
@@ -150,9 +153,14 @@ function WorkspaceUI:RenderBudget(context)
 	local budgetUsed=generated(Racing.Label(self.Budget,{Name="BudgetUsed",Text=tostring(used).."/"..tostring(capacity).." USED",Position=UDim2.new(1,-132,0,0),Size=UDim2.fromOffset(120,height),TextSize=textSize,XAlignment=Enum.TextXAlignment.Right,Role="Heading",Truncate=Enum.TextTruncate.None})); budgetUsed.TextScaled=false; budgetUsed.TextWrapped=false; budgetUsed.ZIndex=self.Budget.ZIndex+2
 end -- NTR_GARAGE_RESPONSIVE_BUDGET_RENDERER_V1_2
 
+function WorkspaceUI:RenderChannelTabs(parent,channels,selected,onChannel,position)
+	local configuredWidth=tonumber(cfg:GetAttribute("WorkspacePaintWideWidth")) or 900; local width=math.min(configuredWidth,self.ReferenceCarouselWidth or configuredWidth); local tabs=generated(Instance.new("Frame")); tabs.Name="SharedChannelTabs"; tabs.BackgroundTransparency=1; tabs.AnchorPoint=Vector2.new(.5,1); tabs.Position=position; tabs.Size=UDim2.fromOffset(width,34); tabs.Parent=parent
+	local tabWidth=math.max(96,(width-math.max(0,#channels-1)*8)/math.max(1,#channels)); for index,channel in ipairs(channels) do local b=generated(Racing.Button(tabs,{Text=string.upper(channel),Position=UDim2.fromOffset((index-1)*(tabWidth+8),1),Size=UDim2.fromOffset(tabWidth,32),Color=channel==selected and Color3.fromRGB(94,32,75) or Racing.Colour("PanelSoft")})); b.Activated:Connect(function() if onChannel then onChannel(channel) end end) end; return tabs
+end
+
 function WorkspaceUI:RenderCards(context)
 	-- NTR_GARAGE_ACTION_ICON_LOCKED_CARD_REFINEMENT_V1
-	self.Paint.Visible=false; self.Scroller.Visible=true; self:RenderBudget(context); clear(self.Scroller); self.Popup:Hide(); local selectedCard; local explicitActionCard; local legacyAction; local selectedAction=context.SelectedAction
+	self.Paint.Visible=false; self.Scroller.Visible=true; self:RenderBudget(context); clear(self.Carousel); clear(self.Scroller); if context.MaterialChannels then self:RenderChannelTabs(self.Carousel,context.MaterialChannels,context.SelectedChannel or context.MaterialChannels[1],context.OnChannel,UDim2.new(.5,0,0,-6)) end; self.Popup:Hide(); local selectedCard; local explicitActionCard; local legacyAction; local selectedAction=context.SelectedAction
 	for order,row in ipairs(context.Cards or {}) do
 		-- NTR_GARAGE_MODULE_SHARED_CARDS_MODAL_V1
 		local selected=row.Selected==true; local vehicleCard=row.CardKind=="Vehicle"; local props={DisplayName=row.DisplayName or row.Id or "",EmptyPlus=row.EmptyPlus,Muted=row.Muted,Eyebrow=row.Eyebrow,Meta=row.Meta,Footer=row.Footer,Image=self:ResolveImage(row.ImageKey or row.Id,row.Image),Rating=row.Badge,RatingColor=row.BadgeColor,Badge=row.Badge,BadgeColor=row.BadgeColor,Selected=selected,VehicleName=row.VehicleName,Variant=row.Variant,TagText=row.TagText,TagColor=row.TagColor,Price=row.Price,PriceText=row.PriceText,PriceColor=row.PriceColor,SemanticState=row.SemanticState,LockImage=row.LockImage,LockIconSize=N("LockedModuleIconSize",68),LockIconYScale=N("LockedModuleIconYScale",.46),Size=vehicleCard and UDim2.fromOffset(N("CardWidth",226),N("CardHeight",146)) or UDim2.fromOffset(N("WorkspaceCardWidth",210),N("WorkspaceCardHeight",146)),ImageHeight=vehicleCard and N("CardImageHeight",136) or N("ModuleCardImageHeight",104),ImageZoom=row.ImageZoom or (vehicleCard and 1.06 or 1.04)}
@@ -163,12 +171,11 @@ function WorkspaceUI:RenderCards(context)
 	self:QueueCarouselUpdate(); return selectedCard
 end
 function WorkspaceUI:RenderPaint(context)
-	self.Popup:Hide(); self.Budget.Visible=false; self.Scroller.Visible=false; self.Paint.Visible=true; clear(self.Paint); local channels=context.ColorChannels or {}; local selected=context.SelectedChannel or channels[1]; if not selected then return end
+	self.Popup:Hide(); self.Budget.Visible=false; self.Scroller.Visible=false; self.Paint.Visible=true; clear(self.Carousel); clear(self.Paint); local channels=context.ColorChannels or {}; local selected=context.SelectedChannel or channels[1]; if not selected then return end
 	local current=(context.Colors and context.Colors[selected]) or Color3.new(1,1,1); local h,s,v=Color3.toHSV(current); self.PaintHSV={h,s,v}; self.PaintChannel=selected
 	local configuredWidth=tonumber(cfg:GetAttribute("WorkspacePaintWideWidth")) or 900; local width=math.min(configuredWidth,self.ReferenceCarouselWidth or configuredWidth)
-	local tabs=generated(Instance.new("Frame")); tabs.Name="PaintTabs"; tabs.BackgroundTransparency=1; tabs.AnchorPoint=Vector2.new(.5,1); tabs.Position=UDim2.new(.5,0,.5,-86); tabs.Size=UDim2.fromOffset(width,34); tabs.Parent=self.Paint
+	self:RenderChannelTabs(self.Paint,channels,selected,context.OnChannel,UDim2.new(.5,0,.5,-86))
 	local panel=generated(Shared.Panel(self.Paint,"PaintControls",{StrokeColor=Racing.Colour("ElectricBlue"),StrokeTransparency=.35,NoGlow=true})); panel.AnchorPoint=Vector2.new(.5,.5); panel.Position=UDim2.fromScale(.5,.5); panel.Size=UDim2.fromOffset(width,156)
-	local tabWidth=math.max(96,(width-math.max(0,#channels-1)*8)/math.max(1,#channels)); for index,channel in ipairs(channels) do local b=generated(Racing.Button(tabs,{Text=string.upper(channel),Position=UDim2.fromOffset((index-1)*(tabWidth+8),1),Size=UDim2.fromOffset(tabWidth,32),Color=channel==selected and Color3.fromRGB(94,32,75) or Racing.Colour("PanelSoft")})); b.Activated:Connect(function() context.OnChannel(channel) end) end
 	local gradients,knobs,paletteStrokes={},{},{}; local currentSwatch
 	local function liveColour() return Color3.fromHSV(self.PaintHSV[1],self.PaintHSV[2],self.PaintHSV[3]) end
 	local function refreshGradients()
@@ -270,6 +277,6 @@ function WorkspaceUI:Show(context)
 end
 function WorkspaceUI:Hide()
 	self:CaptureScroll(); self:DisconnectDynamic(); self.Root.Visible=false; self.Popup:Hide(); Shared.ReleasePresentation(self.Root); self.Context=nil
-	self.Budget.Visible=false; self.CategoryPrevious.Visible=false; self.CategoryNext.Visible=false; for _,parent in ipairs({self.CategoryList,self.Scroller,self.Paint,self.Stats,self.Cash,self.Capacity,self.Budget}) do clear(parent) end
+	self.Budget.Visible=false; self.CategoryPrevious.Visible=false; self.CategoryNext.Visible=false; for _,parent in ipairs({self.CategoryList,self.Carousel,self.Scroller,self.Paint,self.Stats,self.Cash,self.Capacity,self.Budget}) do clear(parent) end
 end
 return WorkspaceUI

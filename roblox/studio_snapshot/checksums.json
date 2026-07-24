@@ -55,6 +55,22 @@
     "source_bytes": 6426,
     "source_checksum": "827938715"
   },
+  "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Audio.AcousticsController": {
+    "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Client/Audio/AcousticsController.module.lua",
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "source_lines": 250,
+    "source_bytes": 10217,
+    "source_checksum": "682397583"
+  },
+  "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Audio.AudioBusController": {
+    "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Client/Audio/AudioBusController.module.lua",
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "source_lines": 84,
+    "source_bytes": 2262,
+    "source_checksum": "223867530"
+  },
   "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Audio.AudioMixController": {
     "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Client/Audio/AudioMixController.module.lua",
     "class_name": "ModuleScript",
@@ -62,6 +78,38 @@
     "source_lines": 113,
     "source_bytes": 3589,
     "source_checksum": "566861521"
+  },
+  "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Audio.ContextAudioCatalog": {
+    "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Client/Audio/ContextAudioCatalog.module.lua",
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "source_lines": 94,
+    "source_bytes": 3223,
+    "source_checksum": "439048590"
+  },
+  "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Audio.ContextAudioController": {
+    "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Client/Audio/ContextAudioController.module.lua",
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "source_lines": 291,
+    "source_bytes": 11108,
+    "source_checksum": "417806749"
+  },
+  "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Audio.VehicleAudioCatalog": {
+    "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Client/Audio/VehicleAudioCatalog.module.lua",
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "source_lines": 89,
+    "source_bytes": 3532,
+    "source_checksum": "536559886"
+  },
+  "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Audio.VehicleAudioController": {
+    "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Client/Audio/VehicleAudioController.module.lua",
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "source_lines": 662,
+    "source_bytes": 30637,
+    "source_checksum": "112794057"
   },
   "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Controllers.DrivingCameraController": {
     "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Client/Controllers/DrivingCameraController.module.lua",
@@ -75,17 +123,17 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Client/Controllers/DrivingControllerV47.module.lua",
     "class_name": "ModuleScript",
     "disabled": false,
-    "source_lines": 1160,
-    "source_bytes": 51433,
-    "source_checksum": "425176894"
+    "source_lines": 1161,
+    "source_bytes": 51752,
+    "source_checksum": "839652063"
   },
   "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Controllers.DrivingFallbackController": {
     "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Client/Controllers/DrivingFallbackController.module.lua",
     "class_name": "ModuleScript",
     "disabled": false,
-    "source_lines": 461,
-    "source_bytes": 16282,
-    "source_checksum": "168569475"
+    "source_lines": 463,
+    "source_bytes": 16664,
+    "source_checksum": "699015240"
   },
   "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Controllers.MobileDriveInputState": {
     "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Client/Controllers/MobileDriveInputState.module.lua",
@@ -147,9 +195,17 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Client/Visuals/CachedThrustVisualRuntime.module.lua",
     "class_name": "ModuleScript",
     "disabled": false,
-    "source_lines": 787,
-    "source_bytes": 23606,
-    "source_checksum": "877979489"
+    "source_lines": 789,
+    "source_bytes": 23871,
+    "source_checksum": "424365688"
+  },
+  "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.Audio.VehicleAudioStateContract": {
+    "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Common/Audio/VehicleAudioStateContract.module.lua",
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "source_lines": 39,
+    "source_bytes": 1224,
+    "source_checksum": "64430736"
   },
   "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.Performance.VehicleModuleUpgradeRuntime": {
     "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Common/Performance/VehicleModuleUpgradeRuntime.module.lua",
@@ -315,41 +371,49 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Data/OwnedGarageDecorationCatalog.module.lua",
     "class_name": "ModuleScript",
     "disabled": false,
-    "source_lines": 43,
-    "source_bytes": 4378,
-    "source_checksum": "868122467"
+    "source_lines": 65,
+    "source_bytes": 10787,
+    "source_checksum": "246698465"
   },
   "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data.OwnedGarageInteriorStyleCatalog": {
     "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Data/OwnedGarageInteriorStyleCatalog.module.lua",
     "class_name": "ModuleScript",
     "disabled": false,
-    "source_lines": 34,
-    "source_bytes": 4983,
-    "source_checksum": "145588748"
+    "source_lines": 72,
+    "source_bytes": 8365,
+    "source_checksum": "252331005"
   },
   "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data.OwnedGarageLightingCatalog": {
     "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Data/OwnedGarageLightingCatalog.module.lua",
     "class_name": "ModuleScript",
     "disabled": false,
-    "source_lines": 23,
-    "source_bytes": 2691,
-    "source_checksum": "330372804"
+    "source_lines": 32,
+    "source_bytes": 4635,
+    "source_checksum": "995204948"
   },
   "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data.OwnedGaragePropertyCatalog": {
     "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Data/OwnedGaragePropertyCatalog.module.lua",
     "class_name": "ModuleScript",
     "disabled": false,
-    "source_lines": 90,
-    "source_bytes": 5547,
-    "source_checksum": "427066881"
+    "source_lines": 39,
+    "source_bytes": 6101,
+    "source_checksum": "740502567"
   },
   "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data.PlayerProfileSchema": {
     "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Data/PlayerProfileSchema.module.lua",
     "class_name": "ModuleScript",
     "disabled": false,
-    "source_lines": 276,
-    "source_bytes": 9518,
-    "source_checksum": "998436662"
+    "source_lines": 278,
+    "source_bytes": 9746,
+    "source_checksum": "193374474"
+  },
+  "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data.VehicleCosmeticCatalog": {
+    "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Data/VehicleCosmeticCatalog.module.lua",
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "source_lines": 128,
+    "source_bytes": 5964,
+    "source_checksum": "609325970"
   },
   "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Racing.RaceConfigReader": {
     "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Racing/RaceConfigReader.module.lua",
@@ -455,6 +519,14 @@
     "source_bytes": 12790,
     "source_checksum": "145914438"
   },
+  "ServerScriptService.NeoTokyoRacers.Services.Audio.VehicleAudioStateService_Active": {
+    "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Audio/VehicleAudioStateService_Active.server.lua",
+    "class_name": "Script",
+    "disabled": false,
+    "source_lines": 134,
+    "source_bytes": 6154,
+    "source_checksum": "698773703"
+  },
   "ServerScriptService.NeoTokyoRacers.Services.Dealership.IntroProgressService_Active": {
     "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Dealership/IntroProgressService_Active.server.lua",
     "class_name": "Script",
@@ -475,9 +547,9 @@
     "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Garage/GarageDisplayRuntime.module.lua",
     "class_name": "ModuleScript",
     "disabled": false,
-    "source_lines": 299,
-    "source_bytes": 11138,
-    "source_checksum": "403655725"
+    "source_lines": 301,
+    "source_bytes": 11330,
+    "source_checksum": "596864715"
   },
   "ServerScriptService.NeoTokyoRacers.Services.Garage.GarageModuleInstanceCustomizationRuntime": {
     "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Garage/GarageModuleInstanceCustomizationRuntime.module.lua",
@@ -523,49 +595,65 @@
     "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Garage/OwnedGarageDisplayAssignmentRuntime.module.lua",
     "class_name": "ModuleScript",
     "disabled": false,
-    "source_lines": 60,
-    "source_bytes": 5092,
-    "source_checksum": "219796806"
+    "source_lines": 65,
+    "source_bytes": 5581,
+    "source_checksum": "462805954"
   },
   "ServerScriptService.NeoTokyoRacers.Services.Garage.OwnedGarageDisplayRuntime": {
     "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Garage/OwnedGarageDisplayRuntime.module.lua",
     "class_name": "ModuleScript",
     "disabled": false,
-    "source_lines": 105,
-    "source_bytes": 8588,
-    "source_checksum": "379187033"
+    "source_lines": 106,
+    "source_bytes": 8807,
+    "source_checksum": "555479525"
+  },
+  "ServerScriptService.NeoTokyoRacers.Services.Garage.OwnedGarageFinishRuntime": {
+    "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Garage/OwnedGarageFinishRuntime.module.lua",
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "source_lines": 101,
+    "source_bytes": 12936,
+    "source_checksum": "734596498"
   },
   "ServerScriptService.NeoTokyoRacers.Services.Garage.OwnedGarageInteriorRuntime": {
     "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Garage/OwnedGarageInteriorRuntime.module.lua",
     "class_name": "ModuleScript",
     "disabled": false,
-    "source_lines": 56,
-    "source_bytes": 3768,
-    "source_checksum": "644951587"
+    "source_lines": 58,
+    "source_bytes": 4402,
+    "source_checksum": "879927575"
   },
   "ServerScriptService.NeoTokyoRacers.Services.Garage.OwnedGarageManagementRuntime": {
     "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Garage/OwnedGarageManagementRuntime.module.lua",
     "class_name": "ModuleScript",
     "disabled": false,
-    "source_lines": 249,
-    "source_bytes": 50045,
-    "source_checksum": "723708687"
+    "source_lines": 385,
+    "source_bytes": 70145,
+    "source_checksum": "108153868"
   },
   "ServerScriptService.NeoTokyoRacers.Services.Garage.OwnedGarageProfileRuntime": {
     "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Garage/OwnedGarageProfileRuntime.module.lua",
     "class_name": "ModuleScript",
     "disabled": false,
-    "source_lines": 178,
-    "source_bytes": 18366,
-    "source_checksum": "543353482"
+    "source_lines": 195,
+    "source_bytes": 24622,
+    "source_checksum": "128455277"
+  },
+  "ServerScriptService.NeoTokyoRacers.Services.Garage.VehicleCosmeticServerRuntime": {
+    "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Garage/VehicleCosmeticServerRuntime.module.lua",
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "source_lines": 73,
+    "source_bytes": 4709,
+    "source_checksum": "39752151"
   },
   "ServerScriptService.NeoTokyoRacers.Services.Garage.GarageActionController_Shadow_Disabled": {
     "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Garage/GarageActionController_Shadow_Disabled.server.lua",
     "class_name": "Script",
     "disabled": false,
-    "source_lines": 2742,
-    "source_bytes": 123101,
-    "source_checksum": "472655739"
+    "source_lines": 2760,
+    "source_bytes": 124460,
+    "source_checksum": "445804625"
   },
   "ServerScriptService.NeoTokyoRacers.Services.Garage.GarageInteriorCustomizationService_Active": {
     "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Garage/GarageInteriorCustomizationService_Active.server.lua",
@@ -735,6 +823,30 @@
     "source_bytes": 1076,
     "source_checksum": "47694172"
   },
+  "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Audio.AcousticsRuntimeController_Active": {
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Audio/AcousticsRuntimeController_Active.client.lua",
+    "class_name": "LocalScript",
+    "disabled": false,
+    "source_lines": 12,
+    "source_bytes": 453,
+    "source_checksum": "9137450"
+  },
+  "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Audio.AudioRuntimeController_Active": {
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Audio/AudioRuntimeController_Active.client.lua",
+    "class_name": "LocalScript",
+    "disabled": false,
+    "source_lines": 14,
+    "source_bytes": 444,
+    "source_checksum": "8681794"
+  },
+  "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Audio.ContextAudioRuntimeController_Active": {
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Audio/ContextAudioRuntimeController_Active.client.lua",
+    "class_name": "LocalScript",
+    "disabled": false,
+    "source_lines": 14,
+    "source_bytes": 453,
+    "source_checksum": "9089373"
+  },
   "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Core.CatalogClient": {
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Core/CatalogClient.module.lua",
     "class_name": "ModuleScript",
@@ -827,9 +939,9 @@
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Preview/ThrustPreviewController_Active.client.lua",
     "class_name": "LocalScript",
     "disabled": false,
-    "source_lines": 75,
-    "source_bytes": 7974,
-    "source_checksum": "925158722"
+    "source_lines": 76,
+    "source_bytes": 8223,
+    "source_checksum": "111447899"
   },
   "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Preview.GarageModuleInstancePreviewAdapter": {
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Preview/GarageModuleInstancePreviewAdapter.module.lua",
@@ -859,9 +971,9 @@
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Preview/PreviewVehicleController.module.lua",
     "class_name": "ModuleScript",
     "disabled": false,
-    "source_lines": 80,
-    "source_bytes": 8857,
-    "source_checksum": "643029429"
+    "source_lines": 90,
+    "source_bytes": 9931,
+    "source_checksum": "592484548"
   },
   "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceBrowserClient_Active": {
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Racing/RaceBrowserClient_Active.client.lua",
@@ -1003,9 +1115,9 @@
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Runtime/FreeRoamParkedHoverController_Active.client.lua",
     "class_name": "LocalScript",
     "disabled": false,
-    "source_lines": 209,
-    "source_bytes": 7168,
-    "source_checksum": "190489678"
+    "source_lines": 211,
+    "source_bytes": 7550,
+    "source_checksum": "432231493"
   },
   "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Runtime.MobileDriveControlsController_Active": {
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Runtime/MobileDriveControlsController_Active.client.lua",
@@ -1123,9 +1235,9 @@
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/UI/GarageInteriorModeController.module.lua",
     "class_name": "ModuleScript",
     "disabled": false,
-    "source_lines": 57,
-    "source_bytes": 10661,
-    "source_checksum": "164144351"
+    "source_lines": 62,
+    "source_bytes": 11946,
+    "source_checksum": "489402061"
   },
   "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.GarageInteriorTransitionController": {
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/UI/GarageInteriorTransitionController.module.lua",
@@ -1155,25 +1267,25 @@
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/UI/GarageReplacementComponents.module.lua",
     "class_name": "ModuleScript",
     "disabled": false,
-    "source_lines": 290,
-    "source_bytes": 41526,
-    "source_checksum": "270748282"
+    "source_lines": 291,
+    "source_bytes": 41917,
+    "source_checksum": "759426873"
   },
   "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.GarageWorkspaceController": {
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/UI/GarageWorkspaceController.module.lua",
     "class_name": "ModuleScript",
     "disabled": false,
-    "source_lines": 276,
-    "source_bytes": 43230,
-    "source_checksum": "968878993"
+    "source_lines": 283,
+    "source_bytes": 44265,
+    "source_checksum": "141956141"
   },
   "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.ModuleShopUIController": {
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/UI/ModuleShopUIController.module.lua",
     "class_name": "ModuleScript",
     "disabled": false,
-    "source_lines": 290,
-    "source_bytes": 46196,
-    "source_checksum": "275161441"
+    "source_lines": 671,
+    "source_bytes": 55963,
+    "source_checksum": "57312149"
   },
   "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.NavigationController": {
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/UI/NavigationController.module.lua",
@@ -1187,17 +1299,17 @@
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/UI/OwnedGarageBrowserController.module.lua",
     "class_name": "ModuleScript",
     "disabled": false,
-    "source_lines": 89,
-    "source_bytes": 15675,
-    "source_checksum": "920313"
+    "source_lines": 106,
+    "source_bytes": 18106,
+    "source_checksum": "769962003"
   },
   "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.OwnedGarageWorkspaceController": {
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/UI/OwnedGarageWorkspaceController.module.lua",
     "class_name": "ModuleScript",
     "disabled": false,
-    "source_lines": 142,
-    "source_bytes": 29644,
-    "source_checksum": "873846274"
+    "source_lines": 200,
+    "source_bytes": 43927,
+    "source_checksum": "90065053"
   },
   "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.StatsPanelController": {
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/UI/StatsPanelController.module.lua",
@@ -1246,6 +1358,14 @@
     "source_lines": 21,
     "source_bytes": 1549,
     "source_checksum": "110536500"
+  },
+  "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.World.OwnedGarageEnvironmentLightingController_Active": {
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/World/OwnedGarageEnvironmentLightingController_Active.client.lua",
+    "class_name": "LocalScript",
+    "disabled": false,
+    "source_lines": 150,
+    "source_bytes": 5634,
+    "source_checksum": "442190568"
   },
   "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.World.WindowMaterialController_Active": {
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/World/WindowMaterialController_Active.client.lua",
@@ -1297,6 +1417,14 @@
   },
   "Workspace.FBX - 3D Lady Head v2.Script": {
     "file": "roblox/exported_scripts/Workspace/FBX - 3D Lady Head v2/Script.server.lua",
+    "class_name": "Script",
+    "disabled": false,
+    "source_lines": 16,
+    "source_bytes": 377,
+    "source_checksum": "5870994"
+  },
+  "Workspace.FBX - 3D Vehicle Holographic v3.Script": {
+    "file": "roblox/exported_scripts/Workspace/FBX - 3D Vehicle Holographic v3/Script.server.lua",
     "class_name": "Script",
     "disabled": false,
     "source_lines": 16,

@@ -3,6 +3,7 @@
 -- NTR_UI_PERFORMANCE_HARDENING_PHASE2_V1
 -- NTR_GARAGE_REPLACEMENT_SHARED_COMPONENTS_V1
 -- NTR_OWNED_GARAGE_PHASE8_SHARED_PRESENTATION
+-- NTR_OWNED_GARAGE_STYLE_UX_V1_BATCH_STABLE_PREVIEW
 local RunService=game:GetService("RunService")
 local UserInputService=game:GetService("UserInputService")
 local ReplicatedStorage=game:GetService("ReplicatedStorage")
@@ -210,7 +211,7 @@ function M.LayoutGarageShell(ui,options)
 	ui.Capacity.AnchorPoint=Vector2.new(0,0); ui.Capacity.Position=UDim2.fromOffset(0,0); ui.Capacity.Size=UDim2.new(1,0,0,economyCardHeight); ui.Cash.AnchorPoint=Vector2.new(0,0); ui.Cash.Position=UDim2.fromOffset(0,economyCardHeight+economyStackGap); ui.Cash.Size=UDim2.new(1,0,0,economyCardHeight) -- NTR_GARAGE_NAV_SCROLL_ECONOMY_V1
 	ui.Carousel.Position=UDim2.fromOffset(margin+railReserve+gap,carouselTop); ui.Carousel.Size=UDim2.fromOffset(vw-2*(margin+railReserve+gap),carouselH); if ui.Scroller then ui.Scroller.Size=UDim2.fromScale(1,1) end; if ui.Paint then ui.Paint.Size=UDim2.fromScale(1,1) end; ui.ReferenceCarouselWidth=vw-2*(margin+railReserve+gap)
 	ui.Left.AnchorPoint=Vector2.new(0,.5); ui.Left.Position=UDim2.fromOffset(margin,carouselTop+carouselH*.5); ui.Left.Size=UDim2.fromOffset(math.max(arrowW,ui.Left.Size.X.Offset),math.max(N("ArrowHeight",72),ui.Left.Size.Y.Offset)); ui.RightArrow.AnchorPoint=Vector2.new(1,.5); ui.RightArrow.Position=UDim2.fromOffset(vw-margin,carouselTop+carouselH*.5); ui.RightArrow.Size=UDim2.fromOffset(math.max(arrowW,ui.RightArrow.Size.X.Offset),math.max(N("ArrowHeight",72),ui.RightArrow.Size.Y.Offset))
-	local actionWidth=(N("StatsWidth",354)-gap)*.5; local actionHeight=responsiveNumber(N,"NavigationButtonHeight",N("EconomyHeight",46)); local actionBottom=carouselTop-responsiveNumber(N,"NavigationPopupClearance",48); local actionX=vw-margin; for _,actionButton in ipairs(options.Actions or {}) do if actionButton.Visible then actionButton.AnchorPoint=Vector2.new(1,1); actionButton.Size=UDim2.fromOffset(actionWidth,actionHeight); actionButton.Position=UDim2.fromOffset(actionX,actionBottom); actionX-=actionWidth+gap end end
+	local actionWidth=(N("StatsWidth",354)-gap)*.5; local actionHeight=responsiveNumber(N,"NavigationButtonHeight",N("EconomyHeight",46)); local actionBottom=carouselTop-responsiveNumber(N,"NavigationPopupClearance",48); local actionX=vw-margin; if ui.Context and ui.Context.ExitBelowEconomy and ui.Exit.Visible then ui.Exit.AnchorPoint=Vector2.new(1,0); ui.Exit.Size=UDim2.fromOffset(actionWidth,actionHeight); ui.Exit.Position=UDim2.fromOffset(vw-margin,28+economyCardHeight*2+economyStackGap+gap) end; for _,actionButton in ipairs(options.Actions or {}) do if actionButton.Visible and not (ui.Context and ui.Context.ExitBelowEconomy and actionButton==ui.Exit) then actionButton.AnchorPoint=Vector2.new(1,1); actionButton.Size=UDim2.fromOffset(actionWidth,actionHeight); actionButton.Position=UDim2.fromOffset(actionX,actionBottom); actionX-=actionWidth+gap end end
 	queueResponsiveAudit(ui,options,N,viewport,scale,categoryTop)
 	return {Scale=scale,Width=vw,Height=vh,CarouselTop=carouselTop,Touch=touch,SafeTop=safeTop,SafeBottom=safeBottom,SafeSide=safeSide}
 end

@@ -2,6 +2,7 @@
 local ReplicatedStorage=game:GetService("ReplicatedStorage")
 local Runtime={}
 local categories=ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles:WaitForChild("Categories")
+local VehicleCosmetics=require(ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data:WaitForChild("VehicleCosmeticCatalog")) -- NTR_CUSTOMISATION_UNDERGLOW_DISPLAY_V1
 local function findByAttribute(root,key,value)
 	if not root then return nil end
 	for _,item in ipairs(root:GetDescendants()) do if item:IsA("Model") and tostring(item:GetAttribute(key) or "")==tostring(value or "") then return item end end
@@ -93,7 +94,7 @@ function Runtime.Build(profile,vehicleId,spaceMarker,parent)
 		local instance=profile.OwnedModuleInstances and profile.OwnedModuleInstances[tostring(instanceId)]; local moduleId=type(instance)=="table" and tostring(instance.TemplateId or "") or ""; local source=moduleId~="" and moduleTemplate(categoryId,moduleId) or nil; local mount=mountFor(display,installedSlot)
 		if source and mount then local clone=source:Clone(); clone.Name="DISPLAY_"..tostring(installedSlot).."_"..source.Name; clone.Parent=installedRoot; pivotModule(clone,mount); local moduleColours=copyTable(instance.Colors); moduleColours.ThrustColor=vehicle.ThrustColor or moduleColours.ThrustColor; applyColours(clone,moduleColours,instance.NeonOwned==true); moduleCount+=1 else missingModules+=1 end
 	end
-	local metrics=Runtime.SanitizeForDisplay(display); local old=parent:FindFirstChild("DisplayVehicle_"..slotId); if old then old:Destroy() end
+	local metrics=Runtime.SanitizeForDisplay(display); VehicleCosmetics.ApplyPresentation(display,vehicle); local old=parent:FindFirstChild("DisplayVehicle_"..slotId); if old then old:Destroy() end
 	display:PivotTo(spaceMarker.CFrame*CFrame.new(0,tonumber(ReplicatedStorage.NeoTokyoRacers.Config.Runtime.OwnedGarage_EditAttributes:GetAttribute("DisplayModelYOffset")) or 3.2,0)*CFrame.Angles(0,math.rad(180),0)); display.Parent=parent
 	return display,{VehicleId=vehicleId,CockpitId=cockpitId,Modules=moduleCount,MissingModules=missingModules,Parts=metrics.Parts}
 end

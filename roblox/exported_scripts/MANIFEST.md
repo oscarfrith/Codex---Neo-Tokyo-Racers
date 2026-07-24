@@ -4,7 +4,7 @@ Generated from the Roblox Studio full snapshot export.
 
 These files are a GitHub-readable mirror of Studio scripts. Treat Studio as live until a Rojo/source-sync migration is explicitly completed.
 
-Script count: 163
+Script count: 179
 
 - `ReplicatedFirst.NTRLoading.InitialLoadingAndStartScreenClient` (LocalScript, enabled/module) -> `roblox/exported_scripts/ReplicatedFirst/NTRLoading/InitialLoadingAndStartScreenClient.client.lua`
 - `ReplicatedFirst.NTRLoading.LoadingArtworkCatalog` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedFirst/NTRLoading/LoadingArtworkCatalog.module.lua`
@@ -13,7 +13,13 @@ Script count: 163
 - `ReplicatedStorage.NeoTokyoRacers.Compatibility.LiveSystemRegistry` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Compatibility/LiveSystemRegistry.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Compatibility.PathResolver` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Compatibility/PathResolver.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Config.ConfigRegistry` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Config/ConfigRegistry.module.lua`
+- `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Audio.AcousticsController` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Client/Audio/AcousticsController.module.lua`
+- `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Audio.AudioBusController` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Client/Audio/AudioBusController.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Audio.AudioMixController` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Client/Audio/AudioMixController.module.lua`
+- `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Audio.ContextAudioCatalog` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Client/Audio/ContextAudioCatalog.module.lua`
+- `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Audio.ContextAudioController` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Client/Audio/ContextAudioController.module.lua`
+- `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Audio.VehicleAudioCatalog` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Client/Audio/VehicleAudioCatalog.module.lua`
+- `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Audio.VehicleAudioController` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Client/Audio/VehicleAudioController.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Controllers.DrivingCameraController` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Client/Controllers/DrivingCameraController.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Controllers.DrivingControllerV47` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Client/Controllers/DrivingControllerV47.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Controllers.DrivingFallbackController` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Client/Controllers/DrivingFallbackController.module.lua`
@@ -25,6 +31,7 @@ Script count: 163
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.UI.UIPool` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Client/UI/UIPool.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.VFX.VehicleVFXController` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Client/VFX/VehicleVFXController.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Visuals.CachedThrustVisualRuntime` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Client/Visuals/CachedThrustVisualRuntime.module.lua`
+- `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.Audio.VehicleAudioStateContract` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Common/Audio/VehicleAudioStateContract.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.Performance.VehicleModuleUpgradeRuntime` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Common/Performance/VehicleModuleUpgradeRuntime.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.Performance.VehiclePerformanceCalculator` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Common/Performance/VehiclePerformanceCalculator.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.Performance.VehiclePerformanceDefinitions` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Common/Performance/VehiclePerformanceDefinitions.module.lua`
@@ -50,6 +57,7 @@ Script count: 163
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data.OwnedGarageLightingCatalog` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Data/OwnedGarageLightingCatalog.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data.OwnedGaragePropertyCatalog` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Data/OwnedGaragePropertyCatalog.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data.PlayerProfileSchema` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Data/PlayerProfileSchema.module.lua`
+- `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data.VehicleCosmeticCatalog` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Data/VehicleCosmeticCatalog.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Racing.RaceConfigReader` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Racing/RaceConfigReader.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Racing.RaceRouteDefinition` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Racing/RaceRouteDefinition.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.UI.ArrowScroller` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/UI/ArrowScroller.module.lua`
@@ -63,6 +71,7 @@ Script count: 163
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.UI.UITheme` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/UI/UITheme.module.lua`
 - `ReplicatedStorage.Shared.LightingCycleConfig.LightingCycleSchedule` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/Shared/LightingCycleConfig/LightingCycleSchedule.module.lua`
 - `ReplicatedStorage.Shared.LightingPresets.LightingPresets` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/Shared/LightingPresets/LightingPresets.module.lua`
+- `ServerScriptService.NeoTokyoRacers.Services.Audio.VehicleAudioStateService_Active` (Script, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Audio/VehicleAudioStateService_Active.server.lua`
 - `ServerScriptService.NeoTokyoRacers.Services.Dealership.IntroProgressService_Active` (Script, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Dealership/IntroProgressService_Active.server.lua`
 - `ServerScriptService.NeoTokyoRacers.Services.Debug.StudioCashGrantService_Active` (Script, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Debug/StudioCashGrantService_Active.server.lua`
 - `ServerScriptService.NeoTokyoRacers.Services.Garage.GarageDisplayRuntime` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Garage/GarageDisplayRuntime.module.lua`
@@ -73,9 +82,11 @@ Script count: 163
 - `ServerScriptService.NeoTokyoRacers.Services.Garage.OwnedGarageAuthoritativeCommandRuntime` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Garage/OwnedGarageAuthoritativeCommandRuntime.module.lua`
 - `ServerScriptService.NeoTokyoRacers.Services.Garage.OwnedGarageDisplayAssignmentRuntime` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Garage/OwnedGarageDisplayAssignmentRuntime.module.lua`
 - `ServerScriptService.NeoTokyoRacers.Services.Garage.OwnedGarageDisplayRuntime` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Garage/OwnedGarageDisplayRuntime.module.lua`
+- `ServerScriptService.NeoTokyoRacers.Services.Garage.OwnedGarageFinishRuntime` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Garage/OwnedGarageFinishRuntime.module.lua`
 - `ServerScriptService.NeoTokyoRacers.Services.Garage.OwnedGarageInteriorRuntime` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Garage/OwnedGarageInteriorRuntime.module.lua`
 - `ServerScriptService.NeoTokyoRacers.Services.Garage.OwnedGarageManagementRuntime` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Garage/OwnedGarageManagementRuntime.module.lua`
 - `ServerScriptService.NeoTokyoRacers.Services.Garage.OwnedGarageProfileRuntime` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Garage/OwnedGarageProfileRuntime.module.lua`
+- `ServerScriptService.NeoTokyoRacers.Services.Garage.VehicleCosmeticServerRuntime` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Garage/VehicleCosmeticServerRuntime.module.lua`
 - `ServerScriptService.NeoTokyoRacers.Services.Garage.GarageActionController_Shadow_Disabled` (Script, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Garage/GarageActionController_Shadow_Disabled.server.lua`
 - `ServerScriptService.NeoTokyoRacers.Services.Garage.GarageInteriorCustomizationService_Active` (Script, disabled) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Garage/GarageInteriorCustomizationService_Active.server.lua`
 - `ServerScriptService.NeoTokyoRacers.Services.Garage.GarageInteriorService_Active` (Script, disabled) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Garage/GarageInteriorService_Active.server.lua`
@@ -98,6 +109,9 @@ Script count: 163
 - `ServerScriptService.NeoTokyoRacers.Services.Vehicle.VehiclePerformanceV2ShadowService_Active` (Script, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Vehicle/VehiclePerformanceV2ShadowService_Active.server.lua`
 - `ServerScriptService.NeoTokyoRacers.Services.World.Lighting.LightingService_Active` (Script, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/World/Lighting/LightingService_Active.server.lua`
 - `ServerScriptService.NeoTokyoRacers.Services.World.Traffic.TrafficLightService` (Script, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/World/Traffic/TrafficLightService.server.lua`
+- `StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Audio.AcousticsRuntimeController_Active` (LocalScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Audio/AcousticsRuntimeController_Active.client.lua`
+- `StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Audio.AudioRuntimeController_Active` (LocalScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Audio/AudioRuntimeController_Active.client.lua`
+- `StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Audio.ContextAudioRuntimeController_Active` (LocalScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Audio/ContextAudioRuntimeController_Active.client.lua`
 - `StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Core.CatalogClient` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Core/CatalogClient.module.lua`
 - `StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Core.ClientState` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Core/ClientState.module.lua`
 - `StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Core.ClientThemeAdapter` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Core/ClientThemeAdapter.module.lua`
@@ -162,6 +176,7 @@ Script count: 163
 - `StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.World.GarageInteriorCustomizationClient_Active` (LocalScript, disabled) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/World/GarageInteriorCustomizationClient_Active.client.lua`
 - `StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.World.LODClient_Active` (LocalScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/World/LODClient_Active.client.lua`
 - `StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.World.NightLamppostLightController_Active` (LocalScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/World/NightLamppostLightController_Active.client.lua`
+- `StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.World.OwnedGarageEnvironmentLightingController_Active` (LocalScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/World/OwnedGarageEnvironmentLightingController_Active.client.lua`
 - `StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.World.WindowMaterialController_Active` (LocalScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/World/WindowMaterialController_Active.client.lua`
 - `StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.NeoTokyoRacersClient_Bootstrap_Shadow_Disabled` (LocalScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/NeoTokyoRacersClient_Bootstrap_Shadow_Disabled.client.lua`
 - `StarterPlayer.StarterPlayerScripts.LocalScript` (LocalScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/LocalScript.client.lua`
@@ -169,3 +184,4 @@ Script count: 163
 - `StarterPlayer.StarterPlayerScripts.TrailerMode.client.lua` (LocalScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/TrailerMode.client.lua.client.lua`
 - `StarterPlayer.StarterPlayerScripts.TrailerShot01Camera` (LocalScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/TrailerShot01Camera.client.lua`
 - `Workspace.FBX - 3D Lady Head v2.Script` (Script, enabled/module) -> `roblox/exported_scripts/Workspace/FBX - 3D Lady Head v2/Script.server.lua`
+- `Workspace.FBX - 3D Vehicle Holographic v3.Script` (Script, enabled/module) -> `roblox/exported_scripts/Workspace/FBX - 3D Vehicle Holographic v3/Script.server.lua`

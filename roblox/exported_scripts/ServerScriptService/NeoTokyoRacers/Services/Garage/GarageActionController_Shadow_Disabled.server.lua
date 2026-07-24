@@ -46,6 +46,8 @@ local V56_STARTING_CASH = V56_kit:GetAttribute("StartingCash") or 140000
 	local V96_ModuleInventory = require(script.Parent:WaitForChild("GarageModuleInventoryRuntime")) -- NTR_GARAGE_MODULE_INVENTORY_GUARD_V1
 	local V97_ModuleInstances = require(script.Parent:WaitForChild("GarageModuleInstanceCustomizationRuntime")) -- NTR_GARAGE_MODULE_INSTANCE_CUSTOMISATION_BRIDGE_V1
 	local V98_ModuleTransactions = require(script.Parent:WaitForChild("GarageModuleTransactionRuntime")) -- NTR_GARAGE_MODULE_ATOMIC_TRANSACTIONS_V1
+	local V101_VehicleCosmetics = require(script.Parent:WaitForChild("VehicleCosmeticServerRuntime")) -- NTR_CUSTOMISATION_VEHICLE_COSMETIC_ACTION_BRIDGE_V1
+	local V101_CosmeticCatalog = require(V56_kit.Shared.Modules.Data:WaitForChild("VehicleCosmeticCatalog"))
 
 	-- NTR_VEHICLE_PHASE_AN_ISOLATED_UPGRADES
 	local V77_ModuleUpgrades = require(V56_kit
@@ -602,6 +604,9 @@ local V56_STARTING_CASH = V56_kit:GetAttribute("StartingCash") or 140000
 		Upgrade = true,
 		BuyNeon = true,
 		SetThrustColor = true,
+		BuyVehicleCosmetic = true,
+		SetVehicleCosmeticColor = true,
+		SetAllNeonColor = true,
 		SpawnVehicle = false,
 		SpawnOwnedVehicleFromFreeRoam = true,
 		ExitVehicle = false,
@@ -1073,6 +1078,7 @@ local V56_STARTING_CASH = V56_kit:GetAttribute("StartingCash") or 140000
 			InstalledModules = {},
 			CockpitColors = V84_cloneDictionary(profile.CockpitColors or {}),
 			ThrustColor = profile.ThrustColor,
+			Cosmetics = V101_CosmeticCatalog.DefaultState(),
 			Source = sourceName or "PersistencePhase14",
 		}
 		V84_assignDisplaySpace(profile, vehicleId)
@@ -1576,6 +1582,7 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 	end
 
 	local function V56_readModule(item, root)
+		-- NTR_CUSTOMISATION_NEON_CAPABILITY_PROJECTION_V1
 		local moduleType = V56_moduleTypeForModel(item, root)
 		local moduleFolder = V56_string(item, "ModuleFolder", V56_nearestModuleFolder(root, item))
 		local enginePosition = V56_string(item, "EnginePosition", "")
@@ -1585,6 +1592,16 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 				enginePosition = "Rear"
 			elseif moduleFolder == "Engines" then
 				enginePosition = "Front"
+			end
+		end
+		local neonAvailable=false
+		local neonFolder=item:FindFirstChild("NEON_OptionalLights",true)
+		if neonFolder then
+			for _,descendant in ipairs(neonFolder:GetDescendants()) do
+				if descendant:IsA("BasePart") or descendant:IsA("ParticleEmitter") or descendant:IsA("Beam") or descendant:IsA("Trail") or descendant:IsA("PointLight") or descendant:IsA("SpotLight") or descendant:IsA("SurfaceLight") then
+					neonAvailable=true
+					break
+				end
 			end
 		end
 		return {
@@ -1600,6 +1617,8 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 			VariantName = V85_moduleVariantName(item),
 			VariantOrder = V85_moduleVariantOrder(item),
 			Price = V85_modulePurchasePrice(item),
+			NeonAvailable = neonAvailable,
+			NeonPrice = math.max(0, V56_number(item, "NeonPrice", 5000)),
 			Power = V56_number(item, "Power", 0),
 			Weight = V56_number(item, "Weight", 0),
 			TopSpeed = V56_number(item, "TopSpeed", 0),
@@ -1611,14 +1630,14 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 			BoostDuration = V56_number(item, "BoostDuration", 0),
 			BoostRecharge = V56_number(item, "BoostRecharge", 0),
 			BoostRechargeDelay = V56_number(item, "BoostRechargeDelay", 0),
-			Upgrades = V77_ModuleUpgrades.CatalogForModuleType(moduleType, item), -- NTR_VEHICLE_PERFORMANCE_V2_PHASE8_MODULE_CATALOG
+			Upgrades = V77_ModuleUpgrades.CatalogForModuleType(moduleType, item),
 		}
 	end
-
 	local function V56_catalog()
 		local catalog = {
 			Categories = {},
 			PaintPresets = {},
+			VehicleCosmetics = V101_CosmeticCatalog.List(),
 			PreviewPosition = V56_PREVIEW_POS,
 		}
 		local presetRoot = V56_kit:FindFirstChild("Config")
@@ -1761,6 +1780,7 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 
 	local function V56_profileForClient(profile)
 		V56_normalizeProfile(profile)
+		V101_VehicleCosmetics.Ensure(profile)
 		return {
 			Cash = profile.Cash,
 			CurrentCategory = profile.CurrentCategory,
@@ -2014,7 +2034,7 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		vehicle:SetAttribute("CategoryId", profile.CurrentCategory)
 		vehicle:SetAttribute("CockpitId", profile.CurrentCockpit)
 		vehicle:SetAttribute("ThrustColor", profile.ThrustColor)
-		vehicle:SetAttribute("HoverHeight", 3)
+		vehicle:SetAttribute("HoverHeight", math.clamp(require(V56_kit.Shared.Modules.Common:WaitForChild("DriveTuning")).Read().HoverHeightStuds, 0.5, 8)) -- NTR_DRIVING_HOVER_HEIGHT_CONFIG_ATTRIBUTE_V1
 		vehicle:SetAttribute("DriveReady", true)
 		vehicle:SetAttribute("DriverUserId", player.UserId)
 		vehicle.Parent = V56_vehiclesRoot
@@ -2022,6 +2042,8 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		if not root then vehicle:Destroy(); return nil, "CockpitRoot_DoNotRename missing." end
 		vehicle.PrimaryPart = root
 		V56_applyColors(vehicle, profile.CockpitColors, true)
+		local cosmeticVehicle=profile.CurrentVehicleId and profile.Vehicles and profile.Vehicles[profile.CurrentVehicleId]
+		V101_CosmeticCatalog.ApplyPresentation(vehicle,cosmeticVehicle)
 
 		local installedRoot = vehicle:FindFirstChild("INSTALLED_MODULES_Runtime") or Instance.new("Folder")
 		installedRoot.Name = "INSTALLED_MODULES_Runtime"
@@ -2549,6 +2571,14 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 					end
 					V56_setLeaderstats(player, profile)
 				end
+			elseif action == "BuyVehicleCosmetic" then
+				local cockpit=V56_findCockpit(profile.CurrentCategory,profile.CurrentCockpit)
+				ok,message=V101_VehicleCosmetics.Purchase(profile,tostring(args.CosmeticId or ""),cockpit)
+				V56_setLeaderstats(player,profile)
+			elseif action == "SetVehicleCosmeticColor" then
+				ok,message=V101_VehicleCosmetics.SetColour(profile,tostring(args.CosmeticId or ""),args.Color,function() return V97_ModuleInstances.CaptureAll(profile,V77_ModuleUpgrades.GetLevels(player)) end)
+			elseif action == "SetAllNeonColor" then
+				ok,message=V101_VehicleCosmetics.SetAllNeon(profile,args.Color,function() return V97_ModuleInstances.CaptureAll(profile,V77_ModuleUpgrades.GetLevels(player)) end)
 			elseif action == "SetCockpitColor" then
 				local channel = tostring(args.Channel or "Primary")
 				local color = args.Color
@@ -2622,8 +2652,10 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 					if slotId == "ALL" then
 						if channel ~= "Neon" then profile.CockpitColors[channel] = color end
 						for installedSlot in pairs(profile.InstalledModules) do
-							profile.ModuleColors[installedSlot] = profile.ModuleColors[installedSlot] or {}
-							profile.ModuleColors[installedSlot][channel] = color
+							if channel ~= "Neon" or profile.NeonOwned[installedSlot] == true then -- NTR_CUSTOMISATION_BULK_NEON_OWNERSHIP_GUARD_V1
+								profile.ModuleColors[installedSlot] = profile.ModuleColors[installedSlot] or {}
+								profile.ModuleColors[installedSlot][channel] = color
+							end
 						end
 					else
 						profile.ModuleColors[slotId] = profile.ModuleColors[slotId] or {}
@@ -2664,7 +2696,7 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 				if not module then ok, message = false, "Install that module first."
 				elseif not V56_folderHasBuyableNeon(module:FindFirstChild("NEON_OptionalLights", true)) then ok, message = false, "This module has no optional neon."
 				else
-					local price = V56_number(module, "NeonPrice", 5000)
+					local price = math.max(0, V56_number(module, "NeonPrice", 5000)) -- NTR_CUSTOMISATION_NEON_PRICE_GUARD_V1
 					if not profile.NeonOwned[slotId] then
 						if profile.Cash < price then ok, message = false, "Not enough cash." else
 							profile.Cash -= price
@@ -2678,22 +2710,8 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 				end
 				if ok then local captured,captureMessage=V97_ModuleInstances.CaptureSlot(profile,slotId,V77_ModuleUpgrades.GetLevels(player)); if not captured then ok,message=false,captureMessage end end
 			elseif action == "SetThrustColor" then
-				local color = args.Color
-				if typeof(color) ~= "Color3" then ok, message = false, "Invalid thrust colour." else
-					local oldThrust=profile.ThrustColor
-					local oldModuleColors=V84_cloneDictionary(profile.ModuleColors or {})
-					local oldModuleInstances=V84_cloneDictionary(profile.OwnedModuleInstances or {})
-					local currentVehicle=profile.CurrentVehicleId and profile.Vehicles and profile.Vehicles[profile.CurrentVehicleId]
-					local oldVehicleThrust=typeof(currentVehicle)=="table" and currentVehicle.ThrustColor or nil
-					profile.ThrustColor = color
-					if typeof(currentVehicle)=="table" then currentVehicle.ThrustColor=color end
-					for slotId in pairs(profile.InstalledModules) do
-						profile.ModuleColors[slotId] = profile.ModuleColors[slotId] or {}
-						profile.ModuleColors[slotId].ThrustColor = color
-					end
-					local captured,captureMessage=V97_ModuleInstances.CaptureAll(profile,V77_ModuleUpgrades.GetLevels(player))
-					if not captured then profile.ThrustColor=oldThrust; profile.ModuleColors=oldModuleColors; profile.OwnedModuleInstances=oldModuleInstances; if typeof(currentVehicle)=="table" then currentVehicle.ThrustColor=oldVehicleThrust end; ok,message=false,captureMessage else ok,message=true,"Thrust colour updated." end
-				end
+				-- Compatibility action remains gated by the vehicle-specific entitlement.
+				ok,message=V101_VehicleCosmetics.SetColour(profile,"ThrustColour",args.Color,function() return V97_ModuleInstances.CaptureAll(profile,V77_ModuleUpgrades.GetLevels(player)) end)
 			elseif action == "DespawnVehicle" then
 				ok, message = V92_despawnVehicle(player)
 			elseif action == "ExitVehicle" then
@@ -2717,7 +2735,7 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 				-- NTR_GARAGE_LEGACY_TO_INSTANCE_SYNC_RETIRED_V1
 				V80_mirrorLegacyProfileToPersistence(player, profile, action, V80_mutatingActions[action] == true)
 			end
-			if action == "SetCockpitColor" or action == "SetModuleColor" or action == "SetThrustColor" then
+			if action == "SetCockpitColor" or action == "SetModuleColor" or action == "SetThrustColor" or action == "SetVehicleCosmeticColor" or action == "SetAllNeonColor" then
 				if args.ReturnProfile==true then return {Success=ok==true,Message=message,Profile=V56_profileForClient(profile)} end
 				return { Success = ok == true, Message = message, ColorOnly = true }
 			end

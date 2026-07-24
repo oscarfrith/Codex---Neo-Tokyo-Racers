@@ -35,6 +35,7 @@ local controls
 local controlsDisabled = false
 
 local kit = ReplicatedStorage:WaitForChild(KIT_NAME)
+local VehicleCosmetics = require(kit:WaitForChild("Shared"):WaitForChild("Modules"):WaitForChild("Data"):WaitForChild("VehicleCosmeticCatalog")) -- NTR_CUSTOMISATION_PROTECTED_VEHICLE_LIGHTS_V1
 local templates = kit:WaitForChild("Assets"):WaitForChild("VFX"):WaitForChild("VehicleTemplates")
 local vfxControllerModule
 pcall(function()
@@ -321,6 +322,7 @@ local function scanOne(cache, object)
 	end
 
 	local kind = classifyVFX(object)
+	if VehicleCosmetics.IsProtectedVehicleLight(object) then kind=nil end
 	if kind and isToggleable(object) then
 		local side = sideFromName(object) or sideFromPosition(cache.Model, object)
 		cache.VFXObjects[object] = {

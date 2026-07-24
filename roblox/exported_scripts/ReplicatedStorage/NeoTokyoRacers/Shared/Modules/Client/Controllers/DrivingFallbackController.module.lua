@@ -2,12 +2,14 @@ local Controller = {}
 
 local Players = game:GetService("Players")
 local Workspace = game:GetService("Workspace")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local DriveTuning = require(ReplicatedStorage:WaitForChild("NeoTokyoRacers"):WaitForChild("Shared"):WaitForChild("Modules"):WaitForChild("Common"):WaitForChild("DriveTuning")) -- NTR_DRIVING_HOVER_HEIGHT_CONFIG_BRIDGE_V1
 local UserInputService = game:GetService("UserInputService")
 local RunService = game:GetService("RunService")
 
 local LOCAL_PLAYER = Players.LocalPlayer
 local MPH_PER_STUD = 0.626
-local HOVER_HEIGHT = 3
+local HOVER_HEIGHT = math.clamp(DriveTuning.Read().HoverHeightStuds, 0.5, 8) -- NTR_DRIVING_HOVER_HEIGHT_CONFIG_VALUE_V1
 local SENSOR_START = 2
 local SENSOR_LENGTH = 26
 local REVERSE_MAX_MPH = 20

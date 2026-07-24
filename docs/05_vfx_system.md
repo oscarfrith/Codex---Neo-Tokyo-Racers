@@ -1,5 +1,9 @@
 # VFX System
 
+## Paint Shop neon and underglow boundary
+
+Customisation Three Workshop V1 adds no VFX owner or physical underbody effect. Module Neon preview continues through `PreviewNeonSlot` and the existing paint/preview runtime; saved/runtime visibility continues to use each module instance's `NeonOwned` state and its authored `NEON_OptionalLights` descendants. The Paint Shop `Underglow` target is the existing bulk module-Neon colour editor. Thrust preview continues to use the current `ThrustColour` preview mode.
+
 ## Confirmed Garage Preview VFX Ownership — 2026-07-18
 
 Garage preview VFX now have one template attachment and state owner: `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Visuals.CachedThrustVisualRuntime`.
@@ -100,6 +104,10 @@ Known rule:
 - Beam effects can stay white.
 - Cosmetic optional neon should not be changed by thrust colour.
 
+Vehicle Cosmetics V1 hardens this rule at both active thrust-colour presentation owners. Any PointLight, SpotLight, or SurfaceLight carrying the `FrontLights`/`RearLights` channel or cockpit-light ownership metadata is excluded before thrust VFX classification. The new underglow SurfaceLight uses its own `Underglow` channel and is coloured only by the vehicle cosmetic presenter.
+
+Vehicle Cosmetics V1.2 treats every attributed underglow SurfaceLight as protected, regardless of its parent name or location. Runtime presentation owns only saved colour and purchase-enabled state; emitter count, Brightness, Range, Angle, Face and Shadows remain authored per cockpit. The installer warns when a cockpit exceeds four lights so mobile cost is visible without overriding the designer's setup. There is no frame-loop scan.
+
 ## Performance Notes
 
 Known performance choices:
@@ -145,3 +153,6 @@ Verification:
 Do not rerun:
 
 - The previous late-socket/rescan/rebuild repair ladder is retained only in Git history if committed. Do not treat it as the active repair path unless deliberately reproducing the failed experiment.
+## Owned garage environment lighting override
+
+Owned-garage ambient environment presentation is local. `OwnedGarageEnvironmentLightingController_Active` applies the existing shared `ClearNight` Lighting/effect/Sky preset only while the local player's `NTR_OwnedGarageInside` attribute is true. It coalesces external Lighting/effect/Sky changes so development preview keys or a city-stage transition cannot leave the interior on a different preset. It does not publish or modify the city cycle's `NTR_LightingPreset`, `NTR_StreetLightsOn` or `NTR_WindowMode` attributes, and it does not alter the owned garage's custom fixture assets or saved Primary/Secondary colours. The latest valid city preset is reapplied on exit so a cycle change during the visit is not reverted.

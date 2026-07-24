@@ -1,8 +1,8 @@
 # Roblox Studio Hierarchy Snapshot
 
-Generated in Studio: 2026-07-21 10:48:31
-Scripts exported: 163
-Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, StarterPlayer, StarterGui, Workspace, ServerStorage, Lighting
+Generated in Studio: 2026-07-23 22:22:31
+Scripts exported: 179
+Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, StarterPlayer, StarterGui, SoundService, Workspace, ServerStorage, Lighting
 
 ## Hierarchy
 
@@ -176,7 +176,7 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
         - Categories (Folder) [4 attrs]
           - PIERCER (Folder) [4 attrs]
             - COCKPITS_ReplaceAssetsHere (Folder)
-              - COCKPIT_BRUISER_01 (Model) [68 attrs]
+              - COCKPIT_BRUISER_01 (Model) [69 attrs]
                 - FIXED_MODULE_SLOTS_DoNotRename (Folder)
                   - SLOT_Boost (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
@@ -218,18 +218,26 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [2 attrs]
                     - cockpit secondary (MeshPart) [1 attrs]
                   - CockpitRoot_DoNotRename (Part) [3 attrs]
+                    - UNDERGLOW_MOUNT_DoNotRename (Attachment) [2 attrs]
+                      - cockpit underglow (Part) [2 attrs]
+                        - UnderglowSurfaceLight (SurfaceLight) [3 attrs]
+                      - cockpit underglow (Part) [2 attrs]
+                        - UnderglowSurfaceLight (SurfaceLight) [3 attrs]
+                      - cockpit underglow (Part) [2 attrs]
+                        - UnderglowSurfaceLight (SurfaceLight) [3 attrs]
                     - VFX_HoverDust_Center (Attachment) [2 attrs]
                     - VFX_HoverDust_FrontLeft (Attachment) [2 attrs]
                     - VFX_HoverDust_FrontRight (Attachment) [2 attrs]
                     - VFX_HoverDust_RearLeft (Attachment) [2 attrs]
                     - VFX_HoverDust_RearRight (Attachment) [2 attrs]
+                    - UNDERGLOW_EMITTERS_DoNotRename (Folder) [2 attrs]
                     - cockpit front spotlight lens  (Part)
                       - SpotLight (SpotLight)
                       - SurfaceLight (SurfaceLight)
                     - cockpit rear spotlight lens  (Part)
                       - SpotLight (SpotLight)
                       - SurfaceLight (SurfaceLight)
-              - COCKPIT_BRUISER_02 (Model) [68 attrs]
+              - COCKPIT_BRUISER_02 (Model) [69 attrs]
                 - FIXED_MODULE_SLOTS_DoNotRename (Folder)
                   - SLOT_Boost (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
@@ -271,18 +279,28 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [2 attrs]
                     - cockpit secondary (MeshPart) [1 attrs]
                   - CockpitRoot_DoNotRename (Part) [3 attrs]
+                    - UNDERGLOW_MOUNT_DoNotRename (Attachment) [2 attrs]
                     - VFX_HoverDust_Center (Attachment) [2 attrs]
                     - VFX_HoverDust_FrontLeft (Attachment) [2 attrs]
                     - VFX_HoverDust_FrontRight (Attachment) [2 attrs]
                     - VFX_HoverDust_RearLeft (Attachment) [2 attrs]
                     - VFX_HoverDust_RearRight (Attachment) [2 attrs]
+                    - UNDERGLOW_EMITTERS_DoNotRename (Folder) [2 attrs]
+                      - cockpit underglow (Part) [2 attrs]
+                        - UnderglowSurfaceLight (SurfaceLight) [3 attrs]
+                      - cockpit underglow (Part) [2 attrs]
+                        - UnderglowSurfaceLight (SurfaceLight) [3 attrs]
+                      - cockpit underglow (Part) [2 attrs]
+                        - UnderglowSurfaceLight (SurfaceLight) [3 attrs]
+                      - cockpit underglow (Part) [2 attrs]
+                        - UnderglowSurfaceLight (SurfaceLight) [3 attrs]
                     - cockpit front spotlight lens  (Part)
                       - SpotLight (SpotLight)
                       - SurfaceLight (SurfaceLight)
                     - cockpit rear spotlight lens  (Part)
                       - SpotLight (SpotLight)
                       - SurfaceLight (SurfaceLight)
-              - COCKPIT_BRUISER_03 (Model) [68 attrs]
+              - COCKPIT_BRUISER_03 (Model) [69 attrs]
                 - FIXED_MODULE_SLOTS_DoNotRename (Folder)
                   - SLOT_Boost (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
@@ -324,18 +342,21 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [2 attrs]
                     - cockpit secondary (MeshPart) [1 attrs]
                   - CockpitRoot_DoNotRename (Part) [3 attrs]
+                    - UNDERGLOW_MOUNT_DoNotRename (Attachment) [2 attrs]
+                      - UnderglowSurfaceLight (SurfaceLight) [3 attrs]
                     - VFX_HoverDust_Center (Attachment) [2 attrs]
                     - VFX_HoverDust_FrontLeft (Attachment) [2 attrs]
                     - VFX_HoverDust_FrontRight (Attachment) [2 attrs]
                     - VFX_HoverDust_RearLeft (Attachment) [2 attrs]
                     - VFX_HoverDust_RearRight (Attachment) [2 attrs]
+                    - UNDERGLOW_EMITTERS_DoNotRename (Folder) [2 attrs]
                     - cockpit front spotlight lens  (Part)
                       - SpotLight (SpotLight)
                       - SurfaceLight (SurfaceLight)
                     - cockpit rear spotlight lens  (Part)
                       - SpotLight (SpotLight)
                       - SurfaceLight (SurfaceLight)
-              - COCKPIT_BRUISER_04 (Model) [68 attrs]
+              - COCKPIT_BRUISER_04 (Model) [69 attrs]
                 - FIXED_MODULE_SLOTS_DoNotRename (Folder)
                   - SLOT_Boost (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
@@ -377,18 +398,21 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [2 attrs]
                     - cockpit secondary (MeshPart) [1 attrs]
                   - CockpitRoot_DoNotRename (Part) [3 attrs]
+                    - UNDERGLOW_MOUNT_DoNotRename (Attachment) [2 attrs]
+                      - UnderglowSurfaceLight (SurfaceLight) [3 attrs]
                     - VFX_HoverDust_Center (Attachment) [2 attrs]
                     - VFX_HoverDust_FrontLeft (Attachment) [2 attrs]
                     - VFX_HoverDust_FrontRight (Attachment) [2 attrs]
                     - VFX_HoverDust_RearLeft (Attachment) [2 attrs]
                     - VFX_HoverDust_RearRight (Attachment) [2 attrs]
+                    - UNDERGLOW_EMITTERS_DoNotRename (Folder) [2 attrs]
                     - cockpit front spotlight lens  (Part)
                       - SpotLight (SpotLight)
                       - SurfaceLight (SurfaceLight)
                     - cockpit rear spotlight lens  (Part)
                       - SpotLight (SpotLight)
                       - SurfaceLight (SurfaceLight)
-              - COCKPIT_BRUISER_05 (Model) [68 attrs]
+              - COCKPIT_BRUISER_05 (Model) [69 attrs]
                 - FIXED_MODULE_SLOTS_DoNotRename (Folder)
                   - SLOT_Boost (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
@@ -430,18 +454,21 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [2 attrs]
                     - cockpit secondary (MeshPart) [1 attrs]
                   - CockpitRoot_DoNotRename (Part) [3 attrs]
+                    - UNDERGLOW_MOUNT_DoNotRename (Attachment) [2 attrs]
+                      - UnderglowSurfaceLight (SurfaceLight) [3 attrs]
                     - VFX_HoverDust_Center (Attachment) [2 attrs]
                     - VFX_HoverDust_FrontLeft (Attachment) [2 attrs]
                     - VFX_HoverDust_FrontRight (Attachment) [2 attrs]
                     - VFX_HoverDust_RearLeft (Attachment) [2 attrs]
                     - VFX_HoverDust_RearRight (Attachment) [2 attrs]
+                    - UNDERGLOW_EMITTERS_DoNotRename (Folder) [2 attrs]
                     - cockpit front spotlight lens  (Part)
                       - SpotLight (SpotLight)
                       - SurfaceLight (SurfaceLight)
                     - cockpit rear spotlight lens  (Part)
                       - SpotLight (SpotLight)
                       - SurfaceLight (SurfaceLight)
-              - COCKPIT_BRUISER_06 (Model) [68 attrs]
+              - COCKPIT_BRUISER_06 (Model) [69 attrs]
                 - FIXED_MODULE_SLOTS_DoNotRename (Folder)
                   - SLOT_Boost (Folder) [7 attrs]
                     - Mount_DoNotRename (Part) [4 attrs]
@@ -483,11 +510,14 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [2 attrs]
                     - cockpit secondary (MeshPart) [1 attrs]
                   - CockpitRoot_DoNotRename (Part) [3 attrs]
+                    - UNDERGLOW_MOUNT_DoNotRename (Attachment) [2 attrs]
+                      - UnderglowSurfaceLight (SurfaceLight) [3 attrs]
                     - VFX_HoverDust_Center (Attachment) [2 attrs]
                     - VFX_HoverDust_FrontLeft (Attachment) [2 attrs]
                     - VFX_HoverDust_FrontRight (Attachment) [2 attrs]
                     - VFX_HoverDust_RearLeft (Attachment) [2 attrs]
                     - VFX_HoverDust_RearRight (Attachment) [2 attrs]
+                    - UNDERGLOW_EMITTERS_DoNotRename (Folder) [2 attrs]
                     - cockpit front spotlight lens  (Part)
                       - SpotLight (SpotLight)
                       - SurfaceLight (SurfaceLight)
@@ -2696,6 +2726,161 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
       - README_ConfigRegistry (StringValue) [1 attrs]
       - README_LiveSystemRegistry (StringValue) [1 attrs]
     - Config (Folder)
+      - Audio (Folder) [2 attrs]
+        - Acoustics (Folder) [13 attrs]
+        - Context (Folder) [1 attrs]
+          - Contexts (Folder)
+            - DEALERSHIP_INTERIOR (Folder) [12 attrs]
+              - AmbienceTracks (Folder)
+                - Track01 (StringValue) [3 attrs]
+              - MusicTracks (Folder)
+                - Track01 (StringValue) [3 attrs]
+            - FREE_ROAM_DRIVING (Folder) [12 attrs]
+              - AmbienceTracks (Folder)
+                - Track01 (StringValue) [3 attrs]
+              - MusicTracks (Folder)
+                - Track01 (StringValue) [3 attrs]
+            - FREE_ROAM_ON_FOOT (Folder) [12 attrs]
+              - AmbienceTracks (Folder)
+                - Track01 (StringValue) [3 attrs]
+              - MusicTracks (Folder)
+                - Track01 (StringValue) [3 attrs]
+            - OWNED_GARAGE_INTERIOR (Folder) [12 attrs]
+              - AmbienceTracks (Folder)
+                - Track01 (StringValue) [3 attrs]
+              - MusicTracks (Folder)
+                - Track01 (StringValue) [3 attrs]
+          - Global (Folder) [9 attrs]
+        - Global (Folder) [60 attrs]
+          - Descriptions (Folder)
+            - AccelerationEnterConfirmSeconds (StringValue)
+            - AccelerationFadeInSeconds (StringValue)
+            - AccelerationFadeOutSeconds (StringValue)
+            - AccelerationMinimumActiveSeconds (StringValue)
+            - AccelerationReleaseConfirmSeconds (StringValue)
+            - AccelerationRetriggerCooldownSeconds (StringValue)
+            - AudioSystemEnabled (StringValue)
+            - BoostContinuousReleaseGraceSeconds (StringValue)
+            - BoostEmptyThreshold (StringValue)
+            - BoostFadeInSeconds (StringValue)
+            - BoostFadeOutSeconds (StringValue)
+            - BoostRechargeCancelFadeSeconds (StringValue)
+            - BoostRechargeMinimumMissingCharge (StringValue)
+            - BoostRechargeRetriggerCooldownSeconds (StringValue)
+            - BoostRechargeStopAtFull (StringValue)
+            - CoastFullGainMph (StringValue)
+            - CoastStartMph (StringValue)
+            - DebugAudio (StringValue)
+            - DriftFadeInSeconds (StringValue)
+            - DriftFadeOutSeconds (StringValue)
+            - DriftLoopStartGainMultiplier (StringValue)
+            - DriftPitchEndMultiplier (StringValue)
+            - DriftPitchStartMultiplier (StringValue)
+            - DriftRampCurveExponent (StringValue)
+            - DriftRampDelaySeconds (StringValue)
+            - DriftRampFullSeconds (StringValue)
+            - EngineFadeInSeconds (StringValue)
+            - EngineFadeOutSeconds (StringValue)
+            - EngineHighFadeStartMph (StringValue)
+            - EngineHighFullSpeedMph (StringValue)
+            - EngineHighPitchMax (StringValue)
+            - EngineHighPitchMin (StringValue)
+            - EngineLowFloorMultiplier (StringValue)
+            - EngineLowPeakMph (StringValue)
+            - EngineLowPitchMax (StringValue)
+            - EngineLowPitchMin (StringValue)
+            - ExternalMaxDistanceStuds (StringValue)
+            - ExternalMidDistanceGain (StringValue)
+            - ExternalMidDistanceStuds (StringValue)
+            - ExternalMinDistanceStuds (StringValue)
+            - ExternalVehicleGain (StringValue)
+            - FallbackProfileId (StringValue)
+            - FullBoostMinimumConsumedFraction (StringValue)
+            - FullBoostReplacesEmpty (StringValue)
+            - FullBoostStartThreshold (StringValue)
+            - IdleFadeEndMph (StringValue)
+            - IdleFadeStartMph (StringValue)
+            - LayerSmoothingPerSecond (StringValue)
+            - LocalDriverGain (StringValue)
+            - ManagedCueCancelFadeSeconds (StringValue)
+            - OneShotMasterGain (StringValue)
+            - OneShotMaxLifetimeSeconds (StringValue)
+            - SchemaVersion (StringValue)
+            - StateRateLimitPerSecond (StringValue)
+            - VehicleAudioCueExpansionEnabled (StringValue)
+            - VehicleAudioEnabled (StringValue)
+            - WindFadeInSeconds (StringValue)
+            - WindFadeOutSeconds (StringValue)
+            - WindFullGainMph (StringValue)
+            - WindStartMph (StringValue)
+        - Quality (Folder) [6 attrs]
+          - Descriptions (Folder)
+            - AcousticSimulationEnabled (StringValue)
+            - MaxConcurrentOneShotsPerVehicle (StringValue)
+            - MaxDetailedRemoteVehicles (StringValue)
+            - MaxSimpleRemoteVehicles (StringValue)
+            - ParameterUpdateHz (StringValue)
+            - PriorityUpdateHz (StringValue)
+        - VehicleProfiles (Folder)
+          - GENERIC_STANDARD_AUDIO (Folder) [57 attrs]
+            - Descriptions (Folder)
+              - AccelerationAssetId (StringValue)
+              - AccelerationEnterAssetId (StringValue)
+              - AccelerationEnterGain (StringValue)
+              - AccelerationEnterPitch (StringValue)
+              - AccelerationGain (StringValue)
+              - AccelerationPitch (StringValue)
+              - AccelerationReleaseAssetId (StringValue)
+              - AccelerationReleaseGain (StringValue)
+              - AccelerationReleasePitch (StringValue)
+              - BoostEmptyAssetId (StringValue)
+              - BoostEmptyGain (StringValue)
+              - BoostEmptyPitch (StringValue)
+              - BoostEnterAssetId (StringValue)
+              - BoostEnterGain (StringValue)
+              - BoostEnterPitch (StringValue)
+              - BoostLoopAssetId (StringValue)
+              - BoostLoopGain (StringValue)
+              - BoostLoopPitch (StringValue)
+              - BoostRechargeAssetId (StringValue)
+              - BoostRechargeGain (StringValue)
+              - BoostRechargePitch (StringValue)
+              - BoostReleaseAssetId (StringValue)
+              - BoostReleaseGain (StringValue)
+              - BoostReleasePitch (StringValue)
+              - CoastAssetId (StringValue)
+              - CoastGain (StringValue)
+              - CoastPitch (StringValue)
+              - DisplayName (StringValue)
+              - DriftEnterAssetId (StringValue)
+              - DriftEnterGain (StringValue)
+              - DriftEnterPitch (StringValue)
+              - DriftLoopAssetId (StringValue)
+              - DriftLoopGain (StringValue)
+              - DriftLoopPitch (StringValue)
+              - DriverWindAssetId (StringValue)
+              - DriverWindGain (StringValue)
+              - DriverWindPitch (StringValue)
+              - EngineHighAssetId (StringValue)
+              - EngineHighGain (StringValue)
+              - EngineHighPitch (StringValue)
+              - EngineLowAssetId (StringValue)
+              - EngineLowGain (StringValue)
+              - EngineLowPitch (StringValue)
+              - FullBoostSpentAssetId (StringValue)
+              - FullBoostSpentGain (StringValue)
+              - FullBoostSpentPitch (StringValue)
+              - IdleAssetId (StringValue)
+              - IdleGain (StringValue)
+              - IdlePitch (StringValue)
+              - IgnitionAssetId (StringValue)
+              - IgnitionGain (StringValue)
+              - IgnitionPitch (StringValue)
+              - ProfileMasterGain (StringValue)
+              - ProfileRevision (StringValue)
+              - ShutdownAssetId (StringValue)
+              - ShutdownGain (StringValue)
+              - ShutdownPitch (StringValue)
       - Editable (Folder) [2 attrs]
         - 01_GAME_BALANCE_Editable (Folder) [1 attrs]
           - Camera (Folder)
@@ -2711,7 +2896,7 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
             - BoostRechargeSeconds (NumberValue)
             - BrakingScale (NumberValue)
             - GroundSensorLengthStuds (NumberValue)
-            - HoverHeightStuds (NumberValue)
+            - HoverHeightStuds (NumberValue) [6 attrs]
             - ReverseLimitMPH (NumberValue)
             - TopSpeedMPH (NumberValue)
             - README (StringValue)
@@ -2851,7 +3036,7 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
           - SpawnHeightOffset (NumberValue)
           - SpawnMarkerHeightOffset (NumberValue)
           - StudsPerSecondToMph (NumberValue)
-        - OwnedGarage_EditAttributes (Folder) [66 attrs]
+        - OwnedGarage_EditAttributes (Folder) [88 attrs]
         - StudioCashGrant (Folder) [7 attrs]
         - VehicleDynamics_EditAttributes (Folder) [15 attrs]
           - 01_Acceleration (Folder) [52 attrs]
@@ -3176,7 +3361,7 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
           - StatsHeight (NumberValue) [1 attrs]
           - StatsWidth (NumberValue) [1 attrs]
           - FontFamily (StringValue) [1 attrs]
-        - GarageReplacement (Folder) [101 attrs]
+        - GarageReplacement (Folder) [103 attrs]
           - ModuleArtwork (Folder)
             - All (Folder) [6 attrs]
             - Boost (Folder) [6 attrs]
@@ -3189,7 +3374,23 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
             - Spoiler (Folder) [6 attrs]
             - Stabilisers (Folder) [6 attrs]
             - ThrustColour (Folder) [6 attrs]
-          - NavigationIcons (Folder) [8 attrs]
+          - NavigationIcons (Folder) [11 attrs]
+          - OwnedGarageIcons (Folder) [4 attrs]
+            - Access (Folder) [5 attrs]
+            - Actions (Folder) [3 attrs]
+            - Browser (Folder) [3 attrs]
+            - DecorationLocations (Folder) [7 attrs]
+            - Economy (Folder) [1 attrs]
+            - Families (Folder) [3 attrs]
+            - Materials (Folder) [10 attrs]
+            - Modes (Folder) [3 attrs]
+            - Navigation (Folder) [3 attrs]
+            - Sizing (Folder) [3 attrs]
+            - States (Folder) [1 attrs]
+            - StructureLocations (Folder) [7 attrs]
+          - VehicleCosmetics (Folder) [2 attrs]
+            - ThrustColour (Folder) [7 attrs]
+            - Underglow (Folder) [9 attrs]
           - ArrowHeight (NumberValue) [1 attrs]
           - ArrowWidth (NumberValue) [1 attrs]
           - BaseHeight (NumberValue) [1 attrs]
@@ -3953,68 +4154,77 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
       - Modules (Folder) [1 attrs]
         - Client (Folder) [1 attrs]
           - Audio (Folder)
-            - AudioMixController (ModuleScript) [script_0008, 113 lines, 1 attrs]
+            - AcousticsController (ModuleScript) [script_0008, 250 lines]
+            - AudioBusController (ModuleScript) [script_0009, 84 lines]
+            - AudioMixController (ModuleScript) [script_0010, 113 lines, 1 attrs]
+            - ContextAudioCatalog (ModuleScript) [script_0011, 94 lines]
+            - ContextAudioController (ModuleScript) [script_0012, 291 lines]
+            - VehicleAudioCatalog (ModuleScript) [script_0013, 89 lines]
+            - VehicleAudioController (ModuleScript) [script_0014, 662 lines]
           - Controllers (Folder)
-            - DrivingCameraController (ModuleScript) [script_0009, 287 lines]
-            - DrivingControllerV47 (ModuleScript) [script_0010, 1160 lines, 19 attrs]
-            - DrivingFallbackController (ModuleScript) [script_0011, 461 lines, 2 attrs]
-            - MobileDriveInputState (ModuleScript) [script_0012, 67 lines, 1 attrs]
-            - ReentryThrottle (ModuleScript) [script_0013, 24 lines, 1 attrs]
-            - VehicleDynamicsModel (ModuleScript) [script_0014, 228 lines, 5 attrs]
+            - DrivingCameraController (ModuleScript) [script_0015, 287 lines]
+            - DrivingControllerV47 (ModuleScript) [script_0016, 1161 lines, 20 attrs]
+            - DrivingFallbackController (ModuleScript) [script_0017, 463 lines, 3 attrs]
+            - MobileDriveInputState (ModuleScript) [script_0018, 67 lines, 1 attrs]
+            - ReentryThrottle (ModuleScript) [script_0019, 24 lines, 1 attrs]
+            - VehicleDynamicsModel (ModuleScript) [script_0020, 228 lines, 5 attrs]
             - DriveController_README (StringValue)
             - GarageController_README (StringValue)
           - Input (Folder)
-            - GameplayInputGate (ModuleScript) [script_0015, 138 lines, 1 attrs]
+            - GameplayInputGate (ModuleScript) [script_0021, 138 lines, 1 attrs]
             - Input_README (StringValue)
           - UI (Folder)
-            - UIFactory (ModuleScript) [script_0016, 69 lines, 3 attrs]
-            - UIPool (ModuleScript) [script_0017, 99 lines, 1 attrs]
+            - UIFactory (ModuleScript) [script_0022, 69 lines, 3 attrs]
+            - UIPool (ModuleScript) [script_0023, 99 lines, 1 attrs]
           - VFX (Folder)
-            - VehicleVFXController (ModuleScript) [script_0018, 550 lines, 5 attrs]
+            - VehicleVFXController (ModuleScript) [script_0024, 550 lines, 5 attrs]
           - Visuals (Folder)
-            - CachedThrustVisualRuntime (ModuleScript) [script_0019, 787 lines, 12 attrs]
+            - CachedThrustVisualRuntime (ModuleScript) [script_0025, 789 lines, 13 attrs]
         - Common (Folder) [1 attrs]
+          - Audio (Folder)
+            - VehicleAudioStateContract (ModuleScript) [script_0026, 39 lines]
           - Performance (Folder) [2 attrs]
-            - VehicleModuleUpgradeRuntime (ModuleScript) [script_0020, 118 lines, 1 attrs]
-            - VehiclePerformanceCalculator (ModuleScript) [script_0021, 35 lines, 1 attrs]
-            - VehiclePerformanceDefinitions (ModuleScript) [script_0022, 150 lines, 1 attrs]
-            - VehiclePerformanceResolver (ModuleScript) [script_0023, 121 lines]
-            - VehiclePerformanceRuntime (ModuleScript) [script_0024, 44 lines, 1 attrs]
-            - VehiclePerformanceV2Calculator (ModuleScript) [script_0025, 169 lines, 2 attrs]
-            - VehiclePerformanceV2Definitions (ModuleScript) [script_0026, 90 lines, 2 attrs]
-            - VehiclePerformanceV2DynamicsAdapter (ModuleScript) [script_0027, 34 lines, 1 attrs]
-            - VehiclePerformanceV2Runtime (ModuleScript) [script_0028, 108 lines, 1 attrs]
-            - VehiclePerformanceV2UpgradeRuntime (ModuleScript) [script_0029, 195 lines, 1 attrs]
-            - VehicleUpgradeDefinitions (ModuleScript) [script_0030, 68 lines, 2 attrs]
-          - ConfigReader (ModuleScript) [script_0031, 39 lines, 1 attrs]
-          - DriveTuning (ModuleScript) [script_0032, 25 lines, 3 attrs]
-          - UITheme (ModuleScript) [script_0033, 55 lines, 3 attrs]
-          - VehicleData (ModuleScript) [script_0034, 34 lines, 3 attrs]
-          - VehicleStatsCache (ModuleScript) [script_0035, 45 lines, 1 attrs]
+            - VehicleModuleUpgradeRuntime (ModuleScript) [script_0027, 118 lines, 1 attrs]
+            - VehiclePerformanceCalculator (ModuleScript) [script_0028, 35 lines, 1 attrs]
+            - VehiclePerformanceDefinitions (ModuleScript) [script_0029, 150 lines, 1 attrs]
+            - VehiclePerformanceResolver (ModuleScript) [script_0030, 121 lines]
+            - VehiclePerformanceRuntime (ModuleScript) [script_0031, 44 lines, 1 attrs]
+            - VehiclePerformanceV2Calculator (ModuleScript) [script_0032, 169 lines, 2 attrs]
+            - VehiclePerformanceV2Definitions (ModuleScript) [script_0033, 90 lines, 2 attrs]
+            - VehiclePerformanceV2DynamicsAdapter (ModuleScript) [script_0034, 34 lines, 1 attrs]
+            - VehiclePerformanceV2Runtime (ModuleScript) [script_0035, 108 lines, 1 attrs]
+            - VehiclePerformanceV2UpgradeRuntime (ModuleScript) [script_0036, 195 lines, 1 attrs]
+            - VehicleUpgradeDefinitions (ModuleScript) [script_0037, 68 lines, 2 attrs]
+          - ConfigReader (ModuleScript) [script_0038, 39 lines, 1 attrs]
+          - DriveTuning (ModuleScript) [script_0039, 25 lines, 3 attrs]
+          - UITheme (ModuleScript) [script_0040, 55 lines, 3 attrs]
+          - VehicleData (ModuleScript) [script_0041, 34 lines, 3 attrs]
+          - VehicleStatsCache (ModuleScript) [script_0042, 45 lines, 1 attrs]
         - Core (Folder)
-          - PathResolver (ModuleScript) [script_0036, 98 lines, 4 attrs]
+          - PathResolver (ModuleScript) [script_0043, 98 lines, 4 attrs]
         - Data (Folder) [3 attrs]
-          - ConfigRegistry (ModuleScript) [script_0037, 176 lines, 3 attrs]
-          - GaragePropertyCatalog (ModuleScript) [script_0038, 81 lines, 1 attrs]
-          - LegacyGarageProfileMapper (ModuleScript) [script_0039, 248 lines, 1 attrs]
-          - OwnedGarageDecorationCatalog (ModuleScript) [script_0040, 43 lines, 2 attrs]
-          - OwnedGarageInteriorStyleCatalog (ModuleScript) [script_0041, 34 lines, 2 attrs]
-          - OwnedGarageLightingCatalog (ModuleScript) [script_0042, 23 lines, 2 attrs]
-          - OwnedGaragePropertyCatalog (ModuleScript) [script_0043, 90 lines, 2 attrs]
-          - PlayerProfileSchema (ModuleScript) [script_0044, 276 lines]
+          - ConfigRegistry (ModuleScript) [script_0044, 176 lines, 3 attrs]
+          - GaragePropertyCatalog (ModuleScript) [script_0045, 81 lines, 1 attrs]
+          - LegacyGarageProfileMapper (ModuleScript) [script_0046, 248 lines, 1 attrs]
+          - OwnedGarageDecorationCatalog (ModuleScript) [script_0047, 65 lines, 2 attrs]
+          - OwnedGarageInteriorStyleCatalog (ModuleScript) [script_0048, 72 lines, 2 attrs]
+          - OwnedGarageLightingCatalog (ModuleScript) [script_0049, 32 lines, 2 attrs]
+          - OwnedGaragePropertyCatalog (ModuleScript) [script_0050, 39 lines, 2 attrs]
+          - PlayerProfileSchema (ModuleScript) [script_0051, 278 lines, 1 attrs]
+          - VehicleCosmeticCatalog (ModuleScript) [script_0052, 128 lines, 1 attrs]
         - Racing (Folder)
-          - RaceConfigReader (ModuleScript) [script_0045, 132 lines]
-          - RaceRouteDefinition (ModuleScript) [script_0046, 229 lines]
+          - RaceConfigReader (ModuleScript) [script_0053, 132 lines]
+          - RaceRouteDefinition (ModuleScript) [script_0054, 229 lines]
         - UI (Folder) [3 attrs]
-          - ArrowScroller (ModuleScript) [script_0047, 68 lines, 3 attrs]
-          - ColourUtils (ModuleScript) [script_0048, 21 lines, 3 attrs]
-          - RacingMobileScaledDesktopLayout (ModuleScript) [script_0049, 90 lines]
-          - RacingUIComponents (ModuleScript) [script_0050, 203 lines]
-          - ResponsiveLayout (ModuleScript) [script_0051, 44 lines, 3 attrs]
-          - StatBars (ModuleScript) [script_0052, 49 lines, 3 attrs]
-          - UIFactory (ModuleScript) [script_0053, 93 lines, 3 attrs]
-          - UIPool (ModuleScript) [script_0054, 99 lines, 3 attrs]
-          - UITheme (ModuleScript) [script_0055, 102 lines, 5 attrs]
+          - ArrowScroller (ModuleScript) [script_0055, 68 lines, 3 attrs]
+          - ColourUtils (ModuleScript) [script_0056, 21 lines, 3 attrs]
+          - RacingMobileScaledDesktopLayout (ModuleScript) [script_0057, 90 lines]
+          - RacingUIComponents (ModuleScript) [script_0058, 203 lines]
+          - ResponsiveLayout (ModuleScript) [script_0059, 44 lines, 3 attrs]
+          - StatBars (ModuleScript) [script_0060, 49 lines, 3 attrs]
+          - UIFactory (ModuleScript) [script_0061, 93 lines, 3 attrs]
+          - UIPool (ModuleScript) [script_0062, 99 lines, 3 attrs]
+          - UITheme (ModuleScript) [script_0063, 102 lines, 5 attrs]
           - ArrowScroller_Module (ObjectValue)
           - ColourUtils_Module (ObjectValue)
           - ResponsiveLayout_Module (ObjectValue)
@@ -4024,6 +4234,8 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
           - UITheme_Module (ObjectValue)
           - README_Phase7_Modules (StringValue)
       - Remotes (Folder) [1 attrs]
+        - Audio (Folder)
+          - VehicleAudioState (RemoteEvent)
         - DealershipIntro (Folder)
           - CompleteDealershipIntroObjective (RemoteEvent)
           - GetDealershipIntroObjectiveComplete (RemoteFunction)
@@ -4061,10 +4273,10 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
         - SevenAM (Folder) [3 attrs]
         - TenAM (Folder) [3 attrs]
         - ThreePM (Folder) [3 attrs]
-      - LightingCycleSchedule (ModuleScript) [script_0056, 13 lines]
+      - LightingCycleSchedule (ModuleScript) [script_0064, 13 lines]
       - CurrentLightingCaptureText (StringValue) [3 attrs]
     - LightingPresets (Folder)
-      - LightingPresets (ModuleScript) [script_0057, 407 lines, 4 attrs]
+      - LightingPresets (ModuleScript) [script_0065, 407 lines, 4 attrs]
     - SkyPresets (Folder)
       - ActiveSky (Sky)
       - ClearNightSky (Sky)
@@ -4078,56 +4290,60 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
 - ServerScriptService (ServerScriptService)
   - NeoTokyoRacers (Folder) [5 attrs]
     - Services (Folder) [3 attrs]
+      - Audio (Folder)
+        - VehicleAudioStateService_Active (Script) [script_0066, 134 lines]
       - Dealership (Folder)
-        - IntroProgressService_Active (Script) [script_0058, 208 lines, 2 attrs]
+        - IntroProgressService_Active (Script) [script_0067, 208 lines, 2 attrs]
       - Debug (Folder)
-        - StudioCashGrantService_Active (Script) [script_0059, 65 lines]
+        - StudioCashGrantService_Active (Script) [script_0068, 65 lines]
       - Economy (Folder)
       - Garage (Folder)
         - OwnedGarageVehicleLifecycleBridge (BindableFunction) [3 attrs]
-        - GarageDisplayRuntime (ModuleScript) [script_0060, 299 lines, 1 attrs]
-        - GarageModuleInstanceCustomizationRuntime (ModuleScript) [script_0061, 88 lines]
-        - GarageModuleInventoryRuntime (ModuleScript) [script_0062, 238 lines, 1 attrs]
-        - GarageModuleTransactionRuntime (ModuleScript) [script_0063, 124 lines]
-        - GarageProfileRuntime (ModuleScript) [script_0064, 136 lines, 1 attrs]
-        - OwnedGarageAuthoritativeCommandRuntime (ModuleScript) [script_0065, 37 lines, 2 attrs]
-        - OwnedGarageDisplayAssignmentRuntime (ModuleScript) [script_0066, 60 lines, 2 attrs]
-        - OwnedGarageDisplayRuntime (ModuleScript) [script_0067, 105 lines, 1 attrs]
-        - OwnedGarageInteriorRuntime (ModuleScript) [script_0068, 56 lines, 1 attrs]
-        - OwnedGarageManagementRuntime (ModuleScript) [script_0069, 249 lines, 2 attrs]
-        - OwnedGarageProfileRuntime (ModuleScript) [script_0070, 178 lines, 3 attrs]
-        - GarageActionController_Shadow_Disabled (Script) [script_0071, 2742 lines, 39 attrs]
-        - GarageInteriorCustomizationService_Active (Script) [script_0072, Disabled, 472 lines, 4 attrs]
-        - GarageInteriorService_Active (Script) [script_0073, Disabled, 407 lines, 7 attrs]
-        - GarageSessionService_Active (Script) [script_0074, 99 lines, 1 attrs]
-        - OwnedGarageService_Active (Script) [script_0075, 7 lines, 2 attrs]
+        - GarageDisplayRuntime (ModuleScript) [script_0069, 301 lines, 2 attrs]
+        - GarageModuleInstanceCustomizationRuntime (ModuleScript) [script_0070, 88 lines]
+        - GarageModuleInventoryRuntime (ModuleScript) [script_0071, 238 lines, 1 attrs]
+        - GarageModuleTransactionRuntime (ModuleScript) [script_0072, 124 lines]
+        - GarageProfileRuntime (ModuleScript) [script_0073, 136 lines, 1 attrs]
+        - OwnedGarageAuthoritativeCommandRuntime (ModuleScript) [script_0074, 37 lines, 2 attrs]
+        - OwnedGarageDisplayAssignmentRuntime (ModuleScript) [script_0075, 65 lines, 2 attrs]
+        - OwnedGarageDisplayRuntime (ModuleScript) [script_0076, 106 lines, 2 attrs]
+        - OwnedGarageFinishRuntime (ModuleScript) [script_0077, 101 lines, 4 attrs]
+        - OwnedGarageInteriorRuntime (ModuleScript) [script_0078, 58 lines, 2 attrs]
+        - OwnedGarageManagementRuntime (ModuleScript) [script_0079, 385 lines, 4 attrs]
+        - OwnedGarageProfileRuntime (ModuleScript) [script_0080, 195 lines, 5 attrs]
+        - VehicleCosmeticServerRuntime (ModuleScript) [script_0081, 73 lines, 1 attrs]
+        - GarageActionController_Shadow_Disabled (Script) [script_0082, 2760 lines, 42 attrs]
+        - GarageInteriorCustomizationService_Active (Script) [script_0083, Disabled, 472 lines, 4 attrs]
+        - GarageInteriorService_Active (Script) [script_0084, Disabled, 407 lines, 7 attrs]
+        - GarageSessionService_Active (Script) [script_0085, 99 lines, 1 attrs]
+        - OwnedGarageService_Active (Script) [script_0086, 7 lines, 2 attrs]
       - Player (Folder)
-        - LegacyGarageProfileBridge_Active (Script) [script_0076, 61 lines]
-        - ProfileService_Active (Script) [script_0077, 490 lines, 6 attrs]
+        - LegacyGarageProfileBridge_Active (Script) [script_0087, 61 lines]
+        - ProfileService_Active (Script) [script_0088, 490 lines, 6 attrs]
       - Racing (Folder)
         - GlobalTimeTrialLeaderboardBindings (Folder)
           - GetTimeTrialLeaderboard (BindableFunction)
           - RecordTimeTrialBest (BindableFunction)
-        - GlobalTimeTrialLeaderboardService_Active (Script) [script_0078, 101 lines]
-        - RaceBrowserTeleportService_Active (Script) [script_0079, 226 lines, 2 attrs]
-        - RaceDisplayNameService_Active (Script) [script_0080, 79 lines]
-        - RaceMatchmakingService_Active (Script) [script_0081, 1288 lines]
-        - RacePersonalBestService_Active (Script) [script_0082, 392 lines]
-        - RaceRewardService_Active (Script) [script_0083, 367 lines]
-        - RaceSessionAssetService_Active (Script) [script_0084, 372 lines]
-        - TimeTrialService_Active (Script) [script_0085, 1462 lines]
+        - GlobalTimeTrialLeaderboardService_Active (Script) [script_0089, 101 lines]
+        - RaceBrowserTeleportService_Active (Script) [script_0090, 226 lines, 2 attrs]
+        - RaceDisplayNameService_Active (Script) [script_0091, 79 lines]
+        - RaceMatchmakingService_Active (Script) [script_0092, 1288 lines]
+        - RacePersonalBestService_Active (Script) [script_0093, 392 lines]
+        - RaceRewardService_Active (Script) [script_0094, 367 lines]
+        - RaceSessionAssetService_Active (Script) [script_0095, 372 lines]
+        - TimeTrialService_Active (Script) [script_0096, 1462 lines]
       - UI (Folder)
-        - FreeRoamHudTeleportService_Active (Script) [script_0086, 128 lines, 4 attrs]
+        - FreeRoamHudTeleportService_Active (Script) [script_0097, 128 lines, 4 attrs]
       - Vehicle (Folder)
-        - DriverSeatPositionService_Active (Script) [script_0087, 234 lines, 11 attrs]
-        - VehicleAccessPromptService_Active (Script) [script_0088, 130 lines]
-        - VehiclePerformanceRuntimeService_Active (Script) [script_0089, 35 lines, 2 attrs]
-        - VehiclePerformanceV2ShadowService_Active (Script) [script_0090, 34 lines, 1 attrs]
+        - DriverSeatPositionService_Active (Script) [script_0098, 234 lines, 11 attrs]
+        - VehicleAccessPromptService_Active (Script) [script_0099, 130 lines]
+        - VehiclePerformanceRuntimeService_Active (Script) [script_0100, 35 lines, 2 attrs]
+        - VehiclePerformanceV2ShadowService_Active (Script) [script_0101, 34 lines, 1 attrs]
       - World (Folder)
         - Lighting (Folder)
-          - LightingService_Active (Script) [script_0091, 115 lines, 9 attrs]
+          - LightingService_Active (Script) [script_0102, 115 lines, 9 attrs]
         - Traffic (Folder)
-          - TrafficLightService (Script) [script_0092, 46 lines, 3 attrs]
+          - TrafficLightService (Script) [script_0103, 46 lines, 3 attrs]
           - README_MigrationNotes (StringValue)
     - State (Folder)
       - RuntimeProfiles (Folder)
@@ -4136,54 +4352,58 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
   - StarterPlayerScripts (StarterPlayerScripts)
     - NeoTokyoRacersClient (Folder) [6 attrs]
       - Controllers (Folder) [3 attrs]
+        - Audio (Folder)
+          - AcousticsRuntimeController_Active (LocalScript) [script_0104, 12 lines]
+          - AudioRuntimeController_Active (LocalScript) [script_0105, 14 lines]
+          - ContextAudioRuntimeController_Active (LocalScript) [script_0106, 14 lines]
         - Core (Folder)
-          - CatalogClient (ModuleScript) [script_0093, 110 lines, 4 attrs]
-          - ClientState (ModuleScript) [script_0094, 75 lines, 4 attrs]
-          - ClientThemeAdapter (ModuleScript) [script_0095, 73 lines, 6 attrs]
-          - GarageApiClient (ModuleScript) [script_0096, 38 lines, 4 attrs]
-          - PaintClient (ModuleScript) [script_0097, 142 lines, 10 attrs]
+          - CatalogClient (ModuleScript) [script_0107, 110 lines, 4 attrs]
+          - ClientState (ModuleScript) [script_0108, 75 lines, 4 attrs]
+          - ClientThemeAdapter (ModuleScript) [script_0109, 73 lines, 6 attrs]
+          - GarageApiClient (ModuleScript) [script_0110, 38 lines, 4 attrs]
+          - PaintClient (ModuleScript) [script_0111, 142 lines, 10 attrs]
         - Debug (Folder)
-          - StudioCashGrantClient_Active (LocalScript) [script_0098, 47 lines]
+          - StudioCashGrantClient_Active (LocalScript) [script_0112, 47 lines]
         - Garage (Folder)
         - Intro (Folder)
-          - CockpitCustomisationZoneClient_Active (LocalScript) [script_0099, Disabled, 77 lines, 2 attrs]
-          - DealershipIntroClient_Active (LocalScript) [script_0100, 725 lines, 9 attrs]
-          - DriveInCustomisationZoneClient_Active (LocalScript) [script_0101, Disabled, 343 lines, 1 attrs]
-          - GarageEntranceController_Active (LocalScript) [script_0102, 211 lines, 1 attrs]
+          - CockpitCustomisationZoneClient_Active (LocalScript) [script_0113, Disabled, 77 lines, 2 attrs]
+          - DealershipIntroClient_Active (LocalScript) [script_0114, 725 lines, 9 attrs]
+          - DriveInCustomisationZoneClient_Active (LocalScript) [script_0115, Disabled, 343 lines, 1 attrs]
+          - GarageEntranceController_Active (LocalScript) [script_0116, 211 lines, 1 attrs]
         - Preview (Folder)
-          - GaragePreviewPresentationController_Active (LocalScript) [script_0103, 317 lines]
-          - ThrustPreviewController_Active (LocalScript) [script_0104, 75 lines, 19 attrs]
-          - GarageModuleInstancePreviewAdapter (ModuleScript) [script_0105, 98 lines]
-          - GarageVehiclePreviewProfile (ModuleScript) [script_0106, 75 lines]
-          - PreviewCameraController (ModuleScript) [script_0107, 56 lines, 5 attrs]
-          - PreviewVehicleController (ModuleScript) [script_0108, 80 lines, 5 attrs]
+          - GaragePreviewPresentationController_Active (LocalScript) [script_0117, 317 lines]
+          - ThrustPreviewController_Active (LocalScript) [script_0118, 76 lines, 20 attrs]
+          - GarageModuleInstancePreviewAdapter (ModuleScript) [script_0119, 98 lines]
+          - GarageVehiclePreviewProfile (ModuleScript) [script_0120, 75 lines]
+          - PreviewCameraController (ModuleScript) [script_0121, 56 lines, 5 attrs]
+          - PreviewVehicleController (ModuleScript) [script_0122, 90 lines, 6 attrs]
         - Racing (Folder)
           - RaceEntryLegacyAction (BindableEvent)
           - RaceEntryPresentationRequest (BindableEvent)
           - RaceTransitionRequest (BindableEvent)
           - RaceTransitionStateChanged (BindableEvent)
           - StartRaceQueueRequest (BindableEvent)
-          - RaceBrowserClient_Active (LocalScript) [script_0109, 593 lines]
-          - RaceClient_Active (LocalScript) [script_0110, Disabled, 276 lines]
-          - RaceCountdownPresentationController_Active (LocalScript) [script_0111, 59 lines]
-          - RaceEntryMenuClient_Active (LocalScript) [script_0112, 98 lines]
-          - RaceEntryPresentationController_Active (LocalScript) [script_0113, 904 lines]
-          - RaceHudExitCleanupClient_Active (LocalScript) [script_0114, 81 lines]
-          - RaceParticipantVisibilityClient_Active (LocalScript) [script_0115, 66 lines]
-          - RacePersonalBestBoardClient_Active (LocalScript) [script_0116, 311 lines]
-          - RaceQueueClient_Active (LocalScript) [script_0117, 49 lines]
-          - RaceRouteGuideClient_Active (LocalScript) [script_0118, 427 lines]
-          - RaceSessionAssetsClient_Active (LocalScript) [script_0119, 244 lines]
-          - RaceSessionControlsClient_Active (LocalScript) [script_0120, 254 lines]
-          - RaceSessionPresentationController_Active (LocalScript) [script_0121, 282 lines]
-          - RaceTimeTrialResultCoachClient_Active (LocalScript) [script_0122, 224 lines]
-          - RaceTransitionClient_Active (LocalScript) [script_0123, 400 lines]
+          - RaceBrowserClient_Active (LocalScript) [script_0123, 593 lines]
+          - RaceClient_Active (LocalScript) [script_0124, Disabled, 276 lines]
+          - RaceCountdownPresentationController_Active (LocalScript) [script_0125, 59 lines]
+          - RaceEntryMenuClient_Active (LocalScript) [script_0126, 98 lines]
+          - RaceEntryPresentationController_Active (LocalScript) [script_0127, 904 lines]
+          - RaceHudExitCleanupClient_Active (LocalScript) [script_0128, 81 lines]
+          - RaceParticipantVisibilityClient_Active (LocalScript) [script_0129, 66 lines]
+          - RacePersonalBestBoardClient_Active (LocalScript) [script_0130, 311 lines]
+          - RaceQueueClient_Active (LocalScript) [script_0131, 49 lines]
+          - RaceRouteGuideClient_Active (LocalScript) [script_0132, 427 lines]
+          - RaceSessionAssetsClient_Active (LocalScript) [script_0133, 244 lines]
+          - RaceSessionControlsClient_Active (LocalScript) [script_0134, 254 lines]
+          - RaceSessionPresentationController_Active (LocalScript) [script_0135, 282 lines]
+          - RaceTimeTrialResultCoachClient_Active (LocalScript) [script_0136, 224 lines]
+          - RaceTransitionClient_Active (LocalScript) [script_0137, 400 lines]
         - Runtime (Folder)
-          - CharacterSprintController_Active (LocalScript) [script_0124, 358 lines, 1 attrs]
-          - DriveHudController_Active (LocalScript) [script_0125, 3 lines, 7 attrs]
-          - FreeRoamParkedHoverController_Active (LocalScript) [script_0126, 209 lines]
-          - MobileDriveControlsController_Active (LocalScript) [script_0127, 200 lines, 13 attrs]
-          - RuntimeVFXController_Active (LocalScript) [script_0128, 16 lines, 9 attrs]
+          - CharacterSprintController_Active (LocalScript) [script_0138, 358 lines, 1 attrs]
+          - DriveHudController_Active (LocalScript) [script_0139, 3 lines, 7 attrs]
+          - FreeRoamParkedHoverController_Active (LocalScript) [script_0140, 211 lines, 1 attrs]
+          - MobileDriveControlsController_Active (LocalScript) [script_0141, 200 lines, 13 attrs]
+          - RuntimeVFXController_Active (LocalScript) [script_0142, 16 lines, 9 attrs]
         - UI (Folder)
           - FreeRoamHudPresentationMode (BindableEvent)
           - LoadingPresentationChanged (BindableEvent) [1 attrs]
@@ -4192,44 +4412,45 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
           - OpenRaceBrowser (BindableEvent)
           - LoadingTransitionInvoke (BindableFunction) [1 attrs]
           - LoadingPresentationState (Folder) [5 attrs]
-          - DesktopFreeRoamHudController_Active (LocalScript) [script_0129, 1165 lines, 4 attrs]
-          - FreeRoamNavController_Active (LocalScript) [script_0130, 3 lines, 3 attrs]
-          - FreeRoamVehicleExitButton_Active (LocalScript) [script_0131, 3 lines]
-          - GarageExperienceController_Active (LocalScript) [script_0132, Disabled, 206 lines, 3 attrs]
-          - LoadingTransitionController_Active (LocalScript) [script_0133, 16 lines, 1 attrs]
-          - MobileFreeRoamHudController_Active (LocalScript) [script_0134, 348 lines, 4 attrs]
-          - OwnedGarageClient_Active (LocalScript) [script_0135, 8 lines, 2 attrs]
-          - CockpitPaintUIController (ModuleScript) [script_0136, 46 lines, 5 attrs]
-          - ColourPickerController (ModuleScript) [script_0137, 277 lines, 5 attrs]
-          - CustomisationUIController (ModuleScript) [script_0138, 127 lines, 5 attrs]
-          - DealershipUIController (ModuleScript) [script_0139, 87 lines, 5 attrs]
-          - GarageBrowserController (ModuleScript) [script_0140, 133 lines]
-          - GarageInteriorModeController (ModuleScript) [script_0141, 57 lines, 3 attrs]
-          - GarageInteriorTransitionController (ModuleScript) [script_0142, 14 lines, 3 attrs]
-          - GarageModuleCardViewModel (ModuleScript) [script_0143, 61 lines]
-          - GaragePropertyMenuController (ModuleScript) [script_0144, 174 lines, 2 attrs]
-          - GarageReplacementComponents (ModuleScript) [script_0145, 290 lines, 2 attrs]
-          - GarageWorkspaceController (ModuleScript) [script_0146, 276 lines, 2 attrs]
-          - ModuleShopUIController (ModuleScript) [script_0147, 290 lines, 5 attrs]
-          - NavigationController (ModuleScript) [script_0148, 49 lines, 5 attrs]
-          - OwnedGarageBrowserController (ModuleScript) [script_0149, 89 lines, 2 attrs]
-          - OwnedGarageWorkspaceController (ModuleScript) [script_0150, 142 lines, 2 attrs]
-          - StatsPanelController (ModuleScript) [script_0151, 51 lines, 5 attrs]
+          - DesktopFreeRoamHudController_Active (LocalScript) [script_0143, 1165 lines, 4 attrs]
+          - FreeRoamNavController_Active (LocalScript) [script_0144, 3 lines, 3 attrs]
+          - FreeRoamVehicleExitButton_Active (LocalScript) [script_0145, 3 lines]
+          - GarageExperienceController_Active (LocalScript) [script_0146, Disabled, 206 lines, 3 attrs]
+          - LoadingTransitionController_Active (LocalScript) [script_0147, 16 lines, 1 attrs]
+          - MobileFreeRoamHudController_Active (LocalScript) [script_0148, 348 lines, 4 attrs]
+          - OwnedGarageClient_Active (LocalScript) [script_0149, 8 lines, 2 attrs]
+          - CockpitPaintUIController (ModuleScript) [script_0150, 46 lines, 5 attrs]
+          - ColourPickerController (ModuleScript) [script_0151, 277 lines, 5 attrs]
+          - CustomisationUIController (ModuleScript) [script_0152, 127 lines, 5 attrs]
+          - DealershipUIController (ModuleScript) [script_0153, 87 lines, 5 attrs]
+          - GarageBrowserController (ModuleScript) [script_0154, 133 lines]
+          - GarageInteriorModeController (ModuleScript) [script_0155, 62 lines, 7 attrs]
+          - GarageInteriorTransitionController (ModuleScript) [script_0156, 14 lines, 3 attrs]
+          - GarageModuleCardViewModel (ModuleScript) [script_0157, 61 lines]
+          - GaragePropertyMenuController (ModuleScript) [script_0158, 174 lines, 2 attrs]
+          - GarageReplacementComponents (ModuleScript) [script_0159, 291 lines, 4 attrs]
+          - GarageWorkspaceController (ModuleScript) [script_0160, 283 lines, 6 attrs]
+          - ModuleShopUIController (ModuleScript) [script_0161, 671 lines, 8 attrs]
+          - NavigationController (ModuleScript) [script_0162, 49 lines, 5 attrs]
+          - OwnedGarageBrowserController (ModuleScript) [script_0163, 106 lines, 6 attrs]
+          - OwnedGarageWorkspaceController (ModuleScript) [script_0164, 200 lines, 10 attrs]
+          - StatsPanelController (ModuleScript) [script_0165, 51 lines, 5 attrs]
           - README_TargetControllers (StringValue)
         - World (Folder)
-          - GarageAccessClient_Active (LocalScript) [script_0152, Disabled, 279 lines, 4 attrs]
-          - GarageInteriorClient_Active (LocalScript) [script_0153, Disabled, 92 lines, 5 attrs]
-          - GarageInteriorCustomizationClient_Active (LocalScript) [script_0154, Disabled, 273 lines, 4 attrs]
-          - LODClient_Active (LocalScript) [script_0155, 365 lines, 12 attrs]
-          - NightLamppostLightController_Active (LocalScript) [script_0156, 21 lines, 2 attrs]
-          - WindowMaterialController_Active (LocalScript) [script_0157, 28 lines, 2 attrs]
+          - GarageAccessClient_Active (LocalScript) [script_0166, Disabled, 279 lines, 4 attrs]
+          - GarageInteriorClient_Active (LocalScript) [script_0167, Disabled, 92 lines, 5 attrs]
+          - GarageInteriorCustomizationClient_Active (LocalScript) [script_0168, Disabled, 273 lines, 4 attrs]
+          - LODClient_Active (LocalScript) [script_0169, 365 lines, 12 attrs]
+          - NightLamppostLightController_Active (LocalScript) [script_0170, 21 lines, 2 attrs]
+          - OwnedGarageEnvironmentLightingController_Active (LocalScript) [script_0171, 150 lines, 2 attrs]
+          - WindowMaterialController_Active (LocalScript) [script_0172, 28 lines, 2 attrs]
       - RuntimeState (Folder)
       - State (Folder)
-      - NeoTokyoRacersClient_Bootstrap_Shadow_Disabled (LocalScript) [script_0158, 4226 lines, 64 attrs]
-    - LocalScript (LocalScript) [script_0159, 203 lines]
-    - TEMP_LightingPreview (LocalScript) [script_0160, 39 lines, 2 attrs]
-    - TrailerMode.client.lua (LocalScript) [script_0161, 73 lines]
-    - TrailerShot01Camera (LocalScript) [script_0162, 92 lines]
+      - NeoTokyoRacersClient_Bootstrap_Shadow_Disabled (LocalScript) [script_0173, 4226 lines, 64 attrs]
+    - LocalScript (LocalScript) [script_0174, 203 lines]
+    - TEMP_LightingPreview (LocalScript) [script_0175, 39 lines, 2 attrs]
+    - TrailerMode.client.lua (LocalScript) [script_0176, 73 lines]
+    - TrailerShot01Camera (LocalScript) [script_0177, 92 lines]
 - StarterGui (StarterGui)
   - NeoTokyoRacersUI (ScreenGui) [2 attrs]
     - Components (Folder) [1 attrs]
@@ -4253,14 +4474,59 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
       - Cards (Folder)
       - Panels (Folder)
     - Theme (Folder) [1 attrs]
+- SoundService (SoundService)
+  - NTR_Ambience (SoundGroup)
+    - NTR_ContextAmbienceReverb (ReverbSoundEffect) [1 attrs]
+  - NTR_GameplayMusic (SoundGroup)
+  - NTR_GameplaySFX (SoundGroup)
+  - NTR_LoadingMusic (SoundGroup)
+  - NTR_UI (SoundGroup)
+  - NTR_Vehicle (SoundGroup)
 - Workspace (Workspace)
   - Camera (Camera)
-  - r1c1 (Decal)
-  - r1c2 (Decal)
-  - r1c3 (Decal)
-  - r2c1 (Decal)
-  - r2c2 (Decal)
-  - r2c3 (Decal)
+  - Max Testing (Folder)
+    - Bush Large (Model)
+      - leaves bush large (MeshPart)
+        - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+      - Bush Large Walls Main (UnionOperation)
+    - Tree Large Maple (Model)
+      - Tree_Large_Maple_LOD3 (Model)
+        - LeavesMapleBottom1 (MeshPart)
+          - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+        - LeavesMapleShadow2 (MeshPart)
+          - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+        - TrunkLargeMaple1 (MeshPart)
+          - SurfaceAppearance Trunk (SurfaceAppearance)
+      - Tree Base Concrete (UnionOperation)
+    - Tree Large Poplar Group (Model)
+      - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
+        - Leaves_Large_Poplar (MeshPart)
+          - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+        - Trunk_Large_Poplar (MeshPart)
+          - SurfaceAppearance Trunk (SurfaceAppearance)
+      - Tree Base Concrete (UnionOperation)
+    - Tree_Small_Bamboo_LOD3 (Model)
+      - leaves small bamboo (MeshPart)
+        - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
+      - trunk small bamboo (MeshPart)
+        - SurfaceAppearance Trunk (SurfaceAppearance)
+      - Tree Base Concrete (UnionOperation)
+    - path bush group B (Model)
+      - bush long (MeshPart)
+        - SurfaceAppearance (SurfaceAppearance)
+      - bush long (MeshPart)
+        - SurfaceAppearance (SurfaceAppearance)
+      - bush walls (UnionOperation)
+      - bush walls detail (UnionOperation)
+    - Part (Part)
+    - Wall (Part)
+    - Wall (Part)
+    - Wall (Part)
+    - Wall (Part)
+    - Wall (Part)
+    - Wall (Part)
+    - Window (Part)
+    - Window (Part)
   - NeoTokyoRacersWorld (Folder) [3 attrs]
     - City (Folder) [3 attrs]
       - Block S1 (Folder)
@@ -4962,8 +5228,8 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                     - Road Marking White (Part)
                     - Road Marking White (Part)
                     - Road Marking White (Part)
-                    - Road Marking White (Part)
                   - Road Marking Dashed Line (Model)
+                    - Road Marking White (Part)
                     - Road Marking White (Part)
                     - Road Marking White (Part)
                     - Road Marking White (Part)
@@ -5867,6 +6133,18 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                     - BillboardPanel (Part)
                       - FrontSurfaceGui (SurfaceGui)
                         - JapaneseBrandText (TextLabel)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
                 - TKY_JP_TEXT_BB_02_HikariYa_LightShop_3X2_H (Model) [11 attrs]
                   - BillboardPanel (Part)
                     - FrontSurfaceGui (SurfaceGui)
@@ -6071,15 +6349,23 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - Street Lamp Tall A (Model)
                     - lamppost main (MeshPart)
                     - lamppost neon (MeshPart)
-                      - SurfaceLight lamppost (SurfaceLight)
-                  - Street Lamp Tall A (Model)
-                    - lamppost main (MeshPart)
-                    - lamppost neon (MeshPart)
-                      - SurfaceLight lamppost (SurfaceLight)
-                  - Street Lamp Tall A (Model)
-                    - lamppost main (MeshPart)
-                    - lamppost neon (MeshPart)
                       - SurfaceLight lamppost (SurfaceLight) [1 attrs]
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
                   - Street Lamp Tall A (Model)
                     - lamppost main (MeshPart)
                     - lamppost neon (MeshPart)
@@ -6092,39 +6378,31 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - Street Lamp Tall A (Model)
                     - lamppost main (MeshPart)
                     - lamppost neon (MeshPart)
-                      - SurfaceLight lamppost (SurfaceLight)
-                  - Street Lamp Tall A (Model)
-                    - lamppost main (MeshPart)
-                    - lamppost neon (MeshPart)
-                      - SurfaceLight lamppost (SurfaceLight)
-                  - Street Lamp Tall A (Model)
-                    - lamppost main (MeshPart)
-                    - lamppost neon (MeshPart)
-                      - SurfaceLight lamppost (SurfaceLight)
-                  - Street Lamp Tall A (Model)
-                    - lamppost main (MeshPart)
-                    - lamppost neon (MeshPart)
-                      - SurfaceLight lamppost (SurfaceLight)
-                  - Street Lamp Tall A (Model)
-                    - lamppost main (MeshPart)
-                    - lamppost neon (MeshPart)
-                      - SurfaceLight lamppost (SurfaceLight)
-                  - Street Lamp Tall A (Model)
-                    - lamppost main (MeshPart)
-                    - lamppost neon (MeshPart)
-                      - SurfaceLight lamppost (SurfaceLight)
-                  - Street Lamp Tall A (Model)
-                    - lamppost main (MeshPart)
-                    - lamppost neon (MeshPart)
-                      - SurfaceLight lamppost (SurfaceLight)
-                  - Street Lamp Tall A (Model)
-                    - lamppost main (MeshPart)
-                    - lamppost neon (MeshPart)
-                      - SurfaceLight lamppost (SurfaceLight)
-                  - Street Lamp Tall A (Model)
-                    - lamppost main (MeshPart)
-                    - lamppost neon (MeshPart)
                       - SurfaceLight lamppost (SurfaceLight) [1 attrs]
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
+                  - Street Lamp Tall A (Model)
+                    - lamppost main (MeshPart)
+                    - lamppost neon (MeshPart)
+                      - SurfaceLight lamppost (SurfaceLight)
                 - Street Lights Group Left (Model)
                   - Street Lamp Tall A (Model)
                     - lamppost main (MeshPart)
@@ -6339,6 +6617,24 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                     - bush walls (UnionOperation)
                     - bush walls detail (UnionOperation)
                 - Trees Back (Model)
+                  - Tree Large Maple (Model)
+                    - Tree_Large_Maple_LOD3 (Model)
+                      - LeavesMapleBottom1 (MeshPart)
+                        - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                      - LeavesMapleShadow2 (MeshPart)
+                        - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                      - TrunkLargeMaple1 (MeshPart)
+                        - SurfaceAppearance Trunk (SurfaceAppearance)
+                    - Tree Base Concrete (UnionOperation)
+                  - Tree Large Maple (Model)
+                    - Tree_Large_Maple_LOD3 (Model)
+                      - LeavesMapleBottom1 (MeshPart)
+                        - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                      - LeavesMapleShadow2 (MeshPart)
+                        - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                      - TrunkLargeMaple1 (MeshPart)
+                        - SurfaceAppearance Trunk (SurfaceAppearance)
+                    - Tree Base Concrete (UnionOperation)
                   - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
                     - Leaves_Large_Poplar (MeshPart)
                       - SurfaceAppearance Leaves Maple (SurfaceAppearance)
@@ -6375,24 +6671,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                     - Trunk_Large_Poplar (MeshPart)
                       - SurfaceAppearance Trunk (SurfaceAppearance)
                 - Trees Back (Model)
-                  - Tree Large Maple (Model)
-                    - Tree_Large_Maple_LOD3 (Model)
-                      - LeavesMapleBottom1 (MeshPart)
-                        - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                      - LeavesMapleShadow2 (MeshPart)
-                        - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                      - TrunkLargeMaple1 (MeshPart)
-                        - SurfaceAppearance Trunk (SurfaceAppearance)
-                    - Tree Base Concrete (UnionOperation)
-                  - Tree Large Maple (Model)
-                    - Tree_Large_Maple_LOD3 (Model)
-                      - LeavesMapleBottom1 (MeshPart)
-                        - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                      - LeavesMapleShadow2 (MeshPart)
-                        - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                      - TrunkLargeMaple1 (MeshPart)
-                        - SurfaceAppearance Trunk (SurfaceAppearance)
-                    - Tree Base Concrete (UnionOperation)
                   - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
                     - Leaves_Large_Poplar (MeshPart)
                       - SurfaceAppearance Leaves Maple (SurfaceAppearance)
@@ -6606,10 +6884,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                     - SurfaceAppearance (SurfaceAppearance)
                   - bush long (MeshPart)
                     - SurfaceAppearance (SurfaceAppearance)
-                  - bush long (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
-                  - bush long (MeshPart)
-                    - SurfaceAppearance (SurfaceAppearance)
                   - Road Central Divider (Part)
                   - Road Central Divider Circle (Part)
                   - Road Central Divider Circle (Part)
@@ -6702,6 +6976,10 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - Road Central Divider Circle (Part)
                   - Road Central Divider Circle (Part)
                 - Road Central Divider (Model)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
                   - bush long (MeshPart)
                     - SurfaceAppearance (SurfaceAppearance)
                   - bush long (MeshPart)
@@ -6805,6 +7083,22 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                     - BillboardPanel (Part)
                       - FrontSurfaceGui (SurfaceGui)
                         - AtlasImageLabel (ImageLabel)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
+                  - neon (Part)
                 - Block_S1_R4_B4 Building B (Model)
                   - beams detail (MeshPart)
                   - beams detail support bottom (MeshPart)
@@ -7458,38 +7752,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                         - Battery (Model)
                           - Battery (MeshPart)
                             - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-                        - Battery (Model)
-                          - Battery (MeshPart)
-                            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-                        - Battery (Model)
-                          - Battery (MeshPart)
-                            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-                        - Gascan (Model)
-                          - Gascan (MeshPart)
-                            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-                        - Gascan (Model)
-                          - Gascan (MeshPart)
-                            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-                        - Shelf.001 (Model)
-                          - Shelf (MeshPart)
-                            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-                        - Shelf.001 (Model)
-                          - Shelf (MeshPart)
-                            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-                      - shelves group (Model)
-                        - Battery (Model)
-                          - Battery (MeshPart)
-                            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-                        - Gascan (Model)
-                          - Gascan (MeshPart)
-                            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-                        - Shelf.001 (Model)
-                          - Shelf (MeshPart)
-                            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-                      - shelves group (Model)
-                        - Battery (Model)
-                          - Battery (MeshPart)
-                            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
                         - Gascan (Model)
                           - Gascan (MeshPart)
                             - SA_Racing_Metal_Trim_a (SurfaceAppearance)
@@ -7536,6 +7798,38 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                             - SA_Racing_Metal_Trim_a (SurfaceAppearance)
                         - Shelf.001 (Model)
                           - Shelf (MeshPart)
+                            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                        - Shelf.001 (Model)
+                          - Shelf (MeshPart)
+                            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                      - shelves group (Model)
+                        - Battery (Model)
+                          - Battery (MeshPart)
+                            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                        - Battery (Model)
+                          - Battery (MeshPart)
+                            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                        - Battery (Model)
+                          - Battery (MeshPart)
+                            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                        - Gascan (Model)
+                          - Gascan (MeshPart)
+                            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                        - Gascan (Model)
+                          - Gascan (MeshPart)
+                            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                        - Shelf.001 (Model)
+                          - Shelf (MeshPart)
+                            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                        - Shelf.001 (Model)
+                          - Shelf (MeshPart)
+                            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                      - shelves group (Model)
+                        - Battery (Model)
+                          - Battery (MeshPart)
+                            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                        - Gascan (Model)
+                          - Gascan (MeshPart)
                             - SA_Racing_Metal_Trim_a (SurfaceAppearance)
                         - Shelf.001 (Model)
                           - Shelf (MeshPart)
@@ -8061,7 +8355,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                         - Locker_B (MeshPart)
                           - SA_Racing_Metal_Trim_a (SurfaceAppearance)
                       - Locker_B (Model)
-                      - Locker_B (Model)
                         - Locker_B (MeshPart)
                           - SA_Racing_Metal_Trim_a (SurfaceAppearance)
                       - Locker_B (Model)
@@ -8070,6 +8363,7 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                       - Locker_B (Model)
                         - Locker_B (MeshPart)
                           - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                      - Locker_B (Model)
                       - Locker_B (Model)
                         - Locker_B (MeshPart)
                           - SA_Racing_Metal_Trim_a (SurfaceAppearance)
@@ -8924,6 +9218,22 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
               - Roads (Folder)
             - LOD3 (Folder)
               - Buildings (Folder)
+                - collisions interior walls (Model)
+                  - collisions interior walls (Part)
+                  - collisions interior walls (Part)
+                  - collisions interior walls (Part)
+                  - collisions interior walls (Part)
+                  - collisions interior walls (Part)
+                  - collisions interior walls (Part)
+                  - collisions interior walls (Part)
+                  - collisions interior walls (Part)
+                  - collisions interior walls (Part)
+                  - collisions interior walls (Part)
+                  - collisions interior walls (Part)
+                  - collisions interior walls (Part)
+                  - collisions interior walls (Part)
+                  - collisions interior walls (Part)
+                  - collisions interior walls (Part)
               - Foliage (Folder)
                 - Trees side b (Model)
                   - Tree_Large_Maple_LOD3 (Model)
@@ -9134,30 +9444,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                         - trunk small bamboo (MeshPart)
                           - SurfaceAppearance Trunk (SurfaceAppearance)
                       - Tree Base Concrete (UnionOperation)
-                  - bamboo (Model)
-                    - Tree Small Bamboo Group (Model)
-                      - Tree_Small_Bamboo_LOD3 (Model)
-                        - leaves small bamboo (MeshPart)
-                          - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
-                        - trunk small bamboo (MeshPart)
-                          - SurfaceAppearance Trunk (SurfaceAppearance)
-                      - Tree Base Concrete (UnionOperation)
-                  - bamboo (Model)
-                    - Tree Small Bamboo Group (Model)
-                      - Tree_Small_Bamboo_LOD3 (Model)
-                        - leaves small bamboo (MeshPart)
-                          - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
-                        - trunk small bamboo (MeshPart)
-                          - SurfaceAppearance Trunk (SurfaceAppearance)
-                      - Tree Base Concrete (UnionOperation)
-                  - bamboo (Model)
-                    - Tree Small Bamboo Group (Model)
-                      - Tree_Small_Bamboo_LOD3 (Model)
-                        - leaves small bamboo (MeshPart)
-                          - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
-                        - trunk small bamboo (MeshPart)
-                          - SurfaceAppearance Trunk (SurfaceAppearance)
-                      - Tree Base Concrete (UnionOperation)
                 - bamboo group a (Model)
                   - bamboo (Model)
                     - Tree Small Bamboo Group (Model)
@@ -9215,7 +9501,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                         - trunk small bamboo (MeshPart)
                           - SurfaceAppearance Trunk (SurfaceAppearance)
                       - Tree Base Concrete (UnionOperation)
-                - bamboo group a (Model)
                   - bamboo (Model)
                     - Tree Small Bamboo Group (Model)
                       - Tree_Small_Bamboo_LOD3 (Model)
@@ -9224,6 +9509,31 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                         - trunk small bamboo (MeshPart)
                           - SurfaceAppearance Trunk (SurfaceAppearance)
                       - Tree Base Concrete (UnionOperation)
+                  - bamboo (Model)
+                    - Tree Small Bamboo Group (Model)
+                      - Tree_Small_Bamboo_LOD3 (Model)
+                        - leaves small bamboo (MeshPart)
+                          - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
+                        - trunk small bamboo (MeshPart)
+                          - SurfaceAppearance Trunk (SurfaceAppearance)
+                      - Tree Base Concrete (UnionOperation)
+                  - bamboo (Model)
+                    - Tree Small Bamboo Group (Model)
+                      - Tree_Small_Bamboo_LOD3 (Model)
+                        - leaves small bamboo (MeshPart)
+                          - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
+                        - trunk small bamboo (MeshPart)
+                          - SurfaceAppearance Trunk (SurfaceAppearance)
+                      - Tree Base Concrete (UnionOperation)
+                  - bamboo (Model)
+                    - Tree Small Bamboo Group (Model)
+                      - Tree_Small_Bamboo_LOD3 (Model)
+                        - leaves small bamboo (MeshPart)
+                          - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
+                        - trunk small bamboo (MeshPart)
+                          - SurfaceAppearance Trunk (SurfaceAppearance)
+                      - Tree Base Concrete (UnionOperation)
+                - bamboo group a (Model)
                   - bamboo (Model)
                     - Tree Small Bamboo Group (Model)
                       - Tree_Small_Bamboo_LOD3 (Model)
@@ -9868,9 +10178,9 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - Garage Sign (Model)
                     - Garage Sign (Part)
                     - Garage Sign (Part)
-                    - Garage Sign (Part)
                       - SurfaceGui (SurfaceGui)
                         - TextLabel (TextLabel)
+                    - Garage Sign (Part)
                     - Garage Sign (Part)
                     - Garage Sign Clearance (Part)
                       - SurfaceGui (SurfaceGui)
@@ -10159,12 +10469,12 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                         - JapaneseBrandText (TextLabel)
                   - TKY_JP_TEXT_BB_11_GinClock_SilverClock_3X2_H (Model) [11 attrs]
                     - BillboardPanel (Part)
-                    - BillboardPanel (Part)
-                    - BillboardPanel (Part)
                       - FrontSurfaceGui (SurfaceGui)
                         - EnglishBrandText (TextLabel)
                           - UITextSizeConstraint (UITextSizeConstraint)
                         - JapaneseBrandText (TextLabel)
+                    - BillboardPanel (Part)
+                    - BillboardPanel (Part)
                     - BillboardPanel (Part)
                   - TKY_JP_TEXT_BB_12_NijiCamera_RainbowCamera_2X1_H (Model) [11 attrs]
                     - BillboardPanel (Part)
@@ -10928,17 +11238,17 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - TKY_JP_TEXT_BB_14_KazeHotel_WindHotel_2X1_H (Model) [11 attrs]
                     - BillboardPanel (Part)
                       - FrontSurfaceGui (SurfaceGui)
-                        - EnglishBrandText (TextLabel)
-                          - UITextSizeConstraint (UITextSizeConstraint)
-                  - TKY_JP_TEXT_BB_14_KazeHotel_WindHotel_2X1_H (Model) [11 attrs]
-                    - BillboardPanel (Part)
-                      - FrontSurfaceGui (SurfaceGui)
-                        - EnglishBrandText (TextLabel)
-                          - UITextSizeConstraint (UITextSizeConstraint)
                         - JapaneseBrandText (TextLabel)
                   - TKY_JP_TEXT_BB_14_KazeHotel_WindHotel_2X1_H (Model) [11 attrs]
                     - BillboardPanel (Part)
                       - FrontSurfaceGui (SurfaceGui)
+                        - EnglishBrandText (TextLabel)
+                          - UITextSizeConstraint (UITextSizeConstraint)
+                  - TKY_JP_TEXT_BB_14_KazeHotel_WindHotel_2X1_H (Model) [11 attrs]
+                    - BillboardPanel (Part)
+                      - FrontSurfaceGui (SurfaceGui)
+                        - EnglishBrandText (TextLabel)
+                          - UITextSizeConstraint (UITextSizeConstraint)
                         - JapaneseBrandText (TextLabel)
               - Foliage (Folder)
               - Paths (Folder)
@@ -11521,27 +11831,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                     - SurfaceLight lamppost (SurfaceLight)
                   - neon lights interior (Part)
                     - SurfaceLight lamppost (SurfaceLight)
-                  - neon lights interior (Part)
-                    - SurfaceLight lamppost (SurfaceLight)
-                  - neon lights interior (Part)
-                    - SurfaceLight lamppost (SurfaceLight)
-                  - neon lights interior (Part)
-                    - SurfaceLight lamppost (SurfaceLight)
-                  - neon lights interior (Part)
-                    - SurfaceLight lamppost (SurfaceLight)
-                  - neon lights interior (Part)
-                    - SurfaceLight lamppost (SurfaceLight)
-                  - neon lights interior (Part)
-                    - SurfaceLight lamppost (SurfaceLight)
-                  - neon lights interior (Part)
-                    - SurfaceLight lamppost (SurfaceLight)
-                  - neon lights interior (Part)
-                    - SurfaceLight lamppost (SurfaceLight)
-                  - neon lights interior (Part)
-                    - SurfaceLight lamppost (SurfaceLight)
-                  - lights top frame (UnionOperation)
-                  - lights top frame (UnionOperation)
-                  - lights top frame (UnionOperation)
                 - 3f lights interior (Model)
                   - neon lights interior (Part)
                     - SurfaceLight lamppost (SurfaceLight)
@@ -11551,6 +11840,27 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                     - SurfaceLight lamppost (SurfaceLight)
                   - neon lights interior (Part)
                     - SurfaceLight lamppost (SurfaceLight)
+                  - neon lights interior (Part)
+                    - SurfaceLight lamppost (SurfaceLight)
+                  - neon lights interior (Part)
+                    - SurfaceLight lamppost (SurfaceLight)
+                  - neon lights interior (Part)
+                    - SurfaceLight lamppost (SurfaceLight)
+                  - neon lights interior (Part)
+                    - SurfaceLight lamppost (SurfaceLight)
+                  - neon lights interior (Part)
+                    - SurfaceLight lamppost (SurfaceLight)
+                  - neon lights interior (Part)
+                    - SurfaceLight lamppost (SurfaceLight)
+                  - neon lights interior (Part)
+                    - SurfaceLight lamppost (SurfaceLight)
+                  - neon lights interior (Part)
+                    - SurfaceLight lamppost (SurfaceLight)
+                  - neon lights interior (Part)
+                    - SurfaceLight lamppost (SurfaceLight)
+                  - lights top frame (UnionOperation)
+                  - lights top frame (UnionOperation)
+                  - lights top frame (UnionOperation)
               - Foliage (Folder)
               - Paths (Folder)
               - Props (Folder)
@@ -11999,7 +12309,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                         - SurfaceAppearance Leaves Maple (SurfaceAppearance)
                       - TrunkLargeMaple1 (MeshPart)
                         - SurfaceAppearance Trunk (SurfaceAppearance)
-                    - Tree Base Concrete (UnionOperation)
                   - Tree Large Maple (Model)
                     - Tree_Large_Maple_LOD3 (Model)
                       - LeavesMapleBottom1 (MeshPart)
@@ -12026,6 +12335,7 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                         - SurfaceAppearance Leaves Maple (SurfaceAppearance)
                       - TrunkLargeMaple1 (MeshPart)
                         - SurfaceAppearance Trunk (SurfaceAppearance)
+                    - Tree Base Concrete (UnionOperation)
                   - Tree_Small_Bamboo_LOD3 (Model)
                     - leaves small bamboo (MeshPart)
                       - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
@@ -12989,16 +13299,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
             - SurfaceAppearance Leaves Maple (SurfaceAppearance)
           - leaves bush large (MeshPart)
             - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-          - leaves bush large (MeshPart)
-            - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-          - leaves bush large (MeshPart)
-            - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-          - leaves bush large (MeshPart)
-            - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-          - leaves bush large (MeshPart)
-            - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-          - leaves bush large (MeshPart)
-            - SurfaceAppearance Leaves Maple (SurfaceAppearance)
           - Road Central Divider Detail (Part)
           - Road Central Divider Detail (Part)
           - Road Central Divider Detail (Part)
@@ -13009,6 +13309,16 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
           - Road Central Divider Main (Part)
           - Road Central Divider Main (Part)
         - Road Central Divider (Model)
+          - leaves bush large (MeshPart)
+            - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+          - leaves bush large (MeshPart)
+            - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+          - leaves bush large (MeshPart)
+            - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+          - leaves bush large (MeshPart)
+            - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+          - leaves bush large (MeshPart)
+            - SurfaceAppearance Leaves Maple (SurfaceAppearance)
           - leaves bush large (MeshPart)
             - SurfaceAppearance Leaves Maple (SurfaceAppearance)
           - leaves bush large (MeshPart)
@@ -15415,13 +15725,20 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
       - GaragePreviewPad_CurrentLive (ObjectValue) [4 attrs]
       - GaragePreviewPad (Part) [1 attrs]
       - VehicleSpawnPoint (Part) [1 attrs]
-    - Interactives (Folder)
-      - GarageInteriorElevatorMVP (Part) [2 attrs]
-        - EnterPrivateGaragePrompt (ProximityPrompt) [4 attrs]
     - Interiors (Folder)
       - GarageInstances (Folder) [3 attrs]
     - OwnedGarageExteriors (Folder)
       - STARTER_TWO_BAY (Folder)
+        - DriveInEntrance (Part) [3 attrs]
+          - vfx_aura (Part)
+            - Attachment (Attachment)
+              - ParticleEmitter (ParticleEmitter)
+          - vfx_aura (Part)
+            - Attachment (Attachment)
+              - ParticleEmitter (ParticleEmitter)
+          - OwnedGarageDriveInEntryPrompt (ProximityPrompt) [3 attrs]
+        - FootEntrance (Part) [3 attrs]
+          - OwnedGarageFootEntryPrompt (ProximityPrompt) [3 attrs]
         - FootExitSpawn (Part) [2 attrs]
         - VehicleExitSpawn (Part) [2 attrs]
     - RaceInstances (Folder)
@@ -15529,22 +15846,22 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                 - SurfaceAppearance (SurfaceAppearance)
               - Race Arrows Flipped (MeshPart)
                 - SurfaceAppearance (SurfaceAppearance)
-            - race arrows group flipped (Model)
-              - Race Arrows Flipped (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows Flipped (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows Flipped (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows Flipped (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows Flipped (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
               - Race Arrows Flipped (MeshPart)
                 - SurfaceAppearance (SurfaceAppearance)
             - race arrows group flipped (Model)
               - Race Arrows Flipped (MeshPart)
                 - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows Flipped (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows Flipped (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows Flipped (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows Flipped (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows Flipped (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+            - race arrows group flipped (Model)
               - Race Arrows Flipped (MeshPart)
                 - SurfaceAppearance (SurfaceAppearance)
               - Race Arrows Flipped (MeshPart)
@@ -15673,6 +15990,22 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                 - SurfaceAppearance (SurfaceAppearance)
               - Race Arrows Flipped (MeshPart)
                 - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows Flipped (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows Flipped (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows Flipped (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows Flipped (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows Flipped (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows Flipped (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows Flipped (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows Flipped (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
             - race arrows group flipped (Model)
               - Race Arrows Flipped (MeshPart)
                 - SurfaceAppearance (SurfaceAppearance)
@@ -15703,22 +16036,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
               - Race Arrows Flipped (MeshPart)
                 - SurfaceAppearance (SurfaceAppearance)
             - race arrows group flipped (Model)
-              - Race Arrows Flipped (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows Flipped (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows Flipped (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows Flipped (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows Flipped (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows Flipped (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows Flipped (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows Flipped (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
               - Race Arrows Flipped (MeshPart)
                 - SurfaceAppearance (SurfaceAppearance)
               - Race Arrows Flipped (MeshPart)
@@ -15745,36 +16062,8 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                 - SurfaceAppearance (SurfaceAppearance)
               - Race Arrows (MeshPart)
                 - SurfaceAppearance (SurfaceAppearance)
-            - race arrows group (Model)
               - Race Arrows (MeshPart)
                 - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-            - race arrows group (Model)
               - Race Arrows (MeshPart)
                 - SurfaceAppearance (SurfaceAppearance)
               - Race Arrows (MeshPart)
@@ -15792,6 +16081,34 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
             - race arrows group (Model)
               - Race Arrows (MeshPart)
                 - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+            - race arrows group (Model)
+              - Race Arrows (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+            - race arrows group (Model)
               - Race Arrows (MeshPart)
                 - SurfaceAppearance (SurfaceAppearance)
               - Race Arrows (MeshPart)
@@ -15825,19 +16142,19 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                 - SurfaceAppearance (SurfaceAppearance)
               - Race Arrows (MeshPart)
                 - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+              - Race Arrows (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
             - race arrows group (Model)
-              - Race Arrows (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
-              - Race Arrows (MeshPart)
-                - SurfaceAppearance (SurfaceAppearance)
               - Race Arrows (MeshPart)
                 - SurfaceAppearance (SurfaceAppearance)
               - Race Arrows (MeshPart)
@@ -18107,52 +18424,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
               - Road (Part)
               - Road (Part)
               - Road (Part)
-              - RoadFillW (Part)
-              - RoadFillW (Part)
-              - RoadFillW (Part)
-              - RoadFillW (Part)
-              - RoadFillW (Part)
-              - RoadFillW (Part)
-            - Model (Model)
-              - Road (Part)
-              - Road (Part)
-              - Road (Part)
-              - Road (Part)
-              - RoadFillW (Part)
-              - RoadFillW (Part)
-              - RoadFillW (Part)
-              - RoadFillW (Part)
-              - RoadFillW (Part)
-              - RoadFillW (Part)
-            - Model (Model)
-              - Road (Part)
-              - Road (Part)
-              - Road (Part)
-              - Road (Part)
-              - Road (Part)
-              - RoadFillW (Part)
-              - RoadFillW (Part)
-              - RoadFillW (Part)
-              - RoadFillW (Part)
-              - RoadFillW (Part)
-              - RoadFillW (Part)
-            - Model (Model)
-              - Road (Part)
-              - Road (Part)
-              - Road (Part)
-              - Road (Part)
-              - Road (Part)
-              - RoadFillW (Part)
-              - RoadFillW (Part)
-              - RoadFillW (Part)
-              - RoadFillW (Part)
-              - RoadFillW (Part)
-              - RoadFillW (Part)
-          - Model (Model)
-            - Model (Model)
-              - Road (Part)
-              - Road (Part)
-              - Road (Part)
               - Road (Part)
               - RoadFillW (Part)
               - RoadFillW (Part)
@@ -18188,6 +18459,52 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
               - Road (Part)
               - Road (Part)
               - Road (Part)
+              - RoadFillW (Part)
+              - RoadFillW (Part)
+              - RoadFillW (Part)
+              - RoadFillW (Part)
+              - RoadFillW (Part)
+              - RoadFillW (Part)
+          - Model (Model)
+            - Model (Model)
+              - Road (Part)
+              - Road (Part)
+              - Road (Part)
+              - Road (Part)
+              - Road (Part)
+              - RoadFillW (Part)
+              - RoadFillW (Part)
+              - RoadFillW (Part)
+              - RoadFillW (Part)
+              - RoadFillW (Part)
+              - RoadFillW (Part)
+            - Model (Model)
+              - Road (Part)
+              - Road (Part)
+              - Road (Part)
+              - Road (Part)
+              - Road (Part)
+              - RoadFillW (Part)
+              - RoadFillW (Part)
+              - RoadFillW (Part)
+              - RoadFillW (Part)
+              - RoadFillW (Part)
+              - RoadFillW (Part)
+            - Model (Model)
+              - Road (Part)
+              - Road (Part)
+              - Road (Part)
+              - Road (Part)
+              - RoadFillW (Part)
+              - RoadFillW (Part)
+              - RoadFillW (Part)
+              - RoadFillW (Part)
+              - RoadFillW (Part)
+              - RoadFillW (Part)
+            - Model (Model)
+              - Road (Part)
+              - Road (Part)
+              - Road (Part)
               - Road (Part)
               - RoadFillW (Part)
               - RoadFillW (Part)
@@ -18300,71 +18617,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
           - RoadFillW (Part)
           - RoadFillW (Part)
           - RoadFillW (Part)
-        - Model (Model)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-        - Model (Model)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-          - Model (Model)
-            - Road (Part)
-        - Model (Model)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
-          - Road (Part)
         - Model (Model)
           - Model (Model)
             - Road (Part)
@@ -18406,6 +18658,72 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
             - Road (Part)
         - Model (Model)
           - Roundabout (Part)
+          - Roundabout (Part)
+        - Model (Model)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+        - Model (Model)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+          - Road (Part)
+        - Model (Model)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
+          - Model (Model)
+            - Road (Part)
         - circle building (Model)
           - circle building (Model)
             - Part (Part)
@@ -18440,18 +18758,18 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
             - Road (Part)
             - Road (Part)
             - Road (Part)
+            - Road (Part)
+            - Road (Part)
+            - Road (Part)
+            - Road (Part)
+            - Road (Part)
+            - Road (Part)
+            - Road (Part)
+            - Road (Part)
+            - Road (Part)
+            - Road (Part)
+            - Road (Part)
           - columns (Model)
-            - Road (Part)
-            - Road (Part)
-            - Road (Part)
-            - Road (Part)
-            - Road (Part)
-            - Road (Part)
-            - Road (Part)
-            - Road (Part)
-            - Road (Part)
-            - Road (Part)
-            - Road (Part)
             - Road (Part)
             - Road (Part)
             - Road (Part)
@@ -19779,7 +20097,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
         - RoadFillW (Part)
         - RoadFillW (Part)
         - RoadFillW (Part)
-    - Folder (Folder)
     - Misc (Folder)
       - Block Angled (old) (Folder)
         - Paths (Folder)
@@ -19852,11 +20169,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
           - Plane.001 (MeshPart)
         - Road (Part)
       - Model (Model)
-        - Part (Part)
-        - Part (Part)
-        - Part (Part)
-        - Part (Part)
-      - Model (Model)
         - Humanoid (Humanoid)
         - Head (Part)
           - Mesh (SpecialMesh)
@@ -19865,6 +20177,11 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
         - Right Arm (Part)
         - Right Leg (Part)
         - Torso (Part)
+      - Model (Model)
+        - Part (Part)
+        - Part (Part)
+        - Part (Part)
+        - Part (Part)
       - Model (Model)
         - Part (Part)
         - Part (Part)
@@ -20668,9 +20985,9 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -20707,9 +21024,9 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
@@ -20790,9 +21107,9 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -22624,10 +22941,292 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+                - SurfaceGui (SurfaceGui)
+                  - TextLabel (TextLabel)
+              - Garage Sign Clearance (Part)
+                - SurfaceGui (SurfaceGui)
+                  - TextLabel (TextLabel)
+            - Garage Shutters (Part)
+            - Garage Shutters Bottom (Part)
+            - Garage Shutters Top (Part)
+            - Garage Walls (Part)
+            - Garage Walls (Part)
+            - Garage Walls Top (Part)
+          - Parking Garage right A (Model)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Sign (Model)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign Clearance (Part)
+                - SurfaceGui (SurfaceGui)
+                  - TextLabel (TextLabel)
+            - Garage Shutters (Part)
+            - Garage Shutters Bottom (Part)
+            - Garage Shutters Top (Part)
+            - Garage Walls (Part)
+            - Garage Walls (Part)
+            - Garage Walls Top (Part)
+          - Parking Garage right B (Model)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Sign (Model)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+                - SurfaceGui (SurfaceGui)
+                  - TextLabel (TextLabel)
+              - Garage Sign Clearance (Part)
+                - SurfaceGui (SurfaceGui)
+                  - TextLabel (TextLabel)
+            - Garage Shutters (Part)
+            - Garage Shutters Bottom (Part)
+            - Garage Shutters Top (Part)
+            - Garage Walls (Part)
+            - Garage Walls (Part)
+            - Garage Walls Top (Part)
+          - bush left side (Model)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+          - bush right side (Model)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+          - level 1 (Model)
+            - level1 base (MeshPart)
+            - level1 base top (MeshPart)
+            - level1 neon (MeshPart)
+            - level1 planters dark detail (MeshPart)
+            - level1 planters dirt (MeshPart)
+            - level1 planters light (MeshPart)
+            - level1 window still lower (MeshPart)
+            - level1 window still upper (MeshPart)
+            - level1 windows (MeshPart) [1 attrs]
+          - level 2 (Model)
+            - level2 base (MeshPart)
+            - level2 dark ceiling (MeshPart)
+            - level2 detail back (MeshPart)
+            - level2 detail corner (MeshPart)
+            - level2 detail front (MeshPart)
+            - level2 detail left (MeshPart)
+            - level2 detail right (MeshPart)
+            - level2 floors  (MeshPart)
+            - level2 windows (MeshPart) [1 attrs]
+          - level 3 (Model)
+            - level3 base (MeshPart)
+            - level3 detail back (MeshPart)
+            - level3 detail corner (MeshPart)
+            - level3 detail front (MeshPart)
+            - level3 detail left (MeshPart)
+            - level3 detail right (MeshPart)
+            - level3 floors (MeshPart)
+            - level3 windows (MeshPart) [1 attrs]
+          - pillars (Model)
+            - pillar dark (MeshPart)
+            - pillar dark (MeshPart)
+            - pillar dark (MeshPart)
+            - pillar detail (MeshPart)
+            - pillar detail (MeshPart)
+            - pillar ground roof (MeshPart)
+            - pillar ground roof (MeshPart)
+            - pillar ground roof (MeshPart)
+            - pillar ground windows (MeshPart) [1 attrs]
+            - pillar ground windows (MeshPart) [1 attrs]
+            - pillar ground windows (MeshPart) [1 attrs]
+            - pillar light (MeshPart)
+            - pillar light (MeshPart)
+            - pillar light (MeshPart)
+        - Brutalist Block D1 (Model)
+          - neon upper (MeshPart)
+          - Parking Garage left A (Model)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Sign (Model)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+                - SurfaceGui (SurfaceGui)
+                  - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign Clearance (Part)
+                - SurfaceGui (SurfaceGui)
+                  - TextLabel (TextLabel)
+            - Garage Shutters (Part)
+            - Garage Shutters Bottom (Part)
+            - Garage Shutters Top (Part)
+            - Garage Walls (Part)
+            - Garage Walls (Part)
+            - Garage Walls Top (Part)
+          - Parking Garage left B (Model)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Sign (Model)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+                - SurfaceGui (SurfaceGui)
+                  - TextLabel (TextLabel)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -22666,9 +23265,9 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -22705,11 +23304,11 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -22873,10 +23472,10 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -22914,9 +23513,9 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -22956,9 +23555,9 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -23000,578 +23599,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
               - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign Clearance (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-            - Garage Shutters (Part)
-            - Garage Shutters Bottom (Part)
-            - Garage Shutters Top (Part)
-            - Garage Walls (Part)
-            - Garage Walls (Part)
-            - Garage Walls Top (Part)
-          - bridge small a (Model)
-            - bridge small detail (MeshPart)
-            - bridge small main (MeshPart)
-            - bridge small neon (MeshPart)
-          - bridge small b (Model)
-            - bridge small detail (MeshPart)
-            - bridge small main (MeshPart)
-            - bridge small neon (MeshPart)
-          - bush left side (Model)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-          - bush right side (Model)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-          - level 1 (Model)
-            - level1 base (MeshPart)
-            - level1 base top (MeshPart)
-            - level1 neon (MeshPart)
-            - level1 planters dark detail (MeshPart)
-            - level1 planters dirt (MeshPart)
-            - level1 planters light (MeshPart)
-            - level1 window still lower (MeshPart)
-            - level1 window still upper (MeshPart)
-            - level1 windows (MeshPart) [1 attrs]
-          - level 2 (Model)
-            - level2 base (MeshPart)
-            - level2 dark ceiling (MeshPart)
-            - level2 detail back (MeshPart)
-            - level2 detail corner (MeshPart)
-            - level2 detail front (MeshPart)
-            - level2 detail left (MeshPart)
-            - level2 detail right (MeshPart)
-            - level2 floors  (MeshPart)
-            - level2 windows (MeshPart) [1 attrs]
-          - level 3 (Model)
-            - level3 base (MeshPart)
-            - level3 detail back (MeshPart)
-            - level3 detail corner (MeshPart)
-            - level3 detail front (MeshPart)
-            - level3 detail left (MeshPart)
-            - level3 detail right (MeshPart)
-            - level3 floors (MeshPart)
-            - level3 windows (MeshPart) [1 attrs]
-          - pillars (Model)
-            - pillar dark (MeshPart)
-            - pillar dark (MeshPart)
-            - pillar dark (MeshPart)
-            - pillar detail (MeshPart)
-            - pillar detail (MeshPart)
-            - pillar ground roof (MeshPart)
-            - pillar ground roof (MeshPart)
-            - pillar ground roof (MeshPart)
-            - pillar ground windows (MeshPart) [1 attrs]
-            - pillar ground windows (MeshPart) [1 attrs]
-            - pillar ground windows (MeshPart) [1 attrs]
-            - pillar light (MeshPart)
-            - pillar light (MeshPart)
-            - pillar light (MeshPart)
-        - Brutalist Block D1 (Model)
-          - neon upper (MeshPart)
-          - Parking Garage left A (Model)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Sign (Model)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign Clearance (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-            - Garage Shutters (Part)
-            - Garage Shutters Bottom (Part)
-            - Garage Shutters Top (Part)
-            - Garage Walls (Part)
-            - Garage Walls (Part)
-            - Garage Walls Top (Part)
-          - Parking Garage left B (Model)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Sign (Model)
-              - Garage Sign (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign Clearance (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-            - Garage Shutters (Part)
-            - Garage Shutters Bottom (Part)
-            - Garage Shutters Top (Part)
-            - Garage Walls (Part)
-            - Garage Walls (Part)
-            - Garage Walls Top (Part)
-          - Parking Garage right A (Model)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Sign (Model)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign Clearance (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-            - Garage Shutters (Part)
-            - Garage Shutters Bottom (Part)
-            - Garage Shutters Top (Part)
-            - Garage Walls (Part)
-            - Garage Walls (Part)
-            - Garage Walls Top (Part)
-          - Parking Garage right B (Model)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Sign (Model)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-              - Garage Sign Clearance (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-            - Garage Shutters (Part)
-            - Garage Shutters Bottom (Part)
-            - Garage Shutters Top (Part)
-            - Garage Walls (Part)
-            - Garage Walls (Part)
-            - Garage Walls Top (Part)
-          - bush left side (Model)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-          - bush right side (Model)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-            - bush long (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-          - level 1 (Model)
-            - level1 base (MeshPart)
-            - level1 base top (MeshPart)
-            - level1 neon (MeshPart)
-            - level1 planters dark detail (MeshPart)
-            - level1 planters dirt (MeshPart)
-            - level1 planters light (MeshPart)
-            - level1 window still lower (MeshPart)
-            - level1 window still upper (MeshPart)
-            - level1 windows (MeshPart) [1 attrs]
-          - level 2 (Model)
-            - level2 base (MeshPart)
-            - level2 dark ceiling (MeshPart)
-            - level2 detail back (MeshPart)
-            - level2 detail corner (MeshPart)
-            - level2 detail front (MeshPart)
-            - level2 detail left (MeshPart)
-            - level2 detail right (MeshPart)
-            - level2 floors  (MeshPart)
-            - level2 windows (MeshPart) [1 attrs]
-          - level 3 (Model)
-            - level3 base (MeshPart)
-            - level3 detail back (MeshPart)
-            - level3 detail corner (MeshPart)
-            - level3 detail front (MeshPart)
-            - level3 detail left (MeshPart)
-            - level3 detail right (MeshPart)
-            - level3 floors (MeshPart)
-            - level3 windows (MeshPart) [1 attrs]
-          - pillars (Model)
-            - pillar dark (MeshPart)
-            - pillar dark (MeshPart)
-            - pillar dark (MeshPart)
-            - pillar detail (MeshPart)
-            - pillar detail (MeshPart)
-            - pillar ground roof (MeshPart)
-            - pillar ground roof (MeshPart)
-            - pillar ground roof (MeshPart)
-            - pillar ground windows (MeshPart) [1 attrs]
-            - pillar ground windows (MeshPart) [1 attrs]
-            - pillar ground windows (MeshPart) [1 attrs]
-            - pillar light (MeshPart)
-            - pillar light (MeshPart)
-            - pillar light (MeshPart)
-        - Brutalist Block D1 (Model)
-          - neon upper (MeshPart)
-          - Parking Garage left A (Model)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Sign (Model)
-              - Garage Sign (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign Clearance (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-            - Garage Shutters (Part)
-            - Garage Shutters Bottom (Part)
-            - Garage Shutters Top (Part)
-            - Garage Walls (Part)
-            - Garage Walls (Part)
-            - Garage Walls Top (Part)
-          - Parking Garage left B (Model)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Sign (Model)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign Clearance (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-            - Garage Shutters (Part)
-            - Garage Shutters Bottom (Part)
-            - Garage Shutters Top (Part)
-            - Garage Walls (Part)
-            - Garage Walls (Part)
-            - Garage Walls Top (Part)
-          - Parking Garage right A (Model)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Sign (Model)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign Clearance (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-            - Garage Shutters (Part)
-            - Garage Shutters Bottom (Part)
-            - Garage Shutters Top (Part)
-            - Garage Walls (Part)
-            - Garage Walls (Part)
-            - Garage Walls Top (Part)
-          - Parking Garage right B (Model)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Bollard Yellow (Model)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Black (Part)
-              - Garage Bollard Yellow (Part)
-            - Garage Sign (Model)
-              - Garage Sign (Part)
-                - SurfaceGui (SurfaceGui)
-                  - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -23588,6 +23615,296 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
             - bridge large floors (MeshPart)
             - bridge large neon (MeshPart)
             - bridge large windows (MeshPart) [1 attrs]
+          - bridge small a (Model)
+            - bridge small detail (MeshPart)
+            - bridge small main (MeshPart)
+            - bridge small neon (MeshPart)
+          - bridge small b (Model)
+            - bridge small detail (MeshPart)
+            - bridge small main (MeshPart)
+            - bridge small neon (MeshPart)
+          - bush left side (Model)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+          - bush right side (Model)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+            - bush long (MeshPart)
+              - SurfaceAppearance (SurfaceAppearance)
+          - level 1 (Model)
+            - level1 base (MeshPart)
+            - level1 base top (MeshPart)
+            - level1 neon (MeshPart)
+            - level1 planters dark detail (MeshPart)
+            - level1 planters dirt (MeshPart)
+            - level1 planters light (MeshPart)
+            - level1 window still lower (MeshPart)
+            - level1 window still upper (MeshPart)
+            - level1 windows (MeshPart) [1 attrs]
+          - level 2 (Model)
+            - level2 base (MeshPart)
+            - level2 dark ceiling (MeshPart)
+            - level2 detail back (MeshPart)
+            - level2 detail corner (MeshPart)
+            - level2 detail front (MeshPart)
+            - level2 detail left (MeshPart)
+            - level2 detail right (MeshPart)
+            - level2 floors  (MeshPart)
+            - level2 windows (MeshPart) [1 attrs]
+          - level 3 (Model)
+            - level3 base (MeshPart)
+            - level3 detail back (MeshPart)
+            - level3 detail corner (MeshPart)
+            - level3 detail front (MeshPart)
+            - level3 detail left (MeshPart)
+            - level3 detail right (MeshPart)
+            - level3 floors (MeshPart)
+            - level3 windows (MeshPart) [1 attrs]
+          - pillars (Model)
+            - pillar dark (MeshPart)
+            - pillar dark (MeshPart)
+            - pillar dark (MeshPart)
+            - pillar detail (MeshPart)
+            - pillar detail (MeshPart)
+            - pillar ground roof (MeshPart)
+            - pillar ground roof (MeshPart)
+            - pillar ground roof (MeshPart)
+            - pillar ground windows (MeshPart) [1 attrs]
+            - pillar ground windows (MeshPart) [1 attrs]
+            - pillar ground windows (MeshPart) [1 attrs]
+            - pillar light (MeshPart)
+            - pillar light (MeshPart)
+            - pillar light (MeshPart)
+        - Brutalist Block D1 (Model)
+          - neon upper (MeshPart)
+          - Parking Garage left A (Model)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Sign (Model)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+                - SurfaceGui (SurfaceGui)
+                  - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign Clearance (Part)
+                - SurfaceGui (SurfaceGui)
+                  - TextLabel (TextLabel)
+            - Garage Shutters (Part)
+            - Garage Shutters Bottom (Part)
+            - Garage Shutters Top (Part)
+            - Garage Walls (Part)
+            - Garage Walls (Part)
+            - Garage Walls Top (Part)
+          - Parking Garage left B (Model)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Sign (Model)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+                - SurfaceGui (SurfaceGui)
+                  - TextLabel (TextLabel)
+              - Garage Sign Clearance (Part)
+                - SurfaceGui (SurfaceGui)
+                  - TextLabel (TextLabel)
+            - Garage Shutters (Part)
+            - Garage Shutters Bottom (Part)
+            - Garage Shutters Top (Part)
+            - Garage Walls (Part)
+            - Garage Walls (Part)
+            - Garage Walls Top (Part)
+          - Parking Garage right A (Model)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Sign (Model)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+                - SurfaceGui (SurfaceGui)
+                  - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign Clearance (Part)
+                - SurfaceGui (SurfaceGui)
+                  - TextLabel (TextLabel)
+            - Garage Shutters (Part)
+            - Garage Shutters Bottom (Part)
+            - Garage Shutters Top (Part)
+            - Garage Walls (Part)
+            - Garage Walls (Part)
+            - Garage Walls Top (Part)
+          - Parking Garage right B (Model)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Bollard Yellow (Model)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Black (Part)
+              - Garage Bollard Yellow (Part)
+            - Garage Sign (Model)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
+                - SurfaceGui (SurfaceGui)
+                  - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign Clearance (Part)
+                - SurfaceGui (SurfaceGui)
+                  - TextLabel (TextLabel)
+            - Garage Shutters (Part)
+            - Garage Shutters Bottom (Part)
+            - Garage Shutters Top (Part)
+            - Garage Walls (Part)
+            - Garage Walls (Part)
+            - Garage Walls Top (Part)
           - bridge small a (Model)
             - bridge small detail (MeshPart)
             - bridge small main (MeshPart)
@@ -24821,10 +25138,10 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -24863,9 +25180,9 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -26945,9 +27262,9 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
@@ -26987,10 +27304,10 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -27069,10 +27386,10 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
             - Garage Sign (Model)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -27242,10 +27559,10 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
               - Garage Bollard Yellow (Part)
             - Garage Sign (Model)
               - Garage Sign (Part)
-              - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
+              - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
@@ -27326,9 +27643,9 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
-              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
+              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -27367,9 +27684,9 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
               - Garage Sign (Part)
               - Garage Sign (Part)
               - Garage Sign (Part)
+              - Garage Sign (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
-              - Garage Sign (Part)
               - Garage Sign Clearance (Part)
                 - SurfaceGui (SurfaceGui)
                   - TextLabel (TextLabel)
@@ -27550,18 +27867,18 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
           - SurfaceAppearance (SurfaceAppearance)
         - Model (Model)
           - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
-          - Road Marking White (Part)
         - Model (Model)
           - Road Marking White (Part)
         - Model (Model)
+          - Road Marking White (Part)
+          - Road Marking White (Part)
+          - Road Marking White (Part)
+          - Road Marking White (Part)
+          - Road Marking White (Part)
+          - Road Marking White (Part)
+          - Road Marking White (Part)
+          - Road Marking White (Part)
+          - Road Marking White (Part)
           - Road Marking White (Part)
         - Road Asphalt (Part)
         - Road Marking White (Part)
@@ -28770,10 +29087,10 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
               - Garage Sign (Model)
                 - Garage Sign (Part)
                 - Garage Sign (Part)
+                - Garage Sign (Part)
+                - Garage Sign (Part)
                   - SurfaceGui (SurfaceGui)
                     - TextLabel (TextLabel)
-                - Garage Sign (Part)
-                - Garage Sign (Part)
                 - Garage Sign Clearance (Part)
                   - SurfaceGui (SurfaceGui)
                     - TextLabel (TextLabel)
@@ -28810,9 +29127,9 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                 - Garage Bollard Yellow (Part)
               - Garage Sign (Model)
                 - Garage Sign (Part)
+                - Garage Sign (Part)
                   - SurfaceGui (SurfaceGui)
                     - TextLabel (TextLabel)
-                - Garage Sign (Part)
                 - Garage Sign (Part)
                 - Garage Sign (Part)
                 - Garage Sign Clearance (Part)
@@ -28851,10 +29168,10 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                 - Garage Bollard Yellow (Part)
               - Garage Sign (Model)
                 - Garage Sign (Part)
+                - Garage Sign (Part)
+                - Garage Sign (Part)
                   - SurfaceGui (SurfaceGui)
                     - TextLabel (TextLabel)
-                - Garage Sign (Part)
-                - Garage Sign (Part)
                 - Garage Sign (Part)
                 - Garage Sign Clearance (Part)
                   - SurfaceGui (SurfaceGui)
@@ -29098,6 +29415,11 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
               - SurfaceAppearance (SurfaceAppearance)
             - tree maple leaves (MeshPart)
               - SurfaceAppearance (SurfaceAppearance)
+    - TrailerShots (Folder)
+      - Shot01_StraightRoadPan (Folder)
+        - Camera_A (Part)
+        - Camera_B (Part)
+        - LookAt_Target (Part)
     - Z TEMPLATES (Folder)
       - (TEMPLATE)Tree_Large_Maple_LOD4 (Model)
         - Tree Maple Large - LOD4 (MeshPart)
@@ -29105,6 +29427,393 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
       - (TEMPLATE)Tree_Small_Bamboo_LOD4 (Model)
         - Tree_Small_Bamboo_LOD4 (MeshPart)
           - SurfaceAppearance (SurfaceAppearance)
+    - placeholder models for video (Folder)
+      - Block_S1_R3_B3 (Model) [3 attrs]
+        - Assets (Folder)
+        - LOD (Folder)
+          - LOD1 (Folder)
+            - Buildings (Folder)
+            - Foliage (Folder)
+            - Paths (Folder)
+            - Props (Folder)
+            - Roads (Folder)
+          - LOD2 (Folder)
+            - Buildings (Folder)
+            - Foliage (Folder)
+            - Paths (Folder)
+              - Path Textile Paving (Model)
+                - Path Textile Paving (Part)
+                - Path Textile Paving (Part)
+                - Path Textile Paving (Part)
+                - Path Textile Paving (Part)
+                - Path Textile Paving (Part)
+                - Path Textile Paving (Part)
+                - Path Textile Paving (Part)
+                - Path Textile Paving (Part)
+                - Path Textile Paving (Part)
+                - Path Textile Paving (Part)
+                - Path Textile Paving (Part)
+                - Path Textile Paving (Part)
+                - Path Textile Paving (Part)
+                - Path Textile Paving (Part)
+                - Path Textile Paving (Part)
+                - Path Textile Paving (Part)
+                - Path Textile Paving (Part)
+                - Path Textile Paving (Part)
+            - Props (Folder)
+              - Bollards Front (Model)
+                - bollard thick (MeshPart)
+                - bollard thick (MeshPart)
+                - bollard thick (MeshPart)
+                - bollard thick (MeshPart)
+                - bollard thick (MeshPart)
+                - bollard thick (MeshPart)
+                - bollard thick (MeshPart)
+                - bollard thick (MeshPart)
+                - bollard thick (MeshPart)
+                - bollard thick (MeshPart)
+                - bollard thick (MeshPart)
+                - bollard thick (MeshPart)
+                - bollard thick (MeshPart)
+                - bollard thick (MeshPart)
+                - bollard thick (MeshPart)
+                - bollard thick (MeshPart)
+                - bollard thick (MeshPart)
+                - bollard thick (MeshPart)
+              - Bollards Left (Model)
+                - bollard thick (MeshPart)
+                - bollard thick (MeshPart)
+                - bollard thick (MeshPart)
+                - bollard thick (MeshPart)
+                - bollard thick (MeshPart)
+                - bollard thick (MeshPart)
+                - bollard thick (MeshPart)
+                - bollard thick (MeshPart)
+                - bollard thick (MeshPart)
+              - Railings Right (Model)
+                - Railing A (MeshPart)
+                - Railing A (MeshPart)
+                - Railing A (MeshPart)
+                - Railing A (MeshPart)
+                - Railing A (MeshPart)
+                - Railing A (MeshPart)
+                - Railing A (MeshPart)
+              - Street Lights Group Back (Model)
+                - Street Lamp Tall A (Model)
+                  - lamppost main (MeshPart)
+                  - lamppost neon (MeshPart)
+                    - SurfaceLight lamppost (SurfaceLight)
+                - Street Lamp Tall A (Model)
+                  - lamppost main (MeshPart)
+                  - lamppost neon (MeshPart)
+                    - SurfaceLight lamppost (SurfaceLight)
+                - Street Lamp Tall A (Model)
+                  - lamppost main (MeshPart)
+                  - lamppost neon (MeshPart)
+                    - SurfaceLight lamppost (SurfaceLight)
+              - Street Lights Group Left (Model)
+                - Street Lamp Tall A (Model)
+                  - lamppost main (MeshPart)
+                  - lamppost neon (MeshPart)
+                    - SurfaceLight lamppost (SurfaceLight)
+              - Traffic Light Tall A (Model)
+                - traffic light light orange (MeshPart)
+                - traffic light light red (MeshPart)
+                - traffic light main (MeshPart)
+                - traffic light neon green (MeshPart)
+            - Roads (Folder)
+          - LOD3 (Folder)
+            - Buildings (Folder)
+            - Foliage (Folder)
+              - Path Bush Group Back (Model)
+                - path bush group B (Model)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush walls (UnionOperation)
+                  - bush walls detail (UnionOperation)
+                - path bush group B (Model)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush walls (UnionOperation)
+                  - bush walls detail (UnionOperation)
+                - path bush group B (Model)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush walls (UnionOperation)
+                  - bush walls detail (UnionOperation)
+                - path bush group B (Model)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush walls (UnionOperation)
+                  - bush walls detail (UnionOperation)
+                - path bush group B (Model)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush walls (UnionOperation)
+                  - bush walls detail (UnionOperation)
+                - path bush group B (Model)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush walls (UnionOperation)
+                  - bush walls detail (UnionOperation)
+                - path bush group B (Model)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush walls (UnionOperation)
+                  - bush walls detail (UnionOperation)
+              - Path Bush Group Right A (Model)
+                - path bush group A (Model)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush long (MeshPart)
+                    - SurfaceAppearance (SurfaceAppearance)
+                  - bush walls (UnionOperation)
+                  - bush walls detail (UnionOperation)
+              - Trees Front (Model)
+                - Bush Large (Model)
+                  - leaves bush large (MeshPart)
+                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                  - Bush Large Walls Main (UnionOperation)
+                - Bush Large (Model)
+                  - leaves bush large (MeshPart)
+                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                  - Bush Large Walls Main (UnionOperation)
+                - Bush Large (Model)
+                  - leaves bush large (MeshPart)
+                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                  - Bush Large Walls Main (UnionOperation)
+                - Bush Large (Model)
+                  - leaves bush large (MeshPart)
+                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                  - Bush Large Walls Main (UnionOperation)
+                - Tree Large Poplar Group (Model)
+                  - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
+                    - Leaves_Large_Poplar (MeshPart)
+                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                    - Trunk_Large_Poplar (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree Base Concrete (UnionOperation)
+                - Tree Large Poplar Group (Model)
+                  - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
+                    - Leaves_Large_Poplar (MeshPart)
+                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                    - Trunk_Large_Poplar (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree Base Concrete (UnionOperation)
+                - Tree Large Poplar Group (Model)
+                  - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
+                    - Leaves_Large_Poplar (MeshPart)
+                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                    - Trunk_Large_Poplar (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree Base Concrete (UnionOperation)
+                - Tree Large Poplar Group (Model)
+                  - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
+                    - Leaves_Large_Poplar (MeshPart)
+                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                    - Trunk_Large_Poplar (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree Base Concrete (UnionOperation)
+                - Tree Large Poplar Group (Model)
+                  - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
+                    - Leaves_Large_Poplar (MeshPart)
+                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                    - Trunk_Large_Poplar (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree Base Concrete (UnionOperation)
+              - Trees Left (Model)
+                - Bush Large (Model)
+                  - leaves bush large (MeshPart)
+                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                  - Bush Large Walls Main (UnionOperation)
+                - Tree Small Bamboo Group (Model)
+                  - Tree_Small_Bamboo_LOD3 (Model)
+                    - leaves small bamboo (MeshPart)
+                      - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
+                    - trunk small bamboo (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree Base Concrete (UnionOperation)
+                - Tree Small Bamboo Group (Model)
+                  - Tree_Small_Bamboo_LOD3 (Model)
+                    - leaves small bamboo (MeshPart)
+                      - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
+                    - trunk small bamboo (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree Base Concrete (UnionOperation)
+                - Tree Small Bamboo Group (Model)
+                  - Tree_Small_Bamboo_LOD3 (Model)
+                    - leaves small bamboo (MeshPart)
+                      - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
+                    - trunk small bamboo (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree Base Concrete (UnionOperation)
+                - Tree Small Bamboo Group (Model)
+                  - Tree_Small_Bamboo_LOD3 (Model)
+                    - leaves small bamboo (MeshPart)
+                      - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
+                    - trunk small bamboo (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree Base Concrete (UnionOperation)
+                - Tree Small Bamboo Group (Model)
+                  - Tree_Small_Bamboo_LOD3 (Model)
+                    - leaves small bamboo (MeshPart)
+                      - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
+                    - trunk small bamboo (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree Base Concrete (UnionOperation)
+                - Tree Small Bamboo Group (Model)
+                  - Tree_Small_Bamboo_LOD3 (Model)
+                    - leaves small bamboo (MeshPart)
+                      - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
+                    - trunk small bamboo (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree Base Concrete (UnionOperation)
+              - Trees Right (Model)
+                - Tree Large Maple (Model)
+                  - Tree_Large_Maple_LOD3 (Model)
+                    - LeavesMapleBottom1 (MeshPart)
+                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                    - LeavesMapleShadow2 (MeshPart)
+                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                    - TrunkLargeMaple1 (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree Base Concrete (UnionOperation)
+                - Tree Large Maple (Model)
+                  - Tree_Large_Maple_LOD3 (Model)
+                    - LeavesMapleBottom1 (MeshPart)
+                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                    - LeavesMapleShadow2 (MeshPart)
+                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                    - TrunkLargeMaple1 (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree Base Concrete (UnionOperation)
+                - Tree Large Poplar Group (Model)
+                  - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
+                    - Leaves_Large_Poplar (MeshPart)
+                      - SurfaceAppearance Leaves Maple (SurfaceAppearance)
+                    - Trunk_Large_Poplar (MeshPart)
+                      - SurfaceAppearance Trunk (SurfaceAppearance)
+                  - Tree Base Concrete (UnionOperation)
+                - Tree_Small_Bamboo_LOD3 (Model)
+                  - leaves small bamboo (MeshPart)
+                    - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
+                  - trunk small bamboo (MeshPart)
+                    - SurfaceAppearance Trunk (SurfaceAppearance)
+                - Tree_Small_Bamboo_LOD3 (Model)
+                  - leaves small bamboo (MeshPart)
+                    - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
+                  - trunk small bamboo (MeshPart)
+                    - SurfaceAppearance Trunk (SurfaceAppearance)
+                - Tree Base Concrete (UnionOperation)
+                - Tree Base Concrete (UnionOperation)
+            - Paths (Folder)
+              - S1_R3_B3 Paths (Model)
+            - Props (Folder)
+            - Roads (Folder)
+          - LOD4 (Folder)
+            - Buildings (Folder)
+            - Foliage (Folder)
+            - Paths (Folder)
+            - Props (Folder)
+            - Roads (Folder)
+          - LOD4_Foliage (Folder)
+            - Bush_Large_LOD4 (Model)
+              - Tree Maple Large - LOD4 (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+            - Bush_Large_LOD4 (Model)
+              - Tree Maple Large - LOD4 (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+            - Bush_Large_LOD4 (Model)
+              - Tree Maple Large - LOD4 (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+            - Bush_Large_LOD4 (Model)
+              - Tree Maple Large - LOD4 (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+            - Bush_Large_LOD4 (Model)
+              - Tree Maple Large - LOD4 (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+            - Bush_Large_LOD4 (Model)
+              - Tree Maple Large - LOD4 (MeshPart)
+                - SurfaceAppearance (SurfaceAppearance)
+        - _Metadata (Folder)
+          - CenterPart (Part)
+        - Root (Part)
+      - Block_S2_R3_B1 (Model) [3 attrs]
+        - Assets (Folder)
+        - LOD (Folder)
+          - LOD1 (Folder)
+            - Buildings (Folder)
+            - Foliage (Folder)
+            - Paths (Folder)
+            - Props (Folder)
+            - Roads (Folder)
+          - LOD2 (Folder)
+            - Buildings (Folder)
+            - Foliage (Folder)
+            - Paths (Folder)
+            - Props (Folder)
+            - Roads (Folder)
+          - LOD3 (Folder)
+            - Buildings (Folder)
+            - Foliage (Folder)
+            - Paths (Folder)
+            - Props (Folder)
+          - LOD4 (Folder)
+            - Buildings (Folder)
+            - Foliage (Folder)
+            - Paths (Folder)
+            - Props (Folder)
+            - Roads (Folder)
+          - LOD4_Foliage (Folder)
+        - _Metadata (Folder)
+          - CenterPart (Part)
+        - Root (Part)
+      - Block_S2_R5_B2 (Model) [3 attrs]
+        - Assets (Folder)
+        - LOD (Folder)
+          - LOD1 (Folder)
+            - Buildings (Folder)
+            - Foliage (Folder)
+            - Paths (Folder)
+            - Props (Folder)
+            - Roads (Folder)
+          - LOD2 (Folder)
+            - Buildings (Folder)
+            - Foliage (Folder)
+            - Paths (Folder)
+            - Props (Folder)
+            - Roads (Folder)
+          - LOD3 (Folder)
+            - Buildings (Folder)
+            - Foliage (Folder)
+            - Paths (Folder)
+            - Props (Folder)
+            - Roads (Folder)
+          - LOD4 (Folder)
+            - Buildings (Folder)
+            - Foliage (Folder)
+            - Paths (Folder)
+            - Props (Folder)
+            - Roads (Folder)
+          - LOD4_Foliage (Folder)
+        - _Metadata (Folder)
+          - CenterPart (Part)
+        - Root (Part)
+      - Street lights Group Curve (Model)
     - Road Marking Crossing (MeshPart)
       - SurfaceAppearance Crossing (SurfaceAppearance)
     - FBX - Bruiser 02 Test (Model) [1 attrs]
@@ -29223,78 +29932,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
       - spoiler primary.001 (MeshPart)
       - spoiler primary.002 (MeshPart)
       - spoiler secondary (MeshPart)
-    - FBx - Test Base Vehicle v3 (Model) [1 attrs]
-      - boost detail (MeshPart)
-      - boost neon (MeshPart)
-      - boost primary (MeshPart)
-      - boost secondary (MeshPart)
-      - cockpit detail (MeshPart)
-      - cockpit glass (MeshPart)
-      - cockpit neon front (MeshPart)
-      - cockpit neon rear (MeshPart)
-      - cockpit primary (MeshPart)
-      - cockpit secondary (MeshPart)
-      - diffuser neon (MeshPart)
-      - diffuser primary (MeshPart)
-      - engine a detail (MeshPart)
-      - engine a neon (MeshPart)
-      - engine a primary (MeshPart)
-      - engine a secondary (MeshPart)
-      - engine b detail (MeshPart)
-      - engine b neon (MeshPart)
-      - engine b primary (MeshPart)
-      - engine b secondary (MeshPart)
-      - sidepods neon (MeshPart)
-      - sidepods primary (MeshPart)
-      - sidepods secondary (MeshPart)
-      - splitter detail (MeshPart)
-      - splitter neon (MeshPart)
-      - splitter primary (MeshPart)
-      - splitter secondary (MeshPart)
-      - spoiler detail (MeshPart)
-      - spoiler neon (MeshPart)
-      - spoiler primary (MeshPart)
-      - spoiler secondary (MeshPart)
-      - stabilisers detail (MeshPart)
-      - stabilisers neon (MeshPart)
-      - stabilisers primary (MeshPart)
-      - stabilisers secondary (MeshPart)
-    - FBx - Test Base Vehicle v3 (Model) [1 attrs]
-      - boost detail (MeshPart)
-      - boost neon (MeshPart)
-      - boost primary (MeshPart)
-      - boost secondary (MeshPart)
-      - cockpit detail (MeshPart)
-      - cockpit glass (MeshPart)
-      - cockpit neon front (MeshPart)
-      - cockpit neon rear (MeshPart)
-      - cockpit primary (MeshPart)
-      - cockpit secondary (MeshPart)
-      - diffuser neon (MeshPart)
-      - diffuser primary (MeshPart)
-      - engine a detail (MeshPart)
-      - engine a neon (MeshPart)
-      - engine a primary (MeshPart)
-      - engine a secondary (MeshPart)
-      - engine b detail (MeshPart)
-      - engine b neon (MeshPart)
-      - engine b primary (MeshPart)
-      - engine b secondary (MeshPart)
-      - sidepods neon (MeshPart)
-      - sidepods primary (MeshPart)
-      - sidepods secondary (MeshPart)
-      - splitter detail (MeshPart)
-      - splitter neon (MeshPart)
-      - splitter primary (MeshPart)
-      - splitter secondary (MeshPart)
-      - spoiler detail (MeshPart)
-      - spoiler neon (MeshPart)
-      - spoiler primary (MeshPart)
-      - spoiler secondary (MeshPart)
-      - stabilisers detail (MeshPart)
-      - stabilisers neon (MeshPart)
-      - stabilisers primary (MeshPart)
-      - stabilisers secondary (MeshPart)
     - FBx - Test Base Vehicle v3 (Model) [1 attrs]
       - boost detail (MeshPart)
       - boost neon (MeshPart)
@@ -29516,398 +30153,1516 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
       - stabilisers neon (MeshPart)
       - stabilisers primary (MeshPart)
       - stabilisers secondary (MeshPart)
-  - TrailerShots (Folder)
-    - Shot01_StraightRoadPan (Folder)
-      - Camera_A (Part)
-      - Camera_B (Part)
-      - LookAt_Target (Part)
-  - placeholder models for video (Folder)
-    - Block_S1_R3_B3 (Model) [3 attrs]
-      - Assets (Folder)
-      - LOD (Folder)
-        - LOD1 (Folder)
-          - Buildings (Folder)
-          - Foliage (Folder)
-          - Paths (Folder)
-          - Props (Folder)
-          - Roads (Folder)
-        - LOD2 (Folder)
-          - Buildings (Folder)
-          - Foliage (Folder)
-          - Paths (Folder)
-            - Path Textile Paving (Model)
-              - Path Textile Paving (Part)
-              - Path Textile Paving (Part)
-              - Path Textile Paving (Part)
-              - Path Textile Paving (Part)
-              - Path Textile Paving (Part)
-              - Path Textile Paving (Part)
-              - Path Textile Paving (Part)
-              - Path Textile Paving (Part)
-              - Path Textile Paving (Part)
-              - Path Textile Paving (Part)
-              - Path Textile Paving (Part)
-              - Path Textile Paving (Part)
-              - Path Textile Paving (Part)
-              - Path Textile Paving (Part)
-              - Path Textile Paving (Part)
-              - Path Textile Paving (Part)
-              - Path Textile Paving (Part)
-              - Path Textile Paving (Part)
-          - Props (Folder)
-            - Bollards Front (Model)
-              - bollard thick (MeshPart)
-              - bollard thick (MeshPart)
-              - bollard thick (MeshPart)
-              - bollard thick (MeshPart)
-              - bollard thick (MeshPart)
-              - bollard thick (MeshPart)
-              - bollard thick (MeshPart)
-              - bollard thick (MeshPart)
-              - bollard thick (MeshPart)
-              - bollard thick (MeshPart)
-              - bollard thick (MeshPart)
-              - bollard thick (MeshPart)
-              - bollard thick (MeshPart)
-              - bollard thick (MeshPart)
-              - bollard thick (MeshPart)
-              - bollard thick (MeshPart)
-              - bollard thick (MeshPart)
-              - bollard thick (MeshPart)
-            - Bollards Left (Model)
-              - bollard thick (MeshPart)
-              - bollard thick (MeshPart)
-              - bollard thick (MeshPart)
-              - bollard thick (MeshPart)
-              - bollard thick (MeshPart)
-              - bollard thick (MeshPart)
-              - bollard thick (MeshPart)
-              - bollard thick (MeshPart)
-              - bollard thick (MeshPart)
-            - Railings Right (Model)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-              - Railing A (MeshPart)
-            - Street Lights Group Back (Model)
-              - Street Lamp Tall A (Model)
-                - lamppost main (MeshPart)
-                - lamppost neon (MeshPart)
-                  - SurfaceLight lamppost (SurfaceLight)
-              - Street Lamp Tall A (Model)
-                - lamppost main (MeshPart)
-                - lamppost neon (MeshPart)
-                  - SurfaceLight lamppost (SurfaceLight)
-              - Street Lamp Tall A (Model)
-                - lamppost main (MeshPart)
-                - lamppost neon (MeshPart)
-                  - SurfaceLight lamppost (SurfaceLight)
-            - Street Lights Group Left (Model)
-              - Street Lamp Tall A (Model)
-                - lamppost main (MeshPart)
-                - lamppost neon (MeshPart)
-                  - SurfaceLight lamppost (SurfaceLight)
-            - Traffic Light Tall A (Model)
-              - traffic light light orange (MeshPart)
-              - traffic light light red (MeshPart)
-              - traffic light main (MeshPart)
-              - traffic light neon green (MeshPart)
-          - Roads (Folder)
-        - LOD3 (Folder)
-          - Buildings (Folder)
-          - Foliage (Folder)
-            - Path Bush Group Back (Model)
-              - path bush group B (Model)
-                - bush long (MeshPart)
+    - FBx - Test Base Vehicle v3 (Model) [1 attrs]
+      - boost detail (MeshPart)
+      - boost neon (MeshPart)
+      - boost primary (MeshPart)
+      - boost secondary (MeshPart)
+      - cockpit detail (MeshPart)
+      - cockpit glass (MeshPart)
+      - cockpit neon front (MeshPart)
+      - cockpit neon rear (MeshPart)
+      - cockpit primary (MeshPart)
+      - cockpit secondary (MeshPart)
+      - diffuser neon (MeshPart)
+      - diffuser primary (MeshPart)
+      - engine a detail (MeshPart)
+      - engine a neon (MeshPart)
+      - engine a primary (MeshPart)
+      - engine a secondary (MeshPart)
+      - engine b detail (MeshPart)
+      - engine b neon (MeshPart)
+      - engine b primary (MeshPart)
+      - engine b secondary (MeshPart)
+      - sidepods neon (MeshPart)
+      - sidepods primary (MeshPart)
+      - sidepods secondary (MeshPart)
+      - splitter detail (MeshPart)
+      - splitter neon (MeshPart)
+      - splitter primary (MeshPart)
+      - splitter secondary (MeshPart)
+      - spoiler detail (MeshPart)
+      - spoiler neon (MeshPart)
+      - spoiler primary (MeshPart)
+      - spoiler secondary (MeshPart)
+      - stabilisers detail (MeshPart)
+      - stabilisers neon (MeshPart)
+      - stabilisers primary (MeshPart)
+      - stabilisers secondary (MeshPart)
+    - FBx - Test Base Vehicle v3 (Model) [1 attrs]
+      - boost detail (MeshPart)
+      - boost neon (MeshPart)
+      - boost primary (MeshPart)
+      - boost secondary (MeshPart)
+      - cockpit detail (MeshPart)
+      - cockpit glass (MeshPart)
+      - cockpit neon front (MeshPart)
+      - cockpit neon rear (MeshPart)
+      - cockpit primary (MeshPart)
+      - cockpit secondary (MeshPart)
+      - diffuser neon (MeshPart)
+      - diffuser primary (MeshPart)
+      - engine a detail (MeshPart)
+      - engine a neon (MeshPart)
+      - engine a primary (MeshPart)
+      - engine a secondary (MeshPart)
+      - engine b detail (MeshPart)
+      - engine b neon (MeshPart)
+      - engine b primary (MeshPart)
+      - engine b secondary (MeshPart)
+      - sidepods neon (MeshPart)
+      - sidepods primary (MeshPart)
+      - sidepods secondary (MeshPart)
+      - splitter detail (MeshPart)
+      - splitter neon (MeshPart)
+      - splitter primary (MeshPart)
+      - splitter secondary (MeshPart)
+      - spoiler detail (MeshPart)
+      - spoiler neon (MeshPart)
+      - spoiler primary (MeshPart)
+      - spoiler secondary (MeshPart)
+      - stabilisers detail (MeshPart)
+      - stabilisers neon (MeshPart)
+      - stabilisers primary (MeshPart)
+      - stabilisers secondary (MeshPart)
+  - ZZZ (Folder)
+    - DecorationAssets (Folder)
+      - StarterTwoBay (Folder)
+        - DisplayPlatforms (Folder) [3 attrs]
+          - PlatformOption01 (Model) [9 attrs]
+            - ColourSlots (Folder)
+              - Detail (Folder)
+              - Neon (Folder)
+                - DisplayPadNeon_Space01 (Part) [4 attrs]
+                - DisplayPadNeon_Space02 (Part) [4 attrs]
+              - Primary (Folder)
+                - DisplayPad_Space01 (Part) [4 attrs]
+                - DisplayPad_Space02 (Part) [4 attrs]
+              - Secondary (Folder)
+                - DisplayPadNeon_Space01 (Part) [4 attrs]
+                - DisplayPadNeon_Space02 (Part) [4 attrs]
+            - Fixed (Folder)
+            - Technical (Folder)
+          - PlatformOption02 (Model) [9 attrs]
+            - ColourSlots (Folder)
+              - Detail (Folder)
+              - Neon (Folder)
+              - Primary (Folder)
+              - Secondary (Folder)
+            - Fixed (Folder)
+            - Technical (Folder)
+          - PlatformOption03 (Model) [9 attrs]
+            - ColourSlots (Folder)
+              - Detail (Folder)
+              - Neon (Folder)
+              - Primary (Folder)
+              - Secondary (Folder)
+            - Fixed (Folder)
+            - Technical (Folder)
+        - FeatureCorner (Folder)
+          - HydroponicGarden (Model) [8 attrs]
+            - ColourSlots (Folder)
+              - Detail (Folder)
+              - Neon (Folder)
+              - Primary (Folder)
+              - Secondary (Folder)
+            - Fixed (Folder)
+            - Technical (Folder)
+          - NeoAquarium (Model) [8 attrs]
+            - ColourSlots (Folder)
+              - Detail (Folder)
+              - Neon (Folder)
+              - Primary (Folder)
+              - Secondary (Folder)
+            - Fixed (Folder)
+            - Technical (Folder)
+          - ReactorSculpture (Model) [8 attrs]
+            - ColourSlots (Folder)
+              - Detail (Folder)
+              - Neon (Folder)
+              - Primary (Folder)
+              - Secondary (Folder)
+            - Fixed (Folder)
+            - Technical (Folder)
+        - HangoutBay (Folder)
+          - HoloBilliards (Model) [8 attrs]
+            - ColourSlots (Folder)
+              - Detail (Folder)
+              - Neon (Folder)
+              - Primary (Folder)
+              - Secondary (Folder)
+            - Fixed (Folder)
+            - Technical (Folder)
+          - NeoLounge (Model) [8 attrs]
+            - ColourSlots (Folder)
+              - Detail (Folder)
+                - bedroom chair dark (Part) [2 attrs]
+                - bedroom chair dark (Part) [2 attrs]
+                - bedroom chair dark (Part) [2 attrs]
+                - bedroom chair dark (Part) [2 attrs]
+                - bedroom chair dark (Part) [2 attrs]
+                - bedroom chair dark (Part) [2 attrs]
+                - bedroom chair dark (Part) [2 attrs]
+                - bedroom chair dark (Part) [2 attrs]
+                - carpet (Part) [2 attrs]
+                - dining chair dark (Part) [2 attrs]
+                - dining chair dark (Part) [2 attrs]
+                - sofa base (Part) [2 attrs]
+                - sofa base (Part) [2 attrs]
+              - Neon (Folder)
+              - Primary (Folder)
+                - library coffee table (Part) [2 attrs]
+                - library desk (Part) [2 attrs]
+                - desk main (UnionOperation) [2 attrs]
+                - painting frame (UnionOperation) [2 attrs]
+                - tv stand (UnionOperation) [2 attrs]
+              - Secondary (Folder)
+                - bedroom chair light (Part) [2 attrs]
+                - bedroom chair light (Part) [2 attrs]
+                - bedroom chair light (Part) [2 attrs]
+                - bedroom chair light (Part) [2 attrs]
+                - dining chair light (Part) [2 attrs]
+                - dining chair light (Part) [2 attrs]
+                - sofa cushions (Part) [2 attrs]
+                - sofa cushions (Part) [2 attrs]
+                - sofa cushions (Part) [2 attrs]
+                - sofa cushions (Part) [2 attrs]
+                - sofa cushions (Part) [2 attrs]
+                - sofa cushions (Part) [2 attrs]
+                - sofa cushions (Part) [2 attrs]
+                - sofa cushions (Part) [2 attrs]
+                - sofa cushions (Part) [2 attrs]
+                - sofa cushions (Part) [2 attrs]
+            - Fixed (Folder)
+              - autumn colours painting (MeshPart) [1 attrs]
+                - SurfaceAppearance (SurfaceAppearance)
+              - blue and pink painting (MeshPart) [1 attrs]
+                - SurfaceAppearance (SurfaceAppearance)
+              - blue and red painting (MeshPart) [1 attrs]
+                - SurfaceAppearance (SurfaceAppearance)
+              - bookshelf (MeshPart) [1 attrs]
+                - SurfaceAppearance (SurfaceAppearance)
+              - bookshelf (MeshPart) [1 attrs]
+                - SurfaceAppearance (SurfaceAppearance)
+              - bookshelf (MeshPart) [1 attrs]
+                - SurfaceAppearance (SurfaceAppearance)
+              - bookshelf (MeshPart) [1 attrs]
+                - SurfaceAppearance (SurfaceAppearance)
+              - dark red painting (MeshPart) [1 attrs]
+                - SurfaceAppearance (SurfaceAppearance)
+              - plant small (Model)
+                - plant small.005 (MeshPart) [1 attrs]
                   - SurfaceAppearance (SurfaceAppearance)
-                - bush long (MeshPart)
+              - plant small (Model)
+                - plant small.005 (MeshPart) [1 attrs]
                   - SurfaceAppearance (SurfaceAppearance)
-                - bush walls (UnionOperation)
-                - bush walls detail (UnionOperation)
-              - path bush group B (Model)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush walls (UnionOperation)
-                - bush walls detail (UnionOperation)
-              - path bush group B (Model)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush walls (UnionOperation)
-                - bush walls detail (UnionOperation)
-              - path bush group B (Model)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush walls (UnionOperation)
-                - bush walls detail (UnionOperation)
-              - path bush group B (Model)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush walls (UnionOperation)
-                - bush walls detail (UnionOperation)
-              - path bush group B (Model)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush walls (UnionOperation)
-                - bush walls detail (UnionOperation)
-              - path bush group B (Model)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush walls (UnionOperation)
-                - bush walls detail (UnionOperation)
-            - Path Bush Group Right A (Model)
-              - path bush group A (Model)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush long (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-                - bush walls (UnionOperation)
-                - bush walls detail (UnionOperation)
-            - Trees Front (Model)
-              - Bush Large (Model)
-                - leaves bush large (MeshPart)
-                  - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                - Bush Large Walls Main (UnionOperation)
-              - Bush Large (Model)
-                - leaves bush large (MeshPart)
-                  - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                - Bush Large Walls Main (UnionOperation)
-              - Bush Large (Model)
-                - leaves bush large (MeshPart)
-                  - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                - Bush Large Walls Main (UnionOperation)
-              - Bush Large (Model)
-                - leaves bush large (MeshPart)
-                  - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                - Bush Large Walls Main (UnionOperation)
-              - Tree Large Poplar Group (Model)
-                - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
-                  - Leaves_Large_Poplar (MeshPart)
-                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                  - Trunk_Large_Poplar (MeshPart)
-                    - SurfaceAppearance Trunk (SurfaceAppearance)
-                - Tree Base Concrete (UnionOperation)
-              - Tree Large Poplar Group (Model)
-                - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
-                  - Leaves_Large_Poplar (MeshPart)
-                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                  - Trunk_Large_Poplar (MeshPart)
-                    - SurfaceAppearance Trunk (SurfaceAppearance)
-                - Tree Base Concrete (UnionOperation)
-              - Tree Large Poplar Group (Model)
-                - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
-                  - Leaves_Large_Poplar (MeshPart)
-                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                  - Trunk_Large_Poplar (MeshPart)
-                    - SurfaceAppearance Trunk (SurfaceAppearance)
-                - Tree Base Concrete (UnionOperation)
-              - Tree Large Poplar Group (Model)
-                - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
-                  - Leaves_Large_Poplar (MeshPart)
-                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                  - Trunk_Large_Poplar (MeshPart)
-                    - SurfaceAppearance Trunk (SurfaceAppearance)
-                - Tree Base Concrete (UnionOperation)
-              - Tree Large Poplar Group (Model)
-                - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
-                  - Leaves_Large_Poplar (MeshPart)
-                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                  - Trunk_Large_Poplar (MeshPart)
-                    - SurfaceAppearance Trunk (SurfaceAppearance)
-                - Tree Base Concrete (UnionOperation)
-            - Trees Left (Model)
-              - Bush Large (Model)
-                - leaves bush large (MeshPart)
-                  - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                - Bush Large Walls Main (UnionOperation)
-              - Tree Small Bamboo Group (Model)
-                - Tree_Small_Bamboo_LOD3 (Model)
-                  - leaves small bamboo (MeshPart)
-                    - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
-                  - trunk small bamboo (MeshPart)
-                    - SurfaceAppearance Trunk (SurfaceAppearance)
-                - Tree Base Concrete (UnionOperation)
-              - Tree Small Bamboo Group (Model)
-                - Tree_Small_Bamboo_LOD3 (Model)
-                  - leaves small bamboo (MeshPart)
-                    - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
-                  - trunk small bamboo (MeshPart)
-                    - SurfaceAppearance Trunk (SurfaceAppearance)
-                - Tree Base Concrete (UnionOperation)
-              - Tree Small Bamboo Group (Model)
-                - Tree_Small_Bamboo_LOD3 (Model)
-                  - leaves small bamboo (MeshPart)
-                    - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
-                  - trunk small bamboo (MeshPart)
-                    - SurfaceAppearance Trunk (SurfaceAppearance)
-                - Tree Base Concrete (UnionOperation)
-              - Tree Small Bamboo Group (Model)
-                - Tree_Small_Bamboo_LOD3 (Model)
-                  - leaves small bamboo (MeshPart)
-                    - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
-                  - trunk small bamboo (MeshPart)
-                    - SurfaceAppearance Trunk (SurfaceAppearance)
-                - Tree Base Concrete (UnionOperation)
-              - Tree Small Bamboo Group (Model)
-                - Tree_Small_Bamboo_LOD3 (Model)
-                  - leaves small bamboo (MeshPart)
-                    - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
-                  - trunk small bamboo (MeshPart)
-                    - SurfaceAppearance Trunk (SurfaceAppearance)
-                - Tree Base Concrete (UnionOperation)
-              - Tree Small Bamboo Group (Model)
-                - Tree_Small_Bamboo_LOD3 (Model)
-                  - leaves small bamboo (MeshPart)
-                    - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
-                  - trunk small bamboo (MeshPart)
-                    - SurfaceAppearance Trunk (SurfaceAppearance)
-                - Tree Base Concrete (UnionOperation)
-            - Trees Right (Model)
-              - Tree Large Maple (Model)
-                - Tree_Large_Maple_LOD3 (Model)
-                  - LeavesMapleBottom1 (MeshPart)
-                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                  - LeavesMapleShadow2 (MeshPart)
-                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                  - TrunkLargeMaple1 (MeshPart)
-                    - SurfaceAppearance Trunk (SurfaceAppearance)
-                - Tree Base Concrete (UnionOperation)
-              - Tree Large Maple (Model)
-                - Tree_Large_Maple_LOD3 (Model)
-                  - LeavesMapleBottom1 (MeshPart)
-                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                  - LeavesMapleShadow2 (MeshPart)
-                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                  - TrunkLargeMaple1 (MeshPart)
-                    - SurfaceAppearance Trunk (SurfaceAppearance)
-                - Tree Base Concrete (UnionOperation)
-              - Tree Large Poplar Group (Model)
-                - Tree_Large_Poplar_LOD3 (Model) [1 attrs]
-                  - Leaves_Large_Poplar (MeshPart)
-                    - SurfaceAppearance Leaves Maple (SurfaceAppearance)
-                  - Trunk_Large_Poplar (MeshPart)
-                    - SurfaceAppearance Trunk (SurfaceAppearance)
-                - Tree Base Concrete (UnionOperation)
-              - Tree_Small_Bamboo_LOD3 (Model)
-                - leaves small bamboo (MeshPart)
-                  - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
-                - trunk small bamboo (MeshPart)
-                  - SurfaceAppearance Trunk (SurfaceAppearance)
-              - Tree_Small_Bamboo_LOD3 (Model)
-                - leaves small bamboo (MeshPart)
-                  - SurfaceAppearance Leaves Bamboo (SurfaceAppearance)
-                - trunk small bamboo (MeshPart)
-                  - SurfaceAppearance Trunk (SurfaceAppearance)
-              - Tree Base Concrete (UnionOperation)
-              - Tree Base Concrete (UnionOperation)
-          - Paths (Folder)
-            - S1_R3_B3 Paths (Model)
-          - Props (Folder)
-          - Roads (Folder)
-        - LOD4 (Folder)
-          - Buildings (Folder)
-          - Foliage (Folder)
-          - Paths (Folder)
-          - Props (Folder)
-          - Roads (Folder)
-        - LOD4_Foliage (Folder)
-          - Bush_Large_LOD4 (Model)
-            - Tree Maple Large - LOD4 (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-          - Bush_Large_LOD4 (Model)
-            - Tree Maple Large - LOD4 (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-          - Bush_Large_LOD4 (Model)
-            - Tree Maple Large - LOD4 (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-          - Bush_Large_LOD4 (Model)
-            - Tree Maple Large - LOD4 (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-          - Bush_Large_LOD4 (Model)
-            - Tree Maple Large - LOD4 (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-          - Bush_Large_LOD4 (Model)
-            - Tree Maple Large - LOD4 (MeshPart)
-              - SurfaceAppearance (SurfaceAppearance)
-      - _Metadata (Folder)
-        - CenterPart (Part)
-      - Root (Part)
-    - Block_S2_R3_B1 (Model) [3 attrs]
-      - Assets (Folder)
-      - LOD (Folder)
-        - LOD1 (Folder)
-          - Buildings (Folder)
-          - Foliage (Folder)
-          - Paths (Folder)
-          - Props (Folder)
-          - Roads (Folder)
-        - LOD2 (Folder)
-          - Buildings (Folder)
-          - Foliage (Folder)
-          - Paths (Folder)
-          - Props (Folder)
-          - Roads (Folder)
-        - LOD3 (Folder)
-          - Buildings (Folder)
-          - Foliage (Folder)
-          - Paths (Folder)
-          - Props (Folder)
-        - LOD4 (Folder)
-          - Buildings (Folder)
-          - Foliage (Folder)
-          - Paths (Folder)
-          - Props (Folder)
-          - Roads (Folder)
-        - LOD4_Foliage (Folder)
-      - _Metadata (Folder)
-        - CenterPart (Part)
-      - Root (Part)
-    - Block_S2_R5_B2 (Model) [3 attrs]
-      - Assets (Folder)
-      - LOD (Folder)
-        - LOD1 (Folder)
-          - Buildings (Folder)
-          - Foliage (Folder)
-          - Paths (Folder)
-          - Props (Folder)
-          - Roads (Folder)
-        - LOD2 (Folder)
-          - Buildings (Folder)
-          - Foliage (Folder)
-          - Paths (Folder)
-          - Props (Folder)
-          - Roads (Folder)
-        - LOD3 (Folder)
-          - Buildings (Folder)
-          - Foliage (Folder)
-          - Paths (Folder)
-          - Props (Folder)
-          - Roads (Folder)
-        - LOD4 (Folder)
-          - Buildings (Folder)
-          - Foliage (Folder)
-          - Paths (Folder)
-          - Props (Folder)
-          - Roads (Folder)
-        - LOD4_Foliage (Folder)
-      - _Metadata (Folder)
-        - CenterPart (Part)
-      - Root (Part)
-    - Street lights Group Curve (Model)
+              - keyboard (Part) [1 attrs]
+                - Texture (Texture)
+              - mouse (Part) [1 attrs]
+              - monitor (UnionOperation) [1 attrs]
+              - tv (UnionOperation) [1 attrs]
+            - Technical (Folder)
+          - RacingSimulator (Model) [8 attrs]
+            - ColourSlots (Folder)
+              - Detail (Folder)
+              - Neon (Folder)
+              - Primary (Folder)
+              - Secondary (Folder)
+            - Fixed (Folder)
+            - Technical (Folder)
+        - IdentityWall (Folder)
+          - BlueprintWall (Model) [8 attrs]
+            - ColourSlots (Folder)
+              - Detail (Folder)
+              - Neon (Folder)
+              - Primary (Folder)
+              - Secondary (Folder)
+            - Fixed (Folder)
+            - Technical (Folder)
+          - CityArt (Model) [8 attrs]
+            - ColourSlots (Folder)
+              - Detail (Folder)
+              - Neon (Folder)
+              - Primary (Folder)
+              - Secondary (Folder)
+            - Fixed (Folder)
+            - Technical (Folder)
+          - TrophyWall (Model) [8 attrs]
+            - ColourSlots (Folder)
+              - Detail (Folder)
+              - Neon (Folder)
+              - Primary (Folder)
+              - Secondary (Folder)
+            - Fixed (Folder)
+            - Technical (Folder)
+        - StorageWall (Folder)
+          - DisplayVault (Model) [9 attrs]
+            - ColourSlots (Folder)
+              - Detail (Folder)
+              - Neon (Folder)
+              - Primary (Folder)
+              - Secondary (Folder)
+            - Fixed (Folder)
+            - Technical (Folder)
+          - FlushCabinets (Model) [9 attrs]
+            - ColourSlots (Folder)
+              - Detail (Folder)
+              - Neon (Folder)
+              - Primary (Folder)
+              - Secondary (Folder)
+            - Fixed (Folder)
+            - Technical (Folder)
+          - OpenRack (Model) [8 attrs]
+            - ColourSlots (Folder)
+              - Detail (Folder)
+              - Neon (Folder)
+              - Primary (Folder)
+              - Secondary (Folder)
+            - Fixed (Folder)
+              - mechanics shelving (Model)
+                - Locker_B (Model)
+                  - Locker_B (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Locker_B (Model)
+                  - Locker_B (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Locker_B (Model)
+                  - Locker_B (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Shelf Group (Model)
+                  - Battery (Model)
+                    - Battery (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Battery (Model)
+                    - Battery (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Battery (Model)
+                    - Battery (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Gascan (Model)
+                    - Gascan (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Gascan (Model)
+                    - Gascan (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Gascan (Model)
+                    - Gascan (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Shelf.001 (Model)
+                    - Shelf (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Shelf.001 (Model)
+                    - Shelf (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Shelf Group (Model)
+                  - Battery (Model)
+                    - Battery (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Battery (Model)
+                    - Battery (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Battery (Model)
+                    - Battery (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Gascan (Model)
+                    - Gascan (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Gascan (Model)
+                    - Gascan (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Gascan (Model)
+                    - Gascan (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Shelf.001 (Model)
+                    - Shelf (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Shelf.001 (Model)
+                    - Shelf (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Toolbox_Large (Model)
+                  - Toolbox_Large (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Toolbox_Large (Model)
+                  - Toolbox_Large (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Toolbox_Large (Model)
+                  - Toolbox_Large (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Toolbox_Large (Model)
+                  - Toolbox_Large (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+            - Technical (Folder)
+        - WorkshopWall (Folder)
+          - CollectorStudio (Model) [9 attrs]
+            - ColourSlots (Folder)
+              - Detail (Folder)
+              - Neon (Folder)
+              - Primary (Folder)
+              - Secondary (Folder)
+            - Fixed (Folder)
+            - Technical (Folder)
+          - PrecisionLab (Model) [9 attrs]
+            - ColourSlots (Folder)
+              - Detail (Folder)
+              - Neon (Folder)
+              - Primary (Folder)
+              - Secondary (Folder)
+            - Fixed (Folder)
+            - Technical (Folder)
+          - StreetWorkshop (Model) [8 attrs]
+            - ColourSlots (Folder)
+              - Detail (Folder)
+              - Neon (Folder)
+              - Primary (Folder)
+              - Secondary (Folder)
+            - Fixed (Folder)
+              - mechanics worktops (Model)
+                - Box_A (Model)
+                  - Box_A (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Box_A (Model)
+                  - Box_A (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Box_A (Model)
+                  - Box_A (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Box_A (Model)
+                  - Box_A (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Box_A (Model)
+                  - Box_A (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Box_A (Model)
+                  - Box_A (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Box_A (Model)
+                  - Box_A (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Box_A (Model)
+                  - Box_A (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Box_A (Model)
+                  - Box_A (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Box_A (Model)
+                  - Box_A (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Box_A (Model)
+                  - Box_A (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Box_A (Model)
+                  - Box_A (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Box_A (Model)
+                  - Box_A (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Box_A (Model)
+                  - Box_A (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Box_A (Model)
+                  - Box_A (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Box_A (Model)
+                  - Box_A (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Box_A (Model)
+                  - Box_A (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Box_A (Model)
+                  - Box_A (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Compressor (Model)
+                  - Compressor (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Wheel_Rubber (MeshPart) [1 attrs]
+                    - SurfaceAppearance (SurfaceAppearance)
+                - Feilen (Model)
+                  - Feilen (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Hammer_B (Model)
+                  - Hammer_B (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Hammer_with_Brackets (Model)
+                  - Hammer_with_Brackets (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Hammer_with_Brackets (Model)
+                  - Hammer_with_Brackets (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Imubss (Model)
+                  - Imbuss (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Imubss (Model)
+                  - Imbuss (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Keys (Model)
+                  - Keys (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Keys (Model)
+                  - Keys (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Knife_A (Model)
+                  - Knife_A (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Knife_A (Model)
+                  - Knife_A (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Knife_A (Model)
+                  - Knife_A (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Knife_A (Model)
+                  - Knife_A (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Knife_A (Model)
+                  - Knife_A (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Knife_A (Model)
+                  - Knife_A (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Knife_A (Model)
+                  - Knife_A (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Locker_B (Model)
+                  - Locker_B (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Locker_B (Model)
+                  - Locker_B (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Locker_B (Model)
+                  - Locker_B (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Locker_B (Model)
+                  - Locker_B (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Locker_B (Model)
+                  - Locker_B (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Screwdriver_Set_A (Model)
+                  - Screwdriver_Set_A (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Screwdriver_Set_A (Model)
+                  - Screwdriver_Set_A (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Screwdriver_Set_B (Model)
+                  - Screwdriver_Set_B (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Screwdriver_Set_B (Model)
+                  - Screwdriver_Set_B (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Shelf Group (Model)
+                  - Battery (Model)
+                    - Battery (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Battery (Model)
+                    - Battery (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Battery (Model)
+                    - Battery (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Gascan (Model)
+                    - Gascan (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Gascan (Model)
+                    - Gascan (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Gascan (Model)
+                    - Gascan (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Shelf.001 (Model)
+                    - Shelf (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Shelf.001 (Model)
+                    - Shelf (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Shelf_A (Model)
+                  - Shelf_A (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Shelf_A (Model)
+                  - Shelf_A (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Shelf_A (Model)
+                  - Shelf_A (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Shelf_A (Model)
+                  - Shelf_A (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Shelf_A (Model)
+                  - Shelf_A (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Shelf_A (Model)
+                  - Shelf_A (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Shelf_A (Model)
+                  - Shelf_A (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Shelf_A (Model)
+                  - Shelf_A (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Toolbox_Large (Model)
+                  - Toolbox_Large (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Toolbox_Large (Model)
+                  - Toolbox_Large (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Toolbox_Large (Model)
+                  - Toolbox_Large (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Toolbox_Large (Model)
+                  - Toolbox_Large (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Toolbox_Large (Model)
+                  - Toolbox_Large (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Toolbox_Small (Model)
+                  - Toolbox_Small (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Wallmount (Model)
+                  - Wallmount (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Wallmount (Model)
+                  - Wallmount (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Wallmount (Model)
+                  - Wallmount (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Workbench (Model)
+                  - workbench.001 (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Workbench (Model)
+                  - workbench.001 (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Workbench (Model)
+                  - workbench.001 (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Wrench_Set_A (Model)
+                  - Wrench_Set_A (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Wrench_Set_B (Model)
+                  - Wrench_Set_B (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Wrench_Set_B (Model)
+                  - Wrench_Set_B (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Wrench_Set_B (Model)
+                  - Wrench_Set_B (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Zange (Model)
+                  - Zange (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Zange (Model)
+                  - Zange (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Zange (Model)
+                  - Zange (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Zange (Model)
+                  - Zange (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - Zange (Model)
+                  - Zange (MeshPart) [1 attrs]
+                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                - StripLightHousing (Part) [1 attrs]
+                  - Part (Part) [1 attrs]
+                  - StripLightBulb (Part) [1 attrs]
+                    - SurfaceLight (SurfaceLight)
+                - StripLightHousing (Part) [1 attrs]
+                  - Part (Part) [1 attrs]
+                  - StripLightBulb (Part) [1 attrs]
+                    - SurfaceLight (SurfaceLight)
+                - StripLightHousing (Part) [1 attrs]
+                  - Part (Part) [1 attrs]
+                  - StripLightBulb (Part) [1 attrs]
+                    - SurfaceLight (SurfaceLight)
+            - Technical (Folder)
+    - StructureAssets (Folder)
+      - StarterTwoBay (Folder)
+        - BackWall (Folder)
+          - Option01 (Model) [10 attrs]
+            - ColourSlots (Folder)
+              - Detail (Folder)
+                - BackWall Detail (Part) [5 attrs]
+                - BackWall Detail (Part) [5 attrs]
+              - Neon (Folder)
+              - Primary (Folder)
+                - BackWall (Part) [5 attrs]
+              - Secondary (Folder)
+                - BackWall 2 (Part) [5 attrs]
+            - Fixed (Folder)
+            - Technical (Folder)
+          - Option02 (Model) [10 attrs]
+            - ColourSlots (Folder)
+              - Detail (Folder)
+                - BackWall Detail (Part) [5 attrs]
+                - BackWall Detail (Part) [5 attrs]
+              - Neon (Folder)
+                - BackWall Neon (Part) [5 attrs]
+                - BackWall Neon (Part) [5 attrs]
+              - Primary (Folder)
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+              - Secondary (Folder)
+                - BackWall 2 (Part) [5 attrs]
+            - Fixed (Folder)
+            - Technical (Folder)
+          - Option03 (Model) [10 attrs]
+            - ColourSlots (Folder)
+              - Detail (Folder)
+              - Neon (Folder)
+              - Primary (Folder)
+              - Secondary (Folder)
+            - Fixed (Folder)
+            - Technical (Folder)
+          - Option04 (Model) [10 attrs]
+            - ColourSlots (Folder)
+              - Detail (Folder)
+              - Neon (Folder)
+              - Primary (Folder)
+              - Secondary (Folder)
+            - Fixed (Folder)
+            - Technical (Folder)
+        - Ceiling (Folder)
+          - Option01 (Model) [10 attrs]
+            - ColourSlots (Folder)
+              - Detail (Folder)
+              - Neon (Folder)
+              - Primary (Folder)
+                - Roof (Part) [5 attrs]
+              - Secondary (Folder)
+            - Fixed (Folder)
+            - Technical (Folder)
+          - Option02 (Model) [10 attrs]
+            - ColourSlots (Folder)
+              - Detail (Folder)
+              - Neon (Folder)
+                - Ceiling Neon (Part) [5 attrs]
+                - Ceiling Neon (Part) [5 attrs]
+                - Ceiling Neon (Part) [5 attrs]
+                - Ceiling Neon (Part) [5 attrs]
+              - Primary (Folder)
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+              - Secondary (Folder)
+                - Roof (Part) [5 attrs]
+            - Fixed (Folder)
+            - Technical (Folder)
+          - Option03 (Model) [10 attrs]
+            - ColourSlots (Folder)
+              - Detail (Folder)
+              - Neon (Folder)
+              - Primary (Folder)
+              - Secondary (Folder)
+            - Fixed (Folder)
+            - Technical (Folder)
+          - Option04 (Model) [10 attrs]
+            - ColourSlots (Folder)
+              - Detail (Folder)
+              - Neon (Folder)
+              - Primary (Folder)
+              - Secondary (Folder)
+            - Fixed (Folder)
+            - Technical (Folder)
+        - Floor (Folder)
+          - Option01 (Model) [10 attrs]
+            - ColourSlots (Folder)
+              - Detail (Folder)
+              - Neon (Folder)
+              - Primary (Folder)
+                - Floor (Part) [5 attrs]
+              - Secondary (Folder)
+            - Fixed (Folder)
+            - Technical (Folder)
+          - Option02 (Model) [10 attrs]
+            - ColourSlots (Folder)
+              - Detail (Folder)
+              - Neon (Folder)
+                - Ceiling Neon (Part) [5 attrs]
+                - Ceiling Neon (Part) [5 attrs]
+                - Ceiling Neon (Part) [5 attrs]
+                - Ceiling Neon (Part) [5 attrs]
+              - Primary (Folder)
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+              - Secondary (Folder)
+                - Floor (Part) [5 attrs]
+            - Fixed (Folder)
+            - Technical (Folder)
+          - Option03 (Model) [10 attrs]
+            - ColourSlots (Folder)
+              - Detail (Folder)
+              - Neon (Folder)
+              - Primary (Folder)
+              - Secondary (Folder)
+            - Fixed (Folder)
+            - Technical (Folder)
+          - Option04 (Model) [10 attrs]
+            - ColourSlots (Folder)
+              - Detail (Folder)
+              - Neon (Folder)
+              - Primary (Folder)
+              - Secondary (Folder)
+            - Fixed (Folder)
+            - Technical (Folder)
+        - FrontWall (Folder)
+          - Option01 (Model) [10 attrs]
+            - ColourSlots (Folder)
+              - Detail (Folder)
+                - FrontWall Detail (Part) [5 attrs]
+                - FrontWall Detail (Part) [5 attrs]
+                - FrontWall Detail (Part) [5 attrs]
+                - FrontWall Detail (Part) [5 attrs]
+                - FrontWall Detail (Part) [5 attrs]
+                - FrontWall Detail (Part) [5 attrs]
+              - Neon (Folder)
+              - Primary (Folder)
+                - FrontWall 1 (Part) [5 attrs]
+                - FrontWall 1 (Part) [5 attrs]
+                - FrontWall 1 (Part) [5 attrs]
+              - Secondary (Folder)
+                - FrontWall 2 (Part) [5 attrs]
+                - FrontWall 2 (Part) [5 attrs]
+            - Fixed (Folder)
+              - FrontDoor Shutters (Part) [3 attrs]
+            - Technical (Folder)
+          - Option02 (Model) [10 attrs]
+            - ColourSlots (Folder)
+              - Detail (Folder)
+                - BackWall Detail (Part) [5 attrs]
+                - BackWall Detail (Part) [5 attrs]
+                - BackWall Detail (Part) [5 attrs]
+                - BackWall Detail (Part) [5 attrs]
+                - BackWall Detail (Part) [5 attrs]
+                - BackWall Detail (Part) [5 attrs]
+              - Neon (Folder)
+                - BackWall Neon (Part) [5 attrs]
+                - BackWall Neon (Part) [5 attrs]
+                - BackWall Neon (Part) [5 attrs]
+                - BackWall Neon (Part) [5 attrs]
+                - BackWall Neon (Part) [5 attrs]
+              - Primary (Folder)
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+              - Secondary (Folder)
+                - FrontWall 1 (Part) [5 attrs]
+                - FrontWall 1 (Part) [5 attrs]
+                - FrontWall 1 (Part) [5 attrs]
+            - Fixed (Folder)
+              - FrontDoor Shutters (Part) [3 attrs]
+            - Technical (Folder)
+          - Option03 (Model) [10 attrs]
+            - ColourSlots (Folder)
+              - Detail (Folder)
+              - Neon (Folder)
+              - Primary (Folder)
+              - Secondary (Folder)
+            - Fixed (Folder)
+            - Technical (Folder)
+          - Option04 (Model) [10 attrs]
+            - ColourSlots (Folder)
+              - Detail (Folder)
+              - Neon (Folder)
+              - Primary (Folder)
+              - Secondary (Folder)
+            - Fixed (Folder)
+            - Technical (Folder)
+        - LeftWall (Folder)
+          - Option01 (Model) [10 attrs]
+            - ColourSlots (Folder)
+              - Detail (Folder)
+                - LeftWall Detail (Part) [5 attrs]
+                - LeftWall Detail (Part) [5 attrs]
+              - Neon (Folder)
+              - Primary (Folder)
+                - LeftWall 1 (Part) [5 attrs]
+              - Secondary (Folder)
+                - LeftWall 2 (Part) [5 attrs]
+            - Fixed (Folder)
+            - Technical (Folder)
+          - Option02 (Model) [10 attrs]
+            - ColourSlots (Folder)
+              - Detail (Folder)
+                - BackWall Detail (Part) [5 attrs]
+                - BackWall Detail (Part) [5 attrs]
+              - Neon (Folder)
+                - BackWall Neon (Part) [5 attrs]
+                - BackWall Neon (Part) [5 attrs]
+              - Primary (Folder)
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+              - Secondary (Folder)
+                - BackWall 2 (Part) [5 attrs]
+            - Fixed (Folder)
+            - Technical (Folder)
+          - Option03 (Model) [10 attrs]
+            - ColourSlots (Folder)
+              - Detail (Folder)
+              - Neon (Folder)
+              - Primary (Folder)
+              - Secondary (Folder)
+            - Fixed (Folder)
+            - Technical (Folder)
+          - Option04 (Model) [10 attrs]
+            - ColourSlots (Folder)
+              - Detail (Folder)
+              - Neon (Folder)
+              - Primary (Folder)
+              - Secondary (Folder)
+            - Fixed (Folder)
+            - Technical (Folder)
+        - RightWall (Folder)
+          - Option01 (Model) [10 attrs]
+            - ColourSlots (Folder)
+              - Detail (Folder)
+                - RightWall Detail (Part) [5 attrs]
+                - RightWall Detail (Part) [5 attrs]
+              - Neon (Folder)
+              - Primary (Folder)
+                - RightWall 1 (Part) [5 attrs]
+              - Secondary (Folder)
+                - RightWall 2 (Part) [5 attrs]
+            - Fixed (Folder)
+            - Technical (Folder)
+          - Option02 (Model) [10 attrs]
+            - ColourSlots (Folder)
+              - Detail (Folder)
+                - BackWall Detail (Part) [5 attrs]
+                - BackWall Detail (Part) [5 attrs]
+              - Neon (Folder)
+                - BackWall Neon (Part) [5 attrs]
+                - BackWall Neon (Part) [5 attrs]
+              - Primary (Folder)
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+                - Slats (Part) [5 attrs]
+              - Secondary (Folder)
+                - BackWall 2 (Part) [5 attrs]
+            - Fixed (Folder)
+            - Technical (Folder)
+          - Option03 (Model) [10 attrs]
+            - ColourSlots (Folder)
+              - Detail (Folder)
+              - Neon (Folder)
+              - Primary (Folder)
+              - Secondary (Folder)
+            - Fixed (Folder)
+            - Technical (Folder)
+          - Option04 (Model) [10 attrs]
+            - ColourSlots (Folder)
+              - Detail (Folder)
+              - Neon (Folder)
+              - Primary (Folder)
+              - Secondary (Folder)
+            - Fixed (Folder)
+            - Technical (Folder)
+    - StarterTwoBay (Model) [5 attrs]
+      - DecorationSlots (Folder)
+        - FeatureCorner (Part) [2 attrs]
+        - HangoutBay (Part) [2 attrs]
+        - IdentityWall (Part) [2 attrs]
+        - StorageWall (Part) [2 attrs]
+        - WorkshopWall (Part) [2 attrs]
+      - DisplaySpaceMarkers (Folder)
+        - Space01 (Part) [2 attrs]
+        - Space02 (Part) [2 attrs]
+      - LightingSlots (Folder)
+        - Light01 (Part) [2 attrs]
+        - Light02 (Part) [2 attrs]
+        - Light03 (Part) [2 attrs]
+        - Light04 (Part) [2 attrs]
+      - StructureSlots (Folder)
+        - BackWall (Part) [2 attrs]
+        - Ceiling (Part) [2 attrs]
+        - Floor (Part) [2 attrs]
+        - FrontWall (Part) [2 attrs]
+        - LeftWall (Part) [2 attrs]
+        - RightWall (Part) [2 attrs]
+      - CollisionShell (Model) [3 attrs]
+        - BackWall_Collision_022 (Part) [3 attrs]
+        - BackWall_Collision_023 (Part) [3 attrs]
+        - BackWall_Collision_024 (Part) [3 attrs]
+        - BackWall_Collision_025 (Part) [3 attrs]
+        - Floor_Collision_001 (Part) [3 attrs]
+        - FrontWall_Collision_002 (Part) [3 attrs]
+        - FrontWall_Collision_003 (Part) [3 attrs]
+        - FrontWall_Collision_004 (Part) [3 attrs]
+        - FrontWall_Collision_005 (Part) [3 attrs]
+        - FrontWall_Collision_006 (Part) [3 attrs]
+        - FrontWall_Collision_007 (Part) [3 attrs]
+        - FrontWall_Collision_008 (Part) [3 attrs]
+        - FrontWall_Collision_009 (Part) [3 attrs]
+        - FrontWall_Collision_010 (Part) [3 attrs]
+        - FrontWall_Collision_011 (Part) [3 attrs]
+        - FrontWall_Collision_012 (Part) [3 attrs]
+        - FrontWall_Collision_013 (Part) [3 attrs]
+        - LeftWall_Collision_014 (Part) [3 attrs]
+        - LeftWall_Collision_015 (Part) [3 attrs]
+        - LeftWall_Collision_016 (Part) [3 attrs]
+        - LeftWall_Collision_017 (Part) [3 attrs]
+        - RightWall_Collision_018 (Part) [3 attrs]
+        - RightWall_Collision_019 (Part) [3 attrs]
+        - RightWall_Collision_020 (Part) [3 attrs]
+        - RightWall_Collision_021 (Part) [3 attrs]
+      - ManagementDesk (Model)
+        - DeskPromptAnchor (Part) [1 attrs]
+          - ManageGaragePrompt (ProximityPrompt)
+      - CharacterSpawn (Part) [1 attrs]
+      - DriveInMarker (Part) [1 attrs]
+      - DriveOutMarker (Part) [1 attrs]
+      - FootExitMarker (Part) [1 attrs]
+        - FootExitPrompt (ProximityPrompt)
+      - PersonnelDoor (Part) [1 attrs]
+      - TemplateOrigin (Part) [1 attrs]
   - z icons etc (Folder)
     - back (Decal)
     - build (Decal)
@@ -29922,449 +31677,689 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
     - neon (Decal)
     - owned (Decal)
     - performance (Decal)
+    - play (Decal)
+    - store (Decal)
+    - store2 (Decal)
+    - garage icons (Folder)
+      - car garage (Decal)
+      - decorations (Decal)
+      - material (Decal)
+      - save (Decal)
+      - structure (Decal)
+    - garage locations (Folder)
+      - back wall (Decal)
+      - ceiling (Decal)
+      - dec all (Decal)
+      - dec back wall (Decal)
+      - dec left corner (Decal)
+      - dec right (Decal)
+      - dec right corner (Decal)
+      - display pads (Decal)
+      - floor (Decal)
+      - front wall (Decal)
+      - hangout (Decal)
+      - left wall (Decal)
+      - right wall (Decal)
+      - struture all (Decal)
     - loading screen (Folder)
+      - r1c1 (Decal)
+      - r1c2 (Decal)
+      - r1c3 (Decal)
+      - r2c1 (Decal)
+      - r2c2 (Decal)
+      - r2c3 (Decal)
   - FBX - 3D Lady Head v2 (Model) [1 attrs]
     - headMesh.002 (MeshPart)
       - SurfaceAppearance (SurfaceAppearance)
-    - Script (Script) [script_0163, 16 lines]
-  - StarterTwoBay (Model) [4 attrs]
-    - DecorationAnchors (Folder)
-      - DecorationAnchor1 (Part) [4 attrs]
-      - DecorationAnchor2 (Part) [4 attrs]
-      - DecorationAnchor3 (Part) [4 attrs]
-    - DisplaySpaceMarkers (Folder)
-      - Space01 (Part) [2 attrs]
-      - Space02 (Part) [2 attrs]
-    - LightingSlots (Folder)
-      - Light01 (Part) [2 attrs]
-      - Light02 (Part) [2 attrs]
-      - Light03 (Part) [2 attrs]
-      - Light04 (Part) [2 attrs]
-    - StructureSlots (Folder)
-      - BackWall (Part) [2 attrs]
-      - Ceiling (Part) [2 attrs]
-      - Floor (Part) [2 attrs]
-      - FrontWall (Part) [2 attrs]
-      - LeftWall (Part) [2 attrs]
-      - RightWall (Part) [2 attrs]
-    - ManagementDesk (Model)
-      - left side (Model)
-        - Box_A (Model)
-          - Box_A (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Box_A (Model)
-          - Box_A (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Box_A (Model)
-          - Box_A (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Box_A (Model)
-          - Box_A (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Box_A (Model)
-          - Box_A (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Box_A (Model)
-          - Box_A (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Box_A (Model)
-          - Box_A (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Box_A (Model)
-          - Box_A (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Box_A (Model)
-          - Box_A (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Box_A (Model)
-          - Box_A (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Box_A (Model)
-          - Box_A (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Box_A (Model)
-          - Box_A (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Box_A (Model)
-          - Box_A (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Box_A (Model)
-          - Box_A (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Box_A (Model)
-          - Box_A (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Box_A (Model)
-          - Box_A (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Box_A (Model)
-          - Box_A (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Box_A (Model)
-          - Box_A (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Compressor (Model)
-          - Compressor (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-          - Wheel_Rubber (MeshPart)
-            - SurfaceAppearance (SurfaceAppearance)
-        - Feilen (Model)
-          - Feilen (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Hammer_B (Model)
-          - Hammer_B (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Hammer_with_Brackets (Model)
-          - Hammer_with_Brackets (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Hammer_with_Brackets (Model)
-          - Hammer_with_Brackets (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Imubss (Model)
-          - Imbuss (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Imubss (Model)
-          - Imbuss (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Keys (Model)
-          - Keys (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Keys (Model)
-          - Keys (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Knife_A (Model)
-          - Knife_A (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Knife_A (Model)
-          - Knife_A (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Knife_A (Model)
-          - Knife_A (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Knife_A (Model)
-          - Knife_A (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Knife_A (Model)
-          - Knife_A (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Knife_A (Model)
-          - Knife_A (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Knife_A (Model)
-          - Knife_A (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Locker_B (Model)
-          - Locker_B (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Locker_B (Model)
-          - Locker_B (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Locker_B (Model)
-          - Locker_B (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Locker_B (Model)
-          - Locker_B (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Locker_B (Model)
-          - Locker_B (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Screwdriver_Set_A (Model)
-          - Screwdriver_Set_A (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Screwdriver_Set_A (Model)
-          - Screwdriver_Set_A (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Screwdriver_Set_B (Model)
-          - Screwdriver_Set_B (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Screwdriver_Set_B (Model)
-          - Screwdriver_Set_B (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Shelf Group (Model)
-          - Battery (Model)
-            - Battery (MeshPart)
-              - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-          - Battery (Model)
-            - Battery (MeshPart)
-              - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-          - Battery (Model)
-            - Battery (MeshPart)
-              - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-          - Gascan (Model)
-            - Gascan (MeshPart)
-              - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-          - Gascan (Model)
-            - Gascan (MeshPart)
-              - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-          - Gascan (Model)
-            - Gascan (MeshPart)
-              - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-          - Shelf.001 (Model)
-            - Shelf (MeshPart)
-              - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-          - Shelf.001 (Model)
-            - Shelf (MeshPart)
-              - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Shelf_A (Model)
-          - Shelf_A (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Shelf_A (Model)
-          - Shelf_A (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Shelf_A (Model)
-          - Shelf_A (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Shelf_A (Model)
-          - Shelf_A (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Shelf_A (Model)
-          - Shelf_A (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Shelf_A (Model)
-          - Shelf_A (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Shelf_A (Model)
-          - Shelf_A (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Shelf_A (Model)
-          - Shelf_A (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Toolbox_Large (Model)
-          - Toolbox_Large (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Toolbox_Large (Model)
-          - Toolbox_Large (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Toolbox_Large (Model)
-          - Toolbox_Large (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Toolbox_Large (Model)
-          - Toolbox_Large (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Toolbox_Large (Model)
-          - Toolbox_Large (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Toolbox_Small (Model)
-          - Toolbox_Small (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Wallmount (Model)
-          - Wallmount (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Wallmount (Model)
-          - Wallmount (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Wallmount (Model)
-          - Wallmount (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Workbench (Model)
-          - workbench.001 (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Workbench (Model)
-          - workbench.001 (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Workbench (Model)
-          - workbench.001 (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Wrench_Set_A (Model)
-          - Wrench_Set_A (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Wrench_Set_B (Model)
-          - Wrench_Set_B (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Wrench_Set_B (Model)
-          - Wrench_Set_B (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Wrench_Set_B (Model)
-          - Wrench_Set_B (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Zange (Model)
-          - Zange (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Zange (Model)
-          - Zange (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Zange (Model)
-          - Zange (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Zange (Model)
-          - Zange (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Zange (Model)
-          - Zange (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - StripLightHousing (Part)
-          - Part (Part)
-          - StripLightBulb (Part)
-            - SurfaceLight (SurfaceLight)
-        - StripLightHousing (Part)
-          - Part (Part)
-          - StripLightBulb (Part)
-            - SurfaceLight (SurfaceLight)
-        - StripLightHousing (Part)
-          - Part (Part)
-          - StripLightBulb (Part)
-            - SurfaceLight (SurfaceLight)
-      - DeskPromptAnchor (Part) [1 attrs]
-        - ManageGaragePrompt (ProximityPrompt)
-    - shelving left (Model)
-      - Locker_B (Model)
-        - Locker_B (MeshPart)
-          - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-      - Locker_B (Model)
-        - Locker_B (MeshPart)
-          - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-      - Locker_B (Model)
-        - Locker_B (MeshPart)
-          - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-      - Shelf Group (Model)
-        - Battery (Model)
-          - Battery (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Battery (Model)
-          - Battery (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Battery (Model)
-          - Battery (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Gascan (Model)
-          - Gascan (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Gascan (Model)
-          - Gascan (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Gascan (Model)
-          - Gascan (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Shelf.001 (Model)
-          - Shelf (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Shelf.001 (Model)
-          - Shelf (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-      - Shelf Group (Model)
-        - Battery (Model)
-          - Battery (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Battery (Model)
-          - Battery (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Battery (Model)
-          - Battery (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Gascan (Model)
-          - Gascan (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Gascan (Model)
-          - Gascan (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Gascan (Model)
-          - Gascan (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Shelf.001 (Model)
-          - Shelf (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-        - Shelf.001 (Model)
-          - Shelf (MeshPart)
-            - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-      - Toolbox_Large (Model)
-        - Toolbox_Large (MeshPart)
-          - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-      - Toolbox_Large (Model)
-        - Toolbox_Large (MeshPart)
-          - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-      - Toolbox_Large (Model)
-        - Toolbox_Large (MeshPart)
-          - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-      - Toolbox_Large (Model)
-        - Toolbox_Large (MeshPart)
-          - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-    - BackWall (Part) [3 attrs]
-    - BackWall 2 (Part) [3 attrs]
-    - BackWall Detail (Part) [3 attrs]
-    - BackWall Detail (Part) [3 attrs]
-    - CharacterSpawn (Part) [1 attrs]
-    - DisplayPadNeon_Space01 (Part) [1 attrs]
-    - DisplayPadNeon_Space02 (Part) [1 attrs]
-    - DisplayPad_Space01 (Part) [2 attrs]
-    - DisplayPad_Space02 (Part) [2 attrs]
-    - DriveInMarker (Part) [1 attrs]
-    - DriveOutMarker (Part) [1 attrs]
-    - Floor (Part) [3 attrs]
-    - FootExitMarker (Part) [1 attrs]
-      - FootExitPrompt (ProximityPrompt)
-    - FrontDoorLintel (Part) [3 attrs]
-    - FrontDoorLintel (Part) [3 attrs]
-    - FrontWall Detail (Part) [3 attrs]
-    - FrontWall Detail (Part) [3 attrs]
-    - FrontWall Detail (Part) [3 attrs]
-    - FrontWall Detail (Part) [3 attrs]
-    - FrontWall Detail (Part) [3 attrs]
-    - FrontWall Detail (Part) [3 attrs]
-    - FrontWallLeft (Part) [3 attrs]
-    - FrontWallLeft 2 (Part) [3 attrs]
-    - FrontWallRight (Part) [3 attrs]
-    - FrontWallRight 2 (Part) [3 attrs]
-    - LeftWall (Part) [3 attrs]
-    - LeftWall 2 (Part) [3 attrs]
-    - PersonnelDoor (Part) [1 attrs]
-    - RightWall (Part) [3 attrs]
-    - RightWall 2 (Part) [3 attrs]
-    - RightWall Detail (Part) [3 attrs]
-    - RightWall Detail (Part) [3 attrs]
-    - RightWall Detail (Part) [3 attrs]
-    - RightWall Detail (Part) [3 attrs]
-    - Roof (Part) [3 attrs]
-    - TemplateOrigin (Part) [1 attrs]
+    - Script (Script) [script_0178, 16 lines]
+  - FBX - 3D Vehicle Holographic v3 (Model) [1 attrs]
+    - Model (Model)
+      - main.001 (MeshPart)
+        - SurfaceAppearance (SurfaceAppearance)
+      - neon (MeshPart)
+    - Script (Script) [script_0179, 16 lines]
+  - BillboardPanel (Part)
+    - Attachment (Attachment)
+    - Attachment (Attachment)
+    - Beam (Beam)
   - Terrain (Terrain)
 - ServerStorage (ServerStorage)
   - HOVER_RACING_SAVED_CARS_Runtime (Folder)
   - NeoTokyoRacers (Folder)
     - OwnedGarage (Folder)
       - DecorationAssets (Folder)
-        - Furniture (Folder)
-          - LoungeChair (Model) [3 attrs]
-            - Detail (Part) [1 attrs]
-            - Primary (Part) [1 attrs]
-          - LowBench (Model) [3 attrs]
-            - Detail (Part) [1 attrs]
-            - Primary (Part) [1 attrs]
-        - Lighting (Folder)
-          - FloorLamp (Model) [3 attrs]
-            - Detail (Part) [1 attrs]
-            - Primary (Part) [1 attrs]
-          - NeonTotem (Model) [3 attrs]
-            - Detail (Part) [1 attrs]
-            - Primary (Part) [1 attrs]
-        - Paintings (Folder)
-          - CityGrid (Model) [3 attrs]
-            - Detail (Part) [1 attrs]
-            - Primary (Part) [1 attrs]
-          - NightRun (Model) [3 attrs]
-            - Detail (Part) [1 attrs]
-            - Primary (Part) [1 attrs]
-        - Plants (Folder)
-          - NeonFern (Model) [3 attrs]
-            - Detail (Part) [1 attrs]
-            - Primary (Part) [1 attrs]
-          - TallPalm (Model) [3 attrs]
-            - Detail (Part) [1 attrs]
-            - Primary (Part) [1 attrs]
-        - Signs (Folder)
-          - KandaSign (Model) [3 attrs]
-            - Detail (Part) [1 attrs]
-            - Primary (Part) [1 attrs]
-          - RacerCrew (Model) [3 attrs]
-            - Detail (Part) [1 attrs]
-            - Primary (Part) [1 attrs]
-        - Storage (Folder)
-          - PartsLocker (Model) [3 attrs]
-            - Detail (Part) [1 attrs]
-            - Primary (Part) [1 attrs]
-          - ToolCrate (Model) [3 attrs]
-            - Detail (Part) [1 attrs]
-            - Primary (Part) [1 attrs]
-      - LightingAssets (Folder)
         - StarterTwoBay (Folder)
+          - DisplayPlatforms (Folder) [3 attrs]
+            - PlatformOption01 (Model) [9 attrs]
+              - ColourSlots (Folder)
+                - Detail (Folder)
+                - Neon (Folder)
+                  - DisplayPadNeon_Space01 (Part) [4 attrs]
+                  - DisplayPadNeon_Space02 (Part) [4 attrs]
+                - Primary (Folder)
+                  - DisplayPad_Space01 (Part) [4 attrs]
+                  - DisplayPad_Space02 (Part) [4 attrs]
+                - Secondary (Folder)
+                  - DisplayPadNeon_Space01 (Part) [4 attrs]
+                  - DisplayPadNeon_Space02 (Part) [4 attrs]
+              - Fixed (Folder)
+              - Technical (Folder)
+            - PlatformOption02 (Model) [9 attrs]
+              - ColourSlots (Folder)
+                - Detail (Folder)
+                - Neon (Folder)
+                - Primary (Folder)
+                - Secondary (Folder)
+              - Fixed (Folder)
+              - Technical (Folder)
+            - PlatformOption03 (Model) [9 attrs]
+              - ColourSlots (Folder)
+                - Detail (Folder)
+                - Neon (Folder)
+                - Primary (Folder)
+                - Secondary (Folder)
+              - Fixed (Folder)
+              - Technical (Folder)
+          - FeatureCorner (Folder)
+            - HydroponicGarden (Model) [8 attrs]
+              - ColourSlots (Folder)
+                - Detail (Folder)
+                - Neon (Folder)
+                - Primary (Folder)
+                - Secondary (Folder)
+              - Fixed (Folder)
+              - Technical (Folder)
+            - NeoAquarium (Model) [8 attrs]
+              - ColourSlots (Folder)
+                - Detail (Folder)
+                - Neon (Folder)
+                - Primary (Folder)
+                - Secondary (Folder)
+              - Fixed (Folder)
+              - Technical (Folder)
+            - ReactorSculpture (Model) [8 attrs]
+              - ColourSlots (Folder)
+                - Detail (Folder)
+                - Neon (Folder)
+                - Primary (Folder)
+                - Secondary (Folder)
+              - Fixed (Folder)
+              - Technical (Folder)
+          - HangoutBay (Folder)
+            - HoloBilliards (Model) [8 attrs]
+              - ColourSlots (Folder)
+                - Detail (Folder)
+                - Neon (Folder)
+                - Primary (Folder)
+                - Secondary (Folder)
+              - Fixed (Folder)
+              - Technical (Folder)
+            - NeoLounge (Model) [8 attrs]
+              - ColourSlots (Folder)
+                - Detail (Folder)
+                  - bedroom chair dark (Part) [2 attrs]
+                  - bedroom chair dark (Part) [2 attrs]
+                  - bedroom chair dark (Part) [2 attrs]
+                  - bedroom chair dark (Part) [2 attrs]
+                  - bedroom chair dark (Part) [2 attrs]
+                  - bedroom chair dark (Part) [2 attrs]
+                  - bedroom chair dark (Part) [2 attrs]
+                  - bedroom chair dark (Part) [2 attrs]
+                  - carpet (Part) [2 attrs]
+                  - dining chair dark (Part) [2 attrs]
+                  - dining chair dark (Part) [2 attrs]
+                  - sofa base (Part) [2 attrs]
+                  - sofa base (Part) [2 attrs]
+                - Neon (Folder)
+                - Primary (Folder)
+                  - library coffee table (Part) [2 attrs]
+                  - library desk (Part) [2 attrs]
+                  - desk main (UnionOperation) [2 attrs]
+                  - painting frame (UnionOperation) [2 attrs]
+                  - tv stand (UnionOperation) [2 attrs]
+                - Secondary (Folder)
+                  - bedroom chair light (Part) [2 attrs]
+                  - bedroom chair light (Part) [2 attrs]
+                  - bedroom chair light (Part) [2 attrs]
+                  - bedroom chair light (Part) [2 attrs]
+                  - dining chair light (Part) [2 attrs]
+                  - dining chair light (Part) [2 attrs]
+                  - sofa cushions (Part) [2 attrs]
+                  - sofa cushions (Part) [2 attrs]
+                  - sofa cushions (Part) [2 attrs]
+                  - sofa cushions (Part) [2 attrs]
+                  - sofa cushions (Part) [2 attrs]
+                  - sofa cushions (Part) [2 attrs]
+                  - sofa cushions (Part) [2 attrs]
+                  - sofa cushions (Part) [2 attrs]
+                  - sofa cushions (Part) [2 attrs]
+                  - sofa cushions (Part) [2 attrs]
+              - Fixed (Folder)
+                - autumn colours painting (MeshPart) [1 attrs]
+                  - SurfaceAppearance (SurfaceAppearance)
+                - blue and pink painting (MeshPart) [1 attrs]
+                  - SurfaceAppearance (SurfaceAppearance)
+                - blue and red painting (MeshPart) [1 attrs]
+                  - SurfaceAppearance (SurfaceAppearance)
+                - bookshelf (MeshPart) [1 attrs]
+                  - SurfaceAppearance (SurfaceAppearance)
+                - bookshelf (MeshPart) [1 attrs]
+                  - SurfaceAppearance (SurfaceAppearance)
+                - bookshelf (MeshPart) [1 attrs]
+                  - SurfaceAppearance (SurfaceAppearance)
+                - bookshelf (MeshPart) [1 attrs]
+                  - SurfaceAppearance (SurfaceAppearance)
+                - dark red painting (MeshPart) [1 attrs]
+                  - SurfaceAppearance (SurfaceAppearance)
+                - plant small (Model)
+                  - plant small.005 (MeshPart) [1 attrs]
+                    - SurfaceAppearance (SurfaceAppearance)
+                - plant small (Model)
+                  - plant small.005 (MeshPart) [1 attrs]
+                    - SurfaceAppearance (SurfaceAppearance)
+                - keyboard (Part) [1 attrs]
+                  - Texture (Texture)
+                - mouse (Part) [1 attrs]
+                - monitor (UnionOperation) [1 attrs]
+                - tv (UnionOperation) [1 attrs]
+              - Technical (Folder)
+            - RacingSimulator (Model) [8 attrs]
+              - ColourSlots (Folder)
+                - Detail (Folder)
+                - Neon (Folder)
+                - Primary (Folder)
+                - Secondary (Folder)
+              - Fixed (Folder)
+              - Technical (Folder)
+          - IdentityWall (Folder)
+            - BlueprintWall (Model) [8 attrs]
+              - ColourSlots (Folder)
+                - Detail (Folder)
+                - Neon (Folder)
+                - Primary (Folder)
+                - Secondary (Folder)
+              - Fixed (Folder)
+              - Technical (Folder)
+            - CityArt (Model) [8 attrs]
+              - ColourSlots (Folder)
+                - Detail (Folder)
+                - Neon (Folder)
+                - Primary (Folder)
+                - Secondary (Folder)
+              - Fixed (Folder)
+              - Technical (Folder)
+            - TrophyWall (Model) [8 attrs]
+              - ColourSlots (Folder)
+                - Detail (Folder)
+                - Neon (Folder)
+                - Primary (Folder)
+                - Secondary (Folder)
+              - Fixed (Folder)
+              - Technical (Folder)
+          - StorageWall (Folder)
+            - DisplayVault (Model) [9 attrs]
+              - ColourSlots (Folder)
+                - Detail (Folder)
+                - Neon (Folder)
+                - Primary (Folder)
+                - Secondary (Folder)
+              - Fixed (Folder)
+              - Technical (Folder)
+            - FlushCabinets (Model) [9 attrs]
+              - ColourSlots (Folder)
+                - Detail (Folder)
+                - Neon (Folder)
+                - Primary (Folder)
+                - Secondary (Folder)
+              - Fixed (Folder)
+              - Technical (Folder)
+            - OpenRack (Model) [8 attrs]
+              - ColourSlots (Folder)
+                - Detail (Folder)
+                - Neon (Folder)
+                - Primary (Folder)
+                - Secondary (Folder)
+              - Fixed (Folder)
+                - mechanics shelving (Model)
+                  - Locker_B (Model)
+                    - Locker_B (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Locker_B (Model)
+                    - Locker_B (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Locker_B (Model)
+                    - Locker_B (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Shelf Group (Model)
+                    - Battery (Model)
+                      - Battery (MeshPart) [1 attrs]
+                        - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                    - Battery (Model)
+                      - Battery (MeshPart) [1 attrs]
+                        - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                    - Battery (Model)
+                      - Battery (MeshPart) [1 attrs]
+                        - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                    - Gascan (Model)
+                      - Gascan (MeshPart) [1 attrs]
+                        - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                    - Gascan (Model)
+                      - Gascan (MeshPart) [1 attrs]
+                        - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                    - Gascan (Model)
+                      - Gascan (MeshPart) [1 attrs]
+                        - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                    - Shelf.001 (Model)
+                      - Shelf (MeshPart) [1 attrs]
+                        - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                    - Shelf.001 (Model)
+                      - Shelf (MeshPart) [1 attrs]
+                        - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Shelf Group (Model)
+                    - Battery (Model)
+                      - Battery (MeshPart) [1 attrs]
+                        - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                    - Battery (Model)
+                      - Battery (MeshPart) [1 attrs]
+                        - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                    - Battery (Model)
+                      - Battery (MeshPart) [1 attrs]
+                        - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                    - Gascan (Model)
+                      - Gascan (MeshPart) [1 attrs]
+                        - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                    - Gascan (Model)
+                      - Gascan (MeshPart) [1 attrs]
+                        - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                    - Gascan (Model)
+                      - Gascan (MeshPart) [1 attrs]
+                        - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                    - Shelf.001 (Model)
+                      - Shelf (MeshPart) [1 attrs]
+                        - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                    - Shelf.001 (Model)
+                      - Shelf (MeshPart) [1 attrs]
+                        - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Toolbox_Large (Model)
+                    - Toolbox_Large (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Toolbox_Large (Model)
+                    - Toolbox_Large (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Toolbox_Large (Model)
+                    - Toolbox_Large (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Toolbox_Large (Model)
+                    - Toolbox_Large (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+              - Technical (Folder)
+          - WorkshopWall (Folder)
+            - CollectorStudio (Model) [9 attrs]
+              - ColourSlots (Folder)
+                - Detail (Folder)
+                - Neon (Folder)
+                - Primary (Folder)
+                - Secondary (Folder)
+              - Fixed (Folder)
+              - Technical (Folder)
+            - PrecisionLab (Model) [9 attrs]
+              - ColourSlots (Folder)
+                - Detail (Folder)
+                - Neon (Folder)
+                - Primary (Folder)
+                - Secondary (Folder)
+              - Fixed (Folder)
+              - Technical (Folder)
+            - StreetWorkshop (Model) [8 attrs]
+              - ColourSlots (Folder)
+                - Detail (Folder)
+                - Neon (Folder)
+                - Primary (Folder)
+                - Secondary (Folder)
+              - Fixed (Folder)
+                - mechanics worktops (Model)
+                  - Box_A (Model)
+                    - Box_A (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Box_A (Model)
+                    - Box_A (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Box_A (Model)
+                    - Box_A (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Box_A (Model)
+                    - Box_A (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Box_A (Model)
+                    - Box_A (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Box_A (Model)
+                    - Box_A (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Box_A (Model)
+                    - Box_A (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Box_A (Model)
+                    - Box_A (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Box_A (Model)
+                    - Box_A (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Box_A (Model)
+                    - Box_A (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Box_A (Model)
+                    - Box_A (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Box_A (Model)
+                    - Box_A (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Box_A (Model)
+                    - Box_A (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Box_A (Model)
+                    - Box_A (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Box_A (Model)
+                    - Box_A (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Box_A (Model)
+                    - Box_A (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Box_A (Model)
+                    - Box_A (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Box_A (Model)
+                    - Box_A (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Compressor (Model)
+                    - Compressor (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                    - Wheel_Rubber (MeshPart) [1 attrs]
+                      - SurfaceAppearance (SurfaceAppearance)
+                  - Feilen (Model)
+                    - Feilen (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Hammer_B (Model)
+                    - Hammer_B (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Hammer_with_Brackets (Model)
+                    - Hammer_with_Brackets (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Hammer_with_Brackets (Model)
+                    - Hammer_with_Brackets (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Imubss (Model)
+                    - Imbuss (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Imubss (Model)
+                    - Imbuss (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Keys (Model)
+                    - Keys (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Keys (Model)
+                    - Keys (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Knife_A (Model)
+                    - Knife_A (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Knife_A (Model)
+                    - Knife_A (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Knife_A (Model)
+                    - Knife_A (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Knife_A (Model)
+                    - Knife_A (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Knife_A (Model)
+                    - Knife_A (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Knife_A (Model)
+                    - Knife_A (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Knife_A (Model)
+                    - Knife_A (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Locker_B (Model)
+                    - Locker_B (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Locker_B (Model)
+                    - Locker_B (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Locker_B (Model)
+                    - Locker_B (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Locker_B (Model)
+                    - Locker_B (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Locker_B (Model)
+                    - Locker_B (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Screwdriver_Set_A (Model)
+                    - Screwdriver_Set_A (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Screwdriver_Set_A (Model)
+                    - Screwdriver_Set_A (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Screwdriver_Set_B (Model)
+                    - Screwdriver_Set_B (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Screwdriver_Set_B (Model)
+                    - Screwdriver_Set_B (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Shelf Group (Model)
+                    - Battery (Model)
+                      - Battery (MeshPart) [1 attrs]
+                        - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                    - Battery (Model)
+                      - Battery (MeshPart) [1 attrs]
+                        - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                    - Battery (Model)
+                      - Battery (MeshPart) [1 attrs]
+                        - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                    - Gascan (Model)
+                      - Gascan (MeshPart) [1 attrs]
+                        - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                    - Gascan (Model)
+                      - Gascan (MeshPart) [1 attrs]
+                        - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                    - Gascan (Model)
+                      - Gascan (MeshPart) [1 attrs]
+                        - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                    - Shelf.001 (Model)
+                      - Shelf (MeshPart) [1 attrs]
+                        - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                    - Shelf.001 (Model)
+                      - Shelf (MeshPart) [1 attrs]
+                        - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Shelf_A (Model)
+                    - Shelf_A (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Shelf_A (Model)
+                    - Shelf_A (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Shelf_A (Model)
+                    - Shelf_A (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Shelf_A (Model)
+                    - Shelf_A (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Shelf_A (Model)
+                    - Shelf_A (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Shelf_A (Model)
+                    - Shelf_A (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Shelf_A (Model)
+                    - Shelf_A (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Shelf_A (Model)
+                    - Shelf_A (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Toolbox_Large (Model)
+                    - Toolbox_Large (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Toolbox_Large (Model)
+                    - Toolbox_Large (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Toolbox_Large (Model)
+                    - Toolbox_Large (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Toolbox_Large (Model)
+                    - Toolbox_Large (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Toolbox_Large (Model)
+                    - Toolbox_Large (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Toolbox_Small (Model)
+                    - Toolbox_Small (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Wallmount (Model)
+                    - Wallmount (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Wallmount (Model)
+                    - Wallmount (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Wallmount (Model)
+                    - Wallmount (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Workbench (Model)
+                    - workbench.001 (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Workbench (Model)
+                    - workbench.001 (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Workbench (Model)
+                    - workbench.001 (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Wrench_Set_A (Model)
+                    - Wrench_Set_A (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Wrench_Set_B (Model)
+                    - Wrench_Set_B (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Wrench_Set_B (Model)
+                    - Wrench_Set_B (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Wrench_Set_B (Model)
+                    - Wrench_Set_B (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Zange (Model)
+                    - Zange (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Zange (Model)
+                    - Zange (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Zange (Model)
+                    - Zange (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Zange (Model)
+                    - Zange (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - Zange (Model)
+                    - Zange (MeshPart) [1 attrs]
+                      - SA_Racing_Metal_Trim_a (SurfaceAppearance)
+                  - StripLightHousing (Part) [1 attrs]
+                    - Part (Part) [1 attrs]
+                    - StripLightBulb (Part) [1 attrs]
+                      - SurfaceLight (SurfaceLight)
+                  - StripLightHousing (Part) [1 attrs]
+                    - Part (Part) [1 attrs]
+                    - StripLightBulb (Part) [1 attrs]
+                      - SurfaceLight (SurfaceLight)
+                  - StripLightHousing (Part) [1 attrs]
+                    - Part (Part) [1 attrs]
+                    - StripLightBulb (Part) [1 attrs]
+                      - SurfaceLight (SurfaceLight)
+              - Technical (Folder)
+      - LightingAssets (Folder) [2 attrs]
+        - StarterTwoBay (Folder)
+          - LightingOption01 (Model) [7 attrs]
+            - ColourSlots (Folder)
+              - Primary (Folder)
+                - Light01_Emitter (Part)
+                  - RoomLight (PointLight)
+                - Light01_Emitter (Part)
+                  - RoomLight (PointLight)
+                - Light01_Emitter (Part)
+                  - RoomLight (PointLight)
+                - Light02_Emitter (Part)
+                  - RoomLight (PointLight)
+                - Light02_Emitter (Part)
+                  - RoomLight (PointLight)
+                - Light02_Emitter (Part)
+                  - RoomLight (PointLight)
+              - Secondary (Folder)
+            - Fixed (Folder)
+              - Light01_Housing (Part)
+              - Light01_Housing (Part)
+              - Light01_Housing (Part)
+              - Light01_Housing (Part)
+              - Light01_Housing (Part)
+              - Light01_Housing (Part)
+              - Light02_Housing (Part)
+              - Light02_Housing (Part)
+              - Light02_Housing (Part)
+              - Light02_Housing (Part)
+              - Light02_Housing (Part)
+              - Light02_Housing (Part)
+            - Technical (Folder)
+          - LightingOption02 (Model) [7 attrs]
+            - ColourSlots (Folder)
+              - Primary (Folder)
+                - Light01_Housing (Part)
+                - Light02_Housing (Part)
+                - Light03_Housing (Part)
+                - Light04_Housing (Part)
+              - Secondary (Folder)
+                - Light01_Emitter (Part)
+                  - RoomLight (PointLight)
+                - Light02_Emitter (Part)
+                  - RoomLight (PointLight)
+                - Light03_Emitter (Part)
+                  - RoomLight (PointLight)
+                - Light04_Emitter (Part)
+                  - RoomLight (PointLight)
+            - Fixed (Folder)
+            - Technical (Folder)
+          - LightingOption03 (Model) [7 attrs]
+            - ColourSlots (Folder)
+              - Primary (Folder)
+                - Light01_Housing (Part)
+                - Light02_Housing (Part)
+                - Light03_Housing (Part)
+                - Light04_Housing (Part)
+              - Secondary (Folder)
+                - Light01_Emitter (Part)
+                  - RoomLight (PointLight)
+                - Light02_Emitter (Part)
+                  - RoomLight (PointLight)
+                - Light03_Emitter (Part)
+                  - RoomLight (PointLight)
+                - Light04_Emitter (Part)
+                  - RoomLight (PointLight)
+            - Fixed (Folder)
+            - Technical (Folder)
+          - LightingOption04 (Model) [7 attrs]
+            - ColourSlots (Folder)
+              - Primary (Folder)
+                - Light01_Housing (Part)
+                - Light02_Housing (Part)
+                - Light03_Housing (Part)
+                - Light04_Housing (Part)
+              - Secondary (Folder)
+                - Light01_Emitter (Part)
+                  - RoomLight (PointLight)
+                - Light02_Emitter (Part)
+                  - RoomLight (PointLight)
+                - Light03_Emitter (Part)
+                  - RoomLight (PointLight)
+                - Light04_Emitter (Part)
+                  - RoomLight (PointLight)
+            - Fixed (Folder)
+            - Technical (Folder)
           - StandardFixture (Model) [2 attrs]
             - Emitter (Part) [1 attrs]
               - RoomLight (PointLight)
@@ -30372,73 +32367,283 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
       - StructureAssets (Folder)
         - StarterTwoBay (Folder)
           - BackWall (Folder)
-            - Option01 (Model) [5 attrs]
-              - BackWall (Part) [3 attrs]
-            - Option02 (Model) [5 attrs]
-              - BackWall (Part) [3 attrs]
-            - Option03 (Model) [5 attrs]
-              - BackWall (Part) [3 attrs]
-            - Option04 (Model) [5 attrs]
-              - BackWall (Part) [3 attrs]
+            - Option01 (Model) [10 attrs]
+              - ColourSlots (Folder)
+                - Detail (Folder)
+                  - BackWall Detail (Part) [5 attrs]
+                  - BackWall Detail (Part) [5 attrs]
+                - Neon (Folder)
+                - Primary (Folder)
+                  - BackWall (Part) [5 attrs]
+                - Secondary (Folder)
+                  - BackWall 2 (Part) [5 attrs]
+              - Fixed (Folder)
+              - Technical (Folder)
+            - Option02 (Model) [10 attrs]
+              - ColourSlots (Folder)
+                - Detail (Folder)
+                  - BackWall Detail (Part) [5 attrs]
+                  - BackWall Detail (Part) [5 attrs]
+                - Neon (Folder)
+                  - BackWall Neon (Part) [5 attrs]
+                  - BackWall Neon (Part) [5 attrs]
+                - Primary (Folder)
+                  - slats (UnionOperation)
+                - Secondary (Folder)
+                  - BackWall 2 (Part) [5 attrs]
+              - Fixed (Folder)
+              - Technical (Folder)
+            - Option03 (Model) [10 attrs]
+              - ColourSlots (Folder)
+                - Detail (Folder)
+                - Neon (Folder)
+                - Primary (Folder)
+                - Secondary (Folder)
+              - Fixed (Folder)
+              - Technical (Folder)
+            - Option04 (Model) [10 attrs]
+              - ColourSlots (Folder)
+                - Detail (Folder)
+                - Neon (Folder)
+                - Primary (Folder)
+                - Secondary (Folder)
+              - Fixed (Folder)
+              - Technical (Folder)
           - Ceiling (Folder)
-            - Option01 (Model) [5 attrs]
-              - Roof (Part) [3 attrs]
-            - Option02 (Model) [5 attrs]
-              - Roof (Part) [3 attrs]
-            - Option03 (Model) [5 attrs]
-              - Roof (Part) [3 attrs]
-            - Option04 (Model) [5 attrs]
-              - Roof (Part) [3 attrs]
+            - Option01 (Model) [10 attrs]
+              - ColourSlots (Folder)
+                - Detail (Folder)
+                - Neon (Folder)
+                - Primary (Folder)
+                  - Roof (Part) [5 attrs]
+                - Secondary (Folder)
+              - Fixed (Folder)
+              - Technical (Folder)
+            - Option02 (Model) [10 attrs]
+              - ColourSlots (Folder)
+                - Detail (Folder)
+                - Neon (Folder)
+                  - Ceiling Neon (Part) [5 attrs]
+                  - Ceiling Neon (Part) [5 attrs]
+                  - Ceiling Neon (Part) [5 attrs]
+                  - Ceiling Neon (Part) [5 attrs]
+                - Primary (Folder)
+                  - slats (UnionOperation)
+                - Secondary (Folder)
+                  - Roof (Part) [5 attrs]
+              - Fixed (Folder)
+              - Technical (Folder)
+            - Option03 (Model) [10 attrs]
+              - ColourSlots (Folder)
+                - Detail (Folder)
+                - Neon (Folder)
+                - Primary (Folder)
+                - Secondary (Folder)
+              - Fixed (Folder)
+              - Technical (Folder)
+            - Option04 (Model) [10 attrs]
+              - ColourSlots (Folder)
+                - Detail (Folder)
+                - Neon (Folder)
+                - Primary (Folder)
+                - Secondary (Folder)
+              - Fixed (Folder)
+              - Technical (Folder)
           - Floor (Folder)
-            - Option01 (Model) [5 attrs]
-              - Floor (Part) [3 attrs]
-            - Option02 (Model) [5 attrs]
-              - Floor (Part) [3 attrs]
-            - Option03 (Model) [5 attrs]
-              - Floor (Part) [3 attrs]
-            - Option04 (Model) [5 attrs]
-              - Floor (Part) [3 attrs]
+            - Option01 (Model) [10 attrs]
+              - ColourSlots (Folder)
+                - Detail (Folder)
+                - Neon (Folder)
+                - Primary (Folder)
+                  - Floor (Part) [5 attrs]
+                - Secondary (Folder)
+              - Fixed (Folder)
+              - Technical (Folder)
+            - Option02 (Model) [10 attrs]
+              - ColourSlots (Folder)
+                - Detail (Folder)
+                - Neon (Folder)
+                  - Ceiling Neon (Part) [5 attrs]
+                  - Ceiling Neon (Part) [5 attrs]
+                  - Ceiling Neon (Part) [5 attrs]
+                  - Ceiling Neon (Part) [5 attrs]
+                - Primary (Folder)
+                  - slats (UnionOperation)
+                - Secondary (Folder)
+                  - Floor (Part) [5 attrs]
+              - Fixed (Folder)
+              - Technical (Folder)
+            - Option03 (Model) [10 attrs]
+              - ColourSlots (Folder)
+                - Detail (Folder)
+                - Neon (Folder)
+                - Primary (Folder)
+                - Secondary (Folder)
+              - Fixed (Folder)
+              - Technical (Folder)
+            - Option04 (Model) [10 attrs]
+              - ColourSlots (Folder)
+                - Detail (Folder)
+                - Neon (Folder)
+                - Primary (Folder)
+                - Secondary (Folder)
+              - Fixed (Folder)
+              - Technical (Folder)
           - FrontWall (Folder)
-            - Option01 (Model) [5 attrs]
-              - FrontDoorLintel (Part) [3 attrs]
-              - FrontWallLeft (Part) [3 attrs]
-              - FrontWallRight (Part) [3 attrs]
-            - Option02 (Model) [5 attrs]
-              - FrontDoorLintel (Part) [3 attrs]
-              - FrontWallLeft (Part) [3 attrs]
-              - FrontWallRight (Part) [3 attrs]
-            - Option03 (Model) [5 attrs]
-              - FrontDoorLintel (Part) [3 attrs]
-              - FrontWallLeft (Part) [3 attrs]
-              - FrontWallRight (Part) [3 attrs]
-            - Option04 (Model) [5 attrs]
-              - FrontDoorLintel (Part) [3 attrs]
-              - FrontWallLeft (Part) [3 attrs]
-              - FrontWallRight (Part) [3 attrs]
+            - Option01 (Model) [10 attrs]
+              - ColourSlots (Folder)
+                - Detail (Folder)
+                  - FrontWall Detail (Part) [5 attrs]
+                  - FrontWall Detail (Part) [5 attrs]
+                  - FrontWall Detail (Part) [5 attrs]
+                  - FrontWall Detail (Part) [5 attrs]
+                  - FrontWall Detail (Part) [5 attrs]
+                  - FrontWall Detail (Part) [5 attrs]
+                - Neon (Folder)
+                - Primary (Folder)
+                  - FrontWall 1 (Part) [5 attrs]
+                  - FrontWall 1 (Part) [5 attrs]
+                  - FrontWall 1 (Part) [5 attrs]
+                - Secondary (Folder)
+                  - FrontWall 2 (Part) [5 attrs]
+                  - FrontWall 2 (Part) [5 attrs]
+              - Fixed (Folder)
+                - FrontDoor Shutters (Part) [3 attrs]
+              - Technical (Folder)
+            - Option02 (Model) [10 attrs]
+              - ColourSlots (Folder)
+                - Detail (Folder)
+                  - BackWall Detail (Part) [5 attrs]
+                  - BackWall Detail (Part) [5 attrs]
+                  - BackWall Detail (Part) [5 attrs]
+                  - BackWall Detail (Part) [5 attrs]
+                  - BackWall Detail (Part) [5 attrs]
+                  - BackWall Detail (Part) [5 attrs]
+                - Neon (Folder)
+                  - BackWall Neon (Part) [5 attrs]
+                  - BackWall Neon (Part) [5 attrs]
+                  - BackWall Neon (Part) [5 attrs]
+                  - BackWall Neon (Part) [5 attrs]
+                  - BackWall Neon (Part) [5 attrs]
+                - Primary (Folder)
+                  - slats (UnionOperation)
+                - Secondary (Folder)
+                  - FrontWall 1 (Part) [5 attrs]
+                  - FrontWall 1 (Part) [5 attrs]
+                  - FrontWall 1 (Part) [5 attrs]
+              - Fixed (Folder)
+                - FrontDoor Shutters (Part) [3 attrs]
+              - Technical (Folder)
+            - Option03 (Model) [10 attrs]
+              - ColourSlots (Folder)
+                - Detail (Folder)
+                - Neon (Folder)
+                - Primary (Folder)
+                - Secondary (Folder)
+              - Fixed (Folder)
+              - Technical (Folder)
+            - Option04 (Model) [10 attrs]
+              - ColourSlots (Folder)
+                - Detail (Folder)
+                - Neon (Folder)
+                - Primary (Folder)
+                - Secondary (Folder)
+              - Fixed (Folder)
+              - Technical (Folder)
           - LeftWall (Folder)
-            - Option01 (Model) [5 attrs]
-              - LeftWall (Part) [3 attrs]
-            - Option02 (Model) [5 attrs]
-              - LeftWall (Part) [3 attrs]
-            - Option03 (Model) [5 attrs]
-              - LeftWall (Part) [3 attrs]
-            - Option04 (Model) [5 attrs]
-              - LeftWall (Part) [3 attrs]
+            - Option01 (Model) [10 attrs]
+              - ColourSlots (Folder)
+                - Detail (Folder)
+                  - LeftWall Detail (Part) [5 attrs]
+                  - LeftWall Detail (Part) [5 attrs]
+                - Neon (Folder)
+                - Primary (Folder)
+                  - LeftWall 1 (Part) [5 attrs]
+                - Secondary (Folder)
+                  - LeftWall 2 (Part) [5 attrs]
+              - Fixed (Folder)
+              - Technical (Folder)
+            - Option02 (Model) [10 attrs]
+              - ColourSlots (Folder)
+                - Detail (Folder)
+                  - BackWall Detail (Part) [5 attrs]
+                  - BackWall Detail (Part) [5 attrs]
+                - Neon (Folder)
+                  - BackWall Neon (Part) [5 attrs]
+                  - BackWall Neon (Part) [5 attrs]
+                - Primary (Folder)
+                  - slats (UnionOperation)
+                - Secondary (Folder)
+                  - BackWall 2 (Part) [5 attrs]
+              - Fixed (Folder)
+              - Technical (Folder)
+            - Option03 (Model) [10 attrs]
+              - ColourSlots (Folder)
+                - Detail (Folder)
+                - Neon (Folder)
+                - Primary (Folder)
+                - Secondary (Folder)
+              - Fixed (Folder)
+              - Technical (Folder)
+            - Option04 (Model) [10 attrs]
+              - ColourSlots (Folder)
+                - Detail (Folder)
+                - Neon (Folder)
+                - Primary (Folder)
+                - Secondary (Folder)
+              - Fixed (Folder)
+              - Technical (Folder)
           - RightWall (Folder)
-            - Option01 (Model) [5 attrs]
-              - RightWall (Part) [3 attrs]
-            - Option02 (Model) [5 attrs]
-              - RightWall (Part) [3 attrs]
-            - Option03 (Model) [5 attrs]
-              - RightWall (Part) [3 attrs]
-            - Option04 (Model) [5 attrs]
-              - RightWall (Part) [3 attrs]
+            - Option01 (Model) [10 attrs]
+              - ColourSlots (Folder)
+                - Detail (Folder)
+                  - RightWall Detail (Part) [5 attrs]
+                  - RightWall Detail (Part) [5 attrs]
+                - Neon (Folder)
+                - Primary (Folder)
+                  - RightWall 1 (Part) [5 attrs]
+                - Secondary (Folder)
+                  - RightWall 2 (Part) [5 attrs]
+              - Fixed (Folder)
+              - Technical (Folder)
+            - Option02 (Model) [10 attrs]
+              - ColourSlots (Folder)
+                - Detail (Folder)
+                  - BackWall Detail (Part) [5 attrs]
+                  - BackWall Detail (Part) [5 attrs]
+                - Neon (Folder)
+                  - BackWall Neon (Part) [5 attrs]
+                  - BackWall Neon (Part) [5 attrs]
+                - Primary (Folder)
+                  - slats (UnionOperation)
+                - Secondary (Folder)
+                  - BackWall 2 (Part) [5 attrs]
+              - Fixed (Folder)
+              - Technical (Folder)
+            - Option03 (Model) [10 attrs]
+              - ColourSlots (Folder)
+                - Detail (Folder)
+                - Neon (Folder)
+                - Primary (Folder)
+                - Secondary (Folder)
+              - Fixed (Folder)
+              - Technical (Folder)
+            - Option04 (Model) [10 attrs]
+              - ColourSlots (Folder)
+                - Detail (Folder)
+                - Neon (Folder)
+                - Primary (Folder)
+                - Secondary (Folder)
+              - Fixed (Folder)
+              - Technical (Folder)
       - Templates (Folder)
-        - StarterTwoBay (Model) [4 attrs]
-          - DecorationAnchors (Folder)
-            - DecorationAnchor1 (Part) [4 attrs]
-            - DecorationAnchor2 (Part) [4 attrs]
-            - DecorationAnchor3 (Part) [4 attrs]
+        - StarterTwoBay (Model) [5 attrs]
+          - DecorationSlots (Folder)
+            - FeatureCorner (Part) [2 attrs]
+            - HangoutBay (Part) [2 attrs]
+            - IdentityWall (Part) [2 attrs]
+            - StorageWall (Part) [2 attrs]
+            - WorkshopWall (Part) [2 attrs]
           - DisplaySpaceMarkers (Folder)
             - Space01 (Part) [2 attrs]
             - Space02 (Part) [2 attrs]
@@ -30454,373 +32659,37 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
             - FrontWall (Part) [2 attrs]
             - LeftWall (Part) [2 attrs]
             - RightWall (Part) [2 attrs]
+          - Camera CollisionShell (Model) [3 attrs]
+            - BackWall_Collision_022 (Part) [3 attrs]
+            - Floor_Collision_001 (Part) [3 attrs]
+            - Floor_Collision_001 (Part) [3 attrs]
+            - FrontWall_Collision_002 (Part) [3 attrs]
+            - LeftWall_Collision_017 (Part) [3 attrs]
+            - RightWall_Collision_021 (Part) [3 attrs]
+          - CollisionShell (Model) [3 attrs]
+            - BackWall_Collision_022 (Part) [3 attrs]
+            - Floor_Collision_001 (Part) [3 attrs]
+            - Floor_Collision_001 (Part) [3 attrs]
+            - FrontWall_Collision_002 (Part) [3 attrs]
+            - LeftWall_Collision_017 (Part) [3 attrs]
+            - RightWall_Collision_021 (Part) [3 attrs]
           - ManagementDesk (Model)
-            - left side (Model)
-              - Box_A (Model)
-                - Box_A (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Box_A (Model)
-                - Box_A (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Box_A (Model)
-                - Box_A (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Box_A (Model)
-                - Box_A (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Box_A (Model)
-                - Box_A (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Box_A (Model)
-                - Box_A (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Box_A (Model)
-                - Box_A (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Box_A (Model)
-                - Box_A (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Box_A (Model)
-                - Box_A (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Box_A (Model)
-                - Box_A (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Box_A (Model)
-                - Box_A (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Box_A (Model)
-                - Box_A (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Box_A (Model)
-                - Box_A (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Box_A (Model)
-                - Box_A (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Box_A (Model)
-                - Box_A (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Box_A (Model)
-                - Box_A (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Box_A (Model)
-                - Box_A (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Box_A (Model)
-                - Box_A (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Compressor (Model)
-                - Compressor (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-                - Wheel_Rubber (MeshPart)
-                  - SurfaceAppearance (SurfaceAppearance)
-              - Feilen (Model)
-                - Feilen (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Hammer_B (Model)
-                - Hammer_B (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Hammer_with_Brackets (Model)
-                - Hammer_with_Brackets (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Hammer_with_Brackets (Model)
-                - Hammer_with_Brackets (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Imubss (Model)
-                - Imbuss (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Imubss (Model)
-                - Imbuss (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Keys (Model)
-                - Keys (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Keys (Model)
-                - Keys (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Knife_A (Model)
-                - Knife_A (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Knife_A (Model)
-                - Knife_A (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Knife_A (Model)
-                - Knife_A (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Knife_A (Model)
-                - Knife_A (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Knife_A (Model)
-                - Knife_A (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Knife_A (Model)
-                - Knife_A (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Knife_A (Model)
-                - Knife_A (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Locker_B (Model)
-                - Locker_B (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Locker_B (Model)
-                - Locker_B (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Locker_B (Model)
-                - Locker_B (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Locker_B (Model)
-                - Locker_B (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Locker_B (Model)
-                - Locker_B (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Screwdriver_Set_A (Model)
-                - Screwdriver_Set_A (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Screwdriver_Set_A (Model)
-                - Screwdriver_Set_A (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Screwdriver_Set_B (Model)
-                - Screwdriver_Set_B (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Screwdriver_Set_B (Model)
-                - Screwdriver_Set_B (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Shelf Group (Model)
-                - Battery (Model)
-                  - Battery (MeshPart)
-                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-                - Battery (Model)
-                  - Battery (MeshPart)
-                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-                - Battery (Model)
-                  - Battery (MeshPart)
-                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-                - Gascan (Model)
-                  - Gascan (MeshPart)
-                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-                - Gascan (Model)
-                  - Gascan (MeshPart)
-                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-                - Gascan (Model)
-                  - Gascan (MeshPart)
-                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-                - Shelf.001 (Model)
-                  - Shelf (MeshPart)
-                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-                - Shelf.001 (Model)
-                  - Shelf (MeshPart)
-                    - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Shelf_A (Model)
-                - Shelf_A (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Shelf_A (Model)
-                - Shelf_A (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Shelf_A (Model)
-                - Shelf_A (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Shelf_A (Model)
-                - Shelf_A (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Shelf_A (Model)
-                - Shelf_A (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Shelf_A (Model)
-                - Shelf_A (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Shelf_A (Model)
-                - Shelf_A (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Shelf_A (Model)
-                - Shelf_A (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Toolbox_Large (Model)
-                - Toolbox_Large (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Toolbox_Large (Model)
-                - Toolbox_Large (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Toolbox_Large (Model)
-                - Toolbox_Large (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Toolbox_Large (Model)
-                - Toolbox_Large (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Toolbox_Large (Model)
-                - Toolbox_Large (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Toolbox_Small (Model)
-                - Toolbox_Small (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Wallmount (Model)
-                - Wallmount (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Wallmount (Model)
-                - Wallmount (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Wallmount (Model)
-                - Wallmount (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Workbench (Model)
-                - workbench.001 (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Workbench (Model)
-                - workbench.001 (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Workbench (Model)
-                - workbench.001 (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Wrench_Set_A (Model)
-                - Wrench_Set_A (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Wrench_Set_B (Model)
-                - Wrench_Set_B (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Wrench_Set_B (Model)
-                - Wrench_Set_B (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Wrench_Set_B (Model)
-                - Wrench_Set_B (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Zange (Model)
-                - Zange (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Zange (Model)
-                - Zange (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Zange (Model)
-                - Zange (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Zange (Model)
-                - Zange (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Zange (Model)
-                - Zange (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - StripLightHousing (Part)
-                - Part (Part)
-                - StripLightBulb (Part)
-                  - SurfaceLight (SurfaceLight)
-              - StripLightHousing (Part)
-                - Part (Part)
-                - StripLightBulb (Part)
-                  - SurfaceLight (SurfaceLight)
-              - StripLightHousing (Part)
-                - Part (Part)
-                - StripLightBulb (Part)
-                  - SurfaceLight (SurfaceLight)
             - DeskPromptAnchor (Part) [1 attrs]
               - ManageGaragePrompt (ProximityPrompt)
-          - shelving left (Model)
-            - Locker_B (Model)
-              - Locker_B (MeshPart)
-                - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-            - Locker_B (Model)
-              - Locker_B (MeshPart)
-                - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-            - Locker_B (Model)
-              - Locker_B (MeshPart)
-                - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-            - Shelf Group (Model)
-              - Battery (Model)
-                - Battery (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Battery (Model)
-                - Battery (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Battery (Model)
-                - Battery (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Gascan (Model)
-                - Gascan (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Gascan (Model)
-                - Gascan (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Gascan (Model)
-                - Gascan (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Shelf.001 (Model)
-                - Shelf (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Shelf.001 (Model)
-                - Shelf (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-            - Shelf Group (Model)
-              - Battery (Model)
-                - Battery (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Battery (Model)
-                - Battery (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Battery (Model)
-                - Battery (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Gascan (Model)
-                - Gascan (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Gascan (Model)
-                - Gascan (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Gascan (Model)
-                - Gascan (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Shelf.001 (Model)
-                - Shelf (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-              - Shelf.001 (Model)
-                - Shelf (MeshPart)
-                  - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-            - Toolbox_Large (Model)
-              - Toolbox_Large (MeshPart)
-                - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-            - Toolbox_Large (Model)
-              - Toolbox_Large (MeshPart)
-                - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-            - Toolbox_Large (Model)
-              - Toolbox_Large (MeshPart)
-                - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-            - Toolbox_Large (Model)
-              - Toolbox_Large (MeshPart)
-                - SA_Racing_Metal_Trim_a (SurfaceAppearance)
-          - BackWall (Part) [3 attrs]
-          - BackWall 2 (Part) [3 attrs]
-          - BackWall Detail (Part) [3 attrs]
-          - BackWall Detail (Part) [3 attrs]
+          - vfx aura (Model)
+            - vfx aura (Part)
+              - Attachment (Attachment)
+                - ParticleEmitter (ParticleEmitter)
+          - vfx aura (Model)
+            - vfx aura (Part)
+              - Attachment (Attachment)
+                - ParticleEmitter (ParticleEmitter)
           - CharacterSpawn (Part) [1 attrs]
-          - DisplayPadNeon_Space01 (Part) [1 attrs]
-          - DisplayPadNeon_Space02 (Part) [1 attrs]
-          - DisplayPad_Space01 (Part) [2 attrs]
-          - DisplayPad_Space02 (Part) [2 attrs]
           - DriveInMarker (Part) [1 attrs]
           - DriveOutMarker (Part) [1 attrs]
-          - Floor (Part) [3 attrs]
           - FootExitMarker (Part) [1 attrs]
             - FootExitPrompt (ProximityPrompt)
-          - FrontDoorLintel (Part) [3 attrs]
-          - FrontDoorLintel (Part) [3 attrs]
-          - FrontWall Detail (Part) [3 attrs]
-          - FrontWall Detail (Part) [3 attrs]
-          - FrontWall Detail (Part) [3 attrs]
-          - FrontWall Detail (Part) [3 attrs]
-          - FrontWall Detail (Part) [3 attrs]
-          - FrontWall Detail (Part) [3 attrs]
-          - FrontWallLeft (Part) [3 attrs]
-          - FrontWallLeft 2 (Part) [3 attrs]
-          - FrontWallRight (Part) [3 attrs]
-          - FrontWallRight 2 (Part) [3 attrs]
-          - LeftWall (Part) [3 attrs]
-          - LeftWall 2 (Part) [3 attrs]
           - PersonnelDoor (Part) [1 attrs]
-          - RightWall (Part) [3 attrs]
-          - RightWall 2 (Part) [3 attrs]
-          - RightWall Detail (Part) [3 attrs]
-          - RightWall Detail (Part) [3 attrs]
-          - RightWall Detail (Part) [3 attrs]
-          - RightWall Detail (Part) [3 attrs]
-          - Roof (Part) [3 attrs]
           - TemplateOrigin (Part) [1 attrs]
     - Racing (Folder)
       - SessionAssetTemplates (Folder)

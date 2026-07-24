@@ -19,6 +19,10 @@ This workflow exports the important Studio data in one pass:
 
 This is a mirror, not live Rojo sync. Editing files under `roblox/exported_scripts/` does not automatically update Studio.
 
+Editing/scratch asset libraries captured by the mirror are documentation only. Production installers, runtime and committed-state audits must not require or compare them; owned-garage production readiness is determined solely from the authoritative ServerStorage hierarchy. Copying an approved asset into ServerStorage is an explicit authoring/publishing action, not an automatic runtime fallback.
+
+When a refreshed mirror proves that Source edits committed but attributes/new Instances from the same Command Bar transaction did not, treat that hybrid mirror as the new diagnostic baseline. The recovery command must not assign `Source` again, even to identical text. Apply only the missing non-source state, restart Studio, and prove committed state with a separate read-only audit before Play or another mirror refresh.
+
 ## Current Best Workflow
 
 ### 1. Start The Local Receiver
@@ -142,7 +146,7 @@ roblox/studio_snapshot/checksums.json
 
 `roblox/exported_scripts/MANIFEST.md` lists every exported Studio script and the `.lua` file it maps to.
 
-The exporter now scans `ReplicatedFirst` as well as the previously covered services. Mirrors created before the 2026-07-21 loading/start-screen Phase 5 tooling update omit that service entirely; run the current exporter after installing Phase 5 so `NTRLoading` hierarchy and source are captured.
+The exporter now scans both `ReplicatedFirst` and `SoundService` as well as the previously covered services. Mirrors created before the 2026-07-21 loading/start-screen Phase 5 tooling update omit `ReplicatedFirst`; mirrors created before the audio-system Phase 1 tooling update omit `SoundService`. Run the current exporter after a relevant install so loading/audio hierarchy and source are captured.
 
 ## How To Verify It Worked
 
@@ -163,7 +167,7 @@ Good signs:
 
 ## Current Mirror Status
 
-The Studio mirror was refreshed on 2026-07-21 at 10:48:31 and contains 163 exported scripts. It includes the complete four-script `ReplicatedFirst.NTRLoading` package, configured-button Phase 5 V1.3, `LoadingScreenView` V1.4, all responsive/grid attributes and all four race-staging readiness markers. The user reports Phase 6 working as expected, so this is the handed-off loading-system source baseline. The closure audit was read-only and does not require another export. The exporter does not scan `SoundService`; future regression audits check the six planned sound groups live.
+The current full mirror was generated on 2026-07-22 at 10:28:22 and contains 175 exported scripts. It captures the installed/audited audio Phases 1-3 source/config, all six cockpit profile assignments, four context definitions, bounded acoustics owners and `SoundService` including the six mix groups plus the owned context reverb. It is current for the silent pre-tuning-expansion baseline. After running `scripts/roblox_audio_vehicle_tuning_and_cues_v1.lua`, refresh again so the V2 audio sources, cue attributes and companion description folders become the source of truth.
 
 The fresh mirror also shows active loose `StarterPlayerScripts` filming/camera helpers (`LocalScript`, `TrailerMode.client.lua`, and `TrailerShot01Camera`). Treat them as review items before publishing a normal gameplay build unless they are intentionally kept enabled.
 

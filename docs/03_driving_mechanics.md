@@ -1,5 +1,23 @@
 # Driving Mechanics
 
+## Hover height configuration
+
+The editable `ReplicatedStorage.NeoTokyoRacers.Config.Editable.01_GAME_BALANCE_Editable.Driving.HoverHeightStuds` NumberValue existed before it had live consumers. `DriveTuning` projected it, while `DrivingControllerV47`, `DrivingFallbackController`, `FreeRoamParkedHoverController_Active` and the spawned vehicle diagnostic attribute independently hard-coded `3`.
+
+`scripts/roblox_driving_hover_height_config_bridge_v1.lua` makes the existing NumberValue authoritative for those four boundaries. Controllers read it once at startup, clamp it to `0.5-8` studs and continue using their existing spring, damping, sensor, slope-compensation and alignment logic. Restart Play after editing. The dormant register-limited bootstrap remains untouched. The user confirmed the bridge working and the complete `2026-07-23 22:22:32/33` mirror contains all four revisions plus the configuration metadata.
+
+## Customisation workshop Drive boundary
+
+The three-workshop reorganisation changes no driving, spawn, seat or transition owner. Add, Upgrade and Paint continue to call the existing `driveFromGarage` path, which validates required core modules, ends the current customisation session, invokes the existing `SpawnVehicle` action and releases the established loading/input transition. Route changes clear only transient preview selections.
+
+## Vehicle Audio Boundary (Phase 1 generated 2026-07-21)
+
+Vehicle audio consumes the existing `Accelerating`, `Braking`, `Boosting`, `DriftingLeft` and `DriftingRight` attributes from `DrivingControllerV47`; it does not patch or take ownership of driving physics. The local client converts changes into a versioned semantic presentation state and sends transitions only. `VehicleAudioStateService_Active` validates that the sender owns and occupies the stated vehicle before replicating the semantic state for other clients.
+
+The audio runtime calculates speed from the vehicle root at presentation time and uses the same `0.625 MPH_PER_STUD` conversion as the current driving controller. Local-driver sound is non-positional; remote vehicles use a 3D emitter. Future driving states should extend the common audio state contract rather than add direct sound playback inside the driving heartbeat. See `docs/16_audio_system.md` and `scripts/roblox_audio_system_v1.lua`.
+
+The generated 2026-07-22 tuning/cue expansion keeps this ownership boundary. It reads the already-published `MobileDriveInputState.BoostPercent` for local recharge/depletion presentation and does not add boost attributes, callbacks or sound playback to `DrivingControllerV47`. Audio owns debounce, drift elapsed time, recharge-session latching and full-tank cue qualification; driving remains authoritative for the real charge value, recharge delay/rate, input, forces and drift behaviour.
+
 ## Loading Transition Input Boundary (Phases 1-5)
 
 Loading/start-screen Phase 1 adds one guarded read seam to `DrivingControllerV47`. `GameplayInputGate` is the sole transition lock owner; while locked, the controller consumes neutral throttle, braking/reverse, steering, drift, boost and reset intent, clears drift charge/mini-boost and publishes non-accelerating/non-boosting/non-drifting attributes. It does not anchor the vehicle, zero velocity, apply a parking force, alter hover forces or replace server teleport/vehicle lifecycle authority.
@@ -15,6 +33,10 @@ The approved owned-garage replacement must not introduce another driving or vehi
 Phase 5 adds a server-authoritative guard to the existing vehicle action owner: while `NTR_OwnedGarageInside` is true, free-roam select/spawn/despawn/exit/re-entry actions return a safe message rather than creating a second vehicle or bypassing the garage display/door flow. The owned garage still does not spawn vehicles itself; Phase 6 will bind its staged lifecycle contract to the existing local vehicle helpers in one atomic activation.
 
 Phase 6 binds that contract inside the existing action owner. Drive-in reads the currently seated saved `VehicleId`, validates speed, and invokes the existing despawn helper only after the display-assignment transaction can commit. Drive-out selects the referenced saved vehicle, invokes the existing builder at the configured city exit, seats the player and mirrors the selected vehicle through the existing persistence adapter. Failed lifecycle calls roll back the display transaction rather than creating a duplicate.
+
+The 2026-07-23 V1.1 transition-resilience repair closes a later completion gap without introducing another driving owner. `OwnedGarageManagementRuntime` now treats `SpawnFromGarage` as provisional until the returned runtime vehicle exists, the player's Humanoid is seated in its `VehicleSeat`, and both character and vehicle are within the configured tolerance of that garage's `VehicleExitSpawn`. Only then is the owned-garage session cleared. A failed check calls the existing despawn bridge, destroys only a still-present incomplete runtime vehicle as a fallback, restores the pre-clear garage snapshot, returns the player to `CharacterSpawn`, rerenders displays and re-enables prompts.
+
+V1.2 fixes the preceding prompt boundary when the same interior model is reused during its 20-second unload delay. Session setup still retires stale callbacks, but configuration now binds each existing Drive Out, foot-exit and desk prompt through one prompt-keyed registry. Rerendering or re-entering replaces that prompt's prior connection rather than stacking callbacks or leaving a visible inert prompt. This changes no vehicle spawn/despawn owner and adds no re-entry delay.
 
 ## Stat-scaled post-drift reward (generated 2026-07-14; awaiting Studio test)
 
@@ -507,6 +529,8 @@ The organiser now also owns the physical TopSpeed mapping. Raw V2 TopSpeed remai
 `scripts/roblox_owned_garage_phase8_transition_completion.lua` does not replace normal free-roam despawning or driving physics. It adds options used only by `DespawnForGarage`: keep the character at the current position, destroy the owned live vehicle, wait up to the configured detachment timeout for `Humanoid.SeatPart` to clear, and return explicit `VehicleRemoved`/`Detached` evidence. Management teleports only after that handshake and verifies the character is within `GarageTeleportVerifyDistanceStuds`, retrying up to `GarageTeleportAttempts` before activating the interior.
 
 On failure, the transition restores the authoritative display assignment before respawning the captured vehicle whenever necessary. If assignment restoration itself fails, it leaves the vehicle stored rather than creating a live/display duplicate. Normal `V92_despawnVehicle(player)` callers keep their existing move-beside-vehicle behaviour because they pass no garage options.
+
+Phase 13 V1.1 repairs only the owned-garage template/config version gate that runs before interior activation. It does not change vehicle despawn, driven-entry handoff, teleport retries, display assignment, exterior spawn resolution or drive-out ownership.
 
 ## Current Diagrams
 

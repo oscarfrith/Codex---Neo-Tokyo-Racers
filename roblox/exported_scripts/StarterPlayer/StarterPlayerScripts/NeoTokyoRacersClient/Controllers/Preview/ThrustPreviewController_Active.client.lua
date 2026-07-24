@@ -12,6 +12,7 @@ local StarterGui=game:GetService("StarterGui")
 local player=Players.LocalPlayer
 local playerGui=player:WaitForChild("PlayerGui")
 local kit=ReplicatedStorage:WaitForChild("NeoTokyoRacers")
+local VehicleCosmetics=require(kit:WaitForChild("Shared"):WaitForChild("Modules"):WaitForChild("Data"):WaitForChild("VehicleCosmeticCatalog")) -- NTR_CUSTOMISATION_PROTECTED_VEHICLE_LIGHTS_V1
 local templates=kit:WaitForChild("Assets"):WaitForChild("VFX"):WaitForChild("VehicleTemplates")
 local cfg=kit:WaitForChild("Config"):WaitForChild("UI"):WaitForChild("GarageReplacement")
 local controllerModule
@@ -51,7 +52,7 @@ local function applyPreviewEffects(root,color,mode)
 	if not root then return end; local full=mode=="ThrustColour"
 	for _,object in ipairs(root:GetDescendants()) do
 		if object:IsA("BasePart") and hasChannel(object,"ThrustColor") then object.Color=color; object.Material=Enum.Material.Neon; object.Transparency=0
-		elseif isPreviewToggle(object) and not insideRuntimeHost(object,root) then local kind=previewEffectKind(object,root); if kind then applyFireColour(object,color); do end end end
+		elseif isPreviewToggle(object) and not VehicleCosmetics.IsProtectedVehicleLight(object) and not insideRuntimeHost(object,root) then local kind=previewEffectKind(object,root); if kind then applyFireColour(object,color); do end end end
 	end
 end
 

@@ -7,6 +7,7 @@ local GarageDisplayRuntime = {}
 
 local kit = ReplicatedStorage:WaitForChild("NeoTokyoRacers")
 local categoriesRoot = kit:WaitForChild("Assets"):WaitForChild("Vehicles"):WaitForChild("Categories")
+local VehicleCosmetics = require(kit.Shared.Modules.Data:WaitForChild("VehicleCosmeticCatalog")) -- NTR_CUSTOMISATION_UNDERGLOW_DISPLAY_V1
 
 local function findByAttribute(root, attributeName, expectedValue)
 	if not root then
@@ -278,6 +279,7 @@ function GarageDisplayRuntime.RefreshDisplayVehicle(player, interiorModel)
 	end
 
 	sanitizeDisplay(display)
+	VehicleCosmetics.ApplyPresentation(display,vehicle)
 
 	local pad = interiorModel:FindFirstChild("VehicleDisplayPad", true)
 	if pad and pad:IsA("BasePart") then

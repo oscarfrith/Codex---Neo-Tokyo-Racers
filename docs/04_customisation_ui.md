@@ -1,5 +1,85 @@
 # Customisation UI
 
+## Vehicle customisation three-workshop flow V1
+
+The approved root becomes `Add Modules`, `Upgrade Modules` and `Paint Shop` while retaining the confirmed `GarageWorkspaceController` layout and `GarageReplacementComponents` renderers. No page-specific copy of the rail, cards, action popup, upgrade budget or colour sliders is introduced.
+
+Add Modules is the renamed current Build flow and preserves slot selection, Owned/Buy choice, module-instance cards, preview, purchase, move confirmation and auto-equip. Its left rail uses the same shared module-category card renderer for the three workshop routes.
+
+Upgrade Modules uses one contextual rail containing only fixed module locations; it never exposes All, Cockpit, Thrust, paint, cosmetics or neon. Selecting a location immediately renders its current upgrade paths and shared upgrade-point budget. Empty locations and modules with no upgrade catalogue remain explicit bounded states. The performance summary stays visible because it is the existing upgrade-preview result, not a navigation action.
+
+Paint Shop uses All, Cockpit, Thrust, Underglow and fixed module locations. Normal module locations show Paint left and Neon Lights right. Paint opens the existing sliders and exposes Primary/Secondary/Detail plus Neon only when that installed module instance owns Neon. Neon Lights uses the shared selected-card popup for BUY or CUSTOMISE; a successful purchase enters the Neon sliders directly. Paint Shop hides performance and upgrade-budget presentation.
+
+The later confirmed Vehicle Cosmetics V1.2 extends this composition with a true buyable per-vehicle Underglow cosmetic and buyable Thrust Colour. An unowned cosmetic uses the shared purchase card; purchase opens its colour sliders, and later visits open sliders directly. Underglow availability is derived from attributed authored `SurfaceLight` objects on the cockpit. All Neon changes owned supported neon, including owned cosmetics, while front/rear vehicle lights remain protected. See `docs/customisation-three-workshop-flow-v1.md` and `docs/customisation-vehicle-cosmetics-empty-routes-v1.md`.
+
+## Owned garage direct Decoration Style and Lighting channel contract V1
+
+Decoration Style retains the same shared colour-slider renderer, tabs and Save/Back actions but removes its one-card Colour intermediary. Entering Style > Decorations defaults to All Decorations and opens sliders immediately when compatible equipped content exists. Selecting another equipped location in the left rail reinitialises that location's sparse draft and stays in the slider composition. Empty locations retain the shared Install Asset route; content with no colour capability retains the shared unavailable state. Back returns directly to the Style family page.
+
+Lighting tabs remain server-capability-driven. Descendant names do not matter: BaseParts and attached `PointLight`, `SpotLight` and `SurfaceLight` objects inherit Primary or Secondary from their nearest canonical authoring folder. Empty channels do not render. The Lighting Save action now consumes `OwnedGarageIcons.Navigation.Save`, matching Structure and Decoration.
+
+Physical garage prompts are outside the workspace renderer but share its transition presentation. ClearNight V1.2 makes their server callbacks session-safe: existing Drive Out, foot-exit and management-desk prompts are rebound exactly once whenever a cached interior is reused or its displays rerender. This prevents a visible prompt from opening loading UI without producing its corresponding server result, while retaining the existing management-open prompt suppression policy.
+
+## Owned garage central icon configuration V1.1
+
+Owned-garage-specific images now have one planned config authority at `Config.UI.GarageReplacement.OwnedGarageIcons`. Nested attribute folders separate root Modes, asset Families, six Structure locations, six Decoration locations, navigation, Access/Invite, browser actions, capacity and the empty-Style `InstallAsset` route.
+
+The owned controller resolves stable section/slot IDs rather than display text. Location values fall back to the matching family icon, while shared navigation, glyph and capacity artwork remain compatibility fallbacks. This preserves current presentation while allowing each icon to be replaced independently.
+
+`OwnedGarageIcons.Sizing.StructureLocationImageZoom` and `DecorationLocationImageZoom` independently control the two location-card families. Both default to `1.0`, twice the shared navigation default of `0.5`, and are clamped to `0.2–1.5`. Root Mode/Family cards and specialised vehicle/finish cards continue using their existing shared owners. See `docs/owned-garage-icon-configuration.md`.
+
+## Owned garage mobile access dropdown contract
+
+The interior access HUD is a compact overlay rather than a full 1600-by-900 workspace. On touch devices its `AccessControls` root receives one configurable `UIScale`, and the shared anchored dropdown is given that exact scale so anchor positions, panel width, row height, icons and labels remain in the same coordinate space. Tune `InteriorHudTouchReferenceWidth`, `InteriorHudTouchReferenceHeight`, `InteriorHudTouchMinimumScale` and `InteriorHudTouchMaximumScale` on `ReplicatedStorage.NeoTokyoRacers.Config.Runtime.OwnedGarage_EditAttributes`; do not resize the dropdown rows independently of their Private/Invite anchors.
+
+## Owned garage Phase 14 V2.2 responsive navigation closure (confirmed)
+
+Structure and Decoration location rails now provide stable family-level `CategoryScrollKey` values to the existing shared scroll-memory owner. Moving between option, colour and material pages no longer creates a new page-specific memory bucket, so a long mobile rail stays near the user's selected location.
+
+When a selected Style Garage decoration location is empty, the bottom carousel shows one normal shared category card that opens Build Garage on the same location. The card is navigation only: purchase/equip remains in Build, styling remains in Style and equipped assets without supported colour channels do not show a false editor.
+
+The user confirmed this composition working and refreshed the full mirror. Treat the shared card, rail, listing, channel-tab, paint and material renderers as the locked submission baseline; future visual changes should extend those shared contracts rather than reopen Phase 14 page-specific text patches.
+
+## Owned garage Phase 14 V2.1 shared navigation-card image scale (confirmed)
+
+Bottom root/family navigation and sidebar mode/location navigation already share `ModuleCategoryCard`. V2.1 removes their only remaining divergence by routing both through `OwnedGarageCategoryCardImageZoom` (`0.5` default, bounded `0.2–1.2`). The owned controller applies it only to image-backed category navigation rows without a specialised `CardKind`; dealership-style vehicle/listing cards and finish controls are unaffected.
+
+## Owned garage Phase 14 V2 shared Build/Style composition
+
+The generated V2 composition reuses the existing shared workspace instead of adding a new page owner. The root shows Display Cars, Build Garage and Style Garage as `ModuleCategoryCard` instances. Mode/family pages use the same scroll-backed left rail; Structure and Decorations swap its data to locations at target depth. Lighting retains the mode rail because it is a whole-garage option.
+
+Build uses shared listing cards and selected-card popups for preview plus BUY/EQUIP only. Style uses shared category cards, channel tabs, paint controls and material cards for the equipped option only. Root has no rail, no page creates two rails, and all actions continue through `Activated` and the scaled `1200 x 720` host.
+
+## Owned garage Phase 14 V1 lighting and editor-state foundation
+
+Phase 14 V1 keeps the existing workspace composition while establishing the approved future navigation's state contract. Whole-garage Lighting now uses the shared listing cards, shared Primary/Secondary channel tabs and shared H/S/B picker. Option availability and authored default colours come from populated ServerStorage folders; the client does not maintain lighting-channel lists.
+
+Structure, Decoration and Lighting editors retain one complete draft across channel switches. Physical preview commits submit the complete populated draft and the active server session also merges same-target previews defensively. SAVE updates authoritative revisioned state but deliberately retains the active editor route. Back/Exit remains the cancellation owner. See `docs/owned-garage-phase14-lighting-and-flow.md`.
+
+After V1 confirmation, the same canonical installer advances to `DISPLAY CARS`, `BUILD GARAGE` and `STYLE GARAGE`, reusing `ModuleCategoryCard`, the shared scroll-backed left rail, listing/action cards, channel tabs, paint renderer and responsive workspace. Only one rail is visible: mode cards at family level or location cards at target level.
+
+## Owned garage shared material-channel contract (Phase 13 V1.3 generated)
+
+- Structure Material opens directly to material cards. The same `GarageWorkspaceController:RenderChannelTabs` component renders Primary/Secondary/Detail for both Colour and Material; the owned page does not copy tab dimensions or colours.
+- Tabs sit directly above the material carousel, show only server-projected populated material channels, preserve pending selections while switching and fit as one responsive row on mobile. Neon remains colour-only.
+- Material cards consume `{Id, DisplayName}` definitions. Stable IDs are saved and submitted; player-facing labels may change without migrating profile data.
+- Selecting a card previews only the active channel. SAVE submits all pending populated material channels in one revisioned command. Back/Exit uses the existing preview cancellation owner.
+- Matching authored materials receive the normal selected-card highlight. There is no `Original` label and no false selection when an authored material is outside the approved registry.
+
+## Owned Garage Phase 13 Dynamic Finish Controls
+
+The generated Phase 13 installer extends the existing owned-garage workspace rather than copying the dealership/customisation UI. Structure and Decorations continue to call the shared H/S/B paint renderer. The management response supplies `ColourChannels` and `MaterialChannels` derived from populated ServerStorage folders, so page code does not maintain per-asset button lists.
+
+All assets expose Primary, Secondary, Detail and Neon authoring folders, but only non-empty folders render controls. Decoration customisation is colour-only. Structure exposes material selection only for populated Primary/Secondary/Detail folders; Neon never receives a material. `Fixed` and `Technical` descendants stay authored, and `GarageMaterialLocked=true` protects exceptional structure parts inside a colour folder.
+
+Slider UI updates continuously while physical preview is requested only on committed input. SAVE performs one revisioned authoritative mutation; Back/Exit use the existing preview cancellation owner. The same responsive `1200 x 720` host, shared cards/actions, `Activated` input and touch scaling remain in force. See `docs/owned-garage-phase13-typed-finishes.md`.
+
+Phase 13 V1.1 adds a sixth optional `DisplayPlatforms` decoration zone without creating a new UI composition. Three paired-platform option containers use the same listing cards and shared colour renderer, remain hidden while empty/`Available=false`, and appear only after a populated authoritative ServerStorage option is enabled. Each option contains both display platforms at template-relative positions; vehicle display markers and display assignment state remain separate. Existing decoration/structure assets stay slot-local under the no-move repair, while new paired platform assets use `GaragePlacementMode=TemplateOrigin`.
+
+When geometry is added to a previously empty option, folder placement is the authoring source of truth: parts beneath `ColourSlots/Primary|Secondary|Detail|Neon` receive that matching channel attribute, while parts outside those folders are finish-protected. The canonical V1.3 installer now reapplies this metadata to both ServerStorage and ZZZ `PlatformOption01` copies without changing their hierarchy or transforms.
+
+Phase 13 V1.2 does not change the management UI composition. The browser continues to own garage entry interaction and the shared loading runtime continues to own full-screen presentation. A bounded streaming handler now keeps that presentation active until the named destination marker is locally replicated, then acknowledges only the server-issued token. `CollisionShell` is template technical geometry and never appears in Structure/Decoration cards, paint channels, material controls, preview state or saved customisation.
+
 ## Shared Loading Presentation Phases 1-5
 
 `scripts/roblox_ui_loading_and_start_screen_system.lua` is the canonical phased installer for major experience transitions and the initial Play/Shop start screen. Phases 1-4 and the readiness gate are confirmed; the user confirmed Phase 5 V1 working well. V1.1 refines only its isolated early client under `ReplicatedFirst.NTRLoading`.
@@ -674,3 +754,21 @@ The existing persistent top-left interior HUD remains the only access/invite pre
 V1.2 uses the whole two-button HUD width for either dropdown. The container is transparent and borderless; each choice is one standalone neutral/selected gradient row with no stroke, the exact current top-button height, a left icon and a right state/action label. Both top buttons reuse a shared right-side chevron which rotates while its menu is open. Access-mode and Invite icon asset IDs are optional `OwnedGarage_EditAttributes`; distinct Unicode glyphs remain visible until final uploaded icon assets are assigned. Width and row height are derived from the live responsive controls, so future tuning cannot separate the dropdown from its anchors.
 
 Saved `AccessMode` and the deduplicated, sorted `InvitedUserIds` list remain property-scoped. Set/revoke commands use the same revisioned ProfileService-owned mutation boundary as displays and customisation, with self-invites rejected and a configurable bounded invitation count. This phase does not add another remote, player-search request or visitor lifecycle owner. `EnableVisitors` remains false until the legacy visit/teleport path can be replaced explicitly.
+
+## Owned Garage Style UX V1 Contract
+
+The Style rail prepends virtual `All Structure` and `All Decorations` targets. These are UI/command concepts only and never become saved section or slot IDs. All Structure exposes Colour and Material; All Decorations exposes Colour only. Bulk saves are server-derived and atomic, while mixed channels use sparse drafts so untouched values are preserved.
+
+Build listing cards reserve `Locked` for a genuinely unavailable capability. Unowned purchasable options use the shared available module-card state, show their price and use the configured unaffordable colour when cash is insufficient; owned options omit price. Style action and material cards resolve through the central owned-garage icon config.
+
+The shared shell places Exit below economy for owned-garage management and keeps Back/Save at the lower right. Material pages shorten only the location rail above the shared Primary/Secondary/Detail tabs. The physical presentation owner updates compatible runtime models in place and stages replacements before removing the old model, rather than clearing the whole room between UI actions.
+
+Material option artwork has an isolated `OwnedGarageIcons.Sizing.MaterialImageZoom` scale. It is applied through the existing shared card `ImageZoom` input, so increasing artwork size does not change the card, carousel, tab or mobile layout contract. It defaults to `1.0` and is bounded to `0.2–1.5`.
+
+## Vehicle Cosmetics And Empty Module Routes V1
+
+The generated canonical installer is `scripts/roblox_customisation_vehicle_cosmetics_and_empty_routes_v1.lua`. It extends the confirmed Add Modules / Upgrade Modules / Paint Shop baseline without creating a fourth workshop or a new workspace renderer.
+
+Thrust Colour and true SurfaceLight Underglow are per-vehicle purchases. Before purchase they reuse the shared priced listing/action card; after purchase they open the shared colour sliders directly. All and Cockpit also open sliders directly. All adds a Neon channel whose authoritative save atomically updates cockpit neon, owned physical-module neon, and owned underglow without touching front/rear lights.
+
+An uninstalled physical slot in Paint or Upgrade renders one shared `EmptyPlus` card with the short mobile-safe copy `BUY TO UNLOCK` or `EQUIP TO UNLOCK`. The card routes to that exact Add Modules source page and returns to the originating workshop after a successful transaction. It never fabricates a module, changes server ownership from the client, or creates a second navigation owner.

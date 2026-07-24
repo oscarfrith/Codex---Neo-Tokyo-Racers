@@ -10,6 +10,22 @@
 
 The current Phase 21-27 physical garage MVP is approved for clean replacement. Phases 0-5 passed and are mirrored at `2026-07-19 12:14:59`. `StarterTwoBay` stays in ServerStorage and the explicit-pool interior runtime creates nothing in Workspace until Phase 6 starts its single lifecycle owner. Phase 4 adds persistent catalogue styles only to parts carrying a template `SurfaceGroup`. Phase 5 makes the existing desktop/mobile HUD owners skip minimap visibility and map-coordinate work while `NTR_OwnedGarageInside` is true; it adds no map or frame-loop owner. Phase 6 is prepared to retire the old physical-garage services/prompt, clone only occupied canonical interiors into `OwnedGarageInstances`, and unload after exit, death/reset or disconnect. The configurable grid begins at `Y=3200`, safely away from the city and below-map destruction boundaries. Display vehicles remain anchored, non-drivable, collision/query/shadow-free and VFX-free.
 
+## 2026-07-22 Owned Garage Streaming Stabilisation
+
+The Phase 13 V1.2 submission stabilisation replaces the unsafe reliance on automatic character streaming. Before any foot/vehicle entry or exit mutation, the current server owner issues a same-player GUID token and authoritative destination; the current browser owner calls `LocalPlayer:RequestStreamAroundAsync`, waits for the named runtime interior/exterior marker and acknowledges readiness over the existing owned-garage event. The current shared loading presentation remains visible until the server operation returns. Timeout is bounded and fails before teleport, vehicle despawn, display clear or vehicle spawn.
+
+`Templates.StarterTwoBay.CollisionShell` is separate from streamed cosmetic structure. Visual structure remains collision-free; the protected invisible shell owns stable navigation collision and cannot be hidden by a finish/decoration swap. City LOD pause remains profiling-gated for submission: measure on a low-memory phone during repeated garage transitions and add a pause only if the current 0.2-second city LOD work is materially active/costly while `NTR_OwnedGarageInside=true`.
+
+The 2026-07-23 ClearNight V1 Play fault did not invalidate this handshake. A client-side Lighting/Sky event feedback loop saturated the same client that must acknowledge `OwnedGarageStreamRequest`, so the server correctly timed out before exterior mutation. V1.1 removes that loop. Drive-out now adds a second bounded completion gate after streaming and spawn: exterior seating and position must verify before the session is released. If that gate fails, the server compensates back into the already-streamed interior rather than leaving a sessionless player or duplicate vehicle.
+
+The later immediate re-entry failure was also not a streaming or distance fault. `OwnedGarageInteriorRuntime.Create` intentionally reused the still-cached interior, but session setup disconnected its prompt callbacks and display rendering only connected newly created prompts. V1.2 keeps caching and the 20-second unload delay, then rebinds all existing physical prompts through a keyed exactly-once registry on configuration/rerender. Both cached and freshly cloned interiors therefore use the same callback lifecycle.
+
+## 2026-07-22 Owned Garage V1.4 Interior District
+
+The submission district uses the existing config-owned placement calculation with base `(7000,3200,0)`, four columns and `512` studs on both grid axes. This replaces the tightly-packed `160 x 120` cells and avoids the proposed 20,000-stud far-origin position, where hover-vehicle physics, raycasts, cameras and effects would carry greater precision risk. The 512-stud cells exceed current 180-stud audio and 36-stud garage-light ranges, reducing cross-interior bleed while keeping the 24-slot district around the established world scale.
+
+Interiors remain server Workspace models and distance is not an access/privacy boundary. Server session/ownership validation remains authoritative. Verify two simultaneous garages for visibility, audio, interaction and streaming; a separate garage place or per-player visibility architecture remains a post-submission option, not part of V1.4.
+
 ## What The System Does
 
 The LOD system manages world detail based on player/camera distance. It is intended to keep the large open-world city performant, especially on mobile, by reducing distant detail and using far LOD proxies.

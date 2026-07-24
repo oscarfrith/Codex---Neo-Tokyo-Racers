@@ -6,6 +6,7 @@ local controllersFolder=script.Parent.Parent
 local PaintClient=require(controllersFolder:WaitForChild("Core"):WaitForChild("PaintClient"))
 local InstancePreview=require(controllersFolder:WaitForChild("Preview"):WaitForChild("GarageModuleInstancePreviewAdapter")) -- NTR_GARAGE_MODULE_INSTANCE_READONLY_PREVIEW_V1
 local kit=ReplicatedStorage:WaitForChild("NeoTokyoRacers")
+local VehicleCosmetics=require(kit:WaitForChild("Shared"):WaitForChild("Modules"):WaitForChild("Data"):WaitForChild("VehicleCosmeticCatalog")) -- NTR_CUSTOMISATION_VEHICLE_COSMETIC_PREVIEW_V1
 local PathResolver=require(kit:WaitForChild("Shared"):WaitForChild("Modules"):WaitForChild("Core"):WaitForChild("PathResolver"))
 local cfg=kit:WaitForChild("Config"):WaitForChild("UI"):WaitForChild("GarageReplacement")
 PreviewVehicleController.PreviewFolderName="HOVER_RACING_V2_LOCAL_PREVIEW"
@@ -42,6 +43,7 @@ function PreviewVehicleController.Build(context)
 	local vehicle=template:Clone(); vehicle.Name="LOCAL_PREVIEW_"..tostring(cockpitId); vehicle.Parent=root; preview.Vehicle=vehicle; local primary=vehicle.PrimaryPart or vehicle:FindFirstChild("CockpitRoot_DoNotRename",true); if primary then vehicle.PrimaryPart=primary end
 	local placement,pad=previewCFrame(state); vehicle:PivotTo(placement); state.PreviewPadCFrame=placement; preview.Pad=pad
 	local cockpitColors={}; for key,value in pairs(profile.CockpitColors or {}) do cockpitColors[key]=value end; cockpitColors.FrontLights=cockpitColors.FrontLights or Color3.fromRGB(252,250,255); cockpitColors.RearLights=cockpitColors.RearLights or Color3.fromRGB(255,116,116); PaintClient.ApplyColors(vehicle,cockpitColors,true,{Profile=profile})
+	local currentVehicle=profile.CurrentVehicleId and profile.Vehicles and profile.Vehicles[profile.CurrentVehicleId]; VehicleCosmetics.ApplyPresentation(vehicle,currentVehicle)
 	local thrustColor=profile.ThrustColor or Color3.new(1,1,1); root:SetAttribute("ThrustColor",thrustColor); root:SetAttribute("ForceThrustPreview",state.ThrustPreviewActive==true); vehicle:SetAttribute("ThrustColor",thrustColor)
 	local installedRoot=vehicle:FindFirstChild("INSTALLED_MODULES_Runtime") or Instance.new("Folder"); installedRoot.Name="INSTALLED_MODULES_Runtime"; installedRoot.Parent=vehicle; installedRoot:ClearAllChildren()
 	local modulesToShow={}; for slotId,moduleId in pairs(profile.InstalledModules or {}) do modulesToShow[slotId]=moduleId end; for slotId,moduleId in pairs(state.PreviewModules or {}) do modulesToShow[slotId]=moduleId end
@@ -62,16 +64,24 @@ function PreviewVehicleController.ApplyPaint(context)
 	local target=tostring(context.Target or "Cockpit"); local channel=tostring(context.Channel or "Primary"); local color=context.Color
 	if typeof(color)~="Color3" then return false end
 	profile.CockpitColors=profile.CockpitColors or {}; profile.ModuleColors=profile.ModuleColors or {}
+	local currentVehicle=profile.CurrentVehicleId and profile.Vehicles and profile.Vehicles[profile.CurrentVehicleId]
 	if target=="THRUST_COLOR" then
-		profile.ThrustColor=color; local root=preview.Root; if root then root:SetAttribute("ThrustColor",color); root:SetAttribute("ForceThrustPreview",true) end; vehicle:SetAttribute("ThrustColor",color); return true
+		profile.ThrustColor=color; if currentVehicle then currentVehicle.ThrustColor=color end
+		local root=preview.Root; if root then root:SetAttribute("ThrustColor",color); root:SetAttribute("ForceThrustPreview",true) end; vehicle:SetAttribute("ThrustColor",color); return true
+	elseif target=="UNDERGLOW" then
+		local cosmetics=VehicleCosmetics.NormalizeVehicle(currentVehicle); if cosmetics then cosmetics.Colours.Underglow=color end
 	elseif target=="Cockpit" then
 		profile.CockpitColors[channel]=color
 	elseif target=="WholeVehicle" or target=="ALL" then
-		if channel~="Neon" then profile.CockpitColors[channel]=color end
-		for slotId in pairs(profile.InstalledModules or {}) do profile.ModuleColors[slotId]=profile.ModuleColors[slotId] or {}; profile.ModuleColors[slotId][channel]=color end
+		profile.CockpitColors[channel]=color
+		for slotId in pairs(profile.InstalledModules or {}) do
+			if channel~="Neon" or (profile.NeonOwned or {})[slotId]==true then profile.ModuleColors[slotId]=profile.ModuleColors[slotId] or {}; profile.ModuleColors[slotId][channel]=color end
+		end
+		if channel=="Neon" then local cosmetics=VehicleCosmetics.NormalizeVehicle(currentVehicle); if cosmetics and cosmetics.Unlocks.Underglow then cosmetics.Colours.Underglow=color end end
 	else profile.ModuleColors[target]=profile.ModuleColors[target] or {}; profile.ModuleColors[target][channel]=color end
+	if currentVehicle then currentVehicle.CockpitColors=profile.CockpitColors end
 	local cockpitColors={}; for key,value in pairs(profile.CockpitColors) do cockpitColors[key]=value end; cockpitColors.FrontLights=cockpitColors.FrontLights or Color3.fromRGB(252,250,255); cockpitColors.RearLights=cockpitColors.RearLights or Color3.fromRGB(255,116,116)
-	PaintClient.ApplyColors(vehicle,cockpitColors,true,{Profile=profile})
+	PaintClient.ApplyColors(vehicle,cockpitColors,true,{Profile=profile}); VehicleCosmetics.ApplyPresentation(vehicle,currentVehicle)
 	local installed=vehicle:FindFirstChild("INSTALLED_MODULES_Runtime")
 	if installed then for slotId in pairs(profile.InstalledModules or {}) do local prefix="PREVIEW_"..tostring(slotId).."_"; for _,clone in ipairs(installed:GetChildren()) do if string.sub(clone.Name,1,#prefix)==prefix then PaintClient.ApplyColors(clone,PreviewVehicleController.ModuleColors(profile,slotId),(profile.NeonOwned or {})[slotId]==true,{Profile=profile}) end end end end
 	return true

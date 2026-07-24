@@ -1,5 +1,7 @@
 # Owned Garage And System Readiness Handoff
 
+> Superseded by `docs/owned-garage-and-readiness-handoff-2026-07-22.md` after the confirmed Phase 14 V2.2 overhaul closure.
+
 **Status:** Owned Garage Phase 12 V1.1 confirmed; proportional new-system readiness workflow adopted
 **Mirror:** Refreshed 2026-07-20 11:10:20, 156 exported scripts
 **Git baseline:** `c46ead4` on `main` and `origin/main`
@@ -104,4 +106,3 @@ The assistant selects Fast, Standard or High-Risk, derives the contract and appl
 - Commit `c46ead4` already contains the confirmed Studio mirror, owned-garage baseline and readiness workflow on `origin/main`.
 - `docs/studio-full-export-paste.txt` remains local transport data and must not be committed.
 - A documentation-only handoff update does not require another Studio export.
-

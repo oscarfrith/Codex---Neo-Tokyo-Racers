@@ -1,5 +1,17 @@
 # Vehicle Folder System
 
+## Customisation three-workshop Neon capability
+
+Vehicle Customisation V1 does not move or create vehicle assets. Module Neon availability is derived server-side from supported renderable descendants already authored beneath each module's `NEON_OptionalLights` folder. `NeonPrice` remains an optional module-model attribute with a server fallback of `5000`.
+
+Paint Shop must not expose a module Neon colour channel until the equipped module instance owns Neon. The later confirmed Vehicle Cosmetics V1.2 supersedes the original bulk-only Underglow plan: Underglow is now a buyable per-vehicle cosmetic backed by attributed `SurfaceLight` objects beneath `UNDERGLOW_EMITTERS_DoNotRename` or the compatible legacy `UNDERGLOW_MOUNT_DoNotRename` ancestry. It does not reuse `NEON_OptionalLights`. Runtime owns only saved `Color` and purchased `Enabled`; Brightness, Range, Angle, Face, Shadows and emitter count remain authored per cockpit.
+
+## Owned-Garage Production Asset Authority (Phase 13 V1.4)
+
+Owned-garage runtime templates, structure, decorations, lighting and display-platform cosmetics resolve only from `ServerStorage.NeoTokyoRacers.OwnedGarage`. Editing or scratch copies are not a fallback, parity target or readiness dependency. An asset becomes production-ready only when the completed Model is copied into the matching authoritative ServerStorage path and passes the canonical audit.
+
+Scratch libraries should not remain in ReplicatedStorage in a published build because their unused geometry can still contribute to client replication/download and memory. Keep scratch work in ServerStorage or a separate unpublished authoring place. This does not change vehicle/cockpit/module authority: display slots still store stable saved `VehicleId` references and platform cosmetics never own a vehicle.
+
 ## Loading Phase 3 Owned-Garage Vehicle Boundary
 
 Loading/start-screen Phase 3 does not create, destroy, assign or clear an owned vehicle. `OwnedGarageManagementRuntime` keeps the confirmed revisioned display assignment and compensation contract, while the existing lifecycle bridge remains the only `GetDrivenVehicle`, `DespawnForGarage` and `SpawnFromGarage` owner. The loading system wraps browser/prompt activation and waits for the existing authoritative result.
@@ -11,6 +23,8 @@ Driven entry must still resolve one stable saved `VehicleId`, remove the live ve
 The approved physical owned-garage replacement stores display assignments as stable keys into the existing `profile.Vehicles` dictionary. A display slot never owns, copies or deletes vehicle data: moving a vehicle clears its former display reference, and replacing a full slot changes only that reference. Phase 2 adds an inactive `OwnedGarageDisplayRuntime` that resolves the requested cockpit/module instances from the same saved vehicle dictionaries and live asset catalogue, then removes seats, scripts, VFX, collision, queries and shadows from the anchored presentation. It rejects a second visual placement of the same `VehicleId`. Phase 3 stages the replacement transaction and passes only the stable `VehicleId` through an unowned lifecycle bridge. Phase 4 adds the space-first management UI and server actions but routes every assignment/clear through that same transaction; it adds no vehicle clone/spawn owner.
 
 Phase 6 keeps `profile.Garage` authoritative for vehicle capacity and existing cockpit purchase rules. Canonical property/display state lives separately at `profile.OwnedGarage`; the current vehicle snapshot-import path copies that namespace forward before replacing saved vehicle data. The lifecycle bridge calls the existing action owner's local build/despawn/select helpers and never creates another vehicle identity or save owner.
+
+Phase 13 V1.1 treats display-platform geometry as an optional garage decoration, not as a vehicle or display-assignment owner. `DisplayPlatforms` assets may replace the template pad visuals, but vehicle identity remains a stable `VehicleId` in the existing display slots and the anchored vehicle presentation runtime remains unchanged. Platform models therefore belong under the owned-garage decoration asset roots, never under cockpit/module folders.
 
 ## Phase AM Performance Attributes
 
@@ -272,3 +286,27 @@ Owned garages use a separate property-scoped exterior contract. The transition-c
 ## Current Diagrams
 
 - `diagrams/vehicle_asset_system.svg`
+## Owned garage exterior entry markers
+
+Each owned-garage property keeps its world transition markers under `Workspace.NeoTokyoRacersWorld.OwnedGarageExteriors.<ExteriorSpawnId>`. `FootEntrance` and `DriveInEntrance` are movable transparent interaction parts; `FootExitSpawn` and `VehicleExitSpawn` remain separate return destinations. Moving an entrance part moves its native prompt, while moving an exit spawn changes where players or vehicles return to the city. Entry prompts open the existing owned-garage browser, whose authoritative server action decides between on-foot and current-vehicle entry.
+
+## Vehicle underglow emitters
+
+Vehicle Cosmetics V1.1 uses attributed Part emitters beneath every live cockpit template:
+
+```text
+CockpitRoot_DoNotRename
+  UNDERGLOW_EMITTERS_DoNotRename [Folder]
+    FrontEmitter [Part]
+      UnderglowSurfaceLight [SurfaceLight]
+    CentreEmitter [Part]
+      UnderglowSurfaceLight [SurfaceLight]
+    RearEmitter [Part]
+      UnderglowSurfaceLight [SurfaceLight]
+```
+
+Place each emitter Part directly in its intended cockpit-local position. Do not parent Parts beneath an Attachment and expect the Attachment transform to position them; BasePart parenting is not a physical attachment. Do not add manual welds—the canonical vehicle builder welds every recognised massless emitter Part to `CockpitRoot_DoNotRename`.
+
+Each SurfaceLight uses `VehicleCosmeticId="Underglow"`. The parent Part is invisible, unanchored, massless, collision/query/touch disabled and does not cast shadows. The old `UNDERGLOW_MOUNT_DoNotRename` Attachment remains compatible but is no longer the authoring authority.
+
+SurfaceLight Brightness, Range, Angle, Face, Shadows and other presentation properties are authored independently on each vehicle template. Runtime customisation changes only the saved player colour and whether purchased underglow is enabled.

@@ -6,6 +6,8 @@ If an installer reports success but newly created instances disappear while edit
 
 If the same fault later recurs and the feature can reuse an existing intended owner, prefer a source-only canonical repair over another hierarchy recovery. Optional generated config/icon folders must use existing-folder or source-default fallbacks rather than hard `WaitForChild` dependencies, and companion HUD behaviour should be folded into the already-designated HUD-policy owner when that preserves ownership boundaries. Record the mixed source/hierarchy state in the mirror before repairing it.
 
+If a fresh mirror proves the source half is already correct but the required non-source contract is itself the blocker, the inverse recovery is allowed: require/compile the committed source without assigning `Source`, mutate only attributes/hierarchy, restart Studio, then run a separate read-only committed-state audit. Assigning identical Source text still counts as a mixed transaction and must be avoided.
+
 **Created:** 2026-07-02  
 **Purpose:** Make each Neo Tokyo Racers chat safer, faster, and more useful than the last one.
 

@@ -1,5 +1,19 @@
 # Owned Garage Canonical Replacement Plan
 
+## Phase 14 approved management composition and V1 foundation
+
+The next approved composition is `DISPLAY CARS`, `BUILD GARAGE` and `STYLE GARAGE`. Build owns preview plus purchase/equip for Structure, Decorations and whole-garage Lighting. Style edits only the currently equipped asset: Structure exposes Colour/Material, Decorations expose populated colour channels and Lighting exposes Primary/Secondary. One shared left rail swaps between the three modes and the selected family's locations; two simultaneous rails are prohibited for mobile space and input clarity.
+
+Phase 14 V1 is generated first because the existing preview owner reconstructed each channel request from committed state, allowing Secondary to discard an unsaved Primary preview. V1 establishes complete drafts, same-target server merging, SAVE-without-navigation, per-preset lighting finishes and one TemplateOrigin lighting model. After V1 install/audit/Play confirmation and mirror refresh, advance the same canonical installer to the shared navigation/Build/Style composition. See `docs/owned-garage-phase14-lighting-and-flow.md`.
+
+V1 is now user-confirmed and mirrored. V2 generates that shared composition as a one-source upgrade: root mode cards, mode/family rail, location rail at Structure/Decoration target depth, Build purchase/equip-only actions and Style finish-only controls. Server/persistence owners remain the V1 baseline.
+
+V2 and V2.1 are user-confirmed and mirrored. V2.1 completed shared-component visual parity: bottom and sidebar navigation call `ModuleCategoryCard`, with one `OwnedGarageCategoryCardImageZoom` value supplying both consumers.
+
+V2.2 is the final responsive navigation closure for this approved composition. It keeps location-rail scroll memory stable across nested Structure/Decoration pages and gives empty Style decoration locations a shared-card route to Build on the same target. The route does not mutate state; Build remains purchase/equip authority and Style remains finish-edit authority.
+
+Phase 14 V2.2 is user-confirmed and present in the complete `2026-07-22 21:37:10/11` mirror. The approved owned-garage replacement/overhaul is complete. There is no Phase 15 in this plan; future visitor admission, architecture reorganisation or new garage content starts from the closure handoff as a separately approved scope.
+
 Status: Phases 0-12 passed. Phase 12 Access and Invitations V1.1 is confirmed and present in the refreshed `2026-07-20 11:10:20` mirror with revision `NTR_OWNED_GARAGE_PHASE12_ACCESS_INVITATIONS_V1_1_HUD_DROPDOWNS`. Its optional V1.2 full-width icon-dropdown refinement is generated and awaits Studio verification. See `docs/owned-garage-and-readiness-handoff-2026-07-20.md`.
 
 ## Reusable Garage Expansion Gate
@@ -124,6 +138,22 @@ The property definition and runtime config enable Access and Invitations, but Vi
 Done when all four modes persist; both HUD buttons open the correct anchored dropdowns without entering management; a second same-server player can be invited and revoked; duplicate/self invitations are rejected; offline saved IDs can be revoked; unchanged reads cache against both garage and player-list signatures; stale revisions conflict; cash/settings remain usable; phone targets and scrolling pass; prior garage categories and transitions regressions are absent; Visitors remains disabled; and the refreshed mirror reports API/definition version 4 plus the Phase 12/V1.1 source markers.
 
 Phase 12 V1.1 is complete and is the confirmed rollback baseline. Both persistent HUD buttons use `GarageReplacementComponents.AnchoredDropdown`, call the same commands directly and never open management. Cash/Settings remain visible, the invite list refreshes on demand and scrolls after a configurable row cap, and viewport changes relayout through camera signals rather than a per-frame loop. The refreshed mirror contains the V1.1 revision and all seven access/invitation source contracts. Optional V1.2 changes only dropdown width/border/gradient/icon/chevron presentation and must pass the handoff verification matrix before becoming the new baseline.
+
+## Phase 13 Typed Fixtures And Shared Finishes
+
+Canonical installer:
+
+```text
+scripts/roblox_owned_garage_phase13_typed_finishes.lua
+```
+
+Phase 13 replaces the generic decoration category/anchor contract with five fixed property zones and makes asset folders the authoring interface for both decoration and structure colour/material support. V1.1 adds a sixth optional `DisplayPlatforms` zone that uses the same decoration workflow. Every asset contains `ColourSlots` with Primary, Secondary, Detail and Neon plus protected `Fixed` and `Technical` folders. Empty channel folders are omitted from the projected UI automatically.
+
+Workshop and Storage are required fixtures whose visible shells can be upgraded while the desk prompt remains in the garage template. Hangout, Feature and Identity are optional. Decoration colours save with each property placement. Structure retains section/style state, adds Neon colour and allows whitelisted material changes only on populated Primary/Secondary/Detail channels.
+
+The isolated finish runtime owns capability inspection, validation and clone application. Existing workspace/paint UI, management presentation, ProfileService command, economy, revision and preview-cancellation owners remain intact. Physical preview occurs only on committed input, while SAVE performs the revisioned mutation. No arbitrary placement, saved world CFrame, second remote or per-frame layout/presentation loop is introduced. Existing assets remain slot-local; new origin-authored platform options are placed through the template origin so both authoring modes have an explicit contract.
+
+Done when six zones and eighteen catalogue options exist; the optional platform zone stays hidden while its three template models are empty/disabled; required fixtures load without breaking the desk prompt; folder population exactly controls visible buttons; Fixed/Technical remain unchanged; Neon has no material action; preview/cancel/save/purchase persist correctly; repeated cycles create no duplicate runtime models; displays, lighting, access and all entry/exit paths regress cleanly; PC/tablet/phone pass; and a refreshed mirror contains revision `NTR_OWNED_GARAGE_PHASE13_TYPED_FIXTURES_FINISHES_V1_1_ATTRIBUTE_PLATFORM_REPAIR`.
 
 ## Acceptance Contract
 

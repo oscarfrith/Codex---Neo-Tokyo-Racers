@@ -1,4 +1,5 @@
 -- NTR_OWNED_GARAGE_INTERIOR_RUNTIME_V1
+-- NTR_OWNED_GARAGE_PHASE13_V1_2_COLLISION_CONTRACT
 local ReplicatedStorage=game:GetService("ReplicatedStorage")
 local ServerStorage=game:GetService("ServerStorage")
 local Runtime={}
@@ -12,6 +13,7 @@ local function templates()
 end
 function Runtime.AuditTemplate(template)
 	if not (template and template:IsA("Model") and template.PrimaryPart) then return false,"Template model/PrimaryPart missing." end
+	local collision=template:FindFirstChild("CollisionShell"); if not (collision and collision:IsA("Model") and tonumber(collision:GetAttribute("CollisionContractVersion"))==1) then return false,"CollisionShell contract missing." end; local collisionParts=0; for _,part in ipairs(collision:GetDescendants()) do if part:IsA("BasePart") and part.CanCollide and part:GetAttribute("GarageCollisionPart")==true and part:GetAttribute("GarageFinishProtected")==true then collisionParts+=1 end end; if collisionParts<1 then return false,"CollisionShell has no protected collidable parts." end
 	for _,name in ipairs(REQUIRED_MARKERS) do
 		local marker=template:FindFirstChild(name,true)
 		if not (marker and marker:IsA("BasePart")) then return false,"Marker missing: "..name end

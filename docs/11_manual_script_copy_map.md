@@ -6,6 +6,68 @@
 
 ## Current Best Option
 
+The `2026-07-24` owned-garage/customisation/hover handoff is confirmed and fully mirrored. No Studio command is currently required for that baseline. Start from `docs/owned-garage-customisation-handoff-2026-07-24.md`; treat the related installers below as exact-scope recovery tools rather than routine setup.
+
+`scripts/roblox_customisation_three_workshop_flow_v1.lua` is retained as recovery evidence for the confirmed three-workshop flow. Do not rerun it for ordinary use.
+
+`scripts/roblox_owned_garage_lighting_channels_and_decoration_flow_v1.lua` is retained as recovery evidence for the confirmed lighting-channel and Decoration Style flow. Do not rerun it for ordinary use.
+
+`scripts/roblox_owned_garage_clear_night_environment_v1.lua` is retained as recovery evidence for the confirmed ClearNight V1.2, verified drive-out and cached-prompt repair. Keep its vehicle A exit -> immediate vehicle A entry -> vehicle B exit sequence in release regression.
+
+`scripts/roblox_owned_garage_icon_config_v1.lua` is retained as recovery evidence for confirmed V1.1. Tune `OwnedGarageIcons.Sizing.StructureLocationImageZoom` and `DecorationLocationImageZoom` directly; begin a fresh Play session after changing them.
+
+Owned Garage Phase 14 V2.2 is confirmed and fully mirrored. No Studio command is currently required. Keep `scripts/roblox_owned_garage_phase14_lighting_and_flow.lua` and `scripts/roblox_owned_garage_phase14_committed_state_audit.lua` only as recovery/audit tools for the exact `NTR_OWNED_GARAGE_PHASE14_V2_2_RESPONSIVE_NAVIGATION_CLOSURE` baseline; do not rerun them for ordinary use or extend them for unrelated polish.
+
+Start future owned-garage work from `docs/owned-garage-and-readiness-handoff-2026-07-22.md`. A genuinely new feature receives a new proportional contract and canonical installer rather than another Phase 14 patch.
+
+For the generated owned-garage Phase 14 V2 shared management composition, run:
+
+```text
+scripts/roblox_owned_garage_phase14_lighting_and_flow.lua
+```
+
+in Edit mode. It starts only from the confirmed/mirrored V1 sources and options, projects and compiles one existing client controller, and requires `[NTR Owned Garage Phase 14 V2] PASS ... modes=DisplayCars/BuildGarage/StyleGarage singleRail=true`. Restart Studio, run `scripts/roblox_owned_garage_phase14_committed_state_audit.lua`, require the V2 `COMMITTED STATE PASS`, then test the documented desktop/mobile navigation and Build/Style isolation matrix before refreshing the mirror.
+
+For the generated owned-garage Phase 14 V1 lighting/state foundation, run the complete contents of:
+
+```text
+scripts/roblox_owned_garage_phase14_lighting_and_flow.lua
+```
+
+in the Roblox Studio Edit-mode Command Bar. Require `[NTR Owned Garage Phase 14 V1] PASS ... lightingOptions=4 placement=TemplateOrigin previewDraft=atomic saveNavigation=stay`. The script preflights and compiles all five projected owners before assignment and is the only Phase 14 installer to repair if the live baseline differs.
+
+Fully restart Studio, then run:
+
+```text
+scripts/roblox_owned_garage_phase14_committed_state_audit.lua
+```
+
+Require `COMMITTED STATE PASS` before Play. Verify independent Primary/Secondary preview and persistence, SAVE staying in each editor, Back cancellation, lighting buy/equip, one whole-garage runtime clone and desktop/mobile entry/exit. Refresh the complete mirror after the Play matrix passes.
+
+For the generated vehicle-audio tuning and cue expansion, run the complete contents of:
+
+```text
+scripts/roblox_audio_vehicle_tuning_and_cues_v1.lua
+```
+
+in the Roblox Studio Edit-mode Command Bar with `MODE="INSTALL"`, then change only the mode line to `AUDIT` and rerun. Do not manually edit the four projected audio sources or recreate attributes/descriptions by hand. The installer requires the exact confirmed Phase 1 source anchors, compiles all projected sources before writing and rolls its own transaction back if the live baseline differs.
+
+For the pending owned-garage Phase 13 V1.4 submission hardening, run the complete contents of:
+
+```text
+scripts/roblox_owned_garage_phase13_typed_finishes.lua
+```
+
+in the Roblox Studio Edit-mode Command Bar. It starts from the confirmed V1.3 source, unique-checks and compiles one `OwnedGarageFinishRuntime` replacement, preflights only the authoritative ServerStorage hierarchy, preserves authored part shadows and configures the isolated four-column `512 x 512` district. Require `[NTR Owned Garage Phase 13 V1.4] PASS`. It changes no saved state, asset hierarchy or transforms.
+
+After the PASS, restart Studio and run the complete read-only audit:
+
+```text
+scripts/roblox_owned_garage_phase13_committed_state_audit.lua
+```
+
+Require `COMMITTED STATE PASS`, `authority=ServerStorage`, `shadowPolicy=Authored` and `grid=4x512x512` before entering Play. Then test two simultaneous garages, authored shadows, streamed foot entry, drive-in, foot exit, drive-out, collision boundaries and timeout recovery on desktop/mobile. Refresh the complete mirror after all checks pass.
+
 The Studio export has already been imported into:
 
 ```text
@@ -42,6 +104,61 @@ roblox/exported_scripts/ReplicatedStorage/HOVER_RACING_V2_KIT/CLIENT_MODULES/Con
 ```
 
 ## Main Live Scripts To Keep Fresh
+
+After Driving Hover Height Config Bridge V1, refresh these together:
+
+```text
+ReplicatedStorage.NeoTokyoRacers.Config.Editable.01_GAME_BALANCE_Editable.Driving.HoverHeightStuds
+ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Controllers.DrivingControllerV47
+ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Controllers.DrivingFallbackController
+StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Runtime.FreeRoamParkedHoverController_Active
+ServerScriptService.NeoTokyoRacers.Services.Garage.GarageActionController_Shadow_Disabled
+```
+
+The source export captures the four source owners. The full hierarchy snapshot is required for the tuning value's range, unit, description, owner and revision attributes.
+
+After Vehicle Cosmetics and Empty Module Routes V1, refresh these together:
+
+```text
+ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data.PlayerProfileSchema
+ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data.VehicleCosmeticCatalog
+ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Visuals.CachedThrustVisualRuntime
+ServerScriptService.NeoTokyoRacers.Services.Garage.GarageActionController_Shadow_Disabled
+ServerScriptService.NeoTokyoRacers.Services.Garage.VehicleCosmeticServerRuntime
+ServerScriptService.NeoTokyoRacers.Services.Garage.OwnedGarageDisplayRuntime
+ServerScriptService.NeoTokyoRacers.Services.Garage.GarageDisplayRuntime
+StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Preview.PreviewVehicleController
+StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Preview.ThrustPreviewController_Active
+StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.ModuleShopUIController
+ReplicatedStorage.NeoTokyoRacers.Config.UI.GarageReplacement.VehicleCosmetics
+ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.*.COCKPITS_ReplaceAssetsHere.*.CockpitRoot_DoNotRename.UNDERGLOW_EMITTERS_DoNotRename
+ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.*.COCKPITS_ReplaceAssetsHere.*.CockpitRoot_DoNotRename.UNDERGLOW_MOUNT_DoNotRename (legacy compatibility)
+```
+
+The source export captures the scripts/modules. The full hierarchy snapshot is required for config attributes and underglow Attachment/SurfaceLight objects.
+
+After Owned Garage Material Icon Size V1, refresh:
+
+```text
+StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.OwnedGarageWorkspaceController
+ReplicatedStorage.NeoTokyoRacers.Config.UI.GarageReplacement.OwnedGarageIcons.Sizing
+```
+
+The source export captures the zoom consumer; the full hierarchy snapshot captures `MaterialImageZoom`.
+
+For Owned Garage Style UX V1, refresh these together after the confirmed installer and Play checks:
+
+```text
+StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.OwnedGarageWorkspaceController
+StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.GarageWorkspaceController
+StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.GarageReplacementComponents
+ServerScriptService.NeoTokyoRacers.Services.Garage.OwnedGarageManagementRuntime
+ServerScriptService.NeoTokyoRacers.Services.Garage.OwnedGarageProfileRuntime
+ReplicatedStorage.NeoTokyoRacers.Config.UI.GarageReplacement.OwnedGarageIcons
+ReplicatedStorage.NeoTokyoRacers.Config.UI.GarageReplacement
+```
+
+The full hierarchy snapshot is required because the icon folders/attributes and layout tuning are not represented by source files alone.
 
 These are the most important active gameplay scripts to refresh after major Studio changes:
 

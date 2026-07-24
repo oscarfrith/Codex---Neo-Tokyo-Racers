@@ -1,5 +1,203 @@
 # Patch History
 
+## 2026-07-23 - Customisation three-workshop flow V1 generated
+
+- Analysed the confirmed customisation controller and found the requested screens already share one workspace, rail, cards, popup, upgrade budget, colour sliders, preview and server action owner. Chose a bounded navigation reorganisation instead of a replacement UI/system.
+- Added Add Modules, Upgrade Modules and Paint Shop routes. Add preserves the existing flow; Upgrade uses fixed module locations and direct upgrade paths only; Paint uses special plus module targets, Paint/Neon action isolation and dynamic post-purchase colour channels.
+- Preserved the existing meaning of Underglow as bulk installed-module Neon rather than introducing an unrequested underbody asset/schema. Added authoritative read-only `NeonAvailable` and non-negative `NeonPrice` catalogue fields so unsupported/owned/unaffordable states do not depend on client guesses; the existing purchase path now clamps the same authored value before charging.
+- Added one canonical, transactional installer with unique full-boundary projection, pre-write/committed compilation, idempotency and rollback. Studio install, restart, cross-device Play matrix and mirror refresh remain pending.
+- Repaired the first read-only preflight failure in the same installer: a client-only canonical marker had been required from the server controller. Preflight now checks three unique server-owned contracts; the failed run made no changes and needs no rollback.
+
+## 2026-07-23 - Owned garage ClearNight V1.2 cached-prompt lifecycle generated
+
+- Traced the no-Output immediate re-entry failure to cached interior reuse, not vehicle spawning or streaming: session setup disconnected all prompt callbacks, but display rendering rebound only prompts it had just created.
+- Reworked the same canonical installer to replace the flat connection list with a prompt-keyed exactly-once registry. Existing Drive Out, foot-exit and management-desk prompts are rebound whenever a cached interior is configured or displays rerender, while any previous connection for that prompt is disconnected first.
+- Preserved the 20-second unload policy, verified vehicle handoff, saved display state, UI, lighting, assets and lifecycle authority. A cooldown was rejected because it would only hide the broken reuse path.
+- Added guarded unique-boundary projection, pre-write and committed-source compilation, transaction rollback and explicit cached/non-cached regression checks. Studio install, restart, Play verification and mirror refresh remain pending.
+
+## 2026-07-23 - Owned garage ClearNight V1.1 and verified drive-out recovery generated
+
+- Diagnosed the V1 event recursion to broad Lighting, child and effect listeners responding to the controller's own Sky/effect mutations; removed those feedback paths and made preset/Sky writes idempotent.
+- Kept the existing city-cycle and local garage-presentation owners. Reapplication is now a bounded generation-tokened response to only session, config and published city-stage changes.
+- Hardened the existing drive-out transaction so vehicle creation is followed by bounded exterior seat/position verification before session completion.
+- Added compensating cleanup, display-state restoration, interior return and prompt recovery for incomplete handoffs. No new remote, lifecycle owner, saved field or schema was introduced.
+- Updated the same canonical installer rather than adding a patch ladder. Studio restart, exact multi-vehicle transition regression and mirror refresh remain pending.
+
+## 2026-07-23 - Owned garage lighting-channel and Decoration Style flow V1 generated
+
+- Repaired the same canonical installer after its first read-only preflight incorrectly required a `Navigation.Save` child `StringValue`; the established icon contract uses a string attribute on the `Navigation` folder.
+- Traced blue Option 1 housings and split Primary/Secondary response to stale direct metadata overriding the already-correct folder placement.
+- Added a folder-first finish resolver with explicit `Fixed`/`Technical` protection and supported-light capability discovery. Saved per-preset colours and all existing authority boundaries remain unchanged.
+- Added transactional cleanup of duplicated channel metadata only inside authoritative ServerStorage lighting option branches; no asset is moved, created or deleted and ZZZ is not read.
+- Routed Style Decorations directly into the existing shared colour sliders and supplied the configured icon to Lighting SAVE. Installation, restart, desktop/mobile regression testing and mirror refresh remain pending.
+
+## 2026-07-23 - Owned garage ClearNight environment V1 generated
+
+- Confirmed the city day/night cycle remains owned by `LightingService_Active`, with the current stage published through `Lighting.NTR_LightingPreset`.
+- Added one isolated client World controller that applies the existing shared ClearNight properties/effects/Sky only for the local player while inside an owned garage. It tracks global stage changes without modifying their attributes and reapplies the latest city preset on exit.
+- Added three config attributes and no remote, server loop, saved field, UI owner, fixture mutation or global-cycle branch.
+
+## 2026-07-23 - Owned garage mobile access HUD and world entries V1 generated
+
+- Repaired the same canonical installer after its first preflight stopped before mutation: five interior replacements were missing the `interiorSource` argument. Replacement input types are now asserted so a future baseline mismatch produces a useful guarded-anchor error instead of a nil-concatenation error.
+- Traced the oversized phone dropdown to compact access controls that still used unscaled pixel dimensions while the main garage UI used responsive scaling. The new touch contract scales the access buttons, dropdown, icons and labels together and exposes reference/minimum/maximum scale attributes.
+- Confirmed the mirrored exterior hierarchy had only the two return spawns. The bounded installer adds one movable foot marker and one movable drive-in marker, each with a native tap/E/X prompt, and routes them into the existing browser and authoritative entry action.
+- No new remote, teleport, vehicle lifecycle, profile, persistence or garage-selection owner is introduced.
+
+## 2026-07-23 - Owned garage material icon sizing V1 generated
+
+- Added a bounded `OwnedGarageIcons.Sizing.MaterialImageZoom` config, default `1.0` with a `0.2–1.5` range.
+- Material cards now pass this value to the existing shared artwork renderer; shared card geometry and all non-material cards remain unchanged.
+- The installer compiles before/after assignment, is idempotent and restores source/config metadata on failure. Studio verification and mirror refresh remain pending.
+
+## 2026-07-22 - Owned garage Style UX V1 generated
+
+- Added one transactional/idempotent installer for central Save/Colour/Material/Locked/All/material icons, shared shop-state pricing, All Structure/All Decorations finish editing, material-rail clearance and navigation placement.
+- Added atomic server-derived bulk finish commands behind the existing ProfileService command seam with no new remote or saved schema.
+- Replaced destructive full-folder physical redraws with in-place finish application, staged asset swaps, per-slot decoration updates and one client preview-cancel action.
+- Added the High-Risk acceptance, verification and rollback contract in `docs/owned-garage-style-ux-v1.md`. Studio and Play verification remain pending.
+
+## 2026-07-22 - Owned Garage central icon configuration V1.1 generated
+
+- Accepted V1 as user-confirmed working; its Studio state still requires a full mirror refresh.
+- Extended the same canonical installer with a typed `Sizing` config group rather than introducing a patch script or another UI owner. Structure and Decoration location icons now default independently to `1.0`, exactly twice the shared `0.5` navigation-card scale.
+- Changed only the two stable location-card routes. Mode, Family, vehicle, listing, material, paint, access and browser sizing remain owned by their existing shared renderers.
+- Added dual-baseline projection, compile-before-write, idempotency and rollback so the installer supports current live V1 and the older pre-V1 mirror. Studio/mobile verification and mirror refresh remain pending.
+
+## 2026-07-22 - Owned Garage central icon configuration V1 generated
+
+- Audited the confirmed V2.2 mirror and found no `OwnedGarageIcons` hierarchy. Root/family icons currently fall back to shared NavigationIcons, while all Structure locations and all Decoration locations reuse one family icon.
+- Added one canonical guarded installer creating 30 designer String attributes across nine grouped folders and connecting four existing UI consumers. Stable Structure section IDs and Decoration slot IDs select their individual images.
+- Preserved current shared icons and glyphs as fallbacks, including blank optional location, Access, Browser, Capacity and Install Asset values. No saved state, server, economy, remote, physical asset or gameplay lifecycle changed.
+- Added a complete designer map and verification/rollback instructions in `docs/owned-garage-icon-configuration.md`. Studio install and mirror refresh remain pending.
+
+## 2026-07-22 - Owned Garage Phase 14 V2.2 responsive navigation closure confirmed
+
+- Accepted V2.1 as user-confirmed and verified its revision in both fresh mirror areas before advancing the same canonical installer.
+- Changed only the existing owned workspace controller. Structure and Decoration pages now share stable family rail keys, allowing the existing shared scroll-memory owner to preserve long-list position across nested Build/Style pages.
+- Added a shared-card `INSTALL ASSET` route for empty Decoration locations in Style Garage. It opens Build on the same target but performs no mutation, preserving Build-only purchase/equip and Style-only finish editing.
+- Updated the read-only audit for stable rail keys, empty-location routing and the full prior lighting/Build/Style/card-parity contracts.
+- User confirmed the complete V2.2 flow working. The `21:37:10/11` full export contains the V2.2 source marker, navigation contract `3`, matching manifests/hierarchy and current checksums. Phase 14 and the approved owned-garage overhaul are closed.
+
+## 2026-07-22 - Owned Garage Phase 14 V2.1 shared category-card parity confirmed
+
+- Traced the screenshot mismatch to image zoom rather than a duplicated card implementation: bottom and sidebar navigation already call the same shared `ModuleCategoryCard` renderer.
+- Advanced the same canonical installer with one guarded client-source refinement and one config attribute. Sidebar mode/location cards and image-backed bottom navigation cards now consume `OwnedGarageCategoryCardImageZoom=.5` through the same helper.
+- Left vehicle/listing/material/paint cards and all Build/Style behaviour untouched. Updated the restart audit for shared-renderer, shared-consumer and tuning-value evidence.
+- User confirmed the refinement working and refreshed the full mirror; exported source and hierarchy both contain the V2.1 marker.
+
+## 2026-07-22 - Owned Garage Phase 14 V2 shared Build/Style composition generated
+
+- Confirmed the refreshed mirror contains the user-approved V1 lighting/state foundation and four whole-garage option templates, then advanced the same canonical installer rather than adding a patch script.
+- Reworked only the existing owned workspace controller into `DISPLAY CARS`, `BUILD GARAGE` and `STYLE GARAGE`; all server, profile, economy, asset and preview authority remains unchanged.
+- Reused the shared category/listing/action/paint/channel-tab renderers. One left rail swaps between the three modes and Structure/Decoration locations, avoiding stacked sidebars and preserving mobile scrolling.
+- Build now previews and exposes only CURRENT/EQUIP/BUY, with authoritative purchase auto-equip. Style exposes only equipped Structure Colour/Material, Decoration Colour and whole-garage Lighting colours. SAVE retains its editor and Back cancels previews.
+- Updated the committed-state audit for V2 route, single-rail, auto-equip and Style isolation contracts. Studio install/audit, desktop/mobile navigation and regression checks remain pending.
+
+## 2026-07-22 - Owned Garage Phase 14 V1 whole-garage lighting and atomic drafts generated
+
+- Repaired an audit-only Lua multiple-return defect before committed-state evidence was accepted. The final `assert(instance, message)` in the source table also returned its message as a sixth array item, causing line 24 to call `find` on nil. Parenthesised assertions now force one value, cardinality is fixed at five and every entry is explicitly validated as a non-empty `LuaSourceContainer`. No installer or Studio state change is required.
+- Added the canonical Phase 14 installer and restart audit against the user-confirmed Phase 13 V1.4 baseline. Five existing source owners are projected and compiled before assignment; no new state, UI, remote or geometry owner is introduced.
+- Replaced the repeated three-slot lighting runtime with one TemplateOrigin option model. Four editable Primary/Secondary/Fixed/Technical templates are baked from the confirmed fixture placements, while the legacy `StandardFixture` remains untouched.
+- Added per-preset lighting finish overrides that preserve authored defaults, server-derived channel availability and inherited colour application for neon parts plus SurfaceLight/PointLight/SpotLight descendants.
+- Fixed cross-channel preview loss for structure, decoration and lighting through complete client drafts plus same-target server preview merging. SAVE now remains on Structure Colour, Structure Material, Decoration Colour and Lighting Colour pages.
+- Preserved revisioned ProfileService mutations, cash checks, purchase auto-equip, owned Equip, bounded shadowless dynamic lights, Back/Exit cancellation, shared paint/channel tabs and the current responsive workspace.
+- The approved Display Cars / Build Garage / Style Garage navigation remains the next internal stage after V1 install/audit/mobile/rejoin confirmation and mirror refresh.
+
+## 2026-07-22 - Owned Garage Phase 13 V1.4 ServerStorage/shadow/district hardening generated
+
+- Replaced the completed V1.3 recovery command with one compact canonical V1.4 installer against the confirmed V1.3 source baseline. It projects and compiles only `OwnedGarageFinishRuntime`, snapshots source/config state and supports attribute-only recovery if Team Create commits source before attributes.
+- Removed every editing-library dependency from the production installer and committed-state audit. Both now preflight/audit only authoritative `ServerStorage.NeoTokyoRacers.OwnedGarage` templates, structure, decorations, collision and populated starter platform.
+- Removed the runtime's forced shadow disable for cloned structure/decorations, preserving the authoritative source parts' authored `CastShadow`. Dynamic `Light.Shadows`, collision ownership, vehicle displays and lighting runtime remain unchanged.
+- Configured the runtime interior district at `(7000,3200,0)` with four columns and `512 x 512` spacing. No profile schema, saved state, economy, remotes, UI, template/asset geometry or vehicle lifecycle changed.
+- Updated the read-only audit for V1.4 source/config/district/shadow contracts and authoritative assets. Studio install/audit, two-player visibility, mobile profiling, four transition paths and a complete non-stale mirror refresh remain pending.
+
+## 2026-07-22 - Owned Garage Phase 13 V1.3 platform attribute recovery repaired
+
+- The refreshed mirror proved the eight V1.3 source owners committed successfully and both Platform Option 1 copies were populated/available with six matching parts. The separate read-only audit correctly rejected the new geometry because it had been added after scaffold normalisation and carried no `GarageColourChannel` metadata.
+- Repaired the same canonical installer rather than adding a patch script. Its all-sources-committed path now performs zero Source assignments, derives colour/protection attributes from the existing folders on all twelve platform parts, stamps revision metadata, verifies persistence and restores every touched attribute on failure.
+- The recovery does not move, clone, delete, create or re-pivot any asset. A full Studio restart, committed-state audit, Play verification and mirror refresh remain pending.
+
+## 2026-07-22 - Owned Garage Phase 13 V1.3 authored defaults and shared material tabs generated
+
+- Repaired the finish ownership contract at its source: catalogue presets no longer overwrite newly purchased/equipped asset colours or materials. ServerStorage models remain the authored default and persistence records only deliberate player overrides.
+- Added a one-time declarative starter loadout for Street Workshop, Open Rack and Platform Option 1. `StarterItemId` is independent of `Required`, so initial equipment does not accidentally define whether an optional zone may be cleared.
+- Replaced material display strings with ten stable internal definitions covering Concrete, Metal, Wood, Paint and Tiles A-F. Runtime resolution applies both `Enum.Material` and `BasePart.MaterialVariant`, filters unavailable definitions server-side and never allows material on Neon.
+- Removed the intermediate structure-material channel page. `GarageWorkspaceController` now exposes one shared channel-tab renderer used by both colour and material pages; the owned controller renders material cards beneath Primary/Secondary/Detail tabs.
+- Structure finishes are retained per StyleId, so changing styles no longer copies one asset's appearance onto another and returning to a customised style restores its own overrides.
+- Updated the same canonical Phase 13 installer as a guarded eight-source V1.3 transaction with recoverable revision metadata, platform/material preflight, unique anchors, projected-source compilation, idempotent mixed-attribute recovery and all-source rollback. The current empty/unavailable Platform Option 1 mirror intentionally blocks installation until the user populates both asset copies.
+
+## 2026-07-22 - Owned Garage Phase 13 V1.2 submission streaming/collision stabilisation generated
+
+- Traced the new empty-air arrival against the fresh mirror and July 20-22 history. No garage assets were deleted: Phase 13 V1.1 preserved transforms and the current ServerStorage structure library is populated. The canonical owner teleports to a dynamically-created interior at `Y=3200` without a client streaming request, while the shared loading UI completes on the server response. The only previous streaming helper belongs to the disabled legacy garage flow.
+- Confirmed a second regression in the installed V1.1 source: the shared finish clone makes every runtime structure part non-collidable while tagged template structure is hidden and disabled. The pre-V1.1 structure path preserved authored `CanCollide`, explaining why prior sessions could remain walkable even when streaming timing happened to succeed.
+- Repaired the same canonical Phase 13 installer as V1.2 with an automatically staged two-run transaction. Run one projects, compiles and writes exactly `OwnedGarageManagementRuntime`, `OwnedGarageInteriorRuntime` and `OwnedGarageBrowserController`; after restart, the same unchanged command detects those committed markers and performs only hierarchy/config/attribute work. This avoids repeating the documented Team Create mixed-persistence failure.
+- Added a request-scoped streaming acknowledgement over the existing `OwnedGarageEvent`. The server owns tokens, destinations, timeout, transition order and gameplay mutations; the client may only acknowledge whether the named interior/exterior marker became locally available after `LocalPlayer:RequestStreamAroundAsync`. Foot/vehicle entry and exit all fail closed before teleport/despawn/assignment clear/vehicle spawn.
+- Added protected `CollisionShell` models beneath authoritative and ZZZ `Templates.StarterTwoBay`, derived from Option01's floor and authored collidable boundary parts. Collision parts are invisible, anchored, non-touchable, queryable, finish-protected and explicitly stripped of structure/surface/colour classification so cosmetic swaps cannot remove navigation collision.
+- Expanded the committed-state audit to eleven source contracts, the streaming timeout/config contract, both collision shells, protected floor presence and ServerStorage/ZZZ parity. Studio execution, runtime/mobile/repetition evidence and mirror refresh remain pending; Phase 12 remains rollback.
+
+
+## 2026-07-22 - Owned Garage Phase 13 V1.1 attribute/platform repair generated
+
+- The refreshed `15:04:04` mirror proved the corrected installer entered another Studio mixed-persistence state: all eight V1.1 source contracts committed, while every companion attribute and created platform container disappeared. The template gate therefore remained `catalogue=2`, `config/template=1` and teleport still failed.
+- Replaced the same canonical installer with an exact hybrid-state, attribute/hierarchy-only recovery. It compiles existing source read-only, performs zero Source assignments, snapshots every attribute, tracks only newly-created containers and asserts that every pre-existing BasePart keeps its parent/CFrame.
+- Added one separate read-only committed-state audit for after a full Studio restart. It checks all eight source/revision contracts, config/API/schema versions, both template versions, asset attributes/channel protection, both platform roots and authoritative/editing model-count parity before Play testing.
+- Repaired a pre-execution V1.1 Command Bar parse failure by expanding the asset audit and adding its missing outer-loop `end`; the failed paste made no Studio changes.
+- The refreshed mirror proved that Phase 13 V1 source was installed but garage entry was rejected before teleport because the property catalogue required template contract `2` while the live `StarterTwoBay` template and runtime config still advertised `1`.
+- Repaired the same canonical Phase 13 installer to align the template/config contract, normalise finish and identity attributes across both authoritative `ServerStorage.NeoTokyoRacers.OwnedGarage` assets and the user's `ReplicatedStorage.ZZZ` editing copies, and preserve every existing Instance, transform and duplicate display-pad part.
+- Added an optional `DisplayPlatforms` decoration zone with three empty authoring models in each asset root. It reuses the decoration purchase/place/preview/persistence and shared Primary/Secondary/Detail/Neon colour system; the zone remains hidden until an option contains geometry and has `Available=true`.
+- Existing structure/decoration assets remain `GaragePlacementMode=SlotLocal` so no geometry moves. The new display-platform options use `TemplateOrigin`, allowing their parts to be authored at final garage coordinates around the common `0,0,0` origin.
+- Added capability filtering and authoritative availability validation, plus restoration/hiding of the template `DisplayPads` surface group when a platform decoration is removed/placed. The installer still preflights and compiles all projected source, is idempotent, and rolls back source, attributes and only newly-created containers on failure.
+- Studio installation, teleport regression, platform population, PC/mobile finish verification and mirror refresh remain pending.
+
+## 2026-07-22 - Vehicle audio tuning and conditioned cue expansion generated
+
+- Added one transactional `INSTALL`/`AUDIT`/`DISABLE` Command Bar installer that upgrades the confirmed audio catalogue, client presentation, state contract and server cue replication owners while preserving every existing attribute and asset ID.
+- Added managed accelerator enter/release cues with confirmation windows, minimum-session filtering, retrigger cooldown and one transient voice channel so rapid tapping cannot stack or chatter locally or for external listeners.
+- Converted the existing DriftLoop target to a continuous-duration gain/pitch ramp and exposed package master, local/external/one-shot mix, speed breakpoints, pitch ranges, per-family fades and an external attenuation midpoint.
+- Added a driver-only cancellable BoostRecharge one-shot sourced from the existing shared boost percentage, plus validated discrete external cues for BoostEmpty and uninterrupted FullBoostSpent. The latter replaces the ordinary empty cue by default.
+- Kept `DrivingControllerV47`, bootstrap, physics, VFX, UI, persistence, economy and customisation unchanged. Added companion `Descriptions` folders beneath existing audio config/profile owners because Roblox attributes have no native description field.
+- The installer uses guarded exact anchors against the known Phase 1 sources, compiles every projected source before mutation and rolls back source/config/documentation together on failure. Studio installation, audit, asset population, runtime/mobile evidence and mirror refresh remain pending.
+
+## 2026-07-21 - Audio Phase 3 installed/audited and mirrored
+
+- The user reported the Phase 3 audit passing with the intentionally blank readiness state and all playback disabled.
+- Imported the `21:00:59` full mirror with 175 scripts. `AcousticsController` and `AcousticsRuntimeController_Active` exactly match the canonical installer; the Phase 3 revision, bounded quality attributes and owned `NTR_ContextAmbienceReverb` are present.
+- The three approved implementation phases are now structurally installed and mirrored. No further architecture patch is recommended before assets are selected.
+- Next work is config-only vehicle/context asset population, guarded ACTIVATE, then one-player, two-client, context-transition, repeated-lifecycle and low-end-mobile evidence. Purchasable profiles and saved selections remain deferred.
+
+## 2026-07-21 - Audio Phase 2 installed/mirrored; Phase 3 acoustics generated
+
+- The user reported the Phase 2 audit passing with four context profiles, zero populated tracks and disabled playback. The `20:48:08` mirror contains 173 scripts and exact copies of all three Phase 2 sources.
+- Added one additive Phase 3 installer for Roblox-native vehicle occlusion/diffraction/reverberation, capped to the nearest four desktop or two small-touch emitters within 180 studs at 2 Hz.
+- Added one owned, disabled `NTR_Ambience` reverb effect driven by the Phase 2 dealership/owned-garage context definitions. No per-wall emitter, reflection probe, manual raycast or world object is created.
+- Added readiness counts plus guarded `ACTIVATE` and `DISABLE` modes. Activation requires all five critical standard-vehicle layers and at least two populated context definitions, and rolls back the three enable attributes on mutation failure.
+- Phase 1/2 source, driving, UI, VFX, loading, garage, persistence and economy remain unchanged. Assets, activation and audible/mobile/multi-client evidence remain pending.
+
+## 2026-07-21 - Audio Phase 1 installed/mirrored; Phase 2 context installer generated
+
+- The user reported the Phase 1 Edit install/audit passing for six cockpit templates. The captured audit correctly reports `0/13` populated assets and `enabled=false`.
+- Imported the `20:36:31` full mirror with 170 scripts and SoundService coverage. All six installed Phase 1 sources exactly match the canonical installer; six cockpit profile attributes and all six mix groups are present.
+- Added one additive transactional Phase 2 installer for on-foot, driving, dealership-interior and owned-garage-interior music/ambience contexts. It uses existing session/seat attributes, two bounded local channels, crossfades, ordered/random playlists and sparse CollectionService zone registration.
+- Phase 2 creates no world zones, audio assets, remotes or persistence. Blank tracks and `ContextAudioEnabled=false` keep installation silent; a tagged BasePart/Model with stable `AudioContextId` is sufficient for a future key area.
+- Audible Phase 1/2, two-client, repeated-transition and mobile evidence remain pending approved assets and activation.
+
+## 2026-07-21 - Audio system Phase 1 standard vehicle foundation generated
+
+- Added one transactional Edit-mode installer with `INSTALL`, `AUDIT` and `DISABLE` modes. It creates a versioned semantic vehicle-audio contract, validated/rate-limited driver remote, server replication owner, folder-driven catalogue, advanced-audio bus bridge and isolated client runtime.
+- Local drivers receive a non-positional graph; other vehicles receive distance-attenuated 3D emitters. Work is bounded to one local detailed graph, six nearest detailed remote graphs, six simple remote graphs, 15 Hz parameter updates, 4 Hz priority updates and eight concurrent one-shots per vehicle by default.
+- Preserved the existing SoundGroups/loading mixer and all driving, bootstrap, UI, VFX, garage, persistence and economy source. Every cockpit inherits `GENERIC_STANDARD_AUDIO`; blank assets and `AudioSystemEnabled=false` make the unverified install safely silent.
+- Kept future whole-vehicle sound packages behind stable profile IDs and a server-stamped `ResolvedAudioProfileId` without implementing purchase, apply or persistence paths.
+- Extended the full Studio exporter to include `SoundService` and documented the Standard readiness contract, verification matrix, remaining contextual-audio/acoustics phases and rollback in `docs/16_audio_system.md`. Studio installation, audible assets, multi-client/mobile checks and mirror refresh remain pending.
+
+## 2026-07-21 - Owned Garage Phase 13 typed fixture and finish installer generated
+
+- Audited the refreshed Phase 9-12 property, structure, decoration, ProfileService-command, management and shared-workspace owners before planning the expansion.
+- Added one canonical no-yield installer for five typed perimeter zones, fifteen editable blockout assets and a shared folder-driven Primary/Secondary/Detail/Neon finish contract across Decorations and Structure.
+- Added isolated server capability inspection/application, deterministic table fingerprints, property-scoped decoration colours, structure Neon colour, material-lock support, dynamic channel projection and shared-slider preview/SAVE/cancel flows without adding a remote or UI owner.
+- Preserved the desk prompt and existing garage lifecycle owners, retained legacy structure attributes as a compatibility fallback, and protected Fixed/Technical geometry. The installer preflights exact anchors, compiles projected sources and rolls source/hierarchy/config back together on failure.
+- Documented the High-Risk acceptance, performance, persistence, mobile and rollback contract in `docs/owned-garage-phase13-typed-finishes.md`. Studio verification and mirror refresh remain pending.
+
 ## 2026-07-21 - Loading Phase 6 closure audit generated from fresh V1.3 mirror
 
 - Imported the user's full Studio mirror generated at `10:48:31`. It contains 163 scripts, configured start-client checksum `303682342`, V1.4 loading-view checksum `215716094`, all responsive/grid config attributes and all Phase 1-4 plus race-readiness markers.
@@ -914,3 +1112,27 @@ This is a high-level summary, not a complete changelog of every script.
 - Adds a three-column H/S/B picker, configurable two-row palette, comma-formatted garage money, and the shorter `LIMIT REACHED` status.
 - Client presentation only; no server, persistence, inventory, performance, driving, or racing sources are changed. Awaiting Edit install and Play verification.
 - The first Edit attempt reached its post-install audit but queried `Disabled` on two ModuleScripts, which is not a valid property. Atomic rollback completed. V1.1 replaces that assertion with a structural module/parent audit in the same canonical installer; no revert or fresh mirror is required.
+
+## 2026-07-23 - Vehicle cosmetics and empty-module routes V1 ready
+
+- Generated `scripts/roblox_customisation_vehicle_cosmetics_and_empty_routes_v1.lua` against the confirmed three-workshop and physical module-instance authority baseline.
+- Adds per-vehicle buyable Thrust Colour and true Attachment/SurfaceLight Underglow, direct owned sliders, atomic All Neon, and protected front/rear light classification.
+- Adds short shared plus-card routing for missing Paint/Upgrade modules, exact Add Modules source navigation, post-transaction return, and a shared locked Owned Modules source when no compatible copy exists.
+- Uses additive nested vehicle state, the existing full-vehicle persistence bridge, eight guarded source projections, pre-commit compilation, and transactional Edit rollback. Awaiting Studio install and Play verification.
+- V1 was installed and mirrored. Runtime review found that the user's Bruiser 01 emitters were BaseParts parented beneath the legacy Attachment; that hierarchy does not physically attach Parts. The same canonical installer now advances to V1.2: attributed SurfaceLights are authoritative, a folder-based Part-emitter authoring contract is added without moving/replacing geometry, existing emitter Parts are made physics-safe, and legacy Attachment lights remain supported.
+- V1.2 narrows runtime ownership to saved `Color` and purchase `Enabled` only. Global Brightness, Range, Angle and MaxEmitters config is retired; all other SurfaceLight properties and emitter count remain authored per cockpit, with a non-blocking mobile warning above four lights.
+
+## 2026-07-23 - Driving hover-height config bridge V1 ready
+
+- Confirmed the existing `HoverHeightStuds` NumberValue and `DriveTuning` projection were not used by the active driven, fallback or parked hover physics; all three still hard-coded `3`.
+- Generated `scripts/roblox_driving_hover_height_config_bridge_v1.lua`, making the existing value authoritative for those three physics owners and the server-created vehicle diagnostic attribute.
+- The installer is guarded, idempotent, pre-compiles all four projected sources and rolls back source/attribute changes on failure. It adds `0.5-8` tuning metadata and changes no other driving values.
+- Later installed, user-confirmed and captured in the complete `22:22` mirror; the 2026-07-24 handoff entry closes this pending state.
+
+## 2026-07-24 - Owned garage, customisation and hover handoff confirmed
+
+- The user confirmed the latest owned-garage, three-workshop customisation, authored per-vehicle underglow and shared hover-height behaviour working.
+- The complete `2026-07-23 22:22:32/33` Studio mirror contains the expected installed source revisions, configuration attributes, entry markers, underglow authoring folders and authoritative garage hierarchy.
+- Closed the stale pending labels for Style UX, central icons, material icon sizing, lighting channels, mobile access/world entries, ClearNight V1.2, customisation flow, vehicle cosmetics V1.2 and hover-height V1.
+- Added `docs/owned-garage-customisation-handoff-2026-07-24.md` as the next-chat baseline. Old installers remain recovery tools for their exact scopes; no Studio command is pending.
+- Visitor admission, broad architecture reorganisation, arbitrary placement, catalogue virtualisation, richer offline invites and additional garage templates remain post-submission work. A clean-session cross-device/save-rejoin regression remains a release check.

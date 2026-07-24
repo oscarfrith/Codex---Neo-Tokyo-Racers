@@ -1,0 +1,21 @@
+# Owned Garage ClearNight Environment V1.2
+
+Status: user-confirmed working and represented in the complete `2026-07-23 22:22:32/33` Studio mirror. The installer is recovery-only for this exact scope.
+
+## Compact readiness contract
+
+- **Delivery lane:** Standard; this adds one isolated local world-presentation controller with clear existing transition and lighting owners.
+- **Goal:** Keep the local owned-garage interior on the shared `ClearNight` preset without event recursion, complete vehicle exits only after the exterior handoff is verified, and keep every physical prompt live across cached-interior reuse.
+- **Baseline:** `LightingService_Active` owns the server cycle and publishes `NTR_LightingPreset`; `NTR_OwnedGarageInside` is the confirmed garage-session signal.
+- **Required:** Apply the configured interior preset on entry and published global-stage change; restore the latest global stage on exit; verify exterior vehicle, seat and position before ending a drive-out session; rebind existing vehicle/foot/desk prompts exactly once whenever a cached interior is configured or rerendered.
+- **Preserved:** City schedule, other players, streetlight/window attributes, garage fixture presets and colours, existing streaming/lifecycle owners and vehicle/profile data.
+- **Excluded:** Per-garage saved environment selection, changes to shared presets, global-cycle pausing, new remotes and a second vehicle-spawn owner.
+- **Owners:** The existing server service remains city authority. `OwnedGarageEnvironmentLightingController_Active` owns only the local temporary override. Existing management and lifecycle bridge retain transition and vehicle authority.
+- **Inputs/outputs:** Garage-session/global-stage attributes plus environment config produce local Lighting/effect/Sky presentation. Existing lifecycle output plus two verification config values produce either committed exterior exit or compensating interior recovery. Existing prompt Instances map to one current server callback each.
+- **Lifecycle:** No broad Lighting, child, Sky or effect mutation listener remains. Reapplication is coalesced and generation-tokened from only session/config/published-stage changes; property and Sky writes are idempotent. Drive-out verification is bounded and runs only during a requested transition. Disconnect clears the keyed prompt registry; configuration/rerender disconnects any previous connection for a prompt before binding its current session callback.
+- **Authority/data:** Lighting remains presentation-only. Drive-out verification is server-side and uses the existing lifecycle response and authoritative session/profile transaction. No schema, remote or saved-field change.
+- **Scale/performance:** Constant lighting work only on entry, exit, config change or global-stage publication. At most one active Sky and one effect of each supported class. Drive-out verification is capped by `GarageDriveOutVerifySeconds`. Prompt registry size is bounded by the physical prompts in one active/cached interior and creates no polling loop.
+- **Device/streaming:** Device-independent and independent of garage asset streaming because Roblox Lighting is client-global.
+- **Failure/rollback:** The installer unique-checks each function boundary and compiles both projected sources before mutation, then restores both sources, config and hierarchy on failure. A failed runtime exit removes only the incomplete vehicle, restores the pre-clear display snapshot, returns the player inside and retains the session.
+- **Verification:** Restart Studio; test foot/vehicle entry, two city stages, an in-garage stage change, repeated entry/exit, one Sky count, custom fixture colours and a second client. Repeat vehicle A exit -> immediate A entry -> vehicle B exit from both slots, then repeat after the cache expires. Verify successful exterior seating, recoverable failure and exactly one response from foot exit/desk/vehicle prompts.
+- **Done when:** No event re-entrancy or streaming timeout occurs; the garage stays ClearNight locally; exiting restores the current city stage; every prompt remains live and fires once after cached reuse/rerender; every successful vehicle exit seats outside; a failed handoff preserves the garage session/display state; another client never changes.

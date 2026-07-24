@@ -4,12 +4,17 @@
 -- NTR_OWNED_GARAGE_DECORATION_TRANSACTION_V1
 -- NTR_OWNED_GARAGE_LIGHTING_TRANSACTION_V1
 -- NTR_OWNED_GARAGE_ACCESS_INVITATIONS_TRANSACTION_V1
+-- NTR_OWNED_GARAGE_FINISH_TRANSACTION_V1
+-- NTR_OWNED_GARAGE_PHASE13_V1_1_ATTRIBUTE_PLATFORM_TRANSACTION
 local Profile=require(script.Parent:WaitForChild("OwnedGarageProfileRuntime"))
 local Runtime={ApiVersion=2}
 local locks=setmetatable({},{__mode="k"}); local completed=setmetatable({},{__mode="k"})
 local function revision(profile) return math.max(0,math.floor(tonumber(profile and profile.OwnedGarage and profile.OwnedGarage.Revision) or 0)) end
+local function stable(value)
+	if type(value)~="table" then return tostring(value) end; local keys={}; for key in pairs(value) do table.insert(keys,tostring(key)) end; table.sort(keys); local parts={}; for _,key in ipairs(keys) do local raw=value[key] if raw==nil then raw=value[tonumber(key)] end; table.insert(parts,key.."="..stable(raw)) end; return "{"..table.concat(parts,",").."}"
+end
 local function fingerprint(operation,args)
-	return table.concat({tostring(operation or ""),tostring(args.GarageId or ""),tostring(args.SlotId or ""),tostring(args.VehicleId or ""),tostring(args.SurfaceGroup or ""),tostring(args.StyleId or ""),tostring(args.AccessMode or ""),tostring(args.SectionId or ""),tostring(args.Action or ""),tostring(args.StyleId or ""),tostring(args.Channel or ""),tostring(args.Material or ""),tostring(args.Color or ""),tostring(args.AnchorId or ""),tostring(args.ItemId or ""),tostring(args.PresetId or ""),tostring(args.Intensity or ""),tostring(args.TargetUserId or ""),tostring(args.MaxInvites or "")},"|")
+	return table.concat({tostring(operation or ""),tostring(args.GarageId or ""),tostring(args.SlotId or args.AnchorId or ""),tostring(args.VehicleId or ""),tostring(args.SurfaceGroup or ""),tostring(args.StyleId or ""),tostring(args.AccessMode or ""),tostring(args.SectionId or ""),tostring(args.Action or ""),tostring(args.Channel or ""),tostring(args.Material or ""),stable(args.Color),tostring(args.ItemId or ""),tostring(args.PresetId or ""),tostring(args.Intensity or ""),tostring(args.TargetUserId or ""),tostring(args.MaxInvites or ""),stable(args.Colors),stable(args.Materials)},"|")
 end
 local function response(success,message,requestId,baseRevision,currentRevision,extra)
 	local result={Success=success==true,Message=tostring(message or ""),RequestId=tostring(requestId or ""),BaseRevision=baseRevision,Revision=currentRevision,ApiVersion=Runtime.ApiVersion}

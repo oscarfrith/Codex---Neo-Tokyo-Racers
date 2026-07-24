@@ -38,6 +38,7 @@ local serviceNamesToScan = {
 	"ServerScriptService",
 	"StarterPlayer",
 	"StarterGui",
+	"SoundService",
 	"Workspace",
 	"ServerStorage",
 	"Lighting",

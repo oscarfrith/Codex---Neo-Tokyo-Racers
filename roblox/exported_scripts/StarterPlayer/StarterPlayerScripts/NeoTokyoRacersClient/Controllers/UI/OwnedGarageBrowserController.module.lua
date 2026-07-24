@@ -1,12 +1,15 @@
 -- NTR_OWNED_GARAGE_BROWSER_CONTROLLER_V1
 -- NTR_OWNED_GARAGE_BROWSER_CONTROLLER_V2_HARDENED
 -- NTR_OWNED_GARAGE_BROWSER_CONTROLLER_V3_ASYNC_OPEN
+-- NTR_OWNED_GARAGE_PHASE13_V1_2_STREAMING_CLIENT
+-- NTR_OWNED_GARAGE_ICON_CONFIG_V1
+-- NTR_OWNED_GARAGE_MOBILE_ACCESS_WORLD_ENTRIES_V1
 local Controller={}; local started=false; local closeCurrent=function() end; local isOpenCurrent=function() return false end
 function Controller.Close(reason) closeCurrent(reason) end
 function Controller.IsOpen() return isOpenCurrent() end
 function Controller.Start()
 	if started then return true,"AlreadyStarted" end
-	local Players=game:GetService("Players"); local ProximityPromptService=game:GetService("ProximityPromptService"); local ReplicatedStorage=game:GetService("ReplicatedStorage"); local UserInputService=game:GetService("UserInputService"); local player=Players.LocalPlayer; local playerGui=player:WaitForChild("PlayerGui"); local kit=ReplicatedStorage:WaitForChild("NeoTokyoRacers")
+	local Players=game:GetService("Players"); local ProximityPromptService=game:GetService("ProximityPromptService"); local ReplicatedStorage=game:GetService("ReplicatedStorage"); local UserInputService=game:GetService("UserInputService"); local Workspace=game:GetService("Workspace"); local player=Players.LocalPlayer; local playerGui=player:WaitForChild("PlayerGui"); local kit=ReplicatedStorage:WaitForChild("NeoTokyoRacers")
 	local UI=require(kit.Shared.Modules.UI:WaitForChild("RacingUIComponents")); local Mobile=require(kit.Shared.Modules.UI:WaitForChild("RacingMobileScaledDesktopLayout")); local Shared=require(script.Parent:WaitForChild("GarageReplacementComponents")); local remote=kit.Shared.Remotes.Garage:WaitForChild("OwnedGarageInvoke"); local push=kit.Shared.Remotes.Garage:WaitForChild("OwnedGarageEvent"); local openEvent=script.Parent:WaitForChild("OpenOwnedGarageBrowser")
 	local loadingInvoke=script.Parent:WaitForChild("LoadingTransitionInvoke") -- NTR_LOADING_SYSTEM_PHASE3_OWNED_GARAGE_BROWSER_V1
 	local C=function(name) return UI.Colour(name) end; local L=function(name,fallback) return UI.Layout(name,fallback) end; local T=function(name,fallback) return UI.Type(name,fallback) end; local state; local selected; local busy=false; local cards={}; local generation=0; local physicalLoadingGeneration
@@ -15,6 +18,8 @@ function Controller.Start()
 	local shell=UI.Panel(overlay,{Name="OwnedGarageShell",Color=C("PanelDeep"),Transparency=L("PanelTransparency",.08),StrokeColor=C("Outline"),StrokeWidth=L("ShellStrokeWidth",2),StrokeTransparency=.02,Clips=true}); shell.AnchorPoint=Vector2.new(.5,.5); shell.Position=UDim2.fromScale(.5,.5)
 	local layoutScale; if Mobile.IsEnabled(UserInputService.TouchEnabled) then layoutScale=Mobile.Attach(shell) else shell.Size=UDim2.fromOffset(1200,720); layoutScale=UI.AttachResponsiveScale(shell) end
 	local settings=kit.Config.Runtime:WaitForChild("OwnedGarage_EditAttributes")
+	local browserIcons=kit.Config.UI:WaitForChild("GarageReplacement"):WaitForChild("OwnedGarageIcons"):WaitForChild("Browser")
+	local function browserIcon(name) local value=browserIcons:GetAttribute(name); return type(value)=="string" and value~="" and UI.Asset(value) or "" end
 	local function hardenTouch() if not UserInputService.TouchEnabled then return end; local scale=math.max(layoutScale and layoutScale.Scale or 1,.01); local minimum=math.ceil(math.max(32,tonumber(settings:GetAttribute("MinimumTouchTargetPixels")) or 44)/scale); for _,object in ipairs(overlay:GetDescendants()) do if object:IsA("GuiButton") then local original=object:GetAttribute("NTR_OwnedGarageOriginalSize"); if typeof(original)~="UDim2" then original=object.Size; object:SetAttribute("NTR_OwnedGarageOriginalSize",original) end; if original.Y.Scale==0 then object.Size=UDim2.new(original.X.Scale,original.X.Offset,0,math.max(original.Y.Offset,minimum)) end end end end
 	if layoutScale then layoutScale:GetPropertyChangedSignal("Scale"):Connect(function() if overlay.Visible then task.defer(hardenTouch) end end) end
 	UI.Label(shell,{Name="Title",Text="MY GARAGES",Position=UDim2.fromOffset(24,0),Size=UDim2.new(.55,0,0,64),TextSize=T("Heading",22),Role="Heading"}); local divider=Instance.new("Frame"); divider.BorderSizePixel=0; divider.BackgroundColor3=C("Outline"); divider.BackgroundTransparency=.5; divider.Position=UDim2.fromOffset(0,64); divider.Size=UDim2.new(1,0,0,1); divider.Parent=shell
@@ -27,8 +32,8 @@ function Controller.Start()
 	local detailTitle=UI.Label(detail,{Name="GarageTitle",Text="",Position=UDim2.fromOffset(0,308),Size=UDim2.new(1,0,0,38),TextSize=T("Heading",26),Role="Heading"}); local district=UI.Label(detail,{Name="District",Text="",Position=UDim2.fromOffset(0,347),Size=UDim2.new(1,0,0,25),TextSize=T("Caption",13),Color=C("Telemetry"),Role="Heading"}); local description=UI.Label(detail,{Name="Description",Text="",Position=UDim2.fromOffset(0,382),Size=UDim2.new(1,0,0,72),TextSize=T("Body",15),Color=C("Text")}); description.TextWrapped=true; description.TextYAlignment=Enum.TextYAlignment.Top
 	local capacity=Shared.MetricCard(detail,"Capacity"); capacity.Position=UDim2.fromOffset(0,466); capacity.Size=UDim2.new(1,0,0,54); local capacityText=UI.Label(capacity,{Text="",Position=UDim2.fromOffset(14,0),Size=UDim2.new(1,-28,1,0),TextSize=T("Metric",16),Role="Metric",XAlignment=Enum.TextXAlignment.Center})
 	local status=UI.Label(shell,{Name="Status",Text="",Position=UDim2.new(0,24,1,-82),Size=UDim2.new(1,-48,0,20),TextSize=T("Caption",11),Color=C("Danger"),Role="Heading",XAlignment=Enum.TextXAlignment.Center}); status.Visible=false
-	local exit=Shared.ActionButton(shell,{Name="Exit",Text="EXIT",IconText="×",Size=UDim2.fromOffset(220,48),Color=C("PanelSoft"),StrokeColor=C("Outline")}); exit.AnchorPoint=Vector2.new(0,1); exit.Position=UDim2.new(0,24,1,-16)
-	local enter=Shared.ActionButton(shell,{Name="Enter",Text="ENTER GARAGE",IconText="E",Size=UDim2.fromOffset(300,48),Color=C("PanelBlue"),StrokeColor=C("Telemetry")}); enter.AnchorPoint=Vector2.new(1,1); enter.Position=UDim2.new(1,-24,1,-16); if UserInputService.TouchEnabled then status.Position=UDim2.new(0,24,1,-150) end
+	local exit=Shared.ActionButton(shell,{Name="Exit",Text="EXIT",Icon=browserIcon("Exit"),IconText="×",Size=UDim2.fromOffset(220,48),Color=C("PanelSoft"),StrokeColor=C("Outline")}); exit.AnchorPoint=Vector2.new(0,1); exit.Position=UDim2.new(0,24,1,-16)
+	local enter=Shared.ActionButton(shell,{Name="Enter",Text="ENTER GARAGE",Icon=browserIcon("Enter"),IconText="E",Size=UDim2.fromOffset(300,48),Color=C("PanelBlue"),StrokeColor=C("Telemetry")}); enter.AnchorPoint=Vector2.new(1,1); enter.Position=UDim2.new(1,-24,1,-16); if UserInputService.TouchEnabled then status.Position=UDim2.new(0,24,1,-150) end
 	local function presentation(active) local event=script.Parent:FindFirstChild("FreeRoamHudPresentationMode"); if event and event:IsA("BindableEvent") then event:Fire({Owner="OwnedGarageBrowser",Active=active==true,KeepTelemetry=false}) end end
 	local function request(action,args) local ok,result=pcall(function() return remote:InvokeServer(action,args or {}) end); if ok and type(result)=="table" then return result end; return {Success=false,Message="Garage service unavailable."} end
 	local function loadingAction(action,payload) local ok,result=pcall(function() return loadingInvoke:Invoke(action,payload or {}) end); if ok then return result end; warn("[NTR Owned Garage] Loading transition "..tostring(action).." failed: "..tostring(result)); return nil end
@@ -57,10 +62,10 @@ function Controller.Start()
 				if replaced.Success then shade:Destroy(); close(); loadingAction("Complete",{Generation=loadingGeneration,Status="READY"}) else loadingAction("Fail",{Generation=loadingGeneration,Status="RETURNING",Reason=replaced.Message}); setStatus(replaced.Message,false) end
 			end)
 		end
-		local cancel=Shared.ActionButton(panel,{Name="Cancel",Text="CANCEL",IconText="×",Size=UDim2.fromOffset(180,touchPrompt and 112 or 42),Color=C("PanelSoft"),StrokeColor=C("Outline")}); cancel.AnchorPoint=Vector2.new(.5,1); cancel.Position=UDim2.new(.5,0,1,-14); cancel.ZIndex=203; cancel.Activated:Connect(function() shade:Destroy() end); task.defer(hardenTouch)
+		local cancel=Shared.ActionButton(panel,{Name="Cancel",Text="CANCEL",Icon=browserIcon("Cancel"),IconText="×",Size=UDim2.fromOffset(180,touchPrompt and 112 or 42),Color=C("PanelSoft"),StrokeColor=C("Outline")}); cancel.AnchorPoint=Vector2.new(.5,1); cancel.Position=UDim2.new(.5,0,1,-14); cancel.ZIndex=203; cancel.Activated:Connect(function() shade:Destroy() end); task.defer(hardenTouch)
 	end
-	local function open()
-		generation+=1; local token=generation; overlay.Visible=true; presentation(true); if state then render() end; setStatus(state and "" or "LOADING GARAGES...",true); task.spawn(function() local result=request("GetState",{}); if token~=generation then return end; if not result.Success then setStatus(result.Message,false); return end; state=result; selected=nil; for _,property in ipairs(state.Properties or {}) do if property.PropertyId==state.ActiveGarageId then selected=property; break end end; selected=selected or (state.Properties and state.Properties[1]); render(); setStatus(""); task.defer(hardenTouch) end)
+	local function open(propertyId)
+		local requestedPropertyId=tostring(propertyId or ""); generation+=1; local token=generation; overlay.Visible=true; presentation(true); if state then render() end; setStatus(state and "" or "LOADING GARAGES...",true); task.spawn(function() local result=request("GetState",{}); if token~=generation then return end; if not result.Success then setStatus(result.Message,false); return end; state=result; selected=nil; local desiredPropertyId=requestedPropertyId~="" and requestedPropertyId or tostring(state.ActiveGarageId or ""); for _,property in ipairs(state.Properties or {}) do if property.PropertyId==desiredPropertyId then selected=property; break end end; selected=selected or (state.Properties and state.Properties[1]); render(); setStatus(""); task.defer(hardenTouch) end)
 	end
 	exit.Activated:Connect(close)
 	enter.Activated:Connect(function()
@@ -73,13 +78,25 @@ function Controller.Start()
 	openEvent.Event:Connect(function() if overlay.Visible then close() else open() end end)
 	ProximityPromptService.PromptTriggered:Connect(function(prompt,triggeringPlayer)
 		if triggeringPlayer and triggeringPlayer~=player then return end
-		if player:GetAttribute("NTR_OwnedGarageInside")~=true or not prompt then return end
-		if prompt.Name=="FootExitPrompt" then beginPhysicalLoading("OwnedGarageExterior","RETURNING TO CITY") elseif prompt.Name=="DriveOutPrompt" then beginPhysicalLoading("OwnedGarageDriveOut","PREPARING VEHICLE") end
+		if not prompt then return end
+		if player:GetAttribute("NTR_OwnedGarageInside")==true then
+			if prompt.Name=="FootExitPrompt" then beginPhysicalLoading("OwnedGarageExterior","RETURNING TO CITY") elseif prompt.Name=="DriveOutPrompt" then beginPhysicalLoading("OwnedGarageDriveOut","PREPARING VEHICLE") end
+		elseif prompt:GetAttribute("OwnedGarageEntryPrompt")==true and not overlay.Visible then
+			open(prompt:GetAttribute("OwnedGaragePropertyId"))
+		end
 	end)
 	player:GetAttributeChangedSignal("NTR_OwnedGarageInside"):Connect(function() if player:GetAttribute("NTR_OwnedGarageInside")~=true then finishPhysicalLoading(true,"Ready") end end)
+	local function destinationReady(message)
+		if message.DestinationType=="Interior" then local world=Workspace:FindFirstChild("NeoTokyoRacersWorld"); local interiors=world and world:FindFirstChild("Interiors"); local pool=interiors and interiors:FindFirstChild("OwnedGarageInstances"); local model=pool and pool:FindFirstChild(tostring(message.InteriorName or "")); return model and model:FindFirstChild(tostring(message.MarkerName or "CharacterSpawn"),true)~=nil end
+		if message.DestinationType=="Exterior" then local world=Workspace:FindFirstChild("NeoTokyoRacersWorld"); local root=world and world:FindFirstChild("OwnedGarageExteriors"); local exterior=root and root:FindFirstChild(tostring(message.ExteriorId or "")); return exterior and exterior:FindFirstChild(tostring(message.MarkerName or ""),true)~=nil end
+		return false
+	end
 	push.OnClientEvent:Connect(function(message)
 		if type(message)~="table" then return end
-		if message.Type=="DriveOut" then close()
+		if message.Type=="OwnedGarageStreamRequest" then task.spawn(function()
+			local position=message.Position; local timeout=math.clamp(tonumber(message.TimeoutSeconds) or 8,3,15); local startedAt=os.clock(); local ok,problem=pcall(function() assert(typeof(position)=="Vector3","invalid streaming position"); player:RequestStreamAroundAsync(position,timeout) end); while ok and not destinationReady(message) and os.clock()-startedAt<timeout do task.wait(.05) end; local ready=ok and destinationReady(message); push:FireServer({Type="OwnedGarageStreamReady",Token=tostring(message.Token or ""),Success=ready,Message=ready and "" or tostring(problem or "Destination did not replicate before the streaming deadline.")})
+		end)
+		elseif message.Type=="DriveOut" then close()
 		elseif message.Type=="DriveOutResult" then finishPhysicalLoading(message.Success==true,message.Message)
 		elseif message.Type=="FootExitResult" then finishPhysicalLoading(message.Success==true,message.Message) end
 	end)

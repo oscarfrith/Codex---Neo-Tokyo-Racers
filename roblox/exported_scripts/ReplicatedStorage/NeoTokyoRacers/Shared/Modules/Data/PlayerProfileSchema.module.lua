@@ -2,6 +2,7 @@
 -- Persistence Phase 1 foundation. This module is data-only and does not save/load DataStores.
 
 local HttpService = game:GetService("HttpService")
+local VehicleCosmetics = require(script.Parent:WaitForChild("VehicleCosmeticCatalog")) -- NTR_CUSTOMISATION_VEHICLE_COSMETIC_SCHEMA_V1
 
 local PlayerProfileSchema = {}
 
@@ -175,6 +176,7 @@ function PlayerProfileSchema.Normalize(profile, startingCash)
 	profile.Garage.Customisation = normalizeGarageCustomisation(profile.Garage.Customisation)
 	ensureDisplaySpaces(profile.Garage)
 	profile.Vehicles = typeof(profile.Vehicles) == "table" and profile.Vehicles or {}
+	for _, vehicle in pairs(profile.Vehicles) do VehicleCosmetics.NormalizeVehicle(vehicle) end
 	profile.OwnedCockpitInstances = typeof(profile.OwnedCockpitInstances) == "table" and profile.OwnedCockpitInstances or {}
 	profile.OwnedModuleInstances = typeof(profile.OwnedModuleInstances) == "table" and profile.OwnedModuleInstances or {}
 	profile.OwnedDecorations = typeof(profile.OwnedDecorations) == "table" and profile.OwnedDecorations or {}
