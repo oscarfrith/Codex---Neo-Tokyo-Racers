@@ -30,19 +30,46 @@ function Runtime.CaptureAll(profile,levelsByModule)
 	return true
 end
 
+-- NTR_CUSTOMISATION_ACCESS_ONBOARDING_PHYSICAL_COLOURS_V1_1
+local function completePhysicalColours(profile,vehicle,instance)
+	instance.Colors=typeof(instance.Colors)=="table" and instance.Colors or {}
+	local cockpitColors=(typeof(vehicle)=="table" and typeof(vehicle.CockpitColors)=="table" and vehicle.CockpitColors)
+		or (typeof(profile.CockpitColors)=="table" and profile.CockpitColors)
+		or {}
+	local repaired=0
+	for _,channel in ipairs({"Primary","Secondary","Detail"}) do
+		if typeof(instance.Colors[channel])~="Color3" and typeof(cockpitColors[channel])=="Color3" then
+			instance.Colors[channel]=cockpitColors[channel]
+			repaired+=1
+		end
+	end
+	if typeof(instance.Colors.Neon)~="Color3" then
+		instance.Colors.Neon=typeof(cockpitColors.Neon)=="Color3" and cockpitColors.Neon or Color3.new(1,1,1)
+		repaired+=1
+	end
+	if typeof(instance.Colors.ThrustColor)~="Color3" then
+		local thrust=(typeof(vehicle)=="table" and typeof(vehicle.ThrustColor)=="Color3" and vehicle.ThrustColor)
+			or (typeof(profile.ThrustColor)=="Color3" and profile.ThrustColor)
+			or (typeof(cockpitColors.ThrustColor)=="Color3" and cockpitColors.ThrustColor)
+		if typeof(thrust)=="Color3" then instance.Colors.ThrustColor=thrust; repaired+=1 end
+	end
+	return repaired
+end
+
 function Runtime.HydrateSlot(profile,slotId)
-	local _,_,_,instance=Runtime.ResolveSlot(profile,slotId); if typeof(instance)~="table" then return false,"Installed module instance not found for "..tostring(slotId) end
+	local vehicle,_,_,instance=Runtime.ResolveSlot(profile,slotId); if typeof(instance)~="table" then return false,"Installed module instance not found for "..tostring(slotId) end
 	profile.ModuleColors=typeof(profile.ModuleColors)=="table" and profile.ModuleColors or {}; profile.NeonOwned=typeof(profile.NeonOwned)=="table" and profile.NeonOwned or {}; profile.ModuleUpgradeLevels=typeof(profile.ModuleUpgradeLevels)=="table" and profile.ModuleUpgradeLevels or {}
-	instance.Colors=typeof(instance.Colors)=="table" and instance.Colors or {}; instance.UpgradeLevels=typeof(instance.UpgradeLevels)=="table" and instance.UpgradeLevels or {}
+	local repaired=completePhysicalColours(profile,vehicle,instance); instance.UpgradeLevels=typeof(instance.UpgradeLevels)=="table" and instance.UpgradeLevels or {}
 	profile.ModuleColors[slotId]=clone(instance.Colors); profile.NeonOwned[slotId]=instance.NeonOwned==true; profile.ModuleUpgradeLevels[tostring(instance.TemplateId or "")]=clone(instance.UpgradeLevels)
-	return true
+	return true,instance,repaired
 end
 
 function Runtime.HydrateAll(profile)
 	local vehicle=currentVehicle(profile); if not vehicle then return false,"Current vehicle not found" end
 	profile.ModuleColors={}; profile.NeonOwned={}; profile.ModuleUpgradeLevels=typeof(profile.ModuleUpgradeLevels)=="table" and profile.ModuleUpgradeLevels or {}
-	for slotId in pairs(vehicle.InstalledModules or {}) do local ok,message=Runtime.HydrateSlot(profile,slotId); if not ok then return false,message end end
-	return true
+	local repaired=0
+	for slotId in pairs(vehicle.InstalledModules or {}) do local ok,message,count=Runtime.HydrateSlot(profile,slotId); if not ok then return false,message end; repaired+=tonumber(count) or 0 end
+	return true,"Module instance state hydrated.",repaired
 end
 
 function Runtime.ReconcileReferences(profile)

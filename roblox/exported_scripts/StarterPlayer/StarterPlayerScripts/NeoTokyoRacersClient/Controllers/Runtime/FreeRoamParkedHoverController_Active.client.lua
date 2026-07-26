@@ -14,6 +14,10 @@ local lastPromptSeat = nil
 local SENSOR_START_HEIGHT = 2.2
 local SENSOR_LENGTH = 12
 local HOVER_HEIGHT = math.clamp(DriveTuning.Read().HoverHeightStuds, 0.5, 8) -- NTR_DRIVING_HOVER_HEIGHT_CONFIG_VALUE_V1
+local INTERACTION_SETTINGS = ReplicatedStorage:WaitForChild("NeoTokyoRacers"):WaitForChild("Config"):WaitForChild("Editable"):WaitForChild("01_GAME_BALANCE_Editable"):WaitForChild("VehicleInteractions") -- NTR_VEHICLE_EXIT_COAST_DRAG_V1_1
+local function interactionNumber(name,fallback,minimum,maximum)
+	return math.clamp(tonumber(INTERACTION_SETTINGS:GetAttribute(name)) or fallback,minimum,maximum)
+end
 local SPRING = 48
 local DAMPING = 6
 local ALIGN_RESPONSIVENESS = 10
@@ -86,6 +90,7 @@ local function shouldHover(vehicle)
 	if not vehicle or not vehicle.Parent or not vehicle.PrimaryPart then return false end
 	if tonumber(vehicle:GetAttribute("OwnerUserId")) ~= player.UserId then return false end
 	if vehicle:GetAttribute("ParkedShowcase") ~= true then return false end
+	if vehicle:GetAttribute("NTR_ParkedFixed") == true or vehicle.PrimaryPart.Anchored then return false end -- NTR_VEHICLE_FIXED_PARKING_V1
 	if vehicle:GetAttribute("DriverUserId") ~= nil then return false end
 	if seatOccupied(vehicle) then return false end
 	return true
@@ -153,13 +158,21 @@ local function start(vehicle)
 		table.insert(corners, { Attachment = attachment, Force = force, Offset = offset })
 	end
 
+	local coastDrag = Instance.new("VectorForce")
+	coastDrag.Name = "NTR_ParkedHoverCoastDrag"
+	coastDrag.Attachment0 = center
+	coastDrag.RelativeTo = Enum.ActuatorRelativeTo.World
+	coastDrag.ApplyAtCenterOfMass = true
+	coastDrag.Force = Vector3.zero
+	coastDrag.Parent = root
+
 	local rayParams = RaycastParams.new()
 	rayParams.FilterType = Enum.RaycastFilterType.Exclude
 	rayParams.FilterDescendantsInstances = { vehicle, player.Character }
 	local yawForward = Vector3.new(root.CFrame.LookVector.X, 0, root.CFrame.LookVector.Z)
 	if yawForward.Magnitude < 0.05 then yawForward = Vector3.new(0, 0, -1) else yawForward = yawForward.Unit end
 
-	local state = { Root = root, Align = align, Corners = corners }
+	local state = { Root = root, Align = align, Corners = corners, CoastDrag = coastDrag }
 	active[vehicle] = state
 	state.Connection = RunService.Heartbeat:Connect(function()
 		if not shouldHover(vehicle) or not root.Parent then
@@ -167,6 +180,14 @@ local function start(vehicle)
 			return
 		end
 		local mass = math.max(root.AssemblyMass, 1)
+		if vehicle:GetAttribute("NTR_ExitCoasting")==true then
+			local velocity=root.AssemblyLinearVelocity
+			local horizontal=Vector3.new(velocity.X,0,velocity.Z)
+			local dragPerSecond=interactionNumber("ExitCoastDragPerSecond",0.8,0.05,3)
+			coastDrag.Force=-horizontal*mass*dragPerSecond
+		else
+			coastDrag.Force=Vector3.zero
+		end
 		local liftPerCorner = mass * Workspace.Gravity / math.max(#corners, 1)
 		local normalSum = Vector3.zero
 		local hits = 0

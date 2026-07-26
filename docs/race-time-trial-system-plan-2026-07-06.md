@@ -1,5 +1,9 @@
 # Race And Time Trial System Plan
 
+## 2026-07-26 presentation-audio integration
+
+The generated `scripts/roblox_presentation_audio_ui_preview_race_v1.lua` subscribes to the existing `RaceEvent`; it does not add a second race remote, clock or progress owner. Scheduled countdown ticks use `GoAtServerTime`, GO uses the server-confirmed Started event, and checkpoint/lap/result cues use existing run identities for local duplicate suppression. `WrongWayWarning` is configuration-only until the racing system exposes one stable semantic event. See `docs/presentation-audio-ui-preview-race-v1.md`.
+
 **Created:** 2026-07-06
 **Status:** Phase 10A session asset/collision foundation generated after Phase 9A was user-confirmed working
 **Scope:** Race entry, matchmaking, checkpoints, timing, rewards, UI, anti-cheat, and future progression.

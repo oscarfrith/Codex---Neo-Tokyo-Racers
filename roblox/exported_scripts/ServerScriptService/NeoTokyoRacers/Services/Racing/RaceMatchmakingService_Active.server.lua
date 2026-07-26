@@ -1081,6 +1081,9 @@ local function startRace(queue)
 		for _, entry in ipairs(participants) do
 			if entry.Finished ~= true and entry.Player.Parent == Players then
 				prepareVehicleForDriving(entry.Player, entry.Vehicle)
+				local onboarding = game:GetService("ServerScriptService").NeoTokyoRacers.Services.Player:FindFirstChild("OnboardingProgress")
+				if onboarding and onboarding:IsA("BindableEvent") then onboarding:Fire(entry.Player, "FirstEventEntered") end -- NTR_RACE_MATCHMAKING_ONBOARDING_START_V1
+
 				local payload = {
 					Type = "RaceStarted", RunId = runId, EventId = queue.EventId, RouteId = race.RouteId,
 					DisplayName = race.DisplayName, StartServerClock = race.StartClock, StartServerTime = goAt,

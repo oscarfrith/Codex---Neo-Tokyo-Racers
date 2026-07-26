@@ -883,6 +883,9 @@ local function buildMainHud()
 	exitButton.BackgroundTransparency = 0.48
 	exitButton.TextTransparency = 0.12
 	controlsButton.Activated:Connect(function() openModal("Controls") end)
+	local onboardingControls=script.Parent:WaitForChild("OpenDrivingControlsFromOnboarding")
+	onboardingControls.Event:Connect(function() openModal("Controls") end) -- NTR_DESKTOP_ONBOARDING_CONTROLS_POPUP_V1
+
 	exitButton.Activated:Connect(function()
 		if busy then return end
 		local seat = ownedVehicleSeat()

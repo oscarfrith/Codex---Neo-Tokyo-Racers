@@ -1,3 +1,4 @@
+-- NTR_CUSTOMISATION_ACCESS_ONBOARDING_PHYSICAL_COLOURS_V1_1
 -- NTR_GARAGE_CANONICAL_EXPERIENCE_V1
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -13,6 +14,13 @@ local legacy = uiRemotes:FindFirstChild("DriveInCustomisationSession") or Instan
 legacy.Name = "DriveInCustomisationSession"; legacy.Parent = uiRemotes
 
 local sessions = {}
+local function customisationAccess(player)
+	local binding = script.Parent:FindFirstChild("GarageCustomisationAccessBinding") or script.Parent:WaitForChild("GarageCustomisationAccessBinding", 10)
+	if not binding or not binding:IsA("BindableFunction") then return { Success=false, Message="Customisation access is unavailable." } end
+	local ok, result = pcall(function() return binding:Invoke(player) end)
+	if not ok or typeof(result)~="table" then return { Success=false, Message="Customisation access is unavailable." } end
+	return result
+end
 local function worldParts()
 	local world = Workspace:FindFirstChild("NeoTokyoRacersWorld")
 	local dealership = world and world:FindFirstChild("Dealership")
@@ -68,8 +76,13 @@ local function finish(player, returnToEntry)
 	return { Success=true }
 end
 local function begin(player, mode)
+	if mode~="Dealership" and mode~="Customisation" and mode~="DriveIn" then return { Success=false, Message="Unknown garage session mode." } end
 	if sessions[player] then return { Success=false, Message="A garage session is already active." } end
 	if player:GetAttribute("NTR_RaceQueueActive") == true or player:GetAttribute("NTR_RaceSessionActive") == true then return { Success=false, Message="Leave the race session first." } end
+	if mode=="Customisation" or mode=="DriveIn" then
+		local access=customisationAccess(player)
+		if access.Success~=true then return { Success=false, Message=tostring(access.Message or "Customisation access is unavailable.") } end
+	end
 	local model, humanoid, root = character(player)
 	if not model or not humanoid or not root then return { Success=false, Message="Character is not ready." } end
 	local parts = worldParts(); local trigger = parts[mode]

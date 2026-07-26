@@ -1,12 +1,90 @@
 # Audio System
 
+## Presentation one-shot latency V1.3.2 confirmed and mirrored (updated 2026-07-26)
+
+The confirmed V1.3.1 presentation controller owns a maximum-eight one-shot pool. It currently selects any idle `Sound`, replaces its `SoundId` and calls `Play()` immediately. When the replacement asset is not already cached, Roblox begins playback only after loading it. This matches the reported inconsistent large delay across both UI Click and race Checkpoint cues.
+
+V1.3.2 keeps the same bounded pool but prefers an idle voice whose existing cue and asset match the new request. At controller start it also asynchronously warms enabled, populated UI, objective and racing one-shot assets. Warmup never blocks button activation, controller startup or race events, and failed preload is safely ignored so an event is never deliberately queued.
+
+Add-if-missing described controls beneath `Config.Audio.Presentation.Global` are `PreloadOneShotsEnabled=true` and `PreloadOneShotAssetLimit=24`. The limit bounds per-client warmup for future cue growth; it does not increase the active voice cap. Preview loops and all vehicle assets are excluded. Ignition readiness and the Ignition-to-Idle lead remain the only deliberate startup delay in this scope.
+
+The user confirmed V1.3.2 working. The complete `2026-07-26 20:46:20` mirror contains 188 matching entries, its installer/controller markers and both described controls. Confirmed live limits are preload enabled, 24 unique warmed assets and eight pooled voices. Installation, focused verification and mirror refresh are complete; the canonical installer is recovery/config evidence.
+
+## Reliable Local Ignition V1.3.1 confirmed and mirrored (updated 2026-07-26)
+
+The user-confirmed V1.2 presentation-audio baseline exposed an existing vehicle-startup race: Ignition could play while the loading mixer held `NTR_Vehicle` at zero, then be cut off when the vehicle controller destroyed its External graph and rebuilt the local Internal graph after seating.
+
+V1.3 installed this architecture, but its coordinator used nonexistent `VehicleAudioCatalog.Get` rather than `GetProfile`, preventing all local playback requests. V1.3.1 repairs that call in the same canonical installer. It prepares the selected profile asset under `SoundService.NTR_AudioRuntime_Local`, routes it non-positionally through the existing Vehicle bus, waits for local seating, loading completion and stable Internal routing, and then requests playback once per new vehicle instance.
+
+The session is consumed only after `AudioPlayer.IsPlaying` confirms. Failure to confirm triggers a bounded retry; three failed attempts warn once, release held engine loops and abandon only that vehicle instance. Graph rebuilds cannot destroy a started voice. Cleanup still occurs on natural end, bounded lifetime, vehicle destruction and controller stop.
+
+Remote players retain the current external 3D Ignition path. Server semantic state, profile resolution, loops, VFX and parked/coasting behaviour do not change. A same-instance parked re-entry does not replay startup by default.
+
+Described `Config.Audio.Global` controls are `ReliableIgnitionEnabled`, `IgnitionAfterReadyDelaySeconds`, `IgnitionReadinessTimeoutSeconds`, `IgnitionAssetWarmTimeoutSeconds`, `IgnitionPlaybackConfirmSeconds`, `IgnitionMaxPlayAttempts`, `IgnitionRetryDelaySeconds`, `IgnitionToIdleLeadSeconds`, `ReplayIgnitionOnRunningVehicleReentry` and `DebugReliableIgnition`. Defaults are add-if-missing and preserve all current asset/gain/pitch values.
+
+The user confirmed V1.3.1 working. The complete `2026-07-26 19:03:42` mirror contains its installer/source markers and corrected lookup. Confirmed live tuning is enabled with `IgnitionAfterReadyDelaySeconds=0.1`, `IgnitionPlaybackConfirmSeconds=0.07`, `IgnitionMaxPlayAttempts=3`, `IgnitionRetryDelaySeconds=0.1` and `IgnitionToIdleLeadSeconds=0.15`.
+
 **Created:** 2026-07-21  
-**Current status:** Phases 1-3 installed/audited and mirrored; tuning/cue expansion generated; asset population and audible verification pending  
-**Canonical installers:** confirmed baseline `scripts/roblox_audio_system_v1.lua`, `scripts/roblox_audio_context_phase2.lua`, `scripts/roblox_audio_acoustics_phase3.lua`; next installer `scripts/roblox_audio_vehicle_tuning_and_cues_v1.lua`
+**Current status:** Vehicle Phases 1-3, tuning/cues, parked external 3D audio and Presentation Audio V1.3.2 are confirmed and mirrored
+**Canonical installers:** `scripts/roblox_audio_parked_vehicle_3d_v1.lua` and `scripts/roblox_presentation_audio_ui_preview_race_v1.lua` are exact-scope recovery/config evidence
 
-## Generated Vehicle Tuning And Cue Expansion (2026-07-22)
+## Presentation Audio V1.3.2 Confirmed And Mirrored (2026-07-26)
 
-`scripts/roblox_audio_vehicle_tuning_and_cues_v1.lua` is the canonical next installer. It is Standard Lane work because it extends connected local presentation and validated external cue replication, but it does not change gameplay authority, persistence, economy or ownership.
+`scripts/roblox_presentation_audio_ui_preview_race_v1.lua` adds one bounded local presentation system for consistent UI feedback, persistent dealership/customisation preview loops, objective completion and existing race events. It reuses the existing three SoundGroups, authoritative garage outcomes, preview state and `RaceEvent`; it adds no remote, saved data, package purchase, gameplay authority or world emitter.
+
+Preview audio lives outside rebuildable clones and uses a short grace plus crossfade, so changing cars, modules, paint or thrust colour does not hard-cut/restart it. Blank preview IDs reuse the future-compatible vehicle profile layers. Global UI binding covers mouse, touch and controller, while purchase/equip/rejection sounds are emitted only from confirmed results.
+
+All values live beneath described `Config.Audio.Presentation` folders. One-shot IDs are blank and safe by default; the generic preview Idle can reuse the currently populated Idle layer. See `docs/presentation-audio-ui-preview-race-v1.md` for the contract, cue list, tuning and verification matrix.
+
+The user confirmed V1 working and refreshed the `13:36:41` mirror. V1.1 keeps all runtime/config owners unchanged: successful module purchase now routes to the module-equip success cue while failed purchase retains the rejection cue, and all onboarding-owned prompt controls suppress hover/focus through the existing per-button override while visible `NEXT` retains click.
+
+V1.3.1 retains the independent `UI.VehiclePurchaseSuccess` cue, extends authoritative outcome routing to owned-garage decoration/structure/display actions and includes the confirmed graph-safe local Ignition coordinator documented above. Installation, audit, focused verification and the `19:03:42` mirror refresh are complete.
+
+## Confirmed Parked And Exit-Coasting External 3D Audio V1 (updated 2026-07-26)
+
+`scripts/roblox_audio_parked_vehicle_3d_v1.lua` is installed and represented in the `2026-07-25 09:55:57` mirror by both V3 source markers and `ParkedExternalAudioRevision=NTR_AUDIO_PARKED_EXTERNAL_3D_V1`. Retain it as recovery evidence for this exact Standard-lane scope.
+
+```text
+Goal: Keep a player's car audible after exit through the same bounded 3D presentation used for other players' vehicles.
+Required changes: Decouple semantic engine power from seat occupancy; detect the server-owned exit-coasting state; mix reduced coast/park layers; add described tuning.
+Preserved behaviour: Existing audio assets/attributes, local-driver 2D route, external emitter/acoustics/priority budgets, cue conditioning, driving physics, VFX, parking/re-entry, race isolation, UI, persistence and customisation.
+Shared components: Existing VehicleAudioController graph, VehicleAudioStateService_Active, AudioEmitter, AudioBusController, profile layers and NTR_ExitCoasting lifecycle.
+State transitions: Occupied = existing driver mix; unoccupied+NTR_ExitCoasting = reduced Coast/EngineLow/Idle; unoccupied+settled = Idle/EngineLow; re-entry = existing local-driver route.
+Device/scale: No new emitter, sound asset, remote, heartbeat or scan. Existing 6 detailed + 6 simple remote graph and bounded acoustics budgets remain authoritative.
+Persistence/economy: N/A. ResolvedAudioProfileId and future whole-package ownership are unchanged.
+Failure/rollback: Exact anchors occur once and both projected sources compile before mutation. Failed INSTALL restores source/config/descriptions. DISABLE restores seat-exit silence without deleting config or assets.
+Done when: INSTALL/AUDIT pass; slow/fast exit, settle, re-entry and destruction work; a second client hears correct 3D distance/direction/occlusion; repeated cycles and low-end mobile stay bounded; mirror refreshed.
+```
+
+### Parked/Coasting Mix
+
+- Occupied drivers retain the existing non-positional mix.
+- Once the seat is empty, the existing graph is rebuilt through its external `AudioEmitter`; it is therefore directional, distance-attenuated and eligible for the existing bounded native acoustics.
+- While `NTR_ExitCoasting=true`, Coast follows speed while EngineLow and Idle use reduced multipliers. EngineHigh is suppressed by default.
+- Once authoritative parking clears `NTR_ExitCoasting`, Coast stops and the car uses only reduced Idle and EngineLow.
+- Acceleration, DriftLoop, BoostLoop and driver wind are always suppressed while unoccupied.
+- A simple exit/re-entry keeps semantic ignition running, preventing a Shutdown/second-Ignition pair. Vehicle destruction still performs normal graph cleanup.
+
+In the `11:51:34` pre-install mirror, Idle is populated while Coast and EngineLow are blank. The refinement will therefore be audible as a 3D Idle layer immediately; its richer speed-sensitive coasting body becomes audible automatically when Coast and/or EngineLow assets are later assigned. No source change is required.
+
+The installer adds these attributes beneath the existing `Config.Audio.Global`, each with a matching `Descriptions` StringValue:
+
+- `ParkedVehicleAudioEnabled`
+- `ParkedIdleGainMultiplier`
+- `ParkedEngineLowGainMultiplier`
+- `ParkedFadeInSeconds`
+- `ParkedFadeOutSeconds`
+- `ExitCoastAudioEnabled`
+- `ExitCoastGainMultiplier`
+- `ExitCoastEngineLowGainMultiplier`
+- `ExitCoastIdleGainMultiplier`
+- `ExitCoastSuppressEngineHigh`
+
+These values are add-if-missing, so rerunning the installer never resets user tuning. `MODE="DISABLE"` changes only `ParkedVehicleAudioEnabled=false`.
+
+## Confirmed Vehicle Tuning And Cue Expansion (2026-07-24)
+
+`scripts/roblox_audio_vehicle_tuning_and_cues_v1.lua` is installed, reported working and present in the fresh `11:51:34` mirror. It remains the recovery installer for this exact scope. It was Standard Lane work because it extended connected local presentation and validated external cue replication without changing gameplay authority, persistence, economy or ownership.
 
 ```text
 Goal: Make vehicle audio fully tuneable and add stable accelerator, drift-duration and boost-resource cues without input chatter or a second driving owner.

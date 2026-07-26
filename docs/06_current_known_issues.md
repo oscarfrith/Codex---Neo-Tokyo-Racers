@@ -1,4 +1,67 @@
 # Current Known Issues
+## Shared responsive UI foundation V1 generated; Studio verification pending (2026-07-26)
+
+- Run `scripts/roblox_shared_responsive_ui_foundation_v1.lua` in Edit mode and require its internal `AUDIT PASS` and `INSTALL PASS`; then restart Studio, switch only `MODE` to `AUDIT`, and rerun.
+- Pending runtime gates are desktop/controller, phone portrait/landscape orientation change, successful purchase Cash/Spaces projection, replicated Cash reconciliation, repeated confirmation cleanup and four-notification bounded stacking.
+- The installer uses guarded exact source anchors against the confirmed `20:46:20` mirror. This is intentionally fragile to an unknown live-source shape: any anchor-count or compile failure must stop with an automatic same-run rollback. Refresh/inspect the mirror and repair the same installer rather than creating a patch ladder.
+- The full Studio mirror is not refreshed because the installer has not yet been run in Studio. After confirmation, run the receiver/exporter workflow and commit both mirror areas; never commit `docs/studio-full-export-paste.txt`.
+- Vehicle pickers remain explicitly out of scope for Chat 3. Legacy bootstrap corners, mobile driving controls and world/intro prompt surfaces are documented exceptions; do not broaden this installer into unrelated control/world owners.
+
+## Presentation audio V1.3.2 confirmed and fully mirrored (updated 2026-07-26)
+
+- Closed: the user confirmed the V1.3.2 latency repair working and requested handoff. UI, objective and race one-shots now warm asynchronously and prefer a pooled voice already associated with their cue/asset.
+- The complete `2026-07-26 20:46:20` mirror contains 188 matching exported scripts/source-manifest/checksum entries, `InstallerRevision=NTR_PRESENTATION_AUDIO_UI_PREVIEW_RACE_V1_3_2`, `NTR_PRESENTATION_AUDIO_CONTROLLER_V1_3_2_IMMEDIATE_ONESHOTS` and both described preload controls. Neither mirror area appears stale.
+- Confirmed live limits are `PreloadOneShotsEnabled=true`, `PreloadOneShotAssetLimit=24` and `MaximumOneShotVoices=8`. Warmup never blocks button activation, race events or controller startup.
+- Preview loops, vehicle Ignition/Idle, world emitters, remotes, race authority, UI handlers and saved data remain unchanged. Ignition readiness and its short Idle lead remain the only deliberate startup timing in this scope.
+- Retain cold-start first Click/Hover, alternating UI/Countdown/Checkpoint, specialised purchase/equip, landscape-mobile and bounded-pool checks in release regression. A failed preload remains safe and must not delay the input or event itself.
+- `scripts/roblox_presentation_audio_ui_preview_race_v1.lua` is exact-scope recovery/config evidence. Do not rerun it for ordinary tuning; use the existing described attributes.
+
+## Customisation refinement V1.1 confirmed and fully mirrored (2026-07-26)
+
+- Closed: the user confirmed V1.1 working and requested handoff. Physical module colours, zero-vehicle rejection, owned-vehicle access, no-loading denial and purchase-rejected audio are part of the confirmed baseline.
+- The V1 forward-reference failure is removed. The server access response no longer calls a later-declared client-profile serializer; normal UI refresh remains the single client profile projection.
+- `StudioVehicleSandboxEveryPlay=true` continues to clear vehicles only at Play start and suppress saves. Same-session purchases are authoritative and permit Customisation.
+- Objective cards remain owned by the existing onboarding visibility predicate and follow the authoritative Customisation/Drive-In session. No second onboarding or appearance owner was added.
+- The complete `20:46:20` mirror contains 188 matching checksum, source-manifest and exported-script entries with V1.1 markers, corrected access-before-loading order and the shared notification owner/event. Neither mirror area appears stale.
+- No Customisation installer is pending. Retain all-vehicle/location, stale-selection, objective lifecycle, protected-state, desktop/landscape-phone/touch/controller and repeated-entry checks as release regression.
+
+## Presentation audio V1.3.1 confirmed and fully mirrored (updated 2026-07-26)
+
+- Closed: the user confirmed the complete V1.3.1 result working and requested handoff. Semantic decoration/structure purchase and equip cues, vehicle display-assignment routing and reliable local Ignition are now part of the confirmed baseline.
+- The complete `2026-07-26 19:03:42` mirror contains 187 matching exported scripts/source-manifest/checksum entries, `InstallerRevision=NTR_PRESENTATION_AUDIO_UI_PREVIEW_RACE_V1_3_1`, `NTR_AUDIO_VEHICLE_CLIENT_V5_CONFIRMED_LOCAL_IGNITION` and the corrected `Catalog.GetProfile(profileId)` lookup. Neither mirror area appears stale.
+- Local startup uses one persistent non-positional lane, waits for loading/seat/Internal-route readiness and consumes the new-vehicle session only after `AudioPlayer.IsPlaying` confirms. Local engine loops release after the configured lead; failed assets retry within a three-attempt bound, warn once and fail safely.
+- Confirmed live tuning is `ReliableIgnitionEnabled=true`, `IgnitionAfterReadyDelaySeconds=0.1`, `IgnitionPlaybackConfirmSeconds=0.07`, `IgnitionMaxPlayAttempts=3`, `IgnitionRetryDelaySeconds=0.1` and `IgnitionToIdleLeadSeconds=0.15`.
+- Default `ReplayIgnitionOnRunningVehicleReentry=false` keeps a running parked vehicle from replaying startup on simple re-entry. Remote clients retain the existing external 3D Ignition route.
+- Retain ten repeated new spawns, same-car exit/re-entry, vehicle replacement/destruction, two-client distance/direction/acoustics and landscape-mobile checks in release regression. A bounded ignition exhaustion warning indicates an unavailable/invalid asset or playback failure and should be investigated, but it no longer leaves engine loops muted.
+- `Racing.WrongWayWarning` remains configuration-only because no stable semantic wrong-way producer exists yet. Blank cue asset IDs remain intentionally silent.
+- `scripts/roblox_presentation_audio_ui_preview_race_v1.lua` is exact-scope recovery/config evidence. Do not rerun it for ordinary tuning; use the existing described attributes. On an anchor mismatch, restore/inspect this confirmed mirror rather than creating another patch.
+
+## Player onboarding V1.13 confirmed and fully mirrored (updated 2026-07-26)
+
+- V1.13 is the confirmed working baseline. A fresh four-client server test passed the full objective, first-view menu, race-exit and customisation re-entry flow. A second server session with both Studio test overrides disabled confirmed saved onboarding completion and seen-page persistence.
+- `StudioReplayEveryPlay=false` and `StudioVehicleSandboxEveryPlay=false` are the required persistence/release settings. Sandbox mode intentionally suppresses every profile save and must remain off outside isolated purchase iteration.
+- The `2026-07-26 13:36:41` hierarchy now records both `StudioReplayEveryPlay=false` and `StudioVehicleSandboxEveryPlay=false` alongside the installed V1.13 source. The previous config-only mirror staleness is closed.
+- The canonical installer now audits either deliberate boolean test-mode value and reports both values, instead of incorrectly requiring the sandbox to be enabled.
+- The existing time-trial panel still displays the base reward rather than the selected tier-adjusted reward. This remains a separate deferred racing UI correction; onboarding copy may say higher tiers have greater rewards.
+- Handoff: `docs/player-onboarding-v1-handoff-2026-07-25.md`.
+
+## Parked and exit-coasting external 3D audio V1 installed and mirrored (updated 2026-07-26)
+
+- The `2026-07-25 09:55:57` mirror contains `NTR_AUDIO_VEHICLE_CLIENT_V3_PARKED_EXTERNAL`, `NTR_AUDIO_STATE_SERVICE_V3_PARKED_RUNNING` and `ParkedExternalAudioRevision=NTR_AUDIO_PARKED_EXTERNAL_3D_V1`. Installation/audit and mirror refresh are complete.
+- The intended result is external 3D audio after exit: Coast plus reduced EngineLow/Idle while `NTR_ExitCoasting=true`, then Idle plus reduced EngineLow once parked. EngineHigh, Acceleration, DriftLoop, BoostLoop and driver wind must be silent while unoccupied.
+- Verify that a simple exit/re-entry does not play Shutdown or a second Ignition, and that re-entry restores the existing non-positional local-driver mix. Test at `0/9/10/11/15/50 mph`, repeat at least ten cycles, and use a second client to confirm distance, direction and bounded city occlusion.
+- Existing remote priority remains six detailed plus six simple graphs, with acoustics limited to the nearest configured emitters. Profile representative low-end mobile before increasing those budgets.
+- `MODE="DISABLE"` restores seat-exit silence while retaining sources, assets and tuning. A failed install rolls back its source/config/description transaction.
+- Keep the focused slow/fast exit, settle, re-entry and second-client 3D matrix in release regression. The canonical installer remains exact-scope recovery evidence, not an ordinary tuning command.
+
+## Multiplayer vehicle VFX, collision, parking and exit V1.1 confirmed and handed off (2026-07-26)
+
+- Closed: the user confirmed the complete V1.1 result working and requested handoff. This includes remote-player VFX, vehicle pass-through, slow/fast character collision, right-side exit, immediate low-speed parking, faster exit coasting and clean re-entry.
+- The latest complete `2026-07-26 19:03:42` mirror contains 187 matching exported scripts/source-manifest/checksum entries, `NTR_VEHICLE_SPEED_SENSITIVE_EXIT_COAST_V1_1`, `NTR_VEHICLE_EXIT_COAST_LIFECYCLE_V1_1`, `NTR_VEHICLE_COAST_PROMPT_GUARD_V1_1`, `NTR_VEHICLE_EXIT_COAST_DRAG_V1_1` and the V1.1 tuning revision.
+- Retain `10/11 mph`, `15/50 mph`, slope/wall, repeated re-entry, two-vehicle, same-race and race/free-roam isolation checks in release regression. These are no longer an open implementation gate.
+- Cosmetic note: the current mobile success toast always says `VEHICLE PARKED`; on a fast exit this wording may appear before the coast settles. The server response and lifecycle are correct, and the HUD was intentionally left outside this mechanics refinement.
+- `scripts/roblox_vehicle_multiplayer_vfx_collision_and_exit_v1.lua` is recovery evidence for this exact confirmed scope. Do not rerun it for ordinary tuning; use the existing `VehicleInteractions` attributes. If recovery ever reports an anchor mismatch, restore/inspect this confirmed mirror rather than adding a patch.
+
 ## 2026-07-24 confirmed cross-system handoff
 
 - The user confirmed the current owned-garage, customisation, authored underglow and shared hover-height behaviour working. The complete `2026-07-23 22:22:32/33` mirror contains their expected source revisions, configuration attributes and hierarchy.
@@ -138,26 +201,26 @@
 - Data-driven removal of the two-space template audit, visitor admission, architecture reorganisation and deletion of disabled legacy scripts remain deferred until after submission. Measure city LOD cost during the mobile test; add an owned-interior pause only if profiling shows a material problem.
 
 
-## Vehicle audio tuning/cue expansion pending Studio verification (2026-07-22)
+## Vehicle audio tuning/cue expansion installed, working and mirrored (2026-07-24)
 
-- Run only `scripts/roblox_audio_vehicle_tuning_and_cues_v1.lua` against the confirmed Phase 1 source markers or its own V1 markers. It uses exact source anchors for four isolated audio owners; any missing/non-unique anchor or compile failure must roll back and be repaired in this same canonical installer after a fresh mirror inspection.
-- Existing audio attributes and asset IDs are preserved by add-if-missing mutation. Five new cue layers start blank, master audio remains disabled, and `DISABLE` suppresses the new cue conditioning without deleting any config or assets.
+- Closed: the user reported the result working and refreshed the mirror. The `2026-07-24 11:51:34` export contains `NTR_AUDIO_VEHICLE_CLIENT_V2_TUNING_CUES`, `NTR_AUDIO_STATE_SERVICE_V2_CUES`, the described configuration and `AudioSystemEnabled=true`.
+- Existing audio attributes and populated asset IDs were preserved by add-if-missing mutation. Keep `scripts/roblox_audio_vehicle_tuning_and_cues_v1.lua` as exact-scope recovery evidence; do not rerun it for ordinary tuning.
 - `MobileDriveInputState.BoostPercent` is the existing local presentation seam. Validate that recharge begins only while charge rises, cancels on boost re-engagement, stops at full, and never retriggers repeatedly inside one recharge session.
 - Validate accelerator tap conditioning with keyboard, analogue gamepad and mobile: sub-threshold taps should be silent, brief release gaps should not chatter, confirmed sessions should produce one enter/one release, and managed channels must never stack.
 - Validate normal release versus empty versus uninterrupted near-full consumption. A qualifying `FullBoostSpent` replaces `BoostEmpty` by default; it must not be triggered by drift mini-boost or an interrupted tank.
 - The drift loop now ramps from a configurable starting multiplier to full gain/pitch over continuous drift duration. Confirm it resets cleanly on drift exit and remains bounded for external listeners.
-- The `2026-07-22 10:28:22` mirror is current for the silent pre-expansion baseline but does not contain this generated installer result. Refresh the full mirror after INSTALL/AUDIT passes.
+- Accelerator, recharge, depletion, full-boost and drift-ramp behaviour should remain in release regression, especially keyboard/gamepad/mobile tap conditioning and repeated lifecycle cleanup.
 
-## Audio Phases 1-3 installed; assets, activation and audible evidence pending (2026-07-21)
+## Audio Phases 1-3 installed; vehicle audio active, context content still pending (updated 2026-07-24)
 
 - The user reported Phase 1 install/audit passing. The `20:36:31` mirror proves its six exact installed sources, six cockpit profile assignments, config revision and six SoundService groups. Preserve that mirror as the silent Phase 1 installation baseline.
-- `AudioSystemEnabled` remains false and all `GENERIC_STANDARD_AUDIO` asset attributes are blank, so audible transitions still cannot be confirmed until approved assets are assigned and the system is explicitly enabled.
-- Runtime verification remains required for ignition/shutdown, accelerate/coast/drift/boost transitions, local-driver non-positional routing, remote-player 3D attenuation, driver hand-off, vehicle destruction, repeated entry/exit and a two-client spoof-rejection check.
+- Superseding evidence: the `11:51:34` mirror has `AudioSystemEnabled=true` and populated Ignition, Idle and Acceleration assets. EngineLow, EngineHigh, Coast, DriftLoop, BoostLoop and Shutdown remain blank in that snapshot, so their configured mix targets are silent until assets are assigned.
+- The user reports the current vehicle audio/tuning result working. Keep local-driver routing, remote 3D attenuation, driver hand-off, vehicle destruction, repeated entry/exit and two-client spoof rejection in release regression.
 - The 6 detailed + 6 simple remote-vehicle limit, 240-stud range, 15 Hz parameter loop, 4 Hz priority loop and 8 one-shots-per-vehicle cap are starting budgets, not confirmed mobile limits. Profile low-end mobile before increasing them.
 - The user reported Phase 2 audit passing. The `20:48:08` mirror proves its three exact sources, four blank definitions, revision and disabled state. Preserve this as the silent Phase 2 installation baseline.
 - Phase 2 limits itself to two steady local sounds/four during crossfade, 5 Hz resolution and 32 registered zones. These remain starting budgets pending mobile/repeated-transition evidence.
 - The user reported Phase 3 audit passing. The `21:00:59` mirror proves its two exact sources, acoustics config and owned ambience reverb. Preserve this as the complete silent structural baseline.
-- Do not rerun installers for ordinary asset assignment. Populate assets through one config-only script after the ID mapping is agreed, then use Phase 3 `ACTIVATE`. It must remain blocked until five critical vehicle assets and at least two context definitions are populated.
+- Do not rerun installers for ordinary asset assignment. Populate additional layer/context IDs through bounded config changes. `ContextAudioEnabled` remains false in the `11:51:34` mirror, so walking/driving/interior music and ambience are still intentionally inactive.
 - Phase 3 native acoustics are capped at four nearest remote emitters on desktop and two on small touch devices within 180 studs, updating at 2 Hz. These are conservative starting limits and still require representative city/mobile profiling.
 - Purchasable packages, saved profile selection and 3D ambient point emitters remain deferred. Do not make another system depend on audible audio behaviour before assets, activation, two-client testing, repeated transitions and mobile evidence pass.
 
@@ -773,3 +836,12 @@ Known sensitive areas:
 
 - Closed: the user confirmed the shared setting working. All four source revisions and the `HoverHeightStuds` range/owner metadata are represented in the `22:22` mirror.
 - `scripts/roblox_driving_hover_height_config_bridge_v1.lua` is recovery-only for this exact scope. Continue to include flat ground, ramps, crests, reset, parked/driven transitions, garage drive-out and vehicle re-entry in release regression. Values near the `8`-stud maximum leave less parked raycast margin; begin production tuning around `2.5-4.5`.
+
+## Player onboarding V1 original design note; superseded by V1.3 status above (2026-07-24)
+
+- The approved flow, copy, objective boundaries, first-view rules, shortcut locks, overlay contract and verification matrix are in `docs/onboarding-system-v1-design.md`.
+- Objective 2 completes on `RaceStarted` or `TimeTrialStarted`, not teleport, queue join, staging or countdown. Objective 3 completes only after Garage Management opens.
+- The existing PC Controls popup and dealership trail VFX must be reused. The legacy objective presentation may be retired only when the replacement is installed and verified.
+- The current time-trial setup reward panel displays base event reward while the reward service applies tier multipliers. A later racing UI correction will show the correct tier-adjusted reward; onboarding copy intentionally states that higher tiers earn greater rewards.
+- The free-roam objective, dealership G1 and mobile D7 visual references are approved under `diagrams/onboarding-v1/`. D8 reuses the same mobile composition rules around the live Boost target.
+- Historical note only. V1.2 is installed in the `18:56:55/56` mirror; the canonical V1.3 replacement is generated and awaiting the Studio run described at the top of this file.

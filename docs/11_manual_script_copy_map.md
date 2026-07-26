@@ -4,7 +4,69 @@
 **Status:** Current script mirror folders created  
 **Current mirror root:** `roblox/exported_scripts`
 
+## Shared Responsive UI Foundation V1
+
+Run the complete contents of:
+
+```text
+scripts/roblox_shared_responsive_ui_foundation_v1.lua
+```
+
+in the Roblox Studio Edit-mode Command Bar with `MODE="INSTALL"`. Require `[NTR Shared Responsive UI V1] AUDIT PASS` followed by `INSTALL PASS`. Restart Studio, change only the mode line to `AUDIT`, rerun, and complete the desktop/controller/phone transaction, confirmation, notification and Cash-surface matrix in `docs/shared-responsive-ui-foundation-v1.md`.
+
+The installer preflights exact source anchors, compiles every projected source, rolls back the same command automatically on failure and creates no in-game backup. An anchor mismatch means the live source differs from the `20:46:20` pre-install mirror; refresh/inspect it and repair this same installer. After confirmation, refresh the complete Studio mirror before handoff.
+
+## Presentation Audio V1.3.2 Immediate One-Shot Repair
+
+Presentation Audio V1.3.2 is installed, user-confirmed and fully represented in the complete `2026-07-26 20:46:20` mirror. No Studio command is pending for ordinary audio use. Retain this as exact-scope recovery/config evidence:
+
+```text
+scripts/roblox_presentation_audio_ui_preview_race_v1.lua
+```
+
+Do not rerun it for ordinary tuning; edit the existing described attributes. If exact-scope recovery is required, require V1.3.2 INSTALL/AUDIT pass, repeat the focused regression in `docs/presentation-audio-ui-preview-race-v1.md` and refresh the complete mirror. It adds no playback wait, remote, persistence, economy, emitter or gameplay owner.
+
 ## Current Best Option
+
+Customisation Refinement V1.1 is installed, user-confirmed and fully represented in the complete `20:46:20` mirror. No Studio command is pending for ordinary Customisation use. Retain this exact-scope recovery/audit installer:
+
+```text
+scripts/roblox_customisation_access_onboarding_physical_colours_v1.lua
+```
+
+Do not rerun it for ordinary use. If exact-scope recovery is required, require V1.1 `AUDIT PASS`/`INSTALL PASS`, repeat the documented runtime matrix and refresh the complete mirror.
+
+The approved UI, preview, objective, racing and reliable local-Ignition audio scope is now confirmed through V1.3.2 in the `20:46:20` mirror.
+
+Retain the following as exact-scope recovery/config evidence:
+
+```text
+scripts/roblox_presentation_audio_ui_preview_race_v1.lua
+```
+
+Do not rerun it for ordinary tuning; edit the existing described `Config.Audio.Presentation` and `Config.Audio.Global` attributes instead. The installer adds no remote, persistence, economy, emitter or gameplay owner.
+
+For the approved Player Onboarding V1 implementation, run the complete contents of:
+
+```text
+scripts/roblox_player_onboarding_v1.lua
+```
+
+in the Roblox Studio Edit-mode Command Bar with `MODE="INSTALL"`. Require both `[NTR Player Onboarding V1.13] AUDIT PASS` and `INSTALL PASS`, restart Studio, change only the mode line to `AUDIT`, and rerun. Complete the race-exit/customisation regression plus the PC/landscape-mobile/two-player and rejoin matrix in `docs/onboarding-system-v1-design.md`, then refresh the full Studio mirror.
+
+This installer is the only onboarding installer to repair. V1.13 preserves V1.12 UI/VFX, protects authoritative onboarding state from generic profile imports, suppresses the PC controls popup in race vehicles and repairs the desktop two-line objective description. It compiles every projected/new source before mutation and rolls back its own source/attributes/instances on failure.
+
+When missing, `StudioReplayEveryPlay` and `StudioVehicleSandboxEveryPlay` default to true for isolated iteration. The first replays tutorial state; the second provides a clean session-only vehicle inventory and suppresses all profile saves behind a hard `RunService:IsStudio()` guard. The confirmed persistence/release baseline has both values false. The V1.13 audit accepts and prints either deliberate boolean mode.
+
+The parked/exited vehicle 3D audio refinement is installed and represented in the `2026-07-25 09:55:57` mirror. Retain the following as exact-scope recovery evidence:
+
+```text
+scripts/roblox_audio_parked_vehicle_3d_v1.lua
+```
+
+Do not rerun it for ordinary audio tuning. Keep slow parked and fast exit-coasting audio plus re-entry and two-client 3D behaviour in release regression.
+
+Vehicle Multiplayer VFX, Collision, Parking and Exit V1.1 is confirmed and handed off in the complete `2026-07-26 19:03:42` mirror. Do not rerun `scripts/roblox_vehicle_multiplayer_vfx_collision_and_exit_v1.lua` for ordinary tuning; retain it as exact-scope recovery evidence and keep the `10/11 mph`, coast/settle, prompt-lock, right-side exit, collision and race-isolation matrix in release regression.
 
 The `2026-07-24` owned-garage/customisation/hover handoff is confirmed and fully mirrored. No Studio command is currently required for that baseline. Start from `docs/owned-garage-customisation-handoff-2026-07-24.md`; treat the related installers below as exact-scope recovery tools rather than routine setup.
 
@@ -44,13 +106,13 @@ scripts/roblox_owned_garage_phase14_committed_state_audit.lua
 
 Require `COMMITTED STATE PASS` before Play. Verify independent Primary/Secondary preview and persistence, SAVE staying in each editor, Back cancellation, lighting buy/equip, one whole-garage runtime clone and desktop/mobile entry/exit. Refresh the complete mirror after the Play matrix passes.
 
-For the generated vehicle-audio tuning and cue expansion, run the complete contents of:
+The vehicle-audio tuning and cue expansion is installed, reported working and present in the `11:51:34` mirror. Retain the following as recovery evidence only:
 
 ```text
 scripts/roblox_audio_vehicle_tuning_and_cues_v1.lua
 ```
 
-in the Roblox Studio Edit-mode Command Bar with `MODE="INSTALL"`, then change only the mode line to `AUDIT` and rerun. Do not manually edit the four projected audio sources or recreate attributes/descriptions by hand. The installer requires the exact confirmed Phase 1 source anchors, compiles all projected sources before writing and rolls its own transaction back if the live baseline differs.
+Do not rerun it for ordinary tuning. Edit its existing described attributes instead.
 
 For the pending owned-garage Phase 13 V1.4 submission hardening, run the complete contents of:
 
@@ -104,6 +166,21 @@ roblox/exported_scripts/ReplicatedStorage/HOVER_RACING_V2_KIT/CLIENT_MODULES/Con
 ```
 
 ## Main Live Scripts To Keep Fresh
+
+After Vehicle Multiplayer VFX, Collision, Parking and Exit V1.1, refresh these together:
+
+```text
+ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Visuals.CachedThrustVisualRuntime
+ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Audio.VehicleAudioController
+ServerScriptService.NeoTokyoRacers.Services.Audio.VehicleAudioStateService_Active
+ServerScriptService.NeoTokyoRacers.Services.Vehicle.VehicleCollisionLifecycleService_Active
+ServerScriptService.NeoTokyoRacers.Services.Vehicle.VehicleAccessPromptService_Active
+ServerScriptService.NeoTokyoRacers.Services.Garage.GarageActionController_Shadow_Disabled
+StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Runtime.FreeRoamParkedHoverController_Active
+ReplicatedStorage.NeoTokyoRacers.Config.Editable.01_GAME_BALANCE_Editable.VehicleInteractions
+```
+
+Refresh all Racing services/controllers and collision-group hierarchy metadata in the same full snapshot even though their source is intentionally not rewritten. This proves the race visibility and arrow/barrier contracts remained present.
 
 After Driving Hover Height Config Bridge V1, refresh these together:
 

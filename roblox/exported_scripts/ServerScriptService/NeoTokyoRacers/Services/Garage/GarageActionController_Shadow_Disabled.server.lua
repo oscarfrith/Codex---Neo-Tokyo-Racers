@@ -1356,8 +1356,8 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 				profile.NeonOwned[slotId] = moduleInstance.NeonOwned == true
 			end
 		end
-		local hydrated,hydrateMessage=V97_ModuleInstances.HydrateAll(profile); if not hydrated then return false,hydrateMessage end
-		return true, "Vehicle selected."
+		local hydrated,hydrateMessage,repairedColours=V97_ModuleInstances.HydrateAll(profile); if not hydrated then return false,hydrateMessage end
+		return true, "Vehicle selected.", tonumber(repairedColours) or 0
 	end
 
 	local function V89_selectVehicleInstance(profile, args)
@@ -1381,12 +1381,63 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 			return false, "Owned vehicle not found."
 		end
 		profile.CurrentVehicleId = selectedVehicleId
-		local ok, message = V89_syncLegacyFromCurrentVehicle(profile)
+		local ok, message, repairedColours = V89_syncLegacyFromCurrentVehicle(profile)
 		if ok then
 			V85_attachDefaultModuleInstancesToCurrentVehicle(profile)
-			V89_syncLegacyFromCurrentVehicle(profile)
+			local resynced,resyncMessage,resyncRepairs=V89_syncLegacyFromCurrentVehicle(profile)
+			if not resynced then return false,resyncMessage,tonumber(repairedColours) or 0 end
+			repairedColours=(tonumber(repairedColours) or 0)+(tonumber(resyncRepairs) or 0)
 		end
-		return ok, message
+		return ok, message, repairedColours
+	end
+
+	-- NTR_CUSTOMISATION_ACCESS_ONBOARDING_PHYSICAL_COLOURS_V1_1
+	local function V102_ensureCustomisationAccess(player,profile)
+		V84_ensureInstanceInventory(profile)
+		local owned,ownedLookup={},{}
+		for vehicleId,vehicle in pairs(profile.Vehicles or {}) do
+			local cockpitInstance=typeof(vehicle)=="table" and vehicle.CockpitInstanceId and profile.OwnedCockpitInstances and profile.OwnedCockpitInstances[vehicle.CockpitInstanceId]
+			if typeof(cockpitInstance)=="table" and tostring(cockpitInstance.TemplateId or "")~="" then
+				local id=tostring(vehicleId); table.insert(owned,id); ownedLookup[id]=true
+			end
+		end
+		table.sort(owned)
+		if #owned==0 then return {Success=false,Message="OWN A VEHICLE TO CUSTOMISE",OwnedVehicleCount=0} end
+		local current=tostring(profile.CurrentVehicleId or "")
+		local stale=current=="" or ownedLookup[current]~=true
+		local ok,message,repairedColours
+		if stale then
+			ok,message,repairedColours=V89_selectVehicleInstance(profile,{VehicleId=owned[1]})
+		else
+			ok,message,repairedColours=V89_syncLegacyFromCurrentVehicle(profile)
+		end
+		if not ok then return {Success=false,Message=message or "Owned vehicle selection could not be repaired.",OwnedVehicleCount=#owned} end
+		local valid,validationMessage=V97_ModuleInstances.Validate(profile)
+		if not valid then return {Success=false,Message="Owned vehicle state is invalid: "..tostring(validationMessage),OwnedVehicleCount=#owned} end
+		if stale or (tonumber(repairedColours) or 0)>0 then
+			V80_mirrorLegacyProfileToPersistence(player,profile,"EnsureCustomisationAccess",true)
+		end
+		return {
+			Success=true,
+			Message=stale and "Owned vehicle selection repaired." or "Customisation access ready.",
+			OwnedVehicleCount=#owned,
+			VehicleId=profile.CurrentVehicleId,
+			SelectionRepaired=stale,
+			PhysicalColourChannelsRepaired=tonumber(repairedColours) or 0,
+		}
+	end
+
+	local V102_accessBinding=script.Parent:FindFirstChild("GarageCustomisationAccessBinding") or Instance.new("BindableFunction")
+	V102_accessBinding.Name="GarageCustomisationAccessBinding"
+	V102_accessBinding.Parent=script.Parent
+	V102_accessBinding.OnInvoke=function(player)
+		local ok,result=pcall(function()
+			local profile=V56_getProfile(player); profile._Player=player
+			return V102_ensureCustomisationAccess(player,profile)
+		end)
+		if ok and typeof(result)=="table" then return result end
+		warn("[NTR Customisation Access] binding failed: "..tostring(result))
+		return {Success=false,Message="Customisation access is unavailable."}
 	end
 
 	-- NTR_DEALERSHIP_CUSTOMISATION_SPLIT_PHASE3_INSTANCE_CARDS
@@ -2397,42 +2448,106 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		return nil
 	end
 
+	-- NTR_VEHICLE_FIXED_PARKING_AND_RIGHT_EXIT_V1
+	-- NTR_VEHICLE_SPEED_SENSITIVE_EXIT_COAST_V1_1
+	local function V102_vehicleInteractionSettings()
+		local editable=V56_kit:FindFirstChild("Config") and V56_kit.Config:FindFirstChild("Editable")
+		local balance=editable and editable:FindFirstChild("01_GAME_BALANCE_Editable")
+		return balance and balance:FindFirstChild("VehicleInteractions")
+	end
+
 	local function V92_vehicleExitCFrame(vehicle)
 		if not vehicle then return nil end
-		local seat = vehicle:FindFirstChild("DriverSeat", true)
-		if seat and seat:IsA("VehicleSeat") then
-			return seat.CFrame * CFrame.new(-10, 3, 0)
+		local basis=vehicle:FindFirstChild("DriverSeat",true)
+		if not (basis and basis:IsA("BasePart")) then
+			basis=vehicle.PrimaryPart or vehicle:FindFirstChild("CockpitRoot_DoNotRename",true)
 		end
-		local root = vehicle.PrimaryPart or vehicle:FindFirstChild("CockpitRoot_DoNotRename", true)
-		if root and root:IsA("BasePart") then
-			return root.CFrame * CFrame.new(-10, 3, 0)
-		end
-		return nil
+		if not (basis and basis:IsA("BasePart")) then return nil end
+		local settings=V102_vehicleInteractionSettings()
+		local right=math.clamp(V56_number(settings,"ExitRightStuds",6),3,12)
+		local up=math.clamp(V56_number(settings,"ExitUpStuds",2.5),1,6)
+		return basis.CFrame*CFrame.new(right,up,0)
 	end
 
 	local function V92_unseatAndMovePlayer(player, vehicle)
-		local character = player.Character
-		local humanoid = character and character:FindFirstChildOfClass("Humanoid")
-		local humanoidRoot = character and character:FindFirstChild("HumanoidRootPart")
-		local exitCFrame = V92_vehicleExitCFrame(vehicle)
-		if humanoid then
-			humanoid.Sit = false
+		local character=player.Character
+		local humanoid=character and character:FindFirstChildOfClass("Humanoid")
+		local exitCFrame=V92_vehicleExitCFrame(vehicle)
+		if humanoid then humanoid.Sit=false end
+		if character and exitCFrame then
+			character:PivotTo(exitCFrame)
+			local humanoidRoot=character:FindFirstChild("HumanoidRootPart")
+			if humanoidRoot then
+				humanoidRoot.AssemblyLinearVelocity=Vector3.zero
+				humanoidRoot.AssemblyAngularVelocity=Vector3.zero
+			end
 		end
-		if humanoidRoot and exitCFrame then
-			humanoidRoot.CFrame = exitCFrame
+	end
+
+	local function V102_fixParkedVehicle(vehicle)
+		local root=vehicle and (vehicle.PrimaryPart or vehicle:FindFirstChild("CockpitRoot_DoNotRename",true))
+		if not (root and root:IsA("BasePart")) then return false end
+		vehicle.PrimaryPart=root
+		pcall(function() root:SetNetworkOwner(nil) end)
+		root.AssemblyLinearVelocity=Vector3.zero
+		root.AssemblyAngularVelocity=Vector3.zero
+		root.Anchored=true
+		vehicle:SetAttribute("NTR_ExitCoasting",nil)
+		vehicle:SetAttribute("NTR_ExitCoastStartedAt",nil)
+		vehicle:SetAttribute("NTR_ExitCoastStopReason","Immediate")
+		vehicle:SetAttribute("NTR_ParkedFixed",true)
+		return true
+	end
+
+	local function V102_beginExitCoast(player,vehicle,root,linearVelocity,angularVelocity)
+		root.Anchored=false
+		vehicle:SetAttribute("NTR_ParkedFixed",nil)
+		vehicle:SetAttribute("NTR_ExitCoasting",true)
+		vehicle:SetAttribute("NTR_ExitCoastStartedAt",Workspace:GetServerTimeNow())
+		vehicle:SetAttribute("NTR_ExitCoastStopReason",nil)
+		V92_unseatAndMovePlayer(player,vehicle)
+		if root.Parent then
+			root.AssemblyLinearVelocity=linearVelocity
+			root.AssemblyAngularVelocity=angularVelocity
+			pcall(function() root:SetNetworkOwner(player) end)
 		end
 	end
 
 	local function V56_exitVehicle(player)
-		local vehicle = V92_playerVehicle(player)
-		V92_unseatAndMovePlayer(player, vehicle)
-		if vehicle then
-			vehicle:SetAttribute("DriveReady", true)
-			vehicle:SetAttribute("DriverUserId", nil)
-			vehicle:SetAttribute("ParkedShowcase", true)
-			vehicle:SetAttribute("EngineVFXActive", true)
+		local vehicle=V92_playerVehicle(player)
+		if not vehicle then return false,"No vehicle to exit." end
+		if vehicle:GetAttribute("NTR_RaceParticipant")==true or vehicle:GetAttribute("NTR_RaceRunId")~=nil then
+			return false,"Use the race exit while participating in a race."
 		end
-		return true, "Exited vehicle."
+		local character=player.Character
+		local humanoid=character and character:FindFirstChildOfClass("Humanoid")
+		local seat=humanoid and humanoid.SeatPart
+		if not (seat and seat:IsA("VehicleSeat") and seat:IsDescendantOf(vehicle)) then
+			return false,"You are not seated in your vehicle."
+		end
+		local root=vehicle.PrimaryPart or vehicle:FindFirstChild("CockpitRoot_DoNotRename",true)
+		if not (root and root:IsA("BasePart")) then return false,"Vehicle root missing." end
+		vehicle.PrimaryPart=root
+		local linearVelocity=root.AssemblyLinearVelocity
+		local angularVelocity=root.AssemblyAngularVelocity
+		local horizontalVelocity=Vector3.new(linearVelocity.X,0,linearVelocity.Z)
+		local settings=V102_vehicleInteractionSettings()
+		local immediateParkMaxMph=math.clamp(V56_number(settings,"ExitImmediateParkMaxMph",10),0,50)
+		local speedMph=horizontalVelocity.Magnitude*0.625
+
+		vehicle:SetAttribute("DriveReady",true)
+		vehicle:SetAttribute("DriverUserId",nil)
+		vehicle:SetAttribute("ParkedShowcase",true)
+		vehicle:SetAttribute("EngineVFXActive",true)
+
+		if speedMph<=immediateParkMaxMph then
+			if not V102_fixParkedVehicle(vehicle) then return false,"Vehicle could not be fixed." end
+			V92_unseatAndMovePlayer(player,vehicle)
+			return true,"Exited and parked vehicle."
+		end
+
+		V102_beginExitCoast(player,vehicle,root,linearVelocity,angularVelocity)
+		return true,"Exited vehicle while it coasts to a stop."
 	end
 
 
@@ -2463,18 +2578,29 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 
 	local function V56_reEnterVehicle(player)
 		local vehicle
-		for _, candidate in ipairs(V56_vehiclesRoot:GetChildren()) do
-			if candidate:GetAttribute("OwnerUserId") == player.UserId then vehicle = candidate; break end
+		for _,candidate in ipairs(V56_vehiclesRoot:GetChildren()) do
+			if candidate:GetAttribute("OwnerUserId")==player.UserId then vehicle=candidate break end
 		end
-		if not vehicle then return false, "No vehicle nearby." end
-		local root = vehicle.PrimaryPart or vehicle:FindFirstChild("CockpitRoot_DoNotRename", true)
-		local seat = vehicle:FindFirstChild("DriverSeat", true)
-		if root then vehicle.PrimaryPart = root; pcall(function() root:SetNetworkOwner(player) end) end
-		if not (seat and seat:IsA("VehicleSeat")) then return false, "Driver seat missing." end
-		vehicle:SetAttribute("DriveReady", true)
-		vehicle:SetAttribute("DriverUserId", player.UserId)
-		V56_seatPlayer(player, vehicle, seat)
-		return true, "Entered vehicle."
+		if not vehicle then return false,"No vehicle nearby." end
+		if vehicle:GetAttribute("NTR_ExitCoasting")==true then return false,"Vehicle is still coasting." end -- NTR_VEHICLE_COAST_REENTRY_GUARD_V1_1
+		local root=vehicle.PrimaryPart or vehicle:FindFirstChild("CockpitRoot_DoNotRename",true)
+		local seat=vehicle:FindFirstChild("DriverSeat",true)
+		if not (root and root:IsA("BasePart")) then return false,"Vehicle root missing." end
+		if not (seat and seat:IsA("VehicleSeat")) then return false,"Driver seat missing." end
+		vehicle.PrimaryPart=root
+		root.Anchored=false -- NTR_VEHICLE_FIXED_PARKING_AND_RIGHT_EXIT_V1
+		root.AssemblyLinearVelocity=Vector3.zero
+		root.AssemblyAngularVelocity=Vector3.zero
+		vehicle:SetAttribute("NTR_ExitCoasting",nil)
+		vehicle:SetAttribute("NTR_ExitCoastStartedAt",nil)
+		vehicle:SetAttribute("NTR_ExitCoastStopReason",nil)
+		vehicle:SetAttribute("NTR_ParkedFixed",nil)
+		vehicle:SetAttribute("ParkedShowcase",false)
+		vehicle:SetAttribute("DriveReady",true)
+		vehicle:SetAttribute("DriverUserId",player.UserId)
+		pcall(function() root:SetNetworkOwner(player) end)
+		V56_seatPlayer(player,vehicle,seat)
+		return true,"Entered vehicle."
 	end
 
 	-- NTR_OWNED_GARAGE_PHASE6_LIFECYCLE_BRIDGE_V1
@@ -2526,7 +2652,9 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 			if not referencesOk then return {Success=false,Message="Module inventory reference repair failed: "..tostring(referencesResult),Profile=V56_profileForClient(profile)} end
 			if tonumber(referencesResult) and referencesResult>0 then print("[NTR Module Instance Authority] Reconciled "..tostring(referencesResult).." stale owner flag(s) from canonical vehicle-slot references") end
 			local ok, message
-			if action == "GetInitial" then
+			if action == "EnsureCustomisationAccess" then
+				return V102_ensureCustomisationAccess(player,profile)
+			elseif action == "GetInitial" then
 				-- NTR_PROFILE_SERVICE_READ_ONLY_IMPORT_GUARD_V1
 				V56_setLeaderstats(player, profile)
 				return { Success = true, Catalog = V56_catalog(), Profile = V56_profileForClient(profile) }
@@ -2734,6 +2862,11 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 				local validProfile,validationMessage=V97_ModuleInstances.Validate(profile); if not validProfile then error("Module instance invariant failed before persistence after "..tostring(action)..": "..tostring(validationMessage)) end
 				-- NTR_GARAGE_LEGACY_TO_INSTANCE_SYNC_RETIRED_V1
 				V80_mirrorLegacyProfileToPersistence(player, profile, action, V80_mutatingActions[action] == true)
+				if action=="BuyCockpitInstance" then
+					local onboarding=game:GetService("ServerScriptService").NeoTokyoRacers.Services.Player:FindFirstChild("OnboardingProgress")
+					if onboarding and onboarding:IsA("BindableEvent") then onboarding:Fire(player,"FirstVehiclePurchased") end
+				end -- NTR_GARAGE_ONBOARDING_PURCHASE_BOUNDARY_V1
+
 			end
 			if action == "SetCockpitColor" or action == "SetModuleColor" or action == "SetThrustColor" or action == "SetVehicleCosmeticColor" or action == "SetAllNeonColor" then
 				if args.ReturnProfile==true then return {Success=ok==true,Message=message,Profile=V56_profileForClient(profile)} end

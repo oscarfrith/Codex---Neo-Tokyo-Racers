@@ -1,3 +1,4 @@
+-- NTR_CUSTOMISATION_ACCESS_ONBOARDING_PHYSICAL_COLOURS_V1_1
 -- Neo Tokyo Racers - canonical native garage entrance owner
 -- NTR_GARAGE_NATIVE_ENTRANCE_PROMPTS_V1
 
@@ -10,6 +11,7 @@ local kit = ReplicatedStorage:WaitForChild("NeoTokyoRacers")
 local request = kit:WaitForChild("Shared"):WaitForChild("Remotes"):WaitForChild("UI"):WaitForChild("GarageSessionRequest")
 local config = kit:WaitForChild("Config"):WaitForChild("UI"):WaitForChild("GarageExperience")
 local loadingInvoke = script.Parent.Parent:WaitForChild("UI"):WaitForChild("LoadingTransitionInvoke") -- NTR_LOADING_SYSTEM_PHASE2_GARAGE_ENTRY_V1
+local AudioBridge = require(kit.Shared.Modules.Client.Audio:WaitForChild("PresentationAudioBridge"))
 
 local function colour(name, fallback)
 	local value = config:FindFirstChild(name)
@@ -86,6 +88,10 @@ statusStroke.Thickness = 1
 
 local statusSerial = 0
 local function flash(text)
+	if text=="OWN A VEHICLE TO CUSTOMISE" then
+		local notification=script.Parent.Parent.UI:FindFirstChild("ShowTopNotification")
+		if notification and notification:IsA("BindableEvent") then notification:Fire(text); return end
+	end
 	statusSerial += 1
 	local serial = statusSerial
 	status.Text = text
@@ -164,19 +170,19 @@ for _, definition in ipairs(entranceDefinitions()) do
 
 		busy = true
 		local destination, status = loadingDetails(definition.Mode)
-		local generation = loadingAction("Begin", { Destination = destination, Status = status })
 		local ok, result = pcall(function()
 			return request:InvokeServer("Begin", { Mode = definition.Mode })
 		end)
 		if not ok or not result or result.Success ~= true then
 			local message = (result and result.Message) or "Could not enter garage."
-			loadingAction("Fail", { Generation = generation, Status = "RETURNING", Reason = message })
+			if message=="OWN A VEHICLE TO CUSTOMISE" then AudioBridge.Emit("UI.PurchaseRejected",{Reason="VehicleRequired",Route=definition.Mode}) end
 			busy = false
 			flash(message)
 			refreshPromptAvailability()
 			return
 		end
 
+		local generation = loadingAction("Begin", { Destination = destination, Status = status })
 		player:SetAttribute("NTR_GarageEntryMode", definition.Mode)
 		refreshPromptAvailability()
 		local event = script.Parent:FindFirstChild(definition.Event) or script.Parent:WaitForChild(definition.Event, 5)

@@ -47,6 +47,7 @@ end
 local function canEnter(player, vehicle, seat)
 	if not player or not vehicle or not seat then return false end
 	if tonumber(vehicle:GetAttribute("OwnerUserId")) ~= player.UserId then return false end
+	if vehicle:GetAttribute("NTR_ExitCoasting")==true then return false end -- NTR_VEHICLE_COAST_PROMPT_GUARD_V1_1
 	if seat.Occupant ~= nil then return false end
 	local character = player.Character
 	local humanoid = character and character:FindFirstChildOfClass("Humanoid")
@@ -54,26 +55,25 @@ local function canEnter(player, vehicle, seat)
 end
 
 local function enterVehicle(player, vehicle, seat)
-	if not canEnter(player, vehicle, seat) then return end
-	local root = findRoot(vehicle)
-	local character = player.Character
-	local humanoid = character and character:FindFirstChildOfClass("Humanoid")
-	local humanoidRoot = character and character:FindFirstChild("HumanoidRootPart")
-	if root and root:IsA("BasePart") then
-		vehicle.PrimaryPart = root
-		pcall(function()
-			root:SetNetworkOwner(player)
-		end)
-	end
-	vehicle:SetAttribute("DriveReady", true)
-	vehicle:SetAttribute("DriverUserId", player.UserId)
-	vehicle:SetAttribute("ParkedShowcase", false)
-	if humanoidRoot then
-		humanoidRoot.CFrame = seat.CFrame + Vector3.new(0, 2, 0)
-	end
+	if not canEnter(player,vehicle,seat) then return end
+	local root=findRoot(vehicle)
+	local character=player.Character
+	local humanoid=character and character:FindFirstChildOfClass("Humanoid")
+	local humanoidRoot=character and character:FindFirstChild("HumanoidRootPart")
+	if not (root and root:IsA("BasePart")) then return end
+	vehicle.PrimaryPart=root
+	root.Anchored=false -- NTR_VEHICLE_FIXED_PROMPT_REENTRY_V1
+	root.AssemblyLinearVelocity=Vector3.zero
+	root.AssemblyAngularVelocity=Vector3.zero
+	vehicle:SetAttribute("NTR_ParkedFixed",nil)
+	vehicle:SetAttribute("ParkedShowcase",false)
+	vehicle:SetAttribute("DriveReady",true)
+	vehicle:SetAttribute("DriverUserId",player.UserId)
+	pcall(function() root:SetNetworkOwner(player) end)
+	if humanoidRoot then humanoidRoot.CFrame=seat.CFrame+Vector3.new(0,2,0) end
 	if humanoid then
 		task.wait(0.05)
-		seat:Sit(humanoid)
+		if canEnter(player,vehicle,seat) then seat:Sit(humanoid) end
 	end
 end
 
@@ -100,7 +100,7 @@ local function ensurePrompt(vehicle)
 			end
 		end)
 	end
-	prompt.Enabled = seat.Occupant == nil
+	prompt.Enabled = seat.Occupant == nil and vehicle:GetAttribute("NTR_ExitCoasting")~=true -- NTR_VEHICLE_COAST_PROMPT_VISIBILITY_V1_1
 	return prompt
 end
 

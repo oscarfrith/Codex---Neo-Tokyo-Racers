@@ -73,6 +73,7 @@ local markDirtyBinding = ensureBindableFunction(bindings, "MarkDirty")
 local saveNowBinding = ensureBindableFunction(bindings, "SaveNow")
 local importProfileSnapshotBinding = ensureBindableFunction(bindings, "ImportProfileSnapshot")
 local executeOwnedGarageCommandBinding = ensureBindableFunction(bindings, "ExecuteOwnedGarageCommand")
+local executeOnboardingCommandBinding = ensureBindableFunction(bindings, "ExecuteOnboardingCommand") -- NTR_PROFILE_SERVICE_ONBOARDING_COMMAND_OWNER_V1
 local garageCleanupTransactionBinding = ensureBindableFunction(bindings, "GarageModuleInventoryCleanupTransaction") -- NTR_GARAGE_MODULE_INVENTORY_IMPORT_LOCK_V1
 local isLoadedBinding = ensureBindableFunction(bindings, "IsLoaded")
 
@@ -160,6 +161,56 @@ local function updateRuntimeMarker(player, session)
 	return marker
 end
 
+-- NTR Studio vehicle sandbox: authoritative in-memory profile mutation with a hard no-save guard.
+local function studioVehicleSandboxConfig()
+	if not RunService:IsStudio() then return nil end
+	local runtime = ntr:FindFirstChild("Config") and ntr.Config:FindFirstChild("Runtime")
+	local onboarding = runtime and runtime:FindFirstChild("Onboarding_EditAttributes")
+	if not onboarding or onboarding:GetAttribute("StudioVehicleSandboxEveryPlay") ~= true then return nil end
+	return onboarding
+end
+
+local function clearVehicleReferences(spaces)
+	if type(spaces) ~= "table" then return end
+	for key, space in pairs(spaces) do
+		if type(space) == "table" then
+			space.VehicleId = nil
+		elseif space ~= nil then
+			spaces[key] = false
+		end
+	end
+end
+
+local function applyStudioVehicleSandbox(player, profile)
+	local onboarding = studioVehicleSandboxConfig()
+	if not onboarding then
+		player:SetAttribute("NTR_StudioVehicleSandboxActive", nil)
+		return false
+	end
+	profile.Vehicles = {}
+	profile.OwnedCockpitInstances = {}
+	profile.OwnedModuleInstances = {}
+	profile.CurrentVehicleId = nil
+	profile.OwnedCockpits = {}
+	profile.OwnedModules = {}
+	profile.InstalledModules = {}
+	profile.ModuleColors = {}
+	profile.NeonOwned = {}
+	profile.ModuleUpgradeLevels = {}
+	clearVehicleReferences(profile.GarageDisplaySpaces)
+	if type(profile.Garage) == "table" then clearVehicleReferences(profile.Garage.DisplaySpaces) end
+	if type(profile.OwnedGarage) == "table" and type(profile.OwnedGarage.Properties) == "table" then
+		for _, property in pairs(profile.OwnedGarage.Properties) do
+			if type(property) == "table" then clearVehicleReferences(property.DisplaySpaces) end
+		end
+	end
+	local testCash = math.max(0, tonumber(onboarding:GetAttribute("StudioVehicleSandboxCash")) or 1000000)
+	profile.Cash = math.max(tonumber(profile.Cash) or 0, testCash)
+	player:SetAttribute("NTR_StudioVehicleSandboxActive", true)
+	log("STUDIO VEHICLE SANDBOX active player=" .. player.Name .. " saves suppressed")
+	return true
+end
+
 local function loadProfile(player)
 	local userId = player.UserId
 	local existingSession = sessions[userId]
@@ -207,6 +258,7 @@ local function loadProfile(player)
 	end
 
 	local profile = schema.FromDataStore(loadedData, startingCash())
+	local studioVehicleSandbox = applyStudioVehicleSandbox(player, profile)
 	local session = {
 		Player = player,
 		SessionGeneration = generation,
@@ -218,6 +270,8 @@ local function loadProfile(player)
 		LastSaveUnix = 0,
 		LastError = loadError,
 		DataStoreEnabledAtLoad = dataStoreEnabled(),
+		StudioVehicleSandbox = studioVehicleSandbox,
+		NoSave = studioVehicleSandbox,
 	}
 	sessions[userId] = session
 	profileLoadsInFlight[userId] = nil
@@ -278,6 +332,8 @@ local function importProfileSnapshot(player, snapshot, reason, dirty)
 		return false, "Snapshot must be a table."
 	end
 	local normalized = schema.Normalize(snapshot, startingCash())
+	-- Generic garage/racing snapshots do not own authoritative onboarding state.
+	normalized.Onboarding = session.Profile.Onboarding -- NTR_PROFILE_SERVICE_ONBOARDING_IMPORT_PROTECTION_V1
 	if normalized ~= session.Profile then
 		reconcileTableIdentity(session.Profile, normalized)
 	end
@@ -294,6 +350,13 @@ local function saveProfile(player, force)
 	local session = sessionFor(player)
 	if not session then
 		return false, "Profile is not loaded."
+	end
+	if session.NoSave == true then
+		session.Dirty = false
+		session.LastSaveUnix = os.time()
+		session.LastError = "Studio vehicle sandbox; save suppressed."
+		updateRuntimeMarker(player, session)
+		return true, "Studio vehicle sandbox; save suppressed."
 	end
 	if not force and not session.Dirty then
 		return true, "No changes to save."
@@ -361,6 +424,48 @@ executeOwnedGarageCommandBinding.OnInvoke = function(player, command)
 	if type(result) == "table" then result.SessionGeneration = expectedGeneration; result.SessionId = session.SessionId end
 	return result
 end
+
+-- NTR_PROFILE_SERVICE_ONBOARDING_COMMAND_OWNER_V1_3_STUDIO_VEHICLE_SANDBOX
+executeOnboardingCommandBinding.OnInvoke = function(player, command)
+	local session = sessionFor(player)
+	if not session then return {Success=false, Message="Profile is not loaded."} end
+	command = type(command) == "table" and command or {}
+	local profile = session.Profile
+	local firstOnboardingLoad = type(profile.Onboarding) ~= "table"
+	profile.Onboarding = type(profile.Onboarding) == "table" and profile.Onboarding or {}
+	local state = profile.Onboarding
+	state.SeenPages = type(state.SeenPages) == "table" and state.SeenPages or {}
+	state.Completed = type(state.Completed) == "table" and state.Completed or {}
+	local action = tostring(command.Action or "Get")
+	local changed = false
+	local hasExistingVehicle = next(type(profile.Vehicles)=="table" and profile.Vehicles or {})~=nil
+	if hasExistingVehicle and firstOnboardingLoad then
+		state.Completed.FirstVehiclePurchased=true
+		state.Completed.FirstVehicleDriven=true
+		changed=true
+	elseif hasExistingVehicle and state.Completed.FirstVehicleDriven==true and state.Completed.FirstVehiclePurchased~=true then
+		state.Completed.FirstVehiclePurchased=true
+		changed=true
+	end
+	if action == "MarkSeen" then
+		local pageId = tostring(command.PageId or "")
+		if pageId ~= "" and state.SeenPages[pageId] ~= true then state.SeenPages[pageId] = true; changed = true end
+	elseif action == "RecordProgress" then
+		local progressId = tostring(command.ProgressId or "")
+		local allowed = {FirstVehiclePurchased=true, FirstVehicleDriven=true, FirstEventEntered=true, GarageManagementEntered=true}
+		if allowed[progressId] and state.Completed[progressId] ~= true then state.Completed[progressId] = true; changed = true end
+	elseif action ~= "Get" then
+		return {Success=false, Message="Unknown onboarding command."}
+	end
+	if changed then markDirty(player, "Onboarding:" .. action) end
+	local stage = (state.Completed.FirstVehiclePurchased ~= true or state.Completed.FirstVehicleDriven ~= true) and 1
+		or state.Completed.GarageManagementEntered ~= true and 2
+		or state.Completed.FirstEventEntered ~= true and 3
+		or 4
+	return {Success=true, Stage=stage, SeenPages=state.SeenPages, Completed=state.Completed, Changed=changed}
+end
+
+
 
 getProfileBinding.OnInvoke = function(player)
 	local session = sessionFor(player)

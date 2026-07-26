@@ -238,9 +238,12 @@ local function thrustColour(cache)
 end
 
 local function runtimeState(cache)
+	-- NTR_VEHICLE_MULTIPLAYER_VFX_STATE_V1
 	local forcePreview = readAttr(cache, "ForceThrustPreview") == true
 	local driveReady = readAttr(cache, "DriveReady") == true
 	local preview = isPreviewModel(cache.Model)
+	local ownerUserId = tonumber(cache.Model and cache.Model:GetAttribute("OwnerUserId"))
+	local localVehicle = ownerUserId == LOCAL_PLAYER.UserId
 	local driving = driveReady or forcePreview
 	local accelerating = readAttr(cache, "Accelerating") == true
 	local boosting = readAttr(cache, "Boosting") == true
@@ -248,8 +251,7 @@ local function runtimeState(cache)
 	local driftRight = readAttr(cache, "DriftingRight") == true
 
 	if preview then
-		-- PreviewVFXMode is the only garage VFX state contract. The legacy
-		-- ForceThrustPreview flag must never turn every effect on in a preview.
+		-- PreviewVFXMode remains the only garage VFX state contract.
 		local mode=tostring(readAttr(cache,"PreviewVFXMode") or "Idle")
 		local full=mode=="ThrustColour"
 		return {
@@ -261,6 +263,21 @@ local function runtimeState(cache)
 			DriftRight=full,
 			AnyDrift=full,
 		}
+	end
+
+	if not localVehicle then
+		-- Reuse the existing server-validated semantic presentation transport.
+		-- Local driving attributes remain immediate; remote vehicles consume
+		-- replicated server attributes and still pass through the race VFX gate.
+		local ignition=tostring(readAttr(cache,"NTRAudioIgnition") or "Off")
+		local drive=tostring(readAttr(cache,"NTRAudioDrive") or "Idle")
+		local boost=tostring(readAttr(cache,"NTRAudioBoost") or "Off")
+		local drift=tostring(readAttr(cache,"NTRAudioDrift") or "None")
+		driving=driveReady or ignition=="Running"
+		accelerating=drive=="Accelerating"
+		boosting=boost~="Off"
+		driftLeft=drift=="Left"
+		driftRight=drift=="Right"
 	end
 
 	return {

@@ -1,5 +1,41 @@
 # Customisation UI
 
+## Shared Responsive UI Foundation V1 (generated 2026-07-26)
+
+The generated `scripts/roblox_shared_responsive_ui_foundation_v1.lua` extends the existing `RacingUIComponents` -> `GarageReplacementComponents` -> canonical workspace/browser chain. It does not create page-specific dealership, Customisation or owned-garage visuals.
+
+`ResponsiveUIFoundation` owns semantic corner scaling (`0.70` desktop, `0.50` touch/mobile), compact money, bold Cash/Garage Spaces styling, response projection, replicated Cash binding, shared confirmation lifecycle and top-notification layout. `ModuleShopUIController.Adapter` still consumes the complete authoritative `Profile` returned by each garage action; owned-garage management still consumes the authoritative returned `ManagementState` and revision pushes. The new projection is presentation-only and creates no purchase, economy or persistence authority.
+
+Free-roam and racing vehicle pickers are deliberately not migrated in this scope. The full acceptance contract, owner inventory, exception audit and cross-device verification matrix are in `docs/shared-responsive-ui-foundation-v1.md`.
+
+## Access refinement V1.1 correction (confirmed and handed off 2026-07-26)
+
+V1.1 repairs the installed V1 owned-access nil call by removing an unused early reference to the later client-profile serializer. Both the native entrance and shared UI funnel now resolve access before starting their loading transition. Exact zero-vehicle denial uses the existing `UI.PurchaseRejected` semantic cue plus the shared top notification and does not flash a loading screen. Studio sandbox remains a start-of-session/reset and no-save tool, not an access exception.
+
+## Access and full-session onboarding visibility V1 (generated 2026-07-26)
+
+Customisation and Drive-In Customisation now have one intended access contract: the authoritative server refuses only when `profile.Vehicles` contains zero valid vehicle records. Missing or stale `CurrentVehicleId` is repaired through the existing vehicle selection owner and does not block an owner.
+
+Native world prompts continue to cover keyboard `E`, controller `ButtonX`, and clickable touch activation. The server session gate protects world/drive-in routes before character presentation changes; `ModuleShopUIController.open` protects direct shortcut and bindable-event routes at their shared funnel. Both publish the exact zero-vehicle copy through one `ShowTopNotification` event and one `SharedTopNotificationController_Active`.
+
+Objective-card visibility follows `NTR_GarageSessionActive` for Customisation and Drive-In, so transient Browser/Workspace/loading visibility cannot expose objectives between pages. Dealership and first-view page tutorials retain their prior rules. The confirmed three-workshop renderers and shared components are unchanged.
+
+See `docs/customisation-access-onboarding-physical-colours-v1.md`. V1.1 is user-confirmed and fully represented in the `20:46:20` mirror.
+
+## Presentation Audio V1 boundary (2026-07-26)
+
+The generated `scripts/roblox_presentation_audio_ui_preview_race_v1.lua` adds audio without creating a second UI or preview owner. One event-driven binder covers existing/future `GuiButton` instances through `Activated`, with mouse hover and controller-focus additions. Existing shared card/render/layout components remain unchanged.
+
+Dealership/customisation Idle and thrust-colour Boost preview Sounds are session-owned under SoundService, not parented to the preview car. `PreviewVehicleController` publishes only the selected audio-profile identity; the existing preview root remains VFX/state owner. Car/module/paint/slider rebuilds therefore keep the same loop, while a genuinely different future whole-vehicle sound profile crossfades.
+
+Purchase, rejection and module-equip cues are emitted after the current central server result returns. No button text, toast copy or optimistic local state becomes authority. See `docs/presentation-audio-ui-preview-race-v1.md`.
+
+Presentation Audio V1.1 treats successful module purchase as the same feedback class as successful module equip, because the purchase flow immediately adds that module to the player's usable module inventory. Failed module purchase remains a purchase rejection. The distinction is selected only after the existing authoritative result and does not change the buy/equip transaction.
+
+Presentation Audio V1.2 gives successful dealership `BuyCockpitInstance` its own `UI.VehiclePurchaseSuccess` cue. Rejected vehicle purchases retain the shared purchase-rejection cue, while neon/cosmetic/property purchases keep the generic purchase-success cue. Existing purchase authority, prices, capacity, ownership and onboarding completion remain unchanged.
+
+Presentation Audio V1.3 extends the same confirmed-result bridge to owned-garage assets. Decoration purchase, decoration equip/place, structure purchase and structure equip each have an independent described cue. A purchase already places/equips in the authoritative transaction and therefore emits only its purchase cue. Successful `AssignDisplay` reuses `UI.VehiclePurchaseSuccess`; a failed assignment remains a generic action rejection. No owned-garage UI renderer, transaction, price, persistence or preview owner changes.
+
 ## Vehicle customisation three-workshop flow V1
 
 The approved root becomes `Add Modules`, `Upgrade Modules` and `Paint Shop` while retaining the confirmed `GarageWorkspaceController` layout and `GarageReplacementComponents` renderers. No page-specific copy of the rail, cards, action popup, upgrade budget or colour sliders is introduced.
@@ -772,3 +808,31 @@ The generated canonical installer is `scripts/roblox_customisation_vehicle_cosme
 Thrust Colour and true SurfaceLight Underglow are per-vehicle purchases. Before purchase they reuse the shared priced listing/action card; after purchase they open the shared colour sliders directly. All and Cockpit also open sliders directly. All adds a Neon channel whose authoritative save atomically updates cockpit neon, owned physical-module neon, and owned underglow without touching front/rear lights.
 
 An uninstalled physical slot in Paint or Upgrade renders one shared `EmptyPlus` card with the short mobile-safe copy `BUY TO UNLOCK` or `EQUIP TO UNLOCK`. The card routes to that exact Add Modules source page and returns to the originating workshop after a successful transaction. It never fabricates a module, changes server ownership from the client, or creates a second navigation owner.
+
+## Player Onboarding V1 Design
+
+The approved onboarding design and generated implementation contract are recorded in `docs/onboarding-system-v1-design.md`; the canonical installer is `scripts/roblox_player_onboarding_v1.lua`. It adds no page-specific replacement UI: one shared overlay controller resolves existing dealership, Add Modules, Upgrade Modules, Paint Shop and owned-garage targets from their live responsive objects. Objective completion and first-view explanations are independent, so a player who starts driving before visiting Upgrade Modules still receives that page's `L1`/`L2` explanation the first time it is opened.
+
+The tutorial copy uses the confirmed three-workshop and owned-garage semantics. Existing workspace renderers, cards, preview, colour controls, module-instance ownership and authoritative mutations remain the owners; onboarding may point to those controls but must not reproduce them or infer targets from coordinates. A small set of generated root cards currently uses exact canonical-label fallback until the shared renderer exposes semantic target attributes; this is an explicit Play-test risk, not a second renderer.
+
+During onboarding iteration, `Config.Runtime.Onboarding_EditAttributes.StudioReplayEveryPlay=true` supplies fresh session-only objective and seen-page state for each Test Play. It does not alter saved vehicle/customisation/garage data or saved production onboarding state. Set it false for the final persistence/rejoin matrix.
+
+V1.4 keeps the existing dealership/customisation renderers authoritative and repairs V1.3's compressed-line semantic marker to a block comment, restoring the remainder of the shared selected/action-card logic. Tutorial discovery scans visible `CanonicalGarageWorkspace` roots for the requested `TutorialPageId`; card targeting remains scoped to that matching live root.
+
+The loading/start presentation has explicit priority and disables onboarding until it finishes. Tutorial body, Next and objective metrics follow the nearest shared UI scale, while all layout bounds use the onboarding overlay's own absolute coordinate space. B2/B4/B3 are explanatory shortcut introductions and do not navigate; N6/X3 remain real actions. The objective yields to car menus and management UI but anchors beneath the existing garage Access controls while the player walks inside.
+
+V1.5 replaces the remaining root-name and card-union assumptions with shared semantic targets. Every `GarageWorkspaceController` root publishes `TutorialWorkspace=true`, every render publishes `TutorialPageId`, and its bottom row publishes `TutorialCardScroller`/`TutorialTargetId=CardScroller`. This allows both customisation and the renamed `OwnedGarageCanonicalWorkspace` to resolve without another page-specific renderer. K1 targets the bottom module row directly. The objective card now has number, title, contextual hint and `N / 3`, with the authoritative order Vehicle, Garage, Race and shortcut introductions B2, B3, B4.
+
+V1.6 keeps those shared semantics but no longer outlines a scroller's complete responsive width. G2, K1 and AA1 collect only visible `CanonicalGarageCard` buttons inside their named scroller, so the tutorial border fits the cards currently on screen and AA1 cannot absorb the left navigation rail. Objective cards have their own state-driven lifecycle: completed cards animate out and are destroyed, while remaining cards reflow without the periodic layout poll restarting motion.
+
+V1.7 keeps that lifecycle and changes Objective 1's title to `BUY AND CUSTOMISE A CAR`. Objective typography now uses explicit onboarding sizes rather than the shared large page-heading token, reserves two title lines and disables truncation for `N/3`. Each shared panel is inset inside a padded CanvasGroup animation shell with clipping disabled, matching the safe-glow principle used by the car-menu buttons while retaining one slide/fade owner.
+
+V1.8 keeps all V1.7 state and page targeting. Desktop objective text is multiplied by 1.5 without resizing the cards. Landscape-phone objectives keep their existing readable text sizes but use shorter cards, tighter gaps and a top position derived directly from the Roblox inset, with a live Boost-button overlap check. Tutorial callouts separately preserve physical screen edges without reserving the top-bar height across the whole phone display, allowing the stats explanation to stay centred beside the stats and shortcut explanations to sit close beneath their icons.
+
+V1.9 replaces only the phone objective's remaining Roblox-inset anchor after the device emulator reported an excessively tall value. The objective stack now follows the actual live free-roam shortcut row plus a small tunable clearance, which keeps it visually adjacent to the Roblox controls across responsive HUD scaling. Mobile label, title and description bounds are sequential and compact; the description owns the remaining lower card area so its second line cannot be cut by the card bottom.
+
+V1.10 retains that confirmed anchor and sizes the phone card for two description lines rather than retaining empty lower space. The description and progress bottoms share the same calculated second-line baseline, with one common three-pixel panel margin. Desktop card metrics remain unchanged.
+
+For repeated purchase tests, `StudioVehicleSandboxEveryPlay=true` supplies a clean session-only vehicle inventory and test cash. This mode does not replace the customisation/profile owner: ProfileService remains authoritative, garage properties and their customisation are preserved, and all saves are suppressed only in Studio.
+
+V1.13 strengthens that ownership boundary. Generic garage/racing profile snapshots do not own `Onboarding`, so ProfileService retains its current authoritative onboarding table before reconciling any such snapshot. Customisation purchases and page transitions therefore cannot erase `SeenPages` or revive completed objectives; no customisation renderer, mutation owner or saved schema field changes.

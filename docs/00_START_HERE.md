@@ -1,5 +1,77 @@
 # Neo Tokyo Racers Project Context
 
+## 2026-07-26 shared responsive UI foundation V1 generated
+
+- `scripts/roblox_shared_responsive_ui_foundation_v1.lua` is the single canonical installer for shared corner semantics, compact money, economy metrics/projection, confirmations and top notifications.
+- The High-Risk contract preserves all server purchase/persistence authority. It adds no remote, saved field, purchase owner, profile polling loop or runtime `UICorner` scan.
+- Active shared renderers apply `70%` of current corner radii on desktop and `50%` on touch/mobile. Cash/Garage Spaces share one bold metric treatment and the compact money boundary is `$999,999` then `$1.0M`.
+- Successful authoritative `Profile`/`ManagementState` responses project immediately; existing `leaderstats.Cash` events reconcile visible balances. Shared confirmations add controller focus, Escape/B cancellation, minimum touch targets and safe-area/orientation relayout.
+- Shared top notifications become a bounded three-card, borderless grey-gradient stack. The mobile free-roam Cash surface keeps dark blue and receives an explicit blue/non-pink outline.
+- Vehicle-picker migration remains deferred to Chat 3. The current `20:46:20` complete mirror is the pre-install baseline and is stale for this generated V1 until Studio installation, verification and full export. See `docs/shared-responsive-ui-foundation-v1.md`.
+
+## 2026-07-26 presentation audio V1.3.2 confirmed and handed off
+
+- The confirmed V1.3.1 ignition/Idle sequencing remains isolated and unchanged.
+- The user reported intermittent large delays across UI click and checkpoint cues. The confirmed mirror shows presentation one-shots reuse a bounded pool but immediately replace a pooled `SoundId` before `Play()`. Roblox may therefore wait for the newly assigned asset to load, producing inconsistent cold-play latency.
+- The same canonical `scripts/roblox_presentation_audio_ui_preview_race_v1.lua` advances to V1.3.2. It asynchronously warms configured UI, objective and race one-shots without blocking input/events, then prefers an idle pooled voice already associated with the requested cue/asset.
+- The user confirmed the latency repair working and requested handoff. The complete `2026-07-26 20:46:20` mirror contains 188 matching exported scripts/source-manifest/checksum entries, `InstallerRevision=NTR_PRESENTATION_AUDIO_UI_PREVIEW_RACE_V1_3_2`, the immediate-one-shot controller marker and both described preload controls; neither mirror area appears stale.
+- Confirmed live presentation limits are `PreloadOneShotsEnabled=true`, `PreloadOneShotAssetLimit=24` and `MaximumOneShotVoices=8`. Preview loops and vehicle sounds are excluded; existing Ignition/Idle tuning remains unchanged.
+- Installation, audit, focused verification and mirror refresh are complete. Retain cold-start first use, alternating UI/race cues, landscape-mobile and bounded-pool checks in release regression. The canonical installer is exact-scope recovery/config evidence, not an ordinary tuning command.
+
+## 2026-07-26 Customisation refinement V1.1 confirmed and handed off
+
+- The user confirmed the V1.1 result working and requested handoff. `scripts/roblox_customisation_access_onboarding_physical_colours_v1.lua` is the canonical recovery/audit installer for this exact scope; no further Studio command is pending for ordinary use.
+- Zero-owned-vehicle access is rejected before loading with the shared top copy `OWN A VEHICLE TO CUSTOMISE` and existing `UI.PurchaseRejected` cue. A valid vehicle purchased in the same Studio sandbox session can enter; stale/missing selection repairs to a deterministic valid owned vehicle.
+- Physical module-instance colours now remain authoritative through preview, spawn and persistence. The confirmed three-workshop flow, Neon, upgrades, protected lights, Cash, ownership, ProfileService and unrelated systems remain intact.
+- Objective cards follow the complete Customisation/Drive-In session and do not overlap entry/loading, Browser, workshops, preview, purchase, Back, Drive, Exit or re-entry transitions.
+- The complete `2026-07-26 20:46:20` mirror contains 188 mutually matching exported scripts/checksum/source-manifest entries, all seven V1.1 source owners, the shared notification event/controller and the corrected access-before-loading ordering. Neither mirror area appears stale.
+- Retain the full all-vehicle/location, device, stale-selection, lifecycle, persistence and repeated-entry matrix as release regression. See `docs/customisation-access-onboarding-physical-colours-v1.md`.
+
+## 2026-07-26 presentation audio V1.3.1 confirmed and handed off
+
+- `scripts/roblox_presentation_audio_ui_preview_race_v1.lua` is the one canonical installer for the approved UI, dealership/customisation preview, objective and racing audio scope.
+- One local presentation controller reuses `NTR_UI`, `NTR_Vehicle` and `NTR_GameplaySFX`, pools at most eight one-shots by default and binds present/future `GuiButton` instances across mouse, touch and controller.
+- Preview Idle/Boost Sounds live outside rebuildable preview clones. Module, car, paint and thrust-colour updates do not recreate a loop; a genuinely different future audio profile crossfades. Blank preview IDs reuse the existing profile Idle/BoostLoop layers.
+- Purchases, rejection, module equip and objective completion use small semantic hooks at existing authoritative result/state boundaries. Race countdown, GO, checkpoint, lap and result cues consume the existing server event; no new remote, saved field, product, gameplay owner or package system is added.
+- V1.3 keeps all confirmed presentation behaviour and adds independent decoration purchase/equip and structure purchase/equip cues. Successful owned-garage display assignment reuses `UI.VehiclePurchaseSuccess`. Purchase-and-place/equip transactions emit one purchase cue, never a purchase/equip double hit.
+- V1.3.1 repairs V1.3's incorrect `VehicleAudioCatalog.Get` lookup and retains the persistent graph-safe local lane. It waits for seating/loading/internal-route readiness, confirms `AudioPlayer.IsPlaying` before consuming the session, retries at most three times and briefly leads local Idle/engine loops so startup cannot be masked.
+- The user confirmed the complete result working and requested handoff. The complete `2026-07-26 19:03:42` Studio mirror contains 187 matching exported scripts/source-manifest/checksum entries, `InstallerRevision=NTR_PRESENTATION_AUDIO_UI_PREVIEW_RACE_V1_3_1`, the V5 confirmed-local-ignition marker and the corrected `GetProfile` call; neither mirror area appears stale for this baseline.
+- Confirmed live tuning is `ReliableIgnitionEnabled=true`, `IgnitionAfterReadyDelaySeconds=0.1`, `IgnitionPlaybackConfirmSeconds=0.07`, `IgnitionMaxPlayAttempts=3`, `IgnitionRetryDelaySeconds=0.1` and `IgnitionToIdleLeadSeconds=0.15`.
+- All tuning is under described `Config.Audio.Presentation` folders. Blank one-shot IDs fail silently, and `DISABLE` retains sources/config/assets.
+- Installation, audit, focused verification and mirror refresh are complete. Retain repeated-spawn, same-car re-entry, two-client 3D and landscape-mobile checks in release regression. The canonical installer is recovery/config evidence for this exact scope, not an ordinary tuning command. See `docs/presentation-audio-ui-preview-race-v1.md`.
+
+## 2026-07-25 player onboarding V1.13 confirmed and handed off
+
+- `scripts/roblox_player_onboarding_v1.lua` is the one canonical installer for the approved three-objective onboarding experience.
+- V1.13 is installed and the refreshed repo mirror contains its source, hierarchy and revision marker. The user confirmed the complete flow in a fresh four-client server test and then confirmed onboarding persistence across a second server session with both Studio test overrides disabled.
+- V1.13 retains V1.12 presentation and completion rules. It prevents generic garage/racing snapshot imports from deleting the authoritative `Onboarding` profile section, excludes race-participant vehicles from the first-free-roam PC controls trigger, and gives desktop objective descriptions a two-line region aligned beside `N/3`.
+- Objective 1 enters alone and remains through the non-navigating B2 acknowledgement after first driving. It then slides left, fades and is removed; Objectives 2 and 3 enter together with Garage above Race. Completing either removes that card and smoothly moves the remaining card upward. Saved fields and trusted completion boundaries are unchanged.
+- Desktop objective typography remains 1.5 times the V1.7 size while the card bounds stay unchanged. Landscape-phone text sizes and card height stay unchanged. The stack now anchors from the live free-roam shortcut row plus a small configurable Roblox-control clearance rather than `GuiService:GetGuiInset()`, whose emulator value placed the cards too low.
+- Mobile objective labels, titles and descriptions use sequential compact bounds. The phone card height is now 48 pixels, sized around an approved two-line description. The progress label bottom aligns with the calculated second-line bottom and both retain a three-pixel panel-bottom margin.
+- Phone tutorial callouts now separate physical screen-edge insets from the top-bar exclusion. G4 can remain vertically centred to the left of the stats panel, while B2/B3/B4 use a narrower bubble and a two-pixel target gap instead of being clamped to the same low horizontal band.
+- The reusable guide renderer keeps the original outer aura/core beams, recoloured to tutorial gold. A configured `GuideTrailChevronTexture` enables the new moving chevron Beam; until a valid uploaded texture is supplied, the original Part chevrons appear automatically as a safe fallback.
+- The objective hides behind desktop/mobile car menus and blocking presentations. While walking inside an owned garage it appears below the existing Private/Invite controls, then hides again when Garage Management opens.
+- `GuideTrailChevronTextureSpeed` controls motion along the route and `GuideTrailChevronTextureLength` controls repetition. Width, transparency, brightness and Z offset are also configurable. `GuideTrailBeamStartHeightOffset=-1` starts all three beams around the lower torso while `GuideTrailHeightOffset` controls the destination end and fallback Part arrows.
+- Production/persistence verification uses `StudioReplayEveryPlay=false` and `StudioVehicleSandboxEveryPlay=false`. Replay and sandbox remain optional iteration tools, but sandbox suppresses every profile save. The `2026-07-26 13:36:41` mirror now records both confirmed false values. See `docs/player-onboarding-v1-handoff-2026-07-25.md`.
+
+## 2026-07-24 parked and exit-coasting external 3D audio V1 installed/mirrored
+
+- `scripts/roblox_audio_parked_vehicle_3d_v1.lua` is the one canonical installer for the approved parked-vehicle audio refinement.
+- The fresh `2026-07-25 09:55:57` mirror contains the V3 parked-external client/service markers, enabled audio configuration and `ParkedExternalAudioRevision=NTR_AUDIO_PARKED_EXTERNAL_3D_V1`. Both mirror areas agree for this source/hierarchy baseline.
+- An unoccupied runtime player vehicle stays logically powered and reuses its existing external `AudioEmitter`: while coasting it presents Coast plus reduced EngineLow/Idle, then settles to Idle plus reduced EngineLow. Acceleration, EngineHigh, DriftLoop, BoostLoop and driver wind are suppressed after exit.
+- Re-entry switches the same graph back to the non-positional local-driver route without replaying ignition. No new emitter, sound asset, heartbeat, remote, driving/VFX/parking owner or persistence field is added.
+- Ten described `Config.Audio.Global` attributes control enablement, coast/park gains, fades and EngineHigh suppression. Existing audio attributes and asset IDs are preserved.
+- Installation/audit and mirror refresh are complete. Keep slow/fast exit, re-entry and two-client distance/direction/occlusion in release regression. See `docs/16_audio_system.md`.
+
+## 2026-07-26 multiplayer vehicle VFX, collision, parking and exit V1.1 confirmed and handed off
+
+- `scripts/roblox_vehicle_multiplayer_vfx_collision_and_exit_v1.lua` is the one canonical installer for the approved connected vehicle runtime change.
+- The user confirmed the complete V1.1 behaviour working and requested handoff. The latest complete `2026-07-26 19:03:42` mirror contains 187 matching exported scripts/source-manifest/checksum entries, all four V1.1 runtime markers and the tuning revision; neither mirror area appears stale for this baseline.
+- Remote VFX reuse the existing validated semantic transport while `CachedThrustVisualRuntime` and the race visibility gate retain ownership. No second VFX remote or attachment owner is added.
+- One isolated server lifecycle owner makes vehicles pass through one another, preserves race participant/arrow ownership, gives slow vehicles character collision and switches above `20 mph` with `16 mph` hysteresis.
+- V1.1 keeps immediate fixed parking at or below `10 mph`. Above `10 mph`, exit preserves momentum, keeps character pass-through and disables re-entry while the car coasts; the server fixes it below `8 mph` after at least `0.75` seconds or at the `6` second safety limit.
+- Installation, audit, focused verification and mirror refresh are complete. Treat V1.1 as the current rollback baseline and keep its multiplayer boundary matrix in release regression. No persistence, driven physics or race lifecycle change was introduced. See `docs/vehicle-multiplayer-vfx-collision-exit-v1.md`.
+
 ## 2026-07-24 owned garage, customisation and hover handoff confirmed
 
 - The user confirmed the latest owned-garage, customisation, authored underglow and shared hover-height work is working well.

@@ -1,5 +1,270 @@
 # Patch History
 
+## 2026-07-26 - Shared responsive UI foundation V1 generated
+
+- Added one canonical High-Risk installer: `scripts/roblox_shared_responsive_ui_foundation_v1.lua`.
+- Added `ResponsiveUIFoundation` as the single owner for desktop/mobile corner scaling, compact money, economy response projection, replicated Cash binding, shared confirmation lifecycle and bounded top-notification layout.
+- Extended `UITheme`, `UIFactory`, `RacingUIComponents` and garage replacement renderers instead of copying page coordinates or scanning every `UICorner`.
+- Routed canonical garage/browser Cash and Spaces through one bold metric renderer; existing authoritative `Profile` and `ManagementState` responses remain immediate, with event-driven `leaderstats.Cash` reconciliation and no two-second polling loop.
+- Routed desktop/mobile free-roam Cash, confirmation and corner construction through shared contracts. Mobile Cash retains dark blue and replaces its inherited pink outline with blue.
+- Routed active racing shared/direct corner construction through the semantic token. The register-limited legacy bootstrap, mobile drive controls, world/intro prompts and vehicle-picker composition are explicit non-owners/exclusions.
+- Replaced the shared top-notification owner with a borderless grey-gradient, white-text, responsive safe-area stack bounded to three cards.
+- Studio install/runtime verification and full mirror refresh remain pending. See `docs/shared-responsive-ui-foundation-v1.md`.
+
+## 2026-07-26 - Presentation audio V1.3.2 confirmed and handed off
+
+- The user confirmed immediate presentation playback working and requested handoff after the V1.3.2 install/audit.
+- Verified the complete `20:46:20` mirror: 188 entries match across exported scripts, source manifest and checksums; the V1.3.2 installer revision, immediate-one-shot controller source and described preload controls are present.
+- Locked asynchronous warmup at a 24-asset cap and retained the existing eight-voice pool. Ignition/Idle timing and all cue semantics remain unchanged.
+- Closed the intermittent UI/race latency issue. Cold-start, alternating UI/race, landscape-mobile and bounded-pool checks remain release regression rather than an open implementation gate.
+- The canonical installer remains exact-scope recovery/config evidence. No further Presentation Audio Studio command is pending.
+
+## 2026-07-26 - Customisation refinement V1.1 confirmed and handed off
+
+- The user confirmed the corrective result working and requested handoff.
+- Locked zero-vehicle rejection before loading, exact shared top copy, `UI.PurchaseRejected`, same-session sandbox purchase access, deterministic stale-selection repair and full-session objective suppression.
+- Locked physical module-instance colour completion as the canonical saved/spawn projection while preserving explicit colours, Neon, upgrades, protected lights, Cash, ownership, transactions and ProfileService.
+- Verified the refreshed `20:46:20` mirror: 188 entries match across checksums, source manifest and exported scripts; all seven V1.1 source owners and the shared notification hierarchy are present.
+- The canonical installer remains exact-scope recovery/audit evidence. No further Customisation Studio command is pending.
+
+## 2026-07-26 - Customisation refinement V1.1 owned-access/loading repair generated
+
+- Confirmed V1 physical module colours and zero-vehicle notification from user testing; inspected the fresh `20:32:12` installed mirror.
+- Diagnosed owned access failure at line 1427: `V102_ensureCustomisationAccess` captured no local `V56_profileForClient` because that function is declared later. The zero-vehicle branch returned before the bad call.
+- Repaired the same canonical installer. V1.1 removes the unused profile response, upgrades installed V1 exactly, performs both entry checks before loading, and emits `UI.PurchaseRejected` only for the exact vehicle-required denial.
+- Studio sandbox remains unchanged: it resets at Play start and suppresses saving, but same-session purchases remain authoritative.
+- Studio V1.1 installation, focused verification, final audit and mirror refresh remain pending.
+
+## 2026-07-26 - Presentation audio V1.3.2 immediate one-shot repair generated
+
+- Diagnosed intermittent UI click/checkpoint latency from the confirmed mirror: the bounded presentation pool reused any idle `Sound`, replaced its `SoundId` and immediately requested playback, allowing uncached assets to start late.
+- Advanced the same canonical installer to V1.3.2. The controller now asynchronously warms configured UI, objective and racing one-shots and preferentially reuses an idle voice already associated with the requested cue/asset.
+- Added described `PreloadOneShotsEnabled=true` and `PreloadOneShotAssetLimit=24` controls while retaining the existing maximum-eight active voice budget.
+- Ignition/Idle readiness timing, preview loops, sound groups, cue semantics, remotes, UI/race owners, persistence and economy are unchanged. Studio installation, focused latency verification and mirror refresh remain pending.
+
+## 2026-07-26 - Customisation access, onboarding visibility, and physical colours V1 generated
+
+- Diagnosed the persistent grey physical-module fault at the saved module-instance/runtime projection boundary: new purchases can own an empty colour table, preview supplies display fallbacks, and spawned vehicles skip their fallback because the empty table is truthy.
+- Generated one canonical Edit-mode installer that completes only missing instance colour channels, repairs stale owned-vehicle selection at the existing authority, gates all canonical Customisation routes, adds one shared top notification, and binds objective visibility to the full server session.
+- Added exact-source preflight, compile-before-mutation, transactional rollback, idempotency, `AUDIT`, guarded `ROLLBACK`, and authoritative catalogue coverage for all current cockpits and eight module locations.
+- Preserved the three workshops, explicit colours, Neon, upgrades, physical identity, ProfileService, protected lights, transactions, preview, bootstrap, and unrelated systems.
+- Studio installation, runtime/device/profile verification, user confirmation, final audit, and full mirror refresh remain pending.
+
+## 2026-07-26 - Presentation audio V1.3.1 confirmed and handed off
+
+- The user confirmed the repaired local Ignition and retained presentation/garage cue behaviour working, then refreshed the full Studio mirror and requested handoff.
+- The complete `2026-07-26 19:03:42` mirror contains 187 matching exported scripts/source-manifest/checksum entries, the V1.3.1 installer revision, the V5 confirmed-local-ignition marker and the corrected `Catalog.GetProfile(profileId)` call.
+- Locked the live ignition tuning at enabled, `0.1` seconds post-ready delay, `0.07` seconds playback confirmation, three attempts, `0.1` seconds retry delay and `0.15` seconds Ignition-to-Idle lead.
+- Closed the V1.3 missing-Ignition issue. Retained repeated spawn/destruction, same-car re-entry, two-client 3D and landscape-mobile coverage as release regression rather than an open implementation gate.
+- The one canonical presentation-audio installer remains exact-scope recovery/config evidence; no Studio command is pending for ordinary use.
+
+## 2026-07-26 - Presentation audio V1.3.1 confirmed-playback ignition repair generated
+
+- Inspected the fresh `16:26:41` installed-V1.3 mirror after the user reported working garage cues but no local Ignition.
+- Found the exact runtime defect: the new coordinator called `VehicleAudioCatalog.Get`, which does not exist; the canonical API is `GetProfile`. Because the coordinator runs after loop targets update, the fault explains delayed Idle with no ignition request.
+- Repaired the same canonical installer rather than creating a patch ladder. Its installed-V1.3 projection replaces the isolated coordinator block, corrects profile lookup and retains the existing graph-safe local lane.
+- Added playback confirmation through `AudioPlayer.IsPlaying`, three bounded attempts by default, retry/confirmation tuning, one observable exhaustion warning and a short Ignition-to-Idle lead. A failed asset releases loops instead of leaving local engine audio held.
+- Preserved V1.3 semantic garage cues, remote 3D ignition, server state, parked re-entry, driving, VFX, UI, persistence and economy. Studio INSTALL/AUDIT, focused runtime verification and mirror refresh remain pending.
+
+## 2026-07-26 - Presentation audio V1.3 semantic owned-garage cues and reliable local ignition generated
+
+- Advanced the one canonical presentation-audio installer from the user-confirmed/mirrored V1.2 baseline.
+- Added separately configured decoration purchase/equip and structure purchase/equip success cues at the existing authoritative owned-garage result boundary. Purchase-and-place/equip emits one purchase cue; successful display assignment reuses the confirmed vehicle-purchase cue.
+- Diagnosed local Ignition firing while loading audio is ducked and then being destroyed with the External-to-Internal graph rebuild. Added one local coordinator that prepares the profile Ignition asset, waits for seating/loading/internal-route readiness and plays through a persistent vehicle-bus lane outside the graph.
+- Preserved remote 3D ignition, vehicle loops, server semantic state, parked-running re-entry, VFX, driving, UI rendering, persistence and economy. Added no remote, emitter, saved field or continuous city scan.
+- Added six described vehicle-global ignition controls and four described presentation cue folders with add-if-missing defaults. All projected sources are unique-anchor checked and compile before the rollback-safe transaction mutates Studio.
+- Studio INSTALL/AUDIT, focused runtime verification and mirror refresh remain pending.
+
+## 2026-07-26 - Presentation audio V1.2 unique vehicle-purchase cue generated
+
+- Confirmed the `2026-07-26 14:39:49` mirror contains installed V1.1, both refinement markers and Presentation installer revision V1.1.
+- Added described `Config.Audio.Presentation.UI.VehiclePurchaseSuccess`, blank and safely silent until its asset is assigned.
+- Routed only successful authoritative `BuyCockpitInstance` results to the new cue. Rejected/busy/unavailable vehicle purchases retain `UI.PurchaseRejected`; module and other purchase routes retain their V1.1 semantics.
+- Updated the canonical bridge module with the new semantic success mapping and added a guarded V1.1-to-V1.2 controller projection. Both current anchors occur exactly once and projected/new source compiles before mutation.
+- Added no remote, persistence, economy, ownership, UI-layout or gameplay owner. Studio install, focused purchase verification and mirror refresh remain pending.
+
+## 2026-07-26 - Presentation audio V1.1 module-purchase and onboarding-hover refinement installed/mirrored
+
+- Confirmed the refreshed `2026-07-26 13:36:41` mirror contains the complete working V1 installation and all eight source markers.
+- Repaired the same canonical installer so successful `BuyModuleInstance` results select `UI.ModuleEquipSuccess`, matching explicit module equip. Failure/busy/unavailable results remain `Purchase` and retain `UI.PurchaseRejected`.
+- Applied the existing per-button override `UIAudioHoverCue=""` to the onboarding shades, advance catcher and `NEXT`. Mouse hover and controller focus are silent throughout the prompt; the unchanged visible `NEXT.Activated` path still plays the normal click and advances for mouse, touch and controller.
+- Added installed-V1 and clean-baseline projection paths with two new V1.1 revision markers. All six guarded installed-source anchors occur once; every projected source compiles before mutation and the existing rollback remains intact.
+- No controller, cue asset, config tuning, UI layout, objective state, remote, persistence, economy or gameplay owner changed. The `14:39:49` mirror now contains both V1.1 refinement markers and installer revision V1.1.
+
+## 2026-07-26 - Presentation audio UI, preview, objective and racing V1 generated
+
+- Added one canonical transactional installer for a local presentation-audio bridge, catalogue, controller and starter. It reuses `NTR_UI`, `NTR_Vehicle` and `NTR_GameplaySFX`, with a bounded eight-voice default pool and no new remote or gameplay owner.
+- Added an event-driven global `GuiButton` binder for mouse hover, controller focus and cross-device `Activated`, including silent/cue override attributes and visibility/content filtering.
+- Kept dealership/customisation Idle and thrust-colour Boost loops outside rebuildable preview clones. A stable profile seam, rebuild grace and crossfade preserve playback through car/module/paint changes and prepare future whole-vehicle sound packages without implementing purchase or persistence.
+- Added guarded semantic hooks for authoritative garage outcomes and onboarding false-to-true objective completion. Existing server-time race/countdown/checkpoint/result events drive racing cues with semantic dedupe.
+- Added described `Config.Audio.Presentation` global/section/cue controls. Blank asset IDs remain safe; preview loops can reuse existing profile layers.
+- Checked all four exact source anchors as unique against the `2026-07-25 09:55:57` mirror. Studio install, audible verification and post-install mirror refresh remain pending.
+
+## 2026-07-25 - Player onboarding V1.13 confirmed and handed off
+
+- Inspected the refreshed V1.12 mirror after the first full new-player race test. The reset was authoritative: generic garage/racing snapshot conversion omitted `Onboarding`, and ProfileService reconciliation deleted the missing section. The next event command rebuilt empty seen-page state, reviving Objective 1 and previously dismissed prompts.
+- Updated the same canonical installer so ProfileService retains its authoritative onboarding table across every generic snapshot import. No new persistence owner, field or migration was added.
+- Excluded race-participant/run vehicles from the first-free-roam PC controls trigger and expanded the existing desktop objective card description region to two lines with `N/3` vertically aligned beside it. Mobile layout and V1.12 UI/VFX remain unchanged.
+- The user confirmed the complete flow in a fresh four-client server test: race vehicles did not trigger controls, completed objectives and shortcuts stayed dismissed, and already-seen customisation prompts did not replay.
+- The first cross-session attempt correctly exposed that `StudioVehicleSandboxEveryPlay=true` suppresses all profile saves. With both Studio test overrides disabled, the user repeated the test and confirmed onboarding completion and first-view prompts persisted into a second server session.
+- Relaxed only the local recovery installer's audit so both deliberate boolean Studio modes are valid and printed. Installed runtime source is unchanged. The final live config needs one more full mirror refresh because the current snapshot still records the earlier sandbox value.
+
+## 2026-07-24 - Player onboarding V1.12 textured chevron guide beam generated
+
+- Replaced the primary moving-chevron presentation with an optional wrapped Beam texture layered above the existing tutorial-gold aura and core beams. The same renderer, destination lifecycle and cleanup owner remain authoritative.
+- Added config for texture asset, speed, repeat length, width, transparency, brightness and Z offset. Numeric IDs and `rbxassetid://` URIs are accepted.
+- Added `GuideTrailPartArrowsEnabled=false`. A valid texture avoids creating physical chevron Parts; an empty texture automatically retains them as a safe fallback because the repo contains no suitable uploaded chevron texture ID.
+- Folded the uninstalled V1.11 pulse-amplitude and lower beam-origin work into V1.12. Only V1.12 needs to be run. The `23:16:44` mirror is current for confirmed V1.10 UI and pre-install for this renderer.
+
+## 2026-07-24 - Player onboarding V1.11 configurable guide pulse and beam origin generated
+
+- Traced the apparently inactive pulse to a fixed `0.08`-stud amplitude. `GuideTrailPulseSpeed` was changing frequency correctly, but the displacement was too small to see.
+- Added `GuideTrailPulseAmplitude`, default `.4` studs, and retained `GuideTrailPulseSpeed` as the independent frequency control. A zero speed or amplitude produces a fixed trail.
+- Added `GuideTrailBeamStartHeightOffset`, default `-1` stud relative to `HumanoidRootPart`. Beam start no longer inherits the higher `GuideTrailHeightOffset`; arrow height and destination beam-end height are unchanged.
+- Preserved the confirmed V1.10 UI, lifecycle, endpoints, colour, persistence and single local guide owner. The repo mirror remains at V1.8 and must be refreshed after installation.
+
+## 2026-07-24 - Player onboarding V1.10 content-fit mobile objective cards generated
+
+- Preserved the user-confirmed V1.9 top-row anchor and reduced only the landscape-phone card height from 58 to 48 pixels, with a 46-pixel responsive minimum.
+- Defined the phone description area as two calculated text lines. The progress label bottom now uses the same calculated second-line bottom, leaving one shared three-pixel margin beneath both.
+- Added a transactional attribute migration for either installed V1.8 or V1.9 so existing 58/52 height values cannot silently defeat the new layout.
+- The user confirmed the V1.10 UI looks good. Its live source has not yet been mirrored; V1.11 preserves it exactly.
+
+## 2026-07-24 - Player onboarding V1.9 live top-row mobile objective anchor generated
+
+- Confirmed the refreshed `2026-07-24 22:49:44` mirror contains installed V1.8. Its prompt positions and desktop typography worked; only the landscape-phone objective stack remained too low.
+- Removed `GuiService:GetGuiInset()` from the landscape-phone objective Y calculation. The phone stack now follows the live free-roam Car/Race/Garage shortcut row plus a configurable clearance that matches the visible Roblox-control baseline, with a fixed fallback only when that semantic row is unavailable.
+- Repacked the unchanged mobile text sizes into sequential label/title/description bounds. The title-to-description gap is one pixel and the description gains the lower card space required for its approved two-line copy; progress remains isolated at lower right.
+- The user confirmed the live top-row placement working. The subsequent screenshot was not accompanied by another mirror refresh, so the repo mirror remains at V1.8; V1.10 preserves this confirmed V1.9 anchor.
+
+## 2026-07-24 - Player onboarding V1.8 responsive top-bar, objective and callout layout generated
+
+- Confirmed the refreshed `2026-07-24 22:23:11` mirror contains installed V1.7 before changing the same canonical installer.
+- Split onboarding layout safety into physical screen-edge insets and an optional Roblox top-bar exclusion. Landscape-phone callouts no longer reserve the top-bar height across the full screen, fixing the shared low fallback that affected G4 and B2/B3/B4.
+- Kept G4's left placement so its bubble can remain vertically centred beside the stats panel. Narrowed landscape-phone shortcut bubbles and reduced their target gap while retaining target-centred connectors and edge clamping.
+- Increased every desktop objective text role by 1.5 times without changing desktop card dimensions. Kept landscape-phone text sizes unchanged, reduced phone card height/gaps and anchored the stack just below the Roblox controls with a live Boost-overlap check.
+- V1.8 was installed successfully and is present in the refreshed `2026-07-24 22:49:44` mirror. Prompt positioning and desktop typography were confirmed working; V1.9 supersedes only its remaining low mobile-objective anchor.
+
+## 2026-07-24 - Player onboarding V1.7 compact objective layout and Studio vehicle sandbox generated
+
+- Repaired the same V1.7 installer after its first run stopped before mutation on a duplicate projected ProfileService marker. The legacy `..._V1` marker is a prefix of installed `..._V1_2`; V1.7 now handles V1.2 explicitly before legacy detection, preserving strict unique-anchor validation.
+- Changed Objective 1's display title to `BUY AND CUSTOMISE A CAR` without changing its trusted purchase, driving and B2 completion boundary.
+- Replaced shared heading-size lookup inside objective cards with explicit responsive onboarding sizes, reserved two title lines and gave `1/3`, `2/3`, `3/3` a non-truncating width.
+- Moved each visual card inside a padded, non-clipping animation shell. The CanvasGroup still owns the approved slide/fade lifecycle, while its bounds no longer clip the shared panel stroke or glow.
+- Added a hard Studio-only vehicle-testing sandbox inside authoritative ProfileService. It clears vehicle ownership and display references only in the loaded session, preserves garage properties/customisation, raises session cash to the configured test amount and suppresses every save path. No DataStore, production schema or secondary profile owner was added.
+- V1.7 was installed successfully and is present in the refreshed `2026-07-24 22:23:11` mirror. Its presentation is the confirmed pre-install baseline for V1.8.
+
+## 2026-07-24 - Player onboarding V1.6 objective lifecycle, scoped cards and original trail generated
+
+- Replaced the single stage-swapped objective panel with state-owned objective cards. Objective 1 enters alone; after trusted purchase/driving and the non-navigating B2 acknowledgement it exits left and is destroyed, then Garage and Race enter together with a short stagger.
+- Completed Garage/Race cards slide and fade left, are removed, and the remaining card reflows upward with configurable Quint/Quart timing. Menu/loading suppression only changes visibility and does not recreate cards or restart lifecycle animation.
+- Reduced objective title and progress sizing, allowed two-line titles and changed progress to compact `1/3`, `2/3`, `3/3`.
+- Changed G2, K1 and AA1 from full-scroller/root bounds to the union of visible canonical cards inside their semantic scroller.
+- Replaced the simplified arrow-only renderer with the original dealership chevron geometry and aura/core beam presentation, recoloured through the shared tutorial-gold token and reused for the owned-garage desk.
+- The refreshed mirror is current for installed V1.5. V1.6 Studio installation, focused Play verification and the post-install full mirror refresh remain pending.
+
+## 2026-07-24 - Player onboarding V1.5 semantic targets, objective card and shared guide trail generated
+
+- Inspected the refreshed installed V1.4 mirror. The missing owned-garage prompts had one confirmed cause: the shared renderer creates `CanonicalGarageWorkspace`, but `OwnedGarageWorkspaceController` renames its instance `OwnedGarageCanonicalWorkspace` while onboarding filtered by the original name.
+- Upgraded the same canonical installer to register every shared workspace with `TutorialWorkspace=true`, retain its `TutorialPageId`, and publish one `TutorialCardScroller` target. K1 now follows the bottom row as one responsive container instead of switching between a card union and the left rail.
+- Reordered the derived objective stages and shortcut introductions to Vehicle, Garage, Race without changing saved fields or trusted completion boundaries. Replaced the objective card with number, uppercase title, contextual hint and `N / 3`.
+- Added explicit left placement for mobile G4 and a smaller configurable shortcut-callout gap.
+- Migrated the legacy dealership arrow concept to one reusable local `OnboardingGuideTrailRenderer`. The legacy objective/tether presentation is disabled; tutorial-yellow arrows lead to the dealership until purchase and to the nearest owned-garage management desk until management opens.
+- Studio install, Edit-mode audit, PC/landscape-phone verification and post-install full mirror refresh remain pending.
+
+## 2026-07-24 - Player onboarding V1.4 shortcut-choice and overlay-space repair generated
+
+- Inspected the complete `19:43:19` installed V1.3 mirror. Found an exact root cause in `GarageWorkspaceController`: a semantic `--` marker inside compressed code commented out the remainder of the generated-card selection/action line.
+- Added one guarded block-comment repair in the same canonical installer and changed workspace discovery to scan all visible semantic roots for the requested page ID.
+- Returned K1 to the left module-location rail and updated its owned-vehicle module-swap copy. O1 now uses the below-centred group placement.
+- Changed B2/B4/B3 from real action steps to sequential Next introductions. They unlock their shortcuts without opening menus; Race and Garage can subsequently be completed in either order while authoritative gameplay milestones remain unchanged.
+- Replaced camera-viewport layout bounds with the onboarding overlay's absolute origin/size for targets, dim tiles, callouts and safe clamping. Added overlay geometry invalidation to correct right-side landscape-phone drift and clipping.
+- Allowed the objective while walking inside a garage, anchored beneath Private/Invite, and added explicit desktop/mobile car-menu suppression. Studio installation, Play verification and mirror refresh remain pending.
+
+## 2026-07-24 - Player onboarding V1.3 responsive semantic-target installer generated
+
+- Inspected the complete refreshed `18:56:55/56` V1.2 mirror and retained the substantially more reliable pinned-page presentation rather than reverting or creating a second tutorial owner.
+- Added renderer-owned `TutorialPageId` and `CanonicalGarageCardId` metadata to the existing shared workspace path. Add Modules, Paint Shop and owned-garage prompts now resolve from the actual current page and semantic card IDs.
+- Repositioned bottom-card prompts above-centred and free-roam shortcuts below-centred with safe edge clamping. K1 now encloses the bottom module cards, AA1 only the display-space cards and `AB1` introduces Structure/Decorations/Lighting once across Build and Style.
+- Removed S5/S6. B2/B3/B4/N6/X3 now leave the real target actionable, block every non-target region and advance only after the actual button is activated.
+- Scaled only tutorial visual metrics and the objective through the nearest owning `UIScale`, with a bounded landscape-phone fallback, wrapped copy and a 44-pixel minimum Next target. Highlight geometry remains unscaled live absolute geometry. Portrait handling is intentionally omitted for the landscape-locked game.
+- Objectives now yield to every dealership/customisation/race/garage/modal presentation, and the PC My Vehicles introduction waits until the existing Controls popup closes. Installer run, Play verification and mirror refresh remain pending.
+
+## 2026-07-24 - Player onboarding V1.2 presentation replacement generated
+
+- Inspected the refreshed `18:11:16/17` mirror after V1.1 testing. The persisted objective state and single installed onboarding owner were correct; the flicker/reset came from continuous page discovery competing with the active step, while overlapping dim tiles and target-derived typography caused the visual inconsistencies.
+- Replaced only the isolated onboarding client presentation inside the same canonical installer. Active pages and targets are pinned per step, geometry is accepted after two stable rendered frames, changes are event-driven and temporary renderer rebuilds no longer reset the sequence.
+- Loading/start now explicitly gates the entire onboarding ScreenGui and retains the higher display layer. Tutorial presentation resumes after loading is inactive and two frames have rendered.
+- Replaced overlapping shade regions with exact non-overlapping tiles plus outer overscan. Retained the live target rather than cloning it, preserving one interaction/render owner.
+- Body and Next now share one responsive tutorial text size independent of the highlighted control. Shared gradient, glow, gold highlight/callout borders and measured callout fitting remain.
+- Studio installation, focused cross-device verification and post-install mirror refresh remain pending.
+
+## 2026-07-24 - Player onboarding V1.1 objective and responsive-overlay repair generated
+
+- Inspected the installed `17:23:58` mirror after the first Play test. `StudioReplayEveryPlay=true` was present, so saved ownership was not completing the replay objective; the completion contract itself only checked an occupied owned vehicle and did not require a purchase milestone.
+- Repaired the same canonical installer so a successful authoritative `BuyCockpitInstance` and active owned-vehicle driving are independent milestones. Objective 1 now requires both, Studio resets both each Play and established production profiles retain an explicit vehicle-ownership migration.
+- Studio replay now exercises the production shortcut gates: Car unlocks at Stage 2, Race is introduced at Stage 2 and Garage at Stage 3. Full-capacity test profiles must use the existing capacity purchase control before buying the replay vehicle.
+- Replaced global target-name discovery with active-page-scoped resolution and full ancestor visibility checks. Added transient page-loss tolerance and immediate local seen-state closure so live UI rebuilding or server round-trip latency cannot restart a prompt at G1.
+- Rebuilt the shared overlay presentation around `RacingUIComponents`: measured responsive copy, shared gradient/glow Next button, glowing panel/highlight borders, connector, safe callout placement and live target tracking.
+- Rounded target geometry outward and added configurable shade overlap plus viewport overscan to remove seams and cover curved mobile edges. Added designer attributes for tutorial gold, highlight padding, dim strength, overlap, overscan, page grace, callout margin and text-size bounds.
+- Installation, Edit-mode audit, desktop/iPhone/tablet geometry checks and post-install full mirror refresh remain pending.
+
+## 2026-07-24 - Player onboarding V1 preflight repair and Studio replay
+
+- Confirmed the first installation attempt stopped before mutation on the guarded multiplayer race anchor.
+- Refreshed the complete mirror at `17:14:28`; no onboarding source marker, object or attribute was present.
+- Repaired the same canonical installer by replacing the whitespace-sensitive multiline race hook with one unique semantic driving-start call token. Time-trial, garage-management and desktop-controls hooks now use the same bounded token approach.
+- Added `Config.Runtime.Onboarding_EditAttributes.StudioReplayEveryPlay`, default true. Studio uses fresh session-only onboarding state on every Test Play and never alters saved onboarding data; published servers retain ProfileService persistence.
+- Replay mode leaves existing shortcuts available to prevent established/full-capacity test profiles from becoming unable to exercise Objective 1. Production locks remain unchanged.
+- Installer rerun and runtime verification remain pending.
+
+## 2026-07-24 - Player onboarding V1 generated
+
+- Converted the approved mockups and final copy into one canonical Edit-mode installer.
+- Added one isolated client overlay/objective owner and one isolated authoritative server service without adding to the register-limited bootstrap.
+- Added ProfileService-owned saved objective/first-view state, with client requests restricted to reading state and marking allowlisted page IDs seen.
+- Hooked objective completion to server-trusted active vehicle, actual race/time-trial start and accepted owned-garage management boundaries.
+- Reused the existing PC Controls popup, disabled only the legacy objective text and preserved the dealership trail VFX.
+- Added transactional preflight, source compilation, idempotency, audit and rollback. Studio install, cross-device/two-player verification and mirror refresh remain pending.
+
+## 2026-07-24 - Player onboarding V1 design locked
+
+- Locked the three-objective flow: first owned vehicle driven, first race/time trial entered, and first owned Garage Management entry.
+- Separated objective progress, per-page first-view explanations and free-roam shortcut unlocks so completing an objective cannot suppress unseen menu guidance.
+- Finalised the reduced prompt list and copy across dealership, vehicle customisation, race entry and owned-garage management, including reuse of the existing PC Controls popup and mobile-only drift/Boost highlights.
+- Defined one shared semantic-target overlay with responsive target fitting, surrounding input blockers, automatic callout placement and same-click navigation activation.
+- Preserved the dealership trail VFX and existing UI/gameplay/persistence owners. Implementation, mobile visual approval, Studio verification and mirror refresh remain pending; no Studio source or hierarchy changed.
+
+## 2026-07-24 - Parked and exit-coasting external 3D audio V1 generated
+
+- Added `scripts/roblox_audio_parked_vehicle_3d_v1.lua`, one guarded `INSTALL`/`AUDIT`/`DISABLE` Command Bar installer based on the fresh `11:51:34` mirror.
+- Unoccupied runtime player vehicles now remain logically powered and reuse the existing external 3D graph. Exit coasting presents Coast plus reduced EngineLow/Idle; authoritative parking transitions to Idle plus reduced EngineLow.
+- Suppressed EngineHigh, Acceleration, DriftLoop, BoostLoop and driver wind after exit. Re-entry returns to the existing non-positional driver route without adding ignition/shutdown chatter.
+- Added ten described global tuning attributes while preserving every existing audio attribute and asset ID. No emitter, asset, remote, continuous update loop, driving/VFX/parking owner, persistence or purchase system was added.
+- The installer unique-checks six guarded replacements across two source owners, compiles projected source before mutation, rolls back source/config/descriptions on failure and supports a non-destructive feature disable. Studio installation, runtime verification and mirror refresh remain pending.
+
+## 2026-07-24 - Vehicle audio tuning/cue expansion confirmed and mirrored
+
+- The user reported the tuning/cue system working and refreshed the full mirror at `11:51:34`.
+- The mirror contains both V2 audio source markers, the populated/described configuration and enabled master audio state. The tuning/cue installer is now recovery-only; parked external audio starts from this baseline.
+
+## 2026-07-26 - Multiplayer vehicle exit coasting V1.1 confirmed and handed off
+
+- Recorded the user's confirmation that V1 worked well and that its complete `2026-07-24 11:23:06` Studio mirror is current.
+- Advanced the same canonical installer so exits at or below `10 mph` retain immediate fixed parking, while faster exits preserve linear/angular momentum and use the existing parked-hover owner for bounded horizontal drag.
+- Added a transient `NTR_ExitCoasting` lifecycle: character pass-through and prompt/re-entry lock while moving, then authoritative server parking below `8 mph` after `0.75` seconds or at a `6` second safety timeout.
+- Preserved `RaceSessionAssetService_Active` ownership by refusing this free-roam exit path for active race participants. Added five editable tuning attributes and expanded the committed-state audit from 10 to 14 checks.
+- The user confirmed the V1.1 behaviour working and requested handoff. The later `2026-07-26 19:03:42` full mirror contains 187 matching exported scripts/source-manifest/checksum entries, all four runtime lifecycle markers and the V1.1 tuning revision.
+- Installation, audit, focused verification and mirror refresh are closed. V1.1 is now the confirmed rollback baseline; the canonical installer is retained as exact-scope recovery evidence.
+
+## 2026-07-24 - Multiplayer vehicle VFX, collision, parking and exit V1 generated
+
+- Traced opponent VFX loss to the runtime reading driving attributes written only by each driver's client, while the installed audio system already provides validated replicated semantic state.
+- Generated one transactional installer that keeps semantic replication alive independently from audible playback, uses it only for remote VFX and preserves the existing race VFX gate.
+- Added one isolated free-roam collision lifecycle with vehicle pass-through, `20/16 mph` character hysteresis and explicit isolation from active race participants/assets without replacing the race collision owner.
+- Authoritative exit now validates seating, zeros/server-fixes the vehicle before unseating, moves the character to a configurable right-side offset and safely reverses the fixed state on re-entry.
+- Added the High-Risk contract and two-client verification matrix in `docs/vehicle-multiplayer-vfx-collision-exit-v1.md`. The user later confirmed V1 working and refreshed the complete mirror at `2026-07-24 11:23:06`.
+
 ## 2026-07-23 - Customisation three-workshop flow V1 generated
 
 - Analysed the confirmed customisation controller and found the requested screens already share one workspace, rail, cards, popup, upgrade budget, colour sliders, preview and server action owner. Chose a bounded navigation reorganisation instead of a replacement UI/system.

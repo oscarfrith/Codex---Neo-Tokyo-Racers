@@ -1,3 +1,4 @@
+-- NTR_CUSTOMISATION_ACCESS_ONBOARDING_PHYSICAL_COLOURS_V1_1
 -- NTR_GARAGE_CAMERA_VFX_SCROLL_REFINEMENT_V1
 -- NTR_GARAGE_CATEGORY_CAMERA_ANGLES_V1
 -- NTR_GARAGE_NAV_SCROLL_ECONOMY_V1
@@ -7,6 +8,9 @@
 -- NTR_UI_PERFORMANCE_HARDENING_PHASE2_V1
 -- NTR_UI_PERFORMANCE_HARDENING_PHASE1_V1
 -- NTR_GARAGE_APPLICATION_CONTROLLER_CANONICAL_V3
+-- NTR_PRESENTATION_AUDIO_TRANSACTION_OUTCOMES_V1
+-- NTR_PRESENTATION_AUDIO_MODULE_PURCHASE_EQUIP_CUE_V1_1
+-- NTR_PRESENTATION_AUDIO_VEHICLE_PURCHASE_CUE_V1_2
 local Players=game:GetService("Players"); local RS=game:GetService("ReplicatedStorage"); local RunService=game:GetService("RunService"); local Workspace=game:GetService("Workspace")
 local player=Players.LocalPlayer; local kit=RS:WaitForChild("NeoTokyoRacers"); local categoriesRoot=kit:WaitForChild("Assets"):WaitForChild("Vehicles"):WaitForChild("Categories")
 local uiFolder=script.Parent; local intro=uiFolder.Parent:WaitForChild("Intro"); local previewFolder=uiFolder.Parent:WaitForChild("Preview")
@@ -14,13 +18,23 @@ local Browser=require(uiFolder:WaitForChild("GarageBrowserController")); local W
 local garageInvoke=kit:WaitForChild("Shared"):WaitForChild("Remotes"):WaitForChild("Garage"):WaitForChild("GarageInvoke")
 local sessionRequest=kit:WaitForChild("Shared"):WaitForChild("Remotes"):WaitForChild("UI"):WaitForChild("GarageSessionRequest")
 local loadingInvoke=script.Parent:WaitForChild("LoadingTransitionInvoke") -- NTR_LOADING_SYSTEM_PHASE2_GARAGE_UI_TRANSITIONS_V1
+local AudioBridge=require(kit.Shared.Modules.Client.Audio:WaitForChild("PresentationAudioBridge"))
+local ACTION_AUDIO_KIND={BuyCockpitInstance="Purchase",BuyGarageProperty="Purchase",BuyModuleInstance="Purchase",BuyNeon="Purchase",BuyVehicleCosmetic="Purchase",EquipModuleInstance="ModuleEquip",UpgradeModule="Upgrade"}
 local Adapter={}; Adapter.__index=Adapter
 function Adapter.new(state) return setmetatable({State=state,Busy=false},Adapter) end
 function Adapter:Call(actionName,payload)
-	if self.Busy then return {Success=false,Message="Please wait."} end
+	local audioKind=ACTION_AUDIO_KIND[actionName]
+	if self.Busy then local result={Success=false,Message="Please wait."}; if audioKind then AudioBridge.Result(audioKind,result,{Action=actionName}) end; return result end
 	self.Busy=true; local ok,result=pcall(function() return garageInvoke:InvokeServer(actionName,payload or {}) end); self.Busy=false
-	if not ok or typeof(result)~="table" then return {Success=false,Message="Garage server did not respond."} end
-	if result.Catalog then self.State.Catalog=result.Catalog end; if result.Profile then self.State.Profile=result.Profile end; return result
+	if not ok or typeof(result)~="table" then result={Success=false,Message="Garage server did not respond."}; if audioKind then AudioBridge.Result(audioKind,result,{Action=actionName}) end; return result end
+	if result.Catalog then self.State.Catalog=result.Catalog end; if result.Profile then self.State.Profile=result.Profile end
+	local outcomeAudioKind=audioKind
+	if result.Success==true then
+		if actionName=="BuyModuleInstance" then outcomeAudioKind="ModuleEquip"
+		elseif actionName=="BuyCockpitInstance" then outcomeAudioKind="VehiclePurchase" end
+	end
+	if outcomeAudioKind then AudioBridge.Result(outcomeAudioKind,result,{Action=actionName}) end
+	return result
 end
 function Adapter:Refresh() return self:Call("GetInitial",{}) end
 function Adapter:Session(actionName,payload) local ok,result=pcall(function() return sessionRequest:InvokeServer(actionName,payload or {}) end); return ok and result or {Success=false,Message="Garage session did not respond."} end
@@ -186,7 +200,7 @@ renderHub=function()
 	if State.CameraSection~="ALL" then section("ALL") end
 	State.Stage="Hub"
 	browser:Hide()
-	local c=common("Garage")
+	local c=common("Garage"); c.TutorialPageId="CustomisationHome" -- NTR_ONBOARDING_V1_3_MODULE_PAGE_SEMANTICS
 	c.CarouselScrollKey="Hub|ThreeWorkshops"
 	c.Subtitle="Choose a workshop, or drive your vehicle."
 	c.ShowLeft=false
@@ -294,7 +308,7 @@ renderBuild=function()
 	if State.ModuleMode=="Slots" and State.CameraSection~="ALL" then section("ALL") end
 	State.Stage="Build"
 	browser:Hide()
-	local c=common("Add Modules")
+	local c=common("Add Modules"); c.TutorialPageId="AddModules"
 	c.CarouselScrollKey="AddModules|"..tostring(State.ModuleMode).."|"..tostring(State.SelectedSlot).."|"..tostring(State.ModuleOptionMode)
 	c.CategoryScrollKey="WorkshopModeRail"
 	c.Subtitle=State.ModuleMode=="Slots" and "Choose a fixed module slot." or (State.ModuleMode=="Sources" and "Choose owned modules or buy modules." or "Preview, then buy or equip.")
@@ -433,7 +447,7 @@ renderUpgrade=function()
 	end
 	if State.CameraSection~=target then section(target) end
 	browser:Hide()
-	local c=common("Upgrade Modules")
+	local c=common("Upgrade Modules"); c.TutorialPageId="UpgradeModules"
 	c.CarouselScrollKey="UpgradeModules|"..tostring(target)
 	c.CategoryScrollKey="UpgradeModuleRail"
 	c.Subtitle="Choose an installed module location, then invest its upgrade points."
@@ -607,7 +621,7 @@ renderPaintShop=function()
 	browser:Hide()
 	setPreviewVFXMode(target=="THRUST_COLOR" and "ThrustColour" or "Idle")
 	local actionIconScale=math.clamp(tonumber(replacementConfig:GetAttribute("CustomiseActionIconScale")) or .5,.1,1.5)
-	local c=common("Paint Shop")
+	local c=common("Paint Shop"); c.TutorialPageId="PaintShop"
 	c.CarouselScrollKey="PaintShop|"..tostring(target).."|"..tostring(State.CustomizeMode)
 	c.CategoryScrollKey="PaintShopTargetRail"
 	c.Subtitle=State.CustomizeMode=="Colour" and "Choose a paint channel and colour." or "Choose a vehicle area to paint or light."
@@ -656,7 +670,19 @@ renderPaintShop=function()
 end
 local function open(mode,payload)
 	if active then if typeof(payload)=="table" and payload.LoadingGeneration then loadingAction("Complete",{Generation=payload.LoadingGeneration,Status="READY"}) end; return end
-	local generation=entryLoading(mode,payload)
+	local generation
+	if mode~="Dealership" then
+		local access=action:Call("EnsureCustomisationAccess",{})
+		if not access.Success then
+			local reason=tostring(access.Message or "Customisation access is unavailable.")
+			local notification=uiFolder:FindFirstChild("ShowTopNotification")
+			if notification and notification:IsA("BindableEvent") then notification:Fire(reason) end
+			if reason=="OWN A VEHICLE TO CUSTOMISE" then AudioBridge.Emit("UI.PurchaseRejected",{Reason="VehicleRequired",Route="CustomisationShortcut"}) end
+			action:Session("End",{ReturnToEntry=true}); player:SetAttribute("NTR_GarageEntryMode",nil)
+			return
+		end
+	end
+	generation=entryLoading(mode,payload)
 	local result=action:Refresh(); if not result.Success then local reason=tostring(result.Message or "Garage data unavailable"); warn("[NTR Canonical Garage] "..reason); action:Session("End",{ReturnToEntry=true}); player:SetAttribute("NTR_GarageEntryMode",nil); loadingAction("Fail",{Generation=generation,Status="RETURNING",Reason=reason}); return end
 	active=true; State.ShopMode=mode=="Dealership" and "Dealership" or "Customisation"; State.CategoryId=State.Profile.CurrentCategory or (allCategories()[1] and allCategories()[1].CategoryId) or "bruiser"; State.SelectedCockpit=State.Profile.CurrentCockpit; State.SelectedVehicleId=nil; State.BrowseAll=true; State.NoPreviewYet=true; State.GarageCameraActive=true; startCamera()
 	if mode=="DriveIn" then local vehicleId=State.Profile.CurrentVehicleId; action:Call("DespawnVehicle",{}); fire("FreeRoamVehicleExited"); if vehicleId then action:Call("SelectVehicleInstance",{VehicleId=vehicleId}) end; State.SelectedVehicleId=State.Profile.CurrentVehicleId; State.SelectedCockpit=State.Profile.CurrentCockpit; State.NoPreviewYet=false; buildPreview(); renderHub() else renderBrowser() end

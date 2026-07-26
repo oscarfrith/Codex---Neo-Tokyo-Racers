@@ -1,5 +1,22 @@
 # Driving Mechanics
 
+## Multiplayer collision, speed-sensitive parking and exit boundary
+
+The confirmed V1.1 installer does not change driven forces, steering, boost, drift, hover, camera or race control.
+
+- All vehicles pass through other vehicles.
+- Free-roam vehicles collide with normal characters while slow, pass through above `20 mph`, and restore collision below `16 mph`.
+- Active race vehicles keep the existing race participant and arrow/barrier owner.
+- Exit validates the seat and places the character to the right. At or below `10 mph` it immediately zeros and fixes the car; above `10 mph` it preserves momentum and applies bounded parked-hover drag until the server fixes it below `8 mph` after at least `0.75` seconds or at a `6` second safety timeout.
+- Exited coasting cars remain character-pass-through and cannot be re-entered until fixed.
+- Re-entry validates root/seat, unfixes, zeros, assigns ownership and seats the player.
+- The parked-hover controller skips `NTR_ParkedFixed` vehicles.
+- Active race participants are rejected from the free-roam coasting path so the existing race exit owner remains authoritative.
+
+Tuning lives beneath `Config.Editable.01_GAME_BALANCE_Editable.VehicleInteractions`; see `docs/vehicle-multiplayer-vfx-collision-exit-v1.md`.
+
+The user confirmed the complete behaviour and requested handoff. Its installed sources/configuration are present in the `2026-07-26 19:03:42` mirror; retain the boundary matrix as release regression rather than rerunning the installer for tuning.
+
 ## Hover height configuration
 
 The editable `ReplicatedStorage.NeoTokyoRacers.Config.Editable.01_GAME_BALANCE_Editable.Driving.HoverHeightStuds` NumberValue existed before it had live consumers. `DriveTuning` projected it, while `DrivingControllerV47`, `DrivingFallbackController`, `FreeRoamParkedHoverController_Active` and the spawned vehicle diagnostic attribute independently hard-coded `3`.
@@ -17,6 +34,8 @@ Vehicle audio consumes the existing `Accelerating`, `Braking`, `Boosting`, `Drif
 The audio runtime calculates speed from the vehicle root at presentation time and uses the same `0.625 MPH_PER_STUD` conversion as the current driving controller. Local-driver sound is non-positional; remote vehicles use a 3D emitter. Future driving states should extend the common audio state contract rather than add direct sound playback inside the driving heartbeat. See `docs/16_audio_system.md` and `scripts/roblox_audio_system_v1.lua`.
 
 The generated 2026-07-22 tuning/cue expansion keeps this ownership boundary. It reads the already-published `MobileDriveInputState.BoostPercent` for local recharge/depletion presentation and does not add boost attributes, callbacks or sound playback to `DrivingControllerV47`. Audio owns debounce, drift elapsed time, recharge-session latching and full-tank cue qualification; driving remains authoritative for the real charge value, recharge delay/rate, input, forces and drift behaviour.
+
+The generated 2026-07-24 parked external-audio refinement also preserves this boundary. The server-owned `NTR_ExitCoasting` attribute is a read-only presentation input: while a seat is empty, audio reuses the existing external 3D graph for a reduced coast/idle mix and never applies force, changes parking thresholds or owns re-entry. `VehicleAudioStateService_Active` keeps the semantic engine state powered independently from seat occupancy; the collision/parking lifecycle remains authoritative for motion.
 
 ## Loading Transition Input Boundary (Phases 1-5)
 
@@ -535,3 +554,6 @@ Phase 13 V1.1 repairs only the owned-garage template/config version gate that ru
 ## Current Diagrams
 
 - `diagrams/driving_runtime_system.svg`
+## Onboarding controls gate V1.13
+
+The first-time PC driving-controls popup belongs to free-roam onboarding, not race presentation. The onboarding client resolves the vehicle the local player is actually driving and suppresses the popup whenever that vehicle is marked `NTR_RaceParticipant` or has an `NTR_RaceRunId`. If the controls page is still unseen, it remains eligible on the player's next genuine free-roam drive. This does not change vehicle input, race controls, mobile D7/D8 prompts or the existing Controls button.

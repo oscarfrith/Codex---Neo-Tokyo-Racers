@@ -1,4 +1,4 @@
--- NTR_AUDIO_STATE_SERVICE_V2_CUES
+-- NTR_AUDIO_STATE_SERVICE_V3_PARKED_RUNNING
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Workspace = game:GetService("Workspace")
@@ -57,7 +57,11 @@ end
 local function refreshOccupancy(vehicle)
 	local driverId = tonumber(vehicle:GetAttribute("DriverUserId"))
 	local player = driverId and Players:GetPlayerByUserId(driverId)
-	resetState(vehicle, player ~= nil and driverSeated(player, vehicle))
+	local seated = player ~= nil and driverSeated(player, vehicle)
+	-- Seat occupancy selects internal/external presentation; it no longer doubles as
+	-- engine power. Runtime player vehicles stay audibly powered while parked/coasting.
+	local keepRunning = seated or global:GetAttribute("ParkedVehicleAudioEnabled") ~= false
+	resetState(vehicle, keepRunning)
 end
 
 local function cleanup(vehicle)
@@ -104,7 +108,9 @@ local function withinRate(player)
 end
 
 remote.OnServerEvent:Connect(function(player, vehicle, payload)
-	if global:GetAttribute("AudioSystemEnabled") ~= true or global:GetAttribute("VehicleAudioEnabled") == false then return end
+	-- NTR_VEHICLE_PRESENTATION_STATE_TRANSPORT_V1
+	-- Semantic vehicle state also drives remote VFX, so validation/replication
+	-- remains active independently from audible playback settings.
 	if not withinRate(player) then return end
 	if not (vehicle and vehicle:IsA("Model") and vehicle.Parent == root and records[vehicle]) then return end
 	if tonumber(vehicle:GetAttribute("OwnerUserId")) ~= player.UserId then return end
@@ -125,6 +131,9 @@ remote.OnServerEvent:Connect(function(player, vehicle, payload)
 	vehicle:SetAttribute("NTRAudioStateRevision", (tonumber(vehicle:GetAttribute("NTRAudioStateRevision")) or 0) + 1)
 end)
 
+global:GetAttributeChangedSignal("ParkedVehicleAudioEnabled"):Connect(function()
+	for vehicle in pairs(records) do refreshOccupancy(vehicle) end
+end)
 root.ChildAdded:Connect(function(child) task.defer(register, child) end)
 root.ChildRemoved:Connect(cleanup)
 Players.PlayerRemoving:Connect(function(player) rate[player] = nil end)

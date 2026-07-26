@@ -1,5 +1,15 @@
 # Continuous Improvement Workflow
 
+## Large-script local declaration ordering lesson (2026-07-26)
+
+Luau local function declarations are lexical. A function inserted before `local function LaterHelper()` cannot call `LaterHelper` unless it was explicitly forward-declared in scope; it otherwise resolves a different/global value and can compile successfully but fail only on the branch that reaches the call. Prefer removing unnecessary cross-boundary response work. If it is required, project and runtime-test the success branch as well as early rejection branches.
+
+## Empty-table fallback and preview/projection parity lesson (2026-07-26)
+
+In Lua/Luau, an empty table is truthy. A saved record such as `Colors={}` therefore bypasses `record or fallback` even though it contains no usable channels. If preview fills missing members but server projection does not, the preview can look correct while the spawned and rejoined object retains authored defaults.
+
+Repair incomplete records once at their existing authoritative hydration/normalisation owner, preserve every explicit member, and persist through the existing save bridge. Do not add a client recolour or a second appearance owner. For connected appearance work, audit every current asset and compatible location, then verify preview, spawn, lifecycle transitions, and rejoin from the same effective record.
+
 ## Studio Command Bar persistence fault lesson (2026-07-19)
 
 If an installer reports success but newly created instances disappear while edits to existing Script sources remain, stop changing feature code. Create a harmless uniquely named Folder in one Command Bar command and read it in a second command in the same place. If that generic probe also disappears, fully restart Studio and repeat it before repairing the installer. A passing post-restart probe identifies a session-level Studio transaction fault; do not add feature-specific recovery logic or blame the Command Bar history-size warning without independent evidence.

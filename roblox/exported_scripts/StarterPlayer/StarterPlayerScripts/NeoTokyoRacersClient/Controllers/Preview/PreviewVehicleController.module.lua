@@ -1,5 +1,6 @@
 -- NTR_UI_PERFORMANCE_HARDENING_PHASE1_V1
 -- NTR_GARAGE_PREVIEW_VEHICLE_CANONICAL_V3
+-- NTR_PRESENTATION_AUDIO_PREVIEW_PROFILE_V1
 local ReplicatedStorage=game:GetService("ReplicatedStorage")
 local PreviewVehicleController={}
 local controllersFolder=script.Parent.Parent
@@ -44,6 +45,7 @@ function PreviewVehicleController.Build(context)
 	local placement,pad=previewCFrame(state); vehicle:PivotTo(placement); state.PreviewPadCFrame=placement; preview.Pad=pad
 	local cockpitColors={}; for key,value in pairs(profile.CockpitColors or {}) do cockpitColors[key]=value end; cockpitColors.FrontLights=cockpitColors.FrontLights or Color3.fromRGB(252,250,255); cockpitColors.RearLights=cockpitColors.RearLights or Color3.fromRGB(255,116,116); PaintClient.ApplyColors(vehicle,cockpitColors,true,{Profile=profile})
 	local currentVehicle=profile.CurrentVehicleId and profile.Vehicles and profile.Vehicles[profile.CurrentVehicleId]; VehicleCosmetics.ApplyPresentation(vehicle,currentVehicle)
+	local previewAudioProfileId=currentVehicle and (currentVehicle.ResolvedAudioProfileId or currentVehicle.AudioProfileId) or template:GetAttribute("StandardAudioProfileId") or "GENERIC_STANDARD_AUDIO"; root:SetAttribute("PreviewAudioProfileId",tostring(previewAudioProfileId))
 	local thrustColor=profile.ThrustColor or Color3.new(1,1,1); root:SetAttribute("ThrustColor",thrustColor); root:SetAttribute("ForceThrustPreview",state.ThrustPreviewActive==true); vehicle:SetAttribute("ThrustColor",thrustColor)
 	local installedRoot=vehicle:FindFirstChild("INSTALLED_MODULES_Runtime") or Instance.new("Folder"); installedRoot.Name="INSTALLED_MODULES_Runtime"; installedRoot.Parent=vehicle; installedRoot:ClearAllChildren()
 	local modulesToShow={}; for slotId,moduleId in pairs(profile.InstalledModules or {}) do modulesToShow[slotId]=moduleId end; for slotId,moduleId in pairs(state.PreviewModules or {}) do modulesToShow[slotId]=moduleId end

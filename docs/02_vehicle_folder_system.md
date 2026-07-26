@@ -1,5 +1,21 @@
 # Vehicle Folder System
 
+## Physical module-instance colour completion V1.1 (confirmed and handed off 2026-07-26)
+
+The physical module-instance record remains the saved authority for installed module identity, colours, Neon, and upgrades. A newly purchased instance can currently contain `Colors={}`. Preview fills absent channels for presentation, while the server clone path interprets that empty table as a complete override and leaves authored grey. This explains preview/spawn mismatch and persistence after rejoin.
+
+The V1 repair completes only missing `Primary`, `Secondary`, `Detail`, `Neon`, and applicable `ThrustColor` fields during canonical instance hydration. Existing explicit fields are never overwritten. `FrontLights` and `RearLights` remain cockpit-protected and are neither stored nor projected as module repair channels.
+
+The user confirmed the physical module-colour repair and V1.1 corrective access flow working. The complete `20:46:20` mirror is current. The canonical installer audits every current cockpit for Boost, Engine1, Engine2, FrontBumper, RearBumper, RearSpoiler, SidePods, and Stabilisers slots, plus authoritative module-template coverage for those locations. Keep full runtime parity across every current vehicle, compatible location and rejoin transition in release regression. See `docs/customisation-access-onboarding-physical-colours-v1.md`.
+
+## Multiplayer collision and speed-sensitive parking runtime contract
+
+Vehicle Multiplayer VFX/Collision/Exit V1.1 adds no authored cockpit/module folder and changes no persistence. Runtime models beneath `Workspace.NeoTokyoRacersWorld.Runtime.PlayerVehicles` are registered by `VehicleCollisionLifecycleService_Active`.
+
+Free-roam BaseParts use `NTR_VehicleSlow` or `NTR_VehicleFast`; active race models remain under `NTR_RaceParticipant`. Faster exited vehicles transiently carry `NTR_ExitCoasting=true` plus `NTR_ExitCoastStartedAt` and stay in the fast character-pass-through group. Settled parked vehicles carry `NTR_ParkedFixed=true` and an anchored welded root until authoritative re-entry. These are runtime markers, not saved or authored asset metadata.
+
+The user confirmed this runtime contract working, and the complete `2026-07-26 19:03:42` mirror contains its installed service/source markers and tuning revision. Treat V1.1 as the current vehicle-runtime baseline.
+
 ## Customisation three-workshop Neon capability
 
 Vehicle Customisation V1 does not move or create vehicle assets. Module Neon availability is derived server-side from supported renderable descendants already authored beneath each module's `NEON_OptionalLights` folder. `NeonPrice` remains an optional module-model attribute with a server fallback of `5000`.
@@ -310,3 +326,9 @@ Place each emitter Part directly in its intended cockpit-local position. Do not 
 Each SurfaceLight uses `VehicleCosmeticId="Underglow"`. The parent Part is invisible, unanchored, massless, collision/query/touch disabled and does not cast shadows. The old `UNDERGLOW_MOUNT_DoNotRename` Attachment remains compatible but is no longer the authoring authority.
 
 SurfaceLight Brightness, Range, Angle, Face, Shadows and other presentation properties are authored independently on each vehicle template. Runtime customisation changes only the saved player colour and whether purchased underglow is enabled.
+
+## Onboarding Studio vehicle sandbox
+
+Player Onboarding V1.7 adds an opt-in Studio-only testing mode at `Config.Runtime.Onboarding_EditAttributes.StudioVehicleSandboxEveryPlay`. ProfileService still loads and owns the canonical profile, then clears vehicle ownership, module ownership and garage display vehicle references only in that in-memory session. Garage property ownership and garage customisation remain intact.
+
+The session is marked `NoSave`, and ProfileService returns before profile encoding or any DataStore update on every normal, forced, removal and shutdown save path. `RunService:IsStudio()` is a hard activation requirement. Disable `StudioVehicleSandboxEveryPlay` before production persistence/rejoin testing; no stored vehicles are deleted and no migration is required.

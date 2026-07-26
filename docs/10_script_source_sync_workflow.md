@@ -1,8 +1,10 @@
 # Studio Source Sync Workflow
 
-**Updated:** 2026-07-02
+**Updated:** 2026-07-24
 **Status:** Local receiver full-snapshot export/import workflow  
 **Purpose:** Capture the current Roblox Studio hierarchy and all script sources into GitHub with minimal manual copying.
+
+**Current scope note (2026-07-26):** the complete `20:46:20` mirror contains confirmed Customisation Refinement V1.1. Its 188 checksum, source-manifest and exported-script entries match, and neither mirror area appears stale. Do not commit `docs/studio-full-export-paste.txt`.
 
 ## Why This Exists
 
@@ -167,7 +169,9 @@ Good signs:
 
 ## Current Mirror Status
 
-The current full mirror was generated on 2026-07-22 at 10:28:22 and contains 175 exported scripts. It captures the installed/audited audio Phases 1-3 source/config, all six cockpit profile assignments, four context definitions, bounded acoustics owners and `SoundService` including the six mix groups plus the owned context reverb. It is current for the silent pre-tuning-expansion baseline. After running `scripts/roblox_audio_vehicle_tuning_and_cues_v1.lua`, refresh again so the V2 audio sources, cue attributes and companion description folders become the source of truth.
+The current full mirror was generated on 2026-07-26 at 20:46:20 and contains 188 scripts. The exported manifest, source manifest and checksums each contain 188 matching entries. It contains confirmed Presentation Audio V1.3.2 with `NTR_PRESENTATION_AUDIO_CONTROLLER_V1_3_2_IMMEDIATE_ONESHOTS`, `InstallerRevision=NTR_PRESENTATION_AUDIO_UI_PREVIEW_RACE_V1_3_2`, both described preload controls and retained V5 reliable Ignition source. It also contains the confirmed Customisation Refinement V1.1 source/hierarchy recorded in its handoff.
+
+Both mirror areas agree and neither appears stale for these confirmed baselines. No Presentation Audio or Customisation mirror refresh is currently pending.
 
 The fresh mirror also shows active loose `StarterPlayerScripts` filming/camera helpers (`LocalScript`, `TrailerMode.client.lua`, and `TrailerShot01Camera`). Treat them as review items before publishing a normal gameplay build unless they are intentionally kept enabled.
 

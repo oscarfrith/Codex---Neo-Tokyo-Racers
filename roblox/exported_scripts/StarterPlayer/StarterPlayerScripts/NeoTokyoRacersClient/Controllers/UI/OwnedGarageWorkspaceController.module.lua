@@ -1,4 +1,6 @@
 -- NTR_OWNED_GARAGE_WORKSPACE_CONTROLLER_V4_CANONICAL_VERTICAL_SLICE
+-- NTR_PRESENTATION_AUDIO_OWNED_GARAGE_OUTCOMES_V1
+-- NTR_PRESENTATION_AUDIO_OWNED_GARAGE_SEMANTIC_CUES_V1_3
 -- NTR_OWNED_GARAGE_WORKSPACE_CONTROLLER_V5_REFRESH_OWNER
 -- NTR_OWNED_GARAGE_WORKSPACE_CONTROLLER_V6_EXPLICIT_DISPLAY_COMMIT
 -- NTR_OWNED_GARAGE_WORKSPACE_CONTROLLER_V7_AUTHORITATIVE_SELECTED_ACTION
@@ -25,7 +27,7 @@ function Controller.IsOpen() return isOpenCurrent() end
 function Controller.Start()
 	if started then return true,"AlreadyStarted" end
 	local Players=game:GetService("Players"); local ReplicatedStorage=game:GetService("ReplicatedStorage"); local HttpService=game:GetService("HttpService"); local player=Players.LocalPlayer; local playerGui=player:WaitForChild("PlayerGui")
-	local kit=ReplicatedStorage:WaitForChild("NeoTokyoRacers"); local uiFolder=script.Parent; local WorkspaceUI=require(uiFolder:WaitForChild("GarageWorkspaceController")); local Shared=require(uiFolder:WaitForChild("GarageReplacementComponents")); local UI=require(kit.Shared.Modules.UI:WaitForChild("RacingUIComponents")); local remote=kit.Shared.Remotes.Garage:WaitForChild("OwnedGarageInvoke"); local push=kit.Shared.Remotes.Garage:WaitForChild("OwnedGarageEvent"); local openEvent=uiFolder:WaitForChild("OpenOwnedGarageWorkspace"); local cfg=kit.Config.Runtime:WaitForChild("OwnedGarage_EditAttributes"); local replacement=kit.Config.UI:WaitForChild("GarageReplacement"); local navIcons=replacement:WaitForChild("NavigationIcons"); local icons=replacement:WaitForChild("OwnedGarageIcons")
+	local kit=ReplicatedStorage:WaitForChild("NeoTokyoRacers"); local AudioBridge=require(kit.Shared.Modules.Client.Audio:WaitForChild("PresentationAudioBridge")); local uiFolder=script.Parent; local WorkspaceUI=require(uiFolder:WaitForChild("GarageWorkspaceController")); local Shared=require(uiFolder:WaitForChild("GarageReplacementComponents")); local UI=require(kit.Shared.Modules.UI:WaitForChild("RacingUIComponents")); local remote=kit.Shared.Remotes.Garage:WaitForChild("OwnedGarageInvoke"); local push=kit.Shared.Remotes.Garage:WaitForChild("OwnedGarageEvent"); local openEvent=uiFolder:WaitForChild("OpenOwnedGarageWorkspace"); local cfg=kit.Config.Runtime:WaitForChild("OwnedGarage_EditAttributes"); local replacement=kit.Config.UI:WaitForChild("GarageReplacement"); local navIcons=replacement:WaitForChild("NavigationIcons"); local icons=replacement:WaitForChild("OwnedGarageIcons")
 	local workspace=WorkspaceUI.new(); workspace.Root.Name="OwnedGarageCanonicalWorkspace"
 	local state; local page="Home"; local selectedSlot; local selectedVehicle; local selectedSection="FrontWall"; local selectedStyle; local selectedChannel="Primary"; local selectedDecorationCategory; local selectedDecorationAnchor; local selectedDecorationItem; local pendingStructureColors; local pendingStructureMaterials; local pendingDecorationColors; local pendingLightingColors; local selectedLightingPreset; local selectedLightingIntensity; local selectedInviteUserId; local previewReady=false; local previewGeneration=0; local busy=false; local refreshRunning=false; local queuedRevision; local generation=0; local modal
 	local tierColours={E=Color3.fromRGB(132,142,145),D=Color3.fromRGB(105,190,129),C=Color3.fromRGB(74,204,211),B=Color3.fromRGB(82,137,235),A=Color3.fromRGB(244,188,65),S=Color3.fromRGB(236,92,168)}
@@ -65,6 +67,11 @@ function Controller.Start()
 	local render
 	local function operate(action,args,nextPage,expectedSlotId,expectedVehicleId,successMessage,quietSuccess)
 		if busy then return end; args=type(args)=="table" and args or {}; args.BaseRevision=state and state.Revision or nil; args.RequestId=HttpService:GenerateGUID(false); busy=true; workspace:Message("SAVING GARAGE..."); local result=request(action,args); busy=false
+		local audioKind
+		if action=="AssignDisplay" then audioKind=result.Success==true and "VehiclePurchase" or "Equip"
+		elseif action=="ConfigureStructure" then audioKind=args.Action=="Purchase" and "StructurePurchase" or (args.Action=="Equip" and "StructureEquip" or nil)
+		elseif action=="ConfigureDecoration" then audioKind=args.Action=="Purchase" and "DecorationPurchase" or (args.Action=="Place" and "DecorationEquip" or nil) end
+		if audioKind then AudioBridge.Result(audioKind,result,{Action=action}) end
 		if not result.Success then if result.Conflict then local token=generation; if refresh(token) then render(true) end end; workspace:Message(result.Message or "Garage update failed."); return end
 		local committedState=type(result.ManagementState)=="table" and result.ManagementState or nil
 		if expectedSlotId and expectedVehicleId then
@@ -134,7 +141,7 @@ function Controller.Start()
 	end
 	local function context(subtitle,cards)
 		local sharedZoom=categoryCardImageZoom(); for _,card in ipairs(cards or {}) do if card.CardKind==nil and card.Image and card.ImageZoom==nil then card.ImageZoom=sharedZoom end end
-		local item=property(); local home=page=="Home"; return {Title="GARAGE MANAGEMENT",Subtitle=subtitle,ShowLeft=not home,LeftItems=home and {} or tabs(),LeftFloating=true,LeftCardMode=true,LeftSharedCardSize=true,LeftAlignCarouselBottom=true,Cards=cards,Cash=state and state.Cash or 0,CapacityText=tostring(item and item.Filled or 0).."/"..tostring(item and item.Capacity or 0).." DISPLAY SPACES",CapacityIcon=namedIcon("EconomyCapacity"),ShowStats=false,ShowCashPlus=true,ShowCapacityPlus=false,NextVisible=false,ExitVisible=true,ExitText="EXIT",ExitIcon=navIcon("Exit"),BackIcon=navIcon("Back"),OnExit=close,CarouselScrollKey="OwnedGarage:"..page,CategoryScrollKey=railScrollKey(),RuntimeAudit=false,ExitBelowEconomy=true}
+		local item=property(); local home=page=="Home"; local tutorialPage=page=="Home" and "GarageHome" or page=="DisplaySpaces" and "DisplayCars" or (page=="Build" or page=="Style") and "GarageAssetFamilies" or page=="BuildStructure" and "BuildStructure" or page=="BuildDecorations" and "BuildDecorations" or ""; return {TutorialPageId=tutorialPage,Title="GARAGE MANAGEMENT" --[[NTR_ONBOARDING_V1_3_OWNED_GARAGE_PAGE_SEMANTICS]],Subtitle=subtitle,ShowLeft=not home,LeftItems=home and {} or tabs(),LeftFloating=true,LeftCardMode=true,LeftSharedCardSize=true,LeftAlignCarouselBottom=true,Cards=cards,Cash=state and state.Cash or 0,CapacityText=tostring(item and item.Filled or 0).."/"..tostring(item and item.Capacity or 0).." DISPLAY SPACES",CapacityIcon=namedIcon("EconomyCapacity"),ShowStats=false,ShowCashPlus=true,ShowCapacityPlus=false,NextVisible=false,ExitVisible=true,ExitText="EXIT",ExitIcon=navIcon("Exit"),BackIcon=navIcon("Back"),OnExit=close,CarouselScrollKey="OwnedGarage:"..page,CategoryScrollKey=railScrollKey(),RuntimeAudit=false,ExitBelowEconomy=true}
 	end
 	render=function(full)
 		if not state then return end; local cards={}; local view

@@ -1,5 +1,11 @@
 # VFX System
 
+## Multiplayer runtime state V1 confirmed
+
+`CachedThrustVisualRuntime` remains the only live vehicle VFX attachment owner. Local vehicles keep immediate driving attributes; remote vehicles consume existing server-validated replicated `NTRAudioIgnition`, `NTRAudioDrive`, `NTRAudioDrift` and `NTRAudioBoost` state.
+
+The existing race VFX gate remains the final visibility decision, so same-race participants may see each other while race/free-roam and separate sessions remain isolated. Semantic replication remains active when audible playback is disabled; no second remote or VFX owner is created. The user confirmed the complete V1.1 vehicle scope working and requested handoff. Its source remains present in the complete `2026-07-26 19:03:42` mirror; exit/coast lifecycle does not alter this VFX contract.
+
 ## Paint Shop neon and underglow boundary
 
 Customisation Three Workshop V1 adds no VFX owner or physical underbody effect. Module Neon preview continues through `PreviewNeonSlot` and the existing paint/preview runtime; saved/runtime visibility continues to use each module instance's `NeonOwned` state and its authored `NEON_OptionalLights` descendants. The Paint Shop `Underglow` target is the existing bulk module-Neon colour editor. Thrust preview continues to use the current `ThrustColour` preview mode.
@@ -153,6 +159,49 @@ Verification:
 Do not rerun:
 
 - The previous late-socket/rescan/rebuild repair ladder is retained only in Git history if committed. Do not treat it as the active repair path unless deliberately reproducing the failed experiment.
+
+## Onboarding Guide Trail V1.12
+
+The onboarding installer keeps one reusable local renderer, `OnboardingGuideTrailRenderer`. It reuses the original outer aura/core beam style, adds an optional wrapped textured chevron Beam and colours all layers with tutorial gold. The legacy intro remains responsible for its desk/entry flow, but its standalone objective and `DynamicArrowTetherEnabled` presentation are disabled so two trail owners cannot overlap.
+
+The onboarding controller chooses the destination and lifecycle:
+
+- before the first successful vehicle purchase, target `NeoTokyoRacersWorld.Dealership.Intro.Desk.GarageDeskTrigger`;
+- after entering an owned garage for the first time, target the nearest runtime `ManagementDesk.DeskPromptAnchor`;
+- clear immediately after `FirstVehiclePurchased`, after Garage Management opens, during loading, on target loss, or outside the applicable space.
+
+Guide geometry is client-only under `Workspace._NTR_ClientOnly.OnboardingGuideTrail`, is non-collidable/non-queryable and uses `Config.Runtime.Onboarding_EditAttributes.TutorialGold`. With a non-empty `GuideTrailChevronTexture`, the renderer creates three Beams and no physical chevrons by default. With no texture, it automatically creates the original Part arrows as a visible fallback. No saved VFX state, server geometry owner or second RenderStepped trail owner is added.
 ## Owned garage environment lighting override
 
 Owned-garage ambient environment presentation is local. `OwnedGarageEnvironmentLightingController_Active` applies the existing shared `ClearNight` Lighting/effect/Sky preset only while the local player's `NTR_OwnedGarageInside` attribute is true. It coalesces external Lighting/effect/Sky changes so development preview keys or a city-stage transition cannot leave the interior on a different preset. It does not publish or modify the city cycle's `NTR_LightingPreset`, `NTR_StreetLightsOn` or `NTR_WindowMode` attributes, and it does not alter the owned garage's custom fixture assets or saved Primary/Secondary colours. The latest valid city preset is reapplied on exit so a cycle change during the visit is not reverted.
+
+## Onboarding Guide Trail Tuning
+
+The onboarding dealership and owned-garage guide uses the isolated `OnboardingGuideTrailRenderer` but exposes normal visual tuning through attributes on:
+
+`ReplicatedStorage.NeoTokyoRacers.Config.Runtime.Onboarding_EditAttributes`
+
+Edit these attributes in Studio's Properties/Attributes panel rather than changing renderer source:
+
+- `TutorialGold`: shared arrow, aura-beam, core-beam and tutorial-border colour.
+- `GuideTrailArrowScale`: overall arrow size.
+- `GuideTrailArrowWidth`, `GuideTrailShaftLength`, `GuideTrailHeadWidth`, `GuideTrailHeadLength`: arrow geometry.
+- `GuideTrailSpacing` and `GuideTrailMaximumArrows`: trail density and upper arrow count.
+- `GuideTrailTransparency`: arrow transparency; higher values are fainter.
+- `GuideTrailHeightOffset`: arrow height and destination beam-end height above the player/ground line.
+- `GuideTrailPulseSpeed`: vertical arrow pulse frequency; `0` disables the pulse.
+- `GuideTrailPulseAmplitude`: vertical pulse travel in studs; `0` also produces fixed arrows.
+- `GuideTrailBeamStartHeightOffset`: beam origin height relative to `HumanoidRootPart`; negative values start lower on the character.
+- `GuideTrailBeamWidth` and `GuideTrailBeamTransparency`: wide outer aura beam.
+- `GuideTrailBeamCoreWidth` and `GuideTrailBeamCoreTransparency`: narrow bright core beam.
+- `GuideTrailChevronTexture`: uploaded transparent, tileable chevron texture. A numeric asset ID or `rbxassetid://` URI is accepted; an empty or malformed value activates the Part-arrow fallback.
+- `GuideTrailChevronTextureSpeed`: texture movement speed from the player-side attachment toward the destination; use a negative value to reverse it.
+- `GuideTrailChevronTextureLength`: distance between texture repeats.
+- `GuideTrailChevronWidth`, `GuideTrailChevronTransparency`, `GuideTrailChevronBrightness` and `GuideTrailChevronZOffset`: textured layer presentation.
+- `GuideTrailChevronBeamEnabled`: enables the textured Beam when a texture exists.
+- `GuideTrailPartArrowsEnabled`: explicitly keeps physical Part arrows visible alongside a configured textured Beam. Default false.
+- `GuideTrailStartOffset` and `GuideTrailEndOffset`: empty distance near the player and destination.
+- `GuideTrailMinimumDistance`: distance at which the entire guide hides.
+- `GuideTrailShaftEnabled` and `GuideTrailBeamEnabled`: independently disable fallback arrow shafts or the beam stack.
+
+The runtime preview objects appear locally under `Workspace._NTR_ClientOnly.OnboardingGuideTrail` during Play. They are regenerated and must not be edited as the source of truth. Restart Play after changing geometry, texture or fallback attributes so the renderer rebuilds the correct instance set.

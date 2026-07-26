@@ -1246,6 +1246,9 @@ local function beginStagedTimeTrial(player, eventId, vehicleId, requestedLapCoun
 			return
 		end
 		live.State = "Running"
+		local onboarding = game:GetService("ServerScriptService").NeoTokyoRacers.Services.Player:FindFirstChild("OnboardingProgress")
+		if onboarding and onboarding:IsA("BindableEvent") then onboarding:Fire(player, "FirstEventEntered") end -- NTR_TIME_TRIAL_ONBOARDING_START_V1
+
 		live.StartClock = os.clock()
 		live.LapStartedClock = live.StartClock
 		live.LastTouchClock = 0

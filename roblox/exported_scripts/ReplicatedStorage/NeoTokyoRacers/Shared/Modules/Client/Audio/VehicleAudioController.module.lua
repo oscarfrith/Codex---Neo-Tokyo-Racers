@@ -1,4 +1,4 @@
--- NTR_AUDIO_VEHICLE_CLIENT_V2_TUNING_CUES
+-- NTR_AUDIO_VEHICLE_CLIENT_V3_PARKED_EXTERNAL
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
@@ -280,6 +280,150 @@ local function playOneShot(state, layerName, managedChannel)
 	return handle
 end
 
+
+
+-- NTR_AUDIO_VEHICLE_CLIENT_V4_RELIABLE_LOCAL_IGNITION
+-- NTR_AUDIO_VEHICLE_CLIENT_V5_CONFIRMED_LOCAL_IGNITION
+-- Local startup is deliberately separate from the replaceable per-vehicle graph:
+-- loading ducking and External -> Internal route rebuilds cannot cut it off.
+local function loadingPresentationActive()
+	local playerScripts = localPlayer:FindFirstChild("PlayerScripts")
+	local client = playerScripts and playerScripts:FindFirstChild("NeoTokyoRacersClient")
+	local controllers = client and client:FindFirstChild("Controllers")
+	local ui = controllers and controllers:FindFirstChild("UI")
+	local state = ui and ui:FindFirstChild("LoadingPresentationState")
+	return state ~= nil and state:GetAttribute("Active") == true
+end
+
+local function cleanupLocalIgnition(state)
+	local handle = state.LocalIgnitionCue
+	state.LocalIgnitionCue = nil
+	state.LocalIgnitionReadyAt = nil
+	if not handle or handle.Cleaned then return end
+	handle.Cleaned = true
+	Bus.Unregister(handle.Fader)
+	for _, item in ipairs(handle.Objects) do
+		if item.Parent then item:Destroy() end
+	end
+end
+
+local function prepareLocalIgnition(state)
+	if state.LocalIgnitionCue or state.LocalIgnitionPlayed then return end
+	local profileId = Catalog.ResolveProfileId(state.Vehicle)
+	local profile = Catalog.GetProfile(profileId)
+	local assetId = profile and profile.Assets.Ignition or ""
+	if not profile or assetId == "" then
+		state.LocalIgnitionPlayed = true
+		return
+	end
+	local player = newPlayer(runtimeRoot, "ReliableLocalIgnitionPlayer", assetId, false, profile.Pitches.Ignition)
+	if not player then state.LocalIgnitionPlayed = true; return end
+	local fader = Instance.new("AudioFader")
+	fader.Name = "ReliableLocalIgnitionFader"
+	fader.Parent = runtimeRoot
+	local firstWire = wire(player, fader, runtimeRoot, "ReliableLocalIgnition_PlayerToFader")
+	local secondWire = wire(fader, deviceOutput, runtimeRoot, "ReliableLocalIgnition_FaderToOutput")
+	local gain = (profile.Gains.Ignition or 0.5) * profile.MasterGain
+		* Catalog.GlobalNumber("LocalDriverGain", 1) * Catalog.GlobalNumber("OneShotMasterGain", 1)
+	Bus.Register("Vehicle", fader, gain)
+	local handle = {
+		Player = player,
+		Fader = fader,
+		Objects = { firstWire, secondWire, player, fader },
+		PreparedAt = os.clock(),
+		Cleaned = false,
+		Played = false,
+		PlayAttempts = 0,
+		LastPlayAttemptAt = nil,
+		LifetimeScheduled = false,
+	}
+	state.LocalIgnitionCue = handle
+	state.LocalIgnitionRequestedAt = handle.PreparedAt
+	player.Ended:Once(function() cleanupLocalIgnition(state) end)
+	if global:GetAttribute("DebugReliableIgnition") == true then
+		print("[NTR Audio] reliable ignition prepared for " .. state.Vehicle:GetFullName())
+	end
+end
+
+local function localIgnitionAssetReady(handle)
+	local ok, ready = pcall(function() return handle.Player.IsReady end)
+	return not ok or ready == true
+end
+
+local function confirmLocalIgnition(state, handle)
+	if state.LocalIgnitionCue ~= handle or handle.Cleaned or not handle.Player.IsPlaying then return false end
+	state.LocalIgnitionPlayed = true
+	state.LocalIgnitionConfirmedAt = os.clock()
+	if global:GetAttribute("DebugReliableIgnition") == true then
+		print("[NTR Audio] reliable ignition playback confirmed for " .. state.Vehicle:GetFullName())
+	end
+	return true
+end
+
+local function updateLocalIgnition(state)
+	if global:GetAttribute("ReliableIgnitionEnabled") == false or state.LocalIgnitionPlayed or state.LocalIgnitionAbandoned then return end
+	if not state.LocalDriver then
+		if state.LocalIgnitionCue and not state.LocalIgnitionCue.Played then cleanupLocalIgnition(state) end
+		return
+	end
+	prepareLocalIgnition(state)
+	local handle = state.LocalIgnitionCue
+	if not handle then return end
+	if confirmLocalIgnition(state, handle) then return end
+	local now = os.clock()
+	if handle.PlayAttempts > 0 then
+		local confirmSeconds = math.max(0.03, Catalog.GlobalNumber("IgnitionPlaybackConfirmSeconds", 0.12))
+		if now - (handle.LastPlayAttemptAt or now) < confirmSeconds then return end
+		local maximumAttempts = math.max(1, math.floor(Catalog.GlobalNumber("IgnitionMaxPlayAttempts", 3)))
+		if handle.PlayAttempts >= maximumAttempts then
+			state.LocalIgnitionAbandoned = true
+			warn(("[NTR Audio] reliable ignition failed to start after %d attempts for %s"):format(handle.PlayAttempts, state.Vehicle:GetFullName()))
+			cleanupLocalIgnition(state)
+			return
+		end
+		local retryDelay = math.max(0, Catalog.GlobalNumber("IgnitionRetryDelaySeconds", 0.1))
+		if now - (handle.LastPlayAttemptAt or now) < retryDelay then return end
+	else
+		if loadingPresentationActive() then
+			state.LocalIgnitionReadyAt = nil
+			return
+		end
+		local graphStable = state.Graph and state.Graph.Route == "Internal" and state.Route == "Internal"
+		local timeout = math.max(0.25, Catalog.GlobalNumber("IgnitionReadinessTimeoutSeconds", 8))
+		if not graphStable and now - (state.LocalIgnitionRequestedAt or now) < timeout then return end
+		if not state.LocalIgnitionReadyAt then
+			state.LocalIgnitionReadyAt = now
+			return
+		end
+		local delaySeconds = math.max(0, Catalog.GlobalNumber("IgnitionAfterReadyDelaySeconds", 0.15))
+		if now - state.LocalIgnitionReadyAt < delaySeconds then return end
+		local warmTimeout = math.max(0, Catalog.GlobalNumber("IgnitionAssetWarmTimeoutSeconds", 2))
+		if not localIgnitionAssetReady(handle) and now - handle.PreparedAt < warmTimeout then return end
+	end
+	handle.PlayAttempts += 1
+	handle.LastPlayAttemptAt = now
+	handle.Played = true
+	local ok, problem = pcall(function() handle.Player:Play() end)
+	if not ok and global:GetAttribute("DebugReliableIgnition") == true then warn("[NTR Audio] ignition Play failed: " .. tostring(problem)) end
+	if not handle.LifetimeScheduled then
+		handle.LifetimeScheduled = true
+		task.delay(math.max(2, Catalog.GlobalNumber("OneShotMaxLifetimeSeconds", 12)), function()
+			if state.LocalIgnitionCue == handle then cleanupLocalIgnition(state) end
+		end)
+	end
+	task.defer(function() confirmLocalIgnition(state, handle) end)
+	if global:GetAttribute("DebugReliableIgnition") == true then
+		print(("[NTR Audio] reliable ignition play requested attempt %d for %s"):format(handle.PlayAttempts, state.Vehicle:GetFullName()))
+	end
+end
+
+local function holdLocalEngineLoopsForIgnition(state)
+	if not state.LocalDriver or global:GetAttribute("ReliableIgnitionEnabled") == false or state.LocalIgnitionAbandoned then return false end
+	if not state.LocalIgnitionPlayed then return true end
+	local lead = math.max(0, Catalog.GlobalNumber("IgnitionToIdleLeadSeconds", 0.15))
+	return state.LocalIgnitionConfirmedAt ~= nil and os.clock() - state.LocalIgnitionConfirmedAt < lead
+end
+
 local function semanticState(vehicle, localDriver)
 	if localDriver then
 		local accelerating = vehicle:GetAttribute("Accelerating") == true
@@ -479,6 +623,14 @@ local function updateGraph(state, dt)
 	local accelerating = semantic.Drive == "Accelerating"
 	local coasting = running and not accelerating and speedMph >= Catalog.GlobalNumber("CoastStartMph", 8)
 	local drifting = semantic.Drift ~= "None"
+	local seat = seatFor(state.Vehicle)
+	local unoccupied = not (seat and seat.Occupant ~= nil)
+	local exitedPresentation = running and unoccupied
+	local parkedAudioEnabled = Catalog.GlobalBool("ParkedVehicleAudioEnabled", true)
+	local exitCoasting = exitedPresentation and parkedAudioEnabled
+		and Catalog.GlobalBool("ExitCoastAudioEnabled", true)
+		and state.Vehicle:GetAttribute("NTR_ExitCoasting") == true
+	local parked = exitedPresentation and parkedAudioEnabled and not exitCoasting
 	if drifting then state.DriftElapsed = (state.DriftElapsed or 0) + dt else state.DriftElapsed = 0 end
 	local driftStart = Catalog.GlobalNumber("DriftLoopStartGainMultiplier", 0.15)
 	local driftRamp = rangeAlpha(state.DriftElapsed, Catalog.GlobalNumber("DriftRampDelaySeconds", 0.1), Catalog.GlobalNumber("DriftRampFullSeconds", 2.5))
@@ -486,16 +638,38 @@ local function updateGraph(state, dt)
 	local driftGainMultiplier = driftStart + (1 - driftStart) * driftRamp
 	local gains = graph.Profile.Gains
 	local mix = routeMultiplier(graph, false)
-	setTarget(graph, "Idle", running and gains.Idle * (1 - idleAlpha * 0.75) * mix or 0)
-	setTarget(graph, "EngineLow", running and gains.EngineLow * lowShape * mix or 0)
-	setTarget(graph, "EngineHigh", running and gains.EngineHigh * highAlpha * mix or 0)
-	setTarget(graph, "Acceleration", accelerating and gains.Acceleration * mix or 0)
-	setTarget(graph, "Coast", coasting and gains.Coast * rangeAlpha(speedMph, Catalog.GlobalNumber("CoastStartMph", 8), Catalog.GlobalNumber("CoastFullGainMph", 50)) * mix or 0)
-	setTarget(graph, "DriftLoop", drifting and gains.DriftLoop * driftGainMultiplier * mix or 0)
-	setTarget(graph, "BoostLoop", boosting and gains.BoostLoop * mix or 0)
+	local coastAlpha = rangeAlpha(speedMph, Catalog.GlobalNumber("CoastStartMph", 8), Catalog.GlobalNumber("CoastFullGainMph", 50))
+	local idleTarget = running and gains.Idle * (1 - idleAlpha * 0.75) * mix or 0
+	local engineLowTarget = running and gains.EngineLow * lowShape * mix or 0
+	local engineHighTarget = running and gains.EngineHigh * highAlpha * mix or 0
+	local coastTarget = coasting and gains.Coast * coastAlpha * mix or 0
+	if exitedPresentation and not parkedAudioEnabled then
+		idleTarget, engineLowTarget, engineHighTarget, coastTarget = 0, 0, 0, 0
+	elseif exitCoasting then
+		local coastMix = Catalog.GlobalNumber("ExitCoastGainMultiplier", 1)
+		idleTarget = gains.Idle * (1 - idleAlpha * 0.75) * Catalog.GlobalNumber("ExitCoastIdleGainMultiplier", 0.25) * coastMix * mix
+		engineLowTarget = gains.EngineLow * lowShape * Catalog.GlobalNumber("ExitCoastEngineLowGainMultiplier", 0.45) * coastMix * mix
+		engineHighTarget = Catalog.GlobalBool("ExitCoastSuppressEngineHigh", true) and 0 or (gains.EngineHigh * highAlpha * coastMix * mix)
+		coastTarget = gains.Coast * coastAlpha * coastMix * mix
+	elseif parked then
+		idleTarget = gains.Idle * Catalog.GlobalNumber("ParkedIdleGainMultiplier", 0.75) * mix
+		engineLowTarget = gains.EngineLow * Catalog.GlobalNumber("ParkedEngineLowGainMultiplier", 0.35) * mix
+		engineHighTarget, coastTarget = 0, 0
+	end
+	if holdLocalEngineLoopsForIgnition(state) then
+		idleTarget, engineLowTarget, engineHighTarget, coastTarget = 0, 0, 0, 0
+	end
+	setTarget(graph, "Idle", idleTarget)
+	setTarget(graph, "EngineLow", engineLowTarget)
+	setTarget(graph, "EngineHigh", engineHighTarget)
+	setTarget(graph, "Acceleration", exitedPresentation and 0 or (accelerating and gains.Acceleration * mix or 0))
+	setTarget(graph, "Coast", coastTarget)
+	setTarget(graph, "DriftLoop", exitedPresentation and 0 or (drifting and gains.DriftLoop * driftGainMultiplier * mix or 0))
+	setTarget(graph, "BoostLoop", exitedPresentation and 0 or (boosting and gains.BoostLoop * mix or 0))
 	setTarget(graph, "DriverWind", state.LocalDriver and gains.DriverWind * rangeAlpha(speedMph, Catalog.GlobalNumber("WindStartMph", 18), Catalog.GlobalNumber("WindFullGainMph", 128)) * mix or 0)
 	for layerName, layer in pairs(graph.Layers) do
-		local seconds = fadeSeconds(layerName, layer.Target > layer.Gain)
+		local rising = layer.Target > layer.Gain
+		local seconds = exitedPresentation and Catalog.GlobalNumber(rising and "ParkedFadeInSeconds" or "ParkedFadeOutSeconds", rising and 0.2 or 0.3) or fadeSeconds(layerName, rising)
 		local alpha = 1 - math.exp(-dt / seconds)
 		layer.Gain += (layer.Target - layer.Gain) * alpha
 		Bus.SetGain(layer.Fader, layer.Gain)
@@ -522,7 +696,7 @@ local function updateGraph(state, dt)
 	if remoteBoostCue then playOneShot(state, remoteBoostCue, "BoostTransient") end
 	if remoteAccelerationCue then playOneShot(state, remoteAccelerationCue, "AccelerationTransient") end
 	if previous then
-		if previous.Ignition ~= semantic.Ignition then
+		if previous.Ignition ~= semantic.Ignition and not state.LocalDriver then
 			if semantic.Ignition == "Running" then playOneShot(state, "Ignition") elseif semantic.Ignition == "Off" then playOneShot(state, "Shutdown") end
 		end
 		if previous.Drift == "None" and semantic.Drift ~= "None" then playOneShot(state, "DriftEnter") end
@@ -531,15 +705,17 @@ local function updateGraph(state, dt)
 			if not boostCue and not state.SuppressNextBoostRelease then playOneShot(state, "BoostRelease", "BoostTransient") end
 			state.SuppressNextBoostRelease = false
 		end
-	elseif semantic.Ignition == "Running" then
+	elseif semantic.Ignition == "Running" and tonumber(state.Vehicle:GetAttribute("OwnerUserId")) ~= localPlayer.UserId then
 		playOneShot(state, "Ignition")
 	end
+	updateLocalIgnition(state)
 	state.LastSemantic = semantic
 end
 
 local function cleanupVehicle(vehicle)
 	local state = tracked[vehicle]
 	if not state then return end
+	cleanupLocalIgnition(state)
 	destroyGraph(state)
 	for _, connection in ipairs(state.Connections) do connection:Disconnect() end
 	tracked[vehicle] = nil
@@ -568,7 +744,12 @@ local function refreshPriorities()
 	for vehicle, state in pairs(tracked) do
 		if not vehicle.Parent then cleanupVehicle(vehicle) continue end
 		local localDriver = isLocalDriver(vehicle)
+		local wasLocalDriver = state.LocalDriver
 		state.LocalDriver = localDriver
+		if wasLocalDriver and not localDriver and Catalog.GlobalBool("ReplayIgnitionOnRunningVehicleReentry", false) then
+			cleanupLocalIgnition(state)
+			state.LocalIgnitionPlayed = false
+		end
 		if localDriver then
 			state.NextTier = "Detailed"
 			state.NextRoute = "Internal"
@@ -628,7 +809,16 @@ function Controller.Start()
 		if priorityAccumulator >= priorityInterval then priorityAccumulator = 0; refreshPriorities() end
 		if updateAccumulator >= updateInterval then
 			local step = updateAccumulator; updateAccumulator = 0
-			for _, state in pairs(tracked) do updateGraph(state, step) end
+			for _, state in pairs(tracked) do
+				if state.Graph then
+					updateGraph(state, step)
+				elseif state.LocalDriver then
+					-- NTR_VEHICLE_PRESENTATION_STATE_TRANSPORT_V1
+					-- Keep validated semantic state replication alive when audio
+					-- playback is disabled or this vehicle has a silent graph.
+					publishLocalState(state, semanticState(state.Vehicle, true), nil)
+				end
+			end
 		end
 	end)
 	debugLog("VehicleAudioController started")
