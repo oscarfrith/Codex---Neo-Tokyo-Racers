@@ -1,3 +1,5 @@
+-- NTR_SHARED_VEHICLE_CARD_SYSTEM_V1_1
+-- NTR_SHARED_VEHICLE_CARD_SYSTEM_V1
 -- NTR_SHARED_RESPONSIVE_UI_FOUNDATION_V1_1
 -- NTR_UI_PERFORMANCE_HARDENING_PHASE1_V1
 -- NTR_OWNED_GARAGE_PHASE8_HUD_POLICY
@@ -21,6 +23,7 @@ local playerGui = player:WaitForChild("PlayerGui")
 local kit = ReplicatedStorage:WaitForChild("NeoTokyoRacers")
 local SharedUI = require(kit.Shared.Modules.UI:WaitForChild("RacingUIComponents"))
 local Foundation = require(kit.Shared.Modules.UI:WaitForChild("ResponsiveUIFoundation"))
+local VehicleCards = require(script.Parent:WaitForChild("GarageReplacementComponents"))
 local config = kit:WaitForChild("Config"):WaitForChild("UI"):WaitForChild("DesktopFreeRoamHud")
 local racingPerformanceConfig = kit:WaitForChild("Config"):WaitForChild("Racing"):WaitForChild("PresentationPerformance")
 local colours = config:WaitForChild("Colours")
@@ -629,43 +632,14 @@ end
 
 local renderCars
 
-local function makeCarCard(parent, row, order)
-	local card, cardStroke = button(parent, "VehicleCard", "", UDim2.fromOffset(220, 194), UDim2.fromOffset(0, 0), C("Panel"), row.Selected and C("Telemetry") or C("Outline"))
-	card.LayoutOrder = order
-	card:SetAttribute("VehicleId", row.VehicleId)
-	cardStroke.Thickness = row.Selected and 2.2 or 1.3
-	if row.Image ~= "" then
-		new("ImageLabel", { Name = "Image", BackgroundTransparency = 1, BorderSizePixel = 0, Image = row.Image, ScaleType = Enum.ScaleType.Fit, Position = UDim2.fromOffset(12, 28), Size = UDim2.new(1, -24, 1, -78), ZIndex = card.ZIndex + 2 }, card)
-	else
-		label(card, "Fallback", "HOVERCAR", UDim2.new(1, -24, 1, -78), UDim2.fromOffset(12, 28), T("Body", 14), C("Muted"), Enum.TextXAlignment.Center)
-	end
-	local badge = label(card, "Badge", string.format("%s  %d", row.Tier, math.floor(row.Rating)), UDim2.fromOffset(92, 30), UDim2.new(1, -102, 0, 10), T("Caption", 11), C("Text"), Enum.TextXAlignment.Center)
-	badge.BackgroundColor3 = tierColor(row.Tier)
-	badge.BackgroundTransparency = 0.04
-	badge.ZIndex = card.ZIndex + 4
-	corner(badge, 5)
-	local nameLabel = label(card, "Name", row.Name, UDim2.new(1, -18, 0, 48), UDim2.new(0, 9, 1, -54), T("Body", 14), C("Text"), Enum.TextXAlignment.Center)
-	nameLabel.TextWrapped = true
-	nameLabel.ZIndex = card.ZIndex + 3
+local function makeCarCard(parent,row,order)
+	local card=VehicleCards.VehicleCard(parent,{Name="Vehicle_"..row.VehicleId,DisplayName=row.Name,Image=row.Image,Rating=string.format("%s  %d",row.Tier,math.floor(row.Rating)),RatingColor=tierColor(row.Tier),Selected=row.Selected,Owned=true,SemanticState="Owned",RatingScale=1.5,Size=UDim2.fromOffset(220,194)})
+	card.LayoutOrder=order; card:SetAttribute("VehicleId",row.VehicleId)
 	card.Activated:Connect(function()
-		if busy then return end
-		busy = true
-		showToast("SPAWNING VEHICLE...", true)
-		local result = callGarage("SpawnOwnedVehicleFromFreeRoam", { VehicleId = row.VehicleId, CockpitId = row.CockpitId })
-		if result.Success == true then
-			cachedProfile = result.Profile or cachedProfile
-			lastProfileRead = 0
-			fireUiEvent("FreeRoamVehicleSpawned")
-			carPanel.Visible = false
-			leftCluster.Visible = true
-			cachedInitial = nil
-			cachedProfile = nil
-			cachedCatalog = nil
-			showToast("VEHICLE SPAWNED", true)
-		else
-			showToast(result.Message or result.Error or "VEHICLE SPAWN FAILED", false)
-		end
-		busy = false
+		if busy then return end; busy=true; showToast("SPAWNING VEHICLE...",true)
+		local result=callGarage("SpawnOwnedVehicleFromFreeRoam",{VehicleId=row.VehicleId,CockpitId=row.CockpitId})
+		if result.Success==true then cachedProfile=result.Profile or cachedProfile; lastProfileRead=0; fireUiEvent("FreeRoamVehicleSpawned"); carPanel.Visible=false; leftCluster.Visible=true; cachedInitial=nil; cachedProfile=nil; cachedCatalog=nil; showToast("VEHICLE SPAWNED",true) else showToast(result.Message or result.Error or "VEHICLE SPAWN FAILED",false) end
+		busy=false
 	end)
 end
 
@@ -690,12 +664,8 @@ renderCars = function()
 		end
 		return a.Name < b.Name
 	end)
-	local buyMore = button(carContent, "BuyMore", "", UDim2.fromOffset(220, 194), UDim2.fromOffset(0, 0), C("Panel"), C("Outline"))
-	buyMore.LayoutOrder = 1
-	local plusLabel = label(buyMore, "PlusMark", "+", UDim2.new(1, 0, 0, 82), UDim2.fromOffset(0, 30), 36, C("Telemetry"), Enum.TextXAlignment.Center)
-	plusLabel.ZIndex = buyMore.ZIndex + 3
-	local buyLabel = label(buyMore, "Name", "BUY MORE", UDim2.new(1, -18, 0, 42), UDim2.new(0, 9, 1, -54), 15, C("Text"), Enum.TextXAlignment.Center)
-	buyLabel.ZIndex = buyMore.ZIndex + 3
+	local buyMore=VehicleCards.VehicleCard(carContent,{Name="BuyMore",DisplayName="BUY MORE",SemanticState="Empty",EmptyPlus=true,Size=UDim2.fromOffset(220,194)})
+	buyMore.LayoutOrder=1
 	buyMore.Activated:Connect(function() showSharedTeleportConfirmation() end)
 	for index, row in ipairs(filtered) do makeCarCard(carContent, row, index + 1) end
 	task.defer(function()
@@ -713,7 +683,7 @@ renderCars = function()
 end
 
 local function buildCarPanel()
-	carPanel = panel(root, "CarPanel", UDim2.fromOffset(L("CarPanelWidth", 500), 900), UDim2.fromOffset(L("EdgeMargin", 20), L("CarPanelTop", 88)), Vector2.zero, 12)
+	carPanel = new("Frame", { Name="CarPanel", BackgroundTransparency=1, BorderSizePixel=0, Size=UDim2.fromOffset(L("CarPanelWidth",500),900), Position=UDim2.fromOffset(L("EdgeMargin",20),L("CarPanelTop",88)), ZIndex=12 }, root)
 	carPanel.Visible = false
 	label(carPanel, "Title", "MY VEHICLES", UDim2.new(1, -36, 0, 46), UDim2.fromOffset(18, 10), T("Heading", 22), C("Text"))
 	categoryButton = dropdownButton(carPanel, "Category", "CATEGORY")

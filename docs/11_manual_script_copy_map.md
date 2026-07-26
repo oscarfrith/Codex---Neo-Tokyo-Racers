@@ -4,6 +4,16 @@
 **Status:** Current script mirror folders created  
 **Current mirror root:** `roblox/exported_scripts`
 
+## Shared Vehicle Card System V1.2
+
+V1.1 was user-confirmed and fully mirrored at `2026-07-26 22:27:01/02`. The same canonical installer now contains the V1.2 mobile refinement. Run the complete contents of:
+
+```text
+scripts/roblox_shared_vehicle_card_system_v1.lua
+```
+
+once in the Edit-mode Command Bar with `MODE="INSTALL"`. Require `[NTR Shared Vehicle Cards V1.2] INSTALL PASS`, complete the focused mobile/desktop checks in `docs/shared-vehicle-card-system-v1.md`, then refresh the full mirror. Do not create a separate mobile controller or card renderer.
+
 ## Shared Responsive UI Foundation V1.1
 
 V1.1 is installed, user-confirmed and fully source-mirrored at `2026-07-26 21:28:23`. No Studio command is pending for ordinary use. Retain the complete contents of:

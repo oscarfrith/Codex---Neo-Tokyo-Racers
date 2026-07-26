@@ -1,5 +1,17 @@
 # Customisation UI
 
+## Shared vehicle-card system V1.1 confirmed; V1.2 generated (2026-07-26)
+
+`scripts/roblox_shared_vehicle_card_system_v1.lua` makes `GarageReplacementComponents.VehicleCard` the canonical renderer called by Dealership, Customisation, desktop/touch free-roam, Race and Time Trial.
+
+The renderer owns vehicle artwork, name, tier/rating, selected/focused/owned/unavailable/empty semantics and an optional Dealership purchase footer. Only Dealership passes the purchase contract and current replicated authoritative Cash. V1.1 places a left-aligned name and right-aligned bold green/red price on one footer baseline, with no price box; Customisation and owned-only pickers retain centered names and omit prices.
+
+V1.1 adds a Dealership-only two-decimal millions formatter, full grouped garage Cash, larger bold Cash/Spaces, shared stroke-safe edge-to-edge artwork/footer geometry and responsive owned-picker rating scale. The existing compact formatter remains unchanged for narrow HUDs and other consumers.
+
+Dealership factory preview, Customisation saved-owned preview, free-roam spawn, race selection/start, suppression and input release remain with their existing owners. No bootstrap, server, persistence, remote, VFX or unrelated page changes. V1.1 was confirmed and mirrored at `22:27:01/02`.
+
+V1.2 changes only the shared garage browser's responsive presentation. PC Cash/Spaces retain `17/16`; touch/mobile use `11/10`. Mobile Dealership popups omit the truncating price and show `BUY`/`BUY ANOTHER`, while PC retains its price. Customisation still shows `CUSTOMISE`, and the callback remains the existing authoritative primary action. See `docs/shared-vehicle-card-system-v1.md`.
+
 ## Shared Responsive UI Foundation V1.1 confirmed and handed off (2026-07-26)
 
 The generated `scripts/roblox_shared_responsive_ui_foundation_v1.lua` extends the existing `RacingUIComponents` -> `GarageReplacementComponents` -> canonical workspace/browser chain. It does not create page-specific dealership, Customisation or owned-garage visuals.

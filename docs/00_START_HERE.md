@@ -1,5 +1,16 @@
 # Neo Tokyo Racers Project Context
 
+## 2026-07-26 shared vehicle-card system V1.1 confirmed/mirrored; V1.2 generated
+
+- The user confirmed V1.1 working well. The complete `2026-07-26 22:27:01/02` mirror has 189 mutually matching exported-script, source-manifest and checksum entries and all five V1.1 owners; neither mirror area appears stale for that confirmed baseline.
+- The same source-only canonical installer, `scripts/roblox_shared_vehicle_card_system_v1.lua`, now advances to V1.2 from the exact mirrored `GarageBrowserController`.
+- It promotes `GarageReplacementComponents.VehicleCard` as the one renderer for Dealership, Customisation, desktop/touch free-roam, Race and Time Trial while existing controllers retain state, action and lifecycle ownership.
+- V1.1 moves Dealership-only price text into the bottom-right footer, left-aligns the Dealership vehicle name, removes the price box, and adds a Dealership-only two-decimal millions formatter. Affordability remains event-driven.
+- Garage/dealership Cash becomes full and grouped; Cash/Spaces become larger and bold. Narrow free-roam Cash remains compact.
+- The same renderer owns stroke-safe edge-to-edge artwork/footer geometry and responsive rating scales for desktop, tablet and phone. Other menus retain centered names and no prices.
+- V1.2 preserves the confirmed PC `17/16` Cash/Spaces sizes, reduces touch/mobile caps to `11/10`, and removes the price only from mobile `BUY`/`BUY ANOTHER` popup copy. Desktop popup prices and purchase actions remain unchanged.
+- V1.2 is not yet installed or confirmed. The `22:27:01/02` V1.1 mirror is the rollback baseline and becomes stale after installation. Bootstrap, shared renderer, remotes, persistence, server actions, VFX, driving and unrelated pages remain untouched. See `docs/shared-vehicle-card-system-v1.md`.
+
 ## 2026-07-26 shared responsive UI foundation V1.1 confirmed and handed off
 
 - `scripts/roblox_shared_responsive_ui_foundation_v1.lua` is the single canonical installer for shared corner semantics, compact money, economy metrics/projection, confirmations and top notifications.

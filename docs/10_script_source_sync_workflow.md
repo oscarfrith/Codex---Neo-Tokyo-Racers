@@ -4,7 +4,7 @@
 **Status:** Local receiver full-snapshot export/import workflow  
 **Purpose:** Capture the current Roblox Studio hierarchy and all script sources into GitHub with minimal manual copying.
 
-**Current scope note (2026-07-26):** the complete `20:46:20` mirror contains confirmed Customisation Refinement V1.1. Its 188 checksum, source-manifest and exported-script entries match, and neither mirror area appears stale. Do not commit `docs/studio-full-export-paste.txt`.
+**Current scope note (2026-07-26):** the complete `22:27:01/02` mirror contains the user-confirmed Shared Vehicle Card V1.1 source. Its 189 checksum, source-manifest and exported-script entries match, all five V1.1 owners are present, and neither mirror area appears stale for that rollback baseline. It will become stale after the generated V1.2 installer is run. Do not commit `docs/studio-full-export-paste.txt`.
 
 ## Why This Exists
 

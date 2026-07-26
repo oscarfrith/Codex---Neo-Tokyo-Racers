@@ -1,3 +1,5 @@
+-- NTR_SHARED_VEHICLE_CARD_SYSTEM_V1_1
+-- NTR_SHARED_VEHICLE_CARD_SYSTEM_V1
 -- NTR_SHARED_RESPONSIVE_UI_FOUNDATION_V1_1
 -- NTR_MOBILE_FREEROAM_UI_PHASE1O_MAJOR_MENU_SUPPRESSION
 -- NTR_OWNED_GARAGE_PHASE8_HUD_POLICY
@@ -16,6 +18,7 @@ local playerGui=player:WaitForChild("PlayerGui")
 local kit=ReplicatedStorage:WaitForChild("NeoTokyoRacers")
 local SharedUI=require(kit.Shared.Modules.UI:WaitForChild("RacingUIComponents"))
 local Foundation=require(kit.Shared.Modules.UI:WaitForChild("ResponsiveUIFoundation"))
+local VehicleCards=require(script.Parent:WaitForChild("GarageReplacementComponents"))
 local config=kit:WaitForChild("Config"):WaitForChild("UI"):WaitForChild("MobileFreeRoamHud")
 local desktop=kit.Config.UI:WaitForChild("DesktopFreeRoamHud")
 local colours=desktop:WaitForChild("Colours")
@@ -133,7 +136,7 @@ local gauge={}; for i=1,16 do local alpha=(i-1)/15; local normalized=(alpha-.5)*
 local exitButton=button(telemetry,"ExitVehicle","EXIT",UDim2.fromOffset(76,30),UDim2.fromOffset(24,111),PINK); exitButton.Visible=false; exitButton.TextSize=9; exitButton.BackgroundTransparency=.48
 
 local carDismiss=new("TextButton",{Name="CarMenuOutsideTap",Text="",AutoButtonColor=false,Active=true,BackgroundTransparency=1,BorderSizePixel=0,Size=UDim2.fromScale(1,1),Visible=false,ZIndex=18},root)
-local carPanel=panel(root,"CarPanel",UDim2.fromOffset(335,620),UDim2.fromOffset(3,84),21); carPanel.Visible=false; local carPanelStroke=carPanel:FindFirstChildOfClass("UIStroke"); if carPanelStroke then carPanelStroke:Destroy() end; surfaceGradient(carPanel,SOFT,DEEP,110); addFacetPattern(carPanel)
+local carPanel=new("Frame",{Name="CarPanel",BackgroundTransparency=1,BorderSizePixel=0,Size=UDim2.fromOffset(335,620),Position=UDim2.fromOffset(3,84),ZIndex=21},root); carPanel.Visible=false
 local function carDropdown(name)
 	local b=button(carPanel,name,"",UDim2.fromOffset(158,28),UDim2.fromOffset(0,0),PINK)
 	styleCarButton(b,PINK_SOFT,1.4,true)
@@ -260,18 +263,16 @@ local function showCarChoices(anchor,options,onPick)
 	for i,option in ipairs(options) do local item=new("TextButton",{Name="Choice"..i,AutoButtonColor=false,BackgroundColor3=PANEL,BackgroundTransparency=.12,BorderSizePixel=0,Size=UDim2.new(1,-8,0,27),Position=UDim2.fromOffset(4,4+(i-1)*31),Text=option,TextColor3=WHITE,TextSize=9,Font=FONT,ZIndex=34},carChoice); corner(item,5); buttonGradient(item); item.Activated:Connect(function() closeCarChoice(); onPick(option) end) end
 end
 local function makeCarCard(row,order)
-	local card=button(carContent,"Vehicle"..order,"",UDim2.fromOffset(92,80),UDim2.fromOffset(0,0),row.Selected and CYAN or PINK); card.LayoutOrder=order; card.BackgroundColor3=row.Selected and Color3.fromRGB(8,42,84) or PANEL; styleCarButton(card,row.Selected and CYAN or PINK,row.Selected and 1.3 or .8,true)
-	local imageY=math.clamp(tonumber(read(config,"CarMenuVehicleImageYOffset",.13)),0,.3); if row.Image~="" then new("ImageLabel",{Name="Image",BackgroundTransparency=1,BorderSizePixel=0,Image=row.Image,ScaleType=Enum.ScaleType.Fit,Position=UDim2.new(.07,0,imageY,0),Size=UDim2.new(.86,0,.59,0),ZIndex=card.ZIndex+1},card) else label(card,"Fallback","HOVERCAR",UDim2.new(1,-6,.57,0),UDim2.new(0,3,imageY+.02,0),5,MUTED,Enum.TextXAlignment.Center) end
-	local badge=label(card,"Badge",row.Tier.."  "..math.floor(row.Rating),UDim2.new(.46,0,0,12),UDim2.new(.52,0,0,3),5,WHITE,Enum.TextXAlignment.Center); badge.BackgroundColor3=tierColor(row.Tier); badge.BackgroundTransparency=.04; corner(badge,3)
-	local name=label(card,"Name",row.Name,UDim2.new(1,-6,.21,0),UDim2.new(0,3,.75,0),5,WHITE,Enum.TextXAlignment.Center); name.TextWrapped=false; name.TextScaled=true; name.TextTruncate=Enum.TextTruncate.None; new("UITextSizeConstraint",{MinTextSize=4,MaxTextSize=6},name)
-	card.Activated:Connect(function() if carBusy then return end; carBusy=true; showToast("SPAWNING VEHICLE...",true); local r=call("SpawnOwnedVehicleFromFreeRoam",{VehicleId=row.VehicleId,CockpitId=row.CockpitId}); if r.Success then profileCache=r.Profile or profileCache; lastProfile=0; fire("FreeRoamVehicleSpawned"); setCarMenuOpen(false); showToast("VEHICLE SPAWNED",true) else showToast(r.Message or r.Error or "SPAWN FAILED",false) end; carBusy=false end)
+	local card=VehicleCards.VehicleCard(carContent,{Name="Vehicle"..order,DisplayName=row.Name,Image=row.Image,Rating=row.Tier.."  "..math.floor(row.Rating),RatingColor=tierColor(row.Tier),Selected=row.Selected,Owned=true,SemanticState="Owned",RatingScale=.75,Size=UDim2.fromOffset(170,150),NameTextSize=9,FallbackTextSize=7})
+	card.LayoutOrder=order
+	card.Activated:Connect(function() if carBusy then return end; carBusy=true; showToast("SPAWNING VEHICLE...",true); local result=call("SpawnOwnedVehicleFromFreeRoam",{VehicleId=row.VehicleId,CockpitId=row.CockpitId}); if result.Success then profileCache=result.Profile or profileCache; lastProfile=0; fire("FreeRoamVehicleSpawned"); setCarMenuOpen(false); showToast("VEHICLE SPAWNED",true) else showToast(result.Message or result.Error or "SPAWN FAILED",false) end; carBusy=false end)
 end
 renderCars=function()
 	for _,item in ipairs(carContent:GetChildren()) do if item~=carGrid then item:Destroy() end end
 	local rows=vehicleRows(); local categoriesSet={ALL=true}; for _,row in ipairs(rows) do categoriesSet[row.Category]=true end
 	local filtered={}; for _,row in ipairs(rows) do if selectedCategory=="ALL" or row.Category==selectedCategory then table.insert(filtered,row) end end
 	table.sort(filtered,function(a,b) if selectedSort=="PRICE" and a.Price~=b.Price then return a.Price<b.Price elseif selectedSort=="A-Z" and a.Name~=b.Name then return a.Name<b.Name elseif selectedSort=="RATING" and a.Rating~=b.Rating then return a.Rating>b.Rating end return a.Name<b.Name end)
-	local buy=button(carContent,"BuyMore","",UDim2.fromOffset(92,80),UDim2.fromOffset(0,0),PINK); buy.LayoutOrder=1; styleCarButton(buy,PINK,.8,true); label(buy,"Plus","+",UDim2.new(1,0,.54,0),UDim2.fromScale(0,.08),14,CYAN,Enum.TextXAlignment.Center); local buyName=label(buy,"Name","BUY MORE",UDim2.new(1,-6,.21,0),UDim2.new(0,3,.75,0),5,WHITE,Enum.TextXAlignment.Center); buyName.TextScaled=true; new("UITextSizeConstraint",{MinTextSize=4,MaxTextSize=6},buyName); buy.Activated:Connect(function() setCarMenuOpen(false); showTeleport() end)
+	local buy=VehicleCards.VehicleCard(carContent,{Name="BuyMore",DisplayName="BUY MORE",SemanticState="Empty",EmptyPlus=true,Size=UDim2.fromOffset(170,150),NameTextSize=9}); buy.LayoutOrder=1; buy.Activated:Connect(function() setCarMenuOpen(false); showTeleport() end)
 	for i,row in ipairs(filtered) do makeCarCard(row,i+1) end
 	local categoryOptions={}; for name in pairs(categoriesSet) do table.insert(categoryOptions,name) end; table.sort(categoryOptions,function(a,b) if a==b then return false elseif a=="ALL" then return true elseif b=="ALL" then return false end return a<b end); carCategory:SetAttribute("Options",table.concat(categoryOptions,"|")); local categoryValue=carCategory:FindFirstChild("Value"); local sortValue=carSort:FindFirstChild("Value"); if categoryValue then categoryValue.Text=selectedCategory end; if sortValue then sortValue.Text=selectedSort end
 	task.defer(function() if carGrid.Parent then local topSafe=tonumber(read(config,"CarMenuCardTopSafePadding",3)); local bottomSafe=tonumber(read(config,"CarMenuCardBottomSafePadding",3)); local h=carGrid.AbsoluteContentSize.Y; carContent.Size=UDim2.new(1,0,0,h); carScroll.CanvasSize=UDim2.fromOffset(0,topSafe+h+bottomSafe) end end)

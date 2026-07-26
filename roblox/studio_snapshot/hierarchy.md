@@ -1,6 +1,6 @@
 # Roblox Studio Hierarchy Snapshot
 
-Generated in Studio: 2026-07-26 21:28:22
+Generated in Studio: 2026-07-26 22:35:11
 Scripts exported: 189
 Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, StarterPlayer, StarterGui, SoundService, Workspace, ServerStorage, Lighting
 
@@ -4723,7 +4723,7 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
           - RaceClient_Active (LocalScript) [script_0131, Disabled, 276 lines]
           - RaceCountdownPresentationController_Active (LocalScript) [script_0132, 60 lines]
           - RaceEntryMenuClient_Active (LocalScript) [script_0133, 98 lines]
-          - RaceEntryPresentationController_Active (LocalScript) [script_0134, 904 lines]
+          - RaceEntryPresentationController_Active (LocalScript) [script_0134, 905 lines]
           - RaceHudExitCleanupClient_Active (LocalScript) [script_0135, 81 lines]
           - RaceParticipantVisibilityClient_Active (LocalScript) [script_0136, 66 lines]
           - RacePersonalBestBoardClient_Active (LocalScript) [script_0137, 310 lines]
@@ -4750,12 +4750,12 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
           - ShowTopNotification (BindableEvent) [1 attrs]
           - LoadingTransitionInvoke (BindableFunction) [1 attrs]
           - LoadingPresentationState (Folder) [5 attrs]
-          - DesktopFreeRoamHudController_Active (LocalScript) [script_0150, 1153 lines, 4 attrs]
+          - DesktopFreeRoamHudController_Active (LocalScript) [script_0150, 1123 lines, 4 attrs]
           - FreeRoamNavController_Active (LocalScript) [script_0151, 3 lines, 3 attrs]
           - FreeRoamVehicleExitButton_Active (LocalScript) [script_0152, 3 lines]
           - GarageExperienceController_Active (LocalScript) [script_0153, Disabled, 206 lines, 3 attrs]
           - LoadingTransitionController_Active (LocalScript) [script_0154, 16 lines, 1 attrs]
-          - MobileFreeRoamHudController_Active (LocalScript) [script_0155, 352 lines, 4 attrs]
+          - MobileFreeRoamHudController_Active (LocalScript) [script_0155, 353 lines, 4 attrs]
           - OnboardingClient_Active (LocalScript) [script_0156, 704 lines, 2 attrs]
           - OwnedGarageClient_Active (LocalScript) [script_0157, 8 lines, 2 attrs]
           - SharedTopNotificationController_Active (LocalScript) [script_0158, 15 lines, 2 attrs]
@@ -4763,12 +4763,12 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
           - ColourPickerController (ModuleScript) [script_0160, 277 lines, 5 attrs]
           - CustomisationUIController (ModuleScript) [script_0161, 127 lines, 5 attrs]
           - DealershipUIController (ModuleScript) [script_0162, 87 lines, 5 attrs]
-          - GarageBrowserController (ModuleScript) [script_0163, 135 lines]
+          - GarageBrowserController (ModuleScript) [script_0163, 141 lines]
           - GarageInteriorModeController (ModuleScript) [script_0164, 62 lines, 7 attrs]
           - GarageInteriorTransitionController (ModuleScript) [script_0165, 14 lines, 3 attrs]
           - GarageModuleCardViewModel (ModuleScript) [script_0166, 61 lines]
           - GaragePropertyMenuController (ModuleScript) [script_0167, 174 lines, 2 attrs]
-          - GarageReplacementComponents (ModuleScript) [script_0168, 288 lines, 4 attrs]
+          - GarageReplacementComponents (ModuleScript) [script_0168, 347 lines, 4 attrs]
           - GarageWorkspaceController (ModuleScript) [script_0169, 285 lines, 6 attrs]
           - ModuleShopUIController (ModuleScript) [script_0170, 698 lines, 10 attrs]
           - NavigationController (ModuleScript) [script_0171, 49 lines, 5 attrs]

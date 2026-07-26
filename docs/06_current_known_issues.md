@@ -1,4 +1,15 @@
 # Current Known Issues
+
+## Shared vehicle-card system V1.1 confirmed/mirrored; V1.2 mobile refinement pending (2026-07-26)
+
+- Closed for V1.1: the user reported the result working well and refreshed the complete `2026-07-26 22:27:01/02` mirror. It has 189 matching exported-script/source-manifest/checksum entries, zero checksum mismatches and all five V1.1 markers.
+- Screenshot review found that the confirmed PC Cash/Spaces sizes are too large on touch/mobile and that the mobile purchase popup truncates its appended price.
+- `scripts/roblox_shared_vehicle_card_system_v1.lua` now contains a V1.2 source-only refinement of the exact mirrored browser: mobile Cash/Spaces caps are `11/10`, while desktop remains `17/16`; mobile popup copy is `BUY`/`BUY ANOTHER`, while desktop retains the price.
+- Pending checks: mobile Cash/Spaces readability, desktop size preservation, mobile popup no-price copy, desktop popup price, purchase action, affordability and repeated open/close.
+- The first V1.1 run stopped during projected compile before mutation: the renderer replacement retained the original `ModuleCard` declaration but also inserted a second unclosed declaration. The same canonical installer now ends the replacement immediately before the one preserved declaration.
+- Its exact guarded source windows are deliberately baseline-specific. If an anchor fails, refresh/inspect live source and repair this canonical installer rather than adding a patch.
+- The `22:27:01/02` mirror is current for confirmed V1.1. After V1.2 installation it is stale until fully refreshed.
+
 ## Shared responsive UI foundation V1.1 confirmed and fully source-mirrored (2026-07-26)
 
 - Closed: the user confirmed V1.1 working and requested handoff. The refreshed `2026-07-26 21:28:23` mirror contains 189 matching exported-script/source-manifest/checksum entries and all 18 V1.1 source owners; neither mirror area appears stale for the confirmed source baseline.

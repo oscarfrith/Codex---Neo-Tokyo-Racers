@@ -1,5 +1,32 @@
 # Patch History
 
+## 2026-07-26 - Shared vehicle-card V1.1 confirmed/mirrored; V1.2 mobile refinement generated
+
+- The user confirmed V1.1 working well and refreshed the complete `22:27:01/02` mirror. All 189 exported sources, manifest entries and checksums match; all five V1.1 owners are present.
+- Screenshot review confirmed that full Cash and Garage Spaces look correct on PC but are oversized on mobile, and that the mobile purchase popup price truncates.
+- Replaced the same canonical installer with a narrow V1.1-to-V1.2 browser upgrade. It preserves PC caps at `17/16`, uses `11/10` on touch/mobile, and retains responsive text constraints.
+- Mobile Dealership popup copy becomes `BUY` or `BUY ANOTHER`; desktop retains its formatted price. Customisation copy and authoritative purchase dispatch are unchanged.
+- The installer exact-checks both live anchors, compiles before its one source assignment, audits all five owners/actions, reruns safely and restores the browser source if committed audit fails.
+
+## 2026-07-26 - Shared vehicle-card V1 confirmed/mirrored; V1.1 refinement generated
+
+- Corrected the first V1.1 projected-compile failure. The shared renderer window accidentally inserted a bare duplicate `ModuleCard` function header before the preserved original, so Studio correctly stopped before assigning any source. The canonical installer now preserves exactly one complete `ModuleCard` declaration.
+- Recorded the user's confirmation that V1 worked and verified the complete `22:14:53/54` mirror: 189 exported sources, manifest entries and checksums match; all five V1 owners are present.
+- Advanced the same canonical installer from that exact installed source, retaining preflight, compile-before-mutation, committed audit, idempotency and transactional rollback.
+- Moved Dealership-only price text to the bottom-right shared footer, left-aligned its vehicle name, removed the coloured price box, and added exact two-decimal millions formatting.
+- Changed the wide garage Cash readout to full grouped money and enlarged/bolded Cash and Garage Spaces. Compact free-roam Cash remains unchanged for phone safety.
+- Added one renderer-owned stroke-safe edge treatment and Fit-mode image zoom, plus semantic rating scales of `1.5x` desktop, `1x` scaled touch/tablet race and `0.75x` compact phone.
+- Other menus retain centered vehicle names and no price. Authority, preview semantics, actions, sorting, queue lock, suppression, input and unrelated systems are unchanged.
+- V1.1 Studio installation, cross-device verification, user confirmation and final full mirror refresh remain pending.
+
+## 2026-07-26 - Shared vehicle-card system V1 generated
+
+- Verified the Chat 1/2 dependency: Shared Responsive UI V1.1 is user-confirmed and fully represented in the `2026-07-26 21:28:23` mirror.
+- Added one source-only canonical installer with confirmed-marker preflight, exact windows, projection compile, transactional assignment, committed audit, idempotency and in-memory rollback.
+- Promoted `GarageReplacementComponents.VehicleCard` as the only active vehicle-card renderer for Dealership/Customisation, desktop/touch free-roam, Race and Time Trial.
+- Added Dealership-only compact price/affordability, transparent free-roam containers and shared empty/unavailable states without changing authoritative actions.
+- No Studio change has been made. Runtime confirmation and full mirror refresh remain pending.
+
 ## 2026-07-26 - Shared responsive UI foundation V1.1 confirmed and handed off
 
 - Confirmed V1 working from the user report and refreshed `21:09:56` mirror.

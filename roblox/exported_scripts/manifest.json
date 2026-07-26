@@ -4027,9 +4027,9 @@
     "class_name": "LocalScript",
     "disabled": false,
     "attributes": {},
-    "source_lines": 904,
-    "source_bytes": 58086,
-    "source_checksum": "480546996",
+    "source_lines": 905,
+    "source_bytes": 57403,
+    "source_checksum": "572392328",
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Racing/RaceEntryPresentationController_Active.client.lua"
   },
   {
@@ -4485,9 +4485,9 @@
         "type": "string"
       }
     },
-    "source_lines": 1153,
-    "source_bytes": 59515,
-    "source_checksum": "725073269",
+    "source_lines": 1123,
+    "source_bytes": 58437,
+    "source_checksum": "925819147",
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/UI/DesktopFreeRoamHudController_Active.client.lua"
   },
   {
@@ -4628,9 +4628,9 @@
         "type": "string"
       }
     },
-    "source_lines": 352,
-    "source_bytes": 45396,
-    "source_checksum": "684280963",
+    "source_lines": 353,
+    "source_bytes": 44278,
+    "source_checksum": "492156757",
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/UI/MobileFreeRoamHudController_Active.client.lua"
   },
   {
@@ -4891,9 +4891,9 @@
     "class_name": "ModuleScript",
     "disabled": false,
     "attributes": {},
-    "source_lines": 135,
-    "source_bytes": 21222,
-    "source_checksum": "498375420",
+    "source_lines": 141,
+    "source_bytes": 22669,
+    "source_checksum": "452579843",
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/UI/GarageBrowserController.module.lua"
   },
   {
@@ -5054,9 +5054,9 @@
         "type": "string"
       }
     },
-    "source_lines": 288,
-    "source_bytes": 40625,
-    "source_checksum": "97659182",
+    "source_lines": 347,
+    "source_bytes": 48401,
+    "source_checksum": "70228507",
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/UI/GarageReplacementComponents.module.lua"
   },
   {

@@ -1,3 +1,5 @@
+-- NTR_SHARED_VEHICLE_CARD_SYSTEM_V1_1
+-- NTR_SHARED_VEHICLE_CARD_SYSTEM_V1
 -- NTR_GARAGE_NAV_SCROLL_ECONOMY_V1
 -- NTR_GARAGE_FLOW_REFINEMENT_V2
 -- NTR_UI_PERFORMANCE_HARDENING_PHASE2_V1
@@ -16,6 +18,13 @@ function M.FormatNumber(value)
 	local numeric=tonumber(value) or 0; local negative=numeric<0; local digits=tostring(math.floor(math.abs(numeric)+.5)); local reversed=string.gsub(string.reverse(digits),"(%d%d%d)","%1,"); local grouped=string.gsub(string.reverse(reversed),"^,",""); return (negative and "-" or "")..grouped
 end
 function M.FormatMoney(value) return Racing.FormatMoney(value) end
+function M.FormatFullMoney(value) return "$"..M.FormatNumber(value) end
+function M.FormatDealershipPrice(value)
+	local amount=math.max(0,tonumber(value) or 0)
+	if amount<1000000 then return M.FormatFullMoney(amount) end
+	local hundredths=math.floor(amount/10000+.5)
+	return string.format("$%d.%02dM",math.floor(hundredths/100),hundredths%100)
+end
 function M.ProjectEconomy(response,fallback) return Racing.ProjectEconomy(response,fallback) end
 function M.EconomyMetric(parent,props) return Racing.MetricLabel(parent,props) end
 function M.ActionButton(parent,props)
@@ -57,6 +66,56 @@ function M.Card(parent,props)
 	if props.Rating then local badge=Instance.new("Frame"); badge.Name="RatingBadge"; badge.AnchorPoint=Vector2.new(1,0); badge.Position=UDim2.new(1,-8,0,8); badge.Size=UDim2.fromOffset(68,21); badge.BackgroundColor3=props.RatingColor or accent; badge.BorderSizePixel=0; badge.ZIndex=card.ZIndex+6; badge.Parent=card; Racing.Corner(badge,4); local t=Racing.Label(badge,{Text=props.Rating,Size=UDim2.fromScale(1,1),TextSize=9,XAlignment=Enum.TextXAlignment.Center}); t.ZIndex=badge.ZIndex+1 end
 	return card
 end
+-- NTR_SHARED_VEHICLE_CARD_RENDERER_V1_1
+function M.RefreshVehicleCardAffordability(card,cash)
+	if not (card and card:GetAttribute("CanonicalVehicleCard")==true) then return false end
+	local plate=card:FindFirstChild("NamePlate"); local priceText=plate and plate:FindFirstChild("PurchasePrice"); if not priceText then return false end
+	local affordable=(tonumber(cash) or 0)>=(tonumber(card:GetAttribute("PurchasePrice")) or 0)
+	local colour=affordable and Racing.Colour("Success",Color3.fromRGB(89,255,102)) or Racing.Colour("Danger",Color3.fromRGB(196,57,75))
+	priceText.TextColor3=colour
+	card:SetAttribute("Affordable",affordable)
+	return true
+end
+function M.RefreshVehicleCardsAffordability(root,cash)
+	local updated=0
+	for _,object in ipairs(root and root:GetDescendants() or {}) do
+		if object:GetAttribute("CanonicalVehicleCard")==true and M.RefreshVehicleCardAffordability(object,cash) then updated+=1 end
+	end
+	return updated
+end
+function M.VehicleCard(parent,props)
+	props=props or {}
+	local state=tostring(props.SemanticState or (props.EmptyPlus and "Empty" or "Owned"))
+	local selected=props.Selected==true
+	local unavailable=state=="Unavailable"
+	local empty=state=="Empty"
+	local telemetry=Racing.Colour("Telemetry",Color3.fromRGB(43,225,218))
+	local accent=selected and telemetry or ((unavailable or empty or props.Muted) and Color3.fromRGB(132,142,145) or Racing.Colour("OutlineSoft",Color3.fromRGB(214,74,175)))
+	local card=Racing.Button(parent,{Name=props.Name or "VehicleCard",Text="",Size=props.Size or UDim2.fromOffset(226,146),Color=selected and Color3.fromRGB(18,45,54) or Racing.Colour("Panel",Color3.fromRGB(15,19,24)),Transparency=empty and .2 or .04,StrokeColor=accent,FocusColor=telemetry,StrokeWidth=selected and Racing.StrokeWidth("Selected") or Racing.StrokeWidth("Structural")})
+	card:SetAttribute("CanonicalGarageCard",true); card:SetAttribute("CanonicalVehicleCard",true); card:SetAttribute("VehicleCardSemanticState",state); card:SetAttribute("VehicleOwned",props.Owned==true); card:SetAttribute("VehicleSelected",selected); card:SetAttribute("VehicleFocused",false)
+	card.ClipsDescendants=false; card.Active=props.Active~=false and not unavailable; card.Selectable=props.Selectable~=false and not unavailable
+	local stroke=card:FindFirstChild("Stroke"); local glow=card:FindFirstChild("GlowStroke")
+	card.SelectionGained:Connect(function() card:SetAttribute("VehicleFocused",true); if stroke then stroke.Color=telemetry; stroke.Transparency=.02 end; if glow then glow.Color=telemetry; glow.Transparency=.7 end end)
+	card.SelectionLost:Connect(function() card:SetAttribute("VehicleFocused",false); if stroke then stroke.Color=accent; stroke.Transparency=.12 end; if glow then glow.Color=accent; glow.Transparency=.82 end end)
+	local surfaceInset=math.max(2,math.ceil(selected and Racing.StrokeWidth("Selected") or Racing.StrokeWidth("Structural")))
+	local holder=Instance.new("Frame"); holder.Name="ImageSlot"; holder.BackgroundTransparency=1; holder.BorderSizePixel=0; holder.ClipsDescendants=true; holder.Position=UDim2.fromOffset(surfaceInset,surfaceInset); holder.Size=UDim2.new(1,-surfaceInset*2,1,-surfaceInset*2); holder.ZIndex=card.ZIndex+2; holder.Parent=card; Racing.Corner(holder,5)
+	local imageZoom=props.ImageZoom or 1.08; local image=Instance.new("ImageLabel"); image.Name="Artwork"; image.BackgroundTransparency=1; image.BorderSizePixel=0; image.AnchorPoint=Vector2.new(.5,.5); image.Position=UDim2.fromScale(.5,.48); image.Size=UDim2.fromScale(imageZoom,imageZoom); image.ScaleType=props.ImageScaleType or Enum.ScaleType.Fit; image.Image=props.Image or ""; image.ZIndex=holder.ZIndex+1; image.Parent=holder
+	if image.Image=="" and not empty then local fallback=Racing.Label(holder,{Name="ArtworkFallback",Text=string.upper(tostring(props.EmptyText or "HOVERCAR")),Position=UDim2.fromScale(0,.12),Size=UDim2.fromScale(1,.62),TextSize=props.FallbackTextSize or 10,Color=Racing.Colour("Muted"),XAlignment=Enum.TextXAlignment.Center,Role="Heading"}); fallback.ZIndex=holder.ZIndex+1 end
+	local purchaseFooter=props.OfferPurchase==true and props.Price~=nil
+	local plateHeight=math.max(25,tonumber(props.FooterHeight) or 25); local plate=Instance.new("Frame"); plate.Name="NamePlate"; plate.BackgroundColor3=Color3.fromRGB(5,8,12); plate.BackgroundTransparency=.16; plate.BorderSizePixel=0; plate.Position=UDim2.new(0,surfaceInset,1,-surfaceInset-plateHeight); plate.Size=UDim2.new(1,-surfaceInset*2,0,plateHeight); plate.ZIndex=holder.ZIndex+2; plate.Parent=card; Racing.Corner(plate,4)
+	local fade=Instance.new("UIGradient"); fade.Rotation=90; fade.Transparency=NumberSequence.new({NumberSequenceKeypoint.new(0,.46),NumberSequenceKeypoint.new(1,.06)}); fade.Parent=plate
+	local nameTextSize=props.NameTextSize or 12; local name=Racing.Label(plate,{Name="ItemName",Text=string.upper(tostring(props.DisplayName or "")),Position=UDim2.fromOffset(8,1),Size=purchaseFooter and UDim2.new(.58,-10,1,-2) or UDim2.new(1,-16,1,-2),TextSize=nameTextSize,XAlignment=purchaseFooter and Enum.TextXAlignment.Left or Enum.TextXAlignment.Center,Truncate=Enum.TextTruncate.AtEnd,Role="Button"}); name.ZIndex=plate.ZIndex+1
+	if empty then local circle=Instance.new("Frame"); circle.Name="EmptyPlus"; circle.AnchorPoint=Vector2.new(.5,.5); circle.Position=UDim2.fromScale(.5,.43); circle.Size=UDim2.fromScale(.27,.4); circle.BackgroundColor3=Racing.Colour("PanelSoft"); circle.BorderSizePixel=0; circle.ZIndex=card.ZIndex+5; circle.Parent=card; Racing.Corner(circle,29); local plus=Racing.Label(circle,{Text=props.EmptyGlyph or "+",Size=UDim2.fromScale(1,1),TextSize=props.EmptyTextSize or 28,Role="Heading",XAlignment=Enum.TextXAlignment.Center}); plus.ZIndex=circle.ZIndex+1 end
+	if unavailable then local text=Racing.Label(card,{Name="Unavailable",Text=string.upper(tostring(props.UnavailableText or "UNAVAILABLE")),Position=UDim2.fromScale(.08,.39),Size=UDim2.fromScale(.84,.22),TextSize=props.UnavailableTextSize or 11,Color=Color3.fromRGB(163,171,184),XAlignment=Enum.TextXAlignment.Center,Role="Heading"}); text.ZIndex=card.ZIndex+7 end
+	if props.Rating and tostring(props.Rating)~="" then local ratingScale=math.clamp(tonumber(props.RatingScale) or 1,.65,1.5); local badge=Instance.new("Frame"); badge.Name="RatingBadge"; badge.AnchorPoint=Vector2.new(1,0); badge.Position=UDim2.new(1,-surfaceInset-5,0,surfaceInset+5); badge.Size=UDim2.fromOffset(math.floor(68*ratingScale+.5),math.floor(21*ratingScale+.5)); badge.BackgroundColor3=props.RatingColor or accent; badge.BorderSizePixel=0; badge.ZIndex=card.ZIndex+6; badge.Parent=card; Racing.Corner(badge,4); local text=Racing.Label(badge,{Text=tostring(props.Rating),Size=UDim2.fromScale(1,1),TextSize=math.max(7,math.floor(9*ratingScale+.5)),XAlignment=Enum.TextXAlignment.Center,Role="Metric"}); text.ZIndex=badge.ZIndex+1 end
+	if purchaseFooter then
+		local price=math.max(0,tonumber(props.Price) or 0); card:SetAttribute("PurchasePrice",price)
+		local text=Racing.Label(plate,{Name="PurchasePrice",Text=M.FormatDealershipPrice(price),Position=UDim2.new(.58,2,0,1),Size=UDim2.new(.42,-10,1,-2),TextSize=nameTextSize,Color=Racing.Colour("Success",Color3.fromRGB(89,255,102)),XAlignment=Enum.TextXAlignment.Right,Truncate=Enum.TextTruncate.None,Role="Heading"}); text.ZIndex=plate.ZIndex+1
+		M.RefreshVehicleCardAffordability(card,props.Cash)
+	end
+	return card
+end
+
 function M.ModuleCard(parent,props) props=props or {}; props.ImageHeight=props.ImageHeight or 104; props.ImageZoom=props.ImageZoom or 1; props.NameOverlay=false; props.NameTextSize=props.NameTextSize or 15; props.NameRole=props.NameRole or "Heading"; props.ImageScaleType=props.ImageScaleType or Enum.ScaleType.Fit; return M.Card(parent,props) end
 -- NTR_GARAGE_MODULE_CARD_VARIANTS_V3
 function M.ModuleCategoryCard(parent,props) return M.ModuleCard(parent,props) end

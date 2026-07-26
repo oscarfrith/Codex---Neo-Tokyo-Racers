@@ -1,3 +1,5 @@
+-- NTR_SHARED_VEHICLE_CARD_SYSTEM_V1_1
+-- NTR_SHARED_VEHICLE_CARD_SYSTEM_V1
 -- NTR_RACING_FLOW_COUNTDOWN_QUEUE_EXIT_OWNERSHIP
 -- NTR_RACING_UI_MOBILE_PHASE1_SCALED_DESKTOP_TRIAL
 -- NTR_RACING_UI_PHASE16E_RUNTIME_OWNERSHIP
@@ -32,6 +34,7 @@ local racingModules = shared:WaitForChild("Modules"):WaitForChild("Racing")
 local RaceConfigReader = require(racingModules:WaitForChild("RaceConfigReader"))
 local entryUIModules = shared:WaitForChild("Modules"):WaitForChild("UI")
 local UI = require(entryUIModules:WaitForChild("RacingUIComponents"))
+local VehicleCards = require(script.Parent.Parent:WaitForChild("UI"):WaitForChild("GarageReplacementComponents"))
 local MobileScaledDesktop = require(entryUIModules:WaitForChild("RacingMobileScaledDesktopLayout"))
 local scaledDesktop = MobileScaledDesktop.IsEnabled(touchDevice)
 local touch = touchDevice and not scaledDesktop
@@ -661,16 +664,14 @@ local function renderVehiclePage()
 	local grid = Instance.new("ScrollingFrame")
 	grid.Name = "VehicleGrid" grid.BackgroundTransparency = 1 grid.BorderSizePixel = 0 grid.Position = UDim2.fromOffset(0, gridY) grid.Size = UDim2.new(1, 0, 1, -gridY) grid.ScrollBarThickness = touch and 3 or 6 grid.AutomaticCanvasSize = Enum.AutomaticSize.Y grid.CanvasSize = UDim2.fromOffset(0, 0) grid.Parent = content	local gridSafe = touch and 5 or 8 local gridPadding = Instance.new("UIPadding") gridPadding.Name = "CardEdgeSafePadding" gridPadding.PaddingTop = UDim.new(0, gridSafe) gridPadding.PaddingLeft = UDim.new(0, gridSafe) gridPadding.PaddingRight = UDim.new(0, gridSafe) gridPadding.PaddingBottom = UDim.new(0, gridSafe) gridPadding.Parent = grid -- NTR_RACING_UI_PHASE14_VEHICLE_GRID_SAFE_PADDING
 	local layout = Instance.new("UIGridLayout") layout.CellPadding = UDim2.fromOffset(gap, gap) layout.CellSize = touch and UDim2.new(0.5, -gap / 2, 0, 150) or UDim2.new(0.25, -gap * 0.75, 0, 190) layout.SortOrder = Enum.SortOrder.LayoutOrder layout.Parent = grid
-	if #rows == 0 then UI.Label(grid, { Text = selectedMode == "Race" and "NO OWNED VEHICLES" or ("NO OWNED " .. selectedTier .. " CLASS VEHICLES"), Size = UDim2.fromOffset(500, 50), TextSize = touch and 11 or 15, Color = C("Muted"), Role = "Heading" }) end
-	for index, row in ipairs(rows) do
-		local selected = row.VehicleId == selectedVehicleId
-		local card = UI.Button(grid, { Name = "Vehicle_" .. row.VehicleId, Text = "", Color = selected and C("PanelBlue") or C("PanelDeep"), StrokeColor = selected and C("Telemetry") or C("Outline"), FocusColor = C("Telemetry"), StrokeTransparency = selected and 0.02 or 0.18 })
-		card.LayoutOrder = index
-		local image = Instance.new("ImageLabel") image.BackgroundTransparency = 1 image.Position = UDim2.fromOffset(8, 8) image.Size = UDim2.new(1, -16, 1, touch and -48 or -56) image.Image = asset(row.Image) image.ScaleType = Enum.ScaleType.Fit image.ZIndex = card.ZIndex + 2 image.Parent = card
-		local badge = UI.Panel(card, { Position = UDim2.new(1, touch and -76 or -92, 0, 10), Size = UDim2.fromOffset(touch and 66 or 80, touch and 22 or 26), Color = tierColors[row.Tier] or C("PanelSoft"), Transparency = 0.12, StrokeColor = tierColors[row.Tier] or C("Outline"), StrokeTransparency = 0.15 }) badge.ZIndex = card.ZIndex + 4
-		UI.Label(badge, { Text = row.Tier .. "  " .. tostring(math.floor(row.Rating)), Size = UDim2.fromScale(1, 1), TextSize = touch and 8 or 10, Color = C("Text"), Role = "Heading", XAlignment = Enum.TextXAlignment.Center }).ZIndex = badge.ZIndex + 1
-		UI.Label(card, { Text = string.upper(row.Name), Position = UDim2.new(0, 10, 1, touch and -40 or -48), Size = UDim2.new(1, -20, 0, touch and 32 or 40), TextSize = touch and 9 or 12, Color = C("Text"), Role = "Heading", XAlignment = Enum.TextXAlignment.Center }).ZIndex = card.ZIndex + 3
-		card.MouseButton1Click:Connect(function() selectedVehicleId = row.VehicleId render() end)
+	if #rows==0 then
+		local unavailable=VehicleCards.VehicleCard(grid,{Name="UnavailableVehicle",DisplayName=selectedMode=="Race" and "NO OWNED VEHICLES" or ("NO OWNED "..selectedTier.." CLASS VEHICLES"),SemanticState="Unavailable",UnavailableText="UNAVAILABLE",Active=false,Selectable=false,Size=touch and UDim2.fromOffset(210,150) or UDim2.fromOffset(260,190)})
+		unavailable.LayoutOrder=1
+	end
+	for index,row in ipairs(rows) do
+		local selected=row.VehicleId==selectedVehicleId
+		local card=VehicleCards.VehicleCard(grid,{Name="Vehicle_"..row.VehicleId,DisplayName=row.Name,Image=asset(row.Image),Rating=row.Tier.."  "..tostring(math.floor(row.Rating)),RatingColor=tierColors[row.Tier] or C("PanelSoft"),Selected=selected,Owned=true,SemanticState="Owned",RatingScale=touch and .75 or (touchDevice and 1 or 1.5),Size=touch and UDim2.fromOffset(210,150) or UDim2.fromOffset(260,190),NameTextSize=touch and 9 or 12})
+		card.LayoutOrder=index; card.Activated:Connect(function() selectedVehicleId=row.VehicleId; render() end)
 	end
 
 	local footerTextSize = touch and 9 or 13
