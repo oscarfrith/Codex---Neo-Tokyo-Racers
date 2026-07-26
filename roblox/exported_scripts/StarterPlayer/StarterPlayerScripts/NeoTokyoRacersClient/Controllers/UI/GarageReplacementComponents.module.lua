@@ -15,7 +15,9 @@ local M={}
 function M.FormatNumber(value)
 	local numeric=tonumber(value) or 0; local negative=numeric<0; local digits=tostring(math.floor(math.abs(numeric)+.5)); local reversed=string.gsub(string.reverse(digits),"(%d%d%d)","%1,"); local grouped=string.gsub(string.reverse(reversed),"^,",""); return (negative and "-" or "")..grouped
 end
-function M.FormatMoney(value) return "$"..M.FormatNumber(value) end
+function M.FormatMoney(value) return Racing.FormatMoney(value) end
+function M.ProjectEconomy(response,fallback) return Racing.ProjectEconomy(response,fallback) end
+function M.EconomyMetric(parent,props) return Racing.MetricLabel(parent,props) end
 function M.ActionButton(parent,props)
 	props=props or {}; local button=Racing.Button(parent,{Name=props.Name or "GarageAction",Text="",Size=props.Size or UDim2.fromOffset(170,46),Color=props.Color or Racing.Colour("PanelBlue",Color3.fromRGB(8,42,84)),StrokeColor=props.StrokeColor or Racing.Colour("ElectricBlue",Color3.fromRGB(25,116,255)),FocusColor=props.FocusColor or Racing.Colour("Telemetry")}); button:SetAttribute("CanonicalGarageAction",true)
 	local group=Instance.new("Frame"); group.Name="ActionContent"; group.AnchorPoint=Vector2.new(.5,.5); group.Position=UDim2.fromScale(.5,.5); group.Size=UDim2.new(0,0,1,0); group.AutomaticSize=Enum.AutomaticSize.X; group.BackgroundTransparency=1; group.ZIndex=button.ZIndex+1; group.Parent=button
@@ -39,7 +41,7 @@ function M.Panel(parent,name,props)
 	gradient(p,Racing.Colour("PanelSoft",Color3.fromRGB(25,31,39)),Racing.Colour("PanelDeep",Color3.fromRGB(9,12,16)),90); return p
 end
 function M.MetricCard(parent,name)
-	local p=Racing.Panel(parent,{Name=name,Color=Racing.Colour("PanelSoft",Color3.fromRGB(25,31,39)),Transparency=metricNumber("MetricCardTransparency",.34),NoStroke=true}); local corner=p:FindFirstChildOfClass("UICorner"); if corner then corner.CornerRadius=UDim.new(0,metricNumber("MetricCardCornerRadius",9)) end; local g=gradient(p,Racing.Colour("PanelSoft",Color3.fromRGB(25,31,39)),Racing.Colour("PanelDeep",Color3.fromRGB(9,12,16)),90); g.Transparency=NumberSequence.new({NumberSequenceKeypoint.new(0,.04),NumberSequenceKeypoint.new(1,.28)}); return p
+	local p=Racing.Panel(parent,{Name=name,Color=Racing.Colour("PanelSoft",Color3.fromRGB(25,31,39)),Transparency=metricNumber("MetricCardTransparency",.34),NoStroke=true}); local corner=p:FindFirstChildOfClass("UICorner"); if corner then Racing.SetCorner(corner,metricNumber("MetricCardCornerRadius",9)) end; local g=gradient(p,Racing.Colour("PanelSoft",Color3.fromRGB(25,31,39)),Racing.Colour("PanelDeep",Color3.fromRGB(9,12,16)),90); g.Transparency=NumberSequence.new({NumberSequenceKeypoint.new(0,.04),NumberSequenceKeypoint.new(1,.28)}); return p
 end
 function M.Card(parent,props)
 	props=props or {}; local selected=props.Selected==true; local accent=selected and Racing.Colour("Telemetry",Color3.fromRGB(43,225,218)) or (props.Muted and Color3.fromRGB(132,142,145) or Racing.Colour("OutlineSoft",Color3.fromRGB(214,74,175)))
@@ -236,14 +238,8 @@ function M.CanonicalHost()
 	canonicalHost={Gui=gui,Canvas=canvas,Scale=scale}; return canonicalHost
 end
 function M.ConfirmationModal(root,options)
-	options=options or {}; local shade=Instance.new("Frame"); shade.Name="CanonicalGarageConfirmation"; shade.Active=true; shade.BackgroundColor3=Color3.new(0,0,0); shade.BackgroundTransparency=.22; shade.BorderSizePixel=0; shade.Size=UDim2.fromScale(1,1); shade.ZIndex=300; shade.Parent=root
-	local panel=M.Panel(shade,"Panel",{StrokeColor=Racing.Colour("ElectricBlue"),NoGlow=true}); panel.AnchorPoint=Vector2.new(.5,.5); panel.Position=UDim2.fromScale(.5,.5); panel.Size=UDim2.fromOffset(620,320); panel.ZIndex=301
-	local title=Racing.Label(panel,{Text=options.Title or "CONFIRM",Position=UDim2.fromOffset(28,28),Size=UDim2.new(1,-56,0,42),TextSize=22,Role="Heading",XAlignment=Enum.TextXAlignment.Center}); title.ZIndex=302
-	local body=Racing.Label(panel,{Text=options.Body or "Continue?",Position=UDim2.fromOffset(42,88),Size=UDim2.new(1,-84,0,100),TextSize=14,XAlignment=Enum.TextXAlignment.Center}); body.TextWrapped=true; body.ZIndex=302
-	local no=Racing.Button(panel,{Text=options.CancelText or "NO",Position=UDim2.new(.5,-158,1,-72),Size=UDim2.fromOffset(142,44),Color=Color3.fromRGB(166,61,70),ZIndex=303}); local yes=Racing.Button(panel,{Text=options.ConfirmText or "YES",Position=UDim2.new(.5,16,1,-72),Size=UDim2.fromOffset(142,44),Color=Racing.Colour("PanelBlue"),StrokeColor=Racing.Colour("ElectricBlue"),ZIndex=303})
-	no.Activated:Connect(function() shade:Destroy(); if options.OnCancel then options.OnCancel() end end); yes.Activated:Connect(function() shade:Destroy(); if options.OnConfirm then options.OnConfirm() end end); return shade
+	return Racing.ConfirmationModal(root,options)
 end
-
 -- NTR_OWNED_GARAGE_ANCHORED_DROPDOWN_V2
 function M.AttachDropdownChevron(button)
 	local chevron=button:FindFirstChild("DropdownChevron")
@@ -287,4 +283,5 @@ function M.AnchoredDropdown(parent,options)
 	return {Show=function(_,target,newRows,onPick,newMetrics) show(target,newRows,onPick,newMetrics) end,Toggle=function(_,target,newRows,onPick,newMetrics) if panel and anchor==target then hide() else show(target,newRows,onPick,newMetrics) end end,Hide=function() hide() end,Relayout=function() place() end,IsOpenFor=function(_,target) return panel~=nil and anchor==target end,Destroy=function() hide() end}
 end
 
+-- NTR_SHARED_RESPONSIVE_UI_FOUNDATION_V1_1
 return M

@@ -1,3 +1,4 @@
+-- NTR_SHARED_RESPONSIVE_UI_FOUNDATION_V1_1
 -- Neo Tokyo Racers - Racing Phase 5 Route Guide Client
 -- NTR_RACING_PHASE5_ROUTE_GUIDE_CLIENT
 
@@ -9,6 +10,7 @@ local Workspace = game:GetService("Workspace")
 local player = Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
 local kit = ReplicatedStorage:WaitForChild("NeoTokyoRacers")
+local Foundation = require(kit:WaitForChild("Shared"):WaitForChild("Modules"):WaitForChild("UI"):WaitForChild("ResponsiveUIFoundation"))
 local racingRemotes = kit:WaitForChild("Shared"):WaitForChild("Remotes"):WaitForChild("Racing")
 local raceEvent = racingRemotes:WaitForChild("RaceEvent")
 local racingModules = kit:WaitForChild("Shared"):WaitForChild("Modules"):WaitForChild("Racing")
@@ -150,9 +152,7 @@ local function makeBillboard(name, adornee, text, color)
 	end)
 	label.Parent = gui
 
-	local corner = Instance.new("UICorner")
-	corner.CornerRadius = UDim.new(0, numberAttr("CheckpointPillCornerRadius", 8))
-	corner.Parent = label
+	Foundation.Corner(label,numberAttr("CheckpointPillCornerRadius",8))
 
 	local stroke = Instance.new("UIStroke")
 	stroke.Color = color
@@ -277,12 +277,10 @@ pcall(function()
 	wrongWay.FontFace = Font.new("rbxasset://fonts/families/Michroma.json")
 end)
 wrongWay.Parent = guideGui
-local wrongCorner = Instance.new("UICorner")
-wrongCorner.CornerRadius = UDim.new(0, 6)
-wrongCorner.Parent = wrongWay
+Foundation.Corner(wrongWay,6)
 local wrongStroke = Instance.new("UIStroke")
 wrongStroke.Color = wrongWay.TextColor3
-wrongStroke.Thickness = 1.2
+wrongStroke.Thickness = Foundation.StrokeWidth("Emphasis")
 wrongStroke.Transparency = 0.18
 wrongStroke.Parent = wrongWay
 

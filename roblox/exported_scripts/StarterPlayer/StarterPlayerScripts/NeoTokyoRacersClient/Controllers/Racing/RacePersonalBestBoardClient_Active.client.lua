@@ -1,3 +1,4 @@
+-- NTR_SHARED_RESPONSIVE_UI_FOUNDATION_V1_1
 -- Neo Tokyo Racers - Racing Phase 11O Time Trial PB Board V2
 -- NTR_RACING_PHASE11O_TIME_TRIAL_PB_BOARD_V2_MENU_CLOSE_SYNC
 
@@ -8,6 +9,7 @@ local UserInputService = game:GetService("UserInputService")
 local player = Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
 local kit = ReplicatedStorage:WaitForChild("NeoTokyoRacers")
+local Foundation = require(kit:WaitForChild("Shared"):WaitForChild("Modules"):WaitForChild("UI"):WaitForChild("ResponsiveUIFoundation"))
 local racingRemotes = kit:WaitForChild("Shared"):WaitForChild("Remotes"):WaitForChild("Racing")
 local raceRequest = racingRemotes:WaitForChild("RaceRequest")
 local raceEvent = racingRemotes:WaitForChild("RaceEvent")
@@ -52,10 +54,7 @@ local function applyFont(label, bold)
 end
 
 local function corner(parent, radius)
-	local c = Instance.new("UICorner")
-	c.CornerRadius = UDim.new(0, radius or 7)
-	c.Parent = parent
-	return c
+	return Foundation.Corner(parent,radius or 7)
 end
 
 local function stroke(parent, color, thickness, transparency)
@@ -98,7 +97,7 @@ local function button(parent, text, size, position, color)
 	applyFont(item, true)
 	item.Parent = parent
 	corner(item, 5)
-	stroke(item, theme.Accent, 1, 0.5)
+	stroke(item, theme.Accent, Foundation.StrokeWidth("Structural"), 0.5)
 	return item
 end
 
@@ -154,7 +153,7 @@ panel.BorderSizePixel = 0
 panel.Visible = false
 panel.Parent = gui
 corner(panel, 7)
-stroke(panel, theme.Selected, 1.4, 0.18)
+stroke(panel, theme.Selected, Foundation.StrokeWidth("Emphasis"), 0.18)
 
 local title = label(panel, "MY TIME TRIAL BESTS", UDim2.new(1, -48, 0, 26), UDim2.fromOffset(12, 10), touch and 11 or 13, theme.Text, true)
 local close = button(panel, "X", UDim2.fromOffset(28, 24), UDim2.new(1, -38, 0, 10), theme.Exit)
@@ -176,7 +175,7 @@ for index, tier in ipairs(tiers) do
 	row.Size = UDim2.new(1, 0, 0, touch and 24 or 27)
 	row.Parent = rowsFrame
 	corner(row, 5)
-	stroke(row, theme.Accent, 1, 0.62)
+	stroke(row, theme.Accent, Foundation.StrokeWidth("Structural"), 0.62)
 	local tierLabel = label(row, tier, UDim2.fromOffset(34, row.Size.Y.Offset), UDim2.fromOffset(8, 0), touch and 10 or 11, theme.Accent, true)
 	tierLabel.TextXAlignment = Enum.TextXAlignment.Center
 	local valueLabel = label(row, "PB --", UDim2.new(1, -52, 1, 0), UDim2.fromOffset(48, 0), touch and 9 or 10, theme.Text, true)

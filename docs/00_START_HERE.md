@@ -1,13 +1,17 @@
 # Neo Tokyo Racers Project Context
 
-## 2026-07-26 shared responsive UI foundation V1 generated
+## 2026-07-26 shared responsive UI foundation V1.1 confirmed and handed off
 
 - `scripts/roblox_shared_responsive_ui_foundation_v1.lua` is the single canonical installer for shared corner semantics, compact money, economy metrics/projection, confirmations and top notifications.
-- The High-Risk contract preserves all server purchase/persistence authority. It adds no remote, saved field, purchase owner, profile polling loop or runtime `UICorner` scan.
+- The user confirmed V1.1 working. The complete `2026-07-26 21:28:23` mirror has 189 mutually matching exported-script, source-manifest and checksum entries and all 18 intended V1.1 source owners; neither mirror area appears stale for the confirmed source baseline.
+- V1.1 keeps the same canonical installer and adds one device-aware stroke/bevel owner: structural borders are `1.2 px` desktop / `1 px` mobile, emphasis borders are `1.5 px` / `1.25 px`, and glow widths are `3 px` / `2 px`.
+- Mobile free-roam navigation and Cash, desktop free-roam, and the enabled shared garage/racing renderers now project through the shared bevel/stroke contract. Semantic colours remain pink structure, blue live/economy, cyan selected, red destructive and gold tutorial/objective.
+- The original High-Risk contract still preserves all server purchase/persistence authority. The V1.1 continuation is Standard presentation-only and adds no remote, saved field, purchase owner, profile polling loop or runtime `UICorner` scan.
 - Active shared renderers apply `70%` of current corner radii on desktop and `50%` on touch/mobile. Cash/Garage Spaces share one bold metric treatment and the compact money boundary is `$999,999` then `$1.0M`.
 - Successful authoritative `Profile`/`ManagementState` responses project immediately; existing `leaderstats.Cash` events reconcile visible balances. Shared confirmations add controller focus, Escape/B cancellation, minimum touch targets and safe-area/orientation relayout.
 - Shared top notifications become a bounded three-card, borderless grey-gradient stack. The mobile free-roam Cash surface keeps dark blue and receives an explicit blue/non-pink outline.
-- Vehicle-picker migration remains deferred to Chat 3. The current `20:46:20` complete mirror is the pre-install baseline and is stale for this generated V1 until Studio installation, verification and full export. See `docs/shared-responsive-ui-foundation-v1.md`.
+- Vehicle-picker composition remains deferred to Chat 3; V1.1 only centralises the foundational corner/bevel/stroke primitives those existing surfaces already consume.
+- Studio persisted every V1.1 source but dropped the newly created optional Theme tuning nodes and revision attributes after the mixed source/hierarchy command. Runtime uses the audited source defaults above. The canonical audit now reports that state as a warning, not a false source failure; no rerun is required for ordinary use. See `docs/shared-responsive-ui-foundation-v1.md`.
 
 ## 2026-07-26 presentation audio V1.3.2 confirmed and handed off
 

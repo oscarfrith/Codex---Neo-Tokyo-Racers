@@ -1,3 +1,4 @@
+-- NTR_SHARED_RESPONSIVE_UI_FOUNDATION_V1_1
 -- NTR_CUSTOMISATION_ACCESS_ONBOARDING_PHYSICAL_COLOURS_V1_1
 -- NTR_GARAGE_CAMERA_VFX_SCROLL_REFINEMENT_V1
 -- NTR_GARAGE_CATEGORY_CAMERA_ANGLES_V1
@@ -27,7 +28,7 @@ function Adapter:Call(actionName,payload)
 	if self.Busy then local result={Success=false,Message="Please wait."}; if audioKind then AudioBridge.Result(audioKind,result,{Action=actionName}) end; return result end
 	self.Busy=true; local ok,result=pcall(function() return garageInvoke:InvokeServer(actionName,payload or {}) end); self.Busy=false
 	if not ok or typeof(result)~="table" then result={Success=false,Message="Garage server did not respond."}; if audioKind then AudioBridge.Result(audioKind,result,{Action=actionName}) end; return result end
-	if result.Catalog then self.State.Catalog=result.Catalog end; if result.Profile then self.State.Profile=result.Profile end
+	if result.Catalog then self.State.Catalog=result.Catalog end; if result.Profile then self.State.Profile=result.Profile end; self.State.Economy=Shared.ProjectEconomy(result,self.State.Economy)
 	local outcomeAudioKind=audioKind
 	if result.Success==true then
 		if actionName=="BuyModuleInstance" then outcomeAudioKind="ModuleEquip"

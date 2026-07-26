@@ -1,6 +1,7 @@
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local UITheme = {}
+local Foundation = require(script.Parent:WaitForChild("ResponsiveUIFoundation"))
 
 UITheme.Default = {
 	Panel = Color3.fromRGB(5, 9, 7),
@@ -23,6 +24,8 @@ UITheme.Default = {
 	StrokeWidth = 1,
 	PanelCornerRadius = 5,
 	ButtonCornerRadius = 4,
+	CornerScaleDesktop = .7,
+	CornerScaleMobile = .5,
 	FontFamily = "rbxasset://fonts/families/Michroma.json",
 }
 
@@ -94,8 +97,18 @@ function UITheme.Read()
 		StrokeWidth = number(folder, "StrokeWidth", defaults.StrokeWidth, 0),
 		PanelCornerRadius = number(folder, "PanelCornerRadius", defaults.PanelCornerRadius, 0),
 		ButtonCornerRadius = number(folder, "ButtonCornerRadius", defaults.ButtonCornerRadius, 0),
+		CornerScaleDesktop = number(folder, "CornerScaleDesktop", defaults.CornerScaleDesktop, 0, 1),
+		CornerScaleMobile = number(folder, "CornerScaleMobile", defaults.CornerScaleMobile, 0, 1),
 		FontFamily = text(folder, "FontFamily", defaults.FontFamily),
 	}
 end
+
+-- NTR_SHARED_RESPONSIVE_UI_FOUNDATION_V1_1
+UITheme.CornerRadius=Foundation.CornerRadius
+UITheme.Corner=Foundation.Corner
+UITheme.SetCorner=Foundation.SetCorner
+UITheme.StrokeWidth=Foundation.StrokeWidth
+UITheme.StyleStroke=Foundation.StyleStroke
+UITheme.ApplyBevel=Foundation.ApplyBevel
 
 return UITheme

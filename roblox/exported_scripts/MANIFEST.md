@@ -4,7 +4,7 @@ Generated from the Roblox Studio full snapshot export.
 
 These files are a GitHub-readable mirror of Studio scripts. Treat Studio as live until a Rojo/source-sync migration is explicitly completed.
 
-Script count: 188
+Script count: 189
 
 - `ReplicatedFirst.NTRLoading.InitialLoadingAndStartScreenClient` (LocalScript, enabled/module) -> `roblox/exported_scripts/ReplicatedFirst/NTRLoading/InitialLoadingAndStartScreenClient.client.lua`
 - `ReplicatedFirst.NTRLoading.LoadingArtworkCatalog` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedFirst/NTRLoading/LoadingArtworkCatalog.module.lua`
@@ -68,6 +68,7 @@ Script count: 188
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.UI.RacingMobileScaledDesktopLayout` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/UI/RacingMobileScaledDesktopLayout.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.UI.RacingUIComponents` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/UI/RacingUIComponents.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.UI.ResponsiveLayout` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/UI/ResponsiveLayout.module.lua`
+- `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.UI.ResponsiveUIFoundation` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/UI/ResponsiveUIFoundation.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.UI.StatBars` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/UI/StatBars.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.UI.UIFactory` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/UI/UIFactory.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.UI.UIPool` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/UI/UIPool.module.lua`

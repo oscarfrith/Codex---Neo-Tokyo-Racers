@@ -1,3 +1,4 @@
+-- NTR_SHARED_RESPONSIVE_UI_FOUNDATION_V1_1
 -- NTR_UI_PERFORMANCE_HARDENING_PHASE1_V1
 -- NTR_OWNED_GARAGE_PHASE8_HUD_POLICY
 -- NTR_OWNED_GARAGE_MANAGEMENT_HUD_SUPPRESSION_V1_6
@@ -18,6 +19,8 @@ end
 local player = Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
 local kit = ReplicatedStorage:WaitForChild("NeoTokyoRacers")
+local SharedUI = require(kit.Shared.Modules.UI:WaitForChild("RacingUIComponents"))
+local Foundation = require(kit.Shared.Modules.UI:WaitForChild("ResponsiveUIFoundation"))
 local config = kit:WaitForChild("Config"):WaitForChild("UI"):WaitForChild("DesktopFreeRoamHud")
 local racingPerformanceConfig = kit:WaitForChild("Config"):WaitForChild("Racing"):WaitForChild("PresentationPerformance")
 local colours = config:WaitForChild("Colours")
@@ -153,7 +156,7 @@ local function new(className, props, parent)
 end
 
 local function corner(parent, radius)
-	return new("UICorner", { CornerRadius = UDim.new(0, radius or 6) }, parent)
+	return Foundation.Corner(parent, radius or 6)
 end
 
 local function stroke(parent, color, thickness, transparency, name)
@@ -176,27 +179,12 @@ local function surfaceGradient(parent, topColor, bottomColor, rotation)
 end
 
 local function addGlow(parent, color)
-	return stroke(parent, color, 4, E("GlowTransparency", 0.82), "GlowStroke")
+	return stroke(parent, color, Foundation.StrokeWidth("Glow"), E("GlowTransparency", 0.82), "GlowStroke")
 end
 
 local function buttonGradient(parent)
-	local strength = math.clamp(E("ButtonGradientStrength", 0.10), 0, 0.35)
-	local overlay = new("Frame", {
-		Name = "GradientOverlay", Active = false, BackgroundColor3 = Color3.new(1, 1, 1),
-		BackgroundTransparency = 1 - strength, BorderSizePixel = 0,
-		Size = UDim2.fromScale(1, 1), ZIndex = parent.ZIndex,
-	}, parent)
-	corner(overlay, 6)
-	new("UIGradient", {
-		Color = ColorSequence.new(Color3.new(1, 1, 1), Color3.fromRGB(95, 95, 95)),
-		Transparency = NumberSequence.new({
-			NumberSequenceKeypoint.new(0, 0.20), NumberSequenceKeypoint.new(0.52, 0.70),
-			NumberSequenceKeypoint.new(1, 0.28),
-		}), Rotation = E("ButtonGradientRotation", 90),
-	}, overlay)
-	return overlay
+	return Foundation.ApplyBevel(parent,{Radius=6,Strength=E("ButtonGradientStrength",0.10),Rotation=E("ButtonGradientRotation",90)})
 end
-
 local function setAccent(parent, color)
 	local main = parent:FindFirstChild("Stroke")
 	local glow = parent:FindFirstChild("GlowStroke")
@@ -257,7 +245,7 @@ local function button(parent, name, text, size, position, fill, outline)
 	}, parent)
 	corner(item, 6)
 	buttonGradient(item)
-	local itemStroke = stroke(item, outline or C("Outline", Color3.fromRGB(244, 46, 151)), 1.4, 0.08)
+	local itemStroke = stroke(item, outline or C("Outline", Color3.fromRGB(244, 46, 151)), Foundation.StrokeWidth("Structural"), 0.08)
 	local glow = addGlow(item, outline or C("Outline"))
 	item.MouseEnter:Connect(function()
 		item.BackgroundTransparency = math.max(0, E("ButtonTransparency", 0.08) - 0.05)
@@ -298,22 +286,15 @@ local function panel(parent, name, size, position, anchor, z)
 	}, parent)
 	corner(item, 8)
 	surfaceGradient(item, C("PanelSoft"), C("PanelDeep"), 110)
-	stroke(item, C("Outline", Color3.fromRGB(244, 46, 151)), 1.5, 0.05)
+	stroke(item, C("Outline", Color3.fromRGB(244, 46, 151)), Foundation.StrokeWidth("Structural"), 0.05)
 	addGlow(item, C("Outline"))
 	addFacetPattern(item)
 	return item
 end
 
 local function formatCash(value)
-	local number = math.max(0, math.floor(tonumber(value) or 0))
-	local text = tostring(number)
-	repeat
-		local replaced
-		text, replaced = string.gsub(text, "^(-?%d+)(%d%d%d)", "%1,%2")
-	until replaced == 0
-	return "$" .. text
+	return Foundation.FormatCompactMoney(value)
 end
-
 local function callGarage(action, payload)
 	local ok, result = pcall(function()
 		return garageInvoke:InvokeServer(action, payload or {})
@@ -442,6 +423,34 @@ local function makeSegmented(parent, y, titleText, options, selected)
 	end
 end
 
+local function showSharedTeleportConfirmation()
+	Foundation.Confirmation(root,{
+		Title="TELEPORT TO DEALERSHIP?",
+		Body="Your current vehicle will be despawned.",
+		ConfirmText="YES",
+		CancelText="NO",
+		OnConfirm=function()
+			if busy then return end
+			busy = true
+			local generation = loadingAction("Begin", { Destination = "DealershipExterior", Status = "TRAVELLING TO DEALERSHIP" })
+			local ok, result = pcall(function()
+				return teleportInvoke:InvokeServer("TeleportToDealership")
+			end)
+			if ok and typeof(result) == "table" and result.Success == true then
+				fireUiEvent("FreeRoamVehicleExited")
+				lastProfileRead = 0
+				loadingAction("Complete", { Generation = generation, Status = "READY" })
+				showToast(result.Message or "TELEPORTED TO DEALERSHIP", true)
+			else
+				local message = (typeof(result) == "table" and (result.Message or result.Error)) or "DEALERSHIP TELEPORT FAILED"
+				loadingAction("Fail", { Generation = generation, Status = "RETURNING", Reason = message })
+				showToast(message, false)
+			end
+			busy = false
+		end,
+	},SharedUI)
+end
+
 local function buildModals()
 	modalLayer = new("Frame", { Name = "ModalLayer", BackgroundTransparency = 1, BorderSizePixel = 0, Size = UDim2.fromScale(1, 1), ZIndex = 40, Visible = false }, root)
 	modalBackdrop = new("TextButton", {
@@ -450,32 +459,6 @@ local function buildModals()
 		BorderSizePixel = 0, Size = UDim2.fromScale(1, 1), ZIndex = 40,
 	}, modalLayer)
 	modalBackdrop.Activated:Connect(closeModal)
-
-	local teleport = modalShell("Teleport", "TELEPORT TO DEALERSHIP?", 650, 270)
-	label(teleport, "Message", "Your current vehicle will be despawned.", UDim2.new(1, -40, 0, 44), UDim2.fromOffset(20, 88), 15, C("Text"), Enum.TextXAlignment.Center, BODY_FONT)
-	local no = button(teleport, "No", "NO", UDim2.fromOffset(270, 54), UDim2.fromOffset(30, 182), C("Panel"), C("Outline"))
-	local yes = button(teleport, "Yes", "YES", UDim2.fromOffset(270, 54), UDim2.fromOffset(350, 182), C("PanelBlue"), C("Telemetry"))
-	no.Activated:Connect(closeModal)
-	yes.Activated:Connect(function()
-		if busy then return end
-		busy = true
-		closeModal()
-		local generation = loadingAction("Begin", { Destination = "DealershipExterior", Status = "TRAVELLING TO DEALERSHIP" })
-		local ok, result = pcall(function()
-			return teleportInvoke:InvokeServer("TeleportToDealership")
-		end)
-		if ok and typeof(result) == "table" and result.Success == true then
-			fireUiEvent("FreeRoamVehicleExited")
-			lastProfileRead = 0
-			loadingAction("Complete", { Generation = generation, Status = "READY" })
-			showToast(result.Message or "TELEPORTED TO DEALERSHIP", true)
-		else
-			local message = (typeof(result) == "table" and (result.Message or result.Error)) or "DEALERSHIP TELEPORT FAILED"
-			loadingAction("Fail", { Generation = generation, Status = "RETURNING", Reason = message })
-			showToast(message, false)
-		end
-		busy = false
-	end)
 
 	local controls = modalShell("Controls", "CONTROLS", 900, 550)
 	label(controls, "DrivingTitle", "DRIVING", UDim2.fromOffset(390, 30), UDim2.fromOffset(45, 70), 15, C("Outline"), Enum.TextXAlignment.Center)
@@ -713,7 +696,7 @@ renderCars = function()
 	plusLabel.ZIndex = buyMore.ZIndex + 3
 	local buyLabel = label(buyMore, "Name", "BUY MORE", UDim2.new(1, -18, 0, 42), UDim2.new(0, 9, 1, -54), 15, C("Text"), Enum.TextXAlignment.Center)
 	buyLabel.ZIndex = buyMore.ZIndex + 3
-	buyMore.Activated:Connect(function() openModal("Teleport") end)
+	buyMore.Activated:Connect(function() showSharedTeleportConfirmation() end)
 	for index, row in ipairs(filtered) do makeCarCard(carContent, row, index + 1) end
 	task.defer(function()
 		if carGrid and carGrid.Parent then
@@ -779,6 +762,7 @@ end
 local function actionIcon(action, iconName, fallback, callback, width)
 	local buttonSize = L("ActionButtonSize", 54)
 	local item, itemStroke = button(actionBar, action, "", UDim2.fromOffset(width or buttonSize, buttonSize), UDim2.fromOffset(0, 0), C("Panel"), C("Outline"))
+	Foundation.StyleStroke(itemStroke,"Structural")
 	local image = asset(iconName)
 	if image ~= "" then
 		local icon = new("ImageLabel", { Name = "Icon", BackgroundTransparency = 1, BorderSizePixel = 0, Image = image, ImageColor3 = C("Text"), ScaleType = Enum.ScaleType.Fit, AnchorPoint = Vector2.new(0.5, 0.5), Position = UDim2.fromScale(0.5, 0.5), Size = UDim2.fromOffset(30, 30), ZIndex = item.ZIndex + 2 }, item)
@@ -822,7 +806,7 @@ local function buildMainHud()
 		if not fireUiEvent("OpenRaceBrowser") then showToast("RACE BROWSER NOT READY", false) end
 	end)
 	raceAction.LayoutOrder = 3
-	dealershipAction = actionIcon("Dealership", "DealershipIcon", "SHOP", function() openModal("Teleport") end)
+	dealershipAction = actionIcon("Dealership", "DealershipIcon", "SHOP", function() showSharedTeleportConfirmation() end)
 	dealershipAction.LayoutOrder = 4
 	settingsAction = actionIcon("Settings", "SettingsIcon", "SET", function() openModal("Settings") end)
 	settingsAction.LayoutOrder = 5
@@ -838,11 +822,12 @@ local function buildMainHud()
 		moneyGradient.Color = ColorSequence.new(C("ElectricBlue"):Lerp(C("PanelBlue"), 0.72), C("PanelBlue"))
 		moneyGradient.Rotation = 0
 	end
-	stroke(money, C("ElectricBlue"), 1.7, 0, "CashStroke")
-	moneyLabel = label(money, "Amount", "$0", UDim2.new(1, -52, 1, 0), UDim2.fromOffset(12, 0), T("CashMetric", 18), C("Text"))
+	stroke(money, C("ElectricBlue"), Foundation.StrokeWidth("Structural"), 0, "CashStroke")
+	moneyLabel = Foundation.StyleMetric(label(money, "Amount", "$0", UDim2.new(1, -52, 1, 0), UDim2.fromOffset(12, 0), T("CashMetric", 18), C("Text")),"Cash")
 	moneyLabel.TextStrokeColor3 = C("ElectricBlue")
 	moneyLabel.TextStrokeTransparency = 0.72
-	local plus = button(money, "Plus", "+", UDim2.fromOffset(32, 30), UDim2.new(1, -38, 0.5, -15), C("PanelBlue"), C("ElectricBlue"))
+	local plus, plusStroke = button(money, "Plus", "+", UDim2.fromOffset(32, 30), UDim2.new(1, -38, 0.5, -15), C("PanelBlue"), C("ElectricBlue"))
+	Foundation.StyleStroke(plusStroke,"Structural")
 	plus.TextSize = 19
 	plus.Activated:Connect(function() openModal("Cash") end)
 

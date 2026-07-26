@@ -1,4 +1,4 @@
--- Neo Tokyo Racers - Shared Responsive UI Foundation V1
+-- Neo Tokyo Racers - Shared Responsive UI Foundation V1.1
 -- Run in Roblox Studio Edit mode from the Command Bar.
 --
 -- Modes:
@@ -17,8 +17,10 @@ local HttpService = game:GetService("HttpService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local StarterPlayer = game:GetService("StarterPlayer")
 
-local TAG = "[NTR Shared Responsive UI V1]"
-local REVISION = "NTR_SHARED_RESPONSIVE_UI_FOUNDATION_V1"
+local TAG = "[NTR Shared Responsive UI V1.1]"
+local BASE_REVISION = "NTR_SHARED_RESPONSIVE_UI_FOUNDATION_V1"
+local BASE_MARKER = "-- " .. BASE_REVISION
+local REVISION = "NTR_SHARED_RESPONSIVE_UI_FOUNDATION_V1_1"
 local MARKER = "-- " .. REVISION
 local RUN_ID = HttpService:GenerateGUID(false)
 
@@ -78,7 +80,6 @@ local targets = {
 	MobileHud = assert(uiControllers:FindFirstChild("MobileFreeRoamHudController_Active"), "Mobile free-roam HUD missing"),
 	TopNotification = assert(uiControllers:FindFirstChild("SharedTopNotificationController_Active"), "Shared top-notification owner missing"),
 	RaceCountdown = assert(racingControllers:FindFirstChild("RaceCountdownPresentationController_Active"), "Race countdown owner missing"),
-	RaceClient = assert(racingControllers:FindFirstChild("RaceClient_Active"), "Race HUD owner missing"),
 	RacePersonalBest = assert(racingControllers:FindFirstChild("RacePersonalBestBoardClient_Active"), "Race PB board owner missing"),
 	RaceRouteGuide = assert(racingControllers:FindFirstChild("RaceRouteGuideClient_Active"), "Race route guide owner missing"),
 	RaceSessionControls = assert(racingControllers:FindFirstChild("RaceSessionControlsClient_Active"), "Race session controls owner missing"),
@@ -90,9 +91,15 @@ for label, object in pairs(targets) do
 	assert(object:IsA("LuaSourceContainer"), label .. " must be a LuaSourceContainer")
 	if object:IsA("LocalScript") then assert(object.Disabled == false, label .. " must remain enabled") end
 end
+local baselineFoundation=assert(uiModules:FindFirstChild("ResponsiveUIFoundation"),"Installed V1 ResponsiveUIFoundation missing; refresh/restore the confirmed V1 baseline before V1.1")
+assert(baselineFoundation:IsA("ModuleScript"),baselineFoundation:GetFullName().." must be a ModuleScript")
+assert(
+	countPlain(baselineFoundation.Source,BASE_MARKER)==1 or countPlain(baselineFoundation.Source,MARKER)==1,
+	"ResponsiveUIFoundation is not the confirmed V1/V1.1 source"
+)
 
 local FOUNDATION_SOURCE = [==[
--- NTR_SHARED_RESPONSIVE_UI_FOUNDATION_V1
+-- NTR_SHARED_RESPONSIVE_UI_FOUNDATION_V1_1
 local GuiService=game:GetService("GuiService")
 local ContextActionService=game:GetService("ContextActionService")
 local Players=game:GetService("Players")
@@ -135,6 +142,60 @@ function M.Corner(parent,baseRadius)
 	M.SetCorner(corner,baseRadius)
 	corner.Parent=parent
 	return corner
+end
+
+function M.StrokeWidth(role)
+	role=string.lower(tostring(role or "Structural"))
+	if role=="glow" then
+		return M.IsMobile() and number("GlowStrokeMobile",2) or number("GlowStrokeDesktop",3)
+	elseif role=="emphasis" or role=="selected" then
+		return M.IsMobile() and number("EmphasisStrokeMobile",1.25) or number("EmphasisStrokeDesktop",1.5)
+	end
+	return M.IsMobile() and number("StructuralStrokeMobile",1) or number("StructuralStrokeDesktop",1.2)
+end
+
+function M.StyleStroke(stroke,role)
+	assert(stroke and stroke:IsA("UIStroke"),"StyleStroke requires a UIStroke")
+	stroke.Thickness=M.StrokeWidth(role)
+	stroke:SetAttribute("NTRStrokeRole",tostring(role or "Structural"))
+	return stroke
+end
+
+function M.ApplyBevel(parent,options)
+	assert(parent and parent:IsA("GuiObject"),"ApplyBevel requires a GuiObject")
+	options=options or {}
+	local overlay=parent:FindFirstChild("GradientOverlay")
+	if overlay and not overlay:IsA("Frame") then overlay:Destroy(); overlay=nil end
+	if not overlay then
+		overlay=Instance.new("Frame")
+		overlay.Name="GradientOverlay"
+		overlay.Parent=parent
+	end
+	overlay.Active=false
+	overlay.BackgroundColor3=Color3.new(1,1,1)
+	local strength=math.clamp(tonumber(options.Strength) or number("BevelStrength",.1),0,.35)
+	overlay.BackgroundTransparency=1-strength
+	overlay.BorderSizePixel=0
+	overlay.Position=UDim2.fromScale(0,0)
+	overlay.Size=UDim2.fromScale(1,1)
+	overlay.ZIndex=options.ZIndex or parent.ZIndex
+	local corner=overlay:FindFirstChildOfClass("UICorner")
+	if corner then M.SetCorner(corner,options.Radius or 6) else M.Corner(overlay,options.Radius or 6) end
+	local gradient=overlay:FindFirstChild("NeutralOverlay")
+	if gradient and not gradient:IsA("UIGradient") then gradient:Destroy(); gradient=nil end
+	if not gradient then
+		gradient=Instance.new("UIGradient")
+		gradient.Name="NeutralOverlay"
+		gradient.Parent=overlay
+	end
+	gradient.Rotation=tonumber(options.Rotation) or number("BevelRotation",90)
+	gradient.Color=ColorSequence.new(Color3.new(1,1,1),Color3.fromRGB(95,95,95))
+	gradient.Transparency=NumberSequence.new({
+		NumberSequenceKeypoint.new(0,.2),
+		NumberSequenceKeypoint.new(.52,.7),
+		NumberSequenceKeypoint.new(1,.28),
+	})
+	return overlay
 end
 
 function M.FormatNumber(value)
@@ -413,7 +474,7 @@ return M
 ]==]
 
 local TOP_NOTIFICATION_SOURCE = [==[
--- NTR_SHARED_RESPONSIVE_UI_FOUNDATION_V1
+-- NTR_SHARED_RESPONSIVE_UI_FOUNDATION_V1_1
 local Players=game:GetService("Players")
 local ReplicatedStorage=game:GetService("ReplicatedStorage")
 local player=Players.LocalPlayer
@@ -430,10 +491,16 @@ end)
 ]==]
 
 local projected = {}
-local function project(label, transform)
+local function project(label, transform, upgrade)
 	local source = targets[label].Source
 	if countPlain(source, MARKER) > 0 then projected[label] = source return end
-	local nextSource = transform(source)
+	local nextSource
+	if countPlain(source, BASE_MARKER) > 0 then
+		nextSource = upgrade and upgrade(source) or source
+		nextSource = replaceOnce(nextSource, BASE_MARKER, MARKER, label .. " revision")
+	else
+		error(label.." is not the confirmed V1/V1.1 source; refresh the mirror instead of guessing")
+	end
 	compile(nextSource, label)
 	projected[label] = nextSource
 end
@@ -451,8 +518,13 @@ project("UITheme", function(source)
 		"\t\tButtonCornerRadius = number(folder, \"ButtonCornerRadius\", defaults.ButtonCornerRadius, 0),",
 		"\n\t\tCornerScaleDesktop = number(folder, \"CornerScaleDesktop\", defaults.CornerScaleDesktop, 0, 1),\n\t\tCornerScaleMobile = number(folder, \"CornerScaleMobile\", defaults.CornerScaleMobile, 0, 1),",
 		"UITheme read")
-	source=replaceOnce(source,"return UITheme",MARKER.."\nUITheme.CornerRadius=Foundation.CornerRadius\nUITheme.Corner=Foundation.Corner\nUITheme.SetCorner=Foundation.SetCorner\n\nreturn UITheme","UITheme return")
+	source=replaceOnce(source,"return UITheme",MARKER.."\nUITheme.CornerRadius=Foundation.CornerRadius\nUITheme.Corner=Foundation.Corner\nUITheme.SetCorner=Foundation.SetCorner\nUITheme.StrokeWidth=Foundation.StrokeWidth\nUITheme.StyleStroke=Foundation.StyleStroke\nUITheme.ApplyBevel=Foundation.ApplyBevel\n\nreturn UITheme","UITheme return")
 	return source
+end, function(source)
+	return replaceOnce(source,
+		"UITheme.SetCorner=Foundation.SetCorner\n\nreturn UITheme",
+		"UITheme.SetCorner=Foundation.SetCorner\nUITheme.StrokeWidth=Foundation.StrokeWidth\nUITheme.StyleStroke=Foundation.StyleStroke\nUITheme.ApplyBevel=Foundation.ApplyBevel\n\nreturn UITheme",
+		"UITheme V1.1 exports")
 end)
 
 project("UIFactory", function(source)
@@ -464,8 +536,13 @@ project("UIFactory", function(source)
 		"function UIFactory.Corner(parent, radius)\n\tlocal corner = Instance.new(\"UICorner\")\n\tcorner.CornerRadius = UDim.new(0, radius or 4)\n\tcorner.Parent = parent\n\treturn corner\nend",
 		"function UIFactory.Corner(parent, radius)\n\treturn Foundation.Corner(parent, radius or 4)\nend",
 		"UIFactory corner")
-	source=replaceOnce(source,"return UIFactory",MARKER.."\nUIFactory.FormatMoney=Foundation.FormatCompactMoney\nUIFactory.StyleMetric=Foundation.StyleMetric\n\nreturn UIFactory","UIFactory return")
+	source=replaceOnce(source,"return UIFactory",MARKER.."\nUIFactory.FormatMoney=Foundation.FormatCompactMoney\nUIFactory.StyleMetric=Foundation.StyleMetric\nUIFactory.StrokeWidth=Foundation.StrokeWidth\nUIFactory.StyleStroke=Foundation.StyleStroke\nUIFactory.ApplyBevel=Foundation.ApplyBevel\n\nreturn UIFactory","UIFactory return")
 	return source
+end, function(source)
+	return replaceOnce(source,
+		"UIFactory.StyleMetric=Foundation.StyleMetric\n\nreturn UIFactory",
+		"UIFactory.StyleMetric=Foundation.StyleMetric\nUIFactory.StrokeWidth=Foundation.StrokeWidth\nUIFactory.StyleStroke=Foundation.StyleStroke\nUIFactory.ApplyBevel=Foundation.ApplyBevel\n\nreturn UIFactory",
+		"UIFactory V1.1 exports")
 end)
 
 project("RacingUI", function(source)
@@ -478,9 +555,45 @@ project("RacingUI", function(source)
 		"function Components.Corner(parent, radius)\n\treturn Foundation.Corner(parent, radius or Components.Layout(\"CornerRadius\", 5))\nend",
 		"RacingUI corner")
 	source=replaceOnce(source,
+		"stroke.Thickness = thickness or Components.Layout(\"StrokeWidth\", 1.5)",
+		"stroke.Thickness = thickness or Foundation.StrokeWidth(\"Structural\")",
+		"RacingUI shared structural stroke")
+	source=replaceOnce(source,
+		"local glow = Components.Stroke(item, borderColor, properties.GlowWidth or 4, properties.GlowTransparency == nil and 0.82 or properties.GlowTransparency)",
+		"local glow = Components.Stroke(item, borderColor, properties.GlowWidth or Foundation.StrokeWidth(\"Glow\"), properties.GlowTransparency == nil and 0.82 or properties.GlowTransparency)",
+		"RacingUI panel glow")
+	local overlayStart=assert(source:find("\tlocal overlay = Instance.new(\"Frame\")",1,true),"RacingUI button overlay start missing")
+	local overlayEnd=assert(source:find("\n\tlocal normal = properties.StrokeColor",overlayStart,true),"RacingUI button overlay end missing")
+	source=source:sub(1,overlayStart-1).."\tFoundation.ApplyBevel(item,{Radius=properties.Radius})"..source:sub(overlayEnd)
+	source=replaceOnce(source,
+		"local glow = Components.Stroke(item, normal, 4, 0.82)",
+		"local glow = Components.Stroke(item, normal, Foundation.StrokeWidth(\"Glow\"), 0.82)",
+		"RacingUI button glow")
+	source=replaceOnce(source,
 		"return Components",
-		MARKER.."\nComponents.SetCorner=Foundation.SetCorner\nComponents.FormatMoney=Foundation.FormatCompactMoney\nComponents.ProjectEconomy=Foundation.ProjectEconomy\nComponents.BindReplicatedCash=Foundation.BindReplicatedCash\nfunction Components.MetricLabel(parent,properties)\n\tproperties=properties or {}\n\tproperties.Role=\"Metric\"\n\tlocal label=Components.Label(parent,properties)\n\treturn Foundation.StyleMetric(label,properties.Kind)\nend\nfunction Components.ConfirmationModal(root,options)\n\treturn Foundation.Confirmation(root,options,Components)\nend\n\nreturn Components",
+		MARKER.."\nComponents.SetCorner=Foundation.SetCorner\nComponents.StrokeWidth=Foundation.StrokeWidth\nComponents.StyleStroke=Foundation.StyleStroke\nComponents.ApplyBevel=Foundation.ApplyBevel\nComponents.FormatMoney=Foundation.FormatCompactMoney\nComponents.ProjectEconomy=Foundation.ProjectEconomy\nComponents.BindReplicatedCash=Foundation.BindReplicatedCash\nfunction Components.MetricLabel(parent,properties)\n\tproperties=properties or {}\n\tproperties.Role=\"Metric\"\n\tlocal label=Components.Label(parent,properties)\n\treturn Foundation.StyleMetric(label,properties.Kind)\nend\nfunction Components.ConfirmationModal(root,options)\n\treturn Foundation.Confirmation(root,options,Components)\nend\n\nreturn Components",
 		"RacingUI return")
+	return source
+end, function(source)
+	source=replaceOnce(source,
+		"stroke.Thickness = thickness or Components.Layout(\"StrokeWidth\", 1.5)",
+		"stroke.Thickness = thickness or Foundation.StrokeWidth(\"Structural\")",
+		"RacingUI shared structural stroke")
+	source=replaceOnce(source,
+		"local glow = Components.Stroke(item, borderColor, properties.GlowWidth or 4, properties.GlowTransparency == nil and 0.82 or properties.GlowTransparency)",
+		"local glow = Components.Stroke(item, borderColor, properties.GlowWidth or Foundation.StrokeWidth(\"Glow\"), properties.GlowTransparency == nil and 0.82 or properties.GlowTransparency)",
+		"RacingUI panel glow")
+	local overlayStart=assert(source:find("\tlocal overlay = Instance.new(\"Frame\")",1,true),"RacingUI button overlay start missing")
+	local overlayEnd=assert(source:find("\n\tlocal normal = properties.StrokeColor",overlayStart,true),"RacingUI button overlay end missing")
+	source=source:sub(1,overlayStart-1).."\tFoundation.ApplyBevel(item,{Radius=properties.Radius})"..source:sub(overlayEnd)
+	source=replaceOnce(source,
+		"local glow = Components.Stroke(item, normal, 4, 0.82)",
+		"local glow = Components.Stroke(item, normal, Foundation.StrokeWidth(\"Glow\"), 0.82)",
+		"RacingUI button glow")
+	source=replaceOnce(source,
+		"Components.SetCorner=Foundation.SetCorner\nComponents.FormatMoney=Foundation.FormatCompactMoney",
+		"Components.SetCorner=Foundation.SetCorner\nComponents.StrokeWidth=Foundation.StrokeWidth\nComponents.StyleStroke=Foundation.StyleStroke\nComponents.ApplyBevel=Foundation.ApplyBevel\nComponents.FormatMoney=Foundation.FormatCompactMoney",
+		"RacingUI V1.1 exports")
 	return source
 end)
 
@@ -496,7 +609,7 @@ project("GarageShared", function(source)
 	local first=assert(source:find("function M.ConfirmationModal(root,options)",1,true),"Garage confirmation start missing")
 	local last=assert(source:find("\nend\n\n-- NTR_OWNED_GARAGE_ANCHORED_DROPDOWN_V2",first,true),"Garage confirmation end missing")
 	source=source:sub(1,first-1).."function M.ConfirmationModal(root,options)\n\treturn Racing.ConfirmationModal(root,options)\nend"..source:sub(last+5)
-	source=replaceOnce(source,"return M",MARKER.."\nreturn M","Garage shared return")
+	source=replaceOnce(source,"\nreturn M","\n"..MARKER.."\nreturn M","Garage shared return")
 	return source
 end)
 
@@ -514,6 +627,11 @@ project("GarageWorkspace", function(source)
 		"generated(Shared.EconomyMetric(self.Capacity,{Kind=\"GarageSpaces\",Text=context.CapacityText or \"0/0 Spaces\"",
 		"Garage workspace Spaces metric")
 	return MARKER.."\n"..source
+end, function(source)
+	return replaceOnce(source,
+		"StrokeTransparency=.32,StrokeWidth=1.4,NoGlow=true}); self.Capacity=Shared.Panel(self.Economy,\"Capacity\",{StrokeColor=outline,StrokeTransparency=.32,StrokeWidth=1.4,NoGlow=true",
+		"StrokeTransparency=.32,StrokeWidth=Racing.StrokeWidth(\"Emphasis\"),NoGlow=true}); self.Capacity=Shared.Panel(self.Economy,\"Capacity\",{StrokeColor=outline,StrokeTransparency=.32,StrokeWidth=Racing.StrokeWidth(\"Emphasis\"),NoGlow=true",
+		"Garage workspace economy strokes")
 end)
 
 project("GarageBrowser", function(source)
@@ -531,6 +649,11 @@ project("GarageBrowser", function(source)
 		"generated(Shared.EconomyMetric(self.Capacity,{Kind=\"GarageSpaces\",Text=context.CapacityText or \"0/0 Spaces\"",
 		"Garage browser Spaces metric")
 	return MARKER.."\n"..source
+end, function(source)
+	return replaceOnce(source,
+		"StrokeTransparency=.32,StrokeWidth=1.4,NoGlow=true}); self.Capacity=Shared.Panel(self.Economy,\"Capacity\",{StrokeColor=economyOutline,StrokeTransparency=.32,StrokeWidth=1.4,NoGlow=true",
+		"StrokeTransparency=.32,StrokeWidth=Racing.StrokeWidth(\"Emphasis\"),NoGlow=true}); self.Capacity=Shared.Panel(self.Economy,\"Capacity\",{StrokeColor=economyOutline,StrokeTransparency=.32,StrokeWidth=Racing.StrokeWidth(\"Emphasis\"),NoGlow=true",
+		"Garage browser economy strokes")
 end)
 
 project("ModuleShop", function(source)
@@ -654,30 +777,75 @@ end
 	return MARKER.."\n"..source
 end
 
-project("DesktopHud", function(source) return projectFreeRoam(source,"Desktop HUD",false) end)
-project("MobileHud", function(source) return projectFreeRoam(source,"Mobile HUD",true) end)
+local function upgradeFreeRoam(source,label,mobile)
+	if mobile then
+		source=replaceOnce(source,
+			"local function panel(parent,name,size,pos,z) local p=new(\"Frame\",{Name=name,BackgroundColor3=DEEP,BackgroundTransparency=.14,BorderSizePixel=0,Size=size,Position=pos,ZIndex=z or 4},parent); corner(p,10); stroke(p,PINK,2,.08); return p end",
+			"local function panel(parent,name,size,pos,z) local p=new(\"Frame\",{Name=name,BackgroundColor3=DEEP,BackgroundTransparency=.14,BorderSizePixel=0,Size=size,Position=pos,ZIndex=z or 4},parent); corner(p,10); stroke(p,PINK,Foundation.StrokeWidth(\"Structural\"),.08); return p end",
+			label.." panel stroke")
+		source=replaceOnce(source,
+			"\tlocal b=new(\"TextButton\",{Name=name,Text=text,TextColor3=WHITE,TextSize=11,Font=FONT,AutoButtonColor=false,BackgroundColor3=PANEL,BackgroundTransparency=.08,BorderSizePixel=0,Size=size,Position=pos,ZIndex=parent.ZIndex+2},parent); corner(b,8); stroke(b,accent or PINK,1.7,.04); return b",
+			"\tlocal b=new(\"TextButton\",{Name=name,Text=text,TextColor3=WHITE,TextSize=11,Font=FONT,AutoButtonColor=false,BackgroundColor3=PANEL,BackgroundTransparency=.08,BorderSizePixel=0,Size=size,Position=pos,ZIndex=parent.ZIndex+2},parent); corner(b,8); stroke(b,accent or PINK,Foundation.StrokeWidth(\"Structural\"),.04); Foundation.ApplyBevel(b,{Radius=8,Strength=E(\"ButtonGradientStrength\",.10),Rotation=E(\"ButtonGradientRotation\",90)}); return b",
+			label.." button surface")
+		local bevelStart=assert(source:find("local function buttonGradient(parent)",1,true),label.." bevel start missing")
+		local bevelEnd=assert(source:find("\nend\nlocal function addFacetPattern",bevelStart,true),label.." bevel end missing")
+		source=source:sub(1,bevelStart-1).."local function buttonGradient(parent)\n\treturn Foundation.ApplyBevel(parent,{Radius=6,Strength=E(\"ButtonGradientStrength\",.10),Rotation=E(\"ButtonGradientRotation\",90)})\nend"..source:sub(bevelEnd+4)
+		source=replaceOnce(source,
+			"local cash=panel(root,\"Cash\",UDim2.fromOffset(170,34),UDim2.fromOffset(0,0),5); cash.BackgroundColor3=Color3.fromRGB(8,42,84); cash.ClipsDescendants=true; local cashStroke=cash:FindFirstChildOfClass(\"UIStroke\"); if cashStroke then cashStroke.Color=BLUE end; local cashText=",
+			"local cash=panel(root,\"Cash\",UDim2.fromOffset(170,34),UDim2.fromOffset(0,0),5); cash.BackgroundColor3=Color3.fromRGB(8,42,84); cash.ClipsDescendants=true; local cashStroke=cash:FindFirstChildOfClass(\"UIStroke\"); if cashStroke then cashStroke.Color=BLUE; Foundation.StyleStroke(cashStroke,\"Structural\") end; local cashText=",
+			label.." Cash stroke")
+		source=replaceOnce(source,
+			"local cashPlus=button(cash,\"Plus\",\"+\",UDim2.fromOffset(28,26),UDim2.new(1,-32,.5,-13),BLUE); cashPlus.TextSize=18",
+			"local cashPlus=button(cash,\"Plus\",\"+\",UDim2.fromOffset(28,26),UDim2.new(1,-32,.5,-13),BLUE); Foundation.ApplyBevel(cashPlus,{Radius=8}); local cashPlusStroke=cashPlus:FindFirstChildOfClass(\"UIStroke\"); if cashPlusStroke then Foundation.StyleStroke(cashPlusStroke,\"Structural\") end; cashPlus.TextSize=18",
+			label.." Cash plus")
+		source=replaceOnce(source,
+			"\tlocal b=button(nav,name,\"\",UDim2.fromOffset(42,42),UDim2.fromOffset(0,0),PINK); local image=asset(desktopAssets,iconName)",
+			"\tlocal b=button(nav,name,\"\",UDim2.fromOffset(42,42),UDim2.fromOffset(0,0),PINK); Foundation.ApplyBevel(b,{Radius=8,Strength=E(\"ButtonGradientStrength\",.10),Rotation=E(\"ButtonGradientRotation\",90)}); local navStroke=b:FindFirstChildOfClass(\"UIStroke\"); if navStroke then Foundation.StyleStroke(navStroke,\"Structural\") end; local image=asset(desktopAssets,iconName)",
+			label.." navigation bevel")
+	else
+		local bevelStart=assert(source:find("local function buttonGradient(parent)",1,true),label.." bevel start missing")
+		local bevelEnd=assert(source:find("\nend\n\nlocal function setAccent",bevelStart,true),label.." bevel end missing")
+		source=source:sub(1,bevelStart-1).."local function buttonGradient(parent)\n\treturn Foundation.ApplyBevel(parent,{Radius=6,Strength=E(\"ButtonGradientStrength\",0.10),Rotation=E(\"ButtonGradientRotation\",90)})\nend"..source:sub(bevelEnd+5)
+		source=replaceOnce(source,
+			"\tlocal itemStroke = stroke(item, outline or C(\"Outline\", Color3.fromRGB(244, 46, 151)), 1.4, 0.08)",
+			"\tlocal itemStroke = stroke(item, outline or C(\"Outline\", Color3.fromRGB(244, 46, 151)), Foundation.StrokeWidth(\"Structural\"), 0.08)",
+			label.." button stroke")
+		source=replaceOnce(source,
+			"\tstroke(item, C(\"Outline\", Color3.fromRGB(244, 46, 151)), 1.5, 0.05)",
+			"\tstroke(item, C(\"Outline\", Color3.fromRGB(244, 46, 151)), Foundation.StrokeWidth(\"Structural\"), 0.05)",
+			label.." panel stroke")
+		source=replaceOnce(source,
+			"return stroke(parent, color, 4, E(\"GlowTransparency\", 0.82), \"GlowStroke\")",
+			"return stroke(parent, color, Foundation.StrokeWidth(\"Glow\"), E(\"GlowTransparency\", 0.82), \"GlowStroke\")",
+			label.." glow width")
+		source=replaceOnce(source,
+			"\tlocal item, itemStroke = button(actionBar, action, \"\", UDim2.fromOffset(width or buttonSize, buttonSize), UDim2.fromOffset(0, 0), C(\"Panel\"), C(\"Outline\"))",
+			"\tlocal item, itemStroke = button(actionBar, action, \"\", UDim2.fromOffset(width or buttonSize, buttonSize), UDim2.fromOffset(0, 0), C(\"Panel\"), C(\"Outline\"))\n\tFoundation.StyleStroke(itemStroke,\"Structural\")",
+			label.." navigation stroke")
+		source=replaceOnce(source,
+			"\tstroke(money, C(\"ElectricBlue\"), 1.7, 0, \"CashStroke\")",
+			"\tstroke(money, C(\"ElectricBlue\"), Foundation.StrokeWidth(\"Structural\"), 0, \"CashStroke\")",
+			label.." Cash stroke")
+		source=replaceOnce(source,
+			"\tlocal plus = button(money, \"Plus\", \"+\", UDim2.fromOffset(32, 30), UDim2.new(1, -38, 0.5, -15), C(\"PanelBlue\"), C(\"ElectricBlue\"))\n\tplus.TextSize = 19",
+			"\tlocal plus, plusStroke = button(money, \"Plus\", \"+\", UDim2.fromOffset(32, 30), UDim2.new(1, -38, 0.5, -15), C(\"PanelBlue\"), C(\"ElectricBlue\"))\n\tFoundation.StyleStroke(plusStroke,\"Structural\")\n\tplus.TextSize = 19",
+			label.." Cash plus stroke")
+	end
+	return source
+end
+
+project("DesktopHud",
+	function(source) return upgradeFreeRoam(projectFreeRoam(source,"Desktop HUD",false),"Desktop HUD",false) end,
+	function(source) return upgradeFreeRoam(source,"Desktop HUD",false) end)
+project("MobileHud",
+	function(source) return upgradeFreeRoam(projectFreeRoam(source,"Mobile HUD",true),"Mobile HUD",true) end,
+	function(source) return upgradeFreeRoam(source,"Mobile HUD",true) end)
 
 project("RaceCountdown", function(source)
 	source=replaceOnce(source,
 		"local corner=Instance.new(\"UICorner\") corner.CornerRadius=UDim.new(0,18) corner.Parent=card",
 		"UI.Corner(card,18)",
 		"Race countdown corner")
-	return MARKER.."\n"..source
-end)
-
-project("RaceClient", function(source)
-	source=insertAfterOnce(source,
-		"local kit = ReplicatedStorage:WaitForChild(\"NeoTokyoRacers\")",
-		"\nlocal SharedUI = require(kit:WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"UI\"):WaitForChild(\"RacingUIComponents\"))",
-		"Race client shared UI")
-	source=replaceOnce(source,
-		"local corner = Instance.new(\"UICorner\")\ncorner.CornerRadius = UDim.new(0, 7)\ncorner.Parent = panel",
-		"SharedUI.Corner(panel,7)",
-		"Race client panel corner")
-	source=replaceOnce(source,
-		"\tlocal labelCorner = Instance.new(\"UICorner\")\n\tlabelCorner.CornerRadius = UDim.new(0, 6)\n\tlabelCorner.Parent = label",
-		"\tSharedUI.Corner(label,6)",
-		"Race client label corner")
 	return MARKER.."\n"..source
 end)
 
@@ -691,6 +859,20 @@ project("RacePersonalBest", function(source)
 		"local function corner(parent, radius)\n\treturn Foundation.Corner(parent,radius or 7)\nend",
 		"Race PB corner")
 	return MARKER.."\n"..source
+end, function(source)
+	source=replaceOnce(source,
+		"stroke(item, theme.Accent, 1, 0.5)",
+		"stroke(item, theme.Accent, Foundation.StrokeWidth(\"Structural\"), 0.5)",
+		"Race PB header stroke")
+	source=replaceOnce(source,
+		"stroke(panel, theme.Selected, 1.4, 0.18)",
+		"stroke(panel, theme.Selected, Foundation.StrokeWidth(\"Emphasis\"), 0.18)",
+		"Race PB panel stroke")
+	source=replaceOnce(source,
+		"stroke(row, theme.Accent, 1, 0.62)",
+		"stroke(row, theme.Accent, Foundation.StrokeWidth(\"Structural\"), 0.62)",
+		"Race PB row stroke")
+	return source
 end)
 
 project("RaceRouteGuide", function(source)
@@ -707,6 +889,11 @@ project("RaceRouteGuide", function(source)
 		"Foundation.Corner(wrongWay,6)",
 		"Race route wrong-way corner")
 	return MARKER.."\n"..source
+end, function(source)
+	return replaceOnce(source,
+		"wrongStroke.Thickness = 1.2",
+		"wrongStroke.Thickness = Foundation.StrokeWidth(\"Emphasis\")",
+		"Race route wrong-way stroke")
 end)
 
 project("RaceSessionControls", function(source)
@@ -719,6 +906,16 @@ project("RaceSessionControls", function(source)
 		"local function corner(parent, radius)\n\treturn Foundation.Corner(parent,radius or 7)\nend",
 		"Race controls corner")
 	return MARKER.."\n"..source
+end, function(source)
+	source=replaceOnce(source,
+		"stroke(button, color == theme.Exit and theme.Exit or theme.Accent, 1.1, 0.2)",
+		"stroke(button, color == theme.Exit and theme.Exit or theme.Accent, Foundation.StrokeWidth(\"Structural\"), 0.2)",
+		"Race controls button stroke")
+	source=replaceOnce(source,
+		"stroke(panel, theme.Selected, 1.4, 0.18)",
+		"stroke(panel, theme.Selected, Foundation.StrokeWidth(\"Emphasis\"), 0.18)",
+		"Race controls panel stroke")
+	return source
 end)
 
 project("RaceSession", function(source)
@@ -761,6 +958,14 @@ end
 
 local desktopScale=ensureNumberValue("CornerScaleDesktop",.7)
 local mobileScale=ensureNumberValue("CornerScaleMobile",.5)
+local structuralDesktop=ensureNumberValue("StructuralStrokeDesktop",1.2)
+local structuralMobile=ensureNumberValue("StructuralStrokeMobile",1)
+local emphasisDesktop=ensureNumberValue("EmphasisStrokeDesktop",1.5)
+local emphasisMobile=ensureNumberValue("EmphasisStrokeMobile",1.25)
+local glowDesktop=ensureNumberValue("GlowStrokeDesktop",3)
+local glowMobile=ensureNumberValue("GlowStrokeMobile",2)
+local bevelStrength=ensureNumberValue("BevelStrength",.1)
+local bevelRotation=ensureNumberValue("BevelRotation",90)
 
 local function audit()
 	local failures={}
@@ -772,6 +977,23 @@ local function audit()
 	expect(foundation and foundation:IsA("ModuleScript"),"ResponsiveUIFoundation ModuleScript missing")
 	if foundation then
 		expect(countPlain(foundation.Source,REVISION)==1,"foundation revision marker missing/duplicated")
+		expect(foundation.Source:find("function M.StrokeWidth",1,true)~=nil,"shared stroke token source missing")
+		expect(foundation.Source:find("function M.ApplyBevel",1,true)~=nil,"shared bevel source missing")
+		for _,fragment in ipairs({
+			"number(\"StructuralStrokeMobile\",1)",
+			"number(\"StructuralStrokeDesktop\",1.2)",
+			"number(\"EmphasisStrokeMobile\",1.25)",
+			"number(\"EmphasisStrokeDesktop\",1.5)",
+			"number(\"GlowStrokeMobile\",2)",
+			"number(\"GlowStrokeDesktop\",3)",
+			"number(\"BevelStrength\",.1)",
+			"number(\"BevelRotation\",90)",
+		}) do
+			expect(foundation.Source:find(fragment,1,true)~=nil,"foundation fallback missing: "..fragment)
+		end
+		if foundation:GetAttribute("InstallerRevision")~=REVISION then
+			table.insert(warnings,"optional hierarchy revision attribute did not persist; V1.1 source marker and defaults remain canonical")
+		end
 		local ok,module=pcall(require,foundation)
 		expect(ok and type(module)=="table","foundation require failed: "..tostring(module))
 		if ok then
@@ -780,12 +1002,34 @@ local function audit()
 			expect(module.FormatCompactMoney(1000000)=="$1.0M","$1.0M formatter case failed")
 			expect(module.FormatCompactMoney(9900000)=="$9.9M","$9.9M formatter case failed")
 			expect(module.FormatCompactMoney(10000000)=="$10.0M","$10.0M formatter case failed")
+			if MODE=="AUDIT" then
+				expect(type(module.StrokeWidth)=="function","shared stroke token runtime owner missing after restart")
+				expect(type(module.ApplyBevel)=="function","shared bevel runtime owner missing after restart")
+			end
 		end
 	end
 	local desktop=themeConfig:FindFirstChild("CornerScaleDesktop")
 	local mobile=themeConfig:FindFirstChild("CornerScaleMobile")
 	expect(desktop and desktop:IsA("NumberValue") and math.abs(desktop.Value-.7)<.0001,"desktop corner scale is not 0.70")
 	expect(mobile and mobile:IsA("NumberValue") and math.abs(mobile.Value-.5)<.0001,"mobile corner scale is not 0.50")
+	local missingTokenNodes={}
+	for name,value in pairs({
+		StructuralStrokeDesktop=1.2,StructuralStrokeMobile=1,
+		EmphasisStrokeDesktop=1.5,EmphasisStrokeMobile=1.25,
+		GlowStrokeDesktop=3,GlowStrokeMobile=2,
+		BevelStrength=.1,BevelRotation=90,
+	}) do
+		local item=themeConfig:FindFirstChild(name)
+		if item then
+			expect(item:IsA("NumberValue") and math.abs(item.Value-value)<.0001,name.." token mismatch")
+		else
+			table.insert(missingTokenNodes,name)
+		end
+	end
+	if #missingTokenNodes>0 then
+		table.sort(missingTokenNodes)
+		table.insert(warnings,"optional Theme token nodes did not persist; source defaults active: "..table.concat(missingTokenNodes,","))
+	end
 	for label,object in pairs(targets) do
 		expect(countPlain(object.Source,REVISION)==1,label.." revision marker missing/duplicated")
 		local ok,problem=pcall(compile,object.Source,label.." committed")
@@ -801,13 +1045,20 @@ local function audit()
 	expect(targets.DesktopHud.Source:find("FormatCompactMoney",1,true)~=nil,"desktop Cash does not use compact formatter")
 	expect(targets.MobileHud.Source:find("FormatCompactMoney",1,true)~=nil,"mobile Cash does not use compact formatter")
 	expect(targets.MobileHud.Source:find("cashStroke.Color=BLUE",1,true)~=nil,"mobile Cash still lacks explicit non-pink outline")
+	expect(targets.MobileHud.Source:find("Foundation.ApplyBevel(b",1,true)~=nil,"mobile navigation does not use shared bevel")
+	expect(targets.MobileHud.Source:find("stroke(p,PINK,Foundation.StrokeWidth(\"Structural\")",1,true)~=nil,"mobile panels do not use shared structural stroke")
+	expect(targets.DesktopHud.Source:find("Foundation.StrokeWidth(\"Structural\")",1,true)~=nil,"desktop free-roam does not use shared strokes")
+	expect(targets.RacingUI.Source:find("Foundation.ApplyBevel(item",1,true)~=nil,"shared racing renderer does not own bevel application")
+	expect(targets.RaceSessionControls.Source:find("Foundation.StrokeWidth",1,true)~=nil,"race session controls do not use shared stroke roles")
+	expect(targets.RacePersonalBest.Source:find("Foundation.StrokeWidth",1,true)~=nil,"race PB presentation does not use shared stroke roles")
+	expect(targets.RaceRouteGuide.Source:find("wrongStroke.Thickness = Foundation.StrokeWidth",1,true)~=nil,"race warning border does not use shared emphasis role")
 	expect(targets.DesktopHud.Source:find("while task.wait(2",1,true)==nil and targets.MobileHud.Source:find("while task.wait(2",1,true)==nil,"free-roam HUD contains a two-second polling loop")
 	local bootstrap=clientRoot:FindFirstChild("NeoTokyoRacersClient_Bootstrap_Shadow_Disabled")
 	if bootstrap and bootstrap.Source:find("CornerRadius",1,true) then
 		table.insert(warnings,"legacy register-limited bootstrap retains retired hard-coded corners; canonical active garage surfaces supersede them")
 	end
 	if #failures>0 then error(TAG.." AUDIT FAIL | "..table.concat(failures," | ")) end
-	print(TAG.." AUDIT PASS | formatter=5/5 corners=desktop70/mobile50 metrics=shared confirmations=shared notifications=bounded")
+	print(TAG.." AUDIT PASS | formatter=5/5 corners=desktop70/mobile50 strokes=device-semantic bevel=shared metrics=shared confirmations=shared notifications=bounded")
 	for _,message in ipairs(warnings) do warn(TAG.." WARN | "..message) end
 	return true
 end
@@ -825,39 +1076,63 @@ if countPlain(targets.RacingUI.Source,REVISION)==1 then
 	return
 end
 
-local createdFoundation=false
-local foundation=uiModules:FindFirstChild("ResponsiveUIFoundation")
+local foundation=baselineFoundation
 local foundationSourceBefore
-if foundation then
-	assert(foundation:IsA("ModuleScript"),foundation:GetFullName().." must be a ModuleScript")
-	foundationSourceBefore=foundation.Source
-else
-	foundation=Instance.new("ModuleScript")
-	foundation.Name="ResponsiveUIFoundation"
-	createdFoundation=true
-end
+local foundationRevisionBefore
+foundationSourceBefore=foundation.Source
+foundationRevisionBefore=foundation:GetAttribute("InstallerRevision")
 
 local sourceSnapshot={}
 for label,object in pairs(targets) do
 	sourceSnapshot[label]=object.Source
 end
 local configSnapshot={}
-for _,entry in ipairs({{"CornerScaleDesktop",desktopScale},{"CornerScaleMobile",mobileScale}}) do
+for _,entry in ipairs({
+	{"CornerScaleDesktop",desktopScale},{"CornerScaleMobile",mobileScale},
+	{"StructuralStrokeDesktop",structuralDesktop},{"StructuralStrokeMobile",structuralMobile},
+	{"EmphasisStrokeDesktop",emphasisDesktop},{"EmphasisStrokeMobile",emphasisMobile},
+	{"GlowStrokeDesktop",glowDesktop},{"GlowStrokeMobile",glowMobile},
+	{"BevelStrength",bevelStrength},{"BevelRotation",bevelRotation},
+}) do
 	local name,item=entry[1],entry[2]
-	configSnapshot[name]=item and {Exists=true,Value=item.Value} or {Exists=false}
+	configSnapshot[name]=item and {
+		Exists=true,
+		Value=item.Value,
+		Description=item:GetAttribute("Description"),
+		InstallerRevision=item:GetAttribute("InstallerRevision"),
+	} or {Exists=false}
 end
+local themeRevisionBefore=themeConfig:GetAttribute("SharedResponsiveUIRevision")
 
 local ok,problem=pcall(function()
 	foundation.Source=FOUNDATION_SOURCE
 	foundation:SetAttribute("InstallerRevision",REVISION)
 	foundation.Parent=uiModules
 	for label,source in pairs(projected) do targets[label].Source=source end
-	for _,entry in ipairs({{"CornerScaleDesktop",.7},{"CornerScaleMobile",.5}}) do
+	for _,entry in ipairs({
+		{"CornerScaleDesktop",.7},{"CornerScaleMobile",.5},
+		{"StructuralStrokeDesktop",1.2},{"StructuralStrokeMobile",1},
+		{"EmphasisStrokeDesktop",1.5},{"EmphasisStrokeMobile",1.25},
+		{"GlowStrokeDesktop",3},{"GlowStrokeMobile",2},
+		{"BevelStrength",.1},{"BevelRotation",90},
+	}) do
 		local name,value=entry[1],entry[2]
 		local item=themeConfig:FindFirstChild(name)
 		if not item then item=Instance.new("NumberValue"); item.Name=name; item:SetAttribute("InstallerRevision",REVISION); item.Parent=themeConfig end
 		item.Value=value
-		item:SetAttribute("Description",name=="CornerScaleDesktop" and "Scale applied by shared renderers to active desktop corner radii." or "Scale applied by shared renderers to active touch/mobile corner radii.")
+		local descriptions={
+			CornerScaleDesktop="Scale applied by shared renderers to active desktop corner radii.",
+			CornerScaleMobile="Scale applied by shared renderers to active touch/mobile corner radii.",
+			StructuralStrokeDesktop="Desktop structural border thickness in pixels.",
+			StructuralStrokeMobile="Touch/mobile structural border thickness in pixels.",
+			EmphasisStrokeDesktop="Desktop selected/economy emphasis border thickness in pixels.",
+			EmphasisStrokeMobile="Touch/mobile selected/economy emphasis border thickness in pixels.",
+			GlowStrokeDesktop="Desktop decorative glow stroke thickness in pixels.",
+			GlowStrokeMobile="Touch/mobile decorative glow stroke thickness in pixels.",
+			BevelStrength="Shared neutral bevel overlay strength.",
+			BevelRotation="Shared neutral bevel gradient rotation in degrees.",
+		}
+		item:SetAttribute("Description",descriptions[name])
 	end
 	themeConfig:SetAttribute("SharedResponsiveUIRevision",REVISION)
 	audit()
@@ -867,17 +1142,26 @@ if not ok then
 	for label,object in pairs(targets) do
 		object.Source=sourceSnapshot[label]
 	end
-	if foundationSourceBefore then
-		foundation.Source=foundationSourceBefore
-	elseif createdFoundation and foundation.Parent then foundation:Destroy() end
-	for _,name in ipairs({"CornerScaleDesktop","CornerScaleMobile"}) do
+	foundation.Source=foundationSourceBefore
+	foundation:SetAttribute("InstallerRevision",foundationRevisionBefore)
+	for _,name in ipairs({
+		"CornerScaleDesktop","CornerScaleMobile",
+		"StructuralStrokeDesktop","StructuralStrokeMobile",
+		"EmphasisStrokeDesktop","EmphasisStrokeMobile",
+		"GlowStrokeDesktop","GlowStrokeMobile",
+		"BevelStrength","BevelRotation",
+	}) do
 		local saved=configSnapshot[name]
 		local current=themeConfig:FindFirstChild(name)
-		if saved.Exists and current then current.Value=saved.Value elseif not saved.Exists and current and current:GetAttribute("InstallerRevision")==REVISION then current:Destroy() end
+		if saved.Exists and current then
+			current.Value=saved.Value
+			current:SetAttribute("Description",saved.Description)
+			current:SetAttribute("InstallerRevision",saved.InstallerRevision)
+		elseif not saved.Exists and current and current:GetAttribute("InstallerRevision")==REVISION then current:Destroy() end
 	end
-	themeConfig:SetAttribute("SharedResponsiveUIRevision",nil)
+	themeConfig:SetAttribute("SharedResponsiveUIRevision",themeRevisionBefore)
 	error(TAG.." INSTALL ROLLED BACK | "..tostring(problem))
 end
 
 print(TAG.." INSTALL PASS | runId="..RUN_ID)
-print(TAG.." Verify desktop/controller, phone portrait/landscape, transaction projection, confirmation exits, notification stacking, and free-roam Cash styling before refreshing the full Studio mirror.")
+print(TAG.." Verify shared bevels and reduced borders on desktop/mobile free-roam, garage and racing UI; then repeat transaction, confirmation, notification, controls and picker regression before refreshing the full Studio mirror.")

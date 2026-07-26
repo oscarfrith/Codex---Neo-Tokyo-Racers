@@ -1,12 +1,18 @@
 # Customisation UI
 
-## Shared Responsive UI Foundation V1 (generated 2026-07-26)
+## Shared Responsive UI Foundation V1.1 confirmed and handed off (2026-07-26)
 
 The generated `scripts/roblox_shared_responsive_ui_foundation_v1.lua` extends the existing `RacingUIComponents` -> `GarageReplacementComponents` -> canonical workspace/browser chain. It does not create page-specific dealership, Customisation or owned-garage visuals.
 
 `ResponsiveUIFoundation` owns semantic corner scaling (`0.70` desktop, `0.50` touch/mobile), compact money, bold Cash/Garage Spaces styling, response projection, replicated Cash binding, shared confirmation lifecycle and top-notification layout. `ModuleShopUIController.Adapter` still consumes the complete authoritative `Profile` returned by each garage action; owned-garage management still consumes the authoritative returned `ManagementState` and revision pushes. The new projection is presentation-only and creates no purchase, economy or persistence authority.
 
-Free-roam and racing vehicle pickers are deliberately not migrated in this scope. The full acceptance contract, owner inventory, exception audit and cross-device verification matrix are in `docs/shared-responsive-ui-foundation-v1.md`.
+V1.1 is user-confirmed and represented in the complete `21:28:23` mirror. It adds shared device-aware structural/emphasis/glow widths and one bevel applicator to the enabled shared garage components. The same semantics flow through dealership, Customisation and owned-garage renderers.
+
+The optional new Theme tuning nodes did not persist after Studio's mixed source/hierarchy command, but the identical V1.1 defaults are present in `ResponsiveUIFoundation` and drive the confirmed runtime. Existing garage UI geometry, state and actions are unchanged.
+
+`GarageExperienceController_Active` remains intentionally disabled with `SupersededBy=NTR_GARAGE_REPLACEMENT_BROWSER_V1_4`. V1.1 neither enables nor rewrites that retired competing geometry owner.
+
+Free-roam and racing vehicle-picker geometry, state, cards and actions are deliberately not migrated in this scope. Their existing surfaces may consume the foundational tokens without becoming a new composition owner. The full acceptance contract, owner inventory, exception audit and cross-device verification matrix are in `docs/shared-responsive-ui-foundation-v1.md`.
 
 ## Access refinement V1.1 correction (confirmed and handed off 2026-07-26)
 

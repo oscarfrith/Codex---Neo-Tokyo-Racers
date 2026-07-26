@@ -1,7 +1,22 @@
 # Patch History
 
+## 2026-07-26 - Shared responsive UI foundation V1.1 confirmed and handed off
+
+- Confirmed V1 working from the user report and refreshed `21:09:56` mirror.
+- Diagnosed mobile free-roam drift: its navigation buttons skipped the bevel helper and its generic panels/buttons retained `2 px` / `1.7 px` strokes, while desktop, garage and racing owners used separate hard-coded widths.
+- Corrected the first V1.1 read-only preflight failure: `GarageExperienceController_Active` is intentionally disabled and superseded by `NTR_GARAGE_REPLACEMENT_BROWSER_V1_4`, so it is excluded rather than enabled or rewritten.
+- Corrected the following read-only projection failure: the mobile bevel-helper splice consumed the newline between `end` and `local`, producing `endlocal`. The same installer now retains the delimiter newline; the failed run made no Studio changes.
+- Advanced the same canonical installer to `NTR_SHARED_RESPONSIVE_UI_FOUNDATION_V1_1`; no patch ladder or blanket runtime scan was added.
+- Added shared structural (`1.2` desktop / `1` mobile), emphasis (`1.5` / `1.25`) and glow (`3` / `2`) tokens plus one idempotent neutral bevel applicator.
+- Routed common desktop/mobile free-roam surfaces and the enabled shared racing/garage renderers through those tokens. Cash remains dark blue/blue; selected, destructive and tutorial semantics retain cyan, red and gold.
+- Preserved vehicle-picker geometry/state/actions, driving controls, transactions, persistence, notifications and all existing responsive/state contracts.
+- The user confirmed the result working. The `21:28:23` mirror has 189 matching source/checksum/manifest entries and all 18 V1.1 source owners.
+- Recorded Studio's mixed persistence outcome accurately: optional new Theme nodes and revision attributes reverted, while the complete V1.1 source graph persisted and uses identical audited defaults. The installer audit now warns on that optional hierarchy state.
+
 ## 2026-07-26 - Shared responsive UI foundation V1 generated
 
+- Corrected the first read-only preflight failure: `RaceClient_Active` is the intentionally disabled Phase 2 HUD retired by the Phase 3/16 presentation stack, so the canonical installer no longer targets or requires it. The failed run made no Studio changes.
+- Corrected the second read-only projection failure by replacing the three-match generic `return M` anchor with the unique final module-tail anchor. The failed run also made no Studio changes.
 - Added one canonical High-Risk installer: `scripts/roblox_shared_responsive_ui_foundation_v1.lua`.
 - Added `ResponsiveUIFoundation` as the single owner for desktop/mobile corner scaling, compact money, economy response projection, replicated Cash binding, shared confirmation lifecycle and bounded top-notification layout.
 - Extended `UITheme`, `UIFactory`, `RacingUIComponents` and garage replacement renderers instead of copying page coordinates or scanning every `UICorner`.
@@ -9,7 +24,7 @@
 - Routed desktop/mobile free-roam Cash, confirmation and corner construction through shared contracts. Mobile Cash retains dark blue and replaces its inherited pink outline with blue.
 - Routed active racing shared/direct corner construction through the semantic token. The register-limited legacy bootstrap, mobile drive controls, world/intro prompts and vehicle-picker composition are explicit non-owners/exclusions.
 - Replaced the shared top-notification owner with a borderless grey-gradient, white-text, responsive safe-area stack bounded to three cards.
-- Studio install/runtime verification and full mirror refresh remain pending. See `docs/shared-responsive-ui-foundation-v1.md`.
+- V1 was subsequently installed and mirrored at `21:09:56`, then advanced to the confirmed V1.1 handoff above.
 
 ## 2026-07-26 - Presentation audio V1.3.2 confirmed and handed off
 

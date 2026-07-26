@@ -1,3 +1,4 @@
+-- NTR_SHARED_RESPONSIVE_UI_FOUNDATION_V1_1
 -- NTR_RACING_FLOW_COUNTDOWN_QUEUE_EXIT_OWNERSHIP
 -- NTR_RACING_FLOW_COUNTDOWN_VISUAL_V2
 -- NTR_RACING_STAGING_READINESS_GATE_V1
@@ -19,7 +20,7 @@ local scale=Instance.new("UIScale") scale.Parent=canvas
 local function resize() local camera=Workspace.CurrentCamera local v=camera and camera.ViewportSize or Vector2.new(1920,1080) scale.Scale=math.min(v.X/1920,v.Y/1080) end resize() if Workspace.CurrentCamera then Workspace.CurrentCamera:GetPropertyChangedSignal("ViewportSize"):Connect(resize) end
 local size=N("CountdownCardSize",260)
 local card=Instance.new("Frame") card.Name="CountdownCard" card.AnchorPoint=Vector2.new(.5,.5) card.Position=UDim2.fromScale(.5,.5) card.Size=UDim2.fromOffset(size,size) card.BackgroundColor3=C("PanelDeep") card.BackgroundTransparency=N("CountdownCardTransparency",.18) card.BorderSizePixel=0 card.ClipsDescendants=true card.Visible=false card.Parent=canvas
-local corner=Instance.new("UICorner") corner.CornerRadius=UDim.new(0,18) corner.Parent=card
+UI.Corner(card,18)
 local gradient=Instance.new("UIGradient") gradient.Color=ColorSequence.new({ColorSequenceKeypoint.new(0,C("PanelBlue")),ColorSequenceKeypoint.new(.52,C("PanelDeep")),ColorSequenceKeypoint.new(1,C("PanelSoft"))}) gradient.Transparency=NumberSequence.new({NumberSequenceKeypoint.new(0,.05),NumberSequenceKeypoint.new(.52,.18),NumberSequenceKeypoint.new(1,.05)}) gradient.Rotation=N("CountdownGradientRotation",115) gradient.Parent=card
 local heading=UI.Label(card,{Text="GET READY",Position=UDim2.fromOffset(0,20),Size=UDim2.new(1,0,0,38),TextSize=18,Color=C("Text"),Role="Heading",XAlignment=Enum.TextXAlignment.Center})
 local number=UI.Label(card,{Text="5",Position=UDim2.fromScale(0,0),Size=UDim2.fromScale(1,1),TextSize=N("CountdownTextSize",130),Color=C("Telemetry"),Role="Metric",XAlignment=Enum.TextXAlignment.Center}) number.TextXAlignment=Enum.TextXAlignment.Center number.TextYAlignment=Enum.TextYAlignment.Center

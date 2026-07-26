@@ -1,3 +1,4 @@
+-- NTR_SHARED_RESPONSIVE_UI_FOUNDATION_V1_1
 -- NTR_RACING_FLOW_COUNTDOWN_QUEUE_EXIT_OWNERSHIP
 -- NTR_RACING_UI_MOBILE_PHASE2_LARGE_SESSION_CONTROLS
 -- NTR_RACING_UI_MOBILE_PHASE2_IN_RACE_HUD
@@ -98,13 +99,13 @@ local function borderless(object) object.BackgroundTransparency=1 for _,child in
 local function metricCard(object)
 	object.BackgroundColor3=C("PanelSoft") object.BackgroundTransparency=N("MetricCardTransparency",.34)
 	for _,child in ipairs(object:GetChildren()) do if child:IsA("UIStroke") then child.Transparency=1 elseif child:IsA("UIGradient") then child:Destroy() end end
-	local corner=object:FindFirstChildOfClass("UICorner") or Instance.new("UICorner") corner.CornerRadius=UDim.new(0,N("MetricCardCornerRadius",9)) corner.Parent=object
+	local corner=object:FindFirstChildOfClass("UICorner") or Instance.new("UICorner") UI.SetCorner(corner,N("MetricCardCornerRadius",9)) corner.Parent=object
 	local gradient=Instance.new("UIGradient") gradient.Color=ColorSequence.new(C("PanelSoft"),C("PanelDeep")) gradient.Transparency=NumberSequence.new({NumberSequenceKeypoint.new(0,.04),NumberSequenceKeypoint.new(1,.28)}) gradient.Rotation=90 gradient.Parent=object
 	return object
 end
 local function dataRow(parent,y,height)
 	local row=Instance.new("Frame") row.BackgroundColor3=C("PanelSoft") row.BackgroundTransparency=N("DataRowTransparency",.42) row.BorderSizePixel=0 row.Position=UDim2.fromOffset(0,y) row.Size=UDim2.new(1,0,0,height) row.Parent=parent
-	local corner=Instance.new("UICorner") corner.CornerRadius=UDim.new(0,N("DataRowCornerRadius",7)) corner.Parent=row
+	UI.Corner(row,N("DataRowCornerRadius",7))
 	local gradient=Instance.new("UIGradient") gradient.Color=ColorSequence.new(C("PanelSoft"),C("PanelDeep")) gradient.Transparency=NumberSequence.new({NumberSequenceKeypoint.new(0,.03),NumberSequenceKeypoint.new(1,.22)}) gradient.Rotation=90 gradient.Parent=row return row
 end
 local function placementColor(place)
@@ -162,7 +163,7 @@ exitButton.Activated:Connect(function() if not active then return end modalTitle
 noButton.Activated:Connect(function() modalShade.Visible=false end) yesButton.Activated:Connect(function() invokeSession("Exit") end)
 
 local avatarCache={}
-local function avatar(parent,userId,pos,size) local image=Instance.new("ImageLabel") image.BackgroundColor3=C("PanelSoft") image.BackgroundTransparency=.15 image.BorderSizePixel=0 image.Position=pos image.Size=size image.ScaleType=Enum.ScaleType.Crop image.Parent=parent local corner=Instance.new("UICorner") corner.CornerRadius=UDim.new(0,5) corner.Parent=image userId=tonumber(userId) if not userId then return end if avatarCache[userId] then image.Image=avatarCache[userId] return end task.spawn(function() local ok,url=pcall(function() return Players:GetUserThumbnailAsync(userId,Enum.ThumbnailType.HeadShot,Enum.ThumbnailSize.Size100x100) end) if ok then avatarCache[userId]=url if image.Parent then image.Image=url end end end) end
+local function avatar(parent,userId,pos,size) local image=Instance.new("ImageLabel") image.BackgroundColor3=C("PanelSoft") image.BackgroundTransparency=.15 image.BorderSizePixel=0 image.Position=pos image.Size=size image.ScaleType=Enum.ScaleType.Crop image.Parent=parent UI.Corner(image,5) userId=tonumber(userId) if not userId then return end if avatarCache[userId] then image.Image=avatarCache[userId] return end task.spawn(function() local ok,url=pcall(function() return Players:GetUserThumbnailAsync(userId,Enum.ThumbnailType.HeadShot,Enum.ThumbnailSize.Size100x100) end) if ok then avatarCache[userId]=url if image.Parent then image.Image=url end end end) end
 local function clear(parent) for _,child in ipairs(parent:GetChildren()) do child:Destroy() end end
 local hudMapState={Enabled=false,Subject=nil,NextSubjectResolve=0}
 local mapOpacityValue=config:FindFirstChild("MapOpacity")

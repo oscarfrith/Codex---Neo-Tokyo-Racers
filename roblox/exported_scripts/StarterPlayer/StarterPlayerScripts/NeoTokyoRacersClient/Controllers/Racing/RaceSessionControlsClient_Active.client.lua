@@ -1,3 +1,4 @@
+-- NTR_SHARED_RESPONSIVE_UI_FOUNDATION_V1_1
 -- Neo Tokyo Racers - Racing Phase 8D Session Controls Client
 -- NTR_RACING_PHASE8D_SESSION_CONTROLS_CLIENT
 
@@ -8,6 +9,7 @@ local UserInputService = game:GetService("UserInputService")
 local player = Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
 local kit = ReplicatedStorage:WaitForChild("NeoTokyoRacers")
+local Foundation = require(kit:WaitForChild("Shared"):WaitForChild("Modules"):WaitForChild("UI"):WaitForChild("ResponsiveUIFoundation"))
 local shared = kit:WaitForChild("Shared")
 local racingRemotes = shared:WaitForChild("Remotes"):WaitForChild("Racing")
 local raceRequest = racingRemotes:WaitForChild("RaceRequest")
@@ -46,10 +48,7 @@ local function fireTransition(step, payload)
 end
 
 local function corner(parent, radius)
-	local item = Instance.new("UICorner")
-	item.CornerRadius = UDim.new(0, radius or 7)
-	item.Parent = parent
-	return item
+	return Foundation.Corner(parent,radius or 7)
 end
 
 local function stroke(parent, color, thickness, transparency)
@@ -85,7 +84,7 @@ local function makeButton(parent, name, text, color)
 	applyFont(button, true)
 	button.Parent = parent
 	corner(button, 6)
-	stroke(button, color == theme.Exit and theme.Exit or theme.Accent, 1.1, 0.2)
+	stroke(button, color == theme.Exit and theme.Exit or theme.Accent, Foundation.StrokeWidth("Structural"), 0.2)
 	return button
 end
 
@@ -113,7 +112,7 @@ panel.BorderSizePixel = 0
 panel.Visible = false
 panel.Parent = gui
 corner(panel, 7)
-stroke(panel, theme.Selected, 1.4, 0.18)
+stroke(panel, theme.Selected, Foundation.StrokeWidth("Emphasis"), 0.18)
 
 local layout = Instance.new("UIListLayout")
 layout.FillDirection = Enum.FillDirection.Horizontal

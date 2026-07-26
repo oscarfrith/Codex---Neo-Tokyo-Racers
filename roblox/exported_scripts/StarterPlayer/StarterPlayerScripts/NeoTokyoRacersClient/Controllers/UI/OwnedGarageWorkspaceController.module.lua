@@ -1,3 +1,4 @@
+-- NTR_SHARED_RESPONSIVE_UI_FOUNDATION_V1_1
 -- NTR_OWNED_GARAGE_WORKSPACE_CONTROLLER_V4_CANONICAL_VERTICAL_SLICE
 -- NTR_PRESENTATION_AUDIO_OWNED_GARAGE_OUTCOMES_V1
 -- NTR_PRESENTATION_AUDIO_OWNED_GARAGE_SEMANTIC_CUES_V1_3
@@ -45,7 +46,7 @@ function Controller.Start()
 	local function categoryCardImageZoom() return math.clamp(tonumber(cfg:GetAttribute("OwnedGarageCategoryCardImageZoom")) or .5,.2,1.2) end	local iconSizing=icons:WaitForChild("Sizing")
 	local function locationIconZoom(name) return math.clamp(tonumber(iconSizing:GetAttribute(name)) or categoryCardImageZoom()*2,.2,1.5) end
 	local function materialIconZoom() return math.clamp(tonumber(iconSizing:GetAttribute("MaterialImageZoom")) or 1,.2,1.5) end
-	local function request(action,args) local startedAt=os.clock(); local ok,result=pcall(function() return remote:InvokeServer(action,args or {}) end); if cfg:GetAttribute("DebugTimingEnabled")==true then print("[NTR Owned Garage Timing] action="..action.." remoteMs="..math.floor((os.clock()-startedAt)*1000+.5)) end; if ok and type(result)=="table" then return result end; return {Success=false,Message="Garage management is unavailable."} end
+	local function request(action,args) local startedAt=os.clock(); local ok,result=pcall(function() return remote:InvokeServer(action,args or {}) end); if cfg:GetAttribute("DebugTimingEnabled")==true then print("[NTR Owned Garage Timing] action="..action.." remoteMs="..math.floor((os.clock()-startedAt)*1000+.5)) end; if ok and type(result)=="table" then local economy=Shared.ProjectEconomy(result,state and {Cash=state.Cash} or nil); result.ProjectedEconomy=economy; if state and economy.Cash then state.Cash=economy.Cash end; return result end; return {Success=false,Message="Garage management is unavailable."} end
 	local function property() for _,item in ipairs(state and state.Properties or {}) do if item.PropertyId==state.CurrentPropertyId then return item end end; return state and state.Properties and state.Properties[1] end
 	local function vehicle(id) for _,item in ipairs(state and state.Vehicles or {}) do if item.VehicleId==tostring(id or "") then return item end end end
 	local function slot(id) for _,item in ipairs(state and state.Slots or {}) do if item.SlotId==tostring(id or "") then return item end end end

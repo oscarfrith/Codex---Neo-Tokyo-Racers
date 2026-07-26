@@ -6,6 +6,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Components = {}
 
 local kit = ReplicatedStorage:WaitForChild("NeoTokyoRacers")
+local Foundation = require(kit:WaitForChild("Shared"):WaitForChild("Modules"):WaitForChild("UI"):WaitForChild("ResponsiveUIFoundation"))
 local config = kit:WaitForChild("Config"):WaitForChild("UI"):WaitForChild("Racing")
 local colours = config:WaitForChild("Colours")
 local layout = config:WaitForChild("Layout")
@@ -54,16 +55,13 @@ function Components.Font(object, role)
 end
 
 function Components.Corner(parent, radius)
-	local corner = Instance.new("UICorner")
-	corner.CornerRadius = UDim.new(0, radius or Components.Layout("CornerRadius", 5))
-	corner.Parent = parent
-	return corner
+	return Foundation.Corner(parent, radius or Components.Layout("CornerRadius", 5))
 end
 
 function Components.Stroke(parent, color, thickness, transparency)
 	local stroke = Instance.new("UIStroke")
 	stroke.Color = color or Components.Colour("Outline")
-	stroke.Thickness = thickness or Components.Layout("StrokeWidth", 1.5)
+	stroke.Thickness = thickness or Foundation.StrokeWidth("Structural")
 	stroke.Transparency = transparency == nil and 0.18 or transparency
 	stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 	stroke.Parent = parent
@@ -107,7 +105,7 @@ function Components.Panel(parent, properties)
 		local stroke = Components.Stroke(item, borderColor, properties.StrokeWidth, properties.StrokeTransparency)
 		stroke.Name = "Stroke"
 		if properties.NoGlow ~= true then
-			local glow = Components.Stroke(item, borderColor, properties.GlowWidth or 4, properties.GlowTransparency == nil and 0.82 or properties.GlowTransparency)
+			local glow = Components.Stroke(item, borderColor, properties.GlowWidth or Foundation.StrokeWidth("Glow"), properties.GlowTransparency == nil and 0.82 or properties.GlowTransparency)
 			glow.Name = "GlowStroke"
 		end
 	end
@@ -131,31 +129,12 @@ function Components.Button(parent, properties)
 	Components.Font(item, "Button")
 	item.Parent = parent
 	Components.Corner(item, properties.Radius)
-	local overlay = Instance.new("Frame")
-	overlay.Name = "GradientOverlay"
-	overlay.Active = false
-	overlay.BackgroundColor3 = Color3.new(1, 1, 1)
-	overlay.BackgroundTransparency = 0.9
-	overlay.BorderSizePixel = 0
-	overlay.Size = UDim2.fromScale(1, 1)
-	overlay.ZIndex = item.ZIndex
-	overlay.Parent = item
-	Components.Corner(overlay, properties.Radius)
-	local gradient = Instance.new("UIGradient")
-	gradient.Name = "NeutralOverlay"
-	gradient.Rotation = 90
-	gradient.Color = ColorSequence.new(Color3.new(1, 1, 1), Color3.fromRGB(95, 95, 95))
-	gradient.Transparency = NumberSequence.new({
-		NumberSequenceKeypoint.new(0, 0.2),
-		NumberSequenceKeypoint.new(0.52, 0.7),
-		NumberSequenceKeypoint.new(1, 0.28),
-	})
-	gradient.Parent = overlay
+	Foundation.ApplyBevel(item,{Radius=properties.Radius})
 	local normal = properties.StrokeColor or Components.Colour("Outline")
 	local focus = properties.FocusColor or Components.Colour("Telemetry")
 	local stroke = Components.Stroke(item, normal, properties.StrokeWidth, properties.StrokeTransparency)
 	stroke.Name = "Stroke"
-	local glow = Components.Stroke(item, normal, 4, 0.82)
+	local glow = Components.Stroke(item, normal, Foundation.StrokeWidth("Glow"), 0.82)
 	glow.Name = "GlowStroke"
 	item.MouseEnter:Connect(function()
 		if item.Active then
@@ -197,6 +176,24 @@ function Components.AttachResponsiveScale(shell)
 	local camera = workspace.CurrentCamera
 	if camera then camera:GetPropertyChangedSignal("ViewportSize"):Connect(resize) end
 	return scale
+end
+
+-- NTR_SHARED_RESPONSIVE_UI_FOUNDATION_V1_1
+Components.SetCorner=Foundation.SetCorner
+Components.StrokeWidth=Foundation.StrokeWidth
+Components.StyleStroke=Foundation.StyleStroke
+Components.ApplyBevel=Foundation.ApplyBevel
+Components.FormatMoney=Foundation.FormatCompactMoney
+Components.ProjectEconomy=Foundation.ProjectEconomy
+Components.BindReplicatedCash=Foundation.BindReplicatedCash
+function Components.MetricLabel(parent,properties)
+	properties=properties or {}
+	properties.Role="Metric"
+	local label=Components.Label(parent,properties)
+	return Foundation.StyleMetric(label,properties.Kind)
+end
+function Components.ConfirmationModal(root,options)
+	return Foundation.Confirmation(root,options,Components)
 end
 
 return Components

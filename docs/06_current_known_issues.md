@@ -1,11 +1,17 @@
 # Current Known Issues
-## Shared responsive UI foundation V1 generated; Studio verification pending (2026-07-26)
+## Shared responsive UI foundation V1.1 confirmed and fully source-mirrored (2026-07-26)
 
-- Run `scripts/roblox_shared_responsive_ui_foundation_v1.lua` in Edit mode and require its internal `AUDIT PASS` and `INSTALL PASS`; then restart Studio, switch only `MODE` to `AUDIT`, and rerun.
-- Pending runtime gates are desktop/controller, phone portrait/landscape orientation change, successful purchase Cash/Spaces projection, replicated Cash reconciliation, repeated confirmation cleanup and four-notification bounded stacking.
-- The installer uses guarded exact source anchors against the confirmed `20:46:20` mirror. This is intentionally fragile to an unknown live-source shape: any anchor-count or compile failure must stop with an automatic same-run rollback. Refresh/inspect the mirror and repair the same installer rather than creating a patch ladder.
-- The full Studio mirror is not refreshed because the installer has not yet been run in Studio. After confirmation, run the receiver/exporter workflow and commit both mirror areas; never commit `docs/studio-full-export-paste.txt`.
-- Vehicle pickers remain explicitly out of scope for Chat 3. Legacy bootstrap corners, mobile driving controls and world/intro prompt surfaces are documented exceptions; do not broaden this installer into unrelated control/world owners.
+- Closed: the user confirmed V1.1 working and requested handoff. The refreshed `2026-07-26 21:28:23` mirror contains 189 matching exported-script/source-manifest/checksum entries and all 18 V1.1 source owners; neither mirror area appears stale for the confirmed source baseline.
+- Screenshot/mirror review then confirmed a real presentation split: mobile free-roam generic panels/buttons retained `2 px` / `1.7 px` borders and its navigation buttons did not call the bevel renderer, while desktop/shared surfaces used separate widths and overlays.
+- The same canonical installer now advances to V1.1. It owns structural, emphasis and glow widths per device plus one idempotent neutral bevel applicator, and routes active free-roam and enabled shared garage/racing surfaces through those contracts.
+- The first V1.1 attempt stopped read-only at `GarageExperience must remain enabled`. The refreshed mirror proves that controller is intentionally disabled with `SupersededBy=NTR_GARAGE_REPLACEMENT_BROWSER_V1_4`; `GarageBrowserController` owns the replacement geometry. The installer now excludes the retired controller instead of enabling or rewriting a competing owner.
+- The next V1.1 projection stopped before mutation with `MobileHud:56 ... got 'endlocal'`. The mobile bevel-helper splice skipped its separator newline; the canonical installer now retains that newline and checks the projected source through its existing compile gate.
+- First install attempt stopped read-only at `RaceClient must remain enabled`. The mirror and racing handoff confirm `RaceClient_Active` is intentionally disabled/retired; no UI state changed. The canonical installer now excludes that dead Phase 2 HUD instead of weakening active-owner checks.
+- Second install attempt also stopped during read-only projection: the generic `return M` garage-module anchor matched three helper returns. The canonical installer now requires the unique newline-prefixed final module return. No Studio source, hierarchy or config changed.
+- The mirror proves a known mixed source/hierarchy persistence fault: all V1.1 sources persisted, while the eight newly created Theme `NumberValue`s and hierarchy revision attributes reverted to V1. The confirmed runtime uses the exact fallback values embedded in `ResponsiveUIFoundation`; this does not affect current presentation.
+- The canonical `AUDIT` mode now treats absent optional token nodes/stale hierarchy revision attributes as warnings while still requiring every source marker, fallback value and active consumer contract. Do not rerun the installer for ordinary use.
+- If designer tuning of those eight values becomes necessary, first perform the generic Studio persistence probe from `docs/12_continuous_improvement_workflow.md`; use a hierarchy-only recovery after restart rather than another mixed source assignment.
+- Vehicle-picker layout/composition remains explicitly out of scope for Chat 3. Foundational corner/bevel/stroke calls are shared, but no picker coordinates, state, card composition or actions change. Mobile driving controls and world/intro prompts remain justified control/world exceptions.
 
 ## Presentation audio V1.3.2 confirmed and fully mirrored (updated 2026-07-26)
 

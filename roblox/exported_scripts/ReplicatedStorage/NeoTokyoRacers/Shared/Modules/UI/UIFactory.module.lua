@@ -1,4 +1,5 @@
 local UITheme = require(script.Parent:WaitForChild("UITheme"))
+local Foundation = require(script.Parent:WaitForChild("ResponsiveUIFoundation"))
 
 local UIFactory = {}
 
@@ -10,10 +11,7 @@ function UIFactory.Font(theme)
 end
 
 function UIFactory.Corner(parent, radius)
-	local corner = Instance.new("UICorner")
-	corner.CornerRadius = UDim.new(0, radius or 4)
-	corner.Parent = parent
-	return corner
+	return Foundation.Corner(parent, radius or 4)
 end
 
 function UIFactory.Stroke(parent, colour, transparency, thickness)
@@ -88,5 +86,12 @@ function UIFactory.ClearDynamic(parent)
 		end
 	end
 end
+
+-- NTR_SHARED_RESPONSIVE_UI_FOUNDATION_V1_1
+UIFactory.FormatMoney=Foundation.FormatCompactMoney
+UIFactory.StyleMetric=Foundation.StyleMetric
+UIFactory.StrokeWidth=Foundation.StrokeWidth
+UIFactory.StyleStroke=Foundation.StyleStroke
+UIFactory.ApplyBevel=Foundation.ApplyBevel
 
 return UIFactory

@@ -1,3 +1,4 @@
+-- NTR_SHARED_RESPONSIVE_UI_FOUNDATION_V1_1
 -- NTR_RACING_FLOW_COUNTDOWN_QUEUE_EXIT_OWNERSHIP
 -- NTR_RACING_UI_MOBILE_PHASE1_SCALED_DESKTOP_TRIAL
 -- NTR_RACING_UI_PHASE16E_RUNTIME_OWNERSHIP
@@ -72,7 +73,7 @@ local function avatar(parent, userId, position, size)
 	image.Size = size
 	image.ScaleType = Enum.ScaleType.Crop
 	image.Parent = parent
-	local corner = Instance.new("UICorner") corner.CornerRadius = UDim.new(0, touch and 4 or 6) corner.Parent = image
+	UI.Corner(image,touch and 4 or 6)
 	userId = tonumber(userId)
 	if not userId or userId <= 0 then return image end
 	if avatarCache[userId] then image.Image = avatarCache[userId] return image end
@@ -170,7 +171,7 @@ local function renderRace(payload)
 	UI.Label(highlights,{Text="HIGHEST SPEED",Position=UDim2.fromOffset(touch and 58 or 72,touch and 94 or 112),Size=UDim2.new(.52,-72,0,touch and 30 or 38),TextSize=touch and 12 or 16,Color=C("Text"),Role="Heading"})
 	UI.Label(highlights,{Text="--",Position=UDim2.new(.65,0,0,touch and 94 or 112),Size=UDim2.new(.31,-18,0,touch and 30 or 38),TextSize=touch and 14 or 20,Color=C("Telemetry"),Role="Metric",XAlignment=Enum.TextXAlignment.Right})
 	local silhouetteSize=touch and 32 or 40
-	local function silhouette(y) local f=Instance.new("Frame") f.BackgroundColor3=C("PanelSoft") f.BackgroundTransparency=.15 f.BorderSizePixel=0 f.Position=UDim2.fromOffset(18,y) f.Size=UDim2.fromOffset(silhouetteSize,silhouetteSize) f.Parent=highlights local c=Instance.new("UICorner") c.CornerRadius=UDim.new(0,6) c.Parent=f end
+	local function silhouette(y) local f=Instance.new("Frame") f.BackgroundColor3=C("PanelSoft") f.BackgroundTransparency=.15 f.BorderSizePixel=0 f.Position=UDim2.fromOffset(18,y) f.Size=UDim2.fromOffset(silhouetteSize,silhouetteSize) f.Parent=highlights UI.Corner(f,6) end
 	silhouette(touch and 34 or 42) silhouette(touch and 90 or 106)
 	heading(right,"RACE RESULTS",UDim2.fromOffset(14,6),UDim2.new(1,-28,0,26))
 	local y=tableHeader(right,{{"POS",0,.11},{"PLAYER",.11,.44},{"FINISH TIME",.55,.25},{"VEHICLE",.80,.20}}) local list=scrolling(right,y)

@@ -4,17 +4,17 @@
 **Status:** Current script mirror folders created  
 **Current mirror root:** `roblox/exported_scripts`
 
-## Shared Responsive UI Foundation V1
+## Shared Responsive UI Foundation V1.1
 
-Run the complete contents of:
+V1.1 is installed, user-confirmed and fully source-mirrored at `2026-07-26 21:28:23`. No Studio command is pending for ordinary use. Retain the complete contents of:
 
 ```text
 scripts/roblox_shared_responsive_ui_foundation_v1.lua
 ```
 
-in the Roblox Studio Edit-mode Command Bar with `MODE="INSTALL"`. Require `[NTR Shared Responsive UI V1] AUDIT PASS` followed by `INSTALL PASS`. Restart Studio, change only the mode line to `AUDIT`, rerun, and complete the desktop/controller/phone transaction, confirmation, notification and Cash-surface matrix in `docs/shared-responsive-ui-foundation-v1.md`.
+as exact-scope recovery/audit evidence. `AUDIT` requires the V1.1 source markers and embedded fallback values; it warns if the optional Theme token nodes or hierarchy revision attributes are absent after Studio's known mixed persistence fault.
 
-The installer preflights exact source anchors, compiles every projected source, rolls back the same command automatically on failure and creates no in-game backup. An anchor mismatch means the live source differs from the `20:46:20` pre-install mirror; refresh/inspect it and repair this same installer. After confirmation, refresh the complete Studio mirror before handoff.
+Do not rerun `INSTALL` for tuning. If hierarchy controls are needed later, perform the generic persistence probe and use a hierarchy-only recovery after restart.
 
 ## Presentation Audio V1.3.2 Immediate One-Shot Repair
 

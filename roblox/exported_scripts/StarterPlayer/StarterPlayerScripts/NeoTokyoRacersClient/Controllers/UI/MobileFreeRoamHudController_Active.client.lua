@@ -1,3 +1,4 @@
+-- NTR_SHARED_RESPONSIVE_UI_FOUNDATION_V1_1
 -- NTR_MOBILE_FREEROAM_UI_PHASE1O_MAJOR_MENU_SUPPRESSION
 -- NTR_OWNED_GARAGE_PHASE8_HUD_POLICY
 -- NTR_OWNED_GARAGE_MANAGEMENT_HUD_SUPPRESSION_V1_6
@@ -13,6 +14,8 @@ if not UserInputService.TouchEnabled then return end
 local player=Players.LocalPlayer
 local playerGui=player:WaitForChild("PlayerGui")
 local kit=ReplicatedStorage:WaitForChild("NeoTokyoRacers")
+local SharedUI=require(kit.Shared.Modules.UI:WaitForChild("RacingUIComponents"))
+local Foundation=require(kit.Shared.Modules.UI:WaitForChild("ResponsiveUIFoundation"))
 local config=kit:WaitForChild("Config"):WaitForChild("UI"):WaitForChild("MobileFreeRoamHud")
 local desktop=kit.Config.UI:WaitForChild("DesktopFreeRoamHud")
 local colours=desktop:WaitForChild("Colours")
@@ -38,18 +41,18 @@ local function E(name,fallback) return tonumber(read(desktopEffects,name,fallbac
 local PANEL=C("Panel",Color3.fromRGB(15,19,24)); local DEEP=C("PanelDeep",Color3.fromRGB(9,12,16)); local SOFT=C("PanelSoft",Color3.fromRGB(24,29,36)); local PINK=C("Outline",Color3.fromRGB(244,46,151)); local PINK_SOFT=C("OutlineSoft",Color3.fromRGB(214,74,175)); local CYAN=C("Telemetry",Color3.fromRGB(43,225,218)); local BLUE=C("ElectricBlue",Color3.fromRGB(25,116,255)); local WHITE=C("Text",Color3.fromRGB(246,248,252)); local MUTED=C("Muted",Color3.fromRGB(163,171,184)); local DANGER=C("Danger",Color3.fromRGB(196,57,75))
 local function asset(folder,name) local s=tostring(read(folder,name,"") or ""); if tonumber(s) then return "rbxassetid://"..s end return s end
 local function new(class,props,parent) local x=Instance.new(class); for k,v in pairs(props or {}) do x[k]=v end x.Parent=parent; return x end
-local function corner(parent,r) return new("UICorner",{CornerRadius=UDim.new(0,r or 10)},parent) end
+local function corner(parent,r) return Foundation.Corner(parent,r or 10) end
 local function stroke(parent,color,width,transparency) return new("UIStroke",{Color=color,Thickness=width or 2,Transparency=transparency or 0,ApplyStrokeMode=Enum.ApplyStrokeMode.Border},parent) end
 local function label(parent,name,text,size,pos,textSize,color,align)
 	return new("TextLabel",{Name=name,BackgroundTransparency=1,BorderSizePixel=0,Size=size,Position=pos,Text=text,TextColor3=color or WHITE,TextSize=textSize or 12,Font=FONT,TextXAlignment=align or Enum.TextXAlignment.Left,TextYAlignment=Enum.TextYAlignment.Center,ZIndex=parent.ZIndex+2},parent)
 end
-local function panel(parent,name,size,pos,z) local p=new("Frame",{Name=name,BackgroundColor3=DEEP,BackgroundTransparency=.14,BorderSizePixel=0,Size=size,Position=pos,ZIndex=z or 4},parent); corner(p,10); stroke(p,PINK,2,.08); return p end
+local function panel(parent,name,size,pos,z) local p=new("Frame",{Name=name,BackgroundColor3=DEEP,BackgroundTransparency=.14,BorderSizePixel=0,Size=size,Position=pos,ZIndex=z or 4},parent); corner(p,10); stroke(p,PINK,Foundation.StrokeWidth("Structural"),.08); return p end
 local function button(parent,name,text,size,pos,accent)
-	local b=new("TextButton",{Name=name,Text=text,TextColor3=WHITE,TextSize=11,Font=FONT,AutoButtonColor=false,BackgroundColor3=PANEL,BackgroundTransparency=.08,BorderSizePixel=0,Size=size,Position=pos,ZIndex=parent.ZIndex+2},parent); corner(b,8); stroke(b,accent or PINK,1.7,.04); return b
+	local b=new("TextButton",{Name=name,Text=text,TextColor3=WHITE,TextSize=11,Font=FONT,AutoButtonColor=false,BackgroundColor3=PANEL,BackgroundTransparency=.08,BorderSizePixel=0,Size=size,Position=pos,ZIndex=parent.ZIndex+2},parent); corner(b,8); stroke(b,accent or PINK,Foundation.StrokeWidth("Structural"),.04); Foundation.ApplyBevel(b,{Radius=8,Strength=E("ButtonGradientStrength",.10),Rotation=E("ButtonGradientRotation",90)}); return b
 end
 local function surfaceGradient(parent,topColor,bottomColor,rotation) return new("UIGradient",{Name="SurfaceGradient",Color=ColorSequence.new(topColor,bottomColor),Transparency=NumberSequence.new(E("GradientTransparency",.12)),Rotation=rotation or 90},parent) end
 local function buttonGradient(parent)
-	local strength=math.clamp(E("ButtonGradientStrength",.10),0,.35); local overlay=new("Frame",{Name="GradientOverlay",Active=false,BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1-strength,BorderSizePixel=0,Size=UDim2.fromScale(1,1),ZIndex=parent.ZIndex},parent); corner(overlay,6); new("UIGradient",{Color=ColorSequence.new(Color3.new(1,1,1),Color3.fromRGB(95,95,95)),Transparency=NumberSequence.new({NumberSequenceKeypoint.new(0,.20),NumberSequenceKeypoint.new(.52,.70),NumberSequenceKeypoint.new(1,.28)}),Rotation=E("ButtonGradientRotation",90)},overlay); return overlay
+	return Foundation.ApplyBevel(parent,{Radius=6,Strength=E("ButtonGradientStrength",.10),Rotation=E("ButtonGradientRotation",90)})
 end
 local function addFacetPattern(parent)
 	local pattern=new("Frame",{Name="FacetPattern",BackgroundTransparency=1,BorderSizePixel=0,ClipsDescendants=true,Size=UDim2.fromScale(1,1),ZIndex=parent.ZIndex},parent); for i=1,3 do new("Frame",{Name="Facet"..i,BackgroundColor3=PINK_SOFT,BackgroundTransparency=math.clamp(E("PatternTransparency",.94)+i*.012,0,1),BorderSizePixel=0,Position=UDim2.new(-.15+i*.28,0,.12+i*.18,0),Size=UDim2.new(.52,0,0,2),Rotation=-18,ZIndex=parent.ZIndex},pattern) end; return pattern
@@ -106,12 +109,12 @@ edgeFade("EdgeRight",UDim2.new(.8,0,0,0),UDim2.new(.2,0,1,0),180)
 edgeFade("EdgeTop",UDim2.fromScale(0,0),UDim2.new(1,0,.2,0),90)
 edgeFade("EdgeBottom",UDim2.new(0,0,.8,0),UDim2.new(1,0,.2,0),-90)
 
-local cash=panel(root,"Cash",UDim2.fromOffset(170,34),UDim2.fromOffset(0,0),5); cash.BackgroundColor3=Color3.fromRGB(8,42,84); cash.ClipsDescendants=true; local cashText=label(cash,"Value","$0",UDim2.new(1,-52,1,0),UDim2.fromOffset(6,0),14,WHITE); cashText.TextWrapped=false; cashText.TextScaled=true; cashText.TextTruncate=Enum.TextTruncate.None; new("UITextSizeConstraint",{MinTextSize=5,MaxTextSize=14},cashText); local cashPlus=button(cash,"Plus","+",UDim2.fromOffset(28,26),UDim2.new(1,-32,.5,-13),BLUE); cashPlus.TextSize=18
+local cash=panel(root,"Cash",UDim2.fromOffset(170,34),UDim2.fromOffset(0,0),5); cash.BackgroundColor3=Color3.fromRGB(8,42,84); cash.ClipsDescendants=true; local cashStroke=cash:FindFirstChildOfClass("UIStroke"); if cashStroke then cashStroke.Color=BLUE; Foundation.StyleStroke(cashStroke,"Structural") end; local cashText=label(cash,"Value","$0",UDim2.new(1,-52,1,0),UDim2.fromOffset(6,0),14,WHITE); cashText.TextWrapped=false; cashText.TextScaled=true; cashText.TextTruncate=Enum.TextTruncate.None; new("UITextSizeConstraint",{MinTextSize=5,MaxTextSize=14},cashText); local cashPlus=button(cash,"Plus","+",UDim2.fromOffset(28,26),UDim2.new(1,-32,.5,-13),BLUE); Foundation.ApplyBevel(cashPlus,{Radius=8}); local cashPlusStroke=cashPlus:FindFirstChildOfClass("UIStroke"); if cashPlusStroke then Foundation.StyleStroke(cashPlusStroke,"Structural") end; cashPlus.TextSize=18
 
 local nav=new("Frame",{Name="Navigation",BackgroundTransparency=1,BorderSizePixel=0,ZIndex=5},root)
 local navButtons={}
 local function navButton(name,iconName,fallback)
-	local b=button(nav,name,"",UDim2.fromOffset(42,42),UDim2.fromOffset(0,0),PINK); local image=asset(desktopAssets,iconName)
+	local b=button(nav,name,"",UDim2.fromOffset(42,42),UDim2.fromOffset(0,0),PINK); Foundation.ApplyBevel(b,{Radius=8,Strength=E("ButtonGradientStrength",.10),Rotation=E("ButtonGradientRotation",90)}); local navStroke=b:FindFirstChildOfClass("UIStroke"); if navStroke then Foundation.StyleStroke(navStroke,"Structural") end; local image=asset(desktopAssets,iconName)
 	if image~="" then new("ImageLabel",{Name="Icon",BackgroundTransparency=1,BorderSizePixel=0,Image=image,ImageColor3=WHITE,ScaleType=Enum.ScaleType.Fit,Position=UDim2.fromScale(.17,.17),Size=UDim2.fromScale(.66,.66),ZIndex=b.ZIndex+1},b) else label(b,"Fallback",fallback,UDim2.fromScale(1,1),UDim2.fromScale(0,0),8,WHITE,Enum.TextXAlignment.Center) end
 	navButtons[name]=b; return b
 end
@@ -208,27 +211,28 @@ cashPlus.Activated:Connect(showCash)
 
 local teleportBusy=false
 local function showTeleport()
-	openModal("TELEPORT TO DEALERSHIP?",tonumber(read(config,"ConfirmModalWidth",650)) or 650,tonumber(read(config,"ConfirmModalHeight",270)) or 270)
-	label(modalBody,"Message","Your current vehicle will be despawned.",UDim2.new(1,-20,0,60),UDim2.fromOffset(10,46),12,WHITE,Enum.TextXAlignment.Center)
-	local no=button(modalBody,"No","NO",UDim2.fromOffset(270,54),UDim2.fromOffset(16,126),PINK); local yes=button(modalBody,"Yes","YES",UDim2.fromOffset(270,54),UDim2.fromOffset(336,126),CYAN); buttonGradient(no); buttonGradient(yes)
-	no.Activated:Connect(closeModal)
-	yes.Activated:Connect(function()
-		if teleportBusy then return end
-		teleportBusy=true
-		closeModal()
-		local generation=loadingAction("Begin",{Destination="DealershipExterior",Status="TRAVELLING TO DEALERSHIP"})
-		local ok,result=pcall(function() return teleportInvoke:InvokeServer("TeleportToDealership") end)
-		if ok and typeof(result)=="table" and result.Success then
-			fire("FreeRoamVehicleExited")
-			loadingAction("Complete",{Generation=generation,Status="READY"})
-			showToast(result.Message or "TELEPORTED",true)
-		else
-			local message=typeof(result)=="table" and (result.Message or result.Error) or "TELEPORT FAILED"
-			loadingAction("Fail",{Generation=generation,Status="RETURNING",Reason=message})
-			showToast(message,false)
-		end
-		teleportBusy=false
-	end)
+	Foundation.Confirmation(root,{
+		Title="TELEPORT TO DEALERSHIP?",
+		Body="Your current vehicle will be despawned.",
+		ConfirmText="YES",
+		CancelText="NO",
+		OnConfirm=function()
+			if teleportBusy then return end
+			teleportBusy=true
+			local generation=loadingAction("Begin",{Destination="DealershipExterior",Status="TRAVELLING TO DEALERSHIP"})
+			local ok,result=pcall(function() return teleportInvoke:InvokeServer("TeleportToDealership") end)
+			if ok and typeof(result)=="table" and result.Success then
+				fire("FreeRoamVehicleExited")
+				loadingAction("Complete",{Generation=generation,Status="READY"})
+				showToast(result.Message or "TELEPORTED",true)
+			else
+				local message=typeof(result)=="table" and (result.Message or result.Error) or "TELEPORT FAILED"
+				loadingAction("Fail",{Generation=generation,Status="RETURNING",Reason=message})
+				showToast(message,false)
+			end
+			teleportBusy=false
+		end,
+	},SharedUI)
 end
 
 
@@ -299,8 +303,8 @@ end) end
 local function majorMenu() return player:GetAttribute("NTR_GarageSessionActive")==true or playerGui:GetAttribute("NTR_OwnedGarageManagementOpen")==true end
 local function subject() local c=player.Character; local h=c and c:FindFirstChildOfClass("Humanoid"); local seat=h and h.SeatPart; return seat or (c and c:FindFirstChild("HumanoidRootPart")) end
 local displayedPos=nil; local displayedHeading=0; local displayedBoost=1; local lastSize=Vector2.zero; local lastInside=nil
-local function bindCash() local stats=player:FindFirstChild("leaderstats"); local value=stats and stats:FindFirstChild("Cash"); if not value then return false end; local function update() cashText.Text="$"..tostring(math.floor(tonumber(value.Value) or 0)) end; update(); value:GetPropertyChangedSignal("Value"):Connect(update); return true end
-if not bindCash() then task.spawn(function() local stats=player:WaitForChild("leaderstats",15); if stats then stats:WaitForChild("Cash",15) end; bindCash() end) end
+Foundation.StyleMetric(cashText,"Cash")
+Foundation.BindReplicatedCash(player,function(value) cashText.Text=Foundation.FormatCompactMoney(value) end)
 local function layout()
 	local camera=workspace.CurrentCamera; local vp=camera and camera.ViewportSize or Vector2.new(1280,720); local inside=player:GetAttribute("NTR_OwnedGarageInside")==true; if vp==lastSize and inside==lastInside then return end; lastSize=vp; lastInside=inside
 	local tiny=vp.Y<500; local margin=tiny and 10 or tonumber(read(config,"EdgeMargin",14)); local mapSize=math.floor(math.clamp(vp.Y*.27,tiny and 128 or 145,tiny and 160 or tonumber(read(config,"MinimapSize",180))))
