@@ -1,4 +1,5 @@
 -- NTR_GARAGE_PREVIEW_VFX_SINGLE_OWNER_V1
+-- NTR_GARAGE_SCROLL_EDGE_SAFETY_V1
 local Runtime = {}
 
 local Players = game:GetService("Players")
@@ -6,7 +7,6 @@ local Workspace = game:GetService("Workspace")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
-local StarterGui = game:GetService("StarterGui")
 
 local LOCAL_PLAYER = Players.LocalPlayer
 local KIT_NAME = "NeoTokyoRacers"
@@ -14,13 +14,11 @@ local DEFAULT_THRUST = Color3.fromRGB(255, 255, 255)
 local VISUAL_RATE = 1 / 30
 local SCAN_RATE = 0.5
 local UI_RATE = 0.2
-local ORIENTATION_RATE = 1
 
 local connection
 local visualTimer = 0
 local scanTimer = 0
 local uiTimer = 0
-local orientationTimer = 0
 local tracked = setmetatable({}, { __mode = "k" })
 local raceVisibilityActive = false -- NTR_RACING_PHASE11E_VFX_GATE
 local raceParticipants = {}
@@ -684,15 +682,6 @@ local function updateCameraAndTouchControls()
 end
 
 
-local function requestLandscape()
-	if not UserInputService.TouchEnabled then return end
-	local playerGui = LOCAL_PLAYER:FindFirstChild("PlayerGui")
-	pcall(function() StarterGui.ScreenOrientation = Enum.ScreenOrientation.LandscapeSensor end)
-	if playerGui then
-		pcall(function() playerGui.ScreenOrientation = Enum.ScreenOrientation.LandscapeSensor end)
-	end
-end
-
 local function initControls()
 	task.defer(function()
 		local scripts = LOCAL_PLAYER:WaitForChild("PlayerScripts", 10)
@@ -739,12 +728,10 @@ function Runtime.Start()
 	initControls()
 	connectRaceVisibility()
 	scanCandidates()
-	requestLandscape()
 	connection = RunService.RenderStepped:Connect(function(dt)
 		visualTimer += dt
 		scanTimer += dt
 		uiTimer += dt
-		orientationTimer += dt
 
 		if scanTimer >= SCAN_RATE then
 			scanTimer = 0
@@ -766,10 +753,7 @@ function Runtime.Start()
 			updateCameraAndTouchControls()
 		end
 
-		if orientationTimer >= ORIENTATION_RATE then
-			orientationTimer = 0
-			requestLandscape()
-		end
+
 	end)
 end
 

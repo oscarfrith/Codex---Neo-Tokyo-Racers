@@ -1,4 +1,6 @@
+-- NTR_SMALL_REFINEMENTS_SHARED_PRESENTATION_V1
 -- NTR_OWNED_GARAGE_MANAGEMENT_RUNTIME_V1
+-- NTR_SMALL_REFINEMENTS_LIFECYCLE_PHASE2_V1
 -- NTR_OWNED_GARAGE_MANAGEMENT_RUNTIME_V2_NAMESPACED_RESET
 -- NTR_OWNED_GARAGE_MANAGEMENT_RUNTIME_V3_REUSABLE_FRAMEWORK
 -- NTR_OWNED_GARAGE_MANAGEMENT_RUNTIME_V4_VERTICAL_SLICE
@@ -31,7 +33,7 @@ function Runtime.ChooseSlot(displaySpaces,requestedSlotId,orderedSlotIds)
 end
 function Runtime.Start()
 	if started then return true,"AlreadyStarted" end
-	local kit=ReplicatedStorage:WaitForChild("NeoTokyoRacers"); local remotes=kit.Shared.Remotes.Garage; local invoke=remotes:WaitForChild("OwnedGarageInvoke"); local push=remotes:WaitForChild("OwnedGarageEvent"); local catalog=require(kit.Shared.Modules.Data:WaitForChild("OwnedGaragePropertyCatalog")); local styleCatalog=require(kit.Shared.Modules.Data:WaitForChild("OwnedGarageInteriorStyleCatalog")); local decorationCatalog=require(kit.Shared.Modules.Data:WaitForChild("OwnedGarageDecorationCatalog")); local lightingCatalog=require(kit.Shared.Modules.Data:WaitForChild("OwnedGarageLightingCatalog"))
+	local kit=ReplicatedStorage:WaitForChild("NeoTokyoRacers"); local DisplayNames=require(kit.Shared.Modules.Common:WaitForChild("VehicleDisplayNames")); local categoriesRoot=kit.Assets.Vehicles:WaitForChild("Categories"); local remotes=kit.Shared.Remotes.Garage; local invoke=remotes:WaitForChild("OwnedGarageInvoke"); local push=remotes:WaitForChild("OwnedGarageEvent"); local catalog=require(kit.Shared.Modules.Data:WaitForChild("OwnedGaragePropertyCatalog")); local styleCatalog=require(kit.Shared.Modules.Data:WaitForChild("OwnedGarageInteriorStyleCatalog")); local decorationCatalog=require(kit.Shared.Modules.Data:WaitForChild("OwnedGarageDecorationCatalog")); local lightingCatalog=require(kit.Shared.Modules.Data:WaitForChild("OwnedGarageLightingCatalog"))
 	local services=ServerScriptService.NeoTokyoRacers.Services; local garage=services.Garage; local Profile=require(garage:WaitForChild("OwnedGarageProfileRuntime")); local finishRuntime=require(garage:WaitForChild("OwnedGarageFinishRuntime")); local Assignment=require(garage:WaitForChild("OwnedGarageDisplayAssignmentRuntime")); local Interior=require(garage:WaitForChild("OwnedGarageInteriorRuntime")); local Display=require(garage:WaitForChild("OwnedGarageDisplayRuntime")); local lifecycle=garage:WaitForChild("OwnedGarageVehicleLifecycleBridge")
 	local bindings=services.Player:WaitForChild("ProfileServiceBindings"); local getProfile=bindings:WaitForChild("GetProfile"); local executeOwnedGarageCommand=bindings:WaitForChild("ExecuteOwnedGarageCommand"); local saveNow=bindings:WaitForChild("SaveNow"); local settings=kit.Config.Runtime:WaitForChild("OwnedGarage_EditAttributes")
 	local world=Workspace:WaitForChild("NeoTokyoRacersWorld"); local exteriorRoot=world:WaitForChild("OwnedGarageExteriors"); local interiors=world:FindFirstChild("Interiors") or Instance.new("Folder"); interiors.Name="Interiors"; interiors.Parent=world; local pool=interiors:FindFirstChild("OwnedGarageInstances") or Instance.new("Folder"); pool.Name="OwnedGarageInstances"; pool:SetAttribute("OwnedGarageRuntimePool",true); pool.Parent=interiors
@@ -121,7 +123,7 @@ function Runtime.Start()
 		local now=os.clock(); local window=requestWindows[player]; if not window or now-window.Start>=1 then window={Start=now,Count=0}; requestWindows[player]=window end; window.Count+=1; local maximum=(action=="GetState" or action=="GetManagementState") and (tonumber(settings:GetAttribute("ReadRequestsPerSecond")) or 20) or (tonumber(settings:GetAttribute("MutationRequestsPerSecond")) or 12); return window.Count<=maximum
 	end
 	local function vehicleName(profile,vehicleId)
-		local vehicle=profile.Vehicles and profile.Vehicles[tostring(vehicleId or "")]; return type(vehicle)=="table" and tostring(vehicle.DisplayName or vehicle.CockpitId or vehicleId) or tostring(vehicleId or "")
+		return DisplayNames.FullVehicleName(profile,vehicleId,categoriesRoot)
 	end
 	local function swapRuntimeModel(runtime,key,model)
 		local old=runtime:FindFirstChild(key); local stale=runtime:FindFirstChild(key.."__Next"); if stale then stale:Destroy() end; model.Name=key.."__Next"; model:SetAttribute("RuntimeGeneration",HttpService:GenerateGUID(false)); model.Parent=runtime; if old then old:Destroy() end; model.Name=key; return model
@@ -241,7 +243,7 @@ function Runtime.Start()
 	end
 	local function enterWithVehicle(player,profile,propertyId,replacementSlotId)
 		local driven=lifecycleCall("GetDrivenVehicle",player,{}); if not driven.Success then return {Success=false,Message=driven.Message or "Drive a vehicle into the garage."} end
-		if tonumber(driven.SpeedMph) and driven.SpeedMph>(tonumber(settings:GetAttribute("DriveInMaxSpeedMph")) or 5) then return {Success=false,Message="Slow below "..tostring(settings:GetAttribute("DriveInMaxSpeedMph") or 5).." MPH."} end
+		if settings:GetAttribute("DriveInSpeedGateEnabled")==true and tonumber(driven.SpeedMph) and driven.SpeedMph>(tonumber(settings:GetAttribute("DriveInMaxSpeedMph")) or 5) then return {Success=false,Message="Slow below "..tostring(settings:GetAttribute("DriveInMaxSpeedMph") or 5).." MPH."} end
 		local property=profile.OwnedGarage.Properties[propertyId]; if not (property and property.Owned) then return {Success=false,Message="Garage is not owned."} end
 		local existingSlot; for candidate,assigned in pairs(property.DisplaySpaces or {}) do if tostring(assigned or "")==tostring(driven.VehicleId) then existingSlot=tostring(candidate); break end end
 		local definition=catalog.ById(propertyId); local slotId,reason=existingSlot,"Existing"; if not slotId then slotId,reason=Runtime.ChooseSlot(property.DisplaySpaces,replacementSlotId,definition and definition.DisplaySpaceIds) end; if reason=="Invalid" then return {Success=false,Message="That display space is not part of this garage."} end; if not slotId then return {Success=false,NeedsReplacement=true,Message="Garage display spaces are full.",Slots=replacementSlots(profile,propertyId)} end

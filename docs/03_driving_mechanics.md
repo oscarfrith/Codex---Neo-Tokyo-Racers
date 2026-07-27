@@ -1,5 +1,15 @@
 # Driving Mechanics
 
+## Small refinements lifecycle Phase 2 V1 installed/mirrored; V1.1 preserves driving owners (2026-07-27)
+
+The owned-garage management runtime remains the sole drive-in authority and keeps its current ownership, slot-selection, despawn, streaming, assignment, rollback and teleport transaction. Phase 2 makes the existing `DriveInMaxSpeedMph` rejection conditional on `DriveInSpeedGateEnabled`; the canonical installer sets that new attribute to `false`, so seated players may enter at any speed without adding a client bypass or a second vehicle lifecycle owner.
+
+The first-drive black Controls reveal acquires the confirmed shared `GameplayInputGate`, so driving and on-foot input are neutral while the presentation is active. Release occurs after the backdrop fade and retains the gate's held-input neutralisation.
+
+Canonical installer and verification contract: `scripts/roblox_small_refinements_lifecycle_phase2_v1.lua` and `docs/small-refinements-lifecycle-phase2-v1.md`.
+
+The user confirmed the V1 any-speed entry and input behavior. V1.1 changes only onboarding sequencing; garage authority, `GameplayInputGate`, driving controller, vehicle spawn/despawn and physics sources remain unchanged.
+
 ## Drive-to-earn Cash V1 boundary (generated 2026-07-27; Studio verification pending)
 
 - `DriveToEarnCashService_Active` is the installed sole server owner for payable distance, fractional accrual, visible batching, rejection telemetry and the rolling drive-only ceiling.

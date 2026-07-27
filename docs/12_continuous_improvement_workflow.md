@@ -1,5 +1,23 @@
 # Continuous Improvement Workflow
 
+## Dynamic touch ownership versus marker timing lesson (2026-07-27)
+
+A dynamic native control's broad container is candidate geometry, not proof that every touch inside belongs to it; its small rendered marker is ownership evidence, but may not be ready during another script's synchronous `InputBegan` callback. Choosing either rectangle synchronously can alternate between over-blocking empty space and missing real movement.
+
+Keep visible product-UI geometry separate from native-control ownership. For a conflicting touch, retain the exact input plus a pre-touch presentation snapshot, defer until the native handler can update, confirm with the marker tied to that start position and a bounded public-state transition fallback, then promote only that input. An unconfirmed candidate must remain normal world/camera input. Bound confirmation by the active touch and a short expiry; do not poll every frame or inspect private PlayerModule state.
+
+## Visible UI versus input geometry lesson (2026-07-27)
+
+A transparent layout or scrolling container can still reserve its complete rectangle for touch even when only a few child cards are rendered. UI input audits must distinguish visible surfaces from structural containers: test short and overflowing content separately, include clipped/hidden ancestors, and do not infer interaction geometry from a screenshot alone.
+
+For dynamic multi-page UI, keep visible geometry with the existing renderer. Cache clipped rectangles after coalesced layout/content changes, ignore hidden or effectively transparent objects, and make touch begin perform only a bounded rectangle lookup. Non-overflowing scrollers should release their unused shell while overflowing scrollers retain their intentional gesture region. Avoid per-frame hierarchy scans and whole-`PlayerGui` hit queries.
+
+## Mobile movement/camera overlap evidence lesson (2026-07-27)
+
+When mobile movement also rotates the camera, capture the live camera type and subject, lifecycle attributes, `gameProcessedEvent` and GUI hit stack before assigning ownership. A visual resemblance to preview-camera behavior is not sufficient: if Play evidence shows a normal `Custom` humanoid camera and an unprocessed touch intersecting Dynamic Thumbstick, investigate the default touch-routing boundary.
+
+Use bounded lifecycle ownership rather than replacing PlayerModule. Any guard must release on touch end/cancel, mode transition, respawn and `CurrentCamera` replacement, and its simultaneous multi-touch tradeoff must be explicit.
+
 ## Authoritative-value versus displayed-value lesson (2026-07-27)
 
 Smooth currency presentation at the rendering edge, not by increasing server mutation cadence. Keep the replicated authoritative value available immediately for affordability, purchases, saves and reconciliation, while a separate bounded presenter may lag upward for visual counting. Initial state and every decrease must snap; positive display must never exceed the target; new targets cancel/retarget without an accumulating queue.

@@ -4,6 +4,8 @@
 **Status:** Local receiver full-snapshot export/import workflow  
 **Purpose:** Capture the current Roblox Studio hierarchy and all script sources into GitHub with minimal manual copying.
 
+**Owned-garage camera scope note (2026-07-27):** the complete `21:26:44` mirror contains user-confirmed V2.2 with 192 mutually matching exported-manifest, source-manifest and checksum entries. The installed arbitration block matches the canonical installer exactly, V2.1 visible-surface ownership remains present and `MobileThumbstickSemanticConfirmWindowSeconds=0.35` is captured. Neither mirror area appears stale and no owned-garage camera refresh is pending. Do not commit `docs/studio-full-export-paste.txt`.
+
 **Current scope note (2026-07-26):** the complete `22:35:11` mirror contains the user-confirmed Shared Vehicle Card V1.2 source. Its 189 checksum, source-manifest and exported-script entries match with zero mismatches; the browser V1.2 marker and all five V1.1 shared owners are present. Neither mirror area appears stale. Do not commit `docs/studio-full-export-paste.txt`.
 
 **Confirmed racing scope note (2026-07-27):** Racing Presentation/Lifecycle V1.4 is user-confirmed and represented in the complete `10:05:47` mirror. Its 189 exported-script, source-manifest, checksum and hierarchy entries agree with zero mismatches. The mirror contains `NTR_RACING_PRESENTATION_LIFECYCLE_V1_4`, the adaptive-safe-edge canvas marker, retained V1.3 full-screen EXIT and V1.2 prompt/checkpoint markers, all three earlier legacy racing clients disabled, no standalone PB-board script, and retained authored `ArrowMarkers`. No refresh or Studio command is pending for ordinary use.

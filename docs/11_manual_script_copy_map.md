@@ -4,6 +4,18 @@
 **Status:** Current script mirror folders created  
 **Current mirror root:** `roblox/exported_scripts`
 
+## Owned Garage Mobile Camera Guard V2.2 confirmed/mirrored
+
+Run the complete contents of:
+
+```text
+scripts/roblox_owned_garage_mobile_thumbstick_camera_guard_v1.lua
+```
+
+The user confirmed V2.2 working well. The complete `2026-07-27 21:26:44` / 192-source mirror contains its exact source and tuning state with zero mismatches. No ordinary Studio command is pending.
+
+Retain the complete script as exact-scope audit/recovery evidence. If recovery is required, run it once in the Edit-mode Command Bar, require both `[NTR Owned Garage Mobile Camera Guard V2.2] AUDIT PASS` and `INSTALL PASS`, restart Play, repeat the combined movement/empty-space all-pages phone/tablet/PC matrix, then refresh the complete mirror. Repair this same canonical installer if its exact range anchor fails; do not create another camera patch.
+
 ## Free-Roam Cash Smoothing V1 confirmed/mirrored
 
 The user confirmed the installed result working well. The complete `2026-07-27 11:26:30` mirror has 191 mutually matching entries and contains the shared/desktop/mobile smoothing owners, their revision attributes and all five Theme controls. No Studio command is pending for ordinary use.

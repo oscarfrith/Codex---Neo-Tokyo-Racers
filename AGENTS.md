@@ -15,6 +15,7 @@ Working rules:
 
 * Prefer small command-bar scripts over huge rewrites.
 * Reuse confirmed shared UI components, layout functions, renderers, and semantic tokens before creating page-specific UI. A new page-specific visual implementation is allowed only when the shared contract cannot support the requirement, and that exception must be documented.
+* Mobile phones and tablets use the native `StarterGui.ScreenOrientation = LandscapeSensor` project contract. Do not add portrait-specific layouts or runtime orientation writers unless the product orientation requirement is deliberately changed.
 * Do not create in-game backup folders/scripts unless explicitly asked.
 * Do not touch unrelated UI/server/VFX systems when changing driving mechanics.
 * Use config folders/attributes for tuning values where practical.

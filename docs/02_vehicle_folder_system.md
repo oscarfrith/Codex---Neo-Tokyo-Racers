@@ -332,3 +332,9 @@ SurfaceLight Brightness, Range, Angle, Face, Shadows and other presentation prop
 Player Onboarding V1.7 adds an opt-in Studio-only testing mode at `Config.Runtime.Onboarding_EditAttributes.StudioVehicleSandboxEveryPlay`. ProfileService still loads and owns the canonical profile, then clears vehicle ownership, module ownership and garage display vehicle references only in that in-memory session. Garage property ownership and garage customisation remain intact.
 
 The session is marked `NoSave`, and ProfileService returns before profile encoding or any DataStore update on every normal, forced, removal and shutdown save path. `RunService:IsStudio()` is a hard activation requirement. Disable `StudioVehicleSandboxEveryPlay` before production persistence/rejoin testing; no stored vehicles are deleted and no migration is required.
+
+## Player-facing vehicle family names
+
+Small Refinements Phase 1 adds the shared `VehicleDisplayNames` module through `scripts/roblox_small_refinements_shared_presentation_v1.lua`. It resolves a cockpit model under the current category asset folder, reads the cockpit `DisplayName`, and composes player-facing labels such as `Piercer Forge`.
+
+This is presentation mapping only. The legacy `bruiser` category and `bruiser_01`-style cockpit IDs remain stable identities for profiles, owned cockpit instances, asset lookup, remotes, module compatibility and migration history. Do not rename those IDs or folders to repair visible copy. Free-roam category dropdowns and owned-garage prompts must call the shared resolver rather than maintaining separate hard-coded aliases.

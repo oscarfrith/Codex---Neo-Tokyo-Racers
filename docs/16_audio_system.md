@@ -1,5 +1,15 @@
 # Audio System
 
+## First-drive Controls presentation gate V1 installed; V1.1 sequencing correction generated (2026-07-27)
+
+Phase 2 reuses the existing vehicle and context audio owners. While the local `NTR_FirstDrivePresentationPending` attribute is true, reliable local ignition remains prepared but cannot play, local engine/acceleration/drift/boost/wind targets remain silent, and context music/ambience fades out. No SoundGroup, asset ID, profile, semantic vehicle state or remote changes.
+
+`OnboardingClient_Active` acquires the temporary gate immediately before requesting the first desktop driving Controls page. `DesktopFreeRoamHudController_Active` releases it only after `NEXT` completes the black backdrop fade. The existing vehicle controller then performs its normal stable-route ignition sequence and engine-loop lead; `ContextAudioController` resolves and fades into the current free-roam context. The shared gameplay-input gate prevents hidden driving input during the reveal.
+
+This is a presentation gate, not a new audio mixer or lifecycle owner. Low-latency ignition, reset/respawn during presentation, repeated manual Controls, and ordinary later vehicle entries remain focused verification items in `docs/small-refinements-lifecycle-phase2-v1.md`.
+
+The user confirmed V1 audio/input behavior. V1.1 changes no audio source or tuning: it acquires the same gate earlier from the successful `FreeRoamDrive` spawn handoff, before loading releases, and retains it through the existing Controls fade.
+
 ## Presentation one-shot latency V1.3.2 confirmed and mirrored (updated 2026-07-26)
 
 The confirmed V1.3.1 presentation controller owns a maximum-eight one-shot pool. It currently selects any idle `Sound`, replaces its `SoundId` and calls `Play()` immediately. When the replacement asset is not already cached, Roblox begins playback only after loading it. This matches the reported inconsistent large delay across both UI Click and race Checkpoint cues.

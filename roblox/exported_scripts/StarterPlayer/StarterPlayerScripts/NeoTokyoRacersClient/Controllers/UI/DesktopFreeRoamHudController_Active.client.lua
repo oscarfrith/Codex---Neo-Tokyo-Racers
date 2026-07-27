@@ -1,3 +1,5 @@
+-- NTR_SMALL_REFINEMENTS_SHARED_PRESENTATION_V1
+-- NTR_SMALL_REFINEMENTS_LIFECYCLE_PHASE2_V1
 -- NTR_FREEROAM_CASH_SMOOTHING_DESKTOP_V1
 -- NTR_SHARED_VEHICLE_CARD_SYSTEM_V1_1
 -- NTR_SHARED_VEHICLE_CARD_SYSTEM_V1
@@ -11,6 +13,7 @@
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
+local TweenService = game:GetService("TweenService")
 local UserInputService = game:GetService("UserInputService")
 local Workspace = game:GetService("Workspace")
 
@@ -24,6 +27,7 @@ local playerGui = player:WaitForChild("PlayerGui")
 local kit = ReplicatedStorage:WaitForChild("NeoTokyoRacers")
 local SharedUI = require(kit.Shared.Modules.UI:WaitForChild("RacingUIComponents"))
 local Foundation = require(kit.Shared.Modules.UI:WaitForChild("ResponsiveUIFoundation"))
+local DisplayNames = require(kit.Shared.Modules.Common:WaitForChild("VehicleDisplayNames"))
 local VehicleCards = require(script.Parent:WaitForChild("GarageReplacementComponents"))
 local config = kit:WaitForChild("Config"):WaitForChild("UI"):WaitForChild("DesktopFreeRoamHud")
 local racingPerformanceConfig = kit:WaitForChild("Config"):WaitForChild("Racing"):WaitForChild("PresentationPerformance")
@@ -40,6 +44,7 @@ local loadingInvoke = script.Parent:WaitForChild("LoadingTransitionInvoke") -- N
 local interiorInvoke = garageRemotes:FindFirstChild("GarageInteriorInvoke")
 local categoriesRoot = kit:WaitForChild("Assets"):WaitForChild("Vehicles"):WaitForChild("Categories")
 local mobileDriveInputState = require(kit:WaitForChild("Shared"):WaitForChild("Modules"):WaitForChild("Client"):WaitForChild("Controllers"):WaitForChild("MobileDriveInputState"))
+local GameplayInputGate = require(kit.Shared.Modules.Client:WaitForChild("Input"):WaitForChild("GameplayInputGate"))
 
 local FONT = Enum.Font.Michroma
 local BODY_FONT = Enum.Font.Michroma
@@ -85,11 +90,15 @@ local modalBackdrop
 local modalPanels = {}
 local choiceList
 local choiceAnchor
-local toast
+local sharedNotificationEvent = script.Parent:WaitForChild("ShowTopNotification")
 local racingPresentationActive = false -- NTR_PC_FREEROAM_RACING_PRESENTATION_BRIDGE
 local racingTelemetryOnly = false
 local presentationOwners = {} -- NTR_RACING_UI_PHASE16E_RUNTIME_OWNERSHIP
 local activeModal
+local controlsDoneButton
+local onboardingControlsReveal = false
+local controlsFadeGeneration = 0
+local controlsInputToken
 local selectedCategory = "ALL"
 local selectedSort = "RATING"
 local cachedInitial
@@ -322,15 +331,8 @@ local function readInitial(force)
 	return cachedInitial
 end
 
-local function showToast(text, positive)
-	toast.Text = tostring(text or "")
-	toast.TextColor3 = positive and C("Telemetry", Color3.fromRGB(43, 225, 218)) or C("Text", Color3.new(1, 1, 1))
-	toast.Visible = true
-	local stamp = os.clock()
-	toast:SetAttribute("Stamp", stamp)
-	task.delay(2.2, function()
-		if toast and toast.Parent and toast:GetAttribute("Stamp") == stamp then toast.Visible = false end
-	end)
+local function showToast(text, _positive)
+	sharedNotificationEvent:Fire(text,2.2)
 end
 
 local function actuallyVisible(object, stopAt)
@@ -394,17 +396,50 @@ local function closeChoiceList()
 	choiceAnchor = nil
 end
 
-local function closeModal()
+local function finishModalClose()
+	local closingControls = activeModal == "Controls"
 	activeModal = nil
 	modalLayer.Visible = false
 	for _, item in pairs(modalPanels) do item.Visible = false end
+	if closingControls then player:SetAttribute("NTR_DrivingControlsOpen",false) end
+	if controlsInputToken then GameplayInputGate.Release(controlsInputToken,true); controlsInputToken=nil end
+	onboardingControlsReveal = false
+	if controlsDoneButton then controlsDoneButton.Text="DONE"; controlsDoneButton.Active=true end
+	if modalBackdrop then modalBackdrop.BackgroundTransparency=L("ModalDimTransparency",0.32) end
+end
+
+local function closeModal()
+	if activeModal=="Controls" and onboardingControlsReveal then return end
+	controlsFadeGeneration += 1
+	finishModalClose()
+end
+
+local function completeControls()
+	if activeModal~="Controls" then return end
+	if not onboardingControlsReveal then closeModal(); return end
+	controlsFadeGeneration += 1
+	local generation=controlsFadeGeneration
+	local controls=modalPanels.Controls
+	if controls then controls.Visible=false end
+	if controlsDoneButton then controlsDoneButton.Active=false end
+	local tween=TweenService:Create(modalBackdrop,TweenInfo.new(.55,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),{BackgroundTransparency=1})
+	tween:Play()
+	tween.Completed:Once(function()
+		if generation~=controlsFadeGeneration then return end
+		player:SetAttribute("NTR_FirstDrivePresentationPending",false)
+		finishModalClose()
+	end)
 end
 
 local function openModal(name)
 	closeChoiceList()
+	controlsFadeGeneration += 1
 	activeModal = name
 	modalLayer.Visible = true
 	for key, item in pairs(modalPanels) do item.Visible = key == name end
+	player:SetAttribute("NTR_DrivingControlsOpen",name=="Controls")
+	modalBackdrop.BackgroundTransparency=(name=="Controls" and onboardingControlsReveal) and 0 or L("ModalDimTransparency",0.32)
+	if controlsDoneButton then controlsDoneButton.Text=(name=="Controls" and onboardingControlsReveal) and "NEXT" or "DONE"; controlsDoneButton.Active=true end
 end
 
 local function modalShell(name, titleText, width, height)
@@ -476,8 +511,8 @@ local function buildModals()
 	for index, row in ipairs({ { "W", "ACCELERATE" }, { "S", "BRAKE / REVERSE" }, { "A / D", "STEER" }, { "SHIFT", "DRIFT" }, { "SPACE", "BOOST" }, { "R", "RESET VEHICLE" } }) do controlRow(55, 110 + (index - 1) * 52, row[1], row[2]) end
 	for index, row in ipairs({ { "WASD", "MOVE" }, { "SHIFT", "SPRINT" }, { "SPACE", "JUMP" }, { "E", "INTERACT / ENTER VEHICLE" }, { "MOUSE", "CAMERA" } }) do controlRow(480, 110 + (index - 1) * 58, row[1], row[2]) end
 	label(controls, "AutoHint", "Controls change automatically when entering a vehicle.", UDim2.new(1, -40, 0, 28), UDim2.fromOffset(20, 438), 11, C("Muted"), Enum.TextXAlignment.Center, BODY_FONT)
-	local doneControls = button(controls, "Done", "DONE", UDim2.fromOffset(240, 48), UDim2.fromOffset(330, 480), C("PanelBlue"), C("Telemetry"))
-	doneControls.Activated:Connect(closeModal)
+	controlsDoneButton = button(controls, "Done", "DONE", UDim2.fromOffset(240, 48), UDim2.fromOffset(330, 480), C("PanelBlue"), C("Telemetry"))
+	controlsDoneButton.Activated:Connect(completeControls)
 
 	local cash = modalShell("Cash", "GET CASH", 840, 650)
 	local balance = button(cash, "Balance", "BALANCE  $0", UDim2.fromOffset(310, 42), UDim2.fromOffset(265, 66), C("PanelBlue"), C("ElectricBlue"))
@@ -535,9 +570,8 @@ local function buildModals()
 end
 
 local function categoryForVehicle(vehicle, cockpitId)
-	local explicit = tostring(vehicle and (vehicle.CategoryId or vehicle.Category) or "")
-	if explicit ~= "" then return string.upper(explicit) end
-	return string.upper(string.match(tostring(cockpitId or ""), "^([^_]+)") or "OTHER")
+	local explicit=tostring(vehicle and (vehicle.CategoryId or vehicle.Category) or "")
+	return string.upper(DisplayNames.CategoryName(categoriesRoot,explicit,cockpitId))
 end
 
 local function cockpitModel(cockpitId)
@@ -786,6 +820,7 @@ local function buildMainHud()
 	local cashHeight = L("CashHeight", 40)
 	leftCluster = new("Frame", { Name = "LeftCluster", BackgroundTransparency = 1, BorderSizePixel = 0, Size = UDim2.fromOffset(mapSize, mapSize + cashHeight + 8), AnchorPoint = Vector2.new(0, 1), ZIndex = 8 }, root)
 	local money = panel(leftCluster, "Money", UDim2.fromOffset(mapSize, cashHeight), UDim2.fromOffset(0, 0), Vector2.zero, 9)
+	for _,child in ipairs(money:GetChildren()) do if child:IsA("UIStroke") then child:Destroy() end end
 	moneyPanel=money
 	money.BackgroundColor3 = C("PanelBlue")
 	local moneyGradient = money:FindFirstChild("SurfaceGradient")
@@ -840,7 +875,14 @@ local function buildMainHud()
 	exitButton.TextTransparency = 0.12
 	controlsButton.Activated:Connect(function() openModal("Controls") end)
 	local onboardingControls=script.Parent:WaitForChild("OpenDrivingControlsFromOnboarding")
-	onboardingControls.Event:Connect(function() openModal("Controls") end) -- NTR_DESKTOP_ONBOARDING_CONTROLS_POPUP_V1
+	onboardingControls.Event:Connect(function(options)
+		onboardingControlsReveal=type(options)=="table" and options.FirstDrive==true
+		if onboardingControlsReveal then
+			player:SetAttribute("NTR_FirstDrivePresentationPending",true)
+			if not controlsInputToken then controlsInputToken=GameplayInputGate.Acquire("FirstDriveControls","V1") end
+		end
+		openModal("Controls")
+	end) -- NTR_DESKTOP_ONBOARDING_CONTROLS_POPUP_V1
 
 	exitButton.Activated:Connect(function()
 		if busy then return end
@@ -881,14 +923,7 @@ local function buildMainHud()
 		table.insert(gaugeSegments, segment)
 	end
 
-	toast = label(root, "Toast", "", UDim2.fromOffset(420, 36), UDim2.new(0.5, -210, 0, 82), T("Caption", 11), C("Text"), Enum.TextXAlignment.Center)
-	toast.BackgroundColor3 = C("PanelDeep")
-	toast.BackgroundTransparency = 0.12
-	toast.BorderSizePixel = 0
-	toast.Visible = false
-	toast.ZIndex = 60
-	corner(toast, 6)
-	stroke(toast, C("Outline"), 1.2, 0.2)
+	-- Local toast visuals were retired; SharedTopNotificationController_Active owns notices.
 end
 
 local function ensureGui()

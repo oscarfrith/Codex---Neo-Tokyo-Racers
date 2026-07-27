@@ -1,4 +1,5 @@
 -- NTR_GARAGE_PREVIEW_VFX_SINGLE_OWNER_V1
+-- NTR_GARAGE_SCROLL_EDGE_SAFETY_V1
 -- NTR_GARAGE_CAMERA_VFX_REFINEMENT_V1_1
 -- NTR_GARAGE_CAMERA_VFX_SCROLL_REFINEMENT_V1
 -- NTR_UI_PERFORMANCE_HARDENING_PHASE1_V1
@@ -8,7 +9,6 @@ local ReplicatedStorage=game:GetService("ReplicatedStorage")
 local Workspace=game:GetService("Workspace")
 local UserInputService=game:GetService("UserInputService")
 local RunService=game:GetService("RunService")
-local StarterGui=game:GetService("StarterGui")
 local player=Players.LocalPlayer
 local playerGui=player:WaitForChild("PlayerGui")
 local kit=ReplicatedStorage:WaitForChild("NeoTokyoRacers")
@@ -24,7 +24,6 @@ local cachedPreviewRoot,cachedPreviewVehicle,cachedPreviewColor,cachedPreviewFor
 local cachedPlayerVehicle,cachedPlayerColor
 local function number(name,fallback) local value=cfg:GetAttribute(name); return typeof(value)=="number" and value or fallback end
 task.defer(function() local scripts=player:WaitForChild("PlayerScripts",10); local module=scripts and scripts:FindFirstChild("PlayerModule"); if not module then return end; local ok,result=pcall(require,module); if ok and result and result.GetControls then controls=result:GetControls() end end)
-local function requestLandscape() if not UserInputService.TouchEnabled then return end; pcall(function() StarterGui.ScreenOrientation=Enum.ScreenOrientation.LandscapeSensor end); pcall(function() playerGui.ScreenOrientation=Enum.ScreenOrientation.LandscapeSensor end) end
 local function garageOpen() return player:GetAttribute("NTR_GarageSessionActive")==true end
 local function driveOpen() local hud=playerGui:FindFirstChild("HOVER_RACING_V2_DriveHUD"); return hud and hud.Enabled end
 local function setRobloxTouchControls(enabled) local touch=playerGui:FindFirstChild("TouchGui"); if touch and touch:IsA("ScreenGui") then touch.Enabled=enabled end; if controls then if enabled and controlsDisabled then controlsDisabled=false; pcall(function() controls:Enable() end) elseif not enabled and not controlsDisabled then controlsDisabled=true; pcall(function() controls:Disable() end) end end end
@@ -66,7 +65,7 @@ local function refreshTargets()
 	local playerVehicle=getPlayerVehicle(); local playerColor=playerVehicle and (playerVehicle:GetAttribute("ThrustColor") or Color3.new(1,1,1)); if playerVehicle~=cachedPlayerVehicle or playerColor~=cachedPlayerColor then cachedPlayerVehicle,cachedPlayerColor=playerVehicle,playerColor end
 end
 local function forceDriveCamera() if not driveOpen() then return end; local camera=Workspace.CurrentCamera; if camera and camera:GetAttribute("NTRDrivingCameraManaged")==true then return end; local vehicle=cachedPlayerVehicle or getPlayerVehicle(); local seat=vehicle and vehicle:FindFirstChild("DriverSeat",true); if camera and seat and seat:IsA("VehicleSeat") then camera.CameraType=Enum.CameraType.Custom; camera.CameraSubject=seat end end
-requestLandscape(); refreshTargets()
+refreshTargets()
 RunService.RenderStepped:Connect(function(dt)
 	if UserInputService.TouchEnabled then setRobloxTouchControls(not garageOpen() and not driveOpen()) end
 	forceDriveCamera()

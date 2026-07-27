@@ -1,4 +1,5 @@
 -- NTR_AUDIO_SYSTEM_PHASE2_CONTEXT_CONTROLLER_V1
+-- NTR_SMALL_REFINEMENTS_LIFECYCLE_PHASE2_V1
 local CollectionService = game:GetService("CollectionService")
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -227,6 +228,10 @@ local function stopAll(seconds)
 end
 
 local function refresh()
+	if player:GetAttribute("NTR_FirstDrivePresentationPending") == true then
+		if currentContextId ~= nil then stopAll(0.08) end
+		return
+	end
 	if not enabled() then
 		if currentContextId ~= nil then stopAll(Catalog.GlobalNumber("DisableFadeSeconds", 0.4)) end
 		return
@@ -246,7 +251,7 @@ function Controller.Start()
 	for _, object in ipairs(CollectionService:GetTagged(TAG)) do registerZone(object) end
 	table.insert(connections, CollectionService:GetInstanceAddedSignal(TAG):Connect(registerZone))
 	table.insert(connections, CollectionService:GetInstanceRemovedSignal(TAG):Connect(unregisterZone))
-	for _, attributeName in ipairs({ "NTR_OwnedGarageInside", "NTR_GarageSessionActive", "NTR_GarageSessionMode" }) do
+	for _, attributeName in ipairs({ "NTR_OwnedGarageInside", "NTR_GarageSessionActive", "NTR_GarageSessionMode", "NTR_FirstDrivePresentationPending" }) do
 		table.insert(connections, player:GetAttributeChangedSignal(attributeName):Connect(refresh))
 	end
 	local phase1Global = kit.Config.Audio:WaitForChild("Global")

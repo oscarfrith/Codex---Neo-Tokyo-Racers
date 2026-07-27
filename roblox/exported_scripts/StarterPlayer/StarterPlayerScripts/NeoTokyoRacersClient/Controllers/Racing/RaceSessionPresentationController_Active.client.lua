@@ -1,3 +1,4 @@
+-- NTR_SMALL_REFINEMENTS_SHARED_PRESENTATION_V1_1
 -- NTR_RACING_PRESENTATION_LIFECYCLE_V1_4_ADAPTIVE_SAFE_EDGE_CANVAS
 -- NTR_RACING_PRESENTATION_LIFECYCLE_V1_3_FULLSCREEN_EXIT
 -- NTR_SHARED_RESPONSIVE_UI_FOUNDATION_V1_1
@@ -181,11 +182,12 @@ if touch then
 end
 local modalBackdrop=Instance.new("Frame") modalBackdrop.Name="ExitConfirmationFullScreenBackdrop" modalBackdrop.Active=true modalBackdrop.BackgroundColor3=Color3.new(0,0,0) modalBackdrop.BackgroundTransparency=.34 modalBackdrop.BorderSizePixel=0 modalBackdrop.Position=UDim2.fromScale(0,0) modalBackdrop.Size=UDim2.fromScale(1,1) modalBackdrop.Visible=false modalBackdrop.ZIndex=90 modalBackdrop.Parent=gui
 local modalShade=Instance.new("Frame") modalShade.Name="ExitConfirmationShade" modalShade.BackgroundTransparency=1 modalShade.BorderSizePixel=0 modalShade.Size=UDim2.fromScale(1,1) modalShade.Visible=false modalShade.ZIndex=100 modalShade.Parent=canvas
-local modal=UI.Panel(modalShade,{Name="ExitConfirmation",Position=UDim2.fromScale(.5,.5),Size=UDim2.fromOffset(650,270),Color=C("PanelDeep"),Transparency=.04,StrokeColor=C("Outline"),StrokeTransparency=.02}) modal.AnchorPoint=Vector2.new(.5,.5) modal.Position=UDim2.fromScale(.5,.5) modal.Size=UDim2.fromOffset(650,270) modal.ZIndex=101
-local modalTitle=UI.Label(modal,{Text="EXIT RACE?",Position=UDim2.fromOffset(20,8),Size=UDim2.new(1,-40,0,54),TextSize=22,Color=C("Text"),Role="Heading",XAlignment=Enum.TextXAlignment.Center}) modalTitle.ZIndex=102
-local modalCopy=UI.Label(modal,{Text="CURRENT PROGRESS WILL BE LOST.",Position=UDim2.fromOffset(20,88),Size=UDim2.new(1,-40,0,44),TextSize=15,Color=C("Text"),Role="Heading",XAlignment=Enum.TextXAlignment.Center}) modalCopy.ZIndex=102
-local noButton=UI.Button(modal,{Text="NO",Position=UDim2.fromOffset(30,182),Size=UDim2.fromOffset(270,54),Color=C("PanelDeep"),StrokeColor=C("Outline"),TextSize=13}) noButton.ZIndex=103
-local yesButton=UI.Button(modal,{Text="YES",Position=UDim2.fromOffset(350,182),Size=UDim2.fromOffset(270,54),Color=C("PanelBlue"),StrokeColor=C("Telemetry"),TextSize=13}) yesButton.ZIndex=103
+local confirmationLayout=require(shared:WaitForChild("Modules"):WaitForChild("UI"):WaitForChild("ResponsiveUIFoundation")).ConfirmationLayout()
+local modal=UI.Panel(modalShade,{Name="ExitConfirmation",Position=UDim2.fromScale(.5,.5),Size=UDim2.fromOffset(confirmationLayout.PanelWidth,confirmationLayout.PanelHeight),Color=C("PanelDeep"),Transparency=.04,StrokeColor=C("Outline"),StrokeTransparency=.02}) modal.AnchorPoint=Vector2.new(.5,.5) modal.Position=UDim2.fromScale(.5,.5) modal.Size=UDim2.fromOffset(confirmationLayout.PanelWidth,confirmationLayout.PanelHeight) modal.ZIndex=101
+local modalTitle=UI.Label(modal,{Text="EXIT RACE?",Position=confirmationLayout.TitlePosition,Size=confirmationLayout.TitleSize,TextSize=confirmationLayout.TitleTextSize,Color=C("Text"),Role="Heading",XAlignment=Enum.TextXAlignment.Center}) modalTitle.ZIndex=102
+local modalCopy=UI.Label(modal,{Text="CURRENT PROGRESS WILL BE LOST.",Position=confirmationLayout.BodyPosition,Size=confirmationLayout.BodySize,TextSize=confirmationLayout.BodyTextSize,Color=C("Text"),Role="Heading",XAlignment=Enum.TextXAlignment.Center}) modalCopy.ZIndex=102
+local noButton=UI.Button(modal,{Text="NO",Position=confirmationLayout.CancelPosition,Size=confirmationLayout.ButtonSize,Color=C("PanelDeep"),StrokeColor=C("Outline"),TextSize=confirmationLayout.ButtonTextSize}) noButton.ZIndex=103
+local yesButton=UI.Button(modal,{Text="YES",Position=confirmationLayout.ConfirmPosition,Size=confirmationLayout.ButtonSize,Color=C("PanelBlue"),StrokeColor=C("Telemetry"),TextSize=confirmationLayout.ButtonTextSize}) yesButton.ZIndex=103
 local function setExitModalVisible(visible)
 	visible=visible==true
 	modalBackdrop.Visible=visible

@@ -1,5 +1,102 @@
 # Customisation UI
 
+## Owned-garage semantic movement touch V2.2 confirmed/mirrored (2026-07-27)
+
+The complete `21:08:10` mirror contains installed V2.1 with 192 mutually matching source records. Its content-aware touch regions work substantially better, so `GarageWorkspaceController` and `OwnedGarageWorkspaceController` are frozen for V2.2.
+
+The remaining regression is in `GarageInteriorModeController`: management checks the small visible `ThumbstickStart` synchronously during `InputBegan`. That dynamic marker is not a dependable ownership signal until Roblox has processed the new touch. V2.2 replaces the complete camera-arbitration block with a semantic per-input state machine: visible UI protects immediately; an empty touch in the broad native movement region is temporarily only a candidate; a same-cycle deferred and bounded next-Heartbeat check confirms the marker around that exact start position or a new humanoid movement transition; only then is the touch promoted and the pre-touch camera orientation restored.
+
+Candidates that Roblox does not claim remain native world/camera touches and never become blockers. Confirmed movement/UI touches retain V2's lifetime and transition guarantees. Outside-management walking keeps the confirmed broad V2 path. No custom controls, page-specific geometry, PlayerModule replacement, new owner, idle loop, remote or persistence change is introduced.
+
+The user confirmed the combined result working well. The complete `21:26:44` / 192-source mirror contains the exact canonical V2.2 camera block, retained V2.1 visible-surface owners and `MobileThumbstickSemanticConfirmWindowSeconds=0.35`, with zero cross-manifest mismatches. V2.2 is the current owned-management touch/camera baseline; no ordinary installer rerun is pending.
+
+## Owned-garage visible touch surfaces V2.1 installed/mirrored; movement timing regression (2026-07-27)
+
+V2 is user-confirmed for camera lifecycle behavior and represented in the complete `20:48:01/02` mirror. The remaining blank blocked regions align with two invisible input containers: the full-height category `ScrollingFrame`, the full-width bottom carousel `ScrollingFrame`, and an oversized Dynamic Thumbstick frame fallback during management.
+
+V2.1 keeps the confirmed owners and changes only their geometry contract. `GarageWorkspaceController` now caches clipped rectangles for currently rendered surfaces under the visible owned-management root. Hidden objects, disabled screens, transparent layout shells, fully transparent CanvasGroups and zero-area/clipped descendants are excluded. Non-overflowing category/carousel scrollers disable their shell input while their visible child cards remain interactive; overflowing scrollers retain the complete scroll gesture region.
+
+The map is enabled only by `OwnedGarageWorkspaceController`, but covers every page rendered through that workspace. It rebuilds after coalesced layout/content/visibility changes and touch begin performs only a bounded rectangle pass. During management, `GarageInteriorModeController` recognises the visible `ThumbstickStart` rather than the oversized parent frame. Dealership/customisation preview input and non-management walking retain their existing contracts.
+
+No new camera, UI, action, remote, saved-state or persistence owner is introduced. The user confirmed the surface-location result is much better, but reported movement-driven pan returned. Its `21:08:10` installed mirror is the exact V2.2 input baseline. See `docs/owned-garage-mobile-thumbstick-camera-guard-v1.md`.
+
+## Owned-garage mobile camera touch arbitration V2 confirmed/mirrored (2026-07-27)
+
+The complete `20:29:06` mirror proves V1.2 installed, but runtime disproved its ownership assumption. Physical owned-garage management remains on Roblox's native humanoid camera; the shared `PreviewCameraController` belongs to the separate module-shop/customisation preview flow. Releasing the full-screen sink therefore exposed the original unprocessed Dynamic Thumbstick touch rather than transferring management to a custom preview camera.
+
+V2 returns the shared preview controller to its pre-V1.2 touch contract. `GarageInteriorModeController` remains the physical-garage lifecycle owner and now classifies each touch once for its full lifetime. Dynamic Thumbstick and real management-surface touches hold camera orientation while humanoid translation continues; genuinely empty management space never enters the guard and retains normal native pan. A protected touch is not released into free roam during management close or garage exit.
+
+`OwnedGarageWorkspaceController` remains the only management geometry owner. Its bounded query considers only descendants of the visible `OwnedGarageCanonicalWorkspace`: buttons, text boxes, visible cards/panels/text/images and genuinely overflowing scrollers block camera movement. The category and carousel shells explicitly allow empty-area pan when their lists do not overflow, while their actual cards and controls continue to block.
+
+No PlayerModule replacement, full-screen touch sink, new controller, remote, saved state or change to dealership/customisation preview input is introduced. See `docs/owned-garage-mobile-thumbstick-camera-guard-v1.md`.
+
+The user confirmed the V2 camera/lifecycle result working and refreshed the complete `20:48:01/02` / 192-source mirror. Its remaining broad blank UI rectangles are addressed separately by generated V2.1.
+
+## Owned-garage management content-aware touch V1.2 installed/mirrored; runtime-failed (2026-07-27)
+
+V1.1's native Follow and camera recovery work overall, but activating the complete owned-management workspace also blocks intentional pan over every empty region. V1.2 removes that root-wide sink.
+
+The existing shared preview-camera input owner becomes content-aware only for touch while owned-garage management is open. Actual buttons, text boxes, visible panel/text/image surfaces and scrolling regions with real overflow block camera drag. Transparent layout containers and non-overflowing scrollers do not block unused left/bottom space; their visible cards remain normal blocking controls. Other garage/customisation modes keep the previous hit-test behavior.
+
+The user installed this result and refreshed the complete `20:29:06` mirror, then confirmed movement-driven camera pan returned in management and after exit. V1.2 is superseded by V2 and is not a recovery baseline.
+
+## Owned-garage mobile camera lifecycle V1.1 installed/mirrored (2026-07-27)
+
+The confirmed V1 movement-touch hold remains correct inside the physical garage. The remaining boundary defect is separate: management makes the guard ineligible immediately, its transparent full-screen workspace root does not consume blank-area touch, and the normal camera is not explicitly normalised after management close or foot exit.
+
+V1.1 keeps the existing owners. `StarterPlayer.DevTouchCameraMovementMode=Follow` becomes the native phone/tablet preference; the owned-garage workspace activates its existing root only while that management UI is open on touch; and `GarageInteriorModeController` restores `CameraType.Custom` plus the current unseated humanoid after the relevant transitions. Custom Scriptable previews, vehicle-seat camera ownership and PC presentation remain unchanged.
+
+The user reported this working overall and refreshed the complete `20:04:05` mirror. V1.2 supersedes only its over-broad full-root management touch sink.
+
+See `docs/owned-garage-mobile-thumbstick-camera-guard-v1.md`.
+
+## Owned-garage mobile thumbstick camera guard V1 confirmed/mirrored (2026-07-27)
+
+The reproduced physical-garage touch used the normal humanoid camera and correct inside/management state, while Dynamic Thumbstick's movement touch remained `processed=false`. Onboarding isolation and PlayerModule rebinding did not change it, so this is not a garage preview-camera or visual-card defect.
+
+The existing `GarageInteriorModeController` now owns the bounded physical-interior guard. It holds normal camera orientation only for the active left-thumb movement touch, follows humanoid position, and restores normal camera control on touch end, management open, exit, respawn or camera replacement. No new UI/camera controller or PlayerModule replacement is introduced.
+
+The user confirmed the result working. The complete `18:49:50` mirror contains 192 matching source entries, the V1 source marker and the enabled config attribute. No ordinary Studio command or mirror refresh is pending.
+
+See `docs/owned-garage-mobile-thumbstick-camera-guard-v1.md`.
+
+## Garage scroll-edge safety and landscape contract V1 confirmed/mirrored (2026-07-27)
+
+Phones and tablets are intentionally landscape-only through the native `StarterGui.ScreenOrientation=LandscapeSensor` project property. Portrait branches are out of scope and should not be added to individual screens. The V1 installer removes the two existing thrust/VFX runtime orientation writers, including their one-second polling path, so orientation has one native owner rather than presentation code repeatedly enforcing it.
+
+`GarageReplacementComponents` gains the one shared edge helper. It measures the actual visible card widths after the existing deferred layout, converts the semantic physical glow clearance into logical units using the current scale and sets the existing carousel padding/canvas. `GarageBrowserController` and `GarageWorkspaceController` call that helper rather than duplicating arithmetic.
+
+This specifically fixes the workspace mismatch where `CardKind="Vehicle"` is `226` wide but canvas width was calculated with `WorkspaceCardWidth=210`. Owned Garage keeps its existing vertical scroller and card renderer, adding only scale-aware top/left/right/bottom clearance and scrollbar reserve.
+
+No card semantics, preview, purchase, navigation, Cash/capacity, remote, saved state, audio, VFX appearance or driving owner changes. The user confirmed the result and the complete `14:05:10` mirror contains all six markers. See `docs/garage-scroll-edge-safety-v1.md`.
+
+## Small refinements lifecycle Phase 2 V1.3 confirmed/mirrored (2026-07-27)
+
+Phase 2 retains the current UI owners and adds an explicit first-drive presentation contract. `OnboardingClient_Active` remains the one-time trigger/state owner; `DesktopFreeRoamHudController_Active` remains the Controls geometry owner and publishes `NTR_DrivingControlsOpen`; the shared gameplay-input gate blocks movement/driving during the black reveal. On `NEXT`, the existing backdrop fades for `0.55 s`, then the temporary audio gate releases and onboarding may show later free-roam icon prompts.
+
+The owned-garage walking repair does not add a camera controller. It prevents `PreviewCameraController` from starting or retaining a touch drag while the local player is physically inside an owned garage and its management workspace is closed.
+
+V1.3 was confirmed and mirrored at `13:43:23/24`; its final `OnboardingClient_Active` contract is:
+
+- successful first free-roam spawn opens Controls beneath the active loading cover;
+- loading, first-drive pending and Controls-open states form one blocker used by all tutorial/guide/objective render paths;
+- resumption requires both first-drive presentation attributes to clear after the fade;
+- Objective 2 unlocks and the Race shortcut prompt becomes eligible after Garage shortcut `NEXT`;
+- Objective 3 unlocks immediately after Race shortcut `NEXT`, independently of Objective 2 completion.
+
+Existing `SeenPages` fields remain authoritative across rejoin. No objective completion meaning, saved schema, remote, garage workspace geometry, vehicle renderer, audio source, loading runtime or bootstrap source changes. See `docs/small-refinements-lifecycle-phase2-v1.md`.
+
+## Small refinements shared presentation V1.1 confirmed/mirrored (2026-07-27)
+
+The user confirmed the complete Phase 1.1 working and refreshed the complete mirror at `12:20:09`. V1.1 remains in the same canonical installer and changes four presentation owners only.
+
+- `ResponsiveUIFoundation` measures each top-notification message, adds bounded padding, wraps only at its device cap and renders the grey gradient on a background `Frame`; its nested text label remains pure white. Mobile width is capped at `280 px`, approximately 65% of the former `420 px` maximum.
+- `ResponsiveUIFoundation.Confirmation` and `RaceSessionPresentationController_Active` consume one `650 x 270` reference geometry contract. Shared confirmation backdrops fill a top-level no-inset `ScreenGui` above onboarding while the panel retains the confirmed Race Exit safe-canvas scale. Touch does not receive forced selection focus; keyboard/gamepad retains `NO` as the initial selection.
+- `OwnedGarageBrowserController` uses the Race Browser `UI.Button` footer composition: equal halves, shared padding/gap, `48` reference-pixel height and neutral/blue semantic states. These two buttons are excluded from the owned browser's separate generic touch-target inflation so scaled-mobile geometry remains identical to Race Browser.
+- Mobile speed/boost telemetry keeps its existing `MobileDriveInputState` values and `RaceSession` presentation contract. V1.1 removes a stale reference to the retired local toast that otherwise aborts the race render branch.
+
+No server action, race lifecycle, driving physics/value, onboarding objective state, saved data, economy, VFX or audio owner changes. Phase 1.1 is confirmed and fully represented in the current mirror.
+
 ## Free-roam Cash smoothing/full formatting V1 confirmed/mirrored (2026-07-27)
 
 - `ResponsiveUIFoundation` gains one bounded presentation-only Cash presenter plus full/free-roam money formatters.
@@ -892,3 +989,27 @@ V1.10 retains that confirmed anchor and sizes the phone card for two description
 For repeated purchase tests, `StudioVehicleSandboxEveryPlay=true` supplies a clean session-only vehicle inventory and test cash. This mode does not replace the customisation/profile owner: ProfileService remains authoritative, garage properties and their customisation are preserved, and all saves are suppressed only in Studio.
 
 V1.13 strengthens that ownership boundary. Generic garage/racing profile snapshots do not own `Onboarding`, so ProfileService retains its current authoritative onboarding table before reconciling any such snapshot. Customisation purchases and page transitions therefore cannot erase `SeenPages` or revive completed objectives; no customisation renderer, mutation owner or saved schema field changes.
+
+## Small Refinements Phase 1 Shared Presentation
+
+The generated canonical installer is `scripts/roblox_small_refinements_shared_presentation_v1.lua`. It is a Standard presentation change and does not replace a page renderer. `ResponsiveUIFoundation.Confirmation` remains the only shared Yes/No owner; it now derives panel, typography and minimum touch-target geometry from physical viewport pixels so scaled garage canvases and direct phone HUD roots have consistent perceived size. The separate Race exit modal remains unchanged and is the visual reference.
+
+Desktop and mobile free-roam controllers retire their local bordered toast labels and publish through the existing `ShowTopNotification` event. `SharedTopNotificationController_Active` remains the only renderer: borderless grey gradient, white text, bounded three-card stack, a wider PC profile and a narrower phone profile.
+
+The owned-garage list adopts the confirmed Race-browser `CardContent` inset of four physical reference pixels with touch/desktop right-side scrollbar reserve. Its capacity metric uses constrained scaling rather than a fixed logical text size. The shared garage/customisation subtitle reserves 44 logical pixels, wraps to at most two lines and uses no truncation; shared `HeaderHeight` becomes `82`.
+
+Continuous mobile driving surfaces set the already-supported `UIAudioSuppressClick` attribute. Steering, drift, pedals, boost, thumbstick and tilt/recenter controls are silent; menu navigation and Exit Vehicle retain normal UI feedback.
+
+Focused verification:
+
+1. On phone portrait, phone landscape and tablet, open the dealership shortcut and every reachable shared Yes/No confirmation. Confirm the panel is compact, stays inside safe bounds and retains usable 48-pixel targets.
+2. Compare the Race exit confirmation and confirm its layout and action path are unchanged.
+3. Spawn, despawn, park and teleport on PC and phone. Every notice must be borderless, grey-gradient and white; PC should be wider than the old 620-pixel cap and phone narrower than the old 540-pixel cap.
+4. Open My Garages on PC and touch. Scroll the complete list and confirm no left/top card border is clipped. Check `2 / 2 DISPLAY SPACES` plus a temporarily longer capacity value if available.
+5. Confirm free-roam Cash has one blue border on desktop and mobile across spawn, menu open/close and value changes.
+6. Hold every mobile drive control and confirm no click cue. Confirm normal menu and Exit Vehicle buttons still click.
+7. Visit Dealership, Customisation, Build Modules, Paint and Upgrade pages with long subtitles on PC, phone and tablet. Text may use two lines but must not overlap the page body.
+8. Confirm the desktop and mobile free-roam category dropdown says `PIERCER`, not `BRUISER`.
+9. Inside an owned garage, walk to each displayed vehicle and confirm its prompt uses the full family and cockpit name, such as `Piercer Forge`.
+
+After verification, refresh both mirror areas before promoting this generated phase to the confirmed baseline.

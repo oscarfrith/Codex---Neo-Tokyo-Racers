@@ -1,3 +1,5 @@
+-- NTR_SMALL_REFINEMENTS_SHARED_PRESENTATION_V1_1
+-- NTR_SMALL_REFINEMENTS_SHARED_PRESENTATION_V1
 -- NTR_FREEROAM_CASH_SMOOTHING_MOBILE_V1
 -- NTR_SHARED_VEHICLE_CARD_SYSTEM_V1_1
 -- NTR_SHARED_VEHICLE_CARD_SYSTEM_V1
@@ -19,6 +21,7 @@ local playerGui=player:WaitForChild("PlayerGui")
 local kit=ReplicatedStorage:WaitForChild("NeoTokyoRacers")
 local SharedUI=require(kit.Shared.Modules.UI:WaitForChild("RacingUIComponents"))
 local Foundation=require(kit.Shared.Modules.UI:WaitForChild("ResponsiveUIFoundation"))
+local DisplayNames=require(kit.Shared.Modules.Common:WaitForChild("VehicleDisplayNames"))
 local VehicleCards=require(script.Parent:WaitForChild("GarageReplacementComponents"))
 local config=kit:WaitForChild("Config"):WaitForChild("UI"):WaitForChild("MobileFreeRoamHud")
 local desktop=kit.Config.UI:WaitForChild("DesktopFreeRoamHud")
@@ -36,6 +39,7 @@ local loadingInvoke=script.Parent:WaitForChild("LoadingTransitionInvoke") -- NTR
 local categories=kit:WaitForChild("Assets"):WaitForChild("Vehicles"):WaitForChild("Categories")
 local drive=require(kit.Shared.Modules.Client.Controllers:WaitForChild("MobileDriveInputState"))
 local uiFolder=script.Parent
+local sharedNotificationEvent=uiFolder:WaitForChild("ShowTopNotification")
 
 local FONT=Enum.Font.Michroma
 local function read(folder,name,fallback) local v=folder and folder:FindFirstChild(name); if v and v:IsA("ValueBase") then return v.Value end local a=folder and folder:GetAttribute(name); if a~=nil then return a end return fallback end
@@ -91,8 +95,8 @@ local function suppressExactLegacyHud()
 end
 playerGui.ChildAdded:Connect(function(child) if child.Name=="HOVER_RACING_V2_DriveHUD" then task.defer(suppressExactLegacyHud) end end)
 suppressExactLegacyHud()
-local toast=label(root,"Toast","",UDim2.fromOffset(420,34),UDim2.fromScale(.5,.12),12,WHITE,Enum.TextXAlignment.Center); toast.AnchorPoint=Vector2.new(.5,0); toast.BackgroundColor3=DEEP; toast.BackgroundTransparency=.15; toast.Visible=false; corner(toast,8); stroke(toast,PINK,1.5,.1)
-local function showToast(text,positive) toast.Text=tostring(text); toast.TextColor3=positive and CYAN or WHITE; toast.Visible=true; local stamp=os.clock(); toast:SetAttribute("Stamp",stamp); task.delay(2.2,function() if toast.Parent and toast:GetAttribute("Stamp")==stamp then toast.Visible=false end end) end
+-- Local toast visuals were retired; SharedTopNotificationController_Active owns notices.
+local function showToast(text,_positive) sharedNotificationEvent:Fire(text,2.2) end
 
 local mapFrame=new("Frame",{Name="Minimap",BackgroundColor3=DEEP,BackgroundTransparency=.28,BorderSizePixel=0,Size=UDim2.fromOffset(170,170),Position=UDim2.fromOffset(0,0),ClipsDescendants=true,ZIndex=5},root); corner(mapFrame,9)
 local mapCanvas=new("Frame",{Name="MapCanvas",AnchorPoint=Vector2.new(.5,.5),BackgroundTransparency=1,BorderSizePixel=0,Position=UDim2.fromScale(.5,.5),Size=UDim2.fromOffset(170,170),ZIndex=6},mapFrame)
@@ -113,7 +117,7 @@ edgeFade("EdgeRight",UDim2.new(.8,0,0,0),UDim2.new(.2,0,1,0),180)
 edgeFade("EdgeTop",UDim2.fromScale(0,0),UDim2.new(1,0,.2,0),90)
 edgeFade("EdgeBottom",UDim2.new(0,0,.8,0),UDim2.new(1,0,.2,0),-90)
 
-local cash=panel(root,"Cash",UDim2.fromOffset(170,34),UDim2.fromOffset(0,0),5); cash.BackgroundColor3=Color3.fromRGB(8,42,84); cash.ClipsDescendants=true; local cashStroke=cash:FindFirstChildOfClass("UIStroke"); if cashStroke then cashStroke.Color=BLUE; Foundation.StyleStroke(cashStroke,"Structural") end; local cashText=label(cash,"Value","$0",UDim2.new(1,-52,1,0),UDim2.fromOffset(6,0),14,WHITE); cashText.TextWrapped=false; cashText.TextScaled=true; cashText.TextTruncate=Enum.TextTruncate.None; new("UITextSizeConstraint",{MinTextSize=5,MaxTextSize=14},cashText); local cashPlus=button(cash,"Plus","+",UDim2.fromOffset(28,26),UDim2.new(1,-32,.5,-13),BLUE); Foundation.ApplyBevel(cashPlus,{Radius=8}); local cashPlusStroke=cashPlus:FindFirstChildOfClass("UIStroke"); if cashPlusStroke then Foundation.StyleStroke(cashPlusStroke,"Structural") end; cashPlus.TextSize=18
+local cash=panel(root,"Cash",UDim2.fromOffset(170,34),UDim2.fromOffset(0,0),5); cash.BackgroundColor3=Color3.fromRGB(8,42,84); cash.ClipsDescendants=true; local cashStroke=cash:FindFirstChildOfClass("UIStroke"); if cashStroke then cashStroke.Name="CashStroke"; cashStroke.Color=BLUE; Foundation.StyleStroke(cashStroke,"Structural") end; local cashText=label(cash,"Value","$0",UDim2.new(1,-52,1,0),UDim2.fromOffset(6,0),14,WHITE); cashText.TextWrapped=false; cashText.TextScaled=true; cashText.TextTruncate=Enum.TextTruncate.None; new("UITextSizeConstraint",{MinTextSize=5,MaxTextSize=14},cashText); local cashPlus=button(cash,"Plus","+",UDim2.fromOffset(28,26),UDim2.new(1,-32,.5,-13),BLUE); Foundation.ApplyBevel(cashPlus,{Radius=8}); local cashPlusStroke=cashPlus:FindFirstChildOfClass("UIStroke"); if cashPlusStroke then Foundation.StyleStroke(cashPlusStroke,"Structural") end; cashPlus.TextSize=18
 
 local nav=new("Frame",{Name="Navigation",BackgroundTransparency=1,BorderSizePixel=0,ZIndex=5},root)
 local navButtons={}
@@ -244,7 +248,7 @@ local profileCache=nil
 local lastProfile=0
 local function profile(force) if profileCache and not force and os.clock()-lastProfile<2 then return profileCache end; local r=call("GetInitial",{}); profileCache=r.Profile or r; lastProfile=os.clock(); return profileCache or {} end
 local function cockpitModel(id) local target=string.lower(tostring(id or "")); if target=="" then return nil end; for _,x in ipairs(categories:GetDescendants()) do if x:IsA("Model") then local xid=string.lower(tostring(x:GetAttribute("CockpitId") or x:GetAttribute("TemplateId") or x.Name)); if xid==target or string.gsub(xid,"^cockpit_","")==target or string.find(xid,target,1,true) then return x end end end end
-local function vehicleCategory(vehicle,cockpitId) local explicit=tostring(vehicle and (vehicle.CategoryId or vehicle.Category) or ""); if explicit~="" then return string.upper(explicit) end; return string.upper(string.match(tostring(cockpitId or ""),"^([^_]+)") or "OTHER") end
+local function vehicleCategory(vehicle,cockpitId) local explicit=tostring(vehicle and (vehicle.CategoryId or vehicle.Category) or ""); return string.upper(DisplayNames.CategoryName(categories,explicit,cockpitId)) end
 local function tierColor(tier) return ({E=Color3.fromRGB(132,142,145),D=Color3.fromRGB(105,190,129),C=Color3.fromRGB(74,204,211),B=Color3.fromRGB(82,137,235),A=Color3.fromRGB(244,188,65),S=Color3.fromRGB(236,92,168)})[string.upper(tostring(tier or ""))] or PINK end
 local function vehicleRows()
 	local p=profile(false); local rows={}
@@ -351,7 +355,6 @@ RunService.RenderStepped:Connect(function(dt)
 	-- NTR_OWNED_GARAGE_PHASE5_HUD_POLICY_V1
 	local ownedGarageInside=player:GetAttribute("NTR_OwnedGarageInside")==true
 	mapFrame.Visible=not ownedGarageInside and not telemetryOnly and not localMajorMenuOpen; cash.Visible=not telemetryOnly and not localMajorMenuOpen; nav.Visible=not telemetryOnly and not localMajorMenuOpen; carButton.Visible=not ownedGarageInside; garageButton.Visible=not ownedGarageInside; raceButton.Visible=not ownedGarageInside; shopButton.Visible=not ownedGarageInside; settingsButton.Visible=true
-	if telemetryOnly or localMajorMenuOpen then toast.Visible=false end
 	if hidden then return end
 	local driving=drive.IsDriving==true
 	telemetry.Visible=driving and not carMenuOpen and not localMajorMenuOpen

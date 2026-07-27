@@ -1,3 +1,5 @@
+-- NTR_SMALL_REFINEMENTS_SHARED_PRESENTATION_V1_1
+-- NTR_SMALL_REFINEMENTS_SHARED_PRESENTATION_V1
 -- NTR_SHARED_RESPONSIVE_UI_FOUNDATION_V1_1
 local GuiService=game:GetService("GuiService")
 local ContextActionService=game:GetService("ContextActionService")
@@ -297,32 +299,85 @@ local function rootLogicalSize(root)
 	return Vector2.new(math.max(1,width),math.max(1,height)),Vector2.new(math.max(1,absolute.X),math.max(1,absolute.Y))
 end
 
+function M.ConfirmationLayout()
+	return {
+		ReferenceViewport=Vector2.new(1920,1080),
+		PanelWidth=650,
+		PanelHeight=270,
+		TitlePosition=UDim2.fromOffset(20,8),
+		TitleSize=UDim2.new(1,-40,0,54),
+		TitleTextSize=22,
+		BodyPosition=UDim2.fromOffset(20,88),
+		BodySize=UDim2.new(1,-40,0,44),
+		BodyTextSize=15,
+		CancelPosition=UDim2.fromOffset(30,182),
+		ConfirmPosition=UDim2.fromOffset(350,182),
+		ButtonSize=UDim2.fromOffset(270,54),
+		ButtonTextSize=13,
+	}
+end
+
 function M.Confirmation(root,options,components)
 	options=options or {}
 	assert(root and root:IsA("GuiObject"),"Confirmation requires a GuiObject root")
 	assert(type(components)=="table","Confirmation requires shared UI components")
+	local sourceGui=root:FindFirstAncestorOfClass("ScreenGui")
+	local playerGui=sourceGui and sourceGui.Parent
+	assert(playerGui and playerGui:IsA("PlayerGui"),"Confirmation root must belong to PlayerGui")
 	local oldSelection=GuiService.SelectedObject
 	local connections={}
 	local closed=false
 	local exitAction="NTRSharedConfirmationExit_"..tostring(os.clock())
+	local oldOverlay=playerGui:FindFirstChild("NTR_SharedConfirmationOverlay")
+	if oldOverlay then oldOverlay:Destroy() end
+	local gui=Instance.new("ScreenGui")
+	gui.Name="NTR_SharedConfirmationOverlay"
+	gui.ResetOnSpawn=false
+	gui.IgnoreGuiInset=true
+	gui.DisplayOrder=1250
+	gui.ZIndexBehavior=Enum.ZIndexBehavior.Global
+	pcall(function() gui.ScreenInsets=Enum.ScreenInsets.None end)
+	pcall(function() gui.ClipToDeviceSafeArea=false end)
+	gui.Parent=playerGui
+	local backdrop=Instance.new("Frame")
+	backdrop.Name="Backdrop"
+	backdrop.Active=true
+	backdrop.BackgroundColor3=Color3.new(0,0,0)
+	backdrop.BackgroundTransparency=.34
+	backdrop.BorderSizePixel=0
+	backdrop.Size=UDim2.fromScale(1,1)
+	backdrop.ZIndex=300
+	backdrop.Parent=gui
+	local canvas=Instance.new("Frame")
+	canvas.Name="ReferenceCanvas"
+	canvas.AnchorPoint=Vector2.new(.5,.5)
+	canvas.BackgroundTransparency=1
+	canvas.BorderSizePixel=0
+	canvas.Position=UDim2.fromScale(.5,.5)
+	canvas.Size=UDim2.fromOffset(1920,1080)
+	canvas.ZIndex=301
+	canvas.Parent=gui
+	local scale=Instance.new("UIScale")
+	scale.Parent=canvas
 	local shade=Instance.new("Frame")
 	shade.Name="NTRSharedConfirmation"
-	shade.Active=true
-	shade.BackgroundColor3=Color3.new(0,0,0)
-	shade.BackgroundTransparency=.22
+	shade.BackgroundTransparency=1
 	shade.BorderSizePixel=0
 	shade.Size=UDim2.fromScale(1,1)
-	shade.ZIndex=300
-	shade.Parent=root
+	shade.ZIndex=301
+	shade.Parent=canvas
+	local layout=M.ConfirmationLayout()
 	local panel=components.Panel(shade,{Name="Panel",StrokeColor=components.Colour("ElectricBlue"),NoGlow=true})
 	panel.AnchorPoint=Vector2.new(.5,.5)
-	panel.ZIndex=301
-	local title=components.Label(panel,{Text=options.Title or "CONFIRM",TextSize=22,Role="Heading",XAlignment=Enum.TextXAlignment.Center})
-	title.ZIndex=302
-	local body=components.Label(panel,{Text=options.Body or "Continue?",TextSize=14,XAlignment=Enum.TextXAlignment.Center,Wrapped=true})
-	body.ZIndex=302
-	local no=components.Button(panel,{Text=options.CancelText or "NO",Color=Color3.fromRGB(116,120,128),ZIndex=303})
-	local yes=components.Button(panel,{Text=options.ConfirmText or "YES",Color=components.Colour("PanelBlue"),StrokeColor=components.Colour("ElectricBlue"),ZIndex=303})
+	panel.Position=UDim2.fromScale(.5,.5)
+	panel.Size=UDim2.fromOffset(layout.PanelWidth,layout.PanelHeight)
+	panel.ZIndex=302
+	local title=components.Label(panel,{Text=options.Title or "CONFIRM",Position=layout.TitlePosition,Size=layout.TitleSize,TextSize=layout.TitleTextSize,Role="Heading",XAlignment=Enum.TextXAlignment.Center})
+	title.ZIndex=303
+	local body=components.Label(panel,{Text=options.Body or "Continue?",Position=layout.BodyPosition,Size=layout.BodySize,TextSize=layout.BodyTextSize,XAlignment=Enum.TextXAlignment.Center,Wrapped=true})
+	body.ZIndex=303
+	local no=components.Button(panel,{Text=options.CancelText or "NO",Position=layout.CancelPosition,Size=layout.ButtonSize,TextSize=layout.ButtonTextSize,Color=components.Colour("PanelDeep"),StrokeColor=components.Colour("Outline"),ZIndex=304})
+	local yes=components.Button(panel,{Text=options.ConfirmText or "YES",Position=layout.ConfirmPosition,Size=layout.ButtonSize,TextSize=layout.ButtonTextSize,Color=components.Colour("PanelBlue"),StrokeColor=components.Colour("Telemetry"),ZIndex=304})
 	no.Selectable=true
 	yes.Selectable=true
 	no.NextSelectionRight=yes
@@ -338,38 +393,35 @@ function M.Confirmation(root,options,components)
 		closed=true
 		disconnect()
 		if GuiService.SelectedObject==no or GuiService.SelectedObject==yes then GuiService.SelectedObject=oldSelection end
-		shade:Destroy()
+		gui:Destroy()
 		if confirmed then
 			if options.OnConfirm then options.OnConfirm() end
 		elseif options.OnCancel then options.OnCancel() end
 	end
+	local function safeViewportRect(viewport)
+		local origin=Vector2.zero
+		local size=viewport
+		local ok,fullRect,deviceRect=pcall(function()
+			return GuiService:GetInsetArea(Enum.ScreenInsets.None),GuiService:GetInsetArea(Enum.ScreenInsets.DeviceSafeInsets)
+		end)
+		if ok and fullRect and deviceRect then
+			origin=deviceRect.Min-fullRect.Min
+			size=deviceRect.Max-deviceRect.Min
+		end
+		origin=Vector2.new(math.clamp(origin.X,0,math.max(0,viewport.X-1)),math.clamp(origin.Y,0,math.max(0,viewport.Y-1)))
+		size=Vector2.new(math.clamp(size.X,1,math.max(1,viewport.X-origin.X)),math.clamp(size.Y,1,math.max(1,viewport.Y-origin.Y)))
+		return origin,size
+	end
 	local function relayout()
-		if closed or not shade.Parent then return end
-		local logical,absolute=rootLogicalSize(root)
-		local topLeft,bottomRight=GuiService:GetGuiInset()
-		local sx=logical.X/absolute.X
-		local sy=logical.Y/absolute.Y
-		local safeLeft=math.max(12,topLeft.X*sx+12)
-		local safeRight=math.max(12,bottomRight.X*sx+12)
-		local safeTop=math.max(12,topLeft.Y*sy+12)
-		local safeBottom=math.max(12,bottomRight.Y*sy+12)
-		local width=math.max(280,math.min(620,logical.X-safeLeft-safeRight))
-		local height=math.max(230,math.min(320,logical.Y-safeTop-safeBottom))
-		panel.Position=UDim2.fromOffset(safeLeft+(logical.X-safeLeft-safeRight)*.5,safeTop+(logical.Y-safeTop-safeBottom)*.5)
-		panel.Size=UDim2.fromOffset(width,height)
-		title.Position=UDim2.fromOffset(24,22)
-		title.Size=UDim2.new(1,-48,0,42)
-		body.Position=UDim2.fromOffset(32,72)
-		body.Size=UDim2.new(1,-64,1,-150)
-		local gap=math.max(12,math.min(24,width*.035))
-		local buttonWidth=math.max(112,math.min(190,(width-64-gap)*.5))
-		local buttonHeight=math.max(48,M.IsMobile() and 52 or 48)
-		no.AnchorPoint=Vector2.new(1,1)
-		no.Position=UDim2.new(.5,-gap*.5,1,-24)
-		no.Size=UDim2.fromOffset(buttonWidth,buttonHeight)
-		yes.AnchorPoint=Vector2.new(0,1)
-		yes.Position=UDim2.new(.5,gap*.5,1,-24)
-		yes.Size=UDim2.fromOffset(buttonWidth,buttonHeight)
+		if closed or not gui.Parent then return end
+		local camera=Workspace.CurrentCamera
+		local viewport=camera and camera.ViewportSize or gui.AbsoluteSize
+		if viewport.X<1 or viewport.Y<1 then viewport=layout.ReferenceViewport end
+		local origin,safeSize=safeViewportRect(viewport)
+		local uniformScale=math.max(.01,math.min(safeSize.X/layout.ReferenceViewport.X,safeSize.Y/layout.ReferenceViewport.Y))
+		scale.Scale=uniformScale
+		canvas.Position=UDim2.fromOffset(origin.X+safeSize.X*.5,origin.Y+safeSize.Y*.5)
+		canvas.Size=UDim2.fromOffset(safeSize.X/uniformScale,safeSize.Y/uniformScale)
 	end
 	no.Activated:Connect(function() close(false) end)
 	yes.Activated:Connect(function() close(true) end)
@@ -377,16 +429,26 @@ function M.Confirmation(root,options,components)
 		if state==Enum.UserInputState.Begin then close(false) end
 		return Enum.ContextActionResult.Sink
 	end,false,10000,Enum.KeyCode.Escape,Enum.KeyCode.ButtonB)
-	table.insert(connections,root:GetPropertyChangedSignal("AbsoluteSize"):Connect(relayout))
 	local camera=Workspace.CurrentCamera
 	if camera then table.insert(connections,camera:GetPropertyChangedSignal("ViewportSize"):Connect(relayout)) end
+	table.insert(connections,Workspace:GetPropertyChangedSignal("CurrentCamera"):Connect(function()
+		local current=Workspace.CurrentCamera
+		if current then table.insert(connections,current:GetPropertyChangedSignal("ViewportSize"):Connect(relayout)) end
+		relayout()
+	end))
 	relayout()
-	task.defer(function() if not closed and no.Parent then GuiService.SelectedObject=no end end)
-	return {Root=shade,Cancel=function() close(false) end,Confirm=function() close(true) end,Relayout=relayout}
+	task.defer(function()
+		if closed or not no.Parent then return end
+		local lastInput=UserInputService:GetLastInputType()
+		if lastInput==Enum.UserInputType.Keyboard or string.find(lastInput.Name,"Gamepad",1,true) then GuiService.SelectedObject=no end
+	end)
+	return {Root=gui,Cancel=function() close(false) end,Confirm=function() close(true) end,Relayout=relayout}
 end
+
 
 function M.CreateTopNotificationController(playerGui)
 	assert(playerGui and playerGui:IsA("PlayerGui"),"Top notification controller requires PlayerGui")
+	local TextService=game:GetService("TextService")
 	local old=playerGui:FindFirstChild("NTR_SharedTopNotification")
 	if old then old:Destroy() end
 	local gui=Instance.new("ScreenGui")
@@ -410,17 +472,44 @@ function M.CreateTopNotificationController(playerGui)
 	local cards={}
 	local serial=0
 	local maxCards=math.max(1,math.floor(number("TopNotificationMaxCards",3)))
+	local function cardBounds(card,viewport)
+		local mobile=M.IsMobile()
+		local side=mobile and 12 or 24
+		local maxWidth=math.min(viewport.X-side*2,mobile and 280 or 820)
+		local minWidth=mobile and 120 or 170
+		local horizontalPadding=mobile and 22 or 34
+		local verticalPadding=mobile and 14 or 18
+		local textSize=mobile and 12 or 15
+		local text=card:GetAttribute("MessageText") or ""
+		local availableTextWidth=math.max(40,maxWidth-horizontalPadding)
+		local measured=TextService:GetTextSize(text,textSize,Enum.Font.Michroma,Vector2.new(availableTextWidth,1000))
+		local width=math.clamp(measured.X+horizontalPadding,minWidth,maxWidth)
+		local wrapped=measured.X>=availableTextWidth
+		local finalTextWidth=math.max(40,width-horizontalPadding)
+		measured=TextService:GetTextSize(text,textSize,Enum.Font.Michroma,Vector2.new(finalTextWidth,1000))
+		local height=math.max(mobile and 30 or 38,measured.Y+verticalPadding)
+		return width,height,textSize,wrapped or measured.Y>textSize*1.5,horizontalPadding
+	end
 	local function relayout()
 		local camera=Workspace.CurrentCamera
 		local viewport=camera and camera.ViewportSize or Vector2.new(1920,1080)
 		local topLeft=GuiService:GetGuiInset()
-		local mobile=M.IsMobile()
-		local side=mobile and 12 or 24
-		local width=math.min(mobile and 540 or 620,math.max(260,viewport.X-side*2))
-		local height=mobile and (viewport.X>viewport.Y and 44 or 52) or 48
+		local maxWidth=math.min(viewport.X-(M.IsMobile() and 24 or 48),M.IsMobile() and 280 or 820)
 		stack.Position=UDim2.fromOffset(viewport.X*.5,math.max(12,topLeft.Y+10))
-		stack.Size=UDim2.fromOffset(width,0)
-		for _,card in ipairs(cards) do if card.Parent then card.Size=UDim2.fromOffset(width,height) end end
+		stack.Size=UDim2.fromOffset(maxWidth,0)
+		for _,card in ipairs(cards) do
+			if card.Parent then
+				local width,height,textSize,wrapped,horizontalPadding=cardBounds(card,viewport)
+				card.Size=UDim2.fromOffset(width,height)
+				local textLabel=card:FindFirstChild("Text")
+				if textLabel then
+					textLabel.Position=UDim2.fromOffset(horizontalPadding*.5,0)
+					textLabel.Size=UDim2.new(1,-horizontalPadding,1,0)
+					textLabel.TextSize=textSize
+					textLabel.TextWrapped=wrapped
+				end
+			end
+		end
 	end
 	local camera=Workspace.CurrentCamera
 	if camera then camera:GetPropertyChangedSignal("ViewportSize"):Connect(relayout) end
@@ -439,18 +528,14 @@ function M.CreateTopNotificationController(playerGui)
 		if text=="" then return end
 		serial+=1
 		while #cards>=maxCards do remove(cards[1]) end
-		local card=Instance.new("TextLabel")
+		local card=Instance.new("Frame")
 		card.Name="Message"..serial
 		card.LayoutOrder=serial
 		card.BackgroundColor3=Color3.fromRGB(72,76,84)
 		card.BackgroundTransparency=.04
 		card.BorderSizePixel=0
-		card.Text=text
-		card.TextColor3=Color3.new(1,1,1)
-		card.TextSize=M.IsMobile() and 12 or 14
-		card.TextWrapped=true
+		card:SetAttribute("MessageText",text)
 		card.ZIndex=2
-		pcall(function() card.FontFace=Font.new("rbxasset://fonts/families/Michroma.json",Enum.FontWeight.Bold) end)
 		card.Parent=stack
 		M.Corner(card,6)
 		local gradient=Instance.new("UIGradient")
@@ -458,6 +543,17 @@ function M.CreateTopNotificationController(playerGui)
 		gradient.Color=ColorSequence.new(Color3.fromRGB(105,109,117),Color3.fromRGB(48,52,60))
 		gradient.Rotation=90
 		gradient.Parent=card
+		local textLabel=Instance.new("TextLabel")
+		textLabel.Name="Text"
+		textLabel.BackgroundTransparency=1
+		textLabel.BorderSizePixel=0
+		textLabel.Text=text
+		textLabel.TextColor3=Color3.new(1,1,1)
+		textLabel.TextXAlignment=Enum.TextXAlignment.Center
+		textLabel.TextYAlignment=Enum.TextYAlignment.Center
+		textLabel.ZIndex=card.ZIndex+1
+		pcall(function() textLabel.FontFace=Font.new("rbxasset://fonts/families/Michroma.json",Enum.FontWeight.Bold) end)
+		textLabel.Parent=card
 		table.insert(cards,card)
 		relayout()
 		task.delay(math.clamp(tonumber(duration) or 2.5,.5,10),function() remove(card) end)
@@ -465,5 +561,6 @@ function M.CreateTopNotificationController(playerGui)
 	relayout()
 	return {Gui=gui,Show=show,Relayout=relayout,Count=function() return #cards end}
 end
+
 
 return M

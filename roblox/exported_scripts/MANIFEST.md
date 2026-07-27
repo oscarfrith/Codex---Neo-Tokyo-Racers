@@ -4,7 +4,7 @@ Generated from the Roblox Studio full snapshot export.
 
 These files are a GitHub-readable mirror of Studio scripts. Treat Studio as live until a Rojo/source-sync migration is explicitly completed.
 
-Script count: 191
+Script count: 192
 
 - `ReplicatedFirst.NTRLoading.InitialLoadingAndStartScreenClient` (LocalScript, enabled/module) -> `roblox/exported_scripts/ReplicatedFirst/NTRLoading/InitialLoadingAndStartScreenClient.client.lua`
 - `ReplicatedFirst.NTRLoading.LoadingArtworkCatalog` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedFirst/NTRLoading/LoadingArtworkCatalog.module.lua`
@@ -50,6 +50,7 @@ Script count: 191
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.DriveTuning` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Common/DriveTuning.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.UITheme` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Common/UITheme.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.VehicleData` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Common/VehicleData.module.lua`
+- `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.VehicleDisplayNames` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Common/VehicleDisplayNames.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.VehicleStatsCache` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Common/VehicleStatsCache.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Core.PathResolver` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Core/PathResolver.module.lua`
 - `ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data.ConfigRegistry` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Data/ConfigRegistry.module.lua`

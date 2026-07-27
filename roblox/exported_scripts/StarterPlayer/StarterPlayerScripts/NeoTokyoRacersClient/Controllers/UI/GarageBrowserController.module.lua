@@ -1,4 +1,5 @@
 -- NTR_SHARED_VEHICLE_CARD_SYSTEM_V1_2
+-- NTR_GARAGE_SCROLL_EDGE_SAFETY_V1
 -- NTR_SHARED_VEHICLE_CARD_SYSTEM_V1_1
 -- NTR_SHARED_VEHICLE_CARD_SYSTEM_V1
 -- NTR_SHARED_RESPONSIVE_UI_FOUNDATION_V1_1
@@ -66,9 +67,10 @@ function Browser:RefreshCarouselArrows()
 end
 function Browser:UpdateCarousel()
 	if not self.Scroller or self.UpdatingCarousel then return end
-	self.UpdatingCarousel=true; local count=0; for _,child in ipairs(self.Scroller:GetChildren()) do if child:GetAttribute("CanonicalGarageCard") then count+=1 end end
-	local content=count*N("CardWidth",226)+math.max(0,count-1)*12; local scale=math.max(self.LayoutScale or self.Scale.Scale,.01); local window=self.ReferenceCarouselWidth or self.Scroller.AbsoluteSize.X/scale; if self.Scroller.AbsoluteSize.X>0 then window=self.Scroller.AbsoluteSize.X/scale end
-	local side=content<window and math.max(6,(window-content)*.5) or 6; self.CarPad.PaddingLeft=UDim.new(0,side); self.CarPad.PaddingRight=UDim.new(0,side); self.Scroller.CanvasSize=UDim2.fromOffset(math.max(window,content+side*2),0); self.UpdatingCarousel=false; self:RefreshCarouselArrows()
+	self.UpdatingCarousel=true
+	local scale=math.max(self.LayoutScale or self.Scale.Scale,.01)
+	local metrics=Shared.UpdateHorizontalCardCanvas(self.Scroller,self.CarLayout,self.CarPad,scale,6)
+	self.ScrollEdgeLogical=metrics.Side; self.UpdatingCarousel=false; self:RefreshCarouselArrows()
 end
 function Browser:Scroll(direction) local max=self.MaxScroll or 0; local scale=math.max(self.LayoutScale or self.Scale.Scale,.01); local step=(N("CardWidth",226)+12)*scale; self.Scroller.CanvasPosition=Vector2.new(math.clamp(self.Scroller.CanvasPosition.X+direction*step,0,max),0); self:RefreshCarouselArrows() end
 function Browser:Rows(context)

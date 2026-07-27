@@ -284,6 +284,7 @@ end
 
 -- NTR_AUDIO_VEHICLE_CLIENT_V4_RELIABLE_LOCAL_IGNITION
 -- NTR_AUDIO_VEHICLE_CLIENT_V5_CONFIRMED_LOCAL_IGNITION
+-- NTR_SMALL_REFINEMENTS_LIFECYCLE_PHASE2_V1
 -- Local startup is deliberately separate from the replaceable per-vehicle graph:
 -- loading ducking and External -> Internal route rebuilds cannot cut it off.
 local function loadingPresentationActive()
@@ -292,7 +293,8 @@ local function loadingPresentationActive()
 	local controllers = client and client:FindFirstChild("Controllers")
 	local ui = controllers and controllers:FindFirstChild("UI")
 	local state = ui and ui:FindFirstChild("LoadingPresentationState")
-	return state ~= nil and state:GetAttribute("Active") == true
+	return (state ~= nil and state:GetAttribute("Active") == true)
+		or localPlayer:GetAttribute("NTR_FirstDrivePresentationPending")==true
 end
 
 local function cleanupLocalIgnition(state)
@@ -656,17 +658,18 @@ local function updateGraph(state, dt)
 		engineLowTarget = gains.EngineLow * Catalog.GlobalNumber("ParkedEngineLowGainMultiplier", 0.35) * mix
 		engineHighTarget, coastTarget = 0, 0
 	end
-	if holdLocalEngineLoopsForIgnition(state) then
+	if holdLocalEngineLoopsForIgnition(state) or (state.LocalDriver and localPlayer:GetAttribute("NTR_FirstDrivePresentationPending")==true) then
 		idleTarget, engineLowTarget, engineHighTarget, coastTarget = 0, 0, 0, 0
 	end
 	setTarget(graph, "Idle", idleTarget)
 	setTarget(graph, "EngineLow", engineLowTarget)
 	setTarget(graph, "EngineHigh", engineHighTarget)
-	setTarget(graph, "Acceleration", exitedPresentation and 0 or (accelerating and gains.Acceleration * mix or 0))
+	local firstDriveHeld=state.LocalDriver and localPlayer:GetAttribute("NTR_FirstDrivePresentationPending")==true
+	setTarget(graph, "Acceleration", firstDriveHeld and 0 or (exitedPresentation and 0 or (accelerating and gains.Acceleration * mix or 0)))
 	setTarget(graph, "Coast", coastTarget)
-	setTarget(graph, "DriftLoop", exitedPresentation and 0 or (drifting and gains.DriftLoop * driftGainMultiplier * mix or 0))
-	setTarget(graph, "BoostLoop", exitedPresentation and 0 or (boosting and gains.BoostLoop * mix or 0))
-	setTarget(graph, "DriverWind", state.LocalDriver and gains.DriverWind * rangeAlpha(speedMph, Catalog.GlobalNumber("WindStartMph", 18), Catalog.GlobalNumber("WindFullGainMph", 128)) * mix or 0)
+	setTarget(graph, "DriftLoop", firstDriveHeld and 0 or (exitedPresentation and 0 or (drifting and gains.DriftLoop * driftGainMultiplier * mix or 0)))
+	setTarget(graph, "BoostLoop", firstDriveHeld and 0 or (exitedPresentation and 0 or (boosting and gains.BoostLoop * mix or 0)))
+	setTarget(graph, "DriverWind", firstDriveHeld and 0 or (state.LocalDriver and gains.DriverWind * rangeAlpha(speedMph, Catalog.GlobalNumber("WindStartMph", 18), Catalog.GlobalNumber("WindFullGainMph", 128)) * mix or 0))
 	for layerName, layer in pairs(graph.Layers) do
 		local rising = layer.Target > layer.Gain
 		local seconds = exitedPresentation and Catalog.GlobalNumber(rising and "ParkedFadeInSeconds" or "ParkedFadeOutSeconds", rising and 0.2 or 0.3) or fadeSeconds(layerName, rising)

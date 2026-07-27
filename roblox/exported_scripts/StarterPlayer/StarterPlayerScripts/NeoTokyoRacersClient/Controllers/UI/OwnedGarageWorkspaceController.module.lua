@@ -1,5 +1,9 @@
 -- NTR_SHARED_RESPONSIVE_UI_FOUNDATION_V1_1
 -- NTR_OWNED_GARAGE_WORKSPACE_CONTROLLER_V4_CANONICAL_VERTICAL_SLICE
+-- NTR_OWNED_GARAGE_MOBILE_THUMBSTICK_CAMERA_GUARD_V1_1
+-- NTR_OWNED_GARAGE_MOBILE_THUMBSTICK_CAMERA_GUARD_V1_2
+-- NTR_OWNED_GARAGE_MOBILE_THUMBSTICK_CAMERA_GUARD_V2
+-- NTR_OWNED_GARAGE_MOBILE_THUMBSTICK_CAMERA_GUARD_V2_1
 -- NTR_PRESENTATION_AUDIO_OWNED_GARAGE_OUTCOMES_V1
 -- NTR_PRESENTATION_AUDIO_OWNED_GARAGE_SEMANTIC_CUES_V1_3
 -- NTR_OWNED_GARAGE_WORKSPACE_CONTROLLER_V5_REFRESH_OWNER
@@ -22,14 +26,18 @@
 -- NTR_OWNED_GARAGE_STYLE_UX_V1_BATCH_STABLE_PREVIEW
 -- NTR_OWNED_GARAGE_MATERIAL_ICON_SIZE_V1
 -- NTR_OWNED_GARAGE_LIGHTING_CHANNELS_DECORATION_FLOW_V1
-local Controller={}; local started=false; local closeCurrent=function() end; local isOpenCurrent=function() return false end
+local Controller={}; local started=false; local closeCurrent=function() end; local isOpenCurrent=function() return false end; local cameraTouchWorkspace
+function Controller.IsCameraTouchBlocked(position)
+	local workspace=cameraTouchWorkspace
+	return workspace and workspace:IsTouchBlocked(position) or false
+end
 function Controller.Close(reason) closeCurrent(reason) end
 function Controller.IsOpen() return isOpenCurrent() end
 function Controller.Start()
 	if started then return true,"AlreadyStarted" end
 	local Players=game:GetService("Players"); local ReplicatedStorage=game:GetService("ReplicatedStorage"); local HttpService=game:GetService("HttpService"); local player=Players.LocalPlayer; local playerGui=player:WaitForChild("PlayerGui")
 	local kit=ReplicatedStorage:WaitForChild("NeoTokyoRacers"); local AudioBridge=require(kit.Shared.Modules.Client.Audio:WaitForChild("PresentationAudioBridge")); local uiFolder=script.Parent; local WorkspaceUI=require(uiFolder:WaitForChild("GarageWorkspaceController")); local Shared=require(uiFolder:WaitForChild("GarageReplacementComponents")); local UI=require(kit.Shared.Modules.UI:WaitForChild("RacingUIComponents")); local remote=kit.Shared.Remotes.Garage:WaitForChild("OwnedGarageInvoke"); local push=kit.Shared.Remotes.Garage:WaitForChild("OwnedGarageEvent"); local openEvent=uiFolder:WaitForChild("OpenOwnedGarageWorkspace"); local cfg=kit.Config.Runtime:WaitForChild("OwnedGarage_EditAttributes"); local replacement=kit.Config.UI:WaitForChild("GarageReplacement"); local navIcons=replacement:WaitForChild("NavigationIcons"); local icons=replacement:WaitForChild("OwnedGarageIcons")
-	local workspace=WorkspaceUI.new(); workspace.Root.Name="OwnedGarageCanonicalWorkspace"
+	local workspace=WorkspaceUI.new(); workspace.Root.Name="OwnedGarageCanonicalWorkspace"; cameraTouchWorkspace=workspace; workspace.TouchMapEnabled=cfg:GetAttribute("MobileManagementVisibleSurfaceMapEnabled")~=false
 	local state; local page="Home"; local selectedSlot; local selectedVehicle; local selectedSection="FrontWall"; local selectedStyle; local selectedChannel="Primary"; local selectedDecorationCategory; local selectedDecorationAnchor; local selectedDecorationItem; local pendingStructureColors; local pendingStructureMaterials; local pendingDecorationColors; local pendingLightingColors; local selectedLightingPreset; local selectedLightingIntensity; local selectedInviteUserId; local previewReady=false; local previewGeneration=0; local busy=false; local refreshRunning=false; local queuedRevision; local generation=0; local modal
 	local tierColours={E=Color3.fromRGB(132,142,145),D=Color3.fromRGB(105,190,129),C=Color3.fromRGB(74,204,211),B=Color3.fromRGB(82,137,235),A=Color3.fromRGB(244,188,65),S=Color3.fromRGB(236,92,168)}
 	local function asset(value) return UI.Asset(value or "") end
@@ -51,7 +59,7 @@ function Controller.Start()
 	local function vehicle(id) for _,item in ipairs(state and state.Vehicles or {}) do if item.VehicleId==tostring(id or "") then return item end end end
 	local function slot(id) for _,item in ipairs(state and state.Slots or {}) do if item.SlotId==tostring(id or "") then return item end end end
 	local function closeModal() if modal then modal:Destroy(); modal=nil end end
-	local function setManagementOpen(open) playerGui:SetAttribute("NTR_OwnedGarageManagementOpen",open==true) end
+	local function setManagementOpen(open) workspace.Root.Active=false; playerGui:SetAttribute("NTR_OwnedGarageManagementOpen",open==true) end
 	local function cancelPreview() previewGeneration+=1; previewReady=false; selectedVehicle=nil; if state and state.InGarage then task.spawn(function() request("CancelAllPreviews",{}) end) end end
 	local function close() generation+=1; closeModal(); setManagementOpen(false); workspace:Hide(); if state and state.InGarage then task.spawn(function() request("CancelAllPreviews",{}); request("SetManagementOpen",{Open=false}) end) end end
 	closeCurrent=close; isOpenCurrent=function() return workspace.Root.Visible end

@@ -1,4 +1,7 @@
 -- NTR_GARAGE_CAMERA_VFX_REFINEMENT_V1_1
+-- NTR_OWNED_GARAGE_MOBILE_THUMBSTICK_CAMERA_GUARD_V1_2
+-- NTR_OWNED_GARAGE_MOBILE_THUMBSTICK_CAMERA_GUARD_V2
+-- NTR_SMALL_REFINEMENTS_LIFECYCLE_PHASE2_V1
 -- NTR_GARAGE_CAMERA_VFX_SCROLL_REFINEMENT_V1
 -- NTR_GARAGE_CATEGORY_CAMERA_ANGLES_V1
 -- NTR_UI_PERFORMANCE_HARDENING_PHASE2_V1
@@ -9,7 +12,8 @@ local UserInputService=game:GetService("UserInputService")
 local Players=game:GetService("Players")
 local PreviewCameraController={}
 local cfg=ReplicatedStorage:WaitForChild("NeoTokyoRacers"):WaitForChild("Config"):WaitForChild("UI"):WaitForChild("GarageReplacement")
-local playerGui=Players.LocalPlayer:WaitForChild("PlayerGui")
+local localPlayer=Players.LocalPlayer
+local playerGui=localPlayer:WaitForChild("PlayerGui")
 PreviewCameraController.DefaultFocus=Vector3.new(860,104,-1749); PreviewCameraController.DefaultYaw=math.rad(135); PreviewCameraController.DefaultPitch=math.rad(-12); PreviewCameraController.DefaultDistance=24.3; PreviewCameraController.SectionDistance=33
 PreviewCameraController.ViewBySection={ALL="Front45",Cockpit="Front45",THRUST_COLOR="Front45",Engine1="Front45",Stabilisers="Side",SidePods="Side",Engine2="Rear45",RearSpoiler="Rear45",Boost="Rear",RearBumper="Rear",FrontBumper="Front"}
 PreviewCameraController.YawAttributeByView={Front45="PreviewCameraFront45YawDegrees",Side="PreviewCameraSideYawDegrees",Rear45="PreviewCameraRear45YawDegrees",Rear="PreviewCameraRearYawDegrees",Front="PreviewCameraFrontYawDegrees"}
@@ -39,11 +43,16 @@ function PreviewCameraController.UnbindInput() for _,connection in ipairs(connec
 function PreviewCameraController.Release() PreviewCameraController.UnbindInput() end
 function PreviewCameraController.BindInput(context)
 	PreviewCameraController.UnbindInput(); local state=context.State; local dragging=false; local dragInput,lastPointer; local pinchScale
-	local function active() return state and state.GarageCameraActive~=false and (not context.IsActive or context.IsActive()) end
+	local function ownedGarageWalking()
+		return UserInputService.TouchEnabled
+			and localPlayer:GetAttribute("NTR_OwnedGarageInside")==true
+			and playerGui:GetAttribute("NTR_OwnedGarageManagementOpen")~=true
+	end
+	local function active() return not ownedGarageWalking() and state and state.GarageCameraActive~=false and (not context.IsActive or context.IsActive()) end
 	table.insert(connections,UserInputService.InputBegan:Connect(function(input,processed) if processed or not active() then return end; local kind=input.UserInputType; if (kind==Enum.UserInputType.MouseButton2 or kind==Enum.UserInputType.Touch) and not pointerBlocked(input.Position) then dragging=true; dragInput=input; lastPointer=input.Position end end))
 	table.insert(connections,UserInputService.InputEnded:Connect(function(input) if input==dragInput or input.UserInputType==Enum.UserInputType.MouseButton2 then dragging=false; dragInput=nil; lastPointer=nil end end))
 	table.insert(connections,UserInputService.InputChanged:Connect(function(input,processed)
-		if not active() then return end; if input.UserInputType==Enum.UserInputType.MouseWheel and not processed then PreviewCameraController.EnsureState(state); state.TargetDistance=math.clamp(state.TargetDistance-input.Position.Z*number("PreviewCameraWheelZoom",2.4),number("PreviewCameraMinDistance",16),number("PreviewCameraMaxDistance",46)); return end
+		if not active() then dragging=false; dragInput=nil; lastPointer=nil; pinchScale=nil; return end; if input.UserInputType==Enum.UserInputType.MouseWheel and not processed then PreviewCameraController.EnsureState(state); state.TargetDistance=math.clamp(state.TargetDistance-input.Position.Z*number("PreviewCameraWheelZoom",2.4),number("PreviewCameraMinDistance",16),number("PreviewCameraMaxDistance",46)); return end
 		if not dragging or not lastPointer then return end; if input.UserInputType==Enum.UserInputType.MouseMovement or input==dragInput then local delta=input.Position-lastPointer; state.TargetYaw-=delta.X*number("PreviewCameraYawSensitivity",.006); state.TargetPitch=math.clamp(state.TargetPitch-delta.Y*number("PreviewCameraPitchSensitivity",.004),math.rad(number("PreviewCameraMinPitchDegrees",-45)),math.rad(number("PreviewCameraMaxPitchDegrees",10))); lastPointer=input.Position end
 	end))
 	table.insert(connections,UserInputService.TouchPinch:Connect(function(_,scale,_,inputState,processed) if processed or not active() then return end; if inputState==Enum.UserInputState.Begin then pinchScale=scale elseif inputState==Enum.UserInputState.Change and pinchScale then PreviewCameraController.EnsureState(state); local delta=scale-pinchScale; state.TargetDistance=math.clamp(state.TargetDistance-delta*number("PreviewCameraPinchZoom",10),number("PreviewCameraMinDistance",16),number("PreviewCameraMaxDistance",46)); pinchScale=scale else pinchScale=nil end end))

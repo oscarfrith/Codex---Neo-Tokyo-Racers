@@ -1,5 +1,92 @@
 # Current Known Issues
 
+## Owned-garage semantic movement touch V2.2 confirmed/mirrored; regressions retained (2026-07-27)
+
+- The complete `21:08:10` / 192-source mirror contains installed V2.1 with zero manifest/checksum mismatches. Its visible-surface behavior is much better and is intentionally unchanged by V2.2.
+- Confirmed V2.1 regression: walking while management is open again rotates the camera.
+- Mirror cause: `movementTouch` tests `ThumbstickStart` synchronously from the global `InputBegan` callback and returns false for all other management touches. The dynamic marker may not yet represent the new native movement touch, so CameraModule receives it as world/camera input.
+- V2.2 replaces only the interior camera-arbitration block. Empty lower-left touches begin as non-blocking candidates; post-Roblox marker proximity and a bounded new-movement fallback promote only the actual native movement input and restore its pre-touch orientation.
+- Required proof: movement without yaw/pitch; immediate release; empty left/bottom/centre/right pan; visible UI containment; short/overflowing lists; stationary-then-drag movement; two-finger behavior; close/exit held touches; free-roam recovery; re-entry/respawn; landscape phone/tablet and PC.
+- Performance remains event-driven: one deferred and one bounded Heartbeat confirmation per new candidate, then only that candidate's `InputChanged` events until confirmation/expiry. No idle scan, hierarchy traversal or recurring frame loop is added.
+- The user confirmed the combined result working well. The complete `21:26:44` / 192-source mirror contains one V2.2 marker, a byte-identical canonical arbitration block, retained V2.1 geometry and the `0.35 s` confirmation value, with zero manifest/checksum mismatches.
+- Closed: no ordinary V2.2 Studio command or mirror refresh is pending. Retain movement without pan, immediate release, empty-region input, visible UI, short/overflowing scrolling, two-finger use, close/exit, free-roam recovery, re-entry/respawn, landscape phone/tablet and PC as release regression.
+- Recovery remains transactional: the installer uses one exact V2.1 source-range replacement, compiles the projected module before mutation and restores source/config on audit failure.
+
+## Owned-garage visible touch surfaces V2.1 installed/mirrored; movement timing superseded by V2.2 (2026-07-27)
+
+- V2 camera arbitration is user-confirmed working and represented in the complete `20:48:01/02` / 192-source mirror.
+- Remaining defect: invisible, non-overflowing category/carousel `ScrollingFrame` rectangles and the oversized management thumbstick frame reserve blank left/bottom regions even though no card, button or panel is rendered there.
+- V2.1 advances the same canonical installer with one event-driven visible-surface map shared by every owned-management page. It ignores hidden/transparent/clipped objects, releases short scroller shells, retains overflowing scroll strips and narrows management movement detection to visible `ThumbstickStart`.
+- Required proof: blank space beside/below short lists moves/pans; actual cards, buttons, panels, headers, economy/navigation and modal surfaces block; overflow scrolling still works; invisible previous pages do not block; management close/garage exit does not contaminate free roam; landscape phone/tablet and PC pass.
+- Performance risk is low: rebuilds are coalesced only after layout/content changes, and touch begin checks cached rectangles. There is no idle frame work or per-touch hierarchy traversal.
+- V2.1 is installed in the complete `21:08:10` mirror. Keep its visible-surface behavior; generated V2.2 supersedes only its synchronous thumbstick-marker classification.
+
+## Owned-garage mobile camera touch arbitration V2 confirmed/mirrored; geometry refined by V2.1 (2026-07-27)
+
+- The complete `20:29:06` / 192-source mirror contains the installed V1.2 sources and config with zero manifest/checksum mismatches. Neither mirror area is stale for this failed runtime baseline.
+- Confirmed V1.2 regression: removing the whole-root management sink reintroduced camera pan from Dynamic Thumbstick movement, and the bad touch state could persist after garage exit.
+- Root cause: physical management remains on Roblox's native humanoid camera. The separate `PreviewCameraController` is not the reliable management owner, so V1.2 classified touch in the wrong subsystem.
+- V2 advances the same canonical installer. It restores the shared preview controller's pre-V1.2 behavior, keeps management geometry in `OwnedGarageWorkspaceController`, and makes `GarageInteriorModeController` the single touch-lifetime arbiter for the physical owned garage.
+- Required behavior: movement touches move the player without rotating the camera; real management cards/buttons/panels and overflowing scrollers do not rotate it; genuinely empty management space pans normally; short left/bottom lists do not reserve unused space.
+- Transition invariant: a protected touch keeps its classification until End/Cancel, including management close and on-foot garage exit. Only then may `Custom` plus the current humanoid be recovered. Driving/race/seat and replacement-camera owners still take priority immediately.
+- Required proof: physical walking; management movement; UI actions; empty-space pan; two-card and overflowing left/bottom lists; close/exit while fingers remain held; free-roam right-drag; re-entry; respawn; landscape phone/tablet; PC and dealership/customisation regression.
+- The user confirmed the camera/lifecycle behavior and refreshed the complete `20:48:01/02` mirror. Its remaining broad blank-region geometry is the V2.1 scope above, not a V2 ownership regression.
+
+## Owned-garage management content-aware touch V1.2 installed/mirrored; runtime-failed and superseded (2026-07-27)
+
+- V1.2 installed exactly and is represented in the complete `20:29:06` mirror.
+- It correctly released unused management UI space but incorrectly placed the arbitration inside the shared preview-camera module.
+- The user confirmed the original movement-pan defect returned in management and after exit. V1.2 is not a working baseline and must not be extended.
+- V2 transactionally removes only that superseded preview-camera interception while retaining V1/V1.1 Follow/recovery history and the current native landscape contract.
+
+## Owned-garage mobile camera lifecycle V1.1 installed/mirrored; containment superseded by V1.2 (2026-07-27)
+
+- V1 remains confirmed for left-thumb walking inside the physical garage.
+- New runtime report: camera movement returns while owned-garage management is open and remains after returning to free roam.
+- Mirror cause: the V1 guard intentionally releases as soon as management opens or the inside attribute clears; the owned-management root is a transparent inactive frame, so blank UI touch is not contained; no bounded on-foot camera recovery runs after those transitions.
+- V1.1 uses the native touch `Follow` preference, activates only the owned-management root as a touch sink, and restores `Custom` plus the unseated humanoid subject after management close, foot exit, respawn and camera replacement.
+- Confirmed overall by the user and represented in the complete `20:04:05` mirror. Follow/recovery is retained; only its full-root management containment is superseded by V1.2.
+- The recovery waits two Heartbeats and then revalidates management, garage/race session and seated state. It performs no idle frame work and does not compete with active driving or Scriptable preview ownership.
+- The canonical installer uses guarded exact source anchors against the confirmed V1 mirror. If either anchor fails, refresh/inspect and repair this same installer rather than creating another patch.
+
+## Owned-garage mobile thumbstick camera guard V1 confirmed/mirrored; regressions retained (2026-07-27)
+
+- Runtime audit: `inside=true`, `management=false`, `CameraType=Custom`, humanoid subject, Dynamic Thumbstick hit and `processed=false`.
+- Onboarding-disable and PlayerModule-rebind isolation tests both failed to remove the defect, ruling out the earlier preview-camera hypothesis and a stuck controls toggle.
+- V1 extends `GarageInteriorModeController` with a touch-lifetime camera-orientation hold only for physical owned-garage movement.
+- The user confirmed the installed result working. The complete `2026-07-27 18:49:50` mirror has 192 matching entries and contains the V1 marker and `MobileWalkingCameraGuardEnabled`.
+- Retained release regression: character movement without yaw/pitch rotation; immediate camera release; management open/close; exit/re-entry; respawn; landscape phone/tablet; no behavior change outside the owned garage.
+- While the movement thumb is held, simultaneous second-finger look is intentionally held. This is the bounded tradeoff for isolating the unprocessed movement touch without replacing PlayerModule.
+- No ordinary Studio command or mirror refresh is pending.
+
+## Garage scroll-edge safety V1 confirmed/mirrored; regressions retained (2026-07-27)
+
+- Confirmed baseline: the user reported the result working and the complete `14:05:10` / 192-source mirror contains all six V1 markers.
+- Confirmed source defect: `GarageWorkspaceController` creates vehicle cards at `CardWidth` (`226` fallback) but calculated the canvas at `WorkspaceCardWidth` (`210` fallback), losing `16` logical pixels per vehicle card on PC and touch.
+- Confirmed scale risk: Browser/Workspace use a fixed `6` logical-pixel edge gutter and Owned Garage uses a `4` logical-pixel inset with no explicit bottom padding. Those values can become smaller than the fixed physical glow after touch or small-window scaling.
+- Orientation was enforced redundantly by `ThrustPreviewController_Active` and `CachedThrustVisualRuntime`; the latter rewrote it every second. V1 makes native `StarterGui.ScreenOrientation=LandscapeSensor` authoritative and removes both runtime writers.
+- Retained release regression: phone/tablet remain landscape; final Dealer/Customisation/workspace cards are reachable with complete borders; final Owned Garage card clears bottom and scrollbar; normal/small PC passes; short rows remain centred; arrows/scroll restoration/actions remain correct.
+- The installer uses exact unique anchors across six mirrored sources and is transactional. If an anchor fails, refresh/inspect and repair the same installer rather than creating a patch ladder.
+- No ordinary Scroll Edge Safety Studio command or mirror refresh is pending.
+
+## Small refinements Phase 1.1 and lifecycle Phase 2 V1.3 confirmed/mirrored (2026-07-27)
+
+- Closed Phase 1.1: the user confirmed all focused presentation repairs working. The complete `2026-07-27 12:20:09` / 192-script mirror contains all four V1.1 source markers and appears current.
+- `scripts/roblox_small_refinements_shared_presentation_v1.lua` is retained as Phase 1.1 recovery/audit evidence; no ordinary Phase 1 command is pending.
+- Root cause of missing mobile race telemetry is confirmed in the mirror: V1 removed the local `toast` object but left `toast.Visible=false` in the telemetry-only render branch, causing the frame callback to error before telemetry visibility/update. V1.1 removes only that stale reference.
+- Player-facing naming is intentionally separate from identity. Do not rename or migrate `bruiser`, `bruiser_01`, cockpit instance IDs, category profile fields, folders or remotes.
+- The shared notification conversion removes both local desktop/mobile free-roam toast renderers. `SharedTopNotificationController_Active` and `ShowTopNotification` must remain enabled/present.
+- The desktop Cash repair destroys the generic pink direct strokes on that one Cash panel before installing its single blue `CashStroke`; other free-roam panels retain their existing semantic outlines.
+- Phase 2 V1.3 is user-confirmed in the complete `13:43:23/24` / 192-source mirror. Race prompt `NEXT` immediately adds Objective 3 while Objective 2 may remain active.
+- V1 exposed three onboarding sequencing defects: polling began only after loading released, an already-active shortcut page could continue rendering over Controls, and Objectives 2/3 shared the same Objective-1-complete unlock.
+- The same canonical installer is advanced to V1.1. It opens Controls synchronously from the existing successful free-roam spawn event while `Destination=FreeRoamDrive`, blocks every onboarding rendering/resolution path while loading/Controls/fade is active, and resumes only after both presentation attributes clear.
+- V1.2 restores Race-prompt eligibility to acknowledged `GarageShortcut`. V1.3 removes the unintended Objective 2 completion dependency from Objective 3, so Race prompt `NEXT` immediately adds Objective 3 while Objective 2 may remain active.
+- Retained release regression: Garage prompt `NEXT` causes Objective 2 to enter and the Race prompt to become eligible; Race prompt `NEXT` immediately adds Objective 3; both cards coexist and complete independently; rejoin restores each checkpoint correctly.
+- The first-drive trigger is desktop-only because the confirmed onboarding contract currently opens this Controls page only for non-touch players. Mobile receives only the garage-walking touch hardening.
+- V1.1's direct `FreeRoamDrive` loading handoff no longer requires the seated vehicle to settle before opening Controls. The existing actively-driving check remains the fallback for non-loading free-roam entry.
+- Residual: the touch fix defensively disables the existing preview-camera listener while physically walking inside the owned garage. Verify with both Dynamic Thumbstick and the project's supported mobile movement setting; if camera motion remains, collect the exact movement/camera mode before broadening into Roblox PlayerModule behavior.
+- The canonical installer remains exact-anchor guarded for audit/recovery. No lifecycle Phase 2 Studio command or mirror refresh is pending.
+
 ## Free-roam Cash smoothing V1 confirmed/mirrored; release regressions retained (2026-07-27)
 
 - Closed: the user confirmed the installed smoothing/full-formatting result working well. The complete `2026-07-27 11:26:30` mirror has 191 matching entries and contains all three source markers, all three revision attributes and all five Theme controls.

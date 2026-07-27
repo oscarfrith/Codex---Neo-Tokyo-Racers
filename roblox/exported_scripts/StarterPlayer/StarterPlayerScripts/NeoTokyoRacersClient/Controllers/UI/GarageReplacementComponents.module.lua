@@ -1,3 +1,5 @@
+-- NTR_SMALL_REFINEMENTS_SHARED_PRESENTATION_V1
+-- NTR_GARAGE_SCROLL_EDGE_SAFETY_V1
 -- NTR_SHARED_VEHICLE_CARD_SYSTEM_V1_1
 -- NTR_SHARED_VEHICLE_CARD_SYSTEM_V1
 -- NTR_GARAGE_NAV_SCROLL_ECONOMY_V1
@@ -19,6 +21,31 @@ function M.FormatNumber(value)
 end
 function M.FormatMoney(value) return Racing.FormatMoney(value) end
 function M.FormatFullMoney(value) return "$"..M.FormatNumber(value) end
+function M.LogicalPixelsForPhysical(physicalPixels,scale,minimumLogical)
+	return math.max(tonumber(minimumLogical) or 0,math.ceil(math.max(0,tonumber(physicalPixels) or 0)/math.max(.01,tonumber(scale) or 1)))
+end
+function M.UpdateHorizontalCardCanvas(scroller,layout,padding,scale,minimumLogical)
+	assert(scroller and scroller:IsA("ScrollingFrame"),"horizontal card canvas requires a ScrollingFrame")
+	assert(layout and layout:IsA("UIListLayout"),"horizontal card canvas requires a UIListLayout")
+	assert(padding and padding:IsA("UIPadding"),"horizontal card canvas requires UIPadding")
+	scale=math.max(.01,tonumber(scale) or 1)
+	local window=scroller.AbsoluteSize.X/scale
+	local content,count=0,0
+	for _,child in ipairs(scroller:GetChildren()) do
+		if child:IsA("GuiObject") and child.Visible and child:GetAttribute("CanonicalGarageCard")==true then
+			local width=child.AbsoluteSize.X/scale
+			if width<=0 then width=child.Size.X.Offset+window*child.Size.X.Scale end
+			content+=width; count+=1
+		end
+	end
+	if count>1 then content+=(count-1)*(layout.Padding.Offset+window*layout.Padding.Scale) end
+	local physicalClearance=Racing.StrokeWidth("Glow")+2
+	local minimum=M.LogicalPixelsForPhysical(physicalClearance,scale,minimumLogical or 6)
+	local side=content<window and math.max(minimum,(window-content)*.5) or minimum
+	padding.PaddingLeft=UDim.new(0,side); padding.PaddingRight=UDim.new(0,side)
+	scroller.CanvasSize=UDim2.fromOffset(math.max(window,content+side*2),0)
+	return {Content=content,Window=window,Side=side,PhysicalClearance=physicalClearance}
+end
 function M.FormatDealershipPrice(value)
 	local amount=math.max(0,tonumber(value) or 0)
 	if amount<1000000 then return M.FormatFullMoney(amount) end
@@ -264,7 +291,7 @@ function M.LayoutGarageShell(ui,options)
 	applyTouchPresentation(ui,N,scale)
 	if ui.Right then ui.Right.Name="Right" end; if ui.Economy then ui.Economy.Name="Economy" end; if ui.Carousel then ui.Carousel.Name="Carousel" end; if ui.Paint then ui.Paint.Name="Paint" end; if ui.Scroller and ui.Scroller.Name=="Frame" then ui.Scroller.Name="CarouselScroller" end
 	local margin,gap=N("Margin",18),N("Gap",14); local carouselH=N("CarouselHeight",166); local carouselTop=vh-margin-carouselH; local arrowW=N("ArrowWidth",42); local railReserve=30; ui.LayoutScale=scale; ui.ReferenceWidth=vw
-	ui.Header.AnchorPoint=Vector2.new(.5,0); ui.Header.Position=UDim2.fromOffset(vw*.5,28); ui.Header.Size=UDim2.fromOffset(420,responsiveNumber(N,"HeaderHeight",68))
+	ui.Header.AnchorPoint=Vector2.new(.5,0); ui.Header.Position=UDim2.fromOffset(vw*.5,28); ui.Header.Size=UDim2.fromOffset(420,responsiveNumber(N,"HeaderHeight",82))
 	local categoryTop=touch and responsiveNumber(N,viewport.Y<500 and "TouchCategoryTopTiny" or "TouchCategoryTop",viewport.Y<500 and 68 or 82) or (safeTop+72*scale); local categoryY=touch and math.max(0,(categoryTop-safeTop)/math.max(scale,.01)) or 72
 	local categoryWidth=ui.Context and ui.Context.LeftCardMode and N("ModuleCategoryRailWidth",238) or N("CategoryWidth",214); ui.Categories.Position=UDim2.fromOffset(margin,categoryY); ui.Categories.Size=UDim2.fromOffset(categoryWidth,math.max(170,carouselTop-categoryY-N("CategoryCarouselClearance",82)))
 	local economyCardHeight=responsiveNumber(N,"EconomyCardHeight",N("EconomyHeight",46)); local economyStackGap=responsiveNumber(N,"EconomyStackGap",10)

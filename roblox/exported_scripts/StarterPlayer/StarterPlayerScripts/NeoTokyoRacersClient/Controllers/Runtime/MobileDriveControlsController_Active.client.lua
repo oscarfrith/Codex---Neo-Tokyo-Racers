@@ -1,3 +1,4 @@
+-- NTR_SMALL_REFINEMENTS_SHARED_PRESENTATION_V1
 -- NTR_MOBILE_FREEROAM_UI_PHASE1O_MAJOR_MENU_SUPPRESSION
 -- NTR_MOBILE_FREEROAM_UI_PHASE1N_SQUARE_PEDAL_LAYOUT
 -- NTR_MOBILE_FREEROAM_UI_PHASE1M_CONTROL_SURFACE_OPACITY
@@ -48,7 +49,7 @@ end
 local function opacity(name,fallback) return math.clamp(tonumber(A(name,fallback)) or fallback,0,1) end
 local function controlButton(name,imageName,fallback,rotation)
 	local kind=visualKind(name); local cardOpacity=kind=="Arrow" and opacity("ArrowCardOpacity",.72) or kind=="Pedal" and opacity("PedalCardOpacity",0) or .88
-	local b=new("TextButton",{Name=name,Text="",AutoButtonColor=false,BackgroundColor3=PANEL,BackgroundTransparency=1-cardOpacity,BorderSizePixel=0,ClipsDescendants=true,ZIndex=5},root); b:SetAttribute("NTRControlVisual",kind)
+	local b=new("TextButton",{Name=name,Text="",AutoButtonColor=false,BackgroundColor3=PANEL,BackgroundTransparency=1-cardOpacity,BorderSizePixel=0,ClipsDescendants=true,ZIndex=5},root); b:SetAttribute("NTRControlVisual",kind); b:SetAttribute("UIAudioSuppressClick",true)
 	corner(b,16); local s=nil
 	if kind~="Arrow" and kind~="Pedal" then s=stroke(b,PINK,2,.05) end
 	if kind=="Arrow" then new("UIGradient",{Name="CardGradient",Color=ColorSequence.new(SOFT,PANEL),Rotation=tonumber(A("ArrowCardGradientRotation",90)) or 90},b) end
@@ -89,7 +90,7 @@ local boostIconScale=tonumber(A("BoostIconScale",1.05)) or 1.05
 local boostArt=new("ImageLabel",{Name="BoostIcon",AnchorPoint=Vector2.new(.5,.5),BackgroundTransparency=1,BorderSizePixel=0,Image=sourceAsset(desktopAssets,"BoostIcon"),ImageColor3=WHITE,Position=UDim2.fromScale(.5,.5),ScaleType=Enum.ScaleType.Fit,Size=UDim2.fromOffset(32*boostIconScale,32*boostIconScale),ZIndex=7},boost)
 local boostFallback=boost:FindFirstChild("Fallback"); boostFallback.Text="BOOST"; boostFallback.TextColor3=CYAN; boostFallback.TextXAlignment=Enum.TextXAlignment.Center; boostFallback.Visible=boostArt.Image==""
 
-local thumbHit=new("TextButton",{Name="ThumbstickHit",Text="",AutoButtonColor=false,BackgroundTransparency=1,BorderSizePixel=0,ZIndex=4},root)
+local thumbHit=new("TextButton",{Name="ThumbstickHit",Text="",AutoButtonColor=false,BackgroundTransparency=1,BorderSizePixel=0,ZIndex=4},root); thumbHit:SetAttribute("UIAudioSuppressClick",true)
 local thumbOuter=new("Frame",{Name="OuterDriftRing",AnchorPoint=Vector2.new(.5,.5),Position=UDim2.fromScale(.5,.5),BackgroundColor3=PANEL,BackgroundTransparency=.36,BorderSizePixel=0,ZIndex=4},thumbHit); corner(thumbOuter,999); local outerStroke=stroke(thumbOuter,PINK,3,.08)
 local thumbInner=new("Frame",{Name="InnerTurnRing",AnchorPoint=Vector2.new(.5,.5),Position=UDim2.fromScale(.5,.5),BackgroundColor3=SOFT,BackgroundTransparency=.2,BorderSizePixel=0,ZIndex=5},thumbOuter); corner(thumbInner,999); stroke(thumbInner,CYAN,2,.12)
 local thumbKnob=new("Frame",{Name="Knob",AnchorPoint=Vector2.new(.5,.5),Position=UDim2.fromScale(.5,.5),BackgroundColor3=CYAN,BackgroundTransparency=.05,BorderSizePixel=0,ZIndex=7},thumbOuter); corner(thumbKnob,999); stroke(thumbKnob,WHITE,2,.12)

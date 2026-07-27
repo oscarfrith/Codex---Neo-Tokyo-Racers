@@ -1,3 +1,6 @@
+-- NTR_SMALL_REFINEMENTS_SHARED_PRESENTATION_V1_1
+-- NTR_GARAGE_SCROLL_EDGE_SAFETY_V1
+-- NTR_SMALL_REFINEMENTS_SHARED_PRESENTATION_V1
 -- NTR_OWNED_GARAGE_BROWSER_CONTROLLER_V1
 -- NTR_OWNED_GARAGE_BROWSER_CONTROLLER_V2_HARDENED
 -- NTR_OWNED_GARAGE_BROWSER_CONTROLLER_V3_ASYNC_OPEN
@@ -20,20 +23,36 @@ function Controller.Start()
 	local settings=kit.Config.Runtime:WaitForChild("OwnedGarage_EditAttributes")
 	local browserIcons=kit.Config.UI:WaitForChild("GarageReplacement"):WaitForChild("OwnedGarageIcons"):WaitForChild("Browser")
 	local function browserIcon(name) local value=browserIcons:GetAttribute(name); return type(value)=="string" and value~="" and UI.Asset(value) or "" end
-	local function hardenTouch() if not UserInputService.TouchEnabled then return end; local scale=math.max(layoutScale and layoutScale.Scale or 1,.01); local minimum=math.ceil(math.max(32,tonumber(settings:GetAttribute("MinimumTouchTargetPixels")) or 44)/scale); for _,object in ipairs(overlay:GetDescendants()) do if object:IsA("GuiButton") then local original=object:GetAttribute("NTR_OwnedGarageOriginalSize"); if typeof(original)~="UDim2" then original=object.Size; object:SetAttribute("NTR_OwnedGarageOriginalSize",original) end; if original.Y.Scale==0 then object.Size=UDim2.new(original.X.Scale,original.X.Offset,0,math.max(original.Y.Offset,minimum)) end end end end
+	local function hardenTouch() if not UserInputService.TouchEnabled then return end; local scale=math.max(layoutScale and layoutScale.Scale or 1,.01); local minimum=math.ceil(math.max(32,tonumber(settings:GetAttribute("MinimumTouchTargetPixels")) or 44)/scale); for _,object in ipairs(overlay:GetDescendants()) do if object:IsA("GuiButton") and object:GetAttribute("NTRSkipTouchHardening")~=true then local original=object:GetAttribute("NTR_OwnedGarageOriginalSize"); if typeof(original)~="UDim2" then original=object.Size; object:SetAttribute("NTR_OwnedGarageOriginalSize",original) end; if original.Y.Scale==0 then object.Size=UDim2.new(original.X.Scale,original.X.Offset,0,math.max(original.Y.Offset,minimum)) end end end end
 	if layoutScale then layoutScale:GetPropertyChangedSignal("Scale"):Connect(function() if overlay.Visible then task.defer(hardenTouch) end end) end
 	UI.Label(shell,{Name="Title",Text="MY GARAGES",Position=UDim2.fromOffset(24,0),Size=UDim2.new(.55,0,0,64),TextSize=T("Heading",22),Role="Heading"}); local divider=Instance.new("Frame"); divider.BorderSizePixel=0; divider.BackgroundColor3=C("Outline"); divider.BackgroundTransparency=.5; divider.Position=UDim2.fromOffset(0,64); divider.Size=UDim2.new(1,0,0,1); divider.Parent=shell
 	local content=Instance.new("Frame"); content.BackgroundTransparency=1; content.Position=UDim2.fromOffset(24,88); content.Size=UDim2.new(1,-48,1,-176); content.Parent=shell
 	local listScroller=Instance.new("ScrollingFrame"); listScroller.Name="GarageList"; listScroller.BackgroundTransparency=1; listScroller.BorderSizePixel=0; listScroller.Size=UDim2.new(.38,-8,1,0); listScroller.AutomaticCanvasSize=Enum.AutomaticSize.Y; listScroller.CanvasSize=UDim2.fromOffset(0,0); listScroller.ScrollBarThickness=6; listScroller.ScrollBarImageColor3=C("Outline"); listScroller.Parent=content
-	local list=Instance.new("Frame"); list.BackgroundTransparency=1; list.Size=UDim2.new(1,-14,0,0); list.AutomaticSize=Enum.AutomaticSize.Y; list.Parent=listScroller; local listLayout=Instance.new("UIListLayout"); listLayout.Padding=UDim.new(0,12); listLayout.SortOrder=Enum.SortOrder.LayoutOrder; listLayout.Parent=list
+	local list=Instance.new("Frame"); list.Name="CardContent"; list.BackgroundTransparency=1; list.Size=UDim2.new(1,-16,0,0); list.AutomaticSize=Enum.AutomaticSize.Y; list.Parent=listScroller; local listLayout=Instance.new("UIListLayout"); listLayout.Padding=UDim.new(0,12); listLayout.SortOrder=Enum.SortOrder.LayoutOrder; listLayout.Parent=list
+	local listPad=Instance.new("UIPadding"); listPad.Parent=list
+	local function layoutListEdges()
+		local scale=math.max(layoutScale and layoutScale.Scale or 1,.01)
+		local physical=UI.StrokeWidth("Glow")+2
+		local edge=Shared.LogicalPixelsForPhysical(physical,scale,4)
+		local right=Shared.LogicalPixelsForPhysical(physical+listScroller.ScrollBarThickness,scale,12)
+		list.Position=UDim2.fromOffset(edge,edge)
+		list.Size=UDim2.new(1,-(edge+right),0,0)
+		listPad.PaddingBottom=UDim.new(0,edge)
+	end
+	layoutListEdges()
+	if layoutScale then layoutScale:GetPropertyChangedSignal("Scale"):Connect(function() if overlay.Visible then task.defer(layoutListEdges) end end) end
 	local detail=Instance.new("Frame"); detail.BackgroundTransparency=1; detail.Position=UDim2.new(.38,8,0,0); detail.Size=UDim2.new(.62,-8,1,0); detail.Parent=content
 	local hero=Shared.Panel(detail,"GarageImage",{NoGlow=true}); hero.Size=UDim2.new(1,0,0,290); local heroImage=Instance.new("ImageLabel"); heroImage.Name="Image"; heroImage.BackgroundTransparency=1; heroImage.Position=UDim2.fromOffset(5,5); heroImage.Size=UDim2.new(1,-10,1,-10); heroImage.ScaleType=Enum.ScaleType.Crop; heroImage.Parent=hero; UI.Corner(heroImage,5)
 	local placeholder=UI.Label(hero,{Name="Placeholder",Text="GARAGE IMAGE",Size=UDim2.fromScale(1,1),TextSize=T("Heading",20),Color=C("Muted"),Role="Heading",XAlignment=Enum.TextXAlignment.Center}); placeholder.TextTransparency=.25
 	local detailTitle=UI.Label(detail,{Name="GarageTitle",Text="",Position=UDim2.fromOffset(0,308),Size=UDim2.new(1,0,0,38),TextSize=T("Heading",26),Role="Heading"}); local district=UI.Label(detail,{Name="District",Text="",Position=UDim2.fromOffset(0,347),Size=UDim2.new(1,0,0,25),TextSize=T("Caption",13),Color=C("Telemetry"),Role="Heading"}); local description=UI.Label(detail,{Name="Description",Text="",Position=UDim2.fromOffset(0,382),Size=UDim2.new(1,0,0,72),TextSize=T("Body",15),Color=C("Text")}); description.TextWrapped=true; description.TextYAlignment=Enum.TextYAlignment.Top
-	local capacity=Shared.MetricCard(detail,"Capacity"); capacity.Position=UDim2.fromOffset(0,466); capacity.Size=UDim2.new(1,0,0,54); local capacityText=UI.Label(capacity,{Text="",Position=UDim2.fromOffset(14,0),Size=UDim2.new(1,-28,1,0),TextSize=T("Metric",16),Role="Metric",XAlignment=Enum.TextXAlignment.Center})
+	local capacity=Shared.MetricCard(detail,"Capacity"); capacity.Position=UDim2.fromOffset(0,466); capacity.Size=UDim2.new(1,0,0,54); local capacityText=UI.Label(capacity,{Text="",Position=UDim2.fromOffset(14,0),Size=UDim2.new(1,-28,1,0),TextSize=T("Metric",16),Role="Metric",XAlignment=Enum.TextXAlignment.Center}); capacityText.TextScaled=true; capacityText.TextWrapped=false; capacityText.TextTruncate=Enum.TextTruncate.None; local capacityConstraint=Instance.new("UITextSizeConstraint"); capacityConstraint.MinTextSize=8; capacityConstraint.MaxTextSize=UserInputService.TouchEnabled and 30 or T("Metric",16); capacityConstraint.Parent=capacityText
 	local status=UI.Label(shell,{Name="Status",Text="",Position=UDim2.new(0,24,1,-82),Size=UDim2.new(1,-48,0,20),TextSize=T("Caption",11),Color=C("Danger"),Role="Heading",XAlignment=Enum.TextXAlignment.Center}); status.Visible=false
-	local exit=Shared.ActionButton(shell,{Name="Exit",Text="EXIT",Icon=browserIcon("Exit"),IconText="×",Size=UDim2.fromOffset(220,48),Color=C("PanelSoft"),StrokeColor=C("Outline")}); exit.AnchorPoint=Vector2.new(0,1); exit.Position=UDim2.new(0,24,1,-16)
-	local enter=Shared.ActionButton(shell,{Name="Enter",Text="ENTER GARAGE",Icon=browserIcon("Enter"),IconText="E",Size=UDim2.fromOffset(300,48),Color=C("PanelBlue"),StrokeColor=C("Telemetry")}); enter.AnchorPoint=Vector2.new(1,1); enter.Position=UDim2.new(1,-24,1,-16); if UserInputService.TouchEnabled then status.Position=UDim2.new(0,24,1,-150) end
+	local footerPad=L("OuterPadding",24); local footerGap=L("Gap",16); local footerButtonY=-64; local footerButtonHeight=48
+	status.Position=UDim2.new(0,footerPad,1,-58)
+	local exit=UI.Button(shell,{Name="Exit",Text="EXIT",Position=UDim2.new(0,footerPad,1,footerButtonY),Size=UDim2.new(.5,-(footerPad+footerGap*.5),0,footerButtonHeight),Color=C("PanelSoft"),StrokeColor=C("Outline"),FocusColor=C("Telemetry")}); exit:SetAttribute("NTRSkipTouchHardening",true)
+	local enter=UI.Button(shell,{Name="Enter",Text="ENTER GARAGE",Position=UDim2.new(.5,footerGap*.5,1,footerButtonY),Size=UDim2.new(.5,-(footerPad+footerGap*.5),0,footerButtonHeight),Color=C("PanelBlue"),StrokeColor=C("Telemetry"),FocusColor=C("Telemetry")}); enter:SetAttribute("NTRSkipTouchHardening",true)
+
+
 	local function presentation(active) local event=script.Parent:FindFirstChild("FreeRoamHudPresentationMode"); if event and event:IsA("BindableEvent") then event:Fire({Owner="OwnedGarageBrowser",Active=active==true,KeepTelemetry=false}) end end
 	local function request(action,args) local ok,result=pcall(function() return remote:InvokeServer(action,args or {}) end); if ok and type(result)=="table" then return result end; return {Success=false,Message="Garage service unavailable."} end
 	local function loadingAction(action,payload) local ok,result=pcall(function() return loadingInvoke:Invoke(action,payload or {}) end); if ok then return result end; warn("[NTR Owned Garage] Loading transition "..tostring(action).." failed: "..tostring(result)); return nil end

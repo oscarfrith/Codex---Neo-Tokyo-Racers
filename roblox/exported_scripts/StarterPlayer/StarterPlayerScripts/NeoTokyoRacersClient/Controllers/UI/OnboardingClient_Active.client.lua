@@ -1,4 +1,8 @@
 -- NTR_PLAYER_ONBOARDING_V1_13_STATE_IMPORT_RACE_CONTROLS_TWO_LINE_OBJECTIVES
+-- NTR_SMALL_REFINEMENTS_LIFECYCLE_PHASE2_V1
+-- NTR_SMALL_REFINEMENTS_LIFECYCLE_PHASE2_V1_1
+-- NTR_SMALL_REFINEMENTS_LIFECYCLE_PHASE2_V1_2
+-- NTR_SMALL_REFINEMENTS_LIFECYCLE_PHASE2_V1_3
 -- NTR_PRESENTATION_AUDIO_OBJECTIVES_V1
 -- NTR_PRESENTATION_AUDIO_ONBOARDING_HOVER_SILENT_V1_1
 local Players=game:GetService("Players")
@@ -325,6 +329,11 @@ local warnedMissingTarget=false
 local function loadingActive()
 	return player:GetAttribute("NTR_StartScreenActive")==true or loadingState:GetAttribute("Active")==true
 end
+local function onboardingPresentationBlocked()
+	return loadingActive()
+		or player:GetAttribute("NTR_FirstDrivePresentationPending")==true
+		or player:GetAttribute("NTR_DrivingControlsOpen")==true
+end
 local function disconnectTargets()
 	for _,connection in ipairs(targetConnections) do connection:Disconnect() end
 	table.clear(targetConnections)
@@ -337,7 +346,7 @@ local function geometryKey(id,objects,canvas)
 	return table.concat({id,x,y,right,bottom,math.floor(origin.X),math.floor(origin.Y),math.floor(canvas.X),math.floor(canvas.Y)},":"),x,y,right,bottom
 end
 local function renderPinned()
-	if loadingActive() or not (activePage and activeObjects) then hideOverlay(); return end
+	if onboardingPresentationBlocked() or not (activePage and activeObjects) then hideOverlay(); return end
 	local id=pages[activePage][activeIndex]; local canvas=canvasSize()
 	local nextLayoutKey,x,y,right,bottom=geometryKey(id,activeObjects,canvas); if not nextLayoutKey then hideOverlay(); return end
 	local action=actionSteps[id]==true
@@ -359,7 +368,7 @@ local function scheduleLayout()
 		local stableFrames=math.max(2,math.floor(setting("TargetStabilityFrames",2))); local previous
 		for _=1,stableFrames do
 			RunService.RenderStepped:Wait()
-			if generation~=layoutGeneration or loadingActive() or not (activePage and activeObjects) then return end
+			if generation~=layoutGeneration or onboardingPresentationBlocked() or not (activePage and activeObjects) then return end
 			local canvas=canvasSize(); local id=pages[activePage][activeIndex]; local key=geometryKey(id,activeObjects,canvas)
 			if not key then hideOverlay(); return end
 			if previous and previous~=key then scheduleLayout(); return end
@@ -372,6 +381,7 @@ overlay:GetPropertyChangedSignal("AbsolutePosition"):Connect(function() if activ
 overlay:GetPropertyChangedSignal("AbsoluteSize"):Connect(function() if activePage then scheduleLayout() end end)
 local scheduleResolve
 local advance
+local syncObjectives
 local function pinObjects(objects)
 	disconnectTargets(); activeObjects=objects; rootMissingAt=nil; warnedMissingTarget=false
 	local id=activePage and pages[activePage] and pages[activePage][activeIndex]
@@ -394,7 +404,7 @@ end
 scheduleResolve=function()
 	resolveGeneration+=1; local generation=resolveGeneration; hideOverlay(); disconnectTargets(); activeObjects=nil
 	task.delay(.08,function()
-		if generation~=resolveGeneration or loadingActive() or not activePage then return end
+		if generation~=resolveGeneration or onboardingPresentationBlocked() or not activePage then return end
 		if not (activeRoot and activeRoot.Parent and visible(activeRoot)) then
 			local signal=pageSignals[activePage]; local ok,newRoot=signal and pcall(signal)
 			if ok and newRoot then activeRoot=newRoot; rootMissingAt=nil
@@ -428,7 +438,7 @@ advance=function()
 	lastAdvance=os.clock()
 	activeIndex+=1
 	if activeIndex>#pages[activePage] then
-		local done=activePage; state.SeenPages[done]=true; activePage=nil; activeIndex=nil; activeRoot=nil; activeObjects=nil; resolveGeneration+=1; disconnectTargets(); hideOverlay(); print("[NTR Tutorial] complete "..done); task.spawn(markSeen,done)
+		local done=activePage; state.SeenPages[done]=true; activePage=nil; activeIndex=nil; activeRoot=nil; activeObjects=nil; resolveGeneration+=1; disconnectTargets(); hideOverlay(); print("[NTR Tutorial] complete "..done); task.defer(function() if syncObjectives then syncObjectives() end end); task.spawn(markSeen,done)
 	else
 		print("[NTR Tutorial] advance "..activePage.." "..pages[activePage][activeIndex]); scheduleResolve()
 	end
@@ -440,6 +450,7 @@ local function visibleRoot(name)
 	return object and scopeRoot(object) or nil
 end
 local function controlsOpen()
+	if player:GetAttribute("NTR_DrivingControlsOpen")==true then return true end
 	local screen=playerGui:FindFirstChild("NTR_DesktopFreeRoamHud")
 	local design=screen and screen:FindFirstChild("DesignRoot")
 	local modal=design and design:FindFirstChild("ModalLayer")
@@ -474,7 +485,8 @@ local function objectiveComplete(index)
 end
 local function objectiveDesired(index)
 	if index==1 then return not objectiveComplete(1) end
-	return objectiveComplete(1) and not objectiveComplete(index)
+	if index==2 then return objectiveComplete(1) and state.SeenPages.GarageShortcut==true and not objectiveComplete(2) end
+	return state.SeenPages.RaceShortcut==true and not objectiveComplete(3)
 end
 local function objectiveHint(index)
 	if index==1 then return state.Completed.FirstVehiclePurchased==true and "Start driving your new vehicle." or "Follow the trail to the dealership." end
@@ -577,7 +589,7 @@ local function exitObjective(index)
 		card.Tween:Play()
 	end)
 end
-local function syncObjectives()
+syncObjectives=function()
 	if not stateReady then return end
 	local objectiveOneWasComplete=objectiveCompletionSnapshot and objectiveCompletionSnapshot[1] or false
 	local objectiveOneNowComplete=objectiveComplete(1)
@@ -624,7 +636,7 @@ local function refreshObjective()
 	objectiveLayout={Left=left,Top=y,Width=width,Height=height,Gap=gap,Scale=scale,Safe=safe,Phone=phone}
 	layoutObjectives(false)
 	local shortcutPrompt=activePage=="VehicleShortcut" or activePage=="RaceShortcut" or activePage=="GarageShortcut"
-	objectiveLayer.Visible=stateReady and #objectiveOrder()>0 and not loadingActive() and not majorMenuOpen() and (not activePage or shortcutPrompt)
+	objectiveLayer.Visible=stateReady and #objectiveOrder()>0 and not onboardingPresentationBlocked() and not majorMenuOpen() and (not activePage or shortcutPrompt)
 end
 local function nearestGarageDesk()
 	local character=player.Character; local root=character and character:FindFirstChild("HumanoidRootPart"); if not root then return nil end
@@ -638,7 +650,7 @@ local function nearestGarageDesk()
 	return best
 end
 local function updateGuideTrail()
-	if loadingActive() then guideTrail:Clear(); return end
+	if onboardingPresentationBlocked() then guideTrail:Clear(); return end
 	if state.Completed.FirstVehiclePurchased~=true then
 		local world=workspace:FindFirstChild("NeoTokyoRacersWorld"); local intro=world and world:FindFirstChild("Dealership") and world.Dealership:FindFirstChild("Intro"); local desk=intro and intro:FindFirstChild("Desk") and intro.Desk:FindFirstChild("GarageDeskTrigger")
 		guideTrail:SetTarget(desk)
@@ -658,26 +670,51 @@ local function activelyDriving()
 	return nil
 end
 local pcControlsAwaitClose=false
-local function pollPages()
-	if loadingActive() or activePage then return end
-	if pcControlsAwaitClose then
-		if controlsOpen() then return end
-		pcControlsAwaitClose=false
-	end
+local firstDriveSpawnPending=false
+local firstDriveSpawnDirect=false
+local firstDriveRequestInFlight=false
+local function tryBeginFirstDriveControls(allowSpawnSignal)
+	if UserInputService.TouchEnabled or not stateReady or state.Stage<2 or state.SeenPages.PCDriving==true or firstDriveRequestInFlight then return false end
 	local drivenVehicle=activelyDriving()
 	local raceDriving=drivenVehicle and (drivenVehicle:GetAttribute("NTR_RaceParticipant")==true or drivenVehicle:GetAttribute("NTR_RaceRunId")~=nil)
-	if not UserInputService.TouchEnabled and state.Stage>=2 and state.SeenPages.PCDriving~=true and drivenVehicle and not raceDriving then -- NTR_ONBOARDING_FREE_ROAM_CONTROLS_ONLY_V1
-		local event=script.Parent:FindFirstChild("OpenDrivingControlsFromOnboarding")
-		if event and event:IsA("BindableEvent") then
-			pcControlsAwaitClose=true; state.SeenPages.PCDriving=true; event:Fire(); task.spawn(markSeen,"PCDriving"); return
-		end
+	if raceDriving or (not drivenVehicle and not allowSpawnSignal) then return false end
+	local event=script.Parent:FindFirstChild("OpenDrivingControlsFromOnboarding")
+	if not (event and event:IsA("BindableEvent")) then
+		firstDriveSpawnPending=false
+		player:SetAttribute("NTR_FirstDrivePresentationPending",false)
+		return false
 	end
+	player:SetAttribute("NTR_FirstDrivePresentationPending",true)
+	firstDriveRequestInFlight=true
+	pcControlsAwaitClose=true
+	state.SeenPages.PCDriving=true
+	event:Fire({FirstDrive=true})
+	task.spawn(markSeen,"PCDriving")
+	return true
+end
+local function pollPages()
+	if firstDriveSpawnPending and tryBeginFirstDriveControls(firstDriveSpawnDirect) then firstDriveSpawnPending=false; firstDriveSpawnDirect=false; return end
+	if onboardingPresentationBlocked() then return end
+	if pcControlsAwaitClose then
+		pcControlsAwaitClose=false
+		firstDriveRequestInFlight=false
+	end
+	if activePage then return end
+	if tryBeginFirstDriveControls() then return end
 	for _,pageId in ipairs(pageOrder) do local signal=pageSignals[pageId]
 		if state.SeenPages[pageId]~=true then local ok,result=pcall(signal); if ok and result then beginPage(pageId,result); return end end
 	end
 end
+local freeRoamVehicleSpawned=script.Parent:WaitForChild("FreeRoamVehicleSpawned")
+freeRoamVehicleSpawned.Event:Connect(function()
+	if UserInputService.TouchEnabled or state.SeenPages.PCDriving==true then return end
+	firstDriveSpawnPending=true
+	firstDriveSpawnDirect=loadingActive() and tostring(loadingState:GetAttribute("Destination") or "")=="FreeRoamDrive"
+	if tryBeginFirstDriveControls(firstDriveSpawnDirect) then firstDriveSpawnPending=false; firstDriveSpawnDirect=false end
+end)
 local function accept(newState)
 	if type(newState)=="table" and newState.Success then state=newState; stateReady=true end
+	if firstDriveSpawnPending and tryBeginFirstDriveControls(firstDriveSpawnDirect) then firstDriveSpawnPending=false; firstDriveSpawnDirect=false end
 	applyLocks(); syncObjectives(); refreshObjective()
 end
 stateChanged.OnClientEvent:Connect(accept)
@@ -690,10 +727,13 @@ local function refreshLoadingGate()
 		RunService.RenderStepped:Wait(); RunService.RenderStepped:Wait()
 		if generation~=gateGeneration or loadingActive() then return end
 		gui.Enabled=true
+		if onboardingPresentationBlocked() then hideOverlay(); objectiveLayer.Visible=false; return end
 		if activePage then scheduleResolve() else refreshObjective(); pollPages() end
 	end)
 end
 player:GetAttributeChangedSignal("NTR_StartScreenActive"):Connect(refreshLoadingGate)
+player:GetAttributeChangedSignal("NTR_FirstDrivePresentationPending"):Connect(refreshLoadingGate)
+player:GetAttributeChangedSignal("NTR_DrivingControlsOpen"):Connect(refreshLoadingGate)
 loadingState:GetAttributeChangedSignal("Active"):Connect(refreshLoadingGate)
 loadingChanged.Event:Connect(refreshLoadingGate)
 task.spawn(function() local ok,result=pcall(function() return invoke:InvokeServer("GetState",{}) end); if ok then accept(result) end end)

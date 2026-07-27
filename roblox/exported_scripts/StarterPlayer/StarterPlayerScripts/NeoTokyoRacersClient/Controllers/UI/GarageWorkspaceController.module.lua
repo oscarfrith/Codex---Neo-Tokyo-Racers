@@ -1,3 +1,6 @@
+-- NTR_SMALL_REFINEMENTS_SHARED_PRESENTATION_V1
+-- NTR_GARAGE_SCROLL_EDGE_SAFETY_V1
+-- NTR_OWNED_GARAGE_MOBILE_THUMBSTICK_CAMERA_GUARD_V2_1
 -- NTR_SHARED_RESPONSIVE_UI_FOUNDATION_V1_1
 -- NTR_GARAGE_CAMERA_VFX_SCROLL_REFINEMENT_V1
 -- NTR_GARAGE_NAV_SCROLL_ECONOMY_V1
@@ -59,12 +62,104 @@ local function clear(parent) for _,o in ipairs(parent:GetChildren()) do if o:Get
 local WorkspaceUI={}; WorkspaceUI.__index=WorkspaceUI
 local headerTitleSize,headerSubtitleSize=Shared.HeaderTextSizes() -- NTR_GARAGE_FLOW_REFINEMENT_V2
 
+local function touchRect(object,root)
+	if not (object and object:IsA("GuiObject") and root and object:IsDescendantOf(root)) then return nil end
+	local position,size=object.AbsolutePosition,object.AbsoluteSize
+	if size.X<=0 or size.Y<=0 then return nil end
+	local left,top,right,bottom=position.X,position.Y,position.X+size.X,position.Y+size.Y
+	local opacity=1
+	local current=object
+	while current do
+		if current:IsA("GuiObject") then
+			if not current.Visible then return nil end
+			if current:IsA("CanvasGroup") then opacity*=1-math.clamp(current.GroupTransparency,0,1); if opacity<=.02 then return nil end end
+			if current.ClipsDescendants then
+				local p,s=current.AbsolutePosition,current.AbsoluteSize
+				left=math.max(left,p.X); top=math.max(top,p.Y); right=math.min(right,p.X+s.X); bottom=math.min(bottom,p.Y+s.Y)
+				if right-left<=.5 or bottom-top<=.5 then return nil end
+			end
+		elseif current:IsA("ScreenGui") and not current.Enabled then
+			return nil
+		end
+		current=current.Parent
+	end
+	return {Left=left,Top=top,Right=right,Bottom=bottom}
+end
+local function visibleStroke(object)
+	for _,child in ipairs(object:GetChildren()) do
+		if child:IsA("UIStroke") and child.Enabled and child.Thickness>0 and child.Transparency<.98 then return true end
+	end
+	return false
+end
+local function renderedSurface(object)
+	if not (object and object:IsA("GuiObject")) then return false end
+	if object.BackgroundTransparency<.98 or visibleStroke(object) then return true end
+	if (object:IsA("TextLabel") or object:IsA("TextButton")) and object.Text~="" and object.TextTransparency<.98 then return true end
+	if (object:IsA("ImageLabel") or object:IsA("ImageButton")) and object.Image~="" and object.ImageTransparency<.98 then return true end
+	if object:IsA("GuiButton") then
+		for _,child in ipairs(object:GetDescendants()) do
+			if child:IsA("GuiObject") and child.Visible and renderedSurface(child) then return true end
+		end
+	end
+	return false
+end
+local function buttonAncestor(object,root)
+	local current=object.Parent
+	while current and current~=root do if current:IsA("GuiButton") then return true end; current=current.Parent end
+	return false
+end
+function WorkspaceUI:RestoreTouchSurfaceActives()
+	for object,active in pairs(self.TouchSurfaceActives or {}) do if object and object.Parent then object.Active=active end end
+	table.clear(self.TouchSurfaceActives)
+end
+function WorkspaceUI:ClearTouchSurfaceMap()
+	self:RestoreTouchSurfaceActives()
+	table.clear(self.TouchSurfaces)
+	if self.CategoryList then self.CategoryList.Active=true; self.CategoryList.ScrollingEnabled=true end
+	if self.Scroller then self.Scroller.Active=true; self.Scroller.ScrollingEnabled=true end
+end
+function WorkspaceUI:RebuildTouchSurfaceMap()
+	self:RestoreTouchSurfaceActives()
+	table.clear(self.TouchSurfaces)
+	if not (self.TouchMapEnabled and self.Root.Visible) then return end
+	local categoryOverflow=self.Categories.Visible and self.CategoryList.Visible and self.CategoryList.AbsoluteCanvasSize.Y>self.CategoryList.AbsoluteWindowSize.Y+2
+	local carouselOverflow=self.Carousel.Visible and self.Scroller.Visible and self.Scroller.AbsoluteCanvasSize.X>self.Scroller.AbsoluteWindowSize.X+2
+	self.CategoryList.ScrollingEnabled=categoryOverflow; self.CategoryList.Active=categoryOverflow
+	self.Scroller.ScrollingEnabled=carouselOverflow; self.Scroller.Active=carouselOverflow
+	local function register(object,force)
+		local rect=touchRect(object,self.Root)
+		if not rect or (not force and not renderedSurface(object)) then return end
+		table.insert(self.TouchSurfaces,rect)
+		if not object:IsA("GuiButton") and not buttonAncestor(object,self.Root) and object.Active==false then
+			self.TouchSurfaceActives[object]=false
+			object.Active=true
+		end
+	end
+	if categoryOverflow then register(self.CategoryList,true) end
+	if carouselOverflow then register(self.Scroller,true) end
+	for _,object in ipairs(self.Root:GetDescendants()) do
+		if object:IsA("GuiObject") and not object:IsA("ScrollingFrame") then register(object,false) end
+	end
+end
+function WorkspaceUI:QueueTouchSurfaceMap()
+	if not self.TouchMapEnabled or self.TouchMapQueued then return end
+	self.TouchMapQueued=true
+	task.defer(function() RunService.Heartbeat:Wait(); self.TouchMapQueued=false; if self.Root then self:RebuildTouchSurfaceMap() end end)
+end
+function WorkspaceUI:IsTouchBlocked(position)
+	if not (self.TouchMapEnabled and self.Root.Visible and position) then return false end
+	for _,rect in ipairs(self.TouchSurfaces) do
+		if position.X>=rect.Left and position.X<=rect.Right and position.Y>=rect.Top and position.Y<=rect.Bottom then return true end
+	end
+	return false
+end
+
 function WorkspaceUI.new()
-	local self=setmetatable({},WorkspaceUI); self.Host=Shared.CanonicalHost(); self.Gui=self.Host.Gui; self.Scale=self.Host.Scale; self.Context=nil; self.Dynamic={}
+	local self=setmetatable({},WorkspaceUI); self.Host=Shared.CanonicalHost(); self.Gui=self.Host.Gui; self.Scale=self.Host.Scale; self.Context=nil; self.Dynamic={}; self.TouchMapEnabled=false; self.TouchMapQueued=false; self.TouchSurfaces={}; self.TouchSurfaceActives={}
 	self.Root=Instance.new("Frame"); self.Root.Name="CanonicalGarageWorkspace"; self.Root:SetAttribute("TutorialWorkspace",true); self.Root.BackgroundTransparency=1; self.Root.BorderSizePixel=0; self.Root.Visible=false; self.Root.Parent=self.Host.Canvas
 	self.Header=Shared.MetricCard(self.Root,"Header")
 	self.Title=Racing.Label(self.Header,{Text="GARAGE",Position=UDim2.fromOffset(12,3),Size=UDim2.new(1,-24,0,28),TextSize=headerTitleSize,Color=Racing.Colour("Text",Color3.new(1,1,1)),XAlignment=Enum.TextXAlignment.Center,Role="Heading"}) -- NTR_GARAGE_MODULE_PRESENTATION_REFINEMENT_V1
-	self.Subtitle=Racing.Label(self.Header,{Text="",Position=UDim2.fromOffset(12,29),Size=UDim2.new(1,-24,0,29),TextSize=headerSubtitleSize,Color=Racing.Colour("Text",Color3.new(1,1,1)),XAlignment=Enum.TextXAlignment.Center,Role="Heading"})
+	self.Subtitle=Racing.Label(self.Header,{Text="",Position=UDim2.fromOffset(12,31),Size=UDim2.new(1,-24,0,44),TextSize=headerSubtitleSize,Color=Racing.Colour("Text",Color3.new(1,1,1)),XAlignment=Enum.TextXAlignment.Center,Role="Heading"}); self.Subtitle.TextWrapped=true; self.Subtitle.TextTruncate=Enum.TextTruncate.None; self.Subtitle.TextYAlignment=Enum.TextYAlignment.Center
 	self.Categories=Shared.Panel(self.Root,"Categories",{NoStroke=true})
 	self.CategoryList=Instance.new("ScrollingFrame"); self.CategoryList.BackgroundTransparency=1; self.CategoryList.BorderSizePixel=0; self.CategoryList.ScrollBarThickness=0; self.CategoryList.AutomaticCanvasSize=Enum.AutomaticSize.Y; self.CategoryList.CanvasSize=UDim2.fromOffset(0,0); self.CategoryList.Position=UDim2.fromOffset(7,7); self.CategoryList.Size=UDim2.new(1,-14,1,-14); self.CategoryList.Parent=self.Categories
 	local categoryLayout=Instance.new("UIListLayout"); categoryLayout.Padding=UDim.new(0,8); categoryLayout.Parent=self.CategoryList; self.CategoryLayout=categoryLayout -- NTR_GARAGE_FLOW_REFINEMENT_V2_1
@@ -100,7 +195,7 @@ function WorkspaceUI.new()
 	self.Next.Activated:Connect(function() if self.Context and self.Context.OnNext then self.Context.OnNext() end end)
 	self.Exit.Activated:Connect(function() if self.Context and self.Context.OnExit then self.Context.OnExit() end end)
 	self.Scroller:GetPropertyChangedSignal("CanvasPosition"):Connect(function() self:RefreshCarouselArrows() end); self.Scroller:GetPropertyChangedSignal("AbsoluteCanvasSize"):Connect(function() self:RefreshCarouselArrows() end); self.Scroller:GetPropertyChangedSignal("AbsoluteWindowSize"):Connect(function() self:RefreshCarouselArrows() end); self.Scroller:GetPropertyChangedSignal("AbsoluteSize"):Connect(function() self:QueueCarouselUpdate() end); self.CardLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function() self:QueueCarouselUpdate() end)
-	self.CategoryList:GetPropertyChangedSignal("CanvasPosition"):Connect(function() self:UpdateCategoryArrows() end); self.CategoryList:GetPropertyChangedSignal("AbsoluteCanvasSize"):Connect(function() self:UpdateCategoryArrows() end); self.CategoryList:GetPropertyChangedSignal("AbsoluteWindowSize"):Connect(function() self:UpdateCategoryArrows() end); self.CategoryLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function() self:QueueCategoryUpdate() end)
+	self.CategoryList:GetPropertyChangedSignal("CanvasPosition"):Connect(function() self:UpdateCategoryArrows() end); self.CategoryList:GetPropertyChangedSignal("AbsoluteCanvasSize"):Connect(function() self:UpdateCategoryArrows(); self:QueueTouchSurfaceMap() end); self.CategoryList:GetPropertyChangedSignal("AbsoluteWindowSize"):Connect(function() self:UpdateCategoryArrows(); self:QueueTouchSurfaceMap() end); self.CategoryLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function() self:QueueCategoryUpdate() end); self.Popup.Shell:GetPropertyChangedSignal("Visible"):Connect(function() self:QueueTouchSurfaceMap() end); self.Root.DescendantAdded:Connect(function() self:QueueTouchSurfaceMap() end); self.Root.DescendantRemoving:Connect(function() self:QueueTouchSurfaceMap() end)
 	local camera=Workspace.CurrentCamera; if camera then camera:GetPropertyChangedSignal("ViewportSize"):Connect(function() if self.Root.Visible then self:Layout() end end) end
 	return self
 end
@@ -115,7 +210,7 @@ function WorkspaceUI:Layout()
 		if self.Context.LeftFitContent then local count=#(self.Context.LeftItems or {}); local buttonHeight=N("CategoryButtonHeight",46); local height=N("BuildLeftPanelPadding",14)*2+12+count*buttonHeight+math.max(0,count-1)*8; self.Categories.Size=UDim2.fromOffset(self.Categories.Size.X.Offset,height) end
 		if self.Context.LeftAlignCarouselBottom then local top=self.Categories.Position.Y.Offset; local bottom=shell.CarouselTop+N("CarouselHeight",166); if self.Context.MaterialChannels then bottom=shell.CarouselTop-math.max(0,tonumber(cfg:GetAttribute("MaterialRailTabClearance")) or 48) end; self.Categories.Size=UDim2.fromOffset(self.Categories.Size.X.Offset,math.max(170,bottom-top)) end
 	end
-	self:QueueCarouselUpdate()
+	self:QueueCarouselUpdate(); self:QueueTouchSurfaceMap()
 end
 
 function WorkspaceUI:ResolveImage(key,explicit)
@@ -210,7 +305,7 @@ end -- NTR_GARAGE_FLOW_REFINEMENT_V2
 
 function WorkspaceUI:QueueCategoryUpdate()
 	if self.CategoryUpdateQueued then return end; self.CategoryUpdateQueued=true
-	task.defer(function() RunService.Heartbeat:Wait(); self.CategoryUpdateQueued=false; if self.Root.Visible then self:UpdateCategoryArrows() end end)
+	task.defer(function() RunService.Heartbeat:Wait(); self.CategoryUpdateQueued=false; if self.Root.Visible then self:UpdateCategoryArrows(); self:QueueTouchSurfaceMap() end end)
 end
 function WorkspaceUI:UpdateCategoryArrows()
 	if not (self.Root.Visible and self.Categories.Visible and self.CategoryList.Visible) then self.CategoryPrevious.Visible=false; self.CategoryNext.Visible=false; return end
@@ -227,7 +322,7 @@ function WorkspaceUI:ScrollCategories(direction)
 	local maximum=math.max(0,self.CategoryList.AbsoluteCanvasSize.Y-self.CategoryList.AbsoluteWindowSize.Y); local scale=math.max(self.LayoutScale or self.Scale.Scale,.01); local y=math.clamp(self.CategoryList.CanvasPosition.Y+direction*N("CategoryArrowStep",124)*scale,0,maximum)
 	self.CategoryList.CanvasPosition=Vector2.new(0,y); self:UpdateCategoryArrows()
 end
-function WorkspaceUI:QueueCarouselUpdate() if self.CarouselQueued then return end; self.CarouselQueued=true; task.defer(function() RunService.Heartbeat:Wait(); self.CarouselQueued=false; if self.Root.Visible then self:UpdateCarousel() end end) end
+function WorkspaceUI:QueueCarouselUpdate() if self.CarouselQueued then return end; self.CarouselQueued=true; task.defer(function() RunService.Heartbeat:Wait(); self.CarouselQueued=false; if self.Root.Visible then self:UpdateCarousel(); self:QueueTouchSurfaceMap() end end) end
 function WorkspaceUI:RefreshCarouselArrows()
 	if not self.Scroller.Visible then self.Left.Visible=false; self.RightArrow.Visible=false; return end
 	local maximum=math.max(0,self.Scroller.AbsoluteCanvasSize.X-self.Scroller.AbsoluteWindowSize.X); local x=self.Scroller.CanvasPosition.X; local tolerance=math.max(2,N("CarouselEndTolerance",4)); self.MaxScroll=maximum
@@ -235,9 +330,10 @@ function WorkspaceUI:RefreshCarouselArrows()
 end
 function WorkspaceUI:UpdateCarousel()
 	if not self.Scroller.Visible or self.Updating then self.Left.Visible=false; self.RightArrow.Visible=false; return end
-	self.Updating=true; local count=0; for _,child in ipairs(self.Scroller:GetChildren()) do if child:GetAttribute("CanonicalGarageCard") then count+=1 end end
-	local cardWidth=N("WorkspaceCardWidth",210); local content=count*cardWidth+math.max(0,count-1)*12; local scale=math.max(self.LayoutScale or self.Scale.Scale,.01); local window=self.ReferenceCarouselWidth or self.Scroller.AbsoluteSize.X/scale; if self.Scroller.AbsoluteSize.X>0 then window=self.Scroller.AbsoluteSize.X/scale end
-	local side=content<window and math.max(6,(window-content)*.5) or 6; self.CardPad.PaddingLeft=UDim.new(0,side); self.CardPad.PaddingRight=UDim.new(0,side); self.Scroller.CanvasSize=UDim2.fromOffset(math.max(window,content+side*2),0); self.Updating=false; self:RefreshCarouselArrows()
+	self.Updating=true
+	local scale=math.max(self.LayoutScale or self.Scale.Scale,.01)
+	local metrics=Shared.UpdateHorizontalCardCanvas(self.Scroller,self.CardLayout,self.CardPad,scale,6)
+	self.ScrollEdgeLogical=metrics.Side; self.Updating=false; self:RefreshCarouselArrows()
 end
 function WorkspaceUI:Scroll(direction) local scale=math.max(self.LayoutScale or self.Scale.Scale,.01); local logicalWidth=N("WorkspaceCardWidth",210); for _,child in ipairs(self.Scroller:GetChildren()) do if child:GetAttribute("CanonicalGarageCard") then logicalWidth=child.AbsoluteSize.X/math.max(scale,.01); break end end; local step=(logicalWidth+12)*scale; self.Scroller.CanvasPosition=Vector2.new(math.clamp(self.Scroller.CanvasPosition.X+direction*step,0,self.MaxScroll or 0),0); self:RefreshCarouselArrows() end
 function WorkspaceUI:Audit(selectedCard)
@@ -278,7 +374,7 @@ function WorkspaceUI:Show(context)
 	self:RenderLeft(context); self:RenderStats(context); self:RenderEconomy(context); local selectedCard; if context.ColorChannels then self:RenderPaint(context) else selectedCard=self:RenderCards(context) end; self:Layout(); self:QueueScrollRestore(context); self:Audit(selectedCard)
 end
 function WorkspaceUI:Hide()
-	self:CaptureScroll(); self:DisconnectDynamic(); self.Root.Visible=false; self.Popup:Hide(); Shared.ReleasePresentation(self.Root); self.Context=nil
+	self:CaptureScroll(); self:DisconnectDynamic(); self.Root.Visible=false; self.Popup:Hide(); Shared.ReleasePresentation(self.Root); self.Context=nil; self:ClearTouchSurfaceMap()
 	self.Budget.Visible=false; self.CategoryPrevious.Visible=false; self.CategoryNext.Visible=false; for _,parent in ipairs({self.CategoryList,self.Carousel,self.Scroller,self.Paint,self.Stats,self.Cash,self.Capacity,self.Budget}) do clear(parent) end
 end
 return WorkspaceUI

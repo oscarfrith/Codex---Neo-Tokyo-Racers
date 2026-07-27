@@ -1,5 +1,132 @@
 # Patch History
 
+## 2026-07-27 - Owned-garage semantic movement touch V2.2 confirmed/mirrored
+
+- Verified the user-refreshed `21:08:10` mirror: 192 exported-manifest, source-manifest and checksum entries match with zero mismatches and contain installed V2.1.
+- Retained V2.1's user-approved visible-surface map and both of its geometry owners unchanged.
+- Identified the movement regression in the interior arbiter: it queries dynamic `ThumbstickStart` synchronously at `InputBegan`, before that marker reliably belongs to the new touch.
+- Advanced the same canonical installer with one isolated replacement of the complete existing camera-arbitration block.
+- Added per-input pending movement candidates, pre-touch camera snapshots, same-cycle deferred marker confirmation, a bounded next-Heartbeat/public movement-transition fallback, exact promotion and fixed lifetime classification.
+- Unconfirmed empty touches remain native camera/world input; confirmed movement restores its pre-touch orientation and reuses the proven V2 hold. Outside-management walking, visible UI, close/exit protection and camera recovery remain with the existing owner.
+- Added one bounded tuning attribute, `MobileThumbstickSemanticConfirmWindowSeconds=0.35`. No new control, PlayerModule replacement, UI/camera owner, idle loop, remote, saved field or server behavior.
+- Projected the unique V2.1 range successfully against the fresh mirror.
+- The user confirmed V2.2 working well and refreshed the complete `21:26:44` / 192-source mirror. It contains the exact canonical arbitration block, retained V2.1 geometry and `MobileThumbstickSemanticConfirmWindowSeconds=0.35`; exported manifest, source manifest and checksums have zero mismatches.
+- Closed the phase with V2.2 as the owned-garage mobile camera/input baseline. The canonical installer is retained for exact-scope audit/recovery only.
+
+## 2026-07-27 - Owned-garage visible touch surfaces V2.1 generated
+
+- Recorded the user's confirmation that V2 camera behavior is correct and verified its installed sources/config in the complete `20:48:01/02` / 192-source mirror.
+- Matched the remaining screenshot regions to invisible input geometry: full-size short-list scrollers and the oversized Dynamic Thumbstick frame fallback, not another camera lifecycle fault.
+- Advanced the same canonical installer. The shared workspace now owns one cached visible-surface rectangle map for all owned-management pages, excluding hidden, transparent and clipped UI.
+- Short category/carousel scrollers release unused space; overflowing scrollers retain their intended gesture strip; real child cards and visible surfaces remain blocking.
+- Replaced the management-wide thumbstick-frame fallback with actual visible `ThumbstickStart`, while preserving the confirmed broad fallback for physical-garage walking outside management.
+- Removed the V2 per-touch hierarchy query and retired temporary scroll-shell exception attributes. Rebuilds are event-driven/coalesced; touch classification is a bounded cached-rectangle pass.
+- Projected all exact V2 anchors successfully against the fresh mirror. The installer compiles three modules before one transactional mutation and is awaiting Studio runtime verification and mirror refresh.
+
+## 2026-07-27 - Owned-garage mobile camera touch arbitration V2 confirmed/mirrored
+
+- Verified the user-refreshed `20:29:06` mirror: 192 exported-manifest, source-manifest and checksum entries agree with zero mismatches and contain installed V1.2.
+- Used the runtime regression to reject V1.2's ownership model. Physical owned-garage management remains on native humanoid CameraModule; the shared preview controller belongs to the separate module-shop/customisation flow.
+- Advanced the same canonical installer rather than adding a patch. V2 restores the shared preview controller's prior classifier and pinch path.
+- Added one management-root-scoped geometry query to the existing owned workspace. Real controls/surfaces and overflowing scrollers block camera motion; explicit short-list shells release their unused regions.
+- Replaced the split V1/V1.1 guard with one touch-lifetime arbiter in the existing physical-garage lifecycle controller. Dynamic Thumbstick and management-surface touches hold camera orientation, empty management touches retain native pan, and protected touches are not handed to free roam before End/Cancel.
+- Preserved native Follow, humanoid translation, management actions, dealership/customisation previews, driving/racing camera priority, PC, remotes, persistence and server state.
+- The V2 installer preflights the installed V1.2 sources, compiles all three projections, is idempotent, and restores all three sources plus config attributes on failure.
+- The user confirmed V2 working as intended and refreshed the complete `20:48:01/02` / 192-source mirror. V2 is retained as the confirmed camera/lifecycle baseline beneath V2.1.
+
+## 2026-07-27 - Owned-garage management content-aware touch V1.2 installed/mirrored; runtime-failed
+
+- Confirmed V1.1 is installed in the complete `20:04:05` / 192-source mirror and works overall.
+- Identified the remaining restriction as the V1.1 full-root `Active` sink, not the Follow or transition-recovery behavior.
+- Advanced the same canonical installer to retire that sink and make the shared preview-camera hit test content-aware only during owned-garage management on touch.
+- Real controls and visible surfaces block camera drag; a scroller blocks its complete gesture region only when its canvas actually overflows its window. Short left/bottom lists therefore release unused space without making their cards interactive with the camera.
+- No new UI, controller, loop, remote, saved field, camera owner or desktop/custom-preview behavior was intended.
+- The user installed V1.2 and refreshed the complete `20:29:06` / 192-source mirror, then reported that movement-driven camera pan returned in management and persisted after garage exit.
+- V1.2's preview-camera interception is superseded by V2 and is retained only as the exact failed input baseline.
+
+## 2026-07-27 - Owned-garage mobile camera lifecycle V1.1 installed/mirrored; containment superseded
+
+- Preserved the user-confirmed V1 physical-garage movement-touch hold.
+- Diagnosed the remaining management/free-roam symptom as an uncovered lifecycle boundary: V1 releases immediately when management opens or the player leaves, while the transparent owned-management workspace does not consume blank-area touch.
+- Advanced the same canonical installer to set native `StarterPlayer.DevTouchCameraMovementMode=Follow`, contain background touch on only the owned-management workspace, and restore `Custom` with the current unseated humanoid after relevant transitions.
+- Added two-frame deferred revalidation so recovery yields to active management, garage/race sessions and vehicle-seat camera owners.
+- No new controller, frame loop, UI, remote, saved field, server action, driving camera or Scriptable preview owner is added. Awaiting one Edit-mode install, focused device/lifecycle verification and complete mirror refresh.
+- The user subsequently reported V1.1 working overall and refreshed the complete `20:04:05` / 192-source mirror. Its over-broad full-root management sink is superseded by V1.2; native Follow and transition recovery remain current.
+
+## 2026-07-27 - Owned-garage mobile thumbstick camera guard V1 confirmed/mirrored
+
+- Captured decisive Play-client evidence: the physical garage had correct inside/management state, normal `Custom` humanoid camera, a Dynamic Thumbstick hit and `processed=false`.
+- Disabling onboarding and rebinding PlayerModule controls did not change the defect, superseding the earlier preview-camera diagnosis.
+- Added one guarded installer that extends the existing `GarageInteriorModeController`; it holds camera orientation only for the active left movement touch while following humanoid translation, then releases on every relevant lifecycle boundary.
+- No new runtime controller, UI blocker, PlayerModule replacement, remote, saved field, server owner, persistence, economy, driving or racing behavior was added.
+- The user confirmed the installed result working. The complete `18:49:50` mirror has 192 matching entries and contains the V1 source marker and enabled config attribute, closing the phase.
+
+## 2026-07-27 - Garage scroll-edge safety and native landscape contract V1 generated
+
+- Locked the user-confirmed lifecycle Phase 2 V1.3 baseline to the complete `13:43:23/24` / 192-source mirror.
+- Confirmed Customisation's mixed-card canvas undercount: vehicle cards use `226` while the workspace canvas assumed `210` for every row.
+- Confirmed fixed logical `6`/`4` edge values can scale below the shared physical glow, and Owned Garage has no explicit final-card bottom clearance.
+- Added `scripts/roblox_garage_scroll_edge_safety_v1.lua` as one transactional installer. The shared garage component measures actual card widths and derives logical gutters from physical stroke clearance; Browser and Workspace reuse it; Owned Garage adds scale-aware scrollbar and bottom clearance.
+- Made native `StarterGui.ScreenOrientation=LandscapeSensor` the project-wide phone/tablet contract and retired two redundant thrust/VFX orientation writers, including the recurring one-second write.
+- Added the durable landscape-only rule to `AGENTS.md` so future work does not create portrait branches or another orientation controller.
+- No server, remote, transaction, preview, card semantic, persistence, audio, VFX appearance or driving behavior changed. Awaiting one Edit-mode install, focused landscape/PC verification and complete mirror refresh.
+- The user subsequently confirmed the result working. The complete `14:05:10` mirror contains 192 matching source entries and all six V1 markers, closing this refinement.
+
+## 2026-07-27 - Small refinements lifecycle Phase 2 V1.3 concurrent Objective 3 unlock generated
+
+- Confirmed the refreshed `13:35:20` mirror contains installed V1.2 and the user reported that the Race prompt order is now correct.
+- The remaining mismatch was the documented V1.2 Objective 3 rule itself: it still required `objectiveComplete(2)` as well as acknowledged `RaceShortcut`.
+- Advanced the same canonical installer to V1.3. Acknowledged `RaceShortcut` now immediately unlocks Objective 3, allowing Objectives 2 and 3 to coexist and complete independently.
+- Installed V1.2 upgrades through one revision marker and one exact objective-rule replacement. No saved state, completion meaning, remote, renderer, garage, loading, controls, audio or driving owner changed.
+- The user subsequently confirmed the complete sequence working. The refreshed `13:43:23/24` mirror contains 192 matching source entries and the onboarding V1.3 marker, closing this phase.
+
+## 2026-07-27 - Small refinements lifecycle Phase 2 V1.2 Race-prompt timing correction generated
+
+- Confirmed the refreshed `13:25:51` mirror contains the installed V1.1 onboarding source and the user reported every other Phase 2 behavior working.
+- Diagnosed the remaining mismatch as V1.1 gating `RaceShortcut` on `Completed.GarageManagementEntered`, which delayed the Race prompt until Objective 2 completed.
+- Advanced the same canonical installer to V1.2. The Race prompt now becomes eligible from the existing persisted `SeenPages.GarageShortcut` acknowledgement recorded by Garage prompt `NEXT`.
+- Preserved the Objective 3 contract: it still requires both Objective 2 completion and acknowledged `RaceShortcut`. No objective meaning, saved field, remote, UI owner, audio, garage, driving or loading behavior changed.
+- Installed V1.1 upgrades through two exact onboarding anchors; the installer remains transactional, compile-checked, idempotent and capable of producing V1.2 from V1 or the earlier clean baseline.
+
+## 2026-07-27 - Small refinements lifecycle Phase 2 V1.1 onboarding sequence generated
+
+- Confirmed the refreshed `13:08:29` mirror contains 192 matching source entries, all six installed V1 markers and `DriveInSpeedGateEnabled=false`.
+- Preserved the user-confirmed any-speed garage entry, mobile garage camera and audio/input implementations unchanged.
+- Advanced the existing canonical Phase 2 installer to upgrade installed V1 or produce complete V1.1 from the earlier clean baseline.
+- `OnboardingClient_Active` now consumes the successful `FreeRoamVehicleSpawned` signal while loading still targets `FreeRoamDrive`, preparing black Controls before loading releases.
+- Added one presentation blocker across tutorial rendering, stable-layout waits, target resolution, objectives and guide trails. Resumption requires both first-drive presentation attributes to clear after the fade.
+- Replaced the shared Objective-1 unlock with a strict chain: Objective 2 after Garage shortcut `NEXT`; Objective 3 after Objective 2 completion and Race shortcut `NEXT`.
+- Reused existing saved `SeenPages`; no saved field, remote, loading runtime, audio source, driving owner, bootstrap or new controller was added.
+- Dry projection passed all 16 exact installed-source replacements. Awaiting one Edit-mode install, fresh/replayed onboarding verification and full mirror refresh.
+
+## 2026-07-27 - Small refinements lifecycle Phase 2 V1 generated
+
+- Locked the user-confirmed Phase 1.1 baseline to the complete `12:20:09` / 192-script mirror.
+- Added `scripts/roblox_small_refinements_lifecycle_phase2_v1.lua` as one guarded transactional `INSTALL` / `AUDIT` command for all four approved lifecycle/input/audio refinements.
+- Keeps owned-garage management authoritative while disabling its speed rejection through a described opt-in config attribute; no client bypass or vehicle lifecycle owner was added.
+- Hardens the existing preview camera against touch capture while walking inside an owned garage.
+- Makes the desktop Controls state explicit, blocks gameplay input during the first-drive page, uses the existing modal backdrop as a full black reveal, labels the action `NEXT`, and fades to free roam before release.
+- Reuses the current vehicle/context audio controllers to defer local ignition, loops, wind, music and ambience until the reveal completes. No audio asset, remote, saved data, economy, VFX, race or bootstrap change.
+- Added the Standard-lane contract, focused PC/mobile verification matrix, risks and rollback in `docs/small-refinements-lifecycle-phase2-v1.md`.
+- Awaiting one Edit-mode install, focused Play verification and complete Studio mirror refresh.
+
+## 2026-07-27 - Small refinements shared presentation V1.1 repair generated
+
+- The user reported installed V1 mostly working and refreshed the complete `12:04:42` mirror with 192 exported scripts.
+- Diagnosed grey notice text as a gradient attached directly to its `TextLabel`, the touch `NO` rectangle as forced `GuiService.SelectedObject`, and undimmed objectives as a lower-display-order free-roam shade.
+- Diagnosed missing mobile race telemetry definitively: V1 retired the local toast but left `toast.Visible=false` in the telemetry-only render branch, aborting each race frame before telemetry became visible.
+- Advanced the same canonical installer to V1.1. Notifications become content-sized with a `280 px` mobile cap and separate white text; shared confirmations and Race Exit consume one `650 x 270` geometry contract in a top-level physical overlay; Owned Garage consumes Race Browser footer geometry/theme; the stale toast reference is removed.
+- No gameplay, server action, race lifecycle, driving values, saved data, economy, VFX or audio ownership changed. Awaiting one Edit-mode install, focused Play verification and full mirror refresh.
+
+## 2026-07-27 - Small refinements Phase 1 shared presentation generated
+
+- Added `scripts/roblox_small_refinements_shared_presentation_v1.lua` as one guarded, transactional installer for the approved presentation phase.
+- Reuses `ResponsiveUIFoundation` for all shared confirmations and top notices, `SharedTopNotificationController_Active` as the only notice renderer, the Race browser's physical inset contract, the shared garage workspace header, and the existing `UIAudioSuppressClick` audio contract.
+- Adds one shared player-facing vehicle-name resolver so desktop/mobile dropdowns show `PIERCER` and owned-garage drive-out prompts show full names such as `Piercer Forge`, while stable Bruiser IDs and persistence remain unchanged.
+- Repairs the owned-garage capacity metric, duplicate desktop Cash strokes and continuous mobile driving-control click sounds without changing server economy, purchases, driving, racing, VFX or saved data.
+- The installer preflights all anchors and baselines, compiles every projected source, audits 17 contracts, is idempotent after a complete install and rolls the complete mutation set back on failure.
+- Awaiting Edit-mode installation, Play verification and full Studio mirror refresh. Phase 2 lifecycle/audio/input refinements remain unimplemented.
+
 ## 2026-07-27 - Free-roam Cash smoothing and full formatting V1 confirmed, mirrored and handed off
 
 - Audited the complete `11:08:34` V1.1 mirror and confirmed desktop/mobile free roam immediately render replicated `leaderstats.Cash` through compact formatting.
