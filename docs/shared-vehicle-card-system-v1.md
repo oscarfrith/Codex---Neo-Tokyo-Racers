@@ -1,6 +1,6 @@
 # Shared Vehicle Card System V1.2
 
-**Status:** V1.1 was user-confirmed working and fully mirrored at `2026-07-26 22:27:01/02`. V1.2 is generated from that exact live browser source and awaits Studio installation and runtime confirmation.
+**Status:** V1.2 is installed, user-confirmed and fully mirrored at `2026-07-26 22:35:11`. Handoff complete.
 
 **Canonical installer:** `scripts/roblox_shared_vehicle_card_system_v1.lua`
 
@@ -108,4 +108,4 @@ States/devices/performance:
 - Failure/observability: PASS for installer; runtime Output pending.
 - Documentation: PASS for generated state; confirmation/mirror handoff pending.
 
-Done when V1.1 installation and runtime checks pass, the user confirms the result, and a fresh complete mirror contains all five V1.1 revision markers with matching manifests/checksums.
+Done: installation and runtime checks passed, the user confirmed the result, and the fresh complete mirror contains the browser V1.2 marker, all five V1.1 shared-owner markers and 189 matching manifest/source/checksum entries.

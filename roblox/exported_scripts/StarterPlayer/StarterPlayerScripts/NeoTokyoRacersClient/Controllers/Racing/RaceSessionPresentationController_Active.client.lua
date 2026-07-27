@@ -1,3 +1,5 @@
+-- NTR_RACING_PRESENTATION_LIFECYCLE_V1_4_ADAPTIVE_SAFE_EDGE_CANVAS
+-- NTR_RACING_PRESENTATION_LIFECYCLE_V1_3_FULLSCREEN_EXIT
 -- NTR_SHARED_RESPONSIVE_UI_FOUNDATION_V1_1
 -- NTR_RACING_FLOW_COUNTDOWN_QUEUE_EXIT_OWNERSHIP
 -- NTR_RACING_UI_MOBILE_PHASE2_LARGE_SESSION_CONTROLS
@@ -13,6 +15,7 @@
 
 local Players=game:GetService("Players")
 local ReplicatedStorage=game:GetService("ReplicatedStorage")
+local GuiService=game:GetService("GuiService")
 local RunService=game:GetService("RunService")
 local UserInputService=game:GetService("UserInputService")
 local Workspace=game:GetService("Workspace")
@@ -81,10 +84,43 @@ end
 local function call(action,payload) local ok,result=pcall(function() return raceRequest:InvokeServer(action,payload or {}) end) return ok and type(result)=="table" and result or {} end
 
 local old=playerGui:FindFirstChild("NTR_SharedInRaceHUD") if old then old:Destroy() end
-local gui=Instance.new("ScreenGui") gui.Name="NTR_SharedInRaceHUD" gui.IgnoreGuiInset=true gui.ResetOnSpawn=false gui.DisplayOrder=155 gui.Parent=playerGui
+local gui=Instance.new("ScreenGui") gui.Name="NTR_SharedInRaceHUD" gui.IgnoreGuiInset=true gui.ResetOnSpawn=false gui.DisplayOrder=155 gui.ZIndexBehavior=Enum.ZIndexBehavior.Global pcall(function() gui.ScreenInsets=Enum.ScreenInsets.None end) pcall(function() gui.ClipToDeviceSafeArea=false end) gui.Parent=playerGui
 local canvas=Instance.new("Frame") canvas.Name="ReferenceCanvas" canvas.AnchorPoint=Vector2.new(.5,.5) canvas.Position=UDim2.fromScale(.5,.5) canvas.Size=UDim2.fromOffset(1920,1080) canvas.BackgroundTransparency=1 canvas.Visible=false canvas.Parent=gui
 local scale=Instance.new("UIScale") scale.Parent=canvas
-local function updateScale() local camera=Workspace.CurrentCamera local v=camera and camera.ViewportSize or Vector2.new(1920,1080) scale.Scale=math.min(v.X/1920,v.Y/1080) end updateScale() if Workspace.CurrentCamera then Workspace.CurrentCamera:GetPropertyChangedSignal("ViewportSize"):Connect(updateScale) end
+local REFERENCE_VIEWPORT=Vector2.new(1920,1080)
+local cameraViewportConnection=nil
+local function safeViewportRect(viewport)
+	local origin=Vector2.zero local size=viewport
+	local ok,fullRect,deviceRect=pcall(function()
+		return GuiService:GetInsetArea(Enum.ScreenInsets.None),GuiService:GetInsetArea(Enum.ScreenInsets.DeviceSafeInsets)
+	end)
+	if ok and fullRect and deviceRect then
+		origin=deviceRect.Min-fullRect.Min
+		size=deviceRect.Max-deviceRect.Min
+	end
+	origin=Vector2.new(math.clamp(origin.X,0,math.max(0,viewport.X-1)),math.clamp(origin.Y,0,math.max(0,viewport.Y-1)))
+	size=Vector2.new(math.clamp(size.X,1,math.max(1,viewport.X-origin.X)),math.clamp(size.Y,1,math.max(1,viewport.Y-origin.Y)))
+	return origin,size
+end
+local function updateScale()
+	local camera=Workspace.CurrentCamera
+	local viewport=camera and camera.ViewportSize or gui.AbsoluteSize
+	if viewport.X<1 or viewport.Y<1 then viewport=REFERENCE_VIEWPORT end
+	local origin,safeSize=safeViewportRect(viewport)
+	local uniformScale=math.max(.01,math.min(safeSize.X/REFERENCE_VIEWPORT.X,safeSize.Y/REFERENCE_VIEWPORT.Y))
+	scale.Scale=uniformScale
+	canvas.Position=UDim2.fromOffset(origin.X+safeSize.X*.5,origin.Y+safeSize.Y*.5)
+	canvas.Size=UDim2.fromOffset(safeSize.X/uniformScale,safeSize.Y/uniformScale)
+end
+local function bindCameraViewport()
+	if cameraViewportConnection then cameraViewportConnection:Disconnect() cameraViewportConnection=nil end
+	local camera=Workspace.CurrentCamera
+	if camera then cameraViewportConnection=camera:GetPropertyChangedSignal("ViewportSize"):Connect(updateScale) end
+	updateScale()
+end
+Workspace:GetPropertyChangedSignal("CurrentCamera"):Connect(bindCameraViewport)
+gui:GetPropertyChangedSignal("AbsoluteSize"):Connect(updateScale)
+bindCameraViewport()
 local suppressed={}
 local legacyHudNames={NTR_RaceHud=true,NTR_RaceHud_Phase3=true,NTR_RaceCheckpointBadge_Phase5D=true,NTR_RaceQueue_Phase8=true,NTR_RaceSessionControls_Phase8D=true}
 local function suppress(active)
@@ -138,29 +174,35 @@ local resetButton=UI.Button(controls,{Text="RESET",Position=UDim2.fromOffset(10,
 local exitButton=UI.Button(controls,{Text="EXIT",Position=UDim2.fromOffset(180,3),Size=UDim2.fromOffset(170,32),Color=C("PanelDeep"),StrokeColor=C("OutlineSoft"),TextSize=13}) exitButton.BackgroundTransparency=.48 exitButton.TextTransparency=.12
 if touch then
 	local buttonWidth=MN("SessionButtonWidth",126) local buttonHeight=MN("SessionButtonHeight",48) local buttonGap=MN("SessionButtonGap",6) local buttonTextSize=MN("SessionButtonTextSize",15)
-	controls.Position=UDim2.fromOffset(MN("SessionControlsCenterX",760),1080-MN("SessionControlsBottomOffset",24))
+	controls.Position=UDim2.new(0,MN("SessionControlsCenterX",760),1,-MN("SessionControlsBottomOffset",24))
 	controls.Size=UDim2.fromOffset(buttonWidth,buttonHeight*2+buttonGap)
 	resetButton.Position=UDim2.fromOffset(0,0) resetButton.Size=UDim2.fromOffset(buttonWidth,buttonHeight) resetButton.TextSize=buttonTextSize
 	exitButton.Position=UDim2.fromOffset(0,buttonHeight+buttonGap) exitButton.Size=UDim2.fromOffset(buttonWidth,buttonHeight) exitButton.TextSize=buttonTextSize
 end
-local modalShade=Instance.new("Frame") modalShade.Name="ExitConfirmationShade" modalShade.BackgroundColor3=Color3.new(0,0,0) modalShade.BackgroundTransparency=.34 modalShade.BorderSizePixel=0 modalShade.Size=UDim2.fromScale(1,1) modalShade.Visible=false modalShade.ZIndex=100 modalShade.Parent=canvas
+local modalBackdrop=Instance.new("Frame") modalBackdrop.Name="ExitConfirmationFullScreenBackdrop" modalBackdrop.Active=true modalBackdrop.BackgroundColor3=Color3.new(0,0,0) modalBackdrop.BackgroundTransparency=.34 modalBackdrop.BorderSizePixel=0 modalBackdrop.Position=UDim2.fromScale(0,0) modalBackdrop.Size=UDim2.fromScale(1,1) modalBackdrop.Visible=false modalBackdrop.ZIndex=90 modalBackdrop.Parent=gui
+local modalShade=Instance.new("Frame") modalShade.Name="ExitConfirmationShade" modalShade.BackgroundTransparency=1 modalShade.BorderSizePixel=0 modalShade.Size=UDim2.fromScale(1,1) modalShade.Visible=false modalShade.ZIndex=100 modalShade.Parent=canvas
 local modal=UI.Panel(modalShade,{Name="ExitConfirmation",Position=UDim2.fromScale(.5,.5),Size=UDim2.fromOffset(650,270),Color=C("PanelDeep"),Transparency=.04,StrokeColor=C("Outline"),StrokeTransparency=.02}) modal.AnchorPoint=Vector2.new(.5,.5) modal.Position=UDim2.fromScale(.5,.5) modal.Size=UDim2.fromOffset(650,270) modal.ZIndex=101
 local modalTitle=UI.Label(modal,{Text="EXIT RACE?",Position=UDim2.fromOffset(20,8),Size=UDim2.new(1,-40,0,54),TextSize=22,Color=C("Text"),Role="Heading",XAlignment=Enum.TextXAlignment.Center}) modalTitle.ZIndex=102
 local modalCopy=UI.Label(modal,{Text="CURRENT PROGRESS WILL BE LOST.",Position=UDim2.fromOffset(20,88),Size=UDim2.new(1,-40,0,44),TextSize=15,Color=C("Text"),Role="Heading",XAlignment=Enum.TextXAlignment.Center}) modalCopy.ZIndex=102
 local noButton=UI.Button(modal,{Text="NO",Position=UDim2.fromOffset(30,182),Size=UDim2.fromOffset(270,54),Color=C("PanelDeep"),StrokeColor=C("Outline"),TextSize=13}) noButton.ZIndex=103
 local yesButton=UI.Button(modal,{Text="YES",Position=UDim2.fromOffset(350,182),Size=UDim2.fromOffset(270,54),Color=C("PanelBlue"),StrokeColor=C("Telemetry"),TextSize=13}) yesButton.ZIndex=103
+local function setExitModalVisible(visible)
+	visible=visible==true
+	modalBackdrop.Visible=visible
+	modalShade.Visible=visible
+end
 local busy=false
 local function transition(step,payload) if transitionRequest and transitionRequest:IsA("BindableEvent") then payload=payload or {} payload.Step=step transitionRequest:Fire(payload) end end
 local function invokeSession(kind)
-	if busy or not active then return end busy=true modalShade.Visible=false transition("FadeOut",{Reason=kind,Label=kind=="Reset" and "RESETTING" or "EXITING"}) task.wait(.25)
+	if busy or not active then return end busy=true setExitModalVisible(false) transition("FadeOut",{Reason=kind,Label=kind=="Reset" and "RESETTING" or "EXITING"}) task.wait(.25)
 	local remote=active.Mode=="Race" and queueRequest or raceRequest local action=active.Mode=="Race" and (kind=="Reset" and "ResetToLastCheckpoint" or "ExitRaceToStart") or (kind=="Reset" and "ResetActiveTimeTrial" or "ExitActiveTimeTrial")
 	local ok,result=pcall(function() return remote:InvokeServer(action,{RunId=active.RunId,EventId=active.EventId}) end) local success=ok and type(result)=="table" and (result.Ok==true or result.Success==true)
 	transition("RestoreCamera",{Reason=kind}) transition("FadeIn",{Reason=kind,Delay=success and .3 or .08,Success=success}) -- NTR_LOADING_SYSTEM_PHASE4_ACTIVE_RACE_EXIT_V1
 	if kind=="Reset" then resetButton.Text=success and "RESET DONE" or "RESET FAILED" task.delay(1.1,function() if resetButton.Parent then resetButton.Text="RESET" end busy=false end) else if not success then exitButton.Text="EXIT FAILED" task.delay(1.2,function() if exitButton.Parent then exitButton.Text="EXIT" end busy=false end) end end
 end
 resetButton.Activated:Connect(function() invokeSession("Reset") end)
-exitButton.Activated:Connect(function() if not active then return end modalTitle.Text=active.Mode=="Race" and "EXIT RACE?" or "EXIT TIME TRIAL?" modalShade.Visible=true end)
-noButton.Activated:Connect(function() modalShade.Visible=false end) yesButton.Activated:Connect(function() invokeSession("Exit") end)
+exitButton.Activated:Connect(function() if not active then return end modalTitle.Text=active.Mode=="Race" and "EXIT RACE?" or "EXIT TIME TRIAL?" setExitModalVisible(true) end)
+noButton.Activated:Connect(function() setExitModalVisible(false) end) yesButton.Activated:Connect(function() invokeSession("Exit") end)
 
 local avatarCache={}
 local function avatar(parent,userId,pos,size) local image=Instance.new("ImageLabel") image.BackgroundColor3=C("PanelSoft") image.BackgroundTransparency=.15 image.BorderSizePixel=0 image.Position=pos image.Size=size image.ScaleType=Enum.ScaleType.Crop image.Parent=parent UI.Corner(image,5) userId=tonumber(userId) if not userId then return end if avatarCache[userId] then image.Image=avatarCache[userId] return end task.spawn(function() local ok,url=pcall(function() return Players:GetUserThumbnailAsync(userId,Enum.ThumbnailType.HeadShot,Enum.ThumbnailSize.Size100x100) end) if ok then avatarCache[userId]=url if image.Parent then image.Image=url end end end) end
@@ -231,7 +273,7 @@ local function updateHudMapMarker(dt)
 	playerMapMarker.Rotation=displayedMapMarkerHeading playerMapMarker.Visible=mapArt.Image~=""
 end
 local function show(payload,mode) active=active or {} active.Mode=mode active.RunId=payload.RunId active.EventId=payload.EventId active.VehicleTier=payload.VehicleTier or active.VehicleTier active.CurrentLap=tonumber(payload.CurrentLap) or active.CurrentLap or 1 active.LapTarget=tonumber(payload.LapTarget) or active.LapTarget or 1 active.ParticipantCount=tonumber(payload.ParticipantCount) or active.ParticipantCount or 1 active.LapTimes=active.LapTimes or {} active.Positions=active.Positions or {} prepareHudMapSession(mode,active.EventId) mapArt.Image=touch and "" or hudMapImage(mode,active.EventId) resetHudMapMarker() canvas.Visible=true suppress(true) presentationMode(true) end
-local function hide(_restoreLegacy) active=nil clearHudMapState() canvas.Visible=false modalShade.Visible=false busy=false suppress(false) presentationMode(false) clear(boardBody) end
+local function hide(_restoreLegacy) active=nil clearHudMapState() canvas.Visible=false setExitModalVisible(false) busy=false suppress(false) presentationMode(false) clear(boardBody) end
 local function queryPB() if not (active and active.Mode=="TimeTrial" and active.VehicleTier) then return end local result=call("GetTimeTrialPersonalBest",{EventId=active.EventId,VehicleTier=active.VehicleTier}) active.PersonalBest=tonumber(result.BestSeconds or (result.Record and result.Record.BestSeconds)) end
 local function renderTimeTrialBoard()
 	clear(boardBody)

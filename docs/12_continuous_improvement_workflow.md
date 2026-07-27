@@ -1,5 +1,33 @@
 # Continuous Improvement Workflow
 
+## Integrated replacement must retire companion UI lesson (2026-07-26)
+
+When a new canonical screen absorbs data from an older companion panel, completing the renderer does not retire the older event listener automatically. Audit every enabled consumer of the screen-open event. If an older isolated panel now duplicates integrated content, remove that exact owner and add its exact runtime GUI name to cleanup; keep any headless action bridge that still owns required server calls.
+
+Full-screen modal backdrops must be rooted in physical-screen space, not a fixed reference canvas that is aspect-scaled for content. Keep the modal panel on the responsive design canvas, but put its backdrop at the `ScreenGui` viewport boundary, explicitly cover no-inset/safe-area edges, and toggle both through one visibility function.
+
+## Parallel authored entry-point discovery lesson (2026-07-26)
+
+When a lifecycle owner is intended to cover a feature mode, discover targets by the authored semantic contract rather than one observed instance name. Racing has parallel `RaceStartZone` and `TimeTrialStartZone` parts under the same `StartZones` owner, each with a `Mode` attribute and the same native prompt path. Registering only the first visible name can make one mode appear fixed while the other retains stale presentation.
+
+For shared device refinements, change the existing renderer and reuse the shared device classifier. A mobile-only scale should be a normal configuration value with desktop fixed at `1.0`; do not fork a second UI or copy the renderer.
+
+## Same-name visual category lesson (2026-07-26)
+
+Do not collapse visually related authored objects into one configuration switch until their gameplay meaning and runtime owner are mapped. In racing, checkpoint-attached guide arrows and physical route-segment `ArrowMarkers` are both called “arrows,” but the first is optional checkpoint presentation and the second is intended active route guidance owned by the session segment window.
+
+Before disabling a visual category, inventory its hierarchy, renderer and state transitions separately. Prefer distinct semantic config names such as `ShowCheckpointArrows` and `ShowRouteArrowMarkers`, then audit each consumer. Acceptance wording such as “remove arrows” must be resolved against concrete instances/screenshots or current authoring structure before one switch is shared across owners.
+
+An eligible-state controller must also assert the required visible state, not merely restore whatever happened to be authored. Preserve authored values for removal/rollback, but make the active presentation contract explicit. When a server periodically recreates or re-enables a native prompt, the local eligibility owner should reassert only its presentation property and leave trigger validation authoritative.
+
+## Retired-owner regression lesson (2026-07-26)
+
+A broad shared-presentation installer can accidentally reactivate a retired controller when it treats every styled source as an enabled runtime owner. Styling compatibility and lifecycle ownership are separate contracts: a source may retain shared renderer calls for rollback/history while its `LocalScript.Disabled` state must remain true.
+
+Before a connected installer targets multiple UI scripts, compare each target against the newest owner map and mirror `Disabled` state. The preflight must classify active, headless bridge, retained-disabled and superseded sources separately. A recovery installer must never require a retired source to be enabled merely because it contains current shared tokens. Committed audit should reject both missing active owners and reactivated retired owners.
+
+When current documentation and the fresh mirror disagree, treat the mirror as state evidence and older handoffs as intended-contract evidence. Resolve the cause before mutation, then encode the corrected owner set into the new canonical audit.
+
 ## Large-script local declaration ordering lesson (2026-07-26)
 
 Luau local function declarations are lexical. A function inserted before `local function LaterHelper()` cannot call `LaterHelper` unless it was explicitly forward-declared in scope; it otherwise resolves a different/global value and can compile successfully but fail only on the branch that reaches the call. Prefer removing unnecessary cross-boundary response work. If it is required, project and runtime-test the success branch as well as early rejection branches.

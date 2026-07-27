@@ -1,6 +1,26 @@
 # Customisation UI
 
-## Shared vehicle-card system V1.1 confirmed; V1.2 generated (2026-07-26)
+## Shared racing HUD V1.4 adaptive safe-edge layout confirmed/mirrored (2026-07-27)
+
+`RaceSessionPresentationController_Active` remains the one Race/Time Trial HUD, map, RESET/EXIT and modal geometry owner. V1.4 does not recreate any panel: it changes the existing reference canvas from a centred fixed-aspect island to a uniformly scaled logical canvas spanning the current device-safe viewport. Existing child anchors consequently place lap progress at safe left, the session board at safe right, the map at safe left/bottom, centred timing/position at top centre and desktop controls at bottom centre across 16:9, ultrawide, tall/windowed, tablet and phone viewports.
+
+The canvas still derives element size from the smaller safe viewport axis, so cards, text and map art do not stretch. Touch RESET/EXIT retains its authored horizontal placement to avoid driving controls but now follows the adaptive safe bottom. The V1.3 EXIT backdrop remains a direct child of the full no-inset `ScreenGui`, so rounded/cutout regions stay covered while interactive HUD content respects `DeviceSafeInsets`.
+
+The user confirmed the result working. The complete `10:05:47` mirror contains all V1.4 markers and 189 mutually matching script/checksum/manifest entries. No Studio command remains for ordinary racing UI use.
+
+## Racing entry ownership and full-screen EXIT V1.3 confirmed/mirrored
+
+The current racing entry surface is `NTR_RaceEntryPresentation`, owned by `RaceEntryPresentationController_Active`; it already contains personal-best and Records content. `RaceEntryMenuClient_Active` remains a headless state/action bridge. The older `RacePersonalBestBoardClient_Active`/`NTR_TimeTrialPersonalBestBoard` pair was superseded and removed by the V1.3 canonical installer.
+
+The user confirmed this result working and refreshed the complete Studio mirror at `2026-07-27 09:55:18`; the mirror contains 189 exported scripts, omits the retired PB-board LocalScript and includes the V1.3 full-screen EXIT marker.
+
+The in-session EXIT modal remains owned by `RaceSessionPresentationController_Active`. Its panel stays on the shared 1920×1080 responsive canvas, while a separate black backdrop fills the physical `ScreenGui` viewport with `ScreenInsets=None` and safe-area clipping disabled. This prevents letterbox and rounded-mobile-edge gaps without creating another exit action owner.
+
+## Racing checkpoint world pill V1.2 confirmed
+
+The user confirmed the result working and refreshed the `23:12:59` mirror. The racing route-guide keeps one shared `NextGateLabel` world-pill renderer. `MobileCheckpointUIScale=0.6` scales its width, height, text, corner and stroke by 40% on devices classified mobile by `ResponsiveUIFoundation.IsMobile()`. PC remains at `1.0`; no separate mobile checkpoint UI or state owner is added.
+
+## Shared vehicle-card system V1.2 confirmed and handed off (2026-07-26)
 
 `scripts/roblox_shared_vehicle_card_system_v1.lua` makes `GarageReplacementComponents.VehicleCard` the canonical renderer called by Dealership, Customisation, desktop/touch free-roam, Race and Time Trial.
 
@@ -10,7 +30,9 @@ V1.1 adds a Dealership-only two-decimal millions formatter, full grouped garage 
 
 Dealership factory preview, Customisation saved-owned preview, free-roam spawn, race selection/start, suppression and input release remain with their existing owners. No bootstrap, server, persistence, remote, VFX or unrelated page changes. V1.1 was confirmed and mirrored at `22:27:01/02`.
 
-V1.2 changes only the shared garage browser's responsive presentation. PC Cash/Spaces retain `17/16`; touch/mobile use `11/10`. Mobile Dealership popups omit the truncating price and show `BUY`/`BUY ANOTHER`, while PC retains its price. Customisation still shows `CUSTOMISE`, and the callback remains the existing authoritative primary action. See `docs/shared-vehicle-card-system-v1.md`.
+V1.2 changes only the shared garage browser's responsive presentation. PC Cash/Spaces retain `17/16`; touch/mobile use `11/10`. Mobile Dealership popups omit the truncating price and show `BUY`/`BUY ANOTHER`, while PC retains its price. Customisation still shows `CUSTOMISE`, and the callback remains the existing authoritative primary action.
+
+The user confirmed the result complete and requested handoff. The `22:35:11` mirror contains the browser V1.2 marker, all five V1.1 shared owners and 189 matching source/checksum/manifest entries. No further Studio command is pending. See `docs/shared-vehicle-card-system-v1.md`.
 
 ## Shared Responsive UI Foundation V1.1 confirmed and handed off (2026-07-26)
 

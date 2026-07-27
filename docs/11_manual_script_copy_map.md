@@ -4,15 +4,27 @@
 **Status:** Current script mirror folders created  
 **Current mirror root:** `roblox/exported_scripts`
 
+## Racing Presentation And Lifecycle Refinements V1.4 confirmed
+
+The user confirmed V1.4 working and refreshed the complete `2026-07-27 10:05:47` mirror with 189 mutually matching exported-script, source-manifest and checksum entries. No Studio command is pending for ordinary use. Retain:
+
+```text
+scripts/roblox_racing_presentation_lifecycle_refinements_v1.lua
+```
+
+as exact-scope recovery/audit evidence. Only run it again for intentional recovery or audit; do not create a second repair script. It exact-checks known owner sources, compiles the projected shared HUD before mutation, expands the existing uniformly scaled canvas to `DeviceSafeInsets`, retains the full-physical-screen EXIT backdrop, and rolls back source/revision state in memory on failure.
+
+The full mirror is already refreshed. Do not manually copy the projected LocalScript/server sources out of the installer and do not commit `docs/studio-full-export-paste.txt`.
+
 ## Shared Vehicle Card System V1.2
 
-V1.1 was user-confirmed and fully mirrored at `2026-07-26 22:27:01/02`. The same canonical installer now contains the V1.2 mobile refinement. Run the complete contents of:
+V1.2 is installed, user-confirmed and fully mirrored at `2026-07-26 22:35:11`. No Studio command is pending for ordinary use. Retain the complete contents of:
 
 ```text
 scripts/roblox_shared_vehicle_card_system_v1.lua
 ```
 
-once in the Edit-mode Command Bar with `MODE="INSTALL"`. Require `[NTR Shared Vehicle Cards V1.2] INSTALL PASS`, complete the focused mobile/desktop checks in `docs/shared-vehicle-card-system-v1.md`, then refresh the full mirror. Do not create a separate mobile controller or card renderer.
+as exact-scope recovery/audit evidence. A recovery run requires the confirmed V1.1 owner markers and reports `[NTR Shared Vehicle Cards V1.2] INSTALL PASS`. Do not create a separate mobile controller or card renderer.
 
 ## Shared Responsive UI Foundation V1.1
 

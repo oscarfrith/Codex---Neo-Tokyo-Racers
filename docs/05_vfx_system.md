@@ -1,5 +1,16 @@
 # VFX System
 
+## Race start-zone aura, prompt and split arrow presentation V1.4 confirmed/mirrored
+
+`scripts/roblox_racing_presentation_lifecycle_refinements_v1.lua` introduces no vehicle VFX owner and does not change `CachedThrustVisualRuntime` or participant vehicle visibility.
+
+- `RaceLifecyclePresentationController_Active` is the sole local owner for authored `RaceStartZone.vfx_aura` presentation. V1.1 explicitly enables supported aura effects for an eligible free-roam client, hides them for that client's entry/loading/queue/staging/countdown/active session, and remembers authored values for controller removal/rollback.
+- Eligible free-roam clients see the aura. Loading, race entry/launch, queue, staging, countdown and active Race/Time Trial hide it only for that client. Matching terminal events and cleared loading/queue state restore it.
+- Both duplicated `vfx_aura` children in the confirmed route hierarchy are handled. Future streamed race start zones and aura descendants are discovered with bounded lifetime connections.
+- A current run ID prevents delayed prior-session terminal events from restoring the aura during a newer session; a local generation prevents deferred visibility writes from winning after state changes.
+- Arrow presentation has two explicit contracts: `RouteGuide.ShowCheckpointArrows=false` disables checkpoint-attached/dynamic guide arrows, while `RouteGuide.ShowRouteArrowMarkers=true` preserves the existing active-session segment-window display for physical route `ArrowMarkers`. This is route presentation, not vehicle VFX.
+- The user confirmed the complete presentation/lifecycle result through V1.4. The refreshed `2026-07-27 10:05:47` mirror has 189 matching entries, retains the local aura owner and split arrow gates, and adds only the confirmed shared-HUD geometry refinement after V1.3. Vehicle VFX ownership remains unchanged.
+
 ## Multiplayer runtime state V1 confirmed
 
 `CachedThrustVisualRuntime` remains the only live vehicle VFX attachment owner. Local vehicles keep immediate driving attributes; remote vehicles consume existing server-validated replicated `NTRAudioIgnition`, `NTRAudioDrive`, `NTRAudioDrift` and `NTRAudioBoost` state.

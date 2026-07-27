@@ -1,14 +1,38 @@
 # Current Known Issues
 
-## Shared vehicle-card system V1.1 confirmed/mirrored; V1.2 mobile refinement pending (2026-07-26)
+## Racing presentation/lifecycle V1.4 confirmed and fully mirrored (2026-07-27)
 
-- Closed for V1.1: the user reported the result working well and refreshed the complete `2026-07-26 22:27:01/02` mirror. It has 189 matching exported-script/source-manifest/checksum entries, zero checksum mismatches and all five V1.1 markers.
-- Screenshot review found that the confirmed PC Cash/Spaces sizes are too large on touch/mobile and that the mobile purchase popup truncates its appended price.
-- `scripts/roblox_shared_vehicle_card_system_v1.lua` now contains a V1.2 source-only refinement of the exact mirrored browser: mobile Cash/Spaces caps are `11/10`, while desktop remains `17/16`; mobile popup copy is `BUY`/`BUY ANOTHER`, while desktop retains the price.
-- Pending checks: mobile Cash/Spaces readability, desktop size preservation, mobile popup no-price copy, desktop popup price, purchase action, affordability and repeated open/close.
+- Closed: the user confirmed the V1.4 adaptive race HUD working. The complete `2026-07-27 10:05:47` mirror has 189 matching exported-script, source-manifest, checksum and hierarchy entries with zero mismatches.
+- `RaceSessionPresentationController_Active` remains the sole shared geometry owner. Its uniformly scaled logical canvas now spans `DeviceSafeInsets`, so lap, map, board, metric and controls use the intended safe edges without stretching.
+- V1.4 repairs the existing shared owner rather than adding a layout owner. The uniformly scaled canvas now expands to the current `DeviceSafeInsets` rectangle, so child edge anchors use all safe width/height without stretching. Standard 16:9 composition stays equivalent.
+- Touch RESET/EXIT retains its authored horizontal avoidance position but now follows the adaptive safe bottom instead of a hard-coded `1080` Y coordinate. `CurrentCamera` replacement and viewport/orientation changes trigger bounded geometry updates.
+- The direct V1.3 EXIT backdrop remains full physical screen and outside the safe canvas. Server race state, laps/timing, map tracking, queue, countdown, PBs, results, rewards, reset/exit actions, prompt/aura, arrows, driving, VFX and persistence are unchanged.
+- The mirror contains both V1.4 revision attributes and the adaptive-safe-edge marker; all three legacy racing clients remain disabled, the standalone PB board remains absent, checkpoint arrows remain off and physical route markers remain on.
+- No Studio command is pending for ordinary use. Keep device/orientation, two-client and repeated-session checks in release regression.
+- Accepted non-blocker: `OnboardingClient_Active` repeatedly assigns `ClipsDescendants=false` to an objective `CanvasGroup`. Roblox ignores it and groups the warning in Output; it is unrelated to racing and existing glow-safe padding prevents a visible handoff defect.
+- Do not rerun `scripts/roblox_shared_responsive_ui_foundation_v1.lua` after this install without first updating its recovery preflight: that older installer still treats the retired session-controls client as an enabled target.
+- See `docs/racing-presentation-lifecycle-refinements-v1-2026-07-26.md`.
+
+## Superseded V1.3 pre-confirmation notes (2026-07-26)
+
+- Closed for V1.2: the user confirmed prompt, aura, arrows and mobile checkpoint sizing working. The complete `23:12:59` mirror has 190 matching entries and all V1.2 markers/config.
+- The remaining entry overlap is the enabled `RacePersonalBestBoardClient_Active`, which creates a separate PB board on the same entry event even though the current entry presentation already includes PB/records.
+- V1.3 removes only that superseded script/GUI and retains the headless bridge, current entry UI and every authoritative data/action owner.
+- The EXIT shade currently fills the 1920×1080 aspect-scaled canvas, leaving uncovered physical viewport regions. V1.3 adds a direct full-screen, safe-area-edge backdrop and one atomic visibility path.
+- `ShowCheckpointArrows=false` applies only to checkpoint-attached/dynamic guide arrows. `ShowRouteArrowMarkers=true` feeds the existing active-session segment-window owner. Authored marker data is still preserved/count-audited and checkpoint HUD/world markers remain unchanged.
+- Focused proof is required for one entry UI only, retained integrated PB/records, full-screen EXIT coverage on PC/mobile aspect ratios, NO/YES/failure cleanup and repeated sessions.
+- The mirror is fresh for V1.2 and becomes stale only after V1.3 installation.
+- Do not rerun `scripts/roblox_shared_responsive_ui_foundation_v1.lua` after this install without first updating its recovery preflight: that older installer still treats the retired session-controls client as an enabled target.
+- See `docs/racing-presentation-lifecycle-refinements-v1-2026-07-26.md`.
+
+## Shared vehicle-card system V1.2 confirmed and fully mirrored (2026-07-26)
+
+- Closed: the user confirmed the complete V1.2 result and requested handoff. Mobile Cash/Spaces use `11/10`, desktop retains `17/16`, mobile popup copy is `BUY`/`BUY ANOTHER`, and desktop retains its formatted price.
+- The complete `2026-07-26 22:35:11` mirror has 189 matching exported-script/source-manifest/checksum entries, zero checksum mismatches, the browser V1.2 marker and all five V1.1 shared-owner markers.
+- Purchase, preview, affordability, shared cards, spawn, Race/Time Trial selection, queue behaviour and unrelated UI owners remain unchanged.
 - The first V1.1 run stopped during projected compile before mutation: the renderer replacement retained the original `ModuleCard` declaration but also inserted a second unclosed declaration. The same canonical installer now ends the replacement immediately before the one preserved declaration.
 - Its exact guarded source windows are deliberately baseline-specific. If an anchor fails, refresh/inspect live source and repair this canonical installer rather than adding a patch.
-- The `22:27:01/02` mirror is current for confirmed V1.1. After V1.2 installation it is stale until fully refreshed.
+- No implementation or mirror task is pending. Retain cross-device sizing, popup copy and repeated open/close as release regression.
 
 ## Shared responsive UI foundation V1.1 confirmed and fully source-mirrored (2026-07-26)
 
@@ -547,7 +571,7 @@ This file is intentionally conservative. Items are included only when they were 
 - Racing Phase 11L Arrow Visual Proxy Sync Repair V2 was confirmed working on 2026-07-10. Keep marker `NTR_RACING_PHASE11L_ARROW_VISUAL_PROXY_SYNC_V2_TRANSPARENCY_RESTORE` as the current route-arrow visual baseline; future arrow visual fixes must preserve both server proxy segment sync and `NTR_ArrowOriginalTransparency` restore.
 - Racing Phase 11M is generated in Git as `scripts/roblox_racing_phase11m_time_trial_personal_best_persistence.lua` after Phase 11L was confirmed working. Run it in Edit mode, restart Play, finish a time trial, then finish a slower and faster run on the same event/tier to confirm PBs are kept/replaced correctly. DataStore persistence is configurable under `Config.Racing.PersonalBests` and defaults off; enable API services plus `DataStoreEnabled` only when doing the saved/rejoin test.
 - Racing Phase 11N was confirmed working on 2026-07-10. Keep its local PB lookup action and vehicle-card readouts as the current prototype PB UI baseline.
-- Racing Phase 11O V2 was confirmed working on 2026-07-10. Keep the isolated `RacePersonalBestBoardClient_Active` as the current local PB board baseline: it opens beside the entry menu and closes with the menu when the player exits without starting.
+- Historical Phase 11O V2 was confirmed working on 2026-07-10, but its isolated `RacePersonalBestBoardClient_Active` is no longer the current PB baseline. V1.3 retires it because PB/Records are integrated into `RaceEntryPresentationController_Active`.
 - Racing Phase 11P should not be treated as a confirmed baseline. Testing reported the result panel flow did not improve and exiting could leave the client still in driving HUD/state, blocking later re-entry/teleport.
 - Racing Phase 11Q was confirmed working on 2026-07-10. Keep its finish/exit handoff direction as the current baseline: time-trial finish/result exit/end must fire `FreeRoamVehicleExited` to clear the main driving HUD/controller before re-entry or Race browser teleport.
 - Racing Phase 11R was confirmed working on 2026-07-10 from playtest output: time-trial reward granted, `TimeTrialFinished` received, session HUD state cleared, camera restored to humanoid, `TimeTrialEnded` received, and race entry could open again.

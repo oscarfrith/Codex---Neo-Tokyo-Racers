@@ -1,3 +1,4 @@
+-- NTR_RACING_PRESENTATION_LIFECYCLE_V1_NATIVE_PROMPT
 -- NTR_RACING_FLOW_COUNTDOWN_QUEUE_EXIT_OWNERSHIP
 -- Neo Tokyo Racers - Racing Phase 3 Staged Time Trial Service
 -- NTR_RACING_PHASE3_TIME_TRIAL_SERVICE
@@ -1343,6 +1344,9 @@ local function ensurePrompt(zone, forceRecreate)
 		prompt = Instance.new("ProximityPrompt")
 		prompt.Name = PROMPT_NAME
 		prompt.KeyboardKeyCode = Enum.KeyCode.E
+		prompt.GamepadKeyCode = Enum.KeyCode.ButtonX
+		prompt.ClickablePrompt = true
+		prompt.Style = Enum.ProximityPromptStyle.Default
 		prompt.HoldDuration = 0
 		prompt.MaxActivationDistance = 24
 		prompt.RequiresLineOfSight = false
@@ -1352,7 +1356,11 @@ local function ensurePrompt(zone, forceRecreate)
 			sendEntryMenu(player, zone)
 		end)
 	end
-	prompt.ActionText = "Open Race Menu"
+	prompt.KeyboardKeyCode = Enum.KeyCode.E
+	prompt.GamepadKeyCode = Enum.KeyCode.ButtonX
+	prompt.ClickablePrompt = true
+	prompt.Style = Enum.ProximityPromptStyle.Default
+	prompt.ActionText = tostring(zone:GetAttribute("PromptActionText") or "Open Race Menu")
 	prompt.ObjectText = mode == "Race" and "Race" or "Time Trial"
 	prompt.Enabled = zone:GetAttribute("Enabled") ~= false
 end

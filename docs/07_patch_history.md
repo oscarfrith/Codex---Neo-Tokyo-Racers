@@ -1,7 +1,58 @@
 # Patch History
 
+## 2026-07-27 - Racing presentation and lifecycle V1.4 confirmed, mirrored and handed off
+
+- The user confirmed the V1.4 adaptive race HUD working and requested handoff.
+- Validated the complete `10:05:47` Studio mirror: 189 exported-script, source-manifest, checksum and hierarchy entries agree with zero path/checksum mismatches; both lifecycle revision attributes are `NTR_RACING_PRESENTATION_LIFECYCLE_V1_4`.
+- Confirmed the adaptive-safe-edge shared-HUD marker, retained V1.3 full-screen EXIT owner, disabled `RaceClient_Active`, `RaceSessionControlsClient_Active` and `RaceHudExitCleanupClient_Active`, absent standalone PB board, `ShowCheckpointArrows=false`, `ShowRouteArrowMarkers=true` and `MobileCheckpointUIScale=0.6`.
+- Accepted the repeated CanvasGroup clipping warning as unrelated, non-blocking onboarding noise: Roblox ignores one `ClipsDescendants=false` assignment on an objective-card `CanvasGroup`; existing glow-safe padding remains intact.
+- V1.4 is now the confirmed racing presentation/lifecycle baseline. The canonical installer is retained for exact-scope recovery/audit; no ordinary Studio command remains.
+
+## 2026-07-27 - Racing presentation and lifecycle V1.4 adaptive safe-edge HUD generated
+
+- The user confirmed V1.3 working and refreshed the complete `09:55:18` Studio mirror. It contains 189 exported scripts, no standalone PB-board owner, and the confirmed full-screen EXIT source.
+- Diagnosed the wide-screen defect in the sole shared HUD owner: panels already use the correct left/right/bottom/centre anchors, but their parent remains a centred fixed `1920×1080` canvas scaled by the smaller viewport axis.
+- Advanced the same canonical installer to V1.4. It uses `GuiService:GetInsetArea(DeviceSafeInsets)` to expand the uniformly scaled logical canvas to the available safe viewport, preserves the approved 16:9 scale and panel contents, rebinds viewport geometry after camera replacement, and gives touch session controls a true safe-bottom anchor.
+- Preserved the direct full-physical-screen EXIT backdrop and all authoritative race lifecycle, timing, laps, map, controls, prompt/aura, route markers, results, rewards, PBs, driving, VFX and persistence owners. Studio install/audit, responsive runtime verification and a post-confirmation mirror refresh remain pending.
+
+## 2026-07-26 - Racing presentation and lifecycle V1.3 legacy-entry/full-screen EXIT continuation generated
+
+- The user confirmed V1.2 working and refreshed the full `23:12:59` mirror; all 190 script/source-manifest/checksum entries match.
+- Identified the only extra enabled `OpenRaceEntry` UI owner as `RacePersonalBestBoardClient_Active`. Its separate board is redundant because `RaceEntryPresentationController_Active` already owns PB and records.
+- Advanced the same canonical installer to transactionally remove that exact superseded LocalScript and continuously clean its exact `NTR_TimeTrialPersonalBestBoard` GUI name. The headless entry bridge and current entry presentation remain.
+- Diagnosed the EXIT backdrop as a full-size child of the aspect-scaled 1920×1080 canvas. Added a direct full-screen backdrop, no-inset/no-safe-area clipping, global Z ordering and atomic modal/backdrop visibility in the existing shared HUD/reset/exit owner.
+- No remote, PB data, result, reward, reset/exit authority, vehicle, VFX, driving or persistence change was added. Studio verification and V1.3 mirror refresh remain pending.
+
+## 2026-07-26 - Racing presentation and lifecycle V1.2 focused correction generated
+
+- The user confirmed V1.1 aura, active route markers and surrounding presentation working.
+- Diagnosed the remaining Time Trial prompt: the hierarchy has a separate `TimeTrialStartZone` with `Mode="TimeTrial"`, while V1.1 registered only Race-mode start zones.
+- Advanced the same canonical installer to V1.2. The existing local eligibility owner now covers both supported start-zone modes without changing the server prompt/trigger path.
+- Added `MobileCheckpointUIScale=0.6` to the existing route-guide world-pill renderer using the shared `ResponsiveUIFoundation.IsMobile()` classification. PC remains at 100%; mobile width, height, text, corner and stroke become 60%.
+- The user later confirmed V1.2 working and refreshed the complete `23:12:59` mirror with 190 matching entries.
+
+## 2026-07-26 - Racing presentation and lifecycle refinements V1.1 correction generated
+
+- V1 was installed and fully mirrored at `22:49:31`, then the user reported that the eligible free-roam aura was absent, the native E prompt remained during sessions, and physical route `ArrowMarkers` were also absent.
+- The fresh V1 sources proved the causes: aura visibility restored authored-disabled effect values, no client owned prompt eligibility, and `RaceSessionAssetsClient_Active` shared `ShowCheckpointArrows` with the checkpoint guide renderer.
+- Repaired the same canonical installer as V1.1. Eligible free roam explicitly enables aura effects and prompt; participant entry/loading/queue/staging/countdown/active states hide both locally. The existing session-assets segment window now consumes `ShowRouteArrowMarkers=true`, while the guide renderer retains `ShowCheckpointArrows=false`.
+- Preserved server entry/race authority, all authored route data, checkpoint HUD/world presentation, shared HUD/reset/exit, queue, countdown, results, rewards, PBs and driving handoff. Added no remote or saved field.
+- The user later confirmed the V1.1 aura, route-marker and surrounding presentation result working; the full mirror was not refreshed before the V1.2 continuation.
+
+## 2026-07-26 - Racing presentation and lifecycle refinements V1 generated
+
+- Audited the complete `22:35:11` mirror and resolved the live/documentation contradiction: `RaceClient_Active` is retired, while the superseded session-controls and narrow HUD cleanup clients were re-enabled after Phase 16E.
+- Added one High-Risk transactional installer with confirmed-owner preflight, exact source windows, compile-before-mutation, committed audit, idempotency, automatic rollback and authored-arrow before/after counts.
+- Added a local-only, generation/run-ID/streaming-safe `RaceStartZone.vfx_aura` owner and exact legacy racing `ScreenGui` cleanup. No broad `PlayerGui` deletion or gameplay authority was added.
+- Added one `ShowCheckpointArrows=false` master config consumed by both current arrow presentation owners. This was later identified as too broad because physical route `ArrowMarkers` are intended race guidance; V1.1 splits that contract.
+- Kept the existing server prompt/trigger owner and made native `E`, touch/click and controller `ButtonX` explicit.
+- Projected trusted lap payloads into `LAP N`, `FINAL LAP` and genuine single-lap `FINISH LINE` wording.
+- Studio install, runtime matrix, audit output and post-confirmation full mirror refresh remain pending.
+
 ## 2026-07-26 - Shared vehicle-card V1.1 confirmed/mirrored; V1.2 mobile refinement generated
 
+- The user confirmed V1.2 complete and requested handoff. The refreshed `22:35:11` mirror has 189 matching exported sources, manifest entries and checksums, zero mismatches, the browser V1.2 marker and all five shared V1.1 owners.
+- Closed the mobile Cash/Spaces and purchase-popup presentation issues. No further Studio command is pending.
 - The user confirmed V1.1 working well and refreshed the complete `22:27:01/02` mirror. All 189 exported sources, manifest entries and checksums match; all five V1.1 owners are present.
 - Screenshot review confirmed that full Cash and Garage Spaces look correct on PC but are oversized on mobile, and that the mobile purchase popup price truncates.
 - Replaced the same canonical installer with a narrow V1.1-to-V1.2 browser upgrade. It preserves PC caps at `17/16`, uses `11/10` on touch/mobile, and retains responsive text constraints.

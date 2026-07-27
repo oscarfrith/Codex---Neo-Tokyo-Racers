@@ -1,3 +1,5 @@
+-- NTR_RACING_PRESENTATION_LIFECYCLE_V1_1_ROUTE_ARROWS
+-- NTR_RACING_PRESENTATION_LIFECYCLE_V1_DORMANT_ARROWS
 -- NTR_RACING_UI_PHASE16F_STREAMING_SAFE_ARROWS
 -- NTR_RACING_UI_PHASE16E_RUNTIME_OWNERSHIP
 -- NTR_RACING_PHASE11L_ARROW_VISUAL_PROXY_SYNC_V2_TRANSPARENCY_RESTORE
@@ -11,6 +13,8 @@ local player=Players.LocalPlayer
 local kit=ReplicatedStorage:WaitForChild("NeoTokyoRacers")
 local racingConfig=kit:WaitForChild("Config"):WaitForChild("Racing")
 local performanceConfig=racingConfig:WaitForChild("PresentationPerformance")
+local routeGuideConfig=racingConfig:WaitForChild("RouteGuide")
+local function routeArrowMarkersEnabled() return routeGuideConfig:GetAttribute("ShowRouteArrowMarkers")~=false end
 local racingRemotes=kit:WaitForChild("Shared"):WaitForChild("Remotes"):WaitForChild("Racing")
 local raceEvent=racingRemotes:WaitForChild("RaceEvent")
 
@@ -47,6 +51,7 @@ local function parseSegmentFolder(folder)
 end
 
 local function applyPart(record,visible)
+	visible=visible and routeArrowMarkersEnabled()
 	local item=record.Part
 	if not item.Parent then return end
 	item.LocalTransparencyModifier=visible and 0 or 1
@@ -188,6 +193,12 @@ local function proxySegmentForRun(runId)
 end
 
 local function apply(force)
+	if not routeArrowMarkersEnabled() then
+		clearVisible()
+		hideAllOnce()
+		activeSignature="ROUTE_ARROWS_DISABLED"
+		return
+	end
 	local runId,state=bestLocalRun()
 	if not (runId and state and state.RouteId and state.RouteId~="") then
 		if activeSignature~=nil or next(visibleSegments)~=nil then clearVisible() activeSignature=nil end
@@ -234,9 +245,35 @@ end)
 task.spawn(function()
 	while true do
 		local interval=math.max(.1,numberValue("ArrowProxyPollSeconds",.2))
-		if next(localRuns)~=nil and os.clock()-lastApplyClock>=interval then lastApplyClock=os.clock() apply(false) end
+		if routeArrowMarkersEnabled() and next(localRuns)~=nil and os.clock()-lastApplyClock>=interval then lastApplyClock=os.clock() apply(false) end
 		task.wait(math.min(interval,.2))
 	end
+end)
+
+local function belongsToAuthoredArrowRoot(item)
+	local current=item and item.Parent
+	while current and current~=Workspace do
+		if current.Name=="ArrowMarkers" and current.Parent and current.Parent.Parent and current.Parent.Parent.Name=="RaceRoutes" then
+			return true
+		end
+		current=current.Parent
+	end
+	return false
+end
+
+Workspace.DescendantAdded:Connect(function(item)
+	if routeArrowMarkersEnabled() or not item:IsA("BasePart") then return end
+	task.defer(function()
+		if item.Parent and belongsToAuthoredArrowRoot(item) then
+			item.LocalTransparencyModifier=1
+			item.CanCollide=false item.CanTouch=false item.CanQuery=false
+		end
+	end)
+end)
+
+routeGuideConfig:GetAttributeChangedSignal("ShowRouteArrowMarkers"):Connect(function()
+	activeSignature=nil
+	if routeArrowMarkersEnabled() then apply(true) else hideAllOnce() clearVisible() end
 end)
 
 task.defer(hideAllOnce)

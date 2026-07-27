@@ -8,6 +8,16 @@ This single coordinated installer preserves the confirmed racing gameplay baseli
 
 The user accepted the final countdown/flow presentation and subsequently confirmed the completed mobile menu-suppression integration works well. Preserve this as the current racing-flow UI baseline. A two-player release regression and refreshed Studio export remain recommended.
 
+## 2026-07-27 Presentation/Lifecycle V1.4 Adaptive HUD Continuation
+
+The user confirmed V1.4 working and refreshed the full `10:05:47` mirror. Its 189 exported-script, source-manifest and checksum entries match with zero mismatches. The shared `RaceSessionPresentationController_Active` remains the only in-session HUD/map/reset/exit geometry owner. Edge-anchored panels consume the full `DeviceSafeInsets` rectangle while their size remains uniformly scaled from the approved `1920×1080` reference. The full-screen EXIT backdrop remains outside that safe canvas. Race state, countdown, queue, finish, results and server actions are unchanged; no ordinary Studio command remains.
+
+## 2026-07-26 Presentation/Lifecycle V1.3 Continuation
+
+`scripts/roblox_racing_presentation_lifecycle_refinements_v1.lua` is the canonical continuation for checkpoint-guide-arrow removal, active route `ArrowMarkers`, local start-zone aura/prompt eligibility, native prompt input, lap-gate wording and exact legacy UI retirement. It preserves this document's queue/countdown/result/reset/exit contracts.
+
+V1 disabled the superseded clients while retaining `RaceSessionPresentationController_Active` as the shared HUD/reset/exit owner. V1.2 was user-confirmed and fully mirrored at `23:12:59`. V1.3 removed the now-redundant standalone PB entry board because the current entry presentation owns PB/records, and repaired the existing shared EXIT modal with a physical-viewport backdrop while leaving its authoritative server exit path unchanged. The user confirmed V1.3 and refreshed the `2026-07-27 09:55:18` mirror; see `docs/racing-presentation-lifecycle-refinements-v1-2026-07-26.md`.
+
 ## 2026-07-21 Readiness-Gated Scheduling
 
 Loading Phase 4 exposed that the existing server countdown began at staging and was therefore mostly hidden behind the loading cover. `scripts/roblox_racing_staging_readiness_gate.lua` preserves this document's presentation and authoritative GO owners but changes scheduling: every active participant completes bounded local preparation, loading fully fades, clients acknowledge countdown visibility, and the server then publishes one `GoAtServerTime` timestamp for the shared five-second presenter.

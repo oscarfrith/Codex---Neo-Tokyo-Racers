@@ -2954,9 +2954,9 @@
     "class_name": "Script",
     "disabled": false,
     "attributes": {},
-    "source_lines": 1465,
-    "source_bytes": 50623,
-    "source_checksum": "441776929",
+    "source_lines": 1473,
+    "source_bytes": 51026,
+    "source_checksum": "289256776",
     "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Racing/TimeTrialService_Active.server.lua"
   },
   {
@@ -3969,7 +3969,12 @@
     ],
     "class_name": "LocalScript",
     "disabled": true,
-    "attributes": {},
+    "attributes": {
+      "NTRRetiredBy": {
+        "value": "NTR_RACING_UI_PHASE16E_RUNTIME_OWNERSHIP",
+        "type": "string"
+      }
+    },
     "source_lines": 276,
     "source_bytes": 8550,
     "source_checksum": "83592483",
@@ -4044,8 +4049,13 @@
       "RaceHudExitCleanupClient_Active"
     ],
     "class_name": "LocalScript",
-    "disabled": false,
-    "attributes": {},
+    "disabled": true,
+    "attributes": {
+      "NTRRetiredBy": {
+        "value": "NTR_RACING_PRESENTATION_LIFECYCLE_V1_4",
+        "type": "string"
+      }
+    },
     "source_lines": 81,
     "source_bytes": 2548,
     "source_checksum": "278441966",
@@ -4053,6 +4063,34 @@
   },
   {
     "id": "script_0136",
+    "roblox_path": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceLifecyclePresentationController_Active",
+    "path_parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Racing",
+      "RaceLifecyclePresentationController_Active"
+    ],
+    "class_name": "LocalScript",
+    "disabled": false,
+    "attributes": {
+      "OwnerContract": {
+        "value": "Local Race/TimeTrial start-zone aura/prompt eligibility and exact legacy racing ScreenGui cleanup",
+        "type": "string"
+      },
+      "InstallerRevision": {
+        "value": "NTR_RACING_PRESENTATION_LIFECYCLE_V1_4",
+        "type": "string"
+      }
+    },
+    "source_lines": 297,
+    "source_bytes": 10244,
+    "source_checksum": "679536310",
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Racing/RaceLifecyclePresentationController_Active.client.lua"
+  },
+  {
+    "id": "script_0137",
     "roblox_path": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceParticipantVisibilityClient_Active",
     "path_parts": [
       "StarterPlayer",
@@ -4069,25 +4107,6 @@
     "source_bytes": 5853,
     "source_checksum": "568285076",
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Racing/RaceParticipantVisibilityClient_Active.client.lua"
-  },
-  {
-    "id": "script_0137",
-    "roblox_path": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RacePersonalBestBoardClient_Active",
-    "path_parts": [
-      "StarterPlayer",
-      "StarterPlayerScripts",
-      "NeoTokyoRacersClient",
-      "Controllers",
-      "Racing",
-      "RacePersonalBestBoardClient_Active"
-    ],
-    "class_name": "LocalScript",
-    "disabled": false,
-    "attributes": {},
-    "source_lines": 310,
-    "source_bytes": 9961,
-    "source_checksum": "169073929",
-    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Racing/RacePersonalBestBoardClient_Active.client.lua"
   },
   {
     "id": "script_0138",
@@ -4122,9 +4141,9 @@
     "class_name": "LocalScript",
     "disabled": false,
     "attributes": {},
-    "source_lines": 425,
-    "source_bytes": 15728,
-    "source_checksum": "642565436",
+    "source_lines": 448,
+    "source_bytes": 17028,
+    "source_checksum": "511209036",
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Racing/RaceRouteGuideClient_Active.client.lua"
   },
   {
@@ -4141,9 +4160,9 @@
     "class_name": "LocalScript",
     "disabled": false,
     "attributes": {},
-    "source_lines": 244,
-    "source_bytes": 10540,
-    "source_checksum": "53940193",
+    "source_lines": 281,
+    "source_bytes": 11885,
+    "source_checksum": "412637233",
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Racing/RaceSessionAssetsClient_Active.client.lua"
   },
   {
@@ -4158,8 +4177,13 @@
       "RaceSessionControlsClient_Active"
     ],
     "class_name": "LocalScript",
-    "disabled": false,
-    "attributes": {},
+    "disabled": true,
+    "attributes": {
+      "NTRRetiredBy": {
+        "value": "NTR_RACING_PRESENTATION_LIFECYCLE_V1_4",
+        "type": "string"
+      }
+    },
     "source_lines": 253,
     "source_bytes": 8469,
     "source_checksum": "3176319",
@@ -4179,9 +4203,9 @@
     "class_name": "LocalScript",
     "disabled": false,
     "attributes": {},
-    "source_lines": 283,
-    "source_bytes": 29528,
-    "source_checksum": "74578829",
+    "source_lines": 325,
+    "source_bytes": 31799,
+    "source_checksum": "364511831",
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Racing/RaceSessionPresentationController_Active.client.lua"
   },
   {

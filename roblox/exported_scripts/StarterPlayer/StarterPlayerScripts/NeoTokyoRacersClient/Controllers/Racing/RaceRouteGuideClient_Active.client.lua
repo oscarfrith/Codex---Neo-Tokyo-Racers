@@ -1,3 +1,5 @@
+-- NTR_RACING_PRESENTATION_LIFECYCLE_V1_2_MOBILE_CHECKPOINT_UI
+-- NTR_RACING_PRESENTATION_LIFECYCLE_V1_GUIDE
 -- NTR_SHARED_RESPONSIVE_UI_FOUNDATION_V1_1
 -- Neo Tokyo Racers - Racing Phase 5 Route Guide Client
 -- NTR_RACING_PHASE5_ROUTE_GUIDE_CLIENT
@@ -55,6 +57,11 @@ local function colorAttr(name, fallback)
 		return value
 	end
 	return fallback
+end
+
+local function checkpointUiScale()
+	if not Foundation.IsMobile() then return 1 end
+	return math.clamp(numberAttr("MobileCheckpointUIScale",0.6),0.25,1)
 end
 
 local function clientRoot()
@@ -125,11 +132,12 @@ local function makeBillboard(name, adornee, text, color)
 	if not boolAttr("ShowWorldCheckpointLabel", true) then
 		return nil
 	end
+	local uiScale = checkpointUiScale()
 	local gui = Instance.new("BillboardGui")
 	gui.Name = name
 	gui.Adornee = adornee
 	gui.AlwaysOnTop = boolAttr("CheckpointWorldTextAlwaysOnTop", true)
-	gui.Size = UDim2.fromOffset(numberAttr("CheckpointPillWidth", 168), numberAttr("CheckpointPillHeight", 28))
+	gui.Size = UDim2.fromOffset(numberAttr("CheckpointPillWidth", 168) * uiScale, numberAttr("CheckpointPillHeight", 28) * uiScale)
 	local yOffset = numberAttr("CheckpointPillYOffset", 7)
 	gui.StudsOffset = Vector3.new(0, math.max(yOffset, adornee and adornee.Size.Y * 0.5 + yOffset or yOffset), 0)
 	gui.Parent = ensureRenderRoot()
@@ -144,7 +152,7 @@ local function makeBillboard(name, adornee, text, color)
 	label.TextTransparency = 0
 	label.TextStrokeColor3 = Color3.fromRGB(4, 8, 12)
 	label.TextStrokeTransparency = numberAttr("CheckpointWorldTextStrokeTransparency", 0.35)
-	label.TextSize = numberAttr("CheckpointWorldTextSize", 15)
+	label.TextSize = math.max(8, numberAttr("CheckpointWorldTextSize", 15) * uiScale)
 	label.TextWrapped = false
 	label.Font = Enum.Font.GothamBold
 	pcall(function()
@@ -152,11 +160,11 @@ local function makeBillboard(name, adornee, text, color)
 	end)
 	label.Parent = gui
 
-	Foundation.Corner(label,numberAttr("CheckpointPillCornerRadius",8))
+	Foundation.Corner(label,numberAttr("CheckpointPillCornerRadius",8) * uiScale)
 
 	local stroke = Instance.new("UIStroke")
 	stroke.Color = color
-	stroke.Thickness = numberAttr("CheckpointPillStrokeThickness", 1)
+	stroke.Thickness = numberAttr("CheckpointPillStrokeThickness", 1) * uiScale
 	stroke.Transparency = numberAttr("CheckpointPillStrokeTransparency", 0.7)
 	stroke.Parent = label
 	return gui
@@ -180,11 +188,19 @@ local function colorForArrow(marker)
 	return colorAttr("ArrowColor", Color3.fromRGB(255, 68, 196))
 end
 
+local function finishGateText(run)
+	local lapTarget = math.max(0, math.floor(tonumber(run and run.LapTarget) or 1))
+	local currentLap = math.max(1, math.floor(tonumber(run and run.CurrentLap) or 1))
+	if lapTarget == 1 then return "FINISH LINE" end
+	if lapTarget > 1 and currentLap >= lapTarget then return "FINAL LAP" end
+	return "LAP " .. tostring(currentLap)
+end
+
 local function drawGateFrame(gate)
 	local gatePart = gate and gate.Part
 	if not (gatePart and gatePart:IsA("BasePart")) then return end
 	local color = colorForGate(gate)
-	local label = gate.IsFinish and "FINISH" or ("CHECKPOINT " .. tostring(gate.Index or activeRun.NextGateIndex or "?"))
+	local label = gate.IsFinish and finishGateText(activeRun) or ("CHECKPOINT " .. tostring(gate.Index or activeRun.NextGateIndex or "?"))
 	makeBillboard("NextGateLabel", gatePart, label, color)
 	if not boolAttr("ShowCheckpointFrames", false) then return end
 
@@ -225,7 +241,7 @@ local function chevronAt(cf, scale, color, prefix)
 end
 
 local function drawDynamicArrow(route, gateIndex)
-	if not boolAttr("ShowDynamicNextArrow", true) then return end
+	if not boolAttr("ShowCheckpointArrows", false) or not boolAttr("ShowDynamicNextArrow", true) then return end
 	local gate = RouteDefinition.GetGate(route, gateIndex)
 	if not (gate and gate.Part) then return end
 	local previous = RouteDefinition.GetGate(route, math.max(1, gateIndex - 1))
@@ -240,7 +256,7 @@ local function drawDynamicArrow(route, gateIndex)
 end
 
 local function drawAuthoredArrows(route, gateIndex)
-	if not boolAttr("ShowAuthoringArrows", true) then return end
+	if not boolAttr("ShowCheckpointArrows", false) or not boolAttr("ShowAuthoringArrows", true) then return end
 	for _, marker in ipairs(route and route.ArrowMarkers or {}) do
 		local mode = tostring(marker.DisplayMode or "WhenNext")
 		local target = tonumber(marker.TargetCheckpointIndex) or tonumber(marker.ArrowIndex) or gateIndex
@@ -374,12 +390,19 @@ end
 
 local function setActive(payload)
 	activeRun = activeRun or {}
+	local previousLap = activeRun.CurrentLap
+	local previousTarget = activeRun.LapTarget
 	activeRun.RunId = payload.RunId or activeRun.RunId
 	activeRun.EventId = payload.EventId or activeRun.EventId
 	activeRun.RouteId = payload.RouteId or activeRun.RouteId
 	activeRun.DisplayName = payload.DisplayName or activeRun.DisplayName
 	activeRun.NextGateIndex = payload.NextGateIndex or activeRun.NextGateIndex or 1
 	activeRun.GateCount = payload.GateCount or activeRun.GateCount or 1
+	activeRun.CurrentLap = payload.NextLap or payload.CurrentLap or activeRun.CurrentLap or 1
+	activeRun.LapTarget = payload.LapTarget ~= nil and payload.LapTarget or activeRun.LapTarget or 1
+	if activeRun.CurrentLap ~= previousLap or activeRun.LapTarget ~= previousTarget then
+		renderedGateIndex = nil
+	end
 	renderGuide()
 end
 
@@ -401,7 +424,7 @@ raceEvent.OnClientEvent:Connect(function(payload)
 		clearActive() -- NTR_RACING_FLOW_COUNTDOWN_GUIDE_GATE_V2: hide checkpoint guidance until GO.
 	elseif kind == "TimeTrialStarted" or kind == "RaceStarted" then
 		setActive(payload)
-	elseif kind == "TimeTrialCheckpoint" or kind == "RaceCheckpoint" then
+	elseif kind == "TimeTrialCheckpoint" or kind == "RaceCheckpoint" or kind == "TimeTrialLapCompleted" or kind == "RaceLapCompleted" then
 		setActive(payload)
 	elseif kind == "TimeTrialFinished" or kind == "TimeTrialEnded" or kind == "TimeTrialError" or kind == "RaceFinished" or kind == "RaceEnded" then
 		clearActive()
