@@ -1,5 +1,29 @@
 # Current Known Issues
 
+## Free-roam Cash smoothing V1 confirmed/mirrored; release regressions retained (2026-07-27)
+
+- Closed: the user confirmed the installed smoothing/full-formatting result working well. The complete `2026-07-27 11:26:30` mirror has 191 matching entries and contains all three source markers, all three revision attributes and all five Theme controls.
+- No Studio command is pending for ordinary use. Retain `scripts/roblox_freeroam_cash_smoothing_v1.lua` as the only exact-scope audit/recovery installer; do not lower the authoritative server cadence or create a second Cash owner.
+- Release regression: every-dollar `$5-$8` gains, exact final balance, immediate decreases, rapid retargeting, bounded large rewards, full `$10,000,000` formatting, desktop/phone/tablet/ultrawide fit, lifecycle cleanup, unchanged garage affordability and no remote/save/profile traffic.
+- Full grouped money is wider. Existing TextScaled/constraints should support up to `$2,000,000,000`, but the complete device matrix remains a runtime requirement.
+- At very low frame rates some sequential assignments may not all be painted, although they remain ordered and bounded and the final value is exact.
+- The three source patches use exact fragile anchors. If one fails, refresh/inspect the live mirror and repair this same installer.
+- Neither mirror area appears stale for the confirmed presentation baseline.
+- See `docs/free-roam-cash-smoothing-v1.md`.
+
+## Drive-to-earn Cash V1 confirmed; V1.1 installed/mirrored, full matrix retained (2026-07-27)
+
+- V1 installed successfully, the user confirmed it worked well, and the `10:36:57` mirror contains all expected owners/config. Supplied telemetry recorded `21,117.8` accepted studs and `$23,254/hour` projected at `$0.05/stud`.
+- V1.1 is installed and mirrored with `CashPerAcceptedStud=0.10` and `VisibleGrantBatchCash=1`. The hierarchy currently records `MinimumGrantIntervalSeconds=0.1`, but the source safety-clamps it to an effective `0.5`; the `$35,000/3,600 s` rolling ceiling remains unchanged.
+- Required V1.1 runtime evidence: visible Cash updates at no more than 2 Hz/player; the measured route projects about `$46,508/hour` uncapped; accelerated and full-window ceiling proof; low/medium/high controlled drives; non-payable states; free roam, Time Trial and two-client Race; separate finish rewards; reset/teleport abuse; lifecycle cleanup; save/rejoin; two-client performance/Output; low-end/mobile regression.
+- Security residual: a client with network ownership may still create plausible motion below the absolute server segment ceiling. V1 limits this through saved ownership/seat/lifecycle validation, anomaly rejection, batching and the rolling cap; it is not full server physics attestation.
+- Persistence residual: positive grants become ProfileService-owned, but existing garage purchase/deduction compatibility still calculates in the legacy action profile and imports through the established ProfileService bridge. Do not create another reward owner or broaden this feature into deduction migration.
+- The cap uses bounded time buckets and is conservative by up to one bucket at expiry. Confirm it never grants above the configured window amount.
+- The installer uses exact fragile anchors in `ProfileService_Active` and the active `GarageActionController_Shadow_Disabled`. If an anchor differs, refresh/inspect live source and repair this same installer; do not loosen it or create a patch ladder.
+- The current `2026-07-27 11:08:34` mirror is fresh for installed V1.1 and has 191 source entries.
+- `ROLLBACK` stops future earnings and restores the prior positive-grant bridge; it deliberately does not subtract already committed/saved Cash.
+- See `docs/drive-to-earn-cash-system-v1.md`.
+
 ## Racing presentation/lifecycle V1.4 confirmed and fully mirrored (2026-07-27)
 
 - Closed: the user confirmed the V1.4 adaptive race HUD working. The complete `2026-07-27 10:05:47` mirror has 189 matching exported-script, source-manifest, checksum and hierarchy entries with zero mismatches.

@@ -1,3 +1,4 @@
+-- NTR_FREEROAM_CASH_SMOOTHING_DESKTOP_V1
 -- NTR_SHARED_VEHICLE_CARD_SYSTEM_V1_1
 -- NTR_SHARED_VEHICLE_CARD_SYSTEM_V1
 -- NTR_SHARED_RESPONSIVE_UI_FOUNDATION_V1_1
@@ -296,7 +297,7 @@ local function panel(parent, name, size, position, anchor, z)
 end
 
 local function formatCash(value)
-	return Foundation.FormatCompactMoney(value)
+	return Foundation.FormatFreeRoamMoney(value)
 end
 local function callGarage(action, payload)
 	local ok, result = pcall(function()
@@ -1059,26 +1060,30 @@ end
 ensureGui()
 updateLayout()
 
-local cashConnection
+local cashBindingState={}
+cashBindingState.Presenter=Foundation.CreateCashDisplayPresenter(function(displayedCash)
+	if not (moneyLabel and moneyLabel.Parent) then return end
+	moneyLabel.Text=formatCash(displayedCash)
+	local balanceChip=modalPanels.Cash and modalPanels.Cash:FindFirstChild("BalanceChip")
+	if balanceChip and balanceChip:IsA("TextButton") then balanceChip.Text="BALANCE  "..moneyLabel.Text end
+end)
 local function bindReplicatedCash()
-	if cashConnection then cashConnection:Disconnect(); cashConnection = nil end
-	local leaderstats = player:FindFirstChild("leaderstats")
-	local cash = leaderstats and leaderstats:FindFirstChild("Cash")
+	if cashBindingState.Connection then cashBindingState.Connection:Disconnect(); cashBindingState.Connection=nil end
+	local leaderstats=player:FindFirstChild("leaderstats")
+	local cash=leaderstats and leaderstats:FindFirstChild("Cash")
 	if not (cash and cash:IsA("IntValue")) then return false end
 	local function updateCash()
-		if not (moneyLabel and moneyLabel.Parent) then return end
-		moneyLabel.Text = formatCash(cash.Value)
-		local balanceChip = modalPanels.Cash and modalPanels.Cash:FindFirstChild("BalanceChip")
-		if balanceChip and balanceChip:IsA("TextButton") then balanceChip.Text = "BALANCE  " .. moneyLabel.Text end
+		-- leaderstats remains authoritative; only the rendered integer is smoothed.
+		cashBindingState.Presenter:SetTarget(cash.Value)
 	end
 	updateCash()
-	cashConnection = cash:GetPropertyChangedSignal("Value"):Connect(updateCash)
+	cashBindingState.Connection=cash:GetPropertyChangedSignal("Value"):Connect(updateCash)
 	return true
 end
 if not bindReplicatedCash() then
 	task.spawn(function()
-		local leaderstats = player:WaitForChild("leaderstats", 15)
-		if leaderstats then leaderstats:WaitForChild("Cash", 15) end
+		local leaderstats=player:WaitForChild("leaderstats",15)
+		if leaderstats then leaderstats:WaitForChild("Cash",15) end
 		bindReplicatedCash()
 	end)
 end

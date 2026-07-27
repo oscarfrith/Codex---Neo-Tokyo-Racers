@@ -6,6 +6,15 @@
 **Relevant docs file:** `docs/race-events.md`
 **Relevant files to edit:** Race route folders, checkpoint scripts, race server/client scripts only.
 
+## Drive-to-earn additive reward boundary (2026-07-27, generated)
+
+- Passive driving Cash is intended to remain active only during the genuinely running portion of Race and Time Trial.
+- Queue, staging, countdown, frozen, reset/teleport, finished-pending-exit and cleanup movement are non-payable and reset the distance baseline.
+- `RaceRewardService_Active` remains the sole finish/placement reward calculator and retains its duplicate-claim rules. Drive batches are separate and additive.
+- Existing `GarageProfileMutationBindings.GrantCash` callers keep their signature but the generated V1 delegates positive commits to `ProfileServiceBindings.ExecuteEconomyCommand`.
+- Two-client Race verification must prove independent drive caps, no staging/reset farming, and unchanged placement rewards.
+- V1 is installed, user-confirmed and mirrored. The pending V1.1 tuning changes rate/batch/cadence only; Race and Time Trial finish rewards remain separate and unchanged.
+
 ## What The System Does
 
 The first race event is intended to prove the core gameplay loop:

@@ -113,6 +113,103 @@ function M.FormatCompactMoney(value)
 	return "$"..string.format("%.1f",tenths/10).."M"
 end
 
+-- NTR_FREEROAM_CASH_PRESENTER_V1
+-- Presentation state only. Authoritative Cash remains leaderstats.Cash and is
+-- never inferred from, delayed by, or written through this presenter.
+local function cashPresentationFlag(name,fallback)
+	local child=theme:FindFirstChild(name)
+	if child and child:IsA("BoolValue") then return child.Value end
+	local value=theme:GetAttribute(name)
+	return typeof(value)=="boolean" and value or fallback
+end
+
+function M.FormatFullMoney(value)
+	return "$"..M.FormatNumber(math.max(0,math.floor(tonumber(value) or 0)))
+end
+
+function M.FormatFreeRoamMoney(value)
+	if cashPresentationFlag("FreeRoamCashUseFullFormatting",true) then
+		return M.FormatFullMoney(value)
+	end
+	return M.FormatCompactMoney(value)
+end
+
+function M.CreateCashDisplayPresenter(render,options)
+	assert(type(render)=="function","Cash presenter requires a render callback")
+	options=type(options)=="table" and options or {}
+	local displayed=nil
+	local authoritative=nil
+	local generation=0
+	local destroyed=false
+
+	local function publish(value)
+		if destroyed then return end
+		displayed=math.max(0,math.floor(tonumber(value) or 0))
+		render(displayed,authoritative)
+	end
+
+	local presenter={}
+	function presenter:SetTarget(value,forceSnap)
+		if destroyed then return end
+		local target=math.clamp(math.floor(tonumber(value) or 0),0,2000000000)
+		authoritative=target
+		generation+=1
+		local token=generation
+		local enabled=options.Enabled
+		if enabled==nil then enabled=cashPresentationFlag("CashCountAnimationEnabled",true) end
+		if forceSnap==true or displayed==nil or enabled~=true or target<=displayed then
+			publish(target)
+			return
+		end
+
+		local start=displayed
+		local delta=target-start
+		local duration=math.clamp(tonumber(options.DurationSeconds)
+			or number("CashCountDurationSeconds",0.4),0.15,0.75)
+		local everyDollarLimit=math.clamp(math.floor(tonumber(options.EveryDollarLimit)
+			or number("CashCountEveryDollarLimit",12)),1,24)
+		local maximumSteps=math.clamp(math.floor(tonumber(options.MaximumSteps)
+			or number("CashCountLargeIncreaseMaximumSteps",20)),4,60)
+		local steps=delta<=everyDollarLimit and delta or math.min(delta,maximumSteps)
+		local stepDelay=duration/math.max(1,steps)
+
+		task.spawn(function()
+			for step=1,steps do
+				task.wait(stepDelay)
+				if destroyed or token~=generation then return end
+				local nextValue
+				if delta<=everyDollarLimit then
+					nextValue=start+step
+				else
+					nextValue=start+math.floor(delta*step/steps)
+				end
+				publish(math.min(target,nextValue))
+			end
+			if not destroyed and token==generation and displayed~=target then publish(target) end
+		end)
+	end
+
+	function presenter:Snap(value)
+		self:SetTarget(value,true)
+	end
+
+	function presenter:GetDisplayed()
+		return displayed
+	end
+
+	function presenter:GetAuthoritative()
+		return authoritative
+	end
+
+	function presenter:Destroy()
+		if destroyed then return end
+		destroyed=true
+		generation+=1
+	end
+
+	return presenter
+end
+
 function M.StyleMetric(label,kind)
 	assert(label and (label:IsA("TextLabel") or label:IsA("TextButton")),"StyleMetric requires text UI")
 	label:SetAttribute("NTRSharedMetric",true)

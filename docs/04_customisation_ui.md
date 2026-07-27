@@ -1,5 +1,21 @@
 # Customisation UI
 
+## Free-roam Cash smoothing/full formatting V1 confirmed/mirrored (2026-07-27)
+
+- `ResponsiveUIFoundation` gains one bounded presentation-only Cash presenter plus full/free-roam money formatters.
+- Only `DesktopFreeRoamHudController_Active` and `MobileFreeRoamHudController_Active` opt in. `$10,010 -> $10,016` counts through each dollar by default, while large gains cap at 20 display updates.
+- Initial values and all decreases snap. New positive targets cancel/retarget by generation, no task runs while idle, and displayed Cash never exceeds its authoritative target.
+- Free-roam uses full grouped money such as `$10,000,000`; garage and other constrained surfaces retain their existing formatting and raw authoritative callbacks.
+- No purchase, affordability, remote, reward, persistence, leaderstats, driving or race owner changes. See `docs/free-roam-cash-smoothing-v1.md`.
+- The user confirmed the installed result working well. The complete `11:26:30` mirror contains the shared presenter, both active free-roam integrations, their revision attributes and all five Theme controls. No Studio command is pending for ordinary use.
+
+## Drive-to-earn Cash reconciliation boundary (generated 2026-07-27)
+
+- V1 creates no production Cash widget, receipt remote, polling loop, bootstrap bridge or page-specific renderer.
+- `ProfileServiceBindings.ExecuteEconomyCommand` commits a whole-Cash batch, then updates the existing `leaderstats.Cash` projection. The confirmed desktop/mobile free-roam and shared garage surfaces retain their existing event-driven reconciliation.
+- The only new visual is `DriveToEarnCashTelemetry_StudioOnly`: a read-only, viewport-bounded Studio overlay behind `RunService:IsStudio()` and `StudioTelemetryEnabled`. It is absent from published presentation.
+- V1 telemetry was user-confirmed and mirrored. V1.1 changes only economy tuning and bounded reconciliation cadence; the Studio-only overlay and production presentation boundary are unchanged.
+
 ## Shared racing HUD V1.4 adaptive safe-edge layout confirmed/mirrored (2026-07-27)
 
 `RaceSessionPresentationController_Active` remains the one Race/Time Trial HUD, map, RESET/EXIT and modal geometry owner. V1.4 does not recreate any panel: it changes the existing reference canvas from a centred fixed-aspect island to a uniformly scaled logical canvas spanning the current device-safe viewport. Existing child anchors consequently place lap progress at safe left, the session board at safe right, the map at safe left/bottom, centred timing/position at top centre and desktop controls at bottom centre across 16:9, ultrawide, tall/windowed, tablet and phone viewports.

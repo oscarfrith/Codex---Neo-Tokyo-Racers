@@ -1,3 +1,4 @@
+-- NTR_FREEROAM_CASH_SMOOTHING_MOBILE_V1
 -- NTR_SHARED_VEHICLE_CARD_SYSTEM_V1_1
 -- NTR_SHARED_VEHICLE_CARD_SYSTEM_V1
 -- NTR_SHARED_RESPONSIVE_UI_FOUNDATION_V1_1
@@ -305,7 +306,17 @@ local function majorMenu() return player:GetAttribute("NTR_GarageSessionActive")
 local function subject() local c=player.Character; local h=c and c:FindFirstChildOfClass("Humanoid"); local seat=h and h.SeatPart; return seat or (c and c:FindFirstChild("HumanoidRootPart")) end
 local displayedPos=nil; local displayedHeading=0; local displayedBoost=1; local lastSize=Vector2.zero; local lastInside=nil
 Foundation.StyleMetric(cashText,"Cash")
-Foundation.BindReplicatedCash(player,function(value) cashText.Text=Foundation.FormatCompactMoney(value) end)
+local cashPresenter=Foundation.CreateCashDisplayPresenter(function(displayedCash)
+	if cashText and cashText.Parent then
+		cashText.Text=Foundation.FormatFreeRoamMoney(displayedCash)
+		local balanceChip=modalBody and modalBody:FindFirstChild("BalanceChip")
+		if balanceChip and balanceChip:IsA("TextButton") then balanceChip.Text="BALANCE  "..cashText.Text end
+	end
+end)
+Foundation.BindReplicatedCash(player,function(authoritativeCash)
+	-- Presentation target only; leaderstats remains the real balance.
+	cashPresenter:SetTarget(authoritativeCash)
+end)
 local function layout()
 	local camera=workspace.CurrentCamera; local vp=camera and camera.ViewportSize or Vector2.new(1280,720); local inside=player:GetAttribute("NTR_OwnedGarageInside")==true; if vp==lastSize and inside==lastInside then return end; lastSize=vp; lastInside=inside
 	local tiny=vp.Y<500; local margin=tiny and 10 or tonumber(read(config,"EdgeMargin",14)); local mapSize=math.floor(math.clamp(vp.Y*.27,tiny and 128 or 145,tiny and 160 or tonumber(read(config,"MinimapSize",180))))

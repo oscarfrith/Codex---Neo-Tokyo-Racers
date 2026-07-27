@@ -4,6 +4,32 @@
 **Status:** Current script mirror folders created  
 **Current mirror root:** `roblox/exported_scripts`
 
+## Free-Roam Cash Smoothing V1 confirmed/mirrored
+
+The user confirmed the installed result working well. The complete `2026-07-27 11:26:30` mirror has 191 mutually matching entries and contains the shared/desktop/mobile smoothing owners, their revision attributes and all five Theme controls. No Studio command is pending for ordinary use.
+
+Retain:
+
+```text
+scripts/roblox_freeroam_cash_smoothing_v1.lua
+```
+
+as the only exact-scope recovery/audit installer. It exact-checks and pre-compiles the shared foundation plus both active free-roam controllers, preserves raw authoritative Cash callbacks, adds no economy remote/owner and rolls back its run on failure. Only run it again for intentional audit, recovery or rollback; do not create a second presentation patch.
+
+## Drive-To-Earn Cash V1.1 installed/mirrored
+
+Run the complete contents of:
+
+```text
+scripts/roblox_drive_to_earn_cash_system_v1.lua
+```
+
+V1.1 is already installed and represented in the `11:08:34` mirror. Retain this script for exact-scope audit/recovery and continue the remaining High-Risk runtime matrix in `docs/drive-to-earn-cash-system-v1.md`.
+
+This is the only drive-economy installer to repair. Do not manually copy its embedded sources or create a follow-up server patch script.
+
+The mirror shows revision `NTR_DRIVE_TO_EARN_CASH_V1_1`, rate `0.10`, batch `1`, the unchanged `$35,000/3,600 s` cap and a source-enforced effective `0.5 s` minimum grant cadence.
+
 ## Racing Presentation And Lifecycle Refinements V1.4 confirmed
 
 The user confirmed V1.4 working and refreshed the complete `2026-07-27 10:05:47` mirror with 189 mutually matching exported-script, source-manifest and checksum entries. No Studio command is pending for ordinary use. Retain:

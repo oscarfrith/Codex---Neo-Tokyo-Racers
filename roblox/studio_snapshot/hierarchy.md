@@ -1,7 +1,7 @@
 # Roblox Studio Hierarchy Snapshot
 
-Generated in Studio: 2026-07-27 10:05:47
-Scripts exported: 189
+Generated in Studio: 2026-07-27 11:26:29
+Scripts exported: 191
 Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, StarterPlayer, StarterGui, SoundService, Workspace, ServerStorage, Lighting
 
 ## Hierarchy
@@ -3340,6 +3340,28 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
           - PromptHeightOffset (NumberValue)
           - PromptMaxDistance (NumberValue)
           - ReenterBufferStuds (NumberValue)
+        - DriveToEarnCash_EditAttributes (Folder) [25 attrs]
+          - Descriptions (Folder)
+            - CashPerAcceptedStud (StringValue)
+            - CeilingBucketSeconds (StringValue)
+            - CeilingWindowSeconds (StringValue)
+            - Enabled (StringValue)
+            - HourlyCashCeiling (StringValue)
+            - MaximumAcceptedSpeedStudsPerSecond (StringValue)
+            - MaximumDriveGrantPerCommand (StringValue)
+            - MaximumSampleGapSeconds (StringValue)
+            - MaximumVerticalDeltaStuds (StringValue)
+            - MaximumVerticalToHorizontalRatio (StringValue)
+            - MinimumAcceptedSegmentStuds (StringValue)
+            - MinimumGrantIntervalSeconds (StringValue)
+            - ProjectionBucketSeconds (StringValue)
+            - ProjectionWindowSeconds (StringValue)
+            - RuntimeAuditIntervalSeconds (StringValue)
+            - SampleIntervalSeconds (StringValue)
+            - SegmentToleranceStuds (StringValue)
+            - StudioTelemetryEnabled (StringValue)
+            - TelemetryRefreshSeconds (StringValue)
+            - VisibleGrantBatchCash (StringValue)
         - DrivingCamera_Default_EditAttributes (Folder) [54 attrs]
         - DrivingCamera_EditAttributes (Folder) [116 attrs]
         - FreeRoamHudTeleport (Folder)
@@ -3889,7 +3911,7 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
             - Heading (NumberValue)
             - Metric (NumberValue)
             - FontFamily (StringValue)
-        - Theme (Folder) [3 attrs]
+        - Theme (Folder) [9 attrs]
           - Accent (Color3Value)
           - Back (Color3Value)
           - Buy (Color3Value)
@@ -3903,6 +3925,12 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
           - PanelSoft (Color3Value)
           - Selected (Color3Value)
           - Text (Color3Value)
+          - Descriptions (Folder)
+            - CashCountAnimationEnabled (StringValue)
+            - CashCountDurationSeconds (StringValue)
+            - CashCountEveryDollarLimit (StringValue)
+            - CashCountLargeIncreaseMaximumSteps (StringValue)
+            - FreeRoamCashUseFullFormatting (StringValue)
           - ButtonCornerRadius (NumberValue)
           - ButtonStrokeTransparency (NumberValue)
           - ButtonTransparency (NumberValue)
@@ -4549,7 +4577,7 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
           - RacingMobileScaledDesktopLayout (ModuleScript) [script_0060, 90 lines]
           - RacingUIComponents (ModuleScript) [script_0061, 200 lines]
           - ResponsiveLayout (ModuleScript) [script_0062, 44 lines, 3 attrs]
-          - ResponsiveUIFoundation (ModuleScript) [script_0063, 373 lines, 1 attrs]
+          - ResponsiveUIFoundation (ModuleScript) [script_0063, 470 lines, 2 attrs]
           - StatBars (ModuleScript) [script_0064, 49 lines, 3 attrs]
           - UIFactory (ModuleScript) [script_0065, 98 lines, 3 attrs]
           - UIPool (ModuleScript) [script_0066, 99 lines, 3 attrs]
@@ -4644,7 +4672,7 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
         - OwnedGarageManagementRuntime (ModuleScript) [script_0083, 385 lines, 4 attrs]
         - OwnedGarageProfileRuntime (ModuleScript) [script_0084, 195 lines, 5 attrs]
         - VehicleCosmeticServerRuntime (ModuleScript) [script_0085, 73 lines, 1 attrs]
-        - GarageActionController_Shadow_Disabled (Script) [script_0086, 2893 lines, 46 attrs]
+        - GarageActionController_Shadow_Disabled (Script) [script_0086, 2935 lines, 47 attrs]
         - GarageInteriorCustomizationService_Active (Script) [script_0087, Disabled, 472 lines, 4 attrs]
         - GarageInteriorService_Active (Script) [script_0088, Disabled, 407 lines, 7 attrs]
         - GarageSessionService_Active (Script) [script_0089, 112 lines, 3 attrs]
@@ -4653,7 +4681,7 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
         - OnboardingProgress (BindableEvent)
         - LegacyGarageProfileBridge_Active (Script) [script_0091, 61 lines]
         - OnboardingService_Active (Script) [script_0092, 96 lines]
-        - ProfileService_Active (Script) [script_0093, 595 lines, 6 attrs]
+        - ProfileService_Active (Script) [script_0093, 821 lines, 7 attrs]
       - Racing (Folder)
         - GlobalTimeTrialLeaderboardBindings (Folder)
           - GetTimeTrialLeaderboard (BindableFunction)
@@ -4669,16 +4697,17 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
       - UI (Folder)
         - FreeRoamHudTeleportService_Active (Script) [script_0102, 128 lines, 4 attrs]
       - Vehicle (Folder)
-        - DriverSeatPositionService_Active (Script) [script_0103, 234 lines, 11 attrs]
-        - VehicleAccessPromptService_Active (Script) [script_0104, 130 lines, 2 attrs]
-        - VehicleCollisionLifecycleService_Active (Script) [script_0105, 196 lines, 2 attrs]
-        - VehiclePerformanceRuntimeService_Active (Script) [script_0106, 35 lines, 2 attrs]
-        - VehiclePerformanceV2ShadowService_Active (Script) [script_0107, 34 lines, 1 attrs]
+        - DriveToEarnCashService_Active (Script) [script_0103, 459 lines, 3 attrs]
+        - DriverSeatPositionService_Active (Script) [script_0104, 234 lines, 11 attrs]
+        - VehicleAccessPromptService_Active (Script) [script_0105, 130 lines, 2 attrs]
+        - VehicleCollisionLifecycleService_Active (Script) [script_0106, 196 lines, 2 attrs]
+        - VehiclePerformanceRuntimeService_Active (Script) [script_0107, 35 lines, 2 attrs]
+        - VehiclePerformanceV2ShadowService_Active (Script) [script_0108, 34 lines, 1 attrs]
       - World (Folder)
         - Lighting (Folder)
-          - LightingService_Active (Script) [script_0108, 115 lines, 9 attrs]
+          - LightingService_Active (Script) [script_0109, 115 lines, 9 attrs]
         - Traffic (Folder)
-          - TrafficLightService (Script) [script_0109, 46 lines, 3 attrs]
+          - TrafficLightService (Script) [script_0110, 46 lines, 3 attrs]
           - README_MigrationNotes (StringValue)
     - State (Folder)
       - RuntimeProfiles (Folder)
@@ -4688,58 +4717,59 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
     - NeoTokyoRacersClient (Folder) [6 attrs]
       - Controllers (Folder) [3 attrs]
         - Audio (Folder)
-          - AcousticsRuntimeController_Active (LocalScript) [script_0110, 12 lines]
-          - AudioRuntimeController_Active (LocalScript) [script_0111, 14 lines]
-          - ContextAudioRuntimeController_Active (LocalScript) [script_0112, 14 lines]
-          - PresentationAudioRuntimeController_Active (LocalScript) [script_0113, 14 lines]
+          - AcousticsRuntimeController_Active (LocalScript) [script_0111, 12 lines]
+          - AudioRuntimeController_Active (LocalScript) [script_0112, 14 lines]
+          - ContextAudioRuntimeController_Active (LocalScript) [script_0113, 14 lines]
+          - PresentationAudioRuntimeController_Active (LocalScript) [script_0114, 14 lines]
         - Core (Folder)
-          - CatalogClient (ModuleScript) [script_0114, 110 lines, 4 attrs]
-          - ClientState (ModuleScript) [script_0115, 75 lines, 4 attrs]
-          - ClientThemeAdapter (ModuleScript) [script_0116, 73 lines, 6 attrs]
-          - GarageApiClient (ModuleScript) [script_0117, 38 lines, 4 attrs]
-          - PaintClient (ModuleScript) [script_0118, 142 lines, 10 attrs]
+          - CatalogClient (ModuleScript) [script_0115, 110 lines, 4 attrs]
+          - ClientState (ModuleScript) [script_0116, 75 lines, 4 attrs]
+          - ClientThemeAdapter (ModuleScript) [script_0117, 73 lines, 6 attrs]
+          - GarageApiClient (ModuleScript) [script_0118, 38 lines, 4 attrs]
+          - PaintClient (ModuleScript) [script_0119, 142 lines, 10 attrs]
         - Debug (Folder)
-          - StudioCashGrantClient_Active (LocalScript) [script_0119, 47 lines]
+          - DriveToEarnCashTelemetry_StudioOnly (LocalScript) [script_0120, 81 lines, 2 attrs]
+          - StudioCashGrantClient_Active (LocalScript) [script_0121, 47 lines]
         - Garage (Folder)
         - Intro (Folder)
-          - CockpitCustomisationZoneClient_Active (LocalScript) [script_0120, Disabled, 77 lines, 2 attrs]
-          - DealershipIntroClient_Active (LocalScript) [script_0121, 725 lines, 9 attrs]
-          - DriveInCustomisationZoneClient_Active (LocalScript) [script_0122, Disabled, 343 lines, 1 attrs]
-          - GarageEntranceController_Active (LocalScript) [script_0123, 217 lines, 3 attrs]
+          - CockpitCustomisationZoneClient_Active (LocalScript) [script_0122, Disabled, 77 lines, 2 attrs]
+          - DealershipIntroClient_Active (LocalScript) [script_0123, 725 lines, 9 attrs]
+          - DriveInCustomisationZoneClient_Active (LocalScript) [script_0124, Disabled, 343 lines, 1 attrs]
+          - GarageEntranceController_Active (LocalScript) [script_0125, 217 lines, 3 attrs]
         - Preview (Folder)
-          - GaragePreviewPresentationController_Active (LocalScript) [script_0124, 317 lines]
-          - ThrustPreviewController_Active (LocalScript) [script_0125, 76 lines, 20 attrs]
-          - GarageModuleInstancePreviewAdapter (ModuleScript) [script_0126, 98 lines]
-          - GarageVehiclePreviewProfile (ModuleScript) [script_0127, 75 lines]
-          - PreviewCameraController (ModuleScript) [script_0128, 56 lines, 5 attrs]
-          - PreviewVehicleController (ModuleScript) [script_0129, 92 lines, 6 attrs]
+          - GaragePreviewPresentationController_Active (LocalScript) [script_0126, 317 lines]
+          - ThrustPreviewController_Active (LocalScript) [script_0127, 76 lines, 20 attrs]
+          - GarageModuleInstancePreviewAdapter (ModuleScript) [script_0128, 98 lines]
+          - GarageVehiclePreviewProfile (ModuleScript) [script_0129, 75 lines]
+          - PreviewCameraController (ModuleScript) [script_0130, 56 lines, 5 attrs]
+          - PreviewVehicleController (ModuleScript) [script_0131, 92 lines, 6 attrs]
         - Racing (Folder)
           - RaceEntryLegacyAction (BindableEvent)
           - RaceEntryPresentationRequest (BindableEvent)
           - RaceTransitionRequest (BindableEvent)
           - RaceTransitionStateChanged (BindableEvent)
           - StartRaceQueueRequest (BindableEvent)
-          - RaceBrowserClient_Active (LocalScript) [script_0130, 593 lines]
-          - RaceClient_Active (LocalScript) [script_0131, Disabled, 276 lines, 1 attrs]
-          - RaceCountdownPresentationController_Active (LocalScript) [script_0132, 60 lines]
-          - RaceEntryMenuClient_Active (LocalScript) [script_0133, 98 lines]
-          - RaceEntryPresentationController_Active (LocalScript) [script_0134, 905 lines]
-          - RaceHudExitCleanupClient_Active (LocalScript) [script_0135, Disabled, 81 lines, 1 attrs]
-          - RaceLifecyclePresentationController_Active (LocalScript) [script_0136, 297 lines, 2 attrs]
-          - RaceParticipantVisibilityClient_Active (LocalScript) [script_0137, 66 lines]
-          - RaceQueueClient_Active (LocalScript) [script_0138, 49 lines]
-          - RaceRouteGuideClient_Active (LocalScript) [script_0139, 448 lines]
-          - RaceSessionAssetsClient_Active (LocalScript) [script_0140, 281 lines]
-          - RaceSessionControlsClient_Active (LocalScript) [script_0141, Disabled, 253 lines, 1 attrs]
-          - RaceSessionPresentationController_Active (LocalScript) [script_0142, 325 lines]
-          - RaceTimeTrialResultCoachClient_Active (LocalScript) [script_0143, 225 lines]
-          - RaceTransitionClient_Active (LocalScript) [script_0144, 400 lines]
+          - RaceBrowserClient_Active (LocalScript) [script_0132, 593 lines]
+          - RaceClient_Active (LocalScript) [script_0133, Disabled, 276 lines, 1 attrs]
+          - RaceCountdownPresentationController_Active (LocalScript) [script_0134, 60 lines]
+          - RaceEntryMenuClient_Active (LocalScript) [script_0135, 98 lines]
+          - RaceEntryPresentationController_Active (LocalScript) [script_0136, 905 lines]
+          - RaceHudExitCleanupClient_Active (LocalScript) [script_0137, Disabled, 81 lines, 1 attrs]
+          - RaceLifecyclePresentationController_Active (LocalScript) [script_0138, 297 lines, 2 attrs]
+          - RaceParticipantVisibilityClient_Active (LocalScript) [script_0139, 66 lines]
+          - RaceQueueClient_Active (LocalScript) [script_0140, 49 lines]
+          - RaceRouteGuideClient_Active (LocalScript) [script_0141, 448 lines]
+          - RaceSessionAssetsClient_Active (LocalScript) [script_0142, 281 lines]
+          - RaceSessionControlsClient_Active (LocalScript) [script_0143, Disabled, 253 lines, 1 attrs]
+          - RaceSessionPresentationController_Active (LocalScript) [script_0144, 325 lines]
+          - RaceTimeTrialResultCoachClient_Active (LocalScript) [script_0145, 225 lines]
+          - RaceTransitionClient_Active (LocalScript) [script_0146, 400 lines]
         - Runtime (Folder)
-          - CharacterSprintController_Active (LocalScript) [script_0145, 358 lines, 1 attrs]
-          - DriveHudController_Active (LocalScript) [script_0146, 3 lines, 7 attrs]
-          - FreeRoamParkedHoverController_Active (LocalScript) [script_0147, 232 lines, 3 attrs]
-          - MobileDriveControlsController_Active (LocalScript) [script_0148, 200 lines, 13 attrs]
-          - RuntimeVFXController_Active (LocalScript) [script_0149, 16 lines, 9 attrs]
+          - CharacterSprintController_Active (LocalScript) [script_0147, 358 lines, 1 attrs]
+          - DriveHudController_Active (LocalScript) [script_0148, 3 lines, 7 attrs]
+          - FreeRoamParkedHoverController_Active (LocalScript) [script_0149, 232 lines, 3 attrs]
+          - MobileDriveControlsController_Active (LocalScript) [script_0150, 200 lines, 13 attrs]
+          - RuntimeVFXController_Active (LocalScript) [script_0151, 16 lines, 9 attrs]
         - UI (Folder)
           - FreeRoamHudPresentationMode (BindableEvent)
           - LoadingPresentationChanged (BindableEvent) [1 attrs]
@@ -4750,48 +4780,48 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
           - ShowTopNotification (BindableEvent) [1 attrs]
           - LoadingTransitionInvoke (BindableFunction) [1 attrs]
           - LoadingPresentationState (Folder) [5 attrs]
-          - DesktopFreeRoamHudController_Active (LocalScript) [script_0150, 1123 lines, 4 attrs]
-          - FreeRoamNavController_Active (LocalScript) [script_0151, 3 lines, 3 attrs]
-          - FreeRoamVehicleExitButton_Active (LocalScript) [script_0152, 3 lines]
-          - GarageExperienceController_Active (LocalScript) [script_0153, Disabled, 206 lines, 3 attrs]
-          - LoadingTransitionController_Active (LocalScript) [script_0154, 16 lines, 1 attrs]
-          - MobileFreeRoamHudController_Active (LocalScript) [script_0155, 353 lines, 4 attrs]
-          - OnboardingClient_Active (LocalScript) [script_0156, 704 lines, 2 attrs]
-          - OwnedGarageClient_Active (LocalScript) [script_0157, 8 lines, 2 attrs]
-          - SharedTopNotificationController_Active (LocalScript) [script_0158, 15 lines, 2 attrs]
-          - CockpitPaintUIController (ModuleScript) [script_0159, 46 lines, 5 attrs]
-          - ColourPickerController (ModuleScript) [script_0160, 277 lines, 5 attrs]
-          - CustomisationUIController (ModuleScript) [script_0161, 127 lines, 5 attrs]
-          - DealershipUIController (ModuleScript) [script_0162, 87 lines, 5 attrs]
-          - GarageBrowserController (ModuleScript) [script_0163, 141 lines]
-          - GarageInteriorModeController (ModuleScript) [script_0164, 62 lines, 7 attrs]
-          - GarageInteriorTransitionController (ModuleScript) [script_0165, 14 lines, 3 attrs]
-          - GarageModuleCardViewModel (ModuleScript) [script_0166, 61 lines]
-          - GaragePropertyMenuController (ModuleScript) [script_0167, 174 lines, 2 attrs]
-          - GarageReplacementComponents (ModuleScript) [script_0168, 347 lines, 4 attrs]
-          - GarageWorkspaceController (ModuleScript) [script_0169, 285 lines, 6 attrs]
-          - ModuleShopUIController (ModuleScript) [script_0170, 698 lines, 10 attrs]
-          - NavigationController (ModuleScript) [script_0171, 49 lines, 5 attrs]
-          - OnboardingGuideTrailRenderer (ModuleScript) [script_0172, 139 lines]
-          - OwnedGarageBrowserController (ModuleScript) [script_0173, 106 lines, 6 attrs]
-          - OwnedGarageWorkspaceController (ModuleScript) [script_0174, 208 lines, 10 attrs]
-          - StatsPanelController (ModuleScript) [script_0175, 51 lines, 5 attrs]
+          - DesktopFreeRoamHudController_Active (LocalScript) [script_0152, 1128 lines, 5 attrs]
+          - FreeRoamNavController_Active (LocalScript) [script_0153, 3 lines, 3 attrs]
+          - FreeRoamVehicleExitButton_Active (LocalScript) [script_0154, 3 lines]
+          - GarageExperienceController_Active (LocalScript) [script_0155, Disabled, 206 lines, 3 attrs]
+          - LoadingTransitionController_Active (LocalScript) [script_0156, 16 lines, 1 attrs]
+          - MobileFreeRoamHudController_Active (LocalScript) [script_0157, 364 lines, 5 attrs]
+          - OnboardingClient_Active (LocalScript) [script_0158, 704 lines, 2 attrs]
+          - OwnedGarageClient_Active (LocalScript) [script_0159, 8 lines, 2 attrs]
+          - SharedTopNotificationController_Active (LocalScript) [script_0160, 15 lines, 2 attrs]
+          - CockpitPaintUIController (ModuleScript) [script_0161, 46 lines, 5 attrs]
+          - ColourPickerController (ModuleScript) [script_0162, 277 lines, 5 attrs]
+          - CustomisationUIController (ModuleScript) [script_0163, 127 lines, 5 attrs]
+          - DealershipUIController (ModuleScript) [script_0164, 87 lines, 5 attrs]
+          - GarageBrowserController (ModuleScript) [script_0165, 141 lines]
+          - GarageInteriorModeController (ModuleScript) [script_0166, 62 lines, 7 attrs]
+          - GarageInteriorTransitionController (ModuleScript) [script_0167, 14 lines, 3 attrs]
+          - GarageModuleCardViewModel (ModuleScript) [script_0168, 61 lines]
+          - GaragePropertyMenuController (ModuleScript) [script_0169, 174 lines, 2 attrs]
+          - GarageReplacementComponents (ModuleScript) [script_0170, 347 lines, 4 attrs]
+          - GarageWorkspaceController (ModuleScript) [script_0171, 285 lines, 6 attrs]
+          - ModuleShopUIController (ModuleScript) [script_0172, 698 lines, 10 attrs]
+          - NavigationController (ModuleScript) [script_0173, 49 lines, 5 attrs]
+          - OnboardingGuideTrailRenderer (ModuleScript) [script_0174, 139 lines]
+          - OwnedGarageBrowserController (ModuleScript) [script_0175, 106 lines, 6 attrs]
+          - OwnedGarageWorkspaceController (ModuleScript) [script_0176, 208 lines, 10 attrs]
+          - StatsPanelController (ModuleScript) [script_0177, 51 lines, 5 attrs]
           - README_TargetControllers (StringValue)
         - World (Folder)
-          - GarageAccessClient_Active (LocalScript) [script_0176, Disabled, 279 lines, 4 attrs]
-          - GarageInteriorClient_Active (LocalScript) [script_0177, Disabled, 92 lines, 5 attrs]
-          - GarageInteriorCustomizationClient_Active (LocalScript) [script_0178, Disabled, 273 lines, 4 attrs]
-          - LODClient_Active (LocalScript) [script_0179, 365 lines, 12 attrs]
-          - NightLamppostLightController_Active (LocalScript) [script_0180, 21 lines, 2 attrs]
-          - OwnedGarageEnvironmentLightingController_Active (LocalScript) [script_0181, 150 lines, 2 attrs]
-          - WindowMaterialController_Active (LocalScript) [script_0182, 28 lines, 2 attrs]
+          - GarageAccessClient_Active (LocalScript) [script_0178, Disabled, 279 lines, 4 attrs]
+          - GarageInteriorClient_Active (LocalScript) [script_0179, Disabled, 92 lines, 5 attrs]
+          - GarageInteriorCustomizationClient_Active (LocalScript) [script_0180, Disabled, 273 lines, 4 attrs]
+          - LODClient_Active (LocalScript) [script_0181, 365 lines, 12 attrs]
+          - NightLamppostLightController_Active (LocalScript) [script_0182, 21 lines, 2 attrs]
+          - OwnedGarageEnvironmentLightingController_Active (LocalScript) [script_0183, 150 lines, 2 attrs]
+          - WindowMaterialController_Active (LocalScript) [script_0184, 28 lines, 2 attrs]
       - RuntimeState (Folder)
       - State (Folder)
-      - NeoTokyoRacersClient_Bootstrap_Shadow_Disabled (LocalScript) [script_0183, 4226 lines, 64 attrs]
-    - LocalScript (LocalScript) [script_0184, 203 lines]
-    - TEMP_LightingPreview (LocalScript) [script_0185, 39 lines, 2 attrs]
-    - TrailerMode.client.lua (LocalScript) [script_0186, 73 lines]
-    - TrailerShot01Camera (LocalScript) [script_0187, 92 lines]
+      - NeoTokyoRacersClient_Bootstrap_Shadow_Disabled (LocalScript) [script_0185, 4226 lines, 64 attrs]
+    - LocalScript (LocalScript) [script_0186, 203 lines]
+    - TEMP_LightingPreview (LocalScript) [script_0187, 39 lines, 2 attrs]
+    - TrailerMode.client.lua (LocalScript) [script_0188, 73 lines]
+    - TrailerShot01Camera (LocalScript) [script_0189, 92 lines]
 - StarterGui (StarterGui)
   - NeoTokyoRacersUI (ScreenGui) [2 attrs]
     - Components (Folder) [1 attrs]
@@ -32058,13 +32088,13 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
   - FBX - 3D Lady Head v2 (Model) [1 attrs]
     - headMesh.002 (MeshPart)
       - SurfaceAppearance (SurfaceAppearance)
-    - Script (Script) [script_0188, 16 lines]
+    - Script (Script) [script_0190, 16 lines]
   - FBX - 3D Vehicle Holographic v3 (Model) [1 attrs]
     - Model (Model)
       - main.001 (MeshPart)
         - SurfaceAppearance (SurfaceAppearance)
       - neon (MeshPart)
-    - Script (Script) [script_0189, 16 lines]
+    - Script (Script) [script_0191, 16 lines]
   - BillboardPanel (Part)
     - Attachment (Attachment)
     - Attachment (Attachment)

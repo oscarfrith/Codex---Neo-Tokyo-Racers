@@ -1,5 +1,25 @@
 # Neo Tokyo Racers Project Context
 
+## 2026-07-27 free-roam Cash smoothing/full formatting confirmed and handed off
+
+- `scripts/roblox_freeroam_cash_smoothing_v1.lua` is the one canonical `INSTALL` / `AUDIT` / `ROLLBACK` script for the approved presentation continuation.
+- It adds one shared, bounded, client-only Cash presenter and opts in only the active desktop/mobile free-roam Cash labels. Small gains show each whole dollar over about `0.4 s`; large rewards use at most 20 display steps by default; decreases snap immediately.
+- Free-roam balances use full grouped formatting such as `$10,000,000`. Existing compact formatting remains available to other constrained surfaces.
+- Real Cash remains `leaderstats.Cash`; garage affordability, purchases, ProfileService, rewards, saving, race logic and Drive-To-Earn cadence are unchanged.
+- The user confirmed the installed result working well. The complete `2026-07-27 11:26:30` mirror has 191 matching exported-script, source-manifest and checksum entries and contains all three smoothing markers plus the five saved Theme tuning attributes.
+- No Studio command or mirror refresh is pending for ordinary use. Retain the canonical installer for exact-scope audit/recovery and the full matrix as release regression. See `docs/free-roam-cash-smoothing-v1.md`.
+
+## 2026-07-27 drive-to-earn Cash V1 confirmed; V1.1 installed/mirrored
+
+- `scripts/roblox_drive_to_earn_cash_system_v1.lua` remains the one canonical `INSTALL` / `AUDIT` / `ROLLBACK` Studio script. V1.1 is installed and represented in the refreshed mirror.
+- The complete High-Risk contract, authority map, tuning derivation, exploit/lifecycle matrix, 15-player budget, time-to-purchase report, rollback, expected Output and mirror steps are in `docs/drive-to-earn-cash-system-v1.md`.
+- The isolated server service owns accepted distance, fractional accrual, coalesced visible batches and the bounded rolling drive-only cap. ProfileService remains the sole committed positive-Cash owner; Race, Time Trial and Studio test grants delegate through it without changing reward calculations.
+- Confirmed V1 telemetry projected `$23,254/hour` from `21,117.8` accepted studs. Approved V1.1 tuning doubles the rate to `$0.10/stud` and lowers the visible threshold to `$1`, while a new `0.5 s` minimum command interval caps reconciliation at 2 Hz/player.
+- The `$35,000/3,600 s` ceiling is intentionally unchanged. The same measured drive would project about `$46,508/hour` uncapped, so sustained grants will hit the safety ceiling.
+- Eligibility requires the currently seated, owned, stable-ID runtime vehicle. Parked/unseated/preview/frozen/staged/transition/teleport/reset/lifecycle-change/vertical/implausible samples are rejected and reset the baseline.
+- Studio-only read-only telemetry is bounded and creates no production presentation or reward remote. Existing `leaderstats.Cash` remains the UI reconciliation surface.
+- The `2026-07-27 11:08:34` mirror contains all installed V1.1 owners/config with 191 source entries and appears current. The config attribute was tuned to `MinimumGrantIntervalSeconds=0.1`, but the committed service safety-clamps the effective interval to `0.5`.
+
 ## 2026-07-27 racing presentation/lifecycle V1.4 confirmed and handed off
 
 - `scripts/roblox_racing_presentation_lifecycle_refinements_v1.lua` remains the one canonical recovery/audit installer. The user confirmed V1.4 working and refreshed the complete Studio mirror at `2026-07-27 10:05:47`.

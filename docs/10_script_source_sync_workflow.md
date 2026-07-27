@@ -8,6 +8,8 @@
 
 **Confirmed racing scope note (2026-07-27):** Racing Presentation/Lifecycle V1.4 is user-confirmed and represented in the complete `10:05:47` mirror. Its 189 exported-script, source-manifest, checksum and hierarchy entries agree with zero mismatches. The mirror contains `NTR_RACING_PRESENTATION_LIFECYCLE_V1_4`, the adaptive-safe-edge canvas marker, retained V1.3 full-screen EXIT and V1.2 prompt/checkpoint markers, all three earlier legacy racing clients disabled, no standalone PB-board script, and retained authored `ArrowMarkers`. No refresh or Studio command is pending for ordinary use.
 
+**Drive-to-earn/free-roam Cash scope note (2026-07-27):** V1.1 and the user-confirmed free-roam smoothing/full-formatting continuation are represented in the complete `11:26:30` mirror with 191 mutually matching exported-script, source-manifest and checksum entries. The mirror contains the shared presenter, desktop and mobile smoothing markers, all three `NTR_FREEROAM_CASH_SMOOTHING_V1` revision attributes and the five Theme controls. The drive service still safety-clamps the effective grant interval to `0.5 s`, although the exported config attribute is `0.1`. Neither mirror area appears stale and no Cash-scope refresh or Studio command is pending. Leave `docs/studio-full-export-paste.txt` unstaged.
+
 ## Why This Exists
 
 Roblox Studio is still the live source of truth for Neo Tokyo Racers. GitHub stores docs, command-bar scripts, and a readable mirror of Studio script sources so Codex/ChatGPT can search, diff, review, and plan safe targeted patches.

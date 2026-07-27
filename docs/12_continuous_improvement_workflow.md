@@ -1,5 +1,25 @@
 # Continuous Improvement Workflow
 
+## Authoritative-value versus displayed-value lesson (2026-07-27)
+
+Smooth currency presentation at the rendering edge, not by increasing server mutation cadence. Keep the replicated authoritative value available immediately for affordability, purchases, saves and reconciliation, while a separate bounded presenter may lag upward for visual counting. Initial state and every decrease must snap; positive display must never exceed the target; new targets cancel/retarget without an accumulating queue.
+
+Do not globally change a shared raw Cash binding into a smoothed binding when some consumers use it for logic. Add an explicit presentation helper and opt in only labels. Small gains may show every unit, but large gains need a maximum step count so reward size cannot scale client work without bound.
+
+## Small-batch reward coalescing lesson (2026-07-27)
+
+A small visible currency batch must not imply one mutation call per currency unit. Keep the user-facing threshold and the authoritative command cadence as separate configuration concerns: accumulate fractional value, calculate all payable whole Cash, and coalesce it into at most one command per bounded interval. This preserves responsive leaderstats reconciliation without remote, save, or command spam.
+
+When telemetry motivates a rate change, calculate its effect against the safety ceiling before implementation. If a doubled measured projection exceeds the retained ceiling, document that sustained play becomes cap-limited rather than silently changing the ceiling or continuing to claim the old uncapped target.
+
+## Persistent-reward compatibility projection lesson (2026-07-27)
+
+When a saved-session owner coexists with a legacy in-memory compatibility profile, adding currency directly to the saved table can still be lost when the legacy table later imports a stale balance. Before adding a reward source, trace both the committed mutation and every later whole-profile import.
+
+For positive rewards, prefer one versioned ProfileService command that validates the current player/session and commits Cash. Preserve existing caller APIs by delegating them to that command, then project the committed absolute balance back to legacy compatibility state and leaderstats. The projection is not a second mutation owner. Do not solve this by mutating a detached snapshot or saving after every sample.
+
+Distance rewards from client-network-owned physics need a separate bounded server sampler: exact runtime ownership/seat checks, a stable saved vehicle ID, lifecycle generations, non-payable transition baselines, broad movement plausibility, a rolling cap, fixed rejection reasons and Studio-only telemetry. A cap-blocked fractional backlog must be bounded so an exploit cannot bank an unbounded later payout.
+
 ## Integrated replacement must retire companion UI lesson (2026-07-26)
 
 When a new canonical screen absorbs data from an older companion panel, completing the renderer does not retire the older event listener automatically. Audit every enabled consumer of the screen-open event. If an older isolated panel now duplicates integrated content, remove that exact owner and add its exact runtime GUI name to cleanup; keep any headless action bridge that still owns required server calls.

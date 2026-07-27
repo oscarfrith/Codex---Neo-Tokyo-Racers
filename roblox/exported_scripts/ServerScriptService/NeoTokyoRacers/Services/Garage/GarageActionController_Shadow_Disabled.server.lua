@@ -765,11 +765,33 @@ local V56_STARTING_CASH = V56_kit:GetAttribute("StartingCash") or 140000
 	end
 
 	-- NTR_RACING_PHASE6_GARAGE_CASH_BRIDGE
+	-- NTR_GARAGE_ECONOMY_COMMITTED_PROJECTION_V1
+	-- Existing reward callers retain their binding, but ProfileService is the only
+	-- positive-Cash grant owner. This legacy profile is a committed projection only.
 	local V91_RaceRewardBridgeReady = false
+	local V91_EconomyProjectionConnected = false
+	local function V91_profileEconomyBindings()
+		local servicesRoot = script.Parent and script.Parent.Parent
+		local playerRoot = servicesRoot and servicesRoot:FindFirstChild("Player")
+		local bindings = playerRoot and playerRoot:FindFirstChild("ProfileServiceBindings")
+		local execute = bindings and bindings:FindFirstChild("ExecuteEconomyCommand")
+		local committed = bindings and bindings:FindFirstChild("EconomyCashCommitted")
+		return execute, committed
+	end
+	local function V91_connectEconomyProjection()
+		if V91_EconomyProjectionConnected then return end
+		local _, committed = V91_profileEconomyBindings()
+		if not (committed and committed:IsA("BindableEvent")) then return end
+		committed.Event:Connect(function(player, committedCash)
+			if not (player and player:IsA("Player")) then return end
+			local legacy = V56_profiles[player.UserId]
+			if legacy then legacy.Cash = math.max(0, math.floor(tonumber(committedCash) or 0)) end
+			V56_setLeaderstats(player, {Cash=committedCash})
+		end)
+		V91_EconomyProjectionConnected = true
+	end
 	local function V91_ensureRaceRewardCashBridge()
-		if V91_RaceRewardBridgeReady then
-			return
-		end
+		if V91_RaceRewardBridgeReady then return end
 		local bindings = script.Parent:FindFirstChild("GarageProfileMutationBindings")
 		if not bindings then
 			bindings = Instance.new("Folder")
@@ -784,23 +806,42 @@ local V56_STARTING_CASH = V56_kit:GetAttribute("StartingCash") or 140000
 		end
 		grantCash.OnInvoke = function(action, payload)
 			if action ~= "GrantCash" then
-				return { Ok = false, Success = false, Message = "Unknown garage mutation action." }
+				return {Ok=false, Success=false, Message="Unknown garage mutation action."}
 			end
 			payload = typeof(payload) == "table" and payload or {}
 			local player = payload.Player
-			local amount = math.floor((tonumber(payload.Amount) or 0) + 0.5)
-			if not player or amount <= 0 then
-				return { Ok = false, Success = false, Message = "Missing player or positive amount." }
+			local execute = V91_profileEconomyBindings()
+			if not (player and execute and execute:IsA("BindableFunction")) then
+				return {Ok=false, Success=false, Message="ProfileService economy command is unavailable."}
 			end
-			local profile = V56_getProfile(player)
-			profile.Cash = math.max(0, math.floor((tonumber(profile.Cash) or 0) + amount))
-			V56_setLeaderstats(player, profile)
-			V80_mirrorLegacyProfileToPersistence(player, profile, tostring(payload.Reason or "RaceRewardGrant"), true)
-			player:SetAttribute("NTR_LastRaceRewardAmount", amount)
-			player:SetAttribute("NTR_LastRaceRewardRunId", tostring(payload.RunId or ""))
-			player:SetAttribute("NTR_LastRaceRewardEventId", tostring(payload.EventId or ""))
-			return { Ok = true, Success = true, Amount = amount, Cash = profile.Cash }
+			V91_connectEconomyProjection()
+			local result = execute:Invoke(player, {
+				Version=1,
+				Action="GrantCash",
+				Amount=math.floor((tonumber(payload.Amount) or 0)+0.5),
+				Reason=tostring(payload.Reason or ""),
+				CommandId=(tostring(payload.Reason or "")=="StudioCashGrantHotkey")
+					and game:GetService("HttpService"):GenerateGUID(false)
+					or (tostring(payload.Reason or "")..":"..tostring(payload.RunId or "")..":"..tostring(player.UserId)),
+				RunId=tostring(payload.RunId or ""),
+				EventId=tostring(payload.EventId or ""),
+			})
+			if typeof(result) == "table" and result.Success == true then
+				player:SetAttribute("NTR_LastRaceRewardAmount", result.Amount)
+				player:SetAttribute("NTR_LastRaceRewardRunId", tostring(payload.RunId or ""))
+				player:SetAttribute("NTR_LastRaceRewardEventId", tostring(payload.EventId or ""))
+			end
+			return result
 		end
+		V91_connectEconomyProjection()
+		task.spawn(function()
+			for _ = 1, 100 do
+				if V91_EconomyProjectionConnected then return end
+				task.wait(0.1)
+				V91_connectEconomyProjection()
+			end
+			warn("[NTR Economy] Legacy Cash projection did not connect within 10 seconds.")
+		end)
 		V91_RaceRewardBridgeReady = true
 	end
 	V91_ensureRaceRewardCashBridge()
@@ -2082,6 +2123,7 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		local vehicle = cockpit:Clone()
 		vehicle.Name = player.Name .. "_FixedSlotHovercar"
 		vehicle:SetAttribute("OwnerUserId", player.UserId)
+		vehicle:SetAttribute("OwnedVehicleId", tostring(profile.CurrentVehicleId or "")) -- NTR_RUNTIME_OWNED_VEHICLE_ID_V1
 		vehicle:SetAttribute("CategoryId", profile.CurrentCategory)
 		vehicle:SetAttribute("CockpitId", profile.CurrentCockpit)
 		vehicle:SetAttribute("ThrustColor", profile.ThrustColor)

@@ -499,9 +499,9 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/UI/ResponsiveUIFoundation.module.lua",
     "class_name": "ModuleScript",
     "disabled": false,
-    "source_lines": 373,
-    "source_bytes": 15161,
-    "source_checksum": "108632378"
+    "source_lines": 470,
+    "source_bytes": 18110,
+    "source_checksum": "439803736"
   },
   "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.UI.StatBars": {
     "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/UI/StatBars.module.lua",
@@ -683,9 +683,9 @@
     "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Garage/GarageActionController_Shadow_Disabled.server.lua",
     "class_name": "Script",
     "disabled": false,
-    "source_lines": 2893,
-    "source_bytes": 131512,
-    "source_checksum": "997559749"
+    "source_lines": 2935,
+    "source_bytes": 133518,
+    "source_checksum": "767074625"
   },
   "ServerScriptService.NeoTokyoRacers.Services.Garage.GarageInteriorCustomizationService_Active": {
     "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Garage/GarageInteriorCustomizationService_Active.server.lua",
@@ -739,9 +739,9 @@
     "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Player/ProfileService_Active.server.lua",
     "class_name": "Script",
     "disabled": false,
-    "source_lines": 595,
-    "source_bytes": 22491,
-    "source_checksum": "516988249"
+    "source_lines": 821,
+    "source_bytes": 32612,
+    "source_checksum": "120143144"
   },
   "ServerScriptService.NeoTokyoRacers.Services.Racing.GlobalTimeTrialLeaderboardService_Active": {
     "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Racing/GlobalTimeTrialLeaderboardService_Active.server.lua",
@@ -814,6 +814,14 @@
     "source_lines": 128,
     "source_bytes": 5433,
     "source_checksum": "300811553"
+  },
+  "ServerScriptService.NeoTokyoRacers.Services.Vehicle.DriveToEarnCashService_Active": {
+    "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Vehicle/DriveToEarnCashService_Active.server.lua",
+    "class_name": "Script",
+    "disabled": false,
+    "source_lines": 459,
+    "source_bytes": 19098,
+    "source_checksum": "237671168"
   },
   "ServerScriptService.NeoTokyoRacers.Services.Vehicle.DriverSeatPositionService_Active": {
     "file": "roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Vehicle/DriverSeatPositionService_Active.server.lua",
@@ -942,6 +950,14 @@
     "source_lines": 142,
     "source_bytes": 4589,
     "source_checksum": "870140572"
+  },
+  "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Debug.DriveToEarnCashTelemetry_StudioOnly": {
+    "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Debug/DriveToEarnCashTelemetry_StudioOnly.client.lua",
+    "class_name": "LocalScript",
+    "disabled": false,
+    "source_lines": 81,
+    "source_bytes": 3424,
+    "source_checksum": "492260060"
   },
   "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Debug.StudioCashGrantClient_Active": {
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Debug/StudioCashGrantClient_Active.client.lua",
@@ -1195,9 +1211,9 @@
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/UI/DesktopFreeRoamHudController_Active.client.lua",
     "class_name": "LocalScript",
     "disabled": false,
-    "source_lines": 1123,
-    "source_bytes": 58437,
-    "source_checksum": "925819147"
+    "source_lines": 1128,
+    "source_bytes": 58740,
+    "source_checksum": "672156261"
   },
   "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.FreeRoamNavController_Active": {
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/UI/FreeRoamNavController_Active.client.lua",
@@ -1235,9 +1251,9 @@
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/UI/MobileFreeRoamHudController_Active.client.lua",
     "class_name": "LocalScript",
     "disabled": false,
-    "source_lines": 353,
-    "source_bytes": 44278,
-    "source_checksum": "492156757"
+    "source_lines": 364,
+    "source_bytes": 44762,
+    "source_checksum": "443755114"
   },
   "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.OnboardingClient_Active": {
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/UI/OnboardingClient_Active.client.lua",

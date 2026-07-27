@@ -4,7 +4,7 @@ Generated from the Roblox Studio full snapshot export.
 
 These files are a GitHub-readable mirror of Studio scripts. Treat Studio as live until a Rojo/source-sync migration is explicitly completed.
 
-Script count: 189
+Script count: 191
 
 - `ReplicatedFirst.NTRLoading.InitialLoadingAndStartScreenClient` (LocalScript, enabled/module) -> `roblox/exported_scripts/ReplicatedFirst/NTRLoading/InitialLoadingAndStartScreenClient.client.lua`
 - `ReplicatedFirst.NTRLoading.LoadingArtworkCatalog` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedFirst/NTRLoading/LoadingArtworkCatalog.module.lua`
@@ -108,6 +108,7 @@ Script count: 189
 - `ServerScriptService.NeoTokyoRacers.Services.Racing.RaceSessionAssetService_Active` (Script, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Racing/RaceSessionAssetService_Active.server.lua`
 - `ServerScriptService.NeoTokyoRacers.Services.Racing.TimeTrialService_Active` (Script, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Racing/TimeTrialService_Active.server.lua`
 - `ServerScriptService.NeoTokyoRacers.Services.UI.FreeRoamHudTeleportService_Active` (Script, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/UI/FreeRoamHudTeleportService_Active.server.lua`
+- `ServerScriptService.NeoTokyoRacers.Services.Vehicle.DriveToEarnCashService_Active` (Script, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Vehicle/DriveToEarnCashService_Active.server.lua`
 - `ServerScriptService.NeoTokyoRacers.Services.Vehicle.DriverSeatPositionService_Active` (Script, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Vehicle/DriverSeatPositionService_Active.server.lua`
 - `ServerScriptService.NeoTokyoRacers.Services.Vehicle.VehicleAccessPromptService_Active` (Script, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Vehicle/VehicleAccessPromptService_Active.server.lua`
 - `ServerScriptService.NeoTokyoRacers.Services.Vehicle.VehicleCollisionLifecycleService_Active` (Script, enabled/module) -> `roblox/exported_scripts/ServerScriptService/NeoTokyoRacers/Services/Vehicle/VehicleCollisionLifecycleService_Active.server.lua`
@@ -124,6 +125,7 @@ Script count: 189
 - `StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Core.ClientThemeAdapter` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Core/ClientThemeAdapter.module.lua`
 - `StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Core.GarageApiClient` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Core/GarageApiClient.module.lua`
 - `StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Core.PaintClient` (ModuleScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Core/PaintClient.module.lua`
+- `StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Debug.DriveToEarnCashTelemetry_StudioOnly` (LocalScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Debug/DriveToEarnCashTelemetry_StudioOnly.client.lua`
 - `StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Debug.StudioCashGrantClient_Active` (LocalScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Debug/StudioCashGrantClient_Active.client.lua`
 - `StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Intro.CockpitCustomisationZoneClient_Active` (LocalScript, disabled) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Intro/CockpitCustomisationZoneClient_Active.client.lua`
 - `StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Intro.DealershipIntroClient_Active` (LocalScript, enabled/module) -> `roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/Intro/DealershipIntroClient_Active.client.lua`

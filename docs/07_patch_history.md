@@ -1,5 +1,30 @@
 # Patch History
 
+## 2026-07-27 - Free-roam Cash smoothing and full formatting V1 confirmed, mirrored and handed off
+
+- Audited the complete `11:08:34` V1.1 mirror and confirmed desktop/mobile free roam immediately render replicated `leaderstats.Cash` through compact formatting.
+- Added one guarded canonical installer that extends `ResponsiveUIFoundation` with a bounded presentation-only Cash presenter and full grouped formatting, then opts in only the two active free-roam controllers.
+- Small positive gains show every dollar over `0.4 s`; large gains use at most 20 steps; decreases and initial values snap; newer targets cancel/retarget without a payout queue.
+- Authority, garage affordability, purchases, ProfileService, rewards, saving, Drive-To-Earn cadence, race logic, physics and the register-limited bootstrap are unchanged.
+- The user confirmed the installed result working well. The complete `11:26:30` Studio mirror contains 191 matching exported-script, source-manifest and checksum entries, all three source/revision markers and all five Theme tuning attributes.
+- The canonical installer is retained for exact-scope recovery/audit. No ordinary Studio command or mirror refresh remains; the wider device/lifecycle/performance matrix remains release regression.
+
+## 2026-07-27 - Drive-to-earn Cash V1 confirmed and V1.1 tuning installed/mirrored
+
+- The user confirmed V1 installed and worked well; the refreshed `10:36:57` mirror contains 191 source entries plus the ProfileService command, committed-Cash projection, stable vehicle ID, isolated service, Studio telemetry, and config hierarchy.
+- Measured telemetry recorded `21,117.8` accepted studs, `$1,050` granted, `$5.889` ungranted, `$23,125` current hourly and `$23,254` projected hourly, with only `Stationary=0.1` rejected studs.
+- Advanced the same canonical installer to V1.1: `$0.10` per accepted stud, `$1` visible threshold, unchanged `$35,000/hour` rolling ceiling, and a new configurable `0.5 s` minimum command interval.
+- A `$1` threshold is coalesced into one whole-Cash grant per interval, not one command per dollar. Defaults permit at most 2 ProfileService drive commands/second/player, or 30/second for 15 simultaneously earning players; autosave behaviour is unchanged.
+- V1.1 is represented in the complete `11:08:34` mirror with 191 matching source entries. The hierarchy records a manually tuned `MinimumGrantIntervalSeconds=0.1`, while the committed service source retains the effective `0.5 s` safety floor. The broader cap/performance matrix remains release regression.
+
+## 2026-07-27 - Drive-to-earn Cash V1 High-Risk implementation generated
+
+- Added the complete High-Risk contract and canonical `scripts/roblox_drive_to_earn_cash_system_v1.lua` installer.
+- Establishes one isolated server distance/cap owner and a versioned ProfileService positive-Cash command, while retaining the existing leaderstats UI and existing Race/Time Trial reward calculations.
+- Adds a stable saved vehicle ID to the shared runtime vehicle build boundary, exact eligibility/lifecycle rejection, fractional `$0.05/stud` accrual, `$50` batching, a rolling `$35,000/hour` drive cap, bounded Studio-only telemetry, edit/runtime audits, idempotency and exact rollback.
+- Existing Race, Time Trial and Studio debug positive grants retain their API but delegate to ProfileService; the legacy garage table becomes a committed-Cash projection so later garage actions cannot overwrite drive earnings.
+- Superseded status: V1 later installed, produced the measured telemetry above, and was fully mirrored before the V1.1 tuning continuation.
+
 ## 2026-07-27 - Racing presentation and lifecycle V1.4 confirmed, mirrored and handed off
 
 - The user confirmed the V1.4 adaptive race HUD working and requested handoff.

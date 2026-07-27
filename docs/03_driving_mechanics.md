@@ -1,5 +1,16 @@
 # Driving Mechanics
 
+## Drive-to-earn Cash V1 boundary (generated 2026-07-27; Studio verification pending)
+
+- `DriveToEarnCashService_Active` is the installed sole server owner for payable distance, fractional accrual, visible batching, rejection telemetry and the rolling drive-only ceiling.
+- It observes the current seated owned runtime vehicle at `2 Hz`; it does not patch or read client throttle, vehicle tier, price, upgrades, raw maximum speed or driving-controller reward state.
+- The first eligible sample and every post-spawn/reset/teleport/staging/session/vehicle transition sample are non-payable baselines. Unseated, parked, exit-coasting, preview/display, frozen, staged, vertical and implausible segments are rejected.
+- Running Race and Time Trial movement remains eligible; staging/countdown and finished-pending-exit are not. Finish rewards remain separate.
+- Confirmed V1 tuning produced `$23,254/hour` projected. Approved V1.1 tuning is `$0.10` per accepted stud with a `$1` visibility threshold, a `0.5 s` sample interval, a separate `0.5 s` minimum grant interval, and the unchanged `$35,000` rolling-hour ceiling.
+- The `$1` threshold does not create one command per dollar: the service coalesces all payable whole Cash into at most one ProfileService command per interval (2 Hz/player by default).
+- Canonical installer and the complete verification/rollback contract: `scripts/roblox_drive_to_earn_cash_system_v1.lua` and `docs/drive-to-earn-cash-system-v1.md`.
+- This is generated, not confirmed, and does not supersede the confirmed V74 driving/camera baseline.
+
 ## Multiplayer collision, speed-sensitive parking and exit boundary
 
 The confirmed V1.1 installer does not change driven forces, steering, boost, drift, hover, camera or race control.

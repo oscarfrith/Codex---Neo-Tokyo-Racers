@@ -56,6 +56,17 @@
 **Phase 22 garage display vehicle MVP installer/smoke:** `scripts/roblox_persistence_phase22_garage_display_vehicle_mvp.lua`
 **Phase 23 same-server garage visits installer/smoke:** `scripts/roblox_persistence_phase23_same_server_garage_visits.lua`
 
+## Drive-to-earn Cash command boundary (V1 confirmed; V1.1 tuning pending 2026-07-27)
+
+- The High-Risk V1 adds no saved field and does not change `PlayerProfileSchema.SchemaVersion`.
+- `ProfileService_Active` gains versioned server-only `ExecuteEconomyCommand` and `EconomyCashCommitted` bindings. The command validates the current session generation/ID and directly mutates the owned `session.Profile.Cash`; it marks dirty but never saves per sample or per command.
+- Drive grants additionally validate the exact runtime vehicle, stable saved `OwnedVehicleId`, profile ownership record, seat occupant, driver/owner IDs and lifecycle gates.
+- Existing Race, Time Trial and Studio test positive-grant calls delegate through the same ProfileService command. The legacy garage profile receives only the committed absolute balance so a later compatibility import cannot restore stale Cash.
+- Existing autosave, `PlayerRemoving`, `BindToClose`, DataStore name, schema encoding, no-save Studio sandbox and leaderstats reconciliation remain unchanged.
+- Purchase/deduction migration out of the legacy garage compatibility transaction is not part of this feature and remains a separately scoped architecture concern.
+- Save/rejoin must prove each batch persists once and finish rewards remain additive. Installer, contract, rollback and runtime matrix: `scripts/roblox_drive_to_earn_cash_system_v1.lua` and `docs/drive-to-earn-cash-system-v1.md`.
+- V1.1 lowers the visible threshold to `$1` but adds `MinimumGrantIntervalSeconds=0.5`, so accumulated whole Cash is coalesced into at most one authoritative command per player per interval. This does not add `SaveNow`, a new mutation owner, a remote, or a saved field.
+
 ## Goal
 
 Create the long-term data foundation for:
