@@ -1,5 +1,42 @@
 # Patch History
 
+## 2026-07-28 - Free-roam map V1.1 confirmed and handed off
+
+- Recorded the user's confirmation that the repaired V1.1 result is working well.
+- Verified the complete `14:21:10` mirror: 193 exported-manifest, source-manifest and checksum records agree with zero mismatches.
+- Verified enabled desktop/mobile HUD revisions, shared marker-module revision and config revision at `NTR_FREEROAM_MAP_PLAYERS_SMOOTH_PAN_V1_1`.
+- Locked mirrored defaults `MapPanSubpixelFactor=4`, `MapPanResponse=12`, `OtherPlayerMarkerScale=0.65` and `MaximumOtherPlayers=14`.
+- Confirmed one four-tile creation path per HUD and no remote, descendant scan, server owner or standalone render binding in the shared marker module.
+- Closed the installation/audit blocker. Retained multiplayer Race/TT lifecycle, streaming/respawn cleanup, landscape device and representative low-end-mobile load checks as release regression.
+- No ordinary Studio command or mirror refresh is pending. The canonical installer remains exact-scope audit/repair/rollback evidence, with exact rollback to V1.
+
+## 2026-07-28 - Free-roam map V1.1 false audit blocker repaired
+
+- Inspected the post-failure `14:10:13` mirror and confirmed transactional restoration to V1: 193 exported-manifest, source-manifest and checksum records match with zero mismatches, and no V1.1 carrier/source marker remains.
+- Root cause was audit-only: plain substring counting found `_V1` once on its own line and again inside `_V1_1`, so both otherwise projected HUDs were falsely classified as incomplete.
+- Repaired the same canonical installer to count complete desktop/mobile marker lines. No runtime design, source transform, config, performance behaviour or rollback contract changed.
+- The exporter's locked `README_HOW_TO_IMPORT` cleanup warning did not corrupt the delivered mirror; all three mirror databases agree.
+
+## 2026-07-28 - Free-roam map V1 installed/mirrored; V1.1 generated
+
+- Recorded the user's confirmation that V1 other-player markers look good and the complete `13:47:44` / 193-source mirror contains the installed two-HUD/module baseline.
+- Confirmed the remaining pan step survived V1's relative-coordinate path. Advanced the same canonical installer with one transparent factor-4 logical carrier and `UIScale` per HUD; the four map tile images and existing render owners remain singular.
+- Replaced the ineffective Player-only race test with an event-driven seated-vehicle lifecycle using the current authoritative Race/TT attributes, including the TT finished-pending-exit state.
+- Added `MapPanSubpixelFactor=4`, bounded to `1..4`; factor 1 is the immediate fallback and response `12` remains unchanged.
+- Kept the system client-only and streaming-bounded: no remote, server change, Workspace scan, extra frame loop, player names or directions.
+- Advanced install/audit/recovery semantics transactionally. V1.1 compiles before mutation, same-run failure restores the input, and explicit rollback returns byte-for-byte to confirmed V1 rather than deleting its working marker feature.
+- Locally validated exact V1 → V1.1 → V1 transformations against both mirrored HUD sources and the shared module. Studio runtime verification and post-V1.1 mirror refresh remain pending.
+
+## 2026-07-28 - Free-roam player markers and smooth pan V1 generated
+
+- Added `scripts/roblox_freeroam_map_players_smooth_pan_v1.lua` as one transactional `INSTALL` / `AUDIT` / exact `ROLLBACK` installer against the current 192-source mirror.
+- Added one shared client-only marker module used by the confirmed desktop/mobile HUD render owners. Player/character lifecycle is event-driven, marker work is capped at 14 other players and there is no remote, server loop, Workspace scan, name/direction work or separate render connection.
+- Other-player circles derive their size from the corresponding local arrow using the approved `0.65` ratio, producing approximately `14 px` desktop and `12 px` mobile markers while retaining device-proportional scaling.
+- Preserved north-up calibration/artwork and changed only pan presentation: relative canvas scale coordinates plus a shared frame-rate-independent exponential response defaulting to `12`.
+- Accepted faded-edge disappearance when an otherwise visible player streams out. Added immediate config fallback to the prior offset assignment and deferred the speculative `2x` carrier until runtime evidence justifies it.
+- Added preflighted exact source anchors, projected-source compilation, static ownership/performance audit, idempotent config/module creation, complete same-run restoration and exact rollback.
+- Added `docs/free-roam-map-player-markers-and-smooth-pan-v1.md` with the Standard-lane contract, ownership, tuning, verification, rollback and mirror handoff. Studio install/runtime confirmation and mirror refresh remain pending.
+
 ## 2026-07-28 - Showroom Loop V1.1 confirmed and handed off
 
 - Recorded the user's confirmation that the activated downtown/dealership route is working well.

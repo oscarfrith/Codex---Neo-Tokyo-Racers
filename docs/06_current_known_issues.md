@@ -1,5 +1,15 @@
 # Current Known Issues
 
+## Free-roam map V1.1 confirmed/mirrored; release regressions retained
+
+- Closed: the user confirmed V1.1 working well. The complete `2026-07-28 14:21:10` mirror contains 193 mutually matching exported-manifest, source-manifest and checksum records, so neither mirror area appears stale.
+- Both enabled HUD owners and the shared module/config carry `NTR_FREEROAM_MAP_PLAYERS_SMOOTH_PAN_V1_1`. Mirrored defaults are factor `4`, pan response `12`, marker ratio `0.65` and maximum 14 other players.
+- The same four map tiles remain singular in each HUD. The logical carrier adds one Frame/UIScale pair per HUD and no extra map renderer, image set or render callback.
+- Race/TT suppression is event-driven from the streamed seated vehicle's authoritative `NTR_RaceParticipant`, `NTR_RaceRunId`, `NTR_RaceMode` and `NTR_RaceFinishedPendingExit` attributes. The shared module contains no remote, descendant scan or standalone render binding.
+- The initial false audit blocker and clean V1 restoration remain useful installer-history evidence but are closed. The repaired complete-line audit is represented by the confirmed install.
+- No ordinary Studio command or mirror refresh is pending. Retain two-client Race and active/finished TT suppression, post-exit restoration, repeated seat/respawn/leave/streaming transitions, landscape phone/tablet, controller, bounded marker/connection counts and representative low-end-mobile profiling as release regression.
+- Recovery remains `MapPanSubpixelFactor=1` for pan-only fallback or exact installer `ROLLBACK` to confirmed V1.
+
 ## Showroom Loop V1.1 confirmed/mirrored; release regressions retained
 
 - Closed: the user confirmed the activated route working well. The complete `2026-07-28 13:06:05` mirror contains the 17-checkpoint route, finish index 18, six grid positions, all 18 circuit segment folders, enabled Race/TT entrances and all three Showroom Loop config folders.

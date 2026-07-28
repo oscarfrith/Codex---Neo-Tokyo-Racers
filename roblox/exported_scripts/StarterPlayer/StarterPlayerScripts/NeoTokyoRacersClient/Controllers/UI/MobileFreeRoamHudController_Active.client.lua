@@ -1,5 +1,7 @@
 -- NTR_SMALL_REFINEMENTS_SHARED_PRESENTATION_V1_1
 -- NTR_SMALL_REFINEMENTS_SHARED_PRESENTATION_V1
+-- NTR_FREEROAM_MAP_PLAYERS_SMOOTH_PAN_MOBILE_V1_1
+-- NTR_FREEROAM_MAP_PLAYERS_SMOOTH_PAN_MOBILE_V1
 -- NTR_FREEROAM_CASH_SMOOTHING_MOBILE_V1
 -- NTR_SHARED_VEHICLE_CARD_SYSTEM_V1_1
 -- NTR_SHARED_VEHICLE_CARD_SYSTEM_V1
@@ -99,13 +101,20 @@ suppressExactLegacyHud()
 local function showToast(text,_positive) sharedNotificationEvent:Fire(text,2.2) end
 
 local mapFrame=new("Frame",{Name="Minimap",BackgroundColor3=DEEP,BackgroundTransparency=.28,BorderSizePixel=0,Size=UDim2.fromOffset(170,170),Position=UDim2.fromOffset(0,0),ClipsDescendants=true,ZIndex=5},root); corner(mapFrame,9)
-local mapCanvas=new("Frame",{Name="MapCanvas",AnchorPoint=Vector2.new(.5,.5),BackgroundTransparency=1,BorderSizePixel=0,Position=UDim2.fromScale(.5,.5),Size=UDim2.fromOffset(170,170),ZIndex=6},mapFrame)
+local mapPanCarrier=new("Frame",{Name="MapPanCarrier",BackgroundTransparency=1,BorderSizePixel=0,Position=UDim2.fromScale(0,0),Size=UDim2.fromOffset(170,170),ZIndex=6},mapFrame)
+local mapPanCarrierScale=new("UIScale",{Scale=1},mapPanCarrier)
+local mapCanvas=new("Frame",{Name="MapCanvas",AnchorPoint=Vector2.new(.5,.5),BackgroundTransparency=1,BorderSizePixel=0,Position=UDim2.fromScale(.5,.5),Size=UDim2.fromOffset(170,170),ZIndex=6},mapPanCarrier)
 local tileNames={"MapTileTopLeft","MapTileTopRight","MapTileBottomLeft","MapTileBottomRight"}; local tilePos={UDim2.fromScale(0,0),UDim2.fromScale(.5,0),UDim2.fromScale(0,.5),UDim2.fromScale(.5,.5)}
 local anyTile=false
 for i,name in ipairs(tileNames) do local image=asset(desktopAssets,name); if image~="" then anyTile=true end; new("ImageLabel",{Name=name,BackgroundTransparency=1,BorderSizePixel=0,Image=image,ScaleType=Enum.ScaleType.Stretch,Position=tilePos[i],Size=UDim2.fromScale(.5,.5),ZIndex=6},mapCanvas) end
 local mapMissing=label(mapFrame,"Missing",anyTile and "" or "ADD MAP TILE IDS",UDim2.fromScale(1,.2),UDim2.fromScale(0,.4),9,MUTED,Enum.TextXAlignment.Center)
 local playerMarker=new("ImageLabel",{Name="PlayerMarker",AnchorPoint=Vector2.new(.5,.5),BackgroundTransparency=1,BorderSizePixel=0,Image=asset(desktopAssets,"MapPlayerIcon"),ImageColor3=WHITE,ScaleType=Enum.ScaleType.Fit,Position=UDim2.fromScale(.5,.5),Size=UDim2.fromOffset(18,18),ZIndex=9},mapFrame)
 if playerMarker.Image=="" then playerMarker:Destroy(); playerMarker=label(mapFrame,"PlayerMarker","▲",UDim2.fromOffset(24,24),UDim2.fromScale(.5,.5),18,CYAN,Enum.TextXAlignment.Center); playerMarker.AnchorPoint=Vector2.new(.5,.5) end
+local mapPlayerMarkers=require(script.Parent:WaitForChild("FreeRoamMapPlayerMarkers")).new({
+	Container=mapFrame,
+	Config=kit.Config.UI:WaitForChild("FreeRoamMapPlayerMarkers"),
+	ZIndex=7,
+})
 local north=new("ImageLabel",{Name="North",AnchorPoint=Vector2.new(1,0),BackgroundTransparency=1,BorderSizePixel=0,Image=asset(desktopAssets,"MapNorthArrow"),ImageColor3=WHITE,ScaleType=Enum.ScaleType.Fit,Position=UDim2.new(1,-6,0,6),Size=UDim2.fromOffset(22,22),ZIndex=9},mapFrame)
 if north.Image=="" then north:Destroy(); north=label(mapFrame,"North","N",UDim2.fromOffset(22,22),UDim2.new(1,-28,0,6),10,PINK,Enum.TextXAlignment.Center) end
 local function edgeFade(name,position,size,rotation)
@@ -359,7 +368,72 @@ RunService.RenderStepped:Connect(function(dt)
 	local driving=drive.IsDriving==true
 	telemetry.Visible=driving and not carMenuOpen and not localMajorMenuOpen
 	exitButton.Visible=driving and not carMenuOpen and not telemetryOnly and not localMajorMenuOpen
-	local s=subject(); if s then local position=s.Position; local mapSize=mapFrame.AbsoluteSize.X; local mapPixels=math.max(1,tonumber(read(desktopLayout,"MapPixels",2048))); local calPixels=math.max(1,tonumber(read(desktopLayout,"MapCalibrationPixels",207))); local calStuds=math.max(1,tonumber(read(desktopLayout,"MapCalibrationStuds",2850))); local fullStuds=mapPixels*calStuds/calPixels; local visible=math.max(100,tonumber(read(desktopLayout,"MapVisibleStuds",2850))); local uiPerStud=mapSize/visible; local canvasSize=fullStuds*uiPerStud; mapCanvas.Size=UDim2.fromOffset(canvasSize,canvasSize); local dx=position.X-tonumber(read(desktopLayout,"MapWorldCenterX",0)); local dz=position.Z-tonumber(read(desktopLayout,"MapWorldCenterZ",0)); if B(desktopDefaults,"MapFlipX",false) then dx=-dx end; if B(desktopDefaults,"MapFlipZ",false) then dz=-dz end; local angle=math.rad(tonumber(read(desktopLayout,"MapCoordinateRotationDegrees",90))); local mx=dx*math.cos(angle)-dz*math.sin(angle); local mz=dx*math.sin(angle)+dz*math.cos(angle); local target=Vector2.new(mapSize*.5,mapSize*.5)-Vector2.new(mx*uiPerStud,mz*uiPerStud); displayedPos=displayedPos and displayedPos:Lerp(target,1-math.exp(-10*dt)) or target; mapCanvas.Position=UDim2.fromOffset(displayedPos.X,displayedPos.Y); mapCanvas.Rotation=0; local look=s.CFrame.LookVector; local lookX,lookZ=look.X,look.Z; if B(desktopDefaults,"MapFlipX",false) then lookX=-lookX end; if B(desktopDefaults,"MapFlipZ",false) then lookZ=-lookZ end; local lx=lookX*math.cos(angle)-lookZ*math.sin(angle); local lz=lookX*math.sin(angle)+lookZ*math.cos(angle); local heading=math.deg(math.atan2(lx,-lz))+tonumber(read(desktopLayout,"MapRotationOffsetDegrees",0)); local diff=(heading-displayedHeading+180)%360-180; displayedHeading+=diff*(1-math.exp(-10*dt)); playerMarker.Rotation=B(desktopDefaults,"MapPlayerIconRotates",true) and displayedHeading or 0 end
+	local s=subject()
+	if s then
+		local position=s.Position
+		local mapSize=mapFrame.AbsoluteSize.X
+		local mapPixels=math.max(1,tonumber(read(desktopLayout,"MapPixels",2048)))
+		local calPixels=math.max(1,tonumber(read(desktopLayout,"MapCalibrationPixels",207)))
+		local calStuds=math.max(1,tonumber(read(desktopLayout,"MapCalibrationStuds",2850)))
+		local fullStuds=mapPixels*calStuds/calPixels
+		local visible=math.max(100,tonumber(read(desktopLayout,"MapVisibleStuds",2850)))
+		local uiPerStud=mapSize/visible
+		local canvasSize=fullStuds*uiPerStud
+		local useRelativeCanvas=mapPlayerMarkers.Config:GetAttribute("UseRelativeCanvasTransform")~=false
+		local subpixelFactor=math.clamp(math.floor((tonumber(mapPlayerMarkers.Config:GetAttribute("MapPanSubpixelFactor")) or 4)+.5),1,4)
+		local carrierSize=UDim2.fromOffset(mapSize*subpixelFactor,mapSize*subpixelFactor)
+		if mapPanCarrier.Size~=carrierSize then mapPanCarrier.Size=carrierSize end
+		local carrierScale=1/subpixelFactor
+		if mapPanCarrierScale.Scale~=carrierScale then mapPanCarrierScale.Scale=carrierScale end
+		local targetCanvasSize
+		if subpixelFactor>1 then targetCanvasSize=UDim2.fromOffset(math.floor(canvasSize*subpixelFactor+.5),math.floor(canvasSize*subpixelFactor+.5))
+		elseif useRelativeCanvas then targetCanvasSize=UDim2.fromScale(canvasSize/mapSize,canvasSize/mapSize)
+		else targetCanvasSize=UDim2.fromOffset(canvasSize,canvasSize) end
+		if mapCanvas.Size~=targetCanvasSize then mapCanvas.Size=targetCanvasSize end
+		local dx=position.X-tonumber(read(desktopLayout,"MapWorldCenterX",0))
+		local dz=position.Z-tonumber(read(desktopLayout,"MapWorldCenterZ",0))
+		local flipX=B(desktopDefaults,"MapFlipX",false)
+		local flipZ=B(desktopDefaults,"MapFlipZ",false)
+		if flipX then dx=-dx end
+		if flipZ then dz=-dz end
+		local angle=math.rad(tonumber(read(desktopLayout,"MapCoordinateRotationDegrees",90)))
+		local cosine=math.cos(angle)
+		local sine=math.sin(angle)
+		local mx=dx*cosine-dz*sine
+		local mz=dx*sine+dz*cosine
+		local target=Vector2.new(mapSize*.5,mapSize*.5)-Vector2.new(mx*uiPerStud,mz*uiPerStud)
+		local response=math.max(0,tonumber(mapPlayerMarkers.Config:GetAttribute("MapPanResponse")) or 12)
+		local alpha=response<=0 and 1 or 1-math.exp(-response*math.max(0,dt or 1/60))
+		displayedPos=displayedPos and displayedPos:Lerp(target,alpha) or target
+		if subpixelFactor>1 then mapCanvas.Position=UDim2.fromOffset(math.floor(displayedPos.X*subpixelFactor+.5),math.floor(displayedPos.Y*subpixelFactor+.5))
+		elseif useRelativeCanvas then mapCanvas.Position=UDim2.fromScale(displayedPos.X/mapSize,displayedPos.Y/mapSize)
+		else mapCanvas.Position=UDim2.fromOffset(displayedPos.X,displayedPos.Y) end
+		mapCanvas.Rotation=0
+		local look=s.CFrame.LookVector
+		local lookX,lookZ=look.X,look.Z
+		if flipX then lookX=-lookX end
+		if flipZ then lookZ=-lookZ end
+		local lx=lookX*cosine-lookZ*sine
+		local lz=lookX*sine+lookZ*cosine
+		local heading=math.deg(math.atan2(lx,-lz))+tonumber(read(desktopLayout,"MapRotationOffsetDegrees",0))
+		local diff=(heading-displayedHeading+180)%360-180
+		displayedHeading+=diff*alpha
+		playerMarker.Rotation=B(desktopDefaults,"MapPlayerIconRotates",true) and displayedHeading or 0
+		mapPlayerMarkers:Step(dt,{
+			MapVisible=mapFrame.Visible and gui.Enabled,
+			LocalWorldPosition=position,
+			MapSize=mapSize,
+			VisibleStuds=visible,
+			CoordinateRadians=angle,
+			CoordinateCosine=cosine,
+			CoordinateSine=sine,
+			FlipX=flipX,
+			FlipZ=flipZ,
+			LocalMarkerSize=18,
+		})
+	else
+		mapPlayerMarkers:SetVisible(false)
+	end
 	if driving then local speed=math.max(0,tonumber(drive.SpeedMph) or 0); speedText.Text=tostring(math.floor(speed+.5)); local target=math.clamp((tonumber(drive.BoostPercent) or 100)/100,0,1); displayedBoost+=(target-displayedBoost)*(1-math.exp(-14*dt)); boostFill.Size=UDim2.fromScale(1,displayedBoost); local gaugeMax=math.max(1,tonumber(read(desktopLayout,"SpeedGaugeMaxMph",260)) or 260); local active=math.floor(math.clamp(speed/gaugeMax,0,1)*#gauge+.5); for i,g in ipairs(gauge) do g.BackgroundColor3=i<=active and (i>#gauge*.82 and PINK or CYAN) or Color3.fromRGB(81,88,99); g.BackgroundTransparency=i<=active and 0 or .42 end end
 	-- Cash is event-driven from leaderstats; no recurring profile request.
 end)

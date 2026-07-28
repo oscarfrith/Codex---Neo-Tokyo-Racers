@@ -1,5 +1,7 @@
 -- NTR_SMALL_REFINEMENTS_SHARED_PRESENTATION_V1
 -- NTR_SMALL_REFINEMENTS_LIFECYCLE_PHASE2_V1
+-- NTR_FREEROAM_MAP_PLAYERS_SMOOTH_PAN_DESKTOP_V1_1
+-- NTR_FREEROAM_MAP_PLAYERS_SMOOTH_PAN_DESKTOP_V1
 -- NTR_FREEROAM_CASH_SMOOTHING_DESKTOP_V1
 -- NTR_SHARED_VEHICLE_CARD_SYSTEM_V1_1
 -- NTR_SHARED_VEHICLE_CARD_SYSTEM_V1
@@ -60,12 +62,15 @@ local raceAction
 local dealershipAction
 local settingsAction
 local minimap
+local mapPanCarrier
+local mapPanCarrierScale
 local mapCanvas
 local playerMarker
 local northArrow
 local mapMissingLabel
 local displayedMapPosition
 local displayedPlayerHeading
+local mapPlayerMarkers
 local bottomActions
 local controlsButton
 local exitButton
@@ -839,7 +844,9 @@ local function buildMainHud()
 
 	minimap = new("Frame", { Name = "Minimap", BackgroundColor3 = C("PanelDeep"), BackgroundTransparency = 0.28, BorderSizePixel = 0, Position = UDim2.fromOffset(0, cashHeight + 8), Size = UDim2.fromOffset(mapSize, mapSize), ClipsDescendants = true, ZIndex = 8 }, leftCluster)
 	corner(minimap, 9)
-	mapCanvas = new("Frame", { Name = "MapCanvas", AnchorPoint = Vector2.new(0.5, 0.5), BackgroundTransparency = 1, BorderSizePixel = 0, Position = UDim2.fromOffset(mapSize * 0.5, mapSize * 0.5), Size = UDim2.fromOffset(mapSize, mapSize), ZIndex = 9 }, minimap)
+	mapPanCarrier = new("Frame", { Name = "MapPanCarrier", BackgroundTransparency = 1, BorderSizePixel = 0, Position = UDim2.fromScale(0, 0), Size = UDim2.fromOffset(mapSize, mapSize), ZIndex = 9 }, minimap)
+	mapPanCarrierScale = new("UIScale", { Scale = 1 }, mapPanCarrier)
+	mapCanvas = new("Frame", { Name = "MapCanvas", AnchorPoint = Vector2.new(0.5, 0.5), BackgroundTransparency = 1, BorderSizePixel = 0, Position = UDim2.fromOffset(mapSize * 0.5, mapSize * 0.5), Size = UDim2.fromOffset(mapSize, mapSize), ZIndex = 9 }, mapPanCarrier)
 	local tileNames = { "MapTileTopLeft", "MapTileTopRight", "MapTileBottomLeft", "MapTileBottomRight" }
 	local tilePositions = { UDim2.fromScale(0, 0), UDim2.fromScale(0.5, 0), UDim2.fromScale(0, 0.5), UDim2.fromScale(0.5, 0.5) }
 	local completeTiles = true
@@ -853,6 +860,11 @@ local function buildMainHud()
 	mapMissingLabel.ZIndex = 12
 	local markerSize = math.max(8, L("MapPlayerIconSize", 22))
 	playerMarker = new("ImageLabel", { Name = "PlayerMarker", AnchorPoint = Vector2.new(0.5, 0.5), BackgroundTransparency = 1, BorderSizePixel = 0, Image = asset("MapPlayerIcon"), ImageColor3 = C("Text"), ScaleType = Enum.ScaleType.Fit, Position = UDim2.fromScale(0.5, 0.5), Size = UDim2.fromOffset(markerSize, markerSize), ZIndex = 15 }, minimap)
+	mapPlayerMarkers = require(script.Parent:WaitForChild("FreeRoamMapPlayerMarkers")).new({
+		Container = minimap,
+		Config = kit.Config.UI:WaitForChild("FreeRoamMapPlayerMarkers"),
+		ZIndex = 13,
+	})
 	local northSize = math.max(8, L("MapNorthArrowSize", 28))
 	local northMargin = math.max(0, L("MapNorthArrowMargin", 10))
 	northArrow = new("ImageLabel", { Name = "NorthArrow", AnchorPoint = Vector2.new(1, 1), BackgroundTransparency = 1, BorderSizePixel = 0, Image = asset("MapNorthArrow"), ImageColor3 = C("Text"), ScaleType = Enum.ScaleType.Fit, Position = UDim2.new(1, -northMargin, 1, -northMargin), Size = UDim2.fromOffset(northSize, northSize), ZIndex = 15 }, minimap)
@@ -1042,34 +1054,76 @@ local function updateRuntime(dt)
 			local visibleStuds = math.max(100, L("MapVisibleStuds", 2850))
 			local uiPerStud = mapSize / visibleStuds
 			local canvasSize = fullMapStuds * uiPerStud
-			mapCanvas.Size = UDim2.fromOffset(canvasSize, canvasSize)
+			local useRelativeCanvas = mapPlayerMarkers.Config:GetAttribute("UseRelativeCanvasTransform") ~= false
+			local subpixelFactor = math.clamp(math.floor((tonumber(mapPlayerMarkers.Config:GetAttribute("MapPanSubpixelFactor")) or 4) + 0.5), 1, 4)
+			local carrierSize = UDim2.fromOffset(mapSize * subpixelFactor, mapSize * subpixelFactor)
+			if mapPanCarrier.Size ~= carrierSize then mapPanCarrier.Size = carrierSize end
+			local carrierScale = 1 / subpixelFactor
+			if mapPanCarrierScale.Scale ~= carrierScale then mapPanCarrierScale.Scale = carrierScale end
+			local targetCanvasSize
+			if subpixelFactor > 1 then
+				targetCanvasSize = UDim2.fromOffset(math.floor(canvasSize * subpixelFactor + 0.5), math.floor(canvasSize * subpixelFactor + 0.5))
+			elseif useRelativeCanvas then
+				targetCanvasSize = UDim2.fromScale(canvasSize / mapSize, canvasSize / mapSize)
+			else
+				targetCanvasSize = UDim2.fromOffset(canvasSize, canvasSize)
+			end
+			if mapCanvas.Size ~= targetCanvasSize then mapCanvas.Size = targetCanvasSize end
 			local position = mapSubject.Position
 			local dx = position.X - L("MapWorldCenterX", 0)
 			local dz = position.Z - L("MapWorldCenterZ", 0)
-			if B(defaults, "MapFlipX", false) then dx = -dx end
-			if B(defaults, "MapFlipZ", false) then dz = -dz end
+			local flipX = B(defaults, "MapFlipX", false)
+			local flipZ = B(defaults, "MapFlipZ", false)
+			if flipX then dx = -dx end
+			if flipZ then dz = -dz end
 			local coordinateRadians = math.rad(L("MapCoordinateRotationDegrees", 90))
-			local mappedX = dx * math.cos(coordinateRadians) - dz * math.sin(coordinateRadians)
-			local mappedZ = dx * math.sin(coordinateRadians) + dz * math.cos(coordinateRadians)
+			local coordinateCosine = math.cos(coordinateRadians)
+			local coordinateSine = math.sin(coordinateRadians)
+			local mappedX = dx * coordinateCosine - dz * coordinateSine
+			local mappedZ = dx * coordinateSine + dz * coordinateCosine
 			local look = mapSubject.CFrame.LookVector
 			local lookX, lookZ = look.X, look.Z
-			if B(defaults, "MapFlipX", false) then lookX = -lookX end
-			if B(defaults, "MapFlipZ", false) then lookZ = -lookZ end
-			local mappedLookX = lookX * math.cos(coordinateRadians) - lookZ * math.sin(coordinateRadians)
-			local mappedLookZ = lookX * math.sin(coordinateRadians) + lookZ * math.cos(coordinateRadians)
+			if flipX then lookX = -lookX end
+			if flipZ then lookZ = -lookZ end
+			local mappedLookX = lookX * coordinateCosine - lookZ * coordinateSine
+			local mappedLookZ = lookX * coordinateSine + lookZ * coordinateCosine
 			local targetHeading = math.deg(math.atan2(mappedLookX, -mappedLookZ)) + L("MapRotationOffsetDegrees", 0)
 			local targetPosition = Vector2.new(mapSize * 0.5, mapSize * 0.5) - Vector2.new(mappedX * uiPerStud, mappedZ * uiPerStud)
-			local smoothing = math.max(0, L("MapSmoothing", 10))
-			local alpha = smoothing <= 0 and 1 or math.clamp((dt or 1 / 60) * smoothing, 0, 1)
+			local response = math.max(0, tonumber(mapPlayerMarkers.Config:GetAttribute("MapPanResponse")) or L("MapSmoothing", 10))
+			local alpha = response <= 0 and 1 or 1 - math.exp(-response * math.max(0, dt or 1 / 60))
 			displayedMapPosition = displayedMapPosition and displayedMapPosition:Lerp(targetPosition, alpha) or targetPosition
 			if displayedPlayerHeading == nil then displayedPlayerHeading = targetHeading end
 			local headingDelta = (targetHeading - displayedPlayerHeading + 180) % 360 - 180
 			displayedPlayerHeading += headingDelta * alpha
-			mapCanvas.Position = UDim2.fromOffset(displayedMapPosition.X, displayedMapPosition.Y)
+			if subpixelFactor > 1 then
+				mapCanvas.Position = UDim2.fromOffset(
+					math.floor(displayedMapPosition.X * subpixelFactor + 0.5),
+					math.floor(displayedMapPosition.Y * subpixelFactor + 0.5)
+				)
+			elseif useRelativeCanvas then
+				mapCanvas.Position = UDim2.fromScale(displayedMapPosition.X / mapSize, displayedMapPosition.Y / mapSize)
+			else
+				mapCanvas.Position = UDim2.fromOffset(displayedMapPosition.X, displayedMapPosition.Y)
+			end
 			mapCanvas.Rotation = 0
 			playerMarker.Rotation = B(defaults, "MapPlayerIconRotates", true) and displayedPlayerHeading or 0
+			mapPlayerMarkers:Step(dt, {
+				MapVisible = minimap.Visible and leftCluster.Visible and gui.Enabled,
+				LocalWorldPosition = position,
+				MapSize = mapSize,
+				VisibleStuds = visibleStuds,
+				CoordinateRadians = coordinateRadians,
+				CoordinateCosine = coordinateCosine,
+				CoordinateSine = coordinateSine,
+				FlipX = flipX,
+				FlipZ = flipZ,
+				LocalMarkerSize = math.max(8, L("MapPlayerIconSize", 22)),
+			})
+		else
+			mapPlayerMarkers:SetVisible(false)
 		end
-
+	else
+		mapPlayerMarkers:SetVisible(false)
 	end
 	if not driving then displayedBoostAlpha = 1 end
 	despawnButton.BackgroundColor3 = vehicle and C("Danger") or C("Disabled")

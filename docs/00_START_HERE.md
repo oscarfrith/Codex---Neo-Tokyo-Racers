@@ -1,5 +1,13 @@
 # Neo Tokyo Racers Project Context
 
+## 2026-07-28 free-roam map V1.1 confirmed/mirrored
+
+- The user confirmed the repaired V1.1 result working well. The complete `2026-07-28 14:21:10` / 193-source mirror contains both enabled HUD revisions, the shared module revision and config revision; exported manifest, source manifest and checksums agree with zero mismatches.
+- V1.1 renders the same four tile images once through a factor-4 logical carrier/`UIScale`, retaining frame-rate-independent response `12` while allowing quarter-pixel logical movement. No second renderer or map image set exists.
+- The shared marker module follows streamed characters and `Humanoid.SeatPart`, then watches the existing server-owned Race/TT vehicle attributes event-by-event. It adds no remote, server work, Workspace scan, name/direction work or render binding.
+- Locked defaults are marker scale `0.65`, maximum 14 other players and `MapPanSubpixelFactor=4`. Factor `1` remains the immediate pan fallback.
+- `scripts/roblox_freeroam_map_players_smooth_pan_v1.lua` remains the one canonical audit/repair/rollback installer. Exact rollback restores confirmed V1. No ordinary Studio command or mirror refresh is pending; retain multi-client Race/TT, streaming, respawn, landscape mobile and representative marker-load checks as release regression. See `docs/free-roam-map-player-markers-and-smooth-pan-v1.md`.
+
 ## 2026-07-28 Showroom Loop V1.1 confirmed and handed off
 
 - The user confirmed Showroom Loop working well and refreshed the complete Studio mirror at `2026-07-28 13:06:05`.

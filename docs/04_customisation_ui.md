@@ -1,5 +1,24 @@
 # Customisation UI
 
+## Free-roam map player markers and smooth pan V1.1 confirmed/mirrored (2026-07-28)
+
+The user confirmed V1.1 working well. The complete `14:21:10` / 193-source mirror contains the installed and enabled desktop/mobile owners plus shared module/config revisions:
+
+```text
+scripts/roblox_freeroam_map_players_smooth_pan_v1.lua
+docs/free-roam-map-player-markers-and-smooth-pan-v1.md
+```
+
+It preserves the Phase 4A north-up four-tile map and current mobile parity owner. One shared client-only module renders at most 14 streamed other-player circles with no names or headings. Each circle remains `0.65` of the local arrow, so the current targets are approximately `14 px` desktop and `12 px` landscape mobile.
+
+V1's relative-coordinate path did not fully remove the reported movement step. V1.1 renders the same four map images once through a four-times logical carrier scaled back by one `UIScale`, enabling quarter-pixel logical pan increments without another renderer. Response remains `12`; set `MapPanSubpixelFactor=1` for the immediate fallback.
+
+Player/character registration, garage eligibility and cleanup remain event-driven. Race/TT eligibility now binds the other player's streamed `Humanoid.SeatPart` and existing authoritative vehicle race attributes; the unused Player race flag is retained only as a secondary future-compatible guard. The module reuses the two existing HUD render callbacks and adds no server broadcaster, remote, standalone render connection, Workspace scan, direction/name work, persistence or gameplay authority. A marker may disappear when its player streams out near a faded map edge; that is an accepted presentation boundary.
+
+No ordinary Studio command or mirror refresh is pending. Retain two-client Race/TT and lifecycle/streaming checks, landscape phone/tablet verification and representative marker-load profiling as release regression. Exact guarded source anchors remain intentionally fragile; inspect a fresh mirror before repairing later drift. Exact rollback restores confirmed V1.
+
+The first run's false substring audit and clean V1 restoration are closed historical evidence. The corrected complete-line audit passed during the confirmed installation.
+
 ## Owned-garage semantic movement touch V2.2 confirmed/mirrored (2026-07-27)
 
 The complete `21:08:10` mirror contains installed V2.1 with 192 mutually matching source records. Its content-aware touch regions work substantially better, so `GarageWorkspaceController` and `OwnedGarageWorkspaceController` are frozen for V2.2.
