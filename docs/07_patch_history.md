@@ -1,5 +1,35 @@
 # Patch History
 
+## 2026-07-28 - Showroom Loop V1.1 confirmed and handed off
+
+- Recorded the user's confirmation that the activated downtown/dealership route is working well.
+- Verified the refreshed `13:06:05` mirror: 192 exported-manifest, source-manifest and checksum records agree with zero mismatches.
+- Locked 17 contiguous checkpoints, finish index 18, six grid positions and all 18 circuit segment folders.
+- Verified enabled Race and Time Trial entrances plus `RaceCatalog.ShowroomLoop`, `TimeTrialCatalog.ShowroomLoop` and `HudMapCatalog.ShowroomLoop` with stable route/event IDs.
+- Corrected the handoff wording to the inherited live Race setting of 3 laps. TT defaults to one lap and retains selectable laps.
+- Documented that checkpoint detection already uses each ordered checkpoint Part's touch volume, size and rotation; `RadiusStuds` is not consulted by the live services.
+- Recorded the two remaining empty optional arrow segments, `Checkpoint11-12` and `Checkpoint13-14`, as content polish rather than a route blocker.
+- Retained blank route media, disabled/unconfigured HUD-map projection, provisional reward/medal balance and the broader multiplayer/device/streaming matrix as follow-up risks.
+- No ordinary Studio command or mirror refresh is pending. The V1.1 installer remains exact-scope recovery/audit/rollback evidence.
+
+## 2026-07-28 - Showroom Loop V1.1 17-checkpoint config repair generated
+
+- Inspected the refreshed `10:44:47` hierarchy: Showroom Loop V1 is installed as a 17-checkpoint inactive draft with 18 correct segment folders and no live replicated racing config.
+- Repaired the canonical contract from 20 to 17 checkpoints, finish index 18 and closing segment `Checkpoint17-0`.
+- Added default `REPAIR` mode for the exact mirrored draft. It preserves all route geometry, normalises only attributes/folder contracts, and refuses mismatched or partial live config.
+- Activation now clones the full Shifted Canal Race and Time Trial schemas plus `HudMapCatalog.ShiftedCanalSprint`. Stable IDs/display names are overridden; route-specific media is blank and the HUD map is disabled/finish-anchored until calibrated.
+- Rollback now removes all three Showroom Loop config folders while preserving authored geometry. Audit verifies inherited config fields, HUD-map schema, unique IDs, 17 contiguous gates, finish 18, six grid positions and 18 bounded segments.
+- Studio installation, runtime verification and the post-repair mirror remain pending.
+
+## 2026-07-27 - Showroom Loop route V1 generated
+
+- Added one canonical Edit-mode route installer with `PREPARE`, `COMPILE`, `AUDIT`, `ACTIVATE` and non-destructive `ROLLBACK` modes.
+- Clones the confirmed Shifted Canal content contract into the stable `ShowroomLoop` / `showroom_loop_race` / `showroom_loop_tt` IDs, translates it near `(1400, 101, -1250)`, expands it to 20 checkpoints and prepares 21 circuit arrow segments.
+- Added one visible `Authoring.StartPivot` whose compile step moves only entrances, six grid points, browser teleport and finish. Direct checkpoint parts remain easy to move and are protected from later compile/audit repositioning.
+- Keeps draft content out of the live catalogs because the current Race Browser has no draft filter. Activation requires every checkpoint to be moved and all blockers resolved before publishing both events together.
+- Preserved existing racing services, remotes, UI, authority, persistence, rewards, Shifted Canal, driving, dealership, garage and VFX owners. Route media is intentionally blank pending correct artwork/calibration.
+- Added the Standard-lane ownership, workflow, verification, rollback and mirror handoff in `docs/racing-showroom-loop-route-v1.md`. Studio installation and runtime verification remain pending.
+
 ## 2026-07-27 - Owned-garage semantic movement touch V2.2 confirmed/mirrored
 
 - Verified the user-refreshed `21:08:10` mirror: 192 exported-manifest, source-manifest and checksum entries match with zero mismatches and contain installed V2.1.

@@ -1,5 +1,25 @@
 # Current Known Issues
 
+## Showroom Loop V1.1 confirmed/mirrored; release regressions retained
+
+- Closed: the user confirmed the activated route working well. The complete `2026-07-28 13:06:05` mirror contains the 17-checkpoint route, finish index 18, six grid positions, all 18 circuit segment folders, enabled Race/TT entrances and all three Showroom Loop config folders.
+- Mirror integrity passes: exported manifest, source manifest and checksums contain 192 matching entries with zero mismatches. Neither `roblox/exported_scripts/` nor `roblox/studio_snapshot/` appears stale.
+- Stable live IDs are `ShowroomLoop`, `showroom_loop_race` and `showroom_loop_tt`. The inherited Race configuration is 3 laps; TT defaults to one lap and retains the existing selectable-lap contract.
+- Checkpoint/finish triggers use the ordered physical BasePart touch volumes, so Part size and rotation are authoritative. `RadiusStuds` remains unused legacy metadata and should not be tuned expecting detection changes.
+- Two segment folders, `Checkpoint11-12` and `Checkpoint13-14`, are empty in the confirmed mirror. Checkpoints remain authoritative and the route works, but add arrow assets later if those turns are not sufficiently readable at speed.
+- Route media and HUD-map image remain intentionally blank. HUD-map projection remains disabled until Showroom Loop artwork, dimensions, rotation, scale and anchor are calibrated.
+- Reward values and medal thresholds are inherited from Shifted Canal and remain provisional until representative clean laps establish Showroom Loop pacing.
+- Retain two-client Race, landscape phone/tablet, controller, streaming out/back, dealership/garage prompt isolation, reset/exit and Shifted Canal completion as release regression where not covered by the focused confirmation.
+- No ordinary Showroom Loop Studio command or mirror refresh is pending. Keep `scripts/roblox_racing_showroom_loop_route_v1.lua` only for exact-scope repair/audit/rollback.
+
+## Showroom Loop V1 initial 20-checkpoint plan is superseded
+
+- V1 `PREPARE` was run and the route was authored, but the user deliberately reduced it to 17 checkpoints. The old 20-checkpoint audit and finish index 21 are not valid targets.
+- The installed V1.1 contract above is now confirmed. Do not recreate checkpoints 18-20 or recover the obsolete finish index.
+- Empty arrow segments are warnings rather than blockers, but the full route must still be readable at speed and must not accept checkpoints from parallel downtown roads.
+- Race/TT media is intentionally blank. New track artwork, HUD-map calibration, medal-time tuning and reward pacing remain deferred until the geometry works.
+- The complete `13:06:05` mirror is the post-activation baseline. Refresh it again only after later route, media, map-calibration or tuning changes.
+
 ## Owned-garage semantic movement touch V2.2 confirmed/mirrored; regressions retained (2026-07-27)
 
 - The complete `21:08:10` / 192-source mirror contains installed V2.1 with zero manifest/checksum mismatches. Its visible-surface behavior is much better and is intentionally unchanged by V2.2.

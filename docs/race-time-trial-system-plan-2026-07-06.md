@@ -1,5 +1,19 @@
 # Race And Time Trial System Plan
 
+## 2026-07-28 Showroom Loop V1.1 confirmed baseline
+
+The user confirmed the activated Showroom Loop route working well. The complete `13:06:05` mirror locks 17 ordered checkpoint Parts, finish index 18, six grid positions, 18 circuit segments, enabled paired entrances and all three replicated config folders. The 192 exported sources, source manifest and checksum records agree with zero mismatches. The route reuses the existing size/rotation-based ordered Part touch contract and adds no runtime owner. The inherited Race setting is 3 laps; TT defaults to one selectable lap. Media/map calibration and route-specific reward/medal balancing remain deferred.
+
+## 2026-07-28 Showroom Loop V1.1 mirrored-draft repair
+
+The `10:44:47` mirror establishes the real authoring contract at 17 checkpoints, 18 circuit segments and six grid positions. The route is still inactive: its zones are disabled and no Race, Time Trial or HUD-map config exists. The same canonical installer now defaults to a geometry-preserving V1.1 `REPAIR`: finish index becomes 18, all three replicated config folders are cloned from Shifted Canal with stable Showroom Loop identifiers, and route-specific media/map projection remains blank/disabled pending calibration.
+
+## 2026-07-27 Showroom Loop content expansion generated
+
+`scripts/roblox_racing_showroom_loop_route_v1.lua` adds a second official content definition without changing the racing runtime. The draft `ShowroomLoop` circuit starts near `(1400, 101, -1250)`, uses 20 directly movable checkpoints, six grid slots and 21 segment folders. A single Edit-mode `Authoring.StartPivot` compiles the entrances, grid, finish and browser teleport; it is not a runtime owner.
+
+Because the current Race Browser enumerates every direct catalog folder, draft event definitions are not placed in the live catalogs. `ACTIVATE` publishes the paired `showroom_loop_race` and `showroom_loop_tt` definitions only after every checkpoint has moved and the audit has zero blockers. See `docs/racing-showroom-loop-route-v1.md`.
+
 ## 2026-07-26 presentation-audio integration
 
 The generated `scripts/roblox_presentation_audio_ui_preview_race_v1.lua` subscribes to the existing `RaceEvent`; it does not add a second race remote, clock or progress owner. Scheduled countdown ticks use `GoAtServerTime`, GO uses the server-confirmed Started event, and checkpoint/lap/result cues use existing run identities for local duplicate suppression. `WrongWayWarning` is configuration-only until the racing system exposes one stable semantic event. See `docs/presentation-audio-ui-preview-race-v1.md`.

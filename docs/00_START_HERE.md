@@ -1,5 +1,24 @@
 # Neo Tokyo Racers Project Context
 
+## 2026-07-28 Showroom Loop V1.1 confirmed and handed off
+
+- The user confirmed Showroom Loop working well and refreshed the complete Studio mirror at `2026-07-28 13:06:05`.
+- The exported manifest, source manifest and checksums contain 192 mutually matching source records with zero mismatches; neither mirror area appears stale.
+- The locked route contract is 17 contiguous checkpoints, `FinishLine.CheckpointIndex=18`, six grid positions and 18 circuit segment folders from `Checkpoint0-1` through `Checkpoint17-0`.
+- Both entrances are enabled with stable IDs `ShowroomLoop`, `showroom_loop_race` and `showroom_loop_tt`. `RaceCatalog.ShowroomLoop`, `TimeTrialCatalog.ShowroomLoop` and `HudMapCatalog.ShowroomLoop` are present. Race/TT tuning inherits the confirmed Shifted Canal schemas; the mirrored Race lap count is 3.
+- Checkpoint and finish detection already uses each physical Part's size and rotation through the existing ordered `Touched` contract. The legacy `RadiusStuds` attributes are not runtime detection owners.
+- Incorrect Waterfront media remains blank. The cloned HUD map remains intentionally uncalibrated/disabled pending route artwork and map calibration.
+- `scripts/roblox_racing_showroom_loop_route_v1.lua` is retained as the canonical exact-scope repair/audit/rollback installer. No ordinary Studio command or mirror refresh is pending. Retain multiplayer, device, streaming, nearby dealership/garage prompt and Shifted Canal checks as release regression. See `docs/racing-showroom-loop-route-v1.md`.
+
+## 2026-07-27 Showroom Loop route V1 generated; superseded by V1.1 above
+
+- `scripts/roblox_racing_showroom_loop_route_v1.lua` is the one canonical `PREPARE` / `COMPILE` / `AUDIT` / `ACTIVATE` / `ROLLBACK` installer for the approved second official route.
+- It clones only the confirmed `ShiftedCanalSprint` content/config contract, creates `ShowroomLoop` around `(1400, 101, -1250)`, expands it to 20 checkpoints and prepares 21 circuit arrow segments. It does not patch racing source or create another runtime owner.
+- `Authoring.StartPivot` moves the paired entrances, six grid positions, browser teleport and finish as one compiled start layout. Checkpoints remain direct, numbered, visible parts and are never moved by compile/audit.
+- The unfinished route remains absent from the live Race/Time Trial catalogs and both entrances remain disabled. `ACTIVATE` requires every checkpoint to be moved and a zero-blocker audit, then publishes `showroom_loop_race` and `showroom_loop_tt` together.
+- Route-specific media is blank rather than incorrectly reusing Waterfront imagery. Rewards and medal targets inherit the confirmed event attributes provisionally and require runtime tuning.
+- This initial 20-checkpoint plan was installed and then intentionally reduced by the user to the mirrored 17-checkpoint route. Do not recover the 20-checkpoint audit; use V1.1 above. See `docs/racing-showroom-loop-route-v1.md`.
+
 ## 2026-07-27 owned-garage semantic movement touch V2.2 confirmed/mirrored
 
 - The user installed V2.1, confirmed its visible touch-location behavior is much better, and refreshed the complete `2026-07-27 21:08:10` / 192-source mirror. Exported manifest, source manifest and checksums agree with zero mismatches; neither mirror area appears stale.
