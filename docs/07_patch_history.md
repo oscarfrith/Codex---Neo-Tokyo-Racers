@@ -1,5 +1,13 @@
 # Patch History
 
+## 2026-08-02 - Gamefam submission map scope handoff locked (documentation only)
+
+- Locked the user-approved submission strategy: present the approximately 20 completed blocks as an intentional playable prototype district and retain only clean distant blockouts for city scale.
+- Defined readable in-world boundary, collision, turnaround, route, prompt/marker and skyline-presentation requirements without deleting wider-city work.
+- Added a blocker/warning triage and a fresh-profile, Race/Time Trial, device, recovery, capture-route and low-end-mobile verification matrix.
+- Added `docs/gamefam-submission-map-scope-handoff-2026-08-02.md` and updated the project baseline, known issues and world/LOD topic record.
+- No Studio source, hierarchy, asset, config or placement changed; no Command Bar script or mirror refresh is required until the manual presentation pass is performed.
+
 ## 2026-08-02 - Paint Shop underglow icon and price-text refinement V1 installed/mirrored
 
 - Added `scripts/roblox_ui_paint_shop_icon_price_text_refinement_v1.lua` against the complete `10:35:36` / 193-source Studio mirror.

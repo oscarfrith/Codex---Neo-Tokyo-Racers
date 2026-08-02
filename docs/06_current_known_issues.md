@@ -1,5 +1,15 @@
 # Current Known Issues
 
+## Gamefam submission playable-district decision locked; Studio implementation pending
+
+- The approximately 20 completed city blocks are the approved playable prototype district. Clean distant blockouts may remain for scale; visibly unfinished, half-modelled or confusing areas must not remain physically accessible.
+- Exact district edges, barriers and selective presentation cleanup have not yet been authored in Studio. This handoff deliberately creates no automated cleanup or deletion script.
+- Before submission, confirm the complete fresh-profile loop and both current integrated routes remain inside the controlled district. No objective, prompt, marker, teleport, race approach or exit may direct players into closed space.
+- Boundary collision, braking/turnaround space, vehicle recovery, skyline views, screenshot routes, reset/respawn and representative desktop/controller/landscape-mobile streaming/LOD checks remain pending.
+- Broad launch-map completion and architecture reorganisation remain deferred until after the working-prototype submission unless testing exposes a true submission blocker.
+- No Studio-side change occurred in this documentation handoff, so the complete `2026-08-02 11:29:51` mirror remains current. Refresh both mirror areas after actual boundary, hierarchy, asset, prompt, marker or placement changes.
+- See `docs/gamefam-submission-map-scope-handoff-2026-08-02.md` for the locked boundary and done-when contract.
+
 ## Paint Shop icon and price-text refinement V1 installed/mirrored; release regression retained
 
 - Closed: the user approved handoff after installation. The complete `2026-08-02 11:29:51` mirror contains the shared renderer, workspace forwarding, application opt-in and `NavigationIcons.UnderglowSidebarIcon=132867231924801`.

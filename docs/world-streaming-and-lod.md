@@ -6,6 +6,12 @@
 **Relevant docs file:** `docs/world-streaming-and-lod.md`  
 **Relevant files to edit:** LOD scripts, LOD folders, foliage proxy setup only. Do not edit vehicle or lighting files unless specifically requested.
 
+## 2026-08-02 Gamefam Submission Playable District
+
+The approved prototype presentation uses the approximately 20 completed city blocks as an intentional accessible district. Clean distant blockouts may remain as skyline and scale context, while visibly unfinished or messy regions are closed with readable authored barriers rather than unexplained invisible walls. Wider-city source geometry is preserved for post-submission production.
+
+This decision does not change the current streaming or LOD owners. During the manual Studio presentation pass, verify that inaccessible WIP content does not impose material low-end-mobile cost, that boundary approaches stream reliably at driving speed, and that both current integrated routes and the complete new-player loop remain inside the controlled district. Refresh the full mirror after any boundary, asset, prompt, marker, hierarchy or placement change. The complete contract is in `docs/gamefam-submission-map-scope-handoff-2026-08-02.md`.
+
 ## 2026-07-19 Owned Garage Replacement Planning
 
 The current Phase 21-27 physical garage MVP is approved for clean replacement. Phases 0-5 passed and are mirrored at `2026-07-19 12:14:59`. `StarterTwoBay` stays in ServerStorage and the explicit-pool interior runtime creates nothing in Workspace until Phase 6 starts its single lifecycle owner. Phase 4 adds persistent catalogue styles only to parts carrying a template `SurfaceGroup`. Phase 5 makes the existing desktop/mobile HUD owners skip minimap visibility and map-coordinate work while `NTR_OwnedGarageInside` is true; it adds no map or frame-loop owner. Phase 6 is prepared to retire the old physical-garage services/prompt, clone only occupied canonical interiors into `OwnedGarageInstances`, and unload after exit, death/reset or disconnect. The configurable grid begins at `Y=3200`, safely away from the city and below-map destruction boundaries. Display vehicles remain anchored, non-drivable, collision/query/shadow-free and VFX-free.

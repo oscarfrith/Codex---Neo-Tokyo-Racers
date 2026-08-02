@@ -1,5 +1,13 @@
 # Neo Tokyo Racers Project Context
 
+## 2026-08-02 Gamefam submission map scope locked; Studio presentation pass pending
+
+- The user approved presenting the approximately 20 completed blocks as the intentional playable prototype district rather than attempting to finish the complete launch city before submission.
+- Retain clean distant blockouts where they communicate scale, but close off visibly unfinished or messy regions with readable in-world boundaries. Do not delete the wider-city work.
+- The complete new-player, dealership, customisation, garage, free-roam and current Race/Time Trial loop must remain inside the controlled district. No prompt, objective, marker or teleport may lead into closed space.
+- Exact boundary placement and selective visual cleanup are manual Studio authoring work; no Command Bar script has been generated. Allow roughly one to three focused working days, then perform the documented full-path/device/streaming review.
+- This documentation-only handoff changes no current script, hierarchy, asset, persistence or player-data baseline, so the complete `2026-08-02 11:29:51` / 193-source mirror remains current. Refresh it after actual Studio world changes. See `docs/gamefam-submission-map-scope-handoff-2026-08-02.md`.
+
 ## 2026-08-02 Paint Shop underglow icon and price-text refinement V1 installed/mirrored
 
 - The user approved handoff after installation. The complete `2026-08-02 11:29:51` mirror contains all three installed source changes and `UnderglowSidebarIcon`; all three 193-record source/checksum manifests agree with zero mismatches.
