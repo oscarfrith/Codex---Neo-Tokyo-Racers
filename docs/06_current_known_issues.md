@@ -1,14 +1,14 @@
 # Current Known Issues
 
-## Paint Shop icon and price-text refinement V1 generated; Studio verification pending
+## Paint Shop icon and price-text refinement V1 installed/mirrored; release regression retained
 
-- Run `scripts/roblox_ui_paint_shop_icon_price_text_refinement_v1.lua` once in the Edit-mode Command Bar with `MODE="INSTALL"`; require `[NTR Paint Shop Icon/Price V1] INSTALL PASS`.
-- Set `ReplicatedStorage.NeoTokyoRacers.Config.UI.GarageReplacement.NavigationIcons.UnderglowSidebarIcon` to the desired `rbxassetid://` value. Its seeded default intentionally matches the existing artwork until the new asset ID is supplied.
+- Closed: the user approved handoff after installation. The complete `2026-08-02 11:29:51` mirror contains the shared renderer, workspace forwarding, application opt-in and `NavigationIcons.UnderglowSidebarIcon=132867231924801`.
+- Mirror integrity passes: exported manifest, source manifest and checksums contain 193 matching entries with zero mismatches. Neither mirror area appears stale for this handoff.
 - Confirm only the left-sidebar Underglow card changes. The bottom purchase card must continue using `VehicleCosmetics.Underglow.Icon` and remain visually unchanged.
 - With Cash below and at/above each displayed price, confirm unowned vehicle-cosmetic and Neon Lights prices are plain top-right red/green text with no rectangle. Confirm `$5,000` formatting, selection, BUY, insufficient-funds handling, successful purchase and resulting `OWNED` state.
 - Confirm owned, locked, equipped, level and other module/dealership badges are unchanged. Repeat on desktop/laptop and landscape phone/tablet; check no clipping or overlap.
 - Exact source anchors are intentionally guarded and therefore fragile. If any preflight anchor fails, do not modify Studio or create a patch ladder; refresh/inspect the mirror and repair this same canonical installer.
-- After confirmation, refresh `roblox/exported_scripts/` and `roblox/studio_snapshot/` with the full exporter. Until then, the repository mirror represents the pre-install `2026-08-02 10:35:36` baseline.
+- No ordinary installer or mirror refresh is pending. Retain the checks above as release regression. Recovery remains the same canonical installer in `AUDIT` or `ROLLBACK` mode after inspecting a fresh mirror.
 
 ## Steering drive mode and input-owned turn bank V1.2 generated; Studio verification pending
 

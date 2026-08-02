@@ -1,12 +1,14 @@
 # Patch History
 
-## 2026-08-02 - Paint Shop underglow icon and price-text refinement V1 generated
+## 2026-08-02 - Paint Shop underglow icon and price-text refinement V1 installed/mirrored
 
 - Added `scripts/roblox_ui_paint_shop_icon_price_text_refinement_v1.lua` against the complete `10:35:36` / 193-source Studio mirror.
 - Added a dedicated `NavigationIcons.UnderglowSidebarIcon` contract while preserving `VehicleCosmetics.Underglow.Icon` as the bottom purchase-card artwork owner.
 - Reused the shared module-category card pipeline with a new `TextOnlyPrice` presentation: top-right dealership heading typography, green affordable text and red unaffordable text, without a badge background.
 - Opted in only unowned vehicle-cosmetic and module-neon purchase cards. Existing affordability calculations, prices, purchase actions, `OWNED` presentation and unrelated garage cards are unchanged.
-- The single installer uses exact guarded anchors, three-module pre-compilation, idempotent install/audit, explicit source rollback and transactional restoration on failure. Studio Play verification and post-install mirror refresh are pending.
+- The single installer uses exact guarded anchors, three-module pre-compilation, idempotent install/audit, explicit source rollback and transactional restoration on failure. At generation time, Studio Play verification and post-install mirror refresh were pending.
+- The installer was subsequently applied, the sidebar icon was set to `132867231924801`, and the user approved handoff. The complete `11:29:51` mirror contains all installed source/config changes; exported manifest, source manifest and checksums each contain 193 matching records with zero mismatches.
+- Added `docs/paint-shop-underglow-icon-price-text-handoff-2026-08-02.md`; no ordinary Studio command or mirror refresh remains pending for this scope.
 
 ## 2026-07-28 - Steering drive mode and input-owned turn bank V1.2 generated
 

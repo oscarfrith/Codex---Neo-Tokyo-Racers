@@ -1,6 +1,6 @@
 # Customisation UI
 
-## Paint Shop underglow icon and price-text refinement V1 generated (2026-08-02)
+## Paint Shop underglow icon and price-text refinement V1 installed/mirrored (2026-08-02)
 
 The complete `2026-08-02 10:35:36` mirror shows two independent stored artwork values but one ambiguously named sidebar lookup. `ModuleShopUIController` explicitly draws the left Underglow target from `NavigationIcons.UnderglowIcon`, while the bottom purchase card consumes the catalogued `VehicleCosmetics.Underglow.Icon`. Both currently contain `rbxassetid://87739019174785`.
 
@@ -8,7 +8,7 @@ The complete `2026-08-02 10:35:36` mirror shows two independent stored artwork v
 
 The same mirror proves affordability is already projected correctly from current profile Cash for vehicle cosmetics and module neon. The unwanted coloured rectangle comes from the shared module-category `RatingBadge`, not from economy logic. V1 extends that same shared renderer with `BadgeStyle="TextOnlyPrice"`, forwards the style through `GarageWorkspaceController`, and opts in only unowned purchasable cosmetic/neon cards. Text stays top-right, uses the shared dealership heading role at size 13, and remains green when affordable or red when unaffordable. `OWNED` and every unrelated rating, level, lock, equipped and status badge retain their existing renderer.
 
-This is presentation-only. It adds no UI owner, price/cash computation, remote, purchase path or persistence field. The exact-anchor installer compiles all projected sources before assignment and restores its run on failure. After installation, verify both cash states, purchase/owned transition, independent icons, desktop/laptop and landscape phone/tablet layout, then refresh both Studio mirror areas.
+This is presentation-only. It adds no UI owner, price/cash computation, remote, purchase path or persistence field. The user approved handoff, and the complete `11:29:51` mirror contains the installed source/config state with 193 matching records and zero cross-manifest mismatches. The sidebar value is `132867231924801`; the bottom icon remains `rbxassetid://87739019174785`. No ordinary Studio command is pending. Retain both cash states, purchase/owned transition, independent icons and desktop/landscape-mobile layout as release regression. See `docs/paint-shop-underglow-icon-price-text-handoff-2026-08-02.md`.
 
 ## Free-roam map player markers and smooth pan V1.1 confirmed/mirrored (2026-07-28)
 

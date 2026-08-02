@@ -4,7 +4,7 @@
 **Status:** Current script mirror folders created  
 **Current mirror root:** `roblox/exported_scripts`
 
-## Paint Shop Underglow Icon And Price Text V1 generated
+## Paint Shop Underglow Icon And Price Text V1 installed/mirrored
 
 Run the complete contents of:
 
@@ -12,9 +12,9 @@ Run the complete contents of:
 scripts/roblox_ui_paint_shop_icon_price_text_refinement_v1.lua
 ```
 
-once in the Roblox Studio Edit-mode Command Bar with `MODE="INSTALL"`. Require `[NTR Paint Shop Icon/Price V1] INSTALL PASS`, then set `ReplicatedStorage.NeoTokyoRacers.Config.UI.GarageReplacement.NavigationIcons.UnderglowSidebarIcon` to the desired uploaded `rbxassetid://` value.
+The user approved handoff after installation. The complete `2026-08-02 11:29:51` / 193-source mirror contains the installed shared renderer, workspace forwarding, application opt-in and sidebar value `132867231924801`, with zero cross-manifest mismatches. No ordinary Studio command is pending.
 
-Restart Play and verify the sidebar/bottom icons are independent, unowned cosmetic and neon prices are plain green/red top-right text, purchases still work, and all unrelated badge states are unchanged. Test desktop/laptop and landscape phone/tablet, then run the full Studio snapshot receiver/exporter workflow. Repair this same installer if an exact anchor fails; do not create a follow-up UI patch.
+Retain the script only as the exact-scope `AUDIT` / recovery / `ROLLBACK` path. If later recovery is needed, inspect a fresh mirror first and repair this same installer if an exact anchor fails; do not create a follow-up UI patch. See `docs/paint-shop-underglow-icon-price-text-handoff-2026-08-02.md`.
 
 ## Steering Drive Mode And Input-Owned Turn Bank V1.2 generated
 

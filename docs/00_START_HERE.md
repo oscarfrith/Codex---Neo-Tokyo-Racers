@@ -1,12 +1,13 @@
 # Neo Tokyo Racers Project Context
 
-## 2026-08-02 Paint Shop underglow icon and price-text refinement V1 generated
+## 2026-08-02 Paint Shop underglow icon and price-text refinement V1 installed/mirrored
 
-- `scripts/roblox_ui_paint_shop_icon_price_text_refinement_v1.lua` is the one pending Edit-mode installer for this isolated presentation scope.
+- The user approved handoff after installation. The complete `2026-08-02 11:29:51` mirror contains all three installed source changes and `UnderglowSidebarIcon`; all three 193-record source/checksum manifests agree with zero mismatches.
+- `scripts/roblox_ui_paint_shop_icon_price_text_refinement_v1.lua` is retained as the one exact-scope audit/recovery/rollback installer. No ordinary Studio command is pending.
 - It adds `GarageReplacement.NavigationIcons.UnderglowSidebarIcon` as the sole left-sidebar Underglow artwork input. The bottom purchase card continues to use the independent `GarageReplacement.VehicleCosmetics.Underglow.Icon` value.
 - The existing Paint Shop cash comparison already determines affordable versus unaffordable correctly. V1 adds a shared `TextOnlyPrice` badge presentation and opts in only unowned vehicle-cosmetic and module-neon purchase cards, retaining their top-right location with dealership heading typography, green affordable text and red unaffordable text.
 - Purchase remotes, prices, Cash ownership, owned/locked/equipped badges, bottom-card artwork, layout owners, gameplay and persistence are unchanged.
-- The installer uses guarded exact source anchors against the complete `2026-08-02 10:35:36` / 193-source mirror, pre-compiles all three projected UI modules, is idempotent, audits committed state and restores source/config if its run fails. Studio Play verification and a post-install full mirror refresh remain pending.
+- The installed sidebar value is `132867231924801`; the bottom purchase icon remains `rbxassetid://87739019174785`. Retain focused runtime checks as release regression. See `docs/paint-shop-underglow-icon-price-text-handoff-2026-08-02.md`.
 
 ## 2026-07-28 steering drive mode and input-owned turn bank V1.2 generated
 
