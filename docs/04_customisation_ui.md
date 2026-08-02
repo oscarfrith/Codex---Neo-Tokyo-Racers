@@ -1,5 +1,15 @@
 # Customisation UI
 
+## Paint Shop underglow icon and price-text refinement V1 generated (2026-08-02)
+
+The complete `2026-08-02 10:35:36` mirror shows two independent stored artwork values but one ambiguously named sidebar lookup. `ModuleShopUIController` explicitly draws the left Underglow target from `NavigationIcons.UnderglowIcon`, while the bottom purchase card consumes the catalogued `VehicleCosmetics.Underglow.Icon`. Both currently contain `rbxassetid://87739019174785`.
+
+`scripts/roblox_ui_paint_shop_icon_price_text_refinement_v1.lua` adds the explicit `NavigationIcons.UnderglowSidebarIcon` attribute, seeded from the existing icon only when missing, and changes only the left target rail to read it. Changing that value must not mutate or visually replace the bottom purchase-card icon.
+
+The same mirror proves affordability is already projected correctly from current profile Cash for vehicle cosmetics and module neon. The unwanted coloured rectangle comes from the shared module-category `RatingBadge`, not from economy logic. V1 extends that same shared renderer with `BadgeStyle="TextOnlyPrice"`, forwards the style through `GarageWorkspaceController`, and opts in only unowned purchasable cosmetic/neon cards. Text stays top-right, uses the shared dealership heading role at size 13, and remains green when affordable or red when unaffordable. `OWNED` and every unrelated rating, level, lock, equipped and status badge retain their existing renderer.
+
+This is presentation-only. It adds no UI owner, price/cash computation, remote, purchase path or persistence field. The exact-anchor installer compiles all projected sources before assignment and restores its run on failure. After installation, verify both cash states, purchase/owned transition, independent icons, desktop/laptop and landscape phone/tablet layout, then refresh both Studio mirror areas.
+
 ## Free-roam map player markers and smooth pan V1.1 confirmed/mirrored (2026-07-28)
 
 The user confirmed V1.1 working well. The complete `14:21:10` / 193-source mirror contains the installed and enabled desktop/mobile owners plus shared module/config revisions:

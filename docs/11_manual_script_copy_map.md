@@ -4,6 +4,30 @@
 **Status:** Current script mirror folders created  
 **Current mirror root:** `roblox/exported_scripts`
 
+## Paint Shop Underglow Icon And Price Text V1 generated
+
+Run the complete contents of:
+
+```text
+scripts/roblox_ui_paint_shop_icon_price_text_refinement_v1.lua
+```
+
+once in the Roblox Studio Edit-mode Command Bar with `MODE="INSTALL"`. Require `[NTR Paint Shop Icon/Price V1] INSTALL PASS`, then set `ReplicatedStorage.NeoTokyoRacers.Config.UI.GarageReplacement.NavigationIcons.UnderglowSidebarIcon` to the desired uploaded `rbxassetid://` value.
+
+Restart Play and verify the sidebar/bottom icons are independent, unowned cosmetic and neon prices are plain green/red top-right text, purchases still work, and all unrelated badge states are unchanged. Test desktop/laptop and landscape phone/tablet, then run the full Studio snapshot receiver/exporter workflow. Repair this same installer if an exact anchor fails; do not create a follow-up UI patch.
+
+## Steering Drive Mode And Input-Owned Turn Bank V1.2 generated
+
+Run the complete contents of:
+
+```text
+scripts/roblox_driving_reverse_turn_bank_direction_v1.lua
+```
+
+once in the Roblox Studio Edit-mode Command Bar with `MODE="INSTALL"`. The canonical installer accepts the exact installed V1.1 source in the complete `2026-07-28 15:25:19` mirror and migrates it directly to V1.2; do not run a separate rollback first.
+
+Require both `[NTR Steering Drive Mode And Input-Owned Turn Bank V1.2] AUDIT PASS` and `INSTALL PASS`, restart Play and complete the reverse, coast, forward-braking and three-point matrix in `docs/03_driving_mechanics.md`. Confirm bank remains unchanged, then refresh the complete mirror. Repair this same installer if an exact anchor fails; do not create another steering/bank patch.
+
 ## Owned Garage Mobile Camera Guard V2.2 confirmed/mirrored
 
 Run the complete contents of:

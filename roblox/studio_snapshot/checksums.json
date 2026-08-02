@@ -147,9 +147,9 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Client/Controllers/DrivingControllerV47.module.lua",
     "class_name": "ModuleScript",
     "disabled": false,
-    "source_lines": 1161,
-    "source_bytes": 51752,
-    "source_checksum": "839652063"
+    "source_lines": 1214,
+    "source_bytes": 54973,
+    "source_checksum": "546122230"
   },
   "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Controllers.DrivingFallbackController": {
     "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Client/Controllers/DrivingFallbackController.module.lua",
@@ -1371,25 +1371,25 @@
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/UI/GarageReplacementComponents.module.lua",
     "class_name": "ModuleScript",
     "disabled": false,
-    "source_lines": 374,
-    "source_bytes": 50046,
-    "source_checksum": "317344424"
+    "source_lines": 381,
+    "source_bytes": 50496,
+    "source_checksum": "324601774"
   },
   "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.GarageWorkspaceController": {
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/UI/GarageWorkspaceController.module.lua",
     "class_name": "ModuleScript",
     "disabled": false,
     "source_lines": 381,
-    "source_bytes": 50120,
-    "source_checksum": "272908124"
+    "source_bytes": 50147,
+    "source_checksum": "401487088"
   },
   "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.ModuleShopUIController": {
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/UI/ModuleShopUIController.module.lua",
     "class_name": "ModuleScript",
     "disabled": false,
-    "source_lines": 698,
-    "source_bytes": 57996,
-    "source_checksum": "407356449"
+    "source_lines": 699,
+    "source_bytes": 58077,
+    "source_checksum": "827825124"
   },
   "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.NavigationController": {
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/UI/NavigationController.module.lua",

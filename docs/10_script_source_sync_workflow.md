@@ -175,11 +175,11 @@ Good signs:
 
 ## Current Mirror Status
 
-The current full mirror was generated on 2026-07-26 at 20:46:20 and contains 188 scripts. The exported manifest, source manifest and checksums each contain 188 matching entries. It contains confirmed Presentation Audio V1.3.2 with `NTR_PRESENTATION_AUDIO_CONTROLLER_V1_3_2_IMMEDIATE_ONESHOTS`, `InstallerRevision=NTR_PRESENTATION_AUDIO_UI_PREVIEW_RACE_V1_3_2`, both described preload controls and retained V5 reliable Ignition source. It also contains the confirmed Customisation Refinement V1.1 source/hierarchy recorded in its handoff.
+The current complete mirror was generated on 2026-07-28 at 15:25:19 and contains 193 scripts. The exported manifest, source manifest and checksums contain 193 mutually matching records with zero mismatches. It includes installed Input-Owned Steering And Turn Bank V1.1 and the user-confirmed Free-Roam Map V1.1 baseline described in `docs/00_START_HERE.md`.
 
-Both mirror areas agree and neither appears stale for these confirmed baselines. No Presentation Audio or Customisation mirror refresh is currently pending.
+Both mirror areas agree and neither appears stale for installed V1.1. Its bank behavior is accepted but steering direction is rejected. Steering Drive Mode And Input-Owned Turn Bank V1.2 is generated locally but not installed. Refresh the complete mirror after V1.2 is run and runtime-confirmed.
 
-The fresh mirror also shows active loose `StarterPlayerScripts` filming/camera helpers (`LocalScript`, `TrailerMode.client.lua`, and `TrailerShot01Camera`). Treat them as review items before publishing a normal gameplay build unless they are intentionally kept enabled.
+The mirror also shows active loose `StarterPlayerScripts` filming/camera helpers (`LocalScript`, `TrailerMode.client.lua`, and `TrailerShot01Camera`). Treat them as review items before publishing a normal gameplay build unless they are intentionally kept enabled.
 
 ## What To Commit In GitHub Desktop
 

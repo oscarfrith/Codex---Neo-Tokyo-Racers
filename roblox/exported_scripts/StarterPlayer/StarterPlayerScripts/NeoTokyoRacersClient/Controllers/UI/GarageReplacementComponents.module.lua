@@ -90,7 +90,14 @@ function M.Card(parent,props)
 	local overlayName=props.NameOverlay~=false
 	if overlayName then local plate=Instance.new("Frame"); plate.Name="NamePlate"; plate.BackgroundColor3=Color3.fromRGB(5,8,12); plate.BackgroundTransparency=.16; plate.BorderSizePixel=0; plate.Position=UDim2.new(0,5,1,-29); plate.Size=UDim2.new(1,-10,0,25); plate.ZIndex=holder.ZIndex+2; plate.Parent=card; Racing.Corner(plate,4); local fade=Instance.new("UIGradient"); fade.Rotation=90; fade.Transparency=NumberSequence.new({NumberSequenceKeypoint.new(0,.46),NumberSequenceKeypoint.new(1,.06)}); fade.Parent=plate; local name=Racing.Label(plate,{Name="ItemName",Text=props.DisplayName or "",Position=UDim2.fromOffset(8,1),Size=UDim2.new(1,-16,1,-2),TextSize=12,XAlignment=Enum.TextXAlignment.Center,Truncate=Enum.TextTruncate.AtEnd,Role="Button"}); name.ZIndex=plate.ZIndex+1 else local name=Racing.Label(card,{Name="ItemName",Text=props.DisplayName or "",Position=UDim2.fromOffset(9,imageH+6),Size=UDim2.new(1,-18,0,20),TextSize=props.NameTextSize or 10,XAlignment=Enum.TextXAlignment.Center,Truncate=Enum.TextTruncate.AtEnd,Role=props.NameRole}); name.ZIndex=card.ZIndex+4 end
 	if props.EmptyPlus then local circle=Instance.new("Frame"); circle.Name="EmptyPlus"; circle.AnchorPoint=Vector2.new(.5,.5); circle.Position=UDim2.fromScale(.5,.43); circle.Size=UDim2.fromOffset(58,58); circle.BackgroundColor3=Racing.Colour("PanelSoft"); circle.BorderSizePixel=0; circle.ZIndex=card.ZIndex+5; circle.Parent=card; Racing.Corner(circle,29); local plus=Racing.Label(circle,{Text="+",Size=UDim2.fromScale(1,1),TextSize=34,Role="Heading",XAlignment=Enum.TextXAlignment.Center}); plus.ZIndex=circle.ZIndex+1 end
-	if props.Rating then local badge=Instance.new("Frame"); badge.Name="RatingBadge"; badge.AnchorPoint=Vector2.new(1,0); badge.Position=UDim2.new(1,-8,0,8); badge.Size=UDim2.fromOffset(68,21); badge.BackgroundColor3=props.RatingColor or accent; badge.BorderSizePixel=0; badge.ZIndex=card.ZIndex+6; badge.Parent=card; Racing.Corner(badge,4); local t=Racing.Label(badge,{Text=props.Rating,Size=UDim2.fromScale(1,1),TextSize=9,XAlignment=Enum.TextXAlignment.Center}); t.ZIndex=badge.ZIndex+1 end
+	-- NTR_PAINT_SHOP_ICON_PRICE_TEXT_REFINEMENT_V1
+	if props.Rating then
+		if props.RatingStyle=="TextOnlyPrice" then
+			local price=Racing.Label(card,{Name="RatingPriceText",Text=tostring(props.Rating),Position=UDim2.new(1,-8,0,8),Size=UDim2.fromOffset(96,21),TextSize=13,Color=props.RatingColor or accent,XAlignment=Enum.TextXAlignment.Right,Truncate=Enum.TextTruncate.None,Role="Heading"}); price.AnchorPoint=Vector2.new(1,0); price.ZIndex=card.ZIndex+6
+		else
+			local badge=Instance.new("Frame"); badge.Name="RatingBadge"; badge.AnchorPoint=Vector2.new(1,0); badge.Position=UDim2.new(1,-8,0,8); badge.Size=UDim2.fromOffset(68,21); badge.BackgroundColor3=props.RatingColor or accent; badge.BorderSizePixel=0; badge.ZIndex=card.ZIndex+6; badge.Parent=card; Racing.Corner(badge,4); local t=Racing.Label(badge,{Text=props.Rating,Size=UDim2.fromScale(1,1),TextSize=9,XAlignment=Enum.TextXAlignment.Center}); t.ZIndex=badge.ZIndex+1
+		end
+	end
 	return card
 end
 -- NTR_SHARED_VEHICLE_CARD_RENDERER_V1_1

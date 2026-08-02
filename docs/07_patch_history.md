@@ -1,5 +1,44 @@
 # Patch History
 
+## 2026-08-02 - Paint Shop underglow icon and price-text refinement V1 generated
+
+- Added `scripts/roblox_ui_paint_shop_icon_price_text_refinement_v1.lua` against the complete `10:35:36` / 193-source Studio mirror.
+- Added a dedicated `NavigationIcons.UnderglowSidebarIcon` contract while preserving `VehicleCosmetics.Underglow.Icon` as the bottom purchase-card artwork owner.
+- Reused the shared module-category card pipeline with a new `TextOnlyPrice` presentation: top-right dealership heading typography, green affordable text and red unaffordable text, without a badge background.
+- Opted in only unowned vehicle-cosmetic and module-neon purchase cards. Existing affordability calculations, prices, purchase actions, `OWNED` presentation and unrelated garage cards are unchanged.
+- The single installer uses exact guarded anchors, three-module pre-compilation, idempotent install/audit, explicit source rollback and transactional restoration on failure. Studio Play verification and post-install mirror refresh are pending.
+
+## 2026-07-28 - Steering drive mode and input-owned turn bank V1.2 generated
+
+- The user confirmed V1.1 bank direction/transition works, but reported reverse-left yaw turning right plus wrong-feeling forward braking/turning.
+- Verified the complete `15:25:19` mirror contains installed V1.1 exactly with 193 mutually matching source/checksum records.
+- Advanced the same canonical installer in place. V1.2 accepts exact V1.1 directly, compiles/audits before commit and restores V1.1 on failure.
+- Preserved the full V1.1 bank block byte-for-byte. Raw steer, bank degrees, drift addition, `TurningBankResponse=2.2` and bank debug publication are unchanged.
+- Added a separate steering drive mode after the authoritative longitudinal step. Reverse/coast restores original inverted yaw and reverse multiplier; forward braking remains Forward; positive throttle selects Forward immediately even with backward velocity.
+- Added `SteeringCoastDirectionMph=0.5` plus steering-mode/dynamics debug attributes. No longitudinal dynamics, brake force, grip, drift, pitch, wobble, slope, camera, VFX, UI or persistence code changed.
+- Local validation passes exact V1.1 -> V1.2, byte-identical bank preservation and V1.2 -> pre-V1 rollback. Studio runtime confirmation and post-install mirror refresh remain pending.
+
+## 2026-07-28 - Input-owned steering and turn bank V1.1 installed/mirrored; bank accepted, steering rejected
+
+- Runtime testing rejected V1's speed-owned direction model: a reverse-left to forward-right three-point transition retained reverse polarity until velocity crossed zero.
+- Refreshed mirror `15:15:46/47` contains installed V1 exactly: 193 exported-manifest, source-manifest and checksum records agree with zero mismatches.
+- Advanced the same `scripts/roblox_driving_reverse_turn_bank_direction_v1.lua` installer in place. One transactional V1.1 `INSTALL` accepts exact installed V1 or exact pre-V1 source; no separate rollback run is required.
+- V1.1 makes raw steering input authoritative for yaw and bank sign at every speed. Retained throttle intent selects only the reverse steering-strength profile.
+- Removed V1 travel direction, bank intent, planar-speed hysteresis, polarity blend, debug/config and revision state.
+- Added editable `TurningBankDegrees=12`, `DriftExtraBankDegrees=5`, `TurningBankResponse=2.2`, `SteeringIntentThrottleDeadzone=0.05` and input-owned debug attributes.
+- Local exact-source validation passed installed V1 -> V1.1, pre-V1 -> V1.1 and V1.1 -> pre-V1 rollback projections.
+- V1.1 was installed and refreshed into the complete `15:25:19` mirror with 193 matching records. Its bank is confirmed correct, but raw yaw direction broke reverse steering and is superseded by generated V1.2 above.
+
+## 2026-07-28 - Reverse turn-bank direction V1 installed/mirrored; runtime-rejected
+
+- Added `scripts/roblox_driving_reverse_turn_bank_direction_v1.lua` as the single transactional installer/audit/rollback path for reverse turning-bank direction.
+- Replaced duplicated `forwardSpeed < -4` direction decisions with one terrain-planar signed-speed state shared by steering inversion and reverse steering-curve tuning.
+- Added a distinct bank-intent state: outside the `0.25 MPH` zero band it follows physical travel, while meaningful throttle selects visual direction inside the band so reverse-from-rest does not briefly use forward bank.
+- Added a frame-rate-independent bank polarity blend with prompt forward-to-reverse response `9` and deliberately slower reverse-to-forward response `1.75`; retained normal bank response as editable value `3.2`.
+- Added lifecycle resets and temporary vehicle debug attributes for signed planar speed, physical direction, bank-intent direction, blend and target degrees.
+- The installer exact-checks all seven source ranges, compiles before and after commit, audits the resulting ownership/config contract, is idempotent and restores source/config/revision state on failure. It creates no backup object and changes no driving force, drift, pitch, wobble, slope, camera, UI, VFX or persistence owner.
+- V1 was installed and refreshed into the complete `15:15:46/47` mirror with 193 matching records, then rejected after three-point-turn testing. Its speed-owned direction design is superseded by generated V1.1 above.
+
 ## 2026-07-28 - Free-roam map V1.1 confirmed and handed off
 
 - Recorded the user's confirmation that the repaired V1.1 result is working well.

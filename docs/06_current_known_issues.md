@@ -1,5 +1,25 @@
 # Current Known Issues
 
+## Paint Shop icon and price-text refinement V1 generated; Studio verification pending
+
+- Run `scripts/roblox_ui_paint_shop_icon_price_text_refinement_v1.lua` once in the Edit-mode Command Bar with `MODE="INSTALL"`; require `[NTR Paint Shop Icon/Price V1] INSTALL PASS`.
+- Set `ReplicatedStorage.NeoTokyoRacers.Config.UI.GarageReplacement.NavigationIcons.UnderglowSidebarIcon` to the desired `rbxassetid://` value. Its seeded default intentionally matches the existing artwork until the new asset ID is supplied.
+- Confirm only the left-sidebar Underglow card changes. The bottom purchase card must continue using `VehicleCosmetics.Underglow.Icon` and remain visually unchanged.
+- With Cash below and at/above each displayed price, confirm unowned vehicle-cosmetic and Neon Lights prices are plain top-right red/green text with no rectangle. Confirm `$5,000` formatting, selection, BUY, insufficient-funds handling, successful purchase and resulting `OWNED` state.
+- Confirm owned, locked, equipped, level and other module/dealership badges are unchanged. Repeat on desktop/laptop and landscape phone/tablet; check no clipping or overlap.
+- Exact source anchors are intentionally guarded and therefore fragile. If any preflight anchor fails, do not modify Studio or create a patch ladder; refresh/inspect the mirror and repair this same canonical installer.
+- After confirmation, refresh `roblox/exported_scripts/` and `roblox/studio_snapshot/` with the full exporter. Until then, the repository mirror represents the pre-install `2026-08-02 10:35:36` baseline.
+
+## Steering drive mode and input-owned turn bank V1.2 generated; Studio verification pending
+
+- Installed/mirrored V1.1 is accepted for bank only. Its raw yaw input makes reverse-left turn right and can select the reverse multiplier immediately during forward braking. The `15:25:19` mirror is authoritative for this exact failed steering state.
+- The same canonical `scripts/roblox_driving_reverse_turn_bank_direction_v1.lua` now installs V1.2 directly. Require both `[NTR Steering Drive Mode And Input-Owned Turn Bank V1.2] AUDIT PASS` and `INSTALL PASS`, then restart Play.
+- V1.2 exact-checks and preserves the complete V1.1 bank block. Any projection/commit that changes `bankInput=steer`, its target, response, debug or markers aborts and restores V1.1.
+- Verify reverse-left/right under throttle and while coasting, forward braking with steering, stationary reverse engagement, and reverse-left to forward-right while still moving backward. In the last case, yaw must respond to right immediately while the already-correct bank smoothly crosses left-to-right.
+- Compare stopping distance and `DynamicsMode`, `DynamicsForwardMph` and `DynamicsLongitudinalAcceleration`. V1.2 does not change longitudinal dynamics; do not tune braking unless rapid stopping remains after correct steering is restored.
+- Repeat flat/slope/uneven ground, reset, exit/re-entry, respawn, keyboard, gamepad and landscape phone/tablet. Confirm speed-curve magnitude, drift, bank, wobble, pitch and camera.
+- `INSTALL` failure restores installed V1.1. Explicit `ROLLBACK` restores the exact pre-V1 controller and removes V1/V1.1/V1.2 metadata. Refresh both mirror areas after confirmation.
+
 ## Free-roam map V1.1 confirmed/mirrored; release regressions retained
 
 - Closed: the user confirmed V1.1 working well. The complete `2026-07-28 14:21:10` mirror contains 193 mutually matching exported-manifest, source-manifest and checksum records, so neither mirror area appears stale.

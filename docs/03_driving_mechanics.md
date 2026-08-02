@@ -231,6 +231,45 @@ Tuning guidance:
 - Lower `DriftMiniBoostAccelerationThreshold` if light trigger/pedal pressure should count.
 - Set `DriftMiniBoostRequiresAcceleration = false` to restore the older always-award drift mini-boost behavior.
 
+## Steering Drive Mode And Input-Owned Turn Bank
+
+Canonical installer:
+
+- `scripts/roblox_driving_reverse_turn_bank_direction_v1.lua`
+
+Installed V1.1 is represented exactly in the complete `2026-07-28 15:25:19` mirror. Its bank behavior is user-confirmed, but its always-raw yaw input makes reverse-left turn right and can select the reverse multiplier during forward braking.
+
+Generated V1.2 preserves the V1.1 bank block byte-for-byte and adds a separate yaw-only steering drive mode:
+
+- Positive throttle selects Forward immediately, including while the vehicle still has backward velocity.
+- Negative throttle while the longitudinal model reports forward braking retains Forward.
+- Negative throttle near stopped/reverse motion selects Reverse.
+- With neutral throttle, meaningful backward/forward signed speed selects the matching mode; inside the small coast band the previous mode is retained.
+- Forward mode uses raw `steer`; Reverse mode uses `-steer`, restoring the original reverse control direction.
+- The existing reverse steering multiplier consumes the same mode.
+- Bank continues to use raw `steer` independently, so the working left/right tilt never flips with steering mode.
+
+Editable attributes under `ReplicatedStorage.NeoTokyoRacers.Config.Runtime.DRIVING_MECHANICS_EditAttributes`:
+
+- `TurningBankDegrees = 12`
+- `DriftExtraBankDegrees = 5`
+- `TurningBankResponse = 2.2`
+- `SteeringIntentThrottleDeadzone = 0.05`
+- `SteeringCoastDirectionMph = 0.5`
+- `InputOwnedSteeringDebugAttributes = true`
+
+Debug vehicle attributes:
+
+- `InputOwnedSteeringValue`
+- `SteeringProfileIntent`
+- `TurningBankTargetDegrees`
+- `TurningBankCurrentDegrees`
+- `SteeringDriveMode`
+- `SteeringSignedMph`
+- `SteeringDynamicsMode`
+
+V1.2 does not alter the V1.1 bank source, longitudinal force, braking values, maximum speed, grip, drift eligibility, pitch tilt, wobble, slope alignment, camera, UI, VFX or persistence. It is generated but not yet Studio-confirmed.
+
 ## Speed-Sensitive Steering Curve
 
 Prepared installer:

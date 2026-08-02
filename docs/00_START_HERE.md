@@ -1,5 +1,22 @@
 # Neo Tokyo Racers Project Context
 
+## 2026-08-02 Paint Shop underglow icon and price-text refinement V1 generated
+
+- `scripts/roblox_ui_paint_shop_icon_price_text_refinement_v1.lua` is the one pending Edit-mode installer for this isolated presentation scope.
+- It adds `GarageReplacement.NavigationIcons.UnderglowSidebarIcon` as the sole left-sidebar Underglow artwork input. The bottom purchase card continues to use the independent `GarageReplacement.VehicleCosmetics.Underglow.Icon` value.
+- The existing Paint Shop cash comparison already determines affordable versus unaffordable correctly. V1 adds a shared `TextOnlyPrice` badge presentation and opts in only unowned vehicle-cosmetic and module-neon purchase cards, retaining their top-right location with dealership heading typography, green affordable text and red unaffordable text.
+- Purchase remotes, prices, Cash ownership, owned/locked/equipped badges, bottom-card artwork, layout owners, gameplay and persistence are unchanged.
+- The installer uses guarded exact source anchors against the complete `2026-08-02 10:35:36` / 193-source mirror, pre-compiles all three projected UI modules, is idempotent, audits committed state and restores source/config if its run fails. Studio Play verification and a post-install full mirror refresh remain pending.
+
+## 2026-07-28 steering drive mode and input-owned turn bank V1.2 generated
+
+- The user confirmed V1.1 tilting works correctly, but its always-raw yaw input broke original reverse steering: reverse-left turns right, and forward braking can transition into the wrong steering profile. The complete `2026-07-28 15:25:19` / 193-source mirror contains exact installed V1.1 with zero mismatches.
+- `scripts/roblox_driving_reverse_turn_bank_direction_v1.lua` is advanced in place as the one canonical V1.2 installer/audit/rollback path. One `INSTALL` run accepts installed V1.1 directly.
+- V1.2 preserves the complete working V1.1 bank block byte-for-byte. Raw left/right input remains the sole bank owner and `TurningBankResponse=2.2` remains unchanged.
+- A separate steering drive mode restores original reverse yaw and reverse multiplier while reversing/coasting backward. Forward braking retains Forward steering; forward throttle selects Forward immediately even while backward velocity remains during a three-point turn.
+- The steering mode consumes the existing longitudinal `DynamicsMode`/braking evidence plus a small `SteeringCoastDirectionMph=0.5` neutral/coast threshold. It does not modify `VehicleDynamicsModel`, braking force or longitudinal acceleration.
+- Forces, speed, drift eligibility, pitch, wobble, slope, camera, VFX, UI and persistence remain unchanged. Run V1.2 in Edit mode, restart Play, complete the documented handling/bank regression, then refresh the complete Studio mirror.
+
 ## 2026-07-28 free-roam map V1.1 confirmed/mirrored
 
 - The user confirmed the repaired V1.1 result working well. The complete `2026-07-28 14:21:10` / 193-source mirror contains both enabled HUD revisions, the shared module revision and config revision; exported manifest, source manifest and checksums agree with zero mismatches.

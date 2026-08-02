@@ -544,7 +544,7 @@ local function paintTargetRail(c,target)
 		if special or physical then
 			table.insert(c.LeftItems,{Id=id,Text=id=="THRUST_COLOR" and "Thrust" or art.DisplayName,ImageKey=art.TargetId,Image=art.Image,ImageZoom=1.04,Selected=target==id,Muted=physical and not installedForSlot(id),OnSelect=function() clearTransientModulePreview(); State.CustomizeTarget=id; State.CustomizeMode=modeForPaintTarget(id); State.SelectedPaintAction=nil; local channels=paintChannels(id); State.SelectedColorChannel=channels[1]; if physical then section(id) else section("ALL") end; renderPaintShop() end})
 			if id=="THRUST_COLOR" then
-				table.insert(c.LeftItems,{Id="UNDERGLOW",Text="Underglow",Image=navIcon("UnderglowIcon"),ImageZoom=1.04,Selected=target=="UNDERGLOW",OnSelect=function() clearTransientModulePreview(); State.CustomizeTarget="UNDERGLOW"; State.CustomizeMode=modeForPaintTarget("UNDERGLOW"); State.SelectedPaintAction=nil; State.SelectedColorChannel="Underglow"; section("ALL"); renderPaintShop() end})
+				table.insert(c.LeftItems,{Id="UNDERGLOW",Text="Underglow",Image=navIcon("UnderglowSidebarIcon"),ImageZoom=1.04,Selected=target=="UNDERGLOW",OnSelect=function() clearTransientModulePreview(); State.CustomizeTarget="UNDERGLOW"; State.CustomizeMode=modeForPaintTarget("UNDERGLOW"); State.SelectedPaintAction=nil; State.SelectedColorChannel="Underglow"; section("ALL"); renderPaintShop() end})
 			end
 		end
 	end
@@ -553,7 +553,7 @@ end
 local function addCosmeticPurchaseCard(c,target,id,actionIconScale)
 	local definition=cosmeticDefinition(id); if not definition or definition.Available==false then c.EmptyMessage="NOT AVAILABLE FOR THIS VEHICLE"; return end
 	local price=math.max(0,math.floor(tonumber(definition.Price) or 0)); local affordable=(tonumber(State.Profile.Cash) or 0)>=price; local selected=State.SelectedPaintAction==id
-	table.insert(c.Cards,{Id=id,Image=imageValue(definition.Icon),ImageZoom=actionIconScale,DisplayName=definition.DisplayName,Badge=Shared.FormatMoney(price),BadgeColor=affordable and Color3.fromRGB(89,255,102) or Color3.fromRGB(225,56,70),Selected=selected,ActionText=selected and "BUY" or nil,OnSelect=function() State.SelectedPaintAction=id; renderPaintShop() end,OnAction=function()
+	table.insert(c.Cards,{Id=id,Image=imageValue(definition.Icon),ImageZoom=actionIconScale,DisplayName=definition.DisplayName,Badge=Shared.FormatMoney(price),BadgeStyle="TextOnlyPrice",BadgeColor=affordable and Color3.fromRGB(89,255,102) or Color3.fromRGB(225,56,70),Selected=selected,ActionText=selected and "BUY" or nil,OnSelect=function() State.SelectedPaintAction=id; renderPaintShop() end,OnAction=function()
 		local result=action:Call("BuyVehicleCosmetic",{CosmeticId=id}); State.SelectedPaintAction=nil
 		if result and result.Success then State.CustomizeMode="Colour"; local channels=paintChannels(target); State.SelectedColorChannel=channels[1]; buildPreview(); renderPaintShop() else renderPaintShop(); message(result and result.Message or "Purchase could not be completed.") end
 	end})
@@ -582,6 +582,7 @@ local function addPaintOverviewCards(c,target,actionIconScale)
 		ImageZoom=actionIconScale,
 		DisplayName="Neon Lights",
 		Badge=owned and "OWNED" or Shared.FormatMoney(price),
+		BadgeStyle=owned and nil or "TextOnlyPrice",
 		BadgeColor=owned and tierColor("S") or (affordable and Color3.fromRGB(89,255,102) or Color3.fromRGB(225,56,70)),
 		Selected=selected,
 		ActionText=selected and (owned and "CUSTOMISE" or "BUY") or nil,

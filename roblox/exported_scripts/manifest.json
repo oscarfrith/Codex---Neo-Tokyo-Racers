@@ -434,8 +434,8 @@
     "class_name": "ModuleScript",
     "disabled": false,
     "attributes": {
-      "DriftBoostAccelGateReversePatch": {
-        "value": "NTR_DRIFT_BOOST_ACCEL_GATE_REVERSE_40_V1",
+      "LastUpdatedBy": {
+        "value": "NTR_VFX_SINGLE_CACHED_RUNTIME_OWNER_2026_06_30",
         "type": "string"
       },
       "PhaseNSourcePatchedBy": {
@@ -458,6 +458,10 @@
         "value": "2026-07-02T22:42:44Z",
         "type": "string"
       },
+      "SteeringDriveModeTurnBankRevision": {
+        "value": "NTR_DRIVING_STEERING_DRIVE_MODE_TURN_BANK_V1_2",
+        "type": "string"
+      },
       "DrivingFeelPhase2_1DriftMomentum": {
         "value": true,
         "type": "boolean"
@@ -478,6 +482,10 @@
         "value": "2026-07-02T22:50:44Z",
         "type": "string"
       },
+      "PhaseKSourcePatchedAt": {
+        "value": "2026-05-29 17:31:59",
+        "type": "string"
+      },
       "AccelBrakePitchTiltInstalledAt": {
         "value": "2026-07-02T22:21:20Z",
         "type": "string"
@@ -490,8 +498,8 @@
         "value": "NTR_SLOPE_HOVER_HEIGHT_COMPENSATION_V1",
         "type": "string"
       },
-      "PhaseKSourcePatchedAt": {
-        "value": "2026-05-29 17:31:59",
+      "DriftBoostAccelGateReversePatch": {
+        "value": "NTR_DRIFT_BOOST_ACCEL_GATE_REVERSE_40_V1",
         "type": "string"
       },
       "PhaseNSourcePatchedAt": {
@@ -502,8 +510,8 @@
         "value": true,
         "type": "boolean"
       },
-      "LastUpdatedBy": {
-        "value": "NTR_VFX_SINGLE_CACHED_RUNTIME_OWNER_2026_06_30",
+      "SteeringDriveModeTurnBankInstalledAtUtc": {
+        "value": "2026-07-28T14:37:27Z",
         "type": "string"
       },
       "PhaseKSourcePatchedBy": {
@@ -515,9 +523,9 @@
         "type": "string"
       }
     },
-    "source_lines": 1161,
-    "source_bytes": 51752,
-    "source_checksum": "839652063",
+    "source_lines": 1214,
+    "source_bytes": 54973,
+    "source_checksum": "546122230",
     "file": "roblox/exported_scripts/ReplicatedStorage/NeoTokyoRacers/Shared/Modules/Client/Controllers/DrivingControllerV47.module.lua"
   },
   {
@@ -4582,8 +4590,8 @@
     "class_name": "LocalScript",
     "disabled": false,
     "attributes": {
-      "InstalledBy": {
-        "value": "NTR_PC_FREEROAM_UI_PHASE4A_DEALERSHIP_TELEPORT",
+      "OwnedGarageInstallRunId": {
+        "value": "8408eedf-4053-40c0-ad55-09bdaccc6acf",
         "type": "string"
       },
       "OwnedGarageRevision": {
@@ -4598,8 +4606,8 @@
         "value": "2026-07-11T00:45:18Z",
         "type": "string"
       },
-      "OwnedGarageInstallRunId": {
-        "value": "8408eedf-4053-40c0-ad55-09bdaccc6acf",
+      "InstalledBy": {
+        "value": "NTR_PC_FREEROAM_UI_PHASE4A_DEALERSHIP_TELEPORT",
         "type": "string"
       },
       "FreeRoamMapPlayersRevision": {
@@ -5208,9 +5216,9 @@
         "type": "string"
       }
     },
-    "source_lines": 374,
-    "source_bytes": 50046,
-    "source_checksum": "317344424",
+    "source_lines": 381,
+    "source_bytes": 50496,
+    "source_checksum": "324601774",
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/UI/GarageReplacementComponents.module.lua"
   },
   {
@@ -5253,8 +5261,8 @@
       }
     },
     "source_lines": 381,
-    "source_bytes": 50120,
-    "source_checksum": "272908124",
+    "source_bytes": 50147,
+    "source_checksum": "401487088",
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/UI/GarageWorkspaceController.module.lua"
   },
   {
@@ -5312,9 +5320,9 @@
         "type": "string"
       }
     },
-    "source_lines": 698,
-    "source_bytes": 57996,
-    "source_checksum": "407356449",
+    "source_lines": 699,
+    "source_bytes": 58077,
+    "source_checksum": "827825124",
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/NeoTokyoRacersClient/Controllers/UI/ModuleShopUIController.module.lua"
   },
   {

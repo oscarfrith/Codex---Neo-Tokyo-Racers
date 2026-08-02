@@ -59,6 +59,8 @@ local state = {
 	BoostRechargeDelaySeconds = 0.5,
 	YawHeading = 0,
 	CurrentBank = 0,
+	-- NTR_DRIVING_INPUT_OWNED_STEERING_TURN_BANK_V1_1_STATE
+	SteeringProfileIntent = 1,
 	WobbleSeedX = math.random() * 1000,
 	WobbleSeedZ = math.random() * 1000,
 	WobbleTime = 0,
@@ -607,6 +609,8 @@ local handleResetAction
 
 function Controller.Stop()
 	state.IsDriving = false
+	-- NTR_DRIVING_INPUT_OWNED_STEERING_TURN_BANK_V1_1_STOP_RESET
+	state.SteeringProfileIntent = 1
 	ContextActionService:UnbindAction("HOVER_RACING_V2_V47_Reset")
 	if state.Vehicle then
 		state.Vehicle:SetAttribute("DriveReady", false)
@@ -651,6 +655,8 @@ function Controller.Start(context)
 	state.BoostRechargeDelayTimer = 0
 	state.ReverseHoldTimer = 0
 	state.CurrentBank = 0
+	-- NTR_DRIVING_INPUT_OWNED_STEERING_TURN_BANK_V1_1_START_RESET
+	state.SteeringProfileIntent = 1
 	state.WobbleTime = 0
 	state.WobblePitch = 0
 	state.WobbleRoll = 0
@@ -807,10 +813,11 @@ function Controller.Start(context)
 			state.Vehicle:SetAttribute("SlopeHoverHits", hits)
 		end
 		-- NTR_SLOPE_HOVER_HEIGHT_COMPENSATION_V1_END
-		local steeringInput = steer
-		if forwardSpeed < -4 then steeringInput = -steer end
+		-- NTR_DRIVING_STEERING_DRIVE_MODE_TURN_BANK_V1_2_INPUT_BEGIN
+		local steeringIntentDeadzone = configNumber("DRIVING_MECHANICS_EditAttributes", "SteeringIntentThrottleDeadzone", 0.05, 0, 0.5)
+		-- NTR_DRIVING_STEERING_DRIVE_MODE_TURN_BANK_V1_2_INPUT_END
 
-		local canDrift = state.DriftHeld and forwardSpeed > 8 and speedMph > 10 and math.abs(steeringInput) > 0 and grounded
+		local canDrift = state.DriftHeld and forwardSpeed > 8 and speedMph > 10 and math.abs(steer) > 0 and grounded
 		local targetDriftBlend = canDrift and 1 or 0
 		state.DriftBlend += (targetDriftBlend - state.DriftBlend) * math.clamp(dt * 5.2, 0, 1)
 		local drifting = state.DriftBlend > 0.12
@@ -859,6 +866,33 @@ function Controller.Start(context)
 			end
 			state.Vehicle:SetAttribute("Braking", false)
 		end
+
+		-- NTR_DRIVING_STEERING_DRIVE_MODE_TURN_BANK_V1_2_MODE_BEGIN
+		local steeringCoastDirectionMph = configNumber("DRIVING_MECHANICS_EditAttributes", "SteeringCoastDirectionMph", 0.5, 0.05, 5)
+		local steeringSignedMph = forwardSpeed * MPH_PER_STUD
+		if throttle > steeringIntentDeadzone then
+			-- Three-point-turn exception: forward input owns yaw immediately,
+			-- even while the vehicle still has backward velocity.
+			state.SteeringProfileIntent = 1
+		elseif throttle < -steeringIntentDeadzone then
+			-- Preserve original forward handling throughout real forward braking.
+			if (dynamicsStep.Enabled and dynamicsStep.Braking and forwardSpeed > 0) or steeringSignedMph > steeringCoastDirectionMph then
+				state.SteeringProfileIntent = 1
+			else
+				state.SteeringProfileIntent = -1
+			end
+		elseif steeringSignedMph < -steeringCoastDirectionMph then
+			state.SteeringProfileIntent = -1
+		elseif steeringSignedMph > steeringCoastDirectionMph then
+			state.SteeringProfileIntent = 1
+		end
+		local steeringInput = state.SteeringProfileIntent < 0 and -steer or steer
+		if configBool("DRIVING_MECHANICS_EditAttributes", "InputOwnedSteeringDebugAttributes", true) then
+			state.Vehicle:SetAttribute("SteeringDriveMode", state.SteeringProfileIntent < 0 and "Reverse" or "Forward")
+			state.Vehicle:SetAttribute("SteeringSignedMph", steeringSignedMph)
+			state.Vehicle:SetAttribute("SteeringDynamicsMode", tostring(dynamicsStep.Mode or "Fallback"))
+		end
+		-- NTR_DRIVING_STEERING_DRIVE_MODE_TURN_BANK_V1_2_MODE_END
 
 		-- NTR_DRIVING_FEEL_PHASE2_HANDLING_BRIDGE
 		local handlingStep = typeof(VehicleDynamicsModel.StepHandling) == "function" and VehicleDynamicsModel.StepHandling({
@@ -1023,7 +1057,7 @@ function Controller.Start(context)
 			local lowSpeedInfluence = (1 - speedAlpha) ^ curveExponent
 			local targetMultiplier = highMultiplier + (lowMultiplier - highMultiplier) * lowSpeedInfluence
 
-			if forwardSpeed < -4 then
+			if state.SteeringProfileIntent < 0 then -- NTR_DRIVING_STEERING_DRIVE_MODE_TURN_BANK_V1_2_CURVE
 				if reverseUsesCurve then
 					targetMultiplier *= reverseMultiplier
 				else
@@ -1071,10 +1105,26 @@ function Controller.Start(context)
 		state.YawHeading += -steeringInput * turnRate * dt
 		-- NTR_SPEED_SENSITIVE_STEERING_V1_END
 
-		local bankInput = forwardSpeed < -4 and -steeringInput or steeringInput
-		local targetBank = math.rad(math.clamp(-bankInput * 12, -12, 12))
-		if drifting then targetBank += math.rad(math.clamp(-bankInput * 5, -5, 5)) * state.DriftBlend end
-		state.CurrentBank += (targetBank - state.CurrentBank) * math.clamp(dt * 3.2, 0, 1)
+		-- NTR_DRIVING_INPUT_OWNED_STEERING_TURN_BANK_V1_1_BANK_BEGIN
+		local turningBankDegrees = configNumber("DRIVING_MECHANICS_EditAttributes", "TurningBankDegrees", 12, 0, 30)
+		local driftExtraBankDegrees = configNumber("DRIVING_MECHANICS_EditAttributes", "DriftExtraBankDegrees", 5, 0, 20)
+		local bankInput = steer
+		local targetBankDegrees = math.clamp(-bankInput * turningBankDegrees, -turningBankDegrees, turningBankDegrees)
+		if drifting then
+			targetBankDegrees += math.clamp(-bankInput * driftExtraBankDegrees, -driftExtraBankDegrees, driftExtraBankDegrees) * state.DriftBlend
+		end
+		local targetBank = math.rad(targetBankDegrees)
+		local bankResponse = configNumber("DRIVING_MECHANICS_EditAttributes", "TurningBankResponse", 2.2, 0.1, 30)
+		local bankAlpha = 1 - math.exp(-bankResponse * math.max(dt, 0))
+		state.CurrentBank += (targetBank - state.CurrentBank) * bankAlpha
+
+		if configBool("DRIVING_MECHANICS_EditAttributes", "InputOwnedSteeringDebugAttributes", true) then
+			state.Vehicle:SetAttribute("InputOwnedSteeringValue", steer)
+			state.Vehicle:SetAttribute("SteeringProfileIntent", state.SteeringProfileIntent < 0 and "Reverse" or "Forward")
+			state.Vehicle:SetAttribute("TurningBankTargetDegrees", targetBankDegrees)
+			state.Vehicle:SetAttribute("TurningBankCurrentDegrees", math.deg(state.CurrentBank))
+		end
+		-- NTR_DRIVING_INPUT_OWNED_STEERING_TURN_BANK_V1_1_BANK_END
 
 		terrainForward, groundNormal = getTerrainFrame(root, hitPositions, normalSum, hits)
 		local wobblePitch, wobbleRoll = updateHoverWobble(dt, speedMph, grounded)
@@ -1145,6 +1195,9 @@ function Controller.ResetVehicle()
 		local root = state.Vehicle.PrimaryPart
 		root.AssemblyLinearVelocity = Vector3.zero
 		root.AssemblyAngularVelocity = Vector3.zero
+		-- NTR_DRIVING_INPUT_OWNED_STEERING_TURN_BANK_V1_1_VEHICLE_RESET
+		state.SteeringProfileIntent = 1
+		state.CurrentBank = 0
 		root.CFrame = CFrame.lookAt(root.Position + Vector3.new(0, 5, 0), root.Position + Vector3.new(math.sin(state.YawHeading), 5, math.cos(state.YawHeading)))
 	end
 end
