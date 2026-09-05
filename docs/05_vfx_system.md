@@ -1,5 +1,15 @@
 # VFX System
 
+2026-09-05 cleanup Phase 3 is installed and user-confirmed. Canonical paths now use Workspace.World, ReplicatedStorage.Assets/Remotes/Config and feature configuration folders. Physical content is preserved. Mirror 16:06:57 passes exact expected source/hierarchy/property parity. See docs/architecture/cleanup-phase3-generic-naming.md.
+
+VehiclePreviewVFXClient is the current name of the retained preview VFX owner. VFXAttachments folder names replace the old folder hook name; physical attachment names and VFX tuning are preserved. Audio groups now use generic names while retaining object references/effect values.
+
+**Complete cleanup Phase 2, 2026-09-05 — user-confirmed working.** VFX implementations/callers now use canonical ReplicatedStorage.Modules.Game paths and feature Runtime state. Existing preview/runtime attachment owners, effect values and physical assets are preserved. See [current handoff](architecture/cleanup-phase2-canonical-ownership.md). Historical paths below are recovery history.
+
+## 2026-09-05 architecture Phase 4
+
+`ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient` now contains the unchanged CachedThrustVisualRuntime implementation and remains the sole live attachment owner. Old shared VFX/Visuals paths forward to the canonical modules. ClientBase starts RuntimeVFXClient; ThrustPreviewClient retains its existing compatibility responsibility. No effects, assets, rates, tuning or attachment ownership changed. Verify preview/drive effects during the Phase 4 user playthrough; see `docs/architecture/phase4-path-map.md`.
+
 ## Race start-zone aura, prompt and split arrow presentation V1.4 confirmed/mirrored
 
 `scripts/roblox_racing_presentation_lifecycle_refinements_v1.lua` introduces no vehicle VFX owner and does not change `CachedThrustVisualRuntime` or participant vehicle visibility.

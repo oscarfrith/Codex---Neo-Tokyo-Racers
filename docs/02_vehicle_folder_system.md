@@ -1,5 +1,15 @@
 # Vehicle Folder System
 
+2026-09-05 cleanup Phase 3 is installed and user-confirmed. Canonical paths now use Workspace.World, ReplicatedStorage.Assets/Remotes/Config and feature configuration folders. Physical content is preserved. Mirror 16:06:57 passes exact expected source/hierarchy/property parity. See docs/architecture/cleanup-phase3-generic-naming.md.
+
+Installed layout: client-visible assets live in ReplicatedStorage.Assets; server garage/race templates live in ServerStorage.Assets.Garage and Racing. Active tuning lives under Config.Vehicles (Driving, Dynamics, Camera, Performance, Spawn, DriveRewards, Authoring, DriverSeat, StabiliserVFX). Staging and Archive retain their original protected physical contents. Folder hook names ModuleSlots and VFXAttachments changed; physical part/attachment hooks remain unchanged.
+
+**Complete cleanup Phase 2, 2026-09-05 — user-confirmed working.** Canonical vehicle modules are under ReplicatedStorage.Modules.Game.Vehicles and ServerStorage.Modules.Game.Vehicles. Runtime endpoints moved with their owners. No vehicle model, mesh, part, asset ID, catalogue value or staging/archive content was changed. See [current handoff](architecture/cleanup-phase2-canonical-ownership.md). Historical paths below are recovery history.
+
+## 2026-09-05 complete cleanup Phase 1 asset classification
+
+No physical assets changed. The staging tree has 78 catalogue-ID models all present in live Categories, plus six nested cockpit visual models. Seventy-six match a limited part-shape signature; live bruiser_01/02 have underglow/spotlight differences. Archive retains garage assets, decals, two ambiguously named test vehicles and sounds. Do not delete these physical trees or replace live templates from staging without a concrete user disposition decision. See `architecture/cleanup-phase1-scaffolding.md` and `scripts/cleanup_phase1/asset-audit.json`; the comparison is not a complete duplicate proof.
+
 ## Physical module-instance colour completion V1.1 (confirmed and handed off 2026-07-26)
 
 The physical module-instance record remains the saved authority for installed module identity, colours, Neon, and upgrades. A newly purchased instance can currently contain `Colors={}`. Preview fills absent channels for presentation, while the server clone path interprets that empty table as a complete override and leaves authored grey. This explains preview/spawn mismatch and persistence after rejoin.

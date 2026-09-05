@@ -1,0 +1,2570 @@
+{
+  "nodes": [
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "Vehicles",
+        "DriverSeatPosition_LivePath"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Compatibility",
+        "MigrationReports",
+        "PhaseAH_StableCockpitLightBeams"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "Vehicles",
+        "README_Vehicles"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "World",
+        "Lighting",
+        "SkyPresets_Status"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "Folder",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "World",
+        "Lighting"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "path": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "Intro",
+        "CockpitCustomisationZoneClient_Active"
+      ],
+      "disabled": true,
+      "tags": [],
+      "class": "LocalScript",
+      "archivable": true,
+      "runContext": "Legacy"
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "World",
+        "Lighting",
+        "SkyPresets_LivePath"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Compatibility",
+        "MigrationReports",
+        "PhaseAD_RootAttachedCockpitSpotLights"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "Camera",
+        "README_Camera"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "Mobile",
+        "README_Mobile"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "World",
+        "Lighting",
+        "LightingPresets_Status"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "Folder",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "Vehicles"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "Folder",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Compatibility",
+        "CleanupReports"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "ObjectValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Compatibility",
+        "CurrentDrivingControllerV47"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "ModuleScript",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Compatibility",
+        "PathResolver"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "World",
+        "LOD",
+        "README_WorldLOD"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "Economy",
+        "README_Economy"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "ObjectValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Compatibility",
+        "CurrentMobileDriveInputState"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "ObjectValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Compatibility",
+        "CurrentGarageInvoke"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "ObjectValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Compatibility",
+        "FutureServerRoot"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Compatibility",
+        "MigrationReports",
+        "PhaseAG_PredictiveCockpitSpotLightProjector"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "path": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "World",
+        "GarageAccessClient_Active"
+      ],
+      "disabled": true,
+      "tags": [],
+      "class": "LocalScript",
+      "archivable": true,
+      "runContext": "Legacy"
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "UI",
+        "PaintPresets_LivePath"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Compatibility",
+        "MigrationReports",
+        "PhaseAE_FreshRootOnlyCockpitSpotLights"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "VFX",
+        "README_VFX"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "Economy",
+        "GameBalance_Status"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Compatibility",
+        "MigrationReports",
+        "PhaseAB_NativeCockpitLightCleanup"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "UI",
+        "UITheme_Notes"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Compatibility",
+        "MigrationReports",
+        "PhaseT_CockpitSpotlightPerformanceTune"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "ObjectValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Compatibility",
+        "FutureClientRoot"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "World",
+        "Lighting",
+        "SkyPresets_Notes"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "UI",
+        "UITheme_Status"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Compatibility",
+        "MigrationReports",
+        "PhaseAF_ClientRenderSyncedCockpitLights"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "World",
+        "Lighting",
+        "LightingPresets_Notes"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "VFX",
+        "StabiliserVFXDirection_LivePath"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "path": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "Racing",
+        "RaceHudExitCleanupClient_Active"
+      ],
+      "disabled": true,
+      "tags": [],
+      "class": "LocalScript",
+      "archivable": true,
+      "runContext": "Legacy"
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "Driving",
+        "DrivingMechanics_Status"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Compatibility",
+        "README_Compatibility"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "UI",
+        "README_UI"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "World",
+        "Traffic",
+        "README_WorldTraffic"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Compatibility",
+        "MigrationReports",
+        "PhaseAI_CockpitLightSystemRemoval"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "Driving",
+        "HoverWobble_LivePath"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "Camera",
+        "DrivingCameraAssist_LivePath"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "path": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "World",
+        "GarageInteriorCustomizationClient_Active"
+      ],
+      "disabled": true,
+      "tags": [],
+      "class": "LocalScript",
+      "archivable": true,
+      "runContext": "Legacy"
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "World",
+        "LOD",
+        "GeneratedCityBlocksLivePath_Notes"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "ModuleScript",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Compatibility",
+        "LiveSystemRegistry"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "Driving",
+        "DrivingMechanics_Notes"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "World",
+        "Lighting",
+        "LightingPresets_LivePath"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "ObjectValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Compatibility",
+        "CurrentRuntimeMobileHudSuppressor"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "UI",
+        "README_Phase7_UIConfig"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "ObjectValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Compatibility",
+        "CurrentRuntimeMainClient"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "path": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "Racing",
+        "RaceSessionControlsClient_Active"
+      ],
+      "disabled": true,
+      "tags": [],
+      "class": "LocalScript",
+      "archivable": true,
+      "runContext": "Legacy"
+    },
+    {
+      "class": "Folder",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "Mobile"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "UI",
+        "README_CurrentSourceOfTruth"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "Folder",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "Racing"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "README_ConfigLayer"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "MigrationReports",
+        "Phase1_Architecture_Setup_Report"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "World",
+        "README_World"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "Folder",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "World",
+        "Traffic"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "Diagnostics",
+        "README_Diagnostics"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "World",
+        "LOD",
+        "GeneratedCityBlocksLivePath_Status"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Compatibility",
+        "CleanupReports",
+        "CleanupPhaseM_PostKitMigrationAudit_001"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "Camera",
+        "DrivingCameraAssist_Notes"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "MigrationReports",
+        "Phase2_Live_References_Registry_Report"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "path": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "Racing",
+        "RaceClient_Active"
+      ],
+      "disabled": true,
+      "tags": [],
+      "class": "LocalScript",
+      "archivable": true,
+      "runContext": "Legacy"
+    },
+    {
+      "class": "ModuleScript",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "ConfigRegistry"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "World",
+        "LOD",
+        "GeneratedCityBlocksLivePath_LivePath"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "MigrationReports",
+        "Phase3_Config_Registry_Mirrors_Report"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "World",
+        "LOD",
+        "LODLivePaths_Status"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "Folder",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "VFX"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "path": [
+        "ServerScriptService",
+        "NeoTokyoRacers",
+        "Services",
+        "Garage",
+        "GarageInteriorCustomizationService_Active"
+      ],
+      "disabled": true,
+      "tags": [],
+      "class": "Script",
+      "archivable": true,
+      "runContext": "Legacy"
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "Driving",
+        "DrivingMechanics_LivePath"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "ObjectValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Compatibility",
+        "CurrentVehicleVFXController"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "World",
+        "LOD",
+        "LODLivePaths_LivePath"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "Folder",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "Driving"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "UI",
+        "PaintPresets_Notes"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "Folder",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "World",
+        "LOD"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Compatibility",
+        "README_LiveSystemRegistry"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "Folder",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "Economy"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "World",
+        "LOD",
+        "FarLOD5_LivePath_Reference"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "path": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "Intro",
+        "DriveInCustomisationZoneClient_Active"
+      ],
+      "disabled": true,
+      "tags": [],
+      "class": "LocalScript",
+      "archivable": true,
+      "runContext": "Legacy"
+    },
+    {
+      "class": "Folder",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "MigrationReports"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "Folder",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "Diagnostics"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "World",
+        "LOD",
+        "GeneratedCityBlocks_LivePath_Reference"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "Folder",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "World"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "Vehicles",
+        "DriverSeatPosition_Notes"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "ObjectValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Compatibility",
+        "CurrentReentryThrottle"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "ObjectValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Compatibility",
+        "CurrentCachedThrustVisualRuntime"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Compatibility",
+        "MigrationReports",
+        "PhaseU_ClientCockpitLightSmoother"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "ModuleScript",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "Data",
+        "ConfigRegistry"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Compatibility",
+        "MigrationReports",
+        "PhaseAC_CockpitLightWeldPaintStability"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "Vehicles",
+        "DriverSeatPosition_Status"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "Racing",
+        "README_Racing"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "VFX",
+        "StabiliserVFXDirection_Notes"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "ObjectValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Compatibility",
+        "CurrentRuntimeCachedThrustScript"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "Folder",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Compatibility"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "path": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "UI",
+        "GarageExperienceController_Active"
+      ],
+      "disabled": true,
+      "tags": [],
+      "class": "LocalScript",
+      "archivable": true,
+      "runContext": "Legacy"
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "World",
+        "LOD",
+        "LODLivePaths_Notes"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "Economy",
+        "GameBalance_Notes"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "Economy",
+        "GameBalance_LivePath"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "Driving",
+        "HoverWobble_Notes"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "UI",
+        "PaintPresets_Status"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "World",
+        "Lighting",
+        "README_WorldLighting"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "ObjectValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Compatibility",
+        "CurrentRuntimeMobileControls"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "path": [
+        "ServerScriptService",
+        "NeoTokyoRacers",
+        "Services",
+        "Garage",
+        "GarageInteriorService_Active"
+      ],
+      "disabled": true,
+      "tags": [],
+      "class": "Script",
+      "archivable": true,
+      "runContext": "Legacy"
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Compatibility",
+        "CleanupReports",
+        "CleanupPhaseM_Summary"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "Folder",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "Camera"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "ObjectValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Compatibility",
+        "CurrentRuntimeThrustPreview"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "Camera",
+        "DrivingCameraAssist_Status"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "path": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "World",
+        "GarageInteriorClient_Active"
+      ],
+      "disabled": true,
+      "tags": [],
+      "class": "LocalScript",
+      "archivable": true,
+      "runContext": "Legacy"
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "Driving",
+        "HoverWobble_Status"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "Driving",
+        "README_Driving"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "VFX",
+        "StabiliserVFXDirection_Status"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Config",
+        "UI",
+        "UITheme_LivePath"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "Folder",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Compatibility",
+        "MigrationReports"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Compatibility",
+        "MigrationReports",
+        "PhaseAJ_ThrustPreviewRootRepair"
+      ],
+      "archivable": true,
+      "tags": []
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Compatibility",
+        "README_ConfigRegistry"
+      ],
+      "archivable": true,
+      "tags": []
+    }
+  ],
+  "placeId": 121304917315753,
+  "attributes": [
+    {
+      "value": "roblox_architecture_phaseN_runtime_world_path_repair",
+      "path": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "Preview",
+        "ThrustPreviewController_Active"
+      ],
+      "key": "PhaseNSourcePatchedBy"
+    },
+    {
+      "value": "roblox_architecture_phaseP_garage_runtime_startup_repair",
+      "path": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "Preview",
+        "ThrustPreviewController_Active"
+      ],
+      "key": "PhasePSourcePatchedBy"
+    },
+    {
+      "value": "2026-06-02 09:46:31",
+      "path": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "Preview",
+        "ThrustPreviewController_Active"
+      ],
+      "key": "PhasePSourcePatchedAt"
+    },
+    {
+      "value": "2026-05-29 18:36:09",
+      "path": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "Preview",
+        "ThrustPreviewController_Active"
+      ],
+      "key": "PhaseNSourcePatchedAt"
+    },
+    {
+      "value": "roblox_architecture_phaseK_migrate_hover_kit_to_neotokyo",
+      "path": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "Preview",
+        "ThrustPreviewController_Active"
+      ],
+      "key": "PhaseKSourcePatchedBy"
+    },
+    {
+      "value": "2026-05-29 17:31:59",
+      "path": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "Preview",
+        "ThrustPreviewController_Active"
+      ],
+      "key": "PhaseKSourcePatchedAt"
+    },
+    {
+      "value": "roblox_architecture_phaseK_migrate_hover_kit_to_neotokyo",
+      "path": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "Runtime",
+        "DriveHudController_Active"
+      ],
+      "key": "PhaseKSourcePatchedBy"
+    },
+    {
+      "value": "2026-05-29 17:31:59",
+      "path": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "Runtime",
+        "DriveHudController_Active"
+      ],
+      "key": "PhaseKSourcePatchedAt"
+    },
+    {
+      "value": "roblox_architecture_phaseK_migrate_hover_kit_to_neotokyo",
+      "path": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "Runtime",
+        "MobileDriveControlsController_Active"
+      ],
+      "key": "PhaseKSourcePatchedBy"
+    },
+    {
+      "value": "2026-05-29 17:31:59",
+      "path": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "Runtime",
+        "MobileDriveControlsController_Active"
+      ],
+      "key": "PhaseKSourcePatchedAt"
+    },
+    {
+      "value": "roblox_architecture_phaseK_migrate_hover_kit_to_neotokyo",
+      "path": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "Runtime",
+        "RuntimeVFXController_Active"
+      ],
+      "key": "PhaseKSourcePatchedBy"
+    },
+    {
+      "value": "2026-05-29 17:31:59",
+      "path": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "Runtime",
+        "RuntimeVFXController_Active"
+      ],
+      "key": "PhaseKSourcePatchedAt"
+    },
+    {
+      "value": "2026-05-29 17:31:59",
+      "path": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "Core",
+        "ClientThemeAdapter"
+      ],
+      "key": "PhaseKSourcePatchedAt"
+    },
+    {
+      "value": "roblox_architecture_phaseK_migrate_hover_kit_to_neotokyo",
+      "path": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "Core",
+        "ClientThemeAdapter"
+      ],
+      "key": "PhaseKSourcePatchedBy"
+    },
+    {
+      "value": "2026-06-02 17:50:04",
+      "path": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "Core",
+        "PaintClient"
+      ],
+      "key": "PhaseAESourcePatchedAt"
+    },
+    {
+      "value": "roblox_vehicle_phaseAE_fresh_root_only_cockpit_spotlights",
+      "path": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "Core",
+        "PaintClient"
+      ],
+      "key": "PhaseAESourcePatchedBy"
+    },
+    {
+      "value": "roblox_vehicle_phaseAC_cockpit_light_weld_paint_stability",
+      "path": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "Core",
+        "PaintClient"
+      ],
+      "key": "PhaseACSourcePatchedBy"
+    },
+    {
+      "value": "roblox_vehicle_phaseAD_root_attached_cockpit_spotlights",
+      "path": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "Core",
+        "PaintClient"
+      ],
+      "key": "PhaseADSourcePatchedBy"
+    },
+    {
+      "value": "2026-06-02 16:52:15",
+      "path": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "Core",
+        "PaintClient"
+      ],
+      "key": "PhaseADSourcePatchedAt"
+    },
+    {
+      "value": "2026-06-02 15:42:29",
+      "path": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "Core",
+        "PaintClient"
+      ],
+      "key": "PhaseACSourcePatchedAt"
+    },
+    {
+      "value": "roblox_architecture_phaseN_runtime_world_path_repair",
+      "path": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "NeoTokyoRacersClient",
+        "NeoTokyoRacersClient_Bootstrap_Shadow_Disabled"
+      ],
+      "key": "PhaseNSourcePatchedBy"
+    },
+    {
+      "value": "roblox_architecture_phaseK_migrate_hover_kit_to_neotokyo",
+      "path": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "NeoTokyoRacersClient",
+        "NeoTokyoRacersClient_Bootstrap_Shadow_Disabled"
+      ],
+      "key": "PhaseKSourcePatchedBy"
+    },
+    {
+      "value": "roblox_architecture_phaseP_garage_runtime_startup_repair",
+      "path": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "NeoTokyoRacersClient",
+        "NeoTokyoRacersClient_Bootstrap_Shadow_Disabled"
+      ],
+      "key": "PhasePSourcePatchedBy"
+    },
+    {
+      "value": "2026-05-29 17:31:59",
+      "path": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "NeoTokyoRacersClient",
+        "NeoTokyoRacersClient_Bootstrap_Shadow_Disabled"
+      ],
+      "key": "PhaseKSourcePatchedAt"
+    },
+    {
+      "value": "2026-05-29 18:36:09",
+      "path": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "NeoTokyoRacersClient",
+        "NeoTokyoRacersClient_Bootstrap_Shadow_Disabled"
+      ],
+      "key": "PhaseNSourcePatchedAt"
+    },
+    {
+      "value": "2026-06-02 09:46:31",
+      "path": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "NeoTokyoRacersClient",
+        "NeoTokyoRacersClient_Bootstrap_Shadow_Disabled"
+      ],
+      "key": "PhasePSourcePatchedAt"
+    },
+    {
+      "value": "2026-05-29 17:31:59",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "UI",
+        "UITheme"
+      ],
+      "key": "PhaseKSourcePatchedAt"
+    },
+    {
+      "value": "roblox_architecture_phaseK_migrate_hover_kit_to_neotokyo",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "UI",
+        "UITheme"
+      ],
+      "key": "PhaseKSourcePatchedBy"
+    },
+    {
+      "value": "roblox_architecture_phaseN_runtime_world_path_repair",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "Core",
+        "PathResolver"
+      ],
+      "key": "PhaseNSourcePatchedBy"
+    },
+    {
+      "value": "2026-05-29 18:36:09",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "Core",
+        "PathResolver"
+      ],
+      "key": "PhaseNSourcePatchedAt"
+    },
+    {
+      "value": "roblox_architecture_phaseK_migrate_hover_kit_to_neotokyo",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "Client",
+        "UI",
+        "UIFactory"
+      ],
+      "key": "PhaseKSourcePatchedBy"
+    },
+    {
+      "value": "2026-05-29 17:31:59",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "Client",
+        "UI",
+        "UIFactory"
+      ],
+      "key": "PhaseKSourcePatchedAt"
+    },
+    {
+      "value": "roblox_architecture_phaseN_runtime_world_path_repair",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "Client",
+        "Controllers",
+        "DrivingFallbackController"
+      ],
+      "key": "PhaseNSourcePatchedBy"
+    },
+    {
+      "value": "2026-05-29 18:36:09",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "Client",
+        "Controllers",
+        "DrivingFallbackController"
+      ],
+      "key": "PhaseNSourcePatchedAt"
+    },
+    {
+      "value": "roblox_architecture_phaseN_runtime_world_path_repair",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "Client",
+        "Controllers",
+        "DrivingControllerV47"
+      ],
+      "key": "PhaseNSourcePatchedBy"
+    },
+    {
+      "value": "2026-05-29 18:36:09",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "Client",
+        "Controllers",
+        "DrivingControllerV47"
+      ],
+      "key": "PhaseNSourcePatchedAt"
+    },
+    {
+      "value": "roblox_architecture_phaseK_migrate_hover_kit_to_neotokyo",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "Client",
+        "Controllers",
+        "DrivingControllerV47"
+      ],
+      "key": "PhaseKSourcePatchedBy"
+    },
+    {
+      "value": "2026-05-29 17:31:59",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "Client",
+        "Controllers",
+        "DrivingControllerV47"
+      ],
+      "key": "PhaseKSourcePatchedAt"
+    },
+    {
+      "value": "roblox_architecture_phaseK_migrate_hover_kit_to_neotokyo",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "Client",
+        "VFX",
+        "VehicleVFXController"
+      ],
+      "key": "PhaseKSourcePatchedBy"
+    },
+    {
+      "value": "2026-05-29 17:31:59",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "Client",
+        "VFX",
+        "VehicleVFXController"
+      ],
+      "key": "PhaseKSourcePatchedAt"
+    },
+    {
+      "value": "roblox_architecture_phaseN_runtime_world_path_repair",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "Client",
+        "Visuals",
+        "CachedThrustVisualRuntime"
+      ],
+      "key": "PhaseNSourcePatchedBy"
+    },
+    {
+      "value": "2026-05-29 18:36:09",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "Client",
+        "Visuals",
+        "CachedThrustVisualRuntime"
+      ],
+      "key": "PhaseNSourcePatchedAt"
+    },
+    {
+      "value": "2026-06-02 09:46:31",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "Client",
+        "Visuals",
+        "CachedThrustVisualRuntime"
+      ],
+      "key": "PhasePSourcePatchedAt"
+    },
+    {
+      "value": "roblox_architecture_phaseP_garage_runtime_startup_repair",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "Client",
+        "Visuals",
+        "CachedThrustVisualRuntime"
+      ],
+      "key": "PhasePSourcePatchedBy"
+    },
+    {
+      "value": "2026-05-29 17:31:59",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "Client",
+        "Visuals",
+        "CachedThrustVisualRuntime"
+      ],
+      "key": "PhaseKSourcePatchedAt"
+    },
+    {
+      "value": "roblox_architecture_phaseK_migrate_hover_kit_to_neotokyo",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "Client",
+        "Visuals",
+        "CachedThrustVisualRuntime"
+      ],
+      "key": "PhaseKSourcePatchedBy"
+    },
+    {
+      "value": "roblox_architecture_phaseK_migrate_hover_kit_to_neotokyo",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "Common",
+        "UITheme"
+      ],
+      "key": "PhaseKSourcePatchedBy"
+    },
+    {
+      "value": "2026-05-29 17:31:59",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "Common",
+        "UITheme"
+      ],
+      "key": "PhaseKSourcePatchedAt"
+    },
+    {
+      "value": "roblox_architecture_phaseK_migrate_hover_kit_to_neotokyo",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "Common",
+        "VehicleData"
+      ],
+      "key": "PhaseKSourcePatchedBy"
+    },
+    {
+      "value": "2026-05-29 17:31:59",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "Common",
+        "VehicleData"
+      ],
+      "key": "PhaseKSourcePatchedAt"
+    },
+    {
+      "value": "roblox_architecture_phaseK_migrate_hover_kit_to_neotokyo",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "Common",
+        "DriveTuning"
+      ],
+      "key": "PhaseKSourcePatchedBy"
+    },
+    {
+      "value": "2026-05-29 17:31:59",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "Common",
+        "DriveTuning"
+      ],
+      "key": "PhaseKSourcePatchedAt"
+    },
+    {
+      "value": "2026-06-02 17:50:04",
+      "path": [
+        "ServerScriptService",
+        "NeoTokyoRacers",
+        "Services",
+        "Garage",
+        "GarageActionController_Shadow_Disabled"
+      ],
+      "key": "PhaseAESourcePatchedAt"
+    },
+    {
+      "value": "2026-06-02 09:46:31",
+      "path": [
+        "ServerScriptService",
+        "NeoTokyoRacers",
+        "Services",
+        "Garage",
+        "GarageActionController_Shadow_Disabled"
+      ],
+      "key": "PhasePSourcePatchedAt"
+    },
+    {
+      "value": "roblox_vehicle_phaseAE_fresh_root_only_cockpit_spotlights",
+      "path": [
+        "ServerScriptService",
+        "NeoTokyoRacers",
+        "Services",
+        "Garage",
+        "GarageActionController_Shadow_Disabled"
+      ],
+      "key": "PhaseAESourcePatchedBy"
+    },
+    {
+      "value": "roblox_architecture_phaseK_migrate_hover_kit_to_neotokyo",
+      "path": [
+        "ServerScriptService",
+        "NeoTokyoRacers",
+        "Services",
+        "Garage",
+        "GarageActionController_Shadow_Disabled"
+      ],
+      "key": "PhaseKSourcePatchedBy"
+    },
+    {
+      "value": "2026-06-02 16:52:15",
+      "path": [
+        "ServerScriptService",
+        "NeoTokyoRacers",
+        "Services",
+        "Garage",
+        "GarageActionController_Shadow_Disabled"
+      ],
+      "key": "PhaseADSourcePatchedAt"
+    },
+    {
+      "value": "roblox_vehicle_phaseAD_root_attached_cockpit_spotlights",
+      "path": [
+        "ServerScriptService",
+        "NeoTokyoRacers",
+        "Services",
+        "Garage",
+        "GarageActionController_Shadow_Disabled"
+      ],
+      "key": "PhaseADSourcePatchedBy"
+    },
+    {
+      "value": "roblox_architecture_phaseP_garage_runtime_startup_repair",
+      "path": [
+        "ServerScriptService",
+        "NeoTokyoRacers",
+        "Services",
+        "Garage",
+        "GarageActionController_Shadow_Disabled"
+      ],
+      "key": "PhasePSourcePatchedBy"
+    },
+    {
+      "value": "roblox_vehicle_phaseAC_cockpit_light_weld_paint_stability",
+      "path": [
+        "ServerScriptService",
+        "NeoTokyoRacers",
+        "Services",
+        "Garage",
+        "GarageActionController_Shadow_Disabled"
+      ],
+      "key": "PhaseACSourcePatchedBy"
+    },
+    {
+      "value": "2026-06-02 15:42:29",
+      "path": [
+        "ServerScriptService",
+        "NeoTokyoRacers",
+        "Services",
+        "Garage",
+        "GarageActionController_Shadow_Disabled"
+      ],
+      "key": "PhaseACSourcePatchedAt"
+    },
+    {
+      "value": "2026-05-29 17:31:59",
+      "path": [
+        "ServerScriptService",
+        "NeoTokyoRacers",
+        "Services",
+        "Garage",
+        "GarageActionController_Shadow_Disabled"
+      ],
+      "key": "PhaseKSourcePatchedAt"
+    },
+    {
+      "value": "2026-05-29 18:36:09",
+      "path": [
+        "ServerScriptService",
+        "NeoTokyoRacers",
+        "Services",
+        "Garage",
+        "GarageActionController_Shadow_Disabled"
+      ],
+      "key": "PhaseNSourcePatchedAt"
+    },
+    {
+      "value": "roblox_architecture_phaseN_runtime_world_path_repair",
+      "path": [
+        "ServerScriptService",
+        "NeoTokyoRacers",
+        "Services",
+        "Garage",
+        "GarageActionController_Shadow_Disabled"
+      ],
+      "key": "PhaseNSourcePatchedBy"
+    },
+    {
+      "value": "roblox_architecture_phaseP_garage_runtime_startup_repair",
+      "path": [
+        "ServerScriptService",
+        "NeoTokyoRacers",
+        "Services",
+        "Vehicle",
+        "DriverSeatPositionService_Active"
+      ],
+      "key": "PhasePSourcePatchedBy"
+    },
+    {
+      "value": "roblox_architecture_phaseN_runtime_world_path_repair",
+      "path": [
+        "ServerScriptService",
+        "NeoTokyoRacers",
+        "Services",
+        "Vehicle",
+        "DriverSeatPositionService_Active"
+      ],
+      "key": "PhaseNSourcePatchedBy"
+    },
+    {
+      "value": "2026-05-29 18:36:09",
+      "path": [
+        "ServerScriptService",
+        "NeoTokyoRacers",
+        "Services",
+        "Vehicle",
+        "DriverSeatPositionService_Active"
+      ],
+      "key": "PhaseNSourcePatchedAt"
+    },
+    {
+      "value": "2026-06-02 09:46:31",
+      "path": [
+        "ServerScriptService",
+        "NeoTokyoRacers",
+        "Services",
+        "Vehicle",
+        "DriverSeatPositionService_Active"
+      ],
+      "key": "PhasePSourcePatchedAt"
+    },
+    {
+      "value": "roblox_architecture_phaseK_migrate_hover_kit_to_neotokyo",
+      "path": [
+        "ServerScriptService",
+        "NeoTokyoRacers",
+        "Services",
+        "Vehicle",
+        "DriverSeatPositionService_Active"
+      ],
+      "key": "PhaseKSourcePatchedBy"
+    },
+    {
+      "value": "2026-05-29 17:31:59",
+      "path": [
+        "ServerScriptService",
+        "NeoTokyoRacers",
+        "Services",
+        "Vehicle",
+        "DriverSeatPositionService_Active"
+      ],
+      "key": "PhaseKSourcePatchedAt"
+    }
+  ],
+  "roots": [
+    [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "World",
+      "GarageInteriorClient_Active"
+    ],
+    [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "World",
+      "GarageInteriorCustomizationClient_Active"
+    ],
+    [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "World",
+      "GarageAccessClient_Active"
+    ],
+    [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "UI",
+      "GarageExperienceController_Active"
+    ],
+    [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Intro",
+      "CockpitCustomisationZoneClient_Active"
+    ],
+    [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Intro",
+      "DriveInCustomisationZoneClient_Active"
+    ],
+    [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Racing",
+      "RaceClient_Active"
+    ],
+    [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Racing",
+      "RaceSessionControlsClient_Active"
+    ],
+    [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Racing",
+      "RaceHudExitCleanupClient_Active"
+    ],
+    [
+      "ServerScriptService",
+      "NeoTokyoRacers",
+      "Services",
+      "Garage",
+      "GarageInteriorService_Active"
+    ],
+    [
+      "ServerScriptService",
+      "NeoTokyoRacers",
+      "Services",
+      "Garage",
+      "GarageInteriorCustomizationService_Active"
+    ],
+    [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Compatibility"
+    ],
+    [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "MigrationReports"
+    ],
+    [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Config",
+      "ConfigRegistry"
+    ],
+    [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Modules",
+      "Data",
+      "ConfigRegistry"
+    ],
+    [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Config",
+      "Driving"
+    ],
+    [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Config",
+      "Camera"
+    ],
+    [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Config",
+      "Economy"
+    ],
+    [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Config",
+      "VFX"
+    ],
+    [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Config",
+      "Vehicles"
+    ],
+    [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Config",
+      "World"
+    ],
+    [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Config",
+      "Racing"
+    ],
+    [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Config",
+      "Mobile"
+    ],
+    [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Config",
+      "Diagnostics"
+    ],
+    [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Config",
+      "README_ConfigLayer"
+    ],
+    [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Config",
+      "UI",
+      "README_UI"
+    ],
+    [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Config",
+      "UI",
+      "UITheme_LivePath"
+    ],
+    [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Config",
+      "UI",
+      "UITheme_Status"
+    ],
+    [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Config",
+      "UI",
+      "UITheme_Notes"
+    ],
+    [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Config",
+      "UI",
+      "PaintPresets_LivePath"
+    ],
+    [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Config",
+      "UI",
+      "PaintPresets_Status"
+    ],
+    [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Config",
+      "UI",
+      "PaintPresets_Notes"
+    ],
+    [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Config",
+      "UI",
+      "README_CurrentSourceOfTruth"
+    ],
+    [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Config",
+      "UI",
+      "README_Phase7_UIConfig"
+    ]
+  ]
+}

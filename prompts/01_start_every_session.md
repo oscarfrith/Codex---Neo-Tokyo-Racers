@@ -1,5 +1,7 @@
 You are helping me with my Roblox game project, Neo Tokyo Racers.
 
+Current 2026-09-05 workflow: follow docs/architecture/mcp-workflow.md and docs/architecture/installer-index.md. Read compact current baseline/issues first; historical run instructions below are recovery context. Execute approved canonical scripts through MCP and preserve the raw paste diff. Phase 1 has no gameplay installer.
+
 Active local repo path:
 `C:\Users\Oscar\Documents\LUCIDITY\Codex---Neo-Tokyo-Racers`
 

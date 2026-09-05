@@ -6,31 +6,31 @@
 -- - Run this script in Studio.
 -- - Studio sends the export to the local receiver in HTTP chunks under Roblox's 1024 KB post limit.
 --
--- Fallback workflow:
--- - If local HTTP is unavailable, this writes chunked StringValues to
---   ReplicatedStorage.NTR_STUDIO_FULL_EXPORT_V2 for manual copying.
+-- Receiver-only export: failure stops without creating Studio objects or dumps.
 --
 -- What this does:
 -- - Captures a hierarchy snapshot for the main game services.
 -- - Exports all Script, LocalScript, and ModuleScript sources from those services.
 -- - Records useful metadata: ClassName, path parts, Disabled state, attributes,
---   source line counts, simple checksums, and source byte counts.
+--   source line counts, simple checksums, source byte counts and scoped properties.
 --
 -- What this does NOT do:
 -- - It does not move, rename, disable, delete, clone, or edit gameplay objects.
--- - It only replaces its own export StringValues/folder in ReplicatedStorage.
+-- - All exports are read-only in Studio; there is no instance-writing fallback.
 
 local EXPORT_FOLDER_NAME = "NTR_STUDIO_FULL_EXPORT_V2"
-local EXPORT_CHUNK_PREFIX = "StudioExport_"
-local CHUNK_LIMIT = 18000
-local TRY_LOCAL_HTTP_RECEIVER = true
+local EXPECTED_PLACE_ID = 121304917315753
 local LOCAL_RECEIVER_CHUNK_URL = "http://127.0.0.1:8765/ntr-studio-export-chunk"
-local HTTP_CHUNK_LIMIT = 700000
+local HTTP_CHUNK_LIMIT = 180000 -- Headroom for JSON escaping inside the transport envelope.
 
 local INCLUDE_DISABLED_SCRIPTS = true
 local INCLUDE_TEST_WIP_ASSETS = true
 
 local HttpService = game:GetService("HttpService")
+assert(game.PlaceId == EXPECTED_PLACE_ID, "BLOCKER: wrong place; select Space Racers v1")
+assert(not game:GetService("RunService"):IsRunning(), "BLOCKER: export the Edit datamodel")
+local diagnostics = { property_read_errors = {}, duplicate_paths = {} }
+local pathCounts = {}
 
 local serviceNamesToScan = {
 	"ReplicatedFirst",
@@ -85,7 +85,7 @@ local function getSource(scriptInstance)
 	if ok and typeof(source) == "string" then
 		return source
 	end
-	return ""
+	error("BLOCKER: cannot read source " .. scriptInstance:GetFullName() .. ": " .. tostring(source))
 end
 
 local function countLines(source)
@@ -135,6 +135,13 @@ local function serialiseValue(value)
 	if valueType == "Color3" then
 		return { type = valueType, r = value.R, g = value.G, b = value.B, text = tostring(value) }
 	end
+	if valueType == "CFrame" then
+		return { type = valueType, components = { value:GetComponents() } }
+	end
+	if valueType == "Instance" then
+		return { type = valueType, path = value:GetFullName(), path_parts = getPathParts(value) }
+	end
+	if valueType == "nil" then return { type = "nil" } end
 	if valueType == "Vector2" then
 		return { type = valueType, x = value.X, y = value.Y, text = tostring(value) }
 	end
@@ -172,12 +179,46 @@ local function getAttributes(instance)
 		return instance:GetAttributes()
 	end)
 	if not ok then
-		return attributes
+		error("BLOCKER: cannot read attributes " .. instance:GetFullName())
 	end
 	for key, value in pairs(rawAttributes) do
 		attributes[key] = serialiseValue(value)
 	end
 	return attributes
+end
+
+-- Explicit coverage, not a place backup. Unsupported/version-specific properties are reported.
+local propertySchema = {
+	BasePart = { "CFrame", "Size", "Anchored", "CanCollide", "CanTouch", "CanQuery", "CollisionGroup", "Transparency", "CastShadow", "Material", "Color" },
+	Model = { "PrimaryPart", "ModelStreamingMode" },
+	ValueBase = { "Value" },
+	BaseScript = { "Enabled", "RunContext" },
+	GuiObject = { "Position", "Size", "AnchorPoint", "Visible", "ZIndex", "BackgroundTransparency" },
+	ScreenGui = { "Enabled", "ResetOnSpawn", "IgnoreGuiInset", "DisplayOrder" },
+	Light = { "Enabled", "Brightness", "Color", "Shadows" },
+	SurfaceLight = { "Range", "Angle", "Face" },
+	PointLight = { "Range" },
+	SpotLight = { "Range", "Angle", "Face" },
+	ProximityPrompt = { "Enabled", "MaxActivationDistance", "HoldDuration", "RequiresLineOfSight" },
+	Workspace = { "StreamingEnabled", "Gravity" },
+	StarterGui = { "ScreenOrientation" },
+	Lighting = { "ClockTime", "Brightness", "Ambient", "OutdoorAmbient" },
+}
+
+local function getProperties(instance)
+	local properties = {}
+	for className, names in pairs(propertySchema) do
+		if instance:IsA(className) then
+			for _, name in ipairs(names) do
+				-- RunContext is not available on LocalScript in every Studio version.
+				if name == "RunContext" and not instance:IsA("Script") then continue end
+				local ok, value = pcall(function() return instance[name] end)
+				if ok then properties[name] = serialiseValue(value)
+				else table.insert(diagnostics.property_read_errors, { path = instance:GetFullName(), property = name, error = tostring(value) }) end
+			end
+		end
+	end
+	return properties
 end
 
 local function getDisabled(instance)
@@ -197,6 +238,7 @@ local function makeNode(instance)
 		table.insert(skipped, { path = fullPath, reason = reason })
 		return nil
 	end
+	pathCounts[fullPath] = (pathCounts[fullPath] or 0) + 1
 
 	local node = {
 		name = instance.Name,
@@ -204,6 +246,7 @@ local function makeNode(instance)
 		path = fullPath,
 		path_parts = getPathParts(instance),
 		attributes = getAttributes(instance),
+		properties = getProperties(instance),
 		children = {},
 	}
 
@@ -267,6 +310,10 @@ end)
 
 local payload = {
 	format = "NTR_STUDIO_FULL_EXPORT_V2",
+	schema_revision = 3,
+	property_schema = propertySchema,
+	diagnostics = diagnostics,
+	export_mode = "Edit",
 	generated_in_studio = os.date("%Y-%m-%d %H:%M:%S"),
 	place_id = game.PlaceId,
 	job_id = game.JobId,
@@ -280,16 +327,29 @@ local payload = {
 	skipped = skipped,
 }
 
+for path, count in pairs(pathCounts) do
+	if count > 1 then table.insert(diagnostics.duplicate_paths, { path = path, count = count }) end
+end
+table.sort(diagnostics.duplicate_paths, function(a, b) return a.path < b.path end)
+
 local exportText = "NTR_STUDIO_FULL_EXPORT_V2\n" .. HttpService:JSONEncode(payload) .. "\nNTR_STUDIO_FULL_EXPORT_END\n"
 
 local function sendToLocalReceiverInChunks(text)
-	local total = math.ceil(#text / HTTP_CHUNK_LIMIT)
+	local chunks = {}
+	local start = 1
+	while start <= #text do
+		local last = math.min(#text, start + HTTP_CHUNK_LIMIT - 1)
+		-- Do not split a UTF-8 codepoint between JSON transport strings.
+		while last < #text and string.byte(text, last + 1) >= 128 and string.byte(text, last + 1) < 192 do last -= 1 end
+		table.insert(chunks, text:sub(start, last))
+		start = last + 1
+	end
+	local total = #chunks
 	local exportId = tostring(game.PlaceId) .. "_" .. tostring(os.time()) .. "_" .. tostring(math.random(100000, 999999))
 	local finalResponse = ""
 
 	for index = 1, total do
-		local cursor = ((index - 1) * HTTP_CHUNK_LIMIT) + 1
-		local chunk = text:sub(cursor, cursor + HTTP_CHUNK_LIMIT - 1)
+		local chunk = chunks[index]
 		local body = HttpService:JSONEncode({
 			export_id = exportId,
 			index = index,
@@ -298,94 +358,12 @@ local function sendToLocalReceiverInChunks(text)
 		})
 		local response = HttpService:PostAsync(LOCAL_RECEIVER_CHUNK_URL, body, Enum.HttpContentType.ApplicationJson, false)
 		finalResponse = tostring(response)
-		print("[NTR Studio Export V2] Sent HTTP chunk " .. tostring(index) .. " of " .. tostring(total))
+		if index == total or index % 25 == 0 then print("[NTR Studio Export V2] Sent HTTP chunk " .. tostring(index) .. " of " .. tostring(total)) end
 	end
 
 	return finalResponse, total
 end
 
-local sentToReceiver = false
-local receiverMessage = ""
-local receiverChunkCount = 0
-if TRY_LOCAL_HTTP_RECEIVER then
-	local ok, response, chunkCount = pcall(function()
-		local message, count = sendToLocalReceiverInChunks(exportText)
-		return message, count
-	end)
-	if ok then
-		sentToReceiver = true
-		receiverMessage = tostring(response)
-		receiverChunkCount = tonumber(chunkCount) or 0
-	else
-		receiverMessage = tostring(response)
-	end
-end
-
-local replicatedStorage = game:GetService("ReplicatedStorage")
-local exportFolder = replicatedStorage:FindFirstChild(EXPORT_FOLDER_NAME)
-if not exportFolder then
-	exportFolder = Instance.new("Folder")
-	exportFolder.Name = EXPORT_FOLDER_NAME
-	exportFolder.Parent = replicatedStorage
-end
-
-for _, child in ipairs(exportFolder:GetChildren()) do
-	if child:IsA("StringValue") then
-		child:Destroy()
-	end
-end
-
-local readme = Instance.new("StringValue")
-readme.Name = "README_HOW_TO_IMPORT"
-
-if sentToReceiver then
-	readme.Value = table.concat({
-		"Export was sent to the local receiver successfully in HTTP chunks.",
-		"You do not need to copy StudioExport chunks for this run.",
-		"Check PowerShell for the import result.",
-		"",
-		"Chunks sent: " .. tostring(receiverChunkCount),
-		"Receiver response:",
-		receiverMessage,
-	}, "\n")
-	readme.Parent = exportFolder
-else
-	readme.Value = table.concat({
-		"Local receiver was not used or did not respond, so chunk fallback was created.",
-		"Common fix: run python scripts/receive_studio_full_snapshot_export.py first and enable Studio HTTP requests.",
-		"",
-		"Copy StudioExport_001, StudioExport_002, StudioExport_003, etc. in order.",
-		"Paste the values into docs/studio-full-export-paste.txt on your computer.",
-		"Then run from the repo folder:",
-		"python scripts/import_studio_full_snapshot_export.py docs/studio-full-export-paste.txt",
-		"",
-		"Local receiver error:",
-		receiverMessage,
-	}, "\n")
-	readme.Parent = exportFolder
-
-	local chunkIndex = 1
-	local cursor = 1
-	while cursor <= #exportText do
-		local chunk = exportText:sub(cursor, cursor + CHUNK_LIMIT - 1)
-		local valueObject = Instance.new("StringValue")
-		valueObject.Name = EXPORT_CHUNK_PREFIX .. string.format("%03d", chunkIndex)
-		valueObject.Value = chunk
-		valueObject.Parent = exportFolder
-
-		cursor = cursor + CHUNK_LIMIT
-		chunkIndex = chunkIndex + 1
-	end
-
-	print("[NTR Studio Export V2] Chunks written: " .. tostring(chunkIndex - 1))
-end
-
-print("[NTR Studio Export V2] Export complete.")
-print("[NTR Studio Export V2] Scripts exported: " .. tostring(#scriptRecords))
-print("[NTR Studio Export V2] Skipped entries: " .. tostring(#skipped))
-if sentToReceiver then
-	print("[NTR Studio Export V2] Sent to local receiver in " .. tostring(receiverChunkCount) .. " chunks: " .. LOCAL_RECEIVER_CHUNK_URL)
-else
-	print("[NTR Studio Export V2] Local receiver unavailable; copy fallback chunks from ReplicatedStorage." .. EXPORT_FOLDER_NAME)
-	print("[NTR Studio Export V2] Receiver error: " .. receiverMessage)
-end
+local ok, response = pcall(sendToLocalReceiverInChunks, exportText)
+assert(ok, "BLOCKER: receiver unavailable or import failed; no Studio objects changed. " .. tostring(response))
+print("[NTR Studio Export V2] PASS: read-only HTTP export; scripts=" .. #scriptRecords .. "; schema=3; propertyWarnings=" .. #diagnostics.property_read_errors .. "; duplicatePaths=" .. #diagnostics.duplicate_paths)

@@ -1,5 +1,9 @@
 # Persistence And Garage Profile Plan
 
+**Phase 3 current layout:** [Server organisation handoff](architecture/phase3-server-organisation.md). ProfileServer now owns the same table used by trusted garage/racing commands. Whole-profile import is retired; runtime-only compatibility fields are filtered before snapshots/saves. EconomyServer retains the original grant validation. Phase 2 gameplay was confirmed; Phase 3 focused sandbox tests pass and full gameplay acceptance remains pending. The Phase 3 installer supersedes earlier source/class paths.
+
+**2026-09-05 current architecture update:** [Architecture Phase 2](architecture/phase2-persistence-safety.md) is installed through `scripts/roblox_architecture_phase2_persistence_safety.lua`. ProfileService keeps ownership; ProfileStore adds lease/write safety, and GarageRequestGuard bounds the generic dispatcher. Nineteen isolated tests and sandbox runtime smoke pass; user gameplay acceptance and real isolated-place persistence testing remain pending. The numbered persistence installers below are historical, not the current architecture programme or instructions to reinstall.
+
 **Created:** 2026-06-30  
 **Current phase:** Phase 28 final garage MVP audit confirmed; garage MVP stack complete pending mirror refresh/save-rejoin handoff
 **Installer:** `scripts/roblox_persistence_phase1_profile_schema.lua`  

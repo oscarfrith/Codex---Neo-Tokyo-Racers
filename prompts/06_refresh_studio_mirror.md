@@ -1,5 +1,7 @@
 # Refresh Studio Mirror Prompt
 
+Current 2026-09-05 workflow: follow docs/architecture/mcp-workflow.md and docs/architecture/installer-index.md. Read compact current baseline/issues first; historical run instructions below are recovery context. Execute approved canonical scripts through MCP and preserve the raw paste diff. Phase 1 has no gameplay installer.
+
 Use this after Roblox Studio changes, or whenever `roblox/exported_scripts/` / `roblox/studio_snapshot/` may be stale.
 
 ```text

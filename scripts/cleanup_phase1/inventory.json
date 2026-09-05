@@ -1,0 +1,1715 @@
+{
+  "detachedReferences": [
+    "ReplicatedStorage.NeoTokyoRacers.LiveReferences.TrafficLightService",
+    "ReplicatedStorage.NeoTokyoRacers.LiveReferences.LightingPreview"
+  ],
+  "attributes": [
+    {
+      "value": "2026-05-29 17:31:59",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers"
+      ],
+      "key": "PhaseKMigrationAppliedAt"
+    },
+    {
+      "value": true,
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers"
+      ],
+      "key": "LiveSystemsStillUseLegacyPaths"
+    },
+    {
+      "value": true,
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers"
+      ],
+      "key": "PhaseKMigrationApplied"
+    },
+    {
+      "value": "Phase1",
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers"
+      ],
+      "key": "ArchitecturePhase"
+    },
+    {
+      "value": true,
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers"
+      ],
+      "key": "DoNotDeleteLegacySystemsYet"
+    },
+    {
+      "value": true,
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers"
+      ],
+      "key": "LegacyKitWasMigrated"
+    },
+    {
+      "value": false,
+      "path": [
+        "ServerScriptService",
+        "NeoTokyoRacers"
+      ],
+      "key": "LiveEnabled"
+    },
+    {
+      "value": "ServerScriptService.HOVER_RACING_V2_SERVER.HOVER_RACING_V2_Server",
+      "path": [
+        "ServerScriptService",
+        "NeoTokyoRacers"
+      ],
+      "key": "CurrentLiveServer"
+    },
+    {
+      "value": true,
+      "path": [
+        "ServerScriptService",
+        "NeoTokyoRacers"
+      ],
+      "key": "Phase1PlaceholderOnly"
+    },
+    {
+      "value": "ScaffoldOnly",
+      "path": [
+        "ServerScriptService",
+        "NeoTokyoRacers"
+      ],
+      "key": "MigrationStatus"
+    },
+    {
+      "value": "Prepared",
+      "path": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "NeoTokyoRacersClient"
+      ],
+      "key": "RuntimeScaffoldStatus"
+    },
+    {
+      "value": false,
+      "path": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "NeoTokyoRacersClient"
+      ],
+      "key": "LiveEnabled"
+    },
+    {
+      "value": true,
+      "path": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "NeoTokyoRacersClient"
+      ],
+      "key": "Phase1PlaceholderOnly"
+    },
+    {
+      "value": "ScaffoldOnly",
+      "path": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "NeoTokyoRacersClient"
+      ],
+      "key": "MigrationStatus"
+    },
+    {
+      "value": "StarterPlayer.StarterPlayerScripts.HOVER_RACING_V2_Client",
+      "path": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "NeoTokyoRacersClient"
+      ],
+      "key": "CurrentLiveClient"
+    }
+  ],
+  "nodes": [
+    {
+      "path": [
+        "StarterGui",
+        "NeoTokyoRacersUI",
+        "Screens",
+        "Garage"
+      ],
+      "attributes": [],
+      "tags": [],
+      "class": "Folder",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences",
+        "MobileInputState"
+      ],
+      "attributes": [],
+      "tags": [],
+      "target": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "Client",
+        "Controllers",
+        "MobileDriveInputState"
+      ],
+      "class": "ObjectValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences",
+        "UIFactory"
+      ],
+      "attributes": [],
+      "tags": [],
+      "target": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "Client",
+        "UI",
+        "UIFactory"
+      ],
+      "class": "ObjectValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences",
+        "ClientModules"
+      ],
+      "attributes": [],
+      "tags": [],
+      "target": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "Client"
+      ],
+      "class": "ObjectValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "StarterGui",
+        "NeoTokyoRacersUI",
+        "Components",
+        "StatBars"
+      ],
+      "attributes": [],
+      "tags": [],
+      "class": "Folder",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences",
+        "ConfigReader"
+      ],
+      "attributes": [],
+      "tags": [],
+      "target": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "Common",
+        "ConfigReader"
+      ],
+      "class": "ObjectValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences",
+        "VehicleStatsCache"
+      ],
+      "attributes": [],
+      "tags": [],
+      "target": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "Common",
+        "VehicleStatsCache"
+      ],
+      "class": "ObjectValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "MigrationNotes",
+        "01_ClientSplitTarget"
+      ],
+      "attributes": [],
+      "tags": [],
+      "value": "Future client split:\nGarageClient, DealershipClient, CustomisationClient, PreviewVehicleClient, GarageCameraClient, DrivingClient, MobileControlsClient, HudClient, VFXClient, LODClient.\nDo not split all at once. Extract one controller at a time and keep behaviour identical.",
+      "class": "StringValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences",
+        "LiveUIFactoryModule"
+      ],
+      "attributes": [],
+      "tags": [],
+      "target": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "Client",
+        "UI",
+        "UIFactory"
+      ],
+      "class": "ObjectValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences",
+        "UIPool"
+      ],
+      "attributes": [],
+      "tags": [],
+      "target": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "Client",
+        "UI",
+        "UIPool"
+      ],
+      "class": "ObjectValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "MigrationNotes",
+        "05_Phase6_WorldServices"
+      ],
+      "attributes": [],
+      "tags": [],
+      "value": "Phase 6 migrated traffic lights to ServerScriptService.NeoTokyoRacers.Services.World.Traffic.TrafficLightService.\nThe previous ServerScriptService.Traffic Lights script was disabled.\nLightingService_Shadow and LODClient_Shadow are staged only and remain disabled.\nIf traffic lights fail, manually disable TrafficLightService and re-enable ServerScriptService.Traffic Lights, then inspect source parity.\nVehicle, customisation, driving, UI, VFX, and Test + WIP Assets were not touched.",
+      "class": "StringValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "MigrationNotes",
+        "00_ReadMe"
+      ],
+      "attributes": [],
+      "tags": [],
+      "value": "Phase 4 is a staging scaffold only.\nCurrent live scripts remain in their old locations.\nUse LiveReferences to inspect the current source of truth before migrating one system at a time.\nRecommended first migration candidate: ServerScriptService.Traffic Lights -> ServerScriptService.NeoTokyoRacers.Services.World.Traffic.TrafficLightService.\nDo not touch Workspace.Test + WIP Assets during architecture cleanup.",
+      "class": "StringValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NTR_DEBUG"
+      ],
+      "attributes": [],
+      "tags": [],
+      "class": "Folder",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences",
+        "SharedUI_ResponsiveLayout"
+      ],
+      "attributes": [],
+      "tags": [],
+      "target": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "UI",
+        "ResponsiveLayout"
+      ],
+      "class": "ObjectValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences",
+        "MobileDriveControls"
+      ],
+      "attributes": [],
+      "tags": [],
+      "target": false,
+      "class": "ObjectValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences",
+        "DriveTuning"
+      ],
+      "attributes": [],
+      "tags": [],
+      "target": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "Common",
+        "DriveTuning"
+      ],
+      "class": "ObjectValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences",
+        "LiveUIThemeModule"
+      ],
+      "attributes": [],
+      "tags": [],
+      "target": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "Common",
+        "UITheme"
+      ],
+      "class": "ObjectValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "StarterGui",
+        "NeoTokyoRacersUI",
+        "Components",
+        "Customisation"
+      ],
+      "attributes": [],
+      "tags": [],
+      "class": "Folder",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NTR_DEBUG",
+        "PHASE17_GARAGE_LINE1445_DUMP"
+      ],
+      "attributes": [],
+      "tags": [],
+      "value": "Line count: 1651\n1427: \t\t\tif candidate:GetAttribute(\"OwnerUserId\") == player.UserId then vehicle = candidate; break end\n1428: \t\tend\n1429: \t\tif not vehicle then return false, \"No vehicle nearby.\" end\n1430: \t\tlocal root = vehicle.PrimaryPart or vehicle:FindFirstChild(\"CockpitRoot_DoNotRename\", true)\n1431: \t\tlocal seat = vehicle:FindFirstChild(\"DriverSeat\", true)\n1432: \t\tif root then vehicle.PrimaryPart = root; pcall(function() root:SetNetworkOwner(player) end) end\n1433: \t\tif not (seat and seat:IsA(\"VehicleSeat\")) then return false, \"Driver seat missing.\" end\n1434: \t\tvehicle:SetAttribute(\"DriveReady\", true)\n1435: \t\tvehicle:SetAttribute(\"DriverUserId\", player.UserId)\n1436: \t\tV56_seatPlayer(player, vehicle, seat)\n1437: \t\treturn true, \"Entered vehicle.\"\n1438: \tend\n1439: \n1440: \tV56_invoke.OnServerInvoke = function(player, action, args)\n1441: \t\targs = typeof(args) == \"table\" and args or {}\n1442: \t\tlocal okCall, result = pcall(function()\n1443: \t\t\tlocal profile = V56_getProfile(player)\n1444: \t\t\tprofile._Player = player\n1445: \t\t\tV76_grantDefaultModulesForCurrentCockpit(profile)\n1446: \t\t\t\t\t\tV85_attachDefaultModuleInstancesToCurrentVehicle(profile)\n1447: \t\t\tV84_ensureInstanceInventory(profile)\n1448: \t\t\tlocal ok, message\n1449: \t\t\tif action == \"GetInitial\" then\n1450: \t\t\t\tV56_setLeaderstats(player, profile)\n1451: \t\t\t\tV80_mirrorLegacyProfileToPersistence(player, profile, action, false)\n1452: \t\t\t\treturn { Success = true, Catalog = V56_catalog(), Profile = V56_profileForClient(profile) }\n1453: \t\t\telseif action == \"BuyCockpitInstance\" then\n1454: \t\t\t\tok, message = V84_buyCockpitInstance(profile, args)\n1455: \t\t\t\tV56_setLeaderstats(player, profile)\n1456: \t\t\telseif action == \"BuyModuleInstance\" then\n1457: \t\t\t\tok, message = V84_buyModuleInstance(profile, args)\n1458: \t\t\t\tV56_setLeaderstats(player, profile)\n1459: \t\t\telseif action == \"EquipModuleInstance\" then\n1460: \t\t\t\tok, message = V84_equipModuleInstance(profile, args)\n1461: \t\t\t\tV56_setLeaderstats(player, profile)\n1462: \t\t\telseif action == \"BuyGarageProperty\" then\n1463: \t\t\t\tok, message = V83_buyGarageProperty(profile, args)",
+      "class": "StringValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "StarterGui",
+        "NeoTokyoRacersUI"
+      ],
+      "attributes": {
+        "Phase1PlaceholderOnly": true,
+        "CreatedBy": "NTR_Phase1_ArchitectureResolver_2026_05_28"
+      },
+      "tags": [],
+      "class": "ScreenGui",
+      "archivable": true,
+      "properties": {
+        "Enabled": false,
+        "ScreenInsets": {
+          "name": "DeviceSafeInsets",
+          "enum": "ScreenInsets"
+        },
+        "ResetOnSpawn": false,
+        "IgnoreGuiInset": true,
+        "DisplayOrder": 0,
+        "ZIndexBehavior": {
+          "name": "Global",
+          "enum": "ZIndexBehavior"
+        },
+        "AutoLocalize": true,
+        "SafeAreaCompatibility": {
+          "name": "FullscreenExtension",
+          "enum": "SafeAreaCompatibility"
+        },
+        "SelectionGroup": false,
+        "ClipToDeviceSafeArea": true
+      }
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences",
+        "HoverWorld"
+      ],
+      "attributes": [],
+      "tags": [],
+      "target": false,
+      "class": "ObjectValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "detachedTarget": {
+        "name": "TrafficLightService",
+        "class": "Script"
+      },
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences",
+        "TrafficLightService"
+      ],
+      "attributes": [],
+      "tags": [],
+      "target": false,
+      "class": "ObjectValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences",
+        "VehicleData"
+      ],
+      "attributes": [],
+      "tags": [],
+      "target": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "Common",
+        "VehicleData"
+      ],
+      "class": "ObjectValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences",
+        "GeneratedCityBlocks"
+      ],
+      "attributes": [],
+      "tags": [],
+      "target": false,
+      "class": "ObjectValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences",
+        "LiveUIThemeFolder"
+      ],
+      "attributes": [],
+      "tags": [],
+      "target": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Config",
+        "UI",
+        "Theme"
+      ],
+      "class": "ObjectValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NTR_STUDIO_FULL_EXPORT_V2"
+      ],
+      "attributes": [],
+      "tags": [],
+      "class": "Folder",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences",
+        "DrivingController"
+      ],
+      "attributes": [],
+      "tags": [],
+      "target": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "Client",
+        "Controllers",
+        "DrivingControllerV47"
+      ],
+      "class": "ObjectValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "StarterGui",
+        "NeoTokyoRacersUI",
+        "Templates",
+        "Cards"
+      ],
+      "attributes": [],
+      "tags": [],
+      "class": "Folder",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences",
+        "VehicleVFXController"
+      ],
+      "attributes": [],
+      "tags": [],
+      "target": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "Client",
+        "VFX",
+        "VehicleVFXController"
+      ],
+      "class": "ObjectValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences",
+        "SharedUI_UITheme"
+      ],
+      "attributes": [],
+      "tags": [],
+      "target": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "UI",
+        "UITheme"
+      ],
+      "class": "ObjectValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "MigrationNotes",
+        "02_ServerSplitTarget"
+      ],
+      "attributes": [],
+      "tags": [],
+      "value": "Future server split:\nGarageService, VehicleBuildService, VehicleSpawnService, ProfileService, EconomyService, VehicleOwnershipService, TrafficLightService, LightingService.\nTreat the V56 consolidated action controller inside HOVER_RACING_V2_Server as the current action source of truth.",
+      "class": "StringValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "README_Phase1"
+      ],
+      "attributes": {
+        "CreatedBy": "NTR_Phase1_ArchitectureResolver_2026_05_28"
+      },
+      "tags": [],
+      "value": "NeoTokyoRacers is the future clean architecture root.\nCurrent live gameplay still uses the legacy HOVER_RACING_V2 paths.\nThis Phase 1 setup is intentionally non-destructive.\nDo not move live systems into these folders until each system has been migrated and play-tested.",
+      "class": "StringValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences",
+        "SharedUI_ArrowScroller"
+      ],
+      "attributes": [],
+      "tags": [],
+      "target": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "UI",
+        "ArrowScroller"
+      ],
+      "class": "ObjectValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "StarterGui",
+        "NeoTokyoRacersUI",
+        "Screens",
+        "Customisation"
+      ],
+      "attributes": [],
+      "tags": [],
+      "class": "Folder",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "MigrationNotes",
+        "06_Phase7_SharedUIHelpers"
+      ],
+      "attributes": [],
+      "tags": [],
+      "value": "Phase 7 created final shared UI helper modules and mirrored UI theme config.\nNo live UI behaviour was switched.\nNext: Phase 8 can extract dealership/colour/module/customisation UI in larger chunks.",
+      "class": "StringValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences",
+        "SharedUI_UIFactory"
+      ],
+      "attributes": [],
+      "tags": [],
+      "target": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "UI",
+        "UIFactory"
+      ],
+      "class": "ObjectValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "StarterGui",
+        "NeoTokyoRacersUI",
+        "Templates",
+        "Buttons"
+      ],
+      "attributes": [],
+      "tags": [],
+      "class": "Folder",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences",
+        "MainServer"
+      ],
+      "attributes": [],
+      "tags": [],
+      "target": false,
+      "class": "ObjectValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "detachedTarget": {
+        "name": "TEMP_LightingPreview",
+        "class": "LocalScript"
+      },
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences",
+        "LightingPreview"
+      ],
+      "attributes": [],
+      "tags": [],
+      "target": false,
+      "class": "ObjectValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Remotes",
+        "Vehicles"
+      ],
+      "attributes": {
+        "ContainsLiveReferencesOnly": true,
+        "CreatedOrUpdatedBy": "NTR_Phase2_LiveReferencesRegistry_2026_05_28",
+        "CreatedBy": "NTR_Phase1_ArchitectureResolver_2026_05_28"
+      },
+      "tags": [],
+      "class": "Folder",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "NeoTokyoRacersClient",
+        "RuntimeState"
+      ],
+      "attributes": [],
+      "tags": [],
+      "class": "Folder",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "NeoTokyoRacersClient",
+        "State"
+      ],
+      "attributes": [],
+      "tags": [],
+      "class": "Folder",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences",
+        "MobileHudSuppressor"
+      ],
+      "attributes": [],
+      "tags": [],
+      "target": false,
+      "class": "ObjectValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "Garage"
+      ],
+      "attributes": [],
+      "tags": [],
+      "class": "Folder",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "StarterGui",
+        "NeoTokyoRacersUI",
+        "Theme"
+      ],
+      "attributes": {
+        "CreatedBy": "NTR_Phase1_ArchitectureResolver_2026_05_28"
+      },
+      "tags": [],
+      "class": "Folder",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "StarterGui",
+        "NeoTokyoRacersUI",
+        "Screens"
+      ],
+      "attributes": {
+        "CreatedBy": "NTR_Phase1_ArchitectureResolver_2026_05_28"
+      },
+      "tags": [],
+      "class": "Folder",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "StarterGui",
+        "NeoTokyoRacersUI",
+        "Components",
+        "HUD"
+      ],
+      "attributes": [],
+      "tags": [],
+      "class": "Folder",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ServerStorage",
+        "HOVER_RACING_SAVED_CARS_Runtime"
+      ],
+      "attributes": [],
+      "tags": [],
+      "class": "Folder",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences",
+        "TrafficLights"
+      ],
+      "attributes": [],
+      "tags": [],
+      "target": false,
+      "class": "ObjectValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences",
+        "EditMeFirst"
+      ],
+      "attributes": [],
+      "tags": [],
+      "target": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Config",
+        "Editable"
+      ],
+      "class": "ObjectValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "StarterGui",
+        "NeoTokyoRacersUI",
+        "Components",
+        "Panels"
+      ],
+      "attributes": [],
+      "tags": [],
+      "class": "Folder",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "DO_NOT_TOUCH_Test_WIP_Assets"
+      ],
+      "attributes": {
+        "CreatedBy": "NTR_Phase1_ArchitectureResolver_2026_05_28"
+      },
+      "tags": [],
+      "value": "Workspace.Test + WIP Assets is intentionally excluded from this migration.",
+      "class": "StringValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences",
+        "CachedThrustRuntime"
+      ],
+      "attributes": [],
+      "tags": [],
+      "target": false,
+      "class": "ObjectValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences",
+        "GarageInvoke"
+      ],
+      "attributes": [],
+      "tags": [],
+      "target": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Remotes",
+        "Garage",
+        "GarageInvoke"
+      ],
+      "class": "ObjectValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "README_Phase2"
+      ],
+      "attributes": {
+        "CreatedBy": "NTR_Phase2_LiveReferencesRegistry_2026_05_28"
+      },
+      "tags": [],
+      "value": "Phase 2 adds reference ObjectValues and a registry module.\nThese references point to the current live systems and are safe to inspect in Studio.\nThey do not move or replace current gameplay systems.\nFuture migrations should update one system at a time to use PathResolver or LiveSystemRegistry.",
+      "class": "StringValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Remotes",
+        "Economy"
+      ],
+      "attributes": {
+        "ContainsLiveReferencesOnly": true,
+        "CreatedOrUpdatedBy": "NTR_Phase2_LiveReferencesRegistry_2026_05_28",
+        "CreatedBy": "NTR_Phase1_ArchitectureResolver_2026_05_28"
+      },
+      "tags": [],
+      "class": "Folder",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "MigrationNotes",
+        "04_Phase5A_UIMigrationNotes"
+      ],
+      "attributes": {
+        "PhaseOTextUpdatedAt": "2026-05-29 18:51:10",
+        "PhaseOTextUpdatedBy": "roblox_cleanup_phaseO_stale_metadata_report_cleanup"
+      },
+      "tags": [],
+      "value": "Phase 5A staged UI helper shadow modules only.\nNo live UI behaviour was switched.\nShadow modules may still reference old NeoTokyoRacers paths because this is a parity copy.\nNext safe step: test the game, then create one extracted UI widget module at a time.",
+      "class": "StringValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "StarterGui",
+        "NeoTokyoRacersUI",
+        "Components",
+        "Buttons"
+      ],
+      "attributes": [],
+      "tags": [],
+      "class": "Folder",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences",
+        "SharedUI_UIPool"
+      ],
+      "attributes": [],
+      "tags": [],
+      "target": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "UI",
+        "UIPool"
+      ],
+      "class": "ObjectValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences",
+        "DriverSeatPosition"
+      ],
+      "attributes": [],
+      "tags": [],
+      "target": false,
+      "class": "ObjectValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences",
+        "ThrustPreview"
+      ],
+      "attributes": [],
+      "tags": [],
+      "target": false,
+      "class": "ObjectValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences",
+        "LiveUIPoolModule"
+      ],
+      "attributes": [],
+      "tags": [],
+      "target": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "Client",
+        "UI",
+        "UIPool"
+      ],
+      "class": "ObjectValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences",
+        "LODClient"
+      ],
+      "attributes": [],
+      "tags": [],
+      "target": false,
+      "class": "ObjectValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "MigrationNotes"
+      ],
+      "attributes": [],
+      "tags": [],
+      "class": "Folder",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences",
+        "SharedUI_StatBars"
+      ],
+      "attributes": [],
+      "tags": [],
+      "target": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "UI",
+        "StatBars"
+      ],
+      "class": "ObjectValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences",
+        "SharedUI_ColourUtils"
+      ],
+      "attributes": [],
+      "tags": [],
+      "target": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "UI",
+        "ColourUtils"
+      ],
+      "class": "ObjectValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "MigrationNotes",
+        "03_MobilePerformanceNotes"
+      ],
+      "attributes": [],
+      "tags": [],
+      "value": "Mobile priorities:\nCache vehicle stats at drive start.\nKeep VFX cached and client-side.\nAvoid broad PlayerGui/GetDescendants scans during driving.\nReplace HUD suppression workaround with one explicit HUD owner later.\nKeep world LOD updates throttled, not per-frame.",
+      "class": "StringValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "StarterGui",
+        "NeoTokyoRacersUI",
+        "Screens",
+        "Dealership"
+      ],
+      "attributes": [],
+      "tags": [],
+      "class": "Folder",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences",
+        "VehicleCategories"
+      ],
+      "attributes": {
+        "PhaseNRepairedAt": "2026-05-29 18:36:09",
+        "PhaseNRepairedBy": "roblox_architecture_phaseN_runtime_world_path_repair"
+      },
+      "tags": [],
+      "target": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Assets",
+        "Vehicles",
+        "Categories"
+      ],
+      "class": "ObjectValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "StarterGui",
+        "NeoTokyoRacersUI",
+        "Components",
+        "Mobile"
+      ],
+      "attributes": [],
+      "tags": [],
+      "class": "Folder",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "StarterGui",
+        "NeoTokyoRacersUI",
+        "Components",
+        "ColourPicker"
+      ],
+      "attributes": [],
+      "tags": [],
+      "class": "Folder",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences",
+        "LegacyShared"
+      ],
+      "attributes": [],
+      "tags": [],
+      "target": [
+        "ReplicatedStorage",
+        "Shared"
+      ],
+      "class": "ObjectValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences",
+        "ActiveKit"
+      ],
+      "attributes": {
+        "PhaseNRepairedAt": "2026-05-29 18:36:09",
+        "PhaseNRepairedBy": "roblox_architecture_phaseN_runtime_world_path_repair"
+      },
+      "tags": [],
+      "target": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers"
+      ],
+      "class": "ObjectValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "StarterGui",
+        "NeoTokyoRacersUI",
+        "Screens",
+        "DrivingHUD"
+      ],
+      "attributes": [],
+      "tags": [],
+      "class": "Folder",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences",
+        "CachedThrustVisualRuntimeModule"
+      ],
+      "attributes": [],
+      "tags": [],
+      "target": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "Client",
+        "Visuals",
+        "CachedThrustVisualRuntime"
+      ],
+      "class": "ObjectValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NTR_STUDIO_FULL_EXPORT_V2",
+        "README_HOW_TO_IMPORT"
+      ],
+      "attributes": [],
+      "tags": [],
+      "value": "Export was sent to the local receiver successfully in HTTP chunks.\nYou do not need to copy StudioExport chunks for this run.\nCheck PowerShell for the import result.\n\nChunks sent: 30\nReceiver response:\nOK\nReceived and imported 30 chunks.\n",
+      "class": "StringValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences",
+        "LightingController"
+      ],
+      "attributes": [],
+      "tags": [],
+      "target": false,
+      "class": "ObjectValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "StarterGui",
+        "NeoTokyoRacersUI",
+        "Templates"
+      ],
+      "attributes": [],
+      "tags": [],
+      "class": "Folder",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences"
+      ],
+      "attributes": [],
+      "tags": [],
+      "class": "Folder",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Remotes"
+      ],
+      "attributes": [],
+      "tags": [],
+      "class": "Folder",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences",
+        "UIThemeModule"
+      ],
+      "attributes": [],
+      "tags": [],
+      "target": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "Common",
+        "UITheme"
+      ],
+      "class": "ObjectValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences",
+        "UITheme"
+      ],
+      "attributes": [],
+      "tags": [],
+      "target": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Config",
+        "UI",
+        "Theme"
+      ],
+      "class": "ObjectValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "StarterGui",
+        "NeoTokyoRacersUI",
+        "Components",
+        "Lists"
+      ],
+      "attributes": [],
+      "tags": [],
+      "class": "Folder",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences",
+        "MainClient"
+      ],
+      "attributes": [],
+      "tags": [],
+      "target": false,
+      "class": "ObjectValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ServerScriptService",
+        "NeoTokyoRacers",
+        "Services",
+        "Economy"
+      ],
+      "attributes": [],
+      "tags": [],
+      "class": "Folder",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences",
+        "SharedModules"
+      ],
+      "attributes": [],
+      "tags": [],
+      "target": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Shared",
+        "Modules",
+        "Common"
+      ],
+      "class": "ObjectValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "LiveReferences",
+        "VFXTemplates"
+      ],
+      "attributes": [],
+      "tags": [],
+      "target": [
+        "ReplicatedStorage",
+        "NeoTokyoRacers",
+        "Assets",
+        "VFX",
+        "VehicleTemplates"
+      ],
+      "class": "ObjectValue",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "StarterGui",
+        "NeoTokyoRacersUI",
+        "Screens",
+        "CashShop"
+      ],
+      "attributes": [],
+      "tags": [],
+      "class": "Folder",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "StarterGui",
+        "NeoTokyoRacersUI",
+        "Templates",
+        "Panels"
+      ],
+      "attributes": [],
+      "tags": [],
+      "class": "Folder",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "StarterGui",
+        "NeoTokyoRacersUI",
+        "Components",
+        "Dealership"
+      ],
+      "attributes": [],
+      "tags": [],
+      "class": "Folder",
+      "archivable": true,
+      "properties": []
+    },
+    {
+      "path": [
+        "StarterGui",
+        "NeoTokyoRacersUI",
+        "Components"
+      ],
+      "attributes": {
+        "CreatedBy": "NTR_Phase1_ArchitectureResolver_2026_05_28"
+      },
+      "tags": [],
+      "class": "Folder",
+      "archivable": true,
+      "properties": []
+    }
+  ],
+  "placeId": 121304917315753,
+  "roots": [
+    [
+      "ServerStorage",
+      "HOVER_RACING_SAVED_CARS_Runtime"
+    ],
+    [
+      "StarterGui",
+      "NeoTokyoRacersUI"
+    ],
+    [
+      "ReplicatedStorage",
+      "NTR_STUDIO_FULL_EXPORT_V2"
+    ],
+    [
+      "ReplicatedStorage",
+      "NTR_DEBUG"
+    ],
+    [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "LiveReferences"
+    ],
+    [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "MigrationNotes"
+    ],
+    [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "README_Phase1"
+    ],
+    [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "README_Phase2"
+    ],
+    [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "DO_NOT_TOUCH_Test_WIP_Assets"
+    ],
+    [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Remotes"
+    ],
+    [
+      "ServerScriptService",
+      "NeoTokyoRacers",
+      "Services",
+      "Economy"
+    ],
+    [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Garage"
+    ],
+    [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "State"
+    ],
+    [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "RuntimeState"
+    ],
+    [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Remotes",
+      "Vehicles"
+    ],
+    [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Remotes",
+      "Economy"
+    ]
+  ]
+}

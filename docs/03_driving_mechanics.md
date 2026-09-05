@@ -1,5 +1,15 @@
 # Driving Mechanics
 
+2026-09-05 cleanup Phase 3 is installed and user-confirmed. Canonical paths now use Workspace.World, ReplicatedStorage.Assets/Remotes/Config and feature configuration folders. Physical content is preserved. Mirror 16:06:57 passes exact expected source/hierarchy/property parity. See docs/architecture/cleanup-phase3-generic-naming.md.
+
+Phase 3 changes only names and config paths: Config.Vehicles.Driving, Dynamics, Camera, Spawn, MobileControls and DriveRewards. Numeric source tokens and tuning values are preserved. Camera NaN/clamp error CAM-02 reproduced on both exact Phase 2 and Phase 3 during rapid spawn/exit/re-entry; investigate separately, not as a cleanup balance change.
+
+**Complete cleanup Phase 2, 2026-09-05 — user-confirmed working.** DriveSessionClient now owns spawn/exit callbacks and mobile telemetry, invoking the existing DrivingClient/VehicleDynamics. Driving numeric tokens are unchanged; the unused alternate driving implementation is removed. Full control/boost/drift/reverse remains the current user checkpoint. See [current handoff](architecture/cleanup-phase2-canonical-ownership.md). Historical paths below are recovery history.
+
+## 2026-09-05 architecture Phase 4
+
+Canonical driving implementation is now `ReplicatedStorage.Modules.Game.Vehicles.DrivingClient`; camera, input and dynamics helpers are in the same feature folder. Old shared paths forward to those modules. Driving source bodies/equations/tuning are unchanged; ClientBase starts the existing GarageClient bridge. Removed only the bootstrap's disabled proximity-reentry polling; prompt-only re-entry remains. Sandbox command/event spawn, exit and re-entry passed, including seated/DriveReady and force creation. User handling/boost/drift/reverse and landscape touch tests remain the Phase 4 acceptance boundary. See `docs/architecture/phase4-client-organisation.md`.
+
 ## Small refinements lifecycle Phase 2 V1 installed/mirrored; V1.1 preserves driving owners (2026-07-27)
 
 The owned-garage management runtime remains the sole drive-in authority and keeps its current ownership, slot-selection, despawn, streaming, assignment, rollback and teleport transaction. Phase 2 makes the existing `DriveInMaxSpeedMph` rejection conditional on `DriveInSpeedGateEnabled`; the canonical installer sets that new attribute to `false`, so seated players may enter at any speed without adding a client bypass or a second vehicle lifecycle owner.

@@ -11,10 +11,10 @@ Then run this in Roblox Studio:
 The Studio exporter sends chunked POSTs to:
     http://127.0.0.1:8765/ntr-studio-export-chunk
 
-This receiver writes:
+With --write-paste this receiver additionally writes:
     docs/studio-full-export-paste.txt
 
-Then imports it into:
+The default imports directly into these verified mirror outputs without touching the paste blob:
     roblox/exported_scripts/
     roblox/studio_snapshot/
 """
@@ -42,12 +42,15 @@ class ExportReceiver(BaseHTTPRequestHandler):
     paste_file: Path = DEFAULT_PASTE_FILE
     imported: bool = False
     error: str | None = None
+    write_paste: bool = False
     chunks_by_export: dict[str, dict[int, str]] = {}
     totals_by_export: dict[str, int] = {}
 
     def do_POST(self) -> None:  # noqa: N802 - required by BaseHTTPRequestHandler
         try:
             content_length = int(self.headers.get("Content-Length", "0"))
+            if content_length <= 0 or content_length > 1024 * 1024:
+                raise ValueError("Invalid/oversize request body")
             body = self.rfile.read(content_length).decode("utf-8")
 
             if self.path == EXPORT_PATH:
@@ -64,6 +67,15 @@ class ExportReceiver(BaseHTTPRequestHandler):
 
                 if index < 1 or total < 1 or index > total:
                     raise ValueError(f"Invalid chunk index {index} of {total}.")
+                if total > 4096 or len(data.encode('utf-8')) > 900000:
+                    raise ValueError("Export exceeds receiver bounds")
+                if self.totals_by_export and export_id not in self.totals_by_export:
+                    raise ValueError("Another export is already in progress")
+                if export_id in self.totals_by_export and self.totals_by_export[export_id] != total:
+                    raise ValueError("Chunk total changed mid-export")
+                old = self.chunks_by_export.get(export_id, {}).get(index)
+                if old is not None and old != data:
+                    raise ValueError("Conflicting duplicate chunk")
 
                 self.__class__.totals_by_export[export_id] = total
                 self.__class__.chunks_by_export.setdefault(export_id, {})[index] = data
@@ -85,38 +97,15 @@ class ExportReceiver(BaseHTTPRequestHandler):
             self.send_text(500, f"ERROR\n{exc}\n")
 
     def import_export_text(self, export_text: str) -> None:
-        if "NTR_STUDIO_FULL_EXPORT_V2" not in export_text:
-            raise ValueError("Request body does not look like an NTR Studio full export.")
-
-        self.paste_file.parent.mkdir(parents=True, exist_ok=True)
-        try:
+        payload = importer.parse_payload(export_text)
+        manifest = importer.import_payload(payload)
+        if self.write_paste:
+            self.paste_file.parent.mkdir(parents=True, exist_ok=True)
             self.paste_file.write_text(export_text, encoding="utf-8", newline="\n")
-            payload = importer.read_payload(self.paste_file)
-        except OSError as exc:
-            print(f"Warning: could not write raw paste file {self.paste_file}: {exc}")
-            print("Continuing with in-memory import; raw paste file will not be refreshed.")
-            start = export_text.find(importer.EXPORT_START)
-            if start < 0:
-                raise ValueError(f"Export text does not contain {importer.EXPORT_START}.") from exc
-
-            start += len(importer.EXPORT_START)
-            end = export_text.find(importer.EXPORT_END, start)
-            json_text = export_text[start:] if end < 0 else export_text[start:end]
-            json_text = json_text.strip()
-            if not json_text:
-                raise ValueError("Export marker was found, but no JSON payload followed it.") from exc
-
-            payload = json.loads(json_text)
-            if payload.get("format") != importer.EXPORT_START:
-                raise ValueError(f"Unexpected export format: {payload.get('format')!r}") from exc
-
-        scripts = importer.decode_scripts(payload)
-        manifest = importer.write_scripts(scripts, importer.DEFAULT_SCRIPTS_DIR)
-        importer.write_snapshot(payload, manifest, importer.DEFAULT_SNAPSHOT_DIR)
 
         self.__class__.imported = True
-        print(f"Imported {len(scripts)} scripts.")
-        print(f"Paste file: {self.paste_file}")
+        print(f"PASS: imported {len(manifest)} verified scripts; schema={payload.get('schema_revision', 2)}.")
+        print(f"Raw paste {'written' if self.write_paste else 'left untouched'}: {self.paste_file}")
         print(f"Scripts: {importer.DEFAULT_SCRIPTS_DIR}")
         print(f"Snapshot: {importer.DEFAULT_SNAPSHOT_DIR}")
 
@@ -129,7 +118,8 @@ class ExportReceiver(BaseHTTPRequestHandler):
         self.wfile.write(data)
 
     def log_message(self, format: str, *args: Any) -> None:
-        print("[receiver] " + format % args)
+        if len(args) < 2 or str(args[1]) != '200':
+            print("[receiver] " + format % args)
 
 
 def main() -> None:
@@ -137,7 +127,11 @@ def main() -> None:
     parser.add_argument("--host", default=DEFAULT_HOST, help="Host to bind. Default: 127.0.0.1")
     parser.add_argument("--port", type=int, default=DEFAULT_PORT, help="Port to bind. Default: 8765")
     parser.add_argument("--paste-file", default=str(DEFAULT_PASTE_FILE), help="Where to store the raw export text.")
+    parser.add_argument("--write-paste", action="store_true", help="Opt in to writing the untracked raw export blob.")
     args = parser.parse_args()
+    if args.host != DEFAULT_HOST:
+        parser.error("Only the loopback receiver is supported")
+    ExportReceiver.write_paste = args.write_paste
 
     ExportReceiver.paste_file = Path(args.paste_file)
     if not ExportReceiver.paste_file.is_absolute():

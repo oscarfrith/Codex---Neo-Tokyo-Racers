@@ -1,0 +1,1321 @@
+{
+  "archive": [
+    {
+      "classes": {
+        "ProximityPrompt": 2,
+        "SurfaceAppearance": 114,
+        "MeshPart": 114,
+        "Folder": 314,
+        "Model": 155,
+        "Part": 729,
+        "UnionOperation": 5,
+        "SurfaceLight": 3,
+        "Texture": 1
+      },
+      "path": "ServerStorage.Archive.ZZZ",
+      "descendants": 1437,
+      "class": "Folder"
+    },
+    {
+      "classes": {
+        "Decal": 41,
+        "Folder": 3
+      },
+      "path": "ServerStorage.Archive.z icons etc",
+      "descendants": 44,
+      "class": "Folder"
+    },
+    {
+      "classes": {
+        "MeshPart": 35
+      },
+      "path": "ServerStorage.Archive.FBx - Test Base Vehicle v3",
+      "descendants": 35,
+      "class": "Model"
+    },
+    {
+      "classes": {
+        "MeshPart": 35
+      },
+      "path": "ServerStorage.Archive.FBx - Test Base Vehicle v3",
+      "descendants": 35,
+      "class": "Model"
+    },
+    {
+      "classes": {
+        "Sound": 12
+      },
+      "path": "ServerStorage.Archive.audio",
+      "descendants": 12,
+      "class": "Folder"
+    }
+  ],
+  "staging": [
+    {
+      "id": "bruiser_02",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.COCKPITS_ReplaceAssetsHere.COCKPIT_BRUISER_02",
+      "counts": {
+        "Folder": 17,
+        "SurfaceLight": 2,
+        "Model": 1,
+        "Part": 11,
+        "MeshPart": 6,
+        "SpotLight": 2,
+        "Attachment": 13
+      },
+      "live": [
+        {
+          "partShapeMatches": false,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.COCKPITS_ReplaceAssetsHere.COCKPIT_BRUISER_02"
+        }
+      ]
+    },
+    {
+      "id": "bruiser_03",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.COCKPITS_ReplaceAssetsHere.COCKPIT_BRUISER_03",
+      "counts": {
+        "Folder": 17,
+        "SurfaceLight": 2,
+        "Model": 1,
+        "Part": 11,
+        "MeshPart": 6,
+        "SpotLight": 2,
+        "Attachment": 13
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.COCKPITS_ReplaceAssetsHere.COCKPIT_BRUISER_03"
+        }
+      ]
+    },
+    {
+      "id": "bruiser_01",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.COCKPITS_ReplaceAssetsHere.COCKPIT_BRUISER_01",
+      "counts": {
+        "Folder": 17,
+        "SurfaceLight": 2,
+        "Model": 1,
+        "Part": 11,
+        "MeshPart": 6,
+        "SpotLight": 2,
+        "Attachment": 13
+      },
+      "live": [
+        {
+          "partShapeMatches": false,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.COCKPITS_ReplaceAssetsHere.COCKPIT_BRUISER_01"
+        }
+      ]
+    },
+    {
+      "id": "bruiser_04",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.COCKPITS_ReplaceAssetsHere.COCKPIT_BRUISER_04",
+      "counts": {
+        "Folder": 17,
+        "SurfaceLight": 2,
+        "Model": 1,
+        "Part": 11,
+        "MeshPart": 6,
+        "SpotLight": 2,
+        "Attachment": 13
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.COCKPITS_ReplaceAssetsHere.COCKPIT_BRUISER_04"
+        }
+      ]
+    },
+    {
+      "id": "bruiser_05",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.COCKPITS_ReplaceAssetsHere.COCKPIT_BRUISER_05",
+      "counts": {
+        "Folder": 17,
+        "SurfaceLight": 2,
+        "Model": 1,
+        "Part": 11,
+        "MeshPart": 6,
+        "SpotLight": 2,
+        "Attachment": 13
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.COCKPITS_ReplaceAssetsHere.COCKPIT_BRUISER_05"
+        }
+      ]
+    },
+    {
+      "id": "bruiser_06",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.COCKPITS_ReplaceAssetsHere.COCKPIT_BRUISER_06",
+      "counts": {
+        "Folder": 17,
+        "SurfaceLight": 2,
+        "Model": 1,
+        "Part": 11,
+        "MeshPart": 6,
+        "SpotLight": 2,
+        "Attachment": 13
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.COCKPITS_ReplaceAssetsHere.COCKPIT_BRUISER_06"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_ENGINE_B_BRUISER_02_STANDARD",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Engines_B.Bruiser_02.MODULE_ENGINE_B_BRUISER_02_STANDARD",
+      "counts": {
+        "Folder": 6,
+        "MeshPart": 5,
+        "Attachment": 4,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Engines_B.Bruiser_02.MODULE_ENGINE_B_BRUISER_02_STANDARD"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_ENGINE_B_BRUISER_02_LIGHTWEIGHT",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Engines_B.Bruiser_02.MODULE_ENGINE_B_BRUISER_02_LIGHTWEIGHT",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 5,
+        "Attachment": 4,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Engines_B.Bruiser_02.MODULE_ENGINE_B_BRUISER_02_LIGHTWEIGHT"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_ENGINE_B_BRUISER_02_POWER",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Engines_B.Bruiser_02.MODULE_ENGINE_B_BRUISER_02_POWER",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 5,
+        "Attachment": 4,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Engines_B.Bruiser_02.MODULE_ENGINE_B_BRUISER_02_POWER"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_ENGINE_B_BRUISER_03_STANDARD",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Engines_B.Bruiser_03.MODULE_ENGINE_B_BRUISER_03_STANDARD",
+      "counts": {
+        "Folder": 6,
+        "MeshPart": 5,
+        "Attachment": 4,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Engines_B.Bruiser_03.MODULE_ENGINE_B_BRUISER_03_STANDARD"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_ENGINE_B_BRUISER_03_LIGHTWEIGHT",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Engines_B.Bruiser_03.MODULE_ENGINE_B_BRUISER_03_LIGHTWEIGHT",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 5,
+        "Attachment": 4,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Engines_B.Bruiser_03.MODULE_ENGINE_B_BRUISER_03_LIGHTWEIGHT"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_ENGINE_B_BRUISER_03_POWER",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Engines_B.Bruiser_03.MODULE_ENGINE_B_BRUISER_03_POWER",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 5,
+        "Attachment": 4,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Engines_B.Bruiser_03.MODULE_ENGINE_B_BRUISER_03_POWER"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_ENGINE_B_BRUISER_01_STANDARD",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Engines_B.Bruiser_01.MODULE_ENGINE_B_BRUISER_01_STANDARD",
+      "counts": {
+        "Folder": 6,
+        "MeshPart": 5,
+        "Attachment": 4,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Engines_B.Bruiser_01.MODULE_ENGINE_B_BRUISER_01_STANDARD"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_ENGINE_B_BRUISER_01_LIGHTWEIGHT",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Engines_B.Bruiser_01.MODULE_ENGINE_B_BRUISER_01_LIGHTWEIGHT",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 5,
+        "Attachment": 4,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Engines_B.Bruiser_01.MODULE_ENGINE_B_BRUISER_01_LIGHTWEIGHT"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_ENGINE_B_BRUISER_01_POWER",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Engines_B.Bruiser_01.MODULE_ENGINE_B_BRUISER_01_POWER",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 5,
+        "Attachment": 4,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Engines_B.Bruiser_01.MODULE_ENGINE_B_BRUISER_01_POWER"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_ENGINE_B_BRUISER_04_STANDARD",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Engines_B.Bruiser_04.MODULE_ENGINE_B_BRUISER_04_STANDARD",
+      "counts": {
+        "Folder": 6,
+        "MeshPart": 5,
+        "Attachment": 4,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Engines_B.Bruiser_04.MODULE_ENGINE_B_BRUISER_04_STANDARD"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_ENGINE_B_BRUISER_04_LIGHTWEIGHT",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Engines_B.Bruiser_04.MODULE_ENGINE_B_BRUISER_04_LIGHTWEIGHT",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 5,
+        "Attachment": 4,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Engines_B.Bruiser_04.MODULE_ENGINE_B_BRUISER_04_LIGHTWEIGHT"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_ENGINE_B_BRUISER_04_POWER",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Engines_B.Bruiser_04.MODULE_ENGINE_B_BRUISER_04_POWER",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 5,
+        "Attachment": 4,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Engines_B.Bruiser_04.MODULE_ENGINE_B_BRUISER_04_POWER"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_ENGINE_B_BRUISER_05_STANDARD",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Engines_B.Bruiser_05.MODULE_ENGINE_B_BRUISER_05_STANDARD",
+      "counts": {
+        "Folder": 6,
+        "MeshPart": 5,
+        "Attachment": 4,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Engines_B.Bruiser_05.MODULE_ENGINE_B_BRUISER_05_STANDARD"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_ENGINE_B_BRUISER_05_LIGHTWEIGHT",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Engines_B.Bruiser_05.MODULE_ENGINE_B_BRUISER_05_LIGHTWEIGHT",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 5,
+        "Attachment": 4,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Engines_B.Bruiser_05.MODULE_ENGINE_B_BRUISER_05_LIGHTWEIGHT"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_ENGINE_B_BRUISER_05_POWER",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Engines_B.Bruiser_05.MODULE_ENGINE_B_BRUISER_05_POWER",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 5,
+        "Attachment": 4,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Engines_B.Bruiser_05.MODULE_ENGINE_B_BRUISER_05_POWER"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_ENGINE_B_BRUISER_06_STANDARD",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Engines_B.Bruiser_06.MODULE_ENGINE_B_BRUISER_06_STANDARD",
+      "counts": {
+        "Folder": 6,
+        "MeshPart": 5,
+        "Attachment": 4,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Engines_B.Bruiser_06.MODULE_ENGINE_B_BRUISER_06_STANDARD"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_ENGINE_B_BRUISER_06_LIGHTWEIGHT",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Engines_B.Bruiser_06.MODULE_ENGINE_B_BRUISER_06_LIGHTWEIGHT",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 5,
+        "Attachment": 4,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Engines_B.Bruiser_06.MODULE_ENGINE_B_BRUISER_06_LIGHTWEIGHT"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_ENGINE_B_BRUISER_06_POWER",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Engines_B.Bruiser_06.MODULE_ENGINE_B_BRUISER_06_POWER",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 5,
+        "Attachment": 4,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Engines_B.Bruiser_06.MODULE_ENGINE_B_BRUISER_06_POWER"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_BOOST_BRUISER_02_STANDARD",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Boost.Bruiser_02.MODULE_BOOST_BRUISER_02_STANDARD",
+      "counts": {
+        "Folder": 6,
+        "MeshPart": 4,
+        "Attachment": 2,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Boost.Bruiser_02.MODULE_BOOST_BRUISER_02_STANDARD"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_BOOST_BRUISER_02_LIGHTWEIGHT",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Boost.Bruiser_02.MODULE_BOOST_BRUISER_02_LIGHTWEIGHT",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 4,
+        "Attachment": 2,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Boost.Bruiser_02.MODULE_BOOST_BRUISER_02_LIGHTWEIGHT"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_BOOST_BRUISER_02_POWER",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Boost.Bruiser_02.MODULE_BOOST_BRUISER_02_POWER",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 4,
+        "Attachment": 2,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Boost.Bruiser_02.MODULE_BOOST_BRUISER_02_POWER"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_BOOST_BRUISER_03_STANDARD",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Boost.Bruiser_03.MODULE_BOOST_BRUISER_03_STANDARD",
+      "counts": {
+        "Folder": 6,
+        "MeshPart": 4,
+        "Attachment": 2,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Boost.Bruiser_03.MODULE_BOOST_BRUISER_03_STANDARD"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_BOOST_BRUISER_03_LIGHTWEIGHT",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Boost.Bruiser_03.MODULE_BOOST_BRUISER_03_LIGHTWEIGHT",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 4,
+        "Attachment": 2,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Boost.Bruiser_03.MODULE_BOOST_BRUISER_03_LIGHTWEIGHT"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_BOOST_BRUISER_03_POWER",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Boost.Bruiser_03.MODULE_BOOST_BRUISER_03_POWER",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 4,
+        "Attachment": 2,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Boost.Bruiser_03.MODULE_BOOST_BRUISER_03_POWER"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_BOOST_BRUISER_01_STANDARD",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Boost.Bruiser_01.MODULE_BOOST_BRUISER_01_STANDARD",
+      "counts": {
+        "Folder": 6,
+        "MeshPart": 4,
+        "Attachment": 2,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Boost.Bruiser_01.MODULE_BOOST_BRUISER_01_STANDARD"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_BOOST_BRUISER_01_LIGHTWEIGHT",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Boost.Bruiser_01.MODULE_BOOST_BRUISER_01_LIGHTWEIGHT",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 4,
+        "Attachment": 2,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Boost.Bruiser_01.MODULE_BOOST_BRUISER_01_LIGHTWEIGHT"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_BOOST_BRUISER_01_POWER",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Boost.Bruiser_01.MODULE_BOOST_BRUISER_01_POWER",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 4,
+        "Attachment": 2,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Boost.Bruiser_01.MODULE_BOOST_BRUISER_01_POWER"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_BOOST_BRUISER_04_STANDARD",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Boost.Bruiser_04.MODULE_BOOST_BRUISER_04_STANDARD",
+      "counts": {
+        "Folder": 6,
+        "MeshPart": 4,
+        "Attachment": 2,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Boost.Bruiser_04.MODULE_BOOST_BRUISER_04_STANDARD"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_BOOST_BRUISER_04_LIGHTWEIGHT",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Boost.Bruiser_04.MODULE_BOOST_BRUISER_04_LIGHTWEIGHT",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 4,
+        "Attachment": 2,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Boost.Bruiser_04.MODULE_BOOST_BRUISER_04_LIGHTWEIGHT"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_BOOST_BRUISER_04_POWER",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Boost.Bruiser_04.MODULE_BOOST_BRUISER_04_POWER",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 4,
+        "Attachment": 2,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Boost.Bruiser_04.MODULE_BOOST_BRUISER_04_POWER"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_BOOST_BRUISER_05_STANDARD",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Boost.Bruiser_05.MODULE_BOOST_BRUISER_05_STANDARD",
+      "counts": {
+        "Folder": 6,
+        "MeshPart": 4,
+        "Attachment": 2,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Boost.Bruiser_05.MODULE_BOOST_BRUISER_05_STANDARD"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_BOOST_BRUISER_05_LIGHTWEIGHT",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Boost.Bruiser_05.MODULE_BOOST_BRUISER_05_LIGHTWEIGHT",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 4,
+        "Attachment": 2,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Boost.Bruiser_05.MODULE_BOOST_BRUISER_05_LIGHTWEIGHT"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_BOOST_BRUISER_05_POWER",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Boost.Bruiser_05.MODULE_BOOST_BRUISER_05_POWER",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 4,
+        "Attachment": 2,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Boost.Bruiser_05.MODULE_BOOST_BRUISER_05_POWER"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_BOOST_BRUISER_06_STANDARD",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Boost.Bruiser_06.MODULE_BOOST_BRUISER_06_STANDARD",
+      "counts": {
+        "Folder": 6,
+        "MeshPart": 4,
+        "Attachment": 2,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Boost.Bruiser_06.MODULE_BOOST_BRUISER_06_STANDARD"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_BOOST_BRUISER_06_LIGHTWEIGHT",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Boost.Bruiser_06.MODULE_BOOST_BRUISER_06_LIGHTWEIGHT",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 4,
+        "Attachment": 2,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Boost.Bruiser_06.MODULE_BOOST_BRUISER_06_LIGHTWEIGHT"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_BOOST_BRUISER_06_POWER",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Boost.Bruiser_06.MODULE_BOOST_BRUISER_06_POWER",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 4,
+        "Attachment": 2,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Boost.Bruiser_06.MODULE_BOOST_BRUISER_06_POWER"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_STABILISER_BRUISER_02_STANDARD",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Stabilisers.Bruiser_02.MODULE_STABILISER_BRUISER_02_STANDARD",
+      "counts": {
+        "Folder": 6,
+        "MeshPart": 4,
+        "Attachment": 3,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Stabilisers.Bruiser_02.MODULE_STABILISER_BRUISER_02_STANDARD"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_STABILISER_BRUISER_02_LIGHTWEIGHT",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Stabilisers.Bruiser_02.MODULE_STABILISER_BRUISER_02_LIGHTWEIGHT",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 4,
+        "Attachment": 3,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Stabilisers.Bruiser_02.MODULE_STABILISER_BRUISER_02_LIGHTWEIGHT"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_STABILISER_BRUISER_02_POWER",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Stabilisers.Bruiser_02.MODULE_STABILISER_BRUISER_02_POWER",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 4,
+        "Attachment": 3,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Stabilisers.Bruiser_02.MODULE_STABILISER_BRUISER_02_POWER"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_STABILISER_BRUISER_03_STANDARD",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Stabilisers.Bruiser_03.MODULE_STABILISER_BRUISER_03_STANDARD",
+      "counts": {
+        "Folder": 6,
+        "MeshPart": 4,
+        "Attachment": 3,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Stabilisers.Bruiser_03.MODULE_STABILISER_BRUISER_03_STANDARD"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_STABILISER_BRUISER_03_LIGHTWEIGHT",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Stabilisers.Bruiser_03.MODULE_STABILISER_BRUISER_03_LIGHTWEIGHT",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 4,
+        "Attachment": 3,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Stabilisers.Bruiser_03.MODULE_STABILISER_BRUISER_03_LIGHTWEIGHT"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_STABILISER_BRUISER_03_POWER",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Stabilisers.Bruiser_03.MODULE_STABILISER_BRUISER_03_POWER",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 4,
+        "Attachment": 3,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Stabilisers.Bruiser_03.MODULE_STABILISER_BRUISER_03_POWER"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_STABILISER_BRUISER_01_STANDARD",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Stabilisers.Bruiser_01.MODULE_STABILISER_BRUISER_01_STANDARD",
+      "counts": {
+        "Folder": 6,
+        "MeshPart": 4,
+        "Attachment": 3,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Stabilisers.Bruiser_01.MODULE_STABILISER_BRUISER_01_STANDARD"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_STABILISER_BRUISER_01_LIGHTWEIGHT",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Stabilisers.Bruiser_01.MODULE_STABILISER_BRUISER_01_LIGHTWEIGHT",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 4,
+        "Attachment": 3,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Stabilisers.Bruiser_01.MODULE_STABILISER_BRUISER_01_LIGHTWEIGHT"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_STABILISER_BRUISER_01_POWER",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Stabilisers.Bruiser_01.MODULE_STABILISER_BRUISER_01_POWER",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 4,
+        "Attachment": 3,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Stabilisers.Bruiser_01.MODULE_STABILISER_BRUISER_01_POWER"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_STABILISER_BRUISER_04_STANDARD",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Stabilisers.Bruiser_04.MODULE_STABILISER_BRUISER_04_STANDARD",
+      "counts": {
+        "Folder": 6,
+        "MeshPart": 4,
+        "Attachment": 3,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Stabilisers.Bruiser_04.MODULE_STABILISER_BRUISER_04_STANDARD"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_STABILISER_BRUISER_04_LIGHTWEIGHT",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Stabilisers.Bruiser_04.MODULE_STABILISER_BRUISER_04_LIGHTWEIGHT",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 4,
+        "Attachment": 3,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Stabilisers.Bruiser_04.MODULE_STABILISER_BRUISER_04_LIGHTWEIGHT"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_STABILISER_BRUISER_04_POWER",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Stabilisers.Bruiser_04.MODULE_STABILISER_BRUISER_04_POWER",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 4,
+        "Attachment": 3,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Stabilisers.Bruiser_04.MODULE_STABILISER_BRUISER_04_POWER"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_STABILISER_BRUISER_05_STANDARD",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Stabilisers.Bruiser_05.MODULE_STABILISER_BRUISER_05_STANDARD",
+      "counts": {
+        "Folder": 6,
+        "MeshPart": 4,
+        "Attachment": 3,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Stabilisers.Bruiser_05.MODULE_STABILISER_BRUISER_05_STANDARD"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_STABILISER_BRUISER_05_LIGHTWEIGHT",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Stabilisers.Bruiser_05.MODULE_STABILISER_BRUISER_05_LIGHTWEIGHT",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 4,
+        "Attachment": 3,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Stabilisers.Bruiser_05.MODULE_STABILISER_BRUISER_05_LIGHTWEIGHT"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_STABILISER_BRUISER_05_POWER",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Stabilisers.Bruiser_05.MODULE_STABILISER_BRUISER_05_POWER",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 4,
+        "Attachment": 3,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Stabilisers.Bruiser_05.MODULE_STABILISER_BRUISER_05_POWER"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_STABILISER_BRUISER_06_STANDARD",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Stabilisers.Bruiser_06.MODULE_STABILISER_BRUISER_06_STANDARD",
+      "counts": {
+        "Folder": 6,
+        "MeshPart": 4,
+        "Attachment": 3,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Stabilisers.Bruiser_06.MODULE_STABILISER_BRUISER_06_STANDARD"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_STABILISER_BRUISER_06_LIGHTWEIGHT",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Stabilisers.Bruiser_06.MODULE_STABILISER_BRUISER_06_LIGHTWEIGHT",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 4,
+        "Attachment": 3,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Stabilisers.Bruiser_06.MODULE_STABILISER_BRUISER_06_LIGHTWEIGHT"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_STABILISER_BRUISER_06_POWER",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Stabilisers.Bruiser_06.MODULE_STABILISER_BRUISER_06_POWER",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 4,
+        "Attachment": 3,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Stabilisers.Bruiser_06.MODULE_STABILISER_BRUISER_06_POWER"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_ENGINE_BRUISER_02_STANDARD",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Engines.Bruiser_02.MODULE_ENGINE_BRUISER_02_STANDARD",
+      "counts": {
+        "Folder": 6,
+        "MeshPart": 5,
+        "Attachment": 4,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Engines.Bruiser_02.MODULE_ENGINE_BRUISER_02_STANDARD"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_ENGINE_BRUISER_02_LIGHTWEIGHT",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Engines.Bruiser_02.MODULE_ENGINE_BRUISER_02_LIGHTWEIGHT",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 5,
+        "Attachment": 4,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Engines.Bruiser_02.MODULE_ENGINE_BRUISER_02_LIGHTWEIGHT"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_ENGINE_BRUISER_02_POWER",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Engines.Bruiser_02.MODULE_ENGINE_BRUISER_02_POWER",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 5,
+        "Attachment": 4,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Engines.Bruiser_02.MODULE_ENGINE_BRUISER_02_POWER"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_ENGINE_BRUISER_03_STANDARD",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Engines.Bruiser_03.MODULE_ENGINE_BRUISER_03_STANDARD",
+      "counts": {
+        "Folder": 6,
+        "MeshPart": 5,
+        "Attachment": 4,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Engines.Bruiser_03.MODULE_ENGINE_BRUISER_03_STANDARD"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_ENGINE_BRUISER_03_LIGHTWEIGHT",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Engines.Bruiser_03.MODULE_ENGINE_BRUISER_03_LIGHTWEIGHT",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 5,
+        "Attachment": 4,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Engines.Bruiser_03.MODULE_ENGINE_BRUISER_03_LIGHTWEIGHT"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_ENGINE_BRUISER_03_POWER",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Engines.Bruiser_03.MODULE_ENGINE_BRUISER_03_POWER",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 5,
+        "Attachment": 4,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Engines.Bruiser_03.MODULE_ENGINE_BRUISER_03_POWER"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_ENGINE_BRUISER_01_STANDARD",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Engines.Bruiser_01.MODULE_ENGINE_BRUISER_01_STANDARD",
+      "counts": {
+        "Folder": 6,
+        "MeshPart": 5,
+        "Attachment": 4,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Engines.Bruiser_01.MODULE_ENGINE_BRUISER_01_STANDARD"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_ENGINE_BRUISER_01_LIGHTWEIGHT",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Engines.Bruiser_01.MODULE_ENGINE_BRUISER_01_LIGHTWEIGHT",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 5,
+        "Attachment": 4,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Engines.Bruiser_01.MODULE_ENGINE_BRUISER_01_LIGHTWEIGHT"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_ENGINE_BRUISER_01_POWER",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Engines.Bruiser_01.MODULE_ENGINE_BRUISER_01_POWER",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 5,
+        "Attachment": 4,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Engines.Bruiser_01.MODULE_ENGINE_BRUISER_01_POWER"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_ENGINE_BRUISER_04_STANDARD",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Engines.Bruiser_04.MODULE_ENGINE_BRUISER_04_STANDARD",
+      "counts": {
+        "Folder": 6,
+        "MeshPart": 5,
+        "Attachment": 4,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Engines.Bruiser_04.MODULE_ENGINE_BRUISER_04_STANDARD"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_ENGINE_BRUISER_04_LIGHTWEIGHT",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Engines.Bruiser_04.MODULE_ENGINE_BRUISER_04_LIGHTWEIGHT",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 5,
+        "Attachment": 4,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Engines.Bruiser_04.MODULE_ENGINE_BRUISER_04_LIGHTWEIGHT"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_ENGINE_BRUISER_04_POWER",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Engines.Bruiser_04.MODULE_ENGINE_BRUISER_04_POWER",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 5,
+        "Attachment": 4,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Engines.Bruiser_04.MODULE_ENGINE_BRUISER_04_POWER"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_ENGINE_BRUISER_05_STANDARD",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Engines.Bruiser_05.MODULE_ENGINE_BRUISER_05_STANDARD",
+      "counts": {
+        "Folder": 6,
+        "MeshPart": 5,
+        "Attachment": 4,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Engines.Bruiser_05.MODULE_ENGINE_BRUISER_05_STANDARD"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_ENGINE_BRUISER_05_LIGHTWEIGHT",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Engines.Bruiser_05.MODULE_ENGINE_BRUISER_05_LIGHTWEIGHT",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 5,
+        "Attachment": 4,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Engines.Bruiser_05.MODULE_ENGINE_BRUISER_05_LIGHTWEIGHT"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_ENGINE_BRUISER_05_POWER",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Engines.Bruiser_05.MODULE_ENGINE_BRUISER_05_POWER",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 5,
+        "Attachment": 4,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Engines.Bruiser_05.MODULE_ENGINE_BRUISER_05_POWER"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_ENGINE_BRUISER_06_STANDARD",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Engines.Bruiser_06.MODULE_ENGINE_BRUISER_06_STANDARD",
+      "counts": {
+        "Folder": 6,
+        "MeshPart": 5,
+        "Attachment": 4,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Engines.Bruiser_06.MODULE_ENGINE_BRUISER_06_STANDARD"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_ENGINE_BRUISER_06_LIGHTWEIGHT",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Engines.Bruiser_06.MODULE_ENGINE_BRUISER_06_LIGHTWEIGHT",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 5,
+        "Attachment": 4,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Engines.Bruiser_06.MODULE_ENGINE_BRUISER_06_LIGHTWEIGHT"
+        }
+      ]
+    },
+    {
+      "id": "MODULE_ENGINE_BRUISER_06_POWER",
+      "path": "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.MODULES_InterchangeableWithinCategory.Engines.Bruiser_06.MODULE_ENGINE_BRUISER_06_POWER",
+      "counts": {
+        "Folder": 10,
+        "MeshPart": 5,
+        "Attachment": 4,
+        "Part": 1
+      },
+      "live": [
+        {
+          "partShapeMatches": true,
+          "path": "ReplicatedStorage.NeoTokyoRacers.Assets.Vehicles.Categories.PIERCER.MODULES_InterchangeableWithinCategory.Engines.Bruiser_06.MODULE_ENGINE_BRUISER_06_POWER"
+        }
+      ]
+    }
+  ]
+}

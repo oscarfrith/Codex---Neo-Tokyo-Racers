@@ -1,5 +1,31 @@
 # Continuous Improvement Workflow
 
+## 2026-09-05 — Confirmed Phase 3 and cross-machine continuation
+
+Phase 3 is user-confirmed. Before switching machines, transfer both repository evidence and a saved playable Studio place, then verify live parity on arrival. MCP server configuration and local runtime paths are machine-specific; rediscover rather than copying session IDs or cache paths. Camera comparison only became equivalent with the client foregrounded. Preserve known pre-existing issues separately from acceptance and keep one canonical installer.
+
+## Complete cleanup Phase 1 verification lesson — 2026-09-05
+
+Removing an exporter dump folder is incomplete unless its producer can no longer recreate it. Receiver failure was tested against instance identities, parents, names and attributes, and created nothing. Audit ObjectValue targets for detached objects as well as nil/missing paths: two historical shortcuts cannot be meaningfully restored by a path string. Record that recovery limit rather than resurrecting old code. Asset-ID overlap and a part-shape signature are supporting evidence, not proof that complete model subtrees are duplicates. Phase 1 is agent-verified; user gameplay acceptance remains pending.
+
+## 2026-09-05 cleanup lesson
+
+All five architecture phases are user-confirmed. For legacy retirement, inspect exact callers, runtime anchors and external references; names such as Legacy/Shadow/Disabled are not deletion evidence. Keep explicitly retained opt-in tools. Freeze removed metadata/source in a repository recovery inventory and verify the whole remaining exported hierarchy, normalising only export-local script sequence IDs. See `architecture/legacy-cleanup.md` for the installed cleanup and pending user playtest.
+
+## Confirmed client migration and measured optimisation — 2026-09-05
+
+Phase 4 was user-confirmed. Preserve runtime PlayerScripts context when moving client helpers, keep startup composition separate from feature state, and use explicit development-tool gates. Freeze packaging order independently of exported traversal order so a class-changing migration rebuilds identically. A relocated legacy closure remains maintenance debt.
+
+For streamed content, deferred removal events can arrive after ancestry has disappeared: use reverse membership and bounded condition waits in tests. Measure registration, idle work and transitions separately; report regressions/tradeoffs as well as wins. Controlled CPU traces are not device frame-time or streaming evidence. Do not “optimise” unrelated systems without a measured reason.
+
+## Server ownership migration lesson — 2026-09-05
+
+Moving code into feature folders does not resolve duplicate state. Preserve existing callable paths with stateless adapters, move implementations once, and separately remove cached profile/import boundaries. Verify a purchase → reward → cosmetic change against one authoritative balance, not only startup logs. Filter runtime view fields before serialization. Service registration readiness and per-player profile readiness are different; startup composition must not let an optional loop block unrelated services. Phase 2 was user-confirmed; Phase 3 implementation evidence is recorded separately from pending user acceptance.
+
+## Phase 1 workflow lesson — 2026-09-05
+
+Read the compact current baseline/issues first and load relevant history on demand. Distinguish generated, installed, runtime verified and user confirmed. MCP removes manual copying, not the need for reviewed source, scoped ownership and independent verification. A source/hierarchy export without ordinary properties cannot verify placement or config Values. Reject unreadable sources and invalid imports before replacing the last usable mirror. See docs/architecture/mcp-workflow.md; it supersedes the old full-history startup reading route below.
+
 ## Dynamic touch ownership versus marker timing lesson (2026-07-27)
 
 A dynamic native control's broad container is candidate geometry, not proof that every touch inside belongs to it; its small rendered marker is ownership evidence, but may not be ready during another script's synchronous `InputBegan` callback. Choosing either rectangle synchronously can alternate between over-blocking empty space and missing real movement.

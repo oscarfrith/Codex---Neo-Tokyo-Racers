@@ -1,5 +1,72 @@
 # Patch History
 
+## 2026-09-05 — Fix Windows snapshot permissions blocking GitHub Desktop
+
+The importer staging directory used tempfile.mkdtemp, whose Windows private ACL was retained by promoted mirrors. GitHub Desktop under Oscar could not read manifest.json although the sandbox could. Restored inherited permissions on both mirror roots; changed staging to exclusive UUID-named mkdir with normal parent ACL inheritance. Nine pipeline tests pass, including Windows staging inheritance and rollback-on-promotion-failure. No Studio or mirror content changes; Phase 3 remains user-confirmed. Retry commit with raw paste unchecked.
+
+## 2026-09-05 — Confirm cleanup Phase 3; prepare laptop handoff
+
+User reported all worked well. Locked Phase 3 as confirmed; Phase 4 is next. Read-only live audit and post-playtest mirror refresh at 16:06:57 pass all 160 source hashes, expected hierarchy/property parity and excluded Workspace checks. Added laptop transfer/runbook and new-chat prompt, corrected current owner/handoff status. No gameplay edits or publish. Git commit/push and a saved playable place transfer remain user actions; the mirror is not a full place backup.
+
+## 2026-09-05 — Install cleanup Phase 3 generic naming
+
+Complete cleanup Phases 1 and 2 are user-confirmed. Phase 3 is installed and agent-verified; user gameplay confirmation is pending. Phase 4 remains unimplemented. Current mirror: 2026-09-05 15:59:57, 160 sources, 42,285 nodes and 266,840 properties, with exact expected source/hierarchy/property parity. The two lighting-tag renames on 62 enumerated WIP objects are approved and installed. Protected staging/archive disposition remains pending. Canonical installer: scripts/roblox_cleanup_phase3_generic_naming.lua. Renamed World, Assets, Remotes, feature configs and technical tags/attributes; retired 210 nonphysical records, preserved physical content and stable external IDs. Controlled visible-client comparison reproduced the camera NaN/clamp issue on the exact Phase 2 baseline and Phase 3; left it unchanged as CAM-02. Audit/idempotency/rollback, six contract tests, feature smoke and full final mirror parity pass. User gameplay checkpoint pending. Lesson: equivalent runtime conditions resolved a misleading apparent regression.
+
+## 2026-09-05 — Build cleanup Phase 3; restore baseline for camera comparison
+
+Phase 3 installer built and exercised, then rolled back pending an equivalent camera-transition comparison. The two lighting-tag renames on the exact 62 WIP objects are authorised; staging/archive disposition remains pending. Phase 2 is installed and user-confirmed. Restored mirror 2026-09-05 15:52:58 passes all 160 source hashes and complete hierarchy/property parity. See docs/architecture/cleanup-phase3-generic-naming.md. Phases 3 and 4 remain unfinished. Canonical script: scripts/roblox_cleanup_phase3_generic_naming.lua. Compile/audit/idempotency/rollback/reinstall, physical/WIP invariants and six local contract tests passed. Sandbox feature smoke reached time-trial countdown, but BaseCamera clamp errors require a controlled comparison. No publish or production save. Lesson: runtime equivalence needs matching client conditions; source parity alone is insufficient.
+
+## 2026-09-05 — Confirm cleanup Phase 2; prepare Phase 3 naming migration
+
+User confirmed Phase 2 worked well and authorised Phase 3. Read-only live/source/compile and refreshed mirror checks pass: 160 sources, full expected hierarchy/property parity, unchanged Workspace at 15:28:27. Inventoried generic hierarchy/configuration migration and discovered two lighting tags shared with 62 excluded WIP objects; asked for a narrow scope decision and staging/archive disposition. No Phase 3 Studio source/hierarchy/tag changes and no installer generated yet. See architecture/cleanup-phase3-generic-naming.md and scripts/cleanup_phase3 evidence.
+
+## 2026-09-05 — Confirm cleanup Phase 1; install Phase 2 canonical ownership
+
+User confirmed Phase 1 working. Installed Phase 2: 323 to 160 sources, 133 forwarding adapters and old code hosts retired, live endpoints moved to feature Runtime folders, GarageUI startup direct and current driving callbacks extracted into DriveSessionClient. Removed unused legacy closure/helpers/alternate execution branches; preserved profile semantics, tuning, UI owners and entire Workspace. Compile, rollback/reinstall, startup and sandbox garage/vehicle/time-trial checks pass. Final mirror 15:14:10 matches every expected source/hierarchy/property record. Full gameplay checkpoint pending; two phases remain. Canonical installer: scripts/roblox_cleanup_phase2_canonical_ownership.lua. See architecture/cleanup-phase2-canonical-ownership.md. Lesson: move runtime endpoints and both readiness producer/consumer paths before retiring script hosts.
+
+## 2026-09-05 — Complete cleanup Phase 1 scaffolding retirement
+
+Installed the authorised first phase: removed 91 unused scaffold/report objects and 15 obsolete root migration attributes, without changing any of 323 gameplay sources or any Workspace content. Removed the exporter's in-game fallback-writing branch; receiver failure now creates nothing. Audit/repeat install/rollback/reinstall, compilation, 26 server/40 client startup with four tools skipped, dealership event, sandbox purchase/spawn/DriveReady/exit and eight pipeline tests passed. Full uninterrupted driving remains user verification. Final mirror 12:36:11 passes exact expected hierarchy and full source parity. Classified staging/archive assets; no physical deletion. Two originally detached historical shortcuts restore nil during explicit recovery. Canonical installer: scripts/roblox_cleanup_phase1_scaffolding.lua. See architecture/cleanup-phase1-scaffolding.md; three phases remain.
+
+## 2026-09-05 — Revised complete cleanup plan (documentation only)
+
+Recorded a proposed four-phase programme replacing the conversational three-delivery proposal: retire scaffolding, complete canonical ownership and remove legacy execution paths, migrate generic hierarchy/config/names, then tooling and final regression. Incorporated the World-only Workspace boundary, protected physical content, no in-game backups/fallback implementations, retained opt-in development tools and stable external data identifiers. Added per-phase gameplay/rollback/mirror gates and a no-unclassified-leftovers completion ledger. No Studio changes or mirror refresh; current installed baseline unchanged. See architecture/complete-cleanup-plan.md.
+
+## 2026-09-05 — Confirm Phase 5; retire reviewed legacy items
+
+User confirmed the final architecture phase and authorised cleanup while protecting models/meshes/parts. Removed 117 code/metadata objects (11 disabled scripts, four unused registry/resolver modules, 16 folders and 86 values) plus 70 obsolete source patch-stamp attributes. Retained opt-in development tools by user request, live adapters, tuning, designer links and uncertain theme/fallback areas. No surviving source changed. One exact-record installer supports AUDIT/INSTALL/ROLLBACK; compilation, repeat install, rollback/reinstall and normal Play startup (26 server, 40 client, four skipped) passed. Full mirror 12:07:40: 323 verified sources, all remaining exported node/property data matches the expected baseline, no physical changes. User cleanup playtest pending. See architecture/legacy-cleanup.md and scripts/roblox_legacy_cleanup.lua. Restore cleanup before older exact-baseline phase recovery.
+
+## 2026-09-05 — Architecture Phase 5 LOD optimisation and handoff
+
+Phase 4 user-confirmed. Replaced the canonical LODClient with a thin owner plus LODRuntime/LODPolicy, preserving live bands/collision semantics and placing tuning in WorldLOD attributes. Fixed recursive missing-proxy lookup, dynamic block/member registration, deferred-removal cleanup and far-clone retention; cached buckets skip unchanged work. Eight isolated tests, normal-client late block/removal/re-entry, startup, 338-source compilation and audit/idempotency/rollback passed. Controlled seven-position CPU trace median 27.37 → 14.11 ms; small registration/idle overhead is recorded, with no FPS claim. All 335 other sources retain parity. Full mirror 11:50:30 verified, raw paste untouched. Added company-facing architecture/workflow handoff and release gates. User final city/streaming playthrough next. Canonical installer: scripts/roblox_architecture_phase5_world_optimisation.lua.
+
+## 2026-09-05 — Architecture Phase 4 client organisation
+
+User confirmed Phase 3 gameplay. Installed ClientBase with 44 explicit entries and migrated 92 implementations to ReplicatedStorage.Modules, preserving old-path adapters and disabled experiments. Reused shared theme reading, extracted legacy preview-input subscription ownership, removed disabled proximity polling, and gated trailer/lighting tools behind Studio plus opt-in config. Existing gameplay/renderers/driving equations remain. Four isolated helper groups, exact audit/idempotency/rollback, 40 completed client startups + four skipped tools, all 26 server startups, sandbox purchase/garage preview/workshop and command/event spawn/exit/re-entry passed. All 336 sources compile; 148 out-of-scope sources retain exact parity. Full mirror 2026-09-05 11:34:22, integrity PASS. User guided gameplay/device test next; Phase 5 remains. Canonical installer: scripts/roblox_architecture_phase4_client_organisation.lua. See docs/architecture/phase4-client-organisation.md for limits and rollback.
+
+## 2026-09-05 — Architecture Phase 3 server organisation
+
+- User confirmed Phase 2 playthrough and authorised continuation. ServerBase now starts 26 explicit services; 41 implementations have canonical ServerStorage.Modules.Game paths with stateless old-path adapters. Disabled historical scripts remain disabled.
+- Extracted EconomyServer and runtime/persistent profile filtering. Removed the garage-owned profile cache and garage/racing whole-profile imports; ProfileServer retains the authoritative session, save transport and stable schema/IDs.
+- Nine isolated architecture tests passed. All 26 services reached ready; sandbox purchase/reward/paint preserved Cash and vehicle identity, and spawn/exit/re-entry, stale-import rejection and actual snapshot encoding passed. Repaired startup wait/lighting readiness in the same installer.
+- Canonical installer: scripts/roblox_architecture_phase3_server_organisation.lua. Audit/idempotency/rollback/reinstall passed, 240 sources compile, mirror refreshed at 11:16:45 and verified. User gameplay acceptance remains pending; no publish or real production data mutation claimed. See architecture/phase3-server-organisation.md.
+
+## 2026-09-05 — Architecture Phase 2 persistence/request safety
+
+- User confirmed Phase 1 worked well and approved continuation. Added ProfileStore transport and GarageRequestGuard around the existing owners; no runtime renames, gameplay balance or asset changes.
+- Blocked writable failed-load defaults, pinned no-save sessions, added renewable session leases, serialised revision-aware saves and coordinated closing. Garage hydration waits for authoritative data; generic requests are bounded and checked before expensive work.
+- Canonical installer: scripts/roblox_architecture_phase2_persistence_safety.lua. Nineteen isolated tests, live sandbox/remote smoke, exact audit, repeat install, rollback/reinstall and all 195 script compilations passed.
+- Refreshed mirror at 10:58:29; only two existing sources changed and two modules added. User gameplay acceptance and isolated published-place save/rejoin remain pending. Drain old profile writers before production deployment. See docs/architecture/phase2-persistence-safety.md.
+
+## 2026-09-05 — Architecture Phase 1 foundation
+
+- Approved company-familiar naming/ownership programme recorded; runtime migrations remain later phases.
+- Replaced long current startup/issues pages with compact state and open risks; preserved both original records in docs/history.
+- Added a read-only all-source compile audit, frozen source baseline, mirror verifier and failure-oriented tooling tests.
+- Extended the existing V2 exporter with property schema revision 3 and fail-closed source reads. Normal HTTP export no longer writes Studio export objects.
+- Added validated staged mirror replacement and rollback; raw paste is opt-in and its existing user diff is preserved.
+- Gameplay sources, enabled states, settings and saved data were unchanged in Phase 1. Verification details: docs/architecture/phase1-verification.json. User subsequently broadly confirmed everything worked well.
+
 ## 2026-08-02 - Gamefam submission map scope handoff locked (documentation only)
 
 - Locked the user-approved submission strategy: present the approximately 20 completed blocks as an intentional playable prototype district and retain only clean distant blockouts for city scale.

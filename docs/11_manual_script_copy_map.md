@@ -1,5 +1,17 @@
 # Manual Script Copy Map
 
+2026-09-05 cleanup Phase 3 is installed and user-confirmed. Canonical paths now use Workspace.World, ReplicatedStorage.Assets/Remotes/Config and feature configuration folders. Physical content is preserved. Mirror 16:06:57 passes exact expected source/hierarchy/property parity. See docs/architecture/cleanup-phase3-generic-naming.md.
+
+## Current entry point — 2026-09-05
+
+Complete cleanup Phase 3 is installed through MCP. No manual run is pending. Canonical installer: scripts/roblox_cleanup_phase3_generic_naming.lua, with AUDIT/INSTALL/ROLLBACK modes. Current source paths are the exported manifest and cleanup_phase3 maps. Do not copy old standalone scripts over migrated modules. Roll back Phase 3 before Phase 2 or older recovery.
+
+All five architecture phases are user-confirmed. Legacy cleanup is already installed through MCP; no manual copy is pending. Use `scripts/roblox_legacy_cleanup.lua` for intentional AUDIT or ROLLBACK in Edit. It removes only the frozen retirement inventory and restores from embedded repo-backed records. Restore cleanup before any older exact-baseline phase recovery. Full removal/retention decisions: `docs/architecture/legacy-cleanup.md`.
+
+Phase 5 is already installed via MCP. Use `scripts/roblox_architecture_phase5_world_optimisation.lua` only for intentional AUDIT/recovery/ROLLBACK against its exact baseline. World.LODClient/LODRuntime/LODPolicy live under ReplicatedStorage.Modules.Game; the old LOD adapter was removed by cleanup Phase 2. Current paths are in the cleanup Phase 2 maps; Phase 4/3 maps below are historical. No ordinary manual copy is pending. Phase 5 must be rolled back before Phase 4 exact recovery; do not force old repair scripts over migrated implementations.
+
+Use docs/architecture/installer-index.md. Phase 1 needs no gameplay installer; run the canonical read-only audit through MCP if necessary. Older “run” examples below are recovery history, not a current pending queue. Exact current source paths live in roblox/exported_scripts/manifest.json.
+
 **Created:** 2026-05-28  
 **Status:** Current script mirror folders created  
 **Current mirror root:** `roblox/exported_scripts`

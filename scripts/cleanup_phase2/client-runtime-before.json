@@ -1,0 +1,319 @@
+{
+  "nodes": [
+    {
+      "class": "Folder",
+      "path": [
+        "NeoTokyoRacersClient",
+        "Controllers"
+      ]
+    },
+    {
+      "class": "Folder",
+      "path": [
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "Preview"
+      ]
+    },
+    {
+      "class": "Folder",
+      "path": [
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "World"
+      ]
+    },
+    {
+      "class": "Folder",
+      "path": [
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "UI"
+      ]
+    },
+    {
+      "class": "Folder",
+      "path": [
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "UI",
+        "LoadingPresentationState"
+      ]
+    },
+    {
+      "class": "BindableEvent",
+      "path": [
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "UI",
+        "LoadingPresentationChanged"
+      ]
+    },
+    {
+      "class": "BindableEvent",
+      "path": [
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "UI",
+        "OpenOwnedGarageWorkspace"
+      ]
+    },
+    {
+      "class": "BindableFunction",
+      "path": [
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "UI",
+        "LoadingTransitionInvoke"
+      ]
+    },
+    {
+      "class": "BindableEvent",
+      "path": [
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "UI",
+        "FreeRoamHudPresentationMode"
+      ]
+    },
+    {
+      "class": "BindableEvent",
+      "path": [
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "UI",
+        "OpenDrivingControlsFromOnboarding"
+      ]
+    },
+    {
+      "class": "BindableEvent",
+      "path": [
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "UI",
+        "OpenOwnedGarageBrowser"
+      ]
+    },
+    {
+      "class": "StringValue",
+      "path": [
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "UI",
+        "README_TargetControllers"
+      ]
+    },
+    {
+      "class": "BindableEvent",
+      "path": [
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "UI",
+        "ShowTopNotification"
+      ]
+    },
+    {
+      "class": "BindableEvent",
+      "path": [
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "UI",
+        "OpenRaceBrowser"
+      ]
+    },
+    {
+      "class": "BindableEvent",
+      "path": [
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "UI",
+        "FreeRoamVehicleSpawned"
+      ]
+    },
+    {
+      "class": "BindableEvent",
+      "path": [
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "UI",
+        "FreeRoamVehicleExited"
+      ]
+    },
+    {
+      "class": "Folder",
+      "path": [
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "Runtime"
+      ]
+    },
+    {
+      "class": "Folder",
+      "path": [
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "Core"
+      ]
+    },
+    {
+      "class": "Folder",
+      "path": [
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "Intro"
+      ]
+    },
+    {
+      "class": "BindableEvent",
+      "path": [
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "Intro",
+        "OpenGarageFromIntro"
+      ]
+    },
+    {
+      "class": "BindableEvent",
+      "path": [
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "Intro",
+        "OpenOwnedCockpitCustomisation"
+      ]
+    },
+    {
+      "class": "BindableEvent",
+      "path": [
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "Intro",
+        "OpenDrivingVehicleCustomisation"
+      ]
+    },
+    {
+      "class": "BindableEvent",
+      "path": [
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "Intro",
+        "GarageClosedFromDealershipExit"
+      ]
+    },
+    {
+      "class": "Folder",
+      "path": [
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "Racing"
+      ]
+    },
+    {
+      "class": "BindableEvent",
+      "path": [
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "Racing",
+        "RaceTransitionStateChanged"
+      ]
+    },
+    {
+      "class": "BindableEvent",
+      "path": [
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "Racing",
+        "StartRaceQueueRequest"
+      ]
+    },
+    {
+      "class": "BindableEvent",
+      "path": [
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "Racing",
+        "RaceTransitionRequest"
+      ]
+    },
+    {
+      "class": "BindableEvent",
+      "path": [
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "Racing",
+        "RaceEntryLegacyAction"
+      ]
+    },
+    {
+      "class": "BindableEvent",
+      "path": [
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "Racing",
+        "RaceEntryPresentationRequest"
+      ]
+    },
+    {
+      "class": "Folder",
+      "path": [
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "Debug"
+      ]
+    },
+    {
+      "class": "Folder",
+      "path": [
+        "NeoTokyoRacersClient",
+        "Controllers",
+        "Audio"
+      ]
+    }
+  ],
+  "startup": {
+    "RaceEntryMenuClient": "ready",
+    "FreeRoamNavUI": "ready",
+    "RaceRouteGuideClient": "ready",
+    "ThrustPreviewClient": "ready",
+    "RaceSessionPresentationClient": "ready",
+    "LightingPreviewClient": "skipped",
+    "TrailerModeClient": "skipped",
+    "RaceTransitionClient": "ready",
+    "DriveHudClient": "ready",
+    "OwnedGarageClient": "ready",
+    "DriveToEarnCashTelemetryClient": "ready",
+    "CharacterSprintClient": "ready",
+    "LODClient": "ready",
+    "ContextAudioRuntimeClient": "ready",
+    "RaceQueueClient": "ready",
+    "RaceTimeTrialResultCoachClient": "ready",
+    "RaceLifecyclePresentationClient": "ready",
+    "StudioCashGrantClient": "ready",
+    "GarageClient": "ready",
+    "TrailerVehicleCameraClient": "skipped",
+    "DesktopFreeRoamHudUI": "ready",
+    "RuntimeVFXClient": "ready",
+    "AcousticsRuntimeClient": "ready",
+    "GarageEntranceClient": "ready",
+    "RaceEntryPresentationClient": "ready",
+    "WindowMaterialClient": "ready",
+    "OwnedGarageEnvironmentLightingClient": "ready",
+    "PresentationAudioRuntimeClient": "ready",
+    "MobileFreeRoamHudUI": "ready",
+    "NightLamppostLightClient": "ready",
+    "SharedTopNotificationUI": "ready",
+    "LoadingTransitionUI": "ready",
+    "OnboardingClient": "ready",
+    "FreeRoamVehicleExitButtonClient": "ready",
+    "MobileDriveControlsClient": "ready",
+    "FreeRoamParkedHoverClient": "ready",
+    "RaceSessionAssetsClient": "ready",
+    "RaceCountdownPresentationClient": "ready",
+    "DealershipIntroClient": "ready",
+    "AudioRuntimeClient": "ready",
+    "TrailerShotClient": "skipped",
+    "RaceParticipantVisibilityClient": "ready",
+    "RaceBrowserClient": "ready",
+    "GaragePreviewPresentationClient": "ready"
+  },
+  "sandbox": true
+}

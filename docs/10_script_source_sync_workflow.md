@@ -1,5 +1,13 @@
 # Studio Source Sync Workflow
 
+Windows permissions fix (2026-09-05): staging now inherits the repo parent ACL so promoted mirrors remain readable by the normal GitHub Desktop account. Do not replace it with private tempfile.mkdtemp staging. Existing mirror root inheritance was restored; content is unchanged.
+
+## Current MCP workflow — 2026-09-05
+
+Latest complete-cleanup Phase 3 mirror: 2026-09-05 16:06:57, 160 verified sources and 266,840 properties. Both mirror areas are current. scripts/cleanup_phase3/verify_migration.py verifies the exact planned changes against the frozen baseline, including physical properties and excluded Workspace parity. Tag memberships are verified by the installer separately. Exporter remains receiver-only; raw paste untouched. Roll back Phase 3 before earlier exact-baseline recovery.
+
+Use docs/architecture/mcp-workflow.md as the current delivery contract. The receiver/exporter paths below remain canonical. V2 schema revision 3 adds scoped properties and source integrity validation. Normal exports are read-only in Studio and the receiver leaves the raw paste untouched unless --write-paste is supplied. Run scripts/verify_studio_mirror.py after every import. Older dated scope notes below are historical evidence, not current installation instructions.
+
 **Updated:** 2026-07-27
 **Status:** Local receiver full-snapshot export/import workflow  
 **Purpose:** Capture the current Roblox Studio hierarchy and all script sources into GitHub with minimal manual copying.
@@ -23,7 +31,7 @@ This workflow exports the important Studio data in one pass:
 - Metadata such as `ClassName`, Studio path, `Disabled` state, attributes, source line counts, byte counts, and checksums.
 - A local HTTP receiver path so you do not have to manually copy dozens of `StringValue` chunks.
 - Automatic HTTP chunking under Roblox Studio's 1024 KB post limit.
-- Chunked `StringValue`s in `ReplicatedStorage` as a fallback if local HTTP is unavailable.
+- Receiver-only export: errors leave Studio objects untouched; no in-game fallback or dump folder.
 
 This is a mirror, not live Rojo sync. Editing files under `roblox/exported_scripts/` does not automatically update Studio.
 
@@ -63,7 +71,7 @@ In Roblox Studio, make sure HTTP requests are enabled:
 Game Settings > Security > Allow HTTP Requests
 ```
 
-If Studio HTTP is disabled, the exporter will still make fallback chunks, but the receiver will not get the export automatically.
+If Studio HTTP is disabled or the receiver is unavailable, the exporter stops with an error and changes no Studio objects. Correct the connection and rerun; it never creates fallback chunks.
 
 ### 3. Run The Studio Exporter
 
@@ -76,7 +84,6 @@ scripts/roblox_studio_export_full_snapshot_for_github_v2.lua
 If the local receiver is running, Studio posts the full export to it in smaller HTTP chunks. The receiver then automatically writes/imports:
 
 ```text
-docs/studio-full-export-paste.txt
 roblox/exported_scripts/
 roblox/studio_snapshot/
 ```
@@ -84,7 +91,7 @@ roblox/studio_snapshot/
 In Studio output, the good message looks like:
 
 ```text
-[NTR Studio Export V2] Sent to local receiver in 13 chunks: http://127.0.0.1:8765/ntr-studio-export-chunk
+[NTR Studio Export V2] PASS: read-only HTTP export; scripts=323; schema=3; propertyWarnings=0; duplicatePaths=2918
 ```
 
 In PowerShell, the good message is:
@@ -93,47 +100,11 @@ In PowerShell, the good message is:
 Studio export received and imported successfully.
 ```
 
-If the receiver reports that it could not write `docs/studio-full-export-paste.txt` but still says it is continuing with in-memory import, that is acceptable. The important outputs are the refreshed `roblox/exported_scripts/` and `roblox/studio_snapshot/` folders. The raw paste file is only a fallback artifact and should not be committed.
+The receiver leaves `docs/studio-full-export-paste.txt` untouched by default. Verify both generated mirror areas, and leave the existing raw-paste diff unstaged.
 
-## Fallback Chunk Workflow
+## Receiver failure
 
-Use this only if the local receiver cannot be used.
-
-The Studio exporter creates or refreshes this folder:
-
-```text
-ReplicatedStorage.NTR_STUDIO_FULL_EXPORT_V2
-```
-
-Inside it you will see:
-
-```text
-README_HOW_TO_IMPORT
-StudioExport_001
-StudioExport_002
-StudioExport_003
-...
-```
-
-Create this local file in the repo:
-
-```text
-docs/studio-full-export-paste.txt
-```
-
-Copy the **Value** from each `StudioExport_###` StringValue in order and paste them into that one file. Do not copy the StringValue names, just the values.
-
-Then run:
-
-```text
-python scripts/import_studio_full_snapshot_export.py docs/studio-full-export-paste.txt
-```
-
-or:
-
-```text
-py scripts/import_studio_full_snapshot_export.py docs/studio-full-export-paste.txt
-```
+The in-game StringValue fallback was removed in complete cleanup Phase 1. Do not restore an old exporter or recreate its dump folder. Start the receiver, enable Studio HTTP if necessary, inspect the error and retry. The importer may read an already-existing historical export file on disk; that does not require any backup objects in Studio.
 
 ## What The Importer Writes
 

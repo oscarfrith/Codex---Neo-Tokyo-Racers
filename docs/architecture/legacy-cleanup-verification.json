@@ -1,0 +1,27 @@
+{
+  "status": "installed_awaiting_user_cleanup_playtest",
+  "place_id": 121304917315753,
+  "removed_objects": 117,
+  "removed_sources": 15,
+  "removed_patch_attributes": 70,
+  "remaining_sources": 323,
+  "source_sha256_parity": "PASS",
+  "exact_expected_hierarchy_digest": "c05183f0305aad4af0dcbb42251a972e0dad9f0ce0a0c21a51095722d5b13086",
+  "all_remaining_exported_nodes_and_properties_parity": "PASS",
+  "remaining_nodes": 42745,
+  "mirror_generated_in_studio": "2026-09-05 12:07:40",
+  "audit": "PASS",
+  "idempotency": "PASS",
+  "rollback_reinstall": "PASS",
+  "compile_passed": 323,
+  "normal_play_startup": {
+    "server_ready": 26,
+    "client_ready": 40,
+    "development_skipped": 4,
+    "lod_status": "running"
+  },
+  "phase5_user_confirmed": true,
+  "cleanup_gameplay_acceptance": "PENDING",
+  "published": false,
+  "raw_paste": "UNTOUCHED"
+}

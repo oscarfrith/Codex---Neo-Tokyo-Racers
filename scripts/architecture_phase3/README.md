@@ -1,0 +1,13 @@
+# Phase 3 maintenance
+
+Canonical installer: `scripts/roblox_architecture_phase3_server_organisation.lua`. Run in Edit with INSTALL, AUDIT or ROLLBACK. It contains the exact source transformations, fingerprints, reverse transforms, helper sources and startup registration. No manual preparation scripts or in-game backups are needed.
+
+Run `python scripts/architecture_phase3/build_installer.py` to rebuild. The builder accepts the original mirror or the installed mirror plus `migration.json`, reverses only its own verified transforms when necessary, and regenerates the installer and isolated tests. This was tested after the final mirror refresh. Keep migration.json with the builder. Local projected/ files are ignored; the exported Studio mirror contains the reviewable installed implementations.
+
+The old Services paths are stateless ModuleScript adapters. Former active Script implementations became feature modules; ServerBase is their only startup owner. Old runtime Bindable paths remain available. Do not call service.start from a diagnostic or hot-reload it: the lifetime is the server session. In particular, an elevated Studio command can see a different ModuleScript require cache from ordinary runtime scripts; an empty API table there is not evidence that the real server module failed. Verify StartupState and real bindings/remotes.
+
+ProfileServer owns the session, lease, authoritative profile and dirty state. Trusted GarageServer and RaceRewardsServer operate on the current session through its internal server APIs; no client receives the live table. ProfileCompatibility attaches transient legacy view fields to the same table and filters them out before snapshot/save. EconomyServer retains the original eligibility, deduplication and grant limits. Generic whole-profile import is rejected. Never reintroduce a cached balance/inventory or a detached snapshot writer.
+
+This migration does not make every feature function a rollback-safe transaction or support arbitrary hot reload. Existing purchase/inventory guards and cleanup remain. The large GarageServer still contains private build/preview-summary helpers; further extraction should follow real independent responsibilities rather than file-size targets. The old path adapters are deliberate compatibility debt, not extra startup owners.
+
+Rollback restores the exact Phase 2 source/class layout and removes generated modules/empty generated folders. It refuses intervening edits. After new feature edits, use version control and a newly reviewed rollback, not an old installer forced over a changed baseline. Real saved-data tests in an isolated published place remain required before release.

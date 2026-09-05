@@ -1,0 +1,3493 @@
+[
+  {
+    "source": "ReplicatedFirst.NTRLoading.InitialLoadingAndStartScreenClient",
+    "target": "ReplicatedFirst.NTRLoading.InitialLoadingAndStartScreenClient",
+    "replacements": [
+      {
+        "before": "kit:WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"UI\"):WaitForChild(\"RacingUIComponents\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.RacingUIComponents"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedFirst.NTRLoading.LoadingArtworkCatalog",
+    "target": "ReplicatedFirst.NTRLoading.LoadingArtworkCatalog",
+    "replacements": [],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedFirst.NTRLoading.LoadingScreenView",
+    "target": "ReplicatedFirst.NTRLoading.LoadingScreenView",
+    "replacements": [],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedFirst.NTRLoading.LoadingTransitionRuntime",
+    "target": "ReplicatedFirst.NTRLoading.LoadingTransitionRuntime",
+    "replacements": [
+      {
+        "before": "kit:WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"Input\"):WaitForChild(\"GameplayInputGate\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.GameplayInputGate"
+      },
+      {
+        "before": "kit.Shared.Modules.Client:WaitForChild(\"Audio\"):WaitForChild(\"AudioMixController\")",
+        "after": "ReplicatedStorage.Modules.Game.Audio.AudioMixClient"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Core.ClientLifecycle",
+    "target": "ReplicatedStorage.Modules.Core.ClientLifecycle",
+    "replacements": [],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Core.ClientThemeAdapter",
+    "target": "ReplicatedStorage.Modules.Core.ClientThemeAdapter",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Core\"):WaitForChild(\"ClientThemeAdapter\")",
+        "after": "ReplicatedStorage.Modules.Core.ClientThemeAdapter"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Core.ConnectionScope",
+    "target": "ReplicatedStorage.Modules.Core.ConnectionScope",
+    "replacements": [],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Audio.AcousticsClient",
+    "target": "ReplicatedStorage.Modules.Game.Audio.AcousticsClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"Audio\"):WaitForChild(\"AcousticsController\")",
+        "after": "ReplicatedStorage.Modules.Game.Audio.AcousticsClient"
+      },
+      {
+        "before": "kit.Shared.Modules.Client.Audio:WaitForChild(\"ContextAudioController\")",
+        "after": "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Audio.AcousticsRuntimeClient",
+    "target": "ReplicatedStorage.Modules.Game.Audio.AcousticsRuntimeClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Audio\"):WaitForChild(\"AcousticsRuntimeController_Active\")",
+        "after": "ReplicatedStorage.Modules.Game.Audio.AcousticsRuntimeClient"
+      },
+      {
+        "before": "kit.Shared.Modules.Client.Audio:WaitForChild(\"AcousticsController\")",
+        "after": "ReplicatedStorage.Modules.Game.Audio.AcousticsClient"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Audio.AudioBusClient",
+    "target": "ReplicatedStorage.Modules.Game.Audio.AudioBusClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"Audio\"):WaitForChild(\"AudioBusController\")",
+        "after": "ReplicatedStorage.Modules.Game.Audio.AudioBusClient"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Audio.AudioMixClient",
+    "target": "ReplicatedStorage.Modules.Game.Audio.AudioMixClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"Audio\"):WaitForChild(\"AudioMixController\")",
+        "after": "ReplicatedStorage.Modules.Game.Audio.AudioMixClient"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Audio.AudioRuntimeClient",
+    "target": "ReplicatedStorage.Modules.Game.Audio.AudioRuntimeClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Audio\"):WaitForChild(\"AudioRuntimeController_Active\")",
+        "after": "ReplicatedStorage.Modules.Game.Audio.AudioRuntimeClient"
+      },
+      {
+        "before": "kit.Shared.Modules.Client.Audio:WaitForChild(\"VehicleAudioController\")",
+        "after": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Audio.ContextAudioCatalog",
+    "target": "ReplicatedStorage.Modules.Game.Audio.ContextAudioCatalog",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"Audio\"):WaitForChild(\"ContextAudioCatalog\")",
+        "after": "ReplicatedStorage.Modules.Game.Audio.ContextAudioCatalog"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient",
+    "target": "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"Audio\"):WaitForChild(\"ContextAudioController\")",
+        "after": "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient"
+      },
+      {
+        "before": "kit.Shared.Modules.Client:WaitForChild(\"Audio\")",
+        "after": "ReplicatedStorage.Modules.Game.Audio"
+      },
+      {
+        "before": "audioModules:WaitForChild(\"ContextAudioCatalog\")",
+        "after": "ReplicatedStorage.Modules.Game.Audio.ContextAudioCatalog"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Audio.ContextAudioRuntimeClient",
+    "target": "ReplicatedStorage.Modules.Game.Audio.ContextAudioRuntimeClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Audio\"):WaitForChild(\"ContextAudioRuntimeController_Active\")",
+        "after": "ReplicatedStorage.Modules.Game.Audio.ContextAudioRuntimeClient"
+      },
+      {
+        "before": "kit.Shared.Modules.Client.Audio:WaitForChild(\"ContextAudioController\")",
+        "after": "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioBridge",
+    "target": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioBridge",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"Audio\"):WaitForChild(\"PresentationAudioBridge\")",
+        "after": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioBridge"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioCatalog",
+    "target": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioCatalog",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"Audio\"):WaitForChild(\"PresentationAudioCatalog\")",
+        "after": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioCatalog"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioClient",
+    "target": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"Audio\"):WaitForChild(\"PresentationAudioController\")",
+        "after": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioClient"
+      },
+      {
+        "before": "kit.Shared.Modules.Client:WaitForChild(\"Audio\")",
+        "after": "ReplicatedStorage.Modules.Game.Audio"
+      },
+      {
+        "before": "audioModules:WaitForChild(\"PresentationAudioCatalog\")",
+        "after": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioCatalog"
+      },
+      {
+        "before": "audioModules:WaitForChild(\"PresentationAudioBridge\")",
+        "after": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioBridge"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioRuntimeClient",
+    "target": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioRuntimeClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Audio\"):WaitForChild(\"PresentationAudioRuntimeController_Active\")",
+        "after": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioRuntimeClient"
+      },
+      {
+        "before": "kit.Shared.Modules.Client.Audio:WaitForChild(\"PresentationAudioController\")",
+        "after": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioClient"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioCatalog",
+    "target": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioCatalog",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"Audio\"):WaitForChild(\"VehicleAudioCatalog\")",
+        "after": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioCatalog"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+    "target": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"Audio\"):WaitForChild(\"VehicleAudioController\")",
+        "after": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient"
+      },
+      {
+        "before": "kit:WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"Audio\")",
+        "after": "ReplicatedStorage.Modules.Game.Audio"
+      },
+      {
+        "before": "kit.Shared.Modules:WaitForChild(\"Common\"):WaitForChild(\"Audio\")",
+        "after": "ReplicatedStorage.Modules.Game.Audio"
+      },
+      {
+        "before": "audioModules:WaitForChild(\"AudioBusController\")",
+        "after": "ReplicatedStorage.Modules.Game.Audio.AudioBusClient"
+      },
+      {
+        "before": "audioModules:WaitForChild(\"VehicleAudioCatalog\")",
+        "after": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioCatalog"
+      },
+      {
+        "before": "commonAudio:WaitForChild(\"VehicleAudioStateContract\")",
+        "after": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioStateContract"
+      },
+      {
+        "before": "kit.Shared.Modules.Client.Controllers:WaitForChild(\"MobileDriveInputState\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveInputState"
+      },
+      {
+        "before": "playerScripts:FindFirstChild(\"NeoTokyoRacersClient\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime"
+      },
+      {
+        "before": "client:FindFirstChild(\"Controllers\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime"
+      },
+      {
+        "before": "controllers",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime"
+      },
+      {
+        "before": "ui:FindFirstChild(\"LoadingPresentationState\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.UI.LoadingPresentationState"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Dealership.DealershipIntroClient",
+    "target": "ReplicatedStorage.Modules.Game.Dealership.DealershipIntroClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Intro\"):WaitForChild(\"DealershipIntroClient_Active\")",
+        "after": "ReplicatedStorage.Modules.Game.Dealership.DealershipIntroClient"
+      },
+      {
+        "before": "kit:WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"UI\"):WaitForChild(\"UITheme\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.UITheme"
+      },
+      {
+        "before": "script.Parent",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.Dealership"
+      },
+      {
+        "before": "script.Parent",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.Dealership"
+      },
+      {
+        "before": "script.Parent",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.Dealership"
+      },
+      {
+        "before": "script.Parent",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.Dealership"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Dealership.GarageEntranceClient",
+    "target": "ReplicatedStorage.Modules.Game.Dealership.GarageEntranceClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Intro\"):WaitForChild(\"GarageEntranceController_Active\")",
+        "after": "ReplicatedStorage.Modules.Game.Dealership.GarageEntranceClient"
+      },
+      {
+        "before": "script.Parent.Parent",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime"
+      },
+      {
+        "before": "kit.Shared.Modules.Client.Audio:WaitForChild(\"PresentationAudioBridge\")",
+        "after": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioBridge"
+      },
+      {
+        "before": "script.Parent.Parent",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime"
+      },
+      {
+        "before": "script.Parent",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.Dealership"
+      },
+      {
+        "before": "script.Parent",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.Dealership"
+      },
+      {
+        "before": "script.Parent",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.Dealership"
+      }
+    ],
+    "ambiguous_aliases": {
+      "Part": [
+        [
+          "Workspace",
+          "NeoTokyoRacersWorld",
+          "Dealership",
+          "Customisation",
+          "CustomisationDeskTrigger"
+        ],
+        [
+          "Workspace",
+          "NeoTokyoRacersWorld",
+          "Dealership",
+          "Customisation",
+          "DriveInCustomisationTrigger"
+        ],
+        [
+          "Workspace",
+          "NeoTokyoRacersWorld",
+          "Dealership",
+          "Intro",
+          "Desk",
+          "GarageDeskTrigger"
+        ]
+      ]
+    }
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient",
+    "target": "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Debug\"):WaitForChild(\"DriveToEarnCashTelemetry_StudioOnly\")",
+        "after": "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Development.LightingPreviewClient",
+    "target": "ReplicatedStorage.Modules.Game.Development.LightingPreviewClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"TEMP_LightingPreview\")",
+        "after": "ReplicatedStorage.Modules.Game.Development.LightingPreviewClient"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Development.StudioCashGrantClient",
+    "target": "ReplicatedStorage.Modules.Game.Development.StudioCashGrantClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Debug\"):WaitForChild(\"StudioCashGrantClient_Active\")",
+        "after": "ReplicatedStorage.Modules.Game.Development.StudioCashGrantClient"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Development.TrailerModeClient",
+    "target": "ReplicatedStorage.Modules.Game.Development.TrailerModeClient",
+    "replacements": [],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Development.TrailerShotClient",
+    "target": "ReplicatedStorage.Modules.Game.Development.TrailerShotClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"TrailerShot01Camera\")",
+        "after": "ReplicatedStorage.Modules.Game.Development.TrailerShotClient"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Development.TrailerVehicleCameraClient",
+    "target": "ReplicatedStorage.Modules.Game.Development.TrailerVehicleCameraClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"LocalScript\")",
+        "after": "ReplicatedStorage.Modules.Game.Development.TrailerVehicleCameraClient"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Garage.CatalogClient",
+    "target": "ReplicatedStorage.Modules.Game.Garage.CatalogClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Core\"):WaitForChild(\"CatalogClient\")",
+        "after": "ReplicatedStorage.Modules.Game.Garage.CatalogClient"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Garage.GarageApiClient",
+    "target": "ReplicatedStorage.Modules.Game.Garage.GarageApiClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Core\"):WaitForChild(\"GarageApiClient\")",
+        "after": "ReplicatedStorage.Modules.Game.Garage.GarageApiClient"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Garage.GarageClient",
+    "target": "ReplicatedStorage.Modules.Game.Garage.GarageClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"NeoTokyoRacersClient_Bootstrap_Shadow_Disabled\")",
+        "after": "ReplicatedStorage.Modules.Game.Garage.GarageClient"
+      },
+      {
+        "before": "kit:WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"VFX\"):WaitForChild(\"VehicleVFXController\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.LegacyVehicleVFXClient"
+      },
+      {
+        "before": "kit:WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Common\"):WaitForChild(\"VehicleStatsCache\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.VehicleStatsCache"
+      },
+      {
+        "before": "kit:WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"Controllers\"):WaitForChild(\"ReentryThrottle\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.ReentryThrottle"
+      },
+      {
+        "before": "kit:WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"UI\"):WaitForChild(\"UIPool\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.UIPool"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"GaragePropertyMenuController\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.GaragePropertyMenuUI"
+      },
+      {
+        "before": "kit\n\t\t:WaitForChild(\"Shared\")\n\t\t:WaitForChild(\"Modules\")\n\t\t:WaitForChild(\"Common\")\n\t\t:WaitForChild(\"Performance\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.Performance"
+      },
+      {
+        "before": "script.Parent",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime"
+      },
+      {
+        "before": "script.Parent:FindFirstChild(\"Controllers\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"GarageBrowserController\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.GarageBrowserUI"
+      },
+      {
+        "before": "script.Parent.Controllers.UI:WaitForChild(\"GarageWorkspaceController\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.GarageWorkspaceUI"
+      },
+      {
+        "before": "script.Parent.Controllers.UI:WaitForChild(\"GarageWorkspaceController\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.GarageWorkspaceUI"
+      },
+      {
+        "before": "script.Parent.Controllers.UI:WaitForChild(\"GarageWorkspaceController\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.GarageWorkspaceUI"
+      },
+      {
+        "before": "script.Parent",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime"
+      },
+      {
+        "before": "script.Parent",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime"
+      },
+      {
+        "before": "script.Parent",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime"
+      },
+      {
+        "before": "game:GetService(\"ReplicatedStorage\")\n\t:WaitForChild(\"NeoTokyoRacers\")\n\t:WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\")\n\t:WaitForChild(\"Controllers\")\n\t:WaitForChild(\"MobileDriveInputState\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveInputState"
+      },
+      {
+        "before": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"Controllers\"):WaitForChild(\"DrivingControllerV47\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.DrivingClient"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"ModuleShopUIController\")",
+        "after": "ReplicatedStorage.Modules.Game.Garage.GarageUI"
+      }
+    ],
+    "ambiguous_aliases": {
+      "height": [
+        [
+          "Workspace",
+          "X"
+        ],
+        [
+          "UserInputService"
+        ]
+      ]
+    }
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Garage.GarageModuleInstancePreviewAdapter",
+    "target": "ReplicatedStorage.Modules.Game.Garage.GarageModuleInstancePreviewAdapter",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Preview\"):WaitForChild(\"GarageModuleInstancePreviewAdapter\")",
+        "after": "ReplicatedStorage.Modules.Game.Garage.GarageModuleInstancePreviewAdapter"
+      },
+      {
+        "before": "kit:WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Common\"):WaitForChild(\"Performance\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.Performance"
+      },
+      {
+        "before": "performance:WaitForChild(\"VehiclePerformanceResolver\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehiclePerformanceResolver"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Garage.GaragePreviewPresentationClient",
+    "target": "ReplicatedStorage.Modules.Game.Garage.GaragePreviewPresentationClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Preview\"):WaitForChild(\"GaragePreviewPresentationController_Active\")",
+        "after": "ReplicatedStorage.Modules.Game.Garage.GaragePreviewPresentationClient"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Garage.GarageState",
+    "target": "ReplicatedStorage.Modules.Game.Garage.GarageState",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Core\"):WaitForChild(\"ClientState\")",
+        "after": "ReplicatedStorage.Modules.Game.Garage.GarageState"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+    "target": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"ModuleShopUIController\")",
+        "after": "ReplicatedStorage.Modules.Game.Garage.GarageUI"
+      },
+      {
+        "before": "script.Parent",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.UI"
+      },
+      {
+        "before": "uiFolder.Parent:WaitForChild(\"Intro\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.Dealership"
+      },
+      {
+        "before": "uiFolder.Parent:WaitForChild(\"Preview\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.Garage"
+      },
+      {
+        "before": "uiFolder:WaitForChild(\"GarageBrowserController\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.GarageBrowserUI"
+      },
+      {
+        "before": "uiFolder:WaitForChild(\"GarageWorkspaceController\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.GarageWorkspaceUI"
+      },
+      {
+        "before": "uiFolder:WaitForChild(\"GarageReplacementComponents\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.GarageComponents"
+      },
+      {
+        "before": "uiFolder:WaitForChild(\"GarageModuleCardViewModel\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.GarageModuleCardViewModel"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"LoadingTransitionInvoke\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.UI.LoadingTransitionInvoke"
+      },
+      {
+        "before": "kit.Shared.Modules.Client.Audio:WaitForChild(\"PresentationAudioBridge\")",
+        "after": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioBridge"
+      },
+      {
+        "before": "previewFolder:WaitForChild(\"PreviewVehicleController\")",
+        "after": "ReplicatedStorage.Modules.Game.Garage.PreviewVehicleClient"
+      },
+      {
+        "before": "previewFolder:WaitForChild(\"PreviewCameraController\")",
+        "after": "ReplicatedStorage.Modules.Game.Garage.PreviewCameraClient"
+      },
+      {
+        "before": "previewFolder:WaitForChild(\"GarageModuleInstancePreviewAdapter\")",
+        "after": "ReplicatedStorage.Modules.Game.Garage.GarageModuleInstancePreviewAdapter"
+      },
+      {
+        "before": "previewFolder:WaitForChild(\"GarageVehiclePreviewProfile\")",
+        "after": "ReplicatedStorage.Modules.Game.Garage.GarageVehiclePreviewProfile"
+      },
+      {
+        "before": "kit:WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Common\"):WaitForChild(\"Performance\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.Performance"
+      },
+      {
+        "before": "performance:WaitForChild(\"VehiclePerformanceResolver\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehiclePerformanceResolver"
+      },
+      {
+        "before": "kit.Shared.Modules.UI.RacingUIComponents",
+        "after": "ReplicatedStorage.Modules.Game.UI.RacingUIComponents"
+      },
+      {
+        "before": "kit.Shared.Modules.Data:WaitForChild(\"GaragePropertyCatalog\")",
+        "after": "ReplicatedStorage.Modules.Game.Garage.GaragePropertyCatalog"
+      },
+      {
+        "before": "intro",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.Dealership"
+      },
+      {
+        "before": "intro",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.Dealership"
+      },
+      {
+        "before": "intro",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.Dealership"
+      },
+      {
+        "before": "uiFolder:FindFirstChild(\"ShowTopNotification\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.UI.ShowTopNotification"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Garage.GarageVehiclePreviewProfile",
+    "target": "ReplicatedStorage.Modules.Game.Garage.GarageVehiclePreviewProfile",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Preview\"):WaitForChild(\"GarageVehiclePreviewProfile\")",
+        "after": "ReplicatedStorage.Modules.Game.Garage.GarageVehiclePreviewProfile"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Garage.PaintClient",
+    "target": "ReplicatedStorage.Modules.Game.Garage.PaintClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Core\"):WaitForChild(\"PaintClient\")",
+        "after": "ReplicatedStorage.Modules.Game.Garage.PaintClient"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Garage.PreviewCameraClient",
+    "target": "ReplicatedStorage.Modules.Game.Garage.PreviewCameraClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Preview\"):WaitForChild(\"PreviewCameraController\")",
+        "after": "ReplicatedStorage.Modules.Game.Garage.PreviewCameraClient"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Garage.PreviewInputClient",
+    "target": "ReplicatedStorage.Modules.Game.Garage.PreviewInputClient",
+    "replacements": [],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Garage.PreviewVehicleClient",
+    "target": "ReplicatedStorage.Modules.Game.Garage.PreviewVehicleClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Preview\"):WaitForChild(\"PreviewVehicleController\")",
+        "after": "ReplicatedStorage.Modules.Game.Garage.PreviewVehicleClient"
+      },
+      {
+        "before": "script.Parent.Parent",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime"
+      },
+      {
+        "before": "controllersFolder:WaitForChild(\"Core\"):WaitForChild(\"PaintClient\")",
+        "after": "ReplicatedStorage.Modules.Game.Garage.PaintClient"
+      },
+      {
+        "before": "controllersFolder:WaitForChild(\"Preview\"):WaitForChild(\"GarageModuleInstancePreviewAdapter\")",
+        "after": "ReplicatedStorage.Modules.Game.Garage.GarageModuleInstancePreviewAdapter"
+      },
+      {
+        "before": "kit:WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Data\"):WaitForChild(\"VehicleCosmeticCatalog\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCosmeticCatalog"
+      },
+      {
+        "before": "kit:WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Core\"):WaitForChild(\"PathResolver\")",
+        "after": "ReplicatedStorage.Modules.Core.PathResolver"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Garage.ThrustPreviewClient",
+    "target": "ReplicatedStorage.Modules.Game.Garage.ThrustPreviewClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Preview\"):WaitForChild(\"ThrustPreviewController_Active\")",
+        "after": "ReplicatedStorage.Modules.Game.Garage.ThrustPreviewClient"
+      },
+      {
+        "before": "kit:WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Data\"):WaitForChild(\"VehicleCosmeticCatalog\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCosmeticCatalog"
+      },
+      {
+        "before": "kit:WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"VFX\"):WaitForChild(\"VehicleVFXController\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.LegacyVehicleVFXClient"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Racing.RaceBrowserClient",
+    "target": "ReplicatedStorage.Modules.Game.Racing.RaceBrowserClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Racing\"):WaitForChild(\"RaceBrowserClient_Active\")",
+        "after": "ReplicatedStorage.Modules.Game.Racing.RaceBrowserClient"
+      },
+      {
+        "before": "modules:WaitForChild(\"Racing\")",
+        "after": "ReplicatedStorage.Modules.Game.Racing"
+      },
+      {
+        "before": "modules:WaitForChild(\"UI\")",
+        "after": "ReplicatedStorage.Modules.Game.UI"
+      },
+      {
+        "before": "racingModules:WaitForChild(\"RaceConfigReader\")",
+        "after": "ReplicatedStorage.Modules.Game.Racing.RaceConfigReader"
+      },
+      {
+        "before": "uiModules:WaitForChild(\"RacingUIComponents\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.RacingUIComponents"
+      },
+      {
+        "before": "uiModules:WaitForChild(\"RacingMobileScaledDesktopLayout\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.RacingMobileScaledDesktopLayout"
+      },
+      {
+        "before": "script.Parent.Parent",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime"
+      },
+      {
+        "before": "controllers",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime"
+      },
+      {
+        "before": "uiControllers:WaitForChild(\"OpenRaceBrowser\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.UI.OpenRaceBrowser"
+      },
+      {
+        "before": "uiControllers:FindFirstChild(\"FreeRoamVehicleExited\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.UI.FreeRoamVehicleExited"
+      },
+      {
+        "before": "script.Parent:FindFirstChild(\"RaceTransitionRequest\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.Racing.RaceTransitionRequest"
+      },
+      {
+        "before": "script.Parent.Parent",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime"
+      },
+      {
+        "before": "folder:FindFirstChild(\"FreeRoamHudPresentationMode\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.UI.FreeRoamHudPresentationMode"
+      }
+    ],
+    "ambiguous_aliases": {
+      "event": [
+        [
+          "StarterPlayer",
+          "StarterPlayerScripts",
+          "NeoTokyoRacersClient",
+          "Controllers",
+          "UI",
+          "FreeRoamVehicleExited"
+        ],
+        [
+          "StarterPlayer",
+          "StarterPlayerScripts",
+          "NeoTokyoRacersClient",
+          "Controllers",
+          "UI",
+          "FreeRoamHudPresentationMode"
+        ],
+        [
+          "StarterPlayer",
+          "StarterPlayerScripts",
+          "NeoTokyoRacersClient",
+          "Controllers",
+          "Racing",
+          "RaceTransitionRequest"
+        ]
+      ]
+    }
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Racing.RaceCountdownPresentationClient",
+    "target": "ReplicatedStorage.Modules.Game.Racing.RaceCountdownPresentationClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Racing\"):WaitForChild(\"RaceCountdownPresentationController_Active\")",
+        "after": "ReplicatedStorage.Modules.Game.Racing.RaceCountdownPresentationClient"
+      },
+      {
+        "before": "kit.Shared.Modules.UI:WaitForChild(\"RacingUIComponents\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.RacingUIComponents"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Racing.RaceEntryMenuClient",
+    "target": "ReplicatedStorage.Modules.Game.Racing.RaceEntryMenuClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Racing\"):WaitForChild(\"RaceEntryMenuClient_Active\")",
+        "after": "ReplicatedStorage.Modules.Game.Racing.RaceEntryMenuClient"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"RaceEntryPresentationRequest\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.Racing.RaceEntryPresentationRequest"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"RaceEntryLegacyAction\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.Racing.RaceEntryLegacyAction"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"StartRaceQueueRequest\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.Racing.StartRaceQueueRequest"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"RaceTransitionRequest\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.Racing.RaceTransitionRequest"
+      },
+      {
+        "before": "script.Parent.Parent",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Racing.RaceEntryPresentationClient",
+    "target": "ReplicatedStorage.Modules.Game.Racing.RaceEntryPresentationClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Racing\"):WaitForChild(\"RaceEntryPresentationController_Active\")",
+        "after": "ReplicatedStorage.Modules.Game.Racing.RaceEntryPresentationClient"
+      },
+      {
+        "before": "shared:WaitForChild(\"Modules\"):WaitForChild(\"Racing\")",
+        "after": "ReplicatedStorage.Modules.Game.Racing"
+      },
+      {
+        "before": "racingModules:WaitForChild(\"RaceConfigReader\")",
+        "after": "ReplicatedStorage.Modules.Game.Racing.RaceConfigReader"
+      },
+      {
+        "before": "shared:WaitForChild(\"Modules\"):WaitForChild(\"UI\")",
+        "after": "ReplicatedStorage.Modules.Game.UI"
+      },
+      {
+        "before": "entryUIModules:WaitForChild(\"RacingUIComponents\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.RacingUIComponents"
+      },
+      {
+        "before": "script.Parent.Parent:WaitForChild(\"UI\"):WaitForChild(\"GarageReplacementComponents\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.GarageComponents"
+      },
+      {
+        "before": "entryUIModules:WaitForChild(\"RacingMobileScaledDesktopLayout\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.RacingMobileScaledDesktopLayout"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"RaceEntryPresentationRequest\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.Racing.RaceEntryPresentationRequest"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"RaceEntryLegacyAction\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.Racing.RaceEntryLegacyAction"
+      },
+      {
+        "before": "script.Parent.Parent",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime"
+      },
+      {
+        "before": "folder:FindFirstChild(\"FreeRoamHudPresentationMode\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.UI.FreeRoamHudPresentationMode"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+    "target": "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Racing\"):WaitForChild(\"RaceLifecyclePresentationController_Active\")",
+        "after": "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient"
+      },
+      {
+        "before": "script.Parent.Parent",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime"
+      },
+      {
+        "before": "controllers",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime"
+      },
+      {
+        "before": "ui:WaitForChild(\"LoadingPresentationState\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.UI.LoadingPresentationState"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"RaceEntryLegacyAction\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.Racing.RaceEntryLegacyAction"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Racing.RaceParticipantVisibilityClient",
+    "target": "ReplicatedStorage.Modules.Game.Racing.RaceParticipantVisibilityClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Racing\"):WaitForChild(\"RaceParticipantVisibilityClient_Active\")",
+        "after": "ReplicatedStorage.Modules.Game.Racing.RaceParticipantVisibilityClient"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Racing.RaceQueueClient",
+    "target": "ReplicatedStorage.Modules.Game.Racing.RaceQueueClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Racing\"):WaitForChild(\"RaceQueueClient_Active\")",
+        "after": "ReplicatedStorage.Modules.Game.Racing.RaceQueueClient"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"StartRaceQueueRequest\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.Racing.StartRaceQueueRequest"
+      },
+      {
+        "before": "shared:WaitForChild(\"Modules\"):WaitForChild(\"UI\"):WaitForChild(\"RacingUIComponents\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.RacingUIComponents"
+      },
+      {
+        "before": "script.Parent.Parent",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime"
+      },
+      {
+        "before": "folder:FindFirstChild(\"FreeRoamHudPresentationMode\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.UI.FreeRoamHudPresentationMode"
+      },
+      {
+        "before": "script.Parent.Parent",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime"
+      },
+      {
+        "before": "folder:FindFirstChild(\"FreeRoamVehicleSpawned\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.UI.FreeRoamVehicleSpawned"
+      }
+    ],
+    "ambiguous_aliases": {
+      "signal": [
+        [
+          "StarterPlayer",
+          "StarterPlayerScripts",
+          "NeoTokyoRacersClient",
+          "Controllers",
+          "UI",
+          "FreeRoamVehicleSpawned"
+        ],
+        [
+          "StarterPlayer",
+          "StarterPlayerScripts",
+          "NeoTokyoRacersClient",
+          "Controllers",
+          "UI",
+          "FreeRoamHudPresentationMode"
+        ]
+      ]
+    }
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Racing.RaceRouteGuideClient",
+    "target": "ReplicatedStorage.Modules.Game.Racing.RaceRouteGuideClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Racing\"):WaitForChild(\"RaceRouteGuideClient_Active\")",
+        "after": "ReplicatedStorage.Modules.Game.Racing.RaceRouteGuideClient"
+      },
+      {
+        "before": "kit:WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"UI\"):WaitForChild(\"ResponsiveUIFoundation\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.ResponsiveUIFoundation"
+      },
+      {
+        "before": "kit:WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Racing\")",
+        "after": "ReplicatedStorage.Modules.Game.Racing"
+      },
+      {
+        "before": "racingModules:WaitForChild(\"RaceRouteDefinition\")",
+        "after": "ReplicatedStorage.Modules.Game.Racing.RaceRouteDefinition"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Racing.RaceSessionAssetsClient",
+    "target": "ReplicatedStorage.Modules.Game.Racing.RaceSessionAssetsClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Racing\"):WaitForChild(\"RaceSessionAssetsClient_Active\")",
+        "after": "ReplicatedStorage.Modules.Game.Racing.RaceSessionAssetsClient"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient",
+    "target": "ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Racing\"):WaitForChild(\"RaceSessionPresentationController_Active\")",
+        "after": "ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient"
+      },
+      {
+        "before": "shared:WaitForChild(\"Modules\"):WaitForChild(\"UI\"):WaitForChild(\"RacingUIComponents\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.RacingUIComponents"
+      },
+      {
+        "before": "script.Parent:FindFirstChild(\"RaceTransitionRequest\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.Racing.RaceTransitionRequest"
+      },
+      {
+        "before": "script.Parent.Parent",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime"
+      },
+      {
+        "before": "uiFolder:FindFirstChild(\"FreeRoamHudPresentationMode\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.UI.FreeRoamHudPresentationMode"
+      },
+      {
+        "before": "shared:WaitForChild(\"Modules\"):WaitForChild(\"UI\"):WaitForChild(\"ResponsiveUIFoundation\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.ResponsiveUIFoundation"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Racing.RaceTimeTrialResultCoachClient",
+    "target": "ReplicatedStorage.Modules.Game.Racing.RaceTimeTrialResultCoachClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Racing\"):WaitForChild(\"RaceTimeTrialResultCoachClient_Active\")",
+        "after": "ReplicatedStorage.Modules.Game.Racing.RaceTimeTrialResultCoachClient"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"RaceTransitionRequest\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.Racing.RaceTransitionRequest"
+      },
+      {
+        "before": "shared:WaitForChild(\"Modules\"):WaitForChild(\"UI\")",
+        "after": "ReplicatedStorage.Modules.Game.UI"
+      },
+      {
+        "before": "resultUIModules:WaitForChild(\"RacingUIComponents\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.RacingUIComponents"
+      },
+      {
+        "before": "resultUIModules:WaitForChild(\"RacingMobileScaledDesktopLayout\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.RacingMobileScaledDesktopLayout"
+      },
+      {
+        "before": "script.Parent.Parent",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime"
+      },
+      {
+        "before": "folder:FindFirstChild(\"FreeRoamHudPresentationMode\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.UI.FreeRoamHudPresentationMode"
+      },
+      {
+        "before": "script.Parent.Parent",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime"
+      },
+      {
+        "before": "script.Parent",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.Racing"
+      }
+    ],
+    "ambiguous_aliases": {
+      "root": [
+        [
+          "StarterPlayer",
+          "StarterPlayerScripts",
+          "NeoTokyoRacersClient",
+          "Controllers",
+          "Racing"
+        ],
+        [
+          "StarterPlayer",
+          "StarterPlayerScripts",
+          "NeoTokyoRacersClient",
+          "Controllers"
+        ]
+      ]
+    }
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Racing.RaceTransitionClient",
+    "target": "ReplicatedStorage.Modules.Game.Racing.RaceTransitionClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Racing\"):WaitForChild(\"RaceTransitionClient_Active\")",
+        "after": "ReplicatedStorage.Modules.Game.Racing.RaceTransitionClient"
+      },
+      {
+        "before": "script.Parent",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.Racing"
+      },
+      {
+        "before": "racingFolder:WaitForChild(\"RaceTransitionRequest\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.Racing.RaceTransitionRequest"
+      },
+      {
+        "before": "racingFolder:FindFirstChild(\"RaceTransitionStateChanged\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.Racing.RaceTransitionStateChanged"
+      },
+      {
+        "before": "racingFolder.Parent",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime"
+      },
+      {
+        "before": "racingFolder:FindFirstChild(\"RaceCountdownPresentationController_Active\")",
+        "after": "ReplicatedStorage.Modules.Game.Racing.RaceCountdownPresentationClient"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.CockpitPaintUIUI",
+    "target": "ReplicatedStorage.Modules.Game.UI.CockpitPaintUIUI",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"CockpitPaintUIController\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.CockpitPaintUIUI"
+      },
+      {
+        "before": "script.Parent.Parent",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime"
+      },
+      {
+        "before": "controllersFolder",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime"
+      },
+      {
+        "before": "uiFolder:WaitForChild(\"ColourPickerController\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.ColourPickerUI"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.ColourPickerUI",
+    "target": "ReplicatedStorage.Modules.Game.UI.ColourPickerUI",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"ColourPickerController\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.ColourPickerUI"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.CustomisationUIUI",
+    "target": "ReplicatedStorage.Modules.Game.UI.CustomisationUIUI",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"CustomisationUIController\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.CustomisationUIUI"
+      },
+      {
+        "before": "script.Parent.Parent",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime"
+      },
+      {
+        "before": "controllersFolder",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime"
+      },
+      {
+        "before": "controllersFolder",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime"
+      },
+      {
+        "before": "coreFolder:WaitForChild(\"CatalogClient\")",
+        "after": "ReplicatedStorage.Modules.Game.Garage.CatalogClient"
+      },
+      {
+        "before": "uiFolder:WaitForChild(\"ColourPickerController\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.ColourPickerUI"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.DealershipUIUI",
+    "target": "ReplicatedStorage.Modules.Game.UI.DealershipUIUI",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"DealershipUIController\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.DealershipUIUI"
+      },
+      {
+        "before": "script.Parent.Parent",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime"
+      },
+      {
+        "before": "controllersFolder",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime"
+      },
+      {
+        "before": "coreFolder:WaitForChild(\"CatalogClient\")",
+        "after": "ReplicatedStorage.Modules.Game.Garage.CatalogClient"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+    "target": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"DesktopFreeRoamHudController_Active\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI"
+      },
+      {
+        "before": "kit.Shared.Modules.UI:WaitForChild(\"RacingUIComponents\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.RacingUIComponents"
+      },
+      {
+        "before": "kit.Shared.Modules.UI:WaitForChild(\"ResponsiveUIFoundation\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.ResponsiveUIFoundation"
+      },
+      {
+        "before": "kit.Shared.Modules.Common:WaitForChild(\"VehicleDisplayNames\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.VehicleDisplayNames"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"GarageReplacementComponents\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.GarageComponents"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"LoadingTransitionInvoke\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.UI.LoadingTransitionInvoke"
+      },
+      {
+        "before": "kit:WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"Controllers\"):WaitForChild(\"MobileDriveInputState\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveInputState"
+      },
+      {
+        "before": "kit.Shared.Modules.Client:WaitForChild(\"Input\"):WaitForChild(\"GameplayInputGate\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.GameplayInputGate"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"ShowTopNotification\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.UI.ShowTopNotification"
+      },
+      {
+        "before": "script.Parent",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.UI"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"FreeRoamMapPlayerMarkers\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.FreeRoamMapPlayerMarkers"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"OpenDrivingControlsFromOnboarding\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.UI.OpenDrivingControlsFromOnboarding"
+      },
+      {
+        "before": "script.Parent:FindFirstChild(\"FreeRoamHudPresentationMode\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.UI.FreeRoamHudPresentationMode"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.FreeRoamMapPlayerMarkers",
+    "target": "ReplicatedStorage.Modules.Game.UI.FreeRoamMapPlayerMarkers",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"FreeRoamMapPlayerMarkers\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.FreeRoamMapPlayerMarkers"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.FreeRoamNavUI",
+    "target": "ReplicatedStorage.Modules.Game.UI.FreeRoamNavUI",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"FreeRoamNavController_Active\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.FreeRoamNavUI"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.FreeRoamVehicleExitButtonClient",
+    "target": "ReplicatedStorage.Modules.Game.UI.FreeRoamVehicleExitButtonClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"FreeRoamVehicleExitButton_Active\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.FreeRoamVehicleExitButtonClient"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.GarageBrowserUI",
+    "target": "ReplicatedStorage.Modules.Game.UI.GarageBrowserUI",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"GarageBrowserController\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.GarageBrowserUI"
+      },
+      {
+        "before": "kit.Shared.Modules.UI.RacingUIComponents",
+        "after": "ReplicatedStorage.Modules.Game.UI.RacingUIComponents"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"GarageReplacementComponents\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.GarageComponents"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.GarageComponents",
+    "target": "ReplicatedStorage.Modules.Game.UI.GarageComponents",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"GarageReplacementComponents\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.GarageComponents"
+      },
+      {
+        "before": "kit:WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"UI\"):WaitForChild(\"RacingUIComponents\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.RacingUIComponents"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+    "target": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"GarageInteriorModeController\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI"
+      },
+      {
+        "before": "kit.Shared.Modules.UI:WaitForChild(\"RacingUIComponents\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.RacingUIComponents"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"GarageReplacementComponents\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.GarageComponents"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"OwnedGarageWorkspaceController\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.GarageInteriorTransitionUI",
+    "target": "ReplicatedStorage.Modules.Game.UI.GarageInteriorTransitionUI",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"GarageInteriorTransitionController\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.GarageInteriorTransitionUI"
+      },
+      {
+        "before": "script.Parent",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.UI"
+      },
+      {
+        "before": "ui:WaitForChild(\"OwnedGarageBrowserController\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI"
+      },
+      {
+        "before": "ui:WaitForChild(\"OwnedGarageWorkspaceController\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI"
+      },
+      {
+        "before": "ui:WaitForChild(\"FreeRoamHudPresentationMode\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.UI.FreeRoamHudPresentationMode"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.GarageModuleCardViewModel",
+    "target": "ReplicatedStorage.Modules.Game.UI.GarageModuleCardViewModel",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"GarageModuleCardViewModel\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.GarageModuleCardViewModel"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.GaragePropertyMenuUI",
+    "target": "ReplicatedStorage.Modules.Game.UI.GaragePropertyMenuUI",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"GaragePropertyMenuController\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.GaragePropertyMenuUI"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.GarageWorkspaceUI",
+    "target": "ReplicatedStorage.Modules.Game.UI.GarageWorkspaceUI",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"GarageWorkspaceController\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.GarageWorkspaceUI"
+      },
+      {
+        "before": "kit.Shared.Modules.UI.RacingUIComponents",
+        "after": "ReplicatedStorage.Modules.Game.UI.RacingUIComponents"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"GarageReplacementComponents\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.GarageComponents"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.LoadingTransitionUI",
+    "target": "ReplicatedStorage.Modules.Game.UI.LoadingTransitionUI",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"LoadingTransitionController_Active\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.LoadingTransitionUI"
+      },
+      {
+        "before": "script.Parent",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.UI"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"LoadingTransitionInvoke\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.UI.LoadingTransitionInvoke"
+      },
+      {
+        "before": "script.Parent.LoadingPresentationState",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.UI.LoadingPresentationState"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+    "target": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"MobileFreeRoamHudController_Active\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI"
+      },
+      {
+        "before": "kit.Shared.Modules.UI:WaitForChild(\"RacingUIComponents\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.RacingUIComponents"
+      },
+      {
+        "before": "kit.Shared.Modules.UI:WaitForChild(\"ResponsiveUIFoundation\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.ResponsiveUIFoundation"
+      },
+      {
+        "before": "kit.Shared.Modules.Common:WaitForChild(\"VehicleDisplayNames\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.VehicleDisplayNames"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"GarageReplacementComponents\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.GarageComponents"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"LoadingTransitionInvoke\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.UI.LoadingTransitionInvoke"
+      },
+      {
+        "before": "kit.Shared.Modules.Client.Controllers:WaitForChild(\"MobileDriveInputState\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveInputState"
+      },
+      {
+        "before": "script.Parent",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.UI"
+      },
+      {
+        "before": "uiFolder:WaitForChild(\"ShowTopNotification\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.UI.ShowTopNotification"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"FreeRoamMapPlayerMarkers\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.FreeRoamMapPlayerMarkers"
+      },
+      {
+        "before": "uiFolder:FindFirstChild(\"FreeRoamHudPresentationMode\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.UI.FreeRoamHudPresentationMode"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.NavigationUI",
+    "target": "ReplicatedStorage.Modules.Game.UI.NavigationUI",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"NavigationController\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.NavigationUI"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+    "target": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"OnboardingClient_Active\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.OnboardingClient"
+      },
+      {
+        "before": "kit:WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"UI\"):WaitForChild(\"RacingUIComponents\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.RacingUIComponents"
+      },
+      {
+        "before": "kit.Shared.Modules.Client.Audio:WaitForChild(\"PresentationAudioBridge\")",
+        "after": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioBridge"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"OnboardingGuideTrailRenderer\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.OnboardingGuideTrailRenderer"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"LoadingPresentationState\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.UI.LoadingPresentationState"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"LoadingPresentationChanged\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.UI.LoadingPresentationChanged"
+      },
+      {
+        "before": "script.Parent:FindFirstChild(\"OpenDrivingControlsFromOnboarding\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.UI.OpenDrivingControlsFromOnboarding"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"FreeRoamVehicleSpawned\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.UI.FreeRoamVehicleSpawned"
+      },
+      {
+        "before": "script.Parent:FindFirstChild(\"FreeRoamHudPresentationMode\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.UI.FreeRoamHudPresentationMode"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.OnboardingGuideTrailRenderer",
+    "target": "ReplicatedStorage.Modules.Game.UI.OnboardingGuideTrailRenderer",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"OnboardingGuideTrailRenderer\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.OnboardingGuideTrailRenderer"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+    "target": "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"OwnedGarageBrowserController\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI"
+      },
+      {
+        "before": "kit.Shared.Modules.UI:WaitForChild(\"RacingUIComponents\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.RacingUIComponents"
+      },
+      {
+        "before": "kit.Shared.Modules.UI:WaitForChild(\"RacingMobileScaledDesktopLayout\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.RacingMobileScaledDesktopLayout"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"GarageReplacementComponents\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.GarageComponents"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"OpenOwnedGarageBrowser\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.UI.OpenOwnedGarageBrowser"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"LoadingTransitionInvoke\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.UI.LoadingTransitionInvoke"
+      },
+      {
+        "before": "script.Parent:FindFirstChild(\"FreeRoamHudPresentationMode\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.UI.FreeRoamHudPresentationMode"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.OwnedGarageClient",
+    "target": "ReplicatedStorage.Modules.Game.UI.OwnedGarageClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"OwnedGarageClient_Active\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.OwnedGarageClient"
+      },
+      {
+        "before": "script.Parent",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.UI"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+    "target": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"OwnedGarageWorkspaceController\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI"
+      },
+      {
+        "before": "kit.Shared.Modules.Client.Audio:WaitForChild(\"PresentationAudioBridge\")",
+        "after": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioBridge"
+      },
+      {
+        "before": "script.Parent",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.UI"
+      },
+      {
+        "before": "uiFolder:WaitForChild(\"GarageWorkspaceController\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.GarageWorkspaceUI"
+      },
+      {
+        "before": "uiFolder:WaitForChild(\"GarageReplacementComponents\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.GarageComponents"
+      },
+      {
+        "before": "kit.Shared.Modules.UI:WaitForChild(\"RacingUIComponents\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.RacingUIComponents"
+      },
+      {
+        "before": "uiFolder:WaitForChild(\"OpenOwnedGarageWorkspace\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.UI.OpenOwnedGarageWorkspace"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.SharedTopNotificationUI",
+    "target": "ReplicatedStorage.Modules.Game.UI.SharedTopNotificationUI",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"SharedTopNotificationController_Active\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.SharedTopNotificationUI"
+      },
+      {
+        "before": "kit.Shared.Modules.UI:WaitForChild(\"ResponsiveUIFoundation\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.ResponsiveUIFoundation"
+      },
+      {
+        "before": "script.Parent:FindFirstChild(\"ShowTopNotification\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.UI.ShowTopNotification"
+      },
+      {
+        "before": "script.Parent",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.UI"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.StatsPanelUI",
+    "target": "ReplicatedStorage.Modules.Game.UI.StatsPanelUI",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"StatsPanelController\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.StatsPanelUI"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.UIFactory",
+    "target": "ReplicatedStorage.Modules.Game.UI.UIFactory",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"UI\"):WaitForChild(\"UIFactory\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.UIFactory"
+      },
+      {
+        "before": "ReplicatedStorage:WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Common\"):WaitForChild(\"UITheme\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.ThemeValues"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.UIPool",
+    "target": "ReplicatedStorage.Modules.Game.UI.UIPool",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"UI\"):WaitForChild(\"UIPool\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.UIPool"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Vehicles.CharacterSprintClient",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.CharacterSprintClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Runtime\"):WaitForChild(\"CharacterSprintController_Active\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.CharacterSprintClient"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Vehicles.DriveHudClient",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.DriveHudClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Runtime\"):WaitForChild(\"DriveHudController_Active\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.DriveHudClient"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"Controllers\"):WaitForChild(\"DrivingCameraController\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Vehicles.DrivingClient",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.DrivingClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"Controllers\"):WaitForChild(\"DrivingControllerV47\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.DrivingClient"
+      },
+      {
+        "before": "ReplicatedStorage:WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Common\"):WaitForChild(\"DriveTuning\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.DriveTuning"
+      },
+      {
+        "before": "script.Parent.Parent:WaitForChild(\"Input\"):WaitForChild(\"GameplayInputGate\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.GameplayInputGate"
+      },
+      {
+        "before": "script.Parent:FindFirstChild(\"VehicleDynamicsModel\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.VehicleDynamics"
+      },
+      {
+        "before": "script.Parent:FindFirstChild(\"DrivingCameraController\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Vehicles.DrivingFallbackClient",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.DrivingFallbackClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"Controllers\"):WaitForChild(\"DrivingFallbackController\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.DrivingFallbackClient"
+      },
+      {
+        "before": "ReplicatedStorage:WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Common\"):WaitForChild(\"DriveTuning\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.DriveTuning"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Vehicles.FreeRoamParkedHoverClient",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.FreeRoamParkedHoverClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Runtime\"):WaitForChild(\"FreeRoamParkedHoverController_Active\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.FreeRoamParkedHoverClient"
+      },
+      {
+        "before": "ReplicatedStorage:WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Common\"):WaitForChild(\"DriveTuning\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.DriveTuning"
+      },
+      {
+        "before": "playerScripts:FindFirstChild(\"NeoTokyoRacersClient\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime"
+      },
+      {
+        "before": "clientRoot:FindFirstChild(\"Controllers\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime"
+      },
+      {
+        "before": "controllers",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime"
+      },
+      {
+        "before": "ui:FindFirstChild(\"FreeRoamVehicleSpawned\")",
+        "after": "StarterPlayer.StarterPlayerScripts.Runtime.UI.FreeRoamVehicleSpawned"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Vehicles.GameplayInputGate",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.GameplayInputGate",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"Input\"):WaitForChild(\"GameplayInputGate\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.GameplayInputGate"
+      },
+      {
+        "before": "controllers:FindFirstChild(\"MobileDriveInputState\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveInputState"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Vehicles.LegacyVehicleVFXClient",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.LegacyVehicleVFXClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"VFX\"):WaitForChild(\"VehicleVFXController\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.LegacyVehicleVFXClient"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Runtime\"):WaitForChild(\"MobileDriveControlsController_Active\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient"
+      },
+      {
+        "before": "kit:WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"Controllers\"):WaitForChild(\"MobileDriveInputState\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveInputState"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveInputState",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveInputState",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"Controllers\"):WaitForChild(\"MobileDriveInputState\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveInputState"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Vehicles.ReentryThrottle",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.ReentryThrottle",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"Controllers\"):WaitForChild(\"ReentryThrottle\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.ReentryThrottle"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Vehicles.RuntimeVFXClient",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.RuntimeVFXClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Runtime\"):WaitForChild(\"RuntimeVFXController_Active\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.RuntimeVFXClient"
+      },
+      {
+        "before": "game:GetService(\"ReplicatedStorage\")\n\t\t:WaitForChild(\"NeoTokyoRacers\")\n\t\t:WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\")\n\t\t:WaitForChild(\"Visuals\")\n\t\t:WaitForChild(\"CachedThrustVisualRuntime\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Vehicles.VehicleDynamics",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.VehicleDynamics",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"Controllers\"):WaitForChild(\"VehicleDynamicsModel\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.VehicleDynamics"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"Visuals\"):WaitForChild(\"CachedThrustVisualRuntime\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient"
+      },
+      {
+        "before": "kit:WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Data\"):WaitForChild(\"VehicleCosmeticCatalog\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCosmeticCatalog"
+      },
+      {
+        "before": "kit:WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"VFX\"):WaitForChild(\"VehicleVFXController\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.LegacyVehicleVFXClient"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.World.LODClient",
+    "target": "ReplicatedStorage.Modules.Game.World.LODClient",
+    "replacements": [
+      {
+        "before": "player:WaitForChild(\"PlayerScripts\").NeoTokyoRacersClient.Controllers.World.LODClient_Active",
+        "after": "ReplicatedStorage.Modules.Game.World.LODClient"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.World.LODPolicy",
+    "target": "ReplicatedStorage.Modules.Game.World.LODPolicy",
+    "replacements": [],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.World.LODRuntime",
+    "target": "ReplicatedStorage.Modules.Game.World.LODRuntime",
+    "replacements": [],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.World.NightLamppostLightClient",
+    "target": "ReplicatedStorage.Modules.Game.World.NightLamppostLightClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"World\"):WaitForChild(\"NightLamppostLightController_Active\")",
+        "after": "ReplicatedStorage.Modules.Game.World.NightLamppostLightClient"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.World.OwnedGarageEnvironmentLightingClient",
+    "target": "ReplicatedStorage.Modules.Game.World.OwnedGarageEnvironmentLightingClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"World\"):WaitForChild(\"OwnedGarageEnvironmentLightingController_Active\")",
+        "after": "ReplicatedStorage.Modules.Game.World.OwnedGarageEnvironmentLightingClient"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.World.WindowMaterialClient",
+    "target": "ReplicatedStorage.Modules.Game.World.WindowMaterialClient",
+    "replacements": [
+      {
+        "before": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"World\"):WaitForChild(\"WindowMaterialController_Active\")",
+        "after": "ReplicatedStorage.Modules.Game.World.WindowMaterialClient"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.Audio.VehicleAudioStateContract",
+    "target": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioStateContract",
+    "replacements": [],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.Performance.VehicleModuleUpgradeRuntime",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehicleModuleUpgradeRuntime",
+    "replacements": [
+      {
+        "before": "script.Parent:WaitForChild(\"VehiclePerformanceV2Definitions\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceDefinitions"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"VehiclePerformanceV2UpgradeRuntime\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceUpgradeRuntime"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"VehiclePerformanceV2Runtime\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceRuntime"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.Performance.VehiclePerformanceCalculator",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceProjection",
+    "replacements": [
+      {
+        "before": "script.Parent:WaitForChild(\"VehiclePerformanceDefinitions\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceProjectionDefinitions"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"VehiclePerformanceV2Calculator\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceCalculator"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.Performance.VehiclePerformanceDefinitions",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceProjectionDefinitions",
+    "replacements": [],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.Performance.VehiclePerformanceResolver",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehiclePerformanceResolver",
+    "replacements": [
+      {
+        "before": "script.Parent:WaitForChild(\"VehiclePerformanceV2Calculator\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceCalculator"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"VehiclePerformanceV2Runtime\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceRuntime"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"VehiclePerformanceV2UpgradeRuntime\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceUpgradeRuntime"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.Performance.VehiclePerformanceRuntime",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehiclePerformance",
+    "replacements": [
+      {
+        "before": "script.Parent:WaitForChild(\"VehiclePerformanceV2Runtime\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceRuntime"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.Performance.VehiclePerformanceV2Calculator",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceCalculator",
+    "replacements": [
+      {
+        "before": "script.Parent:WaitForChild(\"VehiclePerformanceV2Definitions\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceDefinitions"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.Performance.VehiclePerformanceV2Definitions",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceDefinitions",
+    "replacements": [],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.Performance.VehiclePerformanceV2DynamicsAdapter",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceDynamics",
+    "replacements": [
+      {
+        "before": "script.Parent:WaitForChild(\"VehiclePerformanceV2Calculator\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceCalculator"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.Performance.VehiclePerformanceV2Runtime",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceRuntime",
+    "replacements": [
+      {
+        "before": "script.Parent:WaitForChild(\"VehiclePerformanceV2Definitions\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceDefinitions"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"VehiclePerformanceV2Calculator\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceCalculator"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"VehiclePerformanceV2UpgradeRuntime\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceUpgradeRuntime"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"VehiclePerformanceV2DynamicsAdapter\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceDynamics"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.Performance.VehiclePerformanceV2UpgradeRuntime",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceUpgradeRuntime",
+    "replacements": [
+      {
+        "before": "script.Parent:WaitForChild(\"VehiclePerformanceV2Definitions\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceDefinitions"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"VehiclePerformanceV2Calculator\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceCalculator"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"VehicleUpgradeDefinitions\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehicleUpgradeDefinitions"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.Performance.VehicleUpgradeDefinitions",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehicleUpgradeDefinitions",
+    "replacements": [],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.ConfigReader",
+    "target": "ReplicatedStorage.Modules.Core.ConfigReader",
+    "replacements": [],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.DriveTuning",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.DriveTuning",
+    "replacements": [
+      {
+        "before": "kit:WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Common\"):WaitForChild(\"ConfigReader\")",
+        "after": "ReplicatedStorage.Modules.Core.ConfigReader"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.UITheme",
+    "target": "ReplicatedStorage.Modules.Game.UI.ThemeValues",
+    "replacements": [
+      {
+        "before": "script.Parent:WaitForChild(\"ConfigReader\")",
+        "after": "ReplicatedStorage.Modules.Core.ConfigReader"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.VehicleData",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.VehicleData",
+    "replacements": [],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.VehicleDisplayNames",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.VehicleDisplayNames",
+    "replacements": [],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.VehicleStatsCache",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.VehicleStatsCache",
+    "replacements": [],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Core.PathResolver",
+    "target": "ReplicatedStorage.Modules.Core.PathResolver",
+    "replacements": [],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data.GaragePropertyCatalog",
+    "target": "ReplicatedStorage.Modules.Game.Garage.GaragePropertyCatalog",
+    "replacements": [],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data.LegacyGarageProfileMapper",
+    "target": "ReplicatedStorage.Modules.Game.Player.GarageProfileProjection",
+    "replacements": [],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data.OwnedGarageDecorationCatalog",
+    "target": "ReplicatedStorage.Modules.Game.Garage.OwnedGarageDecorationCatalog",
+    "replacements": [],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data.OwnedGarageInteriorStyleCatalog",
+    "target": "ReplicatedStorage.Modules.Game.Garage.OwnedGarageInteriorStyleCatalog",
+    "replacements": [],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data.OwnedGarageLightingCatalog",
+    "target": "ReplicatedStorage.Modules.Game.Garage.OwnedGarageLightingCatalog",
+    "replacements": [],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data.OwnedGaragePropertyCatalog",
+    "target": "ReplicatedStorage.Modules.Game.Garage.OwnedGaragePropertyCatalog",
+    "replacements": [],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data.PlayerProfileSchema",
+    "target": "ReplicatedStorage.Modules.Game.Player.PlayerProfileSchema",
+    "replacements": [
+      {
+        "before": "script.Parent:WaitForChild(\"VehicleCosmeticCatalog\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCosmeticCatalog"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data.VehicleCosmeticCatalog",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCosmeticCatalog",
+    "replacements": [],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Racing.RaceConfigReader",
+    "target": "ReplicatedStorage.Modules.Game.Racing.RaceConfigReader",
+    "replacements": [
+      {
+        "before": "script.Parent:WaitForChild(\"RaceRouteDefinition\")",
+        "after": "ReplicatedStorage.Modules.Game.Racing.RaceRouteDefinition"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Racing.RaceRouteDefinition",
+    "target": "ReplicatedStorage.Modules.Game.Racing.RaceRouteDefinition",
+    "replacements": [],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.UI.ArrowScroller",
+    "target": "ReplicatedStorage.Modules.Game.UI.ArrowScroller",
+    "replacements": [
+      {
+        "before": "script.Parent:WaitForChild(\"UIFactory\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.ResponsiveUIFactory"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"UITheme\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.UITheme"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.UI.ColourUtils",
+    "target": "ReplicatedStorage.Modules.Game.UI.ColourUtils",
+    "replacements": [],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.UI.RacingMobileScaledDesktopLayout",
+    "target": "ReplicatedStorage.Modules.Game.UI.RacingMobileScaledDesktopLayout",
+    "replacements": [],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.UI.RacingUIComponents",
+    "target": "ReplicatedStorage.Modules.Game.UI.RacingUIComponents",
+    "replacements": [
+      {
+        "before": "kit:WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"UI\"):WaitForChild(\"ResponsiveUIFoundation\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.ResponsiveUIFoundation"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.UI.ResponsiveLayout",
+    "target": "ReplicatedStorage.Modules.Game.UI.ResponsiveLayout",
+    "replacements": [],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.UI.ResponsiveUIFoundation",
+    "target": "ReplicatedStorage.Modules.Game.UI.ResponsiveUIFoundation",
+    "replacements": [],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.UI.StatBars",
+    "target": "ReplicatedStorage.Modules.Game.UI.StatBars",
+    "replacements": [
+      {
+        "before": "script.Parent:WaitForChild(\"UIFactory\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.ResponsiveUIFactory"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"UITheme\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.UITheme"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.UI.UIFactory",
+    "target": "ReplicatedStorage.Modules.Game.UI.ResponsiveUIFactory",
+    "replacements": [
+      {
+        "before": "script.Parent:WaitForChild(\"UITheme\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.UITheme"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"ResponsiveUIFoundation\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.ResponsiveUIFoundation"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.UI.UITheme",
+    "target": "ReplicatedStorage.Modules.Game.UI.UITheme",
+    "replacements": [
+      {
+        "before": "script.Parent:WaitForChild(\"ResponsiveUIFoundation\")",
+        "after": "ReplicatedStorage.Modules.Game.UI.ResponsiveUIFoundation"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Shared.LightingCycleConfig.LightingCycleSchedule",
+    "target": "ReplicatedStorage.Shared.LightingCycleConfig.LightingCycleSchedule",
+    "replacements": [],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ReplicatedStorage.Shared.LightingPresets.LightingPresets",
+    "target": "ReplicatedStorage.Shared.LightingPresets.LightingPresets",
+    "replacements": [],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ServerScriptService.ServerBase",
+    "target": "ServerScriptService.ServerBase",
+    "replacements": [],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "StarterPlayer.StarterPlayerScripts.ClientBase",
+    "target": "StarterPlayer.StarterPlayerScripts.ClientBase",
+    "replacements": [],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "Workspace.FBX - 3D Lady Head v2.Script",
+    "target": "Workspace.FBX - 3D Lady Head v2.Script",
+    "replacements": [],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "Workspace.FBX - 3D Vehicle Holographic v3.Script",
+    "target": "Workspace.FBX - 3D Vehicle Holographic v3.Script",
+    "replacements": [],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Core.ServerLifecycle",
+    "target": "ServerStorage.Modules.Core.ServerLifecycle",
+    "replacements": [],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Audio.VehicleAudioServer",
+    "target": "ServerStorage.Modules.Game.Audio.VehicleAudioServer",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ServerScriptService\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Services\"):WaitForChild(\"Audio\"):WaitForChild(\"VehicleAudioStateService_Active\")",
+        "after": "ServerStorage.Modules.Game.Audio.VehicleAudioServer"
+      },
+      {
+        "before": "kit.Shared.Modules.Common.Audio:WaitForChild(\"VehicleAudioStateContract\")",
+        "after": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioStateContract"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Dealership.IntroProgressServer",
+    "target": "ServerStorage.Modules.Game.Dealership.IntroProgressServer",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ServerScriptService\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Services\"):WaitForChild(\"Dealership\"):WaitForChild(\"IntroProgressService_Active\")",
+        "after": "ServerStorage.Modules.Game.Dealership.IntroProgressServer"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Development.StudioCashGrantServer",
+    "target": "ServerStorage.Modules.Game.Development.StudioCashGrantServer",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ServerScriptService\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Services\"):WaitForChild(\"Debug\"):WaitForChild(\"StudioCashGrantService_Active\")",
+        "after": "ServerStorage.Modules.Game.Development.StudioCashGrantServer"
+      },
+      {
+        "before": "ServerScriptService:FindFirstChild(\"NeoTokyoRacers\")",
+        "after": "ServerStorage.Runtime"
+      },
+      {
+        "before": "ServerScriptService.NeoTokyoRacers:FindFirstChild(\"Services\")",
+        "after": "ServerStorage.Runtime"
+      },
+      {
+        "before": "services",
+        "after": "ServerStorage.Runtime"
+      },
+      {
+        "before": "garage:FindFirstChild(\"GarageProfileMutationBindings\")",
+        "after": "ServerStorage.Runtime.Garage.GarageProfileMutationBindings"
+      },
+      {
+        "before": "bindings:FindFirstChild(\"GrantCash\")",
+        "after": "ServerStorage.Runtime.Garage.GarageProfileMutationBindings.GrantCash"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Development.VehiclePerformanceComparisonServer",
+    "target": "ServerStorage.Modules.Game.Development.VehiclePerformanceComparisonServer",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ServerScriptService\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Services\"):WaitForChild(\"Vehicle\"):WaitForChild(\"VehiclePerformanceV2ShadowService_Active\")",
+        "after": "ServerStorage.Modules.Game.Development.VehiclePerformanceComparisonServer"
+      },
+      {
+        "before": "kit:WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Common\"):WaitForChild(\"Performance\"):WaitForChild(\"VehiclePerformanceV2Runtime\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceRuntime"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Garage.GarageDisplay",
+    "target": "ServerStorage.Modules.Game.Garage.GarageDisplay",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ServerScriptService\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Services\"):WaitForChild(\"Garage\"):WaitForChild(\"GarageDisplayRuntime\")",
+        "after": "ServerStorage.Modules.Game.Garage.GarageDisplay"
+      },
+      {
+        "before": "kit.Shared.Modules.Data:WaitForChild(\"VehicleCosmeticCatalog\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCosmeticCatalog"
+      },
+      {
+        "before": "ServerScriptService:FindFirstChild(\"NeoTokyoRacers\")",
+        "after": "ServerStorage.Runtime"
+      },
+      {
+        "before": "ServerScriptService.NeoTokyoRacers:FindFirstChild(\"Services\")",
+        "after": "ServerStorage.Runtime"
+      },
+      {
+        "before": "ServerScriptService.NeoTokyoRacers.Services",
+        "after": "ServerStorage.Runtime"
+      },
+      {
+        "before": "playerServices:FindFirstChild(\"ProfileServiceBindings\")",
+        "after": "ServerStorage.Runtime.Player.ProfileServiceBindings"
+      },
+      {
+        "before": "bindings:FindFirstChild(\"GetProfile\")",
+        "after": "ServerStorage.Runtime.Player.ProfileServiceBindings.GetProfile"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Garage.GarageModuleInstanceCustomization",
+    "target": "ServerStorage.Modules.Game.Garage.GarageModuleInstanceCustomization",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ServerScriptService\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Services\"):WaitForChild(\"Garage\"):WaitForChild(\"GarageModuleInstanceCustomizationRuntime\")",
+        "after": "ServerStorage.Modules.Game.Garage.GarageModuleInstanceCustomization"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Garage.GarageModuleInventory",
+    "target": "ServerStorage.Modules.Game.Garage.GarageModuleInventory",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ServerScriptService\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Services\"):WaitForChild(\"Garage\"):WaitForChild(\"GarageModuleInventoryRuntime\")",
+        "after": "ServerStorage.Modules.Game.Garage.GarageModuleInventory"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Garage.GarageModuleTransaction",
+    "target": "ServerStorage.Modules.Game.Garage.GarageModuleTransaction",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ServerScriptService\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Services\"):WaitForChild(\"Garage\"):WaitForChild(\"GarageModuleTransactionRuntime\")",
+        "after": "ServerStorage.Modules.Game.Garage.GarageModuleTransaction"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Garage.GarageProfile",
+    "target": "ServerStorage.Modules.Game.Garage.GarageProfile",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ServerScriptService\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Services\"):WaitForChild(\"Garage\"):WaitForChild(\"GarageProfileRuntime\")",
+        "after": "ServerStorage.Modules.Game.Garage.GarageProfile"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Garage.GarageRequestGuard",
+    "target": "ServerStorage.Modules.Game.Garage.GarageRequestGuard",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ServerScriptService\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Services\"):WaitForChild(\"Garage\"):WaitForChild(\"GarageRequestGuard\")",
+        "after": "ServerStorage.Modules.Game.Garage.GarageRequestGuard"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Garage.GarageServer",
+    "target": "ServerStorage.Modules.Game.Garage.GarageServer",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ServerScriptService\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Services\"):WaitForChild(\"Garage\"):WaitForChild(\"GarageActionController_Shadow_Disabled\")",
+        "after": "ServerStorage.Modules.Game.Garage.GarageServer"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"GarageProfileRuntime\")",
+        "after": "ServerStorage.Modules.Game.Garage.GarageProfile"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"GarageModuleInventoryRuntime\")",
+        "after": "ServerStorage.Modules.Game.Garage.GarageModuleInventory"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"GarageModuleInstanceCustomizationRuntime\")",
+        "after": "ServerStorage.Modules.Game.Garage.GarageModuleInstanceCustomization"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"GarageModuleTransactionRuntime\")",
+        "after": "ServerStorage.Modules.Game.Garage.GarageModuleTransaction"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"VehicleCosmeticServerRuntime\")",
+        "after": "ServerStorage.Modules.Game.Garage.VehicleCosmeticServer"
+      },
+      {
+        "before": "V56_kit.Shared.Modules.Data:WaitForChild(\"VehicleCosmeticCatalog\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCosmeticCatalog"
+      },
+      {
+        "before": "V56_kit\n\t\t:WaitForChild(\"Shared\")\n\t\t:WaitForChild(\"Modules\")\n\t\t:WaitForChild(\"Common\")\n\t\t:WaitForChild(\"Performance\")\n\t\t:WaitForChild(\"VehicleModuleUpgradeRuntime\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehicleModuleUpgradeRuntime"
+      },
+      {
+        "before": "script.Parent:FindFirstChild(\"GarageModuleInventoryCleanupBridge\")",
+        "after": "ServerStorage.Runtime.Garage.GarageModuleInventoryCleanupBridge"
+      },
+      {
+        "before": "script.Parent",
+        "after": "ServerStorage.Runtime.Garage"
+      },
+      {
+        "before": "data:FindFirstChild(\"GaragePropertyCatalog\")",
+        "after": "ReplicatedStorage.Modules.Game.Garage.GaragePropertyCatalog"
+      },
+      {
+        "before": "script.Parent",
+        "after": "ServerStorage.Runtime.Garage"
+      },
+      {
+        "before": "script.Parent.Parent",
+        "after": "ServerStorage.Runtime"
+      },
+      {
+        "before": "servicesRoot",
+        "after": "ServerStorage.Runtime"
+      },
+      {
+        "before": "playerRoot:FindFirstChild(\"ProfileServiceBindings\")",
+        "after": "ServerStorage.Runtime.Player.ProfileServiceBindings"
+      },
+      {
+        "before": "script.Parent:FindFirstChild(\"GarageProfileMutationBindings\")",
+        "after": "ServerStorage.Runtime.Garage.GarageProfileMutationBindings"
+      },
+      {
+        "before": "script.Parent",
+        "after": "ServerStorage.Runtime.Garage"
+      },
+      {
+        "before": "script.Parent:FindFirstChild(\"GarageCustomisationAccessBinding\")",
+        "after": "ServerStorage.Runtime.Garage.GarageCustomisationAccessBinding"
+      },
+      {
+        "before": "script.Parent",
+        "after": "ServerStorage.Runtime.Garage"
+      },
+      {
+        "before": "V56_kit.Shared.Modules.Common:WaitForChild(\"DriveTuning\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.DriveTuning"
+      },
+      {
+        "before": "script:FindFirstChild(\"RaceVehicleSpawner\")",
+        "after": "ServerStorage.Runtime.Garage.RaceVehicleSpawner"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"OwnedGarageVehicleLifecycleBridge\")",
+        "after": "ServerStorage.Runtime.Garage.OwnedGarageVehicleLifecycleBridge"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"GarageRequestGuard\")",
+        "after": "ServerStorage.Modules.Game.Garage.GarageRequestGuard"
+      },
+      {
+        "before": "game:GetService(\"ServerScriptService\").NeoTokyoRacers.Services",
+        "after": "ServerStorage.Runtime"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Garage.GarageSessionServer",
+    "target": "ServerStorage.Modules.Game.Garage.GarageSessionServer",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ServerScriptService\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Services\"):WaitForChild(\"Garage\"):WaitForChild(\"GarageSessionService_Active\")",
+        "after": "ServerStorage.Modules.Game.Garage.GarageSessionServer"
+      },
+      {
+        "before": "script.Parent:FindFirstChild(\"GarageCustomisationAccessBinding\")",
+        "after": "ServerStorage.Runtime.Garage.GarageCustomisationAccessBinding"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"GarageCustomisationAccessBinding\", 10)",
+        "after": "ServerStorage.Runtime.Garage.GarageCustomisationAccessBinding"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Garage.OwnedGarageAuthoritativeCommand",
+    "target": "ServerStorage.Modules.Game.Garage.OwnedGarageAuthoritativeCommand",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ServerScriptService\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Services\"):WaitForChild(\"Garage\"):WaitForChild(\"OwnedGarageAuthoritativeCommandRuntime\")",
+        "after": "ServerStorage.Modules.Game.Garage.OwnedGarageAuthoritativeCommand"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"OwnedGarageProfileRuntime\")",
+        "after": "ServerStorage.Modules.Game.Garage.OwnedGarageProfile"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"OwnedGarageDisplayAssignmentRuntime\")",
+        "after": "ServerStorage.Modules.Game.Garage.OwnedGarageDisplayAssignment"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Garage.OwnedGarageDisplay",
+    "target": "ServerStorage.Modules.Game.Garage.OwnedGarageDisplay",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ServerScriptService\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Services\"):WaitForChild(\"Garage\"):WaitForChild(\"OwnedGarageDisplayRuntime\")",
+        "after": "ServerStorage.Modules.Game.Garage.OwnedGarageDisplay"
+      },
+      {
+        "before": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data:WaitForChild(\"VehicleCosmeticCatalog\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCosmeticCatalog"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Garage.OwnedGarageDisplayAssignment",
+    "target": "ServerStorage.Modules.Game.Garage.OwnedGarageDisplayAssignment",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ServerScriptService\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Services\"):WaitForChild(\"Garage\"):WaitForChild(\"OwnedGarageDisplayAssignmentRuntime\")",
+        "after": "ServerStorage.Modules.Game.Garage.OwnedGarageDisplayAssignment"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"OwnedGarageProfileRuntime\")",
+        "after": "ServerStorage.Modules.Game.Garage.OwnedGarageProfile"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Garage.OwnedGarageFinish",
+    "target": "ServerStorage.Modules.Game.Garage.OwnedGarageFinish",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ServerScriptService\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Services\"):WaitForChild(\"Garage\"):WaitForChild(\"OwnedGarageFinishRuntime\")",
+        "after": "ServerStorage.Modules.Game.Garage.OwnedGarageFinish"
+      },
+      {
+        "before": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data:WaitForChild(\"OwnedGarageInteriorStyleCatalog\")",
+        "after": "ReplicatedStorage.Modules.Game.Garage.OwnedGarageInteriorStyleCatalog"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Garage.OwnedGarageInterior",
+    "target": "ServerStorage.Modules.Game.Garage.OwnedGarageInterior",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ServerScriptService\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Services\"):WaitForChild(\"Garage\"):WaitForChild(\"OwnedGarageInteriorRuntime\")",
+        "after": "ServerStorage.Modules.Game.Garage.OwnedGarageInterior"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+    "target": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ServerScriptService\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Services\"):WaitForChild(\"Garage\"):WaitForChild(\"OwnedGarageManagementRuntime\")",
+        "after": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement"
+      },
+      {
+        "before": "kit.Shared.Modules.Common:WaitForChild(\"VehicleDisplayNames\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.VehicleDisplayNames"
+      },
+      {
+        "before": "kit.Shared.Modules.Data:WaitForChild(\"OwnedGaragePropertyCatalog\")",
+        "after": "ReplicatedStorage.Modules.Game.Garage.OwnedGaragePropertyCatalog"
+      },
+      {
+        "before": "kit.Shared.Modules.Data:WaitForChild(\"OwnedGarageInteriorStyleCatalog\")",
+        "after": "ReplicatedStorage.Modules.Game.Garage.OwnedGarageInteriorStyleCatalog"
+      },
+      {
+        "before": "kit.Shared.Modules.Data:WaitForChild(\"OwnedGarageDecorationCatalog\")",
+        "after": "ReplicatedStorage.Modules.Game.Garage.OwnedGarageDecorationCatalog"
+      },
+      {
+        "before": "kit.Shared.Modules.Data:WaitForChild(\"OwnedGarageLightingCatalog\")",
+        "after": "ReplicatedStorage.Modules.Game.Garage.OwnedGarageLightingCatalog"
+      },
+      {
+        "before": "ServerScriptService.NeoTokyoRacers.Services",
+        "after": "ServerStorage.Runtime"
+      },
+      {
+        "before": "services",
+        "after": "ServerStorage.Runtime"
+      },
+      {
+        "before": "garage:WaitForChild(\"OwnedGarageProfileRuntime\")",
+        "after": "ServerStorage.Modules.Game.Garage.OwnedGarageProfile"
+      },
+      {
+        "before": "garage:WaitForChild(\"OwnedGarageFinishRuntime\")",
+        "after": "ServerStorage.Modules.Game.Garage.OwnedGarageFinish"
+      },
+      {
+        "before": "garage:WaitForChild(\"OwnedGarageDisplayAssignmentRuntime\")",
+        "after": "ServerStorage.Modules.Game.Garage.OwnedGarageDisplayAssignment"
+      },
+      {
+        "before": "garage:WaitForChild(\"OwnedGarageInteriorRuntime\")",
+        "after": "ServerStorage.Modules.Game.Garage.OwnedGarageInterior"
+      },
+      {
+        "before": "garage:WaitForChild(\"OwnedGarageDisplayRuntime\")",
+        "after": "ServerStorage.Modules.Game.Garage.OwnedGarageDisplay"
+      },
+      {
+        "before": "garage:WaitForChild(\"OwnedGarageVehicleLifecycleBridge\")",
+        "after": "ServerStorage.Runtime.Garage.OwnedGarageVehicleLifecycleBridge"
+      },
+      {
+        "before": "services",
+        "after": "ServerStorage.Runtime"
+      },
+      {
+        "before": "bindings:WaitForChild(\"GetProfile\")",
+        "after": "ServerStorage.Runtime.Player.ProfileServiceBindings.GetProfile"
+      },
+      {
+        "before": "bindings:WaitForChild(\"ExecuteOwnedGarageCommand\")",
+        "after": "ServerStorage.Runtime.Player.ProfileServiceBindings.ExecuteOwnedGarageCommand"
+      },
+      {
+        "before": "bindings:WaitForChild(\"SaveNow\")",
+        "after": "ServerStorage.Runtime.Player.ProfileServiceBindings.SaveNow"
+      },
+      {
+        "before": "services",
+        "after": "ServerStorage.Runtime"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Garage.OwnedGarageProfile",
+    "target": "ServerStorage.Modules.Game.Garage.OwnedGarageProfile",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ServerScriptService\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Services\"):WaitForChild(\"Garage\"):WaitForChild(\"OwnedGarageProfileRuntime\")",
+        "after": "ServerStorage.Modules.Game.Garage.OwnedGarageProfile"
+      },
+      {
+        "before": "script",
+        "after": "ServerStorage.Modules.Game.Garage.OwnedGarageProfile"
+      },
+      {
+        "before": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data:WaitForChild(\"OwnedGaragePropertyCatalog\")",
+        "after": "ReplicatedStorage.Modules.Game.Garage.OwnedGaragePropertyCatalog"
+      },
+      {
+        "before": "script",
+        "after": "ServerStorage.Modules.Game.Garage.OwnedGarageProfile"
+      },
+      {
+        "before": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data:WaitForChild(\"OwnedGarageInteriorStyleCatalog\")",
+        "after": "ReplicatedStorage.Modules.Game.Garage.OwnedGarageInteriorStyleCatalog"
+      },
+      {
+        "before": "script",
+        "after": "ServerStorage.Modules.Game.Garage.OwnedGarageProfile"
+      },
+      {
+        "before": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data:WaitForChild(\"OwnedGarageDecorationCatalog\")",
+        "after": "ReplicatedStorage.Modules.Game.Garage.OwnedGarageDecorationCatalog"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"OwnedGarageFinishRuntime\")",
+        "after": "ServerStorage.Modules.Game.Garage.OwnedGarageFinish"
+      },
+      {
+        "before": "script",
+        "after": "ServerStorage.Modules.Game.Garage.OwnedGarageProfile"
+      },
+      {
+        "before": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data:WaitForChild(\"OwnedGarageLightingCatalog\")",
+        "after": "ReplicatedStorage.Modules.Game.Garage.OwnedGarageLightingCatalog"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Garage.OwnedGarageServer",
+    "target": "ServerStorage.Modules.Game.Garage.OwnedGarageServer",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ServerScriptService\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Services\"):WaitForChild(\"Garage\"):WaitForChild(\"OwnedGarageService_Active\")",
+        "after": "ServerStorage.Modules.Game.Garage.OwnedGarageServer"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"OwnedGarageManagementRuntime\")",
+        "after": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Garage.VehicleCosmeticServer",
+    "target": "ServerStorage.Modules.Game.Garage.VehicleCosmeticServer",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ServerScriptService\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Services\"):WaitForChild(\"Garage\"):WaitForChild(\"VehicleCosmeticServerRuntime\")",
+        "after": "ServerStorage.Modules.Game.Garage.VehicleCosmeticServer"
+      },
+      {
+        "before": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data:WaitForChild(\"VehicleCosmeticCatalog\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCosmeticCatalog"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Player.EconomyServer",
+    "target": "ServerStorage.Modules.Game.Player.EconomyServer",
+    "replacements": [],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Player.OnboardingServer",
+    "target": "ServerStorage.Modules.Game.Player.OnboardingServer",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ServerScriptService\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Services\"):WaitForChild(\"Player\"):WaitForChild(\"OnboardingService_Active\")",
+        "after": "ServerStorage.Modules.Game.Player.OnboardingServer"
+      },
+      {
+        "before": "ServerScriptService:WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Services\")",
+        "after": "ServerStorage.Runtime"
+      },
+      {
+        "before": "services",
+        "after": "ServerStorage.Runtime"
+      },
+      {
+        "before": "playerServices:WaitForChild(\"ProfileServiceBindings\")",
+        "after": "ServerStorage.Runtime.Player.ProfileServiceBindings"
+      },
+      {
+        "before": "bindings:WaitForChild(\"ExecuteOnboardingCommand\")",
+        "after": "ServerStorage.Runtime.Player.ProfileServiceBindings.ExecuteOnboardingCommand"
+      },
+      {
+        "before": "playerServices:WaitForChild(\"OnboardingProgress\")",
+        "after": "ServerStorage.Runtime.Player.OnboardingProgress"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Player.ProfileCompatibility",
+    "target": "ServerStorage.Modules.Game.Player.ProfileCompatibility",
+    "replacements": [],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Player.ProfileCompatibilityServer",
+    "target": "ServerStorage.Modules.Game.Player.ProfileCompatibilityServer",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ServerScriptService\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Services\"):WaitForChild(\"Player\"):WaitForChild(\"LegacyGarageProfileBridge_Active\")",
+        "after": "ServerStorage.Modules.Game.Player.ProfileCompatibilityServer"
+      },
+      {
+        "before": "dataModules:WaitForChild(\"PlayerProfileSchema\")",
+        "after": "ReplicatedStorage.Modules.Game.Player.PlayerProfileSchema"
+      },
+      {
+        "before": "dataModules:WaitForChild(\"LegacyGarageProfileMapper\")",
+        "after": "ReplicatedStorage.Modules.Game.Player.GarageProfileProjection"
+      },
+      {
+        "before": "ServerScriptService:WaitForChild(\"NeoTokyoRacers\")",
+        "after": "ServerStorage.Runtime"
+      },
+      {
+        "before": "ensureFolder(serverRoot, \"Services\")",
+        "after": "ServerStorage.Runtime"
+      },
+      {
+        "before": "ensureFolder(services, \"Player\")",
+        "after": "ServerStorage.Runtime.Player"
+      },
+      {
+        "before": "ensureFolder(playerServices, \"LegacyGarageProfileBridgeBindings\")",
+        "after": "ServerStorage.Runtime.Player.LegacyGarageProfileBridgeBindings"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Player.ProfileServer",
+    "target": "ServerStorage.Modules.Game.Player.ProfileServer",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ServerScriptService\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Services\"):WaitForChild(\"Player\"):WaitForChild(\"ProfileService_Active\")",
+        "after": "ServerStorage.Modules.Game.Player.ProfileServer"
+      },
+      {
+        "before": "ntr\n\t:WaitForChild(\"Shared\")\n\t:WaitForChild(\"Modules\")\n\t:WaitForChild(\"Data\")\n\t:WaitForChild(\"PlayerProfileSchema\")",
+        "after": "ReplicatedStorage.Modules.Game.Player.PlayerProfileSchema"
+      },
+      {
+        "before": "ServerScriptService:WaitForChild(\"NeoTokyoRacers\")",
+        "after": "ServerStorage.Runtime"
+      },
+      {
+        "before": "ensureFolder(serverRoot, \"Services\")",
+        "after": "ServerStorage.Runtime"
+      },
+      {
+        "before": "services:WaitForChild(\"Garage\"):WaitForChild(\"OwnedGarageAuthoritativeCommandRuntime\")",
+        "after": "ServerStorage.Modules.Game.Garage.OwnedGarageAuthoritativeCommand"
+      },
+      {
+        "before": "ensureFolder(services, \"Player\")",
+        "after": "ServerStorage.Runtime.Player"
+      },
+      {
+        "before": "ensureFolder(serverRoot, \"State\")",
+        "after": "ServerStorage.Runtime.Player"
+      },
+      {
+        "before": "ensureFolder(stateRoot, \"RuntimeProfiles\")",
+        "after": "ServerStorage.Runtime.Player.RuntimeProfiles"
+      },
+      {
+        "before": "ensureFolder(playerServices, \"ProfileServiceBindings\")",
+        "after": "ServerStorage.Runtime.Player.ProfileServiceBindings"
+      },
+      {
+        "before": "bindings:FindFirstChild(\"EconomyCashCommitted\")",
+        "after": "ServerStorage.Runtime.Player.ProfileServiceBindings.EconomyCashCommitted"
+      },
+      {
+        "before": "playerServices:WaitForChild(\"ProfileStore\")",
+        "after": "ServerStorage.Modules.Game.Player.ProfileStore"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Player.ProfileStore",
+    "target": "ServerStorage.Modules.Game.Player.ProfileStore",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ServerScriptService\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Services\"):WaitForChild(\"Player\"):WaitForChild(\"ProfileStore\")",
+        "after": "ServerStorage.Modules.Game.Player.ProfileStore"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Racing.GlobalLeaderboardServer",
+    "target": "ServerStorage.Modules.Game.Racing.GlobalLeaderboardServer",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ServerScriptService\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Services\"):WaitForChild(\"Racing\"):WaitForChild(\"GlobalTimeTrialLeaderboardService_Active\")",
+        "after": "ServerStorage.Modules.Game.Racing.GlobalLeaderboardServer"
+      },
+      {
+        "before": "script.Parent:WaitForChild(\"GlobalTimeTrialLeaderboardBindings\")",
+        "after": "ServerStorage.Runtime.Racing.GlobalTimeTrialLeaderboardBindings"
+      },
+      {
+        "before": "bindings:WaitForChild(\"RecordTimeTrialBest\")",
+        "after": "ServerStorage.Runtime.Racing.GlobalTimeTrialLeaderboardBindings.RecordTimeTrialBest"
+      },
+      {
+        "before": "bindings:WaitForChild(\"GetTimeTrialLeaderboard\")",
+        "after": "ServerStorage.Runtime.Racing.GlobalTimeTrialLeaderboardBindings.GetTimeTrialLeaderboard"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Racing.MatchmakingServer",
+    "target": "ServerStorage.Modules.Game.Racing.MatchmakingServer",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ServerScriptService\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Services\"):WaitForChild(\"Racing\"):WaitForChild(\"RaceMatchmakingService_Active\")",
+        "after": "ServerStorage.Modules.Game.Racing.MatchmakingServer"
+      },
+      {
+        "before": "kit:WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Racing\")",
+        "after": "ReplicatedStorage.Modules.Game.Racing"
+      },
+      {
+        "before": "racingModules:WaitForChild(\"RaceRouteDefinition\")",
+        "after": "ReplicatedStorage.Modules.Game.Racing.RaceRouteDefinition"
+      },
+      {
+        "before": "racingModules:WaitForChild(\"RaceConfigReader\")",
+        "after": "ReplicatedStorage.Modules.Game.Racing.RaceConfigReader"
+      },
+      {
+        "before": "script.Parent:FindFirstChild(\"RaceSessionAssetBindings\")",
+        "after": "ServerStorage.Runtime.Racing.RaceSessionAssetBindings"
+      },
+      {
+        "before": "script.Parent:FindFirstChild(\"RaceRewardBindings\")",
+        "after": "ServerStorage.Runtime.Racing.RaceRewardBindings"
+      },
+      {
+        "before": "game:GetService(\"ServerScriptService\").NeoTokyoRacers.Services",
+        "after": "ServerStorage.Runtime"
+      }
+    ],
+    "ambiguous_aliases": {
+      "bindings": [
+        [
+          "ServerScriptService",
+          "NeoTokyoRacers",
+          "Services",
+          "Racing",
+          "RaceRewardBindings"
+        ],
+        [
+          "ServerScriptService",
+          "NeoTokyoRacers",
+          "Services",
+          "Racing",
+          "RaceSessionAssetBindings"
+        ]
+      ]
+    }
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Racing.PersonalBestServer",
+    "target": "ServerStorage.Modules.Game.Racing.PersonalBestServer",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ServerScriptService\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Services\"):WaitForChild(\"Racing\"):WaitForChild(\"RacePersonalBestService_Active\")",
+        "after": "ServerStorage.Modules.Game.Racing.PersonalBestServer"
+      },
+      {
+        "before": "ServerScriptService:WaitForChild(\"NeoTokyoRacers\")",
+        "after": "ServerStorage.Runtime"
+      },
+      {
+        "before": "ensureFolder(ensureFolder(serverRoot, \"Services\"), \"Racing\")",
+        "after": "ServerStorage.Runtime.Racing"
+      },
+      {
+        "before": "ensureFolder(racingServices, \"RacePersonalBestBindings\")",
+        "after": "ServerStorage.Runtime.Racing.RacePersonalBestBindings"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Racing.RaceAssetsServer",
+    "target": "ServerStorage.Modules.Game.Racing.RaceAssetsServer",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ServerScriptService\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Services\"):WaitForChild(\"Racing\"):WaitForChild(\"RaceSessionAssetService_Active\")",
+        "after": "ServerStorage.Modules.Game.Racing.RaceAssetsServer"
+      },
+      {
+        "before": "script.Parent",
+        "after": "ServerStorage.Runtime.Racing"
+      },
+      {
+        "before": "racingRoot:FindFirstChild(\"RaceSessionAssetBindings\")",
+        "after": "ServerStorage.Runtime.Racing.RaceSessionAssetBindings"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Racing.RaceDisplayNameServer",
+    "target": "ServerStorage.Modules.Game.Racing.RaceDisplayNameServer",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ServerScriptService\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Services\"):WaitForChild(\"Racing\"):WaitForChild(\"RaceDisplayNameService_Active\")",
+        "after": "ServerStorage.Modules.Game.Racing.RaceDisplayNameServer"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Racing.RaceRewardsServer",
+    "target": "ServerStorage.Modules.Game.Racing.RaceRewardsServer",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ServerScriptService\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Services\"):WaitForChild(\"Racing\"):WaitForChild(\"RaceRewardService_Active\")",
+        "after": "ServerStorage.Modules.Game.Racing.RaceRewardsServer"
+      },
+      {
+        "before": "script.Parent",
+        "after": "ServerStorage.Runtime.Racing"
+      },
+      {
+        "before": "racingRoot:FindFirstChild(\"RaceRewardBindings\")",
+        "after": "ServerStorage.Runtime.Racing.RaceRewardBindings"
+      },
+      {
+        "before": "ServerScriptService:FindFirstChild(\"NeoTokyoRacers\")",
+        "after": "ServerStorage.Runtime"
+      },
+      {
+        "before": "ServerScriptService.NeoTokyoRacers:FindFirstChild(\"Services\")",
+        "after": "ServerStorage.Runtime"
+      },
+      {
+        "before": "ServerScriptService.NeoTokyoRacers.Services",
+        "after": "ServerStorage.Runtime"
+      },
+      {
+        "before": "garage:FindFirstChild(\"GarageProfileMutationBindings\")",
+        "after": "ServerStorage.Runtime.Garage.GarageProfileMutationBindings"
+      },
+      {
+        "before": "bindingsFolder:FindFirstChild(\"GrantCash\")",
+        "after": "ServerStorage.Runtime.Garage.GarageProfileMutationBindings.GrantCash"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Racing.RaceTeleportServer",
+    "target": "ServerStorage.Modules.Game.Racing.RaceTeleportServer",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ServerScriptService\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Services\"):WaitForChild(\"Racing\"):WaitForChild(\"RaceBrowserTeleportService_Active\")",
+        "after": "ServerStorage.Modules.Game.Racing.RaceTeleportServer"
+      },
+      {
+        "before": "shared:WaitForChild(\"Modules\"):WaitForChild(\"Racing\")",
+        "after": "ReplicatedStorage.Modules.Game.Racing"
+      },
+      {
+        "before": "racingModules:WaitForChild(\"RaceConfigReader\")",
+        "after": "ReplicatedStorage.Modules.Game.Racing.RaceConfigReader"
+      },
+      {
+        "before": "racingModules:WaitForChild(\"RaceRouteDefinition\")",
+        "after": "ReplicatedStorage.Modules.Game.Racing.RaceRouteDefinition"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Racing.TimeTrialServer",
+    "target": "ServerStorage.Modules.Game.Racing.TimeTrialServer",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ServerScriptService\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Services\"):WaitForChild(\"Racing\"):WaitForChild(\"TimeTrialService_Active\")",
+        "after": "ServerStorage.Modules.Game.Racing.TimeTrialServer"
+      },
+      {
+        "before": "kit:WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Racing\")",
+        "after": "ReplicatedStorage.Modules.Game.Racing"
+      },
+      {
+        "before": "racingModules:WaitForChild(\"RaceRouteDefinition\")",
+        "after": "ReplicatedStorage.Modules.Game.Racing.RaceRouteDefinition"
+      },
+      {
+        "before": "racingModules:WaitForChild(\"RaceConfigReader\")",
+        "after": "ReplicatedStorage.Modules.Game.Racing.RaceConfigReader"
+      },
+      {
+        "before": "game:GetService(\"ServerScriptService\"):FindFirstChild(\"NeoTokyoRacers\")",
+        "after": "ServerStorage.Runtime"
+      },
+      {
+        "before": "script.Parent:FindFirstChild(\"RacePersonalBestBindings\")",
+        "after": "ServerStorage.Runtime.Racing.RacePersonalBestBindings"
+      },
+      {
+        "before": "script.Parent:FindFirstChild(\"GlobalTimeTrialLeaderboardBindings\")",
+        "after": "ServerStorage.Runtime.Racing.GlobalTimeTrialLeaderboardBindings"
+      },
+      {
+        "before": "script.Parent:FindFirstChild(\"RaceSessionAssetBindings\")",
+        "after": "ServerStorage.Runtime.Racing.RaceSessionAssetBindings"
+      },
+      {
+        "before": "game:GetService(\"ServerScriptService\").NeoTokyoRacers.Services",
+        "after": "ServerStorage.Runtime"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+    "target": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ServerScriptService\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Services\"):WaitForChild(\"Vehicle\"):WaitForChild(\"DriveToEarnCashService_Active\")",
+        "after": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer"
+      },
+      {
+        "before": "ServerScriptService:WaitForChild(\"NeoTokyoRacers\")",
+        "after": "ServerStorage.Runtime"
+      },
+      {
+        "before": "serverRoot:WaitForChild(\"Services\")",
+        "after": "ServerStorage.Runtime"
+      },
+      {
+        "before": "services",
+        "after": "ServerStorage.Runtime"
+      },
+      {
+        "before": "profileBindings:WaitForChild(\"ExecuteEconomyCommand\")",
+        "after": "ServerStorage.Runtime.Player.ProfileServiceBindings.ExecuteEconomyCommand"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Vehicles.DriverSeatServer",
+    "target": "ServerStorage.Modules.Game.Vehicles.DriverSeatServer",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ServerScriptService\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Services\"):WaitForChild(\"Vehicle\"):WaitForChild(\"DriverSeatPositionService_Active\")",
+        "after": "ServerStorage.Modules.Game.Vehicles.DriverSeatServer"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Vehicles.VehicleAccessServer",
+    "target": "ServerStorage.Modules.Game.Vehicles.VehicleAccessServer",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ServerScriptService\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Services\"):WaitForChild(\"Vehicle\"):WaitForChild(\"VehicleAccessPromptService_Active\")",
+        "after": "ServerStorage.Modules.Game.Vehicles.VehicleAccessServer"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Vehicles.VehicleCollisionServer",
+    "target": "ServerStorage.Modules.Game.Vehicles.VehicleCollisionServer",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ServerScriptService\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Services\"):WaitForChild(\"Vehicle\"):WaitForChild(\"VehicleCollisionLifecycleService_Active\")",
+        "after": "ServerStorage.Modules.Game.Vehicles.VehicleCollisionServer"
+      },
+      {
+        "before": "script.Parent",
+        "after": "ServerStorage.Runtime.Vehicles"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Vehicles.VehiclePerformanceServer",
+    "target": "ServerStorage.Modules.Game.Vehicles.VehiclePerformanceServer",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ServerScriptService\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Services\"):WaitForChild(\"Vehicle\"):WaitForChild(\"VehiclePerformanceRuntimeService_Active\")",
+        "after": "ServerStorage.Modules.Game.Vehicles.VehiclePerformanceServer"
+      },
+      {
+        "before": "kit:WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Common\"):WaitForChild(\"Performance\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.Performance"
+      },
+      {
+        "before": "performance:WaitForChild(\"VehiclePerformanceRuntime\")",
+        "after": "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehiclePerformance"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.World.FreeRoamTeleportServer",
+    "target": "ServerStorage.Modules.Game.World.FreeRoamTeleportServer",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ServerScriptService\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Services\"):WaitForChild(\"UI\"):WaitForChild(\"FreeRoamHudTeleportService_Active\")",
+        "after": "ServerStorage.Modules.Game.World.FreeRoamTeleportServer"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.World.LightingServer",
+    "target": "ServerStorage.Modules.Game.World.LightingServer",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ServerScriptService\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Services\"):WaitForChild(\"World\"):WaitForChild(\"Lighting\"):WaitForChild(\"LightingService_Active\")",
+        "after": "ServerStorage.Modules.Game.World.LightingServer"
+      }
+    ],
+    "ambiguous_aliases": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.World.TrafficLightServer",
+    "target": "ServerStorage.Modules.Game.World.TrafficLightServer",
+    "replacements": [
+      {
+        "before": "game:GetService(\"ServerScriptService\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Services\"):WaitForChild(\"World\"):WaitForChild(\"Traffic\"):WaitForChild(\"TrafficLightService\")",
+        "after": "ServerStorage.Modules.Game.World.TrafficLightServer"
+      }
+    ],
+    "ambiguous_aliases": {}
+  }
+]

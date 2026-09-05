@@ -1,0 +1,1248 @@
+[
+  {
+    "source": "ReplicatedFirst.NTRLoading.InitialLoadingAndStartScreenClient",
+    "target": "ReplicatedFirst.Loading.InitialLoadingAndStartScreenClient",
+    "paths": 8,
+    "names": 9,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedFirst.NTRLoading.LoadingArtworkCatalog",
+    "target": "ReplicatedFirst.Loading.LoadingArtworkCatalog",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedFirst.NTRLoading.LoadingScreenView",
+    "target": "ReplicatedFirst.Loading.LoadingScreenView",
+    "paths": 0,
+    "names": 7,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedFirst.NTRLoading.LoadingTransitionRuntime",
+    "target": "ReplicatedFirst.Loading.LoadingTransitionRuntime",
+    "paths": 6,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Core.ClientLifecycle",
+    "target": "ReplicatedStorage.Modules.Core.ClientLifecycle",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Core.ConfigReader",
+    "target": "ReplicatedStorage.Modules.Core.ConfigReader",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Core.ConnectionScope",
+    "target": "ReplicatedStorage.Modules.Core.ConnectionScope",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Core.PathResolver",
+    "target": "ReplicatedStorage.Modules.Core.PathResolver",
+    "paths": 2,
+    "names": 1,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Audio.AcousticsClient",
+    "target": "ReplicatedStorage.Modules.Game.Audio.AcousticsClient",
+    "paths": 10,
+    "names": 5,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Audio.AcousticsRuntimeClient",
+    "target": "ReplicatedStorage.Modules.Game.Audio.AcousticsRuntimeClient",
+    "paths": 1,
+    "names": 1,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Audio.AudioBusClient",
+    "target": "ReplicatedStorage.Modules.Game.Audio.AudioBusClient",
+    "paths": 0,
+    "names": 6,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Audio.AudioMixClient",
+    "target": "ReplicatedStorage.Modules.Game.Audio.AudioMixClient",
+    "paths": 0,
+    "names": 8,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Audio.AudioRuntimeClient",
+    "target": "ReplicatedStorage.Modules.Game.Audio.AudioRuntimeClient",
+    "paths": 1,
+    "names": 1,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Audio.ContextAudioCatalog",
+    "target": "ReplicatedStorage.Modules.Game.Audio.ContextAudioCatalog",
+    "paths": 4,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient",
+    "target": "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient",
+    "paths": 8,
+    "names": 17,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Audio.ContextAudioRuntimeClient",
+    "target": "ReplicatedStorage.Modules.Game.Audio.ContextAudioRuntimeClient",
+    "paths": 1,
+    "names": 1,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioBridge",
+    "target": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioBridge",
+    "paths": 0,
+    "names": 1,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioCatalog",
+    "target": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioCatalog",
+    "paths": 5,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioClient",
+    "target": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioClient",
+    "paths": 4,
+    "names": 8,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioRuntimeClient",
+    "target": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioRuntimeClient",
+    "paths": 1,
+    "names": 1,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioCatalog",
+    "target": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioCatalog",
+    "paths": 4,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+    "target": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+    "paths": 7,
+    "names": 23,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioStateContract",
+    "target": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioStateContract",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Dealership.DealershipIntroClient",
+    "target": "ReplicatedStorage.Modules.Game.Dealership.DealershipIntroClient",
+    "paths": 8,
+    "names": 7,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Dealership.GarageEntranceClient",
+    "target": "ReplicatedStorage.Modules.Game.Dealership.GarageEntranceClient",
+    "paths": 9,
+    "names": 9,
+    "ambiguous": {
+      "Part": [
+        [
+          "Workspace",
+          "NeoTokyoRacersWorld",
+          "Dealership",
+          "Intro",
+          "Desk",
+          "GarageDeskTrigger"
+        ],
+        [
+          "Workspace",
+          "NeoTokyoRacersWorld",
+          "Dealership",
+          "Customisation",
+          "CustomisationDeskTrigger"
+        ],
+        [
+          "Workspace",
+          "NeoTokyoRacersWorld",
+          "Dealership",
+          "Customisation",
+          "DriveInCustomisationTrigger"
+        ]
+      ]
+    }
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient",
+    "target": "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient",
+    "paths": 1,
+    "names": 13,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Development.LightingPreviewClient",
+    "target": "ReplicatedStorage.Modules.Game.Development.LightingPreviewClient",
+    "paths": 5,
+    "names": 5,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Development.StudioCashGrantClient",
+    "target": "ReplicatedStorage.Modules.Game.Development.StudioCashGrantClient",
+    "paths": 3,
+    "names": 3,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Development.TrailerModeClient",
+    "target": "ReplicatedStorage.Modules.Game.Development.TrailerModeClient",
+    "paths": 1,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Development.TrailerShotClient",
+    "target": "ReplicatedStorage.Modules.Game.Development.TrailerShotClient",
+    "paths": 1,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Development.TrailerVehicleCameraClient",
+    "target": "ReplicatedStorage.Modules.Game.Development.TrailerVehicleCameraClient",
+    "paths": 1,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Garage.GarageModuleInstancePreviewAdapter",
+    "target": "ReplicatedStorage.Modules.Game.Garage.GarageModuleInstancePreviewAdapter",
+    "paths": 1,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Garage.GaragePreviewPresentationClient",
+    "target": "ReplicatedStorage.Modules.Game.Garage.GaragePreviewPresentationClient",
+    "paths": 5,
+    "names": 6,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Garage.GaragePropertyCatalog",
+    "target": "ReplicatedStorage.Modules.Game.Garage.GaragePropertyCatalog",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+    "target": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+    "paths": 6,
+    "names": 22,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Garage.GarageVehiclePreviewProfile",
+    "target": "ReplicatedStorage.Modules.Game.Garage.GarageVehiclePreviewProfile",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Garage.OwnedGarageDecorationCatalog",
+    "target": "ReplicatedStorage.Modules.Game.Garage.OwnedGarageDecorationCatalog",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Garage.OwnedGarageInteriorStyleCatalog",
+    "target": "ReplicatedStorage.Modules.Game.Garage.OwnedGarageInteriorStyleCatalog",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Garage.OwnedGarageLightingCatalog",
+    "target": "ReplicatedStorage.Modules.Game.Garage.OwnedGarageLightingCatalog",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Garage.OwnedGaragePropertyCatalog",
+    "target": "ReplicatedStorage.Modules.Game.Garage.OwnedGaragePropertyCatalog",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Garage.PaintClient",
+    "target": "ReplicatedStorage.Modules.Game.Garage.PaintClient",
+    "paths": 0,
+    "names": 1,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Garage.PreviewCameraClient",
+    "target": "ReplicatedStorage.Modules.Game.Garage.PreviewCameraClient",
+    "paths": 1,
+    "names": 2,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Garage.PreviewVehicleClient",
+    "target": "ReplicatedStorage.Modules.Game.Garage.PreviewVehicleClient",
+    "paths": 2,
+    "names": 4,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Garage.ThrustPreviewClient",
+    "target": "ReplicatedStorage.Modules.Game.Garage.ThrustPreviewClient",
+    "paths": 7,
+    "names": 6,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Player.GarageProfileProjection",
+    "target": "ReplicatedStorage.Modules.Game.Player.GarageProfileProjection",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Player.PlayerProfileSchema",
+    "target": "ReplicatedStorage.Modules.Game.Player.PlayerProfileSchema",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Racing.RaceBrowserClient",
+    "target": "ReplicatedStorage.Modules.Game.Racing.RaceBrowserClient",
+    "paths": 5,
+    "names": 3,
+    "ambiguous": {
+      "event": [
+        [
+          "StarterPlayer",
+          "StarterPlayerScripts",
+          "Runtime",
+          "Racing",
+          "RaceTransitionRequest"
+        ],
+        [
+          "StarterPlayer",
+          "StarterPlayerScripts",
+          "Runtime",
+          "UI",
+          "FreeRoamHudPresentationMode"
+        ],
+        [
+          "StarterPlayer",
+          "StarterPlayerScripts",
+          "Runtime",
+          "UI",
+          "FreeRoamVehicleExited"
+        ]
+      ]
+    }
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Racing.RaceConfigReader",
+    "target": "ReplicatedStorage.Modules.Game.Racing.RaceConfigReader",
+    "paths": 1,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Racing.RaceCountdownPresentationClient",
+    "target": "ReplicatedStorage.Modules.Game.Racing.RaceCountdownPresentationClient",
+    "paths": 3,
+    "names": 4,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Racing.RaceEntryMenuClient",
+    "target": "ReplicatedStorage.Modules.Game.Racing.RaceEntryMenuClient",
+    "paths": 8,
+    "names": 3,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Racing.RaceEntryPresentationClient",
+    "target": "ReplicatedStorage.Modules.Game.Racing.RaceEntryPresentationClient",
+    "paths": 15,
+    "names": 3,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+    "target": "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+    "paths": 2,
+    "names": 22,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Racing.RaceParticipantVisibilityClient",
+    "target": "ReplicatedStorage.Modules.Game.Racing.RaceParticipantVisibilityClient",
+    "paths": 4,
+    "names": 2,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Racing.RaceQueueClient",
+    "target": "ReplicatedStorage.Modules.Game.Racing.RaceQueueClient",
+    "paths": 8,
+    "names": 6,
+    "ambiguous": {
+      "signal": [
+        [
+          "StarterPlayer",
+          "StarterPlayerScripts",
+          "Runtime",
+          "UI",
+          "FreeRoamVehicleSpawned"
+        ],
+        [
+          "StarterPlayer",
+          "StarterPlayerScripts",
+          "Runtime",
+          "UI",
+          "FreeRoamHudPresentationMode"
+        ]
+      ]
+    }
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Racing.RaceRouteDefinition",
+    "target": "ReplicatedStorage.Modules.Game.Racing.RaceRouteDefinition",
+    "paths": 1,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Racing.RaceRouteGuideClient",
+    "target": "ReplicatedStorage.Modules.Game.Racing.RaceRouteGuideClient",
+    "paths": 9,
+    "names": 4,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Racing.RaceSessionAssetsClient",
+    "target": "ReplicatedStorage.Modules.Game.Racing.RaceSessionAssetsClient",
+    "paths": 7,
+    "names": 2,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient",
+    "target": "ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient",
+    "paths": 17,
+    "names": 8,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Racing.RaceTimeTrialResultCoachClient",
+    "target": "ReplicatedStorage.Modules.Game.Racing.RaceTimeTrialResultCoachClient",
+    "paths": 6,
+    "names": 5,
+    "ambiguous": {
+      "root": [
+        [
+          "StarterPlayer",
+          "StarterPlayerScripts",
+          "Runtime"
+        ],
+        [
+          "StarterPlayer",
+          "StarterPlayerScripts",
+          "Runtime",
+          "Racing"
+        ]
+      ]
+    }
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Racing.RaceTransitionClient",
+    "target": "ReplicatedStorage.Modules.Game.Racing.RaceTransitionClient",
+    "paths": 6,
+    "names": 15,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+    "target": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+    "paths": 15,
+    "names": 24,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.FreeRoamMapPlayerMarkers",
+    "target": "ReplicatedStorage.Modules.Game.UI.FreeRoamMapPlayerMarkers",
+    "paths": 0,
+    "names": 14,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.FreeRoamVehicleExitButtonClient",
+    "target": "ReplicatedStorage.Modules.Game.UI.FreeRoamVehicleExitButtonClient",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.GarageBrowserUI",
+    "target": "ReplicatedStorage.Modules.Game.UI.GarageBrowserUI",
+    "paths": 6,
+    "names": 4,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.GarageComponents",
+    "target": "ReplicatedStorage.Modules.Game.UI.GarageComponents",
+    "paths": 4,
+    "names": 10,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+    "target": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+    "paths": 5,
+    "names": 25,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.GarageInteriorTransitionUI",
+    "target": "ReplicatedStorage.Modules.Game.UI.GarageInteriorTransitionUI",
+    "paths": 0,
+    "names": 4,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.GarageModuleCardViewModel",
+    "target": "ReplicatedStorage.Modules.Game.UI.GarageModuleCardViewModel",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.GarageWorkspaceUI",
+    "target": "ReplicatedStorage.Modules.Game.UI.GarageWorkspaceUI",
+    "paths": 6,
+    "names": 4,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.LoadingTransitionUI",
+    "target": "ReplicatedStorage.Modules.Game.UI.LoadingTransitionUI",
+    "paths": 1,
+    "names": 2,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+    "target": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+    "paths": 15,
+    "names": 15,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+    "target": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+    "paths": 14,
+    "names": 34,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.OnboardingGuideTrailRenderer",
+    "target": "ReplicatedStorage.Modules.Game.UI.OnboardingGuideTrailRenderer",
+    "paths": 0,
+    "names": 3,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+    "target": "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+    "paths": 10,
+    "names": 11,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.OwnedGarageClient",
+    "target": "ReplicatedStorage.Modules.Game.UI.OwnedGarageClient",
+    "paths": 0,
+    "names": 1,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+    "target": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+    "paths": 8,
+    "names": 4,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.RacingMobileScaledDesktopLayout",
+    "target": "ReplicatedStorage.Modules.Game.UI.RacingMobileScaledDesktopLayout",
+    "paths": 2,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.RacingUIComponents",
+    "target": "ReplicatedStorage.Modules.Game.UI.RacingUIComponents",
+    "paths": 6,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.ResponsiveUIFoundation",
+    "target": "ReplicatedStorage.Modules.Game.UI.ResponsiveUIFoundation",
+    "paths": 2,
+    "names": 10,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.SharedTopNotificationUI",
+    "target": "ReplicatedStorage.Modules.Game.UI.SharedTopNotificationUI",
+    "paths": 1,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.UI.UITheme",
+    "target": "ReplicatedStorage.Modules.Game.UI.UITheme",
+    "paths": 1,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceCalculator",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceCalculator",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceDefinitions",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceDefinitions",
+    "paths": 3,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceDynamics",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceDynamics",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceRuntime",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceRuntime",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceUpgradeRuntime",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceUpgradeRuntime",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehicleModuleUpgradeRuntime",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehicleModuleUpgradeRuntime",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehiclePerformance",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehiclePerformance",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehiclePerformanceResolver",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehiclePerformanceResolver",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehicleUpgradeDefinitions",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehicleUpgradeDefinitions",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Vehicles.CharacterSprintClient",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.CharacterSprintClient",
+    "paths": 0,
+    "names": 4,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Vehicles.DriveSessionClient",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.DriveSessionClient",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Vehicles.DriveTuning",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.DriveTuning",
+    "paths": 2,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient",
+    "paths": 4,
+    "names": 22,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Vehicles.DrivingClient",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.DrivingClient",
+    "paths": 8,
+    "names": 8,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Vehicles.FreeRoamParkedHoverClient",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.FreeRoamParkedHoverClient",
+    "paths": 4,
+    "names": 9,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Vehicles.GameplayInputGate",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.GameplayInputGate",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Vehicles.LegacyVehicleVFXClient",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.VehiclePreviewVFXClient",
+    "paths": 3,
+    "names": 2,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient",
+    "paths": 6,
+    "names": 14,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveInputState",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveInputState",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Vehicles.RuntimeVFXClient",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.RuntimeVFXClient",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCosmeticCatalog",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCosmeticCatalog",
+    "paths": 1,
+    "names": 5,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Vehicles.VehicleDisplayNames",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.VehicleDisplayNames",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Vehicles.VehicleDynamics",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.VehicleDynamics",
+    "paths": 2,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient",
+    "target": "ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient",
+    "paths": 13,
+    "names": 11,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.World.LODClient",
+    "target": "ReplicatedStorage.Modules.Game.World.LODClient",
+    "paths": 7,
+    "names": 1,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.World.LODPolicy",
+    "target": "ReplicatedStorage.Modules.Game.World.LODPolicy",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.World.LODRuntime",
+    "target": "ReplicatedStorage.Modules.Game.World.LODRuntime",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.World.NightLamppostLightClient",
+    "target": "ReplicatedStorage.Modules.Game.World.NightLamppostLightClient",
+    "paths": 1,
+    "names": 4,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.World.OwnedGarageEnvironmentLightingClient",
+    "target": "ReplicatedStorage.Modules.Game.World.OwnedGarageEnvironmentLightingClient",
+    "paths": 5,
+    "names": 13,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Modules.Game.World.WindowMaterialClient",
+    "target": "ReplicatedStorage.Modules.Game.World.WindowMaterialClient",
+    "paths": 1,
+    "names": 5,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Shared.LightingCycleConfig.LightingCycleSchedule",
+    "target": "ReplicatedStorage.Modules.Game.World.LightingSchedule",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ReplicatedStorage.Shared.LightingPresets.LightingPresets",
+    "target": "ReplicatedStorage.Modules.Game.World.LightingPresets",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ServerScriptService.ServerBase",
+    "target": "ServerScriptService.ServerBase",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "StarterPlayer.StarterPlayerScripts.ClientBase",
+    "target": "StarterPlayer.StarterPlayerScripts.ClientBase",
+    "paths": 1,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Core.ServerLifecycle",
+    "target": "ServerStorage.Modules.Core.ServerLifecycle",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Audio.VehicleAudioServer",
+    "target": "ServerStorage.Modules.Game.Audio.VehicleAudioServer",
+    "paths": 8,
+    "names": 17,
+    "ambiguous": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Dealership.IntroProgressServer",
+    "target": "ServerStorage.Modules.Game.Dealership.IntroProgressServer",
+    "paths": 7,
+    "names": 3,
+    "ambiguous": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Development.StudioCashGrantServer",
+    "target": "ServerStorage.Modules.Game.Development.StudioCashGrantServer",
+    "paths": 3,
+    "names": 3,
+    "ambiguous": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Development.VehiclePerformanceComparisonServer",
+    "target": "ServerStorage.Modules.Game.Development.VehiclePerformanceComparisonServer",
+    "paths": 2,
+    "names": 2,
+    "ambiguous": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Garage.GarageModuleInstanceCustomization",
+    "target": "ServerStorage.Modules.Game.Garage.GarageModuleInstanceCustomization",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Garage.GarageModuleInventory",
+    "target": "ServerStorage.Modules.Game.Garage.GarageModuleInventory",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Garage.GarageModuleTransaction",
+    "target": "ServerStorage.Modules.Game.Garage.GarageModuleTransaction",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Garage.GarageProfile",
+    "target": "ServerStorage.Modules.Game.Garage.GarageProfile",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Garage.GarageRequestGuard",
+    "target": "ServerStorage.Modules.Game.Garage.GarageRequestGuard",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Garage.GarageServer",
+    "target": "ServerStorage.Modules.Game.Garage.GarageServer",
+    "paths": 29,
+    "names": 36,
+    "ambiguous": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Garage.GarageSessionServer",
+    "target": "ServerStorage.Modules.Game.Garage.GarageSessionServer",
+    "paths": 12,
+    "names": 9,
+    "ambiguous": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Garage.OwnedGarageAuthoritativeCommand",
+    "target": "ServerStorage.Modules.Game.Garage.OwnedGarageAuthoritativeCommand",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Garage.OwnedGarageDisplay",
+    "target": "ServerStorage.Modules.Game.Garage.OwnedGarageDisplay",
+    "paths": 3,
+    "names": 1,
+    "ambiguous": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Garage.OwnedGarageDisplayAssignment",
+    "target": "ServerStorage.Modules.Game.Garage.OwnedGarageDisplayAssignment",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Garage.OwnedGarageFinish",
+    "target": "ServerStorage.Modules.Game.Garage.OwnedGarageFinish",
+    "paths": 1,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Garage.OwnedGarageInterior",
+    "target": "ServerStorage.Modules.Game.Garage.OwnedGarageInterior",
+    "paths": 2,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+    "target": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+    "paths": 9,
+    "names": 22,
+    "ambiguous": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Garage.OwnedGarageProfile",
+    "target": "ServerStorage.Modules.Game.Garage.OwnedGarageProfile",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {
+      "source": [
+        [
+          "ReplicatedStorage",
+          "Modules",
+          "Game",
+          "Garage",
+          "OwnedGarageLightingCatalog"
+        ],
+        [
+          "ReplicatedStorage",
+          "Modules",
+          "Game",
+          "Garage",
+          "OwnedGarageInteriorStyleCatalog"
+        ],
+        [
+          "ReplicatedStorage",
+          "Modules",
+          "Game",
+          "Garage",
+          "OwnedGaragePropertyCatalog"
+        ],
+        [
+          "ReplicatedStorage",
+          "Modules",
+          "Game",
+          "Garage",
+          "OwnedGarageDecorationCatalog"
+        ]
+      ]
+    }
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Garage.OwnedGarageServer",
+    "target": "ServerStorage.Modules.Game.Garage.OwnedGarageServer",
+    "paths": 0,
+    "names": 1,
+    "ambiguous": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Garage.VehicleCosmeticServer",
+    "target": "ServerStorage.Modules.Game.Garage.VehicleCosmeticServer",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Player.EconomyServer",
+    "target": "ServerStorage.Modules.Game.Player.EconomyServer",
+    "paths": 2,
+    "names": 8,
+    "ambiguous": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Player.OnboardingServer",
+    "target": "ServerStorage.Modules.Game.Player.OnboardingServer",
+    "paths": 9,
+    "names": 5,
+    "ambiguous": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Player.ProfileCompatibility",
+    "target": "ServerStorage.Modules.Game.Player.ProfileCompatibility",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Player.ProfileCompatibilityServer",
+    "target": "ServerStorage.Modules.Game.Player.ProfileCompatibilityServer",
+    "paths": 2,
+    "names": 1,
+    "ambiguous": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Player.ProfileServer",
+    "target": "ServerStorage.Modules.Game.Player.ProfileServer",
+    "paths": 5,
+    "names": 16,
+    "ambiguous": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Player.ProfileStore",
+    "target": "ServerStorage.Modules.Game.Player.ProfileStore",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Racing.GlobalLeaderboardServer",
+    "target": "ServerStorage.Modules.Game.Racing.GlobalLeaderboardServer",
+    "paths": 2,
+    "names": 1,
+    "ambiguous": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Racing.MatchmakingServer",
+    "target": "ServerStorage.Modules.Game.Racing.MatchmakingServer",
+    "paths": 8,
+    "names": 19,
+    "ambiguous": {
+      "bindings": [
+        [
+          "ServerStorage",
+          "Runtime",
+          "Racing",
+          "RaceRewardBindings"
+        ],
+        [
+          "ServerStorage",
+          "Runtime",
+          "Racing",
+          "RaceSessionAssetBindings"
+        ]
+      ]
+    }
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Racing.PersonalBestServer",
+    "target": "ServerStorage.Modules.Game.Racing.PersonalBestServer",
+    "paths": 2,
+    "names": 10,
+    "ambiguous": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Racing.RaceAssetsServer",
+    "target": "ServerStorage.Modules.Game.Racing.RaceAssetsServer",
+    "paths": 2,
+    "names": 7,
+    "ambiguous": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Racing.RaceDisplayNameServer",
+    "target": "ServerStorage.Modules.Game.Racing.RaceDisplayNameServer",
+    "paths": 4,
+    "names": 1,
+    "ambiguous": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Racing.RaceRewardsServer",
+    "target": "ServerStorage.Modules.Game.Racing.RaceRewardsServer",
+    "paths": 5,
+    "names": 0,
+    "ambiguous": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Racing.RaceTeleportServer",
+    "target": "ServerStorage.Modules.Game.Racing.RaceTeleportServer",
+    "paths": 7,
+    "names": 9,
+    "ambiguous": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Racing.TimeTrialServer",
+    "target": "ServerStorage.Modules.Game.Racing.TimeTrialServer",
+    "paths": 9,
+    "names": 25,
+    "ambiguous": {
+      "racing": [
+        [
+          "ReplicatedStorage",
+          "NeoTokyoRacers",
+          "Config",
+          "Racing"
+        ],
+        [
+          "ServerStorage",
+          "Runtime",
+          "Racing"
+        ]
+      ]
+    }
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+    "target": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+    "paths": 4,
+    "names": 44,
+    "ambiguous": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Vehicles.DriverSeatServer",
+    "target": "ServerStorage.Modules.Game.Vehicles.DriverSeatServer",
+    "paths": 6,
+    "names": 1,
+    "ambiguous": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Vehicles.VehicleAccessServer",
+    "target": "ServerStorage.Modules.Game.Vehicles.VehicleAccessServer",
+    "paths": 3,
+    "names": 4,
+    "ambiguous": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Vehicles.VehicleCollisionServer",
+    "target": "ServerStorage.Modules.Game.Vehicles.VehicleCollisionServer",
+    "paths": 3,
+    "names": 16,
+    "ambiguous": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.Vehicles.VehiclePerformanceServer",
+    "target": "ServerStorage.Modules.Game.Vehicles.VehiclePerformanceServer",
+    "paths": 2,
+    "names": 3,
+    "ambiguous": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.World.FreeRoamTeleportServer",
+    "target": "ServerStorage.Modules.Game.World.FreeRoamTeleportServer",
+    "paths": 10,
+    "names": 11,
+    "ambiguous": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.World.LightingServer",
+    "target": "ServerStorage.Modules.Game.World.LightingServer",
+    "paths": 5,
+    "names": 10,
+    "ambiguous": {}
+  },
+  {
+    "source": "ServerStorage.Modules.Game.World.TrafficLightServer",
+    "target": "ServerStorage.Modules.Game.World.TrafficLightServer",
+    "paths": 0,
+    "names": 0,
+    "ambiguous": {}
+  }
+]

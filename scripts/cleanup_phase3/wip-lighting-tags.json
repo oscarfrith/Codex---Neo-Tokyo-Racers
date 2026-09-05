@@ -1,0 +1,831 @@
+[
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "Others",
+      "Brutalist Block D2",
+      "level 2",
+      "level2 windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "Block D2 Group",
+      "Brutalist Block D2",
+      "level 3",
+      "level3 windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "Block C2 Group",
+      "Brutalist Block C2",
+      "pillars",
+      "pillar ground windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "Block D1 Group",
+      "Brutalist Block D1",
+      "level 2",
+      "level2 windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "FBX - S2_R3_B3 Face Building",
+      "windows main bridge"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "FBX - S2_R3_B3 Face Building",
+      "windows bottom a"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "Others",
+      "Brutalist Block D2",
+      "pillars",
+      "pillar ground windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "block",
+      "Brutalist Block D1",
+      "pillars",
+      "pillar ground windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "Block D1 Group",
+      "Brutalist Block D1",
+      "level 1",
+      "level1 windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "Block D2 Group",
+      "Brutalist Block D2",
+      "pillars",
+      "pillar ground windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "Others",
+      "Brutalist Block D2",
+      "pillars",
+      "pillar ground windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "Block C2 Group",
+      "Brutalist Block C2",
+      "level 1",
+      "level1 windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "Others",
+      "Brutalist Block D2",
+      "bridge large",
+      "bridge large windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "block",
+      "Brutalist Block D1",
+      "level 2",
+      "level2 windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "block",
+      "Brutalist Block D1",
+      "pillars",
+      "pillar ground windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "Model",
+      "Block D1 Group",
+      "Brutalist Block D1",
+      "pillars",
+      "pillar ground windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "Others",
+      "Brutalist Block D2",
+      "level 1",
+      "level1 windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "Block C2 Group",
+      "Brutalist Block C2",
+      "pillars",
+      "pillar ground windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "FBX - S2_R3_B3 Face Building",
+      "windows main c"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "Block C2 Group",
+      "Brutalist Block C2",
+      "level 3",
+      "level3 windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "Block C2 Group",
+      "Brutalist Block C2",
+      "level 2",
+      "level2 windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "Others",
+      "Brutalist Block D2",
+      "pillars",
+      "pillar ground windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "block",
+      "Brutalist Block D1",
+      "level 1",
+      "level1 windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "Model",
+      "Block D1 Group",
+      "Brutalist Block D1",
+      "level 2",
+      "level2 windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "Model",
+      "Block D1 Group",
+      "Brutalist Block D1",
+      "level 3",
+      "level3 windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "Block D1 Group",
+      "Brutalist Block D1",
+      "level 3",
+      "level3 windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "Block D2 Group",
+      "Brutalist Block D2",
+      "level 2",
+      "level2 windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "Block D2 Group",
+      "Brutalist Block D2",
+      "bridge large",
+      "bridge large windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "Block D2 Group",
+      "Brutalist Block D2",
+      "pillars",
+      "pillar ground windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "Others",
+      "Brutalist Block D2",
+      "level 3",
+      "level3 windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "Block C2 Group",
+      "Brutalist Block C2",
+      "pillars",
+      "pillar ground windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "Others",
+      "Brutalist Block D2",
+      "pillars",
+      "pillar ground windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "Block D1 Group",
+      "Brutalist Block D1",
+      "pillars",
+      "pillar ground windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "Others",
+      "Brutalist Block D2",
+      "level 3",
+      "level3 windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "Block D2 Group",
+      "Brutalist Block D2",
+      "pillars",
+      "pillar ground windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "Model",
+      "Block D1 Group",
+      "Brutalist Block D1",
+      "pillars",
+      "pillar ground windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "Block D1 Group",
+      "Brutalist Block D1",
+      "pillars",
+      "pillar ground windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "Others",
+      "Brutalist Block D2",
+      "level 2",
+      "level2 windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "FBX - S2_R3_B3 Face Building",
+      "windows main a"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "Others",
+      "Brutalist Block D2",
+      "bridge large",
+      "bridge large windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "Others",
+      "Brutalist Block D2",
+      "level 1",
+      "level1 windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "Block C2 Group",
+      "Brutalist Block C2",
+      "bridge large",
+      "bridge large windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "Others",
+      "Brutalist Block D2",
+      "pillars",
+      "pillar ground windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "Others",
+      "Brutalist Block D2",
+      "pillars",
+      "pillar ground windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "Model",
+      "Block D1 Group",
+      "Brutalist Block D1",
+      "pillars",
+      "pillar ground windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "block",
+      "Brutalist Block D1",
+      "level 3",
+      "level3 windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "Block D2 Group",
+      "Brutalist Block D2",
+      "level 1",
+      "level1 windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "block",
+      "Brutalist Block D1",
+      "bridge large",
+      "bridge large windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "block",
+      "Brutalist Block D1",
+      "pillars",
+      "pillar ground windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "Block D1 Group",
+      "Brutalist Block D1",
+      "pillars",
+      "pillar ground windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "Model",
+      "Block D1 Group",
+      "Brutalist Block D1",
+      "level 1",
+      "level1 windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "FBX - S2_R3_B3 Face Building",
+      "windows main b"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "THE BLOCKS",
+      "Model",
+      "Block D1 Group",
+      "Brutalist Block D1",
+      "bridge large",
+      "bridge large windows"
+    ],
+    "class": "MeshPart",
+    "tag": "NTR_WindowMaterial"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "placeholder models for video",
+      "Block_S1_R3_B3",
+      "LOD",
+      "LOD2",
+      "Props",
+      "Street Lights Group Left",
+      "Street Lamp Tall A",
+      "lamppost neon",
+      "SurfaceLight lamppost"
+    ],
+    "class": "SurfaceLight",
+    "tag": "NTR_NightLamppostLight"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "placeholder models for video",
+      "Block_S1_R3_B3",
+      "LOD",
+      "LOD2",
+      "Props",
+      "Street Lights Group Left",
+      "Street Lamp Tall A",
+      "lamppost neon",
+      "SurfaceLight lamppost"
+    ],
+    "class": "SurfaceLight",
+    "tag": "NTR_NightLamppostLight"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "placeholder models for video",
+      "Block_S1_R3_B3",
+      "LOD",
+      "LOD2",
+      "Props",
+      "Street Lights Group Left",
+      "Street Lamp Tall A",
+      "lamppost neon",
+      "SurfaceLight lamppost"
+    ],
+    "class": "SurfaceLight",
+    "tag": "NTR_NightLamppostLight"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "placeholder models for video",
+      "Block_S1_R3_B3",
+      "LOD",
+      "LOD2",
+      "Props",
+      "Street Lights Group Back",
+      "Street Lamp Tall A",
+      "lamppost neon",
+      "SurfaceLight lamppost"
+    ],
+    "class": "SurfaceLight",
+    "tag": "NTR_NightLamppostLight"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "placeholder models for video",
+      "Block_S1_R3_B3",
+      "LOD",
+      "LOD2",
+      "Props",
+      "Street Lights Group Left",
+      "Street Lamp Tall A",
+      "lamppost neon",
+      "SurfaceLight lamppost"
+    ],
+    "class": "SurfaceLight",
+    "tag": "NTR_NightLamppostLight"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "placeholder models for video",
+      "Block_S1_R3_B3",
+      "LOD",
+      "LOD2",
+      "Props",
+      "Street Lights Group Back",
+      "Street Lamp Tall A",
+      "lamppost neon",
+      "SurfaceLight lamppost"
+    ],
+    "class": "SurfaceLight",
+    "tag": "NTR_NightLamppostLight"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "placeholder models for video",
+      "Block_S1_R3_B3",
+      "LOD",
+      "LOD2",
+      "Props",
+      "Street Lights Group Left",
+      "Street Lamp Tall A",
+      "lamppost neon",
+      "SurfaceLight lamppost"
+    ],
+    "class": "SurfaceLight",
+    "tag": "NTR_NightLamppostLight"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "placeholder models for video",
+      "Block_S1_R3_B3",
+      "LOD",
+      "LOD2",
+      "Props",
+      "Street Lights Group Left",
+      "Street Lamp Tall A",
+      "lamppost neon",
+      "SurfaceLight lamppost"
+    ],
+    "class": "SurfaceLight",
+    "tag": "NTR_NightLamppostLight"
+  },
+  {
+    "path": [
+      "Workspace",
+      "Test + WIP Assets",
+      "placeholder models for video",
+      "Block_S1_R3_B3",
+      "LOD",
+      "LOD2",
+      "Props",
+      "Street Lights Group Back",
+      "Street Lamp Tall A",
+      "lamppost neon",
+      "SurfaceLight lamppost"
+    ],
+    "class": "SurfaceLight",
+    "tag": "NTR_NightLamppostLight"
+  }
+]

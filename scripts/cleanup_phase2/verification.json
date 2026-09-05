@@ -1,0 +1,13 @@
+{
+  "mirror": "2026-09-05 15:28:27",
+  "sources": 160,
+  "source_set_sha256_parity": true,
+  "expected_hierarchy_parity": true,
+  "missing_or_changed": 0,
+  "added_or_changed": 0,
+  "entire_workspace_parity": true,
+  "workspace_digest": "724104683591a2db7a5abcc21570bfb8ec6a83e885a8d0971e0f8861d3962404",
+  "before_nodes": 42656,
+  "after_nodes": 42491,
+  "expected_nodes": 42491
+}

@@ -1,0 +1,51 @@
+{
+  "phase": 1,
+  "status": "tooling_complete_user_broad_gameplay_confirmation_received",
+  "place_id": 121304917315753,
+  "studio_mode": "Edit",
+  "mirror": {
+    "status": "PASS",
+    "scripts": 193,
+    "properties": 267313,
+    "generated_in_studio": "2026-09-05 10:43:47",
+    "blockers": [],
+    "warnings": [
+      "2918 duplicate non-source paths; avoid ambiguous path mutations"
+    ]
+  },
+  "pre_and_post_audit": {
+    "scripts": 193,
+    "compile_errors": [],
+    "source_bytes_checksums_enabled_states_unchanged": true,
+    "studio_replay": true,
+    "studio_vehicle_sandbox": true,
+    "orientation": "Enum.ScreenOrientation.LandscapeSensor",
+    "streaming_enabled": true
+  },
+  "tests": {
+    "command": "python scripts/test_studio_snapshot_pipeline.py",
+    "passed": 8,
+    "failed": 0,
+    "includes": "corruption, wrong place, incomplete coverage, duplicate source, missing end marker, hierarchy mismatch, output containment, injected promotion failure and Unicode/property roundtrip"
+  },
+  "runtime": {
+    "play_started": false,
+    "gameplay_sources_changed": false,
+    "gameplay_settings_changed": false,
+    "datastore_access": false,
+    "user_confirmation": true,
+    "user_confirmation_note": "2026-09-05: everything worked well; no individual device/test matrix claimed"
+  },
+  "mirror_storage": {
+    "hierarchy_bytes": 71410678,
+    "property_compaction_lossless": true,
+    "source_sha256_matches_frozen_baseline": true,
+    "raw_paste_written": false
+  },
+  "limitations": [
+    "Snapshot captures an explicit property allowlist, not a complete place backup.",
+    "2918 duplicate non-source paths require scoped live inspection before future mutations.",
+    "Import restores ordinary I/O failures but a process/power interruption across two promotions requires recovery.",
+    "Studio vehicle sandbox suppresses saves; gameplay smoke does not verify persistence."
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "uncatalogued": [
+    "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.COCKPITS_ReplaceAssetsHere.COCKPIT_BRUISER_02.ASSET_ReplaceWithYourCockpitModel",
+    "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.COCKPITS_ReplaceAssetsHere.COCKPIT_BRUISER_03.ASSET_ReplaceWithYourCockpitModel",
+    "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.COCKPITS_ReplaceAssetsHere.COCKPIT_BRUISER_01.ASSET_ReplaceWithYourCockpitModel",
+    "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.COCKPITS_ReplaceAssetsHere.COCKPIT_BRUISER_04.ASSET_ReplaceWithYourCockpitModel",
+    "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.COCKPITS_ReplaceAssetsHere.COCKPIT_BRUISER_05.ASSET_ReplaceWithYourCockpitModel",
+    "ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging.PIERCER.COCKPITS_ReplaceAssetsHere.COCKPIT_BRUISER_06.ASSET_ReplaceWithYourCockpitModel"
+  ],
+  "differences": [
+    {
+      "id": "bruiser_01",
+      "rows": [
+        {
+          "count": 3,
+          "liveOnlyRow": "[\"Part\",\"cockpit underglow\",\"1.5, 1, 14.5\",\"0.639216, 0.635294, 0.647059\",\"Plastic\",1,false,false,false,false]"
+        }
+      ]
+    },
+    {
+      "id": "bruiser_02",
+      "rows": [
+        {
+          "stagedOnlyRow": "[\"Part\",\"cockpit rear spotlight lens \",\"1, 1, 1\",\"0.639216, 0.635294, 0.647059\",\"Plastic\",1,true,false,false,false]",
+          "count": -1
+        },
+        {
+          "stagedOnlyRow": "[\"Part\",\"cockpit front spotlight lens \",\"1.5, 1, 0.5\",\"0.639216, 0.635294, 0.647059\",\"Plastic\",1,true,false,false,false]",
+          "count": 1
+        },
+        {
+          "count": 1,
+          "liveOnlyRow": "[\"Part\",\"cockpit underglow\",\"1.5, 1, 11.300000190734863\",\"0.639216, 0.635294, 0.647059\",\"Plastic\",1,false,false,false,false]"
+        },
+        {
+          "count": 2,
+          "liveOnlyRow": "[\"Part\",\"cockpit underglow\",\"0.09999942779541016, 1, 16.5\",\"0.639216, 0.635294, 0.647059\",\"Plastic\",1,false,false,false,false]"
+        },
+        {
+          "count": 2,
+          "liveOnlyRow": "[\"Part\",\"cockpit front spotlight main\",\"1.5, 1, 0.5\",\"0.639216, 0.635294, 0.647059\",\"Plastic\",1,true,false,false,false]"
+        },
+        {
+          "count": 2,
+          "liveOnlyRow": "[\"Part\",\"cockpit front spotlight secondary\",\"1.5, 1, 0.5\",\"0.639216, 0.635294, 0.647059\",\"Plastic\",1,true,false,false,false]"
+        },
+        {
+          "count": 1,
+          "liveOnlyRow": "[\"Part\",\"cockpit rear spotlight lens \",\"1, 1, 1\",\"0.639216, 0.635294, 0.647059\",\"Plastic\",1,true,false,false,false]"
+        },
+        {
+          "count": 1,
+          "liveOnlyRow": "[\"Part\",\"cockpit underglow\",\"7.199999809265137, 1, 16.5\",\"0.639216, 0.635294, 0.647059\",\"Plastic\",1,false,false,false,false]"
+        }
+      ]
+    }
+  ]
+}

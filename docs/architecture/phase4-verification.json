@@ -1,0 +1,18 @@
+{
+  "phase": 4,
+  "place_id": 121304917315753,
+  "status": "user_confirmed",
+  "user_confirmation": "all worked well, continue with next phase",
+  "previous_phase_user_confirmed": 3,
+  "installer": "scripts/roblox_architecture_phase4_client_organisation.lua",
+  "migrated_implementations": 92,
+  "former_local_scripts": 44,
+  "helper_modules": 48,
+  "isolated_test_groups_passed": 4,
+  "compile": {"passed": 336, "failed": 0},
+  "migration": {"audit": "PASS", "idempotency": "PASS", "rollback_reinstall": "PASS", "rebuild_from_installed_mirror": "PASS", "untouched_source_class_enabled_parity": 148},
+  "runtime": {"server_ready": 26, "client_ready": 40, "client_tools_skipped": 4, "purchase_cash_before": 1000000, "purchase_cash_after": 650000, "garage_browser_preview_workshop": "PASS", "spawn_exit_reentry_commands_and_events": "PASS", "ui_drive": "Tutorial advanced to J2; full guided journey deferred", "full_device_matrix": "USER_PENDING", "saving": "SUPPRESSED_STUDIO_SANDBOX"},
+  "mirror": {"generated_in_studio": "2026-09-05 11:34:22", "scripts": 336, "properties": 267177, "integrity": "PASS", "duplicate_non_source_paths": 2918, "raw_paste": "UNTOUCHED"},
+  "published": false,
+  "remaining_phases": [5]
+}

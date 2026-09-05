@@ -1,0 +1,4636 @@
+{
+  "strings": {
+    "CONTROLS": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+        "line": 514
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+        "line": 889
+      }
+    ],
+    "DRIFT CONTROL": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+        "line": 419
+      }
+    ],
+    "HOVER_RACING_V2_BlockJumpWhileDriving": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.DrivingClient",
+        "line": 103
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.DrivingClient",
+        "line": 105
+      }
+    ],
+    "HOVER_RACING_V2_DriveHUD": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.ThrustPreviewClient",
+        "line": 35
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient",
+        "line": 655
+      }
+    ],
+    "HOVER_RACING_V2_GarageUI": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+        "line": 143
+      }
+    ],
+    "HOVER_RACING_V2_LOCAL_PREVIEW": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioClient",
+        "line": 198
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.GaragePreviewPresentationClient",
+        "line": 66
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.PreviewVehicleClient",
+        "line": 14
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.ThrustPreviewClient",
+        "line": 38
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient",
+        "line": 208
+      }
+    ],
+    "HOVER_RACING_V2_V47_Reset": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.DrivingClient",
+        "line": 595
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.DrivingClient",
+        "line": 665
+      }
+    ],
+    "HOVER_RACING_V75_CameraAssist": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.DrivingClient",
+        "line": 24
+      }
+    ],
+    "MOBILE CONTROLS": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+        "line": 194
+      }
+    ],
+    "NTR Racing Phase 10B Assets": [
+      {
+        "source": "ServerStorage.Modules.Game.Racing.RaceAssetsServer",
+        "line": 13
+      }
+    ],
+    "NTR Racing Phase 11A Rewards": [
+      {
+        "source": "ServerStorage.Modules.Game.Racing.RaceRewardsServer",
+        "line": 14
+      }
+    ],
+    "NTR Racing Phase 11M PB Service": [
+      {
+        "source": "ServerStorage.Modules.Game.Racing.PersonalBestServer",
+        "line": 16
+      }
+    ],
+    "NTR Racing Phase 3": [
+      {
+        "source": "ServerStorage.Modules.Game.Racing.TimeTrialServer",
+        "line": 117
+      }
+    ],
+    "NTR Racing Phase 5 Guide": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceRouteGuideClient",
+        "line": 28
+      }
+    ],
+    "NTR.WorldLOD.Step": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.World.LODClient",
+        "line": 44
+      }
+    ],
+    "NTRAudioBoost": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+        "line": 449
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient",
+        "line": 273
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Audio.VehicleAudioServer",
+        "line": 51
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Audio.VehicleAudioServer",
+        "line": 133
+      }
+    ],
+    "NTRAudioCue": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+        "line": 547
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Audio.VehicleAudioServer",
+        "line": 52
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Audio.VehicleAudioServer",
+        "line": 135
+      }
+    ],
+    "NTRAudioCueRevision": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+        "line": 544
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Audio.VehicleAudioServer",
+        "line": 136
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Audio.VehicleAudioServer",
+        "line": 136
+      }
+    ],
+    "NTRAudioDrift": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+        "line": 448
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient",
+        "line": 274
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Audio.VehicleAudioServer",
+        "line": 50
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Audio.VehicleAudioServer",
+        "line": 132
+      }
+    ],
+    "NTRAudioDrive": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+        "line": 447
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient",
+        "line": 272
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Audio.VehicleAudioServer",
+        "line": 49
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Audio.VehicleAudioServer",
+        "line": 131
+      }
+    ],
+    "NTRAudioIgnition": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+        "line": 446
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient",
+        "line": 271
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Audio.VehicleAudioServer",
+        "line": 48
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Audio.VehicleAudioServer",
+        "line": 130
+      }
+    ],
+    "NTRAudioStateRevision": [
+      {
+        "source": "ServerStorage.Modules.Game.Audio.VehicleAudioServer",
+        "line": 53
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Audio.VehicleAudioServer",
+        "line": 53
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Audio.VehicleAudioServer",
+        "line": 138
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Audio.VehicleAudioServer",
+        "line": 138
+      }
+    ],
+    "NTRBaseCornerRadius": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.ResponsiveUIFoundation",
+        "line": 36
+      }
+    ],
+    "NTRCameraCurrentDistance": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient",
+        "line": 102
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient",
+        "line": 116
+      }
+    ],
+    "NTRCameraCurrentFov": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient",
+        "line": 102
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient",
+        "line": 118
+      }
+    ],
+    "NTRCameraMode": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient",
+        "line": 102
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient",
+        "line": 113
+      }
+    ],
+    "NTRCameraSpeedMph": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient",
+        "line": 102
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient",
+        "line": 114
+      }
+    ],
+    "NTRCameraTargetDistance": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient",
+        "line": 102
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient",
+        "line": 115
+      }
+    ],
+    "NTRCameraTargetFov": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient",
+        "line": 102
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient",
+        "line": 117
+      }
+    ],
+    "NTRCanonical": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Dealership.GarageEntranceClient",
+        "line": 152
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Dealership.GarageEntranceClient",
+        "line": 156
+      }
+    ],
+    "NTRCockpitLightSystem": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.PaintClient",
+        "line": 130
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCosmeticCatalog",
+        "line": 83
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageServer",
+        "line": 1869
+      }
+    ],
+    "NTRControlVisual": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient",
+        "line": 59
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient",
+        "line": 72
+      }
+    ],
+    "NTRDealershipIntroCameraActive": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Dealership.DealershipIntroClient",
+        "line": 501
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Dealership.DealershipIntroClient",
+        "line": 510
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Dealership.DealershipIntroClient",
+        "line": 511
+      }
+    ],
+    "NTRDealershipIntroObjectiveComplete": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Dealership.DealershipIntroClient",
+        "line": 28
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Dealership.IntroProgressServer",
+        "line": 19
+      }
+    ],
+    "NTRDealershipIntroObjectiveLoaded": [
+      {
+        "source": "ServerStorage.Modules.Game.Dealership.IntroProgressServer",
+        "line": 20
+      }
+    ],
+    "NTRDrivingCameraManaged": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.ThrustPreviewClient",
+        "line": 74
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient",
+        "line": 158
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient",
+        "line": 168
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient",
+        "line": 272
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.DrivingClient",
+        "line": 556
+      }
+    ],
+    "NTRDrivingCameraOwner": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient",
+        "line": 159
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient",
+        "line": 169
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient",
+        "line": 271
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient",
+        "line": 273
+      }
+    ],
+    "NTRGarageOriginalCanCollide": [
+      {
+        "source": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+        "line": 141
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+        "line": 141
+      }
+    ],
+    "NTRGarageOriginalCanQuery": [
+      {
+        "source": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+        "line": 141
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+        "line": 141
+      }
+    ],
+    "NTRGarageOriginalCanTouch": [
+      {
+        "source": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+        "line": 141
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+        "line": 141
+      }
+    ],
+    "NTRGarageOriginalTransparency": [
+      {
+        "source": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+        "line": 141
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+        "line": 141
+      }
+    ],
+    "NTRLoading": [
+      {
+        "source": "ReplicatedFirst.NTRLoading.LoadingTransitionRuntime",
+        "line": 7
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.LoadingTransitionUI",
+        "line": 10
+      }
+    ],
+    "NTRMetricKind": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.ResponsiveUIFoundation",
+        "line": 218
+      }
+    ],
+    "NTRMobileControlMode": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+        "line": 193
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+        "line": 194
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient",
+        "line": 158
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient",
+        "line": 171
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient",
+        "line": 177
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient",
+        "line": 177
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient",
+        "line": 178
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient",
+        "line": 178
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient",
+        "line": 179
+      }
+    ],
+    "NTRMobileFreeRoamCarMenuOpen": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+        "line": 161
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+        "line": 262
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+        "line": 475
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient",
+        "line": 202
+      }
+    ],
+    "NTRMobileMajorMenuOpen": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+        "line": 283
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+        "line": 286
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+        "line": 180
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+        "line": 181
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+        "line": 183
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+        "line": 476
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient",
+        "line": 202
+      }
+    ],
+    "NTRResponsiveOriginalSize": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageComponents",
+        "line": 249
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageComponents",
+        "line": 250
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageComponents",
+        "line": 255
+      }
+    ],
+    "NTRResponsiveOriginalTextScaled": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageComponents",
+        "line": 258
+      }
+    ],
+    "NTRResponsiveOriginalTextSize": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageComponents",
+        "line": 257
+      }
+    ],
+    "NTRSessionLeaseUntil": [
+      {
+        "source": "ServerStorage.Modules.Game.Player.ProfileStore",
+        "line": 5
+      }
+    ],
+    "NTRSessionToken": [
+      {
+        "source": "ServerStorage.Modules.Game.Player.ProfileStore",
+        "line": 5
+      }
+    ],
+    "NTRSharedConfirmation": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.ResponsiveUIFoundation",
+        "line": 363
+      }
+    ],
+    "NTRSharedConfirmationExit_": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.ResponsiveUIFoundation",
+        "line": 330
+      }
+    ],
+    "NTRSharedMetric": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.ResponsiveUIFoundation",
+        "line": 217
+      }
+    ],
+    "NTRSkipTouchHardening": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+        "line": 27
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+        "line": 53
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+        "line": 54
+      }
+    ],
+    "NTRStrokeRole": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.ResponsiveUIFoundation",
+        "line": 61
+      }
+    ],
+    "NTRTouchTextConstraint": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageComponents",
+        "line": 259
+      }
+    ],
+    "NTR_AcousticsRuntime_Local": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.AcousticsClient",
+        "line": 196
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.AcousticsClient",
+        "line": 199
+      }
+    ],
+    "NTR_Ambience": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.AcousticsClient",
+        "line": 18
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.AudioBusClient",
+        "line": 14
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.AudioMixClient",
+        "line": 18
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient",
+        "line": 138
+      }
+    ],
+    "NTR_ArrowColliderThickness": [
+      {
+        "source": "ServerStorage.Modules.Game.Racing.RaceAssetsServer",
+        "line": 195
+      }
+    ],
+    "NTR_ArrowOriginalTransparency": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceSessionAssetsClient",
+        "line": 72
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.RaceAssetsServer",
+        "line": 176
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.RaceAssetsServer",
+        "line": 177
+      }
+    ],
+    "NTR_ArrowProxy": [
+      {
+        "source": "ServerStorage.Modules.Game.Racing.RaceAssetsServer",
+        "line": 198
+      }
+    ],
+    "NTR_AudioContextZone": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient",
+        "line": 19
+      }
+    ],
+    "NTR_AudioDeviceOutput_Runtime": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+        "line": 89
+      }
+    ],
+    "NTR_AudioListener_Runtime": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+        "line": 96
+      }
+    ],
+    "NTR_AudioRuntime_Local": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+        "line": 794
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+        "line": 797
+      }
+    ],
+    "NTR_AuraVisibilityOwnerReady": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+        "line": 301
+      }
+    ],
+    "NTR_Character": [
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.VehicleCollisionServer",
+        "line": 19
+      }
+    ],
+    "NTR_ContextAmbienceReverb": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.AcousticsClient",
+        "line": 19
+      }
+    ],
+    "NTR_ContextAudioRuntime_Local": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient",
+        "line": 247
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient",
+        "line": 250
+      }
+    ],
+    "NTR_CountdownPresentationReady": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceCountdownPresentationClient",
+        "line": 65
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceTransitionClient",
+        "line": 268
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceTransitionClient",
+        "line": 287
+      }
+    ],
+    "NTR_DRIVE_TO_EARN_CASH_V1_1": [
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 17
+      }
+    ],
+    "NTR_DealershipIntroObjective": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Dealership.DealershipIntroClient",
+        "line": 27
+      }
+    ],
+    "NTR_DealershipIntro_v1": [
+      {
+        "source": "ServerStorage.Modules.Game.Dealership.IntroProgressServer",
+        "line": 24
+      }
+    ],
+    "NTR_DefaultVehicleCameraInitialFramingV6": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient",
+        "line": 14
+      }
+    ],
+    "NTR_DefaultVehicleCameraV6": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient",
+        "line": 13
+      }
+    ],
+    "NTR_DesktopFreeRoamHud": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+        "line": 949
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+        "line": 951
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+        "line": 461
+      }
+    ],
+    "NTR_DriveCashAcceptedStuds": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient",
+        "line": 71
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 272
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 406
+      }
+    ],
+    "NTR_DriveCashAccumulatedUngranted": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient",
+        "line": 73
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 274
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 407
+      }
+    ],
+    "NTR_DriveCashCapUsage": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient",
+        "line": 77
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 278
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 409
+      }
+    ],
+    "NTR_DriveCashCapUsed": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient",
+        "line": 77
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 279
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 409
+      }
+    ],
+    "NTR_DriveCashCurrentHourly": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient",
+        "line": 75
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 276
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 408
+      }
+    ],
+    "NTR_DriveCashGranted": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient",
+        "line": 74
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 275
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 408
+      }
+    ],
+    "NTR_DriveCashLastReason": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient",
+        "line": 78
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 282
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 410
+      }
+    ],
+    "NTR_DriveCashProjectedHourly": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient",
+        "line": 76
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 277
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 409
+      }
+    ],
+    "NTR_DriveCashRejectedStudsByReason": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient",
+        "line": 72
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 273
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 407
+      }
+    ],
+    "NTR_DriveCashSessionIdentity": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient",
+        "line": 81
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 281
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 410
+      }
+    ],
+    "NTR_DriveCashTelemetryRevision": [
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 271
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 406
+      }
+    ],
+    "NTR_DriveCashVehicleIdentity": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient",
+        "line": 80
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 280
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 410
+      }
+    ],
+    "NTR_DriveInCustomisationActive": [
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageSessionServer",
+        "line": 82
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageSessionServer",
+        "line": 106
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 129
+      }
+    ],
+    "NTR_DriveToEarnCashTelemetry": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient",
+        "line": 22
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient",
+        "line": 26
+      }
+    ],
+    "NTR_DrivingControlsOpen": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+        "line": 416
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+        "line": 452
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+        "line": 342
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+        "line": 460
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+        "line": 743
+      }
+    ],
+    "NTR_EnterVehiclePrompt": [
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.VehicleAccessServer",
+        "line": 14
+      }
+    ],
+    "NTR_ExitCoastStartedAt": [
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageServer",
+        "line": 2428
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageServer",
+        "line": 2438
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageServer",
+        "line": 2527
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.VehicleCollisionServer",
+        "line": 108
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.VehicleCollisionServer",
+        "line": 118
+      }
+    ],
+    "NTR_ExitCoastStopReason": [
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageServer",
+        "line": 2429
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageServer",
+        "line": 2439
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageServer",
+        "line": 2528
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.VehicleCollisionServer",
+        "line": 109
+      }
+    ],
+    "NTR_ExitCoasting": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+        "line": 635
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.FreeRoamParkedHoverClient",
+        "line": 190
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageServer",
+        "line": 2427
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageServer",
+        "line": 2437
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageServer",
+        "line": 2517
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageServer",
+        "line": 2526
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Player.EconomyServer",
+        "line": 93
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 163
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.VehicleAccessServer",
+        "line": 57
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.VehicleAccessServer",
+        "line": 110
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.VehicleCollisionServer",
+        "line": 107
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.VehicleCollisionServer",
+        "line": 115
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.VehicleCollisionServer",
+        "line": 135
+      }
+    ],
+    "NTR_FirstDrivePresentationPending": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient",
+        "line": 232
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient",
+        "line": 255
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+        "line": 298
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+        "line": 662
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+        "line": 668
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+        "line": 441
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+        "line": 900
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+        "line": 341
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+        "line": 691
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+        "line": 694
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+        "line": 742
+      }
+    ],
+    "NTR_FreeRoamHudTeleportDespawn": [
+      {
+        "source": "ServerStorage.Modules.Game.Player.EconomyServer",
+        "line": 95
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 165
+      },
+      {
+        "source": "ServerStorage.Modules.Game.World.FreeRoamTeleportServer",
+        "line": 71
+      }
+    ],
+    "NTR_FreeRoamHudTeleporting": [
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 125
+      },
+      {
+        "source": "ServerStorage.Modules.Game.World.FreeRoamTeleportServer",
+        "line": 100
+      },
+      {
+        "source": "ServerStorage.Modules.Game.World.FreeRoamTeleportServer",
+        "line": 114
+      },
+      {
+        "source": "ServerStorage.Modules.Game.World.FreeRoamTeleportServer",
+        "line": 126
+      }
+    ],
+    "NTR_GARAGE_PHASE1_EXISTING_INSTANCE_CANONICAL_APPLICATION_V3": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+        "line": 705
+      }
+    ],
+    "NTR_GameplayMusic": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.AudioBusClient",
+        "line": 12
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.AudioMixClient",
+        "line": 16
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient",
+        "line": 138
+      }
+    ],
+    "NTR_GameplaySFX": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.AudioBusClient",
+        "line": 15
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.AudioMixClient",
+        "line": 19
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioClient",
+        "line": 24
+      }
+    ],
+    "NTR_GarageEntranceStatus": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Dealership.GarageEntranceClient",
+        "line": 68
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Dealership.GarageEntranceClient",
+        "line": 74
+      }
+    ],
+    "NTR_GarageEntryMode": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Dealership.GarageEntranceClient",
+        "line": 133
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Dealership.GarageEntranceClient",
+        "line": 193
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Dealership.GarageEntranceClient",
+        "line": 200
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Dealership.GarageEntranceClient",
+        "line": 209
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+        "line": 190
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+        "line": 191
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+        "line": 199
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+        "line": 690
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+        "line": 695
+      }
+    ],
+    "NTR_GarageSessionActive": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient",
+        "line": 122
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient",
+        "line": 255
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.GaragePreviewPresentationClient",
+        "line": 90
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.ThrustPreviewClient",
+        "line": 34
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+        "line": 362
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.FreeRoamMapPlayerMarkers",
+        "line": 64
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.FreeRoamMapPlayerMarkers",
+        "line": 280
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+        "line": 100
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+        "line": 184
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+        "line": 308
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+        "line": 473
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.CharacterSprintClient",
+        "line": 129
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient",
+        "line": 651
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageSessionServer",
+        "line": 80
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageSessionServer",
+        "line": 105
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 128
+      }
+    ],
+    "NTR_GarageSessionMode": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient",
+        "line": 123
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient",
+        "line": 255
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+        "line": 473
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageSessionServer",
+        "line": 81
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageSessionServer",
+        "line": 105
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageSessionServer",
+        "line": 113
+      }
+    ],
+    "NTR_LastEconomyCommand": [
+      {
+        "source": "ServerStorage.Modules.Game.Player.EconomyServer",
+        "line": 202
+      }
+    ],
+    "NTR_LastEconomyGrantAmount": [
+      {
+        "source": "ServerStorage.Modules.Game.Player.EconomyServer",
+        "line": 203
+      }
+    ],
+    "NTR_LastEconomyGrantReason": [
+      {
+        "source": "ServerStorage.Modules.Game.Player.EconomyServer",
+        "line": 204
+      }
+    ],
+    "NTR_LastRaceRewardAmount": [
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageServer",
+        "line": 720
+      }
+    ],
+    "NTR_LastRaceRewardEventId": [
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageServer",
+        "line": 722
+      }
+    ],
+    "NTR_LastRaceRewardRunId": [
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageServer",
+        "line": 721
+      }
+    ],
+    "NTR_LastRacingEventId": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceQueueClient",
+        "line": 45
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceTimeTrialResultCoachClient",
+        "line": 200
+      }
+    ],
+    "NTR_LastRacingVehicleId": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceQueueClient",
+        "line": 45
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceTimeTrialResultCoachClient",
+        "line": 200
+      }
+    ],
+    "NTR_LastStudioCashGrant": [
+      {
+        "source": "ServerStorage.Modules.Game.Development.StudioCashGrantServer",
+        "line": 62
+      }
+    ],
+    "NTR_LightingPreset": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Development.LightingPreviewClient",
+        "line": 34
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.GaragePreviewPresentationClient",
+        "line": 209
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.GaragePreviewPresentationClient",
+        "line": 304
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.World.NightLamppostLightClient",
+        "line": 15
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.World.NightLamppostLightClient",
+        "line": 26
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.World.OwnedGarageEnvironmentLightingClient",
+        "line": 124
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.World.OwnedGarageEnvironmentLightingClient",
+        "line": 130
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.World.OwnedGarageEnvironmentLightingClient",
+        "line": 142
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.World.OwnedGarageEnvironmentLightingClient",
+        "line": 143
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.World.WindowMaterialClient",
+        "line": 15
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.World.WindowMaterialClient",
+        "line": 33
+      },
+      {
+        "source": "ServerStorage.Modules.Game.World.LightingServer",
+        "line": 75
+      }
+    ],
+    "NTR_LightingStageEndsAtUnix": [
+      {
+        "source": "ServerStorage.Modules.Game.World.LightingServer",
+        "line": 79
+      }
+    ],
+    "NTR_LightingStageIndex": [
+      {
+        "source": "ServerStorage.Modules.Game.World.LightingServer",
+        "line": 78
+      }
+    ],
+    "NTR_ListenerToOutput": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+        "line": 110
+      }
+    ],
+    "NTR_LoadingBackground": [
+      {
+        "source": "ReplicatedFirst.NTRLoading.LoadingScreenView",
+        "line": 32
+      }
+    ],
+    "NTR_LoadingMusic": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.AudioBusClient",
+        "line": 11
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.AudioMixClient",
+        "line": 57
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.AudioMixClient",
+        "line": 82
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.AudioMixClient",
+        "line": 98
+      }
+    ],
+    "NTR_LoadingMusic_Runtime": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.AudioMixClient",
+        "line": 60
+      }
+    ],
+    "NTR_LoadingSafeContent": [
+      {
+        "source": "ReplicatedFirst.NTRLoading.InitialLoadingAndStartScreenClient",
+        "line": 79
+      },
+      {
+        "source": "ReplicatedFirst.NTRLoading.LoadingScreenView",
+        "line": 41
+      }
+    ],
+    "NTR_MobileDriveControls_Phase1": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient",
+        "line": 46
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient",
+        "line": 47
+      }
+    ],
+    "NTR_MobileFreeRoamHud_Phase1": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+        "line": 87
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+        "line": 88
+      }
+    ],
+    "NTR_NightLamppostLight": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.World.NightLamppostLightClient",
+        "line": 12
+      }
+    ],
+    "NTR_OnboardingStage": [
+      {
+        "source": "ServerStorage.Modules.Game.Player.OnboardingServer",
+        "line": 53
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Player.OnboardingServer",
+        "line": 78
+      }
+    ],
+    "NTR_OnboardingV1": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+        "line": 89
+      }
+    ],
+    "NTR_OwnedGarageBrowser": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+        "line": 223
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+        "line": 471
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+        "line": 20
+      }
+    ],
+    "NTR_OwnedGarageInside": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient",
+        "line": 119
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient",
+        "line": 255
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.PreviewCameraClient",
+        "line": 49
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+        "line": 1040
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.FreeRoamMapPlayerMarkers",
+        "line": 65
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.FreeRoamMapPlayerMarkers",
+        "line": 281
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+        "line": 20
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+        "line": 164
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+        "line": 216
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+        "line": 249
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+        "line": 266
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+        "line": 267
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+        "line": 283
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+        "line": 286
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageInteriorTransitionUI",
+        "line": 9
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageInteriorTransitionUI",
+        "line": 9
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageInteriorTransitionUI",
+        "line": 10
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+        "line": 324
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+        "line": 355
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+        "line": 615
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+        "line": 664
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+        "line": 102
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+        "line": 108
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+        "line": 108
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.World.OwnedGarageEnvironmentLightingClient",
+        "line": 121
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.World.OwnedGarageEnvironmentLightingClient",
+        "line": 152
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageServer",
+        "line": 2583
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+        "line": 115
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.RaceTeleportServer",
+        "line": 151
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 130
+      },
+      {
+        "source": "ServerStorage.Modules.Game.World.FreeRoamTeleportServer",
+        "line": 82
+      }
+    ],
+    "NTR_OwnedGarageInteriorHUD": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+        "line": 21
+      }
+    ],
+    "NTR_OwnedGarageInteriorMode": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+        "line": 20
+      }
+    ],
+    "NTR_OwnedGarageLastStreamError": [
+      {
+        "source": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+        "line": 49
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+        "line": 55
+      }
+    ],
+    "NTR_OwnedGarageLastStreamSeconds": [
+      {
+        "source": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+        "line": 55
+      }
+    ],
+    "NTR_OwnedGarageManagementOpen": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.PreviewCameraClient",
+        "line": 50
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+        "line": 1033
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+        "line": 98
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+        "line": 216
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+        "line": 250
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+        "line": 272
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+        "line": 273
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+        "line": 283
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+        "line": 286
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+        "line": 308
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+        "line": 472
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+        "line": 664
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+        "line": 63
+      }
+    ],
+    "NTR_OwnedGarageOriginalSize": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+        "line": 27
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+        "line": 27
+      }
+    ],
+    "NTR_OwnedGarageOwnerUserId": [
+      {
+        "source": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+        "line": 115
+      }
+    ],
+    "NTR_OwnedGaragePropertyId": [
+      {
+        "source": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+        "line": 115
+      }
+    ],
+    "NTR_OwnedGarageSkyPreset": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.World.OwnedGarageEnvironmentLightingClient",
+        "line": 76
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.World.OwnedGarageEnvironmentLightingClient",
+        "line": 83
+      }
+    ],
+    "NTR_OwnedGarageStreamState": [
+      {
+        "source": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+        "line": 49
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+        "line": 55
+      }
+    ],
+    "NTR_OwnedGarageStreamToken": [
+      {
+        "source": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+        "line": 49
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+        "line": 55
+      }
+    ],
+    "NTR_OwnedGarageTouchCameraGuard": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+        "line": 63
+      }
+    ],
+    "NTR_PCFreeRoamHudPhase1": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+        "line": 1208
+      }
+    ],
+    "NTR_PCFreeRoamHudPhase2B": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+        "line": 1209
+      }
+    ],
+    "NTR_PCFreeRoamHudPhase2C": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+        "line": 1210
+      }
+    ],
+    "NTR_PCFreeRoamHudPhase2D": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+        "line": 1211
+      }
+    ],
+    "NTR_PCFreeRoamHudPhase2E": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+        "line": 1212
+      }
+    ],
+    "NTR_PCFreeRoamHudPhase2F": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+        "line": 1213
+      }
+    ],
+    "NTR_PCFreeRoamHudPhase2G": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+        "line": 1214
+      }
+    ],
+    "NTR_PCFreeRoamHudPhase2H": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+        "line": 1215
+      }
+    ],
+    "NTR_PCFreeRoamHudPhase2I": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+        "line": 1216
+      }
+    ],
+    "NTR_PCFreeRoamHudPhase3A": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+        "line": 1217
+      }
+    ],
+    "NTR_PCFreeRoamHudPhase3B": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+        "line": 1218
+      }
+    ],
+    "NTR_PCFreeRoamHudPhase3C": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+        "line": 1219
+      }
+    ],
+    "NTR_PCFreeRoamHudPhase3D": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+        "line": 1220
+      }
+    ],
+    "NTR_PCFreeRoamHudPhase4A": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+        "line": 1221
+      }
+    ],
+    "NTR_ParkedFixed": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.FreeRoamParkedHoverClient",
+        "line": 100
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageServer",
+        "line": 2430
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageServer",
+        "line": 2436
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageServer",
+        "line": 2529
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Player.EconomyServer",
+        "line": 90
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 162
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.VehicleAccessServer",
+        "line": 75
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.VehicleCollisionServer",
+        "line": 110
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.VehicleCollisionServer",
+        "line": 136
+      }
+    ],
+    "NTR_ParkedHover": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.FreeRoamParkedHoverClient",
+        "line": 113
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.FreeRoamParkedHoverClient",
+        "line": 133
+      }
+    ],
+    "NTR_ParkedHoverAlign": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.FreeRoamParkedHoverClient",
+        "line": 140
+      }
+    ],
+    "NTR_ParkedHoverCenterAttachment": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.FreeRoamParkedHoverClient",
+        "line": 138
+      }
+    ],
+    "NTR_ParkedHoverCoastDrag": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.FreeRoamParkedHoverClient",
+        "line": 169
+      }
+    ],
+    "NTR_ParkedHoverCornerAttachment": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.FreeRoamParkedHoverClient",
+        "line": 157
+      }
+    ],
+    "NTR_ParkedHoverCornerForce": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.FreeRoamParkedHoverClient",
+        "line": 159
+      }
+    ],
+    "NTR_PersistencePhase19ModuleSyncCount": [
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageServer",
+        "line": 1039
+      }
+    ],
+    "NTR_PersistencePhase19Synced": [
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageServer",
+        "line": 1037
+      }
+    ],
+    "NTR_PersistencePhase19VehicleId": [
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageServer",
+        "line": 1038
+      }
+    ],
+    "NTR_PersistencePhase20ModuleSyncCount": [
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageServer",
+        "line": 1042
+      }
+    ],
+    "NTR_PersistencePhase20RuntimeModule": [
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageServer",
+        "line": 1040
+      }
+    ],
+    "NTR_PersistencePhase20VehicleId": [
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageServer",
+        "line": 1041
+      }
+    ],
+    "NTR_Phase21InPrivateGarage": [
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 131
+      }
+    ],
+    "NTR_PlayerProfiles_v1": [
+      {
+        "source": "ServerStorage.Modules.Game.Player.ProfileServer",
+        "line": 116
+      }
+    ],
+    "NTR_PresentationAudioRuntime_Local": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioClient",
+        "line": 363
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioClient",
+        "line": 366
+      }
+    ],
+    "NTR_ProfileDataStoreEnabled": [
+      {
+        "source": "ServerStorage.Modules.Game.Player.ProfileServer",
+        "line": 324
+      }
+    ],
+    "NTR_ProfileSchemaVersion": [
+      {
+        "source": "ServerStorage.Modules.Game.Player.ProfileServer",
+        "line": 323
+      }
+    ],
+    "NTR_ProfileServiceLoaded": [
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageServer",
+        "line": 2576
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Player.OnboardingServer",
+        "line": 92
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Player.ProfileServer",
+        "line": 283
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Player.ProfileServer",
+        "line": 322
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Player.ProfileServer",
+        "line": 386
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Player.ProfileServer",
+        "line": 399
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Player.ProfileServer",
+        "line": 558
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Player.ProfileServer",
+        "line": 581
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 142
+      }
+    ],
+    "NTR_ProfileSessionGeneration": [
+      {
+        "source": "ServerStorage.Modules.Game.Player.ProfileServer",
+        "line": 325
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Player.ProfileServer",
+        "line": 559
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 171
+      }
+    ],
+    "NTR_ProfileSessionId": [
+      {
+        "source": "ServerStorage.Modules.Game.Player.ProfileServer",
+        "line": 326
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Player.ProfileServer",
+        "line": 560
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 172
+      }
+    ],
+    "NTR_PromptVisibilityOwnerReady": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+        "line": 302
+      }
+    ],
+    "NTR_RaceBrowser": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceBrowserClient",
+        "line": 454
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceBrowserClient",
+        "line": 457
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+        "line": 218
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+        "line": 471
+      }
+    ],
+    "NTR_RaceBrowserLastTeleportEventId": [
+      {
+        "source": "ServerStorage.Modules.Game.Racing.RaceTeleportServer",
+        "line": 187
+      }
+    ],
+    "NTR_RaceBrowserLastTeleportRouteId": [
+      {
+        "source": "ServerStorage.Modules.Game.Racing.RaceTeleportServer",
+        "line": 186
+      }
+    ],
+    "NTR_RaceBrowserTeleportDespawn": [
+      {
+        "source": "ServerStorage.Modules.Game.Player.EconomyServer",
+        "line": 94
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.RaceTeleportServer",
+        "line": 129
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 164
+      }
+    ],
+    "NTR_RaceBrowserTeleporting": [
+      {
+        "source": "ServerStorage.Modules.Game.Racing.RaceTeleportServer",
+        "line": 185
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.RaceTeleportServer",
+        "line": 193
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.RaceTeleportServer",
+        "line": 199
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 124
+      },
+      {
+        "source": "ServerStorage.Modules.Game.World.FreeRoamTeleportServer",
+        "line": 47
+      }
+    ],
+    "NTR_RaceCountdown": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceCountdownPresentationClient",
+        "line": 23
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceCountdownPresentationClient",
+        "line": 24
+      }
+    ],
+    "NTR_RaceEntryPresentation": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceEntryPresentationClient",
+        "line": 841
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceEntryPresentationClient",
+        "line": 844
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+        "line": 219
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+        "line": 471
+      }
+    ],
+    "NTR_RaceEntryPrompt": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+        "line": 47
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.TimeTrialServer",
+        "line": 119
+      }
+    ],
+    "NTR_RaceFinishedPendingExit": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.FreeRoamMapPlayerMarkers",
+        "line": 60
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.FreeRoamMapPlayerMarkers",
+        "line": 73
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.TimeTrialServer",
+        "line": 589
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.TimeTrialServer",
+        "line": 603
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.TimeTrialServer",
+        "line": 861
+      }
+    ],
+    "NTR_RaceFrozen": [
+      {
+        "source": "ServerStorage.Modules.Game.Player.EconomyServer",
+        "line": 87
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.MatchmakingServer",
+        "line": 166
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.MatchmakingServer",
+        "line": 189
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.MatchmakingServer",
+        "line": 461
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.TimeTrialServer",
+        "line": 384
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.TimeTrialServer",
+        "line": 409
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.TimeTrialServer",
+        "line": 529
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 161
+      },
+      {
+        "source": "ServerStorage.Modules.Game.World.FreeRoamTeleportServer",
+        "line": 51
+      }
+    ],
+    "NTR_RaceGridSpawned": [
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageServer",
+        "line": 2320
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.TimeTrialServer",
+        "line": 604
+      }
+    ],
+    "NTR_RaceMode": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.FreeRoamMapPlayerMarkers",
+        "line": 59
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.FreeRoamMapPlayerMarkers",
+        "line": 74
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.MatchmakingServer",
+        "line": 270
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.MatchmakingServer",
+        "line": 520
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.MatchmakingServer",
+        "line": 951
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.TimeTrialServer",
+        "line": 588
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.TimeTrialServer",
+        "line": 764
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.TimeTrialServer",
+        "line": 860
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.TimeTrialServer",
+        "line": 1141
+      }
+    ],
+    "NTR_RaceParticipant": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceTransitionClient",
+        "line": 252
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.FreeRoamMapPlayerMarkers",
+        "line": 57
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.FreeRoamMapPlayerMarkers",
+        "line": 71
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+        "line": 686
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient",
+        "line": 92
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient",
+        "line": 591
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageServer",
+        "line": 2451
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.MatchmakingServer",
+        "line": 269
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.MatchmakingServer",
+        "line": 519
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.MatchmakingServer",
+        "line": 950
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.RaceAssetsServer",
+        "line": 15
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.TimeTrialServer",
+        "line": 587
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.TimeTrialServer",
+        "line": 606
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.TimeTrialServer",
+        "line": 763
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.TimeTrialServer",
+        "line": 859
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.TimeTrialServer",
+        "line": 1140
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.VehicleCollisionServer",
+        "line": 22
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.VehicleCollisionServer",
+        "line": 83
+      },
+      {
+        "source": "ServerStorage.Modules.Game.World.FreeRoamTeleportServer",
+        "line": 49
+      }
+    ],
+    "NTR_RaceQueueActive": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+        "line": 104
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+        "line": 255
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+        "line": 264
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+        "line": 265
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+        "line": 272
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceQueueClient",
+        "line": 45
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageServer",
+        "line": 2581
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageSessionServer",
+        "line": 88
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.MatchmakingServer",
+        "line": 780
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.MatchmakingServer",
+        "line": 882
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.MatchmakingServer",
+        "line": 1177
+      }
+    ],
+    "NTR_RaceQueueBanner": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceQueueClient",
+        "line": 31
+      }
+    ],
+    "NTR_RaceQueue_Phase8": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceQueueClient",
+        "line": 30
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceTimeTrialResultCoachClient",
+        "line": 106
+      }
+    ],
+    "NTR_RaceRouteGuide_Phase5": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceRouteGuideClient",
+        "line": 280
+      }
+    ],
+    "NTR_RaceRunId": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceParticipantVisibilityClient",
+        "line": 55
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceTransitionClient",
+        "line": 251
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.FreeRoamMapPlayerMarkers",
+        "line": 58
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.FreeRoamMapPlayerMarkers",
+        "line": 72
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+        "line": 686
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient",
+        "line": 591
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageServer",
+        "line": 2451
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.MatchmakingServer",
+        "line": 268
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.MatchmakingServer",
+        "line": 518
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.MatchmakingServer",
+        "line": 949
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.TimeTrialServer",
+        "line": 586
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.TimeTrialServer",
+        "line": 605
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.TimeTrialServer",
+        "line": 762
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.TimeTrialServer",
+        "line": 858
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.TimeTrialServer",
+        "line": 1139
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 173
+      },
+      {
+        "source": "ServerStorage.Modules.Game.World.FreeRoamTeleportServer",
+        "line": 50
+      }
+    ],
+    "NTR_RaceSessionActive": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.FreeRoamMapPlayerMarkers",
+        "line": 66
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.FreeRoamMapPlayerMarkers",
+        "line": 282
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+        "line": 100
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+        "line": 184
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+        "line": 474
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageSessionServer",
+        "line": 88
+      }
+    ],
+    "NTR_RaceSessionAsset": [
+      {
+        "source": "ServerStorage.Modules.Game.Racing.RaceAssetsServer",
+        "line": 14
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.VehicleCollisionServer",
+        "line": 23
+      }
+    ],
+    "NTR_RaceTransitionFade_Phase8H": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceTransitionClient",
+        "line": 43
+      }
+    ],
+    "NTR_RoadSpawnPoint": [
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageServer",
+        "line": 2080
+      }
+    ],
+    "NTR_SessionAsset": [
+      {
+        "source": "ServerStorage.Modules.Game.Racing.RaceAssetsServer",
+        "line": 197
+      }
+    ],
+    "NTR_SharedConfirmationOverlay": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.ResponsiveUIFoundation",
+        "line": 331
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.ResponsiveUIFoundation",
+        "line": 334
+      }
+    ],
+    "NTR_SharedInRaceHUD": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient",
+        "line": 94
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient",
+        "line": 95
+      }
+    ],
+    "NTR_SharedTopNotification": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.ResponsiveUIFoundation",
+        "line": 452
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.ResponsiveUIFoundation",
+        "line": 455
+      }
+    ],
+    "NTR_SprintAnimation": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.CharacterSprintClient",
+        "line": 237
+      }
+    ],
+    "NTR_StartScreenActive": [
+      {
+        "source": "ReplicatedFirst.NTRLoading.InitialLoadingAndStartScreenClient",
+        "line": 53
+      },
+      {
+        "source": "ReplicatedFirst.NTRLoading.InitialLoadingAndStartScreenClient",
+        "line": 83
+      },
+      {
+        "source": "ReplicatedFirst.NTRLoading.InitialLoadingAndStartScreenClient",
+        "line": 298
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+        "line": 103
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+        "line": 263
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+        "line": 337
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+        "line": 741
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 136
+      }
+    ],
+    "NTR_StreetLightsOn": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Development.LightingPreviewClient",
+        "line": 35
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.World.NightLamppostLightClient",
+        "line": 16
+      },
+      {
+        "source": "ServerStorage.Modules.Game.World.LightingServer",
+        "line": 76
+      }
+    ],
+    "NTR_StudioCashGrant": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Development.StudioCashGrantClient",
+        "line": 20
+      }
+    ],
+    "NTR_StudioVehicleSandboxActive": [
+      {
+        "source": "ServerStorage.Modules.Game.Player.ProfileServer",
+        "line": 206
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Player.ProfileServer",
+        "line": 228
+      }
+    ],
+    "NTR_TT_Global_Metadata_v1": [
+      {
+        "source": "ServerStorage.Modules.Game.Racing.GlobalLeaderboardServer",
+        "line": 39
+      }
+    ],
+    "NTR_TT_Global_v1": [
+      {
+        "source": "ServerStorage.Modules.Game.Racing.GlobalLeaderboardServer",
+        "line": 37
+      }
+    ],
+    "NTR_TimeTrialPBDataStoreEnabled": [
+      {
+        "source": "ServerStorage.Modules.Game.Racing.PersonalBestServer",
+        "line": 189
+      }
+    ],
+    "NTR_TimeTrialPBLastError": [
+      {
+        "source": "ServerStorage.Modules.Game.Racing.PersonalBestServer",
+        "line": 197
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.PersonalBestServer",
+        "line": 211
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.PersonalBestServer",
+        "line": 249
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.PersonalBestServer",
+        "line": 254
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.PersonalBestServer",
+        "line": 269
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.PersonalBestServer",
+        "line": 273
+      }
+    ],
+    "NTR_TimeTrialPBLastSaveUnix": [
+      {
+        "source": "ServerStorage.Modules.Game.Racing.PersonalBestServer",
+        "line": 248
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.PersonalBestServer",
+        "line": 268
+      }
+    ],
+    "NTR_TimeTrialPBLoaded": [
+      {
+        "source": "ServerStorage.Modules.Game.Racing.PersonalBestServer",
+        "line": 188
+      }
+    ],
+    "NTR_TimeTrialPersonalBests_v1": [
+      {
+        "source": "ServerStorage.Modules.Game.Racing.PersonalBestServer",
+        "line": 71
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.PersonalBestServer",
+        "line": 113
+      }
+    ],
+    "NTR_TimeTrialStartPrompt": [
+      {
+        "source": "ServerStorage.Modules.Game.Racing.TimeTrialServer",
+        "line": 118
+      }
+    ],
+    "NTR_UI": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.AudioBusClient",
+        "line": 16
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioClient",
+        "line": 22
+      }
+    ],
+    "NTR_UnderglowColour": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCosmeticCatalog",
+        "line": 122
+      }
+    ],
+    "NTR_UnderglowDetected": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCosmeticCatalog",
+        "line": 119
+      }
+    ],
+    "NTR_UnderglowEnabled": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCosmeticCatalog",
+        "line": 120
+      }
+    ],
+    "NTR_UnderglowUnlocked": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCosmeticCatalog",
+        "line": 121
+      }
+    ],
+    "NTR_UnifiedRaceResults": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceTimeTrialResultCoachClient",
+        "line": 209
+      }
+    ],
+    "NTR_VFXRuntimeHost": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.ThrustPreviewClient",
+        "line": 43
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.LegacyVehicleVFXClient",
+        "line": 228
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.LegacyVehicleVFXClient",
+        "line": 399
+      }
+    ],
+    "NTR_Vehicle": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.AudioBusClient",
+        "line": 13
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.AudioMixClient",
+        "line": 17
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioClient",
+        "line": 23
+      }
+    ],
+    "NTR_VehicleAudioEmitter_Runtime": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.AcousticsClient",
+        "line": 50
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+        "line": 200
+      }
+    ],
+    "NTR_VehicleCollisionState": [
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.VehicleCollisionServer",
+        "line": 149
+      }
+    ],
+    "NTR_VehicleFast": [
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.VehicleCollisionServer",
+        "line": 21
+      }
+    ],
+    "NTR_VehicleSlow": [
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.VehicleCollisionServer",
+        "line": 20
+      }
+    ],
+    "NTR_WindowMaterial": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.World.WindowMaterialClient",
+        "line": 13
+      }
+    ],
+    "NTR_WindowMode": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Development.LightingPreviewClient",
+        "line": 36
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.World.WindowMaterialClient",
+        "line": 19
+      },
+      {
+        "source": "ServerStorage.Modules.Game.World.LightingServer",
+        "line": 77
+      }
+    ],
+    "NeoTokyoRacers": [
+      {
+        "source": "ReplicatedFirst.NTRLoading.InitialLoadingAndStartScreenClient",
+        "line": 13
+      },
+      {
+        "source": "ReplicatedFirst.NTRLoading.LoadingTransitionRuntime",
+        "line": 39
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Core.PathResolver",
+        "line": 4
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.AcousticsClient",
+        "line": 12
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.AcousticsRuntimeClient",
+        "line": 12
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.AudioRuntimeClient",
+        "line": 12
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.ContextAudioCatalog",
+        "line": 6
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient",
+        "line": 13
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.ContextAudioRuntimeClient",
+        "line": 12
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioCatalog",
+        "line": 6
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioClient",
+        "line": 14
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioRuntimeClient",
+        "line": 12
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioCatalog",
+        "line": 6
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+        "line": 11
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Dealership.DealershipIntroClient",
+        "line": 48
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Dealership.DealershipIntroClient",
+        "line": 528
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Dealership.GarageEntranceClient",
+        "line": 17
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient",
+        "line": 18
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Development.StudioCashGrantClient",
+        "line": 17
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.GarageModuleInstancePreviewAdapter",
+        "line": 6
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.GaragePreviewPresentationClient",
+        "line": 19
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+        "line": 23
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.PreviewCameraClient",
+        "line": 15
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.PreviewVehicleClient",
+        "line": 10
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.ThrustPreviewClient",
+        "line": 21
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceBrowserClient",
+        "line": 33
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceConfigReader",
+        "line": 10
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceCountdownPresentationClient",
+        "line": 17
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceEntryMenuClient",
+        "line": 14
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceEntryPresentationClient",
+        "line": 34
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+        "line": 17
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceParticipantVisibilityClient",
+        "line": 14
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceQueueClient",
+        "line": 15
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceRouteGuideClient",
+        "line": 21
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceSessionAssetsClient",
+        "line": 20
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient",
+        "line": 31
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceTimeTrialResultCoachClient",
+        "line": 22
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceTransitionClient",
+        "line": 28
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+        "line": 36
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageBrowserUI",
+        "line": 20
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageComponents",
+        "line": 15
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+        "line": 15
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageWorkspaceUI",
+        "line": 24
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+        "line": 30
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+        "line": 24
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+        "line": 16
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+        "line": 40
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.RacingMobileScaledDesktopLayout",
+        "line": 5
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.RacingUIComponents",
+        "line": 8
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.ResponsiveUIFoundation",
+        "line": 12
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.SharedTopNotificationUI",
+        "line": 13
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.UITheme",
+        "line": 33
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceDefinitions",
+        "line": 52
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.CharacterSprintClient",
+        "line": 20
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.DriveTuning",
+        "line": 3
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient",
+        "line": 27
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.DrivingClient",
+        "line": 25
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.FreeRoamParkedHoverClient",
+        "line": 24
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.LegacyVehicleVFXClient",
+        "line": 9
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient",
+        "line": 21
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCosmeticCatalog",
+        "line": 5
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.VehicleDynamics",
+        "line": 8
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient",
+        "line": 13
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.World.LODClient",
+        "line": 11
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.World.OwnedGarageEnvironmentLightingClient",
+        "line": 15
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Audio.VehicleAudioServer",
+        "line": 13
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Dealership.IntroProgressServer",
+        "line": 107
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Development.StudioCashGrantServer",
+        "line": 13
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Development.VehiclePerformanceComparisonServer",
+        "line": 11
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageServer",
+        "line": 22
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageSessionServer",
+        "line": 14
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.OwnedGarageFinish",
+        "line": 75
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.OwnedGarageInterior",
+        "line": 13
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+        "line": 37
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Player.OnboardingServer",
+        "line": 13
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Player.ProfileCompatibilityServer",
+        "line": 46
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Player.ProfileServer",
+        "line": 57
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.GlobalLeaderboardServer",
+        "line": 15
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.MatchmakingServer",
+        "line": 17
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.PersonalBestServer",
+        "line": 68
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.RaceDisplayNameServer",
+        "line": 14
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.RaceRewardsServer",
+        "line": 23
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.RaceTeleportServer",
+        "line": 15
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.TimeTrialServer",
+        "line": 17
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 18
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriverSeatServer",
+        "line": 11
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.VehicleCollisionServer",
+        "line": 26
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.VehiclePerformanceServer",
+        "line": 11
+      },
+      {
+        "source": "ServerStorage.Modules.Game.World.FreeRoamTeleportServer",
+        "line": 14
+      }
+    ],
+    "NeoTokyoRacersWorld": [
+      {
+        "source": "ReplicatedFirst.NTRLoading.InitialLoadingAndStartScreenClient",
+        "line": 63
+      },
+      {
+        "source": "ReplicatedFirst.NTRLoading.InitialLoadingAndStartScreenClient",
+        "line": 67
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Core.PathResolver",
+        "line": 5
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.AcousticsClient",
+        "line": 201
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient",
+        "line": 52
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+        "line": 49
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Dealership.DealershipIntroClient",
+        "line": 104
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Dealership.GarageEntranceClient",
+        "line": 34
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.ThrustPreviewClient",
+        "line": 37
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceEntryMenuClient",
+        "line": 94
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceParticipantVisibilityClient",
+        "line": 21
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceQueueClient",
+        "line": 28
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceRouteDefinition",
+        "line": 25
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceRouteGuideClient",
+        "line": 311
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceSessionAssetsClient",
+        "line": 39
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient",
+        "line": 86
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+        "line": 662
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+        "line": 675
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+        "line": 110
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+        "line": 111
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.DrivingClient",
+        "line": 119
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.FreeRoamParkedHoverClient",
+        "line": 33
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient",
+        "line": 602
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient",
+        "line": 639
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.World.LODClient",
+        "line": 10
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Audio.VehicleAudioServer",
+        "line": 24
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Dealership.IntroProgressServer",
+        "line": 77
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageServer",
+        "line": 23
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageSessionServer",
+        "line": 32
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+        "line": 40
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Player.EconomyServer",
+        "line": 61
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Player.OnboardingServer",
+        "line": 79
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.MatchmakingServer",
+        "line": 57
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.RaceAssetsServer",
+        "line": 92
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.RaceDisplayNameServer",
+        "line": 17
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.RaceTeleportServer",
+        "line": 34
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.TimeTrialServer",
+        "line": 211
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 24
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriverSeatServer",
+        "line": 14
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.VehicleAccessServer",
+        "line": 19
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.VehicleCollisionServer",
+        "line": 28
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.VehiclePerformanceServer",
+        "line": 14
+      },
+      {
+        "source": "ServerStorage.Modules.Game.World.FreeRoamTeleportServer",
+        "line": 25
+      },
+      {
+        "source": "ServerStorage.Modules.Game.World.FreeRoamTeleportServer",
+        "line": 33
+      }
+    ],
+    "RACE ENTRY": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceEntryPresentationClient",
+        "line": 834
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceEntryPresentationClient",
+        "line": 868
+      }
+    ],
+    "[NTR ": [
+      {
+        "source": "ServerStorage.Modules.Game.Player.ProfileCompatibilityServer",
+        "line": 17
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Player.ProfileServer",
+        "line": 24
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Player.ProfileServer",
+        "line": 28
+      }
+    ],
+    "[NTR Audio Phase 1] ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+        "line": 45
+      }
+    ],
+    "[NTR Audio Phase 1] PlayerVehicles runtime root missing; vehicle audio is inactive.": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+        "line": 801
+      }
+    ],
+    "[NTR Audio Phase 1] Runtime failed safely: ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.AudioRuntimeClient",
+        "line": 19
+      }
+    ],
+    "[NTR Audio Phase 1] VehicleAudioStateService active.": [
+      {
+        "source": "ServerStorage.Modules.Game.Audio.VehicleAudioServer",
+        "line": 149
+      }
+    ],
+    "[NTR Audio Phase 2] ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient",
+        "line": 33
+      }
+    ],
+    "[NTR Audio Phase 2] Context runtime failed safely: ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.ContextAudioRuntimeClient",
+        "line": 19
+      }
+    ],
+    "[NTR Audio Phase 2] Ignored non-spatial tagged zone ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient",
+        "line": 77
+      }
+    ],
+    "[NTR Audio Phase 2] Missing context ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient",
+        "line": 206
+      }
+    ],
+    "[NTR Audio Phase 2] Zone cap reached; ignored ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient",
+        "line": 84
+      }
+    ],
+    "[NTR Audio Phase 3] ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.AcousticsClient",
+        "line": 35
+      }
+    ],
+    "[NTR Audio Phase 3] Acoustics runtime failed safely: ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.AcousticsRuntimeClient",
+        "line": 18
+      }
+    ],
+    "[NTR Audio Phase 3] PlayerVehicles missing; vehicle acoustics inactive.": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.AcousticsClient",
+        "line": 208
+      }
+    ],
+    "[NTR Audio] ignition Play failed: ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+        "line": 410
+      }
+    ],
+    "[NTR Audio] reliable ignition failed to start after %d attempts for %s": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+        "line": 383
+      }
+    ],
+    "[NTR Audio] reliable ignition play requested attempt %d for %s": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+        "line": 419
+      }
+    ],
+    "[NTR Audio] reliable ignition playback confirmed for ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+        "line": 361
+      }
+    ],
+    "[NTR Audio] reliable ignition prepared for ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+        "line": 347
+      }
+    ],
+    "[NTR Canonical Garage] ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+        "line": 125
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+        "line": 695
+      }
+    ],
+    "[NTR Canonical Garage] DEPENDENCY PASS existing-instance application": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+        "line": 704
+      }
+    ],
+    "[NTR Canonical Garage] Drive exit failed safely: ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+        "line": 190
+      }
+    ],
+    "[NTR Canonical Garage] Loading transition ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+        "line": 58
+      }
+    ],
+    "[NTR Canonical Garage] Preview: ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+        "line": 109
+      }
+    ],
+    "[NTR Canonical V2 Runtime] Failed for ": [
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.VehiclePerformanceServer",
+        "line": 35
+      }
+    ],
+    "[NTR Canonical V2 Runtime] Spawned-vehicle performance writer active.": [
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.VehiclePerformanceServer",
+        "line": 41
+      }
+    ],
+    "[NTR Canonical V2 Runtime] Wrote %s %s to %s": [
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.VehiclePerformanceServer",
+        "line": 34
+      }
+    ],
+    "[NTR Character Sprint] ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.CharacterSprintClient",
+        "line": 92
+      }
+    ],
+    "[NTR Character Sprint] Could not load sprint animation: ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.CharacterSprintClient",
+        "line": 249
+      }
+    ],
+    "[NTR Customisation Access] binding failed: ": [
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageServer",
+        "line": 1370
+      }
+    ],
+    "[NTR Dealership Intro Client]": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Dealership.DealershipIntroClient",
+        "line": 24
+      }
+    ],
+    "[NTR Dealership Intro Progress]": [
+      {
+        "source": "ServerStorage.Modules.Game.Dealership.IntroProgressServer",
+        "line": 18
+      }
+    ],
+    "[NTR Default Vehicle Camera] No DriverSeat or Humanoid subject found": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient",
+        "line": 248
+      }
+    ],
+    "[NTR Desktop HUD] Loading transition ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+        "line": 401
+      }
+    ],
+    "[NTR Drive-To-Earn Runtime Audit] PASS players=%d samples=%d commands=%d grants=%d rate=%.4f batch=%d grantMaxHz=%.2f cap=%d/%ds noRemotes=true": [
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 446
+      }
+    ],
+    "[NTR Drive-To-Earn] ProfileService command error player=": [
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 222
+      }
+    ],
+    "[NTR Drive-To-Earn] Service active; server-owned distance, ProfileService Cash command, rolling cap, and Studio-only telemetry ready.": [
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "line": 465
+      }
+    ],
+    "[NTR Driving Camera] DrivingCameraController failed to load: ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.DrivingClient",
+        "line": 493
+      }
+    ],
+    "[NTR Driving Camera] DrivingCameraController missing; Roblox default camera remains active": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.DrivingClient",
+        "line": 488
+      }
+    ],
+    "[NTR Economy] Legacy Cash projection did not connect within 10 seconds.": [
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageServer",
+        "line": 733
+      }
+    ],
+    "[NTR Garage Artwork] ATTRIBUTE FOLDERS PASS": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageWorkspaceUI",
+        "line": 52
+      }
+    ],
+    "[NTR Garage Artwork] FALLBACK ACTIVE folders=": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageWorkspaceUI",
+        "line": 52
+      }
+    ],
+    "[NTR Garage Entrance] Loading transition ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Dealership.GarageEntranceClient",
+        "line": 119
+      }
+    ],
+    "[NTR Garage Module Cards] MODAL GEOMETRY FAIL fills=": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+        "line": 163
+      }
+    ],
+    "[NTR Garage Module Cards] MODAL GEOMETRY PASS": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+        "line": 163
+      }
+    ],
+    "[NTR Garage Phase 1 Runtime] OWNERSHIP FAIL ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+        "line": 146
+      }
+    ],
+    "[NTR Garage Phase 1 Runtime] OWNERSHIP PASS ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+        "line": 146
+      }
+    ],
+    "[NTR Garage Presentation Owner] FAIL ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageComponents",
+        "line": 217
+      }
+    ],
+    "[NTR Garage Presentation Owner] PASS ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageComponents",
+        "line": 217
+      }
+    ],
+    "[NTR Garage Preview Presentation] Missing lighting preset ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.GaragePreviewPresentationClient",
+        "line": 125
+      }
+    ],
+    "[NTR Garage Preview] PAD FALLBACK - GaragePreviewPad unavailable": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.PreviewVehicleClient",
+        "line": 38
+      }
+    ],
+    "[NTR Garage Preview] PAD PASS ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.PreviewVehicleClient",
+        "line": 35
+      }
+    ],
+    "[NTR Garage Replacement Runtime] GEOMETRY FAIL: ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageBrowserUI",
+        "line": 114
+      }
+    ],
+    "[NTR Garage Replacement Runtime] GEOMETRY PASS ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageBrowserUI",
+        "line": 114
+      }
+    ],
+    "[NTR Garage Responsive Runtime] FAIL ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageComponents",
+        "line": 290
+      }
+    ],
+    "[NTR Garage Responsive Runtime] PASS ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageComponents",
+        "line": 290
+      }
+    ],
+    "[NTR Garage Route] event=": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+        "line": 701
+      }
+    ],
+    "[NTR Garage Route] selection=": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+        "line": 198
+      }
+    ],
+    "[NTR Garage Upgrades] Missing catalogue paths for ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+        "line": 415
+      }
+    ],
+    "[NTR Garage Workspace Runtime] GEOMETRY FAIL: ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageWorkspaceUI",
+        "line": 351
+      }
+    ],
+    "[NTR Garage Workspace Runtime] GEOMETRY PASS ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageWorkspaceUI",
+        "line": 351
+      }
+    ],
+    "[NTR Lighting AQ] Applied stage:": [
+      {
+        "source": "ServerStorage.Modules.Game.World.LightingServer",
+        "line": 73
+      }
+    ],
+    "[NTR Lighting AQ] Could not apply": [
+      {
+        "source": "ServerStorage.Modules.Game.World.LightingServer",
+        "line": 42
+      }
+    ],
+    "[NTR Lighting AQ] Invalid ManualStage; using Day:": [
+      {
+        "source": "ServerStorage.Modules.Game.World.LightingServer",
+        "line": 107
+      }
+    ],
+    "[NTR Lighting AQ] Missing Sky preset:": [
+      {
+        "source": "ServerStorage.Modules.Game.World.LightingServer",
+        "line": 50
+      }
+    ],
+    "[NTR Lighting AQ] Missing preset:": [
+      {
+        "source": "ServerStorage.Modules.Game.World.LightingServer",
+        "line": 65
+      }
+    ],
+    "[NTR Lighting AS] Missing window MaterialVariant": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.World.WindowMaterialClient",
+        "line": 25
+      }
+    ],
+    "[NTR Lighting Preview] 1 7AM, 2 10AM, 3 Day, 4 3PM, 5 5PM, 6 8PM, 7 Night, 8 4AM; N Night, M Day": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Development.LightingPreviewClient",
+        "line": 48
+      }
+    ],
+    "[NTR Lighting Preview] Applied": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Development.LightingPreviewClient",
+        "line": 37
+      }
+    ],
+    "[NTR Loading Grid] artwork=%s attempt=%d/%d preload=%s failures=%s": [
+      {
+        "source": "ReplicatedFirst.NTRLoading.LoadingScreenView",
+        "line": 173
+      }
+    ],
+    "[NTR Loading Grid] artwork=%s grid config incomplete; retaining single fallback.": [
+      {
+        "source": "ReplicatedFirst.NTRLoading.LoadingScreenView",
+        "line": 204
+      }
+    ],
+    "[NTR Loading Grid] artwork=%s promoted Grid3x2 composite.": [
+      {
+        "source": "ReplicatedFirst.NTRLoading.LoadingScreenView",
+        "line": 193
+      }
+    ],
+    "[NTR Loading Grid] artwork=%s retained single fallback after render deadline; unresolved=%s": [
+      {
+        "source": "ReplicatedFirst.NTRLoading.LoadingScreenView",
+        "line": 200
+      }
+    ],
+    "[NTR Loading Grid] artwork=%s retained single fallback; unresolved tiles=%s": [
+      {
+        "source": "ReplicatedFirst.NTRLoading.LoadingScreenView",
+        "line": 179
+      }
+    ],
+    "[NTR Loading System Phase 1] ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.LoadingTransitionUI",
+        "line": 17
+      }
+    ],
+    "[NTR Loading System Phase 1] Runtime controller ready.": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.LoadingTransitionUI",
+        "line": 22
+      }
+    ],
+    "[NTR Loading System Phase 5] Bounded initial readiness reached deadline loaded=%s world=%s character=%s": [
+      {
+        "source": "ReplicatedFirst.NTRLoading.InitialLoadingAndStartScreenClient",
+        "line": 75
+      }
+    ],
+    "[NTR Loading System Phase 5] Compact icon Play/Shop start screen ready.": [
+      {
+        "source": "ReplicatedFirst.NTRLoading.InitialLoadingAndStartScreenClient",
+        "line": 329
+      }
+    ],
+    "[NTR Loading System Phase 5] Initial loading could not begin; restoring Roblox loading ownership.": [
+      {
+        "source": "ReplicatedFirst.NTRLoading.InitialLoadingAndStartScreenClient",
+        "line": 49
+      }
+    ],
+    "[NTR Loading System Phase 5] Loading safe content was unavailable; releasing to gameplay.": [
+      {
+        "source": "ReplicatedFirst.NTRLoading.InitialLoadingAndStartScreenClient",
+        "line": 82
+      }
+    ],
+    "[NTR Loading System Phase 5] SHOP failed: ": [
+      {
+        "source": "ReplicatedFirst.NTRLoading.InitialLoadingAndStartScreenClient",
+        "line": 324
+      }
+    ],
+    "[NTR Mobile Free-Roam UI Phase 1K] Compact boost plate and steering-bottom-aligned Exit active.": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+        "line": 430
+      }
+    ],
+    "[NTR Mobile Free-Roam UI Phase 1K] Compact boost plate and touch controls active.": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient",
+        "line": 207
+      }
+    ],
+    "[NTR Mobile HUD] Loading transition ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+        "line": 85
+      }
+    ],
+    "[NTR Module Instance Authority] Reconciled ": [
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageServer",
+        "line": 2591
+      }
+    ],
+    "[NTR Module Instance Preview] Read-only invariant failed: preview mutated the client profile": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+        "line": 108
+      }
+    ],
+    "[NTR Onboarding Replay] ": [
+      {
+        "source": "ServerStorage.Modules.Game.Player.OnboardingServer",
+        "line": 55
+      }
+    ],
+    "[NTR Onboarding] GuideTrailChevronTexture must be a numeric asset ID or rbxassetid:// URI; using Part-arrow fallback": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OnboardingGuideTrailRenderer",
+        "line": 22
+      }
+    ],
+    "[NTR Onboarding] authoritative service active | StudioReplayEveryPlay=": [
+      {
+        "source": "ServerStorage.Modules.Game.Player.OnboardingServer",
+        "line": 102
+      }
+    ],
+    "[NTR Onboarding] client active V1.13 | protected state imports | free-roam controls gate | two-line desktop objectives": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+        "line": 750
+      }
+    ],
+    "[NTR Owned Garage Environment] Could not apply ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.World.OwnedGarageEnvironmentLightingClient",
+        "line": 63
+      }
+    ],
+    "[NTR Owned Garage Environment] Missing Sky preset: ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.World.OwnedGarageEnvironmentLightingClient",
+        "line": 71
+      }
+    ],
+    "[NTR Owned Garage Environment] Missing lighting preset: ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.World.OwnedGarageEnvironmentLightingClient",
+        "line": 89
+      }
+    ],
+    "[NTR Owned Garage Environment] Preset application failed: ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.World.OwnedGarageEnvironmentLightingClient",
+        "line": 97
+      }
+    ],
+    "[NTR Owned Garage Timing] action=": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+        "line": 58
+      }
+    ],
+    "[NTR Owned Garage Timing] page=": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+        "line": 196
+      }
+    ],
+    "[NTR Owned Garage] ": [
+      {
+        "source": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+        "line": 379
+      }
+    ],
+    "[NTR Owned Garage] Browser controller active.": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+        "line": 123
+      }
+    ],
+    "[NTR Owned Garage] Canonical Phase 8 workspace active.": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+        "line": 214
+      }
+    ],
+    "[NTR Owned Garage] Canonical client active.": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OwnedGarageClient",
+        "line": 14
+      }
+    ],
+    "[NTR Owned Garage] Canonical server service active.": [
+      {
+        "source": "ServerStorage.Modules.Game.Garage.OwnedGarageServer",
+        "line": 13
+      }
+    ],
+    "[NTR Owned Garage] ClearNight interior environment owner active.": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.World.OwnedGarageEnvironmentLightingClient",
+        "line": 156
+      }
+    ],
+    "[NTR Owned Garage] Interior access dropdown HUD active.": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+        "line": 288
+      }
+    ],
+    "[NTR Owned Garage] Loading transition ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+        "line": 59
+      }
+    ],
+    "[NTR Owned Garage] Management runtime active.": [
+      {
+        "source": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+        "line": 385
+      }
+    ],
+    "[NTR Owned Garage] Tester reset save deferred: ": [
+      {
+        "source": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+        "line": 67
+      }
+    ],
+    "[NTR Owned Garage] Transition cleanup active.": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageInteriorTransitionUI",
+        "line": 12
+      }
+    ],
+    "[NTR Owned Garage] compensation failed: ": [
+      {
+        "source": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+        "line": 74
+      }
+    ],
+    "[NTR PC Free-Roam UI Phase 4A] Dealership teleport service active.": [
+      {
+        "source": "ServerStorage.Modules.Game.World.FreeRoamTeleportServer",
+        "line": 134
+      }
+    ],
+    "[NTR PC Free-Roam UI Phase 4A] Teleport failed: ": [
+      {
+        "source": "ServerStorage.Modules.Game.World.FreeRoamTeleportServer",
+        "line": 125
+      }
+    ],
+    "[NTR Phase 16E Entry Bridge] ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceEntryMenuClient",
+        "line": 71
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceEntryMenuClient",
+        "line": 82
+      }
+    ],
+    "[NTR Presentation Audio] ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioClient",
+        "line": 42
+      }
+    ],
+    "[NTR Presentation Audio] Runtime failed safely: ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioRuntimeClient",
+        "line": 19
+      }
+    ],
+    "[NTR Presentation Audio] subscriber failed safely: ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioBridge",
+        "line": 42
+      }
+    ],
+    "[NTR Race Readiness] %s acknowledgement failed for %s: %s": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceTransitionClient",
+        "line": 238
+      }
+    ],
+    "[NTR Race Readiness] Race %s player %s reported degraded %s readiness: %s": [
+      {
+        "source": "ServerStorage.Modules.Game.Racing.MatchmakingServer",
+        "line": 1223
+      }
+    ],
+    "[NTR Race Readiness] Synchronized countdown presenter active.": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceCountdownPresentationClient",
+        "line": 66
+      }
+    ],
+    "[NTR Race Readiness] Time trial %s reported degraded %s readiness: %s": [
+      {
+        "source": "ServerStorage.Modules.Game.Racing.TimeTrialServer",
+        "line": 1378
+      }
+    ],
+    "[NTR Racing Loading] ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceTransitionClient",
+        "line": 86
+      }
+    ],
+    "[NTR Racing Phase 10A] Session asset service failed: ": [
+      {
+        "source": "ServerStorage.Modules.Game.Racing.MatchmakingServer",
+        "line": 227
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.TimeTrialServer",
+        "line": 331
+      }
+    ],
+    "[NTR Racing Phase 11A] Race reward service failed: ": [
+      {
+        "source": "ServerStorage.Modules.Game.Racing.MatchmakingServer",
+        "line": 696
+      }
+    ],
+    "[NTR Racing Phase 16D] Incremental arrow visibility active.": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceSessionAssetsClient",
+        "line": 287
+      }
+    ],
+    "[NTR Racing Phase 5 Guide] Route guide client active.": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceRouteGuideClient",
+        "line": 454
+      }
+    ],
+    "[NTR Racing Phase 7B] Browser teleport service active.": [
+      {
+        "source": "ServerStorage.Modules.Game.Racing.RaceTeleportServer",
+        "line": 232
+      }
+    ],
+    "[NTR Racing Phase 7B] Teleport failed: ": [
+      {
+        "source": "ServerStorage.Modules.Game.Racing.RaceTeleportServer",
+        "line": 222
+      }
+    ],
+    "[NTR Racing Phase 8H Client] Transition/camera controller active; reset respawns server-side.": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceTransitionClient",
+        "line": 406
+      }
+    ],
+    "[NTR Racing Phase 8H] Camera restore reason=%s type=%s subject=%s": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceTransitionClient",
+        "line": 195
+      }
+    ],
+    "[NTR Racing Phase 8H] Ignored StopVehicle transition; reset respawns server-side.": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceTransitionClient",
+        "line": 383
+      }
+    ],
+    "[NTR Racing Phase 8H] Session HUD state active=%s reason=%s": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceTransitionClient",
+        "line": 129
+      }
+    ],
+    "[NTR Racing Phase 8] ": [
+      {
+        "source": "ServerStorage.Modules.Game.Racing.MatchmakingServer",
+        "line": 53
+      }
+    ],
+    "[NTR Racing Presentation Lifecycle V1.3] All-start-zone aura, prompt and legacy-surface owner active.": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+        "line": 303
+      }
+    ],
+    "[NTR Racing UI Phase 11] Unified Results presentation active.": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceTimeTrialResultCoachClient",
+        "line": 231
+      }
+    ],
+    "[NTR Racing UI Phase 16A] Shared in-race HUD active.": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient",
+        "line": 333
+      }
+    ],
+    "[NTR Racing UI Phase 16E] Event-driven participant visibility active.": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceParticipantVisibilityClient",
+        "line": 72
+      }
+    ],
+    "[NTR Racing UI Phase 16E] Headless race-entry bridge active.": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceEntryMenuClient",
+        "line": 104
+      }
+    ],
+    "[NTR Racing UI Phase 1F] SharedMenuDisplayName synchronizer active.": [
+      {
+        "source": "ServerStorage.Modules.Game.Racing.RaceDisplayNameServer",
+        "line": 85
+      }
+    ],
+    "[NTR Racing UI Phase 1] Shared-shell Race Browser active.": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceBrowserClient",
+        "line": 598
+      }
+    ],
+    "[NTR Racing UI Phase 2] Time Trial startup presentation active.": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceEntryPresentationClient",
+        "line": 911
+      }
+    ],
+    "[NTR Racing UI Phase 9A] Global leaderboard service active; enabled=": [
+      {
+        "source": "ServerStorage.Modules.Game.Racing.GlobalLeaderboardServer",
+        "line": 107
+      }
+    ],
+    "[NTR Studio Cash Grant] Granted %s $%d; balance=$%d": [
+      {
+        "source": "ServerStorage.Modules.Game.Development.StudioCashGrantServer",
+        "line": 63
+      }
+    ],
+    "[NTR Studio Cash Grant] Invalid KeyCode config: ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Development.StudioCashGrantClient",
+        "line": 34
+      }
+    ],
+    "[NTR Studio Cash Grant] Press ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Development.StudioCashGrantClient",
+        "line": 43
+      }
+    ],
+    "[NTR Studio Cash Grant] Server ready; live servers remain hard-disabled.": [
+      {
+        "source": "ServerStorage.Modules.Game.Development.StudioCashGrantServer",
+        "line": 71
+      }
+    ],
+    "[NTR Tutorial] advance ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+        "line": 450
+      }
+    ],
+    "[NTR Tutorial] begin ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+        "line": 436
+      }
+    ],
+    "[NTR Tutorial] complete ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+        "line": 448
+      }
+    ],
+    "[NTR Tutorial] page closed before completion: ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+        "line": 421
+      }
+    ],
+    "[NTR Tutorial] waiting for target ": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+        "line": 429
+      }
+    ],
+    "[NTR Unified Race Flow] Compact queue banner active.": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceQueueClient",
+        "line": 55
+      }
+    ],
+    "[NTR V2 Shadow] ": [
+      {
+        "source": "ServerStorage.Modules.Game.Development.VehiclePerformanceComparisonServer",
+        "line": 20
+      }
+    ],
+    "[NTR Vehicle Multiplayer VFX Collision Exit V1.1] Collision/coast lifecycle active.": [
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.VehicleCollisionServer",
+        "line": 202
+      }
+    ],
+    "[NTR Vehicle Performance V2 Phase 7] Shadow comparison service active; live V1 rating/physics remain authoritative.": [
+      {
+        "source": "ServerStorage.Modules.Game.Development.VehiclePerformanceComparisonServer",
+        "line": 40
+      }
+    ],
+    "_NTR_ClientOnly": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioClient",
+        "line": 197
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Dealership.DealershipIntroClient",
+        "line": 25
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.GaragePreviewPresentationClient",
+        "line": 65
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.ThrustPreviewClient",
+        "line": 38
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceRouteGuideClient",
+        "line": 75
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceRouteGuideClient",
+        "line": 78
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OnboardingGuideTrailRenderer",
+        "line": 73
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OnboardingGuideTrailRenderer",
+        "line": 74
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient",
+        "line": 203
+      }
+    ]
+  },
+  "identifiers": {
+    "INTRO_PATH_NAME": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Dealership.DealershipIntroClient",
+        "line": 26
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Dealership.DealershipIntroClient",
+        "line": 235
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Dealership.DealershipIntroClient",
+        "line": 249
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Dealership.DealershipIntroClient",
+        "line": 255
+      }
+    ],
+    "NTRCategoryId": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+        "line": 70
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageBrowserUI",
+        "line": 80
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageBrowserUI",
+        "line": 82
+      }
+    ],
+    "NTRSessionLeaseUntil": [
+      {
+        "source": "ServerStorage.Modules.Game.Player.ProfileServer",
+        "line": 276
+      }
+    ],
+    "NTR_FreeRoamCarMenu": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceTransitionClient",
+        "line": 79
+      }
+    ],
+    "NTR_FreeRoamCarMenu_Phase3": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceTransitionClient",
+        "line": 80
+      }
+    ],
+    "NTR_FreeRoamLeftNav": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceTransitionClient",
+        "line": 77
+      }
+    ],
+    "NTR_FreeRoamVehicleExitButton": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceTransitionClient",
+        "line": 78
+      }
+    ],
+    "NTR_RaceCheckpointBadge_Phase5D": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+        "line": 27
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient",
+        "line": 133
+      }
+    ],
+    "NTR_RaceEntry": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+        "line": 33
+      }
+    ],
+    "NTR_RaceEntryProbe": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+        "line": 34
+      }
+    ],
+    "NTR_RaceHud": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+        "line": 25
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient",
+        "line": 133
+      }
+    ],
+    "NTR_RaceHud_Phase3": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+        "line": 26
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient",
+        "line": 133
+      }
+    ],
+    "NTR_RaceQueue_Phase8": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+        "line": 28
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient",
+        "line": 133
+      }
+    ],
+    "NTR_RaceResults_Phase4": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+        "line": 31
+      }
+    ],
+    "NTR_RaceSessionControls_Phase8C": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+        "line": 29
+      }
+    ],
+    "NTR_RaceSessionControls_Phase8D": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+        "line": 30
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient",
+        "line": 133
+      }
+    ],
+    "NTR_TimeTrialPersonalBestBoard": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+        "line": 35
+      }
+    ],
+    "NTR_TimeTrialResultCoach": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+        "line": 32
+      }
+    ],
+    "NeoTokyoRacers": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Development.LightingPreviewClient",
+        "line": 6
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Development.TrailerModeClient",
+        "line": 6
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Development.TrailerShotClient",
+        "line": 6
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Development.TrailerVehicleCameraClient",
+        "line": 6
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.World.LODClient",
+        "line": 25
+      },
+      {
+        "source": "StarterPlayer.StarterPlayerScripts.ClientBase",
+        "line": 4
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.OwnedGarageDisplay",
+        "line": 5
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.OwnedGarageDisplay",
+        "line": 99
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.OwnedGarageInterior",
+        "line": 10
+      }
+    ]
+  }
+}

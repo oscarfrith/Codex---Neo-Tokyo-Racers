@@ -1,0 +1,1262 @@
+[
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Config",
+      "VehiclePerformance_EditAttributes"
+    ],
+    "class": "Folder",
+    "children": 7,
+    "consumers": []
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Config",
+      "VehiclePerformanceV2_EditAttributes"
+    ],
+    "class": "Folder",
+    "children": 8,
+    "consumers": [
+      "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceDefinitions",
+      "ServerStorage.Modules.Game.Development.VehiclePerformanceComparisonServer"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Config",
+      "Vehicle"
+    ],
+    "class": "Folder",
+    "children": 0,
+    "consumers": [
+      "ReplicatedFirst.NTRLoading.InitialLoadingAndStartScreenClient",
+      "ReplicatedFirst.NTRLoading.LoadingTransitionRuntime",
+      "ReplicatedStorage.Modules.Core.PathResolver",
+      "ReplicatedStorage.Modules.Game.Audio.AcousticsClient",
+      "ReplicatedStorage.Modules.Game.Audio.AudioBusClient",
+      "ReplicatedStorage.Modules.Game.Audio.AudioMixClient",
+      "ReplicatedStorage.Modules.Game.Audio.AudioRuntimeClient",
+      "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient",
+      "ReplicatedStorage.Modules.Game.Audio.PresentationAudioBridge",
+      "ReplicatedStorage.Modules.Game.Audio.PresentationAudioClient",
+      "ReplicatedStorage.Modules.Game.Audio.VehicleAudioCatalog",
+      "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+      "ReplicatedStorage.Modules.Game.Dealership.GarageEntranceClient",
+      "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient",
+      "ReplicatedStorage.Modules.Game.Development.TrailerVehicleCameraClient",
+      "ReplicatedStorage.Modules.Game.Garage.GarageModuleInstancePreviewAdapter",
+      "ReplicatedStorage.Modules.Game.Garage.GaragePreviewPresentationClient",
+      "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+      "ReplicatedStorage.Modules.Game.Garage.GarageVehiclePreviewProfile",
+      "ReplicatedStorage.Modules.Game.Garage.OwnedGaragePropertyCatalog",
+      "ReplicatedStorage.Modules.Game.Garage.PreviewVehicleClient",
+      "ReplicatedStorage.Modules.Game.Garage.ThrustPreviewClient",
+      "ReplicatedStorage.Modules.Game.Player.GarageProfileProjection",
+      "ReplicatedStorage.Modules.Game.Player.PlayerProfileSchema",
+      "ReplicatedStorage.Modules.Game.Racing.RaceBrowserClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceConfigReader",
+      "ReplicatedStorage.Modules.Game.Racing.RaceEntryMenuClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceEntryPresentationClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceParticipantVisibilityClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceQueueClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceRouteGuideClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceTimeTrialResultCoachClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceTransitionClient",
+      "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+      "ReplicatedStorage.Modules.Game.UI.FreeRoamMapPlayerMarkers",
+      "ReplicatedStorage.Modules.Game.UI.GarageBrowserUI",
+      "ReplicatedStorage.Modules.Game.UI.GarageComponents",
+      "ReplicatedStorage.Modules.Game.UI.GarageModuleCardViewModel",
+      "ReplicatedStorage.Modules.Game.UI.GarageWorkspaceUI",
+      "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+      "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+      "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+      "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+      "ReplicatedStorage.Modules.Game.UI.ResponsiveUIFoundation",
+      "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceCalculator",
+      "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceDefinitions",
+      "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceDynamics",
+      "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceRuntime",
+      "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceUpgradeRuntime",
+      "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehicleModuleUpgradeRuntime",
+      "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehiclePerformance",
+      "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehiclePerformanceResolver",
+      "ReplicatedStorage.Modules.Game.Vehicles.CharacterSprintClient",
+      "ReplicatedStorage.Modules.Game.Vehicles.DriveSessionClient",
+      "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient",
+      "ReplicatedStorage.Modules.Game.Vehicles.DrivingClient",
+      "ReplicatedStorage.Modules.Game.Vehicles.FreeRoamParkedHoverClient",
+      "ReplicatedStorage.Modules.Game.Vehicles.GameplayInputGate",
+      "ReplicatedStorage.Modules.Game.Vehicles.LegacyVehicleVFXClient",
+      "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient",
+      "ReplicatedStorage.Modules.Game.Vehicles.RuntimeVFXClient",
+      "ReplicatedStorage.Modules.Game.Vehicles.VehicleCosmeticCatalog",
+      "ReplicatedStorage.Modules.Game.Vehicles.VehicleDisplayNames",
+      "ReplicatedStorage.Modules.Game.Vehicles.VehicleDynamics",
+      "ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient",
+      "ServerScriptService.ServerBase",
+      "StarterPlayer.StarterPlayerScripts.ClientBase",
+      "ServerStorage.Modules.Game.Audio.VehicleAudioServer",
+      "ServerStorage.Modules.Game.Development.VehiclePerformanceComparisonServer",
+      "ServerStorage.Modules.Game.Garage.GarageModuleInstanceCustomization",
+      "ServerStorage.Modules.Game.Garage.GarageModuleInventory",
+      "ServerStorage.Modules.Game.Garage.GarageModuleTransaction",
+      "ServerStorage.Modules.Game.Garage.GarageProfile",
+      "ServerStorage.Modules.Game.Garage.GarageRequestGuard",
+      "ServerStorage.Modules.Game.Garage.GarageServer",
+      "ServerStorage.Modules.Game.Garage.OwnedGarageDisplay",
+      "ServerStorage.Modules.Game.Garage.OwnedGarageDisplayAssignment",
+      "ServerStorage.Modules.Game.Garage.OwnedGarageFinish",
+      "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+      "ServerStorage.Modules.Game.Garage.OwnedGarageProfile",
+      "ServerStorage.Modules.Game.Garage.VehicleCosmeticServer",
+      "ServerStorage.Modules.Game.Player.EconomyServer",
+      "ServerStorage.Modules.Game.Player.OnboardingServer",
+      "ServerStorage.Modules.Game.Player.ProfileCompatibility",
+      "ServerStorage.Modules.Game.Player.ProfileServer",
+      "ServerStorage.Modules.Game.Racing.GlobalLeaderboardServer",
+      "ServerStorage.Modules.Game.Racing.MatchmakingServer",
+      "ServerStorage.Modules.Game.Racing.PersonalBestServer",
+      "ServerStorage.Modules.Game.Racing.RaceAssetsServer",
+      "ServerStorage.Modules.Game.Racing.RaceRewardsServer",
+      "ServerStorage.Modules.Game.Racing.RaceTeleportServer",
+      "ServerStorage.Modules.Game.Racing.TimeTrialServer",
+      "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+      "ServerStorage.Modules.Game.Vehicles.DriverSeatServer",
+      "ServerStorage.Modules.Game.Vehicles.VehicleAccessServer",
+      "ServerStorage.Modules.Game.Vehicles.VehicleCollisionServer",
+      "ServerStorage.Modules.Game.Vehicles.VehiclePerformanceServer",
+      "ServerStorage.Modules.Game.World.FreeRoamTeleportServer"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Config",
+      "UI"
+    ],
+    "class": "Folder",
+    "children": 2,
+    "consumers": [
+      "ReplicatedFirst.NTRLoading.InitialLoadingAndStartScreenClient",
+      "ReplicatedFirst.NTRLoading.LoadingScreenView",
+      "ReplicatedFirst.NTRLoading.LoadingTransitionRuntime",
+      "ReplicatedStorage.Modules.Core.PathResolver",
+      "ReplicatedStorage.Modules.Game.Audio.AudioBusClient",
+      "ReplicatedStorage.Modules.Game.Audio.PresentationAudioBridge",
+      "ReplicatedStorage.Modules.Game.Audio.PresentationAudioCatalog",
+      "ReplicatedStorage.Modules.Game.Audio.PresentationAudioClient",
+      "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+      "ReplicatedStorage.Modules.Game.Dealership.DealershipIntroClient",
+      "ReplicatedStorage.Modules.Game.Dealership.GarageEntranceClient",
+      "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient",
+      "ReplicatedStorage.Modules.Game.Development.TrailerModeClient",
+      "ReplicatedStorage.Modules.Game.Garage.GaragePreviewPresentationClient",
+      "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+      "ReplicatedStorage.Modules.Game.Garage.OwnedGaragePropertyCatalog",
+      "ReplicatedStorage.Modules.Game.Garage.PreviewCameraClient",
+      "ReplicatedStorage.Modules.Game.Garage.PreviewVehicleClient",
+      "ReplicatedStorage.Modules.Game.Garage.ThrustPreviewClient",
+      "ReplicatedStorage.Modules.Game.Player.GarageProfileProjection",
+      "ReplicatedStorage.Modules.Game.Player.PlayerProfileSchema",
+      "ReplicatedStorage.Modules.Game.Racing.RaceBrowserClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceCountdownPresentationClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceEntryMenuClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceEntryPresentationClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceParticipantVisibilityClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceQueueClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceRouteGuideClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceSessionAssetsClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceTimeTrialResultCoachClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceTransitionClient",
+      "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+      "ReplicatedStorage.Modules.Game.UI.FreeRoamMapPlayerMarkers",
+      "ReplicatedStorage.Modules.Game.UI.FreeRoamVehicleExitButtonClient",
+      "ReplicatedStorage.Modules.Game.UI.GarageBrowserUI",
+      "ReplicatedStorage.Modules.Game.UI.GarageComponents",
+      "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+      "ReplicatedStorage.Modules.Game.UI.GarageInteriorTransitionUI",
+      "ReplicatedStorage.Modules.Game.UI.GarageModuleCardViewModel",
+      "ReplicatedStorage.Modules.Game.UI.GarageWorkspaceUI",
+      "ReplicatedStorage.Modules.Game.UI.LoadingTransitionUI",
+      "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+      "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+      "ReplicatedStorage.Modules.Game.UI.OnboardingGuideTrailRenderer",
+      "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+      "ReplicatedStorage.Modules.Game.UI.OwnedGarageClient",
+      "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+      "ReplicatedStorage.Modules.Game.UI.RacingMobileScaledDesktopLayout",
+      "ReplicatedStorage.Modules.Game.UI.RacingUIComponents",
+      "ReplicatedStorage.Modules.Game.UI.ResponsiveUIFoundation",
+      "ReplicatedStorage.Modules.Game.UI.SharedTopNotificationUI",
+      "ReplicatedStorage.Modules.Game.UI.UITheme",
+      "ReplicatedStorage.Modules.Game.Vehicles.DriveSessionClient",
+      "ReplicatedStorage.Modules.Game.Vehicles.FreeRoamParkedHoverClient",
+      "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient",
+      "ReplicatedStorage.Modules.Game.Vehicles.VehicleCosmeticCatalog",
+      "ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient",
+      "StarterPlayer.StarterPlayerScripts.ClientBase",
+      "ServerStorage.Modules.Game.Garage.GarageProfile",
+      "ServerStorage.Modules.Game.Garage.GarageServer",
+      "ServerStorage.Modules.Game.Garage.GarageSessionServer",
+      "ServerStorage.Modules.Game.Garage.OwnedGarageDisplay",
+      "ServerStorage.Modules.Game.Garage.OwnedGarageInterior",
+      "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+      "ServerStorage.Modules.Game.Garage.OwnedGarageProfile",
+      "ServerStorage.Modules.Game.Player.ProfileServer",
+      "ServerStorage.Modules.Game.Racing.GlobalLeaderboardServer",
+      "ServerStorage.Modules.Game.Racing.MatchmakingServer",
+      "ServerStorage.Modules.Game.Racing.RaceDisplayNameServer",
+      "ServerStorage.Modules.Game.Racing.TimeTrialServer",
+      "ServerStorage.Modules.Game.World.FreeRoamTeleportServer"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Config",
+      "Persistence_EditAttributes"
+    ],
+    "class": "Folder",
+    "children": 0,
+    "consumers": [
+      "ServerStorage.Modules.Game.Garage.GarageServer",
+      "ServerStorage.Modules.Game.Player.ProfileServer"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Config",
+      "MobileDriveControls_EditAttributes"
+    ],
+    "class": "Folder",
+    "children": 0,
+    "consumers": [
+      "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Config",
+      "CharacterMovement_EditAttributes"
+    ],
+    "class": "Folder",
+    "children": 0,
+    "consumers": [
+      "ReplicatedStorage.Modules.Game.Vehicles.CharacterSprintClient"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "UI",
+      "README_BackExitColors"
+    ],
+    "class": "StringValue",
+    "children": 0,
+    "consumers": []
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "UI",
+      "Theme"
+    ],
+    "class": "Folder",
+    "children": 24,
+    "consumers": [
+      "ReplicatedStorage.Modules.Core.PathResolver",
+      "ReplicatedStorage.Modules.Game.Dealership.DealershipIntroClient",
+      "ReplicatedStorage.Modules.Game.UI.ResponsiveUIFoundation",
+      "ReplicatedStorage.Modules.Game.UI.UITheme"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "UI",
+      "Racing"
+    ],
+    "class": "Folder",
+    "children": 7,
+    "consumers": [
+      "ReplicatedFirst.NTRLoading.InitialLoadingAndStartScreenClient",
+      "ReplicatedStorage.Modules.Game.Audio.PresentationAudioClient",
+      "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+      "ReplicatedStorage.Modules.Game.Garage.OwnedGarageDecorationCatalog",
+      "ReplicatedStorage.Modules.Game.Racing.RaceBrowserClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceConfigReader",
+      "ReplicatedStorage.Modules.Game.Racing.RaceCountdownPresentationClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceEntryMenuClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceEntryPresentationClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceParticipantVisibilityClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceQueueClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceRouteGuideClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceSessionAssetsClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceTimeTrialResultCoachClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceTransitionClient",
+      "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+      "ReplicatedStorage.Modules.Game.UI.GarageBrowserUI",
+      "ReplicatedStorage.Modules.Game.UI.GarageComponents",
+      "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+      "ReplicatedStorage.Modules.Game.UI.GarageWorkspaceUI",
+      "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+      "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+      "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+      "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+      "ReplicatedStorage.Modules.Game.UI.RacingMobileScaledDesktopLayout",
+      "ReplicatedStorage.Modules.Game.UI.RacingUIComponents",
+      "ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient",
+      "ServerScriptService.ServerBase",
+      "StarterPlayer.StarterPlayerScripts.ClientBase",
+      "ServerStorage.Modules.Game.Racing.GlobalLeaderboardServer",
+      "ServerStorage.Modules.Game.Racing.MatchmakingServer",
+      "ServerStorage.Modules.Game.Racing.PersonalBestServer",
+      "ServerStorage.Modules.Game.Racing.RaceAssetsServer",
+      "ServerStorage.Modules.Game.Racing.RaceDisplayNameServer",
+      "ServerStorage.Modules.Game.Racing.RaceRewardsServer",
+      "ServerStorage.Modules.Game.Racing.RaceTeleportServer",
+      "ServerStorage.Modules.Game.Racing.TimeTrialServer",
+      "ServerStorage.Modules.Game.Vehicles.DriverSeatServer"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "UI",
+      "RaceBrowser"
+    ],
+    "class": "Folder",
+    "children": 4,
+    "consumers": [
+      "ReplicatedStorage.Modules.Game.Racing.RaceBrowserClient",
+      "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+      "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+      "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+      "StarterPlayer.StarterPlayerScripts.ClientBase",
+      "ServerStorage.Modules.Game.Player.EconomyServer",
+      "ServerStorage.Modules.Game.Player.OnboardingServer",
+      "ServerStorage.Modules.Game.Racing.MatchmakingServer",
+      "ServerStorage.Modules.Game.Racing.RaceTeleportServer",
+      "ServerStorage.Modules.Game.Racing.TimeTrialServer",
+      "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+      "ServerStorage.Modules.Game.World.FreeRoamTeleportServer"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "UI",
+      "PaintPresets"
+    ],
+    "class": "Folder",
+    "children": 8,
+    "consumers": [
+      "ReplicatedStorage.Modules.Core.PathResolver",
+      "ServerStorage.Modules.Game.Garage.GarageServer"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "UI",
+      "MobileFreeRoamHud"
+    ],
+    "class": "Folder",
+    "children": 1,
+    "consumers": [
+      "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+      "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient",
+      "StarterPlayer.StarterPlayerScripts.ClientBase"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "UI",
+      "LoadingSystem"
+    ],
+    "class": "Folder",
+    "children": 1,
+    "consumers": [
+      "ReplicatedFirst.NTRLoading.InitialLoadingAndStartScreenClient",
+      "ReplicatedFirst.NTRLoading.LoadingTransitionRuntime",
+      "ReplicatedStorage.Modules.Game.UI.OnboardingClient"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "UI",
+      "GarageReplacement"
+    ],
+    "class": "Folder",
+    "children": 28,
+    "consumers": [
+      "ReplicatedStorage.Modules.Game.Garage.GaragePreviewPresentationClient",
+      "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+      "ReplicatedStorage.Modules.Game.Garage.PreviewCameraClient",
+      "ReplicatedStorage.Modules.Game.Garage.PreviewVehicleClient",
+      "ReplicatedStorage.Modules.Game.Garage.ThrustPreviewClient",
+      "ReplicatedStorage.Modules.Game.UI.GarageBrowserUI",
+      "ReplicatedStorage.Modules.Game.UI.GarageComponents",
+      "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+      "ReplicatedStorage.Modules.Game.UI.GarageWorkspaceUI",
+      "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+      "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+      "ReplicatedStorage.Modules.Game.Vehicles.VehicleCosmeticCatalog"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "UI",
+      "GarageExperience"
+    ],
+    "class": "Folder",
+    "children": 31,
+    "consumers": [
+      "ReplicatedStorage.Modules.Game.Dealership.GarageEntranceClient"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "UI",
+      "FreeRoamNav"
+    ],
+    "class": "Folder",
+    "children": 67,
+    "consumers": []
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "UI",
+      "FreeRoamMapPlayerMarkers"
+    ],
+    "class": "Folder",
+    "children": 0,
+    "consumers": [
+      "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+      "ReplicatedStorage.Modules.Game.UI.FreeRoamMapPlayerMarkers",
+      "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "UI",
+      "DriveInCustomisation"
+    ],
+    "class": "Folder",
+    "children": 10,
+    "consumers": [
+      "ReplicatedStorage.Modules.Game.Dealership.GarageEntranceClient",
+      "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+      "ServerStorage.Modules.Game.Garage.GarageSessionServer",
+      "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "UI",
+      "DesktopFreeRoamHud"
+    ],
+    "class": "Folder",
+    "children": 8,
+    "consumers": [
+      "ReplicatedFirst.NTRLoading.LoadingTransitionRuntime",
+      "ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient",
+      "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+      "ReplicatedStorage.Modules.Game.UI.GarageBrowserUI",
+      "ReplicatedStorage.Modules.Game.UI.GarageWorkspaceUI",
+      "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+      "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+      "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient",
+      "StarterPlayer.StarterPlayerScripts.ClientBase"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "UI",
+      "CockpitMenuCards"
+    ],
+    "class": "Folder",
+    "children": 56,
+    "consumers": []
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "Runtime",
+      "VehicleDynamics_EditAttributes"
+    ],
+    "class": "Folder",
+    "children": 7,
+    "consumers": [
+      "ReplicatedStorage.Modules.Game.Vehicles.DrivingClient",
+      "ReplicatedStorage.Modules.Game.Vehicles.VehicleDynamics"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "Runtime",
+      "StudioCashGrant"
+    ],
+    "class": "Folder",
+    "children": 0,
+    "consumers": [
+      "ReplicatedStorage.Modules.Game.Development.StudioCashGrantClient",
+      "ServerScriptService.ServerBase",
+      "StarterPlayer.StarterPlayerScripts.ClientBase",
+      "ServerStorage.Modules.Game.Development.StudioCashGrantServer",
+      "ServerStorage.Modules.Game.Garage.GarageServer",
+      "ServerStorage.Modules.Game.Player.EconomyServer"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "Runtime",
+      "OwnedGarage_EditAttributes"
+    ],
+    "class": "Folder",
+    "children": 0,
+    "consumers": [
+      "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+      "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+      "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+      "ReplicatedStorage.Modules.Game.World.OwnedGarageEnvironmentLightingClient",
+      "ServerStorage.Modules.Game.Garage.OwnedGarageDisplay",
+      "ServerStorage.Modules.Game.Garage.OwnedGarageInterior",
+      "ServerStorage.Modules.Game.Garage.OwnedGarageManagement"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "Runtime",
+      "Onboarding_EditAttributes"
+    ],
+    "class": "Folder",
+    "children": 0,
+    "consumers": [
+      "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+      "ServerStorage.Modules.Game.Player.OnboardingServer",
+      "ServerStorage.Modules.Game.Player.ProfileServer"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "Runtime",
+      "FreeRoamVehicleSpawn"
+    ],
+    "class": "Folder",
+    "children": 8,
+    "consumers": [
+      "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+      "ReplicatedStorage.Modules.Game.Racing.RaceEntryMenuClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceQueueClient",
+      "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+      "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+      "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+      "ReplicatedStorage.Modules.Game.Vehicles.DriveSessionClient",
+      "ReplicatedStorage.Modules.Game.Vehicles.FreeRoamParkedHoverClient",
+      "ServerStorage.Modules.Game.Garage.GarageServer"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "Runtime",
+      "FreeRoamHudTeleport"
+    ],
+    "class": "Folder",
+    "children": 6,
+    "consumers": [
+      "ReplicatedFirst.NTRLoading.InitialLoadingAndStartScreenClient",
+      "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+      "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+      "ServerStorage.Modules.Game.Player.EconomyServer",
+      "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+      "ServerStorage.Modules.Game.World.FreeRoamTeleportServer"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "Runtime",
+      "DrivingCamera_EditAttributes"
+    ],
+    "class": "Folder",
+    "children": 0,
+    "consumers": []
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "Runtime",
+      "DrivingCamera_Default_EditAttributes"
+    ],
+    "class": "Folder",
+    "children": 0,
+    "consumers": [
+      "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "Runtime",
+      "DriveToEarnCash_EditAttributes"
+    ],
+    "class": "Folder",
+    "children": 1,
+    "consumers": [
+      "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient",
+      "ServerStorage.Modules.Game.Player.EconomyServer",
+      "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "Runtime",
+      "DriveInCustomisation"
+    ],
+    "class": "Folder",
+    "children": 9,
+    "consumers": [
+      "ReplicatedStorage.Modules.Game.Dealership.GarageEntranceClient",
+      "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+      "ServerStorage.Modules.Game.Garage.GarageSessionServer",
+      "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "Runtime",
+      "DRIVING_MECHANICS_EditAttributes"
+    ],
+    "class": "Folder",
+    "children": 0,
+    "consumers": [
+      "ReplicatedStorage.Modules.Game.Vehicles.DrivingClient"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "Runtime",
+      "WorldLOD"
+    ],
+    "class": "Configuration",
+    "children": 0,
+    "consumers": [
+      "ReplicatedStorage.Modules.Game.World.LODClient"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "Racing",
+      "UI"
+    ],
+    "class": "Folder",
+    "children": 0,
+    "consumers": [
+      "ReplicatedFirst.NTRLoading.InitialLoadingAndStartScreenClient",
+      "ReplicatedFirst.NTRLoading.LoadingScreenView",
+      "ReplicatedFirst.NTRLoading.LoadingTransitionRuntime",
+      "ReplicatedStorage.Modules.Core.PathResolver",
+      "ReplicatedStorage.Modules.Game.Audio.AudioBusClient",
+      "ReplicatedStorage.Modules.Game.Audio.PresentationAudioBridge",
+      "ReplicatedStorage.Modules.Game.Audio.PresentationAudioCatalog",
+      "ReplicatedStorage.Modules.Game.Audio.PresentationAudioClient",
+      "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+      "ReplicatedStorage.Modules.Game.Dealership.DealershipIntroClient",
+      "ReplicatedStorage.Modules.Game.Dealership.GarageEntranceClient",
+      "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient",
+      "ReplicatedStorage.Modules.Game.Development.TrailerModeClient",
+      "ReplicatedStorage.Modules.Game.Garage.GaragePreviewPresentationClient",
+      "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+      "ReplicatedStorage.Modules.Game.Garage.OwnedGaragePropertyCatalog",
+      "ReplicatedStorage.Modules.Game.Garage.PreviewCameraClient",
+      "ReplicatedStorage.Modules.Game.Garage.PreviewVehicleClient",
+      "ReplicatedStorage.Modules.Game.Garage.ThrustPreviewClient",
+      "ReplicatedStorage.Modules.Game.Player.GarageProfileProjection",
+      "ReplicatedStorage.Modules.Game.Player.PlayerProfileSchema",
+      "ReplicatedStorage.Modules.Game.Racing.RaceBrowserClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceCountdownPresentationClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceEntryMenuClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceEntryPresentationClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceParticipantVisibilityClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceQueueClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceRouteGuideClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceSessionAssetsClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceTimeTrialResultCoachClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceTransitionClient",
+      "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+      "ReplicatedStorage.Modules.Game.UI.FreeRoamMapPlayerMarkers",
+      "ReplicatedStorage.Modules.Game.UI.FreeRoamVehicleExitButtonClient",
+      "ReplicatedStorage.Modules.Game.UI.GarageBrowserUI",
+      "ReplicatedStorage.Modules.Game.UI.GarageComponents",
+      "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+      "ReplicatedStorage.Modules.Game.UI.GarageInteriorTransitionUI",
+      "ReplicatedStorage.Modules.Game.UI.GarageModuleCardViewModel",
+      "ReplicatedStorage.Modules.Game.UI.GarageWorkspaceUI",
+      "ReplicatedStorage.Modules.Game.UI.LoadingTransitionUI",
+      "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+      "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+      "ReplicatedStorage.Modules.Game.UI.OnboardingGuideTrailRenderer",
+      "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+      "ReplicatedStorage.Modules.Game.UI.OwnedGarageClient",
+      "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+      "ReplicatedStorage.Modules.Game.UI.RacingMobileScaledDesktopLayout",
+      "ReplicatedStorage.Modules.Game.UI.RacingUIComponents",
+      "ReplicatedStorage.Modules.Game.UI.ResponsiveUIFoundation",
+      "ReplicatedStorage.Modules.Game.UI.SharedTopNotificationUI",
+      "ReplicatedStorage.Modules.Game.UI.UITheme",
+      "ReplicatedStorage.Modules.Game.Vehicles.DriveSessionClient",
+      "ReplicatedStorage.Modules.Game.Vehicles.FreeRoamParkedHoverClient",
+      "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient",
+      "ReplicatedStorage.Modules.Game.Vehicles.VehicleCosmeticCatalog",
+      "ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient",
+      "StarterPlayer.StarterPlayerScripts.ClientBase",
+      "ServerStorage.Modules.Game.Garage.GarageProfile",
+      "ServerStorage.Modules.Game.Garage.GarageServer",
+      "ServerStorage.Modules.Game.Garage.GarageSessionServer",
+      "ServerStorage.Modules.Game.Garage.OwnedGarageDisplay",
+      "ServerStorage.Modules.Game.Garage.OwnedGarageInterior",
+      "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+      "ServerStorage.Modules.Game.Garage.OwnedGarageProfile",
+      "ServerStorage.Modules.Game.Player.ProfileServer",
+      "ServerStorage.Modules.Game.Racing.GlobalLeaderboardServer",
+      "ServerStorage.Modules.Game.Racing.MatchmakingServer",
+      "ServerStorage.Modules.Game.Racing.RaceDisplayNameServer",
+      "ServerStorage.Modules.Game.Racing.TimeTrialServer",
+      "ServerStorage.Modules.Game.World.FreeRoamTeleportServer"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "Racing",
+      "TimeTrialCatalog"
+    ],
+    "class": "Folder",
+    "children": 2,
+    "consumers": [
+      "ReplicatedStorage.Modules.Game.Racing.RaceBrowserClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceConfigReader",
+      "ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient",
+      "ServerStorage.Modules.Game.Racing.RaceDisplayNameServer",
+      "ServerStorage.Modules.Game.Racing.RaceRewardsServer",
+      "ServerStorage.Modules.Game.Racing.TimeTrialServer"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "Racing",
+      "TierRules"
+    ],
+    "class": "Folder",
+    "children": 0,
+    "consumers": []
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "Racing",
+      "RouteGuide"
+    ],
+    "class": "Folder",
+    "children": 0,
+    "consumers": [
+      "ReplicatedStorage.Modules.Game.Racing.RaceRouteGuideClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceSessionAssetsClient",
+      "StarterPlayer.StarterPlayerScripts.ClientBase"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "Racing",
+      "Rewards"
+    ],
+    "class": "Folder",
+    "children": 2,
+    "consumers": [
+      "ReplicatedStorage.Modules.Game.Racing.RaceEntryPresentationClient",
+      "ServerScriptService.ServerBase",
+      "ServerStorage.Modules.Game.Racing.RaceRewardsServer"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "Racing",
+      "RaceCatalog"
+    ],
+    "class": "Folder",
+    "children": 2,
+    "consumers": [
+      "ReplicatedStorage.Modules.Game.Racing.RaceBrowserClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceConfigReader",
+      "ReplicatedStorage.Modules.Game.Racing.RaceEntryPresentationClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient",
+      "ServerStorage.Modules.Game.Racing.RaceDisplayNameServer",
+      "ServerStorage.Modules.Game.Racing.RaceRewardsServer"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "Racing",
+      "PresentationPerformance"
+    ],
+    "class": "Folder",
+    "children": 4,
+    "consumers": [
+      "ReplicatedStorage.Modules.Game.Racing.RaceSessionAssetsClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient",
+      "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "Racing",
+      "PersonalBests"
+    ],
+    "class": "Folder",
+    "children": 3,
+    "consumers": [
+      "ServerStorage.Modules.Game.Racing.PersonalBestServer"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "Racing",
+      "Matchmaking"
+    ],
+    "class": "Folder",
+    "children": 6,
+    "consumers": [
+      "ServerScriptService.ServerBase",
+      "ServerStorage.Modules.Game.Racing.MatchmakingServer"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "Racing",
+      "Leaderboards"
+    ],
+    "class": "Folder",
+    "children": 5,
+    "consumers": [
+      "ServerStorage.Modules.Game.Racing.GlobalLeaderboardServer"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "Racing",
+      "HudMapCatalog"
+    ],
+    "class": "Folder",
+    "children": 2,
+    "consumers": [
+      "ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "Racing",
+      "FlowUI"
+    ],
+    "class": "Folder",
+    "children": 10,
+    "consumers": [
+      "ReplicatedStorage.Modules.Game.Racing.RaceCountdownPresentationClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceQueueClient",
+      "ServerStorage.Modules.Game.Racing.TimeTrialServer"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "Racing",
+      "BrowserTeleport"
+    ],
+    "class": "Folder",
+    "children": 6,
+    "consumers": [
+      "ReplicatedStorage.Modules.Game.Racing.RaceBrowserClient",
+      "ServerStorage.Modules.Game.Player.EconomyServer",
+      "ServerStorage.Modules.Game.Racing.MatchmakingServer",
+      "ServerStorage.Modules.Game.Racing.RaceTeleportServer",
+      "ServerStorage.Modules.Game.Racing.TimeTrialServer",
+      "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+      "ServerStorage.Modules.Game.World.FreeRoamTeleportServer"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "Editable",
+      "STABILISER_VFX_DIRECTION_DoNotRename"
+    ],
+    "class": "Folder",
+    "children": 3,
+    "consumers": [
+      "ReplicatedStorage.Modules.Game.Vehicles.LegacyVehicleVFXClient"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "Editable",
+      "DRIVER_SEAT_POSITION_DoNotRename"
+    ],
+    "class": "Folder",
+    "children": 4,
+    "consumers": [
+      "ServerStorage.Modules.Game.Vehicles.DriverSeatServer"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "Editable",
+      "03_READ_ME"
+    ],
+    "class": "Folder",
+    "children": 4,
+    "consumers": []
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "Editable",
+      "02_IMPORTANT_LINKS_DoNotRename"
+    ],
+    "class": "Folder",
+    "children": 6,
+    "consumers": []
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "Editable",
+      "01_GAME_BALANCE_Editable"
+    ],
+    "class": "Folder",
+    "children": 5,
+    "consumers": [
+      "ReplicatedStorage.Modules.Game.Vehicles.DriveTuning",
+      "ReplicatedStorage.Modules.Game.Vehicles.FreeRoamParkedHoverClient",
+      "ServerStorage.Modules.Game.Garage.GarageServer",
+      "ServerStorage.Modules.Game.Vehicles.VehicleCollisionServer"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "Development",
+      "ClientTools"
+    ],
+    "class": "Configuration",
+    "children": 0,
+    "consumers": [
+      "ReplicatedStorage.Modules.Game.Development.LightingPreviewClient",
+      "ReplicatedStorage.Modules.Game.Development.TrailerModeClient",
+      "ReplicatedStorage.Modules.Game.Development.TrailerShotClient",
+      "ReplicatedStorage.Modules.Game.Development.TrailerVehicleCameraClient",
+      "StarterPlayer.StarterPlayerScripts.ClientBase"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "Audio",
+      "VehicleProfiles"
+    ],
+    "class": "Folder",
+    "children": 1,
+    "consumers": [
+      "ReplicatedStorage.Modules.Game.Audio.PresentationAudioClient",
+      "ReplicatedStorage.Modules.Game.Audio.VehicleAudioCatalog",
+      "ServerStorage.Modules.Game.Audio.VehicleAudioServer"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "Audio",
+      "Quality"
+    ],
+    "class": "Folder",
+    "children": 1,
+    "consumers": [
+      "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+      "ReplicatedStorage.Modules.Game.Vehicles.DrivingClient"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "Audio",
+      "Presentation"
+    ],
+    "class": "Folder",
+    "children": 5,
+    "consumers": [
+      "ReplicatedFirst.NTRLoading.LoadingTransitionRuntime",
+      "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient",
+      "ReplicatedStorage.Modules.Game.Audio.PresentationAudioBridge",
+      "ReplicatedStorage.Modules.Game.Audio.PresentationAudioCatalog",
+      "ReplicatedStorage.Modules.Game.Audio.PresentationAudioClient",
+      "ReplicatedStorage.Modules.Game.Audio.PresentationAudioRuntimeClient",
+      "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+      "ReplicatedStorage.Modules.Game.Dealership.GarageEntranceClient",
+      "ReplicatedStorage.Modules.Game.Garage.GaragePreviewPresentationClient",
+      "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+      "ReplicatedStorage.Modules.Game.Garage.PreviewVehicleClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceBrowserClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceCountdownPresentationClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceEntryMenuClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceEntryPresentationClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceQueueClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceRouteGuideClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceSessionAssetsClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceTimeTrialResultCoachClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceTransitionClient",
+      "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+      "ReplicatedStorage.Modules.Game.UI.GarageBrowserUI",
+      "ReplicatedStorage.Modules.Game.UI.GarageComponents",
+      "ReplicatedStorage.Modules.Game.UI.GarageInteriorTransitionUI",
+      "ReplicatedStorage.Modules.Game.UI.GarageWorkspaceUI",
+      "ReplicatedStorage.Modules.Game.UI.LoadingTransitionUI",
+      "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+      "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+      "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+      "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+      "ReplicatedStorage.Modules.Game.UI.ResponsiveUIFoundation",
+      "ReplicatedStorage.Modules.Game.Vehicles.VehicleCosmeticCatalog",
+      "StarterPlayer.StarterPlayerScripts.ClientBase",
+      "ServerStorage.Modules.Game.Garage.GarageServer",
+      "ServerStorage.Modules.Game.Garage.OwnedGarageDisplay",
+      "ServerStorage.Modules.Game.Garage.OwnedGarageManagement"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "Audio",
+      "Global"
+    ],
+    "class": "Folder",
+    "children": 1,
+    "consumers": [
+      "ReplicatedStorage.Modules.Game.Audio.AcousticsClient",
+      "ReplicatedStorage.Modules.Game.Audio.ContextAudioCatalog",
+      "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient",
+      "ReplicatedStorage.Modules.Game.Audio.PresentationAudioCatalog",
+      "ReplicatedStorage.Modules.Game.Audio.PresentationAudioClient",
+      "ReplicatedStorage.Modules.Game.Audio.VehicleAudioCatalog",
+      "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceEntryPresentationClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceTimeTrialResultCoachClient",
+      "ReplicatedStorage.Modules.Game.UI.ResponsiveUIFoundation",
+      "ReplicatedStorage.Modules.Game.Vehicles.LegacyVehicleVFXClient",
+      "ReplicatedStorage.Shared.LightingPresets.LightingPresets",
+      "ServerScriptService.ServerBase",
+      "ServerStorage.Modules.Game.Audio.VehicleAudioServer",
+      "ServerStorage.Modules.Game.Racing.GlobalLeaderboardServer",
+      "ServerStorage.Modules.Game.Racing.TimeTrialServer"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "Audio",
+      "Context"
+    ],
+    "class": "Folder",
+    "children": 2,
+    "consumers": [
+      "ReplicatedStorage.Modules.Game.Audio.AcousticsClient",
+      "ReplicatedStorage.Modules.Game.Audio.ContextAudioCatalog",
+      "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient",
+      "ReplicatedStorage.Modules.Game.Audio.ContextAudioRuntimeClient",
+      "ReplicatedStorage.Modules.Game.Development.StudioCashGrantClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceBrowserClient",
+      "ReplicatedStorage.Modules.Game.Racing.RaceEntryPresentationClient",
+      "ReplicatedStorage.Modules.Game.UI.GarageBrowserUI",
+      "ReplicatedStorage.Modules.Game.UI.GarageComponents",
+      "ReplicatedStorage.Modules.Game.UI.GarageWorkspaceUI",
+      "ReplicatedStorage.Modules.Game.UI.ResponsiveUIFoundation",
+      "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient",
+      "ReplicatedStorage.Modules.Game.Vehicles.DrivingClient",
+      "StarterPlayer.StarterPlayerScripts.ClientBase",
+      "ServerStorage.Modules.Game.Garage.GarageServer",
+      "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer"
+    ]
+  },
+  {
+    "path": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Config",
+      "Audio",
+      "Acoustics"
+    ],
+    "class": "Folder",
+    "children": 0,
+    "consumers": [
+      "ReplicatedStorage.Modules.Game.Audio.AcousticsClient",
+      "ReplicatedStorage.Modules.Game.Audio.AcousticsRuntimeClient",
+      "StarterPlayer.StarterPlayerScripts.ClientBase"
+    ]
+  }
+]

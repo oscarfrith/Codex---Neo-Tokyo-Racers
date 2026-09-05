@@ -22,7 +22,7 @@ Working rules:
 * If a script depends on fragile text replacement, say so before writing it.
 * If reverting to an older Roblox version would be cleaner, tell the user before creating another patch.
 * If two or more source-anchor repairs fail in the same live script, stop and inspect the live source/mirror before writing another patch; prefer an isolated canonical replacement when possible.
-* Treat `StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.NeoTokyoRacersClient_Bootstrap_Shadow_Disabled` as register-limited. Do not add new top-level local helpers or large feature blocks to it; use isolated controller scripts/modules plus a tiny table-backed event bridge if a bootstrap hook is unavoidable.
+* GarageClient and old client/server adapter trees were removed in complete cleanup Phase 2. Do not resurrect them. ClientBase starts GarageUI directly; DriveSessionClient owns vehicle-session callbacks. Keep shared rendering/preview/geometry owners and explicit feature APIs; ClientBase owns startup only.
 * Apply the project-wide implementation triage rule from `docs/12_continuous_improvement_workflow.md` and the proportional Fast/Standard/High-Risk lanes from `docs/13_efficient_feature_delivery_protocol.md`. Do not force high-risk ceremony onto isolated copy, icon, config, or tuning changes.
 * New systems and substantial expansions must also pass the proportional readiness rules in `docs/14_new_system_readiness_standard.md`. The assistant selects the lane, derives the contract and applies it for the duration of that task; `N/A` is allowed for irrelevant concerns, but remotes, authoritative gameplay, saved data, economy, rewards, ownership and lifecycle boundaries cannot bypass their applicable safeguards because a diff is small.
 * Chat prefixes are routing contracts: `follow:` implements directly with proportional safeguards; `suggest:` compares approaches and recommends without implementing; `audit:` is read-only; `continue:` executes the next uncompleted step of the already-approved plan; `handoff:` locks the confirmed baseline and updates the handoff. A prefix never authorises unrelated scope or bypasses a genuine safety blocker.
@@ -37,8 +37,14 @@ Working rules:
 
 Known current baseline:
 
-* `V74` camera assist was confirmed working well by the user.
-* `V75` is the latest generated script and adds boost delay plus hover wobble; verify in Studio before treating it as stable.
+* Laptop/new-chat continuation: read docs/architecture/laptop-handoff-2026-09-05.md first after the required baseline docs. Complete cleanup Phase 4 is next; do not rerun prior installations. Verify the transferred place against the confirmed Phase 3 mirror before mutation.
+
+* The successor cleanup programme is docs/architecture/complete-cleanup-plan.md. Complete cleanup Phases 1, 2 and 3 are installed and user-confirmed. Phase 4 remains unimplemented. Current mirror: 2026-09-05 16:06:57, 160 sources, 42,285 nodes and 266,840 properties, with exact expected source/hierarchy/property parity. The two lighting-tag renames on 62 enumerated WIP objects are approved and installed. Protected staging/archive disposition remains pending. See docs/architecture/cleanup-phase3-generic-naming.md. Workspace remains limited to the original World subtree plus the exact approved two-tag WIP exception. Preserve physical assets, external saved IDs and opt-in tools. No in-game backups/fallback implementations.
+
+* Read `docs/00_START_HERE.md` for the per-system current baseline; V74/V75 are historical.
+* All five original architecture phases are user-confirmed. Current server implementations are in ServerStorage.Modules; client/shared implementations are in ReplicatedStorage.Modules. Old Services/client adapters are removed. Runtime endpoints use feature folders under ServerStorage.Runtime and PlayerScripts.Runtime. Roll back dependent cleanup before older exact-baseline recovery.
+* Use `docs/architecture/naming-and-owners.md` for proposed naming, and `docs/architecture/mcp-workflow.md` for current live delivery. Names do not determine enabled state.
+* Distinguish generated, installed, runtime verified and user confirmed. Never promote a source checksum match to gameplay confirmation.
 
 Preferred paths:
 

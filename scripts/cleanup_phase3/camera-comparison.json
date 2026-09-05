@@ -1,0 +1,26 @@
+{
+  "status": "same defect reproduced on both baselines; no camera fix in naming scope",
+  "baseline_restore_mirror": "2026-09-05 15:52:58",
+  "phase3_final_mirror": "2026-09-05 15:59:57",
+  "sequence": [
+    "visible client Play button",
+    "existing dealership BindableEvent",
+    "sandbox BuyCockpitInstance bruiser_01",
+    "SpawnVehicle",
+    "ExitVehicle",
+    "ReEnterVehicle"
+  ],
+  "phase2": {
+    "purchase_spawn_exit_reenter": true,
+    "CameraMinZoomDistance": "NaN",
+    "CameraMaxZoomDistance": "NaN",
+    "BaseCamera594_clamp_error": true
+  },
+  "phase3": {
+    "purchase_spawn_exit_reenter": true,
+    "CameraMinZoomDistance": "NaN",
+    "CameraMaxZoomDistance": "NaN",
+    "BaseCamera594_clamp_error": true
+  },
+  "limits": "Rapid command-driven smoke, not full human gameplay. Root cause not established. No production saves."
+}

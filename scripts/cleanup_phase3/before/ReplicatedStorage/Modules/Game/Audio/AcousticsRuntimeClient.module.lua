@@ -1,0 +1,24 @@
+-- Canonical feature implementation; startup is owned by the composition root.
+local Client={}
+local state
+function Client.start()
+if state then assert(state=="ready","Client startup already attempted: "..tostring(state)); return end
+state="starting"
+local ok,message=xpcall(function()
+-- NTR_AUDIO_SYSTEM_PHASE3_ACOUSTICS_RUNTIME_V1
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local ok, result = pcall(function()
+	local kit = ReplicatedStorage:WaitForChild("NeoTokyoRacers")
+	local controller = require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Audio"):WaitForChild("AcousticsClient"))
+	controller.Start()
+	return controller
+end)
+
+if not ok then warn("[NTR Audio Phase 3] Acoustics runtime failed safely: " .. tostring(result)) end
+
+end,debug.traceback)
+state=ok and "ready" or "failed"
+assert(ok,message)
+end
+return Client

@@ -1,0 +1,973 @@
+{
+  "phase": 1,
+  "captured": "2026-09-05",
+  "place_id": 121304917315753,
+  "evidence": "Pre-phase mirror; all 193 live sources/byte counts/enabled states checked; not a runtime acceptance claim",
+  "scripts": {
+    "ReplicatedFirst.NTRLoading.InitialLoadingAndStartScreenClient": {
+      "sha256": "d038374fe42a00f27e2e021bea877b0b204b5e905f08a4dd8cb4588ed3345baf",
+      "disabled": false,
+      "class_name": "LocalScript"
+    },
+    "ReplicatedFirst.NTRLoading.LoadingArtworkCatalog": {
+      "sha256": "f0b8a33f6b56f5c9e1c13fb47c28161ce22f459487d73442a13b11da8c1fe7a8",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedFirst.NTRLoading.LoadingScreenView": {
+      "sha256": "328f06a93449c1f8eb2c3173d2986e94c01d2fbb58a4d182b927867d30f5af84",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedFirst.NTRLoading.LoadingTransitionRuntime": {
+      "sha256": "2056f84b906f0e1a46786fa55ec32a962063cd8893cdc3de1b2d02be7711d56b",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Compatibility.LiveSystemRegistry": {
+      "sha256": "1ea43e96b516e9be008b7266dc94ee01cd27ba088d3aea827a68d997191f59c3",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Compatibility.PathResolver": {
+      "sha256": "cd8ea7c8c67077d03bc6ec60d05e5374de5b2597795bc453cd9061c9728a48d6",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Config.ConfigRegistry": {
+      "sha256": "b677f317b0f76105b6b9d8f697fce050ae0d81e03ca96ac7577540307aefde4e",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Audio.AcousticsController": {
+      "sha256": "16a30a0a895a29b702879bce7c31c303bf2414a23198360445663a8a5efeb7b5",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Audio.AudioBusController": {
+      "sha256": "5528c3d248b8982b1c204ac1dc099089e0217af3b436282080ac46cbf2adcfda",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Audio.AudioMixController": {
+      "sha256": "ee2c1a4aada3dd3525a8d55574286bf03e422e4f3b33b3b346e87f0a7739ded1",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Audio.ContextAudioCatalog": {
+      "sha256": "c03816f92929a1e641ef699972cd8be3867099f664fcde7f3d4d7cdf7f78860f",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Audio.ContextAudioController": {
+      "sha256": "470fd8a7172dd29bbfaa30fbe3e90565253d0c8d81830ed52b1d605c4ef8ad91",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Audio.PresentationAudioBridge": {
+      "sha256": "98dd3e1b7f0964d503d7e452803a7894f6cd2fcc1782ad1074c59e0bfe91726c",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Audio.PresentationAudioCatalog": {
+      "sha256": "540d7228048439e83943417fccb8717d0195bfa0ab2719f37ba1d93aec35d4a8",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Audio.PresentationAudioController": {
+      "sha256": "1c22ab16f4fe86de494e07d0036e85c003258fde7a50f770e81efb327ef15ca8",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Audio.VehicleAudioCatalog": {
+      "sha256": "af21085c21c1888c018e9e00248695c8e5ccbcedcab13abe8bf7d7fa07252fbc",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Audio.VehicleAudioController": {
+      "sha256": "05444efe9c91e821cf25509d7953d2c5a92b9ecb967bd3dfd422b0154f5cc79e",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Controllers.DrivingCameraController": {
+      "sha256": "bb46c6647fc32633e2d5a2c72d1b27d8f952a070787fbeb3794e0ca0b3599ab1",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Controllers.DrivingControllerV47": {
+      "sha256": "0459716329f4d4af108097967256becfa15dbd24e993a5613dc26460dc0b55b1",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Controllers.DrivingFallbackController": {
+      "sha256": "0de59861da1ae7dfd3b5abee30b3f4948d35e4f64cf3d02f194c625d34192354",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Controllers.MobileDriveInputState": {
+      "sha256": "cc0019f908b49815bdf4402438a20793627382b0cd9f37c2d017819f5b548295",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Controllers.ReentryThrottle": {
+      "sha256": "5bff42c44f84964d5d57407df9f807aba24b0669093eea27be6eb293b9388668",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Controllers.VehicleDynamicsModel": {
+      "sha256": "7b93a4e5581039e3329727520449ec193cac75e9c9c23e97f137d3db726ec124",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Input.GameplayInputGate": {
+      "sha256": "735bfa631287893c3b7b4cfb460dec824abada60809bd1798a6f4521085e3eea",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.UI.UIFactory": {
+      "sha256": "9de217e7ce630006d2a201e1739a7fac40f683fad5ba9d5f0a169d29d3aa7769",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.UI.UIPool": {
+      "sha256": "2120ab4073cb37c3a98ef9b45f94ccd290aaf8aa3a2c3b4a07185f9c7ff54d48",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.VFX.VehicleVFXController": {
+      "sha256": "2ba60499196e4a32192d3e4712773e9d0e6220738fd9fc4d5ff089055ddc50b3",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Visuals.CachedThrustVisualRuntime": {
+      "sha256": "c7daf367d45a30d87a53b137151f6412c7f637604a975e5f273d736e142f92b5",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.Audio.VehicleAudioStateContract": {
+      "sha256": "42ec99b7b175754646e7ac1009174b373d8b10df77c507a08aefe965924cb7cb",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.Performance.VehicleModuleUpgradeRuntime": {
+      "sha256": "d3aa8dc751aeb860909c50bbd2844364388b395c03feb262c997baaf1b03047c",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.Performance.VehiclePerformanceCalculator": {
+      "sha256": "003d35bb025ad05881844488012c2abeb4965fbd9b7813813dba3399e6b3a518",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.Performance.VehiclePerformanceDefinitions": {
+      "sha256": "a947f9a57be69257fe04efc16e0371d5e430bed0e27c62a8179edf7a7e77098e",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.Performance.VehiclePerformanceResolver": {
+      "sha256": "da366bb1f2762a89d93a6637d54a4ab6bd2b818e82886d1c5ffa88945e832e48",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.Performance.VehiclePerformanceRuntime": {
+      "sha256": "a1b73fb49d979c5ed246d972c06cbe1016e14c47d49018bc0b64b1f9bad7a9c4",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.Performance.VehiclePerformanceV2Calculator": {
+      "sha256": "f9af0c595f87a2825d3ed8915bd29c1bce4e4fec282f70d08d71d0cd0471d496",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.Performance.VehiclePerformanceV2Definitions": {
+      "sha256": "fcbba144bc0e1082c4ee94b054950165c76d505d8500a40be1e8d6fa7e9f2590",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.Performance.VehiclePerformanceV2DynamicsAdapter": {
+      "sha256": "221effd74d7934aaef9c67cd67834cf99b0d75da907909d137c1195de9a5fe17",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.Performance.VehiclePerformanceV2Runtime": {
+      "sha256": "dbe404af6d4b449e6d5596fe2eab70fc792bb0f6eb7c5ce58001a078606c275a",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.Performance.VehiclePerformanceV2UpgradeRuntime": {
+      "sha256": "40d581ec3d004589c9fd959ffa0bf5d791ce968549570d1c6ea80469ab7f16a2",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.Performance.VehicleUpgradeDefinitions": {
+      "sha256": "7d99ab1fd134ecbbe715ebfddc4f6a63f26ff17802350747e212552dcfdd7f0f",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.ConfigReader": {
+      "sha256": "5f9eff2a2e44a5514ff82c272b10c4bc61e2f88f1af6952247cea41ecd5177be",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.DriveTuning": {
+      "sha256": "c4adb63ed12fea864932f0af95f143864694411f4354de46e4b9cdaf1dd7190b",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.UITheme": {
+      "sha256": "39567cab3e6c10174cc7cbc79de9da201c84be4bcc0ea2833c0e91792d959afc",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.VehicleData": {
+      "sha256": "ff7f6876cf66d207faa36f6068fde58de7e8a583240460359adf95a816814d42",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.VehicleDisplayNames": {
+      "sha256": "8878a01290364c1f8bc1d4a67026dc50322a62447ba161baa07509b71d0ba823",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Common.VehicleStatsCache": {
+      "sha256": "14dd490a774379d36e0a00e186e13a2a99211472690b6287a6aac6b2c0bc88eb",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Core.PathResolver": {
+      "sha256": "57a69cd946f1b5824e2cade40afb77ce96bc6bda6c824bd6bbb83f8c201ec44f",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data.ConfigRegistry": {
+      "sha256": "b677f317b0f76105b6b9d8f697fce050ae0d81e03ca96ac7577540307aefde4e",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data.GaragePropertyCatalog": {
+      "sha256": "8c2a0a6e8e5127ffaa132707c1e002dae7955cc163d362a1b8659dc19a9dc37a",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data.LegacyGarageProfileMapper": {
+      "sha256": "f6b042edd19115187b31f882bf838989d0faf16c3a8bd1a2dd60f9eeaa4c0bb9",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data.OwnedGarageDecorationCatalog": {
+      "sha256": "e51a2cc6680415ee7b83979bd9ea230531e639e0790e1e137813c8a8f2798423",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data.OwnedGarageInteriorStyleCatalog": {
+      "sha256": "53153e9fd51cc32288d3059aacaa8fae25d618d40febfce8e91464a9c85b9ddd",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data.OwnedGarageLightingCatalog": {
+      "sha256": "eed0c5fb676d04c9a6fddc97bf8abfcd790b7760c0083062c7ffaf487c3db86c",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data.OwnedGaragePropertyCatalog": {
+      "sha256": "59265976bc7e3f865d723f12d33608dd639845f182a32cc85d7e48391ac00951",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data.PlayerProfileSchema": {
+      "sha256": "61c8a016209f72a38531f3cfeed631d102885096a613abfe7b39cafbbcbc7e00",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Data.VehicleCosmeticCatalog": {
+      "sha256": "6475a4243afa839cb3a15f9cccd218b9c3673b230a92af88e6ec3c2aeb6b0724",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Racing.RaceConfigReader": {
+      "sha256": "4b66dc987c187bc1a5dd7ed7954f934e39c3b580df4a8be5eed4ce2dcba2a685",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Racing.RaceRouteDefinition": {
+      "sha256": "6a5991981dfd0936c381f643c14e29cb936fc7dff5e6953274de687c75ec56ce",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.UI.ArrowScroller": {
+      "sha256": "e582d33a4e0a4ee5ce7a8fca6791c8d465aea8149657284a01ee580eed748215",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.UI.ColourUtils": {
+      "sha256": "dcb9f62a8c988f42b72d5d9c6af01c0230463415eedcbbcc943396326056c9a9",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.UI.RacingMobileScaledDesktopLayout": {
+      "sha256": "e1980502cc15aec94f2bd33938f3031860b7e6a816c352b475380213585e813c",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.UI.RacingUIComponents": {
+      "sha256": "63ac75b216bfa85ade0a591ba87b2af8169f8e3ec7ee53c0208fc3b4ed707895",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.UI.ResponsiveLayout": {
+      "sha256": "3d10322f82d228950cd4f6e94da41dece1f33d5babbc1a72967e392b6619429c",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.UI.ResponsiveUIFoundation": {
+      "sha256": "d8dbadbdba733638bb532eb771d75ab09f648c5d95781b23351c29616c239dc1",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.UI.StatBars": {
+      "sha256": "3930232b632ffe907e90c5111199c2f58d492b997ce012734e13d0c29755a54b",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.UI.UIFactory": {
+      "sha256": "34eb07c1748caa61ca26b3dcbac99c45294df6192ad266cf9d5fd8d510d74921",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.UI.UIPool": {
+      "sha256": "2120ab4073cb37c3a98ef9b45f94ccd290aaf8aa3a2c3b4a07185f9c7ff54d48",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.UI.UITheme": {
+      "sha256": "a2dd642a8950773eeea3045c8189c2db4b2a22034a3b2e299ba423304b0e8b55",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.Shared.LightingCycleConfig.LightingCycleSchedule": {
+      "sha256": "8a4903833d0c70ed9cdc42d7d757ef187551b77e0cffff74d140b924b0d4b27b",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ReplicatedStorage.Shared.LightingPresets.LightingPresets": {
+      "sha256": "eb2c2385904fc1d344754c75ff17f30a9d99ba7ad928636bcd62a3957edc73e1",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ServerScriptService.NeoTokyoRacers.Services.Audio.VehicleAudioStateService_Active": {
+      "sha256": "43d9eb8e00c31a25f4f8d70051f8acc070a63b9fd71df5bac57e81432be513f9",
+      "disabled": false,
+      "class_name": "Script"
+    },
+    "ServerScriptService.NeoTokyoRacers.Services.Dealership.IntroProgressService_Active": {
+      "sha256": "eda04dfa7400dabd32f4c7aa93fedbe3d79ee3afce4210733c4ae0fe33c8af5d",
+      "disabled": false,
+      "class_name": "Script"
+    },
+    "ServerScriptService.NeoTokyoRacers.Services.Debug.StudioCashGrantService_Active": {
+      "sha256": "d3a699c7a5ba5f1fd1969bc83cec6c49fd6edff8eb81e6fa0b5a8ccf2bdc304c",
+      "disabled": false,
+      "class_name": "Script"
+    },
+    "ServerScriptService.NeoTokyoRacers.Services.Garage.GarageDisplayRuntime": {
+      "sha256": "3fe17b99e4527b8d66a1bd9151754df7a37ed1f159672ab038929d2504673605",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ServerScriptService.NeoTokyoRacers.Services.Garage.GarageModuleInstanceCustomizationRuntime": {
+      "sha256": "6c633219f573b40add99a509bc41cbba62595b7082d0d8469a58984b04ac0b86",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ServerScriptService.NeoTokyoRacers.Services.Garage.GarageModuleInventoryRuntime": {
+      "sha256": "23d289792a84a3e9862e7835c356307c4014bffbf211960dcd7834b78bf97ab7",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ServerScriptService.NeoTokyoRacers.Services.Garage.GarageModuleTransactionRuntime": {
+      "sha256": "82d73ca0d6033d056ae4384f087e7b168e4b6ebcaf60fecb166bd2ce339ca97b",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ServerScriptService.NeoTokyoRacers.Services.Garage.GarageProfileRuntime": {
+      "sha256": "cb54e6d64ac5f689659ec429a56ab1b3c97769687e4fac1579652c90ab43f5bb",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ServerScriptService.NeoTokyoRacers.Services.Garage.OwnedGarageAuthoritativeCommandRuntime": {
+      "sha256": "e969f163d9cb9fd34ed93da6fd885cecb8c2fde06c8a65124ce11ace198f5557",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ServerScriptService.NeoTokyoRacers.Services.Garage.OwnedGarageDisplayAssignmentRuntime": {
+      "sha256": "0e88ab5092acc7c09b0cbf26f82f0057c0af24e9f184ca059bf8858d3413f84f",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ServerScriptService.NeoTokyoRacers.Services.Garage.OwnedGarageDisplayRuntime": {
+      "sha256": "82651591ef04692d90943596f6c80a82b0d94ca213ec8dcd031aad50ef3b00af",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ServerScriptService.NeoTokyoRacers.Services.Garage.OwnedGarageFinishRuntime": {
+      "sha256": "0a33dd1221355328a0572d1dff62e40cd862fd9aa7deeb2c2dad5f02ea78a08a",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ServerScriptService.NeoTokyoRacers.Services.Garage.OwnedGarageInteriorRuntime": {
+      "sha256": "7f2018d3aa8dbe5dc19ea41552427d82f1d15d9cdc8e0c7a75c0f292a12a8b69",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ServerScriptService.NeoTokyoRacers.Services.Garage.OwnedGarageManagementRuntime": {
+      "sha256": "f9eeb5c37acc89e6f4a61d5b9e98e71872ff2d79c8a2861990457a5ca9fe7e8a",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ServerScriptService.NeoTokyoRacers.Services.Garage.OwnedGarageProfileRuntime": {
+      "sha256": "01d2231ef6074cc4c0ac046f5ad02a02de4f6e698639d614eed1f98a13209e72",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ServerScriptService.NeoTokyoRacers.Services.Garage.VehicleCosmeticServerRuntime": {
+      "sha256": "63ae9608f6fc189c20eeada44e0b6e885782ef044eff81f9dd224d640f48eb4c",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "ServerScriptService.NeoTokyoRacers.Services.Garage.GarageActionController_Shadow_Disabled": {
+      "sha256": "89781b8735d2dbb4f9c9b6c87e87c2c6474d78f853a8028c9f5c6c1dc097336c",
+      "disabled": false,
+      "class_name": "Script"
+    },
+    "ServerScriptService.NeoTokyoRacers.Services.Garage.GarageInteriorCustomizationService_Active": {
+      "sha256": "120a12f768dc1bcbe6e6bb42ec710a8e9312e467ff72c3e1b1427d708c0d7117",
+      "disabled": true,
+      "class_name": "Script"
+    },
+    "ServerScriptService.NeoTokyoRacers.Services.Garage.GarageInteriorService_Active": {
+      "sha256": "9e8b6dc97bb943ba92144e0505a941f322875afa30fcd4608d6f9f818fd778ec",
+      "disabled": true,
+      "class_name": "Script"
+    },
+    "ServerScriptService.NeoTokyoRacers.Services.Garage.GarageSessionService_Active": {
+      "sha256": "cba6df9bd91f6f4968452caa032b82f54aff204e8d7ff0ad957a7ccb6a857f0f",
+      "disabled": false,
+      "class_name": "Script"
+    },
+    "ServerScriptService.NeoTokyoRacers.Services.Garage.OwnedGarageService_Active": {
+      "sha256": "56d4ad147f0da85ebf80fd15dbca7144dd3c59268ee784db303907463366c838",
+      "disabled": false,
+      "class_name": "Script"
+    },
+    "ServerScriptService.NeoTokyoRacers.Services.Player.LegacyGarageProfileBridge_Active": {
+      "sha256": "ef7071d331262f69132b2048b8dae097bdfaae4ae125c25328acf8a0f4eb91ed",
+      "disabled": false,
+      "class_name": "Script"
+    },
+    "ServerScriptService.NeoTokyoRacers.Services.Player.OnboardingService_Active": {
+      "sha256": "1b1c1b7abece55e4c6b8702c2f523542ca81dc84b58da98cc6ba55f486b9f393",
+      "disabled": false,
+      "class_name": "Script"
+    },
+    "ServerScriptService.NeoTokyoRacers.Services.Player.ProfileService_Active": {
+      "sha256": "a92abdb61c581f9d83db7b3e4ae56f825b475d3dda9ee1fefc71925585615964",
+      "disabled": false,
+      "class_name": "Script"
+    },
+    "ServerScriptService.NeoTokyoRacers.Services.Racing.GlobalTimeTrialLeaderboardService_Active": {
+      "sha256": "bf605a81803761339812e20898f29b2bbab79c0699103e788544ccb7329cde98",
+      "disabled": false,
+      "class_name": "Script"
+    },
+    "ServerScriptService.NeoTokyoRacers.Services.Racing.RaceBrowserTeleportService_Active": {
+      "sha256": "a3ecdccd9cc2f05e5c4d22d1a1a1d600ee2879b3772d1cc7e70cb88ace23e39e",
+      "disabled": false,
+      "class_name": "Script"
+    },
+    "ServerScriptService.NeoTokyoRacers.Services.Racing.RaceDisplayNameService_Active": {
+      "sha256": "91cdecff3a53cbeab29a48bedac8df7cc3d86da119fbabaebaa3baf0999a3438",
+      "disabled": false,
+      "class_name": "Script"
+    },
+    "ServerScriptService.NeoTokyoRacers.Services.Racing.RaceMatchmakingService_Active": {
+      "sha256": "33263bc65b29b2c06006157eb5ae7a39c44e66c6f35190d6e79c07d13c4207db",
+      "disabled": false,
+      "class_name": "Script"
+    },
+    "ServerScriptService.NeoTokyoRacers.Services.Racing.RacePersonalBestService_Active": {
+      "sha256": "f96bba58ae96406cf3ee4b1784be8c5834a5b6c5c071ca91920e4e6310a9a084",
+      "disabled": false,
+      "class_name": "Script"
+    },
+    "ServerScriptService.NeoTokyoRacers.Services.Racing.RaceRewardService_Active": {
+      "sha256": "f1e183e60804c70c6edb5efa66bc61ddc510990fe6a42a1625e7129f5a331e6d",
+      "disabled": false,
+      "class_name": "Script"
+    },
+    "ServerScriptService.NeoTokyoRacers.Services.Racing.RaceSessionAssetService_Active": {
+      "sha256": "b91e214324f7315cb454ba7635bfd9a66ca9260a24d9868e34c72870122aa9af",
+      "disabled": false,
+      "class_name": "Script"
+    },
+    "ServerScriptService.NeoTokyoRacers.Services.Racing.TimeTrialService_Active": {
+      "sha256": "bbafd10c52a13dfad87dbda5b6f576152289d2013e19a06dcacd53affed421b9",
+      "disabled": false,
+      "class_name": "Script"
+    },
+    "ServerScriptService.NeoTokyoRacers.Services.UI.FreeRoamHudTeleportService_Active": {
+      "sha256": "c5d2cdb0930fc2c1beaea72b93eb259bc878c819d18493173a2b0b673491b915",
+      "disabled": false,
+      "class_name": "Script"
+    },
+    "ServerScriptService.NeoTokyoRacers.Services.Vehicle.DriveToEarnCashService_Active": {
+      "sha256": "1f85da715c862a0a6f8c92e6eba8ac865faff5f535c27f20a658f749d8acf904",
+      "disabled": false,
+      "class_name": "Script"
+    },
+    "ServerScriptService.NeoTokyoRacers.Services.Vehicle.DriverSeatPositionService_Active": {
+      "sha256": "6acc1b85032b2322580793037d7cdd86e6e97f81e314f85804bf9ce40a795041",
+      "disabled": false,
+      "class_name": "Script"
+    },
+    "ServerScriptService.NeoTokyoRacers.Services.Vehicle.VehicleAccessPromptService_Active": {
+      "sha256": "b3e943adf675fccb76da54f8fdc8b8b460e6ea36fa23fa005615a34fedd5a25d",
+      "disabled": false,
+      "class_name": "Script"
+    },
+    "ServerScriptService.NeoTokyoRacers.Services.Vehicle.VehicleCollisionLifecycleService_Active": {
+      "sha256": "7bbaca3e6533fc8386441dcc02b754f2d1f609b210aa10be973f1e451b360063",
+      "disabled": false,
+      "class_name": "Script"
+    },
+    "ServerScriptService.NeoTokyoRacers.Services.Vehicle.VehiclePerformanceRuntimeService_Active": {
+      "sha256": "8839749bdf0ec37584cdda2fbdd8dafe1a7bffb01647e1756aa061f353f56259",
+      "disabled": false,
+      "class_name": "Script"
+    },
+    "ServerScriptService.NeoTokyoRacers.Services.Vehicle.VehiclePerformanceV2ShadowService_Active": {
+      "sha256": "08b6ea1e8be5026389e6c8f6867ce93f19823d7ba0fea60e181bf79ec32e4981",
+      "disabled": false,
+      "class_name": "Script"
+    },
+    "ServerScriptService.NeoTokyoRacers.Services.World.Lighting.LightingService_Active": {
+      "sha256": "4ab7e541dec55a1c3faf206f0055f2d120f984609fc76622aba67b613d7fd495",
+      "disabled": false,
+      "class_name": "Script"
+    },
+    "ServerScriptService.NeoTokyoRacers.Services.World.Traffic.TrafficLightService": {
+      "sha256": "65a0821c5829c5457cff9e3dbe8584d164d33ec895325b46887ac88e74fd9f4e",
+      "disabled": false,
+      "class_name": "Script"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Audio.AcousticsRuntimeController_Active": {
+      "sha256": "a37dab917e209a85db179e1bd5967d1dfafbc932ad951f679d3027841e61483b",
+      "disabled": false,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Audio.AudioRuntimeController_Active": {
+      "sha256": "3778f096bae6fc068fe9fd3c8b5af887372a85dd6a4803f6de7fbfa5887b19c6",
+      "disabled": false,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Audio.ContextAudioRuntimeController_Active": {
+      "sha256": "071a4eca49405f02fb55d2feadd0821629bb32a74547f3f5d72959f41e8c22dd",
+      "disabled": false,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Audio.PresentationAudioRuntimeController_Active": {
+      "sha256": "a1e9bfc7b21c1b9929cc0cadc1f192b813356368e93b357be63b8f838973e30c",
+      "disabled": false,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Core.CatalogClient": {
+      "sha256": "644631f905e8e4feabd3c90ecd15512c98b7f9c52969945152b24fe6855ea3d8",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Core.ClientState": {
+      "sha256": "caace25cac7f9e13c1c6af14dfbe1c862f553319283f7df46f9a85002f253469",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Core.ClientThemeAdapter": {
+      "sha256": "5761666c489ada89118290f691a59701b5962230194fc957f8bc5f7cae7a3da9",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Core.GarageApiClient": {
+      "sha256": "f85487e6368ed791f17a9f7a8209f4702c06b4c1aac9129837112bb2d05b34d4",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Core.PaintClient": {
+      "sha256": "493f455ca5f7e64e2b6ae88d25d92c943ebd73e9811fe666deddf376e4434986",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Debug.DriveToEarnCashTelemetry_StudioOnly": {
+      "sha256": "44074fe6f83b82f3d65573d577151f563512acfa5b1ea7721bdd309e4df9b66d",
+      "disabled": false,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Debug.StudioCashGrantClient_Active": {
+      "sha256": "b34f9e2ce02cd199dea3f26c88780a5267d2e8d9a26f45b0158b8e52010a896d",
+      "disabled": false,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Intro.CockpitCustomisationZoneClient_Active": {
+      "sha256": "e5ab20efd502228f7333ea58bab569fe8447529d201ede930a7dfc0be22cc61e",
+      "disabled": true,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Intro.DealershipIntroClient_Active": {
+      "sha256": "a974c6f7182880e61151cd55b288e8d3a1d100a12ccfb0605f6afc6e8fb708a5",
+      "disabled": false,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Intro.DriveInCustomisationZoneClient_Active": {
+      "sha256": "8f1fc94772be4eb3af4891c59729a86bd729f533ff3675a61005837a003a312c",
+      "disabled": true,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Intro.GarageEntranceController_Active": {
+      "sha256": "4510d29aa4271c3cba297381135f518e9006004c7205e2195d70892136ef539c",
+      "disabled": false,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Preview.GaragePreviewPresentationController_Active": {
+      "sha256": "7c29854c870abc11f565907cf5fbf6a54db83f1b356b3af0756a6178e08760c5",
+      "disabled": false,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Preview.ThrustPreviewController_Active": {
+      "sha256": "8c80bdd22cc9a2d46a7b25a6ef3877b971bf8f5d933ff67da69c591263f0bba9",
+      "disabled": false,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Preview.GarageModuleInstancePreviewAdapter": {
+      "sha256": "202e68095860c671bd6b28a423472c8799195c8f9b09d55e65370714217fb4c0",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Preview.GarageVehiclePreviewProfile": {
+      "sha256": "f8150432e1d08512702cc2b9cb90d9a437fe593598cd90ecac5ab524dc50ad90",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Preview.PreviewCameraController": {
+      "sha256": "e0e51a0de2e7d0ff893eb933ca766224d772dd28c9435cbe58a57c5cebf2ffa3",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Preview.PreviewVehicleController": {
+      "sha256": "46cf2206104297b9b6cd8a3c917665498a6c34aa0b1a5e6ba056929a8a06be95",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceBrowserClient_Active": {
+      "sha256": "b294ff4e16fc5f2c098be1fa9dd0f728e9b06cd9941c9eec6a6ca04bc21aa0d1",
+      "disabled": false,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceClient_Active": {
+      "sha256": "cebb7f0d357ccac5b1378a5b45a5e441d0dc52a464cc53c2c94f2652ee809a69",
+      "disabled": true,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceCountdownPresentationController_Active": {
+      "sha256": "4d6d61cdf4206126f7c7f5d2c82a40e730f941af54c61fd3643322bd33c6423d",
+      "disabled": false,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceEntryMenuClient_Active": {
+      "sha256": "de9a3c3d5f4e1995554cdcb2665504c0cf689552f292ce737178edc5f0734078",
+      "disabled": false,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceEntryPresentationController_Active": {
+      "sha256": "d4c3a7ed606c3ab073dc28b67131d97c7be7d1c011d3d6c941096c5b6e9ed72d",
+      "disabled": false,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceHudExitCleanupClient_Active": {
+      "sha256": "ec45d7f4ac15820c509484bc5a661def33e97d860417df1d3555003a656d6f3f",
+      "disabled": true,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceLifecyclePresentationController_Active": {
+      "sha256": "2a2f3762128e9e640efba30eef13fb3d2513ef0acd81b1e2e4732b7b3429d886",
+      "disabled": false,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceParticipantVisibilityClient_Active": {
+      "sha256": "26ca4d91ba36614912a9ece2479e02d9ef58e03075acd30263a1e13cdc4908a7",
+      "disabled": false,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceQueueClient_Active": {
+      "sha256": "3fc2fcb24291d4bf0c6dc91f2bff1d752a89a6b8a834cbbc04882438676d2330",
+      "disabled": false,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceRouteGuideClient_Active": {
+      "sha256": "49617c31e6399c242803c362531ba839e6d2d86978da882b56195cd74ebb1f1e",
+      "disabled": false,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceSessionAssetsClient_Active": {
+      "sha256": "a00a987ca802a666f7ff5d4858aaa0221e9bcbd5496c320f9645e45ea494105b",
+      "disabled": false,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceSessionControlsClient_Active": {
+      "sha256": "f609c72d3fc8d182d377b0e79e886c066c99e04f780db8b9721a64f2a36d0d83",
+      "disabled": true,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceSessionPresentationController_Active": {
+      "sha256": "cc85a3fde7eab0a2588bfeedea40f9f7467ca3db5be88cfba07e2a01c5b4700c",
+      "disabled": false,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceTimeTrialResultCoachClient_Active": {
+      "sha256": "b06df045359f457a9f0aef42f8a4f0067f2e3ecb236c1dcb5cbb86e2c56da58c",
+      "disabled": false,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceTransitionClient_Active": {
+      "sha256": "0b34ffdcf2facc3fedb3fcf8c8b241d4b79ed2f96af759dbda2e86cb80513be7",
+      "disabled": false,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Runtime.CharacterSprintController_Active": {
+      "sha256": "3a7190c9da62328983cae7bdd9c438486f80e3e35043115767f5ae9a6888aa1b",
+      "disabled": false,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Runtime.DriveHudController_Active": {
+      "sha256": "6a612660916a7781fe4f91e6d13bed52d33f7fe0dc4b827d0892a7adb0db6b92",
+      "disabled": false,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Runtime.FreeRoamParkedHoverController_Active": {
+      "sha256": "496129dd1f8d1feb6e7726b9c1e0030baca602b5d5485b9be2d1c3eff625d4df",
+      "disabled": false,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Runtime.MobileDriveControlsController_Active": {
+      "sha256": "47e68daf323da5c5b66c6c5fe1be60a6ec502da9ac4ff248fd9e373ca3825f11",
+      "disabled": false,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Runtime.RuntimeVFXController_Active": {
+      "sha256": "c6736efa6c0c4465cb1240ba17f65556086baa93146b7491b6b2397c9490d789",
+      "disabled": false,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.DesktopFreeRoamHudController_Active": {
+      "sha256": "c17e700e949b4dcbd7195465454589e933bad5bb8017539329b0db9294137e3d",
+      "disabled": false,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.FreeRoamNavController_Active": {
+      "sha256": "6a612660916a7781fe4f91e6d13bed52d33f7fe0dc4b827d0892a7adb0db6b92",
+      "disabled": false,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.FreeRoamVehicleExitButton_Active": {
+      "sha256": "6a612660916a7781fe4f91e6d13bed52d33f7fe0dc4b827d0892a7adb0db6b92",
+      "disabled": false,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.GarageExperienceController_Active": {
+      "sha256": "5ad7140ba4945464cb0494f1bd6ac32dc911409039c3c30992c738487cf6da69",
+      "disabled": true,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.LoadingTransitionController_Active": {
+      "sha256": "bf8be5808a0da259f0b488d10ada2acaef51a4bff9cbb88df16351380d89fc2b",
+      "disabled": false,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.MobileFreeRoamHudController_Active": {
+      "sha256": "e01f37eb21f03ada0dfc2b5bf293a7e235ecab5b017bad3e3dcce316c0287a0f",
+      "disabled": false,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.OnboardingClient_Active": {
+      "sha256": "baff359ccba8e5186c09879560a9a40a79e100d45a22f13e193466368f83009b",
+      "disabled": false,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.OwnedGarageClient_Active": {
+      "sha256": "9adf6a9b83154ac5d8d113cab846821b9074cc78ff46cfcd237c56f0d9648d5b",
+      "disabled": false,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.SharedTopNotificationController_Active": {
+      "sha256": "1b445f0eeeffc0f8c650c58f8116a72ba8ba488e74f514b9cf43f3de5f2e1262",
+      "disabled": false,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.CockpitPaintUIController": {
+      "sha256": "4cc9e7226b38e565a4911bcfb8e2c6e95c769ace203f45bebb43f99a6e9fdc01",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.ColourPickerController": {
+      "sha256": "b244ac42f6b502955579706ec54b3e269da3d671ad327ed1b30af0e679b517f5",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.CustomisationUIController": {
+      "sha256": "fb789a9e77b482c150295b83241edcfc841ae881c164f62d6434070c52df4fbf",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.DealershipUIController": {
+      "sha256": "8f154fd32fbffb698c203c0c096362b822aaf752eb429a6bbfdd4253467e8d03",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.FreeRoamMapPlayerMarkers": {
+      "sha256": "74fe34f509a40cff0b22598fae6aa190565b6ac891136e05c6a4c00778966f8d",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.GarageBrowserController": {
+      "sha256": "e57beceea017e14d6ba9f1e95698b0c1a846018221e4b665b270a483d3d6f9e8",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.GarageInteriorModeController": {
+      "sha256": "1c9ca72740ba58e69e1afd2a94771cf05f9c571fa44fb203504ff4bac7e4f49b",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.GarageInteriorTransitionController": {
+      "sha256": "5bcc2df991aa4a11af5815d07441f6c28a949525505808d0d62a56c6e5cfba72",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.GarageModuleCardViewModel": {
+      "sha256": "e30f5918acad54e83fd21b96d9214e361b83db5513ce11950e6250fcf5b8238e",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.GaragePropertyMenuController": {
+      "sha256": "29694f97749f101bd486d85e55ecf134d43a09dc0dc77cd98d36c7e26f801c3f",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.GarageReplacementComponents": {
+      "sha256": "26c777659aa7d761693a27fdca4ff71539f7d54ec7939cf3385bf350cabf489f",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.GarageWorkspaceController": {
+      "sha256": "d6a467c4473cf471f8d23b5dc06ad517668c70f3aaba4e33bef45536d3203491",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.ModuleShopUIController": {
+      "sha256": "4313fdd1c3a6fd1a758234ffe7210b27f75d97a5e67b9a67cbc2f52c0479e8a9",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.NavigationController": {
+      "sha256": "02b44b65c42b29eced743aa8b904b423dbeae4849139056e8bd174314fcc04df",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.OnboardingGuideTrailRenderer": {
+      "sha256": "dcd2604ab8916a901353dff40d1eac59e91908e8ad8394ccf983b7263f75275c",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.OwnedGarageBrowserController": {
+      "sha256": "5b2f62de3f95d30ba758e68729878b47674e98e942c5bb2011c4ab8eef0eda80",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.OwnedGarageWorkspaceController": {
+      "sha256": "6ad1c0334a04a277c82b67ec31d6cba69411c20761f7a57964ff838af981f179",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.StatsPanelController": {
+      "sha256": "d2d2de0da94eab9270382ab1b752df7cdebd3ec03f56bd73be68cbc21e0afbe2",
+      "disabled": false,
+      "class_name": "ModuleScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.World.GarageAccessClient_Active": {
+      "sha256": "75d5526c883e59bedc57ed55a9dedcc6b511ee7673da26c56c6d01fa26e891f3",
+      "disabled": true,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.World.GarageInteriorClient_Active": {
+      "sha256": "b77e681838fa6e15bfb72412b150cd3b4e72996e3f6c8729c25a8dbd79a6a8ac",
+      "disabled": true,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.World.GarageInteriorCustomizationClient_Active": {
+      "sha256": "218ca83e863e995c306aa3b5dc240440248bacd80410e6a1ba2915bff470471c",
+      "disabled": true,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.World.LODClient_Active": {
+      "sha256": "11783f7d48f41ce575625367986484d9dae12a8a145ef11aec59c842ddae28ae",
+      "disabled": false,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.World.NightLamppostLightController_Active": {
+      "sha256": "c8b30fcf2e4789422af982fe548c242252efbecb420eae07e020678f498cb836",
+      "disabled": false,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.World.OwnedGarageEnvironmentLightingController_Active": {
+      "sha256": "3f04dc2a3c51bd8e9944b0970d724ac45076f2dc2384d66fc029963ff21fb023",
+      "disabled": false,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.World.WindowMaterialController_Active": {
+      "sha256": "1e923d5bf3d905b1e3ee61f1dde24b9dbb6caae5bb1d3b98c4829330326ee046",
+      "disabled": false,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.NeoTokyoRacersClient_Bootstrap_Shadow_Disabled": {
+      "sha256": "cbaeef5623d73ce60ac2ede8606814b8d7b57355f5021b2c6b05dfe06e4e1d6d",
+      "disabled": false,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.LocalScript": {
+      "sha256": "1ca31383753976904b7d8dbe06c3ba56d3483ac8f90aec14d614979605bbc443",
+      "disabled": false,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.TEMP_LightingPreview": {
+      "sha256": "233d9a3e6bc25370b26bf94c3c61726bc4d51418cf23e4bfb519524f86b34993",
+      "disabled": false,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.TrailerMode.client.lua": {
+      "sha256": "eada4b448936b4c67f22998b03c885777da7d4803284ec22691b10c2a4db2a17",
+      "disabled": false,
+      "class_name": "LocalScript"
+    },
+    "StarterPlayer.StarterPlayerScripts.TrailerShot01Camera": {
+      "sha256": "0fb85f029d4025cfd7f98284a088405f261b9d76ee0eeaa7bd090fe29717f67d",
+      "disabled": false,
+      "class_name": "LocalScript"
+    },
+    "Workspace.FBX - 3D Lady Head v2.Script": {
+      "sha256": "92dbb389a118dad07d36380eb341c751407ef96072b523e7a436fd54673cf618",
+      "disabled": false,
+      "class_name": "Script"
+    },
+    "Workspace.FBX - 3D Vehicle Holographic v3.Script": {
+      "sha256": "92dbb389a118dad07d36380eb341c751407ef96072b523e7a436fd54673cf618",
+      "disabled": false,
+      "class_name": "Script"
+    }
+  }
+}

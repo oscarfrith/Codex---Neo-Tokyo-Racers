@@ -1,0 +1,1985 @@
+[
+  {
+    "old": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Audio.AcousticsController",
+    "parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Modules",
+      "Client",
+      "Audio",
+      "AcousticsController"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Audio.AcousticsClient",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Audio\"):WaitForChild(\"AcousticsClient\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"ReplicatedStorage\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"Audio\"):WaitForChild(\"AcousticsController\")\n",
+    "suffix": "",
+    "before": 826893167,
+    "beforeBytes": 10217,
+    "after": 1671687872,
+    "afterBytes": 10496
+  },
+  {
+    "old": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Audio.AudioBusController",
+    "parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Modules",
+      "Client",
+      "Audio",
+      "AudioBusController"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Audio.AudioBusClient",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Audio\"):WaitForChild(\"AudioBusClient\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"ReplicatedStorage\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"Audio\"):WaitForChild(\"AudioBusController\")\n",
+    "suffix": "",
+    "before": 3189954660,
+    "beforeBytes": 2262,
+    "after": 2402226249,
+    "afterBytes": 2540
+  },
+  {
+    "old": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Audio.AudioMixController",
+    "parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Modules",
+      "Client",
+      "Audio",
+      "AudioMixController"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Audio.AudioMixClient",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Audio\"):WaitForChild(\"AudioMixClient\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"ReplicatedStorage\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"Audio\"):WaitForChild(\"AudioMixController\")\n",
+    "suffix": "",
+    "before": 1296208406,
+    "beforeBytes": 3589,
+    "after": 1623511149,
+    "afterBytes": 3867
+  },
+  {
+    "old": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Audio.ContextAudioCatalog",
+    "parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Modules",
+      "Client",
+      "Audio",
+      "ContextAudioCatalog"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Audio.ContextAudioCatalog",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Audio\"):WaitForChild(\"ContextAudioCatalog\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"ReplicatedStorage\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"Audio\"):WaitForChild(\"ContextAudioCatalog\")\n",
+    "suffix": "",
+    "before": 327501999,
+    "beforeBytes": 3223,
+    "after": 1050074534,
+    "afterBytes": 3502
+  },
+  {
+    "old": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Audio.ContextAudioController",
+    "parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Modules",
+      "Client",
+      "Audio",
+      "ContextAudioController"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Audio\"):WaitForChild(\"ContextAudioClient\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"ReplicatedStorage\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"Audio\"):WaitForChild(\"ContextAudioController\")\n",
+    "suffix": "",
+    "before": 3964329918,
+    "beforeBytes": 11330,
+    "after": 4290284006,
+    "afterBytes": 11612
+  },
+  {
+    "old": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Audio.PresentationAudioBridge",
+    "parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Modules",
+      "Client",
+      "Audio",
+      "PresentationAudioBridge"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioBridge",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Audio\"):WaitForChild(\"PresentationAudioBridge\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"ReplicatedStorage\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"Audio\"):WaitForChild(\"PresentationAudioBridge\")\n",
+    "suffix": "",
+    "before": 252710473,
+    "beforeBytes": 1746,
+    "after": 587686911,
+    "afterBytes": 2029
+  },
+  {
+    "old": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Audio.PresentationAudioCatalog",
+    "parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Modules",
+      "Client",
+      "Audio",
+      "PresentationAudioCatalog"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioCatalog",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Audio\"):WaitForChild(\"PresentationAudioCatalog\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"ReplicatedStorage\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"Audio\"):WaitForChild(\"PresentationAudioCatalog\")\n",
+    "suffix": "",
+    "before": 3194260676,
+    "beforeBytes": 2790,
+    "after": 2482431218,
+    "afterBytes": 3074
+  },
+  {
+    "old": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Audio.PresentationAudioController",
+    "parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Modules",
+      "Client",
+      "Audio",
+      "PresentationAudioController"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioClient",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Audio\"):WaitForChild(\"PresentationAudioClient\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"ReplicatedStorage\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"Audio\"):WaitForChild(\"PresentationAudioController\")\n",
+    "suffix": "",
+    "before": 3207508786,
+    "beforeBytes": 16105,
+    "after": 838202959,
+    "afterBytes": 16392
+  },
+  {
+    "old": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Audio.VehicleAudioCatalog",
+    "parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Modules",
+      "Client",
+      "Audio",
+      "VehicleAudioCatalog"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioCatalog",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Audio\"):WaitForChild(\"VehicleAudioCatalog\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"ReplicatedStorage\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"Audio\"):WaitForChild(\"VehicleAudioCatalog\")\n",
+    "suffix": "",
+    "before": 2139210854,
+    "beforeBytes": 3532,
+    "after": 674542642,
+    "afterBytes": 3811
+  },
+  {
+    "old": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Audio.VehicleAudioController",
+    "parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Modules",
+      "Client",
+      "Audio",
+      "VehicleAudioController"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Audio\"):WaitForChild(\"VehicleAudioClient\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"ReplicatedStorage\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"Audio\"):WaitForChild(\"VehicleAudioController\")\n",
+    "suffix": "",
+    "before": 2114030125,
+    "beforeBytes": 40359,
+    "after": 491837992,
+    "afterBytes": 40641
+  },
+  {
+    "old": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Controllers.DrivingCameraController",
+    "parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Modules",
+      "Client",
+      "Controllers",
+      "DrivingCameraController"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Vehicles\"):WaitForChild(\"DrivingCameraClient\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"ReplicatedStorage\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"Controllers\"):WaitForChild(\"DrivingCameraController\")\n",
+    "suffix": "",
+    "before": 823940869,
+    "beforeBytes": 12611,
+    "after": 1281792595,
+    "afterBytes": 12900
+  },
+  {
+    "old": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Controllers.DrivingControllerV47",
+    "parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Modules",
+      "Client",
+      "Controllers",
+      "DrivingControllerV47"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Vehicles.DrivingClient",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Vehicles\"):WaitForChild(\"DrivingClient\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"ReplicatedStorage\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"Controllers\"):WaitForChild(\"DrivingControllerV47\")\n",
+    "suffix": "",
+    "before": 2122672619,
+    "beforeBytes": 54973,
+    "after": 2439729013,
+    "afterBytes": 55259
+  },
+  {
+    "old": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Controllers.DrivingFallbackController",
+    "parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Modules",
+      "Client",
+      "Controllers",
+      "DrivingFallbackController"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Vehicles.DrivingFallbackClient",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Vehicles\"):WaitForChild(\"DrivingFallbackClient\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"ReplicatedStorage\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"Controllers\"):WaitForChild(\"DrivingFallbackController\")\n",
+    "suffix": "",
+    "before": 1194630429,
+    "beforeBytes": 16664,
+    "after": 3675283698,
+    "afterBytes": 16955
+  },
+  {
+    "old": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Controllers.MobileDriveInputState",
+    "parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Modules",
+      "Client",
+      "Controllers",
+      "MobileDriveInputState"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveInputState",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Vehicles\"):WaitForChild(\"MobileDriveInputState\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"ReplicatedStorage\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"Controllers\"):WaitForChild(\"MobileDriveInputState\")\n",
+    "suffix": "",
+    "before": 3753693513,
+    "beforeBytes": 1845,
+    "after": 304767710,
+    "afterBytes": 2132
+  },
+  {
+    "old": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Controllers.ReentryThrottle",
+    "parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Modules",
+      "Client",
+      "Controllers",
+      "ReentryThrottle"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Vehicles.ReentryThrottle",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Vehicles\"):WaitForChild(\"ReentryThrottle\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"ReplicatedStorage\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"Controllers\"):WaitForChild(\"ReentryThrottle\")\n",
+    "suffix": "",
+    "before": 2916923244,
+    "beforeBytes": 484,
+    "after": 3478647261,
+    "afterBytes": 765
+  },
+  {
+    "old": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Controllers.VehicleDynamicsModel",
+    "parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Modules",
+      "Client",
+      "Controllers",
+      "VehicleDynamicsModel"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Vehicles.VehicleDynamics",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Vehicles\"):WaitForChild(\"VehicleDynamics\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"ReplicatedStorage\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"Controllers\"):WaitForChild(\"VehicleDynamicsModel\")\n",
+    "suffix": "",
+    "before": 1531370105,
+    "beforeBytes": 18786,
+    "after": 1849978652,
+    "afterBytes": 19072
+  },
+  {
+    "old": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Input.GameplayInputGate",
+    "parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Modules",
+      "Client",
+      "Input",
+      "GameplayInputGate"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Vehicles.GameplayInputGate",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Vehicles\"):WaitForChild(\"GameplayInputGate\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"ReplicatedStorage\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"Input\"):WaitForChild(\"GameplayInputGate\")\n",
+    "suffix": "",
+    "before": 3227798206,
+    "beforeBytes": 4097,
+    "after": 1750423782,
+    "afterBytes": 4374
+  },
+  {
+    "old": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.UI.UIFactory",
+    "parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Modules",
+      "Client",
+      "UI",
+      "UIFactory"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.UI.UIFactory",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"UIFactory\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"ReplicatedStorage\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"UI\"):WaitForChild(\"UIFactory\")\n",
+    "suffix": "",
+    "before": 3066647218,
+    "beforeBytes": 2156,
+    "after": 1193268711,
+    "afterBytes": 2422
+  },
+  {
+    "old": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.UI.UIPool",
+    "parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Modules",
+      "Client",
+      "UI",
+      "UIPool"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.UI.UIPool",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"UIPool\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"ReplicatedStorage\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"UI\"):WaitForChild(\"UIPool\")\n",
+    "suffix": "",
+    "before": 217656668,
+    "beforeBytes": 1848,
+    "after": 3836964231,
+    "afterBytes": 2111
+  },
+  {
+    "old": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.VFX.VehicleVFXController",
+    "parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Modules",
+      "Client",
+      "VFX",
+      "VehicleVFXController"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Vehicles.LegacyVehicleVFXClient",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Vehicles\"):WaitForChild(\"LegacyVehicleVFXClient\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"ReplicatedStorage\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"VFX\"):WaitForChild(\"VehicleVFXController\")\n",
+    "suffix": "",
+    "before": 1620890836,
+    "beforeBytes": 18491,
+    "after": 1414795087,
+    "afterBytes": 18769
+  },
+  {
+    "old": "ReplicatedStorage.NeoTokyoRacers.Shared.Modules.Client.Visuals.CachedThrustVisualRuntime",
+    "parts": [
+      "ReplicatedStorage",
+      "NeoTokyoRacers",
+      "Shared",
+      "Modules",
+      "Client",
+      "Visuals",
+      "CachedThrustVisualRuntime"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Vehicles\"):WaitForChild(\"VehicleVFXClient\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"ReplicatedStorage\"):WaitForChild(\"NeoTokyoRacers\"):WaitForChild(\"Shared\"):WaitForChild(\"Modules\"):WaitForChild(\"Client\"):WaitForChild(\"Visuals\"):WaitForChild(\"CachedThrustVisualRuntime\")\n",
+    "suffix": "",
+    "before": 670736100,
+    "beforeBytes": 24083,
+    "after": 2583820228,
+    "afterBytes": 24370
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Audio.AcousticsRuntimeController_Active",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Audio",
+      "AcousticsRuntimeController_Active"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Audio.AcousticsRuntimeClient",
+    "class": "LocalScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Audio\"):WaitForChild(\"AcousticsRuntimeClient\"))\n",
+    "prefix": "-- Phase 4 client-session feature. ClientBase owns startup; legacy path hosts compatibility endpoints.\nlocal Client={}\nlocal state\nfunction Client.start()\nif state then assert(state==\"ready\",\"Client startup already attempted: \"..tostring(state)); return end\nstate=\"starting\"\nlocal ok,message=xpcall(function()\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Audio\"):WaitForChild(\"AcousticsRuntimeController_Active\")\n",
+    "suffix": "\nend,debug.traceback)\nstate=ok and \"ready\" or \"failed\"\nassert(ok,message)\nend\nreturn Client\n",
+    "before": 3390322960,
+    "beforeBytes": 453,
+    "after": 603065653,
+    "afterBytes": 1076
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Audio.AudioRuntimeController_Active",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Audio",
+      "AudioRuntimeController_Active"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Audio.AudioRuntimeClient",
+    "class": "LocalScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Audio\"):WaitForChild(\"AudioRuntimeClient\"))\n",
+    "prefix": "-- Phase 4 client-session feature. ClientBase owns startup; legacy path hosts compatibility endpoints.\nlocal Client={}\nlocal state\nfunction Client.start()\nif state then assert(state==\"ready\",\"Client startup already attempted: \"..tostring(state)); return end\nstate=\"starting\"\nlocal ok,message=xpcall(function()\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Audio\"):WaitForChild(\"AudioRuntimeController_Active\")\n",
+    "suffix": "\nend,debug.traceback)\nstate=ok and \"ready\" or \"failed\"\nassert(ok,message)\nend\nreturn Client\n",
+    "before": 2789827296,
+    "beforeBytes": 444,
+    "after": 3388256831,
+    "afterBytes": 1063
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Audio.ContextAudioRuntimeController_Active",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Audio",
+      "ContextAudioRuntimeController_Active"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Audio.ContextAudioRuntimeClient",
+    "class": "LocalScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Audio\"):WaitForChild(\"ContextAudioRuntimeClient\"))\n",
+    "prefix": "-- Phase 4 client-session feature. ClientBase owns startup; legacy path hosts compatibility endpoints.\nlocal Client={}\nlocal state\nfunction Client.start()\nif state then assert(state==\"ready\",\"Client startup already attempted: \"..tostring(state)); return end\nstate=\"starting\"\nlocal ok,message=xpcall(function()\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Audio\"):WaitForChild(\"ContextAudioRuntimeController_Active\")\n",
+    "suffix": "\nend,debug.traceback)\nstate=ok and \"ready\" or \"failed\"\nassert(ok,message)\nend\nreturn Client\n",
+    "before": 1295106184,
+    "beforeBytes": 453,
+    "after": 1750521152,
+    "afterBytes": 1079
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Audio.PresentationAudioRuntimeController_Active",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Audio",
+      "PresentationAudioRuntimeController_Active"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioRuntimeClient",
+    "class": "LocalScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Audio\"):WaitForChild(\"PresentationAudioRuntimeClient\"))\n",
+    "prefix": "-- Phase 4 client-session feature. ClientBase owns startup; legacy path hosts compatibility endpoints.\nlocal Client={}\nlocal state\nfunction Client.start()\nif state then assert(state==\"ready\",\"Client startup already attempted: \"..tostring(state)); return end\nstate=\"starting\"\nlocal ok,message=xpcall(function()\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Audio\"):WaitForChild(\"PresentationAudioRuntimeController_Active\")\n",
+    "suffix": "\nend,debug.traceback)\nstate=ok and \"ready\" or \"failed\"\nassert(ok,message)\nend\nreturn Client\n",
+    "before": 109450410,
+    "beforeBytes": 453,
+    "after": 3779224219,
+    "afterBytes": 1084
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Core.CatalogClient",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Core",
+      "CatalogClient"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Garage.CatalogClient",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Garage\"):WaitForChild(\"CatalogClient\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Core\"):WaitForChild(\"CatalogClient\")\n",
+    "suffix": "",
+    "before": 1748390724,
+    "beforeBytes": 2824,
+    "after": 3564735895,
+    "afterBytes": 3092
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Core.ClientState",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Core",
+      "ClientState"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Garage.GarageState",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Garage\"):WaitForChild(\"GarageState\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Core\"):WaitForChild(\"ClientState\")\n",
+    "suffix": "",
+    "before": 1204665088,
+    "beforeBytes": 1604,
+    "after": 3407925073,
+    "afterBytes": 1870
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Core.ClientThemeAdapter",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Core",
+      "ClientThemeAdapter"
+    ],
+    "new": "ReplicatedStorage.Modules.Core.ClientThemeAdapter",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Core\"):WaitForChild(\"ClientThemeAdapter\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Core\"):WaitForChild(\"ClientThemeAdapter\")\n",
+    "suffix": "",
+    "before": 1671276301,
+    "beforeBytes": 3525,
+    "after": 3754084207,
+    "afterBytes": 3798
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Core.GarageApiClient",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Core",
+      "GarageApiClient"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Garage.GarageApiClient",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Garage\"):WaitForChild(\"GarageApiClient\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Core\"):WaitForChild(\"GarageApiClient\")\n",
+    "suffix": "",
+    "before": 2451472837,
+    "beforeBytes": 1007,
+    "after": 1072853100,
+    "afterBytes": 1277
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Core.PaintClient",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Core",
+      "PaintClient"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Garage.PaintClient",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Garage\"):WaitForChild(\"PaintClient\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Core\"):WaitForChild(\"PaintClient\")\n",
+    "suffix": "",
+    "before": 3337919348,
+    "beforeBytes": 4589,
+    "after": 3485892230,
+    "afterBytes": 4855
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Debug.DriveToEarnCashTelemetry_StudioOnly",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Debug",
+      "DriveToEarnCashTelemetry_StudioOnly"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient",
+    "class": "LocalScript",
+    "edits": [
+      [
+        "\nwhile gui.Parent do\n\tupdate()\n\ttask.wait(0.25)\nend\n",
+        "\ntask.spawn(function()\nwhile gui.Parent do\n\tupdate()\n\ttask.wait(0.25)\nend\n\nend)\n"
+      ]
+    ],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Development\"):WaitForChild(\"DriveToEarnCashTelemetryClient\"))\n",
+    "prefix": "-- Phase 4 client-session feature. ClientBase owns startup; legacy path hosts compatibility endpoints.\nlocal Client={}\nlocal state\nfunction Client.start()\nif state then assert(state==\"ready\",\"Client startup already attempted: \"..tostring(state)); return end\nstate=\"starting\"\nlocal ok,message=xpcall(function()\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Debug\"):WaitForChild(\"DriveToEarnCashTelemetry_StudioOnly\")\n",
+    "suffix": "\nend,debug.traceback)\nstate=ok and \"ready\" or \"failed\"\nassert(ok,message)\nend\nreturn Client\n",
+    "before": 3969338710,
+    "beforeBytes": 3424,
+    "after": 1925990718,
+    "afterBytes": 4077
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Debug.StudioCashGrantClient_Active",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Debug",
+      "StudioCashGrantClient_Active"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Development.StudioCashGrantClient",
+    "class": "LocalScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Development\"):WaitForChild(\"StudioCashGrantClient\"))\n",
+    "prefix": "-- Phase 4 client-session feature. ClientBase owns startup; legacy path hosts compatibility endpoints.\nlocal Client={}\nlocal state\nfunction Client.start()\nif state then assert(state==\"ready\",\"Client startup already attempted: \"..tostring(state)); return end\nstate=\"starting\"\nlocal ok,message=xpcall(function()\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Debug\"):WaitForChild(\"StudioCashGrantClient_Active\")\n",
+    "suffix": "\nend,debug.traceback)\nstate=ok and \"ready\" or \"failed\"\nassert(ok,message)\nend\nreturn Client\n",
+    "before": 1859792780,
+    "beforeBytes": 1981,
+    "after": 1350212246,
+    "afterBytes": 2599
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Intro.DealershipIntroClient_Active",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Intro",
+      "DealershipIntroClient_Active"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Dealership.DealershipIntroClient",
+    "class": "LocalScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Dealership\"):WaitForChild(\"DealershipIntroClient\"))\n",
+    "prefix": "-- Phase 4 client-session feature. ClientBase owns startup; legacy path hosts compatibility endpoints.\nlocal Client={}\nlocal state\nfunction Client.start()\nif state then assert(state==\"ready\",\"Client startup already attempted: \"..tostring(state)); return end\nstate=\"starting\"\nlocal ok,message=xpcall(function()\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Intro\"):WaitForChild(\"DealershipIntroClient_Active\")\n",
+    "suffix": "\nend,debug.traceback)\nstate=ok and \"ready\" or \"failed\"\nassert(ok,message)\nend\nreturn Client\n",
+    "before": 2244635907,
+    "beforeBytes": 25363,
+    "after": 2076748528,
+    "afterBytes": 25981
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Intro.GarageEntranceController_Active",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Intro",
+      "GarageEntranceController_Active"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Dealership.GarageEntranceClient",
+    "class": "LocalScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Dealership\"):WaitForChild(\"GarageEntranceClient\"))\n",
+    "prefix": "-- Phase 4 client-session feature. ClientBase owns startup; legacy path hosts compatibility endpoints.\nlocal Client={}\nlocal state\nfunction Client.start()\nif state then assert(state==\"ready\",\"Client startup already attempted: \"..tostring(state)); return end\nstate=\"starting\"\nlocal ok,message=xpcall(function()\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Intro\"):WaitForChild(\"GarageEntranceController_Active\")\n",
+    "suffix": "\nend,debug.traceback)\nstate=ok and \"ready\" or \"failed\"\nassert(ok,message)\nend\nreturn Client\n",
+    "before": 3144854469,
+    "beforeBytes": 8021,
+    "after": 4235850315,
+    "afterBytes": 8642
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Preview.GaragePreviewPresentationController_Active",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Preview",
+      "GaragePreviewPresentationController_Active"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Garage.GaragePreviewPresentationClient",
+    "class": "LocalScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Garage\"):WaitForChild(\"GaragePreviewPresentationClient\"))\n",
+    "prefix": "-- Phase 4 client-session feature. ClientBase owns startup; legacy path hosts compatibility endpoints.\nlocal Client={}\nlocal state\nfunction Client.start()\nif state then assert(state==\"ready\",\"Client startup already attempted: \"..tostring(state)); return end\nstate=\"starting\"\nlocal ok,message=xpcall(function()\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Preview\"):WaitForChild(\"GaragePreviewPresentationController_Active\")\n",
+    "suffix": "\nend,debug.traceback)\nstate=ok and \"ready\" or \"failed\"\nassert(ok,message)\nend\nreturn Client\n",
+    "before": 2412241168,
+    "beforeBytes": 10615,
+    "after": 3240183276,
+    "afterBytes": 11249
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Preview.ThrustPreviewController_Active",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Preview",
+      "ThrustPreviewController_Active"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Garage.ThrustPreviewClient",
+    "class": "LocalScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Garage\"):WaitForChild(\"ThrustPreviewClient\"))\n",
+    "prefix": "-- Phase 4 client-session feature. ClientBase owns startup; legacy path hosts compatibility endpoints.\nlocal Client={}\nlocal state\nfunction Client.start()\nif state then assert(state==\"ready\",\"Client startup already attempted: \"..tostring(state)); return end\nstate=\"starting\"\nlocal ok,message=xpcall(function()\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Preview\"):WaitForChild(\"ThrustPreviewController_Active\")\n",
+    "suffix": "\nend,debug.traceback)\nstate=ok and \"ready\" or \"failed\"\nassert(ok,message)\nend\nreturn Client\n",
+    "before": 4072146084,
+    "beforeBytes": 7920,
+    "after": 3829937575,
+    "afterBytes": 8542
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Preview.GarageModuleInstancePreviewAdapter",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Preview",
+      "GarageModuleInstancePreviewAdapter"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Garage.GarageModuleInstancePreviewAdapter",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Garage\"):WaitForChild(\"GarageModuleInstancePreviewAdapter\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Preview\"):WaitForChild(\"GarageModuleInstancePreviewAdapter\")\n",
+    "suffix": "",
+    "before": 3030095531,
+    "beforeBytes": 5627,
+    "after": 1953575750,
+    "afterBytes": 5919
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Preview.GarageVehiclePreviewProfile",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Preview",
+      "GarageVehiclePreviewProfile"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Garage.GarageVehiclePreviewProfile",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Garage\"):WaitForChild(\"GarageVehiclePreviewProfile\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Preview\"):WaitForChild(\"GarageVehiclePreviewProfile\")\n",
+    "suffix": "",
+    "before": 2067329466,
+    "beforeBytes": 4222,
+    "after": 650186214,
+    "afterBytes": 4507
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Preview.PreviewCameraController",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Preview",
+      "PreviewCameraController"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Garage.PreviewCameraClient",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Garage\"):WaitForChild(\"PreviewCameraClient\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Preview\"):WaitForChild(\"PreviewCameraController\")\n",
+    "suffix": "",
+    "before": 3021712445,
+    "beforeBytes": 8486,
+    "after": 280519910,
+    "afterBytes": 8767
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Preview.PreviewVehicleController",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Preview",
+      "PreviewVehicleController"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Garage.PreviewVehicleClient",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Garage\"):WaitForChild(\"PreviewVehicleClient\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Preview\"):WaitForChild(\"PreviewVehicleController\")\n",
+    "suffix": "",
+    "before": 3800802622,
+    "beforeBytes": 10252,
+    "after": 788138194,
+    "afterBytes": 10534
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceBrowserClient_Active",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Racing",
+      "RaceBrowserClient_Active"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Racing.RaceBrowserClient",
+    "class": "LocalScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Racing\"):WaitForChild(\"RaceBrowserClient\"))\n",
+    "prefix": "-- Phase 4 client-session feature. ClientBase owns startup; legacy path hosts compatibility endpoints.\nlocal Client={}\nlocal state\nfunction Client.start()\nif state then assert(state==\"ready\",\"Client startup already attempted: \"..tostring(state)); return end\nstate=\"starting\"\nlocal ok,message=xpcall(function()\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Racing\"):WaitForChild(\"RaceBrowserClient_Active\")\n",
+    "suffix": "\nend,debug.traceback)\nstate=ok and \"ready\" or \"failed\"\nassert(ok,message)\nend\nreturn Client\n",
+    "before": 2666393547,
+    "beforeBytes": 22127,
+    "after": 1290447672,
+    "afterBytes": 22742
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceCountdownPresentationController_Active",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Racing",
+      "RaceCountdownPresentationController_Active"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Racing.RaceCountdownPresentationClient",
+    "class": "LocalScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Racing\"):WaitForChild(\"RaceCountdownPresentationClient\"))\n",
+    "prefix": "-- Phase 4 client-session feature. ClientBase owns startup; legacy path hosts compatibility endpoints.\nlocal Client={}\nlocal state\nfunction Client.start()\nif state then assert(state==\"ready\",\"Client startup already attempted: \"..tostring(state)); return end\nstate=\"starting\"\nlocal ok,message=xpcall(function()\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Racing\"):WaitForChild(\"RaceCountdownPresentationController_Active\")\n",
+    "suffix": "\nend,debug.traceback)\nstate=ok and \"ready\" or \"failed\"\nassert(ok,message)\nend\nreturn Client\n",
+    "before": 3219406517,
+    "beforeBytes": 5051,
+    "after": 987943054,
+    "afterBytes": 5684
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceEntryMenuClient_Active",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Racing",
+      "RaceEntryMenuClient_Active"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Racing.RaceEntryMenuClient",
+    "class": "LocalScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Racing\"):WaitForChild(\"RaceEntryMenuClient\"))\n",
+    "prefix": "-- Phase 4 client-session feature. ClientBase owns startup; legacy path hosts compatibility endpoints.\nlocal Client={}\nlocal state\nfunction Client.start()\nif state then assert(state==\"ready\",\"Client startup already attempted: \"..tostring(state)); return end\nstate=\"starting\"\nlocal ok,message=xpcall(function()\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Racing\"):WaitForChild(\"RaceEntryMenuClient_Active\")\n",
+    "suffix": "\nend,debug.traceback)\nstate=ok and \"ready\" or \"failed\"\nassert(ok,message)\nend\nreturn Client\n",
+    "before": 4095163398,
+    "beforeBytes": 5443,
+    "after": 3738013130,
+    "afterBytes": 6060
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceEntryPresentationController_Active",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Racing",
+      "RaceEntryPresentationController_Active"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Racing.RaceEntryPresentationClient",
+    "class": "LocalScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Racing\"):WaitForChild(\"RaceEntryPresentationClient\"))\n",
+    "prefix": "-- Phase 4 client-session feature. ClientBase owns startup; legacy path hosts compatibility endpoints.\nlocal Client={}\nlocal state\nfunction Client.start()\nif state then assert(state==\"ready\",\"Client startup already attempted: \"..tostring(state)); return end\nstate=\"starting\"\nlocal ok,message=xpcall(function()\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Racing\"):WaitForChild(\"RaceEntryPresentationController_Active\")\n",
+    "suffix": "\nend,debug.traceback)\nstate=ok and \"ready\" or \"failed\"\nassert(ok,message)\nend\nreturn Client\n",
+    "before": 1982788500,
+    "beforeBytes": 57403,
+    "after": 3588986380,
+    "afterBytes": 58032
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceLifecyclePresentationController_Active",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Racing",
+      "RaceLifecyclePresentationController_Active"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+    "class": "LocalScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Racing\"):WaitForChild(\"RaceLifecyclePresentationClient\"))\n",
+    "prefix": "-- Phase 4 client-session feature. ClientBase owns startup; legacy path hosts compatibility endpoints.\nlocal Client={}\nlocal state\nfunction Client.start()\nif state then assert(state==\"ready\",\"Client startup already attempted: \"..tostring(state)); return end\nstate=\"starting\"\nlocal ok,message=xpcall(function()\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Racing\"):WaitForChild(\"RaceLifecyclePresentationController_Active\")\n",
+    "suffix": "\nend,debug.traceback)\nstate=ok and \"ready\" or \"failed\"\nassert(ok,message)\nend\nreturn Client\n",
+    "before": 2902077123,
+    "beforeBytes": 10244,
+    "after": 3640373933,
+    "afterBytes": 10877
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceParticipantVisibilityClient_Active",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Racing",
+      "RaceParticipantVisibilityClient_Active"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Racing.RaceParticipantVisibilityClient",
+    "class": "LocalScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Racing\"):WaitForChild(\"RaceParticipantVisibilityClient\"))\n",
+    "prefix": "-- Phase 4 client-session feature. ClientBase owns startup; legacy path hosts compatibility endpoints.\nlocal Client={}\nlocal state\nfunction Client.start()\nif state then assert(state==\"ready\",\"Client startup already attempted: \"..tostring(state)); return end\nstate=\"starting\"\nlocal ok,message=xpcall(function()\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Racing\"):WaitForChild(\"RaceParticipantVisibilityClient_Active\")\n",
+    "suffix": "\nend,debug.traceback)\nstate=ok and \"ready\" or \"failed\"\nassert(ok,message)\nend\nreturn Client\n",
+    "before": 3058672279,
+    "beforeBytes": 5853,
+    "after": 3660297063,
+    "afterBytes": 6482
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceQueueClient_Active",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Racing",
+      "RaceQueueClient_Active"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Racing.RaceQueueClient",
+    "class": "LocalScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Racing\"):WaitForChild(\"RaceQueueClient\"))\n",
+    "prefix": "-- Phase 4 client-session feature. ClientBase owns startup; legacy path hosts compatibility endpoints.\nlocal Client={}\nlocal state\nfunction Client.start()\nif state then assert(state==\"ready\",\"Client startup already attempted: \"..tostring(state)); return end\nstate=\"starting\"\nlocal ok,message=xpcall(function()\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Racing\"):WaitForChild(\"RaceQueueClient_Active\")\n",
+    "suffix": "\nend,debug.traceback)\nstate=ok and \"ready\" or \"failed\"\nassert(ok,message)\nend\nreturn Client\n",
+    "before": 223217882,
+    "beforeBytes": 6273,
+    "after": 2023889086,
+    "afterBytes": 6886
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceRouteGuideClient_Active",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Racing",
+      "RaceRouteGuideClient_Active"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Racing.RaceRouteGuideClient",
+    "class": "LocalScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Racing\"):WaitForChild(\"RaceRouteGuideClient\"))\n",
+    "prefix": "-- Phase 4 client-session feature. ClientBase owns startup; legacy path hosts compatibility endpoints.\nlocal Client={}\nlocal state\nfunction Client.start()\nif state then assert(state==\"ready\",\"Client startup already attempted: \"..tostring(state)); return end\nstate=\"starting\"\nlocal ok,message=xpcall(function()\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Racing\"):WaitForChild(\"RaceRouteGuideClient_Active\")\n",
+    "suffix": "\nend,debug.traceback)\nstate=ok and \"ready\" or \"failed\"\nassert(ok,message)\nend\nreturn Client\n",
+    "before": 1911618788,
+    "beforeBytes": 17028,
+    "after": 1637590686,
+    "afterBytes": 17646
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceSessionAssetsClient_Active",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Racing",
+      "RaceSessionAssetsClient_Active"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Racing.RaceSessionAssetsClient",
+    "class": "LocalScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Racing\"):WaitForChild(\"RaceSessionAssetsClient\"))\n",
+    "prefix": "-- Phase 4 client-session feature. ClientBase owns startup; legacy path hosts compatibility endpoints.\nlocal Client={}\nlocal state\nfunction Client.start()\nif state then assert(state==\"ready\",\"Client startup already attempted: \"..tostring(state)); return end\nstate=\"starting\"\nlocal ok,message=xpcall(function()\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Racing\"):WaitForChild(\"RaceSessionAssetsClient_Active\")\n",
+    "suffix": "\nend,debug.traceback)\nstate=ok and \"ready\" or \"failed\"\nassert(ok,message)\nend\nreturn Client\n",
+    "before": 623837168,
+    "beforeBytes": 11885,
+    "after": 847334316,
+    "afterBytes": 12506
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceSessionPresentationController_Active",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Racing",
+      "RaceSessionPresentationController_Active"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient",
+    "class": "LocalScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Racing\"):WaitForChild(\"RaceSessionPresentationClient\"))\n",
+    "prefix": "-- Phase 4 client-session feature. ClientBase owns startup; legacy path hosts compatibility endpoints.\nlocal Client={}\nlocal state\nfunction Client.start()\nif state then assert(state==\"ready\",\"Client startup already attempted: \"..tostring(state)); return end\nstate=\"starting\"\nlocal ok,message=xpcall(function()\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Racing\"):WaitForChild(\"RaceSessionPresentationController_Active\")\n",
+    "suffix": "\nend,debug.traceback)\nstate=ok and \"ready\" or \"failed\"\nassert(ok,message)\nend\nreturn Client\n",
+    "before": 2466921246,
+    "beforeBytes": 32279,
+    "after": 2091004210,
+    "afterBytes": 32910
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceTimeTrialResultCoachClient_Active",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Racing",
+      "RaceTimeTrialResultCoachClient_Active"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Racing.RaceTimeTrialResultCoachClient",
+    "class": "LocalScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Racing\"):WaitForChild(\"RaceTimeTrialResultCoachClient\"))\n",
+    "prefix": "-- Phase 4 client-session feature. ClientBase owns startup; legacy path hosts compatibility endpoints.\nlocal Client={}\nlocal state\nfunction Client.start()\nif state then assert(state==\"ready\",\"Client startup already attempted: \"..tostring(state)); return end\nstate=\"starting\"\nlocal ok,message=xpcall(function()\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Racing\"):WaitForChild(\"RaceTimeTrialResultCoachClient_Active\")\n",
+    "suffix": "\nend,debug.traceback)\nstate=ok and \"ready\" or \"failed\"\nassert(ok,message)\nend\nreturn Client\n",
+    "before": 730066260,
+    "beforeBytes": 22335,
+    "after": 2077480163,
+    "afterBytes": 22963
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Racing.RaceTransitionClient_Active",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Racing",
+      "RaceTransitionClient_Active"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Racing.RaceTransitionClient",
+    "class": "LocalScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Racing\"):WaitForChild(\"RaceTransitionClient\"))\n",
+    "prefix": "-- Phase 4 client-session feature. ClientBase owns startup; legacy path hosts compatibility endpoints.\nlocal Client={}\nlocal state\nfunction Client.start()\nif state then assert(state==\"ready\",\"Client startup already attempted: \"..tostring(state)); return end\nstate=\"starting\"\nlocal ok,message=xpcall(function()\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Racing\"):WaitForChild(\"RaceTransitionClient_Active\")\n",
+    "suffix": "\nend,debug.traceback)\nstate=ok and \"ready\" or \"failed\"\nassert(ok,message)\nend\nreturn Client\n",
+    "before": 1209733472,
+    "beforeBytes": 15020,
+    "after": 1046362428,
+    "afterBytes": 15638
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Runtime.CharacterSprintController_Active",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Runtime",
+      "CharacterSprintController_Active"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Vehicles.CharacterSprintClient",
+    "class": "LocalScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Vehicles\"):WaitForChild(\"CharacterSprintClient\"))\n",
+    "prefix": "-- Phase 4 client-session feature. ClientBase owns startup; legacy path hosts compatibility endpoints.\nlocal Client={}\nlocal state\nfunction Client.start()\nif state then assert(state==\"ready\",\"Client startup already attempted: \"..tostring(state)); return end\nstate=\"starting\"\nlocal ok,message=xpcall(function()\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Runtime\"):WaitForChild(\"CharacterSprintController_Active\")\n",
+    "suffix": "\nend,debug.traceback)\nstate=ok and \"ready\" or \"failed\"\nassert(ok,message)\nend\nreturn Client\n",
+    "before": 1737750443,
+    "beforeBytes": 8703,
+    "after": 285755567,
+    "afterBytes": 9327
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Runtime.DriveHudController_Active",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Runtime",
+      "DriveHudController_Active"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Vehicles.DriveHudClient",
+    "class": "LocalScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Vehicles\"):WaitForChild(\"DriveHudClient\"))\n",
+    "prefix": "-- Phase 4 client-session feature. ClientBase owns startup; legacy path hosts compatibility endpoints.\nlocal Client={}\nlocal state\nfunction Client.start()\nif state then assert(state==\"ready\",\"Client startup already attempted: \"..tostring(state)); return end\nstate=\"starting\"\nlocal ok,message=xpcall(function()\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Runtime\"):WaitForChild(\"DriveHudController_Active\")\n",
+    "suffix": "\nend,debug.traceback)\nstate=ok and \"ready\" or \"failed\"\nassert(ok,message)\nend\nreturn Client\n",
+    "before": 3547144714,
+    "beforeBytes": 134,
+    "after": 4270475922,
+    "afterBytes": 751
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Runtime.FreeRoamParkedHoverController_Active",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Runtime",
+      "FreeRoamParkedHoverController_Active"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Vehicles.FreeRoamParkedHoverClient",
+    "class": "LocalScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Vehicles\"):WaitForChild(\"FreeRoamParkedHoverClient\"))\n",
+    "prefix": "-- Phase 4 client-session feature. ClientBase owns startup; legacy path hosts compatibility endpoints.\nlocal Client={}\nlocal state\nfunction Client.start()\nif state then assert(state==\"ready\",\"Client startup already attempted: \"..tostring(state)); return end\nstate=\"starting\"\nlocal ok,message=xpcall(function()\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Runtime\"):WaitForChild(\"FreeRoamParkedHoverController_Active\")\n",
+    "suffix": "\nend,debug.traceback)\nstate=ok and \"ready\" or \"failed\"\nassert(ok,message)\nend\nreturn Client\n",
+    "before": 1806802201,
+    "beforeBytes": 8723,
+    "after": 2144214178,
+    "afterBytes": 9351
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Runtime.MobileDriveControlsController_Active",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Runtime",
+      "MobileDriveControlsController_Active"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient",
+    "class": "LocalScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Vehicles\"):WaitForChild(\"MobileDriveControlsClient\"))\n",
+    "prefix": "-- Phase 4 client-session feature. ClientBase owns startup; legacy path hosts compatibility endpoints.\nlocal Client={}\nlocal state\nfunction Client.start()\nif state then assert(state==\"ready\",\"Client startup already attempted: \"..tostring(state)); return end\nstate=\"starting\"\nlocal ok,message=xpcall(function()\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Runtime\"):WaitForChild(\"MobileDriveControlsController_Active\")\n",
+    "suffix": "\nend,debug.traceback)\nstate=ok and \"ready\" or \"failed\"\nassert(ok,message)\nend\nreturn Client\n",
+    "before": 3805433178,
+    "beforeBytes": 17332,
+    "after": 982093051,
+    "afterBytes": 17960
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.Runtime.RuntimeVFXController_Active",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "Runtime",
+      "RuntimeVFXController_Active"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Vehicles.RuntimeVFXClient",
+    "class": "LocalScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Vehicles\"):WaitForChild(\"RuntimeVFXClient\"))\n",
+    "prefix": "-- Phase 4 client-session feature. ClientBase owns startup; legacy path hosts compatibility endpoints.\nlocal Client={}\nlocal state\nfunction Client.start()\nif state then assert(state==\"ready\",\"Client startup already attempted: \"..tostring(state)); return end\nstate=\"starting\"\nlocal ok,message=xpcall(function()\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"Runtime\"):WaitForChild(\"RuntimeVFXController_Active\")\n",
+    "suffix": "\nend,debug.traceback)\nstate=ok and \"ready\" or \"failed\"\nassert(ok,message)\nend\nreturn Client\n",
+    "before": 2241854362,
+    "beforeBytes": 521,
+    "after": 2735977177,
+    "afterBytes": 1140
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.DesktopFreeRoamHudController_Active",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "UI",
+      "DesktopFreeRoamHudController_Active"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+    "class": "LocalScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"DesktopFreeRoamHudUI\"))\n",
+    "prefix": "-- Phase 4 client-session feature. ClientBase owns startup; legacy path hosts compatibility endpoints.\nlocal Client={}\nlocal state\nfunction Client.start()\nif state then assert(state==\"ready\",\"Client startup already attempted: \"..tostring(state)); return end\nstate=\"starting\"\nlocal ok,message=xpcall(function()\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"DesktopFreeRoamHudController_Active\")\n",
+    "suffix": "\nend,debug.traceback)\nstate=ok and \"ready\" or \"failed\"\nassert(ok,message)\nend\nreturn Client\n",
+    "before": 315127831,
+    "beforeBytes": 63330,
+    "after": 1555148126,
+    "afterBytes": 63952
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.FreeRoamNavController_Active",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "UI",
+      "FreeRoamNavController_Active"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.UI.FreeRoamNavUI",
+    "class": "LocalScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"FreeRoamNavUI\"))\n",
+    "prefix": "-- Phase 4 client-session feature. ClientBase owns startup; legacy path hosts compatibility endpoints.\nlocal Client={}\nlocal state\nfunction Client.start()\nif state then assert(state==\"ready\",\"Client startup already attempted: \"..tostring(state)); return end\nstate=\"starting\"\nlocal ok,message=xpcall(function()\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"FreeRoamNavController_Active\")\n",
+    "suffix": "\nend,debug.traceback)\nstate=ok and \"ready\" or \"failed\"\nassert(ok,message)\nend\nreturn Client\n",
+    "before": 3547144714,
+    "beforeBytes": 134,
+    "after": 1146650869,
+    "afterBytes": 749
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.FreeRoamVehicleExitButton_Active",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "UI",
+      "FreeRoamVehicleExitButton_Active"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.UI.FreeRoamVehicleExitButtonClient",
+    "class": "LocalScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"FreeRoamVehicleExitButtonClient\"))\n",
+    "prefix": "-- Phase 4 client-session feature. ClientBase owns startup; legacy path hosts compatibility endpoints.\nlocal Client={}\nlocal state\nfunction Client.start()\nif state then assert(state==\"ready\",\"Client startup already attempted: \"..tostring(state)); return end\nstate=\"starting\"\nlocal ok,message=xpcall(function()\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"FreeRoamVehicleExitButton_Active\")\n",
+    "suffix": "\nend,debug.traceback)\nstate=ok and \"ready\" or \"failed\"\nassert(ok,message)\nend\nreturn Client\n",
+    "before": 3547144714,
+    "beforeBytes": 134,
+    "after": 1372139026,
+    "afterBytes": 753
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.LoadingTransitionController_Active",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "UI",
+      "LoadingTransitionController_Active"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.UI.LoadingTransitionUI",
+    "class": "LocalScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"LoadingTransitionUI\"))\n",
+    "prefix": "-- Phase 4 client-session feature. ClientBase owns startup; legacy path hosts compatibility endpoints.\nlocal Client={}\nlocal state\nfunction Client.start()\nif state then assert(state==\"ready\",\"Client startup already attempted: \"..tostring(state)); return end\nstate=\"starting\"\nlocal ok,message=xpcall(function()\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"LoadingTransitionController_Active\")\n",
+    "suffix": "\nend,debug.traceback)\nstate=ok and \"ready\" or \"failed\"\nassert(ok,message)\nend\nreturn Client\n",
+    "before": 2016326021,
+    "beforeBytes": 746,
+    "after": 2542490931,
+    "afterBytes": 1367
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.MobileFreeRoamHudController_Active",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "UI",
+      "MobileFreeRoamHudController_Active"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+    "class": "LocalScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"MobileFreeRoamHudUI\"))\n",
+    "prefix": "-- Phase 4 client-session feature. ClientBase owns startup; legacy path hosts compatibility endpoints.\nlocal Client={}\nlocal state\nfunction Client.start()\nif state then assert(state==\"ready\",\"Client startup already attempted: \"..tostring(state)); return end\nstate=\"starting\"\nlocal ok,message=xpcall(function()\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"MobileFreeRoamHudController_Active\")\n",
+    "suffix": "\nend,debug.traceback)\nstate=ok and \"ready\" or \"failed\"\nassert(ok,message)\nend\nreturn Client\n",
+    "before": 10033756,
+    "beforeBytes": 46687,
+    "after": 1340845481,
+    "afterBytes": 47308
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.OnboardingClient_Active",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "UI",
+      "OnboardingClient_Active"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+    "class": "LocalScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"OnboardingClient\"))\n",
+    "prefix": "-- Phase 4 client-session feature. ClientBase owns startup; legacy path hosts compatibility endpoints.\nlocal Client={}\nlocal state\nfunction Client.start()\nif state then assert(state==\"ready\",\"Client startup already attempted: \"..tostring(state)); return end\nstate=\"starting\"\nlocal ok,message=xpcall(function()\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"OnboardingClient_Active\")\n",
+    "suffix": "\nend,debug.traceback)\nstate=ok and \"ready\" or \"failed\"\nassert(ok,message)\nend\nreturn Client\n",
+    "before": 1969523698,
+    "beforeBytes": 53755,
+    "after": 4133150385,
+    "afterBytes": 54365
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.OwnedGarageClient_Active",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "UI",
+      "OwnedGarageClient_Active"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.UI.OwnedGarageClient",
+    "class": "LocalScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"OwnedGarageClient\"))\n",
+    "prefix": "-- Phase 4 client-session feature. ClientBase owns startup; legacy path hosts compatibility endpoints.\nlocal Client={}\nlocal state\nfunction Client.start()\nif state then assert(state==\"ready\",\"Client startup already attempted: \"..tostring(state)); return end\nstate=\"starting\"\nlocal ok,message=xpcall(function()\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"OwnedGarageClient_Active\")\n",
+    "suffix": "\nend,debug.traceback)\nstate=ok and \"ready\" or \"failed\"\nassert(ok,message)\nend\nreturn Client\n",
+    "before": 1896514486,
+    "beforeBytes": 602,
+    "after": 2168886862,
+    "afterBytes": 1213
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.SharedTopNotificationController_Active",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "UI",
+      "SharedTopNotificationController_Active"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.UI.SharedTopNotificationUI",
+    "class": "LocalScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"SharedTopNotificationUI\"))\n",
+    "prefix": "-- Phase 4 client-session feature. ClientBase owns startup; legacy path hosts compatibility endpoints.\nlocal Client={}\nlocal state\nfunction Client.start()\nif state then assert(state==\"ready\",\"Client startup already attempted: \"..tostring(state)); return end\nstate=\"starting\"\nlocal ok,message=xpcall(function()\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"SharedTopNotificationController_Active\")\n",
+    "suffix": "\nend,debug.traceback)\nstate=ok and \"ready\" or \"failed\"\nassert(ok,message)\nend\nreturn Client\n",
+    "before": 3581610090,
+    "beforeBytes": 689,
+    "after": 2536369756,
+    "afterBytes": 1314
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.CockpitPaintUIController",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "UI",
+      "CockpitPaintUIController"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.UI.CockpitPaintUIUI",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"CockpitPaintUIUI\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"CockpitPaintUIController\")\n",
+    "suffix": "",
+    "before": 1737635505,
+    "beforeBytes": 1659,
+    "after": 2458409620,
+    "afterBytes": 1936
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.ColourPickerController",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "UI",
+      "ColourPickerController"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.UI.ColourPickerUI",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"ColourPickerUI\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"ColourPickerController\")\n",
+    "suffix": "",
+    "before": 2111930614,
+    "beforeBytes": 8825,
+    "after": 1073446248,
+    "afterBytes": 9100
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.CustomisationUIController",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "UI",
+      "CustomisationUIController"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.UI.CustomisationUIUI",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"CustomisationUIUI\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"CustomisationUIController\")\n",
+    "suffix": "",
+    "before": 813474687,
+    "beforeBytes": 4599,
+    "after": 131400871,
+    "afterBytes": 4877
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.DealershipUIController",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "UI",
+      "DealershipUIController"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.UI.DealershipUIUI",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"DealershipUIUI\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"DealershipUIController\")\n",
+    "suffix": "",
+    "before": 3407796949,
+    "beforeBytes": 2931,
+    "after": 503040118,
+    "afterBytes": 3206
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.FreeRoamMapPlayerMarkers",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "UI",
+      "FreeRoamMapPlayerMarkers"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.UI.FreeRoamMapPlayerMarkers",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"FreeRoamMapPlayerMarkers\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"FreeRoamMapPlayerMarkers\")\n",
+    "suffix": "",
+    "before": 3154619915,
+    "beforeBytes": 13941,
+    "after": 2815926584,
+    "afterBytes": 14218
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.GarageBrowserController",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "UI",
+      "GarageBrowserController"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.UI.GarageBrowserUI",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"GarageBrowserUI\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"GarageBrowserController\")\n",
+    "suffix": "",
+    "before": 2257806553,
+    "beforeBytes": 22244,
+    "after": 1623245406,
+    "afterBytes": 22520
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.GarageInteriorModeController",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "UI",
+      "GarageInteriorModeController"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"GarageInteriorModeUI\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"GarageInteriorModeController\")\n",
+    "suffix": "",
+    "before": 214653148,
+    "beforeBytes": 24112,
+    "after": 3153588394,
+    "afterBytes": 24393
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.GarageInteriorTransitionController",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "UI",
+      "GarageInteriorTransitionController"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.UI.GarageInteriorTransitionUI",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"GarageInteriorTransitionUI\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"GarageInteriorTransitionController\")\n",
+    "suffix": "",
+    "before": 222217892,
+    "beforeBytes": 1245,
+    "after": 4276716104,
+    "afterBytes": 1532
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.GarageModuleCardViewModel",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "UI",
+      "GarageModuleCardViewModel"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.UI.GarageModuleCardViewModel",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"GarageModuleCardViewModel\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"GarageModuleCardViewModel\")\n",
+    "suffix": "",
+    "before": 3895104185,
+    "beforeBytes": 3515,
+    "after": 1010303096,
+    "afterBytes": 3793
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.GaragePropertyMenuController",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "UI",
+      "GaragePropertyMenuController"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.UI.GaragePropertyMenuUI",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"GaragePropertyMenuUI\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"GaragePropertyMenuController\")\n",
+    "suffix": "",
+    "before": 1628462890,
+    "beforeBytes": 6596,
+    "after": 1555169463,
+    "afterBytes": 6877
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.GarageReplacementComponents",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "UI",
+      "GarageReplacementComponents"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.UI.GarageComponents",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"GarageComponents\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"GarageReplacementComponents\")\n",
+    "suffix": "",
+    "before": 2974082212,
+    "beforeBytes": 50496,
+    "after": 1051082053,
+    "afterBytes": 50776
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.GarageWorkspaceController",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "UI",
+      "GarageWorkspaceController"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.UI.GarageWorkspaceUI",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"GarageWorkspaceUI\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"GarageWorkspaceController\")\n",
+    "suffix": "",
+    "before": 3278640377,
+    "beforeBytes": 50147,
+    "after": 1177900993,
+    "afterBytes": 50425
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.ModuleShopUIController",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "UI",
+      "ModuleShopUIController"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Garage\"):WaitForChild(\"GarageUI\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"ModuleShopUIController\")\n",
+    "suffix": "",
+    "before": 2351493361,
+    "beforeBytes": 58077,
+    "after": 2122379647,
+    "afterBytes": 58352
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.NavigationController",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "UI",
+      "NavigationController"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.UI.NavigationUI",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"NavigationUI\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"NavigationController\")\n",
+    "suffix": "",
+    "before": 882642138,
+    "beforeBytes": 1270,
+    "after": 2997639950,
+    "afterBytes": 1543
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.OnboardingGuideTrailRenderer",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "UI",
+      "OnboardingGuideTrailRenderer"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.UI.OnboardingGuideTrailRenderer",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"OnboardingGuideTrailRenderer\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"OnboardingGuideTrailRenderer\")\n",
+    "suffix": "",
+    "before": 326219947,
+    "beforeBytes": 10513,
+    "after": 697642735,
+    "afterBytes": 10794
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.OwnedGarageBrowserController",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "UI",
+      "OwnedGarageBrowserController"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"OwnedGarageBrowserUI\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"OwnedGarageBrowserController\")\n",
+    "suffix": "",
+    "before": 1255853111,
+    "beforeBytes": 19489,
+    "after": 3735338443,
+    "afterBytes": 19770
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.OwnedGarageWorkspaceController",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "UI",
+      "OwnedGarageWorkspaceController"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"OwnedGarageWorkspaceUI\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"OwnedGarageWorkspaceController\")\n",
+    "suffix": "",
+    "before": 3677139426,
+    "beforeBytes": 45769,
+    "after": 2890225763,
+    "afterBytes": 46052
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.UI.StatsPanelController",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "UI",
+      "StatsPanelController"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.UI.StatsPanelUI",
+    "class": "ModuleScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"StatsPanelUI\"))\n",
+    "prefix": "-- Phase 4 canonical helper. Legacy paths forward to this instance.\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"UI\"):WaitForChild(\"StatsPanelController\")\n",
+    "suffix": "",
+    "before": 2645758247,
+    "beforeBytes": 1315,
+    "after": 1487616004,
+    "afterBytes": 1588
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.World.LODClient_Active",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "World",
+      "LODClient_Active"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.World.LODClient",
+    "class": "LocalScript",
+    "edits": [
+      [
+        "\nwhile true do\n\ttask.wait(UPDATE_RATE)\n\n\tlocal character = player.Character\n\tif not character then continue end\n\n\tlocal rootPart = character:FindFirstChild(\"HumanoidRootPart\")\n\tif not rootPart then continue end\n\n\tlocal playerPos = rootPart.Position\n\n\tfor _, blockData in ipairs(Blocks) do\n\t\tlocal centerPos = getBlockCenterPosition(blockData)\n\n\t\tlocal dx = playerPos.X - centerPos.X\n\t\tlocal dz = playerPos.Z - centerPos.Z\n\t\tlocal dist = math.sqrt(dx * dx + dz * dz)\n\n\t\tlocal nearState = getNearLODState(dist)\n\n\t\tif DEBUG_PRINTS then\n\t\t\tprint(\n\t\t\t\tblockData.Model.Name,\n\t\t\t\t\"Distance:\", math.floor(dist),\n\t\t\t\t\"NearState:\", nearState,\n\t\t\t\t\"LOD4_Foliage:\", shouldShowLOD4Foliage(dist)\n\t\t\t)\n\t\tend\n\n\t\tapplyNearLOD(blockData, nearState)\n\n\t\tlocal foliageVisible = shouldShowLOD4Foliage(dist)\n\t\tapplyLOD4Foliage(blockData, foliageVisible)\n\n\t\tlocal farVisible = shouldShowFarLOD5(dist, blockData.LastFarVisible)\n\t\tapplyFarLOD5(blockData, farVisible)\n\tend\nend",
+        "\ntask.spawn(function()\nwhile true do\n\ttask.wait(UPDATE_RATE)\n\n\tlocal character = player.Character\n\tif not character then continue end\n\n\tlocal rootPart = character:FindFirstChild(\"HumanoidRootPart\")\n\tif not rootPart then continue end\n\n\tlocal playerPos = rootPart.Position\n\n\tfor _, blockData in ipairs(Blocks) do\n\t\tlocal centerPos = getBlockCenterPosition(blockData)\n\n\t\tlocal dx = playerPos.X - centerPos.X\n\t\tlocal dz = playerPos.Z - centerPos.Z\n\t\tlocal dist = math.sqrt(dx * dx + dz * dz)\n\n\t\tlocal nearState = getNearLODState(dist)\n\n\t\tif DEBUG_PRINTS then\n\t\t\tprint(\n\t\t\t\tblockData.Model.Name,\n\t\t\t\t\"Distance:\", math.floor(dist),\n\t\t\t\t\"NearState:\", nearState,\n\t\t\t\t\"LOD4_Foliage:\", shouldShowLOD4Foliage(dist)\n\t\t\t)\n\t\tend\n\n\t\tapplyNearLOD(blockData, nearState)\n\n\t\tlocal foliageVisible = shouldShowLOD4Foliage(dist)\n\t\tapplyLOD4Foliage(blockData, foliageVisible)\n\n\t\tlocal farVisible = shouldShowFarLOD5(dist, blockData.LastFarVisible)\n\t\tapplyFarLOD5(blockData, farVisible)\n\tend\nend\nend)\n"
+      ]
+    ],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"World\"):WaitForChild(\"LODClient\"))\n",
+    "prefix": "-- Phase 4 client-session feature. ClientBase owns startup; legacy path hosts compatibility endpoints.\nlocal Client={}\nlocal state\nfunction Client.start()\nif state then assert(state==\"ready\",\"Client startup already attempted: \"..tostring(state)); return end\nstate=\"starting\"\nlocal ok,message=xpcall(function()\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"World\"):WaitForChild(\"LODClient_Active\")\n",
+    "suffix": "\nend,debug.traceback)\nstate=ok and \"ready\" or \"failed\"\nassert(ok,message)\nend\nreturn Client\n",
+    "before": 2923948190,
+    "beforeBytes": 8871,
+    "after": 2228165896,
+    "afterBytes": 9505
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.World.NightLamppostLightController_Active",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "World",
+      "NightLamppostLightController_Active"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.World.NightLamppostLightClient",
+    "class": "LocalScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"World\"):WaitForChild(\"NightLamppostLightClient\"))\n",
+    "prefix": "-- Phase 4 client-session feature. ClientBase owns startup; legacy path hosts compatibility endpoints.\nlocal Client={}\nlocal state\nfunction Client.start()\nif state then assert(state==\"ready\",\"Client startup already attempted: \"..tostring(state)); return end\nstate=\"starting\"\nlocal ok,message=xpcall(function()\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"World\"):WaitForChild(\"NightLamppostLightController_Active\")\n",
+    "suffix": "\nend,debug.traceback)\nstate=ok and \"ready\" or \"failed\"\nassert(ok,message)\nend\nreturn Client\n",
+    "before": 1034785722,
+    "beforeBytes": 1549,
+    "after": 4196873789,
+    "afterBytes": 2174
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.World.OwnedGarageEnvironmentLightingController_Active",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "World",
+      "OwnedGarageEnvironmentLightingController_Active"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.World.OwnedGarageEnvironmentLightingClient",
+    "class": "LocalScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"World\"):WaitForChild(\"OwnedGarageEnvironmentLightingClient\"))\n",
+    "prefix": "-- Phase 4 client-session feature. ClientBase owns startup; legacy path hosts compatibility endpoints.\nlocal Client={}\nlocal state\nfunction Client.start()\nif state then assert(state==\"ready\",\"Client startup already attempted: \"..tostring(state)); return end\nstate=\"starting\"\nlocal ok,message=xpcall(function()\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"World\"):WaitForChild(\"OwnedGarageEnvironmentLightingController_Active\")\n",
+    "suffix": "\nend,debug.traceback)\nstate=ok and \"ready\" or \"failed\"\nassert(ok,message)\nend\nreturn Client\n",
+    "before": 3605152358,
+    "beforeBytes": 5634,
+    "after": 2549429402,
+    "afterBytes": 6271
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.Controllers.World.WindowMaterialController_Active",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "Controllers",
+      "World",
+      "WindowMaterialController_Active"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.World.WindowMaterialClient",
+    "class": "LocalScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"World\"):WaitForChild(\"WindowMaterialClient\"))\n",
+    "prefix": "-- Phase 4 client-session feature. ClientBase owns startup; legacy path hosts compatibility endpoints.\nlocal Client={}\nlocal state\nfunction Client.start()\nif state then assert(state==\"ready\",\"Client startup already attempted: \"..tostring(state)); return end\nstate=\"starting\"\nlocal ok,message=xpcall(function()\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"Controllers\"):WaitForChild(\"World\"):WaitForChild(\"WindowMaterialController_Active\")\n",
+    "suffix": "\nend,debug.traceback)\nstate=ok and \"ready\" or \"failed\"\nassert(ok,message)\nend\nreturn Client\n",
+    "before": 3644459034,
+    "beforeBytes": 1860,
+    "after": 2668261202,
+    "afterBytes": 2481
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.NeoTokyoRacersClient.NeoTokyoRacersClient_Bootstrap_Shadow_Disabled",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "NeoTokyoRacersClient",
+      "NeoTokyoRacersClient_Bootstrap_Shadow_Disabled"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Garage.GarageClient",
+    "class": "LocalScript",
+    "edits": [
+      [
+        "local DefaultTheme = {\n\tPanel = Color3.fromRGB(5, 9, 7),\n\tPanelSoft = Color3.fromRGB(12, 20, 17),\n\tCard = Color3.fromRGB(24, 35, 42),\n\tCardHot = Color3.fromRGB(36, 118, 82),\n\tText = Color3.fromRGB(218, 255, 231),\n\tMuted = Color3.fromRGB(145, 178, 160),\n\tAccent = Color3.fromRGB(172, 255, 197),\n\tCash = Color3.fromRGB(255, 193, 50),\n\tDanger = Color3.fromRGB(175, 70, 68),\n\tBack = Color3.fromRGB(24, 35, 42),\n\tExit = Color3.fromRGB(175, 70, 68),\n\tBuy = Color3.fromRGB(8, 145, 112),\n\tDisabled = Color3.fromRGB(62, 72, 73),\n\tPanelTransparency = 0.12,\n\tButtonTransparency = 0.08,\n\tPanelStrokeTransparency = 0.2,\n\tButtonStrokeTransparency = 0.62,\n\tStrokeWidth = 1,\n\tPanelCornerRadius = 5,\n\tButtonCornerRadius = 4,\n\tFontFamily = \"rbxasset://fonts/families/Michroma.json\",\n}\n\nlocal Theme = {}\n\nlocal function readThemeColor(name, fallback, alternateName)\n\tlocal item = themeFolder and (themeFolder:FindFirstChild(name) or (alternateName and themeFolder:FindFirstChild(alternateName)))\n\treturn item and item:IsA(\"Color3Value\") and item.Value or fallback\nend\n\nlocal function readThemeNumber(name, fallback)\n\tlocal item = themeFolder and themeFolder:FindFirstChild(name)\n\treturn item and item:IsA(\"NumberValue\") and item.Value or fallback\nend\n\nlocal function readThemeString(name, fallback)\n\tlocal item = themeFolder and themeFolder:FindFirstChild(name)\n\treturn item and item:IsA(\"StringValue\") and item.Value or fallback\nend\n\nlocal function refreshThemeFromValues()\n\tTheme.Panel = readThemeColor(\"Panel\", DefaultTheme.Panel)\n\tTheme.PanelSoft = readThemeColor(\"PanelSoft\", DefaultTheme.PanelSoft)\n\tTheme.Card = readThemeColor(\"Card\", DefaultTheme.Card)\n\tTheme.CardHot = readThemeColor(\"Selected\", DefaultTheme.CardHot, \"CardHot\")\n\tTheme.Text = readThemeColor(\"Text\", DefaultTheme.Text)\n\tTheme.Muted = readThemeColor(\"Muted\", DefaultTheme.Muted)\n\tTheme.Accent = readThemeColor(\"Accent\", DefaultTheme.Accent)\n\tTheme.Cash = readThemeColor(\"Cash\", DefaultTheme.Cash)\n\tTheme.Danger = readThemeColor(\"Danger\", DefaultTheme.Danger)\n\tTheme.Back = readThemeColor(\"Back\", DefaultTheme.Back, \"BackButton\")\n\tTheme.Exit = readThemeColor(\"Exit\", DefaultTheme.Exit, \"ExitButton\")\n\tTheme.Buy = readThemeColor(\"Buy\", DefaultTheme.Buy)\n\tTheme.Disabled = readThemeColor(\"Disabled\", DefaultTheme.Disabled)\n\tTheme.PanelTransparency = math.clamp(readThemeNumber(\"PanelTransparency\", DefaultTheme.PanelTransparency), 0, 1)\n\tTheme.ButtonTransparency = math.clamp(readThemeNumber(\"ButtonTransparency\", DefaultTheme.ButtonTransparency), 0, 1)\n\tTheme.PanelStrokeTransparency = math.clamp(readThemeNumber(\"PanelStrokeTransparency\", DefaultTheme.PanelStrokeTransparency), 0, 1)\n\tTheme.ButtonStrokeTransparency = math.clamp(readThemeNumber(\"ButtonStrokeTransparency\", DefaultTheme.ButtonStrokeTransparency), 0, 1)\n\tTheme.StrokeWidth = math.max(0, readThemeNumber(\"StrokeWidth\", DefaultTheme.StrokeWidth))\n\tTheme.PanelCornerRadius = math.max(0, readThemeNumber(\"PanelCornerRadius\", DefaultTheme.PanelCornerRadius))\n\tTheme.ButtonCornerRadius = math.max(0, readThemeNumber(\"ButtonCornerRadius\", DefaultTheme.ButtonCornerRadius))\n\tTheme.FontFamily = readThemeString(\"FontFamily\", DefaultTheme.FontFamily)\nend\n",
+        "local Theme = {}\nlocal function refreshThemeFromValues()\n\tfor key,value in pairs(require(game:GetService(\"ReplicatedStorage\").Modules.Core.ClientThemeAdapter).Read(themeFolder)) do Theme[key]=value end\nend\n"
+      ],
+      [
+        "Theme.FontFamily or DefaultTheme.FontFamily",
+        "Theme.FontFamily or require(game:GetService(\"ReplicatedStorage\").Modules.Core.ClientThemeAdapter).DefaultTheme.FontFamily"
+      ],
+      [
+        "RunService.Heartbeat:Connect(function()\n\tlocal now = os.clock()\n\tif not reentryProbe:ShouldRun(now) then return end\n\tif isDriving or now < reentryCooldown then return end\n\tif UI.Gui and UI.Gui.Enabled then return end\n\tlocal character = player.Character\n\tlocal humanoidRoot = character and character:FindFirstChild(\"HumanoidRootPart\")\n\tlocal humanoid = character and character:FindFirstChildOfClass(\"Humanoid\")\n\tif not humanoidRoot or not humanoid or humanoid.Sit then return end\n\tlocal vehicle = getPlayerVehicle()\n\tlocal root = vehicle and (vehicle.PrimaryPart or vehicle:FindFirstChild(\"CockpitRoot_DoNotRename\", true))\n\tlocal seat = vehicle and vehicle:FindFirstChild(\"DriverSeat\", true)\n\tlocal targetPart = (seat and seat:IsA(\"BasePart\")) and seat or root\n\tif not targetPart then return end\n\t-- NTR_FREEROAM_VEHICLE_SPAWN_PHASE4B_PROMPT_ONLY_REENTRY\n\tif false and (humanoidRoot.Position - targetPart.Position).Magnitude <= 6.5 then\n\t\treentryCooldown = now + 1.25\n\t\treentryProbe:Cooldown(1.25)\n\t\tlocal result = callServer(\"ReEnterVehicle\", {})\n\t\tif result.Success then\n\t\t\ttask.defer(startDriving)\n\t\tend\n\tend\nend)\n\n",
+        "-- Prompt-only re-entry: retired disabled proximity polling.\n\n"
+      ],
+      [
+        "local function setupCameraInput()\n\tUserInputService.InputBegan:Connect(function(input, processed)\n\t\tif processed or isDriving then return end\n\t\tif input.UserInputType == Enum.UserInputType.MouseButton2 or input.UserInputType == Enum.UserInputType.Touch then\n\t\t\tState.Dragging = true\n\t\t\tState.LastPointer = input.Position\n\t\tend\n\tend)\n\tUserInputService.InputEnded:Connect(function(input)\n\t\tif input.UserInputType == Enum.UserInputType.MouseButton2 or input.UserInputType == Enum.UserInputType.Touch then\n\t\t\tState.Dragging = false\n\t\t\tState.LastPointer = nil\n\t\tend\n\tend)\n\tUserInputService.InputChanged:Connect(function(input, processed)\n\t\tif isDriving then return end\n\t\tif input.UserInputType == Enum.UserInputType.MouseWheel then\n\t\t\treturn\n\t\telseif State.Dragging and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then\n\t\t\tif State.LastPointer then\n\t\t\t\tlocal delta = input.Position - State.LastPointer\n\t\t\t\tState.TargetYaw -= delta.X * 0.006\n\t\t\t\tState.TargetPitch = math.clamp(State.TargetPitch - delta.Y * 0.004, math.rad(-45), math.rad(10))\n\t\t\tend\n\t\t\tState.LastPointer = input.Position\n\t\tend\n\tend)\n\tRunService.RenderStepped:Connect(updateCamera)\nend\n\n",
+        "local function setupCameraInput()\n\trequire(game:GetService(\"ReplicatedStorage\").Modules.Game.Garage.PreviewInputClient).bind(State,function() return isDriving end,updateCamera,script)\nend\n\n"
+      ]
+    ],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Garage\"):WaitForChild(\"GarageClient\"))\n",
+    "prefix": "-- Phase 4 client-session feature. ClientBase owns startup; legacy path hosts compatibility endpoints.\nlocal Client={}\nlocal state\nfunction Client.start()\nif state then assert(state==\"ready\",\"Client startup already attempted: \"..tostring(state)); return end\nstate=\"starting\"\nlocal ok,message=xpcall(function()\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"NeoTokyoRacersClient\"):WaitForChild(\"NeoTokyoRacersClient_Bootstrap_Shadow_Disabled\")\n",
+    "suffix": "\nend,debug.traceback)\nstate=ok and \"ready\" or \"failed\"\nassert(ok,message)\nend\nreturn Client\n",
+    "before": 450704684,
+    "beforeBytes": 187523,
+    "after": 3157260481,
+    "afterBytes": 183152
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.LocalScript",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "LocalScript"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Development.TrailerVehicleCameraClient",
+    "class": "LocalScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Development\"):WaitForChild(\"TrailerVehicleCameraClient\"))\n",
+    "prefix": "-- Phase 4 client-session feature. ClientBase owns startup; legacy path hosts compatibility endpoints.\nlocal Client={}\nlocal state\nfunction Client.start()\nif state then assert(state==\"ready\",\"Client startup already attempted: \"..tostring(state)); return end\nlocal config=game:GetService(\"ReplicatedStorage\").NeoTokyoRacers.Config.Development.ClientTools\nif not require(game:GetService(\"ReplicatedStorage\").Modules.Core.ClientLifecycle).tool_enabled(game:GetService(\"RunService\"):IsStudio(),config,[====[\nTrailerVehicleCameraEnabled]====]) then return end\nstate=\"starting\"\nlocal ok,message=xpcall(function()\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"LocalScript\")\n",
+    "suffix": "\nend,debug.traceback)\nstate=ok and \"ready\" or \"failed\"\nassert(ok,message)\nend\nreturn Client\n",
+    "before": 1930213474,
+    "beforeBytes": 4758,
+    "after": 754418388,
+    "afterBytes": 5569
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.TEMP_LightingPreview",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "TEMP_LightingPreview"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Development.LightingPreviewClient",
+    "class": "LocalScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Development\"):WaitForChild(\"LightingPreviewClient\"))\n",
+    "prefix": "-- Phase 4 client-session feature. ClientBase owns startup; legacy path hosts compatibility endpoints.\nlocal Client={}\nlocal state\nfunction Client.start()\nif state then assert(state==\"ready\",\"Client startup already attempted: \"..tostring(state)); return end\nlocal config=game:GetService(\"ReplicatedStorage\").NeoTokyoRacers.Config.Development.ClientTools\nif not require(game:GetService(\"ReplicatedStorage\").Modules.Core.ClientLifecycle).tool_enabled(game:GetService(\"RunService\"):IsStudio(),config,[====[\nLightingPreviewEnabled]====]) then return end\nstate=\"starting\"\nlocal ok,message=xpcall(function()\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"TEMP_LightingPreview\")\n",
+    "suffix": "\nend,debug.traceback)\nstate=ok and \"ready\" or \"failed\"\nassert(ok,message)\nend\nreturn Client\n",
+    "before": 3593240143,
+    "beforeBytes": 2707,
+    "after": 2561747798,
+    "afterBytes": 3522
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.TrailerMode.client.lua",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "TrailerMode.client.lua"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Development.TrailerModeClient",
+    "class": "LocalScript",
+    "edits": [],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Development\"):WaitForChild(\"TrailerModeClient\"))\n",
+    "prefix": "-- Phase 4 client-session feature. ClientBase owns startup; legacy path hosts compatibility endpoints.\nlocal Client={}\nlocal state\nfunction Client.start()\nif state then assert(state==\"ready\",\"Client startup already attempted: \"..tostring(state)); return end\nlocal config=game:GetService(\"ReplicatedStorage\").NeoTokyoRacers.Config.Development.ClientTools\nif not require(game:GetService(\"ReplicatedStorage\").Modules.Core.ClientLifecycle).tool_enabled(game:GetService(\"RunService\"):IsStudio(),config,[====[\nTrailerModeEnabled]====]) then return end\nstate=\"starting\"\nlocal ok,message=xpcall(function()\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"TrailerMode.client.lua\")\n",
+    "suffix": "\nend,debug.traceback)\nstate=ok and \"ready\" or \"failed\"\nassert(ok,message)\nend\nreturn Client\n",
+    "before": 1417940066,
+    "beforeBytes": 1678,
+    "after": 1740609699,
+    "afterBytes": 2491
+  },
+  {
+    "old": "StarterPlayer.StarterPlayerScripts.TrailerShot01Camera",
+    "parts": [
+      "StarterPlayer",
+      "StarterPlayerScripts",
+      "TrailerShot01Camera"
+    ],
+    "new": "ReplicatedStorage.Modules.Game.Development.TrailerShotClient",
+    "class": "LocalScript",
+    "edits": [
+      [
+        "local shotFolder = workspace:WaitForChild(\"TrailerShots\"):WaitForChild(\"Shot01_StraightRoadPan\")",
+        "local shots=workspace:FindFirstChild(\"TrailerShots\")\nlocal shotFolder=shots and shots:FindFirstChild(\"Shot01_StraightRoadPan\")\nassert(shotFolder,\"TrailerShotEnabled requires Workspace.TrailerShots.Shot01_StraightRoadPan\")"
+      ],
+      [
+        "local cameraA = shotFolder:WaitForChild(\"Camera_A\")",
+        "local cameraA = assert(shotFolder:FindFirstChild(\"Camera_A\"),\"Missing trailer marker Camera_A\")\nassert(cameraA:IsA(\"BasePart\"),\"Trailer marker must be a BasePart\")"
+      ],
+      [
+        "local cameraB = shotFolder:WaitForChild(\"Camera_B\")",
+        "local cameraB = assert(shotFolder:FindFirstChild(\"Camera_B\"),\"Missing trailer marker Camera_B\")\nassert(cameraB:IsA(\"BasePart\"),\"Trailer marker must be a BasePart\")"
+      ],
+      [
+        "local lookAtTarget = shotFolder:WaitForChild(\"LookAt_Target\")",
+        "local lookAtTarget = assert(shotFolder:FindFirstChild(\"LookAt_Target\"),\"Missing trailer marker LookAt_Target\")\nassert(lookAtTarget:IsA(\"BasePart\"),\"Trailer marker must be a BasePart\")"
+      ]
+    ],
+    "adapter": "-- Phase 4 stateless compatibility adapter. Canonical implementation is the single owner.\nreturn require(game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Development\"):WaitForChild(\"TrailerShotClient\"))\n",
+    "prefix": "-- Phase 4 client-session feature. ClientBase owns startup; legacy path hosts compatibility endpoints.\nlocal Client={}\nlocal state\nfunction Client.start()\nif state then assert(state==\"ready\",\"Client startup already attempted: \"..tostring(state)); return end\nlocal config=game:GetService(\"ReplicatedStorage\").NeoTokyoRacers.Config.Development.ClientTools\nif not require(game:GetService(\"ReplicatedStorage\").Modules.Core.ClientLifecycle).tool_enabled(game:GetService(\"RunService\"):IsStudio(),config,[====[\nTrailerShotEnabled]====]) then return end\nstate=\"starting\"\nlocal ok,message=xpcall(function()\nlocal script = game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"TrailerShot01Camera\")\n",
+    "suffix": "\nend,debug.traceback)\nstate=ok and \"ready\" or \"failed\"\nassert(ok,message)\nend\nreturn Client\n",
+    "before": 868677116,
+    "beforeBytes": 2225,
+    "after": 3471830572,
+    "afterBytes": 3506
+  }
+]

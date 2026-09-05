@@ -1,5 +1,7 @@
 # Neo Tokyo Racers Prompt Pack
 
+Current 2026-09-05 workflow: follow docs/architecture/mcp-workflow.md and docs/architecture/installer-index.md. Read compact current baseline/issues first; historical run instructions below are recovery context. Execute approved canonical scripts through MCP and preserve the raw paste diff. Phase 1 has no gameplay installer.
+
 Use these prompts to keep ChatGPT and Codex aligned around the same project context, docs, scripts, design decisions, Studio export mirror, and handoff workflow.
 
 ## Active Repo

@@ -1,0 +1,38 @@
+{
+  "place_id": 121304917315753,
+  "audit": "PASS",
+  "repeat_install": "PASS",
+  "rollback_reinstall": "PASS",
+  "compile_sources": 323,
+  "baseline_play": {
+    "server_ready": 26,
+    "client_ready": 40,
+    "development_skipped": 4,
+    "start_screen_click": "PASS",
+    "sandbox_buy_bruiser_01": true,
+    "cash_after_purchase": 650000,
+    "spawn_and_normal_client_drive_handoff": "PASS",
+    "seat": "DriverSeat",
+    "DriveReady": true
+  },
+  "after_play": {
+    "server_ready": 26,
+    "client_ready": 40,
+    "development_skipped": 4,
+    "start_screen_click": "PASS",
+    "dealership_existing_event_opens_canonical_browser": "PASS",
+    "sandbox_buy_bruiser_01": true,
+    "cash_after_purchase": 650000,
+    "spawn_and_normal_client_drive_handoff": "PASS",
+    "seat": "DriverSeat",
+    "DriveReady": true,
+    "exit_and_park": "PASS",
+    "uninterrupted_ui_drive_journey": "NOT_CLAIMED: tutorial interception remains; user short-drive checkpoint pending"
+  },
+  "exporter_unavailable_receiver": "PASS: expected error, no instance creation/deletion, parent/name or attribute changes",
+  "snapshot_pipeline_tests": "8 PASS",
+  "asset_removals": "NONE",
+  "published": false,
+  "saved_data_writes": "Sandbox saves suppressed; no persistence verification claimed",
+  "manual_rollback_limit": "Two pre-existing detached-object shortcuts restore as nil; no retired scripts are recreated"
+}

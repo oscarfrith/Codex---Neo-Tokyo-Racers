@@ -1,5 +1,19 @@
 # Customisation UI
 
+2026-09-05 cleanup Phase 3 is installed and user-confirmed. Canonical paths now use Workspace.World, ReplicatedStorage.Assets/Remotes/Config and feature configuration folders. Physical content is preserved. Mirror 16:06:57 passes exact expected source/hierarchy/property parity. See docs/architecture/cleanup-phase3-generic-naming.md.
+
+Current remotes are ReplicatedStorage.Remotes.Garage; UI configuration is ReplicatedStorage.Config.UI. Shared UI owners and renderers are preserved. Initial loading lives under ReplicatedFirst.Loading. Runtime GarageProfileProjectionBindings replaces the old bridge endpoint name without changing profile semantics.
+
+**Complete cleanup Phase 2, 2026-09-05 — user-confirmed working.** ClientBase starts GarageUI directly; dormant GarageClient and unused helpers are removed. Current shared UI renderer, layout, preview and geometry owners are reused. Feature events/state moved to PlayerScripts.Runtime. No UI redesign or device/orientation change. See [current handoff](architecture/cleanup-phase2-canonical-ownership.md). Historical paths below are recovery history.
+
+## 2026-09-05 complete cleanup Phase 1
+
+Removed the unused `StarterGui.NeoTokyoRacersUI` ScreenGui scaffold and its 21 placeholder folders. The actual canonical garage UI, shared renderers, theme, geometry and runtime sources are unchanged. Fresh Play-button input and the existing dealership event reached the canonical browser; user uninterrupted dealership/drive flow remains the checkpoint. See `architecture/cleanup-phase1-scaffolding.md`.
+
+## 2026-09-05 architecture Phase 4
+
+ClientBase now starts the client features; `ReplicatedStorage.Modules.Game.Garage.GarageUI` is the existing canonical application, using the same shared components/geometry, preview renderer and camera module. Old PlayerScripts paths remain stateless adapters and runtime Bindable hosts. GarageClient contains the remaining legacy bridge; its duplicated theme reader now calls Core.ClientThemeAdapter, and its legacy preview-input binding is isolated with repeat-safe cleanup. The normal GarageUI already uses session-scoped PreviewCameraClient; no replacement camera renderer was added. Browser, preview and workshop opening passed in sandbox. The UI Drive click advanced tutorial state in testing; the full guided journey, paint/purchases and landscape touch remain user checks. See the Phase 4 handoff/path map.
+
 ## Paint Shop underglow icon and price-text refinement V1 installed/mirrored (2026-08-02)
 
 The complete `2026-08-02 10:35:36` mirror shows two independent stored artwork values but one ambiguously named sidebar lookup. `ModuleShopUIController` explicitly draws the left Underglow target from `NavigationIcons.UnderglowIcon`, while the bottom purchase card consumes the catalogued `VehicleCosmetics.Underglow.Icon`. Both currently contain `rbxassetid://87739019174785`.

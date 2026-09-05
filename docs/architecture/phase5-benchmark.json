@@ -1,0 +1,41 @@
+{
+  "kind": "isolated Edit city-clone CPU trace; not FPS",
+  "phase5": {
+    "trace_median_ms": 14.107199998761644,
+    "steady_30_ticks_ms": 1.6112000012071803,
+    "registration_ms": 15.144599999985076,
+    "metrics": {
+      "clones": 0,
+      "connections": 4,
+      "ticks": 86,
+      "proxy_records": 84,
+      "blocks": 84,
+      "cached": 6260,
+      "scans": 421,
+      "max_ms": 6.176200000481913,
+      "writes": 195948,
+      "last_ms": 0.05340000097930897,
+      "visits": 96004
+    },
+    "before_steady": {
+      "clones": 0,
+      "connections": 4,
+      "ticks": 56,
+      "proxy_records": 84,
+      "blocks": 84,
+      "cached": 6260,
+      "scans": 421,
+      "max_ms": 6.176200000481913,
+      "writes": 195948,
+      "last_ms": 5.480300000272109,
+      "visits": 96004
+    },
+    "trace_min_ms": 13.744300000325893
+  },
+  "legacy": {
+    "trace_median_ms": 27.367700000468176,
+    "steady_30_ticks_ms": 0.49170000056619756,
+    "registration_ms": 13.503499998478219,
+    "trace_min_ms": 25.535900000249967
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "phase": 5,
+  "place_id": 121304917315753,
+  "status": "user_confirmed",
+  "user_confirmation": "User reported everything worked well before authorising legacy cleanup; release-device and published streaming gates remain separate.",
+  "previous_phase_user_confirmed": 4,
+  "installer": "scripts/roblox_architecture_phase5_world_optimisation.lua",
+  "isolated_checks_passed": 8,
+  "compile_passed": 338,
+  "untouched_sources": 335,
+  "audit": "PASS",
+  "idempotency": "PASS",
+  "rollback_reinstall": "PASS",
+  "runtime": {
+    "server_ready": 26,
+    "client_ready": 40,
+    "development_skipped": 4,
+    "normal_owner_late_block_remove_readd": "PASS",
+    "blocks": 84,
+    "cached_objects": 6260,
+    "subscriptions": 4,
+    "published_streaming": "DEFERRED",
+    "device_matrix": "DEFERRED"
+  },
+  "benchmark": "phase5-benchmark.json",
+  "mirror": {
+    "generated_in_studio": "2026-09-05 11:50:30",
+    "scripts": 338,
+    "properties": 267177,
+    "integrity": "PASS",
+    "duplicate_non_source_paths": 2918,
+    "raw_paste": "UNTOUCHED"
+  },
+  "published": false,
+  "remaining_implementation_phases": 0
+}

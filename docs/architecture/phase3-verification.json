@@ -1,0 +1,30 @@
+{
+  "phase": 3,
+  "status": "installed_awaiting_user_gameplay_confirmation",
+  "place_id": 121304917315753,
+  "studio_final_mode": "Edit",
+  "isolated_tests": {"passed": 9, "failed": 0, "real_datastore_access": false},
+  "migration": {"canonical_implementations": 41, "stateless_adapters": 41, "startup_entries": 26, "disabled_server_scripts_preserved": 2},
+  "installer": {"audit": "PASS", "idempotent_install": "PASS", "rollback_reinstall": "PASS", "rebuild_from_installed_mirror": "PASS"},
+  "compile": {"sources": 240, "errors": 0},
+  "unrelated_source_check": {"sources": 154, "source_or_disabled_state_mismatches": 0},
+  "runtime": {
+    "services_ready": 26,
+    "profile_loaded": true,
+    "sandbox": true,
+    "purchase_cash_before": 1000000,
+    "purchase_cash_after": 650000,
+    "reward_cash_after": 650123,
+    "paint_preserved_reward_and_vehicle": true,
+    "spawn_exit_reentry": "PASS",
+    "save_now": "Save suppressed",
+    "stale_snapshot_import_rejected": true,
+    "actual_schema_serialization_bytes": 10677,
+    "runtime_fields_excluded": true,
+    "remaining_known_warning": "TrailerShot01Camera waits for missing Workspace.TrailerShots"
+  },
+  "mirror": {"status": "PASS", "generated_in_studio": "2026-09-05 11:16:45", "sources": 240, "properties": 267263, "duplicate_non_source_paths": 2918, "raw_paste_written": false},
+  "user_gameplay_confirmation": false,
+  "published": false,
+  "release_gates": ["Full gameplay/device acceptance", "Isolated published-place persistence and contention", "Drain old profile writers before deployment or rollback"]
+}

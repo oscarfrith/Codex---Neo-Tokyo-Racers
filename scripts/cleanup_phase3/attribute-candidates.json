@@ -1,0 +1,1098 @@
+[
+  {
+    "key": "NTR_LightingPreset",
+    "instances": 1,
+    "source_mentions": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Development.LightingPreviewClient",
+        "count": 1
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.GaragePreviewPresentationClient",
+        "count": 2
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.World.NightLamppostLightClient",
+        "count": 2
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.World.OwnedGarageEnvironmentLightingClient",
+        "count": 4
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.World.WindowMaterialClient",
+        "count": 2
+      },
+      {
+        "source": "ServerStorage.Modules.Game.World.LightingServer",
+        "count": 1
+      }
+    ],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"Day\"}"
+    ]
+  },
+  {
+    "key": "NTR_StreetLightBrightness",
+    "instances": 1,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"number\", \"value\": 2}"
+    ]
+  },
+  {
+    "key": "NTR_StreetLightsOn",
+    "instances": 1,
+    "source_mentions": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Development.LightingPreviewClient",
+        "count": 1
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.World.NightLamppostLightClient",
+        "count": 1
+      },
+      {
+        "source": "ServerStorage.Modules.Game.World.LightingServer",
+        "count": 1
+      }
+    ],
+    "values": [
+      "{\"type\": \"boolean\", \"value\": false}"
+    ]
+  },
+  {
+    "key": "NTR_WindowMode",
+    "instances": 1,
+    "source_mentions": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Development.LightingPreviewClient",
+        "count": 1
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.World.WindowMaterialClient",
+        "count": 1
+      },
+      {
+        "source": "ServerStorage.Modules.Game.World.LightingServer",
+        "count": 1
+      }
+    ],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"Day\"}"
+    ]
+  },
+  {
+    "key": "OwnedGarageInstallRunId",
+    "instances": 12,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"a965abb5-bc6a-44a0-bf9f-0f35b4f24aeb\"}",
+      "{\"type\": \"string\", \"value\": \"1f8bb83f-83d6-460b-b15f-8fd073cccc4c\"}",
+      "{\"type\": \"string\", \"value\": \"aa7acb74-a181-40d9-b679-883247a66613\"}",
+      "{\"type\": \"string\", \"value\": \"0920a41a-320b-4c5b-9609-5e6e9c1d544f\"}",
+      "{\"type\": \"string\", \"value\": \"91cfe595-9bec-4a7f-aa07-7ee022e01bd0\"}"
+    ]
+  },
+  {
+    "key": "OwnedGarageRevision",
+    "instances": 15,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"NTR_OWNED_GARAGE_PHASE14_V2_2_RESPONSIVE_NAVIGATION_CLOSURE\"}",
+      "{\"type\": \"string\", \"value\": \"NTR_OWNED_GARAGE_PHASE13_V1_3_AUTHORED_DEFAULTS_MATERIAL_TABS\"}",
+      "{\"type\": \"string\", \"value\": \"NTR_OWNED_GARAGE_PHASE6_ATOMIC_ACTIVATION_V1_1\"}",
+      "{\"type\": \"string\", \"value\": \"NTR_OWNED_GARAGE_PHASE13_TYPED_FIXTURES_FINISHES_V1_2_STREAM_COLLISION_STABILISATION\"}",
+      "{\"type\": \"string\", \"value\": \"NTR_OWNED_GARAGE_PHASE14_V1_LIGHTING_STATE_FOUNDATION\"}"
+    ]
+  },
+  {
+    "key": "ShadowOnly",
+    "instances": 15,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"boolean\", \"value\": true}",
+      "{\"type\": \"boolean\", \"value\": false}"
+    ]
+  },
+  {
+    "key": "SourceSheetRevision",
+    "instances": 15,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"NTR-BAL-009-P8\"}",
+      "{\"type\": \"string\", \"value\": \"NTR-BAL-003-P2\"}",
+      "{\"type\": \"string\", \"value\": \"NTR-BAL-004-P3\"}",
+      "{\"type\": \"string\", \"value\": \"NTR-BAL-007-P6\"}",
+      "{\"type\": \"string\", \"value\": \"NTR-BAL-006-P5\"}"
+    ]
+  },
+  {
+    "key": "BalancePhase",
+    "instances": 156,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"AK\"}",
+      "{\"type\": \"string\", \"value\": \"AK_RearEngineRepair\"}"
+    ]
+  },
+  {
+    "key": "V2SourceRevision",
+    "instances": 156,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"NTR-BAL-007-P6\"}"
+    ]
+  },
+  {
+    "key": "DefaultModulesPhase",
+    "instances": 12,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"AK\"}"
+    ]
+  },
+  {
+    "key": "NTR_DEALERSHIP_CUSTOMISATION_SPLIT_PHASE1_BUY_ONLY",
+    "instances": 12,
+    "source_mentions": [
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageServer",
+        "count": 2
+      }
+    ],
+    "values": [
+      "{\"type\": \"boolean\", \"value\": true}"
+    ]
+  },
+  {
+    "key": "PhaseAERootOnlyLightsInstalledAt",
+    "instances": 12,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"2026-06-02 17:50:04\"}"
+    ]
+  },
+  {
+    "key": "PhaseAERootOnlyLightsInstalledBy",
+    "instances": 12,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"roblox_vehicle_phaseAE_fresh_root_only_cockpit_spotlights\"}"
+    ]
+  },
+  {
+    "key": "LightingChannelContractRevision",
+    "instances": 1,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"NTR_OWNED_GARAGE_LIGHTING_CHANNELS_DECORATION_FLOW_V1\"}"
+    ]
+  },
+  {
+    "key": "LightingChannelContractRunId",
+    "instances": 1,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"25a2293e-1ea7-4402-a74a-470326e12c75\"}"
+    ]
+  },
+  {
+    "key": "NTRArchitecturePhase3Folder",
+    "instances": 11,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"boolean\", \"value\": true}"
+    ]
+  },
+  {
+    "key": "CreatedBy",
+    "instances": 39,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"roblox_dealership_intro_phase6_vehicle_exit_spawn_marker\"}",
+      "{\"type\": \"string\", \"value\": \"NTR_Phase2_LiveReferencesRegistry_2026_05_28\"}",
+      "{\"type\": \"string\", \"value\": \"roblox_architecture_phaseK_migrate_hover_kit_to_neotokyo\"}",
+      "{\"type\": \"string\", \"value\": \"roblox_architecture_phaseN_runtime_world_path_repair\"}",
+      "{\"type\": \"string\", \"value\": \"NTR_Phase1_ArchitectureResolver_2026_05_28\"}",
+      "{\"type\": \"string\", \"value\": \"NTR_PC_FREEROAM_UI_PHASE1_VISUAL_SHELL\"}"
+    ]
+  },
+  {
+    "key": "Phase1PlaceholderOnly",
+    "instances": 1,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"boolean\", \"value\": true}"
+    ]
+  },
+  {
+    "key": "CreatedOrUpdatedBy",
+    "instances": 13,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"NTR_Phase1_ArchitectureResolver_2026_05_28\"}",
+      "{\"type\": \"string\", \"value\": \"NTR_Phase2_LiveReferencesRegistry_2026_05_28\"}",
+      "{\"type\": \"string\", \"value\": \"NTR_Phase3_ConfigRegistryMirrors_2026_05_28\"}"
+    ]
+  },
+  {
+    "key": "PhaseNRepairedAt",
+    "instances": 6,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"2026-05-29 18:36:09\"}"
+    ]
+  },
+  {
+    "key": "PhaseNRepairedBy",
+    "instances": 6,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"roblox_architecture_phaseN_runtime_world_path_repair\"}"
+    ]
+  },
+  {
+    "key": "PhaseORepairedBy",
+    "instances": 3,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"roblox_cleanup_phaseO_stale_metadata_report_cleanup\"}"
+    ]
+  },
+  {
+    "key": "NTRGeneratedRoadSpawn",
+    "instances": 662,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"boolean\", \"value\": true}"
+    ]
+  },
+  {
+    "key": "NTR_RacingPhase1Ready",
+    "instances": 1,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"boolean\", \"value\": true}"
+    ]
+  },
+  {
+    "key": "NTR_ShowroomLoopAuthoredCheckpointCount",
+    "instances": 1,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"number\", \"value\": 17}"
+    ]
+  },
+  {
+    "key": "NTR_ShowroomLoopInstallerVersion",
+    "instances": 2,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"NTR_SHOWROOM_LOOP_ROUTE_V1_1\"}"
+    ]
+  },
+  {
+    "key": "NTR_ShowroomLoopStartLocalCFrame",
+    "instances": 12,
+    "source_mentions": [],
+    "values": [
+      "{\"components\": [13, -1, 31, 1, 0, 0, 0, 1, 0, 0, 0, 1], \"type\": \"CFrame\"}",
+      "{\"components\": [0, -1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1], \"type\": \"CFrame\"}",
+      "{\"components\": [-58, 1, -3, 1, 0, 0, 0, 1, 0, 0, 0, 1], \"type\": \"CFrame\"}",
+      "{\"components\": [0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1], \"type\": \"CFrame\"}",
+      "{\"components\": [13, -1, -4, 1, 0, 0, 0, 1, 0, 0, 0, 1], \"type\": \"CFrame\"}",
+      "{\"components\": [-15, -1, 66, 1, 0, 0, 0, 1, 0, 0, 0, 1], \"type\": \"CFrame\"}"
+    ]
+  },
+  {
+    "key": "NTR_RaceBrowserTeleportPoint",
+    "instances": 2,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"boolean\", \"value\": true}"
+    ]
+  },
+  {
+    "key": "NTR_ShowroomLoopInitialCFrame",
+    "instances": 17,
+    "source_mentions": [],
+    "values": [
+      "{\"components\": [1395.5, 112, -1026, 1, 0, 0, 0, 1, 0, 0, 0, 1], \"type\": \"CFrame\"}",
+      "{\"components\": [1597.537109375, 112, -2780.847900390625, 0.6156615018844604, 0, 0.7880107164382935, 0, 1, 0, -0.7880107164382935, 0, 0.6156615018844604], \"type\": \"CFrame\"}",
+      "{\"components\": [1065, 112, -385, 0, 0, 1, 0, 1, 0, -1, 0, 0], \"type\": \"CFrame\"}",
+      "{\"components\": [1476.5, 111, -2018, 1, 0, 0, 0, 1, 0, 0, 0, 1], \"type\": \"CFrame\"}",
+      "{\"components\": [1554, 181, -2766, -1, 0, 0, 0, 1, 0, 0, 0, -1], \"type\": \"CFrame\"}",
+      "{\"components\": [944.4141845703125, 112, -1809.4141845703125, 0.7071067690849304, 0, 0.7071067690849304, 0, 1, 0, -0.7071067690849304, 0, 0.7071067690849304], \"type\": \"CFrame\"}"
+    ]
+  },
+  {
+    "key": "NTR_Phase10B_FolderSegments",
+    "instances": 2,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"boolean\", \"value\": true}"
+    ]
+  },
+  {
+    "key": "NTR_ArrowUnassigned",
+    "instances": 2,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"boolean\", \"value\": true}"
+    ]
+  },
+  {
+    "key": "NTR_ArrowSegmentFolder",
+    "instances": 29,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"boolean\", \"value\": true}"
+    ]
+  },
+  {
+    "key": "PersistencePhase21PrivateGarageInteriorMVP",
+    "instances": 4,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"boolean\", \"value\": true}"
+    ]
+  },
+  {
+    "key": "NTR_DEALERSHIP_CUSTOMISATION_SPLIT_PHASE2_OWNED_ZONE",
+    "instances": 1,
+    "source_mentions": [
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageServer",
+        "count": 1
+      }
+    ],
+    "values": [
+      "{\"type\": \"boolean\", \"value\": true}"
+    ]
+  },
+  {
+    "key": "NTRLamppostLightTemplate",
+    "instances": 4,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"boolean\", \"value\": true}"
+    ]
+  },
+  {
+    "key": "NTRWindowMaterialManaged",
+    "instances": 39,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"boolean\", \"value\": true}",
+      "{\"type\": \"boolean\", \"value\": false}"
+    ]
+  },
+  {
+    "key": "NTRAudioOwnerRevision",
+    "instances": 1,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"NTR_AUDIO_SYSTEM_PHASE3_CONTEXT_REVERB_V1\"}"
+    ]
+  },
+  {
+    "key": "Revision",
+    "instances": 14,
+    "source_mentions": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+        "count": 11
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioStateContract",
+        "count": 3
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+        "count": 1
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+        "count": 2
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+        "count": 14
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Audio.VehicleAudioServer",
+        "count": 13
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.OwnedGarageAuthoritativeCommand",
+        "count": 19
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.OwnedGarageDisplayAssignment",
+        "count": 31
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+        "count": 39
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.OwnedGarageProfile",
+        "count": 16
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Player.EconomyServer",
+        "count": 1
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Player.ProfileServer",
+        "count": 2
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Player.ProfileStore",
+        "count": 2
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "count": 3
+      }
+    ],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"NTR_CUSTOMISATION_VEHICLE_COSMETICS_EMPTY_ROUTES_V1_2_AUTHORED_LIGHT_PROPERTIES\"}",
+      "{\"type\": \"string\", \"value\": \"NTR_VEHICLE_MULTIPLAYER_VFX_COLLISION_EXIT_V1_1\"}",
+      "{\"type\": \"string\", \"value\": \"NTR_DRIVING_HOVER_HEIGHT_CONFIG_BRIDGE_V1\"}",
+      "{\"type\": \"string\", \"value\": \"NTR_FREEROAM_MAP_PLAYERS_SMOOTH_PAN_V1_1\"}",
+      "{\"type\": \"string\", \"value\": \"NTR_LOADING_SYSTEM_PHASE3_OWNED_GARAGE_TRANSITIONS_V1\"}",
+      "{\"type\": \"string\", \"value\": \"NTR_OWNED_GARAGE_MATERIAL_ICON_SIZE_V1\"}"
+    ]
+  },
+  {
+    "key": "CustomisationRefinementRevision",
+    "instances": 1,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"NTR_CUSTOMISATION_ACCESS_ONBOARDING_PHYSICAL_COLOURS_V1_1\"}"
+    ]
+  },
+  {
+    "key": "PhaseRFogColorPatchedAt",
+    "instances": 1,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"2026-06-02 10:17:53\"}"
+    ]
+  },
+  {
+    "key": "PhaseRFogColorPatchedBy",
+    "instances": 1,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"roblox_lighting_phaseR_fogcolor_property_repair\"}"
+    ]
+  },
+  {
+    "key": "PhaseAQInstalled",
+    "instances": 1,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"boolean\", \"value\": true}"
+    ]
+  },
+  {
+    "key": "PhaseARInstalled",
+    "instances": 1,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"boolean\", \"value\": true}"
+    ]
+  },
+  {
+    "key": "PhaseASInstalled",
+    "instances": 1,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"boolean\", \"value\": true}"
+    ]
+  },
+  {
+    "key": "PlayerOnboardingRevision",
+    "instances": 1,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"NTR_PLAYER_ONBOARDING_V1_13_STATE_IMPORT_RACE_CONTROLS_TWO_LINE_OBJECTIVES\"}"
+    ]
+  },
+  {
+    "key": "RacingPresentationLifecycleRevision",
+    "instances": 1,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"NTR_RACING_PRESENTATION_LIFECYCLE_V1_4\"}"
+    ]
+  },
+  {
+    "key": "PersistencePhase24GarageSurfacesDecorMVP",
+    "instances": 1,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"boolean\", \"value\": true}"
+    ]
+  },
+  {
+    "key": "ConfigLayerPhase",
+    "instances": 1,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"Phase3\"}"
+    ]
+  },
+  {
+    "key": "Phase5Note",
+    "instances": 1,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"DataStore writes enabled for mirrored ProfileService snapshots. Active garage actions still use the V56 session profile.\"}"
+    ]
+  },
+  {
+    "key": "ProfileServicePhase",
+    "instances": 1,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"Phase5_DataStoreMirrorSaves\"}"
+    ]
+  },
+  {
+    "key": "InstalledBy",
+    "instances": 4,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"roblox_mobile_drive_thumbstick_install\"}",
+      "{\"type\": \"string\", \"value\": \"roblox_freeroam_map_stack_phase2\"}",
+      "{\"type\": \"string\", \"value\": \"NTR_RACING_UI_MOBILE_PHASE1B_TOP_GAP_REFINEMENT\"}",
+      "{\"type\": \"string\", \"value\": \"NTR_MOBILE_FREEROAM_UI_PHASE1L_MODAL_SAFE_AREA_PC_CASH\"}"
+    ]
+  },
+  {
+    "key": "FreeRoamCashPresentationRevision",
+    "instances": 2,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"NTR_FREEROAM_CASH_SMOOTHING_V1\"}"
+    ]
+  },
+  {
+    "key": "MigratedBy",
+    "instances": 6,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"roblox_architecture_phaseK_migrate_hover_kit_to_neotokyo\"}",
+      "{\"type\": \"string\", \"value\": \"roblox_world_phaseJ_far_lod5_assets_migration\"}"
+    ]
+  },
+  {
+    "key": "SharedResponsiveUIRevision",
+    "instances": 1,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"NTR_SHARED_RESPONSIVE_UI_FOUNDATION_V1\"}"
+    ]
+  },
+  {
+    "key": "InstallerRevision",
+    "instances": 7,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"NTR_AUDIO_SYSTEM_PHASE2_CONTEXT_MUSIC_AMBIENCE_V1\"}",
+      "{\"type\": \"string\", \"value\": \"NTR_PRESENTATION_AUDIO_UI_PREVIEW_RACE_V1_3_2\"}",
+      "{\"type\": \"string\", \"value\": \"NTR_AUDIO_SYSTEM_PHASE3_ACOUSTICS_ACTIVATION_V1\"}",
+      "{\"type\": \"string\", \"value\": \"NTR_SHARED_RESPONSIVE_UI_FOUNDATION_V1\"}",
+      "{\"type\": \"string\", \"value\": \"NTR_AUDIO_SYSTEM_PHASE1_STANDARD_VEHICLE_AUDIO_V1\"}"
+    ]
+  },
+  {
+    "key": "NTRMobileRacingPhase2Created",
+    "instances": 25,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"boolean\", \"value\": true}"
+    ]
+  },
+  {
+    "key": "InstalledByControls",
+    "instances": 1,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"NTR_MOBILE_FREEROAM_UI_PHASE1M_CONTROL_SURFACE_OPACITY\"}"
+    ]
+  },
+  {
+    "key": "InstalledByPedalLayout",
+    "instances": 1,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"NTR_MOBILE_FREEROAM_UI_PHASE1N_SQUARE_PEDAL_LAYOUT\"}"
+    ]
+  },
+  {
+    "key": "NTR_AmbienceBaseVolume",
+    "instances": 1,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"number\", \"value\": 1}"
+    ]
+  },
+  {
+    "key": "NTR_GameplayMusicBaseVolume",
+    "instances": 1,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"number\", \"value\": 1}"
+    ]
+  },
+  {
+    "key": "NTR_GameplaySFXBaseVolume",
+    "instances": 1,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"number\", \"value\": 1}"
+    ]
+  },
+  {
+    "key": "NTR_VehicleBaseVolume",
+    "instances": 1,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"number\", \"value\": 1}"
+    ]
+  },
+  {
+    "key": "ResponsiveInstalledBy",
+    "instances": 1,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"NTR_GARAGE_RESPONSIVE_SCALED_TOUCH_V1_2\"}"
+    ]
+  },
+  {
+    "key": "InstallRunId",
+    "instances": 1,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"13aa91f0-b8b8-4bc0-9af2-39468b997592\"}"
+    ]
+  },
+  {
+    "key": "NTRDefault",
+    "instances": 46,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"boolean\", \"value\": true}"
+    ]
+  },
+  {
+    "key": "LegacyName",
+    "instances": 1,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"CONFIG\"}"
+    ]
+  },
+  {
+    "key": "Phase",
+    "instances": 3,
+    "source_mentions": [
+      {
+        "source": "ReplicatedFirst.NTRLoading.InitialLoadingAndStartScreenClient",
+        "count": 5
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.AcousticsClient",
+        "count": 2
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.AcousticsRuntimeClient",
+        "count": 1
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.AudioRuntimeClient",
+        "count": 1
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient",
+        "count": 4
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.ContextAudioRuntimeClient",
+        "count": 1
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+        "count": 2
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Dealership.DealershipIntroClient",
+        "count": 4
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Development.LightingPreviewClient",
+        "count": 1
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.GaragePropertyCatalog",
+        "count": 1
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+        "count": 2
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Garage.PaintClient",
+        "count": 2
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Player.GarageProfileProjection",
+        "count": 3
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Player.PlayerProfileSchema",
+        "count": 2
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceBrowserClient",
+        "count": 2
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceEntryMenuClient",
+        "count": 3
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceEntryPresentationClient",
+        "count": 2
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+        "count": 6
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceParticipantVisibilityClient",
+        "count": 1
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceQueueClient",
+        "count": 1
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceRouteGuideClient",
+        "count": 4
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceSessionAssetsClient",
+        "count": 1
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient",
+        "count": 5
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceTimeTrialResultCoachClient",
+        "count": 2
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Racing.RaceTransitionClient",
+        "count": 7
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+        "count": 14
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.LoadingTransitionUI",
+        "count": 2
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+        "count": 3
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+        "count": 1
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehicleUpgradeDefinitions",
+        "count": 1
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient",
+        "count": 3
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.World.LODClient",
+        "count": 4
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.World.NightLamppostLightClient",
+        "count": 1
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.World.WindowMaterialClient",
+        "count": 1
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Audio.VehicleAudioServer",
+        "count": 1
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Development.VehiclePerformanceComparisonServer",
+        "count": 1
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageProfile",
+        "count": 1
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Garage.GarageServer",
+        "count": 10
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Player.ProfileCompatibilityServer",
+        "count": 1
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Player.ProfileServer",
+        "count": 1
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.GlobalLeaderboardServer",
+        "count": 1
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.MatchmakingServer",
+        "count": 7
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.PersonalBestServer",
+        "count": 1
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.RaceAssetsServer",
+        "count": 1
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.RaceDisplayNameServer",
+        "count": 1
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.RaceRewardsServer",
+        "count": 2
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.RaceTeleportServer",
+        "count": 3
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Racing.TimeTrialServer",
+        "count": 5
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+        "count": 1
+      },
+      {
+        "source": "ServerStorage.Modules.Game.World.FreeRoamTeleportServer",
+        "count": 2
+      },
+      {
+        "source": "ServerStorage.Modules.Game.World.LightingServer",
+        "count": 1
+      }
+    ],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"DrivingFeelPhase1\"}",
+      "{\"type\": \"string\", \"value\": \"AM\"}",
+      "{\"type\": \"string\", \"value\": \"AN\"}"
+    ]
+  },
+  {
+    "key": "Phase2TuningNote",
+    "instances": 1,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"Disable HandlingEnabled to keep Phase 1 longitudinal dynamics with legacy handling/drift behavior.\"}"
+    ]
+  },
+  {
+    "key": "Phase2_1TuningNote",
+    "instances": 1,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"Full drift uses Base + BlendExtra. Old slowdown was 0.72 + 0.42. Reverse delay starts within StopThresholdMph.\"}"
+    ]
+  },
+  {
+    "key": "InstalledVersion",
+    "instances": 1,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"NTR_STUDIO_CASH_GRANT_V1\"}"
+    ]
+  },
+  {
+    "key": "Phase3EntryMenuReady",
+    "instances": 1,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"boolean\", \"value\": true}"
+    ]
+  },
+  {
+    "key": "Phase4ResultsReady",
+    "instances": 1,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"boolean\", \"value\": true}"
+    ]
+  },
+  {
+    "key": "Phase5RouteGuideReady",
+    "instances": 1,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"boolean\", \"value\": true}"
+    ]
+  },
+  {
+    "key": "PresentationLifecycleRevision",
+    "instances": 1,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"NTR_RACING_PRESENTATION_LIFECYCLE_V1_4\"}"
+    ]
+  },
+  {
+    "key": "NTRConfigured",
+    "instances": 44,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"boolean\", \"value\": true}"
+    ]
+  },
+  {
+    "key": "NTR_ShowroomLoopNeedsMapCalibration",
+    "instances": 1,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"boolean\", \"value\": true}"
+    ]
+  },
+  {
+    "key": "PhaseOTextUpdatedAt",
+    "instances": 3,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"2026-05-29 18:51:10\"}"
+    ]
+  },
+  {
+    "key": "PhaseOTextUpdatedBy",
+    "instances": 3,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"roblox_cleanup_phaseO_stale_metadata_report_cleanup\"}"
+    ]
+  },
+  {
+    "key": "NTRArchitecturePhase4Folder",
+    "instances": 12,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"boolean\", \"value\": true}"
+    ]
+  },
+  {
+    "key": "ParkedExternalAudioRevision",
+    "instances": 1,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"NTR_AUDIO_PARKED_EXTERNAL_3D_V1\"}"
+    ]
+  },
+  {
+    "key": "VehicleTuningCueRevision",
+    "instances": 1,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"NTR_AUDIO_VEHICLE_TUNING_CUES_V1\"}"
+    ]
+  },
+  {
+    "key": "ProfileRevision",
+    "instances": 1,
+    "source_mentions": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+        "count": 1
+      },
+      {
+        "source": "ServerStorage.Modules.Game.Audio.VehicleAudioServer",
+        "count": 2
+      }
+    ],
+    "values": [
+      "{\"type\": \"number\", \"value\": 1}"
+    ]
+  },
+  {
+    "key": "MigratedAt",
+    "instances": 1,
+    "source_mentions": [
+      {
+        "source": "ReplicatedStorage.Modules.Game.Player.GarageProfileProjection",
+        "count": 1
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Player.PlayerProfileSchema",
+        "count": 1
+      },
+      {
+        "source": "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehicleModuleUpgradeRuntime",
+        "count": 1
+      }
+    ],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"2026-05-29 11:02:33\"}"
+    ]
+  },
+  {
+    "key": "NTRVehiclePerformanceV2Phase",
+    "instances": 3,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"number\", \"value\": 7}"
+    ]
+  },
+  {
+    "key": "VehicleCosmeticsRevision",
+    "instances": 1,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"string\", \"value\": \"NTR_CUSTOMISATION_VEHICLE_COSMETICS_EMPTY_ROUTES_V1_2_AUTHORED_LIGHT_PROPERTIES\"}"
+    ]
+  },
+  {
+    "key": "PersistencePhase14InstanceInventory",
+    "instances": 1,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"boolean\", \"value\": true}"
+    ]
+  },
+  {
+    "key": "PersistencePhase9GaragePropertyCatalog",
+    "instances": 1,
+    "source_mentions": [],
+    "values": [
+      "{\"type\": \"boolean\", \"value\": true}"
+    ]
+  }
+]

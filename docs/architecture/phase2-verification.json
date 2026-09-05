@@ -1,0 +1,25 @@
+{
+  "phase": 2,
+  "status": "user_gameplay_confirmed",
+  "place_id": 121304917315753,
+  "studio_final_mode": "Edit",
+  "helper_tests": {"passed": 19, "failed": 0, "real_datastore_access": false},
+  "installer": {"audit": "PASS", "idempotent_reinstall": "PASS", "rollback_and_reinstall": "PASS"},
+  "compile": {"sources": 195, "errors": 0},
+  "scope": {"existing_sources_changed": 2, "modules_added": 2, "unrelated_source_changes": 0},
+  "runtime": {
+    "profile_loaded": true,
+    "studio_vehicle_sandbox": true,
+    "cash": 1000000,
+    "save_now_message": "Save suppressed",
+    "client_get_initial": true,
+    "malformed_payload_rejected": true,
+    "valid_request_after_rejection": true,
+    "known_warning": "TrailerShot01Camera waits for missing Workspace.TrailerShots; Phase 4 scope",
+    "user_gameplay_confirmation": true,
+    "confirmation_note": "2026-09-05: everything seemed to work well on playthrough; user approved Phase 3"
+  },
+  "mirror": {"status": "PASS", "generated_in_studio": "2026-09-05 10:58:29", "scripts": 195, "properties": 267313, "duplicate_non_source_paths": 2918, "raw_paste_written": false},
+  "release_gates": ["User gameplay/device smoke", "Isolated published-place real save/rejoin and cross-server contention", "Drain old profile writers before deployment or rollback"],
+  "published": false
+}

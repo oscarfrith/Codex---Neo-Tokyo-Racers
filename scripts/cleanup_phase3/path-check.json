@@ -1,0 +1,53 @@
+[
+  {
+    "source": [
+      "ReplicatedStorage",
+      "Modules",
+      "Game",
+      "Dealership",
+      "GarageEntranceClient"
+    ],
+    "line": 15,
+    "path": [
+      "ReplicatedStorage",
+      "Remotes",
+      "UI",
+      "GarageSessionRequest"
+    ],
+    "text": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\"):WaitForChild(\"UI\"):WaitForChild(\"GarageSessionRequest\")"
+  },
+  {
+    "source": [
+      "ReplicatedStorage",
+      "Modules",
+      "Game",
+      "Garage",
+      "GarageUI"
+    ],
+    "line": 13,
+    "path": [
+      "ReplicatedStorage",
+      "Remotes",
+      "UI",
+      "GarageSessionRequest"
+    ],
+    "text": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\"):WaitForChild(\"UI\"):WaitForChild(\"GarageSessionRequest\")"
+  },
+  {
+    "source": [
+      "ReplicatedStorage",
+      "Modules",
+      "Game",
+      "Vehicles",
+      "DrivingClient"
+    ],
+    "line": 359,
+    "path": [
+      "ReplicatedStorage",
+      "Config",
+      "Vehicles",
+      "CameraAssist"
+    ],
+    "text": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"Vehicles\"):FindFirstChild(\"CameraAssist\")"
+  }
+]

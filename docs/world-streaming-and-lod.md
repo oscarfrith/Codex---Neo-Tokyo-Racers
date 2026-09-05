@@ -1,5 +1,19 @@
 # Open World LOD / Far Proxy System
 
+2026-09-05 cleanup Phase 3 is installed and user-confirmed. Canonical paths now use Workspace.World, ReplicatedStorage.Assets/Remotes/Config and feature configuration folders. Physical content is preserved. Mirror 16:06:57 passes exact expected source/hierarchy/property parity. See docs/architecture/cleanup-phase3-generic-naming.md.
+
+The original World folder is now Workspace.World; unrelated Workspace roots remain excluded. LOD tuning is ReplicatedStorage.Config.World.LOD, lighting config is Config.World.Lighting, skies are Assets.World.Skies, and definitions are Modules.Game.World.LightingSchedule/LightingPresets. All renamed tag consumers and memberships moved together, including only the exact approved WIP lighting exception. No distance, placement or geometry changes.
+
+**Complete cleanup Phase 2, 2026-09-05 — user-confirmed working.** LODClient still owns LODPolicy/LODRuntime under ReplicatedStorage.Modules.Game.World. Policy/runtime sources are byte-identical to the prior baseline; only dependency/reporting context changes. Diagnostics now report on PlayerScripts.Runtime.World. Entire Workspace is unchanged; World/asset naming is Phase 3 scope. See [current handoff](architecture/cleanup-phase2-canonical-ownership.md). Historical paths below are recovery history.
+
+## 2026-09-05 — Architecture Phase 5 (current)
+
+Phase 5 is user-confirmed. Subsequent legacy cleanup removes only old Shared.Config.World migration notes/placeholders; live WorldLOD config, adapters, LOD source and physical content remain unchanged. `ReplicatedStorage.Modules.Game.World.LODClient` remains the sole owner under ClientBase, with `LODRuntime` for membership/cleanup and pure `LODPolicy` for bands. The old LocalScript path below is now an adapter. Current tuning is in `ReplicatedStorage.NeoTokyoRacers.Config.Runtime.WorldLOD`: **0.5 s** updates, near boundaries **200/800/1300/2450**, far **2450–5000** with **50** hysteresis, foliage **1275–2000**. These preserve live source; April numbers below are historical.
+
+Missing proxy/city roots no longer recurse or block startup. Whole blocks and late folders/parts are registered and removed with cleanup; reverse membership handles deferred removal signals. Cached buckets avoid descendant scans and visibility writes during unchanged ticks. Authored transparency/collision/query/touch/anchoring/shadow/effect properties restore on removal/destroy. Previously seen blocks retain only scalar far-center metadata while streamed out; proxy clones are destroyed outside their band and recreated when needed. No city assets, collision policy, driving, rendering distances or streaming settings were edited.
+
+Eight isolated lifecycle/policy checks, normal-client late block/removal/re-entry, all-source compilation and rollback/idempotency passed. Controlled cloned-city transition trace: 27.37 ms → 14.11 ms median for seven positions; registration 13.50 → 15.14 ms, idle tick approximately 0.016 → 0.054 ms. This is CPU microbenchmark evidence, not device FPS or published streaming proof. Use profiler marker `NTR.WorldLOD.Step`; optional Studio diagnostics are described in scripts/architecture_phase5/README.md. See docs/architecture/phase5-optimisation.md for limits, verification and rollback. All older “run next” instructions below are historical.
+
 **Created / first designed:** Before 2026-04-29  
 **Last updated:** 2026-07-02
 **Current status:** Implemented / City root migrated / Far LOD5 asset migration prepared / private garage interior/display/visit MVP confirmed / garage surface-decor service confirmed
