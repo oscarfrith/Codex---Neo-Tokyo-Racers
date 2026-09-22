@@ -244,8 +244,8 @@ local function vehiclePresentationForId(vehicleId)
 		end
 	end
 	local assets = game:GetService("ReplicatedStorage"):FindFirstChild("Assets")
-	local vehicles = assets and game:GetService("ReplicatedStorage"):WaitForChild("Assets"):FindFirstChild("Vehicles")
-	local categories = vehicles and game:GetService("ReplicatedStorage"):WaitForChild("Assets"):WaitForChild("Vehicles"):FindFirstChild("Categories")
+	local vehicles = assets and game:GetService("ReplicatedStorage"):WaitForChild("Assets"):FindFirstChild("VehiclePreviews")
+	local categories = vehicles and game:GetService("ReplicatedStorage"):WaitForChild("Assets"):WaitForChild("VehiclePreviews"):FindFirstChild("Categories")
 	for _, category in ipairs(categories and categories:GetChildren() or {}) do
 		local cockpitRoot = category:FindFirstChild("COCKPITS_ReplaceAssetsHere")
 		for _, model in ipairs(cockpitRoot and cockpitRoot:GetChildren() or {}) do

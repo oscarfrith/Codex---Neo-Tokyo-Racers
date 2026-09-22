@@ -148,10 +148,10 @@
     "class_name": "ModuleScript",
     "disabled": false,
     "attributes": {},
-    "source_lines": 85,
-    "source_bytes": 1822,
-    "source_checksum": "144906020",
-    "source_sha256": "3fdf489c05de533754fff6cc58318818ccfda1111acb8d881e7e1b512764d586",
+    "source_lines": 86,
+    "source_bytes": 1969,
+    "source_checksum": "169277184",
+    "source_sha256": "115bed0dc5362a4a50cb7c6ff07fd6245bd9b6977ffe39b92900f7b7b2e62efe",
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Core/PathResolver.module.lua"
   },
   {
@@ -662,9 +662,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 697,
-    "source_bytes": 58862,
-    "source_checksum": "222676969",
-    "source_sha256": "d69019df94de7431a4198e66ef938bed18e2089314b06a92532a50b13ce5905f",
+    "source_bytes": 58869,
+    "source_checksum": "259869862",
+    "source_sha256": "5637a6f7cee3ba09e968675c2a1b96437b5f86e6e1ae47bec54edbf6e56bb139",
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Garage/GarageUI.module.lua"
   },
   {
@@ -928,9 +928,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 901,
-    "source_bytes": 58444,
-    "source_checksum": "674971012",
-    "source_sha256": "36bccf720029579fc64812b4f923920da1a648b10cfa49620beeed83e25cade9",
+    "source_bytes": 58458,
+    "source_checksum": "746307155",
+    "source_sha256": "d433cfdd248077f40de2a919dc8e65851ea1f1fc20e5031ed62c56ce58da9b37",
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Racing/RaceEntryPresentationClient.module.lua"
   },
   {
@@ -1118,9 +1118,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 1214,
-    "source_bytes": 64613,
-    "source_checksum": "971814622",
-    "source_sha256": "da72d6a3b0e6e38f94061e0cc578449ecb680d0fc6f1d9f1730a00705fb74cdd",
+    "source_bytes": 64620,
+    "source_checksum": "10507470",
+    "source_sha256": "47c18aeda0ba1777e7b3324175dec253c638233eaafa086fcc39e5355ab7f22a",
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/UI/DesktopFreeRoamHudUI.module.lua"
   },
   {
@@ -1308,9 +1308,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 421,
-    "source_bytes": 46802,
-    "source_checksum": "718474788",
-    "source_sha256": "474ed19f74299a1bf7c2eb8f467fcab545d515b734687003ebd5b07e148b5c3b",
+    "source_bytes": 46809,
+    "source_checksum": "747984282",
+    "source_sha256": "d5f8ebdabeb8a51632fa0ef267a2d3be8df1319e19c372740857878a7b4ae4be",
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/UI/MobileFreeRoamHudUI.module.lua"
   },
   {
@@ -2488,9 +2488,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 2753,
-    "source_bytes": 127415,
-    "source_checksum": "575406301",
-    "source_sha256": "5732e7e5abcb41bebb5531049589093ce34b56368b6f855b298b4357bb396db2",
+    "source_bytes": 127411,
+    "source_checksum": "531235684",
+    "source_sha256": "16984127cd73faae511a41310e2bc686bbd3ae92dff0fa4d52e5b2cbcf6dc08e",
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Garage/GarageServer.module.lua"
   },
   {
@@ -2545,9 +2545,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 106,
-    "source_bytes": 8995,
-    "source_checksum": "702216587",
-    "source_sha256": "900a3a9f7aec37317829f0894be058d51ac32b6c63cd1f69dc7d9f8278c75233",
+    "source_bytes": 8987,
+    "source_checksum": "695640515",
+    "source_sha256": "57a900e0c1c28bac49fcbf30c4f62472a16dd66fbb6c6e6a2461aaf0661ef4ec",
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Garage/OwnedGarageDisplay.module.lua"
   },
   {
@@ -2621,9 +2621,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 364,
-    "source_bytes": 71054,
-    "source_checksum": "265471404",
-    "source_sha256": "cab8c2e63f0ddbf2f46e4a51545ee0b3c2ba83dbb265ce325734031fca69b938",
+    "source_bytes": 71050,
+    "source_checksum": "238770881",
+    "source_sha256": "9972211815a767b3aac30cb33880cc4b859736420613006398e16fb49b6e88b4",
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Garage/OwnedGarageManagement.module.lua"
   },
   {

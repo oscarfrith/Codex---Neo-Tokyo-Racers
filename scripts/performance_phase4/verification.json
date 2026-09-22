@@ -1,0 +1,14 @@
+{
+  "mirror": "2026-09-22 12:47:08",
+  "sources": 164,
+  "source_sha256_parity": true,
+  "all_hierarchy_property_parity": true,
+  "nodes": 44464,
+  "replicatedDescendants": 3980,
+  "missing_or_changed": 0,
+  "added_or_changed": 0,
+  "publicCatalogueFresh": true,
+  "previewProjectionFresh": true,
+  "revision": "469d9bd81944a3d71a127ea1d5e702720b75f55524391cb27008e05e8fc2cf0e",
+  "previewInstances": 2105
+}

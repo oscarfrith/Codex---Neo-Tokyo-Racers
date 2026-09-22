@@ -1,6 +1,6 @@
 # Roblox Studio Hierarchy Snapshot
 
-Generated in Studio: 2026-09-22 12:31:08
+Generated in Studio: 2026-09-22 12:47:08
 Scripts exported: 164
 Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, StarterPlayer, StarterGui, SoundService, Workspace, ServerStorage, Lighting
 
@@ -169,7 +169,7 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
               - TemplateBeamEndLong (Attachment)
               - StabiliserOn_Beam Flame (Beam) [6 attrs]
               - StabiliserOn_Fire (ParticleEmitter) [1 attrs]
-    - Vehicles (Folder)
+    - VehiclePreviews (Folder)
       - Categories (Folder) [1 attrs]
         - PIERCER (Folder) [4 attrs]
           - COCKPITS_ReplaceAssetsHere (Folder)
@@ -543,10 +543,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - boost thrust neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Burst (Folder) [5 attrs]
-                    - Endurance (Folder) [6 attrs]
-                    - Recovery (Folder) [7 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - VFX_BoostJet_Back (Attachment) [2 attrs]
@@ -561,10 +557,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - boost thrust neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Burst (Folder) [5 attrs]
-                    - Endurance (Folder) [6 attrs]
-                    - Recovery (Folder) [7 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - VFX_BoostJet_Back (Attachment) [2 attrs]
@@ -579,10 +571,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - boost thrust neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Burst (Folder) [5 attrs]
-                    - Endurance (Folder) [6 attrs]
-                    - Recovery (Folder) [7 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - VFX_BoostJet_Back (Attachment) [2 attrs]
@@ -598,10 +586,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - boost thrust neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Burst (Folder) [5 attrs]
-                    - Endurance (Folder) [6 attrs]
-                    - Recovery (Folder) [7 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - VFX_BoostJet_Back (Attachment) [2 attrs]
@@ -616,10 +600,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - boost thrust neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Burst (Folder) [5 attrs]
-                    - Endurance (Folder) [6 attrs]
-                    - Recovery (Folder) [7 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - VFX_BoostJet_Back (Attachment) [2 attrs]
@@ -634,10 +614,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - boost thrust neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Burst (Folder) [5 attrs]
-                    - Endurance (Folder) [6 attrs]
-                    - Recovery (Folder) [7 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - VFX_BoostJet_Back (Attachment) [2 attrs]
@@ -653,10 +629,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - boost thrust neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Burst (Folder) [5 attrs]
-                    - Endurance (Folder) [6 attrs]
-                    - Recovery (Folder) [7 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - VFX_BoostJet_Back (Attachment) [2 attrs]
@@ -671,10 +643,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - boost thrust neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Burst (Folder) [5 attrs]
-                    - Endurance (Folder) [6 attrs]
-                    - Recovery (Folder) [7 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - VFX_BoostJet_Back (Attachment) [2 attrs]
@@ -689,10 +657,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - boost thrust neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Burst (Folder) [5 attrs]
-                    - Endurance (Folder) [6 attrs]
-                    - Recovery (Folder) [7 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - VFX_BoostJet_Back (Attachment) [2 attrs]
@@ -708,10 +672,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - boost thrust neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Burst (Folder) [5 attrs]
-                    - Endurance (Folder) [6 attrs]
-                    - Recovery (Folder) [7 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - VFX_BoostJet_Back (Attachment) [2 attrs]
@@ -726,10 +686,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - boost thrust neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Burst (Folder) [5 attrs]
-                    - Endurance (Folder) [6 attrs]
-                    - Recovery (Folder) [7 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - VFX_BoostJet_Back (Attachment) [2 attrs]
@@ -744,10 +700,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - boost thrust neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Burst (Folder) [5 attrs]
-                    - Endurance (Folder) [6 attrs]
-                    - Recovery (Folder) [7 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - VFX_BoostJet_Back (Attachment) [2 attrs]
@@ -763,10 +715,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - boost thrust neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Burst (Folder) [5 attrs]
-                    - Endurance (Folder) [6 attrs]
-                    - Recovery (Folder) [7 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - VFX_BoostJet_Back (Attachment) [2 attrs]
@@ -781,10 +729,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - boost thrust neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Burst (Folder) [5 attrs]
-                    - Endurance (Folder) [6 attrs]
-                    - Recovery (Folder) [7 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - VFX_BoostJet_Back (Attachment) [2 attrs]
@@ -799,10 +743,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - boost thrust neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Burst (Folder) [5 attrs]
-                    - Endurance (Folder) [6 attrs]
-                    - Recovery (Folder) [7 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - VFX_BoostJet_Back (Attachment) [2 attrs]
@@ -818,10 +758,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - boost thrust neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Burst (Folder) [5 attrs]
-                    - Endurance (Folder) [6 attrs]
-                    - Recovery (Folder) [7 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - VFX_BoostJet_Back (Attachment) [2 attrs]
@@ -836,10 +772,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - boost thrust neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Burst (Folder) [5 attrs]
-                    - Endurance (Folder) [6 attrs]
-                    - Recovery (Folder) [7 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - VFX_BoostJet_Back (Attachment) [2 attrs]
@@ -854,10 +786,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - boost thrust neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Burst (Folder) [5 attrs]
-                    - Endurance (Folder) [6 attrs]
-                    - Recovery (Folder) [7 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - VFX_BoostJet_Back (Attachment) [2 attrs]
@@ -931,10 +859,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - engine a thruster neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Efficiency (Folder) [6 attrs]
-                    - Output (Folder) [5 attrs]
-                    - Velocity (Folder) [5 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - ThrustAttachment (Attachment)
@@ -952,10 +876,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - engine a thruster neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Efficiency (Folder) [6 attrs]
-                    - Output (Folder) [5 attrs]
-                    - Velocity (Folder) [5 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - ThrustAttachment (Attachment)
@@ -973,10 +893,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - engine a thruster neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Efficiency (Folder) [6 attrs]
-                    - Output (Folder) [5 attrs]
-                    - Velocity (Folder) [5 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - ThrustAttachment (Attachment)
@@ -995,10 +911,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - engine a thruster neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Efficiency (Folder) [6 attrs]
-                    - Output (Folder) [5 attrs]
-                    - Velocity (Folder) [5 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - ThrustAttachment (Attachment)
@@ -1016,10 +928,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - engine a thruster neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Efficiency (Folder) [6 attrs]
-                    - Output (Folder) [5 attrs]
-                    - Velocity (Folder) [5 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - ThrustAttachment (Attachment)
@@ -1037,10 +945,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - engine a thruster neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Efficiency (Folder) [6 attrs]
-                    - Output (Folder) [5 attrs]
-                    - Velocity (Folder) [5 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - ThrustAttachment (Attachment)
@@ -1059,10 +963,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - engine a thruster neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Efficiency (Folder) [6 attrs]
-                    - Output (Folder) [5 attrs]
-                    - Velocity (Folder) [5 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - ThrustAttachment (Attachment)
@@ -1080,10 +980,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - engine a thruster neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Efficiency (Folder) [6 attrs]
-                    - Output (Folder) [5 attrs]
-                    - Velocity (Folder) [5 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - ThrustAttachment (Attachment)
@@ -1101,10 +997,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - engine a thruster neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Efficiency (Folder) [6 attrs]
-                    - Output (Folder) [5 attrs]
-                    - Velocity (Folder) [5 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - ThrustAttachment (Attachment)
@@ -1123,10 +1015,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - engine a thruster neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Efficiency (Folder) [6 attrs]
-                    - Output (Folder) [5 attrs]
-                    - Velocity (Folder) [5 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - ThrustAttachment (Attachment)
@@ -1144,10 +1032,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - engine a thruster neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Efficiency (Folder) [6 attrs]
-                    - Output (Folder) [5 attrs]
-                    - Velocity (Folder) [5 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - ThrustAttachment (Attachment)
@@ -1165,10 +1049,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - engine a thruster neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Efficiency (Folder) [6 attrs]
-                    - Output (Folder) [5 attrs]
-                    - Velocity (Folder) [5 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - ThrustAttachment (Attachment)
@@ -1187,10 +1067,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - engine a thruster neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Efficiency (Folder) [6 attrs]
-                    - Output (Folder) [5 attrs]
-                    - Velocity (Folder) [5 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - ThrustAttachment (Attachment)
@@ -1208,10 +1084,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - engine a thruster neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Efficiency (Folder) [6 attrs]
-                    - Output (Folder) [5 attrs]
-                    - Velocity (Folder) [5 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - ThrustAttachment (Attachment)
@@ -1229,10 +1101,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - engine a thruster neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Efficiency (Folder) [6 attrs]
-                    - Output (Folder) [5 attrs]
-                    - Velocity (Folder) [5 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - ThrustAttachment (Attachment)
@@ -1251,10 +1119,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - engine a thruster neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Efficiency (Folder) [6 attrs]
-                    - Output (Folder) [5 attrs]
-                    - Velocity (Folder) [5 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - ThrustAttachment (Attachment)
@@ -1272,10 +1136,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - engine a thruster neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Efficiency (Folder) [6 attrs]
-                    - Output (Folder) [5 attrs]
-                    - Velocity (Folder) [5 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - ThrustAttachment (Attachment)
@@ -1293,10 +1153,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - engine a thruster neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Efficiency (Folder) [6 attrs]
-                    - Output (Folder) [5 attrs]
-                    - Velocity (Folder) [5 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - ThrustAttachment (Attachment)
@@ -1381,10 +1237,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - engine b thruster neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Efficiency (Folder) [6 attrs]
-                    - Output (Folder) [5 attrs]
-                    - Velocity (Folder) [5 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - ThrustAttachment (Attachment)
@@ -1402,10 +1254,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - engine b thruster neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Efficiency (Folder) [6 attrs]
-                    - Output (Folder) [5 attrs]
-                    - Velocity (Folder) [5 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - ThrustAttachment (Attachment)
@@ -1423,10 +1271,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - engine b thruster neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Efficiency (Folder) [6 attrs]
-                    - Output (Folder) [5 attrs]
-                    - Velocity (Folder) [5 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - ThrustAttachment (Attachment)
@@ -1445,10 +1289,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - engine b thruster neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Efficiency (Folder) [6 attrs]
-                    - Output (Folder) [5 attrs]
-                    - Velocity (Folder) [5 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - ThrustAttachment (Attachment)
@@ -1466,10 +1306,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - engine b thruster neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Efficiency (Folder) [6 attrs]
-                    - Output (Folder) [5 attrs]
-                    - Velocity (Folder) [5 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - ThrustAttachment (Attachment)
@@ -1487,10 +1323,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - engine b thruster neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Efficiency (Folder) [6 attrs]
-                    - Output (Folder) [5 attrs]
-                    - Velocity (Folder) [5 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - ThrustAttachment (Attachment)
@@ -1509,10 +1341,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - engine b thruster neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Efficiency (Folder) [6 attrs]
-                    - Output (Folder) [5 attrs]
-                    - Velocity (Folder) [5 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - ThrustAttachment (Attachment)
@@ -1530,10 +1358,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - engine b thruster neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Efficiency (Folder) [6 attrs]
-                    - Output (Folder) [5 attrs]
-                    - Velocity (Folder) [5 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - ThrustAttachment (Attachment)
@@ -1551,10 +1375,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - engine b thruster neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Efficiency (Folder) [6 attrs]
-                    - Output (Folder) [5 attrs]
-                    - Velocity (Folder) [5 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - ThrustAttachment (Attachment)
@@ -1573,10 +1393,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - engine b thruster neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Efficiency (Folder) [6 attrs]
-                    - Output (Folder) [5 attrs]
-                    - Velocity (Folder) [5 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - ThrustAttachment (Attachment)
@@ -1594,10 +1410,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - engine b thruster neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Efficiency (Folder) [6 attrs]
-                    - Output (Folder) [5 attrs]
-                    - Velocity (Folder) [5 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - ThrustAttachment (Attachment)
@@ -1615,10 +1427,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - engine b thruster neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Efficiency (Folder) [6 attrs]
-                    - Output (Folder) [5 attrs]
-                    - Velocity (Folder) [5 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - ThrustAttachment (Attachment)
@@ -1637,10 +1445,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - engine b thruster neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Efficiency (Folder) [6 attrs]
-                    - Output (Folder) [5 attrs]
-                    - Velocity (Folder) [5 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - ThrustAttachment (Attachment)
@@ -1658,10 +1462,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - engine b thruster neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Efficiency (Folder) [6 attrs]
-                    - Output (Folder) [5 attrs]
-                    - Velocity (Folder) [5 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - ThrustAttachment (Attachment)
@@ -1679,10 +1479,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - engine b thruster neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Efficiency (Folder) [6 attrs]
-                    - Output (Folder) [5 attrs]
-                    - Velocity (Folder) [5 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - ThrustAttachment (Attachment)
@@ -1701,10 +1497,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - engine b thruster neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Efficiency (Folder) [6 attrs]
-                    - Output (Folder) [5 attrs]
-                    - Velocity (Folder) [5 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - ThrustAttachment (Attachment)
@@ -1722,10 +1514,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - engine b thruster neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Efficiency (Folder) [6 attrs]
-                    - Output (Folder) [5 attrs]
-                    - Velocity (Folder) [5 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - ThrustAttachment (Attachment)
@@ -1743,10 +1531,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - engine b thruster neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Efficiency (Folder) [6 attrs]
-                    - Output (Folder) [5 attrs]
-                    - Velocity (Folder) [5 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - ThrustAttachment (Attachment)
@@ -1876,10 +1660,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                 - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
                   - bumper front secondary (MeshPart) [1 attrs]
                 - VFXAttachments (Folder) [1 attrs]
-                - VehiclePerformanceV2UpgradePaths (Folder)
-                  - BrakeDucts (Folder) [6 attrs]
-                  - FrontSplitter (Folder) [6 attrs]
-                  - LightweightMounts (Folder) [6 attrs]
                 - ModuleRoot_DoNotRename (Part) [1 attrs]
                   - MountAttachment (Attachment)
               - MODULE_FRONTBUMPER_LVL2 (Model) [68 attrs]
@@ -1892,10 +1672,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                 - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
                   - bumper front secondary (MeshPart) [1 attrs]
                 - VFXAttachments (Folder) [1 attrs]
-                - VehiclePerformanceV2UpgradePaths (Folder)
-                  - BrakeDucts (Folder) [6 attrs]
-                  - FrontSplitter (Folder) [6 attrs]
-                  - LightweightMounts (Folder) [6 attrs]
                 - ModuleRoot_DoNotRename (Part) [1 attrs]
                   - MountAttachment (Attachment)
               - MODULE_FRONTBUMPER_LVL3 (Model) [68 attrs]
@@ -1908,10 +1684,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                 - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
                   - bumper front secondary (MeshPart) [1 attrs]
                 - VFXAttachments (Folder) [1 attrs]
-                - VehiclePerformanceV2UpgradePaths (Folder)
-                  - BrakeDucts (Folder) [6 attrs]
-                  - FrontSplitter (Folder) [6 attrs]
-                  - LightweightMounts (Folder) [6 attrs]
                 - ModuleRoot_DoNotRename (Part) [1 attrs]
                   - MountAttachment (Attachment)
             - RearBumpers (Folder) [3 attrs]
@@ -1969,9 +1741,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - bumper rear primary (MeshPart) [1 attrs]
                 - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
                 - VFXAttachments (Folder) [1 attrs]
-                - VehiclePerformanceV2UpgradePaths (Folder)
-                  - LightweightMounts (Folder) [5 attrs]
-                  - RearDiffuser (Folder) [7 attrs]
                 - ModuleRoot_DoNotRename (Part) [1 attrs]
                   - MountAttachment (Attachment)
               - MODULE_REARBUMPER_LVL2 (Model) [68 attrs]
@@ -1982,9 +1751,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - bumper rear primary (MeshPart) [1 attrs]
                 - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
                 - VFXAttachments (Folder) [1 attrs]
-                - VehiclePerformanceV2UpgradePaths (Folder)
-                  - LightweightMounts (Folder) [5 attrs]
-                  - RearDiffuser (Folder) [7 attrs]
                 - ModuleRoot_DoNotRename (Part) [1 attrs]
                   - MountAttachment (Attachment)
               - MODULE_REARBUMPER_LVL3 (Model) [68 attrs]
@@ -1995,9 +1761,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - bumper rear primary (MeshPart) [1 attrs]
                 - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
                 - VFXAttachments (Folder) [1 attrs]
-                - VehiclePerformanceV2UpgradePaths (Folder)
-                  - LightweightMounts (Folder) [5 attrs]
-                  - RearDiffuser (Folder) [7 attrs]
                 - ModuleRoot_DoNotRename (Part) [1 attrs]
                   - MountAttachment (Attachment)
             - RearSpoilers (Folder) [3 attrs]
@@ -2063,10 +1826,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                 - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
                   - spoiler secondary (MeshPart) [1 attrs]
                 - VFXAttachments (Folder) [1 attrs]
-                - VehiclePerformanceV2UpgradePaths (Folder)
-                  - DownforcePackage (Folder) [7 attrs]
-                  - DriftAero (Folder) [7 attrs]
-                  - LowDragProfile (Folder) [6 attrs]
                 - ModuleRoot_DoNotRename (Part) [1 attrs]
                   - MountAttachment (Attachment)
               - MODULE_REARSPOILER_LVL2 (Model) [68 attrs]
@@ -2079,10 +1838,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                 - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
                   - spoiler secondary (MeshPart) [1 attrs]
                 - VFXAttachments (Folder) [1 attrs]
-                - VehiclePerformanceV2UpgradePaths (Folder)
-                  - DownforcePackage (Folder) [7 attrs]
-                  - DriftAero (Folder) [7 attrs]
-                  - LowDragProfile (Folder) [6 attrs]
                 - ModuleRoot_DoNotRename (Part) [1 attrs]
                   - MountAttachment (Attachment)
               - MODULE_REARSPOILER_LVL3 (Model) [68 attrs]
@@ -2095,10 +1850,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                 - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
                   - spoiler secondary (MeshPart) [1 attrs]
                 - VFXAttachments (Folder) [1 attrs]
-                - VehiclePerformanceV2UpgradePaths (Folder)
-                  - DownforcePackage (Folder) [7 attrs]
-                  - DriftAero (Folder) [7 attrs]
-                  - LowDragProfile (Folder) [6 attrs]
                 - ModuleRoot_DoNotRename (Part) [1 attrs]
                   - MountAttachment (Attachment)
             - SidePods (Folder) [3 attrs]
@@ -2158,10 +1909,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                 - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
                   - sidepods secondary (MeshPart) [1 attrs]
                 - VFXAttachments (Folder) [1 attrs]
-                - VehiclePerformanceV2UpgradePaths (Folder)
-                  - AirflowChannels (Folder) [6 attrs]
-                  - CorneringVanes (Folder) [6 attrs]
-                  - LightweightShells (Folder) [5 attrs]
                 - ModuleRoot_DoNotRename (Part) [1 attrs]
                   - MountAttachment (Attachment)
               - MODULE_SIDEPODS_LVL2 (Model) [68 attrs]
@@ -2173,10 +1920,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                 - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
                   - sidepods secondary (MeshPart) [1 attrs]
                 - VFXAttachments (Folder) [1 attrs]
-                - VehiclePerformanceV2UpgradePaths (Folder)
-                  - AirflowChannels (Folder) [6 attrs]
-                  - CorneringVanes (Folder) [6 attrs]
-                  - LightweightShells (Folder) [5 attrs]
                 - ModuleRoot_DoNotRename (Part) [1 attrs]
                   - MountAttachment (Attachment)
               - MODULE_SIDEPODS_LVL3 (Model) [68 attrs]
@@ -2188,10 +1931,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                 - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
                   - sidepods secondary (MeshPart) [1 attrs]
                 - VFXAttachments (Folder) [1 attrs]
-                - VehiclePerformanceV2UpgradePaths (Folder)
-                  - AirflowChannels (Folder) [6 attrs]
-                  - CorneringVanes (Folder) [6 attrs]
-                  - LightweightShells (Folder) [5 attrs]
                 - ModuleRoot_DoNotRename (Part) [1 attrs]
                   - MountAttachment (Attachment)
             - Stabilisers (Folder) [3 attrs]
@@ -2207,10 +1946,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - stabilisers thrust neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Drift (Folder) [8 attrs]
-                    - Grip (Folder) [7 attrs]
-                    - Response (Folder) [6 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - VFX_StabiliserJet_Left (Attachment) [2 attrs]
@@ -2226,10 +1961,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - stabilisers thrust neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Drift (Folder) [8 attrs]
-                    - Grip (Folder) [7 attrs]
-                    - Response (Folder) [6 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - VFX_StabiliserJet_Left (Attachment) [2 attrs]
@@ -2245,10 +1976,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - stabilisers thrust neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Drift (Folder) [8 attrs]
-                    - Grip (Folder) [7 attrs]
-                    - Response (Folder) [6 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - VFX_StabiliserJet_Left (Attachment) [2 attrs]
@@ -2265,10 +1992,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - stabilisers thrust neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Drift (Folder) [8 attrs]
-                    - Grip (Folder) [7 attrs]
-                    - Response (Folder) [6 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - VFX_StabiliserJet_Left (Attachment) [2 attrs]
@@ -2284,10 +2007,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - stabilisers thrust neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Drift (Folder) [8 attrs]
-                    - Grip (Folder) [7 attrs]
-                    - Response (Folder) [6 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - VFX_StabiliserJet_Left (Attachment) [2 attrs]
@@ -2303,10 +2022,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - stabilisers thrust neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Drift (Folder) [8 attrs]
-                    - Grip (Folder) [7 attrs]
-                    - Response (Folder) [6 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - VFX_StabiliserJet_Left (Attachment) [2 attrs]
@@ -2323,10 +2038,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - stabilisers thrust neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Drift (Folder) [8 attrs]
-                    - Grip (Folder) [7 attrs]
-                    - Response (Folder) [6 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - VFX_StabiliserJet_Left (Attachment) [2 attrs]
@@ -2342,10 +2053,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - stabilisers thrust neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Drift (Folder) [8 attrs]
-                    - Grip (Folder) [7 attrs]
-                    - Response (Folder) [6 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - VFX_StabiliserJet_Left (Attachment) [2 attrs]
@@ -2361,10 +2068,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - stabilisers thrust neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Drift (Folder) [8 attrs]
-                    - Grip (Folder) [7 attrs]
-                    - Response (Folder) [6 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - VFX_StabiliserJet_Left (Attachment) [2 attrs]
@@ -2381,10 +2084,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - stabilisers thrust neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Drift (Folder) [8 attrs]
-                    - Grip (Folder) [7 attrs]
-                    - Response (Folder) [6 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - VFX_StabiliserJet_Left (Attachment) [2 attrs]
@@ -2400,10 +2099,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - stabilisers thrust neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Drift (Folder) [8 attrs]
-                    - Grip (Folder) [7 attrs]
-                    - Response (Folder) [6 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - VFX_StabiliserJet_Left (Attachment) [2 attrs]
@@ -2419,10 +2114,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - stabilisers thrust neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Drift (Folder) [8 attrs]
-                    - Grip (Folder) [7 attrs]
-                    - Response (Folder) [6 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - VFX_StabiliserJet_Left (Attachment) [2 attrs]
@@ -2439,10 +2130,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - stabilisers thrust neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Drift (Folder) [8 attrs]
-                    - Grip (Folder) [7 attrs]
-                    - Response (Folder) [6 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - VFX_StabiliserJet_Left (Attachment) [2 attrs]
@@ -2458,10 +2145,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - stabilisers thrust neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Drift (Folder) [8 attrs]
-                    - Grip (Folder) [7 attrs]
-                    - Response (Folder) [6 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - VFX_StabiliserJet_Left (Attachment) [2 attrs]
@@ -2477,10 +2160,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - stabilisers thrust neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Drift (Folder) [8 attrs]
-                    - Grip (Folder) [7 attrs]
-                    - Response (Folder) [6 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - VFX_StabiliserJet_Left (Attachment) [2 attrs]
@@ -2497,10 +2176,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - stabilisers thrust neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Drift (Folder) [8 attrs]
-                    - Grip (Folder) [7 attrs]
-                    - Response (Folder) [6 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - VFX_StabiliserJet_Left (Attachment) [2 attrs]
@@ -2516,10 +2191,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - stabilisers thrust neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Drift (Folder) [8 attrs]
-                    - Grip (Folder) [7 attrs]
-                    - Response (Folder) [6 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - VFX_StabiliserJet_Left (Attachment) [2 attrs]
@@ -2535,10 +2206,6 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
                   - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
                     - stabilisers thrust neon (MeshPart) [1 attrs]
                   - VFXAttachments (Folder) [1 attrs]
-                  - VehiclePerformanceV2UpgradePaths (Folder)
-                    - Drift (Folder) [8 attrs]
-                    - Grip (Folder) [7 attrs]
-                    - Response (Folder) [6 attrs]
                   - ModuleRoot_DoNotRename (Part) [1 attrs]
                     - MountAttachment (Attachment)
                     - VFX_StabiliserJet_Left (Attachment) [2 attrs]
@@ -4181,7 +3848,7 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
       - ClientLifecycle (ModuleScript) [script_0005, 49 lines]
       - ConfigReader (ModuleScript) [script_0006, 39 lines]
       - ConnectionScope (ModuleScript) [script_0007, 18 lines]
-      - PathResolver (ModuleScript) [script_0008, 85 lines]
+      - PathResolver (ModuleScript) [script_0008, 86 lines]
     - Game (Folder)
       - Audio (Folder)
         - AcousticsClient (ModuleScript) [script_0009, 250 lines]
@@ -40568,6 +40235,2444 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
     - Racing (Folder)
       - SessionAssetTemplates (Folder)
         - SimpleBarrier (Part)
+    - Vehicles (Folder)
+      - Categories (Folder) [1 attrs]
+        - PIERCER (Folder) [4 attrs]
+          - COCKPITS_ReplaceAssetsHere (Folder)
+            - COCKPIT_BRUISER_01 (Model) [65 attrs]
+              - INSTALLED_MODULES_Runtime (Folder)
+              - ModuleSlots (Folder)
+                - SLOT_Boost (Folder) [7 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+                - SLOT_Engine1 (Folder) [8 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+                - SLOT_Engine2 (Folder) [8 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+                - SLOT_FrontBumper (Folder) [7 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+                - SLOT_RearBumper (Folder) [7 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+                - SLOT_RearSpoiler (Folder) [7 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+                - SLOT_SidePods (Folder) [7 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+                - SLOT_Stabilisers (Folder) [7 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+              - TOTAL_STATS_Runtime (Folder)
+              - VFXAttachments (Folder) [1 attrs]
+              - ASSET_ReplaceWithYourCockpitModel (Model)
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [2 attrs]
+                  - cockpit detail (MeshPart) [1 attrs]
+                - GLASS_ReplaceWithGlassMeshes (Folder) [2 attrs]
+                  - cockpit glass (MeshPart)
+                - NEON_OptionalLights (Folder) [2 attrs]
+                  - cockpit neon front (MeshPart) [1 attrs]
+                  - cockpit neon rear (MeshPart) [1 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [2 attrs]
+                  - cockpit primary (MeshPart) [1 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [2 attrs]
+                  - cockpit secondary (MeshPart) [1 attrs]
+                - CockpitRoot_DoNotRename (Part) [1 attrs]
+                  - UNDERGLOW_MOUNT_DoNotRename (Attachment) [2 attrs]
+                    - cockpit underglow (Part) [2 attrs]
+                      - UnderglowSurfaceLight (SurfaceLight) [3 attrs]
+                    - cockpit underglow (Part) [2 attrs]
+                      - UnderglowSurfaceLight (SurfaceLight) [3 attrs]
+                    - cockpit underglow (Part) [2 attrs]
+                      - UnderglowSurfaceLight (SurfaceLight) [3 attrs]
+                  - VFX_HoverDust_Center (Attachment) [2 attrs]
+                  - VFX_HoverDust_FrontLeft (Attachment) [2 attrs]
+                  - VFX_HoverDust_FrontRight (Attachment) [2 attrs]
+                  - VFX_HoverDust_RearLeft (Attachment) [2 attrs]
+                  - VFX_HoverDust_RearRight (Attachment) [2 attrs]
+                  - UNDERGLOW_EMITTERS_DoNotRename (Folder) [2 attrs]
+                  - cockpit front spotlight lens  (Part)
+                    - SpotLight (SpotLight)
+                    - SurfaceLight (SurfaceLight)
+                  - cockpit rear spotlight lens  (Part)
+                    - SpotLight (SpotLight)
+                    - SurfaceLight (SurfaceLight)
+            - COCKPIT_BRUISER_02 (Model) [65 attrs]
+              - INSTALLED_MODULES_Runtime (Folder)
+              - ModuleSlots (Folder)
+                - SLOT_Boost (Folder) [7 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+                - SLOT_Engine1 (Folder) [8 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+                - SLOT_Engine2 (Folder) [8 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+                - SLOT_FrontBumper (Folder) [7 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+                - SLOT_RearBumper (Folder) [7 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+                - SLOT_RearSpoiler (Folder) [7 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+                - SLOT_SidePods (Folder) [7 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+                - SLOT_Stabilisers (Folder) [7 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+              - TOTAL_STATS_Runtime (Folder)
+              - VFXAttachments (Folder) [1 attrs]
+              - ASSET_ReplaceWithYourCockpitModel (Model)
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [2 attrs]
+                  - cockpit detail (MeshPart) [1 attrs]
+                - GLASS_ReplaceWithGlassMeshes (Folder) [2 attrs]
+                  - cockpit glass (MeshPart)
+                - NEON_OptionalLights (Folder) [2 attrs]
+                  - cockpit neon front (MeshPart) [1 attrs]
+                  - cockpit neon rear (MeshPart) [1 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [2 attrs]
+                  - cockpit primary (MeshPart) [1 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [2 attrs]
+                  - cockpit secondary (MeshPart) [1 attrs]
+                - CockpitRoot_DoNotRename (Part) [1 attrs]
+                  - UNDERGLOW_MOUNT_DoNotRename (Attachment) [2 attrs]
+                  - VFX_HoverDust_Center (Attachment) [2 attrs]
+                  - VFX_HoverDust_FrontLeft (Attachment) [2 attrs]
+                  - VFX_HoverDust_FrontRight (Attachment) [2 attrs]
+                  - VFX_HoverDust_RearLeft (Attachment) [2 attrs]
+                  - VFX_HoverDust_RearRight (Attachment) [2 attrs]
+                  - UNDERGLOW_EMITTERS_DoNotRename (Folder) [2 attrs]
+                    - cockpit underglow (Part) [2 attrs]
+                      - UnderglowSurfaceLight (SurfaceLight) [3 attrs]
+                    - cockpit underglow (Part) [2 attrs]
+                      - UnderglowSurfaceLight (SurfaceLight) [3 attrs]
+                    - cockpit underglow (Part) [2 attrs]
+                      - UnderglowSurfaceLight (SurfaceLight) [3 attrs]
+                    - cockpit underglow (Part) [2 attrs]
+                      - UnderglowSurfaceLight (SurfaceLight) [3 attrs]
+                  - cockpit front spotlight main (Part)
+                    - SpotLight (SpotLight)
+                  - cockpit front spotlight main (Part)
+                    - SpotLight (SpotLight)
+                  - cockpit front spotlight secondary (Part)
+                    - SpotLight (SpotLight)
+                  - cockpit front spotlight secondary (Part)
+                    - SpotLight (SpotLight)
+                  - cockpit rear spotlight lens  (Part)
+                    - SpotLight (SpotLight)
+                    - SpotLight (SpotLight)
+                  - cockpit rear spotlight lens  (Part)
+                    - SpotLight (SpotLight)
+                    - SpotLight (SpotLight)
+            - COCKPIT_BRUISER_03 (Model) [65 attrs]
+              - INSTALLED_MODULES_Runtime (Folder)
+              - ModuleSlots (Folder)
+                - SLOT_Boost (Folder) [7 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+                - SLOT_Engine1 (Folder) [8 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+                - SLOT_Engine2 (Folder) [8 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+                - SLOT_FrontBumper (Folder) [7 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+                - SLOT_RearBumper (Folder) [7 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+                - SLOT_RearSpoiler (Folder) [7 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+                - SLOT_SidePods (Folder) [7 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+                - SLOT_Stabilisers (Folder) [7 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+              - TOTAL_STATS_Runtime (Folder)
+              - VFXAttachments (Folder) [1 attrs]
+              - ASSET_ReplaceWithYourCockpitModel (Model)
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [2 attrs]
+                  - cockpit detail (MeshPart) [1 attrs]
+                - GLASS_ReplaceWithGlassMeshes (Folder) [2 attrs]
+                  - cockpit glass (MeshPart)
+                - NEON_OptionalLights (Folder) [2 attrs]
+                  - cockpit neon front (MeshPart) [1 attrs]
+                  - cockpit neon rear (MeshPart) [1 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [2 attrs]
+                  - cockpit primary (MeshPart) [1 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [2 attrs]
+                  - cockpit secondary (MeshPart) [1 attrs]
+                - CockpitRoot_DoNotRename (Part) [1 attrs]
+                  - UNDERGLOW_MOUNT_DoNotRename (Attachment) [2 attrs]
+                    - UnderglowSurfaceLight (SurfaceLight) [3 attrs]
+                  - VFX_HoverDust_Center (Attachment) [2 attrs]
+                  - VFX_HoverDust_FrontLeft (Attachment) [2 attrs]
+                  - VFX_HoverDust_FrontRight (Attachment) [2 attrs]
+                  - VFX_HoverDust_RearLeft (Attachment) [2 attrs]
+                  - VFX_HoverDust_RearRight (Attachment) [2 attrs]
+                  - UNDERGLOW_EMITTERS_DoNotRename (Folder) [2 attrs]
+                  - cockpit front spotlight lens  (Part)
+                    - SpotLight (SpotLight)
+                    - SurfaceLight (SurfaceLight)
+                  - cockpit rear spotlight lens  (Part)
+                    - SpotLight (SpotLight)
+                    - SurfaceLight (SurfaceLight)
+            - COCKPIT_BRUISER_04 (Model) [65 attrs]
+              - INSTALLED_MODULES_Runtime (Folder)
+              - ModuleSlots (Folder)
+                - SLOT_Boost (Folder) [7 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+                - SLOT_Engine1 (Folder) [8 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+                - SLOT_Engine2 (Folder) [8 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+                - SLOT_FrontBumper (Folder) [7 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+                - SLOT_RearBumper (Folder) [7 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+                - SLOT_RearSpoiler (Folder) [7 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+                - SLOT_SidePods (Folder) [7 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+                - SLOT_Stabilisers (Folder) [7 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+              - TOTAL_STATS_Runtime (Folder)
+              - VFXAttachments (Folder) [1 attrs]
+              - ASSET_ReplaceWithYourCockpitModel (Model)
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [2 attrs]
+                  - cockpit detail (MeshPart) [1 attrs]
+                - GLASS_ReplaceWithGlassMeshes (Folder) [2 attrs]
+                  - cockpit glass (MeshPart)
+                - NEON_OptionalLights (Folder) [2 attrs]
+                  - cockpit neon front (MeshPart) [1 attrs]
+                  - cockpit neon rear (MeshPart) [1 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [2 attrs]
+                  - cockpit primary (MeshPart) [1 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [2 attrs]
+                  - cockpit secondary (MeshPart) [1 attrs]
+                - CockpitRoot_DoNotRename (Part) [1 attrs]
+                  - UNDERGLOW_MOUNT_DoNotRename (Attachment) [2 attrs]
+                    - UnderglowSurfaceLight (SurfaceLight) [3 attrs]
+                  - VFX_HoverDust_Center (Attachment) [2 attrs]
+                  - VFX_HoverDust_FrontLeft (Attachment) [2 attrs]
+                  - VFX_HoverDust_FrontRight (Attachment) [2 attrs]
+                  - VFX_HoverDust_RearLeft (Attachment) [2 attrs]
+                  - VFX_HoverDust_RearRight (Attachment) [2 attrs]
+                  - UNDERGLOW_EMITTERS_DoNotRename (Folder) [2 attrs]
+                  - cockpit front spotlight lens  (Part)
+                    - SpotLight (SpotLight)
+                    - SurfaceLight (SurfaceLight)
+                  - cockpit rear spotlight lens  (Part)
+                    - SpotLight (SpotLight)
+                    - SurfaceLight (SurfaceLight)
+            - COCKPIT_BRUISER_05 (Model) [65 attrs]
+              - INSTALLED_MODULES_Runtime (Folder)
+              - ModuleSlots (Folder)
+                - SLOT_Boost (Folder) [7 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+                - SLOT_Engine1 (Folder) [8 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+                - SLOT_Engine2 (Folder) [8 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+                - SLOT_FrontBumper (Folder) [7 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+                - SLOT_RearBumper (Folder) [7 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+                - SLOT_RearSpoiler (Folder) [7 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+                - SLOT_SidePods (Folder) [7 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+                - SLOT_Stabilisers (Folder) [7 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+              - TOTAL_STATS_Runtime (Folder)
+              - VFXAttachments (Folder) [1 attrs]
+              - ASSET_ReplaceWithYourCockpitModel (Model)
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [2 attrs]
+                  - cockpit detail (MeshPart) [1 attrs]
+                - GLASS_ReplaceWithGlassMeshes (Folder) [2 attrs]
+                  - cockpit glass (MeshPart)
+                - NEON_OptionalLights (Folder) [2 attrs]
+                  - cockpit neon front (MeshPart) [1 attrs]
+                  - cockpit neon rear (MeshPart) [1 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [2 attrs]
+                  - cockpit primary (MeshPart) [1 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [2 attrs]
+                  - cockpit secondary (MeshPart) [1 attrs]
+                - CockpitRoot_DoNotRename (Part) [1 attrs]
+                  - UNDERGLOW_MOUNT_DoNotRename (Attachment) [2 attrs]
+                    - UnderglowSurfaceLight (SurfaceLight) [3 attrs]
+                  - VFX_HoverDust_Center (Attachment) [2 attrs]
+                  - VFX_HoverDust_FrontLeft (Attachment) [2 attrs]
+                  - VFX_HoverDust_FrontRight (Attachment) [2 attrs]
+                  - VFX_HoverDust_RearLeft (Attachment) [2 attrs]
+                  - VFX_HoverDust_RearRight (Attachment) [2 attrs]
+                  - UNDERGLOW_EMITTERS_DoNotRename (Folder) [2 attrs]
+                  - cockpit front spotlight lens  (Part)
+                    - SpotLight (SpotLight)
+                    - SurfaceLight (SurfaceLight)
+                  - cockpit rear spotlight lens  (Part)
+                    - SpotLight (SpotLight)
+                    - SurfaceLight (SurfaceLight)
+            - COCKPIT_BRUISER_06 (Model) [65 attrs]
+              - INSTALLED_MODULES_Runtime (Folder)
+              - ModuleSlots (Folder)
+                - SLOT_Boost (Folder) [7 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+                - SLOT_Engine1 (Folder) [8 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+                - SLOT_Engine2 (Folder) [8 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+                - SLOT_FrontBumper (Folder) [7 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+                - SLOT_RearBumper (Folder) [7 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+                - SLOT_RearSpoiler (Folder) [7 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+                - SLOT_SidePods (Folder) [7 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+                - SLOT_Stabilisers (Folder) [7 attrs]
+                  - Mount_DoNotRename (Part) [4 attrs]
+                    - MountAttachment (Attachment)
+              - TOTAL_STATS_Runtime (Folder)
+              - VFXAttachments (Folder) [1 attrs]
+              - ASSET_ReplaceWithYourCockpitModel (Model)
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [2 attrs]
+                  - cockpit detail (MeshPart) [1 attrs]
+                - GLASS_ReplaceWithGlassMeshes (Folder) [2 attrs]
+                  - cockpit glass (MeshPart)
+                - NEON_OptionalLights (Folder) [2 attrs]
+                  - cockpit neon front (MeshPart) [1 attrs]
+                  - cockpit neon rear (MeshPart) [1 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [2 attrs]
+                  - cockpit primary (MeshPart) [1 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [2 attrs]
+                  - cockpit secondary (MeshPart) [1 attrs]
+                - CockpitRoot_DoNotRename (Part) [1 attrs]
+                  - UNDERGLOW_MOUNT_DoNotRename (Attachment) [2 attrs]
+                    - UnderglowSurfaceLight (SurfaceLight) [3 attrs]
+                  - VFX_HoverDust_Center (Attachment) [2 attrs]
+                  - VFX_HoverDust_FrontLeft (Attachment) [2 attrs]
+                  - VFX_HoverDust_FrontRight (Attachment) [2 attrs]
+                  - VFX_HoverDust_RearLeft (Attachment) [2 attrs]
+                  - VFX_HoverDust_RearRight (Attachment) [2 attrs]
+                  - UNDERGLOW_EMITTERS_DoNotRename (Folder) [2 attrs]
+                  - cockpit front spotlight lens  (Part)
+                    - SpotLight (SpotLight)
+                    - SurfaceLight (SurfaceLight)
+                  - cockpit rear spotlight lens  (Part)
+                    - SpotLight (SpotLight)
+                    - SurfaceLight (SurfaceLight)
+          - MODULES_InterchangeableWithinCategory (Folder)
+            - Boost (Folder) [3 attrs]
+              - Bruiser_01 (Folder)
+                - MODULE_BOOST_BRUISER_01_LIGHTWEIGHT (Model) [69 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - boost detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - boost primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - boost secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - boost thrust neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Burst (Folder) [5 attrs]
+                    - Endurance (Folder) [6 attrs]
+                    - Recovery (Folder) [7 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - VFX_BoostJet_Back (Attachment) [2 attrs]
+                - MODULE_BOOST_BRUISER_01_POWER (Model) [69 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - boost detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - boost primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - boost secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - boost thrust neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Burst (Folder) [5 attrs]
+                    - Endurance (Folder) [6 attrs]
+                    - Recovery (Folder) [7 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - VFX_BoostJet_Back (Attachment) [2 attrs]
+                - MODULE_BOOST_BRUISER_01_STANDARD (Model) [66 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - boost detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - boost primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - boost secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - boost thrust neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Burst (Folder) [5 attrs]
+                    - Endurance (Folder) [6 attrs]
+                    - Recovery (Folder) [7 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - VFX_BoostJet_Back (Attachment) [2 attrs]
+              - Bruiser_02 (Folder)
+                - MODULE_BOOST_BRUISER_02_LIGHTWEIGHT (Model) [69 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - boost detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - boost primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - boost secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - boost thrust neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Burst (Folder) [5 attrs]
+                    - Endurance (Folder) [6 attrs]
+                    - Recovery (Folder) [7 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - VFX_BoostJet_Back (Attachment) [2 attrs]
+                - MODULE_BOOST_BRUISER_02_POWER (Model) [69 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - boost detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - boost primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - boost secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - boost thrust neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Burst (Folder) [5 attrs]
+                    - Endurance (Folder) [6 attrs]
+                    - Recovery (Folder) [7 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - VFX_BoostJet_Back (Attachment) [2 attrs]
+                - MODULE_BOOST_BRUISER_02_STANDARD (Model) [66 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - boost detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - boost primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - boost secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - boost thrust neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Burst (Folder) [5 attrs]
+                    - Endurance (Folder) [6 attrs]
+                    - Recovery (Folder) [7 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - VFX_BoostJet_Back (Attachment) [2 attrs]
+              - Bruiser_03 (Folder)
+                - MODULE_BOOST_BRUISER_03_LIGHTWEIGHT (Model) [69 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - boost detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - boost primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - boost secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - boost thrust neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Burst (Folder) [5 attrs]
+                    - Endurance (Folder) [6 attrs]
+                    - Recovery (Folder) [7 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - VFX_BoostJet_Back (Attachment) [2 attrs]
+                - MODULE_BOOST_BRUISER_03_POWER (Model) [69 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - boost detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - boost primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - boost secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - boost thrust neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Burst (Folder) [5 attrs]
+                    - Endurance (Folder) [6 attrs]
+                    - Recovery (Folder) [7 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - VFX_BoostJet_Back (Attachment) [2 attrs]
+                - MODULE_BOOST_BRUISER_03_STANDARD (Model) [66 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - boost detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - boost primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - boost secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - boost thrust neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Burst (Folder) [5 attrs]
+                    - Endurance (Folder) [6 attrs]
+                    - Recovery (Folder) [7 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - VFX_BoostJet_Back (Attachment) [2 attrs]
+              - Bruiser_04 (Folder)
+                - MODULE_BOOST_BRUISER_04_LIGHTWEIGHT (Model) [69 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - boost detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - boost primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - boost secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - boost thrust neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Burst (Folder) [5 attrs]
+                    - Endurance (Folder) [6 attrs]
+                    - Recovery (Folder) [7 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - VFX_BoostJet_Back (Attachment) [2 attrs]
+                - MODULE_BOOST_BRUISER_04_POWER (Model) [69 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - boost detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - boost primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - boost secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - boost thrust neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Burst (Folder) [5 attrs]
+                    - Endurance (Folder) [6 attrs]
+                    - Recovery (Folder) [7 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - VFX_BoostJet_Back (Attachment) [2 attrs]
+                - MODULE_BOOST_BRUISER_04_STANDARD (Model) [66 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - boost detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - boost primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - boost secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - boost thrust neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Burst (Folder) [5 attrs]
+                    - Endurance (Folder) [6 attrs]
+                    - Recovery (Folder) [7 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - VFX_BoostJet_Back (Attachment) [2 attrs]
+              - Bruiser_05 (Folder)
+                - MODULE_BOOST_BRUISER_05_LIGHTWEIGHT (Model) [69 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - boost detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - boost primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - boost secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - boost thrust neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Burst (Folder) [5 attrs]
+                    - Endurance (Folder) [6 attrs]
+                    - Recovery (Folder) [7 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - VFX_BoostJet_Back (Attachment) [2 attrs]
+                - MODULE_BOOST_BRUISER_05_POWER (Model) [69 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - boost detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - boost primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - boost secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - boost thrust neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Burst (Folder) [5 attrs]
+                    - Endurance (Folder) [6 attrs]
+                    - Recovery (Folder) [7 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - VFX_BoostJet_Back (Attachment) [2 attrs]
+                - MODULE_BOOST_BRUISER_05_STANDARD (Model) [66 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - boost detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - boost primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - boost secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - boost thrust neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Burst (Folder) [5 attrs]
+                    - Endurance (Folder) [6 attrs]
+                    - Recovery (Folder) [7 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - VFX_BoostJet_Back (Attachment) [2 attrs]
+              - Bruiser_06 (Folder)
+                - MODULE_BOOST_BRUISER_06_LIGHTWEIGHT (Model) [69 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - boost detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - boost primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - boost secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - boost thrust neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Burst (Folder) [5 attrs]
+                    - Endurance (Folder) [6 attrs]
+                    - Recovery (Folder) [7 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - VFX_BoostJet_Back (Attachment) [2 attrs]
+                - MODULE_BOOST_BRUISER_06_POWER (Model) [69 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - boost detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - boost primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - boost secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - boost thrust neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Burst (Folder) [5 attrs]
+                    - Endurance (Folder) [6 attrs]
+                    - Recovery (Folder) [7 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - VFX_BoostJet_Back (Attachment) [2 attrs]
+                - MODULE_BOOST_BRUISER_06_STANDARD (Model) [66 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - boost detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - boost primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - boost secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - boost thrust neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Burst (Folder) [5 attrs]
+                    - Endurance (Folder) [6 attrs]
+                    - Recovery (Folder) [7 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - VFX_BoostJet_Back (Attachment) [2 attrs]
+              - MODULE_BOOST_A (Model) [25 attrs]
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                  - boost detail (MeshPart) [1 attrs]
+                - NEON_OptionalLights (Folder) [4 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                  - boost primary (MeshPart) [1 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                  - boost secondary (MeshPart) [1 attrs]
+                - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                  - boost thrust neon (MeshPart) [1 attrs]
+                - VFXAttachments (Folder) [1 attrs]
+                - ModuleRoot_DoNotRename (Part) [1 attrs]
+                  - MountAttachment (Attachment)
+                  - VFX_BoostJet_Back (Attachment) [2 attrs]
+              - MODULE_BOOST_B (Model) [25 attrs]
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                  - boost mk2 detail template (Part) [3 attrs]
+                - NEON_OptionalLights (Folder) [4 attrs]
+                  - boost mk2 neon template (Part) [3 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                  - boost mk2 primary template (Part) [3 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                  - boost mk2 secondary template (Part) [3 attrs]
+                - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                - VFXAttachments (Folder) [1 attrs]
+                - ModuleRoot_DoNotRename (Part) [1 attrs]
+                  - MountAttachment (Attachment)
+                  - VFX_BoostJet_Back (Attachment) [2 attrs]
+              - MODULE_BOOST_C (Model) [25 attrs]
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                  - boost mk3 detail template (Part) [3 attrs]
+                - NEON_OptionalLights (Folder) [4 attrs]
+                  - boost mk3 neon template (Part) [3 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                  - boost mk3 primary template (Part) [3 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                  - boost mk3 secondary template (Part) [3 attrs]
+                - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                - VFXAttachments (Folder) [1 attrs]
+                - ModuleRoot_DoNotRename (Part) [1 attrs]
+                  - MountAttachment (Attachment)
+                  - VFX_BoostJet_Back (Attachment) [2 attrs]
+              - MODULE_BOOST_D (Model) [25 attrs]
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                  - boost mk4 detail template (Part) [3 attrs]
+                - NEON_OptionalLights (Folder) [4 attrs]
+                  - boost mk4 neon template (Part) [3 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                  - boost mk4 primary template (Part) [3 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                  - boost mk4 secondary template (Part) [3 attrs]
+                - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                - VFXAttachments (Folder) [1 attrs]
+                - ModuleRoot_DoNotRename (Part) [1 attrs]
+                  - MountAttachment (Attachment)
+                  - VFX_BoostJet_Back (Attachment) [2 attrs]
+            - Engines (Folder) [3 attrs]
+              - Bruiser_01 (Folder)
+                - MODULE_ENGINE_BRUISER_01_LIGHTWEIGHT (Model) [67 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - engine a detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - engine a neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - engine a primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - engine a secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - engine a thruster neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Efficiency (Folder) [6 attrs]
+                    - Output (Folder) [5 attrs]
+                    - Velocity (Folder) [5 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - ThrustAttachment (Attachment)
+                    - VFX_EngineJet_Left (Attachment) [2 attrs]
+                    - VFX_EngineJet_Right (Attachment) [2 attrs]
+                - MODULE_ENGINE_BRUISER_01_POWER (Model) [67 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - engine a detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - engine a neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - engine a primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - engine a secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - engine a thruster neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Efficiency (Folder) [6 attrs]
+                    - Output (Folder) [5 attrs]
+                    - Velocity (Folder) [5 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - ThrustAttachment (Attachment)
+                    - VFX_EngineJet_Left (Attachment) [2 attrs]
+                    - VFX_EngineJet_Right (Attachment) [2 attrs]
+                - MODULE_ENGINE_BRUISER_01_STANDARD (Model) [64 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - engine a detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - engine a neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - engine a primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - engine a secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - engine a thruster neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Efficiency (Folder) [6 attrs]
+                    - Output (Folder) [5 attrs]
+                    - Velocity (Folder) [5 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - ThrustAttachment (Attachment)
+                    - VFX_EngineJet_Left (Attachment) [2 attrs]
+                    - VFX_EngineJet_Right (Attachment) [2 attrs]
+              - Bruiser_02 (Folder)
+                - MODULE_ENGINE_BRUISER_02_LIGHTWEIGHT (Model) [67 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - engine a detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - engine a neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - engine a primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - engine a secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - engine a thruster neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Efficiency (Folder) [6 attrs]
+                    - Output (Folder) [5 attrs]
+                    - Velocity (Folder) [5 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - ThrustAttachment (Attachment)
+                    - VFX_EngineJet_Left (Attachment) [2 attrs]
+                    - VFX_EngineJet_Right (Attachment) [2 attrs]
+                - MODULE_ENGINE_BRUISER_02_POWER (Model) [67 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - engine a detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - engine a neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - engine a primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - engine a secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - engine a thruster neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Efficiency (Folder) [6 attrs]
+                    - Output (Folder) [5 attrs]
+                    - Velocity (Folder) [5 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - ThrustAttachment (Attachment)
+                    - VFX_EngineJet_Left (Attachment) [2 attrs]
+                    - VFX_EngineJet_Right (Attachment) [2 attrs]
+                - MODULE_ENGINE_BRUISER_02_STANDARD (Model) [64 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - engine a detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - engine a neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - engine a primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - engine a secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - engine a thruster neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Efficiency (Folder) [6 attrs]
+                    - Output (Folder) [5 attrs]
+                    - Velocity (Folder) [5 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - ThrustAttachment (Attachment)
+                    - VFX_EngineJet_Left (Attachment) [2 attrs]
+                    - VFX_EngineJet_Right (Attachment) [2 attrs]
+              - Bruiser_03 (Folder)
+                - MODULE_ENGINE_BRUISER_03_LIGHTWEIGHT (Model) [67 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - engine a detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - engine a neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - engine a primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - engine a secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - engine a thruster neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Efficiency (Folder) [6 attrs]
+                    - Output (Folder) [5 attrs]
+                    - Velocity (Folder) [5 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - ThrustAttachment (Attachment)
+                    - VFX_EngineJet_Left (Attachment) [2 attrs]
+                    - VFX_EngineJet_Right (Attachment) [2 attrs]
+                - MODULE_ENGINE_BRUISER_03_POWER (Model) [67 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - engine a detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - engine a neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - engine a primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - engine a secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - engine a thruster neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Efficiency (Folder) [6 attrs]
+                    - Output (Folder) [5 attrs]
+                    - Velocity (Folder) [5 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - ThrustAttachment (Attachment)
+                    - VFX_EngineJet_Left (Attachment) [2 attrs]
+                    - VFX_EngineJet_Right (Attachment) [2 attrs]
+                - MODULE_ENGINE_BRUISER_03_STANDARD (Model) [64 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - engine a detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - engine a neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - engine a primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - engine a secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - engine a thruster neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Efficiency (Folder) [6 attrs]
+                    - Output (Folder) [5 attrs]
+                    - Velocity (Folder) [5 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - ThrustAttachment (Attachment)
+                    - VFX_EngineJet_Left (Attachment) [2 attrs]
+                    - VFX_EngineJet_Right (Attachment) [2 attrs]
+              - Bruiser_04 (Folder)
+                - MODULE_ENGINE_BRUISER_04_LIGHTWEIGHT (Model) [67 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - engine a detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - engine a neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - engine a primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - engine a secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - engine a thruster neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Efficiency (Folder) [6 attrs]
+                    - Output (Folder) [5 attrs]
+                    - Velocity (Folder) [5 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - ThrustAttachment (Attachment)
+                    - VFX_EngineJet_Left (Attachment) [2 attrs]
+                    - VFX_EngineJet_Right (Attachment) [2 attrs]
+                - MODULE_ENGINE_BRUISER_04_POWER (Model) [67 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - engine a detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - engine a neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - engine a primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - engine a secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - engine a thruster neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Efficiency (Folder) [6 attrs]
+                    - Output (Folder) [5 attrs]
+                    - Velocity (Folder) [5 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - ThrustAttachment (Attachment)
+                    - VFX_EngineJet_Left (Attachment) [2 attrs]
+                    - VFX_EngineJet_Right (Attachment) [2 attrs]
+                - MODULE_ENGINE_BRUISER_04_STANDARD (Model) [64 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - engine a detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - engine a neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - engine a primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - engine a secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - engine a thruster neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Efficiency (Folder) [6 attrs]
+                    - Output (Folder) [5 attrs]
+                    - Velocity (Folder) [5 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - ThrustAttachment (Attachment)
+                    - VFX_EngineJet_Left (Attachment) [2 attrs]
+                    - VFX_EngineJet_Right (Attachment) [2 attrs]
+              - Bruiser_05 (Folder)
+                - MODULE_ENGINE_BRUISER_05_LIGHTWEIGHT (Model) [67 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - engine a detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - engine a neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - engine a primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - engine a secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - engine a thruster neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Efficiency (Folder) [6 attrs]
+                    - Output (Folder) [5 attrs]
+                    - Velocity (Folder) [5 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - ThrustAttachment (Attachment)
+                    - VFX_EngineJet_Left (Attachment) [2 attrs]
+                    - VFX_EngineJet_Right (Attachment) [2 attrs]
+                - MODULE_ENGINE_BRUISER_05_POWER (Model) [67 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - engine a detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - engine a neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - engine a primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - engine a secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - engine a thruster neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Efficiency (Folder) [6 attrs]
+                    - Output (Folder) [5 attrs]
+                    - Velocity (Folder) [5 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - ThrustAttachment (Attachment)
+                    - VFX_EngineJet_Left (Attachment) [2 attrs]
+                    - VFX_EngineJet_Right (Attachment) [2 attrs]
+                - MODULE_ENGINE_BRUISER_05_STANDARD (Model) [64 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - engine a detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - engine a neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - engine a primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - engine a secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - engine a thruster neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Efficiency (Folder) [6 attrs]
+                    - Output (Folder) [5 attrs]
+                    - Velocity (Folder) [5 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - ThrustAttachment (Attachment)
+                    - VFX_EngineJet_Left (Attachment) [2 attrs]
+                    - VFX_EngineJet_Right (Attachment) [2 attrs]
+              - Bruiser_06 (Folder)
+                - MODULE_ENGINE_BRUISER_06_LIGHTWEIGHT (Model) [67 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - engine a detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - engine a neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - engine a primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - engine a secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - engine a thruster neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Efficiency (Folder) [6 attrs]
+                    - Output (Folder) [5 attrs]
+                    - Velocity (Folder) [5 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - ThrustAttachment (Attachment)
+                    - VFX_EngineJet_Left (Attachment) [2 attrs]
+                    - VFX_EngineJet_Right (Attachment) [2 attrs]
+                - MODULE_ENGINE_BRUISER_06_POWER (Model) [67 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - engine a detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - engine a neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - engine a primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - engine a secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - engine a thruster neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Efficiency (Folder) [6 attrs]
+                    - Output (Folder) [5 attrs]
+                    - Velocity (Folder) [5 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - ThrustAttachment (Attachment)
+                    - VFX_EngineJet_Left (Attachment) [2 attrs]
+                    - VFX_EngineJet_Right (Attachment) [2 attrs]
+                - MODULE_ENGINE_BRUISER_06_STANDARD (Model) [64 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - engine a detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - engine a neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - engine a primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - engine a secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - engine a thruster neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Efficiency (Folder) [6 attrs]
+                    - Output (Folder) [5 attrs]
+                    - Velocity (Folder) [5 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - ThrustAttachment (Attachment)
+                    - VFX_EngineJet_Left (Attachment) [2 attrs]
+                    - VFX_EngineJet_Right (Attachment) [2 attrs]
+              - MODULE_ENGINE_A (Model) [27 attrs]
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                  - engine a detail (MeshPart) [1 attrs]
+                - NEON_OptionalLights (Folder) [4 attrs]
+                  - engine a neon (MeshPart) [1 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                  - engine a primary (MeshPart) [1 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                  - engine a secondary (MeshPart) [1 attrs]
+                - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                  - engine a thruster neon (MeshPart) [1 attrs]
+                - VFXAttachments (Folder) [1 attrs]
+                - ModuleRoot_DoNotRename (Part) [1 attrs]
+                  - MountAttachment (Attachment)
+                  - ThrustAttachment (Attachment)
+                  - VFX_EngineJet_Left (Attachment) [2 attrs]
+                  - VFX_EngineJet_Right (Attachment) [2 attrs]
+              - MODULE_ENGINE_B (Model) [27 attrs]
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                  - engine a detail (MeshPart)
+                  - engine a detail.001 (MeshPart)
+                - NEON_OptionalLights (Folder) [4 attrs]
+                  - engine a neon option a (MeshPart)
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                  - engine a primary.001 (MeshPart)
+                  - engine a primary.002 (MeshPart)
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                  - engine a secondary (MeshPart)
+                - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                  - engine a neon thruster (MeshPart)
+                - VFXAttachments (Folder) [1 attrs]
+                - ModuleRoot_DoNotRename (Part) [1 attrs]
+                  - MountAttachment (Attachment)
+                  - ThrustAttachment (Attachment)
+                  - VFX_EngineJet_Back (Attachment) [2 attrs]
+              - MODULE_ENGINE_C (Model) [27 attrs]
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                  - engine v3 detail template (Part) [3 attrs]
+                - NEON_OptionalLights (Folder) [4 attrs]
+                  - engine v3 neon template (Part) [3 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                  - engine v3 primary template (Part) [3 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                  - engine v3 secondary template (Part) [3 attrs]
+                - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                - VFXAttachments (Folder) [1 attrs]
+                - ModuleRoot_DoNotRename (Part) [1 attrs]
+                  - MountAttachment (Attachment)
+                  - ThrustAttachment (Attachment)
+                  - VFX_EngineJet_Back (Attachment) [2 attrs]
+              - MODULE_ENGINE_D (Model) [27 attrs]
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                  - engine v4 detail template (Part) [3 attrs]
+                - NEON_OptionalLights (Folder) [4 attrs]
+                  - engine v4 neon template (Part) [3 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                  - engine v4 primary template (Part) [3 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                  - engine v4 secondary template (Part) [3 attrs]
+                - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                - VFXAttachments (Folder) [1 attrs]
+                - ModuleRoot_DoNotRename (Part) [1 attrs]
+                  - MountAttachment (Attachment)
+                  - ThrustAttachment (Attachment)
+                  - VFX_EngineJet_Back (Attachment) [2 attrs]
+            - Engines_B (Folder) [4 attrs]
+              - Bruiser_01 (Folder)
+                - MODULE_ENGINE_B_BRUISER_01_LIGHTWEIGHT (Model) [67 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - engine b detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - engine b neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - engine b primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - engine b secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - engine b thruster neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Efficiency (Folder) [6 attrs]
+                    - Output (Folder) [5 attrs]
+                    - Velocity (Folder) [5 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - ThrustAttachment (Attachment)
+                    - VFX_EngineJet_Left (Attachment) [2 attrs]
+                    - VFX_EngineJet_Right (Attachment) [2 attrs]
+                - MODULE_ENGINE_B_BRUISER_01_POWER (Model) [67 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - engine b detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - engine b neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - engine b primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - engine b secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - engine b thruster neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Efficiency (Folder) [6 attrs]
+                    - Output (Folder) [5 attrs]
+                    - Velocity (Folder) [5 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - ThrustAttachment (Attachment)
+                    - VFX_EngineJet_Left (Attachment) [2 attrs]
+                    - VFX_EngineJet_Right (Attachment) [2 attrs]
+                - MODULE_ENGINE_B_BRUISER_01_STANDARD (Model) [64 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - engine b detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - engine b neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - engine b primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - engine b secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - engine b thruster neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Efficiency (Folder) [6 attrs]
+                    - Output (Folder) [5 attrs]
+                    - Velocity (Folder) [5 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - ThrustAttachment (Attachment)
+                    - VFX_EngineJet_Left (Attachment) [2 attrs]
+                    - VFX_EngineJet_Right (Attachment) [2 attrs]
+              - Bruiser_02 (Folder)
+                - MODULE_ENGINE_B_BRUISER_02_LIGHTWEIGHT (Model) [67 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - engine b detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - engine b neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - engine b primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - engine b secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - engine b thruster neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Efficiency (Folder) [6 attrs]
+                    - Output (Folder) [5 attrs]
+                    - Velocity (Folder) [5 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - ThrustAttachment (Attachment)
+                    - VFX_EngineJet_Left (Attachment) [2 attrs]
+                    - VFX_EngineJet_Right (Attachment) [2 attrs]
+                - MODULE_ENGINE_B_BRUISER_02_POWER (Model) [67 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - engine b detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - engine b neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - engine b primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - engine b secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - engine b thruster neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Efficiency (Folder) [6 attrs]
+                    - Output (Folder) [5 attrs]
+                    - Velocity (Folder) [5 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - ThrustAttachment (Attachment)
+                    - VFX_EngineJet_Left (Attachment) [2 attrs]
+                    - VFX_EngineJet_Right (Attachment) [2 attrs]
+                - MODULE_ENGINE_B_BRUISER_02_STANDARD (Model) [64 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - engine b detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - engine b neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - engine b primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - engine b secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - engine b thruster neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Efficiency (Folder) [6 attrs]
+                    - Output (Folder) [5 attrs]
+                    - Velocity (Folder) [5 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - ThrustAttachment (Attachment)
+                    - VFX_EngineJet_Left (Attachment) [2 attrs]
+                    - VFX_EngineJet_Right (Attachment) [2 attrs]
+              - Bruiser_03 (Folder)
+                - MODULE_ENGINE_B_BRUISER_03_LIGHTWEIGHT (Model) [67 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - engine b detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - engine b neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - engine b primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - engine b secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - engine b thruster neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Efficiency (Folder) [6 attrs]
+                    - Output (Folder) [5 attrs]
+                    - Velocity (Folder) [5 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - ThrustAttachment (Attachment)
+                    - VFX_EngineJet_Left (Attachment) [2 attrs]
+                    - VFX_EngineJet_Right (Attachment) [2 attrs]
+                - MODULE_ENGINE_B_BRUISER_03_POWER (Model) [67 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - engine b detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - engine b neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - engine b primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - engine b secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - engine b thruster neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Efficiency (Folder) [6 attrs]
+                    - Output (Folder) [5 attrs]
+                    - Velocity (Folder) [5 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - ThrustAttachment (Attachment)
+                    - VFX_EngineJet_Left (Attachment) [2 attrs]
+                    - VFX_EngineJet_Right (Attachment) [2 attrs]
+                - MODULE_ENGINE_B_BRUISER_03_STANDARD (Model) [64 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - engine b detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - engine b neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - engine b primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - engine b secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - engine b thruster neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Efficiency (Folder) [6 attrs]
+                    - Output (Folder) [5 attrs]
+                    - Velocity (Folder) [5 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - ThrustAttachment (Attachment)
+                    - VFX_EngineJet_Left (Attachment) [2 attrs]
+                    - VFX_EngineJet_Right (Attachment) [2 attrs]
+              - Bruiser_04 (Folder)
+                - MODULE_ENGINE_B_BRUISER_04_LIGHTWEIGHT (Model) [67 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - engine b detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - engine b neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - engine b primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - engine b secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - engine b thruster neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Efficiency (Folder) [6 attrs]
+                    - Output (Folder) [5 attrs]
+                    - Velocity (Folder) [5 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - ThrustAttachment (Attachment)
+                    - VFX_EngineJet_Left (Attachment) [2 attrs]
+                    - VFX_EngineJet_Right (Attachment) [2 attrs]
+                - MODULE_ENGINE_B_BRUISER_04_POWER (Model) [67 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - engine b detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - engine b neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - engine b primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - engine b secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - engine b thruster neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Efficiency (Folder) [6 attrs]
+                    - Output (Folder) [5 attrs]
+                    - Velocity (Folder) [5 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - ThrustAttachment (Attachment)
+                    - VFX_EngineJet_Left (Attachment) [2 attrs]
+                    - VFX_EngineJet_Right (Attachment) [2 attrs]
+                - MODULE_ENGINE_B_BRUISER_04_STANDARD (Model) [64 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - engine b detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - engine b neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - engine b primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - engine b secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - engine b thruster neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Efficiency (Folder) [6 attrs]
+                    - Output (Folder) [5 attrs]
+                    - Velocity (Folder) [5 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - ThrustAttachment (Attachment)
+                    - VFX_EngineJet_Left (Attachment) [2 attrs]
+                    - VFX_EngineJet_Right (Attachment) [2 attrs]
+              - Bruiser_05 (Folder)
+                - MODULE_ENGINE_B_BRUISER_05_LIGHTWEIGHT (Model) [67 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - engine b detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - engine b neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - engine b primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - engine b secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - engine b thruster neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Efficiency (Folder) [6 attrs]
+                    - Output (Folder) [5 attrs]
+                    - Velocity (Folder) [5 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - ThrustAttachment (Attachment)
+                    - VFX_EngineJet_Left (Attachment) [2 attrs]
+                    - VFX_EngineJet_Right (Attachment) [2 attrs]
+                - MODULE_ENGINE_B_BRUISER_05_POWER (Model) [67 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - engine b detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - engine b neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - engine b primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - engine b secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - engine b thruster neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Efficiency (Folder) [6 attrs]
+                    - Output (Folder) [5 attrs]
+                    - Velocity (Folder) [5 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - ThrustAttachment (Attachment)
+                    - VFX_EngineJet_Left (Attachment) [2 attrs]
+                    - VFX_EngineJet_Right (Attachment) [2 attrs]
+                - MODULE_ENGINE_B_BRUISER_05_STANDARD (Model) [64 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - engine b detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - engine b neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - engine b primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - engine b secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - engine b thruster neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Efficiency (Folder) [6 attrs]
+                    - Output (Folder) [5 attrs]
+                    - Velocity (Folder) [5 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - ThrustAttachment (Attachment)
+                    - VFX_EngineJet_Left (Attachment) [2 attrs]
+                    - VFX_EngineJet_Right (Attachment) [2 attrs]
+              - Bruiser_06 (Folder)
+                - MODULE_ENGINE_B_BRUISER_06_LIGHTWEIGHT (Model) [67 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - engine b detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - engine b neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - engine b primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - engine b secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - engine b thruster neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Efficiency (Folder) [6 attrs]
+                    - Output (Folder) [5 attrs]
+                    - Velocity (Folder) [5 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - ThrustAttachment (Attachment)
+                    - VFX_EngineJet_Left (Attachment) [2 attrs]
+                    - VFX_EngineJet_Right (Attachment) [2 attrs]
+                - MODULE_ENGINE_B_BRUISER_06_POWER (Model) [67 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - engine b detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - engine b neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - engine b primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - engine b secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - engine b thruster neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Efficiency (Folder) [6 attrs]
+                    - Output (Folder) [5 attrs]
+                    - Velocity (Folder) [5 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - ThrustAttachment (Attachment)
+                    - VFX_EngineJet_Left (Attachment) [2 attrs]
+                    - VFX_EngineJet_Right (Attachment) [2 attrs]
+                - MODULE_ENGINE_B_BRUISER_06_STANDARD (Model) [64 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - engine b detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                    - engine b neon (MeshPart) [1 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - engine b primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - engine b secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - engine b thruster neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Efficiency (Folder) [6 attrs]
+                    - Output (Folder) [5 attrs]
+                    - Velocity (Folder) [5 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - ThrustAttachment (Attachment)
+                    - VFX_EngineJet_Left (Attachment) [2 attrs]
+                    - VFX_EngineJet_Right (Attachment) [2 attrs]
+              - MODULE_ENGINE_B_01 (Model) [25 attrs]
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                  - engine b detail (MeshPart) [1 attrs]
+                - NEON_OptionalLights (Folder) [4 attrs]
+                  - engine b neon (MeshPart) [1 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                  - engine b primary (MeshPart) [1 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                  - engine b secondary (MeshPart) [1 attrs]
+                - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                  - engine b thruster neon (MeshPart) [1 attrs]
+                - VFXAttachments (Folder) [1 attrs]
+                - ModuleRoot_DoNotRename (Part) [1 attrs]
+                  - MountAttachment (Attachment)
+                  - ThrustAttachment (Attachment)
+                  - VFX_EngineJet_Left (Attachment) [2 attrs]
+                  - VFX_EngineJet_Right (Attachment) [2 attrs]
+              - MODULE_ENGINE_B_02 (Model) [25 attrs]
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                  - engine b detail (MeshPart)
+                  - engine b detail.002 (MeshPart)
+                - NEON_OptionalLights (Folder) [4 attrs]
+                  - engine b neon option a (MeshPart)
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                  - engine b primary.003 (MeshPart)
+                  - engine b primary.004 (MeshPart)
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                  - engine b secondary.001 (MeshPart)
+                - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                  - engine b neon thruster (MeshPart)
+                - VFXAttachments (Folder) [1 attrs]
+                - ModuleRoot_DoNotRename (Part) [1 attrs]
+                  - MountAttachment (Attachment)
+                  - ThrustAttachment (Attachment)
+                  - VFX_EngineJet_Back (Attachment) [2 attrs]
+              - MODULE_ENGINE_B_03 (Model) [25 attrs]
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                  - engine v3 detail template (Part) [3 attrs]
+                - NEON_OptionalLights (Folder) [4 attrs]
+                  - engine v3 neon template (Part) [3 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                  - engine v3 primary template (Part) [3 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                  - engine v3 secondary template (Part) [3 attrs]
+                - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                - VFXAttachments (Folder) [1 attrs]
+                - ModuleRoot_DoNotRename (Part) [1 attrs]
+                  - MountAttachment (Attachment)
+                  - ThrustAttachment (Attachment)
+                  - VFX_EngineJet_Back (Attachment) [2 attrs]
+              - MODULE_ENGINE_B_04 (Model) [25 attrs]
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                  - engine v4 detail template (Part) [3 attrs]
+                - NEON_OptionalLights (Folder) [4 attrs]
+                  - engine v4 neon template (Part) [3 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                  - engine v4 primary template (Part) [3 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                  - engine v4 secondary template (Part) [3 attrs]
+                - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                - VFXAttachments (Folder) [1 attrs]
+                - ModuleRoot_DoNotRename (Part) [1 attrs]
+                  - MountAttachment (Attachment)
+                  - ThrustAttachment (Attachment)
+                  - VFX_EngineJet_Back (Attachment) [2 attrs]
+            - FrontBumpers (Folder) [3 attrs]
+              - MODULE_FRONTBUMPER_A (Model) [23 attrs]
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                  - bumper front detail (MeshPart) [1 attrs]
+                - NEON_OptionalLights (Folder) [4 attrs]
+                  - bumper front neon (MeshPart) [1 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                  - bumper front primary (MeshPart) [1 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                  - bumper front secondary (MeshPart) [1 attrs]
+                - VFXAttachments (Folder) [1 attrs]
+                - ModuleRoot_DoNotRename (Part) [1 attrs]
+                  - MountAttachment (Attachment)
+              - MODULE_FRONTBUMPER_B (Model) [23 attrs]
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                  - front bumper type b detail template (Part) [3 attrs]
+                - NEON_OptionalLights (Folder) [4 attrs]
+                  - front bumper type b neon template (Part) [3 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                  - front bumper type b primary template (Part) [3 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                  - front bumper type b secondary template (Part) [3 attrs]
+                - VFXAttachments (Folder) [1 attrs]
+                - ModuleRoot_DoNotRename (Part) [1 attrs]
+                  - MountAttachment (Attachment)
+              - MODULE_FRONTBUMPER_C (Model) [23 attrs]
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                  - front bumper type c detail template (Part) [3 attrs]
+                - NEON_OptionalLights (Folder) [4 attrs]
+                  - front bumper type c neon template (Part) [3 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                  - front bumper type c primary template (Part) [3 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                  - front bumper type c secondary template (Part) [3 attrs]
+                - VFXAttachments (Folder) [1 attrs]
+                - ModuleRoot_DoNotRename (Part) [1 attrs]
+                  - MountAttachment (Attachment)
+              - MODULE_FRONTBUMPER_D (Model) [23 attrs]
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                  - front bumper type d detail template (Part) [3 attrs]
+                - NEON_OptionalLights (Folder) [4 attrs]
+                  - front bumper type d neon template (Part) [3 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                  - front bumper type d primary template (Part) [3 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                  - front bumper type d secondary template (Part) [3 attrs]
+                - VFXAttachments (Folder) [1 attrs]
+                - ModuleRoot_DoNotRename (Part) [1 attrs]
+                  - MountAttachment (Attachment)
+              - MODULE_FRONTBUMPER_LVL1 (Model) [68 attrs]
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                  - bumper front detail (MeshPart) [1 attrs]
+                - NEON_OptionalLights (Folder) [4 attrs]
+                  - bumper front neon (MeshPart) [1 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                  - bumper front primary (MeshPart) [1 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                  - bumper front secondary (MeshPart) [1 attrs]
+                - VFXAttachments (Folder) [1 attrs]
+                - VehiclePerformanceV2UpgradePaths (Folder)
+                  - BrakeDucts (Folder) [6 attrs]
+                  - FrontSplitter (Folder) [6 attrs]
+                  - LightweightMounts (Folder) [6 attrs]
+                - ModuleRoot_DoNotRename (Part) [1 attrs]
+                  - MountAttachment (Attachment)
+              - MODULE_FRONTBUMPER_LVL2 (Model) [68 attrs]
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                  - bumper front detail (MeshPart) [1 attrs]
+                - NEON_OptionalLights (Folder) [4 attrs]
+                  - bumper front neon (MeshPart) [1 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                  - bumper front primary (MeshPart) [1 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                  - bumper front secondary (MeshPart) [1 attrs]
+                - VFXAttachments (Folder) [1 attrs]
+                - VehiclePerformanceV2UpgradePaths (Folder)
+                  - BrakeDucts (Folder) [6 attrs]
+                  - FrontSplitter (Folder) [6 attrs]
+                  - LightweightMounts (Folder) [6 attrs]
+                - ModuleRoot_DoNotRename (Part) [1 attrs]
+                  - MountAttachment (Attachment)
+              - MODULE_FRONTBUMPER_LVL3 (Model) [68 attrs]
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                  - bumper front detail (MeshPart) [1 attrs]
+                - NEON_OptionalLights (Folder) [4 attrs]
+                  - bumper front neon (MeshPart) [1 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                  - bumper front primary (MeshPart) [1 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                  - bumper front secondary (MeshPart) [1 attrs]
+                - VFXAttachments (Folder) [1 attrs]
+                - VehiclePerformanceV2UpgradePaths (Folder)
+                  - BrakeDucts (Folder) [6 attrs]
+                  - FrontSplitter (Folder) [6 attrs]
+                  - LightweightMounts (Folder) [6 attrs]
+                - ModuleRoot_DoNotRename (Part) [1 attrs]
+                  - MountAttachment (Attachment)
+            - RearBumpers (Folder) [3 attrs]
+              - MODULE_REARBUMPER_A (Model) [23 attrs]
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                - NEON_OptionalLights (Folder) [4 attrs]
+                  - bumper rear neon (MeshPart) [1 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                  - bumper rear primary (MeshPart) [1 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                - VFXAttachments (Folder) [1 attrs]
+                - ModuleRoot_DoNotRename (Part) [1 attrs]
+                  - MountAttachment (Attachment)
+              - MODULE_REARBUMPER_B (Model) [23 attrs]
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                  - rear bumper type b detail template (Part) [3 attrs]
+                - NEON_OptionalLights (Folder) [4 attrs]
+                  - rear bumper type b neon template (Part) [3 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                  - rear bumper type b primary template (Part) [3 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                  - rear bumper type b secondary template (Part) [3 attrs]
+                - VFXAttachments (Folder) [1 attrs]
+                - ModuleRoot_DoNotRename (Part) [1 attrs]
+                  - MountAttachment (Attachment)
+              - MODULE_REARBUMPER_C (Model) [23 attrs]
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                  - rear bumper type c detail template (Part) [3 attrs]
+                - NEON_OptionalLights (Folder) [4 attrs]
+                  - rear bumper type c neon template (Part) [3 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                  - rear bumper type c primary template (Part) [3 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                  - rear bumper type c secondary template (Part) [3 attrs]
+                - VFXAttachments (Folder) [1 attrs]
+                - ModuleRoot_DoNotRename (Part) [1 attrs]
+                  - MountAttachment (Attachment)
+              - MODULE_REARBUMPER_D (Model) [23 attrs]
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                  - rear bumper type d detail template (Part) [3 attrs]
+                - NEON_OptionalLights (Folder) [4 attrs]
+                  - rear bumper type d neon template (Part) [3 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                  - rear bumper type d primary template (Part) [3 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                  - rear bumper type d secondary template (Part) [3 attrs]
+                - VFXAttachments (Folder) [1 attrs]
+                - ModuleRoot_DoNotRename (Part) [1 attrs]
+                  - MountAttachment (Attachment)
+              - MODULE_REARBUMPER_LVL1 (Model) [68 attrs]
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                - NEON_OptionalLights (Folder) [4 attrs]
+                  - bumper rear neon (MeshPart) [1 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                  - bumper rear primary (MeshPart) [1 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                - VFXAttachments (Folder) [1 attrs]
+                - VehiclePerformanceV2UpgradePaths (Folder)
+                  - LightweightMounts (Folder) [5 attrs]
+                  - RearDiffuser (Folder) [7 attrs]
+                - ModuleRoot_DoNotRename (Part) [1 attrs]
+                  - MountAttachment (Attachment)
+              - MODULE_REARBUMPER_LVL2 (Model) [68 attrs]
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                - NEON_OptionalLights (Folder) [4 attrs]
+                  - bumper rear neon (MeshPart) [1 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                  - bumper rear primary (MeshPart) [1 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                - VFXAttachments (Folder) [1 attrs]
+                - VehiclePerformanceV2UpgradePaths (Folder)
+                  - LightweightMounts (Folder) [5 attrs]
+                  - RearDiffuser (Folder) [7 attrs]
+                - ModuleRoot_DoNotRename (Part) [1 attrs]
+                  - MountAttachment (Attachment)
+              - MODULE_REARBUMPER_LVL3 (Model) [68 attrs]
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                - NEON_OptionalLights (Folder) [4 attrs]
+                  - bumper rear neon (MeshPart) [1 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                  - bumper rear primary (MeshPart) [1 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                - VFXAttachments (Folder) [1 attrs]
+                - VehiclePerformanceV2UpgradePaths (Folder)
+                  - LightweightMounts (Folder) [5 attrs]
+                  - RearDiffuser (Folder) [7 attrs]
+                - ModuleRoot_DoNotRename (Part) [1 attrs]
+                  - MountAttachment (Attachment)
+            - RearSpoilers (Folder) [3 attrs]
+              - MODULE_REARSPOILER_A (Model) [23 attrs]
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                  - spoiler detail (MeshPart)
+                  - spoiler detail.001 (MeshPart)
+                - NEON_OptionalLights (Folder) [4 attrs]
+                  - spoiler neon (MeshPart)
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                  - spoiler primary.001 (MeshPart)
+                  - spoiler primary.002 (MeshPart)
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                  - spoiler secondary (MeshPart)
+                - VFXAttachments (Folder) [1 attrs]
+                - ModuleRoot_DoNotRename (Part) [1 attrs]
+                  - MountAttachment (Attachment)
+              - MODULE_REARSPOILER_B (Model) [23 attrs]
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                  - spoiler detail (MeshPart)
+                  - spoiler detail.001 (MeshPart)
+                - NEON_OptionalLights (Folder) [4 attrs]
+                  - spoiler neon (MeshPart)
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                  - spoiler primary.001 (MeshPart)
+                  - spoiler primary.002 (MeshPart)
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                  - spoiler secondary (MeshPart)
+                - VFXAttachments (Folder) [1 attrs]
+                - ModuleRoot_DoNotRename (Part) [1 attrs]
+                  - MountAttachment (Attachment)
+              - MODULE_REARSPOILER_C (Model) [23 attrs]
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                  - spoiler type c detail template (Part) [3 attrs]
+                - NEON_OptionalLights (Folder) [4 attrs]
+                  - spoiler type c neon template (Part) [3 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                  - spoiler type c primary template (Part) [3 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                  - spoiler type c secondary template (Part) [3 attrs]
+                - VFXAttachments (Folder) [1 attrs]
+                - ModuleRoot_DoNotRename (Part) [1 attrs]
+                  - MountAttachment (Attachment)
+              - MODULE_REARSPOILER_D (Model) [23 attrs]
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                  - spoiler type d detail template (Part) [3 attrs]
+                - NEON_OptionalLights (Folder) [4 attrs]
+                  - spoiler type d neon template (Part) [3 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                  - spoiler type d primary template (Part) [3 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                  - spoiler type d secondary template (Part) [3 attrs]
+                - VFXAttachments (Folder) [1 attrs]
+                - ModuleRoot_DoNotRename (Part) [1 attrs]
+                  - MountAttachment (Attachment)
+              - MODULE_REARSPOILER_LVL1 (Model) [68 attrs]
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                  - spoiler detail (MeshPart) [1 attrs]
+                - NEON_OptionalLights (Folder) [4 attrs]
+                  - spoiler neon (MeshPart) [1 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                  - spoiler primary (MeshPart) [1 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                  - spoiler secondary (MeshPart) [1 attrs]
+                - VFXAttachments (Folder) [1 attrs]
+                - VehiclePerformanceV2UpgradePaths (Folder)
+                  - DownforcePackage (Folder) [7 attrs]
+                  - DriftAero (Folder) [7 attrs]
+                  - LowDragProfile (Folder) [6 attrs]
+                - ModuleRoot_DoNotRename (Part) [1 attrs]
+                  - MountAttachment (Attachment)
+              - MODULE_REARSPOILER_LVL2 (Model) [68 attrs]
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                  - spoiler detail (MeshPart) [1 attrs]
+                - NEON_OptionalLights (Folder) [4 attrs]
+                  - spoiler neon (MeshPart) [1 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                  - spoiler primary (MeshPart) [1 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                  - spoiler secondary (MeshPart) [1 attrs]
+                - VFXAttachments (Folder) [1 attrs]
+                - VehiclePerformanceV2UpgradePaths (Folder)
+                  - DownforcePackage (Folder) [7 attrs]
+                  - DriftAero (Folder) [7 attrs]
+                  - LowDragProfile (Folder) [6 attrs]
+                - ModuleRoot_DoNotRename (Part) [1 attrs]
+                  - MountAttachment (Attachment)
+              - MODULE_REARSPOILER_LVL3 (Model) [68 attrs]
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                  - spoiler detail (MeshPart) [1 attrs]
+                - NEON_OptionalLights (Folder) [4 attrs]
+                  - spoiler neon (MeshPart) [1 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                  - spoiler primary (MeshPart) [1 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                  - spoiler secondary (MeshPart) [1 attrs]
+                - VFXAttachments (Folder) [1 attrs]
+                - VehiclePerformanceV2UpgradePaths (Folder)
+                  - DownforcePackage (Folder) [7 attrs]
+                  - DriftAero (Folder) [7 attrs]
+                  - LowDragProfile (Folder) [6 attrs]
+                - ModuleRoot_DoNotRename (Part) [1 attrs]
+                  - MountAttachment (Attachment)
+            - SidePods (Folder) [3 attrs]
+              - MODULE_SIDEPODS_A (Model) [23 attrs]
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                - NEON_OptionalLights (Folder) [4 attrs]
+                  - sidepods neon (MeshPart) [1 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                  - sidepods primary (MeshPart) [1 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                  - sidepods secondary (MeshPart) [1 attrs]
+                - VFXAttachments (Folder) [1 attrs]
+                - ModuleRoot_DoNotRename (Part) [1 attrs]
+                  - MountAttachment (Attachment)
+              - MODULE_SIDEPODS_B (Model) [23 attrs]
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                  - side pods type b detail template (Part) [3 attrs]
+                - NEON_OptionalLights (Folder) [4 attrs]
+                  - side pods type b neon template (Part) [3 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                  - side pods type b primary template (Part) [3 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                  - side pods type b secondary template (Part) [3 attrs]
+                - VFXAttachments (Folder) [1 attrs]
+                - ModuleRoot_DoNotRename (Part) [1 attrs]
+                  - MountAttachment (Attachment)
+              - MODULE_SIDEPODS_C (Model) [23 attrs]
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                  - side pods type c detail template (Part) [3 attrs]
+                - NEON_OptionalLights (Folder) [4 attrs]
+                  - side pods type c neon template (Part) [3 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                  - side pods type c primary template (Part) [3 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                  - side pods type c secondary template (Part) [3 attrs]
+                - VFXAttachments (Folder) [1 attrs]
+                - ModuleRoot_DoNotRename (Part) [1 attrs]
+                  - MountAttachment (Attachment)
+              - MODULE_SIDEPODS_D (Model) [23 attrs]
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                  - side pods type d detail template (Part) [3 attrs]
+                - NEON_OptionalLights (Folder) [4 attrs]
+                  - side pods type d neon template (Part) [3 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                  - side pods type d primary template (Part) [3 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                  - side pods type d secondary template (Part) [3 attrs]
+                - VFXAttachments (Folder) [1 attrs]
+                - ModuleRoot_DoNotRename (Part) [1 attrs]
+                  - MountAttachment (Attachment)
+              - MODULE_SIDEPODS_LVL1 (Model) [68 attrs]
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                - NEON_OptionalLights (Folder) [4 attrs]
+                  - sidepods neon (MeshPart) [1 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                  - sidepods primary (MeshPart) [1 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                  - sidepods secondary (MeshPart) [1 attrs]
+                - VFXAttachments (Folder) [1 attrs]
+                - VehiclePerformanceV2UpgradePaths (Folder)
+                  - AirflowChannels (Folder) [6 attrs]
+                  - CorneringVanes (Folder) [6 attrs]
+                  - LightweightShells (Folder) [5 attrs]
+                - ModuleRoot_DoNotRename (Part) [1 attrs]
+                  - MountAttachment (Attachment)
+              - MODULE_SIDEPODS_LVL2 (Model) [68 attrs]
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                - NEON_OptionalLights (Folder) [4 attrs]
+                  - sidepods neon (MeshPart) [1 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                  - sidepods primary (MeshPart) [1 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                  - sidepods secondary (MeshPart) [1 attrs]
+                - VFXAttachments (Folder) [1 attrs]
+                - VehiclePerformanceV2UpgradePaths (Folder)
+                  - AirflowChannels (Folder) [6 attrs]
+                  - CorneringVanes (Folder) [6 attrs]
+                  - LightweightShells (Folder) [5 attrs]
+                - ModuleRoot_DoNotRename (Part) [1 attrs]
+                  - MountAttachment (Attachment)
+              - MODULE_SIDEPODS_LVL3 (Model) [68 attrs]
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                - NEON_OptionalLights (Folder) [4 attrs]
+                  - sidepods neon (MeshPart) [1 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                  - sidepods primary (MeshPart) [1 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                  - sidepods secondary (MeshPart) [1 attrs]
+                - VFXAttachments (Folder) [1 attrs]
+                - VehiclePerformanceV2UpgradePaths (Folder)
+                  - AirflowChannels (Folder) [6 attrs]
+                  - CorneringVanes (Folder) [6 attrs]
+                  - LightweightShells (Folder) [5 attrs]
+                - ModuleRoot_DoNotRename (Part) [1 attrs]
+                  - MountAttachment (Attachment)
+            - Stabilisers (Folder) [3 attrs]
+              - Bruiser_01 (Folder)
+                - MODULE_STABILISER_BRUISER_01_LIGHTWEIGHT (Model) [68 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - stabilisers detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - stabilisers primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - stabilisers secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - stabilisers thrust neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Drift (Folder) [8 attrs]
+                    - Grip (Folder) [7 attrs]
+                    - Response (Folder) [6 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - VFX_StabiliserJet_Left (Attachment) [2 attrs]
+                    - VFX_StabiliserJet_Right (Attachment) [2 attrs]
+                - MODULE_STABILISER_BRUISER_01_POWER (Model) [68 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - stabilisers detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - stabilisers primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - stabilisers secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - stabilisers thrust neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Drift (Folder) [8 attrs]
+                    - Grip (Folder) [7 attrs]
+                    - Response (Folder) [6 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - VFX_StabiliserJet_Left (Attachment) [2 attrs]
+                    - VFX_StabiliserJet_Right (Attachment) [2 attrs]
+                - MODULE_STABILISER_BRUISER_01_STANDARD (Model) [65 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - stabilisers detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - stabilisers primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - stabilisers secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - stabilisers thrust neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Drift (Folder) [8 attrs]
+                    - Grip (Folder) [7 attrs]
+                    - Response (Folder) [6 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - VFX_StabiliserJet_Left (Attachment) [2 attrs]
+                    - VFX_StabiliserJet_Right (Attachment) [2 attrs]
+              - Bruiser_02 (Folder)
+                - MODULE_STABILISER_BRUISER_02_LIGHTWEIGHT (Model) [68 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - stabilisers detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - stabilisers primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - stabilisers secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - stabilisers thrust neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Drift (Folder) [8 attrs]
+                    - Grip (Folder) [7 attrs]
+                    - Response (Folder) [6 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - VFX_StabiliserJet_Left (Attachment) [2 attrs]
+                    - VFX_StabiliserJet_Right (Attachment) [2 attrs]
+                - MODULE_STABILISER_BRUISER_02_POWER (Model) [68 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - stabilisers detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - stabilisers primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - stabilisers secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - stabilisers thrust neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Drift (Folder) [8 attrs]
+                    - Grip (Folder) [7 attrs]
+                    - Response (Folder) [6 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - VFX_StabiliserJet_Left (Attachment) [2 attrs]
+                    - VFX_StabiliserJet_Right (Attachment) [2 attrs]
+                - MODULE_STABILISER_BRUISER_02_STANDARD (Model) [65 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - stabilisers detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - stabilisers primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - stabilisers secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - stabilisers thrust neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Drift (Folder) [8 attrs]
+                    - Grip (Folder) [7 attrs]
+                    - Response (Folder) [6 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - VFX_StabiliserJet_Left (Attachment) [2 attrs]
+                    - VFX_StabiliserJet_Right (Attachment) [2 attrs]
+              - Bruiser_03 (Folder)
+                - MODULE_STABILISER_BRUISER_03_LIGHTWEIGHT (Model) [68 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - stabilisers detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - stabilisers primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - stabilisers secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - stabilisers thrust neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Drift (Folder) [8 attrs]
+                    - Grip (Folder) [7 attrs]
+                    - Response (Folder) [6 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - VFX_StabiliserJet_Left (Attachment) [2 attrs]
+                    - VFX_StabiliserJet_Right (Attachment) [2 attrs]
+                - MODULE_STABILISER_BRUISER_03_POWER (Model) [68 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - stabilisers detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - stabilisers primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - stabilisers secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - stabilisers thrust neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Drift (Folder) [8 attrs]
+                    - Grip (Folder) [7 attrs]
+                    - Response (Folder) [6 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - VFX_StabiliserJet_Left (Attachment) [2 attrs]
+                    - VFX_StabiliserJet_Right (Attachment) [2 attrs]
+                - MODULE_STABILISER_BRUISER_03_STANDARD (Model) [65 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - stabilisers detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - stabilisers primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - stabilisers secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - stabilisers thrust neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Drift (Folder) [8 attrs]
+                    - Grip (Folder) [7 attrs]
+                    - Response (Folder) [6 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - VFX_StabiliserJet_Left (Attachment) [2 attrs]
+                    - VFX_StabiliserJet_Right (Attachment) [2 attrs]
+              - Bruiser_04 (Folder)
+                - MODULE_STABILISER_BRUISER_04_LIGHTWEIGHT (Model) [68 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - stabilisers detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - stabilisers primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - stabilisers secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - stabilisers thrust neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Drift (Folder) [8 attrs]
+                    - Grip (Folder) [7 attrs]
+                    - Response (Folder) [6 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - VFX_StabiliserJet_Left (Attachment) [2 attrs]
+                    - VFX_StabiliserJet_Right (Attachment) [2 attrs]
+                - MODULE_STABILISER_BRUISER_04_POWER (Model) [68 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - stabilisers detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - stabilisers primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - stabilisers secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - stabilisers thrust neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Drift (Folder) [8 attrs]
+                    - Grip (Folder) [7 attrs]
+                    - Response (Folder) [6 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - VFX_StabiliserJet_Left (Attachment) [2 attrs]
+                    - VFX_StabiliserJet_Right (Attachment) [2 attrs]
+                - MODULE_STABILISER_BRUISER_04_STANDARD (Model) [65 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - stabilisers detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - stabilisers primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - stabilisers secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - stabilisers thrust neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Drift (Folder) [8 attrs]
+                    - Grip (Folder) [7 attrs]
+                    - Response (Folder) [6 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - VFX_StabiliserJet_Left (Attachment) [2 attrs]
+                    - VFX_StabiliserJet_Right (Attachment) [2 attrs]
+              - Bruiser_05 (Folder)
+                - MODULE_STABILISER_BRUISER_05_LIGHTWEIGHT (Model) [68 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - stabilisers detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - stabilisers primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - stabilisers secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - stabilisers thrust neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Drift (Folder) [8 attrs]
+                    - Grip (Folder) [7 attrs]
+                    - Response (Folder) [6 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - VFX_StabiliserJet_Left (Attachment) [2 attrs]
+                    - VFX_StabiliserJet_Right (Attachment) [2 attrs]
+                - MODULE_STABILISER_BRUISER_05_POWER (Model) [68 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - stabilisers detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - stabilisers primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - stabilisers secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - stabilisers thrust neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Drift (Folder) [8 attrs]
+                    - Grip (Folder) [7 attrs]
+                    - Response (Folder) [6 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - VFX_StabiliserJet_Left (Attachment) [2 attrs]
+                    - VFX_StabiliserJet_Right (Attachment) [2 attrs]
+                - MODULE_STABILISER_BRUISER_05_STANDARD (Model) [65 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - stabilisers detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - stabilisers primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - stabilisers secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - stabilisers thrust neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Drift (Folder) [8 attrs]
+                    - Grip (Folder) [7 attrs]
+                    - Response (Folder) [6 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - VFX_StabiliserJet_Left (Attachment) [2 attrs]
+                    - VFX_StabiliserJet_Right (Attachment) [2 attrs]
+              - Bruiser_06 (Folder)
+                - MODULE_STABILISER_BRUISER_06_LIGHTWEIGHT (Model) [68 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - stabilisers detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - stabilisers primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - stabilisers secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - stabilisers thrust neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Drift (Folder) [8 attrs]
+                    - Grip (Folder) [7 attrs]
+                    - Response (Folder) [6 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - VFX_StabiliserJet_Left (Attachment) [2 attrs]
+                    - VFX_StabiliserJet_Right (Attachment) [2 attrs]
+                - MODULE_STABILISER_BRUISER_06_POWER (Model) [68 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - stabilisers detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - stabilisers primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - stabilisers secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - stabilisers thrust neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Drift (Folder) [8 attrs]
+                    - Grip (Folder) [7 attrs]
+                    - Response (Folder) [6 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - VFX_StabiliserJet_Left (Attachment) [2 attrs]
+                    - VFX_StabiliserJet_Right (Attachment) [2 attrs]
+                - MODULE_STABILISER_BRUISER_06_STANDARD (Model) [65 attrs]
+                  - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                    - stabilisers detail (MeshPart) [1 attrs]
+                  - NEON_OptionalLights (Folder) [4 attrs]
+                  - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                    - stabilisers primary (MeshPart) [1 attrs]
+                  - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                    - stabilisers secondary (MeshPart) [1 attrs]
+                  - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                    - stabilisers thrust neon (MeshPart) [1 attrs]
+                  - VFXAttachments (Folder) [1 attrs]
+                  - VehiclePerformanceV2UpgradePaths (Folder)
+                    - Drift (Folder) [8 attrs]
+                    - Grip (Folder) [7 attrs]
+                    - Response (Folder) [6 attrs]
+                  - ModuleRoot_DoNotRename (Part) [1 attrs]
+                    - MountAttachment (Attachment)
+                    - VFX_StabiliserJet_Left (Attachment) [2 attrs]
+                    - VFX_StabiliserJet_Right (Attachment) [2 attrs]
+              - MODULE_STABILISER_A (Model) [23 attrs]
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                  - stabilisers detail (MeshPart) [1 attrs]
+                - NEON_OptionalLights (Folder) [4 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                  - stabilisers primary (MeshPart) [1 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                  - stabilisers secondary (MeshPart) [1 attrs]
+                - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                  - stabilisers thrust neon (MeshPart) [1 attrs]
+                - VFXAttachments (Folder) [1 attrs]
+                - ModuleRoot_DoNotRename (Part) [1 attrs]
+                  - MountAttachment (Attachment)
+                  - VFX_StabiliserJet_Left (Attachment) [2 attrs]
+                  - VFX_StabiliserJet_Right (Attachment) [2 attrs]
+              - MODULE_STABILISER_B (Model) [23 attrs]
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                  - stabilisers mk2 detail template (Part) [3 attrs]
+                - NEON_OptionalLights (Folder) [4 attrs]
+                  - stabilisers mk2 neon template (Part) [3 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                  - stabilisers mk2 primary template (Part) [3 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                  - stabilisers mk2 secondary template (Part) [3 attrs]
+                - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                - VFXAttachments (Folder) [1 attrs]
+                - ModuleRoot_DoNotRename (Part) [1 attrs]
+                  - MountAttachment (Attachment)
+                  - VFX_StabiliserJet_Left (Attachment) [2 attrs]
+                  - VFX_StabiliserJet_Right (Attachment) [2 attrs]
+              - MODULE_STABILISER_C (Model) [23 attrs]
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                  - stabilisers mk3 detail template (Part) [3 attrs]
+                - NEON_OptionalLights (Folder) [4 attrs]
+                  - stabilisers mk3 neon template (Part) [3 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                  - stabilisers mk3 primary template (Part) [3 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                  - stabilisers mk3 secondary template (Part) [3 attrs]
+                - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                - VFXAttachments (Folder) [1 attrs]
+                - ModuleRoot_DoNotRename (Part) [1 attrs]
+                  - MountAttachment (Attachment)
+                  - VFX_StabiliserJet_Left (Attachment) [2 attrs]
+                  - VFX_StabiliserJet_Right (Attachment) [2 attrs]
+              - MODULE_STABILISER_D (Model) [23 attrs]
+                - DETAIL_ReplaceWithDetailMeshes (Folder) [3 attrs]
+                  - stabilisers mk4 detail template (Part) [3 attrs]
+                - NEON_OptionalLights (Folder) [4 attrs]
+                  - stabilisers mk4 neon template (Part) [3 attrs]
+                - PRIMARY_ReplaceWithPrimaryMeshes (Folder) [3 attrs]
+                  - stabilisers mk4 primary template (Part) [3 attrs]
+                - SECONDARY_ReplaceWithSecondaryMeshes (Folder) [3 attrs]
+                  - stabilisers mk4 secondary template (Part) [3 attrs]
+                - THRUST_COLOR_WhiteByDefault (Folder) [3 attrs]
+                - VFXAttachments (Folder) [1 attrs]
+                - ModuleRoot_DoNotRename (Part) [1 attrs]
+                  - MountAttachment (Attachment)
+                  - VFX_StabiliserJet_Left (Attachment) [2 attrs]
+                  - VFX_StabiliserJet_Right (Attachment) [2 attrs]
+          - UPGRADES_InvisiblePerformance (Folder)
+            - UPGRADE_Brakes (Folder) [7 attrs]
+            - UPGRADE_Converter (Folder) [7 attrs]
+            - UPGRADE_FuelSystem (Folder) [7 attrs]
   - Config (Folder)
     - Player (Folder)
       - Persistence (Folder) [15 attrs]

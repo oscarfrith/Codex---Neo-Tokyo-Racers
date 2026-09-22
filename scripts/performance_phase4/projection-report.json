@@ -1,0 +1,65 @@
+{
+  "sourceChanges": [
+    [
+      "ReplicatedStorage",
+      "Modules",
+      "Core",
+      "PathResolver"
+    ],
+    [
+      "ReplicatedStorage",
+      "Modules",
+      "Game",
+      "Garage",
+      "GarageUI"
+    ],
+    [
+      "ReplicatedStorage",
+      "Modules",
+      "Game",
+      "Racing",
+      "RaceEntryPresentationClient"
+    ],
+    [
+      "ReplicatedStorage",
+      "Modules",
+      "Game",
+      "UI",
+      "DesktopFreeRoamHudUI"
+    ],
+    [
+      "ReplicatedStorage",
+      "Modules",
+      "Game",
+      "UI",
+      "MobileFreeRoamHudUI"
+    ],
+    [
+      "ServerStorage",
+      "Modules",
+      "Game",
+      "Garage",
+      "GarageServer"
+    ],
+    [
+      "ServerStorage",
+      "Modules",
+      "Game",
+      "Garage",
+      "OwnedGarageDisplay"
+    ],
+    [
+      "ServerStorage",
+      "Modules",
+      "Game",
+      "Garage",
+      "OwnedGarageManagement"
+    ]
+  ],
+  "originalInstances": 2438,
+  "previewInstances": 2105,
+  "omittedFolders": 333,
+  "omittedAttributes": 1479,
+  "originalsPreserved": true,
+  "meshTextureReduction": false
+}

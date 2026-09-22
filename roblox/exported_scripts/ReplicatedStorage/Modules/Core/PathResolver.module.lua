@@ -30,7 +30,8 @@ function PathResolver.Assets()
 end
 
 function PathResolver.VehicleCategories()
-	return waitPath(root(), "Assets", "Vehicles", "Categories")
+	if game:GetService("RunService"):IsServer() then return waitPath(game:GetService("ServerStorage"), "Assets", "Vehicles", "Categories") end
+	return waitPath(root(), "Assets", "VehiclePreviews", "Categories")
 end
 
 function PathResolver.VehicleVFXTemplates()

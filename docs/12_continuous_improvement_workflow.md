@@ -1,5 +1,9 @@
 # Continuous Improvement Workflow
 
+## 2026-09-22 — Static preview projection
+
+Choose the least complex delivery justified by evidence. A generated static preview tree avoids new asynchronous UI/network owners but only removes nonvisual metadata; do not describe it as graphics-memory or join-time proof. Keep originals intact server-side, check generated outputs against the same authoring source, and verify all retained properties including duplicate sibling names. Catalogue lookup separation must precede stripping upgrade folders from client previews. Selective delivery needs separate measured justification and two-client isolation proof before activation.
+
 ## 2026-09-22 — Catalogue separation evidence
 
 Keep one authoring source and generate immutable public projections. Prove pure calculations against the prior implementation across all catalogue IDs and upgrade allocations before physical relocation. Preserve folder-name versus PathId semantics. A data/code separation may temporarily increase replication; report that honestly and measure the later asset phase separately. Pair the generated revision with a repeatable freshness check. On Windows mirror promotion errors, retry only bounded sharing/access failures and keep rollback/failure tests; never silently accept an old snapshot.

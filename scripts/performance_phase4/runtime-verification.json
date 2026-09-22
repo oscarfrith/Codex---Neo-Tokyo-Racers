@@ -1,0 +1,11 @@
+{
+  "placeId": 121304917315753,
+  "date": "2026-09-22",
+  "installer": {"compileAllSources": 164, "repeatInstall": true, "rollbackBaselineAudit": true, "reinstall": true, "injectedFailureRecovery": true},
+  "pureParityWithServerTemplates": {"comparisons": 749912, "allocationCases": 5380, "cockpits": 6, "modules": 116, "pass": true},
+  "startup": {"serverReady": 26, "clientReady": 39, "optInSkipped": 4},
+  "sandbox": {"enabled": true, "purchaseCockpit": true, "paintCockpit": true, "spawn": true, "performanceIndex": 551, "performanceTier": "C", "exit": true, "reenter": true, "despawn": true, "upgradeVelocity": true, "upgradePrice": 6050},
+  "preview": {"model": "LOCAL_PREVIEW_bruiser_01", "descendants": 285, "padPassLogged": true, "ownershipPassLogged": true, "visualAcceptance": "pending user playthrough"},
+  "replication": {"editBefore": 4313, "editAfter": 3980, "reduction": 333, "canonicalDescendants": 2437, "previewDescendants": 2104, "catalogueJsonBytes": 173361},
+  "limitations": ["CAM-02 clamp errors reproduced and truncated the console; no error-free claim.", "Static preview generation retains all geometry and texture IDs. No FPS, graphics-download, memory or join improvement measured.", "No selective or per-player delivery introduced; two-client isolation tests are not applicable to this static public projection.", "User visual, iPhone 7, representative route, network, 15-player and soak acceptance remain pending."]
+}

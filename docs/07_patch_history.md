@@ -1,5 +1,9 @@
 # Patch History
 
+## 2026-09-22 — Install performance Phase 4 vehicle preview projection
+
+Moved original Assets.Vehicles intact to ServerStorage; generated 2,105-instance VehiclePreviews excluding 333 upgrade folders and their 1,479 attributes. Eight navigation consumers changed; all physical/paint/VFX properties and gameplay calculations retained. Exact preflight/compile/repeat/rollback/reinstall/injected recovery pass. 749,912 calculation comparisons still pass against relocated templates. Normal startup, sandbox purchase/paint/spawn PI551/C, exit/re-entry/despawn, live 285-descendant preview and Velocity upgrade at $6,050 pass. Existing CAM-02 persists. Mirror 12:47:08 verifies 164 sources, 44,464 nodes, 276,087 properties, both generated outputs fresh and zero unexplained changes. RS descendants 4,313 -> 3,980. Mesh/texture cost unchanged; measured join/memory/device benefit remains open. User playthrough pending; no publish.
+
 ## 2026-09-22 — Install performance Phase 3 catalogue separation
 
 Generated four immutable-data/access/index modules from existing authoring attributes; changed six shared/client consumers to remove repeated template scans while preserving one calculator and all physical content. Exact preflight, compile, repeat-install, rollback/reinstall and injected failure recovery pass. Pure before/after tests: 6 cockpits, 116 modules, 5,380 allocations, 749,912 comparisons, including owned profile/selection/upgrade previews. Normal startup and sandbox purchase/paint/spawn/exit/re-entry/despawn pass; PI551/C retained. Drive-in preview pad/ownership logs pass; visual acceptance pending. CAM-02 persists. Mirror 12:31:08: 164 sources, 42,359 nodes, 267,539 properties, zero unexplained differences and fresh projected catalogue. Added bounded Windows rename retries after safe import failures; 11 pipeline tests pass. Physical templates remain replicated; no FPS/download reduction claimed. User playthrough pending; no publish.

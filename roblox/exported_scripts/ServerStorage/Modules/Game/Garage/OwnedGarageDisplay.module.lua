@@ -1,7 +1,7 @@
 -- Canonical feature implementation; startup is owned by the composition root.
 local ReplicatedStorage=game:GetService("ReplicatedStorage")
 local Runtime={}
-local categories=game:GetService("ReplicatedStorage"):WaitForChild("Assets").Vehicles:WaitForChild("Categories")
+local categories=game:GetService("ServerStorage"):WaitForChild("Assets").Vehicles:WaitForChild("Categories")
 local VehicleCosmetics=require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Vehicles"):WaitForChild("VehicleCosmeticCatalog")) 
 local function findByAttribute(root,key,value)
 	if not root then return nil end
@@ -11,7 +11,7 @@ end
 local function categoryFolder(categoryId)
 	local wanted=string.lower(tostring(categoryId or "BRUISER"))
 	for _,child in ipairs(categories:GetChildren()) do if string.lower(child.Name)==wanted then return child end end
-	return game:GetService("ReplicatedStorage"):WaitForChild("Assets"):WaitForChild("Vehicles"):WaitForChild("Categories"):FindFirstChild("BRUISER") or categories:GetChildren()[1]
+	return game:GetService("ServerStorage"):WaitForChild("Assets"):WaitForChild("Vehicles"):WaitForChild("Categories"):FindFirstChild("BRUISER") or categories:GetChildren()[1]
 end
 local function cockpitTemplate(categoryId,cockpitId)
 	local category=categoryFolder(categoryId); local root=category and (category:FindFirstChild("COCKPITS_ReplaceAssetsHere") or category:FindFirstChild("Cockpits") or category:FindFirstChild("COCKPITS"))

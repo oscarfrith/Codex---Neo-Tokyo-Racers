@@ -37,7 +37,7 @@ local garageInvoke = game:GetService("ReplicatedStorage"):WaitForChild("Remotes"
 local teleportInvoke = game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("UI"):WaitForChild("FreeRoamHudTeleportInvoke")
 local loadingInvoke = game:GetService("Players").LocalPlayer:WaitForChild("PlayerScripts"):WaitForChild("Runtime"):WaitForChild("UI"):WaitForChild("LoadingTransitionInvoke") 
 local interiorInvoke = game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Garage"):FindFirstChild("GarageInteriorInvoke")
-local categoriesRoot = game:GetService("ReplicatedStorage"):WaitForChild("Assets"):WaitForChild("Vehicles"):WaitForChild("Categories")
+local categoriesRoot = game:GetService("ReplicatedStorage"):WaitForChild("Assets"):WaitForChild("VehiclePreviews"):WaitForChild("Categories")
 local mobileDriveInputState = require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Vehicles"):WaitForChild("MobileDriveInputState"))
 local GameplayInputGate = require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Vehicles"):WaitForChild("GameplayInputGate"))
 

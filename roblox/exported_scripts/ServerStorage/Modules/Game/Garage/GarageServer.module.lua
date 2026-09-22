@@ -21,7 +21,7 @@ do
 	local kit = game:GetService("ReplicatedStorage")
 	local remotes = game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Garage")
 	local invoke = game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Garage"):WaitForChild("GarageInvoke")
-	local categoriesRoot = game:GetService("ReplicatedStorage"):WaitForChild("Assets"):WaitForChild("Vehicles"):WaitForChild("Categories")
+	local categoriesRoot = game:GetService("ServerStorage"):WaitForChild("Assets"):WaitForChild("Vehicles"):WaitForChild("Categories")
 	local world = game:GetService("Workspace"):WaitForChild("World")
 	local garageServer_runtime = game:GetService("Workspace"):WaitForChild("World"):WaitForChild("Runtime")
 	local vehiclesRoot = game:GetService("Workspace"):WaitForChild("World"):WaitForChild("Runtime"):WaitForChild("PlayerVehicles")

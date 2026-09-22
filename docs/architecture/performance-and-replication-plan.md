@@ -1,6 +1,6 @@
 # Performance and replication plan
 
-2026-09-22. **Phase 3 installed and agent-verified; user playthrough pending.** See [Phase 3 handoff](performance-phase3-catalogue.md). Phase 2 was accepted for continuation. Phase 1 phone/route/load gaps remain; iPhone 7 selected. Phases 4-6 are unimplemented. All four complete-cleanup phases are user-confirmed. The design below is the original programme; this paragraph is the current execution status.
+2026-09-22. **Phase 4 installed and agent-verified; user playthrough pending.** See [Phase 4 handoff](performance-phase4-vehicle-previews.md). Phase 3 accepted for continuation. Selected the static generated-preview option: 333 fewer replicated folders and 1,479 fewer folder attributes; originals preserved server-side. Mesh/texture cost unchanged. Join/memory/FPS benefit and device/load acceptance remain unmeasured. Phases 5-6 unimplemented; selective delivery is not installed. iPhone 7 selected. The design below is the original programme; this paragraph is current execution status.
 
 ## Evidence and recommendation
 

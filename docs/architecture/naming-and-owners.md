@@ -1,8 +1,10 @@
 # Naming and ownership
 
+ServerStorage.Assets.Vehicles is the sole full vehicle authoring/spawn source. ReplicatedStorage.Assets.VehiclePreviews is a generated presentation-only output, never used as the authoritative upgrade/spawn source. PathResolver.VehicleCategories chooses by runtime side. No new lifecycle or network owner.
+
 VehicleCatalogData/VehicleCatalog own immutable public definitions and ID resolution; VehicleDefinition shares attribute access across records and authoring Instances. VehicleTemplateIndex owns bounded preview-template lookup only. Server authority, startup, UI, preview geometry, persistence and lifecycle ownership remain unchanged.
 
-Performance Phase 3 is installed and agent-verified; user playthrough pending. Mirror 2026-09-22 12:31:08 passes exact 164-source/42,359-node/267,539-property parity. See performance-phase3-catalogue.md. Gameplay, tuning and physical assets are preserved.
+Performance Phase 4 is installed and agent-verified; user playthrough pending. Mirror 2026-09-22 12:47:08 passes exact 164-source/44,464-node/276,087-property parity. See performance-phase4-vehicle-previews.md. Gameplay and physical properties are preserved; original templates are server-only and client previews are generated.
 
 Naming follows the inspected Untitled Experience vocabulary without claiming a company-wide standard: ServerBase, ClientBase, Modules.Core/Game and responsibility-based FeatureServer, FeatureClient, FeatureUI names.
 

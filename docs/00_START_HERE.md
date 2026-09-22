@@ -6,7 +6,7 @@ Updated 2026-09-22. Target: Space Racers v1, place 121304917315753.
 
 All five original architecture phases and all four complete-cleanup phases are user-confirmed. The user reports committing and pushing Phase 4. Post-confirmation mirror **2026-09-22 11:00:13** passes exact source/hierarchy/property parity. See [Phase 4 handoff](architecture/cleanup-phase4-finalisation.md). No further cleanup phase has been added.
 
-The [performance and replication plan](architecture/performance-and-replication-plan.md) has **Phase 3 installed and agent-verified; user playthrough pending**. Public catalogue records and bounded template lookups now separate calculations from physical models. See [Phase 3 handoff](architecture/performance-phase3-catalogue.md). Latest mirror **2026-09-22 12:31:08** verifies 164 sources, 42,359 nodes and 267,539 properties. Phase 2 was accepted for continuation; no additional device testing is inferred. iPhone 7, representative route and 15-player measurements remain pending. Phase 4 template relocation is not installed.
+The [performance and replication plan](architecture/performance-and-replication-plan.md) has **Phase 4 installed and agent-verified; user playthrough pending**. Original full vehicle templates now live in ServerStorage.Assets.Vehicles; generated client preview copies omit only 333 upgrade-definition folders. ReplicatedStorage descendants: 4,313 -> 3,980. See [Phase 4 handoff](architecture/performance-phase4-vehicle-previews.md). Latest mirror **2026-09-22 12:47:08** verifies 164 sources, 44,464 nodes and 276,087 properties. Phase 3 was accepted for continuation; no specific visual/device tests inferred. Mesh/texture cost is unchanged and join/memory gains remain unmeasured. iPhone 7, route and 15-player gates remain pending. Phase 5 is next after acceptance.
 
 User approved preserving 628 moved race-arrow parts and 66 new Workspace thumbnail-model records. Phase 4 preserves this September 22 physical baseline. Protected staging and Archive disposition remains unresolved.
 
@@ -20,8 +20,8 @@ Studio replay/sandbox suppresses saving. CAM-02 predates cleanup. Device, multip
 
 ## Entry points
 
-Read AGENTS, current issues, performance Phase 3 handoff and relevant topic docs. Check Git and list Studio instances afresh before writes. Current installed script: scripts/roblox_performance_phase3_catalogue.lua. No manual run needed. Roll this phase back before older cleanup recovery.
+Read AGENTS, current issues, performance Phase 4 handoff and relevant topic docs. Check Git and list Studio instances afresh before writes. Current installed script: scripts/roblox_performance_phase4_vehicle_previews.lua. No manual run needed. Roll this phase back before older cleanup recovery.
 
-Read-only audits: scripts/studio_cleanup_audit.lua and scripts/audit_cleanup.py. Current export: scripts/receive_studio_snapshot.py followed by scripts/studio_export_snapshot.lua in Edit. Validate using scripts/verify_studio_mirror.py and scripts/performance_phase3/verify_migration.py. Evidence is scripts/performance_phase3/verification.json.
+Read-only audits: scripts/studio_cleanup_audit.lua and scripts/audit_cleanup.py. Current export: scripts/receive_studio_snapshot.py followed by scripts/studio_export_snapshot.lua in Edit. Validate using scripts/verify_studio_mirror.py and scripts/performance_phase4/verify_migration.py. Evidence is scripts/performance_phase4/verification.json.
 
 See [sync workflow](10_script_source_sync_workflow.md), [tool index](architecture/installer-index.md) and [owner map](architecture/naming-and-owners.md). Older current-baseline prose is archived under docs/history/cleanup-phase4-prior-docs. Historical run instructions are not a pending queue.
