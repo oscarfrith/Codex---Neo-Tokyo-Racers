@@ -11,7 +11,7 @@ local DataStoreService = game:GetService("DataStoreService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local kit = game:GetService("ReplicatedStorage")
-local config = game:GetService("ReplicatedStorage"):WaitForChild("Config"):WaitForChild("Racing"):WaitForChild("Leaderboards")
+local config = game:GetService("ServerStorage"):WaitForChild("Config"):WaitForChild("Racing"):WaitForChild("Leaderboards")
 local bindings = game:GetService("ServerStorage"):WaitForChild("Runtime"):WaitForChild("Racing"):WaitForChild("GlobalTimeTrialLeaderboardBindings")
 local recordBinding = game:GetService("ServerStorage"):WaitForChild("Runtime"):WaitForChild("Racing"):WaitForChild("GlobalTimeTrialLeaderboardBindings"):WaitForChild("RecordTimeTrialBest")
 local readBinding = game:GetService("ServerStorage"):WaitForChild("Runtime"):WaitForChild("Racing"):WaitForChild("GlobalTimeTrialLeaderboardBindings"):WaitForChild("GetTimeTrialLeaderboard")

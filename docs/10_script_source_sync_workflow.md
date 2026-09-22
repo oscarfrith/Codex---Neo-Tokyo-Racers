@@ -5,7 +5,7 @@ Current as of cleanup Phase 4, 2026-09-22. Studio remains authoritative; exporte
 1. Verify Space Racers v1 (121304917315753), stop Play, and inspect baseline/Git.
 2. Run py scripts/receive_studio_snapshot.py locally. Discover Python 3 or the bundled interpreter if py is absent; never copy another machine's cache path.
 3. Execute scripts/studio_export_snapshot.lua in Edit through MCP or Command Bar.
-4. Run scripts/verify_studio_mirror.py. For this exact delivery also run scripts/cleanup_phase4/verify_migration.py. Future intentional changes need their own baseline comparison.
+4. Run scripts/verify_studio_mirror.py. For the current performance Phase 2 delivery also run scripts/performance_phase2/verify_migration.py. Older cleanup parity verifiers apply only after dependent phases are rolled back. Future intentional changes need their own baseline comparison.
 5. Review diagnostics, update docs and commit both mirror directories. Never commit docs/studio-full-export-paste.txt.
 
 Receiver-only transport: 127.0.0.1:8765/studio-snapshot-chunk, STUDIO_SNAPSHOT_V1 / STUDIO_SNAPSHOT_END framing, schema revision 3. Producer/receiver/importer must agree. No Studio dump/backup instances are created. Only explicit --write-paste writes the raw blob.

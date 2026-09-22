@@ -1,5 +1,9 @@
 # Patch History
 
+## 2026-09-22 — Install performance Phase 2 server-only storage
+
+Moved six reviewed roots (three modules/three config groups, 14 instances) intact to ServerStorage; added four destination folders. Updated nine service literals in six server callers, with token proof and no gameplay/config-value/client/physical changes. One canonical installer supports exact preflight, compile, audit, idempotency and repository-backed rollback. Repeat/rollback/reinstall and injected transaction failure recovery pass. Normal startup 26 server/39 client/four skipped; sandbox purchase/paint/spawn/exit/re-entry/despawn and performance writer pass. CAM-02 camera errors recur, unchanged. Final mirror 12:07:02: 160 sources, 42,355 nodes, 267,539 properties; exact expected source/full captured property parity, zero unexplained changes. ReplicatedStorage descendants 4,323 → 4,309; no FPS claim. User playthrough pending. See architecture/performance-phase2-server-storage.md. No publish.
+
 ## 2026-09-22 — Performance Phase 1 local audit and initial baseline
 
 User approved Phase 1 and selected iPhone 7. Added repeatable read-only mirror dependency analysis, bounded Studio runtime sampler and sandbox catalogue-response sampler. Reviewed six server-only move candidates (14 instances, 20,805 source bytes), transitive shared dependencies and 50 config groups. Captured four eight-second Studio windows and five GetInitial responses; catalogue is 173,361 JSON bytes per result, not measured wire size. All startup owners ready; no source/config/asset changes. Phone, controlled route/join, profiler/network attribution, 15-player and soak evidence explicitly deferred. Final mirror 11:13:49 passes exact cleanup Phase 4 parity. Phase 2 unimplemented. User authorised commit/push; no production publish.

@@ -1,6 +1,6 @@
 # Performance and replication plan
 
-2026-09-22. **Phase 1 approved; local audit/initial measurements delivered, representative benchmark coverage partial.** See [Phase 1 findings](performance-phase1-baseline.md). iPhone 7 selected by the user. Phases 2–6 remain proposed, not implemented. All four complete-cleanup phases are user-confirmed; local HEAD at planning was b66ebde. This is a new performance programme, not unfinished cleanup Phase 5.
+2026-09-22. **Phase 2 installed and agent-verified; user playthrough pending.** See [Phase 2 handoff](performance-phase2-server-storage.md). Phase 1 local measurements are delivered with explicit phone/route/load gaps; iPhone 7 selected by the user. Phases 3–6 remain proposed. All four complete-cleanup phases are user-confirmed; local HEAD at original planning was b66ebde. The design below is the original programme; current execution status is this paragraph.
 
 ## Evidence and recommendation
 
@@ -108,4 +108,4 @@ For each approved delivery: complete exact manifest and relevant contract detail
 
 Add a small repeatable dependency/performance report to the repo when implementation begins: forbidden client→server paths, unresolved stable IDs, catalogue drift, active resource counts and measured budgets. CI can check local source/contracts; it cannot prove Roblox device performance. Keep one current runbook, a compact issue ledger and historical recovery outside the live game. Avoid a new framework, parallel Luau/ECS conversion, data-store renaming, bulk minification or blanket pooling without evidence.
 
-**Recommended next action:** review Phase 1 findings and approve delivery 2's six exact moves. Carry forward the explicit real-device/route/load measurement gaps; no performance gain has been established. Deliveries 3–4 hold the larger storage opportunity; their complexity is justified only by measured client cost. Delivery 5 targets frame-time/network bottlenecks, and delivery 6 is the acceptance gate. No installer needs running for this plan.
+**Recommended next action:** user gameplay confirmation of installed Phase 2, then approve delivery 3. Carry forward the explicit real-device/route/load measurement gaps; no FPS/memory gain has been established. Deliveries 3–4 hold the larger storage opportunity; their complexity is justified only by measured client cost. Delivery 5 targets frame-time/network bottlenecks, and delivery 6 is the acceptance gate. No manual installer run is needed.

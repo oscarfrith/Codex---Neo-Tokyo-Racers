@@ -840,44 +840,6 @@
   },
   {
     "id": "script_0045",
-    "roblox_path": "ReplicatedStorage.Modules.Game.Player.GarageProfileProjection",
-    "path_parts": [
-      "ReplicatedStorage",
-      "Modules",
-      "Game",
-      "Player",
-      "GarageProfileProjection"
-    ],
-    "class_name": "ModuleScript",
-    "disabled": false,
-    "attributes": {},
-    "source_lines": 246,
-    "source_bytes": 9007,
-    "source_checksum": "560480691",
-    "source_sha256": "6b56c44fea31584dc42f102ee074507998a2813d8587b90072179f5a67901709",
-    "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Player/GarageProfileProjection.module.lua"
-  },
-  {
-    "id": "script_0046",
-    "roblox_path": "ReplicatedStorage.Modules.Game.Player.PlayerProfileSchema",
-    "path_parts": [
-      "ReplicatedStorage",
-      "Modules",
-      "Game",
-      "Player",
-      "PlayerProfileSchema"
-    ],
-    "class_name": "ModuleScript",
-    "disabled": false,
-    "attributes": {},
-    "source_lines": 277,
-    "source_bytes": 9745,
-    "source_checksum": "193821517",
-    "source_sha256": "a25a19af419032e2912c7abca792e4499ea208c7b630de446af8a6627f8c62ed",
-    "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Player/PlayerProfileSchema.module.lua"
-  },
-  {
-    "id": "script_0047",
     "roblox_path": "ReplicatedStorage.Modules.Game.Racing.RaceBrowserClient",
     "path_parts": [
       "ReplicatedStorage",
@@ -896,7 +858,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Racing/RaceBrowserClient.module.lua"
   },
   {
-    "id": "script_0048",
+    "id": "script_0046",
     "roblox_path": "ReplicatedStorage.Modules.Game.Racing.RaceConfigReader",
     "path_parts": [
       "ReplicatedStorage",
@@ -915,7 +877,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Racing/RaceConfigReader.module.lua"
   },
   {
-    "id": "script_0049",
+    "id": "script_0047",
     "roblox_path": "ReplicatedStorage.Modules.Game.Racing.RaceCountdownPresentationClient",
     "path_parts": [
       "ReplicatedStorage",
@@ -934,7 +896,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Racing/RaceCountdownPresentationClient.module.lua"
   },
   {
-    "id": "script_0050",
+    "id": "script_0048",
     "roblox_path": "ReplicatedStorage.Modules.Game.Racing.RaceEntryMenuClient",
     "path_parts": [
       "ReplicatedStorage",
@@ -953,7 +915,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Racing/RaceEntryMenuClient.module.lua"
   },
   {
-    "id": "script_0051",
+    "id": "script_0049",
     "roblox_path": "ReplicatedStorage.Modules.Game.Racing.RaceEntryPresentationClient",
     "path_parts": [
       "ReplicatedStorage",
@@ -972,7 +934,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Racing/RaceEntryPresentationClient.module.lua"
   },
   {
-    "id": "script_0052",
+    "id": "script_0050",
     "roblox_path": "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
     "path_parts": [
       "ReplicatedStorage",
@@ -991,7 +953,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Racing/RaceLifecyclePresentationClient.module.lua"
   },
   {
-    "id": "script_0053",
+    "id": "script_0051",
     "roblox_path": "ReplicatedStorage.Modules.Game.Racing.RaceParticipantVisibilityClient",
     "path_parts": [
       "ReplicatedStorage",
@@ -1010,7 +972,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Racing/RaceParticipantVisibilityClient.module.lua"
   },
   {
-    "id": "script_0054",
+    "id": "script_0052",
     "roblox_path": "ReplicatedStorage.Modules.Game.Racing.RaceQueueClient",
     "path_parts": [
       "ReplicatedStorage",
@@ -1029,7 +991,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Racing/RaceQueueClient.module.lua"
   },
   {
-    "id": "script_0055",
+    "id": "script_0053",
     "roblox_path": "ReplicatedStorage.Modules.Game.Racing.RaceRouteDefinition",
     "path_parts": [
       "ReplicatedStorage",
@@ -1048,7 +1010,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Racing/RaceRouteDefinition.module.lua"
   },
   {
-    "id": "script_0056",
+    "id": "script_0054",
     "roblox_path": "ReplicatedStorage.Modules.Game.Racing.RaceRouteGuideClient",
     "path_parts": [
       "ReplicatedStorage",
@@ -1067,7 +1029,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Racing/RaceRouteGuideClient.module.lua"
   },
   {
-    "id": "script_0057",
+    "id": "script_0055",
     "roblox_path": "ReplicatedStorage.Modules.Game.Racing.RaceSessionAssetsClient",
     "path_parts": [
       "ReplicatedStorage",
@@ -1086,7 +1048,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Racing/RaceSessionAssetsClient.module.lua"
   },
   {
-    "id": "script_0058",
+    "id": "script_0056",
     "roblox_path": "ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient",
     "path_parts": [
       "ReplicatedStorage",
@@ -1105,7 +1067,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Racing/RaceSessionPresentationClient.module.lua"
   },
   {
-    "id": "script_0059",
+    "id": "script_0057",
     "roblox_path": "ReplicatedStorage.Modules.Game.Racing.RaceTimeTrialResultCoachClient",
     "path_parts": [
       "ReplicatedStorage",
@@ -1124,7 +1086,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Racing/RaceTimeTrialResultCoachClient.module.lua"
   },
   {
-    "id": "script_0060",
+    "id": "script_0058",
     "roblox_path": "ReplicatedStorage.Modules.Game.Racing.RaceTransitionClient",
     "path_parts": [
       "ReplicatedStorage",
@@ -1143,7 +1105,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Racing/RaceTransitionClient.module.lua"
   },
   {
-    "id": "script_0061",
+    "id": "script_0059",
     "roblox_path": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
     "path_parts": [
       "ReplicatedStorage",
@@ -1162,7 +1124,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/UI/DesktopFreeRoamHudUI.module.lua"
   },
   {
-    "id": "script_0062",
+    "id": "script_0060",
     "roblox_path": "ReplicatedStorage.Modules.Game.UI.FreeRoamMapPlayerMarkers",
     "path_parts": [
       "ReplicatedStorage",
@@ -1181,7 +1143,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/UI/FreeRoamMapPlayerMarkers.module.lua"
   },
   {
-    "id": "script_0063",
+    "id": "script_0061",
     "roblox_path": "ReplicatedStorage.Modules.Game.UI.FreeRoamVehicleExitButtonClient",
     "path_parts": [
       "ReplicatedStorage",
@@ -1200,7 +1162,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/UI/FreeRoamVehicleExitButtonClient.module.lua"
   },
   {
-    "id": "script_0064",
+    "id": "script_0062",
     "roblox_path": "ReplicatedStorage.Modules.Game.UI.GarageBrowserUI",
     "path_parts": [
       "ReplicatedStorage",
@@ -1219,7 +1181,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/UI/GarageBrowserUI.module.lua"
   },
   {
-    "id": "script_0065",
+    "id": "script_0063",
     "roblox_path": "ReplicatedStorage.Modules.Game.UI.GarageComponents",
     "path_parts": [
       "ReplicatedStorage",
@@ -1238,7 +1200,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/UI/GarageComponents.module.lua"
   },
   {
-    "id": "script_0066",
+    "id": "script_0064",
     "roblox_path": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
     "path_parts": [
       "ReplicatedStorage",
@@ -1257,7 +1219,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/UI/GarageInteriorModeUI.module.lua"
   },
   {
-    "id": "script_0067",
+    "id": "script_0065",
     "roblox_path": "ReplicatedStorage.Modules.Game.UI.GarageInteriorTransitionUI",
     "path_parts": [
       "ReplicatedStorage",
@@ -1276,7 +1238,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/UI/GarageInteriorTransitionUI.module.lua"
   },
   {
-    "id": "script_0068",
+    "id": "script_0066",
     "roblox_path": "ReplicatedStorage.Modules.Game.UI.GarageModuleCardViewModel",
     "path_parts": [
       "ReplicatedStorage",
@@ -1295,7 +1257,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/UI/GarageModuleCardViewModel.module.lua"
   },
   {
-    "id": "script_0069",
+    "id": "script_0067",
     "roblox_path": "ReplicatedStorage.Modules.Game.UI.GarageWorkspaceUI",
     "path_parts": [
       "ReplicatedStorage",
@@ -1314,7 +1276,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/UI/GarageWorkspaceUI.module.lua"
   },
   {
-    "id": "script_0070",
+    "id": "script_0068",
     "roblox_path": "ReplicatedStorage.Modules.Game.UI.LoadingTransitionUI",
     "path_parts": [
       "ReplicatedStorage",
@@ -1333,7 +1295,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/UI/LoadingTransitionUI.module.lua"
   },
   {
-    "id": "script_0071",
+    "id": "script_0069",
     "roblox_path": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
     "path_parts": [
       "ReplicatedStorage",
@@ -1352,7 +1314,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/UI/MobileFreeRoamHudUI.module.lua"
   },
   {
-    "id": "script_0072",
+    "id": "script_0070",
     "roblox_path": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
     "path_parts": [
       "ReplicatedStorage",
@@ -1371,7 +1333,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/UI/OnboardingClient.module.lua"
   },
   {
-    "id": "script_0073",
+    "id": "script_0071",
     "roblox_path": "ReplicatedStorage.Modules.Game.UI.OnboardingGuideTrailRenderer",
     "path_parts": [
       "ReplicatedStorage",
@@ -1390,7 +1352,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/UI/OnboardingGuideTrailRenderer.module.lua"
   },
   {
-    "id": "script_0074",
+    "id": "script_0072",
     "roblox_path": "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
     "path_parts": [
       "ReplicatedStorage",
@@ -1409,7 +1371,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/UI/OwnedGarageBrowserUI.module.lua"
   },
   {
-    "id": "script_0075",
+    "id": "script_0073",
     "roblox_path": "ReplicatedStorage.Modules.Game.UI.OwnedGarageClient",
     "path_parts": [
       "ReplicatedStorage",
@@ -1428,7 +1390,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/UI/OwnedGarageClient.module.lua"
   },
   {
-    "id": "script_0076",
+    "id": "script_0074",
     "roblox_path": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
     "path_parts": [
       "ReplicatedStorage",
@@ -1447,7 +1409,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/UI/OwnedGarageWorkspaceUI.module.lua"
   },
   {
-    "id": "script_0077",
+    "id": "script_0075",
     "roblox_path": "ReplicatedStorage.Modules.Game.UI.RacingMobileScaledDesktopLayout",
     "path_parts": [
       "ReplicatedStorage",
@@ -1466,7 +1428,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/UI/RacingMobileScaledDesktopLayout.module.lua"
   },
   {
-    "id": "script_0078",
+    "id": "script_0076",
     "roblox_path": "ReplicatedStorage.Modules.Game.UI.RacingUIComponents",
     "path_parts": [
       "ReplicatedStorage",
@@ -1485,7 +1447,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/UI/RacingUIComponents.module.lua"
   },
   {
-    "id": "script_0079",
+    "id": "script_0077",
     "roblox_path": "ReplicatedStorage.Modules.Game.UI.ResponsiveUIFoundation",
     "path_parts": [
       "ReplicatedStorage",
@@ -1504,7 +1466,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/UI/ResponsiveUIFoundation.module.lua"
   },
   {
-    "id": "script_0080",
+    "id": "script_0078",
     "roblox_path": "ReplicatedStorage.Modules.Game.UI.SharedTopNotificationUI",
     "path_parts": [
       "ReplicatedStorage",
@@ -1523,7 +1485,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/UI/SharedTopNotificationUI.module.lua"
   },
   {
-    "id": "script_0081",
+    "id": "script_0079",
     "roblox_path": "ReplicatedStorage.Modules.Game.UI.UITheme",
     "path_parts": [
       "ReplicatedStorage",
@@ -1547,7 +1509,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/UI/UITheme.module.lua"
   },
   {
-    "id": "script_0082",
+    "id": "script_0080",
     "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceCalculator",
     "path_parts": [
       "ReplicatedStorage",
@@ -1576,7 +1538,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/Performance/PerformanceCalculator.module.lua"
   },
   {
-    "id": "script_0083",
+    "id": "script_0081",
     "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceDefinitions",
     "path_parts": [
       "ReplicatedStorage",
@@ -1605,7 +1567,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/Performance/PerformanceDefinitions.module.lua"
   },
   {
-    "id": "script_0084",
+    "id": "script_0082",
     "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceDynamics",
     "path_parts": [
       "ReplicatedStorage",
@@ -1625,7 +1587,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/Performance/PerformanceDynamics.module.lua"
   },
   {
-    "id": "script_0085",
+    "id": "script_0083",
     "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceRuntime",
     "path_parts": [
       "ReplicatedStorage",
@@ -1645,7 +1607,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/Performance/PerformanceRuntime.module.lua"
   },
   {
-    "id": "script_0086",
+    "id": "script_0084",
     "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceUpgradeRuntime",
     "path_parts": [
       "ReplicatedStorage",
@@ -1665,7 +1627,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/Performance/PerformanceUpgradeRuntime.module.lua"
   },
   {
-    "id": "script_0087",
+    "id": "script_0085",
     "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehicleModuleUpgradeRuntime",
     "path_parts": [
       "ReplicatedStorage",
@@ -1690,32 +1652,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/Performance/VehicleModuleUpgradeRuntime.module.lua"
   },
   {
-    "id": "script_0088",
-    "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehiclePerformance",
-    "path_parts": [
-      "ReplicatedStorage",
-      "Modules",
-      "Game",
-      "Vehicles",
-      "Performance",
-      "VehiclePerformance"
-    ],
-    "class_name": "ModuleScript",
-    "disabled": false,
-    "attributes": {
-      "Phase": {
-        "value": "AM",
-        "type": "string"
-      }
-    },
-    "source_lines": 43,
-    "source_bytes": 2053,
-    "source_checksum": "185936627",
-    "source_sha256": "b1b15f500291d0d9eddec6d4f6a3aecac0ae84781c194d2976709874482f410e",
-    "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/Performance/VehiclePerformance.module.lua"
-  },
-  {
-    "id": "script_0089",
+    "id": "script_0086",
     "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehiclePerformanceResolver",
     "path_parts": [
       "ReplicatedStorage",
@@ -1735,7 +1672,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/Performance/VehiclePerformanceResolver.module.lua"
   },
   {
-    "id": "script_0090",
+    "id": "script_0087",
     "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehicleUpgradeDefinitions",
     "path_parts": [
       "ReplicatedStorage",
@@ -1755,7 +1692,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/Performance/VehicleUpgradeDefinitions.module.lua"
   },
   {
-    "id": "script_0091",
+    "id": "script_0088",
     "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.CharacterSprintClient",
     "path_parts": [
       "ReplicatedStorage",
@@ -1774,7 +1711,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/CharacterSprintClient.module.lua"
   },
   {
-    "id": "script_0092",
+    "id": "script_0089",
     "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.DriveSessionClient",
     "path_parts": [
       "ReplicatedStorage",
@@ -1793,7 +1730,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/DriveSessionClient.module.lua"
   },
   {
-    "id": "script_0093",
+    "id": "script_0090",
     "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.DriveTuning",
     "path_parts": [
       "ReplicatedStorage",
@@ -1812,7 +1749,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/DriveTuning.module.lua"
   },
   {
-    "id": "script_0094",
+    "id": "script_0091",
     "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient",
     "path_parts": [
       "ReplicatedStorage",
@@ -1831,7 +1768,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/DrivingCameraClient.module.lua"
   },
   {
-    "id": "script_0095",
+    "id": "script_0092",
     "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.DrivingClient",
     "path_parts": [
       "ReplicatedStorage",
@@ -1850,7 +1787,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/DrivingClient.module.lua"
   },
   {
-    "id": "script_0096",
+    "id": "script_0093",
     "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.FreeRoamParkedHoverClient",
     "path_parts": [
       "ReplicatedStorage",
@@ -1869,7 +1806,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/FreeRoamParkedHoverClient.module.lua"
   },
   {
-    "id": "script_0097",
+    "id": "script_0094",
     "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.GameplayInputGate",
     "path_parts": [
       "ReplicatedStorage",
@@ -1888,7 +1825,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/GameplayInputGate.module.lua"
   },
   {
-    "id": "script_0098",
+    "id": "script_0095",
     "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient",
     "path_parts": [
       "ReplicatedStorage",
@@ -1907,7 +1844,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/MobileDriveControlsClient.module.lua"
   },
   {
-    "id": "script_0099",
+    "id": "script_0096",
     "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveInputState",
     "path_parts": [
       "ReplicatedStorage",
@@ -1926,7 +1863,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/MobileDriveInputState.module.lua"
   },
   {
-    "id": "script_0100",
+    "id": "script_0097",
     "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.RuntimeVFXClient",
     "path_parts": [
       "ReplicatedStorage",
@@ -1945,7 +1882,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/RuntimeVFXClient.module.lua"
   },
   {
-    "id": "script_0101",
+    "id": "script_0098",
     "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCosmeticCatalog",
     "path_parts": [
       "ReplicatedStorage",
@@ -1969,7 +1906,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/VehicleCosmeticCatalog.module.lua"
   },
   {
-    "id": "script_0102",
+    "id": "script_0099",
     "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.VehicleDisplayNames",
     "path_parts": [
       "ReplicatedStorage",
@@ -1988,7 +1925,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/VehicleDisplayNames.module.lua"
   },
   {
-    "id": "script_0103",
+    "id": "script_0100",
     "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.VehicleDynamics",
     "path_parts": [
       "ReplicatedStorage",
@@ -2007,7 +1944,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/VehicleDynamics.module.lua"
   },
   {
-    "id": "script_0104",
+    "id": "script_0101",
     "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.VehiclePreviewVFXClient",
     "path_parts": [
       "ReplicatedStorage",
@@ -2026,7 +1963,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/VehiclePreviewVFXClient.module.lua"
   },
   {
-    "id": "script_0105",
+    "id": "script_0102",
     "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient",
     "path_parts": [
       "ReplicatedStorage",
@@ -2045,7 +1982,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/VehicleVFXClient.module.lua"
   },
   {
-    "id": "script_0106",
+    "id": "script_0103",
     "roblox_path": "ReplicatedStorage.Modules.Game.World.LODClient",
     "path_parts": [
       "ReplicatedStorage",
@@ -2064,7 +2001,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/World/LODClient.module.lua"
   },
   {
-    "id": "script_0107",
+    "id": "script_0104",
     "roblox_path": "ReplicatedStorage.Modules.Game.World.LODPolicy",
     "path_parts": [
       "ReplicatedStorage",
@@ -2083,7 +2020,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/World/LODPolicy.module.lua"
   },
   {
-    "id": "script_0108",
+    "id": "script_0105",
     "roblox_path": "ReplicatedStorage.Modules.Game.World.LODRuntime",
     "path_parts": [
       "ReplicatedStorage",
@@ -2102,7 +2039,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/World/LODRuntime.module.lua"
   },
   {
-    "id": "script_0109",
+    "id": "script_0106",
     "roblox_path": "ReplicatedStorage.Modules.Game.World.LightingPresets",
     "path_parts": [
       "ReplicatedStorage",
@@ -2130,7 +2067,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/World/LightingPresets.module.lua"
   },
   {
-    "id": "script_0110",
+    "id": "script_0107",
     "roblox_path": "ReplicatedStorage.Modules.Game.World.LightingSchedule",
     "path_parts": [
       "ReplicatedStorage",
@@ -2149,7 +2086,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/World/LightingSchedule.module.lua"
   },
   {
-    "id": "script_0111",
+    "id": "script_0108",
     "roblox_path": "ReplicatedStorage.Modules.Game.World.NightLamppostLightClient",
     "path_parts": [
       "ReplicatedStorage",
@@ -2168,7 +2105,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/World/NightLamppostLightClient.module.lua"
   },
   {
-    "id": "script_0112",
+    "id": "script_0109",
     "roblox_path": "ReplicatedStorage.Modules.Game.World.OwnedGarageEnvironmentLightingClient",
     "path_parts": [
       "ReplicatedStorage",
@@ -2187,7 +2124,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/World/OwnedGarageEnvironmentLightingClient.module.lua"
   },
   {
-    "id": "script_0113",
+    "id": "script_0110",
     "roblox_path": "ReplicatedStorage.Modules.Game.World.WindowMaterialClient",
     "path_parts": [
       "ReplicatedStorage",
@@ -2206,7 +2143,7 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/World/WindowMaterialClient.module.lua"
   },
   {
-    "id": "script_0114",
+    "id": "script_0111",
     "roblox_path": "ServerScriptService.ServerBase",
     "path_parts": [
       "ServerScriptService",
@@ -2222,7 +2159,7 @@
     "file": "roblox/exported_scripts/ServerScriptService/ServerBase.server.lua"
   },
   {
-    "id": "script_0115",
+    "id": "script_0112",
     "roblox_path": "StarterPlayer.StarterPlayerScripts.ClientBase",
     "path_parts": [
       "StarterPlayer",
@@ -2239,7 +2176,7 @@
     "file": "roblox/exported_scripts/StarterPlayer/StarterPlayerScripts/ClientBase.client.lua"
   },
   {
-    "id": "script_0116",
+    "id": "script_0113",
     "roblox_path": "Workspace.FBX - 3D Lady Head v2.Script",
     "path_parts": [
       "Workspace",
@@ -2256,7 +2193,7 @@
     "file": "roblox/exported_scripts/Workspace/FBX - 3D Lady Head v2/Script.server.lua"
   },
   {
-    "id": "script_0117",
+    "id": "script_0114",
     "roblox_path": "Workspace.FBX - 3D Vehicle Holographic v3.Script",
     "path_parts": [
       "Workspace",
@@ -2273,7 +2210,7 @@
     "file": "roblox/exported_scripts/Workspace/FBX - 3D Vehicle Holographic v3/Script.server.lua"
   },
   {
-    "id": "script_0118",
+    "id": "script_0115",
     "roblox_path": "ServerStorage.Modules.Core.ServerLifecycle",
     "path_parts": [
       "ServerStorage",
@@ -2291,7 +2228,7 @@
     "file": "roblox/exported_scripts/ServerStorage/Modules/Core/ServerLifecycle.module.lua"
   },
   {
-    "id": "script_0119",
+    "id": "script_0116",
     "roblox_path": "ServerStorage.Modules.Game.Audio.VehicleAudioServer",
     "path_parts": [
       "ServerStorage",
@@ -2310,7 +2247,7 @@
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Audio/VehicleAudioServer.module.lua"
   },
   {
-    "id": "script_0120",
+    "id": "script_0117",
     "roblox_path": "ServerStorage.Modules.Game.Dealership.IntroProgressServer",
     "path_parts": [
       "ServerStorage",
@@ -2329,7 +2266,7 @@
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Dealership/IntroProgressServer.module.lua"
   },
   {
-    "id": "script_0121",
+    "id": "script_0118",
     "roblox_path": "ServerStorage.Modules.Game.Development.StudioCashGrantServer",
     "path_parts": [
       "ServerStorage",
@@ -2348,7 +2285,7 @@
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Development/StudioCashGrantServer.module.lua"
   },
   {
-    "id": "script_0122",
+    "id": "script_0119",
     "roblox_path": "ServerStorage.Modules.Game.Development.VehiclePerformanceComparisonServer",
     "path_parts": [
       "ServerStorage",
@@ -2367,7 +2304,7 @@
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Development/VehiclePerformanceComparisonServer.module.lua"
   },
   {
-    "id": "script_0123",
+    "id": "script_0120",
     "roblox_path": "ServerStorage.Modules.Game.Garage.GarageModuleInstanceCustomization",
     "path_parts": [
       "ServerStorage",
@@ -2386,7 +2323,7 @@
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Garage/GarageModuleInstanceCustomization.module.lua"
   },
   {
-    "id": "script_0124",
+    "id": "script_0121",
     "roblox_path": "ServerStorage.Modules.Game.Garage.GarageModuleInventory",
     "path_parts": [
       "ServerStorage",
@@ -2405,7 +2342,7 @@
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Garage/GarageModuleInventory.module.lua"
   },
   {
-    "id": "script_0125",
+    "id": "script_0122",
     "roblox_path": "ServerStorage.Modules.Game.Garage.GarageModuleTransaction",
     "path_parts": [
       "ServerStorage",
@@ -2424,7 +2361,7 @@
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Garage/GarageModuleTransaction.module.lua"
   },
   {
-    "id": "script_0126",
+    "id": "script_0123",
     "roblox_path": "ServerStorage.Modules.Game.Garage.GarageProfile",
     "path_parts": [
       "ServerStorage",
@@ -2443,7 +2380,7 @@
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Garage/GarageProfile.module.lua"
   },
   {
-    "id": "script_0127",
+    "id": "script_0124",
     "roblox_path": "ServerStorage.Modules.Game.Garage.GarageRequestGuard",
     "path_parts": [
       "ServerStorage",
@@ -2462,7 +2399,7 @@
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Garage/GarageRequestGuard.module.lua"
   },
   {
-    "id": "script_0128",
+    "id": "script_0125",
     "roblox_path": "ServerStorage.Modules.Game.Garage.GarageServer",
     "path_parts": [
       "ServerStorage",
@@ -2475,13 +2412,13 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 2753,
-    "source_bytes": 127423,
-    "source_checksum": "664937601",
-    "source_sha256": "19b29f482749ee045771ee2321e30a7172862ad42bac0cdd47323538680667a7",
+    "source_bytes": 127415,
+    "source_checksum": "575406301",
+    "source_sha256": "5732e7e5abcb41bebb5531049589093ce34b56368b6f855b298b4357bb396db2",
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Garage/GarageServer.module.lua"
   },
   {
-    "id": "script_0129",
+    "id": "script_0126",
     "roblox_path": "ServerStorage.Modules.Game.Garage.GarageSessionServer",
     "path_parts": [
       "ServerStorage",
@@ -2500,7 +2437,7 @@
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Garage/GarageSessionServer.module.lua"
   },
   {
-    "id": "script_0130",
+    "id": "script_0127",
     "roblox_path": "ServerStorage.Modules.Game.Garage.OwnedGarageAuthoritativeCommand",
     "path_parts": [
       "ServerStorage",
@@ -2519,7 +2456,7 @@
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Garage/OwnedGarageAuthoritativeCommand.module.lua"
   },
   {
-    "id": "script_0131",
+    "id": "script_0128",
     "roblox_path": "ServerStorage.Modules.Game.Garage.OwnedGarageDisplay",
     "path_parts": [
       "ServerStorage",
@@ -2538,7 +2475,7 @@
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Garage/OwnedGarageDisplay.module.lua"
   },
   {
-    "id": "script_0132",
+    "id": "script_0129",
     "roblox_path": "ServerStorage.Modules.Game.Garage.OwnedGarageDisplayAssignment",
     "path_parts": [
       "ServerStorage",
@@ -2557,7 +2494,7 @@
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Garage/OwnedGarageDisplayAssignment.module.lua"
   },
   {
-    "id": "script_0133",
+    "id": "script_0130",
     "roblox_path": "ServerStorage.Modules.Game.Garage.OwnedGarageFinish",
     "path_parts": [
       "ServerStorage",
@@ -2576,7 +2513,7 @@
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Garage/OwnedGarageFinish.module.lua"
   },
   {
-    "id": "script_0134",
+    "id": "script_0131",
     "roblox_path": "ServerStorage.Modules.Game.Garage.OwnedGarageInterior",
     "path_parts": [
       "ServerStorage",
@@ -2595,7 +2532,7 @@
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Garage/OwnedGarageInterior.module.lua"
   },
   {
-    "id": "script_0135",
+    "id": "script_0132",
     "roblox_path": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
     "path_parts": [
       "ServerStorage",
@@ -2614,7 +2551,7 @@
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Garage/OwnedGarageManagement.module.lua"
   },
   {
-    "id": "script_0136",
+    "id": "script_0133",
     "roblox_path": "ServerStorage.Modules.Game.Garage.OwnedGarageProfile",
     "path_parts": [
       "ServerStorage",
@@ -2633,7 +2570,7 @@
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Garage/OwnedGarageProfile.module.lua"
   },
   {
-    "id": "script_0137",
+    "id": "script_0134",
     "roblox_path": "ServerStorage.Modules.Game.Garage.OwnedGarageServer",
     "path_parts": [
       "ServerStorage",
@@ -2652,7 +2589,7 @@
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Garage/OwnedGarageServer.module.lua"
   },
   {
-    "id": "script_0138",
+    "id": "script_0135",
     "roblox_path": "ServerStorage.Modules.Game.Garage.VehicleCosmeticServer",
     "path_parts": [
       "ServerStorage",
@@ -2671,7 +2608,7 @@
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Garage/VehicleCosmeticServer.module.lua"
   },
   {
-    "id": "script_0139",
+    "id": "script_0136",
     "roblox_path": "ServerStorage.Modules.Game.Player.EconomyServer",
     "path_parts": [
       "ServerStorage",
@@ -2690,7 +2627,26 @@
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Player/EconomyServer.module.lua"
   },
   {
-    "id": "script_0140",
+    "id": "script_0137",
+    "roblox_path": "ServerStorage.Modules.Game.Player.GarageProfileProjection",
+    "path_parts": [
+      "ServerStorage",
+      "Modules",
+      "Game",
+      "Player",
+      "GarageProfileProjection"
+    ],
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "attributes": {},
+    "source_lines": 246,
+    "source_bytes": 9007,
+    "source_checksum": "560480691",
+    "source_sha256": "6b56c44fea31584dc42f102ee074507998a2813d8587b90072179f5a67901709",
+    "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Player/GarageProfileProjection.module.lua"
+  },
+  {
+    "id": "script_0138",
     "roblox_path": "ServerStorage.Modules.Game.Player.OnboardingServer",
     "path_parts": [
       "ServerStorage",
@@ -2709,7 +2665,26 @@
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Player/OnboardingServer.module.lua"
   },
   {
-    "id": "script_0141",
+    "id": "script_0139",
+    "roblox_path": "ServerStorage.Modules.Game.Player.PlayerProfileSchema",
+    "path_parts": [
+      "ServerStorage",
+      "Modules",
+      "Game",
+      "Player",
+      "PlayerProfileSchema"
+    ],
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "attributes": {},
+    "source_lines": 277,
+    "source_bytes": 9745,
+    "source_checksum": "193821517",
+    "source_sha256": "a25a19af419032e2912c7abca792e4499ea208c7b630de446af8a6627f8c62ed",
+    "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Player/PlayerProfileSchema.module.lua"
+  },
+  {
+    "id": "script_0140",
     "roblox_path": "ServerStorage.Modules.Game.Player.ProfileCompatibility",
     "path_parts": [
       "ServerStorage",
@@ -2728,7 +2703,7 @@
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Player/ProfileCompatibility.module.lua"
   },
   {
-    "id": "script_0142",
+    "id": "script_0141",
     "roblox_path": "ServerStorage.Modules.Game.Player.ProfileCompatibilityServer",
     "path_parts": [
       "ServerStorage",
@@ -2741,13 +2716,13 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 73,
-    "source_bytes": 2698,
-    "source_checksum": "327153051",
-    "source_sha256": "86613e2e3e0a51a4e83c646fe9ff138beef700358b449fe1939f7b91b881b9fc",
+    "source_bytes": 2690,
+    "source_checksum": "325111915",
+    "source_sha256": "a9d1d6cedb8664fb1d8c2ac9604911b1bde64bb26eee4793ca0f2f1ea0cc69e8",
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Player/ProfileCompatibilityServer.module.lua"
   },
   {
-    "id": "script_0143",
+    "id": "script_0142",
     "roblox_path": "ServerStorage.Modules.Game.Player.ProfileServer",
     "path_parts": [
       "ServerStorage",
@@ -2760,13 +2735,13 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 606,
-    "source_bytes": 25073,
-    "source_checksum": "155021656",
-    "source_sha256": "1fa722054900845131ff238ca5dc20059d19b250732fb6571a6475a70eca1753",
+    "source_bytes": 25065,
+    "source_checksum": "136889478",
+    "source_sha256": "91cca39f646a7ec02d19cb2971d06de8e704230689f75d6b1a884fdf9da2b20e",
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Player/ProfileServer.module.lua"
   },
   {
-    "id": "script_0144",
+    "id": "script_0143",
     "roblox_path": "ServerStorage.Modules.Game.Player.ProfileStore",
     "path_parts": [
       "ServerStorage",
@@ -2785,7 +2760,7 @@
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Player/ProfileStore.module.lua"
   },
   {
-    "id": "script_0145",
+    "id": "script_0144",
     "roblox_path": "ServerStorage.Modules.Game.Racing.GlobalLeaderboardServer",
     "path_parts": [
       "ServerStorage",
@@ -2798,13 +2773,13 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 112,
-    "source_bytes": 6093,
-    "source_checksum": "617271592",
-    "source_sha256": "9bb655af441990a71266d9188245e46b6a45d56443ac157846bedea9467b68b2",
+    "source_bytes": 6089,
+    "source_checksum": "615115975",
+    "source_sha256": "c0a3d1afb358f29da9734ad70108132b050013b9ac3870aa8f46d03087e5ac68",
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Racing/GlobalLeaderboardServer.module.lua"
   },
   {
-    "id": "script_0146",
+    "id": "script_0145",
     "roblox_path": "ServerStorage.Modules.Game.Racing.MatchmakingServer",
     "path_parts": [
       "ServerStorage",
@@ -2823,7 +2798,7 @@
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Racing/MatchmakingServer.module.lua"
   },
   {
-    "id": "script_0147",
+    "id": "script_0146",
     "roblox_path": "ServerStorage.Modules.Game.Racing.PersonalBestServer",
     "path_parts": [
       "ServerStorage",
@@ -2836,13 +2811,13 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 403,
-    "source_bytes": 12095,
-    "source_checksum": "302046608",
-    "source_sha256": "9f6d1516cc729abe71a7a08e29d09a179ae8e4c1efd557a8b263e310694fd23f",
+    "source_bytes": 12091,
+    "source_checksum": "297785695",
+    "source_sha256": "2a34f32dd93fe22b457535ba1cb9a1cef98fdd01a6f1b1aec6ec3caadb9ff221",
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Racing/PersonalBestServer.module.lua"
   },
   {
-    "id": "script_0148",
+    "id": "script_0147",
     "roblox_path": "ServerStorage.Modules.Game.Racing.RaceAssetsServer",
     "path_parts": [
       "ServerStorage",
@@ -2861,7 +2836,7 @@
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Racing/RaceAssetsServer.module.lua"
   },
   {
-    "id": "script_0149",
+    "id": "script_0148",
     "roblox_path": "ServerStorage.Modules.Game.Racing.RaceDisplayNameServer",
     "path_parts": [
       "ServerStorage",
@@ -2880,7 +2855,7 @@
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Racing/RaceDisplayNameServer.module.lua"
   },
   {
-    "id": "script_0150",
+    "id": "script_0149",
     "roblox_path": "ServerStorage.Modules.Game.Racing.RaceRewardsServer",
     "path_parts": [
       "ServerStorage",
@@ -2899,7 +2874,7 @@
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Racing/RaceRewardsServer.module.lua"
   },
   {
-    "id": "script_0151",
+    "id": "script_0150",
     "roblox_path": "ServerStorage.Modules.Game.Racing.RaceTeleportServer",
     "path_parts": [
       "ServerStorage",
@@ -2918,7 +2893,7 @@
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Racing/RaceTeleportServer.module.lua"
   },
   {
-    "id": "script_0152",
+    "id": "script_0151",
     "roblox_path": "ServerStorage.Modules.Game.Racing.TimeTrialServer",
     "path_parts": [
       "ServerStorage",
@@ -2935,6 +2910,31 @@
     "source_checksum": "560268148",
     "source_sha256": "c7b4ee4c4db58e0b5c4decac5fb545f85b33f3120550e670ca211ae285160736",
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Racing/TimeTrialServer.module.lua"
+  },
+  {
+    "id": "script_0152",
+    "roblox_path": "ServerStorage.Modules.Game.Vehicles.Performance.VehiclePerformance",
+    "path_parts": [
+      "ServerStorage",
+      "Modules",
+      "Game",
+      "Vehicles",
+      "Performance",
+      "VehiclePerformance"
+    ],
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "attributes": {
+      "Phase": {
+        "value": "AM",
+        "type": "string"
+      }
+    },
+    "source_lines": 43,
+    "source_bytes": 2053,
+    "source_checksum": "185936627",
+    "source_sha256": "b1b15f500291d0d9eddec6d4f6a3aecac0ae84781c194d2976709874482f410e",
+    "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Vehicles/Performance/VehiclePerformance.module.lua"
   },
   {
     "id": "script_0153",
@@ -3026,9 +3026,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 47,
-    "source_bytes": 2273,
-    "source_checksum": "227613028",
-    "source_sha256": "d1ffc34d5233fbbc8f7ff67f9c28f14400b9d2511987d1c1f3c3bc113e7a5b84",
+    "source_bytes": 2269,
+    "source_checksum": "226790793",
+    "source_sha256": "4d2992f2b1ad02c0889c5a5ea158bee28e17625c38f9d4de46c03f4728c58251",
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Vehicles/VehiclePerformanceServer.module.lua"
   },
   {

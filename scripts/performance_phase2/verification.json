@@ -1,0 +1,10 @@
+{
+  "mirror": "2026-09-22 12:07:02",
+  "sources": 160,
+  "source_sha256_parity": true,
+  "all_hierarchy_property_parity": true,
+  "missing_or_changed": 0,
+  "added_or_changed": 0,
+  "nodes": 42355,
+  "replicatedDescendants": 4309
+}

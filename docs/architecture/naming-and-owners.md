@@ -1,6 +1,6 @@
 # Naming and ownership
 
-Current: cleanup Phase 4 installed; user test pending. Phases 1–3 are confirmed.
+Current: all cleanup phases confirmed. Performance Phase 2 installed/agent-verified; user test pending. Server-only schema/projection/writer modules and Persistence/PersonalBests/Leaderboards settings now live under ServerStorage.Modules/Config; shared calculation and presentation remain replicated. See performance-phase2-server-storage.md.
 
 Naming follows the inspected Untitled Experience vocabulary without claiming a company-wide standard: ServerBase, ClientBase, Modules.Core/Game and responsibility-based FeatureServer, FeatureClient, FeatureUI names.
 

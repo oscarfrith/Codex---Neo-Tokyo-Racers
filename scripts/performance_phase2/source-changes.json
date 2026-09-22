@@ -1,0 +1,26 @@
+[
+  {
+    "path": "ServerStorage.Modules.Game.Garage.GarageServer",
+    "serviceLiteralChanges": 2
+  },
+  {
+    "path": "ServerStorage.Modules.Game.Player.ProfileCompatibilityServer",
+    "serviceLiteralChanges": 2
+  },
+  {
+    "path": "ServerStorage.Modules.Game.Player.ProfileServer",
+    "serviceLiteralChanges": 2
+  },
+  {
+    "path": "ServerStorage.Modules.Game.Racing.GlobalLeaderboardServer",
+    "serviceLiteralChanges": 1
+  },
+  {
+    "path": "ServerStorage.Modules.Game.Racing.PersonalBestServer",
+    "serviceLiteralChanges": 1
+  },
+  {
+    "path": "ServerStorage.Modules.Game.Vehicles.VehiclePerformanceServer",
+    "serviceLiteralChanges": 1
+  }
+]

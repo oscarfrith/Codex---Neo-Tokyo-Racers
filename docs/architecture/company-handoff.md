@@ -1,6 +1,6 @@
 # Space Racers — architecture handoff
 
-Latest continuation: performance Phase 1 local audit delivered, with iPhone 7 selected and representative device/route/load measurements still pending. No performance migration installed. Final mirror 11:13:49 matches cleanup Phase 4 exactly. See performance-phase1-baseline.md; six Phase 2 move candidates await approval.
+Latest continuation: performance Phase 2 installed/agent-verified; user playthrough pending. Six server-only roots moved intact; replicated descendants reduced by 14. Mirror 12:07:02 verifies exact projected source/hierarchy/property parity. iPhone 7 and representative load measurements remain pending. See performance-phase2-server-storage.md. Earlier paragraphs below describe the confirmed cleanup milestone.
 
 Space Racers is a playable hover-racing prototype. All five original architecture phases and all four cleanup phases are user-confirmed. User reports committing and pushing. Post-confirmation mirror 2026-09-22 11:00:13 passes exact Phase 4 parity. The separate performance-and-replication-plan.md is proposed only.
 

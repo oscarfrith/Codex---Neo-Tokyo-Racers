@@ -50,8 +50,6 @@ Script count: 160
 - `ReplicatedStorage.Modules.Game.Garage.PreviewCameraClient` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/Modules/Game/Garage/PreviewCameraClient.module.lua`
 - `ReplicatedStorage.Modules.Game.Garage.PreviewVehicleClient` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/Modules/Game/Garage/PreviewVehicleClient.module.lua`
 - `ReplicatedStorage.Modules.Game.Garage.ThrustPreviewClient` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/Modules/Game/Garage/ThrustPreviewClient.module.lua`
-- `ReplicatedStorage.Modules.Game.Player.GarageProfileProjection` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/Modules/Game/Player/GarageProfileProjection.module.lua`
-- `ReplicatedStorage.Modules.Game.Player.PlayerProfileSchema` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/Modules/Game/Player/PlayerProfileSchema.module.lua`
 - `ReplicatedStorage.Modules.Game.Racing.RaceBrowserClient` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/Modules/Game/Racing/RaceBrowserClient.module.lua`
 - `ReplicatedStorage.Modules.Game.Racing.RaceConfigReader` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/Modules/Game/Racing/RaceConfigReader.module.lua`
 - `ReplicatedStorage.Modules.Game.Racing.RaceCountdownPresentationClient` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/Modules/Game/Racing/RaceCountdownPresentationClient.module.lua`
@@ -93,7 +91,6 @@ Script count: 160
 - `ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceRuntime` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/Performance/PerformanceRuntime.module.lua`
 - `ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceUpgradeRuntime` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/Performance/PerformanceUpgradeRuntime.module.lua`
 - `ReplicatedStorage.Modules.Game.Vehicles.Performance.VehicleModuleUpgradeRuntime` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/Performance/VehicleModuleUpgradeRuntime.module.lua`
-- `ReplicatedStorage.Modules.Game.Vehicles.Performance.VehiclePerformance` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/Performance/VehiclePerformance.module.lua`
 - `ReplicatedStorage.Modules.Game.Vehicles.Performance.VehiclePerformanceResolver` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/Performance/VehiclePerformanceResolver.module.lua`
 - `ReplicatedStorage.Modules.Game.Vehicles.Performance.VehicleUpgradeDefinitions` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/Performance/VehicleUpgradeDefinitions.module.lua`
 - `ReplicatedStorage.Modules.Game.Vehicles.CharacterSprintClient` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/CharacterSprintClient.module.lua`
@@ -145,7 +142,9 @@ Script count: 160
 - `ServerStorage.Modules.Game.Garage.OwnedGarageServer` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ServerStorage/Modules/Game/Garage/OwnedGarageServer.module.lua`
 - `ServerStorage.Modules.Game.Garage.VehicleCosmeticServer` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ServerStorage/Modules/Game/Garage/VehicleCosmeticServer.module.lua`
 - `ServerStorage.Modules.Game.Player.EconomyServer` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ServerStorage/Modules/Game/Player/EconomyServer.module.lua`
+- `ServerStorage.Modules.Game.Player.GarageProfileProjection` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ServerStorage/Modules/Game/Player/GarageProfileProjection.module.lua`
 - `ServerStorage.Modules.Game.Player.OnboardingServer` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ServerStorage/Modules/Game/Player/OnboardingServer.module.lua`
+- `ServerStorage.Modules.Game.Player.PlayerProfileSchema` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ServerStorage/Modules/Game/Player/PlayerProfileSchema.module.lua`
 - `ServerStorage.Modules.Game.Player.ProfileCompatibility` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ServerStorage/Modules/Game/Player/ProfileCompatibility.module.lua`
 - `ServerStorage.Modules.Game.Player.ProfileCompatibilityServer` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ServerStorage/Modules/Game/Player/ProfileCompatibilityServer.module.lua`
 - `ServerStorage.Modules.Game.Player.ProfileServer` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ServerStorage/Modules/Game/Player/ProfileServer.module.lua`
@@ -158,6 +157,7 @@ Script count: 160
 - `ServerStorage.Modules.Game.Racing.RaceRewardsServer` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ServerStorage/Modules/Game/Racing/RaceRewardsServer.module.lua`
 - `ServerStorage.Modules.Game.Racing.RaceTeleportServer` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ServerStorage/Modules/Game/Racing/RaceTeleportServer.module.lua`
 - `ServerStorage.Modules.Game.Racing.TimeTrialServer` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ServerStorage/Modules/Game/Racing/TimeTrialServer.module.lua`
+- `ServerStorage.Modules.Game.Vehicles.Performance.VehiclePerformance` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ServerStorage/Modules/Game/Vehicles/Performance/VehiclePerformance.module.lua`
 - `ServerStorage.Modules.Game.Vehicles.DriveRewardsServer` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ServerStorage/Modules/Game/Vehicles/DriveRewardsServer.module.lua`
 - `ServerStorage.Modules.Game.Vehicles.DriverSeatServer` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ServerStorage/Modules/Game/Vehicles/DriverSeatServer.module.lua`
 - `ServerStorage.Modules.Game.Vehicles.VehicleAccessServer` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ServerStorage/Modules/Game/Vehicles/VehicleAccessServer.module.lua`

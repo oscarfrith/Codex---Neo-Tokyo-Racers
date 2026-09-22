@@ -1,0 +1,252 @@
+{
+  "installChecks": [
+    {
+      "mode": "INSTALL",
+      "result": {
+        "alreadyApplied": true,
+        "mode": "INSTALL",
+        "pass": true
+      }
+    },
+    {
+      "mode": "ROLLBACK",
+      "result": {
+        "movedInstances": 14,
+        "replicatedDescendants": 4323,
+        "changedSources": 6,
+        "mode": "ROLLBACK",
+        "pass": true,
+        "movedRoots": 6
+      }
+    },
+    {
+      "mode": "AUDIT",
+      "result": {
+        "state": "baseline",
+        "sources": 160,
+        "pass": true
+      }
+    },
+    {
+      "mode": "INSTALL",
+      "result": {
+        "movedInstances": 14,
+        "replicatedDescendants": 4309,
+        "changedSources": 6,
+        "mode": "INSTALL",
+        "pass": true,
+        "movedRoots": 6
+      }
+    },
+    {
+      "mode": "AUDIT",
+      "result": {
+        "state": "installed",
+        "sources": 160,
+        "pass": true
+      }
+    }
+  ],
+  "failureRecovery": {
+    "injectedFailureRestored": true,
+    "audit": {
+      "state": "installed",
+      "sources": 160,
+      "pass": true
+    }
+  },
+  "server": {
+    "replicatedDescendants": 4311,
+    "startup": {
+      "OnboardingServer": "ready",
+      "VehiclePerformanceComparisonServer": "ready",
+      "OwnedGarageServer": "ready",
+      "RaceDisplayNameServer": "ready",
+      "TimeTrialServer": "ready",
+      "PersonalBestServer": "ready",
+      "VehicleAccessServer": "ready",
+      "RaceRewardsServer": "ready",
+      "FreeRoamTeleportServer": "ready",
+      "LightingServer": "ready",
+      "TrafficLightServer": "ready",
+      "ProfileCompatibilityServer": "ready",
+      "IntroProgressServer": "ready",
+      "VehiclePerformanceServer": "ready",
+      "VehicleCollisionServer": "ready",
+      "VehicleAudioServer": "ready",
+      "DriverSeatServer": "ready",
+      "DriveRewardsServer": "ready",
+      "RaceAssetsServer": "ready",
+      "MatchmakingServer": "ready",
+      "ProfileServer": "ready",
+      "GlobalLeaderboardServer": "ready",
+      "GarageSessionServer": "ready",
+      "StudioCashGrantServer": "ready",
+      "GarageServer": "ready",
+      "RaceTeleportServer": "ready"
+    },
+    "leaderboards": 5,
+    "newModules": true,
+    "personalBests": 3,
+    "newConfig": {
+      "DefaultGarageAccessMode": "Private",
+      "DataStoreEnabled": true,
+      "MaxGarageCapacity": 10,
+      "SaveDebounceSeconds": 8,
+      "UseInstancedInteriorGarages": true,
+      "SchemaVersion": 1,
+      "SameServerGarageVisitsOnly": true,
+      "AutosaveSeconds": 90,
+      "GarageCapacityUpgradeBasePrice": 50000,
+      "StartingGarageCapacity": 2,
+      "GarageCapacityUpgradePriceMultiplier": 1.65,
+      "EditNote": "Persistence Phase 1 schema/config only. No DataStore or live garage actions are switched yet.",
+      "GarageCapacityUpgradeStep": 1,
+      "ProfileEncodeWarnMilliseconds": 16,
+      "DataStoreName": "NTR_PlayerProfiles_v1"
+    },
+    "sandbox": true
+  },
+  "client": {
+    "startup": {
+      "RaceEntryMenuClient": "ready",
+      "RaceRouteGuideClient": "ready",
+      "ThrustPreviewClient": "ready",
+      "RaceSessionPresentationClient": "ready",
+      "LightingPreviewClient": "skipped",
+      "TrailerModeClient": "skipped",
+      "RaceTransitionClient": "ready",
+      "OwnedGarageClient": "ready",
+      "DriveSessionClient": "ready",
+      "DriveToEarnCashTelemetryClient": "ready",
+      "CharacterSprintClient": "ready",
+      "LODClient": "ready",
+      "ContextAudioRuntimeClient": "ready",
+      "RaceQueueClient": "ready",
+      "RaceTimeTrialResultCoachClient": "ready",
+      "RaceLifecyclePresentationClient": "ready",
+      "StudioCashGrantClient": "ready",
+      "TrailerVehicleCameraClient": "skipped",
+      "DesktopFreeRoamHudUI": "ready",
+      "RuntimeVFXClient": "ready",
+      "RaceEntryPresentationClient": "ready",
+      "AcousticsRuntimeClient": "ready",
+      "GarageEntranceClient": "ready",
+      "GarageUI": "ready",
+      "WindowMaterialClient": "ready",
+      "OwnedGarageEnvironmentLightingClient": "ready",
+      "PresentationAudioRuntimeClient": "ready",
+      "MobileFreeRoamHudUI": "ready",
+      "NightLamppostLightClient": "ready",
+      "SharedTopNotificationUI": "ready",
+      "LoadingTransitionUI": "ready",
+      "OnboardingClient": "ready",
+      "FreeRoamVehicleExitButtonClient": "ready",
+      "MobileDriveControlsClient": "ready",
+      "FreeRoamParkedHoverClient": "ready",
+      "RaceSessionAssetsClient": "ready",
+      "RaceCountdownPresentationClient": "ready",
+      "DealershipIntroClient": "ready",
+      "AudioRuntimeClient": "ready",
+      "TrailerShotClient": "skipped",
+      "RaceParticipantVisibilityClient": "ready",
+      "RaceBrowserClient": "ready",
+      "GaragePreviewPresentationClient": "ready"
+    },
+    "catalogBytes": 173361,
+    "oldPersistenceAbsent": true,
+    "cockpit": "bruiser_01",
+    "success": true,
+    "category": "bruiser",
+    "oldSchemaAbsent": true,
+    "replicatedDescendants": 4311,
+    "cash": 1000000
+  },
+  "garage": [
+    {
+      "message": "Cockpit instance purchased.",
+      "action": "BuyCockpitInstance",
+      "success": true
+    },
+    {
+      "message": "Cockpit colour updated.",
+      "action": "SetCockpitColor",
+      "success": true
+    },
+    {
+      "message": "Vehicle spawned.",
+      "action": "SpawnVehicle",
+      "success": true
+    }
+  ],
+  "vehicle": [
+    {
+      "raw": true,
+      "name": "LucidityStudios_FixedSlotHovercar",
+      "attributes": {
+        "TargetTier": "C",
+        "Performance_BoostRechargeDelay": 1.254,
+        "Performance_TopSpeed": 226.05,
+        "Performance_Weight": 239.19999999999996,
+        "Performance_BoostEfficiency": 36,
+        "Performance_DriftGrip": 38,
+        "Performance_EngineOutput": 50,
+        "Performance_LateralGrip": 38,
+        "PerformanceDelta_DriftChargeRate": 0,
+        "PerformanceDelta_LateralGrip": 0,
+        "Performance_DriftChargeRate": 36,
+        "PerformanceDelta_SteeringResponse": 0,
+        "PerformanceDelta_Drag": 0,
+        "Performance_BoostForce": 23,
+        "PerformanceRuntimeVersion": "V2_CANONICAL_RUNTIME_V1",
+        "Performance_Drag": 74,
+        "Performance_SteeringResponse": 36,
+        "PerformanceDelta_DriftControl": 0,
+        "Performance_Downforce": 33,
+        "DriveReady": true,
+        "PerformanceScore": 89.20342720272936,
+        "PerformanceDelta_BoostEfficiency": 0,
+        "PerformanceIndex": 551,
+        "Performance_BrakingForce": 48,
+        "Performance_BoostRecharge": 19.8,
+        "PerformanceDelta_BrakingForce": 0,
+        "PerformanceDelta_Downforce": 0,
+        "PerformanceDelta_DriftGrip": 0,
+        "Performance_DriftControl": 34,
+        "Performance_BoostDuration": 2.376,
+        "PerformanceTier": "C",
+        "Performance_HoverStability": 34,
+        "PerformanceDelta_HoverStability": 0
+      },
+      "normal": true,
+      "headline": true
+    }
+  ],
+  "lifecycle": [
+    {
+      "message": "Exited and parked vehicle.",
+      "action": "ExitVehicle",
+      "success": true
+    },
+    {
+      "message": "Entered vehicle.",
+      "action": "ReEnterVehicle",
+      "success": true
+    },
+    {
+      "message": "Vehicle despawned.",
+      "action": "DespawnVehicle",
+      "success": true
+    },
+    {
+      "ownedVehicle": true,
+      "action": "GetInitialAfterLifecycle",
+      "success": true
+    }
+  ],
+  "limitations": [
+    "Known CAM-02 clamp/NaN errors reproduced; console output truncated by repeated camera errors, not claimed error-free.",
+    "First fault-injection attempt stopped before execution because its newline anchor did not match CRLF; normalised test buffer and reran successfully. Canonical installer unchanged.",
+    "User playthrough pending; phone, multiplayer and real persistence release gates remain open."
+  ]
+}

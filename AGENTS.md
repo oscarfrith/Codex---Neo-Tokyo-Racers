@@ -37,10 +37,10 @@ Working rules:
 
 Known current baseline:
 
-* All four complete-cleanup phases and all five original architecture phases are user-confirmed. Performance Phase 1 local audit is delivered; representative phone/route/load benchmarks remain pending. User selected iPhone 7. Read docs/architecture/performance-phase1-baseline.md. Mirror 2026-09-22 11:13:49 passes exact cleanup Phase 4 parity. No performance migration installed; Phase 2's six moves need approval. Do not rerun completed cleanup.
+* All four complete-cleanup phases and all five original architecture phases are user-confirmed. Performance Phase 2 is installed and agent-verified; user playthrough pending. Six server-only roots moved, 14 fewer replicated descendants. Read docs/architecture/performance-phase2-server-storage.md. Mirror 2026-09-22 12:07:02 passes exact expected 160-source/42,355-node parity. User selected iPhone 7; representative phone/route/load benchmarks remain pending. Do not rerun completed cleanup or advance Phase 3 before confirmation.
 * User approved preserving September 22 physical edits (628 arrow CFrames, 66 added thumbnail records). Phase 4 changes sources only. World-only Workspace boundary and prior exact two-tag exception remain; WIP, physical assets and staging/Archive are protected.
 * Preserve saved identity/schema contracts, development tools and lifecycle safeguards. No in-game backups, fallback implementations or new owners. Protected-asset disposition remains unresolved before overall closure.
-* Current pipeline: scripts/receive_studio_snapshot.py + scripts/studio_export_snapshot.lua; validate with scripts/verify_studio_mirror.py and scripts/cleanup_phase4/verify_migration.py. Old tools are archived under scripts/history/snapshot_before_cleanup_phase4.
+* Current pipeline: scripts/receive_studio_snapshot.py + scripts/studio_export_snapshot.lua; validate with scripts/verify_studio_mirror.py and scripts/performance_phase2/verify_migration.py. Roll back performance Phase 2 before older cleanup recovery. Old tools are archived under scripts/history/snapshot_before_cleanup_phase4.
 * Audits: scripts/studio_cleanup_audit.lua and scripts/audit_cleanup.py. No gameplay require through MCP. Windows staging must inherit repo ACLs.
 * Distinguish generated, installed, runtime verified and user confirmed. Camera CAM-02 is pre-existing and separate.
 

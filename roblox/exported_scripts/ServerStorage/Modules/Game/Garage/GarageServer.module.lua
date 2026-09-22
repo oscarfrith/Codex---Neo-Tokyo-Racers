@@ -306,7 +306,7 @@ local STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:GetAttr
 	local function garageCapacity()
 		local shared = game:GetService("ReplicatedStorage")
 		local configRoot = shared and game:GetService("ReplicatedStorage"):FindFirstChild("Config")
-		local persistenceConfig = configRoot and game:GetService("ReplicatedStorage"):WaitForChild("Config"):WaitForChild("Player"):FindFirstChild("Persistence")
+		local persistenceConfig = configRoot and game:GetService("ServerStorage"):WaitForChild("Config"):WaitForChild("Player"):FindFirstChild("Persistence")
 		local capacity = persistenceConfig and persistenceConfig:GetAttribute("StartingGarageCapacity")
 		if typeof(capacity) ~= "number" then
 			capacity = 2
@@ -326,7 +326,7 @@ local STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:GetAttr
 	local function persistenceConfigAttribute(name, fallback)
 		local shared = game:GetService("ReplicatedStorage")
 		local configRoot = shared and game:GetService("ReplicatedStorage"):FindFirstChild("Config")
-		local persistenceConfig = configRoot and game:GetService("ReplicatedStorage"):WaitForChild("Config"):WaitForChild("Player"):FindFirstChild("Persistence")
+		local persistenceConfig = configRoot and game:GetService("ServerStorage"):WaitForChild("Config"):WaitForChild("Player"):FindFirstChild("Persistence")
 		local value = persistenceConfig and persistenceConfig:GetAttribute(name)
 		if value == nil then
 			return fallback

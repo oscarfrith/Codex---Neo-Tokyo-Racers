@@ -1,5 +1,9 @@
 # Continuous Improvement Workflow
 
+## 2026-09-22 — Server-only relocation delivery
+
+For a storage-only change, prove the exact service-literal token delta, move original instances with values intact, and keep shared dependencies in place. Test reverse migration and injected post-mutation failure recovery, then compare every captured source/hierarchy/property after export. Runtime readiness and working vehicle writer provide stronger evidence than path existence alone. Retire the older exact-baseline verifier from current instructions when a new phase changes paths; preserve it for deliberate reverse-order recovery. User gameplay acceptance remains separate from agent checks.
+
 ## 2026-09-22 — Performance evidence boundaries
 
 Phase 1 found a repeatable large catalogue response and small server-only move set. Preserve raw sample metadata and distinguish JSON size from wire size, frame intervals from CPU cost, and Studio process memory from device client memory. A successful idle sample cannot substitute for a race route or phone test. Carry missing device/load evidence as named gates rather than marking an entire benchmark matrix passed. Candidate ownership scans include long-bracket startup paths and transitive shared dependencies; analysis never authorises deletion automatically.

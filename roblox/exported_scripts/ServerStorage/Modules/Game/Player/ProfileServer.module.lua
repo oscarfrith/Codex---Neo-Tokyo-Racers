@@ -53,9 +53,9 @@ local function ensureBindableFunction(parent, name)
 end
 
 local replicatedStorageRoot = game:GetService("ReplicatedStorage")
-local schema = require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Player"):WaitForChild("PlayerProfileSchema"))
+local schema = require(game:GetService("ServerStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Player"):WaitForChild("PlayerProfileSchema"))
 
-local config = game:GetService("ReplicatedStorage"):WaitForChild("Config"):WaitForChild("Player"):WaitForChild("Persistence")
+local config = game:GetService("ServerStorage"):WaitForChild("Config"):WaitForChild("Player"):WaitForChild("Persistence")
 
 local serverRoot = game:GetService("ServerStorage"):WaitForChild("Runtime")
 local services = game:GetService("ServerStorage"):WaitForChild("Runtime")
