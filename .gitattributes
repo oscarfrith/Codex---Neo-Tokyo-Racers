@@ -3,6 +3,9 @@
 *.svg text eol=lf
 *.json text eol=lf
 
+# Content-addressed Studio source must retain exact bytes, including CRLF if authored.
+roblox/source_store/*.lua -text
+
 # Roblox binary place files can be large. If you decide to store .rbxl/.rbxm
 # files in GitHub later, consider enabling Git LFS first.
 *.rbxl binary

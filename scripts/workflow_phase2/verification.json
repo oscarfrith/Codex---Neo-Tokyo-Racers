@@ -1,0 +1,52 @@
+{
+  "placeId": 121304917315753,
+  "captures": {
+    "workflow-phase2-check-a": {
+      "time": "2026-09-22 19:39:47 UTC",
+      "sources": 165,
+      "nodes": 4543,
+      "fileBytes": 8322612
+    },
+    "workflow-phase2-check-b": {
+      "time": "2026-09-22 19:41:24 UTC",
+      "sources": 165,
+      "nodes": 4543,
+      "fileBytes": 8322612
+    },
+    "workflow-phase2-sources": {
+      "time": "2026-09-22 19:43:01 UTC",
+      "sources": 165,
+      "nodes": 0,
+      "fileBytes": 100529
+    },
+    "workflow-phase2-config": {
+      "time": "2026-09-22 19:43:46 UTC",
+      "sources": 165,
+      "nodes": 1484,
+      "fileBytes": 1750292
+    }
+  },
+  "allSourcesMatchRetainedBaseline": true,
+  "vehiclePropertiesMatchRetainedBaseline": true,
+  "comparison": {
+    "sourceAdded": [],
+    "sourceRemoved": [],
+    "sourceChanged": [],
+    "nodesRemovedOrChanged": 0,
+    "nodesAddedOrChanged": 0,
+    "missingBefore": [],
+    "missingAfter": [],
+    "coverage": "All inventoried sources; selected subtrees only. Moves appear as remove/add, never inferred automatically."
+  },
+  "sourceNamingAuditPass": true,
+  "extraConfigPropertyCoveragePass": true,
+  "oldFullHierarchyBytes": 73579367,
+  "deduplicatedSourceStoreBytes": 2117576,
+  "scopedTests": 21,
+  "legacyPipelineTests": 11,
+  "legacyTestNote": "Initial transient-lock test expected exactly five rename calls but observed six; unchanged rerun passed. Full-export code was not modified.",
+  "limits": "Selected hierarchy only; no whole-world physical parity, gameplay, device or persistence acceptance claim.",
+  "staleProjectionRejectionPass": true,
+  "sourceBlobCount": 164,
+  "activeDocumentationLinksChecked": 59
+}

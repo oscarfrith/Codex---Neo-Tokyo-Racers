@@ -182,7 +182,7 @@ Before a Standard or High-Risk system becomes a dependency for later systems, re
 After confirmation:
 
 1. update the relevant topic document and baseline/history/known-issues files;
-2. refresh the Studio mirror when Studio state changed;
+2. capture the relevant Studio evidence under the current delivery workflow (targeted by default; full checkpoint where needed);
 3. mark superseded owners and experiments clearly;
 4. retain one canonical installer and rollback point;
 5. review this standard when repeated project evidence shows a rule is too weak or too restrictive.

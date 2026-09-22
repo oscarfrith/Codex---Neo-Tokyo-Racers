@@ -23,7 +23,7 @@ Before a new system, substantial expansion or connected networking/persistence/r
 - If an older Roblox version is a cleaner recovery, say so before another patch. Challenge a materially safer/faster alternative once, explain its tradeoff, then respect the decision.
 - No gameplay module require through MCP. Inspect normal startup/runtime evidence; do not create duplicate owners through a separate module cache.
 - Distinguish generated, installed, agent-verified and user-confirmed. Source parity and successful remote calls are not gameplay confirmation.
-- Follow the current mirror/recovery policy in the delivery workflow. Never commit docs/studio-full-export-paste.txt. Windows mirror staging must inherit repository ACLs.
+- Follow the current capture/recovery policy in the delivery workflow. Never commit docs/studio-full-export-paste.txt. Windows mirror staging must inherit repository ACLs.
 - Update only the documentation responsibilities affected by a change. Record reusable lessons after confirmed work; keep historical experiments out of the current run queue.
 
 Paths: scripts/ for delivery tools; docs/ for design/handoff; diagrams/ for diagrams. Current task/status, mirror timestamp and next action belong only in docs/00_START_HERE.md.

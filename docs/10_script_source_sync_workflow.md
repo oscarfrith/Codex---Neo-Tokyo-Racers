@@ -1,6 +1,8 @@
-# Studio snapshot workflow
+# Full Studio checkpoint procedure
 
-Windows folder promotion retries sharing/access-lock errors for up to five seconds per rename, then retains the existing rollback behavior. Eleven pipeline tests pass, including transient and persistent lock cases. Never bypass failed import verification or claim a stale mirror is current. Catalogue freshness check: scripts/performance_phase4/check_projection.py.
+Routine work uses [targeted capture](architecture/targeted-capture-workflow.md). This full exporter is retained for deliberate broad checkpoints/recovery; it does not refresh automatically.
+
+Windows folder promotion retries sharing/access-lock errors for up to five seconds per rename, then retains the existing rollback behavior. Eleven pipeline tests pass, including transient and persistent lock cases. Never bypass failed import verification or claim a stale mirror is current. Catalogue freshness against this full checkpoint: scripts/performance_phase4/check_projection.py --legacy-mirror.
 
 Technical full-capture procedure. When to capture is defined in [the delivery workflow](13_efficient_feature_delivery_protocol.md); current status is in [start here](00_START_HERE.md). Studio remains authoritative; exported files are evidence, not automatic sync inputs.
 

@@ -9,8 +9,8 @@ Goal: reduce repeated reading, stale instructions and capture/delivery overhead 
 | 3 — Proportional delivery | One reviewable MCP delivery, lighter small changes, guarded connected changes and migration recovery | No manual copying/receiver/Git steps for ordinary supported tasks; no loss of preflight or recovery |
 | 4 — Validation and handoffs | Reusable normal-start/transition/error/cleanup checks and compact evidence | API/UI/device evidence distinguished; relevant tests repeatable and unavailable environments explicit |
 
-Phase 1 changes documents only. Full export policy and existing runtime/tooling remain unchanged until Phase 2. No automated sync, new game framework or production publish is implied.
-The existing full mirror feeds scripts/performance_phase4/check_projection.py; scripts/audit_cleanup.py consumes the source manifest. Inspect and replace their dependencies deliberately in Phase 2.
+Phase 1 changed documents only. Phase 2 implements the [targeted capture workflow](targeted-capture-workflow.md); routine full exports are no longer required after its verified dependency migration. No automated sync, new game framework or production publish is implied.
+Both scripts/performance_phase4/check_projection.py and scripts/audit_cleanup.py now accept --capture and verify source-store integrity. Historical full input requires --legacy-mirror. Runtime code and the full-checkpoint recovery tools remain unchanged.
 
 Phase 1 verification: inspect changed Markdown/tool references and status consistency; confirm no script/source/mirror changes. Historical text is retained under docs/history/workflow-before-mcp-phase1. Rollback is the documentation commit only; no Studio recovery action.
 

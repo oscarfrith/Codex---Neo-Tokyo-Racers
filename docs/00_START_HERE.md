@@ -4,16 +4,17 @@ Target: Space Racers v1, place **121304917315753**. Updated 2026-09-22. This is 
 
 ## Current task and next action
 
-Workflow improvement **Phase 1: documentation consolidation complete**. [Approved four-phase plan](architecture/workflow-improvement-plan.md).
-Next approved step is **workflow Phase 2: targeted capture**, when the user asks to continue. Do not confuse this with performance Phase 6.
-Full-mirror policy remains in force for Studio changes until Phase 2 replaces its dependencies. This documentation-only phase needs no Studio execution/export.
+Workflow improvement **Phase 2: targeted capture implemented and verified**. [Approved four-phase plan](architecture/workflow-improvement-plan.md).
+Next approved step is **workflow Phase 3: proportional MCP delivery**, when the user asks to continue. Do not confuse this with performance Phase 6.
+Routine full mirrors are replaced by [targeted captures](architecture/targeted-capture-workflow.md). Full checkpoints remain available for broad migrations/recovery. No game code changed and no Studio installer is pending.
 
 ## Installed game and acceptance
 
 All five original architecture phases and four cleanup phases are user-confirmed. Performance Phases 1–5 are installed; after Phase 6 checks the user reported “all worked well.” Record that as general gameplay confirmation, not proof of individual device, camera, memory or persistence gates.
 [Performance Phase 6 acceptance](architecture/performance-phase6-validation.md) remains open: camera errors, detached UI references, normal-flow/route tests, iPhone 7, 15-player/soak and isolated published persistence evidence. See the [open issue ledger](06_current_known_issues.md). No new game code was installed during validation.
 
-Last verified mirror: **2026-09-22 13:14:39**, 165 sources, 44,465 nodes, 276,087 properties; exact expected Phase 5 parity and fresh catalogue/preview projections. This is a dated observation, not a claim that live Studio was checked this session.
+Retained full checkpoint (historical, not routinely refreshed): **2026-09-22 13:14:39**, 165 sources, 44,465 nodes, 276,087 properties; exact expected Phase 5 parity and fresh catalogue/preview projections. Live targeted verification on 2026-09-22: vehicle capture 19:41:24 UTC, sources 19:43:01 UTC, config 19:43:46 UTC. All 165 source hashes still match that baseline; selected vehicle properties match, projections are fresh. No whole-world physical parity claim.
+Evidence: roblox/captures/workflow-phase2-check-b/capture.json (vehicles), workflow-phase2-sources/capture.json (source inventory), workflow-phase2-config/capture.json (config), all under roblox/captures. Follow each manifest row to its versioned source blob.
 Current source handoff: [catalogue transport](architecture/performance-phase5-catalogue-transport.md). No installer run pending.
 
 ## Owners and boundaries

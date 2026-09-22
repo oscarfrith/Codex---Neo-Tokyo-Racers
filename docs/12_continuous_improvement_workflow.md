@@ -14,3 +14,5 @@ Read this compact index before multi-step Studio work. The [delivery workflow](1
 
 Detailed incident evidence and prior lessons: [historical collection](history/workflow-before-mcp-phase1/docs/12_continuous_improvement_workflow.md). Search it by affected system when needed; do not reread the whole collection every session.
 Workflow Phase 1 lesson: duplicated status and hard-coded prompt run queues drifted even after successful migrations. Centralise procedure/status and keep prompts as routing instructions.
+
+Workflow Phase 2 lesson: scope capture by required evidence, not by every physical object. Inventory all covered source paths, capture selected properties/tags, and require explicit historical input so an old mirror cannot silently pass a current check. Artifact size is not transport/time performance.

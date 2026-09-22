@@ -1,6 +1,6 @@
 # New System Contract Template
 
-Use this template for Standard and High-Risk work under `docs/14_new_system_readiness_standard.md`. The assistant derives it from the request and current mirror; the user is not expected to write the technical specification.
+Use this template for Standard and High-Risk work under `docs/14_new_system_readiness_standard.md`. The assistant derives it from the request and current live/scoped evidence; the user is not expected to write the technical specification.
 
 Keep Standard contracts compact. Expand the marked sections only for High-Risk or genuinely complex work. Use `N/A` with a short reason when a concern does not apply.
 

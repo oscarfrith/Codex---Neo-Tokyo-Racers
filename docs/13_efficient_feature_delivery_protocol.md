@@ -1,6 +1,6 @@
 # Delivery workflow
 
-Version 2.0, 2026-09-22. Canonical procedure for delivery, testing, recovery and Git. Current task/status belongs in [start here](00_START_HERE.md); specialist system safeguards remain in [readiness](14_new_system_readiness_standard.md).
+Version 2.1, 2026-09-22. Canonical procedure for delivery, testing, recovery and Git. Current task/status belongs in [start here](00_START_HERE.md); specialist system safeguards remain in [readiness](14_new_system_readiness_standard.md).
 
 ## 1. Orient and choose scope
 
@@ -64,9 +64,9 @@ Choose applicable checks; do not run every matrix for a copy edit. Report unavai
 
 ## 5. Capture and recover
 
-**Current policy remains:** after Studio scripts/hierarchy/assets/config/placement changes, refresh the full repository mirror before handoff whenever practical. Documentation-only work does not need a Studio refresh. Use [snapshot procedure](10_script_source_sync_workflow.md) and [tool index](architecture/installer-index.md).
-If local/Studio access is unavailable, request the receiver/export result and state that refresh is pending. Never pretend it happened.
-Scope-only captures are planned in workflow Phase 2, not implemented. Current catalogue/preview freshness depends on the full snapshot.
+**Default: targeted before/after captures**, including complete inventoried script source and the affected hierarchy/config/property/tag scope. Follow [targeted capture](architecture/targeted-capture-workflow.md). Review source changes outside scope; do not overwrite them. Recheck live affected state immediately before mutation.
+Use full checkpoints for broad hierarchy migrations, unexplained broad drift or recovery needs beyond scoped coverage; see [full snapshot procedure](10_script_source_sync_workflow.md). Documentation-only work and unchanged Edit state after Play do not require an export.
+If local/Studio access is unavailable, request the appropriate capture and state what remains unverified. Never claim a capture occurred automatically. Catalogue/preview and naming checks accept verified targeted records; historical full mirrors must be explicitly selected.
 
 Validate integrity and the applicable expected baseline. Do not force an older migration verifier over intentional newer changes. Preserve physical edits and inspect drift; tags need separate live evidence and duplicate paths need scoped/multiset handling.
 The mirror is not a complete place/terrain backup. For recovery, use compatible repository evidence and the dependency order in the tool index; refresh and reverify afterward. Do not restore obsolete owners.
@@ -89,4 +89,4 @@ Handoff: what changed, checks passed/deferred, any exact Studio script still nee
 ## Maintenance
 
 Narrow rules that cause ceremony without catching failures; strengthen them from repeated evidence. Keep Fast Lane fast and system safeguards intact. Version/date material policy changes.
-Version 2.0 consolidates prior 1.1 and MCP procedure without implementing targeted capture or a new delivery engine. [Prior text](history/workflow-before-mcp-phase1/docs/13_efficient_feature_delivery_protocol.md) retains detailed historical context.
+Version 2.1 activates verified targeted capture; delivery-engine simplification remains workflow Phase 3. Version 2.0 consolidated prior 1.1 and MCP procedure. [Prior text](history/workflow-before-mcp-phase1/docs/13_efficient_feature_delivery_protocol.md) retains detailed historical context.

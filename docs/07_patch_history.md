@@ -1,5 +1,9 @@
 # Patch History
 
+## 2026-09-22 — Workflow Phase 2 targeted capture
+
+Added read-only scoped capture/compare with versioned deduplicated source blobs, complete nine-service source inventory, selected property/tag coverage and atomic evidence publication. Adapted catalogue/preview and naming checks; historical input is explicit. Live source/config/vehicle captures pass, repeated vehicle delta is zero, all 165 sources match retained baseline, and 21 scoped tests pass. Retained full-pipeline tests pass on rerun with initial transient-lock count sensitivity recorded. Routine full mirrors retire; deliberate full checkpoints remain. No gameplay/Studio state/full-mirror changes. See architecture/targeted-capture-workflow.md.
+
 ## 2026-09-22 — Workflow Phase 1 documentation consolidation
 
 Centralised current status and delivery procedure; shortened AGENTS and lesson startup reading, separated open issues from resolved milestones, replaced stale prompt/tool instructions with maintained links, and removed repeated topic status banners. Preserved prior workflow text as history. Recorded the user's general gameplay confirmation without closing camera/resource/device/persistence gates. No Studio, scripts, mirror or gameplay changes; full-capture policy remains until workflow Phase 2.
