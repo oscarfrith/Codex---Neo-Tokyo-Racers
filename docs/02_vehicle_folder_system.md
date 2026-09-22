@@ -1,6 +1,8 @@
 # Vehicle assets and configuration
 
-Cleanup Phase 4 installed and agent-verified; user playtest pending. Phases 1–3 are confirmed.
+Performance Phase 1 reviewed server-only schema/projection/writer moves; no templates moved. Physical categories remain required by preview and performance consumers. See architecture/performance-phase1-baseline.md for exact proposed destinations and dependencies.
+
+All four cleanup phases are user-confirmed. Post-confirmation mirror 2026-09-22 11:00:13 passes exact Phase 4 parity. The separate performance/replication programme is proposed only; see architecture/performance-and-replication-plan.md.
 
 ReplicatedStorage.Assets.Vehicles holds active categories/templates. ServerStorage.Assets.Garage and Racing hold server templates. Config.Vehicles groups Driving, Dynamics, Camera, Performance, Spawn, MobileControls, DriveRewards, Authoring, DriverSeat and StabiliserVFX. ModuleSlots/VFXAttachments are folder hooks; physical hooks are unchanged. Staging/Archive remain protected pending decision.
 

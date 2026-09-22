@@ -1,6 +1,6 @@
 # Complete architecture cleanup plan
 
-**2026-09-22 execution update:** Phase 4 installed and agent-verified; user test pending. Earlier status paragraphs are historical. See cleanup-phase4-finalisation.md. Protected staging/archive decision remains open; no physical deletion authorised. No additional subdivision.
+**2026-09-22 execution update:** All four phases are installed and user-confirmed. Post-confirmation mirror 11:00:13 passes exact Phase 4 parity. Earlier status paragraphs are historical. See cleanup-phase4-finalisation.md. Protected staging/archive decision remains open; no physical deletion authorised. The separate performance-and-replication-plan.md is proposed only. No additional cleanup subdivision.
 
 Original plan below; current delivery status is the September 22 execution update above.
 

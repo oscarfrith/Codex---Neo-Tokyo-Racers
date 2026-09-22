@@ -1,6 +1,6 @@
 # Complete cleanup Phase 4 — tooling and final verification
 
-2026-09-22. Installed and agent-verified. User gameplay acceptance and protected-asset disposition remain separate completion gates.
+2026-09-22. Installed, agent-verified and now user-confirmed after successful testing. User reports committing and pushing. Protected-asset disposition remains separate. Post-confirmation mirror 2026-09-22 11:00:13 passes all 160 sources and exact expected 42,351-node/267,539-property parity. Earlier verification below records the installation checkpoint.
 
 ## Acceptance contract
 
@@ -22,7 +22,7 @@ Final mirror: **2026-09-22 10:25:06**, 160 sources, 42,351 nodes, 267,539 captur
 
 Compilation and install/repeat/rollback/reinstall passed. Normal startup: 26 server and 39 client modules ready, four retained development tools skipped. Sandbox purchase, paint, spawn, exit/re-entry, owned-garage GetState, race vehicle validation, staged time trial, countdown/start and cancel passed. LOD and owned-garage environment readiness passed. Nine export pipeline tests pass, including Windows ACL inheritance and failed-promotion recovery. New transport end-to-end export passed.
 
-CAM-02 clamp/NaN camera error appeared during rapid transitions, as in both earlier baselines. Camera was not changed; full human driving/garage/race playthrough remains the user checkpoint. This smoke does not prove complete race finish, touch/controller, multiplayer, low-end profiling, real save/rejoin or production rollout. Sandbox suppresses saves and nothing was published.
+CAM-02 clamp/NaN camera error appeared during rapid transitions, as in both earlier baselines. Camera was not changed. The user subsequently reported everything working well in testing; this confirms Phase 4, but does not establish every device/multiplayer/persistence release gate or resolve CAM-02. Sandbox suppresses saves and nothing was published.
 
 ## Completion ledger
 

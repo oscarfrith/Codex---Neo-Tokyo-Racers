@@ -4,7 +4,9 @@ Updated 2026-09-22. Target: Space Racers v1, place 121304917315753.
 
 ## Current delivery
 
-All five original architecture phases and complete-cleanup Phases 1–3 are user-confirmed. **Complete cleanup Phase 4 is installed and agent-verified; user gameplay checkpoint pending.** See [Phase 4 handoff](architecture/cleanup-phase4-finalisation.md). No further cleanup phase has been added.
+All five original architecture phases and all four complete-cleanup phases are user-confirmed. The user reports committing and pushing Phase 4. Post-confirmation mirror **2026-09-22 11:00:13** passes exact source/hierarchy/property parity. See [Phase 4 handoff](architecture/cleanup-phase4-finalisation.md). No further cleanup phase has been added.
+
+The [performance and replication plan](architecture/performance-and-replication-plan.md) has Phase 1 approved: [local audit and initial measurements delivered](architecture/performance-phase1-baseline.md). iPhone 7 is the selected baseline phone; real-device, representative route and 15-player measurements remain pending. No performance migration installed. Phase 2's six exact moves need approval. Latest mirror **2026-09-22 11:13:49** passes exact cleanup Phase 4 parity; gameplay and storage are unchanged.
 
 User approved preserving 628 moved race-arrow parts and 66 new Workspace thumbnail-model records. Phase 4 preserves this September 22 physical baseline. Protected staging and Archive disposition remains unresolved.
 

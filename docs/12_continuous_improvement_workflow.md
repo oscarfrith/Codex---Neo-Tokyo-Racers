@@ -1,5 +1,13 @@
 # Continuous Improvement Workflow
 
+## 2026-09-22 — Performance evidence boundaries
+
+Phase 1 found a repeatable large catalogue response and small server-only move set. Preserve raw sample metadata and distinguish JSON size from wire size, frame intervals from CPU cost, and Studio process memory from device client memory. A successful idle sample cannot substitute for a race route or phone test. Carry missing device/load evidence as named gates rather than marking an entire benchmark matrix passed. Candidate ownership scans include long-bracket startup paths and transitive shared dependencies; analysis never authorises deletion automatically.
+
+## 2026-09-22 — Performance planning after confirmed cleanup
+
+All four cleanup phases are user-confirmed; post-confirmation mirror parity passes. Separate client instance replication, asset downloads, memory and frame cost before proposing optimisation. Shared model-based preview calculations must be decoupled before moving canonical templates server-side. Dependency scans must include startup path manifests and dynamic lookup contracts: zero quoted-name matches is not unused-code evidence. Public catalogue projections should have one authoring source, and globally replicated caches must not be described as per-player delivery.
+
 ## 2026-09-22 — Cleanup verification lesson
 
 Source parity alone misses physical edits: refresh the whole mirror before migration and preserve explicitly accepted drift. Token-aware private renaming must reject collisions and reflective string access, compile all sources, and preserve saved identifiers. Archive old current instructions rather than stacking contradictory current-status banners. Export producer/receiver/importer framing must move together, retain Windows ACL inheritance, and be tested end to end. Audit empty folders and lifecycle guards as contracts, not automatic deletion targets.

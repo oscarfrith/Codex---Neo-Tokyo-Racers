@@ -37,7 +37,7 @@ Working rules:
 
 Known current baseline:
 
-* Complete-cleanup Phase 4 installed and agent-verified; user test pending. Phases 1–3 and all five original architecture phases are user-confirmed. Read docs/architecture/cleanup-phase4-finalisation.md and docs/00_START_HERE.md. Do not rerun completed phases.
+* All four complete-cleanup phases and all five original architecture phases are user-confirmed. Performance Phase 1 local audit is delivered; representative phone/route/load benchmarks remain pending. User selected iPhone 7. Read docs/architecture/performance-phase1-baseline.md. Mirror 2026-09-22 11:13:49 passes exact cleanup Phase 4 parity. No performance migration installed; Phase 2's six moves need approval. Do not rerun completed cleanup.
 * User approved preserving September 22 physical edits (628 arrow CFrames, 66 added thumbnail records). Phase 4 changes sources only. World-only Workspace boundary and prior exact two-tag exception remain; WIP, physical assets and staging/Archive are protected.
 * Preserve saved identity/schema contracts, development tools and lifecycle safeguards. No in-game backups, fallback implementations or new owners. Protected-asset disposition remains unresolved before overall closure.
 * Current pipeline: scripts/receive_studio_snapshot.py + scripts/studio_export_snapshot.lua; validate with scripts/verify_studio_mirror.py and scripts/cleanup_phase4/verify_migration.py. Old tools are archived under scripts/history/snapshot_before_cleanup_phase4.

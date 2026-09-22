@@ -1,0 +1,320 @@
+{
+  "placeId": 121304917315753,
+  "mode": "Edit",
+  "date": "2026-09-22",
+  "note": "Descendant counts, not measured network bytes or client memory. Read-only live inventory.",
+  "inventory": [
+    {
+      "sourceBytes": 1275342,
+      "path": "ReplicatedStorage",
+      "folders": 1872,
+      "nodes": 4323,
+      "sources": 109,
+      "meshes": 452,
+      "parts": 735
+    },
+    {
+      "sourceBytes": 1275342,
+      "path": "ReplicatedStorage.Modules",
+      "folders": 12,
+      "nodes": 121,
+      "sources": 109,
+      "meshes": 0,
+      "parts": 0
+    },
+    {
+      "sourceBytes": 1269821,
+      "path": "ReplicatedStorage.Modules.Game",
+      "folders": 10,
+      "nodes": 115,
+      "sources": 105,
+      "meshes": 0,
+      "parts": 0
+    },
+    {
+      "sourceBytes": 5521,
+      "path": "ReplicatedStorage.Modules.Core",
+      "folders": 0,
+      "nodes": 4,
+      "sources": 4,
+      "meshes": 0,
+      "parts": 0
+    },
+    {
+      "sourceBytes": 0,
+      "path": "ReplicatedStorage.Config",
+      "folders": 593,
+      "nodes": 1480,
+      "sources": 0,
+      "meshes": 0,
+      "parts": 0
+    },
+    {
+      "sourceBytes": 0,
+      "path": "ReplicatedStorage.Config.Garage",
+      "folders": 2,
+      "nodes": 11,
+      "sources": 0,
+      "meshes": 0,
+      "parts": 0
+    },
+    {
+      "sourceBytes": 0,
+      "path": "ReplicatedStorage.Config.Development",
+      "folders": 1,
+      "nodes": 2,
+      "sources": 0,
+      "meshes": 0,
+      "parts": 0
+    },
+    {
+      "sourceBytes": 0,
+      "path": "ReplicatedStorage.Config.UI",
+      "folders": 75,
+      "nodes": 425,
+      "sources": 0,
+      "meshes": 0,
+      "parts": 0
+    },
+    {
+      "sourceBytes": 0,
+      "path": "ReplicatedStorage.Config.Racing",
+      "folders": 21,
+      "nodes": 95,
+      "sources": 0,
+      "meshes": 0,
+      "parts": 0
+    },
+    {
+      "sourceBytes": 0,
+      "path": "ReplicatedStorage.Config.Audio",
+      "folders": 82,
+      "nodes": 467,
+      "sources": 0,
+      "meshes": 0,
+      "parts": 0
+    },
+    {
+      "sourceBytes": 0,
+      "path": "ReplicatedStorage.Config.Vehicles",
+      "folders": 390,
+      "nodes": 450,
+      "sources": 0,
+      "meshes": 0,
+      "parts": 0
+    },
+    {
+      "sourceBytes": 0,
+      "path": "ReplicatedStorage.Config.World",
+      "folders": 11,
+      "nodes": 19,
+      "sources": 0,
+      "meshes": 0,
+      "parts": 0
+    },
+    {
+      "sourceBytes": 0,
+      "path": "ReplicatedStorage.Config.Player",
+      "folders": 3,
+      "nodes": 3,
+      "sources": 0,
+      "meshes": 0,
+      "parts": 0
+    },
+    {
+      "sourceBytes": 0,
+      "path": "ReplicatedStorage.Remotes",
+      "folders": 7,
+      "nodes": 26,
+      "sources": 0,
+      "meshes": 0,
+      "parts": 0
+    },
+    {
+      "sourceBytes": 0,
+      "path": "ReplicatedStorage.Remotes.Garage",
+      "folders": 0,
+      "nodes": 7,
+      "sources": 0,
+      "meshes": 0,
+      "parts": 0
+    },
+    {
+      "sourceBytes": 0,
+      "path": "ReplicatedStorage.Remotes.Racing",
+      "folders": 0,
+      "nodes": 5,
+      "sources": 0,
+      "meshes": 0,
+      "parts": 0
+    },
+    {
+      "sourceBytes": 0,
+      "path": "ReplicatedStorage.Remotes.UI",
+      "folders": 0,
+      "nodes": 1,
+      "sources": 0,
+      "meshes": 0,
+      "parts": 0
+    },
+    {
+      "sourceBytes": 0,
+      "path": "ReplicatedStorage.Remotes.DealershipIntro",
+      "folders": 0,
+      "nodes": 2,
+      "sources": 0,
+      "meshes": 0,
+      "parts": 0
+    },
+    {
+      "sourceBytes": 0,
+      "path": "ReplicatedStorage.Remotes.Debug",
+      "folders": 0,
+      "nodes": 1,
+      "sources": 0,
+      "meshes": 0,
+      "parts": 0
+    },
+    {
+      "sourceBytes": 0,
+      "path": "ReplicatedStorage.Remotes.Audio",
+      "folders": 0,
+      "nodes": 1,
+      "sources": 0,
+      "meshes": 0,
+      "parts": 0
+    },
+    {
+      "sourceBytes": 0,
+      "path": "ReplicatedStorage.Remotes.Onboarding",
+      "folders": 0,
+      "nodes": 2,
+      "sources": 0,
+      "meshes": 0,
+      "parts": 0
+    },
+    {
+      "sourceBytes": 0,
+      "path": "ReplicatedStorage.Assets",
+      "folders": 1256,
+      "nodes": 2692,
+      "sources": 0,
+      "meshes": 452,
+      "parts": 735
+    },
+    {
+      "sourceBytes": 0,
+      "path": "ReplicatedStorage.Assets.Vehicles",
+      "folders": 1149,
+      "nodes": 2437,
+      "sources": 0,
+      "meshes": 452,
+      "parts": 729
+    },
+    {
+      "sourceBytes": 0,
+      "path": "ReplicatedStorage.Assets.VFX",
+      "folders": 15,
+      "nodes": 152,
+      "sources": 0,
+      "meshes": 0,
+      "parts": 6
+    },
+    {
+      "sourceBytes": 0,
+      "path": "ReplicatedStorage.Assets.UI",
+      "folders": 1,
+      "nodes": 1,
+      "sources": 0,
+      "meshes": 0,
+      "parts": 0
+    },
+    {
+      "sourceBytes": 0,
+      "path": "ReplicatedStorage.Assets.World",
+      "folders": 87,
+      "nodes": 98,
+      "sources": 0,
+      "meshes": 0,
+      "parts": 0
+    },
+    {
+      "sourceBytes": 583553,
+      "path": "ServerStorage",
+      "folders": 1445,
+      "nodes": 4309,
+      "sources": 43,
+      "meshes": 658,
+      "parts": 1738
+    },
+    {
+      "sourceBytes": 0,
+      "path": "ServerStorage.NeoTokyoRacers",
+      "folders": 758,
+      "nodes": 1676,
+      "sources": 0,
+      "meshes": 360,
+      "parts": 498
+    },
+    {
+      "sourceBytes": 0,
+      "path": "ServerStorage.Archive",
+      "folders": 320,
+      "nodes": 1568,
+      "sources": 0,
+      "meshes": 184,
+      "parts": 918
+    },
+    {
+      "sourceBytes": 583553,
+      "path": "ServerStorage.Modules",
+      "folders": 10,
+      "nodes": 53,
+      "sources": 43,
+      "meshes": 0,
+      "parts": 0
+    },
+    {
+      "sourceBytes": 0,
+      "path": "ServerStorage.Runtime",
+      "folders": 12,
+      "nodes": 39,
+      "sources": 0,
+      "meshes": 0,
+      "parts": 0
+    },
+    {
+      "sourceBytes": 0,
+      "path": "ServerStorage.Assets",
+      "folders": 340,
+      "nodes": 968,
+      "sources": 0,
+      "meshes": 114,
+      "parts": 322
+    },
+    {
+      "sourceBytes": 42881,
+      "path": "ReplicatedFirst",
+      "folders": 1,
+      "nodes": 5,
+      "sources": 4,
+      "meshes": 0,
+      "parts": 0
+    },
+    {
+      "sourceBytes": 42881,
+      "path": "ReplicatedFirst.Loading",
+      "folders": 0,
+      "nodes": 4,
+      "sources": 4,
+      "meshes": 0,
+      "parts": 0
+    }
+  ],
+  "streamingEnabled": true,
+  "sourceCheck": {
+    "manifest": 160,
+    "live": 160,
+    "mismatches": []
+  }
+}

@@ -1,5 +1,13 @@
 # Patch History
 
+## 2026-09-22 — Performance Phase 1 local audit and initial baseline
+
+User approved Phase 1 and selected iPhone 7. Added repeatable read-only mirror dependency analysis, bounded Studio runtime sampler and sandbox catalogue-response sampler. Reviewed six server-only move candidates (14 instances, 20,805 source bytes), transitive shared dependencies and 50 config groups. Captured four eight-second Studio windows and five GetInitial responses; catalogue is 173,361 JSON bytes per result, not measured wire size. All startup owners ready; no source/config/asset changes. Phone, controlled route/join, profiler/network attribution, 15-player and soak evidence explicitly deferred. Final mirror 11:13:49 passes exact cleanup Phase 4 parity. Phase 2 unimplemented. User authorised commit/push; no production publish.
+
+## 2026-09-22 — Confirm cleanup Phase 4; propose performance programme
+
+User reports successful testing, commit and push. Mark all four cleanup phases confirmed; protected physical staging/Archive decision and release gates remain separate. Refreshed mirror at 11:00:13 passes all 160 sources and exact expected 42,351 nodes/267,539 properties. Read-only MCP inventory finds 4,323 ReplicatedStorage descendants, including 2,437 vehicle asset and 1,480 config records. Proposed six deliveries in architecture/performance-and-replication-plan.md: measurement, server-only moves, catalogue separation, preview/template delivery, measured runtime/network optimisation and device/streaming acceptance. No gameplay, source, hierarchy or config mutation. Lesson: client consumers and generated public data determine replication boundaries; folder names/counts alone do not prove savings or unused content.
+
 ## 2026-09-22 — Cleanup Phase 4 finalisation
 
 User approved Phase 4 and explicitly accepted preserving arrival differences: 628 arrow CFrames and 66 thumbnail-model records. Installed one exact-source cleanup: 61 bodies, 179 private identifier mappings, patch-stamp comment removal and diagnostic naming; token checks preserve executable logic and non-diagnostic contracts. No instance, asset, tag, attribute or physical changes. Generic snapshot exporter/receiver/importer replace active old entry points; originals archived unchanged. Read-only live/local audits added, current docs consolidated and old instructions archived.
