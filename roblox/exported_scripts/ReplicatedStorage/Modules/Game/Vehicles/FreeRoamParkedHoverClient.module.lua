@@ -10,7 +10,7 @@ local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local Workspace = game:GetService("Workspace")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local DriveTuning = require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Vehicles"):WaitForChild("DriveTuning")) -- NTR_DRIVING_HOVER_HEIGHT_CONFIG_BRIDGE_V1
+local DriveTuning = require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Vehicles"):WaitForChild("DriveTuning")) 
 
 local player = Players.LocalPlayer
 local active = {}
@@ -18,8 +18,8 @@ local lastPromptSeat = nil
 
 local SENSOR_START_HEIGHT = 2.2
 local SENSOR_LENGTH = 12
-local HOVER_HEIGHT = math.clamp(DriveTuning.Read().HoverHeightStuds, 0.5, 8) -- NTR_DRIVING_HOVER_HEIGHT_CONFIG_VALUE_V1
-local INTERACTION_SETTINGS = game:GetService("ReplicatedStorage"):WaitForChild("Config"):WaitForChild("Vehicles"):WaitForChild("Authoring"):WaitForChild("VehicleInteractions") -- NTR_VEHICLE_EXIT_COAST_DRAG_V1_1
+local HOVER_HEIGHT = math.clamp(DriveTuning.Read().HoverHeightStuds, 0.5, 8) 
+local INTERACTION_SETTINGS = game:GetService("ReplicatedStorage"):WaitForChild("Config"):WaitForChild("Vehicles"):WaitForChild("Authoring"):WaitForChild("VehicleInteractions") 
 local function interactionNumber(name,fallback,minimum,maximum)
 	return math.clamp(tonumber(INTERACTION_SETTINGS:GetAttribute(name)) or fallback,minimum,maximum)
 end
@@ -95,7 +95,7 @@ local function shouldHover(vehicle)
 	if not vehicle or not vehicle.Parent or not vehicle.PrimaryPart then return false end
 	if tonumber(vehicle:GetAttribute("OwnerUserId")) ~= player.UserId then return false end
 	if vehicle:GetAttribute("ParkedShowcase") ~= true then return false end
-	if vehicle:GetAttribute("ParkedFixed") == true or vehicle.PrimaryPart.Anchored then return false end -- NTR_VEHICLE_FIXED_PARKING_V1
+	if vehicle:GetAttribute("ParkedFixed") == true or vehicle.PrimaryPart.Anchored then return false end 
 	if vehicle:GetAttribute("DriverUserId") ~= nil then return false end
 	if seatOccupied(vehicle) then return false end
 	return true

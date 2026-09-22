@@ -68,7 +68,7 @@ raceEvent.OnClientEvent:Connect(function(payload)
 	if kind=="RaceVisibilityUpdate" and runId~="" then local set={} for _,id in ipairs(payload.Participants or {}) do set[tonumber(id)]=true end if payload.Active==true then sessions[runId]=set else sessions[runId]=nil end apply()
 	elseif kind=="RaceFinished" or kind=="RaceDNF" or kind=="RaceExitedToStart" or kind=="RaceEnded" or kind=="TimeTrialFinished" or kind=="TimeTrialEnded" or kind=="TimeTrialError" then if sessions[runId] then sessions[runId][player.UserId]=nil if next(sessions[runId])==nil then sessions[runId]=nil end end if next(sessions) then apply() else restore() end end
 end)
-print("[Racing UI Phase 16E] Event-driven participant visibility active.")
+print("[RaceParticipantVisibilityClient] Event-driven participant visibility active.")
 
 end,debug.traceback)
 state=ok and "ready" or "failed"

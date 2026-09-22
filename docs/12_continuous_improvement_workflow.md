@@ -1,5 +1,9 @@
 # Continuous Improvement Workflow
 
+## 2026-09-22 — Cleanup verification lesson
+
+Source parity alone misses physical edits: refresh the whole mirror before migration and preserve explicitly accepted drift. Token-aware private renaming must reject collisions and reflective string access, compile all sources, and preserve saved identifiers. Archive old current instructions rather than stacking contradictory current-status banners. Export producer/receiver/importer framing must move together, retain Windows ACL inheritance, and be tested end to end. Audit empty folders and lifecycle guards as contracts, not automatic deletion targets.
+
 ## 2026-09-05 — Confirmed Phase 3 and cross-machine continuation
 
 Phase 3 is user-confirmed. Before switching machines, transfer both repository evidence and a saved playable Studio place, then verify live parity on arrival. MCP server configuration and local runtime paths are machine-specific; rediscover rather than copying session IDs or cache paths. Camera comparison only became equivalent with the client foregrounded. Preserve known pre-existing issues separately from acceptance and keep one canonical installer.

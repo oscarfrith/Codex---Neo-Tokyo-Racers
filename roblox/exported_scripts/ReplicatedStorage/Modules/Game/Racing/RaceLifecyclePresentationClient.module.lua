@@ -299,7 +299,7 @@ end)
 refresh()
 game:GetService("Players").LocalPlayer:WaitForChild("PlayerScripts"):WaitForChild("Runtime"):WaitForChild("Racing"):SetAttribute("AuraVisibilityOwnerReady",true)
 game:GetService("Players").LocalPlayer:WaitForChild("PlayerScripts"):WaitForChild("Runtime"):WaitForChild("Racing"):SetAttribute("PromptVisibilityOwnerReady",true)
-print("[Racing Presentation Lifecycle V1.3] All-start-zone aura, prompt and legacy-surface owner active.")
+print("[RaceLifecyclePresentationClient] All-start-zone aura, prompt and legacy-surface owner active.")
 
 end,debug.traceback)
 state=ok and "ready" or "failed"

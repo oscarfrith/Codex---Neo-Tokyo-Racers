@@ -1,7 +1,7 @@
 -- Cash command owner; ProfileServer provides the current authoritative session.
 local EconomyServer = {}
 function EconomyServer.init(context)
-local ntr = context.ntr
+local replicatedStorageRoot = context.replicatedStorageRoot
 local sessionFor = context.sessionFor
 local economyCommandLocks = context.economyCommandLocks
 local updateRuntimeMarker = context.updateRuntimeMarker
@@ -19,7 +19,7 @@ local GENERIC_GRANT_REASONS = {
 }
 
 local function economyConfig()
-	local vehicles = ntr:FindFirstChild("Config") and ntr.Config:FindFirstChild("Vehicles")
+	local vehicles = replicatedStorageRoot:FindFirstChild("Config") and replicatedStorageRoot.Config:FindFirstChild("Vehicles")
 	return vehicles and vehicles:FindFirstChild("DriveRewards")
 end
 

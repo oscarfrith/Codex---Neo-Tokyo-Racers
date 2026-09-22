@@ -11,9 +11,9 @@ end)
 
 if ok and typeof(runtime) == "table" and typeof(runtime.Start) == "function" then
 	runtime.Start()
-	print("[V64] Cached thrust visual runtime active.")
+	print("[RuntimeVFXClient] Cached thrust visual runtime active.")
 else
-	warn("[V64] Cached thrust visual runtime failed to start: " .. tostring(runtime))
+	warn("[RuntimeVFXClient] Cached thrust visual runtime failed to start: " .. tostring(runtime))
 end
 
 

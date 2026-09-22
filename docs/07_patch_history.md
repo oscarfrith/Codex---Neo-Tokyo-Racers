@@ -1,5 +1,12 @@
 # Patch History
 
+## 2026-09-22 — Cleanup Phase 4 finalisation
+
+User approved Phase 4 and explicitly accepted preserving arrival differences: 628 arrow CFrames and 66 thumbnail-model records. Installed one exact-source cleanup: 61 bodies, 179 private identifier mappings, patch-stamp comment removal and diagnostic naming; token checks preserve executable logic and non-diagnostic contracts. No instance, asset, tag, attribute or physical changes. Generic snapshot exporter/receiver/importer replace active old entry points; originals archived unchanged. Read-only live/local audits added, current docs consolidated and old instructions archived.
+
+Compile, repeat-install, rollback/reinstall, normal startup (26 server/39 client/four skipped), sandbox purchase/paint/spawn/exit/re-entry/garage state/race validation/TT start-cancel pass. Nine pipeline tests and final mirror verification pass: 2026-09-22 10:25:06, 160 sources, 42,351 nodes, 267,539 properties, zero unexplained changes. CAM-02 reproduced as pre-existing; no camera change. User full playthrough and protected staging/archive decision remain open. Canonical installer: scripts/roblox_cleanup_phase4_finalise.lua. No publish.
+
+
 ## 2026-09-05 — Fix Windows snapshot permissions blocking GitHub Desktop
 
 The importer staging directory used tempfile.mkdtemp, whose Windows private ACL was retained by promoted mirrors. GitHub Desktop under Oscar could not read manifest.json although the sandbox could. Restored inherited permissions on both mirror roots; changed staging to exclusive UUID-named mkdir with normal parent ACL inheritance. Nine pipeline tests pass, including Windows staging inheritance and rollback-on-promotion-failure. No Studio or mirror content changes; Phase 3 remains user-confirmed. Retry commit with raw paste unchecked.

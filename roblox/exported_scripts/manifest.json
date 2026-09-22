@@ -11,9 +11,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 329,
-    "source_bytes": 13931,
-    "source_checksum": "397615331",
-    "source_sha256": "f29bf94b311581c7328e098915669d6ff110a407df4ac42952c32052acfb8373",
+    "source_bytes": 13991,
+    "source_checksum": "485318432",
+    "source_sha256": "384f5338faf2f218a6ae79b0035d3793a49a33249fcffe15c92e691d6948929c",
     "file": "roblox/exported_scripts/ReplicatedFirst/Loading/InitialLoadingAndStartScreenClient.client.lua"
   },
   {
@@ -168,9 +168,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 250,
-    "source_bytes": 10689,
-    "source_checksum": "121519189",
-    "source_sha256": "a81bd553169abfb71f10fe09215d167c0f1e2ac60292c5dbeed3faea8b2a01e4",
+    "source_bytes": 10693,
+    "source_checksum": "128191393",
+    "source_sha256": "5fc6db57b2a982f059f5023e4b5d78795300f0a7f9e830ae30bc4cf062be0eaf",
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Audio/AcousticsClient.module.lua"
   },
   {
@@ -187,9 +187,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 24,
-    "source_bytes": 835,
-    "source_checksum": "30985917",
-    "source_sha256": "c08254b575e8ba671e7c108703294acc64e804ffc9d37d6ec0d151e14492dfe7",
+    "source_bytes": 844,
+    "source_checksum": "31914946",
+    "source_sha256": "80924c3c6e26f05e3d579658c2b56bd50ebcf4417b7e7528818ff1029127341e",
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Audio/AcousticsRuntimeClient.module.lua"
   },
   {
@@ -244,9 +244,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 26,
-    "source_bytes": 829,
-    "source_checksum": "30372123",
-    "source_sha256": "f2aa4f640733e864f8d133fe7cb1dafb47bfe000783a218500dfcab8077bc071",
+    "source_bytes": 834,
+    "source_checksum": "30940671",
+    "source_sha256": "75eac642364706ca4d612fa707fd4f945150c1c832b66617b11a5c448524cc5c",
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Audio/AudioRuntimeClient.module.lua"
   },
   {
@@ -282,9 +282,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 295,
-    "source_bytes": 11786,
-    "source_checksum": "101162403",
-    "source_sha256": "78dc7ff71ee2a3243653b77da0d0cecf03133be54829050df52cfe55d6ac95d0",
+    "source_bytes": 11831,
+    "source_checksum": "155738207",
+    "source_sha256": "7a678d5f93f1a21decbdf3071ef2af2421e075acd30576fb285d2c74025a9f96",
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Audio/ContextAudioClient.module.lua"
   },
   {
@@ -301,9 +301,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 26,
-    "source_bytes": 837,
-    "source_checksum": "31050763",
-    "source_sha256": "29ee45afaf014668f5dacf59060d01bea70f5556961984d422b2453084a003e8",
+    "source_bytes": 849,
+    "source_checksum": "32230186",
+    "source_sha256": "5c9416cbe1bdf274d25696503233d797fe47eddc65b0c04aff64a59e187e3417",
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Audio/ContextAudioRuntimeClient.module.lua"
   },
   {
@@ -415,9 +415,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 848,
-    "source_bytes": 41048,
-    "source_checksum": "947960527",
-    "source_sha256": "f6c5eacb90a6e92a6749e8defc7775d6026b8497483c00326100f07cbb591038",
+    "source_bytes": 41058,
+    "source_checksum": "994731458",
+    "source_sha256": "b1486abd6e2e64780214d5e5f68703ea869d090a9f389636963f23ca39097265",
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Audio/VehicleAudioClient.module.lua"
   },
   {
@@ -453,9 +453,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 738,
-    "source_bytes": 26348,
-    "source_checksum": "204752426",
-    "source_sha256": "4b0743ef8f9e5ab5e5a3a0c486246615c2af115b2406f7986b51307aaa4d866c",
+    "source_bytes": 26374,
+    "source_checksum": "272719343",
+    "source_sha256": "5a16bc3d4ceb0da56f4d775faed59839ebb8a07b7f3084b638e2aeb38d5dc1bc",
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Dealership/DealershipIntroClient.module.lua"
   },
   {
@@ -472,9 +472,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 227,
-    "source_bytes": 9248,
-    "source_checksum": "739494049",
-    "source_sha256": "70c36d937a87e784b4323baee39e8455c283c09542872a85d98ec53eb74beea4",
+    "source_bytes": 9204,
+    "source_checksum": "704601177",
+    "source_sha256": "6c4492b24b44bf8152ef0177f467af9b9320884d85c40299ebea0a039ae618da",
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Dealership/GarageEntranceClient.module.lua"
   },
   {
@@ -605,9 +605,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 98,
-    "source_bytes": 5800,
-    "source_checksum": "541563481",
-    "source_sha256": "b8c0644cfa7c0acc88d229759906f77ca73d403584c73e70006263495bb1d1f3",
+    "source_bytes": 5701,
+    "source_checksum": "491685605",
+    "source_sha256": "ec29e1530d785d36e7456e3d554c68f0dcd9c00203d75c04ecc0668a44116fe5",
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Garage/GarageModuleInstancePreviewAdapter.module.lua"
   },
   {
@@ -662,9 +662,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 690,
-    "source_bytes": 59434,
-    "source_checksum": "144951875",
-    "source_sha256": "9666301a9c5f3a4de6b84a9f46e48150f651fd2c29f8ad766756f1eb94dc1e26",
+    "source_bytes": 59006,
+    "source_checksum": "969451965",
+    "source_sha256": "3dc4502c85617ba7f06b3d8a2eb63d17d5fce27f3a36b48df5fddaa5419cab14",
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Garage/GarageUI.module.lua"
   },
   {
@@ -814,9 +814,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 89,
-    "source_bytes": 10386,
-    "source_checksum": "31668705",
-    "source_sha256": "0802f776cdbdab890263454a88c9f9cc57b0a00643f6f13cdd9c917937db1b35",
+    "source_bytes": 10245,
+    "source_checksum": "900588470",
+    "source_sha256": "62ee7f1740545044a8f2260e7a0fff7ed58897f9270b36d0428f1a20509fe847",
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Garage/PreviewVehicleClient.module.lua"
   },
   {
@@ -833,9 +833,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 82,
-    "source_bytes": 8222,
-    "source_checksum": "106930414",
-    "source_sha256": "ca4082ba797191db3590ce8cc322288619e67841f4cd252e1d6cf51d0c6cc0ea",
+    "source_bytes": 8174,
+    "source_checksum": "71405567",
+    "source_sha256": "c9997067c8b4b6a08a7d1a506902e2c8947b206790e2449493c6f57852f794da",
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Garage/ThrustPreviewClient.module.lua"
   },
   {
@@ -871,9 +871,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 277,
-    "source_bytes": 9792,
-    "source_checksum": "233777648",
-    "source_sha256": "8103a66748f70395591b3ebe6b22fad038023f845a617a147047730860f7f032",
+    "source_bytes": 9745,
+    "source_checksum": "193821517",
+    "source_sha256": "a25a19af419032e2912c7abca792e4499ea208c7b630de446af8a6627f8c62ed",
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Player/PlayerProfileSchema.module.lua"
   },
   {
@@ -890,9 +890,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 587,
-    "source_bytes": 22823,
-    "source_checksum": "295497968",
-    "source_sha256": "e1edf9b77730bbdccc3a8f6fc0bd8deefd39c0fa4263fc3552abca160dd1f9a9",
+    "source_bytes": 22744,
+    "source_checksum": "152961838",
+    "source_sha256": "3804027fc3d2a56504678eef67bf494a1adfe48944f2f42fa5ce323391db3359",
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Racing/RaceBrowserClient.module.lua"
   },
   {
@@ -947,9 +947,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 110,
-    "source_bytes": 6524,
-    "source_checksum": "916923237",
-    "source_sha256": "9efa0184fc90f756a74c3fae81e89047f086fc000faa2add04613b1166ae6e47",
+    "source_bytes": 6470,
+    "source_checksum": "892133534",
+    "source_sha256": "eed0fa2b8315c2ee995fffda844252f55e97c48a9750163eb29d5ac42a15bd95",
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Racing/RaceEntryMenuClient.module.lua"
   },
   {
@@ -966,9 +966,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 901,
-    "source_bytes": 58484,
-    "source_checksum": "817253213",
-    "source_sha256": "0fc8ea3c206e44366bd6e7c429449da5e7dc1b423e2acb8c97043b4df4f556b7",
+    "source_bytes": 58444,
+    "source_checksum": "674971012",
+    "source_sha256": "36bccf720029579fc64812b4f923920da1a648b10cfa49620beeed83e25cade9",
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Racing/RaceEntryPresentationClient.module.lua"
   },
   {
@@ -985,9 +985,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 309,
-    "source_bytes": 11116,
-    "source_checksum": "513870849",
-    "source_sha256": "84127ca33e21d0cbfdafbb5d052cbff1f5026f2cb36c790a72a6d0312a220902",
+    "source_bytes": 11113,
+    "source_checksum": "514506312",
+    "source_sha256": "8b2df549f0c3790e1fcdc049578a836eadc8a0de1ab504aff869338184d0e2eb",
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Racing/RaceLifecyclePresentationClient.module.lua"
   },
   {
@@ -1004,9 +1004,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 78,
-    "source_bytes": 6261,
-    "source_checksum": "792342037",
-    "source_sha256": "5eb6d1566bcafeb4df862d47353e8da8962816c8f67c3f4a602d2b076085c2ca",
+    "source_bytes": 6273,
+    "source_checksum": "802794127",
+    "source_sha256": "540d4c854dc77198738e98009cb702e8a1c0e595e40a8f80722260ac90600112",
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Racing/RaceParticipantVisibilityClient.module.lua"
   },
   {
@@ -1061,9 +1061,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 451,
-    "source_bytes": 17576,
-    "source_checksum": "364232901",
-    "source_sha256": "08f7738e6f72f4efccdd05ab8ff3c2fcefdd39b5adb99a467a72fb9d74cf4904",
+    "source_bytes": 17390,
+    "source_checksum": "91686725",
+    "source_sha256": "5c1a501dfac9cc3702f74d9be5dbf055c90ce3eb675b3c2f5bbeb0c7e22a6918",
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Racing/RaceRouteGuideClient.module.lua"
   },
   {
@@ -1080,9 +1080,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 287,
-    "source_bytes": 12176,
-    "source_checksum": "728574623",
-    "source_sha256": "d0d5d02b379a0f960930a2b59c84c50c04e5020f6545239713b371b44a19bdbe",
+    "source_bytes": 12183,
+    "source_checksum": "741003648",
+    "source_sha256": "7db4b82387bd2c7e05483d2cc3ecd445dfdcc642fdb8a0259ef866fab11f2b86",
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Racing/RaceSessionAssetsClient.module.lua"
   },
   {
@@ -1099,9 +1099,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 325,
-    "source_bytes": 33289,
-    "source_checksum": "898734869",
-    "source_sha256": "160a42b0541cf86a781a98ea01ecc8a9a4739bcd841641312c9b671ad7b8f1f3",
+    "source_bytes": 33119,
+    "source_checksum": "443907043",
+    "source_sha256": "23fbcf1ae229da7a40714e7030f2c7329e1df4913c796553d502fd4553855089",
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Racing/RaceSessionPresentationClient.module.lua"
   },
   {
@@ -1118,9 +1118,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 231,
-    "source_bytes": 23310,
-    "source_checksum": "250529405",
-    "source_sha256": "7d10c3cb297c28098a4fcb1c758b289edbf59742117f5fcbcd4ca7cbf1bbefa9",
+    "source_bytes": 23199,
+    "source_checksum": "45238861",
+    "source_sha256": "17015d64cf59fd41a775f4aa67ae6a0829c6e1b856f4a93c70b3e4f2ceae69d7",
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Racing/RaceTimeTrialResultCoachClient.module.lua"
   },
   {
@@ -1137,9 +1137,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 409,
-    "source_bytes": 15914,
-    "source_checksum": "11284635",
-    "source_sha256": "72058e41188ab35bc8ccdada94b341a290ae0fe1df791d317eec684c3a7f1fa9",
+    "source_bytes": 15757,
+    "source_checksum": "813515792",
+    "source_sha256": "d82eef491faa7e4d282a0d0b59e3ec4b4f611361fd6d58e22a45c21cf854d974",
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Racing/RaceTransitionClient.module.lua"
   },
   {
@@ -1156,9 +1156,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 1214,
-    "source_bytes": 64846,
-    "source_checksum": "215926389",
-    "source_sha256": "e598d46802abaeb28fccda630250412089c511a49b3727b9ee5d47ecc7a0f197",
+    "source_bytes": 64613,
+    "source_checksum": "971814622",
+    "source_sha256": "da72d6a3b0e6e38f94061e0cc578449ecb680d0fc6f1d9f1730a00705fb74cdd",
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/UI/DesktopFreeRoamHudUI.module.lua"
   },
   {
@@ -1213,9 +1213,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 130,
-    "source_bytes": 22320,
-    "source_checksum": "768697971",
-    "source_sha256": "2c889711bb629fdb1b8b216e455e915c719e10e277e71bd30242718fc548e5c9",
+    "source_bytes": 22249,
+    "source_checksum": "626431970",
+    "source_sha256": "d874858fa3bde69fccf01b13a948b8d018354ef3aaa0eaaa3e792689ac6428a7",
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/UI/GarageBrowserUI.module.lua"
   },
   {
@@ -1232,9 +1232,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 357,
-    "source_bytes": 49707,
-    "source_checksum": "53692479",
-    "source_sha256": "2ae0c50c28078bbc058aeaeef15ee1e53e6f475323646a10ab4c5adc6c983b02",
+    "source_bytes": 49472,
+    "source_checksum": "99086038",
+    "source_sha256": "a268498fd7c6a472bc4d8f49151821a94f55892d9da23b5b69118f516f511d6c",
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/UI/GarageComponents.module.lua"
   },
   {
@@ -1289,9 +1289,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 60,
-    "source_bytes": 3507,
-    "source_checksum": "557181465",
-    "source_sha256": "4df8adafd1a6ba0f6949a969954f29f160d015fa0386e1db734919f13c822522",
+    "source_bytes": 3452,
+    "source_checksum": "540406270",
+    "source_sha256": "80c1931aac1ae041c8f2c10278bd68d27ac2c5319f370af65ce637f3de332d8d",
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/UI/GarageModuleCardViewModel.module.lua"
   },
   {
@@ -1308,9 +1308,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 361,
-    "source_bytes": 49843,
-    "source_checksum": "86576082",
-    "source_sha256": "1c9d041314d9ce870575ca8b44dae2107ea51f0f81cc7f60e939f85ba98b1697",
+    "source_bytes": 49461,
+    "source_checksum": "472316093",
+    "source_sha256": "7ce8f4019f9615dfe5777204fcf542c884e0d39547bcd7e42f133e6b33d9f1f6",
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/UI/GarageWorkspaceUI.module.lua"
   },
   {
@@ -1327,9 +1327,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 28,
-    "source_bytes": 1399,
-    "source_checksum": "86552538",
-    "source_sha256": "31a7118be8799c4a50cb97982cdc0d8209dc1fdddc0b4e845093b2567c0884c0",
+    "source_bytes": 1393,
+    "source_checksum": "86265576",
+    "source_sha256": "4cb63079eaec543da8e37dbf149057bcb64d04e5bffa6ed8c798f1c5d26c24f4",
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/UI/LoadingTransitionUI.module.lua"
   },
   {
@@ -1346,9 +1346,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 421,
-    "source_bytes": 46869,
-    "source_checksum": "981277416",
-    "source_sha256": "b3f2647e4ab9cf5775062a46ca13841e0f9439775c61f24737386a37619c9a87",
+    "source_bytes": 46802,
+    "source_checksum": "718474788",
+    "source_sha256": "474ed19f74299a1bf7c2eb8f467fcab545d515b734687003ebd5b07e148b5c3b",
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/UI/MobileFreeRoamHudUI.module.lua"
   },
   {
@@ -1365,9 +1365,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 750,
-    "source_bytes": 54974,
-    "source_checksum": "332502921",
-    "source_sha256": "ce6b497ec76bdda9595a5e5957db70b0324b516940e2ecfa449d3507eaa0ddba",
+    "source_bytes": 54867,
+    "source_checksum": "857986589",
+    "source_sha256": "9221ac7f2a36590c896209719c551a79b58016cdb5a7680057374aedd851ee2e",
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/UI/OnboardingClient.module.lua"
   },
   {
@@ -1403,9 +1403,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 117,
-    "source_bytes": 19989,
-    "source_checksum": "995191759",
-    "source_sha256": "4e77934b5072d4144a5f62978c49848616c58c57d1d25ac25c6951d27209bde6",
+    "source_bytes": 19937,
+    "source_checksum": "903324691",
+    "source_sha256": "5627cc411210d6fd1286a9354da0e90a95013623018a34e497a22c18506551a3",
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/UI/OwnedGarageBrowserUI.module.lua"
   },
   {
@@ -1659,9 +1659,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 194,
-    "source_bytes": 11273,
-    "source_checksum": "637380695",
-    "source_sha256": "26df0b1487c77e82330e387df60bb3484431283524af1733a0ce6c5c6d8edb0a",
+    "source_bytes": 11175,
+    "source_checksum": "542964402",
+    "source_sha256": "857a8b7aaf2c9911eac5defdc80d61b90142b4f636fb3309524a8dbded1e0f22",
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/Performance/PerformanceUpgradeRuntime.module.lua"
   },
   {
@@ -1729,9 +1729,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 120,
-    "source_bytes": 8797,
-    "source_checksum": "588051450",
-    "source_sha256": "0a565e6a777fc31dd934fe70f777ee0121f1ec88d24aaefe815fa2282407b777",
+    "source_bytes": 8704,
+    "source_checksum": "525894444",
+    "source_sha256": "4bd4dcd8df426dc667d938e23e241a501d7a2ddee35d45db7021fa70bd53e3ba",
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/Performance/VehiclePerformanceResolver.module.lua"
   },
   {
@@ -1844,9 +1844,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 1148,
-    "source_bytes": 51110,
-    "source_checksum": "484005002",
-    "source_sha256": "de395281b66b45e19ba814501bb11ee5b8eaeee4a9103463bb5210fc2321588b",
+    "source_bytes": 50978,
+    "source_checksum": "932781650",
+    "source_sha256": "824b2e02988d8e3f2108267e46573b74ab4537da1cd4b1d292316a1629a8d5c6",
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/DrivingClient.module.lua"
   },
   {
@@ -1863,9 +1863,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 243,
-    "source_bytes": 9377,
-    "source_checksum": "773234397",
-    "source_sha256": "e7679dee038bb6876bf750e52a4d28129e09859d1aeb945cb3eb67973daf2738",
+    "source_bytes": 9224,
+    "source_checksum": "653303270",
+    "source_sha256": "0b2a4921fe132a0d8389a379a210525a9590a99f12142853ff7bbfe159d42bce",
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/FreeRoamParkedHoverClient.module.lua"
   },
   {
@@ -1901,9 +1901,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 209,
-    "source_bytes": 17710,
-    "source_checksum": "110781119",
-    "source_sha256": "e72c4cfb909b151ef4d7ebe390bb7ba8efed6ca5dfe78fcf57f362a02d036581",
+    "source_bytes": 17707,
+    "source_checksum": "114743562",
+    "source_sha256": "a32f376d42a3e9da53a112e09cf36e866b9c6ab113534e660cd0bcd0bb7e59d1",
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/MobileDriveControlsClient.module.lua"
   },
   {
@@ -1939,9 +1939,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 25,
-    "source_bytes": 823,
-    "source_checksum": "29770214",
-    "source_sha256": "14128b834fae47d2488f0d83d1297ff1deb5c51c4d644f27b5290c6f59097d69",
+    "source_bytes": 849,
+    "source_checksum": "32007645",
+    "source_sha256": "dda08b715064a8cdb9a180ff4c86e1d34ad652d4bc9e7a091ebfe032d15da093",
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/RuntimeVFXClient.module.lua"
   },
   {
@@ -2020,9 +2020,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 550,
-    "source_bytes": 18629,
-    "source_checksum": "820786801",
-    "source_sha256": "ab69ba47326cc99b39419fea245467caf2dc4cfb0680285b4371f5a693073371",
+    "source_bytes": 18613,
+    "source_checksum": "800961808",
+    "source_sha256": "971ff8161c7dfd61ab97851133563ad15ccba686e0dd34c41624bb062d74f4b4",
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/VehiclePreviewVFXClient.module.lua"
   },
   {
@@ -2039,9 +2039,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 788,
-    "source_bytes": 24373,
-    "source_checksum": "462605419",
-    "source_sha256": "735d9159cc445ad5782569d490a07643b873e8c6a0b9622770634d51003b67e3",
+    "source_bytes": 24173,
+    "source_checksum": "68025777",
+    "source_sha256": "8a02338e2bfc5023401f8b71339c9e285493eb7333c8244bc56fc60439ca4283",
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/VehicleVFXClient.module.lua"
   },
   {
@@ -2304,9 +2304,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 154,
-    "source_bytes": 7279,
-    "source_checksum": "383174994",
-    "source_sha256": "6930ee74bf7a4e4a19eef4f0aa4eb811503b59d16c6d53cf484c2d68da327548",
+    "source_bytes": 7284,
+    "source_checksum": "388416836",
+    "source_sha256": "2e440a1cfa3f464f44a165a2944d58cd47a2f7df41ba63920aaa32fba4e89401",
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Audio/VehicleAudioServer.module.lua"
   },
   {
@@ -2323,9 +2323,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 221,
-    "source_bytes": 6643,
-    "source_checksum": "917931215",
-    "source_sha256": "0687e7d44b9c1f4edc73c245f64104e4a992c8552684886c6ec5ec0d2443c484",
+    "source_bytes": 6656,
+    "source_checksum": "926147512",
+    "source_sha256": "efa1a2d538209e197a176dcffbaf6f42650a8ffa0833660e9e4923639ede1922",
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Dealership/IntroProgressServer.module.lua"
   },
   {
@@ -2361,9 +2361,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 46,
-    "source_bytes": 2044,
-    "source_checksum": "184291445",
-    "source_sha256": "573c70a09c4702407701d76aa867a3aa7bb16329a9d7ac2e56a4c448d9ddcee9",
+    "source_bytes": 2073,
+    "source_checksum": "191129139",
+    "source_sha256": "bb522ce8ecf4808461a6b193369b5063e6087af4336790e152dd2c2e3df50781",
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Development/VehiclePerformanceComparisonServer.module.lua"
   },
   {
@@ -2475,9 +2475,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 2753,
-    "source_bytes": 129697,
-    "source_checksum": "66216516",
-    "source_sha256": "be3c94dc2be8496d9abc0e06cca4c48ec486780f79f0150eb93c3513f872faa9",
+    "source_bytes": 127423,
+    "source_checksum": "664937601",
+    "source_sha256": "19b29f482749ee045771ee2321e30a7172862ad42bac0cdd47323538680667a7",
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Garage/GarageServer.module.lua"
   },
   {
@@ -2532,9 +2532,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 106,
-    "source_bytes": 9036,
-    "source_checksum": "735565687",
-    "source_sha256": "a1e6ff4a58d291fd06cc28cf398149e7539b0eec6e70a56e1bf6b755259ed422",
+    "source_bytes": 8995,
+    "source_checksum": "702216587",
+    "source_sha256": "900a3a9f7aec37317829f0894be058d51ac32b6c63cd1f69dc7d9f8278c75233",
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Garage/OwnedGarageDisplay.module.lua"
   },
   {
@@ -2684,9 +2684,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 229,
-    "source_bytes": 9891,
-    "source_checksum": "278190097",
-    "source_sha256": "4eee64e81cc19e13a32cf17fa2eac7c398bcd5fccec277fe056f15d23b546516",
+    "source_bytes": 9963,
+    "source_checksum": "341660293",
+    "source_sha256": "7a0659ebd3a1f3cf8bf269c3a24855006ab0a83fe855da775d1794d8956d9647",
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Player/EconomyServer.module.lua"
   },
   {
@@ -2741,9 +2741,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 73,
-    "source_bytes": 2682,
-    "source_checksum": "322904597",
-    "source_sha256": "6781e49bab80a6fc09c5e6d38fd97496e5ca931881df8740396098ca8b34efc2",
+    "source_bytes": 2698,
+    "source_checksum": "327153051",
+    "source_sha256": "86613e2e3e0a51a4e83c646fe9ff138beef700358b449fe1939f7b91b881b9fc",
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Player/ProfileCompatibilityServer.module.lua"
   },
   {
@@ -2760,9 +2760,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 606,
-    "source_bytes": 25380,
-    "source_checksum": "802609384",
-    "source_sha256": "8cd4cea141016f804db845e903f6bf8f5263abb781996032f0bb803f753285ba",
+    "source_bytes": 25073,
+    "source_checksum": "155021656",
+    "source_sha256": "1fa722054900845131ff238ca5dc20059d19b250732fb6571a6475a70eca1753",
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Player/ProfileServer.module.lua"
   },
   {
@@ -2798,9 +2798,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 112,
-    "source_bytes": 6088,
-    "source_checksum": "612081296",
-    "source_sha256": "6e4e102b9188a0278ef890f58b4d209fe86e9364072c7804f630226b5cd4004a",
+    "source_bytes": 6093,
+    "source_checksum": "617271592",
+    "source_sha256": "9bb655af441990a71266d9188245e46b6a45d56443ac157846bedea9467b68b2",
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Racing/GlobalLeaderboardServer.module.lua"
   },
   {
@@ -2817,9 +2817,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 1262,
-    "source_bytes": 46307,
-    "source_checksum": "653374865",
-    "source_sha256": "a61ad16fb416ab79c0582cc02aed2b453ba448fb72295442af03a85917cce397",
+    "source_bytes": 45921,
+    "source_checksum": "240080117",
+    "source_sha256": "a828d940420356e2df6ae1a3ff4bcd7752974efdea76aa9dba8d0e581ac313e3",
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Racing/MatchmakingServer.module.lua"
   },
   {
@@ -2836,9 +2836,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 403,
-    "source_bytes": 12077,
-    "source_checksum": "282719958",
-    "source_sha256": "8d0447cbf4ca185c5dfcf15e60fea9dcc727751eb5c796b047656fb8901d803a",
+    "source_bytes": 12095,
+    "source_checksum": "302046608",
+    "source_sha256": "9f6d1516cc729abe71a7a08e29d09a179ae8e4c1efd557a8b263e310694fd23f",
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Racing/PersonalBestServer.module.lua"
   },
   {
@@ -2855,9 +2855,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 382,
-    "source_bytes": 13073,
-    "source_checksum": "470903734",
-    "source_sha256": "e0356c75ceb7c1a002107349de345dbddf027988dbe2377ca3189a48ce29fe81",
+    "source_bytes": 12994,
+    "source_checksum": "386601838",
+    "source_sha256": "c20c8737571196a3f4f82a46d69e5ab8173686989b3ddcd165b38d9319b59611",
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Racing/RaceAssetsServer.module.lua"
   },
   {
@@ -2874,9 +2874,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 90,
-    "source_bytes": 3041,
-    "source_checksum": "407729453",
-    "source_sha256": "ec1aa1a33ec3417190b3f13bd04b2f55aeb294891b15dc7a4cb77d007ee202f5",
+    "source_bytes": 3044,
+    "source_checksum": "409666339",
+    "source_sha256": "370f1ec36b25be4e7bd5668e7a34084dba7aea4f921c00887acd80f5a69f971f",
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Racing/RaceDisplayNameServer.module.lua"
   },
   {
@@ -2912,9 +2912,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 236,
-    "source_bytes": 8422,
-    "source_checksum": "102904982",
-    "source_sha256": "d52e9691907c8499190cc80319b92656839e8e760394611629947d688fabb979",
+    "source_bytes": 8428,
+    "source_checksum": "112465178",
+    "source_sha256": "b0f1942ed04489bbcec571e9701ef1ec7c0e2f18ca72a8d1185d4a9231beca84",
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Racing/RaceTeleportServer.module.lua"
   },
   {
@@ -2931,9 +2931,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 1422,
-    "source_bytes": 49845,
-    "source_checksum": "577309036",
-    "source_sha256": "ddc9f136dee90e42d7308d04e8966b13dd9d3e939a7bc93083e67fe665052d61",
+    "source_bytes": 49592,
+    "source_checksum": "560268148",
+    "source_sha256": "c7b4ee4c4db58e0b5c4decac5fb545f85b33f3120550e670ca211ae285160736",
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Racing/TimeTrialServer.module.lua"
   },
   {
@@ -2969,9 +2969,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 246,
-    "source_bytes": 6747,
-    "source_checksum": "952678018",
-    "source_sha256": "0b8ba457bdecaa6689f693599e474a5ee41d25d5d307c3747eb6aed8439a26f9",
+    "source_bytes": 6753,
+    "source_checksum": "957089574",
+    "source_sha256": "df1cd08ea911aad57e3ef9875b6b3bd3af856af1dd16de31d3445cbf148118ec",
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Vehicles/DriverSeatServer.module.lua"
   },
   {
@@ -2988,9 +2988,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 140,
-    "source_bytes": 4526,
-    "source_checksum": "895097360",
-    "source_sha256": "8fe21d8073b94be9312b290d34110b94be4c306538b0f6adef8c01dff8873365",
+    "source_bytes": 4407,
+    "source_checksum": "852509772",
+    "source_sha256": "283da88946cb4e198a4941669467bda455bf95d4758f7705f7850b676b49817f",
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Vehicles/VehicleAccessServer.module.lua"
   },
   {
@@ -3007,9 +3007,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 207,
-    "source_bytes": 7638,
-    "source_checksum": "606503160",
-    "source_sha256": "cf9dfbedefd4705f9c44c687d1e0268f075d9457a898beb5fb2859d973c655d1",
+    "source_bytes": 7617,
+    "source_checksum": "594344815",
+    "source_sha256": "472431ed12207e4fd58f598376c215e13c91374728c2b0b616c54c03b368f2fb",
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Vehicles/VehicleCollisionServer.module.lua"
   },
   {
@@ -3026,9 +3026,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 47,
-    "source_bytes": 2261,
-    "source_checksum": "223626327",
-    "source_sha256": "e6a3f4a592e41cf1978bc25db5a8f04207aee48be52e5ceb33582f6250f6f82a",
+    "source_bytes": 2273,
+    "source_checksum": "227613028",
+    "source_sha256": "d1ffc34d5233fbbc8f7ff67f9c28f14400b9d2511987d1c1f3c3bc113e7a5b84",
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/Vehicles/VehiclePerformanceServer.module.lua"
   },
   {
@@ -3045,9 +3045,9 @@
     "disabled": false,
     "attributes": {},
     "source_lines": 138,
-    "source_bytes": 6013,
-    "source_checksum": "597758418",
-    "source_sha256": "cc7d48d6923ef7bcd4e2862c0b55bb5263a6e85ba733085541e30b292c5d6d74",
+    "source_bytes": 6009,
+    "source_checksum": "602063250",
+    "source_sha256": "8344d3be3ebf4afd5fa2ea333a24997b53783c0c07d7c23891f4ae0a2cef939e",
     "file": "roblox/exported_scripts/ServerStorage/Modules/Game/World/FreeRoamTeleportServer.module.lua"
   },
   {

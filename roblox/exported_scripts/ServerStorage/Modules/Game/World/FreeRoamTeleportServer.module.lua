@@ -119,7 +119,7 @@ invoke.OnServerInvoke = function(player, action)
 	end
 	local ok, result = pcall(performTeleport, player)
 	if ok and typeof(result) == "table" then return result end
-	warn("[PC Free-Roam UI Phase 4A] Teleport failed: " .. tostring(result))
+	warn("[FreeRoamTeleportServer] Teleport failed: " .. tostring(result))
 	player:SetAttribute("FreeRoamHudTeleporting", false)
 	return { Ok = false, Success = false, Message = "Dealership teleport failed." }
 end
@@ -128,7 +128,7 @@ Players.PlayerRemoving:Connect(function(player)
 	lastTeleportByUserId[player.UserId] = nil
 end)
 
-print("[PC Free-Roam UI Phase 4A] Dealership teleport service active.")
+print("[FreeRoamTeleportServer] Dealership teleport service active.")
 
 end,debug.traceback)
 state=ok and "ready" or "failed"

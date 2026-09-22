@@ -652,7 +652,7 @@ local function renderVehiclePage()
 
 	local gridY = filterY + filterH + gap
 	local grid = Instance.new("ScrollingFrame")
-	grid.Name = "VehicleGrid" grid.BackgroundTransparency = 1 grid.BorderSizePixel = 0 grid.Position = UDim2.fromOffset(0, gridY) grid.Size = UDim2.new(1, 0, 1, -gridY) grid.ScrollBarThickness = touch and 3 or 6 grid.AutomaticCanvasSize = Enum.AutomaticSize.Y grid.CanvasSize = UDim2.fromOffset(0, 0) grid.Parent = content	local gridSafe = touch and 5 or 8 local gridPadding = Instance.new("UIPadding") gridPadding.Name = "CardEdgeSafePadding" gridPadding.PaddingTop = UDim.new(0, gridSafe) gridPadding.PaddingLeft = UDim.new(0, gridSafe) gridPadding.PaddingRight = UDim.new(0, gridSafe) gridPadding.PaddingBottom = UDim.new(0, gridSafe) gridPadding.Parent = grid -- NTR_RACING_UI_PHASE14_VEHICLE_GRID_SAFE_PADDING
+	grid.Name = "VehicleGrid" grid.BackgroundTransparency = 1 grid.BorderSizePixel = 0 grid.Position = UDim2.fromOffset(0, gridY) grid.Size = UDim2.new(1, 0, 1, -gridY) grid.ScrollBarThickness = touch and 3 or 6 grid.AutomaticCanvasSize = Enum.AutomaticSize.Y grid.CanvasSize = UDim2.fromOffset(0, 0) grid.Parent = content	local gridSafe = touch and 5 or 8 local gridPadding = Instance.new("UIPadding") gridPadding.Name = "CardEdgeSafePadding" gridPadding.PaddingTop = UDim.new(0, gridSafe) gridPadding.PaddingLeft = UDim.new(0, gridSafe) gridPadding.PaddingRight = UDim.new(0, gridSafe) gridPadding.PaddingBottom = UDim.new(0, gridSafe) gridPadding.Parent = grid 
 	local layout = Instance.new("UIGridLayout") layout.CellPadding = UDim2.fromOffset(gap, gap) layout.CellSize = touch and UDim2.new(0.5, -gap / 2, 0, 150) or UDim2.new(0.25, -gap * 0.75, 0, 190) layout.SortOrder = Enum.SortOrder.LayoutOrder layout.Parent = grid
 	if #rows==0 then
 		local unavailable=VehicleCards.VehicleCard(grid,{Name="UnavailableVehicle",DisplayName=selectedMode=="Race" and "NO OWNED VEHICLES" or ("NO OWNED "..selectedTier.." CLASS VEHICLES"),SemanticState="Unavailable",UnavailableText="UNAVAILABLE",Active=false,Selectable=false,Size=touch and UDim2.fromOffset(210,150) or UDim2.fromOffset(260,190)})
@@ -891,7 +891,7 @@ requestEvent.Event:Connect(function(entryPayload)
 end)
 
 buildGui()
-print("[Racing UI Phase 2] Time Trial startup presentation active.")
+print("[RaceEntryPresentationClient] Time Trial startup presentation active.")
 
 end,debug.traceback)
 state=ok and "ready" or "failed"

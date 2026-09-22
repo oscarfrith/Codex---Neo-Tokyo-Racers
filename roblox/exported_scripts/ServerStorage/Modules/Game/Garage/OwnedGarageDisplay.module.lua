@@ -2,7 +2,7 @@
 local ReplicatedStorage=game:GetService("ReplicatedStorage")
 local Runtime={}
 local categories=game:GetService("ReplicatedStorage"):WaitForChild("Assets").Vehicles:WaitForChild("Categories")
-local VehicleCosmetics=require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Vehicles"):WaitForChild("VehicleCosmeticCatalog")) -- NTR_CUSTOMISATION_UNDERGLOW_DISPLAY_V1
+local VehicleCosmetics=require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Vehicles"):WaitForChild("VehicleCosmeticCatalog")) 
 local function findByAttribute(root,key,value)
 	if not root then return nil end
 	for _,item in ipairs(root:GetDescendants()) do if item:IsA("Model") and tostring(item:GetAttribute(key) or "")==tostring(value or "") then return item end end

@@ -41,7 +41,7 @@ local function enabled()
 end
 
 local function debugLog(message)
-	if global:GetAttribute("DebugAudio") == true then print("[Audio Phase 1] " .. tostring(message)) end
+	if global:GetAttribute("DebugAudio") == true then print("[VehicleAudioClient] " .. tostring(message)) end
 end
 
 local function vehiclesRoot()
@@ -791,7 +791,7 @@ function Controller.Start()
 	runtimeRoot.Parent = SoundService
 	ensureOutputGraph()
 	local root = vehiclesRoot()
-	if not root then warn("[Audio Phase 1] PlayerVehicles runtime root missing; vehicle audio is inactive.") return Controller end
+	if not root then warn("[VehicleAudioClient] PlayerVehicles runtime root missing; vehicle audio is inactive.") return Controller end
 	for _, vehicle in ipairs(root:GetChildren()) do registerVehicle(vehicle) end
 	childAddedConnection = root.ChildAdded:Connect(function(vehicle) task.defer(registerVehicle, vehicle) end)
 	childRemovedConnection = root.ChildRemoved:Connect(cleanupVehicle)

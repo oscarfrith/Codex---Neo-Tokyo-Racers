@@ -22,14 +22,14 @@ local RaceConfigReader = require(game:GetService("ReplicatedStorage"):WaitForChi
 
 local config = game:GetService("ReplicatedStorage"):WaitForChild("Config"):WaitForChild("Racing")
 local matchmakingConfig = game:GetService("ReplicatedStorage"):WaitForChild("Config"):WaitForChild("Racing"):WaitForChild("Matchmaking")
-local STAGING_READY_TIMEOUT_SECONDS = 18 -- NTR_RACING_STAGING_READINESS_GATE_V1
+local STAGING_READY_TIMEOUT_SECONDS = 18 
 local COUNTDOWN_VISIBLE_TIMEOUT_SECONDS = 8
 
 local queues = {}
 local queuedByPlayer = {}
 local activeRaceByPlayer = {}
 local activeRaces = {}
-local finishedReturnByPlayer = {} -- NTR_RACING_PHASE11D_FINISHED_RETURN_STATE
+local finishedReturnByPlayer = {} 
 local gateConnections = {}
 
 local function numberValue(folder, name, fallback)
@@ -47,7 +47,7 @@ local function now()
 end
 
 local function info(message)
-	print("[Racing Phase 8] " .. tostring(message))
+	print("[MatchmakingServer] " .. tostring(message))
 end
 
 local function worldRoot()
@@ -219,7 +219,7 @@ local function callSessionAssetService(action, payload)
 	if ok then
 		return result
 	end
-	warn("[Racing Phase 10A] Session asset service failed: " .. tostring(result))
+	warn("[MatchmakingServer] Session asset service failed: " .. tostring(result))
 	return nil
 end
 
@@ -314,7 +314,7 @@ local function broadcastPositions(race)
 			LapTarget = race.LapTarget or 1,
 			FinishElapsed = tonumber(entry.FinishElapsed),
 			VehicleId = tostring(entry.SelectedVehicleId or ""),
-			VehicleName = tostring(entry.VehicleDisplayName or entry.SelectedVehicleId or ""), -- NTR_RACING_UI_PHASE12_RESULT_SNAPSHOT_BRIDGE
+			VehicleName = tostring(entry.VehicleDisplayName or entry.SelectedVehicleId or ""), 
 		})
 	end
 	for _, entry in ipairs(race.Participants or {}) do
@@ -578,7 +578,7 @@ local function resetRacePlayer(player)
 			RouteId = race.RouteId,
 			NextGateIndex = entry.NextGateIndex,
 			GateCount = race.GateCount,
-			ResetCFrame = resetCFrameForEntry(race, entry), -- NTR_RACING_PHASE8D_RESET_CFRAME_PAYLOAD
+			ResetCFrame = resetCFrameForEntry(race, entry), 
 			Message = "Reset to last checkpoint.",
 		})
 		fireRace(player, {
@@ -588,7 +588,7 @@ local function resetRacePlayer(player)
 			RouteId = race.RouteId,
 			NextGateIndex = entry.NextGateIndex,
 			GateCount = race.GateCount,
-			ResetCFrame = resetCFrameForEntry(race, entry), -- NTR_RACING_PHASE8D_RESET_CFRAME_PAYLOAD
+			ResetCFrame = resetCFrameForEntry(race, entry), 
 		})
 	end
 	return { Ok = ok, Success = ok, Message = message }
@@ -678,7 +678,7 @@ local function callRaceRewardService(action, payload)
 	if ok then
 		return result
 	end
-	warn("[Racing Phase 11A] Race reward service failed: " .. tostring(result))
+	warn("[MatchmakingServer] Race reward service failed: " .. tostring(result))
 	return nil
 end
 
@@ -724,7 +724,7 @@ local function advanceCheckpoint(race, entry, touchedPart)
 		fire(entry.Player,payload) fireRace(entry.Player,payload) broadcastPositions(race) return
 	end
 	entry.LastCompletedGateIndex=entry.NextGateIndex entry.NextGateIndex+=1
-	callSessionAssetService("ApplyParticipants",{RunId=race.RunId,Participants={{Player=entry.Player,Vehicle=entry.Vehicle}}}) -- NTR_RACING_PHASE11E_CHECKPOINT_COLLISION_REAPPLY
+	callSessionAssetService("ApplyParticipants",{RunId=race.RunId,Participants={{Player=entry.Player,Vehicle=entry.Vehicle}}}) 
 	callSessionAssetService("UpdateParticipantSegment",{RunId=race.RunId,UserId=entry.Player.UserId,CurrentSegment=math.max(0,(tonumber(entry.NextGateIndex) or 1)-1)})
 	local payload={Type="RaceCheckpoint",RunId=race.RunId,EventId=race.EventId,RouteId=race.RouteId,NextGateIndex=entry.NextGateIndex,GateCount=race.GateCount,CheckpointIndex=gate.Index,Elapsed=entry.LastProgressElapsed,LapElapsed=clock-(entry.LapStartedClock or race.StartClock or clock),CurrentLap=entry.CurrentLap or 1,LapTarget=race.LapTarget or 1}
 	fire(entry.Player,payload) fireRace(entry.Player,payload) broadcastPositions(race)
@@ -886,7 +886,7 @@ local function startRace(queue)
 				Message = vehicleError or "Could not spawn selected vehicle at race grid.",
 			})
 		end
-	end -- NTR_RACING_PHASE11C_RACE_GRID_SPAWN
+	end 
 
 	local minPlayers = queue.MinPlayers
 	if #participants < minPlayers and boolValue(matchmakingConfig, "AllowSoloRaceDebug", false) ~= true then
@@ -1047,7 +1047,7 @@ local function startRace(queue)
 			if entry.Finished ~= true and entry.Player.Parent == Players then
 				prepareVehicleForDriving(entry.Player, entry.Vehicle)
 				local onboarding = game:GetService("ServerStorage"):WaitForChild("Runtime").Player:FindFirstChild("OnboardingProgress")
-				if onboarding and onboarding:IsA("BindableEvent") then onboarding:Fire(entry.Player, "FirstEventEntered") end -- NTR_RACE_MATCHMAKING_ONBOARDING_START_V1
+				if onboarding and onboarding:IsA("BindableEvent") then onboarding:Fire(entry.Player, "FirstEventEntered") end 
 
 				local payload = {
 					Type = "RaceStarted", RunId = runId, EventId = queue.EventId, RouteId = race.RouteId,
@@ -1117,7 +1117,7 @@ local function joinQueue(player, eventId, vehicleId)
 	if not selectedOk then
 		return false, selectedMessage
 	end
-	local summary, route, eventError = raceEventSummary(eventId) -- NTR_RACING_PHASE11C_JOIN_VALIDATE_SELECTED
+	local summary, route, eventError = raceEventSummary(eventId) 
 	if not summary then
 		return false, eventError
 	end

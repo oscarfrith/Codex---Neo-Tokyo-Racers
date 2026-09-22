@@ -80,7 +80,7 @@ raceCatalog.ChildRemoved:Connect(function(event)
 	connected[event] = nil
 end)
 
-print("[Racing UI Phase 1F] SharedMenuDisplayName synchronizer active.")
+print("[RaceDisplayNameServer] SharedMenuDisplayName synchronizer active.")
 
 end,debug.traceback)
 state=ok and "ready" or "failed"

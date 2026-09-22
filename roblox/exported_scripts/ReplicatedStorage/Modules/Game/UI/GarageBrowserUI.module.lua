@@ -15,9 +15,9 @@ local function N(name,fallback) local v=cfg:FindFirstChild(name); return tonumbe
 local function RN(name,fallback) local v=inRace:FindFirstChild(name); return tonumber(v and v.Value) or fallback end
 local function asset(name) local f=game:GetService("ReplicatedStorage"):WaitForChild("Config"):WaitForChild("UI"):WaitForChild("DesktopFreeRoamHud"):FindFirstChild("Assets"); local v=f and f:FindFirstChild(name); return v and v.Value or "" end
 local navigationIcons=game:GetService("ReplicatedStorage"):WaitForChild("Config"):WaitForChild("UI"):WaitForChild("GarageReplacement"):FindFirstChild("NavigationIcons")
-local function navIcon(name) return tostring(navigationIcons and navigationIcons:GetAttribute(name) or "") end -- NTR_GARAGE_FLOW_NAVIGATION_COLOUR_V1
+local function navIcon(name) return tostring(navigationIcons and navigationIcons:GetAttribute(name) or "") end 
 local Browser={}; Browser.__index=Browser
-local headerTitleSize,headerSubtitleSize=Shared.HeaderTextSizes() -- NTR_GARAGE_FLOW_REFINEMENT_V2
+local headerTitleSize,headerSubtitleSize=Shared.HeaderTextSizes() 
 local function clear(parent) for _,o in ipairs(parent:GetChildren()) do if o:GetAttribute("GeneratedGarageUI") then o:Destroy() end end end
 local function generated(o) o:SetAttribute("GeneratedGarageUI",true); return o end
 local function cockpitFor(category,id) for _,c in ipairs((category and category.Cockpits) or {}) do if tostring(c.CockpitId)==tostring(id) then return c end end end

@@ -3,9 +3,9 @@ local ReplicatedStorage=game:GetService("ReplicatedStorage")
 local PreviewVehicleController={}
 local controllersFolder=game:GetService("Players").LocalPlayer:WaitForChild("PlayerScripts"):WaitForChild("Runtime")
 local PaintClient=require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Garage"):WaitForChild("PaintClient"))
-local InstancePreview=require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Garage"):WaitForChild("GarageModuleInstancePreviewAdapter")) -- NTR_GARAGE_MODULE_INSTANCE_READONLY_PREVIEW_V1
+local InstancePreview=require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Garage"):WaitForChild("GarageModuleInstancePreviewAdapter")) 
 local kit=game:GetService("ReplicatedStorage")
-local VehicleCosmetics=require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Vehicles"):WaitForChild("VehicleCosmeticCatalog")) -- NTR_CUSTOMISATION_VEHICLE_COSMETIC_PREVIEW_V1
+local VehicleCosmetics=require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Vehicles"):WaitForChild("VehicleCosmeticCatalog")) 
 local PathResolver=require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Core"):WaitForChild("PathResolver"))
 local cfg=game:GetService("ReplicatedStorage"):WaitForChild("Config"):WaitForChild("UI"):WaitForChild("GarageReplacement")
 PreviewVehicleController.PreviewFolderName="LocalVehiclePreview"
@@ -36,7 +36,7 @@ local function previewCFrame(state)
 	return CFrame.new(fallback),nil
 end
 function PreviewVehicleController.Build(context)
-	local state=context.State; if not state then return nil,"State missing" end; local profile=state.PreviewProfile or state.Profile or {}; local categoriesRoot=context.CategoriesRoot; if not categoriesRoot then return nil,"Categories root missing" end -- NTR_GARAGE_VEHICLE_PREVIEW_PAINT_SCOPE_V1
+	local state=context.State; if not state then return nil,"State missing" end; local profile=state.PreviewProfile or state.Profile or {}; local categoriesRoot=context.CategoriesRoot; if not categoriesRoot then return nil,"Categories root missing" end 
 	local preview=context.Preview or {}; local root=PreviewVehicleController.GetPreviewRoot(context.Workspace,preview); PreviewVehicleController.ClearRoot(root)
 	local cockpitId=state.SelectedCockpit or profile.CurrentCockpit or "bruiser_01"; local template=PreviewVehicleController.FindTemplateByAttribute(categoriesRoot,"CockpitId",cockpitId); if not template then return nil,"Cockpit template not found: "..tostring(cockpitId) end
 	local vehicle=template:Clone(); vehicle.Name="LOCAL_PREVIEW_"..tostring(cockpitId); vehicle.Parent=root; preview.Vehicle=vehicle; local primary=vehicle.PrimaryPart or vehicle:FindFirstChild("CockpitRoot_DoNotRename",true); if primary then vehicle.PrimaryPart=primary end

@@ -45,7 +45,7 @@ for artwork, snapshot in pairs(eligibility) do
 	end
 end
 if not beginOk or not generation then
-	warn("[Loading System Phase 5] Initial loading could not begin; restoring Roblox loading ownership.")
+	warn("[InitialLoadingAndStartScreenClient] Initial loading could not begin; restoring Roblox loading ownership.")
 	return
 end
 
@@ -71,14 +71,14 @@ while os.clock() < deadline and not (loaded and worldReady and characterReady) d
 end
 
 if not (loaded and worldReady and characterReady) then
-	warn(("[Loading System Phase 5] Bounded initial readiness reached deadline loaded=%s world=%s character=%s"):format(tostring(loaded), tostring(worldReady), tostring(characterReady)))
+	warn(("[InitialLoadingAndStartScreenClient] Bounded initial readiness reached deadline loaded=%s world=%s character=%s"):format(tostring(loaded), tostring(worldReady), tostring(characterReady)))
 end
 progress(0.96, "FINALISING")
 
 local safeGui = playerGui:WaitForChild("LoadingSafeContent", 5)
 local safeRoot = safeGui and safeGui:FindFirstChild("SafeRoot")
 if not safeRoot then
-	warn("[Loading System Phase 5] Loading safe content was unavailable; releasing to gameplay.")
+	warn("[InitialLoadingAndStartScreenClient] Loading safe content was unavailable; releasing to gameplay.")
 	player:SetAttribute("StartScreenActive", false)
 	api:Handle("Complete", { Generation = generation, Status = "READY" })
 	return
@@ -320,9 +320,9 @@ shop.Activated:Connect(function()
 		release(true, "Shop")
 	else
 		local reason = typeof(result) == "table" and (result.Message or result.Error) or tostring(result or "DEALERSHIP TELEPORT FAILED")
-		warn("[Loading System Phase 5] SHOP failed: " .. tostring(reason))
+		warn("[InitialLoadingAndStartScreenClient] SHOP failed: " .. tostring(reason))
 		setBusy(false, "Shop", "SHOP - TRY AGAIN")
 	end
 end)
 
-print("[Loading System Phase 5] Compact icon Play/Shop start screen ready.")
+print("[InitialLoadingAndStartScreenClient] Compact icon Play/Shop start screen ready.")

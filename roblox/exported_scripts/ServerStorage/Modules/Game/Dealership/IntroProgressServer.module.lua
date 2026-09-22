@@ -104,7 +104,7 @@ end
 
 local dataStore = getDataStore()
 
-local neoTokyo = game:GetService("ReplicatedStorage")
+local replicatedStorageRoot = game:GetService("ReplicatedStorage")
 local shared = game:GetService("ReplicatedStorage")
 local remotes = game:GetService("ReplicatedStorage"):WaitForChild("Remotes")
 local remoteFolder = game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("DealershipIntro")

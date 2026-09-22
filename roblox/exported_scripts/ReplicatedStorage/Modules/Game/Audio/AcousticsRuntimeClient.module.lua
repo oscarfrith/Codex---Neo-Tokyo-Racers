@@ -14,7 +14,7 @@ local ok, result = pcall(function()
 	return controller
 end)
 
-if not ok then warn("[Audio Phase 3] Acoustics runtime failed safely: " .. tostring(result)) end
+if not ok then warn("[AcousticsRuntimeClient] Acoustics runtime failed safely: " .. tostring(result)) end
 
 end,debug.traceback)
 state=ok and "ready" or "failed"

@@ -1,0 +1,10 @@
+{
+  "mirror": "2026-09-22 10:25:06",
+  "sources": 160,
+  "source_parity": true,
+  "all_hierarchy_property_parity": true,
+  "missing_or_changed": 0,
+  "added_or_changed": 0,
+  "nodes": 42351,
+  "arrival_physical_changes": "User approved preserving 628 changed arrow CFrames and 66 added thumbnail-model records before Phase 4."
+}

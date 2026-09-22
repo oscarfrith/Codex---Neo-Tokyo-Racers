@@ -45,7 +45,7 @@ local function configureCollisionGroups()
 	ensureGroup(PARTICIPANT_GROUP)
 	pcall(function() PhysicsService:CollisionGroupSetCollidable(ASSET_GROUP, "Default", false) end)
 	pcall(function() PhysicsService:CollisionGroupSetCollidable(ASSET_GROUP, PARTICIPANT_GROUP, true) end)
-	pcall(function() PhysicsService:CollisionGroupSetCollidable(PARTICIPANT_GROUP, PARTICIPANT_GROUP, false) end) -- NTR_RACING_PHASE11E_COLLISION_POLICY
+	pcall(function() PhysicsService:CollisionGroupSetCollidable(PARTICIPANT_GROUP, PARTICIPANT_GROUP, false) end) 
 	pcall(function() PhysicsService:CollisionGroupSetCollidable(PARTICIPANT_GROUP, "Default", true) end)
 end
 
@@ -267,7 +267,7 @@ local function removeParticipant(payload)
 	local userId = tonumber(payload.UserId) or (player and player.UserId) or 0
 	if userId ~= 0 then
 		state.ParticipantSegments[userId] = nil
-	end -- NTR_RACING_PHASE11G_STUDIO_USERID_FIX
+	end 
 	if player and player.Character then
 		restoreModelGroup(player.Character)
 	end

@@ -1,0 +1,31 @@
+{
+  "studio": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"general\":{\"errors\":[],\"exceptions\":{\"1\":{\"path\":\"ServerStorage.NeoTokyoRacers\",\"kind\":\"protected_staging_host\"},\"3\":{\"path\":\"ServerStorage.Archive\",\"kind\":\"protected_assets_pending_decision\"},\"2\":{\"path\":\"ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging\",\"kind\":\"protected_assets_pending_decision\"}},\"pass\":true,\"runtimeGate\":\"Inspect normal ServerBase/ClientBase StartupState; never require gameplay modules here.\",\"emptyFolders\":2826,\"sources\":160,\"compiled\":160,\"mode\":\"edit\",\"findings\":[]},\"exact\":{\"state\":\"installed\",\"sources\":160,\"pass\":true}}"
+      }
+    ],
+    "isError": false
+  },
+  "runtime": {
+    "serverReady": 26,
+    "clientReady": 39,
+    "developmentSkipped": 4,
+    "sandbox": true,
+    "purchase": true,
+    "paint": true,
+    "spawn": true,
+    "exitReentry": true,
+    "garageState": true,
+    "raceValidation": true,
+    "timeTrialCountdownStarted": true,
+    "timeTrialCancel": true,
+    "worldReady": true,
+    "knownCameraClampObserved": true
+  },
+  "limitations": [
+    "Human driving/full race/owned-garage entry-exit/touch/multiplayer/save-rejoin pending",
+    "Protected staging/archive assets unchanged; disposition unresolved"
+  ]
+}

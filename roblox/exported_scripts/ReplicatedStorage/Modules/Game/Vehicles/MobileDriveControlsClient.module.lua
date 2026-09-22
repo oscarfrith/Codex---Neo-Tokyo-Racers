@@ -199,7 +199,7 @@ RunService.RenderStepped:Connect(function(dt)
 	if not driving then if wasDriving then clearInputs() end; wasDriving=false; return end; wasDriving=true
 	if currentMode=="Tilt" then local smoothing=math.max(0,tonumber(A("TiltSmoothing",10)) or 10); local alpha=1-math.exp(-smoothing*dt); tiltCurrent+=(tiltTarget-tiltCurrent)*alpha; publishSteering(tiltCurrent,M.AnalogDrift==true) end
 end)
-print("[Mobile Free-Roam UI Phase 1K] Compact boost plate and touch controls active.")
+print("[MobileDriveControlsClient] Compact boost plate and touch controls active.")
 
 end,debug.traceback)
 state=ok and "ready" or "failed"

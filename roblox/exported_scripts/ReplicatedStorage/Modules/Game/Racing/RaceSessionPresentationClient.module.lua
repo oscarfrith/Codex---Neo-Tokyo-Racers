@@ -122,7 +122,7 @@ local function suppress(active)
 		local other=playerGui:FindFirstChild(name)
 		if other and other:IsA("ScreenGui") then other.Enabled=false end
 	end
-end -- NTR_RACING_UI_PHASE16E_RUNTIME_OWNERSHIP
+end 
 local function panel(name,pos,size) return UI.Panel(canvas,{Name=name,Position=pos,Size=size,Color=C("PanelDeep"),Transparency=N("PanelTransparency",.16),StrokeColor=C("Outline"),StrokeTransparency=.16,Clips=true}) end
 local function borderless(object) object.BackgroundTransparency=1 for _,child in ipairs(object:GetChildren()) do if child:IsA("UIStroke") then child.Transparency=1 end end return object end
 local function metricCard(object)
@@ -191,7 +191,7 @@ local function invokeSession(kind)
 	if busy or not active then return end busy=true setExitModalVisible(false) transition("FadeOut",{Reason=kind,Label=kind=="Reset" and "RESETTING" or "EXITING"}) task.wait(.25)
 	local remote=active.Mode=="Race" and queueRequest or raceRequest local action=active.Mode=="Race" and (kind=="Reset" and "ResetToLastCheckpoint" or "ExitRaceToStart") or (kind=="Reset" and "ResetActiveTimeTrial" or "ExitActiveTimeTrial")
 	local ok,result=pcall(function() return remote:InvokeServer(action,{RunId=active.RunId,EventId=active.EventId}) end) local success=ok and type(result)=="table" and (result.Ok==true or result.Success==true)
-	transition("RestoreCamera",{Reason=kind}) transition("FadeIn",{Reason=kind,Delay=success and .3 or .08,Success=success}) -- NTR_LOADING_SYSTEM_PHASE4_ACTIVE_RACE_EXIT_V1
+	transition("RestoreCamera",{Reason=kind}) transition("FadeIn",{Reason=kind,Delay=success and .3 or .08,Success=success}) 
 	if kind=="Reset" then resetButton.Text=success and "RESET DONE" or "RESET FAILED" task.delay(1.1,function() if resetButton.Parent then resetButton.Text="RESET" end busy=false end) else if not success then exitButton.Text="EXIT FAILED" task.delay(1.2,function() if exitButton.Parent then exitButton.Text="EXIT" end busy=false end) end end
 end
 resetButton.Activated:Connect(function() invokeSession("Reset") end)
@@ -306,7 +306,7 @@ raceEvent.OnClientEvent:Connect(function(payload)
 	elseif kind=="TimeTrialStarted" then show(payload,"TimeTrial") active.Running=true active.LapLocalStart=os.clock() queryPB() refresh()
 	elseif kind=="TimeTrialCheckpoint" then show(payload,"TimeTrial") refresh()
 	elseif kind=="TimeTrialLapCompleted" then show(payload,"TimeTrial") active.LapTimes=payload.LapTimes or active.LapTimes table.insert(active.LapTimes,{Lap=payload.Lap,Elapsed=payload.Elapsed}) active.CurrentLap=payload.NextLap or payload.CurrentLap or active.CurrentLap active.LapLocalStart=os.clock() refresh()
-	elseif kind=="TimeTrialReset" then refresh() -- NTR_RACING_FLOW_COUNTDOWN_QUEUE_EXIT_OWNERSHIP: preserve lap clock on checkpoint reset
+	elseif kind=="TimeTrialReset" then refresh() 
 	elseif kind=="RaceStaged" or kind=="RaceCountdown" then show(payload,"Race") refresh()
 	elseif kind=="RaceStarted" then show(payload,"Race") active.Running=true refresh()
 	elseif kind=="RaceCheckpoint" or kind=="RaceLapCompleted" then show(payload,"Race") refresh()
@@ -315,7 +315,7 @@ raceEvent.OnClientEvent:Connect(function(payload)
 	elseif kind=="TimeTrialEnded" or kind=="TimeTrialError" or kind=="RaceExitedToStart" then hide(true) end
 end)
 RunService.RenderStepped:Connect(function(dt) if not active then return end updateHudMapMarker(dt) if active.Mode=="TimeTrial" and active.Running and active.LapLocalStart then metricValue.Text=timeText(os.clock()-active.LapLocalStart) end end)
-print("[Racing UI Phase 16A] Shared in-race HUD active.")
+print("[RaceSessionPresentationClient] Shared in-race HUD active.")
 
 end,debug.traceback)
 state=ok and "ready" or "failed"

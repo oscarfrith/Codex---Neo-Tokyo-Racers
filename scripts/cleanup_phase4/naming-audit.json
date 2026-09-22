@@ -1,0 +1,24 @@
+{
+  "pass": true,
+  "errors": [],
+  "external_identity_contracts": {
+    "NTR_DealershipIntro_v1": 1,
+    "NTR_PlayerProfiles_v1": 1,
+    "NTRSessionToken": 1,
+    "NTRSessionLeaseUntil": 1,
+    "NTR_TT_Global_v1": 1,
+    "NTR_TT_Global_Metadata_v1": 1,
+    "NTR_TimeTrialPersonalBests_v1": 2
+  },
+  "retained_surface_suppression_keys": {
+    "RaceHud_Phase3": 2,
+    "RaceCheckpointBadge_Phase5D": 2,
+    "RaceQueue_Phase8": 2,
+    "RaceSessionControls_Phase8C": 1,
+    "RaceSessionControls_Phase8D": 2,
+    "RaceResults_Phase4": 1,
+    "FreeRoamCarMenu_Phase3": 1
+  },
+  "historical_comment_lines": 6,
+  "scope": "Current executable mirror outside Workspace scripts. Saved identities and exact lifecycle suppression contracts are classified exceptions; comments are not execution paths."
+}

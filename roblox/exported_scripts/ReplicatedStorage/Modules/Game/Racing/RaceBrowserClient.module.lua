@@ -482,7 +482,7 @@ local function buildGui()
 		TextSize = touch and 16 or T("Heading", 22),
 		Role = "Heading",
 	})
-	-- NTR_RACING_FLOW_COUNTDOWN_QUEUE_EXIT_OWNERSHIP: browser exit is footer-only.
+	
 local divider = Instance.new("Frame")
 	divider.BorderSizePixel = 0
 	divider.BackgroundColor3 = C("Outline")
@@ -577,7 +577,7 @@ openEvent.Event:Connect(function()
 end)
 
 buildGui()
-print("[Racing UI Phase 1] Shared-shell Race Browser active.")
+print("[RaceBrowserClient] Shared-shell Race Browser active.")
 
 end,debug.traceback)
 state=ok and "ready" or "failed"

@@ -6,7 +6,7 @@ if state then assert(state=="ready","Client startup already attempted: "..tostri
 state="starting"
 local ok,message=xpcall(function()
 local Players = game:GetService("Players")
-local ContentProvider = game:GetService("ContentProvider") -- NTR_RACING_STAGING_READINESS_GATE_V1
+local ContentProvider = game:GetService("ContentProvider") 
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 local TweenService = game:GetService("TweenService")
@@ -19,7 +19,7 @@ local racingFolder = game:GetService("Players").LocalPlayer:WaitForChild("Player
 local transitionRequest = game:GetService("Players").LocalPlayer:WaitForChild("PlayerScripts"):WaitForChild("Runtime"):WaitForChild("Racing"):WaitForChild("RaceTransitionRequest")
 local transitionStateChanged = game:GetService("Players").LocalPlayer:WaitForChild("PlayerScripts"):WaitForChild("Runtime"):WaitForChild("Racing"):FindFirstChild("RaceTransitionStateChanged")
 local uiControllers = assert(game:GetService("Players").LocalPlayer:WaitForChild("PlayerScripts"):WaitForChild("Runtime"):FindFirstChild("UI"), "Racing loading UI folder missing")
-local loadingInvoke = uiControllers:WaitForChild("LoadingTransitionInvoke") -- NTR_LOADING_SYSTEM_PHASE4_RACE_TRANSITION_BRIDGE_V1
+local loadingInvoke = uiControllers:WaitForChild("LoadingTransitionInvoke") 
 local loadingGeneration = nil
 local loadingFinishing = false
 
@@ -34,7 +34,7 @@ local sessionActive = false
 local lastHudPulse = 0
 local savedHudEnabled = {}
 local currentFadeTween = nil
-local finishHold = false -- NTR_RACING_PHASE11D_FINISH_HOLD
+local finishHold = false 
 local activeStaging = nil
 
 local gui = Instance.new("ScreenGui")
@@ -124,10 +124,10 @@ local function setSessionActive(active, reason)
 		table.clear(savedHudEnabled)
 	end
 	fireState()
-	print(("[Racing Phase 8H] Session HUD state active=%s reason=%s"):format(tostring(active), tostring(reason or "")))
+	print(("[RaceTransitionClient] Session HUD state active=%s reason=%s"):format(tostring(active), tostring(reason or "")))
 end
 
-local function suppressFreeRoamHud() end -- NTR_RACING_UI_PHASE16E_RUNTIME_OWNERSHIP
+local function suppressFreeRoamHud() end 
 local function tweenFade(targetTransparency, duration)
 	if currentFadeTween then
 		currentFadeTween:Cancel()
@@ -190,7 +190,7 @@ local function restoreCameraOnce(reason)
 	camera.CameraType = Enum.CameraType.Custom
 	if subject then camera.CameraSubject = subject end
 	local subjectName = subject and subject:GetFullName() or "nil"
-	print(("[Racing Phase 8H] Camera restore reason=%s type=%s subject=%s"):format(tostring(reason or ""), tostring(camera.CameraType), subjectName))
+	print(("[RaceTransitionClient] Camera restore reason=%s type=%s subject=%s"):format(tostring(reason or ""), tostring(camera.CameraType), subjectName))
 end
 
 local function restoreCamera(reason)
@@ -376,7 +376,7 @@ transitionRequest.Event:Connect(function(payload)
 	elseif step == "RestoreCamera" then
 		restoreCamera(payload.Reason or step)
 	elseif step == "StopVehicle" then
-		print("[Racing Phase 8H] Ignored StopVehicle transition; reset respawns server-side.")
+		print("[RaceTransitionClient] Ignored StopVehicle transition; reset respawns server-side.")
 	elseif step == "StartTransition" then
 		startTransition(payload.Reason or step)
 	end
@@ -399,7 +399,7 @@ player.CharacterAdded:Connect(function()
 	end)
 end)
 
-print("[Racing Phase 8H Client] Transition/camera controller active; reset respawns server-side.")
+print("[RaceTransitionClient] Transition/camera controller active; reset respawns server-side.")
 
 end,debug.traceback)
 state=ok and "ready" or "failed"

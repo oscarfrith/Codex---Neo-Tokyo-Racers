@@ -10,7 +10,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-import import_studio_full_snapshot_export as pipeline
+import import_studio_snapshot as pipeline
 
 
 def fixture():

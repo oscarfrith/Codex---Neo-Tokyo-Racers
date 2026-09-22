@@ -1,6 +1,8 @@
 # Complete architecture cleanup plan
 
-2026-09-05. **Complete cleanup Phases 1, 2 and 3 are installed and user-confirmed. Phase 4 remains unimplemented. Current mirror: 2026-09-05 16:06:57, 160 sources, 42,285 nodes and 266,840 properties, with exact expected source/hierarchy/property parity. The two lighting-tag renames on 62 enumerated WIP objects are approved and installed. Protected staging/archive disposition remains pending.** See docs/architecture/cleanup-phase3-generic-naming.md.
+**2026-09-22 execution update:** Phase 4 installed and agent-verified; user test pending. Earlier status paragraphs are historical. See cleanup-phase4-finalisation.md. Protected staging/archive decision remains open; no physical deletion authorised. No additional subdivision.
+
+Original plan below; current delivery status is the September 22 execution update above.
 
 ## Acceptance contract
 
@@ -100,6 +102,6 @@ Resolve all retained-item decisions before declaring completion. Every item is c
 
 ## Completion ledger
 
-Complete cleanup Phases 1, 2 and 3 are installed and user-confirmed. Phase 4 remains unimplemented. Current mirror: 2026-09-05 16:06:57, 160 sources, 42,285 nodes and 266,840 properties, with exact expected source/hierarchy/property parity. The two lighting-tag renames on 62 enumerated WIP objects are approved and installed. Protected staging/archive disposition remains pending. Canonical installed script: scripts/roblox_cleanup_phase3_generic_naming.lua. No additional subdivision is authorised.
+Phases 1–3 are user-confirmed. Phase 4 is installed and agent-verified; user playthrough and protected staging/archive disposition remain open. See cleanup-phase4-finalisation.md for the exact retained-item ledger. No additional phase was created.
 
 Known pre-existing concerns (including drive-in VehicleCamera output and published persistence/device gates) remain separately tracked. Preserving current behaviour does not certify that every old bug is fixed. A restore to the whole-game backup is recovery, not a substitute for preserving player data or proving the migration works.

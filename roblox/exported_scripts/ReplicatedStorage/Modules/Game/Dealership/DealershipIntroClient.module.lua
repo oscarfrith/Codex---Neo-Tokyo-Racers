@@ -525,8 +525,8 @@ local function playCameraIntro(intro, config)
 end
 
 local function getProgressRemotes()
-	local neoTokyo = game:GetService("ReplicatedStorage")
-	local shared = neoTokyo and game:GetService("ReplicatedStorage")
+	local replicatedStorageRoot = game:GetService("ReplicatedStorage")
+	local shared = replicatedStorageRoot and game:GetService("ReplicatedStorage")
 	local remotes = shared and game:GetService("ReplicatedStorage"):FindFirstChild("Remotes")
 	local folder = remotes and game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):FindFirstChild(REMOTE_FOLDER_NAME)
 	local getComplete = folder and folder:FindFirstChild(GET_REMOTE_NAME)

@@ -15,7 +15,7 @@ local ok, result = pcall(function()
 end)
 
 if not ok then
-	warn("[Audio Phase 2] Context runtime failed safely: " .. tostring(result))
+	warn("[ContextAudioRuntimeClient] Context runtime failed safely: " .. tostring(result))
 end
 
 end,debug.traceback)

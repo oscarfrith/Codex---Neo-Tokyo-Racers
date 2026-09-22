@@ -4,7 +4,7 @@ local ReplicatedStorage=game:GetService("ReplicatedStorage")
 local Adapter={}
 local kit=game:GetService("ReplicatedStorage")
 local performance=game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Vehicles"):WaitForChild("Performance")
-local Resolver=require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Vehicles"):WaitForChild("Performance"):WaitForChild("VehiclePerformanceResolver")) -- NTR_CANONICAL_PERFORMANCE_RESOLVER_MODULE_RATINGS_V1
+local Resolver=require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Vehicles"):WaitForChild("Performance"):WaitForChild("VehiclePerformanceResolver")) 
 
 local function moduleColors(profile,slotId,override)
 	profile=profile or {}; local cockpit=profile.CockpitColors or {}; local saved=typeof(override)=="table" and override or (profile.ModuleColors and profile.ModuleColors[slotId]) or {}
@@ -33,7 +33,7 @@ function Adapter.FindTemplate(categoriesRoot,moduleId)
 end
 
 function Adapter.Installed(state,slotId)
-	local profile=state and (state.PreviewProfile or state.Profile); if typeof(profile)~="table" then return nil,nil,nil end -- NTR_GARAGE_VEHICLE_PREVIEW_PAINT_SCOPE_V1
+	local profile=state and (state.PreviewProfile or state.Profile); if typeof(profile)~="table" then return nil,nil,nil end 
 	local vehicle=currentVehicle(profile); local instanceId=vehicle and vehicle.InstalledModules and vehicle.InstalledModules[slotId]
 	local instance=ownedInstance(profile,instanceId)
 	local moduleId=instance and instance.TemplateId or (profile.InstalledModules and profile.InstalledModules[slotId])

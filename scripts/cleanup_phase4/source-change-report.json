@@ -1,0 +1,556 @@
+[
+  {
+    "path": "ReplicatedFirst.Loading.InitialLoadingAndStartScreenClient",
+    "identifiers": {},
+    "diagnostic_strings": 5,
+    "edits": 5
+  },
+  {
+    "path": "ReplicatedStorage.Modules.Game.Audio.AcousticsClient",
+    "identifiers": {},
+    "diagnostic_strings": 2,
+    "edits": 2
+  },
+  {
+    "path": "ReplicatedStorage.Modules.Game.Audio.AcousticsRuntimeClient",
+    "identifiers": {},
+    "diagnostic_strings": 1,
+    "edits": 1
+  },
+  {
+    "path": "ReplicatedStorage.Modules.Game.Audio.AudioRuntimeClient",
+    "identifiers": {},
+    "diagnostic_strings": 1,
+    "edits": 1
+  },
+  {
+    "path": "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient",
+    "identifiers": {
+      "phase1Global": "globalAudioConfig"
+    },
+    "diagnostic_strings": 4,
+    "edits": 9
+  },
+  {
+    "path": "ReplicatedStorage.Modules.Game.Audio.ContextAudioRuntimeClient",
+    "identifiers": {},
+    "diagnostic_strings": 1,
+    "edits": 1
+  },
+  {
+    "path": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+    "identifiers": {},
+    "diagnostic_strings": 2,
+    "edits": 2
+  },
+  {
+    "path": "ReplicatedStorage.Modules.Game.Dealership.DealershipIntroClient",
+    "identifiers": {
+      "neoTokyo": "replicatedStorageRoot"
+    },
+    "diagnostic_strings": 0,
+    "edits": 2
+  },
+  {
+    "path": "ReplicatedStorage.Modules.Game.Dealership.GarageEntranceClient",
+    "identifiers": {},
+    "diagnostic_strings": 0,
+    "edits": 1
+  },
+  {
+    "path": "ReplicatedStorage.Modules.Game.Garage.GarageModuleInstancePreviewAdapter",
+    "identifiers": {},
+    "diagnostic_strings": 0,
+    "edits": 2
+  },
+  {
+    "path": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+    "identifiers": {},
+    "diagnostic_strings": 2,
+    "edits": 11
+  },
+  {
+    "path": "ReplicatedStorage.Modules.Game.Garage.PreviewVehicleClient",
+    "identifiers": {},
+    "diagnostic_strings": 0,
+    "edits": 3
+  },
+  {
+    "path": "ReplicatedStorage.Modules.Game.Garage.ThrustPreviewClient",
+    "identifiers": {},
+    "diagnostic_strings": 0,
+    "edits": 1
+  },
+  {
+    "path": "ReplicatedStorage.Modules.Game.Player.PlayerProfileSchema",
+    "identifiers": {},
+    "diagnostic_strings": 0,
+    "edits": 1
+  },
+  {
+    "path": "ReplicatedStorage.Modules.Game.Racing.RaceBrowserClient",
+    "identifiers": {},
+    "diagnostic_strings": 1,
+    "edits": 2
+  },
+  {
+    "path": "ReplicatedStorage.Modules.Game.Racing.RaceEntryMenuClient",
+    "identifiers": {},
+    "diagnostic_strings": 3,
+    "edits": 4
+  },
+  {
+    "path": "ReplicatedStorage.Modules.Game.Racing.RaceEntryPresentationClient",
+    "identifiers": {},
+    "diagnostic_strings": 1,
+    "edits": 2
+  },
+  {
+    "path": "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+    "identifiers": {},
+    "diagnostic_strings": 1,
+    "edits": 1
+  },
+  {
+    "path": "ReplicatedStorage.Modules.Game.Racing.RaceParticipantVisibilityClient",
+    "identifiers": {},
+    "diagnostic_strings": 1,
+    "edits": 1
+  },
+  {
+    "path": "ReplicatedStorage.Modules.Game.Racing.RaceRouteGuideClient",
+    "identifiers": {},
+    "diagnostic_strings": 1,
+    "edits": 3
+  },
+  {
+    "path": "ReplicatedStorage.Modules.Game.Racing.RaceSessionAssetsClient",
+    "identifiers": {},
+    "diagnostic_strings": 1,
+    "edits": 1
+  },
+  {
+    "path": "ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient",
+    "identifiers": {},
+    "diagnostic_strings": 1,
+    "edits": 4
+  },
+  {
+    "path": "ReplicatedStorage.Modules.Game.Racing.RaceTimeTrialResultCoachClient",
+    "identifiers": {},
+    "diagnostic_strings": 1,
+    "edits": 3
+  },
+  {
+    "path": "ReplicatedStorage.Modules.Game.Racing.RaceTransitionClient",
+    "identifiers": {},
+    "diagnostic_strings": 4,
+    "edits": 8
+  },
+  {
+    "path": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+    "identifiers": {},
+    "diagnostic_strings": 0,
+    "edits": 5
+  },
+  {
+    "path": "ReplicatedStorage.Modules.Game.UI.GarageBrowserUI",
+    "identifiers": {},
+    "diagnostic_strings": 0,
+    "edits": 2
+  },
+  {
+    "path": "ReplicatedStorage.Modules.Game.UI.GarageComponents",
+    "identifiers": {},
+    "diagnostic_strings": 0,
+    "edits": 6
+  },
+  {
+    "path": "ReplicatedStorage.Modules.Game.UI.GarageModuleCardViewModel",
+    "identifiers": {},
+    "diagnostic_strings": 0,
+    "edits": 1
+  },
+  {
+    "path": "ReplicatedStorage.Modules.Game.UI.GarageWorkspaceUI",
+    "identifiers": {},
+    "diagnostic_strings": 0,
+    "edits": 10
+  },
+  {
+    "path": "ReplicatedStorage.Modules.Game.UI.LoadingTransitionUI",
+    "identifiers": {},
+    "diagnostic_strings": 2,
+    "edits": 2
+  },
+  {
+    "path": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+    "identifiers": {},
+    "diagnostic_strings": 1,
+    "edits": 2
+  },
+  {
+    "path": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+    "identifiers": {},
+    "diagnostic_strings": 0,
+    "edits": 2
+  },
+  {
+    "path": "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+    "identifiers": {},
+    "diagnostic_strings": 0,
+    "edits": 1
+  },
+  {
+    "path": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceUpgradeRuntime",
+    "identifiers": {},
+    "diagnostic_strings": 0,
+    "edits": 2
+  },
+  {
+    "path": "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehiclePerformanceResolver",
+    "identifiers": {},
+    "diagnostic_strings": 0,
+    "edits": 2
+  },
+  {
+    "path": "ReplicatedStorage.Modules.Game.Vehicles.DrivingClient",
+    "identifiers": {},
+    "diagnostic_strings": 1,
+    "edits": 4
+  },
+  {
+    "path": "ReplicatedStorage.Modules.Game.Vehicles.FreeRoamParkedHoverClient",
+    "identifiers": {},
+    "diagnostic_strings": 0,
+    "edits": 4
+  },
+  {
+    "path": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient",
+    "identifiers": {},
+    "diagnostic_strings": 1,
+    "edits": 1
+  },
+  {
+    "path": "ReplicatedStorage.Modules.Game.Vehicles.RuntimeVFXClient",
+    "identifiers": {},
+    "diagnostic_strings": 2,
+    "edits": 2
+  },
+  {
+    "path": "ReplicatedStorage.Modules.Game.Vehicles.VehiclePreviewVFXClient",
+    "identifiers": {
+      "V39_ApplyThrustFireColour": "applyThrustFireColour",
+      "V39_IsThrustFireObject": "isThrustFireObject"
+    },
+    "diagnostic_strings": 0,
+    "edits": 4
+  },
+  {
+    "path": "ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient",
+    "identifiers": {},
+    "diagnostic_strings": 0,
+    "edits": 6
+  },
+  {
+    "path": "ServerStorage.Modules.Game.Audio.VehicleAudioServer",
+    "identifiers": {},
+    "diagnostic_strings": 1,
+    "edits": 1
+  },
+  {
+    "path": "ServerStorage.Modules.Game.Dealership.IntroProgressServer",
+    "identifiers": {
+      "neoTokyo": "replicatedStorageRoot"
+    },
+    "diagnostic_strings": 0,
+    "edits": 1
+  },
+  {
+    "path": "ServerStorage.Modules.Game.Development.VehiclePerformanceComparisonServer",
+    "identifiers": {},
+    "diagnostic_strings": 2,
+    "edits": 2
+  },
+  {
+    "path": "ServerStorage.Modules.Game.Garage.GarageServer",
+    "identifiers": {
+      "V100_ownedGarageLifecycle": "ownedGarageLifecycle",
+      "V101_CosmeticCatalog": "cosmeticCatalog",
+      "V101_VehicleCosmetics": "vehicleCosmetics",
+      "V102_accessBinding": "accessBinding",
+      "V102_beginExitCoast": "beginExitCoast",
+      "V102_ensureCustomisationAccess": "ensureCustomisationAccess",
+      "V102_fixParkedVehicle": "fixParkedVehicle",
+      "V102_vehicleInteractionSettings": "vehicleInteractionSettings",
+      "V56_FALLBACK_SPAWN_POS": "FALLBACK_SPAWN_POS",
+      "V56_PREVIEW_POS": "PREVIEW_POS",
+      "V56_STARTING_CASH": "STARTING_CASH",
+      "V56_WORLD_NAME": "WORLD_NAME",
+      "V56_applyColors": "applyColors",
+      "V56_buildVehicle": "buildVehicle",
+      "V56_catalog": "garageServer_catalog",
+      "V56_categoriesRoot": "categoriesRoot",
+      "V56_categoryFolder": "garageServer_categoryFolder",
+      "V56_clearPlayerVehicle": "clearPlayerVehicle",
+      "V56_defaultProfile": "defaultProfile",
+      "V56_defaultSlots": "defaultSlots",
+      "V56_exitVehicle": "exitVehicle",
+      "V56_findByAttribute": "findByAttribute",
+      "V56_findCockpit": "findCockpit",
+      "V56_findModule": "findModule",
+      "V56_folderHasBuyableNeon": "folderHasBuyableNeon",
+      "V56_getProfile": "getProfile",
+      "V56_getSlotMount": "getSlotMount",
+      "V56_invoke": "invoke",
+      "V56_kit": "kit",
+      "V56_makeDriverSeat": "makeDriverSeat",
+      "V56_moduleCatalogVisible": "moduleCatalogVisible",
+      "V56_moduleTypeForModel": "moduleTypeForModel",
+      "V56_moduleTypeFromText": "moduleTypeFromText",
+      "V56_nearestModuleFolder": "nearestModuleFolder",
+      "V56_normalizeProfile": "normalizeProfile",
+      "V56_number": "garageServer_number",
+      "V56_partAlreadyRootWelded": "partAlreadyRootWelded",
+      "V56_pathHas": "pathHas",
+      "V56_pivotModuleToSlot": "pivotModuleToSlot",
+      "V56_primitiveAttributes": "primitiveAttributes",
+      "V56_profileForClient": "profileForClient",
+      "V56_reEnterVehicle": "reEnterVehicle",
+      "V56_readModule": "readModule",
+      "V56_remotes": "remotes",
+      "V56_resolvePaintChannel": "resolvePaintChannel",
+      "V56_runtime": "garageServer_runtime",
+      "V56_seatPlayer": "seatPlayer",
+      "V56_setLeaderstats": "setLeaderstats",
+      "V56_slug": "slug",
+      "V56_spawnCFrame": "garageServer_spawnCFrame",
+      "V56_string": "garageServer_string",
+      "V56_totalStats": "totalStats",
+      "V56_value": "garageServer_value",
+      "V56_vehiclesRoot": "vehiclesRoot",
+      "V56_weldVehicle": "weldVehicle",
+      "V56_world": "world",
+      "V76_applyDefaultCockpitColors": "applyDefaultCockpitColors",
+      "V76_colorAttribute": "colorAttribute",
+      "V76_coreModulesEquipped": "coreModulesEquipped",
+      "V76_defaultCockpitColorsFor": "defaultCockpitColorsFor",
+      "V76_defaultModuleIdsForCockpit": "defaultModuleIdsForCockpit",
+      "V76_findCockpitForDefaultColours": "findCockpitForDefaultColours",
+      "V76_grantDefaultModulesForCurrentCockpit": "grantDefaultModulesForCurrentCockpit",
+      "V76_syncInstalledModulePaintFromCockpit": "syncInstalledModulePaintFromCockpit",
+      "V77_ModuleUpgrades": "moduleUpgrades",
+      "V80_countDictionary": "countOwnedEntries",
+      "V80_mirrorLegacyProfileToPersistence": "mirrorLegacyProfileToPersistence",
+      "V80_mutatingActions": "mutatingActions",
+      "V80_replaceTableContents": "replaceTableContents",
+      "V81_canBuyCockpit": "canBuyCockpit",
+      "V81_garageCapacity": "garageCapacity",
+      "V81_ownedCockpitCount": "ownedCockpitCount",
+      "V82_capacityUpgradePrice": "capacityUpgradePrice",
+      "V82_capacityUpgradeStep": "capacityUpgradeStep",
+      "V82_maxGarageCapacity": "maxGarageCapacity",
+      "V82_persistenceConfigAttribute": "persistenceConfigAttribute",
+      "V82_profileGarageCapacity": "profileGarageCapacity",
+      "V82_upgradeGarageCapacity": "upgradeGarageCapacity",
+      "V83_backfillLegacyGarageCapacity": "backfillLegacyGarageCapacity",
+      "V83_buyGarageProperty": "buyGarageProperty",
+      "V83_cachedGarageCatalog": "cachedGarageCatalog",
+      "V83_garageCatalog": "garageCatalog",
+      "V83_garageProperties": "garageProperties",
+      "V83_isGaragePropertyOwned": "isGaragePropertyOwned",
+      "V83_nextBuyableGarageProperty": "nextBuyableGarageProperty",
+      "V83_nextGaragePropertyPrice": "nextGaragePropertyPrice",
+      "V83_ownedGarageProperties": "ownedGarageProperties",
+      "V83_ownedGaragePropertySpaces": "ownedGaragePropertySpaces",
+      "V83_propertyById": "propertyById",
+      "V83_startingGarageCapacity": "startingGarageCapacity",
+      "V83_totalCatalogGarageCapacity": "totalCatalogGarageCapacity",
+      "V84_HttpService": "httpService",
+      "V84_assignDisplaySpace": "assignDisplaySpace",
+      "V84_buyCockpitInstance": "buyCockpitInstance",
+      "V84_buyModuleInstance": "buyModuleInstance",
+      "V84_cloneDictionary": "cloneDictionary",
+      "V84_countDictionary": "countGarageEntries",
+      "V84_createVehicleInstance": "createVehicleInstance",
+      "V84_ensureInstanceInventory": "ensureInstanceInventory",
+      "V84_equipModuleInstance": "equipModuleInstance",
+      "V84_generateId": "generateId",
+      "V84_nextDisplaySpaceKey": "nextDisplaySpaceKey",
+      "V85_attachDefaultModuleInstancesToCurrentVehicle": "attachDefaultModuleInstancesToCurrentVehicle",
+      "V85_findSourceCockpit": "findSourceCockpit",
+      "V85_moduleLockedMessage": "moduleLockedMessage",
+      "V85_modulePurchasePrice": "modulePurchasePrice",
+      "V85_moduleSourceCockpitId": "moduleSourceCockpitId",
+      "V85_moduleVariantName": "moduleVariantName",
+      "V85_moduleVariantOrder": "moduleVariantOrder",
+      "V85_playerOwnsSourceCockpit": "playerOwnsSourceCockpit",
+      "V86_moduleEnginePosition": "moduleEnginePosition",
+      "V86_moduleFitsSlot": "moduleFitsSlot",
+      "V87_cloneValue": "cloneValue",
+      "V87_countDictionary": "countSavedEntries",
+      "V87_currentVehicleFromSavedProfile": "currentVehicleFromSavedProfile",
+      "V87_getProfileServiceProfile": "getProfileServiceProfile",
+      "V87_profileHasSavedInstanceData": "profileHasSavedInstanceData",
+      "V87_savedProfileToLegacySession": "savedProfileToLegacySession",
+      "V88_syncInstanceDataFromLegacy": "syncInstanceDataFromLegacy",
+      "V89_GarageProfileRuntime": "garageProfileRuntime",
+      "V89_selectVehicleInstance": "selectVehicleInstance",
+      "V89_syncLegacyFromCurrentVehicle": "syncLegacyFromCurrentVehicle",
+      "V90_addModuleStats": "addModuleStats",
+      "V90_cloneForSummary": "cloneForSummary",
+      "V90_numberAttribute": "numberAttribute",
+      "V90_restoreProfileSelection": "restoreProfileSelection",
+      "V90_summaryTotals": "summaryTotals",
+      "V90_vehicleSummaries": "vehicleSummaries",
+      "V91_EconomyProjectionConnected": "economyProjectionConnected",
+      "V91_ROAD_GREY": "ROAD_GREY",
+      "V91_ROAD_SPAWN_TAG": "ROAD_SPAWN_TAG",
+      "V91_RaceRewardBridgeReady": "raceRewardBridgeReady",
+      "V91_colorRgb": "colorRgb",
+      "V91_configBool": "configBool",
+      "V91_configNumber": "configNumber",
+      "V91_connectEconomyProjection": "connectEconomyProjection",
+      "V91_ensureRaceRewardCashBridge": "ensureRaceRewardCashBridge",
+      "V91_isAllowedRoadPart": "isAllowedRoadPart",
+      "V91_lastFreeRoamSpawnByUserId": "lastFreeRoamSpawnByUserId",
+      "V91_markerEnabled": "markerEnabled",
+      "V91_markerSpawnCFrame": "markerSpawnCFrame",
+      "V91_nearestRoadSpawnCFrame": "nearestRoadSpawnCFrame",
+      "V91_playerSpeedMph": "playerSpeedMph",
+      "V91_playerVehicle": "playerVehicle",
+      "V91_profileEconomyBindings": "profileEconomyBindings",
+      "V91_requestPosition": "requestPosition",
+      "V91_rootPart": "rootPart",
+      "V91_spawnConfigRoot": "spawnConfigRoot",
+      "V91_spawnIsClear": "spawnIsClear",
+      "V91_spawnOwnedVehicleFromFreeRoam": "spawnOwnedVehicleFromFreeRoam",
+      "V92_despawnVehicle": "despawnVehicle",
+      "V92_playerVehicle": "garageServer_playerVehicle",
+      "V92_unseatAndMovePlayer": "unseatAndMovePlayer",
+      "V92_vehicleExitCFrame": "vehicleExitCFrame",
+      "V94_playerIsDrivingOwnedVehicle": "playerIsDrivingOwnedVehicle",
+      "V94_playerIsSeatedInVehicle": "playerIsSeatedInVehicle",
+      "V95_ensureRaceVehicleSpawnBinding": "ensureRaceVehicleSpawnBinding",
+      "V95_selectedRaceVehicleReady": "selectedRaceVehicleReady",
+      "V95_spawnOwnedVehicleForRace": "spawnOwnedVehicleForRace",
+      "V96_ModuleInventory": "moduleInventory",
+      "V97_ModuleInstances": "moduleInstances",
+      "V97_cleanupBridge": "cleanupBridge",
+      "V98_ModuleTransactions": "moduleTransactions",
+      "V98_afterModuleTransaction": "afterModuleTransaction",
+      "V98_captureCurrentModuleState": "captureCurrentModuleState",
+      "V98_coreSlotRequired": "coreSlotRequired",
+      "V98_instanceFits": "instanceFits",
+      "V98_instanceRating": "instanceRating",
+      "V98_transactionHooks": "transactionHooks",
+      "V98_vehicleModuleContext": "vehicleModuleContext"
+    },
+    "diagnostic_strings": 2,
+    "edits": 738
+  },
+  {
+    "path": "ServerStorage.Modules.Game.Garage.OwnedGarageDisplay",
+    "identifiers": {},
+    "diagnostic_strings": 0,
+    "edits": 1
+  },
+  {
+    "path": "ServerStorage.Modules.Game.Player.EconomyServer",
+    "identifiers": {
+      "ntr": "replicatedStorageRoot"
+    },
+    "diagnostic_strings": 0,
+    "edits": 4
+  },
+  {
+    "path": "ServerStorage.Modules.Game.Player.ProfileCompatibilityServer",
+    "identifiers": {
+      "ntr": "replicatedStorageRoot"
+    },
+    "diagnostic_strings": 1,
+    "edits": 2
+  },
+  {
+    "path": "ServerStorage.Modules.Game.Player.ProfileServer",
+    "identifiers": {
+      "ntr": "replicatedStorageRoot"
+    },
+    "diagnostic_strings": 0,
+    "edits": 12
+  },
+  {
+    "path": "ServerStorage.Modules.Game.Racing.GlobalLeaderboardServer",
+    "identifiers": {},
+    "diagnostic_strings": 1,
+    "edits": 1
+  },
+  {
+    "path": "ServerStorage.Modules.Game.Racing.MatchmakingServer",
+    "identifiers": {},
+    "diagnostic_strings": 3,
+    "edits": 12
+  },
+  {
+    "path": "ServerStorage.Modules.Game.Racing.PersonalBestServer",
+    "identifiers": {
+      "ntr": "replicatedStorageRoot"
+    },
+    "diagnostic_strings": 0,
+    "edits": 1
+  },
+  {
+    "path": "ServerStorage.Modules.Game.Racing.RaceAssetsServer",
+    "identifiers": {},
+    "diagnostic_strings": 0,
+    "edits": 2
+  },
+  {
+    "path": "ServerStorage.Modules.Game.Racing.RaceDisplayNameServer",
+    "identifiers": {},
+    "diagnostic_strings": 1,
+    "edits": 1
+  },
+  {
+    "path": "ServerStorage.Modules.Game.Racing.RaceTeleportServer",
+    "identifiers": {},
+    "diagnostic_strings": 2,
+    "edits": 2
+  },
+  {
+    "path": "ServerStorage.Modules.Game.Racing.TimeTrialServer",
+    "identifiers": {},
+    "diagnostic_strings": 1,
+    "edits": 7
+  },
+  {
+    "path": "ServerStorage.Modules.Game.Vehicles.DriverSeatServer",
+    "identifiers": {},
+    "diagnostic_strings": 1,
+    "edits": 1
+  },
+  {
+    "path": "ServerStorage.Modules.Game.Vehicles.VehicleAccessServer",
+    "identifiers": {},
+    "diagnostic_strings": 0,
+    "edits": 3
+  },
+  {
+    "path": "ServerStorage.Modules.Game.Vehicles.VehicleCollisionServer",
+    "identifiers": {},
+    "diagnostic_strings": 1,
+    "edits": 1
+  },
+  {
+    "path": "ServerStorage.Modules.Game.Vehicles.VehiclePerformanceServer",
+    "identifiers": {},
+    "diagnostic_strings": 3,
+    "edits": 3
+  },
+  {
+    "path": "ServerStorage.Modules.Game.World.FreeRoamTeleportServer",
+    "identifiers": {},
+    "diagnostic_strings": 2,
+    "edits": 2
+  }
+]

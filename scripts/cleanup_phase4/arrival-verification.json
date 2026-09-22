@@ -1,0 +1,13 @@
+{
+  "mirror": "2026-09-22 10:08:46",
+  "sources": 160,
+  "source_sha256_parity": true,
+  "expected_hierarchy_property_parity": false,
+  "excluded_workspace_export_parity": false,
+  "missing_or_changed": 628,
+  "added_or_changed": 694,
+  "before_nodes": 42491,
+  "after_nodes": 42351,
+  "expected_nodes": 42285,
+  "tag_evidence": "Installer verifies exact approved WIP tag inventory separately; tags are not captured by the current exporter."
+}

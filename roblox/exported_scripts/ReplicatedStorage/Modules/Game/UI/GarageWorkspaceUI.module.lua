@@ -42,7 +42,7 @@ local function asset(name) local f=game:GetService("ReplicatedStorage"):WaitForC
 local function generated(o) o:SetAttribute("GeneratedGarageWorkspace",true); return o end
 local function clear(parent) for _,o in ipairs(parent:GetChildren()) do if o:GetAttribute("GeneratedGarageWorkspace") then o:Destroy() end end end
 local WorkspaceUI={}; WorkspaceUI.__index=WorkspaceUI
-local headerTitleSize,headerSubtitleSize=Shared.HeaderTextSizes() -- NTR_GARAGE_FLOW_REFINEMENT_V2
+local headerTitleSize,headerSubtitleSize=Shared.HeaderTextSizes() 
 
 local function touchRect(object,root)
 	if not (object and object:IsA("GuiObject") and root and object:IsDescendantOf(root)) then return nil end
@@ -140,11 +140,11 @@ function WorkspaceUI.new()
 	local self=setmetatable({},WorkspaceUI); self.Host=Shared.CanonicalHost(); self.Gui=self.Host.Gui; self.Scale=self.Host.Scale; self.Context=nil; self.Dynamic={}; self.TouchMapEnabled=false; self.TouchMapQueued=false; self.TouchSurfaces={}; self.TouchSurfaceActives={}
 	self.Root=Instance.new("Frame"); self.Root.Name="CanonicalGarageWorkspace"; self.Root:SetAttribute("TutorialWorkspace",true); self.Root.BackgroundTransparency=1; self.Root.BorderSizePixel=0; self.Root.Visible=false; self.Root.Parent=self.Host.Canvas
 	self.Header=Shared.MetricCard(self.Root,"Header")
-	self.Title=Racing.Label(self.Header,{Text="GARAGE",Position=UDim2.fromOffset(12,3),Size=UDim2.new(1,-24,0,28),TextSize=headerTitleSize,Color=Racing.Colour("Text",Color3.new(1,1,1)),XAlignment=Enum.TextXAlignment.Center,Role="Heading"}) -- NTR_GARAGE_MODULE_PRESENTATION_REFINEMENT_V1
+	self.Title=Racing.Label(self.Header,{Text="GARAGE",Position=UDim2.fromOffset(12,3),Size=UDim2.new(1,-24,0,28),TextSize=headerTitleSize,Color=Racing.Colour("Text",Color3.new(1,1,1)),XAlignment=Enum.TextXAlignment.Center,Role="Heading"}) 
 	self.Subtitle=Racing.Label(self.Header,{Text="",Position=UDim2.fromOffset(12,31),Size=UDim2.new(1,-24,0,44),TextSize=headerSubtitleSize,Color=Racing.Colour("Text",Color3.new(1,1,1)),XAlignment=Enum.TextXAlignment.Center,Role="Heading"}); self.Subtitle.TextWrapped=true; self.Subtitle.TextTruncate=Enum.TextTruncate.None; self.Subtitle.TextYAlignment=Enum.TextYAlignment.Center
 	self.Categories=Shared.Panel(self.Root,"Categories",{NoStroke=true})
 	self.CategoryList=Instance.new("ScrollingFrame"); self.CategoryList.BackgroundTransparency=1; self.CategoryList.BorderSizePixel=0; self.CategoryList.ScrollBarThickness=0; self.CategoryList.AutomaticCanvasSize=Enum.AutomaticSize.Y; self.CategoryList.CanvasSize=UDim2.fromOffset(0,0); self.CategoryList.Position=UDim2.fromOffset(7,7); self.CategoryList.Size=UDim2.new(1,-14,1,-14); self.CategoryList.Parent=self.Categories
-	local categoryLayout=Instance.new("UIListLayout"); categoryLayout.Padding=UDim.new(0,8); categoryLayout.Parent=self.CategoryList; self.CategoryLayout=categoryLayout -- NTR_GARAGE_FLOW_REFINEMENT_V2_1
+	local categoryLayout=Instance.new("UIListLayout"); categoryLayout.Padding=UDim.new(0,8); categoryLayout.Parent=self.CategoryList; self.CategoryLayout=categoryLayout 
 	local categoryPad=Instance.new("UIPadding"); categoryPad.PaddingTop=UDim.new(0,6); categoryPad.PaddingBottom=UDim.new(0,6); categoryPad.PaddingLeft=UDim.new(0,6); categoryPad.PaddingRight=UDim.new(0,6); categoryPad.Parent=self.CategoryList
 	self.CategoryWheelConnection=UserInputService.InputChanged:Connect(function(input)
 		if input.UserInputType~=Enum.UserInputType.MouseWheel or not (self.Root.Visible and self.Categories.Visible and self.CategoryList.Visible) then return end
@@ -152,7 +152,7 @@ function WorkspaceUI.new()
 		if point.X<position.X or point.X>position.X+size.X or point.Y<position.Y or point.Y>position.Y+size.Y then return end
 		local maximum=math.max(0,self.CategoryList.AbsoluteCanvasSize.Y-size.Y); if maximum<=0 then return end
 		self.CategoryList.CanvasPosition=Vector2.new(0,math.clamp(self.CategoryList.CanvasPosition.Y-input.Position.Z*(tonumber(cfg:GetAttribute("CategoryWheelStep")) or 48),0,maximum))
-	end) -- NTR_GARAGE_FLOW_REFINEMENT_V2
+	end) 
 	self.Right=Instance.new("Frame"); self.Right.BackgroundTransparency=1; self.Right.Parent=self.Root
 	self.Right.AutomaticSize=Enum.AutomaticSize.Y
 	self.Stats=Shared.Panel(self.Right,"Stats",{NoStroke=true}); self.Stats.AutomaticSize=Enum.AutomaticSize.Y; self.Stats.Size=UDim2.new(1,0,0,0); local statsPad=Instance.new("UIPadding"); statsPad.PaddingTop=UDim.new(0,10); statsPad.PaddingBottom=UDim.new(0,10); statsPad.PaddingLeft=UDim.new(0,12); statsPad.PaddingRight=UDim.new(0,12); statsPad.Parent=self.Stats; local statsLayout=Instance.new("UIListLayout"); statsLayout.Padding=UDim.new(0,5); statsLayout.SortOrder=Enum.SortOrder.LayoutOrder; statsLayout.Parent=self.Stats
@@ -166,11 +166,11 @@ function WorkspaceUI.new()
 	self.Paint=Instance.new("Frame"); self.Paint.BackgroundTransparency=1; self.Paint.Visible=false; self.Paint.Parent=self.Carousel
 	local function arrow(name,text,parent) local b=Instance.new("TextButton"); b.Name=name; b.Text=text; b.AutoButtonColor=false; b.BackgroundColor3=Racing.Colour("PanelDeep",Color3.fromRGB(9,12,16)); b.BackgroundTransparency=.3; b.BorderSizePixel=0; b.TextColor3=Racing.Colour("Text",Color3.new(1,1,1)); b.TextSize=30; b.ZIndex=20; Racing.Font(b,"Heading"); Racing.Corner(b,5); b.Parent=parent or self.Root; return b end
 	self.Left=arrow("Previous","<"); self.RightArrow=arrow("Next",">")
-	self.CategoryPrevious=arrow("CategoryPrevious","^",self.Categories); self.CategoryNext=arrow("CategoryNext","v",self.Categories); self.CategoryPrevious.TextSize=22; self.CategoryNext.TextSize=22; self.CategoryPrevious.Visible=false; self.CategoryNext.Visible=false -- NTR_GARAGE_NAV_SCROLL_ECONOMY_V1
+	self.CategoryPrevious=arrow("CategoryPrevious","^",self.Categories); self.CategoryNext=arrow("CategoryNext","v",self.Categories); self.CategoryPrevious.TextSize=22; self.CategoryNext.TextSize=22; self.CategoryPrevious.Visible=false; self.CategoryNext.Visible=false 
 	self.Back=Shared.ActionButton(self.Root,{Name="Back",Text="BACK",IconText="<",Color=Color3.fromRGB(166,61,70),StrokeColor=Racing.Colour("Outline")})
 	self.Next=Shared.ActionButton(self.Root,{Name="Continue",Text="DRIVE",Color=Racing.Colour("PanelBlue",Color3.fromRGB(8,42,84)),StrokeColor=outline})
-	self.Exit=Shared.ActionButton(self.Root,{Name="Exit",Text="EXIT",IconText="X",Color=Color3.fromRGB(166,61,70),StrokeColor=Racing.Colour("Outline")}) -- NTR_GARAGE_FLOW_NAVIGATION_COLOUR_V1
-	self.Budget=Shared.Panel(self.Root,"UpgradeBudget",{StrokeColor=outline,StrokeTransparency=.32,StrokeWidth=1.4,NoGlow=true}); self.Budget.Visible=false; self.Budget.ZIndex=30 -- NTR_GARAGE_UPGRADE_POINT_BUDGET_SHARED_CARDS_V1
+	self.Exit=Shared.ActionButton(self.Root,{Name="Exit",Text="EXIT",IconText="X",Color=Color3.fromRGB(166,61,70),StrokeColor=Racing.Colour("Outline")}) 
+	self.Budget=Shared.Panel(self.Root,"UpgradeBudget",{StrokeColor=outline,StrokeTransparency=.32,StrokeWidth=1.4,NoGlow=true}); self.Budget.Visible=false; self.Budget.ZIndex=30 
 	self.Popup=Shared.Popup(self.Root)
 	self.Left.Activated:Connect(function() self:Scroll(-1) end); self.RightArrow.Activated:Connect(function() self:Scroll(1) end); self.CategoryPrevious.Activated:Connect(function() self:ScrollCategories(-1) end); self.CategoryNext.Activated:Connect(function() self:ScrollCategories(1) end)
 	self.Back.Activated:Connect(function() if self.Context and self.Context.OnBack then self.Context.OnBack() end end)
@@ -186,7 +186,7 @@ function WorkspaceUI:DisconnectDynamic() for _,connection in ipairs(self.Dynamic
 function WorkspaceUI:Message(text) self.Subtitle.Text=tostring(text or "") end
 function WorkspaceUI:Layout()
 	local viewport=(Workspace.CurrentCamera and Workspace.CurrentCamera.ViewportSize) or Vector2.new(1600,900); local minimum=UserInputService.TouchEnabled and N("MobileMinScale",.42) or N("DesktopMinScale",.68); local shell=Shared.LayoutGarageShell(self,{Number=N,Viewport=viewport,MinimumScale=minimum,Actions={self.Exit,self.Next,self.Back}})
-	local budgetColumns=3; local budgetGap=12; local budgetWidth=math.min(budgetColumns*N("WorkspaceCardWidth",210)+(budgetColumns-1)*budgetGap,math.max(1,shell.Width-2*N("Margin",18))); self.BudgetWidth=budgetWidth -- NTR_GARAGE_RESPONSIVE_BUDGET_V1_2
+	local budgetColumns=3; local budgetGap=12; local budgetWidth=math.min(budgetColumns*N("WorkspaceCardWidth",210)+(budgetColumns-1)*budgetGap,math.max(1,shell.Width-2*N("Margin",18))); self.BudgetWidth=budgetWidth 
 	self.Budget.AnchorPoint=Vector2.new(.5,1); self.Budget.Position=UDim2.fromOffset(shell.Width*.5,shell.CarouselTop-N("UpgradeBudgetPopupClearance",48)); self.Budget.Size=UDim2.fromOffset(budgetWidth,N("UpgradeBudgetHeight",42))
 	if self.Context and self.Categories.Visible then
 		if self.Context.LeftFitContent then local count=#(self.Context.LeftItems or {}); local buttonHeight=N("CategoryButtonHeight",46); local height=N("BuildLeftPanelPadding",14)*2+12+count*buttonHeight+math.max(0,count-1)*8; self.Categories.Size=UDim2.fromOffset(self.Categories.Size.X.Offset,height) end
@@ -230,7 +230,7 @@ function WorkspaceUI:RenderBudget(context)
 	local pipWidth=N("UpgradeBudgetPipWidth",18); local pipGap=N("UpgradeBudgetPipGap",5); local totalWidth=capacity*pipWidth+math.max(0,capacity-1)*pipGap; local startX=(width-totalWidth)*.5; local pipY=(height-16)*.5
 	for index=1,capacity do local pip=generated(Instance.new("Frame")); pip.Name="Point"..index; pip.Position=UDim2.fromOffset(startX+(index-1)*(pipWidth+pipGap),pipY); pip.Size=UDim2.fromOffset(pipWidth,16); pip.BorderSizePixel=0; pip.BackgroundColor3=index<=used and (used==capacity and Racing.Colour("OutlineSoft",Color3.fromRGB(214,74,175)) or Racing.Colour("Telemetry",Color3.fromRGB(43,225,218))) or Racing.Colour("PanelSoft",Color3.fromRGB(25,31,39)); pip.ZIndex=self.Budget.ZIndex+2; pip.Parent=self.Budget; Racing.Corner(pip,4); if index<=used and used<capacity then local gradient=Instance.new("UIGradient"); gradient.Color=ColorSequence.new(Racing.Colour("ElectricBlue",Color3.fromRGB(25,116,255)),Racing.Colour("Telemetry",Color3.fromRGB(43,225,218))); gradient.Parent=pip end end
 	local budgetUsed=generated(Racing.Label(self.Budget,{Name="BudgetUsed",Text=tostring(used).."/"..tostring(capacity).." USED",Position=UDim2.new(1,-132,0,0),Size=UDim2.fromOffset(120,height),TextSize=textSize,XAlignment=Enum.TextXAlignment.Right,Role="Heading",Truncate=Enum.TextTruncate.None})); budgetUsed.TextScaled=false; budgetUsed.TextWrapped=false; budgetUsed.ZIndex=self.Budget.ZIndex+2
-end -- NTR_GARAGE_RESPONSIVE_BUDGET_RENDERER_V1_2
+end 
 
 function WorkspaceUI:RenderChannelTabs(parent,channels,selected,onChannel,position)
 	local configuredWidth=tonumber(cfg:GetAttribute("WorkspacePaintWideWidth")) or 900; local width=math.min(configuredWidth,self.ReferenceCarouselWidth or configuredWidth); local tabs=generated(Instance.new("Frame")); tabs.Name="SharedChannelTabs"; tabs.BackgroundTransparency=1; tabs.AnchorPoint=Vector2.new(.5,1); tabs.Position=position; tabs.Size=UDim2.fromOffset(width,34); tabs.Parent=parent
@@ -281,7 +281,7 @@ function WorkspaceUI:RenderPaint(context)
 	local function paletteColour(column,row) if column==3 then return row==1 and Color3.new(1,1,1) or Color3.fromRGB(180,180,184) end; if column==4 then return row==1 and Color3.fromRGB(66,66,72) or Color3.new(0,0,0) end; local hue=hues[column-4]; return row==1 and Color3.fromHSV(hue,.48,1) or Color3.fromHSV(hue,.86,.42) end
 	for row=1,2 do for column=3,columns do local colour=paletteColour(column,row); local swatch=generated(Instance.new("TextButton")); swatch.Name="Palette"..row.."_"..column; swatch.Text=""; swatch.AutoButtonColor=false; swatch.BackgroundColor3=colour; swatch.BorderSizePixel=0; swatch.Position=UDim2.fromOffset(x0+(column-1)*(swatchWidth+gap),y0+(row-1)*(swatchHeight+7)); swatch.Size=UDim2.fromOffset(swatchWidth,swatchHeight); swatch.ZIndex=7; swatch.Parent=panel; Racing.Corner(swatch,4); local stroke=Instance.new("UIStroke"); stroke.Color=Racing.Colour("Text"); stroke.Transparency=.56; stroke.Thickness=1; stroke.Parent=swatch; table.insert(paletteStrokes,stroke); swatch.Activated:Connect(function() local ph,ps,pv=Color3.toHSV(colour); self.PaintHSV={ph,ps,pv}; markPreset(stroke); refreshKnobs(); refreshGradients(); emit(true) end) end end
 	refreshKnobs(); refreshGradients()
-end -- NTR_GARAGE_FLOW_REFINEMENT_V2
+end 
 
 function WorkspaceUI:QueueCategoryUpdate()
 	if self.CategoryUpdateQueued then return end; self.CategoryUpdateQueued=true

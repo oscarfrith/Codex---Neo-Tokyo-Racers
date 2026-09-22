@@ -51,7 +51,7 @@ end
 local function canEnter(player, vehicle, seat)
 	if not player or not vehicle or not seat then return false end
 	if tonumber(vehicle:GetAttribute("OwnerUserId")) ~= player.UserId then return false end
-	if vehicle:GetAttribute("ExitCoasting")==true then return false end -- NTR_VEHICLE_COAST_PROMPT_GUARD_V1_1
+	if vehicle:GetAttribute("ExitCoasting")==true then return false end 
 	if seat.Occupant ~= nil then return false end
 	local character = player.Character
 	local humanoid = character and character:FindFirstChildOfClass("Humanoid")
@@ -66,7 +66,7 @@ local function enterVehicle(player, vehicle, seat)
 	local humanoidRoot=character and character:FindFirstChild("HumanoidRootPart")
 	if not (root and root:IsA("BasePart")) then return end
 	vehicle.PrimaryPart=root
-	root.Anchored=false -- NTR_VEHICLE_FIXED_PROMPT_REENTRY_V1
+	root.Anchored=false 
 	root.AssemblyLinearVelocity=Vector3.zero
 	root.AssemblyAngularVelocity=Vector3.zero
 	vehicle:SetAttribute("ParkedFixed",nil)
@@ -104,7 +104,7 @@ local function ensurePrompt(vehicle)
 			end
 		end)
 	end
-	prompt.Enabled = seat.Occupant == nil and vehicle:GetAttribute("ExitCoasting")~=true -- NTR_VEHICLE_COAST_PROMPT_VISIBILITY_V1_1
+	prompt.Enabled = seat.Occupant == nil and vehicle:GetAttribute("ExitCoasting")~=true 
 	return prompt
 end
 

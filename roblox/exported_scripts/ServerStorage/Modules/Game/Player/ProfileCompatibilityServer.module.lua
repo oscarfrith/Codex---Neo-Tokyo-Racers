@@ -11,7 +11,7 @@ local ok,message=xpcall(function()
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ServerScriptService = game:GetService("ServerScriptService")
 
-local PHASE = "LegacyGarageProfileBridge"
+local PHASE = "GarageProfileProjection"
 
 local function log(message)
 	print("[" .. PHASE .. "] " .. message)
@@ -43,7 +43,7 @@ local function ensureBindableFunction(parent, name)
 	return item
 end
 
-local ntr = game:GetService("ReplicatedStorage")
+local replicatedStorageRoot = game:GetService("ReplicatedStorage")
 local schema = require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Player"):WaitForChild("PlayerProfileSchema"))
 local mapper = require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Player"):WaitForChild("GarageProfileProjection"))
 

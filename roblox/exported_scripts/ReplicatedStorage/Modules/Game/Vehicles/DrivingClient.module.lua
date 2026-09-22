@@ -4,7 +4,7 @@ local Controller = {}
 local Players = game:GetService("Players")
 local Workspace = game:GetService("Workspace")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local DriveTuning = require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Vehicles"):WaitForChild("DriveTuning")) -- NTR_DRIVING_HOVER_HEIGHT_CONFIG_BRIDGE_V1
+local DriveTuning = require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Vehicles"):WaitForChild("DriveTuning")) 
 local UserInputService = game:GetService("UserInputService")
 local ContextActionService = game:GetService("ContextActionService")
 local RunService = game:GetService("RunService")
@@ -15,7 +15,7 @@ local GameplayInputGate = require(game:GetService("ReplicatedStorage"):WaitForCh
 local VehicleDynamicsModel = require(game:GetService("ReplicatedStorage").Modules.Game.Vehicles.VehicleDynamics)
 
 local REVERSE_MAX_MPH = 40
-local HOVER_HEIGHT = math.clamp(DriveTuning.Read().HoverHeightStuds, 0.5, 8) -- NTR_DRIVING_HOVER_HEIGHT_CONFIG_VALUE_V1
+local HOVER_HEIGHT = math.clamp(DriveTuning.Read().HoverHeightStuds, 0.5, 8) 
 local SENSOR_START_HEIGHT = 2
 local SENSOR_LENGTH = 24
 local MPH_PER_STUD = 0.625
@@ -605,7 +605,7 @@ function Controller.Start(context)
 	state.Context = context or {}
 	state.Vehicle = waitForPlayerVehicle(6)
 	if not state.Vehicle or not state.Vehicle.PrimaryPart then
-		warn("[V75] V47 driving could not find the spawned vehicle.")
+		warn("[DrivingClient] V47 driving could not find the spawned vehicle.")
 		return false
 	end
 
@@ -1000,7 +1000,7 @@ function Controller.Start(context)
 			local lowSpeedInfluence = (1 - speedAlpha) ^ curveExponent
 			local targetMultiplier = highMultiplier + (lowMultiplier - highMultiplier) * lowSpeedInfluence
 
-			if state.SteeringProfileIntent < 0 then -- NTR_DRIVING_STEERING_DRIVE_MODE_TURN_BANK_V1_2_CURVE
+			if state.SteeringProfileIntent < 0 then 
 				if reverseUsesCurve then
 					targetMultiplier *= reverseMultiplier
 				else

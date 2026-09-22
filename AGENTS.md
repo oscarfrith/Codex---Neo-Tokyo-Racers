@@ -1,6 +1,6 @@
 # Codex Instructions For This Project
 
-This is the Neo Tokyo Racers Roblox hover racing game project.
+This is the Space Racers Roblox hover racing prototype.
 
 Before making changes:
 
@@ -37,14 +37,12 @@ Working rules:
 
 Known current baseline:
 
-* Laptop/new-chat continuation: read docs/architecture/laptop-handoff-2026-09-05.md first after the required baseline docs. Complete cleanup Phase 4 is next; do not rerun prior installations. Verify the transferred place against the confirmed Phase 3 mirror before mutation.
-
-* The successor cleanup programme is docs/architecture/complete-cleanup-plan.md. Complete cleanup Phases 1, 2 and 3 are installed and user-confirmed. Phase 4 remains unimplemented. Current mirror: 2026-09-05 16:06:57, 160 sources, 42,285 nodes and 266,840 properties, with exact expected source/hierarchy/property parity. The two lighting-tag renames on 62 enumerated WIP objects are approved and installed. Protected staging/archive disposition remains pending. See docs/architecture/cleanup-phase3-generic-naming.md. Workspace remains limited to the original World subtree plus the exact approved two-tag WIP exception. Preserve physical assets, external saved IDs and opt-in tools. No in-game backups/fallback implementations.
-
-* Read `docs/00_START_HERE.md` for the per-system current baseline; V74/V75 are historical.
-* All five original architecture phases are user-confirmed. Current server implementations are in ServerStorage.Modules; client/shared implementations are in ReplicatedStorage.Modules. Old Services/client adapters are removed. Runtime endpoints use feature folders under ServerStorage.Runtime and PlayerScripts.Runtime. Roll back dependent cleanup before older exact-baseline recovery.
-* Use `docs/architecture/naming-and-owners.md` for proposed naming, and `docs/architecture/mcp-workflow.md` for current live delivery. Names do not determine enabled state.
-* Distinguish generated, installed, runtime verified and user confirmed. Never promote a source checksum match to gameplay confirmation.
+* Complete-cleanup Phase 4 installed and agent-verified; user test pending. Phases 1–3 and all five original architecture phases are user-confirmed. Read docs/architecture/cleanup-phase4-finalisation.md and docs/00_START_HERE.md. Do not rerun completed phases.
+* User approved preserving September 22 physical edits (628 arrow CFrames, 66 added thumbnail records). Phase 4 changes sources only. World-only Workspace boundary and prior exact two-tag exception remain; WIP, physical assets and staging/Archive are protected.
+* Preserve saved identity/schema contracts, development tools and lifecycle safeguards. No in-game backups, fallback implementations or new owners. Protected-asset disposition remains unresolved before overall closure.
+* Current pipeline: scripts/receive_studio_snapshot.py + scripts/studio_export_snapshot.lua; validate with scripts/verify_studio_mirror.py and scripts/cleanup_phase4/verify_migration.py. Old tools are archived under scripts/history/snapshot_before_cleanup_phase4.
+* Audits: scripts/studio_cleanup_audit.lua and scripts/audit_cleanup.py. No gameplay require through MCP. Windows staging must inherit repo ACLs.
+* Distinguish generated, installed, runtime verified and user confirmed. Camera CAM-02 is pre-existing and separate.
 
 Preferred paths:
 

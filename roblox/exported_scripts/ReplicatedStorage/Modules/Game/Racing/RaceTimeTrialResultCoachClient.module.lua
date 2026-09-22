@@ -19,7 +19,7 @@ local racingRemotes = game:GetService("ReplicatedStorage"):WaitForChild("Remotes
 local raceEvent = game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Racing"):WaitForChild("RaceEvent")
 local raceRequest = game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Racing"):WaitForChild("RaceRequest")
 local queueRequest = game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Racing"):WaitForChild("RaceQueueRequest")
-local transitionRequest = game:GetService("Players").LocalPlayer:WaitForChild("PlayerScripts"):WaitForChild("Runtime"):WaitForChild("Racing"):WaitForChild("RaceTransitionRequest") -- NTR_LOADING_SYSTEM_PHASE4_RESULTS_EXIT_V1
+local transitionRequest = game:GetService("Players").LocalPlayer:WaitForChild("PlayerScripts"):WaitForChild("Runtime"):WaitForChild("Racing"):WaitForChild("RaceTransitionRequest") 
 local function transition(step,payload) payload=payload or {}; payload.Step=step; transitionRequest:Fire(payload) end
 local resultUIModules = game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("UI")
 local UI = require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("UI"):WaitForChild("RacingUIComponents"))
@@ -204,7 +204,7 @@ local function build()
 	shell=UI.Panel(overlay,{Color=C("PanelDeep"),Transparency=L("PanelTransparency",.08),StrokeColor=C("Outline"),StrokeWidth=L("ShellStrokeWidth",2),StrokeTransparency=.02,Clips=true}) shell.AnchorPoint=Vector2.new(.5,.5) shell.Position=UDim2.fromScale(.5,.5)
 	if scaledDesktop then MobileScaledDesktop.Attach(shell) elseif touch then shell.Size=UDim2.new(1,-16,1,-16) else shell.Size=UDim2.fromOffset(L("ShellWidth",1200),L("ShellHeight",720)) UI.AttachResponsiveScale(shell) end
 	local headerH=touch and 44 or L("HeaderHeight",64) title=UI.Label(shell,{Text="RESULTS",Position=UDim2.fromOffset(touch and 12 or 24,0),Size=UDim2.new(.42,0,0,headerH),TextSize=touch and 14 or T("Heading",22),Role="Heading"}) complete=UI.Label(shell,{Text="COMPLETE",Position=UDim2.new(.38,0,0,0),Size=UDim2.new(.32,0,0,headerH),TextSize=touch and 10 or 14,Color=C("Telemetry"),Role="Heading",XAlignment=Enum.TextXAlignment.Center})
-	-- NTR_RACING_FLOW_COUNTDOWN_QUEUE_EXIT_OWNERSHIP: results exit is footer-only.
+	
 local divider=Instance.new("Frame") divider.BorderSizePixel=0 divider.BackgroundColor3=C("Outline") divider.BackgroundTransparency=.5 divider.Position=UDim2.fromOffset(0,headerH) divider.Size=UDim2.new(1,0,0,1) divider.Parent=shell
 	local pad=touch and 12 or L("OuterPadding",24) local footerH=touch and 40 or 48 local footerGap=touch and 10 or L("Gap",16)
 	body=Instance.new("Frame") body.BackgroundTransparency=1 body.Position=UDim2.fromOffset(pad,headerH+pad) body.Size=UDim2.new(1,-pad*2,1,-(headerH+pad*2+footerH+footerGap)) body.Parent=shell
@@ -221,7 +221,7 @@ raceEvent.OnClientEvent:Connect(function(payload)
 end)
 
 build()
-print("[Racing UI Phase 11] Unified Results presentation active.")
+print("[RaceTimeTrialResultCoachClient] Unified Results presentation active.")
 
 end,debug.traceback)
 state=ok and "ready" or "failed"

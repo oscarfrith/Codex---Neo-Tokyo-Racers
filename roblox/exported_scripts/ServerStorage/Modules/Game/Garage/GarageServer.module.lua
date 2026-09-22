@@ -6,29 +6,29 @@ if state then assert(state=="ready", "Service already starting or failed"); retu
 state="starting"
 local ok,message=xpcall(function()
 -- Neo Tokyo Racers shadow server action controller.
--- Disabled switch candidate generated from the current V56 action block.
+-- Canonical garage action owner.
 -- Do not enable while HOVER_RACING_V2_Server still owns GarageInvoke.OnServerInvoke.
 -- Source hash: 3be69270
 
--- V56_CONSOLIDATED_ACTION_CONTROLLER_BEGIN
+
 do
 	local Players = game:GetService("Players")
 	local ReplicatedStorage = game:GetService("ReplicatedStorage")
 	local Workspace = game:GetService("Workspace")
 	local CollectionService = game:GetService("CollectionService")
 
-	local V56_WORLD_NAME = "World"
-	local V56_kit = game:GetService("ReplicatedStorage")
-	local V56_remotes = game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Garage")
-	local V56_invoke = game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Garage"):WaitForChild("GarageInvoke")
-	local V56_categoriesRoot = game:GetService("ReplicatedStorage"):WaitForChild("Assets"):WaitForChild("Vehicles"):WaitForChild("Categories")
-	local V56_world = game:GetService("Workspace"):WaitForChild("World")
-	local V56_runtime = game:GetService("Workspace"):WaitForChild("World"):WaitForChild("Runtime")
-	local V56_vehiclesRoot = game:GetService("Workspace"):WaitForChild("World"):WaitForChild("Runtime"):WaitForChild("PlayerVehicles")
-local V56_STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:GetAttribute("StartingCash") or 140000
-	local V56_FALLBACK_SPAWN_POS = Vector3.new(game:GetService("ReplicatedStorage").Config.Garage:GetAttribute("SpawnX") or 860, game:GetService("ReplicatedStorage").Config.Garage:GetAttribute("SpawnY") or 105, game:GetService("ReplicatedStorage").Config.Garage:GetAttribute("SpawnZ") or -1713)
+	local WORLD_NAME = "World"
+	local kit = game:GetService("ReplicatedStorage")
+	local remotes = game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Garage")
+	local invoke = game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Garage"):WaitForChild("GarageInvoke")
+	local categoriesRoot = game:GetService("ReplicatedStorage"):WaitForChild("Assets"):WaitForChild("Vehicles"):WaitForChild("Categories")
+	local world = game:GetService("Workspace"):WaitForChild("World")
+	local garageServer_runtime = game:GetService("Workspace"):WaitForChild("World"):WaitForChild("Runtime")
+	local vehiclesRoot = game:GetService("Workspace"):WaitForChild("World"):WaitForChild("Runtime"):WaitForChild("PlayerVehicles")
+local STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:GetAttribute("StartingCash") or 140000
+	local FALLBACK_SPAWN_POS = Vector3.new(game:GetService("ReplicatedStorage").Config.Garage:GetAttribute("SpawnX") or 860, game:GetService("ReplicatedStorage").Config.Garage:GetAttribute("SpawnY") or 105, game:GetService("ReplicatedStorage").Config.Garage:GetAttribute("SpawnZ") or -1713)
 
-	local function V56_spawnCFrame()
+	local function garageServer_spawnCFrame()
 		local dealership = game:GetService("Workspace"):WaitForChild("World"):FindFirstChild("Dealership")
 		local dealershipSpawn = dealership and game:GetService("Workspace"):WaitForChild("World"):WaitForChild("Dealership"):FindFirstChild("Spawn")
 		local exitSpawn = dealershipSpawn and game:GetService("Workspace"):WaitForChild("World"):WaitForChild("Dealership"):WaitForChild("Spawn"):FindFirstChild("VehicleExitSpawnPoint")
@@ -42,19 +42,19 @@ local V56_STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:Get
 			return fallbackSpawn.CFrame
 		end
 
-		return CFrame.lookAt(V56_FALLBACK_SPAWN_POS, V56_FALLBACK_SPAWN_POS + Vector3.new(0, 0, 1))
+		return CFrame.lookAt(FALLBACK_SPAWN_POS, FALLBACK_SPAWN_POS + Vector3.new(0, 0, 1))
 	end
-	local V56_PREVIEW_POS = Vector3.new(game:GetService("ReplicatedStorage").Config.Garage:GetAttribute("PreviewX") or 860, game:GetService("ReplicatedStorage").Config.Garage:GetAttribute("PreviewY") or 104, game:GetService("ReplicatedStorage").Config.Garage:GetAttribute("PreviewZ") or -1749)
+	local PREVIEW_POS = Vector3.new(game:GetService("ReplicatedStorage").Config.Garage:GetAttribute("PreviewX") or 860, game:GetService("ReplicatedStorage").Config.Garage:GetAttribute("PreviewY") or 104, game:GetService("ReplicatedStorage").Config.Garage:GetAttribute("PreviewZ") or -1749)
 	local ProfileServer = require(game.ServerStorage.Modules.Game.Player.ProfileServer)
-	local V89_GarageProfileRuntime = require(game:GetService("ServerStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Garage"):WaitForChild("GarageProfile"))
-	local V96_ModuleInventory = require(game:GetService("ServerStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Garage"):WaitForChild("GarageModuleInventory")) -- NTR_GARAGE_MODULE_INVENTORY_GUARD_V1
-	local V97_ModuleInstances = require(game:GetService("ServerStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Garage"):WaitForChild("GarageModuleInstanceCustomization")) -- NTR_GARAGE_MODULE_INSTANCE_CUSTOMISATION_BRIDGE_V1
-	local V98_ModuleTransactions = require(game:GetService("ServerStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Garage"):WaitForChild("GarageModuleTransaction")) -- NTR_GARAGE_MODULE_ATOMIC_TRANSACTIONS_V1
-	local V101_VehicleCosmetics = require(game:GetService("ServerStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Garage"):WaitForChild("VehicleCosmeticServer")) -- NTR_CUSTOMISATION_VEHICLE_COSMETIC_ACTION_BRIDGE_V1
-	local V101_CosmeticCatalog = require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Vehicles"):WaitForChild("VehicleCosmeticCatalog"))
-	local V77_ModuleUpgrades = require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Vehicles"):WaitForChild("Performance"):WaitForChild("VehicleModuleUpgradeRuntime"))
+	local garageProfileRuntime = require(game:GetService("ServerStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Garage"):WaitForChild("GarageProfile"))
+	local moduleInventory = require(game:GetService("ServerStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Garage"):WaitForChild("GarageModuleInventory")) 
+	local moduleInstances = require(game:GetService("ServerStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Garage"):WaitForChild("GarageModuleInstanceCustomization")) 
+	local moduleTransactions = require(game:GetService("ServerStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Garage"):WaitForChild("GarageModuleTransaction")) 
+	local vehicleCosmetics = require(game:GetService("ServerStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Garage"):WaitForChild("VehicleCosmeticServer")) 
+	local cosmeticCatalog = require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Vehicles"):WaitForChild("VehicleCosmeticCatalog"))
+	local moduleUpgrades = require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Vehicles"):WaitForChild("Performance"):WaitForChild("VehicleModuleUpgradeRuntime"))
 
-	local function V56_value(item, name)
+	local function garageServer_value(item, name)
 		if not item then return nil end
 		local attr = item:GetAttribute(name)
 		if attr ~= nil then return attr end
@@ -63,8 +63,8 @@ local V56_STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:Get
 		return nil
 	end
 
-	local function V56_number(item, name, fallback)
-		local value = V56_value(item, name)
+	local function garageServer_number(item, name, fallback)
+		local value = garageServer_value(item, name)
 		if typeof(value) == "number" then return value end
 		if typeof(value) == "string" then
 			local number = tonumber(value)
@@ -73,13 +73,13 @@ local V56_STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:Get
 		return fallback
 	end
 
-	local function V56_string(item, name, fallback)
-		local value = V56_value(item, name)
+	local function garageServer_string(item, name, fallback)
+		local value = garageServer_value(item, name)
 		if typeof(value) == "string" and value ~= "" then return value end
 		return fallback
 	end
 
-	local function V56_primitiveAttributes(instance)
+	local function primitiveAttributes(instance)
 		local result = {}
 		for key, value in pairs(instance:GetAttributes()) do
 			local t = typeof(value)
@@ -90,12 +90,12 @@ local V56_STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:Get
 		return result
 	end
 
-	local function V56_defaultProfile()
+	local function defaultProfile()
 		return {
-			Cash = V56_STARTING_CASH,
+			Cash = STARTING_CASH,
 			CurrentCategory = "bruiser",
 			CurrentCockpit = "bruiser_01",
-			OwnedCockpits = {}, -- NTR_DEALERSHIP_CUSTOMISATION_SPLIT_PHASE1_BUY_ONLY
+			OwnedCockpits = {}, 
 			CockpitColors = {
 				Primary = Color3.fromRGB(0, 205, 230),
 				Secondary = Color3.fromRGB(235, 247, 204),
@@ -120,11 +120,11 @@ local V56_STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:Get
 		}
 	end
 
-	local function V56_normalizeProfile(profile)
-		profile.Cash = typeof(profile.Cash) == "number" and profile.Cash or V56_STARTING_CASH
+	local function normalizeProfile(profile)
+		profile.Cash = typeof(profile.Cash) == "number" and profile.Cash or STARTING_CASH
 		profile.CurrentCategory = profile.CurrentCategory or "bruiser"
 		profile.CurrentCockpit = profile.CurrentCockpit or "bruiser_01"
-		profile.OwnedCockpits = profile.OwnedCockpits or {} -- NTR_DEALERSHIP_CUSTOMISATION_SPLIT_PHASE1_BUY_ONLY
+		profile.OwnedCockpits = profile.OwnedCockpits or {} 
 		profile.OwnedModules = profile.OwnedModules or {}
 		profile.InstalledModules = profile.InstalledModules or {}
 		profile.ModuleColors = profile.ModuleColors or {}
@@ -147,18 +147,18 @@ local V56_STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:Get
 		profile.ThrustColor = profile.ThrustColor or Color3.fromRGB(255, 255, 255)
 		return profile
 	end
-	local function V87_cloneValue(value)
+	local function cloneValue(value)
 		if typeof(value) == "table" then
 			local copy = {}
 			for key, child in pairs(value) do
-				copy[key] = V87_cloneValue(child)
+				copy[key] = cloneValue(child)
 			end
 			return copy
 		end
 		return value
 	end
 
-	local function V87_countDictionary(dictionary)
+	local function countSavedEntries(dictionary)
 		local count = 0
 		for _ in pairs(dictionary or {}) do
 			count += 1
@@ -166,7 +166,7 @@ local V56_STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:Get
 		return count
 	end
 
-	local function V87_getProfileServiceProfile(player)
+	local function getProfileServiceProfile(player)
 		local deadline=os.clock()+30
 		repeat
 			local profile=ProfileServer.get_profile(player)
@@ -176,27 +176,27 @@ local V56_STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:Get
 		return nil,"Profile is not ready."
 	end
 
-	local function V87_profileHasSavedInstanceData(savedProfile)
+	local function profileHasSavedInstanceData(savedProfile)
 		if typeof(savedProfile) ~= "table" then
 			return false
 		end
-		if V87_countDictionary(savedProfile.Vehicles) > 0 then
+		if countSavedEntries(savedProfile.Vehicles) > 0 then
 			return true
 		end
-		if V87_countDictionary(savedProfile.OwnedCockpitInstances) > 0 then
+		if countSavedEntries(savedProfile.OwnedCockpitInstances) > 0 then
 			return true
 		end
-		if V87_countDictionary(savedProfile.OwnedModuleInstances) > 0 then
+		if countSavedEntries(savedProfile.OwnedModuleInstances) > 0 then
 			return true
 		end
 		local garage = savedProfile.Garage
-		if typeof(garage) == "table" and V87_countDictionary(garage.OwnedGarageProperties) > 0 then
+		if typeof(garage) == "table" and countSavedEntries(garage.OwnedGarageProperties) > 0 then
 			return true
 		end
 		return false
 	end
 
-	local function V87_currentVehicleFromSavedProfile(savedProfile)
+	local function currentVehicleFromSavedProfile(savedProfile)
 		local vehicles = typeof(savedProfile.Vehicles) == "table" and savedProfile.Vehicles or {}
 		local vehicleId = savedProfile.CurrentVehicleId ~= nil and tostring(savedProfile.CurrentVehicleId) or nil
 		local vehicle = vehicleId and vehicles[vehicleId] or nil
@@ -211,26 +211,26 @@ local V56_STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:Get
 		return nil, nil
 	end
 
-	local function V87_savedProfileToLegacySession(savedProfile)
-		local legacy = V56_defaultProfile()
+	local function savedProfileToLegacySession(savedProfile)
+		local legacy = defaultProfile()
 		legacy.Cash = typeof(savedProfile.Cash) == "number" and savedProfile.Cash or legacy.Cash
 		local garage = typeof(savedProfile.Garage) == "table" and savedProfile.Garage or {}
 		legacy.GarageCapacity = math.max(1, math.floor(tonumber(garage.Capacity) or legacy.GarageCapacity or 2))
-		legacy.OwnedGarageProperties = V87_cloneValue(garage.OwnedGarageProperties or {})
-		legacy.GarageDisplaySpaces = V87_cloneValue(garage.DisplaySpaces or {})
-		legacy.Vehicles = V87_cloneValue(savedProfile.Vehicles or {})
-		legacy.OwnedCockpitInstances = V87_cloneValue(savedProfile.OwnedCockpitInstances or {})
-		legacy.OwnedModuleInstances = V87_cloneValue(savedProfile.OwnedModuleInstances or {})
+		legacy.OwnedGarageProperties = cloneValue(garage.OwnedGarageProperties or {})
+		legacy.GarageDisplaySpaces = cloneValue(garage.DisplaySpaces or {})
+		legacy.Vehicles = cloneValue(savedProfile.Vehicles or {})
+		legacy.OwnedCockpitInstances = cloneValue(savedProfile.OwnedCockpitInstances or {})
+		legacy.OwnedModuleInstances = cloneValue(savedProfile.OwnedModuleInstances or {})
 		legacy.CurrentVehicleId = savedProfile.CurrentVehicleId ~= nil and tostring(savedProfile.CurrentVehicleId) or nil
 		legacy.ModuleUpgradeLevels = {}
 
-		local currentVehicleId, currentVehicle = V87_currentVehicleFromSavedProfile(savedProfile)
+		local currentVehicleId, currentVehicle = currentVehicleFromSavedProfile(savedProfile)
 		if currentVehicleId then
 			legacy.CurrentVehicleId = currentVehicleId
 		end
 		if typeof(currentVehicle) == "table" then
 			legacy.CurrentCategory = tostring(currentVehicle.CategoryId or legacy.CurrentCategory or "bruiser")
-			legacy.CockpitColors = V87_cloneValue(currentVehicle.CockpitColors or legacy.CockpitColors)
+			legacy.CockpitColors = cloneValue(currentVehicle.CockpitColors or legacy.CockpitColors)
 			legacy.ThrustColor = currentVehicle.ThrustColor or legacy.ThrustColor
 			local cockpitInstance = currentVehicle.CockpitInstanceId and legacy.OwnedCockpitInstances[currentVehicle.CockpitInstanceId] or nil
 			if typeof(cockpitInstance) == "table" and cockpitInstance.TemplateId then
@@ -256,54 +256,54 @@ local V56_STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:Get
 				local moduleId = tostring(moduleInstance.TemplateId)
 				legacy.OwnedModules[moduleId] = true
 				if typeof(moduleInstance.UpgradeLevels) == "table" then
-					legacy.ModuleUpgradeLevels[moduleId] = V87_cloneValue(moduleInstance.UpgradeLevels)
+					legacy.ModuleUpgradeLevels[moduleId] = cloneValue(moduleInstance.UpgradeLevels)
 				end
 				for slotId, installedInstanceId in pairs(installedInstances) do
 					if tostring(installedInstanceId) == tostring(instanceId) then
 						legacy.InstalledModules[slotId] = moduleId
-						legacy.ModuleColors[slotId] = V87_cloneValue(moduleInstance.Colors or {})
+						legacy.ModuleColors[slotId] = cloneValue(moduleInstance.Colors or {})
 						legacy.NeonOwned[slotId] = moduleInstance.NeonOwned == true
 					end
 				end
 			end
 		end
 
-		return V56_normalizeProfile(legacy)
+		return normalizeProfile(legacy)
 	end
 
 	-- Garage hydration is owned by ProfileServer.get_garage_profile.
 
-	local function V56_getProfile(player)
+	local function getProfile(player)
 		local profile=ProfileServer.get_garage_profile(player, function(saved)
-			return V87_profileHasSavedInstanceData(saved) and V87_savedProfileToLegacySession(saved) or V56_defaultProfile()
+			return profileHasSavedInstanceData(saved) and savedProfileToLegacySession(saved) or defaultProfile()
 		end)
 		if not profile then error("Profile is not ready.") end
-		return V56_normalizeProfile(profile)
+		return normalizeProfile(profile)
 	end
 	-- The legacy garage session remains a compatibility owner. This tiny bridge
 	-- lets the reviewed one-time cleanup update it in the same transaction as
 	-- ProfileService, so its normal mirror cannot restore stale inventory.
-	local V97_cleanupBridge = game:GetService("ServerStorage"):WaitForChild("Runtime"):WaitForChild("Garage"):FindFirstChild("GarageModuleInventoryCleanupBridge")
-	if V97_cleanupBridge and not V97_cleanupBridge:IsA("BindableFunction") then
+	local cleanupBridge = game:GetService("ServerStorage"):WaitForChild("Runtime"):WaitForChild("Garage"):FindFirstChild("GarageModuleInventoryCleanupBridge")
+	if cleanupBridge and not cleanupBridge:IsA("BindableFunction") then
 		error("GarageModuleInventoryCleanupBridge exists with the wrong class")
 	end
-	if not V97_cleanupBridge then
-		V97_cleanupBridge = Instance.new("BindableFunction")
-		V97_cleanupBridge.Name = "GarageModuleInventoryCleanupBridge"
-		V97_cleanupBridge.Parent = game:GetService("ServerStorage"):WaitForChild("Runtime"):WaitForChild("Garage")
+	if not cleanupBridge then
+		cleanupBridge = Instance.new("BindableFunction")
+		cleanupBridge.Name = "GarageModuleInventoryCleanupBridge"
+		cleanupBridge.Parent = game:GetService("ServerStorage"):WaitForChild("Runtime"):WaitForChild("Garage")
 	end
-	V97_cleanupBridge.OnInvoke = function(player, mode, expectedToken)
-		local profile = V56_getProfile(player)
+	cleanupBridge.OnInvoke = function(player, mode, expectedToken)
+		local profile = getProfile(player)
 		if mode == "Apply" then
-			return V96_ModuleInventory.ApplyReviewedCleanup(profile, expectedToken)
+			return moduleInventory.ApplyReviewedCleanup(profile, expectedToken)
 		elseif mode == "Rollback" then
-			return V96_ModuleInventory.RollbackReviewedCleanup(profile)
+			return moduleInventory.RollbackReviewedCleanup(profile)
 		elseif mode == "Commit" then
-			return V96_ModuleInventory.CommitReviewedCleanup(profile)
+			return moduleInventory.CommitReviewedCleanup(profile)
 		end
 		return false, "Unknown cleanup bridge mode."
 	end
-	local function V81_garageCapacity()
+	local function garageCapacity()
 		local shared = game:GetService("ReplicatedStorage")
 		local configRoot = shared and game:GetService("ReplicatedStorage"):FindFirstChild("Config")
 		local persistenceConfig = configRoot and game:GetService("ReplicatedStorage"):WaitForChild("Config"):WaitForChild("Player"):FindFirstChild("Persistence")
@@ -314,7 +314,7 @@ local V56_STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:Get
 		return math.max(1, math.floor(capacity))
 	end
 
-	local function V81_ownedCockpitCount(profile)
+	local function ownedCockpitCount(profile)
 		local count = 0
 		for _, owned in pairs((profile and profile.OwnedCockpits) or {}) do
 			if owned == true then
@@ -323,7 +323,7 @@ local V56_STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:Get
 		end
 		return count
 	end
-	local function V82_persistenceConfigAttribute(name, fallback)
+	local function persistenceConfigAttribute(name, fallback)
 		local shared = game:GetService("ReplicatedStorage")
 		local configRoot = shared and game:GetService("ReplicatedStorage"):FindFirstChild("Config")
 		local persistenceConfig = configRoot and game:GetService("ReplicatedStorage"):WaitForChild("Config"):WaitForChild("Player"):FindFirstChild("Persistence")
@@ -334,39 +334,39 @@ local V56_STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:Get
 		return value
 	end
 
-	local V83_cachedGarageCatalog = nil
+	local cachedGarageCatalog = nil
 
-	local function V83_garageCatalog()
-		if not V83_cachedGarageCatalog then V83_cachedGarageCatalog=require(game:GetService("ReplicatedStorage").Modules.Game.Garage.GaragePropertyCatalog) end
-		return V83_cachedGarageCatalog
+	local function garageCatalog()
+		if not cachedGarageCatalog then cachedGarageCatalog=require(game:GetService("ReplicatedStorage").Modules.Game.Garage.GaragePropertyCatalog) end
+		return cachedGarageCatalog
 	end
 
-	local function V83_garageProperties()
-		return V83_garageCatalog().List()
+	local function garageProperties()
+		return garageCatalog().List()
 	end
 
-	local function V83_propertyById(propertyId)
-		return V83_garageCatalog().ById(tostring(propertyId or ""))
+	local function propertyById(propertyId)
+		return garageCatalog().ById(tostring(propertyId or ""))
 	end
 
-	local function V83_startingGarageCapacity()
-		return math.max(1, math.floor(tonumber(V82_persistenceConfigAttribute("StartingGarageCapacity", 2)) or 2))
+	local function startingGarageCapacity()
+		return math.max(1, math.floor(tonumber(persistenceConfigAttribute("StartingGarageCapacity", 2)) or 2))
 	end
 
-	local function V83_ownedGarageProperties(profile)
+	local function ownedGarageProperties(profile)
 		profile.OwnedGarageProperties = typeof(profile.OwnedGarageProperties) == "table" and profile.OwnedGarageProperties or {}
 		return profile.OwnedGarageProperties
 	end
 
-	local function V83_isGaragePropertyOwned(profile, propertyId)
-		local owned = V83_ownedGarageProperties(profile)
+	local function isGaragePropertyOwned(profile, propertyId)
+		local owned = ownedGarageProperties(profile)
 		return owned[tostring(propertyId or "")] ~= nil
 	end
 
-	local function V83_ownedGaragePropertySpaces(profile)
+	local function ownedGaragePropertySpaces(profile)
 		local spaces = 0
-		for propertyId in pairs(V83_ownedGarageProperties(profile)) do
-			local property = V83_propertyById(propertyId)
+		for propertyId in pairs(ownedGarageProperties(profile)) do
+			local property = propertyById(propertyId)
 			if property then
 				spaces += math.max(0, math.floor(tonumber(property.Spaces) or 0))
 			end
@@ -374,24 +374,24 @@ local V56_STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:Get
 		return spaces
 	end
 
-	local function V83_totalCatalogGarageCapacity()
-		local capacity = V83_startingGarageCapacity()
-		for _, property in ipairs(V83_garageProperties()) do
+	local function totalCatalogGarageCapacity()
+		local capacity = startingGarageCapacity()
+		for _, property in ipairs(garageProperties()) do
 			if property.Available == true then
 				capacity += math.max(0, math.floor(tonumber(property.Spaces) or 0))
 			end
 		end
-		return math.max(V83_startingGarageCapacity(), capacity)
+		return math.max(startingGarageCapacity(), capacity)
 	end
 
-	local function V83_backfillLegacyGarageCapacity(profile)
-		local legacyCapacity = math.max(V83_startingGarageCapacity(), math.floor(tonumber(profile and profile.GarageCapacity) or V83_startingGarageCapacity()))
-		local owned = V83_ownedGarageProperties(profile)
-		local current = V83_startingGarageCapacity() + V83_ownedGaragePropertySpaces(profile)
+	local function backfillLegacyGarageCapacity(profile)
+		local legacyCapacity = math.max(startingGarageCapacity(), math.floor(tonumber(profile and profile.GarageCapacity) or startingGarageCapacity()))
+		local owned = ownedGarageProperties(profile)
+		local current = startingGarageCapacity() + ownedGaragePropertySpaces(profile)
 		if current >= legacyCapacity then
 			return
 		end
-		for _, property in ipairs(V83_garageProperties()) do
+		for _, property in ipairs(garageProperties()) do
 			local propertyId = tostring(property.PropertyId or "")
 			if property.Available == true and propertyId ~= "" and owned[propertyId] == nil then
 				owned[propertyId] = {
@@ -409,74 +409,74 @@ local V56_STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:Get
 		end
 	end
 
-	local function V82_profileGarageCapacity(profile)
+	local function profileGarageCapacity(profile)
 		if profile then
-			V83_backfillLegacyGarageCapacity(profile)
+			backfillLegacyGarageCapacity(profile)
 		end
-		local propertyCapacity = V83_startingGarageCapacity() + V83_ownedGaragePropertySpaces(profile or {})
-		local legacyCapacity = tonumber(profile and profile.GarageCapacity) or V81_garageCapacity()
-		return math.max(V83_startingGarageCapacity(), math.floor(propertyCapacity), math.floor(legacyCapacity or 0))
+		local propertyCapacity = startingGarageCapacity() + ownedGaragePropertySpaces(profile or {})
+		local legacyCapacity = tonumber(profile and profile.GarageCapacity) or garageCapacity()
+		return math.max(startingGarageCapacity(), math.floor(propertyCapacity), math.floor(legacyCapacity or 0))
 	end
 
-	local function V82_maxGarageCapacity()
-		local configured = math.max(1, math.floor(tonumber(V82_persistenceConfigAttribute("MaxGarageCapacity", 10)) or 10))
-		return math.min(configured, V83_totalCatalogGarageCapacity())
+	local function maxGarageCapacity()
+		local configured = math.max(1, math.floor(tonumber(persistenceConfigAttribute("MaxGarageCapacity", 10)) or 10))
+		return math.min(configured, totalCatalogGarageCapacity())
 	end
 
-	local function V82_capacityUpgradeStep()
-		return math.max(1, math.floor(tonumber(V82_persistenceConfigAttribute("GarageCapacityUpgradeStep", 1)) or 1))
+	local function capacityUpgradeStep()
+		return math.max(1, math.floor(tonumber(persistenceConfigAttribute("GarageCapacityUpgradeStep", 1)) or 1))
 	end
 
-	local function V82_capacityUpgradePrice(profile)
-		local capacity = V82_profileGarageCapacity(profile)
-		local startCapacity = math.max(1, math.floor(tonumber(V82_persistenceConfigAttribute("StartingGarageCapacity", 2)) or 2))
-		local basePrice = math.max(0, tonumber(V82_persistenceConfigAttribute("GarageCapacityUpgradeBasePrice", 50000)) or 50000)
-		local multiplier = math.max(1, tonumber(V82_persistenceConfigAttribute("GarageCapacityUpgradePriceMultiplier", 1.65)) or 1.65)
+	local function capacityUpgradePrice(profile)
+		local capacity = profileGarageCapacity(profile)
+		local startCapacity = math.max(1, math.floor(tonumber(persistenceConfigAttribute("StartingGarageCapacity", 2)) or 2))
+		local basePrice = math.max(0, tonumber(persistenceConfigAttribute("GarageCapacityUpgradeBasePrice", 50000)) or 50000)
+		local multiplier = math.max(1, tonumber(persistenceConfigAttribute("GarageCapacityUpgradePriceMultiplier", 1.65)) or 1.65)
 		local level = math.max(0, capacity - startCapacity)
 		return math.floor(basePrice * (multiplier ^ level) + 0.5)
 	end
 
-	local function V83_nextBuyableGarageProperty(profile)
-		for _, property in ipairs(V83_garageProperties()) do
+	local function nextBuyableGarageProperty(profile)
+		for _, property in ipairs(garageProperties()) do
 			local propertyId = tostring(property.PropertyId or "")
-			if property.Available == true and propertyId ~= "" and not V83_isGaragePropertyOwned(profile, propertyId) then
+			if property.Available == true and propertyId ~= "" and not isGaragePropertyOwned(profile, propertyId) then
 				return property
 			end
 		end
 		return nil
 	end
 
-	local function V83_nextGaragePropertyPrice(profile)
-		local property = V83_nextBuyableGarageProperty(profile)
-		return property and math.max(0, math.floor(tonumber(property.Price) or V82_capacityUpgradePrice(profile))) or nil
+	local function nextGaragePropertyPrice(profile)
+		local property = nextBuyableGarageProperty(profile)
+		return property and math.max(0, math.floor(tonumber(property.Price) or capacityUpgradePrice(profile))) or nil
 	end
 
-	local function V83_buyGarageProperty(profile, args)
+	local function buyGarageProperty(profile, args)
 		if not profile then
 			return false, "Garage profile missing."
 		end
 		args = typeof(args) == "table" and args or {}
 		local propertyId = tostring(args.PropertyId or "")
-		local property = V83_propertyById(propertyId)
+		local property = propertyById(propertyId)
 		if not property then
 			return false, "Garage property is not available."
 		end
 		if property.Available ~= true then
 			return false, "This garage location is not for sale yet."
 		end
-		if V83_isGaragePropertyOwned(profile, propertyId) then
+		if isGaragePropertyOwned(profile, propertyId) then
 			return false, "You already own this garage."
 		end
-		local maxCapacity = V82_maxGarageCapacity()
-		if V82_profileGarageCapacity(profile) >= maxCapacity then
+		local maxCapacity = maxGarageCapacity()
+		if profileGarageCapacity(profile) >= maxCapacity then
 			return false, "Garage collection is already at the current maximum."
 		end
-		local price = math.max(0, math.floor(tonumber(property.Price) or V82_capacityUpgradePrice(profile)))
+		local price = math.max(0, math.floor(tonumber(property.Price) or capacityUpgradePrice(profile)))
 		if (profile.Cash or 0) < price then
 			return false, "Not enough cash."
 		end
 		profile.Cash -= price
-		V83_ownedGarageProperties(profile)[propertyId] = {
+		ownedGarageProperties(profile)[propertyId] = {
 			TemplateId = propertyId,
 			DisplayName = tostring(property.DisplayName or propertyId),
 			District = tostring(property.District or ""),
@@ -484,19 +484,19 @@ local V56_STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:Get
 			AcquiredAtUnix = os.time(),
 			Source = "BuyGarageProperty",
 		}
-		profile.GarageCapacity = V82_profileGarageCapacity(profile)
+		profile.GarageCapacity = profileGarageCapacity(profile)
 		return true, "Garage property purchased."
 	end
 
-	local function V82_upgradeGarageCapacity(profile)
-		local property = V83_nextBuyableGarageProperty(profile)
+	local function upgradeGarageCapacity(profile)
+		local property = nextBuyableGarageProperty(profile)
 		if not property then
 			return false, "No garage properties are available right now."
 		end
-		return V83_buyGarageProperty(profile, { PropertyId = property.PropertyId })
+		return buyGarageProperty(profile, { PropertyId = property.PropertyId })
 	end
 
-	local function V81_canBuyCockpit(profile, cockpitId)
+	local function canBuyCockpit(profile, cockpitId)
 		if not profile then
 			return false, "Garage profile missing."
 		end
@@ -504,15 +504,15 @@ local V56_STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:Get
 		if profile.OwnedCockpits[cockpitId] == true then
 			return true
 		end
-		local capacity = V82_profileGarageCapacity(profile)
-		local ownedCount = V81_ownedCockpitCount(profile)
+		local capacity = profileGarageCapacity(profile)
+		local ownedCount = ownedCockpitCount(profile)
 		if ownedCount >= capacity then
 			return false, "Garage full. Upgrade your garage to store more vehicles."
 		end
 		return true
 	end
 	-- ProfileServer owns the only persistent profile table.
-	local V80_mutatingActions = {
+	local mutatingActions = {
 		BuyCockpit = true,
 		BuyGarageProperty = true,
 		SetCockpitColor = true,
@@ -536,7 +536,7 @@ local V56_STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:Get
 
 	}
 
-	local function V80_countDictionary(dictionary)
+	local function countOwnedEntries(dictionary)
 		local count = 0
 		for _ in pairs(dictionary or {}) do
 			count += 1
@@ -544,7 +544,7 @@ local V56_STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:Get
 		return count
 	end
 
-	local function V80_replaceTableContents(target, source)
+	local function replaceTableContents(target, source)
 		for key in pairs(target) do
 			target[key] = nil
 		end
@@ -553,12 +553,12 @@ local V56_STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:Get
 		end
 	end
 
-	local function V80_mirrorLegacyProfileToPersistence(player, profile, action, dirty)
+	local function mirrorLegacyProfileToPersistence(player, profile, action, dirty)
 		local ok, message=ProfileServer.commit_garage(player,profile,"GarageAction:"..tostring(action),dirty==true)
 		if not ok then error(message) end
 	end
-	local function V76_findCockpitForDefaultColours(categoryId, cockpitId)
-		for _, category in ipairs(V56_categoriesRoot:GetChildren()) do
+	local function findCockpitForDefaultColours(categoryId, cockpitId)
+		for _, category in ipairs(categoriesRoot:GetChildren()) do
 			local categoryMatches = category:GetAttribute("CategoryId") == categoryId
 				or category.Name == categoryId
 				or string.lower(category.Name) == string.lower(tostring(categoryId))
@@ -573,7 +573,7 @@ local V56_STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:Get
 		end
 	end
 
-	local function V76_colorAttribute(item, name, fallback)
+	local function colorAttribute(item, name, fallback)
 		local value = item and item:GetAttribute(name)
 		if typeof(value) == "Color3" then
 			return value
@@ -581,19 +581,19 @@ local V56_STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:Get
 		return fallback
 	end
 
-	local function V76_defaultCockpitColorsFor(profile)
-		local cockpit = V76_findCockpitForDefaultColours(profile.CurrentCategory or "bruiser", profile.CurrentCockpit or "bruiser_01")
+	local function defaultCockpitColorsFor(profile)
+		local cockpit = findCockpitForDefaultColours(profile.CurrentCategory or "bruiser", profile.CurrentCockpit or "bruiser_01")
 		return {
-			Primary = V76_colorAttribute(cockpit, "DefaultPrimaryColor", Color3.fromRGB(0, 205, 230)),
-			Secondary = V76_colorAttribute(cockpit, "DefaultSecondaryColor", Color3.fromRGB(235, 247, 204)),
-			Detail = V76_colorAttribute(cockpit, "DefaultDetailColor", Color3.fromRGB(38, 44, 50)),
-			Neon = V76_colorAttribute(cockpit, "DefaultNeonColor", Color3.fromRGB(255, 255, 255)),
-			FrontLights = V76_colorAttribute(cockpit, "DefaultFrontLightsColor", Color3.fromRGB(252, 250, 255)),
-			RearLights = V76_colorAttribute(cockpit, "DefaultRearLightsColor", Color3.fromRGB(255, 116, 116)),
+			Primary = colorAttribute(cockpit, "DefaultPrimaryColor", Color3.fromRGB(0, 205, 230)),
+			Secondary = colorAttribute(cockpit, "DefaultSecondaryColor", Color3.fromRGB(235, 247, 204)),
+			Detail = colorAttribute(cockpit, "DefaultDetailColor", Color3.fromRGB(38, 44, 50)),
+			Neon = colorAttribute(cockpit, "DefaultNeonColor", Color3.fromRGB(255, 255, 255)),
+			FrontLights = colorAttribute(cockpit, "DefaultFrontLightsColor", Color3.fromRGB(252, 250, 255)),
+			RearLights = colorAttribute(cockpit, "DefaultRearLightsColor", Color3.fromRGB(255, 116, 116)),
 		}
 	end
 
-	local function V76_syncInstalledModulePaintFromCockpit(profile, channel)
+	local function syncInstalledModulePaintFromCockpit(profile, channel)
 		if not profile then return end
 		profile.ModuleColors = profile.ModuleColors or {}
 		local cockpitColors = profile.CockpitColors or {}
@@ -612,12 +612,12 @@ local V56_STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:Get
 		end
 	end
 
-	local function V76_applyDefaultCockpitColors(profile)
-		profile.CockpitColors = V76_defaultCockpitColorsFor(profile)
-		V76_syncInstalledModulePaintFromCockpit(profile)
+	local function applyDefaultCockpitColors(profile)
+		profile.CockpitColors = defaultCockpitColorsFor(profile)
+		syncInstalledModulePaintFromCockpit(profile)
 	end
 
-	local function V56_setLeaderstats(player, profile)
+	local function setLeaderstats(player, profile)
 		local stats = player:FindFirstChild("leaderstats")
 		if not stats then
 			stats = Instance.new("Folder")
@@ -634,9 +634,9 @@ local V56_STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:Get
 	end
 	-- Existing reward callers retain their binding, but ProfileService is the only
 	-- positive-Cash grant owner. This legacy profile is a committed projection only.
-	local V91_RaceRewardBridgeReady = false
-	local V91_EconomyProjectionConnected = false
-	local function V91_profileEconomyBindings()
+	local raceRewardBridgeReady = false
+	local economyProjectionConnected = false
+	local function profileEconomyBindings()
 		local servicesRoot = game:GetService("ServerStorage"):WaitForChild("Runtime"):WaitForChild("Garage") and game:GetService("ServerStorage"):WaitForChild("Runtime")
 		local playerRoot = servicesRoot and game:GetService("ServerStorage"):WaitForChild("Runtime"):FindFirstChild("Player")
 		local bindings = playerRoot and game:GetService("ServerStorage"):WaitForChild("Runtime"):WaitForChild("Player"):FindFirstChild("ProfileServiceBindings")
@@ -644,20 +644,20 @@ local V56_STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:Get
 		local committed = bindings and bindings:FindFirstChild("EconomyCashCommitted")
 		return execute, committed
 	end
-	local function V91_connectEconomyProjection()
-		if V91_EconomyProjectionConnected then return end
-		local _, committed = V91_profileEconomyBindings()
+	local function connectEconomyProjection()
+		if economyProjectionConnected then return end
+		local _, committed = profileEconomyBindings()
 		if not (committed and committed:IsA("BindableEvent")) then return end
 		committed.Event:Connect(function(player, committedCash)
 			if not (player and player:IsA("Player")) then return end
 			local current = ProfileServer.get_profile(player)
 			if current then committedCash=current.Cash end
-			V56_setLeaderstats(player, {Cash=committedCash})
+			setLeaderstats(player, {Cash=committedCash})
 		end)
-		V91_EconomyProjectionConnected = true
+		economyProjectionConnected = true
 	end
-	local function V91_ensureRaceRewardCashBridge()
-		if V91_RaceRewardBridgeReady then return end
+	local function ensureRaceRewardCashBridge()
+		if raceRewardBridgeReady then return end
 		local bindings = game:GetService("ServerStorage"):WaitForChild("Runtime"):WaitForChild("Garage"):FindFirstChild("GarageProfileMutationBindings")
 		if not bindings then
 			bindings = Instance.new("Folder")
@@ -676,11 +676,11 @@ local V56_STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:Get
 			end
 			payload = typeof(payload) == "table" and payload or {}
 			local player = payload.Player
-			local execute = V91_profileEconomyBindings()
+			local execute = profileEconomyBindings()
 			if not (player and execute and execute:IsA("BindableFunction")) then
 				return {Ok=false, Success=false, Message="ProfileService economy command is unavailable."}
 			end
-			V91_connectEconomyProjection()
+			connectEconomyProjection()
 			local result = execute:Invoke(player, {
 				Version=1,
 				Action="GrantCash",
@@ -699,65 +699,65 @@ local V56_STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:Get
 			end
 			return result
 		end
-		V91_connectEconomyProjection()
+		connectEconomyProjection()
 		task.spawn(function()
 			for _ = 1, 100 do
-				if V91_EconomyProjectionConnected then return end
+				if economyProjectionConnected then return end
 				task.wait(0.1)
-				V91_connectEconomyProjection()
+				connectEconomyProjection()
 			end
 			warn("[Economy] Legacy Cash projection did not connect within 10 seconds.")
 		end)
-		V91_RaceRewardBridgeReady = true
+		raceRewardBridgeReady = true
 	end
-	V91_ensureRaceRewardCashBridge()
+	ensureRaceRewardCashBridge()
 
-	local function V56_slug(name)
+	local function slug(name)
 		name = string.lower(tostring(name or ""))
 		name = string.gsub(name, "%s+", "_")
 		name = string.gsub(name, "[^%w_]", "")
 		return name
 	end
 
-	local function V56_categoryFolder(categoryId)
-		for _, category in ipairs(V56_categoriesRoot:GetChildren()) do
+	local function garageServer_categoryFolder(categoryId)
+		for _, category in ipairs(categoriesRoot:GetChildren()) do
 			if category:GetAttribute("CategoryId") == categoryId
 				or category.Name == categoryId
 				or string.lower(category.Name) == string.lower(tostring(categoryId)) then
 				return category
 			end
 		end
-		return V56_categoriesRoot:GetChildren()[1]
+		return categoriesRoot:GetChildren()[1]
 	end
 
-	local function V56_findByAttribute(root, attr, value)
+	local function findByAttribute(root, attr, value)
 		if not root then return nil end
 		for _, item in ipairs(root:GetDescendants()) do
 			if item:GetAttribute(attr) == value then return item end
 		end
 	end
 
-	local function V56_findCockpit(categoryId, cockpitId)
-		local category = V56_categoryFolder(categoryId)
+	local function findCockpit(categoryId, cockpitId)
+		local category = garageServer_categoryFolder(categoryId)
 		local root = category and (category:FindFirstChild("COCKPITS_ReplaceAssetsHere") or category:FindFirstChild("Cockpits") or category:FindFirstChild("COCKPITS"))
-		return V56_findByAttribute(root or category, "CockpitId", cockpitId)
+		return findByAttribute(root or category, "CockpitId", cockpitId)
 	end
 
-	local function V56_findModule(categoryId, moduleId)
-		local category = V56_categoryFolder(categoryId)
+	local function findModule(categoryId, moduleId)
+		local category = garageServer_categoryFolder(categoryId)
 		local root = category and (category:FindFirstChild("MODULES_InterchangeableWithinCategory") or category)
-		return V56_findByAttribute(root, "ModuleId", moduleId)
+		return findByAttribute(root, "ModuleId", moduleId)
 	end
-	local V85_attachDefaultModuleInstancesToCurrentVehicle
+	local attachDefaultModuleInstancesToCurrentVehicle
 
-	local function V85_moduleSourceCockpitId(module)
+	local function moduleSourceCockpitId(module)
 		if not module then return nil end
 		local explicit = module:GetAttribute("SourceCockpitId")
 		if explicit ~= nil and tostring(explicit) ~= "" then
 			return tostring(explicit)
 		end
 		local item = module.Parent
-		while item and item ~= V56_categoriesRoot do
+		while item and item ~= categoriesRoot do
 			local name = tostring(item.Name or "")
 			local numberText = string.match(name, "^Bruiser[_%s%-]*(%d+)$") or string.match(name, "BRUISER[_%s%-]*(%d+)")
 			if numberText then
@@ -773,7 +773,7 @@ local V56_STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:Get
 		return nil
 	end
 
-	local function V85_moduleVariantName(module)
+	local function moduleVariantName(module)
 		local explicit = module and module:GetAttribute("VariantName")
 		if explicit ~= nil and tostring(explicit) ~= "" then
 			return tostring(explicit)
@@ -787,10 +787,10 @@ local V56_STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:Get
 		return "Standard"
 	end
 
-	local function V85_moduleVariantOrder(module)
+	local function moduleVariantOrder(module)
 		local explicit = module and tonumber(module:GetAttribute("VariantOrder"))
 		if explicit then return explicit end
-		local variant = string.lower(V85_moduleVariantName(module))
+		local variant = string.lower(moduleVariantName(module))
 		if variant == "standard" then return 10 end
 		if variant == "lightweight" then return 20 end
 		if variant == "power" then return 30 end
@@ -799,14 +799,14 @@ local V56_STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:Get
 		return 999
 	end
 
-	local function V85_findSourceCockpit(profile, module)
-		local sourceCockpitId = V85_moduleSourceCockpitId(module)
+	local function findSourceCockpit(profile, module)
+		local sourceCockpitId = moduleSourceCockpitId(module)
 		if not sourceCockpitId then return nil, nil end
-		return sourceCockpitId, V56_findCockpit(profile and profile.CurrentCategory or "bruiser", sourceCockpitId)
+		return sourceCockpitId, findCockpit(profile and profile.CurrentCategory or "bruiser", sourceCockpitId)
 	end
 
-	local function V85_playerOwnsSourceCockpit(profile, module)
-		local sourceCockpitId = V85_moduleSourceCockpitId(module)
+	local function playerOwnsSourceCockpit(profile, module)
+		local sourceCockpitId = moduleSourceCockpitId(module)
 		if not sourceCockpitId then return true, nil end
 		if profile and profile.OwnedCockpits and profile.OwnedCockpits[sourceCockpitId] == true then
 			return true, sourceCockpitId
@@ -819,34 +819,34 @@ local V56_STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:Get
 		return false, sourceCockpitId
 	end
 
-	local function V85_modulePurchasePrice(module)
+	local function modulePurchasePrice(module)
 		if not module then return 0 end
 		local explicit = tonumber(module:GetAttribute("ExtraCopyPrice") or module:GetAttribute("ModuleCopyPrice") or module:GetAttribute("PurchasePrice"))
 		if explicit and explicit > 0 then
 			return math.floor(explicit)
 		end
-		local price = V56_number(module, "Price", 0)
+		local price = garageServer_number(module, "Price", 0)
 		if price > 0 then return price end
-		local sourceCockpitId = V85_moduleSourceCockpitId(module)
-		local cockpit = sourceCockpitId and V56_findCockpit("bruiser", sourceCockpitId)
-		local cockpitPrice = cockpit and V56_number(cockpit, "Price", 0) or 0
+		local sourceCockpitId = moduleSourceCockpitId(module)
+		local cockpit = sourceCockpitId and findCockpit("bruiser", sourceCockpitId)
+		local cockpitPrice = cockpit and garageServer_number(cockpit, "Price", 0) or 0
 		return math.max(1000, math.floor(cockpitPrice * 0.12))
 	end
 
-	local function V85_moduleLockedMessage(profile, module)
-		local ownsSource, sourceCockpitId = V85_playerOwnsSourceCockpit(profile, module)
+	local function moduleLockedMessage(profile, module)
+		local ownsSource, sourceCockpitId = playerOwnsSourceCockpit(profile, module)
 		if ownsSource then return nil end
-		local cockpit = sourceCockpitId and V56_findCockpit(profile.CurrentCategory, sourceCockpitId)
-		local cockpitName = cockpit and V56_string(cockpit, "DisplayName", sourceCockpitId) or sourceCockpitId or "the source cockpit"
+		local cockpit = sourceCockpitId and findCockpit(profile.CurrentCategory, sourceCockpitId)
+		local cockpitName = cockpit and garageServer_string(cockpit, "DisplayName", sourceCockpitId) or sourceCockpitId or "the source cockpit"
 		return "Buy " .. cockpitName .. " before buying this module family."
 	end
-	local function V86_moduleEnginePosition(moduleModel)
+	local function moduleEnginePosition(moduleModel)
 		if not moduleModel then return "" end
 		local explicit = tostring(moduleModel:GetAttribute("EnginePosition") or "")
 		if explicit == "Front" or explicit == "Rear" then
 			return explicit
 		end
-		local moduleFolder = V56_string(moduleModel, "ModuleFolder", "")
+		local moduleFolder = garageServer_string(moduleModel, "ModuleFolder", "")
 		local moduleId = tostring(moduleModel:GetAttribute("ModuleId") or moduleModel.Name or "")
 		local displayName = string.lower(tostring(moduleModel:GetAttribute("DisplayName") or moduleModel.Name or ""))
 		if moduleModel:GetAttribute("RearEngine") == true then
@@ -866,7 +866,7 @@ local V56_STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:Get
 		end
 		return ""
 	end
-	local function V56_moduleTypeFromText(text)
+	local function moduleTypeFromText(text)
 		text = string.lower(tostring(text or ""))
 		if string.find(text, "engine", 1, true) then return "Engine" end
 		if string.find(text, "boost", 1, true) then return "Boost" end
@@ -878,7 +878,7 @@ local V56_STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:Get
 		return "Misc"
 	end
 
-	local function V56_moduleTypeForModel(module, root)
+	local function moduleTypeForModel(module, root)
 		if not module then return "Misc" end
 		local attr = module:GetAttribute("ModuleType")
 		if typeof(attr) == "string" and attr ~= "" then
@@ -890,13 +890,13 @@ local V56_STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:Get
 			text ..= " " .. parent.Name
 			parent = parent.Parent
 		end
-		return V56_moduleTypeFromText(text)
+		return moduleTypeFromText(text)
 	end
 
-	local function V86_moduleFitsSlot(moduleModel, slotId, allowedModuleFolder)
+	local function moduleFitsSlot(moduleModel, slotId, allowedModuleFolder)
 		if not moduleModel then return false end
-		local moduleFolder = V56_string(moduleModel, "ModuleFolder", "")
-		local enginePosition = V86_moduleEnginePosition(moduleModel)
+		local moduleFolder = garageServer_string(moduleModel, "ModuleFolder", "")
+		local enginePosition = moduleEnginePosition(moduleModel)
 		if slotId == "Engine1" then
 			return enginePosition ~= "Rear"
 		end
@@ -908,14 +908,14 @@ local V56_STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:Get
 		end
 		return true
 	end
-	local V84_HttpService = game:GetService("HttpService")
+	local httpService = game:GetService("HttpService")
 
-	local function V84_generateId(prefix)
-		local guid = string.gsub(V84_HttpService:GenerateGUID(false), "-", "")
+	local function generateId(prefix)
+		local guid = string.gsub(httpService:GenerateGUID(false), "-", "")
 		return tostring(prefix or "id") .. "_" .. string.sub(guid, 1, 12)
 	end
 
-	local function V84_countDictionary(dictionary)
+	local function countGarageEntries(dictionary)
 		local count = 0
 		for _ in pairs(dictionary or {}) do
 			count += 1
@@ -923,11 +923,11 @@ local V56_STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:Get
 		return count
 	end
 
-	local function V84_cloneDictionary(dictionary)
+	local function cloneDictionary(dictionary)
 		local copy = {}
 		for key, value in pairs(dictionary or {}) do
 			if typeof(value) == "table" then
-				copy[key] = V84_cloneDictionary(value)
+				copy[key] = cloneDictionary(value)
 			else
 				copy[key] = value
 			end
@@ -935,9 +935,9 @@ local V56_STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:Get
 		return copy
 	end
 
-	local function V84_nextDisplaySpaceKey(profile)
+	local function nextDisplaySpaceKey(profile)
 		profile.GarageDisplaySpaces = typeof(profile.GarageDisplaySpaces) == "table" and profile.GarageDisplaySpaces or {}
-		local capacity = V82_profileGarageCapacity(profile)
+		local capacity = profileGarageCapacity(profile)
 		for index = 1, math.max(1, capacity) do
 			local key = "Space" .. tostring(index)
 			local space = profile.GarageDisplaySpaces[key]
@@ -946,20 +946,20 @@ local V56_STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:Get
 				return key
 			end
 		end
-		return "Space" .. tostring(V84_countDictionary(profile.GarageDisplaySpaces) + 1)
+		return "Space" .. tostring(countGarageEntries(profile.GarageDisplaySpaces) + 1)
 	end
 
-	local function V84_assignDisplaySpace(profile, vehicleId)
-		local key = V84_nextDisplaySpaceKey(profile)
+	local function assignDisplaySpace(profile, vehicleId)
+		local key = nextDisplaySpaceKey(profile)
 		profile.GarageDisplaySpaces[key] = profile.GarageDisplaySpaces[key] or {}
 		profile.GarageDisplaySpaces[key].VehicleId = vehicleId
 	end
 
-	local function V84_createVehicleInstance(profile, cockpitId, sourceName)
+	local function createVehicleInstance(profile, cockpitId, sourceName)
 		profile.Vehicles = typeof(profile.Vehicles) == "table" and profile.Vehicles or {}
 		profile.OwnedCockpitInstances = typeof(profile.OwnedCockpitInstances) == "table" and profile.OwnedCockpitInstances or {}
-		local cockpitInstanceId = V84_generateId("cockpit")
-		local vehicleId = V84_generateId("vehicle")
+		local cockpitInstanceId = generateId("cockpit")
+		local vehicleId = generateId("vehicle")
 		profile.OwnedCockpitInstances[cockpitInstanceId] = {
 			TemplateId = cockpitId,
 			VehicleId = vehicleId,
@@ -971,24 +971,24 @@ local V56_STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:Get
 			CategoryId = profile.CurrentCategory or "bruiser",
 			CockpitInstanceId = cockpitInstanceId,
 			InstalledModules = {},
-			CockpitColors = V84_cloneDictionary(profile.CockpitColors or {}),
+			CockpitColors = cloneDictionary(profile.CockpitColors or {}),
 			ThrustColor = profile.ThrustColor,
-			Cosmetics = V101_CosmeticCatalog.DefaultState(),
+			Cosmetics = cosmeticCatalog.DefaultState(),
 			Source = sourceName or "PersistencePhase14",
 		}
-		V84_assignDisplaySpace(profile, vehicleId)
+		assignDisplaySpace(profile, vehicleId)
 		return vehicleId, cockpitInstanceId
 	end
 
-	local function V84_ensureInstanceInventory(profile)
+	local function ensureInstanceInventory(profile)
 		-- Creation is owned by explicit cockpit/module purchase paths, never reads or summaries.
-		return V96_ModuleInventory.EnsureShape(profile)
+		return moduleInventory.EnsureShape(profile)
 	end
-	local function V88_syncInstanceDataFromLegacy(profile)
-		local result = V89_GarageProfileRuntime.SyncInstanceDataFromLegacy(profile, {
-			GenerateId = V84_generateId,
-			CloneDictionary = V84_cloneDictionary,
-			EnsureInstanceInventory = V84_ensureInstanceInventory,
+	local function syncInstanceDataFromLegacy(profile)
+		local result = garageProfileRuntime.SyncInstanceDataFromLegacy(profile, {
+			GenerateId = generateId,
+			CloneDictionary = cloneDictionary,
+			EnsureInstanceInventory = ensureInstanceInventory,
 		})
 		local syncCount = typeof(result) == "table" and tonumber(result.SyncCount) or 0
 		local vehicleId = typeof(result) == "table" and result.VehicleId or nil
@@ -1003,24 +1003,24 @@ local V56_STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:Get
 		end
 		return syncCount or 0
 	end
-	local function V76_defaultModuleIdsForCockpit(cockpit)
+	local function defaultModuleIdsForCockpit(cockpit)
 		if not cockpit then return {} end
 		return {
-			Engine = V56_string(cockpit, "DefaultEngineModuleId", nil),
-			RearEngine = V56_string(cockpit, "DefaultRearEngineModuleId", V56_string(cockpit, "DefaultEngineBModuleId", nil)),
-			Stabilisers = V56_string(cockpit, "DefaultStabilisersModuleId", V56_string(cockpit, "DefaultStabiliserModuleId", nil)),
-			Boost = V56_string(cockpit, "DefaultBoostModuleId", nil),
+			Engine = garageServer_string(cockpit, "DefaultEngineModuleId", nil),
+			RearEngine = garageServer_string(cockpit, "DefaultRearEngineModuleId", garageServer_string(cockpit, "DefaultEngineBModuleId", nil)),
+			Stabilisers = garageServer_string(cockpit, "DefaultStabilisersModuleId", garageServer_string(cockpit, "DefaultStabiliserModuleId", nil)),
+			Boost = garageServer_string(cockpit, "DefaultBoostModuleId", nil),
 		}
 	end
 
-	local function V76_grantDefaultModulesForCurrentCockpit(profile)
+	local function grantDefaultModulesForCurrentCockpit(profile)
 		if not profile then return end
-		local cockpit = V56_findCockpit(profile.CurrentCategory, profile.CurrentCockpit)
-		local defaults = V76_defaultModuleIdsForCockpit(cockpit)
+		local cockpit = findCockpit(profile.CurrentCategory, profile.CurrentCockpit)
+		local defaults = defaultModuleIdsForCockpit(cockpit)
 		profile.OwnedModules = typeof(profile.OwnedModules) == "table" and profile.OwnedModules or {}
 		profile.InstalledModules = typeof(profile.InstalledModules) == "table" and profile.InstalledModules or {}
 		for _, moduleId in pairs(defaults) do
-			if moduleId and moduleId ~= "" and V56_findModule(profile.CurrentCategory, moduleId) then
+			if moduleId and moduleId ~= "" and findModule(profile.CurrentCategory, moduleId) then
 				profile.OwnedModules[moduleId] = true
 			end
 		end
@@ -1040,10 +1040,10 @@ local V56_STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:Get
 		end
 	end
 
-	local function V76_coreModulesEquipped(profile)
+	local function coreModulesEquipped(profile)
 		local hasEngine, hasStabilisers, hasBoost = false, false, false
 		for _, moduleId in pairs((profile and profile.InstalledModules) or {}) do
-			local module = V56_findModule(profile.CurrentCategory, moduleId)
+			local module = findModule(profile.CurrentCategory, moduleId)
 			local moduleType = module and module:GetAttribute("ModuleType")
 			if moduleType == nil or moduleType == "" then
 				local text = string.lower(tostring(moduleId or "") .. " " .. tostring(module and module.Name or ""))
@@ -1061,7 +1061,7 @@ local V56_STARTING_CASH = game:GetService("ReplicatedStorage").Config.Garage:Get
 		end
 		return hasEngine and hasStabilisers and hasBoost
 	end
-V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
+attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		if not profile then return end
 		profile.Vehicles = typeof(profile.Vehicles) == "table" and profile.Vehicles or {}
 		profile.OwnedCockpitInstances = typeof(profile.OwnedCockpitInstances) == "table" and profile.OwnedCockpitInstances or {}
@@ -1071,8 +1071,8 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		if not vehicle then return end
 		local cockpitInstance = profile.OwnedCockpitInstances and profile.OwnedCockpitInstances[vehicle.CockpitInstanceId]
 		local cockpitId = cockpitInstance and cockpitInstance.TemplateId or profile.CurrentCockpit
-		local cockpit = V56_findCockpit(vehicle.CategoryId or profile.CurrentCategory, cockpitId)
-		local defaults = V76_defaultModuleIdsForCockpit(cockpit)
+		local cockpit = findCockpit(vehicle.CategoryId or profile.CurrentCategory, cockpitId)
+		local defaults = defaultModuleIdsForCockpit(cockpit)
 		local slotDefaults = {
 			Engine1 = defaults.Engine,
 			Engine2 = defaults.RearEngine,
@@ -1083,14 +1083,14 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		profile.OwnedModules = profile.OwnedModules or {}
 		profile.InstalledModules = profile.InstalledModules or {}
 		for slotId, moduleId in pairs(slotDefaults) do
-			if moduleId and V56_findModule(profile.CurrentCategory, moduleId) and not vehicle.InstalledModules[slotId] then
-				local moduleInstanceId = V84_generateId("module")
+			if moduleId and findModule(profile.CurrentCategory, moduleId) and not vehicle.InstalledModules[slotId] then
+				local moduleInstanceId = generateId("module")
 				profile.OwnedModules[moduleId] = true
 				profile.OwnedModuleInstances[moduleInstanceId] = {
 					TemplateId = moduleId,
 					EquippedVehicleId = vehicleId,
-					UpgradeLevels = V84_cloneDictionary((profile.ModuleUpgradeLevels or {})[moduleId] or {}),
-					Colors = V84_cloneDictionary(profile.CockpitColors or {}),
+					UpgradeLevels = cloneDictionary((profile.ModuleUpgradeLevels or {})[moduleId] or {}),
+					Colors = cloneDictionary(profile.CockpitColors or {}),
 					NeonOwned = false,
 					Source = "IncludedWithCockpit",
 					AcquisitionKind = "IncludedWithCockpit",
@@ -1104,65 +1104,65 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 			end
 		end
 	end
-	local function V84_buyCockpitInstance(profile, args)
+	local function buyCockpitInstance(profile, args)
 		args = typeof(args) == "table" and args or {}
 		local requestedCategory = tostring(args.CategoryId or profile.CurrentCategory or "")
 		if requestedCategory ~= "" then profile.CurrentCategory = requestedCategory end
 		local cockpitId = tostring(args.CockpitId or "")
-		local cockpit = V56_findCockpit(profile.CurrentCategory, cockpitId)
+		local cockpit = findCockpit(profile.CurrentCategory, cockpitId)
 		if not cockpit then
 			return false, "Cockpit not found."
 		end
-		V84_ensureInstanceInventory(profile)
-		if V84_countDictionary(profile.Vehicles) >= V82_profileGarageCapacity(profile) then
+		ensureInstanceInventory(profile)
+		if countGarageEntries(profile.Vehicles) >= profileGarageCapacity(profile) then
 			return false, "Garage full. Buy more garage space to store more vehicles."
 		end
-		local price = V56_number(cockpit, "Price", 0)
+		local price = garageServer_number(cockpit, "Price", 0)
 		if profile.Cash < price then
 			return false, "Not enough cash."
 		end
 		profile.Cash -= price
 		profile.CurrentCockpit = cockpitId
 		profile.OwnedCockpits[cockpitId] = true
-		V76_applyDefaultCockpitColors(profile)
-		local vehicleId = V84_createVehicleInstance(profile, cockpitId, "BuyCockpitInstance")
+		applyDefaultCockpitColors(profile)
+		local vehicleId = createVehicleInstance(profile, cockpitId, "BuyCockpitInstance")
 		profile.CurrentVehicleId = vehicleId
-		V76_grantDefaultModulesForCurrentCockpit(profile)
-						V85_attachDefaultModuleInstancesToCurrentVehicle(profile)
-		V84_ensureInstanceInventory(profile)
+		grantDefaultModulesForCurrentCockpit(profile)
+						attachDefaultModuleInstancesToCurrentVehicle(profile)
+		ensureInstanceInventory(profile)
 		return true, "Cockpit instance purchased."
 	end
-	local function V98_vehicleModuleContext(profile, vehicleId, slotId)
+	local function vehicleModuleContext(profile, vehicleId, slotId)
 		local vehicle=profile.Vehicles and profile.Vehicles[tostring(vehicleId)]
 		if typeof(vehicle)~="table" then return nil,nil,nil,"Vehicle instance not found." end
 		local cockpitInstance=profile.OwnedCockpitInstances and profile.OwnedCockpitInstances[vehicle.CockpitInstanceId]
-		local cockpit=cockpitInstance and V56_findCockpit(vehicle.CategoryId or profile.CurrentCategory,tostring(cockpitInstance.TemplateId or ""))
+		local cockpit=cockpitInstance and findCockpit(vehicle.CategoryId or profile.CurrentCategory,tostring(cockpitInstance.TemplateId or ""))
 		local mount=cockpit and cockpit:FindFirstChild("SLOT_"..tostring(slotId),true)
 		if not cockpit then return vehicle,nil,nil,"Cockpit template not found." end
 		if not mount then return vehicle,cockpit,nil,"Slot not found on this cockpit." end
 		return vehicle,cockpit,mount
 	end
 
-	local function V98_instanceFits(profile,instance,vehicleId,slotId)
-		local vehicle,_,mount,contextMessage=V98_vehicleModuleContext(profile,vehicleId,slotId); if not mount then return false,contextMessage end
-		local module=V56_findModule(vehicle.CategoryId or profile.CurrentCategory,tostring(instance and instance.TemplateId or "")); if not module then return false,"Module template not found." end
-		local slotType=V56_string(mount,"ModuleType",V56_moduleTypeFromText(slotId)); local moduleType=V56_moduleTypeForModel(module)
+	local function instanceFits(profile,instance,vehicleId,slotId)
+		local vehicle,_,mount,contextMessage=vehicleModuleContext(profile,vehicleId,slotId); if not mount then return false,contextMessage end
+		local module=findModule(vehicle.CategoryId or profile.CurrentCategory,tostring(instance and instance.TemplateId or "")); if not module then return false,"Module template not found." end
+		local slotType=garageServer_string(mount,"ModuleType",moduleTypeFromText(slotId)); local moduleType=moduleTypeForModel(module)
 		if slotType and slotType~="" and moduleType~=slotType then return false,"That module does not fit this slot." end
-		if not V86_moduleFitsSlot(module,slotId,V56_string(mount,"AllowedModuleFolder","")) then return false,"That module does not fit this slot." end
+		if not moduleFitsSlot(module,slotId,garageServer_string(mount,"AllowedModuleFolder","")) then return false,"That module does not fit this slot." end
 		return true
 	end
 
-	local function V98_instanceRating(profile,instance,vehicleId)
+	local function instanceRating(profile,instance,vehicleId)
 		for _,key in ipairs({"Rating","PerformanceRating","PerformanceIndex","ModuleRating"}) do local value=tonumber(instance and instance[key]); if value then return value end end
 		local vehicle=profile.Vehicles and profile.Vehicles[tostring(vehicleId or "")]; local categoryId=vehicle and vehicle.CategoryId or profile.CurrentCategory
-		local module=V56_findModule(categoryId,tostring(instance and instance.TemplateId or "")); if not module then return math.huge end
-		for _,key in ipairs({"Rating","PerformanceRating","PerformanceIndex","ModuleRating"}) do local value=V56_number(module,key,nil); if value then return value end end
-		local sourceId,cockpit=V85_findSourceCockpit(profile,module); local sourceRating=cockpit and (V56_number(cockpit,"BaseRating",nil) or V56_number(cockpit,"PerformanceIndex",nil) or V56_number(cockpit,"Rating",nil))
+		local module=findModule(categoryId,tostring(instance and instance.TemplateId or "")); if not module then return math.huge end
+		for _,key in ipairs({"Rating","PerformanceRating","PerformanceIndex","ModuleRating"}) do local value=garageServer_number(module,key,nil); if value then return value end end
+		local sourceId,cockpit=findSourceCockpit(profile,module); local sourceRating=cockpit and (garageServer_number(cockpit,"BaseRating",nil) or garageServer_number(cockpit,"PerformanceIndex",nil) or garageServer_number(cockpit,"Rating",nil))
 		if not sourceRating then local tier=string.upper(tostring(cockpit and cockpit:GetAttribute("Tier") or "")); sourceRating=({E=1000,D=2000,C=3000,B=4000,A=5000,S=6000})[tier] or (sourceId and 7000 or 0) end
-		return sourceRating+V85_moduleVariantOrder(module)
+		return sourceRating+moduleVariantOrder(module)
 	end
 
-	local function V98_coreSlotRequired(profile,vehicleId,slotId)
+	local function coreSlotRequired(profile,vehicleId,slotId)
 		if slotId=="Stabilisers" or slotId=="Boost" then return true end
 		if slotId=="Engine1" or slotId=="Engine2" then
 			local vehicle=profile.Vehicles and profile.Vehicles[tostring(vehicleId)]; local other=slotId=="Engine1" and "Engine2" or "Engine1"
@@ -1171,45 +1171,45 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		return false
 	end
 
-	local function V98_afterModuleTransaction(profile)
+	local function afterModuleTransaction(profile)
 		local current=profile.Vehicles and profile.Vehicles[profile.CurrentVehicleId]; profile.InstalledModules={}
 		for slotId,instanceId in pairs((current and current.InstalledModules) or {}) do local instance=profile.OwnedModuleInstances and profile.OwnedModuleInstances[tostring(instanceId)]; if typeof(instance)=="table" then profile.InstalledModules[slotId]=tostring(instance.TemplateId or "") end end
-		return V97_ModuleInstances.HydrateAll(profile)
+		return moduleInstances.HydrateAll(profile)
 	end
 
-	local function V98_transactionHooks(profile)
+	local function transactionHooks(profile)
 		return {
-			Fits=function(instance,vehicleId,slotId) return V98_instanceFits(profile,instance,vehicleId,slotId) end,
-			Rating=function(instance,vehicleId) return V98_instanceRating(profile,instance,vehicleId) end,
-			IsCoreSlot=V98_coreSlotRequired,
-			After=V98_afterModuleTransaction,
-			Validate=function(value) return V97_ModuleInstances.Validate(value) end,
+			Fits=function(instance,vehicleId,slotId) return instanceFits(profile,instance,vehicleId,slotId) end,
+			Rating=function(instance,vehicleId) return instanceRating(profile,instance,vehicleId) end,
+			IsCoreSlot=coreSlotRequired,
+			After=afterModuleTransaction,
+			Validate=function(value) return moduleInstances.Validate(value) end,
 		}
 	end
 
-	local function V98_captureCurrentModuleState(profile)
-		return V97_ModuleInstances.CaptureAll(profile,V77_ModuleUpgrades.GetLevels(profile._Player))
+	local function captureCurrentModuleState(profile)
+		return moduleInstances.CaptureAll(profile,moduleUpgrades.GetLevels(profile._Player))
 	end
 
-	local function V84_buyModuleInstance(profile,args)
-		args=typeof(args)=="table" and args or {}; V84_ensureInstanceInventory(profile)
+	local function buyModuleInstance(profile,args)
+		args=typeof(args)=="table" and args or {}; ensureInstanceInventory(profile)
 		local moduleId=tostring(args.ModuleId or ""); local vehicleId=tostring(args.VehicleId or profile.CurrentVehicleId or ""); local slotId=tostring(args.SlotId or "")
-		local module=V56_findModule(profile.CurrentCategory,moduleId); if not module then return false,"Module not found." end
-		local lockMessage=V85_moduleLockedMessage(profile,module); if lockMessage then return false,lockMessage end
-		local fits,fitMessage=V98_instanceFits(profile,{TemplateId=moduleId},vehicleId,slotId); if not fits then return false,fitMessage end
-		local captured,captureMessage=V98_captureCurrentModuleState(profile); if not captured then return false,captureMessage end
-		local moduleInstanceId=V84_generateId("module")
+		local module=findModule(profile.CurrentCategory,moduleId); if not module then return false,"Module not found." end
+		local lockMessage=moduleLockedMessage(profile,module); if lockMessage then return false,lockMessage end
+		local fits,fitMessage=instanceFits(profile,{TemplateId=moduleId},vehicleId,slotId); if not fits then return false,fitMessage end
+		local captured,captureMessage=captureCurrentModuleState(profile); if not captured then return false,captureMessage end
+		local moduleInstanceId=generateId("module")
 		local record={TemplateId=moduleId,EquippedVehicleId=nil,UpgradeLevels={},V2UpgradePoints={},Colors={},NeonOwned=false,Source="BuyModuleInstance",AcquisitionKind="Purchase",AcquiredAtUnix=os.time()}
-		return V98_ModuleTransactions.BuyAndEquip(profile,{InstanceId=moduleInstanceId,Record=record,Price=V85_modulePurchasePrice(module),VehicleId=vehicleId,SlotId=slotId},V98_transactionHooks(profile))
+		return moduleTransactions.BuyAndEquip(profile,{InstanceId=moduleInstanceId,Record=record,Price=modulePurchasePrice(module),VehicleId=vehicleId,SlotId=slotId},transactionHooks(profile))
 	end
 
-	local function V84_equipModuleInstance(profile,args)
-		args=typeof(args)=="table" and args or {}; V84_ensureInstanceInventory(profile)
-		local captured,captureMessage=V98_captureCurrentModuleState(profile); if not captured then return false,captureMessage end
-		return V98_ModuleTransactions.Equip(profile,{InstanceId=tostring(args.ModuleInstanceId or ""),VehicleId=tostring(args.VehicleId or profile.CurrentVehicleId or ""),SlotId=tostring(args.SlotId or ""),AllowReassign=args.AllowReassign==true},V98_transactionHooks(profile))
+	local function equipModuleInstance(profile,args)
+		args=typeof(args)=="table" and args or {}; ensureInstanceInventory(profile)
+		local captured,captureMessage=captureCurrentModuleState(profile); if not captured then return false,captureMessage end
+		return moduleTransactions.Equip(profile,{InstanceId=tostring(args.ModuleInstanceId or ""),VehicleId=tostring(args.VehicleId or profile.CurrentVehicleId or ""),SlotId=tostring(args.SlotId or ""),AllowReassign=args.AllowReassign==true},transactionHooks(profile))
 	end
-	local function V89_syncLegacyFromCurrentVehicle(profile)
-		V84_ensureInstanceInventory(profile)
+	local function syncLegacyFromCurrentVehicle(profile)
+		ensureInstanceInventory(profile)
 		local vehicleId = profile.CurrentVehicleId
 		local vehicle = vehicleId and profile.Vehicles and profile.Vehicles[vehicleId]
 		if typeof(vehicle) ~= "table" then
@@ -1227,7 +1227,7 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		profile.CurrentCockpit = cockpitId
 		profile.OwnedCockpits = typeof(profile.OwnedCockpits) == "table" and profile.OwnedCockpits or {}
 		profile.OwnedCockpits[cockpitId] = true
-		profile.CockpitColors = V84_cloneDictionary(vehicle.CockpitColors or profile.CockpitColors or {})
+		profile.CockpitColors = cloneDictionary(vehicle.CockpitColors or profile.CockpitColors or {})
 		profile.ThrustColor = vehicle.ThrustColor or profile.ThrustColor
 		profile.InstalledModules = {}
 		profile.ModuleColors = {}
@@ -1236,17 +1236,17 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 			local moduleInstance = profile.OwnedModuleInstances and profile.OwnedModuleInstances[moduleInstanceId]
 			if typeof(moduleInstance) == "table" and moduleInstance.TemplateId then
 				profile.InstalledModules[slotId] = tostring(moduleInstance.TemplateId)
-				profile.ModuleColors[slotId] = V84_cloneDictionary(moduleInstance.Colors or {})
+				profile.ModuleColors[slotId] = cloneDictionary(moduleInstance.Colors or {})
 				profile.NeonOwned[slotId] = moduleInstance.NeonOwned == true
 			end
 		end
-		local hydrated,hydrateMessage,repairedColours=V97_ModuleInstances.HydrateAll(profile); if not hydrated then return false,hydrateMessage end
+		local hydrated,hydrateMessage,repairedColours=moduleInstances.HydrateAll(profile); if not hydrated then return false,hydrateMessage end
 		return true, "Vehicle selected.", tonumber(repairedColours) or 0
 	end
 
-	local function V89_selectVehicleInstance(profile, args)
+	local function selectVehicleInstance(profile, args)
 		args = typeof(args) == "table" and args or {}
-		V84_ensureInstanceInventory(profile)
+		ensureInstanceInventory(profile)
 		local requestedVehicleId = tostring(args.VehicleId or "")
 		local requestedCockpitId = tostring(args.CockpitId or "")
 		local selectedVehicleId = nil
@@ -1265,17 +1265,17 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 			return false, "Owned vehicle not found."
 		end
 		profile.CurrentVehicleId = selectedVehicleId
-		local ok, message, repairedColours = V89_syncLegacyFromCurrentVehicle(profile)
+		local ok, message, repairedColours = syncLegacyFromCurrentVehicle(profile)
 		if ok then
-			V85_attachDefaultModuleInstancesToCurrentVehicle(profile)
-			local resynced,resyncMessage,resyncRepairs=V89_syncLegacyFromCurrentVehicle(profile)
+			attachDefaultModuleInstancesToCurrentVehicle(profile)
+			local resynced,resyncMessage,resyncRepairs=syncLegacyFromCurrentVehicle(profile)
 			if not resynced then return false,resyncMessage,tonumber(repairedColours) or 0 end
 			repairedColours=(tonumber(repairedColours) or 0)+(tonumber(resyncRepairs) or 0)
 		end
 		return ok, message, repairedColours
 	end
-	local function V102_ensureCustomisationAccess(player,profile)
-		V84_ensureInstanceInventory(profile)
+	local function ensureCustomisationAccess(player,profile)
+		ensureInstanceInventory(profile)
 		local owned,ownedLookup={},{}
 		for vehicleId,vehicle in pairs(profile.Vehicles or {}) do
 			local cockpitInstance=typeof(vehicle)=="table" and vehicle.CockpitInstanceId and profile.OwnedCockpitInstances and profile.OwnedCockpitInstances[vehicle.CockpitInstanceId]
@@ -1289,15 +1289,15 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		local stale=current=="" or ownedLookup[current]~=true
 		local ok,message,repairedColours
 		if stale then
-			ok,message,repairedColours=V89_selectVehicleInstance(profile,{VehicleId=owned[1]})
+			ok,message,repairedColours=selectVehicleInstance(profile,{VehicleId=owned[1]})
 		else
-			ok,message,repairedColours=V89_syncLegacyFromCurrentVehicle(profile)
+			ok,message,repairedColours=syncLegacyFromCurrentVehicle(profile)
 		end
 		if not ok then return {Success=false,Message=message or "Owned vehicle selection could not be repaired.",OwnedVehicleCount=#owned} end
-		local valid,validationMessage=V97_ModuleInstances.Validate(profile)
+		local valid,validationMessage=moduleInstances.Validate(profile)
 		if not valid then return {Success=false,Message="Owned vehicle state is invalid: "..tostring(validationMessage),OwnedVehicleCount=#owned} end
 		if stale or (tonumber(repairedColours) or 0)>0 then
-			V80_mirrorLegacyProfileToPersistence(player,profile,"EnsureCustomisationAccess",true)
+			mirrorLegacyProfileToPersistence(player,profile,"EnsureCustomisationAccess",true)
 		end
 		return {
 			Success=true,
@@ -1309,45 +1309,45 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		}
 	end
 
-	local V102_accessBinding=game:GetService("ServerStorage"):WaitForChild("Runtime"):WaitForChild("Garage"):FindFirstChild("GarageCustomisationAccessBinding") or Instance.new("BindableFunction")
-	V102_accessBinding.Name="GarageCustomisationAccessBinding"
-	V102_accessBinding.Parent=game:GetService("ServerStorage"):WaitForChild("Runtime"):WaitForChild("Garage")
-	V102_accessBinding.OnInvoke=function(player)
+	local accessBinding=game:GetService("ServerStorage"):WaitForChild("Runtime"):WaitForChild("Garage"):FindFirstChild("GarageCustomisationAccessBinding") or Instance.new("BindableFunction")
+	accessBinding.Name="GarageCustomisationAccessBinding"
+	accessBinding.Parent=game:GetService("ServerStorage"):WaitForChild("Runtime"):WaitForChild("Garage")
+	accessBinding.OnInvoke=function(player)
 		local ok,result=pcall(function()
-			local profile=V56_getProfile(player); profile._Player=player
-			return V102_ensureCustomisationAccess(player,profile)
+			local profile=getProfile(player); profile._Player=player
+			return ensureCustomisationAccess(player,profile)
 		end)
 		if ok and typeof(result)=="table" then return result end
 		warn("[Customisation Access] binding failed: "..tostring(result))
 		return {Success=false,Message="Customisation access is unavailable."}
 	end
-	local function V90_cloneForSummary(value)
+	local function cloneForSummary(value)
 		if typeof(value) == "table" then
 			local copy = {}
 			for key, child in pairs(value) do
-				copy[key] = V90_cloneForSummary(child)
+				copy[key] = cloneForSummary(child)
 			end
 			return copy
 		end
 		return value
 	end
 
-	local function V90_restoreProfileSelection(profile, snapshot)
+	local function restoreProfileSelection(profile, snapshot)
 		profile.CurrentVehicleId = snapshot.CurrentVehicleId
 		profile.CurrentCategory = snapshot.CurrentCategory
 		profile.CurrentCockpit = snapshot.CurrentCockpit
-		profile.CockpitColors = V90_cloneForSummary(snapshot.CockpitColors)
+		profile.CockpitColors = cloneForSummary(snapshot.CockpitColors)
 		profile.ThrustColor = snapshot.ThrustColor
-		profile.InstalledModules = V90_cloneForSummary(snapshot.InstalledModules)
-		profile.ModuleColors = V90_cloneForSummary(snapshot.ModuleColors)
-		profile.NeonOwned = V90_cloneForSummary(snapshot.NeonOwned)
+		profile.InstalledModules = cloneForSummary(snapshot.InstalledModules)
+		profile.ModuleColors = cloneForSummary(snapshot.ModuleColors)
+		profile.NeonOwned = cloneForSummary(snapshot.NeonOwned)
 	end
-	local function V90_numberAttribute(instance, name, fallback)
+	local function numberAttribute(instance, name, fallback)
 		local value = instance and instance:GetAttribute(name)
 		return typeof(value) == "number" and value or fallback
 	end
 
-	local function V90_addModuleStats(totals, module)
+	local function addModuleStats(totals, module)
 		if not module then return totals end
 		for _, name in ipairs({ "TopSpeed", "Acceleration", "Handling", "Drift", "Braking", "Weight", "Boost", "BoostForce", "EngineOutput", "LateralGrip", "SteeringResponse", "HoverStability", "DriftControl", "DriftGrip", "DriftChargeRate", "BrakingForce", "BoostDuration", "BoostRecharge", "BoostRechargeDelay", "BoostEfficiency", "Drag", "Downforce" }) do
 			local value = module:GetAttribute(name)
@@ -1362,39 +1362,39 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		return totals
 	end
 
-	local function V90_summaryTotals(profile)
-		if typeof(V56_totalStats) == "function" then
-			return V56_totalStats(profile)
+	local function summaryTotals(profile)
+		if typeof(totalStats) == "function" then
+			return totalStats(profile)
 		end
-		local cockpit = V56_findCockpit(profile.CurrentCategory, profile.CurrentCockpit)
+		local cockpit = findCockpit(profile.CurrentCategory, profile.CurrentCockpit)
 		local totals = {
-			TopSpeed = V90_numberAttribute(cockpit, "TopSpeed", V90_numberAttribute(cockpit, "MaxSpeed", 126)),
-			Acceleration = V90_numberAttribute(cockpit, "Acceleration", 42),
-			Handling = V90_numberAttribute(cockpit, "Handling", 48),
-			Drift = V90_numberAttribute(cockpit, "Drift", 46),
-			Braking = V90_numberAttribute(cockpit, "Braking", 44),
-			Weight = V90_numberAttribute(cockpit, "Weight", 118),
-			Boost = V90_numberAttribute(cockpit, "Boost", 0),
-			BoostDuration = V90_numberAttribute(cockpit, "BoostDuration", 2),
-			BoostRecharge = V90_numberAttribute(cockpit, "BoostRecharge", 9),
-			BoostRechargeDelay = V90_numberAttribute(cockpit, "BoostRechargeDelay", 0),
+			TopSpeed = numberAttribute(cockpit, "TopSpeed", numberAttribute(cockpit, "MaxSpeed", 126)),
+			Acceleration = numberAttribute(cockpit, "Acceleration", 42),
+			Handling = numberAttribute(cockpit, "Handling", 48),
+			Drift = numberAttribute(cockpit, "Drift", 46),
+			Braking = numberAttribute(cockpit, "Braking", 44),
+			Weight = numberAttribute(cockpit, "Weight", 118),
+			Boost = numberAttribute(cockpit, "Boost", 0),
+			BoostDuration = numberAttribute(cockpit, "BoostDuration", 2),
+			BoostRecharge = numberAttribute(cockpit, "BoostRecharge", 9),
+			BoostRechargeDelay = numberAttribute(cockpit, "BoostRechargeDelay", 0),
 		}
 		for _, moduleId in pairs(profile.InstalledModules or {}) do
-			local module = V56_findModule(profile.CurrentCategory, moduleId)
+			local module = findModule(profile.CurrentCategory, moduleId)
 			if module then
 				for _, stat in ipairs({ "TopSpeed", "Acceleration", "Handling", "Drift", "Braking", "Weight", "Boost", "BoostDuration", "BoostRecharge", "BoostRechargeDelay" }) do
-					totals[stat] = (totals[stat] or 0) + V90_numberAttribute(module, stat, 0)
+					totals[stat] = (totals[stat] or 0) + numberAttribute(module, stat, 0)
 				end
 			end
 		end
-		local category = V56_categoryFolder(profile.CurrentCategory)
+		local category = garageServer_categoryFolder(profile.CurrentCategory)
 		local upgradeRoot = category and category:FindFirstChild("UPGRADES_InvisiblePerformance")
 		if upgradeRoot then
 			for upgradeId, level in pairs(profile.UpgradeLevels or {}) do
 				local upgrade = upgradeRoot:FindFirstChild("UPGRADE_" .. tostring(upgradeId))
 				if upgrade then
-					local statName = V56_string(upgrade, "StatName", V56_string(upgrade, "Stat", nil))
-					local amount = V56_number(upgrade, "AmountPerLevel", V56_number(upgrade, "Amount", 0))
+					local statName = garageServer_string(upgrade, "StatName", garageServer_string(upgrade, "Stat", nil))
+					local amount = garageServer_number(upgrade, "AmountPerLevel", garageServer_number(upgrade, "Amount", 0))
 					if statName then
 						totals[statName] = (totals[statName] or 0) + amount * (tonumber(level) or 0)
 					end
@@ -1404,32 +1404,32 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		return totals
 	end
 
-	local function V90_vehicleSummaries(profile,summaryPlayer)
-		V84_ensureInstanceInventory(profile)
+	local function vehicleSummaries(profile,summaryPlayer)
+		ensureInstanceInventory(profile)
 		local snapshot = {
 			CurrentVehicleId = profile.CurrentVehicleId,
 			CurrentCategory = profile.CurrentCategory,
 			CurrentCockpit = profile.CurrentCockpit,
-			CockpitColors = V90_cloneForSummary(profile.CockpitColors or {}),
+			CockpitColors = cloneForSummary(profile.CockpitColors or {}),
 			ThrustColor = profile.ThrustColor,
-			InstalledModules = V90_cloneForSummary(profile.InstalledModules or {}),
-			ModuleColors = V90_cloneForSummary(profile.ModuleColors or {}),
-			NeonOwned = V90_cloneForSummary(profile.NeonOwned or {}),
+			InstalledModules = cloneForSummary(profile.InstalledModules or {}),
+			ModuleColors = cloneForSummary(profile.ModuleColors or {}),
+			NeonOwned = cloneForSummary(profile.NeonOwned or {}),
 		}
 		local summaries = {}
 		for vehicleId, vehicle in pairs(profile.Vehicles or {}) do
 			if typeof(vehicle) == "table" then
 				profile.CurrentVehicleId = vehicleId
-				local ok = V89_syncLegacyFromCurrentVehicle(profile)
+				local ok = syncLegacyFromCurrentVehicle(profile)
 				if ok then
-					local cockpit = V56_findCockpit(profile.CurrentCategory, profile.CurrentCockpit)
-					local performance = V77_ModuleUpgrades.CalculateProfile(
+					local cockpit = findCockpit(profile.CurrentCategory, profile.CurrentCockpit)
+					local performance = moduleUpgrades.CalculateProfile(
 						summaryPlayer or profile._Player,
 						profile,
-						V90_summaryTotals(profile),
+						summaryTotals(profile),
 						cockpit,
-						V56_findModule,
-						V56_moduleTypeForModel
+						findModule,
+						moduleTypeForModel
 					)
 					summaries[vehicleId] = {
 						VehicleId = vehicleId,
@@ -1441,10 +1441,10 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 				end
 			end
 		end
-		V90_restoreProfileSelection(profile, snapshot)
+		restoreProfileSelection(profile, snapshot)
 		return summaries
 	end
-	local function V56_defaultSlots(cockpit)
+	local function defaultSlots(cockpit)
 		local slots = {}
 		local root = cockpit and cockpit:FindFirstChild("ModuleSlots", true)
 		if root then
@@ -1452,12 +1452,12 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 				if slot:IsA("Folder") or slot:IsA("Model") or slot:IsA("BasePart") then
 					local slotId = string.gsub(slot.Name, "^SLOT_", "")
 					table.insert(slots, {
-						SlotId = V56_string(slot, "SlotId", slotId),
-						DisplayName = V56_string(slot, "DisplayName", slotId),
-						ModuleType = V56_string(slot, "ModuleType", V56_moduleTypeFromText(slotId)),
-						AllowedModuleFolder = V56_string(slot, "AllowedModuleFolder", ""),
-						EnginePosition = V56_string(slot, "EnginePosition", ""),
-						Order = V56_number(slot, "Order", #slots + 1),
+						SlotId = garageServer_string(slot, "SlotId", slotId),
+						DisplayName = garageServer_string(slot, "DisplayName", slotId),
+						ModuleType = garageServer_string(slot, "ModuleType", moduleTypeFromText(slotId)),
+						AllowedModuleFolder = garageServer_string(slot, "AllowedModuleFolder", ""),
+						EnginePosition = garageServer_string(slot, "EnginePosition", ""),
+						Order = garageServer_number(slot, "Order", #slots + 1),
 					})
 				end
 			end
@@ -1480,7 +1480,7 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		return slots
 	end
 
-	local function V56_nearestModuleFolder(root, item)
+	local function nearestModuleFolder(root, item)
 		local current = item and item.Parent
 		local best = ""
 		while current and current ~= root do
@@ -1492,7 +1492,7 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		return best
 	end
 
-	local function V56_moduleCatalogVisible(item)
+	local function moduleCatalogVisible(item)
 		if item:GetAttribute("RetiredFromCatalog") == true then
 			return false
 		end
@@ -1505,10 +1505,10 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		return true
 	end
 
-	local function V56_readModule(item, root)
-		local moduleType = V56_moduleTypeForModel(item, root)
-		local moduleFolder = V56_string(item, "ModuleFolder", V56_nearestModuleFolder(root, item))
-		local enginePosition = V56_string(item, "EnginePosition", "")
+	local function readModule(item, root)
+		local moduleType = moduleTypeForModel(item, root)
+		local moduleFolder = garageServer_string(item, "ModuleFolder", nearestModuleFolder(root, item))
+		local enginePosition = garageServer_string(item, "EnginePosition", "")
 		local rearEngine = item:GetAttribute("RearEngine") == true
 		if enginePosition == "" then
 			if rearEngine or moduleFolder == "Engines_B" or string.find(tostring(item:GetAttribute("ModuleId") or item.Name or ""), "ENGINE_B", 1, true) then
@@ -1528,40 +1528,40 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 			end
 		end
 		return {
-			ModuleId = V56_string(item, "ModuleId", item.Name),
-			DisplayName = V56_string(item, "DisplayName", V56_string(item, "ModuleName", item.Name)),
+			ModuleId = garageServer_string(item, "ModuleId", item.Name),
+			DisplayName = garageServer_string(item, "DisplayName", garageServer_string(item, "ModuleName", item.Name)),
 			ModuleType = moduleType,
-			ModuleSlot = V56_string(item, "ModuleSlot", moduleType),
+			ModuleSlot = garageServer_string(item, "ModuleSlot", moduleType),
 			ModuleFolder = moduleFolder,
 			EnginePosition = enginePosition,
 			RearEngine = rearEngine or enginePosition == "Rear",
-			SourceCockpitId = V85_moduleSourceCockpitId(item),
-			SourceCockpitDisplayName = (select(2, V85_findSourceCockpit(nil, item)) and V56_string(select(2, V85_findSourceCockpit(nil, item)), "DisplayName", V85_moduleSourceCockpitId(item))) or V85_moduleSourceCockpitId(item),
-			VariantName = V85_moduleVariantName(item),
-			VariantOrder = V85_moduleVariantOrder(item),
-			Price = V85_modulePurchasePrice(item),
+			SourceCockpitId = moduleSourceCockpitId(item),
+			SourceCockpitDisplayName = (select(2, findSourceCockpit(nil, item)) and garageServer_string(select(2, findSourceCockpit(nil, item)), "DisplayName", moduleSourceCockpitId(item))) or moduleSourceCockpitId(item),
+			VariantName = moduleVariantName(item),
+			VariantOrder = moduleVariantOrder(item),
+			Price = modulePurchasePrice(item),
 			NeonAvailable = neonAvailable,
-			NeonPrice = math.max(0, V56_number(item, "NeonPrice", 5000)),
-			Power = V56_number(item, "Power", 0),
-			Weight = V56_number(item, "Weight", 0),
-			TopSpeed = V56_number(item, "TopSpeed", 0),
-			Acceleration = V56_number(item, "Acceleration", 0),
-			Handling = V56_number(item, "Handling", 0),
-			Drift = V56_number(item, "Drift", 0),
-			Braking = V56_number(item, "Braking", 0),
-			Boost = V56_number(item, "Boost", 0),
-			BoostDuration = V56_number(item, "BoostDuration", 0),
-			BoostRecharge = V56_number(item, "BoostRecharge", 0),
-			BoostRechargeDelay = V56_number(item, "BoostRechargeDelay", 0),
-			Upgrades = V77_ModuleUpgrades.CatalogForModuleType(moduleType, item),
+			NeonPrice = math.max(0, garageServer_number(item, "NeonPrice", 5000)),
+			Power = garageServer_number(item, "Power", 0),
+			Weight = garageServer_number(item, "Weight", 0),
+			TopSpeed = garageServer_number(item, "TopSpeed", 0),
+			Acceleration = garageServer_number(item, "Acceleration", 0),
+			Handling = garageServer_number(item, "Handling", 0),
+			Drift = garageServer_number(item, "Drift", 0),
+			Braking = garageServer_number(item, "Braking", 0),
+			Boost = garageServer_number(item, "Boost", 0),
+			BoostDuration = garageServer_number(item, "BoostDuration", 0),
+			BoostRecharge = garageServer_number(item, "BoostRecharge", 0),
+			BoostRechargeDelay = garageServer_number(item, "BoostRechargeDelay", 0),
+			Upgrades = moduleUpgrades.CatalogForModuleType(moduleType, item),
 		}
 	end
-	local function V56_catalog()
+	local function garageServer_catalog()
 		local catalog = {
 			Categories = {},
 			PaintPresets = {},
-			VehicleCosmetics = V101_CosmeticCatalog.List(),
-			PreviewPosition = V56_PREVIEW_POS,
+			VehicleCosmetics = cosmeticCatalog.List(),
+			PreviewPosition = PREVIEW_POS,
 		}
 		local presetRoot = game:GetService("ReplicatedStorage"):FindFirstChild("Config")
 			and game:GetService("ReplicatedStorage"):WaitForChild("Config"):FindFirstChild("UI")
@@ -1586,10 +1586,10 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 			}
 		end
 
-		for _, categoryFolder in ipairs(V56_categoriesRoot:GetChildren()) do
+		for _, categoryFolder in ipairs(categoriesRoot:GetChildren()) do
 			if categoryFolder:IsA("Folder") or categoryFolder:IsA("Model") then
-				local category = V56_primitiveAttributes(categoryFolder)
-				category.CategoryId = category.CategoryId or V56_slug(categoryFolder.Name)
+				local category = primitiveAttributes(categoryFolder)
+				category.CategoryId = category.CategoryId or slug(categoryFolder.Name)
 				category.DisplayName = category.DisplayName or categoryFolder.Name
 				category.Cockpits = {}
 				category.Slots = {}
@@ -1602,28 +1602,28 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 					for _, cockpit in ipairs(cockpitRoot:GetDescendants()) do
 						if cockpit:IsA("Model") and cockpit:GetAttribute("CockpitId") then
 							firstCockpit = firstCockpit or cockpit
-							local item = V56_primitiveAttributes(cockpit)
+							local item = primitiveAttributes(cockpit)
 							item.CockpitId = item.CockpitId or cockpit.Name
 							item.DisplayName = item.DisplayName or cockpit.Name
-							item.Price = V56_number(cockpit, "Price", 0)
-							item.TopSpeed = V56_number(cockpit, "TopSpeed", V56_number(cockpit, "MaxSpeed", 126))
-							item.Acceleration = V56_number(cockpit, "Acceleration", 42)
-							item.Handling = V56_number(cockpit, "Handling", 48)
-							item.Drift = V56_number(cockpit, "Drift", 46)
-							item.Braking = V56_number(cockpit, "Braking", 44)
-							item.Weight = V56_number(cockpit, "Weight", 118)
-							item.Boost = V56_number(cockpit, "Boost", 0)
+							item.Price = garageServer_number(cockpit, "Price", 0)
+							item.TopSpeed = garageServer_number(cockpit, "TopSpeed", garageServer_number(cockpit, "MaxSpeed", 126))
+							item.Acceleration = garageServer_number(cockpit, "Acceleration", 42)
+							item.Handling = garageServer_number(cockpit, "Handling", 48)
+							item.Drift = garageServer_number(cockpit, "Drift", 46)
+							item.Braking = garageServer_number(cockpit, "Braking", 44)
+							item.Weight = garageServer_number(cockpit, "Weight", 118)
+							item.Boost = garageServer_number(cockpit, "Boost", 0)
 							table.insert(category.Cockpits, item)
 						end
 					end
 				end
-				category.Slots = V56_defaultSlots(firstCockpit)
+				category.Slots = defaultSlots(firstCockpit)
 
 				local moduleRoot = categoryFolder:FindFirstChild("MODULES_InterchangeableWithinCategory")
 				if moduleRoot then
 					for _, module in ipairs(moduleRoot:GetDescendants()) do
-						if module:IsA("Model") and module:GetAttribute("ModuleId") and V56_moduleCatalogVisible(module) then
-							local item = V56_readModule(module, moduleRoot)
+						if module:IsA("Model") and module:GetAttribute("ModuleId") and moduleCatalogVisible(module) then
+							local item = readModule(module, moduleRoot)
 							category.Modules[item.ModuleType] = category.Modules[item.ModuleType] or {}
 							table.insert(category.Modules[item.ModuleType], item)
 						end
@@ -1632,7 +1632,7 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 				local upgradeRoot = categoryFolder:FindFirstChild("UPGRADES_InvisiblePerformance")
 				if upgradeRoot then
 					for _, upgrade in ipairs(upgradeRoot:GetChildren()) do
-						table.insert(category.Upgrades, V56_primitiveAttributes(upgrade))
+						table.insert(category.Upgrades, primitiveAttributes(upgrade))
 					end
 				end
 				table.sort(category.Cockpits, function(a, b)
@@ -1649,20 +1649,20 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		return catalog
 	end
 
-	local function V56_totalStats(profile)
-		V56_normalizeProfile(profile)
-		local cockpit = V56_findCockpit(profile.CurrentCategory, profile.CurrentCockpit)
+	local function totalStats(profile)
+		normalizeProfile(profile)
+		local cockpit = findCockpit(profile.CurrentCategory, profile.CurrentCockpit)
 		local totals = {
-			TopSpeed = V56_number(cockpit, "TopSpeed", V56_number(cockpit, "MaxSpeed", 126)),
-			Acceleration = V56_number(cockpit, "Acceleration", 42),
-			Handling = V56_number(cockpit, "Handling", 48),
-			Drift = V56_number(cockpit, "Drift", 46),
-			Braking = V56_number(cockpit, "Braking", 44),
-			Weight = V56_number(cockpit, "Weight", 118),
-			Boost = V56_number(cockpit, "Boost", 0),
-			BoostDuration = V56_number(cockpit, "BoostDuration", 2),
-			BoostRecharge = V56_number(cockpit, "BoostRecharge", 9),
-			BoostRechargeDelay = V56_number(cockpit, "BoostRechargeDelay", 0),
+			TopSpeed = garageServer_number(cockpit, "TopSpeed", garageServer_number(cockpit, "MaxSpeed", 126)),
+			Acceleration = garageServer_number(cockpit, "Acceleration", 42),
+			Handling = garageServer_number(cockpit, "Handling", 48),
+			Drift = garageServer_number(cockpit, "Drift", 46),
+			Braking = garageServer_number(cockpit, "Braking", 44),
+			Weight = garageServer_number(cockpit, "Weight", 118),
+			Boost = garageServer_number(cockpit, "Boost", 0),
+			BoostDuration = garageServer_number(cockpit, "BoostDuration", 2),
+			BoostRecharge = garageServer_number(cockpit, "BoostRecharge", 9),
+			BoostRechargeDelay = garageServer_number(cockpit, "BoostRechargeDelay", 0),
 		}
 		local statNames = {
 			"TopSpeed",
@@ -1677,21 +1677,21 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 			"BoostRechargeDelay",
 		}
 		for _, moduleId in pairs(profile.InstalledModules or {}) do
-			local module = V56_findModule(profile.CurrentCategory, moduleId)
+			local module = findModule(profile.CurrentCategory, moduleId)
 			if module then
 				for _, stat in ipairs(statNames) do
-					totals[stat] = (totals[stat] or 0) + V56_number(module, stat, 0)
+					totals[stat] = (totals[stat] or 0) + garageServer_number(module, stat, 0)
 				end
 			end
 		end
-		local category = V56_categoryFolder(profile.CurrentCategory)
+		local category = garageServer_categoryFolder(profile.CurrentCategory)
 		local upgradeRoot = category and category:FindFirstChild("UPGRADES_InvisiblePerformance")
 		if upgradeRoot then
 			for upgradeId, level in pairs(profile.UpgradeLevels or {}) do
 				local upgrade = upgradeRoot:FindFirstChild("UPGRADE_" .. tostring(upgradeId))
 				if upgrade then
-					local statName = V56_string(upgrade, "StatName", V56_string(upgrade, "Stat", nil))
-					local amount = V56_number(upgrade, "AmountPerLevel", V56_number(upgrade, "Amount", 0))
+					local statName = garageServer_string(upgrade, "StatName", garageServer_string(upgrade, "Stat", nil))
+					local amount = garageServer_number(upgrade, "AmountPerLevel", garageServer_number(upgrade, "Amount", 0))
 					if statName then
 						totals[statName] = (totals[statName] or 0) + amount * (tonumber(level) or 0)
 					end
@@ -1701,9 +1701,9 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		return totals
 	end
 
-	local function V56_profileForClient(profile)
-		V56_normalizeProfile(profile)
-		V101_VehicleCosmetics.Ensure(profile)
+	local function profileForClient(profile)
+		normalizeProfile(profile)
+		vehicleCosmetics.Ensure(profile)
 		return {
 			Cash = profile.Cash,
 			CurrentCategory = profile.CurrentCategory,
@@ -1712,7 +1712,7 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 			Vehicles = profile.Vehicles,
 			OwnedCockpitInstances = profile.OwnedCockpitInstances,
 			OwnedModuleInstances = profile.OwnedModuleInstances,
-			VehicleSummaries = V90_vehicleSummaries(profile),
+			VehicleSummaries = vehicleSummaries(profile),
 			OwnedCockpits = profile.OwnedCockpits,
 			CockpitColors = profile.CockpitColors,
 			ThrustColor = profile.ThrustColor,
@@ -1722,27 +1722,27 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 			NeonOwned = profile.NeonOwned,
 			UpgradeLevels = profile.UpgradeLevels,
 			Garage = {
-				Capacity = V82_profileGarageCapacity(profile),
-				MaxCapacity = V82_maxGarageCapacity(),
-				NextCapacityUpgradePrice = V83_nextGaragePropertyPrice(profile) or V82_capacityUpgradePrice(profile),
-				NextGaragePropertyPrice = V83_nextGaragePropertyPrice(profile),
-				OwnedVehicleCount = V81_ownedCockpitCount(profile),
-				OwnedGarageProperties = V83_ownedGarageProperties(profile),
+				Capacity = profileGarageCapacity(profile),
+				MaxCapacity = maxGarageCapacity(),
+				NextCapacityUpgradePrice = nextGaragePropertyPrice(profile) or capacityUpgradePrice(profile),
+				NextGaragePropertyPrice = nextGaragePropertyPrice(profile),
+				OwnedVehicleCount = ownedCockpitCount(profile),
+				OwnedGarageProperties = ownedGarageProperties(profile),
 			},
-			ModuleUpgradeLevels = V77_ModuleUpgrades.GetLevels(profile._Player),
-			Performance = V77_ModuleUpgrades.CalculateProfile(
+			ModuleUpgradeLevels = moduleUpgrades.GetLevels(profile._Player),
+			Performance = moduleUpgrades.CalculateProfile(
 				profile._Player,
 				profile,
-				V56_totalStats(profile),
-				V56_findCockpit(profile.CurrentCategory, profile.CurrentCockpit),
-				V56_findModule,
-				V56_moduleTypeForModel
+				totalStats(profile),
+				findCockpit(profile.CurrentCategory, profile.CurrentCockpit),
+				findModule,
+				moduleTypeForModel
 			),
-			TotalStats = V56_totalStats(profile),
+			TotalStats = totalStats(profile),
 		}
 	end
 
-	local function V56_resolvePaintChannel(object)
+	local function resolvePaintChannel(object)
 		local current = object
 		while current do
 			if current.Name == "PRIMARY_ReplaceWithPrimaryMeshes" then return "Primary" end
@@ -1760,7 +1760,7 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		end
 	end
 
-	local function V56_pathHas(object, text)
+	local function pathHas(object, text)
 		text = string.lower(text)
 		local current = object
 		while current do
@@ -1770,11 +1770,11 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		return false
 	end
 
-	local function V56_applyColors(model, colors, neonVisible)
+	local function applyColors(model, colors, neonVisible)
 		colors = colors or {}
 		for _, object in ipairs(model:GetDescendants()) do
 			if object:IsA("BasePart") then
-				local channel = V56_resolvePaintChannel(object)
+				local channel = resolvePaintChannel(object)
 				if object:GetAttribute("TemplateRole") == "FixedSlotMount" then
 					object.Transparency = 1
 					object.CanCollide = false
@@ -1786,9 +1786,9 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 					object.Transparency = 0
 				elseif channel == "Neon" then
 					local colour = colors.Neon or Color3.fromRGB(255, 255, 255)
-					if V56_pathHas(object, "cockpit") then
-						if V56_pathHas(object, "front") then colour = colors.FrontLights or Color3.fromRGB(252, 250, 255) end
-						if V56_pathHas(object, "rear") or V56_pathHas(object, "back") then colour = colors.RearLights or Color3.fromRGB(255, 116, 116) end
+					if pathHas(object, "cockpit") then
+						if pathHas(object, "front") then colour = colors.FrontLights or Color3.fromRGB(252, 250, 255) end
+						if pathHas(object, "rear") or pathHas(object, "back") then colour = colors.RearLights or Color3.fromRGB(255, 116, 116) end
 					end
 					object.Color = colour
 					object.Material = Enum.Material.Neon
@@ -1830,19 +1830,19 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		end
 	end
 
-	local function V56_clearPlayerVehicle(player)
-		for _, vehicle in ipairs(V56_vehiclesRoot:GetChildren()) do
+	local function clearPlayerVehicle(player)
+		for _, vehicle in ipairs(vehiclesRoot:GetChildren()) do
 			if vehicle:GetAttribute("OwnerUserId") == player.UserId then vehicle:Destroy() end
 		end
 	end
 
-	local function V56_getSlotMount(vehicle, slotId)
+	local function getSlotMount(vehicle, slotId)
 		local slotRoot = vehicle and vehicle:FindFirstChild("ModuleSlots", true)
 		local slot = slotRoot and slotRoot:FindFirstChild("SLOT_" .. tostring(slotId), true)
 		return slot and slot:FindFirstChild("Mount_DoNotRename")
 	end
 
-	local function V56_pivotModuleToSlot(moduleClone, mount)
+	local function pivotModuleToSlot(moduleClone, mount)
 		local root = moduleClone.PrimaryPart or moduleClone:FindFirstChild("ModuleRoot_DoNotRename", true)
 		if root then moduleClone.PrimaryPart = root end
 		local moduleAttachment = moduleClone:FindFirstChild("MountAttachment", true)
@@ -1854,7 +1854,7 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		end
 	end
 
-	local function V56_partAlreadyRootWelded(part, root)
+	local function partAlreadyRootWelded(part, root)
 		for _, child in ipairs(part:GetChildren()) do
 			if child:IsA("WeldConstraint") then
 				local part0 = child.Part0
@@ -1867,7 +1867,7 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		return false
 	end
 
-	local function V56_weldVehicle(model, root)
+	local function weldVehicle(model, root)
 		for _, descendant in ipairs(model:GetDescendants()) do
 			if descendant:IsA("BasePart") then
 				-- Skip cockpit spotlight lens parts: they already have PhaseAB_CockpitLightLensRootWeld
@@ -1884,7 +1884,7 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 				descendant.CanQuery = false
 				if descendant ~= root then
 					descendant.Massless = true
-					if not V56_partAlreadyRootWelded(descendant, root) then
+					if not partAlreadyRootWelded(descendant, root) then
 						local weld = Instance.new("WeldConstraint")
 						weld.Name = "V56_FixedVehicleWeld"
 						weld.Part0 = root
@@ -1896,7 +1896,7 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		end
 	end
 
-	local function V56_makeDriverSeat(vehicle, root)
+	local function makeDriverSeat(vehicle, root)
 		local seat = vehicle:FindFirstChild("DriverSeat", true)
 		if seat and seat:IsA("VehicleSeat") then
 			seat.Transparency = 1
@@ -1925,7 +1925,7 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		return seat
 	end
 
-	local function V56_seatPlayer(player, vehicle, seat)
+	local function seatPlayer(player, vehicle, seat)
 		local root = vehicle.PrimaryPart or vehicle:FindFirstChild("CockpitRoot_DoNotRename", true)
 		if root then pcall(function() root:SetNetworkOwner(player) end) end
 		local character = player.Character
@@ -1938,7 +1938,7 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		end
 	end
 
-	local function V56_folderHasBuyableNeon(folder)
+	local function folderHasBuyableNeon(folder)
 		if not folder then return false end
 		for _, descendant in ipairs(folder:GetDescendants()) do
 			if descendant:IsA("BasePart") or descendant:IsA("ParticleEmitter") or descendant:IsA("Beam") or descendant:IsA("Trail") or descendant:IsA("PointLight") or descendant:IsA("SpotLight") or descendant:IsA("SurfaceLight") then return true end
@@ -1946,28 +1946,28 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		return false
 	end
 
-	local function V56_buildVehicle(player, profile, spawnCFrameOverride)
-		V56_normalizeProfile(profile)
-		local cockpit = V56_findCockpit(profile.CurrentCategory, profile.CurrentCockpit)
+	local function buildVehicle(player, profile, spawnCFrameOverride)
+		normalizeProfile(profile)
+		local cockpit = findCockpit(profile.CurrentCategory, profile.CurrentCockpit)
 		if not cockpit then return nil, "Cockpit template not found." end
-		V56_clearPlayerVehicle(player)
+		clearPlayerVehicle(player)
 		local vehicle = cockpit:Clone()
 		vehicle.Name = player.Name .. "_FixedSlotHovercar"
 		vehicle:SetAttribute("OwnerUserId", player.UserId)
-		vehicle:SetAttribute("OwnedVehicleId", tostring(profile.CurrentVehicleId or "")) -- NTR_RUNTIME_OWNED_VEHICLE_ID_V1
+		vehicle:SetAttribute("OwnedVehicleId", tostring(profile.CurrentVehicleId or "")) 
 		vehicle:SetAttribute("CategoryId", profile.CurrentCategory)
 		vehicle:SetAttribute("CockpitId", profile.CurrentCockpit)
 		vehicle:SetAttribute("ThrustColor", profile.ThrustColor)
-		vehicle:SetAttribute("HoverHeight", math.clamp(require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Vehicles"):WaitForChild("DriveTuning")).Read().HoverHeightStuds, 0.5, 8)) -- NTR_DRIVING_HOVER_HEIGHT_CONFIG_ATTRIBUTE_V1
+		vehicle:SetAttribute("HoverHeight", math.clamp(require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Vehicles"):WaitForChild("DriveTuning")).Read().HoverHeightStuds, 0.5, 8)) 
 		vehicle:SetAttribute("DriveReady", true)
 		vehicle:SetAttribute("DriverUserId", player.UserId)
-		vehicle.Parent = V56_vehiclesRoot
+		vehicle.Parent = vehiclesRoot
 		local root = vehicle.PrimaryPart or vehicle:FindFirstChild("CockpitRoot_DoNotRename", true)
 		if not root then vehicle:Destroy(); return nil, "CockpitRoot_DoNotRename missing." end
 		vehicle.PrimaryPart = root
-		V56_applyColors(vehicle, profile.CockpitColors, true)
+		applyColors(vehicle, profile.CockpitColors, true)
 		local cosmeticVehicle=profile.CurrentVehicleId and profile.Vehicles and profile.Vehicles[profile.CurrentVehicleId]
-		V101_CosmeticCatalog.ApplyPresentation(vehicle,cosmeticVehicle)
+		cosmeticCatalog.ApplyPresentation(vehicle,cosmeticVehicle)
 
 		local installedRoot = vehicle:FindFirstChild("INSTALLED_MODULES_Runtime") or Instance.new("Folder")
 		installedRoot.Name = "INSTALLED_MODULES_Runtime"
@@ -1975,15 +1975,15 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		installedRoot:ClearAllChildren()
 
 		for slotId, moduleId in pairs(profile.InstalledModules or {}) do
-			local moduleTemplate = V56_findModule(profile.CurrentCategory, moduleId)
-			local mount = V56_getSlotMount(vehicle, slotId)
+			local moduleTemplate = findModule(profile.CurrentCategory, moduleId)
+			local mount = getSlotMount(vehicle, slotId)
 			if moduleTemplate and mount then
 				local moduleClone = moduleTemplate:Clone()
 				moduleClone.Name = "INSTALLED_" .. tostring(slotId) .. "_" .. moduleTemplate.Name
 				moduleClone:SetAttribute("InstalledSlotId", slotId)
-				V77_ModuleUpgrades.ApplyToClone(player, moduleTemplate, moduleClone, V56_moduleTypeForModel)
+				moduleUpgrades.ApplyToClone(player, moduleTemplate, moduleClone, moduleTypeForModel)
 				moduleClone.Parent = installedRoot
-				V56_pivotModuleToSlot(moduleClone, mount)
+				pivotModuleToSlot(moduleClone, mount)
 				local moduleColors = profile.ModuleColors[slotId] or {
 					Primary = profile.CockpitColors.Primary,
 					Secondary = profile.CockpitColors.Secondary,
@@ -1992,11 +1992,11 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 					ThrustColor = profile.ThrustColor,
 				}
 				moduleColors.ThrustColor = profile.ThrustColor
-				V56_applyColors(moduleClone, moduleColors, profile.NeonOwned[slotId] == true)
+				applyColors(moduleClone, moduleColors, profile.NeonOwned[slotId] == true)
 			end
 		end
 
-		local totals = V56_totalStats(profile)
+		local totals = totalStats(profile)
 		for stat, value in pairs(totals) do vehicle:SetAttribute(stat, value) end
 		local runtime = vehicle:FindFirstChild("TOTAL_STATS_Runtime") or Instance.new("Folder")
 		runtime.Name = "TOTAL_STATS_Runtime"
@@ -2009,24 +2009,24 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 			v.Parent = runtime
 		end
 
-		local seat = V56_makeDriverSeat(vehicle, root)
-		V56_weldVehicle(vehicle, root)
-		vehicle:PivotTo(spawnCFrameOverride or V56_spawnCFrame())
-		V56_seatPlayer(player, vehicle, seat)
+		local seat = makeDriverSeat(vehicle, root)
+		weldVehicle(vehicle, root)
+		vehicle:PivotTo(spawnCFrameOverride or garageServer_spawnCFrame())
+		seatPlayer(player, vehicle, seat)
 		return vehicle
 	end
-	local V91_lastFreeRoamSpawnByUserId = {}
-	local V91_ROAD_SPAWN_TAG = "RoadSpawnPoint"
-	local V91_ROAD_GREY = Vector3.new(95, 95, 95)
+	local lastFreeRoamSpawnByUserId = {}
+	local ROAD_SPAWN_TAG = "RoadSpawnPoint"
+	local ROAD_GREY = Vector3.new(95, 95, 95)
 
-	local function V91_spawnConfigRoot()
+	local function spawnConfigRoot()
 		local config = game:GetService("ReplicatedStorage"):FindFirstChild("Config")
 		local runtime = config and game:GetService("ReplicatedStorage"):FindFirstChild("Config")
 		return runtime and runtime:FindFirstChild("FreeRoamVehicleSpawn")
 	end
 
-	local function V91_configNumber(name, fallback)
-		local root = V91_spawnConfigRoot()
+	local function configNumber(name, fallback)
+		local root = spawnConfigRoot()
 		local item = root and root:FindFirstChild(name)
 		if item and item:IsA("NumberValue") then
 			return item.Value
@@ -2034,8 +2034,8 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		return fallback
 	end
 
-	local function V91_configBool(name, fallback)
-		local root = V91_spawnConfigRoot()
+	local function configBool(name, fallback)
+		local root = spawnConfigRoot()
 		local item = root and root:FindFirstChild(name)
 		if item and item:IsA("BoolValue") then
 			return item.Value
@@ -2043,8 +2043,8 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		return fallback
 	end
 
-	local function V91_playerVehicle(player)
-		for _, candidate in ipairs(V56_vehiclesRoot:GetChildren()) do
+	local function playerVehicle(player)
+		for _, candidate in ipairs(vehiclesRoot:GetChildren()) do
 			if candidate:GetAttribute("OwnerUserId") == player.UserId then
 				return candidate
 			end
@@ -2052,16 +2052,16 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		return nil
 	end
 
-	local function V91_rootPart(model)
+	local function rootPart(model)
 		if not model then
 			return nil
 		end
 		return model.PrimaryPart or model:FindFirstChild("CockpitRoot_DoNotRename", true)
 	end
 
-	local function V91_playerSpeedMph(player)
-		local studsToMph = V91_configNumber("StudsPerSecondToMph", 0.625)
-		local vehicleRoot = V91_rootPart(V91_playerVehicle(player))
+	local function playerSpeedMph(player)
+		local studsToMph = configNumber("StudsPerSecondToMph", 0.625)
+		local vehicleRoot = rootPart(playerVehicle(player))
 		if vehicleRoot and vehicleRoot:IsA("BasePart") then
 			return vehicleRoot.AssemblyLinearVelocity.Magnitude * studsToMph
 		end
@@ -2072,17 +2072,17 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		end
 		return 0
 	end
-	local function V94_playerIsDrivingOwnedVehicle(player)
-		local vehicle = V91_playerVehicle(player)
+	local function playerIsDrivingOwnedVehicle(player)
+		local vehicle = playerVehicle(player)
 		if not vehicle then return false end
 		local character = player.Character
 		local humanoid = character and character:FindFirstChildOfClass("Humanoid")
 		local seat = humanoid and humanoid.SeatPart
 		return seat ~= nil and seat:IsA("VehicleSeat") and seat:IsDescendantOf(vehicle)
 	end
-	local function V91_requestPosition(player)
-		if V94_playerIsDrivingOwnedVehicle(player) then
-			local vehicleRoot = V91_rootPart(V91_playerVehicle(player))
+	local function requestPosition(player)
+		if playerIsDrivingOwnedVehicle(player) then
+			local vehicleRoot = rootPart(playerVehicle(player))
 			if vehicleRoot and vehicleRoot:IsA("BasePart") then
 				return vehicleRoot.Position
 			end
@@ -2092,25 +2092,25 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		if humanoidRoot and humanoidRoot:IsA("BasePart") then
 			return humanoidRoot.Position
 		end
-		return V56_FALLBACK_SPAWN_POS
+		return FALLBACK_SPAWN_POS
 	end
 
-	local function V91_colorRgb(color)
+	local function colorRgb(color)
 		return Vector3.new(math.floor(color.R * 255 + 0.5), math.floor(color.G * 255 + 0.5), math.floor(color.B * 255 + 0.5))
 	end
 
-	local function V91_isAllowedRoadPart(part)
+	local function isAllowedRoadPart(part)
 		local lower = string.lower(part.Name)
 		if lower == "road" then
-			local rgb = V91_colorRgb(part.Color)
-			return math.abs(rgb.X - V91_ROAD_GREY.X) <= 3
-				and math.abs(rgb.Y - V91_ROAD_GREY.Y) <= 3
-				and math.abs(rgb.Z - V91_ROAD_GREY.Z) <= 3
+			local rgb = colorRgb(part.Color)
+			return math.abs(rgb.X - ROAD_GREY.X) <= 3
+				and math.abs(rgb.Y - ROAD_GREY.Y) <= 3
+				and math.abs(rgb.Z - ROAD_GREY.Z) <= 3
 		end
 		return string.find(lower, "road marking", 1, true) ~= nil
 	end
 
-	local function V91_markerEnabled(marker)
+	local function markerEnabled(marker)
 		if marker:GetAttribute("SpawnEnabled") == false then
 			return false
 		end
@@ -2120,18 +2120,18 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		return true
 	end
 
-	local function V91_markerSpawnCFrame(marker)
-		local heightOffset = V91_configNumber("SpawnHeightOffset", 4)
+	local function markerSpawnCFrame(marker)
+		local heightOffset = configNumber("SpawnHeightOffset", 4)
 		local position = marker.Position + Vector3.new(0, heightOffset, 0)
 		return CFrame.lookAt(position, position + marker.CFrame.LookVector)
 	end
 
-	local function V91_spawnIsClear(player, spawnCFrame)
-		local clearanceRadius = V91_configNumber("SpawnClearanceRadius", 16)
+	local function spawnIsClear(player, spawnCFrame)
+		local clearanceRadius = configNumber("SpawnClearanceRadius", 16)
 		local querySize = Vector3.new(clearanceRadius * 2, 10, clearanceRadius * 2)
 		local params = OverlapParams.new()
 		params.FilterType = Enum.RaycastFilterType.Exclude
-		local excludes = { V56_vehiclesRoot }
+		local excludes = { vehiclesRoot }
 		if player.Character then
 			table.insert(excludes, player.Character)
 		end
@@ -2144,19 +2144,19 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 
 		local parts = Workspace:GetPartBoundsInBox(spawnCFrame, querySize, params)
 		for _, part in ipairs(parts) do
-			if part:IsA("BasePart") and part.CanCollide and not V91_isAllowedRoadPart(part) then
+			if part:IsA("BasePart") and part.CanCollide and not isAllowedRoadPart(part) then
 				return false, part:GetFullName()
 			end
 		end
 		return true, nil
 	end
 
-	local function V91_nearestRoadSpawnCFrame(player)
-		local origin = V91_requestPosition(player)
-		local radius = V91_configNumber("RoadSearchRadius", 350)
+	local function nearestRoadSpawnCFrame(player)
+		local origin = requestPosition(player)
+		local radius = configNumber("RoadSearchRadius", 350)
 		local markers = {}
-		for _, marker in ipairs(CollectionService:GetTagged(V91_ROAD_SPAWN_TAG)) do
-			if marker:IsA("BasePart") and marker:IsDescendantOf(Workspace) and V91_markerEnabled(marker) then
+		for _, marker in ipairs(CollectionService:GetTagged(ROAD_SPAWN_TAG)) do
+			if marker:IsA("BasePart") and marker:IsDescendantOf(Workspace) and markerEnabled(marker) then
 				local offset = marker.Position - origin
 				local flatDistance = Vector3.new(offset.X, 0, offset.Z).Magnitude
 				if flatDistance <= radius then
@@ -2168,51 +2168,51 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 			return a.Distance < b.Distance
 		end)
 		for _, entry in ipairs(markers) do
-			local cf = V91_markerSpawnCFrame(entry.Marker)
-			local clear = V91_spawnIsClear(player, cf)
+			local cf = markerSpawnCFrame(entry.Marker)
+			local clear = spawnIsClear(player, cf)
 			if clear then
 				return cf, entry.Marker
 			end
 		end
-		if V91_configBool("AllowFallbackToPlayerOffset", false) then
-			local position = origin + Vector3.new(0, V91_configNumber("SpawnHeightOffset", 4), 0)
+		if configBool("AllowFallbackToPlayerOffset", false) then
+			local position = origin + Vector3.new(0, configNumber("SpawnHeightOffset", 4), 0)
 			return CFrame.lookAt(position, position + Vector3.new(0, 0, -1)), nil
 		end
 		return nil, nil
 	end
 
-	local function V91_spawnOwnedVehicleFromFreeRoam(player, profile, args)
+	local function spawnOwnedVehicleFromFreeRoam(player, profile, args)
 		args = typeof(args) == "table" and args or {}
 		local now = os.clock()
-		local cooldown = V91_configNumber("SpawnCooldownSeconds", 1)
-		local last = V91_lastFreeRoamSpawnByUserId[player.UserId] or 0
+		local cooldown = configNumber("SpawnCooldownSeconds", 1)
+		local last = lastFreeRoamSpawnByUserId[player.UserId] or 0
 		if now - last < cooldown then
 			return false, "Spawn is cooling down."
 		end
 
-		local maxSpeed = V91_configNumber("MaxSpawnSpeedMph", 10)
-		if V94_playerIsDrivingOwnedVehicle(player) then
-			local speedMph = V91_playerSpeedMph(player)
+		local maxSpeed = configNumber("MaxSpawnSpeedMph", 10)
+		if playerIsDrivingOwnedVehicle(player) then
+			local speedMph = playerSpeedMph(player)
 			if speedMph > maxSpeed then
 				return false, "Slow below " .. tostring(math.floor(maxSpeed + 0.5)) .. " MPH to spawn."
 			end
 		end
 
-		local okSelect, selectMessage = V89_selectVehicleInstance(profile, args)
+		local okSelect, selectMessage = selectVehicleInstance(profile, args)
 		if not okSelect then
 			return false, selectMessage
 		end
-		if not V76_coreModulesEquipped(profile) then
+		if not coreModulesEquipped(profile) then
 			return false, "Equip at least one engine, stabilisers, and boost before driving."
 		end
 
-		local spawnCFrame, marker = V91_nearestRoadSpawnCFrame(player)
+		local spawnCFrame, marker = nearestRoadSpawnCFrame(player)
 		if not spawnCFrame then
 			return false, "No clear road spawn nearby."
 		end
 
-		V91_lastFreeRoamSpawnByUserId[player.UserId] = now
-		local vehicle, err = V56_buildVehicle(player, profile, spawnCFrame)
+		lastFreeRoamSpawnByUserId[player.UserId] = now
+		local vehicle, err = buildVehicle(player, profile, spawnCFrame)
 		if not vehicle then
 			return false, err or "Vehicle spawn failed."
 		end
@@ -2221,32 +2221,32 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		end
 		return true, "Vehicle spawned."
 	end
-	local function V95_selectedRaceVehicleReady(profile, args)
+	local function selectedRaceVehicleReady(profile, args)
 		args = typeof(args) == "table" and args or {}
-		local okSelect, selectMessage = V89_selectVehicleInstance(profile, {
+		local okSelect, selectMessage = selectVehicleInstance(profile, {
 			VehicleId = args.VehicleId,
 			CockpitId = args.CockpitId,
 		})
 		if not okSelect then
 			return false, selectMessage
 		end
-		if not V76_coreModulesEquipped(profile) then
+		if not coreModulesEquipped(profile) then
 			return false, "Equip at least one engine, stabilisers, and boost before racing."
 		end
 		return true, "Vehicle ready."
 	end
 
-	local function V95_spawnOwnedVehicleForRace(player, profile, args)
+	local function spawnOwnedVehicleForRace(player, profile, args)
 		args = typeof(args) == "table" and args or {}
 		local spawnCFrame = args.SpawnCFrame
 		if typeof(spawnCFrame) ~= "CFrame" then
 			return { Ok = false, Success = false, Message = "Race spawn CFrame missing." }
 		end
-		local okReady, readyMessage = V95_selectedRaceVehicleReady(profile, args)
+		local okReady, readyMessage = selectedRaceVehicleReady(profile, args)
 		if not okReady then
 			return { Ok = false, Success = false, Message = readyMessage }
 		end
-		local vehicle, err = V56_buildVehicle(player, profile, spawnCFrame)
+		local vehicle, err = buildVehicle(player, profile, spawnCFrame)
 		if not vehicle then
 			return { Ok = false, Success = false, Message = err or "Race vehicle spawn failed." }
 		end
@@ -2261,7 +2261,7 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		}
 	end
 
-	local function V95_ensureRaceVehicleSpawnBinding()
+	local function ensureRaceVehicleSpawnBinding()
 		local binding = game:GetService("ServerStorage"):WaitForChild("Runtime"):WaitForChild("Garage"):FindFirstChild("RaceVehicleSpawner")
 		if binding and not binding:IsA("BindableFunction") then
 			binding:Destroy()
@@ -2278,11 +2278,11 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 			if not (player and player:IsA("Player")) then
 				return { Ok = false, Success = false, Message = "Player missing." }
 			end
-			local profile = V56_getProfile(player)
+			local profile = getProfile(player)
 			if action == "ValidateForRace" then
-				local okReady, readyMessage = V95_selectedRaceVehicleReady(profile, payload)
+				local okReady, readyMessage = selectedRaceVehicleReady(profile, payload)
 				if okReady then
-					V80_mirrorLegacyProfileToPersistence(player, profile, "SelectVehicleInstance", false)
+					mirrorLegacyProfileToPersistence(player, profile, "SelectVehicleInstance", false)
 				end
 				return {
 					Ok = okReady == true,
@@ -2291,47 +2291,47 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 					VehicleId = tostring(profile.CurrentVehicleId or ""),
 				}
 			elseif action == "SpawnForRace" then
-				local result = V95_spawnOwnedVehicleForRace(player, profile, payload)
+				local result = spawnOwnedVehicleForRace(player, profile, payload)
 				if result.Ok == true then
-					V80_mirrorLegacyProfileToPersistence(player, profile, "SpawnRaceVehicle", false)
+					mirrorLegacyProfileToPersistence(player, profile, "SpawnRaceVehicle", false)
 				end
 				return result
 			end
 			return { Ok = false, Success = false, Message = "Unknown race vehicle action." }
 		end
 	end
-	V95_ensureRaceVehicleSpawnBinding()
-	local function V92_playerVehicle(player)
-		for _, candidate in ipairs(V56_vehiclesRoot:GetChildren()) do
+	ensureRaceVehicleSpawnBinding()
+	local function garageServer_playerVehicle(player)
+		for _, candidate in ipairs(vehiclesRoot:GetChildren()) do
 			if candidate:GetAttribute("OwnerUserId") == player.UserId then
 				return candidate
 			end
 		end
 		return nil
 	end
-	local function V102_vehicleInteractionSettings()
+	local function vehicleInteractionSettings()
 		local editable=game:GetService("ReplicatedStorage"):FindFirstChild("Config") and game:GetService("ReplicatedStorage"):WaitForChild("Config"):FindFirstChild("Vehicles")
 		local balance=editable and game:GetService("ReplicatedStorage"):WaitForChild("Config"):WaitForChild("Vehicles"):FindFirstChild("Authoring")
 		return balance and game:GetService("ReplicatedStorage"):WaitForChild("Config"):WaitForChild("Vehicles"):WaitForChild("Authoring"):FindFirstChild("VehicleInteractions")
 	end
 
-	local function V92_vehicleExitCFrame(vehicle)
+	local function vehicleExitCFrame(vehicle)
 		if not vehicle then return nil end
 		local basis=vehicle:FindFirstChild("DriverSeat",true)
 		if not (basis and basis:IsA("BasePart")) then
 			basis=vehicle.PrimaryPart or vehicle:FindFirstChild("CockpitRoot_DoNotRename",true)
 		end
 		if not (basis and basis:IsA("BasePart")) then return nil end
-		local settings=V102_vehicleInteractionSettings()
-		local right=math.clamp(V56_number(settings,"ExitRightStuds",6),3,12)
-		local up=math.clamp(V56_number(settings,"ExitUpStuds",2.5),1,6)
+		local settings=vehicleInteractionSettings()
+		local right=math.clamp(garageServer_number(settings,"ExitRightStuds",6),3,12)
+		local up=math.clamp(garageServer_number(settings,"ExitUpStuds",2.5),1,6)
 		return basis.CFrame*CFrame.new(right,up,0)
 	end
 
-	local function V92_unseatAndMovePlayer(player, vehicle)
+	local function unseatAndMovePlayer(player, vehicle)
 		local character=player.Character
 		local humanoid=character and character:FindFirstChildOfClass("Humanoid")
-		local exitCFrame=V92_vehicleExitCFrame(vehicle)
+		local exitCFrame=vehicleExitCFrame(vehicle)
 		if humanoid then humanoid.Sit=false end
 		if character and exitCFrame then
 			character:PivotTo(exitCFrame)
@@ -2343,7 +2343,7 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		end
 	end
 
-	local function V102_fixParkedVehicle(vehicle)
+	local function fixParkedVehicle(vehicle)
 		local root=vehicle and (vehicle.PrimaryPart or vehicle:FindFirstChild("CockpitRoot_DoNotRename",true))
 		if not (root and root:IsA("BasePart")) then return false end
 		vehicle.PrimaryPart=root
@@ -2358,13 +2358,13 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		return true
 	end
 
-	local function V102_beginExitCoast(player,vehicle,root,linearVelocity,angularVelocity)
+	local function beginExitCoast(player,vehicle,root,linearVelocity,angularVelocity)
 		root.Anchored=false
 		vehicle:SetAttribute("ParkedFixed",nil)
 		vehicle:SetAttribute("ExitCoasting",true)
 		vehicle:SetAttribute("ExitCoastStartedAt",Workspace:GetServerTimeNow())
 		vehicle:SetAttribute("ExitCoastStopReason",nil)
-		V92_unseatAndMovePlayer(player,vehicle)
+		unseatAndMovePlayer(player,vehicle)
 		if root.Parent then
 			root.AssemblyLinearVelocity=linearVelocity
 			root.AssemblyAngularVelocity=angularVelocity
@@ -2372,8 +2372,8 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		end
 	end
 
-	local function V56_exitVehicle(player)
-		local vehicle=V92_playerVehicle(player)
+	local function exitVehicle(player)
+		local vehicle=garageServer_playerVehicle(player)
 		if not vehicle then return false,"No vehicle to exit." end
 		if vehicle:GetAttribute("RaceParticipant")==true or vehicle:GetAttribute("RaceRunId")~=nil then
 			return false,"Use the race exit while participating in a race."
@@ -2390,8 +2390,8 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		local linearVelocity=root.AssemblyLinearVelocity
 		local angularVelocity=root.AssemblyAngularVelocity
 		local horizontalVelocity=Vector3.new(linearVelocity.X,0,linearVelocity.Z)
-		local settings=V102_vehicleInteractionSettings()
-		local immediateParkMaxMph=math.clamp(V56_number(settings,"ExitImmediateParkMaxMph",10),0,50)
+		local settings=vehicleInteractionSettings()
+		local immediateParkMaxMph=math.clamp(garageServer_number(settings,"ExitImmediateParkMaxMph",10),0,50)
 		local speedMph=horizontalVelocity.Magnitude*0.625
 
 		vehicle:SetAttribute("DriveReady",true)
@@ -2400,27 +2400,27 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		vehicle:SetAttribute("EngineVFXActive",true)
 
 		if speedMph<=immediateParkMaxMph then
-			if not V102_fixParkedVehicle(vehicle) then return false,"Vehicle could not be fixed." end
-			V92_unseatAndMovePlayer(player,vehicle)
+			if not fixParkedVehicle(vehicle) then return false,"Vehicle could not be fixed." end
+			unseatAndMovePlayer(player,vehicle)
 			return true,"Exited and parked vehicle."
 		end
 
-		V102_beginExitCoast(player,vehicle,root,linearVelocity,angularVelocity)
+		beginExitCoast(player,vehicle,root,linearVelocity,angularVelocity)
 		return true,"Exited vehicle while it coasts to a stop."
 	end
-	local function V94_playerIsSeatedInVehicle(player, vehicle)
+	local function playerIsSeatedInVehicle(player, vehicle)
 		if not vehicle then return false end
 		local character = player.Character
 		local humanoid = character and character:FindFirstChildOfClass("Humanoid")
 		local seat = humanoid and humanoid.SeatPart
 		return seat ~= nil and seat:IsA("VehicleSeat") and seat:IsDescendantOf(vehicle)
 	end
-	local function V92_despawnVehicle(player,options)
-		options=typeof(options)=="table" and options or {}; local vehicle=V92_playerVehicle(player)
+	local function despawnVehicle(player,options)
+		options=typeof(options)=="table" and options or {}; local vehicle=garageServer_playerVehicle(player)
 		if not vehicle then return false,"No vehicle to despawn.",false end
 		local character=player.Character; local humanoid=character and character:FindFirstChildOfClass("Humanoid")
-		if V94_playerIsSeatedInVehicle(player,vehicle) then
-			if options.PreserveCharacterPosition==true then if humanoid then humanoid.Sit=false end else V92_unseatAndMovePlayer(player,vehicle) end
+		if playerIsSeatedInVehicle(player,vehicle) then
+			if options.PreserveCharacterPosition==true then if humanoid then humanoid.Sit=false end else unseatAndMovePlayer(player,vehicle) end
 		elseif humanoid and humanoid.SeatPart and humanoid.SeatPart:IsDescendantOf(vehicle) then humanoid.Sit=false end
 		vehicle:Destroy()
 		local detached=true
@@ -2432,19 +2432,19 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		return true,detached and "Vehicle despawned." or "Vehicle removed but seat detachment was not confirmed.",detached
 	end
 
-	local function V56_reEnterVehicle(player)
+	local function reEnterVehicle(player)
 		local vehicle
-		for _,candidate in ipairs(V56_vehiclesRoot:GetChildren()) do
+		for _,candidate in ipairs(vehiclesRoot:GetChildren()) do
 			if candidate:GetAttribute("OwnerUserId")==player.UserId then vehicle=candidate break end
 		end
 		if not vehicle then return false,"No vehicle nearby." end
-		if vehicle:GetAttribute("ExitCoasting")==true then return false,"Vehicle is still coasting." end -- NTR_VEHICLE_COAST_REENTRY_GUARD_V1_1
+		if vehicle:GetAttribute("ExitCoasting")==true then return false,"Vehicle is still coasting." end 
 		local root=vehicle.PrimaryPart or vehicle:FindFirstChild("CockpitRoot_DoNotRename",true)
 		local seat=vehicle:FindFirstChild("DriverSeat",true)
 		if not (root and root:IsA("BasePart")) then return false,"Vehicle root missing." end
 		if not (seat and seat:IsA("VehicleSeat")) then return false,"Driver seat missing." end
 		vehicle.PrimaryPart=root
-		root.Anchored=false -- NTR_VEHICLE_FIXED_PARKING_AND_RIGHT_EXIT_V1
+		root.Anchored=false 
 		root.AssemblyLinearVelocity=Vector3.zero
 		root.AssemblyAngularVelocity=Vector3.zero
 		vehicle:SetAttribute("ExitCoasting",nil)
@@ -2455,31 +2455,31 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		vehicle:SetAttribute("DriveReady",true)
 		vehicle:SetAttribute("DriverUserId",player.UserId)
 		pcall(function() root:SetNetworkOwner(player) end)
-		V56_seatPlayer(player,vehicle,seat)
+		seatPlayer(player,vehicle,seat)
 		return true,"Entered vehicle."
 	end
-	local V100_ownedGarageLifecycle=game:GetService("ServerStorage"):WaitForChild("Runtime"):WaitForChild("Garage"):WaitForChild("OwnedGarageVehicleLifecycleBridge")
-	V100_ownedGarageLifecycle.OnInvoke=function(operation,payload)
+	local ownedGarageLifecycle=game:GetService("ServerStorage"):WaitForChild("Runtime"):WaitForChild("Garage"):WaitForChild("OwnedGarageVehicleLifecycleBridge")
+	ownedGarageLifecycle.OnInvoke=function(operation,payload)
 		payload=typeof(payload)=="table" and payload or {}; local player=payload.Player
 		if not (player and player:IsA("Player")) then return {Success=false,Message="Player is required."} end
-		local profile=V56_getProfile(player)
+		local profile=getProfile(player)
 		if operation=="GetDrivenVehicle" then
-			local vehicle=V92_playerVehicle(player); if not (vehicle and V94_playerIsSeatedInVehicle(player,vehicle)) then return {Success=false,Message="No driven vehicle."} end
-			local root=V91_rootPart(vehicle); local vehicleId=tostring(profile.CurrentVehicleId or ""); if vehicleId=="" then return {Success=false,Message="Driven vehicle identity is unavailable."} end
-			return {Success=true,VehicleId=vehicleId,SpeedMph=V91_playerSpeedMph(player),VehicleCFrame=root and root.CFrame or nil}
+			local vehicle=garageServer_playerVehicle(player); if not (vehicle and playerIsSeatedInVehicle(player,vehicle)) then return {Success=false,Message="No driven vehicle."} end
+			local root=rootPart(vehicle); local vehicleId=tostring(profile.CurrentVehicleId or ""); if vehicleId=="" then return {Success=false,Message="Driven vehicle identity is unavailable."} end
+			return {Success=true,VehicleId=vehicleId,SpeedMph=playerSpeedMph(player),VehicleCFrame=root and root.CFrame or nil}
 		elseif operation=="DespawnForGarage" then
 			local requested=tostring(payload.VehicleId or ""); if requested=="" or requested~=tostring(profile.CurrentVehicleId or "") then return {Success=false,Message="Driven vehicle identity changed."} end
-			local ok,message,detached=V92_despawnVehicle(player,{PreserveCharacterPosition=payload.PreserveCharacterPosition==true,WaitForDetach=payload.WaitForDetach==true,DetachTimeoutSeconds=payload.DetachTimeoutSeconds}); return {Success=ok==true and detached~=false,VehicleRemoved=ok==true,Detached=detached~=false,Message=message}
+			local ok,message,detached=despawnVehicle(player,{PreserveCharacterPosition=payload.PreserveCharacterPosition==true,WaitForDetach=payload.WaitForDetach==true,DetachTimeoutSeconds=payload.DetachTimeoutSeconds}); return {Success=ok==true and detached~=false,VehicleRemoved=ok==true,Detached=detached~=false,Message=message}
 		elseif operation=="SpawnFromGarage" then
-			local vehicleId=tostring(payload.VehicleId or ""); local previousVehicleId=tostring(profile.CurrentVehicleId or ""); local selected,message=V89_selectVehicleInstance(profile,{VehicleId=vehicleId}); if not selected then return {Success=false,Message=message} end
-			if not V76_coreModulesEquipped(profile) then if previousVehicleId~="" then V89_selectVehicleInstance(profile,{VehicleId=previousVehicleId}) end; return {Success=false,Message="Equip at least one engine, stabilisers, and boost before driving."} end
-			local vehicle,buildMessage=V56_buildVehicle(player,profile,payload.SpawnCFrame); if not vehicle then if previousVehicleId~="" then V89_selectVehicleInstance(profile,{VehicleId=previousVehicleId}) end; return {Success=false,Message=buildMessage or "Vehicle spawn failed."} end
-			V80_mirrorLegacyProfileToPersistence(player,profile,"OwnedGarageDriveOut",true); return {Success=true,Message="Vehicle spawned from garage.",Vehicle=vehicle,VehicleId=vehicleId}
+			local vehicleId=tostring(payload.VehicleId or ""); local previousVehicleId=tostring(profile.CurrentVehicleId or ""); local selected,message=selectVehicleInstance(profile,{VehicleId=vehicleId}); if not selected then return {Success=false,Message=message} end
+			if not coreModulesEquipped(profile) then if previousVehicleId~="" then selectVehicleInstance(profile,{VehicleId=previousVehicleId}) end; return {Success=false,Message="Equip at least one engine, stabilisers, and boost before driving."} end
+			local vehicle,buildMessage=buildVehicle(player,profile,payload.SpawnCFrame); if not vehicle then if previousVehicleId~="" then selectVehicleInstance(profile,{VehicleId=previousVehicleId}) end; return {Success=false,Message=buildMessage or "Vehicle spawn failed."} end
+			mirrorLegacyProfileToPersistence(player,profile,"OwnedGarageDriveOut",true); return {Success=true,Message="Vehicle spawned from garage.",Vehicle=vehicle,VehicleId=vehicleId}
 		elseif operation=="GetOwnedGarageVehicleCards" then
-			local summaries=V90_vehicleSummaries(profile,player); local cards={}; local displayed={}
+			local summaries=vehicleSummaries(profile,player); local cards={}; local displayed={}
 			for garageId,property in pairs((profile.OwnedGarage and profile.OwnedGarage.Properties) or {}) do for slotId,vehicleId in pairs(property.DisplaySpaces or {}) do if vehicleId and vehicleId~=false and tostring(vehicleId)~="" then displayed[tostring(vehicleId)]={GarageId=tostring(garageId),SlotId=tostring(slotId)} end end end
 			for vehicleId,vehicle in pairs(profile.Vehicles or {}) do if typeof(vehicle)=="table" then
-				local id=tostring(vehicleId); local summary=summaries[id] or summaries[vehicleId] or {}; local cockpitInstance=vehicle.CockpitInstanceId and profile.OwnedCockpitInstances and profile.OwnedCockpitInstances[vehicle.CockpitInstanceId]; local cockpitId=tostring((cockpitInstance and cockpitInstance.TemplateId) or summary.CockpitId or vehicle.CockpitId or ""); local categoryId=tostring(vehicle.CategoryId or profile.CurrentCategory or "BRUISER"); local cockpit=V56_findCockpit(categoryId,cockpitId); local image=""
+				local id=tostring(vehicleId); local summary=summaries[id] or summaries[vehicleId] or {}; local cockpitInstance=vehicle.CockpitInstanceId and profile.OwnedCockpitInstances and profile.OwnedCockpitInstances[vehicle.CockpitInstanceId]; local cockpitId=tostring((cockpitInstance and cockpitInstance.TemplateId) or summary.CockpitId or vehicle.CockpitId or ""); local categoryId=tostring(vehicle.CategoryId or profile.CurrentCategory or "BRUISER"); local cockpit=findCockpit(categoryId,cockpitId); local image=""
 				for _,key in ipairs({"MenuImage","CockpitImage","ThumbnailImage","ImageId","Image"}) do local value=cockpit and cockpit:GetAttribute(key); if value~=nil and tostring(value)~="" then image=tostring(value); break end; local child=cockpit and cockpit:FindFirstChild(key); if child and child:IsA("StringValue") and child.Value~="" then image=child.Value; break end end
 				local overall=summary.Overall or {}; local location=displayed[id]; table.insert(cards,{VehicleId=id,CockpitId=cockpitId,CategoryId=categoryId,DisplayName=tostring(cockpit and cockpit:GetAttribute("DisplayName") or summary.DisplayName or vehicle.DisplayName or cockpitId or id),Image=image,Tier=tostring(overall.Tier or "E"),Rating=math.floor(tonumber(overall.PerformanceIndex) or 0),DisplayedGarageId=location and location.GarageId or nil,DisplayedSlotId=location and location.SlotId or nil})
 			end end
@@ -2487,55 +2487,55 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 		end
 		return {Success=false,Message="Unknown owned garage lifecycle operation."}
 	end
-	V100_ownedGarageLifecycle:SetAttribute("OwnedGarageLifecycleReady",true)
+	ownedGarageLifecycle:SetAttribute("OwnedGarageLifecycleReady",true)
 
 	local requestGuard = require(game:GetService("ServerStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Garage"):WaitForChild("GarageRequestGuard")).new()
 	Players.PlayerRemoving:Connect(function(player) requestGuard.forget(player) end)
 	local function handleGarageRequest(player, action, args)
 		if player:GetAttribute("ProfileServiceLoaded") ~= true then
-			local loaded = V87_getProfileServiceProfile(player)
+			local loaded = getProfileServiceProfile(player)
 			if not loaded then return {Ok=false,Success=false,Message="Your profile is still loading. Please try again."} end
 		end
 		args = typeof(args) == "table" and args or {}
 		if player:GetAttribute("RaceQueueActive")==true and (action=="SelectVehicleInstance" or action=="SpawnOwnedVehicleFromFreeRoam" or action=="SpawnVehicle" or action=="DespawnVehicle") then return {Ok=false,Success=false,Message="Leave the race queue before changing vehicles."} end
 		if player:GetAttribute("OwnedGarageInside")==true and (action=="SelectVehicleInstance" or action=="SpawnOwnedVehicleFromFreeRoam" or action=="SpawnVehicle" or action=="DespawnVehicle" or action=="ExitVehicle" or action=="ReEnterVehicle") then return {Ok=false,Success=false,Message="Use the garage display spaces or exit door while inside your garage."} end
 		local okCall, result = pcall(function()
-			local profile = V56_getProfile(player)
+			local profile = getProfile(player)
 			profile._Player = player
-			V84_ensureInstanceInventory(profile) -- canonical shape only; no grants or migration
-			local referencesOk,referencesResult=V97_ModuleInstances.ReconcileReferences(profile)
-			if not referencesOk then return {Success=false,Message="Module inventory reference repair failed: "..tostring(referencesResult),Profile=V56_profileForClient(profile)} end
+			ensureInstanceInventory(profile) -- canonical shape only; no grants or migration
+			local referencesOk,referencesResult=moduleInstances.ReconcileReferences(profile)
+			if not referencesOk then return {Success=false,Message="Module inventory reference repair failed: "..tostring(referencesResult),Profile=profileForClient(profile)} end
 			if tonumber(referencesResult) and referencesResult>0 then print("[Module Instance Authority] Reconciled "..tostring(referencesResult).." stale owner flag(s) from canonical vehicle-slot references") end
 			local ok, message
 			if action == "EnsureCustomisationAccess" then
-				return V102_ensureCustomisationAccess(player,profile)
+				return ensureCustomisationAccess(player,profile)
 			elseif action == "GetInitial" then
-				V56_setLeaderstats(player, profile)
-				return { Success = true, Catalog = V56_catalog(), Profile = V56_profileForClient(profile) }
+				setLeaderstats(player, profile)
+				return { Success = true, Catalog = garageServer_catalog(), Profile = profileForClient(profile) }
 			elseif action == "SelectVehicleInstance" then
-				ok, message = V89_selectVehicleInstance(profile, args)
-				V56_setLeaderstats(player, profile)
+				ok, message = selectVehicleInstance(profile, args)
+				setLeaderstats(player, profile)
 			elseif action == "BuyCockpitInstance" then
-				ok, message = V84_buyCockpitInstance(profile, args)
-				V56_setLeaderstats(player, profile)
+				ok, message = buyCockpitInstance(profile, args)
+				setLeaderstats(player, profile)
 			elseif action == "BuyModuleInstance" then
-				ok, message = V84_buyModuleInstance(profile, args)
-				V56_setLeaderstats(player, profile)
+				ok, message = buyModuleInstance(profile, args)
+				setLeaderstats(player, profile)
 			elseif action == "EquipModuleInstance" then
-				ok, message = V84_equipModuleInstance(profile, args)
-				V56_setLeaderstats(player, profile)
+				ok, message = equipModuleInstance(profile, args)
+				setLeaderstats(player, profile)
 			elseif action == "BuyGarageProperty" then
-				ok, message = V83_buyGarageProperty(profile, args)
-				V56_setLeaderstats(player, profile)
+				ok, message = buyGarageProperty(profile, args)
+				setLeaderstats(player, profile)
 			elseif action == "UpgradeGarageCapacity" then
-				ok, message = V82_upgradeGarageCapacity(profile)
-				V56_setLeaderstats(player, profile)
+				ok, message = upgradeGarageCapacity(profile)
+				setLeaderstats(player, profile)
 			elseif action == "BuyCockpit" then
 				local cockpitId = tostring(args.CockpitId or "")
-				local cockpit = V56_findCockpit(profile.CurrentCategory, cockpitId)
+				local cockpit = findCockpit(profile.CurrentCategory, cockpitId)
 				if not cockpit then ok, message = false, "Cockpit not found." else
-					local price = V56_number(cockpit, "Price", 0)
-					local capacityOk, capacityMessage = V81_canBuyCockpit(profile, cockpitId)
+					local price = garageServer_number(cockpit, "Price", 0)
+					local capacityOk, capacityMessage = canBuyCockpit(profile, cockpitId)
 					if not capacityOk then
 						ok, message = false, capacityMessage
 					elseif not profile.OwnedCockpits[cockpitId] then
@@ -2547,20 +2547,20 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 					else ok, message = true, "Cockpit selected." end
 					if ok then
 						profile.CurrentCockpit = cockpitId
-						V76_applyDefaultCockpitColors(profile)
-						V76_grantDefaultModulesForCurrentCockpit(profile)
-						V85_attachDefaultModuleInstancesToCurrentVehicle(profile)
+						applyDefaultCockpitColors(profile)
+						grantDefaultModulesForCurrentCockpit(profile)
+						attachDefaultModuleInstancesToCurrentVehicle(profile)
 					end
-					V56_setLeaderstats(player, profile)
+					setLeaderstats(player, profile)
 				end
 			elseif action == "BuyVehicleCosmetic" then
-				local cockpit=V56_findCockpit(profile.CurrentCategory,profile.CurrentCockpit)
-				ok,message=V101_VehicleCosmetics.Purchase(profile,tostring(args.CosmeticId or ""),cockpit)
-				V56_setLeaderstats(player,profile)
+				local cockpit=findCockpit(profile.CurrentCategory,profile.CurrentCockpit)
+				ok,message=vehicleCosmetics.Purchase(profile,tostring(args.CosmeticId or ""),cockpit)
+				setLeaderstats(player,profile)
 			elseif action == "SetVehicleCosmeticColor" then
-				ok,message=V101_VehicleCosmetics.SetColour(profile,tostring(args.CosmeticId or ""),args.Color,function() return V97_ModuleInstances.CaptureAll(profile,V77_ModuleUpgrades.GetLevels(player)) end)
+				ok,message=vehicleCosmetics.SetColour(profile,tostring(args.CosmeticId or ""),args.Color,function() return moduleInstances.CaptureAll(profile,moduleUpgrades.GetLevels(player)) end)
 			elseif action == "SetAllNeonColor" then
-				ok,message=V101_VehicleCosmetics.SetAllNeon(profile,args.Color,function() return V97_ModuleInstances.CaptureAll(profile,V77_ModuleUpgrades.GetLevels(player)) end)
+				ok,message=vehicleCosmetics.SetAllNeon(profile,args.Color,function() return moduleInstances.CaptureAll(profile,moduleUpgrades.GetLevels(player)) end)
 			elseif action == "SetCockpitColor" then
 				local channel = tostring(args.Channel or "Primary")
 				local color = args.Color
@@ -2569,37 +2569,37 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 				elseif channel ~= "Primary" and channel ~= "Secondary" and channel ~= "Detail" and channel ~= "Neon" and channel ~= "FrontLights" and channel ~= "RearLights" then ok, message = false, "Invalid colour channel."
 				elseif scope ~= "WholeVehicle" and scope ~= "CockpitOnly" then ok, message = false, "Invalid cockpit colour scope."
 				else
-					local oldCockpitColors=V84_cloneDictionary(profile.CockpitColors or {})
-					local oldModuleColors=V84_cloneDictionary(profile.ModuleColors or {})
-					local oldModuleInstances=V84_cloneDictionary(profile.OwnedModuleInstances or {})
+					local oldCockpitColors=cloneDictionary(profile.CockpitColors or {})
+					local oldModuleColors=cloneDictionary(profile.ModuleColors or {})
+					local oldModuleInstances=cloneDictionary(profile.OwnedModuleInstances or {})
 					local currentVehicle=profile.CurrentVehicleId and profile.Vehicles and profile.Vehicles[profile.CurrentVehicleId]
-					local oldVehicleCockpit=typeof(currentVehicle)=="table" and V84_cloneDictionary(currentVehicle.CockpitColors or {}) or nil
+					local oldVehicleCockpit=typeof(currentVehicle)=="table" and cloneDictionary(currentVehicle.CockpitColors or {}) or nil
 					profile.CockpitColors[channel] = color
-					if typeof(currentVehicle)=="table" then currentVehicle.CockpitColors=V84_cloneDictionary(profile.CockpitColors) end
+					if typeof(currentVehicle)=="table" then currentVehicle.CockpitColors=cloneDictionary(profile.CockpitColors) end
 					if scope == "WholeVehicle" and (channel == "Primary" or channel == "Secondary" or channel == "Detail") then
-						V76_syncInstalledModulePaintFromCockpit(profile, channel)
-						local captured,captureMessage=V97_ModuleInstances.CaptureAll(profile,V77_ModuleUpgrades.GetLevels(player))
+						syncInstalledModulePaintFromCockpit(profile, channel)
+						local captured,captureMessage=moduleInstances.CaptureAll(profile,moduleUpgrades.GetLevels(player))
 						if not captured then profile.CockpitColors=oldCockpitColors; profile.ModuleColors=oldModuleColors; profile.OwnedModuleInstances=oldModuleInstances; if typeof(currentVehicle)=="table" then currentVehicle.CockpitColors=oldVehicleCockpit end; ok,message=false,captureMessage else ok,message=true,"Vehicle colour updated." end
 					else ok,message=true,"Cockpit colour updated." end
 				end
 			elseif action == "BuyModule" then
 				local slotId = tostring(args.SlotId or "")
 				local moduleId = tostring(args.ModuleId or "")
-				local module = V56_findModule(profile.CurrentCategory, moduleId)
-				local cockpit = V56_findCockpit(profile.CurrentCategory, profile.CurrentCockpit)
+				local module = findModule(profile.CurrentCategory, moduleId)
+				local cockpit = findCockpit(profile.CurrentCategory, profile.CurrentCockpit)
 				local mount = cockpit and cockpit:FindFirstChild("SLOT_" .. slotId, true)
-				local slotType = mount and V56_string(mount, "ModuleType", V56_moduleTypeFromText(slotId))
-				local moduleType = V56_moduleTypeForModel(module)
+				local slotType = mount and garageServer_string(mount, "ModuleType", moduleTypeFromText(slotId))
+				local moduleType = moduleTypeForModel(module)
 				if not module then ok, message = false, "Module not found."
 				elseif not mount then ok, message = false, "Slot not found on this cockpit."
 				elseif slotType and slotType ~= "" and moduleType ~= slotType then ok, message = false, "That module does not fit this slot."
-				elseif not V86_moduleFitsSlot(module, slotId, mount and V56_string(mount, "AllowedModuleFolder", "")) then ok, message = false, "That module does not fit this slot."
+				elseif not moduleFitsSlot(module, slotId, mount and garageServer_string(mount, "AllowedModuleFolder", "")) then ok, message = false, "That module does not fit this slot."
 				else
-					local lockMessage = V85_moduleLockedMessage(profile, module)
+					local lockMessage = moduleLockedMessage(profile, module)
 					if lockMessage then
 						ok, message = false, lockMessage
 					else
-						local price = V85_modulePurchasePrice(module)
+						local price = modulePurchasePrice(module)
 						if not profile.OwnedModules[moduleId] then
 						if profile.Cash < price then ok, message = false, "Not enough cash." else
 							profile.Cash -= price
@@ -2620,7 +2620,7 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 						profile.ModuleColors[slotId].ThrustColor = profile.ThrustColor
 					end
 					end
-					V56_setLeaderstats(player, profile)
+					setLeaderstats(player, profile)
 				end
 			elseif action == "SetModuleColor" then
 				local slotId = tostring(args.SlotId or "")
@@ -2633,7 +2633,7 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 					if slotId == "ALL" then
 						if channel ~= "Neon" then profile.CockpitColors[channel] = color end
 						for installedSlot in pairs(profile.InstalledModules) do
-							if channel ~= "Neon" or profile.NeonOwned[installedSlot] == true then -- NTR_CUSTOMISATION_BULK_NEON_OWNERSHIP_GUARD_V1
+							if channel ~= "Neon" or profile.NeonOwned[installedSlot] == true then 
 								profile.ModuleColors[installedSlot] = profile.ModuleColors[installedSlot] or {}
 								profile.ModuleColors[installedSlot][channel] = color
 							end
@@ -2644,40 +2644,40 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 					end
 					ok, message = true, "Colour updated."
 				end
-				if ok then if slotId=="ALL" then ok,message=V97_ModuleInstances.CaptureAll(profile,V77_ModuleUpgrades.GetLevels(player)) else ok,message=V97_ModuleInstances.CaptureSlot(profile,slotId,V77_ModuleUpgrades.GetLevels(player)) end end
+				if ok then if slotId=="ALL" then ok,message=moduleInstances.CaptureAll(profile,moduleUpgrades.GetLevels(player)) else ok,message=moduleInstances.CaptureSlot(profile,slotId,moduleUpgrades.GetLevels(player)) end end
 			elseif action == "UpgradeModule" then
-				ok, message = V77_ModuleUpgrades.Purchase(
+				ok, message = moduleUpgrades.Purchase(
 					player,
 					profile,
 					tostring(args.SlotId or ""),
 					tostring(args.ModuleId or ""),
 					tostring(args.UpgradeId or ""),
-					V56_findModule,
-					V56_moduleTypeForModel
+					findModule,
+					moduleTypeForModel
 				)
-				V56_setLeaderstats(player, profile)
-				if ok then local captured,captureMessage=V97_ModuleInstances.CaptureSlot(profile,tostring(args.SlotId or ""),V77_ModuleUpgrades.GetLevels(player)); if not captured then ok,message=false,captureMessage end end
+				setLeaderstats(player, profile)
+				if ok then local captured,captureMessage=moduleInstances.CaptureSlot(profile,tostring(args.SlotId or ""),moduleUpgrades.GetLevels(player)); if not captured then ok,message=false,captureMessage end end
 			elseif action == "Upgrade" then
 				local upgradeId = tostring(args.UpgradeId or "")
-				local category = V56_categoryFolder(profile.CurrentCategory)
+				local category = garageServer_categoryFolder(profile.CurrentCategory)
 				local upgradeRoot = category and category:FindFirstChild("UPGRADES_InvisiblePerformance")
 				local template = upgradeRoot and upgradeRoot:FindFirstChild("UPGRADE_" .. upgradeId)
 				if not template then ok, message = false, "Upgrade not found." else
 					local level = profile.UpgradeLevels[upgradeId] or 0
-					local maxLevel = V56_number(template, "MaxLevel", 5)
-					local price = V56_number(template, "PricePerLevel", 0) * (level + 1)
+					local maxLevel = garageServer_number(template, "MaxLevel", 5)
+					local price = garageServer_number(template, "PricePerLevel", 0) * (level + 1)
 					if level >= maxLevel then ok, message = false, "Already max level."
 					elseif profile.Cash < price then ok, message = false, "Not enough cash."
-					else profile.Cash -= price; profile.UpgradeLevels[upgradeId] = level + 1; V56_setLeaderstats(player, profile); ok, message = true, "Upgrade installed." end
+					else profile.Cash -= price; profile.UpgradeLevels[upgradeId] = level + 1; setLeaderstats(player, profile); ok, message = true, "Upgrade installed." end
 				end
 			elseif action == "BuyNeon" then
 				local slotId = tostring(args.SlotId or "")
 				local moduleId = profile.InstalledModules[slotId]
-				local module = moduleId and V56_findModule(profile.CurrentCategory, moduleId)
+				local module = moduleId and findModule(profile.CurrentCategory, moduleId)
 				if not module then ok, message = false, "Install that module first."
-				elseif not V56_folderHasBuyableNeon(module:FindFirstChild("NEON_OptionalLights", true)) then ok, message = false, "This module has no optional neon."
+				elseif not folderHasBuyableNeon(module:FindFirstChild("NEON_OptionalLights", true)) then ok, message = false, "This module has no optional neon."
 				else
-					local price = math.max(0, V56_number(module, "NeonPrice", 5000)) -- NTR_CUSTOMISATION_NEON_PRICE_GUARD_V1
+					local price = math.max(0, garageServer_number(module, "NeonPrice", 5000)) 
 					if not profile.NeonOwned[slotId] then
 						if profile.Cash < price then ok, message = false, "Not enough cash." else
 							profile.Cash -= price
@@ -2687,63 +2687,63 @@ V85_attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 							ok, message = true, "Neon unlocked."
 						end
 					else ok, message = true, "Neon already unlocked." end
-					V56_setLeaderstats(player, profile)
+					setLeaderstats(player, profile)
 				end
-				if ok then local captured,captureMessage=V97_ModuleInstances.CaptureSlot(profile,slotId,V77_ModuleUpgrades.GetLevels(player)); if not captured then ok,message=false,captureMessage end end
+				if ok then local captured,captureMessage=moduleInstances.CaptureSlot(profile,slotId,moduleUpgrades.GetLevels(player)); if not captured then ok,message=false,captureMessage end end
 			elseif action == "SetThrustColor" then
 				-- Compatibility action remains gated by the vehicle-specific entitlement.
-				ok,message=V101_VehicleCosmetics.SetColour(profile,"ThrustColour",args.Color,function() return V97_ModuleInstances.CaptureAll(profile,V77_ModuleUpgrades.GetLevels(player)) end)
+				ok,message=vehicleCosmetics.SetColour(profile,"ThrustColour",args.Color,function() return moduleInstances.CaptureAll(profile,moduleUpgrades.GetLevels(player)) end)
 			elseif action == "DespawnVehicle" then
-				ok, message = V92_despawnVehicle(player)
+				ok, message = despawnVehicle(player)
 			elseif action == "ExitVehicle" then
-				ok, message = V56_exitVehicle(player)
+				ok, message = exitVehicle(player)
 			elseif action == "ReEnterVehicle" then
-				ok, message = V56_reEnterVehicle(player)
+				ok, message = reEnterVehicle(player)
 			elseif action == "SpawnOwnedVehicleFromFreeRoam" then
-				ok, message = V91_spawnOwnedVehicleFromFreeRoam(player, profile, args)
+				ok, message = spawnOwnedVehicleFromFreeRoam(player, profile, args)
 			elseif action == "SpawnVehicle" then
-				if not V76_coreModulesEquipped(profile) then
+				if not coreModulesEquipped(profile) then
 					ok, message = false, "Equip at least one engine, stabilisers, and boost before customising or driving."
 				else
-					local vehicle, err = V56_buildVehicle(player, profile)
+					local vehicle, err = buildVehicle(player, profile)
 					ok, message = vehicle ~= nil, err or "Vehicle spawned."
 				end
 			else
 				ok, message = false, "Unknown garage action."
 			end
 			if ok == true then
-				local validProfile,validationMessage=V97_ModuleInstances.Validate(profile); if not validProfile then error("Module instance invariant failed before persistence after "..tostring(action)..": "..tostring(validationMessage)) end
-				V80_mirrorLegacyProfileToPersistence(player, profile, action, V80_mutatingActions[action] == true)
+				local validProfile,validationMessage=moduleInstances.Validate(profile); if not validProfile then error("Module instance invariant failed before persistence after "..tostring(action)..": "..tostring(validationMessage)) end
+				mirrorLegacyProfileToPersistence(player, profile, action, mutatingActions[action] == true)
 				if action=="BuyCockpitInstance" then
 					local onboarding=game:GetService("ServerStorage"):WaitForChild("Runtime").Player:FindFirstChild("OnboardingProgress")
 					if onboarding and onboarding:IsA("BindableEvent") then onboarding:Fire(player,"FirstVehiclePurchased") end
-				end -- NTR_GARAGE_ONBOARDING_PURCHASE_BOUNDARY_V1
+				end 
 
 			end
 			if action == "SetCockpitColor" or action == "SetModuleColor" or action == "SetThrustColor" or action == "SetVehicleCosmeticColor" or action == "SetAllNeonColor" then
-				if args.ReturnProfile==true then return {Success=ok==true,Message=message,Profile=V56_profileForClient(profile)} end
+				if args.ReturnProfile==true then return {Success=ok==true,Message=message,Profile=profileForClient(profile)} end
 				return { Success = ok == true, Message = message, ColorOnly = true }
 			end
-			return { Success = ok == true, Message = message, Profile = V56_profileForClient(profile) }
+			return { Success = ok == true, Message = message, Profile = profileForClient(profile) }
 		end)
 		if okCall and typeof(result) == "table" then return result end
-		warn("[V56] Garage action failed: " .. tostring(result))
+		warn("[GarageServer] Garage action failed: " .. tostring(result))
 		return { Success = false, Message = "Garage server action failed. Please try again." }
 	end
 
-	V56_invoke.OnServerInvoke = function(player, action, args)
+	invoke.OnServerInvoke = function(player, action, args)
 		return requestGuard.run(player, action, args, function() return handleGarageRequest(player, action, args) end)
 	end
 	local function initialiseGaragePlayer(player)
-		local ok, message = pcall(function() if V87_getProfileServiceProfile(player) then V56_setLeaderstats(player, V56_getProfile(player)) end end)
+		local ok, message = pcall(function() if getProfileServiceProfile(player) then setLeaderstats(player, getProfile(player)) end end)
 		if not ok and player.Parent == Players then warn("[Garage] Profile initialisation unavailable: " .. tostring(message)) end
 	end
 	Players.PlayerAdded:Connect(initialiseGaragePlayer)
 	for _, player in ipairs(Players:GetPlayers()) do task.spawn(initialiseGaragePlayer, player) end
 
-	print("[V56] Consolidated server action controller is active.")
+	print("[GarageServer] Consolidated server action controller is active.")
 end
--- V56_CONSOLIDATED_ACTION_CONTROLLER_END
+
 
 end,debug.traceback)
 state=ok and "ready" or "failed"

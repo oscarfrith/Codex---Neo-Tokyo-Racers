@@ -35,7 +35,7 @@ local effects = game:GetService("ReplicatedStorage"):WaitForChild("Config"):Wait
 local garageRemotes = game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Garage")
 local garageInvoke = game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Garage"):WaitForChild("GarageInvoke")
 local teleportInvoke = game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("UI"):WaitForChild("FreeRoamHudTeleportInvoke")
-local loadingInvoke = game:GetService("Players").LocalPlayer:WaitForChild("PlayerScripts"):WaitForChild("Runtime"):WaitForChild("UI"):WaitForChild("LoadingTransitionInvoke") -- NTR_LOADING_SYSTEM_PHASE1_DEALERSHIP_TELEPORT_DESKTOP_V1
+local loadingInvoke = game:GetService("Players").LocalPlayer:WaitForChild("PlayerScripts"):WaitForChild("Runtime"):WaitForChild("UI"):WaitForChild("LoadingTransitionInvoke") 
 local interiorInvoke = game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Garage"):FindFirstChild("GarageInteriorInvoke")
 local categoriesRoot = game:GetService("ReplicatedStorage"):WaitForChild("Assets"):WaitForChild("Vehicles"):WaitForChild("Categories")
 local mobileDriveInputState = require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Vehicles"):WaitForChild("MobileDriveInputState"))
@@ -89,9 +89,9 @@ local modalPanels = {}
 local choiceList
 local choiceAnchor
 local sharedNotificationEvent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerScripts"):WaitForChild("Runtime"):WaitForChild("UI"):WaitForChild("ShowTopNotification")
-local racingPresentationActive = false -- NTR_PC_FREEROAM_RACING_PRESENTATION_BRIDGE
+local racingPresentationActive = false 
 local racingTelemetryOnly = false
-local presentationOwners = {} -- NTR_RACING_UI_PHASE16E_RUNTIME_OWNERSHIP
+local presentationOwners = {} 
 local activeModal
 local controlsDoneButton
 local onboardingControlsReveal = false
@@ -388,7 +388,7 @@ local function loadingAction(action, payload)
 	return nil
 end
 
-local function suppressLegacyDesktop() end -- NTR_RACING_UI_PHASE16E_RUNTIME_OWNERSHIP
+local function suppressLegacyDesktop() end 
 local function closeChoiceList()
 	if choiceList then choiceList:Destroy(); choiceList = nil end
 	choiceAnchor = nil
@@ -886,7 +886,7 @@ local function buildMainHud()
 			if not controlsInputToken then controlsInputToken=GameplayInputGate.Acquire("FirstDriveControls","V1") end
 		end
 		openModal("Controls")
-	end) -- NTR_DESKTOP_ONBOARDING_CONTROLS_POPUP_V1
+	end) 
 
 	exitButton.Activated:Connect(function()
 		if busy then return end

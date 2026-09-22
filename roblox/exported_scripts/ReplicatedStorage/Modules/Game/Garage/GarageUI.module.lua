@@ -11,7 +11,7 @@ local uiFolder=game:GetService("Players").LocalPlayer:WaitForChild("PlayerScript
 local Browser=require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("UI"):WaitForChild("GarageBrowserUI")); local WorkspaceUI=require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("UI"):WaitForChild("GarageWorkspaceUI")); local Shared=require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("UI"):WaitForChild("GarageComponents")); local ModuleCards=require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("UI"):WaitForChild("GarageModuleCardViewModel")); local replacementConfig=game:GetService("ReplicatedStorage"):WaitForChild("Config"):WaitForChild("UI"):WaitForChild("GarageReplacement")
 local garageInvoke=game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Garage"):WaitForChild("GarageInvoke")
 local sessionRequest=game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("UI"):WaitForChild("GarageSessionRequest")
-local loadingInvoke=game:GetService("Players").LocalPlayer:WaitForChild("PlayerScripts"):WaitForChild("Runtime"):WaitForChild("UI"):WaitForChild("LoadingTransitionInvoke") -- NTR_LOADING_SYSTEM_PHASE2_GARAGE_UI_TRANSITIONS_V1
+local loadingInvoke=game:GetService("Players").LocalPlayer:WaitForChild("PlayerScripts"):WaitForChild("Runtime"):WaitForChild("UI"):WaitForChild("LoadingTransitionInvoke") 
 local AudioBridge=require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Audio"):WaitForChild("PresentationAudioBridge"))
 local ACTION_AUDIO_KIND={BuyCockpitInstance="Purchase",BuyGarageProperty="Purchase",BuyModuleInstance="Purchase",BuyNeon="Purchase",BuyVehicleCosmetic="Purchase",EquipModuleInstance="ModuleEquip",UpgradeModule="Upgrade"}
 local Adapter={}; Adapter.__index=Adapter
@@ -37,8 +37,8 @@ function Adapter:NewModuleId(before,moduleId)
 	for id,item in pairs((self.State.Profile and self.State.Profile.OwnedModuleInstances) or {}) do if not old[id] and tostring(item.TemplateId)==tostring(moduleId) then return id end end
 end
 
-local PreviewVehicle=require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Garage"):WaitForChild("PreviewVehicleClient")); local PreviewCamera=require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Garage"):WaitForChild("PreviewCameraClient")); local InstancePreview=require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Garage"):WaitForChild("GarageModuleInstancePreviewAdapter")); local PreviewProfiles=require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Garage"):WaitForChild("GarageVehiclePreviewProfile")) -- NTR_GARAGE_VEHICLE_PREVIEW_PAINT_SCOPE_V1
-local performance=game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Vehicles"):WaitForChild("Performance"); local PerformanceResolver=require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Vehicles"):WaitForChild("Performance"):WaitForChild("VehiclePerformanceResolver")); local Racing=require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("UI"):WaitForChild("RacingUIComponents")) -- NTR_CANONICAL_PERFORMANCE_RESOLVER_MODULE_RATINGS_V1
+local PreviewVehicle=require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Garage"):WaitForChild("PreviewVehicleClient")); local PreviewCamera=require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Garage"):WaitForChild("PreviewCameraClient")); local InstancePreview=require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Garage"):WaitForChild("GarageModuleInstancePreviewAdapter")); local PreviewProfiles=require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Garage"):WaitForChild("GarageVehiclePreviewProfile")) 
+local performance=game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Vehicles"):WaitForChild("Performance"); local PerformanceResolver=require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Vehicles"):WaitForChild("Performance"):WaitForChild("VehiclePerformanceResolver")); local Racing=require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("UI"):WaitForChild("RacingUIComponents")) 
 local State={Stage="Closed",ShopMode="Dealership",Catalog=nil,Profile=nil,CategoryId="bruiser",BrowseAll=true,SelectedCockpit=nil,SelectedVehicleId=nil,SelectedSlot="Engine1",SelectedModuleId=nil,SelectedModuleInstanceId=nil,ModuleMode="Slots",ModuleOptionMode=nil,CustomizeTarget="ALL",CustomizeMode="Colour",SelectedColorChannel="Primary",PreviewModules={},PreviewProfile=nil,ReturnWorkshop=nil,GarageCameraActive=false}
 local action=Adapter.new(State); local browser=Browser.new(); local workspaceUI=WorkspaceUI.new(); local preview={}; local active=false; local modal
 local function loadingAction(actionName,payload) local ok,result=pcall(function() return loadingInvoke:Invoke(actionName,payload or {}) end); if ok then return result end; warn("[Canonical Garage] Loading transition "..tostring(actionName).." failed: "..tostring(result)); return nil end
@@ -77,14 +77,14 @@ local function currentPerformance()
 	end
 	local base=PerformanceResolver.Profile(categoriesRoot,State.PreviewProfile or State.Profile)
 	return base,base
-end -- NTR_GARAGE_UPGRADE_POINT_BUDGET_SHARED_CARDS_V1
+end 
 local function moduleRating(module,instance) return PerformanceResolver.ModuleRating(categoriesRoot,module,instance) end
 local function imageValue(value) local text=tostring(value or ""); if text=="" then return "" end; if tonumber(text) then return "rbxassetid://"..text end; return text end
 local navigationIcons=game:GetService("ReplicatedStorage"):WaitForChild("Config"):WaitForChild("UI"):WaitForChild("GarageReplacement"):WaitForChild("NavigationIcons")
-local function navIcon(name) return imageValue(navigationIcons:GetAttribute(name)) end -- NTR_GARAGE_FLOW_NAVIGATION_COLOUR_V1
+local function navIcon(name) return imageValue(navigationIcons:GetAttribute(name)) end 
 local function cockpitImage(c) for _,k in ipairs({"MenuImage","CockpitImage","ThumbnailImage","ImageId","Image"}) do local v=imageValue(c and c[k]); if v~="" then return v end end; local id=tostring(c and c.CockpitId or ""); for _,o in ipairs(categoriesRoot:GetDescendants()) do if o:IsA("Model") and tostring(o:GetAttribute("CockpitId") or o.Name)==id then for _,k in ipairs({"MenuImage","CockpitImage","ThumbnailImage","ImageId","Image"}) do local v=imageValue(o:GetAttribute(k)); if v~="" then return v end; local child=o:FindFirstChild(k); if child and child:IsA("StringValue") then v=imageValue(child.Value); if v~="" then return v end end end end end; return "" end
 local function clearPreview() if preview.Root and preview.Root.Parent then preview.Root:Destroy() end; table.clear(preview); State.PreviewModules={}; State.GarageCameraActive=false end
-local function clearTransientModulePreview() -- NTR_GARAGE_TRANSIENT_MODULE_PREVIEW_LIFECYCLE_V1
+local function clearTransientModulePreview() 
 	State.SelectedModuleId=nil; State.SelectedModuleInstanceId=nil; State.PreviewModules={}; State.PreviewUpgradeId=nil; State.PreviewNeonSlot=nil
 end
 local function buildPreview()
@@ -128,7 +128,7 @@ local function auditOwnership(label)
 		local legacy=player.PlayerGui:FindFirstChild("GarageUI")
 		local canonical=player.PlayerGui:FindFirstChild("CanonicalGarageGui")
 		local visibleRoot=(browser.Root.Visible and browser.Root) or (workspaceUI.Root.Visible and workspaceUI.Root)
-		if canonical and canonical.Enabled and visibleRoot and not (legacy and legacy.Enabled) then print("[Garage Phase 1 Runtime] OWNERSHIP PASS "..tostring(label)) else warn("[Garage Phase 1 Runtime] OWNERSHIP FAIL "..tostring(label).." canonical="..tostring(canonical and canonical.Enabled).." root="..tostring(visibleRoot and visibleRoot.Name).." legacy="..tostring(legacy and legacy.Enabled)) end
+		if canonical and canonical.Enabled and visibleRoot and not (legacy and legacy.Enabled) then print("[GarageUI] OWNERSHIP PASS "..tostring(label)) else warn("[GarageUI] OWNERSHIP FAIL "..tostring(label).." canonical="..tostring(canonical and canonical.Enabled).." root="..tostring(visibleRoot and visibleRoot.Name).." legacy="..tostring(legacy and legacy.Enabled)) end
 	end)
 end
 local function closeCamera()
@@ -178,7 +178,7 @@ renderBrowser=function()
 	State.Stage="Browser"; setPreviewVFXMode("Idle"); hideAll(); local owned,cap=capacity(); browser:Show({Mode=State.ShopMode,State=State,CarouselScrollKey="Browser|"..tostring(State.ShopMode).."|"..tostring(State.BrowseAll and "ALL" or State.CategoryId),Category=browserCategory(),Cash=State.Profile.Cash,CapacityText=tostring(owned).."/"..tostring(cap).." Spaces",AutoPreview=State.NoPreviewYet,Legacy={},ResolveImage=cockpitImage,ResolvePerformance=performanceForCockpit,TierColor=tierColor,OwnedCount=ownedCockpitCount,
 	OnCategory=function(id,all) State.BrowseAll=all==true; if id then State.CategoryId=id end; State.SelectedVehicleId=nil; State.PreviewProfile=nil; State.NoPreviewYet=true; renderBrowser() end,
 	OnSelect=function(row) State.SelectedCockpit=row.CockpitId; State.SelectedVehicleId=row.VehicleId; State.CategoryId=row.CategoryId or State.CategoryId; State.PreviewProfile=PreviewProfiles.ForBrowser(State,row); State.NoPreviewYet=false; buildPreview(); PreviewCamera.Reset(State,State.TargetFocus,cameraTransition()); renderBrowser() end,
-	OnPrimary=function(row) local selectionMode=State.ShopMode; local selectingOwned=selectionMode=="Customisation"; local r;if selectingOwned then r=action:Call("SelectVehicleInstance",{VehicleId=row.VehicleId,CockpitId=row.CockpitId}) else r=action:Call("BuyCockpitInstance",{CockpitId=row.CockpitId,CategoryId=row.CategoryId}) end; if not r.Success then browser.Subtitle.Text=r.Message or "Could not select vehicle."; return end; State.PreviewProfile=nil; State.SelectedCockpit=State.Profile.CurrentCockpit or row.CockpitId; State.SelectedVehicleId=State.Profile.CurrentVehicleId; State.ModuleMode="Slots"; State.CustomizeTarget="ALL"; State.CustomizeMode="Overview"; buildPreview(); print("[Garage Route] selection="..selectionMode.." destination="..(selectingOwned and "Hub" or "Paint")); if selectingOwned then renderHub() else renderPaint() end end, -- NTR_GARAGE_FLOW_REFINEMENT_V2
+	OnPrimary=function(row) local selectionMode=State.ShopMode; local selectingOwned=selectionMode=="Customisation"; local r;if selectingOwned then r=action:Call("SelectVehicleInstance",{VehicleId=row.VehicleId,CockpitId=row.CockpitId}) else r=action:Call("BuyCockpitInstance",{CockpitId=row.CockpitId,CategoryId=row.CategoryId}) end; if not r.Success then browser.Subtitle.Text=r.Message or "Could not select vehicle."; return end; State.PreviewProfile=nil; State.SelectedCockpit=State.Profile.CurrentCockpit or row.CockpitId; State.SelectedVehicleId=State.Profile.CurrentVehicleId; State.ModuleMode="Slots"; State.CustomizeTarget="ALL"; State.CustomizeMode="Overview"; buildPreview(); print("[Garage Route] selection="..selectionMode.." destination="..(selectingOwned and "Hub" or "Paint")); if selectingOwned then renderHub() else renderPaint() end end, 
 	OnExit=function() local generation=loadingAction("Begin",{Destination="DealershipExterior",Status="LEAVING GARAGE"}); local ended=action:Session("End",{ReturnToEntry=true}); if not ended or ended.Success~=true then local reason=(ended and ended.Message) or "Could not leave garage."; loadingAction("Fail",{Generation=generation,Status="RETURNING",Reason=reason}); message(reason); return end; active=false; hideAll(); closeCamera(); player:SetAttribute("GarageEntryMode",nil); local e=game:GetService("Players").LocalPlayer:WaitForChild("PlayerScripts"):WaitForChild("Runtime"):WaitForChild("Dealership"):FindFirstChild("GarageClosedFromDealershipExit"); if e and e:IsA("BindableEvent") then e:Fire() end; loadingAction("Complete",{Generation=generation,Status="READY"}) end,OnCash=showCash,OnCapacity=showProperties})
 end
 renderPaint=function()
@@ -189,7 +189,7 @@ renderHub=function()
 	if State.CameraSection~="ALL" then section("ALL") end
 	State.Stage="Hub"
 	browser:Hide()
-	local c=common("Garage"); c.TutorialPageId="CustomisationHome" -- NTR_ONBOARDING_V1_3_MODULE_PAGE_SEMANTICS
+	local c=common("Garage"); c.TutorialPageId="CustomisationHome" 
 	c.CarouselScrollKey="Hub|ThreeWorkshops"
 	c.Subtitle="Choose a workshop, or drive your vehicle."
 	c.ShowLeft=false
@@ -680,7 +680,7 @@ local function open(mode,payload)
 	loadingAction("Complete",{Generation=generation,Status="READY"})
 end
 local function bindGarageOpen(name,mode) introEvent(name).Event:Connect(function(payload) print("[Garage Route] event="..name.." mode="..mode); open(mode,payload) end) end
-bindGarageOpen("OpenGarageFromIntro","Dealership"); bindGarageOpen("OpenOwnedCockpitCustomisation","Customisation"); bindGarageOpen("OpenDrivingVehicleCustomisation","DriveIn") -- NTR_GARAGE_FLOW_REFINEMENT_V2
+bindGarageOpen("OpenGarageFromIntro","Dealership"); bindGarageOpen("OpenOwnedCockpitCustomisation","Customisation"); bindGarageOpen("OpenDrivingVehicleCustomisation","DriveIn") 
 -- Camera input and rendering are session-scoped by startCamera/stopCamera.
 task.defer(function() print("[Canonical Garage] DEPENDENCY PASS existing-instance application") end)
 return {Active=true,Revision="GarageApplication"}

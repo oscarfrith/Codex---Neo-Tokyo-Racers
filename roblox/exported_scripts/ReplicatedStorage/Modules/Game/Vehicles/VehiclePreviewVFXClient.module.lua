@@ -466,7 +466,7 @@ function VehicleVFXController:Visible()
 end
 
 
-local function V39_IsThrustFireObject(object)
+local function isThrustFireObject(object)
 	local lower = string.lower(object.Name)
 	return string.find(lower, "booston_fire", 1, true)
 		or string.find(lower, "engineoff_fire", 1, true)
@@ -475,7 +475,7 @@ local function V39_IsThrustFireObject(object)
 		or string.find(lower, "stabilizeron_fire", 1, true)
 end
 
-local function V39_ApplyThrustFireColour(object, color)
+local function applyThrustFireColour(object, color)
 	if not object or not color then return end
 	if object:IsA("ParticleEmitter") then
 		object.Color = ColorSequence.new(color)
@@ -503,8 +503,8 @@ function VehicleVFXController:Update(dt, state)
 	for _, record in ipairs(self.Items) do
 		local object = record.Object
 		if object and object.Parent then
-			if V39_IsThrustFireObject(object) then
-				V39_ApplyThrustFireColour(object, thrustColor)
+			if isThrustFireObject(object) then
+				applyThrustFireColour(object, thrustColor)
 			end
 			local intensity = visible and math.clamp(intensityForGroup(self, record.Group, state), 0, 1) or 0
 			if self.IsMobile then

@@ -12,7 +12,7 @@ function ViewModel.Variant(module)
 	return "Standard"
 end
 
-function ViewModel.Rating(module,instance,resolver) -- NTR_CANONICAL_PERFORMANCE_RESOLVER_MODULE_RATINGS_V1
+function ViewModel.Rating(module,instance,resolver) 
 	if typeof(resolver)=="function" then local ok,value=pcall(resolver,module,instance); if ok and tonumber(value) then return math.floor(tonumber(value)) end end
 	return math.floor(tonumber(instance and (instance.Rating or instance.PerformanceRating or instance.PerformanceIndex)) or tonumber(module and (module.Rating or module.PerformanceRating or module.PerformanceIndex)) or 0)
 end

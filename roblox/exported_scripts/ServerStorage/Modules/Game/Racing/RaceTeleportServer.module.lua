@@ -216,7 +216,7 @@ invoke.OnServerInvoke = function(player, action, payload)
 		if ok and typeof(result) == "table" then
 			return result
 		end
-		warn("[Racing Phase 7B] Teleport failed: " .. tostring(result))
+		warn("[RaceTeleportServer] Teleport failed: " .. tostring(result))
 		return { Ok = false, Success = false, Message = "Teleport failed: " .. tostring(result) }
 	end
 	return { Ok = false, Success = false, Message = "Unknown race browser teleport action." }
@@ -226,7 +226,7 @@ Players.PlayerRemoving:Connect(function(player)
 	lastTeleportByUserId[player.UserId] = nil
 end)
 
-print("[Racing Phase 7B] Browser teleport service active.")
+print("[RaceTeleportServer] Browser teleport service active.")
 
 end,debug.traceback)
 state=ok and "ready" or "failed"

@@ -2,7 +2,7 @@
 -- Persistence Phase 1 foundation. This module is data-only and does not save/load DataStores.
 
 local HttpService = game:GetService("HttpService")
-local VehicleCosmetics = require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Vehicles"):WaitForChild("VehicleCosmeticCatalog")) -- NTR_CUSTOMISATION_VEHICLE_COSMETIC_SCHEMA_V1
+local VehicleCosmetics = require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Vehicles"):WaitForChild("VehicleCosmeticCatalog")) 
 
 local PlayerProfileSchema = {}
 

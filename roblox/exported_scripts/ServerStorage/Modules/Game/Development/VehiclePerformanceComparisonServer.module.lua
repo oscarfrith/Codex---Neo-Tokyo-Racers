@@ -16,7 +16,7 @@ local function evaluate(vehicle)
 	if config:GetAttribute("ShadowComparisonEnabled") ~= true then return end
 	if not vehicle:IsA("Model") or not vehicle:FindFirstChild("RAW_PERFORMANCE_Runtime") then return end
 	local ok, result = pcall(runtime.CalculateRuntimeVehicle, vehicle)
-	if ok then runtime.WriteShadow(vehicle, result) else warn("[V2 Shadow] " .. vehicle:GetFullName() .. ": " .. tostring(result)) end
+	if ok then runtime.WriteShadow(vehicle, result) else warn("[VehiclePerformanceComparisonServer] " .. vehicle:GetFullName() .. ": " .. tostring(result)) end
 end
 
 local function schedule(vehicle)
@@ -36,7 +36,7 @@ local function consider(item)
 end
 
 Workspace.DescendantAdded:Connect(consider)
-print("[Vehicle Performance V2 Phase 7] Shadow comparison service active; live V1 rating/physics remain authoritative.")
+print("[VehiclePerformanceComparisonServer] Shadow comparison service active; live V1 rating/physics remain authoritative.")
 
 end,debug.traceback)
 state=ok and "ready" or "failed"

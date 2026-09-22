@@ -63,7 +63,7 @@ local function ensureValue(parent, className, name, value)
 	return item
 end
 
-local ntr = game:GetService("ReplicatedStorage")
+local replicatedStorageRoot = game:GetService("ReplicatedStorage")
 local configRoot = game:GetService("ReplicatedStorage"):WaitForChild("Config"):WaitForChild("Racing"):WaitForChild("PersonalBests")
 ensureValue(configRoot, "BoolValue", "DataStoreEnabled", false)
 ensureValue(configRoot, "StringValue", "DataStoreName", "NTR_TimeTrialPersonalBests_v1")

@@ -109,12 +109,12 @@ local PROMPT_NAME = "RaceEntryPrompt"
 local flowUI=game:GetService("ReplicatedStorage"):WaitForChild("Config"):WaitForChild("Racing"):WaitForChild("FlowUI")
 local countdownValue=game:GetService("ReplicatedStorage"):WaitForChild("Config"):WaitForChild("Racing"):WaitForChild("FlowUI"):WaitForChild("CountdownSeconds")
 local COUNTDOWN_SECONDS=math.max(1,math.floor(tonumber(countdownValue.Value) or 5))
-local STAGING_READY_TIMEOUT_SECONDS = 18 -- NTR_RACING_STAGING_READINESS_GATE_V1
+local STAGING_READY_TIMEOUT_SECONDS = 18 
 local COUNTDOWN_VISIBLE_TIMEOUT_SECONDS = 8
 
 local activeRuns = {}
 local activeRunsById = {}
-local finishedRunsByPlayer = {} -- NTR_RACING_PHASE11K_TT_FINISHED_EXIT_CLEANUP
+local finishedRunsByPlayer = {} 
 local gateConnections = {}
 local personalBests = {}
 
@@ -314,7 +314,7 @@ local function callSessionAssetService(action, payload)
 	if ok then
 		return result
 	end
-	warn("[Racing Phase 10A] Session asset service failed: " .. tostring(result))
+	warn("[TimeTrialServer] Session asset service failed: " .. tostring(result))
 	return nil
 end
 
@@ -568,7 +568,7 @@ local function destroyVehicleAfterUnseat(player, vehicle)
 	vehicle:SetAttribute("RaceRunId", nil)
 	vehicle:SetAttribute("RaceParticipant", nil)
 	vehicle:SetAttribute("RaceMode", nil)
-	vehicle:SetAttribute("RaceFinishedPendingExit", nil) -- NTR_RACING_PHASE11Y_TT_FINISH_LIFECYCLE_RECOVERY
+	vehicle:SetAttribute("RaceFinishedPendingExit", nil) 
 	unseatPlayer(player)
 	task.wait(0.08)
 	if vehicle and vehicle.Parent then
@@ -672,7 +672,7 @@ local function resetActiveTimeTrial(player)
 			RouteId = run.RouteId,
 			NextGateIndex = run.NextGateIndex,
 			GateCount = run.GateCount,
-			ResetCFrame = resetCFrameForRun(run), -- NTR_RACING_PHASE8D_RESET_CFRAME_PAYLOAD
+			ResetCFrame = resetCFrameForRun(run), 
 			Message = "Reset to last checkpoint.",
 		})
 	end
@@ -1069,7 +1069,7 @@ local function beginStagedTimeTrial(player, eventId, vehicleId, requestedLapCoun
 	if not vehicle then
 		return false, vehicleError
 	end
-	local tier = tostring(vehicle:GetAttribute("PerformanceTier") or "") -- NTR_RACING_PHASE11C_TT_GRID_SPAWN
+	local tier = tostring(vehicle:GetAttribute("PerformanceTier") or "") 
 	local index = tonumber(vehicle:GetAttribute("PerformanceIndex")) or tonumber(vehicle:GetAttribute("PerformanceScore")) or 0
 	local runId = "TT_" .. tostring(player.UserId) .. "_" .. tostring(math.floor(os.clock() * 1000))
 	local run = {
@@ -1194,7 +1194,7 @@ local function beginStagedTimeTrial(player, eventId, vehicleId, requestedLapCoun
 		end
 		live.State = "Running"
 		local onboarding = game:GetService("ServerStorage"):WaitForChild("Runtime").Player:FindFirstChild("OnboardingProgress")
-		if onboarding and onboarding:IsA("BindableEvent") then onboarding:Fire(player, "FirstEventEntered") end -- NTR_TIME_TRIAL_ONBOARDING_START_V1
+		if onboarding and onboarding:IsA("BindableEvent") then onboarding:Fire(player, "FirstEventEntered") end 
 
 		live.StartClock = os.clock()
 		live.LapStartedClock = live.StartClock

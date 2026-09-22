@@ -277,7 +277,7 @@ routeGuideConfig:GetAttributeChangedSignal("ShowRouteArrowMarkers"):Connect(func
 end)
 
 task.defer(hideAllOnce)
-print("[Racing Phase 16D] Incremental arrow visibility active.")
+print("[RaceSessionAssetsClient] Incremental arrow visibility active.")
 
 end,debug.traceback)
 state=ok and "ready" or "failed"

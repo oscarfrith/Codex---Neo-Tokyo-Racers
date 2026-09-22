@@ -13,7 +13,7 @@ local RunService=game:GetService("RunService")
 local player=Players.LocalPlayer
 local playerGui=player:WaitForChild("PlayerGui")
 local kit=game:GetService("ReplicatedStorage")
-local VehicleCosmetics=require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Vehicles"):WaitForChild("VehicleCosmeticCatalog")) -- NTR_CUSTOMISATION_PROTECTED_VEHICLE_LIGHTS_V1
+local VehicleCosmetics=require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Vehicles"):WaitForChild("VehicleCosmeticCatalog")) 
 local templates=game:GetService("ReplicatedStorage"):WaitForChild("Assets"):WaitForChild("VFX"):WaitForChild("VehicleTemplates")
 local cfg=game:GetService("ReplicatedStorage"):WaitForChild("Config"):WaitForChild("UI"):WaitForChild("GarageReplacement")
 local controllerModule

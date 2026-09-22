@@ -30,14 +30,14 @@ local function writeVehicle(vehicle)
 		end)
 		pending[vehicle] = nil
 		if ok then
-			print(string.format("[Canonical V2 Runtime] Wrote %s %s to %s", tostring(result.Overall.Tier), tostring(result.Overall.PerformanceIndex), vehicle.Name))
-		else warn("[Canonical V2 Runtime] Failed for " .. vehicle:GetFullName() .. ": " .. tostring(result)) end
+			print(string.format("[VehiclePerformanceServer] Wrote %s %s to %s", tostring(result.Overall.Tier), tostring(result.Overall.PerformanceIndex), vehicle.Name))
+		else warn("[VehiclePerformanceServer] Failed for " .. vehicle:GetFullName() .. ": " .. tostring(result)) end
 	end)
 end
 
 vehicles.ChildAdded:Connect(writeVehicle)
 for _, vehicle in ipairs(vehicles:GetChildren()) do writeVehicle(vehicle) end
-print("[Canonical V2 Runtime] Spawned-vehicle performance writer active.")
+print("[VehiclePerformanceServer] Spawned-vehicle performance writer active.")
 
 end,debug.traceback)
 state=ok and "ready" or "failed"

@@ -14,7 +14,7 @@ local player = Players.LocalPlayer
 local kit = game:GetService("ReplicatedStorage")
 local request = game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("UI"):WaitForChild("GarageSessionRequest")
 local config = game:GetService("ReplicatedStorage"):WaitForChild("Config"):WaitForChild("UI"):WaitForChild("GarageExperience")
-local loadingInvoke = game:GetService("Players").LocalPlayer:WaitForChild("PlayerScripts"):WaitForChild("Runtime"):WaitForChild("UI"):WaitForChild("LoadingTransitionInvoke") -- NTR_LOADING_SYSTEM_PHASE2_GARAGE_ENTRY_V1
+local loadingInvoke = game:GetService("Players").LocalPlayer:WaitForChild("PlayerScripts"):WaitForChild("Runtime"):WaitForChild("UI"):WaitForChild("LoadingTransitionInvoke") 
 local AudioBridge = require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Audio"):WaitForChild("PresentationAudioBridge"))
 
 local function colour(name, fallback)

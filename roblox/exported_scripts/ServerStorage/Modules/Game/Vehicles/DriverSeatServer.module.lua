@@ -236,7 +236,7 @@ Workspace.DescendantAdded:Connect(function(descendant)
 end)
 
 hookConfig()
-print("Hover Racing driver seat position keeper running.")
+print("[DriverSeatServer] Driver seat position keeper running.")
 
 end,debug.traceback)
 state=ok and "ready" or "failed"

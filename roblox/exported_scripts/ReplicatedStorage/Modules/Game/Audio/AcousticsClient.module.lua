@@ -31,7 +31,7 @@ local lastSelectedCount = -1
 local lastContextId = nil
 
 local function debugLog(message)
-	if acoustics:GetAttribute("DebugAcoustics") == true then print("[Audio Phase 3] " .. tostring(message)) end
+	if acoustics:GetAttribute("DebugAcoustics") == true then print("[AcousticsClient] " .. tostring(message)) end
 end
 
 local function masterEnabled()
@@ -204,7 +204,7 @@ function Controller.Start()
 		table.insert(connections, vehicles.DescendantAdded:Connect(registerEmitter))
 		table.insert(connections, vehicles.DescendantRemoving:Connect(unregisterEmitter))
 	else
-		warn("[Audio Phase 3] PlayerVehicles missing; vehicle acoustics inactive.")
+		warn("[AcousticsClient] PlayerVehicles missing; vehicle acoustics inactive.")
 	end
 	for _, attributeName in ipairs({ "AudioSystemEnabled" }) do
 		table.insert(connections, audioGlobal:GetAttributeChangedSignal(attributeName):Connect(update))

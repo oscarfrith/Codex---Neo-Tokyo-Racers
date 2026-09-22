@@ -144,7 +144,7 @@ root.ChildRemoved:Connect(cleanup)
 Players.PlayerRemoving:Connect(function(player) rate[player] = nil end)
 for _, vehicle in ipairs(root:GetChildren()) do register(vehicle) end
 
-print("[Audio Phase 1] VehicleAudioStateService active.")
+print("[VehicleAudioServer] VehicleAudioStateService active.")
 
 end,debug.traceback)
 state=ok and "ready" or "failed"

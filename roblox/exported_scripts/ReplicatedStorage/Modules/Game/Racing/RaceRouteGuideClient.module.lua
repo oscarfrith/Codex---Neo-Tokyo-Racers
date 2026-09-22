@@ -127,7 +127,7 @@ end
 local checkpointHudLabel = nil
 
 local function setCheckpointHud(_text,_color)
-	-- NTR_RACING_UI_PHASE16E_RUNTIME_OWNERSHIP: presentation owned by RaceSessionPresentationController_Active.
+	
 end
 local function makeBillboard(name, adornee, text, color)
 	if not boolAttr("ShowWorldCheckpointLabel", true) then
@@ -419,7 +419,7 @@ raceEvent.OnClientEvent:Connect(function(payload)
 	if typeof(payload) ~= "table" then return end
 	local kind = payload.Type
 	if kind == "TimeTrialStaged" or kind == "TimeTrialCountdown" or kind == "RaceStaged" or kind == "RaceCountdown" then
-		clearActive() -- NTR_RACING_FLOW_COUNTDOWN_GUIDE_GATE_V2: hide checkpoint guidance until GO.
+		clearActive() 
 	elseif kind == "TimeTrialStarted" or kind == "RaceStarted" then
 		setActive(payload)
 	elseif kind == "TimeTrialCheckpoint" or kind == "RaceCheckpoint" or kind == "TimeTrialLapCompleted" or kind == "RaceLapCompleted" then
@@ -441,7 +441,7 @@ game:GetService("Players").LocalPlayer:WaitForChild("PlayerScripts").Destroying:
 	clearActive()
 end)
 
-print("[Racing Phase 5 Guide] Route guide client active.")
+print("[RaceRouteGuideClient] Route guide client active.")
 
 end,debug.traceback)
 state=ok and "ready" or "failed"

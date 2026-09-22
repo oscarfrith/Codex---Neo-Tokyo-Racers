@@ -52,7 +52,7 @@ local function ensureBindableFunction(parent, name)
 	return item
 end
 
-local ntr = game:GetService("ReplicatedStorage")
+local replicatedStorageRoot = game:GetService("ReplicatedStorage")
 local schema = require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Player"):WaitForChild("PlayerProfileSchema"))
 
 local config = game:GetService("ReplicatedStorage"):WaitForChild("Config"):WaitForChild("Player"):WaitForChild("Persistence")
@@ -71,8 +71,8 @@ local markDirtyBinding = ensureBindableFunction(bindings, "MarkDirty")
 local saveNowBinding = ensureBindableFunction(bindings, "SaveNow")
 local importProfileSnapshotBinding = ensureBindableFunction(bindings, "ImportProfileSnapshot")
 local executeOwnedGarageCommandBinding = ensureBindableFunction(bindings, "ExecuteOwnedGarageCommand")
-local executeOnboardingCommandBinding = ensureBindableFunction(bindings, "ExecuteOnboardingCommand") -- NTR_PROFILE_SERVICE_ONBOARDING_COMMAND_OWNER_V1
-local executeEconomyCommandBinding = ensureBindableFunction(bindings, "ExecuteEconomyCommand") -- NTR_PROFILE_SERVICE_ECONOMY_COMMAND_OWNER_V1
+local executeOnboardingCommandBinding = ensureBindableFunction(bindings, "ExecuteOnboardingCommand") 
+local executeEconomyCommandBinding = ensureBindableFunction(bindings, "ExecuteEconomyCommand") 
 local economyCashCommittedEvent = game:GetService("ServerStorage"):WaitForChild("Runtime"):WaitForChild("Player"):WaitForChild("ProfileServiceBindings"):FindFirstChild("EconomyCashCommitted")
 if economyCashCommittedEvent and not economyCashCommittedEvent:IsA("BindableEvent") then
 	error(economyCashCommittedEvent:GetFullName() .. " must be a BindableEvent")
@@ -82,7 +82,7 @@ if not economyCashCommittedEvent then
 	economyCashCommittedEvent.Name = "EconomyCashCommitted"
 	economyCashCommittedEvent.Parent = bindings
 end
-local garageCleanupTransactionBinding = ensureBindableFunction(bindings, "GarageModuleInventoryCleanupTransaction") -- NTR_GARAGE_MODULE_INVENTORY_IMPORT_LOCK_V1
+local garageCleanupTransactionBinding = ensureBindableFunction(bindings, "GarageModuleInventoryCleanupTransaction") 
 local isLoadedBinding = ensureBindableFunction(bindings, "IsLoaded")
 
 local ProfileStore = require(game:GetService("ServerStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Player"):WaitForChild("ProfileStore"))
@@ -90,10 +90,10 @@ local Compatibility = require(game.ServerStorage.Modules.Game.Player.ProfileComp
 local sessions = {}
 local ownedGarageCommandLocks = {}
 local garageCleanupTransactions = {}
-local profileLoadsInFlight = {} -- NTR_PROFILE_SERVICE_SINGLE_FLIGHT_LOAD_V1
-local profileLoadGenerations = {} -- NTR_PROFILE_SERVICE_LIFECYCLE_GENERATION_V1
+local profileLoadsInFlight = {} 
+local profileLoadGenerations = {} 
 local shuttingDown = false
-local economyCommandLocks = {} -- NTR_PROFILE_SERVICE_ECONOMY_COMMAND_OWNER_V1
+local economyCommandLocks = {} 
 
 local function getAttr(name, fallback)
 	local value = config:GetAttribute(name)
@@ -120,7 +120,7 @@ local function saveDebounceSeconds()
 end
 
 local function startingCash()
-	return tonumber(ntr:GetAttribute("StartingCash")) or 140000
+	return tonumber(replicatedStorageRoot:GetAttribute("StartingCash")) or 140000
 end
 
 local function profileKey(player)
@@ -151,7 +151,7 @@ local function sessionFor(player)
 		return session
 	end
 	return nil
-end -- NTR_PROFILE_SERVICE_SESSION_OWNERSHIP_HARDENING_V1
+end 
 
 local function updateRuntimeMarker(player, session)
 	local marker = runtimeProfilesFolder:FindFirstChild(tostring(player.UserId))
@@ -397,7 +397,7 @@ local function closeProfile(player)
 end
 
 local EconomyServer = require(game.ServerStorage.Modules.Game.Player.EconomyServer)
-EconomyServer.init({ntr=ntr,sessionFor=sessionFor,economyCommandLocks=economyCommandLocks,updateRuntimeMarker=updateRuntimeMarker,executeEconomyCommandBinding=executeEconomyCommandBinding,economyCashCommittedEvent=economyCashCommittedEvent,warnLine=warnLine,Players=Players})
+EconomyServer.init({replicatedStorageRoot=replicatedStorageRoot,sessionFor=sessionFor,economyCommandLocks=economyCommandLocks,updateRuntimeMarker=updateRuntimeMarker,executeEconomyCommandBinding=executeEconomyCommandBinding,economyCashCommittedEvent=economyCashCommittedEvent,warnLine=warnLine,Players=Players})
 
 executeOwnedGarageCommandBinding.OnInvoke = function(player, command)
 	local session = sessionFor(player)
@@ -534,7 +534,7 @@ end)
 Players.PlayerRemoving:Connect(function(player)
 	local userId = player.UserId
 	ownedGarageCommandLocks[userId] = nil
-	economyCommandLocks[userId] = nil -- NTR_PROFILE_SERVICE_ECONOMY_COMMAND_OWNER_V1
+	economyCommandLocks[userId] = nil 
 	ownedGarageCommandRuntime.ForgetPlayer(player)
 	local leavingSession = sessions[userId]
 	profileLoadGenerations[userId] = (profileLoadGenerations[userId] or 0) + 1

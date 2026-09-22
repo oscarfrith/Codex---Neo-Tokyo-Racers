@@ -1,0 +1,117 @@
+-- Server composition root: explicit registrations; old paths contain adapters only.
+local modules=game:GetService("ServerStorage"):WaitForChild("Modules")
+local lifecycle=require(modules.Core.ServerLifecycle)
+local entries = {
+{name=[====[
+VehicleAudioServer]====],path=[====[
+ServerStorage.Modules.Game.Audio.VehicleAudioServer]====],dependencies={}},
+{name=[====[
+IntroProgressServer]====],path=[====[
+ServerStorage.Modules.Game.Dealership.IntroProgressServer]====],dependencies={[====[
+ProfileServer]====]}},
+{name=[====[
+StudioCashGrantServer]====],path=[====[
+ServerStorage.Modules.Game.Development.StudioCashGrantServer]====],dependencies={[====[
+GarageServer]====]}},
+{name=[====[
+GarageServer]====],path=[====[
+ServerStorage.Modules.Game.Garage.GarageServer]====],dependencies={[====[
+ProfileServer]====]}},
+{name=[====[
+GarageSessionServer]====],path=[====[
+ServerStorage.Modules.Game.Garage.GarageSessionServer]====],dependencies={[====[
+GarageServer]====]}},
+{name=[====[
+OwnedGarageServer]====],path=[====[
+ServerStorage.Modules.Game.Garage.OwnedGarageServer]====],dependencies={[====[
+GarageServer]====]}},
+{name=[====[
+ProfileCompatibilityServer]====],path=[====[
+ServerStorage.Modules.Game.Player.ProfileCompatibilityServer]====],dependencies={[====[
+ProfileServer]====]}},
+{name=[====[
+OnboardingServer]====],path=[====[
+ServerStorage.Modules.Game.Player.OnboardingServer]====],dependencies={[====[
+ProfileServer]====]}},
+{name=[====[
+ProfileServer]====],path=[====[
+ServerStorage.Modules.Game.Player.ProfileServer]====],dependencies={}},
+{name=[====[
+GlobalLeaderboardServer]====],path=[====[
+ServerStorage.Modules.Game.Racing.GlobalLeaderboardServer]====],dependencies={[====[
+GarageServer]====]}},
+{name=[====[
+RaceTeleportServer]====],path=[====[
+ServerStorage.Modules.Game.Racing.RaceTeleportServer]====],dependencies={[====[
+GarageServer]====]}},
+{name=[====[
+RaceDisplayNameServer]====],path=[====[
+ServerStorage.Modules.Game.Racing.RaceDisplayNameServer]====],dependencies={}},
+{name=[====[
+MatchmakingServer]====],path=[====[
+ServerStorage.Modules.Game.Racing.MatchmakingServer]====],dependencies={[====[
+GarageServer]====],[====[
+RaceRewardsServer]====],[====[
+PersonalBestServer]====],[====[
+RaceAssetsServer]====]}},
+{name=[====[
+PersonalBestServer]====],path=[====[
+ServerStorage.Modules.Game.Racing.PersonalBestServer]====],dependencies={[====[
+ProfileServer]====]}},
+{name=[====[
+RaceRewardsServer]====],path=[====[
+ServerStorage.Modules.Game.Racing.RaceRewardsServer]====],dependencies={[====[
+GarageServer]====]}},
+{name=[====[
+RaceAssetsServer]====],path=[====[
+ServerStorage.Modules.Game.Racing.RaceAssetsServer]====],dependencies={[====[
+GarageServer]====]}},
+{name=[====[
+TimeTrialServer]====],path=[====[
+ServerStorage.Modules.Game.Racing.TimeTrialServer]====],dependencies={[====[
+GarageServer]====],[====[
+RaceRewardsServer]====],[====[
+PersonalBestServer]====],[====[
+RaceAssetsServer]====]}},
+{name=[====[
+FreeRoamTeleportServer]====],path=[====[
+ServerStorage.Modules.Game.World.FreeRoamTeleportServer]====],dependencies={[====[
+GarageServer]====]}},
+{name=[====[
+DriveRewardsServer]====],path=[====[
+ServerStorage.Modules.Game.Vehicles.DriveRewardsServer]====],dependencies={[====[
+ProfileServer]====]}},
+{name=[====[
+DriverSeatServer]====],path=[====[
+ServerStorage.Modules.Game.Vehicles.DriverSeatServer]====],dependencies={}},
+{name=[====[
+VehicleAccessServer]====],path=[====[
+ServerStorage.Modules.Game.Vehicles.VehicleAccessServer]====],dependencies={[====[
+GarageServer]====]}},
+{name=[====[
+VehicleCollisionServer]====],path=[====[
+ServerStorage.Modules.Game.Vehicles.VehicleCollisionServer]====],dependencies={}},
+{name=[====[
+VehiclePerformanceServer]====],path=[====[
+ServerStorage.Modules.Game.Vehicles.VehiclePerformanceServer]====],dependencies={}},
+{name=[====[
+VehiclePerformanceComparisonServer]====],path=[====[
+ServerStorage.Modules.Game.Development.VehiclePerformanceComparisonServer]====],dependencies={}},
+{name=[====[
+LightingServer]====],path=[====[
+ServerStorage.Modules.Game.World.LightingServer]====],dependencies={}},
+{name=[====[
+TrafficLightServer]====],path=[====[
+ServerStorage.Modules.Game.World.TrafficLightServer]====],dependencies={}},
+}
+local state=Instance.new("Folder")
+state.Name="StartupState"
+state.Parent=script
+lifecycle.start(entries,function(entry)
+	local item=game
+	for part in entry.path:gmatch("[^%.]+") do item=item:WaitForChild(part) end
+	return require(item)
+end,function(name,status,message)
+	state:SetAttribute(name,status)
+	if message then warn("[ServerBase] "..name.." "..status..": "..message) end
+end)

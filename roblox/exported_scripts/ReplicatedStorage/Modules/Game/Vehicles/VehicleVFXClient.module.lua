@@ -19,11 +19,11 @@ local visualTimer = 0
 local scanTimer = 0
 local uiTimer = 0
 local tracked = setmetatable({}, { __mode = "k" })
-local raceVisibilityActive = false -- NTR_RACING_PHASE11E_VFX_GATE
+local raceVisibilityActive = false 
 local raceParticipants = {}
 local raceEvent = nil
 
--- V66_LEAK_SAFE_RUNTIME_MARKER
+
 local function newWeakSet()
 	return setmetatable({}, { __mode = "k" })
 end
@@ -32,7 +32,7 @@ local controls
 local controlsDisabled = false
 
 local kit = game:GetService("ReplicatedStorage")
-local VehicleCosmetics = require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Vehicles"):WaitForChild("VehicleCosmeticCatalog")) -- NTR_CUSTOMISATION_PROTECTED_VEHICLE_LIGHTS_V1
+local VehicleCosmetics = require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Vehicles"):WaitForChild("VehicleCosmeticCatalog")) 
 local templates = game:GetService("ReplicatedStorage"):WaitForChild("Assets"):WaitForChild("VFX"):WaitForChild("VehicleTemplates")
 local vfxControllerModule
 pcall(function()
@@ -454,7 +454,7 @@ end
 
 local function updateTemplateController(cache, state, dt)
 	if not cache.Controller or typeof(cache.Controller.Update) ~= "function" then return end
-	local hiddenByRace = shouldRenderVehicleVFX(cache.Model) ~= true -- NTR_RACING_PHASE11E_VFX_GATE
+	local hiddenByRace = shouldRenderVehicleVFX(cache.Model) ~= true 
 	local throttle = (not hiddenByRace and state.Accelerating) and 1 or 0
 	local boost = (not hiddenByRace and state.Boosting) and 1 or 0
 	local drift = (not hiddenByRace and state.AnyDrift) and 1 or 0
@@ -477,7 +477,7 @@ local function updateTemplateController(cache, state, dt)
 end
 
 local function applyVFXState(cache, state)
-	local visibleByRace = shouldRenderVehicleVFX(cache.Model) == true -- NTR_RACING_PHASE11E_VFX_GATE
+	local visibleByRace = shouldRenderVehicleVFX(cache.Model) == true 
 	local key = stateKey(state) .. "|RaceVisible=" .. tostring(visibleByRace)
 	if cache.LastStateKey == key then return end
 	cache.LastStateKey = key
@@ -671,7 +671,7 @@ local function setRobloxTouchControls(enabled)
 end
 
 local function updateCameraAndTouchControls()
-	-- V72_CAMERA_NUDGE_DISABLED
+	
 	-- DrivingControllerV47 owns the driving camera now. Keep only the
 	-- mobile touch-control visibility behavior from the visual runtime.
 	if UserInputService.TouchEnabled then

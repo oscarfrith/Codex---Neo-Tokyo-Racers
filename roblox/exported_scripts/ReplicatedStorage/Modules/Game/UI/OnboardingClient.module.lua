@@ -463,7 +463,7 @@ local function majorMenuOpen()
 	for _,root in ipairs(playerGui:GetDescendants()) do if root:IsA("GuiObject") and root:GetAttribute("TutorialWorkspace")==true and visible(root) then return true end end
 	for _,name in ipairs({"RaceBrowser","RaceEntryPresentation","OwnedGarageBrowser"}) do if screenRoot(name) then return true end end
 	return playerGui:GetAttribute("OwnedGarageManagementOpen")==true
-		or (player:GetAttribute("GarageSessionActive")==true and player:GetAttribute("GarageSessionMode")~="Dealership") -- NTR_CUSTOMISATION_ACCESS_ONBOARDING_PHYSICAL_COLOURS_V1_1
+		or (player:GetAttribute("GarageSessionActive")==true and player:GetAttribute("GarageSessionMode")~="Dealership") 
 		or player:GetAttribute("RaceSessionActive")==true
 		or player:GetAttribute("MobileFreeRoamCarMenuOpen")==true
 		or player:GetAttribute("MobileMajorMenuOpen")==true
@@ -526,7 +526,7 @@ local function styleObjectiveCard(card)
 		card.Label.Position=UDim2.fromOffset(pad,6); card.Label.Size=UDim2.new(1,-pad*2,0,18)
 		card.Title.Position=UDim2.fromOffset(pad,22); card.Title.Size=UDim2.new(1,-pad*2,0,38)
 		local hintY=57; local hintLineH=math.max(12,math.ceil(hintSize*1.15)); local descriptionBottom=layout.Height-7; local progressH=18
-		card.Hint.Position=UDim2.fromOffset(pad,hintY); card.Hint.Size=UDim2.new(1,-82,0,math.max(hintLineH,descriptionBottom-hintY)) -- NTR_ONBOARDING_DESKTOP_TWO_LINE_OBJECTIVE_V1
+		card.Hint.Position=UDim2.fromOffset(pad,hintY); card.Hint.Size=UDim2.new(1,-82,0,math.max(hintLineH,descriptionBottom-hintY)) 
 		card.Progress.Position=UDim2.fromOffset(layout.Width-66,hintY+math.floor((descriptionBottom-hintY-progressH)*.5)); card.Progress.Size=UDim2.fromOffset(52,progressH)
 	end
 	card.Label.TextSize=numberSize

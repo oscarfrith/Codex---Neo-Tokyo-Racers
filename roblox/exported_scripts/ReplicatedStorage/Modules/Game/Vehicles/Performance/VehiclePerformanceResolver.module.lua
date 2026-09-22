@@ -103,11 +103,11 @@ function Resolver.ModuleRating(root,module,instance)
 	local allocation={ [moduleId]=points or {} }; local result=V2Runtime.CalculateComponents(cockpit,list,allocation); local rating=math.floor(tonumber(result.Overall and result.Overall.PerformanceIndex) or 0)
 	baseRatingCache[key]=rating; return rating
 end
-function Resolver.UpgradeCost(root,module,instance,pathId) -- NTR_GARAGE_UPGRADE_PATH_LOCAL_PRICING_V1
+function Resolver.UpgradeCost(root,module,instance,pathId) 
 	local template=Resolver.FindModule(root,module); if not template then return nil end
 	return V2Upgrades.NextPointCost(template,instance and instance.V2UpgradePoints or {},pathId)
 end
-function Resolver.UpgradePreview(root,profile,slotId,module,instance,pathId) -- NTR_GARAGE_UPGRADE_POINT_BUDGET_SHARED_CARDS_V1
+function Resolver.UpgradePreview(root,profile,slotId,module,instance,pathId) 
 	local template=Resolver.FindModule(root,module); if not template then return nil,nil,"Module template not found" end
 	local ok,preview=V2Upgrades.PreviewPoint(template,instance and instance.V2UpgradePoints or {},pathId)
 	if not ok then return nil,nil,preview end

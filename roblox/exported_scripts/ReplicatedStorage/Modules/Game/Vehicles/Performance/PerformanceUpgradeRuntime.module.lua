@@ -3,7 +3,7 @@ local Calculator = require(game:GetService("ReplicatedStorage"):WaitForChild("Mo
 local LegacyDefinitions = require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Vehicles"):WaitForChild("Performance"):WaitForChild("VehicleUpgradeDefinitions"))
 
 local Runtime = {}
-local legacyMap = { -- NTR_CANONICAL_PERFORMANCE_RESOLVER_MODULE_RATINGS_V1
+local legacyMap = { 
 	FuelInjection = "Output", PowerConverter = "Velocity", LightweightInternals = "Efficiency", TorqueMapping = "Output",
 	VectoringFirmware = "Grip", DriftCalibration = "Drift", ReactiveDampers = "Response", LightweightArms = "Response",
 	HighFlowInjectors = "Burst", ExpandedCell = "Endurance", RapidRecharge = "Recovery", LightweightCell = "Endurance",
@@ -69,7 +69,7 @@ function Runtime.ApplyToModuleRaw(module, allocation)
 	return raw
 end
 
-function Runtime.NextPointCost(module, allocation, pathId) -- NTR_GARAGE_UPGRADE_PATH_LOCAL_PRICING_V1
+function Runtime.NextPointCost(module, allocation, pathId) 
 	local normalized, spent, capacity = Runtime.NormalizeAllocation(module, allocation)
 	if spent >= capacity then return nil end
 	local point = spent + 1

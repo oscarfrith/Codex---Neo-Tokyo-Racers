@@ -20,7 +20,7 @@ local garageInvoke=game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):
 local presentationRequest=game:GetService("Players").LocalPlayer:WaitForChild("PlayerScripts"):WaitForChild("Runtime"):WaitForChild("Racing"):WaitForChild("RaceEntryPresentationRequest")
 local presentationAction=game:GetService("Players").LocalPlayer:WaitForChild("PlayerScripts"):WaitForChild("Runtime"):WaitForChild("Racing"):WaitForChild("RaceEntryLegacyAction")
 local startRaceQueueEvent=game:GetService("Players").LocalPlayer:WaitForChild("PlayerScripts"):WaitForChild("Runtime"):WaitForChild("Racing"):WaitForChild("StartRaceQueueRequest")
-local transitionRequest=game:GetService("Players").LocalPlayer:WaitForChild("PlayerScripts"):WaitForChild("Runtime"):WaitForChild("Racing"):WaitForChild("RaceTransitionRequest") -- NTR_LOADING_SYSTEM_PHASE4_TIME_TRIAL_START_V1
+local transitionRequest=game:GetService("Players").LocalPlayer:WaitForChild("PlayerScripts"):WaitForChild("Runtime"):WaitForChild("Racing"):WaitForChild("RaceTransitionRequest") 
 local entry=nil
 local function transition(step,payload) payload=payload or {}; payload.Step=step; transitionRequest:Fire(payload) end
 
@@ -67,7 +67,7 @@ presentationAction.Event:Connect(function(action,data)
 	local ok,cockpitOrMessage=spawnVehicle(data)
 	if not ok then
 		if mode=="TimeTrial" then transition("FailLoading",{Status="RETURNING",Reason=cockpitOrMessage}) end
-		warn("[Phase 16E Entry Bridge] "..cockpitOrMessage)
+		warn("[RaceEntryMenuClient] "..cockpitOrMessage)
 		return
 	end
 	task.wait(0.35)
@@ -78,7 +78,7 @@ presentationAction.Event:Connect(function(action,data)
 		local result=call(raceRequest,"StartStagedTimeTrial",{EventId=eventId,VehicleId=tostring(data.VehicleId),LapCount=tonumber(data.LapCount) or 1})
 		if result.Success~=true and result.Ok~=true then
 			transition("FailLoading",{Status="RETURNING",Reason=result.Message})
-			warn("[Phase 16E Entry Bridge] "..tostring(result.Message or "Time trial start failed."))
+			warn("[RaceEntryMenuClient] "..tostring(result.Message or "Time trial start failed."))
 		end
 	end
 end)
@@ -100,7 +100,7 @@ raceEvent.OnClientEvent:Connect(function(payload)
 		uiEvent("FreeRoamVehicleExited")
 	end
 end)
-print("[Racing UI Phase 16E] Headless race-entry bridge active.")
+print("[RaceEntryMenuClient] Headless race-entry bridge active.")
 
 end,debug.traceback)
 state=ok and "ready" or "failed"

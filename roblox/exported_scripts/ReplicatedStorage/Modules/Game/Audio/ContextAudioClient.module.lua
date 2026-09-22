@@ -28,13 +28,13 @@ local started = false
 
 local function debugLog(message)
 	if global:GetAttribute("DebugContextAudio") == true then
-		print("[Audio Phase 2] " .. tostring(message))
+		print("[ContextAudioClient] " .. tostring(message))
 	end
 end
 
 local function enabled()
-	local phase1Global = game:GetService("ReplicatedStorage"):WaitForChild("Config"):WaitForChild("Audio"):FindFirstChild("Global")
-	return phase1Global and phase1Global:GetAttribute("AudioSystemEnabled") == true
+	local globalAudioConfig = game:GetService("ReplicatedStorage"):WaitForChild("Config"):WaitForChild("Audio"):FindFirstChild("Global")
+	return globalAudioConfig and globalAudioConfig:GetAttribute("AudioSystemEnabled") == true
 		and global:GetAttribute("ContextAudioEnabled") == true
 end
 
@@ -72,14 +72,14 @@ end
 local function registerZone(object)
 	if zones[object] then return end
 	if not (object:IsA("BasePart") or object:IsA("Model")) then
-		if global:GetAttribute("DebugContextAudio") == true then warn("[Audio Phase 2] Ignored non-spatial tagged zone " .. object:GetFullName()) end
+		if global:GetAttribute("DebugContextAudio") == true then warn("[ContextAudioClient] Ignored non-spatial tagged zone " .. object:GetFullName()) end
 		return
 	end
 	local cap = math.max(1, math.floor(Catalog.GlobalNumber("MaxRegisteredZones", 32)))
 	local count = 0
 	for _ in pairs(zones) do count += 1 end
 	if count >= cap then
-		if global:GetAttribute("DebugContextAudio") == true then warn("[Audio Phase 2] Zone cap reached; ignored " .. object:GetFullName()) end
+		if global:GetAttribute("DebugContextAudio") == true then warn("[ContextAudioClient] Zone cap reached; ignored " .. object:GetFullName()) end
 		return
 	end
 	zones[object] = true
@@ -201,7 +201,7 @@ end
 local function transition(contextId, reason)
 	local context = Catalog.Get(contextId)
 	if not context then
-		if global:GetAttribute("DebugContextAudio") == true then warn("[Audio Phase 2] Missing context " .. tostring(contextId)) end
+		if global:GetAttribute("DebugContextAudio") == true then warn("[ContextAudioClient] Missing context " .. tostring(contextId)) end
 		return
 	end
 	if currentContextId == contextId then return end
@@ -253,8 +253,8 @@ function Controller.Start()
 	for _, attributeName in ipairs({ "OwnedGarageInside", "GarageSessionActive", "GarageSessionMode", "FirstDrivePresentationPending" }) do
 		table.insert(connections, player:GetAttributeChangedSignal(attributeName):Connect(refresh))
 	end
-	local phase1Global = game:GetService("ReplicatedStorage"):WaitForChild("Config"):WaitForChild("Audio"):WaitForChild("Global")
-	table.insert(connections, phase1Global:GetAttributeChangedSignal("AudioSystemEnabled"):Connect(refresh))
+	local globalAudioConfig = game:GetService("ReplicatedStorage"):WaitForChild("Config"):WaitForChild("Audio"):WaitForChild("Global")
+	table.insert(connections, globalAudioConfig:GetAttributeChangedSignal("AudioSystemEnabled"):Connect(refresh))
 	table.insert(connections, global:GetAttributeChangedSignal("ContextAudioEnabled"):Connect(refresh))
 	heartbeatConnection = RunService.Heartbeat:Connect(function(dt)
 		elapsed += dt

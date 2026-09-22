@@ -30,7 +30,7 @@ local garage=game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitFo
 local garageInvoke=game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Garage"):WaitForChild("GarageInvoke")
 local interiorInvoke=game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Garage"):FindFirstChild("GarageInteriorInvoke")
 local teleportInvoke=game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("UI"):WaitForChild("FreeRoamHudTeleportInvoke")
-local loadingInvoke=game:GetService("Players").LocalPlayer:WaitForChild("PlayerScripts"):WaitForChild("Runtime"):WaitForChild("UI"):WaitForChild("LoadingTransitionInvoke") -- NTR_LOADING_SYSTEM_PHASE1_DEALERSHIP_TELEPORT_MOBILE_V1
+local loadingInvoke=game:GetService("Players").LocalPlayer:WaitForChild("PlayerScripts"):WaitForChild("Runtime"):WaitForChild("UI"):WaitForChild("LoadingTransitionInvoke") 
 local categories=game:GetService("ReplicatedStorage"):WaitForChild("Assets"):WaitForChild("Vehicles"):WaitForChild("Categories")
 local drive=require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Vehicles"):WaitForChild("MobileDriveInputState"))
 local uiFolder=game:GetService("Players").LocalPlayer:WaitForChild("PlayerScripts"):WaitForChild("Runtime"):WaitForChild("UI")
@@ -411,7 +411,7 @@ RunService.RenderStepped:Connect(function(dt)
 	if driving then local speed=math.max(0,tonumber(drive.SpeedMph) or 0); speedText.Text=tostring(math.floor(speed+.5)); local target=math.clamp((tonumber(drive.BoostPercent) or 100)/100,0,1); displayedBoost+=(target-displayedBoost)*(1-math.exp(-14*dt)); boostFill.Size=UDim2.fromScale(1,displayedBoost); local gaugeMax=math.max(1,tonumber(read(desktopLayout,"SpeedGaugeMaxMph",260)) or 260); local active=math.floor(math.clamp(speed/gaugeMax,0,1)*#gauge+.5); for i,g in ipairs(gauge) do g.BackgroundColor3=i<=active and (i>#gauge*.82 and PINK or CYAN) or Color3.fromRGB(81,88,99); g.BackgroundTransparency=i<=active and 0 or .42 end end
 	-- Cash is event-driven from leaderstats; no recurring profile request.
 end)
-print("[Mobile Free-Roam UI Phase 1K] Compact boost plate and steering-bottom-aligned Exit active.")
+print("[MobileFreeRoamHudUI] Compact boost plate and steering-bottom-aligned Exit active.")
 
 end,debug.traceback)
 state=ok and "ready" or "failed"

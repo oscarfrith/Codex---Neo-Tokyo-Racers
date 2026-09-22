@@ -197,7 +197,7 @@ task.spawn(function()
 	end
 end)
 
-print("[Vehicle Multiplayer VFX Collision Exit V1.1] Collision/coast lifecycle active.")
+print("[VehicleCollisionServer] Collision/coast lifecycle active.")
 
 end,debug.traceback)
 state=ok and "ready" or "failed"

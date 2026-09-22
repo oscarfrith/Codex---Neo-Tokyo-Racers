@@ -102,7 +102,7 @@ end
 recordBinding.OnInvoke = record
 readBinding.OnInvoke = read
 Players.PlayerRemoving:Connect(function(player) requestTimes[player] = nil end)
-print("[Racing UI Phase 9A] Global leaderboard service active; enabled=" .. tostring(enabled()))
+print("[GlobalLeaderboardServer] Global leaderboard service active; enabled=" .. tostring(enabled()))
 
 end,debug.traceback)
 state=ok and "ready" or "failed"
