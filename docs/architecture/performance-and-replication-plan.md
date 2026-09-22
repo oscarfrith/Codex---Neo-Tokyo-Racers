@@ -1,6 +1,6 @@
 # Performance and replication plan
 
-2026-09-22. **Phase 4 installed and agent-verified; user playthrough pending.** See [Phase 4 handoff](performance-phase4-vehicle-previews.md). Phase 3 accepted for continuation. Selected the static generated-preview option: 333 fewer replicated folders and 1,479 fewer folder attributes; originals preserved server-side. Mesh/texture cost unchanged. Join/memory/FPS benefit and device/load acceptance remain unmeasured. Phases 5-6 unimplemented; selective delivery is not installed. iPhone 7 selected. The design below is the original programme; this paragraph is current execution status.
+2026-09-22. **Phase 5 installed and agent-verified; user playthrough pending.** See [Phase 5 handoff](performance-phase5-catalogue-transport.md). Phase 4 accepted for continuation. Versioned catalogue reuse cuts measured warm JSON responses 177,251 -> 3,956 bytes (97.8%); fresh profiles and commands unchanged. No compressed-wire/FPS claim. Phase 6 device/load/soak acceptance remains unimplemented, iPhone 7 selected. Other runtime hotspots require representative profiler evidence; no speculative cadence, VFX, physics or pooling changes. The original programme follows; this paragraph is current execution status.
 
 ## Evidence and recommendation
 

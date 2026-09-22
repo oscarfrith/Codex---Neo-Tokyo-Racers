@@ -1556,7 +1556,7 @@ attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 			Upgrades = moduleUpgrades.CatalogForModuleType(moduleType, item),
 		}
 	end
-	local function garageServer_catalog()
+	local function garageServer_buildCatalog()
 		local catalog = {
 			Categories = {},
 			PaintPresets = {},
@@ -1647,6 +1647,18 @@ attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 			return tostring(a.DisplayName) < tostring(b.DisplayName)
 		end)
 		return catalog
+	end
+
+	local catalogueSnapshot
+	local catalogueRevision=game:GetService("HttpService"):GenerateGUID(false)
+	local function freezeCatalogue(value)
+		for _,v in pairs(value) do if type(v)=="table" then freezeCatalogue(v) end end
+		return table.freeze(value)
+	end
+	local function garageServer_catalog(knownRevision)
+		if not catalogueSnapshot then catalogueSnapshot=freezeCatalogue(garageServer_buildCatalog()) end
+		if knownRevision==catalogueRevision then return nil,catalogueRevision end
+		return catalogueSnapshot,catalogueRevision
 	end
 
 	local function totalStats(profile)
@@ -2511,7 +2523,8 @@ attachDefaultModuleInstancesToCurrentVehicle = function(profile)
 				return ensureCustomisationAccess(player,profile)
 			elseif action == "GetInitial" then
 				setLeaderstats(player, profile)
-				return { Success = true, Catalog = garageServer_catalog(), Profile = profileForClient(profile) }
+				local catalogue,revision=garageServer_catalog(args.KnownCatalogRevision)
+				return { Success = true, Catalog = catalogue, CatalogRevision = revision, CatalogProtocol = 1, Profile = profileForClient(profile) }
 			elseif action == "SelectVehicleInstance" then
 				ok, message = selectVehicleInstance(profile, args)
 				setLeaderstats(player, profile)

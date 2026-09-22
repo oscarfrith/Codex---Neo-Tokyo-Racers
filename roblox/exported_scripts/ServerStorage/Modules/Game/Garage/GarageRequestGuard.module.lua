@@ -19,7 +19,9 @@ function Guard.new(clock)
 		for key,value in pairs(args or {}) do
 			count+=1
 			if count>20 then return false,"Request too large." end
-			if strings[key] then
+			if key=="KnownCatalogRevision" then
+				if action~="GetInitial" or type(value)~="string" or #value>64 then return false,"Invalid catalogue revision." end
+			elseif strings[key] then
 				if type(value)~="string" or #value>240 then return false,"Invalid identifier." end
 			elseif booleans[key] then
 				if type(value)~="boolean" then return false,"Invalid option." end

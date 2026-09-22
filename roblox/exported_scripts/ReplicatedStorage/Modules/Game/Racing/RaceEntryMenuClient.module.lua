@@ -1,3 +1,4 @@
+local CatalogTransport=require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Garage"):WaitForChild("GarageCatalogClient"))
 -- Canonical feature implementation; startup is owned by the composition root.
 local Client={}
 local state
@@ -25,7 +26,7 @@ local entry=nil
 local function transition(step,payload) payload=payload or {}; payload.Step=step; transitionRequest:Fire(payload) end
 
 local function call(remote, action, payload)
-	local ok,result=pcall(function() return remote:InvokeServer(action,payload or {}) end)
+	local ok,result=pcall(function() if remote==garageInvoke and action=="GetInitial" then return CatalogTransport.Fetch(remote,payload) end; return remote:InvokeServer(action,payload or {}) end)
 	if not ok then return {Success=false,Ok=false,Message=tostring(result)} end
 	return type(result)=="table" and result or {Success=result==true,Ok=result==true}
 end

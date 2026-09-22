@@ -1,0 +1,88 @@
+{
+  "catalogJsonBytes": 173361,
+  "catalogueTypedCanonicalChecksum": "771825752",
+  "samples": [
+    {
+      "responseJsonBytes": 3956,
+      "milliseconds": 50.079500000720145
+    },
+    {
+      "responseJsonBytes": 3956,
+      "milliseconds": 33.43569999924512
+    },
+    {
+      "responseJsonBytes": 3956,
+      "milliseconds": 49.87919999985024
+    },
+    {
+      "responseJsonBytes": 3956,
+      "milliseconds": 33.80900000047404
+    },
+    {
+      "responseJsonBytes": 3956,
+      "milliseconds": 33.04350000144041
+    },
+    {
+      "responseJsonBytes": 3956,
+      "milliseconds": 49.31229999965581
+    },
+    {
+      "responseJsonBytes": 3956,
+      "milliseconds": 32.935200000792975
+    },
+    {
+      "responseJsonBytes": 3956,
+      "milliseconds": 33.57299999879615
+    }
+  ],
+  "oversizedRejected": true,
+  "catalogueTypedCanonicalLength": 276770,
+  "fullResponseJsonBytes": 177328,
+  "startup": {
+    "RaceEntryMenuClient": "ready",
+    "RaceRouteGuideClient": "ready",
+    "ThrustPreviewClient": "ready",
+    "RaceSessionPresentationClient": "ready",
+    "LightingPreviewClient": "skipped",
+    "TrailerModeClient": "skipped",
+    "RaceTransitionClient": "ready",
+    "OwnedGarageClient": "ready",
+    "DriveSessionClient": "ready",
+    "DriveToEarnCashTelemetryClient": "ready",
+    "CharacterSprintClient": "ready",
+    "LODClient": "ready",
+    "ContextAudioRuntimeClient": "ready",
+    "RaceQueueClient": "ready",
+    "RaceTimeTrialResultCoachClient": "ready",
+    "RaceLifecyclePresentationClient": "ready",
+    "StudioCashGrantClient": "ready",
+    "TrailerVehicleCameraClient": "skipped",
+    "DesktopFreeRoamHudUI": "ready",
+    "RuntimeVFXClient": "ready",
+    "RaceEntryPresentationClient": "ready",
+    "AcousticsRuntimeClient": "ready",
+    "GarageEntranceClient": "ready",
+    "GarageUI": "ready",
+    "WindowMaterialClient": "ready",
+    "OwnedGarageEnvironmentLightingClient": "ready",
+    "PresentationAudioRuntimeClient": "ready",
+    "MobileFreeRoamHudUI": "ready",
+    "NightLamppostLightClient": "ready",
+    "SharedTopNotificationUI": "ready",
+    "LoadingTransitionUI": "ready",
+    "OnboardingClient": "ready",
+    "FreeRoamVehicleExitButtonClient": "ready",
+    "MobileDriveControlsClient": "ready",
+    "FreeRoamParkedHoverClient": "ready",
+    "RaceSessionAssetsClient": "ready",
+    "RaceCountdownPresentationClient": "ready",
+    "DealershipIntroClient": "ready",
+    "AudioRuntimeClient": "ready",
+    "TrailerShotClient": "skipped",
+    "RaceParticipantVisibilityClient": "ready",
+    "RaceBrowserClient": "ready",
+    "GaragePreviewPresentationClient": "ready"
+  },
+  "invalidRejected": true,
+  "mismatchReturnsFull": true
+}

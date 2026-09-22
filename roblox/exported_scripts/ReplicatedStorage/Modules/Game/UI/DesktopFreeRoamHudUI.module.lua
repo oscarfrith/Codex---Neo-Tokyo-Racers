@@ -1,3 +1,4 @@
+local CatalogTransport=require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Garage"):WaitForChild("GarageCatalogClient"))
 -- Canonical feature implementation; startup is owned by the composition root.
 local Client={}
 local state
@@ -318,7 +319,7 @@ local function readInitial(force)
 	local interval = L("ProfileRefreshSeconds", 2)
 	if not force and cachedInitial and os.clock() - lastProfileRead < interval then return cachedInitial end
 	local ok, result = pcall(function()
-		return garageInvoke:InvokeServer("GetInitial", {})
+		return CatalogTransport.Fetch(garageInvoke,{})
 	end)
 	lastProfileRead = os.clock()
 	if ok and typeof(result) == "table" then

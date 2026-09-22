@@ -1,3 +1,4 @@
+local CatalogTransport=require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Garage"):WaitForChild("GarageCatalogClient"))
 local Catalog=require(game:GetService("ReplicatedStorage").Modules.Game.Vehicles.VehicleCatalog)
 -- Current garage application; ClientBase owns startup.
 local Client={}
@@ -20,7 +21,7 @@ function Adapter.new(state) return setmetatable({State=state,Busy=false},Adapter
 function Adapter:Call(actionName,payload)
 	local audioKind=ACTION_AUDIO_KIND[actionName]
 	if self.Busy then local result={Success=false,Message="Please wait."}; if audioKind then AudioBridge.Result(audioKind,result,{Action=actionName}) end; return result end
-	self.Busy=true; local ok,result=pcall(function() return garageInvoke:InvokeServer(actionName,payload or {}) end); self.Busy=false
+	self.Busy=true; local ok,result=pcall(function() if actionName=="GetInitial" then return CatalogTransport.Fetch(garageInvoke,payload) end; return garageInvoke:InvokeServer(actionName,payload or {}) end); self.Busy=false
 	if not ok or typeof(result)~="table" then result={Success=false,Message="Garage server did not respond."}; if audioKind then AudioBridge.Result(audioKind,result,{Action=actionName}) end; return result end
 	if result.Catalog then self.State.Catalog=result.Catalog end; if result.Profile then self.State.Profile=result.Profile end; self.State.Economy=Shared.ProjectEconomy(result,self.State.Economy)
 	local outcomeAudioKind=audioKind

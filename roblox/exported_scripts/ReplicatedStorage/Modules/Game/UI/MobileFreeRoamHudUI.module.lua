@@ -1,3 +1,4 @@
+local CatalogTransport=require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Garage"):WaitForChild("GarageCatalogClient"))
 -- Canonical feature implementation; startup is owned by the composition root.
 local Client={}
 local state
@@ -66,7 +67,7 @@ end
 local function styleCarButton(item,accent,thickness,withGlow)
 	local line=item:FindFirstChildOfClass("UIStroke"); if line then line.Color=accent or PINK; line.Thickness=thickness or 1.4; line.Transparency=.08 end; buttonGradient(item); if withGlow then local glow=stroke(item,accent or PINK,4,E("GlowTransparency",.82)); glow.Name="GlowStroke" end; return item
 end
-local function call(action,payload) local ok,result=pcall(function() return garageInvoke:InvokeServer(action,payload or {}) end); if ok and typeof(result)=="table" then return result end return {Success=false,Message=tostring(result)} end
+local function call(action,payload) local ok,result=pcall(function() if action=="GetInitial" then return CatalogTransport.Fetch(garageInvoke,payload or {}) end; return garageInvoke:InvokeServer(action,payload or {}) end); if ok and typeof(result)=="table" then return result end return {Success=false,Message=tostring(result)} end
 local function fire(name,payload) local event=uiFolder:FindFirstChild(name); if event and event:IsA("BindableEvent") then event:Fire(payload); return true end return false end
 local function loadingAction(action,payload) local ok,result=pcall(function() return loadingInvoke:Invoke(action,payload or {}) end); if ok then return result end; warn("[Mobile HUD] Loading transition "..tostring(action).." failed: "..tostring(result)); return nil end
 

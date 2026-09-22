@@ -1,0 +1,11 @@
+{
+  "placeId": 121304917315753,
+  "date": "2026-09-22",
+  "installer": {"compileAllSources": 165, "repeatInstall": true, "rollbackBaselineAudit": true, "reinstall": true, "injectedFailureRecovery": true},
+  "isolatedTransportAndGuard": {"pass": true, "checks": 21, "detachedCatalogues": true, "freshProfiles": true, "perRemoteIsolation": true, "boundedReadRetry": true, "requestValidationAndRateLimits": true},
+  "startup": {"serverReady": 26, "clientReady": 39, "optInSkipped": 4},
+  "liveTransport": {"invalidAndOversizedRevisionRejected": true, "unknownRevisionReturnsFull": true, "fullCatalogueTypedChecksumMatchesBaseline": true, "catalogueTypedCanonicalLength": 276770, "catalogueTypedCanonicalChecksum": "771825752", "baselineCatalogueBuilderUnchanged": true},
+  "sandbox": {"enabled": true, "purchaseCockpit": true, "paintCockpit": true, "spawn": true, "performanceIndex": 551, "performanceTier": "C", "exit": true, "reenter": true, "despawn": true, "upgradeVelocity": true, "upgradePrice": 6050, "cashBeforePurchase": 1000000, "cashAfterPurchase": 650000, "freshProfileAfterPurchaseAndUpgrade": true},
+  "preview": {"model": "LOCAL_PREVIEW_bruiser_01", "descendants": 285, "padPassLogged": true, "ownershipPassLogged": true, "visualAcceptance": "pending user playthrough"},
+  "limitations": ["Payload figures are JSON proxies, not compressed wire measurements; round-trip timings include Studio scheduling and are not isolated CPU/FPS evidence.", "Existing CAM-02 errors reproduced and truncated console output; no error-free claim.", "Catalogue is static per Play/server session; authoring edits require restart. Concurrent cold requests can each receive a full catalogue before the first response.", "No other runtime, VFX, audio, physics cadence or broadcast optimisation was justified by representative profiler data.", "User visual/device, iPhone 7, 15-player, soak and real persistence acceptance remain pending."]
+}

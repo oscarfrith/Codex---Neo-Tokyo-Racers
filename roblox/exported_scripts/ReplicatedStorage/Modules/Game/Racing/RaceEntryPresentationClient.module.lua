@@ -1,3 +1,4 @@
+local CatalogTransport=require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Garage"):WaitForChild("GarageCatalogClient"))
 -- Canonical feature implementation; startup is owned by the composition root.
 local Client={}
 local state
@@ -69,7 +70,7 @@ local suppressed = {}
 local suppressHeartbeat, suppressAdded
 
 local function call(remote, action, data)
-	local ok, result = pcall(function() return remote:InvokeServer(action, data or {}) end)
+	local ok, result = pcall(function() if remote==garageInvoke and action=="GetInitial" then return CatalogTransport.Fetch(remote,data) end; return remote:InvokeServer(action, data or {}) end)
 	if ok and type(result) == "table" then return result end
 	return { Ok = false, Success = false, Message = tostring(result) }
 end

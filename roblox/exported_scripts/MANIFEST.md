@@ -4,7 +4,7 @@ Generated from the Roblox Studio full snapshot export.
 
 These files are a GitHub-readable mirror of Studio scripts. Treat Studio as live until a Rojo/source-sync migration is explicitly completed.
 
-Script count: 164
+Script count: 165
 
 - `ReplicatedFirst.Loading.InitialLoadingAndStartScreenClient` (LocalScript, enabled/module) -> `roblox/exported_scripts/ReplicatedFirst/Loading/InitialLoadingAndStartScreenClient.client.lua`
 - `ReplicatedFirst.Loading.LoadingArtworkCatalog` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedFirst/Loading/LoadingArtworkCatalog.module.lua`
@@ -37,6 +37,7 @@ Script count: 164
 - `ReplicatedStorage.Modules.Game.Development.TrailerModeClient` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/Modules/Game/Development/TrailerModeClient.module.lua`
 - `ReplicatedStorage.Modules.Game.Development.TrailerShotClient` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/Modules/Game/Development/TrailerShotClient.module.lua`
 - `ReplicatedStorage.Modules.Game.Development.TrailerVehicleCameraClient` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/Modules/Game/Development/TrailerVehicleCameraClient.module.lua`
+- `ReplicatedStorage.Modules.Game.Garage.GarageCatalogClient` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/Modules/Game/Garage/GarageCatalogClient.module.lua`
 - `ReplicatedStorage.Modules.Game.Garage.GarageModuleInstancePreviewAdapter` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/Modules/Game/Garage/GarageModuleInstancePreviewAdapter.module.lua`
 - `ReplicatedStorage.Modules.Game.Garage.GaragePreviewPresentationClient` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/Modules/Game/Garage/GaragePreviewPresentationClient.module.lua`
 - `ReplicatedStorage.Modules.Game.Garage.GaragePropertyCatalog` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/Modules/Game/Garage/GaragePropertyCatalog.module.lua`

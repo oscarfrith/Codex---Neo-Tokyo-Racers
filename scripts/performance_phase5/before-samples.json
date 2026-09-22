@@ -1,0 +1,46 @@
+{
+  "catalogueTypedCanonicalLength": 276770,
+  "samples": [
+    {
+      "milliseconds": 66.25959999837505,
+      "catalogJsonBytes": 173361,
+      "responseJsonBytes": 177251
+    },
+    {
+      "milliseconds": 50.17749999933585,
+      "catalogJsonBytes": 173361,
+      "responseJsonBytes": 177251
+    },
+    {
+      "milliseconds": 50.81910000080825,
+      "catalogJsonBytes": 173361,
+      "responseJsonBytes": 177251
+    },
+    {
+      "milliseconds": 50.55100000026869,
+      "catalogJsonBytes": 173361,
+      "responseJsonBytes": 177251
+    },
+    {
+      "milliseconds": 49.18059999909019,
+      "catalogJsonBytes": 173361,
+      "responseJsonBytes": 177251
+    },
+    {
+      "milliseconds": 50.34619999969436,
+      "catalogJsonBytes": 173361,
+      "responseJsonBytes": 177251
+    },
+    {
+      "milliseconds": 67.47329999961948,
+      "catalogJsonBytes": 173361,
+      "responseJsonBytes": 177251
+    },
+    {
+      "milliseconds": 67.70890000007057,
+      "catalogJsonBytes": 173361,
+      "responseJsonBytes": 177251
+    }
+  ],
+  "catalogueTypedCanonicalChecksum": "771825752"
+}

@@ -1,5 +1,9 @@
 # Patch History
 
+## 2026-09-22 — Install performance Phase 5 catalogue transport reuse
+
+Seven sources changed and GarageCatalogClient added. GarageServer builds its unchanged public catalogue once per session; validated KnownCatalogRevision omits unchanged catalogue payloads. Existing callers receive detached catalogue copies plus fresh profiles. Eight matched samples: warm JSON 177,251 -> 3,956 bytes (97.8% smaller); typed catalogue length/checksum unchanged. Observed round-trip timing is recorded separately, not isolated CPU or compressed-wire proof. Compile/repeat/rollback/reinstall/fault recovery, 21 transport/guard checks, normal startup and sandbox purchase/paint/spawn PI551/C, exit/re-entry/despawn/preview/upgrade pass. Cash remains fresh after both mutations. Existing CAM-02 persists. Mirror 13:01:09: 165 sources, 44,465 nodes, 276,087 properties, zero unexplained differences; generated preview/data freshness pass. User/device/phase-6 acceptance pending; no publish.
+
 ## 2026-09-22 — Install performance Phase 4 vehicle preview projection
 
 Moved original Assets.Vehicles intact to ServerStorage; generated 2,105-instance VehiclePreviews excluding 333 upgrade folders and their 1,479 attributes. Eight navigation consumers changed; all physical/paint/VFX properties and gameplay calculations retained. Exact preflight/compile/repeat/rollback/reinstall/injected recovery pass. 749,912 calculation comparisons still pass against relocated templates. Normal startup, sandbox purchase/paint/spawn PI551/C, exit/re-entry/despawn, live 285-descendant preview and Velocity upgrade at $6,050 pass. Existing CAM-02 persists. Mirror 12:47:08 verifies 164 sources, 44,464 nodes, 276,087 properties, both generated outputs fresh and zero unexplained changes. RS descendants 4,313 -> 3,980. Mesh/texture cost unchanged; measured join/memory/device benefit remains open. User playthrough pending; no publish.

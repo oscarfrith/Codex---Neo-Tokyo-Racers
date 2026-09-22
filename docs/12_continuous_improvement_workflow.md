@@ -1,5 +1,9 @@
 # Continuous Improvement Workflow
 
+## 2026-09-22 — Catalogue payload reuse
+
+Separate immutable public catalogue transport from authoritative mutable profiles. Reuse only the former; never coalesce or retry mutation commands to save traffic. Validate known revisions before profile work and retain request guards. Cache one catalogue, return detached copies to preserve caller isolation, and scope revisions to the full response lifetime. Compare matched full/warm payloads and typed content; JSON bytes and Studio round-trip timing are not compressed-wire, isolated CPU or FPS measurements. Static authoring must have an explicit restart boundary.
+
 ## 2026-09-22 — Static preview projection
 
 Choose the least complex delivery justified by evidence. A generated static preview tree avoids new asynchronous UI/network owners but only removes nonvisual metadata; do not describe it as graphics-memory or join-time proof. Keep originals intact server-side, check generated outputs against the same authoring source, and verify all retained properties including duplicate sibling names. Catalogue lookup separation must precede stripping upgrade folders from client previews. Selective delivery needs separate measured justification and two-client isolation proof before activation.

@@ -1,6 +1,6 @@
 # Space Racers — architecture handoff
 
-Performance Phase 4 is installed and agent-verified; user playthrough pending. Mirror 2026-09-22 12:47:08 passes exact 164-source/44,464-node/276,087-property parity. See performance-phase4-vehicle-previews.md. Gameplay and physical properties are preserved; original templates are server-only and client previews are generated. Replicated instances reduced by 333; client mesh/texture and measured join/memory costs are not claimed reduced.
+Performance Phase 5 is installed and agent-verified; user playthrough pending. Mirror 2026-09-22 13:01:09 passes exact 165-source/44,465-node/276,087-property parity. See performance-phase5-catalogue-transport.md. Unchanged catalogue responses are reused; every GetInitial still reads a fresh profile. Gameplay, physical properties and existing presentation owners are preserved. Warm response JSON is 97.8% smaller in the matched sample; actual wire/device benefit is not claimed.
 
 Space Racers is a playable hover-racing prototype. All five original architecture phases and all four cleanup phases are user-confirmed. User reports committing and pushing. Post-confirmation mirror 2026-09-22 11:00:13 passes exact Phase 4 parity. Performance progress is recorded above and in performance-and-replication-plan.md.
 

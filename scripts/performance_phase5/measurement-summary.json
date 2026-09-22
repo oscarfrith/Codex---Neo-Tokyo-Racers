@@ -1,0 +1,9 @@
+{
+  "beforeResponseJsonBytes": 177251,
+  "warmResponseJsonBytes": 3956,
+  "reductionPercent": 97.76813671008908,
+  "beforeMedianRoundTripMs": 50.68505000053847,
+  "afterMedianRoundTripMs": 33.690999999635096,
+  "samplesPerCondition": 8,
+  "notCompressedWireOrIsolatedCpu": true
+}

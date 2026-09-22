@@ -1,10 +1,12 @@
 # Naming and ownership
 
+GarageServer owns the immutable session catalogue response and its transport revision. GarageCatalogClient owns one bounded public transport snapshot only; it caches no balance/profile/command result and returns detached catalogue copies. Existing UI/profile/preview owners remain authoritative for their own state.
+
 ServerStorage.Assets.Vehicles is the sole full vehicle authoring/spawn source. ReplicatedStorage.Assets.VehiclePreviews is a generated presentation-only output, never used as the authoritative upgrade/spawn source. PathResolver.VehicleCategories chooses by runtime side. No new lifecycle or network owner.
 
 VehicleCatalogData/VehicleCatalog own immutable public definitions and ID resolution; VehicleDefinition shares attribute access across records and authoring Instances. VehicleTemplateIndex owns bounded preview-template lookup only. Server authority, startup, UI, preview geometry, persistence and lifecycle ownership remain unchanged.
 
-Performance Phase 4 is installed and agent-verified; user playthrough pending. Mirror 2026-09-22 12:47:08 passes exact 164-source/44,464-node/276,087-property parity. See performance-phase4-vehicle-previews.md. Gameplay and physical properties are preserved; original templates are server-only and client previews are generated.
+Performance Phase 5 is installed and agent-verified; user playthrough pending. Mirror 2026-09-22 13:01:09 passes exact 165-source/44,465-node/276,087-property parity. See performance-phase5-catalogue-transport.md. Unchanged catalogue responses are reused; every GetInitial still reads a fresh profile. Gameplay, physical properties and existing presentation owners are preserved.
 
 Naming follows the inspected Untitled Experience vocabulary without claiming a company-wide standard: ServerBase, ClientBase, Modules.Core/Game and responsibility-based FeatureServer, FeatureClient, FeatureUI names.
 

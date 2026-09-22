@@ -2,7 +2,11 @@
 
 | ID | Status | Verification / risk |
 |---|---|---|
-| PERF-04 | Phase 4 installed / user checkpoint | Original templates moved intact to ServerStorage; generated VehiclePreviews omits 333 upgrade folders/1,479 attributes. RS 4,313 -> 3,980 descendants. Exact source/full captured property parity, projection freshness, recovery, startup, purchase/paint/spawn/exit/re-entry/preview and upgrade pass. All mesh/texture IDs remain client-side; real join/memory/FPS gains unmeasured. Static catalogue cost still grows with content. No selective network delivery installed. User visual/device/load gates and CAM-02 remain open. See architecture/performance-phase4-vehicle-previews.md. |
+| PERF-05 | Phase 5 installed / user checkpoint | Warm GetInitial JSON 177,251 -> 3,956 bytes (97.8%); full catalogue content matches baseline. Fresh profile/cash after purchase and upgrade, guard limits, bounded read recovery, cache isolation, startup and vehicle lifecycle pass. Catalogue snapshots require restart after authoring edits. Cold concurrent reads may duplicate the initial catalogue transfer. Per-call detached copies retain some local allocation cost; cache is bounded to one catalogue. Compressed wire, iPhone 7/FPS, load/soak and visual acceptance remain pending; CAM-02 persists. See architecture/performance-phase5-catalogue-transport.md. |
+
+| ID | Status | Verification / risk |
+|---|---|---|
+| PERF-04 | Phase 4 accepted for continuation | Original templates moved intact to ServerStorage; generated VehiclePreviews omits 333 upgrade folders/1,479 attributes. RS 4,313 -> 3,980 descendants. Exact source/full captured property parity, projection freshness, recovery, startup, purchase/paint/spawn/exit/re-entry/preview and upgrade pass. All mesh/texture IDs remain client-side; real join/memory/FPS gains unmeasured. Static catalogue cost still grows with content. No selective network delivery installed. User visual/device/load gates and CAM-02 remain open. See architecture/performance-phase4-vehicle-previews.md. |
 
 | ID | Status | Verification / risk |
 |---|---|---|
@@ -17,7 +21,7 @@ Updated 2026-09-22. This page records open risks, not every historical failed pa
 | CLEAN-04 | Phase 3 user-confirmed | Superseded as installed source baseline by Phase 4; preserved recovery remains repository-only. September 22 physical changes were explicitly accepted. |
 | CLEAN-05 | Phase 4 user-confirmed | User reports successful testing, commit and push. Post-confirmation mirror 2026-09-22 11:00:13 passes all 160 sources and exact 42,351-node/267,539-property parity. All four phases confirmed; protected assets and device/persistence release gates remain separate. |
 | CLEAN-02 | Physical asset decision | Staging has 78 catalogue IDs all present live, 76 limited part-shape matches; bruiser_01/02 differ. Six other models are nested cockpit visuals. Archive holds garage assets, decals, two ambiguously named test vehicles and sounds. All physical content preserved; explicit disposition required before deleting it or declaring the overall programme complete. |
-| ARCH-01 | Current acceptance | All five original architecture and all four cleanup phases confirmed. Performance Phase 4 installed/agent-verified; user playthrough pending. Phase 1 and Phase 4 performance measurement gaps remain. |
+| ARCH-01 | Current acceptance | All five original architecture and all four cleanup phases confirmed. Performance Phase 5 installed/agent-verified; user playthrough pending. Phase 1 and Phase 4 performance measurement gaps remain. |
 | DATA-01 | High / production release gate | Failed-load writable defaults are blocked; sandbox/disabled-store sessions remain no-save. Isolated failure tests pass. Real save/rejoin and cross-server contention in an isolated published place remain required before release. |
 | DATA-02 | High / rollout compatibility | Lease ownership, serialised saves, revision tracking and coordinated shutdown are installed. Old deployed servers ignore new lease metadata: drain old writers before deployment or rollback. No production publish performed. |
 | NET-01 | Server command boundaries | Generic dispatcher validation/rate/overlap protections are preserved. Phase 2 playthrough was confirmed. Phase 3 purchase/reward/paint and vehicle lifecycle smoke pass; other remotes/full exploit audit remain outside this narrow boundary. |
