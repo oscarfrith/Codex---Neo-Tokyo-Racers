@@ -1,5 +1,9 @@
 # Patch History
 
+## 2026-09-22 — Begin performance Phase 6 acceptance
+
+Validation only; no installed code/assets/config changes. Twenty sandbox API cycles (140 successful responses) and normal startup pass, but start-screen state remained active: these do not count as full gameplay/UI cycles. CAM-02 reproduced. Scene analysis found 111 additional unparented TextButtons attributed to PresentationAudioClient; retention cause/plateau remains unproven. User has neither iPhone 7 nor isolated multiplayer place available. Phase 6 stays open for camera/resource investigation, real UI/route/input tests, device/15-player soak and separate persistence release evidence. Refreshed mirror 13:14:39: exact Phase 5 parity, 165 sources/44,465 nodes/276,087 properties; projections fresh. See architecture/performance-phase6-validation.md.
+
 ## 2026-09-22 — Install performance Phase 5 catalogue transport reuse
 
 Seven sources changed and GarageCatalogClient added. GarageServer builds its unchanged public catalogue once per session; validated KnownCatalogRevision omits unchanged catalogue payloads. Existing callers receive detached catalogue copies plus fresh profiles. Eight matched samples: warm JSON 177,251 -> 3,956 bytes (97.8% smaller); typed catalogue length/checksum unchanged. Observed round-trip timing is recorded separately, not isolated CPU or compressed-wire proof. Compile/repeat/rollback/reinstall/fault recovery, 21 transport/guard checks, normal startup and sandbox purchase/paint/spawn PI551/C, exit/re-entry/despawn/preview/upgrade pass. Cash remains fresh after both mutations. Existing CAM-02 persists. Mirror 13:01:09: 165 sources, 44,465 nodes, 276,087 properties, zero unexplained differences; generated preview/data freshness pass. User/device/phase-6 acceptance pending; no publish.

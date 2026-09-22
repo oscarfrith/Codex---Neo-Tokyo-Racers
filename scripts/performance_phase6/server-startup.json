@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"startup\":{\"OnboardingServer\":\"ready\",\"VehiclePerformanceComparisonServer\":\"ready\",\"OwnedGarageServer\":\"ready\",\"RaceDisplayNameServer\":\"ready\",\"TimeTrialServer\":\"ready\",\"PersonalBestServer\":\"ready\",\"VehicleAccessServer\":\"ready\",\"RaceRewardsServer\":\"ready\",\"FreeRoamTeleportServer\":\"ready\",\"LightingServer\":\"ready\",\"TrafficLightServer\":\"ready\",\"ProfileCompatibilityServer\":\"ready\",\"IntroProgressServer\":\"ready\",\"VehiclePerformanceServer\":\"ready\",\"VehicleCollisionServer\":\"ready\",\"VehicleAudioServer\":\"ready\",\"DriverSeatServer\":\"ready\",\"DriveRewardsServer\":\"ready\",\"RaceAssetsServer\":\"ready\",\"MatchmakingServer\":\"ready\",\"ProfileServer\":\"ready\",\"GlobalLeaderboardServer\":\"ready\",\"GarageSessionServer\":\"ready\",\"StudioCashGrantServer\":\"ready\",\"GarageServer\":\"ready\",\"RaceTeleportServer\":\"ready\"},\"vehicleDescendants\":0}"
+    }
+  ],
+  "isError": false
+}

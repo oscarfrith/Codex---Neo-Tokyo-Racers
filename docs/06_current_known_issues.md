@@ -2,6 +2,11 @@
 
 | ID | Status | Verification / risk |
 |---|---|---|
+| PERF-06 | Acceptance open | Phase 5 accepted for continuation. Phase 6 API smoke checks pass but do not establish normal gameplay/UI acceptance: StartScreenActive remained true. CAM-02 reproduced. Real iPhone 7, isolated multiplayer place and 30-minute/15-player soak unavailable; route/input/finish acceptance pending. See architecture/performance-phase6-validation.md. |
+| PERF-06-A | Investigate resource retention | After 20 API cycles, SceneAnalysisService attributes 111 unparented TextButtons to PresentationAudioClient (script heap +82,496 bytes). Existing weak-key/Destroying cleanup exists; sustained leak, producer and GC timing not established. Trace under normal UI flow and repeat matched settled samples before changing lifecycle code. |
+
+| ID | Status | Verification / risk |
+|---|---|---|
 | PERF-05 | Phase 5 installed / user checkpoint | Warm GetInitial JSON 177,251 -> 3,956 bytes (97.8%); full catalogue content matches baseline. Fresh profile/cash after purchase and upgrade, guard limits, bounded read recovery, cache isolation, startup and vehicle lifecycle pass. Catalogue snapshots require restart after authoring edits. Cold concurrent reads may duplicate the initial catalogue transfer. Per-call detached copies retain some local allocation cost; cache is bounded to one catalogue. Compressed wire, iPhone 7/FPS, load/soak and visual acceptance remain pending; CAM-02 persists. See architecture/performance-phase5-catalogue-transport.md. |
 
 | ID | Status | Verification / risk |
