@@ -1,61 +1,12 @@
-# Neo Tokyo Racers Prompt Pack
+# Space Racers prompt pack
 
-Current 2026-09-05 workflow: follow docs/architecture/mcp-workflow.md and docs/architecture/installer-index.md. Read compact current baseline/issues first; historical run instructions below are recovery context. Execute approved canonical scripts through MCP and preserve the raw paste diff. Phase 1 has no gameplay installer.
+Use [start session](01_start_every_session.md), then describe the task. Current status lives in [start here](../docs/00_START_HERE.md); execution policy lives in [delivery workflow](../docs/13_efficient_feature_delivery_protocol.md).
+These prompts carry no baseline dates or installation queue.
 
-Use these prompts to keep ChatGPT and Codex aligned around the same project context, docs, scripts, design decisions, Studio export mirror, and handoff workflow.
+- [Debug](02_studio_output_debug.md): read-only diagnosis before a proposed fix.
+- [Plan](03_feature_or_system_plan.md): compare/design without implementation.
+- [Handoff](04_end_session_handoff.md): record tested state and next action.
+- [Commit summary](05_commit_summary.md): inspect changes and draft commit text.
+- [Explicit full capture](06_refresh_studio_mirror.md): current snapshot procedure.
 
-## Active Repo
-
-Local shared repo path:
-
-```text
-C:\Users\Oscar\Documents\LUCIDITY\Codex---Neo-Tokyo-Racers
-```
-
-GitHub repo:
-
-```text
-https://github.com/oscarfrith/Codex---Neo-Tokyo-Racers
-```
-
-## Recommended Use
-
-Start every new ChatGPT or Codex conversation with:
-
-- `01_start_every_session.md`
-
-Use the others when the situation matches:
-
-- `02_studio_output_debug.md` - paste Roblox Studio output/errors and ask for a careful diagnosis.
-- `03_feature_or_system_plan.md` - plan a new feature without jumping straight into code.
-- `04_end_session_handoff.md` - close a session by updating docs and producing a clean handoff.
-- `05_commit_summary.md` - prepare a GitHub Desktop commit title/description.
-- `06_refresh_studio_mirror.md` - refresh the GitHub mirror after Studio-side changes.
-
-## Source Of Truth
-
-The shared project memory lives in:
-
-- `AGENTS.md`
-- `docs/00_START_HERE.md`
-- `docs/06_current_known_issues.md`
-- `docs/07_patch_history.md`
-- Topic docs in `docs/`
-- Current command-bar scripts in `scripts/`
-- Studio hierarchy and source mirrors in `roblox/exported_scripts/` and `roblox/studio_snapshot/`
-
-When Studio changes are made, refresh the mirror with:
-
-```text
-py scripts/receive_studio_full_snapshot_export.py
-```
-
-then run this in the Roblox Studio Command Bar:
-
-```text
-scripts/roblox_studio_export_full_snapshot_for_github_v2.lua
-```
-
-Commit the generated `roblox/exported_scripts/` and `roblox/studio_snapshot/` changes. Do not commit `docs/studio-full-export-paste.txt`.
-
-When an assistant changes the project, ask it to update docs and refresh or request a refresh of the Studio mirror as part of the same task whenever Studio-side source/hierarchy changed.
+Open the correct repository checkout on each machine. Rediscover Studio and local runtimes; do not copy session IDs or machine-specific interpreter paths.

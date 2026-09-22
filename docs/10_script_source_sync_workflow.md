@@ -2,7 +2,7 @@
 
 Windows folder promotion retries sharing/access-lock errors for up to five seconds per rename, then retains the existing rollback behavior. Eleven pipeline tests pass, including transient and persistent lock cases. Never bypass failed import verification or claim a stale mirror is current. Catalogue freshness check: scripts/performance_phase4/check_projection.py.
 
-Current as of cleanup Phase 4, 2026-09-22. Studio remains authoritative; exported files are evidence, not automatic sync inputs.
+Technical full-capture procedure. When to capture is defined in [the delivery workflow](13_efficient_feature_delivery_protocol.md); current status is in [start here](00_START_HERE.md). Studio remains authoritative; exported files are evidence, not automatic sync inputs.
 
 1. Verify Space Racers v1 (121304917315753), stop Play, and inspect baseline/Git.
 2. Run py scripts/receive_studio_snapshot.py locally. Discover Python 3 or the bundled interpreter if py is absent; never copy another machine's cache path.

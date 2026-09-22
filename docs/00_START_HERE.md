@@ -1,29 +1,35 @@
-# Space Racers — current baseline
+# Space Racers — start here
 
-Updated 2026-09-22. Target: Space Racers v1, place 121304917315753.
+Target: Space Racers v1, place **121304917315753**. Updated 2026-09-22. This is the sole current-status entry point; historical handoffs describe evidence at the time they were written.
 
-## Current delivery
+## Current task and next action
 
-**Current work: [Performance Phase 6 validation](architecture/performance-phase6-validation.md), acceptance OPEN.** Phase 5 accepted for continuation; gameplay code unchanged. Twenty short API cycles pass, but start-screen state remained active and they do not count as full gameplay cycles. CAM-02 reproduced; 111 detached UI buttons need lifecycle investigation. iPhone 7 and isolated multiplayer testing are unavailable. Latest mirror **2026-09-22 13:14:39** passes exact Phase 5 source/hierarchy/property parity and projection freshness. No installer to run; do not rerun earlier phases. Historical delivery figures below describe Phase 5 installation, not current acceptance.
+Workflow improvement **Phase 1: documentation consolidation complete**. [Approved four-phase plan](architecture/workflow-improvement-plan.md).
+Next approved step is **workflow Phase 2: targeted capture**, when the user asks to continue. Do not confuse this with performance Phase 6.
+Full-mirror policy remains in force for Studio changes until Phase 2 replaces its dependencies. This documentation-only phase needs no Studio execution/export.
 
-All five original architecture phases and all four complete-cleanup phases are user-confirmed. The user reports committing and pushing Phase 4. Post-confirmation mirror **2026-09-22 11:00:13** passes exact source/hierarchy/property parity. See [Phase 4 handoff](architecture/cleanup-phase4-finalisation.md). No further cleanup phase has been added.
+## Installed game and acceptance
 
-The [performance and replication plan](architecture/performance-and-replication-plan.md) has **Phase 5 installed and agent-verified; user playthrough pending**. GarageServer builds one immutable catalogue per session; GarageCatalogClient reuses it across existing callers while preserving fresh profile reads. Eight matched samples reduce warm response JSON from **177,251 to 3,956 bytes (97.8%)**; these are not compressed-wire or FPS measurements. See [Phase 5 handoff](architecture/performance-phase5-catalogue-transport.md). Latest mirror **2026-09-22 13:01:09** verifies 165 sources, 44,465 nodes and 276,087 properties. Phase 4 accepted for continuation; no specific device test inferred. Phase 6 iPhone 7, route, multiplayer and soak acceptance remains pending.
+All five original architecture phases and four cleanup phases are user-confirmed. Performance Phases 1–5 are installed; after Phase 6 checks the user reported “all worked well.” Record that as general gameplay confirmation, not proof of individual device, camera, memory or persistence gates.
+[Performance Phase 6 acceptance](architecture/performance-phase6-validation.md) remains open: camera errors, detached UI references, normal-flow/route tests, iPhone 7, 15-player/soak and isolated published persistence evidence. See the [open issue ledger](06_current_known_issues.md). No new game code was installed during validation.
 
-User approved preserving 628 moved race-arrow parts and 66 new Workspace thumbnail-model records. Phase 4 preserves this September 22 physical baseline. Protected staging and Archive disposition remains unresolved.
+Last verified mirror: **2026-09-22 13:14:39**, 165 sources, 44,465 nodes, 276,087 properties; exact expected Phase 5 parity and fresh catalogue/preview projections. This is a dated observation, not a claim that live Studio was checked this session.
+Current source handoff: [catalogue transport](architecture/performance-phase5-catalogue-transport.md). No installer run pending.
 
-## Current owners
+## Owners and boundaries
 
-ServerBase starts ServerStorage.Modules.Core/Game features. ClientBase starts ReplicatedStorage.Modules.Core/Game features. GarageUI owns garage UI; DriveSessionClient owns vehicle-session callbacks. Feature endpoints live under ServerStorage.Runtime and PlayerScripts.Runtime.
+ServerBase starts ServerStorage.Modules.Core/Game; ClientBase starts ReplicatedStorage.Modules.Core/Game. GarageUI owns UI; DriveSessionClient owns vehicle callbacks; feature endpoints are ServerStorage.Runtime and PlayerScripts.Runtime.
+Full vehicle templates live in ServerStorage.Assets.Vehicles; public definitions and generated preview geometry remain replicated. See [vehicle authoring](02_vehicle_folder_system.md).
+Preserve the September 22 physical baseline: 628 moved race-arrow parts and 66 added thumbnail records. Workspace work remains limited to World plus the previously approved exact two lighting-tag exceptions. Protected staging/Archive disposition is unresolved.
+Protected roots: ServerStorage.NeoTokyoRacers.VehiclePerformanceV2_Staging and ServerStorage.Archive. Their historical names are not permission to delete physical assets.
+Studio replay/sandbox suppresses saving; opt-in tools remain off; mobile orientation remains LandscapeSensor.
 
-Canonical roots: ReplicatedStorage.Assets/Config/Remotes, ServerStorage.Assets/Config, Workspace.World and ReplicatedFirst.Loading. Profile schema/projection and vehicle writer modules are now server-only; Persistence, PersonalBests and Leaderboards settings live under ServerStorage.Config. Shared renderers, preview, VFX, driving, racing and LOD owners are unchanged. No forwarding adapters or in-game backups. Mobile orientation remains LandscapeSensor; development tools remain opt-in.
+## Read by task
 
-Studio replay/sandbox suppresses saving. CAM-02 predates cleanup. Device, multiplayer and published persistence checks remain separate release gates.
+- Delivery, testing, recovery and Git: [workflow](13_efficient_feature_delivery_protocol.md).
+- Scripts/export/verifiers: [tool index](architecture/installer-index.md); [snapshot procedure](10_script_source_sync_workflow.md).
+- Systems: [vehicles](02_vehicle_folder_system.md), [driving](03_driving_mechanics.md), [UI](04_customisation_ui.md), [VFX/audio](05_vfx_system.md), [world/LOD](world-streaming-and-lod.md).
+- New/expanded systems: [readiness](14_new_system_readiness_standard.md), [contract](15_new_system_contract_template.md).
+- History and decisions: [patch history](07_patch_history.md), [lesson index](12_continuous_improvement_workflow.md), [owner map](architecture/naming-and-owners.md).
 
-## Entry points
-
-Read AGENTS, current issues, performance Phase 5 handoff and relevant topic docs. Check Git and list Studio instances afresh before writes. Current installed script: scripts/roblox_performance_phase5_catalogue_transport.lua. No manual run needed. Roll this phase back before older cleanup recovery.
-
-Read-only audits: scripts/studio_cleanup_audit.lua and scripts/audit_cleanup.py. Current export: scripts/receive_studio_snapshot.py followed by scripts/studio_export_snapshot.lua in Edit. Validate using scripts/verify_studio_mirror.py and scripts/performance_phase5/verify_migration.py. Evidence is scripts/performance_phase5/verification.json.
-
-See [sync workflow](10_script_source_sync_workflow.md), [tool index](architecture/installer-index.md) and [owner map](architecture/naming-and-owners.md). Older current-baseline prose is archived under docs/history/cleanup-phase4-prior-docs. Historical run instructions are not a pending queue.
+Read only relevant historical entries when investigating a regression or recovery. Never infer a run queue from historical installers.

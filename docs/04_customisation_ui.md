@@ -8,7 +8,7 @@ Phase 3 preserves GarageUI/preview ownership and the shared calculator. UI image
 
 Performance Phase 1 sampled five GetInitial calls: each catalogue is 173,361 JSON bytes; total result 177,251 bytes. This is a payload-size proxy, not wire cost. Shared data and template indexing are installed in Phase 3; the existing remote catalogue payload remains unchanged. Phase 5 now omits the catalogue on warm revision-matched reads; see the current handoff. See architecture/performance-phase1-baseline.md.
 
-All four cleanup phases are user-confirmed. Performance Phase 5 is installed and agent-verified; user playthrough pending. Mirror 2026-09-22 13:01:09 passes exact 165-source/44,465-node/276,087-property parity. See architecture/performance-phase5-catalogue-transport.md. Unchanged catalogue responses are reused; every GetInitial still reads a fresh profile. Gameplay, physical properties and existing presentation owners are preserved.
+Current baseline and acceptance: [start here](00_START_HERE.md); outstanding checks: [open issues](06_current_known_issues.md).
 
 GarageUI starts directly from ClientBase; DriveSessionClient owns vehicle callbacks. Shared renderer, Theme, layout, preview and geometry owners remain canonical. Remotes.Garage and Config.UI are current. GarageProfileProjectionBindings preserves semantics without a second saved-state owner. ReplicatedFirst.Loading owns initial loading. Mobile remains LandscapeSensor.
 

@@ -1,5 +1,9 @@
 # Patch History
 
+## 2026-09-22 — Workflow Phase 1 documentation consolidation
+
+Centralised current status and delivery procedure; shortened AGENTS and lesson startup reading, separated open issues from resolved milestones, replaced stale prompt/tool instructions with maintained links, and removed repeated topic status banners. Preserved prior workflow text as history. Recorded the user's general gameplay confirmation without closing camera/resource/device/persistence gates. No Studio, scripts, mirror or gameplay changes; full-capture policy remains until workflow Phase 2.
+
 ## 2026-09-22 — Begin performance Phase 6 acceptance
 
 Validation only; no installed code/assets/config changes. Twenty sandbox API cycles (140 successful responses) and normal startup pass, but start-screen state remained active: these do not count as full gameplay/UI cycles. CAM-02 reproduced. Scene analysis found 111 additional unparented TextButtons attributed to PresentationAudioClient; retention cause/plateau remains unproven. User has neither iPhone 7 nor isolated multiplayer place available. Phase 6 stays open for camera/resource investigation, real UI/route/input tests, device/15-player soak and separate persistence release evidence. Refreshed mirror 13:14:39: exact Phase 5 parity, 165 sources/44,465 nodes/276,087 properties; projections fresh. See architecture/performance-phase6-validation.md.

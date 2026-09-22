@@ -1,6 +1,6 @@
 # Current tools and recovery
 
-Performance Phase 5 installed, 2026-09-22; user gameplay acceptance pending. All cleanup phases are confirmed.
+Current task, acceptance and pending runs: [start here](../00_START_HERE.md). This index owns tool paths and recovery ordering, not delivery status.
 
 | Purpose | Canonical script |
 |---|---|
@@ -14,6 +14,8 @@ Performance Phase 5 installed, 2026-09-22; user gameplay acceptance pending. All
 | Current exact parity | scripts/performance_phase5/verify_migration.py |
 | Pipeline tests | scripts/test_studio_snapshot_pipeline.py |
 
-No manual installer run is pending. Earlier installers are historical recovery only: roll back dependent phases in reverse order first. Old export tools are archived under scripts/history/snapshot_before_cleanup_phase4; do not mix protocols. Frozen sources/build support under scripts/cleanup_phase* are repository evidence, not runtime dependencies.
+Earlier installers are historical recovery only: roll back dependent phases in reverse order first. Old export tools are archived under scripts/history/snapshot_before_cleanup_phase4; do not mix protocols. Frozen sources/build support under scripts/cleanup_phase* are repository evidence, not runtime dependencies.
 
 See performance-phase5-catalogue-transport.md. Roll back this delivery before cleanup recovery. Prior index: ../history/cleanup-phase4-prior-docs/installer-index.md.
+
+Catalogue/preview freshness: scripts/performance_phase4/check_projection.py (currently requires full hierarchy capture). Latest validation evidence: scripts/performance_phase6/mirror-verification.json. General snapshot procedure: [snapshot workflow](../10_script_source_sync_workflow.md).
