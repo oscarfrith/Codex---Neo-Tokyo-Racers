@@ -23,6 +23,7 @@ import re
 import shutil
 import hashlib
 import uuid
+import time
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -351,6 +352,18 @@ def write_snapshot(payload: dict[str, Any], manifest: list[dict[str, Any]], snap
     (snapshot_dir / "hierarchy.md").write_text("\n".join(hierarchy_md) + "\n", encoding="utf-8")
 
 
+def rename_with_retry(source: Path, target: Path) -> None:
+    """Bound transient Windows sharing/access locks; preserve rollback on failure."""
+    for attempt in range(21):
+        try:
+            source.rename(target)
+            return
+        except OSError as error:
+            if getattr(error, 'winerror', None) not in (5, 32, 33) or attempt == 20:
+                raise
+            time.sleep(0.25)
+
+
 def import_payload(payload: dict[str, Any], scripts_dir: Path = DEFAULT_SCRIPTS_DIR,
                    snapshot_dir: Path = DEFAULT_SNAPSHOT_DIR) -> list[dict[str, Any]]:
     scripts = validate_payload(payload)
@@ -379,9 +392,9 @@ def import_payload(payload: dict[str, Any], scripts_dir: Path = DEFAULT_SCRIPTS_
             target.parent.mkdir(parents=True, exist_ok=True)
             previous = stage / f'previous-{index}'
             if target.exists():
-                target.rename(previous)
+                rename_with_retry(target, previous)
                 saved.append((previous, target))
-            candidate.rename(target)
+            rename_with_retry(candidate, target)
             promoted.append(target)
         return manifest
     except Exception:
@@ -389,7 +402,7 @@ def import_payload(payload: dict[str, Any], scripts_dir: Path = DEFAULT_SCRIPTS_
             for target in reversed(promoted):
                 shutil.rmtree(target)
             for previous, target in reversed(saved):
-                previous.rename(target)
+                rename_with_retry(previous, target)
         except Exception:
             safe_to_remove = False
             raise RuntimeError(f"Rollback incomplete; recovery files retained at {stage}")

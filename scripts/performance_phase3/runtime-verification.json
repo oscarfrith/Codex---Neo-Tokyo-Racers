@@ -1,0 +1,10 @@
+{
+  "placeId": 121304917315753,
+  "date": "2026-09-22",
+  "pureParity": {"pass": true, "cockpits": 6, "modules": 116, "allocationCases": 5380, "comparisons": 749912, "noGameplayRequire": true, "profileSelectedUpgradePreview": true},
+  "installer": {"compile": true, "repeatInstall": true, "rollbackBaselineAudit": true, "reinstall": true, "injectedFailureRecovery": true},
+  "startup": {"serverReady": 26, "clientReady": 39, "optInSkipped": 4},
+  "sandbox": {"enabled": true, "purchaseCockpit": true, "paintCockpit": true, "spawn": true, "performanceIndex": 551, "performanceTier": "C", "exit": true, "reenter": true, "despawn": true},
+  "garageRoute": {"driveInEvent": true, "previewPadPassLogged": true, "ownershipPassLogged": true, "visualPreviewAcceptance": "pending user playthrough"},
+  "limitations": ["Existing CAM-02 BaseCamera/ZoomController clamp errors reproduced and truncated console output. No error-free claim.", "No FPS, client memory or download improvement measured in this preparatory phase.", "iPhone 7, representative route, network profiling, 15-player load, soak and production persistence verification remain pending.", "Windows mirror promotions failed and restored the previous mirror; bounded rename retries and 11 pipeline tests were added before successful refresh."]
+}

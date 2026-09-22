@@ -1,6 +1,6 @@
 # Performance and replication plan
 
-2026-09-22. **Phase 2 installed and agent-verified; user playthrough pending.** See [Phase 2 handoff](performance-phase2-server-storage.md). Phase 1 local measurements are delivered with explicit phone/route/load gaps; iPhone 7 selected by the user. Phases 3–6 remain proposed. All four complete-cleanup phases are user-confirmed; local HEAD at original planning was b66ebde. The design below is the original programme; current execution status is this paragraph.
+2026-09-22. **Phase 3 installed and agent-verified; user playthrough pending.** See [Phase 3 handoff](performance-phase3-catalogue.md). Phase 2 was accepted for continuation. Phase 1 phone/route/load gaps remain; iPhone 7 selected. Phases 4-6 are unimplemented. All four complete-cleanup phases are user-confirmed. The design below is the original programme; this paragraph is the current execution status.
 
 ## Evidence and recommendation
 

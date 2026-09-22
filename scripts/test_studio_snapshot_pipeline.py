@@ -111,6 +111,26 @@ class PipelineTests(unittest.TestCase):
             with self.assertRaises(OSError): pipeline.import_payload(fixture(), self.scripts, self.snapshot)
         self.preserved()
 
+    def test_transient_windows_lock_retries(self):
+        error = PermissionError('simulated sharing lock'); error.winerror = 5
+        original = Path.rename
+        attempts = []
+        def transient(source, target):
+            attempts.append(source)
+            if len(attempts) == 1: raise error
+            return original(source, target)
+        with patch.object(Path, 'rename', transient), patch.object(pipeline.time, 'sleep'):
+            pipeline.import_payload(fixture(), self.scripts, self.snapshot)
+        self.assertTrue((self.snapshot / 'hierarchy.json').exists())
+        self.assertEqual(len(attempts), 5)
+
+    def test_persistent_windows_lock_is_bounded(self):
+        error = PermissionError('persistent access failure'); error.winerror = 5
+        with patch.object(Path, 'rename', side_effect=error) as rename, patch.object(pipeline.time, 'sleep'):
+            with self.assertRaises(PermissionError): pipeline.import_payload(fixture(), self.scripts, self.snapshot)
+        self.assertEqual(rename.call_count, 21)
+        self.preserved()
+
     def test_protected_and_overlapping_outputs_rejected(self):
         for target in [pipeline.REPO_ROOT, pipeline.REPO_ROOT / '.git' / 'mirror', self.scripts / 'nested']:
             with self.assertRaises(ValueError): pipeline.import_payload(fixture(), self.scripts, target)

@@ -1,3 +1,4 @@
+local Definition=require(game:GetService("ReplicatedStorage").Modules.Game.Vehicles.VehicleDefinition)
 local Definitions = require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Vehicles"):WaitForChild("Performance"):WaitForChild("PerformanceDefinitions"))
 local Calculator = require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Vehicles"):WaitForChild("Performance"):WaitForChild("PerformanceCalculator"))
 local LegacyDefinitions = require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Vehicles"):WaitForChild("Performance"):WaitForChild("VehicleUpgradeDefinitions"))
@@ -23,25 +24,19 @@ local function clone(value)
 	local result = {}; for key, child in pairs(value) do result[key] = clone(child) end; return result
 end
 
-local function pathsRoot(module)
-	return module and (module:FindFirstChild("VehiclePerformanceV2UpgradePaths") or module:FindFirstChild("UpgradePaths"))
-end
-
 local function sortedPaths(module)
-	local result = {}
-	local root = pathsRoot(module)
-	if root then for _, path in ipairs(root:GetChildren()) do if path:IsA("Folder") then table.insert(result, path) end end end
-	table.sort(result, function(a, b) return tostring(a:GetAttribute("PathId") or a.Name) < tostring(b:GetAttribute("PathId") or b.Name) end)
-	return result
+ local result=Definition.Paths(module)
+ table.sort(result,function(a,b) return tostring(Definition.Attribute(a,"PathId") or a.Name)<tostring(Definition.Attribute(b,"PathId") or b.Name) end)
+ return result
 end
 
 function Runtime.NormalizeAllocation(module, allocation)
 	allocation = typeof(allocation) == "table" and allocation or {}
-	local capacity = math.max(0, math.floor(tonumber(module and module:GetAttribute("UpgradePointCapacity")) or 0))
+	local capacity = math.max(0, math.floor(tonumber(module and Definition.Attribute(module,"UpgradePointCapacity")) or 0))
 	local result, spent = {}, 0
 	for _, path in ipairs(sortedPaths(module)) do
-		local id = tostring(path:GetAttribute("PathId") or path.Name)
-		local maxPath = math.max(0, math.floor(tonumber(path:GetAttribute("MaxPoints")) or module:GetAttribute("MaxPointsPerPath") or 3))
+		local id = tostring(Definition.Attribute(path,"PathId") or path.Name)
+		local maxPath = math.max(0, math.floor(tonumber(Definition.Attribute(path,"MaxPoints")) or Definition.Attribute(module,"MaxPointsPerPath") or 3))
 		local points = math.clamp(math.floor(tonumber(allocation[id]) or 0), 0, maxPath)
 		points = math.min(points, math.max(0, capacity - spent))
 		result[id] = points
@@ -53,15 +48,15 @@ end
 function Runtime.ApplyToModuleRaw(module, allocation)
 	local normalized = Runtime.NormalizeAllocation(module, allocation)
 	local raw = {}
-	for _, name in ipairs(Definitions.RawVariableOrder) do raw[name] = tonumber(module and module:GetAttribute(name)) or tonumber(module and module:GetAttribute("PerformanceDelta_" .. name)) or 0 end
+	for _, name in ipairs(Definitions.RawVariableOrder) do raw[name] = tonumber(module and Definition.Attribute(module,name)) or tonumber(module and Definition.Attribute(module,"PerformanceDelta_" .. name)) or 0 end
 	for _, path in ipairs(sortedPaths(module)) do
-		local id = tostring(path:GetAttribute("PathId") or path.Name)
+		local id = tostring(Definition.Attribute(path,"PathId") or path.Name)
 		local points = normalized[id] or 0
 		if points > 0 then
 			for _, name in ipairs(Definitions.RawVariableOrder) do
-				local fraction = path:GetAttribute("DeltaFraction_" .. name)
+				local fraction = Definition.Attribute(path,"DeltaFraction_" .. name)
 				if typeof(fraction) == "number" then raw[name] *= 1 + fraction * points end
-				local flat = path:GetAttribute("DeltaFlat_" .. name)
+				local flat = Definition.Attribute(path,"DeltaFlat_" .. name)
 				if typeof(flat) == "number" then raw[name] += flat * points end
 			end
 		end
@@ -74,25 +69,25 @@ function Runtime.NextPointCost(module, allocation, pathId)
 	if spent >= capacity then return nil end
 	local point = spent + 1
 	if pathId ~= nil then
-		local id = tostring(pathId); local root = pathsRoot(module); local path = root and root:FindFirstChild(id)
+		local id = tostring(pathId); local path = Definition.Path(module,id)
 		if not path then return nil end
-		local level = math.max(0, math.floor(tonumber(normalized[id]) or 0)); local maximum = math.max(0, math.floor(tonumber(path:GetAttribute("MaxPoints")) or 3))
+		local level = math.max(0, math.floor(tonumber(normalized[id]) or 0)); local maximum = math.max(0, math.floor(tonumber(Definition.Attribute(path,"MaxPoints")) or 3))
 		if level >= maximum then return nil end
 		point = level + 1
-		local override = path:GetAttribute("Point" .. tostring(point) .. "CostGuide")
+		local override = Definition.Attribute(path,"Point" .. tostring(point) .. "CostGuide")
 		if override ~= nil then return math.max(0, tonumber(override) or 0) end
 	end
-	return math.max(0, tonumber(module:GetAttribute("Point" .. tostring(point) .. "CostGuide")) or 0)
+	return math.max(0, tonumber(Definition.Attribute(module,"Point" .. tostring(point) .. "CostGuide")) or 0)
 end
 
 function Runtime.Catalog(module, allocation)
 	local normalized, spent, capacity = Runtime.NormalizeAllocation(module, allocation)
 	local result = {}
 	for _, path in ipairs(sortedPaths(module)) do
-		local id = tostring(path:GetAttribute("PathId") or path.Name)
+		local id = tostring(Definition.Attribute(path,"PathId") or path.Name)
 		table.insert(result, {
-			PathId = id, DisplayName = tostring(path:GetAttribute("DisplayName") or id),
-			Points = normalized[id] or 0, MaxPoints = tonumber(path:GetAttribute("MaxPoints")) or 3,
+			PathId = id, DisplayName = tostring(Definition.Attribute(path,"DisplayName") or id),
+			Points = normalized[id] or 0, MaxPoints = tonumber(Definition.Attribute(path,"MaxPoints")) or 3,
 			TotalPoints = spent, Capacity = capacity, NextPointCost = Runtime.NextPointCost(module, normalized, id),
 		})
 	end
@@ -101,10 +96,9 @@ end
 
 function Runtime.PreviewPoint(module, allocation, pathId, baseBuildRaw)
 	local normalized, spent, capacity = Runtime.NormalizeAllocation(module, allocation)
-	local root = pathsRoot(module)
-	local path = root and root:FindFirstChild(tostring(pathId))
+	local path = Definition.Path(module,tostring(pathId))
 	if not path then return false, "Upgrade path not found." end
-	local maxPath = tonumber(path:GetAttribute("MaxPoints")) or 3
+	local maxPath = tonumber(Definition.Attribute(path,"MaxPoints")) or 3
 	if (normalized[pathId] or 0) >= maxPath then return false, "Path already maxed." end
 	if spent >= capacity then return false, "Module has no upgrade points remaining." end
 	local nextAllocation = clone(normalized)
@@ -126,7 +120,7 @@ function Runtime.PurchasePoint(profile, moduleInstanceId, module, pathId, baseBu
 	if typeof(profile) ~= "table" then return false, "Profile is required." end
 	local instance = profile.OwnedModuleInstances and profile.OwnedModuleInstances[moduleInstanceId]
 	if typeof(instance) ~= "table" then return false, "Module instance not found." end
-	if tostring(instance.TemplateId or "") ~= tostring(module:GetAttribute("ModuleId") or module.Name) then return false, "Module template mismatch." end
+	if tostring(instance.TemplateId or "") ~= tostring(Definition.Attribute(module,"ModuleId") or module.Name) then return false, "Module template mismatch." end
 	local ok, preview = Runtime.PreviewPoint(module, instance.V2UpgradePoints, pathId, baseBuildRaw)
 	if not ok then return false, preview end
 	local cost = tonumber(preview.Cost) or 0

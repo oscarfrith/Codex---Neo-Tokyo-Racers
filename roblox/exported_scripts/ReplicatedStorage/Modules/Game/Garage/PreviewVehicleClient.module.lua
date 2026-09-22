@@ -1,3 +1,4 @@
+local TemplateIndex=require(game:GetService("ReplicatedStorage").Modules.Game.Vehicles.VehicleTemplateIndex)
 -- Canonical feature implementation; startup is owned by the composition root.
 local ReplicatedStorage=game:GetService("ReplicatedStorage")
 local PreviewVehicleController={}
@@ -11,7 +12,7 @@ local cfg=game:GetService("ReplicatedStorage"):WaitForChild("Config"):WaitForChi
 PreviewVehicleController.PreviewFolderName="LocalVehiclePreview"
 local previewPadReported=false
 local function number(name,fallback) local value=cfg:GetAttribute(name); if typeof(value)=="number" then return value end; local child=cfg:FindFirstChild(name); return tonumber(child and child.Value) or fallback end
-function PreviewVehicleController.FindTemplateByAttribute(root,attr,value) if not root or value==nil then return nil end; for _,item in ipairs(root:GetDescendants()) do if item:GetAttribute(attr)==value then return item end end end
+function PreviewVehicleController.FindTemplateByAttribute(root,attr,value) return TemplateIndex.Find(root,attr,value) end
 function PreviewVehicleController.GetPreviewRoot(workspaceRef,previewState)
 	workspaceRef=workspaceRef or workspace; previewState=previewState or {}; if previewState.Root and previewState.Root.Parent then return previewState.Root end
 	local existing=workspaceRef:FindFirstChild(PreviewVehicleController.PreviewFolderName); if existing then previewState.Root=existing; return existing end

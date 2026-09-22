@@ -1,3 +1,4 @@
+local Definition=require(game:GetService("ReplicatedStorage").Modules.Game.Vehicles.VehicleDefinition)
 local Definitions = require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Vehicles"):WaitForChild("Performance"):WaitForChild("PerformanceDefinitions"))
 local Calculator = require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Vehicles"):WaitForChild("Performance"):WaitForChild("PerformanceCalculator"))
 local UpgradeRuntime = require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Vehicles"):WaitForChild("Performance"):WaitForChild("PerformanceUpgradeRuntime"))
@@ -18,7 +19,7 @@ end
 function Runtime.ReadComponentRaw(item)
 	local raw = Runtime.ZeroRaw()
 	for _, name in ipairs(Definitions.RawVariableOrder) do
-		raw[name] = finite(item and item:GetAttribute(name), finite(item and item:GetAttribute("PerformanceDelta_" .. name), 0))
+		raw[name] = finite(item and Definition.Attribute(item,name), finite(item and Definition.Attribute(item,"PerformanceDelta_" .. name), 0))
 	end
 	return raw
 end
@@ -29,7 +30,7 @@ function Runtime.ReadRuntimeRaw(vehicle)
 	for _, name in ipairs(Definitions.RawVariableOrder) do
 		local valueObject = folder and folder:FindFirstChild(name)
 		raw[name] = finite(valueObject and valueObject:IsA("NumberValue") and valueObject.Value,
-			finite(vehicle and vehicle:GetAttribute("Performance_" .. name), 0))
+			finite(vehicle and Definition.Attribute(vehicle,"Performance_" .. name), 0))
 	end
 	return raw
 end
@@ -42,7 +43,7 @@ end
 function Runtime.CalculateComponents(cockpit, modules, allocationsByModuleId)
 	local raw = Runtime.ReadComponentRaw(cockpit)
 	for _, module in ipairs(modules or {}) do
-		local moduleId = tostring(module:GetAttribute("ModuleId") or module.Name)
+		local moduleId = tostring(Definition.Attribute(module,"ModuleId") or module.Name)
 		local allocation = allocationsByModuleId and allocationsByModuleId[moduleId]
 		Runtime.AddRaw(raw, UpgradeRuntime.ApplyToModuleRaw(module, allocation))
 	end
@@ -94,9 +95,9 @@ end
 function Runtime.CatalogPreview(module, allocation)
 	local raw = UpgradeRuntime.ApplyToModuleRaw(module, allocation)
 	return {
-		ModuleId = tostring(module:GetAttribute("ModuleId") or module.Name),
-		DisplayName = tostring(module:GetAttribute("DisplayName") or module.Name),
-		Price = tonumber(module:GetAttribute("Price")) or 0,
+		ModuleId = tostring(Definition.Attribute(module,"ModuleId") or module.Name),
+		DisplayName = tostring(Definition.Attribute(module,"DisplayName") or module.Name),
+		Price = tonumber(Definition.Attribute(module,"Price")) or 0,
 		Allocation = UpgradeRuntime.NormalizeAllocation(module, allocation),
 		Raw = raw,
 		Paths = UpgradeRuntime.Catalog(module, allocation),

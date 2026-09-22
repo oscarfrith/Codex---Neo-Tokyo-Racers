@@ -1,6 +1,8 @@
 # Naming and ownership
 
-Current: all cleanup phases confirmed. Performance Phase 2 installed/agent-verified; user test pending. Server-only schema/projection/writer modules and Persistence/PersonalBests/Leaderboards settings now live under ServerStorage.Modules/Config; shared calculation and presentation remain replicated. See performance-phase2-server-storage.md.
+VehicleCatalogData/VehicleCatalog own immutable public definitions and ID resolution; VehicleDefinition shares attribute access across records and authoring Instances. VehicleTemplateIndex owns bounded preview-template lookup only. Server authority, startup, UI, preview geometry, persistence and lifecycle ownership remain unchanged.
+
+Performance Phase 3 is installed and agent-verified; user playthrough pending. Mirror 2026-09-22 12:31:08 passes exact 164-source/42,359-node/267,539-property parity. See performance-phase3-catalogue.md. Gameplay, tuning and physical assets are preserved.
 
 Naming follows the inspected Untitled Experience vocabulary without claiming a company-wide standard: ServerBase, ClientBase, Modules.Core/Game and responsibility-based FeatureServer, FeatureClient, FeatureUI names.
 

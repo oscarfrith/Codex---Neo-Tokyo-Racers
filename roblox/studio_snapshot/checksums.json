@@ -282,10 +282,10 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Garage/GarageModuleInstancePreviewAdapter.module.lua",
     "class_name": "ModuleScript",
     "disabled": false,
-    "source_lines": 98,
-    "source_bytes": 5701,
-    "source_checksum": "491685605",
-    "source_sha256": "ec29e1530d785d36e7456e3d554c68f0dcd9c00203d75c04ecc0668a44116fe5"
+    "source_lines": 95,
+    "source_bytes": 5617,
+    "source_checksum": "449284026",
+    "source_sha256": "e296518c971255c13d7860abd7fb4d010f44476c68c0824536367af92347e58e"
   },
   "ReplicatedStorage.Modules.Game.Garage.GaragePreviewPresentationClient": {
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Garage/GaragePreviewPresentationClient.module.lua",
@@ -309,10 +309,10 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Garage/GarageUI.module.lua",
     "class_name": "ModuleScript",
     "disabled": false,
-    "source_lines": 690,
-    "source_bytes": 59006,
-    "source_checksum": "969451965",
-    "source_sha256": "3dc4502c85617ba7f06b3d8a2eb63d17d5fce27f3a36b48df5fddaa5419cab14"
+    "source_lines": 697,
+    "source_bytes": 58862,
+    "source_checksum": "222676969",
+    "source_sha256": "d69019df94de7431a4198e66ef938bed18e2089314b06a92532a50b13ce5905f"
   },
   "ReplicatedStorage.Modules.Game.Garage.GarageVehiclePreviewProfile": {
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Garage/GarageVehiclePreviewProfile.module.lua",
@@ -381,10 +381,10 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Garage/PreviewVehicleClient.module.lua",
     "class_name": "ModuleScript",
     "disabled": false,
-    "source_lines": 89,
-    "source_bytes": 10245,
-    "source_checksum": "900588470",
-    "source_sha256": "62ee7f1740545044a8f2260e7a0fff7ed58897f9270b36d0428f1a20509fe847"
+    "source_lines": 90,
+    "source_bytes": 10244,
+    "source_checksum": "900034251",
+    "source_sha256": "4951f12900f79f28eabcf6f5f5ef3bad3e6b657896a98364b032f019052a8604"
   },
   "ReplicatedStorage.Modules.Game.Garage.ThrustPreviewClient": {
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Garage/ThrustPreviewClient.module.lua",
@@ -741,19 +741,19 @@
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/Performance/PerformanceRuntime.module.lua",
     "class_name": "ModuleScript",
     "disabled": false,
-    "source_lines": 107,
-    "source_bytes": 5335,
-    "source_checksum": "265532859",
-    "source_sha256": "f082eeeefe5abcf13cd73fd8f360df116cf5e458220c2ab373b9a6f45e92a54a"
+    "source_lines": 108,
+    "source_bytes": 5494,
+    "source_checksum": "343729876",
+    "source_sha256": "a63c7b8799d11cc81ff220d4c8d492dde908ca63e6b8e08eab503a6f18a8b048"
   },
   "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceUpgradeRuntime": {
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/Performance/PerformanceUpgradeRuntime.module.lua",
     "class_name": "ModuleScript",
     "disabled": false,
-    "source_lines": 194,
-    "source_bytes": 11175,
-    "source_checksum": "542964402",
-    "source_sha256": "857a8b7aaf2c9911eac5defdc80d61b90142b4f636fb3309524a8dbded1e0f22"
+    "source_lines": 188,
+    "source_bytes": 11055,
+    "source_checksum": "429934426",
+    "source_sha256": "aaf7122c37fe3e740716968d0e902116d3ad94c1a58f0cea15d75c96f3e2471f"
   },
   "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehicleModuleUpgradeRuntime": {
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/Performance/VehicleModuleUpgradeRuntime.module.lua",
@@ -769,9 +769,9 @@
     "class_name": "ModuleScript",
     "disabled": false,
     "source_lines": 120,
-    "source_bytes": 8704,
-    "source_checksum": "525894444",
-    "source_sha256": "4bd4dcd8df426dc667d938e23e241a501d7a2ddee35d45db7021fa70bd53e3ba"
+    "source_bytes": 8544,
+    "source_checksum": "400543416",
+    "source_sha256": "c1ed20ab4065bd5bcaf96756c1eac838e0e40ab61ac1781df546b9483c1137aa"
   },
   "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehicleUpgradeDefinitions": {
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/Performance/VehicleUpgradeDefinitions.module.lua",
@@ -872,6 +872,24 @@
     "source_checksum": "32007645",
     "source_sha256": "dda08b715064a8cdb9a180ff4c86e1d34ad652d4bc9e7a091ebfe032d15da093"
   },
+  "ReplicatedStorage.Modules.Game.Vehicles.VehicleCatalog": {
+    "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/VehicleCatalog.module.lua",
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "source_lines": 16,
+    "source_bytes": 958,
+    "source_checksum": "41065563",
+    "source_sha256": "0120b31b643939cf901d1b471ba72c5f0e9c25b49d9e89988688b4ef1277c7dc"
+  },
+  "ReplicatedStorage.Modules.Game.Vehicles.VehicleCatalogData": {
+    "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/VehicleCatalogData.module.lua",
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "source_lines": 5,
+    "source_bytes": 197226,
+    "source_checksum": "608866034",
+    "source_sha256": "6d7a723507340f981c853156cbaebb263f4206395ff976ae1117bb113f207477"
+  },
   "ReplicatedStorage.Modules.Game.Vehicles.VehicleCosmeticCatalog": {
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/VehicleCosmeticCatalog.module.lua",
     "class_name": "ModuleScript",
@@ -880,6 +898,15 @@
     "source_bytes": 5856,
     "source_checksum": "552222323",
     "source_sha256": "1961900f064f897623cc2fef73f73590d15a96120fff028ceaefbc4386c768c9"
+  },
+  "ReplicatedStorage.Modules.Game.Vehicles.VehicleDefinition": {
+    "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/VehicleDefinition.module.lua",
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "source_lines": 24,
+    "source_bytes": 1067,
+    "source_checksum": "48654975",
+    "source_sha256": "d4ca3721612c9b074e2fa6799f54f16d164634fa0e05f92dbc4f0fa500853114"
   },
   "ReplicatedStorage.Modules.Game.Vehicles.VehicleDisplayNames": {
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/VehicleDisplayNames.module.lua",
@@ -907,6 +934,15 @@
     "source_bytes": 18613,
     "source_checksum": "800961808",
     "source_sha256": "971ff8161c7dfd61ab97851133563ad15ccba686e0dd34c41624bb062d74f4b4"
+  },
+  "ReplicatedStorage.Modules.Game.Vehicles.VehicleTemplateIndex": {
+    "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/VehicleTemplateIndex.module.lua",
+    "class_name": "ModuleScript",
+    "disabled": false,
+    "source_lines": 17,
+    "source_bytes": 716,
+    "source_checksum": "21915235",
+    "source_sha256": "4268660610deda81010782d348cbcd767bb910a787a6a716f05d8203d78ba40a"
   },
   "ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient": {
     "file": "roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/VehicleVFXClient.module.lua",

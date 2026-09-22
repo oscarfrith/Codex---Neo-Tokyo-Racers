@@ -1,5 +1,9 @@
 # Continuous Improvement Workflow
 
+## 2026-09-22 — Catalogue separation evidence
+
+Keep one authoring source and generate immutable public projections. Prove pure calculations against the prior implementation across all catalogue IDs and upgrade allocations before physical relocation. Preserve folder-name versus PathId semantics. A data/code separation may temporarily increase replication; report that honestly and measure the later asset phase separately. Pair the generated revision with a repeatable freshness check. On Windows mirror promotion errors, retry only bounded sharing/access failures and keep rollback/failure tests; never silently accept an old snapshot.
+
 ## 2026-09-22 — Server-only relocation delivery
 
 For a storage-only change, prove the exact service-literal token delta, move original instances with values intact, and keep shared dependencies in place. Test reverse migration and injected post-mutation failure recovery, then compare every captured source/hierarchy/property after export. Runtime readiness and working vehicle writer provide stronger evidence than path existence alone. Retire the older exact-baseline verifier from current instructions when a new phase changes paths; preserve it for deliberate reverse-order recovery. User gameplay acceptance remains separate from agent checks.

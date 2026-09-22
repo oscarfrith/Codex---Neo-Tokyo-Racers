@@ -1,0 +1,53 @@
+{
+  "revision": "469d9bd81944a3d71a127ea1d5e702720b75f55524391cb27008e05e8fc2cf0e",
+  "cockpits": 6,
+  "modules": 116,
+  "dataSourceBytes": 197226,
+  "changedSources": [
+    [
+      "ReplicatedStorage",
+      "Modules",
+      "Game",
+      "Garage",
+      "GarageModuleInstancePreviewAdapter"
+    ],
+    [
+      "ReplicatedStorage",
+      "Modules",
+      "Game",
+      "Garage",
+      "GarageUI"
+    ],
+    [
+      "ReplicatedStorage",
+      "Modules",
+      "Game",
+      "Garage",
+      "PreviewVehicleClient"
+    ],
+    [
+      "ReplicatedStorage",
+      "Modules",
+      "Game",
+      "Vehicles",
+      "Performance",
+      "PerformanceRuntime"
+    ],
+    [
+      "ReplicatedStorage",
+      "Modules",
+      "Game",
+      "Vehicles",
+      "Performance",
+      "PerformanceUpgradeRuntime"
+    ],
+    [
+      "ReplicatedStorage",
+      "Modules",
+      "Game",
+      "Vehicles",
+      "Performance",
+      "VehiclePerformanceResolver"
+    ]
+  ]
+}

@@ -1,3 +1,4 @@
+local Catalog=require(game:GetService("ReplicatedStorage").Modules.Game.Vehicles.VehicleCatalog)
 -- Current garage application; ClientBase owns startup.
 local Client={}
 local started=false
@@ -82,7 +83,13 @@ local function moduleRating(module,instance) return PerformanceResolver.ModuleRa
 local function imageValue(value) local text=tostring(value or ""); if text=="" then return "" end; if tonumber(text) then return "rbxassetid://"..text end; return text end
 local navigationIcons=game:GetService("ReplicatedStorage"):WaitForChild("Config"):WaitForChild("UI"):WaitForChild("GarageReplacement"):WaitForChild("NavigationIcons")
 local function navIcon(name) return imageValue(navigationIcons:GetAttribute(name)) end 
-local function cockpitImage(c) for _,k in ipairs({"MenuImage","CockpitImage","ThumbnailImage","ImageId","Image"}) do local v=imageValue(c and c[k]); if v~="" then return v end end; local id=tostring(c and c.CockpitId or ""); for _,o in ipairs(categoriesRoot:GetDescendants()) do if o:IsA("Model") and tostring(o:GetAttribute("CockpitId") or o.Name)==id then for _,k in ipairs({"MenuImage","CockpitImage","ThumbnailImage","ImageId","Image"}) do local v=imageValue(o:GetAttribute(k)); if v~="" then return v end; local child=o:FindFirstChild(k); if child and child:IsA("StringValue") then v=imageValue(child.Value); if v~="" then return v end end end end end; return "" end
+local function cockpitImage(c)
+ local keys={"MenuImage","CockpitImage","ThumbnailImage","ImageId","Image"}
+ for _,k in ipairs(keys) do local v=imageValue(c and c[k]);if v~="" then return v end end
+ local record=Catalog.Get("CockpitId",c and c.CockpitId,true)
+ if record then for _,k in ipairs(keys) do local v=imageValue(record[k]);if v~="" then return v end;v=imageValue(record[k.."ChildValue"]);if v~="" then return v end end end
+ return ""
+end
 local function clearPreview() if preview.Root and preview.Root.Parent then preview.Root:Destroy() end; table.clear(preview); State.PreviewModules={}; State.GarageCameraActive=false end
 local function clearTransientModulePreview() 
 	State.SelectedModuleId=nil; State.SelectedModuleInstanceId=nil; State.PreviewModules={}; State.PreviewUpgradeId=nil; State.PreviewNeonSlot=nil
@@ -386,7 +393,7 @@ local function addUpgradeCards(c,target)
 	local instance=instanceId and State.Profile and State.Profile.OwnedModuleInstances and State.Profile.OwnedModuleInstances[instanceId]
 	local allocation=(instance and instance.V2UpgradePoints) or ((State.Profile.ModuleUpgradeLevels or {})[moduleId] or {})
 	local template=PerformanceResolver.FindModule(categoriesRoot,{ModuleId=moduleId})
-	local capacity=math.max(0,math.floor(tonumber(template and template:GetAttribute("UpgradePointCapacity")) or 0))
+	local capacity=math.max(0,math.floor(tonumber(template and template.UpgradePointCapacity) or 0))
 	local used=0
 	for _,points in pairs(allocation) do used+=math.max(0,math.floor(tonumber(points) or 0)) end
 	used=math.min(used,capacity)

@@ -1,7 +1,7 @@
 # Roblox Studio Hierarchy Snapshot
 
-Generated in Studio: 2026-09-22 12:07:02
-Scripts exported: 160
+Generated in Studio: 2026-09-22 12:31:08
+Scripts exported: 164
 Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, StarterPlayer, StarterGui, SoundService, Workspace, ServerStorage, Lighting
 
 ## Hierarchy
@@ -4210,10 +4210,10 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
         - TrailerShotClient (ModuleScript) [script_0030, 113 lines]
         - TrailerVehicleCameraClient (ModuleScript) [script_0031, 219 lines]
       - Garage (Folder)
-        - GarageModuleInstancePreviewAdapter (ModuleScript) [script_0032, 98 lines]
+        - GarageModuleInstancePreviewAdapter (ModuleScript) [script_0032, 95 lines]
         - GaragePreviewPresentationClient (ModuleScript) [script_0033, 328 lines]
         - GaragePropertyCatalog (ModuleScript) [script_0034, 81 lines]
-        - GarageUI (ModuleScript) [script_0035, 690 lines]
+        - GarageUI (ModuleScript) [script_0035, 697 lines]
         - GarageVehiclePreviewProfile (ModuleScript) [script_0036, 75 lines]
         - OwnedGarageDecorationCatalog (ModuleScript) [script_0037, 60 lines]
         - OwnedGarageInteriorStyleCatalog (ModuleScript) [script_0038, 66 lines]
@@ -4221,7 +4221,7 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
         - OwnedGaragePropertyCatalog (ModuleScript) [script_0040, 29 lines]
         - PaintClient (ModuleScript) [script_0041, 143 lines]
         - PreviewCameraClient (ModuleScript) [script_0042, 57 lines]
-        - PreviewVehicleClient (ModuleScript) [script_0043, 89 lines]
+        - PreviewVehicleClient (ModuleScript) [script_0043, 90 lines]
         - ThrustPreviewClient (ModuleScript) [script_0044, 82 lines]
       - Player (Folder)
       - Racing (Folder)
@@ -4266,8 +4266,8 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
           - PerformanceCalculator (ModuleScript) [script_0080, 167 lines, 2 attrs]
           - PerformanceDefinitions (ModuleScript) [script_0081, 89 lines, 2 attrs]
           - PerformanceDynamics (ModuleScript) [script_0082, 33 lines]
-          - PerformanceRuntime (ModuleScript) [script_0083, 107 lines]
-          - PerformanceUpgradeRuntime (ModuleScript) [script_0084, 194 lines]
+          - PerformanceRuntime (ModuleScript) [script_0083, 108 lines]
+          - PerformanceUpgradeRuntime (ModuleScript) [script_0084, 188 lines]
           - VehicleModuleUpgradeRuntime (ModuleScript) [script_0085, 117 lines, 1 attrs]
           - VehiclePerformanceResolver (ModuleScript) [script_0086, 120 lines]
           - VehicleUpgradeDefinitions (ModuleScript) [script_0087, 68 lines]
@@ -4281,20 +4281,24 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
         - MobileDriveControlsClient (ModuleScript) [script_0095, 209 lines]
         - MobileDriveInputState (ModuleScript) [script_0096, 68 lines]
         - RuntimeVFXClient (ModuleScript) [script_0097, 25 lines]
-        - VehicleCosmeticCatalog (ModuleScript) [script_0098, 127 lines, 1 attrs]
-        - VehicleDisplayNames (ModuleScript) [script_0099, 70 lines]
-        - VehicleDynamics (ModuleScript) [script_0100, 225 lines]
-        - VehiclePreviewVFXClient (ModuleScript) [script_0101, 550 lines]
-        - VehicleVFXClient (ModuleScript) [script_0102, 788 lines]
+        - VehicleCatalog (ModuleScript) [script_0098, 16 lines]
+        - VehicleCatalogData (ModuleScript) [script_0099, 5 lines]
+        - VehicleCosmeticCatalog (ModuleScript) [script_0100, 127 lines, 1 attrs]
+        - VehicleDefinition (ModuleScript) [script_0101, 24 lines]
+        - VehicleDisplayNames (ModuleScript) [script_0102, 70 lines]
+        - VehicleDynamics (ModuleScript) [script_0103, 225 lines]
+        - VehiclePreviewVFXClient (ModuleScript) [script_0104, 550 lines]
+        - VehicleTemplateIndex (ModuleScript) [script_0105, 17 lines]
+        - VehicleVFXClient (ModuleScript) [script_0106, 788 lines]
       - World (Folder)
-        - LODClient (ModuleScript) [script_0103, 61 lines]
-        - LODPolicy (ModuleScript) [script_0104, 25 lines]
-        - LODRuntime (ModuleScript) [script_0105, 169 lines]
-        - LightingPresets (ModuleScript) [script_0106, 407 lines, 2 attrs]
-        - LightingSchedule (ModuleScript) [script_0107, 13 lines]
-        - NightLamppostLightClient (ModuleScript) [script_0108, 34 lines]
-        - OwnedGarageEnvironmentLightingClient (ModuleScript) [script_0109, 162 lines]
-        - WindowMaterialClient (ModuleScript) [script_0110, 41 lines]
+        - LODClient (ModuleScript) [script_0107, 61 lines]
+        - LODPolicy (ModuleScript) [script_0108, 25 lines]
+        - LODRuntime (ModuleScript) [script_0109, 169 lines]
+        - LightingPresets (ModuleScript) [script_0110, 407 lines, 2 attrs]
+        - LightingSchedule (ModuleScript) [script_0111, 13 lines]
+        - NightLamppostLightClient (ModuleScript) [script_0112, 34 lines]
+        - OwnedGarageEnvironmentLightingClient (ModuleScript) [script_0113, 162 lines]
+        - WindowMaterialClient (ModuleScript) [script_0114, 41 lines]
   - Remotes (Folder)
     - Audio (Folder)
       - VehicleAudioState (RemoteEvent)
@@ -4323,7 +4327,7 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
     - UI (Folder)
       - FreeRoamHudTeleportInvoke (RemoteFunction)
 - ServerScriptService (ServerScriptService)
-  - ServerBase (Script) [script_0111, 118 lines]
+  - ServerBase (Script) [script_0115, 118 lines]
 - StarterPlayer (StarterPlayer)
   - StarterCharacterScripts (StarterCharacterScripts)
   - StarterPlayerScripts (StarterPlayerScripts)
@@ -4354,7 +4358,7 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
         - LoadingPresentationState (Folder) [5 attrs]
       - Vehicles (Folder)
       - World (Folder)
-    - ClientBase (LocalScript) [script_0112, 110 lines]
+    - ClientBase (LocalScript) [script_0116, 110 lines]
 - StarterGui (StarterGui)
 - SoundService (SoundService)
   - Ambience (SoundGroup)
@@ -37752,13 +37756,13 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
       - Attachment (Attachment)
       - Attachment (Attachment)
       - Beam (Beam)
-    - Script (Script) [script_0113, 16 lines]
+    - Script (Script) [script_0117, 16 lines]
   - FBX - 3D Vehicle Holographic v3 (Model) [1 attrs]
     - Model (Model)
       - main.001 (MeshPart)
         - SurfaceAppearance (SurfaceAppearance)
       - neon (MeshPart)
-    - Script (Script) [script_0114, 16 lines]
+    - Script (Script) [script_0118, 16 lines]
   - FBX - S1 Paths Group (Model) [1 attrs]
     - paths detail edge (MeshPart)
     - paths detail edge.001 (MeshPart)
@@ -40580,62 +40584,62 @@ Services scanned: ReplicatedFirst, ReplicatedStorage, ServerScriptService, Start
         - DataStoreName (StringValue)
   - Modules (Folder)
     - Core (Folder)
-      - ServerLifecycle (ModuleScript) [script_0115, 45 lines]
+      - ServerLifecycle (ModuleScript) [script_0119, 45 lines]
     - Game (Folder)
       - Audio (Folder)
-        - VehicleAudioServer (ModuleScript) [script_0116, 154 lines]
+        - VehicleAudioServer (ModuleScript) [script_0120, 154 lines]
       - Dealership (Folder)
-        - IntroProgressServer (ModuleScript) [script_0117, 221 lines]
+        - IntroProgressServer (ModuleScript) [script_0121, 221 lines]
       - Development (Folder)
-        - StudioCashGrantServer (ModuleScript) [script_0118, 77 lines]
-        - VehiclePerformanceComparisonServer (ModuleScript) [script_0119, 46 lines]
+        - StudioCashGrantServer (ModuleScript) [script_0122, 77 lines]
+        - VehiclePerformanceComparisonServer (ModuleScript) [script_0123, 46 lines]
       - Garage (Folder)
-        - GarageModuleInstanceCustomization (ModuleScript) [script_0120, 113 lines]
-        - GarageModuleInventory (ModuleScript) [script_0121, 236 lines]
-        - GarageModuleTransaction (ModuleScript) [script_0122, 124 lines]
-        - GarageProfile (ModuleScript) [script_0123, 137 lines]
-        - GarageRequestGuard (ModuleScript) [script_0124, 55 lines]
-        - GarageServer (ModuleScript) [script_0125, 2753 lines]
-        - GarageSessionServer (ModuleScript) [script_0126, 123 lines]
-        - OwnedGarageAuthoritativeCommand (ModuleScript) [script_0127, 33 lines]
-        - OwnedGarageDisplay (ModuleScript) [script_0128, 106 lines]
-        - OwnedGarageDisplayAssignment (ModuleScript) [script_0129, 58 lines]
-        - OwnedGarageFinish (ModuleScript) [script_0130, 96 lines]
-        - OwnedGarageInterior (ModuleScript) [script_0131, 57 lines]
-        - OwnedGarageManagement (ModuleScript) [script_0132, 364 lines]
-        - OwnedGarageProfile (ModuleScript) [script_0133, 184 lines]
-        - OwnedGarageServer (ModuleScript) [script_0134, 19 lines]
-        - VehicleCosmeticServer (ModuleScript) [script_0135, 73 lines]
+        - GarageModuleInstanceCustomization (ModuleScript) [script_0124, 113 lines]
+        - GarageModuleInventory (ModuleScript) [script_0125, 236 lines]
+        - GarageModuleTransaction (ModuleScript) [script_0126, 124 lines]
+        - GarageProfile (ModuleScript) [script_0127, 137 lines]
+        - GarageRequestGuard (ModuleScript) [script_0128, 55 lines]
+        - GarageServer (ModuleScript) [script_0129, 2753 lines]
+        - GarageSessionServer (ModuleScript) [script_0130, 123 lines]
+        - OwnedGarageAuthoritativeCommand (ModuleScript) [script_0131, 33 lines]
+        - OwnedGarageDisplay (ModuleScript) [script_0132, 106 lines]
+        - OwnedGarageDisplayAssignment (ModuleScript) [script_0133, 58 lines]
+        - OwnedGarageFinish (ModuleScript) [script_0134, 96 lines]
+        - OwnedGarageInterior (ModuleScript) [script_0135, 57 lines]
+        - OwnedGarageManagement (ModuleScript) [script_0136, 364 lines]
+        - OwnedGarageProfile (ModuleScript) [script_0137, 184 lines]
+        - OwnedGarageServer (ModuleScript) [script_0138, 19 lines]
+        - VehicleCosmeticServer (ModuleScript) [script_0139, 73 lines]
       - Player (Folder)
-        - EconomyServer (ModuleScript) [script_0136, 229 lines]
-        - GarageProfileProjection (ModuleScript) [script_0137, 246 lines]
-        - OnboardingServer (ModuleScript) [script_0138, 108 lines]
-        - PlayerProfileSchema (ModuleScript) [script_0139, 277 lines]
-        - ProfileCompatibility (ModuleScript) [script_0140, 32 lines]
-        - ProfileCompatibilityServer (ModuleScript) [script_0141, 73 lines]
-        - ProfileServer (ModuleScript) [script_0142, 606 lines]
-        - ProfileStore (ModuleScript) [script_0143, 91 lines]
+        - EconomyServer (ModuleScript) [script_0140, 229 lines]
+        - GarageProfileProjection (ModuleScript) [script_0141, 246 lines]
+        - OnboardingServer (ModuleScript) [script_0142, 108 lines]
+        - PlayerProfileSchema (ModuleScript) [script_0143, 277 lines]
+        - ProfileCompatibility (ModuleScript) [script_0144, 32 lines]
+        - ProfileCompatibilityServer (ModuleScript) [script_0145, 73 lines]
+        - ProfileServer (ModuleScript) [script_0146, 606 lines]
+        - ProfileStore (ModuleScript) [script_0147, 91 lines]
       - Racing (Folder)
-        - GlobalLeaderboardServer (ModuleScript) [script_0144, 112 lines]
-        - MatchmakingServer (ModuleScript) [script_0145, 1262 lines]
-        - PersonalBestServer (ModuleScript) [script_0146, 403 lines]
-        - RaceAssetsServer (ModuleScript) [script_0147, 382 lines]
-        - RaceDisplayNameServer (ModuleScript) [script_0148, 90 lines]
-        - RaceRewardsServer (ModuleScript) [script_0149, 351 lines]
-        - RaceTeleportServer (ModuleScript) [script_0150, 236 lines]
-        - TimeTrialServer (ModuleScript) [script_0151, 1422 lines]
+        - GlobalLeaderboardServer (ModuleScript) [script_0148, 112 lines]
+        - MatchmakingServer (ModuleScript) [script_0149, 1262 lines]
+        - PersonalBestServer (ModuleScript) [script_0150, 403 lines]
+        - RaceAssetsServer (ModuleScript) [script_0151, 382 lines]
+        - RaceDisplayNameServer (ModuleScript) [script_0152, 90 lines]
+        - RaceRewardsServer (ModuleScript) [script_0153, 351 lines]
+        - RaceTeleportServer (ModuleScript) [script_0154, 236 lines]
+        - TimeTrialServer (ModuleScript) [script_0155, 1422 lines]
       - Vehicles (Folder)
         - Performance (Folder)
-          - VehiclePerformance (ModuleScript) [script_0152, 43 lines, 1 attrs]
-        - DriveRewardsServer (ModuleScript) [script_0153, 471 lines]
-        - DriverSeatServer (ModuleScript) [script_0154, 246 lines]
-        - VehicleAccessServer (ModuleScript) [script_0155, 140 lines]
-        - VehicleCollisionServer (ModuleScript) [script_0156, 207 lines]
-        - VehiclePerformanceServer (ModuleScript) [script_0157, 47 lines]
+          - VehiclePerformance (ModuleScript) [script_0156, 43 lines, 1 attrs]
+        - DriveRewardsServer (ModuleScript) [script_0157, 471 lines]
+        - DriverSeatServer (ModuleScript) [script_0158, 246 lines]
+        - VehicleAccessServer (ModuleScript) [script_0159, 140 lines]
+        - VehicleCollisionServer (ModuleScript) [script_0160, 207 lines]
+        - VehiclePerformanceServer (ModuleScript) [script_0161, 47 lines]
       - World (Folder)
-        - FreeRoamTeleportServer (ModuleScript) [script_0158, 138 lines]
-        - LightingServer (ModuleScript) [script_0159, 130 lines]
-        - TrafficLightServer (ModuleScript) [script_0160, 61 lines]
+        - FreeRoamTeleportServer (ModuleScript) [script_0162, 138 lines]
+        - LightingServer (ModuleScript) [script_0163, 130 lines]
+        - TrafficLightServer (ModuleScript) [script_0164, 61 lines]
   - NeoTokyoRacers (Folder)
     - VehiclePerformanceV2_Staging (Folder) [10 attrs]
       - PIERCER (Folder) [2 attrs]

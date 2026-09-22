@@ -4,7 +4,7 @@ Generated from the Roblox Studio full snapshot export.
 
 These files are a GitHub-readable mirror of Studio scripts. Treat Studio as live until a Rojo/source-sync migration is explicitly completed.
 
-Script count: 160
+Script count: 164
 
 - `ReplicatedFirst.Loading.InitialLoadingAndStartScreenClient` (LocalScript, enabled/module) -> `roblox/exported_scripts/ReplicatedFirst/Loading/InitialLoadingAndStartScreenClient.client.lua`
 - `ReplicatedFirst.Loading.LoadingArtworkCatalog` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedFirst/Loading/LoadingArtworkCatalog.module.lua`
@@ -103,10 +103,14 @@ Script count: 160
 - `ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/MobileDriveControlsClient.module.lua`
 - `ReplicatedStorage.Modules.Game.Vehicles.MobileDriveInputState` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/MobileDriveInputState.module.lua`
 - `ReplicatedStorage.Modules.Game.Vehicles.RuntimeVFXClient` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/RuntimeVFXClient.module.lua`
+- `ReplicatedStorage.Modules.Game.Vehicles.VehicleCatalog` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/VehicleCatalog.module.lua`
+- `ReplicatedStorage.Modules.Game.Vehicles.VehicleCatalogData` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/VehicleCatalogData.module.lua`
 - `ReplicatedStorage.Modules.Game.Vehicles.VehicleCosmeticCatalog` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/VehicleCosmeticCatalog.module.lua`
+- `ReplicatedStorage.Modules.Game.Vehicles.VehicleDefinition` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/VehicleDefinition.module.lua`
 - `ReplicatedStorage.Modules.Game.Vehicles.VehicleDisplayNames` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/VehicleDisplayNames.module.lua`
 - `ReplicatedStorage.Modules.Game.Vehicles.VehicleDynamics` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/VehicleDynamics.module.lua`
 - `ReplicatedStorage.Modules.Game.Vehicles.VehiclePreviewVFXClient` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/VehiclePreviewVFXClient.module.lua`
+- `ReplicatedStorage.Modules.Game.Vehicles.VehicleTemplateIndex` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/VehicleTemplateIndex.module.lua`
 - `ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/Modules/Game/Vehicles/VehicleVFXClient.module.lua`
 - `ReplicatedStorage.Modules.Game.World.LODClient` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/Modules/Game/World/LODClient.module.lua`
 - `ReplicatedStorage.Modules.Game.World.LODPolicy` (ModuleScript, enabled/module) -> `roblox/exported_scripts/ReplicatedStorage/Modules/Game/World/LODPolicy.module.lua`

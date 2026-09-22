@@ -1,3 +1,5 @@
+local Definition=require(game:GetService("ReplicatedStorage").Modules.Game.Vehicles.VehicleDefinition)
+local Catalog=require(game:GetService("ReplicatedStorage").Modules.Game.Vehicles.VehicleCatalog)
 -- Pure shared calculation owner. It never mutates profiles, assets, ownership, or spawned vehicles.
 local V2Calculator=require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Vehicles"):WaitForChild("Performance"):WaitForChild("PerformanceCalculator"))
 local V2Runtime=require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Vehicles"):WaitForChild("Performance"):WaitForChild("PerformanceRuntime"))
@@ -13,20 +15,18 @@ local defaultNames={
 }
 
 local function idOf(value,attribute)
-	if typeof(value)=="Instance" then return tostring(value:GetAttribute(attribute) or value.Name) end
+	if typeof(value)=="Instance" then return tostring(Definition.Attribute(value,attribute) or value.Name) end
 	if typeof(value)=="table" then return tostring(value[attribute] or "") end
 	return value~=nil and tostring(value) or ""
 end
 local function attributeOrField(value,name)
-	if typeof(value)=="Instance" then return value:GetAttribute(name) end
+	if typeof(value)=="Instance" then return Definition.Attribute(value,name) end
 	return value and value[name]
 end
-local function findTemplate(root,attribute,id)
-	if not root or id==nil or tostring(id)=="" then return nil end
-	for _,item in ipairs(root:GetDescendants()) do
-		if item:IsA("Model") and tostring(item:GetAttribute(attribute) or item.Name)==tostring(id) and item:GetAttribute("RetiredFromCatalog")~=true then return item end
-	end
+local function findTemplate(_root,attribute,id)
+ return Catalog.Get(attribute,id)
 end
+
 local function first(value,names)
 	for _,name in ipairs(names) do local result=attributeOrField(value,name); if result~=nil and tostring(result)~="" then return tostring(result) end end
 end
@@ -57,8 +57,8 @@ local function moduleSlot(module)
 	return moduleType
 end
 
-function Resolver.FindCockpit(root,cockpit) if typeof(cockpit)=="Instance" then return cockpit end; return findTemplate(root,"CockpitId",idOf(cockpit,"CockpitId")) end
-function Resolver.FindModule(root,module) if typeof(module)=="Instance" then return module end; return findTemplate(root,"ModuleId",idOf(module,"ModuleId")) end
+function Resolver.FindCockpit(_root,cockpit) return Catalog.Resolve("CockpitId",cockpit) end
+function Resolver.FindModule(_root,module) return Catalog.Resolve("ModuleId",module) end
 function Resolver.ModuleRaw(root,module,instance)
 	local template=Resolver.FindModule(root,module); if not template then return nil end
 	return V2Upgrades.ApplyToModuleRaw(template,instance and instance.V2UpgradePoints or {})
@@ -79,7 +79,7 @@ function Resolver.Profile(root,profile)
 	local modules,allocations={},{}
 	for slotId,moduleId in pairs(profile.InstalledModules or {}) do
 		local installedId,instance=installed(profile,slotId); moduleId=installedId or moduleId; local template=findTemplate(root,"ModuleId",moduleId)
-		if template then table.insert(modules,template); allocations[tostring(template:GetAttribute("ModuleId") or template.Name)]=instance and instance.V2UpgradePoints or {} end
+		if template then table.insert(modules,template); allocations[tostring(Definition.Attribute(template,"ModuleId") or template.Name)]=instance and instance.V2UpgradePoints or {} end
 	end
 	return V2Runtime.CalculateComponents(cockpit,modules,allocations)
 end
@@ -93,7 +93,7 @@ function Resolver.Selected(root,profile,slotId,module,instance)
 end
 function Resolver.ModuleRating(root,module,instance)
 	local template=Resolver.FindModule(root,module); if not template then return 0 end
-	local moduleId=tostring(template:GetAttribute("ModuleId") or template.Name); local points=instance and instance.V2UpgradePoints; local key=moduleId
+	local moduleId=tostring(Definition.Attribute(template,"ModuleId") or template.Name); local points=instance and instance.V2UpgradePoints; local key=moduleId
 	if typeof(points)=="table" then local parts={}; for pathId,value in pairs(points) do table.insert(parts,tostring(pathId).."="..tostring(value)) end; table.sort(parts); key=key.."|"..table.concat(parts,",") end
 	if baseRatingCache[key] then return baseRatingCache[key] end
 	local reference=findTemplate(root,"CockpitId","bruiser_01"); local cockpit,defaults,bySlot=Resolver.DefaultBuild(root,reference); if not cockpit then return 0 end

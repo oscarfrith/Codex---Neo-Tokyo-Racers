@@ -1,3 +1,4 @@
+local TemplateIndex=require(game:GetService("ReplicatedStorage").Modules.Game.Vehicles.VehicleTemplateIndex)
 -- Canonical feature implementation; startup is owned by the composition root.
 -- Resolves presentation data only. No remote calls, profile writes or ownership changes belong here.
 local ReplicatedStorage=game:GetService("ReplicatedStorage")
@@ -25,11 +26,7 @@ local function currentVehicle(profile)
 end
 
 function Adapter.FindTemplate(categoriesRoot,moduleId)
-	if not categoriesRoot or moduleId==nil then return nil end
-	for _,item in ipairs(categoriesRoot:GetDescendants()) do
-		if item:IsA("Model") and tostring(item:GetAttribute("ModuleId") or item.Name)==tostring(moduleId) then return item end
-	end
-	return nil
+ return TemplateIndex.Find(categoriesRoot,"ModuleId",moduleId)
 end
 
 function Adapter.Installed(state,slotId)
