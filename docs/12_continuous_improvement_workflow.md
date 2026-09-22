@@ -16,3 +16,5 @@ Detailed incident evidence and prior lessons: [historical collection](history/wo
 Workflow Phase 1 lesson: duplicated status and hard-coded prompt run queues drifted even after successful migrations. Centralise procedure/status and keep prompts as routing instructions.
 
 Workflow Phase 2 lesson: scope capture by required evidence, not by every physical object. Inventory all covered source paths, capture selected properties/tags, and require explicit historical input so an old mirror cannot silently pass a current check. Artifact size is not transport/time performance.
+
+Workflow Phase 3 lesson: reuse verified captures as delivery preconditions; reject partial state rather than guessing. Test transaction faults with pure mocks, reserve game mutation for requested changes, and verify each dependent local command succeeds before MCP execution. Restoration of specified values is not proof of recovery from runtime side effects.

@@ -15,3 +15,5 @@ Both scripts/performance_phase4/check_projection.py and scripts/audit_cleanup.py
 Phase 1 verification: inspect changed Markdown/tool references and status consistency; confirm no script/source/mirror changes. Historical text is retained under docs/history/workflow-before-mcp-phase1. Rollback is the documentation commit only; no Studio recovery action.
 
 Verification record (2026-09-22): 65 local links in changed active docs resolved; referenced tool files exist; stale prompt exporter names and repeated pending-playtest banners removed from the active entry path. Core AGENTS/lesson/workflow reading reduced from 657 to 137 lines. No runtime/scripts/mirror files changed.
+
+Phase 3 implements [proportional delivery](proportional-mcp-delivery.md) for existing sources and primitive attributes. Larger hierarchy/persistence/generated-asset migrations retain dedicated installers and recovery. No new runtime framework or gameplay code.

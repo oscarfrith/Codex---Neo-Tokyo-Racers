@@ -1,0 +1,18 @@
+{
+  "task": "Workflow Phase 3 read-only live audit",
+  "lane": "Fast",
+  "verification": "AUDIT only; unchanged source inventory",
+  "operations": [
+    {
+      "kind": "source",
+      "path": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "UI",
+        "FreeRoamVehicleExitButtonClient"
+      ],
+      "file": "roblox/source_store/7e8926fab902ad5ef15c9d117eb13695618cd26c5cebcfaf8b1e06fbad1d7c24.lua"
+    }
+  ]
+}

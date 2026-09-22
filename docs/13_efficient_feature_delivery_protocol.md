@@ -1,6 +1,6 @@
 # Delivery workflow
 
-Version 2.1, 2026-09-22. Canonical procedure for delivery, testing, recovery and Git. Current task/status belongs in [start here](00_START_HERE.md); specialist system safeguards remain in [readiness](14_new_system_readiness_standard.md).
+Version 2.2, 2026-09-22. Canonical procedure for delivery, testing, recovery and Git. Current task/status belongs in [start here](00_START_HERE.md); specialist system safeguards remain in [readiness](14_new_system_readiness_standard.md).
 
 ## 1. Orient and choose scope
 
@@ -34,7 +34,7 @@ Identify owners for state, geometry, visibility, preview, runtime attachment and
 
 ## 3. Prepare and apply
 
-Prefer a small canonical Studio installer in scripts/ and execute approved delivery through MCP; Command Bar is the fallback. MCP access does not remove review, baseline or recovery requirements. This phase consolidates existing policy; lighter delivery tooling is a later approved step.
+Use [proportional MCP delivery](architecture/proportional-mcp-delivery.md): direct repository edits for docs, the guarded bundle tool for existing source bodies/primitive attributes, and a dedicated canonical installer for migrations beyond that support. The assistant handles capture, build, execution and authorised Git steps. Command Bar remains the access fallback. MCP does not remove review, baseline or recovery requirements.
 
 For connected installers:
 - Preflight unique paths/classes, exact expected sources/config and anchors; stop on unexpected drift.
@@ -89,4 +89,4 @@ Handoff: what changed, checks passed/deferred, any exact Studio script still nee
 ## Maintenance
 
 Narrow rules that cause ceremony without catching failures; strengthen them from repeated evidence. Keep Fast Lane fast and system safeguards intact. Version/date material policy changes.
-Version 2.1 activates verified targeted capture; delivery-engine simplification remains workflow Phase 3. Version 2.0 consolidated prior 1.1 and MCP procedure. [Prior text](history/workflow-before-mcp-phase1/docs/13_efficient_feature_delivery_protocol.md) retains detailed historical context.
+Version 2.2 adds supported guarded delivery and explicit migration limits. Version 2.1 activated verified targeted capture. Version 2.0 consolidated prior 1.1 and MCP procedure. [Prior text](history/workflow-before-mcp-phase1/docs/13_efficient_feature_delivery_protocol.md) retains detailed historical context.

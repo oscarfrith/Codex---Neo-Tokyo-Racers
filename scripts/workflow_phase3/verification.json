@@ -1,0 +1,25 @@
+{
+  "python_delivery_tests": 10,
+  "luau_mock_cases": 10,
+  "capture_tests": 21,
+  "live_audit": {
+    "state": "after",
+    "changed": 0,
+    "identical_before_after": true
+  },
+  "before_time": "2026-09-22 20:38:04 UTC",
+  "after_time": "2026-09-22 20:39:47 UTC",
+  "delta": {
+    "sourceAdded": [],
+    "sourceRemoved": [],
+    "sourceChanged": [],
+    "nodesRemovedOrChanged": 0,
+    "nodesAddedOrChanged": 0,
+    "missingBefore": [],
+    "missingAfter": [],
+    "coverage": "All inventoried sources; selected subtrees only. Moves appear as remove/add, never inferred automatically."
+  },
+  "game_instances_created": 0,
+  "gameplay_changed": false,
+  "recovery_limit": "Pure mocks; not arbitrary Studio callbacks"
+}

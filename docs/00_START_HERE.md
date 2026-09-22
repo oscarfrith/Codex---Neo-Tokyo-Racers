@@ -4,8 +4,8 @@ Target: Space Racers v1, place **121304917315753**. Updated 2026-09-22. This is 
 
 ## Current task and next action
 
-Workflow improvement **Phase 2: targeted capture implemented and verified**. [Approved four-phase plan](architecture/workflow-improvement-plan.md).
-Next approved step is **workflow Phase 3: proportional MCP delivery**, when the user asks to continue. Do not confuse this with performance Phase 6.
+Workflow improvement **Phase 3: proportional MCP delivery implemented and verified**. [Approved four-phase plan](architecture/workflow-improvement-plan.md).
+Next approved step is **workflow Phase 4: reusable validation and handoffs**, when the user asks to continue. Do not confuse this with performance Phase 6.
 Routine full mirrors are replaced by [targeted captures](architecture/targeted-capture-workflow.md). Full checkpoints remain available for broad migrations/recovery. No game code changed and no Studio installer is pending.
 
 ## Installed game and acceptance
@@ -34,3 +34,5 @@ Studio replay/sandbox suppresses saving; opt-in tools remain off; mobile orienta
 - History and decisions: [patch history](07_patch_history.md), [lesson index](12_continuous_improvement_workflow.md), [owner map](architecture/naming-and-owners.md).
 
 Read only relevant historical entries when investigating a regression or recovery. Never infer a run queue from historical installers.
+
+Latest tooling evidence: [proportional delivery](architecture/proportional-mcp-delivery.md). Read-only Phase 3 before/after captures under roblox/captures/workflow-phase3-sources and workflow-phase3-after show zero differences across all 165 inventoried sources. No gameplay changes.
