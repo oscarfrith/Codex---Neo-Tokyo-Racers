@@ -1,5 +1,9 @@
 # Patch History
 
+## 2026-09-22 — Workflow Phase 4 reusable validation and handoffs
+
+Added scoped normal-start/transition/error/cleanup/device/load/save recipes and evidence init/check/handoff tooling. Fifteen focused tests pass, including rejection of API/UI, simulator/device, insufficient-load and no-save/persistence substitutions. Artifact hashes, deferred reasons and next actions keep handoffs reviewable. Reused existing runtime/capture helpers; refreshed laptop prompt to follow current status. Repository-only changes, no Studio writes, gameplay changes or mirror refresh. All four workflow phases delivered; performance acceptance and existing issue gates remain open. See architecture/validation-and-handoffs.md.
+
 ## 2026-09-22 — Workflow Phase 3 proportional delivery
 
 Added capture-backed guarded source/primitive-attribute delivery with read-only audit, exact preflight, compile, repeat and rollback. Dedicated migrations retain broader recovery contracts. Ten Python and ten pure-table Studio Luau cases pass; 21 capture tests pass. Live generated audit and before/after inventory prove zero changes across 165 sources. No game code, physical state or full mirror changes. Assistant-operated workflow replaces ordinary manual delivery steps. See architecture/proportional-mcp-delivery.md.

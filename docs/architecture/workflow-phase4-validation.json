@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "task": "Workflow Phase 4 validation and handoffs",
+  "build": "1121985 plus workflow Phase 4 repository tooling/docs (see pinned evidence)",
+  "changed": "Added reusable procedure catalogue, evidence validation and compact handoff rendering. No game scripts, objects, attributes, owners or saved data changed.",
+  "studio_action": "None. Connected Space Racers v1 was inspected in Edit; no Play or installer run.",
+  "capture": "No refresh required: repository-only work. Latest targeted sources are workflow-phase3-after; full checkpoint remains 2026-09-22 13:14:39 and historical.",
+  "recovery": "Revert this repository delivery if needed; no Studio rollback.",
+  "next_action": "Workflow programme complete. Performance Phase 6 and known camera/resource/device/load/save gates remain open; choose that follow-up explicitly.",
+  "checks": [
+    {
+      "id": "tooling",
+      "kind": "static",
+      "status": "pass",
+      "observation": "15 focused tests pass, including evidence integrity, open status, API/UI, device, load and no-save boundaries. This is tooling verification, not gameplay acceptance.",
+      "evidence": [
+        {
+          "path": "scripts/workflow_phase4/tests.txt",
+          "sha256": "79a206c08aa15ea6e00ca8d6d49869b32374d0187b5350e521198288f766ef01"
+        },
+        {
+          "path": "scripts/validation_record.py",
+          "sha256": "fe525bdadc91efac6277aad29a71bb885d53a44e63a7bea7ffaac13d827e9fb4"
+        },
+        {
+          "path": "scripts/validation_checks.json",
+          "sha256": "011e46e247909b5ab54153814bac71343ba85d68619067bb66aca368633b4ca5"
+        },
+        {
+          "path": "scripts/test_validation_record.py",
+          "sha256": "f7501c0a8568ef18cda39078e6cf4f9950d72427d82db6eb6bc6224fce7c33e9"
+        }
+      ],
+      "context": {},
+      "reason": "",
+      "next_action": ""
+    }
+  ]
+}

@@ -18,3 +18,5 @@ Workflow Phase 1 lesson: duplicated status and hard-coded prompt run queues drif
 Workflow Phase 2 lesson: scope capture by required evidence, not by every physical object. Inventory all covered source paths, capture selected properties/tags, and require explicit historical input so an old mirror cannot silently pass a current check. Artifact size is not transport/time performance.
 
 Workflow Phase 3 lesson: reuse verified captures as delivery preconditions; reject partial state rather than guessing. Test transaction faults with pure mocks, reserve game mutation for requested changes, and verify each dependent local command succeeds before MCP execution. Restoration of specified values is not proof of recovery from runtime side effects.
+
+Workflow Phase 4 lesson: record selected checks and their evidence category explicitly. Reject API-to-UI, emulator-to-device and no-save-to-persistence substitutions. File hashes prevent unnoticed evidence changes but cannot certify an observation or the completeness of the chosen checks. Leave unavailable tests open with a concrete next action.

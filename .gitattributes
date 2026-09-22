@@ -3,6 +3,11 @@
 *.svg text eol=lf
 *.json text eol=lf
 
+# Pinned workflow evidence must hash identically after checkout on another machine.
+scripts/validation_record.py text eol=lf
+scripts/test_validation_record.py text eol=lf
+scripts/workflow_phase4/*.txt text eol=lf
+
 # Content-addressed Studio source must retain exact bytes, including CRLF if authored.
 roblox/source_store/*.lua -text
 

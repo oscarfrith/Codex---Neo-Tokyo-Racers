@@ -17,3 +17,5 @@ Phase 1 verification: inspect changed Markdown/tool references and status consis
 Verification record (2026-09-22): 65 local links in changed active docs resolved; referenced tool files exist; stale prompt exporter names and repeated pending-playtest banners removed from the active entry path. Core AGENTS/lesson/workflow reading reduced from 657 to 137 lines. No runtime/scripts/mirror files changed.
 
 Phase 3 implements [proportional delivery](proportional-mcp-delivery.md) for existing sources and primitive attributes. Larger hierarchy/persistence/generated-asset migrations retain dedicated installers and recovery. No new runtime framework or gameplay code.
+
+Phase 4 implements [reusable validation and handoffs](validation-and-handoffs.md): procedure catalogue, explicit evidence categories, artifact hashes and pending/deferred actions. It reuses existing capture/runtime tools and does not automate game acceptance. Verification: [record](workflow-phase4-validation.json) and [handoff](workflow-phase4-handoff.md).

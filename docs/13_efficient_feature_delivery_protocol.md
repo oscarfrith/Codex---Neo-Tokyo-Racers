@@ -1,6 +1,6 @@
 # Delivery workflow
 
-Version 2.2, 2026-09-22. Canonical procedure for delivery, testing, recovery and Git. Current task/status belongs in [start here](00_START_HERE.md); specialist system safeguards remain in [readiness](14_new_system_readiness_standard.md).
+Version 2.3, 2026-09-22. Canonical procedure for delivery, testing, recovery and Git. Current task/status belongs in [start here](00_START_HERE.md); specialist system safeguards remain in [readiness](14_new_system_readiness_standard.md).
 
 ## 1. Orient and choose scope
 
@@ -60,6 +60,8 @@ Confirm normal startup and interactive UI state before counting player-flow test
 | Persistence/economy | Authority, invariants, failure/retry, fresh state; isolated published save/rejoin/contention when applicable |
 | Performance | Comparable route/cache/build/device/load, frame tails, settled/peak resources, bounded observation window |
 
+Use the [reusable validation and handoff procedure](architecture/validation-and-handoffs.md) and scripts/validation_checks.json to select repeatable checks. For connected or deferred work, scripts/validation_record.py preserves evidence types, pinned artifacts and open next actions. This does not replace judging the evidence or selecting the right tests.
+
 Choose applicable checks; do not run every matrix for a copy edit. Report unavailable tests as deferred with a named risk. Flat parented counts do not prove detached references or connections are bounded; successful idle samples are not device/load evidence. Preserve one responsive composition.
 
 ## 5. Capture and recover
@@ -89,4 +91,4 @@ Handoff: what changed, checks passed/deferred, any exact Studio script still nee
 ## Maintenance
 
 Narrow rules that cause ceremony without catching failures; strengthen them from repeated evidence. Keep Fast Lane fast and system safeguards intact. Version/date material policy changes.
-Version 2.2 adds supported guarded delivery and explicit migration limits. Version 2.1 activated verified targeted capture. Version 2.0 consolidated prior 1.1 and MCP procedure. [Prior text](history/workflow-before-mcp-phase1/docs/13_efficient_feature_delivery_protocol.md) retains detailed historical context.
+Version 2.3 adds reusable checks and scoped evidence/handoffs. Version 2.2 adds supported guarded delivery and explicit migration limits. Version 2.1 activated verified targeted capture. Version 2.0 consolidated prior 1.1 and MCP procedure. [Prior text](history/workflow-before-mcp-phase1/docs/13_efficient_feature_delivery_protocol.md) retains detailed historical context.

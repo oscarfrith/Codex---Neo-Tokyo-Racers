@@ -4,8 +4,8 @@ Target: Space Racers v1, place **121304917315753**. Updated 2026-09-22. This is 
 
 ## Current task and next action
 
-Workflow improvement **Phase 3: proportional MCP delivery implemented and verified**. [Approved four-phase plan](architecture/workflow-improvement-plan.md).
-Next approved step is **workflow Phase 4: reusable validation and handoffs**, when the user asks to continue. Do not confuse this with performance Phase 6.
+Workflow improvement **all four phases implemented and verified**. [Approved four-phase plan](architecture/workflow-improvement-plan.md).
+No workflow phase remains. Use the [validation and handoff procedure](architecture/validation-and-handoffs.md) for future work; [Phase 4 evidence](architecture/workflow-phase4-handoff.md). Performance Phase 6 remains a separate open effort, not automatically resumed by completing this programme.
 Routine full mirrors are replaced by [targeted captures](architecture/targeted-capture-workflow.md). Full checkpoints remain available for broad migrations/recovery. No game code changed and no Studio installer is pending.
 
 ## Installed game and acceptance
@@ -36,3 +36,5 @@ Studio replay/sandbox suppresses saving; opt-in tools remain off; mobile orienta
 Read only relevant historical entries when investigating a regression or recovery. Never infer a run queue from historical installers.
 
 Latest tooling evidence: [proportional delivery](architecture/proportional-mcp-delivery.md). Read-only Phase 3 before/after captures under roblox/captures/workflow-phase3-sources and workflow-phase3-after show zero differences across all 165 inventoried sources. No gameplay changes.
+
+Phase 4 changed repository validation tools/docs only. No new Studio capture or gameplay test was needed; prior source evidence remains dated, not a claim of fresh whole-place parity.
