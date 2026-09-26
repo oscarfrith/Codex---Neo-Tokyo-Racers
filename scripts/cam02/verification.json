@@ -1,0 +1,17 @@
+{
+  "issue": "CAM-02 (and likely CAM-01)",
+  "date": "2026-09-26",
+  "root_cause": "DrivingClient Heartbeat ran on a server-anchored parked vehicle; anchored AssemblyMass is infinite, so all Drive_* VectorForces became NaN. On re-entry (unanchor) the assembly was thrown to NaN position/velocity; DrivingCameraClient latched NaN into CameraMin/MaxZoomDistance, producing BaseCamera:594 / ZoomController:88 clamp errors every frame.",
+  "before_capture": "roblox/captures/cam02-before/capture.json",
+  "after_capture": "roblox/captures/cam02-after/capture.json",
+  "scope": "exactly 2 sources changed: DrivingClient, DrivingCameraClient; 168 inventoried",
+  "reproduction_before_fix": "API GetInitial/Spawn/Exit/ReEnter/StartTimeTrial/Cancel: zoom NaN after ReEnterVehicle, 65 BaseCamera:594 + 14 ZoomController:88 errors; probe showed NaN VectorForces on anchored parked root immediately after ExitVehicle",
+  "after_fix": {
+    "api_cycles": "3 full cycles incl. time-trial staging: 0 NaN frames, 0 clamp errors, 0 errors/warnings",
+    "normal_ui": "visible Play button, first-drive controls Done, keyboard driving 436 studs / 103 mph, HUD Exit Vehicle, E prompt re-entry: zoom 22/22, no errors",
+    "race_release": "time-trial anchored countdown 6.7 s then keyboard drive 337 studs / 103 mph, 0 NaN",
+    "pre_fix_normal_ui_session": "buy via dealership browser, DRIVE, exit/re-enter (normal and rapid), despawn while seated, respawn, drive-in customisation enter/exit: no errors (bug requires server-side exit timing)"
+  },
+  "evidence_type": "agent-verified Studio, normal-ui for listed UI steps; not device/multiplayer",
+  "rollback": "py scripts/studio_delivery.py scripts/cam02/spec.json roblox/captures/cam02-before/capture.json <out.lua> --mode ROLLBACK"
+}

@@ -1,0 +1,18 @@
+{
+  "task": "CAM-02 NaN camera zoom after server-side exit/re-enter",
+  "lane": "Standard",
+  "contract": "Goal: parked/anchored vehicles never receive NaN drive forces, and the driving camera never writes a non-finite zoom. Root cause: DrivingClient Heartbeat keeps running for a frame after the server anchors the parked vehicle; anchored AssemblyMass is infinite so every VectorForce becomes NaN, and on re-entry (unanchor) the assembly is thrown to NaN, which DrivingCameraClient latches into CameraMin/MaxZoomDistance. Owners: DrivingClient (drive forces), DrivingCameraClient (zoom/FOV). No new owners, remotes, config, saved data or UI. Preserved: all driving tuning, camera framing/config, exit/park/coast semantics. Done when: API Exit->ReEnter no longer produces NaN forces/position/zoom or BaseCamera/ZoomController clamp errors; normal UI buy/spawn/drive/exit/re-enter/despawn/drive-in flows still work with zoom 22 locked while seated and 0.5/128 restored on foot.",
+  "verification": "Play: API ExitVehicle/ReEnterVehicle cycles with NaN probe; normal UI spawn/drive/exit/re-enter/despawn; console error scan.",
+  "operations": [
+    {
+      "kind": "source",
+      "path": ["ReplicatedStorage", "Modules", "Game", "Vehicles", "DrivingClient"],
+      "file": "scripts/cam02/DrivingClient.after.lua"
+    },
+    {
+      "kind": "source",
+      "path": ["ReplicatedStorage", "Modules", "Game", "Vehicles", "DrivingCameraClient"],
+      "file": "scripts/cam02/DrivingCameraClient.after.lua"
+    }
+  ]
+}

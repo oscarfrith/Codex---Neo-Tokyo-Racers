@@ -1,0 +1,12 @@
+{
+  "issue": "PERF-06-A",
+  "date": "2026-09-26",
+  "root_cause": "PresentationAudioClient buttonConnections is weak-keyed, but its values hold connections whose closures capture the button, pinning the key; cleanup only on Destroying, so buttons removed with Parent=nil were retained.",
+  "before_capture": "roblox/captures/cam02-after/capture.json",
+  "after_capture": "roblox/captures/perf06a-after/capture.json",
+  "scope": "exactly 1 source changed: PresentationAudioClient",
+  "before_fix": "SceneAnalysisService unparented: PresentationAudioClient 56 TextButtons (session: start-screen Play, car panel, controls modal, API cycles, time trial)",
+  "after_fix": "comparable session (start-screen Play, car panel x3, race browser, settings, 4 API cycles with time trial): PresentationAudioClient 0; total unparented 20, all PlayerModule/start-screen/Animate; UI click one-shots still play; 0 errors",
+  "limits": "Single-session Studio comparison, not a 30-minute soak or device memory measurement.",
+  "rollback": "py scripts/studio_delivery.py scripts/perf06a/spec.json roblox/captures/cam02-after/capture.json <out.lua> --mode ROLLBACK"
+}

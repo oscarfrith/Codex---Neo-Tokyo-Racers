@@ -1,0 +1,13 @@
+{
+  "task": "PERF-06-A detached TextButtons retained by PresentationAudioClient",
+  "lane": "Standard",
+  "contract": "Goal: UI buttons removed from PlayerGui without Destroy are no longer retained by the audio binding table. Root cause: buttonConnections is weak-keyed but its values hold connections whose closures capture the button, so entries pin their keys; cleanup ran only on Destroying. Owner: PresentationAudioClient (UI sound binding). No new owners, config, remotes or saved data. Preserved: hover/click/focus cue behaviour, suppression attributes, one-shot pooling. Done when: SceneAnalysisService attributes no accumulating TextButtons to PresentationAudioClient after the same normal UI flow, and UI click/hover sounds still bind for re-added buttons.",
+  "verification": "Play: normal start-screen Play, car panel/popups, dealership browser, garage; SceneAnalysis unparented query before/after; console scan.",
+  "operations": [
+    {
+      "kind": "source",
+      "path": ["ReplicatedStorage", "Modules", "Game", "Audio", "PresentationAudioClient"],
+      "file": "scripts/perf06a/PresentationAudioClient.after.lua"
+    }
+  ]
+}

@@ -2,6 +2,10 @@
 
 Recent deliveries, newest first. Entries before September 2026 live in [the archive](history/patch-history-2026-05-to-2026-08.md).
 
+## 2026-09-26 - Camera NaN (CAM-02) and detached-button retention (PERF-06-A) fixed
+
+Reproduced CAM-02 via API exit/re-entry; normal UI flows alone did not trigger it. Root cause: DrivingClient computed forces from an anchored parked vehicle (infinite AssemblyMass) and left NaN VectorForces that threw the vehicle to NaN on unanchor; DrivingCameraClient latched the NaN into zoom bounds. DrivingClient now holds zero force while anchored/non-finite; DrivingCameraClient rejects non-finite speed/distance/FOV/zoom. PresentationAudioClient now releases button bindings when a button leaves PlayerGui. Three existing sources changed through guarded delivery (AUDIT/APPLY, exact before/after captures). Verified in Studio: 0 NaN/clamp errors across API cycles, normal UI driving/exit/re-entry and time-trial release; retained TextButtons 56 to 0 in a comparable session. DRIVE-01 user-confirmed. Device, soak and multiplayer gates remain open. [CAM-02 evidence](../scripts/cam02/verification.json), [PERF-06-A evidence](../scripts/perf06a/verification.json).
+
 ## 2026-09-26 - Continuous lighting user-confirmed
 
 User reviewed the V6 horizon/moon refinement and confirmed the lighting "all looks good for now". Documentation only; no Studio changes. Device, low-graphics, streaming/retention and two-client checks remain open under LIGHT-01.
