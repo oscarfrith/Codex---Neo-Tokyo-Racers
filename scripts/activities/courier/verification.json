@@ -1,0 +1,18 @@
+{
+  "task": "Courier job (Street Life 4.6)",
+  "date": "2026-09-26",
+  "place": "Space Racers v2 (71491191583884)",
+  "authoring": "Agent A (parallel), integrated by the main session; delivery-reviewer blockers fixed (offer Accent colour, plausibility headroom, payout retry)",
+  "before_capture": "roblox/captures/activities-foundation-after/capture.json",
+  "after_capture": "roblox/captures/activities-courier-after/capture.json",
+  "scope": "CourierRules/CourierJob/CourierClientView stub bodies replaced; Courier config attributes; Workspace.World.Jobs.CourierHubs with 3 tagged hub pads (transparency 0.75)",
+  "installer": "feature_installer AUDIT before; APPLY 42; ROLLBACK 42 (Jobs removed); APPLY; transparency tweak via rollback+apply; AUDIT after",
+  "pure_tests": "58/58",
+  "play": {
+    "offer_card": "driving onto the Dealership pad shows COURIER RUN offer with STANDARD/HOT/FRAGILE (themed strokes); the onboarding overlay blocks the click during the tutorial (expected gating)",
+    "run": "CourierStart (API, same request the button sends): routed 2195 studs, 45 s limit, strip 'COURIER 0:45 · 0.3 MI'; scripted drive at 150 mph (synthetic) -> Courier:Completed 3 stars, $3,242, 41 XP via EconomyServer JobPayout",
+    "anti_cheat": "HOT run then instant teleport to the drop -> Courier:Failed 'Delivery rejected: implausible time', no Cash"
+  },
+  "not_verified": "full UI click path outside onboarding, keyboard-driven real run, Fragile impacts, capped path, mobile layout, user confirmation",
+  "evidence_type": "agent-verified Studio (API start + synthetic movement)"
+}

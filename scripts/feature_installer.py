@@ -147,7 +147,8 @@ local function same(a, b)
 	if typeof(a) == "number" and typeof(b) == "number" then return math.abs(a - b) < 1e-4 end
 	if typeof(a) == "Vector3" and typeof(b) == "Vector3" then return (a - b).Magnitude < 1e-3 end
 	if typeof(a) == "Color3" and typeof(b) == "Color3" then
-		return math.abs(a.R - b.R) < 2e-3 and math.abs(a.G - b.G) < 2e-3 and math.abs(a.B - b.B) < 2e-3
+		-- Part colours are stored at 8-bit precision.
+		return math.abs(a.R - b.R) < 6e-3 and math.abs(a.G - b.G) < 6e-3 and math.abs(a.B - b.B) < 6e-3
 	end
 	return a == b
 end

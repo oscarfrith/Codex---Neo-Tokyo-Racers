@@ -1,0 +1,596 @@
+{
+ "task": "Courier job (Street Life 4.6): hub pads, server-authoritative delivery runs, Jobs entry, offer card, strip, beacons, activity route",
+ "lane": "High-Risk",
+ "contract": "See scripts/activities/courier/CONTRACT.md. Server (CourierJob) owns hubs, drop, timer, impacts, delivery, pay and chain; Cash+XP only via ActivityPayout.Pay (JobPayout, CommandId Courier:<runId>:<userId>, JobCeiling). Client view presentation only. Gated by FeatureFlags EnableCourier and Config.Activities.Courier.Enabled. No remotes, saved fields or existing sources changed.",
+ "verification": "Pure tests scripts/activities/courier/tests.lua (0 failures); Play: GO TO HUB route, offer on pad, Standard/Hot/Fragile runs complete and pay once, timeout fails, cancel/exit cancels, chain rises then resets; console scan.",
+ "operations": [
+  {
+   "kind": "source",
+   "path": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Activities",
+    "CourierRules"
+   ],
+   "file": "scripts/activities/courier/CourierRules.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Activities",
+    "CourierJob"
+   ],
+   "file": "scripts/activities/courier/CourierJob.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "Activities",
+    "CourierClientView"
+   ],
+   "file": "scripts/activities/courier/CourierClientView.lua"
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Courier"
+   ],
+   "key": "MinRank",
+   "value": 1
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Courier"
+   ],
+   "key": "HubRadius",
+   "value": 30
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Courier"
+   ],
+   "key": "HubHeightTolerance",
+   "value": 25
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Courier"
+   ],
+   "key": "MinDistance",
+   "value": 600
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Courier"
+   ],
+   "key": "MaxDistance",
+   "value": 2000
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Courier"
+   ],
+   "key": "RoadDistanceFactor",
+   "value": 1.3
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Courier"
+   ],
+   "key": "BasePay",
+   "value": 1500
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Courier"
+   ],
+   "key": "PayPerStud",
+   "value": 0.6
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Courier"
+   ],
+   "key": "MaxTimeBonus",
+   "value": 0.3
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Courier"
+   ],
+   "key": "HotPayMultiplier",
+   "value": 1.4
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Courier"
+   ],
+   "key": "HotTimeFactor",
+   "value": 0.75
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Courier"
+   ],
+   "key": "FragilePayMultiplier",
+   "value": 1.25
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Courier"
+   ],
+   "key": "FragileImpactPenalty",
+   "value": 0.15
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Courier"
+   ],
+   "key": "FragileFloor",
+   "value": 0.4
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Courier"
+   ],
+   "key": "FragileImpactMph",
+   "value": 45
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Courier"
+   ],
+   "key": "ImpactWindowSeconds",
+   "value": 0.2
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Courier"
+   ],
+   "key": "ImpactCooldownSeconds",
+   "value": 0.75
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Courier"
+   ],
+   "key": "AvgSpeedMph",
+   "value": 70
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Courier"
+   ],
+   "key": "GraceSeconds",
+   "value": 25
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Courier"
+   ],
+   "key": "MinTimeLimit",
+   "value": 30
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Courier"
+   ],
+   "key": "MaxTimeLimit",
+   "value": 300
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Courier"
+   ],
+   "key": "DeliverRadius",
+   "value": 40
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Courier"
+   ],
+   "key": "DeliverMaxMph",
+   "value": 25
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Courier"
+   ],
+   "key": "MaxPlausibleMph",
+   "value": 400
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Courier"
+   ],
+   "key": "SegmentSeconds",
+   "value": 1
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Courier"
+   ],
+   "key": "SegmentToleranceStuds",
+   "value": 30
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Courier"
+   ],
+   "key": "Star3Fraction",
+   "value": 0.5
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Courier"
+   ],
+   "key": "Star2Fraction",
+   "value": 0.25
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Courier"
+   ],
+   "key": "XpBase",
+   "value": 20
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Courier"
+   ],
+   "key": "XpPerStuds",
+   "value": 100
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Courier"
+   ],
+   "key": "ChainStep",
+   "value": 0.1
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Courier"
+   ],
+   "key": "ChainMax",
+   "value": 1.5
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Courier"
+   ],
+   "key": "ChainWindowSeconds",
+   "value": 90
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Courier"
+   ],
+   "key": "TickHz",
+   "value": 10
+  },
+  {
+   "kind": "instance",
+   "parent": [
+    "Workspace",
+    "World"
+   ],
+   "name": "Jobs",
+   "class": "Folder"
+  },
+  {
+   "kind": "instance",
+   "parent": [
+    "Workspace",
+    "World",
+    "Jobs"
+   ],
+   "name": "CourierHubs",
+   "class": "Folder"
+  },
+  {
+   "kind": "instance",
+   "parent": [
+    "Workspace",
+    "World",
+    "Jobs",
+    "CourierHubs"
+   ],
+   "name": "Hub_Dealership",
+   "class": "Part",
+   "properties": {
+    "Anchored": true,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false,
+    "Size": {
+     "type": "Vector3",
+     "value": [
+      36,
+      0.4,
+      36
+     ]
+    },
+    "Position": {
+     "type": "Vector3",
+     "value": [
+      598.9,
+      100.6,
+      -1755.4
+     ]
+    },
+    "Material": {
+     "type": "Enum",
+     "value": "Material.Neon"
+    },
+    "Color": {
+     "type": "Color3",
+     "value": [
+      0.1686,
+      0.8824,
+      0.8549
+     ]
+    },
+    "Transparency": 0.75
+   },
+   "attributes": {
+    "HubId": "Dealership",
+    "DisplayName": "Dealership Depot"
+   },
+   "tags": [
+    "CourierHub"
+   ]
+  },
+  {
+   "kind": "instance",
+   "parent": [
+    "Workspace",
+    "World",
+    "Jobs",
+    "CourierHubs"
+   ],
+   "name": "Hub_Kanda",
+   "class": "Part",
+   "properties": {
+    "Anchored": true,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false,
+    "Size": {
+     "type": "Vector3",
+     "value": [
+      36,
+      0.4,
+      36
+     ]
+    },
+    "Position": {
+     "type": "Vector3",
+     "value": [
+      1548.9,
+      100.6,
+      -1893.1
+     ]
+    },
+    "Material": {
+     "type": "Enum",
+     "value": "Material.Neon"
+    },
+    "Color": {
+     "type": "Color3",
+     "value": [
+      0.1686,
+      0.8824,
+      0.8549
+     ]
+    },
+    "Transparency": 0.75
+   },
+   "attributes": {
+    "HubId": "Kanda",
+    "DisplayName": "Kanda Garage Depot"
+   },
+   "tags": [
+    "CourierHub"
+   ]
+  },
+  {
+   "kind": "instance",
+   "parent": [
+    "Workspace",
+    "World",
+    "Jobs",
+    "CourierHubs"
+   ],
+   "name": "Hub_ShowroomLoop",
+   "class": "Part",
+   "properties": {
+    "Anchored": true,
+    "CanCollide": false,
+    "CanQuery": false,
+    "CanTouch": false,
+    "CastShadow": false,
+    "Size": {
+     "type": "Vector3",
+     "value": [
+      36,
+      0.4,
+      36
+     ]
+    },
+    "Position": {
+     "type": "Vector3",
+     "value": [
+      1314.9,
+      100.6,
+      -1321.7
+     ]
+    },
+    "Material": {
+     "type": "Enum",
+     "value": "Material.Neon"
+    },
+    "Color": {
+     "type": "Color3",
+     "value": [
+      0.1686,
+      0.8824,
+      0.8549
+     ]
+    },
+    "Transparency": 0.75
+   },
+   "attributes": {
+    "HubId": "ShowroomLoop",
+    "DisplayName": "Showroom Loop Depot"
+   },
+   "tags": [
+    "CourierHub"
+   ]
+  }
+ ]
+}
