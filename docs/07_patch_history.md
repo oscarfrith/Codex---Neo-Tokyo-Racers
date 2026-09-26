@@ -2,6 +2,10 @@
 
 Recent deliveries, newest first. Entries before September 2026 live in [the archive](history/patch-history-2026-05-to-2026-08.md).
 
+## 2026-09-26 - Continuous lighting user-confirmed
+
+User reviewed the V6 horizon/moon refinement and confirmed the lighting "all looks good for now". Documentation only; no Studio changes. Device, low-graphics, streaming/retention and two-client checks remain open under LIGHT-01.
+
 ## 2026-09-26 - Primary assistant switched from Codex to Claude Code
 
 Workflow/repository change only; no Studio, gameplay, source or saved-data changes. Added CLAUDE.md (imports AGENTS.md so rules stay single-sourced), .claude/settings.json permissions, .claude/commands for the follow/suggest/audit/continue/handoff routing plus capture, debug, design and commit helpers, and a read-only delivery-reviewer subagent. Documented the Roblox Studio built-in MCP tool mapping and rules in [Claude Code setup](architecture/claude-code-setup.md). Split entries before September 2026 into [the archive](history/patch-history-2026-05-to-2026-08.md). Added [docs index](README.md). Read-only MCP connection check: Space Racers v1, Edit, 168 inventoried sources.
