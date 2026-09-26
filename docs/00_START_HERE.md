@@ -1,8 +1,16 @@
 # Space Racers — start here
 
-Target: Space Racers v1, place **121304917315753**. Updated 2026-09-26. This is the sole current-status entry point; historical handoffs describe evidence at the time they were written.
+Target: **Space Racers v2, place 71491191583884** (since 2026-09-26; v1 121304917315753 is historical). The start screen in v2 reads "Pulse Racers 2098". Updated 2026-09-26. This is the sole current-status entry point; historical handoffs describe evidence at the time they were written.
 
 ## Current task and next action
+
+**Feature work (Street Life, [design](design/street-life-update.md)).** Step 1, the rotating minimap, is installed on v2 and agent-verified on desktop (2026-09-26), not yet user-confirmed. [Verification](../scripts/minimap_rotation/verification.json). Open: mobile/touch runtime, two-client markers, low-end CanvasGroup cost (MAP-02).
+
+Next action: Oscar play-tests the minimap (ROTATE and NORTH UP in Settings), then `/follow` Step 2, the GPS route guide ([design 10.2](design/street-life-update.md#102-route-guide-gps)). Remaining order: ECON-01/PB-01, activity core + Driver Rank, Courier, Sky Taxi, Street Duels, garage visits.
+
+Latest targeted capture: **2026-09-26**, [minimap rotation after](../roblox/captures/minimap-rotation-after/capture.json), v2, 185 sources.
+
+### Previous status
 
 Continuous lighting is **user-confirmed** (2026-09-26: "all looks good for now"). The brighter sunrise/sunset, restrained moon glare, larger sun and five-second holds are installed and committed (aa158d1). The 720-second cycle and strong horizon rays are preserved. Warm copies use exposure 0.15, post brightness 0.055, contrast 0.12 and lighter Decay; twilight/night glare is 1.5/0.45. ContinuousSky SunAngularSize is 9. Warm holds last five real seconds total, centered on 06:00 and 18:00. [Editing guide](architecture/lighting-authoring.md), [delivery/recovery](architecture/lighting-horizon-moon-handoff.md).
 

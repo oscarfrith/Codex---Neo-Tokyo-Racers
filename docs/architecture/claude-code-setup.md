@@ -15,7 +15,7 @@ The older standalone rbx-studio-mcp server is no longer maintained by Roblox; do
 
 | Need | Built-in MCP tool | Notes |
 |---|---|---|
-| Find the instance | list_roblox_studios | Choose `Space Racers v1 (placeId: 121304917315753)`. IDs change per session. |
+| Find the instance | list_roblox_studios | Choose `Space Racers v2 (placeId: 71491191583884)` (v1 121304917315753 is historical since 2026-09-26). IDs change per session. |
 | Mode check | get_studio_state | Edit for installs/captures; Client/Server only during Play. |
 | Hierarchy / properties | search_game_tree, inspect_instance | Read-only. |
 | Script source | script_read, script_grep, script_search | Read-only. Prefer these to reading exported mirrors for current source. |

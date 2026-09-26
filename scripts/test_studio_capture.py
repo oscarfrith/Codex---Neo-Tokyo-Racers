@@ -84,7 +84,7 @@ class CaptureTests(unittest.TestCase):
             with self.assertRaises(ValueError):a.add(bad)
     def test_builder_reuses_serializer_and_read_only_asserts(self):
         r=fixture()['request'];r['properties']={'BasePart':['Reflectance']};source=c.producer(r)
-        self.assertIn('EXPECTED_PLACE_ID = 121304917315753',source);self.assertIn('export the Edit datamodel',source)
+        self.assertIn('EXPECTED_PLACE_ID = 71491191583884',source);self.assertIn('export the Edit datamodel',source)
         self.assertIn('CollectionService',source);self.assertNotIn('Instance.new(',source)
         self.assertNotIn('.Source =',source)
     def test_source_text_add_remove_and_metadata(self):

@@ -358,6 +358,12 @@ Each job then only adds its own rules.
 
 ### 10.1 Rotating minimap
 
+**Status: installed on Space Racers v2 on 2026-09-26, agent-verified on desktop, not yet user-confirmed** ([verification](../../scripts/minimap_rotation/verification.json), MAP-02). As built:
+
+- The desktop Settings MINIMAP control (previously display-only) sets a session `MinimapMode` Player attribute.
+- The shared rotation helpers live in `FreeRoamMapPlayerMarkers`.
+- The unused `Defaults.Minimap` StringValue ("NORTH") is not read; the default is `MapRotationMode`.
+
 **Current build** (exported `DesktopFreeRoamHudUI` ~l.838-1110, `MobileFreeRoamHudUI` ~l.76/378):
 
 - `Minimap` is a Frame with `ClipsDescendants` and `UICorner` 9.

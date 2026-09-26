@@ -2,6 +2,10 @@
 
 Recent deliveries, newest first. Entries before September 2026 live in [the archive](history/patch-history-2026-05-to-2026-08.md).
 
+## 2026-09-26 - Rotating minimap; Studio target moved to Space Racers v2
+
+Oscar moved the working place to Space Racers v2 (71491191583884); its sources matched the last v1 capture plus the CameraService commit. Capture tooling now accepts v2 (v1 stays valid for historical records). Installed the rotating free-roam minimap ([design 10.1](design/street-life-update.md#101-rotating-minimap)): the Minimap container is a CanvasGroup so rotated content clips to the box and rounded corners; a MapRotator turns the unchanged pan carrier by the camera heading; the north arrow orbits the rim; other-player circles rotate with the map; the desktop Settings MINIMAP control now sets a session MinimapMode (ROTATE / NORTH UP). Tunables on Config.UI.FreeRoamMapPlayerMarkers: MapRotationMode, MapRotationResponse, MapNorthArrowMode, MapNorthOrbitInset. Agent-verified on desktop (on foot, driving, toggle, no errors); mobile runtime, two-client markers and low-end CanvasGroup cost remain open (MAP-02). [Verification](../scripts/minimap_rotation/verification.json).
+
 ## 2026-09-26 - Handoff for feature work
 
 User confirmed the architecture programme is working. Added the [Studio testing playbook](architecture/studio-testing-playbook.md), [Project 12 comparison](architecture/project12-comparison.md) and the new feature checklist; updated the new-chat prompt and /start. Documentation only.

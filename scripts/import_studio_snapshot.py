@@ -126,8 +126,8 @@ def decode_scripts(payload: dict[str, Any]) -> list[ExportedScript]:
 
 def validate_payload(payload: dict[str, Any]) -> list[ExportedScript]:
     """Reject incomplete/ambiguous sources before touching the current mirror."""
-    if payload.get("format") != EXPORT_START or payload.get("place_id") != 121304917315753:
-        raise ValueError("BLOCKER: wrong format/place; expected Space Racers v1")
+    if payload.get("format") != EXPORT_START or payload.get("place_id") not in (121304917315753, 71491191583884):
+        raise ValueError("BLOCKER: wrong format/place; expected Space Racers v2 (or historical v1)")
     expected = {'ReplicatedFirst', 'ReplicatedStorage', 'ServerScriptService', 'ServerStorage', 'StarterPlayer', 'StarterGui', 'Workspace', 'Lighting', 'SoundService'}
     if set(payload.get('services_scanned', [])) != expected or {n.get('name') for n in payload.get('hierarchy', [])} != expected:
         raise ValueError("BLOCKER: incomplete service coverage")

@@ -4,7 +4,7 @@ Practical recipes for agent-driven testing through the Roblox Studio MCP, learne
 
 ## Before testing
 
-- `list_roblox_studios` -> Space Racers v1 (121304917315753) -> `get_studio_state` (Edit). IDs change between sessions.
+- `list_roblox_studios` -> Space Racers v2 (71491191583884) -> `get_studio_state` (Edit). IDs change between sessions.
 - **Check rendering before any camera, UI, tween or race test.** In Play, run on the Client: count `RunService.RenderStepped` for 1 s. If it is 0 while Heartbeat is 60, the Studio window is minimised/covered: tweens freeze (the start-screen Play button never appears), camera render-step code does not run and race staging never gets its countdown acknowledgement. Ask the user to bring Studio to the front. Server logic and GarageInvoke APIs still work without rendering.
 - Sandbox: Config.Player.Onboarding `StudioVehicleSandboxEveryPlay` and `StudioReplayEveryPlay` are true, so every Play starts with no vehicles and 1,000,000 cash and profile saves are suppressed. Exception: **PersonalBestServer still writes PBs from the sandbox (PB-01)** - avoid finishing time trials until that is fixed, or accept the dev-account PB change.
 

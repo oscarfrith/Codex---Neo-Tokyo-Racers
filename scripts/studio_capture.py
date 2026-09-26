@@ -6,6 +6,8 @@ from pathlib import Path
 import argparse, base64, collections, copy, hashlib, json, os, re, secrets, time
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import import_studio_snapshot as legacy
+# Current target is Space Racers v2 (2026-09-26); v1 remains valid for historical capture records.
+PLACE_IDS = (121304917315753, 71491191583884)
 
 ROOT=Path(__file__).resolve().parents[1]
 SERVICES={'ReplicatedFirst','ReplicatedStorage','ServerScriptService','ServerStorage','StarterPlayer','StarterGui','Workspace','Lighting','SoundService'}
@@ -50,7 +52,7 @@ def producer(request):
     return prefix+'\nlocal request=HttpService:JSONDecode('+encoded+')\n'+(ROOT/'scripts/capture_scoped_tail.lua').read_text(encoding='utf8')
 
 def validate(p):
-    if p.get('format')!='SPACE_RACERS_SCOPED_CAPTURE' or p.get('schema_revision')!=1 or p.get('place_id')!=121304917315753 or p.get('export_mode')!='Edit':raise ValueError('Wrong place/mode/schema')
+    if p.get('format')!='SPACE_RACERS_SCOPED_CAPTURE' or p.get('schema_revision')!=1 or p.get('place_id') not in PLACE_IDS or p.get('export_mode')!='Edit':raise ValueError('Wrong place/mode/schema')
     validate_request(p['request'])
     if set(p['services_scanned'])!=SERVICES or not p.get('include_disabled_scripts'):raise ValueError('Incomplete source inventory')
     if p.get('diagnostics',{}).get('property_read_errors'):raise ValueError('Property read errors')
@@ -118,7 +120,7 @@ def load(path,root=ROOT):
     sha=p.pop('content_sha256')
     if digest(canonical(p).encode())!=sha:raise ValueError('Capture integrity failed')
     p['content_sha256']=sha
-    if p['format']!='SPACE_RACERS_SCOPED_CAPTURE' or p['schema_revision']!=1 or p['place_id']!=121304917315753 or p['export_mode']!='Edit':raise ValueError('Invalid capture')
+    if p['format']!='SPACE_RACERS_SCOPED_CAPTURE' or p['schema_revision']!=1 or p['place_id'] not in PLACE_IDS or p['export_mode']!='Edit':raise ValueError('Invalid capture')
     for r in p['manifest']:
         if not re.fullmatch('[a-f0-9]{64}',r['source_sha256']) or r['file']!='roblox/source_store/'+r['source_sha256']+'.lua':raise ValueError('Invalid source reference')
         raw=(root/r['file']).read_bytes()

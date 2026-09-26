@@ -1,0 +1,47 @@
+{
+  "task": "Rotating free-roam minimap (Street Life 10.1)",
+  "lane": "Standard",
+  "contract": "Goal: the desktop and mobile free-roam minimaps rotate with the camera heading (GTA style) and stay clipped to the minimap box and its rounded corners. Owners: DesktopFreeRoamHudUI and MobileFreeRoamHudUI stay the geometry/visibility/render owners (same render callbacks, no new loop); FreeRoamMapPlayerMarkers stays the shared marker module and gains the shared rotation helpers. The Minimap container becomes a CanvasGroup; a MapRotator frame turns the unchanged pan carrier around the centre. Heading source: Config.UI.FreeRoamMapPlayerMarkers MapRotationMode (Camera default | Subject | NorthUp), with a session-only LocalPlayer MinimapMode attribute (ROTATE / NORTH UP) set by the existing desktop Settings MINIMAP control. The north arrow orbits the rim while rotating (MapNorthArrowMode Orbit | Corner) and returns to its corner in NorthUp. Other-player circles are rotated with the map. No remotes, saved data, server code, camera writes or map calibration changes. Preserved: four-tile artwork, calibration, zoom, flips, pan smoothing, edge fades, marker budget, HUD suppression in garages/races/menus. Done when: rotated map never draws outside the box or corners on desktop and mobile; player, north and other-player markers agree with the world; NORTH UP reproduces the previous map; no console errors.",
+  "verification": "Play: on-foot and driving 360-degree turns with screenshots; Settings MINIMAP toggle ROTATE/NORTH UP; runtime probe of CanvasGroup class, rotator rotation and north placement; console error scan. Mobile layout via device emulation where available.",
+  "operations": [
+    {
+      "kind": "source",
+      "path": ["ReplicatedStorage", "Modules", "Game", "UI", "FreeRoamMapPlayerMarkers"],
+      "file": "scripts/minimap_rotation/FreeRoamMapPlayerMarkers.lua"
+    },
+    {
+      "kind": "source",
+      "path": ["ReplicatedStorage", "Modules", "Game", "UI", "DesktopFreeRoamHudUI"],
+      "file": "scripts/minimap_rotation/DesktopFreeRoamHudUI.lua"
+    },
+    {
+      "kind": "source",
+      "path": ["ReplicatedStorage", "Modules", "Game", "UI", "MobileFreeRoamHudUI"],
+      "file": "scripts/minimap_rotation/MobileFreeRoamHudUI.lua"
+    },
+    {
+      "kind": "attribute",
+      "path": ["ReplicatedStorage", "Config", "UI", "FreeRoamMapPlayerMarkers"],
+      "key": "MapRotationMode",
+      "value": "Camera"
+    },
+    {
+      "kind": "attribute",
+      "path": ["ReplicatedStorage", "Config", "UI", "FreeRoamMapPlayerMarkers"],
+      "key": "MapRotationResponse",
+      "value": 10
+    },
+    {
+      "kind": "attribute",
+      "path": ["ReplicatedStorage", "Config", "UI", "FreeRoamMapPlayerMarkers"],
+      "key": "MapNorthArrowMode",
+      "value": "Orbit"
+    },
+    {
+      "kind": "attribute",
+      "path": ["ReplicatedStorage", "Config", "UI", "FreeRoamMapPlayerMarkers"],
+      "key": "MapNorthOrbitInset",
+      "value": 16
+    }
+  ]
+}

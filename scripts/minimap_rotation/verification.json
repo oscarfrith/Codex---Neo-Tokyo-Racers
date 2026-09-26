@@ -1,0 +1,20 @@
+{
+  "task": "Rotating free-roam minimap (Street Life design 10.1)",
+  "date": "2026-09-26",
+  "place": "Space Racers v2 (71491191583884), Edit",
+  "before_capture": "roblox/captures/minimap-rotation-before2/capture.json",
+  "after_capture": "roblox/captures/minimap-rotation-after/capture.json",
+  "baseline_parity": "v2 before-capture matched arch-p9-after (v1) except the later CameraService commit (CameraService added; CharacterSprintClient and DrivingCameraClient changed); the three target sources were byte-identical",
+  "scope": "exactly 3 sources changed (FreeRoamMapPlayerMarkers, DesktopFreeRoamHudUI, MobileFreeRoamHudUI) plus 4 new attributes on Config.UI.FreeRoamMapPlayerMarkers (MapRotationMode=Camera, MapRotationResponse=10, MapNorthArrowMode=Orbit, MapNorthOrbitInset=16); installed hashes equal the reviewed after files; 185 inventoried sources, no other delta",
+  "delivery": "studio_delivery AUDIT state=before changed=0; APPLY state=after changed=7",
+  "pure_tests": "scripts/minimap_rotation/tests.lua in Studio Edit: 22/22 pass (rotation resolution, heading maths with live 90-degree calibration, smoothing wrap, north placement)",
+  "play_desktop": {
+    "on_foot": "Minimap is a CanvasGroup; MapRotator -137 deg matched camera heading 137 deg; player arrow showed the character 43 deg right of camera (correct); after walking forward the arrow points up; map content clipped to the box and rounded corners in screenshots",
+    "driving": "API-spawned sandbox car, keyboard W/D/A: map rotated with the car (-143 deg), arrow up, north arrow orbiting the rim, no overflow",
+    "settings_toggle": "Settings MINIMAP NORTH UP -> MinimapMode attribute, rotation 0, north arrow restored to its original corner (anchor 1,1 at 1,-10,1,-10), highlight updated; ROTATE restores rotation and orbit",
+    "console": "no new errors or warnings; DataStore StudioAccessToApisNotAllowed lines are the v2 Studio API setting"
+  },
+  "not_verified": "mobile HUD at runtime (built only on touch devices; source compiled by the delivery and helper maths covered by the pure tests), other-player markers with a second client, CanvasGroup quality/frame time on a low-end phone",
+  "evidence_type": "agent-verified Studio (desktop normal UI + API vehicle spawn); not user-confirmed, not device or multiplayer",
+  "rollback": "py scripts/studio_delivery.py scripts/minimap_rotation/spec.json roblox/captures/minimap-rotation-before2/capture.json <out.lua> --mode ROLLBACK"
+}

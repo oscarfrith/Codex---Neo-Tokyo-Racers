@@ -4,12 +4,12 @@
 
 AGENTS.md (imported above) is the single source of project rules, shared with any other assistant. Put durable rules there, not here. This file only covers how Claude Code applies them.
 
-The game is currently titled **Space Racers** (place 121304917315753); older docs and the repo name say Neo Tokyo Racers or Codex. They are the same project.
+The game is currently titled **Space Racers**; the working place is **Space Racers v2 (71491191583884)** since 2026-09-26 (its start screen reads "Pulse Racers 2098"). Space Racers v1 (121304917315753) is historical. Older docs and the repo name say Neo Tokyo Racers or Codex. They are the same project.
 
 ## Studio connection
 
 - Studio is reached through the Roblox Studio built-in MCP server (Studio: Assistant → … → Manage MCP Servers). Tool mapping, permissions and rules are in [Claude Code setup](docs/architecture/claude-code-setup.md). Read it before the first Studio call of a session.
-- Every session: `list_roblox_studios` → pick the instance named `Space Racers v1 (placeId: 121304917315753)` → `get_studio_state`. Never reuse a studio_id from an earlier session.
+- Every session: `list_roblox_studios` → pick the instance named `Space Racers v2 (placeId: 71491191583884)` → `get_studio_state`. Never reuse a studio_id from an earlier session.
 - Read-only inspection (`search_game_tree`, `inspect_instance`, `script_read`, `script_grep`, `get_console_output`, `screen_capture`) needs no ceremony.
 - Game changes go through the delivery routes in docs/13 and docs/architecture/proportional-mcp-delivery.md. `multi_edit` and the generate/insert tools are direct writes; the setup doc says when they are allowed.
 
