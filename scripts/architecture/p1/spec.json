@@ -1,0 +1,12 @@
+{
+  "task": "Architecture P1: shared Core library (Signal, Tags, ConnectionScope, ConfigReader)",
+  "lane": "Standard",
+  "contract": "Goal: shared Core utilities for later phases. New pure libraries Signal and Tags under ReplicatedStorage.Modules.Core; ConnectionScope gains add/task and failure-isolated reverse cleanup (connect/destroy unchanged); ConfigReader keeps every existing return value for valid config, falls back on non-finite/wrong-class values and reports present-but-invalid or clamped values once per key, and adds NumberAttribute/BoolAttribute/IsFinite. No ServerBase/ClientBase entries, remotes, saved data or UI. Owners unchanged. Done when: pure tests pass, AUDIT/APPLY/ROLLBACK/APPLY cycle is clean, normal startup reaches all features ready with no new errors, and any ConfigReader warnings are recorded as real config gaps.",
+  "verification": "tooling (p1/tests.lua), installation (captures), startup (normal Play start screen), errors (console)",
+  "operations": [
+    {"kind": "module", "path": ["ReplicatedStorage", "Modules", "Core", "Signal"], "class": "ModuleScript", "file": "scripts/architecture/p1/Signal.lua"},
+    {"kind": "module", "path": ["ReplicatedStorage", "Modules", "Core", "Tags"], "class": "ModuleScript", "file": "scripts/architecture/p1/Tags.lua"},
+    {"kind": "source", "path": ["ReplicatedStorage", "Modules", "Core", "ConnectionScope"], "file": "scripts/architecture/p1/ConnectionScope.lua"},
+    {"kind": "source", "path": ["ReplicatedStorage", "Modules", "Core", "ConfigReader"], "file": "scripts/architecture/p1/ConfigReader.lua"}
+  ]
+}

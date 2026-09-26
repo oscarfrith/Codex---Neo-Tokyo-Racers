@@ -1,0 +1,13 @@
+{
+  "phase": "P1 Core library",
+  "date": "2026-09-26",
+  "lane": "Standard",
+  "before_capture": "roblox/captures/arch-p1-before/capture.json",
+  "after_capture": "roblox/captures/arch-p1-after/capture.json",
+  "scope": "added Core.Signal, Core.Tags; changed Core.ConnectionScope, Core.ConfigReader; 0 other deltas (170 sources)",
+  "tooling": "p1/tests.lua in Studio Edit (unparented instances only): 9/9 PASS",
+  "installation": "AUDIT before -> APPLY 4 -> ROLLBACK 4 (modules removed) -> APPLY 4 -> repeat APPLY 0",
+  "startup": "Play: server 26 ready; client 40 ready + 4 dev tools skipped; visible Play button -> StartScreenActive false",
+  "errors": "no new warnings/errors; no ConfigReader reports on current config",
+  "rollback": "py scripts/architecture/installer.py scripts/architecture/p1/spec.json roblox/captures/arch-p1-before/capture.json scripts/architecture/p1/install.lua --mode ROLLBACK"
+}
