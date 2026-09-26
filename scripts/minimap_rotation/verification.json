@@ -16,5 +16,16 @@
   },
   "not_verified": "mobile HUD at runtime (built only on touch devices; source compiled by the delivery and helper maths covered by the pure tests), other-player markers with a second client, CanvasGroup quality/frame time on a low-end phone",
   "evidence_type": "agent-verified Studio (desktop normal UI + API vehicle spawn); not user-confirmed, not device or multiplayer",
-  "rollback": "py scripts/studio_delivery.py scripts/minimap_rotation/spec.json roblox/captures/minimap-rotation-before2/capture.json <out.lua> --mode ROLLBACK"
+  "rollback": "py scripts/studio_delivery.py scripts/minimap_rotation/spec.json roblox/captures/minimap-rotation-before2/capture.json <out.lua> --mode ROLLBACK",
+  "followup_2026_09_26": {
+    "request": "Oscar: remove the north arrow; rotate with the character/vehicle facing like the player arrow",
+    "spec": "scripts/minimap_rotation/spec-followup.json",
+    "before_capture": "roblox/captures/minimap-rotation-after/capture.json",
+    "after_capture": "roblox/captures/minimap-followup-after/capture.json",
+    "scope": "FreeRoamMapPlayerMarkers source only (defaults Subject/Hidden, NorthMode Hidden) plus MapRotationMode=Subject and MapNorthArrowMode=Hidden",
+    "delivery": "AUDIT before/0; APPLY after",
+    "pure_tests": "25/25",
+    "play": "On foot after strafing: map rotation -47 deg equals character heading 47 deg while camera heading was 137 deg; player arrow 0 deg (up); NorthArrow.Visible false; screenshot clean",
+    "evidence_type": "agent-verified Studio desktop"
+  }
 }

@@ -12,11 +12,12 @@ local function player(mode) return { GetAttribute = function(_, key) return key 
 
 -- ResolveRotation
 local r = Module.ResolveRotation(config({}), player(nil))
-check("defaults Camera/Orbit/10/16", r.Mode == "Camera" and r.NorthMode == "Orbit" and r.Response == 10 and r.NorthInset == 16)
-check("invalid mode falls back to Camera", Module.ResolveRotation(config({ MapRotationMode = "Spin" }), nil).Mode == "Camera")
+check("defaults Subject/Hidden/10/16", r.Mode == "Subject" and r.NorthMode == "Hidden" and r.Response == 10 and r.NorthInset == 16)
+check("invalid mode falls back to Subject", Module.ResolveRotation(config({ MapRotationMode = "Spin" }), nil).Mode == "Subject")
+check("Camera mode accepted", Module.ResolveRotation(config({ MapRotationMode = "Camera" }), nil).Mode == "Camera")
 check("player NORTH UP wins", Module.ResolveRotation(config({ MapRotationMode = "Subject" }), player("NORTH UP")).Mode == "NorthUp")
 check("player ROTATE keeps Subject", Module.ResolveRotation(config({ MapRotationMode = "Subject" }), player("ROTATE")).Mode == "Subject")
-check("player ROTATE overrides config NorthUp", Module.ResolveRotation(config({ MapRotationMode = "NorthUp" }), player("ROTATE")).Mode == "Camera")
+check("player ROTATE overrides config NorthUp", Module.ResolveRotation(config({ MapRotationMode = "NorthUp" }), player("ROTATE")).Mode == "Subject")
 check("negative response clamps to 0", Module.ResolveRotation(config({ MapRotationResponse = -5 }), nil).Response == 0)
 
 -- MapHeading with the live calibration (90 degree coordinate rotation, no flips)
@@ -40,7 +41,7 @@ local partial = Module.StepHeading(0, 90, 10, 1 / 60)
 check("smoothed step is partial and positive", partial > 0 and partial < 90)
 
 -- PlaceNorth
-local arrow = { Rotation = 0, AnchorPoint = Vector2.new(1, 1), Position = UDim2.new(1, -10, 1, -10) }
+local arrow = { Visible = true, Rotation = 0, AnchorPoint = Vector2.new(1, 1), Position = UDim2.new(1, -10, 1, -10) }
 local corner = { Vector2.new(1, 1), UDim2.new(1, -10, 1, -10) }
 Module.PlaceNorth(arrow, { Mode = "Camera", NorthMode = "Orbit", NorthInset = 16 }, 0, 245, corner[1], corner[2])
 check("orbit at 0 sits top centre", arrow.AnchorPoint == Vector2.new(0.5, 0.5) and near(arrow.Position.X.Scale, 0.5) and near(arrow.Position.Y.Scale, 16 / 245))
@@ -50,5 +51,10 @@ Module.PlaceNorth(arrow, { Mode = "NorthUp", NorthMode = "Orbit", NorthInset = 1
 check("NorthUp restores corner", arrow.AnchorPoint == corner[1] and arrow.Position == corner[2] and arrow.Rotation == 0)
 Module.PlaceNorth(arrow, { Mode = "Camera", NorthMode = "Corner", NorthInset = 16 }, -30, 245, corner[1], corner[2])
 check("Corner mode keeps corner but rotates", arrow.Position == corner[2] and arrow.Rotation == -30)
+
+Module.PlaceNorth(arrow, { Mode = "Subject", NorthMode = "Hidden", NorthInset = 16 }, 45, 245, corner[1], corner[2])
+check("Hidden hides and leaves placement", arrow.Visible == false and arrow.Rotation == -30)
+Module.PlaceNorth(arrow, { Mode = "Subject", NorthMode = "Corner", NorthInset = 16 }, 45, 245, corner[1], corner[2])
+check("Corner shows again", arrow.Visible == true and arrow.Rotation == 45)
 
 return { failures = failures, results = results }

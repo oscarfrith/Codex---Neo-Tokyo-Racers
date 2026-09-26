@@ -1,0 +1,63 @@
+{
+  "task": "Minimap: character-heading rotation and hidden north arrow (Street Life 10.1 follow-up)",
+  "lane": "Standard",
+  "contract": "Follow-up requested by Oscar after the rotating minimap: rotate with the character/vehicle facing (Subject) instead of the camera, and remove the north arrow. Owners unchanged (desktop/mobile HUD render owners; FreeRoamMapPlayerMarkers shared helpers). Changes: FreeRoamMapPlayerMarkers defaults Subject/Hidden and supports NorthMode Hidden (arrow.Visible=false); config MapRotationMode=Subject, MapNorthArrowMode=Hidden. HUD sources unchanged. Preserved: clipping, NORTH UP toggle, markers, pan, calibration. Done when: map turns with the character/car facing, arrow stays up, no north arrow in any mode, no errors.",
+  "verification": "Pure tests; Play on foot and driving; Settings NORTH UP/ROTATE; console scan.",
+  "operations": [
+    {
+      "kind": "source",
+      "path": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "UI",
+        "FreeRoamMapPlayerMarkers"
+      ],
+      "file": "scripts/minimap_rotation/FreeRoamMapPlayerMarkers.lua"
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "UI",
+        "FreeRoamMapPlayerMarkers"
+      ],
+      "key": "MapRotationMode",
+      "value": "Subject"
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "UI",
+        "FreeRoamMapPlayerMarkers"
+      ],
+      "key": "MapRotationResponse",
+      "value": 10
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "UI",
+        "FreeRoamMapPlayerMarkers"
+      ],
+      "key": "MapNorthArrowMode",
+      "value": "Hidden"
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "UI",
+        "FreeRoamMapPlayerMarkers"
+      ],
+      "key": "MapNorthOrbitInset",
+      "value": 16
+    }
+  ]
+}
