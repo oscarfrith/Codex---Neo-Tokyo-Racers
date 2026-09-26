@@ -1,0 +1,20 @@
+{
+  "task": "Passenger seats + Sky Taxi (Street Life 4.7)",
+  "date": "2026-09-26",
+  "place": "Space Racers v2 (71491191583884)",
+  "authoring": "Agent B (parallel), integrated by the main session; delivery-reviewer blockers fixed (offer Accent colour, NPC fare anti-teleport, removed competing collision-group owner)",
+  "before_capture": "roblox/captures/activities-foundation-after/capture.json",
+  "after_capture": "roblox/captures/activities-taxi-after/capture.json",
+  "scope": "VehicleBuildService (+PassengerSeat), PassengerService/TaxiRules/TaxiJob/PassengerClientView/TaxiClientView stub bodies, Passengers/Taxi config attributes",
+  "installer": "AUDIT before; APPLY 42; ROLLBACK 42; APPLY; AUDIT after",
+  "pure_tests": "52/52",
+  "play": {
+    "seat": "spawned car has PassengerSeat (plain Seat, Massless); root AssemblyMass 240.996 before and with the NPC seated (unchanged)",
+    "duty": "TaxiSetDuty (API) -> 'On duty'; NPC fare spawned ~0.3 mi away",
+    "pickup": "scripted drive to the fare and stop -> Taxi:PickedUp, NPC rig seated in PassengerSeat; strip 'SKY TAXI · DROP OFF · ETA 0:37 · 5/5 STARS'; pink activity route + chip on the minimap",
+    "dropoff": "scripted drive 2007 studs in 10 s -> Taxi:Delivered $1,164 + 78 XP, seat freed; 6 Taxi:Impact events came from the scripted velocity resets (synthetic artefact)"
+  },
+  "not_verified": "player passengers (needs 2 clients), player taxi requests, access modes Friends/Anyone/Nobody with real friends, impact threshold under real driving, NPC walk-off visuals, mobile, user confirmation",
+  "notes": "NPC/passenger sits on the rear deck (SeatOffsetZ 11) and is visible from the chase camera; tune Config.Activities.Passengers SeatOffsetX/Y/Z",
+  "evidence_type": "agent-verified Studio (API duty + synthetic movement)"
+}

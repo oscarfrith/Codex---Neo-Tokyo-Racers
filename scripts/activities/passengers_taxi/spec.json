@@ -1,0 +1,470 @@
+{
+  "task": "Street Life: passenger seats + Sky Taxi (NPC fares and player taxi requests)",
+  "lane": "High-Risk",
+  "contract": "See scripts/activities/passengers_taxi/CONTRACT.md. Adds one plain Seat 'PassengerSeat' per built vehicle (VehicleBuildService.addPassengerSeat, nothing else changed); PassengerService owns seating/ejection and the rider mass override (massless while seated, restored on exit; collision groups untouched, VehicleCollisionServer owns them); TaxiJob owns duty, one NPC fare per driver and player taxi requests; all pay via ActivityPayout.Pay (TaxiFare, JobCeiling, unique CommandId, one deferred same-CommandId retry); NPC fares pay only when the server-counted, per-tick-capped driven distance >= MinDrivenFraction x route and elapsed >= route / RaceIntegrity.limitMph; riders are never charged. Flags EnablePassengers / EnableSkyTaxi plus config Enabled.",
+  "verification": "delivery-reviewer before APPLY (High-Risk: economy grants); pure tests (scripts/activities/passengers_taxi/tests.lua, TaxiRules); Play: newly built car has PassengerSeat (Seat, massless, no collide/query/touch) and still drives with unchanged handling; single-client NPC fare full loop; two-client passenger access modes and taxi request/accept/ride/pay; console scan.",
+  "operations": [
+    {
+      "kind": "source",
+      "path": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Garage",
+        "VehicleBuildService"
+      ],
+      "file": "scripts/activities/passengers_taxi/VehicleBuildService.lua"
+    },
+    {
+      "kind": "source",
+      "path": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Activities",
+        "PassengerService"
+      ],
+      "file": "scripts/activities/passengers_taxi/PassengerService.lua"
+    },
+    {
+      "kind": "source",
+      "path": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Activities",
+        "TaxiRules"
+      ],
+      "file": "scripts/activities/passengers_taxi/TaxiRules.lua"
+    },
+    {
+      "kind": "source",
+      "path": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Activities",
+        "TaxiJob"
+      ],
+      "file": "scripts/activities/passengers_taxi/TaxiJob.lua"
+    },
+    {
+      "kind": "source",
+      "path": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Activities",
+        "PassengerClientView"
+      ],
+      "file": "scripts/activities/passengers_taxi/PassengerClientView.lua"
+    },
+    {
+      "kind": "source",
+      "path": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Activities",
+        "TaxiClientView"
+      ],
+      "file": "scripts/activities/passengers_taxi/TaxiClientView.lua"
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Activities",
+        "Passengers"
+      ],
+      "key": "RideRangeStuds",
+      "value": 18
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Activities",
+        "Passengers"
+      ],
+      "key": "BoardMaxMph",
+      "value": 12
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Activities",
+        "Passengers"
+      ],
+      "key": "ExitSideStuds",
+      "value": 6
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Activities",
+        "Passengers"
+      ],
+      "key": "FriendCacheSeconds",
+      "value": 120
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Activities",
+        "Taxi"
+      ],
+      "key": "MinRank",
+      "value": 1
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Activities",
+        "Taxi"
+      ],
+      "key": "FareBase",
+      "value": 1000
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Activities",
+        "Taxi"
+      ],
+      "key": "FarePerStud",
+      "value": 0.5
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Activities",
+        "Taxi"
+      ],
+      "key": "XpBase",
+      "value": 50
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Activities",
+        "Taxi"
+      ],
+      "key": "XpPerStud",
+      "value": 0.04
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Activities",
+        "Taxi"
+      ],
+      "key": "NpcMinStuds",
+      "value": 300
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Activities",
+        "Taxi"
+      ],
+      "key": "NpcMaxStuds",
+      "value": 900
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Activities",
+        "Taxi"
+      ],
+      "key": "DestMinStuds",
+      "value": 800
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Activities",
+        "Taxi"
+      ],
+      "key": "DestMaxStuds",
+      "value": 2500
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Activities",
+        "Taxi"
+      ],
+      "key": "PickupRadius",
+      "value": 25
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Activities",
+        "Taxi"
+      ],
+      "key": "ArriveRadius",
+      "value": 35
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Activities",
+        "Taxi"
+      ],
+      "key": "StopMph",
+      "value": 10
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Activities",
+        "Taxi"
+      ],
+      "key": "ImpactMph",
+      "value": 25
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Activities",
+        "Taxi"
+      ],
+      "key": "ImpactWindowSeconds",
+      "value": 0.2
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Activities",
+        "Taxi"
+      ],
+      "key": "ImpactCooldownSeconds",
+      "value": 1
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Activities",
+        "Taxi"
+      ],
+      "key": "StarLossPerImpact",
+      "value": 1
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Activities",
+        "Taxi"
+      ],
+      "key": "SlowFactor",
+      "value": 1.25
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Activities",
+        "Taxi"
+      ],
+      "key": "VerySlowFactor",
+      "value": 1.75
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Activities",
+        "Taxi"
+      ],
+      "key": "EstimateStudsPerSecond",
+      "value": 80
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Activities",
+        "Taxi"
+      ],
+      "key": "EstimateBaseSeconds",
+      "value": 20
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Activities",
+        "Taxi"
+      ],
+      "key": "FareTimeoutSeconds",
+      "value": 240
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Activities",
+        "Taxi"
+      ],
+      "key": "NextFareSeconds",
+      "value": 4
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Activities",
+        "Taxi"
+      ],
+      "key": "RequestTimeoutSeconds",
+      "value": 180
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Activities",
+        "Taxi"
+      ],
+      "key": "AcceptWindowSeconds",
+      "value": 120
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Activities",
+        "Taxi"
+      ],
+      "key": "RequestCooldownSeconds",
+      "value": 20
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Activities",
+        "Taxi"
+      ],
+      "key": "PairCooldownSeconds",
+      "value": 300
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Activities",
+        "Taxi"
+      ],
+      "key": "PlayerMinRideStuds",
+      "value": 300
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Activities",
+        "Taxi"
+      ],
+      "key": "PlayerFareBase",
+      "value": 1000
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Activities",
+        "Taxi"
+      ],
+      "key": "PlayerFarePerStud",
+      "value": 0.5
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Activities",
+        "Taxi"
+      ],
+      "key": "PlayerFareMaxStuds",
+      "value": 3000
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Activities",
+        "Taxi"
+      ],
+      "key": "MinDrivenFraction",
+      "value": 0.7
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Activities",
+        "Taxi"
+      ],
+      "key": "FallbackLimitMph",
+      "value": 400
+    }
+  ]
+}
