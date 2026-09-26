@@ -1,0 +1,15 @@
+{
+  "phase": "P4 MoneyService",
+  "date": "2026-09-26",
+  "lane": "High-Risk",
+  "before_capture": "roblox/captures/arch-p3-after/capture.json",
+  "after_capture": "roblox/captures/arch-p4-after/capture.json",
+  "scope": "added Player.MoneyService; 12 debit sites routed through MoneyService.Debit in GarageServer, GarageModuleTransaction, VehicleCosmeticServer, OwnedGarageProfile, PerformanceUpgradeRuntime",
+  "review": "delivery-reviewer: no blockers; all 12 debit sites covered, balances identical for valid prices, every path inside pcall. WARN pre-existing: failed transaction after a GarageServer debit keeps partial state (to be fixed in P5 profile snapshot). WARN legacy price errors now generic -> live scan of 944 price fields found 0 invalid.",
+  "tooling": "p4/tests.lua 5/5 PASS",
+  "installation": "AUDIT -> APPLY 6 -> ROLLBACK 6 -> APPLY 6",
+  "api": "sandbox cash deltas equal price: cockpit instance 350000, module instance 6500, vehicle cosmetic 5000, neon 5000/5000/6500, module upgrade 3850 (shared runtime path), owned-garage structure 9000; unaffordable cockpit -> 'Not enough cash.' delta 0",
+  "errors": "server and client consoles clean; ClientBase all ready",
+  "not_verified": "garage property purchase (no unowned priced property in sandbox state); forced invalid-price error path (unit-tested only)",
+  "rollback": "installer ROLLBACK with scripts/architecture/p4/spec.json against arch-p3-after"
+}

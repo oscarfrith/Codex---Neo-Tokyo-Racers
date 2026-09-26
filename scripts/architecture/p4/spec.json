@@ -1,0 +1,76 @@
+{
+ "task": "Architecture P4: MoneyService single debit point",
+ "lane": "High-Risk",
+ "contract": "Goal: every Cash debit goes through ServerStorage.Modules.Game.Player.MoneyService.Debit. Sites: GarageServer (garage property, cockpit instance, legacy cockpit/module/upgrade, neon), GarageModuleTransaction (module instance), VehicleCosmeticServer, OwnedGarageProfile (3 customisation purchases), PerformanceUpgradeRuntime (module upgrade). Each site keeps its own affordability check, message and transaction order; for valid prices the resulting balance is identical. New invariant: invalid (NaN/negative/infinite) prices or insufficient funds raise inside the existing pcall-protected request instead of corrupting or inflating Cash. Credits (EconomyServer grants, the VehicleModuleUpgradeRuntime V2 migration refund) unchanged. No save/schema/remote/UI change; MoneyService never saves.",
+ "verification": "tooling (MoneyService tests), installation, api (sandbox purchases for each site: cash delta equals price, insufficient funds message unchanged), garage (UI purchase), errors",
+ "operations": [
+  {
+   "kind": "module",
+   "path": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Player",
+    "MoneyService"
+   ],
+   "class": "ModuleScript",
+   "file": "scripts/architecture/p4/MoneyService.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Garage",
+    "GarageServer"
+   ],
+   "file": "scripts/architecture/p4/after/GarageServer.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Garage",
+    "GarageModuleTransaction"
+   ],
+   "file": "scripts/architecture/p4/after/GarageModuleTransaction.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Garage",
+    "VehicleCosmeticServer"
+   ],
+   "file": "scripts/architecture/p4/after/VehicleCosmeticServer.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Garage",
+    "OwnedGarageProfile"
+   ],
+   "file": "scripts/architecture/p4/after/OwnedGarageProfile.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "Vehicles",
+    "Performance",
+    "PerformanceUpgradeRuntime"
+   ],
+   "file": "scripts/architecture/p4/after/PerformanceUpgradeRuntime.lua"
+  }
+ ]
+}
