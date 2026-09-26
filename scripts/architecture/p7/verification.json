@@ -1,0 +1,14 @@
+{
+  "phase": "P7 Client camera owner (CameraService)",
+  "date": "2026-09-26",
+  "lane": "High-Risk",
+  "before_capture": "roblox/captures/arch-p9-after/capture.json",
+  "after_capture": "roblox/captures/arch-p7-after/capture.json",
+  "scope": "added ReplicatedStorage.Modules.Core.CameraService; DrivingCameraClient and CharacterSprintClient request FOV/zoom through it",
+  "review": "delivery-reviewer: no blockers; WARNs fixed (suspend releases FOV, character reset and disabled sprint FOV clear the sprint request, zoom writes only on change)",
+  "tooling": "p7/tests.lua 5/5 PASS",
+  "installation": "AUDIT -> APPLY 3 -> ROLLBACK 3 -> APPLY 3",
+  "runtime_rendered": "Studio viewport 60 FPS, visible start-screen Play, keyboard input. Baseline (before) vs after in identical steps: idle 70/0.5-128 both; sprint 80 then 70 both; seated 85/22 both; boost at 125 mph FOV 109.6 zoom 25.47 (before) vs 109.6/25.45 (after); API exit/respawn/despawn restores identical. Sprint -> seat -> despawn -> release: before FOV stuck at 95 on foot, after 70 (bug fixed). Edge cases after: P suspend releases to 70/0.5-128, B resume 85/22, despawn while suspended 70/0.5-128; sprint FOV disabled mid-sprint -> 70; respawn mid-sprint -> 70, sprint works again (80 -> 70); no camera errors.",
+  "not_verified": "touch/controller camera, trailer tool FOV (dev-only), garage/dealership/race-transition CameraType writers (not migrated)",
+  "rollback": "installer ROLLBACK with scripts/architecture/p7/spec.json against arch-p9-after"
+}

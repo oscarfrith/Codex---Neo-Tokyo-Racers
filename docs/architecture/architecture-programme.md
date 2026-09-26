@@ -20,7 +20,7 @@ Reference for the owners introduced by the nine-phase programme that followed th
 | FeatureFlags | ServerStorage.Modules.Core.FeatureFlags | Non-yielding flag reads: Studio `ServerStorage.Config` `Flag_<key>` override, then Creator Dashboard ConfigService snapshot (60 s refresh, memoised per key), then default |
 | AnalyticsServer | ServerStorage.Modules.Game.Player.AnalyticsServer (ServerBase entry) | Registry and sender: economy sinks (MoneyService.Debited), sources (EconomyCashCommitted), onboarding funnel on newly recorded milestones. Gated by `AnalyticsEnabled` |
 | ReceiptProcessor | ServerStorage.Modules.Game.Player.ReceiptProcessor | Inert developer-product template: in-flight lock, grant+record together, save-first, retry re-saves, never double-grants. Before binding: persist and bound `PurchaseHistory` |
-| CameraService (prepared, not installed) | ReplicatedStorage.Modules.Core.CameraService | Keyed priority FOV and zoom-limit requests with validation; DrivingCameraClient (100) and CharacterSprintClient (10) migrate to it. Waiting for a rendered Studio test |
+| CameraService | ReplicatedStorage.Modules.Core.CameraService | Keyed priority FOV and zoom-limit requests with validation; DrivingCameraClient (100) and CharacterSprintClient (10) use it. Verified in rendered Play |
 
 ## Rules going forward
 

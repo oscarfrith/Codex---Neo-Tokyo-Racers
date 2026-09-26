@@ -2,6 +2,10 @@
 
 Recent deliveries, newest first. Entries before September 2026 live in [the archive](history/patch-history-2026-05-to-2026-08.md).
 
+## 2026-09-26 - Architecture P7: CameraService installed
+
+Driving camera and sprint now request FOV/zoom through Core.CameraService (validated priority stack). Rendered Play comparison against a same-session baseline: identical driving/sprint/exit values; fixed on-foot FOV stuck at 95 after sprint -> drive -> exit; suspend/resume, respawn and disabled-sprint-FOV edge cases clean. Other camera writers remain for a later phase. [Evidence](../scripts/architecture/p7/verification.json).
+
 ## 2026-09-26 - Architecture programme from the Project 12 comparison (P1-P6, P8, P9 installed; P7 prepared)
 
 Nine-phase programme after a read-only review of the team game Project 12. Installed and Studio-verified: shared Core library (Signal, Tags, ConnectionScope, ConfigReader); Core.Net guard on all 12 client remotes; RACE-01 RaceIntegrity (Log mode); MoneyService single debit point (12 sites); GarageServer split into eight verbatim factory modules (2,767 -> 1,121 lines, 18-step golden replies identical); FeatureFlags, AnalyticsServer and an inert save-first ReceiptProcessor; retirement of four dead remotes, the legacy DriveInCustomisationSession event and five client-unused legacy actions. Every High-Risk phase was reviewed by the delivery-reviewer before APPLY; each has before/after captures and AUDIT/APPLY/ROLLBACK/APPLY evidence. P7 CameraService is reviewed and packaged but not installed (Studio viewport not rendering). ECON-01 and PB-01 recorded. [Programme reference](architecture/architecture-programme.md).
