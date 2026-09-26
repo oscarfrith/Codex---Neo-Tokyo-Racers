@@ -1,0 +1,417 @@
+{
+ "task": "Street Life foundation: activities core, Driver Rank, remotes, config, stubs, HUD hooks",
+ "lane": "High-Risk",
+ "contract": "See docs/architecture/activities-contract.md (Foundation). Owners: ActivityService (activity state, ActivityInvoke), ActivityPayout (only activity Cash/XP path), ProgressionService (Driver Rank, profile.Progression), ActivityClient (ActivityHud). Saved data: additive profile.Progression and profile.Settings (SchemaVersion 1). Economy: new GrantCash reasons JobPayout/TaxiFare/DuelPot/DuelRefund/RankReward; debits via MoneyService after validation. Remotes: Remotes.Activities.ActivityInvoke (Core.Net guarded, predeclared allowlist) and ActivityEvent (server->client). HUD: rank strip, JOBS button, PASSENGERS setting. Feature modules installed as inert stubs. Preserved: all existing flows; ProfileServer untouched.",
+ "verification": "Pure tests (ProgressionRules); AUDIT/APPLY/ROLLBACK/APPLY; Play: ServerBase/ClientBase startup states ready, rank strip, JOBS panel, PASSENGERS setting persists in session, drive XP accrues, rank-up card and RankReward cash; console clean.",
+ "operations": [
+  {
+   "kind": "folder",
+   "parent": [
+    "ReplicatedStorage",
+    "Remotes"
+   ],
+   "name": "Activities",
+   "attributes": {}
+  },
+  {
+   "kind": "instance",
+   "parent": [
+    "ReplicatedStorage",
+    "Remotes",
+    "Activities"
+   ],
+   "name": "ActivityInvoke",
+   "class": "RemoteFunction"
+  },
+  {
+   "kind": "instance",
+   "parent": [
+    "ReplicatedStorage",
+    "Remotes",
+    "Activities"
+   ],
+   "name": "ActivityEvent",
+   "class": "RemoteEvent"
+  },
+  {
+   "kind": "folder",
+   "parent": [
+    "ReplicatedStorage",
+    "Config"
+   ],
+   "name": "Activities",
+   "attributes": {}
+  },
+  {
+   "kind": "folder",
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities"
+   ],
+   "name": "Core",
+   "attributes": {
+    "JobHourlyCashCeiling": 40000,
+    "ExitGraceSeconds": 10,
+    "DistrictMinX": -250,
+    "DistrictMaxX": 2600,
+    "DistrictMinZ": -4150,
+    "DistrictMaxZ": 550
+   }
+  },
+  {
+   "kind": "folder",
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities"
+   ],
+   "name": "Progression",
+   "attributes": {
+    "XpBase": 250,
+    "XpExponent": 1.35,
+    "MaxRank": 100,
+    "RankCashPerRank": 500,
+    "DriveXpPerCash": 0.1,
+    "RaceXpDivisor": 500,
+    "RaceXpMin": 10
+   }
+  },
+  {
+   "kind": "folder",
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities"
+   ],
+   "name": "Courier",
+   "attributes": {
+    "Enabled": true
+   }
+  },
+  {
+   "kind": "folder",
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities"
+   ],
+   "name": "Taxi",
+   "attributes": {
+    "Enabled": true
+   }
+  },
+  {
+   "kind": "folder",
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities"
+   ],
+   "name": "Passengers",
+   "attributes": {
+    "Enabled": true,
+    "DefaultAccess": "Friends",
+    "SeatOffsetX": 0,
+    "SeatOffsetY": 1.45,
+    "SeatOffsetZ": 11
+   }
+  },
+  {
+   "kind": "folder",
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities"
+   ],
+   "name": "Duels",
+   "attributes": {
+    "Enabled": true,
+    "StakesEnabled": true,
+    "Stakes": "0,5000,25000,100000",
+    "StakeMinRank": 3
+   }
+  },
+  {
+   "kind": "folder",
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities"
+   ],
+   "name": "Visits",
+   "attributes": {
+    "Enabled": true,
+    "MaxVisitorsPerGarage": 8
+   }
+  },
+  {
+   "kind": "folder",
+   "parent": [
+    "ServerStorage",
+    "Modules",
+    "Game"
+   ],
+   "name": "Activities",
+   "attributes": {}
+  },
+  {
+   "kind": "module",
+   "parent": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Activities"
+   ],
+   "name": "ProgressionRules",
+   "file": "scripts/activities/foundation/ProgressionRules.lua"
+  },
+  {
+   "kind": "module",
+   "parent": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Activities"
+   ],
+   "name": "ProgressionService",
+   "file": "scripts/activities/foundation/ProgressionService.lua"
+  },
+  {
+   "kind": "module",
+   "parent": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Activities"
+   ],
+   "name": "ActivityPayout",
+   "file": "scripts/activities/foundation/ActivityPayout.lua"
+  },
+  {
+   "kind": "module",
+   "parent": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Activities"
+   ],
+   "name": "ActivityService",
+   "file": "scripts/activities/foundation/ActivityService.lua"
+  },
+  {
+   "kind": "module",
+   "parent": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Activities"
+   ],
+   "name": "CourierRules",
+   "file": "scripts/activities/foundation/stubs/CourierRules.lua"
+  },
+  {
+   "kind": "module",
+   "parent": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Activities"
+   ],
+   "name": "CourierJob",
+   "file": "scripts/activities/foundation/stubs/CourierJob.lua"
+  },
+  {
+   "kind": "module",
+   "parent": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Activities"
+   ],
+   "name": "PassengerService",
+   "file": "scripts/activities/foundation/stubs/PassengerService.lua"
+  },
+  {
+   "kind": "module",
+   "parent": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Activities"
+   ],
+   "name": "TaxiRules",
+   "file": "scripts/activities/foundation/stubs/TaxiRules.lua"
+  },
+  {
+   "kind": "module",
+   "parent": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Activities"
+   ],
+   "name": "TaxiJob",
+   "file": "scripts/activities/foundation/stubs/TaxiJob.lua"
+  },
+  {
+   "kind": "module",
+   "parent": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Activities"
+   ],
+   "name": "DuelRules",
+   "file": "scripts/activities/foundation/stubs/DuelRules.lua"
+  },
+  {
+   "kind": "module",
+   "parent": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Activities"
+   ],
+   "name": "DuelService",
+   "file": "scripts/activities/foundation/stubs/DuelService.lua"
+  },
+  {
+   "kind": "folder",
+   "parent": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game"
+   ],
+   "name": "Activities",
+   "attributes": {}
+  },
+  {
+   "kind": "module",
+   "parent": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "Activities"
+   ],
+   "name": "ActivityClient",
+   "file": "scripts/activities/foundation/ActivityClient.lua"
+  },
+  {
+   "kind": "module",
+   "parent": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "Activities"
+   ],
+   "name": "CourierClientView",
+   "file": "scripts/activities/foundation/stubs/CourierClientView.lua"
+  },
+  {
+   "kind": "module",
+   "parent": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "Activities"
+   ],
+   "name": "PassengerClientView",
+   "file": "scripts/activities/foundation/stubs/PassengerClientView.lua"
+  },
+  {
+   "kind": "module",
+   "parent": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "Activities"
+   ],
+   "name": "TaxiClientView",
+   "file": "scripts/activities/foundation/stubs/TaxiClientView.lua"
+  },
+  {
+   "kind": "module",
+   "parent": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "Activities"
+   ],
+   "name": "DuelClientView",
+   "file": "scripts/activities/foundation/stubs/DuelClientView.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Player",
+    "EconomyServer"
+   ],
+   "file": "scripts/activities/foundation/EconomyServer.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Player",
+    "PlayerProfileSchema"
+   ],
+   "file": "scripts/activities/foundation/PlayerProfileSchema.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Player",
+    "AnalyticsServer"
+   ],
+   "file": "scripts/activities/foundation/AnalyticsServer.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ServerScriptService",
+    "ServerBase"
+   ],
+   "file": "scripts/activities/foundation/ServerBase.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "StarterPlayer",
+    "StarterPlayerScripts",
+    "ClientBase"
+   ],
+   "file": "scripts/activities/foundation/ClientBase.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "UI",
+    "DesktopFreeRoamHudUI"
+   ],
+   "file": "scripts/activities/foundation/DesktopFreeRoamHudUI.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "UI",
+    "MobileFreeRoamHudUI"
+   ],
+   "file": "scripts/activities/foundation/MobileFreeRoamHudUI.lua"
+  }
+ ]
+}

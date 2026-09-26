@@ -123,6 +123,7 @@ ActivityService.RandomRoadPoint(from: Vector3, minStuds, maxStuds, rng: Random?)
     -- a road-graph node inside the Core District* bounds, [min, max] studs from `from`; Y = 101
 ActivityService.NewId(prefix: string) -> string     -- unique per server
 ActivityService.Signals.Ended  -- Core.Signal (player, record, outcome)
+-- OnCancel runs after the record is cleared and Ended has fired; handlers must clean up only and must not call Begin.
 
 -- ActivityPayout
 ActivityPayout.Pay(player, {
