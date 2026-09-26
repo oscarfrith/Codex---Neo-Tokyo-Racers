@@ -338,21 +338,100 @@ The game is a prototype, so live-ops (Daily Dispatch, the Circuit Pass and dashb
 
 Each job then only adds its own rules.
 
-**Build order:**
+**Build order** (revised 2026-09-26: Oscar declined the horn/flash/Driver Tag item and asked for a GTA-style route guide and a rotating minimap):
 
 | Order | Item | Why now |
 |---|---|---|
-| 0 | Fix ECON-01 (validate-before-debit) and PB-01 | Duel bets and Cash packs both rely on the transaction rule; PB-01 is a quick win |
-| 1 | Activity core + Driver Rank (XP, rank, XP bar, rank-up card) | The foundation every RP activity pays into |
-| 2 | Horn, light flash and **Driver Tag** | Cheap, gives immediate expression, and is the duel handshake and on-duty display |
-| 3 | **Courier** | The first activity on the core; proves hubs, drops and route-guide reuse |
-| 4 | **Passenger seats + Sky Taxi (NPC fares)** | The biggest RP feature |
-| 5 | **Street Duels with Cash bets** | High-Risk: goes to delivery-reviewer |
-| Later | Style Meter, Speed Cams, Supply Pods/Night Rush, garage visits, Cash packs/gamepasses (after DATA-01/02), Daily Dispatch, Circuit Pass | Gameplay polish and live-ops once the prototype stabilises |
+| 1 | **Rotating minimap** (section 10.1) | Client-only, low risk, improves play immediately. Its clipping change is also required for route lines. |
+| 2 | **Route guide / GPS** (section 10.2) | Improves free roam now (dealership, garage, events). Courier, Taxi and Duels all need "drive to X across the city". |
+| 3 | Fix ECON-01 (validate-before-debit) and PB-01 | Duel bets and Cash packs rely on the transaction rule. PB-01 is a quick win. |
+| 4 | Activity core + Driver Rank (XP, rank, XP bar, rank-up card) | The foundation every RP activity pays into. |
+| 5 | **Courier** | The first activity on the core. Uses hubs, drops and the GPS. |
+| 6 | **Passenger seats + Sky Taxi (NPC fares)** | The biggest RP feature. |
+| 7 | **Street Duels with Cash bets** | High-Risk: goes to delivery-reviewer. The challenge is a context button that appears when you are close behind or alongside another free-roam car (PC key prompt, touch HUD button, controller face button), replacing the declined light-flash handshake. |
+| 8 | **Garage visits** | Enables the saved AccessMode/InvitedUserIds. |
+| Later | Style Meter, Speed Cams, Supply Pods/Night Rush, Cash packs ("Shark Card" style; after DATA-01/02), gamepasses, Daily Dispatch, Circuit Pass | Gameplay polish and live-ops once the prototype stabilises. |
 
-**Driver Tag:** an overhead BillboardGui above the vehicle and the on-foot avatar. It shows the display name, a rank chip in tier colour, and a status line such as "ON DUTY · SKY TAXI", "COURIER RUN" or "OPEN TO DUELS". It uses the Panel/PanelDeep tokens, Michroma, a pink Outline and a cyan status line. It is distance-culled at 150 studs and hidden during races, where race display names already own this role.
+**Declined:** horn, light flash and the overhead Driver Tag. The on-duty and job state appears only in the local job HUD strip and on the minimap.
 
-**UI fit rule:** all new UI uses UITheme tokens, the shared modal shell, SharedTopNotificationUI, GarageComponents/ResponsiveUIFoundation and the existing HUD button row. The only new widgets are the XP bar, the rank-up card, the job HUD strip and the Driver Tag. Mock each one against the approved free-roam concept before building it.
+**UI fit rule:** all new UI uses UITheme tokens, the shared modal shell, SharedTopNotificationUI, GarageComponents/ResponsiveUIFoundation and the existing HUD button row. The only new widgets are the XP bar, the rank-up card, the job HUD strip and the route distance chip. Mock each one against the approved free-roam concept before building it.
+
+### 10.1 Rotating minimap
+
+**Current build** (exported `DesktopFreeRoamHudUI` ~l.838-1110, `MobileFreeRoamHudUI` ~l.76/378):
+
+- `Minimap` is a Frame with `ClipsDescendants` and `UICorner` 9.
+- `MapPanCarrier` holds a 4× sub-pixel carrier with a UIScale, then `MapCanvas`, which contains 4 tile ImageLabels.
+- The canvas pans under a fixed centre `PlayerMarker` that rotates with the subject heading. `mapCanvas.Rotation` is forced to 0.
+- On top: the other-player markers (`FreeRoamMapPlayerMarkers`, container = minimap), a `NorthArrow` bottom-right, and four gradient edge fades.
+- Phase 3C deliberately never rotated the map, **because Roblox `ClipsDescendants` does not clip rotated GUI descendants**. A rotated canvas would draw outside the box. The same applies to rounded corners: ClipsDescendants clips to the rectangle, not the UICorner.
+
+**Design:**
+
+- **Clip:** the `Minimap` container becomes a **CanvasGroup**. It keeps the same name, size, position, background, UICorner and ZIndex. A CanvasGroup renders its descendants into one texture, so rotated content is clipped to the box and to the rounded corners.
+- **Rotation:** a new `MapRotator` Frame (map size, centred, transparent) sits between `Minimap` and `MapPanCarrier`.
+  - Its `Rotation = -displayedMapHeading`. GUI rotation pivots on the frame centre, which is exactly where the player is, so the map turns around the player.
+  - The existing pan maths stays unchanged.
+  - The canvas is the full map size, so rotated corners stay filled (apart from the existing world-edge limits).
+- **Heading source:** `Defaults.MapRotationMode`:
+  - `"Camera"` (default, as in GTA): the camera yaw. It stays stable on foot, and while driving the vehicle camera follows the car.
+  - `"Subject"`: the vehicle/character look direction, as now.
+  - `"NorthUp"`: the current behaviour, kept as a fallback and a future player setting.
+  - The heading reuses the existing exponential smoothing and shortest-angle wrap, with its own `Layout.MapRotationResponse`.
+- **Markers:**
+  - The player arrow shows `subjectHeading - mapHeading`: straight up when driving with the camera behind, turning when you look around.
+  - Other-player circles are rotated by the map heading: pass `MapRotationRadians` to `FreeRoamMapPlayerMarkers:Step`, or parent its overlay under `MapRotator`. Circles are rotation-invariant, so either works. The module keeps its bounded 14-marker, no-new-loop contract.
+  - The north arrow rotates by `-mapHeading` and orbits the map rim (`Layout.MapNorthOrbitInset`), as in GTA. Setting `MapNorthArrowMode="Corner"` keeps today's corner placement.
+- **Fades:** the edge fades stay unrotated overlays inside the CanvasGroup, so the box edge still reads the same.
+- **Owners:** the desktop and mobile HUD controllers remain the geometry, visibility and render owners, in the same render callbacks with no new loops. This is client-only: no remotes, no saves.
+- **Risks to verify:**
+  - CanvasGroup texture quality and memory on low-end mobile (PERF-01 / iPhone-class). The group is small, about 245×245 px, re-rendered each frame while panning.
+  - The 4× sub-pixel carrier inside a CanvasGroup must not blur.
+  - Toggling the map during garage, race and menu suppression.
+- **Verify:**
+  - Turn 360° on foot and driving: no map pixels outside the box or rounded corners.
+  - The north arrow is correct after the `MapCoordinateRotationDegrees`=90 calibration; the player position matches the world.
+  - Other-player circles line up with the rotated map.
+  - `"NorthUp"` mode reproduces today exactly.
+  - Frame time on the mobile HUD is not meaningfully worse.
+- **Effort:** small–medium. One Standard delivery touching two HUD modules and, optionally, the markers module.
+
+### 10.2 Route guide (GPS)
+
+- **Player goal:** set or receive a destination, then see the shortest road route drawn on the minimap, like GTA. The route re-plans when you leave it and clears on arrival.
+- **Road graph (the main work):**
+  - The 662 `RoadSpawnMarkers` (tag `NTR_RoadSpawnPoint`) sit at the centres of the curated blockout road parts (`Workspace.Test + WIP Assets.Blockout.Roads`, parts named `Road`, colour #5F5F5F). They record their source road.
+  - An **Edit-time generator** builds nodes from those road parts, and edges where two road parts overlap or touch in plan view (OBB overlap with tolerance). It then writes a compact data ModuleScript: `ReplicatedStorage.Config.World.RoadGraph`, with node ids, XZ positions, adjacency and optional one-way/blocked flags.
+  - The graph is data, not world instances, so it is streaming-safe and has no Workspace cost. Expected size is under ~1k nodes and ~20 KB.
+  - A **debug overlay** (an opt-in `ClientTools` attribute, off by default) draws nodes and edges for manual review. Bad links are fixed by attributes on the source road parts (`RoadGraphExclude`, `RoadGraphLinkTo`) and the graph is regenerated. The graph is never hand-edited.
+  - Scope is the ~20-block playable district (MAP-01) first.
+- **Pathfinding:** client-side A* over the graph (under 1 ms at this size).
+  - Start is the nearest node ahead of the car's direction; the goal is the nearest node to the destination.
+  - Re-plan when more than `OffRouteStuds` (40) from the path for 1 s. Throttled to at most 2 per second.
+  - PathfindingService is not used: it is character navmesh and wrong for hovercars at city scale.
+- **Owner:** one new client module, `RouteGuideClient`, which owns the destination and the route.
+  - API: `SetDestination(sourceId, worldPosition, {Priority, Label, Colour})` and `Clear(sourceId)`. The highest priority wins, in the order activity (job/duel) > quick destination > custom waypoint.
+  - Activities call it from their client views. The server only supplies destinations (e.g. the courier drop) through the activity state.
+  - It is suppressed while a race or time trial is active, because the race route guide owns guidance there.
+- **Presentation:**
+  - **Minimap route:** a polyline of pooled thin Frames inside `MapCanvas`, so it pans and rotates with the map and is clipped by the CanvasGroup from 10.1. It is rebuilt only on re-plan. Colour is `Telemetry` cyan for free-roam destinations and `HighSpeed` pink for activity targets, 3–4 px wide, with a 1 px `PanelDeep` outline for contrast.
+  - **Destination blip:** an image marker at the goal. When the goal is off the map, it is clamped to the rim with an edge arrow.
+  - **Distance chip:** a small Panel chip under the minimap showing the label and distance, e.g. "DEALERSHIP · 0.8 mi", in the same units setting as the speedo. It uses StyleMetric and Michroma.
+  - **Optional in-world guide:** reuse the racing route-guide chevrons at upcoming turns only (`EnableWorldChevrons`, default off).
+- **Setting a destination (prototype):**
+  - A "Set route" row in the existing teleport modal (the shared modal shell), with Dealership, My Garage and each race/time-trial start. It reuses the list and cards already in that modal.
+  - A full-screen map with tap-to-waypoint is **deferred**. It is a larger new UI and needs its own mockup.
+- **Config:**
+  - `RS.Config.UI.RouteGuide`: `LineWidth`, `ColourFreeRoam`, `ColourActivity`, `OffRouteStuds` 40, `ReplanMinSeconds` 0.5, `ArriveStuds` 30, `EnableWorldChevrons` false.
+  - `RS.Config.World.RoadGraph` (generated data plus `GeneratorVersion`).
+- **Authority, persistence, security:** client-only. No remotes, no saved data. Activity destinations are server-owned and only drawn by the client.
+- **Verify:**
+  - Generator: node/edge counts, a connectivity report (a single connected component in the playable district), and the debug overlay reviewed.
+  - Routes to every quick destination from 5 start points; re-plan after deliberately going wrong; arrival clears the route.
+  - Routes are hidden during races.
+  - Minimap line clipping while rotating.
+  - Mobile HUD frame time.
+- **Effort:** medium. Graph generation and review is roughly half the work; A*, the line renderer and the chip are straightforward.
 
 ## 11. Mockups
 
