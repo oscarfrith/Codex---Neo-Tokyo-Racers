@@ -1,0 +1,24 @@
+{
+  "task": "GPS route guide (Street Life design 10.2)",
+  "date": "2026-09-26",
+  "place": "Space Racers v2 (71491191583884), Edit",
+  "approach": "Road graph generated from the minimap tile artwork (the drawn road network the player sees): tiles read in Studio Edit via in-memory EditableImage (no DataModel writes), road pixels = opaque and brightness >= 112, 3x3 closing (merges dual carriageways) and opening (drops 1-2 px strokes), Zhang-Suen thinning with 2x2-block cleanup, crossing-number junctions, spur pruning, RDP simplification, pixel->world via the minimap calibration (2850/207 studs per px, 90 deg, no flips). Blockout road parts and RoadSpawnMarkers were rejected: in v2 they describe an older, larger layout and most blockout road centres have no city road beneath them.",
+  "graph": "309 nodes, 475 edges, ~427k studs of road, 46 KB data module; centrelines within ~1.5 px (~20 studs) of road centres",
+  "before_capture": "roblox/captures/route-guide-before/capture.json",
+  "after_capture": "roblox/captures/route-guide-after/capture.json",
+  "scope": "added RoadRouting, RoadGraphData (Modules.Game.World) and RouteGuide (Modules.Game.UI); added Config.UI.RouteGuide with Destinations (Dealership, MyGarage, Race_ShowroomLoop, Race_ShiftedCanalSprint; Position copied from SourcePath parts); changed DesktopFreeRoamHudUI, MobileFreeRoamHudUI, RaceBrowserClient; installed hashes equal reviewed files; no other source delta (188 sources)",
+  "installer": "scripts/route_guide/build_installer.py -> AUDIT before; APPLY 12/12; AUDIT after; ROLLBACK 12/12 to before (nothing left); APPLY again 12/12; AUDIT after",
+  "pure_tests": "scripts/route_guide/tests.lua: 28/28 (synthetic graphs, snapping, same-edge, bent edges, symmetry, progress, formatting; real graph: 4 destinations within 160 studs of a road, all 12 pairs routed at 1.3-1.9x straight-line, 1.0 ms worst)",
+  "play_desktop": {
+    "routes_modal": "clicking the minimap opens ROUTE GUIDE (shared modal shell and buttons): 4 destinations, CLEAR ROUTE, CLOSE",
+    "route_drawn": "Waterfront Sprint from the dealership plaza: cyan route with dark outline inside the rotating, clipped map; chip 'WATERFRONT SPRINT 0.4 MI'",
+    "race_browser": "footer EXIT | SET ROUTE | TELEPORT; SET ROUTE for Waterfront Sprint closed the browser, toast 'ROUTE SET: WATERFRONT SPRINT', route ends on the map's checkered-flag icon",
+    "replan_and_arrival": "character moved ~460 studs off route: re-planned (0.3 MI, 18 segments); moved beside the start zone: route cleared, chip hidden",
+    "driving": "sandbox car, route to My Garage drawn while driving with the map rotating",
+    "console": "no errors or warnings from the new code",
+    "onboarding_note": "the onboarding overlay blocks SET ROUTE while it is teaching TELEPORT (expected gating)"
+  },
+  "not_verified": "mobile/touch runtime and phone frame time; two-client; full drive along a long route; bridges/ramps where roads cross at different levels on the flat map may appear as junctions; coastal loop roads are assumed drivable because the map draws them",
+  "evidence_type": "agent-verified Studio desktop (normal UI + API vehicle spawn + synthetic character moves); not user-confirmed",
+  "rollback": "py scripts/route_guide/build_installer.py roblox/captures/route-guide-before/capture.json scripts/route_guide/install.rollback.lua --mode ROLLBACK, then run it in Studio Edit"
+}

@@ -2,6 +2,10 @@
 
 Recent deliveries, newest first. Entries before September 2026 live in [the archive](history/patch-history-2026-05-to-2026-08.md).
 
+## 2026-09-26 - GPS route guide installed (v2)
+
+Road graph generated from the minimap artwork: v2 blockout roads and spawn markers describe an older, larger layout. Pipeline: read-only EditableImage export of the four tiles, then road-pixel mask, closing/opening, thinning, junction tracing, spur pruning and pixel-to-world calibration; 309 nodes and 475 edges. New RoadRouting (pure A*), RoadGraphData and RouteGuide (client owner and minimap renderer). Clicking the minimap opens ROUTE GUIDE; the race browser gets SET ROUTE; the chip shows destination and distance; routes re-plan when off-route and clear on arrival. One canonical installer (AUDIT/APPLY/ROLLBACK) verified apply, rollback and re-apply. Pure tests 28/28; agent-verified desktop play (modal, race browser, re-plan, arrival, driving). Mobile runtime untested (ROUTE-01). [Reference](route-guide-system.md), [verification](../scripts/route_guide/verification.json).
+
 ## 2026-09-26 - Minimap follows the character; north arrow removed
 
 User-confirmed the rotating minimap, then asked for rotation by the character/vehicle facing and no north arrow. FreeRoamMapPlayerMarkers now defaults to MapRotationMode Subject and MapNorthArrowMode Hidden (new mode), and config was set to match. Agent-verified: map rotation equals character heading independent of camera; arrow up; no north arrow.

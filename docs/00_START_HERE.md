@@ -4,11 +4,14 @@ Target: **Space Racers v2, place 71491191583884** (since 2026-09-26; v1 12130491
 
 ## Current task and next action
 
-**Feature work (Street Life, [design](design/street-life-update.md)).** Step 1, the rotating minimap, is installed on v2 and agent-verified on desktop (2026-09-26), not yet user-confirmed. [Verification](../scripts/minimap_rotation/verification.json). Open: mobile/touch runtime, two-client markers, low-end CanvasGroup cost (MAP-02).
+**Feature work (Street Life, [design](design/street-life-update.md)).**
 
-Next action: Oscar play-tests the minimap (ROTATE and NORTH UP in Settings), then `/follow` Step 2, the GPS route guide ([design 10.2](design/street-life-update.md#102-route-guide-gps)). Remaining order: ECON-01/PB-01, activity core + Driver Rank, Courier, Sky Taxi, Street Duels, garage visits.
+- **Minimap:** the rotating minimap is user-confirmed on desktop. It follows the character or vehicle facing, and the north arrow is hidden (MAP-02).
+- **Route guide:** the GPS route guide is installed and agent-verified on desktop, but not yet user-confirmed (ROUTE-01). See the [reference](route-guide-system.md) and the [verification](../scripts/route_guide/verification.json).
 
-Latest targeted capture: **2026-09-26**, [minimap rotation after](../roblox/captures/minimap-rotation-after/capture.json), v2, 185 sources.
+Next action: Oscar play-tests the route guide (click the minimap, or use the race browser's SET ROUTE). Then the remaining order is ECON-01/PB-01, activity core + Driver Rank, Courier (which uses `RouteGuide.SetDestination` with Kind "Activity"), Sky Taxi, Street Duels and garage visits.
+
+Latest targeted capture: **2026-09-26**, [route guide after](../roblox/captures/route-guide-after/capture.json), v2, 188 sources.
 
 ### Previous status
 

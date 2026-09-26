@@ -404,6 +404,14 @@ Each job then only adds its own rules.
 
 ### 10.2 Route guide (GPS)
 
+**Status: installed on v2 on 2026-09-26, agent-verified on desktop.**
+
+As built, it differs from the plan below in a few places (see the [reference](../route-guide-system.md)):
+
+- The graph comes from the minimap artwork, not RoadSpawnMarkers. In v2 the blockout roads do not match the built streets.
+- The data lives at `Modules.Game.World.RoadGraphData`, with the pure maths in `RoadRouting`.
+- Destinations are chosen from a ROUTE GUIDE window opened by clicking the minimap, and from the race browser's SET ROUTE, instead of the teleport modal.
+
 - **Player goal:** set or receive a destination, then see the shortest road route drawn on the minimap, like GTA. The route re-plans when you leave it and clears on arrival.
 - **Road graph (the main work):**
   - The 662 `RoadSpawnMarkers` (tag `NTR_RoadSpawnPoint`) sit at the centres of the curated blockout road parts (`Workspace.Test + WIP Assets.Blockout.Roads`, parts named `Road`, colour #5F5F5F). They record their source road.
