@@ -20,8 +20,10 @@ desktop.ini
 *.rbxl.lock
 *.rbxlx.lock
 
-# Codex/local scratch
+# Assistant local scratch/settings (project .claude/settings.json, commands and agents are tracked)
 .codex/
+.claude/settings.local.json
+CLAUDE.local.md
 BACKUPS_*/
 *_Backup_*
 __pycache__/
@@ -44,4 +46,6 @@ roblox/exported_scripts/ServerStorage/NeoTokyoRacers_LegacyArchive/
 !/scripts/
 !/diagrams/
 !AGENTS.md
+!CLAUDE.md
+!/.claude/
 !README.md

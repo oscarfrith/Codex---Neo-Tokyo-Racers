@@ -1,5 +1,7 @@
 # Space Racers prompt pack
 
+In Claude Code these prompts are available as slash commands in .claude/commands: /start, /suggest, /follow, /continue, /audit, /debug-output, /handoff, /commit-summary, /capture, plus /design and /archive-docs. The files below are kept for other assistants and stay in sync by intent, not automatically.
+
 Use [start session](01_start_every_session.md), then describe the task. Current status lives in [start here](../docs/00_START_HERE.md); execution policy lives in [delivery workflow](../docs/13_efficient_feature_delivery_protocol.md).
 These prompts carry no baseline dates or installation queue.
 

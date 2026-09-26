@@ -26,4 +26,4 @@ Before a new system, substantial expansion or connected networking/persistence/r
 - Follow the current capture/recovery policy in the delivery workflow. Never commit docs/studio-full-export-paste.txt. Windows mirror staging must inherit repository ACLs.
 - Update only the documentation responsibilities affected by a change. Record reusable lessons after confirmed work; keep historical experiments out of the current run queue.
 
-Paths: scripts/ for delivery tools; docs/ for design/handoff; diagrams/ for diagrams. Current task/status, mirror timestamp and next action belong only in docs/00_START_HERE.md.
+Paths: scripts/ for delivery tools; docs/ for design/handoff (index: docs/README.md); diagrams/ for diagrams; .claude/ for Claude Code commands, settings and subagents (CLAUDE.md imports this file, so keep durable rules here). Current task/status, mirror timestamp and next action belong only in docs/00_START_HERE.md.
