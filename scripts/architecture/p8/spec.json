@@ -1,0 +1,84 @@
+{
+ "task": "Architecture P8: live-ops (FeatureFlags, AnalyticsServer registry, ReceiptProcessor template)",
+ "lane": "High-Risk",
+ "contract": "Goal: live-tunable flags, analytics and a safe receipt template without new remotes or saved-data changes. FeatureFlags (ServerStorage.Modules.Core): non-yielding Get/IsEnabled resolving Studio Flag_<key> attribute override, then Creator Dashboard ConfigService snapshot (background refresh, failures keep defaults), then default. First consumer: RaceIntegrity mode (dashboard RaceIntegrityMode overrides the attribute). AnalyticsServer (new ServerBase entry, depends on ProfileServer): registry of reported events; economy sinks via new MoneyService.Debited signal (only when profile._Player is a live player), sources via existing EconomyCashCommitted, onboarding funnel only when OnboardingServer newly records a milestone (Changed=true); all pcall-guarded and gated by AnalyticsEnabled (default on). ReceiptProcessor: inert, idempotent save-first template (per-PurchaseId in-flight lock; grant and record applied together; failed save keeps the single in-memory grant and retries only the save; never grants twice or claws back) for future developer products; prerequisite before binding: persist and bound PurchaseHistory. Deferred: server restart countdown (needs a client UI and a new remote). Preserved: all balances, replies, persistence. Rollback: installer ROLLBACK.",
+ "verification": "tooling (ReceiptProcessor + FeatureFlags tests), installation, startup (AnalyticsServer ready), api (purchase emits sink without errors; race mode unchanged), errors",
+ "operations": [
+  {
+   "kind": "module",
+   "path": [
+    "ServerStorage",
+    "Modules",
+    "Core",
+    "FeatureFlags"
+   ],
+   "class": "ModuleScript",
+   "file": "scripts/architecture/p8/FeatureFlags.lua"
+  },
+  {
+   "kind": "module",
+   "path": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Player",
+    "AnalyticsServer"
+   ],
+   "class": "ModuleScript",
+   "file": "scripts/architecture/p8/AnalyticsServer.lua"
+  },
+  {
+   "kind": "module",
+   "path": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Player",
+    "ReceiptProcessor"
+   ],
+   "class": "ModuleScript",
+   "file": "scripts/architecture/p8/ReceiptProcessor.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Player",
+    "MoneyService"
+   ],
+   "file": "scripts/architecture/p8/after/MoneyService.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Racing",
+    "RaceIntegrity"
+   ],
+   "file": "scripts/architecture/p8/after/RaceIntegrity.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Player",
+    "OnboardingServer"
+   ],
+   "file": "scripts/architecture/p8/after/OnboardingServer.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ServerScriptService",
+    "ServerBase"
+   ],
+   "file": "scripts/architecture/p8/after/ServerBase.lua"
+  }
+ ]
+}

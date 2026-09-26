@@ -1,0 +1,15 @@
+{
+  "phase": "P8 Live-ops",
+  "date": "2026-09-26",
+  "lane": "High-Risk",
+  "before_capture": "roblox/captures/arch-p6-after/capture.json",
+  "after_capture": "roblox/captures/arch-p8-after/capture.json",
+  "scope": "added Core.FeatureFlags, Player.AnalyticsServer (new ServerBase entry), Player.ReceiptProcessor (inert template); changed MoneyService (Debited signal), RaceIntegrity (valid dashboard mode overrides attribute), OnboardingServer (analytics on newly recorded milestone), ServerBase (entry)",
+  "review": "delivery-reviewer: no blockers for this APPLY. Fixed: invalid dashboard mode falls back to attribute; zero-amount sinks skipped; onboarding funnel only on newly recorded milestones; player-left guard; WaitForChild timeouts; ReceiptProcessor in-flight lock and no-undo save-retry design (pre-binding blockers). Accepted: ~60 s flag propagation; sink logged even if a later internal failure restores cash (ECON-01 path).",
+  "tooling": "p8/tests.lua 6/6 PASS incl. concurrent duplicate receipt; RaceIntegrity.mode resolution with injected flags: no flag->Log, invalid/bool->Log, Enforce->Enforce, Off->Off",
+  "installation": "AUDIT -> APPLY 7 -> ROLLBACK 7 -> APPLY 7 (then rollback/re-apply with memoised flags)",
+  "startup": "27 server features ready incl. AnalyticsServer",
+  "api": "sandbox purchases -> AnalyticsService LogEconomyEvent fired per purchase (3/3); onboarding funnel steps fired for newly recorded milestones; ConfigService snapshot fetched; 'Config value not found' logged once per key per refresh (memoised), no warnings",
+  "deferred": "server restart countdown (needs client UI + new remote, excluded by plan); dashboard ingestion and live ConfigService values cannot be checked in Studio",
+  "rollback": "installer ROLLBACK with scripts/architecture/p8/spec.json against arch-p6-after"
+}
