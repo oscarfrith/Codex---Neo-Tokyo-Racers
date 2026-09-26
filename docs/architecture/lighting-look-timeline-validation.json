@@ -1,0 +1,276 @@
+{
+  "schema": 1,
+  "task": "Editable solar and lighting look timeline",
+  "build": "lighting-look-timeline-abcd1509ea0e",
+  "changed": "Five revised V1 sources, three additional root attributes, editable milestone/palette folders and one cloudless sky. Complete original non-solar look values preserved at solar anchors; 120-second test cycle.",
+  "studio_action": "Installed, rollback/reapply/no-op verified, Stepped runtime compared. Final Edit: Continuous, duration 120, auto/sync true, opt-in tools off. No publish.",
+  "capture": "roblox/captures/lighting-look-timeline-after/capture.json; 2026-09-23 10:56:14 UTC; 168 source records and 138 selected nodes. Exact original-object parity, not full-world backup.",
+  "recovery": "Set Config.World.Lighting.CycleMode=Stepped in Edit and restart Play. Guarded full recovery uses scripts/continuous_lighting/install.lua ROLLBACK; preserve artist edits before full removal.",
+  "next_action": "User first visual test with exact original values, explicitly requested. Review horizon warmth and bright intermediate haze; complete named normal-flow/streaming/device/two-client checks. No installer pending.",
+  "checks": [
+    {
+      "id": "installation",
+      "kind": "static",
+      "status": "pass",
+      "observation": "Exact cumulative/revision source and selected object scope; 5,817 pure checks, six exact targets, full recovery and eight original Stepped targets pass.",
+      "evidence": [
+        {
+          "path": "scripts/continuous_lighting/evidence/v2/delivery-verification.json",
+          "sha256": "23788c401b163820925c249a8a60be4b87571470f426cc5a66c3a7e91ccbbd3b"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v2/v2Numerical.json",
+          "sha256": "753da875bb969c3594f97f42471af7a824b9ceb5bd6a9bcea7cbef00fd8fadba"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v2/lookTimelineInstall.json",
+          "sha256": "2be49f72a78da600de8b5e68ba8e0b5f2cbb3bcabeaa876216024ac1e4b1abaa"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v2/v2FinalAudit.json",
+          "sha256": "405ff098b1058abcd3fe299beed09ebe0a49f0a4d72bee173d134009d1d0443e"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v2/v2Stepped.json",
+          "sha256": "34d00e5905596fb317aee0fab576124aef49e8db022082cfa99ab611c1fdc4d4"
+        }
+      ],
+      "context": {
+        "session": "Studio 4c38d6a4-0bfd-46b3-9308-ac4b9b4c95a2 V2 final Continuous Play",
+        "build": "lighting-look-timeline-abcd1509ea0e",
+        "environment": "Studio-no-save-sandbox",
+        "device": "Windows Studio desktop client",
+        "input": "Actual mouse Play input; read-only runtime inspection and explicitly labelled controlled signals/respawn",
+        "time_utc": "2026-09-23T10:56:14Z",
+        "interaction": "normal-ui",
+        "start_screen_active": false,
+        "visible_input_verified": true
+      },
+      "reason": "",
+      "next_action": ""
+    },
+    {
+      "id": "startup",
+      "kind": "ui",
+      "status": "pass",
+      "observation": "Normal Play entered City; 40 client entries ready/four tools skipped; all 26 server entries ready, sandbox true.",
+      "evidence": [
+        {
+          "path": "scripts/continuous_lighting/evidence/v2/v2FinalStartup.json",
+          "sha256": "92bb791e9f3991ec0e13e590a04494198f7518e56603b6489bf99dc7467b2211"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v2/v2FinalServerStartup.json",
+          "sha256": "f63879005c8d0d9219a09eee4d24dddf0b4c674ac66d8fc84f904628e00c71ac"
+        }
+      ],
+      "context": {
+        "session": "Studio 4c38d6a4-0bfd-46b3-9308-ac4b9b4c95a2 V2 final Continuous Play",
+        "build": "lighting-look-timeline-abcd1509ea0e",
+        "environment": "Studio-no-save-sandbox",
+        "device": "Windows Studio desktop client",
+        "input": "Actual mouse Play input; read-only runtime inspection and explicitly labelled controlled signals/respawn",
+        "time_utc": "2026-09-23T10:56:14Z",
+        "interaction": "normal-ui",
+        "start_screen_active": false,
+        "visible_input_verified": true
+      },
+      "reason": "",
+      "next_action": ""
+    },
+    {
+      "id": "garage",
+      "kind": "ui",
+      "status": "deferred",
+      "observation": "Normal dealership entry used original look. Twelve controlled context transitions restored current city.",
+      "evidence": [
+        {
+          "path": "scripts/continuous_lighting/evidence/v2/v2DealerEntry.json",
+          "sha256": "e9d913a56e99b1cec328a485a0c745ddf441a7b8def6fd5271f5813c9724b4b9"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v2/v2DealerExit.json",
+          "sha256": "78ee69d4b6826a988a0bc3cf5da54be86dec6b0b1846fa16a34be077a87402f9"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v2/v2Contexts.json",
+          "sha256": "211b2c0ecf794d682e09cacfffeed843889c65a746e8023a06a7dd39b50013f9"
+        }
+      ],
+      "context": {
+        "session": "Studio 4c38d6a4-0bfd-46b3-9308-ac4b9b4c95a2 V2 final Continuous Play",
+        "build": "lighting-look-timeline-abcd1509ea0e",
+        "environment": "Studio-no-save-sandbox",
+        "device": "Windows Studio desktop client",
+        "input": "Actual mouse Play input; read-only runtime inspection and explicitly labelled controlled signals/respawn",
+        "time_utc": "2026-09-23T10:56:14Z",
+        "interaction": "normal-ui",
+        "start_screen_active": false,
+        "visible_input_verified": true
+      },
+      "reason": "Onboarding left normal Exit unconfirmed in this revision; controlled signals do not establish normal dealership/owned-garage release.",
+      "next_action": "Complete normal dealership exit and owned-garage appearance/drive-in/preview-back release in ordinary play."
+    },
+    {
+      "id": "errors",
+      "kind": "runtime",
+      "status": "pass",
+      "observation": "122.11-second loop observed all looks, both horizon switches, midnight and no lighting errors. Valid live tuning propagates; overlapping holds reject and recover. Final fresh session has no lighting errors; pre-existing Player:Move warning remains.",
+      "evidence": [
+        {
+          "path": "scripts/continuous_lighting/evidence/v2/v2LoopAndStartup.json",
+          "sha256": "962c1e87ba4479bea7dca6fcfe9dce928c744e4d4918507f5a4aaa3ba50445c0"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v2/v2LiveTuning.json",
+          "sha256": "a99242d49b9f358ebb82ab53ab7abf1564caa63d41c08f49f49a110ec6497195"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v2/v2InvalidTuning.json",
+          "sha256": "177ce147808764f6a4b7fa47d11bbb3988e20bf41947be104e7f547dcf039100"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v2/v2FinalConsole.json",
+          "sha256": "fb387aaad268ff60058c760c4a658a228e88e88a8fd7ac04f2afc7fe94e3f7ed"
+        }
+      ],
+      "context": {
+        "session": "Studio 4c38d6a4-0bfd-46b3-9308-ac4b9b4c95a2 V2 final Continuous Play",
+        "build": "lighting-look-timeline-abcd1509ea0e",
+        "environment": "Studio-no-save-sandbox",
+        "device": "Windows Studio desktop client",
+        "input": "Actual mouse Play input; read-only runtime inspection and explicitly labelled controlled signals/respawn",
+        "time_utc": "2026-09-23T10:56:14Z",
+        "interaction": "normal-ui",
+        "start_screen_active": false,
+        "visible_input_verified": true
+      },
+      "reason": "",
+      "next_action": ""
+    },
+    {
+      "id": "cleanup",
+      "kind": "runtime",
+      "status": "deferred",
+      "observation": "Stable ActiveSky/seven Lighting children over the loop and after a controlled respawn.",
+      "evidence": [
+        {
+          "path": "scripts/continuous_lighting/evidence/v2/v2LoopAndStartup.json",
+          "sha256": "962c1e87ba4479bea7dca6fcfe9dce928c744e4d4918507f5a4aaa3ba50445c0"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v2/v2Respawn.json",
+          "sha256": "91c99f5f6965087286550a06dcf6cfbf64871eaadd803b103f6b38c471652829"
+        }
+      ],
+      "context": {
+        "session": "Studio 4c38d6a4-0bfd-46b3-9308-ac4b9b4c95a2 V2 final Continuous Play",
+        "build": "lighting-look-timeline-abcd1509ea0e",
+        "environment": "Studio-no-save-sandbox",
+        "device": "Windows Studio desktop client",
+        "input": "Actual mouse Play input; read-only runtime inspection and explicitly labelled controlled signals/respawn",
+        "time_utc": "2026-09-23T10:56:14Z",
+        "interaction": "normal-ui",
+        "start_screen_active": false,
+        "visible_input_verified": true
+      },
+      "reason": "Parent counts do not prove bounded detached references/connections.",
+      "next_action": "Observe matched repeated normal context and stream-out/re-entry flows including settled retention."
+    },
+    {
+      "id": "streaming",
+      "kind": "ui",
+      "status": "deferred",
+      "observation": "Sandbox server-triggered respawn preserved City and readiness.",
+      "evidence": [
+        {
+          "path": "scripts/continuous_lighting/evidence/v2/v2Respawn.json",
+          "sha256": "91c99f5f6965087286550a06dcf6cfbf64871eaadd803b103f6b38c471652829"
+        }
+      ],
+      "context": {
+        "session": "Studio 4c38d6a4-0bfd-46b3-9308-ac4b9b4c95a2 V2 final Continuous Play",
+        "build": "lighting-look-timeline-abcd1509ea0e",
+        "environment": "Studio-no-save-sandbox",
+        "device": "Windows Studio desktop client",
+        "input": "Actual mouse Play input; read-only runtime inspection and explicitly labelled controlled signals/respawn",
+        "time_utc": "2026-09-23T10:56:14Z",
+        "interaction": "normal-ui",
+        "start_screen_active": false,
+        "visible_input_verified": true
+      },
+      "reason": "No driven stream-out/re-entry route completed.",
+      "next_action": "Drive a fixed World route and confirm newly streamed lamps/windows take the current horizon state."
+    },
+    {
+      "id": "device",
+      "kind": "device",
+      "status": "deferred",
+      "observation": "Six paused desktop images retain original endpoint values; twilight purple is visible.",
+      "evidence": [
+        {
+          "path": "scripts/continuous_lighting/evidence/v2/day.jpg",
+          "sha256": "c82786d719ecb248952e2313672595572df99a4c47a712db0ae9501e13f32421"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v2/sunset.jpg",
+          "sha256": "5d4d9e982bd0122836d312ba013543c7e9d8409b540f849f6a784966c395fbc9"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v2/dusk.jpg",
+          "sha256": "3c24fdccfaf53154339530e647cc74eb1abdf5846d6dbfb77cd17768cba4f822"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v2/night.jpg",
+          "sha256": "70a1fe57cac051bbd218dfa6cb6c600743c82dc95696ba52a964eb1274b6e5ac"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v2/dawn.jpg",
+          "sha256": "c6f17ef56e4793f8893f9f619109b2f4bc45e35c4e6986eaeec890d0cf0d6e18"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v2/sunrise.jpg",
+          "sha256": "ac538294b39b3434a2468b813d6e71a324b45f9ea622050c5ce9f2c7b3b1a155"
+        }
+      ],
+      "context": {
+        "session": "Studio 4c38d6a4-0bfd-46b3-9308-ac4b9b4c95a2 V2 final Continuous Play",
+        "build": "lighting-look-timeline-abcd1509ea0e",
+        "environment": "Studio-no-save-sandbox",
+        "device": "Windows Studio desktop client",
+        "input": "Actual mouse Play input; read-only runtime inspection and explicitly labelled controlled signals/respawn",
+        "time_utc": "2026-09-23T10:56:14Z",
+        "interaction": "normal-ui",
+        "start_screen_active": false,
+        "visible_input_verified": true
+      },
+      "reason": "No physical iPhone 7 or low-graphics/normal-speed visual run. Horizon values are dark and sun-facing intermediate haze can be bright; user requested preserving exact values for the first test.",
+      "next_action": "User reviews full cycle, road/vehicle/skyline and horizon transitions, followed by physical iPhone 7 and low-graphics checks. Tune editable copies only in response to review."
+    },
+    {
+      "id": "multiplayer",
+      "kind": "multiplayer",
+      "status": "deferred",
+      "observation": "Shared-epoch numerical equivalence passes.",
+      "evidence": [
+        {
+          "path": "scripts/continuous_lighting/evidence/v2/v2Numerical.json",
+          "sha256": "753da875bb969c3594f97f42471af7a824b9ceb5bd6a9bcea7cbef00fd8fadba"
+        }
+      ],
+      "context": {
+        "session": "Studio 4c38d6a4-0bfd-46b3-9308-ac4b9b4c95a2 V2 final Continuous Play",
+        "build": "lighting-look-timeline-abcd1509ea0e",
+        "environment": "Studio-no-save-sandbox",
+        "device": "Windows Studio desktop client",
+        "input": "Actual mouse Play input; read-only runtime inspection and explicitly labelled controlled signals/respawn",
+        "time_utc": "2026-09-23T10:56:14Z",
+        "interaction": "normal-ui",
+        "start_screen_active": false,
+        "visible_input_verified": true
+      },
+      "reason": "Only one Studio client observed; numerical equivalence does not prove two-client or late-join presentation.",
+      "next_action": "Compare two normally started clients including late join in an authorized isolated test environment; separate broader performance gates remain open."
+    }
+  ]
+}

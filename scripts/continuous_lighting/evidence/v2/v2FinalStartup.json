@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"runtime\":{\"OwnedGarageEnvironmentStarted\":true,\"LightingCycleReady\":true,\"Phase5Status\":\"running\",\"LightingContext\":\"City\"},\"startScreenActive\":false,\"startup\":{\"RaceEntryMenuClient\":\"ready\",\"RaceRouteGuideClient\":\"ready\",\"ThrustPreviewClient\":\"ready\",\"RaceSessionPresentationClient\":\"ready\",\"LightingPreviewClient\":\"skipped\",\"TrailerModeClient\":\"skipped\",\"RaceTransitionClient\":\"ready\",\"OwnedGarageClient\":\"ready\",\"DriveSessionClient\":\"ready\",\"DriveToEarnCashTelemetryClient\":\"ready\",\"CharacterSprintClient\":\"ready\",\"LODClient\":\"ready\",\"ContextAudioRuntimeClient\":\"ready\",\"RaceQueueClient\":\"ready\",\"LightingClient\":\"ready\",\"RaceLifecyclePresentationClient\":\"ready\",\"StudioCashGrantClient\":\"ready\",\"TrailerVehicleCameraClient\":\"skipped\",\"DesktopFreeRoamHudUI\":\"ready\",\"RuntimeVFXClient\":\"ready\",\"RaceEntryPresentationClient\":\"ready\",\"GarageUI\":\"ready\",\"AcousticsRuntimeClient\":\"ready\",\"GarageEntranceClient\":\"ready\",\"WindowMaterialClient\":\"ready\",\"OwnedGarageEnvironmentLightingClient\":\"ready\",\"NightLamppostLightClient\":\"ready\",\"PresentationAudioRuntimeClient\":\"ready\",\"MobileFreeRoamHudUI\":\"ready\",\"SharedTopNotificationUI\":\"ready\",\"OnboardingClient\":\"ready\",\"LoadingTransitionUI\":\"ready\",\"FreeRoamVehicleExitButtonClient\":\"ready\",\"MobileDriveControlsClient\":\"ready\",\"FreeRoamParkedHoverClient\":\"ready\",\"RaceTimeTrialResultCoachClient\":\"ready\",\"RaceSessionAssetsClient\":\"ready\",\"RaceCountdownPresentationClient\":\"ready\",\"DealershipIntroClient\":\"ready\",\"AudioRuntimeClient\":\"ready\",\"TrailerShotClient\":\"skipped\",\"RaceParticipantVisibilityClient\":\"ready\",\"RaceBrowserClient\":\"ready\",\"GaragePreviewPresentationClient\":\"ready\"},\"clock\":10.613611221313477,\"sandbox\":true}"
+    }
+  ],
+  "isError": false
+}

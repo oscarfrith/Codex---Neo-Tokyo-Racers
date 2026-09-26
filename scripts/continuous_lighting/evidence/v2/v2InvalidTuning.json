@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"rejected\":\"ReplicatedStorage.Modules.Game.World.LightingCycle:95: Duplicate or overlapping milestone holds: DayEnd / Sunset\\nReplicatedStorage.Modules.Game.World.LightingCycle:95 function build\\nServerStorage.Modules.Game.World.LightingServer:39 function rebuild\\nServerStorage.Modules.Game.World.LightingServer:54 function update\\nServerStorage.Modules.Game.World.LightingServer:93\\n\",\"retainedLastGood\":true,\"recovered\":true}"
+    }
+  ],
+  "isError": false
+}

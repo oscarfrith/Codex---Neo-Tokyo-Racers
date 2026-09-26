@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"lighting\":{\"StreetLightBrightness\":2,\"LightingPreset\":\"FivePM\",\"LightingCycleMode\":\"Continuous\",\"LightingStageEndsAtUnix\":0,\"WindowMode\":\"Day\",\"LightingStageIndex\":5,\"RBX_LightingTechnologyUnifiedMigration\":true,\"StreetLightsOn\":false},\"world\":{\"OwnedGarageEnvironmentStarted\":true,\"LightingCycleReady\":true,\"Phase5Status\":\"running\",\"LightingContext\":\"City\"}}"
+    }
+  ],
+  "isError": false
+}

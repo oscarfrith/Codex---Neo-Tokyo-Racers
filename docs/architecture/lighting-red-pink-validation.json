@@ -1,0 +1,201 @@
+{
+  "schema": 1,
+  "task": "Three-second red/pink/violet horizon tuning",
+  "build": "lighting-red-pink-15ef9ab819a8",
+  "changed": "Twenty existing Continuous config attributes; no game source, node, asset, tag or shared original preset changes.",
+  "studio_action": "Installed through guarded REFINE only; no installed migration rerun. Edit: Continuous, 120 seconds, auto/sync true, opt-in tools off. No publish.",
+  "capture": "roblox/captures/lighting-red-pink-after/capture.json; 2026-09-23 19:04:35 UTC; 168 sources/138 selected nodes.",
+  "recovery": "REVERT_REFINEMENT in canonical install.lua restores V4 attributes; REFINE reapplies. Both guard intervening edits. CycleMode=Stepped and Play restart selects original lighting.",
+  "next_action": "User review of three-second full warm holds and red/pink/violet progression. Retain earlier named device/flow/multiplayer acceptance limits. No installer pending.",
+  "checks": [
+    {
+      "id": "installation",
+      "kind": "static",
+      "status": "pass",
+      "observation": "58,283 pure assertions; exact 20-attribute revision with zero source/node/asset changes. Guarded refinement rollback/reapply/no-op and full installed-state audit pass. No installed migration rerun. Full original removal checks remain historical.",
+      "evidence": [
+        {
+          "path": "scripts/continuous_lighting/evidence/v5/delivery-verification.json",
+          "sha256": "f26bcd27957750d98b9d1e4316dba81e73044cf929ddda849f21656ab70f163a"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v5/v5Numerical.json",
+          "sha256": "3c44f10c166d8cdda123efe75953b890aef7ddc1310ee9f2ce2e69d240151d68"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v5/v5Install.json",
+          "sha256": "f8840c811a335590e323769b11e518be87af69b407f2fa6deda9885eae20bf37"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v5/v5FinalEdit.json",
+          "sha256": "a0deae39d7016fa719197ba72fb5a68e8ed88526a5171099bfa8a89815fb88f0"
+        }
+      ],
+      "context": {},
+      "reason": "",
+      "next_action": ""
+    },
+    {
+      "id": "startup",
+      "kind": "ui",
+      "status": "pass",
+      "observation": "Actual Play input cleared the start screen. 26 server entries and 40 client entries ready; four opt-in tools skipped; no-save sandbox true.",
+      "evidence": [
+        {
+          "path": "scripts/continuous_lighting/evidence/v5/v5ClientStartup.json",
+          "sha256": "d50fe74a3722673e2caa996bbc59897545005182e3ca528b6236625861112983"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v5/v5ServerStartup.json",
+          "sha256": "71890a7711b30d65352f1a4777f7aac86488bc9eb6d98f14acfba100ad7c2dac"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v5/v5Console.json",
+          "sha256": "7b64f402d1643152d88fc11fbf99e688a8e29a7af7c6a362abbc14faadae7f0b"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v5/v5_installed_peak.jpg",
+          "sha256": "d6149a85aaea40a7d71f8cb23e44a9fa13f853f6d97dc9ca525e440f3ece20dd"
+        }
+      ],
+      "context": {
+        "session": "Studio 4c38d6a4-0bfd-46b3-9308-ac4b9b4c95a2 V5 Continuous sandbox",
+        "build": "lighting-red-pink-15ef9ab819a8",
+        "environment": "Studio-no-save-sandbox",
+        "device": "Windows desktop Studio client",
+        "input": "Actual mouse Play input; read-only full-cycle observation; selected paused server-config previews",
+        "time_utc": "2026-09-23 19:04:35 UTC",
+        "interaction": "normal-ui",
+        "start_screen_active": false,
+        "visible_input_verified": true
+      },
+      "reason": "",
+      "next_action": ""
+    },
+    {
+      "id": "errors",
+      "kind": "runtime",
+      "status": "pass",
+      "observation": "7,321 read-only samples over 122.007 seconds: City throughout, one wrap, both switches, zero clock jumps and no lighting errors. Existing startup Player:Move warning remains. Paused views verify selected pink/violet/reverse morning colours; no location-specific, device or retention acceptance claim.",
+      "evidence": [
+        {
+          "path": "scripts/continuous_lighting/evidence/v5/v5Cycle.json",
+          "sha256": "59940d4a2ae1bca97a82fd3f72d5ce572f7f8aecd3507821f816beaa95f48447"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v5/v5Console.json",
+          "sha256": "7b64f402d1643152d88fc11fbf99e688a8e29a7af7c6a362abbc14faadae7f0b"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v5/v5_pink_balanced.jpg",
+          "sha256": "dfb2794b3cae7257db57dea2969982f67e13fb62f99aa3a79479abf5535235bb"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v5/v5_purple_final.jpg",
+          "sha256": "aee71b02163df09340c1f7663cc7c3c924223c0787d7131282a57c843be58357"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v5/v5_morning_pink.jpg",
+          "sha256": "d6e65ac0c21102eb886496f5fe2c0a5653c3b311aaeb143c7d73e8097001d1bc"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v5/v5_morning_peak.jpg",
+          "sha256": "efbbbcc999ddb884603d4db1749fc73d3a3a3907ef11c13021afde95b7055bf9"
+        }
+      ],
+      "context": {
+        "session": "Studio 4c38d6a4-0bfd-46b3-9308-ac4b9b4c95a2 V5 Continuous sandbox",
+        "build": "lighting-red-pink-15ef9ab819a8",
+        "environment": "Studio-no-save-sandbox",
+        "device": "Windows desktop Studio client",
+        "input": "Actual mouse Play input; read-only full-cycle observation; selected paused server-config previews",
+        "time_utc": "2026-09-23 19:04:35 UTC",
+        "interaction": "normal-ui",
+        "start_screen_active": false,
+        "visible_input_verified": true
+      },
+      "reason": "",
+      "next_action": ""
+    },
+    {
+      "id": "garage",
+      "kind": "ui",
+      "status": "deferred",
+      "observation": "Config-only refinement; normal dealership/owned garage route not rerun. V4 controlled releases are historical and do not complete normal-flow acceptance.",
+      "evidence": [],
+      "context": {
+        "session": "Studio 4c38d6a4-0bfd-46b3-9308-ac4b9b4c95a2 V5 Continuous sandbox",
+        "build": "lighting-red-pink-15ef9ab819a8",
+        "environment": "Studio-no-save-sandbox",
+        "device": "Windows desktop Studio client",
+        "input": "Actual mouse Play input; read-only full-cycle observation; selected paused server-config previews",
+        "time_utc": "2026-09-23 19:04:35 UTC",
+        "interaction": "normal-ui",
+        "start_screen_active": false,
+        "visible_input_verified": true
+      },
+      "reason": "Config-only refinement; normal dealership/owned garage route not rerun. V4 controlled releases are historical and do not complete normal-flow acceptance.",
+      "next_action": "Complete normal dealership Exit/owned lighting entry and release on this build."
+    },
+    {
+      "id": "streaming",
+      "kind": "ui",
+      "status": "deferred",
+      "observation": "No driven stream-out/re-entry route or detached-reference/connection soak; standing-still cycle does not isolate area-specific jumps.",
+      "evidence": [],
+      "context": {
+        "session": "Studio 4c38d6a4-0bfd-46b3-9308-ac4b9b4c95a2 V5 Continuous sandbox",
+        "build": "lighting-red-pink-15ef9ab819a8",
+        "environment": "Studio-no-save-sandbox",
+        "device": "Windows desktop Studio client",
+        "input": "Actual mouse Play input; read-only full-cycle observation; selected paused server-config previews",
+        "time_utc": "2026-09-23 19:04:35 UTC",
+        "interaction": "normal-ui",
+        "start_screen_active": false,
+        "visible_input_verified": true
+      },
+      "reason": "No driven stream-out/re-entry route or detached-reference/connection soak; standing-still cycle does not isolate area-specific jumps.",
+      "next_action": "Drive representative World route and repeated context/respawn transitions; inspect exact reported locations and retention."
+    },
+    {
+      "id": "device",
+      "kind": "device",
+      "status": "deferred",
+      "observation": "No physical iPhone 7 access. Desktop paused views/test-speed observation do not prove normal-speed or low-graphics/device rendering.",
+      "evidence": [],
+      "context": {
+        "session": "Studio 4c38d6a4-0bfd-46b3-9308-ac4b9b4c95a2 V5 Continuous sandbox",
+        "build": "lighting-red-pink-15ef9ab819a8",
+        "environment": "Studio-no-save-sandbox",
+        "device": "Windows desktop Studio client",
+        "input": "Actual mouse Play input; read-only full-cycle observation; selected paused server-config previews",
+        "time_utc": "2026-09-23 19:04:35 UTC",
+        "interaction": "normal-ui",
+        "start_screen_active": false,
+        "visible_input_verified": true
+      },
+      "reason": "No physical iPhone 7 access. Desktop paused views/test-speed observation do not prove normal-speed or low-graphics/device rendering.",
+      "next_action": "Review peak duration and red/pink/violet progression at intended normal speed and low graphics, including physical iPhone 7."
+    },
+    {
+      "id": "multiplayer",
+      "kind": "multiplayer",
+      "status": "deferred",
+      "observation": "One Studio client only; no two-client synchronization/late-join run.",
+      "evidence": [],
+      "context": {
+        "session": "Studio 4c38d6a4-0bfd-46b3-9308-ac4b9b4c95a2 V5 Continuous sandbox",
+        "build": "lighting-red-pink-15ef9ab819a8",
+        "environment": "Studio-no-save-sandbox",
+        "device": "Windows desktop Studio client",
+        "input": "Actual mouse Play input; read-only full-cycle observation; selected paused server-config previews",
+        "time_utc": "2026-09-23 19:04:35 UTC",
+        "interaction": "normal-ui",
+        "start_screen_active": false,
+        "visible_input_verified": true
+      },
+      "reason": "One Studio client only; no two-client synchronization/late-join run.",
+      "next_action": "Use two clients in isolated published test to compare clock/look at late join and wrap."
+    }
+  ]
+}

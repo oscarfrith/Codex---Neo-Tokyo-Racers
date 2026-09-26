@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"rows\":[{\"misses\":[],\"latitude\":189,\"stage\":\"SevenAM\",\"pass\":true},{\"misses\":[],\"latitude\":189,\"stage\":\"TenAM\",\"pass\":true},{\"misses\":[],\"latitude\":189,\"stage\":\"Day\",\"pass\":true},{\"misses\":[],\"latitude\":189,\"stage\":\"ThreePM\",\"pass\":true},{\"misses\":[],\"latitude\":189,\"stage\":\"FivePM\",\"pass\":true},{\"misses\":[],\"latitude\":189,\"stage\":\"EightPM\",\"pass\":true},{\"misses\":[],\"latitude\":189,\"stage\":\"ClearNight\",\"pass\":true},{\"misses\":[],\"latitude\":189,\"stage\":\"FourAM\",\"pass\":true}],\"kind\":\"stepped-runtime-regression\",\"pass\":true}"
+    }
+  ],
+  "isError": false
+}

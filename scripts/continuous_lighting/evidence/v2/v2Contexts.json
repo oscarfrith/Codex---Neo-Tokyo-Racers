@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"rows\":[{\"clock\":0,\"expected\":\"OwnedInterior\",\"context\":\"OwnedInterior\",\"latitude\":189},{\"clock\":23.5,\"expected\":\"Dealership\",\"context\":\"Dealership\",\"latitude\":189},{\"clock\":0,\"expected\":\"OwnedInterior\",\"context\":\"OwnedInterior\",\"latitude\":189},{\"cityPhaseError\":0.010145473480221768,\"clock\":18.43000030517578,\"expected\":\"City\",\"context\":\"City\",\"latitude\":35},{\"clock\":0,\"expected\":\"OwnedInterior\",\"context\":\"OwnedInterior\",\"latitude\":189},{\"clock\":23.5,\"expected\":\"Dealership\",\"context\":\"Dealership\",\"latitude\":189},{\"clock\":0,\"expected\":\"OwnedInterior\",\"context\":\"OwnedInterior\",\"latitude\":189},{\"cityPhaseError\":0.003645038604737749,\"clock\":18.72972297668457,\"expected\":\"City\",\"context\":\"City\",\"latitude\":35},{\"clock\":0,\"expected\":\"OwnedInterior\",\"context\":\"OwnedInterior\",\"latitude\":189},{\"clock\":23.5,\"expected\":\"Dealership\",\"context\":\"Dealership\",\"latitude\":189},{\"clock\":0,\"expected\":\"OwnedInterior\",\"context\":\"OwnedInterior\",\"latitude\":189},{\"cityPhaseError\":0.006960868835449219,\"clock\":19.016387939453126,\"expected\":\"City\",\"context\":\"City\",\"latitude\":35}],\"kind\":\"controlled-context-signals\",\"pass\":true}"
+    }
+  ],
+  "isError": false
+}

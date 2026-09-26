@@ -1,0 +1,36 @@
+{
+  "revision": {
+    "state": "installed",
+    "changed": 0,
+    "beforeCapture": "d1518430d09a9e2871c6219066d2e5bd451a406517ffb3969a5ee5c74d9fa726"
+  },
+  "config": {
+    "SunriseClockTime": 6,
+    "SteppedGeographicLatitude": 189,
+    "CycleMode": "Continuous",
+    "ContinuousSkyName": "ContinuousSky",
+    "DefaultStreetLightBrightness": 2,
+    "BaseDurationSeconds": 90,
+    "ContinuousRayFadeHours": 0.4,
+    "SynchronizeAcrossServers": true,
+    "ContinuousManualClockTime": 12,
+    "ContinuousCycleDurationSeconds": 720,
+    "SunsetClockTime": 18,
+    "AutoCycleEnabled": true,
+    "ManualStage": "Day",
+    "ContinuousGeographicLatitude": 35
+  },
+  "audit": {
+    "state": "installed",
+    "changed": 0,
+    "beforeCapture": "e93cbf0e57be6956be4ac146ace0e7bd1044e700b51d647181ff97663c0da111"
+  },
+  "sunSize": 9,
+  "tools": {
+    "LightingPreviewEnabled": false,
+    "TrailerVehicleCameraEnabled": false,
+    "TrailerShotEnabled": false,
+    "TrailerModeEnabled": false
+  },
+  "playing": false
+}

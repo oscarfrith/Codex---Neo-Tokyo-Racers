@@ -1,0 +1,23 @@
+# Brighter horizons and restrained moon glare
+
+Approved scope: lift sunrise/sunset relative to twilight, reduce the night moon wash, enlarge the sun another 1.5 times and use five-second full warm holds. Fast configuration refinement using the existing lighting owners. No gameplay source, state/preview/geometry/attachment owner, persistence, saved identity or physical asset changes. Current status and capture timestamp belong in [start here](../00_START_HERE.md).
+
+## Settings
+
+The 720-second cycle, uniform solar movement, six-look timeline, ray envelope and sunrise/sunset lamp/window switches remain unchanged. ContinuousSky SunAngularSize is 9 instead of 6 throughout the cycle. Sunrise/Sunset HoldHours is 1/6 instead of 0.6: five real seconds total, centered on each horizon, covering 05:55–06:05 and 17:55–18:05. Twilight holds remain twelve seconds. Broader warm build-up and release still blend smoothly.
+
+Both warm Continuous copies use ExposureCompensation 0.15, ColorCorrection Brightness 0.055 and Contrast 0.12, plus Atmosphere Decay RGB 180,125,140. Direct Lighting Brightness remains 0.65 and the red-orange Color/ambient/tint palette remains unchanged. This lifts the sky without restoring the original bright direct-light endpoint. Twilight Atmosphere Glare falls from 6.86 to 1.5; ClearNight Glare falls from 6.86 to 0.45. Night fog density, haze, bloom, moon size and all other night artwork remain unchanged.
+
+Play-only A/B observations isolated the large white lunar dome to Atmosphere Glare while SunRays intensity was zero. Lower glare retains a small soft moon rim. Warm exposure/post/Decay lift and twilight glare reduction improve the sunset-to-twilight balance; the red-orange, rose-pink and violet sequence remains. The bright sun-facing daylight shoulder already exists with the previous warm palette and strong rays; this refinement does not redesign those user-approved rays. Screenshots are selected desktop views, not every camera/graphics condition.
+
+## Verification and recovery
+
+The same canonical installer applies only thirteen existing configuration attributes and one Sky property. Its guarded REFINE, REVERT_REFINEMENT, reapply, repeat no-op and full installed audit pass. The original installed migration was not rerun. All original shared presets/skies, pre-existing Edit Lighting.SunRays properties and existing owners are preserved. Recovery evidence stays in the repository.
+
+58,383 numerical assertions cover the full normalized cycle, five-second production holds, mirrored colours, finite/continuous group curves, horizon rays, duration scaling and original artwork preservation outside approved settings. Normal Play input clears the start screen, the sandbox remains active, 26 server and 40 client entries are ready, four opt-in tools are skipped, and Lighting retains seven children. Nine selected runtime samples confirm the warm endpoints, horizon switches, constant sun size 9 and night glare 0.45.
+
+Selected comparison images: [previous sunset](../../scripts/continuous_lighting/evidence/v7/v7_sunset_before.jpg), [installed sunset](../../scripts/continuous_lighting/evidence/v7/v7_sunset_installed.jpg), [previous moon](../../scripts/continuous_lighting/evidence/v7/v7_moon_before.jpg), [installed moon](../../scripts/continuous_lighting/evidence/v7/v7_moon_installed.jpg). Play trial views also preserve [pink](../../scripts/continuous_lighting/evidence/v7/v7_pink.jpg), [twilight](../../scripts/continuous_lighting/evidence/v7/v7_twilight_candidate.jpg) and [sunrise](../../scripts/continuous_lighting/evidence/v7/v7_sunrise.jpg).
+
+Use the [editing guide](lighting-authoring.md) for Explorer paths. REVERT_REFINEMENT restores the exact V6 palette, eighteen-second warm holds and sun size 6; REFINE restores these settings. Both guard intervening edits. Original Stepped mode remains available without discarding Continuous tuning. Historical installers are recovery evidence, not a run queue. No publish, commit or push.
+
+A 122.008-second ordinary daytime observation recorded 7,321 samples with no lighting errors or clock jumps; City context remained active. Maximum target/property difference was 0.000765, consistent with clock quantization and sample timing. This does not claim a continuous sunset traversal or a full twelve-minute visual pass. Pure seam checks and selected paused views cover the changed transition settings. The existing Player:Move startup warning remains. Final targeted comparison proves zero changed source hashes, exactly thirteen attribute changes and one Sky property change. [Pinned validation](lighting-horizon-moon-validation.json) retains the device, normal garage/streaming/retention and two-client limits.

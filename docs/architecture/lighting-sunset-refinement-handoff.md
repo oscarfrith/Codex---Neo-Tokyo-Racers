@@ -1,0 +1,43 @@
+# Lighting sunset refinement
+
+Implementation scope approved on 2026-09-23 after the [options investigation](lighting-sunset-refinement-options.md). This record describes delivery evidence; [start here](../00_START_HERE.md) owns current status and next action.
+
+## Acceptance contract and ownership
+
+Reduce the reproduced pre-sunset white sky, retain coloured sunrise/sunset and purple twilight, shrink the oversized sun, add restrained rays, and make the fade ordering editable. Retain the uniform 120-second solar clock, milestone/hold timing and sunrise/sunset lamp/window switching. The original Stepped system remains selectable. No additional rendering loop, geometry, fake sun, sky dome, remote, save schema, identity or migration is introduced.
+
+LightingServer retains synchronized state/config publication and switch metadata; LightingCycle remains a pure evaluator; LightingCycleDefinition reads editable Attributes; LightingClient remains the sole Continuous environment writer. ClientBase retains startup only. Existing preview, dealership and owned-interior owners retain their requests and priorities. NightLamppostLightClient/WindowMaterialClient retain their tags and streaming behaviour. No change to physical assets, World/WIP/Archive/staging, persistence authority, mobile orientation or protected opt-in tools.
+
+City entry uses the published clock; valid live edits replace the complete configuration, and invalid edits retain the last good version. Interior/preview entry still uses its existing owner; exit returns to the current outdoor phase. This is a Standard refinement with the original system's full guarded recovery and ownership safeguards retained. Tests focus on curve continuity, runtime configuration rejection/recovery, city/context restoration, original-mode recovery and visual comparisons. Physical-device appearance, normal garage routes and multiple clients remain separate acceptance limits, not inferred from source parity.
+
+## Resulting design
+
+Six independently eased property groups use the same transition phase. DayEnd lowers light/exposure before raising haze/glare; Sunrise has exactly mirrored intervals. Colour and post-processing have their own progress; density/offset remain a separate group. Curves are bounded, finite, ordered and continuous through each start/end/hold boundary. There are no independent TweenService jobs or automatic camera exposure.
+
+Only the Continuous SevenAM/FivePM copies change Atmosphere Color to RGB 255,180,155; Decay to 125,130,170; Haze/Glare to 2; Brightness to 0.65; ExposureCompensation to 0. All remaining authored properties are preserved except explicit SunRays settings across the six copies. The original shared presets and sky assets are unchanged. A brighter peach target was selected over the tested darker/browner option.
+
+Sun size is 4 degrees using the native texture. Continuous ray intensity is 0.008 for Day, 0.025 for warm looks and zero for twilight/night; spread is 0.8. A smooth 0.4-game-hour gate inside the calibrated horizons fades intensity to zero at night. Enabled remains common; original contexts retain their original disabled effect. This intentionally makes rays solar-dependent during horizon holds. The gate follows the configured calibrated boundaries rather than computing a second solar position.
+
+One common cloudless sky remains. Atmosphere colours supply continuous sky tint, with a warmer sunward hue and cooler away-side decay. A coloured six-image skybox could replace this background, but must be seamless and direction-neutral; no painted sunset or stage texture swapping was added. A static directional glow would conflict with the moving sun, and texture IDs do not interpolate. [Authoring controls and full group mapping](lighting-authoring.md).
+
+## Recovery
+
+Set `ReplicatedStorage.Config.World.Lighting.CycleMode` to `Stepped` in Edit and restart Play to restore the original eight-stage/900-second lighting behaviour. Set it back to `Continuous` to resume the refined cycle. This switch retains artist tuning.
+
+The same canonical `scripts/continuous_lighting/install.lua` handles AUDIT/APPLY/STEPPED/CONTINUOUS/ROLLBACK. Full rollback guards exact sources, attributes, properties, children and tags; it restores seven original sources and removes three added modules, three trees and nine added root attributes. Capture custom tuning before rebuilding recovery; never force a drifted guard. No in-game backups exist. The pre-refinement V2 source/palette/sky state is preserved in `roblox/captures/lighting-sunset-refinement-before/capture.json`; that capture matched V2 with zero source or selected-node drift before the old canonical bundle was rolled back for rebuilding.
+
+Assistant-operated rebuild order: capture current authoring; use the currently installed bundle to ROLLBACK in Edit before overwriting it; edit source/seeds; run prepare.py, build.py, build_tests.py; run numerical tests; APPLY and select CONTINUOUS; verify normal startup/runtime and capture afterward. Temporary localhost transport serves the canonical bundle only. No historical migrations or game publish are required.
+
+## Evidence
+
+58,013 pure checks cover 1,201 cycle samples, all six authored endpoints, preserved artwork outside the approved fields, 24 milestone/hold boundaries, every curve start/end seam, mirrored morning fades, timing scale/wrap, invalid configurations and the night-ray gate. The initial test harness was corrected to compare transition weights inside their interval (boundary metadata correctly moves to the next segment), and to use sufficiently close samples for continuity rather than demand equal values across a moving interval; no runtime curve repair was required.
+
+Normal Play input cleared the start screen; all 26 server and 40 client entries were ready, four opt-in tools skipped, and saving suppressed by the existing sandbox. A 122.043-second observation collected 1,086 samples, all six identities, one midnight wrap, matching lamp/window switches at 06.0328 and 18.0128, zero night-ray samples, no lighting errors, stable ActiveSky identity and seven Lighting children. Maximum phase error was 0.01054 game hours (about 0.053 real seconds at test speed). Stable parented counts are not a detached-reference/connection soak claim.
+
+A deliberately invalid fade interval retained the exact last-good state; correction published a new valid revision. Three controlled owned-interior entry/release pairs used original latitude/effects and returned to the current city look with no new children. These are owner-signal checks, not normal garage traversal. The console before the deliberate rejection had the existing character-not-yet-present Player:Move warning and no lighting errors.
+
+Full 22-operation rollback/reapply, idempotent repeat and all eight original Stepped runtime targets passed. Fresh targeted before/after verification confirms exactly four V2 source revisions, one added root attribute, edited continuous milestone/palette attributes and the existing ContinuousSky sun-size change. Cumulative original scope remains three new modules, seven changed sources, three trees (53 nodes) and nine root attributes; 158 original sources and all captured original object properties/tags remain unchanged. No physical-world parity claim beyond selected capture coverage.
+
+Selected screenshots: [17:00 sunward sky](../../scripts/continuous_lighting/evidence/v3/v3_17_sun.jpg), [17:36 sunward](../../scripts/continuous_lighting/evidence/v3/v3_176_sun.jpg), [17:36 opposite](../../scripts/continuous_lighting/evidence/v3/v3_176_opposite.jpg), [sunset horizon](../../scripts/continuous_lighting/evidence/v3/v3_18_sun.jpg), [morning shoulder](../../scripts/continuous_lighting/evidence/v3/v3_064_sun.jpg), [twilight road](../../scripts/continuous_lighting/evidence/v3/v3_dusk_road.jpg), [sunrise road](../../scripts/continuous_lighting/evidence/v3/v3_sunrise_road.jpg). The sky still naturally darkens quickly close to the exact solar horizon at two-minute speed; full artistic acceptance and stronger custom sky art remain matters for user review. No claim that every angle is free of native texture/filtering artifacts.
+
+Evidence and deferred checks are pinned in [the validation record](lighting-sunset-refinement-validation.json). Screenshots are raw Studio captures under `scripts/continuous_lighting/evidence/v3`; they show selected paused desktop views, not a guarantee of every frame, every camera or mobile rendering. The complete runtime observation measures cycle state, errors, rays and object stability; it does not substitute for visual acceptance.

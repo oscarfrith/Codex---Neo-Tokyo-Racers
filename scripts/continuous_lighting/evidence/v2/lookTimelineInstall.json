@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"afterRollback\":{\"state\":\"before\",\"changed\":0,\"beforeCapture\":\"e93cbf0e57be6956be4ac146ace0e7bd1044e700b51d647181ff97663c0da111\"},\"repeatApply\":{\"state\":\"installed\",\"changed\":0},\"rollback\":{\"state\":\"before\",\"changed\":21,\"beforeCapture\":\"e93cbf0e57be6956be4ac146ace0e7bd1044e700b51d647181ff97663c0da111\"},\"reapply\":{\"state\":\"installed\",\"changed\":21,\"beforeCapture\":\"e93cbf0e57be6956be4ac146ace0e7bd1044e700b51d647181ff97663c0da111\"},\"anchors\":[{\"clock\":0,\"preset\":\"ClearNight\",\"glare\":6.860000133514404,\"properties\":37},{\"clock\":4.5,\"preset\":\"FourAM\",\"glare\":6.860000133514404,\"properties\":37},{\"clock\":6,\"preset\":\"SevenAM\",\"glare\":6.900000095367432,\"properties\":37},{\"clock\":12,\"preset\":\"Day\",\"glare\":0,\"properties\":37},{\"clock\":18,\"preset\":\"FivePM\",\"glare\":6.900000095367432,\"properties\":37},{\"clock\":19.5,\"preset\":\"EightPM\",\"glare\":6.860000133514404,\"properties\":37}],\"active\":{\"state\":\"installed\",\"mode\":\"Continuous\",\"restartRequired\":true},\"apply\":{\"state\":\"installed\",\"changed\":21,\"beforeCapture\":\"e93cbf0e57be6956be4ac146ace0e7bd1044e700b51d647181ff97663c0da111\"}}"
+    }
+  ],
+  "isError": false
+}

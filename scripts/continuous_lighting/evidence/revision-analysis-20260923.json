@@ -1,0 +1,175 @@
+{
+  "editClock": 12,
+  "placeId": 121304917315753,
+  "skies": {
+    "ActiveSky": {
+      "StarCount": 3000,
+      "SkyboxUp": "rbxassetid://18351377189",
+      "SkyboxBk": "rbxassetid://18351376859",
+      "CelestialBodiesShown": true,
+      "SkyboxOrientation": "0, 0, 0",
+      "SkyboxDn": "rbxassetid://18351374919",
+      "SkyboxLf": "rbxassetid://18351376469",
+      "SunAngularSize": 21,
+      "SkyboxFt": "rbxassetid://18351376800",
+      "SkyboxRt": "rbxassetid://18351376457",
+      "MoonAngularSize": 11
+    },
+    "TenAMSky": {
+      "StarCount": 3000,
+      "SkyboxUp": "rbxassetid://18351377189",
+      "SkyboxBk": "rbxassetid://18351376859",
+      "CelestialBodiesShown": true,
+      "SkyboxOrientation": "0, 0, 0",
+      "SkyboxDn": "rbxassetid://18351374919",
+      "SkyboxLf": "rbxassetid://18351376469",
+      "SunAngularSize": 21,
+      "SkyboxFt": "rbxassetid://18351376800",
+      "SkyboxRt": "rbxassetid://18351376457",
+      "MoonAngularSize": 11
+    },
+    "ThreePMSky": {
+      "StarCount": 3000,
+      "SkyboxUp": "rbxassetid://18351377189",
+      "SkyboxBk": "rbxassetid://18351376859",
+      "CelestialBodiesShown": true,
+      "SkyboxOrientation": "0, 0, 0",
+      "SkyboxDn": "rbxassetid://18351374919",
+      "SkyboxLf": "rbxassetid://18351376469",
+      "SunAngularSize": 21,
+      "SkyboxFt": "rbxassetid://18351376800",
+      "SkyboxRt": "rbxassetid://18351376457",
+      "MoonAngularSize": 11
+    },
+    "ClearNightSky": {
+      "StarCount": 3000,
+      "SkyboxUp": "rbxassetid://18351377189",
+      "SkyboxBk": "rbxassetid://18351376859",
+      "CelestialBodiesShown": true,
+      "SkyboxOrientation": "0, 90, 0",
+      "SkyboxDn": "rbxassetid://18351374919",
+      "SkyboxLf": "rbxassetid://18351376469",
+      "SunAngularSize": 0,
+      "SkyboxFt": "rbxassetid://18351376800",
+      "SkyboxRt": "rbxassetid://18351376457",
+      "MoonAngularSize": 11
+    },
+    "FourAMSky": {
+      "StarCount": 3000,
+      "SkyboxUp": "rbxassetid://18351377189",
+      "SkyboxBk": "rbxassetid://18351376859",
+      "CelestialBodiesShown": true,
+      "SkyboxOrientation": "0, 90, 0",
+      "SkyboxDn": "rbxassetid://18351374919",
+      "SkyboxLf": "rbxassetid://18351376469",
+      "SunAngularSize": 0,
+      "SkyboxFt": "rbxassetid://18351376800",
+      "SkyboxRt": "rbxassetid://18351376457",
+      "MoonAngularSize": 11
+    },
+    "EightPMSky": {
+      "StarCount": 3000,
+      "SkyboxUp": "rbxassetid://18351377189",
+      "SkyboxBk": "rbxassetid://18351376859",
+      "CelestialBodiesShown": true,
+      "SkyboxOrientation": "0, 90, 0",
+      "SkyboxDn": "rbxassetid://18351374919",
+      "SkyboxLf": "rbxassetid://18351376469",
+      "SunAngularSize": 0,
+      "SkyboxFt": "rbxassetid://18351376800",
+      "SkyboxRt": "rbxassetid://18351376457",
+      "MoonAngularSize": 11
+    },
+    "FivePMSky": {
+      "StarCount": 3000,
+      "SkyboxUp": "rbxassetid://18351377189",
+      "SkyboxBk": "rbxassetid://18351376859",
+      "CelestialBodiesShown": true,
+      "SkyboxOrientation": "0, 90, 0",
+      "SkyboxDn": "rbxassetid://18351374919",
+      "SkyboxLf": "rbxassetid://18351376469",
+      "SunAngularSize": 21,
+      "SkyboxFt": "rbxassetid://18351376800",
+      "SkyboxRt": "rbxassetid://18351376457",
+      "MoonAngularSize": 11
+    },
+    "DaySky": {
+      "StarCount": 3000,
+      "SkyboxUp": "rbxassetid://18351377189",
+      "SkyboxBk": "rbxassetid://18351376859",
+      "CelestialBodiesShown": true,
+      "SkyboxOrientation": "0, 0, 0",
+      "SkyboxDn": "rbxassetid://18351374919",
+      "SkyboxLf": "rbxassetid://18351376469",
+      "SunAngularSize": 21,
+      "SkyboxFt": "rbxassetid://18351376800",
+      "SkyboxRt": "rbxassetid://18351376457",
+      "MoonAngularSize": 11
+    },
+    "SevenAMSky": {
+      "StarCount": 3000,
+      "SkyboxUp": "rbxassetid://18351377189",
+      "SkyboxBk": "rbxassetid://18351376859",
+      "CelestialBodiesShown": true,
+      "SkyboxOrientation": "0, 90, 0",
+      "SkyboxDn": "rbxassetid://18351374919",
+      "SkyboxLf": "rbxassetid://18351376469",
+      "SunAngularSize": 21,
+      "SkyboxFt": "rbxassetid://18351376800",
+      "SkyboxRt": "rbxassetid://18351376457",
+      "MoonAngularSize": 11
+    }
+  },
+  "effects": [
+    {
+      "name": "ColorCorrection",
+      "class": "ColorCorrectionEffect"
+    },
+    {
+      "name": "DepthOfField",
+      "class": "DepthOfFieldEffect"
+    },
+    {
+      "name": "SunRays",
+      "class": "SunRaysEffect"
+    },
+    {
+      "name": "ColorGrading",
+      "class": "ColorGradingEffect"
+    },
+    {
+      "name": "Bloom",
+      "class": "BloomEffect"
+    },
+    {
+      "name": "Atmosphere",
+      "class": "Atmosphere"
+    },
+    {
+      "name": "ActiveSky",
+      "class": "Sky"
+    }
+  ],
+  "timeUTC": "2026-09-23T10:18:07Z",
+  "config": {
+    "SunriseClockTime": 6,
+    "SteppedGeographicLatitude": 189,
+    "ContinuousGeographicLatitude": 35,
+    "DefaultStreetLightBrightness": 2,
+    "BaseDurationSeconds": 90,
+    "SynchronizeAcrossServers": true,
+    "SunsetClockTime": 18,
+    "AutoCycleEnabled": true,
+    "ManualStage": "Day",
+    "CycleMode": "Continuous"
+  },
+  "editLatitude": 189,
+  "sources": {
+    "LightingSchedule": "-- Edit this ordered table to change stage order, relative duration, or visual flags.\n-- BaseDurationSeconds lives on the parent LightingCycleConfig Folder.\nreturn {\n\t{Preset = \"SevenAM\",    DisplayName = \"7 AM\",   DurationWeight = 1, StreetLightsOn = false, WindowMode = \"Day\"},\n\t{Preset = \"TenAM\",      DisplayName = \"10 AM\",  DurationWeight = 1, StreetLightsOn = false, WindowMode = \"Day\"},\n\t{Preset = \"Day\",        DisplayName = \"Day\",    DurationWeight = 2, StreetLightsOn = false, WindowMode = \"Day\"},\n\t{Preset = \"ThreePM\",    DisplayName = \"3 PM\",   DurationWeight = 1, StreetLightsOn = false, WindowMode = \"Day\"},\n\t{Preset = \"FivePM\",     DisplayName = \"5 PM\",   DurationWeight = 1, StreetLightsOn = false, WindowMode = \"Day\"},\n\t{Preset = \"EightPM\",    DisplayName = \"8 PM\",   DurationWeight = 1, StreetLightsOn = true,  WindowMode = \"Night\"},\n\t{Preset = \"ClearNight\", DisplayName = \"Night\",  DurationWeight = 2, StreetLightsOn = true,  WindowMode = \"Night\"},\n\t{Preset = \"FourAM\",     DisplayName = \"4 AM\",   DurationWeight = 1, StreetLightsOn = true,  WindowMode = \"Night\"},\n}\n",
+    "LightingCycle": "-- Pure calculation: no services, tasks, instances or gameplay startup.\nlocal Cycle = {}\nlocal DEFAULTS = {\n    Atmosphere={Color=Color3.fromRGB(199,199,199),Decay=Color3.fromRGB(106,112,125),Density=.22,Glare=0,Haze=0,Offset=.2},\n    Bloom={Enabled=true,Intensity=.65,Size=10,Threshold=1.904},\n    ColorCorrection={Enabled=true,Brightness=.05,Contrast=0,Saturation=.4,TintColor=Color3.new(1,1,1)},\n    DepthOfField={Enabled=false,FarIntensity=.084,FocusDistance=.05,InFocusRadius=10,NearIntensity=.75},\n    SunRays={Enabled=false,Intensity=.05,Spread=.713},\n}\nfunction Cycle.finite(value)\n    return type(value)==\"number\" and value==value and math.abs(value)<math.huge\nend\nlocal function copy(value)\n    if type(value)~=\"table\" then return value end\n    local result={}\n    for k,v in pairs(value) do result[k]=copy(v) end\n    return result\nend\nlocal function overlay(target,values)\n    for k,v in pairs(values or {}) do\n        if type(v)==\"table\" then target[k]=target[k] or {}; overlay(target[k],v) else target[k]=v end\n    end\n    return target\nend\nfunction Cycle.preset(presets,name,latitude)\n    assert(type(presets[name])==\"table\",\"Unknown lighting preset: \"..tostring(name))\n    local result=overlay(copy(DEFAULTS),presets[name])\n    result.Lighting.GeographicLatitude=latitude\n    return result\nend\nfunction Cycle.blend(a,b,alpha)\n    local result={}\n    for key,av in pairs(a) do\n        local bv=b[key]\n        if type(av)==\"table\" then result[key]=Cycle.blend(av,bv,alpha)\n        elseif typeof(av)==\"Color3\" then result[key]=av:Lerp(bv,alpha)\n        elseif type(av)==\"number\" then result[key]=av+(bv-av)*alpha\n        else result[key]=av end\n    end\n    return result\nend\nlocal function harmonic(previous,nextSlope,previousDuration,nextDuration)\n    local w1=2*nextDuration+previousDuration\n    local w2=nextDuration+2*previousDuration\n    return (w1+w2)/(w1/previous+w2/nextSlope)\nend\nfunction Cycle.build(presets,schedule,definition,base,latitude)\n    assert(Cycle.finite(base) and base>=1 and base<=86400,\"Invalid BaseDurationSeconds\")\n    assert(Cycle.finite(latitude) and latitude>=-90 and latitude<=90,\"Invalid continuous latitude\")\n    assert(#schedule>=2,\"Lighting schedule too short\")\n    local result={frames={},total=0,byName={}}\n    for i,stage in ipairs(schedule) do\n        local weight=stage.DurationWeight\n        assert(Cycle.finite(weight) and weight>0,\"Invalid stage duration\")\n        local clock=definition.ClockHours[stage.Preset]\n        assert(Cycle.finite(clock),\"Missing continuous clock: \"..stage.Preset)\n        assert(not result.byName[stage.Preset],\"Duplicate stage\")\n        if i>1 then assert(clock>result.frames[i-1].clock,\"Clock must move forwards\") end\n        local target=Cycle.preset(presets,stage.Preset,latitude)\n        overlay(target,definition.Overrides[stage.Preset])\n        target.Lighting.ClockTime=clock%24\n        -- One stable outdoor sky; context owners may select original authored skies.\n        target.SkyName=\"DaySky\"\n        local frame={name=stage.Preset,start=result.total,duration=base*weight,clock=clock,target=target}\n        result.frames[i]=frame; result.byName[stage.Preset]=frame\n        result.total+=frame.duration\n    end\n    local frames=result.frames; local n=#frames\n    assert(frames[n].clock<frames[1].clock+24,\"Cycle must span less than one day before wrap\")\n    for i,frame in ipairs(frames) do\n        local following=frames[i%n+1]\n        local nextClock=following.clock+(i==n and 24 or 0)\n        frame.slope=(nextClock-frame.clock)/frame.duration\n    end\n    for i,frame in ipairs(frames) do\n        local previous=frames[(i-2)%n+1]\n        frame.tangent=harmonic(previous.slope,frame.slope,previous.duration,frame.duration)\n    end\n    return result\nend\nfunction Cycle.position(cycle,seconds)\n    assert(Cycle.finite(seconds),\"Invalid cycle position\")\n    local position=seconds%cycle.total\n    for i,frame in ipairs(cycle.frames) do\n        if position<frame.start+frame.duration then return i,(position-frame.start)/frame.duration,position end\n    end\n    return 1,0,0\nend\nfunction Cycle.sample(cycle,seconds)\n    local i,u,position=Cycle.position(cycle,seconds)\n    local a=cycle.frames[i]; local b=cycle.frames[i%#cycle.frames+1]\n    local nextClock=b.clock+(i==#cycle.frames and 24 or 0)\n    local u2,u3=u*u,u*u*u\n    local clock=(2*u3-3*u2+1)*a.clock+(u3-2*u2+u)*a.duration*a.tangent\n        +(-2*u3+3*u2)*nextClock+(u3-u2)*a.duration*b.tangent\n    -- Shape-preserving Hermite clock and bounded smoothstep property blends.\n    local target=Cycle.blend(a.target,b.target,u2*(3-2*u))\n    target.Lighting.ClockTime=clock%24\n    -- Residual glare below the horizon produces a bright fog pulse at dusk.\n    -- Fade scattering before the horizon, independently of the palette blend.\n    local sunHeight=math.clamp(math.sin((clock%24-6)*math.pi/12)/.25,0,1)\n    target.Atmosphere.Glare*=sunHeight*sunHeight*(3-2*sunHeight)\n    return target,{index=i,preset=a.name,alpha=u,position=position,clock=clock%24,unwrappedClock=clock,endsIn=a.duration*(1-u)}\nend\nfunction Cycle.isNight(clock,sunrise,sunset)\n    return clock<sunrise or clock>=sunset\nend\nreturn Cycle\n",
+    "LightingPresets": "local LightingPresets = {\n\tClearNight = {\n\t\tAtmosphere = {\n\t\t\tColor = Color3.new(0.21568629145622253, 0.25098040699958801, 0.30980393290519714),\n\t\t\tDecay = Color3.new(0.41176474094390869, 0.41960787773132324, 0.53333336114883423),\n\t\t\tDensity = 0.3070000112056732,\n\t\t\tGlare = 6.860000133514404,\n\t\t\tHaze = 4.090000152587891,\n\t\t\tOffset = 0,\n\t\t},\n\t\tBloom = {\n\t\t\tEnabled = true,\n\t\t\tIntensity = 0.5,\n\t\t\tSize = 16,\n\t\t\tThreshold = 0.30000001192092896,\n\t\t},\n\t\tColorCorrection = {\n\t\t\tBrightness = 0.05000000074505806,\n\t\t\tContrast = 0.30000001192092896,\n\t\t\tEnabled = true,\n\t\t\tSaturation = 0.20000000298023224,\n\t\t\tTintColor = Color3.new(0.79215693473815918, 0.81960791349411011, 1),\n\t\t},\n\t\tDepthOfField = {\n\t\t\tEnabled = false,\n\t\t\tFarIntensity = 0.08399999886751175,\n\t\t\tFocusDistance = 0.05000000074505806,\n\t\t\tInFocusRadius = 10,\n\t\t\tNearIntensity = 0.75,\n\t\t},\n\t\tLighting = {\n\t\t\tAmbient = Color3.new(0.48235297203063965, 0.54117649793624878, 0.74117648601531982),\n\t\t\tBrightness = 2.7100000381469727,\n\t\t\tClockTime = 0,\n\t\t\tColorShift_Bottom = Color3.new(0.35294118523597717, 0.35294118523597717, 0.35294118523597717),\n\t\t\tColorShift_Top = Color3.new(1, 0.9490196704864502, 0.83137261867523193),\n\t\t\tEnvironmentDiffuseScale = 0,\n\t\t\tEnvironmentSpecularScale = 0.23399999737739563,\n\t\t\tExposureCompensation = 0,\n\t\t\tFogColor = Color3.new(0.75294119119644165, 0.75294119119644165, 0.75294119119644165),\n\t\t\tFogEnd = 100000,\n\t\t\tFogStart = 0,\n\t\t\tGlobalShadows = true,\n\t\t\tOutdoorAmbient = Color3.new(0.63137257099151611, 0.65490198135375977, 0.88627457618713379),\n\t\t\tShadowSoftness = 0.20000000298023224,\n\t\t},\n\t\tSkyName = \"ClearNightSky\",\n\t\tSunRays = {\n\t\t\tEnabled = false,\n\t\t\tIntensity = 0.05000000074505806,\n\t\t\tSpread = 0.7129999995231628,\n\t\t},\n\t},\n\tDay = {\n\t\tAtmosphere = {\n\t\t\tColor = Color3.new(0.78039216995239258, 0.78039216995239258, 0.78039216995239258),\n\t\t\tDecay = Color3.new(0.41568627953529358, 0.43921568989753723, 0.49019607901573181),\n\t\t\tDensity = 0.2199999988079071,\n\t\t\tGlare = 0,\n\t\t\tHaze = 0,\n\t\t\tOffset = 0.20000000298023224,\n\t\t},\n\t\tBloom = {\n\t\t\tIntensity = 0.6499999761581421,\n\t\t\tSize = 10,\n\t\t\tThreshold = 1.9040000438690186,\n\t\t},\n\t\tColorCorrection = {\n\t\t\tBrightness = 0.05000000074505806,\n\t\t\tContrast = 0,\n\t\t\tSaturation = 0.4000000059604645,\n\t\t\tTintColor = Color3.new(1, 1, 1),\n\t\t},\n\t\tLighting = {\n\t\t\tAmbient = Color3.new(0.4117647111415863, 0.73333334922790527, 1),\n\t\t\tBrightness = 5.150000095367432,\n\t\t\tClockTime = 12,\n\t\t\tColorShift_Bottom = Color3.new(0, 0, 0),\n\t\t\tColorShift_Top = Color3.new(1, 0.9529411792755127, 0.83137255907058716),\n\t\t\tEnvironmentDiffuseScale = 0.47099998593330383,\n\t\t\tEnvironmentSpecularScale = 1,\n\t\t\tExposureCompensation = 0.10000000149011612,\n\t\t\tFogColor = Color3.new(0.75294119119644165, 0.75294119119644165, 0.75294119119644165),\n\t\t\tFogEnd = 100000,\n\t\t\tFogStart = 0,\n\t\t\tGlobalShadows = true,\n\t\t\tOutdoorAmbient = Color3.new(0.61176472902297974, 0.83921569585800171, 0.90980392694473267),\n\t\t\tShadowSoftness = 0.20000000298023224,\n\t\t},\n\t\tSkyName = \"DaySky\",\n\t},\n\tEightPM = {\n\t\tAtmosphere = {\n\t\t\tColor = Color3.new(0.31764706969261169, 0.29803922772407532, 0.43921571969985962),\n\t\t\tDecay = Color3.new(0.58431375026702881, 0.5215686559677124, 0.76078438758850098),\n\t\t\tDensity = 0.3070000112056732,\n\t\t\tGlare = 6.860000133514404,\n\t\t\tHaze = 4.090000152587891,\n\t\t\tOffset = 0,\n\t\t},\n\t\tBloom = {\n\t\t\tEnabled = true,\n\t\t\tIntensity = 0.4000000059604645,\n\t\t\tSize = 16,\n\t\t\tThreshold = 0.30000001192092896,\n\t\t},\n\t\tColorCorrection = {\n\t\t\tBrightness = 0,\n\t\t\tContrast = 0.20000000298023224,\n\t\t\tEnabled = true,\n\t\t\tSaturation = 0.20000000298023224,\n\t\t\tTintColor = Color3.new(0.98823535442352295, 0.85098046064376831, 1),\n\t\t},\n\t\tDepthOfField = {\n\t\t\tEnabled = false,\n\t\t\tFarIntensity = 0.08399999886751175,\n\t\t\tFocusDistance = 0.05000000074505806,\n\t\t\tInFocusRadius = 10,\n\t\t\tNearIntensity = 0.75,\n\t\t},\n\t\tLighting = {\n\t\t\tAmbient = Color3.new(0.41960787773132324, 0.52549022436141968, 1),\n\t\t\tBrightness = 2.4000000953674316,\n\t\t\tClockTime = 23.5,\n\t\t\tColorShift_Bottom = Color3.new(0, 0, 0),\n\t\t\tColorShift_Top = Color3.new(1, 0.9490196704864502, 0.83137261867523193),\n\t\t\tEnvironmentDiffuseScale = 0,\n\t\t\tEnvironmentSpecularScale = 0.23399999737739563,\n\t\t\tExposureCompensation = 0.10999999940395355,\n\t\t\tFogColor = Color3.new(0.75294119119644165, 0.75294119119644165, 0.75294119119644165),\n\t\t\tFogEnd = 100000,\n\t\t\tFogStart = 0,\n\t\t\tGlobalShadows = true,\n\t\t\tOutdoorAmbient = Color3.new(0.85882359743118286, 0.70196080207824707, 0.90980398654937744),\n\t\t\tShadowSoftness = 0.20000000298023224,\n\t\t},\n\t\tSkyName = \"EightPMSky\",\n\t\tSunRays = {\n\t\t\tEnabled = false,\n\t\t\tIntensity = 0.05000000074505806,\n\t\t\tSpread = 0.7129999995231628,\n\t\t},\n\t},\n\tFivePM = {\n\t\tAtmosphere = {\n\t\t\tColor = Color3.new(0.43921571969985962, 0.35686275362968445, 0.32549020648002625),\n\t\t\tDecay = Color3.new(0.86666673421859741, 0.70588237047195435, 0.64313727617263794),\n\t\t\tDensity = 0.2669999897480011,\n\t\t\tGlare = 6.900000095367432,\n\t\t\tHaze = 5.400000095367432,\n\t\t\tOffset = 0,\n\t\t},\n\t\tBloom = {\n\t\t\tEnabled = true,\n\t\t\tIntensity = 0.550000011920929,\n\t\t\tSize = 10,\n\t\t\tThreshold = 0.699999988079071,\n\t\t},\n\t\tColorCorrection = {\n\t\t\tBrightness = 0,\n\t\t\tContrast = 0.20000000298023224,\n\t\t\tEnabled = true,\n\t\t\tSaturation = 0.4000000059604645,\n\t\t\tTintColor = Color3.new(0.88235300779342651, 0.94509810209274292, 1),\n\t\t},\n\t\tDepthOfField = {\n\t\t\tEnabled = false,\n\t\t\tFarIntensity = 0.08399999886751175,\n\t\t\tFocusDistance = 0.05000000074505806,\n\t\t\tInFocusRadius = 10,\n\t\t\tNearIntensity = 0.75,\n\t\t},\n\t\tLighting = {\n\t\t\tAmbient = Color3.new(1, 0.94509804248809814, 0.91764706373214722),\n\t\t\tBrightness = 0.1899999976158142,\n\t\t\tClockTime = 14.699999809265137,\n\t\t\tColorShift_Bottom = Color3.new(0, 0, 0),\n\t\t\tColorShift_Top = Color3.new(0.4901961088180542, 0.46666669845581055, 0.40784317255020142),\n\t\t\tEnvironmentDiffuseScale = 0.20100000500679016,\n\t\t\tEnvironmentSpecularScale = 1,\n\t\t\tExposureCompensation = -0.44999998807907104,\n\t\t\tFogColor = Color3.new(0.75294119119644165, 0.75294119119644165, 0.75294119119644165),\n\t\t\tFogEnd = 100000,\n\t\t\tFogStart = 0,\n\t\t\tGlobalShadows = true,\n\t\t\tOutdoorAmbient = Color3.new(0.90980398654937744, 0.84705889225006104, 0.81176477670669556),\n\t\t\tShadowSoftness = 0.20000000298023224,\n\t\t},\n\t\tSkyName = \"FivePMSky\",\n\t\tSunRays = {\n\t\t\tEnabled = false,\n\t\t\tIntensity = 0.05000000074505806,\n\t\t\tSpread = 0.7129999995231628,\n\t\t},\n\t},\n\tFourAM = {\n\t\tAtmosphere = {\n\t\t\tColor = Color3.new(0.31764706969261169, 0.29803922772407532, 0.43921571969985962),\n\t\t\tDecay = Color3.new(0.58431375026702881, 0.5215686559677124, 0.76078438758850098),\n\t\t\tDensity = 0.3070000112056732,\n\t\t\tGlare = 6.860000133514404,\n\t\t\tHaze = 4.090000152587891,\n\t\t\tOffset = 0,\n\t\t},\n\t\tBloom = {\n\t\t\tEnabled = true,\n\t\t\tIntensity = 0.4000000059604645,\n\t\t\tSize = 16,\n\t\t\tThreshold = 0.30000001192092896,\n\t\t},\n\t\tColorCorrection = {\n\t\t\tBrightness = 0,\n\t\t\tContrast = 0.20000000298023224,\n\t\t\tEnabled = true,\n\t\t\tSaturation = 0.20000000298023224,\n\t\t\tTintColor = Color3.new(0.98823535442352295, 0.85098046064376831, 1),\n\t\t},\n\t\tDepthOfField = {\n\t\t\tEnabled = false,\n\t\t\tFarIntensity = 0.08399999886751175,\n\t\t\tFocusDistance = 0.05000000074505806,\n\t\t\tInFocusRadius = 10,\n\t\t\tNearIntensity = 0.75,\n\t\t},\n\t\tLighting = {\n\t\t\tAmbient = Color3.new(0.41960787773132324, 0.52549022436141968, 1),\n\t\t\tBrightness = 2.4000000953674316,\n\t\t\tClockTime = 0.5,\n\t\t\tColorShift_Bottom = Color3.new(0, 0, 0),\n\t\t\tColorShift_Top = Color3.new(1, 0.9490196704864502, 0.83137261867523193),\n\t\t\tEnvironmentDiffuseScale = 0,\n\t\t\tEnvironmentSpecularScale = 0.23399999737739563,\n\t\t\tExposureCompensation = 0.10999999940395355,\n\t\t\tFogColor = Color3.new(0.75294119119644165, 0.75294119119644165, 0.75294119119644165),\n\t\t\tFogEnd = 100000,\n\t\t\tFogStart = 0,\n\t\t\tGlobalShadows = true,\n\t\t\tOutdoorAmbient = Color3.new(0.85882359743118286, 0.70196080207824707, 0.90980398654937744),\n\t\t\tShadowSoftness = 0.20000000298023224,\n\t\t},\n\t\tSkyName = \"FourAMSky\",\n\t\tSunRays = {\n\t\t\tEnabled = false,\n\t\t\tIntensity = 0.05000000074505806,\n\t\t\tSpread = 0.7129999995231628,\n\t\t},\n\t},\n\tSevenAM = {\n\t\tAtmosphere = {\n\t\t\tColor = Color3.new(0.43921571969985962, 0.35686275362968445, 0.32549020648002625),\n\t\t\tDecay = Color3.new(0.86666673421859741, 0.70588237047195435, 0.64313727617263794),\n\t\t\tDensity = 0.2370000034570694,\n\t\t\tGlare = 6.900000095367432,\n\t\t\tHaze = 5.400000095367432,\n\t\t\tOffset = 0,\n\t\t},\n\t\tBloom = {\n\t\t\tEnabled = true,\n\t\t\tIntensity = 0.550000011920929,\n\t\t\tSize = 10,\n\t\t\tThreshold = 0.699999988079071,\n\t\t},\n\t\tColorCorrection = {\n\t\t\tBrightness = 0,\n\t\t\tContrast = 0.20000000298023224,\n\t\t\tEnabled = true,\n\t\t\tSaturation = 0.4000000059604645,\n\t\t\tTintColor = Color3.new(0.88235300779342651, 0.94509810209274292, 1),\n\t\t},\n\t\tDepthOfField = {\n\t\t\tEnabled = false,\n\t\t\tFarIntensity = 0.08399999886751175,\n\t\t\tFocusDistance = 0.05000000074505806,\n\t\t\tInFocusRadius = 10,\n\t\t\tNearIntensity = 0.75,\n\t\t},\n\t\tLighting = {\n\t\t\tAmbient = Color3.new(1, 0.94509804248809814, 0.91764706373214722),\n\t\t\tBrightness = 0.2199999988079071,\n\t\t\tClockTime = 9.399999618530273,\n\t\t\tColorShift_Bottom = Color3.new(0, 0, 0),\n\t\t\tColorShift_Top = Color3.new(0.4901961088180542, 0.46666669845581055, 0.40784317255020142),\n\t\t\tEnvironmentDiffuseScale = 0.20100000500679016,\n\t\t\tEnvironmentSpecularScale = 1,\n\t\t\tExposureCompensation = -0.44999998807907104,\n\t\t\tFogColor = Color3.new(0.75294119119644165, 0.75294119119644165, 0.75294119119644165),\n\t\t\tFogEnd = 100000,\n\t\t\tFogStart = 0,\n\t\t\tGlobalShadows = true,\n\t\t\tOutdoorAmbient = Color3.new(0.90980398654937744, 0.84705889225006104, 0.81176477670669556),\n\t\t\tShadowSoftness = 0.20000000298023224,\n\t\t},\n\t\tSkyName = \"SevenAMSky\",\n\t\tSunRays = {\n\t\t\tEnabled = false,\n\t\t\tIntensity = 0.05000000074505806,\n\t\t\tSpread = 0.7129999995231628,\n\t\t},\n\t},\n\tTenAM = {\n\t\tAtmosphere = {\n\t\t\tColor = Color3.new(0.83137261867523193, 0.83137261867523193, 0.7450980544090271),\n\t\t\tDecay = Color3.new(0.4901961088180542, 0.45490199327468872, 0.32941177487373352),\n\t\t\tDensity = 0.2540000081062317,\n\t\t\tGlare = 2.0999999046325684,\n\t\t\tHaze = 2.059999942779541,\n\t\t\tOffset = 0,\n\t\t},\n\t\tBloom = {\n\t\t\tEnabled = true,\n\t\t\tIntensity = 0.3499999940395355,\n\t\t\tSize = 10,\n\t\t\tThreshold = 1.4110000133514404,\n\t\t},\n\t\tColorCorrection = {\n\t\t\tBrightness = 0.05000000074505806,\n\t\t\tContrast = 0.20000000298023224,\n\t\t\tEnabled = true,\n\t\t\tSaturation = 0.4000000059604645,\n\t\t\tTintColor = Color3.new(1, 1, 1),\n\t\t},\n\t\tDepthOfField = {\n\t\t\tEnabled = false,\n\t\t\tFarIntensity = 0.08399999886751175,\n\t\t\tFocusDistance = 0.05000000074505806,\n\t\t\tInFocusRadius = 10,\n\t\t\tNearIntensity = 0.75,\n\t\t},\n\t\tLighting = {\n\t\t\tAmbient = Color3.new(0.88235300779342651, 1, 0.93725496530532837),\n\t\t\tBrightness = 3,\n\t\t\tClockTime = 10,\n\t\t\tColorShift_Bottom = Color3.new(0, 0, 0),\n\t\t\tColorShift_Top = Color3.new(0.94509810209274292, 1, 0.87843143939971924),\n\t\t\tEnvironmentDiffuseScale = 0.46700000762939453,\n\t\t\tEnvironmentSpecularScale = 1,\n\t\t\tExposureCompensation = 0.10000000149011612,\n\t\t\tFogColor = Color3.new(0.75294119119644165, 0.75294119119644165, 0.75294119119644165),\n\t\t\tFogEnd = 100000,\n\t\t\tFogStart = 0,\n\t\t\tGlobalShadows = true,\n\t\t\tOutdoorAmbient = Color3.new(0.81960791349411011, 0.90980398654937744, 0.80392163991928101),\n\t\t\tShadowSoftness = 0.20000000298023224,\n\t\t},\n\t\tSkyName = \"TenAMSky\",\n\t\tSunRays = {\n\t\t\tEnabled = false,\n\t\t\tIntensity = 0.05000000074505806,\n\t\t\tSpread = 0.7129999995231628,\n\t\t},\n\t},\n\tThreePM = {\n\t\tAtmosphere = {\n\t\t\tColor = Color3.new(0.83137261867523193, 0.83137261867523193, 0.7450980544090271),\n\t\t\tDecay = Color3.new(0.4901961088180542, 0.45490199327468872, 0.32941177487373352),\n\t\t\tDensity = 0.2540000081062317,\n\t\t\tGlare = 2.0999999046325684,\n\t\t\tHaze = 2.059999942779541,\n\t\t\tOffset = 0,\n\t\t},\n\t\tBloom = {\n\t\t\tEnabled = true,\n\t\t\tIntensity = 0.3499999940395355,\n\t\t\tSize = 10,\n\t\t\tThreshold = 1.4110000133514404,\n\t\t},\n\t\tColorCorrection = {\n\t\t\tBrightness = 0.05000000074505806,\n\t\t\tContrast = 0.20000000298023224,\n\t\t\tEnabled = true,\n\t\t\tSaturation = 0.4000000059604645,\n\t\t\tTintColor = Color3.new(1, 1, 1),\n\t\t},\n\t\tDepthOfField = {\n\t\t\tEnabled = false,\n\t\t\tFarIntensity = 0.08399999886751175,\n\t\t\tFocusDistance = 0.05000000074505806,\n\t\t\tInFocusRadius = 10,\n\t\t\tNearIntensity = 0.75,\n\t\t},\n\t\tLighting = {\n\t\t\tAmbient = Color3.new(0.88235300779342651, 1, 0.93725496530532837),\n\t\t\tBrightness = 3,\n\t\t\tClockTime = 14.5,\n\t\t\tColorShift_Bottom = Color3.new(0, 0, 0),\n\t\t\tColorShift_Top = Color3.new(0.94509810209274292, 1, 0.87843143939971924),\n\t\t\tEnvironmentDiffuseScale = 0.46700000762939453,\n\t\t\tEnvironmentSpecularScale = 1,\n\t\t\tExposureCompensation = 0.10000000149011612,\n\t\t\tFogColor = Color3.new(0.75294119119644165, 0.75294119119644165, 0.75294119119644165),\n\t\t\tFogEnd = 100000,\n\t\t\tFogStart = 0,\n\t\t\tGlobalShadows = true,\n\t\t\tOutdoorAmbient = Color3.new(0.81960791349411011, 0.90980398654937744, 0.80392163991928101),\n\t\t\tShadowSoftness = 0.20000000298023224,\n\t\t},\n\t\tSkyName = \"ThreePMSky\",\n\t\tSunRays = {\n\t\t\tEnabled = false,\n\t\t\tIntensity = 0.05000000074505806,\n\t\t\tSpread = 0.7129999995231628,\n\t\t},\n\t},\n}\n\nreturn LightingPresets\n",
+    "LightingCycleDefinition": "-- Outdoor-only art direction. Original LightingPresets remain the stepped/garage reference.\nreturn {\n    ClockHours = {SevenAM=7, TenAM=10, Day=12, ThreePM=15, FivePM=17.5, EightPM=20, ClearNight=24, FourAM=28},\n    Overrides = {\n        SevenAM = {\n            Lighting={Brightness=1.6, ExposureCompensation=-0.10},\n            Atmosphere={Glare=1.2,Haze=2.2},\n        },\n        TenAM = {\n            Lighting={Brightness=3,ExposureCompensation=0.05},\n            Atmosphere={Glare=0.35,Haze=1.2},\n        },\n        Day = {\n            Lighting={Brightness=3.5,ExposureCompensation=0.05},\n        },\n        ThreePM = {\n            Lighting={Brightness=3,ExposureCompensation=0.05},\n            Atmosphere={Glare=0.35,Haze=1.2},\n        },\n        FivePM = {\n            Lighting={Brightness=1.5,ExposureCompensation=-0.15},\n            Atmosphere={Glare=1.2,Haze=2.5},\n        },\n        EightPM = {\n            Lighting={Brightness=1.2,ExposureCompensation=0},\n            Atmosphere={Glare=0,Haze=3.1},\n        },\n        ClearNight = {\n            Lighting={Brightness=1.3,ExposureCompensation=-0.05},\n            Atmosphere={Glare=0,Haze=3.25},\n        },\n        FourAM = {\n            Lighting={Brightness=1.2,ExposureCompensation=0},\n            Atmosphere={Glare=0,Haze=3.1},\n        },\n    },\n}\n"
+  },
+  "clouds": [],
+  "kind": "read-only targeted observation, not a full capture or gameplay test"
+}

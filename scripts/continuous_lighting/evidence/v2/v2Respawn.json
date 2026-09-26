@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"clock\":19.303054809570314,\"character\":true,\"lightingChildren\":7,\"world\":{\"OwnedGarageEnvironmentStarted\":true,\"LightingCycleReady\":true,\"Phase5Status\":\"running\",\"LightingContext\":\"City\"}}"
+    }
+  ],
+  "isError": false
+}

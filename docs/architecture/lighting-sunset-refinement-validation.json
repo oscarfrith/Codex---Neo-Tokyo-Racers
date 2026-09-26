@@ -1,0 +1,231 @@
+{
+  "schema": 1,
+  "task": "Sunset refinement: editable curves, atmosphere colour, small sun and rays",
+  "build": "lighting-sunset-refinement-d3f354797669",
+  "changed": "Four V2 source revisions, one root attribute, edited Continuous curve/palette attributes and a smaller sun; original owners/shared artwork preserved.",
+  "studio_action": "Installed and recovery tested. Edit: Continuous, 120 seconds, auto/sync true, opt-in tools off. No publish.",
+  "capture": "roblox/captures/lighting-sunset-refinement-after/capture.json; 2026-09-23 14:03:05 UTC; 168 sources/138 selected nodes.",
+  "recovery": "Set CycleMode=Stepped in Edit and restart Play. Full exact rollback through canonical install.lua; preserve artist edits before rebuilding.",
+  "next_action": "User visual review of colour, close-horizon darkening and ray strength; retain named flow/device/late-join acceptance limits. No installer pending.",
+  "checks": [
+    {
+      "id": "installation",
+      "kind": "static",
+      "status": "pass",
+      "observation": "58,013 pure checks; exact cumulative/revision scope; full rollback/reapply/no-op and eight original Stepped runtime targets pass.",
+      "evidence": [
+        {
+          "path": "scripts/continuous_lighting/evidence/v3/delivery-verification.json",
+          "sha256": "dec8c5dd93eca58ff7554ec10c4ed155a581fe9aa89363242d886499f7ae1e8c"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v3/v3Numerical.json",
+          "sha256": "c24046cb43678f813735cc4cc90511ba4d9de4a63eabbe953bf2ddb9a48415df"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v3/v3Recovery.json",
+          "sha256": "16ecaa2e9713ddb6c32d25e0da1111ac767299963ec9f6a367a021fc1430eaa5"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v3/v3Stepped.json",
+          "sha256": "f4d7a2970ef8482d408db273a68657ae1d9738259c3c5f737abce69416e108ee"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v3/v3FinalEdit.json",
+          "sha256": "e9690542b8ff1d00b5a9e3938c6e1697d57fffbcba4026d68f1520dcd26c8d63"
+        }
+      ],
+      "context": {},
+      "reason": "",
+      "next_action": ""
+    },
+    {
+      "id": "startup",
+      "kind": "ui",
+      "status": "pass",
+      "observation": "Actual Play input cleared the start screen; 26 server/40 client entries ready, four tools skipped and no-save sandbox active.",
+      "evidence": [
+        {
+          "path": "scripts/continuous_lighting/evidence/v3/v3ContextsAndStartup.json",
+          "sha256": "bb9bb334a56a40328390268b7179e61fe985d9e3a363dafaffbea2fe94dc0e49"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v3/v3ServerStartup.json",
+          "sha256": "2f14a4860e108edbc89d218c411d3dcb0a3bd4ef4b9b4f51fec4c7dc2c0c1988"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v3/v3ConsoleBeforeInvalid.json",
+          "sha256": "bfe24df7036ae896e15c2ef137be230919d99ed6be8fb6f6c575739117f520bf"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v3/v3_17_sun.jpg",
+          "sha256": "86e96368062defb58d5febabae5e3a6f05c3110fa7a985f7251044810c08456e"
+        }
+      ],
+      "context": {
+        "session": "Studio 4c38d6a4-0bfd-46b3-9308-ac4b9b4c95a2 V3 Continuous sandbox",
+        "build": "lighting-sunset-refinement-d3f354797669",
+        "environment": "Studio-no-save-sandbox",
+        "device": "Windows desktop Studio client",
+        "input": "Actual mouse Play input; read-only observation; explicitly labelled config/owner-signal checks",
+        "time_utc": "2026-09-23 14:03:05 UTC",
+        "interaction": "normal-ui",
+        "start_screen_active": false,
+        "visible_input_verified": true
+      },
+      "reason": "",
+      "next_action": ""
+    },
+    {
+      "id": "errors",
+      "kind": "runtime",
+      "status": "pass",
+      "observation": "122.043 seconds/1,086 samples: six looks, both switches, one wrap, no lighting errors/night rays; stable ActiveSky/seven children. Invalid fade rejected with exact last-good retention; corrected config recovered. Three controlled interior releases restored city. Existing Player:Move startup warning remains. Not a retention soak.",
+      "evidence": [
+        {
+          "path": "scripts/continuous_lighting/evidence/v3/v3Loop.json",
+          "sha256": "41fd530bd95f10920e6c7d0e5b1cf070b6f4735e8686a7f46498ca39c36e7d57"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v3/v3InvalidEdit.json",
+          "sha256": "20dbe7835a03c13ae6acee76756870b7614913107c498c1b4e8ae35158aff299"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v3/v3ContextsAndStartup.json",
+          "sha256": "bb9bb334a56a40328390268b7179e61fe985d9e3a363dafaffbea2fe94dc0e49"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v3/v3ConsoleBeforeInvalid.json",
+          "sha256": "bfe24df7036ae896e15c2ef137be230919d99ed6be8fb6f6c575739117f520bf"
+        }
+      ],
+      "context": {
+        "session": "Studio 4c38d6a4-0bfd-46b3-9308-ac4b9b4c95a2 V3 Continuous sandbox",
+        "build": "lighting-sunset-refinement-d3f354797669",
+        "environment": "Studio-no-save-sandbox",
+        "device": "Windows desktop Studio client",
+        "input": "Actual mouse Play input; read-only observation; explicitly labelled config/owner-signal checks",
+        "time_utc": "2026-09-23 14:03:05 UTC",
+        "interaction": "normal-ui",
+        "start_screen_active": false,
+        "visible_input_verified": true
+      },
+      "reason": "",
+      "next_action": ""
+    },
+    {
+      "id": "garage",
+      "kind": "ui",
+      "status": "deferred",
+      "observation": "Three controlled owned-interior entry/release pairs pass; full normal dealership/owned garage traversal was not rerun. Existing V2 normal Exit and owned route acceptance remain open.",
+      "evidence": [
+        {
+          "path": "scripts/continuous_lighting/evidence/v3/v3ContextsAndStartup.json",
+          "sha256": "bb9bb334a56a40328390268b7179e61fe985d9e3a363dafaffbea2fe94dc0e49"
+        }
+      ],
+      "context": {
+        "session": "Studio 4c38d6a4-0bfd-46b3-9308-ac4b9b4c95a2 V3 Continuous sandbox",
+        "build": "lighting-sunset-refinement-d3f354797669",
+        "environment": "Studio-no-save-sandbox",
+        "device": "Windows desktop Studio client",
+        "input": "Actual mouse Play input; read-only observation; explicitly labelled config/owner-signal checks",
+        "time_utc": "2026-09-23 14:03:05 UTC",
+        "interaction": "normal-ui",
+        "start_screen_active": false,
+        "visible_input_verified": true
+      },
+      "reason": "Three controlled owned-interior entry/release pairs pass; full normal dealership/owned garage traversal was not rerun. Existing V2 normal Exit and owned route acceptance remain open.",
+      "next_action": "Complete normal dealership exit/owned lighting entry and release on the refined build."
+    },
+    {
+      "id": "streaming",
+      "kind": "ui",
+      "status": "deferred",
+      "observation": "No driven stream-out/re-entry route or detached-reference/connection soak in this scoped art refinement.",
+      "evidence": [],
+      "context": {
+        "session": "Studio 4c38d6a4-0bfd-46b3-9308-ac4b9b4c95a2 V3 Continuous sandbox",
+        "build": "lighting-sunset-refinement-d3f354797669",
+        "environment": "Studio-no-save-sandbox",
+        "device": "Windows desktop Studio client",
+        "input": "Actual mouse Play input; read-only observation; explicitly labelled config/owner-signal checks",
+        "time_utc": "2026-09-23 14:03:05 UTC",
+        "interaction": "normal-ui",
+        "start_screen_active": false,
+        "visible_input_verified": true
+      },
+      "reason": "No driven stream-out/re-entry route or detached-reference/connection soak in this scoped art refinement.",
+      "next_action": "Drive the representative World route through stream-out/re-entry and repeated context/respawn transitions; inspect retention separately."
+    },
+    {
+      "id": "device",
+      "kind": "device",
+      "status": "deferred",
+      "observation": "No physical iPhone 7 access. Desktop images and numerical timing scaling do not prove low-quality/device rendering, native ray occlusion quality or normal-speed visual acceptance.",
+      "evidence": [
+        {
+          "path": "scripts/continuous_lighting/evidence/v3/v3_17_sun.jpg",
+          "sha256": "86e96368062defb58d5febabae5e3a6f05c3110fa7a985f7251044810c08456e"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v3/v3_176_sun.jpg",
+          "sha256": "27752f6503a2a80e495821152e604a5736288f4992f11d72fb8646c8d9598be5"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v3/v3_176_opposite.jpg",
+          "sha256": "3225e4e782b0c4b0b22b809a979f74562b9a37795888bcfd455fa2bec8b6d3a6"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v3/v3_18_sun.jpg",
+          "sha256": "7c493e7a11d01e76d391f3d8620a43548d93b09e84c265bf5ad4515f8e7a7c50"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v3/v3_064_sun.jpg",
+          "sha256": "bb853d44feac14a1aa1594836f38917574873d37caa17e306fa17ce0539a2a04"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v3/v3_dusk_road.jpg",
+          "sha256": "c1e9119e963d0cd653c297b6b21b2abe2741a0058ab8546168c33cb70f2599f2"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v3/v3_sunrise_road.jpg",
+          "sha256": "b8bbefd4cc47d0a0e03bcfc85045ec501ad913af30526bbb1995288c2acafb9a"
+        }
+      ],
+      "context": {
+        "session": "Studio 4c38d6a4-0bfd-46b3-9308-ac4b9b4c95a2 V3 Continuous sandbox",
+        "build": "lighting-sunset-refinement-d3f354797669",
+        "environment": "Studio-no-save-sandbox",
+        "device": "Windows desktop Studio client",
+        "input": "Actual mouse Play input; read-only observation; explicitly labelled config/owner-signal checks",
+        "time_utc": "2026-09-23 14:03:05 UTC",
+        "interaction": "normal-ui",
+        "start_screen_active": false,
+        "visible_input_verified": true
+      },
+      "reason": "No physical iPhone 7 access. Desktop images and numerical timing scaling do not prove low-quality/device rendering, native ray occlusion quality or normal-speed visual acceptance.",
+      "next_action": "Review close horizon and ray appearance at normal speed/low quality and on physical iPhone 7, including sun partially occluded by buildings."
+    },
+    {
+      "id": "multiplayer",
+      "kind": "multiplayer",
+      "status": "deferred",
+      "observation": "One Studio client only; deterministic epoch checks are not actual two-client synchronization/late-join evidence.",
+      "evidence": [],
+      "context": {
+        "session": "Studio 4c38d6a4-0bfd-46b3-9308-ac4b9b4c95a2 V3 Continuous sandbox",
+        "build": "lighting-sunset-refinement-d3f354797669",
+        "environment": "Studio-no-save-sandbox",
+        "device": "Windows desktop Studio client",
+        "input": "Actual mouse Play input; read-only observation; explicitly labelled config/owner-signal checks",
+        "time_utc": "2026-09-23 14:03:05 UTC",
+        "interaction": "normal-ui",
+        "start_screen_active": false,
+        "visible_input_verified": true
+      },
+      "reason": "One Studio client only; deterministic epoch checks are not actual two-client synchronization/late-join evidence.",
+      "next_action": "Observe two clients and a late join in an authorized isolated test environment; do not infer from a shared formula."
+    }
+  ]
+}

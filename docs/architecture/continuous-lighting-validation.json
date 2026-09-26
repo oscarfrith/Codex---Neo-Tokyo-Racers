@@ -1,0 +1,203 @@
+{
+  "schema": 1,
+  "task": "Continuous day and night lighting",
+  "build": "continuous-lighting-82036078e40b",
+  "changed": "Three modules, seven source updates and five lighting attributes. Original 900-second schedule/presets and all captured non-config properties preserved.",
+  "studio_action": "Installed and activated through canonical guarded installer; final rollback/reapply/repeat/Stepped comparison passed. Studio stopped in Edit with Continuous enabled, base 90, auto/synchronization true and opt-in tools false. No publish.",
+  "capture": "roblox/captures/continuous-lighting-after/capture.json at 2026-09-22 22:13:31 UTC; all 168 sources plus 85 selected nodes, not a full mirror.",
+  "recovery": "Set Config.World.Lighting.CycleMode=Stepped and restart Play; guarded full recovery through scripts/continuous_lighting/install.lua ROLLBACK in Edit.",
+  "next_action": "User visual playthrough; complete named owned-garage/streaming/lifecycle/device/two-client checks. No installer pending.",
+  "checks": [
+    {
+      "id": "installation",
+      "kind": "static",
+      "status": "pass",
+      "observation": "Exact expected capture delta and current source-file parity; compile, idempotent apply, guarded full rollback/reapply, 8 original Stepped stages and 34,688 numeric checks pass.",
+      "evidence": [
+        {
+          "path": "scripts/continuous_lighting/evidence/delivery-verification.json",
+          "sha256": "33c35392d823e6cf6e08edd7c239a72069d62ba583169937533f5cfc6244be00"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/final-recovery.json",
+          "sha256": "9d105fff7eec4565b1cddd30892d065cf6bdd5138fc6b5b29bcbf0e6c855b449"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/stepped-regression.json",
+          "sha256": "321364aeb7e8726ee6c388e0d31bdc3819edc5cadaff65f7f809ef2e58ed0432"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/numerical-and-install.json",
+          "sha256": "43a7e1898e9ecd14820a24766ccbd6e4e5a563c43e5efe782dae89eded713c3d"
+        }
+      ],
+      "context": {
+        "session": "Studio 372f4d61-c917-40e1-81c7-762ae8a9bb55 final Play",
+        "build": "continuous-lighting-82036078e40b",
+        "environment": "Studio-no-save-sandbox",
+        "device": "Windows Studio desktop client",
+        "input": "Visible mouse Play button; MCP read-only state observation",
+        "time_utc": "2026-09-22T22:12:28Z",
+        "interaction": "normal-ui",
+        "start_screen_active": false,
+        "visible_input_verified": true
+      },
+      "reason": "",
+      "next_action": ""
+    },
+    {
+      "id": "startup",
+      "kind": "ui",
+      "status": "pass",
+      "observation": "Normal visible Play input accepted; StartScreenActive=false, sandbox=true, all normal features ready including LightingClient, opt-in tools skipped, City context and clock advancing at latitude 35.",
+      "evidence": [
+        {
+          "path": "scripts/continuous_lighting/evidence/final-startup.json",
+          "sha256": "fc31f987642aa71228ab71f7a503efe6868b05e563f24e78108f99d8d0e3555b"
+        }
+      ],
+      "context": {
+        "session": "Studio 372f4d61-c917-40e1-81c7-762ae8a9bb55 final Play",
+        "build": "continuous-lighting-82036078e40b",
+        "environment": "Studio-no-save-sandbox",
+        "device": "Windows Studio desktop client",
+        "input": "Visible mouse Play button; MCP read-only state observation",
+        "time_utc": "2026-09-22T22:12:28Z",
+        "interaction": "normal-ui",
+        "start_screen_active": false,
+        "visible_input_verified": true
+      },
+      "reason": "",
+      "next_action": ""
+    },
+    {
+      "id": "garage",
+      "kind": "ui",
+      "status": "deferred",
+      "observation": "Normal dealership entry/Exit restored current city. 41 controlled overlapping context signals passed (supporting evidence only).",
+      "evidence": [
+        {
+          "path": "scripts/continuous_lighting/evidence/context-signals.json",
+          "sha256": "222f9f0bb0121cc150e5df3c582a6730823eef87a6f995747073d2d6c2d92e37"
+        }
+      ],
+      "context": {
+        "session": "Studio 372f4d61-c917-40e1-81c7-762ae8a9bb55 final Play",
+        "build": "continuous-lighting-82036078e40b",
+        "environment": "Studio-no-save-sandbox",
+        "device": "Windows Studio desktop client",
+        "input": "Visible mouse Play button; MCP read-only state observation",
+        "time_utc": "2026-09-22T22:12:28Z",
+        "interaction": "normal-ui",
+        "start_screen_active": false,
+        "visible_input_verified": true
+      },
+      "reason": "Onboarding kept normal owned-garage navigation unavailable; no full owned appearance/module/drive-in flow completed.",
+      "next_action": "Complete normal owned-garage appearance, drive-in, preview/back and exit across a city transition; verify immediate context release and no stale restore."
+    },
+    {
+      "id": "errors",
+      "kind": "runtime",
+      "status": "pass",
+      "observation": "Final normal-startup Output has no lighting errors; renderer ready with no LightingRenderError. Existing Player:Move character-not-present warning recorded. Scoped to this final smoke window; not a clean full garage/race/soak claim.",
+      "evidence": [
+        {
+          "path": "scripts/continuous_lighting/evidence/final-startup.json",
+          "sha256": "fc31f987642aa71228ab71f7a503efe6868b05e563f24e78108f99d8d0e3555b"
+        }
+      ],
+      "context": {
+        "session": "Studio 372f4d61-c917-40e1-81c7-762ae8a9bb55 final Play",
+        "build": "continuous-lighting-82036078e40b",
+        "environment": "Studio-no-save-sandbox",
+        "device": "Windows Studio desktop client",
+        "input": "Visible mouse Play button; MCP read-only state observation",
+        "time_utc": "2026-09-22T22:12:28Z",
+        "interaction": "normal-ui",
+        "start_screen_active": false,
+        "visible_input_verified": true
+      },
+      "reason": "",
+      "next_action": ""
+    },
+    {
+      "id": "cleanup",
+      "kind": "runtime",
+      "status": "deferred",
+      "observation": "Stable ActiveSky and seven parented Lighting children across accelerated cycle and controlled context repetitions.",
+      "evidence": [
+        {
+          "path": "scripts/continuous_lighting/evidence/accelerated-runtime.json",
+          "sha256": "c021ea9da158b484df9ca622ef5ec4841d156bde4d03a3e9037e4de6cadd7f1a"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/context-signals.json",
+          "sha256": "222f9f0bb0121cc150e5df3c582a6730823eef87a6f995747073d2d6c2d92e37"
+        }
+      ],
+      "context": {
+        "session": "Studio 372f4d61-c917-40e1-81c7-762ae8a9bb55 final Play",
+        "build": "continuous-lighting-82036078e40b",
+        "environment": "Studio-no-save-sandbox",
+        "device": "Windows Studio desktop client",
+        "input": "Visible mouse Play button; MCP read-only state observation",
+        "time_utc": "2026-09-22T22:12:28Z",
+        "interaction": "normal-ui",
+        "start_screen_active": false,
+        "visible_input_verified": true
+      },
+      "reason": "Flat parented counts do not establish detached instances/connections or stream-out lifecycle bounds.",
+      "next_action": "Repeat matched normal garage and stream-out/re-entry flows, observe settled resources and connection/retention evidence."
+    },
+    {
+      "id": "device",
+      "kind": "device",
+      "status": "deferred",
+      "observation": "",
+      "evidence": [],
+      "context": {
+        "session": "Studio 372f4d61-c917-40e1-81c7-762ae8a9bb55 final Play",
+        "build": "continuous-lighting-82036078e40b",
+        "environment": "Studio-no-save-sandbox",
+        "device": "Windows Studio desktop client",
+        "input": "Visible mouse Play button; MCP read-only state observation",
+        "time_utc": "2026-09-22T22:12:28Z",
+        "interaction": "normal-ui",
+        "start_screen_active": false,
+        "visible_input_verified": true
+      },
+      "reason": "No physical iPhone 7 session available; Studio desktop visuals are not phone performance evidence.",
+      "next_action": "Inspect full 15-minute cycle, road/vehicle/skyline readability and frame behavior on iPhone 7 at representative graphics, including low graphics."
+    },
+    {
+      "id": "multiplayer",
+      "kind": "multiplayer",
+      "status": "deferred",
+      "observation": "",
+      "evidence": [],
+      "context": {
+        "session": "Studio 372f4d61-c917-40e1-81c7-762ae8a9bb55 final Play",
+        "build": "continuous-lighting-82036078e40b",
+        "environment": "Studio-no-save-sandbox",
+        "device": "Windows Studio desktop client",
+        "input": "Visible mouse Play button; MCP read-only state observation",
+        "time_utc": "2026-09-22T22:12:28Z",
+        "interaction": "normal-ui",
+        "start_screen_active": false,
+        "visible_input_verified": true
+      },
+      "reason": "Only one Studio client exercised; synchronized numerical sampling is not independent client/late-join evidence.",
+      "next_action": "Compare two normally started clients including a late join in an isolated authorized test place. The separate 15-player performance gate remains open."
+    },
+    {
+      "id": "streaming",
+      "kind": "ui",
+      "status": "deferred",
+      "observation": "",
+      "evidence": [],
+      "context": {},
+      "reason": "No normal driven streaming route or respawn acceptance run performed for lighting.",
+      "next_action": "Drive a fixed World route, stream lights/windows out and back in, then respawn; verify current switch state and no extra environment owners."
+    }
+  ]
+}

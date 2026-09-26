@@ -1,0 +1,208 @@
+{
+  "contexts": {
+    "City": true
+  },
+  "maxSteps": {
+    "Lighting.EnvironmentDiffuseScale": {
+      "clock": 8.505833625793457,
+      "delta": 0.00012037158012390137,
+      "dt": 0.015186100004939362
+    },
+    "Atmosphere.Density": {
+      "clock": 8.505833625793457,
+      "delta": 0.000004500150680541992,
+      "dt": 0.015186100004939362
+    },
+    "SunRays.Intensity": {
+      "clock": 8.505833625793457,
+      "delta": 0.00004832446575164795,
+      "dt": 0.015186100004939362
+    },
+    "Atmosphere.Offset": {
+      "clock": 8.505833625793457,
+      "delta": 0.00005301833152770996,
+      "dt": 0.015186100004939362
+    },
+    "Atmosphere.Color": {
+      "clock": 8.505833625793457,
+      "delta": 0.00013214349746704102,
+      "dt": 0.015186100004939362
+    },
+    "Lighting.ColorShift_Bottom": {
+      "clock": 8.47861099243164,
+      "delta": 0,
+      "dt": 0.01667069999530213
+    },
+    "Lighting.ColorShift_Top": {
+      "clock": 8.505833625793457,
+      "delta": 0.0001494884490966797,
+      "dt": 0.015186100004939362
+    },
+    "ColorCorrection.TintColor": {
+      "clock": 8.505833625793457,
+      "delta": 0.00003337860107421875,
+      "dt": 0.015186100004939362
+    },
+    "Lighting.Ambient": {
+      "clock": 8.505833625793457,
+      "delta": 0.0002002120018005371,
+      "dt": 0.015186100004939362
+    },
+    "SunRays.Spread": {
+      "clock": 8.47861099243164,
+      "delta": 0,
+      "dt": 0.01667069999530213
+    },
+    "DepthOfField.FarIntensity": {
+      "clock": 8.47861099243164,
+      "delta": 0,
+      "dt": 0.01667069999530213
+    },
+    "Lighting.FogStart": {
+      "clock": 8.47861099243164,
+      "delta": 0,
+      "dt": 0.01667069999530213
+    },
+    "Lighting.OutdoorAmbient": {
+      "clock": 8.505833625793457,
+      "delta": 0.0001227855682373047,
+      "dt": 0.015186100004939362
+    },
+    "Lighting.Brightness": {
+      "clock": 8.505833625793457,
+      "delta": 0.0020062923431396484,
+      "dt": 0.015186100004939362
+    },
+    "Lighting.FogColor": {
+      "clock": 8.47861099243164,
+      "delta": 0,
+      "dt": 0.01667069999530213
+    },
+    "Lighting.ShadowSoftness": {
+      "clock": 8.47861099243164,
+      "delta": 0,
+      "dt": 0.01667069999530213
+    },
+    "Lighting.EnvironmentSpecularScale": {
+      "clock": 8.47861099243164,
+      "delta": 0,
+      "dt": 0.01667069999530213
+    },
+    "Lighting.FogEnd": {
+      "clock": 8.47861099243164,
+      "delta": 0,
+      "dt": 0.01667069999530213
+    },
+    "Lighting.GeographicLatitude": {
+      "clock": 8.47861099243164,
+      "delta": 0,
+      "dt": 0.01667069999530213
+    },
+    "Lighting.ExposureCompensation": {
+      "clock": 8.505833625793457,
+      "delta": 0.000022292137145996094,
+      "dt": 0.015186100004939362
+    },
+    "Bloom.Size": {
+      "clock": 8.47861099243164,
+      "delta": 0,
+      "dt": 0.01667069999530213
+    },
+    "DepthOfField.InFocusRadius": {
+      "clock": 8.47861099243164,
+      "delta": 0,
+      "dt": 0.01667069999530213
+    },
+    "ColorCorrection.Saturation": {
+      "clock": 8.47861099243164,
+      "delta": 0,
+      "dt": 0.01667069999530213
+    },
+    "ColorCorrection.Brightness": {
+      "clock": 8.505833625793457,
+      "delta": 0.0000018551945686340332,
+      "dt": 0.015186100004939362
+    },
+    "Bloom.Threshold": {
+      "clock": 8.505833625793457,
+      "delta": 0.0004475116729736328,
+      "dt": 0.015186100004939362
+    },
+    "Bloom.Intensity": {
+      "clock": 8.505833625793457,
+      "delta": 0.00003713369369506836,
+      "dt": 0.015186100004939362
+    },
+    "Atmosphere.Glare": {
+      "clock": 8.47861099243164,
+      "delta": 0,
+      "dt": 0.01667069999530213
+    },
+    "Atmosphere.Haze": {
+      "clock": 8.47861099243164,
+      "delta": 0,
+      "dt": 0.01667069999530213
+    },
+    "DepthOfField.NearIntensity": {
+      "clock": 8.47861099243164,
+      "delta": 0,
+      "dt": 0.01667069999530213
+    },
+    "DepthOfField.FocusDistance": {
+      "clock": 8.47861099243164,
+      "delta": 0,
+      "dt": 0.01667069999530213
+    },
+    "Atmosphere.Decay": {
+      "clock": 8.505833625793457,
+      "delta": 0.00009876489639282227,
+      "dt": 0.015186100004939362
+    },
+    "ColorCorrection.Contrast": {
+      "clock": 8.505833625793457,
+      "delta": 0.0000446029007434845,
+      "dt": 0.015186100004939362
+    }
+  },
+  "errors": [],
+  "elapsed": 122.0084210999994,
+  "done": true,
+  "clockJumps": 0,
+  "maxError": {
+    "Lighting.EnvironmentDiffuseScale": 0.000045891975098188986,
+    "Atmosphere.Density": 0.0000017212099425178984,
+    "SunRays.Intensity": 0.000018471484798554538,
+    "Atmosphere.Offset": 0.000020331461423578334,
+    "Atmosphere.Color": 0.00005054473876953125,
+    "Lighting.ColorShift_Bottom": 0,
+    "Lighting.ColorShift_Top": 0.000057220458984375,
+    "ColorCorrection.TintColor": 0.000012814998626708984,
+    "Lighting.Ambient": 0.00007665157318115234,
+    "SunRays.Spread": 2.384185793236071e-8,
+    "DepthOfField.FarIntensity": 1.13248825595047e-9,
+    "Lighting.FogStart": 0,
+    "Lighting.OutdoorAmbient": 0.00004696846008300781,
+    "Lighting.Brightness": 0.0007647084773774182,
+    "Lighting.FogColor": 0,
+    "Lighting.ShadowSoftness": 0,
+    "Lighting.EnvironmentSpecularScale": 0,
+    "Lighting.FogEnd": 0,
+    "Lighting.GeographicLatitude": 0,
+    "Lighting.ExposureCompensation": 0.000008496269662650047,
+    "Bloom.Size": 0,
+    "DepthOfField.InFocusRadius": 0,
+    "ColorCorrection.Saturation": 0,
+    "ColorCorrection.Brightness": 7.107943915118931e-7,
+    "Bloom.Threshold": 0.00017114607383383884,
+    "Bloom.Intensity": 0.000014194493034414002,
+    "Atmosphere.Glare": 0,
+    "Atmosphere.Haze": 0,
+    "DepthOfField.NearIntensity": 0,
+    "DepthOfField.FocusDistance": 7.450580569168253e-10,
+    "Atmosphere.Decay": 0.00003781914710998535,
+    "ColorCorrection.Contrast": 0.000017053455497989534
+  },
+  "wraps": 0,
+  "switches": [],
+  "samples": 7321
+}

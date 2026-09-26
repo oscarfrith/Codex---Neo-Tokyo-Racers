@@ -1,0 +1,337 @@
+{
+  "startScreenActive": false,
+  "initialChildren": 7,
+  "finalChildren": 7,
+  "cases": [
+    {
+      "pass": true,
+      "children": 7,
+      "clock": 12,
+      "latitude": 35,
+      "context": "City",
+      "case": "city"
+    },
+    {
+      "pass": true,
+      "children": 7,
+      "clock": 0,
+      "latitude": 189,
+      "context": "OwnedInterior",
+      "case": "interior 1"
+    },
+    {
+      "pass": true,
+      "children": 7,
+      "clock": 23.5,
+      "latitude": 189,
+      "context": "Dealership",
+      "case": "preview priority 1"
+    },
+    {
+      "pass": true,
+      "children": 7,
+      "clock": 0,
+      "latitude": 189,
+      "context": "OwnedInterior",
+      "case": "interior restored 1"
+    },
+    {
+      "pass": true,
+      "children": 7,
+      "clock": 12,
+      "latitude": 35,
+      "context": "City",
+      "case": "current city restored 1"
+    },
+    {
+      "pass": true,
+      "children": 7,
+      "clock": 0,
+      "latitude": 189,
+      "context": "OwnedInterior",
+      "case": "interior 2"
+    },
+    {
+      "pass": true,
+      "children": 7,
+      "clock": 23.5,
+      "latitude": 189,
+      "context": "Dealership",
+      "case": "preview priority 2"
+    },
+    {
+      "pass": true,
+      "children": 7,
+      "clock": 0,
+      "latitude": 189,
+      "context": "OwnedInterior",
+      "case": "interior restored 2"
+    },
+    {
+      "pass": true,
+      "children": 7,
+      "clock": 12,
+      "latitude": 35,
+      "context": "City",
+      "case": "current city restored 2"
+    },
+    {
+      "pass": true,
+      "children": 7,
+      "clock": 0,
+      "latitude": 189,
+      "context": "OwnedInterior",
+      "case": "interior 3"
+    },
+    {
+      "pass": true,
+      "children": 7,
+      "clock": 23.5,
+      "latitude": 189,
+      "context": "Dealership",
+      "case": "preview priority 3"
+    },
+    {
+      "pass": true,
+      "children": 7,
+      "clock": 0,
+      "latitude": 189,
+      "context": "OwnedInterior",
+      "case": "interior restored 3"
+    },
+    {
+      "pass": true,
+      "children": 7,
+      "clock": 12,
+      "latitude": 35,
+      "context": "City",
+      "case": "current city restored 3"
+    },
+    {
+      "pass": true,
+      "children": 7,
+      "clock": 0,
+      "latitude": 189,
+      "context": "OwnedInterior",
+      "case": "interior 4"
+    },
+    {
+      "pass": true,
+      "children": 7,
+      "clock": 23.5,
+      "latitude": 189,
+      "context": "Dealership",
+      "case": "preview priority 4"
+    },
+    {
+      "pass": true,
+      "children": 7,
+      "clock": 0,
+      "latitude": 189,
+      "context": "OwnedInterior",
+      "case": "interior restored 4"
+    },
+    {
+      "pass": true,
+      "children": 7,
+      "clock": 12,
+      "latitude": 35,
+      "context": "City",
+      "case": "current city restored 4"
+    },
+    {
+      "pass": true,
+      "children": 7,
+      "clock": 0,
+      "latitude": 189,
+      "context": "OwnedInterior",
+      "case": "interior 5"
+    },
+    {
+      "pass": true,
+      "children": 7,
+      "clock": 23.5,
+      "latitude": 189,
+      "context": "Dealership",
+      "case": "preview priority 5"
+    },
+    {
+      "pass": true,
+      "children": 7,
+      "clock": 0,
+      "latitude": 189,
+      "context": "OwnedInterior",
+      "case": "interior restored 5"
+    },
+    {
+      "pass": true,
+      "children": 7,
+      "clock": 12,
+      "latitude": 35,
+      "context": "City",
+      "case": "current city restored 5"
+    },
+    {
+      "pass": true,
+      "children": 7,
+      "clock": 0,
+      "latitude": 189,
+      "context": "OwnedInterior",
+      "case": "interior 6"
+    },
+    {
+      "pass": true,
+      "children": 7,
+      "clock": 23.5,
+      "latitude": 189,
+      "context": "Dealership",
+      "case": "preview priority 6"
+    },
+    {
+      "pass": true,
+      "children": 7,
+      "clock": 0,
+      "latitude": 189,
+      "context": "OwnedInterior",
+      "case": "interior restored 6"
+    },
+    {
+      "pass": true,
+      "children": 7,
+      "clock": 12,
+      "latitude": 35,
+      "context": "City",
+      "case": "current city restored 6"
+    },
+    {
+      "pass": true,
+      "children": 7,
+      "clock": 0,
+      "latitude": 189,
+      "context": "OwnedInterior",
+      "case": "interior 7"
+    },
+    {
+      "pass": true,
+      "children": 7,
+      "clock": 23.5,
+      "latitude": 189,
+      "context": "Dealership",
+      "case": "preview priority 7"
+    },
+    {
+      "pass": true,
+      "children": 7,
+      "clock": 0,
+      "latitude": 189,
+      "context": "OwnedInterior",
+      "case": "interior restored 7"
+    },
+    {
+      "pass": true,
+      "children": 7,
+      "clock": 12,
+      "latitude": 35,
+      "context": "City",
+      "case": "current city restored 7"
+    },
+    {
+      "pass": true,
+      "children": 7,
+      "clock": 0,
+      "latitude": 189,
+      "context": "OwnedInterior",
+      "case": "interior 8"
+    },
+    {
+      "pass": true,
+      "children": 7,
+      "clock": 23.5,
+      "latitude": 189,
+      "context": "Dealership",
+      "case": "preview priority 8"
+    },
+    {
+      "pass": true,
+      "children": 7,
+      "clock": 0,
+      "latitude": 189,
+      "context": "OwnedInterior",
+      "case": "interior restored 8"
+    },
+    {
+      "pass": true,
+      "children": 7,
+      "clock": 12,
+      "latitude": 35,
+      "context": "City",
+      "case": "current city restored 8"
+    },
+    {
+      "pass": true,
+      "children": 7,
+      "clock": 0,
+      "latitude": 189,
+      "context": "OwnedInterior",
+      "case": "interior 9"
+    },
+    {
+      "pass": true,
+      "children": 7,
+      "clock": 23.5,
+      "latitude": 189,
+      "context": "Dealership",
+      "case": "preview priority 9"
+    },
+    {
+      "pass": true,
+      "children": 7,
+      "clock": 0,
+      "latitude": 189,
+      "context": "OwnedInterior",
+      "case": "interior restored 9"
+    },
+    {
+      "pass": true,
+      "children": 7,
+      "clock": 12,
+      "latitude": 35,
+      "context": "City",
+      "case": "current city restored 9"
+    },
+    {
+      "pass": true,
+      "children": 7,
+      "clock": 0,
+      "latitude": 189,
+      "context": "OwnedInterior",
+      "case": "interior 10"
+    },
+    {
+      "pass": true,
+      "children": 7,
+      "clock": 23.5,
+      "latitude": 189,
+      "context": "Dealership",
+      "case": "preview priority 10"
+    },
+    {
+      "pass": true,
+      "children": 7,
+      "clock": 0,
+      "latitude": 189,
+      "context": "OwnedInterior",
+      "case": "interior restored 10"
+    },
+    {
+      "pass": true,
+      "children": 7,
+      "clock": 12,
+      "latitude": 35,
+      "context": "City",
+      "case": "current city restored 10"
+    }
+  ],
+  "kind": "controlled-client-context-signals",
+  "pass": true
+}

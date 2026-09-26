@@ -1,0 +1,1302 @@
+{
+  "before_capture": "roblox/captures/continuous-lighting-before/capture.json",
+  "before_sha256": "e93cbf0e57be6956be4ac146ace0e7bd1044e700b51d647181ff97663c0da111",
+  "revision_before_capture": "roblox/captures/lighting-horizon-moon-before/capture.json",
+  "sources": {
+    "LightingServer": "ServerStorage.Modules.Game.World.LightingServer",
+    "ClientBase": "StarterPlayer.StarterPlayerScripts.ClientBase",
+    "GaragePreviewPresentationClient": "ReplicatedStorage.Modules.Game.Garage.GaragePreviewPresentationClient",
+    "OwnedGarageEnvironmentLightingClient": "ReplicatedStorage.Modules.Game.World.OwnedGarageEnvironmentLightingClient",
+    "NightLamppostLightClient": "ReplicatedStorage.Modules.Game.World.NightLamppostLightClient",
+    "WindowMaterialClient": "ReplicatedStorage.Modules.Game.World.WindowMaterialClient",
+    "LightingPreviewClient": "ReplicatedStorage.Modules.Game.Development.LightingPreviewClient"
+  },
+  "new_modules": [
+    "LightingCycleDefinition",
+    "LightingCycle",
+    "LightingClient"
+  ],
+  "attributes": [
+    "CycleMode",
+    "ContinuousGeographicLatitude",
+    "SteppedGeographicLatitude",
+    "SunriseClockTime",
+    "SunsetClockTime",
+    "ContinuousCycleDurationSeconds",
+    "ContinuousManualClockTime",
+    "ContinuousSkyName",
+    "ContinuousRayFadeHours"
+  ],
+  "trees": [
+    {
+      "name": "ContinuousLooks",
+      "class_name": "Folder",
+      "attributes": {},
+      "properties": {},
+      "children": [
+        {
+          "name": "NightEnd",
+          "class_name": "Folder",
+          "attributes": {
+            "Preset": "ClearNight",
+            "Anchor": "Sunrise",
+            "OffsetHours": -4,
+            "HoldHours": 0,
+            "LightFadeStart": 0,
+            "LightFadeEnd": 1,
+            "ColourFadeStart": 0,
+            "ColourFadeEnd": 1,
+            "HazeFadeStart": 0,
+            "HazeFadeEnd": 1,
+            "GlareFadeStart": 0,
+            "GlareFadeEnd": 1,
+            "DistanceFadeStart": 0,
+            "DistanceFadeEnd": 1,
+            "PostFadeStart": 0,
+            "PostFadeEnd": 1
+          },
+          "properties": {},
+          "children": []
+        },
+        {
+          "name": "Dawn",
+          "class_name": "Folder",
+          "attributes": {
+            "Preset": "FourAM",
+            "Anchor": "Sunrise",
+            "OffsetHours": -2.5,
+            "HoldHours": 0.4,
+            "LightFadeStart": 0,
+            "LightFadeEnd": 1,
+            "ColourFadeStart": 0,
+            "ColourFadeEnd": 0.8,
+            "HazeFadeStart": 0,
+            "HazeFadeEnd": 1,
+            "GlareFadeStart": 0,
+            "GlareFadeEnd": 1,
+            "DistanceFadeStart": 0,
+            "DistanceFadeEnd": 1,
+            "PostFadeStart": 0,
+            "PostFadeEnd": 1
+          },
+          "properties": {},
+          "children": []
+        },
+        {
+          "name": "Sunrise",
+          "class_name": "Folder",
+          "attributes": {
+            "Preset": "SevenAM",
+            "Anchor": "Sunrise",
+            "OffsetHours": 0,
+            "HoldHours": 0.16666666666666666,
+            "LightFadeStart": 0.3,
+            "LightFadeEnd": 1,
+            "ColourFadeStart": 0.15,
+            "ColourFadeEnd": 1,
+            "HazeFadeStart": 0,
+            "HazeFadeEnd": 0.7,
+            "GlareFadeStart": 0,
+            "GlareFadeEnd": 0.6,
+            "DistanceFadeStart": 0,
+            "DistanceFadeEnd": 1,
+            "PostFadeStart": 0.2,
+            "PostFadeEnd": 1
+          },
+          "properties": {},
+          "children": []
+        },
+        {
+          "name": "DayStart",
+          "class_name": "Folder",
+          "attributes": {
+            "Preset": "Day",
+            "Anchor": "Sunrise",
+            "OffsetHours": 3.5,
+            "HoldHours": 0,
+            "LightFadeStart": 0,
+            "LightFadeEnd": 1,
+            "ColourFadeStart": 0,
+            "ColourFadeEnd": 1,
+            "HazeFadeStart": 0,
+            "HazeFadeEnd": 1,
+            "GlareFadeStart": 0,
+            "GlareFadeEnd": 1,
+            "DistanceFadeStart": 0,
+            "DistanceFadeEnd": 1,
+            "PostFadeStart": 0,
+            "PostFadeEnd": 1
+          },
+          "properties": {},
+          "children": []
+        },
+        {
+          "name": "DayEnd",
+          "class_name": "Folder",
+          "attributes": {
+            "Preset": "Day",
+            "Anchor": "Sunset",
+            "OffsetHours": -3.5,
+            "HoldHours": 0,
+            "LightFadeStart": 0,
+            "LightFadeEnd": 0.7,
+            "ColourFadeStart": 0,
+            "ColourFadeEnd": 0.85,
+            "HazeFadeStart": 0.3,
+            "HazeFadeEnd": 1,
+            "GlareFadeStart": 0.4,
+            "GlareFadeEnd": 1,
+            "DistanceFadeStart": 0,
+            "DistanceFadeEnd": 1,
+            "PostFadeStart": 0,
+            "PostFadeEnd": 0.8
+          },
+          "properties": {},
+          "children": []
+        },
+        {
+          "name": "Sunset",
+          "class_name": "Folder",
+          "attributes": {
+            "Preset": "FivePM",
+            "Anchor": "Sunset",
+            "OffsetHours": 0,
+            "HoldHours": 0.16666666666666666,
+            "LightFadeStart": 0,
+            "LightFadeEnd": 1,
+            "ColourFadeStart": 0.2,
+            "ColourFadeEnd": 1,
+            "HazeFadeStart": 0,
+            "HazeFadeEnd": 1,
+            "GlareFadeStart": 0,
+            "GlareFadeEnd": 1,
+            "DistanceFadeStart": 0,
+            "DistanceFadeEnd": 1,
+            "PostFadeStart": 0,
+            "PostFadeEnd": 1
+          },
+          "properties": {},
+          "children": []
+        },
+        {
+          "name": "Dusk",
+          "class_name": "Folder",
+          "attributes": {
+            "Preset": "EightPM",
+            "Anchor": "Sunset",
+            "OffsetHours": 2.5,
+            "HoldHours": 0.4,
+            "LightFadeStart": 0,
+            "LightFadeEnd": 1,
+            "ColourFadeStart": 0,
+            "ColourFadeEnd": 1,
+            "HazeFadeStart": 0,
+            "HazeFadeEnd": 1,
+            "GlareFadeStart": 0,
+            "GlareFadeEnd": 1,
+            "DistanceFadeStart": 0,
+            "DistanceFadeEnd": 1,
+            "PostFadeStart": 0,
+            "PostFadeEnd": 1
+          },
+          "properties": {},
+          "children": []
+        },
+        {
+          "name": "NightStart",
+          "class_name": "Folder",
+          "attributes": {
+            "Preset": "ClearNight",
+            "Anchor": "Sunset",
+            "OffsetHours": 4,
+            "HoldHours": 0,
+            "LightFadeStart": 0,
+            "LightFadeEnd": 1,
+            "ColourFadeStart": 0,
+            "ColourFadeEnd": 1,
+            "HazeFadeStart": 0,
+            "HazeFadeEnd": 1,
+            "GlareFadeStart": 0,
+            "GlareFadeEnd": 1,
+            "DistanceFadeStart": 0,
+            "DistanceFadeEnd": 1,
+            "PostFadeStart": 0,
+            "PostFadeEnd": 1
+          },
+          "properties": {},
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "ContinuousPresets",
+      "class_name": "Folder",
+      "attributes": {},
+      "properties": {},
+      "children": [
+        {
+          "name": "SevenAM",
+          "class_name": "Folder",
+          "attributes": {},
+          "properties": {},
+          "children": [
+            {
+              "name": "SunRays",
+              "class_name": "Folder",
+              "attributes": {
+                "Enabled": true,
+                "Intensity": 0.2,
+                "Spread": 0.9
+              },
+              "properties": {},
+              "children": []
+            },
+            {
+              "name": "DepthOfField",
+              "class_name": "Folder",
+              "attributes": {
+                "Enabled": false,
+                "FarIntensity": 0.08399999886751175,
+                "FocusDistance": 0.05000000074505806,
+                "InFocusRadius": 10,
+                "NearIntensity": 0.75
+              },
+              "properties": {},
+              "children": []
+            },
+            {
+              "name": "ColorCorrection",
+              "class_name": "Folder",
+              "attributes": {
+                "Enabled": true,
+                "Saturation": 0.4000000059604645,
+                "Contrast": 0.12,
+                "TintColor": {
+                  "Type": "Color3",
+                  "R": 1.0,
+                  "G": 0.9215686274509803,
+                  "B": 0.9019607843137255
+                },
+                "Brightness": 0.055
+              },
+              "properties": {},
+              "children": []
+            },
+            {
+              "name": "Atmosphere",
+              "class_name": "Folder",
+              "attributes": {
+                "Density": 0.2370000034570694,
+                "Glare": 1,
+                "Color": {
+                  "Type": "Color3",
+                  "R": 1.0,
+                  "G": 0.5686274509803921,
+                  "B": 0.39215686274509803
+                },
+                "Decay": {
+                  "Type": "Color3",
+                  "R": 0.7058823529411765,
+                  "G": 0.49019607843137253,
+                  "B": 0.5490196078431373
+                },
+                "Haze": 2.2,
+                "Offset": 0
+              },
+              "properties": {},
+              "children": []
+            },
+            {
+              "name": "Lighting",
+              "class_name": "Folder",
+              "attributes": {
+                "ColorShift_Bottom": {
+                  "B": 0,
+                  "Type": "Color3",
+                  "G": 0,
+                  "R": 0
+                },
+                "FogColor": {
+                  "B": 0.7529411911964417,
+                  "Type": "Color3",
+                  "G": 0.7529411911964417,
+                  "R": 0.7529411911964417
+                },
+                "FogEnd": 100000,
+                "EnvironmentDiffuseScale": 0.20100000500679016,
+                "EnvironmentSpecularScale": 1,
+                "ExposureCompensation": 0.15,
+                "FogStart": 0,
+                "Ambient": {
+                  "Type": "Color3",
+                  "R": 1.0,
+                  "G": 0.7058823529411765,
+                  "B": 0.6274509803921569
+                },
+                "OutdoorAmbient": {
+                  "Type": "Color3",
+                  "R": 0.9411764705882353,
+                  "G": 0.6078431372549019,
+                  "B": 0.5490196078431373
+                },
+                "ColorShift_Top": {
+                  "Type": "Color3",
+                  "R": 1.0,
+                  "G": 0.5686274509803921,
+                  "B": 0.39215686274509803
+                },
+                "Brightness": 0.65,
+                "ShadowSoftness": 0.20000000298023224,
+                "GlobalShadows": true
+              },
+              "properties": {},
+              "children": []
+            },
+            {
+              "name": "Bloom",
+              "class_name": "Folder",
+              "attributes": {
+                "Threshold": 0.699999988079071,
+                "Enabled": true,
+                "Intensity": 0.550000011920929,
+                "Size": 10
+              },
+              "properties": {},
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Day",
+          "class_name": "Folder",
+          "attributes": {},
+          "properties": {},
+          "children": [
+            {
+              "name": "SunRays",
+              "class_name": "Folder",
+              "attributes": {
+                "Enabled": true,
+                "Intensity": 0.07,
+                "Spread": 0.9
+              },
+              "properties": {},
+              "children": []
+            },
+            {
+              "name": "DepthOfField",
+              "class_name": "Folder",
+              "attributes": {
+                "Enabled": false,
+                "FarIntensity": 0.084,
+                "FocusDistance": 0.05,
+                "InFocusRadius": 10,
+                "NearIntensity": 0.75
+              },
+              "properties": {},
+              "children": []
+            },
+            {
+              "name": "ColorCorrection",
+              "class_name": "Folder",
+              "attributes": {
+                "Enabled": true,
+                "Saturation": 0.4000000059604645,
+                "Contrast": 0,
+                "TintColor": {
+                  "B": 1,
+                  "Type": "Color3",
+                  "G": 1,
+                  "R": 1
+                },
+                "Brightness": 0.05000000074505806
+              },
+              "properties": {},
+              "children": []
+            },
+            {
+              "name": "Atmosphere",
+              "class_name": "Folder",
+              "attributes": {
+                "Density": 0.2199999988079071,
+                "Glare": 0,
+                "Color": {
+                  "B": 0.7803921699523926,
+                  "Type": "Color3",
+                  "G": 0.7803921699523926,
+                  "R": 0.7803921699523926
+                },
+                "Decay": {
+                  "B": 0.4901960790157318,
+                  "Type": "Color3",
+                  "G": 0.43921568989753723,
+                  "R": 0.4156862795352936
+                },
+                "Haze": 0,
+                "Offset": 0.20000000298023224
+              },
+              "properties": {},
+              "children": []
+            },
+            {
+              "name": "Lighting",
+              "class_name": "Folder",
+              "attributes": {
+                "ColorShift_Bottom": {
+                  "B": 0,
+                  "Type": "Color3",
+                  "G": 0,
+                  "R": 0
+                },
+                "FogColor": {
+                  "B": 0.7529411911964417,
+                  "Type": "Color3",
+                  "G": 0.7529411911964417,
+                  "R": 0.7529411911964417
+                },
+                "FogEnd": 100000,
+                "EnvironmentDiffuseScale": 0.47099998593330383,
+                "EnvironmentSpecularScale": 1,
+                "ExposureCompensation": 0.10000000149011612,
+                "FogStart": 0,
+                "Ambient": {
+                  "B": 1,
+                  "Type": "Color3",
+                  "G": 0.7333333492279053,
+                  "R": 0.4117647111415863
+                },
+                "OutdoorAmbient": {
+                  "B": 0.9098039269447327,
+                  "Type": "Color3",
+                  "G": 0.8392156958580017,
+                  "R": 0.6117647290229797
+                },
+                "ColorShift_Top": {
+                  "B": 0.8313725590705872,
+                  "Type": "Color3",
+                  "G": 0.9529411792755127,
+                  "R": 1
+                },
+                "Brightness": 5.150000095367432,
+                "ShadowSoftness": 0.20000000298023224,
+                "GlobalShadows": true
+              },
+              "properties": {},
+              "children": []
+            },
+            {
+              "name": "Bloom",
+              "class_name": "Folder",
+              "attributes": {
+                "Threshold": 1.9040000438690186,
+                "Enabled": true,
+                "Intensity": 0.6499999761581421,
+                "Size": 10
+              },
+              "properties": {},
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "ClearNight",
+          "class_name": "Folder",
+          "attributes": {},
+          "properties": {},
+          "children": [
+            {
+              "name": "SunRays",
+              "class_name": "Folder",
+              "attributes": {
+                "Enabled": true,
+                "Intensity": 0,
+                "Spread": 0.9
+              },
+              "properties": {},
+              "children": []
+            },
+            {
+              "name": "DepthOfField",
+              "class_name": "Folder",
+              "attributes": {
+                "Enabled": false,
+                "FarIntensity": 0.08399999886751175,
+                "FocusDistance": 0.05000000074505806,
+                "InFocusRadius": 10,
+                "NearIntensity": 0.75
+              },
+              "properties": {},
+              "children": []
+            },
+            {
+              "name": "ColorCorrection",
+              "class_name": "Folder",
+              "attributes": {
+                "Enabled": true,
+                "Saturation": 0.20000000298023224,
+                "Contrast": 0.30000001192092896,
+                "TintColor": {
+                  "B": 1,
+                  "Type": "Color3",
+                  "G": 0.8196079134941101,
+                  "R": 0.7921569347381592
+                },
+                "Brightness": 0.05000000074505806
+              },
+              "properties": {},
+              "children": []
+            },
+            {
+              "name": "Atmosphere",
+              "class_name": "Folder",
+              "attributes": {
+                "Density": 0.3070000112056732,
+                "Glare": 0.45,
+                "Color": {
+                  "B": 0.30980393290519714,
+                  "Type": "Color3",
+                  "G": 0.250980406999588,
+                  "R": 0.21568629145622253
+                },
+                "Decay": {
+                  "B": 0.5333333611488342,
+                  "Type": "Color3",
+                  "G": 0.41960787773132324,
+                  "R": 0.4117647409439087
+                },
+                "Haze": 4.090000152587891,
+                "Offset": 0
+              },
+              "properties": {},
+              "children": []
+            },
+            {
+              "name": "Lighting",
+              "class_name": "Folder",
+              "attributes": {
+                "ColorShift_Bottom": {
+                  "B": 0.3529411852359772,
+                  "Type": "Color3",
+                  "G": 0.3529411852359772,
+                  "R": 0.3529411852359772
+                },
+                "FogColor": {
+                  "B": 0.7529411911964417,
+                  "Type": "Color3",
+                  "G": 0.7529411911964417,
+                  "R": 0.7529411911964417
+                },
+                "FogEnd": 100000,
+                "EnvironmentDiffuseScale": 0,
+                "EnvironmentSpecularScale": 0.23399999737739563,
+                "ExposureCompensation": 0,
+                "FogStart": 0,
+                "Ambient": {
+                  "B": 0.7411764860153198,
+                  "Type": "Color3",
+                  "G": 0.5411764979362488,
+                  "R": 0.48235297203063965
+                },
+                "OutdoorAmbient": {
+                  "B": 0.8862745761871338,
+                  "Type": "Color3",
+                  "G": 0.6549019813537598,
+                  "R": 0.6313725709915161
+                },
+                "ColorShift_Top": {
+                  "B": 0.8313726186752319,
+                  "Type": "Color3",
+                  "G": 0.9490196704864502,
+                  "R": 1
+                },
+                "Brightness": 2.7100000381469727,
+                "ShadowSoftness": 0.20000000298023224,
+                "GlobalShadows": true
+              },
+              "properties": {},
+              "children": []
+            },
+            {
+              "name": "Bloom",
+              "class_name": "Folder",
+              "attributes": {
+                "Threshold": 0.30000001192092896,
+                "Enabled": true,
+                "Intensity": 0.5,
+                "Size": 16
+              },
+              "properties": {},
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "FivePM",
+          "class_name": "Folder",
+          "attributes": {},
+          "properties": {},
+          "children": [
+            {
+              "name": "SunRays",
+              "class_name": "Folder",
+              "attributes": {
+                "Enabled": true,
+                "Intensity": 0.2,
+                "Spread": 0.9
+              },
+              "properties": {},
+              "children": []
+            },
+            {
+              "name": "DepthOfField",
+              "class_name": "Folder",
+              "attributes": {
+                "Enabled": false,
+                "FarIntensity": 0.08399999886751175,
+                "FocusDistance": 0.05000000074505806,
+                "InFocusRadius": 10,
+                "NearIntensity": 0.75
+              },
+              "properties": {},
+              "children": []
+            },
+            {
+              "name": "ColorCorrection",
+              "class_name": "Folder",
+              "attributes": {
+                "Enabled": true,
+                "Saturation": 0.4000000059604645,
+                "Contrast": 0.12,
+                "TintColor": {
+                  "Type": "Color3",
+                  "R": 1.0,
+                  "G": 0.9215686274509803,
+                  "B": 0.9019607843137255
+                },
+                "Brightness": 0.055
+              },
+              "properties": {},
+              "children": []
+            },
+            {
+              "name": "Atmosphere",
+              "class_name": "Folder",
+              "attributes": {
+                "Density": 0.2669999897480011,
+                "Glare": 1,
+                "Color": {
+                  "Type": "Color3",
+                  "R": 1.0,
+                  "G": 0.5686274509803921,
+                  "B": 0.39215686274509803
+                },
+                "Decay": {
+                  "Type": "Color3",
+                  "R": 0.7058823529411765,
+                  "G": 0.49019607843137253,
+                  "B": 0.5490196078431373
+                },
+                "Haze": 2.2,
+                "Offset": 0
+              },
+              "properties": {},
+              "children": []
+            },
+            {
+              "name": "Lighting",
+              "class_name": "Folder",
+              "attributes": {
+                "ColorShift_Bottom": {
+                  "B": 0,
+                  "Type": "Color3",
+                  "G": 0,
+                  "R": 0
+                },
+                "FogColor": {
+                  "B": 0.7529411911964417,
+                  "Type": "Color3",
+                  "G": 0.7529411911964417,
+                  "R": 0.7529411911964417
+                },
+                "FogEnd": 100000,
+                "EnvironmentDiffuseScale": 0.20100000500679016,
+                "EnvironmentSpecularScale": 1,
+                "ExposureCompensation": 0.15,
+                "FogStart": 0,
+                "Ambient": {
+                  "Type": "Color3",
+                  "R": 1.0,
+                  "G": 0.7058823529411765,
+                  "B": 0.6274509803921569
+                },
+                "OutdoorAmbient": {
+                  "Type": "Color3",
+                  "R": 0.9411764705882353,
+                  "G": 0.6078431372549019,
+                  "B": 0.5490196078431373
+                },
+                "ColorShift_Top": {
+                  "Type": "Color3",
+                  "R": 1.0,
+                  "G": 0.5686274509803921,
+                  "B": 0.39215686274509803
+                },
+                "Brightness": 0.65,
+                "ShadowSoftness": 0.20000000298023224,
+                "GlobalShadows": true
+              },
+              "properties": {},
+              "children": []
+            },
+            {
+              "name": "Bloom",
+              "class_name": "Folder",
+              "attributes": {
+                "Threshold": 0.699999988079071,
+                "Enabled": true,
+                "Intensity": 0.550000011920929,
+                "Size": 10
+              },
+              "properties": {},
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "FourAM",
+          "class_name": "Folder",
+          "attributes": {},
+          "properties": {},
+          "children": [
+            {
+              "name": "SunRays",
+              "class_name": "Folder",
+              "attributes": {
+                "Enabled": true,
+                "Intensity": 0,
+                "Spread": 0.9
+              },
+              "properties": {},
+              "children": []
+            },
+            {
+              "name": "DepthOfField",
+              "class_name": "Folder",
+              "attributes": {
+                "Enabled": false,
+                "FarIntensity": 0.08399999886751175,
+                "FocusDistance": 0.05000000074505806,
+                "InFocusRadius": 10,
+                "NearIntensity": 0.75
+              },
+              "properties": {},
+              "children": []
+            },
+            {
+              "name": "ColorCorrection",
+              "class_name": "Folder",
+              "attributes": {
+                "Enabled": true,
+                "Saturation": 0.20000000298023224,
+                "Contrast": 0.20000000298023224,
+                "TintColor": {
+                  "B": 1,
+                  "Type": "Color3",
+                  "G": 0.8509804606437683,
+                  "R": 0.988235354423523
+                },
+                "Brightness": 0
+              },
+              "properties": {},
+              "children": []
+            },
+            {
+              "name": "Atmosphere",
+              "class_name": "Folder",
+              "attributes": {
+                "Density": 0.3070000112056732,
+                "Glare": 1.5,
+                "Color": {
+                  "Type": "Color3",
+                  "R": 0.5686274509803921,
+                  "G": 0.39215686274509803,
+                  "B": 0.6078431372549019
+                },
+                "Decay": {
+                  "Type": "Color3",
+                  "R": 0.6470588235294118,
+                  "G": 0.5098039215686274,
+                  "B": 0.7254901960784313
+                },
+                "Haze": 4.090000152587891,
+                "Offset": 0
+              },
+              "properties": {},
+              "children": []
+            },
+            {
+              "name": "Lighting",
+              "class_name": "Folder",
+              "attributes": {
+                "ColorShift_Bottom": {
+                  "B": 0,
+                  "Type": "Color3",
+                  "G": 0,
+                  "R": 0
+                },
+                "FogColor": {
+                  "B": 0.7529411911964417,
+                  "Type": "Color3",
+                  "G": 0.7529411911964417,
+                  "R": 0.7529411911964417
+                },
+                "FogEnd": 100000,
+                "EnvironmentDiffuseScale": 0,
+                "EnvironmentSpecularScale": 0.23399999737739563,
+                "ExposureCompensation": 0.10999999940395355,
+                "FogStart": 0,
+                "Ambient": {
+                  "B": 1,
+                  "Type": "Color3",
+                  "G": 0.5254902243614197,
+                  "R": 0.41960787773132324
+                },
+                "OutdoorAmbient": {
+                  "B": 0.9098039865493774,
+                  "Type": "Color3",
+                  "G": 0.7019608020782471,
+                  "R": 0.8588235974311829
+                },
+                "ColorShift_Top": {
+                  "B": 0.8313726186752319,
+                  "Type": "Color3",
+                  "G": 0.9490196704864502,
+                  "R": 1
+                },
+                "Brightness": 2.4000000953674316,
+                "ShadowSoftness": 0.20000000298023224,
+                "GlobalShadows": true
+              },
+              "properties": {},
+              "children": []
+            },
+            {
+              "name": "Bloom",
+              "class_name": "Folder",
+              "attributes": {
+                "Threshold": 0.30000001192092896,
+                "Enabled": true,
+                "Intensity": 0.4000000059604645,
+                "Size": 16
+              },
+              "properties": {},
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "EightPM",
+          "class_name": "Folder",
+          "attributes": {},
+          "properties": {},
+          "children": [
+            {
+              "name": "SunRays",
+              "class_name": "Folder",
+              "attributes": {
+                "Enabled": true,
+                "Intensity": 0,
+                "Spread": 0.9
+              },
+              "properties": {},
+              "children": []
+            },
+            {
+              "name": "DepthOfField",
+              "class_name": "Folder",
+              "attributes": {
+                "Enabled": false,
+                "FarIntensity": 0.08399999886751175,
+                "FocusDistance": 0.05000000074505806,
+                "InFocusRadius": 10,
+                "NearIntensity": 0.75
+              },
+              "properties": {},
+              "children": []
+            },
+            {
+              "name": "ColorCorrection",
+              "class_name": "Folder",
+              "attributes": {
+                "Enabled": true,
+                "Saturation": 0.20000000298023224,
+                "Contrast": 0.20000000298023224,
+                "TintColor": {
+                  "B": 1,
+                  "Type": "Color3",
+                  "G": 0.8509804606437683,
+                  "R": 0.988235354423523
+                },
+                "Brightness": 0
+              },
+              "properties": {},
+              "children": []
+            },
+            {
+              "name": "Atmosphere",
+              "class_name": "Folder",
+              "attributes": {
+                "Density": 0.3070000112056732,
+                "Glare": 1.5,
+                "Color": {
+                  "Type": "Color3",
+                  "R": 0.5686274509803921,
+                  "G": 0.39215686274509803,
+                  "B": 0.6078431372549019
+                },
+                "Decay": {
+                  "Type": "Color3",
+                  "R": 0.6470588235294118,
+                  "G": 0.5098039215686274,
+                  "B": 0.7254901960784313
+                },
+                "Haze": 4.090000152587891,
+                "Offset": 0
+              },
+              "properties": {},
+              "children": []
+            },
+            {
+              "name": "Lighting",
+              "class_name": "Folder",
+              "attributes": {
+                "ColorShift_Bottom": {
+                  "B": 0,
+                  "Type": "Color3",
+                  "G": 0,
+                  "R": 0
+                },
+                "FogColor": {
+                  "B": 0.7529411911964417,
+                  "Type": "Color3",
+                  "G": 0.7529411911964417,
+                  "R": 0.7529411911964417
+                },
+                "FogEnd": 100000,
+                "EnvironmentDiffuseScale": 0,
+                "EnvironmentSpecularScale": 0.23399999737739563,
+                "ExposureCompensation": 0.10999999940395355,
+                "FogStart": 0,
+                "Ambient": {
+                  "B": 1,
+                  "Type": "Color3",
+                  "G": 0.5254902243614197,
+                  "R": 0.41960787773132324
+                },
+                "OutdoorAmbient": {
+                  "B": 0.9098039865493774,
+                  "Type": "Color3",
+                  "G": 0.7019608020782471,
+                  "R": 0.8588235974311829
+                },
+                "ColorShift_Top": {
+                  "B": 0.8313726186752319,
+                  "Type": "Color3",
+                  "G": 0.9490196704864502,
+                  "R": 1
+                },
+                "Brightness": 2.4000000953674316,
+                "ShadowSoftness": 0.20000000298023224,
+                "GlobalShadows": true
+              },
+              "properties": {},
+              "children": []
+            },
+            {
+              "name": "Bloom",
+              "class_name": "Folder",
+              "attributes": {
+                "Threshold": 0.30000001192092896,
+                "Enabled": true,
+                "Intensity": 0.4000000059604645,
+                "Size": 16
+              },
+              "properties": {},
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ContinuousSky",
+      "class_name": "Sky",
+      "attributes": {},
+      "properties": {
+        "CelestialBodiesShown": true,
+        "MoonAngularSize": 11,
+        "MoonTextureId": "rbxasset://sky/moon.jpg",
+        "SkyboxBk": "rbxassetid://6444884337",
+        "SkyboxDn": "rbxassetid://6444884785",
+        "SkyboxFt": "rbxassetid://6444884337",
+        "SkyboxLf": "rbxassetid://6444884337",
+        "SkyboxRt": "rbxassetid://6444884337",
+        "SkyboxUp": "rbxassetid://6412503613",
+        "StarCount": 3000,
+        "SunAngularSize": 9,
+        "SunTextureId": "rbxasset://sky/sun.jpg",
+        "SkyboxOrientation": {
+          "Type": "Vector3",
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        }
+      },
+      "children": []
+    }
+  ],
+  "revision_operations": [
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "World",
+        "Lighting",
+        "ContinuousLooks",
+        "Sunrise"
+      ],
+      "class_name": "Folder",
+      "key": "HoldHours",
+      "before": 0.6,
+      "after": 0.16666666666666666
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "World",
+        "Lighting",
+        "ContinuousLooks",
+        "Sunset"
+      ],
+      "class_name": "Folder",
+      "key": "HoldHours",
+      "before": 0.6,
+      "after": 0.16666666666666666
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "World",
+        "Lighting",
+        "ContinuousPresets",
+        "SevenAM",
+        "ColorCorrection"
+      ],
+      "class_name": "Folder",
+      "key": "Contrast",
+      "before": 0.20000000298023224,
+      "after": 0.12
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "World",
+        "Lighting",
+        "ContinuousPresets",
+        "SevenAM",
+        "ColorCorrection"
+      ],
+      "class_name": "Folder",
+      "key": "Brightness",
+      "before": 0,
+      "after": 0.055
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "World",
+        "Lighting",
+        "ContinuousPresets",
+        "SevenAM",
+        "Atmosphere"
+      ],
+      "class_name": "Folder",
+      "key": "Decay",
+      "before": {
+        "Type": "Color3",
+        "R": 0.5686274766921997,
+        "G": 0.3921568691730499,
+        "B": 0.4901960790157318
+      },
+      "after": {
+        "Type": "Color3",
+        "R": 0.7058823529411765,
+        "G": 0.49019607843137253,
+        "B": 0.5490196078431373
+      }
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "World",
+        "Lighting",
+        "ContinuousPresets",
+        "SevenAM",
+        "Lighting"
+      ],
+      "class_name": "Folder",
+      "key": "ExposureCompensation",
+      "before": 0,
+      "after": 0.15
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "World",
+        "Lighting",
+        "ContinuousPresets",
+        "ClearNight",
+        "Atmosphere"
+      ],
+      "class_name": "Folder",
+      "key": "Glare",
+      "before": 6.860000133514404,
+      "after": 0.45
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "World",
+        "Lighting",
+        "ContinuousPresets",
+        "FivePM",
+        "ColorCorrection"
+      ],
+      "class_name": "Folder",
+      "key": "Contrast",
+      "before": 0.20000000298023224,
+      "after": 0.12
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "World",
+        "Lighting",
+        "ContinuousPresets",
+        "FivePM",
+        "ColorCorrection"
+      ],
+      "class_name": "Folder",
+      "key": "Brightness",
+      "before": 0,
+      "after": 0.055
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "World",
+        "Lighting",
+        "ContinuousPresets",
+        "FivePM",
+        "Atmosphere"
+      ],
+      "class_name": "Folder",
+      "key": "Decay",
+      "before": {
+        "Type": "Color3",
+        "R": 0.5686274766921997,
+        "G": 0.3921568691730499,
+        "B": 0.4901960790157318
+      },
+      "after": {
+        "Type": "Color3",
+        "R": 0.7058823529411765,
+        "G": 0.49019607843137253,
+        "B": 0.5490196078431373
+      }
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "World",
+        "Lighting",
+        "ContinuousPresets",
+        "FivePM",
+        "Lighting"
+      ],
+      "class_name": "Folder",
+      "key": "ExposureCompensation",
+      "before": 0,
+      "after": 0.15
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "World",
+        "Lighting",
+        "ContinuousPresets",
+        "FourAM",
+        "Atmosphere"
+      ],
+      "class_name": "Folder",
+      "key": "Glare",
+      "before": 6.860000133514404,
+      "after": 1.5
+    },
+    {
+      "kind": "attribute",
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "World",
+        "Lighting",
+        "ContinuousPresets",
+        "EightPM",
+        "Atmosphere"
+      ],
+      "class_name": "Folder",
+      "key": "Glare",
+      "before": 6.860000133514404,
+      "after": 1.5
+    },
+    {
+      "kind": "property",
+      "path": [
+        "ReplicatedStorage",
+        "Assets",
+        "World",
+        "Skies",
+        "ContinuousSky"
+      ],
+      "class_name": "Sky",
+      "key": "SunAngularSize",
+      "before": 6,
+      "after": 9
+    }
+  ],
+  "lane": "Fast configuration refinement",
+  "contract": "docs/architecture/lighting-horizon-moon-handoff.md"
+}

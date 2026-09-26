@@ -1,0 +1,115 @@
+{
+  "kind": "read-only lighting analysis supplement",
+  "tags": {
+    "NightLamppostLight": {
+      "classes": {
+        "SurfaceLight": 554
+      },
+      "total": 554,
+      "outsideWorld": [
+        "Workspace.Test + WIP Assets.placeholder models for video.Block_S1_R3_B3.LOD.LOD2.Props.Street Lights Group Left.Street Lamp Tall A.lamppost neon.SurfaceLight lamppost",
+        "Workspace.Test + WIP Assets.placeholder models for video.Block_S1_R3_B3.LOD.LOD2.Props.Street Lights Group Left.Street Lamp Tall A.lamppost neon.SurfaceLight lamppost",
+        "Workspace.Test + WIP Assets.placeholder models for video.Block_S1_R3_B3.LOD.LOD2.Props.Street Lights Group Left.Street Lamp Tall A.lamppost neon.SurfaceLight lamppost",
+        "Workspace.Test + WIP Assets.placeholder models for video.Block_S1_R3_B3.LOD.LOD2.Props.Street Lights Group Left.Street Lamp Tall A.lamppost neon.SurfaceLight lamppost",
+        "Workspace.Test + WIP Assets.placeholder models for video.Block_S1_R3_B3.LOD.LOD2.Props.Street Lights Group Left.Street Lamp Tall A.lamppost neon.SurfaceLight lamppost",
+        "Workspace.Test + WIP Assets.placeholder models for video.Block_S1_R3_B3.LOD.LOD2.Props.Street Lights Group Left.Street Lamp Tall A.lamppost neon.SurfaceLight lamppost",
+        "Workspace.Test + WIP Assets.placeholder models for video.Block_S1_R3_B3.LOD.LOD2.Props.Street Lights Group Back.Street Lamp Tall A.lamppost neon.SurfaceLight lamppost",
+        "Workspace.Test + WIP Assets.placeholder models for video.Block_S1_R3_B3.LOD.LOD2.Props.Street Lights Group Back.Street Lamp Tall A.lamppost neon.SurfaceLight lamppost",
+        "Workspace.Test + WIP Assets.placeholder models for video.Block_S1_R3_B3.LOD.LOD2.Props.Street Lights Group Back.Street Lamp Tall A.lamppost neon.SurfaceLight lamppost"
+      ]
+    },
+    "WindowMaterial": {
+      "classes": {
+        "MeshPart": 92
+      },
+      "total": 92,
+      "outsideWorld": [
+        "Workspace.Test + WIP Assets.THE BLOCKS.Others.Brutalist Block D2.level 1.level1 windows",
+        "Workspace.Test + WIP Assets.THE BLOCKS.Block D2 Group.Brutalist Block D2.pillars.pillar ground windows",
+        "Workspace.Test + WIP Assets.THE BLOCKS.Block C2 Group.Brutalist Block C2.pillars.pillar ground windows",
+        "Workspace.FBX - S2_R3_B3 Face Building.windows main bridge",
+        "Workspace.Test + WIP Assets.THE BLOCKS.Block D2 Group.Brutalist Block D2.level 2.level2 windows",
+        "Workspace.Test + WIP Assets.THE BLOCKS.block.Brutalist Block D1.level 2.level2 windows",
+        "Workspace.Test + WIP Assets.THE BLOCKS.Model.Block D1 Group.Brutalist Block D1.level 3.level3 windows",
+        "Workspace.Test + WIP Assets.THE BLOCKS.Block D2 Group.Brutalist Block D2.pillars.pillar ground windows",
+        "Workspace.Test + WIP Assets.THE BLOCKS.Others.Brutalist Block D2.pillars.pillar ground windows",
+        "Workspace.Test + WIP Assets.THE BLOCKS.Others.Brutalist Block D2.pillars.pillar ground windows",
+        "Workspace.Test + WIP Assets.THE BLOCKS.Block D1 Group.Brutalist Block D1.level 1.level1 windows",
+        "Workspace.Test + WIP Assets.THE BLOCKS.block.Brutalist Block D1.level 3.level3 windows",
+        "Workspace.Test + WIP Assets.THE BLOCKS.Others.Brutalist Block D2.level 2.level2 windows",
+        "Workspace.Test + WIP Assets.THE BLOCKS.Others.Brutalist Block D2.pillars.pillar ground windows",
+        "Workspace.Test + WIP Assets.THE BLOCKS.Block C2 Group.Brutalist Block C2.bridge large.bridge large windows",
+        "Workspace.Test + WIP Assets.THE BLOCKS.Others.Brutalist Block D2.level 3.level3 windows",
+        "Workspace.Test + WIP Assets.THE BLOCKS.Block C2 Group.Brutalist Block C2.pillars.pillar ground windows",
+        "Workspace.Test + WIP Assets.THE BLOCKS.Block C2 Group.Brutalist Block C2.level 2.level2 windows",
+        "Workspace.Test + WIP Assets.THE BLOCKS.Block C2 Group.Brutalist Block C2.level 3.level3 windows",
+        "Workspace.Test + WIP Assets.THE BLOCKS.Model.Block D1 Group.Brutalist Block D1.pillars.pillar ground windows",
+        "Workspace.Test + WIP Assets.THE BLOCKS.Block D1 Group.Brutalist Block D1.pillars.pillar ground windows",
+        "Workspace.Test + WIP Assets.THE BLOCKS.Model.Block D1 Group.Brutalist Block D1.pillars.pillar ground windows",
+        "Workspace.FBX - S2_R3_B3 Face Building.windows main b",
+        "Workspace.Test + WIP Assets.THE BLOCKS.Others.Brutalist Block D2.pillars.pillar ground windows",
+        "Workspace.Test + WIP Assets.THE BLOCKS.block.Brutalist Block D1.pillars.pillar ground windows",
+        "Workspace.Test + WIP Assets.THE BLOCKS.Others.Brutalist Block D2.pillars.pillar ground windows",
+        "Workspace.Test + WIP Assets.THE BLOCKS.Block D1 Group.Brutalist Block D1.pillars.pillar ground windows",
+        "Workspace.Test + WIP Assets.THE BLOCKS.Others.Brutalist Block D2.pillars.pillar ground windows",
+        "Workspace.FBX - S2_R3_B3 Face Building.windows main a",
+        "Workspace.Test + WIP Assets.THE BLOCKS.Others.Brutalist Block D2.level 1.level1 windows",
+        "Workspace.Test + WIP Assets.THE BLOCKS.Model.Block D1 Group.Brutalist Block D1.bridge large.bridge large windows",
+        "Workspace.Test + WIP Assets.THE BLOCKS.block.Brutalist Block D1.bridge large.bridge large windows",
+        "Workspace.Test + WIP Assets.THE BLOCKS.Block D2 Group.Brutalist Block D2.pillars.pillar ground windows",
+        "Workspace.Test + WIP Assets.THE BLOCKS.Model.Block D1 Group.Brutalist Block D1.level 2.level2 windows",
+        "Workspace.Test + WIP Assets.THE BLOCKS.Others.Brutalist Block D2.level 2.level2 windows",
+        "Workspace.Test + WIP Assets.THE BLOCKS.Block D1 Group.Brutalist Block D1.pillars.pillar ground windows",
+        "Workspace.Test + WIP Assets.THE BLOCKS.Model.Block D1 Group.Brutalist Block D1.pillars.pillar ground windows",
+        "Workspace.Test + WIP Assets.THE BLOCKS.Others.Brutalist Block D2.level 3.level3 windows",
+        "Workspace.Test + WIP Assets.THE BLOCKS.Block D1 Group.Brutalist Block D1.level 3.level3 windows",
+        "Workspace.Test + WIP Assets.THE BLOCKS.Block D2 Group.Brutalist Block D2.level 1.level1 windows",
+        "Workspace.Test + WIP Assets.THE BLOCKS.Block D2 Group.Brutalist Block D2.level 3.level3 windows",
+        "Workspace.FBX - S2_R3_B3 Face Building.windows main c",
+        "Workspace.Test + WIP Assets.THE BLOCKS.block.Brutalist Block D1.pillars.pillar ground windows",
+        "Workspace.Test + WIP Assets.THE BLOCKS.Block C2 Group.Brutalist Block C2.pillars.pillar ground windows",
+        "Workspace.FBX - S2_R3_B3 Face Building.windows bottom a",
+        "Workspace.Test + WIP Assets.THE BLOCKS.Block D1 Group.Brutalist Block D1.level 2.level2 windows",
+        "Workspace.Test + WIP Assets.THE BLOCKS.Others.Brutalist Block D2.bridge large.bridge large windows",
+        "Workspace.Test + WIP Assets.THE BLOCKS.Model.Block D1 Group.Brutalist Block D1.level 1.level1 windows",
+        "Workspace.Test + WIP Assets.THE BLOCKS.block.Brutalist Block D1.pillars.pillar ground windows",
+        "Workspace.Test + WIP Assets.THE BLOCKS.Others.Brutalist Block D2.bridge large.bridge large windows",
+        "Workspace.Test + WIP Assets.THE BLOCKS.Block C2 Group.Brutalist Block C2.level 1.level1 windows",
+        "Workspace.Test + WIP Assets.THE BLOCKS.block.Brutalist Block D1.level 1.level1 windows",
+        "Workspace.Test + WIP Assets.THE BLOCKS.Block D2 Group.Brutalist Block D2.bridge large.bridge large windows"
+      ]
+    }
+  },
+  "capturedUTC": "2026-09-22T21:37:19Z",
+  "placeId": 121304917315753,
+  "sunDirection": [
+    3.154638079649885e-7,
+    -0.9681515097618103,
+    0.25036513805389404
+  ],
+  "colorShift": {
+    "ColorShift_Top": {
+      "b": 0.8313725590705872,
+      "g": 0.9529411792755127,
+      "r": 1
+    },
+    "ColorShift_Bottom": {
+      "b": 0,
+      "g": 0,
+      "r": 0
+    }
+  },
+  "coverage": "ColorShift properties supplement the capture tool, which currently rejects underscores in requested property names. Tag membership is read-only inventory, including duplicate paths; it does not authorize mutation or prove complete physical recovery.",
+  "tagSummary": {
+    "NightLamppostLight": {
+      "total": 554,
+      "outsideWorld": 9,
+      "withinWorld": 545
+    },
+    "WindowMaterial": {
+      "total": 92,
+      "outsideWorld": 53,
+      "withinWorld": 39
+    }
+  }
+}

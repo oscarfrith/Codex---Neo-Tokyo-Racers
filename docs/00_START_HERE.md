@@ -1,12 +1,18 @@
 # Space Racers — start here
 
-Target: Space Racers v1, place **121304917315753**. Updated 2026-09-22. This is the sole current-status entry point; historical handoffs describe evidence at the time they were written.
+Target: Space Racers v1, place **121304917315753**. Updated 2026-09-23. This is the sole current-status entry point; historical handoffs describe evidence at the time they were written.
 
 ## Current task and next action
 
+The approved **brighter sunrise/sunset, restrained moon glare, larger sun and five-second holds are installed**. The user confirmed V6 overall and requested this final palette/size/hold adjustment. The 720-second cycle and strong horizon rays are preserved. Warm copies use exposure 0.15, post brightness 0.055, contrast 0.12 and lighter Decay; twilight/night glare is 1.5/0.45. ContinuousSky SunAngularSize is 9. Warm holds last five real seconds total, centered on 06:00 and 18:00. [Editing guide](architecture/lighting-authoring.md), [delivery/recovery](architecture/lighting-horizon-moon-handoff.md).
+
+Next action: user visual review of the brighter warm sky, moon halo, sun size and shorter holds. No installer pending. Checks passed: 58,383 numerical assertions with normalized full-cycle coverage; normal startup and nine selected runtime targets; 122.008 seconds/7,321 actual-speed daytime samples with no lighting errors or clock jumps; guarded refinement reversal/reapply/no-op and exact scope. Selected paused sunrise/sunset/pink/twilight/moon views were inspected, not an entire 12-minute real-time cycle. Device/low-graphics, normal garage/streaming/retention and two-client limits remain in [validation](architecture/lighting-horizon-moon-validation.json). No publish, commit or push.
+
+Latest targeted capture: **2026-09-23 19:55:46 UTC**, [after](../roblox/captures/lighting-horizon-moon-after/capture.json), 168 sources/138 selected nodes. Fresh [before](../roblox/captures/lighting-horizon-moon-before/capture.json) matched V6 exactly. This refinement changes thirteen existing attributes and one ContinuousSky property, with zero source changes or new objects/assets. Pre-existing Edit Lighting.SunRays properties (enabled, intensity approximately 0.566, spread 1) and all other selected state remain unchanged. Studio is in Edit, Continuous, duration 720, auto/sync true and opt-in tools off. Original shared presets/skies and the 900-second Stepped schedule remain intact. REFINE / REVERT_REFINEMENT preserve guarded recovery without rerunning installed migrations. Full mirror and earlier handoffs remain historical.
+
 Workflow improvement **all four phases implemented and verified**. [Approved four-phase plan](architecture/workflow-improvement-plan.md).
 No workflow phase remains. Use the [validation and handoff procedure](architecture/validation-and-handoffs.md) for future work; [Phase 4 evidence](architecture/workflow-phase4-handoff.md). Performance Phase 6 remains a separate open effort, not automatically resumed by completing this programme.
-Routine full mirrors are replaced by [targeted captures](architecture/targeted-capture-workflow.md). Full checkpoints remain available for broad migrations/recovery. No game code changed and no Studio installer is pending.
+Routine full mirrors are replaced by [targeted captures](architecture/targeted-capture-workflow.md). Full checkpoints remain available for broad migrations/recovery. That workflow programme changed tools/docs only; the later lighting delivery above changes game code.
 
 ## Installed game and acceptance
 
@@ -15,7 +21,7 @@ All five original architecture phases and four cleanup phases are user-confirmed
 
 Retained full checkpoint (historical, not routinely refreshed): **2026-09-22 13:14:39**, 165 sources, 44,465 nodes, 276,087 properties; exact expected Phase 5 parity and fresh catalogue/preview projections. Live targeted verification on 2026-09-22: vehicle capture 19:41:24 UTC, sources 19:43:01 UTC, config 19:43:46 UTC. All 165 source hashes still match that baseline; selected vehicle properties match, projections are fresh. No whole-world physical parity claim.
 Evidence: roblox/captures/workflow-phase2-check-b/capture.json (vehicles), workflow-phase2-sources/capture.json (source inventory), workflow-phase2-config/capture.json (config), all under roblox/captures. Follow each manifest row to its versioned source blob.
-Current source handoff: [catalogue transport](architecture/performance-phase5-catalogue-transport.md). No installer run pending.
+Earlier source handoff: [catalogue transport](architecture/performance-phase5-catalogue-transport.md). The lighting handoff above supersedes its affected sources only. No installer run pending.
 
 ## Owners and boundaries
 

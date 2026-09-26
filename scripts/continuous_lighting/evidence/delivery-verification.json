@@ -1,0 +1,190 @@
+{
+  "pass_scope": true,
+  "after_time_utc": "2026-09-22 22:13:31 UTC",
+  "sources": 168,
+  "unchanged_existing_sources": 158,
+  "changed_sources": 7,
+  "new_modules": 3,
+  "added_attributes": 5,
+  "captured_nodes": 85,
+  "delta": {
+    "sourceAdded": [
+      [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "World",
+        "LightingClient"
+      ],
+      [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "World",
+        "LightingCycle"
+      ],
+      [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "World",
+        "LightingCycleDefinition"
+      ]
+    ],
+    "sourceRemoved": [],
+    "sourceChanged": [
+      [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Development",
+        "LightingPreviewClient"
+      ],
+      [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Garage",
+        "GaragePreviewPresentationClient"
+      ],
+      [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "World",
+        "NightLamppostLightClient"
+      ],
+      [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "World",
+        "OwnedGarageEnvironmentLightingClient"
+      ],
+      [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "World",
+        "WindowMaterialClient"
+      ],
+      [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "World",
+        "LightingServer"
+      ],
+      [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "ClientBase"
+      ]
+    ],
+    "nodesRemovedOrChanged": 1,
+    "nodesAddedOrChanged": 1,
+    "missingBefore": [],
+    "missingAfter": [],
+    "coverage": "All inventoried sources; selected subtrees only. Moves appear as remove/add, never inferred automatically.",
+    "removedOrChangedRecords": [
+      {
+        "count": 1,
+        "node": {
+          "attributes": {
+            "AutoCycleEnabled": {
+              "type": "boolean",
+              "value": true
+            },
+            "BaseDurationSeconds": {
+              "type": "number",
+              "value": 90
+            },
+            "DefaultStreetLightBrightness": {
+              "type": "number",
+              "value": 2
+            },
+            "ManualStage": {
+              "type": "string",
+              "value": "Day"
+            },
+            "SynchronizeAcrossServers": {
+              "type": "boolean",
+              "value": true
+            }
+          },
+          "class_name": "Folder",
+          "name": "Lighting",
+          "path": "ReplicatedStorage.Config.World.Lighting",
+          "path_parts": [
+            "ReplicatedStorage",
+            "Config",
+            "World",
+            "Lighting"
+          ],
+          "properties": [],
+          "tags": []
+        }
+      }
+    ],
+    "addedOrChangedRecords": [
+      {
+        "count": 1,
+        "node": {
+          "attributes": {
+            "AutoCycleEnabled": {
+              "type": "boolean",
+              "value": true
+            },
+            "BaseDurationSeconds": {
+              "type": "number",
+              "value": 90
+            },
+            "ContinuousGeographicLatitude": {
+              "type": "number",
+              "value": 35
+            },
+            "CycleMode": {
+              "type": "string",
+              "value": "Continuous"
+            },
+            "DefaultStreetLightBrightness": {
+              "type": "number",
+              "value": 2
+            },
+            "ManualStage": {
+              "type": "string",
+              "value": "Day"
+            },
+            "SteppedGeographicLatitude": {
+              "type": "number",
+              "value": 189
+            },
+            "SunriseClockTime": {
+              "type": "number",
+              "value": 6
+            },
+            "SunsetClockTime": {
+              "type": "number",
+              "value": 18
+            },
+            "SynchronizeAcrossServers": {
+              "type": "boolean",
+              "value": true
+            }
+          },
+          "class_name": "Folder",
+          "name": "Lighting",
+          "path": "ReplicatedStorage.Config.World.Lighting",
+          "path_parts": [
+            "ReplicatedStorage",
+            "Config",
+            "World",
+            "Lighting"
+          ],
+          "properties": [],
+          "tags": []
+        }
+      }
+    ]
+  }
+}

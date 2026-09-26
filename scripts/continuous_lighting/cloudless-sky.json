@@ -1,0 +1,23 @@
+{
+  "orientation": [
+    0,
+    0,
+    0
+  ],
+  "sourceAssetId": 15296550452,
+  "properties": {
+    "StarCount": 3000,
+    "SkyboxUp": "rbxassetid://6412503613",
+    "MoonTextureId": "rbxassetid://6444320592",
+    "SkyboxDn": "rbxassetid://6444884785",
+    "CelestialBodiesShown": true,
+    "SkyboxBk": "rbxassetid://6444884337",
+    "SkyboxLf": "rbxassetid://6444884337",
+    "SunTextureId": "rbxassetid://6196665106",
+    "SunAngularSize": 11,
+    "SkyboxFt": "rbxassetid://6444884337",
+    "SkyboxRt": "rbxassetid://6444884337",
+    "MoonAngularSize": 11
+  },
+  "sourceName": "Cloudless Sunless Day Sky"
+}

@@ -1,5 +1,33 @@
 # Patch History
 
+## 2026-09-23 - Brighter horizons, softer moon glare and five-second holds
+
+V6 user-confirmed overall. Lifted warm exposure/post/Decay, lowered excessive twilight/night glare, enlarged sun 6 to 9 and shortened warm holds to five real seconds. Thirteen existing attributes and one Sky property changed; no source or object changes. Numerical 58,383 assertions, selected runtime targets and visual comparisons, normal startup, 122-second daytime observation, guarded reversal/reapply and exact before/after scope pass. Original artwork/recovery, owners and pre-existing Edit rays preserved. No full-duration/device acceptance, migration rerun or publish. [Delivery evidence](architecture/lighting-horizon-moon-handoff.md).
+
+## 2026-09-23 - Twelve-minute cycle, larger sun and strong horizon rays
+
+V5 user-confirmed. Set cycle to 720 seconds and sun size 4 to 6; raised warm/day rays to 0.2/0.07 with spread 0.9. Following user clarification, full ray strength now includes both horizons with smooth fades in adjacent twilight. One pure evaluator source, ten attributes and one Sky property change; pre-existing Edit ray settings and all other selected state preserved. Numerical 58,389 assertions, normal startup, eight live horizon/night targets, 122-second actual-speed sunset observation, clock-rate check and guarded refinement reversal/reapply pass. No full 12-minute observation, installed migration rerun or publish. [Delivery evidence](architecture/lighting-twelve-minute-handoff.md).
+
+## 2026-09-23 - Shorter red/pink/violet sunrise and sunset
+
+User confirmed the orange V4 cycle looks really good. Shortened full warm holds from ten to three test seconds, made the peak redder, and tuned a rose-pink to violet twilight blend with reversed morning colour timing. Twenty existing config attributes changed; no game source, node or sky asset changed. Numerical 58,283 assertions, normal startup, full 122-second observation with no clock jumps/errors, guarded refinement rollback/reapply and exact targeted scope pass. Original shared artwork and Stepped mode preserved. No installed migration rerun or publish. [Delivery evidence](architecture/lighting-red-pink-handoff.md).
+
+## 2026-09-23 - Extended orange horizons and smoother rendering
+
+Strengthened Continuous sunrise/sunset orange, extended full warm holds from two to ten test seconds each, and moved adjacent appearance anchors outward for broader fades. Replaced the single renderer's uneven capped Heartbeat cadence with PreRender updates. Full before/after 122-second observations found no clock reset/competing outdoor context; maximum measured brightness/haze update steps fell 71%/69%. Numerical 58,089 assertions, normal startup, controlled context release, guarded rollback/reapply and targeted scope checks pass. One V3 source and existing config attributes changed; original shared artwork, solar timing and Stepped recovery preserved. Location-specific jumps remain unconfirmed and user visual/device review stays open. No publish. See [delivery evidence](architecture/lighting-orange-continuity-handoff.md).
+
+## 2026-09-23 — Sunset exposure, sky colour and sun refinement
+
+Implemented the approved separate fade controls, mirrored dawn ordering, targeted warm Continuous palette changes, smaller native sun and restrained rays with a smooth night gate. Kept the uniform two-minute clock, six-look timeline, original shared artwork, owners and easy Stepped reversion. Four V2 source revisions and one root attribute; existing Continuous config and sky properties updated through the same guarded canonical installer. 58,013 numerical checks, 122-second runtime observation, invalid-edit recovery, controlled context restoration, full rollback/reapply and eight original Stepped targets pass. Targeted capture verifies expected scope. Sampled pre-sunset views retain sky colour; user artistic review and named device/flow checks remain open. No publish. See architecture/lighting-sunset-refinement-handoff.md.
+
+## 2026-09-23 — Editable solar/look timeline revision
+
+Implemented the approved revision: uniform two-minute solar time, complete original sunrise/sunset/twilight targets at solar milestones, Day/Night holds, cloudless Continuous sky and attribute-based timing/appearance editing. Removed V1 art overrides without changing original presets, schedule, sky assets or owners. Same guarded installer revised and recovery-tested; six endpoint comparisons, 5,817 pure checks, full 122-second runtime loop, live valid/invalid tuning, fresh startup, controlled context handoffs, respawn and all eight Stepped targets pass. Targeted capture confirms five revised V1 sources, three root attributes and 53 added config/sky nodes, with no other captured original changes. Horizon exposure/artistic acceptance and named device/flow/streaming checks remain open. No publish. See architecture/lighting-look-timeline-handoff.md and architecture/lighting-authoring.md.
+
+## 2026-09-22 — Continuous day/night lighting
+
+Implemented the approved continuous cycle with the original eight stages and 900-second timing. One client renderer owns environment presentation; existing interior/dealership controllers supply context. Forward clock anchors and latitude calibration, bounded atmosphere/color/brightness blending and horizon-aware glare preserve smooth outdoor transitions. Streetlights/windows switch at sunrise/sunset as requested. Original presets and Stepped paths remain available via a restart mode switch. One guarded installer adds three modules, updates seven sources and adds five config attributes; no asset/tag/save/schema changes or publish. Numerical 34,688 checks, accelerated cycle, visible normal startup/dealership exit, controlled context overlap, all eight Stepped preset comparisons and full rollback/reapply pass. Exact targeted after capture verifies expected scope. User visuals, owned-garage normal flow, streaming/lifecycle, device and two-client checks remain open; see architecture/continuous-lighting-handoff.md.
+
 ## 2026-09-22 — Workflow Phase 4 reusable validation and handoffs
 
 Added scoped normal-start/transition/error/cleanup/device/load/save recipes and evidence init/check/handoff tooling. Fifteen focused tests pass, including rejection of API/UI, simulator/device, insufficient-load and no-save/persistence substitutions. Artifact hashes, deferred reasons and next actions keep handoffs reviewable. Reused existing runtime/capture helpers; refreshed laptop prompt to follow current status. Repository-only changes, no Studio writes, gameplay changes or mirror refresh. All four workflow phases delivered; performance acceptance and existing issue gates remain open. See architecture/validation-and-handoffs.md.

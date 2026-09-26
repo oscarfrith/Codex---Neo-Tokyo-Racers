@@ -1,0 +1,26 @@
+{
+  "before": {
+    "state": "before",
+    "changed": 0,
+    "beforeCapture": "e93cbf0e57be6956be4ac146ace0e7bd1044e700b51d647181ff97663c0da111"
+  },
+  "repeatApply": {
+    "state": "installed",
+    "changed": 0
+  },
+  "rollback": {
+    "state": "before",
+    "changed": 15,
+    "beforeCapture": "e93cbf0e57be6956be4ac146ace0e7bd1044e700b51d647181ff97663c0da111"
+  },
+  "activate": {
+    "state": "installed",
+    "mode": "Continuous",
+    "restartRequired": true
+  },
+  "apply": {
+    "state": "installed",
+    "changed": 15,
+    "beforeCapture": "e93cbf0e57be6956be4ac146ace0e7bd1044e700b51d647181ff97663c0da111"
+  }
+}

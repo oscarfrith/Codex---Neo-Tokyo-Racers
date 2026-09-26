@@ -1,0 +1,19 @@
+{
+  "prefix": "\nlocal c=game.ReplicatedStorage.Config.World.Lighting\nfor pn,sections in pairs(_G.LightingResearchOriginal) do for sn,attrs in pairs(sections) do for k,v in pairs(attrs) do c.ContinuousPresets[pn][sn]:SetAttribute(k,v) end end end\ngame.ReplicatedStorage.Assets.World.Skies.ContinuousSky.SunAngularSize=21\n",
+  "variants": [
+    {
+      "name": "small_sun",
+      "code": "for _,p in ipairs(c.ContinuousPresets:GetChildren()) do p.Atmosphere:SetAttribute(\"Haze\",.75) end; game.ReplicatedStorage.Assets.World.Skies.ContinuousSky.SunAngularSize=4"
+    },
+    {
+      "name": "bloom_off",
+      "code": "for _,p in ipairs(c.ContinuousPresets:GetChildren()) do p.Bloom:SetAttribute(\"Enabled\",false) end"
+    },
+    {
+      "name": "early_light_late_haze",
+      "code": "\nlocal function smooth(t) t=math.clamp(t,0,1); return t*t*(3-2*t) end\nlocal u=1/1.8\nlocal weights={Lighting=smooth(u/.7),Atmosphere=smooth((u-.30)/.7),ColorCorrection=smooth(u/.8),Bloom=smooth(u/.8),DepthOfField=smooth(u),SunRays=smooth(u)}\nfor section,attrs in pairs(_G.LightingResearchOriginal.Day) do\n for k,a in pairs(attrs) do\n  local b=_G.LightingResearchOriginal.FivePM[section][k]\n  local t=weights[section]\n  if section==\"Atmosphere\" and (k==\"Color\" or k==\"Decay\") then t=smooth(u/.8) end\n  local v=typeof(a)==\"Color3\" and a:Lerp(b,t) or type(a)==\"number\" and (a+(b-a)*t) or a\n  for _,p in ipairs(c.ContinuousPresets:GetChildren()) do p[section]:SetAttribute(k,v) end\n end\nend\ngame.ReplicatedStorage.Assets.World.Skies.ContinuousSky.SunAngularSize=4\n"
+    }
+  ],
+  "hybrid": "\nlocal hour=HOUR\nlocal function smooth(t) t=math.clamp(t,0,1); return t*t*(3-2*t) end\nlocal u=math.clamp((hour-16)/1.8,0,1)\nlocal weights={Lighting=smooth(u/.75),Atmosphere=smooth((u-.2)/.8),ColorCorrection=smooth(u/.85),Bloom=smooth(u/.85),DepthOfField=smooth(u),SunRays=smooth(u)}\nfor section,attrs in pairs(_G.LightingResearchOriginal.Day) do\n for k,a in pairs(attrs) do\n  local b=_G.LightingResearchOriginal.FivePM[section][k]\n  local t=weights[section]\n  if section==\"Lighting\" and k==\"Brightness\" then b=.5 end\n  if section==\"Atmosphere\" then\n   if k==\"Glare\" then b=1.25\n   elseif k==\"Haze\" then b=3.0\n   elseif k==\"Color\" then b=Color3.fromRGB(160,112,78); t=smooth(u/.9)\n   elseif k==\"Decay\" then b=Color3.fromRGB(87,92,125); t=smooth(u/.9)\n   end\n  end\n  local v=typeof(a)==\"Color3\" and a:Lerp(b,t) or type(a)==\"number\" and (a+(b-a)*t) or a\n  for _,p in ipairs(c.ContinuousPresets:GetChildren()) do p[section]:SetAttribute(k,v) end\n end\nend\ngame.ReplicatedStorage.Assets.World.Skies.ContinuousSky.SunAngularSize=4\n",
+  "note": "Temporary Server config calculations only. Restored by Stop; not an installer or runtime owner."
+}

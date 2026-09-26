@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"player\":{\"TimeTrialPBLoaded\":true,\"DealershipIntroObjectiveLoaded\":true,\"DealershipIntroObjectiveComplete\":true,\"OnboardingStage\":1,\"ProfileSessionId\":\"f7526bec-33a0-43d2-a839-e304d77a39fb\",\"StartScreenActive\":false,\"ProfileSessionGeneration\":1,\"StudioVehicleSandboxActive\":true,\"ProfileServiceLoaded\":true,\"ProfileSchemaVersion\":1,\"ProfileDataStoreEnabled\":true,\"TimeTrialPBDataStoreEnabled\":true},\"cycle\":{\"contexts\":{\"City\":true},\"presets\":{\"SevenAM\":true,\"Day\":true,\"FourAM\":true,\"FivePM\":true,\"ClearNight\":true,\"EightPM\":true},\"errors\":[],\"elapsed\":122.11057059999985,\"samples\":1093,\"complete\":true,\"wraps\":1,\"maxPhaseError\":0.04532728195190572,\"identityStable\":true,\"switches\":[{\"clock\":18.013334274291993,\"on\":true,\"windows\":\"Night\"},{\"clock\":6.037777900695801,\"on\":false,\"windows\":\"Day\"}],\"maxStep\":0.06361126899719238},\"startup\":[],\"world\":{\"OwnedGarageEnvironmentStarted\":true,\"LightingCycleReady\":true,\"Phase5Status\":\"running\",\"LightingContext\":\"City\"}}"
+    }
+  ],
+  "isError": false
+}

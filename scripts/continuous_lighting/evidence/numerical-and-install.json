@@ -1,0 +1,38 @@
+{
+  "rollback": {
+    "state": "before",
+    "changed": 15,
+    "beforeCapture": "e93cbf0e57be6956be4ac146ace0e7bd1044e700b51d647181ff97663c0da111"
+  },
+  "reapply": {
+    "state": "installed",
+    "changed": 15,
+    "beforeCapture": "e93cbf0e57be6956be4ac146ace0e7bd1044e700b51d647181ff97663c0da111"
+  },
+  "audit": {
+    "state": "before",
+    "changed": 0,
+    "beforeCapture": "e93cbf0e57be6956be4ac146ace0e7bd1044e700b51d647181ff97663c0da111"
+  },
+  "tests": {
+    "secondsSampled": 901,
+    "cycleSeconds": 900,
+    "checks": 34688,
+    "boundaries": [
+      0,
+      90,
+      180,
+      360,
+      450,
+      540,
+      630,
+      810
+    ],
+    "pass": true
+  },
+  "apply": {
+    "state": "installed",
+    "changed": 15,
+    "beforeCapture": "e93cbf0e57be6956be4ac146ace0e7bd1044e700b51d647181ff97663c0da111"
+  }
+}

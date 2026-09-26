@@ -1,0 +1,101 @@
+[
+  {
+    "rays": 0.1775917261838913,
+    "contrast": 0.11999999731779099,
+    "ccBrightness": 0.054999999701976776,
+    "exposure": 0.15000000596046448,
+    "sunSize": 9,
+    "streetlights": true,
+    "clock": 5.916666507720947,
+    "brightness": 0.6499999761581421,
+    "glare": 1
+  },
+  {
+    "rays": 0.20000000298023224,
+    "contrast": 0.11999999731779099,
+    "ccBrightness": 0.054999999701976776,
+    "exposure": 0.15000000596046448,
+    "sunSize": 9,
+    "streetlights": false,
+    "clock": 6,
+    "brightness": 0.6499999761581421,
+    "glare": 1
+  },
+  {
+    "rays": 0.20000000298023224,
+    "contrast": 0.11999999731779099,
+    "ccBrightness": 0.054999999701976776,
+    "exposure": 0.15000000596046448,
+    "sunSize": 9,
+    "streetlights": false,
+    "clock": 6.08305549621582,
+    "brightness": 0.6499999761581421,
+    "glare": 1
+  },
+  {
+    "rays": 0.07000000029802322,
+    "contrast": 0,
+    "ccBrightness": 0.05000000074505806,
+    "exposure": 0.10000000149011612,
+    "sunSize": 9,
+    "streetlights": false,
+    "clock": 12,
+    "brightness": 5.150000095367432,
+    "glare": 0
+  },
+  {
+    "rays": 0.20000000298023224,
+    "contrast": 0.11999999731779099,
+    "ccBrightness": 0.054999999701976776,
+    "exposure": 0.15000000596046448,
+    "sunSize": 9,
+    "streetlights": false,
+    "clock": 17.91666603088379,
+    "brightness": 0.6499999761581421,
+    "glare": 1
+  },
+  {
+    "rays": 0.20000000298023224,
+    "contrast": 0.11999999731779099,
+    "ccBrightness": 0.054999999701976776,
+    "exposure": 0.15000000596046448,
+    "sunSize": 9,
+    "streetlights": true,
+    "clock": 18,
+    "brightness": 0.6499999761581421,
+    "glare": 1
+  },
+  {
+    "rays": 0.1775917261838913,
+    "contrast": 0.11999999731779099,
+    "ccBrightness": 0.054999999701976776,
+    "exposure": 0.15000000596046448,
+    "sunSize": 9,
+    "streetlights": true,
+    "clock": 18.08305549621582,
+    "brightness": 0.6499999761581421,
+    "glare": 1
+  },
+  {
+    "rays": 0,
+    "contrast": 0.20000000298023224,
+    "ccBrightness": 0,
+    "exposure": 0.10999999940395355,
+    "sunSize": 9,
+    "streetlights": true,
+    "clock": 20.5,
+    "brightness": 2.4000000953674316,
+    "glare": 1.5
+  },
+  {
+    "rays": 0,
+    "contrast": 0.30000001192092896,
+    "ccBrightness": 0.05000000074505806,
+    "exposure": 0,
+    "sunSize": 9,
+    "streetlights": true,
+    "clock": 0,
+    "brightness": 2.7100000381469727,
+    "glare": 0.44999998807907104
+  }
+]

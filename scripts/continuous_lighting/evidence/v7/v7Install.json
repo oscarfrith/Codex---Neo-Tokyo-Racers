@@ -1,0 +1,41 @@
+{
+  "before": {
+    "state": "before",
+    "changed": 0,
+    "beforeCapture": "d1518430d09a9e2871c6219066d2e5bd451a406517ffb3969a5ee5c74d9fa726"
+  },
+  "repeatApply": {
+    "state": "installed",
+    "changed": 0
+  },
+  "rollback": {
+    "state": "before",
+    "changed": 14,
+    "beforeCapture": "d1518430d09a9e2871c6219066d2e5bd451a406517ffb3969a5ee5c74d9fa726"
+  },
+  "reapply": {
+    "state": "installed",
+    "changed": 14,
+    "beforeCapture": "d1518430d09a9e2871c6219066d2e5bd451a406517ffb3969a5ee5c74d9fa726"
+  },
+  "audit": {
+    "state": "installed",
+    "changed": 0,
+    "beforeCapture": "e93cbf0e57be6956be4ac146ace0e7bd1044e700b51d647181ff97663c0da111"
+  },
+  "final": {
+    "state": "installed",
+    "changed": 0,
+    "beforeCapture": "e93cbf0e57be6956be4ac146ace0e7bd1044e700b51d647181ff97663c0da111"
+  },
+  "restored": {
+    "state": "before",
+    "changed": 0,
+    "beforeCapture": "d1518430d09a9e2871c6219066d2e5bd451a406517ffb3969a5ee5c74d9fa726"
+  },
+  "apply": {
+    "state": "installed",
+    "changed": 14,
+    "beforeCapture": "d1518430d09a9e2871c6219066d2e5bd451a406517ffb3969a5ee5c74d9fa726"
+  }
+}

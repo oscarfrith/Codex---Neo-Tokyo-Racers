@@ -1,0 +1,213 @@
+{
+  "schema": 1,
+  "task": "Brighter horizons, restrained moon glare and five-second holds",
+  "build": "lighting-horizon-moon-49ff29721b96",
+  "changed": "Thirteen existing configuration attributes and one Sky property; no source/object changes. Original owners/artwork and pre-existing Edit ray values preserved.",
+  "studio_action": "Installed through guarded REFINE; no migration rerun. Edit: Continuous, 720 seconds, auto/sync true, opt-in tools off. No publish.",
+  "capture": "roblox/captures/lighting-horizon-moon-after/capture.json; 2026-09-23 19:55:46 UTC; 168 sources/138 nodes.",
+  "recovery": "REVERT_REFINEMENT restores exact V6 warm/twilight/night values, eighteen-second holds and sun size 6. REFINE reapplies; both guard intervening edits. Original Stepped mode retained.",
+  "next_action": "User visual review of warm sky, moon halo, sun size and five-second holds; retained full-duration/device/flow/multiplayer limits. No installer pending.",
+  "checks": [
+    {
+      "id": "installation",
+      "kind": "static",
+      "status": "pass",
+      "observation": "58,383 numerical assertions over the full normalized cycle, five-second real holds, mirror/seam/ray/unchanged-artwork checks; exact thirteen-attribute/one-property scope and zero changed sources; guarded reversal/reapply/no-op and final audits.",
+      "evidence": [
+        {
+          "path": "scripts/continuous_lighting/evidence/v7/delivery-verification.json",
+          "sha256": "a6452c667c8c4cda6c0163697820997d7caa819fbee4d19a5d71a0da9d9b1b8e"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v7/v7Numerical.json",
+          "sha256": "93777d00edbd21fd0c4c1794d1c3ad88aee3913967d6753e88611286f6f1f2da"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v7/v7Install.json",
+          "sha256": "5e52f41290728ee250549c148f42130aa6268d37f8df150cfa1af82b1d131fd9"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v7/v7FinalEdit.json",
+          "sha256": "b35016d2f941b269659f3e1c971f50daa2e551b83e360e8c5d6064f4314ae24c"
+        }
+      ],
+      "context": {},
+      "reason": "",
+      "next_action": ""
+    },
+    {
+      "id": "startup",
+      "kind": "ui",
+      "status": "pass",
+      "observation": "Normal Play mouse input cleared start screen; sandbox true; 26 server and 40 client entries ready, four opt-in tools skipped. Seven Lighting children and sun size 9.",
+      "evidence": [
+        {
+          "path": "scripts/continuous_lighting/evidence/v7/v7ServerStartup.json",
+          "sha256": "c4220247a6116e73951deae989c9082a18ba151d4861b0630a6ab429413a6074"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v7/v7ClientStartup.json",
+          "sha256": "6b8e1ef50252d5d99e82804988d2d527b056fef6d775d38301e1b095ebcbe174"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v7/v7_sunset_installed.jpg",
+          "sha256": "bd117b286aa0c7716b69a53b5510c72c16244da85fce42746a5b339b94d24a0b"
+        }
+      ],
+      "context": {
+        "session": "Studio 4c38d6a4-0bfd-46b3-9308-ac4b9b4c95a2 V7 Continuous sandbox",
+        "build": "lighting-horizon-moon-49ff29721b96",
+        "environment": "Studio-no-save-sandbox",
+        "device": "Windows desktop Studio client; Automatic rendering quality unchanged",
+        "input": "Actual mouse Play input; paused server-config previews and ordinary daytime read-only observation",
+        "time_utc": "2026-09-23 19:55:46 UTC",
+        "interaction": "normal-ui",
+        "start_screen_active": false,
+        "visible_input_verified": true
+      },
+      "reason": "",
+      "next_action": ""
+    },
+    {
+      "id": "errors",
+      "kind": "runtime",
+      "status": "pass",
+      "observation": "Nine selected runtime targets confirm horizons, endpoint values, constant sun size and subdued moon glare. Selected paused visual comparisons cover sunrise/sunset/pink/twilight/night. Ordinary daytime observation: 122.008 seconds, 7,321 samples, no lighting errors/clock jumps, maximum target difference 0.000765. Existing Player:Move warning remains. This is not continuous sunset or full-duration visual acceptance.",
+      "evidence": [
+        {
+          "path": "scripts/continuous_lighting/evidence/v7/v7Targets.json",
+          "sha256": "4a065f7221af91c4f400b5c2753e18f9c8207836b410dc904add8c714dd5a955"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v7/v7DayRun.json",
+          "sha256": "0f8946d7d2f300dd5568e1d5e2b5064e11d53244cfea01a640c59a77129fbc3f"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v7/v7Console.json",
+          "sha256": "d827fa63bb84444466645283089ae64d9743537db0fb15c84afac669cec371d2"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v7/v7_sunset_before.jpg",
+          "sha256": "f001016205cd4be19c1ce71bb1e154e6942b02c5601061248039b025725b154f"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v7/v7_sunset_installed.jpg",
+          "sha256": "bd117b286aa0c7716b69a53b5510c72c16244da85fce42746a5b339b94d24a0b"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v7/v7_moon_before.jpg",
+          "sha256": "5ba4f8a64da34ffc076ed85fe2e00e48b94ce96e7ad276595388ad271afb6917"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v7/v7_moon_installed.jpg",
+          "sha256": "a497e68bd2858a4eee8b318b7a8fdffbb5e682262e3257e15105f3aca70e49c3"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v7/v7_pink.jpg",
+          "sha256": "f4d34b99529eebd15a86e0c619d7e0dcf66827a5f78ae997a9bfe58c93d95fae"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v7/v7_twilight_candidate.jpg",
+          "sha256": "bcf4070dbe6d8aa47ee3503f783b3dd3649b1d0a7bb706f04401a1f5e0628fb3"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v7/v7_sunrise.jpg",
+          "sha256": "d74aaa4d61be33dd9c50a506099f875ba1bee350d701d23e807d40ff3e02416e"
+        }
+      ],
+      "context": {
+        "session": "Studio 4c38d6a4-0bfd-46b3-9308-ac4b9b4c95a2 V7 Continuous sandbox",
+        "build": "lighting-horizon-moon-49ff29721b96",
+        "environment": "Studio-no-save-sandbox",
+        "device": "Windows desktop Studio client; Automatic rendering quality unchanged",
+        "input": "Actual mouse Play input; paused server-config previews and ordinary daytime read-only observation",
+        "time_utc": "2026-09-23 19:55:46 UTC",
+        "interaction": "normal-ui",
+        "start_screen_active": false,
+        "visible_input_verified": true
+      },
+      "reason": "",
+      "next_action": ""
+    },
+    {
+      "id": "garage",
+      "kind": "ui",
+      "status": "deferred",
+      "observation": "Normal dealership/owned garage traversal not rerun for this scoped refinement; original context presets and owners are unchanged.",
+      "evidence": [],
+      "context": {
+        "session": "Studio 4c38d6a4-0bfd-46b3-9308-ac4b9b4c95a2 V7 Continuous sandbox",
+        "build": "lighting-horizon-moon-49ff29721b96",
+        "environment": "Studio-no-save-sandbox",
+        "device": "Windows desktop Studio client; Automatic rendering quality unchanged",
+        "input": "Actual mouse Play input; paused server-config previews and ordinary daytime read-only observation",
+        "time_utc": "2026-09-23 19:55:46 UTC",
+        "interaction": "normal-ui",
+        "start_screen_active": false,
+        "visible_input_verified": true
+      },
+      "reason": "Normal dealership/owned garage traversal not rerun for this scoped refinement; original context presets and owners are unchanged.",
+      "next_action": "Complete normal dealership Exit and owned lighting entry/release acceptance."
+    },
+    {
+      "id": "streaming",
+      "kind": "ui",
+      "status": "deferred",
+      "observation": "No driven stream-out/re-entry route or retention soak. Selected standing-still observation does not isolate area-specific reports.",
+      "evidence": [],
+      "context": {
+        "session": "Studio 4c38d6a4-0bfd-46b3-9308-ac4b9b4c95a2 V7 Continuous sandbox",
+        "build": "lighting-horizon-moon-49ff29721b96",
+        "environment": "Studio-no-save-sandbox",
+        "device": "Windows desktop Studio client; Automatic rendering quality unchanged",
+        "input": "Actual mouse Play input; paused server-config previews and ordinary daytime read-only observation",
+        "time_utc": "2026-09-23 19:55:46 UTC",
+        "interaction": "normal-ui",
+        "start_screen_active": false,
+        "visible_input_verified": true
+      },
+      "reason": "No driven stream-out/re-entry route or retention soak. Selected standing-still observation does not isolate area-specific reports.",
+      "next_action": "Drive representative route with repeated context/respawn transitions and inspect retention."
+    },
+    {
+      "id": "device",
+      "kind": "device",
+      "status": "deferred",
+      "observation": "No physical iPhone 7, low-graphics or entire 720-second visual pass. Selected desktop views and daytime observation only.",
+      "evidence": [],
+      "context": {
+        "session": "Studio 4c38d6a4-0bfd-46b3-9308-ac4b9b4c95a2 V7 Continuous sandbox",
+        "build": "lighting-horizon-moon-49ff29721b96",
+        "environment": "Studio-no-save-sandbox",
+        "device": "Windows desktop Studio client; Automatic rendering quality unchanged",
+        "input": "Actual mouse Play input; paused server-config previews and ordinary daytime read-only observation",
+        "time_utc": "2026-09-23 19:55:46 UTC",
+        "interaction": "normal-ui",
+        "start_screen_active": false,
+        "visible_input_verified": true
+      },
+      "reason": "No physical-device or complete-duration visual evidence.",
+      "next_action": "Review complete 720-second cycle at target device/low graphics, larger sun, brighter warm sky and moon glare."
+    },
+    {
+      "id": "multiplayer",
+      "kind": "multiplayer",
+      "status": "deferred",
+      "observation": "One Studio client only; no two-client synchronization or late-join run.",
+      "evidence": [],
+      "context": {
+        "session": "Studio 4c38d6a4-0bfd-46b3-9308-ac4b9b4c95a2 V7 Continuous sandbox",
+        "build": "lighting-horizon-moon-49ff29721b96",
+        "environment": "Studio-no-save-sandbox",
+        "device": "Windows desktop Studio client; Automatic rendering quality unchanged",
+        "input": "Actual mouse Play input; paused server-config previews and ordinary daytime read-only observation",
+        "time_utc": "2026-09-23 19:55:46 UTC",
+        "interaction": "normal-ui",
+        "start_screen_active": false,
+        "visible_input_verified": true
+      },
+      "reason": "One Studio client only; no two-client synchronization or late-join run.",
+      "next_action": "Compare two clients in isolated published test at late join and wrap."
+    }
+  ]
+}

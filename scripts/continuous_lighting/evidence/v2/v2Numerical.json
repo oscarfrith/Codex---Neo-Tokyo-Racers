@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"secondsSampled\":121,\"cycleSeconds\":120,\"checks\":5817,\"holdBoundaries\":24,\"fullPresets\":6,\"pass\":true}"
+    }
+  ],
+  "isError": false
+}

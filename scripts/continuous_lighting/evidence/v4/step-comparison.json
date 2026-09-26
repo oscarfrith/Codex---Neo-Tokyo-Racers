@@ -1,0 +1,25 @@
+{
+  "rows": {
+    "Lighting.Brightness": {
+      "before": 0.05466008186340332,
+      "after": 0.015877246856689453,
+      "reduction_percent": 70.95275690152272
+    },
+    "Atmosphere.Haze": {
+      "before": 0.028844118118286133,
+      "after": 0.009081363677978516,
+      "reduction_percent": 68.51571734404575
+    },
+    "Atmosphere.Glare": {
+      "before": 0.06707286834716797,
+      "after": 0.028156757354736328,
+      "reduction_percent": 58.020645234676024
+    },
+    "Atmosphere.Color": {
+      "before": 0.009417176246643066,
+      "after": 0.0032786130905151367,
+      "reduction_percent": 65.18475385141208
+    }
+  },
+  "scope": "Largest observed per-Heartbeat property delta across one 122-second stationary desktop cycle each; combined palette/timing/cadence revision, not an FPS or pixel-continuity benchmark."
+}

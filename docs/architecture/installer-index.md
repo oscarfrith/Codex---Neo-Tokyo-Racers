@@ -4,7 +4,8 @@ Current task, acceptance and pending runs: [start here](../00_START_HERE.md). Th
 
 | Purpose | Canonical script |
 |---|---|
-| Current migration | scripts/roblox_performance_phase5_catalogue_transport.lua — INSTALL / AUDIT / ROLLBACK |
+| Continuous lighting | scripts/continuous_lighting/install.lua — AUDIT / APPLY / STEPPED / CONTINUOUS / ROLLBACK; [recovery guide](lighting-horizon-moon-handoff.md), [editing guide](lighting-authoring.md) |
+| Catalogue transport recovery | scripts/roblox_performance_phase5_catalogue_transport.lua — INSTALL / AUDIT / ROLLBACK |
 | Read-only Studio audit | scripts/studio_cleanup_audit.lua |
 | Deliberate full checkpoint exporter | scripts/studio_export_snapshot.lua |
 | Full checkpoint receiver | scripts/receive_studio_snapshot.py |
@@ -16,7 +17,7 @@ Current task, acceptance and pending runs: [start here](../00_START_HERE.md). Th
 
 Earlier installers are historical recovery only: roll back dependent phases in reverse order first. Old export tools are archived under scripts/history/snapshot_before_cleanup_phase4; do not mix protocols. Frozen sources/build support under scripts/cleanup_phase* are repository evidence, not runtime dependencies.
 
-See performance-phase5-catalogue-transport.md. Roll back this delivery before cleanup recovery. Prior index: ../history/cleanup-phase4-prior-docs/installer-index.md.
+See performance-phase5-catalogue-transport.md. Roll back continuous lighting before any older recovery that touches its source owners; then restore dependent architecture deliveries in reverse order before cleanup recovery. Do not rerun installed migrations. Prior index: ../history/cleanup-phase4-prior-docs/installer-index.md.
 
 Catalogue/preview freshness: scripts/performance_phase4/check_projection.py --capture <vehicles-capture.json>; --legacy-mirror for a deliberate full checkpoint. Workflow capture validation: scripts/workflow_phase2/verification.json. General snapshot procedure: [snapshot workflow](../10_script_source_sync_workflow.md).
 

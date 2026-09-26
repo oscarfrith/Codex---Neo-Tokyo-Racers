@@ -1,0 +1,15 @@
+{
+  "pass_scope": true,
+  "after_time_utc": "2026-09-23 19:04:35 UTC",
+  "sources": 168,
+  "unchanged_original_sources": 158,
+  "changed_original_sources": 7,
+  "new_modules": 3,
+  "changed_revision_sources": 0,
+  "refinement_attributes": 20,
+  "added_root_attributes": 9,
+  "added_config_and_sky_nodes": 53,
+  "captured_nodes": 138,
+  "capture_sha256": "15ef9ab819a83cfc856ed3cf090e4c40f71de6fafa6f213d844b4732287861e8",
+  "coverage": "All inventoried sources; selected subtrees only. Moves appear as remove/add, never inferred automatically."
+}

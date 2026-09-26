@@ -1,0 +1,189 @@
+{
+  "schema": 1,
+  "task": "Twelve-minute cycle, larger sun and full horizon rays",
+  "build": "lighting-twelve-minute-d75406e86fde",
+  "changed": "One pure LightingCycle source, ten attributes and one ContinuousSky property; no new nodes/assets. Pre-existing Edit SunRays changes preserved.",
+  "studio_action": "Installed through guarded REFINE; no installed migration rerun. Edit: Continuous, 720 seconds, auto/sync true, opt-in tools off. No publish.",
+  "capture": "roblox/captures/lighting-twelve-minute-after/capture.json; 2026-09-23 19:21:40 UTC; 168 sources/138 selected nodes.",
+  "recovery": "REVERT_REFINEMENT restores V5 evaluator, duration, ray tuning and sun size; REFINE reapplies. Both guard intervening edits. Original Stepped mode retained.",
+  "next_action": "User visual review of 720-second pacing, sun size and horizon rays; retain full-duration/device/flow/multiplayer acceptance limits. No installer pending.",
+  "checks": [
+    {
+      "id": "installation",
+      "kind": "static",
+      "status": "pass",
+      "observation": "58,389 pure assertions including 720-second scaling and full normalized cycle, horizon peaks/outer fade seams. Exact one-source/ten-attribute/one-property scope. Guarded revision reversal/reapply/no-op and full installed audit. No full original migration rerun.",
+      "evidence": [
+        {
+          "path": "scripts/continuous_lighting/evidence/v6/delivery-verification.json",
+          "sha256": "8815a6ab24139c895fffe76686385b53487599bccdf71b179755072b38218395"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v6/v6Numerical.json",
+          "sha256": "6fded1d6739abc9963e28bba91af928cea96acfae0341cd3f5b1dcf5fd3d2d82"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v6/v6Install.json",
+          "sha256": "9cffd2694a1932ea495f3fcc549db7f5a3812014100b1441b55869e647549de0"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v6/v6FinalEdit.json",
+          "sha256": "3cedcba0dfd5d1cf95c616de4fbf348f6ba9bc1e046ab7b04a35bb0625a8b28a"
+        }
+      ],
+      "context": {},
+      "reason": "",
+      "next_action": ""
+    },
+    {
+      "id": "startup",
+      "kind": "ui",
+      "status": "pass",
+      "observation": "Normal Play input cleared start screen; 26 server/40 client entries ready and four opt-in tools skipped, sandbox true. ActiveSky size 6 and stable seven Lighting children.",
+      "evidence": [
+        {
+          "path": "scripts/continuous_lighting/evidence/v6/v6ClientStartup.json",
+          "sha256": "be4cb6da6079553175ca3ddd34b8bf54acc769bea9e8eff01199baa85e374c93"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v6/v6ServerStartup.json",
+          "sha256": "71890a7711b30d65352f1a4777f7aac86488bc9eb6d98f14acfba100ad7c2dac"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v6/v6_rays_installed.jpg",
+          "sha256": "f59e84ee51979e46849206a7cbc723a611573c73344f0971bda510d34a990a1d"
+        }
+      ],
+      "context": {
+        "session": "Studio 4c38d6a4-0bfd-46b3-9308-ac4b9b4c95a2 V6 Continuous sandbox",
+        "build": "lighting-twelve-minute-d75406e86fde",
+        "environment": "Studio-no-save-sandbox",
+        "device": "Windows desktop Studio client; Rendering Quality Automatic unchanged",
+        "input": "Actual mouse Play input; read-only observation; selected paused server-config previews",
+        "time_utc": "2026-09-23 19:21:40 UTC",
+        "interaction": "normal-ui",
+        "start_screen_active": false,
+        "visible_input_verified": true
+      },
+      "reason": "",
+      "next_action": ""
+    },
+    {
+      "id": "errors",
+      "kind": "runtime",
+      "status": "pass",
+      "observation": "Eight live horizon/night targets retain peak 0.2 at 06:00/18:00, half intensity in outside shoulders and zero beyond. 7,321 samples/122.008 actual-speed seconds through sunset show no lighting errors/clock jumps, City throughout. Independent speed measurement passes. Existing Player:Move warning remains. Not an entire 720-second observation.",
+      "evidence": [
+        {
+          "path": "scripts/continuous_lighting/evidence/v6/v6Run.json",
+          "sha256": "dd45c9082a050ebaf6d440721f5245117337976a309ea08bcc47459495f0a5ee"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v6/v6Speed.json",
+          "sha256": "8e65c0ce7a5430e10367e4c53288ec6a55caabd4842aec62342c30cbd1ee9778"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v6/v6HorizonChecks.json",
+          "sha256": "9ca366a512aed82bd8d0db27907453bc3b4bae87b97e3efb011ab907edcf368b"
+        },
+        {
+          "path": "scripts/continuous_lighting/evidence/v6/v6Console.json",
+          "sha256": "8c3af5d32d05b3a919544b43416eb61d252161518edb3cb0ec6fb7819b66a54d"
+        }
+      ],
+      "context": {
+        "session": "Studio 4c38d6a4-0bfd-46b3-9308-ac4b9b4c95a2 V6 Continuous sandbox",
+        "build": "lighting-twelve-minute-d75406e86fde",
+        "environment": "Studio-no-save-sandbox",
+        "device": "Windows desktop Studio client; Rendering Quality Automatic unchanged",
+        "input": "Actual mouse Play input; read-only observation; selected paused server-config previews",
+        "time_utc": "2026-09-23 19:21:40 UTC",
+        "interaction": "normal-ui",
+        "start_screen_active": false,
+        "visible_input_verified": true
+      },
+      "reason": "",
+      "next_action": ""
+    },
+    {
+      "id": "garage",
+      "kind": "ui",
+      "status": "deferred",
+      "observation": "Normal dealership/owned garage traversal not rerun for this scoped refinement; original context presets and owners are unchanged.",
+      "evidence": [],
+      "context": {
+        "session": "Studio 4c38d6a4-0bfd-46b3-9308-ac4b9b4c95a2 V6 Continuous sandbox",
+        "build": "lighting-twelve-minute-d75406e86fde",
+        "environment": "Studio-no-save-sandbox",
+        "device": "Windows desktop Studio client; Rendering Quality Automatic unchanged",
+        "input": "Actual mouse Play input; read-only observation; selected paused server-config previews",
+        "time_utc": "2026-09-23 19:21:40 UTC",
+        "interaction": "normal-ui",
+        "start_screen_active": false,
+        "visible_input_verified": true
+      },
+      "reason": "Normal dealership/owned garage traversal not rerun for this scoped refinement; original context presets and owners are unchanged.",
+      "next_action": "Complete normal dealership Exit and owned lighting entry/release acceptance."
+    },
+    {
+      "id": "streaming",
+      "kind": "ui",
+      "status": "deferred",
+      "observation": "No driven stream-out/re-entry route or retention soak. Selected standing-still observation does not isolate area-specific reports.",
+      "evidence": [],
+      "context": {
+        "session": "Studio 4c38d6a4-0bfd-46b3-9308-ac4b9b4c95a2 V6 Continuous sandbox",
+        "build": "lighting-twelve-minute-d75406e86fde",
+        "environment": "Studio-no-save-sandbox",
+        "device": "Windows desktop Studio client; Rendering Quality Automatic unchanged",
+        "input": "Actual mouse Play input; read-only observation; selected paused server-config previews",
+        "time_utc": "2026-09-23 19:21:40 UTC",
+        "interaction": "normal-ui",
+        "start_screen_active": false,
+        "visible_input_verified": true
+      },
+      "reason": "No driven stream-out/re-entry route or retention soak. Selected standing-still observation does not isolate area-specific reports.",
+      "next_action": "Drive representative route with repeated context/respawn transitions and inspect retention."
+    },
+    {
+      "id": "device",
+      "kind": "device",
+      "status": "deferred",
+      "observation": "No physical iPhone 7 or low-graphics pass. Automatic-quality desktop images and 122-second interval do not complete device or full twelve-minute visual acceptance.",
+      "evidence": [],
+      "context": {
+        "session": "Studio 4c38d6a4-0bfd-46b3-9308-ac4b9b4c95a2 V6 Continuous sandbox",
+        "build": "lighting-twelve-minute-d75406e86fde",
+        "environment": "Studio-no-save-sandbox",
+        "device": "Windows desktop Studio client; Rendering Quality Automatic unchanged",
+        "input": "Actual mouse Play input; read-only observation; selected paused server-config previews",
+        "time_utc": "2026-09-23 19:21:40 UTC",
+        "interaction": "normal-ui",
+        "start_screen_active": false,
+        "visible_input_verified": true
+      },
+      "reason": "No physical iPhone 7 or low-graphics pass. Automatic-quality desktop images and 122-second interval do not complete device or full twelve-minute visual acceptance.",
+      "next_action": "Review complete 720-second cycle at target device/low graphics, sun occlusion and readability with stronger rays."
+    },
+    {
+      "id": "multiplayer",
+      "kind": "multiplayer",
+      "status": "deferred",
+      "observation": "One Studio client only; no two-client synchronization or late-join run.",
+      "evidence": [],
+      "context": {
+        "session": "Studio 4c38d6a4-0bfd-46b3-9308-ac4b9b4c95a2 V6 Continuous sandbox",
+        "build": "lighting-twelve-minute-d75406e86fde",
+        "environment": "Studio-no-save-sandbox",
+        "device": "Windows desktop Studio client; Rendering Quality Automatic unchanged",
+        "input": "Actual mouse Play input; read-only observation; selected paused server-config previews",
+        "time_utc": "2026-09-23 19:21:40 UTC",
+        "interaction": "normal-ui",
+        "start_screen_active": false,
+        "visible_input_verified": true
+      },
+      "reason": "One Studio client only; no two-client synchronization or late-join run.",
+      "next_action": "Compare two clients in isolated published test at late join and wrap."
+    }
+  ]
+}

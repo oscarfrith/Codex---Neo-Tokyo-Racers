@@ -1,0 +1,532 @@
+{
+  "config": {
+    "SunriseClockTime": 6,
+    "SteppedGeographicLatitude": 189,
+    "CycleMode": "Continuous",
+    "ContinuousSkyName": "ContinuousSky",
+    "DefaultStreetLightBrightness": 2,
+    "BaseDurationSeconds": 90,
+    "SynchronizeAcrossServers": true,
+    "ContinuousManualClockTime": 12,
+    "ContinuousCycleDurationSeconds": 120,
+    "SunsetClockTime": 18,
+    "AutoCycleEnabled": true,
+    "ManualStage": "Day",
+    "ContinuousGeographicLatitude": 35
+  },
+  "sky": {
+    "SkyboxUp": "rbxassetid://6412503613",
+    "SkyboxFt": "rbxassetid://6444884337",
+    "SkyboxOrientation": [
+      0,
+      0,
+      0
+    ],
+    "SkyboxDn": "rbxassetid://6444884785",
+    "SunTextureId": "rbxasset://sky/sun.jpg",
+    "SunAngularSize": 21,
+    "SkyboxLf": "rbxassetid://6444884337",
+    "SkyboxRt": "rbxassetid://6444884337",
+    "SkyboxBk": "rbxassetid://6444884337"
+  },
+  "place": 121304917315753,
+  "sources": {
+    "LightingCycle": "-- Pure solar motion and authored-look evaluation. No services, tasks or instances.\nlocal Cycle={}\nlocal DEFAULTS={\n    Atmosphere={Color=Color3.fromRGB(199,199,199),Decay=Color3.fromRGB(106,112,125),Density=.22,Glare=0,Haze=0,Offset=.2},\n    Bloom={Enabled=true,Intensity=.65,Size=10,Threshold=1.904},\n    ColorCorrection={Enabled=true,Brightness=.05,Contrast=0,Saturation=.4,TintColor=Color3.new(1,1,1)},\n    DepthOfField={Enabled=false,FarIntensity=.084,FocusDistance=.05,InFocusRadius=10,NearIntensity=.75},\n    SunRays={Enabled=false,Intensity=.05,Spread=.713},\n}\nfunction Cycle.finite(v) return type(v)==\"number\" and v==v and math.abs(v)<math.huge end\nlocal function copy(v)\n    if type(v)~=\"table\" then return v end\n    local out={}; for k,x in pairs(v) do out[k]=copy(x) end; return out\nend\nlocal function overlay(a,b)\n    for k,v in pairs(b) do\n        if type(v)==\"table\" then a[k]=a[k] or {}; overlay(a[k],v) else a[k]=v end\n    end\n    return a\nend\nfunction Cycle.preset(presets,name,latitude)\n    assert(type(presets[name])==\"table\",\"Unknown lighting preset: \"..tostring(name))\n    local target=overlay(copy(DEFAULTS),presets[name])\n    target.Lighting.GeographicLatitude=latitude\n    return target\nend\nlocal function compatible(a,b,path)\n    for k,av in pairs(a) do\n        local bv=b[k]; local key=path..\".\"..k\n        assert(typeof(av)==typeof(bv),\"Incompatible look property \"..key)\n        if type(av)==\"table\" then compatible(av,bv,key)\n        elseif type(av)==\"number\" then assert(Cycle.finite(av) and Cycle.finite(bv),\"Nonfinite \"..key)\n        elseif typeof(av)==\"Color3\" then\n            for _,v in ipairs({av.R,av.G,av.B,bv.R,bv.G,bv.B}) do assert(Cycle.finite(v) and v>=0 and v<=1,\"Invalid colour \"..key) end\n        else assert(av==bv,\"Discrete property must be common across looks: \"..key) end\n    end\n    for k in pairs(b) do assert(a[k]~=nil,\"Incomplete look property \"..path..\".\"..k) end\nend\nlocal function blend(a,b,t)\n    if t<=0 then return copy(a) elseif t>=1 then return copy(b) end\n    local out={}\n    for k,av in pairs(a) do\n        local bv=b[k]\n        if type(av)==\"table\" then out[k]=blend(av,bv,t)\n        elseif typeof(av)==\"Color3\" then out[k]=av:Lerp(bv,t)\n        elseif type(av)==\"number\" then out[k]=av+(bv-av)*t\n        else out[k]=av end\n    end\n    return out\nend\nfunction Cycle.build(presets,schedule,settings)\n    assert(Cycle.finite(settings.DurationSeconds) and settings.DurationSeconds>=24 and settings.DurationSeconds<=86400,\"ContinuousCycleDurationSeconds must be 24..86400\")\n    assert(Cycle.finite(settings.Latitude) and settings.Latitude>=-90 and settings.Latitude<=90,\"Invalid continuous latitude\")\n    assert(Cycle.finite(settings.Sunrise) and Cycle.finite(settings.Sunset) and settings.Sunrise>=0 and settings.Sunrise<settings.Sunset and settings.Sunset<24,\"Invalid sunrise/sunset\")\n    assert(type(settings.SkyName)==\"string\" and settings.SkyName~=\"\",\"Missing ContinuousSkyName\")\n    assert(type(settings.Points)==\"table\" and #settings.Points>=2 and #settings.Points<=32,\"Use 2..32 look milestones\")\n    local cycle={total=settings.DurationSeconds,points={},byName={},indices={}}\n    for i,stage in ipairs(schedule) do cycle.indices[stage.Preset]=i end\n    local anchors={Midnight=0,Sunrise=settings.Sunrise,Sunset=settings.Sunset}\n    local names={}\n    for _,row in ipairs(settings.Points) do\n        assert(type(row.Name)==\"string\" and not names[row.Name],\"Duplicate milestone name\"); names[row.Name]=true\n        local anchor=anchors[row.Anchor]; assert(anchor~=nil,\"Anchor must be Midnight, Sunrise or Sunset\")\n        assert(Cycle.finite(row.OffsetHours) and math.abs(row.OffsetHours)<=24,\"Invalid OffsetHours\")\n        assert(Cycle.finite(row.HoldHours) and row.HoldHours>=0 and row.HoldHours<24,\"Invalid HoldHours\")\n        assert(cycle.indices[row.Preset],\"Preset must retain an existing schedule identity\")\n        local target=Cycle.preset(presets,row.Preset,settings.Latitude)\n        local authored=settings.Presets and settings.Presets[row.Preset]\n        assert(type(authored)==\"table\",\"Missing editable continuous preset: \"..row.Preset)\n        for section,properties in pairs(authored) do\n            assert(type(target[section])==\"table\" and type(properties)==\"table\",\"Unknown preset section: \"..tostring(section))\n            for key,value in pairs(properties) do\n                assert(key~=\"ClockTime\" and key~=\"TimeOfDay\" and key~=\"GeographicLatitude\",\"Solar properties belong to cycle settings\")\n                local expected=target[section][key]\n                assert(expected~=nil,\"Unknown lighting property: \"..section..\".\"..key)\n                if typeof(expected)==\"Color3\" then\n                    assert(type(value)==\"table\" and value.Type==\"Color3\",\"Expected Color3 attribute: \"..key)\n                    for _,component in ipairs({value.R,value.G,value.B}) do assert(Cycle.finite(component) and component>=0 and component<=1,\"Invalid colour: \"..key) end\n                    assert(value.R~=nil and value.G~=nil and value.B~=nil,\"Incomplete colour\")\n                    value=Color3.new(value.R,value.G,value.B)\n                end\n                assert(typeof(value)==typeof(expected),\"Wrong attribute type: \"..section..\".\"..key)\n                target[section][key]=value\n            end\n        end\n        target.Lighting.ClockTime=0; target.SkyName=settings.SkyName\n        local point={name=row.Name,preset=row.Preset,hour=(anchor+row.OffsetHours)%24,halfHold=row.HoldHours/2,target=target}\n        cycle.points[#cycle.points+1]=point\n        cycle.byName[row.Preset]=cycle.byName[row.Preset] or {}; table.insert(cycle.byName[row.Preset],point)\n    end\n    table.sort(cycle.points,function(a,b) return a.hour<b.hour end)\n    for i,a in ipairs(cycle.points) do\n        local b=cycle.points[i%#cycle.points+1]\n        a.distance=(b.hour-a.hour)%24\n        assert(a.distance>0 and a.halfHold+b.halfHold<a.distance,\"Duplicate or overlapping milestone holds: \"..a.name..\" / \"..b.name)\n        compatible(a.target,b.target,\"Look\")\n    end\n    return cycle\nend\nfunction Cycle.sample(cycle,seconds)\n    assert(Cycle.finite(seconds),\"Invalid cycle position\")\n    local clock=(seconds%cycle.total)/cycle.total*24\n    local index=#cycle.points\n    for i,a in ipairs(cycle.points) do if a.hour<=clock then index=i else break end end\n    local a=cycle.points[index]; local b=cycle.points[index%#cycle.points+1]\n    local elapsed=(clock-a.hour)%24\n    local u=math.clamp((elapsed-a.halfHold)/(a.distance-a.halfHold-b.halfHold),0,1)\n    local weight=u*u*(3-2*u)\n    local target=blend(a.target,b.target,weight)\n    target.Lighting.ClockTime=clock\n    local preset=weight<.5 and a.preset or b.preset\n    return target,{clock=clock,preset=preset,index=cycle.indices[preset],from=a.preset,to=b.preset,weight=weight,endsIn=(a.distance-elapsed)*cycle.total/24}\nend\nfunction Cycle.previewClock(cycle,preset)\n    local points=cycle.byName[preset]; assert(points,\"Preset is not in the continuous timeline\")\n    if #points==2 then\n        local a,b=points[1].hour,points[2].hour\n        local clock=(a+((b-a+12)%24-12)/2)%24\n        local _,info=Cycle.sample(cycle,clock/24*cycle.total)\n        if info.from==preset and info.to==preset then return clock end\n    end\n    return points[1].hour\nend\nfunction Cycle.isNight(clock,sunrise,sunset) return clock<sunrise or clock>=sunset end\nreturn Cycle\n",
+    "LightingClient": "-- Sole environment property writer in Continuous mode. Context decisions stay with their owners.\nlocal Client={}\nlocal started=false\nlocal continuous=false\nlocal contexts={}\nlocal refresh=function() end\nlocal validPreset=function() return false end\nlocal PRIORITIES={OwnedInterior=10,Dealership=20}\nfunction Client.isContinuous() return continuous end\nfunction Client.setContext(owner,preset)\n    assert(PRIORITIES[owner],\"Unknown lighting context\")\n    if not continuous then return false end\n    if not validPreset(preset) then warn(\"[LightingClient] Rejected context preset: \"..tostring(preset)); return false end\n    if contexts[owner]~=preset then contexts[owner]=preset; refresh() end\n    return true\nend\nfunction Client.releaseContext(owner)\n    if contexts[owner] then contexts[owner]=nil; refresh() end\nend\nfunction Client.start()\n    if started then return end\n    started=true\n    local RS=game:GetService(\"ReplicatedStorage\")\n    local Lighting=game:GetService(\"Lighting\")\n    local RunService=game:GetService(\"RunService\")\n    local HttpService=game:GetService(\"HttpService\")\n    local player=game:GetService(\"Players\").LocalPlayer\n    local world=RS:WaitForChild(\"Modules\").Game.World\n    local config=RS:WaitForChild(\"Config\").World.Lighting\n    local tools=RS.Config.Development.ClientTools\n    local deadline=os.clock()+15\n    while Lighting:GetAttribute(\"LightingCycleMode\")==nil and os.clock()<deadline do task.wait(.05) end\n    local mode=Lighting:GetAttribute(\"LightingCycleMode\")\n    assert(mode==\"Stepped\" or mode==\"Continuous\",\"LightingServer did not publish a valid mode before startup timeout\")\n    continuous=mode==\"Continuous\"\n    if not continuous then return end\n    local Cycle=require(world.LightingCycle)\n    local presets=require(world.LightingPresets)\n    local schedule=require(world.LightingSchedule)\n    local skies=RS.Assets.World.Skies\n    local runtime=player:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\"):WaitForChild(\"World\")\n    local effects={}\n    local specs={Atmosphere=\"Atmosphere\",Bloom=\"BloomEffect\",ColorCorrection=\"ColorCorrectionEffect\",DepthOfField=\"DepthOfFieldEffect\",SunRays=\"SunRaysEffect\"}\n    for name,class in pairs(specs) do\n        local effect=Lighting:FindFirstChild(name)\n        assert(not effect or effect.ClassName==class,\"Unexpected lighting effect class: \"..name)\n        if not effect then effect=Instance.new(class); effect.Name=name; effect.Parent=Lighting end\n        effects[name]=effect\n    end\n    local activeSky=Lighting:FindFirstChild(\"ActiveSky\")\n    if activeSky then assert(activeSky:IsA(\"Sky\"),\"Invalid ActiveSky\") end\n    if not activeSky then activeSky=Instance.new(\"Sky\"); activeSky.Name=\"ActiveSky\"; activeSky.Parent=Lighting end\n    local skyKeys={\"SkyboxBk\",\"SkyboxDn\",\"SkyboxFt\",\"SkyboxLf\",\"SkyboxRt\",\"SkyboxUp\",\"SkyboxOrientation\",\"SunTextureId\",\"MoonTextureId\",\"SunAngularSize\",\"MoonAngularSize\",\"StarCount\",\"CelestialBodiesShown\"}\n    local skyName\n    local function properties(instance,values)\n        for k,v in pairs(values) do if instance[k]~=v then instance[k]=v end end\n    end\n    local function apply(target)\n        properties(Lighting,target.Lighting)\n        for name,effect in pairs(effects) do properties(effect,target[name]) end\n        if skyName~=target.SkyName then\n            local template=skies:FindFirstChild(target.SkyName)\n            assert(template and template:IsA(\"Sky\"),\"Missing sky: \"..tostring(target.SkyName))\n            for _,key in ipairs(skyKeys) do if activeSky[key]~=template[key] then activeSky[key]=template[key] end end\n            skyName=target.SkyName\n        end\n    end\n    local state,cycle\n    local legacyLatitude=config:GetAttribute(\"SteppedGeographicLatitude\") or 189\n    local classic={}\n    for name in pairs(presets) do classic[name]=Cycle.preset(presets,name,legacyLatitude) end\n    validPreset=function(name) return classic[name]~=nil end\n    local connections={}\n    local alive=true\n    local function mark(name,value) if runtime:GetAttribute(name)~=value then runtime:SetAttribute(name,value) end end\n    local function readState()\n        local raw=Lighting:GetAttribute(\"LightingCycleState\")\n        if type(raw)~=\"string\" then return end\n        local incoming=HttpService:JSONDecode(raw)\n        assert(incoming.Version==2 and Cycle.finite(incoming.Epoch),\"Invalid lighting state\")\n        local built=Cycle.build(presets,schedule,incoming)\n        assert(Cycle.finite(incoming.Sunrise) and Cycle.finite(incoming.Sunset) and incoming.Sunrise>=0 and incoming.Sunrise<incoming.Sunset and incoming.Sunset<24,\"Invalid sunrise/sunset\")\n        assert(type(incoming.Auto)==\"boolean\" and Cycle.finite(incoming.ManualClockTime) and incoming.ManualClockTime>=0 and incoming.ManualClockTime<24,\"Invalid manual state\")\n        state,cycle=incoming,built\n        skyName=nil\n    end\n    local lastFailure\n    local function guarded(fn)\n        local ok,err=xpcall(fn,debug.traceback)\n        if not ok then\n            mark(\"LightingRenderError\",tostring(err))\n            if lastFailure~=tostring(err) then warn(\"[LightingClient] \"..tostring(err)); lastFailure=tostring(err) end\n        else lastFailure=nil; mark(\"LightingRenderError\",nil) end\n    end\n    local wasPreview=false\n    local function render()\n        if not alive or not state then return end\n        local seconds=state.Auto and (workspace:GetServerTimeNow()-state.Epoch) or state.ManualClockTime/24*cycle.total\n        local preview=RunService:IsStudio() and tools:GetAttribute(\"LightingPreviewEnabled\")==true and runtime:GetAttribute(\"LightingPreviewClockTime\")\n        local target,info=Cycle.sample(cycle,Cycle.finite(preview) and preview/24*cycle.total or seconds)\n        local owner=\"City\"\n        if Cycle.finite(preview) then owner=\"StudioPreview\"\n        else\n            local priority=0\n            for name,preset in pairs(contexts) do\n                if PRIORITIES[name]>priority then\n                    assert(classic[preset],\"Unknown context preset: \"..tostring(preset))\n                    target=classic[preset]; owner=name; priority=PRIORITIES[name]\n                end\n            end\n        end\n        apply(target)\n        -- Debug scrubbing only; normal city switch signals remain server-owned.\n        if owner==\"StudioPreview\" or wasPreview then\n            local night=Cycle.isNight(info.clock,state.Sunrise,state.Sunset)\n            Lighting:SetAttribute(\"StreetLightsOn\",night); Lighting:SetAttribute(\"WindowMode\",night and \"Night\" or \"Day\")\n        end\n        wasPreview=owner==\"StudioPreview\"\n        mark(\"LightingContext\",owner)\n        mark(\"LightingCycleReady\",true)\n    end\n    refresh=function() guarded(render) end\n    guarded(readState)\n    connections[#connections+1]=Lighting:GetAttributeChangedSignal(\"LightingCycleState\"):Connect(function() guarded(readState); refresh() end)\n    -- Resolve existing interior/preview intent before the first city application.\n    local interior=RS.Config.Garage.Interior\n    if player:GetAttribute(\"OwnedGarageInside\")==true and interior:GetAttribute(\"InteriorEnvironmentLightingEnabled\")~=false then\n        contexts.OwnedInterior=interior:GetAttribute(\"InteriorEnvironmentPreset\") or \"ClearNight\"\n    end\n    if player:GetAttribute(\"GarageSessionActive\")==true and RS.Config.UI.GarageReplacement:GetAttribute(\"PreviewLightingEnabled\")~=false then\n        contexts.Dealership=RS.Config.UI.GarageReplacement:GetAttribute(\"PreviewLightingPreset\") or \"EightPM\"\n    end\n    refresh()\n    local elapsed=0\n    connections[#connections+1]=RunService.Heartbeat:Connect(function(dt)\n        elapsed+=dt\n        if elapsed>=1/30 then elapsed=0; refresh() end\n    end)\n    connections[#connections+1]=script.Destroying:Connect(function()\n        alive=false\n        for _,connection in ipairs(connections) do connection:Disconnect() end\n        table.clear(connections); table.clear(contexts); refresh=function() end\n    end)\nend\nreturn Client\n",
+    "LightingCycleDefinition": "-- Authoring adapter only. Tune Config.World.Lighting and its ContinuousLooks folders.\nlocal Definition={}\nfunction Definition.read(config)\n    local points={}\n    local looks=assert(config:FindFirstChild(\"ContinuousLooks\"),\"Missing ContinuousLooks\")\n    local palette=assert(config:FindFirstChild(\"ContinuousPresets\"),\"Missing ContinuousPresets\")\n    for _,folder in ipairs(looks:GetChildren()) do\n        assert(folder:IsA(\"Folder\"),\"ContinuousLooks accepts Folder milestones only\")\n        points[#points+1]={Name=folder.Name,Preset=folder:GetAttribute(\"Preset\"),Anchor=folder:GetAttribute(\"Anchor\"),OffsetHours=folder:GetAttribute(\"OffsetHours\"),HoldHours=folder:GetAttribute(\"HoldHours\")}\n    end\n    table.sort(points,function(a,b) return a.Name<b.Name end)\n    local presets={}\n    for _,look in ipairs(palette:GetChildren()) do\n        assert(look:IsA(\"Folder\") and not presets[look.Name],\"Invalid or duplicate continuous preset\")\n        local sections={}; presets[look.Name]=sections\n        for _,section in ipairs(look:GetChildren()) do\n            assert(section:IsA(\"Folder\") and not sections[section.Name] and #section:GetChildren()==0,\"Invalid preset section\")\n            local properties={}; sections[section.Name]=properties\n            for key,value in pairs(section:GetAttributes()) do\n                properties[key]=typeof(value)==\"Color3\" and {Type=\"Color3\",R=value.R,G=value.G,B=value.B} or value\n            end\n        end\n    end\n    return {\n        DurationSeconds=config:GetAttribute(\"ContinuousCycleDurationSeconds\"),\n        Latitude=config:GetAttribute(\"ContinuousGeographicLatitude\"),\n        Sunrise=config:GetAttribute(\"SunriseClockTime\"),Sunset=config:GetAttribute(\"SunsetClockTime\"),\n        SkyName=config:GetAttribute(\"ContinuousSkyName\"),Points=points,Presets=presets,\n        Auto=config:GetAttribute(\"AutoCycleEnabled\")~=false,\n        Synchronized=config:GetAttribute(\"SynchronizeAcrossServers\")~=false,\n        ManualClockTime=config:GetAttribute(\"ContinuousManualClockTime\"),\n    }\nend\nreturn Definition\n"
+  },
+  "presets": {
+    "SevenAM": {
+      "SunRays": {
+        "Enabled": false,
+        "Intensity": 0.05000000074505806,
+        "Spread": 0.7129999995231628
+      },
+      "DepthOfField": {
+        "Enabled": false,
+        "FarIntensity": 0.08399999886751175,
+        "FocusDistance": 0.05000000074505806,
+        "InFocusRadius": 10,
+        "NearIntensity": 0.75
+      },
+      "ColorCorrection": {
+        "Enabled": true,
+        "Saturation": 0.4000000059604645,
+        "Contrast": 0.20000000298023224,
+        "TintColor": [
+          0.8823530077934265,
+          0.9450981020927429,
+          1
+        ],
+        "Brightness": 0
+      },
+      "Atmosphere": {
+        "Density": 0.2370000034570694,
+        "Offset": 0,
+        "Color": [
+          0.4392157196998596,
+          0.35686275362968445,
+          0.32549020648002625
+        ],
+        "Glare": 6.900000095367432,
+        "Haze": 5.400000095367432,
+        "Decay": [
+          0.8666667342185974,
+          0.7058823704719543,
+          0.6431372761726379
+        ]
+      },
+      "Bloom": {
+        "Enabled": true,
+        "Threshold": 0.699999988079071,
+        "Intensity": 0.550000011920929,
+        "Size": 10
+      },
+      "Lighting": {
+        "ExposureCompensation": -0.44999998807907104,
+        "ColorShift_Bottom": [
+          0,
+          0,
+          0
+        ],
+        "FogColor": [
+          0.7529411911964417,
+          0.7529411911964417,
+          0.7529411911964417
+        ],
+        "FogEnd": 100000,
+        "EnvironmentDiffuseScale": 0.20100000500679016,
+        "EnvironmentSpecularScale": 1,
+        "FogStart": 0,
+        "Ambient": [
+          1,
+          0.9450980424880981,
+          0.9176470637321472
+        ],
+        "OutdoorAmbient": [
+          0.9098039865493774,
+          0.847058892250061,
+          0.8117647767066956
+        ],
+        "GlobalShadows": true,
+        "Brightness": 0.2199999988079071,
+        "ShadowSoftness": 0.20000000298023224,
+        "ColorShift_Top": [
+          0.4901961088180542,
+          0.46666669845581055,
+          0.4078431725502014
+        ]
+      }
+    },
+    "Day": {
+      "SunRays": {
+        "Enabled": false,
+        "Intensity": 0.05,
+        "Spread": 0.713
+      },
+      "DepthOfField": {
+        "Enabled": false,
+        "FarIntensity": 0.084,
+        "FocusDistance": 0.05,
+        "InFocusRadius": 10,
+        "NearIntensity": 0.75
+      },
+      "ColorCorrection": {
+        "Enabled": true,
+        "Saturation": 0.4000000059604645,
+        "Contrast": 0,
+        "TintColor": [
+          1,
+          1,
+          1
+        ],
+        "Brightness": 0.05000000074505806
+      },
+      "Atmosphere": {
+        "Density": 0.2199999988079071,
+        "Offset": 0.20000000298023224,
+        "Color": [
+          0.7803921699523926,
+          0.7803921699523926,
+          0.7803921699523926
+        ],
+        "Glare": 0,
+        "Haze": 0,
+        "Decay": [
+          0.4156862795352936,
+          0.43921568989753723,
+          0.4901960790157318
+        ]
+      },
+      "Bloom": {
+        "Enabled": true,
+        "Threshold": 1.9040000438690186,
+        "Intensity": 0.6499999761581421,
+        "Size": 10
+      },
+      "Lighting": {
+        "ExposureCompensation": 0.10000000149011612,
+        "ColorShift_Bottom": [
+          0,
+          0,
+          0
+        ],
+        "FogColor": [
+          0.7529411911964417,
+          0.7529411911964417,
+          0.7529411911964417
+        ],
+        "FogEnd": 100000,
+        "EnvironmentDiffuseScale": 0.47099998593330383,
+        "EnvironmentSpecularScale": 1,
+        "FogStart": 0,
+        "Ambient": [
+          0.4117647111415863,
+          0.7333333492279053,
+          1
+        ],
+        "OutdoorAmbient": [
+          0.6117647290229797,
+          0.8392156958580017,
+          0.9098039269447327
+        ],
+        "GlobalShadows": true,
+        "Brightness": 5.150000095367432,
+        "ShadowSoftness": 0.20000000298023224,
+        "ColorShift_Top": [
+          1,
+          0.9529411792755127,
+          0.8313725590705872
+        ]
+      }
+    },
+    "ClearNight": {
+      "SunRays": {
+        "Enabled": false,
+        "Intensity": 0.05000000074505806,
+        "Spread": 0.7129999995231628
+      },
+      "DepthOfField": {
+        "Enabled": false,
+        "FarIntensity": 0.08399999886751175,
+        "FocusDistance": 0.05000000074505806,
+        "InFocusRadius": 10,
+        "NearIntensity": 0.75
+      },
+      "ColorCorrection": {
+        "Enabled": true,
+        "Saturation": 0.20000000298023224,
+        "Contrast": 0.30000001192092896,
+        "TintColor": [
+          0.7921569347381592,
+          0.8196079134941101,
+          1
+        ],
+        "Brightness": 0.05000000074505806
+      },
+      "Atmosphere": {
+        "Density": 0.3070000112056732,
+        "Offset": 0,
+        "Color": [
+          0.21568629145622253,
+          0.250980406999588,
+          0.30980393290519714
+        ],
+        "Glare": 6.860000133514404,
+        "Haze": 4.090000152587891,
+        "Decay": [
+          0.4117647409439087,
+          0.41960787773132324,
+          0.5333333611488342
+        ]
+      },
+      "Bloom": {
+        "Enabled": true,
+        "Threshold": 0.30000001192092896,
+        "Intensity": 0.5,
+        "Size": 16
+      },
+      "Lighting": {
+        "ExposureCompensation": 0,
+        "ColorShift_Bottom": [
+          0.3529411852359772,
+          0.3529411852359772,
+          0.3529411852359772
+        ],
+        "FogColor": [
+          0.7529411911964417,
+          0.7529411911964417,
+          0.7529411911964417
+        ],
+        "FogEnd": 100000,
+        "EnvironmentDiffuseScale": 0,
+        "EnvironmentSpecularScale": 0.23399999737739563,
+        "FogStart": 0,
+        "Ambient": [
+          0.48235297203063965,
+          0.5411764979362488,
+          0.7411764860153198
+        ],
+        "OutdoorAmbient": [
+          0.6313725709915161,
+          0.6549019813537598,
+          0.8862745761871338
+        ],
+        "GlobalShadows": true,
+        "Brightness": 2.7100000381469727,
+        "ShadowSoftness": 0.20000000298023224,
+        "ColorShift_Top": [
+          1,
+          0.9490196704864502,
+          0.8313726186752319
+        ]
+      }
+    },
+    "FivePM": {
+      "SunRays": {
+        "Enabled": false,
+        "Intensity": 0.05000000074505806,
+        "Spread": 0.7129999995231628
+      },
+      "DepthOfField": {
+        "Enabled": false,
+        "FarIntensity": 0.08399999886751175,
+        "FocusDistance": 0.05000000074505806,
+        "InFocusRadius": 10,
+        "NearIntensity": 0.75
+      },
+      "ColorCorrection": {
+        "Enabled": true,
+        "Saturation": 0.4000000059604645,
+        "Contrast": 0.20000000298023224,
+        "TintColor": [
+          0.8823530077934265,
+          0.9450981020927429,
+          1
+        ],
+        "Brightness": 0
+      },
+      "Atmosphere": {
+        "Density": 0.2669999897480011,
+        "Offset": 0,
+        "Color": [
+          0.4392157196998596,
+          0.35686275362968445,
+          0.32549020648002625
+        ],
+        "Glare": 6.900000095367432,
+        "Haze": 5.400000095367432,
+        "Decay": [
+          0.8666667342185974,
+          0.7058823704719543,
+          0.6431372761726379
+        ]
+      },
+      "Bloom": {
+        "Enabled": true,
+        "Threshold": 0.699999988079071,
+        "Intensity": 0.550000011920929,
+        "Size": 10
+      },
+      "Lighting": {
+        "ExposureCompensation": -0.44999998807907104,
+        "ColorShift_Bottom": [
+          0,
+          0,
+          0
+        ],
+        "FogColor": [
+          0.7529411911964417,
+          0.7529411911964417,
+          0.7529411911964417
+        ],
+        "FogEnd": 100000,
+        "EnvironmentDiffuseScale": 0.20100000500679016,
+        "EnvironmentSpecularScale": 1,
+        "FogStart": 0,
+        "Ambient": [
+          1,
+          0.9450980424880981,
+          0.9176470637321472
+        ],
+        "OutdoorAmbient": [
+          0.9098039865493774,
+          0.847058892250061,
+          0.8117647767066956
+        ],
+        "GlobalShadows": true,
+        "Brightness": 0.1899999976158142,
+        "ShadowSoftness": 0.20000000298023224,
+        "ColorShift_Top": [
+          0.4901961088180542,
+          0.46666669845581055,
+          0.4078431725502014
+        ]
+      }
+    },
+    "FourAM": {
+      "SunRays": {
+        "Enabled": false,
+        "Intensity": 0.05000000074505806,
+        "Spread": 0.7129999995231628
+      },
+      "DepthOfField": {
+        "Enabled": false,
+        "FarIntensity": 0.08399999886751175,
+        "FocusDistance": 0.05000000074505806,
+        "InFocusRadius": 10,
+        "NearIntensity": 0.75
+      },
+      "ColorCorrection": {
+        "Enabled": true,
+        "Saturation": 0.20000000298023224,
+        "Contrast": 0.20000000298023224,
+        "TintColor": [
+          0.988235354423523,
+          0.8509804606437683,
+          1
+        ],
+        "Brightness": 0
+      },
+      "Atmosphere": {
+        "Density": 0.3070000112056732,
+        "Offset": 0,
+        "Color": [
+          0.3176470696926117,
+          0.2980392277240753,
+          0.4392157196998596
+        ],
+        "Glare": 6.860000133514404,
+        "Haze": 4.090000152587891,
+        "Decay": [
+          0.5843137502670288,
+          0.5215686559677124,
+          0.760784387588501
+        ]
+      },
+      "Bloom": {
+        "Enabled": true,
+        "Threshold": 0.30000001192092896,
+        "Intensity": 0.4000000059604645,
+        "Size": 16
+      },
+      "Lighting": {
+        "ExposureCompensation": 0.10999999940395355,
+        "ColorShift_Bottom": [
+          0,
+          0,
+          0
+        ],
+        "FogColor": [
+          0.7529411911964417,
+          0.7529411911964417,
+          0.7529411911964417
+        ],
+        "FogEnd": 100000,
+        "EnvironmentDiffuseScale": 0,
+        "EnvironmentSpecularScale": 0.23399999737739563,
+        "FogStart": 0,
+        "Ambient": [
+          0.41960787773132324,
+          0.5254902243614197,
+          1
+        ],
+        "OutdoorAmbient": [
+          0.8588235974311829,
+          0.7019608020782471,
+          0.9098039865493774
+        ],
+        "GlobalShadows": true,
+        "Brightness": 2.4000000953674316,
+        "ShadowSoftness": 0.20000000298023224,
+        "ColorShift_Top": [
+          1,
+          0.9490196704864502,
+          0.8313726186752319
+        ]
+      }
+    },
+    "EightPM": {
+      "SunRays": {
+        "Enabled": false,
+        "Intensity": 0.05000000074505806,
+        "Spread": 0.7129999995231628
+      },
+      "DepthOfField": {
+        "Enabled": false,
+        "FarIntensity": 0.08399999886751175,
+        "FocusDistance": 0.05000000074505806,
+        "InFocusRadius": 10,
+        "NearIntensity": 0.75
+      },
+      "ColorCorrection": {
+        "Enabled": true,
+        "Saturation": 0.20000000298023224,
+        "Contrast": 0.20000000298023224,
+        "TintColor": [
+          0.988235354423523,
+          0.8509804606437683,
+          1
+        ],
+        "Brightness": 0
+      },
+      "Atmosphere": {
+        "Density": 0.3070000112056732,
+        "Offset": 0,
+        "Color": [
+          0.3176470696926117,
+          0.2980392277240753,
+          0.4392157196998596
+        ],
+        "Glare": 6.860000133514404,
+        "Haze": 4.090000152587891,
+        "Decay": [
+          0.5843137502670288,
+          0.5215686559677124,
+          0.760784387588501
+        ]
+      },
+      "Bloom": {
+        "Enabled": true,
+        "Threshold": 0.30000001192092896,
+        "Intensity": 0.4000000059604645,
+        "Size": 16
+      },
+      "Lighting": {
+        "ExposureCompensation": 0.10999999940395355,
+        "ColorShift_Bottom": [
+          0,
+          0,
+          0
+        ],
+        "FogColor": [
+          0.7529411911964417,
+          0.7529411911964417,
+          0.7529411911964417
+        ],
+        "FogEnd": 100000,
+        "EnvironmentDiffuseScale": 0,
+        "EnvironmentSpecularScale": 0.23399999737739563,
+        "FogStart": 0,
+        "Ambient": [
+          0.41960787773132324,
+          0.5254902243614197,
+          1
+        ],
+        "OutdoorAmbient": [
+          0.8588235974311829,
+          0.7019608020782471,
+          0.9098039865493774
+        ],
+        "GlobalShadows": true,
+        "Brightness": 2.4000000953674316,
+        "ShadowSoftness": 0.20000000298023224,
+        "ColorShift_Top": [
+          1,
+          0.9490196704864502,
+          0.8313726186752319
+        ]
+      }
+    }
+  }
+}
