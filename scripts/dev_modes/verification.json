@@ -1,0 +1,13 @@
+{
+  "task": "Studio saving on v2: API access on (Oscar) + sandbox/replay test modes off",
+  "date": "2026-09-26",
+  "before_capture": "roblox/captures/dev-sandbox-off-before/capture.json",
+  "change": "ReplicatedStorage.Config.Player.Onboarding StudioVehicleSandboxEveryPlay true->false, StudioReplayEveryPlay true->false (studio_delivery AUDIT before, APPLY 2). Oscar enabled Game Settings > Security > Enable Studio Access to API Services.",
+  "save_rejoin_test": {
+    "session1": "fresh v2 profile loaded from DataStore (140,000 Cash, rank 1; no StudioAccessToApisNotAllowed, no 'saves suppressed'); SetPassengerAccess Anyone; Studio cash hotkey +1,000,000; bought bruiser_01 and drove (scripted) -> Cash 790,272, XpIntoRank 27",
+    "session2": "after Stop (close save) and Play: Cash 790,272, Rank 1, XpIntoRank 27, PassengerAccess Anyone, 1 owned vehicle — all persisted"
+  },
+  "consequences": "Studio Play now uses and saves the tester's real v2 profile; onboarding is not replayed; PersonalBestServer writes real PBs (PB-01 now live in Studio). Proper dev modes to be planned later (Oscar).",
+  "still_open": "cross-server contention/lease (DATA-02) and published-server rejoin; duel stake DataStore checks",
+  "evidence_type": "agent-verified Studio save/rejoin (same machine, same server type)"
+}

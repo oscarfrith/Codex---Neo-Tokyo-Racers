@@ -1,0 +1,10 @@
+{
+  "task": "Turn off the Studio vehicle sandbox and onboarding replay so Studio Play saves (Oscar, 2026-09-26)",
+  "lane": "Standard",
+  "contract": "Oscar enabled Studio API access for v2 and asked to turn off the always-on test modes so profiles save in Studio; proper dev modes will be planned later. Changes two existing boolean attributes on ReplicatedStorage.Config.Player.Onboarding: StudioVehicleSandboxEveryPlay and StudioReplayEveryPlay -> false. Effect: Studio Play loads/saves the real v2 profile for the tester (no forced empty garage/$1M, onboarding not replayed). No code changes.",
+  "verification": "Play twice: profile loads from DataStore without sandbox; XP/rank and PassengerAccess persist across stop/start.",
+  "operations": [
+    { "kind": "attribute", "path": ["ReplicatedStorage", "Config", "Player", "Onboarding"], "key": "StudioVehicleSandboxEveryPlay", "value": false },
+    { "kind": "attribute", "path": ["ReplicatedStorage", "Config", "Player", "Onboarding"], "key": "StudioReplayEveryPlay", "value": false }
+  ]
+}
