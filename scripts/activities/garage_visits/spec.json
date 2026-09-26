@@ -1,0 +1,14 @@
+{
+  "task": "Garage visits: same-server, on-foot visitors admitted by the owner's saved AccessMode while the owner is inside",
+  "lane": "High-Risk",
+  "contract": "scripts/activities/garage_visits/CONTRACT.md. Visits only while the owner is inside their own garage (same server, visitors on foot, max Visits.MaxVisitorsPerGarage=8). Admission by saved AccessMode: Public anyone, FriendsOnly IsFriendsWith (pcall, cached per pair), InviteOnly InvitedUserIds, Private nobody. Gate: FeatureFlags EnableGarageVisits (default true) AND Config.Activities.Visits.Enabled AND Config.Garage.Interior.EnableVisitors. OwnedGarageManagement stays the only owner of interiors, sessions, teleports and garage attributes; visitors are a separate `visitors` table and never get a `sessions` entry. New OwnedGarageInvoke actions GetVisitableGarages, VisitGarage {OwnerUserId}, LeaveVisit (Net allowlist). Visitors are rejected from every other mutating/preview action; only FootExitPrompt reacts to them. Visitors are ejected to FootExitSpawn with push Type VisitEnded {Reason} when the owner leaves (foot exit, drive out, death/abandon, disconnect) or the owner's access change/invite revoke disqualifies them. Unload waits for visitors. No saved-data, schema, economy or Cash changes. Owner flows unchanged.",
+  "verification": "Pure tests (tests.lua over loopback 8767). Studio: 2-player local server test per CONTRACT.md checklist (all four modes, capacity, drive-in refusal, owner exit/drive-out/death/leave ejection, access change/revoke ejection, visitor death/leave, prompts owner-only, repeated visits leak no interiors). Console scan for [Owned Garage] warnings.",
+  "operations": [
+    { "kind": "module", "parent": ["ServerStorage", "Modules", "Game", "Garage"], "name": "GarageVisitRules", "file": "scripts/activities/garage_visits/GarageVisitRules.lua" },
+    { "kind": "source", "path": ["ServerStorage", "Modules", "Game", "Garage", "OwnedGarageManagement"], "file": "scripts/activities/garage_visits/OwnedGarageManagement.lua" },
+    { "kind": "source", "path": ["ReplicatedStorage", "Modules", "Game", "UI", "OwnedGarageBrowserUI"], "file": "scripts/activities/garage_visits/OwnedGarageBrowserUI.lua" },
+    { "kind": "source", "path": ["ReplicatedStorage", "Modules", "Game", "UI", "GarageInteriorModeUI"], "file": "scripts/activities/garage_visits/GarageInteriorModeUI.lua" },
+    { "kind": "attribute", "path": ["ReplicatedStorage", "Config", "Activities", "Visits"], "key": "FriendCacheSeconds", "value": 300 },
+    { "kind": "attribute", "path": ["ReplicatedStorage", "Config", "Garage", "Interior"], "key": "EnableVisitors", "value": true }
+  ]
+}

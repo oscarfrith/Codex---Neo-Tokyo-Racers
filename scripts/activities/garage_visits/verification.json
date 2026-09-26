@@ -1,0 +1,19 @@
+{
+  "task": "Garage visits (same server, owner inside, on foot)",
+  "date": "2026-09-26",
+  "place": "Space Racers v2 (71491191583884)",
+  "authoring": "Agent D (parallel), integrated by the main session; delivery-reviewer found no blockers; risks V1/V2/V3/V7 fixed",
+  "before_capture": "roblox/captures/activities-foundation-after/capture.json",
+  "after_capture": "roblox/captures/activities-visits-after/capture.json",
+  "scope": "new GarageVisitRules module; OwnedGarageManagement, OwnedGarageBrowserUI, GarageInteriorModeUI; Visits.FriendCacheSeconds; Config.Garage.Interior.EnableVisitors=true",
+  "installer": "AUDIT before; APPLY 6; ROLLBACK 6; APPLY; AUDIT after",
+  "pure_tests": "78/78 (full permission matrix)",
+  "play_single_client": {
+    "api": "GetState returns VisitsEnabled=true; GetVisitableGarages -> {Ok, Enabled, MaxVisitors 8, Garages []}",
+    "browser": "MY GARAGES / VISIT tabs render in the existing browser style",
+    "owner_regression": "ENTER GARAGE via the browser -> inside own interior (OwnedGarageInside, owner id = self, not visitor); ExitOnFoot -> 'Returned to the city'",
+    "console": "no errors"
+  },
+  "not_verified": "actual visits (need 2 clients): admission by each access mode, friend path, capacity, ejection on owner leave/access change/death, visitor prompts; mobile tabs; user confirmation",
+  "evidence_type": "agent-verified Studio single client (normal UI + API)"
+}

@@ -1,0 +1,4434 @@
+{
+  "content_sha256": "0fa1423eb8e2f4af10267d1464c30216ca3f69642b5fa563a51fd172c10db0da",
+  "diagnostics": {
+    "duplicate_paths": [],
+    "property_read_errors": []
+  },
+  "export_mode": "Edit",
+  "format": "SPACE_RACERS_SCOPED_CAPTURE",
+  "generated_in_studio": "2026-09-26 17:34:21 UTC",
+  "hierarchy": [
+    {
+      "attributes": [],
+      "children": [
+        {
+          "attributes": [],
+          "children": [],
+          "class_name": "RemoteEvent",
+          "name": "ActivityEvent",
+          "path": "ReplicatedStorage.Remotes.Activities.ActivityEvent",
+          "path_parts": [
+            "ReplicatedStorage",
+            "Remotes",
+            "Activities",
+            "ActivityEvent"
+          ],
+          "properties": [],
+          "tags": []
+        },
+        {
+          "attributes": [],
+          "children": [],
+          "class_name": "RemoteFunction",
+          "name": "ActivityInvoke",
+          "path": "ReplicatedStorage.Remotes.Activities.ActivityInvoke",
+          "path_parts": [
+            "ReplicatedStorage",
+            "Remotes",
+            "Activities",
+            "ActivityInvoke"
+          ],
+          "properties": [],
+          "tags": []
+        }
+      ],
+      "class_name": "Folder",
+      "name": "Activities",
+      "path": "ReplicatedStorage.Remotes.Activities",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Remotes",
+        "Activities"
+      ],
+      "properties": [],
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "children": [
+        {
+          "attributes": {"DistrictMaxX":{"type":"number","value":2600},"DistrictMaxZ":{"type":"number","value":550},"DistrictMinX":{"type":"number","value":-250},"DistrictMinZ":{"type":"number","value":-4150},"ExitGraceSeconds":{"type":"number","value":10},"JobHourlyCashCeiling":{"type":"number","value":40000}},
+          "children": [],
+          "class_name": "Folder",
+          "name": "Core",
+          "path": "ReplicatedStorage.Config.Activities.Core",
+          "path_parts": [
+            "ReplicatedStorage",
+            "Config",
+            "Activities",
+            "Core"
+          ],
+          "properties": [],
+          "tags": []
+        },
+        {
+          "attributes": {"AvgSpeedMph":{"type":"number","value":70},"BasePay":{"type":"number","value":1500},"ChainMax":{"type":"number","value":1.5},"ChainStep":{"type":"number","value":0.1},"ChainWindowSeconds":{"type":"number","value":90},"DeliverMaxMph":{"type":"number","value":25},"DeliverRadius":{"type":"number","value":40},"Enabled":{"type":"boolean","value":true},"FragileFloor":{"type":"number","value":0.4},"FragileImpactMph":{"type":"number","value":45},"FragileImpactPenalty":{"type":"number","value":0.15},"FragilePayMultiplier":{"type":"number","value":1.25},"GraceSeconds":{"type":"number","value":25},"HotPayMultiplier":{"type":"number","value":1.4},"HotTimeFactor":{"type":"number","value":0.75},"HubHeightTolerance":{"type":"number","value":25},"HubRadius":{"type":"number","value":30},"ImpactCooldownSeconds":{"type":"number","value":0.75},"ImpactWindowSeconds":{"type":"number","value":0.2},"MaxDistance":{"type":"number","value":2000},"MaxPlausibleMph":{"type":"number","value":400},"MaxTimeBonus":{"type":"number","value":0.3},"MaxTimeLimit":{"type":"number","value":300},"MinDistance":{"type":"number","value":600},"MinRank":{"type":"number","value":1},"MinTimeLimit":{"type":"number","value":30},"PayPerStud":{"type":"number","value":0.6},"RoadDistanceFactor":{"type":"number","value":1.3},"SegmentSeconds":{"type":"number","value":1},"SegmentToleranceStuds":{"type":"number","value":30},"Star2Fraction":{"type":"number","value":0.25},"Star3Fraction":{"type":"number","value":0.5},"TickHz":{"type":"number","value":10},"XpBase":{"type":"number","value":20},"XpPerStuds":{"type":"number","value":100}},
+          "children": [],
+          "class_name": "Folder",
+          "name": "Courier",
+          "path": "ReplicatedStorage.Config.Activities.Courier",
+          "path_parts": [
+            "ReplicatedStorage",
+            "Config",
+            "Activities",
+            "Courier"
+          ],
+          "properties": [],
+          "tags": []
+        },
+        {
+          "attributes": {"Enabled":{"type":"boolean","value":true},"StakeMinRank":{"type":"number","value":3},"Stakes":{"type":"string","value":"0,5000,25000,100000"},"StakesEnabled":{"type":"boolean","value":true}},
+          "children": [],
+          "class_name": "Folder",
+          "name": "Duels",
+          "path": "ReplicatedStorage.Config.Activities.Duels",
+          "path_parts": [
+            "ReplicatedStorage",
+            "Config",
+            "Activities",
+            "Duels"
+          ],
+          "properties": [],
+          "tags": []
+        },
+        {
+          "attributes": {"BoardMaxMph":{"type":"number","value":12},"DefaultAccess":{"type":"string","value":"Friends"},"Enabled":{"type":"boolean","value":true},"ExitSideStuds":{"type":"number","value":6},"FriendCacheSeconds":{"type":"number","value":120},"RideRangeStuds":{"type":"number","value":18},"SeatOffsetX":{"type":"number","value":0},"SeatOffsetY":{"type":"number","value":1.45},"SeatOffsetZ":{"type":"number","value":11}},
+          "children": [],
+          "class_name": "Folder",
+          "name": "Passengers",
+          "path": "ReplicatedStorage.Config.Activities.Passengers",
+          "path_parts": [
+            "ReplicatedStorage",
+            "Config",
+            "Activities",
+            "Passengers"
+          ],
+          "properties": [],
+          "tags": []
+        },
+        {
+          "attributes": {"DriveXpPerCash":{"type":"number","value":0.1},"MaxRank":{"type":"number","value":100},"RaceXpDivisor":{"type":"number","value":500},"RaceXpMin":{"type":"number","value":10},"RankCashPerRank":{"type":"number","value":500},"XpBase":{"type":"number","value":250},"XpExponent":{"type":"number","value":1.35}},
+          "children": [],
+          "class_name": "Folder",
+          "name": "Progression",
+          "path": "ReplicatedStorage.Config.Activities.Progression",
+          "path_parts": [
+            "ReplicatedStorage",
+            "Config",
+            "Activities",
+            "Progression"
+          ],
+          "properties": [],
+          "tags": []
+        },
+        {
+          "attributes": {"AcceptWindowSeconds":{"type":"number","value":120},"ArriveRadius":{"type":"number","value":35},"DestMaxStuds":{"type":"number","value":2500},"DestMinStuds":{"type":"number","value":800},"Enabled":{"type":"boolean","value":true},"EstimateBaseSeconds":{"type":"number","value":20},"EstimateStudsPerSecond":{"type":"number","value":80},"FallbackLimitMph":{"type":"number","value":400},"FareBase":{"type":"number","value":1000},"FarePerStud":{"type":"number","value":0.5},"FareTimeoutSeconds":{"type":"number","value":240},"ImpactCooldownSeconds":{"type":"number","value":1},"ImpactMph":{"type":"number","value":25},"ImpactWindowSeconds":{"type":"number","value":0.2},"MinDrivenFraction":{"type":"number","value":0.7},"MinRank":{"type":"number","value":1},"NextFareSeconds":{"type":"number","value":4},"NpcMaxStuds":{"type":"number","value":900},"NpcMinStuds":{"type":"number","value":300},"PairCooldownSeconds":{"type":"number","value":300},"PickupRadius":{"type":"number","value":25},"PlayerFareBase":{"type":"number","value":1000},"PlayerFareMaxStuds":{"type":"number","value":3000},"PlayerFarePerStud":{"type":"number","value":0.5},"PlayerMinRideStuds":{"type":"number","value":300},"RequestCooldownSeconds":{"type":"number","value":20},"RequestTimeoutSeconds":{"type":"number","value":180},"SlowFactor":{"type":"number","value":1.25},"StarLossPerImpact":{"type":"number","value":1},"StopMph":{"type":"number","value":10},"VerySlowFactor":{"type":"number","value":1.75},"XpBase":{"type":"number","value":50},"XpPerStud":{"type":"number","value":0.04}},
+          "children": [],
+          "class_name": "Folder",
+          "name": "Taxi",
+          "path": "ReplicatedStorage.Config.Activities.Taxi",
+          "path_parts": [
+            "ReplicatedStorage",
+            "Config",
+            "Activities",
+            "Taxi"
+          ],
+          "properties": [],
+          "tags": []
+        },
+        {
+          "attributes": {"Enabled":{"type":"boolean","value":true},"FriendCacheSeconds":{"type":"number","value":300},"MaxVisitorsPerGarage":{"type":"number","value":8}},
+          "children": [],
+          "class_name": "Folder",
+          "name": "Visits",
+          "path": "ReplicatedStorage.Config.Activities.Visits",
+          "path_parts": [
+            "ReplicatedStorage",
+            "Config",
+            "Activities",
+            "Visits"
+          ],
+          "properties": [],
+          "tags": []
+        }
+      ],
+      "class_name": "Folder",
+      "name": "Activities",
+      "path": "ReplicatedStorage.Config.Activities",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Config",
+        "Activities"
+      ],
+      "properties": [],
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "children": [
+        {
+          "attributes": [],
+          "children": [],
+          "class_name": "ModuleScript",
+          "disabled": false,
+          "name": "ActivityPayout",
+          "path": "ServerStorage.Modules.Game.Activities.ActivityPayout",
+          "path_parts": [
+            "ServerStorage",
+            "Modules",
+            "Game",
+            "Activities",
+            "ActivityPayout"
+          ],
+          "properties": [],
+          "script_id": "script_0194",
+          "source_checksum": "376749886",
+          "source_lines": 125,
+          "tags": []
+        },
+        {
+          "attributes": [],
+          "children": [],
+          "class_name": "ModuleScript",
+          "disabled": false,
+          "name": "ActivityService",
+          "path": "ServerStorage.Modules.Game.Activities.ActivityService",
+          "path_parts": [
+            "ServerStorage",
+            "Modules",
+            "Game",
+            "Activities",
+            "ActivityService"
+          ],
+          "properties": [],
+          "script_id": "script_0195",
+          "source_checksum": "846975296",
+          "source_lines": 309,
+          "tags": []
+        },
+        {
+          "attributes": [],
+          "children": [],
+          "class_name": "ModuleScript",
+          "disabled": false,
+          "name": "CourierJob",
+          "path": "ServerStorage.Modules.Game.Activities.CourierJob",
+          "path_parts": [
+            "ServerStorage",
+            "Modules",
+            "Game",
+            "Activities",
+            "CourierJob"
+          ],
+          "properties": [],
+          "script_id": "script_0197",
+          "source_checksum": "938100189",
+          "source_lines": 355,
+          "tags": []
+        },
+        {
+          "attributes": [],
+          "children": [],
+          "class_name": "ModuleScript",
+          "disabled": false,
+          "name": "CourierRules",
+          "path": "ServerStorage.Modules.Game.Activities.CourierRules",
+          "path_parts": [
+            "ServerStorage",
+            "Modules",
+            "Game",
+            "Activities",
+            "CourierRules"
+          ],
+          "properties": [],
+          "script_id": "script_0196",
+          "source_checksum": "963191629",
+          "source_lines": 228,
+          "tags": []
+        },
+        {
+          "attributes": [],
+          "children": [],
+          "class_name": "ModuleScript",
+          "disabled": false,
+          "name": "DuelRules",
+          "path": "ServerStorage.Modules.Game.Activities.DuelRules",
+          "path_parts": [
+            "ServerStorage",
+            "Modules",
+            "Game",
+            "Activities",
+            "DuelRules"
+          ],
+          "properties": [],
+          "script_id": "script_0201",
+          "source_checksum": "416483",
+          "source_lines": 3,
+          "tags": []
+        },
+        {
+          "attributes": [],
+          "children": [],
+          "class_name": "ModuleScript",
+          "disabled": false,
+          "name": "DuelService",
+          "path": "ServerStorage.Modules.Game.Activities.DuelService",
+          "path_parts": [
+            "ServerStorage",
+            "Modules",
+            "Game",
+            "Activities",
+            "DuelService"
+          ],
+          "properties": [],
+          "script_id": "script_0202",
+          "source_checksum": "2501107",
+          "source_lines": 6,
+          "tags": []
+        },
+        {
+          "attributes": [],
+          "children": [],
+          "class_name": "ModuleScript",
+          "disabled": false,
+          "name": "PassengerService",
+          "path": "ServerStorage.Modules.Game.Activities.PassengerService",
+          "path_parts": [
+            "ServerStorage",
+            "Modules",
+            "Game",
+            "Activities",
+            "PassengerService"
+          ],
+          "properties": [],
+          "script_id": "script_0198",
+          "source_checksum": "54545738",
+          "source_lines": 427,
+          "tags": []
+        },
+        {
+          "attributes": [],
+          "children": [],
+          "class_name": "ModuleScript",
+          "disabled": false,
+          "name": "ProgressionRules",
+          "path": "ServerStorage.Modules.Game.Activities.ProgressionRules",
+          "path_parts": [
+            "ServerStorage",
+            "Modules",
+            "Game",
+            "Activities",
+            "ProgressionRules"
+          ],
+          "properties": [],
+          "script_id": "script_0192",
+          "source_checksum": "498605616",
+          "source_lines": 91,
+          "tags": []
+        },
+        {
+          "attributes": [],
+          "children": [],
+          "class_name": "ModuleScript",
+          "disabled": false,
+          "name": "ProgressionService",
+          "path": "ServerStorage.Modules.Game.Activities.ProgressionService",
+          "path_parts": [
+            "ServerStorage",
+            "Modules",
+            "Game",
+            "Activities",
+            "ProgressionService"
+          ],
+          "properties": [],
+          "script_id": "script_0193",
+          "source_checksum": "221476024",
+          "source_lines": 163,
+          "tags": []
+        },
+        {
+          "attributes": [],
+          "children": [],
+          "class_name": "ModuleScript",
+          "disabled": false,
+          "name": "TaxiJob",
+          "path": "ServerStorage.Modules.Game.Activities.TaxiJob",
+          "path_parts": [
+            "ServerStorage",
+            "Modules",
+            "Game",
+            "Activities",
+            "TaxiJob"
+          ],
+          "properties": [],
+          "script_id": "script_0200",
+          "source_checksum": "498664823",
+          "source_lines": 649,
+          "tags": []
+        },
+        {
+          "attributes": [],
+          "children": [],
+          "class_name": "ModuleScript",
+          "disabled": false,
+          "name": "TaxiRules",
+          "path": "ServerStorage.Modules.Game.Activities.TaxiRules",
+          "path_parts": [
+            "ServerStorage",
+            "Modules",
+            "Game",
+            "Activities",
+            "TaxiRules"
+          ],
+          "properties": [],
+          "script_id": "script_0199",
+          "source_checksum": "300867954",
+          "source_lines": 200,
+          "tags": []
+        }
+      ],
+      "class_name": "Folder",
+      "name": "Activities",
+      "path": "ServerStorage.Modules.Game.Activities",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Activities"
+      ],
+      "properties": [],
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "children": [
+        {
+          "attributes": [],
+          "children": [],
+          "class_name": "ModuleScript",
+          "disabled": false,
+          "name": "ActivityClient",
+          "path": "ReplicatedStorage.Modules.Game.Activities.ActivityClient",
+          "path_parts": [
+            "ReplicatedStorage",
+            "Modules",
+            "Game",
+            "Activities",
+            "ActivityClient"
+          ],
+          "properties": [],
+          "script_id": "script_0118",
+          "source_checksum": "961446266",
+          "source_lines": 381,
+          "tags": []
+        },
+        {
+          "attributes": [],
+          "children": [],
+          "class_name": "ModuleScript",
+          "disabled": false,
+          "name": "CourierClientView",
+          "path": "ReplicatedStorage.Modules.Game.Activities.CourierClientView",
+          "path_parts": [
+            "ReplicatedStorage",
+            "Modules",
+            "Game",
+            "Activities",
+            "CourierClientView"
+          ],
+          "properties": [],
+          "script_id": "script_0119",
+          "source_checksum": "158266477",
+          "source_lines": 313,
+          "tags": []
+        },
+        {
+          "attributes": [],
+          "children": [],
+          "class_name": "ModuleScript",
+          "disabled": false,
+          "name": "DuelClientView",
+          "path": "ReplicatedStorage.Modules.Game.Activities.DuelClientView",
+          "path_parts": [
+            "ReplicatedStorage",
+            "Modules",
+            "Game",
+            "Activities",
+            "DuelClientView"
+          ],
+          "properties": [],
+          "script_id": "script_0122",
+          "source_checksum": "629751",
+          "source_lines": 3,
+          "tags": []
+        },
+        {
+          "attributes": [],
+          "children": [],
+          "class_name": "ModuleScript",
+          "disabled": false,
+          "name": "PassengerClientView",
+          "path": "ReplicatedStorage.Modules.Game.Activities.PassengerClientView",
+          "path_parts": [
+            "ReplicatedStorage",
+            "Modules",
+            "Game",
+            "Activities",
+            "PassengerClientView"
+          ],
+          "properties": [],
+          "script_id": "script_0120",
+          "source_checksum": "174773301",
+          "source_lines": 188,
+          "tags": []
+        },
+        {
+          "attributes": [],
+          "children": [],
+          "class_name": "ModuleScript",
+          "disabled": false,
+          "name": "TaxiClientView",
+          "path": "ReplicatedStorage.Modules.Game.Activities.TaxiClientView",
+          "path_parts": [
+            "ReplicatedStorage",
+            "Modules",
+            "Game",
+            "Activities",
+            "TaxiClientView"
+          ],
+          "properties": [],
+          "script_id": "script_0121",
+          "source_checksum": "443394030",
+          "source_lines": 364,
+          "tags": []
+        }
+      ],
+      "class_name": "Folder",
+      "name": "Activities",
+      "path": "ReplicatedStorage.Modules.Game.Activities",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Activities"
+      ],
+      "properties": [],
+      "tags": []
+    },
+    {
+      "attributes": {"ActivationEnabled":{"type":"boolean","value":true},"AssetShadowPolicy":{"type":"string","value":"Authored"},"BlockExternalTeleportActionsInside":{"type":"boolean","value":true},"BlockExternalVehicleActionsInside":{"type":"boolean","value":true},"BrowserReferenceHeight":{"type":"number","value":720},"BrowserReferenceWidth":{"type":"number","value":1200},"CityFootExitCFrame":{"components":[1584.9967041015625,105.5,-1834.6700439453125,-0.7071068286895752,0,-0.7071068286895752,0,1,0,0.7071068286895752,0,-0.7071068286895752],"type":"CFrame"},"CityVehicleExitCFrame":{"components":[959.9142456054688,102.30000305175781,-1640.9228515625,-0.7071068286895752,0,-0.7071068286895752,0,1,0,0.7071068286895752,0,-0.7071068286895752],"type":"CFrame"},"CollisionContractVersion":{"type":"number","value":1},"DebugEnabled":{"type":"boolean","value":false},"DebugTimingEnabled":{"type":"boolean","value":false},"DecorationAssetContractVersion":{"type":"number","value":2},"DecorationContractVersion":{"type":"number","value":1},"DefinitionVersion":{"type":"number","value":6},"DisplayModelYOffset":{"type":"number","value":3.2},"DriveInMaxSpeedMph":{"type":"number","value":5},"DriveInSpeedGateEnabled":{"type":"boolean","value":false},"EnableAccess":{"type":"boolean","value":true},"EnableDecorations":{"type":"boolean","value":true},"EnableDisplayCars":{"type":"boolean","value":true},"EnableInvitations":{"type":"boolean","value":true},"EnableLighting":{"type":"boolean","value":true},"EnableStructure":{"type":"boolean","value":true},"EnableVisitors":{"type":"boolean","value":true},"ExteriorSpawnContractVersion":{"type":"number","value":1},"FinishContractVersion":{"type":"number","value":2},"GarageDriveOutVerifyDistanceStuds":{"type":"number","value":40},"GarageDriveOutVerifySeconds":{"type":"number","value":2.5},"GarageSeatDetachTimeoutSeconds":{"type":"number","value":1},"GarageStreamTimeoutSeconds":{"type":"number","value":8},"GarageTeleportAttempts":{"type":"number","value":2},"GarageTeleportVerifyDistanceStuds":{"type":"number","value":12},"GridColumns":{"type":"number","value":4},"GridSpacingX":{"type":"number","value":512},"GridSpacingZ":{"type":"number","value":512},"InteriorBasePosition":{"text":"7000, 3200, 0","type":"Vector3","x":7000,"y":3200,"z":0},"InteriorDistrictContractVersion":{"type":"number","value":1},"InteriorEnvironmentFallbackCityPreset":{"type":"string","value":"Day"},"InteriorEnvironmentLightingEnabled":{"type":"boolean","value":true},"InteriorEnvironmentPreset":{"type":"string","value":"ClearNight"},"InteriorHudButtonHeight":{"type":"number","value":46},"InteriorHudButtonWidth":{"type":"number","value":158},"InteriorHudDropdownGap":{"type":"number","value":5},"InteriorHudDropdownRowGap":{"type":"number","value":5},"InteriorHudDropdownRowHeight":{"type":"number","value":38},"InteriorHudDropdownRows":{"type":"number","value":5},"InteriorHudFriendsIcon":{"type":"string","value":""},"InteriorHudGap":{"type":"number","value":8},"InteriorHudInviteIcon":{"type":"string","value":""},"InteriorHudInviteOnlyIcon":{"type":"string","value":""},"InteriorHudMargin":{"type":"number","value":18},"InteriorHudPrivateIcon":{"type":"string","value":""},"InteriorHudPublicIcon":{"type":"string","value":""},"InteriorHudTouchButtonHeight":{"type":"number","value":48},"InteriorHudTouchButtonWidth":{"type":"number","value":150},"InteriorHudTouchDropdownRowHeight":{"type":"number","value":44},"InteriorHudTouchDropdownRows":{"type":"number","value":4},"InteriorHudTouchMaximumScale":{"type":"number","value":1},"InteriorHudTouchMinimumScale":{"type":"number","value":0.72},"InteriorHudTouchReferenceHeight":{"type":"number","value":600},"InteriorHudTouchReferenceWidth":{"type":"number","value":800},"InteriorHudTouchResponsiveScale":{"type":"boolean","value":true},"InteriorUnloadDelaySeconds":{"type":"number","value":20},"LightingAssetContractVersion":{"type":"number","value":1},"LightingContractVersion":{"type":"number","value":2},"LightingDynamicShadows":{"type":"boolean","value":false},"LightingMaxRange":{"type":"number","value":36},"LightingPlacementMode":{"type":"string","value":"TemplateOrigin"},"MaxActiveInteriorsPerServer":{"type":"number","value":24},"MaxGarageInvitations":{"type":"number","value":20},"MinimumTouchTargetPixels":{"type":"number","value":44},"MobileManagementTouchArbitrationEnabled":{"type":"boolean","value":true},"MobileManagementVisibleSurfaceMapEnabled":{"type":"boolean","value":true},"MobileThumbstickSemanticConfirmWindowSeconds":{"type":"number","value":0.35},"MobileTouchCameraRecoveryEnabled":{"type":"boolean","value":true},"MobileWalkingCameraGuardEnabled":{"type":"boolean","value":true},"MutationRequestsPerSecond":{"type":"number","value":12},"OwnedGarageCategoryCardImageZoom":{"type":"number","value":0.5},"OwnedGarageManagementFlowVersion":{"type":"number","value":2},"OwnedGarageManagementModes":{"type":"string","value":"DisplayCars,BuildGarage,StyleGarage"},"OwnedGarageNavigationContractVersion":{"type":"number","value":3},"ReadRequestsPerSecond":{"type":"number","value":20},"StateApiVersion":{"type":"number","value":6},"StateSchemaVersion":{"type":"number","value":4},"StructureAssetContractVersion":{"type":"number","value":2},"StructureContractVersion":{"type":"number","value":1},"SuppressMinimapInside":{"type":"boolean","value":true},"TemplateAuditEnabled":{"type":"boolean","value":true},"TemplateContractVersion":{"type":"number","value":2},"TesterResetToken":{"type":"string","value":"NTR_OWNED_GARAGE_PHASE6_ATOMIC_ACTIVATION_V1_1"},"TesterResetUserId":{"type":"number","value":7915427645},"TransitionCooldownSeconds":{"type":"number","value":1}},
+      "children": [],
+      "class_name": "Folder",
+      "name": "Interior",
+      "path": "ReplicatedStorage.Config.Garage.Interior",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Config",
+        "Garage",
+        "Interior"
+      ],
+      "properties": [],
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "children": [
+        {
+          "attributes": [],
+          "children": [
+            {
+              "attributes": {"DisplayName":{"type":"string","value":"Dealership Depot"},"HubId":{"type":"string","value":"Dealership"}},
+              "children": [],
+              "class_name": "Part",
+              "name": "Hub_Dealership",
+              "path": "Workspace.World.Jobs.CourierHubs.Hub_Dealership",
+              "path_parts": [
+                "Workspace",
+                "World",
+                "Jobs",
+                "CourierHubs",
+                "Hub_Dealership"
+              ],
+              "properties": {"Anchored":{"type":"boolean","value":true},"CFrame":{"components":[598.9000244140625,100.5999984741211,-1755.4000244140625,1,0,0,0,1,0,0,0,1],"type":"CFrame"},"CanCollide":{"type":"boolean","value":false},"CanQuery":{"type":"boolean","value":false},"CanTouch":{"type":"boolean","value":false},"CastShadow":{"type":"boolean","value":false},"CollisionGroup":{"type":"string","value":"Default"},"Color":{"b":0.8509804010391235,"g":0.8823529481887817,"r":0.16470588743686676,"text":"0.164706, 0.882353, 0.85098","type":"Color3"},"Material":{"text":"Enum.Material.Neon","type":"EnumItem"},"Size":{"text":"36, 0.4000000059604645, 36","type":"Vector3","x":36,"y":0.4000000059604645,"z":36},"Transparency":{"type":"number","value":0.75}},
+              "tags": [
+                "CourierHub"
+              ]
+            },
+            {
+              "attributes": {"DisplayName":{"type":"string","value":"Kanda Garage Depot"},"HubId":{"type":"string","value":"Kanda"}},
+              "children": [],
+              "class_name": "Part",
+              "name": "Hub_Kanda",
+              "path": "Workspace.World.Jobs.CourierHubs.Hub_Kanda",
+              "path_parts": [
+                "Workspace",
+                "World",
+                "Jobs",
+                "CourierHubs",
+                "Hub_Kanda"
+              ],
+              "properties": {"Anchored":{"type":"boolean","value":true},"CFrame":{"components":[1548.9000244140625,100.5999984741211,-1893.0999755859375,1,0,0,0,1,0,0,0,1],"type":"CFrame"},"CanCollide":{"type":"boolean","value":false},"CanQuery":{"type":"boolean","value":false},"CanTouch":{"type":"boolean","value":false},"CastShadow":{"type":"boolean","value":false},"CollisionGroup":{"type":"string","value":"Default"},"Color":{"b":0.8509804010391235,"g":0.8823529481887817,"r":0.16470588743686676,"text":"0.164706, 0.882353, 0.85098","type":"Color3"},"Material":{"text":"Enum.Material.Neon","type":"EnumItem"},"Size":{"text":"36, 0.4000000059604645, 36","type":"Vector3","x":36,"y":0.4000000059604645,"z":36},"Transparency":{"type":"number","value":0.75}},
+              "tags": [
+                "CourierHub"
+              ]
+            },
+            {
+              "attributes": {"DisplayName":{"type":"string","value":"Showroom Loop Depot"},"HubId":{"type":"string","value":"ShowroomLoop"}},
+              "children": [],
+              "class_name": "Part",
+              "name": "Hub_ShowroomLoop",
+              "path": "Workspace.World.Jobs.CourierHubs.Hub_ShowroomLoop",
+              "path_parts": [
+                "Workspace",
+                "World",
+                "Jobs",
+                "CourierHubs",
+                "Hub_ShowroomLoop"
+              ],
+              "properties": {"Anchored":{"type":"boolean","value":true},"CFrame":{"components":[1314.9000244140625,100.5999984741211,-1321.699951171875,1,0,0,0,1,0,0,0,1],"type":"CFrame"},"CanCollide":{"type":"boolean","value":false},"CanQuery":{"type":"boolean","value":false},"CanTouch":{"type":"boolean","value":false},"CastShadow":{"type":"boolean","value":false},"CollisionGroup":{"type":"string","value":"Default"},"Color":{"b":0.8509804010391235,"g":0.8823529481887817,"r":0.16470588743686676,"text":"0.164706, 0.882353, 0.85098","type":"Color3"},"Material":{"text":"Enum.Material.Neon","type":"EnumItem"},"Size":{"text":"36, 0.4000000059604645, 36","type":"Vector3","x":36,"y":0.4000000059604645,"z":36},"Transparency":{"type":"number","value":0.75}},
+              "tags": [
+                "CourierHub"
+              ]
+            }
+          ],
+          "class_name": "Folder",
+          "name": "CourierHubs",
+          "path": "Workspace.World.Jobs.CourierHubs",
+          "path_parts": [
+            "Workspace",
+            "World",
+            "Jobs",
+            "CourierHubs"
+          ],
+          "properties": [],
+          "tags": []
+        }
+      ],
+      "class_name": "Folder",
+      "name": "Jobs",
+      "path": "Workspace.World.Jobs",
+      "path_parts": [
+        "Workspace",
+        "World",
+        "Jobs"
+      ],
+      "properties": [],
+      "tags": []
+    }
+  ],
+  "include_disabled_scripts": true,
+  "manifest": [
+    {
+      "attributes": {},
+      "class_name": "LocalScript",
+      "disabled": false,
+      "file": "roblox/source_store/384f5338faf2f218a6ae79b0035d3793a49a33249fcffe15c92e691d6948929c.lua",
+      "path_parts": [
+        "ReplicatedFirst",
+        "Loading",
+        "InitialLoadingAndStartScreenClient"
+      ],
+      "properties": {"Enabled":{"type":"boolean","value":true},"RunContext":{"text":"Enum.RunContext.Legacy","type":"EnumItem"}},
+      "roblox_path": "ReplicatedFirst.Loading.InitialLoadingAndStartScreenClient",
+      "source_bytes": 13991,
+      "source_sha256": "384f5338faf2f218a6ae79b0035d3793a49a33249fcffe15c92e691d6948929c",
+      "tags": []
+    },
+    {
+      "attributes": {"Revision":{"type":"string","value":"NTR_LOADING_SYSTEM_PHASE3_OWNED_GARAGE_TRANSITIONS_V1"}},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/da1ef12ff3572dd7aed963156c0beb621abd65da5b10026a6aa853e826a54842.lua",
+      "path_parts": [
+        "ReplicatedFirst",
+        "Loading",
+        "LoadingArtworkCatalog"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedFirst.Loading.LoadingArtworkCatalog",
+      "source_bytes": 4449,
+      "source_sha256": "da1ef12ff3572dd7aed963156c0beb621abd65da5b10026a6aa853e826a54842",
+      "tags": []
+    },
+    {
+      "attributes": {"Revision":{"type":"string","value":"NTR_LOADING_SYSTEM_PHASE3_OWNED_GARAGE_TRANSITIONS_V1"}},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/f4ed48c81404ad9f4c442c3a9f870507a15f211e959d608c9ddb039f14e5c41d.lua",
+      "path_parts": [
+        "ReplicatedFirst",
+        "Loading",
+        "LoadingScreenView"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedFirst.Loading.LoadingScreenView",
+      "source_bytes": 16048,
+      "source_sha256": "f4ed48c81404ad9f4c442c3a9f870507a15f211e959d608c9ddb039f14e5c41d",
+      "tags": []
+    },
+    {
+      "attributes": {"Revision":{"type":"string","value":"NTR_LOADING_SYSTEM_PHASE3_OWNED_GARAGE_TRANSITIONS_V1"}},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/c9581358103567351173fb6a9096303fc1079d62e2ba3e6470138af95e8aeed6.lua",
+      "path_parts": [
+        "ReplicatedFirst",
+        "Loading",
+        "LoadingTransitionRuntime"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedFirst.Loading.LoadingTransitionRuntime",
+      "source_bytes": 8393,
+      "source_sha256": "c9581358103567351173fb6a9096303fc1079d62e2ba3e6470138af95e8aeed6",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/0c50c0f37def22387e3b8c3f7a72848a39f53f56a08baec25a288c1c138f5de9.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Core",
+        "CameraService"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Core.CameraService",
+      "source_bytes": 4176,
+      "source_sha256": "0c50c0f37def22387e3b8c3f7a72848a39f53f56a08baec25a288c1c138f5de9",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/4b309a29b7b77767f0ddee1c92311deee00f35286a2d764a20fa534351978f4e.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Core",
+        "ClientLifecycle"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Core.ClientLifecycle",
+      "source_bytes": 2116,
+      "source_sha256": "4b309a29b7b77767f0ddee1c92311deee00f35286a2d764a20fa534351978f4e",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/c5324bc30d0b350908c35affc9fcff9ef602b2301ca49c8296d5e5c223b4ec56.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Core",
+        "ConfigReader"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Core.ConfigReader",
+      "source_bytes": 3431,
+      "source_sha256": "c5324bc30d0b350908c35affc9fcff9ef602b2301ca49c8296d5e5c223b4ec56",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/a314368333cfd61f6dfc9b9cc8abd848bd1a0314d02b7d882cbc7115ffc310f2.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Core",
+        "ConnectionScope"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Core.ConnectionScope",
+      "source_bytes": 1585,
+      "source_sha256": "a314368333cfd61f6dfc9b9cc8abd848bd1a0314d02b7d882cbc7115ffc310f2",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/14f16f70e519913e15892f20ae18a65425e0fb877737df587055398e4059985d.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Core",
+        "PathResolver"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Core.PathResolver",
+      "source_bytes": 1880,
+      "source_sha256": "14f16f70e519913e15892f20ae18a65425e0fb877737df587055398e4059985d",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/d5276fc960f1be4c7f8d25acae7c16c146d7799272be5a1a30f4fda6ed3019ca.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Core",
+        "Signal"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Core.Signal",
+      "source_bytes": 1949,
+      "source_sha256": "d5276fc960f1be4c7f8d25acae7c16c146d7799272be5a1a30f4fda6ed3019ca",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/081975d3878fad55f58f733f184f7142a01d2c45c5f59b0456d2d74200a57659.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Core",
+        "Tags"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Core.Tags",
+      "source_bytes": 2652,
+      "source_sha256": "081975d3878fad55f58f733f184f7142a01d2c45c5f59b0456d2d74200a57659",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/d64f6dbb9d76b2209a4067b17101fa502d70b198bb635db46c7150295401c4b7.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Activities",
+        "ActivityClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Activities.ActivityClient",
+      "source_bytes": 19061,
+      "source_sha256": "d64f6dbb9d76b2209a4067b17101fa502d70b198bb635db46c7150295401c4b7",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/7a59963390373289036e5de0bb43dce2502dfde65c239206095c15dea126e73a.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Activities",
+        "CourierClientView"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Activities.CourierClientView",
+      "source_bytes": 11130,
+      "source_sha256": "7a59963390373289036e5de0bb43dce2502dfde65c239206095c15dea126e73a",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/583edd3861ac4643fae508c5b1bc6feb27e5a6f6ab0c748d7265cdfb78ae6e28.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Activities",
+        "DuelClientView"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Activities.DuelClientView",
+      "source_bytes": 118,
+      "source_sha256": "583edd3861ac4643fae508c5b1bc6feb27e5a6f6ab0c748d7265cdfb78ae6e28",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/681ad4c06eb9e42b28da4bbd98cb3b12f9fb8697528375fd9789f7e44ac12d50.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Activities",
+        "PassengerClientView"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Activities.PassengerClientView",
+      "source_bytes": 7142,
+      "source_sha256": "681ad4c06eb9e42b28da4bbd98cb3b12f9fb8697528375fd9789f7e44ac12d50",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/edace7e9ac02baf974ed6eb3d0d9a70befc06004ec616fae0ae3570b90f2a8f1.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Activities",
+        "TaxiClientView"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Activities.TaxiClientView",
+      "source_bytes": 12385,
+      "source_sha256": "edace7e9ac02baf974ed6eb3d0d9a70befc06004ec616fae0ae3570b90f2a8f1",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/5fc6db57b2a982f059f5023e4b5d78795300f0a7f9e830ae30bc4cf062be0eaf.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Audio",
+        "AcousticsClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Audio.AcousticsClient",
+      "source_bytes": 10693,
+      "source_sha256": "5fc6db57b2a982f059f5023e4b5d78795300f0a7f9e830ae30bc4cf062be0eaf",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/80924c3c6e26f05e3d579658c2b56bd50ebcf4417b7e7528818ff1029127341e.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Audio",
+        "AcousticsRuntimeClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Audio.AcousticsRuntimeClient",
+      "source_bytes": 844,
+      "source_sha256": "80924c3c6e26f05e3d579658c2b56bd50ebcf4417b7e7528818ff1029127341e",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/9025996cefd13ba7b14ecec7e294fcab2c64522164d889fb1ed7b1bcf726b6c7.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Audio",
+        "AudioBusClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Audio.AudioBusClient",
+      "source_bytes": 2283,
+      "source_sha256": "9025996cefd13ba7b14ecec7e294fcab2c64522164d889fb1ed7b1bcf726b6c7",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/911c49ea071bd42e24a4b002bce9b161be187bd15e14546e9facd21c9cab5229.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Audio",
+        "AudioMixClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Audio.AudioMixClient",
+      "source_bytes": 3590,
+      "source_sha256": "911c49ea071bd42e24a4b002bce9b161be187bd15e14546e9facd21c9cab5229",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/75eac642364706ca4d612fa707fd4f945150c1c832b66617b11a5c448524cc5c.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Audio",
+        "AudioRuntimeClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Audio.AudioRuntimeClient",
+      "source_bytes": 834,
+      "source_sha256": "75eac642364706ca4d612fa707fd4f945150c1c832b66617b11a5c448524cc5c",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/d6bc794c93c755b93b3e8dce8d442955baa1aefafba8a0e6d5bf1d5ff72c7289.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Audio",
+        "ContextAudioCatalog"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Audio.ContextAudioCatalog",
+      "source_bytes": 3461,
+      "source_sha256": "d6bc794c93c755b93b3e8dce8d442955baa1aefafba8a0e6d5bf1d5ff72c7289",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/7a678d5f93f1a21decbdf3071ef2af2421e075acd30576fb285d2c74025a9f96.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Audio",
+        "ContextAudioClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient",
+      "source_bytes": 11831,
+      "source_sha256": "7a678d5f93f1a21decbdf3071ef2af2421e075acd30576fb285d2c74025a9f96",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/5c9416cbe1bdf274d25696503233d797fe47eddc65b0c04aff64a59e187e3417.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Audio",
+        "ContextAudioRuntimeClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Audio.ContextAudioRuntimeClient",
+      "source_bytes": 849,
+      "source_sha256": "5c9416cbe1bdf274d25696503233d797fe47eddc65b0c04aff64a59e187e3417",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/36d544c802ce60a625b707bafb90af89cb3213e6a7783655b1b767ae43e7f909.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Audio",
+        "PresentationAudioBridge"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioBridge",
+      "source_bytes": 1783,
+      "source_sha256": "36d544c802ce60a625b707bafb90af89cb3213e6a7783655b1b767ae43e7f909",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/52e15ab954d463e40e147f6aca2aafe0c5c1b364a73ec0313f3a60d2bb6d125a.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Audio",
+        "PresentationAudioCatalog"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioCatalog",
+      "source_bytes": 3127,
+      "source_sha256": "52e15ab954d463e40e147f6aca2aafe0c5c1b364a73ec0313f3a60d2bb6d125a",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/91a52bd94d3df12d10d52292a55b80b7b132ef5324caed857b36ae0a682551f9.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Audio",
+        "PresentationAudioClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioClient",
+      "source_bytes": 16939,
+      "source_sha256": "91a52bd94d3df12d10d52292a55b80b7b132ef5324caed857b36ae0a682551f9",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/56d902ddd1c220ac0f5d74f78ba019b43d2b209135e2df2103fb1e4a804e33cb.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Audio",
+        "PresentationAudioRuntimeClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioRuntimeClient",
+      "source_bytes": 839,
+      "source_sha256": "56d902ddd1c220ac0f5d74f78ba019b43d2b209135e2df2103fb1e4a804e33cb",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/8d9d00da4bf2a99b97e451fa56dc70437785ac0f93b482f3a3bf9ee0ca2eb46c.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Audio",
+        "VehicleAudioCatalog"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioCatalog",
+      "source_bytes": 3728,
+      "source_sha256": "8d9d00da4bf2a99b97e451fa56dc70437785ac0f93b482f3a3bf9ee0ca2eb46c",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/b1486abd6e2e64780214d5e5f68703ea869d090a9f389636963f23ca39097265.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Audio",
+        "VehicleAudioClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+      "source_bytes": 41058,
+      "source_sha256": "b1486abd6e2e64780214d5e5f68703ea869d090a9f389636963f23ca39097265",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/1dc47fc1ac014c0c92b1b1aac7ddc4675a448ad27cbc1e62c910178dde214d8f.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Audio",
+        "VehicleAudioStateContract"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioStateContract",
+      "source_bytes": 1188,
+      "source_sha256": "1dc47fc1ac014c0c92b1b1aac7ddc4675a448ad27cbc1e62c910178dde214d8f",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/5a16bc3d4ceb0da56f4d775faed59839ebb8a07b7f3084b638e2aeb38d5dc1bc.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Dealership",
+        "DealershipIntroClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Dealership.DealershipIntroClient",
+      "source_bytes": 26374,
+      "source_sha256": "5a16bc3d4ceb0da56f4d775faed59839ebb8a07b7f3084b638e2aeb38d5dc1bc",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/6c4492b24b44bf8152ef0177f467af9b9320884d85c40299ebea0a039ae618da.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Dealership",
+        "GarageEntranceClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Dealership.GarageEntranceClient",
+      "source_bytes": 9204,
+      "source_sha256": "6c4492b24b44bf8152ef0177f467af9b9320884d85c40299ebea0a039ae618da",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/88c7748d9dc639407a740df31e56388a41472062f2e8b97cf1cee47e132a03cf.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Development",
+        "DriveToEarnCashTelemetryClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient",
+      "source_bytes": 3704,
+      "source_sha256": "88c7748d9dc639407a740df31e56388a41472062f2e8b97cf1cee47e132a03cf",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/e3eedea8ba8c3509e88e24aebc26dcd90c32cbda61143ced204c8751f1f14d7d.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Development",
+        "LightingPreviewClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Development.LightingPreviewClient",
+      "source_bytes": 5345,
+      "source_sha256": "e3eedea8ba8c3509e88e24aebc26dcd90c32cbda61143ced204c8751f1f14d7d",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/d0b55dd5401c65cea0c7f3c3c66e069045435d3d62cafedac57e38264ba44288.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Development",
+        "StudioCashGrantClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Development.StudioCashGrantClient",
+      "source_bytes": 2341,
+      "source_sha256": "d0b55dd5401c65cea0c7f3c3c66e069045435d3d62cafedac57e38264ba44288",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/76008cc428cc83fb1b7e93d5cc459da1216d45507c0e97346f842269bd108fe0.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Development",
+        "TrailerModeClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Development.TrailerModeClient",
+      "source_bytes": 2361,
+      "source_sha256": "76008cc428cc83fb1b7e93d5cc459da1216d45507c0e97346f842269bd108fe0",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/a5bbbf6cf4cf9d99985f6297d85d925a0833d7ec971c45674f5d63c9e3a5177b.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Development",
+        "TrailerShotClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Development.TrailerShotClient",
+      "source_bytes": 3379,
+      "source_sha256": "a5bbbf6cf4cf9d99985f6297d85d925a0833d7ec971c45674f5d63c9e3a5177b",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/453649300f126aa095613d5b09c1bc95f3f8d07953f4a186e83fab6c9cff1abb.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Development",
+        "TrailerVehicleCameraClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Development.TrailerVehicleCameraClient",
+      "source_bytes": 5450,
+      "source_sha256": "453649300f126aa095613d5b09c1bc95f3f8d07953f4a186e83fab6c9cff1abb",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/530229dc138ebce0c439ee649cd8e3c9ce2dbdb3a1ff81a27fa21d3caa35abdb.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Garage",
+        "GarageCatalogClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Garage.GarageCatalogClient",
+      "source_bytes": 1847,
+      "source_sha256": "530229dc138ebce0c439ee649cd8e3c9ce2dbdb3a1ff81a27fa21d3caa35abdb",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/e296518c971255c13d7860abd7fb4d010f44476c68c0824536367af92347e58e.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Garage",
+        "GarageModuleInstancePreviewAdapter"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Garage.GarageModuleInstancePreviewAdapter",
+      "source_bytes": 5617,
+      "source_sha256": "e296518c971255c13d7860abd7fb4d010f44476c68c0824536367af92347e58e",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/bb91c2134957cd77106b99a71d7d7e7cac0c6271b01ecb9e3cdf9219df7cf8ef.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Garage",
+        "GaragePreviewPresentationClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Garage.GaragePreviewPresentationClient",
+      "source_bytes": 11677,
+      "source_sha256": "bb91c2134957cd77106b99a71d7d7e7cac0c6271b01ecb9e3cdf9219df7cf8ef",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/8c2a0a6e8e5127ffaa132707c1e002dae7955cc163d362a1b8659dc19a9dc37a.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Garage",
+        "GaragePropertyCatalog"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Garage.GaragePropertyCatalog",
+      "source_bytes": 2085,
+      "source_sha256": "8c2a0a6e8e5127ffaa132707c1e002dae7955cc163d362a1b8659dc19a9dc37a",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/889c0f5298070166d99d719af0bac74cff3811c37815e28dfcfa18028b25bff8.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Garage",
+        "GarageUI"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+      "source_bytes": 59132,
+      "source_sha256": "889c0f5298070166d99d719af0bac74cff3811c37815e28dfcfa18028b25bff8",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/3f6f55f62c19658986457b3792a20eb40218adc3cd6c9babd1a686dabaa9aeaf.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Garage",
+        "GarageVehiclePreviewProfile"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Garage.GarageVehiclePreviewProfile",
+      "source_bytes": 4256,
+      "source_sha256": "3f6f55f62c19658986457b3792a20eb40218adc3cd6c9babd1a686dabaa9aeaf",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/522090c4487dbd5053a2156e6a97f2f21dd18a423e9285e4709732dcd6c2679d.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Garage",
+        "OwnedGarageDecorationCatalog"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Garage.OwnedGarageDecorationCatalog",
+      "source_bytes": 10521,
+      "source_sha256": "522090c4487dbd5053a2156e6a97f2f21dd18a423e9285e4709732dcd6c2679d",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/aafc61719b8507bed53273f4c205b44386fa55d33ad91090e84a157398ec9acb.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Garage",
+        "OwnedGarageInteriorStyleCatalog"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Garage.OwnedGarageInteriorStyleCatalog",
+      "source_bytes": 8057,
+      "source_sha256": "aafc61719b8507bed53273f4c205b44386fa55d33ad91090e84a157398ec9acb",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/727bf5de5f97ec628df38d2dab9e112d383226544e8d87782351fc4359064612.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Garage",
+        "OwnedGarageLightingCatalog"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Garage.OwnedGarageLightingCatalog",
+      "source_bytes": 4538,
+      "source_sha256": "727bf5de5f97ec628df38d2dab9e112d383226544e8d87782351fc4359064612",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/d32d2792fedf32da73c6696639f9e8375fd6864d284539c49f75971683506cc0.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Garage",
+        "OwnedGaragePropertyCatalog"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Garage.OwnedGaragePropertyCatalog",
+      "source_bytes": 5545,
+      "source_sha256": "d32d2792fedf32da73c6696639f9e8375fd6864d284539c49f75971683506cc0",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/bc1e17bcd19bf6af110fa5d2c6ababfd83b78da0a82c29dc5ec681bd74406fc6.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Garage",
+        "PaintClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Garage.PaintClient",
+      "source_bytes": 4665,
+      "source_sha256": "bc1e17bcd19bf6af110fa5d2c6ababfd83b78da0a82c29dc5ec681bd74406fc6",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/3279d097bcd898ca72322dc2d896d5157d2f064d2392428ec20951dbc9c977a0.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Garage",
+        "PreviewCameraClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Garage.PreviewCameraClient",
+      "source_bytes": 8122,
+      "source_sha256": "3279d097bcd898ca72322dc2d896d5157d2f064d2392428ec20951dbc9c977a0",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/4951f12900f79f28eabcf6f5f5ef3bad3e6b657896a98364b032f019052a8604.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Garage",
+        "PreviewVehicleClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Garage.PreviewVehicleClient",
+      "source_bytes": 10244,
+      "source_sha256": "4951f12900f79f28eabcf6f5f5ef3bad3e6b657896a98364b032f019052a8604",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/c9997067c8b4b6a08a7d1a506902e2c8947b206790e2449493c6f57852f794da.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Garage",
+        "ThrustPreviewClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Garage.ThrustPreviewClient",
+      "source_bytes": 8174,
+      "source_sha256": "c9997067c8b4b6a08a7d1a506902e2c8947b206790e2449493c6f57852f794da",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/32a0895f87ead3dc011fbabff9af85de7c4372b6b2397b3197ce05197e628982.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Racing",
+        "RaceBrowserClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Racing.RaceBrowserClient",
+      "source_bytes": 24014,
+      "source_sha256": "32a0895f87ead3dc011fbabff9af85de7c4372b6b2397b3197ce05197e628982",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/fd702f3537f13fa61928e19e9671c3ccc9ef4a170e1b3386ecbfb7c9a490063a.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Racing",
+        "RaceConfigReader"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Racing.RaceConfigReader",
+      "source_bytes": 4717,
+      "source_sha256": "fd702f3537f13fa61928e19e9671c3ccc9ef4a170e1b3386ecbfb7c9a490063a",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/711a7a4127af46cb0bb801503762e0142095ca3c867bf1c9f6ae3f5f7bba905f.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Racing",
+        "RaceCountdownPresentationClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Racing.RaceCountdownPresentationClient",
+      "source_bytes": 5523,
+      "source_sha256": "711a7a4127af46cb0bb801503762e0142095ca3c867bf1c9f6ae3f5f7bba905f",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/d74b81ea86ffe0f4442aa65a47f7207dd333191d3e151ea4486d5cf522c6a232.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Racing",
+        "RaceEntryMenuClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Racing.RaceEntryMenuClient",
+      "source_bytes": 6748,
+      "source_sha256": "d74b81ea86ffe0f4442aa65a47f7207dd333191d3e151ea4486d5cf522c6a232",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/237b4db93c4588b408ff07ba088117331853ddb5dfe4179d4246bb68b5507942.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Racing",
+        "RaceEntryPresentationClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Racing.RaceEntryPresentationClient",
+      "source_bytes": 58733,
+      "source_sha256": "237b4db93c4588b408ff07ba088117331853ddb5dfe4179d4246bb68b5507942",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/8b2df549f0c3790e1fcdc049578a836eadc8a0de1ab504aff869338184d0e2eb.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Racing",
+        "RaceLifecyclePresentationClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+      "source_bytes": 11113,
+      "source_sha256": "8b2df549f0c3790e1fcdc049578a836eadc8a0de1ab504aff869338184d0e2eb",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/540d4c854dc77198738e98009cb702e8a1c0e595e40a8f80722260ac90600112.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Racing",
+        "RaceParticipantVisibilityClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Racing.RaceParticipantVisibilityClient",
+      "source_bytes": 6273,
+      "source_sha256": "540d4c854dc77198738e98009cb702e8a1c0e595e40a8f80722260ac90600112",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/920a45343472fbf22935f03243607ac07529b1ebc0b550dd066dcdb7c8df410d.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Racing",
+        "RaceQueueClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Racing.RaceQueueClient",
+      "source_bytes": 7379,
+      "source_sha256": "920a45343472fbf22935f03243607ac07529b1ebc0b550dd066dcdb7c8df410d",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/d9087e041fd7abd8b700f09b34484b5ca039d48888359f5b56457c74289bf911.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Racing",
+        "RaceRouteDefinition"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Racing.RaceRouteDefinition",
+      "source_bytes": 6959,
+      "source_sha256": "d9087e041fd7abd8b700f09b34484b5ca039d48888359f5b56457c74289bf911",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/5c1a501dfac9cc3702f74d9be5dbf055c90ce3eb675b3c2f5bbeb0c7e22a6918.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Racing",
+        "RaceRouteGuideClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Racing.RaceRouteGuideClient",
+      "source_bytes": 17390,
+      "source_sha256": "5c1a501dfac9cc3702f74d9be5dbf055c90ce3eb675b3c2f5bbeb0c7e22a6918",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/7db4b82387bd2c7e05483d2cc3ecd445dfdcc642fdb8a0259ef866fab11f2b86.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Racing",
+        "RaceSessionAssetsClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Racing.RaceSessionAssetsClient",
+      "source_bytes": 12183,
+      "source_sha256": "7db4b82387bd2c7e05483d2cc3ecd445dfdcc642fdb8a0259ef866fab11f2b86",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/23fbcf1ae229da7a40714e7030f2c7329e1df4913c796553d502fd4553855089.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Racing",
+        "RaceSessionPresentationClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient",
+      "source_bytes": 33119,
+      "source_sha256": "23fbcf1ae229da7a40714e7030f2c7329e1df4913c796553d502fd4553855089",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/17015d64cf59fd41a775f4aa67ae6a0829c6e1b856f4a93c70b3e4f2ceae69d7.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Racing",
+        "RaceTimeTrialResultCoachClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Racing.RaceTimeTrialResultCoachClient",
+      "source_bytes": 23199,
+      "source_sha256": "17015d64cf59fd41a775f4aa67ae6a0829c6e1b856f4a93c70b3e4f2ceae69d7",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/d82eef491faa7e4d282a0d0b59e3ec4b4f611361fd6d58e22a45c21cf854d974.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Racing",
+        "RaceTransitionClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Racing.RaceTransitionClient",
+      "source_bytes": 15757,
+      "source_sha256": "d82eef491faa7e4d282a0d0b59e3ec4b4f611361fd6d58e22a45c21cf854d974",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/0419817c364b62d7634fcc0b4c22463acd29cdcda6c75aa036551d3c1d0a8835.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "UI",
+        "DesktopFreeRoamHudUI"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+      "source_bytes": 73025,
+      "source_sha256": "0419817c364b62d7634fcc0b4c22463acd29cdcda6c75aa036551d3c1d0a8835",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/a4689790cc8d14a04066bc387fe5b64009ff29a0b0f8fa75675d5e8d493a4850.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "UI",
+        "FreeRoamMapPlayerMarkers"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.UI.FreeRoamMapPlayerMarkers",
+      "source_bytes": 16832,
+      "source_sha256": "a4689790cc8d14a04066bc387fe5b64009ff29a0b0f8fa75675d5e8d493a4850",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/7e8926fab902ad5ef15c9d117eb13695618cd26c5cebcfaf8b1e06fbad1d7c24.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "UI",
+        "FreeRoamVehicleExitButtonClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.UI.FreeRoamVehicleExitButtonClient",
+      "source_bytes": 451,
+      "source_sha256": "7e8926fab902ad5ef15c9d117eb13695618cd26c5cebcfaf8b1e06fbad1d7c24",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/d874858fa3bde69fccf01b13a948b8d018354ef3aaa0eaaa3e792689ac6428a7.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "UI",
+        "GarageBrowserUI"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.UI.GarageBrowserUI",
+      "source_bytes": 22249,
+      "source_sha256": "d874858fa3bde69fccf01b13a948b8d018354ef3aaa0eaaa3e792689ac6428a7",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/a268498fd7c6a472bc4d8f49151821a94f55892d9da23b5b69118f516f511d6c.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "UI",
+        "GarageComponents"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.UI.GarageComponents",
+      "source_bytes": 49472,
+      "source_sha256": "a268498fd7c6a472bc4d8f49151821a94f55892d9da23b5b69118f516f511d6c",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/6f6fc63eecb12731617e003f1527b8a334fdaed6f5ba3017471cd74b4237426b.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "UI",
+        "GarageInteriorModeUI"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+      "source_bytes": 24152,
+      "source_sha256": "6f6fc63eecb12731617e003f1527b8a334fdaed6f5ba3017471cd74b4237426b",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/50ff33c56a776542c89501828f83d65af024e27b48b21116b3a7e67c77ec3704.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "UI",
+        "GarageInteriorTransitionUI"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.UI.GarageInteriorTransitionUI",
+      "source_bytes": 1650,
+      "source_sha256": "50ff33c56a776542c89501828f83d65af024e27b48b21116b3a7e67c77ec3704",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/80c1931aac1ae041c8f2c10278bd68d27ac2c5319f370af65ce637f3de332d8d.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "UI",
+        "GarageModuleCardViewModel"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.UI.GarageModuleCardViewModel",
+      "source_bytes": 3452,
+      "source_sha256": "80c1931aac1ae041c8f2c10278bd68d27ac2c5319f370af65ce637f3de332d8d",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/7ce8f4019f9615dfe5777204fcf542c884e0d39547bcd7e42f133e6b33d9f1f6.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "UI",
+        "GarageWorkspaceUI"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.UI.GarageWorkspaceUI",
+      "source_bytes": 49461,
+      "source_sha256": "7ce8f4019f9615dfe5777204fcf542c884e0d39547bcd7e42f133e6b33d9f1f6",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/4cb63079eaec543da8e37dbf149057bcb64d04e5bffa6ed8c798f1c5d26c24f4.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "UI",
+        "LoadingTransitionUI"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.UI.LoadingTransitionUI",
+      "source_bytes": 1393,
+      "source_sha256": "4cb63079eaec543da8e37dbf149057bcb64d04e5bffa6ed8c798f1c5d26c24f4",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/43a1a0b8067cce31a755647f8aec638e6fb09b015bc02573818e42d081c62c31.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "UI",
+        "MobileFreeRoamHudUI"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+      "source_bytes": 53428,
+      "source_sha256": "43a1a0b8067cce31a755647f8aec638e6fb09b015bc02573818e42d081c62c31",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/9221ac7f2a36590c896209719c551a79b58016cdb5a7680057374aedd851ee2e.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "UI",
+        "OnboardingClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+      "source_bytes": 54867,
+      "source_sha256": "9221ac7f2a36590c896209719c551a79b58016cdb5a7680057374aedd851ee2e",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/0b44b4d6e770040d62818557be8f4dc6931baf2fef142024983f6a27e0d132fe.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "UI",
+        "OnboardingGuideTrailRenderer"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.UI.OnboardingGuideTrailRenderer",
+      "source_bytes": 10514,
+      "source_sha256": "0b44b4d6e770040d62818557be8f4dc6931baf2fef142024983f6a27e0d132fe",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/407ff3e8290e0c67cc5454b9321d28d279062d4d398660713cc309f04f0f09ee.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "UI",
+        "OwnedGarageBrowserUI"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+      "source_bytes": 26279,
+      "source_sha256": "407ff3e8290e0c67cc5454b9321d28d279062d4d398660713cc309f04f0f09ee",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/4b3d8c2415a29a21983a5846917d8d3f7096308a352b861fa5716b823f750cd1.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "UI",
+        "OwnedGarageClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.UI.OwnedGarageClient",
+      "source_bytes": 944,
+      "source_sha256": "4b3d8c2415a29a21983a5846917d8d3f7096308a352b861fa5716b823f750cd1",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/ad56302f61bc31186f39ac7c135131c676b91b63e00bbeb8187e55761f349404.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "UI",
+        "OwnedGarageWorkspaceUI"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+      "source_bytes": 45386,
+      "source_sha256": "ad56302f61bc31186f39ac7c135131c676b91b63e00bbeb8187e55761f349404",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/e7f735915a21a4ed9e90de1df1723952329743a9e4cc684d465c83721017338f.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "UI",
+        "RacingMobileScaledDesktopLayout"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.UI.RacingMobileScaledDesktopLayout",
+      "source_bytes": 3703,
+      "source_sha256": "e7f735915a21a4ed9e90de1df1723952329743a9e4cc684d465c83721017338f",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/edd0e5c92e1cbf5fd1a6ab49b3e0026704ea812c3966efba82ae9cbead1e560a.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "UI",
+        "RacingUIComponents"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.UI.RacingUIComponents",
+      "source_bytes": 8409,
+      "source_sha256": "edd0e5c92e1cbf5fd1a6ab49b3e0026704ea812c3966efba82ae9cbead1e560a",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/cd5af4fe038d67ceeb611041a5eefd884a685b277ee92f2283fc9ca7e691bf1b.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "UI",
+        "ResponsiveUIFoundation"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.UI.ResponsiveUIFoundation",
+      "source_bytes": 22083,
+      "source_sha256": "cd5af4fe038d67ceeb611041a5eefd884a685b277ee92f2283fc9ca7e691bf1b",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/1c072e3724527442bae9be16d70e0c694d62b4fd687ca0cf44519fd4fd3f039a.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "UI",
+        "RouteGuide"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.UI.RouteGuide",
+      "source_bytes": 15657,
+      "source_sha256": "1c072e3724527442bae9be16d70e0c694d62b4fd687ca0cf44519fd4fd3f039a",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/c650a19ca5b7fb7629d2b2292fb7d5002b820a79537e061dbe59a9e8b261b168.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "UI",
+        "SharedTopNotificationUI"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.UI.SharedTopNotificationUI",
+      "source_bytes": 1286,
+      "source_sha256": "c650a19ca5b7fb7629d2b2292fb7d5002b820a79537e061dbe59a9e8b261b168",
+      "tags": []
+    },
+    {
+      "attributes": {"DoNotSwitchLiveUIAutomatically":{"type":"boolean","value":true}},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/cce9816c1825a6ea7279050b7993149992d18f101dbdb14da6e80892666b076e.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "UI",
+        "UITheme"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.UI.UITheme",
+      "source_bytes": 3980,
+      "source_sha256": "cce9816c1825a6ea7279050b7993149992d18f101dbdb14da6e80892666b076e",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/d29e2c7b7b0c8e656f261aa23e942296b5fd1a6bbe19f0393eedf7ad6a082c26.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Vehicles",
+        "CharacterSprintClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.CharacterSprintClient",
+      "source_bytes": 10080,
+      "source_sha256": "d29e2c7b7b0c8e656f261aa23e942296b5fd1a6bbe19f0393eedf7ad6a082c26",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/c82144f053264dd516459a04b3519217a35e37d8b2c4e8582ac0e888721d6871.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Vehicles",
+        "DriveSessionClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.DriveSessionClient",
+      "source_bytes": 2088,
+      "source_sha256": "c82144f053264dd516459a04b3519217a35e37d8b2c4e8582ac0e888721d6871",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/7250009924a8ab43a2a9495a20b8b9dbadf34b4f34bc5c26a3029750f3860fa7.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Vehicles",
+        "DriveTuning"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.DriveTuning",
+      "source_bytes": 1235,
+      "source_sha256": "7250009924a8ab43a2a9495a20b8b9dbadf34b4f34bc5c26a3029750f3860fa7",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/f9a1a11b7e38a02424738db6924a3a510a9710989331172f999e685d840a7023.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Vehicles",
+        "DrivingCameraClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient",
+      "source_bytes": 13246,
+      "source_sha256": "f9a1a11b7e38a02424738db6924a3a510a9710989331172f999e685d840a7023",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/13a0e4ed2be7e004e533cd34504d738b31a6fc3db695a0f3e9b865ffaf3f900c.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Vehicles",
+        "DrivingClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.DrivingClient",
+      "source_bytes": 51513,
+      "source_sha256": "13a0e4ed2be7e004e533cd34504d738b31a6fc3db695a0f3e9b865ffaf3f900c",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/0b2a4921fe132a0d8389a379a210525a9590a99f12142853ff7bbfe159d42bce.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Vehicles",
+        "FreeRoamParkedHoverClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.FreeRoamParkedHoverClient",
+      "source_bytes": 9224,
+      "source_sha256": "0b2a4921fe132a0d8389a379a210525a9590a99f12142853ff7bbfe159d42bce",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/536517504eba56016601628bc24804f65308d51ec8143c2785caa70a20913ad8.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Vehicles",
+        "GameplayInputGate"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.GameplayInputGate",
+      "source_bytes": 3849,
+      "source_sha256": "536517504eba56016601628bc24804f65308d51ec8143c2785caa70a20913ad8",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/a32f376d42a3e9da53a112e09cf36e866b9c6ab113534e660cd0bcd0bb7e59d1.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Vehicles",
+        "MobileDriveControlsClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient",
+      "source_bytes": 17707,
+      "source_sha256": "a32f376d42a3e9da53a112e09cf36e866b9c6ab113534e660cd0bcd0bb7e59d1",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/6638b27101aac74b9c4de3511cf11ff147a8f5fc7731417a69f821f297090a42.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Vehicles",
+        "MobileDriveInputState"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveInputState",
+      "source_bytes": 1924,
+      "source_sha256": "6638b27101aac74b9c4de3511cf11ff147a8f5fc7731417a69f821f297090a42",
+      "tags": []
+    },
+    {
+      "attributes": {"RuntimeEnabled":{"type":"boolean","value":false},"VehiclePerformanceVersion":{"type":"string","value":"V2_PHASE1_SHADOW"}},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/d91de47730ec7020d61e9d17ced2ba41412d9f2c91ab9d911fa1f364fad64a98.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Vehicles",
+        "Performance",
+        "PerformanceCalculator"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceCalculator",
+      "source_bytes": 6327,
+      "source_sha256": "d91de47730ec7020d61e9d17ced2ba41412d9f2c91ab9d911fa1f364fad64a98",
+      "tags": []
+    },
+    {
+      "attributes": {"RuntimeEnabled":{"type":"boolean","value":false},"VehiclePerformanceVersion":{"type":"string","value":"V2_PHASE1_SHADOW"}},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/9720b4e33a72403abfe69fbf165f8503d8b5620ef39aa46e5df57ed1894edd28.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Vehicles",
+        "Performance",
+        "PerformanceDefinitions"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceDefinitions",
+      "source_bytes": 5067,
+      "source_sha256": "9720b4e33a72403abfe69fbf165f8503d8b5620ef39aa46e5df57ed1894edd28",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/12b18b345fd424a8f9591f5883171754a0cd9eef1927f0128d7dad44114448e8.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Vehicles",
+        "Performance",
+        "PerformanceDynamics"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceDynamics",
+      "source_bytes": 1714,
+      "source_sha256": "12b18b345fd424a8f9591f5883171754a0cd9eef1927f0128d7dad44114448e8",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/a63c7b8799d11cc81ff220d4c8d492dde908ca63e6b8e08eab503a6f18a8b048.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Vehicles",
+        "Performance",
+        "PerformanceRuntime"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceRuntime",
+      "source_bytes": 5494,
+      "source_sha256": "a63c7b8799d11cc81ff220d4c8d492dde908ca63e6b8e08eab503a6f18a8b048",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/8eb4b5a64780049896c75c72fe32f2627141ec5934e5e541a5046c38cf30855e.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Vehicles",
+        "Performance",
+        "PerformanceUpgradeRuntime"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceUpgradeRuntime",
+      "source_bytes": 11211,
+      "source_sha256": "8eb4b5a64780049896c75c72fe32f2627141ec5934e5e541a5046c38cf30855e",
+      "tags": []
+    },
+    {
+      "attributes": {"Phase":{"type":"string","value":"AN"}},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/e32354e4aa4cd352ba46974e88a887367a6eef567a31ccbe15e5030eb62942f7.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Vehicles",
+        "Performance",
+        "VehicleModuleUpgradeRuntime"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehicleModuleUpgradeRuntime",
+      "source_bytes": 6828,
+      "source_sha256": "e32354e4aa4cd352ba46974e88a887367a6eef567a31ccbe15e5030eb62942f7",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/c1ed20ab4065bd5bcaf96756c1eac838e0e40ab61ac1781df546b9483c1137aa.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Vehicles",
+        "Performance",
+        "VehiclePerformanceResolver"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehiclePerformanceResolver",
+      "source_bytes": 8544,
+      "source_sha256": "c1ed20ab4065bd5bcaf96756c1eac838e0e40ab61ac1781df546b9483c1137aa",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/7d99ab1fd134ecbbe715ebfddc4f6a63f26ff17802350747e212552dcfdd7f0f.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Vehicles",
+        "Performance",
+        "VehicleUpgradeDefinitions"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehicleUpgradeDefinitions",
+      "source_bytes": 5248,
+      "source_sha256": "7d99ab1fd134ecbbe715ebfddc4f6a63f26ff17802350747e212552dcfdd7f0f",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/dda08b715064a8cdb9a180ff4c86e1d34ad652d4bc9e7a091ebfe032d15da093.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Vehicles",
+        "RuntimeVFXClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.RuntimeVFXClient",
+      "source_bytes": 849,
+      "source_sha256": "dda08b715064a8cdb9a180ff4c86e1d34ad652d4bc9e7a091ebfe032d15da093",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/0120b31b643939cf901d1b471ba72c5f0e9c25b49d9e89988688b4ef1277c7dc.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Vehicles",
+        "VehicleCatalog"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCatalog",
+      "source_bytes": 958,
+      "source_sha256": "0120b31b643939cf901d1b471ba72c5f0e9c25b49d9e89988688b4ef1277c7dc",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/6d7a723507340f981c853156cbaebb263f4206395ff976ae1117bb113f207477.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Vehicles",
+        "VehicleCatalogData"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCatalogData",
+      "source_bytes": 197226,
+      "source_sha256": "6d7a723507340f981c853156cbaebb263f4206395ff976ae1117bb113f207477",
+      "tags": []
+    },
+    {
+      "attributes": {"Revision":{"type":"string","value":"NTR_CUSTOMISATION_VEHICLE_COSMETICS_EMPTY_ROUTES_V1_2_AUTHORED_LIGHT_PROPERTIES"}},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/1961900f064f897623cc2fef73f73590d15a96120fff028ceaefbc4386c768c9.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Vehicles",
+        "VehicleCosmeticCatalog"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCosmeticCatalog",
+      "source_bytes": 5856,
+      "source_sha256": "1961900f064f897623cc2fef73f73590d15a96120fff028ceaefbc4386c768c9",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/d4ca3721612c9b074e2fa6799f54f16d164634fa0e05f92dbc4f0fa500853114.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Vehicles",
+        "VehicleDefinition"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.VehicleDefinition",
+      "source_bytes": 1067,
+      "source_sha256": "d4ca3721612c9b074e2fa6799f54f16d164634fa0e05f92dbc4f0fa500853114",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/c927d1b33c3c48c7a9cc9641cf692f60c2fc5123c6c9310407964abe66a5dcab.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Vehicles",
+        "VehicleDisplayNames"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.VehicleDisplayNames",
+      "source_bytes": 3191,
+      "source_sha256": "c927d1b33c3c48c7a9cc9641cf692f60c2fc5123c6c9310407964abe66a5dcab",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/2bed0ed14f14a96d8b3f2673eb1b5b8fa0cc775c9ba2bc9b6fab3d76fd9cc66d.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Vehicles",
+        "VehicleDynamics"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.VehicleDynamics",
+      "source_bytes": 18672,
+      "source_sha256": "2bed0ed14f14a96d8b3f2673eb1b5b8fa0cc775c9ba2bc9b6fab3d76fd9cc66d",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/971ff8161c7dfd61ab97851133563ad15ccba686e0dd34c41624bb062d74f4b4.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Vehicles",
+        "VehiclePreviewVFXClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.VehiclePreviewVFXClient",
+      "source_bytes": 18613,
+      "source_sha256": "971ff8161c7dfd61ab97851133563ad15ccba686e0dd34c41624bb062d74f4b4",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/4268660610deda81010782d348cbcd767bb910a787a6a716f05d8203d78ba40a.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Vehicles",
+        "VehicleTemplateIndex"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.VehicleTemplateIndex",
+      "source_bytes": 716,
+      "source_sha256": "4268660610deda81010782d348cbcd767bb910a787a6a716f05d8203d78ba40a",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/8a02338e2bfc5023401f8b71339c9e285493eb7333c8244bc56fc60439ca4283.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Vehicles",
+        "VehicleVFXClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient",
+      "source_bytes": 24173,
+      "source_sha256": "8a02338e2bfc5023401f8b71339c9e285493eb7333c8244bc56fc60439ca4283",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/e31142722f9a243b2c8af548a09578192a9c1a082128f48ac725dbe8eef79502.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "World",
+        "LODClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.World.LODClient",
+      "source_bytes": 3284,
+      "source_sha256": "e31142722f9a243b2c8af548a09578192a9c1a082128f48ac725dbe8eef79502",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/fa3cc427ef761eb009eeb78fe3c48732f9b616afc02de304975b69577f29dfce.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "World",
+        "LODPolicy"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.World.LODPolicy",
+      "source_bytes": 1454,
+      "source_sha256": "fa3cc427ef761eb009eeb78fe3c48732f9b616afc02de304975b69577f29dfce",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/b43377be8d992ef8f5841e755a398393d9af22ed6e2a2910e5e9e25163825fb0.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "World",
+        "LODRuntime"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.World.LODRuntime",
+      "source_bytes": 9261,
+      "source_sha256": "b43377be8d992ef8f5841e755a398393d9af22ed6e2a2910e5e9e25163825fb0",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/0bdcc674591c04389f56f559e5421b9d14fed4e4c455ddf959cfb9be3698d08d.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "World",
+        "LightingClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.World.LightingClient",
+      "source_bytes": 8025,
+      "source_sha256": "0bdcc674591c04389f56f559e5421b9d14fed4e4c455ddf959cfb9be3698d08d",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/a606d0a4270575a107749b051e2f2fce3b6ecd26cedd54e46c6dd3dcd0a81f6e.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "World",
+        "LightingCycle"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.World.LightingCycle",
+      "source_bytes": 9396,
+      "source_sha256": "a606d0a4270575a107749b051e2f2fce3b6ecd26cedd54e46c6dd3dcd0a81f6e",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/be73a2c0eb2b7c8956fbde851a6537c37e79ab80bd7b382e89ed5bc90e77979c.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "World",
+        "LightingCycleDefinition"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.World.LightingCycleDefinition",
+      "source_bytes": 2395,
+      "source_sha256": "be73a2c0eb2b7c8956fbde851a6537c37e79ab80bd7b382e89ed5bc90e77979c",
+      "tags": []
+    },
+    {
+      "attributes": {"WarmSnapshotAppliedAt":{"type":"string","value":"2026-07-14 00:40:34"},"WarmSnapshotSourceUTC":{"type":"string","value":"2026-07-13T23:28:12Z"}},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/eb2c2385904fc1d344754c75ff17f30a9d99ba7ad928636bcd62a3957edc73e1.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "World",
+        "LightingPresets"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.World.LightingPresets",
+      "source_bytes": 12790,
+      "source_sha256": "eb2c2385904fc1d344754c75ff17f30a9d99ba7ad928636bcd62a3957edc73e1",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/8a4903833d0c70ed9cdc42d7d757ef187551b77e0cffff74d140b924b0d4b27b.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "World",
+        "LightingSchedule"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.World.LightingSchedule",
+      "source_bytes": 1086,
+      "source_sha256": "8a4903833d0c70ed9cdc42d7d757ef187551b77e0cffff74d140b924b0d4b27b",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/245a6b09bba827648a3efd7ccc36b587cf5788361a66df3b96c8919d9deea6b4.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "World",
+        "NightLamppostLightClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.World.NightLamppostLightClient",
+      "source_bytes": 2374,
+      "source_sha256": "245a6b09bba827648a3efd7ccc36b587cf5788361a66df3b96c8919d9deea6b4",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/de0a597549356a6e190757044f3168e2c35e1dc13c42c2b9ce2c9cbef7c0d2d7.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "World",
+        "OwnedGarageEnvironmentLightingClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.World.OwnedGarageEnvironmentLightingClient",
+      "source_bytes": 7308,
+      "source_sha256": "de0a597549356a6e190757044f3168e2c35e1dc13c42c2b9ce2c9cbef7c0d2d7",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/1a0328eaa83207fe46a7688aa8568a2185c07cb2d4763e052b8889c64267be03.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "World",
+        "RoadGraphData"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.World.RoadGraphData",
+      "source_bytes": 33707,
+      "source_sha256": "1a0328eaa83207fe46a7688aa8568a2185c07cb2d4763e052b8889c64267be03",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/67edc279c804cc13e0d17586e68205ca6dd3fedd2b76b9195261b03b762fb0f3.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "World",
+        "RoadRouting"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.World.RoadRouting",
+      "source_bytes": 9861,
+      "source_sha256": "67edc279c804cc13e0d17586e68205ca6dd3fedd2b76b9195261b03b762fb0f3",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/8bf31431660d70a0230c092b4cd8bd634555138ae96b0f52d9a6f0e67acf267c.lua",
+      "path_parts": [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "World",
+        "WindowMaterialClient"
+      ],
+      "properties": [],
+      "roblox_path": "ReplicatedStorage.Modules.Game.World.WindowMaterialClient",
+      "source_bytes": 2545,
+      "source_sha256": "8bf31431660d70a0230c092b4cd8bd634555138ae96b0f52d9a6f0e67acf267c",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "Script",
+      "disabled": false,
+      "file": "roblox/source_store/9a9876e49cf6beb52239dbafe2beb34733f0de36d4e5d573f8392dd48a963e60.lua",
+      "path_parts": [
+        "ServerScriptService",
+        "ServerBase"
+      ],
+      "properties": {"Enabled":{"type":"boolean","value":true},"RunContext":{"text":"Enum.RunContext.Legacy","type":"EnumItem"}},
+      "roblox_path": "ServerScriptService.ServerBase",
+      "source_bytes": 5766,
+      "source_sha256": "9a9876e49cf6beb52239dbafe2beb34733f0de36d4e5d573f8392dd48a963e60",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/908dba787743765c29cef7525fabfd13a1f658527bc9fdadcb67e6dd67c2b1d4.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Core",
+        "FeatureFlags"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Core.FeatureFlags",
+      "source_bytes": 1942,
+      "source_sha256": "908dba787743765c29cef7525fabfd13a1f658527bc9fdadcb67e6dd67c2b1d4",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/e04ab3f14d5c93986155317ba9ab0d929dd9b2b53ff603263e6e16fab6857283.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Core",
+        "Net"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Core.Net",
+      "source_bytes": 7802,
+      "source_sha256": "e04ab3f14d5c93986155317ba9ab0d929dd9b2b53ff603263e6e16fab6857283",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/b4d44e69e3db35c718e09898fe0e3bfe33d9446bd402376faf8866156b819cff.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Core",
+        "ServerLifecycle"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Core.ServerLifecycle",
+      "source_bytes": 1852,
+      "source_sha256": "b4d44e69e3db35c718e09898fe0e3bfe33d9446bd402376faf8866156b819cff",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/8ef9dd3c107a9a865204e0699e9b5c7df387ae7502d19fa9b65580490b05b95b.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Activities",
+        "ActivityPayout"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Activities.ActivityPayout",
+      "source_bytes": 5648,
+      "source_sha256": "8ef9dd3c107a9a865204e0699e9b5c7df387ae7502d19fa9b65580490b05b95b",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/76f0dddf75854187c1d0f1647f44eadfedcaaf7ca6d3922e121b5d2c2f992966.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Activities",
+        "ActivityService"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Activities.ActivityService",
+      "source_bytes": 12582,
+      "source_sha256": "76f0dddf75854187c1d0f1647f44eadfedcaaf7ca6d3922e121b5d2c2f992966",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/7b6927413e21bec8f2c9290b46bdfb309a8a731b65d3e21388eebd916e38c8cb.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Activities",
+        "CourierJob"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Activities.CourierJob",
+      "source_bytes": 12743,
+      "source_sha256": "7b6927413e21bec8f2c9290b46bdfb309a8a731b65d3e21388eebd916e38c8cb",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/e782e5537062edd2cac53519c65764a60777060f8de102b284ab2cb38ed996ec.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Activities",
+        "CourierRules"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Activities.CourierRules",
+      "source_bytes": 9545,
+      "source_sha256": "e782e5537062edd2cac53519c65764a60777060f8de102b284ab2cb38ed996ec",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/6a772f5621b3f702e145b1000aba4673d559afb33433de1b89fe1bb94a4bdf12.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Activities",
+        "DuelRules"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Activities.DuelRules",
+      "source_bytes": 94,
+      "source_sha256": "6a772f5621b3f702e145b1000aba4673d559afb33433de1b89fe1bb94a4bdf12",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/166b11b31c2d1d789c98d383914f9d7be85aeecf7d6c44b4d825cbec3717e6be.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Activities",
+        "DuelService"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Activities.DuelService",
+      "source_bytes": 233,
+      "source_sha256": "166b11b31c2d1d789c98d383914f9d7be85aeecf7d6c44b4d825cbec3717e6be",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/729f11a5de4b546973c3809bd8e6f580ad69f806945c4ca4e919fb955e37c3e7.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Activities",
+        "PassengerService"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Activities.PassengerService",
+      "source_bytes": 18077,
+      "source_sha256": "729f11a5de4b546973c3809bd8e6f580ad69f806945c4ca4e919fb955e37c3e7",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/6f6330cc1c170c44786d3f80cfb0ada1a2584dfc9918fccfba0aa95209e226a1.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Activities",
+        "ProgressionRules"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Activities.ProgressionRules",
+      "source_bytes": 3407,
+      "source_sha256": "6f6330cc1c170c44786d3f80cfb0ada1a2584dfc9918fccfba0aa95209e226a1",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/c887e79a6cc31c080831779bc4e6510b5f77545dc2e110ce253426910ca2d934.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Activities",
+        "ProgressionService"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Activities.ProgressionService",
+      "source_bytes": 7194,
+      "source_sha256": "c887e79a6cc31c080831779bc4e6510b5f77545dc2e110ce253426910ca2d934",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/8c184e54d30bb1a3d01867d858263c48d3ba7e1c2989993438edeb56fd1d4c61.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Activities",
+        "TaxiJob"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Activities.TaxiJob",
+      "source_bytes": 28422,
+      "source_sha256": "8c184e54d30bb1a3d01867d858263c48d3ba7e1c2989993438edeb56fd1d4c61",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/c757bdc0c3e106fa48c0b3835dde21a0f6ad587339c9b959a054ddcb46c0b789.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Activities",
+        "TaxiRules"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Activities.TaxiRules",
+      "source_bytes": 8725,
+      "source_sha256": "c757bdc0c3e106fa48c0b3835dde21a0f6ad587339c9b959a054ddcb46c0b789",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/ce21599ae2b5acd65ad6b86130f94fb007b7c4c5a009fc1efe9c7fd2742a6896.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Audio",
+        "VehicleAudioServer"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Audio.VehicleAudioServer",
+      "source_bytes": 7578,
+      "source_sha256": "ce21599ae2b5acd65ad6b86130f94fb007b7c4c5a009fc1efe9c7fd2742a6896",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/b9edffdeee851e983b967477994110730c49c5b365abf2eb2cc43605104366eb.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Dealership",
+        "IntroProgressServer"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Dealership.IntroProgressServer",
+      "source_bytes": 7282,
+      "source_sha256": "b9edffdeee851e983b967477994110730c49c5b365abf2eb2cc43605104366eb",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/7ff2184873cec3162521156274a514480520f33d093f68ac5e71a321709b292a.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Development",
+        "StudioCashGrantServer"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Development.StudioCashGrantServer",
+      "source_bytes": 3814,
+      "source_sha256": "7ff2184873cec3162521156274a514480520f33d093f68ac5e71a321709b292a",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/bb522ce8ecf4808461a6b193369b5063e6087af4336790e152dd2c2e3df50781.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Development",
+        "VehiclePerformanceComparisonServer"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Development.VehiclePerformanceComparisonServer",
+      "source_bytes": 2073,
+      "source_sha256": "bb522ce8ecf4808461a6b193369b5063e6087af4336790e152dd2c2e3df50781",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/5a1ebbe99955e6cd47ba364972c08e05a190d66386e2c0bd03ef0e58919b65ac.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Garage",
+        "GarageCapacity"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Garage.GarageCapacity",
+      "source_bytes": 8511,
+      "source_sha256": "5a1ebbe99955e6cd47ba364972c08e05a190d66386e2c0bd03ef0e58919b65ac",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/b1419d6323a2243b8c719e7687a5c62a13b99c37e086dcd8a6343c5daa7ce2f3.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Garage",
+        "GarageCatalogLookup"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Garage.GarageCatalogLookup",
+      "source_bytes": 8604,
+      "source_sha256": "b1419d6323a2243b8c719e7687a5c62a13b99c37e086dcd8a6343c5daa7ce2f3",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/5b4dccbf222a4042c4c5fb6b436a094189af0c93a8bbb2be56bbfa0589aed6a3.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Garage",
+        "GarageCatalogService"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Garage.GarageCatalogService",
+      "source_bytes": 10819,
+      "source_sha256": "5b4dccbf222a4042c4c5fb6b436a094189af0c93a8bbb2be56bbfa0589aed6a3",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/6cbd8f1aa36f74a3215c4dadac2c780b05dd1f797ed511b8e5d4252eb3d98906.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Garage",
+        "GarageClientProfile"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Garage.GarageClientProfile",
+      "source_bytes": 4730,
+      "source_sha256": "6cbd8f1aa36f74a3215c4dadac2c780b05dd1f797ed511b8e5d4252eb3d98906",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/e5655cb4d3c411a5540b999588f12a8395d8e784639f432ee0c3fa2ac45c4f6f.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Garage",
+        "GarageModuleInstanceCustomization"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Garage.GarageModuleInstanceCustomization",
+      "source_bytes": 7738,
+      "source_sha256": "e5655cb4d3c411a5540b999588f12a8395d8e784639f432ee0c3fa2ac45c4f6f",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/9782979d90a7bd19588fc993081ef039036083ae9d8d6c4bc06d07ee66dfafd9.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Garage",
+        "GarageModuleInventory"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Garage.GarageModuleInventory",
+      "source_bytes": 9950,
+      "source_sha256": "9782979d90a7bd19588fc993081ef039036083ae9d8d6c4bc06d07ee66dfafd9",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/ac377436067e686852aad2c2d3dd8fd16a72c441e1f6559fa072528b77b004f0.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Garage",
+        "GarageModuleTransaction"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Garage.GarageModuleTransaction",
+      "source_bytes": 7631,
+      "source_sha256": "ac377436067e686852aad2c2d3dd8fd16a72c441e1f6559fa072528b77b004f0",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/325a1ec3f80657e42e0ed6aa4d4ba90008efa4cc0f26eb8f4fcd602c9db8aa0b.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Garage",
+        "GarageProfile"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Garage.GarageProfile",
+      "source_bytes": 5497,
+      "source_sha256": "325a1ec3f80657e42e0ed6aa4d4ba90008efa4cc0f26eb8f4fcd602c9db8aa0b",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/b131bc072bb3ca83db15d49b5cf3e8dfdfb7d20edf5bc0aebb7fd9679b3da5bf.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Garage",
+        "GarageProfileView"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Garage.GarageProfileView",
+      "source_bytes": 8897,
+      "source_sha256": "b131bc072bb3ca83db15d49b5cf3e8dfdfb7d20edf5bc0aebb7fd9679b3da5bf",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/8abf13cb100a84ebcbe9b200bf461354d049617f5840d996dac52a560d84c295.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Garage",
+        "GarageRequestGuard"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Garage.GarageRequestGuard",
+      "source_bytes": 3041,
+      "source_sha256": "8abf13cb100a84ebcbe9b200bf461354d049617f5840d996dac52a560d84c295",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/1688161a910eb74e5a0a822ab45e92933c3b6d856a6cf39ee05efb7770cf7f9d.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Garage",
+        "GarageServer"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Garage.GarageServer",
+      "source_bytes": 62274,
+      "source_sha256": "1688161a910eb74e5a0a822ab45e92933c3b6d856a6cf39ee05efb7770cf7f9d",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/fdcf1151d52b86a73bf2ee37f7ae133a98f2d9bcc854ab76bd2165a131d0fa1a.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Garage",
+        "GarageSessionServer"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Garage.GarageSessionServer",
+      "source_bytes": 8321,
+      "source_sha256": "fdcf1151d52b86a73bf2ee37f7ae133a98f2d9bcc854ab76bd2165a131d0fa1a",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/66ff9b421fd91f313dff82875a457d9641498f61f834e79a93cfe1d9245960c7.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Garage",
+        "GarageVisitRules"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Garage.GarageVisitRules",
+      "source_bytes": 8046,
+      "source_sha256": "66ff9b421fd91f313dff82875a457d9641498f61f834e79a93cfe1d9245960c7",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/b181e7cd47cb1e953b1f4336ee630ce9abc41ea6a9a12dad19fe6cb2ca4cc9cb.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Garage",
+        "OwnedGarageAuthoritativeCommand"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Garage.OwnedGarageAuthoritativeCommand",
+      "source_bytes": 4557,
+      "source_sha256": "b181e7cd47cb1e953b1f4336ee630ce9abc41ea6a9a12dad19fe6cb2ca4cc9cb",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/57a900e0c1c28bac49fcbf30c4f62472a16dd66fbb6c6e6a2461aaf0661ef4ec.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Garage",
+        "OwnedGarageDisplay"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Garage.OwnedGarageDisplay",
+      "source_bytes": 8987,
+      "source_sha256": "57a900e0c1c28bac49fcbf30c4f62472a16dd66fbb6c6e6a2461aaf0661ef4ec",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/da3ed7d545c03f625169355f96ead3122e574a04f26148255a9de85725d70a5b.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Garage",
+        "OwnedGarageDisplayAssignment"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Garage.OwnedGarageDisplayAssignment",
+      "source_bytes": 5334,
+      "source_sha256": "da3ed7d545c03f625169355f96ead3122e574a04f26148255a9de85725d70a5b",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/19bbd7462849c6cc62e910f6849313e3913acfd0d63ec4c9c9dca34d464553a3.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Garage",
+        "OwnedGarageFinish"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Garage.OwnedGarageFinish",
+      "source_bytes": 12705,
+      "source_sha256": "19bbd7462849c6cc62e910f6849313e3913acfd0d63ec4c9c9dca34d464553a3",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/a3b00fc0441bf565c0a678a01e40081a7fc78a0d8364a8e3eadfd21c8d5fb121.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Garage",
+        "OwnedGarageInterior"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Garage.OwnedGarageInterior",
+      "source_bytes": 4412,
+      "source_sha256": "a3b00fc0441bf565c0a678a01e40081a7fc78a0d8364a8e3eadfd21c8d5fb121",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/6d348383d8274197eb73779b7e6075413e388ff0cd2cae628f4e9a6bc5a2ad70.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Garage",
+        "OwnedGarageManagement"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+      "source_bytes": 88342,
+      "source_sha256": "6d348383d8274197eb73779b7e6075413e388ff0cd2cae628f4e9a6bc5a2ad70",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/dcb464e6dd36ab11ecdee21b8df46ae1d03c1c73c459968685a77e4de6867cd1.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Garage",
+        "OwnedGarageProfile"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Garage.OwnedGarageProfile",
+      "source_bytes": 24584,
+      "source_sha256": "dcb464e6dd36ab11ecdee21b8df46ae1d03c1c73c459968685a77e4de6867cd1",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/1b38593bd198fcc1c0a4d5edcaa3197d55e49102b25e5c6b8eb4587f2a2d422d.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Garage",
+        "OwnedGarageServer"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Garage.OwnedGarageServer",
+      "source_bytes": 747,
+      "source_sha256": "1b38593bd198fcc1c0a4d5edcaa3197d55e49102b25e5c6b8eb4587f2a2d422d",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/86e201fbc0c9738b7e06f2232f84a89b8eba104616c1f9c3abdfeeaa3f1a2ba5.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Garage",
+        "VehicleBuildService"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Garage.VehicleBuildService",
+      "source_bytes": 13541,
+      "source_sha256": "86e201fbc0c9738b7e06f2232f84a89b8eba104616c1f9c3abdfeeaa3f1a2ba5",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/fd60da2728fe23562ee386e524b75b9afa8a55040425e18daba8c68e1e2daf45.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Garage",
+        "VehicleCosmeticServer"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Garage.VehicleCosmeticServer",
+      "source_bytes": 4915,
+      "source_sha256": "fd60da2728fe23562ee386e524b75b9afa8a55040425e18daba8c68e1e2daf45",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/198513b454e882b707734c73f503648d9b1ed8350e7cab3ac853ab481fa56198.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Garage",
+        "VehicleLifecycleService"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Garage.VehicleLifecycleService",
+      "source_bytes": 13120,
+      "source_sha256": "198513b454e882b707734c73f503648d9b1ed8350e7cab3ac853ab481fa56198",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/030a414c7d5b4814c4f4ea8d05329d76cc47d5aad160cfc182fad0c2ac263af7.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Garage",
+        "VehicleSpawnService"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Garage.VehicleSpawnService",
+      "source_bytes": 11070,
+      "source_sha256": "030a414c7d5b4814c4f4ea8d05329d76cc47d5aad160cfc182fad0c2ac263af7",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/8b72fee2694d098daebc067745e9a91f8c9838b686dd9cea7948aa2106297601.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Player",
+        "AnalyticsServer"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Player.AnalyticsServer",
+      "source_bytes": 4159,
+      "source_sha256": "8b72fee2694d098daebc067745e9a91f8c9838b686dd9cea7948aa2106297601",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/b273c5a2c005d0957413a22bfa796b192773e1e506896962f4b94269cee97c28.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Player",
+        "EconomyServer"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Player.EconomyServer",
+      "source_bytes": 10140,
+      "source_sha256": "b273c5a2c005d0957413a22bfa796b192773e1e506896962f4b94269cee97c28",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/6b56c44fea31584dc42f102ee074507998a2813d8587b90072179f5a67901709.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Player",
+        "GarageProfileProjection"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Player.GarageProfileProjection",
+      "source_bytes": 9007,
+      "source_sha256": "6b56c44fea31584dc42f102ee074507998a2813d8587b90072179f5a67901709",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/d7a3737623d0f239eacff75bd57f8287c61ace0a8550edcbbddf676ccb15c36c.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Player",
+        "MoneyService"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Player.MoneyService",
+      "source_bytes": 2724,
+      "source_sha256": "d7a3737623d0f239eacff75bd57f8287c61ace0a8550edcbbddf676ccb15c36c",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/f6716ef033718b9c0678e21e3044af39c36dd3c23f1ae7b084359539c3d9721d.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Player",
+        "OnboardingServer"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Player.OnboardingServer",
+      "source_bytes": 7200,
+      "source_sha256": "f6716ef033718b9c0678e21e3044af39c36dd3c23f1ae7b084359539c3d9721d",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/7531d35d47a7c35bb32cc92f2663b3cb62cd6ebcf6368bf13484635051422ff5.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Player",
+        "PlayerProfileSchema"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Player.PlayerProfileSchema",
+      "source_bytes": 10564,
+      "source_sha256": "7531d35d47a7c35bb32cc92f2663b3cb62cd6ebcf6368bf13484635051422ff5",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/79d89c9afd50101ef3ef0c9e6b3bd20374859f2b3a70a3def015d47791171d7d.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Player",
+        "ProfileCompatibility"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Player.ProfileCompatibility",
+      "source_bytes": 1622,
+      "source_sha256": "79d89c9afd50101ef3ef0c9e6b3bd20374859f2b3a70a3def015d47791171d7d",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/a9d1d6cedb8664fb1d8c2ac9604911b1bde64bb26eee4793ca0f2f1ea0cc69e8.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Player",
+        "ProfileCompatibilityServer"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Player.ProfileCompatibilityServer",
+      "source_bytes": 2690,
+      "source_sha256": "a9d1d6cedb8664fb1d8c2ac9604911b1bde64bb26eee4793ca0f2f1ea0cc69e8",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/91cca39f646a7ec02d19cb2971d06de8e704230689f75d6b1a884fdf9da2b20e.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Player",
+        "ProfileServer"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Player.ProfileServer",
+      "source_bytes": 25065,
+      "source_sha256": "91cca39f646a7ec02d19cb2971d06de8e704230689f75d6b1a884fdf9da2b20e",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/424055441fe498d6e323966c985be357fb6ddced227c34219b96392e221174f9.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Player",
+        "ProfileStore"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Player.ProfileStore",
+      "source_bytes": 3653,
+      "source_sha256": "424055441fe498d6e323966c985be357fb6ddced227c34219b96392e221174f9",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/c606122850ec5711dfd25adec68d13642c7e395d9ad7ca940cd0771ac600203b.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Player",
+        "ReceiptProcessor"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Player.ReceiptProcessor",
+      "source_bytes": 2924,
+      "source_sha256": "c606122850ec5711dfd25adec68d13642c7e395d9ad7ca940cd0771ac600203b",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/c0a3d1afb358f29da9734ad70108132b050013b9ac3870aa8f46d03087e5ac68.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Racing",
+        "GlobalLeaderboardServer"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Racing.GlobalLeaderboardServer",
+      "source_bytes": 6089,
+      "source_sha256": "c0a3d1afb358f29da9734ad70108132b050013b9ac3870aa8f46d03087e5ac68",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/bf3fc1419cd8b0dce5b836295825254b567b2ef4eed692fde4384aff945dfe96.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Racing",
+        "MatchmakingServer"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Racing.MatchmakingServer",
+      "source_bytes": 46976,
+      "source_sha256": "bf3fc1419cd8b0dce5b836295825254b567b2ef4eed692fde4384aff945dfe96",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/2a34f32dd93fe22b457535ba1cb9a1cef98fdd01a6f1b1aec6ec3caadb9ff221.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Racing",
+        "PersonalBestServer"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Racing.PersonalBestServer",
+      "source_bytes": 12091,
+      "source_sha256": "2a34f32dd93fe22b457535ba1cb9a1cef98fdd01a6f1b1aec6ec3caadb9ff221",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/c20c8737571196a3f4f82a46d69e5ab8173686989b3ddcd165b38d9319b59611.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Racing",
+        "RaceAssetsServer"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Racing.RaceAssetsServer",
+      "source_bytes": 12994,
+      "source_sha256": "c20c8737571196a3f4f82a46d69e5ab8173686989b3ddcd165b38d9319b59611",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/370f1ec36b25be4e7bd5668e7a34084dba7aea4f921c00887acd80f5a69f971f.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Racing",
+        "RaceDisplayNameServer"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Racing.RaceDisplayNameServer",
+      "source_bytes": 3044,
+      "source_sha256": "370f1ec36b25be4e7bd5668e7a34084dba7aea4f921c00887acd80f5a69f971f",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/705169b2b87838f6a15e247842c4fd35ec8f48b897691658737deb8c41c890c9.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Racing",
+        "RaceIntegrity"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Racing.RaceIntegrity",
+      "source_bytes": 4966,
+      "source_sha256": "705169b2b87838f6a15e247842c4fd35ec8f48b897691658737deb8c41c890c9",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/d17a54695f2a91db1c9d587bd4a3aa0cc6fe9504ec04251db97435994f22b944.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Racing",
+        "RaceRewardsServer"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Racing.RaceRewardsServer",
+      "source_bytes": 15452,
+      "source_sha256": "d17a54695f2a91db1c9d587bd4a3aa0cc6fe9504ec04251db97435994f22b944",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/811aab2faac9b51878a05b16b0dc84861e0fef579db664b0a73fc48a35ba27af.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Racing",
+        "RaceTeleportServer"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Racing.RaceTeleportServer",
+      "source_bytes": 8827,
+      "source_sha256": "811aab2faac9b51878a05b16b0dc84861e0fef579db664b0a73fc48a35ba27af",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/cefb73e210fca8daafbb2786556a826c15d39fb00df1e9e6964130f0ff88ff40.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Racing",
+        "TimeTrialServer"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Racing.TimeTrialServer",
+      "source_bytes": 50871,
+      "source_sha256": "cefb73e210fca8daafbb2786556a826c15d39fb00df1e9e6964130f0ff88ff40",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/bfd948468904372a6db79da0d50865c55bbd421228ba131584346c378e86b003.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Vehicles",
+        "DriveRewardsServer"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+      "source_bytes": 19471,
+      "source_sha256": "bfd948468904372a6db79da0d50865c55bbd421228ba131584346c378e86b003",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/df1cd08ea911aad57e3ef9875b6b3bd3af856af1dd16de31d3445cbf148118ec.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Vehicles",
+        "DriverSeatServer"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Vehicles.DriverSeatServer",
+      "source_bytes": 6753,
+      "source_sha256": "df1cd08ea911aad57e3ef9875b6b3bd3af856af1dd16de31d3445cbf148118ec",
+      "tags": []
+    },
+    {
+      "attributes": {"Phase":{"type":"string","value":"AM"}},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/b1b15f500291d0d9eddec6d4f6a3aecac0ae84781c194d2976709874482f410e.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Vehicles",
+        "Performance",
+        "VehiclePerformance"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Vehicles.Performance.VehiclePerformance",
+      "source_bytes": 2053,
+      "source_sha256": "b1b15f500291d0d9eddec6d4f6a3aecac0ae84781c194d2976709874482f410e",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/283da88946cb4e198a4941669467bda455bf95d4758f7705f7850b676b49817f.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Vehicles",
+        "VehicleAccessServer"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Vehicles.VehicleAccessServer",
+      "source_bytes": 4407,
+      "source_sha256": "283da88946cb4e198a4941669467bda455bf95d4758f7705f7850b676b49817f",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/472431ed12207e4fd58f598376c215e13c91374728c2b0b616c54c03b368f2fb.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Vehicles",
+        "VehicleCollisionServer"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Vehicles.VehicleCollisionServer",
+      "source_bytes": 7617,
+      "source_sha256": "472431ed12207e4fd58f598376c215e13c91374728c2b0b616c54c03b368f2fb",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/4d2992f2b1ad02c0889c5a5ea158bee28e17625c38f9d4de46c03f4728c58251.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Vehicles",
+        "VehiclePerformanceServer"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.Vehicles.VehiclePerformanceServer",
+      "source_bytes": 2269,
+      "source_sha256": "4d2992f2b1ad02c0889c5a5ea158bee28e17625c38f9d4de46c03f4728c58251",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/d39b8db4407c1133b1d212b1d6086038a78918864f1f32ab5c966816e50f888d.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "World",
+        "FreeRoamTeleportServer"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.World.FreeRoamTeleportServer",
+      "source_bytes": 6387,
+      "source_sha256": "d39b8db4407c1133b1d212b1d6086038a78918864f1f32ab5c966816e50f888d",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/b99f991cee1ebe8a04a5047b6501ed41f46b606421ff8f19fac5f36d2dede239.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "World",
+        "LightingServer"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.World.LightingServer",
+      "source_bytes": 9737,
+      "source_sha256": "b99f991cee1ebe8a04a5047b6501ed41f46b606421ff8f19fac5f36d2dede239",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "ModuleScript",
+      "disabled": false,
+      "file": "roblox/source_store/8bf6682634157d5d143b7ba59856ac82048ccbcf19e089031e08ef793b2545de.lua",
+      "path_parts": [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "World",
+        "TrafficLightServer"
+      ],
+      "properties": [],
+      "roblox_path": "ServerStorage.Modules.Game.World.TrafficLightServer",
+      "source_bytes": 1470,
+      "source_sha256": "8bf6682634157d5d143b7ba59856ac82048ccbcf19e089031e08ef793b2545de",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "LocalScript",
+      "disabled": false,
+      "file": "roblox/source_store/edceadf15ee693c426fe478caf0cc945feea95391fe68e6c9010825e4b6e0d23.lua",
+      "path_parts": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "ClientBase"
+      ],
+      "properties": {"Enabled":{"type":"boolean","value":true},"RunContext":{"text":"Enum.RunContext.Legacy","type":"EnumItem"}},
+      "roblox_path": "StarterPlayer.StarterPlayerScripts.ClientBase",
+      "source_bytes": 7471,
+      "source_sha256": "edceadf15ee693c426fe478caf0cc945feea95391fe68e6c9010825e4b6e0d23",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "Script",
+      "disabled": false,
+      "file": "roblox/source_store/92dbb389a118dad07d36380eb341c751407ef96072b523e7a436fd54673cf618.lua",
+      "path_parts": [
+        "Workspace",
+        "FBX - 3D Lady Head v2",
+        "Script"
+      ],
+      "properties": {"Enabled":{"type":"boolean","value":true},"RunContext":{"text":"Enum.RunContext.Legacy","type":"EnumItem"}},
+      "roblox_path": "Workspace.FBX - 3D Lady Head v2.Script",
+      "source_bytes": 377,
+      "source_sha256": "92dbb389a118dad07d36380eb341c751407ef96072b523e7a436fd54673cf618",
+      "tags": []
+    },
+    {
+      "attributes": {},
+      "class_name": "Script",
+      "disabled": false,
+      "file": "roblox/source_store/92dbb389a118dad07d36380eb341c751407ef96072b523e7a436fd54673cf618.lua",
+      "path_parts": [
+        "Workspace",
+        "FBX - 3D Vehicle Holographic v3",
+        "Script"
+      ],
+      "properties": {"Enabled":{"type":"boolean","value":true},"RunContext":{"text":"Enum.RunContext.Legacy","type":"EnumItem"}},
+      "roblox_path": "Workspace.FBX - 3D Vehicle Holographic v3.Script",
+      "source_bytes": 377,
+      "source_sha256": "92dbb389a118dad07d36380eb341c751407ef96072b523e7a436fd54673cf618",
+      "tags": []
+    }
+  ],
+  "missing_roots": [],
+  "place_id": 71491191583884,
+  "property_schema": {
+    "BasePart": [
+      "CFrame",
+      "Size",
+      "Anchored",
+      "CanCollide",
+      "CanTouch",
+      "CanQuery",
+      "CollisionGroup",
+      "Transparency",
+      "CastShadow",
+      "Material",
+      "Color"
+    ],
+    "BaseScript": [
+      "Enabled",
+      "RunContext"
+    ],
+    "GuiObject": [
+      "Position",
+      "Size",
+      "AnchorPoint",
+      "Visible",
+      "ZIndex",
+      "BackgroundTransparency"
+    ],
+    "Light": [
+      "Enabled",
+      "Brightness",
+      "Color",
+      "Shadows"
+    ],
+    "Lighting": [
+      "ClockTime",
+      "Brightness",
+      "Ambient",
+      "OutdoorAmbient"
+    ],
+    "Model": [
+      "PrimaryPart",
+      "ModelStreamingMode"
+    ],
+    "PointLight": [
+      "Range"
+    ],
+    "ProximityPrompt": [
+      "Enabled",
+      "MaxActivationDistance",
+      "HoldDuration",
+      "RequiresLineOfSight"
+    ],
+    "ScreenGui": [
+      "Enabled",
+      "ResetOnSpawn",
+      "IgnoreGuiInset",
+      "DisplayOrder"
+    ],
+    "SpotLight": [
+      "Range",
+      "Angle",
+      "Face"
+    ],
+    "StarterGui": [
+      "ScreenOrientation"
+    ],
+    "SurfaceLight": [
+      "Range",
+      "Angle",
+      "Face"
+    ],
+    "ValueBase": [
+      "Value"
+    ],
+    "Workspace": [
+      "StreamingEnabled",
+      "Gravity"
+    ]
+  },
+  "request": {
+    "roots": [
+      [
+        "ReplicatedStorage",
+        "Remotes",
+        "Activities"
+      ],
+      [
+        "ReplicatedStorage",
+        "Config",
+        "Activities"
+      ],
+      [
+        "ServerStorage",
+        "Modules",
+        "Game",
+        "Activities"
+      ],
+      [
+        "ReplicatedStorage",
+        "Modules",
+        "Game",
+        "Activities"
+      ],
+      [
+        "ReplicatedStorage",
+        "Config",
+        "Garage",
+        "Interior"
+      ],
+      [
+        "Workspace",
+        "World",
+        "Jobs"
+      ]
+    ]
+  },
+  "schema_revision": 1,
+  "script_count": 205,
+  "services_scanned": [
+    "ReplicatedFirst",
+    "ReplicatedStorage",
+    "ServerScriptService",
+    "StarterPlayer",
+    "StarterGui",
+    "SoundService",
+    "Workspace",
+    "ServerStorage",
+    "Lighting"
+  ]
+}
