@@ -1,0 +1,16 @@
+{
+  "phase": "P3 RACE-01 race integrity",
+  "date": "2026-09-26",
+  "lane": "High-Risk",
+  "before_capture": "roblox/captures/arch-p2-after/capture.json",
+  "after_capture": "roblox/captures/arch-p3-after/capture.json",
+  "scope": "added Racing.RaceIntegrity; changed TimeTrialServer (7 edits) and MatchmakingServer (4 edits); 4 new attributes on ServerStorage.Config.Racing (Mode=Log, MaxSpeedMph=400, ToleranceStuds=24, JitterSeconds=0.35)",
+  "review": "delivery-reviewer: no blockers; WARNs addressed (jitter allowance, limit coupled to Dynamics caps, contract wording); whole-session rejection accepted as product rule",
+  "tooling": "p3/tests.lua 8/8 PASS (injected fake config)",
+  "installation": "AUDIT before -> APPLY 7 -> ROLLBACK 7 -> APPLY 7",
+  "api_synthetic": "Studio sandbox, time trial ShiftedCanalSprint, car moved by the owning client through all 15 real gates (touches server-detected): 200 mph plausible run -> finish, reward, PB, 0 RACE-01 warnings; 5000 mph teleport run in Log -> 11 flagged segments, still rewarded (log-only); runtime Enforce: teleport run -> RewardGranted=false, IsPersonalBest=false, IntegrityRejected=true, 'Run not counted'; 250 mph clean run in Enforce -> reward granted, not rejected",
+  "not_verified": "real keyboard driving through every gate (route barriers make straight-line automation impractical); matchmaking multi-player race; real-session Log telemetry at top speed",
+  "decision": "Place left in Log mode. Switch ServerStorage.Config.Racing.RaceIntegrityMode to Enforce after a few real sessions show no [RACE-01] warnings for legitimate play.",
+  "incidental_finding": "PersonalBestServer writes personal bests to its DataStore even in the Studio no-save sandbox; synthetic test finishes today may be stored as the dev account PB (global leaderboard disabled).",
+  "rollback": "set RaceIntegrityMode=Off (instant), or installer ROLLBACK with scripts/architecture/p3/spec.json against arch-p2-after"
+}

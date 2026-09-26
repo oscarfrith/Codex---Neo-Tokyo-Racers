@@ -1,0 +1,90 @@
+{
+ "task": "Architecture P3: RACE-01 server-side race integrity",
+ "lane": "High-Risk",
+ "contract": "Goal: detect implausible checkpoint segments (teleports/impossible speed) in time trials and matchmaking races and, in Enforce mode, withhold cash reward, personal best and global leaderboard submission for flagged runs while still letting the run finish. Owner: new ServerStorage.Modules.Game.Racing.RaceIntegrity (pure check + per-run state); TimeTrialServer and MatchmakingServer call it at run start, each accepted gate and finish. Server-only config attributes on ServerStorage.Config.Racing: RaceIntegrityMode Off|Log|Enforce (installed as Log), RaceIntegrityMaxSpeedMph 400 (> 320 mph absolute vehicle safety cap), RaceIntegrityToleranceStuds 24 (+ half of both gate sizes), RaceIntegrityJitterSeconds 0.35 (replication/hitch allowance); effective limit = max(RaceIntegrityMaxSpeedMph, 1.25 x highest Config.Vehicles.Dynamics AbsoluteTopSpeedSafetyMph/PhysicalTopSpeedMaxMph). Invariant: straight-line gate-to-gate distance <= limit*(elapsed+jitter) + tolerance for any legitimate run; resets return to the last gate (TimeTrial after a lap wrap: grid 1, ~14 studs from the finish on current routes) so stay plausible. One violation withholds the whole session result (accepted product rule). Preserved: gate order/debounce, splits, lap logic, results payload (adds IntegrityRejected), rewards for accepted runs. No client, remote, saved-data schema or UI change. Rollback: ROLLBACK, or set mode Off instantly.",
+ "verification": "tooling (pure segment tests), installation, race (driven time trial with resets), api (simulated teleport between gates in sandbox), errors",
+ "operations": [
+  {
+   "kind": "module",
+   "path": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Racing",
+    "RaceIntegrity"
+   ],
+   "class": "ModuleScript",
+   "file": "scripts/architecture/p3/RaceIntegrity.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Racing",
+    "TimeTrialServer"
+   ],
+   "file": "scripts/architecture/p3/after/TimeTrialServer.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Racing",
+    "MatchmakingServer"
+   ],
+   "file": "scripts/architecture/p3/after/MatchmakingServer.lua"
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ServerStorage",
+    "Config",
+    "Racing"
+   ],
+   "class": "Folder",
+   "key": "RaceIntegrityMode",
+   "value": "Log",
+   "before": null
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ServerStorage",
+    "Config",
+    "Racing"
+   ],
+   "class": "Folder",
+   "key": "RaceIntegrityMaxSpeedMph",
+   "value": 400,
+   "before": null
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ServerStorage",
+    "Config",
+    "Racing"
+   ],
+   "class": "Folder",
+   "key": "RaceIntegrityToleranceStuds",
+   "value": 24,
+   "before": null
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ServerStorage",
+    "Config",
+    "Racing"
+   ],
+   "class": "Folder",
+   "key": "RaceIntegrityJitterSeconds",
+   "value": 0.35,
+   "before": null
+  }
+ ]
+}
