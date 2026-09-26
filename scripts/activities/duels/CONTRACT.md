@@ -87,8 +87,8 @@ Finished, Forfeit, Draw, Expired, Declined: terminal
       - losers' entries are **not** touched yet;
       - the duel is forgotten, cars are released and activity records are ended.
    2. **Every loser gets a durable Lost marker before any pot is paid (B1b).** This is a DataStore `UpdateAsync` with 3 tries. It applies whether or not the loser's entry could have been deleted, because the loser's saved profile may still hold it.
-   3. If all markers are written, the winner's `Owed` is raised to the pot, which needs the winner's live profile. Only then are the losers' entries deleted where their profiles are live; for offline losers the marker covers it.
-   4. If any marker fails, or the winner is gone: the written markers are removed, and the duel **settles as refunds**. Each player is owed and paid their own stake. If a marker can't be removed, that loser's stake is burned and `BURNED` is logged.
+   3. If all markers are written, the winner's `Owed` is raised to the pot, which needs the winner's live profile. Then the winner is **force-saved** through `SaveNow`, with short retries for up to 5 s. Only after that save succeeds are the losers' entries deleted where their profiles are live; for offline losers the marker covers it.
+   4. If any marker write fails, or the winner is gone, or the winner's save fails: `RemoveAsync` (idempotent) is called for **every** loser whose marker write was attempted, because a write that errored may still have landed. The winner's `Owed` is reset to their own stake, and the duel **settles as refunds**. Each player is owed and paid their own stake. If a marker can't be removed, that loser's stake is burned and `BURNED` is logged.
    5. Pay Cash alone (GrantCash does not yield), then delete that entry in the same thread. Pay XP afterwards with CommandId `<id>:xp`.
    6. Push `Duel:Result {DuelId, Outcome, Reason, WinnerUserId, Cash, Xp, Stake}`.
    - All ledger and pay steps resolve players with `Players:GetPlayerByUserId`, never a stored Player object, so a same-server rejoin is handled (R3).
@@ -133,7 +133,9 @@ Finished, Forfeit, Draw, Expired, Declined: terminal
 Remaining windows:
 
 - **(a) A save lands between a cash grant and its entry delete.** Only a Busy lock inside GrantCash could cause this, because XP is granted separately afterwards. The result is one duplicated payout on recovery.
-- **(b) A marker write succeeded but reported failure, and the undo also failed.** The loser's stake is burned (`BURNED` is logged). This fails closed.
+- **(b) A marker undo fails.** Undo runs for every attempted marker, including writes that errored but may have landed. If a `RemoveAsync` fails, that loser's stake is burned (`BURNED` is logged). This fails closed.
+- **(b2) The winner's force-save reports failure but actually landed, then the server crashes before the next save.** The saved winner claim is then the pot, while the markers were removed, so the loser would also be refunded on recovery. This needs a misreported save **and** a crash in the gap before the reset own-stake claim is saved. It is not closed and is accepted as extremely narrow.
+- **(b3) A crash after the markers are written but before the winner's save.** The winner's saved claim is still their own stake from the synchronous step, and the loser's entry is marked Lost. The loser's stake is burned rather than minted. This fails closed.
 - **(c) A server crash during the countdown, before the forced saves finish.** The earlier save state applies to both players consistently: a debit that was saved has its entry and is refunded.
 - **(d) A player with an `Owed = 0` entry rejoins within the deferral window.** Recovery waits (`task.delay`). If they leave again first, the next join retries.
 - **(e) Studio without DataStore access** (unpublished place or API access off). Marker writes fail, so every staked Finished or Forfeit **settles as refunds**. Marker reads fail, so old unsettled entries are retried rather than refunded. Test the pot path in a published place with Studio API access on.
@@ -144,7 +146,7 @@ Remaining windows:
 | Attribute | Default | Bounds | Owner |
 |---|---|---|---|
 | Enabled | true | bool | foundation |
-| StakesEnabled | true | bool (AND server flag `EnableDuelStakes`, default off) | foundation |
+| StakesEnabled | false when missing (the foundation installs true) | bool (AND server flag `EnableDuelStakes`, default off) | foundation |
 | Stakes | "0,5000,25000,100000" | whole, 0–1,000,000, 0 always added | foundation |
 | StakeMinRank | 3 | 1–100 | foundation |
 | ChallengeRange | 60 | 10–300 | this delivery |

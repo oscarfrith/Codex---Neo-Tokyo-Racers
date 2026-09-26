@@ -343,6 +343,11 @@ check("min recover age covers countdown + timeout", DuelRules.MIN_RECOVER_AGE >=
 check("recover id deterministic", DuelRules.recoverCommandId("duel_1-abc", 7) == "DuelRecover:duel_1-abc:7")
 check("recover id differs from pot/refund ids", DuelRules.recoverCommandId("d", 7) ~= DuelRules.refundCommandId("d", 7))
 check("lost marker key per user", DuelRules.lostMarkerKey("d", 1) ~= DuelRules.lostMarkerKey("d", 2))
+-- DataStore keys are limited to 50 chars. Realistic worst case: ActivityService.NewId("duel") =
+-- "duel_<counter>_<8 hex>" with a 10-digit counter, plus DuelService's "-<12-char JobId tag>", plus a 10-digit userId.
+local worstDuelId = "duel_" .. string.rep("9", 10) .. "_" .. string.rep("a", 8) .. "-" .. string.rep("b", 12)
+local worstKey = DuelRules.lostMarkerKey(worstDuelId, 9999999999)
+check("lost marker key fits the 50-char DataStore limit", #worstKey <= 50, #worstKey .. " chars")
 
 -- Freeze at GO (B2): re-entering during the countdown unanchors/moves the car ---------------------------------
 local frozenAt = Vector3.new(100, 101, 100)

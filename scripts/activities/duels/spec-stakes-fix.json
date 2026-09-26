@@ -1,0 +1,11 @@
+{
+  "task": "Duel stakes: undo every attempted loser marker; force-save the winner before paying the pot; Studio-only stakes flag for testing",
+  "lane": "High-Risk",
+  "contract": "Round-3 review follow-ups (fail-closed): refundsInstead removes markers for every attempted loser; after raising the winner's DuelEscrow Owed to the pot the winner is force-saved (bounded 5 s) before loser entries are deleted and the pot is paid, else markers are undone and both get their own stake. Adds ServerStorage.Config Flag_EnableDuelStakes=true, a Studio-only FeatureFlags override (ignored on live servers) so stakes can be tested; production remains off until the dashboard flag is set.",
+  "verification": "183 pure tests; AUDIT/APPLY; 2-player Studio staked duel (win, forfeit) with DataStore checks of DuelEscrow and NTR_DuelLostStakes_v1.",
+  "operations": [
+    { "kind": "source", "path": ["ServerStorage", "Modules", "Game", "Activities", "DuelService"], "file": "scripts/activities/duels/DuelService.lua" },
+    { "kind": "source", "path": ["ServerStorage", "Modules", "Game", "Activities", "DuelRules"], "file": "scripts/activities/duels/DuelRules.lua" },
+    { "kind": "attribute", "path": ["ServerStorage", "Config"], "key": "Flag_EnableDuelStakes", "value": true }
+  ]
+}

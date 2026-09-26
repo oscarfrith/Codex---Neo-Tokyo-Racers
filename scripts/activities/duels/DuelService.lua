@@ -36,6 +36,7 @@ local TICK_SECONDS = 0.1
 local LEDGER_KEY = "DuelEscrow"
 local MARKER_STORE = "NTR_DuelLostStakes_v1"
 local FROZEN_TOLERANCE_STUDS = 5
+local WINNER_SAVE_SECONDS = 5
 local PROFILE_WAIT_SECONDS = 60
 
 -- Duel ids must be unique across servers (they key saved escrow entries and markers).
@@ -447,10 +448,11 @@ local function settle(duel, outcome, winnerId, why, synchronous)
 		end
 	end
 
-	local function refundsInstead(written)
-		-- Undo any markers, then pay both players their own stake back (the saved entries say the same).
+	local function refundsInstead(attempted)
+		-- Undo the markers of EVERY loser whose write was attempted: a write that errored may still have landed.
+		-- RemoveAsync is idempotent; only a failed removal of a possibly-written marker burns that stake.
 		local stuck = {}
-		for _, userId in ipairs(written) do
+		for _, userId in ipairs(attempted) do
 			if not removeLostMarker(duel.Id, userId) then stuck[userId] = true end
 		end
 		for _, payout in ipairs(payouts) do
@@ -479,20 +481,26 @@ local function settle(duel, outcome, winnerId, why, synchronous)
 
 	local function run()
 		if #losers > 0 then
-			local written, potOk = {}, true
+			local attempted, potOk = {}, true
 			for _, userId in ipairs(losers) do
-				if writeLostMarker(duel.Id, userId) then table.insert(written, userId) else potOk = false end
+				table.insert(attempted, userId)
+				if not writeLostMarker(duel.Id, userId) then potOk = false end
 			end
 			if potOk then
 				-- Raise the winner's saved claim to the pot (fails if they are gone or their profile closed).
 				potOk = steps[winnerId] ~= nil and ledgerOwe(Players:GetPlayerByUserId(winnerId), duel.Id, steps[winnerId].Amount)
 			end
 			if potOk then
+				-- Persist the raised claim before anything else (a crash now must not leave markers without it).
+				potOk = forceSave(winnerId, Workspace:GetServerTimeNow() + WINNER_SAVE_SECONDS)
+				if not potOk then warn(tag(duel.Id .. " winner force-save failed after markers; settling as refunds")) end
+			end
+			if potOk then
 				for _, userId in ipairs(losers) do
 					ledgerDelete(Players:GetPlayerByUserId(userId), duel.Id) -- offline losers: the marker covers it
 				end
 			else
-				refundsInstead(written)
+				refundsInstead(attempted)
 			end
 		end
 		local paid = {}
