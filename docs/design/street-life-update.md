@@ -319,13 +319,42 @@ Values are attributes read with ConfigReader (finite and bounded). Server-only v
 
 New Cash sinks: duel stakes (zero-sum), wraps for Cash, horns for Cash (some), and Circuit Pass cosmetics do not add to Cash inflow. A proper sink pass (for example repaint fees or garage decor tiers) should accompany Step 3.
 
-## 9. Open design questions
+## 9. Design decisions (Oscar, 2026-09-26)
 
-1. **Robux for Cash:** should Cash packs be sold at all, or should Robux go only to VIP, gamepasses, the pass and cosmetics? Cash packs earn well, but they shorten the $10M Zenith chase.
-2. **Taxi fares:** should Sky Taxi use NPC fares (always available, more build work), or should it be player-only at first (cheaper, but relies on busy servers)? The recommendation is NPC fares plus player requests.
-3. **Duel stakes:** are Cash stakes wanted, or should duels stay XP-only? Stakes add excitement but are the only High-Risk piece of Step 3, and they need the ECON-01 transaction rule first.
+1. **Robux for Cash: yes.** Cash packs work like GTA Shark Cards. They use the existing Cash Store modal with four tiers, which could be themed as "Cred Chips". Pack sizes are set in the Step 4 economy review.
+2. **Sky Taxi uses computer-controlled (NPC) fares,** plus player requests.
+3. **Street Duels allow Cash bets.** The duel is built as a validate-then-debit transaction from the start, so it does not inherit the ECON-01 problem.
 
-## 10. Mockups
+## 10. Prototype priority (2026-09-26)
+
+The game is a prototype, so live-ops (Daily Dispatch, the Circuit Pass and dashboard tuning) waits. Future-proofing means building a shared **activity core** once, with every job, duel or event plugged into it:
+
+- a server state machine (Idle → Offered → Active → Complete / Cancelled / Failed) with cleanup on exit, despawn, race join, teleport and leave;
+- payouts through EconomyServer commands with activity-scoped CommandIds;
+- an XP hook into Driver Rank;
+- world markers found by tag;
+- the existing route-guide presentation;
+- one job HUD strip.
+
+Each job then only adds its own rules.
+
+**Build order:**
+
+| Order | Item | Why now |
+|---|---|---|
+| 0 | Fix ECON-01 (validate-before-debit) and PB-01 | Duel bets and Cash packs both rely on the transaction rule; PB-01 is a quick win |
+| 1 | Activity core + Driver Rank (XP, rank, XP bar, rank-up card) | The foundation every RP activity pays into |
+| 2 | Horn, light flash and **Driver Tag** | Cheap, gives immediate expression, and is the duel handshake and on-duty display |
+| 3 | **Courier** | The first activity on the core; proves hubs, drops and route-guide reuse |
+| 4 | **Passenger seats + Sky Taxi (NPC fares)** | The biggest RP feature |
+| 5 | **Street Duels with Cash bets** | High-Risk: goes to delivery-reviewer |
+| Later | Style Meter, Speed Cams, Supply Pods/Night Rush, garage visits, Cash packs/gamepasses (after DATA-01/02), Daily Dispatch, Circuit Pass | Gameplay polish and live-ops once the prototype stabilises |
+
+**Driver Tag:** an overhead BillboardGui above the vehicle and the on-foot avatar. It shows the display name, a rank chip in tier colour, and a status line such as "ON DUTY · SKY TAXI", "COURIER RUN" or "OPEN TO DUELS". It uses the Panel/PanelDeep tokens, Michroma, a pink Outline and a cyan status line. It is distance-culled at 150 studs and hidden during races, where race display names already own this role.
+
+**UI fit rule:** all new UI uses UITheme tokens, the shared modal shell, SharedTopNotificationUI, GarageComponents/ResponsiveUIFoundation and the existing HUD button row. The only new widgets are the XP bar, the rank-up card, the job HUD strip and the Driver Tag. Mock each one against the approved free-roam concept before building it.
+
+## 11. Mockups
 
 None have been accepted yet. Suggested first mockups, to be iterated in the Claude app and saved under `assets/ui/mockups/street_life/` once accepted:
 
