@@ -1,0 +1,16 @@
+{
+  "phase": "P5 GarageServer split I",
+  "date": "2026-09-26",
+  "lane": "High-Risk",
+  "before_capture": "roblox/captures/arch-p4-after/capture.json",
+  "after_capture": "roblox/captures/arch-p5-after/capture.json",
+  "scope": "added Garage.GarageProfileView, GarageCapacity, GarageCatalogLookup, GarageCatalogService, GarageClientProfile (verbatim factory extractions); GarageServer 2767 -> 1865 lines; no other deltas",
+  "review": "delivery-reviewer (independent scope-aware resolver): all five ranges byte-identical, ctx lists exactly equal to outer dependencies, exports complete, no shared mutable state, order and Luau limits fine. ECON-01 designs (profile snapshot/restore; money-scope refund) were rejected in review (could mint cash or grant free items) and removed; ECON-01 remains open.",
+  "tooling": "luadeps.py range analysis asserts (free vars declared earlier, none assigned, no stale exports)",
+  "installation": "AUDIT (all 6 compile) -> APPLY 6 -> ROLLBACK 6 -> APPLY 6",
+  "api_golden": "18-step GarageInvoke sequence in fresh no-save sandbox (catalogue, cockpit/module/cosmetic/neon/upgrade purchases, colours, rejections, select, spawn/exit/re-enter/despawn, known-revision catalogue): canonical replies identical before vs after (every length and FNV hash equal; golden-before.txt == golden-after.txt)",
+  "errors": "server console clean; all 26 server features ready",
+  "environment_note": "Studio Play viewport was not rendering (RenderStepped 0 FPS) so the loading-screen tween could not complete; garage API tests do not depend on the start screen. Not caused by this phase.",
+  "not_verified": "garage UI purchase by a user (API parity only)",
+  "rollback": "installer ROLLBACK with scripts/architecture/p5/spec.json against arch-p4-after"
+}

@@ -1,0 +1,79 @@
+{
+ "task": "Architecture P5: GarageServer split I (profile view, capacity, catalogue lookup/service, client profile)",
+ "lane": "High-Risk",
+ "contract": "Goal: reduce the GarageServer closure by moving five analyser-verified ranges verbatim into factory ModuleScripts under ServerStorage.Modules.Game.Garage (GarageProfileView, GarageCapacity, GarageCatalogLookup, GarageCatalogService, GarageClientProfile). Each module receives only its read-only free variables through ctx and returns the same locals, which GarageServer rebinds under identical names at the same position, so call order and semantics are unchanged. Proven per range: no free variable assigned inside, no export reassigned inside, no dependency reassigned later, all dependencies declared earlier; forward-declared attachDefaultModuleInstancesToCurrentVehicle stays in GarageServer. ECON-01 (money kept after an internal failure that follows a debit) is intentionally NOT changed: a safe fix needs per-path atomic transactions (reviewed designs could mint cash or grant free items) and stays open. Preserved: remote, actions, replies, messages, dirty flags, persistence commit, catalogue revision semantics. No saved-data or schema change. Rollback: installer ROLLBACK (removes the 5 modules, restores GarageServer).",
+ "verification": "tooling (range analysis asserts), installation (AUDIT compile, APPLY/ROLLBACK/APPLY), api golden replies for a fixed action sequence before vs after (ids normalised), catalogue revision/size equal, garage UI purchase, errors",
+ "operations": [
+  {
+   "kind": "module",
+   "path": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Garage",
+    "GarageProfileView"
+   ],
+   "class": "ModuleScript",
+   "file": "scripts/architecture/p5/after/GarageProfileView.lua"
+  },
+  {
+   "kind": "module",
+   "path": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Garage",
+    "GarageCapacity"
+   ],
+   "class": "ModuleScript",
+   "file": "scripts/architecture/p5/after/GarageCapacity.lua"
+  },
+  {
+   "kind": "module",
+   "path": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Garage",
+    "GarageCatalogLookup"
+   ],
+   "class": "ModuleScript",
+   "file": "scripts/architecture/p5/after/GarageCatalogLookup.lua"
+  },
+  {
+   "kind": "module",
+   "path": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Garage",
+    "GarageCatalogService"
+   ],
+   "class": "ModuleScript",
+   "file": "scripts/architecture/p5/after/GarageCatalogService.lua"
+  },
+  {
+   "kind": "module",
+   "path": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Garage",
+    "GarageClientProfile"
+   ],
+   "class": "ModuleScript",
+   "file": "scripts/architecture/p5/after/GarageClientProfile.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Garage",
+    "GarageServer"
+   ],
+   "file": "scripts/architecture/p5/after/GarageServer.lua"
+  }
+ ]
+}

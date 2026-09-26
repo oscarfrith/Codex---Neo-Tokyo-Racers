@@ -1,0 +1,18 @@
+01_GetInitial len=173207 h=36345328 true|nil
+02_BuyCockpit len=7286 h=27193727 true|Cockpit instance purchased.
+03_BuyModule len=9197 h=5944b8f8 true|Module purchased and equipped.
+04_BuyCosmetic len=9192 h=63dcdba8 true|Vehicle cosmetic unlocked.
+05_CosmeticColour len=71 h=d8111490 true|Underglow colour updated.
+06_BuyNeon len=9184 h=3ee660c8 true|Neon unlocked.
+07_Upgrade len=9414 h=5592fb90 true|AirflowChannels upgraded for $3850.
+08_CockpitColour len=9282 h=8966e600 true|Vehicle colour updated.
+09_Unaffordable len=9276 h=144682c8 false|Not enough cash.
+10_BadField len=63 h=39cf0408 false|Unknown request field.
+11_UnknownCockpit len=9278 h=742d6670 false|Cockpit not found.
+12_GetInitial len=179057 h=94dfea38 true|nil
+13_Select len=9276 h=ec57cba7 true|Vehicle selected.
+14_Spawn len=9275 h=60ccefa0 true|Vehicle spawned.
+15_Exit len=9285 h=ae6c2e10 true|Exited and parked vehicle.
+16_ReEnter len=9275 h=bcb6d2f0 true|Entered vehicle.
+17_Despawn len=9277 h=268afd7f true|Vehicle despawned.
+18_GetInitialKnownRev len=9292 h=4aaded27 true|nil
