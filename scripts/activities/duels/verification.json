@@ -1,0 +1,14 @@
+{
+  "task": "Street Duels (Street Life 4.8) — installed with Cash stakes OFF (EnableDuelStakes flag default false)",
+  "date": "2026-09-26",
+  "place": "Space Racers v2 (71491191583884)",
+  "authoring": "Agent C (parallel), three review rounds: round 1 (memory-only escrow, Log-mode integrity) and round 2 (divergent saves could mint a stake; countdown exploit) fixed; round 3 focused on stakes in progress",
+  "before_capture": "roblox/captures/activities-foundation-after/capture.json",
+  "after_capture": "roblox/captures/activities-duels-after/capture.json",
+  "scope": "DuelRules/DuelService/DuelClientView stub bodies; Duels config attributes. Stakes path adds saved profile.DuelEscrow and DataStore NTR_DuelLostStakes_v1 (only exercised when stakes are enabled)",
+  "installer": "AUDIT before; APPLY 21; ROLLBACK 21; APPLY; AUDIT after",
+  "pure_tests": "182/182",
+  "play_single_client": "all ServerBase/ClientBase modules ready; DuelChallenge preview without a valid target -> 'That driver is no longer here.'; console clean",
+  "not_verified": "any real duel (needs 2 clients); stakes (flag off; need published place with DataStores to test save gate and markers); user confirmation",
+  "evidence_type": "agent-verified install + startup only"
+}

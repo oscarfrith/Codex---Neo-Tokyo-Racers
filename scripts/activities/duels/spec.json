@@ -1,0 +1,29 @@
+{
+  "task": "Street Duels with Cash stakes (Agent C, Street Life step 2)",
+  "lane": "High-Risk",
+  "contract": "scripts/activities/duels/CONTRACT.md. Goal: two free-roam drivers within 60 studs can race point-to-point to a random road finish for XP and an optional Cash stake (Free/$5k/$25k/$100k; stakes need rank >= StakeMinRank, config StakesEnabled and server flag EnableDuelStakes, default off). Owners: DuelService (server state, escrow, settlement, recovery), DuelRules (pure decisions), DuelClientView (presentation/intents only). Cash moves only through ActivityPayout.Debit (after full re-validation, both debits in one no-yield tick) and ActivityPayout.Pay (DuelPot/DuelRefund/DuelRecover with deterministic CommandIds, settled once). NEW SAVED FIELD: profile.DuelEscrow[duelId] = {Owed, Stake, At} (additive unknown key preserved by ProfileServer; SchemaVersion unchanged), written in the same tick as each debit; both profiles are force-saved (ProfileServiceBindings.SaveNow) during the countdown and a staked duel races only if both saves succeed (else Draw). NEW DATASTORE: NTR_DuelLostStakes_v1 (key <duelId>:<userId>, value Lost, no expiry); a loser's stake is paid to the winner only after its Lost marker is written, otherwise the duel settles as refunds. Leftover entries are recovered on join (Owed paid; unsettled stakes refunded after 10 min unless marked Lost). Integrity: staked duels always enforce (flagged racer forfeits); cars must still be frozen in place at GO. Pair cap PairStakeLimitPerHour is per server. No new remotes, HUD sources or shared-module edits. Rollback: flags stop new duels/stakes; DuelService must stay installed while DuelEscrow entries may exist (recovery). Done when: pure tests pass; synthetic server harness shows escrow conservation for win/forfeit/draw/timeout/close/save-failure; 2-player Studio checklist passes; delivery-reviewer approves.",
+  "verification": "scripts/activities/duels/tests.lua (pure); synthetic server harness and 2-player Studio checklist in CONTRACT.md; console scan for [DUEL] PAYOUT FAILED / UNPAID and [RACE-01]. Recovery: rejoin after a mid-duel shutdown refunds each stake once; forfeit-by-leave does not refund the leaver (published place with DataStore access); re-entering the car during the countdown forfeits at GO.",
+  "operations": [
+    {"kind": "source", "path": ["ServerStorage", "Modules", "Game", "Activities", "DuelRules"], "file": "scripts/activities/duels/DuelRules.lua"},
+    {"kind": "source", "path": ["ServerStorage", "Modules", "Game", "Activities", "DuelService"], "file": "scripts/activities/duels/DuelService.lua"},
+    {"kind": "source", "path": ["ReplicatedStorage", "Modules", "Game", "Activities", "DuelClientView"], "file": "scripts/activities/duels/DuelClientView.lua"},
+    {"kind": "attribute", "path": ["ReplicatedStorage", "Config", "Activities", "Duels"], "key": "ChallengeRange", "value": 60},
+    {"kind": "attribute", "path": ["ReplicatedStorage", "Config", "Activities", "Duels"], "key": "ChallengeTimeout", "value": 12},
+    {"kind": "attribute", "path": ["ReplicatedStorage", "Config", "Activities", "Duels"], "key": "ChallengeCooldown", "value": 20},
+    {"kind": "attribute", "path": ["ReplicatedStorage", "Config", "Activities", "Duels"], "key": "MuteAfter", "value": 3},
+    {"kind": "attribute", "path": ["ReplicatedStorage", "Config", "Activities", "Duels"], "key": "MuteSeconds", "value": 300},
+    {"kind": "attribute", "path": ["ReplicatedStorage", "Config", "Activities", "Duels"], "key": "CountdownSeconds", "value": 3},
+    {"kind": "attribute", "path": ["ReplicatedStorage", "Config", "Activities", "Duels"], "key": "FinishRadius", "value": 40},
+    {"kind": "attribute", "path": ["ReplicatedStorage", "Config", "Activities", "Duels"], "key": "MinFinish", "value": 800},
+    {"kind": "attribute", "path": ["ReplicatedStorage", "Config", "Activities", "Duels"], "key": "MaxFinish", "value": 1500},
+    {"kind": "attribute", "path": ["ReplicatedStorage", "Config", "Activities", "Duels"], "key": "FinishMaxGap", "value": 40},
+    {"kind": "attribute", "path": ["ReplicatedStorage", "Config", "Activities", "Duels"], "key": "TimeoutSeconds", "value": 150},
+    {"kind": "attribute", "path": ["ReplicatedStorage", "Config", "Activities", "Duels"], "key": "WinXp", "value": 30},
+    {"kind": "attribute", "path": ["ReplicatedStorage", "Config", "Activities", "Duels"], "key": "LoseXp", "value": 10},
+    {"kind": "attribute", "path": ["ReplicatedStorage", "Config", "Activities", "Duels"], "key": "DrawXp", "value": 0},
+    {"kind": "attribute", "path": ["ReplicatedStorage", "Config", "Activities", "Duels"], "key": "IntegrityJitterSeconds", "value": 0.35},
+    {"kind": "attribute", "path": ["ReplicatedStorage", "Config", "Activities", "Duels"], "key": "IntegrityToleranceStuds", "value": 24},
+    {"kind": "attribute", "path": ["ReplicatedStorage", "Config", "Activities", "Duels"], "key": "PairStakeLimitPerHour", "value": 3},
+    {"kind": "attribute", "path": ["ReplicatedStorage", "Config", "Activities", "Duels"], "key": "MinXpRaceSeconds", "value": 15}
+  ]
+}
