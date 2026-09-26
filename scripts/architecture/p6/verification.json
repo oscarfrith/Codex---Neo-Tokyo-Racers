@@ -1,0 +1,15 @@
+{
+  "phase": "P6 GarageServer split II",
+  "date": "2026-09-26",
+  "lane": "High-Risk",
+  "before_capture": "roblox/captures/arch-p5-after/capture.json",
+  "after_capture": "roblox/captures/arch-p6-after/capture.json",
+  "scope": "added Garage.VehicleBuildService, VehicleSpawnService (incl. RaceVehicleSpawner bridge), VehicleLifecycleService (incl. OwnedGarageVehicleLifecycleBridge); GarageServer 1865 -> 1121 lines (2767 at start of P5); VehicleModuleUpgradeRuntime releases its profiles cache on PlayerRemoving (server only); free-roam spawn cooldown table released on PlayerRemoving",
+  "review": "delivery-reviewer (independent resolver): no blockers; byte-identical moves, ctx exact, exports complete, resolution parity 0 differences, startup order kept. WARNs accepted: cache release best-effort if a request is mid-flight at leave; leave/rejoin skips 1 s free-roam cooldown.",
+  "installation": "AUDIT (compile) -> APPLY 5 -> ROLLBACK 5 -> APPLY 5",
+  "api_golden": "P5 18-step sequence identical to the original pre-split baseline (all lengths and hashes equal)",
+  "flows": "free-roam road spawn + cooldown rejection; spawned car PI 558 (module upgrade applied after respawn); StartTimeTrial -> staged/countdown via RaceVehicleSpawner; cancel; owned garage GetState 1 vehicle card; EnterSelectedGarage with vehicle -> 'Vehicle placed in garage' -> ExitOnFoot",
+  "errors": "server console clean; all server features ready",
+  "not_verified": "two-player leave/rejoin cache behaviour; VehicleAccessServer enter-logic consolidation deferred",
+  "rollback": "installer ROLLBACK with scripts/architecture/p6/spec.json against arch-p5-after"
+}

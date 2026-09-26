@@ -1,0 +1,67 @@
+{
+ "task": "Architecture P6: GarageServer split II (vehicle build, spawn, lifecycle) + per-player cache release",
+ "lane": "High-Risk",
+ "contract": "Goal: move the vehicle build (856-1128), spawn (1129-1414, includes the RaceVehicleSpawner bridge and its startup call) and lifecycle (1415-1602, includes OwnedGarageVehicleLifecycleBridge) ranges of GarageServer verbatim into factory modules VehicleBuildService, VehicleSpawnService and VehicleLifecycleService under ServerStorage.Modules.Game.Garage, rebinding the same exports at the same positions so bridge names, creation order and startup point are unchanged. Owners: VehicleSpawn/Lifecycle keep the PlayerVehicles attribute contract exactly as before. Declared behaviour changes: lastFreeRoamSpawnByUserId and VehicleModuleUpgradeRuntime's profiles cache are cleared on PlayerRemoving (server only), so memory is released and a same-server rejoin cannot reuse a stale profile table. Not changed: VehicleAccessServer's own enter logic (separate owner; consolidation deferred). Preserved: all replies, messages, network ownership, parking/coasting, race spawn validation. Rollback: installer ROLLBACK.",
+ "verification": "installation (AUDIT compile, APPLY/ROLLBACK/APPLY), api golden replies (P5 18-step sequence incl. spawn/exit/re-enter/despawn) identical, race spawn via time trial, owned garage enter/exit (lifecycle bridge), errors, cleanup (spawn cycles)",
+ "operations": [
+  {
+   "kind": "module",
+   "path": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Garage",
+    "VehicleBuildService"
+   ],
+   "class": "ModuleScript",
+   "file": "scripts/architecture/p6/after/VehicleBuildService.lua"
+  },
+  {
+   "kind": "module",
+   "path": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Garage",
+    "VehicleSpawnService"
+   ],
+   "class": "ModuleScript",
+   "file": "scripts/architecture/p6/after/VehicleSpawnService.lua"
+  },
+  {
+   "kind": "module",
+   "path": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Garage",
+    "VehicleLifecycleService"
+   ],
+   "class": "ModuleScript",
+   "file": "scripts/architecture/p6/after/VehicleLifecycleService.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Garage",
+    "GarageServer"
+   ],
+   "file": "scripts/architecture/p6/after/GarageServer.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "Vehicles",
+    "Performance",
+    "VehicleModuleUpgradeRuntime"
+   ],
+   "file": "scripts/architecture/p6/after/VehicleModuleUpgradeRuntime.lua"
+  }
+ ]
+}
