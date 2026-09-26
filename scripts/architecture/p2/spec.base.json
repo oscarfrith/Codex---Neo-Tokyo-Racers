@@ -1,0 +1,7 @@
+{
+ "task": "Architecture P2: shared Core.Net guard wrapping every client->server remote",
+ "lane": "High-Risk",
+ "contract": "Goal: every client->server remote passes one shared guard (action allowlist, bounded payload sanity, per-player-per-remote token bucket, optional busy lock, failure isolation, Studio counters) before its existing handler. Owners: Core.Net owns request admission only; each feature server keeps its handler body byte-identical. Preserved: remote objects/names, action names, argument shapes, every existing reply field and message; GarageInvoke limits 120/60/6/1, busy lock, messages and [GarageRequestGuard] warn prefix. Changes: table replies gain the missing Ok/Success twin; handler exceptions return {Ok=false,Success=false,Message} instead of throwing to the client; malformed/non-finite payloads and spam are rejected before handlers. Threats: spam, NaN/huge payloads, unknown actions, oversized tables. No saved data, schema, UI, or new remotes. Rollback: installer ROLLBACK restores all 11 sources and removes Net atomically.",
+ "verification": "tooling (net tests), installation (captures + AUDIT/APPLY/ROLLBACK/APPLY), startup, api (sandbox spam/busy/invalid per remote), garage, race, errors",
+ "operations": []
+}

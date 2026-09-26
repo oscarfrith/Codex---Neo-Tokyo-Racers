@@ -1,0 +1,17 @@
+{
+  "phase": "P2 Net wrap",
+  "date": "2026-09-26",
+  "lane": "High-Risk",
+  "before_capture": "roblox/captures/arch-p1-after/capture.json",
+  "after_capture": "roblox/captures/arch-p2-after/capture.json",
+  "scope": "added ServerStorage.Modules.Core.Net; changed GarageRequestGuard + 10 feature servers (one wrapper line per handler); no other deltas (171 sources)",
+  "review": "delivery-reviewer: 1 BLOCKER (unbounded counter keys) fixed; WARNs fixed (xpcall traceback, 8 KB string cap); intro boolean-on-rejection accepted (called once per session)",
+  "tooling": "p2/tests.lua 8/8 PASS incl. old/new GarageRequestGuard reply equivalence across validation, rate, busy and failure paths",
+  "installation": "AUDIT compiles all 12 after-sources (state before) -> APPLY 12 -> ROLLBACK 12 (Net removed) -> APPLY 12",
+  "startup": "server 26 ready; visible Play -> StartScreenActive false",
+  "api": "sandbox: every wrapped remote valid call succeeds; unknown action/NaN payload/unknown field rejected with preserved messages; onboarding spam rate-limited; GarageInvoke replies unchanged (no Ok twin added)",
+  "flows": "buy + spawn; StartTimeTrial -> readiness acks -> countdown -> started; keyboard driving (VehicleAudioState events); cancel; HUD dealership teleport; owned garage EnterSelectedGarage (stream-ready event) -> GetState InGarage -> ExitOnFoot",
+  "errors": "0 warnings/errors in server log for the session",
+  "counters": "ServerStorage.Runtime.NetStats (Studio, runtime-only) records calls/rejected per remote.action; unknown actions fold into one key",
+  "rollback": "py scripts/architecture/installer.py scripts/architecture/p2/spec.json roblox/captures/arch-p1-after/capture.json scripts/architecture/p2/install.lua --mode ROLLBACK"
+}
