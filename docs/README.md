@@ -363,6 +363,10 @@ Point-in-time delivery notes. Read only when investigating a regression or recov
 - [world-phaseF-city-hierarchy-lod-migration-2026-05-29.md](world-phaseF-city-hierarchy-lod-migration-2026-05-29.md)
 - [world-phaseJ-far-lod5-assets-migration-2026-05-29.md](world-phaseJ-far-lod5-assets-migration-2026-05-29.md)
 
+## Design proposals (not approved)
+
+- [design/street-life-update.md](design/street-life-update.md) - Street Life: rank, dailies, style meter, jobs, duels, monetisation (Design - not approved)
+
 ## Other
 
 - docs/history/: pre-consolidation ledgers, prior workflow text and the [patch history archive](history/patch-history-2026-05-to-2026-08.md).
