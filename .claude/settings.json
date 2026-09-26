@@ -29,9 +29,7 @@
       "mcp__Roblox_Studio__script_search",
       "mcp__Roblox_Studio__get_console_output",
       "mcp__Roblox_Studio__screen_capture",
-      "mcp__Roblox_Studio__skill"
-    ],
-    "ask": [
+      "mcp__Roblox_Studio__skill",
       "mcp__Roblox_Studio__execute_luau",
       "mcp__Roblox_Studio__multi_edit",
       "mcp__Roblox_Studio__start_stop_play",
@@ -41,9 +39,15 @@
       "mcp__Roblox_Studio__generate_texture",
       "mcp__Roblox_Studio__generate_procedural_model",
       "mcp__Roblox_Studio__upload_image",
+      "mcp__Roblox_Studio__user_mouse_input",
+      "mcp__Roblox_Studio__user_keyboard_input",
+      "mcp__Roblox_Studio__character_navigation",
       "Bash(git commit:*)",
       "Bash(git push:*)",
       "Bash(git add:*)"
+    ],
+    "ask": [
+      
     ],
     "deny": [
       "Read(./docs/studio-full-export-paste.txt)",
