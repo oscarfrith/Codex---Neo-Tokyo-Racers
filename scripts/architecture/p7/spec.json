@@ -1,0 +1,41 @@
+{
+ "task": "Architecture P7: CameraService FOV/zoom arbitration; driving camera and sprint migrated",
+ "lane": "High-Risk",
+ "contract": "Goal: one owner for camera field of view and player zoom limits. New ReplicatedStorage.Modules.Core.CameraService: keyed priority requests (highest wins, latest on ties), values validated (finite, FOV 1-120, zoom 0.5-400, min<=max, write order safe), values captured before the first request restored when all requests clear. DrivingCameraClient requests zoom lock and FOV at priority 100 and clears zoom and FOV on stop and suspend (trailer tools own FOV while suspended) instead of writing Player/Camera properties and restoring saved values; CharacterSprintClient animates a proxy NumberValue into a priority-10 FOV request and clears after its restore tween, on character reset (no restore) and when sprint FOV is disabled. Fixes the sprint/driving FOV capture conflict found in the audit and keeps CAM-02 finite guards centralised. Not changed (deferred, need rendered UI verification): CameraType/Subject claims (garage preview, dealership intro, race transition, owned garage touch guard, trailer tools), UI visibility arbiter, input action registry and single controls writer. Rollback: installer ROLLBACK.",
+ "verification": "tooling (CameraService pure tests), installation, runtime (rendered Play): drive -> zoom 22/22 locked and FOV follows speed; exit -> zoom and FOV restored; sprint -> FOV 80 then back; sprint then sit -> driving FOV wins, restore correct; console clean",
+ "operations": [
+  {
+   "kind": "module",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Core",
+    "CameraService"
+   ],
+   "class": "ModuleScript",
+   "file": "scripts/architecture/p7/CameraService.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "Vehicles",
+    "DrivingCameraClient"
+   ],
+   "file": "scripts/architecture/p7/after/DrivingCameraClient.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "Vehicles",
+    "CharacterSprintClient"
+   ],
+   "file": "scripts/architecture/p7/after/CharacterSprintClient.lua"
+  }
+ ]
+}

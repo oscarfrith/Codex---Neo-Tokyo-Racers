@@ -22,6 +22,7 @@ Before a new system, substantial expansion or connected networking/persistence/r
 - Announce fragile text replacement before writing it. After two source-anchor failures in one live script, stop guessing and inspect/refresh the actual source; prefer isolated canonical replacement where appropriate.
 - If an older Roblox version is a cleaner recovery, say so before another patch. Challenge a materially safer/faster alternative once, explain its tradeoff, then respect the decision.
 - No gameplay module require through MCP. Inspect normal startup/runtime evidence; do not create duplicate owners through a separate module cache.
+- Client->server remote handlers go through Core.Net (Net.invoke/Net.event); Cash is spent only through MoneyService.Debit and granted only through EconomyServer commands; live-tunable behaviour reads Core.FeatureFlags. See docs/architecture/architecture-programme.md.
 - Distinguish generated, installed, agent-verified and user-confirmed. Source parity and successful remote calls are not gameplay confirmation.
 - Follow the current capture/recovery policy in the delivery workflow. Never commit docs/studio-full-export-paste.txt. Windows mirror staging must inherit repository ACLs.
 - Update only the documentation responsibilities affected by a change. Record reusable lessons after confirmed work; keep historical experiments out of the current run queue.
