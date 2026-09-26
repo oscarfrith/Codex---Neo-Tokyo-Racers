@@ -4,24 +4,28 @@ Target: **Space Racers v2, place 71491191583884** (since 2026-09-26; v1 12130491
 
 ## Current task and next action
 
-**Feature work (Street Life, [design](design/street-life-update.md)).**
+**Feature work (Street Life, [design](design/street-life-update.md)).** Paused 2026-09-26 mid-way through Oscar's map/jobs refinements ([contract](architecture/map-markers-contract.md)).
 
-- **Minimap and route guide:** the rotating minimap is user-confirmed. The GPS route guide is installed with smooth lines ([reference](route-guide-system.md)).
-- **RP features** (installed on v2, single-client agent-verified, not user-confirmed; RP-01):
-  - Driver Rank.
-  - Courier: use JOBS, or drive onto a hub pad.
-  - Passenger seats + Sky Taxi.
-  - Garage visits: the VISIT tab in the garage browser.
-  - Street Duels is live as free (XP) duels; Cash stakes ($5k/$25k/$100k) are built and reviewed but off (EnableDuelStakes) until two fail-closed fixes and a published DataStore test.
-- **Evidence:** scripts/activities/*/verification.json. Contract: [activities-contract](architecture/activities-contract.md).
+- **Live on v2 (installed, agent-verified, not user-confirmed):**
+  - Full-screen map: click the minimap or press M. It has a legend, click-to-waypoint, drag/zoom and upright icons, and hides the other HUDs while open ([verification](../scripts/map_ui/verification.json)).
+  - New 14-icon set and a cleaned minimap tile with no baked icons ([map art](../scripts/map_art/README.md)).
+  - Route line v2: straight along streets, rounded turns, thicker with an outline ([options study](../scripts/route_guide/ROUTE_LINE_OPTIONS.md)).
+- **Built, not live: GTA-style world jobs** (scripts/activities/world_jobs/, RP-02). Rolled back in Studio at the pause; the old Courier/Taxi and hub pads are restored.
+- **Earlier RP features** (RP-01): Driver Rank, Courier, Passengers + Sky Taxi, Garage visits, free Street Duels. Duel stakes stay off (EnableDuelStakes).
+- **Suggestions (item 4):** [open-world improvements](design/open-world-improvements.md).
 
-Next action: Oscar play-tests.
+Next action (resume here): finish world jobs, RP-02.
 
-- **Two-player tests:** use Studio Test -> Clients and Servers with 2 players, and follow the checklists in scripts/activities/*/CONTRACT.md.
-- **Tuning:** tune Courier/Taxi pay and timers and the passenger seat position.
-- **Remaining queue:** ECON-01 fix; then Style Meter, Speed Cams and Supply Pods; Cash packs after DATA-01/02.
+1. **Fix taxi boarding** in scripts/activities/world_jobs/TaxiJob.lua. The fare rig sits in FallingDown while its root is anchored, and falls through the world when `board()` unanchors it, so SeatNpc fails ("Sit: humanoid is dead").
+   - Keep the rig anchored and move it with a scripted walk (PivotTo lerp) to the boarding point, then call `PassengerService.SeatNpc`.
+   - Do the same for `walkAway` at the drop.
+   - Disable the FallingDown/Ragdoll states in `buildRig`.
+2. **Investigate** "[JobBoard] no valid Courier spot this round" repeating after the stricter pavement rule (PavementMinRise/MaxRise, foliage/baseplate rejection).
+3. **Reinstall and test:** rebuild with `py -3 scripts/feature_installer.py roblox/captures/mapui-after/capture.json scripts/activities/world_jobs/install_apply.lua scripts/activities/world_jobs/spec.json scripts/activities/world_jobs/spec-integration.json --mode APPLY` (plus AUDIT/ROLLBACK). Then run `hub_pads.lua` DELETE and play-test a full taxi and a full courier trip (payout once, toast, no auto-restart).
+4. **Tune pay:** trips currently estimate about $330–670. Check against Oscar's expectations.
+5. **Commit and hand off:** write verification.json, commit, and ask Oscar to play-test.
 
-Latest targeted capture: **2026-09-26**, [activities visits after](../roblox/captures/activities-visits-after/capture.json), v2, 205 sources.
+Latest targeted capture: **2026-09-26**, [map UI after](../roblox/captures/mapui-after/capture.json), v2, 209 sources (before the route line install; the route line sources match the repo).
 
 ### Previous status
 

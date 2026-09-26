@@ -1,0 +1,21 @@
+{
+  "feature": "World jobs (GTA-style taxi fares and parcels)",
+  "date": "2026-09-26",
+  "status": "built; installed for testing then ROLLED BACK at pause (Studio is on the pre-jobs baseline with old Courier/Taxi and hub pads restored)",
+  "before_capture": "roblox/captures/mapui-after/capture.json",
+  "installer": "spec.json + spec-integration.json (48 ops) via scripts/feature_installer.py; hub_pads.lua AUDIT/DELETE/RESTORE (round trip verified)",
+  "review": "delivery-reviewer: 1 blocker (hub-pad rollback) fixed; follow-ups fixed: +$0 retry toast, distance credit after missing root, yield in destination loop, client root fallback, client props under World.Runtime",
+  "pure_tests": "tests.lua 101/101 pass in Studio",
+  "agent_verified_play": [
+    "11 offers generated across the district; after the pavement fix 10/11 on pavement tiles (1 on a raised district's pavement at Y 161)",
+    "Minimap shows TaxiFare / CourierPickup icons",
+    "Fare rig stands on the pavement facing the road, hailing",
+    "Car-mounted prompt 'Give ride' shows and triggers; JobAccept consumes the offer"
+  ],
+  "open": [
+    "Boarding: rig falls through the world when unanchored (Humanoid FallingDown while anchored) -> SeatNpc fails; switch to anchored scripted walk + disable FallingDown/Ragdoll",
+    "Courier spot generation repeatedly fails after the pavement rule",
+    "Full trip, payout once, completion toast, no auto-restart not yet observed",
+    "Pay tuning, two-client accept race, mobile prompt"
+  ]
+}

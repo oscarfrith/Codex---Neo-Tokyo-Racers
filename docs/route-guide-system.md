@@ -58,3 +58,8 @@ Reference for the free-roam route guide installed 2026-09-26 on Space Racers v2 
 - **Last leg.** Route starts and ends that are off the road are joined to the road with a straight line.
 - **Not yet built:** a full-screen map with tap-to-waypoint, and in-world chevrons.
 - **Not yet tested:** mobile at runtime on a touch device.
+
+## 2026-09-26 update
+
+- The minimap click now opens the full-screen map (FullMapUI), not the ROUTE GUIDE modal; destinations are in its legend and clicking the map sets a Waypoint (RouteGuide source "Waypoint", priority 5).
+- Route line v2: GeneratorVersion 2 (sub-pixel centres, least-squares junctions, line/arc fit; scripts/route_guide/centreline.py). `Smooth` rounds turns over CornerRadius (50) along the route. Config.UI.RouteGuide LineWidth 5, OutlineWidth 1.5. See scripts/route_guide/ROUTE_LINE_OPTIONS.md.

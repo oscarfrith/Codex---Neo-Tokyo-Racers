@@ -1,0 +1,26 @@
+{
+ "task": "World jobs integration: JobAccept allowlist, JobBoard ServerBase entry",
+ "lane": "High-Risk",
+ "contract": "scripts/activities/world_jobs/CONTRACT.md",
+ "operations": [
+  {
+   "kind": "source",
+   "path": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Activities",
+    "ActivityService"
+   ],
+   "file": "scripts/activities/world_jobs/integration/ActivityService.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ServerScriptService",
+    "ServerBase"
+   ],
+   "file": "scripts/activities/world_jobs/integration/ServerBase.lua"
+  }
+ ]
+}

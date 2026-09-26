@@ -2,6 +2,31 @@
 
 Recent deliveries, newest first. Entries before September 2026 live in [the archive](history/patch-history-2026-05-to-2026-08.md).
 
+## 2026-09-26 - Full-screen map, map icons, route line v2; world jobs built (paused)
+
+Four parallel agents, one integrator. Contract: [map-markers-contract](architecture/map-markers-contract.md).
+
+- **Full map (installed):**
+  - New modules: MapMarkers (registry), MapIconLayer (upright icons, pooled, fallback badges), FullMapUI (ClientBase entry) and MapMath.
+  - The minimap click and M open it. The ROUTE GUIDE modal is removed; its destinations are now in the legend.
+  - Config: Config.UI.MapPois, MapIcons, MapIconLayer, FullMap.
+  - Integration fix: a full-screen backdrop button was swallowing map clicks and has been replaced by a bounds check.
+  - Tests 40/40; APPLY/ROLLBACK/APPLY.
+- **Map art (installed):**
+  - The only baked icons were customisation, garage and race flag; they were removed from MapTileBottomRight (new asset 97942462366071).
+  - 14 new icons uploaded (scripts/map_art/uploaded_assets.json).
+- **Route line v2 (installed):**
+  - Sub-pixel road centres, least-squares junctions, line/arc fit, and 50-stud radius corners.
+  - LineWidth 5, OutlineWidth 1.5.
+  - Seven options were measured; this one halves the crossing bulge with the fewest points. Tests 47/47.
+- **World jobs (built, rolled back):**
+  - What it does:
+    - JobBoard keeps 6 taxi fares and 5 parcels on verified pavement spots, with trips of 1800–4500 road studs.
+    - Prompt on the car, a single standard mode, a speed bonus and a crash penalty; no auto-restart.
+  - The delivery-reviewer blocker (no rollback for the hub pads) is fixed with hub_pads.lua DELETE/RESTORE. Its small findings are fixed too.
+  - Play-testing found two faults, which were fixed: kerb spots on baseplate or foliage, and a prompt that goes off-screen next to the fare.
+  - Open: the fare rig falls through the world when unanchored for boarding (see 00_START_HERE).
+
 ## 2026-09-26 - GPS route guide installed (v2)
 
 Road graph generated from the minimap artwork: v2 blockout roads and spawn markers describe an older, larger layout. Pipeline: read-only EditableImage export of the four tiles, then road-pixel mask, closing/opening, thinning, junction tracing, spur pruning and pixel-to-world calibration; 309 nodes and 475 edges. New RoadRouting (pure A*), RoadGraphData and RouteGuide (client owner and minimap renderer). Clicking the minimap opens ROUTE GUIDE; the race browser gets SET ROUTE; the chip shows destination and distance; routes re-plan when off-route and clear on arrival. One canonical installer (AUDIT/APPLY/ROLLBACK) verified apply, rollback and re-apply. Pure tests 28/28; agent-verified desktop play (modal, race browser, re-plan, arrival, driving). Mobile runtime untested (ROUTE-01). [Reference](route-guide-system.md), [verification](../scripts/route_guide/verification.json).
