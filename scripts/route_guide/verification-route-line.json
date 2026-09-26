@@ -1,0 +1,18 @@
+{
+  "feature": "Route line v2: sub-pixel centres, least-squares junctions, line/arc fit, radius corner rounding, thicker line with outline",
+  "date": "2026-09-26",
+  "place": "Space Racers v2 (71491191583884)",
+  "lane": "Standard",
+  "before_capture": "roblox/captures/mapui-after/capture.json",
+  "installer": "scripts/route_guide/install_line_{audit,apply,rollback}.lua from spec-route-line.json (3 sources, 3 attributes: LineWidth 3->5, OutlineWidth 1.5, CornerRadius 28->50)",
+  "installer_cycle": "AUDIT(before) -> APPLY -> ROLLBACK -> APPLY, all 6 ops",
+  "options_study": "scripts/route_guide/ROUTE_LINE_OPTIONS.md (7 options, 160 routes; chosen option E halves crossing bulge, fewest points)",
+  "pure_tests": "scripts/route_guide/tests.lua 47/47 pass in Studio",
+  "agent_verified_play": [
+    "Full map: My Garage and a far waypoint route draw straight along straight streets with rounded turns, no crossing bulges",
+    "Minimap: thicker outlined line, WAYPOINT chip",
+    "Console clean"
+  ],
+  "not_verified": ["Real driving along the route on desktop and phone (frame count on mobile)"],
+  "status": "installed, agent-verified; not user-confirmed"
+}

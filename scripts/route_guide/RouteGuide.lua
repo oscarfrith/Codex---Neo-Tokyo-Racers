@@ -134,7 +134,7 @@ local function plan(position)
 	local points = found.Points
 	local target = flat(active.Position)
 	if (target - points[#points]).Magnitude > 1 then table.insert(points, target) end
-	points = RoadRouting.Smooth(points, number("CornerRadius", 28, 0, 150), 5)
+	points = RoadRouting.Smooth(points, number("CornerRadius", 50, 0, 150), 8)
 	routeVersion += 1
 	route = { Points = points, Cumulative = RoadRouting.Cumulative(points), Version = routeVersion }
 	progress = { Segment = 1, Point = points[1], Remaining = route.Cumulative[#points], OffSince = nil }
@@ -312,12 +312,15 @@ function MapRenderer:Step(state)
 	local lineColour = self:_colour()
 	local outlineColour = self.Colours.Outline or Color3.fromRGB(9, 12, 16)
 	local pixelScale = math.max(1, state.PixelScale or 1)
-	local width = number("LineWidth", 3, 1, 12) * pixelScale
+	-- Widths are UI pixels; the canvas may be supersampled (PixelScale) and scaled back down.
+	local width = number("LineWidth", 5, 1, 16) * pixelScale
+	local outlineWidth = number("OutlineWidth", 1.5, 0, 6) * pixelScale
 	local points = route.Points
 	local first = math.clamp(progress.Segment or 1, 1, math.max(1, #points - 1))
 
 	-- Full rebuild only when the route, style or scale changes; otherwise move the first segment.
 	local rebuild = self.Version ~= route.Version or self.PixelScale ~= pixelScale or self.LineColour ~= lineColour
+		or self.Width ~= width or self.OutlineWidth ~= outlineWidth
 	local function place(index, fromPoint, toPoint)
 		local line, outline = self:_segment(index)
 		local a, b = toCanvas(fromPoint), toCanvas(toPoint)
@@ -327,13 +330,14 @@ function MapRenderer:Step(state)
 		local angle = math.deg(math.atan2(delta.Y, delta.X))
 		line.Position, outline.Position = UDim2.fromScale(mid.X, mid.Y), UDim2.fromScale(mid.X, mid.Y)
 		line.Size = UDim2.new(lengthScale, width, 0, width)
-		outline.Size = UDim2.new(lengthScale, width + 2 * pixelScale, 0, width + 2 * pixelScale)
+		outline.Size = UDim2.new(lengthScale, width + 2 * outlineWidth, 0, width + 2 * outlineWidth)
 		line.Rotation, outline.Rotation = angle, angle
 		line.BackgroundColor3, outline.BackgroundColor3 = lineColour, outlineColour
-		line.Visible, outline.Visible = true, true
+		line.Visible, outline.Visible = true, outlineWidth > 0
 	end
 	if rebuild then
 		self.Version, self.PixelScale, self.LineColour = route.Version, pixelScale, lineColour
+		self.Width, self.OutlineWidth = width, outlineWidth
 		for index = 1, #points - 1 do place(index, points[index], points[index + 1]) end
 		for index = #points, #self.Segments do
 			self.Segments[index].Visible = false
@@ -344,7 +348,7 @@ function MapRenderer:Step(state)
 	if first ~= self.Shown then
 		for index = 1, #points - 1 do
 			local show = index >= first
-			self.Segments[index].Visible, self.Outlines[index].Visible = show, show
+			self.Segments[index].Visible, self.Outlines[index].Visible = show, show and outlineWidth > 0
 		end
 		if self.Shown and self.Shown > first then
 			for index = first + 1, math.min(self.Shown, #points - 1) do place(index, points[index], points[index + 1]) end
@@ -356,7 +360,8 @@ function MapRenderer:Step(state)
 	local goal = points[#points]
 	local goalCanvas = toCanvas(goal)
 	self.Blip.Position = UDim2.fromScale(goalCanvas.X, goalCanvas.Y)
-	self.Blip.Size = UDim2.fromOffset(8 * pixelScale, 8 * pixelScale)
+	local blipSize = math.max(8 * pixelScale, width + 3 * pixelScale)
+	self.Blip.Size = UDim2.fromOffset(blipSize, blipSize)
 	self.Blip.BackgroundColor3 = lineColour
 	self.BlipStroke.Color = outlineColour
 	self.BlipStroke.Thickness = pixelScale

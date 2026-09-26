@@ -3,6 +3,9 @@
 -- can be tested by loading the source directly. Positions are world X/Z Vector2s.
 local RoadRouting = {}
 
+local SPIKE_STUDS = 120 -- a route vertex that doubles back (turn >= 120 degrees) with a leg shorter than this is dropped
+local SPIKE_COSINE = math.cos(math.rad(120))
+
 local function closestOnSegment(point, a, b)
 	local ab = b - a
 	local lengthSquared = ab:Dot(ab)
@@ -182,15 +185,24 @@ function RoadRouting.FindRoute(graph, fromPoint, toPoint)
 	end
 	if not bestPoints then return nil end
 
-	-- Drop zero-length steps and total the length.
-	local cleaned, length = { bestPoints[1] }, 0
+	-- Drop zero-length steps, then short doubling-back spikes (where two roads merge at a shallow
+	-- angle the junction node can sit a few studs beyond the fork), and total the length.
+	local cleaned = { bestPoints[1] }
 	for i = 2, #bestPoints do
-		local step = (bestPoints[i] - cleaned[#cleaned]).Magnitude
-		if step > 0.05 then
-			cleaned[#cleaned + 1] = bestPoints[i]
-			length += step
+		if (bestPoints[i] - cleaned[#cleaned]).Magnitude > 0.05 then cleaned[#cleaned + 1] = bestPoints[i] end
+	end
+	local i = 2
+	while i < #cleaned do
+		local incoming, outgoing = cleaned[i] - cleaned[i - 1], cleaned[i + 1] - cleaned[i]
+		if math.min(incoming.Magnitude, outgoing.Magnitude) < SPIKE_STUDS and incoming.Unit:Dot(outgoing.Unit) <= SPIKE_COSINE then
+			table.remove(cleaned, i)
+			i = math.max(2, i - 1)
+		else
+			i += 1
 		end
 	end
+	local length = 0
+	for k = 2, #cleaned do length += (cleaned[k] - cleaned[k - 1]).Magnitude end
 	return { Points = cleaned, Length = length, StartOffRoad = start.Distance, GoalOffRoad = goal.Distance }
 end
 
@@ -220,31 +232,76 @@ function RoadRouting.Progress(points, cumulative, position, hint, window)
 	return bestIndex, bestPoint, bestDistance, math.max(0, cumulative[#cumulative] - travelled)
 end
 
--- Rounds each corner over a short radius (quadratic curve) so routes draw as smooth lines.
--- Endpoints are kept; nearly straight vertices are left alone.
-function RoadRouting.Smooth(points, radius, samples)
-	if #points < 3 or (radius or 0) <= 0 then return points end
+local function turnAngle(a, b, c)
+	local u, v = b - a, c - b
+	return math.atan2(u.X * v.Y - u.Y * v.X, u.X * v.X + u.Y * v.Y)
+end
+
+-- Rounds route corners so they draw as smooth curves. Each vertex that turns by at least
+-- minTurnDegrees (default 10) is replaced by a quadratic curve that starts `radius` studs before
+-- it and ends `radius` studs after it, measured along the route, so dense approaches (sampled
+-- arcs) are absorbed instead of producing extra kinks. The radius shrinks to half the gap to a
+-- neighbouring corner and never passes the route ends. `samples` is the number of curve steps
+-- for a 90 degree turn (scaled by the turn). Endpoints are kept exactly; gentler vertices (the
+-- generator samples arcs in steps of 9 degrees or less) are left untouched.
+function RoadRouting.Smooth(points, radius, samples, minTurnDegrees)
+	local n = #points
+	if n < 3 or (radius or 0) <= 0 then return points end
 	samples = math.max(1, samples or 4)
-	local result = { points[1] }
-	for i = 2, #points - 1 do
-		local here = points[i]
-		local incoming, outgoing = here - points[i - 1], points[i + 1] - here
-		local inLength, outLength = incoming.Magnitude, outgoing.Magnitude
-		if inLength > 1e-3 and outLength > 1e-3 then
-			local turn = math.acos(math.clamp(incoming.Unit:Dot(outgoing.Unit), -1, 1))
-			if turn < math.rad(4) then
-				result[#result + 1] = here
-			else
-				local r = math.min(radius, inLength * 0.45, outLength * 0.45)
-				local from, to = here - incoming.Unit * r, here + outgoing.Unit * r
-				for s = 0, samples do
-					local t = s / samples
-					result[#result + 1] = from * ((1 - t) * (1 - t)) + here * (2 * (1 - t) * t) + to * (t * t)
-				end
-			end
+	local minTurn = math.rad(minTurnDegrees or 10)
+	local cumulative = RoadRouting.Cumulative(points)
+	local corners = {}
+	for i = 2, n - 1 do
+		if (points[i] - points[i - 1]).Magnitude > 1e-3 and (points[i + 1] - points[i]).Magnitude > 1e-3
+			and math.abs(turnAngle(points[i - 1], points[i], points[i + 1])) >= minTurn then
+			corners[#corners + 1] = i
 		end
 	end
-	result[#result + 1] = points[#points]
+	if #corners == 0 then return points end
+
+	local function at(distance)
+		distance = math.clamp(distance, 0, cumulative[n])
+		local lo, hi = 1, n
+		while hi - lo > 1 do
+			local mid = (lo + hi) // 2
+			if cumulative[mid] <= distance then lo = mid else hi = mid end
+		end
+		local span = cumulative[hi] - cumulative[lo]
+		local t = span > 0 and (distance - cumulative[lo]) / span or 0
+		return points[lo]:Lerp(points[hi], t)
+	end
+
+	local result = { points[1] }
+	local function push(point)
+		if (point - result[#result]).Magnitude > 1e-4 then result[#result + 1] = point end
+	end
+	local cursor, lastEnd = 2, 0
+	for k, i in ipairs(corners) do
+		local previousCorner = k > 1 and cumulative[corners[k - 1]] or 0
+		local nextCorner = k < #corners and cumulative[corners[k + 1]] or cumulative[n]
+		local r = math.min(radius,
+			(cumulative[i] - previousCorner) * (k > 1 and 0.5 or 1),
+			(nextCorner - cumulative[i]) * (k < #corners and 0.5 or 1))
+		local start = math.max(cumulative[i] - r, lastEnd)
+		if r >= 0.05 and start < cumulative[i] then
+			while cursor < n and cumulative[cursor] <= start do
+				if cumulative[cursor] > lastEnd + 1e-9 then push(points[cursor]) end
+				cursor += 1
+			end
+			local a, v, b = at(start), points[i], at(cumulative[i] + r)
+			local steps = math.max(2, math.ceil(samples * math.abs(turnAngle(a, v, b)) / (math.pi / 2)))
+			for s = 0, steps do
+				local t = s / steps
+				push(a * ((1 - t) * (1 - t)) + v * (2 * (1 - t) * t) + b * (t * t))
+			end
+			lastEnd = cumulative[i] + r
+			while cursor < n and cumulative[cursor] <= lastEnd do cursor += 1 end
+		end
+	end
+	for j = cursor, n do
+		if cumulative[j] > lastEnd + 1e-9 or j == n then push(points[j]) end
+	end
+	if (result[#result] - points[n]).Magnitude <= 1e-4 then result[#result] = points[n] else result[#result + 1] = points[n] end
 	return result
 end
 

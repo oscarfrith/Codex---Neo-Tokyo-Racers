@@ -1,0 +1,14 @@
+{
+  "task": "Route guide: smooth, road-following, thicker route line (Oscar feedback: still jagged; follow the drawn roads; thicker)",
+  "lane": "Standard",
+  "contract": "Goal: the GPS route line looks straight on straight streets, smooth on curves and at turns, sits on the drawn road centre, and is thicker. Changes: RoadGraphData regenerated (GeneratorVersion 2: sub-pixel road centres, least-squares junction positions, straight-line/arc fit per edge; 292 nodes, 458 edges, 297 single-segment edges); RoadRouting.Smooth rounds corners over a radius measured along the route (dense arc points are absorbed, arcs untouched) and FindRoute drops short doubling-back spikes; RouteGuide renderer reads LineWidth (default 5), new OutlineWidth (default 1.5) and CornerRadius (default 50). API unchanged: RoadRouting.LoadGraph/Snap/FindRoute/Cumulative/Progress/Smooth/FormatDistance, RouteGuide.newMapRenderer(options), MapRenderer:Step(state)/SetVisible. Owners unchanged; no remotes, saves or HUD source changes. Done when: tests pass; routes on the minimap draw straight along straight streets, with no bulges at crossings and rounded turns; no console errors.",
+  "verification": "Pure tests (scripts/route_guide/tests.lua over 127.0.0.1:8767); Play: set Waterfront Sprint and My Garage routes, screenshot the minimap while driving past the diagonal avenue and the customisation circle; console scan.",
+  "operations": [
+    { "kind": "source", "path": ["ReplicatedStorage", "Modules", "Game", "World", "RoadRouting"], "file": "scripts/route_guide/RoadRouting.lua" },
+    { "kind": "source", "path": ["ReplicatedStorage", "Modules", "Game", "World", "RoadGraphData"], "file": "scripts/route_guide/RoadGraphData.lua" },
+    { "kind": "source", "path": ["ReplicatedStorage", "Modules", "Game", "UI", "RouteGuide"], "file": "scripts/route_guide/RouteGuide.lua" },
+    { "kind": "attribute", "path": ["ReplicatedStorage", "Config", "UI", "RouteGuide"], "key": "LineWidth", "value": 5, "before": 3 },
+    { "kind": "attribute", "path": ["ReplicatedStorage", "Config", "UI", "RouteGuide"], "key": "OutlineWidth", "value": 1.5, "before": null },
+    { "kind": "attribute", "path": ["ReplicatedStorage", "Config", "UI", "RouteGuide"], "key": "CornerRadius", "value": 50, "before": 28 }
+  ]
+}
