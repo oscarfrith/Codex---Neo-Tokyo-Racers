@@ -2,6 +2,10 @@
 
 Recent deliveries, newest first. Entries before September 2026 live in [the archive](history/patch-history-2026-05-to-2026-08.md).
 
+## 2026-09-26 - Handoff for feature work
+
+User confirmed the architecture programme is working. Added the [Studio testing playbook](architecture/studio-testing-playbook.md), [Project 12 comparison](architecture/project12-comparison.md) and the new feature checklist; updated the new-chat prompt and /start. Documentation only.
+
 ## 2026-09-26 - Architecture P7: CameraService installed
 
 Driving camera and sprint now request FOV/zoom through Core.CameraService (validated priority stack). Rendered Play comparison against a same-session baseline: identical driving/sprint/exit values; fixed on-foot FOV stuck at 95 after sprint -> drive -> exit; suspend/resume, respawn and disabled-sprint-FOV edge cases clean. Other camera writers remain for a later phase. [Evidence](../scripts/architecture/p7/verification.json).

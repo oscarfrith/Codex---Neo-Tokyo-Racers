@@ -9,6 +9,7 @@ Start a Space Racers session.
 3. If the task needs live evidence: read docs/architecture/claude-code-setup.md, then list_roblox_studios, choose Space Racers v1 (placeId 121304917315753), get_studio_state. Report place and mode.
 4. Determine the next approved step from 00_START_HERE, not from historical installers. Do not rerun installed migrations.
 5. Choose the lane (Fast / Standard / High-Risk) per docs/13 and say which in one line.
+6. For new features, apply the new feature checklist in docs/architecture/architecture-programme.md; for Studio testing use docs/architecture/studio-testing-playbook.md (check Play viewport rendering before UI/camera/race tests).
 
 Task: $ARGUMENTS
 

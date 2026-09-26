@@ -29,6 +29,20 @@ Reference for the owners introduced by the nine-phase programme that followed th
 - New live-tunable behaviour reads `FeatureFlags`, not ad hoc attributes.
 - Report analytics through AnalyticsServer's registry.
 
+## New feature checklist
+
+Use with `/design` (spec) and `/follow` (build). Proportional: skip lines that do not apply.
+
+1. Owners: name the existing owner for state, UI, camera, persistence; extend it rather than adding a competing owner. Garage logic belongs in the Garage service modules, not back in GarageServer.
+2. Remotes: prefer an action on an existing remote; wrap any handler with `Net.invoke`/`Net.event` (allowlist, rate, payload sanity). Never trust client prices, rewards or results.
+3. Money: spend with `MoneyService.Debit` after all validation that could fail (see ECON-01); grant through EconomyServer commands with a unique CommandId.
+4. Saved data: add fields with safe defaults in PlayerProfileSchema/ProfileCompatibility; never rename or repurpose saved keys; note schema impact in the contract.
+5. Live control: put the feature behind `FeatureFlags` (e.g. `Enable<Feature>`) so it can be switched off from the Creator Dashboard; add analytics events to AnalyticsServer's registry.
+6. Camera: request FOV/zoom via CameraService; do not write Camera/Player zoom properties directly.
+7. World objects: find them by CollectionService tag with `Core.Tags` (streaming-safe), not WaitForChild chains.
+8. Config: tunables as attributes/values under ReplicatedStorage.Config (server-only under ServerStorage.Config), read with `ConfigReader` (finite, bounded).
+9. Deliver: targeted before capture -> installer spec -> pure tests -> AUDIT -> delivery-reviewer (High-Risk) -> APPLY/ROLLBACK/APPLY -> rendered Play test (see [testing playbook](studio-testing-playbook.md)) -> after capture -> verification.json -> docs -> commit/push.
+
 ## Not done / deferred (see 06)
 
 - ECON-01: a failed request after a successful debit keeps the cash (pre-existing). Two refund designs were rejected in review (could mint cash or grant free items); needs per-action atomic transactions.

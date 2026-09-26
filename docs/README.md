@@ -22,7 +22,7 @@ Navigation only. Current task and status live in [00_START_HERE](00_START_HERE.m
 - [15_new_system_contract_template.md](15_new_system_contract_template.md)
 - [16_audio_system.md](16_audio_system.md)
 
-Key architecture/tooling pages: [tool index](architecture/installer-index.md), [owners and naming](architecture/naming-and-owners.md), [proportional MCP delivery](architecture/proportional-mcp-delivery.md), [targeted capture](architecture/targeted-capture-workflow.md), [validation and handoffs](architecture/validation-and-handoffs.md), [Claude Code setup](architecture/claude-code-setup.md), [lighting authoring](architecture/lighting-authoring.md), [performance Phase 6 validation](architecture/performance-phase6-validation.md).
+Key architecture/tooling pages: [architecture programme + new feature checklist](architecture/architecture-programme.md), [Studio testing playbook](architecture/studio-testing-playbook.md), [Project 12 comparison](architecture/project12-comparison.md), [tool index](architecture/installer-index.md), [owners and naming](architecture/naming-and-owners.md), [proportional MCP delivery](architecture/proportional-mcp-delivery.md), [targeted capture](architecture/targeted-capture-workflow.md), [validation and handoffs](architecture/validation-and-handoffs.md), [Claude Code setup](architecture/claude-code-setup.md), [lighting authoring](architecture/lighting-authoring.md), [performance Phase 6 validation](architecture/performance-phase6-validation.md).
 
 ## Reference docs by system
 

@@ -6,6 +6,7 @@ Current task, acceptance and pending runs: [start here](../00_START_HERE.md). Th
 |---|---|
 | Continuous lighting | scripts/continuous_lighting/install.lua — AUDIT / APPLY / STEPPED / CONTINUOUS / ROLLBACK; [recovery guide](lighting-horizon-moon-handoff.md), [editing guide](lighting-authoring.md) |
 | Catalogue transport recovery | scripts/roblox_performance_phase5_catalogue_transport.lua — INSTALL / AUDIT / ROLLBACK |
+| Architecture programme installer | scripts/architecture/installer.py (+ installer.lua) — AUDIT / APPLY / ROLLBACK for source, module, attribute and remove_instance ops; per-phase specs in scripts/architecture/p1..p9; [programme](architecture-programme.md) |
 | Read-only Studio audit | scripts/studio_cleanup_audit.lua |
 | Deliberate full checkpoint exporter | scripts/studio_export_snapshot.lua |
 | Full checkpoint receiver | scripts/receive_studio_snapshot.py |
