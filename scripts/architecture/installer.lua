@@ -11,7 +11,7 @@ return function(bundle, mode, env)
 		local value = env.read(target, op)
 		before = before and value == op.before
 		after = after and value == op.after
-		if op.kind ~= "attribute" then
+		if op.kind == "source" or op.kind == "module" then
 			for _, text in ipairs({ op.before, op.after }) do
 				if text ~= nil then
 					local compiled, err = env.compile(text)

@@ -1,0 +1,16 @@
+{
+  "phase": "P9 Retirement",
+  "date": "2026-09-26",
+  "lane": "High-Risk",
+  "before_capture": "roblox/captures/arch-p8-after/capture.json",
+  "after_capture": "roblox/captures/arch-p9-after/capture.json",
+  "scope": "deleted authored remotes Garage.GaragePush, GarageInteriorTransition, GarageInteriorCustomizationInvoke, GarageInteriorInvoke; GarageSessionServer no longer creates/listens to UI.DriveInCustomisationSession; PathResolver.GarageRemotes removed; GarageRequestGuard allowlist drops BuyCockpit, BuyModule, SetThrustColor, ReEnterVehicle, UpgradeGarageCapacity",
+  "evidence_dead": "static scan of all 184 inventoried sources + P2 Net counters across test sessions",
+  "not_retired": "ThrustPreviewClient (live: garage thrust preview + touch controls; earlier audit claim was wrong); unused bindables (tooling uses some); duplicate Ok/Success reply fields; unreachable legacy branches in GarageServer dispatcher (left for later cleanup); bare prints and WaitForChild-to-Tags migration (deferred: need client rendering to verify)",
+  "installation": "new guarded 'instance' removal op (refuses objects with children/attributes/tags; rollback recreates class+name+parent). AUDIT -> APPLY 7 -> ROLLBACK 7 (remotes recreated with correct classes) -> APPLY 7",
+  "startup": "server 27 ready, client 40 ready + 4 dev tools skipped",
+  "api": "buy/spawn/exit/despawn succeed; ReEnterVehicle and BuyModule -> 'Unknown garage action.'; GarageSessionRequest State ok; DriveInCustomisationSession absent",
+  "errors": "server console clean",
+  "note": "sources preset capture does not record remote instances; deletions verified live in Edit",
+  "rollback": "installer ROLLBACK with scripts/architecture/p9/spec.json against arch-p8-after"
+}

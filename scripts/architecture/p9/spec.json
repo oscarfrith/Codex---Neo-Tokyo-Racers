@@ -1,0 +1,80 @@
+{
+ "task": "Architecture P9: retire dead remotes, legacy session event, unused helper and client-unused legacy garage actions",
+ "lane": "High-Risk",
+ "contract": "Goal: remove verified-dead surface. Evidence: static reference scan of all 184 inventoried sources (no InvokeServer/FireServer/handler for GaragePush, GarageInteriorTransition, GarageInteriorCustomizationInvoke; GarageInteriorInvoke only looked up with FindFirstChild into an unused HUD local, nil-safe); P2 Net counters recorded no client use of DriveInCustomisationSession or the retired actions in any test session; no client source sends BuyCockpit, BuyModule, SetThrustColor, ReEnterVehicle or UpgradeGarageCapacity. Changes: 4 authored remotes deleted (no children/attributes/tags; installer recreates them exactly on rollback); GarageSessionServer no longer creates or listens to DriveInCustomisationSession; PathResolver.GarageRemotes removed; GarageRequestGuard allowlist drops the 5 legacy actions (requests now get the standard 'Unknown garage action.'; server branches become unreachable and are left for a later cleanup). Not retired: ThrustPreviewClient (found live: garage thrust preview and touch-control owner), unused bindables (used by tooling/installers; separate decision), duplicate Ok/Success reply fields. Rollback: installer ROLLBACK.",
+ "verification": "installation (AUDIT/APPLY/ROLLBACK/APPLY), startup (all features ready), api (live actions unchanged via P5 golden; retired action rejected), errors",
+ "operations": [
+  {
+   "kind": "remove_instance",
+   "path": [
+    "ReplicatedStorage",
+    "Remotes",
+    "Garage",
+    "GaragePush"
+   ],
+   "class": "RemoteEvent"
+  },
+  {
+   "kind": "remove_instance",
+   "path": [
+    "ReplicatedStorage",
+    "Remotes",
+    "Garage",
+    "GarageInteriorTransition"
+   ],
+   "class": "RemoteEvent"
+  },
+  {
+   "kind": "remove_instance",
+   "path": [
+    "ReplicatedStorage",
+    "Remotes",
+    "Garage",
+    "GarageInteriorCustomizationInvoke"
+   ],
+   "class": "RemoteFunction"
+  },
+  {
+   "kind": "remove_instance",
+   "path": [
+    "ReplicatedStorage",
+    "Remotes",
+    "Garage",
+    "GarageInteriorInvoke"
+   ],
+   "class": "RemoteFunction"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Garage",
+    "GarageSessionServer"
+   ],
+   "file": "scripts/architecture/p9/after/GarageSessionServer.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Core",
+    "PathResolver"
+   ],
+   "file": "scripts/architecture/p9/after/PathResolver.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Garage",
+    "GarageRequestGuard"
+   ],
+   "file": "scripts/architecture/p9/after/GarageRequestGuard.lua"
+  }
+ ]
+}

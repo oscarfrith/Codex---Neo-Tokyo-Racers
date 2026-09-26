@@ -63,6 +63,10 @@ def build(spec, baseline):
                 raise ValueError('Invalid script class')
             ops.append(dict(kind='module', path=path, class_name=req.get('class', 'ModuleScript'),
                             before=None, after=_read(req['file'])))
+        elif kind == 'remove_instance':
+            if req.get('class') not in ('RemoteEvent', 'RemoteFunction', 'UnreliableRemoteEvent', 'BindableEvent', 'BindableFunction', 'Folder'):
+                raise ValueError('Unsupported instance class for removal')
+            ops.append(dict(kind='instance', path=path, class_name=req['class'], before='present', after=None))
         elif kind == 'attribute':
             key, value, old = req['key'], req['value'], req.get('before')
             if not isinstance(key, str) or not key or key.startswith('RBX'):
@@ -88,7 +92,7 @@ local env = {
 			for _, child in ipairs(current:GetChildren()) do
 				if child.Name == name then assert(not found, "Ambiguous path: " .. table.concat(op.path, ".")); found = child end
 			end
-			if not found and op.kind == "module" and index == #op.path then return nil end
+			if not found and (op.kind == "module" or op.kind == "instance") and index == #op.path then return nil end
 			assert(found, "Missing path: " .. table.concat(op.path, ".")); current = found
 		end
 		return current
@@ -98,10 +102,23 @@ local env = {
 		if op.kind == "attribute" then return target:GetAttribute(op.key) end
 		if target == nil then return nil end
 		if op.kind == "module" then assert(#target:GetChildren() == 0, "New module acquired children; refusing") end
+		if op.kind == "instance" then
+			assert(#target:GetChildren() == 0 and next(target:GetAttributes()) == nil and #game:GetService("CollectionService"):GetTags(target) == 0, "Instance has contents; refusing")
+			return "present"
+		end
 		return target.Source
 	end,
 	write = function(target, op, value)
 		if op.kind == "attribute" then target:SetAttribute(op.key, value); return target end
+		if op.kind == "instance" then
+			if value == nil then if target then target:Destroy() end; return nil end
+			local parent = game
+			for index = 1, #op.path - 1 do parent = parent:FindFirstChild(op.path[index]); assert(parent, "Missing parent") end
+			local created = Instance.new(op.class_name)
+			created.Name = op.path[#op.path]
+			created.Parent = parent
+			return created
+		end
 		if op.kind == "module" then
 			if value == nil then if target then target:Destroy() end; return nil end
 			if target == nil then
