@@ -6,12 +6,22 @@ Target: **Space Racers v2, place 71491191583884** (since 2026-09-26; v1 12130491
 
 **Feature work (Street Life, [design](design/street-life-update.md)).**
 
-- **Minimap:** the rotating minimap is user-confirmed on desktop. It follows the character or vehicle facing, and the north arrow is hidden (MAP-02).
-- **Route guide:** the GPS route guide is installed and agent-verified on desktop, but not yet user-confirmed (ROUTE-01). See the [reference](route-guide-system.md) and the [verification](../scripts/route_guide/verification.json).
+- **Minimap and route guide:** the rotating minimap is user-confirmed. The GPS route guide is installed with smooth lines ([reference](route-guide-system.md)).
+- **RP features** (installed on v2, single-client agent-verified, not user-confirmed; RP-01):
+  - Driver Rank.
+  - Courier: use JOBS, or drive onto a hub pad.
+  - Passenger seats + Sky Taxi.
+  - Garage visits: the VISIT tab in the garage browser.
+  - Street Duels (stakes $5k/$25k/$100k) is in final review.
+- **Evidence:** scripts/activities/*/verification.json. Contract: [activities-contract](architecture/activities-contract.md).
 
-Next action: Oscar play-tests the route guide (click the minimap, or use the race browser's SET ROUTE). Then the remaining order is ECON-01/PB-01, activity core + Driver Rank, Courier (which uses `RouteGuide.SetDestination` with Kind "Activity"), Sky Taxi, Street Duels and garage visits.
+Next action: Oscar play-tests.
 
-Latest targeted capture: **2026-09-26**, [route guide after](../roblox/captures/route-guide-after/capture.json), v2, 188 sources.
+- **Two-player tests:** use Studio Test -> Clients and Servers with 2 players, and follow the checklists in scripts/activities/*/CONTRACT.md.
+- **Tuning:** tune Courier/Taxi pay and timers and the passenger seat position.
+- **Remaining queue:** ECON-01 fix; then Style Meter, Speed Cams and Supply Pods; Cash packs after DATA-01/02.
+
+Latest targeted capture: **2026-09-26**, [activities visits after](../roblox/captures/activities-visits-after/capture.json), v2, 205 sources.
 
 ### Previous status
 
