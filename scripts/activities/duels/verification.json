@@ -1,5 +1,5 @@
 {
-  "task": "Street Duels (Street Life 4.8) — installed with Cash stakes OFF (EnableDuelStakes flag default false)",
+  "task": "Street Duels (Street Life 4.8) \u2014 installed with Cash stakes OFF (EnableDuelStakes flag default false)",
   "date": "2026-09-26",
   "place": "Space Racers v2 (71491191583884)",
   "authoring": "Agent C (parallel), three review rounds: round 1 (memory-only escrow, Log-mode integrity) and round 2 (divergent saves could mint a stake; countdown exploit) fixed; round 3 focused on stakes in progress",
@@ -10,5 +10,17 @@
   "pure_tests": "182/182",
   "play_single_client": "all ServerBase/ClientBase modules ready; DuelChallenge preview without a valid target -> 'That driver is no longer here.'; console clean",
   "not_verified": "any real duel (needs 2 clients); stakes (flag off; need published place with DataStores to test save gate and markers); user confirmation",
-  "evidence_type": "agent-verified install + startup only"
+  "evidence_type": "agent-verified install + startup only",
+  "stake_review_round3": {
+    "verdict": "READY to enable stakes after published-place checks; no Cash-duplication path found",
+    "risks_fail_closed": [
+      "marker write that errors but lands is never undone -> offline loser's stake burned (fix: refundsInstead removes markers for every loser)",
+      "crash/failed close-save after marker write and before the winner's profile saves (~one autosave interval) burns one stake (fix: SaveNow the winner after raising Owed, or document as window g)",
+      "countdown SaveNow can be throttled -> Draw (UX)",
+      "post-settle recovery can be skipped while another recovery runs (delay only)",
+      "CONTRACT says StakesEnabled default true; code defaults false (fails closed)",
+      "published tests write to the real NTR_DuelLostStakes_v1 store"
+    ],
+    "before_enabling": "fix the first two risks, then in a published place with DataStores: confirm persisted debit+DuelEscrow after the countdown, marker round trip across servers (pot paid once), marker-failure injection, key length <= 50"
+  }
 }

@@ -12,7 +12,7 @@ Target: **Space Racers v2, place 71491191583884** (since 2026-09-26; v1 12130491
   - Courier: use JOBS, or drive onto a hub pad.
   - Passenger seats + Sky Taxi.
   - Garage visits: the VISIT tab in the garage browser.
-  - Street Duels (stakes $5k/$25k/$100k) is in final review.
+  - Street Duels is live as free (XP) duels; Cash stakes ($5k/$25k/$100k) are built and reviewed but off (EnableDuelStakes) until two fail-closed fixes and a published DataStore test.
 - **Evidence:** scripts/activities/*/verification.json. Contract: [activities-contract](architecture/activities-contract.md).
 
 Next action: Oscar play-tests.
