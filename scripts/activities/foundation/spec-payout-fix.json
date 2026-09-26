@@ -1,0 +1,9 @@
+{
+  "task": "ActivityPayout: concurrent same-CommandId Pay waits for the in-flight result (review R4)",
+  "lane": "High-Risk",
+  "contract": "Economy fix in the only activity payout path: a second Pay with the same CommandId while the first is still granting (Busy retries) now waits up to 15 s for the first result instead of returning a cached Ok with Cash=0. Failed grants still clear the cache so a later retry pays. No other behaviour changes.",
+  "verification": "Compile via AUDIT; Studio play: courier payout still pays once; console clean.",
+  "operations": [
+    { "kind": "source", "path": ["ServerStorage", "Modules", "Game", "Activities", "ActivityPayout"], "file": "scripts/activities/foundation/ActivityPayout.lua" }
+  ]
+}
