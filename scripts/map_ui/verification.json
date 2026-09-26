@@ -1,0 +1,34 @@
+{
+  "feature": "Full-screen map, MapMarkers, upright minimap icons, cleaned minimap tile",
+  "date": "2026-09-26",
+  "place": "Space Racers v2 (71491191583884)",
+  "lane": "Standard",
+  "before_capture": "roblox/captures/mapui-before/capture.json",
+  "after_capture": "roblox/captures/mapui-after/capture.json",
+  "installer": "scripts/map_ui/install_{audit,apply,rollback}.lua from spec.json + spec-integration.json (17 ops)",
+  "installer_cycle": "APPLY -> ROLLBACK -> AUDIT(before) -> APPLY; then a fix (backdrop click) was installed via ROLLBACK -> rebuild -> APPLY",
+  "asset_changes": {
+    "icons_uploaded": "scripts/map_art/uploaded_assets.json (14 icons, filled into Config.UI.MapIcons)",
+    "tile_swap": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Assets.MapTileBottomRight: rbxassetid://73611385783250 -> rbxassetid://97942462366071 (guarded Edit command; rollback = set the old id back). Only place this id was referenced."
+  },
+  "parity": "Installed FullMapUI, MapMarkers, ClientBase, ActivityClient byte-identical to repo files (mapui-after capture)",
+  "pure_tests": "scripts/map_ui/tests.lua 40/40 pass in Studio (two tolerances loosened: Roblox Vector2 is float32)",
+  "fixes_during_integration": [
+    "Clicking on the map closed it: the full-screen Backdrop TextButton received clicks under the panel. Replaced with a panel-bounds check in pointerBegan.",
+    "OpenVisibleStuds 3600 -> 5000 (opens wider)."
+  ],
+  "agent_verified_play": [
+    "M opens the full map; DesktopFreeRoamHud and ActivityHud disabled while open; M closes and both return (FullMapOpen attribute).",
+    "Legend lists Dealership, My Garage, Customisation, Showroom Loop, Waterfront Sprint and a map key with the uploaded icons.",
+    "Click on a road sets a waypoint: pink pin, route drawn on the full map, WAYPOINT 0.5 MI chip.",
+    "Minimap shows the 5 POI icons with Rotation 0 while the map rotates.",
+    "Console clean (FullMapUI ready line, no errors)."
+  ],
+  "not_verified": [
+    "Escape key close (VirtualInput cannot send Escape; M and X verified by code path only for X)",
+    "Minimap click opening the map with a real mouse; touch pinch/drag; controller",
+    "Exact click-to-waypoint alignment with a real mouse (virtual input appeared consistent)",
+    "Mobile HUD"
+  ],
+  "status": "installed, agent-verified; not user-confirmed"
+}

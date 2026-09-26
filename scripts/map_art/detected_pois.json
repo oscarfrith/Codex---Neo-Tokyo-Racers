@@ -1,0 +1,71 @@
+[
+  {
+    "key": "Customisation",
+    "meaning": "Paint-brush glyph (cyan) centred in a small roundabout",
+    "glyphColour": "#5CD0D3",
+    "pixelBBox": [
+      1138,
+      1072,
+      1163,
+      1097
+    ],
+    "pixelCentre": [
+      1150.5,
+      1084.5
+    ],
+    "tile": "MapTileBottomRight",
+    "world": {
+      "X": 839.9,
+      "Z": -1748.6
+    },
+    "glyphPixels": 217,
+    "maskPixels": 407,
+    "sitsInRoundabout": true
+  },
+  {
+    "key": "Garage",
+    "meaning": "House / garage-door glyph (cyan)",
+    "glyphColour": "#5CCCCF",
+    "pixelBBox": [
+      1142,
+      1122,
+      1167,
+      1145
+    ],
+    "pixelCentre": [
+      1154.5,
+      1133.5
+    ],
+    "tile": "MapTileBottomRight",
+    "world": {
+      "X": 1514.5,
+      "Z": -1803.6
+    },
+    "glyphPixels": 285,
+    "maskPixels": 447,
+    "sitsInRoundabout": false
+  },
+  {
+    "key": "Race",
+    "meaning": "Checkered race flag (lime) on the boulevard",
+    "glyphColour": "#7ACD0C",
+    "pixelBBox": [
+      1108,
+      1170,
+      1133,
+      1193
+    ],
+    "pixelCentre": [
+      1120.5,
+      1181.5
+    ],
+    "tile": "MapTileBottomRight",
+    "world": {
+      "X": 2175.4,
+      "Z": -1335.5
+    },
+    "glyphPixels": 275,
+    "maskPixels": 473,
+    "sitsInRoundabout": false
+  }
+]

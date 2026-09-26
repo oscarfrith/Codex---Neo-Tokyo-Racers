@@ -1,0 +1,22 @@
+{
+  "uploaded": "2026-09-26",
+  "icons": {
+    "Dealership": "rbxassetid://117497167430376",
+    "Garage": "rbxassetid://89896385367163",
+    "Customisation": "rbxassetid://120697454252909",
+    "Race": "rbxassetid://109898523145396",
+    "TimeTrial": "rbxassetid://124705788932443",
+    "TaxiFare": "rbxassetid://73889410806978",
+    "CourierPickup": "rbxassetid://116412322039130",
+    "CourierDrop": "rbxassetid://88530283560614",
+    "TaxiDrop": "rbxassetid://112341927977489",
+    "Waypoint": "rbxassetid://115587109618155",
+    "Player": "rbxassetid://87705746119141",
+    "OtherPlayer": "rbxassetid://98882139769955",
+    "Duel": "rbxassetid://132954542175990",
+    "Job": "rbxassetid://127080252651533"
+  },
+  "tiles": {
+    "MapTileBottomRight": {"new": "rbxassetid://97942462366071", "replaces": "rbxassetid://73611385783250"}
+  }
+}

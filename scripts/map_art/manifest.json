@@ -1,0 +1,295 @@
+{
+  "generatedBy": "scripts/map_art (clean_tiles.py, make_icons.py, build_manifest.py)",
+  "mapping": {
+    "imageSize": [
+      2048,
+      2048
+    ],
+    "studsPerPixel": 13.768115942028986,
+    "formula": "X = (py + 0.5 - 1024) * spp ; Z = -(px + 0.5 - 1024) * spp  (scripts/route_guide/build_road_graph.py to_world)"
+  },
+  "configIconsPath": "ReplicatedStorage.Config.UI.MapIcons (attribute per key -> rbxassetid string after upload)",
+  "icons": {
+    "Customisation": {
+      "file": "icons/Customisation.png",
+      "size": [
+        128,
+        128
+      ],
+      "role": "place",
+      "anchorPoint": [
+        0.5,
+        0.5
+      ]
+    },
+    "Garage": {
+      "file": "icons/Garage.png",
+      "size": [
+        128,
+        128
+      ],
+      "role": "place",
+      "anchorPoint": [
+        0.5,
+        0.5
+      ]
+    },
+    "Dealership": {
+      "file": "icons/Dealership.png",
+      "size": [
+        128,
+        128
+      ],
+      "role": "place",
+      "anchorPoint": [
+        0.5,
+        0.5
+      ]
+    },
+    "Race": {
+      "file": "icons/Race.png",
+      "size": [
+        128,
+        128
+      ],
+      "role": "activity",
+      "anchorPoint": [
+        0.5,
+        0.5
+      ]
+    },
+    "TimeTrial": {
+      "file": "icons/TimeTrial.png",
+      "size": [
+        128,
+        128
+      ],
+      "role": "activity",
+      "anchorPoint": [
+        0.5,
+        0.5
+      ]
+    },
+    "Duel": {
+      "file": "icons/Duel.png",
+      "size": [
+        128,
+        128
+      ],
+      "role": "activity",
+      "anchorPoint": [
+        0.5,
+        0.5
+      ]
+    },
+    "Job": {
+      "file": "icons/Job.png",
+      "size": [
+        128,
+        128
+      ],
+      "role": "job",
+      "anchorPoint": [
+        0.5,
+        0.5
+      ]
+    },
+    "TaxiFare": {
+      "file": "icons/TaxiFare.png",
+      "size": [
+        128,
+        128
+      ],
+      "role": "job",
+      "anchorPoint": [
+        0.5,
+        0.5
+      ]
+    },
+    "CourierPickup": {
+      "file": "icons/CourierPickup.png",
+      "size": [
+        128,
+        128
+      ],
+      "role": "job",
+      "anchorPoint": [
+        0.5,
+        0.5
+      ]
+    },
+    "CourierDrop": {
+      "file": "icons/CourierDrop.png",
+      "size": [
+        128,
+        128
+      ],
+      "role": "jobDrop",
+      "anchorPoint": [
+        0.5,
+        0.953
+      ]
+    },
+    "TaxiDrop": {
+      "file": "icons/TaxiDrop.png",
+      "size": [
+        128,
+        128
+      ],
+      "role": "jobDrop",
+      "anchorPoint": [
+        0.5,
+        0.953
+      ]
+    },
+    "Waypoint": {
+      "file": "icons/Waypoint.png",
+      "size": [
+        128,
+        128
+      ],
+      "role": "waypoint",
+      "anchorPoint": [
+        0.5,
+        0.953
+      ]
+    },
+    "Player": {
+      "file": "icons/Player.png",
+      "size": [
+        128,
+        128
+      ],
+      "role": "player",
+      "anchorPoint": [
+        0.5,
+        0.5
+      ]
+    },
+    "OtherPlayer": {
+      "file": "icons/OtherPlayer.png",
+      "size": [
+        128,
+        128
+      ],
+      "role": "player",
+      "anchorPoint": [
+        0.5,
+        0.5
+      ]
+    }
+  },
+  "contactSheet": "icons/contact_sheet.png",
+  "cleanedTiles": {
+    "MapTileTopLeft": {
+      "file": "clean/MapTileTopLeft.png",
+      "replacesAsset": "rbxassetid://105511999776909",
+      "configPath": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Assets.MapTileTopLeft",
+      "pixelsChanged": false,
+      "needsUpload": false
+    },
+    "MapTileTopRight": {
+      "file": "clean/MapTileTopRight.png",
+      "replacesAsset": "rbxassetid://113515913291985",
+      "configPath": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Assets.MapTileTopRight",
+      "pixelsChanged": false,
+      "needsUpload": false
+    },
+    "MapTileBottomLeft": {
+      "file": "clean/MapTileBottomLeft.png",
+      "replacesAsset": "rbxassetid://85498926288328",
+      "configPath": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Assets.MapTileBottomLeft",
+      "pixelsChanged": false,
+      "needsUpload": false
+    },
+    "MapTileBottomRight": {
+      "file": "clean/MapTileBottomRight.png",
+      "replacesAsset": "rbxassetid://73611385783250",
+      "configPath": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Assets.MapTileBottomRight",
+      "pixelsChanged": true,
+      "needsUpload": true
+    }
+  },
+  "detectedPois": [
+    {
+      "icon": "Customisation",
+      "meaning": "Paint-brush glyph (cyan) centred in a small roundabout",
+      "suggestedKind": "Place",
+      "suggestedLabel": "CUSTOMISATION",
+      "world": {
+        "X": 839.9,
+        "Y": 0,
+        "Z": -1748.6
+      },
+      "worldAccuracyStuds": 41.3,
+      "pixelCentre": [
+        1150.5,
+        1084.5
+      ],
+      "pixelBBox": [
+        1138,
+        1072,
+        1163,
+        1097
+      ],
+      "tile": "MapTileBottomRight",
+      "note": "Position is the centre of the baked glyph; prefer the world part (Dealership / My Garage / Customisation / race start) when Agent F's installer resolves one."
+    },
+    {
+      "icon": "Garage",
+      "meaning": "House / garage-door glyph (cyan)",
+      "suggestedKind": "Place",
+      "suggestedLabel": "MY GARAGE",
+      "world": {
+        "X": 1514.5,
+        "Y": 0,
+        "Z": -1803.6
+      },
+      "worldAccuracyStuds": 41.3,
+      "pixelCentre": [
+        1154.5,
+        1133.5
+      ],
+      "pixelBBox": [
+        1142,
+        1122,
+        1167,
+        1145
+      ],
+      "tile": "MapTileBottomRight",
+      "note": "Position is the centre of the baked glyph; prefer the world part (Dealership / My Garage / Customisation / race start) when Agent F's installer resolves one."
+    },
+    {
+      "icon": "Race",
+      "meaning": "Checkered race flag (lime) on the boulevard",
+      "suggestedKind": "Race",
+      "suggestedLabel": "RACE",
+      "world": {
+        "X": 2175.4,
+        "Y": 0,
+        "Z": -1335.5
+      },
+      "worldAccuracyStuds": 41.3,
+      "pixelCentre": [
+        1120.5,
+        1181.5
+      ],
+      "pixelBBox": [
+        1108,
+        1170,
+        1133,
+        1193
+      ],
+      "tile": "MapTileBottomRight",
+      "note": "Position is the centre of the baked glyph; prefer the world part (Dealership / My Garage / Customisation / race start) when Agent F's installer resolves one."
+    }
+  ],
+  "notBakedIn": [
+    "Dealership",
+    "TimeTrial",
+    "Duel",
+    "jobs",
+    "Waypoint",
+    "players"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+ "task": "Full map integration: ClientBase entry and ActivityHud hide",
+ "lane": "Standard",
+ "contract": "scripts/map_ui/CONTRACT.md",
+ "operations": [
+  {
+   "kind": "source",
+   "path": [
+    "StarterPlayer",
+    "StarterPlayerScripts",
+    "ClientBase"
+   ],
+   "file": "scripts/map_ui/integration/ClientBase.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "Activities",
+    "ActivityClient"
+   ],
+   "file": "scripts/map_ui/integration/ActivityClient.lua"
+  }
+ ]
+}
