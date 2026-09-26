@@ -134,6 +134,7 @@ local function plan(position)
 	local points = found.Points
 	local target = flat(active.Position)
 	if (target - points[#points]).Magnitude > 1 then table.insert(points, target) end
+	points = RoadRouting.Smooth(points, number("CornerRadius", 28, 0, 150), 5)
 	routeVersion += 1
 	route = { Points = points, Cumulative = RoadRouting.Cumulative(points), Version = routeVersion }
 	progress = { Segment = 1, Point = points[1], Remaining = route.Cumulative[#points], OffSince = nil }
@@ -270,6 +271,12 @@ function MapRenderer:_segment(index)
 	line.BorderSizePixel = 0
 	line.ZIndex = self.ZIndex + 1
 	line.Parent = self.Layer
+	-- Pill-shaped segments: rounded caps overlap at each vertex, giving clean joints.
+	for _, item in ipairs({ line, outline }) do
+		local round = Instance.new("UICorner")
+		round.CornerRadius = UDim.new(1, 0)
+		round.Parent = item
+	end
 	self.Segments[index], self.Outlines[index] = line, outline
 	return line, outline
 end

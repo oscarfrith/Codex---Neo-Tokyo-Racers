@@ -36,6 +36,11 @@ local points = { Vector2.new(0, 0), Vector2.new(100, 0), Vector2.new(100, 100) }
 local cumulative = RoadRouting.Cumulative(points)
 local segment, point, off, remaining = RoadRouting.Progress(points, cumulative, Vector2.new(100 + 3, 50), 1, 12)
 check("progress on second segment", segment == 2 and near(point.X, 100) and near(point.Y, 50) and near(off, 3) and near(remaining, 50))
+local smooth = RoadRouting.Smooth({ Vector2.new(0, 0), Vector2.new(100, 0), Vector2.new(100, 100) }, 20, 4)
+check("smooth keeps endpoints", smooth[1] == Vector2.new(0, 0) and smooth[#smooth] == Vector2.new(100, 100))
+check("smooth rounds the corner within radius", #smooth == 7 and near(smooth[2].X, 80) and near(smooth[#smooth - 1].Y, 20))
+local straightLine = RoadRouting.Smooth({ Vector2.new(0, 0), Vector2.new(50, 0.5), Vector2.new(100, 0) }, 20, 4)
+check("smooth leaves near-straight vertices", #straightLine == 3)
 check("distance format", RoadRouting.FormatDistance(5760 * 0.84, 5760) == "0.8 MI" and RoadRouting.FormatDistance(100, 5760) == "<0.1 MI")
 
 -- Real graph

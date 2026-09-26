@@ -1,0 +1,12 @@
+{
+  "task": "Route guide: smooth route line (Oscar feedback: jagged edges)",
+  "lane": "Standard",
+  "contract": "Goal: route lines on the minimap look smooth and clean. Changes: RoadGraphData regenerated with junction contraction (merges junction pairs under 4.5 px that caused sideways jogs at diagonal crossings) and RDP epsilon 1.0; RoadRouting gains Smooth (quadratic corner rounding over a short radius, endpoints kept); RouteGuide smooths each planned route and draws pill-shaped segments (UICorner) so joints are round. New tunable Config.UI.RouteGuide.CornerRadius=28. Owners unchanged; no remotes, saves or HUD source changes. Preserved: routing API, destinations, progress/replan/arrival, clipping. Done when: routes draw without steps or notched joints; tests pass; no console errors.",
+  "verification": "Pure tests (RoadRouting + real graph); Play: set routes and screenshot the minimap; console scan.",
+  "operations": [
+    { "kind": "source", "path": ["ReplicatedStorage", "Modules", "Game", "World", "RoadRouting"], "file": "scripts/route_guide/RoadRouting.lua" },
+    { "kind": "source", "path": ["ReplicatedStorage", "Modules", "Game", "World", "RoadGraphData"], "file": "scripts/route_guide/RoadGraphData.lua" },
+    { "kind": "source", "path": ["ReplicatedStorage", "Modules", "Game", "UI", "RouteGuide"], "file": "scripts/route_guide/RouteGuide.lua" },
+    { "kind": "attribute", "path": ["ReplicatedStorage", "Config", "UI", "RouteGuide"], "key": "CornerRadius", "value": 28 }
+  ]
+}

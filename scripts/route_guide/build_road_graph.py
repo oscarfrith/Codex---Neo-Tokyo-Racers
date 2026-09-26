@@ -29,7 +29,8 @@ CAL_STUDS, CAL_PIXELS = 2850.0, 207.0
 STUDS_PER_PIXEL = CAL_STUDS / CAL_PIXELS
 MIN_COMPONENT = 400
 SPUR_PIXELS = 9
-RDP_EPSILON = 0.75
+RDP_EPSILON = 1.0
+CONTRACT_PIXELS = 4.5  # merge junctions this close (diagonal crossings leave two nearby junctions)
 GENERATOR_VERSION = 1
 
 N8 = [(-1, -1), (0, -1), (1, -1), (1, 0), (1, 1), (0, 1), (-1, 1), (-1, 0)]
@@ -250,6 +251,28 @@ def prune(nodes, edges):
     return nodes, edges
 
 
+def contract(nodes, edges):
+    """Merge junction pairs joined by a very short edge so routes do not jog sideways at crossings."""
+    changed = True
+    while changed:
+        changed = False
+        for index, (a, b, path) in enumerate(edges):
+            if a != b and pixel_length(path) < CONTRACT_PIXELS:
+                ax, ay = nodes[a]
+                bx, by = nodes[b]
+                nodes[a] = [(ax + bx) / 2, (ay + by) / 2]
+                merged = []
+                for c, d, other in edges:
+                    c = a if c == b else c
+                    d = a if d == b else d
+                    if c != d:
+                        merged.append([c, d, other])
+                edges = merged
+                changed = True
+                break
+    return prune(nodes, edges)
+
+
 def rdp(points, epsilon):
     if len(points) < 3:
         return points
@@ -288,6 +311,7 @@ def main():
     skeleton = remove_blocks(thin(kept))
     nodes, edges = build_graph(skeleton)
     nodes, edges = prune(nodes, edges)
+    nodes, edges = contract(nodes, edges)
 
     world_nodes = [to_world(x, y, size) for x, y in nodes]
     out_edges, polylines = [], []

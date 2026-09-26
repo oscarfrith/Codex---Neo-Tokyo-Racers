@@ -20,5 +20,15 @@
   },
   "not_verified": "mobile/touch runtime and phone frame time; two-client; full drive along a long route; bridges/ramps where roads cross at different levels on the flat map may appear as junctions; coastal loop roads are assumed drivable because the map draws them",
   "evidence_type": "agent-verified Studio desktop (normal UI + API vehicle spawn + synthetic character moves); not user-confirmed",
-  "rollback": "py scripts/route_guide/build_installer.py roblox/captures/route-guide-before/capture.json scripts/route_guide/install.rollback.lua --mode ROLLBACK, then run it in Studio Edit"
+  "rollback": "py scripts/route_guide/build_installer.py roblox/captures/route-guide-before/capture.json scripts/route_guide/install.rollback.lua --mode ROLLBACK, then run it in Studio Edit",
+  "smoothing_2026_09_26": {
+    "request": "Oscar: route line had jagged edges",
+    "spec": "scripts/route_guide/spec-smoothing.json",
+    "after_capture": "roblox/captures/route-smooth-after/capture.json",
+    "changes": "junction contraction (<4.5 px) + RDP 1.0 in the generator (292 nodes, 458 edges); RoadRouting.Smooth corner rounding (CornerRadius 28); pill-shaped segments",
+    "scope": "RoadRouting, RoadGraphData, RouteGuide sources + CornerRadius attribute only",
+    "tests": "31/31",
+    "play": "Waterfront Sprint route drawn as a smooth curve around the customisation circle; no steps or notched joints in the screenshot",
+    "evidence_type": "agent-verified Studio desktop"
+  }
 }
