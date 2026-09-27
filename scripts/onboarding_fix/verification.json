@@ -1,0 +1,9 @@
+{
+  "feature": "Onboarding client loads saved progress reliably",
+  "date": "2026-09-27",
+  "cause": "OnboardingClient called GetState once at startup, usually before the profile finished loading; the failed reply was ignored and never retried, so returning players kept the default stage-1 state and saw the dealership guide trail every session (the server had FirstVehiclePurchased/FirstVehicleDriven saved, stage 2)",
+  "fix": "Retry GetState (0.5 s backoff up to 5 s, 60 attempts) until Success; the guide trail is drawn only once real state is ready. Server, saved schema and page flow unchanged.",
+  "installer": "scripts/onboarding_fix/install_{audit,apply,rollback}.lua (1 source op, before = roblox/captures/worldjobs-after); AUDIT -> APPLY -> ROLLBACK -> APPLY",
+  "agent_verified_play": "Saved stage-2 profile: 0 guide-trail beams after the start screen; objective cards 2 (Explore your garage) and 3 (Enter an event) shown, matching saved progress; console clean",
+  "status": "installed, agent-verified; not user-confirmed"
+}

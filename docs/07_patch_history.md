@@ -2,6 +2,10 @@
 
 Recent deliveries, newest first. Entries before September 2026 live in [the archive](history/patch-history-2026-05-to-2026-08.md).
 
+## 2026-09-27 - Tutorial no longer restarts for returning players
+
+OnboardingClient asked for saved progress once, before the profile had loaded, and never retried. Returning players therefore saw the new-player dealership guide trail every session. The client now retries until the saved state arrives and draws no trail before then. Agent-verified: a saved stage-2 profile shows only objectives 2 and 3. [Verification](../scripts/onboarding_fix/verification.json).
+
 ## 2026-09-27 - World jobs live (v2)
 
 GTA-style taxi fares and parcels are installed; the Courier hub pads were removed (hub_pads.lua RESTORE is paired with installer ROLLBACK).

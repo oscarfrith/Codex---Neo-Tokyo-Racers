@@ -1,0 +1,9 @@
+{
+ "task": "Onboarding client: retry GetState until the saved progress loads; no guide trail before state is ready",
+ "lane": "Standard",
+ "contract": "Returning players (saved Completed.FirstVehiclePurchased) never see the dealership guide trail; the client retries GetState (profile may still be loading) until Success; the trail is drawn only after real state is ready. Server, saved schema and page flow unchanged.",
+ "verification": "Play with a saved profile past stage 1: no OnboardingGuideTrail beams after the start screen; objective cards match the saved stage.",
+ "operations": [
+  {"kind": "source", "path": ["ReplicatedStorage", "Modules", "Game", "UI", "OnboardingClient"], "file": "scripts/onboarding_fix/OnboardingClient.lua"}
+ ]
+}
