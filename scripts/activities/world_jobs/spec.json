@@ -141,7 +141,7 @@
     "DirectionSpreadDegrees": 40,
     "SectorColumns": 3,
     "SectorRows": 4,
-    "SpotTries": 40,
+    "SpotTries": 80,
     "StreamRadius": 600,
     "StreamHysteresis": 150,
     "PromptDistance": 45,

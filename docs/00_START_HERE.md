@@ -4,28 +4,24 @@ Target: **Space Racers v2, place 71491191583884** (since 2026-09-26; v1 12130491
 
 ## Current task and next action
 
-**Feature work (Street Life, [design](design/street-life-update.md)).** Paused 2026-09-26 mid-way through Oscar's map/jobs refinements ([contract](architecture/map-markers-contract.md)).
+**Feature work (Street Life, [design](design/street-life-update.md)).** Oscar's map and jobs refinements ([contract](architecture/map-markers-contract.md)) are all installed on v2. They are agent-verified, not user-confirmed.
 
-- **Live on v2 (installed, agent-verified, not user-confirmed):**
-  - Full-screen map: click the minimap or press M. It has a legend, click-to-waypoint, drag/zoom and upright icons, and hides the other HUDs while open ([verification](../scripts/map_ui/verification.json)).
-  - New 14-icon set and a cleaned minimap tile with no baked icons ([map art](../scripts/map_art/README.md)).
-  - Route line v2: straight along streets, rounded turns, thicker with an outline ([options study](../scripts/route_guide/ROUTE_LINE_OPTIONS.md)).
-- **Built, not live: GTA-style world jobs** (scripts/activities/world_jobs/, RP-02). Rolled back in Studio at the pause; the old Courier/Taxi and hub pads are restored.
-- **Earlier RP features** (RP-01): Driver Rank, Courier, Passengers + Sky Taxi, Garage visits, free Street Duels. Duel stakes stay off (EnableDuelStakes).
-- **Suggestions (item 4):** [open-world improvements](design/open-world-improvements.md).
+- **Full-screen map:** click the minimap or press M. It has a legend, click-to-waypoint, drag/zoom, upright icons, and hides the other HUDs while open ([verification](../scripts/map_ui/verification.json)).
+- **Map art:** a 14-icon set and a cleaned minimap tile ([map art](../scripts/map_art/README.md)).
+- **Route line v2:** straight along streets, rounded turns, thicker with an outline ([options](../scripts/route_guide/ROUTE_LINE_OPTIONS.md)).
+- **World jobs (RP-02):**
+  - Taxi fares and parcels sit on pavement around the map, each with an icon. Drive up and press E (the prompt rides on your car).
+  - Pay is higher for faster trips and lower after crashes. Nothing auto-starts; the old hubs and modes are removed ([verification](../scripts/activities/world_jobs/verification.json)).
+- **Earlier RP features** (RP-01): Driver Rank, Passengers, Garage visits, free Street Duels. Stakes stay off.
+- **Suggestions:** [open-world improvements](design/open-world-improvements.md).
 
-Next action (resume here): finish world jobs, RP-02.
+Next action: Oscar play-tests the map, route line and world jobs. Then:
 
-1. **Fix taxi boarding** in scripts/activities/world_jobs/TaxiJob.lua. The fare rig sits in FallingDown while its root is anchored, and falls through the world when `board()` unanchors it, so SeatNpc fails ("Sit: humanoid is dead").
-   - Keep the rig anchored and move it with a scripted walk (PivotTo lerp) to the boarding point, then call `PassengerService.SeatNpc`.
-   - Do the same for `walkAway` at the drop.
-   - Disable the FallingDown/Ragdoll states in `buildRig`.
-2. **Investigate** "[JobBoard] no valid Courier spot this round" repeating after the stricter pavement rule (PavementMinRise/MaxRise, foliage/baseplate rejection).
-3. **Reinstall and test:** rebuild with `py -3 scripts/feature_installer.py roblox/captures/mapui-after/capture.json scripts/activities/world_jobs/install_apply.lua scripts/activities/world_jobs/spec.json scripts/activities/world_jobs/spec-integration.json --mode APPLY` (plus AUDIT/ROLLBACK). Then run `hub_pads.lua` DELETE and play-test a full taxi and a full courier trip (payout once, toast, no auto-restart).
-4. **Tune pay:** trips currently estimate about $330–670. Check against Oscar's expectations.
-5. **Commit and hand off:** write verification.json, commit, and ask Oscar to play-test.
+- tune job pay (about $330–670 per trip) and the passenger seat position (the fare sits on the rear deck);
+- run the two-client checks in scripts/activities/world_jobs/CONTRACT.md;
+- work the queue: ECON-01, then the recommended next three in the suggestions doc.
 
-Latest targeted capture: **2026-09-26**, [map UI after](../roblox/captures/mapui-after/capture.json), v2, 209 sources (before the route line install; the route line sources match the repo).
+Latest targeted capture: **2026-09-27**, [world jobs after](../roblox/captures/worldjobs-after/capture.json), v2, 212 sources.
 
 ### Previous status
 

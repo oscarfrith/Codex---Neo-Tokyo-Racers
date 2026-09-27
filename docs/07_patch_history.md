@@ -2,6 +2,20 @@
 
 Recent deliveries, newest first. Entries before September 2026 live in [the archive](history/patch-history-2026-05-to-2026-08.md).
 
+## 2026-09-27 - World jobs live (v2)
+
+GTA-style taxi fares and parcels are installed; the Courier hub pads were removed (hub_pads.lua RESTORE is paired with installer ROLLBACK).
+
+- **Fixes from play testing:**
+  - The prompt now rides on the player's own car. ProximityPrompts only show on screen, and a prompt on the kerb went off-screen when the car pulled alongside.
+  - The fare now walks with its root anchored; before, it fell through the world when boarding.
+  - Spots must be real pavement, never foliage or bare baseplate.
+  - More kerb candidates per pass, and the failure warning now lists rejection reasons.
+- **Agent-verified:**
+  - A taxi and a courier trip each paid once and nothing auto-started.
+  - The crash-penalty breakdown is correct.
+  - No rig leak; tests 101/101.
+
 ## 2026-09-26 - Full-screen map, map icons, route line v2; world jobs built (paused)
 
 Four parallel agents, one integrator. Contract: [map-markers-contract](architecture/map-markers-contract.md).

@@ -1,21 +1,30 @@
 {
   "feature": "World jobs (GTA-style taxi fares and parcels)",
-  "date": "2026-09-26",
-  "status": "built; installed for testing then ROLLED BACK at pause (Studio is on the pre-jobs baseline with old Courier/Taxi and hub pads restored)",
+  "date": "2026-09-27",
+  "place": "Space Racers v2 (71491191583884)",
+  "lane": "High-Risk (economy, remote action, retirement of old actions and hub pads)",
+  "status": "installed, agent-verified (single client, scripted movement = synthetic); not user-confirmed",
   "before_capture": "roblox/captures/mapui-after/capture.json",
-  "installer": "spec.json + spec-integration.json (48 ops) via scripts/feature_installer.py; hub_pads.lua AUDIT/DELETE/RESTORE (round trip verified)",
-  "review": "delivery-reviewer: 1 blocker (hub-pad rollback) fixed; follow-ups fixed: +$0 retry toast, distance credit after missing root, yield in destination loop, client root fallback, client props under World.Runtime",
+  "after_capture": "roblox/captures/worldjobs-after/capture.json (all 17 installed sources/modules byte-identical to the repo; Workspace.World.Jobs absent)",
+  "installer": "spec.json + spec-integration.json (48 ops) via scripts/feature_installer.py; AUDIT -> APPLY -> ROLLBACK -> APPLY cycles run; hub_pads.lua DELETE/RESTORE round trip verified; rollback runbook = install_rollback.lua then hub_pads.lua RESTORE",
+  "review": "delivery-reviewer before APPLY: 1 blocker (hub-pad rollback) fixed; follow-ups fixed (+$0 retry toast, distance credit after missing root, yield in destination loop, client root fallback, client props under World.Runtime). Accepted: session-scoped hourly cap, pay lost if the player leaves at the drop, client-trusted velocity.",
+  "fixes_during_play_testing": [
+    "Kerb spots on bare baseplate / bushes / dividers: pavement must sit 0.25-1.5 studs above the road and not be foliage/baseplate; several margins tried",
+    "Prompt on the kerb went off-screen beside the fare (ProximityPrompts only show on screen): one prompt now rides on the player's own car and targets the nearest offer",
+    "Fare rig fell through the world when unanchored for boarding: anchored scripted walk (to the car and away at the drop), FallingDown/Ragdoll disabled, drop-off placed at pavement height",
+    "Courier generation failing: 16 kerb candidates per pass, SpotTries 80, rejection reasons in the warning"
+  ],
   "pure_tests": "tests.lua 101/101 pass in Studio",
   "agent_verified_play": [
-    "11 offers generated across the district; after the pavement fix 10/11 on pavement tiles (1 on a raised district's pavement at Y 161)",
-    "Minimap shows TaxiFare / CourierPickup icons",
-    "Fare rig stands on the pavement facing the road, hailing",
-    "Car-mounted prompt 'Give ride' shows and triggers; JobAccept consumes the offer"
+    "11/11 offers generated (6 taxi, 5 courier) on pavement tiles beside roads; minimap icons shown",
+    "Taxi: 'Give ride' prompt on the car -> fare walks to the car and sits (no fall) -> trip strip + drop-off route -> arrival -> fare walks off and despawns; +$422 vs $429 estimate, XP 54->114, paid once; no auto-restart; board refilled to 11",
+    "Courier: 'Pick up parcel' (Tyre set) -> drop -> +$472 vs $414 estimate (speed bonus)",
+    "Crash penalty: Taxi:Crash events, Completed breakdown Base 443 + SpeedBonus 33 - CrashPenalty 171 = 305 paid",
+    "No rig leak: 2 rigs for 2 taxi offers within stream range after three trips; console clean"
   ],
-  "open": [
-    "Boarding: rig falls through the world when unanchored (Humanoid FallingDown while anchored) -> SeatNpc fails; switch to anchored scripted walk + disable FallingDown/Ragdoll",
-    "Courier spot generation repeatedly fails after the pavement rule",
-    "Full trip, payout once, completion toast, no auto-restart not yet observed",
-    "Pay tuning, two-client accept race, mobile prompt"
+  "not_verified": [
+    "Real keyboard driving along the route; prompt visuals (screen capture omits CoreGui prompts)",
+    "Two-client simultaneous accept; mobile prompt; cancel mid-boarding / leave mid-trip rig cleanup",
+    "Pay feel: trips estimate ~$330-670 (~$30-40k/h at 85 mph reference, under the $40k job cap)"
   ]
 }
