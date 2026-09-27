@@ -1,0 +1,277 @@
+{
+ "task": "Minimap speed zoom, refined map icon outline/shadow, passenger seat inside the cockpit",
+ "lane": "Standard",
+ "contract": "Minimap visible area grows smoothly with speed (1x below 40 mph to 1.8x at 200 mph; tunable in DesktopFreeRoamHud.Layout; both HUDs). Map icons re-rendered with a thinner outline (3/128) and softer halo. Passenger seat moved from the rear deck (0,1.45,11) into the cockpit in front of the driver (0,1.0,1.5) so passengers no longer block the camera; applies to newly spawned vehicles.",
+ "operations": [
+  {
+   "kind": "source",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "UI",
+    "DesktopFreeRoamHudUI"
+   ],
+   "file": "scripts/map_ui/DesktopFreeRoamHudUI.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "UI",
+    "MobileFreeRoamHudUI"
+   ],
+   "file": "scripts/map_ui/MobileFreeRoamHudUI.lua"
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "DesktopFreeRoamHud",
+    "Layout"
+   ],
+   "key": "MapSpeedZoomEnabled",
+   "value": true
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "DesktopFreeRoamHud",
+    "Layout"
+   ],
+   "key": "MapSpeedZoomStartMph",
+   "value": 40
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "DesktopFreeRoamHud",
+    "Layout"
+   ],
+   "key": "MapSpeedZoomFullMph",
+   "value": 200
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "DesktopFreeRoamHud",
+    "Layout"
+   ],
+   "key": "MapSpeedZoomMaxFactor",
+   "value": 1.8
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "DesktopFreeRoamHud",
+    "Layout"
+   ],
+   "key": "MapSpeedZoomOutResponse",
+   "value": 1.6
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "DesktopFreeRoamHud",
+    "Layout"
+   ],
+   "key": "MapSpeedZoomInResponse",
+   "value": 0.8
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "MapIcons"
+   ],
+   "key": "Race",
+   "value": "rbxassetid://101513672811479"
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "MapIcons"
+   ],
+   "key": "Job",
+   "value": "rbxassetid://114936364584344"
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "MapIcons"
+   ],
+   "key": "Garage",
+   "value": "rbxassetid://117463710888636"
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "MapIcons"
+   ],
+   "key": "CourierDrop",
+   "value": "rbxassetid://91332824339252"
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "MapIcons"
+   ],
+   "key": "TaxiFare",
+   "value": "rbxassetid://122684785819223"
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "MapIcons"
+   ],
+   "key": "Dealership",
+   "value": "rbxassetid://92869129705490"
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "MapIcons"
+   ],
+   "key": "Duel",
+   "value": "rbxassetid://98037275271976"
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "MapIcons"
+   ],
+   "key": "Waypoint",
+   "value": "rbxassetid://103285523696337"
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "MapIcons"
+   ],
+   "key": "TimeTrial",
+   "value": "rbxassetid://70689086757093"
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "MapIcons"
+   ],
+   "key": "Customisation",
+   "value": "rbxassetid://103658738821696"
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "MapIcons"
+   ],
+   "key": "TaxiDrop",
+   "value": "rbxassetid://91589223582119"
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "MapIcons"
+   ],
+   "key": "OtherPlayer",
+   "value": "rbxassetid://105355064166767"
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "MapIcons"
+   ],
+   "key": "CourierPickup",
+   "value": "rbxassetid://98923575173924"
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "MapIcons"
+   ],
+   "key": "Player",
+   "value": "rbxassetid://131214078324709"
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Passengers"
+   ],
+   "key": "SeatOffsetY",
+   "value": 1.0
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Passengers"
+   ],
+   "key": "SeatOffsetZ",
+   "value": 1.5
+  }
+ ]
+}

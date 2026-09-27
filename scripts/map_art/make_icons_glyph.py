@@ -25,9 +25,9 @@ from png_rgba import write_png
 
 HERE = pathlib.Path(__file__).parent
 OUT = HERE / "icons_glyph"
-OUTLINE = 6.5          # dark outline width in 128-units
-SHADOW = 11.0          # soft halo reach
-SHADOW_COL = (6, 8, 11, 110)
+OUTLINE = 3.0          # dark outline width in 128-units (refined 2026-09-27; was 6.5)
+SHADOW = 5.5           # soft halo reach (refined; was 11)
+SHADOW_COL = (6, 8, 11, 70)
 BLUE_GLYPH = (47, 136, 255, 255)   # ElectricBlue #1974FF lifted slightly (#2F88FF) for contrast on block dark
 PIN_TIP = 118.0
 
@@ -93,8 +93,8 @@ def icons():
         "CourierDrop": pin(BLUE, [(grow(parcel_small, 3), OUTLINE_DARK), (parcel_small, TEXT)]),
         "TaxiDrop": pin(BLUE, [(person_small, TEXT)]),
         "Waypoint": pin(PINK, [(circle(pcx, pcy, 13), TEXT)]),
-        "Player": [(grow(player, SHADOW), SHADOW_COL), (grow(player, 7), OUTLINE_DARK),
-                   (grow(player, 3.5), CYAN), (player, TEXT)],
+        "Player": [(grow(player, SHADOW), SHADOW_COL), (grow(player, 4.5), OUTLINE_DARK),
+                   (grow(player, 2.2), CYAN), (player, TEXT)],
         "OtherPlayer": [(circle(64, 64, 30 + SHADOW - 4), SHADOW_COL), (circle(64, 64, 34), OUTLINE_DARK),
                         (circle(64, 64, 30), TEXT), (circle(64, 64, 23), BLUE_GLYPH)],
     }

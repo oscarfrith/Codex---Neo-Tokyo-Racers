@@ -57,5 +57,21 @@
   "hud_restyled_icons_2026_09_27": {
     "Dealership": "rbxassetid://78969350101975",
     "Garage": "rbxassetid://92785579929874"
+  },
+  "refined_icons_2026_09_27": {
+    "Race": "rbxassetid://101513672811479",
+    "Job": "rbxassetid://114936364584344",
+    "Garage": "rbxassetid://117463710888636",
+    "CourierDrop": "rbxassetid://91332824339252",
+    "TaxiFare": "rbxassetid://122684785819223",
+    "Dealership": "rbxassetid://92869129705490",
+    "Duel": "rbxassetid://98037275271976",
+    "Waypoint": "rbxassetid://103285523696337",
+    "TimeTrial": "rbxassetid://70689086757093",
+    "Customisation": "rbxassetid://103658738821696",
+    "TaxiDrop": "rbxassetid://91589223582119",
+    "OtherPlayer": "rbxassetid://105355064166767",
+    "CourierPickup": "rbxassetid://98923575173924",
+    "Player": "rbxassetid://131214078324709"
   }
 }

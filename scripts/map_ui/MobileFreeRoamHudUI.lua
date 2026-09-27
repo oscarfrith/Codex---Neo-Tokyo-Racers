@@ -365,6 +365,29 @@ local function layout()
 	layoutModal(vp)
 end
 
+-- Minimap zooms out with speed: from MapSpeedZoomStartMph the visible area grows smoothly up to
+-- MapSpeedZoomMaxFactor at MapSpeedZoomFullMph, easing out faster than it eases back in.
+local speedZoom = { Factor = 1, At = os.clock() }
+local function speedZoomFactor(part, read)
+	local now = os.clock()
+	local dt = math.clamp(now - speedZoom.At, 0, 0.25)
+	speedZoom.At = now
+	if read("MapSpeedZoomEnabled", true) == false or not (part and part:IsA("BasePart")) then
+		speedZoom.Factor = 1
+		return 1
+	end
+	local velocity = part.AssemblyLinearVelocity
+	local mph = Vector3.new(velocity.X, 0, velocity.Z).Magnitude * 0.625
+	local startMph = tonumber(read("MapSpeedZoomStartMph", 40)) or 40
+	local fullMph = math.max(startMph + 1, tonumber(read("MapSpeedZoomFullMph", 200)) or 200)
+	local maxFactor = math.clamp(tonumber(read("MapSpeedZoomMaxFactor", 1.8)) or 1.8, 1, 4)
+	local target = 1 + (maxFactor - 1) * math.clamp((mph - startMph) / (fullMph - startMph), 0, 1)
+	local response = target > speedZoom.Factor and (tonumber(read("MapSpeedZoomOutResponse", 1.6)) or 1.6)
+		or (tonumber(read("MapSpeedZoomInResponse", 0.8)) or 0.8)
+	speedZoom.Factor += (target - speedZoom.Factor) * (1 - math.exp(-response * dt))
+	return speedZoom.Factor
+end
+
 RunService.RenderStepped:Connect(function(dt)
 	layout()
 	local presentationActive=next(presentationOwners)~=nil
@@ -388,7 +411,7 @@ RunService.RenderStepped:Connect(function(dt)
 		local calPixels=math.max(1,tonumber(read(desktopLayout,"MapCalibrationPixels",207)))
 		local calStuds=math.max(1,tonumber(read(desktopLayout,"MapCalibrationStuds",2850)))
 		local fullStuds=mapPixels*calStuds/calPixels
-		local visible=math.max(100,tonumber(read(desktopLayout,"MapVisibleStuds",2850)))
+		local visible=math.max(100,tonumber(read(desktopLayout,"MapVisibleStuds",2850)))*speedZoomFactor(drive.IsDriving==true and s or nil,function(key,fallback) return read(desktopLayout,key,fallback) end)
 		local uiPerStud=mapSize/visible
 		local canvasSize=fullStuds*uiPerStud
 		local useRelativeCanvas=mapPlayerMarkers.Config:GetAttribute("UseRelativeCanvasTransform")~=false

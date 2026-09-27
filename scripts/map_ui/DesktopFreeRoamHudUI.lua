@@ -127,6 +127,29 @@ local function C(name, fallback)
 	return readValue(colours, name, fallback)
 end
 
+-- Minimap zooms out with speed: from MapSpeedZoomStartMph the visible area grows smoothly up to
+-- MapSpeedZoomMaxFactor at MapSpeedZoomFullMph, easing out faster than it eases back in.
+local speedZoom = { Factor = 1, At = os.clock() }
+local function speedZoomFactor(part, read)
+	local now = os.clock()
+	local dt = math.clamp(now - speedZoom.At, 0, 0.25)
+	speedZoom.At = now
+	if read("MapSpeedZoomEnabled", true) == false or not (part and part:IsA("BasePart")) then
+		speedZoom.Factor = 1
+		return 1
+	end
+	local velocity = part.AssemblyLinearVelocity
+	local mph = Vector3.new(velocity.X, 0, velocity.Z).Magnitude * 0.625
+	local startMph = tonumber(read("MapSpeedZoomStartMph", 40)) or 40
+	local fullMph = math.max(startMph + 1, tonumber(read("MapSpeedZoomFullMph", 200)) or 200)
+	local maxFactor = math.clamp(tonumber(read("MapSpeedZoomMaxFactor", 1.8)) or 1.8, 1, 4)
+	local target = 1 + (maxFactor - 1) * math.clamp((mph - startMph) / (fullMph - startMph), 0, 1)
+	local response = target > speedZoom.Factor and (tonumber(read("MapSpeedZoomOutResponse", 1.6)) or 1.6)
+		or (tonumber(read("MapSpeedZoomInResponse", 0.8)) or 0.8)
+	speedZoom.Factor += (target - speedZoom.Factor) * (1 - math.exp(-response * dt))
+	return speedZoom.Factor
+end
+
 local function L(name, fallback)
 	return tonumber(readValue(layoutConfig, name, fallback)) or fallback
 end
@@ -1126,7 +1149,7 @@ local function updateRuntime(dt)
 			local calibrationPixels = math.max(1, L("MapCalibrationPixels", 207))
 			local calibrationStuds = math.max(1, L("MapCalibrationStuds", 2850))
 			local fullMapStuds = mapPixels * calibrationStuds / calibrationPixels
-			local visibleStuds = math.max(100, L("MapVisibleStuds", 2850))
+			local visibleStuds = math.max(100, L("MapVisibleStuds", 2850)) * speedZoomFactor(vehicle and mapSubject or nil, function(key, fallback) return readValue(layoutConfig, key, fallback) end)
 			local uiPerStud = mapSize / visibleStuds
 			local canvasSize = fullMapStuds * uiPerStud
 			local useRelativeCanvas = mapPlayerMarkers.Config:GetAttribute("UseRelativeCanvasTransform") ~= false

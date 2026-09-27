@@ -2,6 +2,27 @@
 
 Recent deliveries, newest first. Entries before September 2026 live in [the archive](history/patch-history-2026-05-to-2026-08.md).
 
+## 2026-09-27 - Map and jobs refinements (whole-map full map, hi-res tiles, glyph icons, speed zoom, cockpit passenger)
+
+- **Full map:**
+  - Pans and zooms across the whole blockout; the ALL button or F shows everything.
+  - The legend is the map key only; tutorial objectives hide while the map is open.
+  - The JOBS button and panel are removed; cancel a job with the X on the job strip.
+- **Map art:**
+  - 4x4 tiles at 4096² (level-set re-render, smoothed coast, no water fringe).
+  - Glyph-only icons at about 2x size, with a refined thin outline and soft shadow.
+  - Dealership and garage use the free-roam HUD icons, restyled cyan.
+  - The customisation icon is hidden (`MapPois.Customisation.Hidden`).
+  - Job icons no longer pulse.
+- **Minimap:** zooms out with speed, from 1x at 40 mph to 1.8x at 200 mph, with smoothing (tunable in `DesktopFreeRoamHud.Layout`); both HUDs.
+- **Jobs:**
+  - Trips are about 3x longer and spread over the whole blockout (zones, with a city quota).
+  - A replacement job appears at least 2000 studs from the finished one, in a new zone.
+  - No job within 350 studs of places; roadside spots outside the city.
+- **Passenger seat:** moved from the rear deck into the cockpit in front of the driver (offset 0, 1.0, 1.5), so the fare no longer blocks the camera.
+
+Agent-verified in Studio (synthetic movement). Specs: scripts/map_ui/spec-v2/v3/v4.json and scripts/activities/world_jobs/spec.json.
+
 ## 2026-09-27 - Tutorial no longer restarts for returning players
 
 OnboardingClient asked for saved progress once, before the profile had loaded, and never retried. Returning players therefore saw the new-player dealership guide trail every session. The client now retries until the saved state arrives and draws no trail before then. Agent-verified: a saved stage-2 profile shows only objectives 2 and 3. [Verification](../scripts/onboarding_fix/verification.json).
