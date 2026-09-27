@@ -26,6 +26,19 @@ Practical recipes for agent-driven testing through the Roblox Studio MCP, learne
 - Server: `ServerStorage.Runtime.NetStats` (runtime, Studio) shows calls/rejections per remote action; ServerBase/ClientBase `StartupState` attributes show ready/failed.
 - Record API-driven results as API evidence, not normal-UI evidence.
 
+## World jobs and map tests (Client/Server)
+
+- **Start and spawn:** the start screen's Play button is `LocalPlayer.PlayerGui.LoadingSafeContent.SafeRoot.StartScreenActions.Buttons.Play`, which exists only while rendering. Spawn a car with `GarageInvoke:InvokeServer("SpawnVehicle", {})`.
+- **Take a job:** on the Server, pivot the car 22 studs roadward of an offer in `ReplicatedStorage.ActivityState.JobOffers` (attributes Position/Facing). On the Client, the prompt is `JobDriverPrompt` under the car root.
+  - Toggle `Enabled` off and on so it is shown, then call `prompt:InputHoldBegin()` / `InputHoldEnd()`.
+  - VirtualInput key presses cannot trigger prompts or Escape.
+  - `screen_capture` does not show CoreGui prompt UI; use `ProximityPromptService.PromptShown/PromptTriggered`.
+- **Drop-off and payout:**
+  - The drop-off is the client beacon `CurrentCamera.ActivityBeacon_JobDestination` (Position minus 130 Y).
+  - Drive with server PivotTo steps at 120-300 studs/s while setting AssemblyLinearVelocity; this is synthetic evidence.
+  - Listen to `Remotes.Activities.ActivityEvent` for `Taxi:/Courier:Completed` pay breakdowns. Cash is `leaderstats.Cash`.
+- **Minimap zoom check:** sample `DesktopFreeRoamHud` `MapCanvas.AbsoluteSize.X`; it shrinks as the view zooms out.
+
 ## Race tests without a driver
 
 Gates are real parts under `Workspace.World.RaceRoutes.<Route>` (Checkpoints + FinishLine). The owning client can `PivotTo` the car into each gate (dwell ~0.25 s so the server Touched fires) with waits of `distance / speed`: a plausible speed (<= 250 mph) must not be flagged by RaceIntegrity; zero waits simulate a teleport cheat. Label this evidence synthetic.
@@ -38,6 +51,10 @@ For refactors, run a fixed action sequence in a fresh sandbox before and after a
 
 - `execute_luau` on the Client cannot use HttpService; paste client scripts inline. Edit/Server can load files from a localhost server: `py -3 -m http.server 8767 --bind 127.0.0.1` from `scripts/`, then `loadstring(HttpService:GetAsync("http://127.0.0.1:8767/..."))`.
 - Never `require` gameplay modules through MCP. Pure library tests load the module source with `loadstring` and inject fakes with `setfenv` (see `scripts/architecture/p*/tests.lua`).
+- Server Play has no `loadstring`; run file-based checks and installers in Edit. Edit tools are unavailable while Play runs (stop Play first).
+- Generic feature installs: `py -3 scripts/feature_installer.py <capture.json> <out.lua> <spec.json...> --mode AUDIT|APPLY|ROLLBACK`. Before values come from the capture, so recapture after every install before building the next spec.
+- Image assets: serve PNGs from `scripts/` on 8767 and call MCP `upload_image` with `http://127.0.0.1:8767/...` URLs. Record the ids in scripts/map_art/uploaded_assets.json. Export existing images with an Edit EditableImage script plus `scripts/map_art/tile_receiver.py <count> <outdir>` (port 8769).
+- Bash heredocs containing Python with quotes can fail in this shell; write the script to the scratchpad with the file tool and run it with `py -3`.
 - Luau `string.gsub` returns two values: wrap in parentheses before passing to `table.insert`.
 - Targeted captures: `py -3 scripts/studio_capture.py receive --name <name> --preset sources` (background), then in Edit `loadstring(HttpService:GetAsync("http://127.0.0.1:8766/script"))()`; `compare` two captures to prove scope. The sources preset does not record non-script instances (e.g. remotes).
 - Installs: `scripts/architecture/installer.py <spec> <capture> <out.lua> --mode AUDIT|APPLY|ROLLBACK`; always AUDIT, then APPLY -> ROLLBACK -> APPLY to prove recovery; run the `delivery-reviewer` subagent before APPLY on High-Risk work.

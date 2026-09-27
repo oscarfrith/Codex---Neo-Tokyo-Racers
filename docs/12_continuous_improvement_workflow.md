@@ -26,3 +26,19 @@ Lighting interpolation lesson: numerically bounded property blends can still com
 Runtime NaN lesson (2026-09-26): an anchored assembly reports infinite AssemblyMass, so force maths on a parked vehicle yields NaN that persists into the next unanchor; normal UI timing can hide it while server-initiated or API paths expose it. Reproduce with the exact server call order, probe forces/positions per frame, and fix the producer plus the component that latches the bad value. Weak-keyed tables whose values close over the key do not release it in Luau; release bindings on the lifecycle event that actually fires (AncestryChanged), not only Destroying.
 
 Architecture programme lesson (2026-09-26): large refactors of closure-scoped scripts are safe when moves are mechanical and provable: analyse free variables/exports/shared mutable state per range, move byte-for-byte into ctx factories rebound at the same position, have an independent reviewer re-resolve scopes, and compare canonical golden replies (sorted keys, normalised generated ids) before and after. Reviewers caught two unsafe money "fixes" (refunds that could mint cash or grant free items): compensation logic must be designed per action, not bolted onto a dispatcher. Camera/UI changes need a rendering viewport (check RenderStepped FPS) before they can be verified.
+
+Parallel feature build lessons (2026-09-26/27, map and world jobs):
+
+- **Set up the contract first.** Write one contract doc (docs/architecture/map-markers-contract.md) that gives each agent a folder it alone may write, lists shared APIs, and bans Studio and git writes for agents. Then launch every agent in one message.
+- **The integrator owns Studio.** Before building any installer, take a fresh targeted capture and send its path to the agents.
+- **Agents cannot run Luau.** The integrator compiles every file with `loadstring` and runs the pure tests in Studio before AUDIT. Roblox Vector2 is float32, so test tolerances must be about 1e-3 px, not 1e-9.
+- **The first real Play test finds what offline code cannot:**
+  - kerb spots on bare baseplate and bushes (probe real surfaces by part/material/height);
+  - ProximityPrompts on off-screen parts never show (anchor the prompt on the player's own car);
+  - massless, non-colliding NPCs fall through the world when unanchored (move them with an anchored scripted walk);
+  - a full-screen backdrop button swallowed map clicks (use a bounds check).
+
+  Budget a Play pass per agent deliverable.
+- **Measure design choices offline before implementing.** Seven route-line options and seven upscale options were scored on metrics, with comparison crops viewed before choosing. This beat guessing and gave Oscar a clear rationale.
+- **Client state fetched once at startup can fail silently while the profile loads.** The onboarding trail showed on every session because of this. Retry until Success, and gate presentation on real state.
+- **A rendering check comes before any UI/tween/screenshot step** (studio-testing-playbook). Skipping it cost time when Studio was minimised.

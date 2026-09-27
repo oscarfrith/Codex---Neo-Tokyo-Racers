@@ -1,5 +1,11 @@
 # Activities contract (Street Life RP features)
 
+> **Update 2026-09-27:**
+> - Courier and Taxi are now the world jobs system (scripts/activities/world_jobs/CONTRACT.md). The hub pads and the Courier/Taxi actions listed below are retired; `JobAccept` replaced them.
+> - The JOBS panel was removed; `ctx.Jobs` remains as no-ops.
+> - Passenger seat offset is (0, 1.0, 1.5), inside the cockpit.
+
+
 Status: **contract for parallel implementation**, 2026-09-26. Plan: Street Life RP build (Step 1 foundation → Step 2 feature agents → Step 3 serial integration). Step 1 installs everything in "Foundation (Step 1)" below, including inert stubs at every feature path. Feature agents replace only the bodies of the modules they own. Where this contract and the code disagree, the contract wins: raise any needed change with the integrator instead of editing shared files.
 
 Target place: Space Racers v2 (71491191583884). Rules: AGENTS.md, docs/13, docs/architecture/architecture-programme.md (new feature checklist).

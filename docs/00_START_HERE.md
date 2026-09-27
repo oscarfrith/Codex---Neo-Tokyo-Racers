@@ -1,27 +1,50 @@
 # Space Racers — start here
 
-Target: **Space Racers v2, place 71491191583884** (since 2026-09-26; v1 121304917315753 is historical). The start screen in v2 reads "Pulse Racers 2098". Updated 2026-09-26. This is the sole current-status entry point; historical handoffs describe evidence at the time they were written.
+Target: **Space Racers v2, place 71491191583884** (since 2026-09-26; v1 121304917315753 is historical). The start screen in v2 reads "Pulse Racers 2098". Updated 2026-09-27. This is the sole current-status entry point; historical handoffs describe evidence at the time they were written.
 
 ## Current task and next action
 
-**Feature work (Street Life, [design](design/street-life-update.md)).** Oscar's map and jobs refinements ([contract](architecture/map-markers-contract.md)) are all installed on v2. They are agent-verified, not user-confirmed.
+**Feature work (Street Life, [design](design/street-life-update.md)).** Handoff 2026-09-27. Oscar's map and jobs refinement batch is complete and installed on v2 ([contract](architecture/map-markers-contract.md)). Everything is agent-verified in Studio, mostly with synthetic movement. Oscar reviewed the results as they were delivered ("looks good"); this is not a formal play-test sign-off.
 
-- **Full-screen map:** click the minimap or press M. It has a legend, click-to-waypoint, drag/zoom, upright icons, and hides the other HUDs while open ([verification](../scripts/map_ui/verification.json)).
-- **Map art:** a 14-icon set and a cleaned minimap tile ([map art](../scripts/map_art/README.md)).
-- **Route line v2:** straight along streets, rounded turns, thicker with an outline ([options](../scripts/route_guide/ROUTE_LINE_OPTIONS.md)).
-- **World jobs (RP-02):**
-  - Taxi fares and parcels sit on pavement around the map, each with an icon. Drive up and press E (the prompt rides on your car).
-  - Pay is higher for faster trips and lower after crashes. Nothing auto-starts; the old hubs and modes are removed ([verification](../scripts/activities/world_jobs/verification.json)).
+- **Full-screen map** (MAP-03):
+  - Opens with M or a minimap click and covers the whole blockout; ALL/F zooms out to fit it all.
+  - The legend is the map key only. Click the map to set a waypoint.
+  - The other HUDs and the tutorial objectives hide while it is open.
+- **Map art:**
+  - 4x4 hi-res tiles (4096²).
+  - Glyph-only icons at about 2x size with a refined outline.
+  - Dealership and garage icons come from the HUD icons, in cyan. The customisation icon is hidden.
+  - Job icons are stationary ([map art README](../scripts/map_art/README.md)).
+- **Minimap:** zooms out with speed (1x to 1.8x). **Route line v2:** straight lines with rounded turns ([options](../scripts/route_guide/ROUTE_LINE_OPTIONS.md)).
+- **World jobs** (RP-02, [contract](../scripts/activities/world_jobs/CONTRACT.md)):
+  - 8 taxi fares and 6 parcels are spread across the whole blockout, with about 3x longer trips.
+  - A replacement appears in a new area; no job sits within 350 studs of a place.
+  - The prompt is on your own car. The fare sits inside the cockpit.
+  - Pay is higher for speed and lower after crashes; nothing auto-starts.
+  - There is no JOBS panel; cancel with the X on the job strip.
+- **Onboarding fix:** returning players get their saved tutorial progress, not the new-player trail.
 - **Earlier RP features** (RP-01): Driver Rank, Passengers, Garage visits, free Street Duels. Stakes stay off.
-- **Suggestions:** [open-world improvements](design/open-world-improvements.md).
+- **Suggestions:** [open-world improvements](design/open-world-improvements.md). Items from the 2026-09-27 list still open:
+  - job info card on map click;
+  - VIP and rush jobs;
+  - streak bonus;
+  - finish rating;
+  - next-turn arrow;
+  - key filters;
+  - district labels;
+  - in-world GPS chevrons;
+  - Skip tutorial;
+  - mobile pass;
+  - decide the hourly job cap.
 
-Next action: Oscar play-tests the map, route line and world jobs. Then:
+Next action: Oscar play-tests with real driving on desktop, then picks the next feature batch from the suggestions. Open checks:
 
-- tune job pay (about $330–670 per trip) and the passenger seat position (the fare sits on the rear deck);
-- run the two-client checks in scripts/activities/world_jobs/CONTRACT.md;
-- work the queue: ECON-01, then the recommended next three in the suggestions doc.
+- mobile (prompt, pinch zoom, icon sizes);
+- two-client job accept race;
+- job pay and hourly cap (focused play now reaches the $40k cap after about 40 min);
+- queue: ECON-01, DATA-01/02.
 
-Latest targeted capture: **2026-09-27**, [world jobs after](../roblox/captures/worldjobs-after/capture.json), v2, 212 sources.
+Latest targeted capture: **2026-09-27**, [refine4 after](../roblox/captures/refine4-after/capture.json), v2, 213 sources, 6 roots (Config.UI, Modules.Game.UI, Game.Activities client and server, Config.Activities, Remotes.Activities). All 12 sources changed in this batch match the repo.
 
 ### Previous status
 

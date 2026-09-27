@@ -25,6 +25,7 @@ The game is currently titled **Space Racers**; the working place is **Space Race
 
 - Routing words map to slash commands: /suggest, /follow, /audit, /continue, /handoff. Plain `follow:` etc. in a message works the same.
 - Use plan mode for suggest: and audit: work, and for any High-Risk lane task before mutation.
+- **Batches with several independent parts:** use parallel agents, one folder each. The contract comes first, and the integrator (you) owns Studio, captures, installs and Play tests. Follow the parallel build lessons in docs/12.
 - For High-Risk deliveries (persistence, economy, remotes, architecture, retirement), run the `delivery-reviewer` subagent on the spec and diff before APPLY. It has not seen the build and checks it against the contract.
 - Local Python: discover it each session (`py -3 --version`, then `python --version`). Capture receivers bind 127.0.0.1:8766, so captures only work when Claude Code runs on the same PC as Studio.
 - Git: stage specific paths, never `git add -A` (the root holds ignored historical scripts and large blobs). Commit only when asked or when the handoff is authorised; report push results only after they succeed. Standing authorisation (Oscar, 2026-09-26): "Oscar authorises Claude to commit and push verified work to origin main at the end of each task or handoff. Stage explicit paths only, use area: summary messages, never force-push or rewrite history, never commit docs/studio-full-export-paste.txt."

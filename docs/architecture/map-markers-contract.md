@@ -1,6 +1,6 @@
 # Map markers, full map and world jobs contract
 
-Status: **contract for the parallel build**, 2026-09-26. It covers Oscar's refinements: GTA-style world jobs, the full-screen map with waypoints and a legend, upright map icons, and a smoother route line. It extends [activities-contract](activities-contract.md) and [route-guide-system](../route-guide-system.md). Target place: Space Racers v2 (71491191583884). Agents write only inside their own folder and never touch Studio or git; the integrator installs.
+Status: **installed on v2** (built 2026-09-26, refined 2026-09-27; see the update section at the end). It covers Oscar's refinements: GTA-style world jobs, the full-screen map with waypoints and a legend, upright map icons, and a smoother route line. It extends [activities-contract](activities-contract.md) and [route-guide-system](../route-guide-system.md). Target place: Space Racers v2 (71491191583884). Agents write only inside their own folder and never touch Studio or git; the integrator installs.
 
 ## Shared client API: `ReplicatedStorage.Modules.Game.UI.MapMarkers` (owner: Agent F)
 
@@ -61,3 +61,24 @@ Keys are `Dealership`, `Garage`, `Customisation`, `Race`, `TimeTrial`, `TaxiFare
 | F full map + markers | `scripts/map_ui/` | DesktopFreeRoamHudUI, MobileFreeRoamHudUI (minimap click opens the full map, POI layer hosting) |
 | J world jobs | `scripts/activities/world_jobs/` | CourierJob, CourierRules, CourierClientView, TaxiJob, TaxiRules, TaxiClientView (rework); may add `JobBoard` |
 | M map art | `scripts/map_art/` | none (produces PNGs and a manifest) |
+
+## Update 2026-09-27 (installed)
+
+- **Icons:**
+  - Glyph-only images with no badge. The dark outline and soft halo are baked into each PNG (scripts/map_art/icons_glyph).
+  - The MapIconLayer shadow is off (`ShadowTransparency` 1).
+  - Sizes: minimap 32, mobile 24, full map 48, touch 56.
+  - Pins anchor at the tip, `PinTipY` 0.9219.
+  - With no asset id the fallback is a small coloured letter, not a badge.
+- **Places:**
+  - A `MapPois` folder with `Hidden=true` stays in config but is not shown. Customisation is hidden.
+  - Dealership and Garage use the HUD icons restyled cyan (scripts/map_art/restyle_hud_icons.py).
+- **Tiles:**
+  - `Config.UI.MapTiles` (GridSize N, attributes `R<row>C<col>`) is drawn by the shared `MapTileSet` module on both minimaps and the full map.
+  - It falls back to the legacy 4 tiles when the set is incomplete. The current set is 4x4 (scripts/map_art/hires, ids in uploaded_assets.json).
+- **Full map:**
+  - Pan limits cover the blockout plus `BoundsMarginStuds`; ALL/F fits the whole map.
+  - The legend is the MAP KEY only (DESTINATIONS removed).
+  - OnboardingClient hides while `FullMapOpen` is true.
+- **Job markers:** no pulse (`PulseAmount` 0). The JOBS panel is removed; ActivityClient keeps `ctx.Jobs` as no-ops for compatibility.
+- **Minimap speed zoom:** `DesktopFreeRoamHud.Layout` attributes `MapSpeedZoomEnabled`, `MapSpeedZoomStartMph` (40), `MapSpeedZoomFullMph` (200), `MapSpeedZoomMaxFactor` (1.8), `MapSpeedZoomOutResponse` (1.6), `MapSpeedZoomInResponse` (0.8).
