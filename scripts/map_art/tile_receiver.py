@@ -10,7 +10,7 @@ sys.path.insert(0, str(HERE.parent / "route_guide"))
 import struct
 import zlib
 
-OUT = HERE / "tiles"
+OUT = HERE / (sys.argv[2] if len(sys.argv) > 2 else "tiles")
 OUT.mkdir(exist_ok=True)
 tiles = {}
 done = set()
@@ -63,7 +63,8 @@ def main():
     server.timeout = 1
     print("Ready on 127.0.0.1:8769/tile")
     waited = 0
-    while len(done) < 4 and waited < 900:
+    expected = int(sys.argv[1]) if len(sys.argv) > 1 else 4
+    while len(done) < expected and waited < 900:
         server.handle_request()
         waited += 1
     server.server_close()

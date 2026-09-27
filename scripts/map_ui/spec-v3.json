@@ -1,0 +1,63 @@
+{
+ "task": "Map icons: hide Customisation, cyan glyph Dealership/Garage, stationary job icons",
+ "lane": "Fast",
+ "contract": "MapPois.Customisation stays in config with Hidden=true and is not shown; Dealership/Garage map icons are the HUD icons restyled cyan with the glyph outline/halo; job markers no longer pulse (PulseAmount 0).",
+ "operations": [
+  {
+   "kind": "source",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "UI",
+    "MapMarkers"
+   ],
+   "file": "scripts/map_ui/MapMarkers.lua"
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "MapPois",
+    "Customisation"
+   ],
+   "key": "Hidden",
+   "value": true
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "MapIcons"
+   ],
+   "key": "Dealership",
+   "value": "rbxassetid://78969350101975"
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "MapIcons"
+   ],
+   "key": "Garage",
+   "value": "rbxassetid://92785579929874"
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "MapIconLayer"
+   ],
+   "key": "PulseAmount",
+   "value": 0
+  }
+ ]
+}

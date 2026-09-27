@@ -83,6 +83,7 @@ end
 local function registerPoi(folder)
 	local position = folder:GetAttribute("Position")
 	if typeof(position) ~= "Vector3" then return end -- not placed yet (e.g. integrator TODO)
+	if folder:GetAttribute("Hidden") == true then return end -- kept in config but not shown on the map
 	local kind = tostring(folder:GetAttribute("Kind") or "Place")
 	MapMarkers.Set("Poi_" .. folder.Name, {
 		Position = position,
