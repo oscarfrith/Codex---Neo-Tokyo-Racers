@@ -2,7 +2,7 @@
 -- No services, instances or requires, so scripts/map_ui/tests.lua can loadstring it.
 -- Conventions match the free-roam HUD owners and RouteGuide's map renderer:
 --   map studs:  mx = dx*cos - dz*sin, mz = dx*sin + dz*cos (after optional X/Z flips)
---   map units:  u = 0.5 + mx / FullStuds, v = 0.5 + mz / FullStuds (0..1 across the 4-tile canvas)
+--   map units:  u = 0.5 + mx / FullStuds, v = 0.5 + mz / FullStuds (0..1 across the tiled canvas)
 --   headings:   screen degrees clockwise from up.
 local MapMath = {}
 
@@ -154,6 +154,75 @@ function MapMath.MaxStudsForBounds(cal, bounds, viewW, viewH)
 	local spanU = (bounds.UMax - bounds.UMin) * cal.FullStuds
 	local spanV = (bounds.VMax - bounds.VMin) * cal.FullStuds
 	return math.min(spanU * shortSide / math.max(1, viewW), spanV * shortSide / math.max(1, viewH))
+end
+
+-- Largest visible-studs value at which the whole bounds still fit inside the view ("contain"):
+-- zooming out stops once every part of the bounds is on screen.
+function MapMath.FitStudsForBounds(cal, bounds, viewW, viewH)
+	local shortSide = math.max(1, math.min(viewW, viewH))
+	local spanU = (bounds.UMax - bounds.UMin) * cal.FullStuds
+	local spanV = (bounds.VMax - bounds.VMin) * cal.FullStuds
+	return math.max(spanU * shortSide / math.max(1, viewW), spanV * shortSide / math.max(1, viewH))
+end
+
+-- Map tile grid (N x N, rows top -> bottom, cols left -> right, R1C1 = top-left) in map units.
+function MapMath.TileRect(row, col, n)
+	return (col - 1) / n, col / n, (row - 1) / n, row / n
+end
+
+-- True when tile (row, col) of an n x n grid overlaps the unit box [uMin, uMax] x [vMin, vMax].
+function MapMath.TileOverlaps(row, col, n, uMin, uMax, vMin, vMax)
+	local u0, u1, v0, v1 = MapMath.TileRect(row, col, n)
+	return u1 > uMin and u0 < uMax and v1 > vMin and v0 < vMax
+end
+
+-- Content id from a config value: "" when empty or "0", "rbxassetid://<n>" for a bare number.
+function MapMath.AssetId(value)
+	local text = value == nil and "" or tostring(value)
+	if text == "" or text == "0" then return "" end
+	if string.match(text, "^%d+$") then return "rbxassetid://" .. text end
+	return text
+end
+
+MapMath.MaxTileGrid = 8
+MapMath.LegacyTiles = { { "MapTileTopLeft", "MapTileTopRight" }, { "MapTileBottomLeft", "MapTileBottomRight" } }
+
+-- Chooses the map tile set. grid(name) reads Config.UI.MapTiles attributes (GridSize, "R<row>C<col>")
+-- or is nil when the folder is missing; legacy(name) reads the 4 DesktopFreeRoamHud.Assets tiles.
+-- The grid wins only when GridSize is a whole number 1..MaxTileGrid and every cell has an id.
+-- Returns { Size = n, Ids = { [row] = { [col] = id } }, Complete = bool, Source = "MapTiles" | "Legacy" }.
+function MapMath.ResolveTiles(grid, legacy)
+	if type(grid) == "function" then
+		local n = tonumber(grid("GridSize"))
+		if n and n == math.floor(n) and n >= 1 and n <= MapMath.MaxTileGrid then
+			local ids, complete = {}, true
+			for row = 1, n do
+				ids[row] = {}
+				for col = 1, n do
+					local id = MapMath.AssetId(grid("R" .. row .. "C" .. col))
+					if id == "" then complete = false end
+					ids[row][col] = id
+				end
+			end
+			if complete then return { Size = n, Ids = ids, Complete = true, Source = "MapTiles" } end
+		end
+	end
+	local ids, complete = {}, true
+	for row = 1, 2 do
+		ids[row] = {}
+		for col = 1, 2 do
+			local id = type(legacy) == "function" and MapMath.AssetId(legacy(MapMath.LegacyTiles[row][col])) or ""
+			if id == "" then complete = false end
+			ids[row][col] = id
+		end
+	end
+	return { Size = 2, Ids = ids, Complete = complete, Source = "Legacy" }
+end
+
+-- Pixel offset from a pin's tip (the map point) to the icon's centre; pins anchor at the tip.
+-- tipY is the tip's height as a fraction of the icon (0.5 = centred icon, no offset).
+function MapMath.PinCentreOffset(size, tipY)
+	return -size * ((tipY or 0.5) - 0.5)
 end
 
 -- Exponential approach used for animated pans (centre on player, legend focus).

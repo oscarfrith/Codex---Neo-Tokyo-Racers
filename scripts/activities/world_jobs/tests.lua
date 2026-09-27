@@ -18,8 +18,13 @@ local function nearV(a, b, tolerance) return a ~= nil and (a - b).Magnitude <= (
 
 -- Config -----------------------------------------------------------------------------------------------
 local board = Rules.ReadBoardConfig(nil)
-check("board defaults", board.TaxiOffers == 6 and board.CourierOffers == 5 and board.KerbOffset == 48
-	and board.TripMinStuds == 1800 and board.TripMaxStuds == 4500 and board.StreamRadius == 600 and board.Enabled == true)
+check("board defaults", board.TaxiOffers == 8 and board.CourierOffers == 6 and board.KerbOffset == 48
+	and board.TripMinStuds == 5400 and board.TripMaxStuds == 13500 and board.StreamRadius == 600 and board.Enabled == true)
+check("board area defaults = blockout with inset", board.BoundsMinX == -5040 and board.BoundsMaxX == 4160 and board.BoundsMinZ == -7010
+	and board.BoundsMaxZ == 10700 and board.SectorColumns == 4 and board.SectorRows == 7)
+check("board spread / exclusion / roadside defaults", board.PoiExclusionStuds == 350 and board.MinOfferSpacing == 700
+	and board.RelocateAvoidStuds == 2000 and board.CityMinOffers == 3 and board.CityMaxOffers == 5 and board.RoadsideSpots == true
+	and board.RoadContainerPath == Rules.DEFAULT_ROAD_CONTAINER)
 local odd = Rules.ReadBoardConfig(function(key)
 	if key == "TripMaxStuds" then return 100 end
 	if key == "KerbOffset" then return 0 / 0 end
@@ -28,6 +33,12 @@ local odd = Rules.ReadBoardConfig(function(key)
 	if key == "OfferTtlMax" then return 60 end
 	if key == "StreamRadius" then return "abc" end
 	if key == "Enabled" then return false end
+	if key == "BoundsMinX" then return 900 end
+	if key == "BoundsMaxX" then return 100 end
+	if key == "CityMinOffers" then return 6 end
+	if key == "CityMaxOffers" then return 2 end
+	if key == "RoadsideSpots" then return false end
+	if key == "RoadContainerPath" then return 42 end
 	return nil
 end)
 check("board bad values fall back", odd.KerbOffset == 48 and odd.StreamRadius == 600)
@@ -35,6 +46,9 @@ check("board values clamped", odd.TaxiOffers == 20)
 check("board trip band kept ordered", odd.TripMaxStuds >= odd.TripMinStuds + 100, odd.TripMaxStuds)
 check("board ttl kept ordered", odd.OfferTtlMax >= odd.OfferTtlMin)
 check("board Enabled false honoured", odd.Enabled == false)
+check("board area kept ordered", odd.BoundsMaxX >= odd.BoundsMinX + 100, odd.BoundsMaxX)
+check("board city quota kept ordered", odd.CityMaxOffers >= odd.CityMinOffers, odd.CityMaxOffers)
+check("board roadside off and bad road path ignored", odd.RoadsideSpots == false and odd.RoadContainerPath == Rules.DEFAULT_ROAD_CONTAINER)
 
 local taxi = Taxi.Defaults()
 check("taxi defaults", taxi.TripBasePay == 200 and near(taxi.TripPayPerStud, 0.11) and taxi.Enabled and taxi.HailAnimationId == "" and taxi.MinRank == 1)
@@ -136,8 +150,8 @@ check("kerb spot must be off other roads", not Rules.OffOtherRoads(40, 55) and R
 -- Spacing and freshness
 local area = { MinX = 0, MaxX = 3000, MinZ = 0, MaxZ = 4000 }
 local ctx = { Offers = { Vector3.new(500, 101, 500) }, Players = { Vector3.new(2000, 101, 2000) }, Recent = { Vector3.new(1000, 101, 3000) }, Bounds = area }
-check("spot too near another offer", select(2, Rules.SpotAllowed(Vector2.new(700, 500), ctx, board, 0)) == "Offer")
-check("relaxed spacing allows it", (Rules.SpotAllowed(Vector2.new(700, 500), ctx, board, 2)))
+check("spot too near another offer", select(2, Rules.SpotAllowed(Vector2.new(900, 500), ctx, board, 0)) == "Offer")
+check("relaxed spacing allows it", (Rules.SpotAllowed(Vector2.new(900, 500), ctx, board, 2)))
 check("spot too near a player", select(2, Rules.SpotAllowed(Vector2.new(2100, 2000), ctx, board, 0)) == "Player")
 check("relax 2 ignores players and freshness", (Rules.SpotAllowed(Vector2.new(2100, 2000), ctx, board, 2)) and (Rules.SpotAllowed(Vector2.new(1000, 3100), ctx, board, 2)))
 check("spot at a recently used place", select(2, Rules.SpotAllowed(Vector2.new(1000, 3100), ctx, board, 0)) == "Recent")
@@ -163,7 +177,8 @@ check("matches RoadRouting.FindRoute", routed and near(routed.Length, road, 0.5)
 check("same-edge distance", near(Rules.RoadDistanceTo(graph, dist, startEdge, 100, startEdge, 600), 500))
 
 -- Destinations
-check("trip band and target", Rules.TripBand(board, 0) == 1800 and select(2, Rules.TripBand(board, 1)) == 4500 * 1.3 and near(Rules.TargetLength(board, 0.5), 3150))
+check("trip band and target (3x the city band)", Rules.TripBand(board, 0) == 5400 and near(select(2, Rules.TripBand(board, 1)), 13500 * 1.3)
+	and near(Rules.TargetLength(board, 0.5), 9450))
 check("angle wraps", near(Rules.AngleBetween(0.1, 2 * math.pi - 0.1), 0.2, 1e-6))
 local pickup = Vector3.new(0, 101, 0)
 local dctx = { Pickup = pickup, TargetLength = 3000, Band = { 1800, 4500 }, RecentTrips = {}, RecentDrops = {}, SectorCounts = {}, Bounds = { MinX = -5000, MaxX = 5000, MinZ = -5000, MaxZ = 5000 } }
@@ -184,6 +199,155 @@ local fresh = Rules.ScoreDestination({ Point = Vector2.new(3000, 0), Road = 3000
 local stale = Rules.ScoreDestination({ Point = Vector2.new(0, 3000), Road = 3000 }, dctx, board)
 check("recent drop area penalised", fresh and stale and fresh > stale)
 check("destination outside district rejected", Rules.ScoreDestination({ Point = Vector2.new(9000, 0), Road = 3000 }, dctx, board) == nil)
+
+-- Whole-map spread: zones (grid + city grid), zone edge tables, ranking, heat --------------------------
+local zspec = Rules.ZoneSpec({ BoundsMinX = 0, BoundsMaxX = 4000, BoundsMinZ = 0, BoundsMaxZ = 7000, SectorColumns = 4, SectorRows = 7,
+	CitySectorColumns = 2, CitySectorRows = 2 }, { MinX = 1000, MaxX = 2000, MinZ = 1000, MaxZ = 3000 })
+check("zone of outskirts / city / outside", Rules.ZoneOf(Vector2.new(500, 500), zspec) == 1 and Rules.ZoneOf(Vector2.new(3500, 6500), zspec) == 28
+	and Rules.ZoneOf(Vector2.new(1100, 1100), zspec) == 29 and Rules.ZoneOf(Vector3.new(1900, 101, 2900), zspec) == 32
+	and Rules.ZoneOf(Vector2.new(5000, 0), zspec) == nil)
+check("city zones flagged", Rules.ZoneIsCity(30, zspec) and not Rules.ZoneIsCity(28, zspec) and not Rules.ZoneIsCity(nil, zspec))
+check("board zone spec uses the whole area", (function()
+	local spec = Rules.ZoneSpec(board, { MinX = -250, MaxX = 2600, MinZ = -4150, MaxZ = 550 })
+	return spec.Bounds.MinX == -5040 and spec.Bounds.MaxZ == 10700 and spec.City ~= nil
+		and Rules.ZoneIsCity(Rules.ZoneOf(Vector2.new(1500, -2000), spec), spec) -- Core District = city zones
+		and not Rules.ZoneIsCity(Rules.ZoneOf(Vector2.new(-3000, 6000), spec), spec) -- outskirts
+		and Rules.ZoneOf(Vector2.new(-9000, 0), spec) == nil -- coastline strokes beyond the blockout
+end)())
+
+-- Zone tables on the synthetic grid graph, area clipped at x 1500 (the x 1000..2000 edges are half outside).
+local tspec = Rules.ZoneSpec({ BoundsMinX = -10, BoundsMaxX = 1500, BoundsMinZ = -10, BoundsMaxZ = 2500, SectorColumns = 2, SectorRows = 2,
+	CitySectorColumns = 1, CitySectorRows = 1 }, nil)
+local ztables = Rules.BuildZoneTables(graph, 90, tspec, 40)
+local roadSum, zoneCount = 0, 0
+for _, studs in pairs(ztables.Road) do roadSum += studs zoneCount += 1 end
+check("zone tables cover the area only", zoneCount == 4 and near(roadSum, ztables.Global.Total, 1e-6)
+	and ztables.Global.Total >= 7 * 820 + 3 * 360 and ztables.Global.Total <= 7 * 820 + 3 * 420, ztables.Global.Total)
+check("zone table samples lie in their zone and in bounds", (function()
+	for zone, zoneTable in pairs(ztables.Zones) do
+		for _, item in ipairs(zoneTable.Items) do
+			if item.Usable >= 80 then
+				local edge = graph.Edges[item.Edge]
+				local point = Rules.PointAlong(edge.Points, edge.Cumulative, item.From + item.Usable / 2)
+				if Rules.ZoneOf(point, tspec) ~= zone then return false end
+			end
+		end
+	end
+	for u = 0, 0.999, 0.01 do
+		local edgeIndex, along = Rules.SampleEdge(ztables.Global, u, 0.5)
+		local edge = graph.Edges[edgeIndex]
+		local point = Rules.PointAlong(edge.Points, edge.Cumulative, along)
+		if point.X > 1500 + 25 or along < 90 - 1e-6 or along > 910 + 1e-6 then return false end
+	end
+	return true
+end)())
+
+-- Ranking: emptiest / coldest zones first, city quota, relocation avoidance, thin zones skipped.
+local roads = {}
+for zone = 1, 32 do roads[zone] = 5000 end
+roads[5] = 200 -- a zone with barely any road
+local noJitter = function() return 0 end
+local function rank(counts, heat, cityCount, avoidZones, relax)
+	return Rules.RankZones(zspec, { Road = roads, Counts = counts, Heat = heat, CityCount = cityCount, AvoidZones = avoidZones }, board, relax, noJitter)
+end
+local ranked = rank({ [1] = 1 }, { [2] = 0.5 }, 3, {}, 0)
+check("thin zones skipped", table.find(ranked, 5) == nil)
+check("occupied and recently used zones rank last", table.find(ranked, 1) > table.find(ranked, 2) and table.find(ranked, 2) > table.find(ranked, 3))
+ranked = rank({}, {}, 0, {}, 0)
+check("city zones first while under CityMinOffers", Rules.ZoneIsCity(ranked[1], zspec))
+ranked = rank({}, {}, 5, {}, 0)
+check("city zones skipped at CityMaxOffers", (function()
+	for _, zone in ipairs(ranked) do if Rules.ZoneIsCity(zone, zspec) then return false end end
+	return #ranked > 0
+end)())
+check("city quota lifted on the last relax pass", (function()
+	for _, zone in ipairs(rank({}, {}, 5, {}, 2)) do if Rules.ZoneIsCity(zone, zspec) then return true end end
+	return false
+end)())
+check("avoided zone skipped strict, last on relax 1, allowed relax 2", table.find(rank({}, {}, 3, { [3] = true }, 0), 3) == nil
+	and table.find(rank({}, {}, 3, { [3] = true }, 1), 3) > table.find(rank({}, {}, 3, { [3] = true }, 1), 4)
+	and table.find(rank({}, {}, 3, { [3] = true }, 2), 3) ~= nil)
+
+-- Sector spreading: greedy placement (as JobBoard: best zone, +1 count, +1 heat) never doubles up a zone
+-- while empty zones remain, and the city gets exactly its minimum share.
+do
+	local counts, heatTable, placed, cityCount, doubled = {}, {}, {}, 0, false
+	for step = 1, 14 do
+		local heat = {}
+		for zone in pairs(roads) do heat[zone] = Rules.HeatOf(heatTable, zone, step, board.ZoneHeatHalfLife) end
+		local zone = rank(counts, heat, cityCount, {}, 0)[1]
+		if placed[zone] then doubled = true end
+		placed[zone] = true
+		counts[zone] = (counts[zone] or 0) + 1
+		Rules.AddHeat(heatTable, zone, 1, step, board.ZoneHeatHalfLife)
+		if Rules.ZoneIsCity(zone, zspec) then cityCount += 1 end
+	end
+	check("14 offers spread over 14 different zones", not doubled)
+	check("city holds CityMinOffers of them", cityCount == board.CityMinOffers, cityCount)
+end
+local heatTable = {}
+Rules.AddHeat(heatTable, 7, 2, 0, 600)
+Rules.AddHeat(heatTable, nil, 5, 0, 600)
+check("zone heat halves per half-life and ignores nil zones", near(Rules.HeatOf(heatTable, 7, 600, 600), 1) and near(Rules.HeatOf(heatTable, 7, 0, 600), 2)
+	and Rules.HeatOf(heatTable, 8, 0, 600) == 0)
+Rules.AddHeat(heatTable, 7, 1, 600, 600)
+check("zone heat accumulates after decay", near(Rules.HeatOf(heatTable, 7, 600, 600), 2))
+
+-- Relocation away: a taken job's pickup, drop and taker are avoided by the replacement.
+do
+	local takenPickup, takenDrop, taker = Vector3.new(500, 101, 500), Vector3.new(3500, 101, 6500), Vector3.new(520, 101, 480)
+	local memory = { { Position = takenPickup, At = 100 }, { Position = takenDrop, At = 100 }, { Position = taker, At = 100 }, { Position = Vector3.new(0, 0, 3000), At = 0 } }
+	local avoid = Rules.ActiveAvoid(memory, 350, 300)
+	check("relocation memory expires", #avoid == 3)
+	local rctx = { Offers = {}, Players = {}, Recent = {}, Bounds = zspec.Bounds, Avoid = avoid }
+	check("replacement not near the taken pickup", select(2, Rules.SpotAllowed(Vector2.new(1500, 1200), rctx, board, 0)) == "Avoid")
+	check("replacement not near the taken drop", select(2, Rules.SpotAllowed(Vector2.new(3000, 5500), rctx, board, 0)) == "Avoid")
+	check("replacement far away allowed", (Rules.SpotAllowed(Vector2.new(3500, 3000), rctx, board, 0)))
+	check("avoid radius shrinks on relax passes but never vanishes", (Rules.SpotAllowed(Vector2.new(1500, 1200), rctx, board, 1))
+		and select(2, Rules.SpotAllowed(Vector2.new(1100, 700), rctx, board, 2)) == "Avoid")
+	local avoidZones = {}
+	for _, position in ipairs(avoid) do avoidZones[Rules.ZoneOf(position, zspec)] = true end
+	check("the taken job's zones are skipped", table.find(rank({}, {}, 3, avoidZones, 0), 1) == nil and table.find(rank({}, {}, 3, avoidZones, 0), 28) == nil)
+end
+
+-- Map place exclusion and icon spacing.
+do
+	local places = { Vector3.new(731.3, 106.7, -1747.9), Vector3.new(1580.8, 102.3, -1841.7) }
+	local ectx = { Offers = { Vector3.new(0, 101, 0) }, Players = {}, Recent = {}, Exclusions = places }
+	check("no offer beside a map place", select(2, Rules.SpotAllowed(Vector2.new(800, -1600), ectx, board, 0)) == "Poi")
+	check("map place exclusion is never relaxed", select(2, Rules.SpotAllowed(Vector2.new(1600, -1600), ectx, board, 2)) == "Poi")
+	check("clear of map places allowed", (Rules.SpotAllowed(Vector2.new(1200, -1000), ectx, board, 0)))
+	check("offer icons kept apart", select(2, Rules.SpotAllowed(Vector2.new(600, 0), ectx, board, 0)) == "Offer")
+	local dropCtx = { Pickup = Vector3.new(0, 101, 0), TargetLength = 7000, Band = { 5400, 13500 }, RecentTrips = {}, RecentDrops = {}, Exclusions = places }
+	check("no drop beside a map place", Rules.ScoreDestination({ Point = Vector2.new(760, -1700), Road = 7000 }, dropCtx, board) == nil
+		and Rules.ScoreDestination({ Point = Vector2.new(-3000, 4000), Road = 7000 }, dropCtx, board) ~= nil)
+	local quiet = { Pickup = Vector3.new(0, 101, 0), TargetLength = 7000, Band = { 5400, 13500 }, RecentTrips = {}, RecentDrops = {},
+		Zones = zspec, Bounds = zspec.Bounds, SectorCounts = { [29] = 3 } }
+	local busyScore = Rules.ScoreDestination({ Point = Vector2.new(1100, 1100), Road = 7000 }, quiet, board)
+	local quietScore = Rules.ScoreDestination({ Point = Vector2.new(3500, 3500), Road = 7000 }, quiet, board)
+	check("drops prefer quiet zones", busyScore and quietScore and busyScore < quietScore)
+end
+check("spread score prefers far from other offers", Rules.SpreadScore(Vector2.new(0, 0), { Vector2.new(100, 0) }, 2800)
+	< Rules.SpreadScore(Vector2.new(0, 0), { Vector2.new(2000, 0) }, 2800) and Rules.SpreadScore(Vector2.new(0, 0), {}, 2800) == 1)
+
+-- Roadside spots (outskirts: bare baseplate or terrain beside the road, no pavement).
+check("pavement seen in the march", Rules.HasPavement({ s(26, true, true), { Offset = 30, Hit = true, IsRoad = false, Dy = 0.5, Surface = true } }, board))
+check("baseplate / foliage / road are not pavement", not Rules.HasPavement({ s(26, true, true), { Offset = 30, Hit = true, IsRoad = false, Dy = -0.5, Surface = false },
+	{ Offset = 34, Hit = true, IsRoad = false, Dy = 0.5, Surface = false }, { Offset = 38, Hit = true, IsRoad = true, Dy = 0.5 } }, board))
+check("roadside offset past the road edge", near(Rules.RoadsideOffset(34 + board.PavementMargin, board, 0), 34 + board.RoadsideMargin)
+	and near(Rules.RoadsideOffset(41, board, 6), 41 - board.PavementMargin + board.RoadsideMargin + 6))
+local bare = { Hit = true, Y = 100, NormalY = 1, Collides = true, Foliage = false, OnRoad = false }
+check("roadside baseplate accepted", (Rules.RoadsideGroundOk(bare, 100.5, board)))
+check("roadside on a road part rejected", select(2, Rules.RoadsideGroundOk({ Hit = true, Y = 100, NormalY = 1, Collides = true, OnRoad = true }, 100.5, board)) == "OnRoad")
+check("roadside foliage rejected", select(2, Rules.RoadsideGroundOk({ Hit = true, Y = 100, NormalY = 1, Collides = true, Foliage = true }, 100.5, board)) == "Foliage")
+check("roadside drop / wall / water / slope rejected", select(2, Rules.RoadsideGroundOk({ Hit = true, Y = 90, NormalY = 1 }, 100.5, board)) == "Height"
+	and select(2, Rules.RoadsideGroundOk({ Hit = true, Y = 104, NormalY = 1 }, 100.5, board)) == "Height"
+	and select(2, Rules.RoadsideGroundOk({ Hit = true, Y = 100, NormalY = 1, Water = true }, 100.5, board)) == "Water"
+	and select(2, Rules.RoadsideGroundOk({ Hit = true, Y = 100, NormalY = 0.3 }, 100.5, board)) == "Slope"
+	and select(2, Rules.RoadsideGroundOk(nil, 100.5, board)) == "NoGround")
+check("pavement rule unchanged for baseplate", not Rules.GroundOk({ Hit = true, Y = 100, NormalY = 1, Collides = true }, 100.5, board))
+check("road footprint test", Rules.InsideFootprint(10, 0, 40, 30, 3) and Rules.InsideFootprint(22.5, 0, 40, 30, 3)
+	and not Rules.InsideFootprint(23.5, 0, 40, 30, 3) and not Rules.InsideFootprint(0, 19, 40, 30, 3))
 
 -- Expiry
 check("offer kept before expiry", Rules.ExpiryDecision(10, 20, 0, 5000, board) == "Keep")
@@ -233,14 +397,23 @@ check("snapshot round trip", Rules.Pay(snap, distance, reference, 1).Total == Ru
 check("safe snapshot of junk", Rules.Pay(Rules.SafeSnapshot({ TripBasePay = "x" }), 1000, 10, 0).Total == 0)
 check("abandon time", near(Rules.AbandonSeconds(30, board), 30 * 4 + 120))
 
--- Economy: 60 jobs/h at a 1.25x pace on the mean trip lands inside the ~$30-45k/h target (ceiling 40k).
+-- Economy (per-stud pay unchanged, trips ~3x longer). Focused: mean band trip at 1.34x reference pace with
+-- 35 s per cycle to reach the next offer, pull up and stop; casual: par pace, 45 s overhead. Focused play
+-- earns more than Core.JobHourlyCashCeiling (40,000), so the ceiling binds; casual stays under it.
 local mean = (board.TripMinStuds + board.TripMaxStuds) / 2
-local function hourly(cfg)
-	local ref = Rules.ReferenceSeconds(mean, cfg)
-	return Rules.Pay(cfg, mean, ref / 1.34, 0).Total * 60
-end
-check("taxi hourly in target", hourly(taxi) >= 30000 and hourly(taxi) <= 45000, hourly(taxi))
-check("courier hourly in target", hourly(courier) >= 30000 and hourly(courier) <= 45000, hourly(courier))
+local taxiFocused = Rules.HourlyEstimate(taxi, mean, 1.34, 35)
+local courierFocused = Rules.HourlyEstimate(courier, mean, 1.34, 35)
+local taxiCasual = Rules.HourlyEstimate(taxi, mean, 1, 45)
+local courierCasual = Rules.HourlyEstimate(courier, mean, 1, 45)
+check("taxi focused hourly above the job ceiling (cap binds)", taxiFocused > 40000 and taxiFocused < 70000, math.floor(taxiFocused))
+check("courier focused hourly above the job ceiling (cap binds)", courierFocused > 40000 and courierFocused < 65000, math.floor(courierFocused))
+check("casual hourly under the job ceiling", taxiCasual >= 25000 and taxiCasual < 40000 and courierCasual >= 25000 and courierCasual < 40000,
+	math.floor(taxiCasual) .. "/" .. math.floor(courierCasual))
+local longest = select(2, Rules.TripBand(board, 1))
+local longestReference = Rules.ReferenceSeconds(longest, taxi)
+check("abandon time covers the longest relaxed trip", Rules.AbandonSeconds(longestReference, board) >= longestReference * 3
+	and Rules.AbandonSeconds(longestReference, board) <= 900, math.floor(Rules.AbandonSeconds(longestReference, board)))
+check("par pay scales with the longer band", Rules.Pay(taxi, mean, Rules.ReferenceSeconds(mean, taxi), 0).Total == 1240, Rules.Pay(taxi, mean, Rules.ReferenceSeconds(mean, taxi), 0).Total)
 
 -- Taxi boarding helpers
 check("boarding point beside seat", nearV(Taxi.BoardingPoint(Vector3.new(0, 0, 0), Vector3.new(1, 0, 0), 6), Vector3.new(-6, 0, 0)))

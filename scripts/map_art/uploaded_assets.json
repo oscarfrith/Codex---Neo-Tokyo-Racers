@@ -17,6 +17,41 @@
     "Job": "rbxassetid://127080252651533"
   },
   "tiles": {
-    "MapTileBottomRight": {"new": "rbxassetid://97942462366071", "replaces": "rbxassetid://73611385783250"}
+    "MapTileBottomRight": {
+      "new": "rbxassetid://97942462366071",
+      "replaces": "rbxassetid://73611385783250"
+    }
+  },
+  "glyph_icons_2026_09_27": {
+    "Race": "rbxassetid://83825118666196",
+    "Job": "rbxassetid://120442346149519",
+    "TimeTrial": "rbxassetid://76693733558388",
+    "CourierDrop": "rbxassetid://130397290198129",
+    "TaxiFare": "rbxassetid://121369543179860",
+    "Duel": "rbxassetid://138223192276606",
+    "Waypoint": "rbxassetid://99587075909052",
+    "Customisation": "rbxassetid://110314507657762",
+    "TaxiDrop": "rbxassetid://113202684731218",
+    "OtherPlayer": "rbxassetid://84927380024543",
+    "CourierPickup": "rbxassetid://120131653050663",
+    "Player": "rbxassetid://77529416926707"
+  },
+  "hires_tiles_2026_09_27": {
+    "R3C2": "rbxassetid://133261306383702",
+    "R1C2": "rbxassetid://110188395343938",
+    "R2C3": "rbxassetid://95326871704869",
+    "R4C4": "rbxassetid://78668541660055",
+    "R4C3": "rbxassetid://78668541660055",
+    "R3C4": "rbxassetid://135783406757604",
+    "R2C1": "rbxassetid://120778952728854",
+    "R3C3": "rbxassetid://78488737639591",
+    "R4C1": "rbxassetid://78668541660055",
+    "R3C1": "rbxassetid://133949744327450",
+    "R1C1": "rbxassetid://133774379342066",
+    "R4C2": "rbxassetid://78668541660055",
+    "R2C4": "rbxassetid://121849526040461",
+    "R2C2": "rbxassetid://120153010240630",
+    "R1C4": "rbxassetid://83113469548271",
+    "R1C3": "rbxassetid://79188649890221"
   }
 }

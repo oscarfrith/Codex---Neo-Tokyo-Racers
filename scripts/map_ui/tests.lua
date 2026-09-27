@@ -123,6 +123,60 @@ local coverU = (bounds.UMax - bounds.UMin) * limitSide
 local coverV = (bounds.VMax - bounds.VMin) * limitSide
 check("max zoom-out still covers the view", coverU >= viewW - 1e-6 and coverV >= viewH - 1e-6 and (near(coverU, viewW, 1e-6) or near(coverV, viewH, 1e-6)))
 
+-- Whole-map bounds (v2): blockout road extents + 600 stud margin fit on the canvas, and the fit zoom shows all of them
+local margin = 600
+local city = MapMath.BoundsToUnits(live, -5192 - margin, 4310 + margin, -7161 - margin, 10857 + margin)
+check("city bounds inside canvas (no clipping)", city.UMin > 0 and city.UMax < 1 and city.VMin > 0 and city.VMax < 1)
+check("city bounds wider than tall at 90 degrees", (city.UMax - city.UMin) > (city.VMax - city.VMin))
+local fitStuds = MapMath.FitStudsForBounds(live, city, viewW, viewH)
+local fitSide = MapMath.CanvasSide(live.FullStuds, math.min(viewW, viewH), fitStuds)
+local fitU, fitV = (city.UMax - city.UMin) * fitSide, (city.VMax - city.VMin) * fitSide
+check("fit zoom shows the whole bounds", fitU <= viewW + 1e-3 and fitV <= viewH + 1e-3 and (near(fitU, viewW, 1e-3) or near(fitV, viewH, 1e-3)), string.format("%.1f x %.1f", fitU, fitV))
+check("fit zoom is at least the cover zoom", fitStuds >= MapMath.MaxStudsForBounds(live, city, viewW, viewH) - 1e-6)
+local centreAll = Vector2.new((city.UMin + city.UMax) / 2, (city.VMin + city.VMax) / 2)
+check("fit zoom centres the bounds", nearV(MapMath.ClampPan(Vector2.new(0.2, 0.8), fitSide, viewW, viewH, city), centreAll, 1e-6))
+local du, dv = MapMath.WorldToUnit(live, 731.3, -1747.9)
+check("dealership inside city bounds", du > city.UMin and du < city.UMax and dv > city.VMin and dv < city.VMax)
+
+-- Tile grid
+local u0, u1, v0, v1 = MapMath.TileRect(2, 3, 4)
+check("tile rect R2C3 of 4", near(u0, 0.5) and near(u1, 0.75) and near(v0, 0.25) and near(v1, 0.5))
+check("tile overlaps box", MapMath.TileOverlaps(2, 3, 4, 0.6, 0.7, 0.3, 0.4))
+check("tile outside box", not MapMath.TileOverlaps(1, 1, 4, 0.6, 0.7, 0.3, 0.4))
+check("touching edge is not overlap", not MapMath.TileOverlaps(1, 1, 4, 0.25, 0.5, 0, 0.25))
+local visibleCount = 0
+for row = 1, 4 do for col = 1, 4 do if MapMath.TileOverlaps(row, col, 4, 0.49, 0.51, 0.49, 0.51) then visibleCount += 1 end end end
+check("centre box touches the 4 centre tiles", visibleCount == 4, visibleCount)
+-- Legacy 2x2 cells cover the same canvas as the old TopLeft/TopRight/BottomLeft/BottomRight positions
+local lu0, _, lv0 = MapMath.TileRect(2, 2, 2)
+check("legacy R2C2 is the bottom-right quarter", near(lu0, 0.5) and near(lv0, 0.5))
+
+-- Tile set resolution
+check("asset id from number", MapMath.AssetId(123) == "rbxassetid://123" and MapMath.AssetId("456") == "rbxassetid://456")
+check("asset id empty and zero", MapMath.AssetId(nil) == "" and MapMath.AssetId("") == "" and MapMath.AssetId("0") == "")
+check("asset id content string kept", MapMath.AssetId("rbxassetid://9") == "rbxassetid://9")
+local legacyValues = { MapTileTopLeft = "rbxassetid://1", MapTileTopRight = "rbxassetid://2", MapTileBottomLeft = "rbxassetid://3", MapTileBottomRight = "rbxassetid://4" }
+local function legacyGet(name) return legacyValues[name] end
+local grid4 = { GridSize = 4 }
+for row = 1, 4 do for col = 1, 4 do grid4["R" .. row .. "C" .. col] = tostring(row * 10 + col) end end
+local resolved = MapMath.ResolveTiles(function(name) return grid4[name] end, legacyGet)
+check("complete grid wins", resolved.Source == "MapTiles" and resolved.Size == 4 and resolved.Complete and resolved.Ids[1][1] == "rbxassetid://11" and resolved.Ids[4][3] == "rbxassetid://43")
+grid4.R3C2 = ""
+resolved = MapMath.ResolveTiles(function(name) return grid4[name] end, legacyGet)
+check("incomplete grid falls back to legacy", resolved.Source == "Legacy" and resolved.Size == 2 and resolved.Complete and resolved.Ids[1][2] == "rbxassetid://2" and resolved.Ids[2][1] == "rbxassetid://3")
+resolved = MapMath.ResolveTiles(nil, legacyGet)
+check("missing folder falls back to legacy", resolved.Source == "Legacy" and resolved.Complete)
+resolved = MapMath.ResolveTiles(function(name) return name == "GridSize" and 2.5 or "1" end, legacyGet)
+check("fractional grid size rejected", resolved.Source == "Legacy")
+resolved = MapMath.ResolveTiles(function(name) return name == "GridSize" and 99 or "1" end, legacyGet)
+check("oversized grid rejected", resolved.Source == "Legacy")
+resolved = MapMath.ResolveTiles(nil, function(name) return name == "MapTileTopLeft" and "5" or "" end)
+check("incomplete legacy reported", resolved.Source == "Legacy" and not resolved.Complete and resolved.Ids[1][1] == "rbxassetid://5")
+
+-- Pins sit with their tip on the point
+check("pin centre is above the tip", near(MapMath.PinCentreOffset(48, 0.953), -48 * 0.453))
+check("centred icon has no offset", MapMath.PinCentreOffset(32, 0.5) == 0 and MapMath.PinCentreOffset(32) == 0)
+
 -- Animated pan and picking
 local a = Vector2.new(0, 0)
 for _ = 1, 120 do a = MapMath.Approach(a, Vector2.new(1, 2), 12, 1 / 60) end

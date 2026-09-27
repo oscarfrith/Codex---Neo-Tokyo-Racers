@@ -35,6 +35,7 @@ local RouteGuide = require(uiModules:WaitForChild("RouteGuide"))
 local MapMarkers = require(uiModules:WaitForChild("MapMarkers"))
 local MapIconLayer = require(uiModules:WaitForChild("MapIconLayer"))
 local MapMath = require(uiModules:WaitForChild("MapMath"))
+local MapTileSet = require(uiModules:WaitForChild("MapTileSet"))
 local PlayerMarkers = require(uiModules:WaitForChild("FreeRoamMapPlayerMarkers"))
 local InputGate = require(modules.Game:WaitForChild("Vehicles"):WaitForChild("GameplayInputGate"))
 local uiConfig = ReplicatedStorage:WaitForChild("Config"):WaitForChild("UI")
@@ -128,16 +129,10 @@ local mapView = new("Frame", { Name = "MapView", BackgroundColor3 = theme.PanelS
 	ClipsDescendants = true, Active = true, ZIndex = 3 }, panel)
 UI.Corner(mapView, 6)
 local canvas = new("Frame", { Name = "MapCanvas", BackgroundTransparency = 1, BorderSizePixel = 0, ZIndex = 3 }, mapView)
-local completeTiles = true
-for index, tileName in ipairs({ "MapTileTopLeft", "MapTileTopRight", "MapTileBottomLeft", "MapTileBottomRight" }) do
-	local image = asset(tileName)
-	if image == "" then completeTiles = false end
-	new("ImageLabel", { Name = tileName, BackgroundTransparency = 1, BorderSizePixel = 0, Image = image, ScaleType = Enum.ScaleType.Stretch,
-		Position = ({ UDim2.fromScale(0, 0), UDim2.fromScale(0.5, 0), UDim2.fromScale(0, 0.5), UDim2.fromScale(0.5, 0.5) })[index],
-		Size = UDim2.fromScale(0.5, 0.5), ZIndex = 3 }, canvas)
-end
-local missing = UI.Label(mapView, { Name = "MapMissing", Text = "ADD 4 MAP TILE IDS", Color = theme.Muted, XAlignment = Enum.TextXAlignment.Center })
-missing.Visible = not completeTiles
+-- Tiles: Config.UI.MapTiles grid (or the 4 legacy Assets tiles); off-screen tiles are hidden each frame.
+local mapTiles = MapTileSet.new({ Canvas = canvas, ZIndex = 3 })
+local missing = UI.Label(mapView, { Name = "MapMissing", Text = "ADD MAP TILE IDS", Color = theme.Muted, XAlignment = Enum.TextXAlignment.Center })
+missing.Visible = not mapTiles.Complete
 missing.ZIndex = 4
 local routeRenderer = RouteGuide.newMapRenderer({
 	Canvas = canvas, Container = mapView, ZIndex = 4, ChipZIndex = 12, Font = FONT,
@@ -164,6 +159,7 @@ local controls = new("Frame", { Name = "Controls", AnchorPoint = Vector2.new(1, 
 local zoomIn = UI.Button(controls, { Name = "ZoomIn", Text = "+", Color = theme.Panel, StrokeColor = theme.OutlineSoft })
 local zoomOut = UI.Button(controls, { Name = "ZoomOut", Text = "-", Color = theme.Panel, StrokeColor = theme.OutlineSoft })
 local centreButton = UI.Button(controls, { Name = "Centre", Text = "ME", Color = theme.PanelBlue, StrokeColor = theme.Telemetry })
+local allButton = UI.Button(controls, { Name = "ShowAll", Text = "ALL", Color = theme.Panel, StrokeColor = theme.OutlineSoft })
 local hint = UI.Label(mapView, { Name = "Hint", Text = "", Color = theme.Muted, Wrapped = true })
 hint.ZIndex = 12
 hint.AnchorPoint = Vector2.new(0, 1)
@@ -172,7 +168,7 @@ hint.BackgroundTransparency = 0.25
 
 local legend = UI.Panel(panel, { Name = "Legend", Color = theme.Panel, Transparency = 0.1, StrokeColor = theme.OutlineSoft, NoGlow = true })
 legend.ZIndex = 3
-local legendTitle = UI.Label(legend, { Name = "Title", Text = "LEGEND", Role = "Heading", Color = theme.Text })
+local legendTitle = UI.Label(legend, { Name = "Title", Text = "MAP KEY", Role = "Heading", Color = theme.Text })
 local legendList = new("ScrollingFrame", { Name = "List", BackgroundTransparency = 1, BorderSizePixel = 0, CanvasSize = UDim2.new(),
 	AutomaticCanvasSize = Enum.AutomaticSize.Y, ScrollingDirection = Enum.ScrollingDirection.Y, ScrollBarThickness = 4,
 	ScrollBarImageColor3 = theme.Telemetry, ZIndex = 4 }, legend)
@@ -182,20 +178,22 @@ local clearButton = UI.Button(legend, { Name = "ClearWaypoint", Text = "CLEAR WA
 -- State ----------------------------------------------------------------------------------------
 local isOpen = false
 local cal = calibration()
+-- Pan bounds = the world road extents (PanMin/Max X/Z) plus BoundsMarginStuds, so the whole city fits.
 local function readBounds()
-	return MapMath.BoundsToUnits(cal, cfg("PanMinX", -2750), cfg("PanMaxX", 5100), cfg("PanMinZ", -6650), cfg("PanMaxZ", 3050))
+	local margin = cfg("BoundsMarginStuds", 600, 0, 20000)
+	return MapMath.BoundsToUnits(cal, cfg("PanMinX", -5192) - margin, cfg("PanMaxX", 4310) + margin,
+		cfg("PanMinZ", -7161) - margin, cfg("PanMaxZ", 10857) + margin)
 end
 local bounds = readBounds()
 local pan = Vector2.new(0.5, 0.5)
 local panTarget
-local visibleStuds = cfg("OpenVisibleStuds", 3600, 100, 100000)
+local visibleStuds = cfg("OpenVisibleStuds", 5000, 100, 100000)
 local rememberedStuds
 local view = { W = 1, H = 1, Short = 1, Centre = Vector2.new(0.5, 0.5) }
 local sizes = {}
 local legendOpen = true
 local legendDirty = true
 local legendSignature
-local waypointKey
 local inputToken
 local playerMarkers
 local closeGeneration = 0
@@ -209,8 +207,9 @@ local function side()
 end
 local function studLimits()
 	local minimum = cfg("MinVisibleStuds", 500, 50, 100000)
-	local maximum = math.max(minimum, cfg("MaxVisibleStuds", 9000, 100, 200000))
-	if bounds then maximum = math.max(minimum, math.min(maximum, MapMath.MaxStudsForBounds(cal, bounds, view.W, view.H))) end
+	local maximum = math.max(minimum, cfg("MaxVisibleStuds", 40000, 100, 200000))
+	-- Zooming out stops once the whole bounds fit in the view (the other axis is centred).
+	if bounds then maximum = math.max(minimum, math.min(maximum, MapMath.FitStudsForBounds(cal, bounds, view.W, view.H))) end
 	return minimum, maximum
 end
 local function clampView()
@@ -232,6 +231,13 @@ local function zoomTo(studs, anchor)
 end
 local function zoomStep(steps, anchor)
 	zoomTo(visibleStuds / (cfg("ZoomStep", 1.25, 1.01, 4) ^ steps), anchor)
+end
+-- Whole map: zoom out to the fit limit and centre the bounds.
+local function showAll()
+	local _, maximum = studLimits()
+	zoomTo(maximum)
+	panTarget = Vector2.new((bounds.UMin + bounds.UMax) * 0.5, (bounds.VMin + bounds.VMax) * 0.5)
+	clampView()
 end
 
 local function subject()
@@ -258,111 +264,73 @@ end
 
 -- Waypoint (the only player destination; a new "Player" route replaces it and vice versa) --------
 local rebuildLegend
-local function setWaypoint(position, labelText, key)
+local function setWaypoint(position, labelText)
 	RouteGuide.Clear("Player")
 	RouteGuide.SetDestination("Waypoint", position, { Label = labelText or "WAYPOINT", Priority = 5 })
 	MapMarkers.Set("Waypoint", { Position = position, Icon = "Waypoint", Label = labelText or "WAYPOINT", Kind = "Waypoint", Priority = 50, EdgeClamp = true })
-	waypointKey = key
 	legendDirty = true
 end
 local function clearWaypoint()
 	RouteGuide.Clear("Waypoint")
 	MapMarkers.Remove("Waypoint")
-	waypointKey = nil
 	legendDirty = true
 end
 RouteGuide.Changed:Connect(function(active)
 	if active == nil then
 		if MapMarkers.Get("Waypoint") then MapMarkers.Remove("Waypoint") end
-		waypointKey = nil
 		legendDirty = true
 	elseif active.Source == "Player" and MapMarkers.Get("Waypoint") then
 		RouteGuide.Clear("Waypoint")
 		MapMarkers.Remove("Waypoint")
-		waypointKey = nil
 		legendDirty = true
 	end
 end)
 RouteGuide.Arrived:Connect(function(destination)
 	if destination and destination.Source == "Waypoint" then
 		MapMarkers.Remove("Waypoint")
-		waypointKey = nil
 		legendDirty = true
 	end
 end)
 
--- Legend -------------------------------------------------------------------------------------
+-- Legend (MAP KEY only): one row per kind of icon currently on the map -----------------------------
 local KEY_LABELS = {
 	Dealership = "DEALERSHIP", Garage = "MY GARAGE", Customisation = "CUSTOMISATION", Race = "RACE", TimeTrial = "TIME TRIAL",
 	TaxiFare = "TAXI FARE", CourierPickup = "COURIER PICKUP", CourierDrop = "COURIER DROP-OFF", TaxiDrop = "TAXI DROP-OFF",
-	Duel = "STREET DUEL", Job = "JOB",
+	Duel = "STREET DUEL", Job = "JOB", Waypoint = "WAYPOINT",
 }
-local KEY_ORDER = { "Dealership", "Garage", "Customisation", "Race", "TimeTrial", "TaxiFare", "CourierPickup", "CourierDrop", "TaxiDrop", "Duel", "Job" }
-
-local function places()
-	local list, taken = {}, {}
-	for id, marker in pairs(MapMarkers.All()) do
-		if marker.Static and (marker.Kind == "Place" or marker.Kind == "Race") then
-			table.insert(list, { Key = id, Label = marker.Label, Icon = marker.Icon, Kind = marker.Kind, Position = marker.Position, Order = marker.Order or 100 })
-			if marker.DestinationId then taken[marker.DestinationId] = true end
-			if marker.RouteId then taken[marker.RouteId] = true end
-		end
-	end
-	-- Configured route destinations without a map POI still appear (moved here from the old ROUTE GUIDE modal).
-	for _, destination in ipairs(RouteGuide.Destinations()) do
-		local duplicate = taken[destination.Id] or (destination.RouteId and taken[destination.RouteId])
-		if not duplicate then
-			for _, item in ipairs(list) do
-				if (Vector2.new(item.Position.X, item.Position.Z) - Vector2.new(destination.Position.X, destination.Position.Z)).Magnitude < 60 then duplicate = true break end
-			end
-		end
-		if not duplicate then
-			table.insert(list, { Key = "Destination_" .. destination.Id, Label = destination.DisplayName, Icon = destination.Kind == "Race" and "Race" or "",
-				Kind = destination.Kind == "Race" and "Race" or "Place", Position = destination.Position, Order = destination.Order })
-		end
-	end
-	table.sort(list, function(a, b)
-		if a.Order ~= b.Order then return a.Order < b.Order end
-		return a.Label < b.Label
-	end)
-	return list
-end
+local KEY_ORDER = { "Waypoint", "Dealership", "Garage", "Customisation", "Race", "TimeTrial", "TaxiFare", "CourierPickup", "CourierDrop", "TaxiDrop", "Duel", "Job" }
 
 local function keyEntries()
-	local entries = {
-		{ Icon = "Player", Kind = "Player", Label = "YOU" },
-		{ Icon = "OtherPlayer", Kind = "Player", Label = "OTHER DRIVERS" },
-		{ Icon = "Waypoint", Kind = "Waypoint", Label = "WAYPOINT" },
-	}
+	-- YOU uses the same arrow image as the map's player arrow.
+	local arrow = asset("MapPlayerIcon")
+	local entries = { { Icon = "Player", Kind = "Player", Label = "YOU", Image = arrow ~= "" and arrow or nil } }
+	if #Players:GetPlayers() > 1 then table.insert(entries, { Icon = "OtherPlayer", Kind = "Player", Label = "OTHER DRIVERS" }) end
 	local present = {}
-	for _, marker in pairs(MapMarkers.All()) do present[marker.Icon] = marker.Kind end
+	for _, marker in pairs(MapMarkers.All()) do
+		if marker.FullMap ~= false and marker.Icon ~= "" and present[marker.Icon] == nil then present[marker.Icon] = marker.Kind end
+	end
 	for _, icon in ipairs(KEY_ORDER) do
-		if present[icon] then table.insert(entries, { Icon = icon, Kind = present[icon], Label = KEY_LABELS[icon] }) end
+		if present[icon] then
+			table.insert(entries, { Icon = icon, Kind = present[icon], Label = KEY_LABELS[icon] })
+			present[icon] = nil
+		end
 	end
+	-- Icon keys added later (not in KEY_ORDER) still get a row.
+	local extra = {}
+	for icon, kind in pairs(present) do table.insert(extra, { Icon = icon, Kind = kind, Label = string.upper(icon) }) end
+	table.sort(extra, function(a, b) return a.Icon < b.Icon end)
+	for _, entry in ipairs(extra) do table.insert(entries, entry) end
 	return entries
-end
-
-local function selectPlace(place)
-	if waypointKey == place.Key then
-		clearWaypoint()
-		return
-	end
-	local position = Vector3.new(place.Position.X, cfg("WaypointY", 101, -1000, 5000), place.Position.Z)
-	setWaypoint(position, string.upper(place.Label), place.Key)
-	local u, v = MapMath.WorldToUnit(cal, position.X, position.Z)
-	panTarget = Vector2.new(u, v)
-	clampView()
 end
 
 function rebuildLegend()
 	legendDirty = false
-	local placeList, keyList = places(), keyEntries()
+	local keyList = keyEntries()
 	local hasWaypoint = MapMarkers.Get("Waypoint") ~= nil
 	clearButton.Active = hasWaypoint
 	clearButton.TextTransparency = hasWaypoint and 0 or 0.55
-	-- Rebuild only when the rows change, so a press on a row is never destroyed mid-click.
-	local parts = { tostring(waypointKey) }
-	for _, place in ipairs(placeList) do table.insert(parts, place.Key .. "=" .. place.Label) end
+	-- Rebuild only when the rows change.
+	local parts = {}
 	for _, entry in ipairs(keyList) do table.insert(parts, entry.Icon) end
 	local signature = table.concat(parts, "|")
 	if signature == legendSignature then return end
@@ -370,46 +338,23 @@ function rebuildLegend()
 	for _, child in ipairs(legendList:GetChildren()) do
 		if child ~= legendLayout then child:Destroy() end
 	end
-	local order = 0
-	local rowHeight, iconSize, textSize = sizes.Row or 44, sizes.Icon or 26, sizes.Text or 12
-	local function section(text)
-		order += 1
-		local item = UI.Label(legendList, { Name = "Section" .. order, Text = text, Role = "Heading", Color = theme.Muted, TextSize = sizes.Caption or 11 })
-		item.Size = UDim2.new(1, -8, 0, math.floor(rowHeight * 0.75))
-		item.LayoutOrder = order
-		item.ZIndex = 5
-	end
-	local function content(parent, entry)
-		local icon = MapIconLayer.CreateIcon(parent, { Icon = entry.Icon, Kind = entry.Kind, Size = iconSize, Theme = theme, Font = FONT, ZIndex = parent.ZIndex + 1 })
-		icon.Position = UDim2.new(0, 8, 0.5, -iconSize / 2)
-		local text = UI.Label(parent, { Name = "Label", Text = string.upper(entry.Label), TextSize = textSize, Color = theme.Text })
-		text.Position = UDim2.fromOffset(iconSize + 18, 0)
-		text.Size = UDim2.new(1, -(iconSize + 24), 1, 0)
-		text.ZIndex = parent.ZIndex + 1
-	end
-	section("DESTINATIONS")
-	for _, place in ipairs(placeList) do
-		order += 1
-		local selected = waypointKey == place.Key
-		local row = UI.Button(legendList, { Name = "Place_" .. place.Key, Text = "", Size = UDim2.new(1, -8, 0, rowHeight),
-			Color = selected and theme.PanelBlue or theme.Panel, StrokeColor = selected and theme.Telemetry or theme.OutlineSoft, ZIndex = 5 })
-		row.LayoutOrder = order
-		content(row, place)
-		row.Activated:Connect(function() selectPlace(place) end)
-		order += 1
-		new("Frame", { Name = "Gap" .. order, BackgroundTransparency = 1, Size = UDim2.new(1, 0, 0, 6), LayoutOrder = order }, legendList)
-	end
-	section("MAP KEY")
-	for _, entry in ipairs(keyList) do
-		order += 1
+	local rowHeight, iconSize, textSize = sizes.Row or 40, sizes.Icon or 30, sizes.Text or 12
+	for order, entry in ipairs(keyList) do
 		local row = new("Frame", { Name = "Key_" .. entry.Icon, BackgroundTransparency = 1, BorderSizePixel = 0,
-			Size = UDim2.new(1, -8, 0, math.floor(rowHeight * 0.8)), LayoutOrder = order, ZIndex = 5 }, legendList)
-		content(row, entry)
+			Size = UDim2.new(1, -8, 0, rowHeight), LayoutOrder = order, ZIndex = 5 }, legendList)
+		local icon = MapIconLayer.CreateIcon(row, { Icon = entry.Icon, Kind = entry.Kind, Image = entry.Image, Size = iconSize, Theme = theme, Font = FONT, ZIndex = row.ZIndex + 1 })
+		icon.Position = UDim2.new(0, 4, 0.5, -iconSize / 2)
+		local text = UI.Label(row, { Name = "Label", Text = string.upper(entry.Label), TextSize = textSize, Color = theme.Text })
+		text.Position = UDim2.fromOffset(iconSize + 14, 0)
+		text.Size = UDim2.new(1, -(iconSize + 18), 1, 0)
+		text.ZIndex = row.ZIndex + 1
 	end
 end
 MapMarkers.Changed:Connect(function()
 	if isOpen then legendDirty = true end
 end)
+Players.PlayerAdded:Connect(function() legendDirty = true end)
+Players.PlayerRemoving:Connect(function() legendDirty = true end)
 
 -- Layout ---------------------------------------------------------------------------------------
 local function refreshHint()
@@ -418,7 +363,7 @@ local function refreshHint()
 	elseif isMobile then
 		hint.Text = "DRAG TO PAN   PINCH TO ZOOM   TAP TO SET OR CLEAR A WAYPOINT"
 	else
-		hint.Text = "DRAG TO PAN   WHEEL TO ZOOM   CLICK TO SET OR CLEAR A WAYPOINT   M / ESC TO CLOSE"
+		hint.Text = "DRAG TO PAN   WHEEL TO ZOOM   CLICK TO SET OR CLEAR A WAYPOINT   F WHOLE MAP   M / ESC TO CLOSE"
 	end
 	crosshair.Visible = usingGamepad and isOpen
 end
@@ -449,7 +394,7 @@ local function layout()
 	legendToggle.Position = UDim2.new(1, -pad * 2 - closeButton.Size.X.Offset - legendToggle.Size.X.Offset, 0, math.floor((header - buttonH) / 2))
 	legendToggle.TextSize = px(12)
 
-	local legendW = legendOpen and math.clamp(target(isMobile and cfg("MobileLegendWidth", 300, 150, 600) or cfg("LegendWidth", 360, 200, 700)), 150, math.max(150, math.floor(panelW * 0.42))) or 0
+	local legendW = legendOpen and math.clamp(target(isMobile and cfg("MobileLegendWidth", 220, 150, 600) or cfg("LegendWidth", 260, 180, 700)), 150, math.max(150, math.floor(panelW * 0.34))) or 0
 	legend.Visible = legendOpen
 	local mapW = panelW - pad * 2 - (legendOpen and legendW + pad or 0)
 	local mapH = panelH - header - pad
@@ -467,14 +412,15 @@ local function layout()
 	legendList.Position = UDim2.fromOffset(pad, target(40))
 	legendList.Size = UDim2.new(1, -pad, 1, -(target(40) + clearH + pad * 2))
 
-	sizes = { Row = target(44), Icon = target(26), Text = px(12), Caption = px(11) }
+	sizes = { Row = target(40), Icon = target(30), Text = px(12), Caption = px(11) }
 	local controlSize = target(44)
-	controls.Size = UDim2.fromOffset(controlSize, controlSize * 3 + pad * 2)
+	local controlItems = { zoomIn, zoomOut, centreButton, allButton }
+	controls.Size = UDim2.fromOffset(controlSize, controlSize * #controlItems + pad * (#controlItems - 1))
 	controls.Position = UDim2.new(1, -pad, 1, -pad)
-	for index, item in ipairs({ zoomIn, zoomOut, centreButton }) do
+	for index, item in ipairs(controlItems) do
 		item.Size = UDim2.fromOffset(controlSize, controlSize)
 		item.Position = UDim2.fromOffset(0, (index - 1) * (controlSize + pad))
-		item.TextSize = px(index == 3 and 12 or 20)
+		item.TextSize = px(index >= 3 and 12 or 20)
 	end
 	hint.Position = UDim2.new(0, pad, 1, -pad)
 	hint.Size = UDim2.new(1, -(controlSize + pad * 3), 0, target(28))
@@ -482,7 +428,7 @@ local function layout()
 	missing.Size = UDim2.new(1, 0, 0, px(32))
 	missing.Position = UDim2.new(0, 0, 0.5, -px(16))
 	missing.TextSize = px(12)
-	local arrowSize = target(isMobile and 30 or 28)
+	local arrowSize = target(isMobile and 40 or 36)
 	playerArrow.Size = UDim2.fromOffset(arrowSize, arrowSize)
 	if playerArrow:IsA("TextLabel") then playerArrow.TextSize = arrowSize end
 	crosshair.Size = UDim2.fromOffset(px(26), px(26))
@@ -564,7 +510,7 @@ local function open()
 	isOpen = true
 	closeGeneration += 1
 	cal = calibration()
-	visibleStuds = (flag("RememberZoom", true) and rememberedStuds) or cfg("OpenVisibleStuds", 3600, 100, 100000)
+	visibleStuds = (flag("RememberZoom", true) and rememberedStuds) or cfg("OpenVisibleStuds", 5000, 100, 100000)
 	local camera = Workspace.CurrentCamera
 	legendOpen = flag("LegendOpen", true) and not (isMobile and camera and camera.ViewportSize.X < cfg("MobileLegendMinViewport", 760, 0, 5000))
 	layout()
@@ -604,7 +550,7 @@ end
 local function overControls(point)
 	local scale = math.max(0.01, openScale.Scale)
 	local absolute = mapView.AbsolutePosition + point * scale
-	for _, item in ipairs({ zoomIn, zoomOut, centreButton }) do
+	for _, item in ipairs({ zoomIn, zoomOut, centreButton, allButton }) do
 		local low, size = item.AbsolutePosition, item.AbsoluteSize
 		if absolute.X >= low.X and absolute.Y >= low.Y and absolute.X <= low.X + size.X and absolute.Y <= low.Y + size.Y then return true end
 	end
@@ -622,12 +568,12 @@ local function tap(point)
 	end
 	local y = cfg("WaypointY", 101, -1000, 5000)
 	if marker and (marker.Kind == "Place" or marker.Kind == "Race" or marker.Kind == "Job") then
-		setWaypoint(Vector3.new(marker.Position.X, y, marker.Position.Z), string.upper(marker.Label), marker.Static and id or nil)
+		setWaypoint(Vector3.new(marker.Position.X, y, marker.Position.Z), string.upper(marker.Label))
 		return
 	end
 	local unit = MapMath.ScreenToUnit(pan, point, view.Centre, side())
 	local x, z = MapMath.UnitToWorld(cal, unit.X, unit.Y)
-	setWaypoint(Vector3.new(x, y, z), "WAYPOINT", nil)
+	setWaypoint(Vector3.new(x, y, z), "WAYPOINT")
 end
 
 local function pointerCount()
@@ -738,6 +684,8 @@ UserInputService.InputBegan:Connect(function(input, processed)
 		zoomStep(-1)
 	elseif code == Enum.KeyCode.C then
 		panTarget = playerUnit()
+	elseif code == Enum.KeyCode.F then
+		showAll()
 	elseif code == Enum.KeyCode.Backspace or code == Enum.KeyCode.Delete then
 		clearWaypoint()
 	end
@@ -789,6 +737,7 @@ closeButton.Activated:Connect(close)
 zoomIn.Activated:Connect(function() zoomStep(1) end)
 zoomOut.Activated:Connect(function() zoomStep(-1) end)
 centreButton.Activated:Connect(function() panTarget = playerUnit() end)
+allButton.Activated:Connect(showAll)
 clearButton.Activated:Connect(function() if MapMarkers.Get("Waypoint") then clearWaypoint() end end)
 legendToggle.Activated:Connect(function()
 	legendOpen = not legendOpen
@@ -846,6 +795,8 @@ function renderStep(dt)
 	local topLeft = view.Centre - pan * canvasSide
 	canvas.Size = UDim2.fromOffset(canvasSide, canvasSide)
 	canvas.Position = UDim2.fromOffset(topLeft.X, topLeft.Y)
+	local halfU, halfV = view.W * 0.5 / canvasSide, view.H * 0.5 / canvasSide
+	mapTiles:Cull(pan.X - halfU, pan.X + halfU, pan.Y - halfV, pan.Y + halfV)
 	local function project(position)
 		local u, v = MapMath.WorldToUnit(cal, position.X, position.Z)
 		local point = MapMath.UnitToScreen(pan, Vector2.new(u, v), view.Centre, canvasSide)

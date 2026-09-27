@@ -69,6 +69,13 @@ def main():
         "detectedPois": detected,
         "notBakedIn": ["Dealership", "TimeTrial", "Duel", "jobs", "Waypoint", "players"],
     }
+    # keep sections owned by make_icons_glyph.py (icons_glyph, hiresMap)
+    old_path = HERE / "manifest.json"
+    if old_path.exists():
+        old = json.loads(old_path.read_text(encoding="utf-8"))
+        for key in ("icons_glyph", "hiresMap"):
+            if key in old:
+                manifest[key] = old[key]
     (HERE / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(tiles, indent=1))
 

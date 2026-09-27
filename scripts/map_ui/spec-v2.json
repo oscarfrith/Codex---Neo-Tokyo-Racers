@@ -1,0 +1,482 @@
+{
+ "task": "Map refinement v2: JOBS button/panel removed, MAP KEY-only legend, whole-city full map, glyph-only 2x icons, N x N map tiles, onboarding hides under the full map (Agent U)",
+ "lane": "Standard",
+ "contract": "scripts/map_ui/CONTRACT.md (v2 section); docs/architecture/map-markers-contract.md",
+ "before_capture": "roblox/captures/refine2-before/capture.json",
+ "verification": "scripts/map_ui/tests.lua (pure maths, expect 0 failures) + CONTRACT.md v2 Play checklist",
+ "integrator_steps": [
+  "MapTiles: fill R1C1..R4C4 in the MapTiles folder op (rows top->bottom, cols left->right, same extent as the 2x2 set) before APPLY, or set them afterwards; until all 16 are set the legacy 4 tiles are used.",
+  "MapIcons: the glyph-only PNG ids for the other keys are separate attribute changes once uploaded.",
+  "Check in Play that MapIcons.Dealership (HUD DealershipIcon 110010902394406) is the image Oscar calls the car icon; if he meant the wide CAR button, use CarIcon rbxassetid://88860760495187 instead."
+ ],
+ "operations": [
+  {
+   "kind": "module",
+   "parent": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "UI"
+   ],
+   "name": "MapTileSet",
+   "file": "scripts/map_ui/MapTileSet.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "UI",
+    "MapMath"
+   ],
+   "file": "scripts/map_ui/MapMath.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "UI",
+    "MapIconLayer"
+   ],
+   "file": "scripts/map_ui/MapIconLayer.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "UI",
+    "FullMapUI"
+   ],
+   "file": "scripts/map_ui/FullMapUI.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "UI",
+    "DesktopFreeRoamHudUI"
+   ],
+   "file": "scripts/map_ui/DesktopFreeRoamHudUI.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "UI",
+    "MobileFreeRoamHudUI"
+   ],
+   "file": "scripts/map_ui/MobileFreeRoamHudUI.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "Activities",
+    "ActivityClient"
+   ],
+   "file": "scripts/map_ui/integration/ActivityClient.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "UI",
+    "OnboardingClient"
+   ],
+   "file": "scripts/map_ui/integration/OnboardingClient.lua"
+  },
+  {
+   "kind": "folder",
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "UI"
+   ],
+   "name": "MapTiles",
+   "attributes": {
+    "GridSize": 4,
+    "R1C1": "rbxassetid://133774379342066",
+    "R1C2": "rbxassetid://110188395343938",
+    "R1C3": "rbxassetid://79188649890221",
+    "R1C4": "rbxassetid://83113469548271",
+    "R2C1": "rbxassetid://120778952728854",
+    "R2C2": "rbxassetid://120153010240630",
+    "R2C3": "rbxassetid://95326871704869",
+    "R2C4": "rbxassetid://121849526040461",
+    "R3C1": "rbxassetid://133949744327450",
+    "R3C2": "rbxassetid://133261306383702",
+    "R3C3": "rbxassetid://78488737639591",
+    "R3C4": "rbxassetid://135783406757604",
+    "R4C1": "rbxassetid://78668541660055",
+    "R4C2": "rbxassetid://78668541660055",
+    "R4C3": "rbxassetid://78668541660055",
+    "R4C4": "rbxassetid://78668541660055"
+   }
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "MapIcons"
+   ],
+   "key": "Dealership",
+   "value": "rbxassetid://110010902394406"
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "MapIcons"
+   ],
+   "key": "Race",
+   "value": "rbxassetid://83825118666196"
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "MapIcons"
+   ],
+   "key": "Job",
+   "value": "rbxassetid://120442346149519"
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "MapIcons"
+   ],
+   "key": "TimeTrial",
+   "value": "rbxassetid://76693733558388"
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "MapIcons"
+   ],
+   "key": "CourierDrop",
+   "value": "rbxassetid://130397290198129"
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "MapIcons"
+   ],
+   "key": "TaxiFare",
+   "value": "rbxassetid://121369543179860"
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "MapIcons"
+   ],
+   "key": "Duel",
+   "value": "rbxassetid://138223192276606"
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "MapIcons"
+   ],
+   "key": "Waypoint",
+   "value": "rbxassetid://99587075909052"
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "MapIcons"
+   ],
+   "key": "Customisation",
+   "value": "rbxassetid://110314507657762"
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "MapIcons"
+   ],
+   "key": "TaxiDrop",
+   "value": "rbxassetid://113202684731218"
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "MapIcons"
+   ],
+   "key": "OtherPlayer",
+   "value": "rbxassetid://84927380024543"
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "MapIcons"
+   ],
+   "key": "CourierPickup",
+   "value": "rbxassetid://120131653050663"
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "MapIcons"
+   ],
+   "key": "Player",
+   "value": "rbxassetid://77529416926707"
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "MapIcons"
+   ],
+   "key": "Garage",
+   "value": "rbxassetid://139219537977577"
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "MapIconLayer"
+   ],
+   "key": "MinimapIconSize",
+   "value": 32
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "MapIconLayer"
+   ],
+   "key": "MobileMinimapIconSize",
+   "value": 24
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "MapIconLayer"
+   ],
+   "key": "FullMapIconSize",
+   "value": 48
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "MapIconLayer"
+   ],
+   "key": "TouchFullMapIconSize",
+   "value": 56
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "MapIconLayer"
+   ],
+   "key": "PinIcons",
+   "value": "Waypoint,TaxiDrop,CourierDrop"
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "MapIconLayer"
+   ],
+   "key": "PinTipY",
+   "value": 0.9219
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "MapIconLayer"
+   ],
+   "key": "ShadowTransparency",
+   "value": 1
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "MapIconLayer"
+   ],
+   "key": "ShadowOffset",
+   "value": 1.5
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "FullMap"
+   ],
+   "key": "PanMinX",
+   "value": -5192
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "FullMap"
+   ],
+   "key": "PanMaxX",
+   "value": 4310
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "FullMap"
+   ],
+   "key": "PanMinZ",
+   "value": -7161
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "FullMap"
+   ],
+   "key": "PanMaxZ",
+   "value": 10857
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "FullMap"
+   ],
+   "key": "BoundsMarginStuds",
+   "value": 600
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "FullMap"
+   ],
+   "key": "MaxVisibleStuds",
+   "value": 40000
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "FullMap"
+   ],
+   "key": "LegendWidth",
+   "value": 260
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "FullMap"
+   ],
+   "key": "MobileLegendWidth",
+   "value": 220
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "FullMap"
+   ],
+   "key": "TapRadiusPixels",
+   "value": 26
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "FullMap"
+   ],
+   "key": "TouchTapRadiusPixels",
+   "value": 34
+  }
+ ]
+}

@@ -3,7 +3,9 @@
 -- on the rotating minimap they are placed with the map transform (MapMath.MinimapPoint, the same
 -- maths as FreeRoamMapPlayerMarkers:Step) but never rotated. Instances are pooled; markers are
 -- synced only after MapMarkers.Changed. Step is called by the host's existing render callback.
--- An empty icon id renders a round theme-coloured badge with a 1-2 letter glyph.
+-- Icons are the glyph image only (no badge behind it) with a soft shadow for contrast; pin icons
+-- (Config.UI.MapIconLayer.PinIcons) sit with their tip on the map point. An empty icon id renders
+-- a small theme-coloured 1-2 letter text glyph.
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local uiModules = ReplicatedStorage:WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("UI")
@@ -55,7 +57,8 @@ local function number(folder, name, fallback, minimum, maximum)
 	return math.clamp(value, minimum, maximum)
 end
 
--- One icon visual: transparent root, image, fallback badge + glyph, pulse scale.
+-- One icon visual: transparent root, soft shadow + glyph image (no badge behind it), a plain text
+-- glyph fallback when the icon has no asset id, and a pulse scale.
 local function build(parent, size, zIndex, font)
 	local root = Instance.new("Frame")
 	root.Name = "MapIcon"
@@ -64,68 +67,81 @@ local function build(parent, size, zIndex, font)
 	root.BorderSizePixel = 0
 	root.Size = UDim2.fromOffset(size, size)
 	root.ZIndex = zIndex
+	local shadow = Instance.new("ImageLabel")
+	shadow.Name = "Shadow"
+	shadow.AnchorPoint = Vector2.new(0.5, 0.5)
+	shadow.BackgroundTransparency = 1
+	shadow.BorderSizePixel = 0
+	shadow.ScaleType = Enum.ScaleType.Fit
+	shadow.Position = UDim2.fromScale(0.5, 0.5)
+	shadow.Size = UDim2.fromScale(1, 1)
+	shadow.Visible = false
+	shadow.ZIndex = zIndex
+	shadow.Parent = root
 	local image = Instance.new("ImageLabel")
 	image.Name = "Image"
 	image.BackgroundTransparency = 1
 	image.BorderSizePixel = 0
 	image.ScaleType = Enum.ScaleType.Fit
 	image.Size = UDim2.fromScale(1, 1)
-	image.ZIndex = zIndex
+	image.ZIndex = zIndex + 1
 	image.Parent = root
-	local badge = Instance.new("Frame")
-	badge.Name = "Badge"
-	badge.AnchorPoint = Vector2.new(0.5, 0.5)
-	badge.Position = UDim2.fromScale(0.5, 0.5)
-	badge.Size = UDim2.fromScale(0.86, 0.86)
-	badge.BorderSizePixel = 0
-	badge.ZIndex = zIndex
-	badge.Parent = root
-	local round = Instance.new("UICorner")
-	round.CornerRadius = UDim.new(1, 0)
-	round.Parent = badge
-	local stroke = Instance.new("UIStroke")
-	stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-	stroke.Thickness = 1.5
-	stroke.Parent = badge
 	local glyph = Instance.new("TextLabel")
 	glyph.Name = "Glyph"
+	glyph.AnchorPoint = Vector2.new(0.5, 0.5)
 	glyph.BackgroundTransparency = 1
 	glyph.BorderSizePixel = 0
-	glyph.Size = UDim2.fromScale(1, 1)
+	glyph.Position = UDim2.fromScale(0.5, 0.5)
+	glyph.Size = UDim2.fromScale(0.62, 0.62)
 	glyph.Font = font or Enum.Font.Michroma
 	glyph.TextScaled = true
-	glyph.ZIndex = zIndex
-	glyph.Parent = badge
-	local padding = Instance.new("UIPadding")
-	padding.PaddingLeft, padding.PaddingRight = UDim.new(0.16, 0), UDim.new(0.16, 0)
-	padding.PaddingTop, padding.PaddingBottom = UDim.new(0.2, 0), UDim.new(0.2, 0)
-	padding.Parent = glyph
+	glyph.TextStrokeTransparency = 0.15
+	glyph.ZIndex = zIndex + 1
+	glyph.Parent = root
 	local pulse = Instance.new("UIScale")
 	pulse.Name = "Pulse"
 	pulse.Parent = root
 	root.Parent = parent
-	return { Root = root, Image = image, Badge = badge, Stroke = stroke, Glyph = glyph, Pulse = pulse }
+	return { Root = root, Shadow = shadow, Image = image, Glyph = glyph, Pulse = pulse }
 end
 
-local function style(item, icon, kind, colour, theme)
-	local asset = MapMarkers.IconAsset(icon)
+-- shadow: { Transparency, Offset } (Transparency >= 1 hides it). image: optional asset override.
+local function style(item, icon, kind, colour, theme, shadow, image)
+	local asset = image or MapMarkers.IconAsset(icon)
 	local hasImage = asset ~= ""
 	item.Image.Image = asset
 	item.Image.Visible = hasImage
 	item.Image.ImageColor3 = Color3.new(1, 1, 1)
-	item.Badge.Visible = not hasImage
-	item.Badge.BackgroundColor3 = colour
-	item.Stroke.Color = token(theme, "PanelDeep")
+	local shadowShown = hasImage and shadow ~= nil and shadow.Transparency < 1
+	item.Shadow.Visible = shadowShown
+	if shadowShown then
+		item.Shadow.Image = asset
+		item.Shadow.ImageColor3 = token(theme, "PanelDeep")
+		item.Shadow.ImageTransparency = shadow.Transparency
+		item.Shadow.Position = UDim2.new(0.5, shadow.Offset, 0.5, shadow.Offset)
+	end
+	item.Glyph.Visible = not hasImage
 	item.Glyph.Text = Layer.Glyph(icon, kind)
-	item.Glyph.TextColor3 = token(theme, "Text")
+	item.Glyph.TextColor3 = colour
+	item.Glyph.TextStrokeColor3 = token(theme, "PanelDeep")
+	return hasImage
+end
+
+local PIN_DEFAULT = "Waypoint,TaxiDrop,CourierDrop"
+local function pinSet(text)
+	local set = {}
+	for key in string.gmatch(tostring(text or PIN_DEFAULT), "[^,%s]+") do set[key] = true end
+	return set
 end
 
 -- Static icon for legends and lists (not registered, not stepped).
--- options: { Icon, Kind, Color, Size, Theme, Font, ZIndex }
+-- options: { Icon, Kind, Color, Size, Theme, Font, ZIndex, Image? (asset override) }
 function Layer.CreateIcon(parent, options)
 	local item = build(parent, options.Size or 24, options.ZIndex or 1, options.Font)
 	item.Root.AnchorPoint = Vector2.zero
-	style(item, options.Icon, options.Kind, Layer.Colour(options.Theme, options.Kind, options.Icon, options.Color), options.Theme)
+	local folder = config()
+	local shadow = { Transparency = number(folder, "ShadowTransparency", 0.45, 0, 1), Offset = number(folder, "ShadowOffset", 1.5, 0, 6) }
+	style(item, options.Icon, options.Kind, Layer.Colour(options.Theme, options.Kind, options.Icon, options.Color), options.Theme, shadow, options.Image)
 	return item.Root
 end
 
@@ -175,10 +191,14 @@ function Layer:_readConfig()
 	else
 		sizeName = self.Mobile and "MobileMinimapIconSize" or "MinimapIconSize"
 	end
-	local fallback = ({ FullMapIconSize = 26, TouchFullMapIconSize = 32, MinimapIconSize = 18, MobileMinimapIconSize = 14 })[sizeName]
-	self.IconSize = math.floor(tonumber(self.IconSizeOverride) or number(folder, sizeName, fallback, 6, 96))
-	self.EdgeInset = number(folder, "EdgeInset", 11, 0, 64)
-	self.Overscan = number(folder, "Overscan", 12, 0, 128)
+	local fallback = ({ FullMapIconSize = 48, TouchFullMapIconSize = 56, MinimapIconSize = 32, MobileMinimapIconSize = 24 })[sizeName]
+	self.IconSize = math.floor(tonumber(self.IconSizeOverride) or number(folder, sizeName, fallback, 6, 128))
+	-- Edge-clamped icons keep their whole box inside the map.
+	self.EdgeInset = math.max(number(folder, "EdgeInset", 11, 0, 64), self.IconSize * 0.5 + 1)
+	self.Pins = pinSet(folder and folder:GetAttribute("PinIcons"))
+	self.PinTipY = number(folder, "PinTipY", 0.953, 0.5, 1)
+	self.Shadow = { Transparency = number(folder, "ShadowTransparency", 0.45, 0, 1), Offset = number(folder, "ShadowOffset", 1.5, 0, 6) }
+	self.Overscan = math.max(number(folder, "Overscan", 12, 0, 128), self.IconSize * 0.5)
 	self.PulseSpeed = number(folder, "PulseSpeed", 4, 0, 20)
 	self.PulseAmount = number(folder, "PulseAmount", 0.14, 0, 1)
 	self.Enabled = not (folder and folder:GetAttribute(self.Surface .. "Enabled") == false)
@@ -225,10 +245,13 @@ end
 
 function Layer:_style(record)
 	local marker, item = record.Marker, record.Item
-	style(item, marker.Icon, marker.Kind, Layer.Colour(self.Theme, marker.Kind, marker.Icon, marker.Color), self.Theme)
-	local z = self.ZIndex + 1 + math.clamp(math.floor(marker.Priority), 0, 60)
-	for _, object in ipairs({ item.Root, item.Image, item.Badge, item.Glyph }) do object.ZIndex = z end
+	local hasImage = style(item, marker.Icon, marker.Kind, Layer.Colour(self.Theme, marker.Kind, marker.Icon, marker.Color), self.Theme, self.Shadow)
+	local z = self.ZIndex + 1 + 2 * math.clamp(math.floor(marker.Priority), 0, 60)
+	item.Root.ZIndex, item.Shadow.ZIndex = z, z
+	item.Image.ZIndex, item.Glyph.ZIndex = z + 1, z + 1
 	item.Root.Size = UDim2.fromOffset(self.IconSize, self.IconSize)
+	-- Pins are drawn centred but offset so the tip, not the centre, marks the map point.
+	record.CentreOffset = (hasImage and self.Pins[marker.Icon]) and MapMath.PinCentreOffset(self.IconSize, self.PinTipY) or 0
 	if not marker.Pulse then item.Pulse.Scale = 1 end
 	record.Styled = true
 end
@@ -277,6 +300,7 @@ function Layer:Step(_dt, state)
 		if restyle or not record.Styled then self:_style(record) end
 		local marker, root = record.Marker, record.Item.Root
 		local x, y = project(marker.Position)
+		y += record.CentreOffset or 0
 		local shown = x == x and y == y
 		if shown and not MapMath.Inside(x, y, width, height, self.Overscan) then
 			if marker.EdgeClamp then

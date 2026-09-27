@@ -1,0 +1,311 @@
+{
+  "generatedBy": "scripts/map_art/hires_map.py",
+  "candidate": "M",
+  "grid": [
+    4,
+    4
+  ],
+  "tileSize": [
+    1024,
+    1024
+  ],
+  "imageSize": [
+    4096,
+    4096
+  ],
+  "naming": "R{row}C{col}.png, rows 1..4 top->bottom, cols 1..4 left->right",
+  "extent": "Stitched 4096x4096 covers exactly the same world extent as the 2048 minimap (2x2 MapTile*). 2048 pixel x maps to 4096 pixels 2x..2x+1 (centre-aligned). Studs per 4096 px = (2850/207)/2 = 6.884. If the UI keeps working in 2048-space and only swaps the 2x2 tile grid for this 4x4 grid inside the same frame, calibration is unchanged.",
+  "tiles": [
+    {
+      "file": "hires/R1C1.png",
+      "row": 1,
+      "col": 1,
+      "fullyTransparent": false,
+      "pixelRect4096": [
+        0,
+        0,
+        1024,
+        1024
+      ],
+      "pixelRect2048": [
+        0,
+        0,
+        512,
+        512
+      ]
+    },
+    {
+      "file": "hires/R1C2.png",
+      "row": 1,
+      "col": 2,
+      "fullyTransparent": false,
+      "pixelRect4096": [
+        1024,
+        0,
+        2048,
+        1024
+      ],
+      "pixelRect2048": [
+        512,
+        0,
+        1024,
+        512
+      ]
+    },
+    {
+      "file": "hires/R1C3.png",
+      "row": 1,
+      "col": 3,
+      "fullyTransparent": false,
+      "pixelRect4096": [
+        2048,
+        0,
+        3072,
+        1024
+      ],
+      "pixelRect2048": [
+        1024,
+        0,
+        1536,
+        512
+      ]
+    },
+    {
+      "file": "hires/R1C4.png",
+      "row": 1,
+      "col": 4,
+      "fullyTransparent": false,
+      "pixelRect4096": [
+        3072,
+        0,
+        4096,
+        1024
+      ],
+      "pixelRect2048": [
+        1536,
+        0,
+        2048,
+        512
+      ]
+    },
+    {
+      "file": "hires/R2C1.png",
+      "row": 2,
+      "col": 1,
+      "fullyTransparent": false,
+      "pixelRect4096": [
+        0,
+        1024,
+        1024,
+        2048
+      ],
+      "pixelRect2048": [
+        0,
+        512,
+        512,
+        1024
+      ]
+    },
+    {
+      "file": "hires/R2C2.png",
+      "row": 2,
+      "col": 2,
+      "fullyTransparent": false,
+      "pixelRect4096": [
+        1024,
+        1024,
+        2048,
+        2048
+      ],
+      "pixelRect2048": [
+        512,
+        512,
+        1024,
+        1024
+      ]
+    },
+    {
+      "file": "hires/R2C3.png",
+      "row": 2,
+      "col": 3,
+      "fullyTransparent": false,
+      "pixelRect4096": [
+        2048,
+        1024,
+        3072,
+        2048
+      ],
+      "pixelRect2048": [
+        1024,
+        512,
+        1536,
+        1024
+      ]
+    },
+    {
+      "file": "hires/R2C4.png",
+      "row": 2,
+      "col": 4,
+      "fullyTransparent": false,
+      "pixelRect4096": [
+        3072,
+        1024,
+        4096,
+        2048
+      ],
+      "pixelRect2048": [
+        1536,
+        512,
+        2048,
+        1024
+      ]
+    },
+    {
+      "file": "hires/R3C1.png",
+      "row": 3,
+      "col": 1,
+      "fullyTransparent": false,
+      "pixelRect4096": [
+        0,
+        2048,
+        1024,
+        3072
+      ],
+      "pixelRect2048": [
+        0,
+        1024,
+        512,
+        1536
+      ]
+    },
+    {
+      "file": "hires/R3C2.png",
+      "row": 3,
+      "col": 2,
+      "fullyTransparent": false,
+      "pixelRect4096": [
+        1024,
+        2048,
+        2048,
+        3072
+      ],
+      "pixelRect2048": [
+        512,
+        1024,
+        1024,
+        1536
+      ]
+    },
+    {
+      "file": "hires/R3C3.png",
+      "row": 3,
+      "col": 3,
+      "fullyTransparent": false,
+      "pixelRect4096": [
+        2048,
+        2048,
+        3072,
+        3072
+      ],
+      "pixelRect2048": [
+        1024,
+        1024,
+        1536,
+        1536
+      ]
+    },
+    {
+      "file": "hires/R3C4.png",
+      "row": 3,
+      "col": 4,
+      "fullyTransparent": false,
+      "pixelRect4096": [
+        3072,
+        2048,
+        4096,
+        3072
+      ],
+      "pixelRect2048": [
+        1536,
+        1024,
+        2048,
+        1536
+      ]
+    },
+    {
+      "file": "hires/R4C1.png",
+      "row": 4,
+      "col": 1,
+      "fullyTransparent": true,
+      "pixelRect4096": [
+        0,
+        3072,
+        1024,
+        4096
+      ],
+      "pixelRect2048": [
+        0,
+        1536,
+        512,
+        2048
+      ]
+    },
+    {
+      "file": "hires/R4C2.png",
+      "row": 4,
+      "col": 2,
+      "fullyTransparent": true,
+      "pixelRect4096": [
+        1024,
+        3072,
+        2048,
+        4096
+      ],
+      "pixelRect2048": [
+        512,
+        1536,
+        1024,
+        2048
+      ]
+    },
+    {
+      "file": "hires/R4C3.png",
+      "row": 4,
+      "col": 3,
+      "fullyTransparent": true,
+      "pixelRect4096": [
+        2048,
+        3072,
+        3072,
+        4096
+      ],
+      "pixelRect2048": [
+        1024,
+        1536,
+        1536,
+        2048
+      ]
+    },
+    {
+      "file": "hires/R4C4.png",
+      "row": 4,
+      "col": 4,
+      "fullyTransparent": true,
+      "pixelRect4096": [
+        3072,
+        3072,
+        4096,
+        4096
+      ],
+      "pixelRect2048": [
+        1536,
+        1536,
+        2048,
+        2048
+      ]
+    }
+  ],
+  "note": "Row 4 is fully transparent (the source's bottom quarter is empty water). It can be uploaded as-is or left without an image; either way keep the 4x4 frame so the extent stays the same.",
+  "choiceDoc": "HIRES_OPTIONS.md",
+  "source": "tiles/MapTile{TopLeft,TopRight,BottomLeft}.png + clean/MapTileBottomRight.png (no baked icons)"
+}

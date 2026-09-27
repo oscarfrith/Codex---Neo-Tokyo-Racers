@@ -1,8 +1,9 @@
 -- Canonical feature implementation; startup is owned by the composition root (ServerBase).
 -- World jobs board (docs/architecture/map-markers-contract.md "World jobs"). Server authority for:
---   * offers: N taxi fares + M parcels dotted over the Core District road network, each at a verified
---     kerb spot beside the road with a long, varied routed trip, published to
---     ReplicatedStorage.ActivityState.JobOffers (Configuration per offer); expire/relocate, replenish;
+--   * offers: N taxi fares + M parcels spread over the whole blockout road network (zone grid + city
+--     quota, clear of map places), each at a verified kerb or roadside spot with a long, varied routed
+--     trip, published to ReplicatedStorage.ActivityState.JobOffers (Configuration per offer);
+--     expire/relocate (a taken job's replacement appears in another part of the map), replenish;
 --   * JobAccept: proximity/speed/driving/busy validation, then ActivityService.Begin(kind);
 --   * the trip engine shared by Taxi and Courier: driven distance (anti-teleport), crashes, arrival,
 --     settlement (JobRules) and the single payout via ActivityPayout.Pay.
@@ -27,7 +28,10 @@ local recentSpots = {} -- recent pickup and drop positions (freshness)
 local recentTrips = {} -- { Pickup, Drop } of recent offers (variety)
 local recentDrops = {}
 local offersFolder
-local edgeCache -- { Key, Table }
+local edgeCache -- { Key, Tables } (JobRules.BuildZoneTables)
+local zoneHeat = {} -- [zone] = { Value, At } (JobRules.AddHeat)
+local avoidList = {} -- { Position, At }: taken jobs' pickup, drop and taker (relocation)
+local placedCounts = {} -- [How] = offers placed since start (diagnostics)
 local rng = Random.new()
 local generating = false
 local fillRequested = false
@@ -69,14 +73,87 @@ local function boardConfig()
 	return JobRules.ReadBoardConfig(function(key) return folder and folder:GetAttribute(key) end)
 end
 
-local function bounds()
+-- The job area is Jobs.Bounds* (the whole blockout); the Core District is the city, which gets its own
+-- zone grid and offer quota (JobRules.ZoneSpec / RankZones).
+local function zoneSpec(board)
 	local core = configRoot:FindFirstChild("Core")
-	return {
+	return JobRules.ZoneSpec(board, {
 		MinX = ActivityService.Number(core, "DistrictMinX", -250),
 		MaxX = ActivityService.Number(core, "DistrictMaxX", 2600),
 		MinZ = ActivityService.Number(core, "DistrictMinZ", -4150),
 		MaxZ = ActivityService.Number(core, "DistrictMaxZ", 550),
-	}
+	})
+end
+
+-- Places whose map icons job icons must not cover: Config.UI.MapPois (Position attribute), owned-garage
+-- exteriors and race start zones. Collected at runtime, cached PoiRefreshSeconds; missing folders are fine.
+local exclusionCache = { At = -math.huge, List = {} }
+local function positionOf(item)
+	if item:IsA("BasePart") then return item.Position end
+	if item:IsA("Model") then
+		local ok, pivot = pcall(item.GetPivot, item)
+		if ok then return pivot.Position end
+	end
+	local attribute = item:GetAttribute("Position")
+	return typeof(attribute) == "Vector3" and attribute or nil
+end
+local function exclusionPoints(board)
+	if os.clock() - exclusionCache.At < board.PoiRefreshSeconds then return exclusionCache.List end
+	local list = {}
+	local ui = ReplicatedStorage:FindFirstChild("Config") and ReplicatedStorage.Config:FindFirstChild("UI")
+	local pois = ui and ui:FindFirstChild("MapPois")
+	if pois then
+		for _, poi in ipairs(pois:GetChildren()) do
+			local position = poi:GetAttribute("Position")
+			if typeof(position) == "Vector3" then table.insert(list, position) end
+		end
+	end
+	local world = Workspace:FindFirstChild("World")
+	local garages = world and world:FindFirstChild("OwnedGarageExteriors")
+	if garages then
+		for _, garage in ipairs(garages:GetChildren()) do
+			local position = positionOf(garage)
+			if position then table.insert(list, position) end
+		end
+	end
+	local routes = world and world:FindFirstChild("RaceRoutes")
+	if routes then
+		for _, route in ipairs(routes:GetChildren()) do
+			local zones = route:FindFirstChild("StartZones")
+			if zones then
+				for _, zone in ipairs(zones:GetChildren()) do
+					local position = positionOf(zone)
+					if position then table.insert(list, position) end
+				end
+			end
+		end
+	end
+	exclusionCache = { At = os.clock(), List = list }
+	return list
+end
+
+-- Road part containers (Jobs.RoadContainerPath, "/"-separated under Workspace). Cached; retried while missing.
+local roadCache = { Path = nil, At = -math.huge, List = {} }
+local function roadContainers(board)
+	local path = board.RoadContainerPath
+	if roadCache.Path == path and (#roadCache.List > 0 or os.clock() - roadCache.At < 30) then return roadCache.List end
+	local list = {}
+	if path ~= "" then
+		local node = Workspace
+		for name in string.gmatch(path, "[^/]+") do
+			node = node and node:FindFirstChild(name)
+		end
+		if node and node ~= Workspace then table.insert(list, node) end
+	end
+	roadCache = { Path = path, At = os.clock(), List = list }
+	return list
+end
+
+local function inRoads(instance, containers)
+	for _, container in ipairs(containers) do
+		if instance == container or instance:IsDescendantOf(container) then return true end
+	end
+	return false
 end
 
 local function kindEnabled(kind)
@@ -145,19 +222,25 @@ local function isWater(hit)
 	return hit ~= nil and hit.Material == Enum.Material.Water
 end
 
--- Surfaces a fare or parcel must never stand on (by part or ancestor name): foliage, planters,
--- dividers and the bare baseplate beyond built pavements.
-local REJECT_SURFACE = { "bush", "foliage", "divider", "tree", "plant", "grass", "hedge", "baseplate" }
-local function surfaceOk(instance)
+-- Surfaces a fare or parcel must never stand on (by part or ancestor name): foliage, planters and
+-- dividers; for pavement spots also the bare baseplate beyond built pavements (roadside spots allow it).
+local FOLIAGE = { "bush", "foliage", "divider", "tree", "plant", "grass", "hedge" }
+local function nameHas(instance, words)
 	local node, depth = instance, 0
 	while node and node ~= Workspace and depth < 5 do
 		local name = string.lower(node.Name)
-		for _, word in ipairs(REJECT_SURFACE) do
-			if string.find(name, word, 1, true) then return false end
+		for _, word in ipairs(words) do
+			if string.find(name, word, 1, true) then return true end
 		end
 		node, depth = node.Parent, depth + 1
 	end
-	return true
+	return false
+end
+local function isFoliage(instance)
+	return not instance:IsA("Terrain") and nameHas(instance, FOLIAGE)
+end
+local function surfaceOk(instance)
+	return not isFoliage(instance) and not nameHas(instance, { "baseplate" })
 end
 
 local function collides(instance)
@@ -165,15 +248,36 @@ local function collides(instance)
 	return instance:IsA("BasePart") and instance.CanCollide
 end
 
--- candidate = { Centre: Vector2, Tangent: Vector2, Side }. Returns { Position, Facing, Offset } or nil, reason.
+-- True when the flat point is on, or within pad of, a road part: exact footprint test in each nearby
+-- road part's own space (a bounds box alone is too loose for diagonal roads).
+local function onRoadPart(point, y, containers, pad)
+	if #containers == 0 then return false end
+	local overlap = OverlapParams.new()
+	overlap.FilterType = Enum.RaycastFilterType.Include
+	overlap.FilterDescendantsInstances = containers
+	local box = Vector3.new(pad * 2 + 2, 30, pad * 2 + 2)
+	for _, part in ipairs(Workspace:GetPartBoundsInBox(CFrame.new(point.X, y, point.Y), box, overlap)) do
+		local l = part.CFrame:PointToObjectSpace(Vector3.new(point.X, part.Position.Y, point.Y))
+		if JobRules.InsideFootprint(l.X, l.Z, part.Size.X, part.Size.Z, pad) then return true end
+	end
+	return false
+end
+
+local ROADSIDE_EXTRA = { 0, 6, 12 }
+
+-- candidate = { Centre: Vector2, Tangent: Vector2, Side }. Returns { Position, Facing, Offset, How } or nil, reason.
+-- How: "Kerb" (pavement past a detected kerb), "Fallback" (relax pass KerbOffset) or "Roadside" (flat ground
+-- beside a road with no pavement anywhere in the march; only on known road parts, never on a road part).
 local function verifyKerb(candidate, board, allowFallback, graph)
 	local params = probeParams()
+	local roads = roadContainers(board)
 	local centre, tangent = candidate.Centre, candidate.Tangent
 	local top = board.RoadY + board.ProbeHeight
 	local centreHit = Workspace:Raycast(Vector3.new(centre.X, top, centre.Y), Vector3.new(0, -board.ProbeHeight * 2, 0), params)
 	if not centreHit then return nil, "NoRoad" end
 	if isWater(centreHit) then return nil, "Water" end
 	local roadY = centreHit.Position.Y
+	local centreIsRoad = #roads == 0 or inRoads(centreHit.Instance, roads)
 	local normal = JobRules.Normal(tangent, candidate.Side)
 	local samples = {}
 	local offset = board.KerbSearchMin
@@ -184,11 +288,14 @@ local function verifyKerb(candidate, board, allowFallback, graph)
 		if hit then
 			local dy = hit.Position.Y - roadY
 			local sameMaterial = hit.Material == centreHit.Material
+			sample.Dy = dy
+			sample.Surface = surfaceOk(hit.Instance)
 			if math.abs(dy) < board.KerbRise then
 				if hit.Instance == centreHit.Instance then
 					sample.IsRoad = not hit.Instance:IsA("Terrain") or sameMaterial
 				else
-					sample.IsRoad = sameMaterial and hit.Instance.Name == centreHit.Instance.Name
+					sample.IsRoad = (sameMaterial and hit.Instance.Name == centreHit.Instance.Name)
+						or (#roads > 0 and centreIsRoad and inRoads(hit.Instance, roads))
 				end
 			end
 			sample.Rise = dy >= board.KerbRise
@@ -216,7 +323,39 @@ local function verifyKerb(candidate, board, allowFallback, graph)
 		if groundOk then break end
 		groundHit = nil
 	end
-	if not groundHit then return nil, why end
+	if not groundHit then
+		-- No pavement spot. Where the march saw pavement the strict rule stands (bushes, planters); on a
+		-- bare road (outskirts: baseplate or terrain beside the road) stand on flat ground past the edge.
+		if how ~= "Kerb" or not board.RoadsideSpots then return nil, why end
+		if JobRules.HasPavement(samples, board) then return nil, why end
+		if not centreIsRoad then return nil, "NotRoad" end
+		for _, extra in ipairs(ROADSIDE_EXTRA) do
+			spotOffset = JobRules.RoadsideOffset(kerbOffset, board, extra)
+			spot2 = centre + normal * spotOffset
+			groundHit = Workspace:Raycast(Vector3.new(spot2.X, roadY + 25, spot2.Y), Vector3.new(0, -50, 0), params)
+			local ground
+			if groundHit then
+				local instance = groundHit.Instance
+				local onRoad = instance == centreHit.Instance
+				if #roads > 0 then
+					onRoad = onRoad or inRoads(instance, roads) or onRoadPart(spot2, roadY, roads, board.RoadsideEdgePad)
+				else
+					-- Road parts unknown: anything at road level that looks like the road counts as road.
+					onRoad = onRoad or math.abs(groundHit.Position.Y - roadY) < board.KerbRise
+						or (groundHit.Material == centreHit.Material and instance.Name == centreHit.Instance.Name)
+				end
+				ground = {
+					Hit = true, Y = groundHit.Position.Y, NormalY = groundHit.Normal.Y, Water = isWater(groundHit),
+					Collides = collides(instance), Foliage = isFoliage(instance), OnRoad = onRoad,
+				}
+			end
+			local groundOk
+			groundOk, why = JobRules.RoadsideGroundOk(ground, roadY, board)
+			if groundOk then how = "Roadside" break end
+			groundHit = nil
+		end
+		if not groundHit then return nil, "Roadside" .. tostring(why) end
+	end
 	local position = groundHit.Position
 	local cover = board.ClearHeight > 0 and Workspace:Raycast(position + Vector3.new(0, 2, 0), Vector3.new(0, board.ClearHeight, 0), params)
 	if cover then
@@ -239,12 +378,16 @@ end
 
 -- Candidate sampling ----------------------------------------------------------------------------
 
-local function edgeTable(board, graph, area)
-	local key = table.concat({ board.IntersectionClearance, area.MinX, area.MaxX, area.MinZ, area.MaxZ, #graph.Edges }, ":")
+-- Per-zone and global edge tables clipped to the job area, rebuilt when the graph, area, grids or
+-- clearance change (one pass over the graph, a few milliseconds).
+local function zoneTables(board, graph, spec)
+	local city = spec.City or { MinX = 0, MaxX = 0, MinZ = 0, MaxZ = 0 }
+	local key = table.concat({ board.IntersectionClearance, spec.Bounds.MinX, spec.Bounds.MaxX, spec.Bounds.MinZ, spec.Bounds.MaxZ,
+		spec.Columns, spec.Rows, spec.CityColumns, spec.CityRows, city.MinX, city.MaxX, city.MinZ, city.MaxZ, #graph.Edges }, ":")
 	if not edgeCache or edgeCache.Key ~= key then
-		edgeCache = { Key = key, Table = JobRules.BuildEdgeTable(graph, board.IntersectionClearance, area) }
+		edgeCache = { Key = key, Tables = JobRules.BuildZoneTables(graph, board.IntersectionClearance, spec, 40) }
 	end
-	return edgeCache.Table
+	return edgeCache.Tables
 end
 
 local function sampleCandidate(graph, edges, board)
@@ -261,25 +404,30 @@ local function sampleCandidate(graph, edges, board)
 	}
 end
 
-local function sectorCounts(positions, area, board)
+local function zoneCounts(positions, spec)
 	local counts = {}
 	for _, position in ipairs(positions) do
-		local sector = JobRules.SectorOf(position, area, board.SectorColumns, board.SectorRows)
-		counts[sector] = (counts[sector] or 0) + 1
+		local zone = JobRules.ZoneOf(position, spec)
+		if zone then counts[zone] = (counts[zone] or 0) + 1 end
 	end
 	return counts
 end
 
-local function chooseDestination(pickup, board, graph, edges, area, relax)
+local function reject(reason)
+	rejectCounts[reason or "?"] = (rejectCounts[reason or "?"] or 0) + 1
+end
+
+local function chooseDestination(pickup, board, graph, tables, spec, relax, exclusions)
 	local dist = JobRules.RoadDistances(graph, pickup.Edge, pickup.Along)
 	local low, high = JobRules.TripBand(board, relax)
 	local ctx = {
 		Pickup = pickup.Position, TargetLength = JobRules.TargetLength(board, rng:NextNumber()), Band = { low, high },
-		RecentTrips = recentTrips, RecentDrops = recentDrops, SectorCounts = sectorCounts(recentDrops, area, board), Bounds = area,
+		RecentTrips = recentTrips, RecentDrops = recentDrops, SectorCounts = zoneCounts(recentDrops, spec),
+		Bounds = spec.Bounds, Zones = spec, Exclusions = exclusions,
 	}
 	local scored = {}
 	for _ = 1, board.DestinationCandidates do
-		local candidate = sampleCandidate(graph, edges, board)
+		local candidate = sampleCandidate(graph, tables.Global, board)
 		if candidate then
 			candidate.Road = JobRules.RoadDistanceTo(graph, dist, pickup.Edge, pickup.Along, candidate.Edge, candidate.Along)
 			local score = JobRules.ScoreDestination(candidate, ctx, board)
@@ -289,11 +437,13 @@ local function chooseDestination(pickup, board, graph, edges, area, relax)
 			end
 		end
 	end
+	if #scored == 0 then reject("DropBand") end
 	table.sort(scored, function(a, b) return a.Score > b.Score end)
 	for index = 1, math.min(6, #scored) do
 		task.wait() -- spread raycast work across frames
-		local spot = verifyKerb(scored[index], board, relax >= 1, graph)
+		local spot, why = verifyKerb(scored[index], board, relax >= 1, graph)
 		if spot then return scored[index], spot end
+		reject("Drop" .. tostring(why))
 	end
 	return nil
 end
@@ -330,7 +480,35 @@ local function removeOffer(offer, reason, taken)
 	fillRequested = true
 end
 
-local function publish(kind, board, pickup, spot, destination, destinationSpot)
+-- Relocation memory: places a replacement keeps away from (RelocateAvoidStuds, for RelocateMemorySeconds)
+-- and zone heat (least recently used zones rank first).
+local function noteUsed(board, positions, heat)
+	local now = os.clock()
+	local spec = zoneSpec(board)
+	for _, position in ipairs(positions) do
+		if typeof(position) == "Vector3" then
+			table.insert(avoidList, { Position = position, At = now })
+			if heat > 0 then JobRules.AddHeat(zoneHeat, JobRules.ZoneOf(position, spec), heat, now, board.ZoneHeatHalfLife) end
+		end
+	end
+	local kept = {}
+	for _, item in ipairs(avoidList) do
+		if now - item.At <= board.RelocateMemorySeconds then table.insert(kept, item) end
+	end
+	while #kept > 32 do table.remove(kept, 1) end
+	avoidList = kept
+end
+
+-- Runtime diagnostics on the JobOffers folder (inspectable in Play without requiring the module).
+local function updateDiagnostics(failure)
+	if not offersFolder then return end
+	offersFolder:SetAttribute("PlacedPavement", placedCounts.Kerb or 0)
+	offersFolder:SetAttribute("PlacedRoadside", placedCounts.Roadside or 0)
+	offersFolder:SetAttribute("PlacedFallback", placedCounts.Fallback or 0)
+	if failure then offersFolder:SetAttribute("LastFailure", failure) end
+end
+
+local function publish(kind, board, pickup, spot, destination, destinationSpot, spec)
 	local provider = providers[kind]
 	local tripConfig = provider.ReadConfig()
 	local distance = destination.Road
@@ -358,6 +536,7 @@ local function publish(kind, board, pickup, spot, destination, destinationSpot)
 	item:SetAttribute("Distance", math.floor(distance + 0.5))
 	item:SetAttribute("Estimate", offer.Estimate)
 	item:SetAttribute("ExpiresAt", offer.ExpiresAt)
+	item:SetAttribute("SpotKind", spot.How) -- diagnostics: Kerb (pavement) | Roadside | Fallback
 	if type(offer.Label) == "string" then item:SetAttribute("Label", offer.Label) end
 	item.Parent = offersFolder
 	offer.Instance = item
@@ -366,42 +545,80 @@ local function publish(kind, board, pickup, spot, destination, destinationSpot)
 	JobRules.Remember(recentSpots, destinationSpot.Position, board.FreshnessMemory)
 	JobRules.Remember(recentDrops, destinationSpot.Position, board.RecentTripMemory)
 	JobRules.Remember(recentTrips, { Pickup = spot.Position, Drop = destinationSpot.Position }, board.RecentTripMemory)
+	JobRules.AddHeat(zoneHeat, JobRules.ZoneOf(spot.Position, spec), 1, os.clock(), board.ZoneHeatHalfLife)
+	placedCounts[spot.How or "?"] = (placedCounts[spot.How or "?"] or 0) + 1
+	updateDiagnostics(nil)
 	return offer
 end
 
 -- One offer of `kind`, or nil when no valid spot/route was found. Yields between candidates.
+-- Each pass ranks the zones (emptiest, least recently used, city quota, relocation avoidance) and tries the
+-- best ZonesPerPass of them; inside a zone the candidate farthest from other offers is verified first.
 local function generateOffer(kind, board)
 	local graph = ActivityService.RoadGraph()
-	local area = bounds()
-	local edges = edgeTable(board, graph, area)
-	if edges.Total <= 0 then return nil end
+	local spec = zoneSpec(board)
+	local tables = zoneTables(board, graph, spec)
+	if tables.Global.Total <= 0 then return nil end
+	local exclusions = exclusionPoints(board)
+	local spreadCap = math.max(1, board.MinOfferSpacing * 4)
 	for relax = 0, 2 do
-		local ctx = { Offers = offerPositions(), Players = playerPositions(), Recent = recentSpots, Bounds = area }
-		local counts = sectorCounts(ctx.Offers, area, board)
-		local candidates = {}
-		for _ = 1, board.SpotTries do
-			local candidate = sampleCandidate(graph, edges, board)
-			if candidate and JobRules.SpotAllowed(candidate.Point, ctx, board, relax) then
-				candidate.Score = JobRules.ScorePickup(candidate.Point, counts, area, board, rng:NextNumber() * 0.8)
-				table.insert(candidates, candidate)
-				if #candidates >= 16 then break end
-			end
+		local now = os.clock()
+		local avoid = JobRules.ActiveAvoid(avoidList, now, board.RelocateMemorySeconds)
+		local ctx = {
+			Offers = offerPositions(), Players = playerPositions(), Recent = recentSpots, Bounds = spec.Bounds,
+			Exclusions = exclusions, Avoid = avoid,
+		}
+		local counts = zoneCounts(ctx.Offers, spec)
+		local cityCount = 0
+		for zone, count in pairs(counts) do
+			if JobRules.ZoneIsCity(zone, spec) then cityCount += count end
 		end
-		table.sort(candidates, function(a, b) return a.Score > b.Score end)
-		for _, candidate in ipairs(candidates) do
-			local spot, why = verifyKerb(candidate, board, relax >= 2, graph)
-			if not spot then rejectCounts[why or "?"] = (rejectCounts[why or "?"] or 0) + 1 end
-			if spot and JobRules.SpotAllowed(spot.Position, ctx, board, relax) then
-				candidate.Position = spot.Position
-				local destination, destinationSpot = chooseDestination(candidate, board, graph, edges, area, relax >= 1 and 1 or 0)
-				if not destination and relax == 0 then
-					destination, destinationSpot = chooseDestination(candidate, board, graph, edges, area, 1)
-				end
-				if destination and providers[kind] and kindEnabled(kind) then
-					return publish(kind, board, candidate, spot, destination, destinationSpot)
+		local heat, avoidZones = {}, {}
+		for zone in pairs(tables.Road) do heat[zone] = JobRules.HeatOf(zoneHeat, zone, now, board.ZoneHeatHalfLife) end
+		for _, position in ipairs(avoid) do
+			local zone = JobRules.ZoneOf(position, spec)
+			if zone then avoidZones[zone] = true end
+		end
+		local ranked = JobRules.RankZones(spec, {
+			Road = tables.Road, Counts = counts, Heat = heat, CityCount = cityCount, AvoidZones = avoidZones,
+		}, board, relax, function() return rng:NextNumber() end)
+		for index = 1, math.min(board.ZonesPerPass, #ranked) do
+			local zoneTable = tables.Zones[ranked[index]]
+			local candidates = {}
+			for _ = 1, board.SpotTries do
+				local candidate = sampleCandidate(graph, zoneTable, board)
+				if candidate then
+					local allowed, why = JobRules.SpotAllowed(candidate.Point, ctx, board, relax)
+					if allowed then
+						candidate.Score = JobRules.SpreadScore(candidate.Point, ctx.Offers, spreadCap) + rng:NextNumber() * 0.3
+						table.insert(candidates, candidate)
+						if #candidates >= 8 then break end
+					else
+						reject("Pre" .. tostring(why))
+					end
 				end
 			end
-			task.wait() -- spread raycast and Dijkstra cost over frames
+			table.sort(candidates, function(a, b) return a.Score > b.Score end)
+			for _, candidate in ipairs(candidates) do
+				local spot, why = verifyKerb(candidate, board, relax >= 2, graph)
+				if not spot then reject(why) end
+				if spot then
+					local allowed, spotWhy = JobRules.SpotAllowed(spot.Position, ctx, board, relax)
+					if not allowed then reject("Spot" .. tostring(spotWhy)) end
+					if allowed then
+						candidate.Position = spot.Position
+						local destination, destinationSpot = chooseDestination(candidate, board, graph, tables, spec, relax >= 1 and 1 or 0, exclusions)
+						if not destination and relax == 0 then
+							destination, destinationSpot = chooseDestination(candidate, board, graph, tables, spec, 1, exclusions)
+						end
+						if destination and providers[kind] and kindEnabled(kind) then
+							return publish(kind, board, candidate, spot, destination, destinationSpot, spec)
+						end
+					end
+				end
+				task.wait() -- spread raycast and Dijkstra cost over frames
+			end
+			task.wait()
 		end
 	end
 	return nil
@@ -431,6 +648,9 @@ local function fill()
 				nextFillAt = os.clock() + 10
 				local reasons = {}
 				for reason, count in pairs(rejectCounts) do table.insert(reasons, reason .. "=" .. count) end
+				table.sort(reasons)
+				local summary = chosen .. ": " .. table.concat(reasons, " ")
+				updateDiagnostics(summary)
 				warn("[JobBoard] no valid " .. chosen .. " spot this round (" .. table.concat(reasons, " ") .. "); retrying in 10 s")
 			end
 			task.wait(0.05)
@@ -550,6 +770,7 @@ local function complete(player, trip, elapsed)
 	-- Leave the busy state before paying so a cancel cannot race the (yielding) payout; the CommandId
 	-- keeps the grant idempotent.
 	if not closeTrip(player, trip) then return end
+	noteUsed(boardConfig(), { trip.Destination }, 0) -- refresh: nothing new appears where the player finished
 	pcall(ActivityService.End, player, trip.RecordId, "Complete")
 	call(providers[trip.Kind], "OnEnd", player, trip, "Complete")
 	task.spawn(payout, player, trip, result, elapsed)
@@ -630,6 +851,8 @@ local function accept(player, args)
 	local record, err = ActivityService.Begin(player, offer.Kind, { OfferId = offerId })
 	if not record then return { Ok = false, Message = err or "You are busy right now." } end
 	removeOffer(offer, "Taken", true)
+	-- The replacement (generated next) keeps away from this job's pickup, its drop and the taker.
+	noteUsed(board, { offer.Position, offer.Destination, root.Position }, 1)
 	local reference = JobRules.ReferenceSeconds(offer.Distance, tripConfig)
 	local trip = {
 		Id = ActivityService.NewId("Trip"), Kind = offer.Kind, Player = player, RecordId = record.Id, OfferId = offerId,

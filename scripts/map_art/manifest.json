@@ -291,5 +291,170 @@
     "jobs",
     "Waypoint",
     "players"
-  ]
+  ],
+  "icons_glyph": {
+    "generatedBy": "scripts/map_art/make_icons_glyph.py",
+    "style": "glyph only (no badge circle, ring or square); role colour glyph, dark outline #06080B ~6.5/128, soft dark halo; pins keep the pin shape",
+    "displaySizePx": [
+      28,
+      56
+    ],
+    "configIconsPath": "ReplicatedStorage.Config.UI.MapIcons.<Key> (replace the badge icons after upload)",
+    "notDrawn": {
+      "Dealership": "use the HUD's own dealership icon",
+      "Garage": "use the HUD's own garage icon"
+    },
+    "contactSheet": "icons_glyph/contact_sheet.png",
+    "icons": {
+      "Customisation": {
+        "file": "icons_glyph/Customisation.png",
+        "size": [
+          128,
+          128
+        ],
+        "role": "place",
+        "anchorPoint": [
+          0.5,
+          0.5
+        ]
+      },
+      "Race": {
+        "file": "icons_glyph/Race.png",
+        "size": [
+          128,
+          128
+        ],
+        "role": "activity",
+        "anchorPoint": [
+          0.5,
+          0.5
+        ]
+      },
+      "TimeTrial": {
+        "file": "icons_glyph/TimeTrial.png",
+        "size": [
+          128,
+          128
+        ],
+        "role": "activity",
+        "anchorPoint": [
+          0.5,
+          0.5
+        ]
+      },
+      "Duel": {
+        "file": "icons_glyph/Duel.png",
+        "size": [
+          128,
+          128
+        ],
+        "role": "activity",
+        "anchorPoint": [
+          0.5,
+          0.5
+        ]
+      },
+      "Job": {
+        "file": "icons_glyph/Job.png",
+        "size": [
+          128,
+          128
+        ],
+        "role": "job",
+        "anchorPoint": [
+          0.5,
+          0.5
+        ]
+      },
+      "TaxiFare": {
+        "file": "icons_glyph/TaxiFare.png",
+        "size": [
+          128,
+          128
+        ],
+        "role": "job",
+        "anchorPoint": [
+          0.5,
+          0.5
+        ]
+      },
+      "CourierPickup": {
+        "file": "icons_glyph/CourierPickup.png",
+        "size": [
+          128,
+          128
+        ],
+        "role": "job",
+        "anchorPoint": [
+          0.5,
+          0.5
+        ]
+      },
+      "CourierDrop": {
+        "file": "icons_glyph/CourierDrop.png",
+        "size": [
+          128,
+          128
+        ],
+        "role": "jobDrop",
+        "anchorPoint": [
+          0.5,
+          0.9219
+        ]
+      },
+      "TaxiDrop": {
+        "file": "icons_glyph/TaxiDrop.png",
+        "size": [
+          128,
+          128
+        ],
+        "role": "jobDrop",
+        "anchorPoint": [
+          0.5,
+          0.9219
+        ]
+      },
+      "Waypoint": {
+        "file": "icons_glyph/Waypoint.png",
+        "size": [
+          128,
+          128
+        ],
+        "role": "waypoint",
+        "anchorPoint": [
+          0.5,
+          0.9219
+        ]
+      },
+      "Player": {
+        "file": "icons_glyph/Player.png",
+        "size": [
+          128,
+          128
+        ],
+        "role": "player",
+        "anchorPoint": [
+          0.5,
+          0.5
+        ]
+      },
+      "OtherPlayer": {
+        "file": "icons_glyph/OtherPlayer.png",
+        "size": [
+          128,
+          128
+        ],
+        "role": "player",
+        "anchorPoint": [
+          0.5,
+          0.5
+        ]
+      }
+    }
+  },
+  "hiresMap": {
+    "manifest": "hires/manifest.json",
+    "choice": "HIRES_OPTIONS.md",
+    "tiles": "hires/R{row}C{col}.png (4x4 of 1024, 4096x4096 total)"
+  }
 }

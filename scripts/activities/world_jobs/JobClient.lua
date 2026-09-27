@@ -4,9 +4,9 @@
 --     Kind "Job", Pulse); streamed-in offers get a local anchor with a ProximityPrompt ("Give ride" /
 --     "Pick up parcel", E) enabled only while the player drives their own car slowly, a beacon and the
 --     kind's prop (parcel crate). Taxi fares' NPCs are server rigs;
---   * JobAccept intent; during a job: strip (time, distance, live pay estimate, crashes), the Activity
---     route and the TaxiDrop / CourierDrop marker; completion toast with the pay breakdown;
---   * JOBS panel entries "NEAREST TAXI FARE" / "NEAREST PARCEL" with SET ROUTE.
+--   * JobAccept intent; during a job: strip (time, distance, live pay estimate, crashes; its X cancels via
+--     ActivityClient), the Activity route and the TaxiDrop / CourierDrop marker; completion toast with the
+--     pay breakdown. Jobs are found on the map only (no JOBS panel entries).
 -- The server (JobBoard) decides offers, acceptance, crashes, arrival and pay.
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -18,7 +18,6 @@ local JobRules = require(ReplicatedStorage:WaitForChild("Modules"):WaitForChild(
 local JobClient = {}
 
 local ROUTE_TRIP = "Job"
-local ROUTE_OFFER = "JobOffer"
 local DESTINATION_MARKER = "JobDestination"
 local POLL_SECONDS = 0.2
 
@@ -31,13 +30,10 @@ local trip = nil
 local markersModule = nil -- nil = not resolved yet, false = unavailable
 local markerIds = {} -- [markerId] = true while set
 local propsFolder
-local routedOffer = nil -- { Id, Kind }
 local accepting = false
-local lastAcceptId = nil
-local entryText = {} -- [kind] = last subtitle
 local board = JobRules.ReadBoardConfig(nil)
 local boardReadAt = -math.huge
-local slowAt = { markers = -math.huge, jobs = -math.huge }
+local slowAt = { markers = -math.huge }
 
 local function configFolder(name)
 	local root = ReplicatedStorage:FindFirstChild("Config")
@@ -144,7 +140,6 @@ end
 local function acceptOffer(offerId)
 	if accepting or trip then return end
 	accepting = true
-	lastAcceptId = offerId
 	for _, entry in pairs(offers) do
 		if entry.Prompt then entry.Prompt.Enabled = false end
 	end
@@ -239,13 +234,6 @@ local function syncMarkers()
 	end
 end
 
-local function clearOfferRoute()
-	if routedOffer then
-		routedOffer = nil
-		ctx.RouteGuide.Clear(ROUTE_OFFER)
-	end
-end
-
 local function addOffer(item)
 	if not item:IsA("Configuration") or offers[item.Name] then return end
 	local entry = { Id = item.Name, Instance = item }
@@ -264,87 +252,6 @@ local function removeOffer(item)
 	offers[item.Name] = nil
 	dropProp(entry)
 	removeMarker("JobOffer_" .. entry.Id)
-	if routedOffer and routedOffer.Id == entry.Id then
-		clearOfferRoute()
-		if not trip and not accepting and lastAcceptId ~= entry.Id then
-			local spec = kinds[entry.Kind]
-			ctx.Toast(string.format("THAT %s IS GONE · PICK ANOTHER ON THE MAP", spec and spec.Title or "JOB"), 3)
-		end
-	end
-end
-
-local function nearestOffer(kind, here)
-	local best, bestDistance
-	for _, entry in pairs(offers) do
-		if entry.Kind == kind and entry.Position then
-			local distance = here and JobRules.Flat(here, entry.Position) or 0
-			if not best or distance < bestDistance then best, bestDistance = entry, distance end
-		end
-	end
-	return best, bestDistance
-end
-
-local function routeTo(entry)
-	if trip or not (entry and offers[entry.Id] == entry) then return end
-	local spec = kinds[entry.Kind]
-	routedOffer = { Id = entry.Id, Kind = entry.Kind }
-	ctx.RouteGuide.SetDestination(ROUTE_OFFER, entry.Position, { Label = spec.Title, Priority = 45, Kind = "Activity" })
-	local here = myPosition()
-	ctx.Toast(string.format("ROUTE SET · %s · %s AWAY", spec.Title, here and JobRules.Miles(JobRules.Flat(here, entry.Position)) or "NEARBY"), 3)
-end
-
--- Jobs panel ---------------------------------------------------------------------------------------------
-
-local function jobSubtitle(kind, here)
-	local spec = kinds[kind]
-	if trip and trip.Kind == kind then
-		local left = here and JobRules.Miles(JobRules.Flat(here, trip.Destination)) or "--"
-		return "On the job · " .. left .. " to go. Faster pays more; crashes cost."
-	elseif trip then
-		return "Finish your current job first."
-	elseif not kindEnabled(kind) then
-		return "Closed right now."
-	end
-	local entry, distance = nearestOffer(kind, here)
-	if not entry then return "None right now. New " .. string.lower(spec.Title) .. "s appear on the map." end
-	return string.format("%s away · %s trip · ~%s", JobRules.Miles(distance), JobRules.Miles(entry.Distance), JobRules.Money(entry.Estimate))
-end
-
-local function addJobEntry(kind, subtitle)
-	local spec = kinds[kind]
-	ctx.Jobs.AddEntry({
-		Id = "Jobs" .. kind,
-		Title = spec.Nearest,
-		Subtitle = subtitle,
-		Order = spec.Order,
-		Buttons = function()
-			if trip and trip.Kind == kind then
-				return { {
-					Text = "CANCEL JOB", Accent = ctx.Theme.Danger,
-					OnClick = function()
-						local reply = ctx.Invoke("Cancel", {})
-						if reply and reply.Ok == false and reply.Message then ctx.Toast(reply.Message, 3) end
-					end,
-				} }
-			end
-			local entry = nearestOffer(kind, myPosition())
-			return { {
-				Text = "SET ROUTE", Enabled = trip == nil and entry ~= nil and kindEnabled(kind),
-				OnClick = function() routeTo(entry) end,
-			} }
-		end,
-	})
-end
-
-local function refreshJobs(force)
-	local here = myPosition()
-	for kind in pairs(kinds) do
-		local subtitle = jobSubtitle(kind, here)
-		if force or entryText[kind] ~= subtitle then
-			entryText[kind] = subtitle
-			addJobEntry(kind, subtitle)
-		end
-	end
 end
 
 -- Trip -----------------------------------------------------------------------------------------------------
@@ -358,7 +265,6 @@ local function endTrip()
 	removeMarker(DESTINATION_MARKER)
 	if ended.RemoveBeacon then ended.RemoveBeacon() end
 	syncMarkers()
-	refreshJobs(true)
 end
 
 local function updateTrip(here)
@@ -385,7 +291,6 @@ handlers.Started = function(kind, payload)
 	if typeof(payload.Destination) ~= "Vector3" then return end
 	local spec = kinds[kind]
 	endTrip()
-	clearOfferRoute()
 	trip = {
 		Kind = kind, TripId = payload.TripId, Destination = payload.Destination,
 		Distance = tonumber(payload.Distance) or 0, Pay = JobRules.SafeSnapshot(payload.Pay),
@@ -400,7 +305,6 @@ handlers.Started = function(kind, payload)
 	})
 	trip.RemoveBeacon = ctx.UI.Beacon(DESTINATION_MARKER, trip.Destination, ctx.Theme.HighSpeed)
 	ctx.Toast(spec.StartedText(payload), 3.5)
-	refreshJobs(true)
 end
 
 handlers.Driving = function(_, payload)
@@ -475,10 +379,6 @@ local function poll()
 		slowAt.markers = now
 		syncMarkers()
 	end
-	if now - slowAt.jobs >= 1 then
-		slowAt.jobs = now
-		refreshJobs(false)
-	end
 end
 
 local function mirror()
@@ -491,13 +391,12 @@ local function mirror()
 	for _, child in ipairs(folder:GetChildren()) do addOffer(child) end
 end
 
--- spec = { Kind, Title, Nearest, Icon, DropIcon, ActionText, DropLabel, StripTitle, BoardingText, Colour, Order,
+-- spec = { Kind, Title, Icon, DropIcon, ActionText, DropLabel, StripTitle, BoardingText, Colour,
 --          StartedText = (payload) -> string, DoneTitle, FailTitle, CancelTitle, BuildProp = (entry, anchor, ctx)? }
 function JobClient.RegisterKind(spec)
 	assert(type(spec) == "table" and type(spec.Kind) == "string", "JobClient kind spec required")
 	kinds[spec.Kind] = spec
 	for _, entry in pairs(offers) do entry.MarkerDirty = true end
-	if ctx then refreshJobs(true) end
 end
 
 function JobClient.Mount(context)

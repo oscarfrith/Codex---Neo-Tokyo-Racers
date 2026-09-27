@@ -83,9 +83,9 @@ local mapRotator=new("Frame",{Name="MapRotator",AnchorPoint=Vector2.new(.5,.5),B
 local mapPanCarrier=new("Frame",{Name="MapPanCarrier",BackgroundTransparency=1,BorderSizePixel=0,Position=UDim2.fromScale(0,0),Size=UDim2.fromOffset(170,170),ZIndex=6},mapRotator)
 local mapPanCarrierScale=new("UIScale",{Scale=1},mapPanCarrier)
 local mapCanvas=new("Frame",{Name="MapCanvas",AnchorPoint=Vector2.new(.5,.5),BackgroundTransparency=1,BorderSizePixel=0,Position=UDim2.fromScale(.5,.5),Size=UDim2.fromOffset(170,170),ZIndex=6},mapPanCarrier)
-local tileNames={"MapTileTopLeft","MapTileTopRight","MapTileBottomLeft","MapTileBottomRight"}; local tilePos={UDim2.fromScale(0,0),UDim2.fromScale(.5,0),UDim2.fromScale(0,.5),UDim2.fromScale(.5,.5)}
-local anyTile=false
-for i,name in ipairs(tileNames) do local image=asset(desktopAssets,name); if image~="" then anyTile=true end; new("ImageLabel",{Name=name,BackgroundTransparency=1,BorderSizePixel=0,Image=image,ScaleType=Enum.ScaleType.Stretch,Position=tilePos[i],Size=UDim2.fromScale(.5,.5),ZIndex=6},mapCanvas) end
+-- Map tiles: Config.UI.MapTiles grid (or the 4 legacy Assets tiles), shared with the desktop HUD and the full map.
+local mapTiles=require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("UI"):WaitForChild("MapTileSet")).new({Canvas=mapCanvas,ZIndex=6})
+local anyTile=mapTiles.Any
 local mapMissing=label(mapFrame,"Missing",anyTile and "" or "ADD MAP TILE IDS",UDim2.fromScale(1,.2),UDim2.fromScale(0,.4),9,MUTED,Enum.TextXAlignment.Center)
 local playerMarker=new("ImageLabel",{Name="PlayerMarker",AnchorPoint=Vector2.new(.5,.5),BackgroundTransparency=1,BorderSizePixel=0,Image=asset(desktopAssets,"MapPlayerIcon"),ImageColor3=WHITE,ScaleType=Enum.ScaleType.Fit,Position=UDim2.fromScale(.5,.5),Size=UDim2.fromOffset(18,18),ZIndex=9},mapFrame)
 if playerMarker.Image=="" then playerMarker:Destroy(); playerMarker=label(mapFrame,"PlayerMarker","▲",UDim2.fromOffset(24,24),UDim2.fromScale(.5,.5),18,CYAN,Enum.TextXAlignment.Center); playerMarker.AnchorPoint=Vector2.new(.5,.5) end
@@ -132,7 +132,7 @@ local function navButton(name,iconName,fallback)
 	if image~="" then new("ImageLabel",{Name="Icon",BackgroundTransparency=1,BorderSizePixel=0,Image=image,ImageColor3=WHITE,ScaleType=Enum.ScaleType.Fit,Position=UDim2.fromScale(.17,.17),Size=UDim2.fromScale(.66,.66),ZIndex=b.ZIndex+1},b) else label(b,"Fallback",fallback,UDim2.fromScale(1,1),UDim2.fromScale(0,0),8,WHITE,Enum.TextXAlignment.Center) end
 	navButtons[name]=b; return b
 end
-local carButton=navButton("Car","CarIcon","CAR"); local garageButton=navButton("Garage","GarageIcon","HOME"); local raceButton=navButton("Race","RaceIcon","RACE"); local shopButton=navButton("Dealership","DealershipIcon","SHOP"); local jobsButton=navButton("Jobs","JobsIcon","JOBS"); local settingsButton=navButton("Settings","SettingsIcon","SET")
+local carButton=navButton("Car","CarIcon","CAR"); local garageButton=navButton("Garage","GarageIcon","HOME"); local raceButton=navButton("Race","RaceIcon","RACE"); local shopButton=navButton("Dealership","DealershipIcon","SHOP"); local settingsButton=navButton("Settings","SettingsIcon","SET")
 
 local telemetry=new("Frame",{Name="Telemetry",AnchorPoint=Vector2.new(.5,1),BackgroundTransparency=1,BorderSizePixel=0,Size=UDim2.fromOffset(420,190),ZIndex=4,Visible=false},root)
 local telemetryScale=new("UIScale",{Scale=.72},telemetry)
@@ -311,7 +311,6 @@ carDespawn.Activated:Connect(function() if carBusy then return end; carBusy=true
 carButton.Activated:Connect(function() setCarMenuOpen(true) end)
 settingsButton.Activated:Connect(showSettings)
 shopButton.Activated:Connect(showTeleport)
-jobsButton.Activated:Connect(function() if not fire("OpenJobs") then showToast("JOBS NOT READY",false) end end)
 raceButton.Activated:Connect(function() if not fire("OpenRaceBrowser") then showToast("RACE BROWSER NOT READY",false) end end)
 garageButton.Activated:Connect(function() if not fire("OpenOwnedGarageBrowser") then showToast("MY GARAGES NOT READY",false) end end)
 exitButton.Activated:Connect(function() fire("FreeRoamVehicleExited"); local r=call("ExitVehicle",{}); showToast(r.Success==false and (r.Message or "EXIT FAILED") or "VEHICLE PARKED",r.Success~=false) end)
@@ -347,9 +346,9 @@ end)
 local function layout()
 	local camera=workspace.CurrentCamera; local vp=camera and camera.ViewportSize or Vector2.new(1280,720); local inside=player:GetAttribute("OwnedGarageInside")==true; if vp==lastSize and inside==lastInside then return end; lastSize=vp; lastInside=inside
 	local tiny=vp.Y<500; local margin=tiny and 10 or tonumber(read(config,"EdgeMargin",14)); local mapSize=math.floor(math.clamp(vp.Y*.27,tiny and 128 or 145,tiny and 160 or tonumber(read(config,"MinimapSize",180))))
-	local navSize=tiny and 34 or tonumber(read(config,"NavButtonSize",42)); local navGap=tiny and 4 or tonumber(read(config,"NavGap",6)); local carWidth=navSize*2+navGap; local navWidth=carWidth+navSize*5+navGap*5; local mapX=vp.X-margin-mapSize; local clusterGap=tiny and 4 or tonumber(read(config,"TopClusterGap",6)); nav.Position=UDim2.fromOffset(mapX-clusterGap-navWidth,margin); nav.Size=UDim2.fromOffset(navWidth,navSize)
+	local navSize=tiny and 34 or tonumber(read(config,"NavButtonSize",42)); local navGap=tiny and 4 or tonumber(read(config,"NavGap",6)); local carWidth=navSize*2+navGap; local navWidth=carWidth+navSize*4+navGap*4; local mapX=vp.X-margin-mapSize; local clusterGap=tiny and 4 or tonumber(read(config,"TopClusterGap",6)); nav.Position=UDim2.fromOffset(mapX-clusterGap-navWidth,margin); nav.Size=UDim2.fromOffset(navWidth,navSize)
 	local x=0; carButton.Position=UDim2.fromOffset(x,0); carButton.Size=UDim2.fromOffset(carWidth,navSize); x+=carWidth+navGap
-	for _,name in ipairs({"Garage","Race","Dealership","Jobs","Settings"}) do local b=navButtons[name]; b.Position=UDim2.fromOffset(x,0); b.Size=UDim2.fromOffset(navSize,navSize); x+=navSize+navGap end
+	for _,name in ipairs({"Garage","Race","Dealership","Settings"}) do local b=navButtons[name]; b.Position=UDim2.fromOffset(x,0); b.Size=UDim2.fromOffset(navSize,navSize); x+=navSize+navGap end
 	local cashHeight=tiny and 30 or tonumber(read(config,"CashHeight",34))
 	if inside then
 		nav.Position=UDim2.fromOffset(vp.X-margin-navSize,margin); nav.Size=UDim2.fromOffset(navSize,navSize); settingsButton.Position=UDim2.fromOffset(0,0)
@@ -376,7 +375,7 @@ RunService.RenderStepped:Connect(function(dt)
 	gui.Enabled=not hidden
 	local localMajorMenuOpen=modal.Visible or shade.Visible
 	local ownedGarageInside=player:GetAttribute("OwnedGarageInside")==true
-	mapFrame.Visible=not ownedGarageInside and not telemetryOnly and not localMajorMenuOpen; cash.Visible=not telemetryOnly and not localMajorMenuOpen; nav.Visible=not telemetryOnly and not localMajorMenuOpen; carButton.Visible=not ownedGarageInside; garageButton.Visible=not ownedGarageInside; raceButton.Visible=not ownedGarageInside; shopButton.Visible=not ownedGarageInside; jobsButton.Visible=not ownedGarageInside; settingsButton.Visible=true
+	mapFrame.Visible=not ownedGarageInside and not telemetryOnly and not localMajorMenuOpen; cash.Visible=not telemetryOnly and not localMajorMenuOpen; nav.Visible=not telemetryOnly and not localMajorMenuOpen; carButton.Visible=not ownedGarageInside; garageButton.Visible=not ownedGarageInside; raceButton.Visible=not ownedGarageInside; shopButton.Visible=not ownedGarageInside; settingsButton.Visible=true
 	if hidden then return end
 	local driving=drive.IsDriving==true
 	telemetry.Visible=driving and not carMenuOpen and not localMajorMenuOpen
@@ -414,6 +413,9 @@ RunService.RenderStepped:Connect(function(dt)
 		local sine=math.sin(angle)
 		local mx=dx*cosine-dz*sine
 		local mz=dx*sine+dz*cosine
+		-- Draw only the tiles near the player (radius covers the rotated square plus smoothing lag).
+		local tileReach=visible*.75/fullStuds; local playerU,playerV=.5+mx/fullStuds,.5+mz/fullStuds
+		mapTiles:Cull(playerU-tileReach,playerU+tileReach,playerV-tileReach,playerV+tileReach)
 		local target=Vector2.new(mapSize*.5,mapSize*.5)-Vector2.new(mx*uiPerStud,mz*uiPerStud)
 		local response=math.max(0,tonumber(mapPlayerMarkers.Config:GetAttribute("MapPanResponse")) or 12)
 		local alpha=response<=0 and 1 or 1-math.exp(-response*math.max(0,dt or 1/60))

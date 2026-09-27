@@ -1,359 +1,52 @@
 {
- "task": "World jobs (GTA-style taxi fares and parcels in the world): JobBoard offers at verified kerb spots, JobAccept, shared trip engine; courier modes/hubs and taxi duty/requests removed",
+ "task": "World jobs whole-map refinement: offers and drops over the whole blockout (zone grid + city quota), trips ~3x longer, replacements relocate away from the taken job, no offers on map places, roadside spots beside bare roads, JOBS panel entries removed",
  "lane": "High-Risk",
- "contract": "scripts/activities/world_jobs/CONTRACT.md. JobBoard (server) owns offers (ReplicatedStorage.ActivityState.JobOffers, runtime only), JobAccept validation, trips, crashes, arrival, settlement and the single payout per trip via ActivityPayout.Pay (TaxiFare / JobPayout, CommandId <Kind>:<TripId>:<UserId>, JobCeiling). TaxiJob/CourierJob register their ActivityService kinds and providers (taxi NPC rigs via PassengerService.SeatNpc/UnseatNpc). JobRules (shared pure) holds all maths. Client (JobClient + views) presentation and JobAccept intent only. Integrator: ActivityService ACTIONS += JobAccept (remove CourierGoToHub, CourierStart, TaxiSetDuty, TaxiRequest, TaxiCancelRequest, TaxiAcceptRequest); ServerBase entry JobBoard {ActivityService, ProgressionService} and add JobBoard to CourierJob/TaxiJob dependencies; delete Workspace.World.Jobs (courier hub pads). No saved-data or schema change.",
- "verification": "Pure tests scripts/activities/world_jobs/tests.lua (0 failures); Play checklist in CONTRACT.md (offers on the map at kerb spots, prompt only when driving slowly, taxi NPC boards/leaves, courier parcel, long routed trips, speed bonus and crash penalty in the toast, one payout, no auto-next, cancel paths, anti-teleport).",
+ "contract": "scripts/activities/world_jobs/CONTRACT.md (Refinement 2026-09-27). Delta on the installed world jobs (before-capture roblox/captures/refine2-before/capture.json): source replacements of JobRules, JobClient and JobBoard; Config.Activities.Jobs attribute changes (before values listed) and new attributes. The original install spec is in git history (commit 9175015); spec-integration.json is already applied and must not be re-run. Pay per stud, payout path, remotes and saved data are unchanged.",
+ "verification": "Pure tests scripts/activities/world_jobs/tests.lua (0 failures); Play checklist in CONTRACT.md (offers over the whole map with 3-5 in the city, none on map places, roadside spots outside the city, taken job replaced far away, trips 5400-13500 road studs, strip X cancels).",
  "operations": [
   {
-   "kind": "module",
-   "parent": [
+   "kind": "source",
+   "path": [
     "ReplicatedStorage",
     "Modules",
     "Game",
-    "Activities"
+    "Activities",
+    "JobRules"
    ],
-   "name": "JobRules",
    "file": "scripts/activities/world_jobs/JobRules.lua"
   },
   {
-   "kind": "module",
-   "parent": [
+   "kind": "source",
+   "path": [
     "ReplicatedStorage",
     "Modules",
     "Game",
-    "Activities"
+    "Activities",
+    "JobClient"
    ],
-   "name": "JobClient",
    "file": "scripts/activities/world_jobs/JobClient.lua"
   },
   {
-   "kind": "module",
-   "parent": [
+   "kind": "source",
+   "path": [
     "ServerStorage",
     "Modules",
     "Game",
-    "Activities"
+    "Activities",
+    "JobBoard"
    ],
-   "name": "JobBoard",
    "file": "scripts/activities/world_jobs/JobBoard.lua"
   },
   {
-   "kind": "source",
-   "path": [
-    "ServerStorage",
-    "Modules",
-    "Game",
-    "Activities",
-    "CourierRules"
-   ],
-   "file": "scripts/activities/world_jobs/CourierRules.lua"
-  },
-  {
-   "kind": "source",
-   "path": [
-    "ServerStorage",
-    "Modules",
-    "Game",
-    "Activities",
-    "CourierJob"
-   ],
-   "file": "scripts/activities/world_jobs/CourierJob.lua"
-  },
-  {
-   "kind": "source",
-   "path": [
-    "ServerStorage",
-    "Modules",
-    "Game",
-    "Activities",
-    "TaxiRules"
-   ],
-   "file": "scripts/activities/world_jobs/TaxiRules.lua"
-  },
-  {
-   "kind": "source",
-   "path": [
-    "ServerStorage",
-    "Modules",
-    "Game",
-    "Activities",
-    "TaxiJob"
-   ],
-   "file": "scripts/activities/world_jobs/TaxiJob.lua"
-  },
-  {
-   "kind": "source",
-   "path": [
-    "ReplicatedStorage",
-    "Modules",
-    "Game",
-    "Activities",
-    "CourierClientView"
-   ],
-   "file": "scripts/activities/world_jobs/CourierClientView.lua"
-  },
-  {
-   "kind": "source",
-   "path": [
-    "ReplicatedStorage",
-    "Modules",
-    "Game",
-    "Activities",
-    "TaxiClientView"
-   ],
-   "file": "scripts/activities/world_jobs/TaxiClientView.lua"
-  },
-  {
-   "kind": "folder",
-   "parent": [
-    "ReplicatedStorage",
-    "Config",
-    "Activities"
-   ],
-   "name": "Jobs",
-   "attributes": {
-    "Enabled": true,
-    "TaxiOffers": 6,
-    "CourierOffers": 5,
-    "KerbOffset": 48,
-    "KerbSearchMin": 26,
-    "KerbSearchMax": 76,
-    "KerbSearchStep": 4,
-    "KerbRise": 0.3,
-    "PavementMargin": 7,
-    "PavementMinRise": 0.25,
-    "PavementMaxRise": 1.5,
-    "IntersectionClearance": 90,
-    "MinOfferSpacing": 350,
-    "MinPlayerSpacing": 250,
-    "FreshnessRadius": 300,
-    "FreshnessMemory": 16,
-    "OfferTtlMin": 360,
-    "OfferTtlMax": 600,
-    "ExtendNearStuds": 250,
-    "ExtendSeconds": 45,
-    "MaxExtensions": 2,
-    "TripMinStuds": 1800,
-    "TripMaxStuds": 4500,
-    "DestinationCandidates": 40,
-    "RecentTripMemory": 10,
-    "DuplicateTripStuds": 500,
-    "DirectionSpreadDegrees": 40,
-    "SectorColumns": 3,
-    "SectorRows": 4,
-    "SpotTries": 80,
-    "StreamRadius": 600,
-    "StreamHysteresis": 150,
-    "PromptDistance": 45,
-    "AcceptRadius": 60,
-    "AcceptHeight": 30,
-    "AcceptMaxMph": 18,
-    "GroundTolerance": 12,
-    "ClearHeight": 40,
-    "ProbeHeight": 60,
-    "RoadY": 101,
-    "TripTickHz": 10,
-    "AbandonFactor": 4,
-    "AbandonGraceSeconds": 120,
-    "RoadFactor": 1.25
-   }
-  },
-  {
    "kind": "attribute",
    "path": [
     "ReplicatedStorage",
     "Config",
     "Activities",
-    "Taxi"
+    "Jobs"
    ],
-   "key": "TripBasePay",
-   "value": 200
-  },
-  {
-   "kind": "attribute",
-   "path": [
-    "ReplicatedStorage",
-    "Config",
-    "Activities",
-    "Taxi"
-   ],
-   "key": "TripPayPerStud",
-   "value": 0.11
-  },
-  {
-   "kind": "attribute",
-   "path": [
-    "ReplicatedStorage",
-    "Config",
-    "Activities",
-    "Taxi"
-   ],
-   "key": "TripXpBase",
-   "value": 25
-  },
-  {
-   "kind": "attribute",
-   "path": [
-    "ReplicatedStorage",
-    "Config",
-    "Activities",
-    "Taxi"
-   ],
-   "key": "TripXpPerStuds",
-   "value": 120
-  },
-  {
-   "kind": "attribute",
-   "path": [
-    "ReplicatedStorage",
-    "Config",
-    "Activities",
-    "Taxi"
-   ],
-   "key": "ReferenceMph",
-   "value": 85
-  },
-  {
-   "kind": "attribute",
-   "path": [
-    "ReplicatedStorage",
-    "Config",
-    "Activities",
-    "Taxi"
-   ],
-   "key": "TripGraceSeconds",
-   "value": 10
-  },
-  {
-   "kind": "attribute",
-   "path": [
-    "ReplicatedStorage",
-    "Config",
-    "Activities",
-    "Taxi"
-   ],
-   "key": "SpeedSensitivity",
-   "value": 0.75
-  },
-  {
-   "kind": "attribute",
-   "path": [
-    "ReplicatedStorage",
-    "Config",
-    "Activities",
-    "Taxi"
-   ],
-   "key": "SpeedMultiplierMin",
-   "value": 0.6
-  },
-  {
-   "kind": "attribute",
-   "path": [
-    "ReplicatedStorage",
-    "Config",
-    "Activities",
-    "Taxi"
-   ],
-   "key": "SpeedMultiplierMax",
-   "value": 1.5
-  },
-  {
-   "kind": "attribute",
-   "path": [
-    "ReplicatedStorage",
-    "Config",
-    "Activities",
-    "Taxi"
-   ],
-   "key": "CrashPenalty",
-   "value": 0.12
-  },
-  {
-   "kind": "attribute",
-   "path": [
-    "ReplicatedStorage",
-    "Config",
-    "Activities",
-    "Taxi"
-   ],
-   "key": "CrashFloor",
-   "value": 0.4
-  },
-  {
-   "kind": "attribute",
-   "path": [
-    "ReplicatedStorage",
-    "Config",
-    "Activities",
-    "Taxi"
-   ],
-   "key": "CrashImpactMph",
-   "value": 35
-  },
-  {
-   "kind": "attribute",
-   "path": [
-    "ReplicatedStorage",
-    "Config",
-    "Activities",
-    "Taxi"
-   ],
-   "key": "DropRadius",
-   "value": 60
-  },
-  {
-   "kind": "attribute",
-   "path": [
-    "ReplicatedStorage",
-    "Config",
-    "Activities",
-    "Taxi"
-   ],
-   "key": "DropMaxMph",
-   "value": 15
-  },
-  {
-   "kind": "attribute",
-   "path": [
-    "ReplicatedStorage",
-    "Config",
-    "Activities",
-    "Taxi"
-   ],
-   "key": "DrivenMinFraction",
-   "value": 0.6
-  },
-  {
-   "kind": "attribute",
-   "path": [
-    "ReplicatedStorage",
-    "Config",
-    "Activities",
-    "Taxi"
-   ],
-   "key": "LimitFallbackMph",
-   "value": 400
-  },
-  {
-   "kind": "attribute",
-   "path": [
-    "ReplicatedStorage",
-    "Config",
-    "Activities",
-    "Taxi"
-   ],
-   "key": "BoardSeconds",
-   "value": 2.5
-  },
-  {
-   "kind": "attribute",
-   "path": [
-    "ReplicatedStorage",
-    "Config",
-    "Activities",
-    "Taxi"
-   ],
-   "key": "BoardWalkStuds",
+   "key": "TaxiOffers",
+   "before": 6,
    "value": 8
   },
   {
@@ -362,9 +55,214 @@
     "ReplicatedStorage",
     "Config",
     "Activities",
-    "Taxi"
+    "Jobs"
    ],
-   "key": "ExitWalkSeconds",
+   "key": "CourierOffers",
+   "before": 5,
+   "value": 6
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Jobs"
+   ],
+   "key": "MinOfferSpacing",
+   "before": 350,
+   "value": 700
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Jobs"
+   ],
+   "key": "FreshnessRadius",
+   "before": 300,
+   "value": 500
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Jobs"
+   ],
+   "key": "FreshnessMemory",
+   "before": 16,
+   "value": 24
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Jobs"
+   ],
+   "key": "TripMinStuds",
+   "before": 1800,
+   "value": 5400
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Jobs"
+   ],
+   "key": "TripMaxStuds",
+   "before": 4500,
+   "value": 13500
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Jobs"
+   ],
+   "key": "DestinationCandidates",
+   "before": 40,
+   "value": 80
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Jobs"
+   ],
+   "key": "DuplicateTripStuds",
+   "before": 500,
+   "value": 1000
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Jobs"
+   ],
+   "key": "SectorColumns",
+   "before": 3,
+   "value": 4
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Jobs"
+   ],
+   "key": "SectorRows",
+   "before": 4,
+   "value": 7
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Jobs"
+   ],
+   "key": "BoundsMinX",
+   "before": null,
+   "value": -5040
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Jobs"
+   ],
+   "key": "BoundsMaxX",
+   "before": null,
+   "value": 4160
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Jobs"
+   ],
+   "key": "BoundsMinZ",
+   "before": null,
+   "value": -7010
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Jobs"
+   ],
+   "key": "BoundsMaxZ",
+   "before": null,
+   "value": 10700
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Jobs"
+   ],
+   "key": "CitySectorColumns",
+   "before": null,
+   "value": 2
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Jobs"
+   ],
+   "key": "CitySectorRows",
+   "before": null,
+   "value": 2
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Jobs"
+   ],
+   "key": "CityMinOffers",
+   "before": null,
+   "value": 3
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Jobs"
+   ],
+   "key": "CityMaxOffers",
+   "before": null,
    "value": 5
   },
   {
@@ -373,10 +271,11 @@
     "ReplicatedStorage",
     "Config",
     "Activities",
-    "Courier"
+    "Jobs"
    ],
-   "key": "TripBasePay",
-   "value": 150
+   "key": "MinZoneRoad",
+   "before": null,
+   "value": 1500
   },
   {
    "kind": "attribute",
@@ -384,10 +283,11 @@
     "ReplicatedStorage",
     "Config",
     "Activities",
-    "Courier"
+    "Jobs"
    ],
-   "key": "TripPayPerStud",
-   "value": 0.1
+   "key": "ZonesPerPass",
+   "before": null,
+   "value": 3
   },
   {
    "kind": "attribute",
@@ -395,10 +295,11 @@
     "ReplicatedStorage",
     "Config",
     "Activities",
-    "Courier"
+    "Jobs"
    ],
-   "key": "TripXpBase",
-   "value": 20
+   "key": "ZoneHeatHalfLife",
+   "before": null,
+   "value": 600
   },
   {
    "kind": "attribute",
@@ -406,10 +307,11 @@
     "ReplicatedStorage",
     "Config",
     "Activities",
-    "Courier"
+    "Jobs"
    ],
-   "key": "TripXpPerStuds",
-   "value": 150
+   "key": "PoiExclusionStuds",
+   "before": null,
+   "value": 350
   },
   {
    "kind": "attribute",
@@ -417,10 +319,11 @@
     "ReplicatedStorage",
     "Config",
     "Activities",
-    "Courier"
+    "Jobs"
    ],
-   "key": "ReferenceMph",
-   "value": 85
+   "key": "PoiRefreshSeconds",
+   "before": null,
+   "value": 30
   },
   {
    "kind": "attribute",
@@ -428,10 +331,11 @@
     "ReplicatedStorage",
     "Config",
     "Activities",
-    "Courier"
+    "Jobs"
    ],
-   "key": "TripGraceSeconds",
-   "value": 8
+   "key": "RelocateAvoidStuds",
+   "before": null,
+   "value": 2000
   },
   {
    "kind": "attribute",
@@ -439,10 +343,11 @@
     "ReplicatedStorage",
     "Config",
     "Activities",
-    "Courier"
+    "Jobs"
    ],
-   "key": "SpeedSensitivity",
-   "value": 0.75
+   "key": "RelocateMemorySeconds",
+   "before": null,
+   "value": 300
   },
   {
    "kind": "attribute",
@@ -450,10 +355,11 @@
     "ReplicatedStorage",
     "Config",
     "Activities",
-    "Courier"
+    "Jobs"
    ],
-   "key": "SpeedMultiplierMin",
-   "value": 0.6
+   "key": "RoadsideSpots",
+   "before": null,
+   "value": true
   },
   {
    "kind": "attribute",
@@ -461,9 +367,34 @@
     "ReplicatedStorage",
     "Config",
     "Activities",
-    "Courier"
+    "Jobs"
    ],
-   "key": "SpeedMultiplierMax",
+   "key": "RoadsideMargin",
+   "before": null,
+   "value": 12
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Jobs"
+   ],
+   "key": "RoadsideMinRise",
+   "before": null,
+   "value": -4
+  },
+  {
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Activities",
+    "Jobs"
+   ],
+   "key": "RoadsideMaxRise",
+   "before": null,
    "value": 1.5
   },
   {
@@ -472,10 +403,11 @@
     "ReplicatedStorage",
     "Config",
     "Activities",
-    "Courier"
+    "Jobs"
    ],
-   "key": "CrashPenalty",
-   "value": 0.15
+   "key": "RoadsideEdgePad",
+   "before": null,
+   "value": 3
   },
   {
    "kind": "attribute",
@@ -483,76 +415,11 @@
     "ReplicatedStorage",
     "Config",
     "Activities",
-    "Courier"
+    "Jobs"
    ],
-   "key": "CrashFloor",
-   "value": 0.35
-  },
-  {
-   "kind": "attribute",
-   "path": [
-    "ReplicatedStorage",
-    "Config",
-    "Activities",
-    "Courier"
-   ],
-   "key": "CrashImpactMph",
-   "value": 35
-  },
-  {
-   "kind": "attribute",
-   "path": [
-    "ReplicatedStorage",
-    "Config",
-    "Activities",
-    "Courier"
-   ],
-   "key": "DropRadius",
-   "value": 60
-  },
-  {
-   "kind": "attribute",
-   "path": [
-    "ReplicatedStorage",
-    "Config",
-    "Activities",
-    "Courier"
-   ],
-   "key": "DropMaxMph",
-   "value": 15
-  },
-  {
-   "kind": "attribute",
-   "path": [
-    "ReplicatedStorage",
-    "Config",
-    "Activities",
-    "Courier"
-   ],
-   "key": "DrivenMinFraction",
-   "value": 0.6
-  },
-  {
-   "kind": "attribute",
-   "path": [
-    "ReplicatedStorage",
-    "Config",
-    "Activities",
-    "Courier"
-   ],
-   "key": "LimitFallbackMph",
-   "value": 400
-  },
-  {
-   "kind": "attribute",
-   "path": [
-    "ReplicatedStorage",
-    "Config",
-    "Activities",
-    "Taxi"
-   ],
-   "key": "HailAnimationId",
-   "value": "rbxassetid://507770239"
+   "key": "RoadContainerPath",
+   "before": null,
+   "value": "Test + WIP Assets/BLOCKOUT/Roads"
   }
  ]
 }

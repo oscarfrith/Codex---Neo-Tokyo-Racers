@@ -55,7 +55,6 @@ local moneyPanel
 local garageAction
 local raceAction
 local dealershipAction
-local jobsAction
 local rankStrip
 local syncPassengers
 local settingsAction
@@ -64,6 +63,7 @@ local mapRotator
 local mapPanCarrier
 local mapPanCarrierScale
 local mapCanvas
+local mapTiles
 local playerMarker
 local northArrow
 local mapMissingLabel
@@ -833,7 +833,7 @@ local function buildMainHud()
 	local buttonSize = L("ActionButtonSize", 54)
 	local actionGap = L("ActionGap", 8)
 	local carWidth = buttonSize * 2 + actionGap
-	local actionWidth = carWidth + buttonSize * 5 + actionGap * 5
+	local actionWidth = carWidth + buttonSize * 4 + actionGap * 4
 	actionBar = new("Frame", { Name = "ActionBar", BackgroundTransparency = 1, BorderSizePixel = 0, Size = UDim2.fromOffset(actionWidth, buttonSize), ZIndex = 10 }, root)
 	new("UIListLayout", { FillDirection = Enum.FillDirection.Horizontal, Padding = UDim.new(0, actionGap), HorizontalAlignment = Enum.HorizontalAlignment.Right, SortOrder = Enum.SortOrder.LayoutOrder }, actionBar)
 	local carStroke
@@ -862,12 +862,9 @@ local function buildMainHud()
 	raceAction.LayoutOrder = 3
 	dealershipAction = actionIcon("Dealership", "DealershipIcon", "SHOP", function() showSharedTeleportConfirmation() end)
 	dealershipAction.LayoutOrder = 4
-	jobsAction = actionIcon("Jobs", "JobsIcon", "JOBS", function()
-		if not fireUiEvent("OpenJobs") then showToast("JOBS NOT READY", false) end
-	end)
-	jobsAction.LayoutOrder = 5
+	-- The JOBS button was removed (2026-09-27): jobs are found on the map and started in the world.
 	settingsAction = actionIcon("Settings", "SettingsIcon", "SET", function() openModal("Settings") end)
-	settingsAction.LayoutOrder = 6
+	settingsAction.LayoutOrder = 5
 
 	local mapSize = L("MinimapSize", 245)
 	local cashHeight = L("CashHeight", 40)
@@ -913,16 +910,10 @@ local function buildMainHud()
 	mapPanCarrier = new("Frame", { Name = "MapPanCarrier", BackgroundTransparency = 1, BorderSizePixel = 0, Position = UDim2.fromScale(0, 0), Size = UDim2.fromOffset(mapSize, mapSize), ZIndex = 9 }, mapRotator)
 	mapPanCarrierScale = new("UIScale", { Scale = 1 }, mapPanCarrier)
 	mapCanvas = new("Frame", { Name = "MapCanvas", AnchorPoint = Vector2.new(0.5, 0.5), BackgroundTransparency = 1, BorderSizePixel = 0, Position = UDim2.fromOffset(mapSize * 0.5, mapSize * 0.5), Size = UDim2.fromOffset(mapSize, mapSize), ZIndex = 9 }, mapPanCarrier)
-	local tileNames = { "MapTileTopLeft", "MapTileTopRight", "MapTileBottomLeft", "MapTileBottomRight" }
-	local tilePositions = { UDim2.fromScale(0, 0), UDim2.fromScale(0.5, 0), UDim2.fromScale(0, 0.5), UDim2.fromScale(0.5, 0.5) }
-	local completeTiles = true
-	for index, tileName in ipairs(tileNames) do
-		local image = asset(tileName)
-		if image == "" then completeTiles = false end
-		new("ImageLabel", { Name = tileName, BackgroundTransparency = 1, BorderSizePixel = 0, Image = image, ImageTransparency = 0, ScaleType = Enum.ScaleType.Stretch, Position = tilePositions[index], Size = UDim2.fromScale(0.5, 0.5), ZIndex = 9 }, mapCanvas)
-	end
-	mapMissingLabel = label(minimap, "MapMissing", "ADD 4 MAP TILE IDS", UDim2.new(1, -24, 0, 32), UDim2.new(0, 12, 0.5, -16), T("Caption", 11), C("Muted"), Enum.TextXAlignment.Center)
-	mapMissingLabel.Visible = not completeTiles
+	-- Map tiles: Config.UI.MapTiles grid (or the 4 legacy Assets tiles), shared with the full map.
+	mapTiles = require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("UI"):WaitForChild("MapTileSet")).new({ Canvas = mapCanvas, ZIndex = 9 })
+	mapMissingLabel = label(minimap, "MapMissing", "ADD MAP TILE IDS", UDim2.new(1, -24, 0, 32), UDim2.new(0, 12, 0.5, -16), T("Caption", 11), C("Muted"), Enum.TextXAlignment.Center)
+	mapMissingLabel.Visible = not mapTiles.Complete
 	mapMissingLabel.ZIndex = 12
 	local markerSize = math.max(8, L("MapPlayerIconSize", 22))
 	playerMarker = new("ImageLabel", { Name = "PlayerMarker", AnchorPoint = Vector2.new(0.5, 0.5), BackgroundTransparency = 1, BorderSizePixel = 0, Image = asset("MapPlayerIcon"), ImageColor3 = C("Text"), ScaleType = Enum.ScaleType.Fit, Position = UDim2.fromScale(0.5, 0.5), Size = UDim2.fromOffset(markerSize, markerSize), ZIndex = 16 }, minimap)
@@ -1116,7 +1107,7 @@ local function updateRuntime(dt)
 	local _, vehicle = ownedVehicleSeat()
 	local driving = vehicle ~= nil
 	local ownedGarageInside = player:GetAttribute("OwnedGarageInside") == true
-	actionBar.Visible = not racingPresentationActive; if carButton then carButton.Visible=not ownedGarageInside end; if garageAction then garageAction.Visible=not ownedGarageInside end; if raceAction then raceAction.Visible=not ownedGarageInside end; if dealershipAction then dealershipAction.Visible=not ownedGarageInside end; if jobsAction then jobsAction.Visible=not ownedGarageInside end; if settingsAction then settingsAction.Visible=true end
+	actionBar.Visible = not racingPresentationActive; if carButton then carButton.Visible=not ownedGarageInside end; if garageAction then garageAction.Visible=not ownedGarageInside end; if raceAction then raceAction.Visible=not ownedGarageInside end; if dealershipAction then dealershipAction.Visible=not ownedGarageInside end; if settingsAction then settingsAction.Visible=true end
 	if racingPresentationActive then carPanel.Visible = false end
 	leftCluster.Visible = not racingPresentationActive and not carPanel.Visible
 	if minimap then minimap.Visible = not ownedGarageInside end
@@ -1165,6 +1156,10 @@ local function updateRuntime(dt)
 			local coordinateSine = math.sin(coordinateRadians)
 			local mappedX = dx * coordinateCosine - dz * coordinateSine
 			local mappedZ = dx * coordinateSine + dz * coordinateCosine
+			-- Draw only the tiles near the player (radius covers the rotated square plus smoothing lag).
+			local tileReach = visibleStuds * 0.75 / fullMapStuds
+			local playerU, playerV = 0.5 + mappedX / fullMapStuds, 0.5 + mappedZ / fullMapStuds
+			mapTiles:Cull(playerU - tileReach, playerU + tileReach, playerV - tileReach, playerV + tileReach)
 			local look = mapSubject.CFrame.LookVector
 			local lookX, lookZ = look.X, look.Z
 			if flipX then lookX = -lookX end

@@ -9,7 +9,9 @@ Offline tooling and outputs for the minimap and full-map art. It uses only the P
 | Export source tiles (Studio, Edit mode, read-only) | `export_tiles.lua` + `tile_receiver.py` | `tiles/MapTile*.png/.json` |
 | Detect baked icons, clean tiles | `py -3 clean_tiles.py` | `detected_pois.json`, `crops/`, `clean/` |
 | Draw icon set + contact sheet | `py -3 make_icons.py` | `icons/*.png`, `icons/contact_sheet.png`, `icons/preview_24px_x4.png` |
-| Manifest for the integrator | `py -3 build_manifest.py` | `manifest.json` |
+| Manifest for the integrator | `py -3 build_manifest.py` | `manifest.json` (keeps the `icons_glyph` and `hiresMap` sections) |
+| High-resolution 4x4 map (Pillow) | `py -3 hires_map.py [--work DIR]` | `hires/R{row}C{col}.png`, `hires/manifest.json`, `hires/compare/*.png` |
+| Glyph-only icon set (Pillow for the sheet) | `py -3 make_icons_glyph.py` | `icons_glyph/*.png`, `icons_glyph/contact_sheet.png`, `manifest.json` → `icons_glyph` |
 
 `common.py` stitches the four tiles into the 2048x2048 map. Its `to_world` is the same function as in `scripts/route_guide/build_road_graph.py`: 13.768 studs/px, 90° rotation, with X = (py+0.5-1024)*spp and Z = -(px+0.5-1024)*spp.
 
@@ -52,3 +54,23 @@ The icons use the old baked style: flat glyphs, a round PanelDeep `#090C10` badg
 
 - **Assets.** Upload the 14 icons and set `ReplicatedStorage.Config.UI.MapIcons.<Key>` to their ids. Upload `clean/MapTileBottomRight.png` and point `Config.UI.DesktopFreeRoamHud.Assets.MapTileBottomRight` at it. Check whether any mobile or full-map config also references tile id `73611385783250`.
 - **Map POIs.** Create the `Config.UI.MapPois` entries from `manifest.json` → `detectedPois`, or from the world parts.
+
+## High-resolution map (`hires/`, 4x4 tiles of 1024, 4096x4096)
+
+- **Method.** Candidate M in [HIRES_OPTIONS.md](HIRES_OPTIONS.md). It is a level-set re-render: the grey is cleaned, upscaled 2x with bicubic, and re-thresholded between the palette levels 51, 128, 153 and 179. Only the coast (alpha) mask is smoothed.
+- **Result.** Roads come out crisp, with correct junctions and no halos. Coast and island outlines are smooth where they used to be stair-stepped, and the old light matte fringe at water edges is gone.
+- **Source.** The build uses the cleaned bottom-right tile, so no icons are baked in.
+- **Registration.** 2048 pixel x maps to 4096 pixels 2x to 2x+1, centre-aligned, over the same extent. Calibration is unchanged in 2048-space. In 4096-space there are 6.884 studs per pixel.
+- **Row 4 (`R4C1` to `R4C4`) is fully transparent.**
+- **Review sheets.** The comparison sheets are in `hires/compare/`. The candidate full images go to `--work` and are not committed.
+
+## Glyph-only icons (`icons_glyph/`, 128x128 RGBA)
+
+Oscar asked for "just the icons", so this set has no badge circle, ring or square. Each icon is the glyph in its role colour, with a dark `#06080B` outline of about 6.5/128 and a soft dark halo. The icons are sized for 28 to 56 px on screen. `icons_glyph/contact_sheet.png` shows them at 28, 40 and 56 px on block 51, road 128 and highway 179.
+
+- **Place (cyan `#66F2EE`):** Customisation.
+- **Activities (HighSpeed pink `#F6539F`):** Race (the checks are cut in dark), TimeTrial and Duel.
+- **Jobs (ElectricBlue, lifted to `#2F88FF` for contrast on block dark):** Job, TaxiFare and CourierPickup.
+- **Pins:** TaxiDrop and CourierDrop are blue pins with a white glyph, and Waypoint is a pink pin with a white dot. **All three anchor at the tip, AnchorPoint (0.5, 0.9219)**, which differs from the old 0.953.
+- **Player and OtherPlayer:** unchanged in style. Player is the white arrow with cyan and dark edges, pointing north; OtherPlayer is the blue dot in a white ring.
+- **Not drawn:** Dealership and Garage. The map uses the HUD's own icons for those.

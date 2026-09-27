@@ -2,7 +2,32 @@
 
 Lane: **Standard**. The change is client-only UI and client route state. It adds no remotes, saved data, economy or server code. Binding contract: [map-markers-contract](../../docs/architecture/map-markers-contract.md). Before-sources for the two HUDs come from `roblox/captures/activities-duels-after/capture.json`; they are byte-identical to `scripts/activities/foundation/*FreeRoamHudUI.lua`.
 
-## Files
+
+## v2 refinement (Agent U, 2026-09-27): `spec-v2.json`
+
+Lane **Standard**, client-only UI plus config. Before-capture: `roblox/captures/refine2-before/capture.json` (all 29 ops build against it). Installers: `install_v2_{audit,apply,rollback}.lua`.
+
+| Request | Decision |
+|---|---|
+| Remove JOBS | The JOBS action button is gone from both HUDs. Desktop bar is CAR(2-wide), GARAGE, RACE, DEALERSHIP, SETTINGS (width recomputed for 4 square buttons); the mobile nav is re-flowed the same way. ActivityClient no longer builds the JOBS modal. `ctx.Jobs.AddEntry` stores entries and draws nothing, `ctx.Jobs.Refresh` is a no-op, and the `OpenJobs` BindableEvent is still created with no listener. Installed users of `ctx.Jobs`: only `JobClient` (Courier/Taxi views mount it); Courier/Passenger/Taxi/Duel views do not call it. A running job is still cancelled from the job strip's X. |
+| Legend | MAP KEY only (title "MAP KEY"). The DESTINATIONS rows are removed. Rows: YOU (the map's own `MapPlayerIcon` arrow), OTHER DRIVERS (only when another player is in the server), then one row per icon key currently on the full map, in a fixed order (Waypoint, Dealership, Garage, Customisation, Race, TimeTrial, TaxiFare, CourierPickup, CourierDrop, TaxiDrop, Duel, Job; unknown keys last). Narrower: `LegendWidth` 260, `MobileLegendWidth` 220, capped at 34% of the panel. CLEAR WAYPOINT stays. |
+| Onboarding under the map | `integration/OnboardingClient.lua` (copy of the installed fixed client) treats `FullMapOpen` like loading: the Onboarding ScreenGui is disabled, the overlay and objective cards hide, the guide trail clears and no page begins. When the map closes, the loading gate re-enables it after 2 frames and refreshes. |
+| Whole map | Pan bounds are the blockout road extents (`PanMinX` -5192, `PanMaxX` 4310, `PanMinZ` -7161, `PanMaxZ` 10857) plus `BoundsMarginStuds` 600. Zoom-out now stops when the whole bounds **fit** the view (`MapMath.FitStudsForBounds`, the other axis is centred) instead of when they cover it; `MaxVisibleStuds` 40000 is only a cap. Opens centred on the player at `OpenVisibleStuds` 5000 (or the remembered zoom). New ALL button and F key zoom to the whole city. |
+| Icons | No badge or block: the glyph image plus a soft offset shadow (`ShadowTransparency` 0.45, `ShadowOffset` 1.5; 1 disables). Fallback without an id is a small coloured text glyph with a dark stroke. Sizes: minimap 32, mobile minimap 24, full map 48, touch full map 56. Pins (`PinIcons` = Waypoint,TaxiDrop,CourierDrop) are drawn with their tip (`PinTipY` 0.953) on the map point; edge clamp, overscan and picking use the icon centre. `EdgeInset`/`Overscan` are raised to at least half the icon size. MapIcons.Dealership and .Garage use the HUD's own `DealershipIcon` (110010902394406) and `GarageIcon` (139219537977577). |
+| Tiles | New shared module `MapTileSet` renders `Config.UI.MapTiles` (`GridSize` N, `R<row>C<col>`, R1C1 top-left) on both minimaps and the full map, filling the same canvas as the 2x2 set (calibration unchanged). The grid is used only when N is 1..8 and every cell has an id; otherwise the 4 legacy Assets tiles. Inner edges overlap by 1 px to hide seams. Tiles outside the view are hidden: on the full map from the view rectangle, on the minimaps from the player position with a 0.75 x `MapVisibleStuds` reach (covers the rotated square). The spec creates `MapTiles` with GridSize 4 and 16 empty ids (so the legacy tiles stay until all 16 are filled). |
+
+**Integrator:** fill the 16 `MapTiles` ids (in the folder op, or after APPLY; tiles are read at HUD start so a respawn/rejoin picks them up), fill the other glyph-only `MapIcons` ids, and confirm in Play that the Dealership map icon is the car image Oscar meant (if he meant the wide CAR button, set `MapIcons.Dealership` to `CarIcon` rbxassetid://88860760495187).
+
+**v2 Play checklist:**
+- [ ] No JOBS button on either HUD; the top-right buttons are evenly spaced with no gap; courier/taxi jobs still start from the world prompts and the strip X cancels them.
+- [ ] Open the full map with onboarding objectives showing: the cards and any highlight vanish, and return on close.
+- [ ] Wheel/pinch out, or ALL/F: the whole city is visible and centred; zoom in and drag reaches every road edge; opening re-centres on the player.
+- [ ] Icons show no badge, about twice the old size, readable on roads; the waypoint pin tip sits exactly on the clicked point, on the full map and the minimap; the rim-clamped waypoint is fully inside the minimap.
+- [ ] Legend shows only MAP KEY rows for what is on the map (job rows appear with offers).
+- [ ] With a 4x4 `MapTiles` set: tiles align with the old image (Dealership and Garage icons on their buildings), no seams, and the minimap and full map show the same art.
+- [ ] Mobile: nav fits beside the minimap on a small landscape phone; icons 24 px on the minimap.
+
+## Files (v1)
 
 | File | Installs as | Role |
 |---|---|---|
@@ -66,7 +91,7 @@ Lane: **Standard**. The change is client-only UI and client route state. It adds
 - **Click the waypoint again,** CLEAR WAYPOINT, X on the pad, or Backspace/Delete: clears it.
 - **Arrival:** `RouteGuide.Arrived` clears the route. FullMapUI then removes the marker; this is wired at start, so it works while the map is closed.
 
-**Legend** (right-hand panel; the LEGEND button toggles it).
+**Legend** (right-hand panel; the LEGEND button toggles it). *v1 behaviour; v2 keeps only the MAP KEY, see above.*
 - **DESTINATIONS** lists the static POIs plus any `RouteGuide.Destinations()` entry without a matching POI. That covers everything the old ROUTE GUIDE modal listed.
   - Clicking a row sets the waypoint there and pans to it.
   - Clicking the active row clears it.
@@ -91,6 +116,7 @@ The route chip shows at the top of the map view.
 | Pan | Drag; WASD or arrows | One-finger drag | Left stick |
 | Zoom | Wheel (about the cursor); Q/E, -/=; +/- buttons | Pinch (about the midpoint); +/- buttons | LB / RB |
 | Centre on player | ME button, C | ME button | Y |
+| Whole map (v2) | ALL button, F | ALL button | (none) |
 | Waypoint | Click (drag threshold 8 px) | Tap (radius 30 px) | A at the centre crosshair |
 | Clear waypoint | Click the waypoint, Backspace/Delete, CLEAR WAYPOINT | Tap the waypoint, CLEAR WAYPOINT | X |
 
@@ -103,16 +129,16 @@ The route chip shows at the top of the map view.
 - **`Config.UI.MapPois.<Id>`** has attributes `Label`, `Kind`, `Icon`, `Position` and `Order`, plus `DestinationId` and/or `RouteId`. Entries: Dealership, MyGarage, Customisation, Race_ShowroomLoop, Race_ShiftedCanalSprint.
   - A POI without a Vector3 `Position` is skipped.
   - **Customisation has no Position yet.** The integrator fills it; see `todo` in spec.json.
-- **`Config.UI.MapIcons`** holds all 14 contract keys, set to "". An empty value draws a badge with glyphs such as $, G, C, R, TT, T, P, D, W, VS and J.
+- **`Config.UI.MapIcons`** holds all 14 contract keys. An empty value draws a small text glyph such as $, G, C, R, TT, T, P, D, W, VS or J (v2: no badge).
 - **`Config.UI.MapIconLayer`** holds:
   - `MinimapEnabled`, `FullMapEnabled`;
-  - icon sizes: minimap 18, mobile minimap 14, full map 26, touch full map 32;
+  - icon sizes: minimap 18, mobile minimap 14, full map 26, touch full map 32 (v2: 32, 24, 48, 56);
   - `EdgeInset` 11, `Overscan` 12;
   - `PulseSpeed`, `PulseAmount`.
 - **`Config.UI.FullMap`** holds:
   - `Enabled`, `DisplayOrder`;
   - zoom: `OpenVisibleStuds` 3600, `MinVisibleStuds` 500, `MaxVisibleStuds` 9000, `ZoomStep` 1.25, `RememberZoom`;
-  - pan bounds: `PanMinX` / `PanMaxX` / `PanMinZ` / `PanMaxZ` (the Core district ±2500);
+  - pan bounds: `PanMinX` / `PanMaxX` / `PanMinZ` / `PanMaxZ` (v1: the Core district; v2: the whole blockout plus `BoundsMarginStuds`);
   - `RouteLineScale`, `WaypointY`;
   - input: drag threshold, tap radii, pan speeds, `CentreResponse`, `LockGameplayInput`;
   - presentation: backdrop, tween times, legend options, `DistrictName`.

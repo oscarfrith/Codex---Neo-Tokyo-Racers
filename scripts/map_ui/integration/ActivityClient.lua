@@ -1,8 +1,9 @@
 -- Canonical feature implementation; startup is owned by the composition root.
 -- Street Life activity HUD owner (docs/architecture/activities-contract.md). Owns the ActivityHud
--- ScreenGui: job strip, offer cards, countdown, world beacons, the JOBS panel (opened by the free-roam
--- HUD's JOBS button via PlayerScripts.Runtime.UI.OpenJobs) and the rank-up card. Mounts the feature
+-- ScreenGui: job strip, offer cards, countdown, world beacons and the rank-up card. Mounts the feature
 -- views in a fixed order and forwards ActivityEvent payloads to them. Presentation only.
+-- The JOBS panel was removed (2026-09-27): jobs are found on the map and started in the world.
+-- ctx.Jobs.AddEntry / Refresh and the OpenJobs event stay as harmless no-ops for installed views.
 local Client = {}
 local state
 
@@ -53,7 +54,7 @@ local function event(name)
 	if not item then item = new("BindableEvent", { Name = name }, uiFolder) end
 	return item
 end
-local openJobsEvent = event("OpenJobs")
+event("OpenJobs") -- kept so older senders find it; nothing listens since the JOBS panel was retired
 
 local function toast(text, seconds)
 	local notify = uiFolder:FindFirstChild("ShowTopNotification")
@@ -231,76 +232,13 @@ local function beacon(id, position, colour)
 	end
 end
 
--- JOBS panel: entries from views; Buttons may be a table or a function returning one (rebuilt on open).
+-- JOBS panel retired: views may still call these; entries are kept but nothing is drawn.
 local jobEntries = {}
-local jobsModal = new("Frame", { Name = "JobsModal", BackgroundTransparency = 1, Size = UDim2.fromScale(1, 1), Visible = false, ZIndex = 50 }, root)
-local backdrop = new("TextButton", { Name = "Backdrop", Text = "", AutoButtonColor = false, BackgroundColor3 = Color3.new(0, 0, 0), BackgroundTransparency = 0.32, BorderSizePixel = 0, Size = UDim2.fromScale(1, 1), ZIndex = 50 }, jobsModal)
-local shell = panel(jobsModal, { Name = "Shell", Size = UDim2.fromOffset(640, 480), StrokeColor = theme.Outline, Transparency = 0.06 })
-shell.AnchorPoint = Vector2.new(0.5, 0.5)
-shell.Position = UDim2.fromScale(0.5, 0.5)
-shell.ZIndex = 51
-UI.Label(shell, { Name = "Title", Text = "JOBS", Position = UDim2.fromOffset(24, 14), Size = UDim2.new(1, -48, 0, 40), TextSize = 22, Role = "Heading", XAlignment = Enum.TextXAlignment.Center }).ZIndex = 52
-local rankLine = UI.Label(shell, { Name = "Rank", Text = "", Position = UDim2.fromOffset(24, 52), Size = UDim2.new(1, -48, 0, 20), TextSize = 11, Color = theme.Telemetry, XAlignment = Enum.TextXAlignment.Center })
-rankLine.ZIndex = 52
-local list = new("ScrollingFrame", { Name = "List", BackgroundTransparency = 1, BorderSizePixel = 0, Position = UDim2.fromOffset(24, 84), Size = UDim2.new(1, -48, 1, -160), CanvasSize = UDim2.fromOffset(0, 0), AutomaticCanvasSize = Enum.AutomaticSize.Y, ScrollBarThickness = 4, ScrollBarImageColor3 = theme.Outline, ZIndex = 52 }, shell)
-new("UIListLayout", { Padding = UDim.new(0, 10), SortOrder = Enum.SortOrder.LayoutOrder }, list)
-local closeJobs = UI.Button(shell, { Name = "Close", Text = "CLOSE", Size = UDim2.fromOffset(200, 46), Position = UDim2.new(0.5, -100, 1, -64), Color = theme.PanelBlue, StrokeColor = theme.Telemetry })
-closeJobs.ZIndex = 53
-
-local function renderJobs()
-	for _, child in ipairs(list:GetChildren()) do if not child:IsA("UIListLayout") then child:Destroy() end end
-	local rank = player:GetAttribute("Rank")
-	rankLine.Text = rank and ("DRIVER RANK " .. tostring(rank)) or ""
-	local ordered = {}
-	for _, entry in pairs(jobEntries) do table.insert(ordered, entry) end
-	table.sort(ordered, function(a, b) return (a.Order or 100) < (b.Order or 100) end)
-	for index, entry in ipairs(ordered) do
-		local row = panel(list, { Name = "Job_" .. tostring(entry.Id), Size = UDim2.new(1, -8, 0, 88), Color = theme.Panel, StrokeColor = theme.OutlineSoft, NoGlow = true })
-		row.LayoutOrder = index
-		row.ZIndex = 53
-		UI.Label(row, { Name = "Title", Text = string.upper(tostring(entry.Title or entry.Id)), Position = UDim2.fromOffset(16, 10), Size = UDim2.new(0.5, 0, 0, 26), TextSize = 15, Role = "Heading" }).ZIndex = 54
-		local subtitle = UI.Label(row, { Name = "Subtitle", Text = tostring(entry.Subtitle or ""), Position = UDim2.fromOffset(16, 38), Size = UDim2.new(0.52, 0, 0, 40), TextSize = 11, Wrapped = true, Color = theme.Muted, YAlignment = Enum.TextYAlignment.Top })
-		subtitle.ZIndex = 54
-		local buttons = type(entry.Buttons) == "function" and entry.Buttons() or entry.Buttons or {}
-		local x = -12
-		for b = #buttons, 1, -1 do
-			local definition = buttons[b]
-			local width = 132
-			x -= width
-			local item = UI.Button(row, { Name = "Button" .. b, Text = string.upper(tostring(definition.Text or "")), Size = UDim2.fromOffset(width, isMobile and 48 or 42), Position = UDim2.new(1, x, 0.5, isMobile and -24 or -21), Color = theme.PanelSoft, StrokeColor = definition.Accent or theme.Telemetry, TextSize = 11 })
-			item.ZIndex = 55
-			x -= 10
-			if definition.Enabled == false then
-				item.Active = false
-				item.TextColor3 = theme.Disabled
-			else
-				item.Activated:Connect(function()
-					jobsModal.Visible = false
-					if definition.OnClick then task.spawn(definition.OnClick) end
-				end)
-			end
-		end
-	end
-	if #ordered == 0 then
-		UI.Label(list, { Name = "Empty", Text = "NO JOBS AVAILABLE YET", Size = UDim2.new(1, 0, 0, 60), TextSize = 13, Color = theme.Muted, XAlignment = Enum.TextXAlignment.Center }).ZIndex = 53
-	end
-end
-local function setJobsOpen(open)
-	jobsModal.Visible = open
-	if open then renderJobs() end
-end
-backdrop.Activated:Connect(function() setJobsOpen(false) end)
-closeJobs.Activated:Connect(function() setJobsOpen(false) end)
-openJobsEvent.Event:Connect(function() setJobsOpen(not jobsModal.Visible) end)
 local Jobs = {}
 function Jobs.AddEntry(entry)
-	assert(type(entry) == "table" and entry.Id, "Jobs entry needs an Id")
-	jobEntries[entry.Id] = entry
-	if jobsModal.Visible then renderJobs() end
+	if type(entry) == "table" and entry.Id ~= nil then jobEntries[entry.Id] = entry end
 end
-function Jobs.Refresh()
-	if jobsModal.Visible then renderJobs() end
-end
+function Jobs.Refresh() end
 
 -- Rank-up card; deferred while a race is presenting.
 local function racing()

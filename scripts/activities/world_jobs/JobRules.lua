@@ -9,8 +9,34 @@ JobRules.KINDS = { "Taxi", "Courier" }
 
 -- Board tunables: ReplicatedStorage.Config.Activities.Jobs attributes. key = { default, min, max }.
 JobRules.BoardTunables = {
-	TaxiOffers = { 6, 0, 20 },
-	CourierOffers = { 5, 0, 20 },
+	TaxiOffers = { 8, 0, 20 },
+	CourierOffers = { 6, 0, 20 },
+	-- Job area: the playable blockout roads (X -5192..4310, Z -7161..10857) inset by 150. The road graph
+	-- runs far beyond (coastline strokes in the map art), so every sample is clipped to these bounds.
+	BoundsMinX = { -5040, -50000, 50000 },
+	BoundsMaxX = { 4160, -50000, 50000 },
+	BoundsMinZ = { -7010, -50000, 50000 },
+	BoundsMaxZ = { 10700, -50000, 50000 },
+	-- Spread: a SectorColumns x SectorRows grid over the area plus a CitySectorColumns x CitySectorRows
+	-- grid over the city (Config.Activities.Core District bounds) so the dense city keeps its share.
+	CitySectorColumns = { 2, 1, 6 },
+	CitySectorRows = { 2, 1, 6 },
+	CityMinOffers = { 3, 0, 40 }, -- zones in the city are preferred while fewer offers than this are there
+	CityMaxOffers = { 5, 0, 40 }, -- and skipped once this many are
+	MinZoneRoad = { 1500, 0, 100000 }, -- usable road studs a zone needs to host offers
+	ZonesPerPass = { 3, 1, 30 }, -- best-ranked zones tried per generation pass
+	ZoneHeatHalfLife = { 600, 10, 7200 }, -- recently used zones cool down over this half-life (s)
+	-- Map icons: no offer within PoiExclusionStuds of a MapPois place, owned-garage exterior or race start.
+	PoiExclusionStuds = { 350, 0, 3000 },
+	PoiRefreshSeconds = { 30, 5, 600 },
+	-- Relocation: a taken job's replacement keeps away from its pickup, drop and the taking player.
+	RelocateAvoidStuds = { 2000, 0, 20000 },
+	RelocateMemorySeconds = { 300, 0, 3600 },
+	-- Roadside spots where no pavement exists (outside the city): flat ground beside the road.
+	RoadsideMargin = { 12, 2, 60 }, -- studs past the road edge
+	RoadsideMinRise = { -4, -50, 0 }, -- ground height relative to the road surface
+	RoadsideMaxRise = { 1.5, 0, 20 },
+	RoadsideEdgePad = { 3, 0, 20 }, -- the spot must be this far outside every road part
 	KerbOffset = { 48, 20, 120 }, -- fallback centre -> spot distance when no kerb edge is detected
 	KerbSearchMin = { 26, 5, 100 },
 	KerbSearchMax = { 76, 20, 160 },
@@ -18,24 +44,24 @@ JobRules.BoardTunables = {
 	KerbRise = { 0.3, 0.05, 5 }, -- height change that counts as leaving the road surface
 	PavementMargin = { 7, 0, 40 }, -- studs past the detected kerb edge
 	IntersectionClearance = { 90, 0, 400 }, -- keep spots this far from graph nodes along the edge
-	MinOfferSpacing = { 350, 0, 3000 },
+	MinOfferSpacing = { 700, 0, 5000 }, -- also keeps offer icons apart on the full map
 	MinPlayerSpacing = { 250, 0, 2000 },
-	FreshnessRadius = { 300, 0, 3000 },
-	FreshnessMemory = { 16, 0, 100 },
+	FreshnessRadius = { 500, 0, 3000 },
+	FreshnessMemory = { 24, 0, 100 },
 	OfferTtlMin = { 360, 30, 3600 },
 	OfferTtlMax = { 600, 30, 7200 },
 	ExtendNearStuds = { 250, 0, 2000 },
 	ExtendSeconds = { 45, 0, 600 },
 	MaxExtensions = { 2, 0, 10 },
-	TripMinStuds = { 1800, 200, 20000 },
-	TripMaxStuds = { 4500, 300, 30000 },
-	DestinationCandidates = { 40, 4, 200 },
+	TripMinStuds = { 5400, 200, 40000 },
+	TripMaxStuds = { 13500, 300, 60000 },
+	DestinationCandidates = { 80, 4, 300 },
 	RecentTripMemory = { 10, 0, 100 },
-	DuplicateTripStuds = { 500, 0, 5000 },
+	DuplicateTripStuds = { 1000, 0, 5000 },
 	DirectionSpreadDegrees = { 40, 0, 180 },
-	SectorColumns = { 3, 1, 10 },
-	SectorRows = { 4, 1, 10 },
-	SpotTries = { 80, 5, 400 },
+	SectorColumns = { 4, 1, 12 },
+	SectorRows = { 7, 1, 12 },
+	SpotTries = { 80, 5, 400 }, -- pickup samples per zone per pass
 	StreamRadius = { 600, 100, 3000 },
 	StreamHysteresis = { 150, 0, 1000 },
 	PromptDistance = { 45, 5, 100 },
@@ -78,11 +104,35 @@ function JobRules.ReadBoardConfig(get)
 	config.OfferTtlMax = math.max(config.OfferTtlMax, config.OfferTtlMin)
 	config.TripMaxStuds = math.max(config.TripMaxStuds, config.TripMinStuds + 100)
 	config.KerbSearchMax = math.max(config.KerbSearchMax, config.KerbSearchMin + config.KerbSearchStep)
+	config.BoundsMaxX = math.max(config.BoundsMaxX, config.BoundsMinX + 100)
+	config.BoundsMaxZ = math.max(config.BoundsMaxZ, config.BoundsMinZ + 100)
+	config.RoadsideMaxRise = math.max(config.RoadsideMaxRise, config.RoadsideMinRise)
 	for _, key in ipairs({ "TaxiOffers", "CourierOffers", "SectorColumns", "SectorRows", "FreshnessMemory", "RecentTripMemory",
-		"MaxExtensions", "SpotTries", "DestinationCandidates" }) do
+		"MaxExtensions", "SpotTries", "DestinationCandidates", "CitySectorColumns", "CitySectorRows", "CityMinOffers",
+		"CityMaxOffers", "ZonesPerPass" }) do
 		config[key] = math.floor(config[key])
 	end
+	config.CityMaxOffers = math.max(config.CityMaxOffers, config.CityMinOffers)
+	local roadside = get and get("RoadsideSpots")
+	config.RoadsideSpots = roadside ~= false
+	local path = get and get("RoadContainerPath")
+	config.RoadContainerPath = (type(path) == "string" and #path <= 200) and path or JobRules.DEFAULT_ROAD_CONTAINER
 	return config
+end
+
+-- Road parts of the playable blockout ("/"-separated path under Workspace). Roadside spots need their
+-- road to be one of these parts and must stand outside all of them. "" disables the membership test.
+JobRules.DEFAULT_ROAD_CONTAINER = "Test + WIP Assets/BLOCKOUT/Roads"
+
+-- Area, grid and city bounds as one zone spec. city = { MinX, MaxX, MinZ, MaxZ } or nil.
+function JobRules.ZoneSpec(config, city)
+	local spec = {
+		Bounds = { MinX = config.BoundsMinX, MaxX = config.BoundsMaxX, MinZ = config.BoundsMinZ, MaxZ = config.BoundsMaxZ },
+		Columns = config.SectorColumns, Rows = config.SectorRows,
+		CityColumns = config.CitySectorColumns, CityRows = config.CitySectorRows,
+	}
+	if city and city.MaxX > city.MinX and city.MaxZ > city.MinZ then spec.City = city end
+	return spec
 end
 
 function JobRules.Mph(studsPerSecond)
@@ -181,7 +231,7 @@ function JobRules.SampleEdge(edgeTable, u1, u2)
 		if target < item.Start + item.Usable then hi = mid else lo = mid + 1 end
 	end
 	local item = edgeTable.Items[lo]
-	return item.Edge, edgeTable.Clearance + math.clamp(u2, 0, 1) * item.Usable
+	return item.Edge, (item.From or edgeTable.Clearance) + math.clamp(u2, 0, 1) * item.Usable
 end
 
 -- Kerb detection from outward samples ordered by Offset: { Offset, Hit = bool, IsRoad = bool, Rise = bool }.
@@ -223,13 +273,61 @@ function JobRules.OffOtherRoads(nearestRoadDistance, spotOffset)
 	return (finite(nearestRoadDistance) or 0) >= spotOffset * 0.8
 end
 
+-- Roadside spots (no pavement) -------------------------------------------------------------------------
+
+-- True when the kerb march saw raised pavement (a non-road, non-foliage hit PavementMinRise..MaxRise
+-- above the road). Samples may carry Dy (height above the road) and Surface (false = foliage/baseplate).
+-- Where pavement exists the strict pavement rule applies; roadside spots are only for bare roads.
+function JobRules.HasPavement(samples, config)
+	for _, sample in ipairs(samples) do
+		local dy = finite(sample.Dy)
+		if sample.Hit and not sample.IsRoad and sample.Surface ~= false and dy
+			and dy >= config.PavementMinRise and dy <= config.PavementMaxRise then
+			return true
+		end
+	end
+	return false
+end
+
+-- Offset of a roadside spot from a FindKerb "Kerb" result: road edge + RoadsideMargin (+ extra).
+function JobRules.RoadsideOffset(kerbSpotOffset, config, extra)
+	return kerbSpotOffset - config.PavementMargin + config.RoadsideMargin + (extra or 0)
+end
+
+-- Flat ground beside a bare road. ground = { Hit, Y, NormalY, Water, Collides, Foliage, OnRoad }.
+-- OnRoad: the spot is on / within RoadsideEdgePad of a road part (the server tests the ray hit and the
+-- road parts' footprints). Baseplate and terrain are fine; foliage, water and slopes are not.
+function JobRules.RoadsideGroundOk(ground, roadY, config)
+	if not ground or not ground.Hit then return false, "NoGround" end
+	if ground.Water then return false, "Water" end
+	if ground.Collides == false then return false, "NotSolid" end
+	if (finite(ground.NormalY) or 0) < 0.7 then return false, "Slope" end
+	if ground.Foliage then return false, "Foliage" end
+	if ground.OnRoad then return false, "OnRoad" end
+	local rise = (finite(ground.Y) or math.huge) - roadY
+	if rise < config.RoadsideMinRise or rise > config.RoadsideMaxRise then return false, "Height" end
+	return true, nil
+end
+
+-- A point in a part's object space (x, z) against its footprint grown by pad.
+function JobRules.InsideFootprint(localX, localZ, sizeX, sizeZ, pad)
+	return math.abs(localX) <= sizeX / 2 + (pad or 0) and math.abs(localZ) <= sizeZ / 2 + (pad or 0)
+end
+
 -- Spacing and freshness ----------------------------------------------------------------------------
 
--- ctx = { Offers = {pos}, Players = {pos}, Recent = {pos}, Bounds }. relax 0 strict, 1 = radii x0.6,
--- 2 = offers x0.5 only (freshness and players ignored). Returns ok, reason.
+-- ctx = { Offers = {pos}, Players = {pos}, Recent = {pos}, Bounds, Exclusions = {pos}, Avoid = {pos} }.
+-- relax 0 strict, 1 = radii x0.6, 2 = offers x0.5 and Avoid x0.4 (freshness and players ignored).
+-- Exclusions (map places: PoiExclusionStuds) are never relaxed. Returns ok, reason.
 function JobRules.SpotAllowed(point, ctx, config, relax)
 	relax = relax or 0
 	if ctx.Bounds and not JobRules.InBounds(point, ctx.Bounds) then return false, "Bounds" end
+	local exclusion = config.PoiExclusionStuds or 0
+	if exclusion > 0 then
+		for _, other in ipairs(ctx.Exclusions or {}) do
+			if JobRules.Flat(point, other) < exclusion then return false, "Poi" end
+		end
+	end
 	local scale = relax >= 2 and 0.5 or relax == 1 and 0.6 or 1
 	for _, other in ipairs(ctx.Offers or {}) do
 		if JobRules.Flat(point, other) < config.MinOfferSpacing * scale then return false, "Offer" end
@@ -242,7 +340,27 @@ function JobRules.SpotAllowed(point, ctx, config, relax)
 			if JobRules.Flat(point, other) < config.FreshnessRadius * scale then return false, "Recent" end
 		end
 	end
+	local avoid = (config.RelocateAvoidStuds or 0) * (relax >= 2 and 0.4 or scale)
+	for _, other in ipairs(ctx.Avoid or {}) do
+		if JobRules.Flat(point, other) < avoid then return false, "Avoid" end
+	end
 	return true, nil
+end
+
+-- Blue-noise spread: 0..1, higher the farther the point is from every other offer (capped at `cap`).
+function JobRules.SpreadScore(point, others, cap)
+	local nearest = cap
+	for _, other in ipairs(others or {}) do nearest = math.min(nearest, JobRules.Flat(point, other)) end
+	return math.clamp(nearest / math.max(1, cap), 0, 1)
+end
+
+-- Avoid points (relocation memory): { Position, At }. Returns positions younger than memorySeconds.
+function JobRules.ActiveAvoid(list, now, memorySeconds)
+	local active = {}
+	for _, item in ipairs(list) do
+		if now - item.At <= memorySeconds then table.insert(active, item.Position) end
+	end
+	return active
 end
 
 -- Ring buffer push (newest last), trimmed to `limit`.
@@ -263,6 +381,110 @@ end
 function JobRules.ScorePickup(point, sectorCounts, bounds, config, jitter)
 	local sector = JobRules.SectorOf(point, bounds, config.SectorColumns, config.SectorRows)
 	return -(sectorCounts[sector] or 0) + (jitter or 0)
+end
+
+-- Zones ------------------------------------------------------------------------------------------------
+-- A zone is a grid sector of the area (ids 1..Columns*Rows) or, inside the city, a city sector (ids after
+-- the grid). The city gets its own finer grid so its dense streets keep a share of offers against the
+-- much larger outskirts. nil = outside the area.
+function JobRules.ZoneOf(p, spec)
+	if not JobRules.InBounds(p, spec.Bounds) then return nil end
+	local city = spec.City
+	if city and JobRules.InBounds(p, city) then
+		return spec.Columns * spec.Rows + JobRules.SectorOf(p, city, spec.CityColumns, spec.CityRows)
+	end
+	return JobRules.SectorOf(p, spec.Bounds, spec.Columns, spec.Rows)
+end
+
+function JobRules.ZoneIsCity(zone, spec)
+	return zone ~= nil and zone > spec.Columns * spec.Rows
+end
+
+-- Per-zone and global edge tables clipped to the area: every usable stretch of every edge (IntersectionClearance
+-- kept from both nodes) is cut into runs lying in one zone. Items carry From (along of the run start), so
+-- SampleEdge works on them unchanged. Returns { Global, Zones = {[zone] = table}, Road = {[zone] = studs} }.
+function JobRules.BuildZoneTables(graph, clearance, spec, step)
+	step = math.max(5, step or 40)
+	local global = { Items = {}, Total = 0, Clearance = clearance }
+	local zones, road = {}, {}
+	local function add(tableRef, edgeIndex, from, to)
+		local usable = to - from
+		tableRef.Total += usable
+		table.insert(tableRef.Items, { Edge = edgeIndex, Start = tableRef.Total - usable, Usable = usable, From = from })
+	end
+	local function flush(edgeIndex, zone, from, to)
+		if zone == nil or to - from < 10 then return end
+		zones[zone] = zones[zone] or { Items = {}, Total = 0, Clearance = clearance }
+		add(zones[zone], edgeIndex, from, to)
+		add(global, edgeIndex, from, to)
+		road[zone] = (road[zone] or 0) + (to - from)
+	end
+	for edgeIndex, edge in ipairs(graph.Edges) do
+		local points, cumulative = edge.Points, edge.Cumulative
+		local lo, hi = clearance, (edge.Length or 0) - clearance
+		if points and cumulative and #points >= 2 and hi - lo > 10 then
+			local count, segment = #points, 1
+			local function at(along) -- along increases monotonically within one edge
+				while segment < count - 1 and along > cumulative[segment + 1] do segment += 1 end
+				local span = cumulative[segment + 1] - cumulative[segment]
+				local t = span > 0 and math.clamp((along - cumulative[segment]) / span, 0, 1) or 0
+				return points[segment] + (points[segment + 1] - points[segment]) * t
+			end
+			local runZone, runFrom = nil, lo
+			local a = lo
+			while a < hi - 1e-6 do
+				local b = math.min(hi, a + step)
+				local zone = JobRules.ZoneOf(at((a + b) / 2), spec)
+				if zone ~= runZone then
+					flush(edgeIndex, runZone, runFrom, a)
+					runZone, runFrom = zone, a
+				end
+				a = b
+			end
+			flush(edgeIndex, runZone, runFrom, hi)
+		end
+	end
+	return { Global = global, Zones = zones, Road = road }
+end
+
+-- Zone heat: +amount each time a zone gets a pickup or a job is taken / dropped there; halves every
+-- ZoneHeatHalfLife seconds. heat = { [zone] = { Value, At } }.
+function JobRules.HeatOf(heat, zone, now, halfLife)
+	local entry = heat[zone]
+	if not entry then return 0 end
+	return entry.Value * 0.5 ^ (math.max(0, now - entry.At) / math.max(1, halfLife))
+end
+
+function JobRules.AddHeat(heat, zone, amount, now, halfLife)
+	if zone == nil then return end
+	heat[zone] = { Value = JobRules.HeatOf(heat, zone, now, halfLife) + amount, At = now }
+end
+
+-- Zones to try for the next pickup, best first. state = { Road = {[zone] = studs}, Counts = {[zone] = n},
+-- Heat = {[zone] = number}, CityCount = n, AvoidZones = {[zone] = true} }. relax 0: zones holding an
+-- avoid point are skipped; 1: penalised; 2: allowed. The city quota (CityMin/MaxOffers) holds until relax 2.
+-- jitter(zone) -> 0..1 breaks ties randomly. Emptier, colder zones rank first.
+function JobRules.RankZones(spec, state, config, relax, jitter)
+	local ranked = {}
+	for zone, studs in pairs(state.Road or {}) do
+		local skip = studs < config.MinZoneRoad
+		local score = -2 * (state.Counts[zone] or 0) - (state.Heat[zone] or 0) + (jitter and jitter(zone) or 0) * 1.2
+		if state.AvoidZones and state.AvoidZones[zone] then
+			if relax == 0 then skip = true elseif relax == 1 then score -= 3 end
+		end
+		if JobRules.ZoneIsCity(zone, spec) then
+			if (state.CityCount or 0) >= config.CityMaxOffers and relax < 2 then skip = true
+			elseif (state.CityCount or 0) < config.CityMinOffers then score += 3 end
+		end
+		if not skip then table.insert(ranked, { Zone = zone, Score = score }) end
+	end
+	table.sort(ranked, function(a, b)
+		if a.Score ~= b.Score then return a.Score > b.Score end
+		return a.Zone < b.Zone
+	end)
+	local list = {}
+	for _, item in ipairs(ranked) do table.insert(list, item.Zone) end
+	return list
 end
 
 -- Road distances (Dijkstra) -------------------------------------------------------------------------
@@ -356,12 +578,18 @@ function JobRules.TripBand(config, relax)
 end
 
 -- candidate = { Point, Road }. ctx = { Pickup, TargetLength, Band = {min,max}, RecentTrips = {{Pickup, Drop}},
--- RecentDrops = {pos}, SectorCounts = {}, Bounds }. Returns score (higher better) or nil when rejected.
+-- RecentDrops = {pos}, SectorCounts = {}, Bounds, Zones? (ZoneSpec: SectorCounts are then zone counts),
+-- Exclusions? = {pos} (map places; a drop icon must not sit on one) }. Returns score (higher better) or nil.
 function JobRules.ScoreDestination(candidate, ctx, config)
 	local road = finite(candidate.Road)
 	local low, high = ctx.Band[1], ctx.Band[2]
 	if not road or road < low or road > high then return nil end
 	if ctx.Bounds and not JobRules.InBounds(candidate.Point, ctx.Bounds) then return nil end
+	if (config.PoiExclusionStuds or 0) > 0 then
+		for _, place in ipairs(ctx.Exclusions or {}) do
+			if JobRules.Flat(place, candidate.Point) < config.PoiExclusionStuds then return nil end
+		end
+	end
 	for _, trip in ipairs(ctx.RecentTrips or {}) do
 		if JobRules.Flat(trip.Pickup, ctx.Pickup) < config.DuplicateTripStuds
 			and JobRules.Flat(trip.Drop, candidate.Point) < config.DuplicateTripStuds then
@@ -381,9 +609,11 @@ function JobRules.ScoreDestination(candidate, ctx, config)
 	for _, drop in ipairs(ctx.RecentDrops or {}) do
 		if JobRules.Flat(drop, candidate.Point) < config.FreshnessRadius then score -= 1.5 end
 	end
-	if ctx.Bounds and ctx.SectorCounts then
-		local sector = JobRules.SectorOf(candidate.Point, ctx.Bounds, config.SectorColumns, config.SectorRows)
-		score -= 0.4 * (ctx.SectorCounts[sector] or 0)
+	if ctx.SectorCounts and (ctx.Zones or ctx.Bounds) then
+		local sector
+		if ctx.Zones then sector = JobRules.ZoneOf(candidate.Point, ctx.Zones)
+		else sector = JobRules.SectorOf(candidate.Point, ctx.Bounds, config.SectorColumns, config.SectorRows) end
+		if sector then score -= 0.4 * (ctx.SectorCounts[sector] or 0) end
 	end
 	return score
 end
@@ -497,6 +727,15 @@ end
 function JobRules.ProjectedPay(tripConfig, distance, elapsed, remainingStuds, crashes)
 	local rest = math.max(0, finite(remainingStuds) or 0) / math.max(1, JobRules.StudsPerSecond(tripConfig.ReferenceMph))
 	return JobRules.Pay(tripConfig, distance, (finite(elapsed) or 0) + rest, crashes).Total
+end
+
+-- Economy model (tests and tuning only): Cash per hour for back-to-back trips of `distance` driven at
+-- `pace` x the reference speed, with `overheadSeconds` per cycle (reach the next offer, pick up, stop).
+function JobRules.HourlyEstimate(tripConfig, distance, pace, overheadSeconds)
+	local reference = JobRules.ReferenceSeconds(distance, tripConfig)
+	local elapsed = reference / math.max(0.1, pace)
+	local pay = JobRules.Pay(tripConfig, distance, elapsed, 0).Total
+	return pay * 3600 / (elapsed + math.max(0, overheadSeconds)), pay, elapsed
 end
 
 function JobRules.AbandonSeconds(referenceSeconds, config)
