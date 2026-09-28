@@ -1,0 +1,56 @@
+{
+  "_doc": "South Grid kit. Studs, Roblox axes (Y up, -Z is 'front', the face that points at the street). Origin = bounding-box centre. Each PIECE is one MeshPart = one material. An ITEM is one or more pieces placed together; offsets are from the item centre. Sizes are exact: the Blender kit must match them (scale-to-fit). tris = max triangles per piece.",
+  "items": {
+    "capsule_unit": {"size": [26, 13, 16], "desc": "Nakagin-style capsule box with rounded vertical edges, hangs off a core; porthole on the -Z face",
+      "pieces": [
+        {"name": "capsule_shell", "size": [26, 13, 16], "offset": [0, 0, 0], "mat": "Concrete", "var": "Concrete Square Panels", "color": [226, 226, 222], "tris": 220},
+        {"name": "capsule_porthole", "size": [9, 9, 1], "offset": [0, 0, -8.2], "mat": "Glass", "var": "", "color": [40, 60, 80], "tris": 64}
+      ]},
+    "porthole_panel_40": {"size": [40, 40, 3], "desc": "Metabolist facade panel, 2x2 round windows, thick rim; tiles on a 40-stud grid",
+      "pieces": [
+        {"name": "porthole_panel", "size": [40, 40, 3], "offset": [0, 0, 0], "mat": "Concrete", "var": "Concrete Wood Formed", "color": [205, 205, 200], "tris": 260},
+        {"name": "porthole_glass_4", "size": [30, 30, 0.6], "offset": [0, 0, -1.2], "mat": "Glass", "var": "", "color": [45, 70, 95], "tris": 128}
+      ]},
+    "balcony_run_40": {"size": [40, 13, 8], "desc": "The Blocks balcony: deep slab + solid parapet split into 2 bays with patched infill panels; one storey tall, 40 wide",
+      "pieces": [
+        {"name": "balcony_slab", "size": [40, 13, 8], "offset": [0, 0, 0], "mat": "Concrete", "var": "Concrete Wood Formed", "color": [150, 150, 146], "tris": 120},
+        {"name": "balcony_infill", "size": [36, 6, 0.8], "offset": [0, -2.5, -3.8], "mat": "SmoothPlastic", "var": "", "color": [214, 170, 120], "tris": 24}
+      ]},
+    "laundry_line_36": {"size": [36, 7, 1], "desc": "Line with 6-8 hanging cloth quads, hangs under a balcony front", "pieces": [
+        {"name": "laundry", "size": [36, 7, 1], "offset": [0, 0, 0], "mat": "Fabric", "var": "", "color": [230, 120, 150], "tris": 60}]},
+    "ac_cluster": {"size": [10, 7, 4], "desc": "2-3 stacked AC units with fan grilles", "pieces": [
+        {"name": "ac_cluster", "size": [10, 7, 4], "offset": [0, 0, 0], "mat": "Metal", "var": "", "color": [190, 192, 190], "tris": 140}]},
+    "water_tank": {"size": [16, 22, 16], "desc": "Rooftop cylindrical tank on a steel stand", "pieces": [
+        {"name": "water_tank", "size": [16, 22, 16], "offset": [0, 0, 0], "mat": "Metal", "var": "", "color": [120, 124, 128], "tris": 260}]},
+    "dish_cluster": {"size": [14, 12, 10], "desc": "3 satellite dishes on a short frame", "pieces": [
+        {"name": "dish_cluster", "size": [14, 12, 10], "offset": [0, 0, 0], "mat": "SmoothPlastic", "var": "", "color": [235, 235, 232], "tris": 240}]},
+    "antenna_mast": {"size": [6, 60, 6], "desc": "Lattice mast with 2 cross arms and a red beacon cap", "pieces": [
+        {"name": "antenna_mast", "size": [6, 60, 6], "offset": [0, 0, 0], "mat": "Metal", "var": "", "color": [200, 60, 50], "tris": 200}]},
+    "rooftop_shack": {"size": [20, 12, 16], "desc": "Corrugated add-on room with lean-to roof and a door", "pieces": [
+        {"name": "rooftop_shack", "size": [20, 12, 16], "offset": [0, 0, 0], "mat": "Metal", "var": "Metal Shutters", "color": [120, 150, 160], "tris": 90}]},
+    "ext_stair_40": {"size": [16, 40, 10], "desc": "Exterior steel switchback stair, 3 storeys, with landings and railings", "pieces": [
+        {"name": "ext_stair", "size": [16, 40, 10], "offset": [0, 0, 0], "mat": "Metal", "var": "", "color": [70, 74, 80], "tris": 400}]},
+    "pipe_bundle_40": {"size": [4, 40, 3], "desc": "3 vertical downpipes with brackets, tiles vertically", "pieces": [
+        {"name": "pipe_bundle", "size": [4, 40, 3], "offset": [0, 0, 0], "mat": "Metal", "var": "", "color": [90, 95, 98], "tris": 90}]},
+    "bridge_truss_40": {"size": [40, 16, 20], "desc": "Skybridge segment: deck + side Warren trusses + roof; tiles along X", "pieces": [
+        {"name": "bridge_truss", "size": [40, 16, 20], "offset": [0, 0, 0], "mat": "Metal", "var": "", "color": [180, 182, 184], "tris": 300},
+        {"name": "bridge_truss_glass", "size": [38, 10, 18], "offset": [0, 0, 0], "mat": "Glass", "var": "", "color": [70, 110, 140], "tris": 12}]},
+    "bridge_tube_40": {"size": [40, 18, 18], "desc": "Metabolist glazed tube segment: concrete ribs every 10 studs; tiles along X", "pieces": [
+        {"name": "bridge_tube_ribs", "size": [40, 18, 18], "offset": [0, 0, 0], "mat": "Concrete", "var": "Concrete Wood Formed", "color": [210, 210, 205], "tris": 320},
+        {"name": "bridge_tube_glass", "size": [40, 15, 15], "offset": [0, 0, 0], "mat": "Glass", "var": "", "color": [60, 95, 125], "tris": 64}]},
+    "louvre_fins_40": {"size": [40, 40, 5], "desc": "Vertical concrete fins every 5 studs on a thin frame (sun screen)", "pieces": [
+        {"name": "louvre_fins", "size": [40, 40, 5], "offset": [0, 0, 0], "mat": "Concrete", "var": "Concrete Wood Formed", "color": [200, 200, 195], "tris": 120}]},
+    "tray_edge_40": {"size": [40, 8, 14], "desc": "Tange-style floor tray edge: deep chamfered fascia with drip groove; tiles along X", "pieces": [
+        {"name": "tray_edge", "size": [40, 8, 14], "offset": [0, 0, 0], "mat": "Concrete", "var": "Concrete Wood Formed", "color": [215, 215, 210], "tris": 40}]},
+    "market_stall": {"size": [20, 14, 14], "desc": "Street stall: steel frame, striped awning, counter, crates", "pieces": [
+        {"name": "stall_frame", "size": [20, 14, 14], "offset": [0, 0, 0], "mat": "Metal", "var": "", "color": [60, 64, 70], "tris": 200},
+        {"name": "stall_awning", "size": [20, 3, 14], "offset": [0, 5.5, 0], "mat": "Fabric", "var": "", "color": [200, 60, 90], "tris": 40}]},
+    "vending_machine": {"size": [5, 9, 4], "desc": "Japanese vending machine; front face is Neon-lit panel", "pieces": [
+        {"name": "vending_body", "size": [5, 9, 4], "offset": [0, 0, 0], "mat": "SmoothPlastic", "var": "", "color": [235, 60, 60], "tris": 60},
+        {"name": "vending_front", "size": [4, 5, 0.4], "offset": [0, 1, -2.05], "mat": "Neon", "var": "", "color": [200, 230, 255], "tris": 2}]},
+    "bench_concrete": {"size": [14, 3, 4], "desc": "Chunky concrete bench with a timber top", "pieces": [
+        {"name": "bench", "size": [14, 3, 4], "offset": [0, 0, 0], "mat": "Concrete", "var": "Concrete Wood Formed", "color": [170, 170, 165], "tris": 48}]},
+    "chainlink_fence_20": {"size": [20, 12, 1], "desc": "Chain-link panel with posts (court cage / lots); tiles along X", "pieces": [
+        {"name": "chainlink", "size": [20, 12, 1], "offset": [0, 0, 0], "mat": "DiamondPlate", "var": "", "color": [150, 155, 160], "tris": 28, "transparency": 0.4}]}
+  }
+}

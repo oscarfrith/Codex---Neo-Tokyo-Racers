@@ -4,6 +4,17 @@ Target: **Space Racers v2, place 71491191583884** (since 2026-09-26; v1 12130491
 
 ## Current task and next action
 
+**World build: South Grid (2026-09-28), in Oscar's test copy "09282026_3" (place 86391254062492), not on v2 yet.**
+- **What:** the 12 blockout parcels south of the bay are replaced by a mix of The Blocks and Metabolist housing, built as `Workspace.World.City["Block S9"]` (11 LOD-structured blocks), with 6 shared skybridges and streetscape. The streetscape covers kerbs, the step wall with stairs and market, the waterfront promenade and piers, the west park and the east car-meet lot.
+- **How:** contract [south-grid-build-contract](architecture/south-grid-build-contract.md); pipeline in `scripts/south_grid/`. The pipeline is: sgspec JSON specs → Blender previews → `install/assemble.lua`.
+- **Studio state:**
+  - The kit FBX is imported to `ReplicatedStorage.Assets.World.SouthGridKit`.
+  - 7 new `SG *` MaterialVariants are in MaterialService.
+  - Far proxies are in `FarLOD5Proxies/Block_S9_*_LOD5`.
+  - The replaced blockout boxes are in `ServerStorage.SouthGridReplacedBlockout`.
+- **Evidence:** agent-verified in Edit and in a Play test (streaming, LOD culling, no errors). Not yet driven or play-tested by Oscar.
+- **Next:** Oscar reviews in the copy, then copies Block S9 and its dependencies to v2. The dependencies are the kit folder, the SG variants and the LOD5 proxies.
+
 **Feature work (Street Life, [design](design/street-life-update.md)).** Handoff 2026-09-27. Oscar's map and jobs refinement batch is complete and installed on v2 ([contract](architecture/map-markers-contract.md)). Everything is agent-verified in Studio, mostly with synthetic movement. Oscar reviewed the results as they were delivered ("looks good"); this is not a formal play-test sign-off.
 
 - **Full-screen map** (MAP-03):

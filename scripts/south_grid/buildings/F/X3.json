@@ -1,0 +1,189 @@
+{
+"id": "X3",
+"kind": "building",
+"title": "X3 tube bridge P11-P12",
+"lean": "metabolist",
+"stats": {
+"tris": 972,
+"parts": 4,
+"kit": 2,
+"min": [
+1030,
+464,
+4947
+],
+"max": [
+1148,
+490,
+4973
+]
+},
+"elements": [
+{
+"t": "kit",
+"pos": [
+1066,
+477.5,
+4960
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "X3 Bridge",
+"layer": "LOD4",
+"item": "bridge_tube_40",
+"scale": 1.0,
+"collide": false,
+"name": "bridge_tube_40"
+},
+{
+"t": "kit",
+"pos": [
+1106,
+477.5,
+4960
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "X3 Bridge",
+"layer": "LOD4",
+"item": "bridge_tube_40",
+"scale": 1.0,
+"collide": false,
+"name": "bridge_tube_40"
+},
+{
+"t": "part",
+"pos": [
+1038,
+477.5,
+4960
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "X3 Bridge",
+"layer": "LOD4",
+"shape": "Cylinder",
+"size": [
+16,
+26,
+26
+],
+"mat": "Concrete",
+"var": "SG Capsule Panels",
+"color": [
+212,
+209,
+200
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "HeadWest"
+},
+{
+"t": "part",
+"pos": [
+1137,
+477.5,
+4960
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "X3 Bridge",
+"layer": "LOD4",
+"shape": "Cylinder",
+"size": [
+22,
+26,
+26
+],
+"mat": "Concrete",
+"var": "SG Capsule Panels",
+"color": [
+212,
+209,
+200
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "HeadEast"
+},
+{
+"t": "part",
+"pos": [
+1086,
+477.5,
+4960
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "X3 Bridge",
+"layer": "LOD4",
+"shape": "Cylinder",
+"size": [
+4,
+24,
+24
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+180,
+178,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "MidRing"
+},
+{
+"t": "part",
+"pos": [
+1086,
+469.2,
+4952.8
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "X3 Bridge",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+80,
+0.6,
+1
+],
+"mat": "Neon",
+"var": "",
+"color": [
+60,
+230,
+255
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "NeonStrip"
+}
+]
+}

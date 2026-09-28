@@ -1,0 +1,528 @@
+{
+"id": "X4",
+"kind": "building",
+"title": "X4 Step Truss Bridge",
+"lean": "blocks",
+"stats": {
+"tris": 2580,
+"parts": 11,
+"kit": 7,
+"min": [
+-414,
+200,
+4576
+],
+"max": [
+-342,
+362,
+4780
+]
+},
+"elements": [
+{
+"t": "part",
+"pos": [
+-400.0,
+328.0,
+4678.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Deck",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+24,
+4,
+192
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+182,
+180,
+172
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Deck"
+},
+{
+"t": "kit",
+"pos": [
+-400.0,
+339.6,
+4606
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Deck",
+"layer": "LOD4",
+"item": "bridge_truss_40",
+"scale": 1.2,
+"collide": false,
+"name": "bridge_truss_40",
+"color": [
+86,
+90,
+98
+]
+},
+{
+"t": "kit",
+"pos": [
+-400.0,
+339.6,
+4654
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Deck",
+"layer": "LOD4",
+"item": "bridge_truss_40",
+"scale": 1.2,
+"collide": false,
+"name": "bridge_truss_40",
+"color": [
+86,
+90,
+98
+]
+},
+{
+"t": "kit",
+"pos": [
+-400.0,
+339.6,
+4702
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Deck",
+"layer": "LOD4",
+"item": "bridge_truss_40",
+"scale": 1.2,
+"collide": false,
+"name": "bridge_truss_40",
+"color": [
+86,
+90,
+98
+]
+},
+{
+"t": "kit",
+"pos": [
+-400.0,
+339.6,
+4750
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Deck",
+"layer": "LOD4",
+"item": "bridge_truss_40",
+"scale": 1.2,
+"collide": false,
+"name": "bridge_truss_40",
+"color": [
+86,
+90,
+98
+]
+},
+{
+"t": "part",
+"pos": [
+-400.0,
+338.0,
+4579.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Deck",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+28,
+28,
+6
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+148,
+142
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Portal"
+},
+{
+"t": "part",
+"pos": [
+-400.0,
+338.0,
+4777.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Deck",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+28,
+28,
+6
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+148,
+142
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Portal"
+},
+{
+"t": "part",
+"pos": [
+-400.0,
+263.0,
+4683.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+16,
+126,
+22
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+148,
+142
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier"
+},
+{
+"t": "part",
+"pos": [
+-400.0,
+206.0,
+4683.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+22,
+12,
+28
+],
+"mat": "Concrete",
+"var": "SG Graffiti A",
+"color": [
+196,
+194,
+188
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PierFoot"
+},
+{
+"t": "part",
+"pos": [
+-366.0,
+240.0,
+4683.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+28,
+80,
+30
+],
+"mat": "Concrete",
+"var": "SG Graffiti B",
+"color": [
+196,
+194,
+188
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "TowerGraffiti"
+},
+{
+"t": "part",
+"pos": [
+-366.0,
+316.0,
+4683.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+28,
+72,
+30
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+148,
+142
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "TowerCore"
+},
+{
+"t": "part",
+"pos": [
+-366.0,
+357.0,
+4683.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+32,
+10,
+34
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+116,
+114,
+108
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "TowerCap"
+},
+{
+"t": "kit",
+"pos": [
+-347,
+220,
+4683.0
+],
+"rot": [
+0,
+-90,
+0
+],
+"group": "Stair Tower",
+"layer": "LOD4",
+"item": "ext_stair_40",
+"scale": 1.0,
+"collide": false,
+"name": "ext_stair_40"
+},
+{
+"t": "kit",
+"pos": [
+-347,
+260,
+4683.0
+],
+"rot": [
+0,
+-90,
+0
+],
+"group": "Stair Tower",
+"layer": "LOD4",
+"item": "ext_stair_40",
+"scale": 1.0,
+"collide": false,
+"name": "ext_stair_40"
+},
+{
+"t": "kit",
+"pos": [
+-347,
+300,
+4683.0
+],
+"rot": [
+0,
+-90,
+0
+],
+"group": "Stair Tower",
+"layer": "LOD4",
+"item": "ext_stair_40",
+"scale": 1.0,
+"collide": false,
+"name": "ext_stair_40"
+},
+{
+"t": "part",
+"pos": [
+-384.0,
+328.0,
+4683.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+8,
+4,
+24
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+182,
+180,
+172
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Landing"
+},
+{
+"t": "part",
+"pos": [
+-384.0,
+332.25,
+4694.25
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+8,
+4.5,
+1.5
+],
+"mat": "Metal",
+"var": "",
+"color": [
+86,
+90,
+98
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "LandingRail"
+},
+{
+"t": "part",
+"pos": [
+-347.0,
+322.0,
+4683.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+10,
+4,
+16
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+182,
+180,
+172
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "StairTopLanding"
+}
+]
+}

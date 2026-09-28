@@ -1,0 +1,678 @@
+{
+ "capsule_shell": {
+  "tris": 140,
+  "verts": 72,
+  "fit": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "raw_size": [
+   26.0,
+   13.0,
+   16.0
+  ],
+  "volume": 5247.94,
+  "item": "capsule_unit",
+  "size": [
+   26,
+   13,
+   16
+  ],
+  "budget": 220,
+  "mat": "Concrete",
+  "var": "Concrete Square Panels",
+  "studs_per_uv": 5.0,
+  "ok": true
+ },
+ "capsule_porthole": {
+  "tris": 62,
+  "verts": 33,
+  "fit": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "raw_size": [
+   9.0,
+   9.0,
+   1.0
+  ],
+  "volume": 51.66,
+  "item": "capsule_unit",
+  "size": [
+   9,
+   9,
+   1
+  ],
+  "budget": 64,
+  "mat": "Glass",
+  "var": "",
+  "studs_per_uv": 16.0,
+  "ok": true
+ },
+ "porthole_panel": {
+  "tris": 214,
+  "verts": 109,
+  "fit": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "raw_size": [
+   40.0,
+   40.0,
+   3.0
+  ],
+  "volume": 4200.0,
+  "item": "porthole_panel_40",
+  "size": [
+   40,
+   40,
+   3
+  ],
+  "budget": 260,
+  "mat": "Concrete",
+  "var": "Concrete Wood Formed",
+  "studs_per_uv": 8.0,
+  "ok": true
+ },
+ "porthole_glass_4": {
+  "tris": 88,
+  "verts": 52,
+  "fit": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "raw_size": [
+   30.0,
+   30.0,
+   0.6
+  ],
+  "volume": 60.0,
+  "item": "porthole_panel_40",
+  "size": [
+   30,
+   30,
+   0.6
+  ],
+  "budget": 128,
+  "mat": "Glass",
+  "var": "",
+  "studs_per_uv": 16.0,
+  "ok": true
+ },
+ "balcony_slab": {
+  "tris": 70,
+  "verts": 140,
+  "fit": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "raw_size": [
+   40.0,
+   13.0,
+   8.0
+  ],
+  "volume": 891.81,
+  "item": "balcony_run_40",
+  "size": [
+   40,
+   13,
+   8
+  ],
+  "budget": 120,
+  "mat": "Concrete",
+  "var": "Concrete Wood Formed",
+  "studs_per_uv": 8.0,
+  "ok": true
+ },
+ "balcony_infill": {
+  "tris": 24,
+  "verts": 48,
+  "fit": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "raw_size": [
+   36.0,
+   6.0,
+   0.8
+  ],
+  "volume": 134.74,
+  "item": "balcony_run_40",
+  "size": [
+   36,
+   6,
+   0.8
+  ],
+  "budget": 24,
+  "mat": "SmoothPlastic",
+  "var": "",
+  "studs_per_uv": 16.0,
+  "ok": true
+ },
+ "laundry": {
+  "tris": 56,
+  "verts": 84,
+  "fit": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "raw_size": [
+   36.0,
+   7.0,
+   1.0
+  ],
+  "volume": -0.0,
+  "item": "laundry_line_36",
+  "size": [
+   36,
+   7,
+   1
+  ],
+  "budget": 60,
+  "mat": "Fabric",
+  "var": "",
+  "studs_per_uv": 16.0,
+  "ok": true
+ },
+ "ac_cluster": {
+  "tris": 132,
+  "verts": 120,
+  "fit": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "raw_size": [
+   10.0,
+   7.0,
+   4.0
+  ],
+  "volume": 214.6,
+  "item": "ac_cluster",
+  "size": [
+   10,
+   7,
+   4
+  ],
+  "budget": 140,
+  "mat": "Metal",
+  "var": "",
+  "studs_per_uv": 16.0,
+  "ok": true
+ },
+ "water_tank": {
+  "tris": 168,
+  "verts": 261,
+  "fit": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "raw_size": [
+   16.0,
+   22.0,
+   16.0
+  ],
+  "volume": 2836.41,
+  "item": "water_tank",
+  "size": [
+   16,
+   22,
+   16
+  ],
+  "budget": 260,
+  "mat": "Metal",
+  "var": "",
+  "studs_per_uv": 16.0,
+  "ok": true
+ },
+ "dish_cluster": {
+  "tris": 216,
+  "verts": 258,
+  "fit": [
+   1.0,
+   1.0004,
+   0.9986
+  ],
+  "raw_size": [
+   14.0,
+   11.996,
+   10.014
+  ],
+  "volume": 89.68,
+  "item": "dish_cluster",
+  "size": [
+   14,
+   12,
+   10
+  ],
+  "budget": 240,
+  "mat": "SmoothPlastic",
+  "var": "",
+  "studs_per_uv": 16.0,
+  "ok": true
+ },
+ "antenna_mast": {
+  "tris": 198,
+  "verts": 396,
+  "fit": [
+   1.0,
+   0.9987,
+   1.0
+  ],
+  "raw_size": [
+   6.0,
+   60.078,
+   6.0
+  ],
+  "volume": 318.41,
+  "item": "antenna_mast",
+  "size": [
+   6,
+   60,
+   6
+  ],
+  "budget": 200,
+  "mat": "Metal",
+  "var": "",
+  "studs_per_uv": 16.0,
+  "ok": true
+ },
+ "rooftop_shack": {
+  "tris": 72,
+  "verts": 96,
+  "fit": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "raw_size": [
+   20.0,
+   12.0,
+   16.0
+  ],
+  "volume": 1885.66,
+  "item": "rooftop_shack",
+  "size": [
+   20,
+   12,
+   16
+  ],
+  "budget": 90,
+  "mat": "Metal",
+  "var": "Metal Shutters",
+  "studs_per_uv": 2.0,
+  "ok": true
+ },
+ "ext_stair": {
+  "tris": 365,
+  "verts": 486,
+  "fit": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "raw_size": [
+   16.0,
+   40.0,
+   10.0
+  ],
+  "volume": 834.83,
+  "item": "ext_stair_40",
+  "size": [
+   16,
+   40,
+   10
+  ],
+  "budget": 400,
+  "mat": "Metal",
+  "var": "",
+  "studs_per_uv": 16.0,
+  "ok": true
+ },
+ "pipe_bundle": {
+  "tris": 72,
+  "verts": 96,
+  "fit": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "raw_size": [
+   4.0,
+   40.0,
+   3.0
+  ],
+  "volume": 96.66,
+  "item": "pipe_bundle_40",
+  "size": [
+   4,
+   40,
+   3
+  ],
+  "budget": 90,
+  "mat": "Metal",
+  "var": "",
+  "studs_per_uv": 16.0,
+  "ok": true
+ },
+ "bridge_truss": {
+  "tris": 92,
+  "verts": 184,
+  "fit": [
+   0.999,
+   1.0,
+   1.0
+  ],
+  "raw_size": [
+   40.041,
+   16.0,
+   20.0
+  ],
+  "volume": 2218.2,
+  "item": "bridge_truss_40",
+  "size": [
+   40,
+   16,
+   20
+  ],
+  "budget": 300,
+  "mat": "Metal",
+  "var": "",
+  "studs_per_uv": 16.0,
+  "ok": true
+ },
+ "bridge_truss_glass": {
+  "tris": 12,
+  "verts": 24,
+  "fit": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "raw_size": [
+   38.0,
+   10.0,
+   18.0
+  ],
+  "volume": 6840.0,
+  "item": "bridge_truss_40",
+  "size": [
+   38,
+   10,
+   18
+  ],
+  "budget": 12,
+  "mat": "Glass",
+  "var": "",
+  "studs_per_uv": 16.0,
+  "ok": true
+ },
+ "bridge_tube_ribs": {
+  "tris": 272,
+  "verts": 160,
+  "fit": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "raw_size": [
+   40.0,
+   18.0,
+   18.0
+  ],
+  "volume": 1162.36,
+  "item": "bridge_tube_40",
+  "size": [
+   40,
+   18,
+   18
+  ],
+  "budget": 320,
+  "mat": "Concrete",
+  "var": "Concrete Wood Formed",
+  "studs_per_uv": 8.0,
+  "ok": true
+ },
+ "bridge_tube_glass": {
+  "tris": 48,
+  "verts": 48,
+  "fit": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "raw_size": [
+   40.0,
+   15.0,
+   15.0
+  ],
+  "volume": 4658.74,
+  "item": "bridge_tube_40",
+  "size": [
+   40,
+   15,
+   15
+  ],
+  "budget": 64,
+  "mat": "Glass",
+  "var": "",
+  "studs_per_uv": 16.0,
+  "ok": true
+ },
+ "louvre_fins": {
+  "tris": 80,
+  "verts": 160,
+  "fit": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "raw_size": [
+   40.0,
+   40.0,
+   5.0
+  ],
+  "volume": 1465.6,
+  "item": "louvre_fins_40",
+  "size": [
+   40,
+   40,
+   5
+  ],
+  "budget": 120,
+  "mat": "Concrete",
+  "var": "Concrete Wood Formed",
+  "studs_per_uv": 8.0,
+  "ok": true
+ },
+ "tray_edge": {
+  "tris": 34,
+  "verts": 20,
+  "fit": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "raw_size": [
+   40.0,
+   8.0,
+   14.0
+  ],
+  "volume": 3321.33,
+  "item": "tray_edge_40",
+  "size": [
+   40,
+   8,
+   14
+  ],
+  "budget": 40,
+  "mat": "Concrete",
+  "var": "Concrete Wood Formed",
+  "studs_per_uv": 8.0,
+  "ok": true
+ },
+ "stall_frame": {
+  "tris": 152,
+  "verts": 304,
+  "fit": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "raw_size": [
+   20.0,
+   14.0,
+   14.0
+  ],
+  "volume": 311.12,
+  "item": "market_stall",
+  "size": [
+   20,
+   14,
+   14
+  ],
+  "budget": 200,
+  "mat": "Metal",
+  "var": "",
+  "studs_per_uv": 16.0,
+  "ok": true
+ },
+ "stall_awning": {
+  "tris": 40,
+  "verts": 22,
+  "fit": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "raw_size": [
+   20.0,
+   3.0,
+   14.0
+  ],
+  "volume": 189.0,
+  "item": "market_stall",
+  "size": [
+   20,
+   3,
+   14
+  ],
+  "budget": 40,
+  "mat": "Fabric",
+  "var": "",
+  "studs_per_uv": 16.0,
+  "ok": true
+ },
+ "vending_body": {
+  "tris": 36,
+  "verts": 48,
+  "fit": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "raw_size": [
+   5.0,
+   9.0,
+   4.0
+  ],
+  "volume": 170.18,
+  "item": "vending_machine",
+  "size": [
+   5,
+   9,
+   4
+  ],
+  "budget": 60,
+  "mat": "SmoothPlastic",
+  "var": "",
+  "studs_per_uv": 16.0,
+  "ok": true
+ },
+ "vending_front": {
+  "tris": 2,
+  "verts": 4,
+  "fit": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "raw_size": [
+   4.0,
+   5.0,
+   0.4
+  ],
+  "volume": 0.0,
+  "item": "vending_machine",
+  "size": [
+   4,
+   5,
+   0.4
+  ],
+  "budget": 2,
+  "mat": "Neon",
+  "var": "",
+  "studs_per_uv": 16.0,
+  "ok": true
+ },
+ "bench": {
+  "tris": 32,
+  "verts": 64,
+  "fit": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "raw_size": [
+   14.0,
+   3.0,
+   4.0
+  ],
+  "volume": 85.33,
+  "item": "bench_concrete",
+  "size": [
+   14,
+   3,
+   4
+  ],
+  "budget": 48,
+  "mat": "Concrete",
+  "var": "Concrete Wood Formed",
+  "studs_per_uv": 8.0,
+  "ok": true
+ },
+ "chainlink": {
+  "tris": 22,
+  "verts": 44,
+  "fit": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "raw_size": [
+   20.0,
+   12.0,
+   1.0
+  ],
+  "volume": 22.67,
+  "item": "chainlink_fence_20",
+  "size": [
+   20,
+   12,
+   1
+  ],
+  "budget": 28,
+  "mat": "DiamondPlate",
+  "var": "",
+  "studs_per_uv": 16.0,
+  "ok": true
+ }
+}

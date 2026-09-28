@@ -1,0 +1,9 @@
+[
+  {"name": "SG Windows Blocks", "base": "SmoothPlastic", "studsPerTile": 40, "desc": "Residential window grid for The Blocks: 3 storeys x 3 bays per tile; mixed curtains, lit/unlit, some AC units and balcony openings; concrete mullions", "slug": "sg_windows_blocks"},
+  {"name": "SG Windows Capsule", "base": "SmoothPlastic", "studsPerTile": 40, "desc": "Metabolist porthole grid: 2x2 round windows per 40-stud tile in white panel frames", "slug": "sg_windows_capsule"},
+  {"name": "SG Weathered Concrete", "base": "Concrete", "studsPerTile": 24, "desc": "Board-marked concrete with rain streaks and water stains", "slug": "sg_weathered_concrete"},
+  {"name": "SG Capsule Panels", "base": "Concrete", "studsPerTile": 16, "desc": "White precast panels with panel joints and bolt heads (capsules, metabolist cores)", "slug": "sg_capsule_panels"},
+  {"name": "SG Patched Panels", "base": "SmoothPlastic", "studsPerTile": 20, "desc": "Pastel patchwork infill panels (faded mint, salmon, butter, sky) for balconies", "slug": "sg_patched_panels"},
+  {"name": "SG Graffiti A", "base": "Concrete", "studsPerTile": 40, "desc": "Colourful graffiti mural band over concrete, lime/pink/orange/cyan tags and throw-ups; tiles horizontally", "slug": "sg_graffiti_a"},
+  {"name": "SG Graffiti B", "base": "Concrete", "studsPerTile": 40, "desc": "Second graffiti mural band, different pieces and palette", "slug": "sg_graffiti_b"}
+]

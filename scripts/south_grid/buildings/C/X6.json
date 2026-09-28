@@ -1,0 +1,663 @@
+{
+"id": "X6",
+"kind": "building",
+"title": "X6 Blocks slab bridge (P05 - P12)",
+"lean": "blocks",
+"stats": {
+"tris": 240,
+"parts": 20,
+"kit": 0,
+"min": [
+1432,
+326,
+4558
+],
+"max": [
+1468,
+384,
+4796
+]
+},
+"elements": [
+{
+"t": "part",
+"pos": [
+1450.0,
+344.5,
+4677.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "X6 bridge",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+24.0,
+29,
+238
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+156,
+153,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Box girder"
+},
+{
+"t": "part",
+"pos": [
+1450.0,
+359.5,
+4677.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "X6 bridge",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+28.0,
+1,
+238
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+128,
+126,
+121
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Deck edge"
+},
+{
+"t": "part",
+"pos": [
+1437.0,
+363.0,
+4677.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "X6 bridge",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+2.0,
+6,
+238
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+232,
+230,
+224
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Parapet W"
+},
+{
+"t": "part",
+"pos": [
+1463.0,
+363.0,
+4677.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "X6 bridge",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+2.0,
+6,
+238
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+232,
+230,
+224
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Parapet E"
+},
+{
+"t": "part",
+"pos": [
+1450.0,
+371.0,
+4677.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "X6 bridge",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+26.0,
+10,
+238
+],
+"mat": "Glass",
+"var": "",
+"color": [
+96,
+128,
+150
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Glazing band"
+},
+{
+"t": "part",
+"pos": [
+1450.0,
+378.0,
+4677.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "X6 bridge",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+30.0,
+4,
+238
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+156,
+153,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Roof slab"
+},
+{
+"t": "part",
+"pos": [
+1436.0,
+353.0,
+4598.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "X6 bridge",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+2.0,
+46,
+3.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+128,
+126,
+121
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Mullion fin"
+},
+{
+"t": "part",
+"pos": [
+1464.0,
+353.0,
+4598.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "X6 bridge",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+2.0,
+46,
+3.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+128,
+126,
+121
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Mullion fin"
+},
+{
+"t": "part",
+"pos": [
+1436.0,
+353.0,
+4638.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "X6 bridge",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+2.0,
+46,
+3.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+128,
+126,
+121
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Mullion fin"
+},
+{
+"t": "part",
+"pos": [
+1464.0,
+353.0,
+4638.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "X6 bridge",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+2.0,
+46,
+3.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+128,
+126,
+121
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Mullion fin"
+},
+{
+"t": "part",
+"pos": [
+1436.0,
+353.0,
+4678.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "X6 bridge",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+2.0,
+46,
+3.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+128,
+126,
+121
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Mullion fin"
+},
+{
+"t": "part",
+"pos": [
+1464.0,
+353.0,
+4678.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "X6 bridge",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+2.0,
+46,
+3.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+128,
+126,
+121
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Mullion fin"
+},
+{
+"t": "part",
+"pos": [
+1436.0,
+353.0,
+4718.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "X6 bridge",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+2.0,
+46,
+3.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+128,
+126,
+121
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Mullion fin"
+},
+{
+"t": "part",
+"pos": [
+1464.0,
+353.0,
+4718.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "X6 bridge",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+2.0,
+46,
+3.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+128,
+126,
+121
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Mullion fin"
+},
+{
+"t": "part",
+"pos": [
+1436.0,
+353.0,
+4758.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "X6 bridge",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+2.0,
+46,
+3.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+128,
+126,
+121
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Mullion fin"
+},
+{
+"t": "part",
+"pos": [
+1464.0,
+353.0,
+4758.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "X6 bridge",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+2.0,
+46,
+3.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+128,
+126,
+121
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Mullion fin"
+},
+{
+"t": "part",
+"pos": [
+1434.75,
+374.5,
+4677.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "X6 bridge",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+0.5,
+1,
+230
+],
+"mat": "Neon",
+"var": "",
+"color": [
+255,
+170,
+60
+],
+"collide": false,
+"shadow": false,
+"transparency": 0.0,
+"name": "Sodium strip"
+},
+{
+"t": "part",
+"pos": [
+1465.25,
+374.5,
+4677.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "X6 bridge",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+0.5,
+1,
+230
+],
+"mat": "Neon",
+"var": "",
+"color": [
+255,
+170,
+60
+],
+"collide": false,
+"shadow": false,
+"transparency": 0.0,
+"name": "Sodium strip"
+},
+{
+"t": "part",
+"pos": [
+1450.0,
+355.0,
+4562.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "X6 bridge",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+36.0,
+58,
+8
+],
+"mat": "Concrete",
+"var": "Concrete Wood Formed",
+"color": [
+122,
+120,
+116
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Landing collar"
+},
+{
+"t": "part",
+"pos": [
+1450.0,
+355.0,
+4792.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "X6 bridge",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+36.0,
+58,
+8
+],
+"mat": "Concrete",
+"var": "Concrete Wood Formed",
+"color": [
+122,
+120,
+116
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Landing collar"
+}
+]
+}

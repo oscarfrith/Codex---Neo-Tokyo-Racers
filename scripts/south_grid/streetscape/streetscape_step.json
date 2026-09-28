@@ -1,0 +1,12257 @@
+{
+"id": "streetscape_step",
+"kind": "streetscape",
+"title": "The Step: stair-streets, ledge and market terrace on the Y100/Y200 retaining wall",
+"lean": "",
+"stats": {
+"tris": 18434,
+"parts": 220,
+"kit": 157,
+"min": [
+-1738,
+99,
+4650
+],
+"max": [
+1878,
+216,
+4706
+]
+},
+"elements": [
+{
+"t": "part",
+"pos": [
+-930.0,
+100.5,
+4656.75
+],
+"rot": [
+0,
+90.0,
+0
+],
+"group": "Step Ledge",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9.5,
+3,
+1449.0
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+150,
+144,
+138
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Ledge Pavement"
+},
+{
+"t": "part",
+"pos": [
+-930.0,
+100.575,
+4651.25
+],
+"rot": [
+0,
+90.0,
+0
+],
+"group": "Step Ledge",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+1.5,
+3.15,
+1449.0
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+206,
+204,
+198
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Kerb"
+},
+{
+"t": "part",
+"pos": [
+0.0,
+100.5,
+4656.75
+],
+"rot": [
+0,
+90.0,
+0
+],
+"group": "Step Ledge",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9.5,
+3,
+245.0
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+150,
+144,
+138
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Ledge Pavement"
+},
+{
+"t": "part",
+"pos": [
+0.0,
+100.575,
+4651.25
+],
+"rot": [
+0,
+90.0,
+0
+],
+"group": "Step Ledge",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+1.5,
+3.15,
+245.0
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+206,
+204,
+198
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Kerb"
+},
+{
+"t": "part",
+"pos": [
+1036.0,
+100.5,
+4656.75
+],
+"rot": [
+0,
+90.0,
+0
+],
+"group": "Step Ledge",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9.5,
+3,
+1661.0
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+150,
+144,
+138
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Ledge Pavement"
+},
+{
+"t": "part",
+"pos": [
+1036.0,
+100.575,
+4651.25
+],
+"rot": [
+0,
+90.0,
+0
+],
+"group": "Step Ledge",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+1.5,
+3.15,
+1661.0
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+206,
+204,
+198
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Kerb"
+},
+{
+"t": "part",
+"pos": [
+-1250.0,
+151,
+4657.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 1",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+16.0,
+102,
+8.8
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+148,
+142
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Stair Tower"
+},
+{
+"t": "part",
+"pos": [
+-1250.0,
+202.2,
+4657.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 1",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+16.0,
+0.4,
+8.8
+],
+"mat": "CeramicTiles",
+"var": "Textile Paving",
+"color": [
+196,
+176,
+70
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Landing Tactile"
+},
+{
+"t": "part",
+"pos": [
+-1298.0,
+175.0,
+4657.1
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Stair Street 1",
+"layer": "LOD3",
+"shape": "Wedge",
+"size": [
+8.8,
+50.0,
+80.0
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+168,
+164,
+156
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Flight Upper"
+},
+{
+"t": "part",
+"pos": [
+-1298.0,
+125,
+4657.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 1",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+80.0,
+50,
+8.8
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Flight Upper Base"
+},
+{
+"t": "part",
+"pos": [
+-1344.0,
+125,
+4657.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 1",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+12.0,
+50,
+8.8
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+148,
+142
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Mid Landing"
+},
+{
+"t": "part",
+"pos": [
+-1344.0,
+150.2,
+4657.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 1",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+12.0,
+0.4,
+8.8
+],
+"mat": "CeramicTiles",
+"var": "Textile Paving",
+"color": [
+196,
+176,
+70
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Landing Tactile"
+},
+{
+"t": "part",
+"pos": [
+-1390.0,
+125.0,
+4657.1
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Stair Street 1",
+"layer": "LOD3",
+"shape": "Wedge",
+"size": [
+8.8,
+50.0,
+80.0
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+168,
+164,
+156
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Flight Lower"
+},
+{
+"t": "part",
+"pos": [
+-1298.0,
+177.2,
+4653.3
+],
+"rot": [
+0,
+0,
+32.005
+],
+"group": "Stair Street 1",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+94.34,
+3.4,
+1.2
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+186,
+184,
+178
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Balustrade"
+},
+{
+"t": "part",
+"pos": [
+-1390.0,
+127.2,
+4653.3
+],
+"rot": [
+0,
+0,
+32.005
+],
+"group": "Stair Street 1",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+94.34,
+3.4,
+1.2
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+186,
+184,
+178
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Balustrade"
+},
+{
+"t": "part",
+"pos": [
+-1344.0,
+151.7,
+4653.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 1",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+12.0,
+3.4,
+1.2
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+186,
+184,
+178
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Balustrade"
+},
+{
+"t": "part",
+"pos": [
+-1298.0,
+128,
+4652.35
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 1",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+76.0,
+36,
+0.6
+],
+"mat": "Concrete",
+"var": "SG Graffiti A",
+"color": [
+200,
+200,
+200
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Graffiti Stair"
+},
+{
+"t": "part",
+"pos": [
+-1202.0,
+175.0,
+4657.1
+],
+"rot": [
+0,
+-90,
+0
+],
+"group": "Stair Street 1",
+"layer": "LOD3",
+"shape": "Wedge",
+"size": [
+8.8,
+50.0,
+80.0
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+168,
+164,
+156
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Flight Upper"
+},
+{
+"t": "part",
+"pos": [
+-1202.0,
+125,
+4657.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 1",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+80.0,
+50,
+8.8
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Flight Upper Base"
+},
+{
+"t": "part",
+"pos": [
+-1156.0,
+125,
+4657.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 1",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+12.0,
+50,
+8.8
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+148,
+142
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Mid Landing"
+},
+{
+"t": "part",
+"pos": [
+-1156.0,
+150.2,
+4657.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 1",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+12.0,
+0.4,
+8.8
+],
+"mat": "CeramicTiles",
+"var": "Textile Paving",
+"color": [
+196,
+176,
+70
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Landing Tactile"
+},
+{
+"t": "part",
+"pos": [
+-1110.0,
+125.0,
+4657.1
+],
+"rot": [
+0,
+-90,
+0
+],
+"group": "Stair Street 1",
+"layer": "LOD3",
+"shape": "Wedge",
+"size": [
+8.8,
+50.0,
+80.0
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+168,
+164,
+156
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Flight Lower"
+},
+{
+"t": "part",
+"pos": [
+-1202.0,
+177.2,
+4653.3
+],
+"rot": [
+0,
+0,
+-32.005
+],
+"group": "Stair Street 1",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+94.34,
+3.4,
+1.2
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+186,
+184,
+178
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Balustrade"
+},
+{
+"t": "part",
+"pos": [
+-1110.0,
+127.2,
+4653.3
+],
+"rot": [
+0,
+0,
+-32.005
+],
+"group": "Stair Street 1",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+94.34,
+3.4,
+1.2
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+186,
+184,
+178
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Balustrade"
+},
+{
+"t": "part",
+"pos": [
+-1156.0,
+151.7,
+4653.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 1",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+12.0,
+3.4,
+1.2
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+186,
+184,
+178
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Balustrade"
+},
+{
+"t": "part",
+"pos": [
+-1202.0,
+128,
+4652.35
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 1",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+76.0,
+36,
+0.6
+],
+"mat": "Concrete",
+"var": "SG Graffiti A",
+"color": [
+200,
+200,
+200
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Graffiti Stair"
+},
+{
+"t": "part",
+"pos": [
+-1250.0,
+196,
+4651.9
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 1",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+14.0,
+1.2,
+0.6
+],
+"mat": "Neon",
+"var": "",
+"color": [
+255,
+90,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Neon Strip"
+},
+{
+"t": "part",
+"pos": [
+-560.0,
+151,
+4657.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 2",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+16.0,
+102,
+8.8
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+148,
+142
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Stair Tower"
+},
+{
+"t": "part",
+"pos": [
+-560.0,
+202.2,
+4657.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 2",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+16.0,
+0.4,
+8.8
+],
+"mat": "CeramicTiles",
+"var": "Textile Paving",
+"color": [
+196,
+176,
+70
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Landing Tactile"
+},
+{
+"t": "part",
+"pos": [
+-608.0,
+175.0,
+4657.1
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Stair Street 2",
+"layer": "LOD3",
+"shape": "Wedge",
+"size": [
+8.8,
+50.0,
+80.0
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+168,
+164,
+156
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Flight Upper"
+},
+{
+"t": "part",
+"pos": [
+-608.0,
+125,
+4657.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 2",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+80.0,
+50,
+8.8
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Flight Upper Base"
+},
+{
+"t": "part",
+"pos": [
+-654.0,
+125,
+4657.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 2",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+12.0,
+50,
+8.8
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+148,
+142
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Mid Landing"
+},
+{
+"t": "part",
+"pos": [
+-654.0,
+150.2,
+4657.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 2",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+12.0,
+0.4,
+8.8
+],
+"mat": "CeramicTiles",
+"var": "Textile Paving",
+"color": [
+196,
+176,
+70
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Landing Tactile"
+},
+{
+"t": "part",
+"pos": [
+-700.0,
+125.0,
+4657.1
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Stair Street 2",
+"layer": "LOD3",
+"shape": "Wedge",
+"size": [
+8.8,
+50.0,
+80.0
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+168,
+164,
+156
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Flight Lower"
+},
+{
+"t": "part",
+"pos": [
+-608.0,
+177.2,
+4653.3
+],
+"rot": [
+0,
+0,
+32.005
+],
+"group": "Stair Street 2",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+94.34,
+3.4,
+1.2
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+186,
+184,
+178
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Balustrade"
+},
+{
+"t": "part",
+"pos": [
+-700.0,
+127.2,
+4653.3
+],
+"rot": [
+0,
+0,
+32.005
+],
+"group": "Stair Street 2",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+94.34,
+3.4,
+1.2
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+186,
+184,
+178
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Balustrade"
+},
+{
+"t": "part",
+"pos": [
+-654.0,
+151.7,
+4653.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 2",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+12.0,
+3.4,
+1.2
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+186,
+184,
+178
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Balustrade"
+},
+{
+"t": "part",
+"pos": [
+-608.0,
+128,
+4652.35
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 2",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+76.0,
+36,
+0.6
+],
+"mat": "Concrete",
+"var": "SG Graffiti B",
+"color": [
+200,
+200,
+200
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Graffiti Stair"
+},
+{
+"t": "part",
+"pos": [
+-512.0,
+175.0,
+4657.1
+],
+"rot": [
+0,
+-90,
+0
+],
+"group": "Stair Street 2",
+"layer": "LOD3",
+"shape": "Wedge",
+"size": [
+8.8,
+50.0,
+80.0
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+168,
+164,
+156
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Flight Upper"
+},
+{
+"t": "part",
+"pos": [
+-512.0,
+125,
+4657.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 2",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+80.0,
+50,
+8.8
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Flight Upper Base"
+},
+{
+"t": "part",
+"pos": [
+-466.0,
+125,
+4657.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 2",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+12.0,
+50,
+8.8
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+148,
+142
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Mid Landing"
+},
+{
+"t": "part",
+"pos": [
+-466.0,
+150.2,
+4657.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 2",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+12.0,
+0.4,
+8.8
+],
+"mat": "CeramicTiles",
+"var": "Textile Paving",
+"color": [
+196,
+176,
+70
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Landing Tactile"
+},
+{
+"t": "part",
+"pos": [
+-420.0,
+125.0,
+4657.1
+],
+"rot": [
+0,
+-90,
+0
+],
+"group": "Stair Street 2",
+"layer": "LOD3",
+"shape": "Wedge",
+"size": [
+8.8,
+50.0,
+80.0
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+168,
+164,
+156
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Flight Lower"
+},
+{
+"t": "part",
+"pos": [
+-512.0,
+177.2,
+4653.3
+],
+"rot": [
+0,
+0,
+-32.005
+],
+"group": "Stair Street 2",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+94.34,
+3.4,
+1.2
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+186,
+184,
+178
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Balustrade"
+},
+{
+"t": "part",
+"pos": [
+-420.0,
+127.2,
+4653.3
+],
+"rot": [
+0,
+0,
+-32.005
+],
+"group": "Stair Street 2",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+94.34,
+3.4,
+1.2
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+186,
+184,
+178
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Balustrade"
+},
+{
+"t": "part",
+"pos": [
+-466.0,
+151.7,
+4653.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 2",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+12.0,
+3.4,
+1.2
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+186,
+184,
+178
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Balustrade"
+},
+{
+"t": "part",
+"pos": [
+-512.0,
+128,
+4652.35
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 2",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+76.0,
+36,
+0.6
+],
+"mat": "Concrete",
+"var": "SG Graffiti B",
+"color": [
+200,
+200,
+200
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Graffiti Stair"
+},
+{
+"t": "part",
+"pos": [
+-560.0,
+196,
+4651.9
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 2",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+14.0,
+1.2,
+0.6
+],
+"mat": "Neon",
+"var": "",
+"color": [
+255,
+90,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Neon Strip"
+},
+{
+"t": "part",
+"pos": [
+690.0,
+151,
+4657.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 3",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+16.0,
+102,
+8.8
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+148,
+142
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Stair Tower"
+},
+{
+"t": "part",
+"pos": [
+690.0,
+202.2,
+4657.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 3",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+16.0,
+0.4,
+8.8
+],
+"mat": "CeramicTiles",
+"var": "Textile Paving",
+"color": [
+196,
+176,
+70
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Landing Tactile"
+},
+{
+"t": "part",
+"pos": [
+642.0,
+175.0,
+4657.1
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Stair Street 3",
+"layer": "LOD3",
+"shape": "Wedge",
+"size": [
+8.8,
+50.0,
+80.0
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+168,
+164,
+156
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Flight Upper"
+},
+{
+"t": "part",
+"pos": [
+642.0,
+125,
+4657.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 3",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+80.0,
+50,
+8.8
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Flight Upper Base"
+},
+{
+"t": "part",
+"pos": [
+596.0,
+125,
+4657.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 3",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+12.0,
+50,
+8.8
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+148,
+142
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Mid Landing"
+},
+{
+"t": "part",
+"pos": [
+596.0,
+150.2,
+4657.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 3",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+12.0,
+0.4,
+8.8
+],
+"mat": "CeramicTiles",
+"var": "Textile Paving",
+"color": [
+196,
+176,
+70
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Landing Tactile"
+},
+{
+"t": "part",
+"pos": [
+550.0,
+125.0,
+4657.1
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Stair Street 3",
+"layer": "LOD3",
+"shape": "Wedge",
+"size": [
+8.8,
+50.0,
+80.0
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+168,
+164,
+156
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Flight Lower"
+},
+{
+"t": "part",
+"pos": [
+642.0,
+177.2,
+4653.3
+],
+"rot": [
+0,
+0,
+32.005
+],
+"group": "Stair Street 3",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+94.34,
+3.4,
+1.2
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+186,
+184,
+178
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Balustrade"
+},
+{
+"t": "part",
+"pos": [
+550.0,
+127.2,
+4653.3
+],
+"rot": [
+0,
+0,
+32.005
+],
+"group": "Stair Street 3",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+94.34,
+3.4,
+1.2
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+186,
+184,
+178
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Balustrade"
+},
+{
+"t": "part",
+"pos": [
+596.0,
+151.7,
+4653.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 3",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+12.0,
+3.4,
+1.2
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+186,
+184,
+178
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Balustrade"
+},
+{
+"t": "part",
+"pos": [
+642.0,
+128,
+4652.35
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 3",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+76.0,
+36,
+0.6
+],
+"mat": "Concrete",
+"var": "SG Graffiti A",
+"color": [
+200,
+200,
+200
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Graffiti Stair"
+},
+{
+"t": "part",
+"pos": [
+738.0,
+175.0,
+4657.1
+],
+"rot": [
+0,
+-90,
+0
+],
+"group": "Stair Street 3",
+"layer": "LOD3",
+"shape": "Wedge",
+"size": [
+8.8,
+50.0,
+80.0
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+168,
+164,
+156
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Flight Upper"
+},
+{
+"t": "part",
+"pos": [
+738.0,
+125,
+4657.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 3",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+80.0,
+50,
+8.8
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Flight Upper Base"
+},
+{
+"t": "part",
+"pos": [
+784.0,
+125,
+4657.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 3",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+12.0,
+50,
+8.8
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+148,
+142
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Mid Landing"
+},
+{
+"t": "part",
+"pos": [
+784.0,
+150.2,
+4657.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 3",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+12.0,
+0.4,
+8.8
+],
+"mat": "CeramicTiles",
+"var": "Textile Paving",
+"color": [
+196,
+176,
+70
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Landing Tactile"
+},
+{
+"t": "part",
+"pos": [
+830.0,
+125.0,
+4657.1
+],
+"rot": [
+0,
+-90,
+0
+],
+"group": "Stair Street 3",
+"layer": "LOD3",
+"shape": "Wedge",
+"size": [
+8.8,
+50.0,
+80.0
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+168,
+164,
+156
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Flight Lower"
+},
+{
+"t": "part",
+"pos": [
+738.0,
+177.2,
+4653.3
+],
+"rot": [
+0,
+0,
+-32.005
+],
+"group": "Stair Street 3",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+94.34,
+3.4,
+1.2
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+186,
+184,
+178
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Balustrade"
+},
+{
+"t": "part",
+"pos": [
+830.0,
+127.2,
+4653.3
+],
+"rot": [
+0,
+0,
+-32.005
+],
+"group": "Stair Street 3",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+94.34,
+3.4,
+1.2
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+186,
+184,
+178
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Balustrade"
+},
+{
+"t": "part",
+"pos": [
+784.0,
+151.7,
+4653.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 3",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+12.0,
+3.4,
+1.2
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+186,
+184,
+178
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Balustrade"
+},
+{
+"t": "part",
+"pos": [
+738.0,
+128,
+4652.35
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 3",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+76.0,
+36,
+0.6
+],
+"mat": "Concrete",
+"var": "SG Graffiti A",
+"color": [
+200,
+200,
+200
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Graffiti Stair"
+},
+{
+"t": "part",
+"pos": [
+690.0,
+196,
+4651.9
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 3",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+14.0,
+1.2,
+0.6
+],
+"mat": "Neon",
+"var": "",
+"color": [
+255,
+90,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Neon Strip"
+},
+{
+"t": "part",
+"pos": [
+1480.0,
+151,
+4657.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 4",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+16.0,
+102,
+8.8
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+148,
+142
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Stair Tower"
+},
+{
+"t": "part",
+"pos": [
+1480.0,
+202.2,
+4657.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 4",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+16.0,
+0.4,
+8.8
+],
+"mat": "CeramicTiles",
+"var": "Textile Paving",
+"color": [
+196,
+176,
+70
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Landing Tactile"
+},
+{
+"t": "part",
+"pos": [
+1432.0,
+175.0,
+4657.1
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Stair Street 4",
+"layer": "LOD3",
+"shape": "Wedge",
+"size": [
+8.8,
+50.0,
+80.0
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+168,
+164,
+156
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Flight Upper"
+},
+{
+"t": "part",
+"pos": [
+1432.0,
+125,
+4657.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 4",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+80.0,
+50,
+8.8
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Flight Upper Base"
+},
+{
+"t": "part",
+"pos": [
+1386.0,
+125,
+4657.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 4",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+12.0,
+50,
+8.8
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+148,
+142
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Mid Landing"
+},
+{
+"t": "part",
+"pos": [
+1386.0,
+150.2,
+4657.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 4",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+12.0,
+0.4,
+8.8
+],
+"mat": "CeramicTiles",
+"var": "Textile Paving",
+"color": [
+196,
+176,
+70
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Landing Tactile"
+},
+{
+"t": "part",
+"pos": [
+1340.0,
+125.0,
+4657.1
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Stair Street 4",
+"layer": "LOD3",
+"shape": "Wedge",
+"size": [
+8.8,
+50.0,
+80.0
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+168,
+164,
+156
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Flight Lower"
+},
+{
+"t": "part",
+"pos": [
+1432.0,
+177.2,
+4653.3
+],
+"rot": [
+0,
+0,
+32.005
+],
+"group": "Stair Street 4",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+94.34,
+3.4,
+1.2
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+186,
+184,
+178
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Balustrade"
+},
+{
+"t": "part",
+"pos": [
+1340.0,
+127.2,
+4653.3
+],
+"rot": [
+0,
+0,
+32.005
+],
+"group": "Stair Street 4",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+94.34,
+3.4,
+1.2
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+186,
+184,
+178
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Balustrade"
+},
+{
+"t": "part",
+"pos": [
+1386.0,
+151.7,
+4653.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 4",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+12.0,
+3.4,
+1.2
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+186,
+184,
+178
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Balustrade"
+},
+{
+"t": "part",
+"pos": [
+1432.0,
+128,
+4652.35
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 4",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+76.0,
+36,
+0.6
+],
+"mat": "Concrete",
+"var": "SG Graffiti B",
+"color": [
+200,
+200,
+200
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Graffiti Stair"
+},
+{
+"t": "part",
+"pos": [
+1528.0,
+175.0,
+4657.1
+],
+"rot": [
+0,
+-90,
+0
+],
+"group": "Stair Street 4",
+"layer": "LOD3",
+"shape": "Wedge",
+"size": [
+8.8,
+50.0,
+80.0
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+168,
+164,
+156
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Flight Upper"
+},
+{
+"t": "part",
+"pos": [
+1528.0,
+125,
+4657.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 4",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+80.0,
+50,
+8.8
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Flight Upper Base"
+},
+{
+"t": "part",
+"pos": [
+1574.0,
+125,
+4657.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 4",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+12.0,
+50,
+8.8
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+148,
+142
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Mid Landing"
+},
+{
+"t": "part",
+"pos": [
+1574.0,
+150.2,
+4657.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 4",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+12.0,
+0.4,
+8.8
+],
+"mat": "CeramicTiles",
+"var": "Textile Paving",
+"color": [
+196,
+176,
+70
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Landing Tactile"
+},
+{
+"t": "part",
+"pos": [
+1620.0,
+125.0,
+4657.1
+],
+"rot": [
+0,
+-90,
+0
+],
+"group": "Stair Street 4",
+"layer": "LOD3",
+"shape": "Wedge",
+"size": [
+8.8,
+50.0,
+80.0
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+168,
+164,
+156
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Flight Lower"
+},
+{
+"t": "part",
+"pos": [
+1528.0,
+177.2,
+4653.3
+],
+"rot": [
+0,
+0,
+-32.005
+],
+"group": "Stair Street 4",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+94.34,
+3.4,
+1.2
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+186,
+184,
+178
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Balustrade"
+},
+{
+"t": "part",
+"pos": [
+1620.0,
+127.2,
+4653.3
+],
+"rot": [
+0,
+0,
+-32.005
+],
+"group": "Stair Street 4",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+94.34,
+3.4,
+1.2
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+186,
+184,
+178
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Balustrade"
+},
+{
+"t": "part",
+"pos": [
+1574.0,
+151.7,
+4653.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 4",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+12.0,
+3.4,
+1.2
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+186,
+184,
+178
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Balustrade"
+},
+{
+"t": "part",
+"pos": [
+1528.0,
+128,
+4652.35
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 4",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+76.0,
+36,
+0.6
+],
+"mat": "Concrete",
+"var": "SG Graffiti B",
+"color": [
+200,
+200,
+200
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Graffiti Stair"
+},
+{
+"t": "part",
+"pos": [
+1480.0,
+196,
+4651.9
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 4",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+14.0,
+1.2,
+0.6
+],
+"mat": "Neon",
+"var": "",
+"color": [
+255,
+90,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Neon Strip"
+},
+{
+"t": "part",
+"pos": [
+-1610.5,
+124.0,
+4661.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+80,
+44,
+1.0
+],
+"mat": "Concrete",
+"var": "SG Graffiti A",
+"color": [
+205,
+205,
+205
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Graffiti Wall"
+},
+{
+"t": "part",
+"pos": [
+-1510.5,
+130.0,
+4661.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+120,
+56,
+1.0
+],
+"mat": "Concrete",
+"var": "SG Graffiti B",
+"color": [
+205,
+205,
+205
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Graffiti Wall"
+},
+{
+"t": "part",
+"pos": [
+-1626.5,
+108.5,
+4660.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+20,
+13,
+1.0
+],
+"mat": "Metal",
+"var": "Metal Shutters",
+"color": [
+170,
+120,
+110
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Wall Shutter"
+},
+{
+"t": "part",
+"pos": [
+-1626.5,
+116.5,
+4660.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+24,
+3,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shutter Lintel"
+},
+{
+"t": "part",
+"pos": [
+-1626.5,
+120,
+4658.2
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+10,
+2.4,
+0.6
+],
+"mat": "Neon",
+"var": "",
+"color": [
+255,
+90,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shop Sign"
+},
+{
+"t": "kit",
+"pos": [
+-1610.5,
+106.5,
+4659.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+-1604.5,
+106.5,
+4659.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+-1591.5,
+122,
+4659.9
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "pipe_bundle_40",
+"scale": 1.0,
+"collide": false,
+"name": "pipe_bundle_40"
+},
+{
+"t": "kit",
+"pos": [
+-1591.5,
+162,
+4659.9
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "pipe_bundle_40",
+"scale": 1.0,
+"collide": false,
+"name": "pipe_bundle_40"
+},
+{
+"t": "kit",
+"pos": [
+-1582.5,
+152,
+4659.4
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+-1582.5,
+172,
+4659.4
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+-1560.5,
+103.5,
+4659.2
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "part",
+"pos": [
+-1542.5,
+103.5,
+4658.9
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+16,
+3,
+5
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Wall Planter"
+},
+{
+"t": "clone",
+"pos": [
+-1542.5,
+105,
+4658.9
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD3",
+"key": "path bush group A",
+"name": "path bush group A"
+},
+{
+"t": "kit",
+"pos": [
+-1510.5,
+192,
+4660.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36"
+},
+{
+"t": "kit",
+"pos": [
+-1510.5,
+180,
+4660.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36"
+},
+{
+"t": "kit",
+"pos": [
+-1485.5,
+106.5,
+4659.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+-1479.5,
+106.5,
+4659.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+-1473.5,
+106.5,
+4659.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "part",
+"pos": [
+-1028.0,
+124.0,
+4661.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+80,
+44,
+1.0
+],
+"mat": "Concrete",
+"var": "SG Graffiti A",
+"color": [
+205,
+205,
+205
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Graffiti Wall"
+},
+{
+"t": "part",
+"pos": [
+-928.0,
+130.0,
+4661.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+120,
+56,
+1.0
+],
+"mat": "Concrete",
+"var": "SG Graffiti B",
+"color": [
+205,
+205,
+205
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Graffiti Wall"
+},
+{
+"t": "part",
+"pos": [
+-808.0,
+122.0,
+4661.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+120,
+40,
+1.0
+],
+"mat": "Concrete",
+"var": "SG Graffiti A",
+"color": [
+205,
+205,
+205
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Graffiti Wall"
+},
+{
+"t": "part",
+"pos": [
+-1044.0,
+108.5,
+4660.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+20,
+13,
+1.0
+],
+"mat": "Metal",
+"var": "Metal Shutters",
+"color": [
+150,
+152,
+156
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Wall Shutter"
+},
+{
+"t": "part",
+"pos": [
+-1044.0,
+116.5,
+4660.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+24,
+3,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shutter Lintel"
+},
+{
+"t": "part",
+"pos": [
+-1044.0,
+120,
+4658.2
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+10,
+2.4,
+0.6
+],
+"mat": "Neon",
+"var": "",
+"color": [
+255,
+90,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shop Sign"
+},
+{
+"t": "kit",
+"pos": [
+-1028.0,
+106.5,
+4659.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+-1022.0,
+106.5,
+4659.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+-1009.0,
+122,
+4659.9
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "pipe_bundle_40",
+"scale": 1.0,
+"collide": false,
+"name": "pipe_bundle_40"
+},
+{
+"t": "kit",
+"pos": [
+-1009.0,
+162,
+4659.9
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "pipe_bundle_40",
+"scale": 1.0,
+"collide": false,
+"name": "pipe_bundle_40"
+},
+{
+"t": "kit",
+"pos": [
+-1000.0,
+152,
+4659.4
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+-1000.0,
+172,
+4659.4
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+-978.0,
+103.5,
+4659.2
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "part",
+"pos": [
+-960.0,
+103.5,
+4658.9
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+16,
+3,
+5
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Wall Planter"
+},
+{
+"t": "clone",
+"pos": [
+-960.0,
+105,
+4658.9
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD3",
+"key": "path bush group A",
+"name": "path bush group A"
+},
+{
+"t": "kit",
+"pos": [
+-928.0,
+192,
+4660.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36"
+},
+{
+"t": "kit",
+"pos": [
+-928.0,
+180,
+4660.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36"
+},
+{
+"t": "kit",
+"pos": [
+-903.0,
+106.5,
+4659.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+-897.0,
+106.5,
+4659.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+-891.0,
+106.5,
+4659.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "part",
+"pos": [
+-864.0,
+108.5,
+4660.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+20,
+13,
+1.0
+],
+"mat": "Metal",
+"var": "Metal Shutters",
+"color": [
+110,
+140,
+160
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Wall Shutter"
+},
+{
+"t": "part",
+"pos": [
+-864.0,
+116.5,
+4660.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+24,
+3,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shutter Lintel"
+},
+{
+"t": "part",
+"pos": [
+-864.0,
+120,
+4658.2
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+10,
+2.4,
+0.6
+],
+"mat": "Neon",
+"var": "",
+"color": [
+255,
+200,
+60
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shop Sign"
+},
+{
+"t": "kit",
+"pos": [
+-848.0,
+106.5,
+4659.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+-842.0,
+106.5,
+4659.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+-829.0,
+122,
+4659.9
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "pipe_bundle_40",
+"scale": 1.0,
+"collide": false,
+"name": "pipe_bundle_40"
+},
+{
+"t": "kit",
+"pos": [
+-829.0,
+162,
+4659.9
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "pipe_bundle_40",
+"scale": 1.0,
+"collide": false,
+"name": "pipe_bundle_40"
+},
+{
+"t": "kit",
+"pos": [
+-820.0,
+152,
+4659.4
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+-820.0,
+172,
+4659.4
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+-798.0,
+103.5,
+4659.2
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "part",
+"pos": [
+-780.0,
+103.5,
+4658.9
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+16,
+3,
+5
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Wall Planter"
+},
+{
+"t": "clone",
+"pos": [
+-780.0,
+105,
+4658.9
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD3",
+"key": "path bush group A",
+"name": "path bush group A"
+},
+{
+"t": "part",
+"pos": [
+-338.0,
+124.0,
+4661.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+80,
+44,
+1.0
+],
+"mat": "Concrete",
+"var": "SG Graffiti A",
+"color": [
+205,
+205,
+205
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Graffiti Wall"
+},
+{
+"t": "part",
+"pos": [
+-258.0,
+130.0,
+4661.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+80,
+56,
+1.0
+],
+"mat": "Concrete",
+"var": "SG Graffiti B",
+"color": [
+205,
+205,
+205
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Graffiti Wall"
+},
+{
+"t": "part",
+"pos": [
+-354.0,
+108.5,
+4660.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+20,
+13,
+1.0
+],
+"mat": "Metal",
+"var": "Metal Shutters",
+"color": [
+150,
+152,
+156
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Wall Shutter"
+},
+{
+"t": "part",
+"pos": [
+-354.0,
+116.5,
+4660.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+24,
+3,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shutter Lintel"
+},
+{
+"t": "part",
+"pos": [
+-354.0,
+120,
+4658.2
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+10,
+2.4,
+0.6
+],
+"mat": "Neon",
+"var": "",
+"color": [
+255,
+90,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shop Sign"
+},
+{
+"t": "kit",
+"pos": [
+-338.0,
+106.5,
+4659.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+-332.0,
+106.5,
+4659.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+-319.0,
+122,
+4659.9
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "pipe_bundle_40",
+"scale": 1.0,
+"collide": false,
+"name": "pipe_bundle_40"
+},
+{
+"t": "kit",
+"pos": [
+-319.0,
+162,
+4659.9
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "pipe_bundle_40",
+"scale": 1.0,
+"collide": false,
+"name": "pipe_bundle_40"
+},
+{
+"t": "kit",
+"pos": [
+-310.0,
+152,
+4659.4
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+-310.0,
+172,
+4659.4
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+-288.0,
+103.5,
+4659.2
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "part",
+"pos": [
+-270.0,
+103.5,
+4658.9
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+16,
+3,
+5
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Wall Planter"
+},
+{
+"t": "clone",
+"pos": [
+-270.0,
+105,
+4658.9
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD3",
+"key": "path bush group A",
+"name": "path bush group A"
+},
+{
+"t": "kit",
+"pos": [
+-238.0,
+192,
+4660.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36"
+},
+{
+"t": "kit",
+"pos": [
+-238.0,
+180,
+4660.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36"
+},
+{
+"t": "clone",
+"pos": [
+-1624.5,
+102,
+4653.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+-1552.5,
+102,
+4653.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+-1480.5,
+102,
+4653.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+-1048.5,
+102,
+4653.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+-976.5,
+102,
+4653.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+-904.5,
+102,
+4653.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+-832.5,
+102,
+4653.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+-760.5,
+102,
+4653.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+-328.5,
+102,
+4653.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+-256.5,
+102,
+4653.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+-78.5,
+124.0,
+4661.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+80,
+44,
+1.0
+],
+"mat": "Concrete",
+"var": "SG Graffiti A",
+"color": [
+205,
+205,
+205
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Graffiti Wall"
+},
+{
+"t": "part",
+"pos": [
+21.5,
+130.0,
+4661.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+120,
+56,
+1.0
+],
+"mat": "Concrete",
+"var": "SG Graffiti B",
+"color": [
+205,
+205,
+205
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Graffiti Wall"
+},
+{
+"t": "part",
+"pos": [
+-94.5,
+108.5,
+4660.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+20,
+13,
+1.0
+],
+"mat": "Metal",
+"var": "Metal Shutters",
+"color": [
+150,
+152,
+156
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Wall Shutter"
+},
+{
+"t": "part",
+"pos": [
+-94.5,
+116.5,
+4660.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+24,
+3,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shutter Lintel"
+},
+{
+"t": "part",
+"pos": [
+-94.5,
+120,
+4658.2
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+10,
+2.4,
+0.6
+],
+"mat": "Neon",
+"var": "",
+"color": [
+255,
+200,
+60
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shop Sign"
+},
+{
+"t": "kit",
+"pos": [
+-78.5,
+106.5,
+4659.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+-72.5,
+106.5,
+4659.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+-59.5,
+122,
+4659.9
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "pipe_bundle_40",
+"scale": 1.0,
+"collide": false,
+"name": "pipe_bundle_40"
+},
+{
+"t": "kit",
+"pos": [
+-59.5,
+162,
+4659.9
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "pipe_bundle_40",
+"scale": 1.0,
+"collide": false,
+"name": "pipe_bundle_40"
+},
+{
+"t": "kit",
+"pos": [
+-50.5,
+152,
+4659.4
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+-50.5,
+172,
+4659.4
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+-28.5,
+103.5,
+4659.2
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "part",
+"pos": [
+-10.5,
+103.5,
+4658.9
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+16,
+3,
+5
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Wall Planter"
+},
+{
+"t": "clone",
+"pos": [
+-10.5,
+105,
+4658.9
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD3",
+"key": "path bush group A",
+"name": "path bush group A"
+},
+{
+"t": "kit",
+"pos": [
+21.5,
+180,
+4660.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36"
+},
+{
+"t": "kit",
+"pos": [
+46.5,
+106.5,
+4659.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+52.5,
+106.5,
+4659.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+58.5,
+106.5,
+4659.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "part",
+"pos": [
+85.5,
+108.5,
+4660.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+20,
+13,
+1.0
+],
+"mat": "Metal",
+"var": "Metal Shutters",
+"color": [
+150,
+152,
+156
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Wall Shutter"
+},
+{
+"t": "part",
+"pos": [
+85.5,
+116.5,
+4660.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+24,
+3,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shutter Lintel"
+},
+{
+"t": "part",
+"pos": [
+85.5,
+120,
+4658.2
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+10,
+2.4,
+0.6
+],
+"mat": "Neon",
+"var": "",
+"color": [
+255,
+200,
+60
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shop Sign"
+},
+{
+"t": "kit",
+"pos": [
+101.5,
+106.5,
+4659.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+107.5,
+106.5,
+4659.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "clone",
+"pos": [
+-92.5,
+102,
+4653.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+-20.5,
+102,
+4653.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+51.5,
+102,
+4653.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+249.5,
+124.0,
+4661.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+80,
+44,
+1.0
+],
+"mat": "Concrete",
+"var": "SG Graffiti A",
+"color": [
+205,
+205,
+205
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Graffiti Wall"
+},
+{
+"t": "part",
+"pos": [
+349.5,
+130.0,
+4661.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+120,
+56,
+1.0
+],
+"mat": "Concrete",
+"var": "SG Graffiti B",
+"color": [
+205,
+205,
+205
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Graffiti Wall"
+},
+{
+"t": "part",
+"pos": [
+449.5,
+122.0,
+4661.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+80,
+40,
+1.0
+],
+"mat": "Concrete",
+"var": "SG Graffiti A",
+"color": [
+205,
+205,
+205
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Graffiti Wall"
+},
+{
+"t": "part",
+"pos": [
+233.5,
+108.5,
+4660.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+20,
+13,
+1.0
+],
+"mat": "Metal",
+"var": "Metal Shutters",
+"color": [
+150,
+152,
+156
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Wall Shutter"
+},
+{
+"t": "part",
+"pos": [
+233.5,
+116.5,
+4660.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+24,
+3,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shutter Lintel"
+},
+{
+"t": "part",
+"pos": [
+233.5,
+120,
+4658.2
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+10,
+2.4,
+0.6
+],
+"mat": "Neon",
+"var": "",
+"color": [
+255,
+200,
+60
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shop Sign"
+},
+{
+"t": "kit",
+"pos": [
+249.5,
+106.5,
+4659.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+255.5,
+106.5,
+4659.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+268.5,
+122,
+4659.9
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "pipe_bundle_40",
+"scale": 1.0,
+"collide": false,
+"name": "pipe_bundle_40"
+},
+{
+"t": "kit",
+"pos": [
+268.5,
+162,
+4659.9
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "pipe_bundle_40",
+"scale": 1.0,
+"collide": false,
+"name": "pipe_bundle_40"
+},
+{
+"t": "kit",
+"pos": [
+277.5,
+152,
+4659.4
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+277.5,
+172,
+4659.4
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+299.5,
+103.5,
+4659.2
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "part",
+"pos": [
+317.5,
+103.5,
+4658.9
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+16,
+3,
+5
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Wall Planter"
+},
+{
+"t": "clone",
+"pos": [
+317.5,
+105,
+4658.9
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD3",
+"key": "path bush group A",
+"name": "path bush group A"
+},
+{
+"t": "kit",
+"pos": [
+349.5,
+192,
+4660.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36"
+},
+{
+"t": "kit",
+"pos": [
+349.5,
+180,
+4660.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36"
+},
+{
+"t": "kit",
+"pos": [
+374.5,
+106.5,
+4659.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+380.5,
+106.5,
+4659.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+386.5,
+106.5,
+4659.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "part",
+"pos": [
+413.5,
+108.5,
+4660.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+20,
+13,
+1.0
+],
+"mat": "Metal",
+"var": "Metal Shutters",
+"color": [
+150,
+152,
+156
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Wall Shutter"
+},
+{
+"t": "part",
+"pos": [
+413.5,
+116.5,
+4660.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+24,
+3,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shutter Lintel"
+},
+{
+"t": "part",
+"pos": [
+413.5,
+120,
+4658.2
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+10,
+2.4,
+0.6
+],
+"mat": "Neon",
+"var": "",
+"color": [
+255,
+200,
+60
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shop Sign"
+},
+{
+"t": "kit",
+"pos": [
+429.5,
+106.5,
+4659.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+435.5,
+106.5,
+4659.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+448.5,
+122,
+4659.9
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "pipe_bundle_40",
+"scale": 1.0,
+"collide": false,
+"name": "pipe_bundle_40"
+},
+{
+"t": "kit",
+"pos": [
+448.5,
+162,
+4659.9
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "pipe_bundle_40",
+"scale": 1.0,
+"collide": false,
+"name": "pipe_bundle_40"
+},
+{
+"t": "kit",
+"pos": [
+457.5,
+152,
+4659.4
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+457.5,
+172,
+4659.4
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "part",
+"pos": [
+912.0,
+124.0,
+4661.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+80,
+44,
+1.0
+],
+"mat": "Concrete",
+"var": "SG Graffiti A",
+"color": [
+205,
+205,
+205
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Graffiti Wall"
+},
+{
+"t": "part",
+"pos": [
+1012.0,
+130.0,
+4661.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+120,
+56,
+1.0
+],
+"mat": "Concrete",
+"var": "SG Graffiti B",
+"color": [
+205,
+205,
+205
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Graffiti Wall"
+},
+{
+"t": "part",
+"pos": [
+1152.0,
+122.0,
+4661.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+160,
+40,
+1.0
+],
+"mat": "Concrete",
+"var": "SG Graffiti A",
+"color": [
+205,
+205,
+205
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Graffiti Wall"
+},
+{
+"t": "part",
+"pos": [
+1252.0,
+134.0,
+4661.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+40,
+64,
+1.0
+],
+"mat": "Concrete",
+"var": "SG Graffiti B",
+"color": [
+205,
+205,
+205
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Graffiti Wall"
+},
+{
+"t": "part",
+"pos": [
+896.0,
+108.5,
+4660.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+20,
+13,
+1.0
+],
+"mat": "Metal",
+"var": "Metal Shutters",
+"color": [
+110,
+140,
+160
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Wall Shutter"
+},
+{
+"t": "part",
+"pos": [
+896.0,
+116.5,
+4660.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+24,
+3,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shutter Lintel"
+},
+{
+"t": "part",
+"pos": [
+896.0,
+120,
+4658.2
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+10,
+2.4,
+0.6
+],
+"mat": "Neon",
+"var": "",
+"color": [
+255,
+90,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shop Sign"
+},
+{
+"t": "kit",
+"pos": [
+912.0,
+106.5,
+4659.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+918.0,
+106.5,
+4659.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+931.0,
+122,
+4659.9
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "pipe_bundle_40",
+"scale": 1.0,
+"collide": false,
+"name": "pipe_bundle_40"
+},
+{
+"t": "kit",
+"pos": [
+931.0,
+162,
+4659.9
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "pipe_bundle_40",
+"scale": 1.0,
+"collide": false,
+"name": "pipe_bundle_40"
+},
+{
+"t": "kit",
+"pos": [
+940.0,
+152,
+4659.4
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+940.0,
+172,
+4659.4
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+962.0,
+103.5,
+4659.2
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "part",
+"pos": [
+980.0,
+103.5,
+4658.9
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+16,
+3,
+5
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Wall Planter"
+},
+{
+"t": "clone",
+"pos": [
+980.0,
+105,
+4658.9
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD3",
+"key": "path bush group A",
+"name": "path bush group A"
+},
+{
+"t": "kit",
+"pos": [
+1012.0,
+192,
+4660.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36"
+},
+{
+"t": "kit",
+"pos": [
+1012.0,
+180,
+4660.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36"
+},
+{
+"t": "kit",
+"pos": [
+1037.0,
+106.5,
+4659.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+1043.0,
+106.5,
+4659.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+1049.0,
+106.5,
+4659.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "part",
+"pos": [
+1076.0,
+108.5,
+4660.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+20,
+13,
+1.0
+],
+"mat": "Metal",
+"var": "Metal Shutters",
+"color": [
+150,
+152,
+156
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Wall Shutter"
+},
+{
+"t": "part",
+"pos": [
+1076.0,
+116.5,
+4660.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+24,
+3,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shutter Lintel"
+},
+{
+"t": "part",
+"pos": [
+1076.0,
+120,
+4658.2
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+10,
+2.4,
+0.6
+],
+"mat": "Neon",
+"var": "",
+"color": [
+255,
+200,
+60
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shop Sign"
+},
+{
+"t": "kit",
+"pos": [
+1092.0,
+106.5,
+4659.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+1098.0,
+106.5,
+4659.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+1111.0,
+122,
+4659.9
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "pipe_bundle_40",
+"scale": 1.0,
+"collide": false,
+"name": "pipe_bundle_40"
+},
+{
+"t": "kit",
+"pos": [
+1111.0,
+162,
+4659.9
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "pipe_bundle_40",
+"scale": 1.0,
+"collide": false,
+"name": "pipe_bundle_40"
+},
+{
+"t": "kit",
+"pos": [
+1120.0,
+152,
+4659.4
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+1120.0,
+172,
+4659.4
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+1142.0,
+103.5,
+4659.2
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "part",
+"pos": [
+1160.0,
+103.5,
+4658.9
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+16,
+3,
+5
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Wall Planter"
+},
+{
+"t": "clone",
+"pos": [
+1160.0,
+105,
+4658.9
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD3",
+"key": "path bush group A",
+"name": "path bush group A"
+},
+{
+"t": "kit",
+"pos": [
+1192.0,
+192,
+4660.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36"
+},
+{
+"t": "kit",
+"pos": [
+1192.0,
+180,
+4660.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36"
+},
+{
+"t": "kit",
+"pos": [
+1217.0,
+106.5,
+4659.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+1223.0,
+106.5,
+4659.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+1229.0,
+106.5,
+4659.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "part",
+"pos": [
+1256.0,
+108.5,
+4660.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+20,
+13,
+1.0
+],
+"mat": "Metal",
+"var": "Metal Shutters",
+"color": [
+110,
+140,
+160
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Wall Shutter"
+},
+{
+"t": "part",
+"pos": [
+1256.0,
+116.5,
+4660.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+24,
+3,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shutter Lintel"
+},
+{
+"t": "part",
+"pos": [
+1256.0,
+120,
+4658.2
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+10,
+2.4,
+0.6
+],
+"mat": "Neon",
+"var": "",
+"color": [
+255,
+200,
+60
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shop Sign"
+},
+{
+"t": "kit",
+"pos": [
+1272.0,
+106.5,
+4659.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+1278.0,
+106.5,
+4659.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "part",
+"pos": [
+1702.0,
+124.0,
+4661.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+80,
+44,
+1.0
+],
+"mat": "Concrete",
+"var": "SG Graffiti A",
+"color": [
+205,
+205,
+205
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Graffiti Wall"
+},
+{
+"t": "part",
+"pos": [
+1802.0,
+130.0,
+4661.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+120,
+56,
+1.0
+],
+"mat": "Concrete",
+"var": "SG Graffiti B",
+"color": [
+205,
+205,
+205
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Graffiti Wall"
+},
+{
+"t": "part",
+"pos": [
+1686.0,
+108.5,
+4660.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+20,
+13,
+1.0
+],
+"mat": "Metal",
+"var": "Metal Shutters",
+"color": [
+110,
+140,
+160
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Wall Shutter"
+},
+{
+"t": "part",
+"pos": [
+1686.0,
+116.5,
+4660.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+24,
+3,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shutter Lintel"
+},
+{
+"t": "part",
+"pos": [
+1686.0,
+120,
+4658.2
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+10,
+2.4,
+0.6
+],
+"mat": "Neon",
+"var": "",
+"color": [
+255,
+200,
+60
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shop Sign"
+},
+{
+"t": "kit",
+"pos": [
+1702.0,
+106.5,
+4659.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+1708.0,
+106.5,
+4659.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+1721.0,
+122,
+4659.9
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "pipe_bundle_40",
+"scale": 1.0,
+"collide": false,
+"name": "pipe_bundle_40"
+},
+{
+"t": "kit",
+"pos": [
+1721.0,
+162,
+4659.9
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "pipe_bundle_40",
+"scale": 1.0,
+"collide": false,
+"name": "pipe_bundle_40"
+},
+{
+"t": "kit",
+"pos": [
+1730.0,
+152,
+4659.4
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+1730.0,
+172,
+4659.4
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+1752.0,
+103.5,
+4659.2
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "part",
+"pos": [
+1770.0,
+103.5,
+4658.9
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+16,
+3,
+5
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Wall Planter"
+},
+{
+"t": "clone",
+"pos": [
+1770.0,
+105,
+4658.9
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD3",
+"key": "path bush group A",
+"name": "path bush group A"
+},
+{
+"t": "kit",
+"pos": [
+1802.0,
+192,
+4660.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36"
+},
+{
+"t": "kit",
+"pos": [
+1802.0,
+180,
+4660.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36"
+},
+{
+"t": "kit",
+"pos": [
+1827.0,
+106.5,
+4659.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+1833.0,
+106.5,
+4659.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+1839.0,
+106.5,
+4659.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "clone",
+"pos": [
+235.5,
+102,
+4653.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+307.5,
+102,
+4653.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+379.5,
+102,
+4653.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+451.5,
+102,
+4653.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+883.5,
+102,
+4653.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+955.5,
+102,
+4653.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+1027.5,
+102,
+4653.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+1099.5,
+102,
+4653.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+1171.5,
+102,
+4653.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+1243.5,
+102,
+4653.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+1675.5,
+102,
+4653.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+1747.5,
+102,
+4653.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+1819.5,
+102,
+4653.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Step Wall Life",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+-1250.0,
+145,
+4652.35
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 1",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+14.0,
+80,
+0.6
+],
+"mat": "Concrete",
+"var": "SG Graffiti A",
+"color": [
+210,
+210,
+210
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Tower Mural"
+},
+{
+"t": "part",
+"pos": [
+-560.0,
+145,
+4652.35
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 2",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+14.0,
+80,
+0.6
+],
+"mat": "Concrete",
+"var": "SG Graffiti B",
+"color": [
+210,
+210,
+210
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Tower Mural"
+},
+{
+"t": "part",
+"pos": [
+690.0,
+145,
+4652.35
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 3",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+14.0,
+80,
+0.6
+],
+"mat": "Concrete",
+"var": "SG Graffiti A",
+"color": [
+210,
+210,
+210
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Tower Mural"
+},
+{
+"t": "part",
+"pos": [
+1480.0,
+145,
+4652.35
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Stair Street 4",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+14.0,
+80,
+0.6
+],
+"mat": "Concrete",
+"var": "SG Graffiti B",
+"color": [
+210,
+210,
+210
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Tower Mural"
+},
+{
+"t": "part",
+"pos": [
+-972.0,
+200.5,
+4682.75
+],
+"rot": [
+0,
+90.0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+42.5,
+3,
+1533.0
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+170,
+162,
+154
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Terrace Paving"
+},
+{
+"t": "part",
+"pos": [
+-972.0,
+200.575,
+4704.75
+],
+"rot": [
+0,
+90.0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+1.5,
+3.15,
+1533.0
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+206,
+204,
+198
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Kerb"
+},
+{
+"t": "part",
+"pos": [
+-1498.25,
+202.25,
+4662.4
+],
+"rot": [
+0,
+90.0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+1.8,
+6.5,
+480.5
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+148,
+142
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Parapet"
+},
+{
+"t": "part",
+"pos": [
+-1498.25,
+205.9,
+4662.4
+],
+"rot": [
+0,
+90.0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+2.4,
+0.8,
+480.5
+],
+"mat": "Metal",
+"var": "",
+"color": [
+226,
+186,
+40
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Parapet Rail"
+},
+{
+"t": "part",
+"pos": [
+-905.0,
+202.25,
+4662.4
+],
+"rot": [
+0,
+90.0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+1.8,
+6.5,
+674.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+148,
+142
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Parapet"
+},
+{
+"t": "part",
+"pos": [
+-905.0,
+205.9,
+4662.4
+],
+"rot": [
+0,
+90.0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+2.4,
+0.8,
+674.0
+],
+"mat": "Metal",
+"var": "",
+"color": [
+226,
+186,
+40
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Parapet Rail"
+},
+{
+"t": "part",
+"pos": [
+-378.75,
+202.25,
+4662.4
+],
+"rot": [
+0,
+90.0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+1.8,
+6.5,
+346.5
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+148,
+142
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Parapet"
+},
+{
+"t": "part",
+"pos": [
+-378.75,
+205.9,
+4662.4
+],
+"rot": [
+0,
+90.0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+2.4,
+0.8,
+346.5
+],
+"mat": "Metal",
+"var": "",
+"color": [
+226,
+186,
+40
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Parapet Rail"
+},
+{
+"t": "clone",
+"pos": [
+-1714.5,
+202,
+4702.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+-1678.5,
+203.25,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+2.5,
+9
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "clone",
+"pos": [
+-1678.5,
+204.5,
+4698.0
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"key": "Tree Small Bamboo Group",
+"name": "Tree Small Bamboo Group"
+},
+{
+"t": "clone",
+"pos": [
+-1642.5,
+202,
+4702.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+-1606.5,
+203.25,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+2.5,
+9
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "clone",
+"pos": [
+-1606.5,
+204.5,
+4698.0
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "clone",
+"pos": [
+-1570.5,
+202,
+4702.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+-1534.5,
+203.25,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+2.5,
+9
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "clone",
+"pos": [
+-1534.5,
+204.5,
+4698.0
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"key": "Tree Small Bamboo Group",
+"name": "Tree Small Bamboo Group"
+},
+{
+"t": "clone",
+"pos": [
+-1498.5,
+202,
+4702.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+-1462.5,
+203.25,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+2.5,
+9
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "clone",
+"pos": [
+-1462.5,
+204.5,
+4698.0
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"key": "Tree Small Bamboo Group",
+"name": "Tree Small Bamboo Group"
+},
+{
+"t": "clone",
+"pos": [
+-1426.5,
+202,
+4702.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+-1390.5,
+203.25,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+2.5,
+9
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "clone",
+"pos": [
+-1390.5,
+204.5,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "clone",
+"pos": [
+-1354.5,
+202,
+4702.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+-1318.5,
+203.25,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+2.5,
+9
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "clone",
+"pos": [
+-1318.5,
+204.5,
+4698.0
+],
+"rot": [
+0,
+270,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"key": "Tree Small Bamboo Group",
+"name": "Tree Small Bamboo Group"
+},
+{
+"t": "clone",
+"pos": [
+-1282.5,
+202,
+4702.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+-1246.5,
+203.25,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+2.5,
+9
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "clone",
+"pos": [
+-1246.5,
+204.5,
+4698.0
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "clone",
+"pos": [
+-1210.5,
+202,
+4702.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+-1174.5,
+203.25,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+2.5,
+9
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "clone",
+"pos": [
+-1174.5,
+204.5,
+4698.0
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"key": "Tree Small Bamboo Group",
+"name": "Tree Small Bamboo Group"
+},
+{
+"t": "clone",
+"pos": [
+-1138.5,
+202,
+4702.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+-1102.5,
+203.25,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+2.5,
+9
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "clone",
+"pos": [
+-1102.5,
+204.5,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "clone",
+"pos": [
+-1066.5,
+202,
+4702.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+-1030.5,
+203.25,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+2.5,
+9
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "clone",
+"pos": [
+-1030.5,
+204.5,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "clone",
+"pos": [
+-994.5,
+202,
+4702.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+-958.5,
+203.25,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+2.5,
+9
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "clone",
+"pos": [
+-958.5,
+204.5,
+4698.0
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"key": "Tree Small Bamboo Group",
+"name": "Tree Small Bamboo Group"
+},
+{
+"t": "clone",
+"pos": [
+-922.5,
+202,
+4702.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+-886.5,
+203.25,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+2.5,
+9
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "clone",
+"pos": [
+-886.5,
+204.5,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "clone",
+"pos": [
+-850.5,
+202,
+4702.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+-814.5,
+203.25,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+2.5,
+9
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "clone",
+"pos": [
+-814.5,
+204.5,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "clone",
+"pos": [
+-778.5,
+202,
+4702.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+-742.5,
+203.25,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+2.5,
+9
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "clone",
+"pos": [
+-742.5,
+204.5,
+4698.0
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "clone",
+"pos": [
+-706.5,
+202,
+4702.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+-670.5,
+203.25,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+2.5,
+9
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "clone",
+"pos": [
+-670.5,
+204.5,
+4698.0
+],
+"rot": [
+0,
+270,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "clone",
+"pos": [
+-634.5,
+202,
+4702.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+-598.5,
+203.25,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+2.5,
+9
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "clone",
+"pos": [
+-598.5,
+204.5,
+4698.0
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "clone",
+"pos": [
+-562.5,
+202,
+4702.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+-526.5,
+203.25,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+2.5,
+9
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "clone",
+"pos": [
+-526.5,
+204.5,
+4698.0
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "clone",
+"pos": [
+-490.5,
+202,
+4702.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+-454.5,
+203.25,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+2.5,
+9
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "clone",
+"pos": [
+-454.5,
+204.5,
+4698.0
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"key": "Tree Small Bamboo Group",
+"name": "Tree Small Bamboo Group"
+},
+{
+"t": "clone",
+"pos": [
+-418.5,
+202,
+4702.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+-382.5,
+204.5,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "clone",
+"pos": [
+-346.5,
+202,
+4702.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+-310.5,
+203.25,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+2.5,
+9
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "clone",
+"pos": [
+-310.5,
+204.5,
+4698.0
+],
+"rot": [
+0,
+270,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "clone",
+"pos": [
+-274.5,
+202,
+4702.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+-238.5,
+203.25,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+2.5,
+9
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "clone",
+"pos": [
+-238.5,
+204.5,
+4698.0
+],
+"rot": [
+0,
+270,
+0
+],
+"group": "Step Terrace",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "part",
+"pos": [
+-1250.0,
+202.2,
+4673.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Market -1250",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+24.0,
+0.4,
+20
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Stairhead Paving"
+},
+{
+"t": "kit",
+"pos": [
+-1274.0,
+209,
+4670.7
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market -1250",
+"layer": "LOD2",
+"item": "market_stall",
+"scale": 1.0,
+"collide": false,
+"name": "market_stall",
+"color": [
+240,
+180,
+50
+]
+},
+{
+"t": "kit",
+"pos": [
+-1296.0,
+209,
+4670.7
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market -1250",
+"layer": "LOD2",
+"item": "market_stall",
+"scale": 1.0,
+"collide": false,
+"name": "market_stall",
+"color": [
+220,
+70,
+80
+]
+},
+{
+"t": "kit",
+"pos": [
+-1318.0,
+209,
+4670.7
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market -1250",
+"layer": "LOD2",
+"item": "market_stall",
+"scale": 1.0,
+"collide": false,
+"name": "market_stall",
+"color": [
+90,
+180,
+110
+]
+},
+{
+"t": "kit",
+"pos": [
+-1338.0,
+206.5,
+4665.7
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market -1250",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+-1344.0,
+206.5,
+4665.7
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market -1250",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+-1290.0,
+203.5,
+4685.5
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market -1250",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "kit",
+"pos": [
+-1226.0,
+209,
+4670.7
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market -1250",
+"layer": "LOD2",
+"item": "market_stall",
+"scale": 1.0,
+"collide": false,
+"name": "market_stall",
+"color": [
+240,
+180,
+50
+]
+},
+{
+"t": "kit",
+"pos": [
+-1204.0,
+209,
+4670.7
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market -1250",
+"layer": "LOD2",
+"item": "market_stall",
+"scale": 1.0,
+"collide": false,
+"name": "market_stall",
+"color": [
+60,
+150,
+210
+]
+},
+{
+"t": "kit",
+"pos": [
+-1182.0,
+209,
+4670.7
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market -1250",
+"layer": "LOD2",
+"item": "market_stall",
+"scale": 1.0,
+"collide": false,
+"name": "market_stall",
+"color": [
+240,
+180,
+50
+]
+},
+{
+"t": "kit",
+"pos": [
+-1162.0,
+206.5,
+4665.7
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market -1250",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+-1156.0,
+206.5,
+4665.7
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market -1250",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+-1210.0,
+203.5,
+4685.5
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market -1250",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "part",
+"pos": [
+-560.0,
+202.2,
+4673.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+24.0,
+0.4,
+20
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Stairhead Paving"
+},
+{
+"t": "kit",
+"pos": [
+-584.0,
+209,
+4670.7
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market -560",
+"layer": "LOD2",
+"item": "market_stall",
+"scale": 1.0,
+"collide": false,
+"name": "market_stall",
+"color": [
+90,
+180,
+110
+]
+},
+{
+"t": "kit",
+"pos": [
+-606.0,
+209,
+4670.7
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market -560",
+"layer": "LOD2",
+"item": "market_stall",
+"scale": 1.0,
+"collide": false,
+"name": "market_stall",
+"color": [
+240,
+180,
+50
+]
+},
+{
+"t": "kit",
+"pos": [
+-628.0,
+209,
+4670.7
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market -560",
+"layer": "LOD2",
+"item": "market_stall",
+"scale": 1.0,
+"collide": false,
+"name": "market_stall",
+"color": [
+60,
+150,
+210
+]
+},
+{
+"t": "kit",
+"pos": [
+-648.0,
+206.5,
+4665.7
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market -560",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+-654.0,
+206.5,
+4665.7
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market -560",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+-600.0,
+203.5,
+4685.5
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market -560",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "kit",
+"pos": [
+-536.0,
+209,
+4670.7
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market -560",
+"layer": "LOD2",
+"item": "market_stall",
+"scale": 1.0,
+"collide": false,
+"name": "market_stall",
+"color": [
+90,
+180,
+110
+]
+},
+{
+"t": "kit",
+"pos": [
+-514.0,
+209,
+4670.7
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market -560",
+"layer": "LOD2",
+"item": "market_stall",
+"scale": 1.0,
+"collide": false,
+"name": "market_stall",
+"color": [
+90,
+180,
+110
+]
+},
+{
+"t": "kit",
+"pos": [
+-492.0,
+209,
+4670.7
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market -560",
+"layer": "LOD2",
+"item": "market_stall",
+"scale": 1.0,
+"collide": false,
+"name": "market_stall",
+"color": [
+60,
+150,
+210
+]
+},
+{
+"t": "kit",
+"pos": [
+-472.0,
+206.5,
+4665.7
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market -560",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+-466.0,
+206.5,
+4665.7
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market -560",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+-520.0,
+203.5,
+4685.5
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market -560",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "part",
+"pos": [
+1042.0,
+200.5,
+4682.75
+],
+"rot": [
+0,
+90.0,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+42.5,
+3,
+1673.0
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+170,
+162,
+154
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Terrace Paving"
+},
+{
+"t": "part",
+"pos": [
+1042.0,
+200.575,
+4704.75
+],
+"rot": [
+0,
+90.0,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+1.5,
+3.15,
+1673.0
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+206,
+204,
+198
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Kerb"
+},
+{
+"t": "part",
+"pos": [
+443.75,
+202.25,
+4662.4
+],
+"rot": [
+0,
+90.0,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+1.8,
+6.5,
+476.5
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+148,
+142
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Parapet"
+},
+{
+"t": "part",
+"pos": [
+443.75,
+205.9,
+4662.4
+],
+"rot": [
+0,
+90.0,
+0
+],
+"group": "Market -560",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+2.4,
+0.8,
+476.5
+],
+"mat": "Metal",
+"var": "",
+"color": [
+226,
+186,
+40
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Parapet Rail"
+},
+{
+"t": "part",
+"pos": [
+1085.0,
+202.25,
+4662.4
+],
+"rot": [
+0,
+90.0,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+1.8,
+6.5,
+774.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+148,
+142
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Parapet"
+},
+{
+"t": "part",
+"pos": [
+1085.0,
+205.9,
+4662.4
+],
+"rot": [
+0,
+90.0,
+0
+],
+"group": "Market -560",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+2.4,
+0.8,
+774.0
+],
+"mat": "Metal",
+"var": "",
+"color": [
+226,
+186,
+40
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Parapet Rail"
+},
+{
+"t": "part",
+"pos": [
+1683.25,
+202.25,
+4662.4
+],
+"rot": [
+0,
+90.0,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+1.8,
+6.5,
+390.5
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+148,
+142
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Parapet"
+},
+{
+"t": "part",
+"pos": [
+1683.25,
+205.9,
+4662.4
+],
+"rot": [
+0,
+90.0,
+0
+],
+"group": "Market -560",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+2.4,
+0.8,
+390.5
+],
+"mat": "Metal",
+"var": "",
+"color": [
+226,
+186,
+40
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Parapet Rail"
+},
+{
+"t": "clone",
+"pos": [
+229.5,
+202,
+4702.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Market -560",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+265.5,
+203.25,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+2.5,
+9
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "clone",
+"pos": [
+265.5,
+204.5,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "clone",
+"pos": [
+301.5,
+202,
+4702.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Market -560",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+337.5,
+203.25,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+2.5,
+9
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "clone",
+"pos": [
+337.5,
+204.5,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "clone",
+"pos": [
+373.5,
+202,
+4702.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Market -560",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+409.5,
+203.25,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+2.5,
+9
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "clone",
+"pos": [
+409.5,
+204.5,
+4698.0
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"key": "Tree Small Bamboo Group",
+"name": "Tree Small Bamboo Group"
+},
+{
+"t": "clone",
+"pos": [
+445.5,
+202,
+4702.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Market -560",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+481.5,
+203.25,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+2.5,
+9
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "clone",
+"pos": [
+481.5,
+204.5,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"key": "Tree Small Bamboo Group",
+"name": "Tree Small Bamboo Group"
+},
+{
+"t": "clone",
+"pos": [
+517.5,
+202,
+4702.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Market -560",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+553.5,
+203.25,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+2.5,
+9
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "clone",
+"pos": [
+553.5,
+204.5,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "clone",
+"pos": [
+589.5,
+202,
+4702.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Market -560",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+625.5,
+203.25,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+2.5,
+9
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "clone",
+"pos": [
+625.5,
+204.5,
+4698.0
+],
+"rot": [
+0,
+270,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "clone",
+"pos": [
+661.5,
+202,
+4702.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Market -560",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+697.5,
+203.25,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+2.5,
+9
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "clone",
+"pos": [
+697.5,
+204.5,
+4698.0
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"key": "Tree Small Bamboo Group",
+"name": "Tree Small Bamboo Group"
+},
+{
+"t": "clone",
+"pos": [
+733.5,
+202,
+4702.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Market -560",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+769.5,
+203.25,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+2.5,
+9
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "clone",
+"pos": [
+769.5,
+204.5,
+4698.0
+],
+"rot": [
+0,
+270,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"key": "Tree Small Bamboo Group",
+"name": "Tree Small Bamboo Group"
+},
+{
+"t": "clone",
+"pos": [
+805.5,
+202,
+4702.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Market -560",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+841.5,
+203.25,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+2.5,
+9
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "clone",
+"pos": [
+841.5,
+204.5,
+4698.0
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "clone",
+"pos": [
+877.5,
+202,
+4702.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Market -560",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+913.5,
+203.25,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+2.5,
+9
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "clone",
+"pos": [
+913.5,
+204.5,
+4698.0
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "clone",
+"pos": [
+949.5,
+202,
+4702.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Market -560",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+985.5,
+203.25,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+2.5,
+9
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "clone",
+"pos": [
+985.5,
+204.5,
+4698.0
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "clone",
+"pos": [
+1021.5,
+202,
+4702.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Market -560",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+1057.5,
+203.25,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+2.5,
+9
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "clone",
+"pos": [
+1057.5,
+204.5,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "clone",
+"pos": [
+1093.5,
+202,
+4702.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Market -560",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+1129.5,
+203.25,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+2.5,
+9
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "clone",
+"pos": [
+1129.5,
+204.5,
+4698.0
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"key": "Tree Small Bamboo Group",
+"name": "Tree Small Bamboo Group"
+},
+{
+"t": "clone",
+"pos": [
+1165.5,
+202,
+4702.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Market -560",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+1201.5,
+203.25,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+2.5,
+9
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "clone",
+"pos": [
+1201.5,
+204.5,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "clone",
+"pos": [
+1237.5,
+202,
+4702.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Market -560",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+1273.5,
+203.25,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+2.5,
+9
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "clone",
+"pos": [
+1273.5,
+204.5,
+4698.0
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"key": "Tree Small Bamboo Group",
+"name": "Tree Small Bamboo Group"
+},
+{
+"t": "clone",
+"pos": [
+1309.5,
+202,
+4702.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Market -560",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+1345.5,
+203.25,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+2.5,
+9
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "clone",
+"pos": [
+1345.5,
+204.5,
+4698.0
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"key": "Tree Small Bamboo Group",
+"name": "Tree Small Bamboo Group"
+},
+{
+"t": "clone",
+"pos": [
+1381.5,
+202,
+4702.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Market -560",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+1417.5,
+203.25,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+2.5,
+9
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "clone",
+"pos": [
+1417.5,
+204.5,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"key": "Tree Small Bamboo Group",
+"name": "Tree Small Bamboo Group"
+},
+{
+"t": "clone",
+"pos": [
+1453.5,
+202,
+4702.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Market -560",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+1489.5,
+203.25,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+2.5,
+9
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "clone",
+"pos": [
+1489.5,
+204.5,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "clone",
+"pos": [
+1525.5,
+202,
+4702.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Market -560",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+1561.5,
+203.25,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+2.5,
+9
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "clone",
+"pos": [
+1561.5,
+204.5,
+4698.0
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "clone",
+"pos": [
+1597.5,
+202,
+4702.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Market -560",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+1633.5,
+203.25,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+2.5,
+9
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "clone",
+"pos": [
+1633.5,
+204.5,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "clone",
+"pos": [
+1669.5,
+202,
+4702.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Market -560",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+1705.5,
+203.25,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+2.5,
+9
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "clone",
+"pos": [
+1705.5,
+204.5,
+4698.0
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"key": "Tree Small Bamboo Group",
+"name": "Tree Small Bamboo Group"
+},
+{
+"t": "clone",
+"pos": [
+1741.5,
+202,
+4702.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Market -560",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+1777.5,
+203.25,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+2.5,
+9
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "clone",
+"pos": [
+1777.5,
+204.5,
+4698.0
+],
+"rot": [
+0,
+270,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"key": "Tree Small Bamboo Group",
+"name": "Tree Small Bamboo Group"
+},
+{
+"t": "clone",
+"pos": [
+1813.5,
+202,
+4702.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Market -560",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+1849.5,
+203.25,
+4698.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+2.5,
+9
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "clone",
+"pos": [
+1849.5,
+204.5,
+4698.0
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market -560",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "part",
+"pos": [
+690.0,
+202.2,
+4673.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Market 690",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+24.0,
+0.4,
+20
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Stairhead Paving"
+},
+{
+"t": "kit",
+"pos": [
+666.0,
+209,
+4670.7
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market 690",
+"layer": "LOD2",
+"item": "market_stall",
+"scale": 1.0,
+"collide": false,
+"name": "market_stall",
+"color": [
+240,
+180,
+50
+]
+},
+{
+"t": "kit",
+"pos": [
+644.0,
+209,
+4670.7
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market 690",
+"layer": "LOD2",
+"item": "market_stall",
+"scale": 1.0,
+"collide": false,
+"name": "market_stall",
+"color": [
+90,
+180,
+110
+]
+},
+{
+"t": "kit",
+"pos": [
+622.0,
+209,
+4670.7
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market 690",
+"layer": "LOD2",
+"item": "market_stall",
+"scale": 1.0,
+"collide": false,
+"name": "market_stall",
+"color": [
+90,
+180,
+110
+]
+},
+{
+"t": "kit",
+"pos": [
+602.0,
+206.5,
+4665.7
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market 690",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+596.0,
+206.5,
+4665.7
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market 690",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+650.0,
+203.5,
+4685.5
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market 690",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "kit",
+"pos": [
+714.0,
+209,
+4670.7
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market 690",
+"layer": "LOD2",
+"item": "market_stall",
+"scale": 1.0,
+"collide": false,
+"name": "market_stall",
+"color": [
+90,
+180,
+110
+]
+},
+{
+"t": "kit",
+"pos": [
+736.0,
+209,
+4670.7
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market 690",
+"layer": "LOD2",
+"item": "market_stall",
+"scale": 1.0,
+"collide": false,
+"name": "market_stall",
+"color": [
+220,
+70,
+80
+]
+},
+{
+"t": "kit",
+"pos": [
+758.0,
+209,
+4670.7
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market 690",
+"layer": "LOD2",
+"item": "market_stall",
+"scale": 1.0,
+"collide": false,
+"name": "market_stall",
+"color": [
+220,
+70,
+80
+]
+},
+{
+"t": "kit",
+"pos": [
+778.0,
+206.5,
+4665.7
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market 690",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+784.0,
+206.5,
+4665.7
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market 690",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+730.0,
+203.5,
+4685.5
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market 690",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "part",
+"pos": [
+1480.0,
+202.2,
+4673.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Market 1480",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+24.0,
+0.4,
+20
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Stairhead Paving"
+},
+{
+"t": "kit",
+"pos": [
+1456.0,
+209,
+4670.7
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market 1480",
+"layer": "LOD2",
+"item": "market_stall",
+"scale": 1.0,
+"collide": false,
+"name": "market_stall",
+"color": [
+220,
+70,
+80
+]
+},
+{
+"t": "kit",
+"pos": [
+1434.0,
+209,
+4670.7
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market 1480",
+"layer": "LOD2",
+"item": "market_stall",
+"scale": 1.0,
+"collide": false,
+"name": "market_stall",
+"color": [
+240,
+180,
+50
+]
+},
+{
+"t": "kit",
+"pos": [
+1412.0,
+209,
+4670.7
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market 1480",
+"layer": "LOD2",
+"item": "market_stall",
+"scale": 1.0,
+"collide": false,
+"name": "market_stall",
+"color": [
+240,
+180,
+50
+]
+},
+{
+"t": "kit",
+"pos": [
+1392.0,
+206.5,
+4665.7
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market 1480",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+1386.0,
+206.5,
+4665.7
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market 1480",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+1440.0,
+203.5,
+4685.5
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market 1480",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "kit",
+"pos": [
+1504.0,
+209,
+4670.7
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market 1480",
+"layer": "LOD2",
+"item": "market_stall",
+"scale": 1.0,
+"collide": false,
+"name": "market_stall",
+"color": [
+220,
+70,
+80
+]
+},
+{
+"t": "kit",
+"pos": [
+1526.0,
+209,
+4670.7
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market 1480",
+"layer": "LOD2",
+"item": "market_stall",
+"scale": 1.0,
+"collide": false,
+"name": "market_stall",
+"color": [
+90,
+180,
+110
+]
+},
+{
+"t": "kit",
+"pos": [
+1548.0,
+209,
+4670.7
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market 1480",
+"layer": "LOD2",
+"item": "market_stall",
+"scale": 1.0,
+"collide": false,
+"name": "market_stall",
+"color": [
+220,
+70,
+80
+]
+},
+{
+"t": "kit",
+"pos": [
+1568.0,
+206.5,
+4665.7
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market 1480",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+1574.0,
+206.5,
+4665.7
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market 1480",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+1520.0,
+203.5,
+4685.5
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Market 1480",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+}
+]
+}

@@ -1,0 +1,355 @@
+{
+"id": "X5",
+"kind": "building",
+"title": "X5 Tube Bridge",
+"lean": "metabolist",
+"stats": {
+"tris": 1632,
+"parts": 8,
+"kit": 4,
+"min": [
+382,
+339,
+4574
+],
+"max": [
+418,
+373,
+4780
+]
+},
+"elements": [
+{
+"t": "part",
+"pos": [
+400.0,
+349.0,
+4678.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "X5 Tube",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+12,
+2,
+204
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+190,
+190,
+186
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Deck"
+},
+{
+"t": "part",
+"pos": [
+400.0,
+344.0,
+4678.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "X5 Tube",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+10,
+8,
+204
+],
+"mat": "Concrete",
+"var": "SG Capsule Panels",
+"color": [
+226,
+226,
+222
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Spine"
+},
+{
+"t": "part",
+"pos": [
+400.0,
+339.5,
+4678.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "X5 Tube",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+2,
+1,
+188
+],
+"mat": "Neon",
+"var": "",
+"color": [
+90,
+220,
+255
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "NeonStrip"
+},
+{
+"t": "part",
+"pos": [
+400.0,
+356.0,
+4578.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "X5 Tube",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+28,
+30,
+8
+],
+"mat": "Concrete",
+"var": "SG Capsule Panels",
+"color": [
+205,
+205,
+198
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Collar"
+},
+{
+"t": "part",
+"pos": [
+400.0,
+356.0,
+4777.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "X5 Tube",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+28,
+30,
+6
+],
+"mat": "Concrete",
+"var": "SG Capsule Panels",
+"color": [
+205,
+205,
+198
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Collar"
+},
+{
+"t": "part",
+"pos": [
+400.0,
+356.0,
+4678.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "X5 Tube",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+32,
+30,
+32
+],
+"mat": "SmoothPlastic",
+"var": "SG Windows Capsule",
+"color": [
+226,
+226,
+222
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pod"
+},
+{
+"t": "part",
+"pos": [
+400.0,
+371.5,
+4678.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "X5 Tube",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+36,
+3,
+36
+],
+"mat": "Concrete",
+"var": "SG Capsule Panels",
+"color": [
+176,
+174,
+168
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PodRoof"
+},
+{
+"t": "part",
+"pos": [
+400.0,
+340.5,
+4678.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "X5 Tube",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+36,
+3,
+36
+],
+"mat": "Concrete",
+"var": "SG Capsule Panels",
+"color": [
+176,
+174,
+168
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PodFloor"
+},
+{
+"t": "kit",
+"pos": [
+400,
+356,
+4602
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "X5 Tube",
+"layer": "LOD4",
+"item": "bridge_tube_40",
+"scale": 1.0,
+"collide": false,
+"name": "bridge_tube_40"
+},
+{
+"t": "kit",
+"pos": [
+400,
+356,
+4642
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "X5 Tube",
+"layer": "LOD4",
+"item": "bridge_tube_40",
+"scale": 1.0,
+"collide": false,
+"name": "bridge_tube_40"
+},
+{
+"t": "kit",
+"pos": [
+400,
+356,
+4714
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "X5 Tube",
+"layer": "LOD4",
+"item": "bridge_tube_40",
+"scale": 1.0,
+"collide": false,
+"name": "bridge_tube_40"
+},
+{
+"t": "kit",
+"pos": [
+400,
+356,
+4754
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "X5 Tube",
+"layer": "LOD4",
+"item": "bridge_tube_40",
+"scale": 1.0,
+"collide": false,
+"name": "bridge_tube_40"
+}
+]
+}

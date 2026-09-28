@@ -1,0 +1,6038 @@
+{
+"id": "streetscape_waterfront",
+"kind": "streetscape",
+"title": "Waterfront promenade and fishing piers",
+"lean": "",
+"stats": {
+"tris": 6124,
+"parts": 79,
+"kit": 64,
+"min": [
+-914,
+69,
+3806
+],
+"max": [
+1206,
+115,
+4002
+]
+},
+"elements": [
+{
+"t": "part",
+"pos": [
+146.0,
+100.5,
+3995.75
+],
+"rot": [
+0,
+90.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+10.5,
+3,
+2121.0
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+150,
+144,
+138
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pavement"
+},
+{
+"t": "part",
+"pos": [
+146.0,
+100.575,
+4001.75
+],
+"rot": [
+0,
+90.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+1.5,
+3.15,
+2121.0
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+206,
+204,
+198
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Kerb"
+},
+{
+"t": "part",
+"pos": [
+146.0,
+99.9,
+3979.5
+],
+"rot": [
+0,
+90.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+21,
+1.8,
+2121.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+92,
+132,
+66
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Verge"
+},
+{
+"t": "part",
+"pos": [
+146.0,
+100.3,
+3968.5
+],
+"rot": [
+0,
+90.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+1.2,
+2.6,
+2121.0
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+206,
+204,
+198
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Verge Edge"
+},
+{
+"t": "part",
+"pos": [
+146.0,
+99.95,
+3957.0
+],
+"rot": [
+0,
+90.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+22,
+1.9,
+2121.0
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Promenade Paving"
+},
+{
+"t": "part",
+"pos": [
+146.0,
+99.95,
+3931.5
+],
+"rot": [
+0,
+90.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+29,
+1.9,
+2121.0
+],
+"mat": "Wood",
+"var": "Plywood",
+"color": [
+132,
+98,
+70
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Boardwalk"
+},
+{
+"t": "part",
+"pos": [
+146.0,
+99.3,
+3917.0
+],
+"rot": [
+0,
+90.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+3,
+4.6,
+2121.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+206,
+204,
+198
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Quay Coping"
+},
+{
+"t": "clone",
+"pos": [
+-823.5,
+101.6,
+3917.7
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Railings Left",
+"name": "Railings Left"
+},
+{
+"t": "clone",
+"pos": [
+-728.5,
+101.6,
+3917.7
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "railing simple",
+"name": "railing simple"
+},
+{
+"t": "clone",
+"pos": [
+-716.5,
+101.6,
+3917.7
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "railing simple",
+"name": "railing simple"
+},
+{
+"t": "clone",
+"pos": [
+-704.5,
+101.6,
+3917.7
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "railing simple",
+"name": "railing simple"
+},
+{
+"t": "clone",
+"pos": [
+-692.5,
+101.6,
+3917.7
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "railing simple",
+"name": "railing simple"
+},
+{
+"t": "clone",
+"pos": [
+-680.5,
+101.6,
+3917.7
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "railing simple",
+"name": "railing simple"
+},
+{
+"t": "clone",
+"pos": [
+-668.5,
+101.6,
+3917.7
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "railing simple",
+"name": "railing simple"
+},
+{
+"t": "clone",
+"pos": [
+-656.5,
+101.6,
+3917.7
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "railing simple",
+"name": "railing simple"
+},
+{
+"t": "clone",
+"pos": [
+-644.5,
+101.6,
+3917.7
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "railing simple",
+"name": "railing simple"
+},
+{
+"t": "clone",
+"pos": [
+-632.5,
+101.6,
+3917.7
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "railing simple",
+"name": "railing simple"
+},
+{
+"t": "clone",
+"pos": [
+-620.5,
+101.6,
+3917.7
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "railing simple",
+"name": "railing simple"
+},
+{
+"t": "clone",
+"pos": [
+-503.0,
+101.6,
+3917.7
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Railings Left",
+"name": "Railings Left"
+},
+{
+"t": "clone",
+"pos": [
+-325.0,
+101.6,
+3917.7
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Railings Left",
+"name": "Railings Left"
+},
+{
+"t": "clone",
+"pos": [
+-147.0,
+101.6,
+3917.7
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Railings Left",
+"name": "Railings Left"
+},
+{
+"t": "clone",
+"pos": [
+31.0,
+101.6,
+3917.7
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Railings Left",
+"name": "Railings Left"
+},
+{
+"t": "clone",
+"pos": [
+209.0,
+101.6,
+3917.7
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Railings Left",
+"name": "Railings Left"
+},
+{
+"t": "clone",
+"pos": [
+387.0,
+101.6,
+3917.7
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Railings Left",
+"name": "Railings Left"
+},
+{
+"t": "clone",
+"pos": [
+565.0,
+101.6,
+3917.7
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Railings Left",
+"name": "Railings Left"
+},
+{
+"t": "clone",
+"pos": [
+660.0,
+101.6,
+3917.7
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "railing simple",
+"name": "railing simple"
+},
+{
+"t": "clone",
+"pos": [
+672.0,
+101.6,
+3917.7
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "railing simple",
+"name": "railing simple"
+},
+{
+"t": "clone",
+"pos": [
+684.0,
+101.6,
+3917.7
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "railing simple",
+"name": "railing simple"
+},
+{
+"t": "clone",
+"pos": [
+696.0,
+101.6,
+3917.7
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "railing simple",
+"name": "railing simple"
+},
+{
+"t": "clone",
+"pos": [
+708.0,
+101.6,
+3917.7
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "railing simple",
+"name": "railing simple"
+},
+{
+"t": "clone",
+"pos": [
+720.0,
+101.6,
+3917.7
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "railing simple",
+"name": "railing simple"
+},
+{
+"t": "clone",
+"pos": [
+732.0,
+101.6,
+3917.7
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "railing simple",
+"name": "railing simple"
+},
+{
+"t": "clone",
+"pos": [
+744.0,
+101.6,
+3917.7
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "railing simple",
+"name": "railing simple"
+},
+{
+"t": "clone",
+"pos": [
+857.0,
+101.6,
+3917.7
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Railings Left",
+"name": "Railings Left"
+},
+{
+"t": "clone",
+"pos": [
+1035.0,
+101.6,
+3917.7
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Railings Left",
+"name": "Railings Left"
+},
+{
+"t": "clone",
+"pos": [
+1130.0,
+101.6,
+3917.7
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "railing simple",
+"name": "railing simple"
+},
+{
+"t": "clone",
+"pos": [
+1142.0,
+101.6,
+3917.7
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "railing simple",
+"name": "railing simple"
+},
+{
+"t": "clone",
+"pos": [
+1154.0,
+101.6,
+3917.7
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "railing simple",
+"name": "railing simple"
+},
+{
+"t": "clone",
+"pos": [
+1166.0,
+101.6,
+3917.7
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "railing simple",
+"name": "railing simple"
+},
+{
+"t": "clone",
+"pos": [
+1178.0,
+101.6,
+3917.7
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "railing simple",
+"name": "railing simple"
+},
+{
+"t": "clone",
+"pos": [
+1190.0,
+101.6,
+3917.7
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "railing simple",
+"name": "railing simple"
+},
+{
+"t": "clone",
+"pos": [
+-894.5,
+102,
+3999.7
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+-858.5,
+100.9,
+3947.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+-912.5,
+100.8,
+3980
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD3",
+"key": "Tree Large Maple",
+"name": "Tree Large Maple"
+},
+{
+"t": "kit",
+"pos": [
+-876.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "kit",
+"pos": [
+-840.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "clone",
+"pos": [
+-822.5,
+102,
+3999.7
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+-786.5,
+100.9,
+3947.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+-804.5,
+100.8,
+3980
+],
+"rot": [
+0,
+67,
+0
+],
+"group": "Promenade",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "kit",
+"pos": [
+-804.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "kit",
+"pos": [
+-768.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "clone",
+"pos": [
+-768.5,
+100.8,
+3980
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Promenade",
+"layer": "LOD3",
+"key": "path bush group A",
+"name": "path bush group A"
+},
+{
+"t": "clone",
+"pos": [
+-750.5,
+102,
+3999.7
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+-714.5,
+100.9,
+3947.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+-732.5,
+100.8,
+3980
+],
+"rot": [
+0,
+134,
+0
+],
+"group": "Promenade",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "kit",
+"pos": [
+-732.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "kit",
+"pos": [
+-696.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "clone",
+"pos": [
+-678.5,
+102,
+3999.7
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+-642.5,
+100.9,
+3947.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+-696.5,
+100.8,
+3980
+],
+"rot": [
+0,
+201,
+0
+],
+"group": "Promenade",
+"layer": "LOD3",
+"key": "Tree Large Maple",
+"name": "Tree Large Maple"
+},
+{
+"t": "kit",
+"pos": [
+-660.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "kit",
+"pos": [
+-624.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "clone",
+"pos": [
+-606.5,
+102,
+3999.7
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+-570.5,
+100.9,
+3947.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+-588.5,
+100.8,
+3980
+],
+"rot": [
+0,
+268,
+0
+],
+"group": "Promenade",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "clone",
+"pos": [
+-534.5,
+102,
+3999.7
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+-498.5,
+100.9,
+3947.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+-516.5,
+100.8,
+3980
+],
+"rot": [
+0,
+335,
+0
+],
+"group": "Promenade",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "kit",
+"pos": [
+-516.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "kit",
+"pos": [
+-480.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "clone",
+"pos": [
+-480.5,
+100.8,
+3980
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Promenade",
+"layer": "LOD3",
+"key": "path bush group A",
+"name": "path bush group A"
+},
+{
+"t": "clone",
+"pos": [
+-462.5,
+102,
+3999.7
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+-426.5,
+100.9,
+3947.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+-480.5,
+100.8,
+3980
+],
+"rot": [
+0,
+42,
+0
+],
+"group": "Promenade",
+"layer": "LOD3",
+"key": "Tree Large Maple",
+"name": "Tree Large Maple"
+},
+{
+"t": "kit",
+"pos": [
+-444.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "kit",
+"pos": [
+-408.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "clone",
+"pos": [
+-390.5,
+102,
+3999.7
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+-354.5,
+100.9,
+3947.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+-372.5,
+100.8,
+3980
+],
+"rot": [
+0,
+109,
+0
+],
+"group": "Promenade",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "kit",
+"pos": [
+-372.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "kit",
+"pos": [
+-336.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "clone",
+"pos": [
+-318.5,
+102,
+3999.7
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+-282.5,
+100.9,
+3947.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+-300.5,
+100.8,
+3980
+],
+"rot": [
+0,
+176,
+0
+],
+"group": "Promenade",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "kit",
+"pos": [
+-300.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "kit",
+"pos": [
+-264.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "clone",
+"pos": [
+-246.5,
+102,
+3999.7
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+-210.5,
+100.9,
+3947.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+-264.5,
+100.8,
+3980
+],
+"rot": [
+0,
+243,
+0
+],
+"group": "Promenade",
+"layer": "LOD3",
+"key": "Tree Large Maple",
+"name": "Tree Large Maple"
+},
+{
+"t": "kit",
+"pos": [
+-228.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "kit",
+"pos": [
+-192.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "clone",
+"pos": [
+-192.5,
+100.8,
+3980
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Promenade",
+"layer": "LOD3",
+"key": "path bush group A",
+"name": "path bush group A"
+},
+{
+"t": "clone",
+"pos": [
+-174.5,
+102,
+3999.7
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+-138.5,
+100.9,
+3947.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+-156.5,
+100.8,
+3980
+],
+"rot": [
+0,
+310,
+0
+],
+"group": "Promenade",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "kit",
+"pos": [
+-156.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "kit",
+"pos": [
+-120.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "clone",
+"pos": [
+-102.5,
+102,
+3999.7
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+-66.5,
+100.9,
+3947.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+-84.5,
+100.8,
+3980
+],
+"rot": [
+0,
+17,
+0
+],
+"group": "Promenade",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "kit",
+"pos": [
+-84.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "kit",
+"pos": [
+-48.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "clone",
+"pos": [
+-30.5,
+102,
+3999.7
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+5.5,
+100.9,
+3947.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+-48.5,
+100.8,
+3980
+],
+"rot": [
+0,
+84,
+0
+],
+"group": "Promenade",
+"layer": "LOD3",
+"key": "Tree Large Maple",
+"name": "Tree Large Maple"
+},
+{
+"t": "kit",
+"pos": [
+-12.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "kit",
+"pos": [
+23.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "clone",
+"pos": [
+41.5,
+102,
+3999.7
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+77.5,
+100.9,
+3947.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+59.5,
+100.8,
+3980
+],
+"rot": [
+0,
+151,
+0
+],
+"group": "Promenade",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "kit",
+"pos": [
+59.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "kit",
+"pos": [
+95.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "clone",
+"pos": [
+95.5,
+100.8,
+3980
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Promenade",
+"layer": "LOD3",
+"key": "path bush group A",
+"name": "path bush group A"
+},
+{
+"t": "clone",
+"pos": [
+113.5,
+102,
+3999.7
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+149.5,
+100.9,
+3947.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+131.5,
+100.8,
+3980
+],
+"rot": [
+0,
+218,
+0
+],
+"group": "Promenade",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "kit",
+"pos": [
+131.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "kit",
+"pos": [
+167.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "clone",
+"pos": [
+185.5,
+102,
+3999.7
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+221.5,
+100.9,
+3947.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+167.5,
+100.8,
+3980
+],
+"rot": [
+0,
+285,
+0
+],
+"group": "Promenade",
+"layer": "LOD3",
+"key": "Tree Large Maple",
+"name": "Tree Large Maple"
+},
+{
+"t": "kit",
+"pos": [
+203.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "kit",
+"pos": [
+239.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "clone",
+"pos": [
+257.5,
+102,
+3999.7
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+293.5,
+100.9,
+3947.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+275.5,
+100.8,
+3980
+],
+"rot": [
+0,
+352,
+0
+],
+"group": "Promenade",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "kit",
+"pos": [
+275.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "kit",
+"pos": [
+311.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "clone",
+"pos": [
+329.5,
+102,
+3999.7
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+365.5,
+100.9,
+3947.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+347.5,
+100.8,
+3980
+],
+"rot": [
+0,
+59,
+0
+],
+"group": "Promenade",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "kit",
+"pos": [
+347.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "kit",
+"pos": [
+383.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "clone",
+"pos": [
+383.5,
+100.8,
+3980
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Promenade",
+"layer": "LOD3",
+"key": "path bush group A",
+"name": "path bush group A"
+},
+{
+"t": "clone",
+"pos": [
+401.5,
+102,
+3999.7
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+437.5,
+100.9,
+3947.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+383.5,
+100.8,
+3980
+],
+"rot": [
+0,
+126,
+0
+],
+"group": "Promenade",
+"layer": "LOD3",
+"key": "Tree Large Maple",
+"name": "Tree Large Maple"
+},
+{
+"t": "kit",
+"pos": [
+419.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "kit",
+"pos": [
+455.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "clone",
+"pos": [
+473.5,
+102,
+3999.7
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+509.5,
+100.9,
+3947.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+491.5,
+100.8,
+3980
+],
+"rot": [
+0,
+193,
+0
+],
+"group": "Promenade",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "kit",
+"pos": [
+491.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "kit",
+"pos": [
+527.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "clone",
+"pos": [
+545.5,
+102,
+3999.7
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+581.5,
+100.9,
+3947.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+563.5,
+100.8,
+3980
+],
+"rot": [
+0,
+260,
+0
+],
+"group": "Promenade",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "kit",
+"pos": [
+563.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "kit",
+"pos": [
+599.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "clone",
+"pos": [
+617.5,
+102,
+3999.7
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+653.5,
+100.9,
+3947.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+599.5,
+100.8,
+3980
+],
+"rot": [
+0,
+327,
+0
+],
+"group": "Promenade",
+"layer": "LOD3",
+"key": "Tree Large Maple",
+"name": "Tree Large Maple"
+},
+{
+"t": "kit",
+"pos": [
+635.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "kit",
+"pos": [
+671.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "clone",
+"pos": [
+671.5,
+100.8,
+3980
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Promenade",
+"layer": "LOD3",
+"key": "path bush group A",
+"name": "path bush group A"
+},
+{
+"t": "clone",
+"pos": [
+689.5,
+102,
+3999.7
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+725.5,
+100.9,
+3947.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+707.5,
+100.8,
+3980
+],
+"rot": [
+0,
+34,
+0
+],
+"group": "Promenade",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "kit",
+"pos": [
+707.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "kit",
+"pos": [
+743.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "clone",
+"pos": [
+761.5,
+102,
+3999.7
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+797.5,
+100.9,
+3947.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+779.5,
+100.8,
+3980
+],
+"rot": [
+0,
+101,
+0
+],
+"group": "Promenade",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "clone",
+"pos": [
+833.5,
+102,
+3999.7
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+869.5,
+100.9,
+3947.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+815.5,
+100.8,
+3980
+],
+"rot": [
+0,
+168,
+0
+],
+"group": "Promenade",
+"layer": "LOD3",
+"key": "Tree Large Maple",
+"name": "Tree Large Maple"
+},
+{
+"t": "kit",
+"pos": [
+851.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "kit",
+"pos": [
+887.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "clone",
+"pos": [
+905.5,
+102,
+3999.7
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+941.5,
+100.9,
+3947.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+923.5,
+100.8,
+3980
+],
+"rot": [
+0,
+235,
+0
+],
+"group": "Promenade",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "kit",
+"pos": [
+923.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "kit",
+"pos": [
+959.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "clone",
+"pos": [
+959.5,
+100.8,
+3980
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Promenade",
+"layer": "LOD3",
+"key": "path bush group A",
+"name": "path bush group A"
+},
+{
+"t": "clone",
+"pos": [
+977.5,
+102,
+3999.7
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+1013.5,
+100.9,
+3947.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+995.5,
+100.8,
+3980
+],
+"rot": [
+0,
+302,
+0
+],
+"group": "Promenade",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "kit",
+"pos": [
+995.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "kit",
+"pos": [
+1031.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "clone",
+"pos": [
+1049.5,
+102,
+3999.7
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+1085.5,
+100.9,
+3947.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+1031.5,
+100.8,
+3980
+],
+"rot": [
+0,
+9,
+0
+],
+"group": "Promenade",
+"layer": "LOD3",
+"key": "Tree Large Maple",
+"name": "Tree Large Maple"
+},
+{
+"t": "kit",
+"pos": [
+1067.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "kit",
+"pos": [
+1103.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "clone",
+"pos": [
+1121.5,
+102,
+3999.7
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+1157.5,
+100.9,
+3947.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+1139.5,
+100.8,
+3980
+],
+"rot": [
+0,
+76,
+0
+],
+"group": "Promenade",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "kit",
+"pos": [
+1139.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "kit",
+"pos": [
+1175.5,
+102.4,
+3928
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "clone",
+"pos": [
+1193.5,
+102,
+3999.7
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+1229.5,
+100.9,
+3947.5
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Promenade",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+1247.5,
+100.8,
+3980
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Promenade",
+"layer": "LOD3",
+"key": "path bush group A",
+"name": "path bush group A"
+},
+{
+"t": "part",
+"pos": [
+-600.0,
+100.3,
+3868.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 1",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+14.0,
+1.2,
+98.0
+],
+"mat": "Wood",
+"var": "Plywood",
+"color": [
+132,
+98,
+70
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier Deck"
+},
+{
+"t": "part",
+"pos": [
+-600.0,
+100.3,
+3813.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 1",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+40,
+1.2,
+16
+],
+"mat": "Wood",
+"var": "Plywood",
+"color": [
+132,
+98,
+70
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier Head"
+},
+{
+"t": "part",
+"pos": [
+-600.0,
+98.2,
+3868.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 1",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+16.0,
+3,
+98.0
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier Beam"
+},
+{
+"t": "part",
+"pos": [
+-605.5,
+84,
+3903.5
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Pier 1",
+"layer": "LOD3",
+"shape": "Cylinder",
+"size": [
+30,
+3,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pile"
+},
+{
+"t": "part",
+"pos": [
+-594.5,
+84,
+3903.5
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Pier 1",
+"layer": "LOD3",
+"shape": "Cylinder",
+"size": [
+30,
+3,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pile"
+},
+{
+"t": "part",
+"pos": [
+-605.5,
+84,
+3887.5
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Pier 1",
+"layer": "LOD3",
+"shape": "Cylinder",
+"size": [
+30,
+3,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pile"
+},
+{
+"t": "part",
+"pos": [
+-594.5,
+84,
+3887.5
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Pier 1",
+"layer": "LOD3",
+"shape": "Cylinder",
+"size": [
+30,
+3,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pile"
+},
+{
+"t": "part",
+"pos": [
+-605.5,
+84,
+3871.5
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Pier 1",
+"layer": "LOD3",
+"shape": "Cylinder",
+"size": [
+30,
+3,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pile"
+},
+{
+"t": "part",
+"pos": [
+-594.5,
+84,
+3871.5
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Pier 1",
+"layer": "LOD3",
+"shape": "Cylinder",
+"size": [
+30,
+3,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pile"
+},
+{
+"t": "part",
+"pos": [
+-605.5,
+84,
+3855.5
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Pier 1",
+"layer": "LOD3",
+"shape": "Cylinder",
+"size": [
+30,
+3,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pile"
+},
+{
+"t": "part",
+"pos": [
+-594.5,
+84,
+3855.5
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Pier 1",
+"layer": "LOD3",
+"shape": "Cylinder",
+"size": [
+30,
+3,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pile"
+},
+{
+"t": "part",
+"pos": [
+-605.5,
+84,
+3839.5
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Pier 1",
+"layer": "LOD3",
+"shape": "Cylinder",
+"size": [
+30,
+3,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pile"
+},
+{
+"t": "part",
+"pos": [
+-594.5,
+84,
+3839.5
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Pier 1",
+"layer": "LOD3",
+"shape": "Cylinder",
+"size": [
+30,
+3,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pile"
+},
+{
+"t": "part",
+"pos": [
+-605.5,
+84,
+3823.5
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Pier 1",
+"layer": "LOD3",
+"shape": "Cylinder",
+"size": [
+30,
+3,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pile"
+},
+{
+"t": "part",
+"pos": [
+-594.5,
+84,
+3823.5
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Pier 1",
+"layer": "LOD3",
+"shape": "Cylinder",
+"size": [
+30,
+3,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pile"
+},
+{
+"t": "part",
+"pos": [
+-617.0,
+84,
+3809.5
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Pier 1",
+"layer": "LOD3",
+"shape": "Cylinder",
+"size": [
+30,
+3,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pile"
+},
+{
+"t": "part",
+"pos": [
+-606.0,
+84,
+3809.5
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Pier 1",
+"layer": "LOD3",
+"shape": "Cylinder",
+"size": [
+30,
+3,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pile"
+},
+{
+"t": "part",
+"pos": [
+-594.0,
+84,
+3809.5
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Pier 1",
+"layer": "LOD3",
+"shape": "Cylinder",
+"size": [
+30,
+3,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pile"
+},
+{
+"t": "part",
+"pos": [
+-583.0,
+84,
+3809.5
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Pier 1",
+"layer": "LOD3",
+"shape": "Cylinder",
+"size": [
+30,
+3,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pile"
+},
+{
+"t": "part",
+"pos": [
+-606.4,
+104.2,
+3867.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 1",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+1.2,
+1.0,
+94.0
+],
+"mat": "Metal",
+"var": "",
+"color": [
+226,
+186,
+40
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier Rail"
+},
+{
+"t": "part",
+"pos": [
+-606.4,
+102.5,
+3911.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 1",
+"layer": "LOD1",
+"shape": "Block",
+"size": [
+1.2,
+3.2,
+1.2
+],
+"mat": "Metal",
+"var": "",
+"color": [
+92,
+96,
+102
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Rail Post"
+},
+{
+"t": "part",
+"pos": [
+-606.4,
+102.5,
+3895.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 1",
+"layer": "LOD1",
+"shape": "Block",
+"size": [
+1.2,
+3.2,
+1.2
+],
+"mat": "Metal",
+"var": "",
+"color": [
+92,
+96,
+102
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Rail Post"
+},
+{
+"t": "part",
+"pos": [
+-606.4,
+102.5,
+3879.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 1",
+"layer": "LOD1",
+"shape": "Block",
+"size": [
+1.2,
+3.2,
+1.2
+],
+"mat": "Metal",
+"var": "",
+"color": [
+92,
+96,
+102
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Rail Post"
+},
+{
+"t": "part",
+"pos": [
+-606.4,
+102.5,
+3863.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 1",
+"layer": "LOD1",
+"shape": "Block",
+"size": [
+1.2,
+3.2,
+1.2
+],
+"mat": "Metal",
+"var": "",
+"color": [
+92,
+96,
+102
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Rail Post"
+},
+{
+"t": "part",
+"pos": [
+-606.4,
+102.5,
+3847.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 1",
+"layer": "LOD1",
+"shape": "Block",
+"size": [
+1.2,
+3.2,
+1.2
+],
+"mat": "Metal",
+"var": "",
+"color": [
+92,
+96,
+102
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Rail Post"
+},
+{
+"t": "part",
+"pos": [
+-606.4,
+102.5,
+3831.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 1",
+"layer": "LOD1",
+"shape": "Block",
+"size": [
+1.2,
+3.2,
+1.2
+],
+"mat": "Metal",
+"var": "",
+"color": [
+92,
+96,
+102
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Rail Post"
+},
+{
+"t": "part",
+"pos": [
+-593.6,
+104.2,
+3867.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 1",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+1.2,
+1.0,
+94.0
+],
+"mat": "Metal",
+"var": "",
+"color": [
+226,
+186,
+40
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier Rail"
+},
+{
+"t": "part",
+"pos": [
+-593.6,
+102.5,
+3911.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 1",
+"layer": "LOD1",
+"shape": "Block",
+"size": [
+1.2,
+3.2,
+1.2
+],
+"mat": "Metal",
+"var": "",
+"color": [
+92,
+96,
+102
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Rail Post"
+},
+{
+"t": "part",
+"pos": [
+-593.6,
+102.5,
+3895.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 1",
+"layer": "LOD1",
+"shape": "Block",
+"size": [
+1.2,
+3.2,
+1.2
+],
+"mat": "Metal",
+"var": "",
+"color": [
+92,
+96,
+102
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Rail Post"
+},
+{
+"t": "part",
+"pos": [
+-593.6,
+102.5,
+3879.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 1",
+"layer": "LOD1",
+"shape": "Block",
+"size": [
+1.2,
+3.2,
+1.2
+],
+"mat": "Metal",
+"var": "",
+"color": [
+92,
+96,
+102
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Rail Post"
+},
+{
+"t": "part",
+"pos": [
+-593.6,
+102.5,
+3863.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 1",
+"layer": "LOD1",
+"shape": "Block",
+"size": [
+1.2,
+3.2,
+1.2
+],
+"mat": "Metal",
+"var": "",
+"color": [
+92,
+96,
+102
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Rail Post"
+},
+{
+"t": "part",
+"pos": [
+-593.6,
+102.5,
+3847.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 1",
+"layer": "LOD1",
+"shape": "Block",
+"size": [
+1.2,
+3.2,
+1.2
+],
+"mat": "Metal",
+"var": "",
+"color": [
+92,
+96,
+102
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Rail Post"
+},
+{
+"t": "part",
+"pos": [
+-593.6,
+102.5,
+3831.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 1",
+"layer": "LOD1",
+"shape": "Block",
+"size": [
+1.2,
+3.2,
+1.2
+],
+"mat": "Metal",
+"var": "",
+"color": [
+92,
+96,
+102
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Rail Post"
+},
+{
+"t": "part",
+"pos": [
+-600.0,
+104.2,
+3806.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 1",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+40,
+1.0,
+1.2
+],
+"mat": "Metal",
+"var": "",
+"color": [
+226,
+186,
+40
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier Rail"
+},
+{
+"t": "part",
+"pos": [
+-619.4,
+104.2,
+3813.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 1",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+1.2,
+1.0,
+16
+],
+"mat": "Metal",
+"var": "",
+"color": [
+226,
+186,
+40
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier Rail"
+},
+{
+"t": "part",
+"pos": [
+-580.6,
+104.2,
+3813.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 1",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+1.2,
+1.0,
+16
+],
+"mat": "Metal",
+"var": "",
+"color": [
+226,
+186,
+40
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier Rail"
+},
+{
+"t": "clone",
+"pos": [
+-584.0,
+100.9,
+3809.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Pier 1",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "kit",
+"pos": [
+-608.0,
+102.4,
+3808.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 1",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "kit",
+"pos": [
+-592.0,
+102.4,
+3808.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 1",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "kit",
+"pos": [
+-570.0,
+107.9,
+3957
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 1",
+"layer": "LOD2",
+"item": "market_stall",
+"scale": 1.0,
+"collide": false,
+"name": "market_stall",
+"color": [
+240,
+180,
+50
+]
+},
+{
+"t": "kit",
+"pos": [
+-624.0,
+105.4,
+3960
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 1",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+-630.0,
+105.4,
+3960
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 1",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "part",
+"pos": [
+760.0,
+100.3,
+3868.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 2",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+14.0,
+1.2,
+98.0
+],
+"mat": "Wood",
+"var": "Plywood",
+"color": [
+132,
+98,
+70
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier Deck"
+},
+{
+"t": "part",
+"pos": [
+760.0,
+100.3,
+3813.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 2",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+40,
+1.2,
+16
+],
+"mat": "Wood",
+"var": "Plywood",
+"color": [
+132,
+98,
+70
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier Head"
+},
+{
+"t": "part",
+"pos": [
+760.0,
+98.2,
+3868.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 2",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+16.0,
+3,
+98.0
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier Beam"
+},
+{
+"t": "part",
+"pos": [
+754.5,
+84,
+3903.5
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Pier 2",
+"layer": "LOD3",
+"shape": "Cylinder",
+"size": [
+30,
+3,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pile"
+},
+{
+"t": "part",
+"pos": [
+765.5,
+84,
+3903.5
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Pier 2",
+"layer": "LOD3",
+"shape": "Cylinder",
+"size": [
+30,
+3,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pile"
+},
+{
+"t": "part",
+"pos": [
+754.5,
+84,
+3887.5
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Pier 2",
+"layer": "LOD3",
+"shape": "Cylinder",
+"size": [
+30,
+3,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pile"
+},
+{
+"t": "part",
+"pos": [
+765.5,
+84,
+3887.5
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Pier 2",
+"layer": "LOD3",
+"shape": "Cylinder",
+"size": [
+30,
+3,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pile"
+},
+{
+"t": "part",
+"pos": [
+754.5,
+84,
+3871.5
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Pier 2",
+"layer": "LOD3",
+"shape": "Cylinder",
+"size": [
+30,
+3,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pile"
+},
+{
+"t": "part",
+"pos": [
+765.5,
+84,
+3871.5
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Pier 2",
+"layer": "LOD3",
+"shape": "Cylinder",
+"size": [
+30,
+3,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pile"
+},
+{
+"t": "part",
+"pos": [
+754.5,
+84,
+3855.5
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Pier 2",
+"layer": "LOD3",
+"shape": "Cylinder",
+"size": [
+30,
+3,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pile"
+},
+{
+"t": "part",
+"pos": [
+765.5,
+84,
+3855.5
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Pier 2",
+"layer": "LOD3",
+"shape": "Cylinder",
+"size": [
+30,
+3,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pile"
+},
+{
+"t": "part",
+"pos": [
+754.5,
+84,
+3839.5
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Pier 2",
+"layer": "LOD3",
+"shape": "Cylinder",
+"size": [
+30,
+3,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pile"
+},
+{
+"t": "part",
+"pos": [
+765.5,
+84,
+3839.5
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Pier 2",
+"layer": "LOD3",
+"shape": "Cylinder",
+"size": [
+30,
+3,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pile"
+},
+{
+"t": "part",
+"pos": [
+754.5,
+84,
+3823.5
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Pier 2",
+"layer": "LOD3",
+"shape": "Cylinder",
+"size": [
+30,
+3,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pile"
+},
+{
+"t": "part",
+"pos": [
+765.5,
+84,
+3823.5
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Pier 2",
+"layer": "LOD3",
+"shape": "Cylinder",
+"size": [
+30,
+3,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pile"
+},
+{
+"t": "part",
+"pos": [
+743.0,
+84,
+3809.5
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Pier 2",
+"layer": "LOD3",
+"shape": "Cylinder",
+"size": [
+30,
+3,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pile"
+},
+{
+"t": "part",
+"pos": [
+754.0,
+84,
+3809.5
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Pier 2",
+"layer": "LOD3",
+"shape": "Cylinder",
+"size": [
+30,
+3,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pile"
+},
+{
+"t": "part",
+"pos": [
+766.0,
+84,
+3809.5
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Pier 2",
+"layer": "LOD3",
+"shape": "Cylinder",
+"size": [
+30,
+3,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pile"
+},
+{
+"t": "part",
+"pos": [
+777.0,
+84,
+3809.5
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Pier 2",
+"layer": "LOD3",
+"shape": "Cylinder",
+"size": [
+30,
+3,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pile"
+},
+{
+"t": "part",
+"pos": [
+753.6,
+104.2,
+3867.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 2",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+1.2,
+1.0,
+94.0
+],
+"mat": "Metal",
+"var": "",
+"color": [
+226,
+186,
+40
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier Rail"
+},
+{
+"t": "part",
+"pos": [
+753.6,
+102.5,
+3911.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 2",
+"layer": "LOD1",
+"shape": "Block",
+"size": [
+1.2,
+3.2,
+1.2
+],
+"mat": "Metal",
+"var": "",
+"color": [
+92,
+96,
+102
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Rail Post"
+},
+{
+"t": "part",
+"pos": [
+753.6,
+102.5,
+3895.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 2",
+"layer": "LOD1",
+"shape": "Block",
+"size": [
+1.2,
+3.2,
+1.2
+],
+"mat": "Metal",
+"var": "",
+"color": [
+92,
+96,
+102
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Rail Post"
+},
+{
+"t": "part",
+"pos": [
+753.6,
+102.5,
+3879.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 2",
+"layer": "LOD1",
+"shape": "Block",
+"size": [
+1.2,
+3.2,
+1.2
+],
+"mat": "Metal",
+"var": "",
+"color": [
+92,
+96,
+102
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Rail Post"
+},
+{
+"t": "part",
+"pos": [
+753.6,
+102.5,
+3863.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 2",
+"layer": "LOD1",
+"shape": "Block",
+"size": [
+1.2,
+3.2,
+1.2
+],
+"mat": "Metal",
+"var": "",
+"color": [
+92,
+96,
+102
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Rail Post"
+},
+{
+"t": "part",
+"pos": [
+753.6,
+102.5,
+3847.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 2",
+"layer": "LOD1",
+"shape": "Block",
+"size": [
+1.2,
+3.2,
+1.2
+],
+"mat": "Metal",
+"var": "",
+"color": [
+92,
+96,
+102
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Rail Post"
+},
+{
+"t": "part",
+"pos": [
+753.6,
+102.5,
+3831.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 2",
+"layer": "LOD1",
+"shape": "Block",
+"size": [
+1.2,
+3.2,
+1.2
+],
+"mat": "Metal",
+"var": "",
+"color": [
+92,
+96,
+102
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Rail Post"
+},
+{
+"t": "part",
+"pos": [
+766.4,
+104.2,
+3867.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 2",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+1.2,
+1.0,
+94.0
+],
+"mat": "Metal",
+"var": "",
+"color": [
+226,
+186,
+40
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier Rail"
+},
+{
+"t": "part",
+"pos": [
+766.4,
+102.5,
+3911.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 2",
+"layer": "LOD1",
+"shape": "Block",
+"size": [
+1.2,
+3.2,
+1.2
+],
+"mat": "Metal",
+"var": "",
+"color": [
+92,
+96,
+102
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Rail Post"
+},
+{
+"t": "part",
+"pos": [
+766.4,
+102.5,
+3895.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 2",
+"layer": "LOD1",
+"shape": "Block",
+"size": [
+1.2,
+3.2,
+1.2
+],
+"mat": "Metal",
+"var": "",
+"color": [
+92,
+96,
+102
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Rail Post"
+},
+{
+"t": "part",
+"pos": [
+766.4,
+102.5,
+3879.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 2",
+"layer": "LOD1",
+"shape": "Block",
+"size": [
+1.2,
+3.2,
+1.2
+],
+"mat": "Metal",
+"var": "",
+"color": [
+92,
+96,
+102
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Rail Post"
+},
+{
+"t": "part",
+"pos": [
+766.4,
+102.5,
+3863.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 2",
+"layer": "LOD1",
+"shape": "Block",
+"size": [
+1.2,
+3.2,
+1.2
+],
+"mat": "Metal",
+"var": "",
+"color": [
+92,
+96,
+102
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Rail Post"
+},
+{
+"t": "part",
+"pos": [
+766.4,
+102.5,
+3847.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 2",
+"layer": "LOD1",
+"shape": "Block",
+"size": [
+1.2,
+3.2,
+1.2
+],
+"mat": "Metal",
+"var": "",
+"color": [
+92,
+96,
+102
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Rail Post"
+},
+{
+"t": "part",
+"pos": [
+766.4,
+102.5,
+3831.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 2",
+"layer": "LOD1",
+"shape": "Block",
+"size": [
+1.2,
+3.2,
+1.2
+],
+"mat": "Metal",
+"var": "",
+"color": [
+92,
+96,
+102
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Rail Post"
+},
+{
+"t": "part",
+"pos": [
+760.0,
+104.2,
+3806.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 2",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+40,
+1.0,
+1.2
+],
+"mat": "Metal",
+"var": "",
+"color": [
+226,
+186,
+40
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier Rail"
+},
+{
+"t": "part",
+"pos": [
+740.6,
+104.2,
+3813.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 2",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+1.2,
+1.0,
+16
+],
+"mat": "Metal",
+"var": "",
+"color": [
+226,
+186,
+40
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier Rail"
+},
+{
+"t": "part",
+"pos": [
+779.4,
+104.2,
+3813.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 2",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+1.2,
+1.0,
+16
+],
+"mat": "Metal",
+"var": "",
+"color": [
+226,
+186,
+40
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier Rail"
+},
+{
+"t": "clone",
+"pos": [
+776.0,
+100.9,
+3809.5
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Pier 2",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "kit",
+"pos": [
+752.0,
+102.4,
+3808.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 2",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "kit",
+"pos": [
+768.0,
+102.4,
+3808.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 2",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "kit",
+"pos": [
+790.0,
+107.9,
+3957
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 2",
+"layer": "LOD2",
+"item": "market_stall",
+"scale": 1.0,
+"collide": false,
+"name": "market_stall",
+"color": [
+60,
+150,
+210
+]
+},
+{
+"t": "kit",
+"pos": [
+736.0,
+105.4,
+3960
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 2",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+730.0,
+105.4,
+3960
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Pier 2",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+}
+]
+}

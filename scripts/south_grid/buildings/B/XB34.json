@@ -1,0 +1,208 @@
+{
+"id": "XB34",
+"kind": "building",
+"title": "XB34 Truss Bridge",
+"lean": "blocks",
+"stats": {
+"tris": 984,
+"parts": 4,
+"kit": 3,
+"min": [
+696,
+307,
+4426
+],
+"max": [
+836,
+329,
+4454
+]
+},
+"elements": [
+{
+"t": "part",
+"pos": [
+701.0,
+318.0,
+4440.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "XB34 Truss",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+10,
+22,
+28
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+118,
+118,
+114
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Collar"
+},
+{
+"t": "part",
+"pos": [
+831.0,
+318.0,
+4440.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "XB34 Truss",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+10,
+22,
+28
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+118,
+118,
+114
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Collar"
+},
+{
+"t": "kit",
+"pos": [
+726,
+318,
+4440
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "XB34 Truss",
+"layer": "LOD4",
+"item": "bridge_truss_40",
+"scale": 1.0,
+"collide": false,
+"name": "bridge_truss_40"
+},
+{
+"t": "kit",
+"pos": [
+766,
+318,
+4440
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "XB34 Truss",
+"layer": "LOD4",
+"item": "bridge_truss_40",
+"scale": 1.0,
+"collide": false,
+"name": "bridge_truss_40"
+},
+{
+"t": "kit",
+"pos": [
+806,
+318,
+4440
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "XB34 Truss",
+"layer": "LOD4",
+"item": "bridge_truss_40",
+"scale": 1.0,
+"collide": false,
+"name": "bridge_truss_40"
+},
+{
+"t": "part",
+"pos": [
+766.0,
+309.0,
+4440.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "XB34 Truss",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+120,
+2,
+22
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+160,
+158,
+152
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Deck"
+},
+{
+"t": "part",
+"pos": [
+766.0,
+307.5,
+4440.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "XB34 Truss",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+116,
+1,
+2
+],
+"mat": "Neon",
+"var": "",
+"color": [
+255,
+170,
+60
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "NeonStrip"
+}
+]
+}

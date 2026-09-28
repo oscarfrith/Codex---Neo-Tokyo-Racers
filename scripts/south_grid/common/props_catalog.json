@@ -1,0 +1,98 @@
+{
+ "Bush Large": {
+  "path": "Workspace.World.City.Block S2.Block_S2_R4_B2.LOD.LOD3.Foliage.Bush Large",
+  "size": [
+   23.0,
+   36.0,
+   36.0
+  ]
+ },
+ "Path Bush Group Side": {
+  "path": "Workspace.World.City.Block S1.Block_S1_R4_B1.LOD.LOD3.Foliage.Path Bush Group Side",
+  "size": [
+   8.0,
+   14.0,
+   178.0
+  ]
+ },
+ "Railings Left": {
+  "path": "Workspace.World.City.Block S1.Block_S1_R4_B2.LOD.LOD2.Props.Railings Left",
+  "size": [
+   7.0,
+   3.0,
+   178.0
+  ]
+ },
+ "Street Lamp Tall A": {
+  "path": "Workspace.World.City.Block S2.Block_S2_R4_B2.LOD.LOD2.Props.Street Lights Group A.Street Lamp Tall A",
+  "size": [
+   1.0,
+   34.0,
+   18.0
+  ]
+ },
+ "Traffic Light Tall A": {
+  "path": "Workspace.World.City.Block S2.Block_S2_R3_B1.LOD.LOD2.Props.Traffic Light Tall A",
+  "size": [
+   1.0,
+   29.0,
+   29.0
+  ]
+ },
+ "Tree Large Maple": {
+  "path": "Workspace.World.City.Block S2.Block_S2_R4_B2.LOD.LOD3.Foliage.Trees Back.Tree Large Maple",
+  "size": [
+   84.0,
+   53.0,
+   84.0
+  ]
+ },
+ "Tree Large Poplar Group": {
+  "path": "Workspace.World.City.Block S2.Block_S2_R4_B2.LOD.LOD3.Foliage.Trees Front.Tree Large Poplar Group",
+  "size": [
+   29.0,
+   63.0,
+   25.0
+  ]
+ },
+ "Tree Small Bamboo Group": {
+  "path": "Workspace.World.City.Block S2.Block_S2_R3_B2.LOD.LOD3.Foliage.bamboo.Tree Small Bamboo Group",
+  "size": [
+   19.0,
+   26.0,
+   20.0
+  ]
+ },
+ "bollard thick": {
+  "path": "Workspace.World.City.Block S1.Block_S1_R4_B4.LOD.LOD2.Props.bollard thick",
+  "size": [
+   1.0,
+   3.0,
+   1.0
+  ]
+ },
+ "path bush group A": {
+  "path": "Workspace.World.City.Block S2.Block_S2_R4_B2.LOD.LOD3.Foliage.Path Bush Group Front.path bush group A",
+  "size": [
+   7.0,
+   6.0,
+   41.0
+  ]
+ },
+ "railing simple": {
+  "path": "Workspace.World.City.Block S1.Block_S1_R4_B4.LOD.LOD2.Props.railing simple",
+  "size": [
+   1.0,
+   3.0,
+   12.0
+  ]
+ },
+ "roundabout bushes": {
+  "path": "Workspace.World.City.Block S2.Block_S2_R5_B1.LOD.LOD3.Foliage.roundabout bushes",
+  "size": [
+   115.0,
+   36.0,
+   114.0
+  ]
+ }
+}

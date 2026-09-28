@@ -1,0 +1,7 @@
+# Regenerable renders and caches (re-run the generators / preview.py)
+preview/
+preview_out/
+__pycache__/
+kit/out/tiles/
+kit/test/preview/
+textures/src/

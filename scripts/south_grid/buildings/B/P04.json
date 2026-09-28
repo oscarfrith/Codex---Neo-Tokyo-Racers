@@ -1,0 +1,10657 @@
+{
+"id": "P04",
+"kind": "building",
+"title": "P04 Terrace Stack",
+"lean": "blocks",
+"stats": {
+"tris": 19590,
+"parts": 256,
+"kit": 123,
+"min": [
+827,
+100,
+4104
+],
+"max": [
+1235,
+696,
+4552
+]
+},
+"elements": [
+{
+"t": "part",
+"pos": [
+918.0,
+113.0,
+4169.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+164,
+26,
+106
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Block"
+},
+{
+"t": "part",
+"pos": [
+918.0,
+193.0,
+4167.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+164,
+134,
+110
+],
+"mat": "SmoothPlastic",
+"var": "SG Windows Blocks",
+"color": [
+156,
+154,
+148
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Block"
+},
+{
+"t": "part",
+"pos": [
+918.0,
+139.0,
+4112.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+164,
+26,
+1.0
+],
+"mat": "Concrete",
+"var": "SG Graffiti A",
+"color": [
+175,
+175,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Graffiti"
+},
+{
+"t": "part",
+"pos": [
+898.0,
+110.5,
+4115.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+36,
+21,
+2.0
+],
+"mat": "Metal",
+"var": "Metal Shutters",
+"color": [
+150,
+154,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shutter"
+},
+{
+"t": "part",
+"pos": [
+938.0,
+110.5,
+4115.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+36,
+21,
+2.0
+],
+"mat": "Metal",
+"var": "Metal Shutters",
+"color": [
+150,
+154,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shutter"
+},
+{
+"t": "part",
+"pos": [
+918.0,
+111.0,
+4116.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+164,
+22,
+1.0
+],
+"mat": "Glass",
+"var": "",
+"color": [
+60,
+90,
+115
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shopfront"
+},
+{
+"t": "part",
+"pos": [
+837.0,
+113.0,
+4113.75
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+2.0,
+26,
+5.5
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier"
+},
+{
+"t": "part",
+"pos": [
+877.0,
+113.0,
+4113.75
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4.0,
+26,
+5.5
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier"
+},
+{
+"t": "part",
+"pos": [
+918.0,
+113.0,
+4113.75
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4.0,
+26,
+5.5
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier"
+},
+{
+"t": "part",
+"pos": [
+959.0,
+113.0,
+4113.75
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4.0,
+26,
+5.5
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier"
+},
+{
+"t": "part",
+"pos": [
+999.0,
+113.0,
+4113.75
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+2.0,
+26,
+5.5
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier"
+},
+{
+"t": "part",
+"pos": [
+918.0,
+124.0,
+4109.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+166,
+4,
+7.0
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+176,
+174,
+168
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Awning"
+},
+{
+"t": "part",
+"pos": [
+918.0,
+181.5,
+4167.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+172,
+3,
+118
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Plate"
+},
+{
+"t": "part",
+"pos": [
+918.0,
+221.5,
+4167.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+172,
+3,
+118
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Plate"
+},
+{
+"t": "part",
+"pos": [
+918.0,
+260.5,
+4167.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+170,
+3,
+116
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+118,
+118,
+114
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Roof"
+},
+{
+"t": "part",
+"pos": [
+876.0,
+205.5,
+4109.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4.0,
+107,
+6.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Fin"
+},
+{
+"t": "part",
+"pos": [
+916.0,
+205.5,
+4109.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4.0,
+107,
+6.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Fin"
+},
+{
+"t": "part",
+"pos": [
+956.0,
+205.5,
+4109.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4.0,
+107,
+6.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Fin"
+},
+{
+"t": "part",
+"pos": [
+918.0,
+320.0,
+4181.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+164,
+120,
+82
+],
+"mat": "SmoothPlastic",
+"var": "SG Windows Blocks",
+"color": [
+156,
+154,
+148
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Block"
+},
+{
+"t": "part",
+"pos": [
+918.0,
+301.5,
+4181.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+172,
+3,
+90
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Plate"
+},
+{
+"t": "part",
+"pos": [
+918.0,
+341.5,
+4181.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+172,
+3,
+90
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Plate"
+},
+{
+"t": "part",
+"pos": [
+918.0,
+380.5,
+4181.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+170,
+3,
+88
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+118,
+118,
+114
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Roof"
+},
+{
+"t": "part",
+"pos": [
+876.0,
+320.5,
+4137.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4.0,
+117,
+6.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Fin"
+},
+{
+"t": "part",
+"pos": [
+916.0,
+320.5,
+4137.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4.0,
+117,
+6.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Fin"
+},
+{
+"t": "part",
+"pos": [
+956.0,
+320.5,
+4137.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4.0,
+117,
+6.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Fin"
+},
+{
+"t": "part",
+"pos": [
+918.0,
+420.0,
+4195.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+164,
+80,
+54
+],
+"mat": "SmoothPlastic",
+"var": "SG Windows Blocks",
+"color": [
+138,
+136,
+130
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Block"
+},
+{
+"t": "part",
+"pos": [
+918.0,
+421.5,
+4195.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+172,
+3,
+62
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Plate"
+},
+{
+"t": "part",
+"pos": [
+918.0,
+460.5,
+4195.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+170,
+3,
+60
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+118,
+118,
+114
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Roof"
+},
+{
+"t": "part",
+"pos": [
+876.0,
+420.5,
+4165.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4.0,
+77,
+6.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Fin"
+},
+{
+"t": "part",
+"pos": [
+916.0,
+420.5,
+4165.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4.0,
+77,
+6.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Fin"
+},
+{
+"t": "part",
+"pos": [
+956.0,
+420.5,
+4165.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4.0,
+77,
+6.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Fin"
+},
+{
+"t": "part",
+"pos": [
+856.0,
+162.8,
+4111.75
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+34,
+11.0,
+1.5
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+200,
+170,
+210
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "part",
+"pos": [
+976.0,
+189.5,
+4111.75
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+34,
+11.0,
+1.5
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+214,
+170,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "part",
+"pos": [
+856.0,
+202.8,
+4111.75
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+34,
+11.0,
+1.5
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+170,
+214,
+196
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "kit",
+"pos": [
+896,
+202.8,
+4108.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "part",
+"pos": [
+976.0,
+202.8,
+4111.75
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+34,
+11.0,
+1.5
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+226,
+160,
+140
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "kit",
+"pos": [
+856,
+282.8,
+4136.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "kit",
+"pos": [
+896,
+282.8,
+4136.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "kit",
+"pos": [
+936,
+282.8,
+4136.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "kit",
+"pos": [
+936,
+283.8,
+4131.9
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+200,
+170,
+210
+]
+},
+{
+"t": "part",
+"pos": [
+896.0,
+309.5,
+4139.75
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+34,
+11.0,
+1.5
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+170,
+214,
+196
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "kit",
+"pos": [
+856,
+322.8,
+4136.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "kit",
+"pos": [
+856,
+323.8,
+4131.9
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+200,
+170,
+210
+]
+},
+{
+"t": "kit",
+"pos": [
+976,
+349.5,
+4136.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "part",
+"pos": [
+896.0,
+362.8,
+4139.75
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+34,
+11.0,
+1.5
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+226,
+160,
+140
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "kit",
+"pos": [
+896,
+402.8,
+4164.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "kit",
+"pos": [
+896,
+403.8,
+4159.9
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+200,
+170,
+210
+]
+},
+{
+"t": "kit",
+"pos": [
+856,
+429.5,
+4164.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "kit",
+"pos": [
+856,
+430.5,
+4159.9
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+214,
+170,
+120
+]
+},
+{
+"t": "part",
+"pos": [
+936.0,
+429.5,
+4167.75
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+34,
+11.0,
+1.5
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+214,
+170,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "kit",
+"pos": [
+896,
+442.8,
+4164.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "kit",
+"pos": [
+866,
+268,
+4128
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD2",
+"item": "rooftop_shack",
+"scale": 1.0,
+"collide": false,
+"name": "rooftop_shack"
+},
+{
+"t": "part",
+"pos": [
+926.0,
+263.0,
+4126.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+40,
+4,
+16
+],
+"mat": "Grass",
+"var": "",
+"color": [
+96,
+140,
+70
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "kit",
+"pos": [
+970,
+473,
+4204
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD4",
+"item": "water_tank",
+"scale": 1.0,
+"collide": false,
+"name": "water_tank"
+},
+{
+"t": "kit",
+"pos": [
+876,
+468,
+4206
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD2",
+"item": "dish_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "dish_cluster"
+},
+{
+"t": "kit",
+"pos": [
+940,
+385.5,
+4152
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "part",
+"pos": [
+836.0,
+146.0,
+4169.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+1.0,
+40,
+106
+],
+"mat": "Concrete",
+"var": "SG Graffiti B",
+"color": [
+175,
+175,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Graffiti"
+},
+{
+"t": "kit",
+"pos": [
+835.0,
+186,
+4200
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD2",
+"item": "pipe_bundle_40",
+"scale": 1.0,
+"collide": false,
+"name": "pipe_bundle_40"
+},
+{
+"t": "kit",
+"pos": [
+835.0,
+226,
+4200
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "S1 Terrace West",
+"layer": "LOD2",
+"item": "pipe_bundle_40",
+"scale": 1.0,
+"collide": false,
+"name": "pipe_bundle_40"
+},
+{
+"t": "part",
+"pos": [
+1143.0,
+113.0,
+4169.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+166,
+26,
+106
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Block"
+},
+{
+"t": "part",
+"pos": [
+1143.0,
+193.0,
+4167.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+166,
+134,
+110
+],
+"mat": "SmoothPlastic",
+"var": "SG Windows Blocks",
+"color": [
+156,
+154,
+148
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Block"
+},
+{
+"t": "part",
+"pos": [
+1143.0,
+139.0,
+4112.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+166,
+26,
+1.0
+],
+"mat": "Concrete",
+"var": "SG Graffiti B",
+"color": [
+175,
+175,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Graffiti"
+},
+{
+"t": "part",
+"pos": [
+1122.0,
+110.5,
+4115.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+36,
+21,
+2.0
+],
+"mat": "Metal",
+"var": "Metal Shutters",
+"color": [
+150,
+154,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shutter"
+},
+{
+"t": "part",
+"pos": [
+1164.0,
+110.5,
+4115.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+36,
+21,
+2.0
+],
+"mat": "Metal",
+"var": "Metal Shutters",
+"color": [
+150,
+154,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shutter"
+},
+{
+"t": "part",
+"pos": [
+1143.0,
+111.0,
+4116.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+166,
+22,
+1.0
+],
+"mat": "Glass",
+"var": "",
+"color": [
+60,
+90,
+115
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shopfront"
+},
+{
+"t": "part",
+"pos": [
+1061.0,
+113.0,
+4113.75
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+2.0,
+26,
+5.5
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier"
+},
+{
+"t": "part",
+"pos": [
+1101.5,
+113.0,
+4113.75
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4.0,
+26,
+5.5
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier"
+},
+{
+"t": "part",
+"pos": [
+1143.0,
+113.0,
+4113.75
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4.0,
+26,
+5.5
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier"
+},
+{
+"t": "part",
+"pos": [
+1184.5,
+113.0,
+4113.75
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4.0,
+26,
+5.5
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier"
+},
+{
+"t": "part",
+"pos": [
+1225.0,
+113.0,
+4113.75
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+2.0,
+26,
+5.5
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier"
+},
+{
+"t": "part",
+"pos": [
+1143.0,
+124.0,
+4109.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+168,
+4,
+7.0
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+176,
+174,
+168
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Awning"
+},
+{
+"t": "part",
+"pos": [
+1143.0,
+181.5,
+4167.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+174,
+3,
+118
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Plate"
+},
+{
+"t": "part",
+"pos": [
+1143.0,
+221.5,
+4167.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+174,
+3,
+118
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Plate"
+},
+{
+"t": "part",
+"pos": [
+1143.0,
+260.5,
+4167.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+172,
+3,
+116
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+118,
+118,
+114
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Roof"
+},
+{
+"t": "part",
+"pos": [
+1100.0,
+205.5,
+4109.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4.0,
+107,
+6.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Fin"
+},
+{
+"t": "part",
+"pos": [
+1140.0,
+205.5,
+4109.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4.0,
+107,
+6.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Fin"
+},
+{
+"t": "part",
+"pos": [
+1180.0,
+205.5,
+4109.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4.0,
+107,
+6.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Fin"
+},
+{
+"t": "part",
+"pos": [
+1143.0,
+320.0,
+4181.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+166,
+120,
+82
+],
+"mat": "SmoothPlastic",
+"var": "SG Windows Blocks",
+"color": [
+156,
+154,
+148
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Block"
+},
+{
+"t": "part",
+"pos": [
+1143.0,
+301.5,
+4181.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+174,
+3,
+90
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Plate"
+},
+{
+"t": "part",
+"pos": [
+1143.0,
+341.5,
+4181.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+174,
+3,
+90
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Plate"
+},
+{
+"t": "part",
+"pos": [
+1143.0,
+380.5,
+4181.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+172,
+3,
+88
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+118,
+118,
+114
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Roof"
+},
+{
+"t": "part",
+"pos": [
+1100.0,
+320.5,
+4137.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4.0,
+117,
+6.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Fin"
+},
+{
+"t": "part",
+"pos": [
+1140.0,
+320.5,
+4137.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4.0,
+117,
+6.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Fin"
+},
+{
+"t": "part",
+"pos": [
+1180.0,
+320.5,
+4137.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4.0,
+117,
+6.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Fin"
+},
+{
+"t": "part",
+"pos": [
+1143.0,
+420.0,
+4195.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+166,
+80,
+54
+],
+"mat": "SmoothPlastic",
+"var": "SG Windows Blocks",
+"color": [
+138,
+136,
+130
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Block"
+},
+{
+"t": "part",
+"pos": [
+1143.0,
+421.5,
+4195.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+174,
+3,
+62
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Plate"
+},
+{
+"t": "part",
+"pos": [
+1143.0,
+460.5,
+4195.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+172,
+3,
+60
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+118,
+118,
+114
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Roof"
+},
+{
+"t": "part",
+"pos": [
+1100.0,
+420.5,
+4165.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4.0,
+77,
+6.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Fin"
+},
+{
+"t": "part",
+"pos": [
+1140.0,
+420.5,
+4165.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4.0,
+77,
+6.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Fin"
+},
+{
+"t": "part",
+"pos": [
+1180.0,
+420.5,
+4165.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4.0,
+77,
+6.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Fin"
+},
+{
+"t": "part",
+"pos": [
+1143.0,
+500.0,
+4202.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+166,
+80,
+40
+],
+"mat": "SmoothPlastic",
+"var": "SG Windows Blocks",
+"color": [
+156,
+154,
+148
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Block"
+},
+{
+"t": "part",
+"pos": [
+1143.0,
+501.5,
+4202.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+174,
+3,
+48
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Plate"
+},
+{
+"t": "part",
+"pos": [
+1143.0,
+540.5,
+4202.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+172,
+3,
+46
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+118,
+118,
+114
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Roof"
+},
+{
+"t": "part",
+"pos": [
+1100.0,
+500.5,
+4179.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4.0,
+77,
+6.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Fin"
+},
+{
+"t": "part",
+"pos": [
+1140.0,
+500.5,
+4179.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4.0,
+77,
+6.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Fin"
+},
+{
+"t": "part",
+"pos": [
+1180.0,
+500.5,
+4179.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4.0,
+77,
+6.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Fin"
+},
+{
+"t": "part",
+"pos": [
+1200.0,
+162.8,
+4111.75
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+34,
+11.0,
+1.5
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+226,
+160,
+140
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "kit",
+"pos": [
+1080,
+189.5,
+4108.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "part",
+"pos": [
+1160.0,
+242.8,
+4111.75
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+34,
+11.0,
+1.5
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+226,
+160,
+140
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "part",
+"pos": [
+1200.0,
+242.8,
+4111.75
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+34,
+11.0,
+1.5
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+170,
+214,
+196
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "kit",
+"pos": [
+1200,
+269.5,
+4136.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "kit",
+"pos": [
+1200,
+270.5,
+4131.9
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+232,
+214,
+140
+]
+},
+{
+"t": "kit",
+"pos": [
+1120,
+282.8,
+4136.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "kit",
+"pos": [
+1120,
+283.8,
+4131.9
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+150,
+190,
+226
+]
+},
+{
+"t": "kit",
+"pos": [
+1160,
+282.8,
+4136.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "kit",
+"pos": [
+1160,
+283.8,
+4131.9
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+226,
+160,
+140
+]
+},
+{
+"t": "part",
+"pos": [
+1160.0,
+309.5,
+4139.75
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+34,
+11.0,
+1.5
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+200,
+170,
+210
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "kit",
+"pos": [
+1120,
+322.8,
+4136.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "kit",
+"pos": [
+1120,
+323.8,
+4131.9
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+232,
+214,
+140
+]
+},
+{
+"t": "part",
+"pos": [
+1160.0,
+362.8,
+4139.75
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+34,
+11.0,
+1.5
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+200,
+170,
+210
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "kit",
+"pos": [
+1200,
+362.8,
+4136.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "kit",
+"pos": [
+1120,
+389.5,
+4164.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "part",
+"pos": [
+1120.0,
+402.8,
+4167.75
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+34,
+11.0,
+1.5
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+150,
+190,
+226
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "part",
+"pos": [
+1080.0,
+429.5,
+4167.75
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+34,
+11.0,
+1.5
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+226,
+160,
+140
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "kit",
+"pos": [
+1120,
+429.5,
+4164.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "kit",
+"pos": [
+1120,
+430.5,
+4159.9
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+170,
+214,
+196
+]
+},
+{
+"t": "kit",
+"pos": [
+1080,
+442.8,
+4164.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "kit",
+"pos": [
+1080,
+443.8,
+4159.9
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+232,
+214,
+140
+]
+},
+{
+"t": "kit",
+"pos": [
+1120,
+442.8,
+4164.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "part",
+"pos": [
+1080.0,
+469.5,
+4181.75
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+34,
+11.0,
+1.5
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+226,
+160,
+140
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "part",
+"pos": [
+1120.0,
+469.5,
+4181.75
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+34,
+11.0,
+1.5
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+150,
+190,
+226
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "part",
+"pos": [
+1160.0,
+469.5,
+4181.75
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+34,
+11.0,
+1.5
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+200,
+170,
+210
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "kit",
+"pos": [
+1080,
+482.8,
+4178.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "kit",
+"pos": [
+1080,
+509.5,
+4178.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "kit",
+"pos": [
+1120,
+509.5,
+4178.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "part",
+"pos": [
+1160.0,
+509.5,
+4181.75
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+34,
+11.0,
+1.5
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+200,
+170,
+210
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "part",
+"pos": [
+1200.0,
+509.5,
+4181.75
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+34,
+11.0,
+1.5
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+200,
+170,
+210
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "part",
+"pos": [
+1160.0,
+522.8,
+4181.75
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+34,
+11.0,
+1.5
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+226,
+160,
+140
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "kit",
+"pos": [
+1090,
+268,
+4128
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD2",
+"item": "rooftop_shack",
+"scale": 1.0,
+"collide": false,
+"name": "rooftop_shack"
+},
+{
+"t": "part",
+"pos": [
+1150.0,
+263.0,
+4126.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+40,
+4,
+16
+],
+"mat": "Grass",
+"var": "",
+"color": [
+96,
+140,
+70
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "kit",
+"pos": [
+1196,
+553,
+4204
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"item": "water_tank",
+"scale": 1.0,
+"collide": false,
+"name": "water_tank"
+},
+{
+"t": "kit",
+"pos": [
+1100,
+548,
+4206
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD2",
+"item": "dish_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "dish_cluster"
+},
+{
+"t": "kit",
+"pos": [
+1166,
+385.5,
+4152
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "part",
+"pos": [
+1226.0,
+146.0,
+4169.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+1.0,
+40,
+106
+],
+"mat": "Concrete",
+"var": "SG Graffiti B",
+"color": [
+175,
+175,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Graffiti"
+},
+{
+"t": "kit",
+"pos": [
+1227.0,
+186,
+4200
+],
+"rot": [
+0,
+-90,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD2",
+"item": "pipe_bundle_40",
+"scale": 1.0,
+"collide": false,
+"name": "pipe_bundle_40"
+},
+{
+"t": "kit",
+"pos": [
+1227.0,
+226,
+4200
+],
+"rot": [
+0,
+-90,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD2",
+"item": "pipe_bundle_40",
+"scale": 1.0,
+"collide": false,
+"name": "pipe_bundle_40"
+},
+{
+"t": "kit",
+"pos": [
+1180,
+572,
+4200
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Terrace East",
+"layer": "LOD4",
+"item": "antenna_mast",
+"scale": 1.0,
+"collide": false,
+"name": "antenna_mast"
+},
+{
+"t": "part",
+"pos": [
+1030.0,
+291.0,
+4206.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Sky Slot",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+28,
+382,
+32
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+176,
+174,
+168
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "StairTower"
+},
+{
+"t": "part",
+"pos": [
+1030.0,
+482.5,
+4206.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Sky Slot",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+32,
+3,
+36
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+118,
+118,
+114
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Roof"
+},
+{
+"t": "kit",
+"pos": [
+1030,
+120,
+4185.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Sky Slot",
+"layer": "LOD4",
+"item": "ext_stair_40",
+"scale": 1.0,
+"collide": false,
+"name": "ext_stair_40"
+},
+{
+"t": "kit",
+"pos": [
+1030,
+160,
+4185.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Sky Slot",
+"layer": "LOD4",
+"item": "ext_stair_40",
+"scale": 1.0,
+"collide": false,
+"name": "ext_stair_40"
+},
+{
+"t": "kit",
+"pos": [
+1030,
+200,
+4185.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Sky Slot",
+"layer": "LOD4",
+"item": "ext_stair_40",
+"scale": 1.0,
+"collide": false,
+"name": "ext_stair_40"
+},
+{
+"t": "kit",
+"pos": [
+1020,
+240,
+4189.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Sky Slot",
+"layer": "LOD2",
+"item": "pipe_bundle_40",
+"scale": 1.0,
+"collide": false,
+"name": "pipe_bundle_40"
+},
+{
+"t": "part",
+"pos": [
+1030.0,
+316.0,
+4192.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Sky Slot",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+68,
+20,
+40
+],
+"mat": "SmoothPlastic",
+"var": "SG Windows Blocks",
+"color": [
+138,
+136,
+130
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "SlabBridge"
+},
+{
+"t": "part",
+"pos": [
+1030.0,
+305.5,
+4192.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Sky Slot",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+72,
+3,
+46
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "BridgeSlab"
+},
+{
+"t": "part",
+"pos": [
+1030.0,
+326.5,
+4192.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Sky Slot",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+72,
+3,
+46
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "BridgeSlab"
+},
+{
+"t": "part",
+"pos": [
+1030.0,
+436.0,
+4195.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Sky Slot",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+68,
+20,
+38
+],
+"mat": "SmoothPlastic",
+"var": "SG Windows Blocks",
+"color": [
+138,
+136,
+130
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "SlabBridge"
+},
+{
+"t": "part",
+"pos": [
+1030.0,
+425.5,
+4195.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Sky Slot",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+72,
+3,
+44
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "BridgeSlab"
+},
+{
+"t": "part",
+"pos": [
+1030.0,
+446.5,
+4195.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S1 Sky Slot",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+72,
+3,
+44
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "BridgeSlab"
+},
+{
+"t": "part",
+"pos": [
+870.0,
+113.0,
+4399.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+60,
+26,
+274
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Block"
+},
+{
+"t": "part",
+"pos": [
+868.0,
+273.0,
+4401.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+64,
+294,
+278
+],
+"mat": "SmoothPlastic",
+"var": "SG Windows Blocks",
+"color": [
+156,
+154,
+148
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Block"
+},
+{
+"t": "part",
+"pos": [
+878.0,
+490.0,
+4401.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+44,
+140,
+278
+],
+"mat": "SmoothPlastic",
+"var": "SG Windows Blocks",
+"color": [
+138,
+136,
+130
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Block"
+},
+{
+"t": "part",
+"pos": [
+839.5,
+110.5,
+4321.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+2.0,
+21,
+38
+],
+"mat": "Metal",
+"var": "Metal Shutters",
+"color": [
+150,
+154,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shutter"
+},
+{
+"t": "part",
+"pos": [
+839.5,
+110.5,
+4479.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+2.0,
+21,
+38
+],
+"mat": "Metal",
+"var": "Metal Shutters",
+"color": [
+150,
+154,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shutter"
+},
+{
+"t": "part",
+"pos": [
+840.0,
+111.0,
+4401.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+1.0,
+22,
+278
+],
+"mat": "Glass",
+"var": "",
+"color": [
+60,
+90,
+115
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shopfront"
+},
+{
+"t": "part",
+"pos": [
+837.75,
+113.0,
+4263.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+5.5,
+26,
+2.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier"
+},
+{
+"t": "part",
+"pos": [
+837.75,
+113.0,
+4301.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+5.5,
+26,
+4.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier"
+},
+{
+"t": "part",
+"pos": [
+837.75,
+113.0,
+4341.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+5.5,
+26,
+4.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier"
+},
+{
+"t": "part",
+"pos": [
+837.75,
+113.0,
+4380.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+5.5,
+26,
+4.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier"
+},
+{
+"t": "part",
+"pos": [
+837.75,
+113.0,
+4420.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+5.5,
+26,
+4.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier"
+},
+{
+"t": "part",
+"pos": [
+837.75,
+113.0,
+4459.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+5.5,
+26,
+4.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier"
+},
+{
+"t": "part",
+"pos": [
+837.75,
+113.0,
+4499.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+5.5,
+26,
+4.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier"
+},
+{
+"t": "part",
+"pos": [
+837.75,
+113.0,
+4538.25
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+5.5,
+26,
+3.5
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier"
+},
+{
+"t": "part",
+"pos": [
+833.0,
+124.0,
+4401.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+7.0,
+4,
+280
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+176,
+174,
+168
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Awning"
+},
+{
+"t": "part",
+"pos": [
+836.0,
+139.0,
+4401.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+1.0,
+26,
+278
+],
+"mat": "Concrete",
+"var": "SG Graffiti A",
+"color": [
+170,
+170,
+165
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Graffiti"
+},
+{
+"t": "part",
+"pos": [
+868.0,
+111.0,
+4536.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+64,
+22,
+1.0
+],
+"mat": "Glass",
+"var": "",
+"color": [
+60,
+90,
+115
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shopfront"
+},
+{
+"t": "part",
+"pos": [
+837.0,
+113.0,
+4538.25
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+2.0,
+26,
+5.5
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier"
+},
+{
+"t": "part",
+"pos": [
+868.0,
+113.0,
+4538.25
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4.0,
+26,
+5.5
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier"
+},
+{
+"t": "part",
+"pos": [
+899.0,
+113.0,
+4538.25
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+2.0,
+26,
+5.5
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier"
+},
+{
+"t": "part",
+"pos": [
+868.0,
+124.0,
+4543.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+66,
+4,
+7.0
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+176,
+174,
+168
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Awning"
+},
+{
+"t": "part",
+"pos": [
+868.0,
+181.5,
+4401.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+72,
+3,
+286
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Plate"
+},
+{
+"t": "part",
+"pos": [
+868.0,
+221.5,
+4401.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+72,
+3,
+286
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Plate"
+},
+{
+"t": "part",
+"pos": [
+868.0,
+261.5,
+4401.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+72,
+3,
+286
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Plate"
+},
+{
+"t": "part",
+"pos": [
+868.0,
+301.5,
+4401.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+72,
+3,
+286
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Plate"
+},
+{
+"t": "part",
+"pos": [
+868.0,
+341.5,
+4401.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+72,
+3,
+286
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Plate"
+},
+{
+"t": "part",
+"pos": [
+868.0,
+381.5,
+4401.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+72,
+3,
+286
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Plate"
+},
+{
+"t": "part",
+"pos": [
+868.0,
+420.5,
+4401.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+72,
+3,
+286
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+118,
+118,
+114
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Roof"
+},
+{
+"t": "part",
+"pos": [
+878.0,
+461.5,
+4401.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+52,
+3,
+286
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Plate"
+},
+{
+"t": "part",
+"pos": [
+878.0,
+501.5,
+4401.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+52,
+3,
+286
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Plate"
+},
+{
+"t": "part",
+"pos": [
+878.0,
+560.5,
+4401.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+50,
+3,
+284
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+118,
+118,
+114
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Roof"
+},
+{
+"t": "part",
+"pos": [
+833.5,
+285.5,
+4302.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+6.0,
+267,
+4.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Fin"
+},
+{
+"t": "part",
+"pos": [
+833.5,
+285.5,
+4342.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+6.0,
+267,
+4.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Fin"
+},
+{
+"t": "part",
+"pos": [
+833.5,
+285.5,
+4382.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+6.0,
+267,
+4.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Fin"
+},
+{
+"t": "part",
+"pos": [
+833.5,
+285.5,
+4422.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+6.0,
+267,
+4.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Fin"
+},
+{
+"t": "part",
+"pos": [
+833.5,
+285.5,
+4462.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+6.0,
+267,
+4.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Fin"
+},
+{
+"t": "part",
+"pos": [
+833.5,
+285.5,
+4502.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+6.0,
+267,
+4.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Fin"
+},
+{
+"t": "part",
+"pos": [
+853.5,
+490.5,
+4302.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+6.0,
+137,
+4.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Fin"
+},
+{
+"t": "part",
+"pos": [
+853.5,
+490.5,
+4382.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+6.0,
+137,
+4.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Fin"
+},
+{
+"t": "part",
+"pos": [
+853.5,
+490.5,
+4462.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+6.0,
+137,
+4.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Fin"
+},
+{
+"t": "kit",
+"pos": [
+832.5,
+162.8,
+4482
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "kit",
+"pos": [
+832.5,
+189.5,
+4522
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "kit",
+"pos": [
+832.5,
+202.8,
+4442
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "kit",
+"pos": [
+827.9,
+203.8,
+4442
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+170,
+214,
+196
+]
+},
+{
+"t": "kit",
+"pos": [
+832.5,
+242.8,
+4322
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "kit",
+"pos": [
+827.9,
+243.8,
+4322
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+200,
+170,
+210
+]
+},
+{
+"t": "part",
+"pos": [
+835.75,
+242.8,
+4402.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+1.5,
+11.0,
+34
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+200,
+170,
+210
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "part",
+"pos": [
+835.75,
+269.5,
+4402.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+1.5,
+11.0,
+34
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+200,
+170,
+210
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "kit",
+"pos": [
+832.5,
+269.5,
+4442
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "part",
+"pos": [
+835.75,
+309.5,
+4322.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+1.5,
+11.0,
+34
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+150,
+190,
+226
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "kit",
+"pos": [
+832.5,
+322.8,
+4322
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "kit",
+"pos": [
+827.9,
+323.8,
+4322
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+232,
+214,
+140
+]
+},
+{
+"t": "kit",
+"pos": [
+832.5,
+322.8,
+4482
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "kit",
+"pos": [
+827.9,
+323.8,
+4482
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+214,
+170,
+120
+]
+},
+{
+"t": "kit",
+"pos": [
+832.5,
+349.5,
+4402
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "part",
+"pos": [
+835.75,
+349.5,
+4522.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+1.5,
+11.0,
+34
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+232,
+214,
+140
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "part",
+"pos": [
+835.75,
+362.8,
+4362.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+1.5,
+11.0,
+34
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+170,
+214,
+196
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "part",
+"pos": [
+835.75,
+362.8,
+4482.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+1.5,
+11.0,
+34
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+226,
+160,
+140
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "part",
+"pos": [
+835.75,
+389.5,
+4322.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+1.5,
+11.0,
+34
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+200,
+170,
+210
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "part",
+"pos": [
+835.75,
+402.8,
+4362.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+1.5,
+11.0,
+34
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+150,
+190,
+226
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "kit",
+"pos": [
+832.5,
+402.8,
+4442
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "part",
+"pos": [
+835.75,
+402.8,
+4482.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+1.5,
+11.0,
+34
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+232,
+214,
+140
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "kit",
+"pos": [
+852.5,
+429.5,
+4502
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "kit",
+"pos": [
+852.5,
+442.8,
+4342
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "part",
+"pos": [
+855.75,
+442.8,
+4502.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+1.5,
+11.0,
+34
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+170,
+214,
+196
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "kit",
+"pos": [
+852.5,
+469.5,
+4422
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "kit",
+"pos": [
+852.5,
+469.5,
+4502
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "kit",
+"pos": [
+847.9,
+470.5,
+4502
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+170,
+214,
+196
+]
+},
+{
+"t": "kit",
+"pos": [
+852.5,
+482.8,
+4422
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "kit",
+"pos": [
+852.5,
+509.5,
+4422
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "kit",
+"pos": [
+847.9,
+510.5,
+4422
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+150,
+190,
+226
+]
+},
+{
+"t": "part",
+"pos": [
+855.75,
+522.8,
+4342.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+1.5,
+11.0,
+34
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+214,
+170,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "kit",
+"pos": [
+834.5,
+272,
+4302
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+834.5,
+192,
+4402
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+834.5,
+352,
+4482
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+834.5,
+232,
+4522
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+880,
+146,
+4544.5
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"item": "ext_stair_40",
+"scale": 1.0,
+"collide": false,
+"name": "ext_stair_40"
+},
+{
+"t": "kit",
+"pos": [
+880,
+186,
+4544.5
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"item": "ext_stair_40",
+"scale": 1.0,
+"collide": false,
+"name": "ext_stair_40"
+},
+{
+"t": "kit",
+"pos": [
+870,
+573,
+4300
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"item": "water_tank",
+"scale": 1.0,
+"collide": false,
+"name": "water_tank"
+},
+{
+"t": "kit",
+"pos": [
+880,
+573,
+4500
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD4",
+"item": "water_tank",
+"scale": 1.0,
+"collide": false,
+"name": "water_tank"
+},
+{
+"t": "kit",
+"pos": [
+872,
+568,
+4400
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD2",
+"item": "rooftop_shack",
+"scale": 1.0,
+"collide": false,
+"name": "rooftop_shack"
+},
+{
+"t": "kit",
+"pos": [
+848,
+428,
+4380
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD2",
+"item": "dish_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "dish_cluster"
+},
+{
+"t": "part",
+"pos": [
+847.0,
+422.5,
+4400.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S2 West Slab",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+10,
+3,
+240
+],
+"mat": "Grass",
+"var": "",
+"color": [
+96,
+140,
+70
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "part",
+"pos": [
+1166.0,
+113.0,
+4480.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+112,
+26,
+112
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Block"
+},
+{
+"t": "part",
+"pos": [
+1168.0,
+393.0,
+4482.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+116,
+534,
+116
+],
+"mat": "SmoothPlastic",
+"var": "SG Windows Blocks",
+"color": [
+156,
+154,
+148
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Block"
+},
+{
+"t": "part",
+"pos": [
+1168.0,
+110.5,
+4536.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+36,
+21,
+2.0
+],
+"mat": "Metal",
+"var": "Metal Shutters",
+"color": [
+150,
+154,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shutter"
+},
+{
+"t": "part",
+"pos": [
+1168.0,
+111.0,
+4536.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+116,
+22,
+1.0
+],
+"mat": "Glass",
+"var": "",
+"color": [
+60,
+90,
+115
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shopfront"
+},
+{
+"t": "part",
+"pos": [
+1111.0,
+113.0,
+4538.25
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+2.0,
+26,
+5.5
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier"
+},
+{
+"t": "part",
+"pos": [
+1148.6,
+113.0,
+4538.25
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4.0,
+26,
+5.5
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier"
+},
+{
+"t": "part",
+"pos": [
+1187.2,
+113.0,
+4538.25
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4.0,
+26,
+5.5
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier"
+},
+{
+"t": "part",
+"pos": [
+1224.9,
+113.0,
+4538.25
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+2.2,
+26,
+5.5
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier"
+},
+{
+"t": "part",
+"pos": [
+1168.0,
+124.0,
+4543.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+118,
+4,
+7.0
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+176,
+174,
+168
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Awning"
+},
+{
+"t": "part",
+"pos": [
+1168.0,
+139.0,
+4540.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+116,
+26,
+1.0
+],
+"mat": "Concrete",
+"var": "SG Graffiti B",
+"color": [
+170,
+170,
+165
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Graffiti"
+},
+{
+"t": "part",
+"pos": [
+1222.0,
+111.0,
+4482.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+1.0,
+22,
+116
+],
+"mat": "Glass",
+"var": "",
+"color": [
+60,
+90,
+115
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shopfront"
+},
+{
+"t": "part",
+"pos": [
+1224.25,
+113.0,
+4425.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+5.5,
+26,
+2.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier"
+},
+{
+"t": "part",
+"pos": [
+1224.25,
+113.0,
+4462.6
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+5.5,
+26,
+4.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier"
+},
+{
+"t": "part",
+"pos": [
+1224.25,
+113.0,
+4501.2
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+5.5,
+26,
+4.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier"
+},
+{
+"t": "part",
+"pos": [
+1224.25,
+113.0,
+4538.9
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+5.5,
+26,
+2.2
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier"
+},
+{
+"t": "part",
+"pos": [
+1168.0,
+181.5,
+4482.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+124,
+3,
+124
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Plate"
+},
+{
+"t": "part",
+"pos": [
+1168.0,
+221.5,
+4482.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+124,
+3,
+124
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Plate"
+},
+{
+"t": "part",
+"pos": [
+1168.0,
+261.5,
+4482.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+124,
+3,
+124
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Plate"
+},
+{
+"t": "part",
+"pos": [
+1168.0,
+301.5,
+4482.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+124,
+3,
+124
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Plate"
+},
+{
+"t": "part",
+"pos": [
+1168.0,
+341.5,
+4482.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+124,
+3,
+124
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Plate"
+},
+{
+"t": "part",
+"pos": [
+1168.0,
+381.5,
+4482.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+124,
+3,
+124
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Plate"
+},
+{
+"t": "part",
+"pos": [
+1168.0,
+421.5,
+4482.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+124,
+3,
+124
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Plate"
+},
+{
+"t": "part",
+"pos": [
+1168.0,
+461.5,
+4482.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+124,
+3,
+124
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Plate"
+},
+{
+"t": "part",
+"pos": [
+1168.0,
+501.5,
+4482.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+124,
+3,
+124
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Plate"
+},
+{
+"t": "part",
+"pos": [
+1168.0,
+541.5,
+4482.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+124,
+3,
+124
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Plate"
+},
+{
+"t": "part",
+"pos": [
+1168.0,
+581.5,
+4482.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+124,
+3,
+124
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Plate"
+},
+{
+"t": "part",
+"pos": [
+1168.0,
+621.5,
+4482.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+124,
+3,
+124
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Plate"
+},
+{
+"t": "part",
+"pos": [
+1168.0,
+660.5,
+4482.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+124,
+3,
+124
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+118,
+118,
+114
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Roof"
+},
+{
+"t": "part",
+"pos": [
+1110.0,
+405.5,
+4424.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+8,
+507,
+8
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "CornerFin"
+},
+{
+"t": "part",
+"pos": [
+1226.0,
+405.5,
+4424.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+8,
+507,
+8
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "CornerFin"
+},
+{
+"t": "part",
+"pos": [
+1110.0,
+405.5,
+4540.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+8,
+507,
+8
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "CornerFin"
+},
+{
+"t": "part",
+"pos": [
+1226.0,
+405.5,
+4540.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+8,
+507,
+8
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "CornerFin"
+},
+{
+"t": "part",
+"pos": [
+1149.0,
+405.5,
+4542.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4.0,
+507,
+6.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Fin"
+},
+{
+"t": "part",
+"pos": [
+1188.0,
+405.5,
+4542.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4.0,
+507,
+6.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Fin"
+},
+{
+"t": "part",
+"pos": [
+1149.0,
+405.5,
+4421.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4.0,
+507,
+6.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Fin"
+},
+{
+"t": "part",
+"pos": [
+1188.0,
+405.5,
+4421.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4.0,
+507,
+6.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Fin"
+},
+{
+"t": "part",
+"pos": [
+1228.5,
+405.5,
+4482.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+6.0,
+507,
+4.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Fin"
+},
+{
+"t": "kit",
+"pos": [
+1207,
+162.8,
+4543.5
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "kit",
+"pos": [
+1129.5,
+189.5,
+4543.5
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "part",
+"pos": [
+1129.5,
+202.8,
+4540.25
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+34.0,
+11.0,
+1.5
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+170,
+214,
+196
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "part",
+"pos": [
+1168.5,
+242.8,
+4540.25
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+34.0,
+11.0,
+1.5
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+226,
+160,
+140
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "part",
+"pos": [
+1129.5,
+269.5,
+4540.25
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+34.0,
+11.0,
+1.5
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+200,
+170,
+210
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "kit",
+"pos": [
+1168.5,
+269.5,
+4543.5
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "part",
+"pos": [
+1129.5,
+282.8,
+4540.25
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+34.0,
+11.0,
+1.5
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+170,
+214,
+196
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "part",
+"pos": [
+1207.0,
+282.8,
+4540.25
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+34,
+11.0,
+1.5
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+232,
+214,
+140
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "part",
+"pos": [
+1168.5,
+309.5,
+4540.25
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+34.0,
+11.0,
+1.5
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+214,
+170,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "part",
+"pos": [
+1207.0,
+322.8,
+4540.25
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+34,
+11.0,
+1.5
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+170,
+214,
+196
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "part",
+"pos": [
+1129.5,
+349.5,
+4540.25
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+34.0,
+11.0,
+1.5
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+232,
+214,
+140
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "kit",
+"pos": [
+1129.5,
+389.5,
+4543.5
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "part",
+"pos": [
+1168.5,
+389.5,
+4540.25
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+34.0,
+11.0,
+1.5
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+170,
+214,
+196
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "kit",
+"pos": [
+1129.5,
+429.5,
+4543.5
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "kit",
+"pos": [
+1129.5,
+430.5,
+4548.1
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+150,
+190,
+226
+]
+},
+{
+"t": "part",
+"pos": [
+1168.5,
+429.5,
+4540.25
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+34.0,
+11.0,
+1.5
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+150,
+190,
+226
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "part",
+"pos": [
+1207.0,
+442.8,
+4540.25
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+34,
+11.0,
+1.5
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+200,
+170,
+210
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "kit",
+"pos": [
+1207,
+509.5,
+4543.5
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "kit",
+"pos": [
+1207,
+510.5,
+4548.1
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+214,
+170,
+120
+]
+},
+{
+"t": "part",
+"pos": [
+1129.5,
+522.8,
+4540.25
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+34.0,
+11.0,
+1.5
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+170,
+214,
+196
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "part",
+"pos": [
+1129.5,
+549.5,
+4540.25
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+34.0,
+11.0,
+1.5
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+214,
+170,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "part",
+"pos": [
+1129.5,
+562.8,
+4540.25
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+34.0,
+11.0,
+1.5
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+214,
+170,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "kit",
+"pos": [
+1129.5,
+602.8,
+4543.5
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "kit",
+"pos": [
+1129.5,
+603.8,
+4548.1
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+226,
+160,
+140
+]
+},
+{
+"t": "part",
+"pos": [
+1207.0,
+202.8,
+4423.75
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+34,
+11.0,
+1.5
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+200,
+170,
+210
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "kit",
+"pos": [
+1129.5,
+309.5,
+4420.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "kit",
+"pos": [
+1207,
+349.5,
+4420.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "part",
+"pos": [
+1129.5,
+389.5,
+4423.75
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+34.0,
+11.0,
+1.5
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+226,
+160,
+140
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "kit",
+"pos": [
+1207,
+402.8,
+4420.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "part",
+"pos": [
+1129.5,
+429.5,
+4423.75
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+34.0,
+11.0,
+1.5
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+232,
+214,
+140
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "part",
+"pos": [
+1168.5,
+509.5,
+4423.75
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+34.0,
+11.0,
+1.5
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+232,
+214,
+140
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "part",
+"pos": [
+1129.5,
+522.8,
+4423.75
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+34.0,
+11.0,
+1.5
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+232,
+214,
+140
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "part",
+"pos": [
+1207.0,
+522.8,
+4423.75
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+34,
+11.0,
+1.5
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+232,
+214,
+140
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "part",
+"pos": [
+1129.5,
+549.5,
+4423.75
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+34.0,
+11.0,
+1.5
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+214,
+170,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "part",
+"pos": [
+1207.0,
+602.8,
+4423.75
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+34,
+11.0,
+1.5
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+226,
+160,
+140
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "part",
+"pos": [
+1129.5,
+642.8,
+4423.75
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+34.0,
+11.0,
+1.5
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+214,
+170,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "kit",
+"pos": [
+1207,
+642.8,
+4420.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "kit",
+"pos": [
+1229.5,
+309.5,
+4511
+],
+"rot": [
+0,
+-90,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "part",
+"pos": [
+1226.25,
+362.8,
+4453.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+1.5,
+11.0,
+34
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+150,
+190,
+226
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "part",
+"pos": [
+1226.25,
+362.8,
+4511.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+1.5,
+11.0,
+34
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+170,
+214,
+196
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "kit",
+"pos": [
+1229.5,
+429.5,
+4453
+],
+"rot": [
+0,
+-90,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "kit",
+"pos": [
+1234.1,
+430.5,
+4453
+],
+"rot": [
+0,
+-90,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+226,
+160,
+140
+]
+},
+{
+"t": "kit",
+"pos": [
+1229.5,
+429.5,
+4511
+],
+"rot": [
+0,
+-90,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "kit",
+"pos": [
+1234.1,
+430.5,
+4511
+],
+"rot": [
+0,
+-90,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+226,
+160,
+140
+]
+},
+{
+"t": "part",
+"pos": [
+1226.25,
+442.8,
+4511.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+1.5,
+11.0,
+34
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+214,
+170,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "part",
+"pos": [
+1226.25,
+482.8,
+4453.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+1.5,
+11.0,
+34
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+170,
+214,
+196
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "part",
+"pos": [
+1226.25,
+522.8,
+4453.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+1.5,
+11.0,
+34
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+226,
+160,
+140
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Patch"
+},
+{
+"t": "kit",
+"pos": [
+1227.5,
+200,
+4450
+],
+"rot": [
+0,
+-90,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+1227.5,
+320,
+4510
+],
+"rot": [
+0,
+-90,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+1227.5,
+440,
+4450
+],
+"rot": [
+0,
+-90,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+1227.5,
+560,
+4510
+],
+"rot": [
+0,
+-90,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+1140,
+673,
+4450
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"item": "water_tank",
+"scale": 1.0,
+"collide": false,
+"name": "water_tank"
+},
+{
+"t": "kit",
+"pos": [
+1164,
+673,
+4450
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"item": "water_tank",
+"scale": 1.0,
+"collide": false,
+"name": "water_tank"
+},
+{
+"t": "kit",
+"pos": [
+1200,
+668,
+4510
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD2",
+"item": "dish_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "dish_cluster"
+},
+{
+"t": "kit",
+"pos": [
+1140,
+668,
+4512
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD2",
+"item": "rooftop_shack",
+"scale": 1.0,
+"collide": false,
+"name": "rooftop_shack"
+},
+{
+"t": "part",
+"pos": [
+1080.0,
+395.0,
+4480.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+36,
+590,
+36
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+176,
+174,
+168
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "LiftCore"
+},
+{
+"t": "part",
+"pos": [
+1080.0,
+690.5,
+4480.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+42,
+3,
+42
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+118,
+118,
+114
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Roof"
+},
+{
+"t": "part",
+"pos": [
+1080.0,
+694.0,
+4480.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+8,
+4,
+8
+],
+"mat": "Neon",
+"var": "",
+"color": [
+255,
+40,
+40
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Beacon"
+},
+{
+"t": "part",
+"pos": [
+1104.0,
+204.5,
+4480.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+16,
+9,
+20
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "CoreBridge"
+},
+{
+"t": "part",
+"pos": [
+1104.0,
+284.5,
+4480.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+16,
+9,
+20
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "CoreBridge"
+},
+{
+"t": "part",
+"pos": [
+1104.0,
+364.5,
+4480.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+16,
+9,
+20
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "CoreBridge"
+},
+{
+"t": "part",
+"pos": [
+1104.0,
+444.5,
+4480.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+16,
+9,
+20
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "CoreBridge"
+},
+{
+"t": "part",
+"pos": [
+1104.0,
+524.5,
+4480.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+16,
+9,
+20
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "CoreBridge"
+},
+{
+"t": "part",
+"pos": [
+1104.0,
+604.5,
+4480.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+16,
+9,
+20
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+178,
+176,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "CoreBridge"
+},
+{
+"t": "part",
+"pos": [
+1062.0,
+240.0,
+4480.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+1.0,
+120,
+24
+],
+"mat": "SmoothPlastic",
+"var": "",
+"color": [
+40,
+60,
+150
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Banner"
+},
+{
+"t": "part",
+"pos": [
+1062.0,
+177.0,
+4480.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "S3 Point Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+1.0,
+2,
+20
+],
+"mat": "Neon",
+"var": "",
+"color": [
+255,
+90,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "BannerNeon"
+},
+{
+"t": "part",
+"pos": [
+1061.0,
+113.0,
+4323.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Garage Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+322,
+26,
+202
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+138,
+136,
+130
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Podium"
+},
+{
+"t": "part",
+"pos": [
+1063.0,
+133.0,
+4323.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Garage Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+326,
+14,
+202
+],
+"mat": "Concrete",
+"var": "SG Graffiti A",
+"color": [
+175,
+175,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PodiumBand"
+},
+{
+"t": "part",
+"pos": [
+1063.0,
+140.5,
+4323.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Garage Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+327.0,
+3,
+203.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+118,
+118,
+114
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Roof"
+},
+{
+"t": "part",
+"pos": [
+1222.5,
+110.5,
+4253.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Garage Podium",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+2.0,
+21,
+34
+],
+"mat": "Metal",
+"var": "Metal Shutters",
+"color": [
+150,
+154,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shutter"
+},
+{
+"t": "part",
+"pos": [
+1222.5,
+110.5,
+4293.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Garage Podium",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+2.0,
+21,
+34
+],
+"mat": "Metal",
+"var": "Metal Shutters",
+"color": [
+150,
+154,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shutter"
+},
+{
+"t": "part",
+"pos": [
+1222.5,
+110.5,
+4347.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Garage Podium",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+2.0,
+21,
+34
+],
+"mat": "Metal",
+"var": "Metal Shutters",
+"color": [
+150,
+154,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shutter"
+},
+{
+"t": "part",
+"pos": [
+1222.5,
+110.5,
+4387.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Garage Podium",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+2.0,
+21,
+34
+],
+"mat": "Metal",
+"var": "Metal Shutters",
+"color": [
+150,
+154,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shutter"
+},
+{
+"t": "part",
+"pos": [
+1222.0,
+111.0,
+4323.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Garage Podium",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+1.0,
+22,
+202
+],
+"mat": "Glass",
+"var": "",
+"color": [
+60,
+90,
+115
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shopfront"
+},
+{
+"t": "part",
+"pos": [
+1224.25,
+113.0,
+4223.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Garage Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+5.5,
+26,
+2.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier"
+},
+{
+"t": "part",
+"pos": [
+1224.25,
+113.0,
+4261.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Garage Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+5.5,
+26,
+4.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier"
+},
+{
+"t": "part",
+"pos": [
+1224.25,
+113.0,
+4300.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Garage Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+5.5,
+26,
+4.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier"
+},
+{
+"t": "part",
+"pos": [
+1224.25,
+113.0,
+4339.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Garage Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+5.5,
+26,
+4.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier"
+},
+{
+"t": "part",
+"pos": [
+1224.25,
+113.0,
+4378.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Garage Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+5.5,
+26,
+4.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier"
+},
+{
+"t": "part",
+"pos": [
+1224.25,
+113.0,
+4417.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Garage Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+5.5,
+26,
+4.0
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier"
+},
+{
+"t": "part",
+"pos": [
+1229.0,
+124.0,
+4323.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Garage Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+7.0,
+4,
+204
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+176,
+174,
+168
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Awning"
+},
+{
+"t": "part",
+"pos": [
+1010.0,
+142.75,
+4330.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Garage Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+100,
+1.5,
+120
+],
+"mat": "SmoothPlastic",
+"var": "",
+"color": [
+70,
+110,
+150
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Court"
+},
+{
+"t": "kit",
+"pos": [
+970,
+148,
+4270
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Garage Podium",
+"layer": "LOD2",
+"item": "chainlink_fence_20",
+"scale": 1.0,
+"collide": false,
+"name": "chainlink_fence_20"
+},
+{
+"t": "kit",
+"pos": [
+970,
+148,
+4390
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Garage Podium",
+"layer": "LOD2",
+"item": "chainlink_fence_20",
+"scale": 1.0,
+"collide": false,
+"name": "chainlink_fence_20"
+},
+{
+"t": "kit",
+"pos": [
+990,
+148,
+4270
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Garage Podium",
+"layer": "LOD2",
+"item": "chainlink_fence_20",
+"scale": 1.0,
+"collide": false,
+"name": "chainlink_fence_20"
+},
+{
+"t": "kit",
+"pos": [
+990,
+148,
+4390
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Garage Podium",
+"layer": "LOD2",
+"item": "chainlink_fence_20",
+"scale": 1.0,
+"collide": false,
+"name": "chainlink_fence_20"
+},
+{
+"t": "kit",
+"pos": [
+1010,
+148,
+4270
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Garage Podium",
+"layer": "LOD2",
+"item": "chainlink_fence_20",
+"scale": 1.0,
+"collide": false,
+"name": "chainlink_fence_20"
+},
+{
+"t": "kit",
+"pos": [
+1010,
+148,
+4390
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Garage Podium",
+"layer": "LOD2",
+"item": "chainlink_fence_20",
+"scale": 1.0,
+"collide": false,
+"name": "chainlink_fence_20"
+},
+{
+"t": "kit",
+"pos": [
+1030,
+148,
+4270
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Garage Podium",
+"layer": "LOD2",
+"item": "chainlink_fence_20",
+"scale": 1.0,
+"collide": false,
+"name": "chainlink_fence_20"
+},
+{
+"t": "kit",
+"pos": [
+1030,
+148,
+4390
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Garage Podium",
+"layer": "LOD2",
+"item": "chainlink_fence_20",
+"scale": 1.0,
+"collide": false,
+"name": "chainlink_fence_20"
+},
+{
+"t": "kit",
+"pos": [
+1050,
+148,
+4270
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Garage Podium",
+"layer": "LOD2",
+"item": "chainlink_fence_20",
+"scale": 1.0,
+"collide": false,
+"name": "chainlink_fence_20"
+},
+{
+"t": "kit",
+"pos": [
+1050,
+148,
+4390
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Garage Podium",
+"layer": "LOD2",
+"item": "chainlink_fence_20",
+"scale": 1.0,
+"collide": false,
+"name": "chainlink_fence_20"
+},
+{
+"t": "kit",
+"pos": [
+1120,
+148,
+4300
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Garage Podium",
+"layer": "LOD2",
+"item": "rooftop_shack",
+"scale": 1.0,
+"collide": false,
+"name": "rooftop_shack"
+},
+{
+"t": "kit",
+"pos": [
+1150,
+148,
+4380
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Garage Podium",
+"layer": "LOD2",
+"item": "rooftop_shack",
+"scale": 1.0,
+"collide": false,
+"name": "rooftop_shack"
+},
+{
+"t": "part",
+"pos": [
+985.0,
+113.0,
+4480.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Mural Workshops",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+130,
+26,
+112
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Block"
+},
+{
+"t": "part",
+"pos": [
+985.0,
+153.0,
+4482.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Mural Workshops",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+130,
+54,
+116
+],
+"mat": "Concrete",
+"var": "SG Graffiti A",
+"color": [
+175,
+175,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "MuralMass"
+},
+{
+"t": "part",
+"pos": [
+985.0,
+180.5,
+4482.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Mural Workshops",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+134,
+3,
+120
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+118,
+118,
+114
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Roof"
+},
+{
+"t": "part",
+"pos": [
+942.0,
+110.5,
+4536.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Mural Workshops",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+32,
+21,
+2.0
+],
+"mat": "Metal",
+"var": "Metal Shutters",
+"color": [
+150,
+154,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shutter"
+},
+{
+"t": "part",
+"pos": [
+985.0,
+110.5,
+4536.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Mural Workshops",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+30,
+21,
+2.0
+],
+"mat": "Metal",
+"var": "Metal Shutters",
+"color": [
+150,
+154,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shutter"
+},
+{
+"t": "part",
+"pos": [
+1028.0,
+110.5,
+4536.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Mural Workshops",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+32,
+21,
+2.0
+],
+"mat": "Metal",
+"var": "Metal Shutters",
+"color": [
+150,
+154,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shutter"
+},
+{
+"t": "part",
+"pos": [
+985.0,
+111.0,
+4536.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Mural Workshops",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+130,
+22,
+1.0
+],
+"mat": "Glass",
+"var": "",
+"color": [
+60,
+90,
+115
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Shopfront"
+},
+{
+"t": "part",
+"pos": [
+921.0,
+113.0,
+4538.25
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Mural Workshops",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+2.0,
+26,
+5.5
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier"
+},
+{
+"t": "part",
+"pos": [
+963.3,
+113.0,
+4538.25
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Mural Workshops",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4.0,
+26,
+5.5
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier"
+},
+{
+"t": "part",
+"pos": [
+1006.6,
+113.0,
+4538.25
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Mural Workshops",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4.0,
+26,
+5.5
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier"
+},
+{
+"t": "part",
+"pos": [
+1048.95,
+113.0,
+4538.25
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Mural Workshops",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+2.1,
+26,
+5.5
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Pier"
+},
+{
+"t": "part",
+"pos": [
+985.0,
+124.0,
+4543.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Mural Workshops",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+132,
+4,
+7.0
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+176,
+174,
+168
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Awning"
+},
+{
+"t": "kit",
+"pos": [
+940,
+193,
+4460
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Mural Workshops",
+"layer": "LOD4",
+"item": "water_tank",
+"scale": 1.0,
+"collide": false,
+"name": "water_tank"
+},
+{
+"t": "kit",
+"pos": [
+1000,
+185.5,
+4470
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Mural Workshops",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+1060,
+104.5,
+4550
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Mural Workshops",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+1068,
+104.5,
+4550
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Mural Workshops",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+}
+]
+}

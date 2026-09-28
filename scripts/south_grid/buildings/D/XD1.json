@@ -1,0 +1,265 @@
+{
+"id": "XD1",
+"kind": "building",
+"title": "P07-P08 bridges",
+"lean": "mixed",
+"stats": {
+"tris": 2136,
+"parts": 4,
+"kit": 6,
+"min": [
+-1292,
+308,
+4866
+],
+"max": [
+-1170,
+494,
+5132
+]
+},
+"elements": [
+{
+"t": "kit",
+"pos": [
+-1270,
+480,
+4880
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Tube bridge",
+"layer": "LOD4",
+"item": "bridge_tube_40",
+"scale": 1.0,
+"collide": false,
+"name": "bridge_tube_40"
+},
+{
+"t": "kit",
+"pos": [
+-1230,
+480,
+4880
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Tube bridge",
+"layer": "LOD4",
+"item": "bridge_tube_40",
+"scale": 1.0,
+"collide": false,
+"name": "bridge_tube_40"
+},
+{
+"t": "kit",
+"pos": [
+-1190,
+480,
+4880
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Tube bridge",
+"layer": "LOD4",
+"item": "bridge_tube_40",
+"scale": 1.0,
+"collide": false,
+"name": "bridge_tube_40"
+},
+{
+"t": "part",
+"pos": [
+-1288.0,
+480.0,
+4880.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Tube bridge",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+8,
+28,
+28
+],
+"mat": "Concrete",
+"var": "SG Capsule Panels",
+"color": [
+214,
+212,
+204
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Tube collar P07"
+},
+{
+"t": "part",
+"pos": [
+-1188.0,
+480.0,
+4880.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Tube bridge",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+8,
+28,
+28
+],
+"mat": "Concrete",
+"var": "SG Capsule Panels",
+"color": [
+214,
+212,
+204
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Tube collar P08"
+},
+{
+"t": "kit",
+"pos": [
+-1270,
+320,
+5120
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Truss bridge",
+"layer": "LOD4",
+"item": "bridge_truss_40",
+"scale": 1.0,
+"collide": false,
+"name": "bridge_truss_40"
+},
+{
+"t": "kit",
+"pos": [
+-1230,
+320,
+5120
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Truss bridge",
+"layer": "LOD4",
+"item": "bridge_truss_40",
+"scale": 1.0,
+"collide": false,
+"name": "bridge_truss_40"
+},
+{
+"t": "kit",
+"pos": [
+-1190,
+320,
+5120
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Truss bridge",
+"layer": "LOD4",
+"item": "bridge_truss_40",
+"scale": 1.0,
+"collide": false,
+"name": "bridge_truss_40"
+},
+{
+"t": "part",
+"pos": [
+-1288.0,
+320.0,
+5120.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Truss bridge",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+8,
+24,
+24
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+118,
+116,
+112
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Truss portal P07"
+},
+{
+"t": "part",
+"pos": [
+-1188.0,
+320.0,
+5120.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Truss bridge",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+8,
+24,
+24
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+118,
+116,
+112
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Truss portal P08"
+}
+]
+}

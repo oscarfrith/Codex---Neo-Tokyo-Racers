@@ -1,0 +1,796 @@
+{
+"id": "KITTEST",
+"kind": "building",
+"title": "kit smoke test",
+"lean": "",
+"stats": {
+"tris": 6524,
+"parts": 1,
+"kit": 39,
+"min": [
+-1440,
+100,
+4234
+],
+"max": [
+-1210,
+280,
+4320
+]
+},
+"elements": [
+{
+"t": "part",
+"pos": [
+-1300,
+160,
+4300
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+120,
+120,
+40
+],
+"mat": "Concrete",
+"var": "Concrete Wood Formed",
+"color": [
+160,
+160,
+156
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Block"
+},
+{
+"t": "kit",
+"pos": [
+-1340,
+146.4,
+4276
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "kit",
+"pos": [
+-1300,
+146.4,
+4276
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "kit",
+"pos": [
+-1260,
+146.4,
+4276
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "kit",
+"pos": [
+-1340,
+159.7,
+4276
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "kit",
+"pos": [
+-1340,
+156.7,
+4271.4
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "",
+"layer": "LOD4",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36"
+},
+{
+"t": "kit",
+"pos": [
+-1300,
+159.7,
+4276
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "kit",
+"pos": [
+-1300,
+156.7,
+4271.4
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "",
+"layer": "LOD4",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36"
+},
+{
+"t": "kit",
+"pos": [
+-1260,
+159.7,
+4276
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "kit",
+"pos": [
+-1260,
+156.7,
+4271.4
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "",
+"layer": "LOD4",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36"
+},
+{
+"t": "kit",
+"pos": [
+-1340,
+173.0,
+4276
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "kit",
+"pos": [
+-1300,
+173.0,
+4276
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "kit",
+"pos": [
+-1260,
+173.0,
+4276
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "",
+"layer": "LOD4",
+"item": "balcony_run_40",
+"scale": 1.0,
+"collide": false,
+"name": "balcony_run_40"
+},
+{
+"t": "kit",
+"pos": [
+-1340,
+140,
+4273
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "",
+"layer": "LOD4",
+"item": "tray_edge_40",
+"scale": 1.0,
+"collide": false,
+"name": "tray_edge_40"
+},
+{
+"t": "kit",
+"pos": [
+-1300,
+140,
+4273
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "",
+"layer": "LOD4",
+"item": "tray_edge_40",
+"scale": 1.0,
+"collide": false,
+"name": "tray_edge_40"
+},
+{
+"t": "kit",
+"pos": [
+-1260,
+140,
+4273
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "",
+"layer": "LOD4",
+"item": "tray_edge_40",
+"scale": 1.0,
+"collide": false,
+"name": "tray_edge_40"
+},
+{
+"t": "kit",
+"pos": [
+-1340,
+200,
+4278.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "",
+"layer": "LOD4",
+"item": "porthole_panel_40",
+"scale": 1.0,
+"collide": false,
+"name": "porthole_panel_40"
+},
+{
+"t": "kit",
+"pos": [
+-1300,
+200,
+4278.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "",
+"layer": "LOD4",
+"item": "porthole_panel_40",
+"scale": 1.0,
+"collide": false,
+"name": "porthole_panel_40"
+},
+{
+"t": "kit",
+"pos": [
+-1260,
+200,
+4278.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "",
+"layer": "LOD4",
+"item": "porthole_panel_40",
+"scale": 1.0,
+"collide": false,
+"name": "porthole_panel_40"
+},
+{
+"t": "kit",
+"pos": [
+-1340,
+120,
+4277.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "",
+"layer": "LOD4",
+"item": "louvre_fins_40",
+"scale": 1.0,
+"collide": false,
+"name": "louvre_fins_40"
+},
+{
+"t": "kit",
+"pos": [
+-1238,
+120,
+4278.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "",
+"layer": "LOD4",
+"item": "pipe_bundle_40",
+"scale": 1.0,
+"collide": false,
+"name": "pipe_bundle_40"
+},
+{
+"t": "kit",
+"pos": [
+-1238,
+160,
+4278.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "",
+"layer": "LOD4",
+"item": "pipe_bundle_40",
+"scale": 1.0,
+"collide": false,
+"name": "pipe_bundle_40"
+},
+{
+"t": "kit",
+"pos": [
+-1270,
+120,
+4278
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "",
+"layer": "LOD4",
+"item": "ac_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+-1255,
+128,
+4278
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "",
+"layer": "LOD4",
+"item": "ac_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+-1368,
+120,
+4288
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "",
+"layer": "LOD4",
+"item": "ext_stair_40",
+"scale": 1.0,
+"collide": false,
+"name": "ext_stair_40"
+},
+{
+"t": "kit",
+"pos": [
+-1232,
+130,
+4294
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "",
+"layer": "LOD4",
+"item": "capsule_unit",
+"scale": 1.0,
+"collide": false,
+"name": "capsule_unit"
+},
+{
+"t": "kit",
+"pos": [
+-1232,
+144,
+4294
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "",
+"layer": "LOD4",
+"item": "capsule_unit",
+"scale": 1.0,
+"collide": false,
+"name": "capsule_unit"
+},
+{
+"t": "kit",
+"pos": [
+-1232,
+158,
+4294
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "",
+"layer": "LOD4",
+"item": "capsule_unit",
+"scale": 1.0,
+"collide": false,
+"name": "capsule_unit"
+},
+{
+"t": "kit",
+"pos": [
+-1330,
+231,
+4300
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "",
+"layer": "LOD4",
+"item": "water_tank",
+"scale": 1.0,
+"collide": false,
+"name": "water_tank"
+},
+{
+"t": "kit",
+"pos": [
+-1295,
+226,
+4290
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "",
+"layer": "LOD4",
+"item": "dish_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "dish_cluster"
+},
+{
+"t": "kit",
+"pos": [
+-1255,
+250,
+4310
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "",
+"layer": "LOD4",
+"item": "antenna_mast",
+"scale": 1.0,
+"collide": false,
+"name": "antenna_mast"
+},
+{
+"t": "kit",
+"pos": [
+-1275,
+226,
+4308
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "",
+"layer": "LOD4",
+"item": "rooftop_shack",
+"scale": 1.0,
+"collide": false,
+"name": "rooftop_shack"
+},
+{
+"t": "kit",
+"pos": [
+-1380,
+190,
+4300
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "",
+"layer": "LOD4",
+"item": "bridge_truss_40",
+"scale": 1.0,
+"collide": false,
+"name": "bridge_truss_40"
+},
+{
+"t": "kit",
+"pos": [
+-1420,
+190,
+4300
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "",
+"layer": "LOD4",
+"item": "bridge_tube_40",
+"scale": 1.0,
+"collide": false,
+"name": "bridge_tube_40"
+},
+{
+"t": "kit",
+"pos": [
+-1320,
+107,
+4250
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "",
+"layer": "LOD4",
+"item": "market_stall",
+"scale": 1.0,
+"collide": false,
+"name": "market_stall"
+},
+{
+"t": "kit",
+"pos": [
+-1290,
+104.5,
+4274
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "",
+"layer": "LOD4",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+-1270,
+101.5,
+4255
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "",
+"layer": "LOD4",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "kit",
+"pos": [
+-1260,
+106,
+4235
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "",
+"layer": "LOD4",
+"item": "chainlink_fence_20",
+"scale": 1.0,
+"collide": false,
+"name": "chainlink_fence_20"
+},
+{
+"t": "kit",
+"pos": [
+-1240,
+106,
+4235
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "",
+"layer": "LOD4",
+"item": "chainlink_fence_20",
+"scale": 1.0,
+"collide": false,
+"name": "chainlink_fence_20"
+},
+{
+"t": "kit",
+"pos": [
+-1220,
+106,
+4235
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "",
+"layer": "LOD4",
+"item": "chainlink_fence_20",
+"scale": 1.0,
+"collide": false,
+"name": "chainlink_fence_20"
+}
+]
+}

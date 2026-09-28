@@ -1,0 +1,8673 @@
+{
+"id": "streetscape_westpark",
+"kind": "streetscape",
+"title": "West lot pocket park with futsal cage",
+"lean": "",
+"stats": {
+"tris": 4256,
+"parts": 247,
+"kit": 16,
+"min": [
+-2004,
+99,
+3882
+],
+"max": [
+-1461,
+116,
+4299
+]
+},
+"elements": [
+{
+"t": "part",
+"pos": [
+-1998.0,
+100.25,
+3975.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+186.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1992.0,
+100.25,
+3976.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+189.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1986.0,
+100.25,
+3978.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+193.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1980.0,
+100.25,
+3980.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+196.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1974.0,
+100.25,
+3981.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+199.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1968.0,
+100.25,
+3983.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+203.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1962.0,
+100.25,
+3985.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+206.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1956.0,
+100.25,
+3986.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+209.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1950.0,
+100.25,
+3988.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+213.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1944.0,
+100.25,
+3990.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+216.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1944.0,
+100.25,
+4107.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+7.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1938.0,
+100.25,
+3993.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+223.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1932.0,
+100.25,
+3994.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+224.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1926.0,
+100.25,
+3996.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+228.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1920.0,
+100.25,
+3998.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+233.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1914.0,
+100.25,
+4000.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+237.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1908.0,
+100.25,
+4003.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+242.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1902.0,
+100.25,
+4005.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+246.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1896.0,
+100.25,
+4009.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+248.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1890.0,
+100.25,
+4012.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+250.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1884.0,
+100.25,
+4015.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+253.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1878.0,
+100.25,
+4019.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+254.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1878.0,
+100.25,
+4153.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+7.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1872.0,
+100.25,
+4024.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+260.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1866.0,
+100.25,
+4027.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+262.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1860.0,
+100.25,
+4031.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+265.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1860.0,
+100.25,
+4292.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+14.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1854.0,
+100.25,
+4035.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+269.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1854.0,
+100.25,
+4296.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+6.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1848.0,
+100.25,
+4039.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+273.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1842.0,
+100.25,
+4043.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+277.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1836.0,
+100.25,
+4048.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+280.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1830.0,
+100.25,
+4052.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+284.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1824.0,
+100.25,
+4056.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+288.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1818.0,
+100.25,
+4063.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+299.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1812.0,
+100.25,
+4065.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+298.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1806.0,
+100.25,
+4070.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+304.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1800.0,
+100.25,
+4075.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+310.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1794.0,
+100.25,
+4080.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+316.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1788.0,
+100.25,
+4085.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+322.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1782.0,
+100.25,
+4090.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+327.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1776.0,
+100.25,
+4095.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+333.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1776.0,
+100.25,
+4277.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+6.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1770.0,
+100.25,
+4104.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+347.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1764.0,
+100.25,
+4005.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+145.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1758.0,
+100.25,
+4006.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+143.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1752.0,
+100.25,
+4007.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+141.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1746.0,
+100.25,
+4008.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+139.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1740.0,
+100.25,
+4009.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+137.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1734.0,
+100.25,
+4010.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+135.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1728.0,
+100.25,
+4011.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+133.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1722.0,
+100.25,
+4012.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+131.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1716.0,
+100.25,
+4013.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+129.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1710.0,
+100.25,
+4014.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+127.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1704.0,
+100.25,
+4015.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+125.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1698.0,
+100.25,
+4016.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+124.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1692.0,
+100.25,
+4017.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+122.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1686.0,
+100.25,
+4018.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+120.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1680.0,
+100.25,
+4019.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+118.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1674.0,
+100.25,
+4020.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+116.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1668.0,
+100.25,
+4021.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+114.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1662.0,
+100.25,
+4021.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+113.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1656.0,
+100.25,
+4022.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+111.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1650.0,
+100.25,
+4023.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+109.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1644.0,
+100.25,
+4024.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+107.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1638.0,
+100.25,
+3885.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+6.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1638.0,
+100.25,
+4025.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+105.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1632.0,
+100.25,
+3885.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+7.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1632.0,
+100.25,
+4026.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+103.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1626.0,
+100.25,
+3886.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+9.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1626.0,
+100.25,
+4027.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+102.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1620.0,
+100.25,
+3887.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+11.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1620.0,
+100.25,
+4028.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+100.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1614.0,
+100.25,
+3888.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+13.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1614.0,
+100.25,
+4028.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+99.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1608.0,
+100.25,
+3889.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+15.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1608.0,
+100.25,
+4029.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+97.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1602.0,
+100.25,
+3890.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+17.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1602.0,
+100.25,
+4030.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+96.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1596.0,
+100.25,
+3891.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+18.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1596.0,
+100.25,
+4031.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+94.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1590.0,
+100.25,
+3891.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+19.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1590.0,
+100.25,
+4032.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+92.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1584.0,
+100.25,
+3892.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+21.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1584.0,
+100.25,
+4032.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+91.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1578.0,
+100.25,
+3893.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+23.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1578.0,
+100.25,
+4033.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+89.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1572.0,
+100.25,
+3894.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+24.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1572.0,
+100.25,
+4034.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+88.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1566.0,
+100.25,
+3895.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+26.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1566.0,
+100.25,
+4035.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+86.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1560.0,
+100.25,
+3895.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+27.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1560.0,
+100.25,
+4036.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+84.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1554.0,
+100.25,
+3896.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+29.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1554.0,
+100.25,
+4029.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+68.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1548.0,
+100.25,
+3897.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+31.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1548.0,
+100.25,
+4022.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+50.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1542.0,
+100.25,
+3898.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+32.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1542.0,
+100.25,
+4014.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+32.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1536.0,
+100.25,
+3899.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+34.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1536.0,
+100.25,
+4010.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+21.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1530.0,
+100.25,
+3899.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+35.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1530.0,
+100.25,
+4040.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+76.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1524.0,
+100.25,
+3900.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+37.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1524.0,
+100.25,
+4040.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+75.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1518.0,
+100.25,
+3901.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+39.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1518.0,
+100.25,
+4041.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+74.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1512.0,
+100.25,
+3902.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+40.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1512.0,
+100.25,
+4042.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+72.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1506.0,
+100.25,
+3903.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+42.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1506.0,
+100.25,
+4042.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+71.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1500.0,
+100.25,
+3898.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+33.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1500.0,
+100.25,
+4047.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+62.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1494.0,
+100.25,
+3890.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+16.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1494.0,
+100.25,
+4044.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+68.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1488.0,
+100.25,
+4044.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+67.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1482.0,
+100.25,
+4045.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+66.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1476.0,
+100.25,
+3913.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+36.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1476.0,
+100.25,
+4046.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+64.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1470.0,
+100.25,
+3907.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+50.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1470.0,
+100.25,
+4046.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+63.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1464.0,
+100.25,
+3907.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+51.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1464.0,
+100.25,
+4047.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+6.2,
+1.0,
+61.0
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Grass"
+},
+{
+"t": "part",
+"pos": [
+-1521.0,
+100.15,
+4002.3
+],
+"rot": [
+0,
+81.384,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+1.5,
+2.3,
+6.675
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+206,
+204,
+198
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Park Kerb"
+},
+{
+"t": "part",
+"pos": [
+-1540,
+99.75,
+4052
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Ground",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+24,
+2,
+50
+],
+"mat": "Ground",
+"var": "Bush Grassy",
+"color": [
+84,
+120,
+62
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Hole Cover"
+},
+{
+"t": "part",
+"pos": [
+-1845.0,
+100.4,
+4032.0
+],
+"rot": [
+0,
+-14.0,
+0
+],
+"group": "Futsal Cage",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+66.0,
+0.8,
+46.0
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+120,
+122,
+118
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Court Base"
+},
+{
+"t": "part",
+"pos": [
+-1845.0,
+100.95,
+4032.0
+],
+"rot": [
+0,
+-14.0,
+0
+],
+"group": "Futsal Cage",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+60.0,
+0.3,
+40.0
+],
+"mat": "SmoothPlastic",
+"var": "",
+"color": [
+48,
+120,
+110
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Court Surface"
+},
+{
+"t": "part",
+"pos": [
+-1845.0,
+101.15,
+4032.0
+],
+"rot": [
+0,
+-14.0,
+0
+],
+"group": "Futsal Cage",
+"layer": "LOD1",
+"shape": "Block",
+"size": [
+1,
+0.1,
+38.0
+],
+"mat": "SmoothPlastic",
+"var": "",
+"color": [
+235,
+235,
+230
+],
+"collide": false,
+"shadow": true,
+"transparency": 0.0,
+"name": "Court Line"
+},
+{
+"t": "part",
+"pos": [
+-1840.403,
+101.15,
+4013.564
+],
+"rot": [
+0,
+-14.0,
+0
+],
+"group": "Futsal Cage",
+"layer": "LOD1",
+"shape": "Block",
+"size": [
+58.0,
+0.1,
+1
+],
+"mat": "SmoothPlastic",
+"var": "",
+"color": [
+235,
+235,
+230
+],
+"collide": false,
+"shadow": true,
+"transparency": 0.0,
+"name": "Court Line"
+},
+{
+"t": "part",
+"pos": [
+-1849.597,
+101.15,
+4050.436
+],
+"rot": [
+0,
+-14.0,
+0
+],
+"group": "Futsal Cage",
+"layer": "LOD1",
+"shape": "Block",
+"size": [
+58.0,
+0.1,
+1
+],
+"mat": "SmoothPlastic",
+"var": "",
+"color": [
+235,
+235,
+230
+],
+"collide": false,
+"shadow": true,
+"transparency": 0.0,
+"name": "Court Line"
+},
+{
+"t": "part",
+"pos": [
+-1873.139,
+101.15,
+4024.984
+],
+"rot": [
+0,
+-14.0,
+0
+],
+"group": "Futsal Cage",
+"layer": "LOD1",
+"shape": "Block",
+"size": [
+1,
+0.1,
+38.0
+],
+"mat": "SmoothPlastic",
+"var": "",
+"color": [
+235,
+235,
+230
+],
+"collide": false,
+"shadow": true,
+"transparency": 0.0,
+"name": "Court Line"
+},
+{
+"t": "part",
+"pos": [
+-1816.861,
+101.15,
+4039.016
+],
+"rot": [
+0,
+-14.0,
+0
+],
+"group": "Futsal Cage",
+"layer": "LOD1",
+"shape": "Block",
+"size": [
+1,
+0.1,
+38.0
+],
+"mat": "SmoothPlastic",
+"var": "",
+"color": [
+235,
+235,
+230
+],
+"collide": false,
+"shadow": true,
+"transparency": 0.0,
+"name": "Court Line"
+},
+{
+"t": "part",
+"pos": [
+-1845.0,
+101.12,
+4032.0
+],
+"rot": [
+0,
+-14.0,
+90
+],
+"group": "Futsal Cage",
+"layer": "LOD1",
+"shape": "Cylinder",
+"size": [
+0.1,
+14,
+14
+],
+"mat": "SmoothPlastic",
+"var": "",
+"color": [
+235,
+235,
+230
+],
+"collide": false,
+"shadow": true,
+"transparency": 0.0,
+"name": "Centre Circle"
+},
+{
+"t": "part",
+"pos": [
+-1845.0,
+101.14,
+4032.0
+],
+"rot": [
+0,
+-14.0,
+90
+],
+"group": "Futsal Cage",
+"layer": "LOD1",
+"shape": "Cylinder",
+"size": [
+0.12,
+12,
+12
+],
+"mat": "SmoothPlastic",
+"var": "",
+"color": [
+48,
+120,
+110
+],
+"collide": false,
+"shadow": true,
+"transparency": 0.0,
+"name": "Centre Circle Fill"
+},
+{
+"t": "kit",
+"pos": [
+-1859.084,
+106.8,
+4005.815
+],
+"rot": [
+0,
+-14.0,
+0
+],
+"group": "Futsal Cage",
+"layer": "LOD2",
+"item": "chainlink_fence_20",
+"scale": 1.0,
+"collide": false,
+"name": "chainlink_fence_20"
+},
+{
+"t": "kit",
+"pos": [
+-1839.678,
+106.8,
+4010.653
+],
+"rot": [
+0,
+-14.0,
+0
+],
+"group": "Futsal Cage",
+"layer": "LOD2",
+"item": "chainlink_fence_20",
+"scale": 1.0,
+"collide": false,
+"name": "chainlink_fence_20"
+},
+{
+"t": "kit",
+"pos": [
+-1820.272,
+106.8,
+4015.492
+],
+"rot": [
+0,
+-14.0,
+0
+],
+"group": "Futsal Cage",
+"layer": "LOD2",
+"item": "chainlink_fence_20",
+"scale": 1.0,
+"collide": false,
+"name": "chainlink_fence_20"
+},
+{
+"t": "kit",
+"pos": [
+-1873.388,
+106.8,
+4013.585
+],
+"rot": [
+0,
+76.0,
+0
+],
+"group": "Futsal Cage",
+"layer": "LOD2",
+"item": "chainlink_fence_20",
+"scale": 1.0,
+"collide": false,
+"name": "chainlink_fence_20"
+},
+{
+"t": "kit",
+"pos": [
+-1878.711,
+106.8,
+4034.932
+],
+"rot": [
+0,
+76.0,
+0
+],
+"group": "Futsal Cage",
+"layer": "LOD2",
+"item": "chainlink_fence_20",
+"scale": 1.0,
+"collide": false,
+"name": "chainlink_fence_20"
+},
+{
+"t": "kit",
+"pos": [
+-1869.728,
+106.8,
+4048.508
+],
+"rot": [
+0,
+-14.0,
+0
+],
+"group": "Futsal Cage",
+"layer": "LOD2",
+"item": "chainlink_fence_20",
+"scale": 1.0,
+"collide": false,
+"name": "chainlink_fence_20"
+},
+{
+"t": "kit",
+"pos": [
+-1830.916,
+106.8,
+4058.185
+],
+"rot": [
+0,
+-14.0,
+0
+],
+"group": "Futsal Cage",
+"layer": "LOD2",
+"item": "chainlink_fence_20",
+"scale": 1.0,
+"collide": false,
+"name": "chainlink_fence_20"
+},
+{
+"t": "kit",
+"pos": [
+-1811.289,
+106.8,
+4029.068
+],
+"rot": [
+0,
+76.0,
+0
+],
+"group": "Futsal Cage",
+"layer": "LOD2",
+"item": "chainlink_fence_20",
+"scale": 1.0,
+"collide": false,
+"name": "chainlink_fence_20"
+},
+{
+"t": "kit",
+"pos": [
+-1816.612,
+106.8,
+4050.415
+],
+"rot": [
+0,
+76.0,
+0
+],
+"group": "Futsal Cage",
+"layer": "LOD2",
+"item": "chainlink_fence_20",
+"scale": 1.0,
+"collide": false,
+"name": "chainlink_fence_20"
+},
+{
+"t": "part",
+"pos": [
+-1871.202,
+104.6,
+4019.283
+],
+"rot": [
+0,
+-14.0,
+0
+],
+"group": "Futsal Cage",
+"layer": "LOD1",
+"shape": "Block",
+"size": [
+1,
+7,
+1
+],
+"mat": "Metal",
+"var": "",
+"color": [
+230,
+230,
+230
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Goal Post"
+},
+{
+"t": "part",
+"pos": [
+-1874.105,
+104.6,
+4030.927
+],
+"rot": [
+0,
+-14.0,
+0
+],
+"group": "Futsal Cage",
+"layer": "LOD1",
+"shape": "Block",
+"size": [
+1,
+7,
+1
+],
+"mat": "Metal",
+"var": "",
+"color": [
+230,
+230,
+230
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Goal Post"
+},
+{
+"t": "part",
+"pos": [
+-1872.653,
+108.6,
+4025.105
+],
+"rot": [
+0,
+-14.0,
+0
+],
+"group": "Futsal Cage",
+"layer": "LOD1",
+"shape": "Block",
+"size": [
+1,
+1,
+13
+],
+"mat": "Metal",
+"var": "",
+"color": [
+230,
+230,
+230
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Goal Bar"
+},
+{
+"t": "part",
+"pos": [
+-1815.895,
+104.6,
+4033.073
+],
+"rot": [
+0,
+-14.0,
+0
+],
+"group": "Futsal Cage",
+"layer": "LOD1",
+"shape": "Block",
+"size": [
+1,
+7,
+1
+],
+"mat": "Metal",
+"var": "",
+"color": [
+230,
+230,
+230
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Goal Post"
+},
+{
+"t": "part",
+"pos": [
+-1818.798,
+104.6,
+4044.717
+],
+"rot": [
+0,
+-14.0,
+0
+],
+"group": "Futsal Cage",
+"layer": "LOD1",
+"shape": "Block",
+"size": [
+1,
+7,
+1
+],
+"mat": "Metal",
+"var": "",
+"color": [
+230,
+230,
+230
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Goal Post"
+},
+{
+"t": "part",
+"pos": [
+-1817.347,
+108.6,
+4038.895
+],
+"rot": [
+0,
+-14.0,
+0
+],
+"group": "Futsal Cage",
+"layer": "LOD1",
+"shape": "Block",
+"size": [
+1,
+1,
+13
+],
+"mat": "Metal",
+"var": "",
+"color": [
+230,
+230,
+230
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Goal Bar"
+},
+{
+"t": "clone",
+"pos": [
+-1872.912,
+100.8,
+3999.275
+],
+"rot": [
+0,
+-139.538,
+0
+],
+"group": "Futsal Cage",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+-1817.088,
+100.8,
+4064.725
+],
+"rot": [
+0,
+40.462,
+0
+],
+"group": "Futsal Cage",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "part",
+"pos": [
+-1839.533,
+114.3,
+4010.071
+],
+"rot": [
+0,
+-14.0,
+0
+],
+"group": "Futsal Cage",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+70.0,
+3.5,
+1.2
+],
+"mat": "Concrete",
+"var": "SG Graffiti A",
+"color": [
+210,
+210,
+210
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Cage Banner"
+},
+{
+"t": "part",
+"pos": [
+-1952,
+100.6,
+4000
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Park Lawns",
+"layer": "LOD3",
+"shape": "Cylinder",
+"size": [
+1.2,
+67,
+67
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+206,
+204,
+198
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Lawn Edge"
+},
+{
+"t": "part",
+"pos": [
+-1952,
+100.7,
+4000
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Park Lawns",
+"layer": "LOD3",
+"shape": "Cylinder",
+"size": [
+1.4,
+64,
+64
+],
+"mat": "Grass",
+"var": "",
+"color": [
+92,
+132,
+66
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Lawn"
+},
+{
+"t": "part",
+"pos": [
+-1720,
+100.6,
+4032
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Park Lawns",
+"layer": "LOD3",
+"shape": "Cylinder",
+"size": [
+1.2,
+47,
+47
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+206,
+204,
+198
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Lawn Edge"
+},
+{
+"t": "part",
+"pos": [
+-1720,
+100.7,
+4032
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Park Lawns",
+"layer": "LOD3",
+"shape": "Cylinder",
+"size": [
+1.4,
+44,
+44
+],
+"mat": "Grass",
+"var": "",
+"color": [
+92,
+132,
+66
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Lawn"
+},
+{
+"t": "part",
+"pos": [
+-1880,
+100.6,
+4128
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Park Lawns",
+"layer": "LOD3",
+"shape": "Cylinder",
+"size": [
+1.2,
+47,
+47
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+206,
+204,
+198
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Lawn Edge"
+},
+{
+"t": "part",
+"pos": [
+-1880,
+100.7,
+4128
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Park Lawns",
+"layer": "LOD3",
+"shape": "Cylinder",
+"size": [
+1.4,
+44,
+44
+],
+"mat": "Grass",
+"var": "",
+"color": [
+92,
+132,
+66
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Lawn"
+},
+{
+"t": "part",
+"pos": [
+-1805,
+100.6,
+4205
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Park Lawns",
+"layer": "LOD3",
+"shape": "Cylinder",
+"size": [
+1.2,
+29,
+29
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+206,
+204,
+198
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Lawn Edge"
+},
+{
+"t": "part",
+"pos": [
+-1805,
+100.7,
+4205
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Park Lawns",
+"layer": "LOD3",
+"shape": "Cylinder",
+"size": [
+1.4,
+26,
+26
+],
+"mat": "Grass",
+"var": "",
+"color": [
+92,
+132,
+66
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Lawn"
+},
+{
+"t": "part",
+"pos": [
+-1620,
+100.6,
+4040
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Park Lawns",
+"layer": "LOD3",
+"shape": "Cylinder",
+"size": [
+1.2,
+33,
+33
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+206,
+204,
+198
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Lawn Edge"
+},
+{
+"t": "part",
+"pos": [
+-1620,
+100.7,
+4040
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Park Lawns",
+"layer": "LOD3",
+"shape": "Cylinder",
+"size": [
+1.4,
+30,
+30
+],
+"mat": "Grass",
+"var": "",
+"color": [
+92,
+132,
+66
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Lawn"
+},
+{
+"t": "part",
+"pos": [
+-1780,
+100.5,
+4095
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Park Lawns",
+"layer": "LOD3",
+"shape": "Cylinder",
+"size": [
+1.0,
+30,
+30
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Plaza Circle"
+},
+{
+"t": "part",
+"pos": [
+-1780,
+102.25,
+4095
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Lawns",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+10,
+2.5,
+10
+],
+"mat": "Concrete",
+"var": "Concrete Square Tiles",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Planter"
+},
+{
+"t": "clone",
+"pos": [
+-1780,
+103.5,
+4095
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Park Lawns",
+"layer": "LOD3",
+"key": "Tree Large Maple",
+"name": "Tree Large Maple"
+},
+{
+"t": "part",
+"pos": [
+-1997.593,
+100.7,
+4059.63
+],
+"rot": [
+0,
+134.556,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+7.957
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1991.389,
+100.7,
+4054.222
+],
+"rot": [
+0,
+128.66,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+10.923
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1981.296,
+100.7,
+4050.593
+],
+"rot": [
+0,
+95.377,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+13.848
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1971.667,
+100.7,
+4051.091
+],
+"rot": [
+0,
+71.875,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+8.213
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1964.382,
+100.7,
+4054.036
+],
+"rot": [
+0,
+64.865,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+9.932
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1956.018,
+100.7,
+4058.257
+],
+"rot": [
+0,
+61.793,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+11.212
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1946.897,
+100.7,
+4063.249
+],
+"rot": [
+0,
+60.856,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+11.984
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1937.341,
+100.7,
+4068.509
+],
+"rot": [
+0,
+61.477,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+12.231
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1927.673,
+100.7,
+4073.532
+],
+"rot": [
+0,
+63.637,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+11.963
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1918.215,
+100.7,
+4077.815
+],
+"rot": [
+0,
+67.784,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+11.216
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1909.29,
+100.7,
+4080.854
+],
+"rot": [
+0,
+75.048,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+10.08
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1899.682,
+100.7,
+4082.231
+],
+"rot": [
+0,
+87.508,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+11.847
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1889.219,
+100.7,
+4081.639
+],
+"rot": [
+0,
+99.1,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+11.621
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1879.068,
+100.7,
+4079.407
+],
+"rot": [
+0,
+105.704,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+11.6
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1869.161,
+100.7,
+4076.481
+],
+"rot": [
+0,
+107.213,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+11.463
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1859.427,
+100.7,
+4073.806
+],
+"rot": [
+0,
+103.47,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+11.138
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1849.797,
+100.7,
+4072.324
+],
+"rot": [
+0,
+93.865,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+10.817
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1840.272,
+100.7,
+4072.789
+],
+"rot": [
+0,
+80.522,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+10.787
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1830.92,
+100.7,
+4075.16
+],
+"rot": [
+0,
+71.123,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+10.973
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1821.742,
+100.7,
+4078.683
+],
+"rot": [
+0,
+66.905,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+11.102
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1812.668,
+100.7,
+4082.498
+],
+"rot": [
+0,
+67.494,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+10.985
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1803.628,
+100.7,
+4085.743
+],
+"rot": [
+0,
+73.106,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+10.647
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1794.554,
+100.7,
+4087.558
+],
+"rot": [
+0,
+84.455,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+10.352
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1785.503,
+100.7,
+4087.282
+],
+"rot": [
+0,
+99.067,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+10.307
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1776.615,
+100.7,
+4084.986
+],
+"rot": [
+0,
+109.769,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+10.535
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1767.83,
+100.7,
+4081.329
+],
+"rot": [
+0,
+115.326,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+10.919
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1758.941,
+100.7,
+4077.032
+],
+"rot": [
+0,
+116.252,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+11.227
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1749.74,
+100.7,
+4072.819
+],
+"rot": [
+0,
+112.982,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+11.421
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1740.017,
+100.7,
+4069.412
+],
+"rot": [
+0,
+105.718,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+11.625
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1730.437,
+100.7,
+4067.329
+],
+"rot": [
+0,
+98.361,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+10.423
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1721.13,
+100.7,
+4066.292
+],
+"rot": [
+0,
+94.427,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+10.718
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1711.48,
+100.7,
+4065.755
+],
+"rot": [
+0,
+91.974,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+11.016
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1701.531,
+100.7,
+4065.51
+],
+"rot": [
+0,
+90.861,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+11.289
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1691.327,
+100.7,
+4065.347
+],
+"rot": [
+0,
+90.971,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+11.522
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1680.911,
+100.7,
+4065.055
+],
+"rot": [
+0,
+92.224,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+11.718
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1670.328,
+100.7,
+4064.426
+],
+"rot": [
+0,
+94.568,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+11.89
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1660.188,
+100.7,
+4063.428
+],
+"rot": [
+0,
+96.782,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+10.892
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1650.364,
+100.7,
+4062.162
+],
+"rot": [
+0,
+97.876,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+11.32
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1640.212,
+100.7,
+4060.689
+],
+"rot": [
+0,
+98.623,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+11.596
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1629.88,
+100.7,
+4059.08
+],
+"rot": [
+0,
+99.082,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+11.718
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1619.514,
+100.7,
+4057.404
+],
+"rot": [
+0,
+99.284,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+11.684
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1609.26,
+100.7,
+4055.732
+],
+"rot": [
+0,
+99.236,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+11.495
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1599.265,
+100.7,
+4054.135
+],
+"rot": [
+0,
+98.921,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+11.149
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1589.675,
+100.7,
+4052.682
+],
+"rot": [
+0,
+98.295,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+10.649
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1579.898,
+100.7,
+4051.359
+],
+"rot": [
+0,
+97.165,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+11.484
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1569.847,
+100.7,
+4050.187
+],
+"rot": [
+0,
+96.12,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+11.155
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1560.102,
+100.7,
+4049.184
+],
+"rot": [
+0,
+95.624,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+10.838
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1550.663,
+100.7,
+4048.245
+],
+"rot": [
+0,
+95.737,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+10.532
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1541.531,
+100.7,
+4047.265
+],
+"rot": [
+0,
+96.52,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+10.238
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1532.704,
+100.7,
+4046.14
+],
+"rot": [
+0,
+98.036,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+9.959
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1524.184,
+100.7,
+4044.764
+],
+"rot": [
+0,
+100.347,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+9.706
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1514.12,
+100.7,
+4042.528
+],
+"rot": [
+0,
+104.055,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+13.323
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1502.38,
+100.7,
+4039.232
+],
+"rot": [
+0,
+107.289,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+13.475
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1491.1,
+100.7,
+4035.52
+],
+"rot": [
+0,
+109.205,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+12.679
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1481.12,
+100.7,
+4031.968
+],
+"rot": [
+0,
+110.048,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+10.908
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1473.28,
+100.7,
+4029.152
+],
+"rot": [
+0,
+109.352,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+8.153
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1781.638,
+100.7,
+4097.464
+],
+"rot": [
+0,
+-33.627,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+7.117
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1785.685,
+100.7,
+4103.243
+],
+"rot": [
+0,
+-35.985,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+9.397
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1790.939,
+100.7,
+4110.51
+],
+"rot": [
+0,
+-35.765,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+10.937
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1796.735,
+100.7,
+4118.827
+],
+"rot": [
+0,
+-34.051,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+11.739
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1802.408,
+100.7,
+4127.755
+],
+"rot": [
+0,
+-30.829,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+11.827
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1807.294,
+100.7,
+4136.859
+],
+"rot": [
+0,
+-25.473,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+11.26
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1810.729,
+100.7,
+4145.7
+],
+"rot": [
+0,
+-16.467,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+10.168
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1812.308,
+100.7,
+4154.942
+],
+"rot": [
+0,
+-3.565,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+11.103
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1812.049,
+100.7,
+4165.035
+],
+"rot": [
+0,
+6.284,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+11.563
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1810.303,
+100.7,
+4175.405
+],
+"rot": [
+0,
+12.72,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+11.902
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1807.6,
+100.7,
+4185.775
+],
+"rot": [
+0,
+16.498,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+11.943
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1804.465,
+100.7,
+4195.868
+],
+"rot": [
+0,
+18.031,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+11.595
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1801.428,
+100.7,
+4205.405
+],
+"rot": [
+0,
+17.267,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+10.824
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1798.248,
+100.7,
+4215.34
+],
+"rot": [
+0,
+18.164,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+12.44
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1794.432,
+100.7,
+4225.96
+],
+"rot": [
+0,
+21.351,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+12.538
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1790.28,
+100.7,
+4236.1
+],
+"rot": [
+0,
+23.25,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+11.779
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1786.368,
+100.7,
+4245.04
+],
+"rot": [
+0,
+24.087,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+10.138
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1783.272,
+100.7,
+4252.06
+],
+"rot": [
+0,
+23.396,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+7.607
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1906.199,
+100.7,
+4079.304
+],
+"rot": [
+0,
+-156.019,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+7.101
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1909.014,
+100.7,
+4072.99
+],
+"rot": [
+0,
+-155.942,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+9.127
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1912.565,
+100.7,
+4065.029
+],
+"rot": [
+0,
+-155.975,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+10.706
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1916.657,
+100.7,
+4055.825
+],
+"rot": [
+0,
+-156.073,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+11.839
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1921.097,
+100.7,
+4045.781
+],
+"rot": [
+0,
+-156.228,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+12.524
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1925.69,
+100.7,
+4035.3
+],
+"rot": [
+0,
+-156.447,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+12.763
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1929.75,
+100.7,
+4026.228
+],
+"rot": [
+0,
+-155.105,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+9.516
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1933.599,
+100.7,
+4018.284
+],
+"rot": [
+0,
+-153.307,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+10.541
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1937.997,
+100.7,
+4009.667
+],
+"rot": [
+0,
+-152.641,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+11.208
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1942.652,
+100.7,
+4000.636
+],
+"rot": [
+0,
+-152.818,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+11.512
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1947.272,
+100.7,
+3991.451
+],
+"rot": [
+0,
+-153.781,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+11.452
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1951.564,
+100.7,
+3982.37
+],
+"rot": [
+0,
+-155.651,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+11.038
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1955.238,
+100.7,
+3973.654
+],
+"rot": [
+0,
+-158.766,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+10.286
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1958.0,
+100.7,
+3965.562
+],
+"rot": [
+0,
+-163.858,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+9.233
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1959.558,
+100.7,
+3958.352
+],
+"rot": [
+0,
+-172.493,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+7.962
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1958.744,
+100.7,
+3949.94
+],
+"rot": [
+0,
+166.06,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+11.627
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1954.256,
+100.7,
+3940.66
+],
+"rot": [
+0,
+142.552,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+11.831
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1946.92,
+100.7,
+3933.0
+],
+"rot": [
+0,
+129.97,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+11.91
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1938.944,
+100.7,
+3926.84
+],
+"rot": [
+0,
+125.087,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+10.664
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "part",
+"pos": [
+-1932.536,
+100.7,
+3922.06
+],
+"rot": [
+0,
+129.087,
+0
+],
+"group": "Park Paths",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+9,
+0.6,
+7.734
+],
+"mat": "CeramicTiles",
+"var": "Paving Slab",
+"color": [
+184,
+132,
+120
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Path"
+},
+{
+"t": "clone",
+"pos": [
+-1985,
+101.4,
+3985
+],
+"rot": [
+0,
+30,
+0
+],
+"group": "Park Planting",
+"layer": "LOD3",
+"key": "Tree Large Maple",
+"name": "Tree Large Maple"
+},
+{
+"t": "clone",
+"pos": [
+-1935,
+101.4,
+4005
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Planting",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "clone",
+"pos": [
+-1700,
+101.4,
+4040
+],
+"rot": [
+0,
+120,
+0
+],
+"group": "Park Planting",
+"layer": "LOD3",
+"key": "Tree Large Maple",
+"name": "Tree Large Maple"
+},
+{
+"t": "clone",
+"pos": [
+-1868,
+101.4,
+4135
+],
+"rot": [
+0,
+210,
+0
+],
+"group": "Park Planting",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "clone",
+"pos": [
+-1895,
+101.4,
+4118
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Park Planting",
+"layer": "LOD3",
+"key": "Tree Small Bamboo Group",
+"name": "Tree Small Bamboo Group"
+},
+{
+"t": "clone",
+"pos": [
+-1640,
+101.4,
+4032
+],
+"rot": [
+0,
+30,
+0
+],
+"group": "Park Planting",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "clone",
+"pos": [
+-1600,
+101.4,
+4046
+],
+"rot": [
+0,
+30,
+0
+],
+"group": "Park Planting",
+"layer": "LOD3",
+"key": "Tree Small Bamboo Group",
+"name": "Tree Small Bamboo Group"
+},
+{
+"t": "clone",
+"pos": [
+-1810,
+101.4,
+4205
+],
+"rot": [
+0,
+300,
+0
+],
+"group": "Park Planting",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "clone",
+"pos": [
+-1790,
+101.4,
+4238
+],
+"rot": [
+0,
+30,
+0
+],
+"group": "Park Planting",
+"layer": "LOD3",
+"key": "Tree Small Bamboo Group",
+"name": "Tree Small Bamboo Group"
+},
+{
+"t": "clone",
+"pos": [
+-1760,
+101.4,
+4180
+],
+"rot": [
+0,
+270,
+0
+],
+"group": "Park Planting",
+"layer": "LOD3",
+"key": "Tree Small Bamboo Group",
+"name": "Tree Small Bamboo Group"
+},
+{
+"t": "clone",
+"pos": [
+-1960,
+101.4,
+4020
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Park Planting",
+"layer": "LOD3",
+"key": "Tree Small Bamboo Group",
+"name": "Tree Small Bamboo Group"
+},
+{
+"t": "clone",
+"pos": [
+-2010,
+101.4,
+4030
+],
+"rot": [
+0,
+120,
+0
+],
+"group": "Park Planting",
+"layer": "LOD3",
+"key": "Tree Large Poplar Group",
+"name": "Tree Large Poplar Group"
+},
+{
+"t": "clone",
+"pos": [
+-1985,
+100.0,
+4070
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Park Planting",
+"layer": "LOD3",
+"key": "Bush Large",
+"name": "Bush Large"
+},
+{
+"t": "clone",
+"pos": [
+-1560,
+100.0,
+4058
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Park Planting",
+"layer": "LOD3",
+"key": "Bush Large",
+"name": "Bush Large"
+},
+{
+"t": "clone",
+"pos": [
+-1850,
+100.0,
+4110
+],
+"rot": [
+0,
+150,
+0
+],
+"group": "Park Planting",
+"layer": "LOD3",
+"key": "Bush Large",
+"name": "Bush Large"
+},
+{
+"t": "kit",
+"pos": [
+-1870,
+102.5,
+4090
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Park Planting",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "kit",
+"pos": [
+-1760,
+102.5,
+4080
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Park Planting",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "kit",
+"pos": [
+-1690,
+102.5,
+4056
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Park Planting",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "kit",
+"pos": [
+-1560,
+102.5,
+4036
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Park Planting",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "kit",
+"pos": [
+-1818,
+102.5,
+4178
+],
+"rot": [
+0,
+-90.0,
+0
+],
+"group": "Park Planting",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "clone",
+"pos": [
+-1940,
+101.0,
+4064
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Park Planting",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+-1815,
+101.0,
+4082
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Park Planting",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+-1700,
+101.0,
+4076
+],
+"rot": [
+0,
+0.0,
+0
+],
+"group": "Park Planting",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+-1600,
+101.0,
+4062
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Park Planting",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+-1500,
+101.0,
+4040
+],
+"rot": [
+0,
+180.0,
+0
+],
+"group": "Park Planting",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+-1797,
+101.0,
+4160
+],
+"rot": [
+0,
+-90.0,
+0
+],
+"group": "Park Planting",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+-1790,
+101.0,
+4240
+],
+"rot": [
+0,
+-90.0,
+0
+],
+"group": "Park Planting",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "clone",
+"pos": [
+-1945,
+101.0,
+3990
+],
+"rot": [
+0,
+-90.0,
+0
+],
+"group": "Park Planting",
+"layer": "LOD2",
+"key": "Street Lamp Tall A",
+"name": "Street Lamp Tall A"
+},
+{
+"t": "kit",
+"pos": [
+-1818,
+105.5,
+4060
+],
+"rot": [
+0,
+166,
+0
+],
+"group": "Park Planting",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+-1812,
+105.5,
+4059
+],
+"rot": [
+0,
+166,
+0
+],
+"group": "Park Planting",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+}
+]
+}

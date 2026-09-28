@@ -1,0 +1,245 @@
+{
+"id": "X2",
+"kind": "building",
+"title": "X2 truss bridge P10-P11",
+"lean": "blocks",
+"stats": {
+"tris": 744,
+"parts": 5,
+"kit": 3,
+"min": [
+524,
+384,
+5046
+],
+"max": [
+632,
+418,
+5074
+]
+},
+"elements": [
+{
+"t": "kit",
+"pos": [
+560,
+407,
+5060
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "X2 Bridge",
+"layer": "LOD4",
+"item": "bridge_truss_40",
+"scale": 1.0,
+"collide": false,
+"name": "bridge_truss_40"
+},
+{
+"t": "kit",
+"pos": [
+600,
+407,
+5060
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "X2 Bridge",
+"layer": "LOD4",
+"item": "bridge_truss_40",
+"scale": 1.0,
+"collide": false,
+"name": "bridge_truss_40"
+},
+{
+"t": "part",
+"pos": [
+532,
+405,
+5060
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "X2 Bridge",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+16,
+26,
+28
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+196,
+193,
+184
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "HeadWest"
+},
+{
+"t": "part",
+"pos": [
+626,
+405,
+5060
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "X2 Bridge",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+12,
+26,
+28
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+196,
+193,
+184
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "HeadEast"
+},
+{
+"t": "part",
+"pos": [
+580,
+397.5,
+5060
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "X2 Bridge",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+80,
+3,
+22
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+150,
+148,
+141
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "DeckSlab"
+},
+{
+"t": "part",
+"pos": [
+578,
+394,
+5060
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "X2 Bridge",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+104,
+4,
+6
+],
+"mat": "Metal",
+"var": "",
+"color": [
+96,
+100,
+104
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "UnderBeam"
+},
+{
+"t": "kit",
+"pos": [
+580,
+388,
+5049
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "X2 Bridge",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+235,
+210,
+120
+]
+},
+{
+"t": "part",
+"pos": [
+580,
+413,
+5049.6
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "X2 Bridge",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+30,
+3,
+0.6
+],
+"mat": "Neon",
+"var": "",
+"color": [
+60,
+230,
+255
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "NeonStrip"
+}
+]
+}

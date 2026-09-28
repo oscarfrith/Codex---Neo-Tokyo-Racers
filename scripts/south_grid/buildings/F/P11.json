@@ -1,0 +1,7923 @@
+{
+"id": "P11",
+"kind": "building",
+"title": "Kasei Frame",
+"lean": "metabolist",
+"stats": {
+"tris": 19432,
+"parts": 188,
+"kit": 91,
+"min": [
+606,
+200,
+4789
+],
+"max": [
+1054,
+852,
+5203
+]
+},
+"elements": [
+{
+"t": "part",
+"pos": [
+830.0,
+220.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+400,
+40,
+400
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+170,
+167,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PodiumMass"
+},
+{
+"t": "part",
+"pos": [
+830.0,
+242.0,
+4801.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+400,
+4,
+2
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+170,
+167,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PodiumParapetN"
+},
+{
+"t": "part",
+"pos": [
+830.0,
+242.0,
+5199.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+400,
+4,
+2
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+170,
+167,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PodiumParapetS"
+},
+{
+"t": "part",
+"pos": [
+830.0,
+230.0,
+4799.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+400,
+20,
+1.0
+],
+"mat": "Concrete",
+"var": "SG Graffiti A",
+"color": [
+200,
+198,
+192
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "GraffitiN"
+},
+{
+"t": "part",
+"pos": [
+650.0,
+209.0,
+4799.6
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+36,
+18,
+0.8
+],
+"mat": "Metal",
+"var": "Metal Shutters",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "ShutterN0"
+},
+{
+"t": "part",
+"pos": [
+690.0,
+209.0,
+4799.6
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+36,
+18,
+0.8
+],
+"mat": "Glass",
+"var": "",
+"color": [
+40,
+58,
+70
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "ShopN1"
+},
+{
+"t": "part",
+"pos": [
+690,
+216,
+4798.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+16,
+4,
+1
+],
+"mat": "Neon",
+"var": "",
+"color": [
+60,
+230,
+255
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "ShopSign"
+},
+{
+"t": "part",
+"pos": [
+730.0,
+209.0,
+4799.6
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+36,
+18,
+0.8
+],
+"mat": "Metal",
+"var": "Metal Shutters",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "ShutterN2"
+},
+{
+"t": "part",
+"pos": [
+770.0,
+209.0,
+4799.6
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+36,
+18,
+0.8
+],
+"mat": "Metal",
+"var": "Metal Shutters",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "ShutterN3"
+},
+{
+"t": "part",
+"pos": [
+810.0,
+209.0,
+4799.6
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+36,
+18,
+0.8
+],
+"mat": "Glass",
+"var": "",
+"color": [
+40,
+58,
+70
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "ShopN4"
+},
+{
+"t": "part",
+"pos": [
+810,
+216,
+4798.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+16,
+4,
+1
+],
+"mat": "Neon",
+"var": "",
+"color": [
+60,
+230,
+255
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "ShopSign"
+},
+{
+"t": "part",
+"pos": [
+850.0,
+209.0,
+4799.6
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+36,
+18,
+0.8
+],
+"mat": "Glass",
+"var": "",
+"color": [
+40,
+58,
+70
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "ShopN5"
+},
+{
+"t": "part",
+"pos": [
+850,
+216,
+4798.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+16,
+4,
+1
+],
+"mat": "Neon",
+"var": "",
+"color": [
+255,
+190,
+60
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "ShopSign"
+},
+{
+"t": "part",
+"pos": [
+890.0,
+209.0,
+4799.6
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+36,
+18,
+0.8
+],
+"mat": "Metal",
+"var": "Metal Shutters",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "ShutterN6"
+},
+{
+"t": "part",
+"pos": [
+930.0,
+209.0,
+4799.6
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+36,
+18,
+0.8
+],
+"mat": "Metal",
+"var": "Metal Shutters",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "ShutterN7"
+},
+{
+"t": "part",
+"pos": [
+970.0,
+209.0,
+4799.6
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+36,
+18,
+0.8
+],
+"mat": "Glass",
+"var": "",
+"color": [
+40,
+58,
+70
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "ShopN8"
+},
+{
+"t": "part",
+"pos": [
+970,
+216,
+4798.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+16,
+4,
+1
+],
+"mat": "Neon",
+"var": "",
+"color": [
+255,
+190,
+60
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "ShopSign"
+},
+{
+"t": "part",
+"pos": [
+1010.0,
+209.0,
+4799.6
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+36,
+18,
+0.8
+],
+"mat": "Metal",
+"var": "Metal Shutters",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "ShutterN9"
+},
+{
+"t": "part",
+"pos": [
+630.0,
+210.0,
+4798.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4,
+20,
+3.0
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+170,
+167,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PierN0"
+},
+{
+"t": "part",
+"pos": [
+670.0,
+210.0,
+4798.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4,
+20,
+3.0
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+170,
+167,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PierN1"
+},
+{
+"t": "part",
+"pos": [
+710.0,
+210.0,
+4798.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4,
+20,
+3.0
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+170,
+167,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PierN2"
+},
+{
+"t": "part",
+"pos": [
+750.0,
+210.0,
+4798.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4,
+20,
+3.0
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+170,
+167,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PierN3"
+},
+{
+"t": "part",
+"pos": [
+790.0,
+210.0,
+4798.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4,
+20,
+3.0
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+170,
+167,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PierN4"
+},
+{
+"t": "part",
+"pos": [
+830.0,
+210.0,
+4798.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4,
+20,
+3.0
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+170,
+167,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PierN5"
+},
+{
+"t": "part",
+"pos": [
+870.0,
+210.0,
+4798.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4,
+20,
+3.0
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+170,
+167,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PierN6"
+},
+{
+"t": "part",
+"pos": [
+910.0,
+210.0,
+4798.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4,
+20,
+3.0
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+170,
+167,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PierN7"
+},
+{
+"t": "part",
+"pos": [
+950.0,
+210.0,
+4798.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4,
+20,
+3.0
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+170,
+167,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PierN8"
+},
+{
+"t": "part",
+"pos": [
+990.0,
+210.0,
+4798.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4,
+20,
+3.0
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+170,
+167,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PierN9"
+},
+{
+"t": "part",
+"pos": [
+1030.0,
+210.0,
+4798.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4,
+20,
+3.0
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+170,
+167,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PierN10"
+},
+{
+"t": "part",
+"pos": [
+830.0,
+230.0,
+5200.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+400,
+20,
+1.0
+],
+"mat": "Concrete",
+"var": "SG Graffiti B",
+"color": [
+200,
+198,
+192
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "GraffitiS"
+},
+{
+"t": "part",
+"pos": [
+650.0,
+209.0,
+5200.4
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+36,
+18,
+0.8
+],
+"mat": "Metal",
+"var": "Metal Shutters",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "ShutterS0"
+},
+{
+"t": "part",
+"pos": [
+690.0,
+209.0,
+5200.4
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+36,
+18,
+0.8
+],
+"mat": "Metal",
+"var": "Metal Shutters",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "ShutterS1"
+},
+{
+"t": "part",
+"pos": [
+730.0,
+209.0,
+5200.4
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+36,
+18,
+0.8
+],
+"mat": "Glass",
+"var": "",
+"color": [
+40,
+58,
+70
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "ShopS2"
+},
+{
+"t": "part",
+"pos": [
+730,
+216,
+5201.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+16,
+4,
+1
+],
+"mat": "Neon",
+"var": "",
+"color": [
+255,
+190,
+60
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "ShopSign"
+},
+{
+"t": "part",
+"pos": [
+770.0,
+209.0,
+5200.4
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+36,
+18,
+0.8
+],
+"mat": "Metal",
+"var": "Metal Shutters",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "ShutterS3"
+},
+{
+"t": "part",
+"pos": [
+810.0,
+209.0,
+5200.4
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+36,
+18,
+0.8
+],
+"mat": "Metal",
+"var": "Metal Shutters",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "ShutterS4"
+},
+{
+"t": "part",
+"pos": [
+850.0,
+209.0,
+5200.4
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+36,
+18,
+0.8
+],
+"mat": "Metal",
+"var": "Metal Shutters",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "ShutterS5"
+},
+{
+"t": "part",
+"pos": [
+890.0,
+209.0,
+5200.4
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+36,
+18,
+0.8
+],
+"mat": "Glass",
+"var": "",
+"color": [
+40,
+58,
+70
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "ShopS6"
+},
+{
+"t": "part",
+"pos": [
+890,
+216,
+5201.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+16,
+4,
+1
+],
+"mat": "Neon",
+"var": "",
+"color": [
+255,
+70,
+160
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "ShopSign"
+},
+{
+"t": "part",
+"pos": [
+930.0,
+209.0,
+5200.4
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+36,
+18,
+0.8
+],
+"mat": "Metal",
+"var": "Metal Shutters",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "ShutterS7"
+},
+{
+"t": "part",
+"pos": [
+970.0,
+209.0,
+5200.4
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+36,
+18,
+0.8
+],
+"mat": "Metal",
+"var": "Metal Shutters",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "ShutterS8"
+},
+{
+"t": "part",
+"pos": [
+1010.0,
+209.0,
+5200.4
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+36,
+18,
+0.8
+],
+"mat": "Metal",
+"var": "Metal Shutters",
+"color": [
+150,
+150,
+146
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "ShutterS9"
+},
+{
+"t": "part",
+"pos": [
+630.0,
+210.0,
+5201.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4,
+20,
+3.0
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+170,
+167,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PierS0"
+},
+{
+"t": "part",
+"pos": [
+670.0,
+210.0,
+5201.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4,
+20,
+3.0
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+170,
+167,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PierS1"
+},
+{
+"t": "part",
+"pos": [
+710.0,
+210.0,
+5201.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4,
+20,
+3.0
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+170,
+167,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PierS2"
+},
+{
+"t": "part",
+"pos": [
+750.0,
+210.0,
+5201.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4,
+20,
+3.0
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+170,
+167,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PierS3"
+},
+{
+"t": "part",
+"pos": [
+790.0,
+210.0,
+5201.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4,
+20,
+3.0
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+170,
+167,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PierS4"
+},
+{
+"t": "part",
+"pos": [
+830.0,
+210.0,
+5201.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4,
+20,
+3.0
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+170,
+167,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PierS5"
+},
+{
+"t": "part",
+"pos": [
+870.0,
+210.0,
+5201.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4,
+20,
+3.0
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+170,
+167,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PierS6"
+},
+{
+"t": "part",
+"pos": [
+910.0,
+210.0,
+5201.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4,
+20,
+3.0
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+170,
+167,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PierS7"
+},
+{
+"t": "part",
+"pos": [
+950.0,
+210.0,
+5201.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4,
+20,
+3.0
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+170,
+167,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PierS8"
+},
+{
+"t": "part",
+"pos": [
+990.0,
+210.0,
+5201.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4,
+20,
+3.0
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+170,
+167,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PierS9"
+},
+{
+"t": "part",
+"pos": [
+1030.0,
+210.0,
+5201.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4,
+20,
+3.0
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+170,
+167,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PierS10"
+},
+{
+"t": "part",
+"pos": [
+629.5,
+230.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+1.0,
+20,
+400
+],
+"mat": "Concrete",
+"var": "SG Graffiti B",
+"color": [
+200,
+198,
+192
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "GraffitiW"
+},
+{
+"t": "part",
+"pos": [
+629.6,
+209.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+0.8,
+18,
+400
+],
+"mat": "Metal",
+"var": "Metal Shutters",
+"color": [
+140,
+142,
+140
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "ShuttersW"
+},
+{
+"t": "part",
+"pos": [
+628.5,
+210.0,
+4800.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+3.0,
+20,
+4
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+170,
+167,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PierW0"
+},
+{
+"t": "part",
+"pos": [
+628.5,
+210.0,
+4880.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+3.0,
+20,
+4
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+170,
+167,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PierW2"
+},
+{
+"t": "part",
+"pos": [
+628.5,
+210.0,
+4960.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+3.0,
+20,
+4
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+170,
+167,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PierW4"
+},
+{
+"t": "part",
+"pos": [
+628.5,
+210.0,
+5040.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+3.0,
+20,
+4
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+170,
+167,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PierW6"
+},
+{
+"t": "part",
+"pos": [
+628.5,
+210.0,
+5120.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+3.0,
+20,
+4
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+170,
+167,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PierW8"
+},
+{
+"t": "part",
+"pos": [
+628.5,
+210.0,
+5200.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+3.0,
+20,
+4
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+170,
+167,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PierW10"
+},
+{
+"t": "part",
+"pos": [
+1030.5,
+230.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+1.0,
+20,
+400
+],
+"mat": "Concrete",
+"var": "SG Graffiti A",
+"color": [
+200,
+198,
+192
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "GraffitiE"
+},
+{
+"t": "part",
+"pos": [
+1030.4,
+209.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+0.8,
+18,
+400
+],
+"mat": "Metal",
+"var": "Metal Shutters",
+"color": [
+140,
+142,
+140
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "ShuttersE"
+},
+{
+"t": "part",
+"pos": [
+1031.5,
+210.0,
+4800.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+3.0,
+20,
+4
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+170,
+167,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PierE0"
+},
+{
+"t": "part",
+"pos": [
+1031.5,
+210.0,
+4880.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+3.0,
+20,
+4
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+170,
+167,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PierE2"
+},
+{
+"t": "part",
+"pos": [
+1031.5,
+210.0,
+4960.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+3.0,
+20,
+4
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+170,
+167,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PierE4"
+},
+{
+"t": "part",
+"pos": [
+1031.5,
+210.0,
+5040.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+3.0,
+20,
+4
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+170,
+167,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PierE6"
+},
+{
+"t": "part",
+"pos": [
+1031.5,
+210.0,
+5120.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+3.0,
+20,
+4
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+170,
+167,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PierE8"
+},
+{
+"t": "part",
+"pos": [
+1031.5,
+210.0,
+5200.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Podium",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+3.0,
+20,
+4
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+170,
+167,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PierE10"
+},
+{
+"t": "part",
+"pos": [
+690.0,
+460.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "W Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+120,
+440,
+360
+],
+"mat": "SmoothPlastic",
+"var": "SG Windows Blocks",
+"color": [
+196,
+192,
+184
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "WMass"
+},
+{
+"t": "part",
+"pos": [
+690.0,
+460.0,
+4819.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "W Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+116,
+440,
+1
+],
+"mat": "SmoothPlastic",
+"var": "SG Windows Capsule",
+"color": [
+214,
+211,
+203
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "WNorthPorthole"
+},
+{
+"t": "part",
+"pos": [
+740.0,
+470.0,
+4995.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "W Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+20,
+460,
+378
+],
+"mat": "Concrete",
+"var": "SG Capsule Panels",
+"color": [
+206,
+203,
+194
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "WServicePier"
+},
+{
+"t": "part",
+"pos": [
+690.0,
+560.0,
+5180.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "W Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+116,
+240,
+1
+],
+"mat": "SmoothPlastic",
+"var": "SG Windows Capsule",
+"color": [
+205,
+202,
+194
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "WSouthPorthole"
+},
+{
+"t": "part",
+"pos": [
+690.0,
+280.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "W Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+126,
+5.0,
+368
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+150,
+148,
+141
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "WBand280"
+},
+{
+"t": "part",
+"pos": [
+690.0,
+320.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "W Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+126,
+5.0,
+368
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+150,
+148,
+141
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "WBand320"
+},
+{
+"t": "part",
+"pos": [
+690.0,
+360.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "W Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+126,
+5.0,
+368
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+150,
+148,
+141
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "WBand360"
+},
+{
+"t": "part",
+"pos": [
+690.0,
+400.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "W Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+126,
+5.0,
+368
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+150,
+148,
+141
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "WBand400"
+},
+{
+"t": "part",
+"pos": [
+690.0,
+440.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "W Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+126,
+5.0,
+368
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+150,
+148,
+141
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "WBand440"
+},
+{
+"t": "part",
+"pos": [
+690.0,
+480.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "W Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+126,
+5.0,
+368
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+150,
+148,
+141
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "WBand480"
+},
+{
+"t": "part",
+"pos": [
+690.0,
+520.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "W Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+126,
+5.0,
+368
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+150,
+148,
+141
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "WBand520"
+},
+{
+"t": "part",
+"pos": [
+690.0,
+560.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "W Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+126,
+5.0,
+368
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+150,
+148,
+141
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "WBand560"
+},
+{
+"t": "part",
+"pos": [
+690.0,
+600.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "W Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+126,
+5.0,
+368
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+150,
+148,
+141
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "WBand600"
+},
+{
+"t": "part",
+"pos": [
+690.0,
+640.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "W Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+126,
+5.0,
+368
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+150,
+148,
+141
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "WBand640"
+},
+{
+"t": "part",
+"pos": [
+690.0,
+681.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "W Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+126,
+2,
+368
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+120,
+118,
+112
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "WRoofCap"
+},
+{
+"t": "part",
+"pos": [
+690.0,
+685.0,
+4818.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "W Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+126,
+6,
+4
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+150,
+148,
+141
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "WParapetN"
+},
+{
+"t": "part",
+"pos": [
+690.0,
+685.0,
+5182.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "W Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+126,
+6,
+4
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+150,
+148,
+141
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "WParapetS"
+},
+{
+"t": "part",
+"pos": [
+970.0,
+500.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "E Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+120,
+520,
+360
+],
+"mat": "SmoothPlastic",
+"var": "SG Windows Blocks",
+"color": [
+196,
+192,
+184
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "EMass"
+},
+{
+"t": "part",
+"pos": [
+970.0,
+500.0,
+4819.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "E Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+116,
+520,
+1
+],
+"mat": "SmoothPlastic",
+"var": "SG Windows Capsule",
+"color": [
+214,
+211,
+203
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "ENorthPorthole"
+},
+{
+"t": "part",
+"pos": [
+920.0,
+510.0,
+4995.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "E Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+20,
+540,
+378
+],
+"mat": "Concrete",
+"var": "SG Capsule Panels",
+"color": [
+206,
+203,
+194
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "EServicePier"
+},
+{
+"t": "part",
+"pos": [
+970.0,
+600.0,
+5180.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "E Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+116,
+320,
+1
+],
+"mat": "SmoothPlastic",
+"var": "SG Windows Capsule",
+"color": [
+205,
+202,
+194
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "ESouthPorthole"
+},
+{
+"t": "part",
+"pos": [
+970.0,
+280.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "E Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+126,
+5.0,
+368
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+150,
+148,
+141
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "EBand280"
+},
+{
+"t": "part",
+"pos": [
+970.0,
+320.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "E Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+126,
+5.0,
+368
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+150,
+148,
+141
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "EBand320"
+},
+{
+"t": "part",
+"pos": [
+970.0,
+360.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "E Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+126,
+5.0,
+368
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+150,
+148,
+141
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "EBand360"
+},
+{
+"t": "part",
+"pos": [
+970.0,
+400.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "E Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+126,
+5.0,
+368
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+150,
+148,
+141
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "EBand400"
+},
+{
+"t": "part",
+"pos": [
+970.0,
+440.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "E Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+126,
+5.0,
+368
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+150,
+148,
+141
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "EBand440"
+},
+{
+"t": "part",
+"pos": [
+970.0,
+480.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "E Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+126,
+5.0,
+368
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+150,
+148,
+141
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "EBand480"
+},
+{
+"t": "part",
+"pos": [
+970.0,
+520.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "E Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+126,
+5.0,
+368
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+150,
+148,
+141
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "EBand520"
+},
+{
+"t": "part",
+"pos": [
+970.0,
+560.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "E Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+126,
+5.0,
+368
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+150,
+148,
+141
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "EBand560"
+},
+{
+"t": "part",
+"pos": [
+970.0,
+600.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "E Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+126,
+5.0,
+368
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+150,
+148,
+141
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "EBand600"
+},
+{
+"t": "part",
+"pos": [
+970.0,
+640.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "E Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+126,
+5.0,
+368
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+150,
+148,
+141
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "EBand640"
+},
+{
+"t": "part",
+"pos": [
+970.0,
+680.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "E Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+126,
+5.0,
+368
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+150,
+148,
+141
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "EBand680"
+},
+{
+"t": "part",
+"pos": [
+970.0,
+720.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "E Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+126,
+5.0,
+368
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+150,
+148,
+141
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "EBand720"
+},
+{
+"t": "part",
+"pos": [
+970.0,
+761.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "E Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+126,
+2,
+368
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+120,
+118,
+112
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "ERoofCap"
+},
+{
+"t": "part",
+"pos": [
+970.0,
+765.0,
+4818.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "E Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+126,
+6,
+4
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+150,
+148,
+141
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "EParapetN"
+},
+{
+"t": "part",
+"pos": [
+970.0,
+765.0,
+5182.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "E Tower",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+126,
+6,
+4
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+150,
+148,
+141
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "EParapetS"
+},
+{
+"t": "part",
+"pos": [
+632,
+480.0,
+4880
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Cores",
+"layer": "LOD4",
+"shape": "Cylinder",
+"size": [
+480,
+40,
+40
+],
+"mat": "Concrete",
+"var": "SG Capsule Panels",
+"color": [
+214,
+212,
+204
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "CoreW4880"
+},
+{
+"t": "part",
+"pos": [
+632,
+722.0,
+4880
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Cores",
+"layer": "LOD4",
+"shape": "Cylinder",
+"size": [
+4,
+46,
+46
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+150,
+148,
+141
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "CoreCapW4880"
+},
+{
+"t": "part",
+"pos": [
+632,
+470.0,
+5140
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Cores",
+"layer": "LOD4",
+"shape": "Cylinder",
+"size": [
+460,
+40,
+40
+],
+"mat": "Concrete",
+"var": "SG Capsule Panels",
+"color": [
+214,
+212,
+204
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "CoreW5140"
+},
+{
+"t": "part",
+"pos": [
+632,
+702.0,
+5140
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Cores",
+"layer": "LOD4",
+"shape": "Cylinder",
+"size": [
+4,
+46,
+46
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+150,
+148,
+141
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "CoreCapW5140"
+},
+{
+"t": "part",
+"pos": [
+1028,
+520.0,
+4880
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Cores",
+"layer": "LOD4",
+"shape": "Cylinder",
+"size": [
+560,
+40,
+40
+],
+"mat": "Concrete",
+"var": "SG Capsule Panels",
+"color": [
+214,
+212,
+204
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "CoreE4880"
+},
+{
+"t": "part",
+"pos": [
+1028,
+802.0,
+4880
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Cores",
+"layer": "LOD4",
+"shape": "Cylinder",
+"size": [
+4,
+46,
+46
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+150,
+148,
+141
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "CoreCapE4880"
+},
+{
+"t": "part",
+"pos": [
+1028,
+510.0,
+5120
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Cores",
+"layer": "LOD4",
+"shape": "Cylinder",
+"size": [
+540,
+40,
+40
+],
+"mat": "Concrete",
+"var": "SG Capsule Panels",
+"color": [
+214,
+212,
+204
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "CoreE5120"
+},
+{
+"t": "part",
+"pos": [
+1028,
+782.0,
+5120
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Cores",
+"layer": "LOD4",
+"shape": "Cylinder",
+"size": [
+4,
+46,
+46
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+150,
+148,
+141
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "CoreCapE5120"
+},
+{
+"t": "part",
+"pos": [
+830.0,
+363.5,
+5003.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Frame",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+160,
+7,
+366
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+206,
+203,
+194
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "TrayAFloor"
+},
+{
+"t": "part",
+"pos": [
+830.0,
+396.5,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Frame",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+160,
+7,
+360
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+206,
+203,
+194
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "TrayARoof"
+},
+{
+"t": "part",
+"pos": [
+830.0,
+380.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Frame",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+160,
+26,
+350
+],
+"mat": "Glass",
+"var": "",
+"color": [
+58,
+84,
+102
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "TrayAGlass"
+},
+{
+"t": "part",
+"pos": [
+790.0,
+380.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Frame",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4,
+26,
+358
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+206,
+203,
+194
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "TrayAFin790"
+},
+{
+"t": "part",
+"pos": [
+830.0,
+380.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Frame",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4,
+26,
+358
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+206,
+203,
+194
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "TrayAFin830"
+},
+{
+"t": "part",
+"pos": [
+870.0,
+380.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Frame",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4,
+26,
+358
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+206,
+203,
+194
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "TrayAFin870"
+},
+{
+"t": "part",
+"pos": [
+830.0,
+360.0,
+4813.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Frame",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+406,
+6,
+14
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+206,
+203,
+194
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "TrayALipLo"
+},
+{
+"t": "part",
+"pos": [
+830.0,
+400.0,
+4813.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Frame",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+406,
+6,
+14
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+206,
+203,
+194
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "TrayALipHi"
+},
+{
+"t": "kit",
+"pos": [
+770,
+364,
+4817
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Frame",
+"layer": "LOD4",
+"item": "tray_edge_40",
+"scale": 1.0,
+"collide": false,
+"name": "tray_edge_40"
+},
+{
+"t": "kit",
+"pos": [
+810,
+364,
+4817
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Frame",
+"layer": "LOD4",
+"item": "tray_edge_40",
+"scale": 1.0,
+"collide": false,
+"name": "tray_edge_40"
+},
+{
+"t": "kit",
+"pos": [
+850,
+364,
+4817
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Frame",
+"layer": "LOD4",
+"item": "tray_edge_40",
+"scale": 1.0,
+"collide": false,
+"name": "tray_edge_40"
+},
+{
+"t": "kit",
+"pos": [
+890,
+364,
+4817
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Frame",
+"layer": "LOD4",
+"item": "tray_edge_40",
+"scale": 1.0,
+"collide": false,
+"name": "tray_edge_40"
+},
+{
+"t": "part",
+"pos": [
+830.0,
+483.5,
+5003.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Frame",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+160,
+7,
+366
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+206,
+203,
+194
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "TrayBFloor"
+},
+{
+"t": "part",
+"pos": [
+830.0,
+516.5,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Frame",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+160,
+7,
+360
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+206,
+203,
+194
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "TrayBRoof"
+},
+{
+"t": "part",
+"pos": [
+830.0,
+500.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Frame",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+160,
+26,
+350
+],
+"mat": "Glass",
+"var": "",
+"color": [
+58,
+84,
+102
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "TrayBGlass"
+},
+{
+"t": "part",
+"pos": [
+790.0,
+500.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Frame",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4,
+26,
+358
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+206,
+203,
+194
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "TrayBFin790"
+},
+{
+"t": "part",
+"pos": [
+830.0,
+500.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Frame",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4,
+26,
+358
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+206,
+203,
+194
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "TrayBFin830"
+},
+{
+"t": "part",
+"pos": [
+870.0,
+500.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Frame",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4,
+26,
+358
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+206,
+203,
+194
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "TrayBFin870"
+},
+{
+"t": "part",
+"pos": [
+830.0,
+480.0,
+4813.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Frame",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+406,
+6,
+14
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+206,
+203,
+194
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "TrayBLipLo"
+},
+{
+"t": "part",
+"pos": [
+830.0,
+520.0,
+4813.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Frame",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+406,
+6,
+14
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+206,
+203,
+194
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "TrayBLipHi"
+},
+{
+"t": "kit",
+"pos": [
+770,
+484,
+4817
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Frame",
+"layer": "LOD4",
+"item": "tray_edge_40",
+"scale": 1.0,
+"collide": false,
+"name": "tray_edge_40"
+},
+{
+"t": "kit",
+"pos": [
+810,
+484,
+4817
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Frame",
+"layer": "LOD4",
+"item": "tray_edge_40",
+"scale": 1.0,
+"collide": false,
+"name": "tray_edge_40"
+},
+{
+"t": "kit",
+"pos": [
+850,
+484,
+4817
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Frame",
+"layer": "LOD4",
+"item": "tray_edge_40",
+"scale": 1.0,
+"collide": false,
+"name": "tray_edge_40"
+},
+{
+"t": "kit",
+"pos": [
+890,
+484,
+4817
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Frame",
+"layer": "LOD4",
+"item": "tray_edge_40",
+"scale": 1.0,
+"collide": false,
+"name": "tray_edge_40"
+},
+{
+"t": "part",
+"pos": [
+830.0,
+660.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Frame",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+160,
+40,
+360
+],
+"mat": "SmoothPlastic",
+"var": "SG Windows Capsule",
+"color": [
+214,
+211,
+203
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "TopBeam"
+},
+{
+"t": "part",
+"pos": [
+830.0,
+640.0,
+4813.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Frame",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+406,
+6,
+14
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+206,
+203,
+194
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "TopBeamLipLo"
+},
+{
+"t": "part",
+"pos": [
+830.0,
+680.0,
+4813.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Frame",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+406,
+6,
+14
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+206,
+203,
+194
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "TopBeamLipHi"
+},
+{
+"t": "part",
+"pos": [
+830.0,
+681.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Frame",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+160,
+2,
+368
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+120,
+118,
+112
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "TopBeamCap"
+},
+{
+"t": "part",
+"pos": [
+830.0,
+580.0,
+5090.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Frame",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+160,
+120,
+180
+],
+"mat": "SmoothPlastic",
+"var": "SG Windows Blocks",
+"color": [
+196,
+192,
+184
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "BackCell"
+},
+{
+"t": "part",
+"pos": [
+790.0,
+580.0,
+4998.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Frame",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4,
+120,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+206,
+203,
+194
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "BackCellFin790"
+},
+{
+"t": "part",
+"pos": [
+830.0,
+580.0,
+4998.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Frame",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4,
+120,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+206,
+203,
+194
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "BackCellFin830"
+},
+{
+"t": "part",
+"pos": [
+870.0,
+580.0,
+4998.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Frame",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4,
+120,
+3
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+206,
+203,
+194
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "BackCellFin870"
+},
+{
+"t": "part",
+"pos": [
+830,
+581,
+4848
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Sphere",
+"layer": "LOD4",
+"shape": "Ball",
+"size": [
+110,
+110,
+110
+],
+"mat": "Metal",
+"var": "",
+"color": [
+176,
+180,
+186
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Sphere"
+},
+{
+"t": "part",
+"pos": [
+830,
+581,
+4848
+],
+"rot": [
+0,
+0,
+90
+],
+"group": "Sphere",
+"layer": "LOD4",
+"shape": "Cylinder",
+"size": [
+6,
+118,
+118
+],
+"mat": "Metal",
+"var": "",
+"color": [
+120,
+124,
+130
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "SphereBelt"
+},
+{
+"t": "part",
+"pos": [
+830.0,
+525.0,
+4847.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Sphere",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+50,
+10,
+45
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+150,
+148,
+141
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "SphereCradle"
+},
+{
+"t": "part",
+"pos": [
+830.0,
+636.0,
+4847.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Sphere",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+30,
+8,
+25
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+150,
+148,
+141
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "SphereHanger"
+},
+{
+"t": "part",
+"pos": [
+830.0,
+503.5,
+4805.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Sphere",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+80,
+7,
+1
+],
+"mat": "Neon",
+"var": "",
+"color": [
+255,
+80,
+150
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "SphereNeon"
+},
+{
+"t": "kit",
+"pos": [
+618,
+290,
+4840.5
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Capsules",
+"layer": "LOD4",
+"item": "capsule_unit",
+"scale": 1.5,
+"collide": false,
+"name": "capsule_unit"
+},
+{
+"t": "kit",
+"pos": [
+618,
+370,
+4840.5
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Capsules",
+"layer": "LOD4",
+"item": "capsule_unit",
+"scale": 1.5,
+"collide": false,
+"name": "capsule_unit",
+"color": [
+214,
+202,
+176
+]
+},
+{
+"t": "kit",
+"pos": [
+618,
+410,
+4840.5
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Capsules",
+"layer": "LOD4",
+"item": "capsule_unit",
+"scale": 1.5,
+"collide": false,
+"name": "capsule_unit",
+"color": [
+196,
+206,
+202
+]
+},
+{
+"t": "kit",
+"pos": [
+618,
+490,
+4840.5
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Capsules",
+"layer": "LOD4",
+"item": "capsule_unit",
+"scale": 1.5,
+"collide": false,
+"name": "capsule_unit",
+"color": [
+196,
+206,
+202
+]
+},
+{
+"t": "kit",
+"pos": [
+618,
+530,
+4840.5
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Capsules",
+"layer": "LOD4",
+"item": "capsule_unit",
+"scale": 1.5,
+"collide": false,
+"name": "capsule_unit",
+"color": [
+222,
+196,
+186
+]
+},
+{
+"t": "kit",
+"pos": [
+618,
+570,
+4840.5
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Capsules",
+"layer": "LOD4",
+"item": "capsule_unit",
+"scale": 1.5,
+"collide": false,
+"name": "capsule_unit"
+},
+{
+"t": "kit",
+"pos": [
+618,
+610,
+4840.5
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Capsules",
+"layer": "LOD4",
+"item": "capsule_unit",
+"scale": 1.5,
+"collide": false,
+"name": "capsule_unit",
+"color": [
+196,
+206,
+202
+]
+},
+{
+"t": "kit",
+"pos": [
+618,
+650,
+4840.5
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Capsules",
+"layer": "LOD4",
+"item": "capsule_unit",
+"scale": 1.5,
+"collide": false,
+"name": "capsule_unit"
+},
+{
+"t": "kit",
+"pos": [
+618,
+350,
+4919.5
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Capsules",
+"layer": "LOD4",
+"item": "capsule_unit",
+"scale": 1.5,
+"collide": false,
+"name": "capsule_unit"
+},
+{
+"t": "kit",
+"pos": [
+618,
+390,
+4919.5
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Capsules",
+"layer": "LOD4",
+"item": "capsule_unit",
+"scale": 1.5,
+"collide": false,
+"name": "capsule_unit"
+},
+{
+"t": "kit",
+"pos": [
+618,
+430,
+4919.5
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Capsules",
+"layer": "LOD4",
+"item": "capsule_unit",
+"scale": 1.5,
+"collide": false,
+"name": "capsule_unit",
+"color": [
+222,
+196,
+186
+]
+},
+{
+"t": "kit",
+"pos": [
+618,
+470,
+4919.5
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Capsules",
+"layer": "LOD4",
+"item": "capsule_unit",
+"scale": 1.5,
+"collide": false,
+"name": "capsule_unit",
+"color": [
+214,
+202,
+176
+]
+},
+{
+"t": "kit",
+"pos": [
+618,
+590,
+4919.5
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Capsules",
+"layer": "LOD4",
+"item": "capsule_unit",
+"scale": 1.5,
+"collide": false,
+"name": "capsule_unit",
+"color": [
+196,
+206,
+202
+]
+},
+{
+"t": "kit",
+"pos": [
+618,
+630,
+4919.5
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Capsules",
+"layer": "LOD4",
+"item": "capsule_unit",
+"scale": 1.5,
+"collide": false,
+"name": "capsule_unit",
+"color": [
+214,
+202,
+176
+]
+},
+{
+"t": "kit",
+"pos": [
+1042,
+310,
+4840.5
+],
+"rot": [
+0,
+-90,
+0
+],
+"group": "Capsules",
+"layer": "LOD4",
+"item": "capsule_unit",
+"scale": 1.5,
+"collide": false,
+"name": "capsule_unit"
+},
+{
+"t": "kit",
+"pos": [
+1042,
+390,
+4840.5
+],
+"rot": [
+0,
+-90,
+0
+],
+"group": "Capsules",
+"layer": "LOD4",
+"item": "capsule_unit",
+"scale": 1.5,
+"collide": false,
+"name": "capsule_unit"
+},
+{
+"t": "kit",
+"pos": [
+1042,
+590,
+4840.5
+],
+"rot": [
+0,
+-90,
+0
+],
+"group": "Capsules",
+"layer": "LOD4",
+"item": "capsule_unit",
+"scale": 1.5,
+"collide": false,
+"name": "capsule_unit",
+"color": [
+214,
+202,
+176
+]
+},
+{
+"t": "kit",
+"pos": [
+1042,
+670,
+4840.5
+],
+"rot": [
+0,
+-90,
+0
+],
+"group": "Capsules",
+"layer": "LOD4",
+"item": "capsule_unit",
+"scale": 1.5,
+"collide": false,
+"name": "capsule_unit",
+"color": [
+196,
+206,
+202
+]
+},
+{
+"t": "kit",
+"pos": [
+1042,
+290,
+4919.5
+],
+"rot": [
+0,
+-90,
+0
+],
+"group": "Capsules",
+"layer": "LOD4",
+"item": "capsule_unit",
+"scale": 1.5,
+"collide": false,
+"name": "capsule_unit",
+"color": [
+222,
+196,
+186
+]
+},
+{
+"t": "kit",
+"pos": [
+1042,
+330,
+4919.5
+],
+"rot": [
+0,
+-90,
+0
+],
+"group": "Capsules",
+"layer": "LOD4",
+"item": "capsule_unit",
+"scale": 1.5,
+"collide": false,
+"name": "capsule_unit"
+},
+{
+"t": "kit",
+"pos": [
+1042,
+570,
+4919.5
+],
+"rot": [
+0,
+-90,
+0
+],
+"group": "Capsules",
+"layer": "LOD4",
+"item": "capsule_unit",
+"scale": 1.5,
+"collide": false,
+"name": "capsule_unit"
+},
+{
+"t": "kit",
+"pos": [
+1042,
+610,
+4919.5
+],
+"rot": [
+0,
+-90,
+0
+],
+"group": "Capsules",
+"layer": "LOD4",
+"item": "capsule_unit",
+"scale": 1.5,
+"collide": false,
+"name": "capsule_unit",
+"color": [
+214,
+202,
+176
+]
+},
+{
+"t": "kit",
+"pos": [
+1042,
+690,
+4919.5
+],
+"rot": [
+0,
+-90,
+0
+],
+"group": "Capsules",
+"layer": "LOD4",
+"item": "capsule_unit",
+"scale": 1.5,
+"collide": false,
+"name": "capsule_unit",
+"color": [
+196,
+206,
+202
+]
+},
+{
+"t": "kit",
+"pos": [
+786,
+470,
+4826
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Capsules",
+"layer": "LOD4",
+"item": "capsule_unit",
+"scale": 1.5,
+"collide": false,
+"name": "capsule_unit",
+"color": [
+214,
+202,
+176
+]
+},
+{
+"t": "kit",
+"pos": [
+830,
+458,
+4826
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Capsules",
+"layer": "LOD4",
+"item": "capsule_unit",
+"scale": 1.5,
+"collide": false,
+"name": "capsule_unit"
+},
+{
+"t": "kit",
+"pos": [
+874,
+470,
+4826
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Capsules",
+"layer": "LOD4",
+"item": "capsule_unit",
+"scale": 1.5,
+"collide": false,
+"name": "capsule_unit",
+"color": [
+196,
+206,
+202
+]
+},
+{
+"t": "kit",
+"pos": [
+950,
+700,
+4808
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Capsules",
+"layer": "LOD4",
+"item": "capsule_unit",
+"scale": 1.5,
+"collide": false,
+"name": "capsule_unit"
+},
+{
+"t": "kit",
+"pos": [
+990,
+720,
+4808
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Capsules",
+"layer": "LOD4",
+"item": "capsule_unit",
+"scale": 1.5,
+"collide": false,
+"name": "capsule_unit"
+},
+{
+"t": "kit",
+"pos": [
+950,
+740,
+4808
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Capsules",
+"layer": "LOD4",
+"item": "capsule_unit",
+"scale": 1.5,
+"collide": false,
+"name": "capsule_unit"
+},
+{
+"t": "kit",
+"pos": [
+1003,
+700,
+4808
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Capsules",
+"layer": "LOD4",
+"item": "capsule_unit",
+"scale": 1.5,
+"collide": false,
+"name": "capsule_unit"
+},
+{
+"t": "part",
+"pos": [
+624.0,
+411.0,
+5042.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Bridge Landings",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+12,
+42,
+8
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+206,
+203,
+194
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "X2LandingJambL"
+},
+{
+"t": "part",
+"pos": [
+624.0,
+411.0,
+5078.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Bridge Landings",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+12,
+42,
+8
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+206,
+203,
+194
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "X2LandingJambR"
+},
+{
+"t": "part",
+"pos": [
+624.0,
+429.0,
+5060.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Bridge Landings",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+12,
+10,
+44
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+206,
+203,
+194
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "X2LandingLintel"
+},
+{
+"t": "part",
+"pos": [
+624.0,
+393.0,
+5060.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Bridge Landings",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+12,
+10,
+44
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+206,
+203,
+194
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "X2LandingSill"
+},
+{
+"t": "part",
+"pos": [
+629.5,
+411.0,
+5060.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Bridge Landings",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+1.0,
+26,
+28
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+34,
+36,
+40
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "X2LandingRecess"
+},
+{
+"t": "part",
+"pos": [
+1036.0,
+481.0,
+4942.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Bridge Landings",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+12,
+42,
+8
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+206,
+203,
+194
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "X3LandingJambL"
+},
+{
+"t": "part",
+"pos": [
+1036.0,
+481.0,
+4978.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Bridge Landings",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+12,
+42,
+8
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+206,
+203,
+194
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "X3LandingJambR"
+},
+{
+"t": "part",
+"pos": [
+1036.0,
+499.0,
+4960.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Bridge Landings",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+12,
+10,
+44
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+206,
+203,
+194
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "X3LandingLintel"
+},
+{
+"t": "part",
+"pos": [
+1036.0,
+463.0,
+4960.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Bridge Landings",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+12,
+10,
+44
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+206,
+203,
+194
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "X3LandingSill"
+},
+{
+"t": "part",
+"pos": [
+1030.5,
+481.0,
+4960.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Bridge Landings",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+1.0,
+26,
+28
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+34,
+36,
+40
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "X3LandingRecess"
+},
+{
+"t": "part",
+"pos": [
+629.5,
+300.0,
+4980.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Patches",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+1.0,
+35.0,
+40
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+215,
+205,
+190
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PatchWf0"
+},
+{
+"t": "part",
+"pos": [
+629.5,
+340.0,
+5020.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Patches",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+1.0,
+35.0,
+40
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+215,
+205,
+190
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PatchWf1"
+},
+{
+"t": "part",
+"pos": [
+629.5,
+460.0,
+4940.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Patches",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+1.0,
+35.0,
+40
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+215,
+205,
+190
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PatchWf2"
+},
+{
+"t": "part",
+"pos": [
+629.5,
+540.0,
+5100.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Patches",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+1.0,
+35.0,
+40
+],
+"mat": "Wood",
+"var": "Plywood",
+"color": [
+170,
+140,
+100
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PatchWf3"
+},
+{
+"t": "part",
+"pos": [
+629.5,
+620.0,
+5020.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Patches",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+1.0,
+35.0,
+40
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+215,
+205,
+190
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PatchWf4"
+},
+{
+"t": "part",
+"pos": [
+1030.5,
+300.0,
+5040.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Patches",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+1.0,
+35.0,
+40
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+215,
+205,
+190
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PatchEf5"
+},
+{
+"t": "part",
+"pos": [
+1030.5,
+380.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Patches",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+1.0,
+35.0,
+40
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+215,
+205,
+190
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PatchEf6"
+},
+{
+"t": "part",
+"pos": [
+1030.5,
+420.0,
+5140.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Patches",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+1.0,
+35.0,
+40
+],
+"mat": "Wood",
+"var": "Plywood",
+"color": [
+170,
+140,
+100
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PatchEf7"
+},
+{
+"t": "part",
+"pos": [
+1030.5,
+580.0,
+5040.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Patches",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+1.0,
+35.0,
+40
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+215,
+205,
+190
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PatchEf8"
+},
+{
+"t": "part",
+"pos": [
+1030.5,
+660.0,
+4980.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Patches",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+1.0,
+35.0,
+40
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+215,
+205,
+190
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PatchEf9"
+},
+{
+"t": "part",
+"pos": [
+1030.5,
+700.0,
+5080.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Patches",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+1.0,
+35.0,
+40
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+215,
+205,
+190
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PatchEf10"
+},
+{
+"t": "part",
+"pos": [
+650.0,
+300.0,
+5181.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Patches",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+40,
+35.0,
+1
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+215,
+205,
+190
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PatchS0"
+},
+{
+"t": "part",
+"pos": [
+690.0,
+380.0,
+5181.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Patches",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+40,
+35.0,
+1
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+215,
+205,
+190
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PatchS1"
+},
+{
+"t": "part",
+"pos": [
+730.0,
+300.0,
+5181.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Patches",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+40,
+35.0,
+1
+],
+"mat": "Wood",
+"var": "Plywood",
+"color": [
+170,
+140,
+100
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PatchS2"
+},
+{
+"t": "part",
+"pos": [
+930.0,
+340.0,
+5181.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Patches",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+40,
+35.0,
+1
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+215,
+205,
+190
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PatchS3"
+},
+{
+"t": "part",
+"pos": [
+950.0,
+460.0,
+5181.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Patches",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+40,
+35.0,
+1
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+215,
+205,
+190
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PatchS4"
+},
+{
+"t": "part",
+"pos": [
+990.0,
+300.0,
+5181.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Patches",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+40,
+35.0,
+1
+],
+"mat": "Wood",
+"var": "Plywood",
+"color": [
+170,
+140,
+100
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PatchS5"
+},
+{
+"t": "part",
+"pos": [
+950.0,
+620.0,
+5181.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Patches",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+40,
+35.0,
+1
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+215,
+205,
+190
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PatchS6"
+},
+{
+"t": "part",
+"pos": [
+690.0,
+540.0,
+5181.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Patches",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+40,
+35.0,
+1
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+215,
+205,
+190
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "PatchS7"
+},
+{
+"t": "part",
+"pos": [
+660.0,
+460.0,
+5185.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Services",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+3.0,
+440,
+3
+],
+"mat": "Metal",
+"var": "",
+"color": [
+84,
+88,
+92
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Downpipe660"
+},
+{
+"t": "part",
+"pos": [
+726.0,
+460.0,
+5185.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Services",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+3.0,
+440,
+3
+],
+"mat": "Metal",
+"var": "",
+"color": [
+84,
+88,
+92
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Downpipe726"
+},
+{
+"t": "part",
+"pos": [
+934.0,
+500.0,
+5185.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Services",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+3.0,
+520,
+3
+],
+"mat": "Metal",
+"var": "",
+"color": [
+84,
+88,
+92
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Downpipe934"
+},
+{
+"t": "part",
+"pos": [
+1004.0,
+500.0,
+5185.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Services",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+3.0,
+520,
+3
+],
+"mat": "Metal",
+"var": "",
+"color": [
+84,
+88,
+92
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Downpipe1004"
+},
+{
+"t": "part",
+"pos": [
+751.5,
+440.0,
+4840.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Services",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+3,
+400,
+3.0
+],
+"mat": "Metal",
+"var": "",
+"color": [
+84,
+88,
+92
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "DownpipeFrameW4840"
+},
+{
+"t": "part",
+"pos": [
+908.5,
+440.0,
+4840.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Services",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+3,
+400,
+3.0
+],
+"mat": "Metal",
+"var": "",
+"color": [
+84,
+88,
+92
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "DownpipeFrameE4840"
+},
+{
+"t": "part",
+"pos": [
+751.5,
+440.0,
+5160.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Services",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+3,
+400,
+3.0
+],
+"mat": "Metal",
+"var": "",
+"color": [
+84,
+88,
+92
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "DownpipeFrameW5160"
+},
+{
+"t": "part",
+"pos": [
+908.5,
+440.0,
+5160.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Services",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+3,
+400,
+3.0
+],
+"mat": "Metal",
+"var": "",
+"color": [
+84,
+88,
+92
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "DownpipeFrameE5160"
+},
+{
+"t": "kit",
+"pos": [
+700,
+260,
+5189
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Services",
+"layer": "LOD4",
+"item": "ext_stair_40",
+"scale": 1.0,
+"collide": false,
+"name": "ext_stair_40"
+},
+{
+"t": "kit",
+"pos": [
+700,
+300,
+5189
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Services",
+"layer": "LOD4",
+"item": "ext_stair_40",
+"scale": 1.0,
+"collide": false,
+"name": "ext_stair_40"
+},
+{
+"t": "kit",
+"pos": [
+700,
+340,
+5189
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Services",
+"layer": "LOD4",
+"item": "ext_stair_40",
+"scale": 1.0,
+"collide": false,
+"name": "ext_stair_40"
+},
+{
+"t": "kit",
+"pos": [
+700,
+380,
+5189
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Services",
+"layer": "LOD4",
+"item": "ext_stair_40",
+"scale": 1.0,
+"collide": false,
+"name": "ext_stair_40"
+},
+{
+"t": "kit",
+"pos": [
+812,
+220,
+4795
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Services",
+"layer": "LOD4",
+"item": "ext_stair_40",
+"scale": 1.0,
+"collide": false,
+"name": "ext_stair_40"
+},
+{
+"t": "kit",
+"pos": [
+680,
+356,
+5186
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Services",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.5,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+720,
+476,
+5186
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Services",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.5,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+940,
+396,
+5186
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Services",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.5,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+625,
+436,
+5000
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Services",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.5,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+1035,
+356,
+5060
+],
+"rot": [
+0,
+-90,
+0
+],
+"group": "Services",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.5,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+1035,
+556,
+5010
+],
+"rot": [
+0,
+-90,
+0
+],
+"group": "Services",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.5,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+690,
+316,
+4802
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Services",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.5,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+980,
+556,
+4802
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Services",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.5,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+690,
+314,
+5188
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Services",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+230,
+120,
+150
+]
+},
+{
+"t": "kit",
+"pos": [
+690,
+434,
+5188
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Services",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+235,
+210,
+120
+]
+},
+{
+"t": "kit",
+"pos": [
+960,
+314,
+5188
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Services",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+235,
+210,
+120
+]
+},
+{
+"t": "kit",
+"pos": [
+960,
+474,
+5188
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Services",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+230,
+120,
+150
+]
+},
+{
+"t": "kit",
+"pos": [
+960,
+594,
+5188
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Services",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+240,
+240,
+235
+]
+},
+{
+"t": "kit",
+"pos": [
+700,
+594,
+5188
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Services",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+235,
+210,
+120
+]
+},
+{
+"t": "kit",
+"pos": [
+690,
+274,
+4812
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Services",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+120,
+170,
+220
+]
+},
+{
+"t": "kit",
+"pos": [
+960,
+274,
+4812
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Services",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+235,
+210,
+120
+]
+},
+{
+"t": "kit",
+"pos": [
+622,
+354,
+4990
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Services",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+240,
+240,
+235
+]
+},
+{
+"t": "kit",
+"pos": [
+1038,
+394,
+5100
+],
+"rot": [
+0,
+-90,
+0
+],
+"group": "Services",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+230,
+120,
+150
+]
+},
+{
+"t": "kit",
+"pos": [
+1003,
+634,
+4812
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Services",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+230,
+120,
+150
+]
+},
+{
+"t": "kit",
+"pos": [
+706,
+434,
+4802
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Services",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+120,
+170,
+220
+]
+},
+{
+"t": "kit",
+"pos": [
+690,
+594,
+4802
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Services",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+235,
+210,
+120
+]
+},
+{
+"t": "kit",
+"pos": [
+952,
+434,
+4802
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Services",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+235,
+210,
+120
+]
+},
+{
+"t": "kit",
+"pos": [
+952,
+314,
+4802
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Services",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+120,
+170,
+220
+]
+},
+{
+"t": "part",
+"pos": [
+740,
+290,
+4815
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Services",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+6,
+36,
+1
+],
+"mat": "Neon",
+"var": "",
+"color": [
+60,
+230,
+255
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "NeonSign"
+},
+{
+"t": "part",
+"pos": [
+920,
+300,
+4815
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Services",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+6,
+44,
+1
+],
+"mat": "Neon",
+"var": "",
+"color": [
+255,
+70,
+160
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "NeonSign"
+},
+{
+"t": "part",
+"pos": [
+690,
+228,
+4798
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Services",
+"layer": "LOD2",
+"shape": "Block",
+"size": [
+6,
+20,
+1
+],
+"mat": "Neon",
+"var": "",
+"color": [
+255,
+190,
+60
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "NeonSign"
+},
+{
+"t": "part",
+"pos": [
+655.0,
+490.0,
+4804.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Services",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+20,
+140,
+2
+],
+"mat": "SmoothPlastic",
+"var": "",
+"color": [
+38,
+62,
+150
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Banner0"
+},
+{
+"t": "part",
+"pos": [
+655.0,
+460.0,
+4802.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Services",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+14,
+40,
+1
+],
+"mat": "SmoothPlastic",
+"var": "",
+"color": [
+236,
+234,
+228
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "BannerPanel0"
+},
+{
+"t": "part",
+"pos": [
+1005.0,
+380.0,
+4804.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Services",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+20,
+160,
+2
+],
+"mat": "SmoothPlastic",
+"var": "",
+"color": [
+200,
+60,
+60
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Banner1"
+},
+{
+"t": "part",
+"pos": [
+1005.0,
+340.0,
+4802.5
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Services",
+"layer": "LOD3",
+"shape": "Block",
+"size": [
+14,
+40,
+1
+],
+"mat": "SmoothPlastic",
+"var": "",
+"color": [
+236,
+234,
+228
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "BannerPanel1"
+},
+{
+"t": "kit",
+"pos": [
+800,
+247,
+4840
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Deck Market",
+"layer": "LOD2",
+"item": "market_stall",
+"scale": 1.0,
+"collide": false,
+"name": "market_stall"
+},
+{
+"t": "kit",
+"pos": [
+860,
+247,
+4840
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Deck Market",
+"layer": "LOD2",
+"item": "market_stall",
+"scale": 1.0,
+"collide": false,
+"name": "market_stall"
+},
+{
+"t": "kit",
+"pos": [
+800,
+247,
+4890
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Deck Market",
+"layer": "LOD2",
+"item": "market_stall",
+"scale": 1.0,
+"collide": false,
+"name": "market_stall"
+},
+{
+"t": "kit",
+"pos": [
+782,
+244.5,
+4930
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Deck Market",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+788,
+244.5,
+4930
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Deck Market",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+740,
+204.5,
+4797
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Deck Market",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+746,
+204.5,
+4797
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Deck Market",
+"layer": "LOD2",
+"item": "vending_machine",
+"scale": 1.0,
+"collide": false,
+"name": "vending_machine"
+},
+{
+"t": "kit",
+"pos": [
+860,
+241.5,
+4900
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Deck Market",
+"layer": "LOD2",
+"item": "bench_concrete",
+"scale": 1.0,
+"collide": false,
+"name": "bench_concrete"
+},
+{
+"t": "kit",
+"pos": [
+870,
+246,
+5150
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Deck Market",
+"layer": "LOD4",
+"item": "rooftop_shack",
+"scale": 1.0,
+"collide": false,
+"name": "rooftop_shack"
+},
+{
+"t": "kit",
+"pos": [
+790,
+246,
+5110
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Deck Market",
+"layer": "LOD4",
+"item": "rooftop_shack",
+"scale": 1.0,
+"collide": false,
+"name": "rooftop_shack"
+},
+{
+"t": "kit",
+"pos": [
+790,
+246,
+5196
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Deck Market",
+"layer": "LOD2",
+"item": "chainlink_fence_20",
+"scale": 1.0,
+"collide": false,
+"name": "chainlink_fence_20"
+},
+{
+"t": "kit",
+"pos": [
+810,
+246,
+5196
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Deck Market",
+"layer": "LOD2",
+"item": "chainlink_fence_20",
+"scale": 1.0,
+"collide": false,
+"name": "chainlink_fence_20"
+},
+{
+"t": "kit",
+"pos": [
+830,
+246,
+5196
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Deck Market",
+"layer": "LOD2",
+"item": "chainlink_fence_20",
+"scale": 1.0,
+"collide": false,
+"name": "chainlink_fence_20"
+},
+{
+"t": "part",
+"pos": [
+690.0,
+692.0,
+5070.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Roof",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+60,
+20,
+60
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+170,
+167,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "WLiftOverrun"
+},
+{
+"t": "kit",
+"pos": [
+690,
+696.3,
+4880
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Roof",
+"layer": "LOD4",
+"item": "water_tank",
+"scale": 1.3,
+"collide": false,
+"name": "water_tank"
+},
+{
+"t": "kit",
+"pos": [
+730,
+696.3,
+4900
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Roof",
+"layer": "LOD4",
+"item": "water_tank",
+"scale": 1.3,
+"collide": false,
+"name": "water_tank"
+},
+{
+"t": "kit",
+"pos": [
+690,
+708,
+5070
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Roof",
+"layer": "LOD4",
+"item": "dish_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "dish_cluster"
+},
+{
+"t": "kit",
+"pos": [
+700,
+688,
+4980
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Roof",
+"layer": "LOD4",
+"item": "rooftop_shack",
+"scale": 1.0,
+"collide": false,
+"name": "rooftop_shack"
+},
+{
+"t": "kit",
+"pos": [
+740,
+688,
+5150
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Roof",
+"layer": "LOD4",
+"item": "rooftop_shack",
+"scale": 1.0,
+"collide": false,
+"name": "rooftop_shack"
+},
+{
+"t": "kit",
+"pos": [
+735,
+718,
+5120
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Roof",
+"layer": "LOD4",
+"item": "antenna_mast",
+"scale": 1.2,
+"collide": false,
+"name": "antenna_mast"
+},
+{
+"t": "part",
+"pos": [
+960.0,
+774.0,
+5040.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Roof",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+60,
+24,
+80
+],
+"mat": "Concrete",
+"var": "",
+"color": [
+170,
+167,
+158
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "ELiftOverrun"
+},
+{
+"t": "kit",
+"pos": [
+960,
+800.3,
+5040
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Roof",
+"layer": "LOD4",
+"item": "water_tank",
+"scale": 1.3,
+"collide": false,
+"name": "water_tank"
+},
+{
+"t": "kit",
+"pos": [
+1000,
+768,
+4900
+],
+"rot": [
+0,
+30,
+0
+],
+"group": "Roof",
+"layer": "LOD4",
+"item": "dish_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "dish_cluster"
+},
+{
+"t": "kit",
+"pos": [
+930,
+768,
+5150
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Roof",
+"layer": "LOD4",
+"item": "rooftop_shack",
+"scale": 1.0,
+"collide": false,
+"name": "rooftop_shack"
+},
+{
+"t": "kit",
+"pos": [
+1000,
+807,
+5140
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Roof",
+"layer": "LOD4",
+"item": "antenna_mast",
+"scale": 1.5,
+"collide": false,
+"name": "antenna_mast"
+},
+{
+"t": "kit",
+"pos": [
+820,
+688,
+5100
+],
+"rot": [
+0,
+90,
+0
+],
+"group": "Roof",
+"layer": "LOD4",
+"item": "rooftop_shack",
+"scale": 1.0,
+"collide": false,
+"name": "rooftop_shack"
+},
+{
+"t": "kit",
+"pos": [
+850,
+696.3,
+5150
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Roof",
+"layer": "LOD4",
+"item": "water_tank",
+"scale": 1.3,
+"collide": false,
+"name": "water_tank"
+}
+]
+}

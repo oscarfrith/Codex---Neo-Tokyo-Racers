@@ -1,0 +1,2864 @@
+{
+"id": "X1",
+"kind": "building",
+"title": "Gate Bridge",
+"lean": "hybrid",
+"stats": {
+"tris": 9076,
+"parts": 60,
+"kit": 44,
+"min": [
+-125,
+388,
+4964
+],
+"max": [
+125,
+682,
+5036
+]
+},
+"elements": [
+{
+"t": "part",
+"pos": [
+0.0,
+433.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+250,
+14.0,
+62
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "DeckStructure"
+},
+{
+"t": "part",
+"pos": [
+0.0,
+431.5,
+4968.4
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+240,
+9.0,
+1.2
+],
+"mat": "Concrete",
+"var": "SG Graffiti A",
+"color": [
+200,
+200,
+200
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "FasciaGraffitiN"
+},
+{
+"t": "part",
+"pos": [
+0.0,
+431.5,
+5031.6
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+240,
+9.0,
+1.2
+],
+"mat": "Concrete",
+"var": "SG Graffiti B",
+"color": [
+200,
+200,
+200
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "FasciaGraffitiS"
+},
+{
+"t": "part",
+"pos": [
+0.0,
+436.9,
+4968.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+240,
+0.6,
+1.4
+],
+"mat": "Neon",
+"var": "",
+"color": [
+255,
+70,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "FasciaNeon"
+},
+{
+"t": "part",
+"pos": [
+0.0,
+436.9,
+5031.7
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+240,
+0.6,
+1.4
+],
+"mat": "Neon",
+"var": "",
+"color": [
+60,
+230,
+255
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "FasciaNeon"
+},
+{
+"t": "part",
+"pos": [
+0.0,
+480.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+250,
+80.0,
+44
+],
+"mat": "SmoothPlastic",
+"var": "SG Windows Blocks",
+"color": [
+206,
+204,
+198
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "SlabWindows"
+},
+{
+"t": "part",
+"pos": [
+0.0,
+455.133,
+4974.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+250,
+6.0,
+8
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+222,
+206,
+186
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "BalconyRow"
+},
+{
+"t": "part",
+"pos": [
+0.0,
+468.467,
+4974.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+250,
+6.0,
+8
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+222,
+206,
+186
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "BalconyRow"
+},
+{
+"t": "part",
+"pos": [
+0.0,
+481.8,
+4974.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+250,
+6.0,
+8
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+148,
+142
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "BalconyRow"
+},
+{
+"t": "part",
+"pos": [
+0.0,
+495.133,
+4974.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+250,
+6.0,
+8
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+222,
+206,
+186
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "BalconyRow"
+},
+{
+"t": "part",
+"pos": [
+0.0,
+508.467,
+4974.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+250,
+6.0,
+8
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+222,
+206,
+186
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "BalconyRow"
+},
+{
+"t": "part",
+"pos": [
+-123.8,
+480.0,
+4973.7
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+2.4,
+80.0,
+8.6
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "BalconyFin"
+},
+{
+"t": "part",
+"pos": [
+-83.333,
+480.0,
+4973.7
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+2.4,
+80.0,
+8.6
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "BalconyFin"
+},
+{
+"t": "part",
+"pos": [
+-41.667,
+480.0,
+4973.7
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+2.4,
+80.0,
+8.6
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "BalconyFin"
+},
+{
+"t": "part",
+"pos": [
+0.0,
+480.0,
+4973.7
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+2.4,
+80.0,
+8.6
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "BalconyFin"
+},
+{
+"t": "part",
+"pos": [
+41.667,
+480.0,
+4973.7
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+2.4,
+80.0,
+8.6
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "BalconyFin"
+},
+{
+"t": "part",
+"pos": [
+83.333,
+480.0,
+4973.7
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+2.4,
+80.0,
+8.6
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "BalconyFin"
+},
+{
+"t": "part",
+"pos": [
+123.8,
+480.0,
+4973.7
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+2.4,
+80.0,
+8.6
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "BalconyFin"
+},
+{
+"t": "kit",
+"pos": [
+-104.167,
+461.867,
+4969.4
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+150,
+210,
+160
+]
+},
+{
+"t": "part",
+"pos": [
+-62.5,
+461.8,
+4974.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+39.267,
+7.333,
+7.4
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+235,
+222,
+170
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "EnclosedBalcony"
+},
+{
+"t": "kit",
+"pos": [
+20.833,
+461.867,
+4969.4
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+240,
+200,
+90
+]
+},
+{
+"t": "kit",
+"pos": [
+62.5,
+461.867,
+4969.4
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+230,
+120,
+150
+]
+},
+{
+"t": "kit",
+"pos": [
+104.167,
+461.867,
+4969.4
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+150,
+210,
+160
+]
+},
+{
+"t": "kit",
+"pos": [
+62.5,
+475.2,
+4969.4
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+150,
+210,
+160
+]
+},
+{
+"t": "kit",
+"pos": [
+-116.167,
+481.3,
+4968
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+-32.833,
+481.3,
+4968
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+62.5,
+488.533,
+4969.4
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+240,
+200,
+90
+]
+},
+{
+"t": "kit",
+"pos": [
+-116.167,
+494.633,
+4968
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+-62.5,
+501.867,
+4969.4
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+240,
+200,
+90
+]
+},
+{
+"t": "kit",
+"pos": [
+20.833,
+501.867,
+4969.4
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+240,
+230,
+210
+]
+},
+{
+"t": "kit",
+"pos": [
+62.5,
+501.867,
+4969.4
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+240,
+230,
+210
+]
+},
+{
+"t": "part",
+"pos": [
+104.167,
+501.8,
+4974.1
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+39.267,
+7.333,
+7.4
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+235,
+190,
+175
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "EnclosedBalcony"
+},
+{
+"t": "kit",
+"pos": [
+-50.5,
+507.967,
+4968
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+50.5,
+507.967,
+4968
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+92.167,
+507.967,
+4968
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "part",
+"pos": [
+0.0,
+455.133,
+5026.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+250,
+6.0,
+8
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+222,
+206,
+186
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "BalconyRow"
+},
+{
+"t": "part",
+"pos": [
+0.0,
+468.467,
+5026.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+250,
+6.0,
+8
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+148,
+142
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "BalconyRow"
+},
+{
+"t": "part",
+"pos": [
+0.0,
+481.8,
+5026.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+250,
+6.0,
+8
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+222,
+206,
+186
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "BalconyRow"
+},
+{
+"t": "part",
+"pos": [
+0.0,
+495.133,
+5026.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+250,
+6.0,
+8
+],
+"mat": "SmoothPlastic",
+"var": "SG Patched Panels",
+"color": [
+222,
+206,
+186
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "BalconyRow"
+},
+{
+"t": "part",
+"pos": [
+0.0,
+508.467,
+5026.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+250,
+6.0,
+8
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+150,
+148,
+142
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "BalconyRow"
+},
+{
+"t": "part",
+"pos": [
+-123.8,
+480.0,
+5026.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+2.4,
+80.0,
+8.6
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "BalconyFin"
+},
+{
+"t": "part",
+"pos": [
+-83.333,
+480.0,
+5026.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+2.4,
+80.0,
+8.6
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "BalconyFin"
+},
+{
+"t": "part",
+"pos": [
+-41.667,
+480.0,
+5026.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+2.4,
+80.0,
+8.6
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "BalconyFin"
+},
+{
+"t": "part",
+"pos": [
+0.0,
+480.0,
+5026.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+2.4,
+80.0,
+8.6
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "BalconyFin"
+},
+{
+"t": "part",
+"pos": [
+41.667,
+480.0,
+5026.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+2.4,
+80.0,
+8.6
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "BalconyFin"
+},
+{
+"t": "part",
+"pos": [
+83.333,
+480.0,
+5026.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+2.4,
+80.0,
+8.6
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "BalconyFin"
+},
+{
+"t": "part",
+"pos": [
+123.8,
+480.0,
+5026.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+2.4,
+80.0,
+8.6
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "BalconyFin"
+},
+{
+"t": "kit",
+"pos": [
+-104.167,
+461.867,
+5030.6
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+230,
+120,
+150
+]
+},
+{
+"t": "kit",
+"pos": [
+-104.167,
+475.2,
+5030.6
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+240,
+200,
+90
+]
+},
+{
+"t": "kit",
+"pos": [
+-8.833,
+467.967,
+5032
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+32.833,
+467.967,
+5032
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+62.5,
+475.2,
+5030.6
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+230,
+120,
+150
+]
+},
+{
+"t": "kit",
+"pos": [
+20.833,
+488.533,
+5030.6
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+240,
+200,
+90
+]
+},
+{
+"t": "kit",
+"pos": [
+74.5,
+481.3,
+5032
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+-62.5,
+501.867,
+5030.6
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+240,
+230,
+210
+]
+},
+{
+"t": "kit",
+"pos": [
+104.167,
+501.867,
+5030.6
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD2",
+"item": "laundry_line_36",
+"scale": 1.0,
+"collide": false,
+"name": "laundry_line_36",
+"color": [
+240,
+230,
+210
+]
+},
+{
+"t": "kit",
+"pos": [
+-74.5,
+507.967,
+5032
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+32.833,
+507.967,
+5032
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "kit",
+"pos": [
+116.167,
+507.967,
+5032
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD2",
+"item": "ac_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "ac_cluster"
+},
+{
+"t": "part",
+"pos": [
+0.0,
+521.5,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+250,
+3.0,
+62
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "SlabRoof"
+},
+{
+"t": "part",
+"pos": [
+0.0,
+525.0,
+4970.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+250,
+4.0,
+2
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Parapet"
+},
+{
+"t": "part",
+"pos": [
+0.0,
+525.0,
+5030.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+250,
+4.0,
+2
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Parapet"
+},
+{
+"t": "part",
+"pos": [
+-124.0,
+525.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+2,
+4.0,
+58
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Parapet"
+},
+{
+"t": "part",
+"pos": [
+124.0,
+525.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Gate Slab",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+2,
+4.0,
+58
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Parapet"
+},
+{
+"t": "part",
+"pos": [
+-46.0,
+566.5,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Sphere Crown",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+12,
+87.0,
+36
+],
+"mat": "Concrete",
+"var": "SG Capsule Panels",
+"color": [
+218,
+218,
+212
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "CrownPost"
+},
+{
+"t": "part",
+"pos": [
+46.0,
+566.5,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Sphere Crown",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+12,
+87.0,
+36
+],
+"mat": "Concrete",
+"var": "SG Capsule Panels",
+"color": [
+218,
+218,
+212
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "CrownPost"
+},
+{
+"t": "part",
+"pos": [
+0.0,
+616.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Sphere Crown",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+112,
+12.0,
+40
+],
+"mat": "Concrete",
+"var": "SG Capsule Panels",
+"color": [
+218,
+218,
+212
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "CrownBeam"
+},
+{
+"t": "part",
+"pos": [
+0.0,
+615.3,
+4979.7
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Sphere Crown",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+100,
+0.6,
+0.6
+],
+"mat": "Neon",
+"var": "",
+"color": [
+255,
+170,
+50
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "CrownNeon"
+},
+{
+"t": "part",
+"pos": [
+0.0,
+615.3,
+5020.3
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Sphere Crown",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+100,
+0.6,
+0.6
+],
+"mat": "Neon",
+"var": "",
+"color": [
+255,
+170,
+50
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "CrownNeon"
+},
+{
+"t": "part",
+"pos": [
+0.0,
+525.0,
+5000.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Sphere Crown",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+32,
+4.0,
+32
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "SphereSeat"
+},
+{
+"t": "part",
+"pos": [
+0,
+563.0,
+5000
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Sphere Crown",
+"layer": "LOD4",
+"shape": "Ball",
+"size": [
+72,
+72,
+72
+],
+"mat": "Metal",
+"var": "",
+"color": [
+196,
+200,
+206
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "GateSphere"
+},
+{
+"t": "kit",
+"pos": [
+0,
+652.0,
+5000
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Sphere Crown",
+"layer": "LOD4",
+"item": "antenna_mast",
+"scale": 1.0,
+"collide": false,
+"name": "antenna_mast"
+},
+{
+"t": "kit",
+"pos": [
+-96,
+529.0,
+4998
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Roof Life",
+"layer": "LOD4",
+"item": "rooftop_shack",
+"scale": 1.0,
+"collide": false,
+"name": "rooftop_shack",
+"color": [
+120,
+150,
+160
+]
+},
+{
+"t": "kit",
+"pos": [
+92,
+529.0,
+5002
+],
+"rot": [
+0,
+180,
+0
+],
+"group": "Roof Life",
+"layer": "LOD4",
+"item": "rooftop_shack",
+"scale": 1.0,
+"collide": false,
+"name": "rooftop_shack",
+"color": [
+170,
+120,
+100
+]
+},
+{
+"t": "kit",
+"pos": [
+-72,
+534.0,
+5010
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Roof Life",
+"layer": "LOD4",
+"item": "water_tank",
+"scale": 1.0,
+"collide": false,
+"name": "water_tank"
+},
+{
+"t": "kit",
+"pos": [
+72,
+529.0,
+4990
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Roof Life",
+"layer": "LOD2",
+"item": "dish_cluster",
+"scale": 1.0,
+"collide": false,
+"name": "dish_cluster"
+},
+{
+"t": "kit",
+"pos": [
+-100,
+400.0,
+4984
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Tube Pair",
+"layer": "LOD4",
+"item": "bridge_tube_40",
+"scale": 1.0,
+"collide": false,
+"name": "bridge_tube_40"
+},
+{
+"t": "kit",
+"pos": [
+-60,
+400.0,
+4984
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Tube Pair",
+"layer": "LOD4",
+"item": "bridge_tube_40",
+"scale": 1.0,
+"collide": false,
+"name": "bridge_tube_40"
+},
+{
+"t": "kit",
+"pos": [
+-20,
+400.0,
+4984
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Tube Pair",
+"layer": "LOD4",
+"item": "bridge_tube_40",
+"scale": 1.0,
+"collide": false,
+"name": "bridge_tube_40"
+},
+{
+"t": "kit",
+"pos": [
+20,
+400.0,
+4984
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Tube Pair",
+"layer": "LOD4",
+"item": "bridge_tube_40",
+"scale": 1.0,
+"collide": false,
+"name": "bridge_tube_40"
+},
+{
+"t": "kit",
+"pos": [
+60,
+400.0,
+4984
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Tube Pair",
+"layer": "LOD4",
+"item": "bridge_tube_40",
+"scale": 1.0,
+"collide": false,
+"name": "bridge_tube_40"
+},
+{
+"t": "kit",
+"pos": [
+100,
+400.0,
+4984
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Tube Pair",
+"layer": "LOD4",
+"item": "bridge_tube_40",
+"scale": 1.0,
+"collide": false,
+"name": "bridge_tube_40"
+},
+{
+"t": "part",
+"pos": [
+-122.5,
+400.0,
+4984.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Tube Pair",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+5.0,
+24.0,
+24
+],
+"mat": "Concrete",
+"var": "SG Capsule Panels",
+"color": [
+218,
+218,
+212
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "TubeCollar"
+},
+{
+"t": "part",
+"pos": [
+122.5,
+400.0,
+4984.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Tube Pair",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+5.0,
+24.0,
+24
+],
+"mat": "Concrete",
+"var": "SG Capsule Panels",
+"color": [
+218,
+218,
+212
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "TubeCollar"
+},
+{
+"t": "part",
+"pos": [
+-80.0,
+417.5,
+4984.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Tube Pair",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4,
+17.0,
+4
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Hanger"
+},
+{
+"t": "part",
+"pos": [
+-80.0,
+409.0,
+4984.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Tube Pair",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+6,
+4.0,
+20
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "HangerSaddle"
+},
+{
+"t": "part",
+"pos": [
+0.0,
+417.5,
+4984.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Tube Pair",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4,
+17.0,
+4
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Hanger"
+},
+{
+"t": "part",
+"pos": [
+0.0,
+409.0,
+4984.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Tube Pair",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+6,
+4.0,
+20
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "HangerSaddle"
+},
+{
+"t": "part",
+"pos": [
+80.0,
+417.5,
+4984.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Tube Pair",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4,
+17.0,
+4
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Hanger"
+},
+{
+"t": "part",
+"pos": [
+80.0,
+409.0,
+4984.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Tube Pair",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+6,
+4.0,
+20
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "HangerSaddle"
+},
+{
+"t": "kit",
+"pos": [
+-100,
+400.0,
+5016
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Tube Pair",
+"layer": "LOD4",
+"item": "bridge_tube_40",
+"scale": 1.0,
+"collide": false,
+"name": "bridge_tube_40"
+},
+{
+"t": "kit",
+"pos": [
+-60,
+400.0,
+5016
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Tube Pair",
+"layer": "LOD4",
+"item": "bridge_tube_40",
+"scale": 1.0,
+"collide": false,
+"name": "bridge_tube_40"
+},
+{
+"t": "kit",
+"pos": [
+-20,
+400.0,
+5016
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Tube Pair",
+"layer": "LOD4",
+"item": "bridge_tube_40",
+"scale": 1.0,
+"collide": false,
+"name": "bridge_tube_40"
+},
+{
+"t": "kit",
+"pos": [
+20,
+400.0,
+5016
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Tube Pair",
+"layer": "LOD4",
+"item": "bridge_tube_40",
+"scale": 1.0,
+"collide": false,
+"name": "bridge_tube_40"
+},
+{
+"t": "kit",
+"pos": [
+60,
+400.0,
+5016
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Tube Pair",
+"layer": "LOD4",
+"item": "bridge_tube_40",
+"scale": 1.0,
+"collide": false,
+"name": "bridge_tube_40"
+},
+{
+"t": "kit",
+"pos": [
+100,
+400.0,
+5016
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Tube Pair",
+"layer": "LOD4",
+"item": "bridge_tube_40",
+"scale": 1.0,
+"collide": false,
+"name": "bridge_tube_40"
+},
+{
+"t": "part",
+"pos": [
+-122.5,
+400.0,
+5016.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Tube Pair",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+5.0,
+24.0,
+24
+],
+"mat": "Concrete",
+"var": "SG Capsule Panels",
+"color": [
+218,
+218,
+212
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "TubeCollar"
+},
+{
+"t": "part",
+"pos": [
+122.5,
+400.0,
+5016.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Tube Pair",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+5.0,
+24.0,
+24
+],
+"mat": "Concrete",
+"var": "SG Capsule Panels",
+"color": [
+218,
+218,
+212
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "TubeCollar"
+},
+{
+"t": "part",
+"pos": [
+-80.0,
+417.5,
+5016.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Tube Pair",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4,
+17.0,
+4
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Hanger"
+},
+{
+"t": "part",
+"pos": [
+-80.0,
+409.0,
+5016.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Tube Pair",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+6,
+4.0,
+20
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "HangerSaddle"
+},
+{
+"t": "part",
+"pos": [
+0.0,
+417.5,
+5016.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Tube Pair",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4,
+17.0,
+4
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Hanger"
+},
+{
+"t": "part",
+"pos": [
+0.0,
+409.0,
+5016.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Tube Pair",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+6,
+4.0,
+20
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "HangerSaddle"
+},
+{
+"t": "part",
+"pos": [
+80.0,
+417.5,
+5016.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Tube Pair",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+4,
+17.0,
+4
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "Hanger"
+},
+{
+"t": "part",
+"pos": [
+80.0,
+409.0,
+5016.0
+],
+"rot": [
+0,
+0,
+0
+],
+"group": "Tube Pair",
+"layer": "LOD4",
+"shape": "Block",
+"size": [
+6,
+4.0,
+20
+],
+"mat": "Concrete",
+"var": "SG Weathered Concrete",
+"color": [
+112,
+110,
+106
+],
+"collide": true,
+"shadow": true,
+"transparency": 0.0,
+"name": "HangerSaddle"
+}
+]
+}

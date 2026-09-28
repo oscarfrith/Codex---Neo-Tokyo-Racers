@@ -1,0 +1,9 @@
+{
+ "sg_windows_blocks_color.png": "rbxassetid://82115408654744", "sg_windows_blocks_normal.png": "rbxassetid://103256927370220", "sg_windows_blocks_roughness.png": "rbxassetid://74057279343878",
+ "sg_windows_capsule_color.png": "rbxassetid://96071127881014", "sg_windows_capsule_normal.png": "rbxassetid://131799831002138", "sg_windows_capsule_roughness.png": "rbxassetid://92136670247311",
+ "sg_weathered_concrete_color.png": "rbxassetid://100697873608071", "sg_weathered_concrete_normal.png": "rbxassetid://83872140118140", "sg_weathered_concrete_roughness.png": "rbxassetid://115821570460216",
+ "sg_capsule_panels_color.png": "rbxassetid://123441300627216", "sg_capsule_panels_normal.png": "rbxassetid://132912247379296", "sg_capsule_panels_roughness.png": "rbxassetid://88370988024348",
+ "sg_patched_panels_color.png": "rbxassetid://137613155152675", "sg_patched_panels_normal.png": "rbxassetid://70565307317723", "sg_patched_panels_roughness.png": "rbxassetid://70570737887817",
+ "sg_graffiti_a_color.png": "rbxassetid://107938083268418", "sg_graffiti_a_normal.png": "rbxassetid://108228516975549", "sg_graffiti_a_roughness.png": "rbxassetid://125878678352374",
+ "sg_graffiti_b_color.png": "rbxassetid://89791465766450", "sg_graffiti_b_normal.png": "rbxassetid://73784691710836", "sg_graffiti_b_roughness.png": "rbxassetid://117602241115696"
+}
