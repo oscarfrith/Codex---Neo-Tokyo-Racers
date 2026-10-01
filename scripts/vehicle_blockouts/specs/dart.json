@@ -1,0 +1,486 @@
+{
+  "id": "dart",
+  "displayName": "Dart",
+  "tagline": "Anti-grav darts: one slender fuselage, a prow of prongs, stub wings, airbrakes and a drive block.",
+  "standard": {
+    "cockpitEnvelope": {"min": [-3.2, -0.5, -7], "max": [3.2, 2.6, 8]},
+    "datums": {"beltline": 1.3, "sill": 0.0, "hoverPlane": -2.0},
+    "slots": {
+      "Engine1": {"label": "Prow", "envelope": {"min": [-6.5, -0.5, -16.5], "max": [6.5, 2.6, -7]}, "anchor": {"to": "cockpit", "face": "+z"}, "explode": [0, 0, -5]},
+      "Engine2": {"label": "Drive", "envelope": {"min": [-3.4, -0.5, 8], "max": [3.4, 3.4, 14.5]}, "anchor": {"to": "cockpit", "face": "-z"}, "explode": [0, 0, 5]},
+      "SidePods": {"label": "Wings", "envelope": {"min": [3.2, -1.5, -7], "max": [9, 3.6, 8], "mirror": true}, "anchor": {"to": "cockpit", "face": "-x"}, "explode": [0, -6, -2]},
+      "Stabilisers": {"label": "Airbrakes", "envelope": {"min": [3.4, -0.5, 8], "max": [7.5, 4, 15], "mirror": true}, "anchor": {"to": "Engine2", "face": "-x"}, "explode": [0, 0, 13]},
+      "Boost": {"label": "Afterburner", "envelope": {"min": [-2.4, -0.2, 14.5], "max": [2.4, 2.8, 18.5]}, "anchor": {"to": "Engine2", "face": "-z"}, "explode": [0, -8, 12]},
+      "FrontBumper": {"label": "Nose Tip", "envelope": {"min": [-3.5, -0.5, -19], "max": [3.5, 2.6, -16.5]}, "anchor": {"to": "Engine1", "face": "+z"}, "explode": [0, 0, -9]},
+      "RearBumper": {"label": "Tail Cone", "envelope": {"min": [-1.6, -2, 8], "max": [1.6, -0.5, 19]}, "anchor": {"to": "Engine2", "face": "+y"}, "explode": [0, -6, 6]},
+      "RearSpoiler": {"label": "Tail Fins", "envelope": {"min": [-3.4, 3.4, 8], "max": [3.4, 7.4, 17]}, "anchor": {"to": "Engine2", "face": "-y"}, "explode": [0, 5, 5]},
+      "Hood": {"label": "Spine", "envelope": {"min": [-1.2, 2.6, 2.6], "max": [1.2, 3.8, 8]}, "anchor": {"to": "cockpit", "face": "-y"}, "explode": [0, 4, 0]},
+      "Roof": {"label": "Canopy", "envelope": {"min": [-1.8, 2.6, -5], "max": [1.8, 4.2, 2.6]}, "anchor": {"to": "cockpit", "face": "-y"}, "explode": [0, 6, 0]}
+    }
+  },
+  "cockpits": {
+    "needle": {"name": "Needle", "culture": "Works Team", "parts": [
+      {"shape": "cyl_z", "size": [2.2, 2.2, 0.4], "pos": [0, 1.3, -6.8], "ch": "detail", "note": "prow collar: dark neck at the seam"},
+      {"shape": "cyl_z", "size": [2.6, 2.6, 2], "pos": [0, 1.3, -5.6], "ch": "primary", "note": "front barrel"},
+      {"shape": "cyl_z", "size": [2.6, 2.6, 0.8], "pos": [0, 1.3, -4.2], "ch": "secondary"},
+      {"shape": "block", "size": [2.6, 0.3, 5.8], "pos": [0, 0.15, -0.9], "ch": "primary", "note": "tub floor"},
+      {"shape": "block", "size": [0.3, 1.5, 5.8], "pos": [1.15, 1.05, -0.9], "ch": "primary", "mirror": true, "note": "tub wall"},
+      {"shape": "block", "size": [0.2, 0.6, 5.8], "pos": [1.15, 2.1, -0.9], "ch": "glass", "mirror": true, "note": "side glazing band belongs to the cockpit"},
+      {"shape": "block", "size": [0.3, 0.2, 5.8], "pos": [1.15, 2.5, -0.9], "ch": "detail", "mirror": true, "note": "canopy sill rail at deck height"},
+      {"shape": "block", "size": [1.2, 1, 0.4], "pos": [0, 1.9, 1.7], "ch": "detail", "note": "headrest"},
+      {"shape": "block", "size": [1.4, 0.6, 2.4], "pos": [0, 0.8, -2.3], "ch": "driver", "note": "legs, reclined"},
+      {"shape": "block", "size": [1.4, 2, 0.8], "pos": [0, 1.3, -0.35], "rot": [50, 0, 0], "ch": "driver", "note": "torso reclined 50 degrees"},
+      {"shape": "ball", "size": [1.1, 1.1, 1.1], "pos": [0, 2, 0.8], "ch": "driver", "note": "head, top at 2.55"},
+      {"shape": "block", "size": [0.35, 0.35, 1.7], "pos": [0.8, 1.4, -1.3], "rot": [-20, 0, 0], "ch": "driver", "mirror": true, "note": "arms"},
+      {"shape": "block", "size": [1.6, 0.6, 0.35], "pos": [0, 1.6, -3.575], "ch": "detail", "note": "dash"},
+      {"shape": "cyl_z", "size": [2.6, 2.6, 0.8], "pos": [0, 1.3, 2.4], "ch": "secondary"},
+      {"shape": "cyl_z", "size": [2.6, 2.6, 4.6], "pos": [0, 1.3, 5.1], "ch": "primary", "note": "rear barrel"},
+      {"shape": "block", "size": [1.6, 0.3, 4.8], "pos": [0, 2.45, 5], "ch": "detail", "note": "flat spine deck saddle"},
+      {"shape": "cyl_z", "size": [2.4, 2.4, 0.6], "pos": [0, 1.3, 7.7], "ch": "detail", "note": "drive collar"},
+      {"shape": "block", "size": [2, 0.4, 1], "pos": [2.2, 1.3, -2], "ch": "detail", "mirror": true, "note": "front wing hardpoint strut reaches X 3.2"},
+      {"shape": "block", "size": [2, 0.4, 1], "pos": [2.2, 1.3, 4.5], "ch": "detail", "mirror": true, "note": "rear wing hardpoint strut reaches X 3.2"},
+      {"shape": "wedge", "size": [0.3, 0.6, 4.2], "pos": [0, -0.2, 5.1], "ch": "secondary", "note": "ventral keel", "rot": [0, 0, 180]},
+      {"shape": "block", "size": [0.24, 0.08, 2.4], "pos": [0, 2.56, -5.2], "ch": "neon", "note": "nose light line"},
+      {"shape": "cyl_y", "size": [1.7, 0.25, 1.7], "pos": [0, -0.175, -5.2], "ch": "detail", "note": "hover unit housing"},
+      {"shape": "cyl_y", "size": [1.3, 0.15, 1.3], "pos": [0, -0.375, -5.2], "ch": "thrust", "note": "hover emitter"},
+      {"shape": "cyl_y", "size": [1.7, 0.25, 1.7], "pos": [0, -0.175, 1], "ch": "detail", "note": "hover unit housing"},
+      {"shape": "cyl_y", "size": [1.3, 0.15, 1.3], "pos": [0, -0.375, 1], "ch": "thrust", "note": "hover emitter"}
+    ]},
+    "delta": {"name": "Delta", "culture": "Prototype", "parts": [
+      {"shape": "block", "size": [2.2, 1.9, 0.4], "pos": [0, 1.3, -6.8], "ch": "detail", "note": "prow collar: dark neck at the seam"},
+      {"shape": "block", "size": [2.6, 1.6, 2.8], "pos": [0, 0.8, -5.2], "ch": "primary"},
+      {"shape": "wedge", "size": [2.6, 1, 2.8], "pos": [0, 2.1, -5.2], "ch": "primary", "note": "nose deck rises to the sill"},
+      {"shape": "block", "size": [2.6, 0.3, 5.8], "pos": [0, 0.15, -0.9], "ch": "primary", "note": "tub floor"},
+      {"shape": "block", "size": [0.3, 1.5, 5.8], "pos": [1.15, 1.05, -0.9], "ch": "primary", "mirror": true, "note": "tub wall"},
+      {"shape": "block", "size": [0.2, 0.6, 5.8], "pos": [1.15, 2.1, -0.9], "ch": "glass", "mirror": true, "note": "side glazing band belongs to the cockpit"},
+      {"shape": "block", "size": [0.3, 0.2, 5.8], "pos": [1.15, 2.5, -0.9], "ch": "detail", "mirror": true, "note": "canopy sill rail at deck height"},
+      {"shape": "block", "size": [1.2, 1, 0.4], "pos": [0, 1.9, 1.7], "ch": "detail", "note": "headrest"},
+      {"shape": "block", "size": [1.4, 0.6, 2.4], "pos": [0, 0.8, -2.3], "ch": "driver", "note": "legs, reclined"},
+      {"shape": "block", "size": [1.4, 2, 0.8], "pos": [0, 1.3, -0.35], "rot": [50, 0, 0], "ch": "driver", "note": "torso reclined 50 degrees"},
+      {"shape": "ball", "size": [1.1, 1.1, 1.1], "pos": [0, 2, 0.8], "ch": "driver", "note": "head, top at 2.55"},
+      {"shape": "block", "size": [0.35, 0.35, 1.7], "pos": [0.8, 1.4, -1.3], "rot": [-20, 0, 0], "ch": "driver", "mirror": true, "note": "arms"},
+      {"shape": "block", "size": [1.6, 0.6, 0.35], "pos": [0, 1.6, -3.575], "ch": "detail", "note": "dash"},
+      {"shape": "block", "size": [2.6, 1.6, 5.4], "pos": [0, 0.8, 4.7], "ch": "primary"},
+      {"shape": "block", "size": [2.4, 1, 5.4], "pos": [0, 2.1, 4.7], "ch": "primary", "note": "flat spine deck"},
+      {"shape": "block", "size": [2.6, 2.1, 0.6], "pos": [0, 1.3, 7.7], "ch": "detail", "note": "drive collar"},
+      {"shape": "wedge", "size": [1.3, 1.8, 13.8], "pos": [2.2, 0.85, 0.5], "rot": [0, 0, -90], "ch": "primary", "mirror": true, "note": "delta flank: widest at the tail"},
+      {"shape": "wedge", "size": [0.6, 1.4, 9.9], "pos": [2, 1.8, 2.45], "rot": [0, 0, -90], "ch": "secondary", "mirror": true, "note": "raised shoulder step"},
+      {"shape": "block", "size": [1, 0.45, 3.4], "pos": [1.8, 2.325, 5.7], "ch": "primary", "mirror": true, "note": "shoulder intake hump"},
+      {"shape": "block", "size": [0.8, 0.35, 0.2], "pos": [1.8, 2.325, 3.9], "ch": "detail", "mirror": true, "note": "intake mouth"},
+      {"shape": "block", "size": [1.6, 0.6, 0.1], "pos": [2.2, 0.9, 7.45], "ch": "neon", "mirror": true, "note": "tail light bar"},
+      {"shape": "block", "size": [1.4, 0.5, 1.4], "pos": [2.5, 1.15, -2], "ch": "detail", "mirror": true, "note": "front wing hardpoint reaches X 3.2"},
+      {"shape": "block", "size": [0.5, 0.5, 1.4], "pos": [2.95, 1.15, 4.5], "ch": "detail", "mirror": true, "note": "rear wing hardpoint reaches X 3.2"},
+      {"shape": "cyl_y", "size": [1.7, 0.25, 1.7], "pos": [0, -0.175, -5.2], "ch": "detail", "note": "hover unit housing"},
+      {"shape": "cyl_y", "size": [1.3, 0.15, 1.3], "pos": [0, -0.375, -5.2], "ch": "thrust", "note": "hover emitter"},
+      {"shape": "cyl_y", "size": [1.9, 0.25, 1.9], "pos": [0, -0.175, 4.8], "ch": "detail", "note": "hover unit housing"},
+      {"shape": "cyl_y", "size": [1.5, 0.15, 1.5], "pos": [0, -0.375, 4.8], "ch": "thrust", "note": "hover emitter"}
+    ]},
+    "manta": {"name": "Manta", "culture": "Salvage", "parts": [
+      {"shape": "block", "size": [2.2, 1.9, 0.4], "pos": [0, 1.3, -6.8], "ch": "detail", "note": "prow collar: dark neck at the seam"},
+      {"shape": "block", "size": [2.6, 1.3, 2.8], "pos": [0, 0.85, -5.2], "ch": "primary"},
+      {"shape": "wedge", "size": [2.2, 1.1, 2.4], "pos": [0, 2.05, -5], "ch": "secondary"},
+      {"shape": "cyl_z", "size": [0.9, 0.9, 2.9], "pos": [2.1, 0.95, -5.45], "ch": "secondary", "mirror": true, "note": "cephalic horn"},
+      {"shape": "block", "size": [2.6, 0.3, 5.8], "pos": [0, 0.15, -0.9], "ch": "primary", "note": "tub floor"},
+      {"shape": "block", "size": [0.3, 1.5, 5.8], "pos": [1.15, 1.05, -0.9], "ch": "primary", "mirror": true, "note": "tub wall"},
+      {"shape": "block", "size": [0.2, 0.6, 5.8], "pos": [1.15, 2.1, -0.9], "ch": "glass", "mirror": true, "note": "side glazing band belongs to the cockpit"},
+      {"shape": "block", "size": [0.3, 0.2, 5.8], "pos": [1.15, 2.5, -0.9], "ch": "detail", "mirror": true, "note": "canopy sill rail at deck height"},
+      {"shape": "block", "size": [1.2, 1, 0.4], "pos": [0, 1.9, 1.7], "ch": "detail", "note": "headrest"},
+      {"shape": "block", "size": [1.4, 0.6, 2.4], "pos": [0, 0.8, -2.3], "ch": "driver", "note": "legs, reclined"},
+      {"shape": "block", "size": [1.4, 2, 0.8], "pos": [0, 1.3, -0.35], "rot": [50, 0, 0], "ch": "driver", "note": "torso reclined 50 degrees"},
+      {"shape": "ball", "size": [1.1, 1.1, 1.1], "pos": [0, 2, 0.8], "ch": "driver", "note": "head, top at 2.55"},
+      {"shape": "block", "size": [0.35, 0.35, 1.7], "pos": [0.8, 1.4, -1.3], "rot": [-20, 0, 0], "ch": "driver", "mirror": true, "note": "arms"},
+      {"shape": "block", "size": [1.6, 0.6, 0.35], "pos": [0, 1.6, -3.575], "ch": "detail", "note": "dash"},
+      {"shape": "block", "size": [2.6, 1.3, 5.4], "pos": [0, 0.85, 4.7], "ch": "primary"},
+      {"shape": "block", "size": [2.4, 1.1, 5.4], "pos": [0, 2.05, 4.7], "ch": "primary", "note": "flat spine deck"},
+      {"shape": "block", "size": [2.6, 2.1, 0.6], "pos": [0, 1.3, 7.7], "ch": "detail", "note": "drive collar"},
+      {"shape": "wedge", "size": [0.9, 1.8, 2.9], "pos": [2.2, 1.05, -2.95], "rot": [0, 0, -90], "ch": "primary", "mirror": true, "note": "front of the manta lobe"},
+      {"shape": "block", "size": [1.8, 0.9, 4.5], "pos": [2.2, 1.05, 0.75], "ch": "secondary", "mirror": true, "note": "lobe"},
+      {"shape": "wedge", "size": [0.9, 1.8, 4.4], "pos": [2.2, 1.05, 5.2], "rot": [0, 180, 90], "ch": "primary", "mirror": true, "note": "rear of the lobe"},
+      {"shape": "block", "size": [1, 0.25, 4.5], "pos": [2.62, 0.42, 0.75], "rot": [0, 0, -25], "ch": "primary", "mirror": true, "note": "drooped tip"},
+      {"shape": "block", "size": [1.2, 0.08, 0.5], "pos": [2.3, 1.54, -0.35], "ch": "neon", "mirror": true, "note": "gill"},
+      {"shape": "block", "size": [1.2, 0.08, 0.5], "pos": [2.3, 1.54, 1.15], "ch": "neon", "mirror": true, "note": "gill"},
+      {"shape": "block", "size": [0.5, 0.5, 1.4], "pos": [2.95, 1.05, -2], "ch": "detail", "mirror": true, "note": "front wing hardpoint"},
+      {"shape": "block", "size": [0.8, 0.5, 1.4], "pos": [2.8, 1.05, 4.5], "ch": "detail", "mirror": true, "note": "rear wing hardpoint"},
+      {"shape": "cyl_y", "size": [1.4, 0.25, 1.4], "pos": [2.2, 0.475, 0.75], "ch": "detail", "mirror": true, "note": "hover unit housing"},
+      {"shape": "cyl_y", "size": [1, 0.15, 1], "pos": [2.2, 0.275, 0.75], "ch": "thrust", "mirror": true, "note": "hover emitter"}
+    ]},
+    "twinboom": {"name": "Twinboom", "culture": "Privateer", "parts": [
+      {"shape": "block", "size": [2.2, 1.9, 0.4], "pos": [0, 1.3, -6.8], "ch": "detail", "note": "prow collar: dark neck at the seam"},
+      {"shape": "block", "size": [2.8, 1.4, 2.8], "pos": [0, 0.7, -5.2], "ch": "primary", "note": "pod nose"},
+      {"shape": "wedge", "size": [2.8, 1.2, 2.8], "pos": [0, 2, -5.2], "ch": "primary"},
+      {"shape": "block", "size": [2.8, 0.3, 5.8], "pos": [0, 0.15, -0.9], "ch": "primary", "note": "tub floor"},
+      {"shape": "block", "size": [0.3, 1.5, 5.8], "pos": [1.25, 1.05, -0.9], "ch": "primary", "mirror": true, "note": "tub wall"},
+      {"shape": "block", "size": [0.2, 0.6, 5.8], "pos": [1.25, 2.1, -0.9], "ch": "glass", "mirror": true, "note": "side glazing band belongs to the cockpit"},
+      {"shape": "block", "size": [0.3, 0.2, 5.8], "pos": [1.25, 2.5, -0.9], "ch": "detail", "mirror": true, "note": "canopy sill rail at deck height"},
+      {"shape": "block", "size": [1.2, 1, 0.4], "pos": [0, 1.9, 1.7], "ch": "detail", "note": "headrest"},
+      {"shape": "block", "size": [1.4, 0.6, 2.4], "pos": [0, 0.8, -2.3], "ch": "driver", "note": "legs, reclined"},
+      {"shape": "block", "size": [1.4, 2, 0.8], "pos": [0, 1.3, -0.35], "rot": [50, 0, 0], "ch": "driver", "note": "torso reclined 50 degrees"},
+      {"shape": "ball", "size": [1.1, 1.1, 1.1], "pos": [0, 2, 0.8], "ch": "driver", "note": "head, top at 2.55"},
+      {"shape": "block", "size": [0.35, 0.35, 1.7], "pos": [0.8, 1.4, -1.3], "rot": [-20, 0, 0], "ch": "driver", "mirror": true, "note": "arms"},
+      {"shape": "block", "size": [1.6, 0.6, 0.35], "pos": [0, 1.6, -3.575], "ch": "detail", "note": "dash"},
+      {"shape": "block", "size": [2.8, 2.6, 1.2], "pos": [0, 1.3, 2.6], "ch": "primary", "note": "pod rear bulkhead"},
+      {"shape": "wedge", "size": [2.8, 1.9, 2.2], "pos": [0, 0.95, 4.3], "rot": [0, 180, 0], "ch": "secondary", "note": "pod tail"},
+      {"shape": "block", "size": [1.6, 0.7, 4.2], "pos": [0, 2.25, 5.3], "ch": "primary", "note": "spine rail carries the spine deck over the open bay"},
+      {"shape": "cyl_z", "size": [1.5, 1.5, 10.8], "pos": [2.35, 1.7, 1.2], "ch": "secondary", "mirror": true, "note": "high boom"},
+      {"shape": "ball", "size": [1.5, 1.5, 1.5], "pos": [2.35, 1.7, -4.2], "ch": "primary", "mirror": true, "note": "boom nose"},
+      {"shape": "cyl_z", "size": [1.5, 1.5, 0.7], "pos": [2.35, 1.7, 6.95], "ch": "primary", "mirror": true},
+      {"shape": "cyl_z", "size": [0.9, 0.9, 0.1], "pos": [2.35, 1.7, 7.35], "ch": "neon", "mirror": true, "note": "boom tail light"},
+      {"shape": "block", "size": [0.3, 0.5, 1.2], "pos": [1.55, 1.65, -2], "ch": "detail", "mirror": true, "note": "boom pylon"},
+      {"shape": "block", "size": [0.3, 0.5, 1.2], "pos": [1.55, 1.65, 2.4], "ch": "detail", "mirror": true, "note": "boom pylon"},
+      {"shape": "block", "size": [4.8, 0.8, 0.8], "pos": [0, 1.3, 7], "ch": "detail", "note": "rear yoke joins the booms and carries the drive collar"},
+      {"shape": "block", "size": [2.6, 2.1, 0.6], "pos": [0, 1.3, 7.7], "ch": "detail", "note": "drive collar"},
+      {"shape": "block", "size": [0.2, 0.5, 1.4], "pos": [3.1, 1.45, -2], "ch": "detail", "mirror": true, "note": "front wing hardpoint reaches X 3.2"},
+      {"shape": "block", "size": [0.2, 0.5, 1.4], "pos": [3.1, 1.45, 4.5], "ch": "detail", "mirror": true, "note": "rear wing hardpoint reaches X 3.2"},
+      {"shape": "cyl_y", "size": [1.3, 0.25, 1.3], "pos": [2.35, 0.825, -1.4], "ch": "detail", "mirror": true, "note": "hover unit housing"},
+      {"shape": "cyl_y", "size": [0.9, 0.15, 0.9], "pos": [2.35, 0.625, -1.4], "ch": "thrust", "mirror": true, "note": "hover emitter"},
+      {"shape": "cyl_y", "size": [1.3, 0.25, 1.3], "pos": [2.35, 0.825, 5], "ch": "detail", "mirror": true, "note": "hover unit housing"},
+      {"shape": "cyl_y", "size": [0.9, 0.15, 0.9], "pos": [2.35, 0.625, 5], "ch": "thrust", "mirror": true, "note": "hover emitter"}
+    ]},
+    "arrowhead": {"name": "Arrowhead", "culture": "Works Team", "parts": [
+      {"shape": "block", "size": [2.2, 1.9, 0.4], "pos": [0, 1.3, -6.8], "ch": "detail", "note": "prow collar: dark neck at the seam"},
+      {"shape": "block", "size": [2.6, 1.6, 2.8], "pos": [0, 0.8, -5.2], "ch": "primary"},
+      {"shape": "wedge", "size": [2.6, 1, 2.8], "pos": [0, 2.1, -5.2], "ch": "primary"},
+      {"shape": "block", "size": [2.6, 0.3, 5.8], "pos": [0, 0.15, -0.9], "ch": "primary", "note": "tub floor"},
+      {"shape": "block", "size": [0.3, 1.5, 5.8], "pos": [1.15, 1.05, -0.9], "ch": "primary", "mirror": true, "note": "tub wall"},
+      {"shape": "block", "size": [0.2, 0.6, 5.8], "pos": [1.15, 2.1, -0.9], "ch": "glass", "mirror": true, "note": "side glazing band belongs to the cockpit"},
+      {"shape": "block", "size": [0.3, 0.2, 5.8], "pos": [1.15, 2.5, -0.9], "ch": "detail", "mirror": true, "note": "canopy sill rail at deck height"},
+      {"shape": "block", "size": [1.2, 1, 0.4], "pos": [0, 1.9, 1.7], "ch": "detail", "note": "headrest"},
+      {"shape": "block", "size": [1.4, 0.6, 2.4], "pos": [0, 0.8, -2.3], "ch": "driver", "note": "legs, reclined"},
+      {"shape": "block", "size": [1.4, 2, 0.8], "pos": [0, 1.3, -0.35], "rot": [50, 0, 0], "ch": "driver", "note": "torso reclined 50 degrees"},
+      {"shape": "ball", "size": [1.1, 1.1, 1.1], "pos": [0, 2, 0.8], "ch": "driver", "note": "head, top at 2.55"},
+      {"shape": "block", "size": [0.35, 0.35, 1.7], "pos": [0.8, 1.4, -1.3], "rot": [-20, 0, 0], "ch": "driver", "mirror": true, "note": "arms"},
+      {"shape": "block", "size": [1.6, 0.6, 0.35], "pos": [0, 1.6, -3.575], "ch": "detail", "note": "dash"},
+      {"shape": "block", "size": [2.2, 1.5, 5.4], "pos": [0, 0.95, 4.7], "ch": "primary", "note": "slim shaft"},
+      {"shape": "block", "size": [2, 0.9, 5.4], "pos": [0, 2.15, 4.7], "ch": "primary", "note": "flat spine deck"},
+      {"shape": "block", "size": [2.6, 2.1, 0.6], "pos": [0, 1.3, 7.7], "ch": "detail", "note": "drive collar"},
+      {"shape": "wedge", "size": [1.6, 1.8, 7], "pos": [2.2, 1.2, -2.7], "rot": [0, 0, -90], "ch": "primary", "mirror": true, "note": "arrowhead barb: widest mid-ship"},
+      {"shape": "wedge", "size": [1.6, 1.1, 2.8], "pos": [2.55, 1.2, 2.2], "rot": [0, 180, -90], "ch": "secondary", "mirror": true, "note": "swept-back barb point"},
+      {"shape": "wedge", "size": [0.1, 1.2, 3.8], "pos": [1.9, 2.05, -1.1], "rot": [0, 0, -90], "ch": "secondary", "mirror": true},
+      {"shape": "block", "size": [0.6, 0.6, 0.1], "pos": [1.7, 1.2, 0.85], "ch": "neon", "mirror": true, "note": "barb light"},
+      {"shape": "wedge", "size": [1, 1.2, 2.4], "pos": [1.7, 1, 6.2], "rot": [0, 0, -90], "ch": "secondary", "mirror": true, "note": "fletching"},
+      {"shape": "block", "size": [0.9, 0.5, 1.4], "pos": [2.75, 1.25, -2], "ch": "detail", "mirror": true, "note": "front wing hardpoint"},
+      {"shape": "block", "size": [2.1, 0.45, 1], "pos": [2.15, 1.275, 4.5], "ch": "detail", "mirror": true, "note": "rear wing hardpoint: long strut across the notch"},
+      {"shape": "cyl_y", "size": [1.7, 0.25, 1.7], "pos": [0, -0.175, -5.2], "ch": "detail", "note": "hover unit housing"},
+      {"shape": "cyl_y", "size": [1.3, 0.15, 1.3], "pos": [0, -0.375, -5.2], "ch": "thrust", "note": "hover emitter"},
+      {"shape": "cyl_y", "size": [1.6, 0.25, 1.6], "pos": [0, 0.025, 4.8], "ch": "detail", "note": "hover unit housing"},
+      {"shape": "cyl_y", "size": [1.2, 0.15, 1.2], "pos": [0, -0.175, 4.8], "ch": "thrust", "note": "hover emitter"}
+    ]}
+  },
+  "modules": {
+    "Engine1": {
+      "twin_prong": {"name": "Twin Prong", "culture": "Works Team", "parts": [
+        {"shape": "block", "size": [2.2, 1.9, 0.4], "pos": [0, 1.3, -7.2], "ch": "detail", "note": "collar: body colour stops 0.4 short of the seam"},
+        {"shape": "block", "size": [2.6, 2, 2.4], "pos": [0, 1.3, -8.6], "ch": "primary", "note": "yoke"},
+        {"shape": "block", "size": [1.15, 1.4, 1.8], "pos": [1.875, 1.3, -8.9], "ch": "primary", "mirror": true, "note": "shoulder"},
+        {"shape": "wedge", "size": [1.4, 1.15, 0.6], "pos": [1.875, 1.3, -7.7], "rot": [0, 180, 90], "ch": "primary", "mirror": true},
+        {"shape": "block", "size": [1.5, 1.4, 6], "pos": [3.2, 1.3, -11], "ch": "primary", "mirror": true, "note": "prong"},
+        {"shape": "wedge", "size": [1.5, 0.7, 2.5], "pos": [3.2, 1.65, -15.25], "ch": "primary", "mirror": true, "note": "prong tip, upper"},
+        {"shape": "wedge", "size": [1.5, 0.7, 2.5], "pos": [3.2, 0.95, -15.25], "rot": [0, 0, 180], "ch": "primary", "mirror": true, "note": "prong tip, lower"},
+        {"shape": "block", "size": [1, 0.12, 4.6], "pos": [3.2, 2.06, -11.3], "ch": "secondary", "mirror": true},
+        {"shape": "block", "size": [0.12, 0.4, 3.8], "pos": [2.39, 1.3, -11.9], "ch": "neon", "mirror": true, "note": "inner light blade"},
+        {"shape": "block", "size": [0.7, 0.15, 3.2], "pos": [3.2, 0.525, -11.3], "ch": "thrust", "mirror": true, "note": "hover emitter"},
+        {"shape": "cyl_z", "size": [0.6, 0.6, 6.1], "pos": [0, 1.3, -12.85], "ch": "detail", "note": "sensor boom carries the nose collar"},
+        {"shape": "cyl_z", "size": [1, 1, 0.6], "pos": [0, 1.3, -16.2], "ch": "detail", "note": "centreline nose collar: the Nose Tip seam"}
+      ]},
+      "spear": {"name": "Spear", "culture": "Prototype", "parts": [
+        {"shape": "block", "size": [2.2, 1.9, 0.4], "pos": [0, 1.3, -7.2], "ch": "detail", "note": "collar: body colour stops 0.4 short of the seam"},
+        {"shape": "block", "size": [2.4, 2, 2.2], "pos": [0, 1.3, -8.5], "ch": "primary", "note": "base"},
+        {"shape": "block", "size": [1.8, 1.5, 3.6], "pos": [0, 1.3, -11.4], "ch": "primary", "note": "shaft"},
+        {"shape": "cyl_z", "size": [1.2, 1.2, 2.7], "pos": [0, 1.3, -14.55], "ch": "secondary", "note": "spear point"},
+        {"shape": "wedge", "size": [0.3, 1.8, 7.4], "pos": [1.8, 1.3, -11.3], "rot": [0, 0, -90], "ch": "secondary", "mirror": true, "note": "blade strake"},
+        {"shape": "wedge", "size": [0.6, 0.45, 3.4], "pos": [0, 2.275, -11.3], "ch": "detail", "note": "dorsal ridge"},
+        {"shape": "block", "size": [1, 0.06, 0.3], "pos": [0, 2.33, -9.05], "ch": "neon"},
+        {"shape": "block", "size": [1, 0.06, 0.3], "pos": [0, 2.33, -8.35], "ch": "neon"},
+        {"shape": "block", "size": [0.4, 0.3, 1.6], "pos": [1.4, 0.95, -8.6], "ch": "detail", "mirror": true, "note": "cheek intake"},
+        {"shape": "block", "size": [1, 0.2, 3.2], "pos": [0, 0.45, -11.4], "ch": "detail", "note": "hover unit housing"},
+        {"shape": "block", "size": [0.6, 0.13, 2.4], "pos": [0, 0.285, -11.4], "ch": "thrust", "note": "hover emitter"},
+        {"shape": "cyl_z", "size": [1, 1, 0.6], "pos": [0, 1.3, -16.2], "ch": "detail", "note": "centreline nose collar: the Nose Tip seam"}
+      ]},
+      "trident": {"name": "Trident", "culture": "Privateer", "parts": [
+        {"shape": "block", "size": [2.2, 1.9, 0.4], "pos": [0, 1.3, -7.2], "ch": "detail", "note": "collar: body colour stops 0.4 short of the seam"},
+        {"shape": "block", "size": [2.6, 2, 2.2], "pos": [0, 1.3, -8.5], "ch": "primary", "note": "yoke"},
+        {"shape": "block", "size": [4.2, 0.8, 1.5], "pos": [3.1, 1.3, -9.2], "rot": [0, 22, 0], "ch": "primary", "mirror": true, "note": "swept arm"},
+        {"shape": "cyl_z", "size": [1.3, 1.3, 5.2], "pos": [4.9, 1.3, -12], "ch": "primary", "mirror": true, "note": "outer prong"},
+        {"shape": "cyl_z", "size": [0.8, 0.8, 1.2], "pos": [4.9, 1.3, -15.2], "ch": "secondary", "mirror": true},
+        {"shape": "ball", "size": [0.5, 0.5, 0.5], "pos": [4.9, 1.3, -15.9], "ch": "neon", "mirror": true},
+        {"shape": "cyl_z", "size": [1.6, 1.6, 1.4], "pos": [0, 1.3, -10.3], "ch": "primary", "note": "centre prong"},
+        {"shape": "cyl_z", "size": [1.6, 1.6, 0.8], "pos": [0, 1.3, -11.4], "ch": "secondary"},
+        {"shape": "cyl_z", "size": [1.6, 1.6, 3.4], "pos": [0, 1.3, -13.5], "ch": "primary"},
+        {"shape": "cyl_z", "size": [1.2, 1.2, 0.7], "pos": [0, 1.3, -15.55], "ch": "secondary"},
+        {"shape": "block", "size": [0.5, 0.16, 2.6], "pos": [4.9, 0.58, -12], "ch": "thrust", "mirror": true, "note": "hover emitter"},
+        {"shape": "cyl_z", "size": [1, 1, 0.6], "pos": [0, 1.3, -16.2], "ch": "detail", "note": "centreline nose collar: the Nose Tip seam"}
+      ]},
+      "hammerhead": {"name": "Hammerhead", "culture": "Salvage", "parts": [
+        {"shape": "block", "size": [2.2, 1.9, 0.4], "pos": [0, 1.3, -7.2], "ch": "detail", "note": "collar: body colour stops 0.4 short of the seam"},
+        {"shape": "block", "size": [2, 1.6, 6], "pos": [0, 1.3, -10.4], "ch": "primary", "note": "neck"},
+        {"shape": "cyl_z", "size": [0.35, 0.35, 5.4], "pos": [1.15, 1.7, -10.5], "ch": "detail", "mirror": true, "note": "exposed cable"},
+        {"shape": "block", "size": [9.2, 1.5, 2.4], "pos": [0, 1.3, -14.6], "ch": "primary", "note": "hammer head"},
+        {"shape": "wedge", "size": [3.9, 0.75, 0.7], "pos": [2.65, 1.675, -16.15], "ch": "secondary", "mirror": true, "note": "leading edge, upper"},
+        {"shape": "wedge", "size": [3.9, 0.75, 0.7], "pos": [2.65, 0.925, -16.15], "rot": [0, 0, 180], "ch": "secondary", "mirror": true, "note": "leading edge, lower"},
+        {"shape": "cyl_z", "size": [1.9, 1.9, 3.2], "pos": [5.5, 1.3, -14.4], "ch": "secondary", "mirror": true, "note": "end pod"},
+        {"shape": "cyl_z", "size": [1.3, 1.3, 0.2], "pos": [5.5, 1.3, -16.1], "ch": "neon", "mirror": true, "note": "lamp"},
+        {"shape": "block", "size": [4.6, 0.3, 0.4], "pos": [2.6, 1.3, -11.5], "rot": [0, 50, 0], "ch": "detail", "mirror": true, "note": "brace"},
+        {"shape": "block", "size": [7.2, 0.1, 1.6], "pos": [0, 2.1, -14.6], "ch": "detail", "note": "patch plate"},
+        {"shape": "cyl_y", "size": [1, 0.16, 1], "pos": [5.5, 0.28, -14.4], "ch": "thrust", "mirror": true, "note": "hover emitter"},
+        {"shape": "cyl_z", "size": [1, 1, 0.7], "pos": [0, 1.3, -16.15], "ch": "detail", "note": "centreline nose collar: the Nose Tip seam"}
+      ]}
+    },
+    "Engine2": {
+      "twin_drive": {"name": "Twin Drive", "culture": "Works Team", "parts": [
+        {"shape": "block", "size": [2.6, 2.1, 0.4], "pos": [0, 1.3, 8.2], "ch": "detail", "note": "collar"},
+        {"shape": "block", "size": [1.8, 2.2, 5.2], "pos": [0, 1.3, 11], "ch": "primary", "note": "centre block"},
+        {"shape": "cyl_z", "size": [2.5, 2.5, 0.8], "pos": [2.1, 1.3, 9], "ch": "secondary", "mirror": true, "note": "intake lip"},
+        {"shape": "cyl_z", "size": [2.4, 2.4, 4], "pos": [2.1, 1.3, 11.4], "ch": "primary", "mirror": true, "note": "nacelle"},
+        {"shape": "cyl_z", "size": [2.1, 2.1, 0.8], "pos": [2.1, 1.3, 13.8], "ch": "detail", "mirror": true, "note": "nozzle"},
+        {"shape": "cyl_z", "size": [1.6, 1.6, 0.2], "pos": [2.1, 1.3, 14.3], "ch": "thrust", "mirror": true},
+        {"shape": "cyl_z", "size": [1.6, 1.6, 0.9], "pos": [0, 1.3, 14.05], "ch": "detail", "note": "burner collar"},
+        {"shape": "block", "size": [1.4, 0.95, 4.2], "pos": [0, 2.875, 11.1], "ch": "secondary", "note": "fin pad"},
+        {"shape": "block", "size": [0.2, 0.6, 1.4], "pos": [3.3, 1.3, 10.5], "ch": "detail", "mirror": true, "note": "airbrake hardpoint"},
+        {"shape": "block", "size": [1, 0.6, 3.4], "pos": [0, -0.1, 11.1], "ch": "detail", "note": "keel pad"}
+      ]},
+      "mono_drive": {"name": "Mono Drive", "culture": "Prototype", "parts": [
+        {"shape": "block", "size": [2.6, 2.1, 0.4], "pos": [0, 1.3, 8.2], "ch": "detail", "note": "collar"},
+        {"shape": "cyl_z", "size": [2.6, 2.6, 0.8], "pos": [0, 1.3, 8.8], "ch": "secondary", "note": "intake cone"},
+        {"shape": "cyl_z", "size": [3.2, 3.2, 3.8], "pos": [0, 1.3, 11.1], "ch": "primary", "note": "barrel"},
+        {"shape": "cyl_z", "size": [3.4, 3.4, 0.2], "pos": [0, 1.3, 10.3], "ch": "detail", "note": "heat ring"},
+        {"shape": "cyl_z", "size": [3.4, 3.4, 0.2], "pos": [0, 1.3, 11.1], "ch": "detail", "note": "heat ring"},
+        {"shape": "cyl_z", "size": [3.4, 3.4, 0.2], "pos": [0, 1.3, 11.9], "ch": "detail", "note": "heat ring"},
+        {"shape": "cyl_z", "size": [2.8, 2.8, 0.8], "pos": [0, 1.3, 13.4], "ch": "detail", "note": "nozzle"},
+        {"shape": "cyl_z", "size": [2.5, 2.5, 0.1], "pos": [0, 1.3, 13.85], "ch": "thrust"},
+        {"shape": "cyl_z", "size": [2, 2, 0.6], "pos": [0, 1.3, 14.2], "ch": "detail", "note": "burner collar"},
+        {"shape": "block", "size": [1.2, 0.55, 3.8], "pos": [0, 3.075, 11.1], "ch": "secondary", "note": "fin pad"},
+        {"shape": "block", "size": [1.9, 0.5, 1.4], "pos": [2.45, 1.3, 10.5], "ch": "detail", "mirror": true, "note": "airbrake hardpoint"},
+        {"shape": "block", "size": [1, 0.25, 3.4], "pos": [0, -0.325, 11.1], "ch": "detail", "note": "keel pad"}
+      ]},
+      "tri_cluster": {"name": "Tri Cluster", "culture": "Privateer", "parts": [
+        {"shape": "block", "size": [2.6, 2.1, 0.4], "pos": [0, 1.3, 8.2], "ch": "detail", "note": "collar"},
+        {"shape": "block", "size": [1.6, 1.6, 4.8], "pos": [0, 1.3, 10.8], "ch": "detail", "note": "core"},
+        {"shape": "cyl_z", "size": [1.9, 1.9, 4.9], "pos": [0, 2.4, 10.95], "ch": "primary", "note": "top engine"},
+        {"shape": "cyl_z", "size": [2, 2, 0.6], "pos": [0, 2.4, 10.1], "ch": "secondary"},
+        {"shape": "cyl_z", "size": [1.6, 1.6, 0.6], "pos": [0, 2.4, 13.7], "ch": "detail"},
+        {"shape": "cyl_z", "size": [1.2, 1.2, 0.2], "pos": [0, 2.4, 14.1], "ch": "thrust"},
+        {"shape": "cyl_z", "size": [1.9, 1.9, 4.9], "pos": [1.65, 0.6, 10.95], "ch": "primary", "mirror": true, "note": "lower engine"},
+        {"shape": "cyl_z", "size": [2, 2, 0.6], "pos": [1.65, 0.6, 10.1], "ch": "secondary", "mirror": true},
+        {"shape": "cyl_z", "size": [1.6, 1.6, 0.6], "pos": [1.65, 0.6, 13.7], "ch": "detail", "mirror": true},
+        {"shape": "cyl_z", "size": [1.2, 1.2, 0.2], "pos": [1.65, 0.6, 14.1], "ch": "thrust", "mirror": true},
+        {"shape": "cyl_z", "size": [1.2, 1.2, 1.3], "pos": [0, 1.3, 13.85], "ch": "detail", "note": "burner collar"},
+        {"shape": "block", "size": [1.4, 0.45, 1.4], "pos": [2.7, 1.275, 10.5], "ch": "detail", "mirror": true, "note": "airbrake hardpoint"},
+        {"shape": "block", "size": [1.2, 0.95, 3.6], "pos": [0, 0.025, 11], "ch": "detail", "note": "keel pad"}
+      ]},
+      "vector_ring": {"name": "Vector Ring", "culture": "Salvage", "parts": [
+        {"shape": "block", "size": [2.6, 2.1, 0.4], "pos": [0, 1.3, 8.2], "ch": "detail", "note": "collar"},
+        {"shape": "cyl_z", "size": [1.8, 1.8, 1], "pos": [0, 1.3, 8.9], "ch": "primary", "note": "core"},
+        {"shape": "cyl_z", "size": [2, 2, 0.6], "pos": [0, 1.3, 9.7], "ch": "secondary"},
+        {"shape": "cyl_z", "size": [1.8, 1.8, 3.6], "pos": [0, 1.3, 11.8], "ch": "primary"},
+        {"shape": "block", "size": [1.35, 0.3, 1.6], "pos": [0.574, 2.686, 12.4], "rot": [0, 0, 157.5], "ch": "primary", "mirror": true, "note": "hoop segment"},
+        {"shape": "block", "size": [1.35, 0.3, 1.6], "pos": [1.386, 1.874, 12.4], "rot": [0, 0, 112.5], "ch": "secondary", "mirror": true, "note": "hoop segment"},
+        {"shape": "block", "size": [1.35, 0.3, 1.6], "pos": [1.386, 0.726, 12.4], "rot": [0, 0, 67.5], "ch": "secondary", "mirror": true, "note": "hoop segment"},
+        {"shape": "block", "size": [1.35, 0.3, 1.6], "pos": [0.574, -0.086, 12.4], "rot": [0, 0, 22.5], "ch": "primary", "mirror": true, "note": "hoop segment"},
+        {"shape": "block", "size": [3, 0.2, 1.2], "pos": [0, 1.3, 12.4], "ch": "detail", "note": "vane"},
+        {"shape": "block", "size": [0.2, 3, 1.2], "pos": [0, 1.3, 12.4], "ch": "detail", "note": "vane"},
+        {"shape": "cyl_z", "size": [2.7, 2.7, 0.1], "pos": [0, 1.3, 12.95], "ch": "thrust", "note": "thrust membrane inside the hoop"},
+        {"shape": "cyl_z", "size": [1.4, 1.4, 0.9], "pos": [0, 1.3, 14.05], "ch": "detail", "note": "burner collar"},
+        {"shape": "block", "size": [1, 1.1, 2.4], "pos": [0, 2.75, 10.2], "ch": "secondary", "note": "fin pad"},
+        {"shape": "block", "size": [2.5, 0.5, 1.4], "pos": [2.15, 1.3, 10.3], "ch": "detail", "mirror": true, "note": "airbrake hardpoint"},
+        {"shape": "block", "size": [0.8, 0.8, 2], "pos": [0, 0, 10.2], "ch": "detail", "note": "keel pad"}
+      ]}
+    },
+    "SidePods": {
+      "delta": {"name": "Delta", "culture": "Privateer", "parts": [
+        {"shape": "block", "size": [0.4, 0.6, 8.5], "pos": [3.4, 1.3, 1.25], "ch": "detail", "mirror": true, "note": "root rib: dark linkage across the shadow gap"},
+        {"shape": "wedge", "size": [0.4, 5.2, 12], "pos": [6.2, 1.3, 1], "rot": [0, 0, -90], "ch": "primary", "mirror": true, "note": "delta wing"},
+        {"shape": "block", "size": [5.2, 0.3, 0.8], "pos": [6.2, 1.3, 7.4], "ch": "secondary", "mirror": true, "note": "elevon"},
+        {"shape": "wedge", "size": [0.25, 1.5, 2.6], "pos": [8.7, 2.25, 6.4], "ch": "primary", "mirror": true, "note": "tip fin"},
+        {"shape": "block", "size": [0.3, 0.2, 0.15], "pos": [8.7, 1.3, 7.875], "ch": "neon", "mirror": true},
+        {"shape": "cyl_y", "size": [1.9, 0.25, 1.9], "pos": [5.2, 0.975, 4.2], "ch": "detail", "mirror": true, "note": "hover unit housing"},
+        {"shape": "cyl_y", "size": [1.5, 0.15, 1.5], "pos": [5.2, 0.775, 4.2], "ch": "thrust", "mirror": true, "note": "hover emitter"}
+      ]},
+      "forward_swept": {"name": "Forward Swept", "culture": "Prototype", "parts": [
+        {"shape": "block", "size": [0.4, 0.6, 8.5], "pos": [3.4, 1.3, 1.25], "ch": "detail", "mirror": true, "note": "root rib: dark linkage across the shadow gap"},
+        {"shape": "wedge", "size": [0.4, 2.4, 5.6], "pos": [4.8, 1.3, 4.8], "rot": [0, 180, 90], "ch": "primary", "mirror": true, "note": "root fillet"},
+        {"shape": "block", "size": [5, 0.4, 2.8], "pos": [6.1, 1.3, 1], "rot": [0, 28, 0], "ch": "primary", "mirror": true, "note": "forward-swept plank"},
+        {"shape": "block", "size": [5, 0.44, 0.5], "pos": [6.52, 1.3, 1.79], "rot": [0, 28, 0], "ch": "secondary", "mirror": true},
+        {"shape": "cyl_z", "size": [0.9, 0.9, 3.2], "pos": [8.4, 1.3, -1], "ch": "secondary", "mirror": true, "note": "tip pod"},
+        {"shape": "cyl_z", "size": [0.5, 0.5, 0.2], "pos": [8.4, 1.3, -2.7], "ch": "neon", "mirror": true},
+        {"shape": "cyl_y", "size": [1.5, 0.25, 1.5], "pos": [4.4, 0.975, 4.2], "ch": "detail", "mirror": true, "note": "hover unit housing"},
+        {"shape": "cyl_y", "size": [1.1, 0.15, 1.1], "pos": [4.4, 0.775, 4.2], "ch": "thrust", "mirror": true, "note": "hover emitter"}
+      ]},
+      "stub_winglets": {"name": "Stub Winglets", "culture": "Works Team", "parts": [
+        {"shape": "block", "size": [0.4, 0.6, 8.5], "pos": [3.4, 1.3, 1.25], "ch": "detail", "mirror": true, "note": "root rib: dark linkage across the shadow gap"},
+        {"shape": "block", "size": [2.6, 0.5, 4.5], "pos": [4.9, 1.3, 1.75], "ch": "primary", "mirror": true, "note": "stub wing"},
+        {"shape": "wedge", "size": [0.5, 2.6, 3], "pos": [4.9, 1.3, -2], "rot": [0, 0, -90], "ch": "primary", "mirror": true},
+        {"shape": "block", "size": [2.6, 0.3, 0.8], "pos": [4.9, 1.3, 4.4], "ch": "secondary", "mirror": true, "note": "flap"},
+        {"shape": "wedge", "size": [0.3, 2, 3.4], "pos": [6.55, 2.3, 2.3], "rot": [0, 0, -20], "ch": "primary", "mirror": true, "note": "upturned winglet"},
+        {"shape": "cyl_z", "size": [0.8, 0.8, 6], "pos": [6.3, 1.3, 1.5], "ch": "detail", "mirror": true, "note": "tip pod"},
+        {"shape": "cyl_y", "size": [1.6, 0.25, 1.6], "pos": [4.9, 0.925, 1.8], "ch": "detail", "mirror": true, "note": "hover unit housing"},
+        {"shape": "cyl_y", "size": [1.2, 0.15, 1.2], "pos": [4.9, 0.725, 1.8], "ch": "thrust", "mirror": true, "note": "hover emitter"}
+      ]},
+      "pontoons": {"name": "Pontoons", "culture": "Salvage", "parts": [
+        {"shape": "block", "size": [0.4, 0.6, 8.5], "pos": [3.4, 1.3, 1.25], "ch": "detail", "mirror": true, "note": "root rib: dark linkage across the shadow gap"},
+        {"shape": "block", "size": [2.4, 0.3, 1], "pos": [4.6, 0.95, -1.8], "rot": [0, 0, -20], "ch": "detail", "mirror": true, "note": "strut"},
+        {"shape": "block", "size": [2.4, 0.3, 1], "pos": [4.6, 0.95, 4.3], "rot": [0, 0, -20], "ch": "detail", "mirror": true, "note": "strut"},
+        {"shape": "cyl_z", "size": [1.8, 1.8, 11], "pos": [6.5, 0.3, 0.5], "ch": "primary", "mirror": true, "note": "float"},
+        {"shape": "ball", "size": [1.8, 1.8, 1.8], "pos": [6.5, 0.3, -5], "ch": "secondary", "mirror": true, "note": "float nose"},
+        {"shape": "cyl_z", "size": [1.3, 1.3, 1], "pos": [6.5, 0.3, 6.5], "ch": "detail", "mirror": true},
+        {"shape": "cyl_z", "size": [0.9, 0.9, 0.2], "pos": [6.5, 0.3, 7.1], "ch": "thrust", "mirror": true},
+        {"shape": "block", "size": [0.7, 0.2, 8.4], "pos": [6.5, -0.7, 0.6], "ch": "thrust", "mirror": true, "note": "hover strip"},
+        {"shape": "wedge", "size": [0.25, 1.2, 3], "pos": [6.5, 1.8, 4.1], "ch": "secondary", "mirror": true}
+      ]}
+    },
+    "Stabilisers": {
+      "clamshell": {"name": "Clamshell", "culture": "Works Team", "parts": [
+        {"shape": "block", "size": [0.6, 0.8, 2.2], "pos": [3.7, 1.3, 10.3], "ch": "detail", "mirror": true, "note": "root on the drive hardpoint"},
+        {"shape": "block", "size": [3, 0.3, 0.6], "pos": [5.5, 1.3, 9.7], "ch": "detail", "mirror": true, "note": "hinge spar"},
+        {"shape": "block", "size": [3, 0.22, 4.2], "pos": [5.5, 2.2, 12], "rot": [-17, 0, 0], "ch": "primary", "mirror": true, "note": "upper shell, open"},
+        {"shape": "block", "size": [3, 0.22, 4.2], "pos": [5.5, 0.4, 12], "rot": [17, 0, 0], "ch": "primary", "mirror": true, "note": "lower shell, open"},
+        {"shape": "block", "size": [3, 0.26, 0.5], "pos": [5.5, 2.755, 13.82], "rot": [-17, 0, 0], "ch": "secondary", "mirror": true},
+        {"shape": "block", "size": [2.6, 0.2, 0.3], "pos": [5.5, 1.3, 10.15], "ch": "neon", "mirror": true}
+      ]},
+      "dorsal": {"name": "Dorsal", "culture": "Prototype", "parts": [
+        {"shape": "block", "size": [0.5, 0.8, 2.2], "pos": [3.65, 1.3, 10.5], "ch": "detail", "mirror": true, "note": "root on the drive hardpoint"},
+        {"shape": "block", "size": [1.8, 1, 4], "pos": [4.8, 1.3, 11.4], "ch": "primary", "mirror": true, "note": "brake pod"},
+        {"shape": "wedge", "size": [1, 1.8, 1.3], "pos": [4.8, 1.3, 8.75], "rot": [0, 0, -90], "ch": "primary", "mirror": true},
+        {"shape": "wedge", "size": [1.8, 1, 1.4], "pos": [4.8, 1.3, 14.1], "rot": [0, 180, 0], "ch": "secondary", "mirror": true},
+        {"shape": "block", "size": [2, 0.22, 3.6], "pos": [4.8, 2.85, 12.2], "rot": [-32, 0, 0], "ch": "secondary", "mirror": true, "note": "dorsal flap, raised"},
+        {"shape": "block", "size": [0.4, 1.5, 0.3], "pos": [4.8, 2.55, 13.05], "ch": "detail", "mirror": true, "note": "ram"},
+        {"shape": "block", "size": [1.6, 0.1, 0.4], "pos": [4.8, 1.85, 10.6], "ch": "neon", "mirror": true}
+      ]},
+      "petal": {"name": "Petal", "culture": "Salvage", "parts": [
+        {"shape": "block", "size": [1.1, 0.6, 1.4], "pos": [3.95, 1.3, 10.3], "ch": "detail", "mirror": true, "note": "root on the drive hardpoint"},
+        {"shape": "cyl_z", "size": [1.3, 1.3, 2.6], "pos": [5.1, 1.3, 10.1], "ch": "secondary", "mirror": true, "note": "hub"},
+        {"shape": "block", "size": [1.4, 0.2, 2.4], "pos": [5.1, 2.46, 12.4], "rot": [-20, 0, 0], "ch": "primary", "mirror": true, "note": "petal"},
+        {"shape": "block", "size": [1.4, 0.2, 2.4], "pos": [5.1, 0.14, 12.4], "rot": [20, 0, 0], "ch": "primary", "mirror": true, "note": "petal"},
+        {"shape": "block", "size": [0.2, 1.4, 2.4], "pos": [6.26, 1.3, 12.4], "rot": [0, 20, 0], "ch": "primary", "mirror": true, "note": "petal"},
+        {"shape": "block", "size": [0.2, 1.4, 2.4], "pos": [3.94, 1.3, 12.4], "rot": [0, -20, 0], "ch": "primary", "mirror": true, "note": "petal"},
+        {"shape": "cyl_z", "size": [0.8, 0.8, 1.4], "pos": [5.1, 1.3, 12.1], "ch": "neon", "mirror": true, "note": "core glow"}
+      ]}
+    },
+    "Boost": {
+      "ring_burner": {"name": "Ring Burner", "culture": "Works Team", "parts": [
+        {"shape": "cyl_z", "size": [2, 2, 1], "pos": [0, 1.3, 15], "ch": "detail"},
+        {"shape": "cyl_z", "size": [2.6, 2.6, 0.5], "pos": [0, 1.3, 15.75], "ch": "secondary"},
+        {"shape": "cyl_z", "size": [2.9, 2.9, 0.15], "pos": [0, 1.3, 16.075], "ch": "neon", "note": "burner ring"},
+        {"shape": "cyl_z", "size": [2.3, 2.3, 1.05], "pos": [0, 1.3, 16.675], "ch": "detail"},
+        {"shape": "cyl_z", "size": [1.7, 1.7, 0.7], "pos": [0, 1.3, 17.55], "ch": "thrust"},
+        {"shape": "cyl_z", "size": [1, 1, 0.6], "pos": [0, 1.3, 18.2], "ch": "thrust"}
+      ]},
+      "slot_burner": {"name": "Slot Burner", "culture": "Prototype", "parts": [
+        {"shape": "block", "size": [2, 1.6, 0.7], "pos": [0, 1.3, 14.85], "ch": "detail", "note": "neck"},
+        {"shape": "block", "size": [4.4, 1.2, 1.6], "pos": [0, 1.3, 16], "ch": "detail"},
+        {"shape": "wedge", "size": [4.4, 0.5, 1.6], "pos": [0, 2.15, 16], "rot": [0, 180, 0], "ch": "secondary", "note": "upper flap"},
+        {"shape": "wedge", "size": [4.4, 0.5, 1.6], "pos": [0, 0.45, 16], "rot": [180, 0, 0], "ch": "secondary", "note": "lower flap"},
+        {"shape": "block", "size": [0.2, 2, 2.4], "pos": [2.3, 1.3, 16.2], "ch": "primary", "mirror": true, "note": "side plate"},
+        {"shape": "block", "size": [4, 0.6, 0.2], "pos": [0, 1.3, 16.9], "ch": "thrust"},
+        {"shape": "block", "size": [3.4, 0.3, 1.3], "pos": [0, 1.3, 17.65], "ch": "thrust"}
+      ]}
+    },
+    "FrontBumper": {
+      "canards": {"name": "Canards", "culture": "Works Team", "parts": [
+        {"shape": "cyl_z", "size": [1, 1, 1.4], "pos": [0, 1.3, -17.2], "ch": "primary", "note": "hub"},
+        {"shape": "ball", "size": [0.9, 0.9, 0.9], "pos": [0, 1.3, -18], "ch": "detail"},
+        {"shape": "wedge", "size": [0.2, 3, 1.7], "pos": [1.9, 1.3, -17.55], "rot": [0, 0, -90], "ch": "secondary", "mirror": true, "note": "canard"},
+        {"shape": "block", "size": [0.15, 0.8, 0.8], "pos": [3.375, 1.3, -17.1], "ch": "primary", "mirror": true, "note": "end plate"}
+      ]},
+      "pitot_spike": {"name": "Pitot Spike", "culture": "Prototype", "parts": [
+        {"shape": "cyl_z", "size": [0.9, 0.9, 0.5], "pos": [0, 1.3, -16.75], "ch": "detail"},
+        {"shape": "cyl_z", "size": [0.5, 0.5, 1.3], "pos": [0, 1.3, -17.65], "ch": "secondary"},
+        {"shape": "cyl_z", "size": [0.22, 0.22, 0.7], "pos": [0, 1.3, -18.65], "ch": "neon"},
+        {"shape": "block", "size": [1.2, 0.1, 0.4], "pos": [0, 1.3, -17.4], "ch": "detail", "note": "vane"}
+      ]},
+      "ram_scoop": {"name": "Ram Scoop", "culture": "Salvage", "parts": [
+        {"shape": "cyl_z", "size": [1, 1, 0.5], "pos": [0, 1.3, -16.75], "ch": "detail", "note": "neck"},
+        {"shape": "wedge", "size": [2, 0.7, 2], "pos": [0, 1.85, -17.8], "ch": "primary", "note": "upper jaw"},
+        {"shape": "wedge", "size": [2, 0.7, 1.6], "pos": [0, 0.75, -17.6], "rot": [0, 0, 180], "ch": "secondary", "note": "lower jaw"},
+        {"shape": "block", "size": [1.6, 0.4, 0.6], "pos": [0, 1.3, -17.1], "ch": "detail", "note": "mouth"},
+        {"shape": "block", "size": [1.4, 0.2, 0.1], "pos": [0, 1.3, -17.45], "ch": "neon"}
+      ]}
+    },
+    "RearBumper": {
+      "skid": {"name": "Skid", "culture": "Works Team", "parts": [
+        {"shape": "block", "size": [0.5, 0.7, 1], "pos": [0, -0.85, 9.5], "ch": "detail", "note": "strut"},
+        {"shape": "block", "size": [0.5, 0.7, 1], "pos": [0, -0.85, 12.5], "ch": "detail", "note": "strut"},
+        {"shape": "block", "size": [1.2, 0.3, 4.8], "pos": [0, -1.35, 11.2], "ch": "secondary", "note": "skid shoe"},
+        {"shape": "wedge", "size": [1.2, 0.5, 1.6], "pos": [0, -1.25, 14.4], "rot": [180, 0, 0], "ch": "secondary", "note": "upturned heel"},
+        {"shape": "block", "size": [0.4, 0.08, 4], "pos": [0, -1.54, 11.2], "ch": "neon", "note": "wear strip"}
+      ]},
+      "stinger": {"name": "Stinger", "culture": "Prototype", "parts": [
+        {"shape": "block", "size": [1.4, 0.8, 3], "pos": [0, -0.9, 10.1], "ch": "primary", "note": "root"},
+        {"shape": "cyl_z", "size": [0.8, 0.8, 3.8], "pos": [0, -0.95, 13.5], "ch": "secondary"},
+        {"shape": "cyl_z", "size": [0.5, 0.5, 2.6], "pos": [0, -0.95, 16.7], "ch": "detail"},
+        {"shape": "ball", "size": [0.6, 0.6, 0.6], "pos": [0, -0.95, 18.3], "ch": "neon"},
+        {"shape": "wedge", "size": [0.2, 1, 2.6], "pos": [0.9, -0.95, 13.3], "rot": [0, 0, -90], "ch": "detail", "mirror": true, "note": "barb"}
+      ]}
+    },
+    "RearSpoiler": {
+      "twin_fins": {"name": "Twin Fins", "culture": "Works Team", "parts": [
+        {"shape": "block", "size": [1, 0.4, 3], "pos": [0, 3.6, 11.1], "ch": "detail", "note": "root on the fin pad"},
+        {"shape": "block", "size": [5.6, 0.3, 1.4], "pos": [0, 3.65, 11.1], "ch": "detail", "note": "crossbar"},
+        {"shape": "wedge", "size": [0.35, 2.9, 4.2], "pos": [2.7, 5.25, 11.9], "ch": "primary", "mirror": true},
+        {"shape": "block", "size": [0.3, 2.4, 0.6], "pos": [2.7, 5.2, 14.3], "ch": "secondary", "mirror": true, "note": "rudder"},
+        {"shape": "block", "size": [0.4, 0.15, 0.8], "pos": [2.7, 6.775, 13.6], "ch": "neon", "mirror": true}
+      ]},
+      "single_fin": {"name": "Single Fin", "culture": "Prototype", "parts": [
+        {"shape": "block", "size": [1, 0.3, 4.6], "pos": [0, 3.55, 11.3], "ch": "detail", "note": "root on the fin pad"},
+        {"shape": "wedge", "size": [0.4, 3.3, 5.2], "pos": [0, 5.35, 11.8], "ch": "primary", "note": "single fin"},
+        {"shape": "block", "size": [0.5, 2.7, 0.8], "pos": [0, 5.25, 14.8], "ch": "secondary", "note": "rudder"},
+        {"shape": "block", "size": [0.6, 0.2, 1.2], "pos": [0, 7.1, 14], "ch": "neon"}
+      ]},
+      "v_tail": {"name": "V-Tail", "culture": "Privateer", "parts": [
+        {"shape": "block", "size": [1.2, 0.4, 3.4], "pos": [0, 3.6, 11.3], "ch": "detail", "note": "root on the fin pad"},
+        {"shape": "wedge", "size": [0.35, 3.6, 4.6], "pos": [1.55, 5.2, 11.6], "rot": [0, 0, -35], "ch": "primary", "mirror": true, "note": "canted fin"},
+        {"shape": "block", "size": [0.4, 3, 0.6], "pos": [1.55, 5.2, 14.2], "rot": [0, 0, -35], "ch": "secondary", "mirror": true, "note": "ruddervator"},
+        {"shape": "block", "size": [0.42, 0.2, 1.6], "pos": [2.62, 6.72, 13], "rot": [0, 0, -35], "ch": "neon", "mirror": true}
+      ]}
+    },
+    "Hood": {
+      "dorsal_intake": {"name": "Dorsal Intake", "culture": "Works Team", "parts": [
+        {"shape": "block", "size": [1.8, 0.9, 3], "pos": [0, 3.05, 5.1], "ch": "primary", "note": "intake body"},
+        {"shape": "block", "size": [1.5, 0.65, 0.2], "pos": [0, 3.075, 3.5], "ch": "detail", "note": "mouth"},
+        {"shape": "block", "size": [1.8, 0.12, 3.4], "pos": [0, 3.56, 4.9], "ch": "secondary", "note": "lip"},
+        {"shape": "wedge", "size": [1.8, 0.9, 1.4], "pos": [0, 3.05, 7.3], "rot": [0, 180, 0], "ch": "primary"},
+        {"shape": "block", "size": [1.2, 0.15, 0.1], "pos": [0, 3.075, 3.35], "ch": "neon"}
+      ]},
+      "cable_run": {"name": "Cable Run", "culture": "Salvage", "parts": [
+        {"shape": "cyl_z", "size": [0.35, 0.35, 5.1], "pos": [0.55, 2.8, 5.35], "ch": "detail", "mirror": true, "note": "cable"},
+        {"shape": "cyl_z", "size": [0.45, 0.45, 5.1], "pos": [0, 2.85, 5.35], "ch": "secondary", "note": "coolant pipe"},
+        {"shape": "block", "size": [1.8, 0.5, 0.4], "pos": [0, 2.85, 3.8], "ch": "detail", "note": "clamp"},
+        {"shape": "block", "size": [1.8, 0.5, 0.4], "pos": [0, 2.85, 7.2], "ch": "detail", "note": "clamp"},
+        {"shape": "block", "size": [1.2, 0.7, 1], "pos": [0, 2.95, 5.3], "ch": "secondary", "note": "junction box"},
+        {"shape": "block", "size": [0.4, 0.06, 0.4], "pos": [0, 3.33, 5.3], "ch": "neon"}
+      ]}
+    },
+    "Roof": {
+      "teardrop": {"name": "Teardrop", "culture": "Works Team", "parts": [
+        {"shape": "wedge", "size": [2.4, 1.2, 2.8], "pos": [0, 3.2, -3], "ch": "glass"},
+        {"shape": "block", "size": [2.4, 1.2, 1.6], "pos": [0, 3.2, -0.8], "ch": "glass"},
+        {"shape": "wedge", "size": [2.4, 1.2, 2.6], "pos": [0, 3.2, 1.3], "rot": [0, 180, 0], "ch": "glass"},
+        {"shape": "block", "size": [0.2, 0.08, 1.6], "pos": [0, 3.84, -0.8], "ch": "detail", "note": "centre frame"},
+        {"shape": "block", "size": [0.15, 0.15, 7], "pos": [1.275, 2.675, -0.9], "ch": "detail", "mirror": true, "note": "base rail"}
+      ]},
+      "flat_shield": {"name": "Flat Shield", "culture": "Prototype", "parts": [
+        {"shape": "wedge", "size": [2.6, 0.6, 2.8], "pos": [0, 2.9, -3.4], "ch": "glass", "note": "shallow screen"},
+        {"shape": "block", "size": [2.6, 0.3, 4.4], "pos": [0, 3.05, 0.2], "ch": "primary", "note": "armoured lid"},
+        {"shape": "block", "size": [0.2, 0.3, 4.4], "pos": [1.2, 2.75, 0.2], "ch": "glass", "mirror": true, "note": "vision slit"},
+        {"shape": "block", "size": [1.8, 0.1, 2.6], "pos": [0, 3.25, 0.3], "ch": "secondary"},
+        {"shape": "block", "size": [1, 0.06, 0.4], "pos": [0, 3.23, -1.6], "ch": "neon"}
+      ]},
+      "open_screen": {"name": "Open Screen", "culture": "Salvage", "parts": [
+        {"shape": "wedge", "size": [2.2, 0.9, 1.4], "pos": [0, 3.05, -3.9], "ch": "glass", "note": "windscreen only"},
+        {"shape": "block", "size": [2.4, 0.15, 1.6], "pos": [0, 2.675, -3.9], "ch": "detail"},
+        {"shape": "block", "size": [0.2, 1, 0.4], "pos": [0.8, 3.1, 2], "ch": "detail", "mirror": true, "note": "roll hoop"},
+        {"shape": "block", "size": [1.8, 0.2, 0.4], "pos": [0, 3.7, 2], "ch": "detail"},
+        {"shape": "wedge", "size": [1.4, 0.9, 0.4], "pos": [0, 3.05, 2.4], "rot": [0, 180, 0], "ch": "secondary"}
+      ]}
+    }
+  },
+  "builds": [
+    {"name": "1 Works kit on Needle", "cockpit": "needle", "paint": {"primary": "#1f6fe0", "secondary": "#f4f4f4", "neon": "#ffe14a"}, "modules": {"Engine1": "twin_prong", "Engine2": "twin_drive", "SidePods": "stub_winglets", "Stabilisers": "clamshell", "Boost": "ring_burner", "FrontBumper": "canards", "RearBumper": "skid", "RearSpoiler": "twin_fins", "Hood": "dorsal_intake", "Roof": "teardrop"}, "note": "Builds 1-3: one kit, one paint, three cockpits."},
+    {"name": "2 Works kit on Manta", "cockpit": "manta", "paint": {"primary": "#1f6fe0", "secondary": "#f4f4f4", "neon": "#ffe14a"}, "modules": {"Engine1": "twin_prong", "Engine2": "twin_drive", "SidePods": "stub_winglets", "Stabilisers": "clamshell", "Boost": "ring_burner", "FrontBumper": "canards", "RearBumper": "skid", "RearSpoiler": "twin_fins", "Hood": "dorsal_intake", "Roof": "teardrop"}},
+    {"name": "3 Works kit on Twinboom", "cockpit": "twinboom", "paint": {"primary": "#1f6fe0", "secondary": "#f4f4f4", "neon": "#ffe14a"}, "modules": {"Engine1": "twin_prong", "Engine2": "twin_drive", "SidePods": "stub_winglets", "Stabilisers": "clamshell", "Boost": "ring_burner", "FrontBumper": "canards", "RearBumper": "skid", "RearSpoiler": "twin_fins", "Hood": "dorsal_intake", "Roof": "teardrop"}},
+    {"name": "4 Delta + Prototype kit", "cockpit": "delta", "paint": {"primary": "#f2a31a", "secondary": "#2a2d34", "neon": "#8ff6ff"}, "modules": {"Engine1": "spear", "Engine2": "mono_drive", "SidePods": "forward_swept", "Stabilisers": "dorsal", "Boost": "slot_burner", "FrontBumper": "pitot_spike", "RearBumper": "stinger", "RearSpoiler": "single_fin", "Hood": "dorsal_intake", "Roof": "flat_shield"}, "note": "Builds 4-6: one cockpit, three kits."},
+    {"name": "5 Delta + Salvage kit", "cockpit": "delta", "paint": {"primary": "#b5532a", "secondary": "#d9c7a0", "neon": "#7dff6a"}, "modules": {"Engine1": "hammerhead", "Engine2": "vector_ring", "SidePods": "pontoons", "Stabilisers": "petal", "Boost": "ring_burner", "FrontBumper": "ram_scoop", "RearBumper": "skid", "RearSpoiler": "v_tail", "Hood": "cable_run", "Roof": "open_screen"}},
+    {"name": "6 Delta + Privateer kit", "cockpit": "delta", "paint": {"primary": "#2f9e62", "secondary": "#f0f0f0", "neon": "#ff5ad1"}, "modules": {"Engine1": "trident", "Engine2": "tri_cluster", "SidePods": "delta", "Stabilisers": "clamshell", "Boost": "slot_burner", "FrontBumper": "pitot_spike", "RearBumper": "stinger", "RearSpoiler": "v_tail", "Hood": "cable_run", "Roof": "teardrop"}},
+    {"name": "7 Wildcard Arrowhead hammer", "cockpit": "arrowhead", "paint": {"primary": "#d5202a", "secondary": "#f4f4f4", "neon": "#ffd0a0"}, "modules": {"Engine1": "hammerhead", "Engine2": "mono_drive", "SidePods": "forward_swept", "Stabilisers": "clamshell", "Boost": "slot_burner", "FrontBumper": "canards", "RearBumper": "stinger", "RearSpoiler": "v_tail", "Hood": "cable_run", "Roof": "teardrop"}, "note": "Mixed cultures: Salvage prow, Prototype drive and wings, Works brakes."},
+    {"name": "8 Wildcard Twinboom spear ring", "cockpit": "twinboom", "paint": {"primary": "#8a2be2", "secondary": "#ffd21a", "neon": "#7dffea"}, "modules": {"Engine1": "spear", "Engine2": "vector_ring", "SidePods": "pontoons", "Stabilisers": "dorsal", "Boost": "ring_burner", "FrontBumper": "ram_scoop", "RearBumper": "skid", "RearSpoiler": "single_fin", "Hood": "dorsal_intake", "Roof": "open_screen"}, "note": "Mixed cultures: Prototype prow on a Salvage drive and pontoons."}
+  ]
+}

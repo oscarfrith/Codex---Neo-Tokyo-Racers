@@ -1,0 +1,154 @@
+{
+  "id": "example",
+  "displayName": "Example",
+  "tagline": "Minimal valid spec. Copy the structure, not the shapes.",
+  "standard": {
+    "cockpitEnvelope": {"min": [-4, 0, -5], "max": [4, 5.5, 5]},
+    "datums": {"beltline": 2.8, "sill": 0.2, "hoverPlane": -2.0},
+    "slots": {
+      "Engine1": {"label": "Front Half", "envelope": {"min": [-8, 0, -17], "max": [8, 4.2, -5]}, "anchor": {"to": "cockpit", "face": "+z"}, "explode": [0, 0, -7]},
+      "Engine2": {"label": "Rear Half", "envelope": {"min": [-8, 0, 5], "max": [8, 4.5, 15]}, "anchor": {"to": "cockpit", "face": "-z"}, "explode": [0, 0, 7]},
+      "SidePods": {"label": "Mid Section", "envelope": {"min": [4, -0.5, -5], "max": [8, 3.5, 5], "mirror": true}, "anchor": {"to": "cockpit", "face": "-x"}, "explode": [0, -5, 0]},
+      "Stabilisers": {"label": "Hover Fins", "envelope": {"min": [-4, -2, -5], "max": [4, 0, 5]}, "anchor": {"to": "cockpit", "face": "+y"}, "explode": [0, -9, 0]},
+      "Boost": {"label": "Afterburner", "envelope": {"min": [-2.5, 3, 15], "max": [2.5, 4.5, 19]}, "anchor": {"to": "Engine2", "face": "-z"}, "explode": [0, 3, 16]},
+      "FrontBumper": {"label": "Front Bumper", "envelope": {"min": [-8, -1.5, -19], "max": [8, 4.2, -17]}, "anchor": {"to": "Engine1", "face": "+z"}, "explode": [0, 0, -13]},
+      "RearBumper": {"label": "Rear Bumper", "envelope": {"min": [-8, -1.5, 15], "max": [8, 3, 17.5]}, "anchor": {"to": "Engine2", "face": "-z"}, "explode": [0, -2, 13]},
+      "RearSpoiler": {"label": "Spoiler", "envelope": {"min": [-8, 4.5, 8], "max": [8, 8, 17.5]}, "anchor": {"to": "Engine2", "face": "-y"}, "explode": [0, 6, 9]},
+      "Hood": {"label": "Hood", "envelope": {"min": [-3, 4.2, -13], "max": [3, 5.5, -5]}, "anchor": {"to": "Engine1", "face": "-y"}, "explode": [0, 6, -7]},
+      "Roof": {"label": "Roof", "envelope": {"min": [-4, 5.5, -5], "max": [4, 7, 5]}, "anchor": {"to": "cockpit", "face": "-y"}, "explode": [0, 6, 0]}
+    }
+  },
+  "cockpits": {
+    "coupe": {"name": "Coupe", "culture": "Muscle", "parts": [
+      {"shape": "block", "size": [7.6, 2.6, 10], "pos": [0, 1.5, 0], "ch": "primary"},
+      {"shape": "block", "size": [6.4, 1.8, 5], "pos": [0, 3.7, 0.8], "ch": "glass"},
+      {"shape": "wedge", "size": [6.4, 1.8, 2.2], "pos": [0, 3.7, -2.8], "ch": "glass", "note": "windscreen: thin edge forward"},
+      {"shape": "wedge", "size": [6.4, 1.8, 2], "pos": [0, 3.7, 4.0], "rot": [0, 180, 0], "ch": "glass", "note": "rear window: yaw 180 so the thin edge points back"},
+      {"shape": "block", "size": [6.2, 0.4, 4.6], "pos": [0, 4.8, 0.8], "ch": "secondary"}
+    ]},
+    "roadster": {"name": "Roadster", "culture": "GT", "parts": [
+      {"shape": "block", "size": [7.6, 2.4, 10], "pos": [0, 1.4, 0], "ch": "primary"},
+      {"shape": "wedge", "size": [6.4, 1.3, 1.6], "pos": [0, 3.25, -2.6], "ch": "glass"},
+      {"shape": "block", "size": [1.4, 2.0, 0.5], "pos": [1.6, 3.8, 2.4], "ch": "detail", "mirror": true, "note": "roll hoops reach the roof seam"},
+      {"shape": "block", "size": [1.6, 2.2, 1.2], "pos": [-1.6, 3.2, 0.8], "ch": "driver"}
+    ]},
+    "wedge": {"name": "Wedge", "culture": "Exotic", "parts": [
+      {"shape": "block", "size": [7.8, 1.8, 10], "pos": [0, 1.1, 0], "ch": "primary"},
+      {"shape": "wedge", "size": [7.0, 2.8, 5], "pos": [0, 3.4, -2.5], "ch": "glass"},
+      {"shape": "block", "size": [7.0, 2.8, 4], "pos": [0, 3.4, 2], "ch": "primary"},
+      {"shape": "wedge", "size": [7.0, 2.8, 1], "pos": [0, 3.4, 4.5], "rot": [0, 180, 0], "ch": "secondary"}
+    ]}
+  },
+  "modules": {
+    "Engine1": {
+      "twin_nacelle": {"name": "Twin Nacelle", "culture": "Muscle", "parts": [
+        {"shape": "block", "size": [3.2, 3, 11.5], "pos": [6.2, 1.8, -11], "ch": "primary", "mirror": true},
+        {"shape": "block", "size": [2.6, 1.2, 0.3], "pos": [6.2, 2, -16.8], "ch": "neon", "mirror": true},
+        {"shape": "block", "size": [5.6, 2.4, 6], "pos": [0, 1.6, -8.1], "ch": "primary"},
+        {"shape": "block", "size": [1.8, 0.8, 1.2], "pos": [3.8, 1.6, -7], "ch": "detail", "mirror": true, "note": "linkage across the shadow gap"}
+      ]},
+      "arrow_nose": {"name": "Arrow Nose", "culture": "Exotic", "parts": [
+        {"shape": "wedge", "size": [7.6, 2.6, 11.8], "pos": [0, 1.5, -11], "ch": "primary"},
+        {"shape": "block", "size": [2, 1.4, 9], "pos": [6.8, 1, -9.6], "ch": "secondary", "mirror": true},
+        {"shape": "block", "size": [1.2, 0.6, 1], "pos": [5.2, 1, -7], "ch": "detail", "mirror": true}
+      ]}
+    },
+    "Engine2": {
+      "quarter_pods": {"name": "Quarter Pods", "culture": "Muscle", "parts": [
+        {"shape": "block", "size": [7.6, 3, 9.6], "pos": [0, 1.7, 9.9], "ch": "primary"},
+        {"shape": "block", "size": [3, 3.4, 8], "pos": [6.3, 2, 10], "ch": "primary", "mirror": true},
+        {"shape": "cyl_z", "size": [2.2, 2.2, 1], "pos": [6.3, 2, 14.4], "ch": "thrust", "mirror": true}
+      ]},
+      "boat_tail": {"name": "Boat Tail", "culture": "GT", "parts": [
+        {"shape": "wedge", "size": [7.6, 3.2, 9.8], "pos": [0, 1.7, 9.95], "rot": [0, 180, 0], "ch": "primary"},
+        {"shape": "cyl_z", "size": [1.8, 1.8, 5], "pos": [5.6, 1.4, 8.2], "ch": "secondary", "mirror": true}
+      ]}
+    },
+    "SidePods": {
+      "side_pipes": {"name": "Side Pipes", "culture": "Muscle", "parts": [
+        {"shape": "cyl_z", "size": [1, 1, 9], "pos": [4.8, 0.4, 0], "ch": "detail", "mirror": true},
+        {"shape": "block", "size": [0.6, 1.6, 9.4], "pos": [4.5, 1.6, 0], "ch": "secondary", "mirror": true}
+      ]},
+      "door_pods": {"name": "Door Pods", "culture": "Exotic", "parts": [
+        {"shape": "block", "size": [3, 2.6, 8], "pos": [5.7, 1.6, 0], "ch": "primary", "mirror": true},
+        {"shape": "block", "size": [2.4, 1.4, 0.3], "pos": [5.7, 1.7, -4.2], "ch": "detail", "mirror": true}
+      ]}
+    },
+    "Stabilisers": {
+      "skid_fins": {"name": "Skid Fins", "culture": "Muscle", "parts": [
+        {"shape": "block", "size": [0.4, 1.6, 7], "pos": [2.4, -0.9, 0], "ch": "detail", "mirror": true}
+      ]},
+      "vane_plate": {"name": "Vane Plate", "culture": "Exotic", "parts": [
+        {"shape": "block", "size": [7, 0.4, 8], "pos": [0, -0.6, 0], "ch": "detail"},
+        {"shape": "block", "size": [0.3, 1, 8], "pos": [3.2, -1.3, 0], "ch": "neon", "mirror": true}
+      ]}
+    },
+    "Boost": {
+      "quad_burner": {"name": "Quad Burner", "culture": "Muscle", "parts": [
+        {"shape": "cyl_z", "size": [1.2, 1.2, 3.4], "pos": [1.2, 3.75, 16.8], "ch": "detail", "mirror": true},
+        {"shape": "cyl_z", "size": [0.9, 0.9, 0.3], "pos": [1.2, 3.75, 18.6], "ch": "thrust", "mirror": true}
+      ]},
+      "slot_burner": {"name": "Slot Burner", "culture": "Exotic", "parts": [
+        {"shape": "block", "size": [4.6, 1.2, 3.4], "pos": [0, 3.7, 16.8], "ch": "detail"},
+        {"shape": "block", "size": [4, 0.7, 0.3], "pos": [0, 3.7, 18.6], "ch": "thrust"}
+      ]}
+    },
+    "FrontBumper": {
+      "chin_bar": {"name": "Chin Bar", "culture": "Muscle", "parts": [
+        {"shape": "block", "size": [15.4, 0.6, 1.4], "pos": [0, 0.6, -17.8], "ch": "detail"}
+      ]},
+      "splitter": {"name": "Splitter", "culture": "Exotic", "parts": [
+        {"shape": "block", "size": [15.6, 0.3, 1.8], "pos": [0, -0.2, -17.95], "ch": "detail"},
+        {"shape": "block", "size": [0.3, 1.6, 1.6], "pos": [7.6, 0.6, -17.9], "ch": "secondary", "mirror": true}
+      ]}
+    },
+    "RearBumper": {
+      "bumper_bar": {"name": "Bumper Bar", "culture": "Muscle", "parts": [
+        {"shape": "block", "size": [15, 0.8, 1], "pos": [0, 1.4, 15.6], "ch": "secondary"}
+      ]},
+      "diffuser": {"name": "Diffuser", "culture": "Exotic", "parts": [
+        {"shape": "wedge", "size": [12, 1.6, 2.2], "pos": [0, 0, 16.2], "rot": [180, 0, 0], "ch": "detail"}
+      ]}
+    },
+    "RearSpoiler": {
+      "ducktail": {"name": "Ducktail", "culture": "Muscle", "parts": [
+        {"shape": "wedge", "size": [7.6, 1, 2.4], "pos": [0, 5.0, 13.6], "ch": "primary"}
+      ]},
+      "gt_wing": {"name": "GT Wing", "culture": "Exotic", "parts": [
+        {"shape": "block", "size": [0.4, 2.2, 1], "pos": [3, 5.6, 14], "ch": "detail", "mirror": true},
+        {"shape": "block", "size": [14, 0.3, 2.2], "pos": [0, 6.8, 14.4], "ch": "secondary"},
+        {"shape": "block", "size": [0.3, 1.2, 2.4], "pos": [7, 6.8, 14.4], "ch": "primary", "mirror": true}
+      ]}
+    },
+    "Hood": {
+      "shaker": {"name": "Shaker Scoop", "culture": "Muscle", "parts": [
+        {"shape": "wedge", "size": [2.4, 1, 3.4], "pos": [0, 4.7, -8.6], "ch": "detail"}
+      ]},
+      "vents": {"name": "Heat Vents", "culture": "Exotic", "parts": [
+        {"shape": "block", "size": [1, 0.3, 3], "pos": [1.4, 4.35, -8], "ch": "detail", "mirror": true}
+      ]}
+    },
+    "Roof": {
+      "roof_scoop": {"name": "Roof Scoop", "culture": "Exotic", "parts": [
+        {"shape": "wedge", "size": [2, 0.9, 3], "pos": [0, 5.95, 1], "ch": "secondary"}
+      ]},
+      "light_bar": {"name": "Light Bar", "culture": "Muscle", "parts": [
+        {"shape": "block", "size": [5, 0.5, 0.6], "pos": [0, 5.75, -1], "ch": "neon"}
+      ]}
+    }
+  },
+  "builds": [
+    {"name": "Stock Coupe", "cockpit": "coupe", "paint": {"primary": "#5cc83b", "secondary": "#15171a", "neon": "#eaffd0"},
+     "modules": {"Engine1": "twin_nacelle", "Engine2": "quarter_pods", "SidePods": "side_pipes", "Stabilisers": "skid_fins", "Boost": "quad_burner", "FrontBumper": "chin_bar", "RearBumper": "bumper_bar", "RearSpoiler": "ducktail", "Hood": "shaker"}},
+    {"name": "Same Kit, Roadster", "cockpit": "roadster", "paint": {"primary": "#ff7a1a", "secondary": "#15171a", "neon": "#ffe9c2"},
+     "modules": {"Engine1": "twin_nacelle", "Engine2": "quarter_pods", "SidePods": "side_pipes", "Stabilisers": "skid_fins", "Boost": "quad_burner", "FrontBumper": "chin_bar", "RearBumper": "bumper_bar", "RearSpoiler": "ducktail", "Hood": "shaker"}},
+    {"name": "Same Kit, Wedge", "cockpit": "wedge", "paint": {"primary": "#d5202a", "secondary": "#f0f0f0", "neon": "#ffd0d0"},
+     "modules": {"Engine1": "twin_nacelle", "Engine2": "quarter_pods", "SidePods": "side_pipes", "Stabilisers": "skid_fins", "Boost": "quad_burner", "FrontBumper": "chin_bar", "RearBumper": "bumper_bar", "RearSpoiler": "ducktail", "Hood": "shaker"}},
+    {"name": "Exotic Wedge", "cockpit": "wedge", "paint": {"primary": "#f2f2f2", "secondary": "#1d6fff", "neon": "#7fd0ff"},
+     "modules": {"Engine1": "arrow_nose", "Engine2": "boat_tail", "SidePods": "door_pods", "Stabilisers": "vane_plate", "Boost": "slot_burner", "FrontBumper": "splitter", "RearBumper": "diffuser", "RearSpoiler": "gt_wing", "Hood": "vents", "Roof": "roof_scoop"}},
+    {"name": "Mixed Coupe", "cockpit": "coupe", "paint": {"primary": "#1aa7e0", "secondary": "#ff5a1f", "neon": "#ffffff"},
+     "modules": {"Engine1": "arrow_nose", "Engine2": "quarter_pods", "SidePods": "door_pods", "Stabilisers": "skid_fins", "Boost": "slot_burner", "FrontBumper": "splitter", "RearBumper": "bumper_bar", "RearSpoiler": "gt_wing", "Hood": "vents", "Roof": "light_bar"}},
+    {"name": "Mixed Roadster", "cockpit": "roadster", "paint": {"primary": "#8a2be2", "secondary": "#ffd21a", "neon": "#ff3df0"},
+     "modules": {"Engine1": "twin_nacelle", "Engine2": "boat_tail", "SidePods": "door_pods", "Stabilisers": "vane_plate", "Boost": "quad_burner", "FrontBumper": "chin_bar", "RearBumper": "diffuser", "RearSpoiler": "ducktail", "Hood": "shaker"}}
+  ]
+}

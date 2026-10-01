@@ -1,0 +1,568 @@
+{
+  "id": "apex",
+  "displayName": "Apex",
+  "tagline": "Circuit racers: a slim central tub, four outboard hover pods on wishbones, wings front and rear.",
+  "standard": {
+    "cockpitEnvelope": [
+      {"min": [-1.75, 0, -8], "max": [1.75, 2.2, 3], "note": "tub"},
+      {"min": [-1.05, 2.2, -1.3], "max": [1.05, 3.5, 0.6], "note": "head box: driver head and shoulders only"},
+      {"min": [1.4, 2.2, -3.5], "max": [1.75, 4.0, 0.6], "mirror": true, "note": "side rails: pillars, cage posts, side glass"},
+      {"min": [-1.75, 4.0, -3.5], "max": [1.75, 4.6, 0.6], "note": "top slab: roof skin or cage top"},
+      {"min": [-1.75, 2.2, 0.6], "max": [1.75, 4.6, 3], "note": "hoop column: headrest, rear hoop, fastback"}
+    ],
+    "datums": {"beltline": 1.4, "sill": 0.0, "hoverPlane": -2.0},
+    "slots": {
+      "Engine1": {
+        "label": "Front Pods",
+        "envelope": [
+          {"min": [4.0, -1.6, -10], "max": [7.5, 2.6, -3.5], "mirror": true},
+          {"min": [1.75, 0.2, -7.7], "max": [4.0, 1.9, -5.3], "mirror": true}
+        ],
+        "anchor": {"to": "cockpit", "face": "-x"},
+        "explode": [0, 0, -6]
+      },
+      "Engine2": {
+        "label": "Power Unit",
+        "envelope": [
+          {"min": [-1.75, 0, 3], "max": [1.75, 2.8, 4.5]},
+          {"min": [-4.0, 0, 4.5], "max": [4.0, 2.8, 12]},
+          {"min": [4.0, -1.6, 4.5], "max": [7.5, 2.6, 11.5], "mirror": true}
+        ],
+        "anchor": {"to": "cockpit", "face": "-z"},
+        "explode": [0, 0, 9]
+      },
+      "Stabilisers": {
+        "label": "Floor",
+        "envelope": [
+          {"min": [-1.75, -1.3, -8], "max": [1.75, 0, -3.5]},
+          {"min": [-5.9, -1.3, -3.5], "max": [5.9, 0, 4.5]},
+          {"min": [-4.0, -1.3, 4.5], "max": [4.0, 0, 8]},
+          {"min": [1.75, -1.3, -5.2], "max": [4.0, 2.0, -3.5], "mirror": true}
+        ],
+        "anchor": {"to": "cockpit", "face": "+y"},
+        "explode": [0, -11, 2]
+      },
+      "SidePods": {
+        "label": "Sidepods",
+        "envelope": [
+          {"min": [1.75, 0, -3.5], "max": [6.4, 2.2, 4.5], "mirror": true},
+          {"min": [5.9, -1.3, -3.5], "max": [6.4, 0, 4.5], "mirror": true}
+        ],
+        "anchor": {"to": "cockpit", "face": "-x"},
+        "explode": [0, -5, 1]
+      },
+      "Boost": {
+        "label": "Exhaust",
+        "envelope": {"min": [-3.2, 0.6, 12], "max": [3.2, 2.6, 14]},
+        "anchor": {"to": "Engine2", "face": "-z"},
+        "explode": [0, 0, 15]
+      },
+      "FrontBumper": {
+        "label": "Nose and Wing",
+        "envelope": [
+          {"min": [-3.6, -1.4, -10.4], "max": [3.6, 2.2, -8]},
+          {"min": [-7.3, -1.4, -14], "max": [7.3, 2.2, -10.4]}
+        ],
+        "anchor": {"to": "cockpit", "face": "+z"},
+        "explode": [0, 0, -14]
+      },
+      "RearBumper": {
+        "label": "Diffuser",
+        "envelope": [
+          {"min": [-4.0, -1.3, 8], "max": [4.0, 0, 12]},
+          {"min": [-4.0, -1.3, 12], "max": [4.0, 0.6, 14]}
+        ],
+        "anchor": {"to": "Engine2", "face": "+y"},
+        "explode": [0, -7, 12]
+      },
+      "RearSpoiler": {
+        "label": "Rear Wing",
+        "envelope": [
+          {"min": [-6.6, 2.8, 9], "max": [6.6, 7.6, 14]},
+          {"min": [-6.6, 4.8, -3.5], "max": [6.6, 7.6, 9]},
+          {"min": [4.2, -1.0, 11.7], "max": [6.6, 2.8, 14], "mirror": true}
+        ],
+        "anchor": {"to": "Engine2", "face": "-y"},
+        "explode": [0, 6, 11]
+      },
+      "Hood": {
+        "label": "Airbox",
+        "envelope": {"min": [-1.2, 2.8, 3], "max": [1.2, 4.7, 8.5]},
+        "anchor": {"to": "Engine2", "face": "-y"},
+        "explode": [0, 5, 7]
+      },
+      "Roof": {
+        "label": "Halo or Canopy",
+        "envelope": [
+          {"min": [-1.75, 2.2, -5], "max": [1.75, 4.0, -3.5]},
+          {"min": [-1.4, 2.2, -3.5], "max": [1.4, 4.0, -1.3]},
+          {"min": [1.05, 2.2, -1.3], "max": [1.4, 4.0, 0.6], "mirror": true},
+          {"min": [-1.05, 3.5, -1.3], "max": [1.05, 4.0, 0.6]}
+        ],
+        "anchor": {"to": "cockpit", "face": "-y"},
+        "explode": [0, 5, -3]
+      }
+    }
+  },
+  "cockpits": {
+    "formula": {"name": "Formula", "culture": "Formula", "parts": [
+      {"shape": "block", "size": [3.2, 1.25, 10.7], "pos": [0, 0.775, -2.5], "ch": "primary", "note": "tub; waist crease on the beltline"},
+      {"shape": "block", "size": [2.8, 1.1, 0.1], "pos": [0, 0.8, -7.92], "ch": "detail", "note": "front bulkhead plate"},
+      {"shape": "wedge", "size": [3.2, 0.8, 3.6], "pos": [0, 1.8, -6.05], "ch": "primary", "note": "scuttle rises to the rim"},
+      {"shape": "block", "size": [3.2, 0.8, 1.5], "pos": [0, 1.8, -3.5], "ch": "primary", "note": "dash cowl"},
+      {"shape": "block", "size": [0.5, 0.8, 3.6], "pos": [1.35, 1.8, -0.95], "ch": "primary", "mirror": true, "note": "cockpit side walls"},
+      {"shape": "block", "size": [3.2, 0.8, 2], "pos": [0, 1.8, 1.85], "ch": "primary"},
+      {"shape": "block", "size": [0.35, 0.9, 3.2], "pos": [1.575, 2.65, -1], "ch": "secondary", "mirror": true, "note": "high collar in the side rails"},
+      {"shape": "wedge", "size": [0.35, 0.9, 0.9], "pos": [1.575, 2.65, -3.05], "ch": "secondary", "mirror": true},
+      {"shape": "block", "size": [3.5, 1.3, 0.75], "pos": [0, 2.85, 1.03], "ch": "detail", "note": "headrest pad closes the back of the head box"},
+      {"shape": "wedge", "size": [3.5, 1.3, 1.45], "pos": [0, 2.85, 2.13], "rot": [0, 180, 0], "ch": "primary", "note": "roll structure fairing"},
+      {"shape": "wedge", "size": [0.5, 1.1, 1.5], "pos": [0, 4.05, 2.1], "ch": "primary", "note": "roll hoop blade in the hoop column"},
+      {"shape": "block", "size": [0.5, 0.12, 0.3], "pos": [0, 4.5, 2.7], "ch": "neon", "note": "T-camera light"},
+      {"shape": "block", "size": [0.9, 0.45, 0.12], "pos": [0, 1.95, -2.62], "ch": "detail", "note": "steering wheel"},
+      {"shape": "block", "size": [0.06, 0.25, 9.6], "pos": [1.63, 1.4, -2.6], "ch": "secondary", "mirror": true, "note": "beltline stripe"},
+      {"shape": "block", "size": [0.8, 0.25, 0.1], "pos": [0, 2.9, -0.86], "ch": "glass", "note": "visor"},
+      {"shape": "block", "size": [2, 1.1, 0.8], "pos": [0, 1.75, -0.55], "rot": [30, 0, 0], "ch": "driver", "note": "2-stud torso above the beltline; shoulders stay inside the head box"},
+      {"shape": "ball", "size": [1.1, 1.1, 1.1], "pos": [0, 2.85, -0.3], "ch": "driver", "note": "helmet inside the reserved head box"},
+      {"shape": "block", "size": [0.3, 0.3, 1.6], "pos": [0.7, 1.85, -1.75], "ch": "driver", "mirror": true}
+    ]},
+    "cigar": {"name": "Cigar", "culture": "Vintage Grand Prix", "parts": [
+      {"shape": "cyl_z", "size": [1.9, 1.9, 5.15], "pos": [0.65, 1.05, -5.275], "ch": "primary", "mirror": true, "note": "front tube"},
+      {"shape": "block", "size": [1.3, 1.9, 5.15], "pos": [0, 1.05, -5.275], "ch": "primary"},
+      {"shape": "cyl_z", "size": [1.9, 1.9, 2.1], "pos": [0.65, 1.05, 1.8], "ch": "primary", "mirror": true, "note": "rear tube"},
+      {"shape": "block", "size": [1.3, 1.9, 2.1], "pos": [0, 1.05, 1.8], "ch": "primary"},
+      {"shape": "block", "size": [3, 1.2, 3.45], "pos": [0, 0.7, -0.975], "ch": "primary", "note": "open cockpit floor"},
+      {"shape": "block", "size": [0.4, 0.6, 3.45], "pos": [1.35, 1.6, -0.975], "ch": "primary", "mirror": true, "note": "low cockpit sides"},
+      {"shape": "block", "size": [2.6, 1.5, 0.1], "pos": [0, 1.05, -7.92], "ch": "detail", "note": "front bulkhead plate"},
+      {"shape": "wedge", "size": [2.2, 0.35, 0.7], "pos": [0, 2.02, -2.9], "ch": "glass", "note": "low aero screen lip, under the rim"},
+      {"shape": "cyl_z", "size": [1, 1, 0.12], "pos": [0, 1.6, -2.45], "ch": "detail", "note": "large steering wheel"},
+      {"shape": "block", "size": [2.2, 1.3, 0.2], "pos": [0, 2.85, 0.75], "ch": "detail", "note": "headrest plate closes the back of the head box"},
+      {"shape": "cyl_z", "size": [1.3, 1.3, 1.9], "pos": [0, 2.65, 1.85], "ch": "primary", "note": "headrest fairing"},
+      {"shape": "cyl_y", "size": [0.22, 2.1, 0.22], "pos": [0.8, 3.15, 1], "ch": "secondary", "mirror": true, "note": "tall chrome roll hoop"},
+      {"shape": "cyl_x", "size": [1.82, 0.22, 0.22], "pos": [0, 4.2, 1], "ch": "secondary"},
+      {"shape": "block", "size": [0.9, 0.08, 4.9], "pos": [0, 2.03, -5.2], "ch": "secondary", "note": "centre stripe"},
+      {"shape": "cyl_x", "size": [0.08, 1.2, 1.2], "pos": [1.6, 1.05, -4.6], "ch": "secondary", "mirror": true, "note": "number roundel"},
+      {"shape": "ball", "size": [0.4, 0.4, 0.4], "pos": [1.5, 1.95, -2.95], "ch": "secondary", "mirror": true, "note": "bullet mirrors"},
+      {"shape": "block", "size": [0.7, 0.22, 0.1], "pos": [0, 2.95, -0.72], "ch": "glass", "note": "goggles"},
+      {"shape": "block", "size": [2, 1.1, 0.8], "pos": [0, 1.9, -0.25], "rot": [15, 0, 0], "ch": "driver", "note": "2-stud torso above the beltline; shoulders stay inside the head box"},
+      {"shape": "ball", "size": [1.1, 1.1, 1.1], "pos": [0, 2.9, -0.15], "ch": "driver", "note": "helmet inside the reserved head box"},
+      {"shape": "block", "size": [0.3, 0.3, 1.7], "pos": [0.7, 1.9, -1.45], "ch": "driver", "mirror": true}
+    ]},
+    "prototype": {"name": "Prototype", "culture": "Prototype", "parts": [
+      {"shape": "block", "size": [3.2, 1.25, 10.7], "pos": [0, 0.775, -2.5], "ch": "primary", "note": "tub; waist crease on the beltline"},
+      {"shape": "block", "size": [2.8, 1.1, 0.1], "pos": [0, 0.8, -7.92], "ch": "detail", "note": "front bulkhead plate"},
+      {"shape": "wedge", "size": [3.2, 0.8, 2.8], "pos": [0, 1.8, -6.45], "ch": "primary"},
+      {"shape": "block", "size": [3.2, 0.8, 1.55], "pos": [0, 1.8, -4.275], "ch": "primary", "note": "dash"},
+      {"shape": "block", "size": [0.5, 0.8, 4.1], "pos": [1.35, 1.8, -1.45], "ch": "primary", "mirror": true, "note": "doors"},
+      {"shape": "block", "size": [3.2, 0.8, 2.25], "pos": [0, 1.8, 1.725], "ch": "primary"},
+      {"shape": "block", "size": [0.2, 1.5, 2.7], "pos": [1.55, 3.05, -0.8], "ch": "glass", "mirror": true, "note": "side windows in the side rails"},
+      {"shape": "block", "size": [2.059, 0.3, 0.3], "pos": [1.57, 3.15, -2.8], "rot": [0, -90, 60.945], "ch": "primary", "mirror": true, "note": "A-pillar"},
+      {"shape": "block", "size": [0.3, 1.9, 0.3], "pos": [1.57, 3.15, 0.42], "ch": "primary", "mirror": true, "note": "B-pillar"},
+      {"shape": "block", "size": [3.3, 0.3, 2.9], "pos": [0, 4.17, -0.85], "ch": "primary", "note": "roof skin in the top slab"},
+      {"shape": "wedge", "size": [3.3, 0.3, 0.6], "pos": [0, 4.17, -2.6], "ch": "primary", "note": "roof leading edge"},
+      {"shape": "wedge", "size": [1, 0.26, 1.7], "pos": [0, 4.45, -0.3], "ch": "secondary", "note": "roof scoop"},
+      {"shape": "wedge", "size": [3.3, 2.1, 2.25], "pos": [0, 3.27, 1.73], "rot": [0, 180, 0], "ch": "primary", "note": "fastback over the hoop column"},
+      {"shape": "block", "size": [0.9, 0.45, 0.12], "pos": [0, 1.95, -3.4], "ch": "detail", "note": "steering wheel"},
+      {"shape": "block", "size": [0.06, 0.3, 10], "pos": [1.63, 1.4, -2.6], "ch": "secondary", "mirror": true, "note": "beltline stripe"},
+      {"shape": "block", "size": [1.2, 0.1, 0.25], "pos": [0, 4.37, -2], "ch": "neon", "note": "roof marker light"},
+      {"shape": "block", "size": [2, 1.1, 0.8], "pos": [0, 1.75, -0.55], "rot": [30, 0, 0], "ch": "driver", "note": "2-stud torso above the beltline; shoulders stay inside the head box"},
+      {"shape": "ball", "size": [1.1, 1.1, 1.1], "pos": [0, 2.85, -0.3], "ch": "driver", "note": "helmet inside the reserved head box"},
+      {"shape": "block", "size": [0.3, 0.3, 2.3], "pos": [0.7, 1.85, -2.1], "ch": "driver", "mirror": true}
+    ]},
+    "sprint": {"name": "Sprint", "culture": "Speedway Sprint", "parts": [
+      {"shape": "block", "size": [3.2, 1.25, 10.7], "pos": [0, 0.775, -2.5], "ch": "primary", "note": "tub; waist crease on the beltline"},
+      {"shape": "block", "size": [2.8, 1.1, 0.1], "pos": [0, 0.8, -7.92], "ch": "detail", "note": "front bulkhead plate"},
+      {"shape": "wedge", "size": [3, 0.75, 1.8], "pos": [0, 1.775, -6.95], "ch": "primary", "note": "hood nose"},
+      {"shape": "block", "size": [3, 0.75, 3.2], "pos": [0, 1.775, -4.45], "ch": "primary", "note": "tall hood"},
+      {"shape": "block", "size": [0.3, 0.3, 5.7], "pos": [1.45, 2.05, 0], "ch": "secondary", "mirror": true, "note": "rim rail over the open sides"},
+      {"shape": "block", "size": [3.2, 0.8, 1.6], "pos": [0, 1.8, 2.05], "ch": "primary", "note": "rear deck: rear bulkhead hardpoint"},
+      {"shape": "cyl_x", "size": [2.371, 0.3, 0.3], "pos": [1.57, 3.275, -2.8], "rot": [0, -90, 65.056], "ch": "detail", "mirror": true, "note": "front cage posts"},
+      {"shape": "cyl_y", "size": [0.3, 2.3, 0.3], "pos": [1.57, 3.3, 1], "ch": "detail", "mirror": true, "note": "rear cage posts"},
+      {"shape": "cyl_z", "size": [0.3, 0.3, 3.6], "pos": [1.57, 4.4, -0.65], "ch": "detail", "mirror": true, "note": "cage top rails"},
+      {"shape": "cyl_x", "size": [3.44, 0.3, 0.3], "pos": [0, 4.4, -2.3], "ch": "detail"},
+      {"shape": "cyl_x", "size": [3.44, 0.3, 0.3], "pos": [0, 4.4, 1], "ch": "detail"},
+      {"shape": "cyl_x", "size": [2.561, 0.25, 0.25], "pos": [1.57, 3.3, 1.9], "rot": [0, -90, -51.34], "ch": "detail", "mirror": true, "note": "rear braces"},
+      {"shape": "block", "size": [3, 0.1, 1.1], "pos": [0, 4.5, -1.6], "ch": "secondary", "note": "visor plate"},
+      {"shape": "block", "size": [0.12, 1.5, 1.5], "pos": [1.6, 3.2, -0.2], "ch": "secondary", "mirror": true, "note": "sail panels in the side rails"},
+      {"shape": "block", "size": [2.2, 1.5, 0.3], "pos": [0, 2.95, 0.85], "ch": "detail", "note": "tall seat back closes the back of the head box"},
+      {"shape": "block", "size": [1, 0.5, 0.12], "pos": [0, 1.9, -2.7], "ch": "detail", "note": "steering wheel"},
+      {"shape": "block", "size": [2, 1.1, 0.8], "pos": [0, 2, -0.15], "rot": [6, 0, 0], "ch": "driver", "note": "2-stud torso above the beltline; shoulders stay inside the head box"},
+      {"shape": "ball", "size": [1.1, 1.1, 1.1], "pos": [0, 2.9, -0.1], "ch": "driver", "note": "helmet inside the reserved head box"},
+      {"shape": "block", "size": [0.3, 0.3, 2], "pos": [0.7, 1.9, -1.6], "ch": "driver", "mirror": true}
+    ]}
+  },
+  "modules": {
+    "Engine1": {
+      "open_rings": {"name": "Open Rings", "culture": "Formula", "parts": [
+        {"shape": "block", "size": [0.2, 1.2, 2], "pos": [1.85, 0.85, -6.5], "ch": "detail", "mirror": true, "note": "hardpoint plate on the tub seam"},
+        {"shape": "block", "size": [2.789, 0.12, 0.28], "pos": [3.195, 1.3, -6.975], "rot": [0, -13.488, 2.055], "ch": "detail", "mirror": true, "note": "upper wishbone"},
+        {"shape": "block", "size": [2.789, 0.12, 0.28], "pos": [3.195, 1.3, -6.025], "rot": [0, 13.488, 2.055], "ch": "detail", "mirror": true},
+        {"shape": "block", "size": [2.714, 0.12, 1.3], "pos": [3.195, 0.375, -6.5], "rot": [0, 0, -3.168], "ch": "detail", "mirror": true, "note": "lower wishbone blade"},
+        {"shape": "cyl_x", "size": [2.964, 0.14, 0.14], "pos": [3.195, 1.1, -6.9], "rot": [0, 0, -23.884], "ch": "secondary", "mirror": true, "note": "pushrod"},
+        {"shape": "block", "size": [0.6, 1.7, 0.9], "pos": [4.85, 0.6, -6.5], "ch": "detail", "mirror": true, "note": "upright"},
+        {"shape": "cyl_x", "size": [1.5, 3.4, 3.4], "pos": [5.9, 0.5, -6.5], "ch": "detail", "mirror": true, "note": "hover ring"},
+        {"shape": "cyl_x", "size": [1.6, 2.5, 2.5], "pos": [5.9, 0.5, -6.5], "ch": "primary", "mirror": true},
+        {"shape": "cyl_x", "size": [1.7, 1.5, 1.5], "pos": [5.9, 0.5, -6.5], "ch": "thrust", "mirror": true, "note": "ring core"},
+        {"shape": "block", "size": [1.1, 0.12, 2.4], "pos": [5.9, -1.32, -6.5], "ch": "thrust", "mirror": true, "note": "hover pad"},
+        {"shape": "block", "size": [1.5, 0.1, 1.5], "pos": [5.9, 2.25, -6.3], "ch": "secondary", "mirror": true, "note": "over-pod winglet"}
+      ]},
+      "faired_pods": {"name": "Faired Pods", "culture": "Wing Car", "parts": [
+        {"shape": "block", "size": [0.2, 1.2, 2], "pos": [1.85, 0.85, -6.5], "ch": "detail", "mirror": true, "note": "hardpoint plate on the tub seam"},
+        {"shape": "block", "size": [2.672, 0.16, 1.2], "pos": [3.17, 0.875, -6.5], "rot": [0, 0, -5.369], "ch": "secondary", "mirror": true, "note": "single faired arm"},
+        {"shape": "cyl_x", "size": [3.076, 0.14, 0.14], "pos": [3.37, 1.45, -5.65], "rot": [0, -1.872, -5.596], "ch": "detail", "mirror": true, "note": "stay"},
+        {"shape": "block", "size": [0.7, 0.6, 1.6], "pos": [4.6, 0.6, -6.5], "ch": "detail", "mirror": true, "note": "pylon"},
+        {"shape": "cyl_z", "size": [2.3, 2.3, 4.4], "pos": [5.9, 0.45, -6.6], "ch": "primary", "mirror": true, "note": "nacelle"},
+        {"shape": "ball", "size": [2.3, 2.3, 2.3], "pos": [5.9, 0.45, -8.8], "ch": "primary", "mirror": true},
+        {"shape": "cyl_z", "size": [2.4, 2.4, 0.2], "pos": [5.9, 0.45, -7.7], "ch": "neon", "mirror": true, "note": "light band"},
+        {"shape": "cyl_z", "size": [1.6, 1.6, 0.9], "pos": [5.9, 0.45, -4], "ch": "detail", "mirror": true, "note": "tail cone"},
+        {"shape": "cyl_z", "size": [1.1, 1.1, 0.1], "pos": [5.9, 0.45, -3.56], "ch": "thrust", "mirror": true},
+        {"shape": "block", "size": [1.2, 0.15, 3.6], "pos": [5.9, -0.78, -6.6], "ch": "thrust", "mirror": true, "note": "hover slot"},
+        {"shape": "wedge", "size": [0.2, 0.9, 2.4], "pos": [5.9, 2, -5.6], "ch": "secondary", "mirror": true, "note": "dorsal fin"}
+      ]},
+      "prototype_arches": {"name": "Prototype Arches", "culture": "Prototype", "parts": [
+        {"shape": "block", "size": [0.2, 1.2, 2], "pos": [1.85, 0.85, -6.5], "ch": "detail", "mirror": true, "note": "hardpoint plate on the tub seam"},
+        {"shape": "block", "size": [3.119, 0.12, 0.28], "pos": [3.37, 1.275, -7], "rot": [0, -11.094, 0.919], "ch": "detail", "mirror": true, "note": "upper wishbone"},
+        {"shape": "block", "size": [3.119, 0.12, 0.28], "pos": [3.37, 1.275, -6], "rot": [0, 11.094, 0.919], "ch": "detail", "mirror": true},
+        {"shape": "block", "size": [3.062, 0.12, 1.3], "pos": [3.37, 0.4, -6.5], "rot": [0, 0, -1.872], "ch": "detail", "mirror": true, "note": "lower wishbone blade"},
+        {"shape": "cyl_x", "size": [1.6, 3.2, 3.2], "pos": [5.85, 0.4, -6.6], "ch": "detail", "mirror": true, "note": "hover ring under the arch"},
+        {"shape": "cyl_x", "size": [1.7, 1.6, 1.6], "pos": [5.85, 0.4, -6.6], "ch": "thrust", "mirror": true},
+        {"shape": "block", "size": [1.2, 0.12, 2.2], "pos": [5.85, -1.32, -6.6], "ch": "thrust", "mirror": true, "note": "hover pad"},
+        {"shape": "block", "size": [3.3, 0.5, 2.6], "pos": [5.8, 2.3, -6.6], "ch": "primary", "mirror": true, "note": "arch crown"},
+        {"shape": "wedge", "size": [3.3, 2.3, 2], "pos": [5.8, 1.4, -8.9], "ch": "primary", "mirror": true, "note": "arch front"},
+        {"shape": "wedge", "size": [3.3, 1.6, 1.7], "pos": [5.8, 1.75, -4.45], "rot": [0, 180, 0], "ch": "primary", "mirror": true, "note": "arch tail"},
+        {"shape": "block", "size": [0.25, 1, 2.6], "pos": [7.3, 1.55, -6.6], "ch": "primary", "mirror": true, "note": "outer skin above the ring"},
+        {"shape": "block", "size": [3.3, 0.35, 1.6], "pos": [5.8, 0.07, -9.1], "ch": "detail", "mirror": true, "note": "valance"},
+        {"shape": "block", "size": [1.4, 0.35, 0.5], "pos": [5.9, 0.8, -9.35], "ch": "neon", "mirror": true, "note": "headlight"}
+      ]},
+      "vintage_wires": {"name": "Vintage Wires", "culture": "Vintage Grand Prix", "parts": [
+        {"shape": "block", "size": [0.2, 1.2, 2], "pos": [1.85, 0.85, -6.5], "ch": "detail", "mirror": true, "note": "hardpoint plate on the tub seam"},
+        {"shape": "cyl_x", "size": [4.16, 0.32, 0.32], "pos": [3.92, 0.525, -6.5], "rot": [0, 0, -0.689], "ch": "detail", "mirror": true, "note": "beam axle"},
+        {"shape": "block", "size": [3.923, 0.1, 0.5], "pos": [3.77, 1.2, -6.5], "rot": [0, 0, -10.279], "ch": "secondary", "mirror": true, "note": "leaf spring"},
+        {"shape": "cyl_x", "size": [3.927, 0.16, 0.16], "pos": [3.77, 0.7, -5.9], "rot": [0, 8.835, -5.847], "ch": "detail", "mirror": true, "note": "radius rod"},
+        {"shape": "cyl_x", "size": [0.6, 3.8, 3.8], "pos": [6.3, 0.5, -6.5], "ch": "detail", "mirror": true, "note": "tall narrow rim"},
+        {"shape": "cyl_x", "size": [0.7, 3, 3], "pos": [6.3, 0.5, -6.5], "ch": "thrust", "mirror": true, "note": "hover disc behind the spokes"},
+        {"shape": "block", "size": [0.76, 0.12, 3.2], "pos": [6.3, 0.5, -6.5], "rot": [45, 0, 0], "ch": "detail", "mirror": true},
+        {"shape": "block", "size": [0.76, 0.12, 3.2], "pos": [6.3, 0.5, -6.5], "rot": [-45, 0, 0], "ch": "detail", "mirror": true},
+        {"shape": "cyl_x", "size": [1.3, 0.8, 0.8], "pos": [6.3, 0.5, -6.5], "ch": "secondary", "mirror": true, "note": "hub"},
+        {"shape": "cyl_x", "size": [1.5, 0.35, 0.35], "pos": [6.3, 0.5, -6.5], "ch": "neon", "mirror": true, "note": "spinner"},
+        {"shape": "block", "size": [0.5, 0.1, 2], "pos": [6.3, -1.5, -6.5], "ch": "thrust", "mirror": true, "note": "hover pad"}
+      ]}
+    },
+    "Engine2": {
+      "v_cover": {"name": "V-Cover", "culture": "Formula", "parts": [
+        {"shape": "block", "size": [2.8, 1.7, 0.25], "pos": [0, 1.05, 3.125], "ch": "detail", "note": "collar: linkage to the tub rear bulkhead"},
+        {"shape": "block", "size": [3.2, 1.2, 2.2], "pos": [0, 0.8, 4.35], "ch": "primary", "note": "shoulders on the beltline"},
+        {"shape": "wedge", "size": [1.2, 1, 5.05], "pos": [1.1, 0.8, 7.975], "rot": [0, 180, 90], "ch": "primary", "mirror": true, "note": "plan taper"},
+        {"shape": "block", "size": [1.2, 1.2, 6.3], "pos": [0, 0.8, 8.6], "ch": "primary"},
+        {"shape": "block", "size": [1.4, 1.2, 5], "pos": [0, 2, 5.75], "ch": "primary", "note": "spine: airbox seat"},
+        {"shape": "wedge", "size": [1.4, 1.2, 2.2], "pos": [0, 2, 9.35], "rot": [0, 180, 0], "ch": "primary"},
+        {"shape": "block", "size": [0.9, 0.5, 2], "pos": [1, 1.75, 4.5], "rot": [0, 0, -25], "ch": "secondary", "mirror": true, "note": "V bank covers"},
+        {"shape": "block", "size": [1, 1, 0.9], "pos": [0, 0.9, 11.5], "ch": "detail", "note": "gearbox: exhaust seam"},
+        {"shape": "block", "size": [0.7, 1.2, 1.2], "pos": [0, 2, 10.9], "ch": "detail", "note": "wing plinth"},
+        {"shape": "block", "size": [4.453, 0.12, 0.28], "pos": [2.825, 1.325, 7.375], "rot": [0, -12.319, 0.643], "ch": "detail", "mirror": true, "note": "upper wishbone"},
+        {"shape": "block", "size": [4.618, 0.12, 0.28], "pos": [2.825, 1.325, 8.925], "rot": [0, 19.612, 0.62], "ch": "detail", "mirror": true},
+        {"shape": "block", "size": [4.361, 0.12, 1.1], "pos": [2.825, 0.4, 8.15], "rot": [0, 3.945, -1.314], "ch": "detail", "mirror": true, "note": "lower wishbone blade"},
+        {"shape": "cyl_x", "size": [1.9, 3.8, 3.8], "pos": [5.9, 0.5, 8], "ch": "detail", "mirror": true, "note": "rear hover ring"},
+        {"shape": "cyl_x", "size": [2, 2.8, 2.8], "pos": [5.9, 0.5, 8], "ch": "primary", "mirror": true},
+        {"shape": "cyl_x", "size": [2.1, 1.7, 1.7], "pos": [5.9, 0.5, 8], "ch": "thrust", "mirror": true},
+        {"shape": "block", "size": [1.4, 0.12, 2.6], "pos": [5.9, -1.52, 8], "ch": "thrust", "mirror": true, "note": "hover pad"}
+      ]},
+      "turbo_stack": {"name": "Turbo Stack", "culture": "Wing Car", "parts": [
+        {"shape": "block", "size": [2.8, 1.5, 0.25], "pos": [0, 0.95, 3.125], "ch": "detail", "note": "collar: linkage to the tub rear bulkhead"},
+        {"shape": "block", "size": [3.2, 1.2, 1.25], "pos": [0, 0.8, 3.875], "ch": "primary"},
+        {"shape": "block", "size": [7.4, 1.2, 5.4], "pos": [0, 0.8, 7.3], "ch": "primary", "note": "wide flat deck on the beltline"},
+        {"shape": "block", "size": [1.8, 1.1, 5], "pos": [0, 1.95, 5.75], "ch": "primary", "note": "spine: airbox seat"},
+        {"shape": "cyl_y", "size": [0.9, 1.2, 0.9], "pos": [2.5, 2, 6.3], "ch": "detail", "mirror": true, "note": "turbo snorkel"},
+        {"shape": "block", "size": [1, 0.5, 1.3], "pos": [2.5, 2.5, 5.95], "ch": "secondary", "mirror": true, "note": "periscope inlet"},
+        {"shape": "block", "size": [1.5, 0.5, 2.2], "pos": [2.6, 1.65, 8.5], "ch": "secondary", "mirror": true, "note": "intercooler"},
+        {"shape": "block", "size": [3, 1.4, 1.9], "pos": [0, 1.1, 11], "ch": "detail", "note": "gearbox block: exhaust seam"},
+        {"shape": "block", "size": [2.2, 0.8, 1.4], "pos": [0, 2.2, 10.9], "ch": "primary", "note": "wing plinth"},
+        {"shape": "block", "size": [0.9, 0.3, 1.4], "pos": [4.15, 0.6, 8], "ch": "detail", "mirror": true, "note": "short link across the gap"},
+        {"shape": "block", "size": [1.2, 0.3, 0.1], "pos": [2.6, 0.9, 10.05], "ch": "neon", "mirror": true, "note": "tail light"},
+        {"shape": "cyl_x", "size": [2.6, 3.2, 3.2], "pos": [5.8, 0.3, 8], "ch": "detail", "mirror": true, "note": "rear hover ring"},
+        {"shape": "cyl_x", "size": [2.7, 2.4, 2.4], "pos": [5.8, 0.3, 8], "ch": "secondary", "mirror": true},
+        {"shape": "cyl_x", "size": [2.8, 0.9, 0.9], "pos": [5.8, 0.3, 8], "ch": "thrust", "mirror": true},
+        {"shape": "block", "size": [2, 0.12, 2.6], "pos": [5.8, -1.42, 8], "ch": "thrust", "mirror": true, "note": "hover pad"}
+      ]},
+      "prototype_tail": {"name": "Prototype Tail", "culture": "Prototype", "parts": [
+        {"shape": "block", "size": [2.8, 1.7, 0.25], "pos": [0, 1.05, 3.125], "ch": "detail", "note": "collar: linkage to the tub rear bulkhead"},
+        {"shape": "block", "size": [3.2, 1.7, 1.25], "pos": [0, 1.05, 3.875], "ch": "primary"},
+        {"shape": "block", "size": [7.8, 1.2, 7], "pos": [0, 0.8, 8.2], "ch": "primary", "note": "full-width deck on the beltline"},
+        {"shape": "block", "size": [2.4, 1.3, 4.3], "pos": [0, 2.05, 5.45], "ch": "primary", "note": "spine hump: airbox seat"},
+        {"shape": "wedge", "size": [2.4, 1.3, 2.6], "pos": [0, 2.05, 8.9], "rot": [0, 180, 0], "ch": "primary"},
+        {"shape": "block", "size": [0.15, 1.3, 3.2], "pos": [0, 2.05, 9.8], "ch": "secondary", "note": "shark fin: wing plinth"},
+        {"shape": "block", "size": [3.3, 0.5, 2.8], "pos": [5.8, 2.3, 8], "ch": "primary", "mirror": true, "note": "rear arch crown"},
+        {"shape": "wedge", "size": [3.3, 1.7, 2], "pos": [5.8, 1.7, 5.6], "ch": "primary", "mirror": true, "note": "rear arch front"},
+        {"shape": "wedge", "size": [3.3, 1.5, 2], "pos": [5.8, 1.8, 10.4], "rot": [0, 180, 0], "ch": "primary", "mirror": true, "note": "rear arch tail"},
+        {"shape": "block", "size": [0.25, 1, 2.8], "pos": [7.3, 1.55, 8], "ch": "primary", "mirror": true},
+        {"shape": "cyl_x", "size": [1.7, 3.4, 3.4], "pos": [5.85, 0.4, 8], "ch": "detail", "mirror": true, "note": "rear hover ring under the arch"},
+        {"shape": "cyl_x", "size": [1.8, 1.7, 1.7], "pos": [5.85, 0.4, 8], "ch": "thrust", "mirror": true},
+        {"shape": "block", "size": [1.3, 0.12, 2.6], "pos": [5.85, -1.42, 8], "ch": "thrust", "mirror": true, "note": "hover pad"},
+        {"shape": "block", "size": [2.6, 0.2, 0.12], "pos": [5.8, 0.95, 11.42], "ch": "neon", "mirror": true, "note": "tail light bar"},
+        {"shape": "block", "size": [7.6, 0.9, 0.15], "pos": [0, 0.9, 11.8], "ch": "detail", "note": "mesh panel: exhaust seam"},
+        {"shape": "block", "size": [1.6, 0.06, 0.9], "pos": [2.7, 1.43, 7.2], "ch": "detail", "mirror": true, "note": "louvre panel"}
+      ]},
+      "sprint_rear": {"name": "Sprint Rear", "culture": "Speedway Sprint", "parts": [
+        {"shape": "block", "size": [2.8, 1.5, 0.25], "pos": [0, 0.95, 3.125], "ch": "detail", "note": "collar: linkage to the tub rear bulkhead"},
+        {"shape": "block", "size": [2.6, 1.6, 2.6], "pos": [0, 1, 4.65], "ch": "detail", "note": "exposed engine block"},
+        {"shape": "cyl_y", "size": [0.45, 0.9, 0.45], "pos": [0.5, 2.2, 3.9], "ch": "secondary", "mirror": true, "note": "injector stack"},
+        {"shape": "cyl_y", "size": [0.45, 0.9, 0.45], "pos": [0.5, 2.2, 5.1], "ch": "secondary", "mirror": true, "note": "injector stack"},
+        {"shape": "block", "size": [2.2, 1.6, 0.9], "pos": [0, 1, 6.3], "ch": "detail"},
+        {"shape": "cyl_z", "size": [2.7, 2.7, 3.6], "pos": [0, 1.45, 8.3], "ch": "primary", "note": "tail tank"},
+        {"shape": "ball", "size": [2.7, 2.7, 2.7], "pos": [0, 1.45, 10.1], "ch": "primary", "note": "tank dome: wing plinth and exhaust seam"},
+        {"shape": "cyl_x", "size": [9.6, 0.5, 0.5], "pos": [0, 0.5, 8], "ch": "detail", "note": "solid rear axle tube"},
+        {"shape": "cyl_x", "size": [4.685, 0.2, 0.2], "pos": [2.95, 0.75, 5.95], "rot": [0, -48.468, -3.671], "ch": "secondary", "mirror": true, "note": "radius rod"},
+        {"shape": "block", "size": [1.2, 1.1, 1], "pos": [0, 1.05, 11.45], "ch": "detail", "note": "rear housing: exhaust seam"},
+        {"shape": "cyl_x", "size": [4.4, 0.25, 0.25], "pos": [0, 1, 11.75], "ch": "detail", "note": "rear nerf bar"},
+        {"shape": "cyl_x", "size": [0.5, 0.34, 0.34], "pos": [2.3, 1, 11.75], "ch": "neon", "mirror": true, "note": "tail light"},
+        {"shape": "cyl_x", "size": [2.8, 4, 4], "pos": [5.95, 0.5, 8], "ch": "detail", "mirror": true, "note": "rear hover ring"},
+        {"shape": "cyl_x", "size": [2.9, 2.9, 2.9], "pos": [5.95, 0.5, 8], "ch": "secondary", "mirror": true},
+        {"shape": "cyl_x", "size": [3, 1.6, 1.6], "pos": [5.95, 0.5, 8], "ch": "thrust", "mirror": true},
+        {"shape": "block", "size": [2, 0.12, 2.6], "pos": [5.95, -1.52, 8], "ch": "thrust", "mirror": true, "note": "hover pad"}
+      ]}
+    },
+    "SidePods": {
+      "coke_bottle": {"name": "Coke Bottle", "culture": "Formula", "parts": [
+        {"shape": "block", "size": [0.25, 1, 6.6], "pos": [1.875, 1, 0.3], "ch": "detail", "mirror": true, "note": "linkage across the tub shadow gap"},
+        {"shape": "block", "size": [2.6, 1.5, 3.2], "pos": [3.3, 1.15, -1.6], "ch": "primary", "mirror": true, "note": "undercut pod: floats above the floor"},
+        {"shape": "block", "size": [2, 0.9, 0.12], "pos": [3.3, 1.25, -3.26], "ch": "detail", "mirror": true, "note": "radiator inlet"},
+        {"shape": "wedge", "size": [1.5, 2.6, 4.2], "pos": [3.3, 1.15, 2.1], "rot": [0, 180, 90], "ch": "primary", "mirror": true, "note": "coke-bottle plan taper"},
+        {"shape": "block", "size": [2.2, 0.08, 3], "pos": [3.3, 1.94, -1.6], "ch": "secondary", "mirror": true},
+        {"shape": "block", "size": [0.12, 1.2, 1.5], "pos": [4.66, 0.9, -2.5], "ch": "secondary", "mirror": true, "note": "turning vane"}
+      ]},
+      "zero_pod": {"name": "Zero Pod", "culture": "Formula", "parts": [
+        {"shape": "block", "size": [0.25, 1, 6.6], "pos": [1.875, 1, 0.3], "ch": "detail", "mirror": true, "note": "linkage across the tub shadow gap"},
+        {"shape": "block", "size": [0.8, 1.7, 5.6], "pos": [2.4, 1.15, -0.3], "ch": "primary", "mirror": true, "note": "slim pod hugging the tub"},
+        {"shape": "wedge", "size": [1.7, 0.8, 1.9], "pos": [2.4, 1.15, 3.45], "rot": [0, 180, 90], "ch": "primary", "mirror": true},
+        {"shape": "block", "size": [0.5, 1.3, 0.12], "pos": [2.4, 1.2, -3.16], "ch": "detail", "mirror": true, "note": "vertical inlet slot"},
+        {"shape": "block", "size": [2.6, 0.14, 1.5], "pos": [4.1, 1.4, -2.3], "ch": "secondary", "mirror": true, "note": "impact-spar shelf on the beltline"},
+        {"shape": "block", "size": [0.12, 0.8, 1.7], "pos": [5.4, 1.25, -2.3], "ch": "primary", "mirror": true},
+        {"shape": "block", "size": [0.06, 0.8, 0.9], "pos": [2.83, 1.2, 0.9], "ch": "detail", "mirror": true, "note": "gill panel"}
+      ]},
+      "radiator_boxes": {"name": "Radiator Boxes", "culture": "Vintage Grand Prix", "parts": [
+        {"shape": "cyl_x", "size": [1.6, 0.3, 0.3], "pos": [2.55, 1.3, -1.2], "ch": "detail", "mirror": true, "note": "coolant pipe: linkage to the tub"},
+        {"shape": "cyl_x", "size": [1.6, 0.3, 0.3], "pos": [2.55, 0.9, 1], "ch": "detail", "mirror": true},
+        {"shape": "cyl_z", "size": [1.2, 1.2, 5], "pos": [2.7, 0.75, 0.2], "ch": "secondary", "mirror": true, "note": "pannier tank"},
+        {"shape": "block", "size": [1.9, 1.6, 3.2], "pos": [4.3, 1.1, -0.1], "ch": "primary", "mirror": true, "note": "radiator box standing off the tub"},
+        {"shape": "block", "size": [1.6, 1.3, 0.12], "pos": [4.3, 1.1, -1.76], "ch": "detail", "mirror": true, "note": "radiator face"},
+        {"shape": "wedge", "size": [1.9, 1.6, 1.8], "pos": [4.3, 1.1, 2.4], "rot": [0, 180, 0], "ch": "primary", "mirror": true}
+      ]},
+      "skirted": {"name": "Skirted", "culture": "Wing Car", "parts": [
+        {"shape": "block", "size": [0.25, 0.9, 7], "pos": [1.875, 0.9, 0.4], "ch": "detail", "mirror": true, "note": "linkage across the tub shadow gap"},
+        {"shape": "block", "size": [4, 1.4, 5.6], "pos": [4, 1, 1.3], "ch": "primary", "mirror": true, "note": "full-length slab"},
+        {"shape": "wedge", "size": [4, 1.4, 1.8], "pos": [4, 1, -2.4], "ch": "primary", "mirror": true},
+        {"shape": "wedge", "size": [1.4, 0.3, 1.8], "pos": [3.4, 1.85, 0.3], "ch": "detail", "mirror": true, "note": "top duct"},
+        {"shape": "block", "size": [0.3, 1.5, 7.4], "pos": [6.15, -0.45, 0.4], "ch": "detail", "mirror": true, "note": "sliding skirt in the skirt strip"},
+        {"shape": "block", "size": [0.12, 0.1, 7], "pos": [6.15, -1.25, 0.4], "ch": "neon", "mirror": true, "note": "skirt glow"},
+        {"shape": "block", "size": [0.5, 0.06, 5.6], "pos": [5.6, 1.73, 1.3], "ch": "secondary", "mirror": true}
+      ]}
+    },
+    "Stabilisers": {
+      "flat_floor": {"name": "Flat Floor", "culture": "Vintage Grand Prix", "parts": [
+        {"shape": "block", "size": [1.6, 0.4, 1], "pos": [0, -0.2, -5.6], "ch": "detail", "note": "pylon: linkage to the tub underside"},
+        {"shape": "block", "size": [1.6, 0.4, 1], "pos": [0, -0.2, 0.5], "ch": "detail"},
+        {"shape": "block", "size": [2.4, 0.3, 15.4], "pos": [0, -0.75, -0.1], "ch": "detail", "note": "skid plank"},
+        {"shape": "block", "size": [11.2, 0.25, 7.6], "pos": [0, -0.5, 0.5], "ch": "detail", "note": "flat slab"},
+        {"shape": "block", "size": [7.4, 0.25, 3.3], "pos": [0, -0.5, 6.15], "ch": "detail"},
+        {"shape": "block", "size": [3, 0.25, 4.3], "pos": [0, -0.5, -5.65], "ch": "detail"},
+        {"shape": "block", "size": [0.3, 0.14, 7.6], "pos": [5.45, -0.36, 0.5], "ch": "secondary", "mirror": true, "note": "edge strip"},
+        {"shape": "block", "size": [0.5, 0.1, 6.6], "pos": [3.4, -0.67, 0.5], "ch": "thrust", "mirror": true, "note": "hover strip"},
+        {"shape": "block", "size": [1.2, 0.1, 4], "pos": [0, -0.95, -5], "ch": "thrust"}
+      ]},
+      "venturi_tunnels": {"name": "Venturi Tunnels", "culture": "Wing Car", "parts": [
+        {"shape": "block", "size": [1.6, 0.4, 1], "pos": [0, -0.2, -5.6], "ch": "detail", "note": "pylon: linkage to the tub underside"},
+        {"shape": "block", "size": [1.6, 0.4, 1], "pos": [0, -0.2, 0.5], "ch": "detail"},
+        {"shape": "block", "size": [2.6, 0.9, 15.2], "pos": [0, -0.75, -0.2], "ch": "detail", "note": "centre keel"},
+        {"shape": "block", "size": [3.6, 0.2, 7.4], "pos": [3.6, -0.4, 0.5], "ch": "secondary", "mirror": true, "note": "tunnel roof"},
+        {"shape": "block", "size": [0.25, 1, 7.6], "pos": [5.6, -0.7, 0.5], "ch": "detail", "mirror": true, "note": "outer fence"},
+        {"shape": "block", "size": [3.2, 0.1, 6.8], "pos": [3.5, -0.55, 0.5], "ch": "thrust", "mirror": true, "note": "tunnel glow"},
+        {"shape": "wedge", "size": [3, 0.8, 3.2], "pos": [2.3, -0.7, 6.2], "rot": [0, 180, 180], "ch": "detail", "mirror": true, "note": "tunnel kick-up"},
+        {"shape": "block", "size": [3, 0.2, 2.2], "pos": [0, -0.3, -6.6], "ch": "secondary", "note": "tea tray"}
+      ]},
+      "bargeboards": {"name": "Bargeboards", "culture": "Formula", "parts": [
+        {"shape": "block", "size": [1.6, 0.4, 1], "pos": [0, -0.2, -5.6], "ch": "detail", "note": "pylon: linkage to the tub underside"},
+        {"shape": "block", "size": [1.6, 0.4, 1], "pos": [0, -0.2, 0.5], "ch": "detail"},
+        {"shape": "block", "size": [2, 0.3, 15.2], "pos": [0, -0.65, -0.2], "ch": "detail", "note": "skid plank"},
+        {"shape": "block", "size": [10.4, 0.2, 7.4], "pos": [0, -0.4, 0.4], "ch": "detail", "note": "thin floor"},
+        {"shape": "block", "size": [0.7, 0.1, 5], "pos": [5.5, -0.25, 0.8], "ch": "secondary", "mirror": true, "note": "floor edge wing"},
+        {"shape": "block", "size": [0.4, 0.1, 6], "pos": [3.2, -0.55, 0.4], "ch": "thrust", "mirror": true, "note": "hover strip"},
+        {"shape": "block", "size": [1.7, 0.2, 0.5], "pos": [2.6, 0.5, -4.35], "ch": "detail", "mirror": true, "note": "bracket from the tub seam carries both boards"},
+        {"shape": "block", "size": [0.15, 1.9, 1.5], "pos": [2.5, 0.85, -4.35], "rot": [0, -14, 0], "ch": "primary", "mirror": true, "note": "main bargeboard"},
+        {"shape": "block", "size": [0.12, 1.4, 1.3], "pos": [3.3, 0.6, -4.35], "rot": [0, -22, 0], "ch": "secondary", "mirror": true, "note": "outer board"}
+      ]}
+    },
+    "Boost": {
+      "single_exit": {"name": "Single Exit", "culture": "Formula", "parts": [
+        {"shape": "cyl_z", "size": [1.5, 1.5, 0.3], "pos": [0, 1.4, 12.15], "ch": "detail", "note": "collar on the gearbox seam"},
+        {"shape": "cyl_z", "size": [1.2, 1.2, 1.3], "pos": [0, 1.4, 12.95], "ch": "secondary"},
+        {"shape": "cyl_z", "size": [0.9, 0.9, 0.12], "pos": [0, 1.4, 13.64], "ch": "thrust"},
+        {"shape": "block", "size": [2, 0.12, 1.1], "pos": [0, 2.3, 12.75], "ch": "detail", "note": "monkey seat"},
+        {"shape": "block", "size": [0.12, 0.45, 0.6], "pos": [0.7, 2.05, 12.6], "ch": "detail", "mirror": true}
+      ]},
+      "twin_megaphone": {"name": "Twin Megaphone", "culture": "Vintage Grand Prix", "parts": [
+        {"shape": "block", "size": [2.8, 0.5, 0.3], "pos": [0, 1.5, 12.15], "ch": "detail", "note": "manifold on the gearbox seam"},
+        {"shape": "cyl_z", "size": [0.55, 0.55, 0.9], "pos": [0.9, 1.6, 12.7], "ch": "secondary", "mirror": true},
+        {"shape": "cyl_z", "size": [1, 1, 0.7], "pos": [0.9, 1.7, 13.5], "ch": "secondary", "mirror": true, "note": "megaphone flare"},
+        {"shape": "cyl_z", "size": [0.75, 0.75, 0.1], "pos": [0.9, 1.7, 13.9], "ch": "thrust", "mirror": true}
+      ]},
+      "blown_diffuser": {"name": "Blown Diffuser", "culture": "Prototype", "parts": [
+        {"shape": "block", "size": [1, 0.6, 0.4], "pos": [0, 1, 12.2], "ch": "detail", "note": "link on the gearbox seam"},
+        {"shape": "block", "size": [5.6, 0.12, 1.6], "pos": [0, 1.3, 12.9], "ch": "detail", "note": "heat shield"},
+        {"shape": "block", "size": [1.6, 0.5, 1.5], "pos": [1.9, 0.9, 12.85], "ch": "detail", "mirror": true, "note": "flat exit low over the diffuser"},
+        {"shape": "block", "size": [1.3, 0.3, 0.12], "pos": [1.9, 0.9, 13.64], "ch": "thrust", "mirror": true}
+      ]}
+    },
+    "FrontBumper": {
+      "needle_nose": {"name": "Needle Nose", "culture": "Formula", "parts": [
+        {"shape": "block", "size": [2.6, 1, 0.25], "pos": [0, 0.8, -8.125], "ch": "detail", "note": "collar: linkage to the front bulkhead"},
+        {"shape": "block", "size": [2.8, 1.2, 1.8], "pos": [0, 0.8, -9.15], "ch": "primary", "note": "nose root: top on the beltline"},
+        {"shape": "wedge", "size": [2, 1.2, 3.6], "pos": [0, 0.8, -11.85], "ch": "primary", "note": "needle"},
+        {"shape": "block", "size": [0.8, 0.15, 0.3], "pos": [0, 0.3, -13.75], "ch": "neon", "note": "nose light"},
+        {"shape": "block", "size": [0.2, 1, 0.8], "pos": [0.6, -0.25, -12.8], "ch": "detail", "mirror": true, "note": "wing pylons"},
+        {"shape": "block", "size": [13.6, 0.14, 1.5], "pos": [0, -0.75, -12.9], "ch": "secondary", "note": "main plane"},
+        {"shape": "block", "size": [5, 0.12, 1.1], "pos": [4.2, -0.3, -11.9], "rot": [-18, 0, 0], "ch": "primary", "mirror": true, "note": "flap"},
+        {"shape": "block", "size": [0.15, 1.5, 3], "pos": [6.95, -0.25, -12.1], "ch": "primary", "mirror": true, "note": "endplate"},
+        {"shape": "block", "size": [0.19, 0.2, 1], "pos": [6.95, 0.4, -11.4], "ch": "neon", "mirror": true}
+      ]},
+      "high_nose": {"name": "High Nose", "culture": "Formula", "parts": [
+        {"shape": "block", "size": [2.6, 1, 0.25], "pos": [0, 0.8, -8.125], "ch": "detail", "note": "collar: linkage to the front bulkhead"},
+        {"shape": "block", "size": [2.8, 1.2, 1.6], "pos": [0, 0.8, -9.05], "ch": "primary", "note": "nose root: top on the beltline"},
+        {"shape": "wedge", "size": [2.6, 1.2, 3.8], "pos": [0, 0.8, -11.75], "rot": [0, 0, 180], "ch": "primary", "note": "raised nose: flat top, rising underside"},
+        {"shape": "block", "size": [1.4, 0.15, 0.2], "pos": [0, 1.3, -13.75], "ch": "neon", "note": "nose light"},
+        {"shape": "block", "size": [0.2, 2, 0.9], "pos": [0.9, 0.1, -12.7], "ch": "detail", "mirror": true, "note": "long wing pylons"},
+        {"shape": "block", "size": [12.6, 0.16, 1.7], "pos": [0, -0.9, -12.8], "ch": "secondary", "note": "main plane"},
+        {"shape": "block", "size": [4.6, 0.12, 1.2], "pos": [4, -0.3, -11.7], "rot": [-22, 0, 0], "ch": "primary", "mirror": true, "note": "flap"},
+        {"shape": "block", "size": [0.15, 1.6, 3.2], "pos": [6.4, -0.35, -12.2], "ch": "primary", "mirror": true, "note": "tall endplate"},
+        {"shape": "block", "size": [0.19, 0.2, 1.2], "pos": [6.4, 0.35, -11.6], "ch": "neon", "mirror": true}
+      ]},
+      "snowplough": {"name": "Snowplough", "culture": "Prototype", "parts": [
+        {"shape": "block", "size": [2.6, 1, 0.25], "pos": [0, 0.8, -8.125], "ch": "detail", "note": "collar: linkage to the front bulkhead"},
+        {"shape": "block", "size": [6.6, 1.25, 2.2], "pos": [0, 0.775, -9.35], "ch": "primary", "note": "wide neck: top on the beltline"},
+        {"shape": "wedge", "size": [14.2, 1.9, 3.4], "pos": [0, 0.45, -12.15], "ch": "primary", "note": "full-width plough"},
+        {"shape": "block", "size": [14.4, 0.15, 3.5], "pos": [0, -0.6, -12.2], "ch": "detail", "note": "splitter"},
+        {"shape": "block", "size": [1.8, 0.3, 0.3], "pos": [4.6, 0.3, -12.7], "ch": "neon", "mirror": true, "note": "headlight"},
+        {"shape": "block", "size": [2.6, 0.3, 0.3], "pos": [0, -0.3, -13.75], "ch": "detail", "note": "centre inlet"},
+        {"shape": "block", "size": [0.15, 1.2, 3.4], "pos": [7.12, 0.1, -12.15], "ch": "secondary", "mirror": true, "note": "side fence"}
+      ]},
+      "radiator_nose": {"name": "Radiator Nose", "culture": "Vintage Grand Prix", "parts": [
+        {"shape": "block", "size": [2.6, 1, 0.25], "pos": [0, 0.8, -8.125], "ch": "detail", "note": "collar: linkage to the front bulkhead"},
+        {"shape": "cyl_z", "size": [1.9, 1.9, 2.6], "pos": [0.55, 1.05, -9.55], "ch": "primary", "mirror": true, "note": "barrel nose"},
+        {"shape": "block", "size": [1.1, 1.9, 2.6], "pos": [0, 1.05, -9.55], "ch": "primary"},
+        {"shape": "ball", "size": [1.9, 1.9, 1.9], "pos": [0.55, 1.05, -10.85], "ch": "primary", "mirror": true},
+        {"shape": "cyl_x", "size": [1.1, 1.9, 1.9], "pos": [0, 1.05, -10.85], "ch": "primary"},
+        {"shape": "block", "size": [1.5, 0.9, 0.2], "pos": [0, 1.05, -11.75], "ch": "detail", "note": "radiator opening"},
+        {"shape": "block", "size": [2.2, 0.12, 0.9], "pos": [2.3, 0.6, -10.6], "ch": "secondary", "mirror": true, "note": "moustache winglet"},
+        {"shape": "cyl_x", "size": [3.6, 0.22, 0.22], "pos": [0, 0.2, -12.5], "ch": "detail", "note": "nerf hoop"},
+        {"shape": "block", "size": [0.2, 0.2, 1.4], "pos": [0, 0.25, -11.9], "ch": "detail"},
+        {"shape": "ball", "size": [0.5, 0.5, 0.5], "pos": [1.45, 1.5, -11], "ch": "neon", "mirror": true, "note": "lamp"}
+      ]}
+    },
+    "RearBumper": {
+      "shallow": {"name": "Shallow", "culture": "Vintage Grand Prix", "parts": [
+        {"shape": "block", "size": [1.2, 0.25, 1], "pos": [0, -0.125, 9.5], "ch": "detail", "note": "pylon: linkage to the Power Unit underside"},
+        {"shape": "block", "size": [7, 0.2, 3.6], "pos": [0, -0.35, 9.9], "ch": "detail", "note": "tray"},
+        {"shape": "block", "size": [7, 0.15, 2.2], "pos": [0, -0.1, 12.7], "rot": [-14, 0, 0], "ch": "detail", "note": "shallow kick-up"},
+        {"shape": "block", "size": [0.12, 0.6, 3], "pos": [1.2, -0.75, 11.5], "ch": "detail", "mirror": true, "note": "strake"},
+        {"shape": "block", "size": [0.12, 0.6, 3], "pos": [2.8, -0.75, 11.5], "ch": "detail", "mirror": true},
+        {"shape": "block", "size": [0.5, 0.5, 0.15], "pos": [0, 0.2, 13.85], "ch": "neon", "note": "rain light"}
+      ]},
+      "deep_tunnel": {"name": "Deep Tunnel", "culture": "Prototype", "parts": [
+        {"shape": "block", "size": [1.2, 0.25, 1], "pos": [0, -0.125, 8.8], "ch": "detail", "note": "pylon: linkage to the Power Unit underside"},
+        {"shape": "block", "size": [7.6, 0.15, 5.4], "pos": [0, -0.42, 10.9], "rot": [-9, 0, 0], "ch": "secondary", "note": "tunnel roof"},
+        {"shape": "block", "size": [0.15, 1.15, 5.4], "pos": [3.8, -0.7, 10.9], "ch": "detail", "mirror": true, "note": "outer fence"},
+        {"shape": "block", "size": [0.12, 0.9, 4.6], "pos": [1.3, -0.8, 11.2], "ch": "detail", "mirror": true, "note": "inner fence"},
+        {"shape": "block", "size": [2.2, 0.1, 4], "pos": [2.55, -0.9, 11.2], "ch": "thrust", "mirror": true, "note": "tunnel glow"},
+        {"shape": "block", "size": [0.4, 0.8, 0.15], "pos": [0, 0.15, 13.85], "ch": "neon", "note": "rain light"}
+      ]}
+    },
+    "RearSpoiler": {
+      "low_drag": {"name": "Low Drag", "culture": "Prototype", "parts": [
+        {"shape": "block", "size": [0.3, 1, 1.6], "pos": [0, 3.3, 11.3], "ch": "detail", "note": "single pylon on the wing plinth"},
+        {"shape": "block", "size": [11, 0.15, 1.5], "pos": [0, 3.85, 12.6], "ch": "secondary", "note": "single shallow plane"},
+        {"shape": "block", "size": [0.15, 1.1, 2], "pos": [5.5, 3.6, 12.6], "ch": "primary", "mirror": true, "note": "short endplate"},
+        {"shape": "block", "size": [0.19, 0.2, 0.6], "pos": [5.5, 3.9, 13.4], "ch": "neon", "mirror": true}
+      ]},
+      "high_downforce": {"name": "High Downforce", "culture": "Formula", "parts": [
+        {"shape": "block", "size": [0.2, 1.6, 1], "pos": [0.4, 3.6, 11.2], "ch": "detail", "mirror": true, "note": "twin pylons on the wing plinth"},
+        {"shape": "block", "size": [12.6, 0.18, 1.6], "pos": [0, 4.4, 12.3], "rot": [-12, 0, 0], "ch": "primary", "note": "main plane"},
+        {"shape": "block", "size": [12.6, 0.14, 1], "pos": [0, 5, 13.2], "rot": [-30, 0, 0], "ch": "secondary", "note": "flap"},
+        {"shape": "block", "size": [12.6, 0.12, 0.9], "pos": [0, 3, 12.4], "ch": "secondary", "note": "beam wing"},
+        {"shape": "block", "size": [0.18, 4.2, 2.2], "pos": [6.4, 3.4, 12.85], "ch": "primary", "mirror": true, "note": "tall endplate drops behind the rear pod"},
+        {"shape": "block", "size": [0.22, 1.2, 0.15], "pos": [6.4, 3.6, 13.9], "ch": "neon", "mirror": true}
+      ]},
+      "twin_plane": {"name": "Twin Plane", "culture": "Wing Car", "parts": [
+        {"shape": "block", "size": [0.5, 2.6, 0.9], "pos": [0, 4.1, 11], "ch": "detail", "note": "central pillar on the wing plinth"},
+        {"shape": "block", "size": [8.4, 0.15, 1.6], "pos": [0, 3.7, 11.6], "ch": "secondary", "note": "lower plane"},
+        {"shape": "block", "size": [9.6, 0.18, 2], "pos": [0, 5.3, 11.8], "ch": "primary", "note": "upper plane"},
+        {"shape": "block", "size": [0.15, 2.2, 2.2], "pos": [4.4, 4.5, 11.8], "ch": "secondary", "mirror": true, "note": "side plates"},
+        {"shape": "block", "size": [0.8, 0.15, 0.15], "pos": [0, 5.45, 12.8], "ch": "neon"}
+      ]},
+      "sprint_top_wing": {"name": "Sprint Top Wing", "culture": "Speedway Sprint", "parts": [
+        {"shape": "block", "size": [0.25, 2.6, 0.3], "pos": [0.5, 4.1, 10.2], "ch": "detail", "mirror": true, "note": "rear posts on the wing plinth"},
+        {"shape": "cyl_x", "size": [7.04, 0.22, 0.22], "pos": [0.8, 5.525, 6.7], "rot": [0, 85.101, 3.665], "ch": "detail", "mirror": true, "note": "forward arms"},
+        {"shape": "block", "size": [9.6, 0.3, 8], "pos": [0, 6.1, 1.5], "rot": [-7, 0, 0], "ch": "primary", "note": "huge top wing over the cockpit"},
+        {"shape": "block", "size": [0.2, 2.2, 8.4], "pos": [4.8, 6.2, 1.5], "ch": "secondary", "mirror": true, "note": "side panels"},
+        {"shape": "block", "size": [0.25, 0.75, 0.25], "pos": [1.2, 5.225, -1.5], "ch": "detail", "mirror": true, "note": "front stays stop above any cage"},
+        {"shape": "block", "size": [9.6, 0.5, 0.15], "pos": [0, 6.85, 5.45], "ch": "secondary", "note": "wicker bill"},
+        {"shape": "block", "size": [0.24, 0.2, 2], "pos": [4.8, 7.2, 4], "ch": "neon", "mirror": true}
+      ]}
+    },
+    "Hood": {
+      "tall": {"name": "Tall", "culture": "Formula", "parts": [
+        {"shape": "block", "size": [1.4, 0.2, 3], "pos": [0, 2.9, 4.6], "ch": "detail", "note": "base: linkage to the spine"},
+        {"shape": "block", "size": [1.6, 1.4, 1.5], "pos": [0, 3.7, 3.9], "ch": "primary", "note": "tall intake"},
+        {"shape": "block", "size": [1.2, 1, 0.1], "pos": [0, 3.75, 3.1], "ch": "detail", "note": "intake mouth"},
+        {"shape": "wedge", "size": [1.6, 1.4, 3.6], "pos": [0, 3.7, 6.45], "rot": [0, 180, 0], "ch": "primary"},
+        {"shape": "block", "size": [0.9, 0.12, 0.4], "pos": [0, 4.5, 3.9], "ch": "neon"}
+      ]},
+      "split": {"name": "Split", "culture": "Prototype", "parts": [
+        {"shape": "block", "size": [1.4, 0.15, 4.6], "pos": [0, 2.875, 5.4], "ch": "detail", "note": "base: linkage to the spine"},
+        {"shape": "cyl_z", "size": [0.9, 0.9, 1.6], "pos": [0.6, 3.4, 3.95], "ch": "primary", "mirror": true, "note": "twin nostrils"},
+        {"shape": "cyl_z", "size": [0.7, 0.7, 0.1], "pos": [0.6, 3.4, 3.11], "ch": "detail", "mirror": true},
+        {"shape": "wedge", "size": [0.9, 0.9, 2.2], "pos": [0.6, 3.4, 5.85], "rot": [0, 180, 0], "ch": "primary", "mirror": true},
+        {"shape": "wedge", "size": [0.16, 1.6, 2], "pos": [0, 3.75, 4.4], "ch": "secondary", "note": "centre fin"},
+        {"shape": "block", "size": [0.16, 1.6, 2.9], "pos": [0, 3.75, 6.85], "ch": "secondary"}
+      ]},
+      "roll_hoop": {"name": "Roll Hoop", "culture": "Vintage Grand Prix", "parts": [
+        {"shape": "block", "size": [0.5, 0.15, 0.5], "pos": [0.9, 2.875, 3.4], "ch": "detail", "mirror": true, "note": "feet: linkage to the spine"},
+        {"shape": "cyl_x", "size": [1.565, 0.25, 0.25], "pos": [0.7, 3.65, 3.5], "rot": [0, -153.435, 73.398], "ch": "secondary", "mirror": true, "note": "hoop legs"},
+        {"shape": "cyl_x", "size": [1.25, 0.25, 0.25], "pos": [0, 4.45, 3.6], "ch": "secondary"},
+        {"shape": "cyl_x", "size": [4.128, 0.2, 0.2], "pos": [0.4, 3.675, 5.65], "rot": [0, -91.469, -19.088], "ch": "secondary", "mirror": true, "note": "back stays"}
+      ]}
+    },
+    "Roof": {
+      "halo": {"name": "Halo", "culture": "Formula", "parts": [
+        {"shape": "block", "size": [0.6, 0.15, 0.5], "pos": [0, 2.28, -3.95], "ch": "detail", "note": "front foot on the rim"},
+        {"shape": "block", "size": [1.806, 0.3, 0.35], "pos": [0, 3, -3.225], "rot": [0, -90, 41.634], "ch": "secondary", "note": "centre pillar"},
+        {"shape": "block", "size": [2.74, 0.3, 0.4], "pos": [0, 3.65, -2.4], "ch": "secondary", "note": "front arc"},
+        {"shape": "block", "size": [0.3, 0.3, 2.8], "pos": [1.22, 3.65, -0.8], "ch": "secondary", "mirror": true, "note": "side arms pass outside the head box"},
+        {"shape": "block", "size": [0.3, 1.3, 0.3], "pos": [1.22, 2.85, 0.43], "ch": "detail", "mirror": true, "note": "rear feet on the rim"},
+        {"shape": "block", "size": [1.2, 0.1, 0.1], "pos": [0, 3.65, -2.65], "ch": "neon"}
+      ]},
+      "aeroscreen": {"name": "Aeroscreen", "culture": "Speedway Sprint", "parts": [
+        {"shape": "block", "size": [2.7, 0.08, 1.5], "pos": [0, 2.24, -4.2], "ch": "detail", "note": "gasket on the rim"},
+        {"shape": "wedge", "size": [2.6, 1.2, 1.5], "pos": [0, 2.88, -4.2], "ch": "glass", "note": "wrap screen"},
+        {"shape": "block", "size": [0.25, 1.2, 3.6], "pos": [1.2, 2.88, -1.65], "ch": "glass", "mirror": true, "note": "side screens outside the head box"},
+        {"shape": "block", "size": [2.65, 0.15, 0.3], "pos": [0, 3.55, -3.4], "ch": "detail", "note": "top frame"},
+        {"shape": "block", "size": [0.3, 0.15, 3.6], "pos": [1.2, 3.55, -1.65], "ch": "detail", "mirror": true}
+      ]},
+      "bubble_canopy": {"name": "Bubble Canopy", "culture": "Prototype", "parts": [
+        {"shape": "wedge", "size": [2.9, 1.7, 1.5], "pos": [0, 3.08, -4.25], "ch": "glass", "note": "windscreen"},
+        {"shape": "block", "size": [2.7, 1.7, 2.2], "pos": [0, 3.08, -2.4], "ch": "glass", "note": "front bubble"},
+        {"shape": "block", "size": [0.3, 1.25, 1.9], "pos": [1.22, 2.855, -0.35], "ch": "glass", "mirror": true, "note": "side panes outside the head box"},
+        {"shape": "block", "size": [2.7, 0.4, 1.9], "pos": [0, 3.73, -0.35], "ch": "glass", "note": "top pane over the head box"},
+        {"shape": "block", "size": [2.75, 0.1, 0.15], "pos": [0, 3.95, -3.5], "ch": "detail", "note": "frame hoop"},
+        {"shape": "block", "size": [2.75, 0.1, 0.15], "pos": [0, 3.95, 0.5], "ch": "detail"}
+      ]}
+    }
+  },
+  "builds": [
+    {"name": "1 Formula kit on Formula tub", "cockpit": "formula", "paint": {"primary": "#e2362b", "secondary": "#f4f4f0", "neon": "#7df9ff"}, "modules": {"Engine1": "open_rings", "Engine2": "v_cover", "SidePods": "coke_bottle", "Stabilisers": "bargeboards", "Boost": "single_exit", "FrontBumper": "needle_nose", "RearBumper": "shallow", "RearSpoiler": "high_downforce", "Hood": "tall", "Roof": "halo"}, "note": "Baseline: full Formula culture."},
+    {"name": "2 Formula kit on Cigar tub", "cockpit": "cigar", "paint": {"primary": "#e2362b", "secondary": "#f4f4f0", "neon": "#7df9ff"}, "modules": {"Engine1": "open_rings", "Engine2": "v_cover", "SidePods": "coke_bottle", "Stabilisers": "bargeboards", "Boost": "single_exit", "FrontBumper": "needle_nose", "RearBumper": "shallow", "RearSpoiler": "high_downforce", "Hood": "tall", "Roof": "halo"}, "note": "Same kit and paint, different cockpit."},
+    {"name": "3 Formula kit on Prototype cabin", "cockpit": "prototype", "paint": {"primary": "#e2362b", "secondary": "#f4f4f0", "neon": "#7df9ff"}, "modules": {"Engine1": "open_rings", "Engine2": "v_cover", "SidePods": "coke_bottle", "Stabilisers": "bargeboards", "Boost": "single_exit", "FrontBumper": "needle_nose", "RearBumper": "shallow", "RearSpoiler": "high_downforce", "Hood": "tall", "Roof": "halo"}, "note": "Same kit and paint; the halo sits inside the closed cabin frame."},
+    {"name": "4 Sprint cage, Formula kit", "cockpit": "sprint", "paint": {"primary": "#1f6fe0", "secondary": "#f2f2f2", "neon": "#ffd84a"}, "modules": {"Engine1": "open_rings", "Engine2": "v_cover", "SidePods": "coke_bottle", "Stabilisers": "bargeboards", "Boost": "single_exit", "FrontBumper": "needle_nose", "RearBumper": "shallow", "RearSpoiler": "high_downforce", "Hood": "tall", "Roof": "halo"}, "note": "One cockpit, kit 1 of 3."},
+    {"name": "5 Sprint cage, Prototype kit", "cockpit": "sprint", "paint": {"primary": "#f08a1c", "secondary": "#1b2a4a", "neon": "#8ff6ff"}, "modules": {"Engine1": "prototype_arches", "Engine2": "prototype_tail", "SidePods": "skirted", "Stabilisers": "venturi_tunnels", "Boost": "blown_diffuser", "FrontBumper": "snowplough", "RearBumper": "deep_tunnel", "RearSpoiler": "low_drag", "Hood": "split", "Roof": "bubble_canopy"}, "note": "One cockpit, kit 2 of 3: arches, enclosed tail and bubble canopy inside the cage."},
+    {"name": "6 Sprint cage, Sprint kit", "cockpit": "sprint", "paint": {"primary": "#ffd21a", "secondary": "#c0262d", "neon": "#ffffff"}, "modules": {"Engine1": "vintage_wires", "Engine2": "sprint_rear", "SidePods": "radiator_boxes", "Stabilisers": "flat_floor", "Boost": "twin_megaphone", "FrontBumper": "radiator_nose", "RearBumper": "shallow", "RearSpoiler": "sprint_top_wing", "Hood": "roll_hoop", "Roof": "aeroscreen"}, "note": "One cockpit, kit 3 of 3: full Speedway Sprint culture with the top wing."},
+    {"name": "7 Wildcard Cigar wing-car mix", "cockpit": "cigar", "paint": {"primary": "#1f8f5a", "secondary": "#f2e7c4", "neon": "#ffb347"}, "modules": {"Engine1": "faired_pods", "Engine2": "turbo_stack", "SidePods": "zero_pod", "Stabilisers": "flat_floor", "Boost": "twin_megaphone", "FrontBumper": "high_nose", "RearBumper": "deep_tunnel", "RearSpoiler": "twin_plane", "Hood": "roll_hoop", "Roof": "aeroscreen"}, "note": "Vintage tube with faired pods, turbo stack, high nose and a biplane wing."},
+    {"name": "8 Wildcard Prototype cabin mix", "cockpit": "prototype", "paint": {"primary": "#7a2be2", "secondary": "#19e0c2", "neon": "#ff3df0"}, "modules": {"Engine1": "prototype_arches", "Engine2": "sprint_rear", "SidePods": "coke_bottle", "Stabilisers": "venturi_tunnels", "Boost": "single_exit", "FrontBumper": "radiator_nose", "RearBumper": "deep_tunnel", "RearSpoiler": "twin_plane", "Hood": "tall", "Roof": "bubble_canopy"}, "note": "Closed cabin with arches in front, sprint rear, vintage nose and bubble canopy."}
+  ]
+}

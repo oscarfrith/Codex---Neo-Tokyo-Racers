@@ -1,0 +1,572 @@
+{
+  "id": "rider",
+  "displayName": "Rider",
+  "tagline": "Hoverbikes. The rider sits astride and is always visible.",
+  "standard": {
+    "cockpitEnvelope": [
+      {"min": [-0.8, -0.8, -2.8], "max": [0.8, 1.6, 3.4], "note": "core spine and power cell"},
+      {"min": [-0.8, 1.6, -0.2], "max": [0.8, 3.2, 3.4], "note": "seat base"},
+      {"min": [0.8, 0.0, -2.8], "max": [1.6, 3.2, 3.4], "mirror": true, "note": "leg channels, pegs"},
+      {"min": [-1.6, 3.2, -1.6], "max": [1.6, 6.6, 3.4], "note": "rider upper body"}
+    ],
+    "datums": {"beltline": 1.6, "sill": 0.0, "hoverPlane": -2.0},
+    "riderDatums": {"note": "Informational. Not read by the validator. See docs/design/vehicle-categories/rider-frame.md.", "handDatum": [1.15, 4.0, -1.3], "gripBox": {"min": [0.85, 3.6, -2.2], "max": [1.7, 4.4, -1.6], "mirror": true}, "maxArmReach": 2.2, "seatTail": {"z": 3.35, "yMin": 2.2, "yMax": 3.0}, "headTopMax": 6.5, "panelStayStations": [-2.62, 3.15]},
+    "slots": {
+      "Engine1": {"label": "Front End", "envelope": [
+        {"min": [-1.4, -1.8, -8.4], "max": [1.4, 1.4, -2.8], "note": "ring or vane"},
+        {"min": [-1.4, 1.4, -5.6], "max": [1.4, 2.2, -2.8], "note": "fork, behind the rake line"},
+        {"min": [-1.4, 2.2, -4.4], "max": [1.4, 3.2, -2.8], "note": "yokes"}
+      ], "anchor": {"to": "cockpit", "face": "+z"}, "explode": [0, -1.0, -4.5]},
+      "Engine2": {"label": "Rear End", "envelope": {"min": [-1.4, -1.8, 3.4], "max": [1.4, 1.6, 7.6]}, "anchor": {"to": "cockpit", "face": "-z"}, "explode": [0, -1.0, 4.5]},
+      "Stabilisers": {"label": "Winglets", "envelope": [
+        {"min": [0.8, -1.4, -2.8], "max": [2.4, 0.0, 3.0], "mirror": true, "note": "belly strut zone"},
+        {"min": [2.4, -1.4, -4.4], "max": [3.0, 2.2, 3.4], "mirror": true, "note": "tip device zone"}
+      ], "anchor": {"to": "cockpit", "face": "-x"}, "explode": [0, -4.5, 0]},
+      "Boost": {"label": "Exhaust", "envelope": {"min": [1.4, -1.4, 4.4], "max": [2.4, 2.8, 8.2], "mirror": true}, "anchor": {"to": "Engine2", "face": "-x"}, "explode": [0, -3.0, 9.0]},
+      "FrontBumper": {"label": "Fairing", "envelope": [
+        {"min": [-1.6, 2.2, -8.4], "max": [1.6, 3.9, -4.4], "note": "ahead of the yokes"},
+        {"min": [-1.6, 1.4, -8.4], "max": [1.6, 2.2, -5.6], "note": "chin, ahead of the rake line"}
+      ], "anchor": {"to": "Engine1", "face": "+z"}, "explode": [0, 2.0, -9.5]},
+      "RearBumper": {"label": "Tail Kit", "envelope": [
+        {"min": [-1.3, 1.6, 6.6], "max": [1.3, 5.8, 8.2], "note": "behind the seat unit"},
+        {"min": [-1.3, -0.8, 7.6], "max": [1.3, 1.6, 8.2], "note": "hanger behind the ring"}
+      ], "anchor": {"to": "RearSpoiler", "face": "-z"}, "explode": [0, 4.5, 10.5]},
+      "RearSpoiler": {"label": "Seat Unit", "envelope": {"min": [-1.3, 1.6, 3.4], "max": [1.3, 4.4, 6.6]}, "anchor": {"to": "cockpit", "face": "-z"}, "explode": [0, 3.0, 5.5]},
+      "SidePods": {"label": "Body Panels", "envelope": {"min": [1.6, 0.0, -4.4], "max": [2.4, 3.2, 4.4], "mirror": true}, "anchor": {"to": "cockpit", "face": "-x"}, "explode": [0, -8.5, 0]},
+      "Hood": {"label": "Tank", "envelope": {"min": [-0.8, 1.6, -2.8], "max": [0.8, 3.2, -0.2]}, "anchor": {"to": "cockpit", "face": "-y"}, "explode": [0, 7.5, -0.5]},
+      "Roof": {"label": "Screen", "envelope": {"min": [-1.4, 3.9, -7.6], "max": [1.4, 6.2, -4.4]}, "anchor": {"to": "FrontBumper", "face": "-y"}, "explode": [0, 6.5, -10.0]},
+      "Accessory": {"label": "Bars", "envelope": {"min": [-2.2, 3.2, -4.4], "max": [2.2, 5.8, -1.6]}, "anchor": {"to": "Engine1", "face": "-y"}, "explode": [0, 5.0, -5.0]}
+    }
+  },
+  "cockpits": {
+    "supersport": {"name": "Supersport", "culture": "Supersport", "parts": [
+      {"shape": "block", "size": [1.5, 0.5, 4.829], "pos": [0.0, 1.015, 0.3], "rot": [6.301, 0.0, 0.0], "ch": "secondary", "note": "twin-spar beam frame"},
+      {"shape": "block", "size": [1.3, 1.3, 2.6], "pos": [0.0, 0.0, -0.5], "ch": "detail", "note": "power cell"},
+      {"shape": "cyl_x", "size": [1.52, 0.8, 0.8], "pos": [0.0, -0.05, -0.5], "ch": "neon", "note": "reactor window"},
+      {"shape": "block", "size": [1.4, 0.2, 3.8], "pos": [0.0, -0.68, 0.1], "ch": "primary", "note": "belly pan"},
+      {"shape": "block", "size": [1.3, 1.0, 0.16], "pos": [0.0, 0.2, -2.3], "rot": [-12.0, 0.0, 0.0], "ch": "detail", "note": "radiator"},
+      {"shape": "block", "size": [0.7, 0.5, 0.6], "pos": [0.0, 1.3, -2.45], "ch": "secondary", "note": "neck stub: reaches the Front End seam at the beltline"},
+      {"shape": "block", "size": [1.5, 1.2, 0.5], "pos": [0.0, 0.5, 3.1], "ch": "secondary", "note": "swingarm pivot plate: Rear End seam"},
+      {"shape": "block", "size": [1.1, 0.35, 1.968], "pos": [0.0, 1.8, 2.375], "rot": [-27.216, 0.0, 0.0], "ch": "detail", "note": "subframe"},
+      {"shape": "block", "size": [1.4, 0.3, 2.452], "pos": [0.0, 2.55, 1.175], "rot": [-2.337, 0.0, 0.0], "ch": "detail", "note": "seat pad"},
+      {"shape": "block", "size": [1.4, 0.6, 0.9], "pos": [0.0, 2.7, 2.9], "ch": "primary", "note": "bum stop: seat tail datum"},
+      {"shape": "block", "size": [0.6, 0.14, 0.36], "pos": [1.25, 1.0, 1.9], "ch": "detail", "mirror": true, "note": "foot peg"},
+      {"shape": "block", "size": [0.14, 0.9, 0.4], "pos": [0.88, 0.75, 1.9], "ch": "secondary", "mirror": true, "note": "peg hanger"},
+      {"shape": "block", "size": [0.85, 0.2, 0.2], "pos": [1.15, 1.1, -2.62], "ch": "detail", "mirror": true, "note": "front panel stay: Body Panels hardpoint"},
+      {"shape": "block", "size": [0.85, 0.2, 0.2], "pos": [1.15, 1.2, 3.15], "ch": "detail", "mirror": true, "note": "rear panel stay: Body Panels hardpoint"},
+      {"shape": "block", "size": [1.5, 0.8, 2.353], "pos": [0.0, 3.562, 0.941], "rot": [-34.943, 180.0, 0.0], "ch": "driver", "note": "rider torso"},
+      {"shape": "ball", "size": [1.15, 1.15, 1.15], "pos": [0.0, 4.75, -0.5], "ch": "driver", "note": "rider head"},
+      {"shape": "block", "size": [0.8, 0.3, 0.2], "pos": [0.0, 4.539, -0.953], "rot": [-25.0, 0.0, 0.0], "ch": "glass", "note": "visor"},
+      {"shape": "block", "size": [0.62, 0.62, 1.25], "pos": [1.18, 2.504, 1.294], "rot": [54.126, 180.0, 0.0], "ch": "driver", "mirror": true, "note": "thigh"},
+      {"shape": "block", "size": [0.56, 0.56, 1.25], "pos": [1.18, 1.744, 1.499], "rot": [23.935, 0.0, 0.0], "ch": "driver", "mirror": true, "note": "shin"},
+      {"shape": "block", "size": [0.6, 0.34, 1.0], "pos": [1.18, 1.24, 1.83], "ch": "driver", "mirror": true, "note": "boot on the peg"},
+      {"shape": "block", "size": [0.5, 0.5, 1.101], "pos": [1.08, 3.576, -0.25], "rot": [50.433, 176.73, 0.0], "ch": "driver", "mirror": true, "note": "upper arm"},
+      {"shape": "block", "size": [0.44, 0.44, 1.101], "pos": [1.125, 3.576, -0.95], "rot": [-50.407, 175.914, 0.0], "ch": "driver", "mirror": true, "note": "forearm"},
+      {"shape": "block", "size": [0.5, 0.5, 0.5], "pos": [1.15, 4.0, -1.3], "ch": "driver", "mirror": true, "note": "hand at the grip datum"}
+    ]},
+    "streetfighter": {"name": "Streetfighter", "culture": "Streetfighter", "parts": [
+      {"shape": "cyl_z", "size": [0.22, 0.22, 1.383], "pos": [0.69, 0.875, -1.95], "rot": [49.399, 0.0, 0.0], "ch": "secondary", "mirror": true, "note": "trellis"},
+      {"shape": "cyl_z", "size": [0.22, 0.22, 1.383], "pos": [0.69, 0.875, -1.05], "rot": [-49.399, 0.0, 0.0], "ch": "secondary", "mirror": true, "note": "trellis"},
+      {"shape": "cyl_z", "size": [0.22, 0.22, 1.485], "pos": [0.69, 0.875, -0.075], "rot": [45.0, 0.0, 0.0], "ch": "secondary", "mirror": true, "note": "trellis"},
+      {"shape": "cyl_z", "size": [0.22, 0.22, 1.416], "pos": [0.69, 0.825, 0.975], "rot": [-42.138, 0.0, 0.0], "ch": "secondary", "mirror": true, "note": "trellis"},
+      {"shape": "block", "size": [1.2, 1.5, 2.6], "pos": [0.0, 0.2, -0.5], "ch": "detail", "note": "power cell"},
+      {"shape": "block", "size": [1.26, 0.2, 1.8], "pos": [0.0, 0.55, -0.5], "ch": "neon", "note": "cell glow slot"},
+      {"shape": "block", "size": [1.3, 0.5, 2.0], "pos": [0.0, -0.55, 0.7], "ch": "detail", "note": "belly box"},
+      {"shape": "block", "size": [0.7, 0.5, 0.6], "pos": [0.0, 1.3, -2.45], "ch": "secondary", "note": "neck stub: reaches the Front End seam at the beltline"},
+      {"shape": "block", "size": [1.4, 1.0, 0.5], "pos": [0.0, 0.5, 3.1], "ch": "secondary", "note": "pivot plate"},
+      {"shape": "block", "size": [1.0, 0.7, 1.6], "pos": [0.0, 1.8, 0.9], "ch": "detail", "note": "seat support"},
+      {"shape": "block", "size": [1.4, 0.35, 2.0], "pos": [0.0, 2.33, 0.95], "ch": "detail", "note": "seat pad"},
+      {"shape": "block", "size": [0.9, 0.3, 2.103], "pos": [0.0, 1.95, 2.325], "rot": [-28.393, 0.0, 0.0], "ch": "secondary", "note": "kicked-up subframe"},
+      {"shape": "block", "size": [1.3, 0.3, 1.408], "pos": [0.0, 2.65, 2.575], "rot": [-16.504, 0.0, 0.0], "ch": "primary", "note": "seat tail datum"},
+      {"shape": "block", "size": [0.6, 0.14, 0.36], "pos": [1.25, 0.95, 1.15], "ch": "detail", "mirror": true, "note": "foot peg"},
+      {"shape": "block", "size": [0.14, 0.9, 0.4], "pos": [0.88, 0.7, 1.15], "ch": "secondary", "mirror": true, "note": "peg hanger"},
+      {"shape": "block", "size": [0.85, 0.2, 0.2], "pos": [1.15, 1.1, -2.62], "ch": "detail", "mirror": true, "note": "front panel stay: Body Panels hardpoint"},
+      {"shape": "block", "size": [0.85, 0.2, 0.2], "pos": [1.15, 1.2, 3.15], "ch": "detail", "mirror": true, "note": "rear panel stay: Body Panels hardpoint"},
+      {"shape": "block", "size": [1.5, 0.8, 2.348], "pos": [0.0, 3.66, 0.573], "rot": [-68.03, 180.0, 0.0], "ch": "driver", "note": "rider torso"},
+      {"shape": "ball", "size": [1.15, 1.15, 1.15], "pos": [0.0, 5.32, 0.02], "ch": "driver", "note": "rider head"},
+      {"shape": "block", "size": [0.8, 0.3, 0.2], "pos": [0.0, 5.25, -0.475], "rot": [-8.0, 0.0, 0.0], "ch": "glass", "note": "visor"},
+      {"shape": "block", "size": [0.62, 0.62, 1.25], "pos": [1.18, 2.308, 0.514], "rot": [51.867, 180.0, 0.0], "ch": "driver", "mirror": true, "note": "thigh"},
+      {"shape": "block", "size": [0.56, 0.56, 1.25], "pos": [1.18, 1.628, 0.724], "rot": [17.543, 0.0, 0.0], "ch": "driver", "mirror": true, "note": "shin"},
+      {"shape": "block", "size": [0.6, 0.34, 1.0], "pos": [1.18, 1.19, 1.08], "ch": "driver", "mirror": true, "note": "boot on the peg"},
+      {"shape": "block", "size": [0.5, 0.5, 1.101], "pos": [1.08, 3.974, -0.068], "rot": [61.947, 175.568, 0.0], "ch": "driver", "mirror": true, "note": "upper arm"},
+      {"shape": "block", "size": [0.44, 0.44, 1.101], "pos": [1.125, 3.744, -0.813], "rot": [-27.674, 177.061, 0.0], "ch": "driver", "mirror": true, "note": "forearm"},
+      {"shape": "block", "size": [0.5, 0.5, 0.5], "pos": [1.15, 4.0, -1.3], "ch": "driver", "mirror": true, "note": "hand at the grip datum"}
+    ]},
+    "scrambler": {"name": "Scrambler", "culture": "Motocross", "parts": [
+      {"shape": "cyl_z", "size": [0.3, 0.3, 1.82], "pos": [0.0, 0.475, -2.0], "rot": [74.055, 0.0, 0.0], "ch": "secondary", "note": "downtube"},
+      {"shape": "cyl_z", "size": [0.26, 0.26, 4.4], "pos": [0.45, -0.55, 0.4], "ch": "secondary", "mirror": true, "note": "cradle rail"},
+      {"shape": "cyl_z", "size": [0.34, 0.34, 2.901], "pos": [0.0, 1.34, -0.75], "rot": [1.58, 0.0, 0.0], "ch": "secondary", "note": "backbone"},
+      {"shape": "cyl_x", "size": [1.3, 1.5, 1.5], "pos": [0.0, 0.05, -0.1], "ch": "detail", "note": "crankcase"},
+      {"shape": "cyl_x", "size": [1.44, 0.6, 0.6], "pos": [0.0, 0.05, -0.1], "ch": "neon", "note": "case glow"},
+      {"shape": "block", "size": [0.95, 0.95, 0.806], "pos": [0.0, 0.85, -0.75], "rot": [-60.255, 180.0, 0.0], "ch": "detail", "note": "single upright barrel"},
+      {"shape": "block", "size": [1.5, 0.14, 2.6], "pos": [0.0, -0.72, -0.4], "ch": "primary", "note": "skid plate"},
+      {"shape": "block", "size": [1.5, 0.14, 1.031], "pos": [0.0, -0.375, -2.1], "rot": [-39.094, 180.0, 0.0], "ch": "primary", "note": "skid plate upturn"},
+      {"shape": "block", "size": [0.7, 0.5, 0.6], "pos": [0.0, 1.3, -2.45], "ch": "secondary", "note": "neck stub: reaches the Front End seam at the beltline"},
+      {"shape": "block", "size": [1.3, 0.9, 0.5], "pos": [0.0, 0.5, 3.1], "ch": "secondary", "note": "pivot plate"},
+      {"shape": "block", "size": [1.3, 0.5, 3.5], "pos": [0.0, 2.7, 1.6], "ch": "detail", "note": "tall flat bench seat"},
+      {"shape": "cyl_z", "size": [0.2, 0.2, 1.346], "pos": [0.5, 1.825, 0.45], "rot": [-68.199, 180.0, 0.0], "ch": "secondary", "mirror": true, "note": "seat strut"},
+      {"shape": "cyl_z", "size": [0.2, 0.2, 1.712], "pos": [0.5, 1.6, 3.0], "rot": [-83.29, 0.0, 0.0], "ch": "secondary", "mirror": true, "note": "seat strut"},
+      {"shape": "cyl_z", "size": [0.2, 0.2, 2.594], "pos": [0.5, 1.8, 1.85], "rot": [-27.553, 0.0, 0.0], "ch": "secondary", "mirror": true, "note": "seat strut diagonal"},
+      {"shape": "block", "size": [0.6, 0.14, 0.36], "pos": [1.25, 1.25, 0.75], "ch": "detail", "mirror": true, "note": "foot peg"},
+      {"shape": "block", "size": [0.14, 1.2, 0.4], "pos": [0.88, 0.85, 0.75], "ch": "secondary", "mirror": true, "note": "peg hanger"},
+      {"shape": "block", "size": [0.85, 0.2, 0.2], "pos": [1.15, 1.1, -2.62], "ch": "detail", "mirror": true, "note": "front panel stay: Body Panels hardpoint"},
+      {"shape": "block", "size": [0.85, 0.2, 0.2], "pos": [1.15, 1.2, 3.15], "ch": "detail", "mirror": true, "note": "rear panel stay: Body Panels hardpoint"},
+      {"shape": "block", "size": [1.5, 0.8, 2.349], "pos": [0.0, 4.161, 0.348], "rot": [-79.992, 180.0, 0.0], "ch": "driver", "note": "rider torso"},
+      {"shape": "ball", "size": [1.15, 1.15, 1.15], "pos": [0.0, 5.85, 0.1], "ch": "driver", "note": "rider head"},
+      {"shape": "block", "size": [0.8, 0.3, 0.2], "pos": [0.0, 5.806, -0.398], "rot": [-5.0, 0.0, 0.0], "ch": "glass", "note": "visor"},
+      {"shape": "block", "size": [0.62, 0.62, 1.25], "pos": [1.18, 2.742, 0.136], "rot": [54.368, 180.0, 0.0], "ch": "driver", "mirror": true, "note": "thigh"},
+      {"shape": "block", "size": [0.56, 0.56, 1.25], "pos": [1.18, 1.987, 0.346], "rot": [23.28, 0.0, 0.0], "ch": "driver", "mirror": true, "note": "shin"},
+      {"shape": "block", "size": [0.6, 0.34, 1.0], "pos": [1.18, 1.49, 0.68], "ch": "driver", "mirror": true, "note": "boot on the peg"},
+      {"shape": "block", "size": [0.5, 0.5, 1.101], "pos": [1.08, 4.502, -0.015], "rot": [70.233, 173.832, 0.0], "ch": "driver", "mirror": true, "note": "upper arm"},
+      {"shape": "block", "size": [0.44, 0.44, 1.101], "pos": [1.125, 3.992, -0.75], "rot": [-0.826, 177.397, 0.0], "ch": "driver", "mirror": true, "note": "forearm"},
+      {"shape": "block", "size": [0.5, 0.5, 0.5], "pos": [1.15, 4.0, -1.3], "ch": "driver", "mirror": true, "note": "hand at the grip datum"}
+    ]},
+    "chopper": {"name": "Chopper", "culture": "Chopper", "parts": [
+      {"shape": "cyl_z", "size": [0.42, 0.42, 2.5], "pos": [0.0, 1.36, -1.05], "ch": "primary", "note": "backbone"},
+      {"shape": "cyl_z", "size": [0.36, 0.36, 2.901], "pos": [0.0, 0.83, 1.55], "rot": [21.435, 0.0, 0.0], "ch": "primary", "note": "seat post"},
+      {"shape": "cyl_z", "size": [0.24, 0.24, 1.645], "pos": [0.5, 0.225, -2.175], "rot": [70.463, 0.0, 0.0], "ch": "primary", "mirror": true, "note": "front downtube"},
+      {"shape": "cyl_z", "size": [0.24, 0.24, 4.9], "pos": [0.5, -0.55, 0.55], "ch": "primary", "mirror": true, "note": "lower rail"},
+      {"shape": "cyl_x", "size": [1.3, 1.2, 1.2], "pos": [0.0, -0.1, -0.5], "ch": "secondary", "note": "crankcase"},
+      {"shape": "cyl_z", "size": [0.8, 0.8, 1.04], "pos": [0.0, 0.575, -1.15], "rot": [-54.782, 180.0, 0.0], "ch": "detail", "note": "front cylinder of the vee"},
+      {"shape": "cyl_z", "size": [0.8, 0.8, 1.04], "pos": [0.0, 0.575, 0.15], "rot": [-54.782, 0.0, 0.0], "ch": "detail", "note": "rear cylinder of the vee"},
+      {"shape": "cyl_x", "size": [0.3, 0.8, 0.8], "pos": [0.9, 0.7, -0.5], "ch": "secondary", "mirror": true, "note": "air cleaner"},
+      {"shape": "cyl_x", "size": [0.1, 0.5, 0.5], "pos": [1.08, 0.7, -0.5], "ch": "neon", "mirror": true, "note": "air cleaner glow"},
+      {"shape": "block", "size": [1.2, 0.8, 1.2], "pos": [0.0, -0.2, 1.3], "ch": "detail", "note": "gearbox"},
+      {"shape": "block", "size": [0.7, 0.5, 0.6], "pos": [0.0, 1.3, -2.45], "ch": "secondary", "note": "neck stub: reaches the Front End seam at the beltline"},
+      {"shape": "block", "size": [1.3, 0.9, 0.5], "pos": [0.0, 0.3, 3.1], "ch": "secondary", "note": "axle plate mount"},
+      {"shape": "block", "size": [1.0, 0.5, 2.2], "pos": [0.0, 1.3, 1.5], "ch": "detail", "note": "seat pan"},
+      {"shape": "block", "size": [1.4, 0.3, 2.0], "pos": [0.0, 1.75, 0.85], "ch": "detail", "note": "low scooped seat"},
+      {"shape": "block", "size": [1.4, 0.3, 1.7], "pos": [0.0, 2.25, 2.5], "rot": [-28.072, 0.0, 0.0], "ch": "detail", "note": "seat kick-up to the tail datum"},
+      {"shape": "block", "size": [0.75, 0.14, 0.36], "pos": [1.18, 0.9, -1.85], "ch": "detail", "mirror": true, "note": "forward peg"},
+      {"shape": "block", "size": [0.85, 0.2, 0.2], "pos": [1.15, 1.1, -2.62], "ch": "detail", "mirror": true, "note": "front panel stay: Body Panels hardpoint"},
+      {"shape": "block", "size": [0.85, 0.2, 0.2], "pos": [1.15, 1.2, 3.15], "ch": "detail", "mirror": true, "note": "rear panel stay: Body Panels hardpoint"},
+      {"shape": "block", "size": [1.5, 0.8, 2.35], "pos": [0.0, 3.107, 0.58], "rot": [-78.158, 0.0, 0.0], "ch": "driver", "note": "rider torso"},
+      {"shape": "ball", "size": [1.15, 1.15, 1.15], "pos": [0.0, 4.8, 0.95], "ch": "driver", "note": "rider head"},
+      {"shape": "block", "size": [0.8, 0.3, 0.2], "pos": [0.0, 4.852, 0.453], "rot": [6.0, 0.0, 0.0], "ch": "glass", "note": "visor"},
+      {"shape": "block", "size": [0.62, 0.62, 1.25], "pos": [1.18, 2.279, -0.22], "rot": [-7.29, 180.0, 0.0], "ch": "driver", "mirror": true, "note": "thigh"},
+      {"shape": "block", "size": [0.56, 0.56, 1.25], "pos": [1.18, 1.874, -1.235], "rot": [50.796, 180.0, 0.0], "ch": "driver", "mirror": true, "note": "shin"},
+      {"shape": "block", "size": [0.6, 0.34, 1.0], "pos": [1.18, 1.14, -1.87], "ch": "driver", "mirror": true, "note": "boot on the peg"},
+      {"shape": "block", "size": [0.5, 0.5, 1.101], "pos": [1.08, 3.799, 0.264], "rot": [17.055, 177.822, 0.0], "ch": "driver", "mirror": true, "note": "upper arm"},
+      {"shape": "block", "size": [0.44, 0.44, 1.101], "pos": [1.125, 3.819, -0.781], "rot": [-19.239, 177.243, 0.0], "ch": "driver", "mirror": true, "note": "forearm"},
+      {"shape": "block", "size": [0.5, 0.5, 0.5], "pos": [1.15, 4.0, -1.3], "ch": "driver", "mirror": true, "note": "hand at the grip datum"}
+    ]},
+    "speeder": {"name": "Speeder", "culture": "Speeder", "parts": [
+      {"shape": "block", "size": [1.4, 0.9, 4.9], "pos": [0.0, 0.95, 0.2], "ch": "primary", "note": "sled hull"},
+      {"shape": "block", "size": [1.46, 0.12, 4.2], "pos": [0.0, 0.95, 0.2], "ch": "neon", "note": "hull light strip"},
+      {"shape": "wedge", "size": [0.9, 0.9, 2.6], "pos": [0.0, 0.05, -1.0], "rot": [0.0, 0.0, 180.0], "ch": "detail", "note": "keel, deepening aft"},
+      {"shape": "wedge", "size": [0.9, 0.9, 2.4], "pos": [0.0, 0.05, 1.5], "rot": [180.0, 0.0, 0.0], "ch": "detail", "note": "keel, rising aft"},
+      {"shape": "cyl_y", "size": [1.5, 0.2, 1.5], "pos": [0.0, -0.5, 0.3], "ch": "detail", "note": "belly repulsor"},
+      {"shape": "cyl_y", "size": [1.1, 0.26, 1.1], "pos": [0.0, -0.56, 0.3], "ch": "thrust", "note": "repulsor glow"},
+      {"shape": "block", "size": [0.7, 0.5, 0.6], "pos": [0.0, 1.3, -2.45], "ch": "secondary", "note": "neck stub: reaches the Front End seam at the beltline"},
+      {"shape": "block", "size": [1.4, 0.9, 0.5], "pos": [0.0, 0.75, 3.1], "ch": "secondary", "note": "drive mount"},
+      {"shape": "block", "size": [1.0, 0.8, 2.2], "pos": [0.0, 1.75, 1.3], "ch": "secondary", "note": "saddle plinth"},
+      {"shape": "block", "size": [1.3, 0.36, 2.335], "pos": [0.0, 2.3, 1.15], "rot": [-9.866, 0.0, 0.0], "ch": "detail", "note": "kneeling saddle"},
+      {"shape": "wedge", "size": [0.3, 2.3, 0.95], "pos": [0.0, 3.75, 2.9], "ch": "primary", "note": "dorsal fin"},
+      {"shape": "block", "size": [0.34, 2.0, 0.1], "pos": [0.0, 3.85, 3.33], "ch": "neon", "note": "fin light"},
+      {"shape": "block", "size": [1.3, 0.5, 0.9], "pos": [0.0, 2.45, 2.9], "ch": "primary", "note": "fin root: seat tail datum"},
+      {"shape": "block", "size": [0.6, 0.14, 0.4], "pos": [1.25, 1.7, 2.85], "ch": "detail", "mirror": true, "note": "rear stirrup"},
+      {"shape": "block", "size": [0.14, 0.9, 0.4], "pos": [0.88, 1.4, 2.85], "ch": "secondary", "mirror": true, "note": "stirrup hanger"},
+      {"shape": "block", "size": [0.85, 0.2, 0.2], "pos": [1.15, 1.1, -2.62], "ch": "detail", "mirror": true, "note": "front panel stay: Body Panels hardpoint"},
+      {"shape": "block", "size": [0.85, 0.2, 0.2], "pos": [1.15, 1.2, 3.15], "ch": "detail", "mirror": true, "note": "rear panel stay: Body Panels hardpoint"},
+      {"shape": "block", "size": [1.5, 0.8, 2.355], "pos": [0.0, 3.278, 0.708], "rot": [-25.489, 180.0, 0.0], "ch": "driver", "note": "rider torso"},
+      {"shape": "ball", "size": [1.15, 1.15, 1.15], "pos": [0.0, 4.28, -0.8], "ch": "driver", "note": "rider head"},
+      {"shape": "block", "size": [0.8, 0.3, 0.2], "pos": [0.0, 4.015, -1.224], "rot": [-32.0, 0.0, 0.0], "ch": "glass", "note": "visor"},
+      {"shape": "block", "size": [0.62, 0.62, 1.25], "pos": [1.18, 2.256, 1.694], "rot": [71.954, 0.0, 0.0], "ch": "driver", "mirror": true, "note": "thigh"},
+      {"shape": "block", "size": [0.56, 0.56, 1.25], "pos": [1.18, 1.926, 2.454], "rot": [-25.012, 0.0, 0.0], "ch": "driver", "mirror": true, "note": "shin"},
+      {"shape": "block", "size": [0.6, 0.34, 1.0], "pos": [1.18, 1.94, 2.78], "ch": "driver", "mirror": true, "note": "boot on the peg"},
+      {"shape": "block", "size": [0.5, 0.5, 1.101], "pos": [1.08, 3.244, -0.663], "rot": [36.366, 177.413, 0.0], "ch": "driver", "mirror": true, "note": "upper arm"},
+      {"shape": "block", "size": [0.44, 0.44, 1.101], "pos": [1.125, 3.459, -1.203], "rot": [-79.489, 165.586, 0.0], "ch": "driver", "mirror": true, "note": "forearm"},
+      {"shape": "block", "size": [0.5, 0.5, 0.5], "pos": [1.15, 4.0, -1.3], "ch": "driver", "mirror": true, "note": "hand at the grip datum"}
+    ]}
+  },
+  "modules": {
+    "Engine1": {
+      "sport_fork": {"name": "Sport Fork", "culture": "Supersport", "parts": [
+        {"shape": "cyl_x", "size": [0.7, 2.9, 2.9], "pos": [0.0, -0.05, -4.7], "ch": "detail", "note": "vertical hover ring"},
+        {"shape": "cyl_x", "size": [0.84, 2.32, 2.32], "pos": [0.0, -0.05, -4.7], "ch": "thrust", "note": "glowing hover core"},
+        {"shape": "cyl_z", "size": [0.36, 0.36, 1.785], "pos": [0.72, 2.125, -3.79], "rot": [67.602, 180.0, 0.0], "ch": "secondary", "mirror": true, "note": "upside-down stanchion"},
+        {"shape": "cyl_z", "size": [0.5, 0.5, 1.465], "pos": [0.72, 0.625, -4.415], "rot": [67.109, 180.0, 0.0], "ch": "detail", "mirror": true, "note": "slider"},
+        {"shape": "block", "size": [1.9, 0.28, 0.75], "pos": [0.0, 2.95, -3.45], "ch": "detail", "note": "top yoke: Bars seam"},
+        {"shape": "block", "size": [1.9, 0.28, 0.7], "pos": [0.0, 2.05, -3.83], "ch": "detail", "note": "bottom yoke"},
+        {"shape": "block", "size": [1.0, 0.14, 1.575], "pos": [0.0, 1.61, -4.675], "rot": [10.24, 180.0, 0.0], "ch": "primary", "note": "hugger"},
+        {"shape": "cyl_x", "size": [0.16, 0.5, 0.5], "pos": [0.98, -0.05, -4.7], "ch": "neon", "mirror": true, "note": "axle light"},
+        {"shape": "block", "size": [0.5, 1.2, 0.4], "pos": [0.0, 2.4, -3.05], "ch": "secondary", "note": "head tube"},
+        {"shape": "block", "size": [0.6, 0.5, 0.5], "pos": [0.0, 1.45, -3.1], "ch": "detail", "note": "linkage to the cockpit neck stub"},
+        {"shape": "block", "size": [0.6, 0.22, 0.8], "pos": [0.0, 2.98, -3.98], "ch": "detail", "note": "fairing stay: reaches the Fairing seam"}
+      ]},
+      "chopper_rake": {"name": "Chopper Rake", "culture": "Chopper", "parts": [
+        {"shape": "cyl_x", "size": [0.5, 2.9, 2.9], "pos": [0.0, -0.05, -6.9], "ch": "detail", "note": "vertical hover ring"},
+        {"shape": "cyl_x", "size": [0.64, 2.32, 2.32], "pos": [0.0, -0.05, -6.9], "ch": "thrust", "note": "glowing hover core"},
+        {"shape": "cyl_z", "size": [0.3, 0.3, 5.001], "pos": [0.5, 1.45, -5.0], "rot": [38.29, 180.0, 0.0], "ch": "secondary", "mirror": true, "note": "long raked fork leg"},
+        {"shape": "block", "size": [1.4, 0.24, 0.6], "pos": [0.0, 3.0, -3.15], "ch": "detail", "note": "top yoke: Bars seam"},
+        {"shape": "block", "size": [1.4, 0.24, 0.6], "pos": [0.0, 2.34, -3.87], "ch": "detail", "note": "bottom yoke"},
+        {"shape": "cyl_x", "size": [0.16, 0.5, 0.5], "pos": [0.74, -0.05, -6.9], "ch": "neon", "mirror": true, "note": "axle light"},
+        {"shape": "block", "size": [0.5, 1.2, 0.4], "pos": [0.0, 2.4, -3.05], "ch": "secondary", "note": "head tube"},
+        {"shape": "block", "size": [0.6, 0.5, 0.5], "pos": [0.0, 1.45, -3.1], "ch": "detail", "note": "linkage to the cockpit neck stub"},
+        {"shape": "block", "size": [0.6, 0.22, 0.8], "pos": [0.0, 2.98, -3.98], "ch": "detail", "note": "fairing stay: reaches the Fairing seam"}
+      ]},
+      "girder_fork": {"name": "Girder Fork", "culture": "Café Racer", "parts": [
+        {"shape": "cyl_x", "size": [0.7, 2.9, 2.9], "pos": [0.0, -0.05, -4.9], "ch": "detail", "note": "vertical hover ring"},
+        {"shape": "cyl_x", "size": [0.84, 2.32, 2.32], "pos": [0.0, -0.05, -4.9], "ch": "thrust", "note": "glowing hover core"},
+        {"shape": "block", "size": [0.18, 0.5, 3.112], "pos": [0.68, 1.475, -4.225], "rot": [66.318, 180.0, 0.0], "ch": "secondary", "mirror": true, "note": "girder rear blade"},
+        {"shape": "cyl_z", "size": [0.2, 0.2, 2.52], "pos": [0.68, 1.25, -4.535], "rot": [72.212, 180.0, 0.0], "ch": "secondary", "mirror": true, "note": "girder front leg"},
+        {"shape": "block", "size": [0.18, 0.2, 0.7], "pos": [0.68, 2.4, -3.95], "ch": "secondary", "mirror": true, "note": "girder web"},
+        {"shape": "block", "size": [0.18, 0.2, 0.5], "pos": [0.68, 1.4, -4.4], "ch": "secondary", "mirror": true, "note": "girder web"},
+        {"shape": "cyl_z", "size": [0.5, 0.5, 0.934], "pos": [0.0, 2.35, -3.825], "rot": [74.476, 180.0, 0.0], "ch": "neon", "note": "girder spring"},
+        {"shape": "block", "size": [1.5, 0.2, 0.7], "pos": [0.0, 2.98, -3.5], "ch": "detail", "note": "top link: Bars seam"},
+        {"shape": "block", "size": [1.5, 0.2, 0.7], "pos": [0.0, 1.82, -3.75], "ch": "detail", "note": "bottom link"},
+        {"shape": "block", "size": [0.9, 0.14, 1.251], "pos": [0.0, 1.59, -4.875], "rot": [2.748, 180.0, 0.0], "ch": "primary", "note": "sprung fender"},
+        {"shape": "cyl_x", "size": [0.16, 0.5, 0.5], "pos": [0.86, -0.05, -4.9], "ch": "neon", "mirror": true, "note": "axle light"},
+        {"shape": "block", "size": [0.5, 1.2, 0.4], "pos": [0.0, 2.4, -3.05], "ch": "secondary", "note": "head tube"},
+        {"shape": "block", "size": [0.6, 0.5, 0.5], "pos": [0.0, 1.45, -3.1], "ch": "detail", "note": "linkage to the cockpit neck stub"},
+        {"shape": "block", "size": [0.6, 0.22, 0.8], "pos": [0.0, 2.98, -3.98], "ch": "detail", "note": "fairing stay: reaches the Fairing seam"}
+      ]},
+      "hubless_ring": {"name": "Hubless Ring", "culture": "Streetfighter", "parts": [
+        {"shape": "block", "size": [0.7, 0.34, 1.135], "pos": [0.0, -0.05, -3.75], "rot": [90.0, 0.0, 0.0], "ch": "detail", "note": "hubless ring: eight rotated blocks, open centre"},
+        {"shape": "block", "size": [0.7, 0.34, 1.135], "pos": [0.0, 0.799, -4.101], "rot": [45.0, 0.0, 0.0], "ch": "detail"},
+        {"shape": "block", "size": [0.7, 0.34, 1.135], "pos": [0.0, 1.15, -4.95], "ch": "detail"},
+        {"shape": "block", "size": [0.7, 0.34, 1.135], "pos": [0.0, 0.799, -5.799], "rot": [-45.0, 0.0, 0.0], "ch": "detail"},
+        {"shape": "block", "size": [0.7, 0.34, 1.135], "pos": [0.0, -0.05, -6.15], "rot": [-90.0, 0.0, 0.0], "ch": "detail"},
+        {"shape": "block", "size": [0.7, 0.34, 1.135], "pos": [0.0, -0.899, -5.799], "rot": [-135.0, 0.0, 0.0], "ch": "detail"},
+        {"shape": "block", "size": [0.7, 0.34, 1.135], "pos": [0.0, -1.25, -4.95], "rot": [-180.0, 0.0, 0.0], "ch": "detail"},
+        {"shape": "block", "size": [0.7, 0.34, 1.135], "pos": [0.0, -0.899, -4.101], "rot": [-225.0, 0.0, 0.0], "ch": "detail"},
+        {"shape": "block", "size": [0.5, 0.1, 0.853], "pos": [0.0, -0.05, -3.97], "rot": [90.0, 0.0, 0.0], "ch": "thrust", "note": "glowing inner band"},
+        {"shape": "block", "size": [0.5, 0.1, 0.853], "pos": [0.0, 0.643, -4.257], "rot": [45.0, 0.0, 0.0], "ch": "thrust"},
+        {"shape": "block", "size": [0.5, 0.1, 0.853], "pos": [0.0, 0.93, -4.95], "ch": "thrust"},
+        {"shape": "block", "size": [0.5, 0.1, 0.853], "pos": [0.0, 0.643, -5.643], "rot": [-45.0, 0.0, 0.0], "ch": "thrust"},
+        {"shape": "block", "size": [0.5, 0.1, 0.853], "pos": [0.0, -0.05, -5.93], "rot": [-90.0, 0.0, 0.0], "ch": "thrust"},
+        {"shape": "block", "size": [0.5, 0.1, 0.853], "pos": [0.0, -0.743, -5.643], "rot": [-135.0, 0.0, 0.0], "ch": "thrust"},
+        {"shape": "block", "size": [0.5, 0.1, 0.853], "pos": [0.0, -1.03, -4.95], "rot": [-180.0, 0.0, 0.0], "ch": "thrust"},
+        {"shape": "block", "size": [0.5, 0.1, 0.853], "pos": [0.0, -0.743, -4.257], "rot": [-225.0, 0.0, 0.0], "ch": "thrust"},
+        {"shape": "block", "size": [0.3, 0.5, 1.849], "pos": [0.62, 1.998, -3.602], "rot": [77.366, 180.0, 0.0], "ch": "secondary", "mirror": true, "note": "rim-grab arm"},
+        {"shape": "block", "size": [0.3, 0.5, 1.655], "pos": [0.62, 0.473, -3.727], "rot": [82.929, 0.0, 0.0], "ch": "secondary", "mirror": true, "note": "rim caliper, down to hub height"},
+        {"shape": "block", "size": [1.6, 0.3, 0.6], "pos": [0.0, 1.096, -3.804], "rot": [45.0, 0.0, 0.0], "ch": "detail", "note": "rim clamp"},
+        {"shape": "block", "size": [1.7, 0.28, 0.7], "pos": [0.0, 2.95, -3.4], "ch": "detail", "note": "top yoke: Bars seam"},
+        {"shape": "block", "size": [0.5, 1.2, 0.4], "pos": [0.0, 2.4, -3.05], "ch": "secondary", "note": "head tube"},
+        {"shape": "block", "size": [0.6, 0.5, 0.5], "pos": [0.0, 1.45, -3.1], "ch": "detail", "note": "linkage to the cockpit neck stub"},
+        {"shape": "block", "size": [0.6, 0.22, 0.8], "pos": [0.0, 2.98, -3.98], "ch": "detail", "note": "fairing stay: reaches the Fairing seam"}
+      ]},
+      "speeder_vane": {"name": "Speeder Vane", "culture": "Speeder", "parts": [
+        {"shape": "wedge", "size": [0.22, 1.7, 4.2], "pos": [0.95, 0.35, -5.6], "ch": "primary", "mirror": true, "note": "forward vane, point ahead"},
+        {"shape": "block", "size": [0.2, 0.12, 3.0], "pos": [0.95, -0.58, -5.0], "ch": "thrust", "mirror": true, "note": "vane hover strip"},
+        {"shape": "block", "size": [0.26, 0.9, 0.12], "pos": [0.95, 0.6, -3.44], "ch": "neon", "mirror": true, "note": "vane light"},
+        {"shape": "cyl_z", "size": [1.1, 1.1, 2.8], "pos": [0.0, 0.2, -4.6], "ch": "detail", "note": "repulsor pod"},
+        {"shape": "ball", "size": [1.1, 1.1, 1.1], "pos": [0.0, 0.2, -6.0], "ch": "secondary", "note": "pod nose"},
+        {"shape": "cyl_y", "size": [1.5, 0.25, 1.5], "pos": [0.0, -0.75, -4.6], "ch": "detail", "note": "repulsor plate"},
+        {"shape": "cyl_y", "size": [1.1, 0.3, 1.1], "pos": [0.0, -0.82, -4.6], "ch": "thrust", "note": "repulsor glow"},
+        {"shape": "block", "size": [1.7, 0.2, 0.6], "pos": [0.0, 0.2, -4.0], "ch": "detail", "note": "vane spar"},
+        {"shape": "block", "size": [0.28, 0.45, 2.354], "pos": [0.55, 1.75, -3.65], "rot": [77.735, 180.0, 0.0], "ch": "detail", "mirror": true, "note": "upright"},
+        {"shape": "block", "size": [1.6, 0.28, 0.7], "pos": [0.0, 2.95, -3.4], "ch": "detail", "note": "top yoke: Bars seam"},
+        {"shape": "block", "size": [0.5, 1.2, 0.4], "pos": [0.0, 2.4, -3.05], "ch": "secondary", "note": "head tube"},
+        {"shape": "block", "size": [0.6, 0.5, 0.5], "pos": [0.0, 1.45, -3.1], "ch": "detail", "note": "linkage to the cockpit neck stub"},
+        {"shape": "block", "size": [0.6, 0.22, 0.8], "pos": [0.0, 2.98, -3.98], "ch": "detail", "note": "fairing stay: reaches the Fairing seam"}
+      ]}
+    },
+    "Engine2": {
+      "sport_swingarm": {"name": "Sport Swingarm", "culture": "Supersport", "parts": [
+        {"shape": "cyl_x", "size": [0.9, 3.0, 3.0], "pos": [0.0, 0.0, 5.6], "ch": "detail", "note": "vertical hover ring"},
+        {"shape": "cyl_x", "size": [1.04, 2.4, 2.4], "pos": [0.0, 0.0, 5.6], "ch": "thrust", "note": "glowing hover core"},
+        {"shape": "block", "size": [0.3, 0.6, 2.12], "pos": [0.82, 0.25, 4.725], "rot": [15.945, 0.0, 0.0], "ch": "secondary", "mirror": true, "note": "swingarm"},
+        {"shape": "block", "size": [0.2, 0.2, 1.331], "pos": [0.82, 0.875, 4.15], "rot": [34.287, 0.0, 0.0], "ch": "detail", "mirror": true, "note": "swingarm brace"},
+        {"shape": "cyl_z", "size": [0.4, 0.4, 0.727], "pos": [0.0, 1.11, 3.81], "rot": [58.496, 0.0, 0.0], "ch": "neon", "note": "monoshock"},
+        {"shape": "block", "size": [1.1, 0.14, 1.059], "pos": [0.0, 1.165, 4.61], "rot": [-39.251, 0.0, 0.0], "ch": "primary", "note": "hugger"},
+        {"shape": "cyl_x", "size": [0.16, 0.5, 0.5], "pos": [1.05, 0.0, 5.6], "ch": "neon", "mirror": true, "note": "axle light"},
+        {"shape": "block", "size": [1.3, 0.6, 0.4], "pos": [0.0, 0.5, 3.62], "ch": "detail", "note": "pivot linkage: cockpit seam"}
+      ]},
+      "fat_drum": {"name": "Fat Drum", "culture": "Streetfighter", "parts": [
+        {"shape": "cyl_x", "size": [2.0, 2.7, 2.7], "pos": [0.0, -0.15, 5.4], "ch": "detail", "note": "fat hover drum"},
+        {"shape": "cyl_x", "size": [2.14, 2.0, 2.0], "pos": [0.0, -0.15, 5.4], "ch": "thrust", "note": "drum core"},
+        {"shape": "cyl_x", "size": [0.14, 2.8, 2.8], "pos": [0.55, -0.15, 5.4], "ch": "neon", "mirror": true, "note": "tread light band"},
+        {"shape": "block", "size": [0.24, 0.8, 1.989], "pos": [1.26, 0.175, 4.675], "rot": [24.146, 0.0, 0.0], "ch": "secondary", "mirror": true, "note": "drum arm"},
+        {"shape": "block", "size": [2.3, 0.18, 2.0], "pos": [0.0, 1.45, 5.3], "ch": "primary", "note": "flat fender"},
+        {"shape": "block", "size": [2.3, 0.6, 0.4], "pos": [0.0, 0.6, 3.62], "ch": "detail", "note": "pivot linkage: cockpit seam"}
+      ]},
+      "hardtail": {"name": "Hardtail", "culture": "Chopper", "parts": [
+        {"shape": "cyl_x", "size": [0.7, 3.0, 3.0], "pos": [0.0, 0.0, 6.0], "ch": "detail", "note": "vertical hover ring"},
+        {"shape": "cyl_x", "size": [0.84, 2.4, 2.4], "pos": [0.0, 0.0, 6.0], "ch": "thrust", "note": "glowing hover core"},
+        {"shape": "cyl_z", "size": [0.28, 0.28, 2.56], "pos": [0.62, -0.275, 4.75], "rot": [-12.407, 0.0, 0.0], "ch": "secondary", "mirror": true, "note": "rigid lower rail"},
+        {"shape": "cyl_z", "size": [0.28, 0.28, 2.818], "pos": [0.62, 0.65, 4.75], "rot": [27.474, 0.0, 0.0], "ch": "secondary", "mirror": true, "note": "rigid upper stay"},
+        {"shape": "block", "size": [0.2, 0.7, 0.8], "pos": [0.62, 0.0, 6.0], "ch": "detail", "mirror": true, "note": "axle plate"},
+        {"shape": "cyl_x", "size": [0.16, 0.5, 0.5], "pos": [0.82, 0.0, 6.0], "ch": "neon", "mirror": true, "note": "axle light"},
+        {"shape": "cyl_x", "size": [1.0, 0.8, 0.8], "pos": [0.0, 0.4, 4.05], "ch": "secondary", "note": "oil tank"},
+        {"shape": "block", "size": [1.5, 0.3, 0.3], "pos": [0.0, 0.4, 3.58], "ch": "detail", "note": "cross mount: cockpit seam"}
+      ]},
+      "twin_thruster": {"name": "Twin Thruster", "culture": "Speeder", "parts": [
+        {"shape": "cyl_z", "size": [1.2, 1.2, 3.0], "pos": [0.72, 0.5, 5.2], "ch": "primary", "mirror": true, "note": "thruster nacelle"},
+        {"shape": "cyl_z", "size": [1.3, 1.3, 0.3], "pos": [0.72, 0.5, 3.8], "ch": "detail", "mirror": true, "note": "intake lip"},
+        {"shape": "cyl_z", "size": [1.0, 1.0, 0.6], "pos": [0.72, 0.5, 7.0], "ch": "detail", "mirror": true, "note": "nozzle"},
+        {"shape": "cyl_z", "size": [0.75, 0.75, 0.25], "pos": [0.72, 0.5, 7.42], "ch": "thrust", "mirror": true, "note": "thruster glow"},
+        {"shape": "wedge", "size": [0.14, 0.5, 1.6], "pos": [0.72, 1.35, 5.9], "ch": "secondary", "mirror": true, "note": "nacelle fin"},
+        {"shape": "cyl_y", "size": [1.9, 0.25, 1.9], "pos": [0.0, -0.95, 5.3], "ch": "detail", "note": "rear repulsor plate"},
+        {"shape": "cyl_y", "size": [1.4, 0.3, 1.4], "pos": [0.0, -1.02, 5.3], "ch": "thrust", "note": "repulsor glow"},
+        {"shape": "block", "size": [0.5, 0.9, 1.2], "pos": [0.0, -0.4, 5.3], "ch": "detail", "note": "repulsor pylon"},
+        {"shape": "block", "size": [1.4, 0.5, 0.4], "pos": [0.0, 0.5, 3.62], "ch": "detail", "note": "mount: cockpit seam"}
+      ]}
+    },
+    "Stabilisers": {
+      "aero_winglets": {"name": "Aero Winglets", "culture": "Supersport", "parts": [
+        {"shape": "block", "size": [1.7, 0.18, 0.7], "pos": [1.7, -0.3, -1.3], "ch": "detail", "mirror": true, "note": "belly strut: cockpit seam"},
+        {"shape": "block", "size": [0.12, 1.9, 1.5], "pos": [2.48, 0.5, -1.5], "ch": "primary", "mirror": true, "note": "root plate"},
+        {"shape": "wedge", "size": [1.3, 0.1, 0.44], "pos": [2.76, 1.25, -1.6], "rot": [-12.0, 90.0, 0.0], "ch": "secondary", "mirror": true, "note": "upper winglet blade"},
+        {"shape": "wedge", "size": [1.3, 0.1, 0.44], "pos": [2.76, 0.45, -1.5], "rot": [-12.0, 90.0, 0.0], "ch": "secondary", "mirror": true, "note": "lower winglet blade"},
+        {"shape": "block", "size": [0.06, 0.14, 1.3], "pos": [2.96, 1.27, -1.6], "rot": [-12.0, 0.0, 0.0], "ch": "neon", "mirror": true, "note": "tip light"}
+      ]},
+      "outrigger_skids": {"name": "Outrigger Skids", "culture": "Speeder", "parts": [
+        {"shape": "block", "size": [1.8, 0.18, 0.5], "pos": [1.75, -0.6, -1.6], "ch": "detail", "mirror": true, "note": "front strut: cockpit seam"},
+        {"shape": "block", "size": [1.8, 0.18, 0.5], "pos": [1.75, -0.6, 1.6], "ch": "detail", "mirror": true, "note": "rear strut"},
+        {"shape": "cyl_z", "size": [0.6, 0.6, 5.0], "pos": [2.7, -0.75, -0.2], "ch": "detail", "mirror": true, "note": "skid pod"},
+        {"shape": "ball", "size": [0.6, 0.6, 0.6], "pos": [2.7, -0.75, -2.7], "ch": "secondary", "mirror": true, "note": "skid nose"},
+        {"shape": "block", "size": [0.3, 0.1, 4.2], "pos": [2.7, -1.12, -0.2], "ch": "thrust", "mirror": true, "note": "skid hover strip"},
+        {"shape": "wedge", "size": [0.14, 0.7, 2.0], "pos": [2.7, -0.1, 1.2], "ch": "primary", "mirror": true, "note": "skid fin"}
+      ]},
+      "crash_sliders": {"name": "Crash Sliders", "culture": "Streetfighter", "parts": [
+        {"shape": "cyl_x", "size": [1.2, 0.6, 0.6], "pos": [1.45, -0.42, -1.0], "ch": "detail", "mirror": true, "note": "frame slider: cockpit seam"},
+        {"shape": "cyl_x", "size": [0.3, 0.75, 0.75], "pos": [2.2, -0.42, -1.0], "ch": "secondary", "mirror": true, "note": "slider puck"},
+        {"shape": "cyl_x", "size": [0.08, 0.5, 0.5], "pos": [2.38, -0.42, -1.0], "ch": "neon", "mirror": true, "note": "puck light"},
+        {"shape": "cyl_x", "size": [0.9, 0.45, 0.45], "pos": [1.3, -0.5, 1.8], "ch": "detail", "mirror": true, "note": "rear slider"},
+        {"shape": "cyl_x", "size": [0.25, 0.6, 0.6], "pos": [1.87, -0.5, 1.8], "ch": "secondary", "mirror": true, "note": "rear puck"}
+      ]}
+    },
+    "Boost": {
+      "under_tail": {"name": "Under-tail", "culture": "Supersport", "parts": [
+        {"shape": "cyl_z", "size": [0.3, 0.3, 1.535], "pos": [1.775, 1.225, 4.85], "rot": [-70.886, 5.711, 0.0], "ch": "detail", "mirror": true, "note": "link pipe"},
+        {"shape": "cyl_z", "size": [0.55, 0.55, 2.233], "pos": [1.8, 2.19, 6.1], "rot": [-9.8, 0.0, 0.0], "ch": "detail", "mirror": true, "note": "high can beside the tail"},
+        {"shape": "cyl_z", "size": [0.62, 0.62, 0.253], "pos": [1.8, 2.4, 7.325], "rot": [-9.09, 0.0, 0.0], "ch": "secondary", "mirror": true, "note": "tip"},
+        {"shape": "cyl_z", "size": [0.4, 0.4, 0.132], "pos": [1.8, 2.43, 7.515], "rot": [-8.746, 0.0, 0.0], "ch": "thrust", "mirror": true, "note": "exhaust glow"}
+      ]},
+      "shotgun_pipes": {"name": "Shotgun Pipes", "culture": "Chopper", "parts": [
+        {"shape": "cyl_z", "size": [0.42, 0.42, 3.3], "pos": [1.75, 0.35, 6.1], "ch": "secondary", "mirror": true, "note": "upper pipe"},
+        {"shape": "cyl_z", "size": [0.42, 0.42, 3.6], "pos": [1.75, -0.2, 6.25], "ch": "secondary", "mirror": true, "note": "lower pipe"},
+        {"shape": "cyl_z", "size": [0.3, 0.3, 0.12], "pos": [1.75, 0.35, 7.81], "ch": "thrust", "mirror": true},
+        {"shape": "cyl_z", "size": [0.3, 0.3, 0.12], "pos": [1.75, -0.2, 8.11], "ch": "thrust", "mirror": true},
+        {"shape": "block", "size": [0.6, 0.95, 0.2], "pos": [1.72, 0.08, 6.9], "ch": "detail", "mirror": true, "note": "clamp: Rear End seam"}
+      ]},
+      "megaphone": {"name": "Megaphone", "culture": "Café Racer", "parts": [
+        {"shape": "cyl_z", "size": [0.36, 0.36, 1.0], "pos": [1.65, 0.2, 4.95], "ch": "detail", "mirror": true, "note": "header: Rear End seam"},
+        {"shape": "cyl_z", "size": [0.55, 0.55, 0.9], "pos": [1.85, 0.3, 5.9], "ch": "secondary", "mirror": true, "note": "megaphone step"},
+        {"shape": "cyl_z", "size": [0.8, 0.8, 0.9], "pos": [1.85, 0.4, 6.8], "ch": "secondary", "mirror": true, "note": "megaphone step"},
+        {"shape": "cyl_z", "size": [1.0, 1.0, 0.65], "pos": [1.9, 0.5, 7.575], "ch": "secondary", "mirror": true, "note": "megaphone mouth"},
+        {"shape": "cyl_z", "size": [0.7, 0.7, 0.14], "pos": [1.9, 0.5, 7.97], "ch": "thrust", "mirror": true}
+      ]},
+      "stubby": {"name": "Stubby", "culture": "Streetfighter", "parts": [
+        {"shape": "cyl_z", "size": [0.9, 0.9, 1.4], "pos": [1.9, -0.45, 5.3], "ch": "detail", "mirror": true, "note": "stubby can"},
+        {"shape": "cyl_z", "size": [1.0, 1.0, 0.25], "pos": [1.9, -0.45, 6.12], "ch": "secondary", "mirror": true, "note": "end cap"},
+        {"shape": "cyl_z", "size": [0.6, 0.6, 0.14], "pos": [1.9, -0.45, 6.31], "ch": "thrust", "mirror": true},
+        {"shape": "block", "size": [0.3, 0.5, 0.3], "pos": [1.6, 0.0, 4.9], "ch": "detail", "mirror": true, "note": "bracket: Rear End seam"}
+      ]}
+    },
+    "FrontBumper": {
+      "race_nose": {"name": "Race Nose", "culture": "Supersport", "parts": [
+        {"shape": "block", "size": [2.5, 1.5, 1.5], "pos": [0.0, 3.1, -5.2], "ch": "primary", "note": "nose body"},
+        {"shape": "wedge", "size": [2.5, 1.5, 1.5], "pos": [0.0, 3.1, -6.7], "ch": "primary", "note": "pointed nose"},
+        {"shape": "wedge", "size": [2.1, 0.8, 1.7], "pos": [0.0, 1.95, -6.5], "rot": [0.0, 0.0, 180.0], "ch": "secondary", "note": "chin, ahead of the rake line"},
+        {"shape": "block", "size": [0.75, 0.12, 0.6], "pos": [0.62, 3.02, -6.8], "rot": [-45.0, 0.0, 0.0], "ch": "neon", "mirror": true, "note": "headlight"},
+        {"shape": "block", "size": [0.5, 0.3, 0.4], "pos": [1.34, 3.7, -5.0], "ch": "secondary", "mirror": true, "note": "mirror pod"}
+      ]},
+      "bikini_fairing": {"name": "Bikini Fairing", "culture": "Café Racer", "parts": [
+        {"shape": "block", "size": [1.8, 1.1, 0.9], "pos": [0.0, 2.95, -4.95], "ch": "primary", "note": "cowl"},
+        {"shape": "cyl_z", "size": [0.95, 0.95, 0.3], "pos": [0.0, 2.95, -5.5], "ch": "neon", "note": "single lamp"},
+        {"shape": "wedge", "size": [1.8, 0.4, 1.2], "pos": [0.0, 3.7, -5.0], "ch": "primary", "note": "brow"},
+        {"shape": "block", "size": [0.2, 1.0, 0.5], "pos": [1.0, 2.95, -5.45], "ch": "secondary", "mirror": true, "note": "cheek"}
+      ]},
+      "round_lamp": {"name": "Round Lamp", "culture": "Chopper", "parts": [
+        {"shape": "cyl_z", "size": [1.4, 1.4, 1.0], "pos": [0.0, 3.0, -5.0], "ch": "secondary", "note": "lamp bucket"},
+        {"shape": "cyl_z", "size": [1.15, 1.15, 0.14], "pos": [0.0, 3.0, -5.56], "ch": "neon", "note": "lens"},
+        {"shape": "block", "size": [0.14, 0.5, 0.9], "pos": [0.78, 3.0, -4.9], "ch": "detail", "mirror": true, "note": "lamp bracket: Front End seam"},
+        {"shape": "cyl_x", "size": [0.5, 0.26, 0.26], "pos": [1.15, 2.5, -4.8], "ch": "detail", "mirror": true, "note": "indicator stalk"},
+        {"shape": "cyl_x", "size": [0.12, 0.3, 0.3], "pos": [1.46, 2.5, -4.8], "ch": "neon", "mirror": true, "note": "indicator"},
+        {"shape": "block", "size": [1.4, 0.1, 0.5], "pos": [0.0, 3.75, -5.4], "ch": "detail", "note": "lamp peak"}
+      ]},
+      "number_plate": {"name": "Number Plate", "culture": "Motocross", "parts": [
+        {"shape": "block", "size": [1.8, 1.5, 0.18], "pos": [0.0, 3.1, -4.75], "rot": [12.0, 0.0, 0.0], "ch": "secondary", "note": "front number plate (blank)"},
+        {"shape": "block", "size": [1.3, 0.14, 3.513], "pos": [0.0, 2.6, -6.35], "rot": [-4.899, 180.0, 0.0], "ch": "primary", "note": "high front fender"},
+        {"shape": "block", "size": [0.3, 0.1, 2.711], "pos": [0.0, 2.68, -6.55], "rot": [-5.08, 180.0, 0.0], "ch": "secondary", "note": "fender rib"},
+        {"shape": "block", "size": [0.8, 0.3, 0.6], "pos": [0.0, 2.5, -4.8], "ch": "detail", "note": "fender mount: Front End seam"},
+        {"shape": "block", "size": [1.4, 0.12, 0.1], "pos": [0.0, 3.65, -4.78], "ch": "neon", "note": "plate light"}
+      ]},
+      "fighter_mask": {"name": "Fighter Mask", "culture": "Streetfighter", "parts": [
+        {"shape": "wedge", "size": [2.0, 1.0, 1.6], "pos": [0.0, 3.4, -5.2], "ch": "primary", "note": "mask brow"},
+        {"shape": "wedge", "size": [1.7, 0.65, 1.4], "pos": [0.0, 2.575, -5.3], "rot": [0.0, 0.0, 180.0], "ch": "detail", "note": "jaw"},
+        {"shape": "block", "size": [0.7, 0.1, 0.45], "pos": [0.5, 3.2, -5.6], "rot": [-32.005, 0.0, 14.0], "ch": "neon", "mirror": true, "note": "slit eye"},
+        {"shape": "block", "size": [0.12, 0.9, 0.9], "pos": [1.15, 3.25, -5.2], "rot": [-25.0, 0.0, 0.0], "ch": "secondary", "mirror": true, "note": "ear fin"},
+        {"shape": "block", "size": [1.2, 0.3, 0.3], "pos": [0.0, 2.75, -4.6], "ch": "detail", "note": "mask mount: Front End seam"}
+      ]}
+    },
+    "RearBumper": {
+      "sissy_bar": {"name": "Sissy Bar", "culture": "Chopper", "parts": [
+        {"shape": "block", "size": [1.5, 0.22, 0.5], "pos": [0.0, 1.78, 6.9], "ch": "detail", "note": "bracket: Seat Unit seam"},
+        {"shape": "cyl_z", "size": [0.24, 0.24, 3.602], "pos": [0.6, 3.55, 7.275], "rot": [-76.35, 0.0, 0.0], "ch": "secondary", "mirror": true, "note": "sissy bar upright"},
+        {"shape": "cyl_x", "size": [1.44, 0.24, 0.24], "pos": [0.0, 5.3, 7.7], "ch": "secondary", "note": "top bar"},
+        {"shape": "block", "size": [1.0, 1.1, 0.25], "pos": [0.0, 3.4, 7.05], "rot": [13.6, 0.0, 0.0], "ch": "detail", "note": "backrest pad"},
+        {"shape": "ball", "size": [0.35, 0.35, 0.35], "pos": [0.0, 5.55, 7.76], "ch": "neon", "note": "top light"}
+      ]},
+      "tail_tidy": {"name": "Tail Tidy", "culture": "Supersport", "parts": [
+        {"shape": "block", "size": [1.3, 0.2, 0.2], "pos": [0.0, 1.86, 6.75], "ch": "neon", "note": "tail light bar"},
+        {"shape": "block", "size": [0.3, 0.2, 1.2], "pos": [0.0, 1.75, 7.3], "ch": "detail", "note": "hanger arm: Seat Unit seam"},
+        {"shape": "block", "size": [0.3, 1.2, 0.15], "pos": [0.0, 1.1, 7.83], "ch": "detail", "note": "hanger drop"},
+        {"shape": "block", "size": [1.1, 0.7, 0.08], "pos": [0.0, 0.6, 7.98], "rot": [-15.0, 0.0, 0.0], "ch": "secondary", "note": "plate (blank)"},
+        {"shape": "cyl_x", "size": [0.5, 0.2, 0.2], "pos": [0.7, 1.75, 7.7], "ch": "detail", "mirror": true, "note": "indicator stalk"},
+        {"shape": "cyl_x", "size": [0.12, 0.24, 0.24], "pos": [1.0, 1.75, 7.7], "ch": "neon", "mirror": true, "note": "indicator"}
+      ]},
+      "luggage_rack": {"name": "Luggage Rack", "culture": "Motocross", "parts": [
+        {"shape": "cyl_z", "size": [0.2, 0.2, 1.208], "pos": [0.5, 2.35, 6.95], "rot": [-65.556, 0.0, 0.0], "ch": "detail", "mirror": true, "note": "rack support: Seat Unit seam"},
+        {"shape": "cyl_z", "size": [0.18, 0.18, 1.4], "pos": [0.6, 2.95, 7.4], "ch": "secondary", "mirror": true, "note": "rack rail"},
+        {"shape": "cyl_z", "size": [0.18, 0.18, 1.4], "pos": [0.0, 2.95, 7.4], "ch": "secondary", "note": "rack rail"},
+        {"shape": "cyl_x", "size": [1.4, 0.18, 0.18], "pos": [0.0, 2.95, 8.02], "ch": "secondary", "note": "rack cross bar"},
+        {"shape": "cyl_x", "size": [1.4, 0.18, 0.18], "pos": [0.0, 2.95, 6.8], "ch": "secondary", "note": "rack cross bar"},
+        {"shape": "cyl_x", "size": [2.2, 1.0, 1.0], "pos": [0.0, 3.55, 7.4], "ch": "primary", "note": "bed roll"},
+        {"shape": "cyl_x", "size": [0.16, 1.06, 1.06], "pos": [0.5, 3.55, 7.4], "ch": "detail", "mirror": true, "note": "strap"}
+      ]}
+    },
+    "RearSpoiler": {
+      "race_cowl": {"name": "Race Cowl", "culture": "Supersport", "parts": [
+        {"shape": "block", "size": [0.9, 0.22, 3.0], "pos": [0.0, 1.78, 5.0], "ch": "detail", "note": "tail rail at the beltline: cockpit seam and Tail Kit seam"},
+        {"shape": "block", "size": [1.7, 0.7, 1.916], "pos": [0.0, 2.75, 4.475], "rot": [-15.124, 0.0, 0.0], "ch": "primary", "note": "upswept cowl"},
+        {"shape": "wedge", "size": [1.7, 0.7, 1.2], "pos": [0.0, 3.165, 5.98], "rot": [15.0, 180.0, 0.0], "ch": "primary", "note": "pointed tail"},
+        {"shape": "block", "size": [1.0, 0.3, 1.855], "pos": [0.0, 2.225, 4.6], "rot": [-14.036, 0.0, 0.0], "ch": "detail", "note": "undertray"},
+        {"shape": "block", "size": [1.0, 0.1, 0.929], "pos": [0.0, 3.085, 4.35], "rot": [-14.335, 0.0, 0.0], "ch": "secondary", "note": "pillion pad"},
+        {"shape": "block", "size": [1.1, 0.14, 0.4], "pos": [0.0, 2.85, 6.0], "rot": [-15.0, 0.0, 0.0], "ch": "neon", "note": "tail light"}
+      ]},
+      "cafe_hump": {"name": "Café Hump", "culture": "Café Racer", "parts": [
+        {"shape": "block", "size": [0.9, 0.22, 3.0], "pos": [0.0, 1.78, 5.0], "ch": "detail", "note": "tail rail at the beltline: cockpit seam and Tail Kit seam"},
+        {"shape": "block", "size": [1.5, 0.45, 0.5], "pos": [0.0, 2.45, 3.7], "ch": "detail", "note": "seat pad run-off"},
+        {"shape": "wedge", "size": [1.5, 0.9, 1.2], "pos": [0.0, 2.75, 4.5], "ch": "primary", "note": "hump ramp"},
+        {"shape": "cyl_x", "size": [1.5, 1.2, 1.2], "pos": [0.0, 2.6, 5.1], "ch": "primary", "note": "round hump back"},
+        {"shape": "block", "size": [1.5, 0.5, 1.6], "pos": [0.0, 2.25, 4.6], "ch": "primary", "note": "hump base"},
+        {"shape": "block", "size": [0.4, 0.06, 1.3], "pos": [0.0, 3.02, 4.75], "rot": [-36.9, 0.0, 0.0], "ch": "secondary", "note": "hump stripe"},
+        {"shape": "cyl_z", "size": [0.6, 0.6, 0.15], "pos": [0.0, 2.6, 5.76], "ch": "neon", "note": "round tail light"}
+      ]},
+      "bobber_fender": {"name": "Bobber Fender", "culture": "Chopper", "parts": [
+        {"shape": "block", "size": [0.9, 0.22, 1.4], "pos": [0.0, 1.78, 4.2], "ch": "detail", "note": "tail rail at the beltline: cockpit seam and Tail Kit seam"},
+        {"shape": "block", "size": [1.3, 0.14, 1.028], "pos": [0.0, 1.86, 4.1], "rot": [-13.496, 0.0, 0.0], "ch": "primary", "note": "bobbed fender"},
+        {"shape": "block", "size": [1.3, 0.14, 1.0], "pos": [0.0, 1.99, 5.1], "rot": [-1.146, 0.0, 0.0], "ch": "primary", "note": "bobbed fender"},
+        {"shape": "block", "size": [1.3, 0.14, 0.931], "pos": [0.0, 1.88, 6.05], "rot": [14.931, 0.0, 0.0], "ch": "primary", "note": "bobbed fender"},
+        {"shape": "cyl_y", "size": [0.3, 0.5, 0.3], "pos": [0.45, 2.15, 3.7], "ch": "detail", "mirror": true, "note": "solo seat spring"},
+        {"shape": "block", "size": [0.5, 0.3, 0.12], "pos": [0.0, 2.0, 6.48], "ch": "neon", "note": "tail light"}
+      ]},
+      "mx_fender": {"name": "MX Fender", "culture": "Motocross", "parts": [
+        {"shape": "block", "size": [0.9, 0.22, 3.0], "pos": [0.0, 1.78, 5.0], "ch": "detail", "note": "tail rail at the beltline: cockpit seam and Tail Kit seam"},
+        {"shape": "block", "size": [1.3, 0.16, 3.231], "pos": [0.0, 3.35, 5.0], "rot": [-21.801, 0.0, 0.0], "ch": "primary", "note": "high kicked fender"},
+        {"shape": "wedge", "size": [0.14, 1.2, 2.2], "pos": [0.6, 2.5, 4.7], "ch": "secondary", "mirror": true, "note": "side gusset"},
+        {"shape": "block", "size": [0.6, 0.14, 0.2], "pos": [0.0, 3.75, 6.25], "ch": "neon", "note": "tail light"}
+      ]}
+    },
+    "SidePods": {
+      "full_fairing": {"name": "Full Fairing", "culture": "Supersport", "parts": [
+        {"shape": "block", "size": [0.5, 1.7, 3.0], "pos": [1.9, 1.75, -2.6], "ch": "primary", "mirror": true, "note": "side panel"},
+        {"shape": "wedge", "size": [0.5, 0.6, 2.2], "pos": [1.9, 2.9, -3.0], "ch": "primary", "mirror": true, "note": "shoulder, falling forward"},
+        {"shape": "wedge", "size": [0.5, 0.85, 3.6], "pos": [1.9, 0.475, -2.3], "rot": [0.0, 0.0, 180.0], "ch": "secondary", "mirror": true, "note": "belly, rising forward"},
+        {"shape": "wedge", "size": [0.5, 1.7, 1.2], "pos": [1.9, 1.75, -0.5], "rot": [0.0, 180.0, 0.0], "ch": "primary", "mirror": true, "note": "swept trailing edge"},
+        {"shape": "block", "size": [0.1, 0.9, 0.22], "pos": [2.17, 1.9, -2.7], "rot": [25.0, 0.0, 0.0], "ch": "detail", "mirror": true, "note": "vent slash"},
+        {"shape": "block", "size": [0.1, 0.9, 0.22], "pos": [2.17, 1.9, -2.1], "rot": [25.0, 0.0, 0.0], "ch": "detail", "mirror": true, "note": "vent slash"},
+        {"shape": "block", "size": [0.08, 0.1, 2.6], "pos": [2.17, 1.0, -2.6], "ch": "neon", "mirror": true, "note": "panel light"}
+      ]},
+      "tank_shrouds": {"name": "Tank Shrouds", "culture": "Motocross", "parts": [
+        {"shape": "wedge", "size": [0.4, 1.3, 2.8], "pos": [1.85, 2.5, -2.4], "rot": [0.0, 180.0, 0.0], "ch": "primary", "mirror": true, "note": "shroud, tall at the front"},
+        {"shape": "block", "size": [0.3, 1.1, 1.2], "pos": [1.8, 1.3, -3.0], "ch": "detail", "mirror": true, "note": "radiator, on the front panel stay"},
+        {"shape": "block", "size": [0.1, 0.5, 1.0], "pos": [2.0, 1.3, -3.0], "ch": "secondary", "mirror": true, "note": "louvre panel"},
+        {"shape": "block", "size": [0.08, 1.1, 0.1], "pos": [2.07, 2.5, -3.74], "ch": "neon", "mirror": true, "note": "shroud edge light"}
+      ]},
+      "saddlebags": {"name": "Saddlebags", "culture": "Chopper", "parts": [
+        {"shape": "block", "size": [0.7, 1.4, 2.4], "pos": [2.0, 1.45, 2.9], "ch": "secondary", "mirror": true, "note": "bag"},
+        {"shape": "cyl_z", "size": [0.7, 0.7, 2.4], "pos": [2.0, 0.75, 2.9], "ch": "secondary", "mirror": true, "note": "rounded bag bottom"},
+        {"shape": "block", "size": [0.76, 0.3, 2.5], "pos": [2.0, 2.27, 2.9], "ch": "primary", "mirror": true, "note": "lid"},
+        {"shape": "block", "size": [0.78, 1.5, 0.3], "pos": [2.0, 1.5, 2.9], "ch": "detail", "mirror": true, "note": "strap"}
+      ]},
+      "number_boards": {"name": "Number Boards", "culture": "Motocross", "parts": [
+        {"shape": "block", "size": [0.14, 1.3, 2.0], "pos": [1.72, 2.2, 1.9], "rot": [-10.0, 0.0, 0.0], "ch": "secondary", "mirror": true, "note": "side number board (blank)"},
+        {"shape": "wedge", "size": [0.14, 1.3, 1.2], "pos": [1.72, 2.5, 3.45], "rot": [0.0, 180.0, 0.0], "ch": "secondary", "mirror": true, "note": "board tail"},
+        {"shape": "block", "size": [0.06, 0.5, 0.7], "pos": [1.81, 2.25, 1.9], "rot": [-10.0, 0.0, 0.0], "ch": "neon", "mirror": true, "note": "board light"},
+        {"shape": "block", "size": [0.14, 0.6, 1.8], "pos": [1.72, 1.2, 2.4], "ch": "detail", "mirror": true, "note": "heat guard, on the rear panel stay"}
+      ]}
+    },
+    "Hood": {
+      "sculpted": {"name": "Sculpted", "culture": "Supersport", "parts": [
+        {"shape": "block", "size": [1.5, 0.95, 2.4], "pos": [0.0, 2.15, -1.5], "ch": "primary", "note": "tank base"},
+        {"shape": "block", "size": [1.5, 0.5, 1.1], "pos": [0.0, 2.875, -2.1], "ch": "primary", "note": "tank hump"},
+        {"shape": "wedge", "size": [1.5, 0.5, 1.2], "pos": [0.0, 2.875, -0.95], "rot": [0.0, 180.0, 0.0], "ch": "primary", "note": "slope down to the seat"},
+        {"shape": "block", "size": [0.08, 0.6, 1.3], "pos": [0.76, 2.2, -1.0], "ch": "secondary", "mirror": true, "note": "knee scallop"},
+        {"shape": "cyl_y", "size": [0.4, 0.08, 0.4], "pos": [0.0, 3.16, -2.1], "ch": "neon", "note": "filler cap"},
+        {"shape": "block", "size": [0.9, 0.3, 0.1], "pos": [0.0, 2.3, -2.72], "ch": "detail", "note": "air duct"}
+      ]},
+      "peanut": {"name": "Peanut", "culture": "Chopper", "parts": [
+        {"shape": "cyl_z", "size": [1.1, 1.1, 1.5], "pos": [0.0, 2.6, -1.6], "ch": "primary", "note": "peanut tank"},
+        {"shape": "ball", "size": [1.1, 1.1, 1.1], "pos": [0.0, 2.6, -2.2], "ch": "primary", "note": "tank nose"},
+        {"shape": "ball", "size": [0.9, 0.9, 0.9], "pos": [0.0, 2.55, -0.85], "ch": "primary", "note": "tank tail"},
+        {"shape": "cyl_z", "size": [1.16, 1.16, 0.3], "pos": [0.0, 2.6, -1.6], "ch": "secondary", "note": "tank band"},
+        {"shape": "block", "size": [0.4, 0.5, 1.4], "pos": [0.0, 1.85, -1.6], "ch": "detail", "note": "tank mount: cockpit seam"},
+        {"shape": "cyl_y", "size": [0.35, 0.08, 0.35], "pos": [0.0, 3.16, -1.6], "ch": "secondary", "note": "filler cap"}
+      ]},
+      "teardrop": {"name": "Teardrop", "culture": "Café Racer", "parts": [
+        {"shape": "cyl_x", "size": [1.4, 1.0, 1.0], "pos": [0.0, 2.2, -2.2], "ch": "primary", "note": "rolled tank front"},
+        {"shape": "block", "size": [1.4, 1.0, 0.9], "pos": [0.0, 2.2, -1.75], "ch": "primary", "note": "tank body"},
+        {"shape": "wedge", "size": [1.4, 1.0, 1.1], "pos": [0.0, 2.2, -0.75], "rot": [0.0, 180.0, 0.0], "ch": "primary", "note": "teardrop tail"},
+        {"shape": "block", "size": [0.08, 0.6, 0.9], "pos": [0.74, 2.2, -1.7], "ch": "detail", "mirror": true, "note": "knee pad"},
+        {"shape": "block", "size": [0.3, 0.06, 1.0], "pos": [0.0, 2.73, -1.75], "ch": "secondary", "note": "tank stripe"},
+        {"shape": "cyl_y", "size": [0.35, 0.08, 0.35], "pos": [0.0, 2.74, -2.3], "ch": "neon", "note": "filler cap"}
+      ]}
+    },
+    "Roof": {
+      "bubble": {"name": "Bubble", "culture": "Supersport", "parts": [
+        {"shape": "wedge", "size": [1.9, 1.1, 2.0], "pos": [0.0, 4.5, -5.45], "ch": "glass", "note": "raked screen"},
+        {"shape": "cyl_x", "size": [1.3, 0.8, 0.8], "pos": [0.0, 4.9, -4.9], "ch": "glass", "note": "bubble crown"},
+        {"shape": "block", "size": [2.0, 0.1, 0.3], "pos": [0.0, 4.0, -4.6], "ch": "detail", "note": "screen trim: Fairing seam"}
+      ]},
+      "flyscreen": {"name": "Flyscreen", "culture": "Streetfighter", "parts": [
+        {"shape": "block", "size": [1.5, 0.75, 0.1], "pos": [0.0, 4.36, -4.75], "rot": [25.0, 0.0, 0.0], "ch": "glass", "note": "flyscreen"},
+        {"shape": "block", "size": [0.1, 0.3, 0.1], "pos": [0.6, 4.07, -4.72], "ch": "detail", "mirror": true, "note": "stay: Fairing seam"}
+      ]},
+      "tall_tourer": {"name": "Tall Tourer", "culture": "Café Racer", "parts": [
+        {"shape": "block", "size": [2.4, 2.0, 0.12], "pos": [0.0, 4.95, -5.0], "rot": [20.0, 0.0, 0.0], "ch": "glass", "note": "tall screen"},
+        {"shape": "block", "size": [2.5, 0.1, 0.2], "pos": [0.0, 5.9, -4.66], "rot": [20.0, 0.0, 0.0], "ch": "detail", "note": "top lip"},
+        {"shape": "block", "size": [0.12, 0.4, 0.12], "pos": [0.8, 4.15, -5.4], "ch": "detail", "mirror": true, "note": "stay: Fairing seam"},
+        {"shape": "block", "size": [1.6, 0.1, 0.1], "pos": [0.0, 4.3, -5.4], "ch": "detail", "note": "brace"}
+      ]}
+    },
+    "Accessory": {
+      "clip_ons": {"name": "Clip-ons", "culture": "Supersport", "parts": [
+        {"shape": "cyl_y", "size": [0.55, 0.3, 0.55], "pos": [0.72, 3.4, -3.4], "ch": "secondary", "mirror": true, "note": "fork-top clamp: Front End seam"},
+        {"shape": "cyl_z", "size": [0.24, 0.24, 1.773], "pos": [0.985, 3.725, -2.6], "rot": [-18.072, 18.327, 0.0], "ch": "detail", "mirror": true, "note": "clip-on stub"},
+        {"shape": "cyl_x", "size": [0.14, 0.46, 0.46], "pos": [1.72, 4.0, -1.8], "ch": "neon", "mirror": true, "note": "bar-end light"},
+        {"shape": "block", "size": [0.6, 0.08, 0.1], "pos": [1.3, 4.0, -2.12], "ch": "secondary", "mirror": true, "note": "lever"},
+        {"shape": "cyl_x", "size": [0.8, 0.4, 0.4], "pos": [1.25, 4.0, -1.8], "ch": "detail", "mirror": true, "note": "grip, inside the grip box"}
+      ]},
+      "apes": {"name": "Apes", "culture": "Chopper", "parts": [
+        {"shape": "block", "size": [1.2, 0.3, 0.5], "pos": [0.0, 3.4, -3.4], "ch": "secondary", "note": "riser clamp: Front End seam"},
+        {"shape": "cyl_z", "size": [0.26, 0.26, 2.459], "pos": [0.675, 4.45, -3.05], "rot": [-68.383, 32.735, 0.0], "ch": "secondary", "mirror": true, "note": "tall riser"},
+        {"shape": "cyl_z", "size": [0.26, 0.26, 1.077], "pos": [1.26, 5.5, -2.45], "rot": [0.0, 55.222, 0.0], "ch": "secondary", "mirror": true, "note": "top bend"},
+        {"shape": "cyl_z", "size": [0.26, 0.26, 1.752], "pos": [1.56, 4.75, -2.01], "rot": [75.122, -17.526, 0.0], "ch": "secondary", "mirror": true, "note": "drop to the grip box"},
+        {"shape": "cyl_x", "size": [0.8, 0.4, 0.4], "pos": [1.25, 4.0, -1.8], "ch": "detail", "mirror": true, "note": "grip, inside the grip box"}
+      ]},
+      "mx_bars": {"name": "MX Bars", "culture": "Motocross", "parts": [
+        {"shape": "block", "size": [0.3, 0.5, 0.4], "pos": [0.4, 3.46, -3.3], "ch": "detail", "mirror": true, "note": "riser clamp: Front End seam"},
+        {"shape": "cyl_x", "size": [0.9, 0.26, 0.26], "pos": [0.0, 3.7, -3.3], "ch": "secondary", "note": "bar centre"},
+        {"shape": "cyl_z", "size": [0.26, 0.26, 1.563], "pos": [0.7, 3.85, -2.575], "rot": [-11.067, 19.026, 0.0], "ch": "secondary", "mirror": true, "note": "bar rise"},
+        {"shape": "cyl_x", "size": [1.5, 0.18, 0.18], "pos": [0.0, 3.88, -2.5], "ch": "detail", "note": "cross brace"},
+        {"shape": "block", "size": [0.9, 0.3, 0.3], "pos": [0.0, 3.88, -2.5], "ch": "primary", "note": "bar pad"},
+        {"shape": "cyl_x", "size": [0.4, 0.26, 0.26], "pos": [1.85, 4.0, -1.8], "ch": "secondary", "mirror": true, "note": "wide bar end"},
+        {"shape": "block", "size": [1.1, 0.55, 0.12], "pos": [1.5, 4.0, -2.22], "ch": "secondary", "mirror": true, "note": "hand guard"},
+        {"shape": "block", "size": [0.12, 0.55, 0.5], "pos": [2.08, 4.0, -1.97], "ch": "secondary", "mirror": true, "note": "hand guard wrap"},
+        {"shape": "cyl_x", "size": [0.8, 0.4, 0.4], "pos": [1.25, 4.0, -1.8], "ch": "detail", "mirror": true, "note": "grip, inside the grip box"}
+      ]},
+      "drag_bars": {"name": "Drag Bars", "culture": "Streetfighter", "parts": [
+        {"shape": "block", "size": [1.1, 0.25, 0.5], "pos": [0.0, 3.35, -3.4], "ch": "detail", "note": "riser clamp: Front End seam"},
+        {"shape": "cyl_z", "size": [0.3, 0.3, 1.681], "pos": [0.4, 3.675, -2.625], "rot": [-22.751, 0.0, 0.0], "ch": "secondary", "mirror": true, "note": "pull-back riser"},
+        {"shape": "cyl_x", "size": [1.7, 0.26, 0.26], "pos": [0.0, 4.0, -1.8], "ch": "secondary", "note": "flat straight bar"},
+        {"shape": "block", "size": [0.5, 0.4, 0.08], "pos": [1.92, 3.72, -1.85], "ch": "secondary", "mirror": true, "note": "bar-end mirror, hung below the bar"},
+        {"shape": "cyl_y", "size": [0.5, 0.16, 0.5], "pos": [0.0, 3.6, -3.0], "ch": "neon", "note": "dial"},
+        {"shape": "cyl_x", "size": [0.8, 0.4, 0.4], "pos": [1.25, 4.0, -1.8], "ch": "detail", "mirror": true, "note": "grip, inside the grip box"}
+      ]}
+    }
+  },
+  "builds": [
+    {"name": "1 Supersport kit on Supersport", "cockpit": "supersport", "paint": {"primary": "#e32636", "secondary": "#f4f4f4", "neon": "#29e6ff"}, "modules": {"Engine1": "sport_fork", "Engine2": "sport_swingarm", "Stabilisers": "aero_winglets", "Boost": "under_tail", "FrontBumper": "race_nose", "RearBumper": "tail_tidy", "RearSpoiler": "race_cowl", "SidePods": "full_fairing", "Hood": "sculpted", "Roof": "bubble", "Accessory": "clip_ons"}, "note": "Builds 1-3: one kit, one paint, three cockpits."},
+    {"name": "2 Same kit on Scrambler", "cockpit": "scrambler", "paint": {"primary": "#e32636", "secondary": "#f4f4f4", "neon": "#29e6ff"}, "modules": {"Engine1": "sport_fork", "Engine2": "sport_swingarm", "Stabilisers": "aero_winglets", "Boost": "under_tail", "FrontBumper": "race_nose", "RearBumper": "tail_tidy", "RearSpoiler": "race_cowl", "SidePods": "full_fairing", "Hood": "sculpted", "Roof": "bubble", "Accessory": "clip_ons"}},
+    {"name": "3 Same kit on Chopper", "cockpit": "chopper", "paint": {"primary": "#e32636", "secondary": "#f4f4f4", "neon": "#29e6ff"}, "modules": {"Engine1": "sport_fork", "Engine2": "sport_swingarm", "Stabilisers": "aero_winglets", "Boost": "under_tail", "FrontBumper": "race_nose", "RearBumper": "tail_tidy", "RearSpoiler": "race_cowl", "SidePods": "full_fairing", "Hood": "sculpted", "Roof": "bubble", "Accessory": "clip_ons"}},
+    {"name": "4 Streetfighter + Streetfighter kit", "cockpit": "streetfighter", "paint": {"primary": "#ffb400", "secondary": "#e9e9ee", "neon": "#ff3df0"}, "modules": {"Engine1": "hubless_ring", "Engine2": "fat_drum", "Stabilisers": "crash_sliders", "Boost": "stubby", "FrontBumper": "fighter_mask", "RearBumper": "tail_tidy", "RearSpoiler": "cafe_hump", "SidePods": "tank_shrouds", "Hood": "sculpted", "Roof": "flyscreen", "Accessory": "drag_bars"}, "note": "Builds 4-6: one cockpit, three culture kits."},
+    {"name": "5 Streetfighter + Chopper kit", "cockpit": "streetfighter", "paint": {"primary": "#7a2bd0", "secondary": "#d8d8de", "neon": "#ffb347"}, "modules": {"Engine1": "chopper_rake", "Engine2": "hardtail", "Stabilisers": "outrigger_skids", "Boost": "shotgun_pipes", "FrontBumper": "round_lamp", "RearBumper": "sissy_bar", "RearSpoiler": "bobber_fender", "SidePods": "saddlebags", "Hood": "peanut", "Accessory": "apes"}},
+    {"name": "6 Streetfighter + Motocross kit", "cockpit": "streetfighter", "paint": {"primary": "#19b34a", "secondary": "#ffffff", "neon": "#d4ff3a"}, "modules": {"Engine1": "girder_fork", "Engine2": "sport_swingarm", "Stabilisers": "crash_sliders", "Boost": "megaphone", "FrontBumper": "number_plate", "RearBumper": "luggage_rack", "RearSpoiler": "mx_fender", "SidePods": "number_boards", "Hood": "teardrop", "Accessory": "mx_bars"}},
+    {"name": "7 Wildcard Speeder sled, mixed", "cockpit": "speeder", "paint": {"primary": "#18a0c9", "secondary": "#ff6a1f", "neon": "#fff27a"}, "modules": {"Engine1": "speeder_vane", "Engine2": "twin_thruster", "Stabilisers": "outrigger_skids", "Boost": "megaphone", "FrontBumper": "bikini_fairing", "RearBumper": "tail_tidy", "RearSpoiler": "cafe_hump", "SidePods": "tank_shrouds", "Hood": "teardrop", "Roof": "flyscreen", "Accessory": "clip_ons"}, "note": "Speeder vane and thrusters with Café, Motocross and Supersport parts."},
+    {"name": "8 Wildcard Chopper, sport nose + apes", "cockpit": "chopper", "paint": {"primary": "#f05a1a", "secondary": "#20c0b0", "neon": "#ffffff"}, "modules": {"Engine1": "hubless_ring", "Engine2": "fat_drum", "Stabilisers": "aero_winglets", "Boost": "shotgun_pipes", "FrontBumper": "race_nose", "RearBumper": "sissy_bar", "RearSpoiler": "race_cowl", "SidePods": "saddlebags", "Hood": "peanut", "Roof": "tall_tourer", "Accessory": "apes"}, "note": "Chopper rider behind a race nose and tall screen, hubless front, fat drum rear."}
+  ]
+}

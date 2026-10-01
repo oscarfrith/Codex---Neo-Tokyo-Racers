@@ -32,6 +32,8 @@ __pycache__/
 # Reproducible local architecture build previews; the Studio mirror is tracked.
 scripts/architecture_phase3/projected/
 scripts/architecture_phase4/projected/
+# Vehicle frame-class blockout previews: regenerate with scripts/vehicle_blockouts/preview.py.
+scripts/vehicle_blockouts/previews/
 
 # Temporary Roblox Studio export paste blob.
 docs/studio-script-export-paste.txt

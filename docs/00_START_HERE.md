@@ -15,6 +15,12 @@ Target: **Space Racers v2, place 71491191583884** (since 2026-09-26; v1 12130491
 - **Evidence:** agent-verified in Edit and in a Play test (streaming, LOD culling, no errors). Not yet driven or play-tested by Oscar.
 - **Next:** Oscar reviews in the copy, then copies Block S9 and its dependencies to v2. The dependencies are the kit folder, the SG variants and the LOD5 proxies.
 
+**Design proposal: vehicle frame classes (2026-10-01). Design - not approved; nothing installed in the game.**
+- **What:** nine new modular vehicle categories (Rift, Street, Rodder, Rider, Apex, Cruiser, Hauler, Dart, Tether) and the frame standard that makes parts interchange. Contract: [vehicle-frame-classes](design/vehicle-frame-classes.md); class and frame sheets with 72 concept images in [design/vehicle-categories](design/vehicle-categories/).
+- **Studio state:** blockout rows only, in **Space Racers Backup v2 (place 133417340424236)**, under `Workspace.VehicleCategoryBlockouts` (about 12,000 anchored primitives, no scripts, safe to delete). v2 is untouched.
+- **Tools:** `scripts/vehicle_blockouts/` (spec format, validator, previewer, Studio builder, Codex image helper).
+- **Next:** Oscar reviews the gallery and blockouts, answers the three open questions in the contract, and picks a pilot class. Any build starts with `/suggest` on removing the fixed `bruiser` and eight-slot assumptions (High-Risk lane).
+
 **Feature work (Street Life, [design](design/street-life-update.md)).** Handoff 2026-09-27. Oscar's map and jobs refinement batch is complete and installed on v2 ([contract](architecture/map-markers-contract.md)). Everything is agent-verified in Studio, mostly with synthetic movement. Oscar reviewed the results as they were delivered ("looks good"); this is not a formal play-test sign-off.
 
 - **Full-screen map** (MAP-03):

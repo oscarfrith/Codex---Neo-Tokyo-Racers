@@ -1,0 +1,516 @@
+{
+  "id": "hauler",
+  "displayName": "Hauler",
+  "tagline": "Trucks and vans: a tall cab on a ladder frame, a front clip, a bed and four hover pods at the corners.",
+  "standard": {
+    "cockpitEnvelope": [{"min": [-4.2, 0.4, -6.0], "max": [4.2, 7.6, 3.0]}, {"min": [-4.2, 3.6, -10.0], "max": [4.2, 7.6, -6.0]}, {"min": [-3.4, -0.8, -14.0], "max": [3.4, 0.4, 14.0]}],
+    "datums": {"beltline": 3.6, "sill": 0.4, "hoverPlane": -2.0},
+    "slots": {
+      "Engine1": {"label": "Front Clip", "envelope": [{"min": [-4.4, 0.4, -14.0], "max": [4.4, 3.6, -6.0]}, {"min": [4.4, 2.0, -14.0], "max": [6.8, 3.6, -6.0], "mirror": true}], "anchor": {"to": "cockpit", "face": "+z"}, "explode": [0, 0, -7]},
+      "Engine2": {"label": "Bed", "envelope": [{"min": [-4.4, 0.4, 3.0], "max": [4.4, 7.8, 14.0]}, {"min": [4.4, 2.0, 4.8], "max": [6.8, 3.0, 14.0], "mirror": true}], "anchor": {"to": "cockpit", "face": "-z"}, "explode": [0, 0, 8]},
+      "Stabilisers": {"label": "Hover Pods", "envelope": [{"min": [3.4, -1.7, -13.6], "max": [7.0, 0.4, -7.4], "mirror": true}, {"min": [4.4, 0.4, -13.6], "max": [7.0, 2.0, -7.4], "mirror": true}, {"min": [3.4, -1.7, 6.4], "max": [7.0, 0.4, 12.6], "mirror": true}, {"min": [4.4, 0.4, 6.4], "max": [7.0, 2.0, 12.6], "mirror": true}], "anchor": {"to": "cockpit", "face": "-x"}, "explode": [0, -6, 0]},
+      "SidePods": {"label": "Side Gear", "envelope": {"min": [4.2, -1.4, -5.8], "max": [6.6, 2.0, 2.8], "mirror": true}, "anchor": {"to": "cockpit", "face": "-x"}, "explode": [0, -5, 0]},
+      "Boost": {"label": "Stacks", "envelope": [{"min": [4.4, -1.4, 3.0], "max": [6.6, 9.8, 4.8], "mirror": true}, {"min": [4.4, -1.4, 4.8], "max": [6.6, 2.0, 6.2], "mirror": true}, {"min": [-2.6, 1.8, 14.0], "max": [2.6, 3.8, 16.2]}], "anchor": {"to": "cockpit", "face": "-z"}, "explode": [0, 4, 4]},
+      "FrontBumper": {"label": "Front Bar", "envelope": {"min": [-6.8, -1.4, -16.0], "max": [6.8, 4.8, -14.0]}, "anchor": {"to": "Engine1", "face": "+z"}, "explode": [0, 0, -12]},
+      "RearBumper": {"label": "Rear Bar", "envelope": {"min": [-6.8, -1.4, 14.0], "max": [6.8, 1.8, 16.0]}, "anchor": {"to": "Engine2", "face": "-z"}, "explode": [0, -3, 13]},
+      "RearSpoiler": {"label": "Bed Rig", "envelope": [{"min": [4.4, 3.0, 4.8], "max": [5.4, 9.8, 14.0], "mirror": true}, {"min": [-4.4, 7.8, 4.8], "max": [4.4, 9.8, 14.0]}], "anchor": {"to": "Engine2", "face": "-y"}, "explode": [0, 6, 9]},
+      "Hood": {"label": "Hood", "envelope": [{"min": [-3.0, 3.6, -12.6], "max": [3.0, 5.2, -10.0]}, {"min": [4.4, 3.6, -9.4], "max": [5.6, 8.4, -6.2]}], "anchor": {"to": "Engine1", "face": "-y"}, "explode": [0, 5, -8]},
+      "Roof": {"label": "Roof Rig", "envelope": {"min": [-4.2, 7.6, -6.0], "max": [4.2, 9.6, 3.0]}, "anchor": {"to": "cockpit", "face": "-y"}, "explode": [0, 5, 0]},
+      "Accessory": {"label": "Extras", "envelope": {"min": [4.2, 2.0, -5.8], "max": [5.8, 9.8, 2.8], "mirror": true}, "anchor": {"to": "cockpit", "face": "-x"}, "explode": [0, 4, 0]}
+    }
+  },
+  "cockpits": {
+    "single_cab": {"name": "Single Cab", "culture": "Prerunner", "parts": [
+      {"shape": "block", "size": [0.7, 0.5, 27.4], "pos": [2.3, 0.1, 0.0], "ch": "detail", "mirror": true, "note": "ladder frame rail, shared by every cab"},
+      {"shape": "cyl_x", "size": [6.7, 0.7, 0.7], "pos": [0.0, -0.2, -10.5], "ch": "detail", "note": "front axle beam: reaches the Hover Pods seam"},
+      {"shape": "cyl_x", "size": [6.7, 0.7, 0.7], "pos": [0.0, -0.2, 9.5], "ch": "detail", "note": "rear axle beam"},
+      {"shape": "block", "size": [6.7, 0.3, 0.7], "pos": [0.0, 0.2, -4.6], "ch": "detail", "note": "cab mount crossmember"},
+      {"shape": "block", "size": [6.7, 0.3, 0.7], "pos": [0.0, 0.2, 2.4], "ch": "detail", "note": "cab mount crossmember"},
+      {"shape": "block", "size": [2.6, 0.2, 7.0], "pos": [0.0, -0.5, -0.5], "ch": "thrust", "note": "hover keel"},
+      {"shape": "block", "size": [8.0, 3.6, 6.8], "pos": [0.0, 2.3, -2.4], "ch": "primary", "note": "doors and lower cab"},
+      {"shape": "block", "size": [8.1, 0.35, 6.8], "pos": [0.0, 3.42, -2.4], "ch": "secondary", "note": "belt stripe on the 3.6 datum"},
+      {"shape": "wedge", "size": [7.2, 2.8, 2.0], "pos": [0.0, 5.5, -3.7], "ch": "glass", "note": "windscreen"},
+      {"shape": "block", "size": [7.2, 2.8, 3.0], "pos": [0.0, 5.5, -1.2], "ch": "glass"},
+      {"shape": "block", "size": [7.4, 2.8, 0.6], "pos": [0.0, 5.5, 0.6], "ch": "primary", "note": "cab back panel"},
+      {"shape": "block", "size": [7.4, 0.5, 4.6], "pos": [0.0, 7.15, -1.3], "ch": "primary", "note": "roof: top is the 7.4 roof datum"},
+      {"shape": "block", "size": [0.35, 3.44, 0.35], "pos": [3.45, 5.5, -3.7], "rot": [35.5, 0, 0], "ch": "primary", "mirror": true, "note": "A-pillar"},
+      {"shape": "block", "size": [7.6, 2.9, 1.5], "pos": [0.0, 2.05, 2.0], "ch": "primary", "note": "cab pack: reaches the Bed and Stacks seams"},
+      {"shape": "block", "size": [6.0, 2.0, 0.3], "pos": [0.0, 2.0, 1.12], "ch": "detail", "note": "linkage in the shadow gap"},
+      {"shape": "block", "size": [0.4, 3.6, 0.4], "pos": [3.3, 5.4, 2.3], "ch": "detail", "mirror": true, "note": "headache rack"},
+      {"shape": "block", "size": [7.0, 0.4, 0.4], "pos": [0.0, 7.0, 2.3], "ch": "detail"},
+      {"shape": "block", "size": [1.9, 2.6, 0.4], "pos": [1.9, 4.4, -0.4], "ch": "detail", "mirror": true, "note": "seat backs"},
+      {"shape": "cyl_z", "size": [1.3, 1.3, 0.2], "pos": [-1.9, 4.6, -2.7], "rot": [-25, 0, 0], "ch": "detail", "note": "steering wheel"},
+      {"shape": "block", "size": [6.0, 2.4, 0.2], "pos": [0.0, 2.2, -5.9], "ch": "detail", "note": "front linkage plate"},
+      {"shape": "block", "size": [6.0, 2.4, 0.2], "pos": [0.0, 2.0, 2.87], "ch": "detail", "note": "rear linkage plate"},
+      {"shape": "block", "size": [1.8, 2.0, 1.0], "pos": [-1.9, 3.9, -1.2], "ch": "driver", "note": "seated torso"},
+      {"shape": "ball", "size": [1.2, 1.2, 1.2], "pos": [-1.9, 5.5, -1.2], "ch": "driver"}
+    ]},
+    "crew_cab": {"name": "Crew Cab", "culture": "Lifted", "parts": [
+      {"shape": "block", "size": [0.7, 0.5, 27.4], "pos": [2.3, 0.1, 0.0], "ch": "detail", "mirror": true, "note": "ladder frame rail, shared by every cab"},
+      {"shape": "cyl_x", "size": [6.7, 0.7, 0.7], "pos": [0.0, -0.2, -10.5], "ch": "detail", "note": "front axle beam: reaches the Hover Pods seam"},
+      {"shape": "cyl_x", "size": [6.7, 0.7, 0.7], "pos": [0.0, -0.2, 9.5], "ch": "detail", "note": "rear axle beam"},
+      {"shape": "block", "size": [6.7, 0.3, 0.7], "pos": [0.0, 0.2, -4.6], "ch": "detail", "note": "cab mount crossmember"},
+      {"shape": "block", "size": [6.7, 0.3, 0.7], "pos": [0.0, 0.2, 2.4], "ch": "detail", "note": "cab mount crossmember"},
+      {"shape": "block", "size": [2.6, 0.2, 7.0], "pos": [0.0, -0.5, -0.5], "ch": "thrust", "note": "hover keel"},
+      {"shape": "block", "size": [8.2, 3.6, 8.6], "pos": [0.0, 2.3, -1.5], "ch": "primary", "note": "four-door lower cab"},
+      {"shape": "block", "size": [8.3, 0.3, 8.6], "pos": [0.0, 3.45, -1.5], "ch": "secondary", "note": "belt strip on the 3.6 datum"},
+      {"shape": "wedge", "size": [7.4, 2.8, 2.0], "pos": [0.0, 5.5, -3.7], "ch": "glass"},
+      {"shape": "block", "size": [7.4, 2.8, 2.0], "pos": [0.0, 5.5, -1.7], "ch": "glass"},
+      {"shape": "block", "size": [7.5, 2.8, 0.5], "pos": [0.0, 5.5, -0.45], "ch": "primary", "note": "B-pillar"},
+      {"shape": "block", "size": [7.4, 2.8, 2.0], "pos": [0.0, 5.5, 0.8], "ch": "glass"},
+      {"shape": "wedge", "size": [7.4, 2.8, 0.8], "pos": [0.0, 5.5, 2.2], "rot": [0, 180, 0], "ch": "glass", "note": "rear screen"},
+      {"shape": "block", "size": [7.6, 0.5, 5.6], "pos": [0.0, 7.15, -0.7], "ch": "primary", "note": "roof"},
+      {"shape": "block", "size": [0.35, 3.44, 0.35], "pos": [3.55, 5.5, -3.7], "rot": [35.5, 0, 0], "ch": "primary", "mirror": true, "note": "A-pillar"},
+      {"shape": "block", "size": [0.5, 0.2, 0.4], "pos": [0.0, 7.5, -3.2], "ch": "neon", "note": "cab marker lights"},
+      {"shape": "block", "size": [0.5, 0.2, 0.4], "pos": [1.1, 7.5, -3.2], "ch": "neon", "mirror": true},
+      {"shape": "block", "size": [0.5, 0.2, 0.4], "pos": [2.2, 7.5, -3.2], "ch": "neon", "mirror": true},
+      {"shape": "block", "size": [1.9, 2.6, 0.4], "pos": [1.9, 4.4, -0.9], "ch": "detail", "mirror": true},
+      {"shape": "block", "size": [6.4, 2.4, 0.4], "pos": [0.0, 4.3, 1.6], "ch": "detail", "note": "rear bench"},
+      {"shape": "cyl_z", "size": [1.3, 1.3, 0.2], "pos": [-1.9, 4.6, -3.1], "rot": [-25, 0, 0], "ch": "detail"},
+      {"shape": "block", "size": [6.0, 2.4, 0.2], "pos": [0.0, 2.2, -5.9], "ch": "detail"},
+      {"shape": "block", "size": [6.0, 2.4, 0.2], "pos": [0.0, 2.0, 2.9], "ch": "detail"},
+      {"shape": "block", "size": [1.8, 2.0, 1.0], "pos": [-1.9, 3.9, -1.7], "ch": "driver", "note": "seated torso"},
+      {"shape": "ball", "size": [1.2, 1.2, 1.2], "pos": [-1.9, 5.5, -1.7], "ch": "driver"}
+    ]},
+    "kei_cab": {"name": "Kei Cab", "culture": "Minitruck", "parts": [
+      {"shape": "block", "size": [0.7, 0.5, 27.4], "pos": [2.3, 0.1, 0.0], "ch": "detail", "mirror": true, "note": "ladder frame rail, shared by every cab"},
+      {"shape": "cyl_x", "size": [6.7, 0.7, 0.7], "pos": [0.0, -0.2, -10.5], "ch": "detail", "note": "front axle beam: reaches the Hover Pods seam"},
+      {"shape": "cyl_x", "size": [6.7, 0.7, 0.7], "pos": [0.0, -0.2, 9.5], "ch": "detail", "note": "rear axle beam"},
+      {"shape": "block", "size": [6.7, 0.3, 0.7], "pos": [0.0, 0.2, -4.6], "ch": "detail", "note": "cab mount crossmember"},
+      {"shape": "block", "size": [6.7, 0.3, 0.7], "pos": [0.0, 0.2, 2.4], "ch": "detail", "note": "cab mount crossmember"},
+      {"shape": "block", "size": [2.6, 0.2, 7.0], "pos": [0.0, -0.5, -0.5], "ch": "thrust", "note": "hover keel"},
+      {"shape": "block", "size": [6.8, 1.6, 5.0], "pos": [0.0, 1.3, -3.3], "ch": "secondary", "note": "narrow lower cab, two-tone"},
+      {"shape": "block", "size": [6.8, 2.0, 5.0], "pos": [0.0, 3.1, -3.3], "ch": "primary"},
+      {"shape": "block", "size": [8.2, 0.5, 5.0], "pos": [0.0, 0.8, -3.3], "ch": "secondary", "note": "step plinth: carries the narrow cab out to the side seams"},
+      {"shape": "wedge", "size": [6.2, 2.8, 0.9], "pos": [0.0, 5.5, -5.25], "ch": "glass", "note": "near-vertical screen"},
+      {"shape": "block", "size": [6.2, 2.8, 3.5], "pos": [0.0, 5.5, -3.05], "ch": "glass"},
+      {"shape": "block", "size": [6.4, 2.8, 0.5], "pos": [0.0, 5.5, -1.05], "ch": "primary"},
+      {"shape": "block", "size": [6.6, 0.5, 5.3], "pos": [0.0, 7.15, -3.15], "ch": "primary", "note": "roof"},
+      {"shape": "block", "size": [0.35, 2.94, 0.35], "pos": [2.95, 5.5, -5.25], "rot": [17.8, 0, 0], "ch": "primary", "mirror": true},
+      {"shape": "block", "size": [0.8, 0.3, 0.3], "pos": [3.8, 4.3, -4.4], "ch": "detail", "mirror": true, "note": "stand-off to the Extras seam"},
+      {"shape": "block", "size": [7.6, 1.5, 3.3], "pos": [0.0, 1.35, 1.1], "ch": "primary", "note": "engine deck: reaches the Bed seam"},
+      {"shape": "block", "size": [5.0, 0.2, 2.2], "pos": [0.0, 2.2, 1.0], "ch": "detail"},
+      {"shape": "cyl_x", "size": [4.6, 1.2, 1.2], "pos": [0.0, 2.9, 0.4], "ch": "secondary", "note": "air tank"},
+      {"shape": "block", "size": [0.4, 5.0, 0.4], "pos": [3.5, 4.6, 2.4], "ch": "detail", "mirror": true, "note": "guard frame"},
+      {"shape": "block", "size": [7.4, 0.4, 0.4], "pos": [0.0, 6.9, 2.4], "ch": "detail"},
+      {"shape": "block", "size": [7.0, 0.3, 0.3], "pos": [0.0, 4.6, 2.4], "ch": "detail"},
+      {"shape": "block", "size": [1.6, 2.6, 0.4], "pos": [1.6, 4.4, -2.0], "ch": "detail", "mirror": true},
+      {"shape": "cyl_z", "size": [1.2, 1.2, 0.2], "pos": [-1.6, 4.6, -4.3], "rot": [-15, 0, 0], "ch": "detail"},
+      {"shape": "block", "size": [5.0, 2.4, 0.2], "pos": [0.0, 2.2, -5.9], "ch": "detail"},
+      {"shape": "block", "size": [6.0, 1.2, 0.2], "pos": [0.0, 1.4, 2.87], "ch": "detail"},
+      {"shape": "block", "size": [1.6, 2.0, 1.0], "pos": [-1.6, 3.9, -2.8], "ch": "driver", "note": "seated torso"},
+      {"shape": "ball", "size": [1.2, 1.2, 1.2], "pos": [-1.6, 5.5, -2.8], "ch": "driver"}
+    ]},
+    "cab_over": {"name": "Cab-Over", "culture": "Show Truck", "parts": [
+      {"shape": "block", "size": [0.7, 0.5, 27.4], "pos": [2.3, 0.1, 0.0], "ch": "detail", "mirror": true, "note": "ladder frame rail, shared by every cab"},
+      {"shape": "cyl_x", "size": [6.7, 0.7, 0.7], "pos": [0.0, -0.2, -10.5], "ch": "detail", "note": "front axle beam: reaches the Hover Pods seam"},
+      {"shape": "cyl_x", "size": [6.7, 0.7, 0.7], "pos": [0.0, -0.2, 9.5], "ch": "detail", "note": "rear axle beam"},
+      {"shape": "block", "size": [6.7, 0.3, 0.7], "pos": [0.0, 0.2, -4.6], "ch": "detail", "note": "cab mount crossmember"},
+      {"shape": "block", "size": [6.7, 0.3, 0.7], "pos": [0.0, 0.2, 2.4], "ch": "detail", "note": "cab mount crossmember"},
+      {"shape": "block", "size": [2.6, 0.2, 7.0], "pos": [0.0, -0.5, -0.5], "ch": "thrust", "note": "hover keel"},
+      {"shape": "block", "size": [8.2, 3.1, 5.0], "pos": [0.0, 2.05, -3.3], "ch": "primary", "note": "lower cab behind the front axle"},
+      {"shape": "block", "size": [8.2, 0.9, 9.0], "pos": [0.0, 4.15, -5.3], "ch": "primary", "note": "cab floor band: overhangs the Front Clip above the beltline"},
+      {"shape": "block", "size": [8.3, 0.3, 9.0], "pos": [0.0, 3.95, -5.3], "ch": "secondary"},
+      {"shape": "wedge", "size": [7.6, 2.4, 0.8], "pos": [0.0, 5.8, -9.35], "ch": "glass", "note": "flat face screen"},
+      {"shape": "block", "size": [7.6, 2.4, 3.8], "pos": [0.0, 5.8, -7.05], "ch": "glass"},
+      {"shape": "block", "size": [7.8, 2.4, 4.2], "pos": [0.0, 5.8, -3.0], "ch": "primary", "note": "sleeper"},
+      {"shape": "block", "size": [7.8, 0.3, 9.0], "pos": [0.0, 7.25, -5.3], "ch": "primary", "note": "roof: covers the roof pad"},
+      {"shape": "block", "size": [5.0, 0.25, 0.15], "pos": [0.0, 4.15, -9.87], "ch": "neon", "note": "face light strip"},
+      {"shape": "block", "size": [0.5, 0.2, 0.4], "pos": [2.6, 7.5, -9.4], "ch": "neon", "mirror": true},
+      {"shape": "block", "size": [0.4, 2.4, 0.4], "pos": [3.7, 5.8, -9.4], "rot": [18, 0, 0], "ch": "primary", "mirror": true},
+      {"shape": "block", "size": [7.8, 2.6, 3.2], "pos": [0.0, 1.9, 1.1], "ch": "secondary", "note": "equipment deck: reaches the Bed seam"},
+      {"shape": "cyl_x", "size": [3.2, 1.1, 1.1], "pos": [1.9, 3.8, 0.4], "ch": "detail", "mirror": true, "note": "air tanks"},
+      {"shape": "block", "size": [0.4, 3.8, 0.4], "pos": [3.5, 5.1, 2.4], "ch": "detail", "mirror": true},
+      {"shape": "block", "size": [7.4, 0.4, 0.4], "pos": [0.0, 6.8, 2.4], "ch": "detail"},
+      {"shape": "block", "size": [1.9, 2.4, 0.4], "pos": [1.9, 5.4, -6.4], "ch": "detail", "mirror": true},
+      {"shape": "cyl_z", "size": [1.4, 1.4, 0.2], "pos": [-1.9, 5.3, -8.5], "rot": [-35, 0, 0], "ch": "detail"},
+      {"shape": "block", "size": [6.0, 2.0, 0.2], "pos": [0.0, 2.2, -5.9], "ch": "detail"},
+      {"shape": "block", "size": [6.0, 1.6, 0.2], "pos": [0.0, 1.9, 2.82], "ch": "detail"},
+      {"shape": "block", "size": [1.8, 2.0, 1.0], "pos": [-1.9, 5.0, -7.2], "ch": "driver", "note": "seated torso"},
+      {"shape": "ball", "size": [1.1, 1.1, 1.1], "pos": [-1.9, 6.55, -7.2], "ch": "driver"}
+    ]},
+    "checker_cab": {"name": "Checker Cab", "culture": "Cab", "parts": [
+      {"shape": "block", "size": [0.7, 0.5, 27.4], "pos": [2.3, 0.1, 0.0], "ch": "detail", "mirror": true, "note": "ladder frame rail, shared by every cab"},
+      {"shape": "cyl_x", "size": [6.7, 0.7, 0.7], "pos": [0.0, -0.2, -10.5], "ch": "detail", "note": "front axle beam: reaches the Hover Pods seam"},
+      {"shape": "cyl_x", "size": [6.7, 0.7, 0.7], "pos": [0.0, -0.2, 9.5], "ch": "detail", "note": "rear axle beam"},
+      {"shape": "block", "size": [6.7, 0.3, 0.7], "pos": [0.0, 0.2, -4.6], "ch": "detail", "note": "cab mount crossmember"},
+      {"shape": "block", "size": [6.7, 0.3, 0.7], "pos": [0.0, 0.2, 2.4], "ch": "detail", "note": "cab mount crossmember"},
+      {"shape": "block", "size": [2.6, 0.2, 7.0], "pos": [0.0, -0.5, -0.5], "ch": "thrust", "note": "hover keel"},
+      {"shape": "block", "size": [8.0, 2.7, 8.6], "pos": [0.0, 1.85, -1.5], "ch": "primary", "note": "lower body"},
+      {"shape": "block", "size": [8.2, 0.5, 8.6], "pos": [0.0, 3.45, -1.5], "ch": "secondary", "note": "checker band on the 3.6 datum"},
+      {"shape": "block", "size": [8.0, 0.5, 8.6], "pos": [0.0, 3.95, -1.5], "ch": "primary"},
+      {"shape": "block", "size": [0.1, 0.5, 0.86], "pos": [4.15, 3.45, -4.7], "ch": "primary", "mirror": true},
+      {"shape": "block", "size": [0.1, 0.5, 0.86], "pos": [4.15, 3.45, -2.5], "ch": "primary", "mirror": true},
+      {"shape": "block", "size": [0.1, 0.5, 0.86], "pos": [4.15, 3.45, -0.3], "ch": "primary", "mirror": true},
+      {"shape": "block", "size": [0.1, 0.5, 0.86], "pos": [4.15, 3.45, 1.9], "ch": "primary", "mirror": true},
+      {"shape": "block", "size": [7.0, 2.6, 3.6], "pos": [0.0, 5.5, -1.2], "ch": "glass"},
+      {"shape": "wedge", "size": [7.0, 2.6, 1.8], "pos": [0.0, 5.5, -3.9], "ch": "glass"},
+      {"shape": "wedge", "size": [7.0, 2.6, 2.1], "pos": [0.0, 5.5, 1.65], "rot": [0, 180, 0], "ch": "glass", "note": "long sloping rear screen"},
+      {"shape": "block", "size": [7.0, 0.3, 3.8], "pos": [0.0, 6.95, -1.2], "ch": "primary"},
+      {"shape": "block", "size": [5.6, 0.3, 3.2], "pos": [0.0, 7.25, -1.4], "ch": "primary", "note": "roof crown: top is the 7.4 roof datum"},
+      {"shape": "cyl_z", "size": [0.8, 0.8, 3.8], "pos": [3.2, 6.8, -1.2], "ch": "primary", "mirror": true, "note": "rounded cant rail"},
+      {"shape": "block", "size": [7.1, 2.6, 0.4], "pos": [0.0, 5.5, -1.0], "ch": "primary", "note": "B-pillar"},
+      {"shape": "block", "size": [1.9, 2.4, 0.4], "pos": [1.9, 4.4, -1.6], "ch": "detail", "mirror": true},
+      {"shape": "block", "size": [6.2, 2.2, 0.4], "pos": [0.0, 4.2, 1.8], "ch": "detail"},
+      {"shape": "cyl_z", "size": [1.3, 1.3, 0.2], "pos": [-1.9, 4.6, -3.7], "rot": [-25, 0, 0], "ch": "detail"},
+      {"shape": "block", "size": [6.0, 2.2, 0.2], "pos": [0.0, 2.0, -5.9], "ch": "detail"},
+      {"shape": "block", "size": [6.0, 2.2, 0.2], "pos": [0.0, 2.0, 2.9], "ch": "detail"},
+      {"shape": "block", "size": [1.8, 2.0, 1.0], "pos": [-1.9, 3.9, -2.4], "ch": "driver", "note": "seated torso"},
+      {"shape": "ball", "size": [1.2, 1.2, 1.2], "pos": [-1.9, 5.5, -2.4], "ch": "driver"},
+      {"shape": "block", "size": [1.8, 2.0, 1.0], "pos": [1.7, 3.9, 1.0], "ch": "driver", "note": "seated torso"},
+      {"shape": "ball", "size": [1.2, 1.2, 1.2], "pos": [1.7, 5.5, 1.0], "ch": "driver"}
+    ]}
+  },
+  "modules": {
+    "Engine1": {
+      "square_body": {"name": "Square Body", "culture": "Minitruck", "parts": [
+        {"shape": "block", "size": [8.6, 3.0, 7.6], "pos": [0.0, 2.0, -10.0], "ch": "primary", "note": "long flat hood"},
+        {"shape": "block", "size": [5.4, 1.4, 0.2], "pos": [0.0, 2.5, -13.9], "ch": "detail", "note": "grille"},
+        {"shape": "block", "size": [8.2, 0.25, 0.2], "pos": [0.0, 3.3, -13.9], "ch": "secondary"},
+        {"shape": "block", "size": [1.2, 1.0, 0.22], "pos": [3.5, 2.5, -13.89], "ch": "neon", "mirror": true, "note": "square lamps"},
+        {"shape": "block", "size": [1.2, 0.35, 0.2], "pos": [3.5, 1.55, -13.9], "ch": "neon", "mirror": true},
+        {"shape": "block", "size": [1.9, 1.4, 6.6], "pos": [5.35, 2.75, -10.4], "ch": "primary", "mirror": true, "note": "box arch over the pod"},
+        {"shape": "block", "size": [0.2, 0.3, 6.6], "pos": [6.4, 2.2, -10.4], "ch": "secondary", "mirror": true},
+        {"shape": "block", "size": [1.0, 0.1, 7.6], "pos": [1.1, 3.55, -10.0], "ch": "secondary", "mirror": true, "note": "hood stripes"},
+        {"shape": "block", "size": [6.0, 2.0, 0.2], "pos": [0.0, 2.2, -6.1], "ch": "detail", "note": "linkage plate to the cab"}
+      ]},
+      "prerunner_flare": {"name": "Prerunner Flare", "culture": "Prerunner", "parts": [
+        {"shape": "block", "size": [7.6, 1.6, 7.6], "pos": [0.0, 1.8, -10.0], "ch": "primary", "note": "raised core"},
+        {"shape": "wedge", "size": [7.6, 0.9, 4.4], "pos": [0.0, 3.05, -11.6], "ch": "primary", "note": "hood drops to the nose"},
+        {"shape": "block", "size": [7.6, 0.9, 3.2], "pos": [0.0, 3.05, -7.8], "ch": "primary"},
+        {"shape": "wedge", "size": [7.6, 0.6, 5.0], "pos": [0.0, 0.7, -8.7], "rot": [0, 0, 180], "ch": "detail", "note": "skid: approach cutaway"},
+        {"shape": "block", "size": [5.0, 1.2, 0.2], "pos": [0.0, 1.9, -13.9], "ch": "detail"},
+        {"shape": "cyl_z", "size": [1.0, 1.0, 0.25], "pos": [3.2, 1.9, -13.87], "ch": "neon", "mirror": true},
+        {"shape": "block", "size": [2.3, 0.6, 6.2], "pos": [5.55, 2.4, -10.4], "ch": "primary", "mirror": true, "note": "wide flare"},
+        {"shape": "wedge", "size": [6.2, 0.8, 2.3], "pos": [5.55, 3.1, -10.4], "rot": [0, -90, 0], "ch": "primary", "mirror": true, "note": "flare crown slopes outboard"},
+        {"shape": "block", "size": [0.6, 1.0, 5.0], "pos": [4.1, 2.6, -10.4], "ch": "detail", "mirror": true, "note": "linkage in the shadow gap"},
+        {"shape": "block", "size": [5.6, 1.6, 0.2], "pos": [0.0, 2.4, -6.1], "ch": "detail"}
+      ]},
+      "flat_face": {"name": "Flat Face", "culture": "Courier", "parts": [
+        {"shape": "block", "size": [8.6, 3.0, 6.2], "pos": [0.0, 2.0, -9.3], "ch": "primary", "note": "tall snub box"},
+        {"shape": "block", "size": [8.6, 1.4, 1.4], "pos": [0.0, 1.2, -13.1], "ch": "secondary", "note": "porch: reaches the Front Bar seam"},
+        {"shape": "block", "size": [7.0, 0.1, 1.0], "pos": [0.0, 1.95, -13.1], "ch": "detail"},
+        {"shape": "block", "size": [7.4, 1.0, 0.2], "pos": [0.0, 2.5, -12.5], "ch": "detail"},
+        {"shape": "block", "size": [7.8, 0.3, 0.2], "pos": [0.0, 3.2, -12.5], "ch": "neon", "note": "full-width light strip"},
+        {"shape": "cyl_z", "size": [0.7, 0.7, 0.2], "pos": [3.3, 1.25, -13.9], "ch": "neon", "mirror": true},
+        {"shape": "block", "size": [1.6, 0.45, 6.2], "pos": [5.2, 2.3, -10.4], "ch": "primary", "mirror": true, "note": "flat mudguard"},
+        {"shape": "block", "size": [1.2, 0.9, 3.0], "pos": [5.0, 3.05, -7.8], "ch": "primary", "mirror": true, "note": "cowl shoulder"},
+        {"shape": "block", "size": [8.7, 0.4, 6.2], "pos": [0.0, 3.0, -9.3], "ch": "secondary"},
+        {"shape": "block", "size": [6.0, 2.0, 0.2], "pos": [0.0, 2.2, -6.1], "ch": "detail"}
+      ]},
+      "show_chrome": {"name": "Show Chrome", "culture": "Show Truck", "parts": [
+        {"shape": "block", "size": [5.2, 2.0, 6.8], "pos": [0.0, 2.5, -9.6], "ch": "primary", "note": "narrow long hood"},
+        {"shape": "block", "size": [5.6, 2.9, 0.8], "pos": [0.0, 2.1, -13.4], "ch": "secondary", "note": "tall chrome grille shell"},
+        {"shape": "block", "size": [0.4, 2.2, 0.15], "pos": [1.4, 2.1, -13.88], "ch": "neon", "mirror": true},
+        {"shape": "block", "size": [1.8, 1.4, 6.6], "pos": [3.5, 1.9, -9.7], "ch": "primary", "mirror": true, "note": "apron"},
+        {"shape": "block", "size": [1.8, 0.9, 3.2], "pos": [3.5, 3.05, -7.9], "ch": "primary", "mirror": true, "note": "cowl shoulder"},
+        {"shape": "block", "size": [2.2, 0.9, 6.4], "pos": [5.5, 2.5, -10.4], "ch": "primary", "mirror": true, "note": "pontoon fender"},
+        {"shape": "wedge", "size": [2.2, 0.6, 2.0], "pos": [5.5, 3.25, -12.6], "ch": "primary", "mirror": true},
+        {"shape": "block", "size": [2.2, 0.6, 2.2], "pos": [5.5, 3.25, -10.5], "ch": "primary", "mirror": true},
+        {"shape": "wedge", "size": [2.2, 0.6, 2.2], "pos": [5.5, 3.25, -8.3], "rot": [0, 180, 0], "ch": "primary", "mirror": true},
+        {"shape": "cyl_z", "size": [1.2, 1.2, 1.4], "pos": [3.5, 3.0, -12.3], "ch": "secondary", "mirror": true, "note": "lamp pod"},
+        {"shape": "cyl_z", "size": [1.0, 1.0, 0.2], "pos": [3.5, 3.0, -13.1], "ch": "neon", "mirror": true},
+        {"shape": "block", "size": [0.12, 0.2, 6.0], "pos": [6.66, 2.2, -10.4], "ch": "neon", "mirror": true, "note": "marker light row"},
+        {"shape": "block", "size": [4.6, 1.6, 0.2], "pos": [0.0, 2.5, -6.1], "ch": "detail"}
+      ]}
+    },
+    "Engine2": {
+      "tub_bed": {"name": "Tub Bed", "culture": "Prerunner", "parts": [
+        {"shape": "block", "size": [8.6, 1.5, 10.6], "pos": [0.0, 1.25, 8.6], "ch": "primary", "note": "tub floor"},
+        {"shape": "block", "size": [0.6, 1.6, 10.6], "pos": [4.0, 2.8, 8.6], "ch": "primary", "mirror": true, "note": "bed side: top on the 3.6 beltline"},
+        {"shape": "block", "size": [7.4, 1.6, 0.5], "pos": [0.0, 2.8, 3.55], "ch": "primary"},
+        {"shape": "block", "size": [7.4, 1.6, 0.4], "pos": [0.0, 2.8, 13.7], "ch": "secondary", "note": "tailgate"},
+        {"shape": "block", "size": [0.5, 1.4, 0.15], "pos": [4.0, 2.8, 13.96], "ch": "neon", "mirror": true},
+        {"shape": "block", "size": [1.0, 0.8, 9.0], "pos": [4.9, 2.5, 9.4], "ch": "primary", "mirror": true, "note": "shoulder: Bed Rig feet land here"},
+        {"shape": "block", "size": [1.3, 0.8, 5.4], "pos": [6.05, 2.5, 9.5], "ch": "primary", "mirror": true, "note": "flare over the pod"},
+        {"shape": "block", "size": [7.2, 0.1, 10.0], "pos": [0.0, 2.05, 8.6], "ch": "detail"},
+        {"shape": "block", "size": [0.1, 0.35, 10.6], "pos": [4.36, 3.42, 8.6], "ch": "secondary", "mirror": true, "note": "stripe continues the cab belt"},
+        {"shape": "block", "size": [6.0, 1.6, 0.3], "pos": [0.0, 2.4, 3.15], "ch": "detail", "note": "linkage plate to the cab"}
+      ]},
+      "flatbed": {"name": "Flatbed", "culture": "Lifted", "parts": [
+        {"shape": "block", "size": [13.0, 0.5, 9.0], "pos": [0.0, 2.55, 9.4], "ch": "secondary", "note": "wide deck over the pods"},
+        {"shape": "block", "size": [8.6, 0.5, 1.5], "pos": [0.0, 2.55, 4.15], "ch": "secondary"},
+        {"shape": "block", "size": [6.4, 1.8, 10.4], "pos": [0.0, 1.4, 8.7], "ch": "primary", "note": "sub-frame"},
+        {"shape": "block", "size": [8.6, 3.4, 0.4], "pos": [0.0, 4.5, 3.6], "ch": "primary", "note": "headboard"},
+        {"shape": "block", "size": [5.6, 1.6, 0.46], "pos": [0.0, 5.0, 3.6], "ch": "detail"},
+        {"shape": "block", "size": [0.25, 0.4, 9.0], "pos": [6.55, 2.75, 9.4], "ch": "primary", "mirror": true, "note": "edge rail"},
+        {"shape": "block", "size": [8.6, 1.0, 0.4], "pos": [0.0, 1.6, 13.75], "ch": "detail", "note": "tail board"},
+        {"shape": "block", "size": [1.2, 0.5, 0.15], "pos": [3.4, 1.6, 13.96], "ch": "neon", "mirror": true},
+        {"shape": "block", "size": [3.2, 2.2, 3.0], "pos": [-1.9, 3.9, 6.4], "ch": "primary", "note": "cargo crate"},
+        {"shape": "cyl_y", "size": [1.7, 2.4, 1.7], "pos": [2.2, 4.0, 5.8], "ch": "detail", "note": "cargo drum"},
+        {"shape": "cyl_y", "size": [1.7, 2.4, 1.7], "pos": [2.6, 4.0, 7.8], "ch": "primary"},
+        {"shape": "block", "size": [6.0, 1.4, 0.3], "pos": [0.0, 1.9, 3.15], "ch": "detail"}
+      ]},
+      "box_van": {"name": "Box Van", "culture": "Courier", "parts": [
+        {"shape": "block", "size": [8.6, 5.0, 10.4], "pos": [0.0, 5.2, 8.7], "ch": "secondary", "note": "cargo box"},
+        {"shape": "block", "size": [8.7, 0.7, 10.4], "pos": [0.0, 2.35, 8.7], "ch": "primary"},
+        {"shape": "block", "size": [8.0, 1.5, 10.4], "pos": [0.0, 1.25, 8.7], "ch": "detail"},
+        {"shape": "block", "size": [8.75, 0.8, 10.4], "pos": [0.0, 3.6, 8.7], "ch": "primary", "note": "stripe on the beltline"},
+        {"shape": "block", "size": [7.2, 4.4, 0.15], "pos": [0.0, 5.1, 13.96], "ch": "detail", "note": "roller door"},
+        {"shape": "block", "size": [0.4, 1.4, 0.15], "pos": [4.0, 3.6, 13.96], "ch": "neon", "mirror": true},
+        {"shape": "block", "size": [0.5, 0.25, 0.15], "pos": [3.0, 7.5, 13.96], "ch": "neon", "mirror": true},
+        {"shape": "block", "size": [2.2, 0.5, 9.0], "pos": [5.5, 2.4, 9.4], "ch": "primary", "mirror": true, "note": "shoulder shelf over the pods"},
+        {"shape": "block", "size": [0.08, 3.6, 2.4], "pos": [4.36, 5.0, 6.6], "ch": "detail", "note": "side door"},
+        {"shape": "block", "size": [6.0, 1.6, 0.3], "pos": [0.0, 2.2, 3.15], "ch": "detail"},
+        {"shape": "block", "size": [5.0, 3.0, 0.4], "pos": [0.0, 5.0, 3.25], "ch": "detail", "note": "bellows linkage to the cab"}
+      ]},
+      "turbine_bed": {"name": "Turbine Bed", "culture": "Show Truck", "parts": [
+        {"shape": "block", "size": [8.6, 1.5, 10.4], "pos": [0.0, 1.25, 8.7], "ch": "primary", "note": "cradle"},
+        {"shape": "cyl_z", "size": [5.0, 5.0, 6.2], "pos": [0.0, 4.6, 8.5], "ch": "secondary", "note": "turbine"},
+        {"shape": "cyl_z", "size": [5.6, 5.6, 0.9], "pos": [0.0, 4.6, 4.95], "ch": "primary", "note": "intake bell"},
+        {"shape": "ball", "size": [1.8, 1.8, 1.8], "pos": [0.0, 4.6, 4.3], "ch": "neon"},
+        {"shape": "cyl_z", "size": [5.4, 5.4, 0.6], "pos": [0.0, 4.6, 8.5], "ch": "primary"},
+        {"shape": "cyl_z", "size": [4.0, 4.0, 1.6], "pos": [0.0, 4.6, 12.4], "ch": "detail", "note": "nozzle"},
+        {"shape": "cyl_z", "size": [3.2, 3.2, 0.5], "pos": [0.0, 4.6, 13.45], "ch": "thrust"},
+        {"shape": "block", "size": [0.5, 1.2, 10.0], "pos": [4.05, 2.6, 8.9], "ch": "primary", "mirror": true},
+        {"shape": "block", "size": [0.12, 0.25, 10.0], "pos": [4.37, 2.9, 8.9], "ch": "neon", "mirror": true},
+        {"shape": "block", "size": [3.0, 1.0, 6.0], "pos": [0.0, 2.4, 8.5], "ch": "detail", "note": "pedestal"},
+        {"shape": "block", "size": [8.6, 1.2, 0.4], "pos": [0.0, 2.6, 13.75], "ch": "primary", "note": "tail board"},
+        {"shape": "block", "size": [2.0, 0.6, 9.0], "pos": [5.4, 2.45, 9.4], "ch": "primary", "mirror": true, "note": "shoulder shelf"},
+        {"shape": "block", "size": [6.0, 1.4, 0.3], "pos": [0.0, 2.2, 3.15], "ch": "detail"}
+      ]}
+    },
+    "Stabilisers": {
+      "long_travel": {"name": "Long Travel", "culture": "Prerunner", "parts": [
+        {"shape": "cyl_y", "size": [3.4, 0.5, 3.4], "pos": [5.25, -1.2, -10.5], "ch": "detail", "mirror": true, "note": "flat hover disc hung low"},
+        {"shape": "cyl_y", "size": [3.5, 0.15, 3.5], "pos": [5.25, -0.9, -10.5], "ch": "primary", "mirror": true},
+        {"shape": "cyl_y", "size": [2.6, 0.12, 2.6], "pos": [5.25, -1.52, -10.5], "ch": "thrust", "mirror": true},
+        {"shape": "block", "size": [2.0, 0.25, 1.0], "pos": [4.5, -0.3, -10.5], "ch": "detail", "mirror": true, "note": "arm to the axle beam"},
+        {"shape": "cyl_y", "size": [0.5, 2.5, 0.5], "pos": [5.3, 0.7, -10.5], "rot": [0, 0, 15], "ch": "secondary", "mirror": true, "note": "long coil-over"},
+        {"shape": "cyl_y", "size": [3.4, 0.5, 3.4], "pos": [5.25, -1.2, 9.5], "ch": "detail", "mirror": true, "note": "flat hover disc hung low"},
+        {"shape": "cyl_y", "size": [3.5, 0.15, 3.5], "pos": [5.25, -0.9, 9.5], "ch": "primary", "mirror": true},
+        {"shape": "cyl_y", "size": [2.6, 0.12, 2.6], "pos": [5.25, -1.52, 9.5], "ch": "thrust", "mirror": true},
+        {"shape": "block", "size": [2.0, 0.25, 1.0], "pos": [4.5, -0.3, 9.5], "ch": "detail", "mirror": true, "note": "arm to the axle beam"},
+        {"shape": "cyl_y", "size": [0.5, 2.5, 0.5], "pos": [5.3, 0.7, 9.5], "rot": [0, 0, 15], "ch": "secondary", "mirror": true, "note": "long coil-over"}
+      ]},
+      "monster": {"name": "Monster", "culture": "Lifted", "parts": [
+        {"shape": "cyl_y", "size": [3.5, 1.5, 3.5], "pos": [5.2, -0.85, -10.5], "ch": "detail", "mirror": true, "note": "huge hover drum"},
+        {"shape": "cyl_y", "size": [3.6, 0.12, 3.6], "pos": [5.2, -0.6, -10.5], "ch": "neon", "mirror": true},
+        {"shape": "cyl_y", "size": [3.0, 0.2, 3.0], "pos": [5.2, 0.0, -10.5], "ch": "primary", "mirror": true},
+        {"shape": "cyl_y", "size": [2.4, 1.7, 2.4], "pos": [5.7, 1.05, -10.5], "ch": "secondary", "mirror": true, "note": "strut tower"},
+        {"shape": "cyl_y", "size": [2.8, 0.1, 2.8], "pos": [5.2, -1.64, -10.5], "ch": "thrust", "mirror": true},
+        {"shape": "cyl_y", "size": [3.5, 1.5, 3.5], "pos": [5.2, -0.85, 9.5], "ch": "detail", "mirror": true, "note": "huge hover drum"},
+        {"shape": "cyl_y", "size": [3.6, 0.12, 3.6], "pos": [5.2, -0.6, 9.5], "ch": "neon", "mirror": true},
+        {"shape": "cyl_y", "size": [3.0, 0.2, 3.0], "pos": [5.2, 0.0, 9.5], "ch": "primary", "mirror": true},
+        {"shape": "cyl_y", "size": [2.4, 1.7, 2.4], "pos": [5.7, 1.05, 9.5], "ch": "secondary", "mirror": true, "note": "strut tower"},
+        {"shape": "cyl_y", "size": [2.8, 0.1, 2.8], "pos": [5.2, -1.64, 9.5], "ch": "thrust", "mirror": true}
+      ]},
+      "slammed": {"name": "Slammed", "culture": "Minitruck", "parts": [
+        {"shape": "cyl_y", "size": [2.5, 0.4, 2.5], "pos": [5.7, 1.4, -10.5], "rot": [0, 0, 10], "ch": "secondary", "mirror": true, "note": "thin dish tucked in the arch"},
+        {"shape": "cyl_y", "size": [2.5, 0.2, 2.5], "pos": [5.752, 1.105, -10.5], "rot": [0, 0, 10], "ch": "detail", "mirror": true},
+        {"shape": "cyl_y", "size": [2.1, 0.1, 2.1], "pos": [5.78, 0.947, -10.5], "rot": [0, 0, 10], "ch": "neon", "mirror": true, "note": "underglow"},
+        {"shape": "cyl_y", "size": [1.2, 0.1, 1.2], "pos": [5.8, 0.84, -10.5], "rot": [0, 0, 10], "ch": "thrust", "mirror": true},
+        {"shape": "block", "size": [1.2, 0.3, 0.6], "pos": [4.0, 0.2, -10.5], "ch": "detail", "mirror": true, "note": "stub axle"},
+        {"shape": "cyl_y", "size": [2.5, 0.4, 2.5], "pos": [5.7, 1.4, 9.5], "rot": [0, 0, 10], "ch": "secondary", "mirror": true, "note": "thin dish tucked in the arch"},
+        {"shape": "cyl_y", "size": [2.5, 0.2, 2.5], "pos": [5.752, 1.105, 9.5], "rot": [0, 0, 10], "ch": "detail", "mirror": true},
+        {"shape": "cyl_y", "size": [2.1, 0.1, 2.1], "pos": [5.78, 0.947, 9.5], "rot": [0, 0, 10], "ch": "neon", "mirror": true, "note": "underglow"},
+        {"shape": "cyl_y", "size": [1.2, 0.1, 1.2], "pos": [5.8, 0.84, 9.5], "rot": [0, 0, 10], "ch": "thrust", "mirror": true},
+        {"shape": "block", "size": [1.2, 0.3, 0.6], "pos": [4.0, 0.2, 9.5], "ch": "detail", "mirror": true, "note": "stub axle"}
+      ]},
+      "dually": {"name": "Dually", "culture": "Show Truck", "parts": [
+        {"shape": "cyl_y", "size": [3.0, 0.9, 3.0], "pos": [5.2, -0.95, -10.5], "ch": "detail", "mirror": true},
+        {"shape": "cyl_y", "size": [1.8, 0.3, 1.8], "pos": [5.2, -0.35, -10.5], "ch": "secondary", "mirror": true},
+        {"shape": "cyl_y", "size": [2.2, 0.1, 2.2], "pos": [5.2, -1.45, -10.5], "ch": "thrust", "mirror": true},
+        {"shape": "cyl_y", "size": [2.8, 1.0, 2.8], "pos": [5.3, -0.95, 8.0], "ch": "detail", "mirror": true, "note": "twin rear drum"},
+        {"shape": "cyl_y", "size": [1.8, 0.3, 1.8], "pos": [5.3, -0.3, 8.0], "ch": "secondary", "mirror": true},
+        {"shape": "cyl_y", "size": [2.0, 0.1, 2.0], "pos": [5.3, -1.5, 8.0], "ch": "thrust", "mirror": true},
+        {"shape": "cyl_y", "size": [2.8, 1.0, 2.8], "pos": [5.3, -0.95, 11.0], "ch": "detail", "mirror": true, "note": "twin rear drum"},
+        {"shape": "cyl_y", "size": [1.8, 0.3, 1.8], "pos": [5.3, -0.3, 11.0], "ch": "secondary", "mirror": true},
+        {"shape": "cyl_y", "size": [2.0, 0.1, 2.0], "pos": [5.3, -1.5, 11.0], "ch": "thrust", "mirror": true},
+        {"shape": "block", "size": [2.2, 0.4, 4.6], "pos": [4.6, -0.2, 9.5], "ch": "detail", "mirror": true, "note": "bogie beam"}
+      ]}
+    },
+    "SidePods": {
+      "steps": {"name": "Steps", "culture": "Prerunner", "parts": [
+        {"shape": "cyl_z", "size": [0.6, 0.6, 8.2], "pos": [5.6, 0.3, -1.5], "ch": "secondary", "mirror": true, "note": "nerf tube"},
+        {"shape": "block", "size": [1.0, 0.12, 5.8], "pos": [5.4, 0.68, -1.5], "ch": "detail", "mirror": true},
+        {"shape": "block", "size": [1.3, 0.3, 0.4], "pos": [4.9, 0.3, -4.6], "ch": "detail", "mirror": true, "note": "bracket to the cab"},
+        {"shape": "block", "size": [1.3, 0.3, 0.4], "pos": [4.9, 0.3, 1.8], "ch": "detail", "mirror": true}
+      ]},
+      "fuel_tanks": {"name": "Fuel Tanks", "culture": "Show Truck", "parts": [
+        {"shape": "cyl_z", "size": [1.9, 1.9, 5.8], "pos": [5.3, 0.6, -1.4], "ch": "secondary", "mirror": true, "note": "saddle tank"},
+        {"shape": "cyl_z", "size": [2.0, 2.0, 0.4], "pos": [5.3, 0.6, -1.4], "ch": "detail", "mirror": true},
+        {"shape": "block", "size": [1.5, 0.12, 5.0], "pos": [5.3, 1.68, -1.4], "ch": "detail", "mirror": true},
+        {"shape": "block", "size": [0.15, 0.15, 5.8], "pos": [5.3, -0.5, -1.4], "ch": "neon", "mirror": true}
+      ]},
+      "toolboxes": {"name": "Toolboxes", "culture": "Courier", "parts": [
+        {"shape": "block", "size": [1.8, 1.9, 3.4], "pos": [5.2, 0.9, -3.9], "ch": "primary", "mirror": true, "note": "tall locker"},
+        {"shape": "block", "size": [1.8, 1.3, 3.6], "pos": [5.2, 0.6, 0.6], "ch": "primary", "mirror": true, "note": "low locker"},
+        {"shape": "block", "size": [1.9, 0.12, 3.4], "pos": [5.2, 1.9, -3.9], "ch": "detail", "mirror": true},
+        {"shape": "block", "size": [0.1, 0.3, 0.8], "pos": [6.15, 1.2, -3.9], "ch": "secondary", "mirror": true}
+      ]}
+    },
+    "Boost": {
+      "twin_stacks": {"name": "Twin Stacks", "culture": "Show Truck", "parts": [
+        {"shape": "cyl_y", "size": [1.1, 7.6, 1.1], "pos": [5.0, 5.3, 3.9], "ch": "secondary", "mirror": true, "note": "tall stack in the stack bay"},
+        {"shape": "cyl_y", "size": [1.2, 2.8, 1.2], "pos": [5.0, 4.4, 3.9], "ch": "detail", "mirror": true},
+        {"shape": "cyl_y", "size": [1.2, 0.2, 1.2], "pos": [5.0, 8.4, 3.9], "ch": "neon", "mirror": true},
+        {"shape": "cyl_y", "size": [0.9, 0.3, 0.9], "pos": [5.0, 9.25, 3.9], "ch": "thrust", "mirror": true}
+      ]},
+      "bed_burner": {"name": "Bed Burner", "culture": "Minitruck", "parts": [
+        {"shape": "cyl_z", "size": [1.8, 1.8, 1.8], "pos": [1.3, 2.8, 14.95], "ch": "detail", "mirror": true, "note": "burner can through the tail port"},
+        {"shape": "cyl_z", "size": [1.9, 1.9, 0.2], "pos": [1.3, 2.8, 15.5], "ch": "neon", "mirror": true},
+        {"shape": "cyl_z", "size": [1.4, 1.4, 0.3], "pos": [1.3, 2.8, 16.0], "ch": "thrust", "mirror": true},
+        {"shape": "block", "size": [0.8, 0.4, 1.2], "pos": [0.0, 2.8, 14.7], "ch": "detail"}
+      ]},
+      "under_bed_dump": {"name": "Under-bed Dump", "culture": "Prerunner", "parts": [
+        {"shape": "block", "size": [1.6, 1.2, 2.8], "pos": [5.4, 0.9, 4.6], "ch": "secondary", "mirror": true, "note": "heat-shielded muffler"},
+        {"shape": "cyl_x", "size": [1.6, 0.9, 0.9], "pos": [5.65, -0.3, 3.9], "rot": [0, 0, -20], "ch": "detail", "mirror": true, "note": "dump pipe"},
+        {"shape": "cyl_x", "size": [1.6, 0.9, 0.9], "pos": [5.65, -0.3, 5.3], "rot": [0, 0, -20], "ch": "detail", "mirror": true},
+        {"shape": "cyl_x", "size": [0.15, 0.7, 0.7], "pos": [6.38, -0.565, 3.9], "rot": [0, 0, -20], "ch": "thrust", "mirror": true},
+        {"shape": "cyl_x", "size": [0.15, 0.7, 0.7], "pos": [6.38, -0.565, 5.3], "rot": [0, 0, -20], "ch": "thrust", "mirror": true}
+      ]}
+    },
+    "FrontBumper": {
+      "bull_bar": {"name": "Bull Bar", "culture": "Prerunner", "parts": [
+        {"shape": "cyl_x", "size": [9.6, 0.7, 0.7], "pos": [0.0, 1.2, -15.2], "ch": "secondary", "note": "main tube"},
+        {"shape": "cyl_x", "size": [2.6, 0.6, 0.6], "pos": [5.4, 1.3, -14.95], "rot": [0, -28, 0], "ch": "secondary", "mirror": true, "note": "swept wing tube"},
+        {"shape": "wedge", "size": [5.0, 1.3, 1.8], "pos": [0.0, 0.2, -15.0], "rot": [0, 0, 180], "ch": "detail", "note": "skid plate"},
+        {"shape": "block", "size": [0.5, 2.8, 0.5], "pos": [2.0, 2.9, -15.3], "ch": "secondary", "mirror": true},
+        {"shape": "cyl_x", "size": [4.5, 0.6, 0.6], "pos": [0.0, 4.3, -15.3], "ch": "secondary", "note": "hoop"},
+        {"shape": "cyl_z", "size": [1.2, 1.2, 0.4], "pos": [1.0, 3.0, -15.5], "ch": "neon", "mirror": true, "note": "race lamps"},
+        {"shape": "block", "size": [0.6, 0.6, 1.0], "pos": [2.3, 1.0, -14.5], "ch": "detail", "mirror": true, "note": "mount: reaches the clip face"}
+      ]},
+      "winch_bumper": {"name": "Winch Bumper", "culture": "Lifted", "parts": [
+        {"shape": "block", "size": [9.0, 1.4, 1.2], "pos": [0.0, 1.2, -14.9], "ch": "secondary", "note": "plate bumper"},
+        {"shape": "block", "size": [2.6, 1.2, 0.9], "pos": [5.3, 1.2, -14.95], "rot": [0, -22, 0], "ch": "secondary", "mirror": true, "note": "swept end"},
+        {"shape": "cyl_x", "size": [2.2, 0.8, 0.8], "pos": [0.0, 1.5, -15.55], "ch": "detail", "note": "winch drum"},
+        {"shape": "block", "size": [0.4, 0.6, 0.4], "pos": [2.6, 0.7, -15.7], "ch": "neon", "mirror": true, "note": "shackles"},
+        {"shape": "block", "size": [1.0, 0.5, 0.12], "pos": [3.4, 1.5, -15.56], "ch": "neon", "mirror": true},
+        {"shape": "wedge", "size": [6.0, 1.0, 1.4], "pos": [0.0, 0.0, -14.9], "rot": [0, 0, 180], "ch": "detail"}
+      ]},
+      "plough": {"name": "Plough", "culture": "Courier", "parts": [
+        {"shape": "block", "size": [6.2, 2.6, 0.4], "pos": [3.15, 0.7, -15.1], "rot": [0, -13, 0], "ch": "secondary", "mirror": true, "note": "V blade"},
+        {"shape": "block", "size": [6.2, 0.3, 0.5], "pos": [3.15, 2.15, -15.05], "rot": [0, -13, 0], "ch": "primary", "mirror": true},
+        {"shape": "block", "size": [0.6, 3.2, 0.5], "pos": [0.0, 0.7, -15.7], "ch": "detail"},
+        {"shape": "block", "size": [0.6, 0.6, 1.2], "pos": [1.8, 0.6, -14.6], "ch": "detail", "mirror": true, "note": "push frame: reaches the clip face"},
+        {"shape": "block", "size": [0.6, 0.4, 0.6], "pos": [0.0, 2.6, -15.5], "ch": "neon"},
+        {"shape": "cyl_y", "size": [0.15, 1.6, 0.15], "pos": [6.0, 3.0, -14.5], "ch": "neon", "mirror": true, "note": "blade marker"}
+      ]},
+      "chrome_bumper": {"name": "Chrome Bumper", "culture": "Show Truck", "parts": [
+        {"shape": "block", "size": [12.6, 0.9, 0.9], "pos": [0.0, 1.3, -14.85], "ch": "secondary", "note": "full-width blade"},
+        {"shape": "block", "size": [0.6, 1.7, 0.5], "pos": [1.7, 1.5, -15.5], "ch": "secondary", "mirror": true, "note": "overrider"},
+        {"shape": "block", "size": [9.0, 0.8, 0.4], "pos": [0.0, 0.35, -14.5], "ch": "primary", "note": "valance"},
+        {"shape": "block", "size": [1.6, 0.35, 0.12], "pos": [4.4, 1.3, -15.35], "ch": "neon", "mirror": true},
+        {"shape": "block", "size": [10.0, 0.12, 0.2], "pos": [0.0, 0.75, -15.1], "ch": "neon"},
+        {"shape": "block", "size": [0.6, 0.5, 0.4], "pos": [2.6, 1.3, -14.2], "ch": "detail", "mirror": true},
+        {"shape": "block", "size": [1.8, 0.7, 0.1], "pos": [0.0, 1.3, -15.35], "ch": "detail"}
+      ]}
+    },
+    "RearBumper": {
+      "hitch": {"name": "Hitch", "culture": "Prerunner", "parts": [
+        {"shape": "cyl_x", "size": [9.6, 0.7, 0.7], "pos": [0.0, 1.1, 14.9], "ch": "secondary"},
+        {"shape": "block", "size": [0.9, 0.9, 1.7], "pos": [0.0, 0.3, 15.0], "ch": "detail", "note": "receiver"},
+        {"shape": "ball", "size": [0.7, 0.7, 0.7], "pos": [0.0, 0.95, 15.55], "ch": "secondary"},
+        {"shape": "block", "size": [0.5, 0.5, 0.9], "pos": [2.3, 1.0, 14.5], "ch": "detail", "mirror": true},
+        {"shape": "wedge", "size": [5.0, 1.0, 1.6], "pos": [0.0, -0.3, 14.9], "rot": [180, 0, 0], "ch": "detail"}
+      ]},
+      "step": {"name": "Step", "culture": "Courier", "parts": [
+        {"shape": "block", "size": [11.6, 0.8, 1.6], "pos": [0.0, 0.9, 15.0], "ch": "secondary", "note": "step bumper"},
+        {"shape": "block", "size": [5.6, 0.12, 1.4], "pos": [0.0, 1.36, 15.0], "ch": "detail"},
+        {"shape": "block", "size": [0.8, 1.0, 1.2], "pos": [6.2, 0.9, 14.8], "ch": "primary", "mirror": true},
+        {"shape": "block", "size": [1.4, 0.35, 0.12], "pos": [4.2, 0.9, 15.86], "ch": "neon", "mirror": true}
+      ]},
+      "roll_pan": {"name": "Roll Pan", "culture": "Minitruck", "parts": [
+        {"shape": "block", "size": [8.8, 1.2, 0.5], "pos": [0.0, 1.2, 14.3], "ch": "primary", "note": "smooth pan"},
+        {"shape": "wedge", "size": [8.8, 1.0, 1.4], "pos": [0.0, 0.1, 14.75], "rot": [180, 0, 0], "ch": "primary"},
+        {"shape": "block", "size": [5.0, 0.25, 0.1], "pos": [0.0, 1.3, 14.6], "ch": "neon"},
+        {"shape": "block", "size": [1.6, 0.5, 0.1], "pos": [0.0, 0.7, 14.6], "ch": "detail"}
+      ]}
+    },
+    "RearSpoiler": {
+      "chase_rack": {"name": "Chase Rack", "culture": "Prerunner", "parts": [
+        {"shape": "cyl_y", "size": [0.6, 5.2, 0.6], "pos": [4.9, 5.6, 5.4], "ch": "secondary", "mirror": true, "note": "foot on the bed shoulder at Y 3.0"},
+        {"shape": "cyl_x", "size": [10.4, 0.6, 0.6], "pos": [0.0, 8.2, 5.4], "ch": "secondary"},
+        {"shape": "cyl_z", "size": [0.5, 0.5, 4.6], "pos": [4.9, 8.2, 7.7], "ch": "secondary", "mirror": true},
+        {"shape": "cyl_x", "size": [10.4, 0.5, 0.5], "pos": [0.0, 8.2, 10.0], "ch": "secondary"},
+        {"shape": "cyl_z", "size": [0.5, 0.5, 6.0], "pos": [4.9, 5.7, 11.7], "rot": [55.8, 0, 0], "ch": "secondary", "mirror": true, "note": "rear stay"},
+        {"shape": "cyl_z", "size": [1.0, 1.0, 0.4], "pos": [1.2, 9.0, 5.3], "ch": "neon", "mirror": true},
+        {"shape": "cyl_z", "size": [1.0, 1.0, 0.4], "pos": [3.4, 9.0, 5.3], "ch": "neon", "mirror": true},
+        {"shape": "cyl_y", "size": [3.4, 0.6, 3.4], "pos": [0.0, 8.75, 7.8], "ch": "detail", "note": "spare hover disc"},
+        {"shape": "cyl_y", "size": [1.5, 0.2, 1.5], "pos": [0.0, 9.15, 7.8], "ch": "primary"},
+        {"shape": "cyl_x", "size": [10.0, 0.3, 0.3], "pos": [0.0, 8.3, 7.8], "ch": "detail"}
+      ]},
+      "roll_bar": {"name": "Roll Bar", "culture": "Minitruck", "parts": [
+        {"shape": "block", "size": [0.5, 4.9, 0.7], "pos": [4.9, 5.45, 5.6], "ch": "secondary", "mirror": true, "note": "hoop leg on the bed shoulder"},
+        {"shape": "block", "size": [10.4, 0.5, 0.7], "pos": [0.0, 8.15, 5.6], "ch": "secondary"},
+        {"shape": "cyl_z", "size": [0.4, 0.4, 5.4], "pos": [4.9, 5.4, 7.9], "rot": [48.7, 0, 0], "ch": "secondary", "mirror": true, "note": "kicker"},
+        {"shape": "block", "size": [7.0, 0.25, 0.2], "pos": [0.0, 8.55, 5.6], "ch": "neon"},
+        {"shape": "block", "size": [0.6, 1.2, 0.8], "pos": [4.9, 6.6, 5.6], "ch": "detail", "mirror": true}
+      ]},
+      "ladder_rack": {"name": "Ladder Rack", "culture": "Courier", "parts": [
+        {"shape": "block", "size": [0.5, 5.0, 0.5], "pos": [4.9, 5.5, 5.6], "ch": "secondary", "mirror": true},
+        {"shape": "block", "size": [0.5, 5.0, 0.5], "pos": [4.9, 5.5, 13.0], "ch": "secondary", "mirror": true},
+        {"shape": "block", "size": [10.3, 0.4, 0.5], "pos": [0.0, 8.2, 5.6], "ch": "secondary"},
+        {"shape": "block", "size": [10.3, 0.4, 0.5], "pos": [0.0, 8.2, 13.0], "ch": "secondary"},
+        {"shape": "block", "size": [0.4, 0.4, 7.9], "pos": [4.9, 8.2, 9.3], "ch": "secondary", "mirror": true},
+        {"shape": "block", "size": [0.25, 0.3, 8.2], "pos": [-2.6, 8.6, 9.3], "ch": "primary", "note": "ladder"},
+        {"shape": "block", "size": [0.25, 0.3, 8.2], "pos": [-1.0, 8.6, 9.3], "ch": "primary"},
+        {"shape": "block", "size": [1.4, 0.2, 0.2], "pos": [-1.8, 8.6, 6.6], "ch": "detail"},
+        {"shape": "block", "size": [1.4, 0.2, 0.2], "pos": [-1.8, 8.6, 9.3], "ch": "detail"},
+        {"shape": "block", "size": [1.4, 0.2, 0.2], "pos": [-1.8, 8.6, 12.0], "ch": "detail"},
+        {"shape": "cyl_z", "size": [0.9, 0.9, 8.6], "pos": [2.4, 8.85, 9.3], "ch": "detail", "note": "pipe tube"},
+        {"shape": "block", "size": [0.5, 0.4, 0.5], "pos": [4.9, 8.6, 13.0], "ch": "neon", "mirror": true, "note": "beacon"}
+      ]}
+    },
+    "Hood": {
+      "scoop": {"name": "Scoop", "culture": "Minitruck", "parts": [
+        {"shape": "block", "size": [3.0, 0.9, 1.4], "pos": [0.0, 4.1, -11.5], "ch": "primary", "note": "scoop on the hood pad"},
+        {"shape": "wedge", "size": [3.0, 0.9, 0.8], "pos": [0.0, 4.1, -10.4], "rot": [0, 180, 0], "ch": "primary"},
+        {"shape": "block", "size": [2.6, 0.6, 0.15], "pos": [0.0, 4.1, -12.27], "ch": "detail"}
+      ]},
+      "snorkel": {"name": "Snorkel", "culture": "Prerunner", "parts": [
+        {"shape": "cyl_y", "size": [0.6, 4.2, 0.6], "pos": [4.9, 5.8, -6.7], "ch": "detail", "note": "riser beside the screen pillar"},
+        {"shape": "block", "size": [0.9, 0.7, 1.3], "pos": [4.9, 8.0, -7.0], "ch": "secondary", "note": "ram head"},
+        {"shape": "block", "size": [0.9, 0.4, 2.2], "pos": [4.9, 3.85, -7.7], "ch": "detail", "note": "feed along the cowl shoulder"}
+      ]}
+    },
+    "Roof": {
+      "light_bar": {"name": "Light Bar", "culture": "Prerunner", "parts": [
+        {"shape": "block", "size": [0.5, 0.35, 0.7], "pos": [2.0, 7.78, -2.4], "ch": "detail", "mirror": true, "note": "foot on the roof pad"},
+        {"shape": "block", "size": [6.8, 0.7, 0.8], "pos": [0.0, 8.3, -2.4], "ch": "detail"},
+        {"shape": "block", "size": [6.4, 0.5, 0.15], "pos": [0.0, 8.3, -2.85], "ch": "neon"},
+        {"shape": "block", "size": [0.3, 0.8, 0.9], "pos": [3.5, 8.3, -2.4], "ch": "secondary", "mirror": true}
+      ]},
+      "rack": {"name": "Rack", "culture": "Courier", "parts": [
+        {"shape": "block", "size": [0.5, 0.3, 2.0], "pos": [2.0, 7.75, -1.9], "ch": "detail", "mirror": true, "note": "foot rail on the roof pad"},
+        {"shape": "block", "size": [6.8, 0.15, 4.4], "pos": [0.0, 7.98, -2.0], "ch": "detail"},
+        {"shape": "cyl_z", "size": [0.3, 0.3, 4.4], "pos": [3.3, 8.6, -2.0], "ch": "secondary", "mirror": true},
+        {"shape": "cyl_x", "size": [6.9, 0.3, 0.3], "pos": [0.0, 8.6, -4.2], "ch": "secondary"},
+        {"shape": "cyl_x", "size": [6.9, 0.3, 0.3], "pos": [0.0, 8.6, 0.2], "ch": "secondary"},
+        {"shape": "block", "size": [0.25, 0.6, 0.25], "pos": [3.3, 8.3, -4.2], "ch": "secondary", "mirror": true},
+        {"shape": "block", "size": [0.25, 0.6, 0.25], "pos": [3.3, 8.3, 0.2], "ch": "secondary", "mirror": true},
+        {"shape": "block", "size": [2.4, 0.9, 2.0], "pos": [-1.4, 8.5, -1.2], "ch": "secondary", "note": "crate"},
+        {"shape": "cyl_x", "size": [2.8, 0.8, 0.8], "pos": [1.2, 8.45, -3.2], "ch": "primary", "note": "bedroll"}
+      ]},
+      "taxi_sign": {"name": "Taxi Sign", "culture": "Cab", "parts": [
+        {"shape": "block", "size": [3.6, 0.25, 1.6], "pos": [0.0, 7.73, -1.9], "ch": "detail", "note": "base on the roof pad"},
+        {"shape": "block", "size": [4.6, 1.1, 1.2], "pos": [0.0, 8.4, -1.9], "ch": "neon", "note": "blank glowing sign"},
+        {"shape": "block", "size": [3.6, 0.25, 1.3], "pos": [0.0, 9.07, -1.9], "ch": "secondary"},
+        {"shape": "block", "size": [0.3, 1.1, 1.3], "pos": [2.45, 8.4, -1.9], "ch": "secondary", "mirror": true}
+      ]}
+    },
+    "Accessory": {
+      "tow_mirrors": {"name": "Tow Mirrors", "culture": "Show Truck", "parts": [
+        {"shape": "block", "size": [1.1, 0.2, 0.2], "pos": [4.8, 4.3, -4.4], "ch": "detail", "mirror": true, "note": "arm at window-sill height"},
+        {"shape": "block", "size": [0.35, 1.8, 1.0], "pos": [5.4, 5.0, -4.4], "ch": "secondary", "mirror": true},
+        {"shape": "block", "size": [0.12, 0.3, 0.4], "pos": [5.65, 5.6, -4.4], "ch": "neon", "mirror": true}
+      ]},
+      "whip_flags": {"name": "Whip Flags", "culture": "Prerunner", "parts": [
+        {"shape": "block", "size": [0.6, 0.5, 0.6], "pos": [4.55, 2.3, 2.2], "ch": "detail", "mirror": true, "note": "base on the cab rear corner"},
+        {"shape": "cyl_y", "size": [0.2, 7.0, 0.2], "pos": [4.55, 6.05, 2.2], "ch": "neon", "mirror": true, "note": "lit whip"},
+        {"shape": "block", "size": [0.1, 0.6, 0.5], "pos": [4.55, 9.25, 2.5], "ch": "primary", "mirror": true}
+      ]}
+    }
+  },
+  "builds": [
+    {"name": "1 Prerunner kit on Single Cab", "cockpit": "single_cab", "paint": {"primary": "#e2742b", "secondary": "#efe6d2", "neon": "#ffd24a"}, "modules": {"Engine1": "prerunner_flare", "Engine2": "tub_bed", "Stabilisers": "long_travel", "SidePods": "steps", "Boost": "under_bed_dump", "FrontBumper": "bull_bar", "RearBumper": "hitch", "RearSpoiler": "chase_rack", "Hood": "snorkel", "Roof": "light_bar", "Accessory": "whip_flags"}, "note": "Builds 1-3: one kit and one paint on three cabs."},
+    {"name": "2 Prerunner kit on Cab-Over", "cockpit": "cab_over", "paint": {"primary": "#e2742b", "secondary": "#efe6d2", "neon": "#ffd24a"}, "modules": {"Engine1": "prerunner_flare", "Engine2": "tub_bed", "Stabilisers": "long_travel", "SidePods": "steps", "Boost": "under_bed_dump", "FrontBumper": "bull_bar", "RearBumper": "hitch", "RearSpoiler": "chase_rack", "Hood": "snorkel", "Roof": "light_bar", "Accessory": "whip_flags"}},
+    {"name": "3 Prerunner kit on Kei Cab", "cockpit": "kei_cab", "paint": {"primary": "#e2742b", "secondary": "#efe6d2", "neon": "#ffd24a"}, "modules": {"Engine1": "prerunner_flare", "Engine2": "tub_bed", "Stabilisers": "long_travel", "SidePods": "steps", "Boost": "under_bed_dump", "FrontBumper": "bull_bar", "RearBumper": "hitch", "RearSpoiler": "chase_rack", "Hood": "snorkel", "Roof": "light_bar", "Accessory": "whip_flags"}},
+    {"name": "4 Crew Cab, Minitruck kit (slammed)", "cockpit": "crew_cab", "paint": {"primary": "#19b8a6", "secondary": "#ff4fa3", "neon": "#ff9ad8"}, "modules": {"Engine1": "square_body", "Engine2": "tub_bed", "Stabilisers": "slammed", "SidePods": "toolboxes", "Boost": "bed_burner", "FrontBumper": "chrome_bumper", "RearBumper": "roll_pan", "RearSpoiler": "roll_bar", "Hood": "scoop"}, "note": "Builds 4-6: one cab, three culture kits."},
+    {"name": "5 Crew Cab, Show Truck kit (chrome+lights)", "cockpit": "crew_cab", "paint": {"primary": "#7a1230", "secondary": "#dfe5ec", "neon": "#ffb347"}, "modules": {"Engine1": "show_chrome", "Engine2": "turbine_bed", "Stabilisers": "dually", "SidePods": "fuel_tanks", "Boost": "twin_stacks", "FrontBumper": "winch_bumper", "RearBumper": "step", "RearSpoiler": "chase_rack", "Hood": "scoop", "Roof": "light_bar", "Accessory": "tow_mirrors"}},
+    {"name": "6 Crew Cab, Courier kit (box van)", "cockpit": "crew_cab", "paint": {"primary": "#2d5fd0", "secondary": "#f4f2ea", "neon": "#fff1b8"}, "modules": {"Engine1": "flat_face", "Engine2": "box_van", "Stabilisers": "dually", "SidePods": "steps", "Boost": "under_bed_dump", "FrontBumper": "bull_bar", "RearBumper": "hitch", "RearSpoiler": "ladder_rack", "Roof": "rack", "Accessory": "tow_mirrors"}},
+    {"name": "7 Wildcard: Checker taxi, show nose, slammed", "cockpit": "checker_cab", "paint": {"primary": "#ffc915", "secondary": "#17181c", "neon": "#fff7c0"}, "modules": {"Engine1": "show_chrome", "Engine2": "tub_bed", "Stabilisers": "slammed", "SidePods": "fuel_tanks", "Boost": "bed_burner", "FrontBumper": "chrome_bumper", "RearBumper": "roll_pan", "RearSpoiler": "roll_bar", "Hood": "scoop", "Roof": "taxi_sign", "Accessory": "tow_mirrors"}, "note": "Cab + Show Truck + Minitruck parts."},
+    {"name": "8 Wildcard: Kei Cab monster flatbed plough", "cockpit": "kei_cab", "paint": {"primary": "#3fae49", "secondary": "#f08a24", "neon": "#c8ff5a"}, "modules": {"Engine1": "flat_face", "Engine2": "flatbed", "Stabilisers": "monster", "SidePods": "toolboxes", "Boost": "twin_stacks", "FrontBumper": "plough", "RearBumper": "step", "RearSpoiler": "ladder_rack", "Hood": "snorkel", "Roof": "rack", "Accessory": "whip_flags"}, "note": "Minitruck cab + Lifted + Courier + Show Truck parts."}
+  ]
+}

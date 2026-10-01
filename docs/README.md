@@ -368,6 +368,7 @@ Point-in-time delivery notes. Read only when investigating a regression or recov
 ## Design proposals (not approved)
 
 - [design/street-life-update.md](design/street-life-update.md) - Street Life: rank, dailies, style meter, jobs, duels, monetisation (Design - not approved)
+- [design/vehicle-frame-classes.md](design/vehicle-frame-classes.md) - Vehicle frame classes: nine new modular vehicle categories, the frame standard that makes parts interchange, slot mapping and contract (Design - not approved). Class and frame sheets with concept images are in [design/vehicle-categories/](design/vehicle-categories/); blockout tools and the shared brief are in [scripts/vehicle_blockouts/](../scripts/vehicle_blockouts/CONTRACT.md).
 
 ## Other
 

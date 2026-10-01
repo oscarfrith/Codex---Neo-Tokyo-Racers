@@ -1,0 +1,722 @@
+{
+  "id": "cruiser",
+  "displayName": "Cruiser",
+  "tagline": "Long, low land yachts: lowriders, lead sleds, fin-era chrome, VIP saloons and kaido racers.",
+  "standard": {
+    "cockpitEnvelope": [
+      {"min": [-4.8, 0, -5.5], "max": [4.8, 3.2, 6.0]},
+      {"min": [-4.4, 3.2, -4.0], "max": [4.4, 4.9, 6.0]}
+    ],
+    "datums": {"beltline": 3.0, "sill": 0.2, "hoverPlane": -2.0},
+    "slots": {
+      "Engine1": {
+        "label": "Front Clip",
+        "envelope": {"min": [-4.8, 0, -16.4], "max": [4.8, 3.6, -5.5]},
+        "anchor": {"to": "cockpit", "face": "+z"},
+        "explode": [0, 0, -6]
+      },
+      "Engine2": {
+        "label": "Rear Deck",
+        "envelope": {"min": [-4.8, 0, 6.0], "max": [4.8, 3.6, 15.5]},
+        "anchor": {"to": "cockpit", "face": "-z"},
+        "explode": [0, 0, 6]
+      },
+      "Stabilisers": {
+        "label": "Hover Rotors",
+        "envelope": {"min": [-4.8, -2.0, -16.4], "max": [4.8, 0, 15.5]},
+        "anchor": {"to": "cockpit", "face": "+y"},
+        "explode": [0, -8, 0]
+      },
+      "SidePods": {
+        "label": "Flanks",
+        "envelope": {"min": [4.8, -1.6, -14.5], "max": [5.6, 3.6, 14.0], "mirror": true},
+        "anchor": {"to": "cockpit", "face": "-x"},
+        "explode": [0, -4, 0]
+      },
+      "Boost": {
+        "label": "Pipes",
+        "envelope": [
+          {"min": [-5.6, -1.6, 15.5], "max": [5.6, 0, 19.0]},
+          {"min": [-5.6, 0, 17.0], "max": [5.6, 9.8, 19.0]}
+        ],
+        "anchor": {"to": "Engine2", "face": "-z"},
+        "explode": [0, -2, 15]
+      },
+      "FrontBumper": {
+        "label": "Front Chrome",
+        "envelope": {"min": [-5.6, -1.6, -18.4], "max": [5.6, 3.6, -16.4]},
+        "anchor": {"to": "Engine1", "face": "+z"},
+        "explode": [0, 0, -11]
+      },
+      "RearBumper": {
+        "label": "Rear Chrome",
+        "envelope": {"min": [-5.6, 0, 15.5], "max": [5.6, 4.2, 17.0]},
+        "anchor": {"to": "Engine2", "face": "-z"},
+        "explode": [0, 0, 10]
+      },
+      "RearSpoiler": {
+        "label": "Deck Trim",
+        "envelope": {"min": [-5.6, 3.6, 6.0], "max": [5.6, 8.2, 15.5]},
+        "anchor": {"to": "Engine2", "face": "-y"},
+        "explode": [0, 5, 7]
+      },
+      "Hood": {
+        "label": "Hood",
+        "envelope": {"min": [-4.4, 3.6, -16.4], "max": [4.4, 5.0, -5.5]},
+        "anchor": {"to": "Engine1", "face": "-y"},
+        "explode": [0, 5, -6]
+      },
+      "Roof": {
+        "label": "Roof",
+        "envelope": {"min": [-4.4, 4.9, -1.6], "max": [4.4, 5.7, 6.0]},
+        "anchor": {"to": "cockpit", "face": "-y"},
+        "explode": [0, 4, 1]
+      },
+      "Accessory": {
+        "label": "Extras",
+        "envelope": [
+          {"min": [-4.8, 3.2, -5.5], "max": [4.8, 5.7, -4.0]},
+          {"min": [-4.4, 4.9, -4.0], "max": [4.4, 5.7, -1.6]}
+        ],
+        "anchor": {"to": "cockpit", "face": "-y"},
+        "explode": [0, 8, -3]
+      }
+    }
+  },
+  "cockpits": {
+    "hardtop": {
+      "name": "Hardtop",
+      "culture": "Lowrider",
+      "parts": [
+        {"shape": "block", "size": [8.8, 2.2, 0.2], "pos": [0.0, 1.5, -5.4], "ch": "detail", "note": "front linkage collar in the shadow gap to the Front Clip"},
+        {"shape": "block", "size": [8.8, 2.2, 0.2], "pos": [0.0, 1.5, 5.9], "ch": "detail", "note": "rear linkage collar in the shadow gap to the Rear Deck"},
+        {"shape": "block", "size": [9.6, 2.8, 11.1], "pos": [0.0, 1.6, 0.25], "ch": "primary", "note": "tub: sill 0.2 to beltline 3.0, full body width"},
+        {"shape": "block", "size": [7.6, 0.1, 0.9], "pos": [0.0, 3.05, -4.75], "ch": "detail", "note": "cowl vent; no glass forward of z -4"},
+        {"shape": "block", "size": [1.6, 1.9, 1.0], "pos": [-2.2, 2.35, -0.3], "ch": "driver", "note": "seated 5-stud avatar: torso"},
+        {"shape": "ball", "size": [1.2, 1.2, 1.2], "pos": [-2.2, 3.85, -0.3], "ch": "driver", "note": "head"},
+        {"shape": "cyl_z", "size": [1.1, 1.1, 0.12], "pos": [-2.2, 3.15, -1.5], "rot": [-25.0, 0.0, 0.0], "ch": "detail", "note": "steering wheel"},
+        {"shape": "wedge", "size": [8.6, 1.6, 2.3], "pos": [0.0, 3.8, -2.85], "ch": "glass", "note": "raked windscreen"},
+        {"shape": "block", "size": [8.6, 1.6, 5.2], "pos": [0.0, 3.8, 0.9], "ch": "glass", "note": "pillarless side glass"},
+        {"shape": "wedge", "size": [8.6, 1.6, 2.3], "pos": [0.0, 3.8, 4.65], "rot": [0.0, 180.0, 0.0], "ch": "glass", "note": "rear screen"},
+        {"shape": "block", "size": [8.8, 0.3, 5.8], "pos": [0.0, 4.7, 0.9], "ch": "primary", "note": "long flat roof, top 4.85"},
+        {"shape": "wedge", "size": [0.5, 1.6, 2.3], "pos": [4.1, 3.8, 4.65], "rot": [0.0, 180.0, 0.0], "ch": "primary", "mirror": true, "note": "sail panel"},
+        {"shape": "wedge", "size": [0.3, 1.6, 2.3], "pos": [4.2, 3.8, -2.85], "ch": "primary", "mirror": true, "note": "A pillar"},
+        {"shape": "block", "size": [9.6, 0.12, 9.9], "pos": [0.0, 3.06, 0.9], "ch": "secondary", "note": "beltline chrome"},
+        {"shape": "block", "size": [0.15, 1.5, 0.15], "pos": [4.3, 3.75, -1.7], "ch": "detail", "mirror": true, "note": "vent window post"},
+        {"shape": "block", "size": [7.4, 1.2, 0.5], "pos": [0.0, 3.4, 0.6], "ch": "detail", "note": "bench seat back"}
+      ]
+    },
+    "sled": {
+      "name": "Sled",
+      "culture": "Lead Sled",
+      "parts": [
+        {"shape": "block", "size": [8.8, 2.2, 0.2], "pos": [0.0, 1.5, -5.4], "ch": "detail", "note": "front linkage collar in the shadow gap to the Front Clip"},
+        {"shape": "block", "size": [8.8, 2.2, 0.2], "pos": [0.0, 1.5, 5.9], "ch": "detail", "note": "rear linkage collar in the shadow gap to the Rear Deck"},
+        {"shape": "block", "size": [9.6, 2.8, 11.1], "pos": [0.0, 1.6, 0.25], "ch": "primary", "note": "tub: sill 0.2 to beltline 3.0, full body width"},
+        {"shape": "block", "size": [7.6, 0.1, 0.9], "pos": [0.0, 3.05, -4.75], "ch": "detail", "note": "cowl vent; no glass forward of z -4"},
+        {"shape": "block", "size": [1.6, 1.9, 1.0], "pos": [-2.2, 2.15, -0.3], "ch": "driver", "note": "seated 5-stud avatar: torso"},
+        {"shape": "ball", "size": [1.2, 1.2, 1.2], "pos": [-2.2, 3.65, -0.3], "ch": "driver", "note": "head"},
+        {"shape": "cyl_z", "size": [1.1, 1.1, 0.12], "pos": [-2.2, 3.15, -1.5], "rot": [-25.0, 0.0, 0.0], "ch": "detail", "note": "steering wheel"},
+        {"shape": "block", "size": [7.8, 0.5, 9.6], "pos": [0.0, 3.25, 1.0], "ch": "primary", "note": "raised shoulder: high sill for the chopped look"},
+        {"shape": "cyl_z", "size": [1.0, 1.0, 9.6], "pos": [3.9, 3.0, 1.0], "ch": "primary", "mirror": true, "note": "rounded shoulder roll"},
+        {"shape": "wedge", "size": [4.0, 0.85, 1.6], "pos": [2.1, 3.925, -2.7], "rot": [0.0, -14.0, 0.0], "ch": "glass", "mirror": true, "note": "split V windscreen pane"},
+        {"shape": "block", "size": [0.25, 1.8, 0.2], "pos": [0.0, 3.925, -3.15], "rot": [62.0, 0.0, 0.0], "ch": "detail", "note": "screen divider"},
+        {"shape": "block", "size": [8.2, 0.8, 3.6], "pos": [0.0, 3.9, -0.1], "ch": "glass", "note": "slit side glass"},
+        {"shape": "block", "size": [8.4, 0.35, 3.4], "pos": [0.0, 4.475, 0.0], "ch": "primary", "note": "chopped roof, top 4.65"},
+        {"shape": "cyl_x", "size": [8.4, 0.7, 0.7], "pos": [0.0, 4.3, -1.75], "ch": "primary", "note": "rounded header roll"},
+        {"shape": "block", "size": [0.3, 0.85, 0.5], "pos": [4.15, 3.925, -1.6], "ch": "primary", "mirror": true, "note": "A post"},
+        {"shape": "block", "size": [8.4, 0.8, 0.5], "pos": [0.0, 3.9, 0.3], "ch": "primary", "note": "B hoop"},
+        {"shape": "wedge", "size": [8.4, 1.15, 4.1], "pos": [0.0, 4.075, 3.75], "rot": [0.0, 180.0, 0.0], "ch": "primary", "note": "fastback turtle roof"},
+        {"shape": "block", "size": [4.4, 0.1, 1.5], "pos": [0.0, 4.29, 3.2], "rot": [15.7, 0.0, 0.0], "ch": "glass", "note": "small rear window"},
+        {"shape": "block", "size": [7.2, 1.0, 0.5], "pos": [0.0, 3.3, 0.9], "ch": "detail", "note": "bench seat back"}
+      ]
+    },
+    "finliner": {
+      "name": "Finliner",
+      "culture": "Fin Era",
+      "parts": [
+        {"shape": "block", "size": [8.8, 2.2, 0.2], "pos": [0.0, 1.5, -5.4], "ch": "detail", "note": "front linkage collar in the shadow gap to the Front Clip"},
+        {"shape": "block", "size": [8.8, 2.2, 0.2], "pos": [0.0, 1.5, 5.9], "ch": "detail", "note": "rear linkage collar in the shadow gap to the Rear Deck"},
+        {"shape": "block", "size": [9.6, 2.8, 11.1], "pos": [0.0, 1.6, 0.25], "ch": "primary", "note": "tub: sill 0.2 to beltline 3.0, full body width"},
+        {"shape": "block", "size": [7.6, 0.1, 0.9], "pos": [0.0, 3.05, -4.75], "ch": "detail", "note": "cowl vent; no glass forward of z -4"},
+        {"shape": "block", "size": [1.6, 1.9, 1.0], "pos": [-2.2, 2.35, -0.3], "ch": "driver", "note": "seated 5-stud avatar: torso"},
+        {"shape": "ball", "size": [1.2, 1.2, 1.2], "pos": [-2.2, 3.85, -0.3], "ch": "driver", "note": "head"},
+        {"shape": "cyl_z", "size": [1.1, 1.1, 0.12], "pos": [-2.2, 3.15, -1.5], "rot": [-25.0, 0.0, 0.0], "ch": "detail", "note": "steering wheel"},
+        {"shape": "wedge", "size": [8.8, 1.7, 1.9], "pos": [0.0, 3.85, -3.05], "ch": "glass", "note": "panoramic windscreen"},
+        {"shape": "block", "size": [8.8, 1.7, 4.3], "pos": [0.0, 3.85, 0.05], "ch": "glass", "note": "bubble canopy"},
+        {"shape": "cyl_x", "size": [8.8, 2.0, 2.0], "pos": [0.0, 3.7, 2.5], "ch": "glass", "note": "rounded bubble rear"},
+        {"shape": "wedge", "size": [8.4, 1.2, 2.4], "pos": [0.0, 3.6, 4.6], "rot": [0.0, 180.0, 0.0], "ch": "glass", "note": "rear glass run-off"},
+        {"shape": "block", "size": [7.6, 0.2, 4.6], "pos": [0.0, 4.75, 0.3], "ch": "secondary", "note": "thin floating roof skin, top 4.85"},
+        {"shape": "cyl_x", "size": [7.6, 0.4, 0.4], "pos": [0.0, 4.7, -2.0], "ch": "secondary", "note": "roof brow"},
+        {"shape": "block", "size": [0.25, 1.9, 0.3], "pos": [4.25, 3.85, -2.7], "rot": [-20.0, 0.0, 0.0], "ch": "detail", "mirror": true, "note": "dog-leg A pillar"},
+        {"shape": "block", "size": [9.6, 0.12, 9.9], "pos": [0.0, 3.06, 0.9], "ch": "secondary", "note": "beltline chrome"},
+        {"shape": "cyl_z", "size": [1.6, 1.6, 2.6], "pos": [2.2, 3.1, 4.3], "ch": "primary", "mirror": true, "note": "jet-age headrest fairing"},
+        {"shape": "block", "size": [7.4, 1.2, 0.5], "pos": [0.0, 3.4, 0.9], "ch": "detail", "note": "bench seat back"}
+      ]
+    },
+    "vip": {
+      "name": "VIP",
+      "culture": "VIP",
+      "parts": [
+        {"shape": "block", "size": [8.8, 2.2, 0.2], "pos": [0.0, 1.5, -5.4], "ch": "detail", "note": "front linkage collar in the shadow gap to the Front Clip"},
+        {"shape": "block", "size": [8.8, 2.2, 0.2], "pos": [0.0, 1.5, 5.9], "ch": "detail", "note": "rear linkage collar in the shadow gap to the Rear Deck"},
+        {"shape": "block", "size": [9.6, 2.8, 11.1], "pos": [0.0, 1.6, 0.25], "ch": "primary", "note": "tub: sill 0.2 to beltline 3.0, full body width"},
+        {"shape": "block", "size": [7.6, 0.1, 0.9], "pos": [0.0, 3.05, -4.75], "ch": "detail", "note": "cowl vent; no glass forward of z -4"},
+        {"shape": "block", "size": [1.6, 1.9, 1.0], "pos": [-2.2, 2.35, -0.3], "ch": "driver", "note": "seated 5-stud avatar: torso"},
+        {"shape": "ball", "size": [1.2, 1.2, 1.2], "pos": [-2.2, 3.85, -0.3], "ch": "driver", "note": "head"},
+        {"shape": "cyl_z", "size": [1.1, 1.1, 0.12], "pos": [-2.2, 3.15, -1.5], "rot": [-25.0, 0.0, 0.0], "ch": "detail", "note": "steering wheel"},
+        {"shape": "wedge", "size": [8.6, 1.75, 1.6], "pos": [0.0, 3.875, -3.2], "ch": "glass", "note": "upright windscreen"},
+        {"shape": "block", "size": [8.4, 1.75, 6.8], "pos": [0.0, 3.875, 1.0], "ch": "glass", "note": "six-light side glass"},
+        {"shape": "wedge", "size": [8.4, 1.75, 1.3], "pos": [0.0, 3.875, 5.05], "rot": [0.0, 180.0, 0.0], "ch": "glass", "note": "formal rear screen"},
+        {"shape": "block", "size": [8.8, 0.3, 7.2], "pos": [0.0, 4.75, 1.0], "ch": "primary", "note": "long boxy roof, top 4.9"},
+        {"shape": "block", "size": [8.6, 1.7, 0.5], "pos": [0.0, 3.85, 0.2], "ch": "primary", "note": "B pillar hoop"},
+        {"shape": "block", "size": [8.6, 1.7, 1.1], "pos": [0.0, 3.85, 3.95], "ch": "primary", "note": "thick C pillar hoop"},
+        {"shape": "wedge", "size": [0.35, 1.75, 1.6], "pos": [4.2, 3.875, -3.2], "ch": "primary", "mirror": true, "note": "A pillar"},
+        {"shape": "block", "size": [0.1, 1.3, 2.2], "pos": [4.28, 3.8, 2.1], "ch": "secondary", "mirror": true, "note": "privacy curtain"},
+        {"shape": "block", "size": [1.2, 0.6, 0.3], "pos": [2.2, 3.9, 3.0], "ch": "detail", "mirror": true, "note": "rear headrest"},
+        {"shape": "block", "size": [7.4, 1.2, 0.5], "pos": [0.0, 3.4, 0.6], "ch": "detail", "note": "front seat backs"},
+        {"shape": "block", "size": [9.6, 0.12, 10.6], "pos": [0.0, 3.06, 0.5], "ch": "secondary", "note": "beltline chrome"}
+      ]
+    },
+    "kaido": {
+      "name": "Kaido",
+      "culture": "Kaido Racer",
+      "parts": [
+        {"shape": "block", "size": [8.8, 2.2, 0.2], "pos": [0.0, 1.5, -5.4], "ch": "detail", "note": "front linkage collar in the shadow gap to the Front Clip"},
+        {"shape": "block", "size": [8.8, 2.2, 0.2], "pos": [0.0, 1.5, 5.9], "ch": "detail", "note": "rear linkage collar in the shadow gap to the Rear Deck"},
+        {"shape": "block", "size": [9.6, 2.8, 11.1], "pos": [0.0, 1.6, 0.25], "ch": "primary", "note": "tub: sill 0.2 to beltline 3.0, full body width"},
+        {"shape": "block", "size": [7.6, 0.1, 0.9], "pos": [0.0, 3.05, -4.75], "ch": "detail", "note": "cowl vent; no glass forward of z -4"},
+        {"shape": "block", "size": [1.6, 1.9, 1.0], "pos": [-2.2, 2.35, -0.3], "ch": "driver", "note": "seated 5-stud avatar: torso"},
+        {"shape": "ball", "size": [1.2, 1.2, 1.2], "pos": [-2.2, 3.85, -0.3], "ch": "driver", "note": "head"},
+        {"shape": "cyl_z", "size": [1.1, 1.1, 0.12], "pos": [-2.2, 3.15, -1.5], "rot": [-25.0, 0.0, 0.0], "ch": "detail", "note": "steering wheel"},
+        {"shape": "wedge", "size": [8.4, 1.55, 2.6], "pos": [0.0, 3.775, -2.7], "ch": "glass", "note": "fast windscreen"},
+        {"shape": "block", "size": [8.2, 1.5, 3.0], "pos": [0.0, 3.75, 0.1], "ch": "glass", "note": "short side glass"},
+        {"shape": "block", "size": [8.4, 0.3, 3.3], "pos": [0.0, 4.65, 0.05], "ch": "primary", "note": "short roof, top 4.8"},
+        {"shape": "wedge", "size": [8.4, 1.8, 4.2], "pos": [0.0, 3.9, 3.7], "rot": [0.0, 180.0, 0.0], "ch": "primary", "note": "long fastback"},
+        {"shape": "block", "size": [6.0, 0.1, 3.4], "pos": [0.0, 3.97, 3.7], "rot": [23.2, 0.0, 0.0], "ch": "glass", "note": "fastback glass"},
+        {"shape": "block", "size": [8.3, 1.5, 0.45], "pos": [0.0, 3.75, 1.4], "ch": "primary", "note": "B hoop"},
+        {"shape": "cyl_x", "size": [7.6, 0.25, 0.25], "pos": [0.0, 4.2, 0.9], "ch": "detail", "note": "roll bar"},
+        {"shape": "block", "size": [1.7, 1.4, 0.5], "pos": [2.2, 3.4, 0.6], "ch": "detail", "mirror": true, "note": "bucket seat"},
+        {"shape": "block", "size": [0.12, 0.5, 1.3], "pos": [4.2, 3.5, 2.7], "ch": "detail", "mirror": true, "note": "opera vent"},
+        {"shape": "wedge", "size": [0.3, 1.55, 2.6], "pos": [4.1, 3.775, -2.7], "ch": "primary", "mirror": true, "note": "A pillar"},
+        {"shape": "block", "size": [1.6, 0.05, 3.3], "pos": [0.0, 4.82, 0.05], "ch": "secondary", "note": "roof stripe"},
+        {"shape": "block", "size": [6.2, 0.12, 0.55], "pos": [0.0, 4.614, 2.5], "rot": [8.0, 0.0, 0.0], "ch": "detail", "note": "rear louvre slat"},
+        {"shape": "block", "size": [6.2, 0.12, 0.55], "pos": [0.0, 4.271, 3.3], "rot": [8.0, 0.0, 0.0], "ch": "detail", "note": "rear louvre slat"},
+        {"shape": "block", "size": [6.2, 0.12, 0.55], "pos": [0.0, 3.929, 4.1], "rot": [8.0, 0.0, 0.0], "ch": "detail", "note": "rear louvre slat"},
+        {"shape": "block", "size": [6.2, 0.12, 0.55], "pos": [0.0, 3.586, 4.9], "rot": [8.0, 0.0, 0.0], "ch": "detail", "note": "rear louvre slat"}
+      ]
+    }
+  },
+  "modules": {
+    "Engine1": {
+      "quad_lamp": {
+        "name": "Quad Lamp",
+        "culture": "Lowrider",
+        "parts": [
+          {"shape": "block", "size": [8.8, 2.2, 0.2], "pos": [0.0, 1.5, -5.6], "ch": "detail", "note": "linkage collar reaching the cockpit seam"},
+          {"shape": "block", "size": [9.6, 2.8, 10.2], "pos": [0.0, 1.6, -10.8], "ch": "primary", "note": "slab-sided long bonnet body"},
+          {"shape": "block", "size": [6.0, 0.45, 9.6], "pos": [0.0, 3.225, -10.7], "ch": "primary", "note": "bonnet crown: hood landing pad at 3.45"},
+          {"shape": "block", "size": [1.0, 0.3, 10.2], "pos": [4.3, 3.15, -10.8], "ch": "primary", "mirror": true, "note": "fender blade"},
+          {"shape": "block", "size": [9.0, 1.5, 0.3], "pos": [0.0, 1.95, -16.05], "ch": "detail", "note": "full-width grille"},
+          {"shape": "block", "size": [3.4, 0.15, 0.1], "pos": [0.0, 1.65, -16.25], "ch": "secondary", "note": "grille bar"},
+          {"shape": "block", "size": [3.4, 0.15, 0.1], "pos": [0.0, 2.25, -16.25], "ch": "secondary", "note": "grille bar"},
+          {"shape": "cyl_z", "size": [1.25, 1.25, 0.08], "pos": [2.85, 2.0, -16.06], "ch": "secondary", "mirror": true, "note": "lamp bezel"},
+          {"shape": "cyl_z", "size": [1.0, 1.0, 0.3], "pos": [2.85, 2.0, -16.25], "ch": "neon", "mirror": true, "note": "headlamp"},
+          {"shape": "cyl_z", "size": [1.25, 1.25, 0.08], "pos": [4.1, 2.0, -16.06], "ch": "secondary", "mirror": true, "note": "lamp bezel"},
+          {"shape": "cyl_z", "size": [1.0, 1.0, 0.3], "pos": [4.1, 2.0, -16.25], "ch": "neon", "mirror": true, "note": "headlamp"},
+          {"shape": "block", "size": [9.6, 0.3, 0.5], "pos": [0.0, 2.85, -16.15], "ch": "primary", "note": "brow over the grille"},
+          {"shape": "block", "size": [8.0, 0.5, 0.3], "pos": [0.0, 0.5, -16.05], "ch": "detail", "note": "lower linkage to the Front Chrome"}
+        ]
+      },
+      "frenched": {
+        "name": "Frenched",
+        "culture": "Lead Sled",
+        "parts": [
+          {"shape": "block", "size": [8.8, 2.2, 0.2], "pos": [0.0, 1.5, -5.6], "ch": "detail", "note": "linkage collar reaching the cockpit seam"},
+          {"shape": "block", "size": [9.6, 1.6, 10.3], "pos": [0.0, 1.0, -10.85], "ch": "primary", "note": "lower body full length"},
+          {"shape": "block", "size": [9.6, 1.2, 6.3], "pos": [0.0, 2.4, -8.85], "ch": "primary", "note": "upper body, rear half"},
+          {"shape": "block", "size": [5.6, 0.45, 6.4], "pos": [0.0, 3.225, -9.1], "ch": "primary", "note": "bonnet crown: hood landing pad"},
+          {"shape": "wedge", "size": [5.6, 1.65, 4.0], "pos": [0.0, 2.625, -14.0], "ch": "primary", "note": "drooping nose"},
+          {"shape": "cyl_z", "size": [2.8, 2.8, 10.4], "pos": [3.4, 1.8, -11.0], "ch": "primary", "mirror": true, "note": "pontoon fender"},
+          {"shape": "cyl_z", "size": [2.0, 2.0, 0.1], "pos": [3.4, 2.0, -16.25], "ch": "detail", "mirror": true, "note": "frenched tunnel"},
+          {"shape": "cyl_z", "size": [1.2, 1.2, 0.1], "pos": [3.4, 2.0, -16.34], "ch": "neon", "mirror": true, "note": "sunken headlamp"},
+          {"shape": "block", "size": [3.6, 1.0, 0.3], "pos": [0.0, 1.1, -16.15], "ch": "detail", "note": "low mouth grille"},
+          {"shape": "cyl_y", "size": [0.3, 1.0, 0.3], "pos": [0.0, 1.1, -16.25], "ch": "secondary", "note": "grille tooth"},
+          {"shape": "cyl_y", "size": [0.3, 1.0, 0.3], "pos": [1.1, 1.1, -16.25], "ch": "secondary", "mirror": true, "note": "grille tooth"}
+        ]
+      },
+      "stacked_lamp": {
+        "name": "Stacked Lamp",
+        "culture": "Fin Era",
+        "parts": [
+          {"shape": "block", "size": [8.8, 2.2, 0.2], "pos": [0.0, 1.5, -5.6], "ch": "detail", "note": "linkage collar reaching the cockpit seam"},
+          {"shape": "block", "size": [9.6, 2.8, 9.4], "pos": [0.0, 1.6, -10.4], "ch": "primary", "note": "bonnet body"},
+          {"shape": "block", "size": [5.2, 0.45, 9.3], "pos": [0.0, 3.225, -10.55], "ch": "primary", "note": "bonnet crown: hood landing pad"},
+          {"shape": "block", "size": [1.3, 2.9, 1.2], "pos": [4.15, 1.75, -15.3], "rot": [-12.0, 0.0, 0.0], "ch": "primary", "mirror": true, "note": "forward-canted lamp pod"},
+          {"shape": "cyl_z", "size": [0.8, 0.8, 0.2], "pos": [4.15, 2.68, -16.214], "rot": [-12.0, 0.0, 0.0], "ch": "neon", "mirror": true, "note": "upper stacked lamp"},
+          {"shape": "cyl_z", "size": [0.8, 0.8, 0.2], "pos": [4.15, 1.82, -16.031], "rot": [-12.0, 0.0, 0.0], "ch": "neon", "mirror": true, "note": "lower stacked lamp"},
+          {"shape": "block", "size": [3.5, 1.6, 0.3], "pos": [1.75, 1.9, -15.5], "rot": [0.0, -10.0, 0.0], "ch": "detail", "mirror": true, "note": "V grille half"},
+          {"shape": "block", "size": [0.5, 2.0, 0.6], "pos": [0.0, 1.9, -15.95], "ch": "secondary", "note": "centre prow bar"},
+          {"shape": "block", "size": [6.8, 0.3, 0.9], "pos": [0.0, 2.85, -15.3], "ch": "primary", "note": "brow"},
+          {"shape": "block", "size": [6.9, 0.9, 0.5], "pos": [0.0, 0.65, -15.35], "ch": "primary", "note": "lower valance"},
+          {"shape": "wedge", "size": [1.3, 0.35, 9.0], "pos": [4.15, 3.175, -10.6], "rot": [0.0, 180.0, 0.0], "ch": "primary", "mirror": true, "note": "blade fender, tall at the front"}
+        ]
+      },
+      "shark_nose": {
+        "name": "Shark Nose",
+        "culture": "Kaido Racer",
+        "parts": [
+          {"shape": "block", "size": [8.8, 2.2, 0.2], "pos": [0.0, 1.5, -5.6], "ch": "detail", "note": "linkage collar reaching the cockpit seam"},
+          {"shape": "block", "size": [9.6, 2.8, 9.3], "pos": [0.0, 1.6, -10.35], "ch": "primary", "note": "bonnet body"},
+          {"shape": "block", "size": [5.6, 0.45, 6.8], "pos": [0.0, 3.225, -9.3], "ch": "primary", "note": "bonnet crown: hood landing pad"},
+          {"shape": "wedge", "size": [5.6, 0.45, 2.3], "pos": [0.0, 3.225, -13.85], "ch": "primary", "note": "crown run-out"},
+          {"shape": "wedge", "size": [9.6, 2.4, 1.4], "pos": [0.0, 1.8, -15.7], "rot": [0.0, 0.0, 180.0], "ch": "primary", "note": "undercut shark prow: top edge leads"},
+          {"shape": "block", "size": [2.2, 0.55, 0.12], "pos": [3.1, 2.065, -15.935], "rot": [-30.3, 0.0, 0.0], "ch": "neon", "mirror": true, "note": "slit headlamp on the raked face"},
+          {"shape": "block", "size": [3.0, 0.55, 0.12], "pos": [0.0, 2.065, -15.935], "rot": [-30.3, 0.0, 0.0], "ch": "detail", "note": "grille slot"},
+          {"shape": "block", "size": [9.0, 0.4, 1.2], "pos": [0.0, 0.4, -15.6], "ch": "primary", "note": "lower lip"},
+          {"shape": "block", "size": [0.15, 0.3, 0.15], "pos": [4.2, 3.15, -11.0], "ch": "detail", "mirror": true, "note": "fender mirror stalk"},
+          {"shape": "block", "size": [0.6, 0.3, 0.25], "pos": [4.2, 3.42, -11.05], "ch": "primary", "mirror": true, "note": "fender mirror"}
+        ]
+      }
+    },
+    "Engine2": {
+      "shaved_deck": {
+        "name": "Shaved Deck",
+        "culture": "Lowrider",
+        "parts": [
+          {"shape": "block", "size": [8.8, 2.2, 0.2], "pos": [0.0, 1.5, 6.1], "ch": "detail", "note": "linkage collar reaching the cockpit seam"},
+          {"shape": "block", "size": [9.6, 2.8, 9.0], "pos": [0.0, 1.6, 10.7], "ch": "primary", "note": "deck body"},
+          {"shape": "block", "size": [8.6, 0.2, 9.0], "pos": [0.0, 3.1, 10.7], "ch": "primary", "note": "deck plinth: trim landing never below 3.2"},
+          {"shape": "wedge", "size": [8.6, 0.3, 9.0], "pos": [0.0, 3.35, 10.7], "rot": [0.0, 180.0, 0.0], "ch": "primary", "note": "turtle deck, falls 0.3 to the tail"},
+          {"shape": "cyl_z", "size": [1.0, 1.0, 9.0], "pos": [4.3, 3.05, 10.7], "ch": "primary", "mirror": true, "note": "rounded shoulder"},
+          {"shape": "cyl_x", "size": [9.6, 1.0, 1.0], "pos": [0.0, 2.5, 15.0], "ch": "primary", "note": "rolled tail"},
+          {"shape": "block", "size": [2.8, 0.5, 0.1], "pos": [3.1, 1.9, 15.25], "ch": "detail", "mirror": true, "note": "frenched lamp recess"},
+          {"shape": "block", "size": [2.4, 0.22, 0.1], "pos": [3.1, 1.9, 15.33], "ch": "neon", "mirror": true, "note": "slit tail lamp"},
+          {"shape": "block", "size": [7.0, 0.6, 0.3], "pos": [0.0, 0.5, 15.35], "ch": "detail", "note": "lower linkage"}
+        ]
+      },
+      "bat_fins": {
+        "name": "Bat Fins",
+        "culture": "Fin Era",
+        "parts": [
+          {"shape": "block", "size": [8.8, 2.2, 0.2], "pos": [0.0, 1.5, 6.1], "ch": "detail", "note": "linkage collar reaching the cockpit seam"},
+          {"shape": "block", "size": [9.6, 2.5, 9.0], "pos": [0.0, 1.45, 10.7], "ch": "primary", "note": "deck body"},
+          {"shape": "block", "size": [4.4, 0.5, 9.0], "pos": [0.0, 2.95, 10.7], "ch": "primary", "note": "centre deck"},
+          {"shape": "block", "size": [3.6, 0.3, 9.0], "pos": [3.0, 3.0, 10.9], "rot": [0.0, 0.0, 14.0], "ch": "primary", "mirror": true, "note": "gull bat wing, tip at 3.55"},
+          {"shape": "block", "size": [2.4, 0.4, 0.2], "pos": [3.0, 2.5, 15.3], "rot": [0.0, 0.0, 14.0], "ch": "neon", "mirror": true, "note": "cat-eye lamp under the wing"},
+          {"shape": "block", "size": [8.8, 1.0, 0.2], "pos": [0.0, 1.5, 15.3], "ch": "detail", "note": "tail grille"},
+          {"shape": "block", "size": [8.8, 0.12, 0.1], "pos": [0.0, 1.5, 15.42], "ch": "secondary", "note": "tail chrome strip"},
+          {"shape": "block", "size": [0.3, 0.2, 9.0], "pos": [0.0, 3.3, 10.7], "ch": "secondary", "note": "deck windsplit"}
+        ]
+      },
+      "bullet_tail": {
+        "name": "Bullet Tail",
+        "culture": "Lead Sled",
+        "parts": [
+          {"shape": "block", "size": [8.8, 2.2, 0.2], "pos": [0.0, 1.5, 6.1], "ch": "detail", "note": "linkage collar reaching the cockpit seam"},
+          {"shape": "block", "size": [9.6, 1.8, 8.6], "pos": [0.0, 1.1, 10.5], "ch": "primary", "note": "lower body"},
+          {"shape": "block", "size": [7.0, 1.4, 8.6], "pos": [0.0, 2.7, 10.5], "ch": "primary", "note": "upper deck, top 3.4"},
+          {"shape": "cyl_z", "size": [2.6, 2.6, 8.6], "pos": [3.5, 2.3, 10.6], "ch": "primary", "mirror": true, "note": "rocket tube quarter"},
+          {"shape": "cyl_z", "size": [2.6, 2.6, 0.3], "pos": [3.5, 2.3, 14.95], "ch": "secondary", "mirror": true, "note": "chrome ring"},
+          {"shape": "ball", "size": [1.8, 1.8, 1.8], "pos": [3.5, 2.3, 14.6], "ch": "neon", "mirror": true, "note": "bullet tail lamp"},
+          {"shape": "block", "size": [4.2, 1.2, 0.2], "pos": [0.0, 1.5, 14.9], "ch": "detail", "note": "tail panel"},
+          {"shape": "block", "size": [4.5, 0.6, 0.5], "pos": [0.0, 0.6, 15.15], "ch": "detail", "note": "lower linkage"}
+        ]
+      },
+      "boxy_trunk": {
+        "name": "Boxy Trunk",
+        "culture": "VIP",
+        "parts": [
+          {"shape": "block", "size": [8.8, 2.2, 0.2], "pos": [0.0, 1.5, 6.1], "ch": "detail", "note": "linkage collar reaching the cockpit seam"},
+          {"shape": "block", "size": [9.6, 3.3, 9.0], "pos": [0.0, 1.85, 10.7], "ch": "primary", "note": "tall square boot, top 3.5"},
+          {"shape": "block", "size": [8.0, 0.1, 6.5], "pos": [0.0, 3.55, 11.6], "ch": "primary", "note": "boot lid"},
+          {"shape": "block", "size": [9.2, 1.0, 0.1], "pos": [0.0, 2.5, 15.25], "ch": "detail", "note": "lamp surround"},
+          {"shape": "block", "size": [8.8, 0.5, 0.12], "pos": [0.0, 2.5, 15.34], "ch": "neon", "note": "full-width light bar"},
+          {"shape": "block", "size": [2.4, 0.7, 0.12], "pos": [0.0, 1.3, 15.26], "ch": "detail", "note": "plate recess"},
+          {"shape": "block", "size": [8.8, 0.12, 0.15], "pos": [0.0, 3.2, 15.28], "ch": "secondary", "note": "lid chrome strip"},
+          {"shape": "block", "size": [7.0, 0.6, 0.25], "pos": [0.0, 0.5, 15.33], "ch": "detail", "note": "lower linkage"}
+        ]
+      }
+    },
+    "SidePods": {
+      "fender_skirts": {
+        "name": "Fender Skirts",
+        "culture": "Lowrider",
+        "parts": [
+          {"shape": "block", "size": [0.4, 0.8, 16.6], "pos": [5.0, -0.1, -0.4], "ch": "primary", "mirror": true, "note": "full-length sill skirt"},
+          {"shape": "block", "size": [0.4, 1.5, 5.0], "pos": [5.0, -0.45, -11.2], "ch": "primary", "mirror": true, "note": "front spat hides the front rotor"},
+          {"shape": "wedge", "size": [0.4, 1.5, 0.8], "pos": [5.0, -0.45, -14.1], "rot": [0.0, 0.0, 180.0], "ch": "primary", "mirror": true, "note": "front spat lead-in"},
+          {"shape": "wedge", "size": [0.4, 1.5, 1.6], "pos": [5.0, -0.45, -7.9], "rot": [180.0, 0.0, 0.0], "ch": "primary", "mirror": true, "note": "front spat run-out"},
+          {"shape": "block", "size": [0.4, 1.5, 5.0], "pos": [5.0, -0.45, 10.4], "ch": "primary", "mirror": true, "note": "rear spat hides the rear rotor"},
+          {"shape": "wedge", "size": [0.4, 1.5, 1.6], "pos": [5.0, -0.45, 7.1], "rot": [0.0, 0.0, 180.0], "ch": "primary", "mirror": true, "note": "rear spat lead-in"},
+          {"shape": "wedge", "size": [0.4, 1.5, 1.1], "pos": [5.0, -0.45, 13.45], "rot": [180.0, 0.0, 0.0], "ch": "primary", "mirror": true, "note": "rear spat run-out"},
+          {"shape": "block", "size": [0.45, 0.14, 5.0], "pos": [5.03, -1.28, -11.2], "ch": "secondary", "mirror": true, "note": "spat edge chrome"},
+          {"shape": "block", "size": [0.45, 0.14, 5.0], "pos": [5.03, -1.28, 10.4], "ch": "secondary", "mirror": true, "note": "spat edge chrome"},
+          {"shape": "block", "size": [0.45, 0.12, 13.0], "pos": [5.03, -0.57, -0.4], "ch": "secondary", "mirror": true, "note": "sill chrome"},
+          {"shape": "cyl_x", "size": [0.2, 1.0, 1.0], "pos": [5.3, -0.45, -11.2], "ch": "secondary", "mirror": true, "note": "spat emblem"},
+          {"shape": "cyl_x", "size": [0.2, 1.0, 1.0], "pos": [5.3, -0.45, 10.4], "ch": "secondary", "mirror": true, "note": "spat emblem"}
+        ]
+      },
+      "lake_pipes": {
+        "name": "Lake Pipes",
+        "culture": "Lead Sled",
+        "parts": [
+          {"shape": "cyl_z", "size": [0.6, 0.6, 14.4], "pos": [5.2, -0.1, -0.6], "ch": "secondary", "mirror": true, "note": "long side pipe under the sill"},
+          {"shape": "cyl_z", "size": [0.8, 0.8, 1.2], "pos": [5.2, -0.1, 7.2], "ch": "secondary", "mirror": true, "note": "flared tip"},
+          {"shape": "cyl_z", "size": [0.5, 0.5, 0.12], "pos": [5.2, -0.1, 7.86], "ch": "detail", "mirror": true, "note": "lake cap"},
+          {"shape": "ball", "size": [0.8, 0.8, 0.8], "pos": [5.2, -0.1, -7.8], "ch": "secondary", "mirror": true, "note": "front elbow"},
+          {"shape": "cyl_z", "size": [0.8, 0.8, 0.3], "pos": [5.2, -0.1, -3.5], "ch": "detail", "mirror": true, "note": "clamp"},
+          {"shape": "cyl_z", "size": [0.8, 0.8, 0.3], "pos": [5.2, -0.1, 3.0], "ch": "detail", "mirror": true, "note": "clamp"}
+        ]
+      },
+      "chrome_spears": {
+        "name": "Chrome Spears",
+        "culture": "Fin Era",
+        "parts": [
+          {"shape": "block", "size": [0.3, 0.3, 7.2], "pos": [4.95, 2.4, -10.8], "ch": "secondary", "mirror": true, "note": "spear, front clip run"},
+          {"shape": "block", "size": [0.3, 0.3, 10.6], "pos": [4.95, 2.4, 0.25], "ch": "secondary", "mirror": true, "note": "spear, cabin run"},
+          {"shape": "block", "size": [0.3, 0.3, 6.4], "pos": [4.95, 2.4, 10.7], "ch": "secondary", "mirror": true, "note": "spear, deck run"},
+          {"shape": "block", "size": [0.3, 0.3, 6.2], "pos": [4.95, 1.6, 10.7], "rot": [14.0, 0.0, 0.0], "ch": "secondary", "mirror": true, "note": "sweep spear dips to the tail"},
+          {"shape": "block", "size": [0.25, 0.5, 2.6], "pos": [4.93, 1.75, -10.8], "ch": "detail", "mirror": true, "note": "fender gill"},
+          {"shape": "block", "size": [0.3, 0.25, 10.6], "pos": [4.95, 0.1, 0.25], "ch": "secondary", "mirror": true, "note": "rocker chrome"}
+        ]
+      }
+    },
+    "Stabilisers": {
+      "wire_discs": {
+        "name": "Wire Discs",
+        "culture": "Lowrider",
+        "parts": [
+          {"shape": "block", "size": [1.0, 0.3, 24.0], "pos": [0.0, -0.2, -0.4], "ch": "detail", "note": "X-frame spine hung under the cockpit floor"},
+          {"shape": "block", "size": [6.0, 0.3, 0.8], "pos": [0.0, -0.2, -11.2], "ch": "detail", "note": "cross arm"},
+          {"shape": "cyl_y", "size": [0.5, 0.45, 0.5], "pos": [3.0, -0.4, -11.2], "ch": "secondary", "mirror": true, "note": "hop ram"},
+          {"shape": "cyl_y", "size": [3.4, 0.25, 3.4], "pos": [3.0, -0.75, -11.2], "ch": "secondary", "mirror": true, "note": "thin wire disc"},
+          {"shape": "cyl_y", "size": [2.8, 0.15, 2.8], "pos": [3.0, -0.95, -11.2], "ch": "thrust", "mirror": true, "note": "hover glow"},
+          {"shape": "ball", "size": [0.8, 0.8, 0.8], "pos": [3.0, -1.15, -11.2], "ch": "secondary", "mirror": true, "note": "spinner"},
+          {"shape": "block", "size": [6.0, 0.3, 0.8], "pos": [0.0, -0.2, 10.4], "ch": "detail", "note": "cross arm"},
+          {"shape": "cyl_y", "size": [0.5, 0.45, 0.5], "pos": [3.0, -0.4, 10.4], "ch": "secondary", "mirror": true, "note": "hop ram"},
+          {"shape": "cyl_y", "size": [3.4, 0.25, 3.4], "pos": [3.0, -0.75, 10.4], "ch": "secondary", "mirror": true, "note": "thin wire disc"},
+          {"shape": "cyl_y", "size": [2.8, 0.15, 2.8], "pos": [3.0, -0.95, 10.4], "ch": "thrust", "mirror": true, "note": "hover glow"},
+          {"shape": "ball", "size": [0.8, 0.8, 0.8], "pos": [3.0, -1.15, 10.4], "ch": "secondary", "mirror": true, "note": "spinner"},
+          {"shape": "block", "size": [0.25, 0.12, 10.0], "pos": [4.2, -0.12, 0.25], "ch": "neon", "mirror": true, "note": "underglow strip"}
+        ]
+      },
+      "whitewall_discs": {
+        "name": "Whitewall Discs",
+        "culture": "Fin Era",
+        "parts": [
+          {"shape": "block", "size": [0.6, 0.35, 24.0], "pos": [2.0, -0.225, -0.4], "ch": "detail", "mirror": true, "note": "twin chassis rail"},
+          {"shape": "cyl_y", "size": [3.2, 0.9, 3.2], "pos": [3.0, -0.95, -11.2], "ch": "detail", "mirror": true, "note": "fat barrel rotor"},
+          {"shape": "cyl_y", "size": [3.3, 0.3, 3.3], "pos": [3.0, -0.95, -11.2], "ch": "secondary", "mirror": true, "note": "whitewall band"},
+          {"shape": "cyl_y", "size": [2.0, 0.15, 2.0], "pos": [3.0, -1.47, -11.2], "ch": "thrust", "mirror": true, "note": "hover glow"},
+          {"shape": "cyl_y", "size": [3.2, 0.9, 3.2], "pos": [3.0, -0.95, 10.4], "ch": "detail", "mirror": true, "note": "fat barrel rotor"},
+          {"shape": "cyl_y", "size": [3.3, 0.3, 3.3], "pos": [3.0, -0.95, 10.4], "ch": "secondary", "mirror": true, "note": "whitewall band"},
+          {"shape": "cyl_y", "size": [2.0, 0.15, 2.0], "pos": [3.0, -1.47, 10.4], "ch": "thrust", "mirror": true, "note": "hover glow"}
+        ]
+      },
+      "deep_dish": {
+        "name": "Deep Dish",
+        "culture": "Kaido Racer",
+        "parts": [
+          {"shape": "block", "size": [2.2, 0.3, 23.6], "pos": [0.0, -0.2, -0.4], "ch": "detail", "note": "backbone hung under the cockpit floor"},
+          {"shape": "cyl_x", "size": [5.6, 0.4, 0.4], "pos": [0.0, -0.45, -11.2], "ch": "detail", "note": "axle tube"},
+          {"shape": "cyl_y", "size": [3.6, 0.2, 3.6], "pos": [3.0, -0.5, -11.2], "rot": [0.0, 0.0, 10.0], "ch": "secondary", "mirror": true, "note": "deep-dish lip, cambered"},
+          {"shape": "cyl_y", "size": [2.4, 0.7, 2.4], "pos": [3.078, -0.943, -11.2], "rot": [0.0, 0.0, 10.0], "ch": "detail", "mirror": true, "note": "deep barrel"},
+          {"shape": "cyl_y", "size": [1.6, 0.15, 1.6], "pos": [3.153, -1.367, -11.2], "rot": [0.0, 0.0, 10.0], "ch": "thrust", "mirror": true, "note": "hover glow"},
+          {"shape": "cyl_x", "size": [5.6, 0.4, 0.4], "pos": [0.0, -0.45, 10.4], "ch": "detail", "note": "axle tube"},
+          {"shape": "cyl_y", "size": [3.6, 0.2, 3.6], "pos": [3.0, -0.5, 10.4], "rot": [0.0, 0.0, 10.0], "ch": "secondary", "mirror": true, "note": "deep-dish lip, cambered"},
+          {"shape": "cyl_y", "size": [2.4, 0.7, 2.4], "pos": [3.078, -0.943, 10.4], "rot": [0.0, 0.0, 10.0], "ch": "detail", "mirror": true, "note": "deep barrel"},
+          {"shape": "cyl_y", "size": [1.6, 0.15, 1.6], "pos": [3.153, -1.367, 10.4], "rot": [0.0, 0.0, 10.0], "ch": "thrust", "mirror": true, "note": "hover glow"}
+        ]
+      }
+    },
+    "Boost": {
+      "dual_tips": {
+        "name": "Dual Tips",
+        "culture": "Lowrider",
+        "parts": [
+          {"shape": "block", "size": [7.0, 0.25, 0.4], "pos": [0.0, -0.15, 15.8], "ch": "detail", "note": "hanger bar reaching the deck seam"},
+          {"shape": "cyl_z", "size": [0.8, 0.8, 1.8], "pos": [3.0, -0.6, 16.5], "ch": "secondary", "mirror": true, "note": "tail pipe"},
+          {"shape": "cyl_z", "size": [1.05, 1.05, 0.5], "pos": [3.0, -0.6, 17.55], "ch": "secondary", "mirror": true, "note": "rolled tip"},
+          {"shape": "cyl_z", "size": [0.7, 0.7, 0.15], "pos": [3.0, -0.6, 17.87], "ch": "thrust", "mirror": true, "note": "boost glow"}
+        ]
+      },
+      "bamboo_stacks": {
+        "name": "Bamboo Stacks",
+        "culture": "Kaido Racer",
+        "parts": [
+          {"shape": "cyl_z", "size": [0.8, 0.8, 2.0], "pos": [1.6, -0.7, 16.6], "ch": "detail", "mirror": true, "note": "collector from the deck seam"},
+          {"shape": "cyl_x", "size": [4.0, 0.6, 0.6], "pos": [0.0, -0.7, 17.55], "ch": "detail", "note": "cross pipe"},
+          {"shape": "cyl_y", "size": [0.7, 9.6, 0.7], "pos": [2.4, 4.6, 18.0], "rot": [7.0, 0.0, -10.0], "ch": "secondary", "mirror": true, "note": "tall stack, splayed and raked"},
+          {"shape": "cyl_y", "size": [0.6, 7.0, 0.6], "pos": [0.9, 3.35, 18.1], "rot": [7.0, 0.0, -4.0], "ch": "secondary", "mirror": true, "note": "short inner stack"},
+          {"shape": "cyl_y", "size": [0.5, 0.15, 0.5], "pos": [3.247, 9.37, 18.586], "rot": [7.0, 0.0, -10.0], "ch": "thrust", "mirror": true, "note": "boost glow"},
+          {"shape": "cyl_y", "size": [0.45, 0.15, 0.45], "pos": [1.15, 6.894, 18.536], "rot": [7.0, 0.0, -4.0], "ch": "thrust", "mirror": true, "note": "boost glow"},
+          {"shape": "block", "size": [4.4, 0.2, 0.2], "pos": [0.0, 3.0, 17.8], "ch": "detail", "note": "stack brace"}
+        ]
+      },
+      "side_exit": {
+        "name": "Side Exit",
+        "culture": "Lead Sled",
+        "parts": [
+          {"shape": "cyl_z", "size": [0.5, 0.5, 0.7], "pos": [1.5, -0.7, 15.85], "ch": "detail", "mirror": true, "note": "feed pipe from the deck seam"},
+          {"shape": "cyl_x", "size": [6.4, 1.0, 1.0], "pos": [0.0, -0.7, 16.5], "ch": "detail", "note": "cross muffler"},
+          {"shape": "cyl_x", "size": [1.8, 0.7, 0.7], "pos": [4.1, -0.7, 16.5], "ch": "secondary", "mirror": true, "note": "side turn-out"},
+          {"shape": "cyl_x", "size": [0.5, 1.1, 1.1], "pos": [5.2, -0.7, 16.5], "ch": "secondary", "mirror": true, "note": "megaphone"},
+          {"shape": "cyl_x", "size": [0.1, 0.8, 0.8], "pos": [5.5, -0.7, 16.5], "ch": "thrust", "mirror": true, "note": "boost glow"}
+        ]
+      }
+    },
+    "FrontBumper": {
+      "bullet_bumper": {
+        "name": "Bullet Bumper",
+        "culture": "Fin Era",
+        "parts": [
+          {"shape": "block", "size": [10.4, 0.7, 0.9], "pos": [0.0, 0.85, -17.15], "ch": "secondary", "note": "blade bar below the lamp zone"},
+          {"shape": "cyl_y", "size": [0.9, 0.7, 0.9], "pos": [5.15, 0.85, -17.15], "ch": "secondary", "mirror": true, "note": "rounded end"},
+          {"shape": "cyl_z", "size": [1.4, 1.4, 0.9], "pos": [1.3, 1.1, -17.45], "ch": "secondary", "mirror": true, "note": "bullet body"},
+          {"shape": "ball", "size": [1.4, 1.4, 1.4], "pos": [1.3, 1.1, -17.7], "ch": "secondary", "mirror": true, "note": "bullet tip"},
+          {"shape": "block", "size": [0.6, 0.5, 0.4], "pos": [3.2, 0.85, -16.6], "ch": "detail", "mirror": true, "note": "bracket to the clip"},
+          {"shape": "block", "size": [1.2, 0.3, 0.1], "pos": [4.0, 0.85, -17.63], "ch": "neon", "mirror": true, "note": "parking lamp"}
+        ]
+      },
+      "chin_spoiler": {
+        "name": "Chin Spoiler",
+        "culture": "Kaido Racer",
+        "parts": [
+          {"shape": "wedge", "size": [10.4, 1.5, 1.9], "pos": [0.0, -0.25, -17.45], "ch": "primary", "note": "plough ramp up to the clip lip"},
+          {"shape": "block", "size": [10.0, 0.9, 0.4], "pos": [0.0, 0.95, -16.7], "ch": "primary", "note": "air dam below the lamp zone"},
+          {"shape": "block", "size": [11.0, 0.12, 2.0], "pos": [0.0, -1.06, -17.4], "ch": "detail", "note": "splitter plate"},
+          {"shape": "wedge", "size": [0.15, 1.7, 1.9], "pos": [5.3, -0.25, -17.45], "ch": "secondary", "mirror": true, "note": "ramp end plate"},
+          {"shape": "block", "size": [3.0, 0.4, 0.1], "pos": [2.4, 0.95, -16.95], "ch": "detail", "mirror": true, "note": "intake slot"},
+          {"shape": "cyl_z", "size": [0.6, 0.6, 0.15], "pos": [4.4, 0.95, -16.98], "ch": "neon", "mirror": true, "note": "fog lamp"}
+        ]
+      },
+      "tube_grille": {
+        "name": "Tube Grille",
+        "culture": "Lowrider",
+        "parts": [
+          {"shape": "cyl_x", "size": [3.6, 0.3, 0.3], "pos": [0.0, 1.5, -16.7], "ch": "secondary", "note": "grille tube"},
+          {"shape": "cyl_x", "size": [3.6, 0.3, 0.3], "pos": [0.0, 1.9, -16.7], "ch": "secondary", "note": "grille tube"},
+          {"shape": "cyl_x", "size": [3.6, 0.3, 0.3], "pos": [0.0, 2.3, -16.7], "ch": "secondary", "note": "grille tube"},
+          {"shape": "cyl_x", "size": [3.6, 0.3, 0.3], "pos": [0.0, 2.7, -16.7], "ch": "secondary", "note": "grille tube"},
+          {"shape": "block", "size": [0.3, 1.7, 0.35], "pos": [1.8, 2.1, -16.7], "ch": "secondary", "mirror": true, "note": "grille post"},
+          {"shape": "block", "size": [10.8, 0.5, 0.8], "pos": [0.0, 0.8, -17.1], "ch": "secondary", "note": "slim bumper blade"},
+          {"shape": "block", "size": [0.5, 1.0, 0.5], "pos": [2.7, 0.9, -17.6], "ch": "secondary", "mirror": true, "note": "over-rider"},
+          {"shape": "block", "size": [0.6, 0.4, 0.3], "pos": [3.6, 0.8, -16.55], "ch": "detail", "mirror": true, "note": "bracket to the clip"}
+        ]
+      }
+    },
+    "RearBumper": {
+      "bumper": {
+        "name": "Bumper",
+        "culture": "Fin Era",
+        "parts": [
+          {"shape": "block", "size": [10.4, 0.8, 0.9], "pos": [0.0, 0.9, 16.35], "ch": "secondary", "note": "blade bar below the lamp zone"},
+          {"shape": "cyl_y", "size": [0.9, 0.8, 0.9], "pos": [5.15, 0.9, 16.35], "ch": "secondary", "mirror": true, "note": "rounded end"},
+          {"shape": "block", "size": [0.5, 1.3, 0.5], "pos": [1.4, 1.05, 16.75], "ch": "secondary", "mirror": true, "note": "over-rider"},
+          {"shape": "block", "size": [0.6, 0.5, 0.4], "pos": [3.2, 0.9, 15.7], "ch": "detail", "mirror": true, "note": "bracket to the deck"},
+          {"shape": "block", "size": [0.9, 0.3, 0.1], "pos": [4.0, 0.9, 16.83], "ch": "neon", "mirror": true, "note": "reverse lamp"}
+        ]
+      },
+      "continental_spare": {
+        "name": "Continental Spare",
+        "culture": "Lowrider",
+        "parts": [
+          {"shape": "block", "size": [1.2, 1.2, 0.6], "pos": [0.0, 2.0, 15.85], "ch": "detail", "note": "carrier link to the deck"},
+          {"shape": "block", "size": [5.0, 0.4, 1.4], "pos": [0.0, 0.7, 16.25], "ch": "primary", "note": "extension shelf"},
+          {"shape": "block", "size": [3.0, 0.7, 0.8], "pos": [4.0, 0.9, 16.2], "ch": "secondary", "mirror": true, "note": "split bumper bar"},
+          {"shape": "cyl_z", "size": [3.2, 3.2, 0.7], "pos": [0.0, 2.5, 16.4], "ch": "secondary", "note": "upright spare rotor cover"},
+          {"shape": "cyl_z", "size": [2.6, 2.6, 0.8], "pos": [0.0, 2.5, 16.4], "ch": "primary", "note": "cover centre"},
+          {"shape": "cyl_z", "size": [0.8, 0.8, 0.15], "pos": [0.0, 2.5, 16.87], "ch": "neon", "note": "hub lamp"}
+        ]
+      },
+      "shaved": {
+        "name": "Shaved",
+        "culture": "Lead Sled",
+        "parts": [
+          {"shape": "cyl_x", "size": [9.2, 1.0, 1.0], "pos": [0.0, 0.8, 16.0], "ch": "primary", "note": "smooth roll pan"},
+          {"shape": "ball", "size": [1.0, 1.0, 1.0], "pos": [4.6, 0.8, 16.0], "ch": "primary", "mirror": true, "note": "rounded corner"},
+          {"shape": "block", "size": [5.0, 0.15, 0.1], "pos": [0.0, 0.9, 16.52], "ch": "neon", "note": "slit lamp"}
+        ]
+      }
+    },
+    "RearSpoiler": {
+      "tall_fins": {
+        "name": "Tall Fins",
+        "culture": "Fin Era",
+        "parts": [
+          {"shape": "wedge", "size": [0.5, 2.6, 8.6], "pos": [4.4, 4.95, 11.1], "rot": [0.0, 0.0, -6.0], "ch": "primary", "mirror": true, "note": "tall raked fin, canted out"},
+          {"shape": "block", "size": [0.6, 0.15, 8.9], "pos": [4.5, 5.07, 11.1], "rot": [-16.8, 0.0, 0.0], "ch": "secondary", "mirror": true, "note": "fin chrome cap"},
+          {"shape": "cyl_z", "size": [0.6, 0.6, 0.5], "pos": [4.45, 4.35, 15.2], "ch": "neon", "mirror": true, "note": "lower fin lamp"},
+          {"shape": "cyl_z", "size": [0.6, 0.6, 0.5], "pos": [4.5, 5.2, 15.2], "ch": "neon", "mirror": true, "note": "upper fin lamp"}
+        ]
+      },
+      "kaido_wing": {
+        "name": "Kaido Wing",
+        "culture": "Kaido Racer",
+        "parts": [
+          {"shape": "block", "size": [0.3, 3.6, 1.2], "pos": [3.0, 5.5, 13.6], "rot": [12.0, 0.0, 0.0], "ch": "detail", "mirror": true, "note": "tall upright from the deck seam"},
+          {"shape": "block", "size": [0.15, 0.15, 4.6], "pos": [3.0, 5.45, 12.0], "rot": [-49.4, 0.0, 0.0], "ch": "detail", "mirror": true, "note": "diagonal stay"},
+          {"shape": "block", "size": [10.8, 0.3, 2.4], "pos": [0.0, 7.5, 14.1], "rot": [-6.0, 0.0, 0.0], "ch": "secondary", "note": "giant wing plane"},
+          {"shape": "block", "size": [0.25, 1.4, 2.8], "pos": [5.4, 7.4, 14.0], "ch": "primary", "mirror": true, "note": "end plate"},
+          {"shape": "block", "size": [10.6, 0.35, 0.12], "pos": [0.0, 7.8, 15.2], "ch": "detail", "note": "gurney"}
+        ]
+      },
+      "ducktail": {
+        "name": "Ducktail",
+        "culture": "VIP",
+        "parts": [
+          {"shape": "wedge", "size": [9.4, 0.9, 2.6], "pos": [0.0, 4.05, 14.1], "ch": "primary", "note": "upswept lip"},
+          {"shape": "block", "size": [9.4, 0.12, 0.15], "pos": [0.0, 4.5, 15.35], "ch": "detail", "note": "lip edge"},
+          {"shape": "block", "size": [4.0, 0.12, 0.1], "pos": [0.0, 4.1, 15.44], "ch": "neon", "note": "third brake lamp"}
+        ]
+      },
+      "twin_antennas": {
+        "name": "Twin Antennas",
+        "culture": "Lowrider",
+        "parts": [
+          {"shape": "cyl_y", "size": [0.5, 0.25, 0.5], "pos": [4.0, 3.725, 13.5], "ch": "secondary", "mirror": true, "note": "chrome base on the deck seam"},
+          {"shape": "cyl_y", "size": [0.14, 4.2, 0.14], "pos": [4.0, 5.85, 14.08], "rot": [16.0, 0.0, 0.0], "ch": "secondary", "mirror": true, "note": "raked aerial"},
+          {"shape": "ball", "size": [0.3, 0.3, 0.3], "pos": [4.0, 7.87, 14.66], "ch": "neon", "mirror": true, "note": "tip lamp"}
+        ]
+      }
+    },
+    "Hood": {
+      "ornament": {
+        "name": "Ornament",
+        "culture": "Lowrider",
+        "parts": [
+          {"shape": "block", "size": [0.3, 0.15, 6.0], "pos": [0.0, 3.675, -9.2], "ch": "secondary", "note": "bonnet spear on the landing pad"},
+          {"shape": "block", "size": [0.3, 0.25, 0.4], "pos": [0.0, 3.725, -11.6], "ch": "secondary", "note": "pedestal"},
+          {"shape": "cyl_z", "size": [0.45, 0.45, 1.5], "pos": [0.0, 4.05, -11.6], "ch": "secondary", "note": "rocket mascot"},
+          {"shape": "ball", "size": [0.45, 0.45, 0.45], "pos": [0.0, 4.05, -12.35], "ch": "secondary", "note": "mascot nose"},
+          {"shape": "wedge", "size": [1.6, 0.12, 0.9], "pos": [0.0, 4.1, -11.3], "ch": "secondary", "note": "mascot wings"}
+        ]
+      },
+      "louvres": {
+        "name": "Louvres",
+        "culture": "Lead Sled",
+        "parts": [
+          {"shape": "block", "size": [0.5, 0.2, 5.2], "pos": [0.0, 3.7, -9.5], "ch": "primary", "note": "centre rib"},
+          {"shape": "wedge", "size": [1.8, 0.3, 0.7], "pos": [1.5, 3.75, -11.5], "ch": "detail", "mirror": true, "note": "louvre slat"},
+          {"shape": "wedge", "size": [1.8, 0.3, 0.7], "pos": [1.5, 3.75, -10.5], "ch": "detail", "mirror": true, "note": "louvre slat"},
+          {"shape": "wedge", "size": [1.8, 0.3, 0.7], "pos": [1.5, 3.75, -9.5], "ch": "detail", "mirror": true, "note": "louvre slat"},
+          {"shape": "wedge", "size": [1.8, 0.3, 0.7], "pos": [1.5, 3.75, -8.5], "ch": "detail", "mirror": true, "note": "louvre slat"},
+          {"shape": "wedge", "size": [1.8, 0.3, 0.7], "pos": [1.5, 3.75, -7.5], "ch": "detail", "mirror": true, "note": "louvre slat"}
+        ]
+      },
+      "oil_cooler": {
+        "name": "Oil Cooler",
+        "culture": "Kaido Racer",
+        "parts": [
+          {"shape": "block", "size": [0.2, 0.25, 0.4], "pos": [1.0, 3.725, -12.0], "ch": "detail", "mirror": true, "note": "stay on the landing pad"},
+          {"shape": "block", "size": [2.6, 1.0, 0.5], "pos": [0.0, 4.35, -12.0], "ch": "detail", "note": "external cooler core"},
+          {"shape": "block", "size": [2.9, 0.15, 0.6], "pos": [0.0, 3.8, -12.0], "ch": "secondary", "note": "lower frame"},
+          {"shape": "block", "size": [2.9, 0.15, 0.6], "pos": [0.0, 4.9, -12.0], "ch": "secondary", "note": "upper frame"},
+          {"shape": "cyl_y", "size": [0.5, 1.0, 0.5], "pos": [1.5, 4.35, -12.0], "ch": "secondary", "mirror": true, "note": "end tank"},
+          {"shape": "cyl_z", "size": [0.3, 0.3, 4.4], "pos": [0.9, 4.0, -9.6], "ch": "secondary", "mirror": true, "note": "braided hose"},
+          {"shape": "cyl_y", "size": [0.3, 0.4, 0.3], "pos": [0.9, 3.8, -7.4], "ch": "secondary", "mirror": true, "note": "hose drop into the bonnet"}
+        ]
+      }
+    },
+    "Roof": {
+      "vinyl": {
+        "name": "Vinyl",
+        "culture": "Lowrider",
+        "parts": [
+          {"shape": "block", "size": [7.4, 0.22, 3.1], "pos": [0.0, 5.01, 0.05], "ch": "secondary", "note": "padded top on the roof landing pad"},
+          {"shape": "cyl_x", "size": [7.4, 0.3, 0.3], "pos": [0.0, 5.05, -1.4], "ch": "secondary", "note": "front piping"},
+          {"shape": "block", "size": [0.12, 0.08, 3.1], "pos": [2.0, 5.16, 0.05], "ch": "detail", "mirror": true, "note": "seam"}
+        ]
+      },
+      "bubble": {
+        "name": "Bubble",
+        "culture": "Fin Era",
+        "parts": [
+          {"shape": "cyl_y", "size": [3.2, 0.12, 3.2], "pos": [0.0, 4.96, 0.0], "ch": "secondary", "note": "chrome ring"},
+          {"shape": "cyl_y", "size": [3.0, 0.4, 3.0], "pos": [0.0, 5.1, 0.0], "ch": "glass", "note": "skylight dome base"},
+          {"shape": "cyl_y", "size": [2.1, 0.35, 2.1], "pos": [0.0, 5.45, 0.0], "ch": "glass", "note": "dome crown"}
+        ]
+      }
+    },
+    "Accessory": {
+      "spotlights": {
+        "name": "Spotlights",
+        "culture": "Lowrider",
+        "parts": [
+          {"shape": "cyl_y", "size": [0.2, 0.9, 0.2], "pos": [4.4, 3.65, -4.7], "ch": "detail", "mirror": true, "note": "stalk on the cowl corner"},
+          {"shape": "cyl_z", "size": [0.8, 0.8, 0.9], "pos": [4.4, 4.4, -4.75], "ch": "secondary", "mirror": true, "note": "lamp body"},
+          {"shape": "ball", "size": [0.8, 0.8, 0.8], "pos": [4.4, 4.4, -4.4], "ch": "secondary", "mirror": true, "note": "rear cap"},
+          {"shape": "cyl_z", "size": [0.6, 0.6, 0.12], "pos": [4.4, 4.4, -5.26], "ch": "neon", "mirror": true, "note": "lens"}
+        ]
+      },
+      "sun_visor": {
+        "name": "Sun Visor",
+        "culture": "Lead Sled",
+        "parts": [
+          {"shape": "block", "size": [7.6, 0.15, 2.2], "pos": [0.0, 5.0, -2.75], "ch": "secondary", "note": "mount laps the roof front edge"},
+          {"shape": "block", "size": [8.0, 0.15, 1.5], "pos": [0.0, 4.73, -4.6], "rot": [-25.0, 0.0, 0.0], "ch": "secondary", "note": "peak ahead of the screen"},
+          {"shape": "block", "size": [0.12, 1.3, 0.12], "pos": [3.8, 3.85, -5.1], "ch": "detail", "mirror": true, "note": "stay down to the cowl"}
+        ]
+      }
+    }
+  },
+  "builds": [
+    {
+      "name": "1 Lowrider kit on Hardtop",
+      "cockpit": "hardtop",
+      "paint": {"primary": "#b3122b", "secondary": "#ead9a6", "neon": "#ffc65c"},
+      "modules": {"Engine1": "quad_lamp", "Engine2": "shaved_deck", "SidePods": "fender_skirts", "Stabilisers": "wire_discs", "Boost": "dual_tips", "FrontBumper": "tube_grille", "RearBumper": "continental_spare", "RearSpoiler": "twin_antennas", "Hood": "ornament", "Roof": "vinyl", "Accessory": "spotlights"},
+      "note": "Kit A, cockpit 1 of 3. All eleven slots filled."
+    },
+    {
+      "name": "2 Lowrider kit on Sled",
+      "cockpit": "sled",
+      "paint": {"primary": "#b3122b", "secondary": "#ead9a6", "neon": "#ffc65c"},
+      "modules": {"Engine1": "quad_lamp", "Engine2": "shaved_deck", "SidePods": "fender_skirts", "Stabilisers": "wire_discs", "Boost": "dual_tips", "FrontBumper": "tube_grille", "RearBumper": "continental_spare", "RearSpoiler": "twin_antennas", "Hood": "ornament", "Roof": "vinyl", "Accessory": "spotlights"},
+      "note": "Kit A, cockpit 2 of 3. Same modules, same paint."
+    },
+    {
+      "name": "3 Lowrider kit on VIP",
+      "cockpit": "vip",
+      "paint": {"primary": "#b3122b", "secondary": "#ead9a6", "neon": "#ffc65c"},
+      "modules": {"Engine1": "quad_lamp", "Engine2": "shaved_deck", "SidePods": "fender_skirts", "Stabilisers": "wire_discs", "Boost": "dual_tips", "FrontBumper": "tube_grille", "RearBumper": "continental_spare", "RearSpoiler": "twin_antennas", "Hood": "ornament", "Roof": "vinyl", "Accessory": "spotlights"},
+      "note": "Kit A, cockpit 3 of 3."
+    },
+    {
+      "name": "4 Finliner in Lead Sled kit",
+      "cockpit": "finliner",
+      "paint": {"primary": "#4a2a7a", "secondary": "#d5d8dd", "neon": "#ff6a3c"},
+      "modules": {"Engine1": "frenched", "Engine2": "bullet_tail", "SidePods": "lake_pipes", "Stabilisers": "whitewall_discs", "Boost": "side_exit", "FrontBumper": "bullet_bumper", "RearBumper": "shaved", "RearSpoiler": "twin_antennas", "Hood": "louvres", "Accessory": "sun_visor"},
+      "note": "One cockpit, kit 1 of 3."
+    },
+    {
+      "name": "5 Finliner in Fin Era kit",
+      "cockpit": "finliner",
+      "paint": {"primary": "#2bb8ad", "secondary": "#f4f1e8", "neon": "#ff3b3b"},
+      "modules": {"Engine1": "stacked_lamp", "Engine2": "bat_fins", "SidePods": "chrome_spears", "Stabilisers": "whitewall_discs", "Boost": "dual_tips", "FrontBumper": "bullet_bumper", "RearBumper": "bumper", "RearSpoiler": "tall_fins", "Hood": "ornament", "Roof": "bubble"},
+      "note": "One cockpit, kit 2 of 3."
+    },
+    {
+      "name": "6 Finliner in Kaido kit",
+      "cockpit": "finliner",
+      "paint": {"primary": "#f0efe9", "secondary": "#d7263d", "neon": "#ffe600"},
+      "modules": {"Engine1": "shark_nose", "Engine2": "boxy_trunk", "SidePods": "lake_pipes", "Stabilisers": "deep_dish", "Boost": "bamboo_stacks", "FrontBumper": "chin_spoiler", "RearBumper": "shaved", "RearSpoiler": "kaido_wing", "Hood": "oil_cooler"},
+      "note": "One cockpit, kit 3 of 3."
+    },
+    {
+      "name": "7 Wildcard Kaido fin-sled",
+      "cockpit": "kaido",
+      "paint": {"primary": "#6a2c91", "secondary": "#f2c14e", "neon": "#ff3df0"},
+      "modules": {"Engine1": "stacked_lamp", "Engine2": "bullet_tail", "SidePods": "fender_skirts", "Stabilisers": "deep_dish", "Boost": "bamboo_stacks", "FrontBumper": "chin_spoiler", "RearBumper": "bumper", "RearSpoiler": "kaido_wing", "Hood": "oil_cooler", "Accessory": "spotlights"},
+      "note": "Mixed: Fin Era nose, Lead Sled tail, Lowrider skirts, Kaido aero."
+    },
+    {
+      "name": "8 Wildcard Sled shark VIP",
+      "cockpit": "sled",
+      "paint": {"primary": "#1f6f8b", "secondary": "#f2e8cf", "neon": "#9ef01a"},
+      "modules": {"Engine1": "shark_nose", "Engine2": "boxy_trunk", "SidePods": "chrome_spears", "Stabilisers": "wire_discs", "Boost": "side_exit", "FrontBumper": "tube_grille", "RearBumper": "shaved", "RearSpoiler": "ducktail", "Hood": "louvres", "Roof": "vinyl", "Accessory": "sun_visor"},
+      "note": "Mixed: Kaido nose, VIP boot and ducktail, Fin Era spears, Lowrider rotors."
+    }
+  ]
+}
