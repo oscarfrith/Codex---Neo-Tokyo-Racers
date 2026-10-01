@@ -27,16 +27,25 @@ CLASSES = [
     ("rift", "Rift", "Classic coupé bodies sliced into floating sections.",
      ["Muscle", "Pony", "Pro Street", "Euro GT", "Wedge Exotic", "Roadster"],
      "Top speed, boost, long drifts", "Weight, tight turns"),
-    ("street", "Street", "Tuner bodies with clip-on aero and hover rotors in the arches.",
+    ("muscle", "Muscle", "American muscle and pony cars as one-piece hover jets.",
+     ["Classic Muscle", "Pony", "Modern Muscle", "Pro Street", "Restomod", "Trans-Am"],
+     "Acceleration, boost, straight-line speed", "Braking, tight turns"),
+    ("exotic", "Exotic", "Mid-engined supercars and hypercars as hover jets.",
+     ["Wedge", "Analogue", "Hypercar", "Track Special", "Longtail"],
+     "Top speed, grip, braking", "Contact, rough streets"),
+    ("gt", "GT", "Front-engined sports cars and grand tourers as hover jets.",
+     ["Classic GT", "Rear-Engine Sports", "Modern GT", "GT3 Racer", "Roadster", "Shooting Brake"],
+     "Balance, stability at speed, steering", "No single standout stat"),
+    ("street", "Street", "Tuner bodies with clip-on aero.",
      ["Drift", "Time Attack", "Underground", "Touge", "Rally", "Kanjo"],
      "Drift control, steering, agility", "Top speed, contact"),
-    ("rodder", "Rodder", "Chopped cabs, exposed engines and fat rear drums. Hot rods and drag rails in one class.",
+    ("rodder", "Rodder", "Chopped cabs, exposed engines and long jet barrels. Hot rods and drag rails in one class.",
      ["Highboy", "Rat Rod", "T-Bucket", "Gasser", "Slingshot Drag", "Salt Flat"],
      "Acceleration, boost force", "Sideways grip, braking"),
-    ("rider", "Rider", "Hoverbikes. The rider sits astride and is always visible.",
+    ("rider", "Rider", "Jet hoverbikes. The rider sits astride and is always visible.",
      ["Supersport", "Café Racer", "Chopper", "Motocross", "Streetfighter", "Speeder"],
      "Steering, squeezing through gaps", "Contact, stability"),
-    ("apex", "Apex", "Circuit racers: a central tub, outboard hover pods and serious aero.",
+    ("apex", "Apex", "Circuit racers: a central tub, outboard thruster pods and serious aero.",
      ["Formula", "Vintage Grand Prix", "Prototype", "Wing Car", "Speedway Sprint"],
      "Grip, braking, downforce", "Drift, contact"),
     ("cruiser", "Cruiser", "Long, low land yachts: lowriders, lead sleds, fin-era chrome and VIP saloons.",
@@ -54,11 +63,11 @@ CLASSES = [
 ]
 
 RULES = [
-    ("Cockpit envelope", "Every cockpit in a class stays inside one box."),
-    ("Slot envelopes", "Every part for a slot stays inside that slot's box. Boxes never overlap, so nothing can clip."),
-    ("Seams", "Cockpits and parts must reach the faces where they meet. No holes, no floating parts."),
-    ("Shadow gap", "Parts sit a little apart with dark linkage between them, so a muscle nose can meet a wedge cabin cleanly."),
-    ("Datums", "A fixed beltline and sill height per class keep body lines straight across the gaps."),
+    ("Jets, not wheels", "Lift and thrust come from turbines, lift jets and afterburners. No wheels, rings, discs or rotors."),
+    ("Engines, stabilisers, boost", "Every vehicle carries all four fundamental modules as visible jet hardware, each with several clearly different options."),
+    ("Envelopes", "Every cockpit stays inside one box and every part inside its slot's box. Boxes never overlap, so nothing can clip."),
+    ("Pads and contact", "Parts land on fixed flat pads that every cockpit carries, and must sit within 0.6 studs of every possible parent. No floating parts."),
+    ("Signature kits", "Each cockpit has its own kit. Any cockpit can wear any other cockpit's kit, and kits must look clearly different."),
     ("Paint unifies", "Your paint recolours every part, so a mixed build still reads as one vehicle."),
 ]
 
@@ -121,11 +130,13 @@ def main():
                 if sid not in slots:
                     continue
                 mods = ", ".join(esc(m["name"]) for m in spec["modules"].get(sid, {}).values())
-                slot_rows += '<tr><td><span class="sw" style="background:%s"></span>%s</td><td class="mono">%s</td><td>%s</td></tr>' % (
-                    vbspec.SLOT_COLOURS.get(sid, "#888"), esc(slots[sid]["label"]), sid, mods)
+                slot_rows += '<tr class="%s"><td><span class="sw" style="background:%s"></span>%s</td><td class="mono">%s</td><td>%s</td></tr>' % (
+                    "fund" if sid in vbspec.FUNDAMENTAL else "", vbspec.SLOT_COLOURS.get(sid, "#888"), esc(slots[sid]["label"]), sid, mods)
             cockpits = ", ".join(esc(c["name"]) for c in spec["cockpits"].values())
-            counts = '<p class="meta">Blockout: %d cockpits (%s), %d parts across %d slots, %d demo builds.</p>' % (
-                len(spec["cockpits"]), cockpits, sum(len(m) for m in spec["modules"].values()), len(slots), len(spec["builds"]))
+            kit_txt = "; ".join("%s (%s) on %s" % (esc(k["name"]), esc(k.get("culture", "")), esc(spec["cockpits"][c]["name"]))
+                                for c in spec["cockpits"] for kid, k in spec.get("kits", {}).items() if spec["cockpits"][c].get("kit") == kid)
+            counts = '<p class="meta">Blockout: %d cockpits, %d signature kits, %d parts across %d slots. Kits: %s.</p>' % (
+                len(spec["cockpits"]), len(spec.get("kits", {})), sum(len(m) for m in spec["modules"].values()), len(slots), kit_txt)
 
         figs = ""
         for i, f in enumerate(imgs):
@@ -134,8 +145,12 @@ def main():
                 "hero" if i == 0 else "", cid, f, "eager" if i == 0 else "lazy", cid, f, esc(cap), esc(cap))
 
         blocks = ""
-        for stem, title, width in (("studio", "Built in Roblox Studio (backup place)", 1600), ("sheet", "Blockout builds: one kit on three cockpits, one cockpit with three kits, two mixed", 1500),
-                                   ("exploded", "Exploded build, one colour per slot", 1500), ("standard", "Frame standard: the slot envelopes", 1300)):
+        for stem, title, width in (("matrix", "Interchange matrix: every cockpit (rows) wearing every signature kit (columns)", 1700),
+                                   ("studio", "The same matrix built in Roblox Studio (backup place)", 1600),
+                                   ("fundamentals", "Engine, stabiliser and boost options, each highlighted on one cockpit", 1700),
+                                   ("exploded", "Exploded build, one colour per slot", 1500),
+                                   ("sheet", "Native, swapped and mixed builds", 1600),
+                                   ("standard", "Frame standard: the slot envelopes", 1300)):
             src = os.path.join(SHOTS, cid + ".jpg") if stem == "studio" else os.path.join(PREV, cid, stem + ".png")
             if os.path.exists(src):
                 rel = "blockout/%s/%s.jpg" % (cid, stem)
@@ -158,7 +173,7 @@ def main():
   <div class="blockout">{blocks}</div>
 </section>""".format(cid=cid, name=esc(name), pitch=esc(pitch), tags="".join("<li>%s</li>" % esc(c) for c in cultures),
                      strong=esc(strong), weak=esc(weak), figs=figs,
-                     slots=('<div class="scroll"><table><thead><tr><th>Player label</th><th>Slot ID</th><th>Parts in the blockout</th></tr></thead><tbody>%s</tbody></table></div>' % slot_rows) if slot_rows else "",
+                     slots=('<div class="scroll"><table><thead><tr><th>Player label</th><th>Slot ID</th><th>Options in the blockout</th></tr></thead><tbody>%s</tbody></table></div>' % slot_rows) if slot_rows else "",
                      counts=counts, blocks=blocks))
 
     overview = ""
@@ -234,6 +249,7 @@ table { border-collapse: collapse; width: 100%; font-size: 0.9rem; min-width: 56
 th { text-align: left; font-family: var(--mono); font-weight: 500; font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); border-bottom: 1px solid var(--line); padding: 6px 12px 6px 0; }
 td { border-bottom: 1px solid var(--line); padding: 7px 12px 7px 0; vertical-align: top; color: var(--muted); }
 td:first-child { color: var(--text); white-space: nowrap; font-weight: 500; }
+tr.fund td:first-child { color: var(--cyan); }
 .sw { display: inline-block; width: 10px; height: 10px; margin-right: 8px; }
 #lightbox { position: fixed; inset: 0; background: rgba(9, 12, 16, 0.94); display: flex; align-items: center; justify-content: center; padding: 16px; z-index: 20; cursor: zoom-out; }
 #lightbox img { max-width: 100%; max-height: 100%; }
@@ -243,10 +259,10 @@ td:first-child { color: var(--text); white-space: nowrap; font-weight: 500; }
 </style>
 <div class="wrap">
   <header class="top">
-    <p class="status">Design proposal, not approved · 1 October 2026</p>
+    <p class="status">Design proposal, round 2, not approved · 1 October 2026</p>
     <h1>Frame classes</h1>
-    <p class="lede">Nine new vehicle categories for Space Racers. In each one, every part fits every cockpit. A class is a layout, not a style: muscle, drift, drag and the rest are tags inside a class, and you can mix them freely.</p>
-    <p class="muted">Concept images are generated mood pieces, not final models. The grey-box images come from the same specs that built the blockout rows in the backup place.</p>
+    <p class="lede">Twelve new vehicle categories for Space Racers, round 2. No wheels: every vehicle flies on jets. Every vehicle carries real engine, stabiliser and boost modules. Every cockpit has its own kit, and any cockpit can wear any other cockpit's kit.</p>
+    <p class="muted">Concept images are generated mood pieces, not final models. The grey-box images come from the same specs that built the blockouts in the backup place.</p>
     {{OVERVIEW}}
   </header>
   <nav class="classes" aria-label="Classes">{{NAV}}</nav>
@@ -256,17 +272,17 @@ td:first-child { color: var(--text); white-space: nowrap; font-weight: 500; }
       <ol>{{RULES}}</ol>
     </div>
     <div>
-      <h3>Same eight slots, new meanings</h3>
-      <p class="muted">Every class keeps the eight slot IDs the game already saves and balances. Each class relabels them. Your "front half, back half, middle section" are Engine1, Engine2 and SidePods. Bumpers and spoilers stay where they are. Three cosmetic slots are new: Hood, Roof and Accessory.</p>
-      <p class="muted">The slot table under each class shows the label a player sees, the slot ID behind it, and the example parts in the blockout. Colours match the exploded views.</p>
+      <h3>Fundamentals first, body second</h3>
+      <p class="muted">Engine1, Engine2, Stabilisers and Boost are jet hardware in every class, placed wherever suits it. They are shown in cyan in each slot table. The body sections get their own slots: front body, rear body and the mid section, then bumpers, spoiler, hood, roof and extras.</p>
+      <p class="muted">The matrix under each class is the test that matters: each row is one cockpit, each column one kit. Every cell has to fit cleanly and look like a different vehicle from its neighbours.</p>
     </div>
   </section>
   {{SECTIONS}}
   <footer class="end">
     <h3>Open questions</h3>
     <ol>
-      <li><strong>Which classes first, and are the names right?</strong> Suggested order: Rift as the pilot, then Street, Rodder and Rider.</li>
-      <li><strong>How close to real cars?</strong> These images stay at era and genre, with no badges. Closer likeness raises moderation and licensing risk.</li>
+      <li><strong>Which classes first, and are the names right?</strong> Suggested pilot: Muscle or Rift, then Street, Exotic and Rider.</li>
+      <li><strong>Where should the fundamentals sit on the realistic cars?</strong> The blockouts make a first proposal per class. They can move.</li>
       <li><strong>Do Rider and Tether belong in the first wave?</strong> Both need new technical work: a rider pose, and a very wide, long hull.</li>
     </ol>
     <p>Full contract: docs/design/vehicle-frame-classes.md. Class sheets: docs/design/vehicle-categories/.</p>

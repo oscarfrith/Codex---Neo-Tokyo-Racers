@@ -34,6 +34,7 @@ scripts/architecture_phase3/projected/
 scripts/architecture_phase4/projected/
 # Vehicle frame-class blockout previews: regenerate with scripts/vehicle_blockouts/preview.py.
 scripts/vehicle_blockouts/previews/
+scripts/vehicle_blockouts/showroom/
 
 # Temporary Roblox Studio export paste blob.
 docs/studio-script-export-paste.txt

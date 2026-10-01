@@ -1,51 +1,71 @@
-# Rodder (`rodder`): class sheet
+# Rodder (`rodder`): class sheet, round 2
 
-Status: design exploration, 2026-10-01. Nothing here is approved or game content. Brief: [exploration contract](../../../scripts/vehicle_blockouts/CONTRACT.md). No real makes or models; eras and genres only.
+Status: design exploration, round 2, 2026-10-01. Nothing here is approved or game content. Briefs: [exploration contract](../../../scripts/vehicle_blockouts/CONTRACT.md) and [frame standard](rodder-frame.md). Round 1 art is kept in `output/vehicle-categories-2026-10-01/rodder/v1/`. Likeness to real hot-rod body styles (1932 coupé, T-bucket, belly-tank lakester) is welcome. No logos or badges.
 
 ## Pitch
 
-Hot rods and drag rails turned into hover vehicles. A narrow chopped cab sits at the back. A big exposed engine sits ahead of it on two bare frame rails behind an upright grille shell. Skinny hover pods ride a beam axle far forward. Fat glowing hover drums sit where the rear slicks were. The whole car rakes nose-down.
+A hot rod or drag rail on jet thrust. A narrow chopped cab sits at the back. A big exposed engine sits ahead of it on two bare frame rails behind an upright grille shell. The engine is rebuilt as jet hardware: a turbine intake where the blower was, header nozzles where the pipes were. Two long jet barrels sit beside the cab where the rear slicks were, like a jet dragster. Slim lift jets hang on a beam axle at the front. The whole car rakes nose-down. There are no wheels, drums, discs or rings anywhere.
 
-**Player fantasy:** "I built this in a shed and it is the loudest thing on the grid." You stage, the drums spin up, the nose lifts, the pipes spit flame and you are gone. Corners are a problem for later.
+**Player fantasy:** "I built this in a shed and it is the loudest thing on the grid." You stage, the side jets spool up, the nose lifts, the headers spit flame and you are gone. Corners are a problem for later.
 
 ## Culture lines
 
 | Culture | One line |
 |---|---|
-| Highboy | 1930s coupé, no fenders, gloss paint, flames, chrome. The show car. |
+| Highboy | 1932-style coupé, no fenders, gloss black, flames, chrome. The show car. |
 | Rat Rod | Rust, bare steel, welds, mismatched parts. Looks unsafe on purpose. |
 | T-Bucket | Tiny open tub, tall windscreen, engine bigger than the body. |
-| Gasser | 1960s strip coupé. Front axle jacked high, scoop through the bonnet. |
+| Gasser | 1960s strip coupé with the front axle jacked high. Not built yet. |
 | Slingshot Drag | Long thin rail. Driver sits in a cage at the very back. |
-| Salt Flat | Belly-tank streamliner. Bare aluminium, faired pods, built for one long straight. |
+| Salt Flat | Belly-tank lakester. Bare aluminium, slot jets, built for one long straight. |
 
 ## Cockpits
 
-| Name | Culture | Silhouette | Tier |
+Five are built. Tier B is held for the Altered (Gasser) if it is added.
+
+| Name | Culture | Silhouette | Signature kit | Tier |
+|---|---|---|---|---|
+| Rat Cab | Rat Rod | Tall chopped pickup cab, stub bed behind | Rat Rod | E |
+| Bucket | T-Bucket | Open tub, tall flat windscreen, no roof | T-Bucket | D |
+| Deuce | Highboy | Chopped three-window coupé, slit windows, low roof | Highboy | C |
+| Lakester | Salt Flat | Riveted teardrop tank, tiny wrap bubble screen | Salt Flat | A |
+| Slingshot | Slingshot Drag | Open roll cage, driver far back | Slingshot Drag | S |
+
+## The fundamentals
+
+Every build has all four. Every option has an intake, a body and a glowing nozzle. Looks are from the frame standard; where it gives none they come from the module name and round 1.
+
+| Slot id | Player label | Where it sits | Options (look) |
 |---|---|---|---|
-| Rat Cab | Rat Rod | Chopped pickup cab with a stub bed | E |
-| Bucket | T-Bucket | Open tub, upright flat windscreen | D |
-| Deuce | Highboy | Chopped three-window coupé, slit windows | C |
-| Altered | Gasser | Tiny upright coupé, tall and short | B |
-| Lakester | Salt Flat | Riveted teardrop tank, tiny wrap screen | A |
-| Slingshot | Slingshot Drag | Open roll cage, driver far back | S |
+| Engine1 | Front Engine | Level on the rails between grille shell and firewall, fully exposed | **Blown Turbine** (fat barrel, blower scoop); **Tunnel Ram** (short V block, tall tower, twin stacks); **Flat Trio** (long, low, wide, three short stacks); **Twin Mill** (two slim turbines in tandem, ram horns); **Turbine Swap** (one big turbine carried high, sloping pipe) |
+| Engine2 | Side Jets | A long barrel each side of the cab, where the slicks were | **Long Barrels** (very long and slim); **Stub Ramjets** (short, fat, carried high); **Over-Unders** (stacked pairs); **Lances** (slim, finned); **Slab Pods** (flat, slot nozzle) |
+| Stabilisers | Axle Jets | Beam axle under the front rails, pods at the outer corners | **Beam Lifters** (two upright cans); **Torpedoes** (long pods, twin down-jets); **Quad Cans** (two small cans a side); **Canard Vanes** (small vanes, jet at each tip); **Faired Spats** (teardrop covers, slot lift jets) |
+| Boost | Headers | Bolted to the engine's port rail on each side | **Lake Pipes** (long straight pipes low along the rails); **Staged Stacks** (tall stepped stacks); **Side Dumps** (short fat outlets); **Zoomies** (upswept pipes); **Slot Burners** (flat slot nozzles) |
 
-## Slots and modules
+## Body slots
 
-Slot ids and labels are from the contract. *Italic* modules are additions.
+`Hood`, `Roof` and `Accessory` are not used. The engine stays bare and the cab owns its roof.
 
-| Slot id | Player label | Modules (look) |
+| Slot id | Player label | Options (look) |
 |---|---|---|
-| Engine1 | Engine Block | **Blown Eight** (chrome blower, three-hole scoop); **Flathead Trio** (low flat block, three carburettors in a row); **Twin Mill** (two engines nose to tail); **Radial Nine** (aircraft star of finned cylinders); **Turbine Swap** (polished jet, intake cone) |
-| Engine2 | Rear Drums | **Slick Drums** (wide smooth cylinders, one neon ring); **Dually Drums** (doubled drums, two rings); **Finned Drums** (cast-iron cooling fins); *Moon Drums* (flat spun-aluminium covers) |
-| Stabilisers | Front Axle | **Skinny Pods** (slim upright discs on a chrome beam); **Suicide Front** (axle slung far ahead on a sprung arm); **Faired Spats** (teardrop covers over the pods); *Skimmers* (flat lozenge pods, low glow strip) |
-| SidePods | Fenders and Rails | **Cycle Fenders** (small curved guards over the pods); **Running Boards** (flat step along each rail); **Open Rails** (bare drilled rails, nothing else); *Truss Rails* (triangulated tube rails) |
-| Boost | Headers | **Zoomies** (four upswept pipes per side); **Lake Pipes** (long straight pipes low along the rails); **Side Dumps** (short fat outlets); *Weedburners* (long pipes swept down and back) |
-| FrontBumper | Grille Guard | **Nerf Bar** (small chrome hoop); **Moon Tank** (spun-aluminium tank crosswise ahead of the grille); **Push Bar** (heavy welded square frame) |
-| RearBumper | Launch Gear | **Wheelie Bars** (two long thin bars with skid tips); **Chute Pack** (packed parachute bag on a bracket); **Nerf Rear** (small chrome hoop) |
-| RearSpoiler | Rear Rig | **Dragster Wing** (tall narrow wing on thin struts); **Roll Hoop** (chrome hoop behind the roof); **Luggage Rack** (tube rack with a strapped trunk); *Keg Tank* (fuel keg strapped upright) |
-| Hood | Hood | **Louvred Top** (top panel only, rows of louvres); **Side Panels** (engine half covered, cut-outs for pipes); **Scoop** (panel with a tall scoop); *None* (engine fully bare; the default) |
-| Roof | Roof | **Chopped Steel** (low painted roof panel); **Canvas** (stitched fabric insert); **Roll Cage** (roof removed, bare tube cage) |
+| FrontBody | Frame and Shell | **Deuce Shell** (tall upright grille shell); **Track Nose** (short radiator nose); **Rat Frame** (open welded tubes, no shell); **Sling Rails** (long thin rails, pointed); **Salt Nose** (needle-thin nose cone) |
+| RearBody | Tail | **Turtle Deck** (rounded deck behind the cab); **Strapped Trunk** (trunk strapped on a rack); **Bobber Bed** (short flat bed); **Chute Tail** (slim tail with a chute housing); **Boat Tail** (long pointed tail) |
+| SidePods | Rail Dress | **Nerf Rails** (slim chrome rails); **Running Boards** (flat step along each rail); **Saddle Tanks** (fuel tank each side); **Delta Strakes** (triangular strakes); **Belly Skirts** (smooth skirt under the rails) |
+| FrontBumper | Nose Gear | **Spreader Bar** (chrome bar across the front); **Lantern Bar** (bar with lamps); **Cow Catcher** (angled bars); **Stage Prong** (one forward prong); **Needle Nose** (thin spike) |
+| RearBumper | Launch Gear | **Nerf Bar** (small chrome bar); **Tail Lantern** (one lamp on a bracket); **Hitch** (tow bracket); **Skid Bars** (long bars with skid tips); **Chute Pack** (packed parachute bag) |
+| RearSpoiler | Rear Rig | **Roll Bar** (slim chrome bar over the cab); **Twin Fins** (two upright fins); **Headache Rack** (tube rack behind the cab); **Dragster Wing** (tall narrow wing on struts); **Tail Fin** (one fin) |
+
+## Signature kits
+
+| Kit | Culture | Native cockpit | What makes it look different |
+|---|---|---|---|
+| Highboy | Highboy | Deuce | Tall grille shell, chrome turbine with scoop, two very long barrels, upright cans. |
+| T-Bucket | T-Bucket | Bucket | Tall tower engine, fat short ramjets high up, long torpedo pods, trunk on a rack. |
+| Rat Rod | Rat Rod | Rat Cab | Open tube frame, low flat engine, stacked jet pairs, four small cans, bare rust. |
+| Slingshot Drag | Slingshot Drag | Slingshot | Pointed rails, two turbines in tandem, finned lances, canard vanes, tall wing. |
+| Salt Flat | Salt Flat | Lakester | Needle nose, one big raised turbine, flat slab pods, faired spats, riveted tank. |
+
+Any cockpit takes any kit. [rodder-frame.md](rodder-frame.md) holds the pads that make that safe.
 
 ## Handling intent versus Piercer
 
@@ -59,64 +79,65 @@ Design intent only. No numbers.
 | BoostForce | ++ | Boost is a violent kick, not a cruise. |
 | BoostDuration | - | Short burn. Time it; do not hold it. |
 | DriftControl | - | It slides, but it is hard to place. |
-| DriftGrip | - | Fat drums push wide once sliding. |
-| LateralGrip | -- | Skinny front pods. Weakest sideways grip of any car class. |
+| DriftGrip | - | Long side jets push wide once sliding. |
+| LateralGrip | -- | Slim axle jets. Weakest sideways grip of any car class. |
 | SteeringResponse | - | Long rails, slow to point. |
 | HoverStability | - | Nose lifts under boost; pitches over crests. |
 | Downforce | - | No aero unless you fit the Dragster Wing. |
 | Drag | + | Upright grille and a bare engine in the wind. |
 | Weight | - | Light. Loses contact fights. |
 
-Module bias inside the class: Engine Block and Headers carry acceleration and boost. Rear Drums carry grip and stability. Front Axle carries steering and lateral grip. Faired Spats, Moon Tank and Moon Drums are the low-drag set.
+Module bias inside the class: Front Engine and Headers carry acceleration and boost. Side Jets carry stability and top speed. Axle Jets carry steering and lateral grip. Faired Spats, Needle Nose and Belly Skirts are the low-drag set.
 
 ## What makes it fun to own
 
-1. **Nose-up launch.** Boost from a standstill lifts the nose and drops the tail onto the drums. Wheelie Bars throw sparks when they touch. Visual pitch only; see risks.
-2. **Hover burnout.** Holding brake and throttle spins the drums up. They leave two glowing scorch strips on the road in the car's neon colour.
-3. **Header flames.** The Headers slot is the boost, so every pipe set has its own flame: Zoomies fire eight short jets, Lake Pipes shoot two long ones along the rails, Side Dumps pop on lift-off. Flame takes the thrust colour.
-4. **Chute pop.** With a Chute Pack fitted, hard braking from high speed throws a small parachute. It repacks itself after a few seconds. Pure show.
-5. **Living engine.** The exposed block rocks at idle, the blower belt turns and the scoop butterflies open with throttle. The garage gets an engine-side camera for this class.
-6. **Full-kit names.** Wearing one culture across every slot earns a title: *Deuce Wild* (Highboy), *Junkyard Saint* (Rat Rod), *Bucket List* (T-Bucket), *Nose Bleed* (Gasser), *Quarter Master* (Slingshot Drag), *White Line* (Salt Flat).
-7. **Timeslip unlocks.** Standing-start sprints on a straight give a timeslip. Beating class target times unlocks the Dragster Wing, Dually Drums and Turbine Swap. Rat Rod parts unlock from scrap found in the world instead.
-8. **Photo moments.** A staged pair at the lights with drums glowing; the nose-up frame mid-launch; a Lakester alone on an empty straight at dawn.
+1. **Nose-up launch.** Boost from a standstill lifts the nose and drops the tail. Skid Bars throw sparks when they touch. Visual pitch only; see risks.
+2. **Spool-up burnout.** Holding brake and throttle spools the Side Jets. The nozzles flare and the road gets two glowing scorch strips in the car's neon colour.
+3. **Header flames.** Headers are the boost, so each pipe set has its own flame. Zoomies fire eight short jets, Lake Pipes shoot two long ones, Side Dumps pop on lift-off, Slot Burners lay down a flat sheet. Flame takes the thrust colour.
+4. **Chute pop.** With a Chute Pack fitted, hard braking from high speed throws a small parachute. It repacks after a few seconds. Pure show.
+5. **Living engine.** The exposed engine rocks at idle and the scoop or stacks flutter with throttle. The garage gets an engine-side camera for this class.
+6. **Full-kit names.** Wearing one kit across every slot earns a title: *Deuce Wild* (Highboy), *Junkyard Saint* (Rat Rod), *Bucket List* (T-Bucket), *Quarter Master* (Slingshot Drag), *White Line* (Salt Flat).
+7. **Timeslip unlocks.** Standing-start sprints on a straight give a timeslip. Beating class target times unlocks the Dragster Wing, Twin Mill and Turbine Swap. Rat Rod parts come from scrap found in the world instead.
+8. **Flame and patina skins.** Flames, pinstripes and rust are a pattern layer on top of paint. Rat Rod rust can be earned by driving, not bought.
 
 ## Gallery
 
 ![Hero](img/rodder/01-hero.jpg)
-*01 Hero. Highboy. Deuce cockpit, Blown Eight, Zoomies, Skinny Pods, Slick Drums, Nerf Bar, Wheelie Bars, Chopped Steel roof.*
+*01 Hero. Deuce cockpit, Highboy kit: Blown Turbine, Long Barrels, Beam Lifters, Lake Pipes, Deuce Shell, Roll Bar.*
 
 ![Exploded](img/rodder/02-exploded.jpg)
-*02 Exploded. Highboy. Shows Engine Block, Front Axle, Fenders and Rails (Cycle Fenders), Headers, Grille Guard, Rear Drums, Launch Gear, Rear Rig, Hood and Roof pulled off the cab and rails.*
+*02 Exploded. Deuce cockpit, Highboy kit. Front Engine lifted off. Side Jets, Axle Jets, Headers, Frame and Shell (Deuce Shell), Rail Dress (Nerf Rails), Nose Gear, Tail, Launch Gear and Rear Rig pulled away from the cab and rails. The cab shell has smooth blanked rear fenders, with no open arches.*
 
 ![One kit, three cockpits](img/rodder/03-one-kit-three-cockpits.jpg)
-*03 One kit, three cockpits. Left Deuce, centre Bucket, right Rat Cab. Same Blown Eight, Zoomies, Skinny Pods, Slick Drums, Nerf Bar, Wheelie Bars and paint.*
+*03 One kit, three cockpits. Left Deuce, centre Bucket, right Rat Cab. All wear the Highboy kit in candy red.*
 
 ![One cockpit, three kits](img/rodder/04-one-cockpit-three-kits.jpg)
-*04 One cockpit, three kits. Deuce three times. Left Highboy (Blown Eight, Zoomies). Centre Rat Rod (Flathead Trio, Lake Pipes, Suicide Front, Finned Drums, Push Bar, Canvas). Right Slingshot Drag kit (Turbine Swap, Side Dumps, Faired Spats, Dually Drums, Chute Pack, Dragster Wing).*
+*04 One cockpit, three kits. Deuce three times. Left Highboy kit. Centre Rat Rod kit (Flat Trio, Over-Unders, Quad Cans, Side Dumps, Rat Frame, Cow Catcher, Bobber Bed). Right Slingshot Drag kit (Twin Mill, Lances, Canard Vanes, Zoomies, Sling Rails, Stage Prong, Dragster Wing).*
 
-![Slingshot Drag](img/rodder/05-slingshot.jpg)
-*05 Slingshot Drag, rear three-quarter. Slingshot cockpit, Blown Eight, Zoomies (Headers, firing), Slick Drums, Wheelie Bars and Chute Pack (Launch Gear), Dragster Wing (Rear Rig), Truss Rails.*
+![Engines](img/rodder/05-engines.jpg)
+*05 Engines, seen from behind and above. Bucket cockpit shown as a plain open tub, with Beam Lifters and Lake Pipes. Left Blown Turbine with Long Barrels. Centre Tunnel Ram with Stub Ramjets. Right Twin Mill with Lances.*
 
-![Rat Rod](img/rodder/06-rat-rod.jpg)
-*06 Rat Rod. Rat Cab cockpit, Radial Nine, Lake Pipes, Suicide Front, Finned Drums, Push Bar, Keg Tank.*
+![Stabilisers and boost](img/rodder/06-stabilisers-boost.jpg)
+*06 Stabilisers and boost. Slingshot cockpit, Slingshot Drag kit: Zoomies firing, Canard Vanes with tip jets working, Twin Mill, Lances, Dragster Wing, Chute Pack.*
 
 ![Salt Flat](img/rodder/07-salt-flat.jpg)
-*07 Salt Flat. Lakester cockpit, Turbine Swap, Side Dumps, Faired Spats, Moon Tank, Moon Drums, Chute Pack.*
+*07 Salt Flat. Lakester cockpit, Salt Flat kit: Turbine Swap, Slab Pods, Faired Spats, Slot Burners, Salt Nose, Boat Tail, Tail Fin, Chute Pack.*
 
 ![Action](img/rodder/08-action.jpg)
-*08 Action. The hero Highboy mid-launch: nose up, Zoomies firing, Wheelie Bars sparking.*
+*08 Action. Deuce cockpit, Highboy kit at speed in a neon city at night: Beam Lifters throwing sparks, Lake Pipes firing, Long Barrels blazing.*
 
 ## Risks and open points
 
-- **Front pods can read as wheels.** Six images show upright discs with a neon rim; 04 and 07 show flat skimmer pods. From a distance the discs look like thin wheels. Decide which is the class default. Flat pods are safer for the "no wheels" rule.
-- **Rear drums must stay metal and lit.** A dark drum reads as a slick. Keep the neon ring and the under-glow on every drum module.
-- **Slingshot breaks the cab position.** Its driver sits behind the drums, not between them. The frame standard needs a cockpit envelope that reaches behind the Rear Drums envelope, or Slingshot cannot share modules.
-- **Lakester drifts towards Dart.** It only stays a Rodder while the engine, rails and grille shell stay exposed. Do not allow a full-length skin.
-- **Gasser fights the rake.** Gassers sit nose-high; the class datum is nose-down. Suggest Gasser is expressed by a tall Front Axle module, not by tilting the cab. Not illustrated.
-- **Not illustrated:** Altered cockpit, Gasser culture, Twin Mill, Running Boards. T-Bucket appears only in 03.
-- **Flames, scallops and patina are not paint channels.** The live system recolours Primary, Secondary, Detail, Glass and Neon. The images need a pattern layer, or shaped Secondary parts, or they will not look like this in game.
-- **Nose lift must be visual.** A real pitch change would upset hover and steering. It needs to belong to the existing vehicle visual owner, not a new one.
-- **Hood needs an empty option.** The class is defined by the bare engine. Side Panels should cover part of it at most.
-- **Detail budget.** The renders have far more engine detail than a low-poly module can carry. Each engine needs one strong shape: blower, star, cone, carburettor row.
-- **Weak lateral grip in an open world.** Fun on a strip, possibly tiring in city traffic. Needs a tuning pass before the class is sold as a daily driver.
-- **Image notes.** 02 shows only one rear drum. In 05 the driver sits level with the drums rather than fully behind. 08 has blurred abstract sign shapes in the background, none readable.
+- **Front jets can read as wheels.** In 08 the axle jets are squat and bell-shaped, and in 03 they are short cans. Keep them long, narrow and taller than wide, with a visible nozzle, as in 01, 02 and 05.
+- **Side Jet length varies.** The blockout makes them 9 to 12 studs long. 01, 02 and the left of 05 show that; 03, 04 and the centre of 05 show short fat ones. Art direction needs one length rule.
+- **Five cockpits, not six.** The Altered and a Gasser kit are not built or illustrated. A Gasser can be a mixed build: tall Axle Jets on a Deuce. It fights the nose-down rake, so do not tilt the cab.
+- **Lakester drifts towards Dart.** 07 shows a long skin. It stays a Rodder only while the engine, rails and nose stay exposed.
+- **Slingshot sits far back.** The driver must sit at the back of the cab envelope (Z 1 to 10), behind the Side Jet pads.
+- **Cab and nose distinctness is on the limit.** The validator scores both exactly at target. The shared rails fill most of each outline.
+- **Flames, scallops and patina are not paint channels.** The game recolours Primary, Secondary, Detail, Glass and Neon. The art needs a pattern layer or shaped Secondary parts.
+- **Nose lift must be visual.** A real pitch change would upset hover and steering. It must belong to the existing vehicle visual owner, not a new one.
+- **Detail budget.** The renders carry far more engine detail than a low-poly module can. Each engine needs one strong shape: scoop, tower, tandem pair, cone.
+- **Thrust effects may merge.** Tunnel Ram with Staged Stacks, and Twin Mill with Zoomies, put many pipes close together. Side Jet exhaust needs clearance from wing end plates and Skid Bars.
+- **Size.** Builds run 30.8 to 32.9 studs long against a 30 target, up to 11.6 high with the Dragster Wing.
+- **Weak lateral grip in an open world.** Fun on a strip, tiring in city traffic. Needs a tuning pass first.
+- **Image notes.** In 05 the cabs are plain tubs with a seat and no windscreen, and the Bucket looks more boxy than a T-bucket. In 04 the centre cab looks boxier than the Deuce because the Bobber Bed adds a pickup bed. 08 has one small vehicle and blurred abstract signs in the background; nothing is readable.

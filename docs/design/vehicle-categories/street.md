@@ -1,50 +1,77 @@
-# Street: class sheet
+# Street: class sheet (round 2)
 
-Status: design exploration, 2026-10-01. Not approved, not game content. Brief: [exploration contract](../../../scripts/vehicle_blockouts/CONTRACT.md). Proposed `CategoryId`: `street`.
+Status: design exploration, round 2, 2026-10-01. Not approved, not game content. Brief: [exploration contract](../../../scripts/vehicle_blockouts/CONTRACT.md). Blockout: [frame standard](street-frame.md) and `scripts/vehicle_blockouts/specs/street.json`. Proposed `CategoryId`: `street`. Round 1 art is kept in `output/vehicle-categories-2026-10-01/street/v1/`.
+
+## What changed since round 1
+
+- The round 1 hover rotors (flat discs styled as rims) are gone. No wheels, rims, discs or rings anywhere.
+- Each blanked arch now holds a small vectoring lift jet. Nobody can mistake it for a wheel.
+- Engines, stabilisers and boost are real jet hardware on every car: a turbine through the bonnet, a turbine in the tail, four arch jets and exhaust burners.
+- The front and rear clips now have their own slots (`FrontBody`, `RearBody`). Round 1 had put them on the engine slots.
+- Every cockpit has its own signature kit, and every kit fits every cockpit.
 
 ## Pitch
 
-Tuner and import car culture turned into hover cars. Compact 90s-style coupés, hot hatches and sports saloons with bolt-on aero. Where each wheel was, a round hover rotor sits in the arch. It is a turbine disc styled like an alloy rim, tipped nearly flat and glowing underneath. The rotors are the "rims" of this class.
+Tuner and import car culture on jets. Compact 90s Japanese-style coupés, hot hatches, saloons and wagons with bolt-on aero: widebody overfenders, splitters and canards, big wings, a vented bonnet with a turbine showing through it. The arches are blanked off and each holds a small lift jet. Jet nozzles replace the exhaust in the tail.
 
-**Player fantasy:** "I built this in a lock-up, and it is mine." Street is the light, sharp drift class. It is cheap to start and deep to tune. One body can be a neon show car on Friday and a stripped loop racer on Saturday. Players read each other's taste from the kit, the rotors and the stance.
+**Player fantasy:** "I built this in a lock-up, and it is mine." Street is the light, sharp drift class. It is cheap to start and deep to tune. One body can be a clean mountain-pass car on Friday and a scarred drift missile on Saturday. Players read each other's taste from the kit, the engines and the stance.
 
 ## Culture lines
 
-- **Drift:** battle-scarred missile cars. Zip-tied bumpers, bash bars, mismatched panels, extreme rotor camber.
-- **Time Attack:** every panel is aero. Huge splitter, stacked canards, swan-neck wing, bare carbon.
-- **Underground:** 2000s neon street racing. Smooth widebody, tall wing, big cannon exhaust, underglow.
-- **Touge:** clean mountain-pass cars. Subtle lip, ducktail, light rotors, nothing wasted.
-- **Rally:** raised stance, light pods, mud flaps, roof scoop, bash bar.
-- **Kanjo:** stripped loop racers. Bare front, window net, tow strap, one bold stripe.
+- **Drift:** battle-scarred missile cars. Zip-tied bumper, bash bar, one mismatched panel, tall bamboo stacks.
+- **Time Attack:** every panel is aero. Splitter, canards, flat slot burners, swan-neck wing.
+- **Underground:** 2000s neon street racing. Wide body, tall wing, cannon exhaust, bright underglow.
+- **Touge:** clean mountain-pass cars. Pop-up lamps, ducktail, nothing wasted.
+- **Rally:** raised stance, snorkel, light pod, steps and mud flaps, box wing.
+- **Kanjo:** stripped loop racers. Bobbed ends, trumpet intakes, tow bar, one bold stripe.
 
 ## Cockpits
 
-| Name | Culture | Silhouette | Tier |
+| Name | Culture | Silhouette | Signature kit | Tier |
+|---|---|---|---|---|
+| Kei | Time Attack | Tiny open two-seat sports car | Time Attack | E |
+| Pocket | Kanjo | Upright hot hatch, steep rear glass | Kanjo | D |
+| Estate | Rally | Long flat roof, upright tailgate | Rally | C |
+| Syndicate | Drift | Four-door sports saloon, separate boot line | Drift | A |
+| Touge | Touge | Low 90s two-door coupé, short deck | Touge | S |
+
+Tier B is open (see risks). Underground has no native cockpit or kit. It is a style built by mixing kits and neon.
+
+## The fundamentals
+
+Every build has all four. Each option shows an intake, a body and a glowing nozzle.
+
+| Slot id | Player label | Where it sits | Options |
 |---|---|---|---|
-| Kei | Underground | Tiny two-seat sports cabin, short roof | E |
-| Pocket | Kanjo | Upright hot hatch, steep rear glass | D |
-| Longroof | Rally | Long flat wagon roof, upright tailgate | C |
-| Wedgeback | Time Attack | Boxy 80s liftback, long glass hatch | B |
-| Syndicate | Drift | Four-door sports saloon, separate boot line | A |
-| Touge | Touge | Low two-door 90s coupé, short deck | S |
+| `Engine1` | Bonnet Engine | Stands on a dark pad and sticks up through the bonnet. First thing seen from the front. | **Twin Cam:** two slim turbines side by side. **ITB Four:** four upright trumpet intakes in a row. **Big Single:** one fat turbine, big mouth. **Bonnet Slot:** low flat wide slot burner. **Snorkel:** offset turbine with a raised snorkel intake. |
+| `Engine2` | Tail Engine | Open bay in the centre of the tail. Nozzles pass through the rear panel. | **Twin Turbine:** two turbines side by side. **Quad Cluster:** four small jets in a square. **Missile Can:** one fat long can. **Tail Slot:** flat wide burner with a scoop. **Over-Under:** two turbines stacked. |
+| `Stabilisers` | Arch Jets | One in each blanked arch, four in all. | **Vector Pods:** one slim vectoring pod per arch. **Twin Downjets:** two upright nozzles per arch. **Vane Cascade:** finned slot jet. **Blade Skids:** flat thrust blades. **Outrigger Skids:** ski pods on struts. |
+| `Boost` | Exhaust Burner | On the tail face below the lamps, outboard of the tail engine. Stacks rise behind the wing. | **Twin Tips:** two neat cans. **Cannon:** one big offset can. **Bamboo Stacks:** four tall angled pipes. **Slot Bar:** full-width glowing slot. **Quad Stack:** two cans each side. |
 
-## Slots and modules
+## Body and cosmetic slots
 
-Slot ids are the canonical ones. Labels are what the player sees. "(added)" marks a module that is not in the contract roster.
-
-| Slot id | Label | Modules |
+| Slot id | Player label | Options |
 |---|---|---|
-| `Engine1` | Front Clip | **Stock:** plain nose, slim rectangular lamps. **Widebody:** swollen arches, big intercooler mouth. **Pop-Up:** flat wedge nose, lamps flip up at night. **Shark:** blunt forward-leaning nose, slot lamps. **Rally:** tough nose with a pod of four round spot lamps. |
-| `Engine2` | Rear Clip | **Stock:** plain tail, bar tail-lights. **Widebody:** flared rear arches, vented corners. **Hatch Bustle:** short stepped tail with a chunky bumper. **Time-Attack Tail:** long flat tail that extends behind the body. |
-| `Stabilisers` | Hover Rotors | **Five-Spoke:** thick spokes, thin lip. **Deep Dish:** polished deep outer lip. **Turbofan:** flat cover with fine radial blades. **Mesh:** fine lattice face. **Stance:** any face, heavy camber so the discs lean out of the arches. |
-| `SidePods` | Side Kit | **Skirts:** simple sill extensions. **Bolt-on Overfenders:** riveted arch flares, visible fasteners. **Side Splitters:** flat carbon blades with small fences. **Rally Flaps:** mud flaps behind each arch. |
-| `Boost` | Exhaust | **Cannon:** one fat round tip at the corner. **Twin Tip:** two neat tips. **Bamboo Stacks:** two long angled pipes, scorched ends. **Screamer:** short pipe out of the bonnet side. |
-| `FrontBumper` | Front Lip | **Lip:** thin chin strip. **Splitter and Canards:** flat blade on support rods, corner canards. **Intercooler Bumper:** open mouth, core on show. **Missile:** cracked bumper held on with zip ties. |
-| `RearBumper` | Diffuser | **Street:** shallow valance. **Finned:** deep under-tray with tall fins. **Bash Bar:** bare tube bar, no bumper cover. |
-| `RearSpoiler` | Wing | **Ducktail:** small upturned lip. **GT Wing:** tall wing on two uprights. **Swan Neck:** wide wing hung from above. **Roof Spoiler:** short visor over the rear glass. |
-| `Hood` | Hood | **Vented:** two heat-extractor slots. **Carbon Bulge:** bare carbon with a raised centre. **Cut-out:** hole with plumbing poking through. **Louvred Carbon (added):** rows of slats across the whole bonnet. |
-| `Roof` | Roof | **Roof Scoop:** small centre intake. **Rack:** tube rack, takes cargo props. **Light Pod Bar:** row of small lamps. |
-| `Accessory` | Extras | **Mirrors:** aero mirrors on stalks. **Tow Strap:** bright fabric loop. **Antenna:** tall whip. **Window Net (added):** mesh in the side window. |
+| `FrontBody` | Front Clip | **Pop-Up Wedge:** low wedge, long beak, pop-up lamp pods. **Shorty:** bobbed, door width, bare beam. **Wide Nose:** very wide, tall box flares. **Arrow Nose:** needle between two fender towers. **Stage Nose:** blunt and tall, lamp pod, bull bar. |
+| `RearBody` | Rear Clip | **Clean Tail:** smooth boat-tail. **Bob Tail:** door width, undercut, bare beam. **Wide Tail:** very wide, tall box haunches. **Tunnel Tail:** open channels, tall end-plate fins. **Stage Tail:** square, raised quarters, stacked lamps. |
+| `SidePods` | Side Kit | **Slim Skirts:** neat sill strip. **Door Boards:** flat boards on the doors. **Deep Skirts:** tall sill blocks. **Side Splitters:** flat blades with small fences. **Steps and Flaps:** step plates, mud flaps behind the arches. |
+| `FrontBumper` | Front Lip | **Chin Lip:** thin chin strip. **Tow Bar:** bare bar with a hook. **Intercooler Bumper:** open mouth, core on show. **Splitter and Canards:** flat blade on rods, corner canards. **Skid Plate:** flat steel plate. |
+| `RearBumper` | Diffuser | **Valance:** shallow valance. **Bare Beam:** bare tube beam. **Bash Bar:** tube bar, no bumper cover. **Finned Diffuser:** deep tray, tall fins. **Rear Guard:** tubular guard. |
+| `RearSpoiler` | Wing | **Ducktail:** small upturned lip. **Twin Fins:** two small tail fins. **GT Wing:** tall wing on two uprights. **Swan Neck:** wide wing hung from above. **Box Wing:** boxy wing on short posts. |
+
+`Hood`, `Roof` and `Accessory` are not used. The bonnet belongs to the Bonnet Engine and the cabin owns the roof. Round 1 extras (roof scoop, light pod bar, mirrors, tow strap, window net) could return later as `Accessory` options.
+
+## Signature kits
+
+| Kit | Culture | Native cockpit | What makes it look different |
+|---|---|---|---|
+| Touge | Touge | Touge | Low and clean. Pop-Up Wedge nose, twin turbines, slim skirts, ducktail. |
+| Kanjo | Kanjo | Pocket | Short and stripped. Bobbed ends, four trumpet intakes, one cannon, tow bar. |
+| Drift | Drift | Syndicate | Widest body. One fat turbine, bash bar, tall bamboo stacks, GT wing. |
+| Time Attack | Time Attack | Kei | Flat and sharp. Slot burners, blade skids, arrow nose, swan-neck wing. |
+| Rally | Rally | Estate | Tall and rough. Stage nose, snorkel, outrigger skids, box wing. |
+
+An Underground build is Drift body parts plus the Kanjo Cannon and a bright Neon colour. See image 07.
 
 ## Handling intent versus Piercer
 
@@ -52,69 +79,67 @@ Design intent only. Plus means higher than Piercer, minus means lower.
 
 | Stat | Bias | Why |
 |---|---|---|
-| TopSpeed | - | Runs out of breath on long straights. |
+| TopSpeed | - | Small jets run out of breath on long straights. |
 | Acceleration | + | Light and eager out of corners. |
 | Braking | + | Little mass to stop. Brake late. |
 | BoostForce | - | A shove, not a launch. |
-| BoostDuration | + | Long, soft boost that suits linking corners. |
+| BoostDuration | + | Long, soft burn that links corners. |
 | DriftControl | ++ | The class reason to exist. Easy to start and steer a slide. |
 | DriftGrip | - | Slides freely and holds a wide angle. |
-| LateralGrip | = | Neutral. Aero kits push it up, drift kits down. |
+| LateralGrip | = | Neutral. Time Attack aero raises it, Drift kits lower it. |
 | SteeringResponse | ++ | Darts into gaps. |
-| HoverStability | - | Twitchy over bumps and kerbs. |
+| HoverStability | - | Four small arch jets are twitchy over bumps and kerbs. |
 | Downforce | - | Low as standard. Splitters and wings buy it back. |
 | Drag | = | Neutral. Big aero adds a little. |
 | Weight | -- | Loses contact fights with every heavier class. |
 
 ## Ideas that make Street fun to own
 
-1. **Stance.** A cosmetic setting on the Hover Rotors slot: camber, poke and ride height. Flat and tucked, or leaning out of the arches. It is the first thing other players notice.
-2. **Rotor trails.** There is no tyre smoke. In a drift each rotor draws a light trail in the Neon colour. Four curved lines on the road are the class signature.
-3. **Full-kit titles.** Clip, lip, wing and exhaust from one culture earn a title: Missile (Drift), Lap Record (Time Attack), After Hours (Underground), Downhill Special (Touge), Stage Ready (Rally), Loop Runner (Kanjo).
-4. **Exhaust voice.** Cannon pops a flame when you lift off. Bamboo Stacks crackle. Screamer shrieks on boost. Flame colour follows the thrust colour.
-5. **Aired out.** When parked the car sinks and the rotors fold flat into the arches. On start-up they tilt, spin up and lift the car.
-6. **Pop-up wink.** Pop-Up lamps rise at night. Tap the horn to wink one lamp at another player.
-7. **Earned parts.** Drift score unlocks Stance and Bamboo Stacks. Time trial medals unlock Swan Neck and Time-Attack Tail. Night distance unlocks underglow patterns. Missile parts drop from near-miss streaks.
-8. **Meet shots.** A row of Street cars with underglow in a multi-storey car park. Top-down view of four rotor discs. Rear three-quarter with exhaust flame in a tunnel.
+1. **Engine swap meets.** Bonnet and tail engines are separate slots. A Kei with a Big Single and Bamboo Stacks is the sleeper everyone wants to race.
+2. **Stance.** A cosmetic setting on Arch Jets: tucked and flat, or nozzles tilted out. It is the first thing other players notice.
+3. **Jet trails.** There is no tyre smoke. In a drift each arch jet draws a light trail in the Neon colour. Four curved lines on the road are the class signature.
+4. **Exhaust voice.** Twin Tips pop when you lift off. Bamboo Stacks crackle. Cannon bangs. Flame colour follows the thrust colour.
+5. **Full-kit titles.** A full kit earns a title: Missile (Drift), Lap Record (Time Attack), Downhill Special (Touge), Stage Ready (Rally), Loop Runner (Kanjo). Underground widebody, Cannon and neon earns After Hours.
+6. **Aired out.** Parked, the arch jets cut and the car settles onto its skids. On start-up they spool up and lift it.
+7. **Pop-up wink.** Pop-Up Wedge lamps rise at night. Tap the horn to wink one lamp at another player.
+8. **Earned parts and scars.** Drift score unlocks Bamboo Stacks and Bash Bar. Time trial medals unlock Swan Neck and Tail Slot. A Drift build slowly gains scuffs, scorch marks and one mismatched panel.
 
 ## Gallery
 
 ![Hero](img/street/01-hero.jpg)
-*01 hero. Underground. Touge cockpit, Widebody front clip, Vented hood, Splitter and Canards, Bolt-on Overfenders with skirts, Deep Dish rotors, GT Wing, Cannon exhaust, Roof Scoop, Mirrors.*
+*01 hero. Touge cockpit with the Touge kit: Pop-Up Wedge, Clean Tail, Slim Skirts, Chin Lip, Valance, Ducktail, Twin Cam, Twin Turbine, Vector Pods, Twin Tips.*
 
 ![Exploded](img/street/02-exploded.jpg)
-*02 exploded. Underground. Every slot pulled off the Touge cabin: Front Clip, Hood, Front Lip, Side Kit, Rear Clip, Wing, Diffuser, Exhaust, Roof Scoop, Mirrors and four Hover Rotors.*
+*02 exploded. Touge cockpit and Touge kit. Front Clip, Front Lip, Bonnet Engine, Rear Clip, Tail Engine, Wing, Exhaust Burner, Diffuser, Side Kit and four Arch Jets pulled away.*
 
 ![One kit, three cockpits](img/street/03-one-kit-three-cockpits.jpg)
-*03 one kit, three cockpits. The same Touge kit and paint (Stock clips, Lip, Skirts, Ducktail, Twin Tip) on Touge (left), Pocket (centre) and Syndicate (right). Only the cabin changes.*
+*03 one kit, three cockpits. The Time Attack kit and one paint on Kei (left), Syndicate (centre) and Estate (right). Only the cabin changes. Each car shows the bonnet slot turbine, arch lift jets and tail afterburner cans.*
 
 ![One cockpit, three kits](img/street/04-one-cockpit-three-kits.jpg)
-*04 one cockpit, three kits. Pocket cockpit with Kanjo (left), Underground (centre) and Rally (right) kits. Front Clip, Front Lip, Side Kit, Wing, Hood, Roof and Hover Rotors all change.*
+*04 one cockpit, three kits. Pocket cockpit with the Kanjo (left), Drift (centre) and Rally (right) kits. Every slot changes. The arches are skirted and each holds a boxy lift-jet nozzle. The Rally mud flaps are left off this image.*
 
-![Drift](img/street/05-drift.jpg)
-*05 Drift, rear. Syndicate cockpit, Bash Bar, Bamboo Stacks, Ducktail, Bolt-on Overfenders, Stance rotors (Mesh rear, Five-Spoke front), Tow Strap. One mismatched panel and zip ties.*
+![Engines](img/street/05-engines.jpg)
+*05 engines. Syndicate cockpit, Touge body parts, seen from high behind so the bonnet engines sit clearly on the bonnet. Bonnet and tail engines: ITB Four with Quad Cluster (left), Big Single with Missile Can (centre), Bonnet Slot with Tail Slot (right).*
 
-![Time Attack](img/street/06-time-attack.jpg)
-*06 Time Attack. Wedgeback cockpit, Shark front clip, Splitter and Canards, louvred carbon hood, Screamer exhaust, Side Splitters, Turbofan rotors, Swan Neck wing, Time-Attack Tail.*
+![Stabilisers and boost](img/street/06-stabilisers-boost.jpg)
+*06 stabilisers and boost. Syndicate cockpit, Drift kit: Vane Cascade arch jets working, Bamboo Stacks and Missile Can firing, Bash Bar, GT Wing, Wide Nose and Wide Tail.*
 
-![Mixed culture](img/street/07-mixed-wagon.jpg)
-*07 mixed. Longroof cockpit. Rally front clip, Rack with Light Pod Bar and Rally Flaps. Time Attack Finned diffuser and Swan Neck wing. Underground Overfenders, Cannon and underglow. Green and gold paint ties it together.*
+![Underground](img/street/07-underground.jpg)
+*07 Underground, mixed. Pocket cockpit with Drift body parts, Big Single, Vane Cascade, Intercooler Bumper, GT Wing and the Kanjo Cannon. Cyan underglow.*
 
 ![Action](img/street/08-action.jpg)
-*08 action. The hero Underground build drifting on a wet city expressway at night.*
+*08 action. The hero Touge build at speed on a wet city expressway at night.*
 
 ## Risks and open points
 
-- **Rotor readability.** A flat disc hides its face from the side. The rotors need some tilt so the "rim" design shows. That tilt must stay inside the Hover Rotors envelope and clear the Side Kit.
-- **One slot, four rotors.** Hover Rotors is one slot, so one module sets all four corners. The staggered front and rear rotors in 05 would need their own module.
-- **Who owns the arches.** The brief puts arches on the clips and flares on the Side Kit. Image 02 leaves the rear arches on the cabin and shows the front wings as loose pieces. The frame standard must pick one owner.
-- **Cabin against rear clip.** A boot, a hatch and a wagon tailgate must all sit on the same Rear Clip. Keep the Rear Clip below the beltline and let the cabin own all rear glass.
-- **Lamps are on the clip.** The Wedgeback is described with pop-up lamps, but lamps belong to the Front Clip. The cabin must read by roofline alone.
-- **Kei scale.** The class has one body size. A Kei cabin on full-size clips may not read as tiny.
-- **Overlap with Cruiser.** Both use four rotors and both list a Longroof. Rename one and keep Street short and upright.
-- **Exhaust position.** Screamer exits at the bonnet. Decide whether boost flame follows it or stays at the rear.
-- **Wear and mismatched panels.** The Drift look fights "paint unifies". Map the odd panel to Secondary and keep scuffs as fixed Detail parts.
-- **Likeness.** The image model drifts towards familiar 90s coupé shapes (01, 02, 08) and an 80s liftback (06). Use the images for layout and mood only. Final models must be original.
-- **Detail level.** The renders are far finer than a low-poly build under 160 parts. Rotor faces need a simple repeatable piece.
-- **Image notes.** 06 was regenerated once; the first try came out as a mid-engined wedge exotic. In 03 the cars sit small in frame and the rotors read as turbofans, not five-spokes. In 04 the left car has a tiny blank round emblem on the grille. In 08 the hover height reads lower than half a metre.
-- **Passengers and jobs.** Syndicate and Longroof have four doors and suit taxi jobs. Confirm seat counts for the two-door cabins.
+- **Likeness.** The art leans on real 90s cars: Silvia and RX-7 coupés, Civic hatch, Evo saloon, Legacy wagon. Likeness is welcome, but final models must be original. No badges or text.
+- **Kei scale.** The blockout has one body length. The Kei reads as a small cabin on a full-size body. With lip and burners the car is 24.4 long; the brief asks for about 21.
+- **Missing cockpits and kit.** Wedgeback and a native Underground kit are not built. Tier B is empty. Five cockpits cover E, D, C, A and S.
+- **Clip look-alike.** Front and rear clip pairs score 0.10 to 0.30 on distinctness against a target of 0.35. The shared collar, cowl and pads cause it. Fixing it would make the cabins look alike.
+- **Tall cabins and the tail bay.** Pocket and Estate roof over the tail bay, so the tail engine shows only through the rear panel.
+- **Arch jets from above.** Vector Pods, Blade Skids and Outrigger Skids point their glow down or back. Little glow shows from above.
+- **Flat pads cost style.** Real meshes need curvature that still ends on the flat pad. The Time Attack kit is busy at up to 174 parts.
+- **Mixed builds.** Cross-kit pairs are only checked for contact. The three mixed blockout builds are the only visual check.
+- **Drift look against "paint unifies".** Map the odd panel to Secondary and keep scuffs as fixed Detail parts.
+- **Image detail.** The renders are far finer than a low-poly build under 160 parts. Use them for layout and mood.
+- **Image notes.** Reviewed after generation. 01, 02, 06, 07 and 08 passed. 03, 04 and 05 were regenerated. 03 first read as a hypercar with only glowing slots, and now shows tuner proportions with a bonnet turbine, arch lift jets and tail cans. 04 first had tyre-like dark shapes and mud flaps in the arches, and now has skirted arches with boxy lift jets. 05 first made the bonnet engines look roof-mounted, and is now shot from high behind. In 05 and 04 the lift jets are boxes, slimmer than the arch jets in the blockout. In 06 the vane cascades read as stacked fins, not as a spring or wheel. In 02 the arch jets are fat capsules, slimmer in the blockout.
