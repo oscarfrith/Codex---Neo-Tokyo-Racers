@@ -1,0 +1,42 @@
+{
+  "slots": {
+    "Cockpit": "Cabin",
+    "FrontBody": "Nose",
+    "RearBody": "Engine Deck",
+    "SidePods": "Side Pods",
+    "Engine1": "Main Turbine",
+    "Engine2": "Side Engines",
+    "Stabilisers": "Stabilisers",
+    "Boost": "Afterburner",
+    "FrontBumper": "Splitter",
+    "RearBumper": "Diffuser",
+    "RearSpoiler": "Wing"
+  },
+  "names": {
+    "cockpit_wedge": "Wedge cockpit", "cockpit_hyper": "Hyper cockpit",
+    "wedge_Engine1": "Mono Turbine", "wedge_Engine2": "Ram Boxes", "wedge_Stabilisers": "Vector Pods", "wedge_Boost": "Quad Cans",
+    "wedge_FrontBody": "Shovel Nose", "wedge_RearBody": "Slab Deck", "wedge_SidePods": "Strake Intakes",
+    "wedge_FrontBumper": "Chin Blade", "wedge_RearBumper": "Strake Diffuser", "wedge_RearSpoiler": "Poster Wing",
+    "hyper_Engine1": "Top-Exit Core", "hyper_Engine2": "Stacked Pairs", "hyper_Stabilisers": "Aero Blades", "hyper_Boost": "Tri Cluster",
+    "hyper_FrontBody": "Keel Nose", "hyper_RearBody": "Tunnel Tail", "hyper_SidePods": "Floating Blades",
+    "hyper_FrontBumper": "Keel Planes", "hyper_RearBumper": "Venturi", "hyper_RearSpoiler": "Active Blade"
+  },
+  "combos": [
+    {"id": "combo_WW", "title": "Wedge cockpit, Wedge kit", "kind": "native", "cockpit": "wedge",
+     "parts": {"FrontBody": "wedge", "RearBody": "wedge", "SidePods": "wedge", "Engine1": "wedge", "Engine2": "wedge", "Stabilisers": "wedge", "Boost": "wedge", "FrontBumper": "wedge", "RearBumper": "wedge", "RearSpoiler": "wedge"}},
+    {"id": "combo_HH", "title": "Hyper cockpit, Hyper kit", "kind": "native", "cockpit": "hyper",
+     "parts": {"FrontBody": "hyper", "RearBody": "hyper", "SidePods": "hyper", "Engine1": "hyper", "Engine2": "hyper", "Stabilisers": "hyper", "Boost": "hyper", "FrontBumper": "hyper", "RearBumper": "hyper", "RearSpoiler": "hyper"}},
+    {"id": "combo_WH", "title": "Wedge cockpit, Hyper kit", "kind": "kit swap", "cockpit": "wedge",
+     "parts": {"FrontBody": "hyper", "RearBody": "hyper", "SidePods": "hyper", "Engine1": "hyper", "Engine2": "hyper", "Stabilisers": "hyper", "Boost": "hyper", "FrontBumper": "hyper", "RearBumper": "hyper", "RearSpoiler": "hyper"}},
+    {"id": "combo_HW", "title": "Hyper cockpit, Wedge kit", "kind": "kit swap", "cockpit": "hyper",
+     "parts": {"FrontBody": "wedge", "RearBody": "wedge", "SidePods": "wedge", "Engine1": "wedge", "Engine2": "wedge", "Stabilisers": "wedge", "Boost": "wedge", "FrontBumper": "wedge", "RearBumper": "wedge", "RearSpoiler": "wedge"}},
+    {"id": "mix1", "title": "Wedge cockpit, Wedge body, Hyper jets", "kind": "mix", "cockpit": "wedge",
+     "parts": {"FrontBody": "wedge", "RearBody": "wedge", "SidePods": "wedge", "FrontBumper": "wedge", "RearBumper": "wedge", "RearSpoiler": "wedge", "Engine1": "hyper", "Engine2": "hyper", "Stabilisers": "hyper", "Boost": "hyper"}},
+    {"id": "mix2", "title": "Hyper cockpit, Hyper body, Wedge jets", "kind": "mix", "cockpit": "hyper",
+     "parts": {"FrontBody": "hyper", "RearBody": "hyper", "SidePods": "hyper", "FrontBumper": "hyper", "RearBumper": "hyper", "RearSpoiler": "hyper", "Engine1": "wedge", "Engine2": "wedge", "Stabilisers": "wedge", "Boost": "wedge"}},
+    {"id": "mix3", "title": "Wedge cockpit, Hyper front and sides, Wedge rear", "kind": "mix", "cockpit": "wedge",
+     "parts": {"FrontBody": "hyper", "FrontBumper": "hyper", "Stabilisers": "hyper", "SidePods": "hyper", "Engine2": "hyper", "RearBody": "wedge", "RearBumper": "wedge", "RearSpoiler": "wedge", "Engine1": "wedge", "Boost": "wedge"}},
+    {"id": "mix4", "title": "Hyper cockpit, Wedge front and sides, Hyper rear", "kind": "mix", "cockpit": "hyper",
+     "parts": {"FrontBody": "wedge", "FrontBumper": "wedge", "Stabilisers": "wedge", "SidePods": "wedge", "Engine2": "wedge", "RearBody": "hyper", "RearBumper": "hyper", "RearSpoiler": "hyper", "Engine1": "hyper", "Boost": "hyper"}}
+  ]
+}
