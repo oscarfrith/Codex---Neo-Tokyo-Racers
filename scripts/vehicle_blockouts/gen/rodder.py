@@ -16,7 +16,9 @@ How the class is put together:
   Engine2         long jet barrels on the two barrel pads each side of the cab
   RearBody, RearSpoiler, RearBumper  land on the bulkhead, the rig bar and the rear horns
   Every cab ends in the same 4.0 by 2.4 tail collar and every Tail starts with a first ring of that section.
-  Engine glow is a burner band on the engine body; Boost carries the tip glows (Flat Trio keeps three fat upswept nozzles).
+  Engine glow is a burner band on the engine body; Boost carries the tip glows (Flat Trio keeps three upswept nozzles).
+  Every Tail carries a rear rig bar at Y 4.38, Z 12.2, so a Rear Rig stands on two bars and never hangs over a low tail.
+  Dark couplers bridge the firewall seam: rail couplers on the cab, a plate collar for the engine duct.
 """
 import json
 import math
@@ -49,6 +51,10 @@ PERCH_TOP = -1.27                            # top of every axle perch (rail und
 PAD_Z = (3.8, 8.2)                           # barrel pad stations on the cab flanks
 PAD_Y = 1.4                                  # barrel pad height
 RIG_Y, RIG_Z, RIG_X = 4.4, 9.78, 1.6         # rig bar height, station and foot spacing
+RIG2_Y, RIG2_Z = 4.38, 12.2                  # rear rig bar: every Tail carries it, every Rear Rig lands on it
+Z_RAIL_F = 0.97                              # front frame rails stop here; the cab's dark rail coupler runs Z 1.0 to 1.2
+Z_DUCT = 0.95                                # every engine's transfer duct stops here, 0.05 short of the firewall plate
+HANGER_Y = -1.07                             # underside of a box rail at the perch station: tube frames hang a block to it
 PLATE = (1.7, 0.8, 3.0)                      # firewall plate: half width, Y0, Y1
 COLLAR = (2.0, 0.8, 3.2)                     # tail collar section on every cab and every Tail: half width, Y0, Y1
 Z_COLLAR = (9.4, 9.75)                       # the collar ring; the dark bulkhead plate sits behind it to Z 9.95
@@ -234,8 +240,9 @@ def chassis():
     hw, py0, py1 = PLATE
     kw, ky0, ky1 = COLLAR
     ps = [
-        box(x0, x1, y0, y1, 1.2, 13.4, "secondary", m=True, note="cab rail and rear horn: same section as the frame rails, 0.3 shadow gap at the firewall"),
-        box(-hw, hw, py0, py1, 1.1, 1.35, "detail", note="firewall plate: every engine's transfer duct lands here"),
+        box(x0, x1, y0, y1, 1.2, 13.4, "secondary", m=True, note="cab rail and rear horn: same section as the frame rails"),
+        box(x0, x1, y0, y1, Z_FIRE, 1.2, "detail", m=True, note="rail coupler: dark link across the firewall seam, the frame rails butt against it"),
+        box(-hw, hw, py0, py1, Z_FIRE, 1.45, "detail", note="firewall plate and collar: every engine's transfer duct lands here; it runs back to the cowl, so no slit shows"),
         box(-kw, kw, ky0, ky1, Z_COLLAR[0], Z_COLLAR[1], "primary", note="tail collar: the same 4.0 by 2.4 section on every cab; each cab blends its body into it"),
         box(-kw + 0.1, kw - 0.1, ky0 + 0.1, ky1 - 0.1, Z_COLLAR[1], 9.95, "detail", note="rear bulkhead: shadow gap; every Tail starts 0.15 behind it at the collar section"),
         cy(RIG_X - 0.1, 9.82, ky1 - 0.1, RIG_Y - 0.15, 0.3, "detail", m=True, note="rig post"),
@@ -382,17 +389,21 @@ def frame(rail="box", extra=None):
     x0, x1, y0, y1 = RAIL
     ps = []
     if rail == "box":
-        ps.append(box(x0, x1, y0, y1, -14.4, 0.9, "secondary", m=True, note="frame rail on the rail section datum, raked nose-down"))
+        ps.append(box(x0, x1, y0, y1, -14.4, Z_RAIL_F, "secondary", m=True, note="frame rail on the rail section datum, raked nose-down"))
     elif rail == "tube":
-        ps.append(cz(2.6, 0.15, -14.4, 0.9, 0.6, "secondary", m=True, note="tube frame rail, raked nose-down"))
+        ps.append(cz(2.6, 0.15, -14.4, Z_RAIL_F, 0.6, "secondary", m=True, note="tube frame rail, raked nose-down"))
     else:
-        ps.append(cz(2.6, 0.32, -14.4, 0.9, 0.5, "secondary", m=True, note="upper rail tube, raked nose-down"))
+        ps.append(cz(2.6, 0.32, -14.4, Z_RAIL_F, 0.5, "secondary", m=True, note="upper rail tube, raked nose-down"))
     for z in (-14.2, -6.0, 0.5):
         ps.append(cx(0.15, z, -2.3, 2.3, 0.35, "detail", note="crossmember" if z > -14 else "front crossmember: Nose Gear pad"))
     ps += extra or []
     rake(ps)
     for z in BED_Z:
         ps.append(box(x0, x1, rail_y(z, y1) - 0.05, SILL, z - 0.3, z + 0.3, "detail", m=True, note="engine pedestal: top on the sill datum"))
+    if rail != "box":
+        yc = rail_y(PERCH_Z, 0.15 if rail == "tube" else 0.32)
+        ps.append(box(x0, x1, HANGER_Y, yc, PERCH_Z - 0.4, PERCH_Z + 0.4, "detail", m=True,
+                      note="axle hanger: brings the tube rail down to the box-rail underside, 0.2 over every axle perch"))
     return ps
 
 
@@ -445,12 +456,16 @@ def fb_rat_frame():
 
 
 def fb_sling_rails():
-    lower0, lower1 = (2.6, -1.15, 0.7), (2.6, -0.15, -9.3)
-    extra = [tube(lower0, lower1, 0.4, "secondary", m=True, note="lower chord: deep at the firewall, shallow at the front")]
-    for z in (-0.4, -2.9, -5.4, -7.9):
-        t = (lower0[2] - (z - 0.9)) / (lower0[2] - lower1[2])
-        ylow = lower0[1] + (lower1[1] - lower0[1]) * t
-        extra.append(tube((2.6, 0.3, z), (2.6, ylow, z - 0.9), 0.25, "detail", m=True, note="truss web"))
+    """Twin-tube truss rails: a fish-belly lower chord that meets the cab rail line at the firewall."""
+    front, belly, back = (2.6, -0.13, -9.3), (2.6, -1.1, -4.4), (2.6, -0.1, 0.75)
+    extra = [
+        tube(front, belly, 0.4, "secondary", m=True, note="lower chord: fish-belly truss, deepest mid-bay"),
+        tube(belly, back, 0.4, "secondary", m=True, note="lower chord returns to the rail underside at the firewall"),
+        tube((2.6, 0.3, belly[2]), belly, 0.3, "detail", m=True, note="king post"),
+    ]
+    for a in (front, back):
+        foot = along(a, belly, 0.5)
+        extra.append(tube((2.6, 0.3, foot[2]), foot, 0.25, "detail", m=True, note="truss web"))
     shell = [
         taper(0, 2.0, 0.7, 1.6, -11.7, -14.3, "primary", m=True, note="arrowhead nose fairing: no shell, bare intake"),
         box(-0.1, 0.1, 1.6, 2.2, -13.0, -11.7, "secondary", note="spine"),
@@ -486,7 +501,7 @@ def engine_pads(body_x, duct_from, duct_y=1.9, duct_d=1.2, duct_ch="detail", web
     else:
         for z in (pz0 + 0.3, pz1 - 0.6):
             ps.append(box(body_x, px0, 1.5, 1.9, z, z + 0.3, "detail", m=True, note="port strut"))
-    ps.append(cz(0, duct_y, duct_from, 0.8, duct_d, duct_ch, note="transfer duct to the firewall"))
+    ps.append(cz(0, duct_y, duct_from, Z_DUCT, duct_d, duct_ch, note="transfer duct to the firewall plate collar"))
     return ps
 
 
@@ -498,9 +513,9 @@ def e1_blown_turbine():
         cz(0, y, -10.6, -9.1, 3.1, "secondary", note="intake bell"),
         cz(0, y, -10.7, -10.6, 1.75, "detail", note="intake throat"),
         ball(0, y, -10.55, 1.4, "primary", note="intake spike"),
-        cz(0, y, -9.1, -6.0, 3.0, "secondary", note="compressor barrel"),
-        cz(0, y, -6.0, -5.0, 2.5, "thrust", note="burner glow"),
-        cz(0, y, -5.0, -3.2, 3.0, "detail", note="turbine case"),
+        cz(0, y, -9.1, -6.3, 3.0, "secondary", note="compressor barrel"),
+        cz(0, y, -6.3, -4.7, 3.25, "thrust", note="burner band: proud of the barrels, 3.25 across and 1.6 long, shows from the front, the side and behind"),
+        cz(0, y, -4.7, -3.2, 2.6, "detail", note="turbine case: slimmer than the band, so the band's rear face glows at the chase camera"),
         box(-1.1, 1.1, 3.7, 4.5, -9.0, -5.4, "primary", note="blower case"),
         cz(0, 4.1, -9.8, -9.0, 0.9, "detail", note="blower drive"),
         box(-1.25, 1.25, 4.5, 5.8, -8.6, -6.6, "secondary", note="bug-catcher scoop"),
@@ -535,20 +550,23 @@ def e1_tunnel_ram():
 
 
 def e1_flat_trio():
-    """Three slim turbines lying side by side: three intake bells in a row at the front, three fat upswept nozzles ahead of the firewall."""
-    ps = engine_pads(2.2, -2.4, 1.6, 1.2)
-    y = 1.95
+    """One fat turbine with two slim helpers lying flat beside it: three intake bells at the front, three upswept nozzles ahead of the firewall."""
+    ps = engine_pads(2.2, -3.2, 1.75, 1.2)
     ps.append(box(-2.3, 2.3, 0.9, 1.3, -9.9, -2.3, "detail", note="flat sump plate ties the three turbines together"))
-    for x in (-1.75, 0.0, 1.75):
-        p0, p1 = (x, y, -3.6), (x * 1.08, 3.6, -2.0)
+    # x, y, barrel diameter, front face, barrel end, nozzle root, nozzle tip, nozzle diameter
+    for x, y, d, zf, zb, n0, n1, nd in ((0.0, 2.35, 2.1, -10.9, -3.2, (0, 2.35, -3.8), (0, 4.1, -2.1), 1.8),
+                                        (-1.85, 1.75, 1.3, -10.0, -3.4, (-1.85, 1.75, -4.0), (-2.05, 3.1, -2.6), 1.15),
+                                        (1.85, 1.75, 1.3, -10.0, -3.4, (1.85, 1.75, -4.0), (2.05, 3.1, -2.6), 1.15)):
+        main = x == 0.0
+        bell = 1.15 if main else 0.8
         ps += [
-            cz(x, y, -10.9, -10.1, 1.7, "primary", note="intake bell"),
-            cz(x, y, -11.0, -10.9, 1.2, "detail", note="intake throat"),
-            ball(x, y, -10.95, 0.8, "secondary", note="intake spike"),
-            cz(x, y, -10.1, -3.0, 1.5, "secondary", note="turbine barrel, one of three abreast"),
-            cz(x, y, -6.6, -5.6, 1.58, "primary", note="band"),
-            tube(p0, p1, 1.35, "detail", note="upswept nozzle"),
-            tube(p1, extend(p0, p1, 0.35), 1.2, "thrust"),
+            cz(x, y, zf, zf + bell, d + 0.2, "primary", note="intake bell"),
+            cz(x, y, zf - 0.1, zf, d * 0.7, "detail", note="intake throat"),
+            ball(x, y, zf - 0.05, d * 0.5, "secondary", note="intake spike"),
+            cz(x, y, zf + bell, zb, d, "secondary", note="main turbine: fatter and higher than its helpers" if main else "helper turbine: slim, low and set back"),
+            cz(x, y, -6.6, -5.6, d + 0.08, "primary", note="band"),
+            tube(n0, n1, nd, "detail", note="upswept nozzle"),
+            tube(n1, extend(n0, n1, 0.35), nd * 0.89, "thrust"),
         ]
     return ps
 
@@ -575,22 +593,23 @@ def e1_twin_mill():
 
 
 def e1_turbine_swap():
-    """One long smooth turbine on a solid keel fairing: spike intake, 5.8-long body, tail cone, burner band, jet pipe down to the firewall."""
+    """One long slim turbine carried high on a solid keel fairing: spike intake, 6.7-long body 2.2 across, proud burner band, tall dorsal fin."""
     ps = engine_pads(0.8, -0.6, 2.2, 1.0, "secondary", web=False)
-    y, d = 3.2, 2.8
+    y, d = 3.15, 2.2
     ps += [
-        box(-0.8, 0.8, 0.9, 2.0, -9.8, -2.2, "primary", note="solid pylon fairing: one keel from bearer to bearer, carries the port rails"),
-        ramp(-0.8, 0.8, 0.9, 2.0, -11.4, -9.8, "primary", note="pylon nose: runs down to meet the nose shell"),
-        cz(0, y, -10.0, -8.6, d, "secondary", note="intake lip"),
-        cz(0, y, -8.6, -4.2, d, "primary", note="one long smooth turbine, 2.8 across"),
-        cz(0, y, -10.5, -10.0, 1.7, "detail", note="spike cone base"),
-        cz(0, y, -11.0, -10.5, 1.1, "secondary", note="spike cone"),
-        ball(0, y, -11.0, 0.8, "secondary", note="spike tip"),
-        cz(0, y, -4.2, -3.1, 2.3, "detail", note="tail cone"),
-        cz(0, y, -3.1, -2.3, 1.9, "thrust", note="burner band"),
-        tube((0, y, -2.4), (0, 2.2, -0.5), 1.1, "secondary", note="jet pipe slopes down to the firewall"),
-        box(1.36, 1.5, 3.05, 3.35, -8.8, -4.8, "secondary", m=True, note="strake"),
-        ramp(-0.1, 0.1, 4.55, 5.3, -6.6, -4.4, "secondary", note="dorsal fin"),
+        box(-0.8, 0.8, 0.9, 2.05, -9.8, -2.2, "primary", note="solid pylon fairing: one keel from bearer to bearer, carries the port rails"),
+        ramp(-0.8, 0.8, 0.9, 2.05, -11.4, -9.8, "primary", note="pylon nose: runs down to meet the nose shell"),
+        cz(0, y, -10.0, -8.8, d + 0.15, "secondary", note="intake lip"),
+        cz(0, y, -8.8, -3.3, d, "primary", note="one long slim turbine, 2.2 across"),
+        cz(0, y, -10.5, -10.0, 1.4, "detail", note="spike cone base"),
+        cz(0, y, -11.0, -10.5, 0.9, "secondary", note="spike cone"),
+        ball(0, y, -11.0, 0.7, "secondary", note="spike tip"),
+        cz(0, y, -3.3, -2.2, 2.45, "thrust", note="burner band: proud of the body"),
+        cz(0, y, -2.2, -1.6, 1.7, "detail", note="tail cone"),
+        tube((0, y, -1.7), (0, 2.2, -0.5), 1.1, "secondary", note="jet pipe slopes down to the firewall"),
+        box(1.05, 1.25, y - 0.15, y + 0.15, -8.4, -4.4, "secondary", m=True, note="strake"),
+        ramp(-0.1, 0.1, y + 1.05, 5.7, -7.2, -4.6, "secondary", note="tall dorsal fin"),
+        box(-0.1, 0.1, y + 1.05, 5.7, -4.6, -3.6, "secondary"),
     ]
     return ps
 
@@ -611,8 +630,11 @@ def bo_lake_pipes():
     ps = flange()
     for z in (-6.9, -5.95, -5.0, -4.05):
         ps.append(tube((3.0, 1.7, z), (3.9, 1.25, z + 0.5), 0.45, "detail", m=True, note="primary"))
-    ps.append(cz(3.95, 1.2, -8.4, -1.4, 1.0, "secondary", m=True, note="long lake pipe"))
-    ps += nozzle((3.95, 1.2, -1.5), (4.85, 1.2, -0.2), 1.3, 0.35, "detail", m=True, note="megaphone, turned out clear of the side jet", glow=0.9)
+    ps.append(cz(3.95, 1.2, -8.4, -1.7, 1.0, "secondary", m=True, note="long lake pipe"))
+    a, b = (3.95, 1.2, -1.9), (4.8, 2.55, -0.3)
+    mid = along(a, b, 0.4)
+    ps.append(tube(a, mid, 1.1, "detail", m=True, note="kick-up: turns the pipe up and out, over the side jet"))
+    ps += nozzle(mid, b, 1.7, 0.35, "primary", m=True, note="megaphone, 1.7 across: fires up, out and back at the chase camera", glow=0.94)
     return ps
 
 
@@ -638,7 +660,9 @@ def bo_slot_burners():
         taper(3.0, 4.1, 1.0, 2.3, -7.6, -8.9, "primary", m=True, note="nose"),
         taper(3.0, 4.1, 1.0, 2.3, -1.8, -0.3, "detail", m=True, note="tail"),
         box(4.1, 4.22, 1.3, 2.0, -4.6, -2.0, "thrust", m=True, note="side slot burner"),
-        box(3.0, 4.1, 2.3, 2.38, -7.4, -2.0, "secondary", m=True, note="stripe"),
+        box(3.25, 3.85, 2.3, 2.42, -4.6, -2.0, "thrust", m=True, note="top slot burner: shows from above and from the chase camera"),
+        bar((4.2, 1.65, -1.72), (3.12, 1.65, -0.36), 0.14, 0.9, "thrust", m=True, note="rear slot burner on the tail wedge: faces back and out"),
+        box(3.0, 4.1, 2.3, 2.38, -7.4, -4.8, "secondary", m=True, note="stripe"),
     ]
     return ps
 
@@ -676,13 +700,14 @@ def sp_running_boards():
 
 
 def sp_saddle_tanks():
+    # Flat-sided box tanks with chamfered ends and dark straps: a square section, unlike the round engines above them.
     ps = [
-        cz(4.2, -0.3, -7.0, -1.5, 1.6, "secondary", m=True, note="saddle tank"),
-        ball(4.2, -0.3, -7.0, 1.5, "secondary", m=True),
-        ball(4.2, -0.3, -1.5, 1.5, "secondary", m=True),
-        box(3.15, 5.05, -1.15, 0.55, -6.0, -5.7, "detail", m=True, note="strap and bracket"),
-        box(3.15, 5.05, -1.15, 0.55, -2.8, -2.5, "detail", m=True),
-        cy(4.2, -4.2, 0.5, 0.6, 0.4, "detail", m=True, note="filler"),
+        box(3.5, 4.9, -1.15, 0.25, -6.6, -2.0, "primary", m=True, note="flat-sided saddle tank"),
+        taper(3.5, 4.9, -1.15, 0.25, -6.6, -7.6, "primary", m=True, note="chamfered tank nose"),
+        taper(3.5, 4.9, -1.15, 0.25, -2.0, -1.2, "primary", m=True, note="chamfered tank tail"),
+        box(3.15, 4.98, -1.25, 0.35, -5.8, -5.5, "detail", m=True, note="strap and bracket"),
+        box(3.15, 4.98, -1.25, 0.35, -3.1, -2.8, "detail", m=True),
+        cy(4.2, -4.3, 0.25, 0.45, 0.4, "secondary", m=True, note="filler"),
     ]
     return rake(ps)
 
@@ -736,18 +761,18 @@ def e2_long_barrels():
 
 
 def e2_stub_ramjets():
-    """Square-section box ramjets, 2.4 by 2.4 by 7 long, carried at beltline height on tall pylons. Wedge ramp intake, square slot nozzle."""
-    x0, x1, y0, y1 = 3.8, 6.2, 2.1, 4.5
-    ps = [box(3.5, 4.9, 0.9, y0, z - 0.5, z + 0.5, "detail", m=True, note="tall pylon on the barrel pad") for z in PAD_Z]
+    """Square-section box ramjets, 2.4 by 2.4 by 8.2 long. The top stops at Y 3.4, under the beltline, so the cab keeps its own shape."""
+    x0, x1, y0, y1 = 3.8, 6.2, 1.0, 3.4
+    ps = pylons(3.9, 1.0, 1.8)
     ps += [
-        ramp(x0 + 0.15, x1 - 0.15, y0, y1 - 0.2, 3.3, 5.1, "detail", m=True, note="wedge ramp inside the intake"),
-        box(x0, x0 + 0.15, y0, y1, 3.5, 5.1, "primary", m=True, note="intake cheek"),
-        box(x1 - 0.15, x1, y0, y1, 3.5, 5.1, "primary", m=True, note="intake cheek"),
-        box(x0, x1, y1 - 0.2, y1, 3.5, 5.1, "secondary", m=True, note="intake lip"),
-        box(x0, x1, y0, y1, 5.1, 9.0, "primary", m=True, note="square box ramjet, carried high"),
-        box(x0 - 0.05, x1 + 0.05, y0 - 0.05, y1 + 0.05, 6.3, 7.3, "secondary", m=True, note="band"),
-        box(x0 + 0.2, x1 - 0.2, y0 + 0.2, y1 - 0.2, 9.0, 9.9, "detail", m=True, note="square nozzle"),
-        box(x0 + 0.4, x1 - 0.4, y0 + 0.4, y1 - 0.4, 9.9, 10.3, "thrust", m=True, note="square glow, 1.6 by 1.6"),
+        ramp(x0 + 0.15, x1 - 0.15, y0, y1 - 0.2, 2.8, 4.6, "detail", m=True, note="wedge ramp inside the intake"),
+        box(x0, x0 + 0.15, y0, y1, 3.0, 4.6, "primary", m=True, note="intake cheek"),
+        box(x1 - 0.15, x1, y0, y1, 3.0, 4.6, "primary", m=True, note="intake cheek"),
+        box(x0, x1, y1 - 0.2, y1, 3.0, 4.6, "secondary", m=True, note="intake lip"),
+        box(x0, x1, y0, y1, 4.6, 9.6, "primary", m=True, note="square box ramjet, below the beltline"),
+        box(x0 - 0.05, x1 + 0.05, y0 - 0.05, y1 + 0.05, 6.4, 7.4, "secondary", m=True, note="band"),
+        box(x0 + 0.2, x1 - 0.2, y0 + 0.2, y1 - 0.2, 9.6, 10.6, "detail", m=True, note="square nozzle"),
+        box(x0 + 0.4, x1 - 0.4, y0 + 0.4, y1 - 0.4, 10.6, 11.0, "thrust", m=True, note="square glow, 1.6 by 1.6"),
     ]
     return ps
 
@@ -767,16 +792,18 @@ def e2_over_unders():
 
 
 def e2_lances():
+    # Thin spears, 1.3 across, with a long needle intake, a flared nozzle and a tall tail fin.
     x, y = 4.6, 1.4
-    ps = pylons(3.8)
+    ps = pylons(4.05, 1.0, 1.8)
     ps += [
-        cz(x, y, 2.6, 11.4, 1.7, "primary", m=True, note="slim lance"),
-        cz(x, y, 1.6, 2.6, 0.9, "secondary", m=True, note="needle intake"),
-        cz(x, y, 5.6, 7.0, 1.76, "secondary", m=True, note="band"),
-        cz(x, y, 11.4, 12.6, 2.0, "detail", m=True, note="flared nozzle"),
+        cz(x, y, 3.4, 11.4, 1.3, "primary", m=True, note="thin lance, 1.3 across"),
+        cz(x, y, 1.6, 3.4, 0.6, "secondary", m=True, note="long needle intake"),
+        cz(x, y, 2.9, 3.4, 0.95, "detail", m=True, note="intake cone"),
+        cz(x, y, 5.6, 7.0, 1.38, "secondary", m=True, note="band"),
+        cz(x, y, 11.4, 12.6, 1.75, "detail", m=True, note="flared nozzle"),
         cz(x, y, 12.6, 13.3, 1.5, "thrust", m=True),
-        box(x - 0.1, x + 0.1, 2.25, 3.9, 10.2, 12.4, "secondary", m=True, note="tail fin"),
-        ramp(x - 0.1, x + 0.1, 2.25, 3.9, 8.6, 10.2, "secondary", m=True),
+        box(x - 0.1, x + 0.1, 2.0, 3.9, 10.2, 12.4, "secondary", m=True, note="tail fin"),
+        ramp(x - 0.1, x + 0.1, 2.0, 3.9, 8.6, 10.2, "secondary", m=True),
     ]
     return ps
 
@@ -910,6 +937,11 @@ def ring(z1=10.4):
     return [box(-kw, kw, ky0, ky1, 10.1, z1, "primary", note="first ring: the common 4.0 by 2.4 collar section")]
 
 
+def rig2(posts):
+    """The rear rig bar every Tail carries, plus that Tail's own posts. Same tube as the cab rig bar, 2.4 further back."""
+    return [cx(RIG2_Y, RIG2_Z, -2.0, 2.0, 0.4, "detail", note="rear rig bar: every Rear Rig lands here as well as on the cab rig bar")] + posts
+
+
 def rb_turtle_deck():
     """Long deck at the collar width, falling all the way to the tail, with low aprons over the horns."""
     ps = ring(10.5)
@@ -922,7 +954,7 @@ def rb_turtle_deck():
         box(-0.8, 0.8, 0.9, 1.5, 13.4, 13.48, "secondary", note="plate"),
         box(-0.12, 0.12, 1.75, 3.25, 10.6, 10.9, "secondary", note="deck spine"),
     ]
-    return ps
+    return ps + rig2([cy(RIG_X, RIG2_Z, 2.2, 4.25, 0.3, "detail", m=True, note="rig post standing on the deck")])
 
 
 def rb_trunk():
@@ -938,7 +970,7 @@ def rb_trunk():
         box(0.9, 1.2, 0.83, 4.04, 10.52, 13.08, "secondary", m=True, note="strap"),
         box(-0.3, 0.3, 2.2, 2.6, 13.0, 13.1, "neon", note="latch lamp"),
     ]
-    return ps
+    return ps + rig2([cy(RIG_X, RIG2_Z, 4.0, 4.25, 0.3, "detail", m=True, note="short rig post on the trunk lid")])
 
 
 def rb_bobber_bed():
@@ -949,11 +981,11 @@ def rb_bobber_bed():
         box(2.0, 2.3, 0.9, 2.7, 10.4, 12.3, "primary", m=True, note="bed side"),
         box(-2.0, 2.0, 0.9, 2.1, 12.1, 12.3, "primary", note="tailgate"),
         box(2.0, 2.3, 2.7, 4.3, 10.4, 10.7, "secondary", m=True, note="stake post"),
-        box(2.0, 2.3, 2.7, 3.5, 12.0, 12.3, "secondary", m=True),
+        box(2.0, 2.3, 2.7, 4.58, 12.05, 12.35, "secondary", m=True, note="rear stake post: carries the rear rig bar"),
         box(-1.6, -0.4, 0.9, 2.9, 10.7, 11.5, "secondary", note="fuel cans"),
         box(0.2, 1.8, 0.9, 1.9, 10.7, 11.8, "detail", note="toolbox"),
     ]
-    return ps
+    return ps + rig2([])
 
 
 def rb_chute_tail():
@@ -967,7 +999,7 @@ def rb_chute_tail():
         cz(0, 3.1, 12.8, 13.0, 0.7, "detail", note="chute cap"),
         tube((2.6, 0.7, 13.1), (0.9, 1.5, 12.2), 0.25, "detail", m=True, note="strut to the horns"),
     ]
-    return ps
+    return ps + rig2([tube((2.6, 0.75, 12.5), (1.85, RIG2_Y, RIG2_Z), 0.3, "detail", m=True, note="rig hoop leg standing on the horn")])
 
 
 def rb_boat_tail():
@@ -982,7 +1014,7 @@ def rb_boat_tail():
         xramp(3.0, 2.0, 0.62, 1.9, 10.2, 11.6, "primary", m=True, note="saddle fairing down to the horn"),
         box(-2.9, 2.9, 0.62, 0.85, 11.6, 11.9, "detail", note="cradle on the horns"),
     ]
-    return ps
+    return ps + rig2([tube((2.6, 0.85, 11.8), (1.85, RIG2_Y, RIG2_Z), 0.3, "detail", m=True, note="rig hoop leg standing on the cradle")])
 
 
 # ---------------------------------------------------------------- RearSpoiler: the rear rig on the rig bar
@@ -994,6 +1026,7 @@ def rs_roll_bar():
         box(-0.6, 0.6, 5.5, 6.4, 10.75, 10.95, "detail", note="head pad"),
         cz(1.1, 7.05, 10.2, 11.0, 0.5, "secondary", m=True, note="marker lamp"),
         cz(1.1, 7.05, 11.0, 11.1, 0.4, "neon", m=True),
+        tube((x, 6.5, 10.65), (x, 4.74, RIG2_Z), 0.3, "secondary", m=True, note="back stay down to the rear rig bar"),
     ]
     return ps
 
@@ -1001,7 +1034,7 @@ def rs_roll_bar():
 def rs_twin_fins():
     x = RIG_X
     ps = [
-        box(x - 0.2, x + 0.2, 4.65, 4.9, 10.05, 12.0, "detail", m=True, note="fin foot on the rig bar"),
+        box(x - 0.2, x + 0.2, 4.65, 4.9, 10.05, 12.5, "detail", m=True, note="fin foot: spans the cab rig bar and the rear rig bar"),
         ramp(x - 0.1, x + 0.1, 4.9, 7.4, 10.2, 11.8, "primary", m=True, note="fin leading edge"),
         box(x - 0.1, x + 0.1, 4.9, 7.4, 11.8, 13.4, "primary", m=True, note="fin"),
         box(x - 0.15, x + 0.15, 7.4, 7.6, 11.8, 13.5, "secondary", m=True, note="fin cap"),
@@ -1013,7 +1046,7 @@ def rs_headache_rack():
     ps = [
         box(2.1, 2.4, 4.65, 6.6, 10.1, 10.4, "detail", m=True, note="rack post"),
         box(-2.4, 2.4, 6.6, 6.9, 10.1, 10.4, "detail"),
-        box(-2.2, 2.2, 4.65, 4.8, 10.05, 12.6, "secondary", note="shelf on the rig bar"),
+        box(-2.2, 2.2, 4.65, 4.8, 10.05, 12.6, "secondary", note="shelf: spans the cab rig bar and the rear rig bar"),
         box(-1.9, -0.7, 4.8, 6.0, 11.0, 12.2, "primary", note="strapped can"),
         cz(1.6, 7.25, 10.05, 10.9, 0.6, "secondary", m=True, note="lamp"),
         cz(1.6, 7.25, 10.9, 11.0, 0.45, "neon", m=True),
@@ -1027,7 +1060,7 @@ def rs_dragster_wing():
     x = RIG_X
     ps = [
         tube((x, 4.7, 10.25), (x, 8.3, 12.7), 0.3, "detail", m=True, note="front strut on the rig bar"),
-        tube((x, 4.7, 10.25), (x, 8.2, 14.4), 0.3, "detail", m=True, note="rear strut"),
+        tube((x, 4.76, RIG2_Z), (x, 8.2, 14.4), 0.3, "detail", m=True, note="rear strut on the rear rig bar"),
         cx(6.4, 11.4, -x, x, 0.25, "detail"),
         part("block", [9.0, 0.25, 2.6], [0, 8.5, 13.6], "primary", [-6, 0, 0], note="high wing"),
         box(4.5, 4.7, 7.7, 9.3, 12.2, 15.0, "secondary", m=True, note="end plate"),
@@ -1039,7 +1072,8 @@ def rs_dragster_wing():
 def rs_tail_fin():
     ps = [
         box(-1.8, 1.8, 4.65, 4.85, 10.05, 10.5, "detail", note="fin foot on the rig bar"),
-        box(-0.3, 0.3, 4.85, 5.2, 10.2, 14.8, "secondary", note="spine"),
+        box(-1.8, 1.8, 4.65, 4.85, RIG2_Z - 0.25, RIG2_Z + 0.25, "detail", note="rear fin foot on the rear rig bar"),
+        box(-0.3, 0.3, 4.85, 5.2, 10.2, 13.6, "secondary", note="spine: ends with the fin, over the tail"),
         ramp(-0.15, 0.15, 5.2, 7.8, 10.3, 12.2, "primary", note="fin leading edge"),
         box(-0.15, 0.15, 5.2, 7.8, 12.2, 13.6, "primary", note="tall centre fin"),
         box(-0.2, 0.2, 7.8, 8.0, 12.0, 13.8, "secondary", note="fin cap"),

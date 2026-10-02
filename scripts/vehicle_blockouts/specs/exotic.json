@@ -538,7 +538,7 @@
    "name": "Wedge",
    "culture": "Wedge",
    "kit": "wedge",
-   "note": "70s-80s poster wedge: one flat line from nose to roof, low flat roof, upright tail glass, long shoulder air boxes.",
+   "note": "70s-80s poster wedge: one flat line from nose to roof, low flat roof, upright tail glass and a hard notch down to low shoulder air boxes.",
    "parts": [
     {
      "shape": "block",
@@ -840,29 +840,29 @@
      "shape": "block",
      "size": [
       1.4,
-      1.05,
-      3.7
+      0.55,
+      3.3
      ],
      "pos": [
       2.8,
-      3.375,
-      4.75
+      3.125,
+      4.55
      ],
      "ch": "primary",
      "mirror": true,
-     "note": "shoulder air box"
+     "note": "low shoulder air box: the roof drops to it in a hard notch"
     },
     {
      "shape": "wedge",
      "size": [
       1.4,
-      1.05,
-      1.9
+      0.55,
+      1.4
      ],
      "pos": [
       2.8,
-      3.375,
-      7.55
+      3.125,
+      6.9
      ],
      "ch": "primary",
      "rot": [
@@ -878,12 +878,12 @@
      "size": [
       1.0,
       0.07,
-      3.1
+      2.7
      ],
      "pos": [
       2.8,
-      3.935,
-      4.65
+      3.435,
+      4.45
      ],
      "ch": "detail",
      "mirror": true,
@@ -2533,7 +2533,7 @@
    "name": "Gull",
    "culture": "Concept",
    "kit": "concept",
-   "note": "Gullwing: low wide glasshouse with bulged doors that overhang the side pods, doors hinged on a roof spine, glass cover over the turbine.",
+   "note": "Gullwing: short steep screen, a double-bubble glass roof either side of a raised hinge spine, bulged doors that overhang the side pods, a falling glass cover over the turbine.",
    "parts": [
     {
      "shape": "block",
@@ -2707,13 +2707,13 @@
      "shape": "wedge",
      "size": [
       4.0,
-      1.85,
-      2.7
+      1.7,
+      2.5
      ],
      "pos": [
       0.0,
-      3.525,
-      -3.75
+      3.45,
+      -3.85
      ],
      "ch": "glass",
      "rot": [
@@ -2721,19 +2721,19 @@
       0.0,
       0.0
      ],
-     "note": "windscreen"
+     "note": "windscreen: short and steep"
     },
     {
      "shape": "wedge",
      "size": [
       1.5,
-      1.2,
-      2.7
+      1.1,
+      2.5
      ],
      "pos": [
       2.75,
-      3.2,
-      -3.75
+      3.15,
+      -3.85
      ],
      "ch": "glass",
      "rot": [
@@ -2748,107 +2748,191 @@
      "shape": "block",
      "size": [
       4.0,
-      1.65,
-      4.0
+      1.4,
+      4.2
      ],
      "pos": [
       0.0,
-      3.425,
-      -0.4
+      3.3,
+      -0.5
      ],
      "ch": "glass",
      "note": "cabin glass"
     },
     {
-     "shape": "block",
+     "shape": "cyl_z",
      "size": [
-      1.55,
-      0.2,
-      4.0
+      2.0,
+      2.0,
+      3.8
      ],
      "pos": [
-      1.225,
-      4.35,
-      -0.4
+      1.1,
+      3.85,
+      -0.7
      ],
      "ch": "glass",
      "mirror": true,
-     "note": "door roof glass"
+     "note": "roof bubble over each seat: top at Y 4.85"
+    },
+    {
+     "shape": "ball",
+     "size": [
+      2.0,
+      2.0,
+      2.0
+     ],
+     "pos": [
+      1.1,
+      3.85,
+      -2.6
+     ],
+     "ch": "glass",
+     "mirror": true,
+     "note": "bubble nose: stands proud of the screen"
+    },
+    {
+     "shape": "ball",
+     "size": [
+      2.0,
+      2.0,
+      2.0
+     ],
+     "pos": [
+      1.1,
+      3.85,
+      1.2
+     ],
+     "ch": "glass",
+     "mirror": true,
+     "note": "bubble tail: a round end to the cabin"
     },
     {
      "shape": "block",
      "size": [
-      0.9,
-      0.3,
-      4.0
+      0.7,
+      1.0,
+      4.5
      ],
      "pos": [
       0.0,
-      4.4,
-      -0.4
+      4.5,
+      -0.65
      ],
      "ch": "secondary",
-     "note": "roof spine: the door hinge line"
-    },
-    {
-     "shape": "block",
-     "size": [
-      0.25,
-      0.08,
-      0.4
-     ],
-     "pos": [
-      0.575,
-      4.49,
-      -1.4
-     ],
-     "ch": "detail",
-     "mirror": true,
-     "note": "door hinge"
-    },
-    {
-     "shape": "block",
-     "size": [
-      0.25,
-      0.08,
-      0.4
-     ],
-     "pos": [
-      0.575,
-      4.49,
-      0.6
-     ],
-     "ch": "detail",
-     "mirror": true,
-     "note": "door hinge"
-    },
-    {
-     "shape": "block",
-     "size": [
-      0.25,
-      0.26,
-      4.0
-     ],
-     "pos": [
-      1.975,
-      4.38,
-      -0.4
-     ],
-     "ch": "primary",
-     "mirror": true,
-     "note": "door cant rail: frames each door roof"
+     "note": "raised roof spine: the door hinge line"
     },
     {
      "shape": "wedge",
      "size": [
-      4.0,
-      1.85,
+      0.7,
+      0.7,
+      0.8
+     ],
+     "pos": [
+      0.0,
+      4.65,
+      -3.3
+     ],
+     "ch": "secondary",
+     "rot": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "note": "spine nose"
+    },
+    {
+     "shape": "block",
+     "size": [
+      0.5,
+      0.38,
+      0.7
+     ],
+     "pos": [
+      0.6,
+      4.81,
+      -1.45
+     ],
+     "ch": "detail",
+     "mirror": true,
+     "note": "hinge hump"
+    },
+    {
+     "shape": "block",
+     "size": [
+      0.5,
+      0.38,
+      0.7
+     ],
+     "pos": [
+      0.6,
+      4.81,
+      0.45
+     ],
+     "ch": "detail",
+     "mirror": true,
+     "note": "hinge hump"
+    },
+    {
+     "shape": "block",
+     "size": [
+      0.25,
+      0.27,
+      4.2
+     ],
+     "pos": [
+      2.075,
+      3.985,
+      -0.5
+     ],
+     "ch": "primary",
+     "mirror": true,
+     "note": "door cant rail: the door cut runs up to it"
+    },
+    {
+     "shape": "block",
+     "size": [
+      0.2,
+      1.52,
+      0.12
+     ],
+     "pos": [
+      2.1,
+      3.36,
+      -2.66
+     ],
+     "ch": "detail",
+     "mirror": true,
+     "note": "door cut, front: rises into the roof"
+    },
+    {
+     "shape": "block",
+     "size": [
+      0.2,
+      1.52,
+      0.12
+     ],
+     "pos": [
+      2.1,
+      3.36,
+      1.66
+     ],
+     "ch": "detail",
+     "mirror": true,
+     "note": "door cut, rear"
+    },
+    {
+     "shape": "wedge",
+     "size": [
+      4.2,
+      1.4,
       2.4
      ],
      "pos": [
       3.2,
-      3.525,
-      -0.4
+      3.3,
+      -0.5
      ],
      "ch": "glass",
      "rot": [
@@ -2880,12 +2964,12 @@
      "size": [
       4.0,
       2.0,
-      1.08
+      0.96
      ],
      "pos": [
       0.0,
       3.6,
-      2.14
+      2.2
      ],
      "ch": "primary",
      "note": "roof hoop"
@@ -2893,14 +2977,14 @@
     {
      "shape": "wedge",
      "size": [
-      1.08,
-      2.0,
+      0.96,
+      1.7,
       1.5
      ],
      "pos": [
       2.75,
-      3.6,
-      2.14
+      3.45,
+      2.2
      ],
      "ch": "primary",
      "rot": [
@@ -2912,31 +2996,56 @@
      "note": "sail panel"
     },
     {
-     "shape": "block",
+     "shape": "wedge",
      "size": [
       4.0,
-      0.12,
-      3.72
+      0.35,
+      3.92
      ],
      "pos": [
       0.0,
-      4.66,
-      4.54
+      4.775,
+      4.64
      ],
      "ch": "glass",
-     "note": "glass engine cover"
+     "rot": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "note": "glass engine cover: falls to the rear"
+    },
+    {
+     "shape": "wedge",
+     "size": [
+      0.5,
+      0.46,
+      2.32
+     ],
+     "pos": [
+      0.0,
+      4.85,
+      3.84
+     ],
+     "ch": "secondary",
+     "rot": [
+      0.0,
+      180.0,
+      0.0
+     ],
+     "note": "spine tail on the cover"
     },
     {
      "shape": "block",
      "size": [
       0.2,
       0.2,
-      3.72
+      3.92
      ],
      "pos": [
       2.1,
       4.65,
-      4.54
+      4.64
      ],
      "ch": "primary",
      "mirror": true,
@@ -2952,7 +3061,7 @@
      "pos": [
       2.1,
       3.7,
-      6.25
+      6.45
      ],
      "ch": "detail",
      "mirror": true,
@@ -3526,49 +3635,49 @@
    "long": {
     "name": "Lance Turbine",
     "culture": "Longtail",
-    "note": "Longtail: one slim tube the full length of the bay under a snorkel airbox, ending in a wide flat fishtail nozzle.",
+    "note": "Longtail: one slim tube down the bay under a snorkel scoop with an open mouth, flaring in plan to a tall wide fishtail nozzle with three glowing cells.",
     "parts": [
      {
       "shape": "block",
       "size": [
        1.0,
        0.15,
-       4.8
+       4.6
       ],
       "pos": [
        0.0,
        2.925,
-       5.8
+       5.7
       ],
       "ch": "detail",
       "note": "cradle on the bay pad"
      },
      {
-      "shape": "block",
+      "shape": "cyl_z",
       "size": [
-       1.6,
-       0.55,
-       1.5
+       1.55,
+       1.55,
+       0.45
       ],
       "pos": [
        0.0,
-       4.275,
-       3.65
+       3.6,
+       3.175
       ],
       "ch": "detail",
-      "note": "snorkel airbox"
+      "note": "bellmouth"
      },
      {
       "shape": "cyl_z",
       "size": [
        1.4,
        1.4,
-       5.2
+       4.6
       ],
       "pos": [
        0.0,
        3.6,
-       5.6
+       5.7
       ],
       "ch": "secondary",
       "note": "lance casing"
@@ -3576,32 +3685,119 @@
      {
       "shape": "block",
       "size": [
-       3.8,
-       0.75,
-       0.9
+       1.0,
+       0.58,
+       1.1
       ],
       "pos": [
        0.0,
-       3.575,
-       8.65
+       4.29,
+       4.05
       ],
-      "ch": "detail",
-      "note": "fishtail nozzle"
+      "ch": "secondary",
+      "note": "slim snorkel scoop"
+     },
+     {
+      "shape": "wedge",
+      "size": [
+       1.0,
+       0.58,
+       1.2
+      ],
+      "pos": [
+       0.0,
+       4.29,
+       5.2
+      ],
+      "ch": "secondary",
+      "rot": [
+       0.0,
+       180.0,
+       0.0
+      ],
+      "note": "scoop tail"
      },
      {
       "shape": "block",
       "size": [
-       3.4,
-       0.45,
-       0.2
+       0.8,
+       0.42,
+       0.1
       ],
       "pos": [
        0.0,
-       3.575,
-       9.2
+       4.29,
+       3.45
+      ],
+      "ch": "detail",
+      "note": "snorkel intake mouth"
+     },
+     {
+      "shape": "wedge",
+      "size": [
+       1.1,
+       1.0,
+       1.2
+      ],
+      "pos": [
+       1.1,
+       3.6,
+       7.4
+      ],
+      "ch": "detail",
+      "rot": [
+       0.0,
+       0.0,
+       -90.0
+      ],
+      "mirror": true,
+      "note": "fishtail flare: widens in plan"
+     },
+     {
+      "shape": "block",
+      "size": [
+       3.2,
+       1.1,
+       1.1
+      ],
+      "pos": [
+       0.0,
+       3.6,
+       8.55
+      ],
+      "ch": "detail",
+      "note": "fishtail nozzle: 3.2 wide, 1.1 tall"
+     },
+     {
+      "shape": "block",
+      "size": [
+       2.9,
+       0.8,
+       0.22
+      ],
+      "pos": [
+       0.0,
+       3.6,
+       9.21
       ],
       "ch": "thrust",
-      "note": "thrust slot"
+      "note": "thrust slot: 2.9 wide, 0.8 tall"
+     },
+     {
+      "shape": "block",
+      "size": [
+       0.12,
+       0.96,
+       0.36
+      ],
+      "pos": [
+       0.49,
+       3.6,
+       9.18
+      ],
+      "ch": "detail",
+      "mirror": true,
+      "note": "nozzle vane"
      }
     ]
    },
@@ -4742,7 +4938,7 @@
    "lift": {
     "name": "Twin Lift Cans",
     "culture": "Analogue",
-    "note": "Analogue: two tall upright lift cans per corner on a short bracket.",
+    "note": "Analogue: two short upright lift cans per corner, tucked up into the arch. The only upright-can option.",
     "parts": [
      {
       "shape": "block",
@@ -4753,7 +4949,7 @@
       ],
       "pos": [
        3.925,
-       0.5,
+       0.6,
        -7.4
       ],
       "ch": "detail",
@@ -4764,44 +4960,44 @@
       "shape": "cyl_y",
       "size": [
        1.3,
-       1.0,
+       1.1,
        1.3
       ],
       "pos": [
        4.6,
-       0.9,
+       1.05,
        -8.2
       ],
       "ch": "primary",
       "mirror": true,
-      "note": "lift can shroud"
+      "note": "lift can shroud, up in the arch"
      },
      {
       "shape": "cyl_y",
       "size": [
-       1.15,
-       1.5,
-       1.15
+       1.1,
+       0.95,
+       1.1
       ],
       "pos": [
        4.6,
-       -0.35,
+       0.025,
        -8.2
       ],
       "ch": "detail",
       "mirror": true,
-      "note": "lift nozzle"
+      "note": "short lift nozzle"
      },
      {
       "shape": "cyl_y",
       "size": [
        1.0,
-       0.2,
+       0.15,
        1.0
       ],
       "pos": [
        4.6,
-       1.5,
+       1.675,
        -8.2
       ],
       "ch": "detail",
@@ -4812,60 +5008,60 @@
       "shape": "cyl_y",
       "size": [
        1.0,
-       0.2,
+       0.25,
        1.0
       ],
       "pos": [
        4.6,
-       -1.2,
+       -0.575,
        -8.2
       ],
       "ch": "thrust",
       "mirror": true,
-      "note": "thrust"
+      "note": "thrust: ends level with the splitters"
      },
      {
       "shape": "cyl_y",
       "size": [
        1.3,
-       1.0,
+       1.1,
        1.3
       ],
       "pos": [
        4.6,
-       0.9,
+       1.05,
        -6.6
       ],
       "ch": "primary",
       "mirror": true,
-      "note": "lift can shroud"
+      "note": "lift can shroud, up in the arch"
      },
      {
       "shape": "cyl_y",
       "size": [
-       1.15,
-       1.5,
-       1.15
+       1.1,
+       0.95,
+       1.1
       ],
       "pos": [
        4.6,
-       -0.35,
+       0.025,
        -6.6
       ],
       "ch": "detail",
       "mirror": true,
-      "note": "lift nozzle"
+      "note": "short lift nozzle"
      },
      {
       "shape": "cyl_y",
       "size": [
        1.0,
-       0.2,
+       0.15,
        1.0
       ],
       "pos": [
        4.6,
-       1.5,
+       1.675,
        -6.6
       ],
       "ch": "detail",
@@ -4876,17 +5072,17 @@
       "shape": "cyl_y",
       "size": [
        1.0,
-       0.2,
+       0.25,
        1.0
       ],
       "pos": [
        4.6,
-       -1.2,
+       -0.575,
        -6.6
       ],
       "ch": "thrust",
       "mirror": true,
-      "note": "thrust"
+      "note": "thrust: ends level with the splitters"
      },
      {
       "shape": "block",
@@ -4897,7 +5093,7 @@
       ],
       "pos": [
        3.925,
-       0.5,
+       0.6,
        6.8
       ],
       "ch": "detail",
@@ -4908,44 +5104,44 @@
       "shape": "cyl_y",
       "size": [
        1.3,
-       1.0,
+       1.1,
        1.3
       ],
       "pos": [
        4.6,
-       0.9,
+       1.05,
        6.0
       ],
       "ch": "primary",
       "mirror": true,
-      "note": "lift can shroud"
+      "note": "lift can shroud, up in the arch"
      },
      {
       "shape": "cyl_y",
       "size": [
-       1.15,
-       1.5,
-       1.15
+       1.1,
+       0.95,
+       1.1
       ],
       "pos": [
        4.6,
-       -0.35,
+       0.025,
        6.0
       ],
       "ch": "detail",
       "mirror": true,
-      "note": "lift nozzle"
+      "note": "short lift nozzle"
      },
      {
       "shape": "cyl_y",
       "size": [
        1.0,
-       0.2,
+       0.15,
        1.0
       ],
       "pos": [
        4.6,
-       1.5,
+       1.675,
        6.0
       ],
       "ch": "detail",
@@ -4956,60 +5152,60 @@
       "shape": "cyl_y",
       "size": [
        1.0,
-       0.2,
+       0.25,
        1.0
       ],
       "pos": [
        4.6,
-       -1.2,
+       -0.575,
        6.0
       ],
       "ch": "thrust",
       "mirror": true,
-      "note": "thrust"
+      "note": "thrust: ends level with the splitters"
      },
      {
       "shape": "cyl_y",
       "size": [
        1.3,
-       1.0,
+       1.1,
        1.3
       ],
       "pos": [
        4.6,
-       0.9,
+       1.05,
        7.6
       ],
       "ch": "primary",
       "mirror": true,
-      "note": "lift can shroud"
+      "note": "lift can shroud, up in the arch"
      },
      {
       "shape": "cyl_y",
       "size": [
-       1.15,
-       1.5,
-       1.15
+       1.1,
+       0.95,
+       1.1
       ],
       "pos": [
        4.6,
-       -0.35,
+       0.025,
        7.6
       ],
       "ch": "detail",
       "mirror": true,
-      "note": "lift nozzle"
+      "note": "short lift nozzle"
      },
      {
       "shape": "cyl_y",
       "size": [
        1.0,
-       0.2,
+       0.15,
        1.0
       ],
       "pos": [
        4.6,
-       1.5,
+       1.675,
        7.6
       ],
       "ch": "detail",
@@ -5020,17 +5216,17 @@
       "shape": "cyl_y",
       "size": [
        1.0,
-       0.2,
+       0.25,
        1.0
       ],
       "pos": [
        4.6,
-       -1.2,
+       -0.575,
        7.6
       ],
       "ch": "thrust",
       "mirror": true,
-      "note": "thrust"
+      "note": "thrust: ends level with the splitters"
      }
     ]
    },
@@ -5517,18 +5713,18 @@
    "trio": {
     "name": "Skirt Trios",
     "culture": "Longtail",
-    "note": "Longtail: three lift cans in a row that hang in view below a short louvred skirt.",
+    "note": "Longtail: a louvred skirt along the arch over a cascade of three flat slot nozzles raked down and back. No cans.",
     "parts": [
      {
       "shape": "block",
       "size": [
        1.65,
        0.4,
-       2.6
+       2.8
       ],
       "pos": [
        4.475,
-       0.7,
+       0.8,
        -7.4
       ],
       "ch": "detail",
@@ -5539,140 +5735,202 @@
       "shape": "block",
       "size": [
        0.3,
-       0.8,
-       3.0
+       1.0,
+       3.1
       ],
       "pos": [
-       5.35,
-       1.3,
+       5.45,
+       1.2,
        -7.4
       ],
       "ch": "primary",
       "mirror": true,
-      "note": "short skirt over the arch"
+      "note": "skirt along the arch"
      },
      {
       "shape": "block",
       "size": [
-       0.12,
-       0.5,
-       2.4
+       0.08,
+       0.15,
+       2.6
       ],
       "pos": [
-       5.56,
-       1.3,
+       5.64,
+       0.925,
        -7.4
       ],
       "ch": "detail",
       "mirror": true,
-      "note": "intake grille on the skirt"
+      "note": "skirt louvre"
      },
      {
-      "shape": "cyl_y",
+      "shape": "block",
       "size": [
-       0.9,
-       1.7,
-       0.9
+       0.08,
+       0.15,
+       2.6
       ],
       "pos": [
-       5.25,
-       -0.35,
-       -8.4
+       5.64,
+       1.225,
+       -7.4
       ],
-      "ch": "secondary",
+      "ch": "detail",
       "mirror": true,
-      "note": "lift can"
+      "note": "skirt louvre"
      },
      {
-      "shape": "cyl_y",
+      "shape": "block",
       "size": [
-       0.7,
-       0.2,
-       0.7
+       0.08,
+       0.15,
+       2.6
       ],
       "pos": [
-       5.25,
-       -1.3,
-       -8.4
-      ],
-      "ch": "thrust",
-      "mirror": true,
-      "note": "thrust"
-     },
-     {
-      "shape": "cyl_y",
-      "size": [
-       0.9,
-       1.7,
-       0.9
-      ],
-      "pos": [
-       5.25,
-       -0.35,
+       5.64,
+       1.525,
        -7.4
       ],
       "ch": "secondary",
       "mirror": true,
-      "note": "lift can"
+      "note": "skirt stripe"
      },
      {
-      "shape": "cyl_y",
+      "shape": "block",
       "size": [
-       0.7,
-       0.2,
-       0.7
+       1.5,
+       0.3,
+       1.35
       ],
       "pos": [
-       5.25,
-       -1.3,
-       -7.4
-      ],
-      "ch": "thrust",
-      "mirror": true,
-      "note": "thrust"
-     },
-     {
-      "shape": "cyl_y",
-      "size": [
-       0.9,
-       1.7,
-       0.9
-      ],
-      "pos": [
-       5.25,
-       -0.35,
-       -6.4
+       4.75,
+       0.047,
+       -8.413
       ],
       "ch": "secondary",
+      "rot": [
+       55.0,
+       0.0,
+       0.0
+      ],
       "mirror": true,
-      "note": "lift can"
+      "note": "slot nozzle, raked back"
      },
      {
-      "shape": "cyl_y",
+      "shape": "block",
       "size": [
-       0.7,
-       0.2,
-       0.7
+       1.3,
+       0.26,
+       0.3
       ],
       "pos": [
-       5.25,
-       -1.3,
-       -6.4
+       4.75,
+       -0.629,
+       -7.94
       ],
       "ch": "thrust",
+      "rot": [
+       55.0,
+       0.0,
+       0.0
+      ],
       "mirror": true,
-      "note": "thrust"
+      "note": "thrust: ends near Y -0.8"
+     },
+     {
+      "shape": "block",
+      "size": [
+       1.5,
+       0.3,
+       1.35
+      ],
+      "pos": [
+       4.75,
+       0.047,
+       -7.513
+      ],
+      "ch": "secondary",
+      "rot": [
+       55.0,
+       0.0,
+       0.0
+      ],
+      "mirror": true,
+      "note": "slot nozzle, raked back"
+     },
+     {
+      "shape": "block",
+      "size": [
+       1.3,
+       0.26,
+       0.3
+      ],
+      "pos": [
+       4.75,
+       -0.629,
+       -7.04
+      ],
+      "ch": "thrust",
+      "rot": [
+       55.0,
+       0.0,
+       0.0
+      ],
+      "mirror": true,
+      "note": "thrust: ends near Y -0.8"
+     },
+     {
+      "shape": "block",
+      "size": [
+       1.5,
+       0.3,
+       1.35
+      ],
+      "pos": [
+       4.75,
+       0.047,
+       -6.613
+      ],
+      "ch": "secondary",
+      "rot": [
+       55.0,
+       0.0,
+       0.0
+      ],
+      "mirror": true,
+      "note": "slot nozzle, raked back"
+     },
+     {
+      "shape": "block",
+      "size": [
+       1.3,
+       0.26,
+       0.3
+      ],
+      "pos": [
+       4.75,
+       -0.629,
+       -6.14
+      ],
+      "ch": "thrust",
+      "rot": [
+       55.0,
+       0.0,
+       0.0
+      ],
+      "mirror": true,
+      "note": "thrust: ends near Y -0.8"
      },
      {
       "shape": "block",
       "size": [
        1.65,
        0.4,
-       2.6
+       2.8
       ],
       "pos": [
        4.475,
-       0.7,
+       0.8,
        6.8
       ],
       "ch": "detail",
@@ -5683,129 +5941,191 @@
       "shape": "block",
       "size": [
        0.3,
-       0.8,
-       3.0
+       1.0,
+       3.1
       ],
       "pos": [
-       5.35,
-       1.3,
+       5.45,
+       1.2,
        6.8
       ],
       "ch": "primary",
       "mirror": true,
-      "note": "short skirt over the arch"
+      "note": "skirt along the arch"
      },
      {
       "shape": "block",
       "size": [
-       0.12,
-       0.5,
-       2.4
+       0.08,
+       0.15,
+       2.6
       ],
       "pos": [
-       5.56,
-       1.3,
+       5.64,
+       0.925,
        6.8
       ],
       "ch": "detail",
       "mirror": true,
-      "note": "intake grille on the skirt"
+      "note": "skirt louvre"
      },
      {
-      "shape": "cyl_y",
+      "shape": "block",
       "size": [
-       0.9,
-       1.7,
-       0.9
+       0.08,
+       0.15,
+       2.6
       ],
       "pos": [
-       5.25,
-       -0.35,
-       5.8
+       5.64,
+       1.225,
+       6.8
       ],
-      "ch": "secondary",
+      "ch": "detail",
       "mirror": true,
-      "note": "lift can"
+      "note": "skirt louvre"
      },
      {
-      "shape": "cyl_y",
+      "shape": "block",
       "size": [
-       0.7,
-       0.2,
-       0.7
+       0.08,
+       0.15,
+       2.6
       ],
       "pos": [
-       5.25,
-       -1.3,
-       5.8
-      ],
-      "ch": "thrust",
-      "mirror": true,
-      "note": "thrust"
-     },
-     {
-      "shape": "cyl_y",
-      "size": [
-       0.9,
-       1.7,
-       0.9
-      ],
-      "pos": [
-       5.25,
-       -0.35,
+       5.64,
+       1.525,
        6.8
       ],
       "ch": "secondary",
       "mirror": true,
-      "note": "lift can"
+      "note": "skirt stripe"
      },
      {
-      "shape": "cyl_y",
+      "shape": "block",
       "size": [
-       0.7,
-       0.2,
-       0.7
+       1.5,
+       0.3,
+       1.35
       ],
       "pos": [
-       5.25,
-       -1.3,
-       6.8
-      ],
-      "ch": "thrust",
-      "mirror": true,
-      "note": "thrust"
-     },
-     {
-      "shape": "cyl_y",
-      "size": [
-       0.9,
-       1.7,
-       0.9
-      ],
-      "pos": [
-       5.25,
-       -0.35,
-       7.8
+       4.75,
+       0.047,
+       5.787
       ],
       "ch": "secondary",
+      "rot": [
+       55.0,
+       0.0,
+       0.0
+      ],
       "mirror": true,
-      "note": "lift can"
+      "note": "slot nozzle, raked back"
      },
      {
-      "shape": "cyl_y",
+      "shape": "block",
       "size": [
-       0.7,
-       0.2,
-       0.7
+       1.3,
+       0.26,
+       0.3
       ],
       "pos": [
-       5.25,
-       -1.3,
-       7.8
+       4.75,
+       -0.629,
+       6.26
       ],
       "ch": "thrust",
+      "rot": [
+       55.0,
+       0.0,
+       0.0
+      ],
       "mirror": true,
-      "note": "thrust"
+      "note": "thrust: ends near Y -0.8"
+     },
+     {
+      "shape": "block",
+      "size": [
+       1.5,
+       0.3,
+       1.35
+      ],
+      "pos": [
+       4.75,
+       0.047,
+       6.687
+      ],
+      "ch": "secondary",
+      "rot": [
+       55.0,
+       0.0,
+       0.0
+      ],
+      "mirror": true,
+      "note": "slot nozzle, raked back"
+     },
+     {
+      "shape": "block",
+      "size": [
+       1.3,
+       0.26,
+       0.3
+      ],
+      "pos": [
+       4.75,
+       -0.629,
+       7.16
+      ],
+      "ch": "thrust",
+      "rot": [
+       55.0,
+       0.0,
+       0.0
+      ],
+      "mirror": true,
+      "note": "thrust: ends near Y -0.8"
+     },
+     {
+      "shape": "block",
+      "size": [
+       1.5,
+       0.3,
+       1.35
+      ],
+      "pos": [
+       4.75,
+       0.047,
+       7.587
+      ],
+      "ch": "secondary",
+      "rot": [
+       55.0,
+       0.0,
+       0.0
+      ],
+      "mirror": true,
+      "note": "slot nozzle, raked back"
+     },
+     {
+      "shape": "block",
+      "size": [
+       1.3,
+       0.26,
+       0.3
+      ],
+      "pos": [
+       4.75,
+       -0.629,
+       8.06
+      ],
+      "ch": "thrust",
+      "rot": [
+       55.0,
+       0.0,
+       0.0
+      ],
+      "mirror": true,
+      "note": "thrust: ends near Y -0.8"
      }
     ]
    },
@@ -6131,7 +6451,7 @@
    "twin": {
     "name": "Twin Cannons",
     "culture": "Analogue",
-    "note": "Analogue: two big cannons.",
+    "note": "Analogue: two big long cannons.",
     "parts": [
      {
       "shape": "block",
@@ -6153,16 +6473,32 @@
       "size": [
        1.8,
        1.8,
-       1.8
+       2.6
+      ],
+      "pos": [
+       1.25,
+       2.2,
+       11.1
+      ],
+      "ch": "secondary",
+      "mirror": true,
+      "note": "cannon: 2.6 long"
+     },
+     {
+      "shape": "cyl_z",
+      "size": [
+       1.88,
+       1.88,
+       1.0
       ],
       "pos": [
        1.25,
        2.2,
        10.7
       ],
-      "ch": "secondary",
+      "ch": "detail",
       "mirror": true,
-      "note": "cannon"
+      "note": "cannon collar"
      },
      {
       "shape": "cyl_z",
@@ -6174,7 +6510,7 @@
       "pos": [
        1.25,
        2.2,
-       11.69
+       12.49
       ],
       "ch": "thrust",
       "mirror": true,
@@ -6185,18 +6521,18 @@
    "tri": {
     "name": "Tri Cluster",
     "culture": "Hypercar",
-    "note": "Hypercar: three cans in a wide triangle, one long can over two shorter ones.",
+    "note": "Hypercar: three cans in a wide triangle, one fat short can high over two slim long ones set wide apart. All three glows show from behind.",
     "parts": [
      {
       "shape": "block",
       "size": [
-       2.7,
-       0.8,
+       3.8,
+       0.9,
        0.3
       ],
       "pos": [
        0.0,
-       1.8,
+       1.75,
        9.65
       ],
       "ch": "detail",
@@ -6205,13 +6541,13 @@
      {
       "shape": "block",
       "size": [
+       1.2,
        0.9,
-       0.8,
        0.3
       ],
       "pos": [
        0.0,
-       2.6,
+       2.65,
        9.65
       ],
       "ch": "detail",
@@ -6220,45 +6556,45 @@
      {
       "shape": "cyl_z",
       "size": [
-       1.1,
-       1.1,
-       1.5
-      ],
-      "pos": [
-       0.95,
-       1.8,
-       10.55
-      ],
-      "ch": "detail",
-      "mirror": true,
-      "note": "lower can"
-     },
-     {
-      "shape": "cyl_z",
-      "size": [
-       1.1,
-       1.1,
+       0.9,
+       0.9,
        2.2
       ],
       "pos": [
-       0.0,
-       2.6,
+       1.45,
+       1.72,
        10.9
       ],
-      "ch": "secondary",
-      "note": "upper can: runs past the tail"
+      "ch": "detail",
+      "mirror": true,
+      "note": "lower can: slim, and runs past the tail"
      },
      {
       "shape": "cyl_z",
       "size": [
-       0.85,
-       0.85,
+       1.3,
+       1.3,
+       1.4
+      ],
+      "pos": [
+       0.0,
+       2.52,
+       10.5
+      ],
+      "ch": "secondary",
+      "note": "upper can: fat and short"
+     },
+     {
+      "shape": "cyl_z",
+      "size": [
+       0.7,
+       0.7,
        0.15
       ],
       "pos": [
-       0.95,
-       1.8,
-       11.375
+       1.45,
+       1.72,
+       12.075
       ],
       "ch": "thrust",
       "mirror": true,
@@ -6267,14 +6603,14 @@
      {
       "shape": "cyl_z",
       "size": [
-       0.85,
-       0.85,
-       0.15
+       1.05,
+       1.05,
+       0.18
       ],
       "pos": [
        0.0,
-       2.6,
-       12.075
+       2.52,
+       11.29
       ],
       "ch": "thrust",
       "note": "thrust"
@@ -10330,12 +10666,12 @@
       "size": [
        4.0,
        0.85,
-       3.4
+       2.6
       ],
       "pos": [
        2.6,
        -0.875,
-       10.3
+       9.9
       ],
       "ch": "detail",
       "rot": [
@@ -10344,19 +10680,19 @@
        0.0
       ],
       "mirror": true,
-      "note": "venturi tunnel"
+      "note": "venturi tunnel: ends just past the tail"
      },
      {
       "shape": "block",
       "size": [
        0.3,
        0.9,
-       3.2
+       2.3
       ],
       "pos": [
        0.0,
        -0.9,
-       10.6
+       10.15
       ],
       "ch": "secondary",
       "note": "centre fin"
@@ -10366,12 +10702,12 @@
       "size": [
        0.2,
        0.9,
-       3.4
+       2.5
       ],
       "pos": [
        4.7,
        -0.9,
-       10.5
+       10.05
       ],
       "ch": "secondary",
       "mirror": true,
@@ -10381,16 +10717,16 @@
       "shape": "block",
       "size": [
        0.3,
-       0.9,
-       0.3
+       0.4,
+       0.08
       ],
       "pos": [
        0.0,
-       0.05,
-       12.05
+       -0.8,
+       11.34
       ],
       "ch": "neon",
-      "note": "fog light"
+      "note": "rain light on the fin end"
      }
     ]
    },
@@ -10404,12 +10740,12 @@
       "size": [
        6.0,
        0.15,
-       1.8
+       1.4
       ],
       "pos": [
        0.0,
        -0.525,
-       9.7
+       9.5
       ],
       "ch": "detail",
       "note": "plate"
@@ -10417,49 +10753,79 @@
      {
       "shape": "block",
       "size": [
-       0.3,
-       0.25,
-       2.8
+       8.8,
+       0.35,
+       1.8
       ],
       "pos": [
-       2.35,
-       -0.575,
-       10.4
+       0.0,
+       -0.625,
+       10.5
       ],
-      "ch": "detail",
-      "mirror": true,
-      "note": "bar arm"
+      "ch": "primary",
+      "note": "lower valance: closes the space between the tail and the bar"
      },
      {
       "shape": "block",
       "size": [
-       0.3,
-       0.75,
-       0.4
+       0.8,
+       0.2,
+       2.4
       ],
       "pos": [
-       2.35,
-       -0.075,
-       11.6
+       4.0,
+       -0.9,
+       10.2
       ],
       "ch": "detail",
       "mirror": true,
-      "note": "bar post"
+      "note": "corner return skid"
      },
      {
       "shape": "block",
       "size": [
        8.8,
-       0.4,
+       0.85,
        0.4
       ],
       "pos": [
        0.0,
+       0.025,
+       11.2
+      ],
+      "ch": "primary",
+      "note": "crash bar: a square beam standing on the valance, tight behind the tail"
+     },
+     {
+      "shape": "block",
+      "size": [
+       6.8,
        0.3,
-       11.6
+       0.07
+      ],
+      "pos": [
+       0.0,
+       0.05,
+       11.435
       ],
       "ch": "secondary",
-      "note": "crash bar: square section"
+      "note": "bar stripe"
+     },
+     {
+      "shape": "block",
+      "size": [
+       0.6,
+       0.4,
+       0.07
+      ],
+      "pos": [
+       3.9,
+       0.05,
+       11.435
+      ],
+      "ch": "neon",
+      "mirror": true,
+      "note": "bar lamp"
      }
     ]
    },
@@ -10601,12 +10967,12 @@
       "shape": "block",
       "size": [
        0.4,
-       1.75,
+       1.95,
        0.6
       ],
       "pos": [
        3.1,
-       3.725,
+       3.825,
        9.8
       ],
       "ch": "detail",
@@ -10617,28 +10983,28 @@
       "shape": "block",
       "size": [
        10.4,
-       0.3,
-       1.5
+       0.25,
+       1.2
       ],
       "pos": [
        0.0,
-       4.75,
-       10.25
+       4.925,
+       10.1
       ],
       "ch": "secondary",
-      "note": "slab wing"
+      "note": "slab wing: short chord, above the turbine exhaust line"
      },
      {
       "shape": "block",
       "size": [
        0.25,
        1.1,
-       1.75
+       1.45
       ],
       "pos": [
        5.325,
-       4.75,
-       10.325
+       4.95,
+       10.175
       ],
       "ch": "primary",
       "mirror": true,
@@ -10655,12 +11021,12 @@
       "shape": "block",
       "size": [
        0.5,
-       1.35,
+       2.0,
        0.9
       ],
       "pos": [
        3.15,
-       3.525,
+       3.85,
        9.95
       ],
       "ch": "primary",
@@ -10671,28 +11037,28 @@
       "shape": "block",
       "size": [
        7.6,
-       0.3,
-       1.1
+       0.25,
+       0.9
       ],
       "pos": [
        0.0,
-       4.35,
-       10.05
+       4.975,
+       9.95
       ],
       "ch": "primary",
-      "note": "bridge wing"
+      "note": "bridge wing: high enough to clear the turbine exhaust"
      },
      {
       "shape": "wedge",
       "size": [
        7.6,
-       0.3,
-       0.6
+       0.2,
+       0.5
       ],
       "pos": [
        0.0,
-       4.65,
-       10.3
+       5.2,
+       10.15
       ],
       "ch": "primary",
       "rot": [
@@ -10824,7 +11190,7 @@
    "fins": {
     "name": "Tail Fins",
     "culture": "Longtail",
-    "note": "",
+    "note": "Two outboard tail planes with a rising fin on each. The centre is open so the main turbine exhaust shows.",
     "parts": [
      {
       "shape": "block",
@@ -10845,54 +11211,55 @@
      {
       "shape": "block",
       "size": [
-       10.8,
+       2.8,
        0.2,
        2.9
       ],
       "pos": [
-       0.0,
+       4.0,
        3.95,
        11.05
       ],
       "ch": "primary",
-      "note": "long tail deck"
-     },
-     {
-      "shape": "block",
-      "size": [
-       0.3,
-       1.05,
-       1.8
-      ],
-      "pos": [
-       3.05,
-       4.575,
-       10.5
-      ],
-      "ch": "secondary",
       "mirror": true,
-      "note": "tail fin"
+      "note": "outboard tail plane: nothing inboard of X 2.6"
      },
      {
       "shape": "wedge",
       "size": [
        0.3,
-       1.05,
-       1.1
+       1.25,
+       2.5
       ],
       "pos": [
        3.05,
-       4.575,
-       11.95
+       4.675,
+       11.25
       ],
       "ch": "secondary",
       "rot": [
        0.0,
-       180.0,
+       0.0,
        0.0
       ],
       "mirror": true,
-      "note": "fin trailing edge"
+      "note": "tail fin, rising to the rear"
+     },
+     {
+      "shape": "block",
+      "size": [
+       0.07,
+       0.2,
+       2.3
+      ],
+      "pos": [
+       5.435,
+       3.95,
+       11.15
+      ],
+      "ch": "secondary",
+      "mirror": true,
+      "note": "plane edge stripe"
      }
     ]
    },
@@ -10920,18 +11287,18 @@
      {
       "shape": "block",
       "size": [
-       4.3,
+       3.1,
        0.2,
        1.8
       ],
       "pos": [
-       3.35,
+       3.95,
        4.0,
        10.4
       ],
       "ch": "secondary",
       "mirror": true,
-      "note": "half wing: open centre"
+      "note": "half wing: the centre is open over the turbine exhaust"
      },
      {
       "shape": "block",
@@ -10953,12 +11320,12 @@
       "shape": "block",
       "size": [
        0.2,
-       0.65,
+       0.55,
        1.8
       ],
       "pos": [
-       1.3,
-       4.175,
+       2.5,
+       4.125,
        10.4
       ],
       "ch": "primary",

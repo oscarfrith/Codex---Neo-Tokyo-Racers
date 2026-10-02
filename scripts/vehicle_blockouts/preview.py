@@ -4,13 +4,14 @@ Usage:
   py -3 scripts/vehicle_blockouts/preview.py scripts/vehicle_blockouts/specs/<id>.json [--check] [--only a,b]
 
   --check        validate only, write nothing
-  --only a,b     render only the named outputs: standard, exploded, matrix, rows, fundamentals, sheet, builds
+  --only a,b     render only the named outputs: standard, exploded, matrix, rows, mix, fundamentals, sheet, builds
 
 Writes scripts/vehicle_blockouts/previews/<id>/:
   standard.png      the slot envelopes
   exploded.png      first build pulled apart, one colour per slot
   matrix.png        every cockpit (rows) wearing every signature kit (columns): the interchange proof
   row_<cockpit>.png the same, one cockpit per file at larger size, front and rear views
+  mix_a.png, mix_b.png  twelve builds with every slot filled at random (parts from different kits together); mix.txt lists them
   fundamentals.png  first cockpit with each engine, stabiliser and boost option highlighted in turn
   sheet.png         the builds list
   build_NN_*.png    four views of each build
@@ -18,6 +19,7 @@ Exit code 1 when the spec has errors.
 """
 import glob
 import os
+import random
 import sys
 
 import numpy as np
@@ -265,6 +267,33 @@ def main():
                                             title="%s + %s kit" % (spec["cockpits"][cid]["name"], spec["kits"][kid]["name"]),
                                             sub=("native" if own else "swapped") + ", " + ("front" if view == "front34" else "rear")))
                 grid(cells, len(kits)).save(os.path.join(out_dir, "row_%s.png" % cid))
+
+        if want("mix") and cockpits:
+            # Per-module swap test: every slot filled with a random option, so parts from different kits meet.
+            # Seeded by the class id, so the same spec always gives the same twelve builds.
+            rng = random.Random(str(spec.get("id")))
+            for old_mix in glob.glob(os.path.join(out_dir, "mix_*.png")):
+                os.remove(old_mix)
+            picks = []
+            for n in range(12):
+                cid = cockpits[n % len(cockpits)]
+                mods = {s: rng.choice(sorted(spec["modules"][s].keys())) for s in std["slots"] if spec["modules"].get(s)}
+                picks.append({"cockpit": cid, "modules": mods})
+            for sheet_i, tag in enumerate(("a", "b")):
+                cells = []
+                chosen = picks[sheet_i * 6:sheet_i * 6 + 6]
+                for view in ("front34", "rear34"):
+                    for n, b in enumerate(chosen):
+                        items = vbspec.build_parts(spec, b)
+                        kits_used = sorted({spec["modules"][s][m].get("culture", "") for s, m in b["modules"].items()})
+                        cells.append(render(items, view, (560, 390), paint=native.get(b["cockpit"], {}),
+                                            title="Mix %d: %s" % (sheet_i * 6 + n + 1, spec["cockpits"][b["cockpit"]]["name"]),
+                                            sub="every slot random, " + ("front" if view == "front34" else "rear")))
+                grid(cells, 6).save(os.path.join(out_dir, "mix_%s.png" % tag))
+            with open(os.path.join(out_dir, "mix.txt"), "w", encoding="utf-8") as f:
+                for n, b in enumerate(picks):
+                    f.write("Mix %d: %s | %s\n" % (n + 1, spec["cockpits"][b["cockpit"]]["name"], ", ".join(
+                        "%s=%s" % (std["slots"][s]["label"], spec["modules"][s][m]["name"]) for s, m in b["modules"].items())))
 
         if want("fundamentals") and cockpits:
             cid = cockpits[0]

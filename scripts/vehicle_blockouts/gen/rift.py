@@ -14,6 +14,10 @@ What holds the swaps together:
     fender top, and the nozzle in a bay under the fender's tail where the chase camera sees it.
   - Rear engines sit behind the rear-quarter pods, stabilisers in the open bay amidships and the
     afterburner in the centre tail.
+  - One shared pod end collar. Every rear-quarter pod ends on the same painted section (2.8 square)
+    ahead of the engine bulkhead, so any rear engine meets a face of its own size.
+  - One centre bumper pad on every nose, so a full-width bumper is backed on pointed and short noses too.
+  - An exhaust lane behind each front engine nozzle. Rockers and stabilisers keep out of it.
 
 Root space: +X right, +Y up, forward is -Z. Units are studs.
 Every helper takes bounds (x0, x1, y0, y1, z0, z1) so a shape can be read straight off the frame table.
@@ -58,6 +62,13 @@ ZT = 14.0         # tail panel = afterburner seam
 ZE = 17.5         # rear limit
 G = 0.3           # painted bodywork stops this far short of a seam plane
 COLLAR = 0.7      # length of the full seam section on each side of a seam
+
+# Pod end collar: every rear-quarter pod ends on this painted section, so every rear engine meets the same face.
+PCX0, PCX1, PCY0, PCY1 = 4.9, 7.7, 0.5, 3.3
+PCZ = ZP - G - 0.8   # 10.4: the collar runs from here to the bulkhead pad
+# Exhaust lane: the front engine jets fire back from Z -5.8 inside this box. Nothing else may enter it.
+# Rockers stay inboard of LANE_X ahead of LANE_Z. Stabilisers start behind LANE_Z.
+LANE_X, LANE_Z = 5.5, -2.7
 
 # ----------------------------------------------------------------------------- part helpers
 
@@ -185,7 +196,8 @@ STANDARD = {
     "cockpitEnvelope": {"min": [-XC, 0, ZF], "max": [XC, 6.6, ZR]},
     "datums": {"hoverPlane": HOVER, "sill": SILL, "podFloor": POD_FLOOR, "stripe": STRIPE,
                "beltline": BELT, "deck": DECK, "bodyTop": BODY_TOP, "seamHalfWidth": SX,
-               "frontSeamZ": ZF, "rearSeamZ": ZR, "nozzleBayZ": ZX, "podBulkheadZ": ZP, "tailPanelZ": ZT},
+               "frontSeamZ": ZF, "rearSeamZ": ZR, "nozzleBayZ": ZX, "podBulkheadZ": ZP, "tailPanelZ": ZT,
+               "podCollarZ": PCZ, "exhaustLaneInnerX": LANE_X, "exhaustLaneEndZ": LANE_Z},
     "slots": {
         "FrontBody": {"label": "Front Clip",
                       "envelope": [{"min": [-XN, 0, ZN], "max": [XN, 4.6, ZF]},
@@ -259,8 +271,9 @@ def driver(x, z, head_y):
 
 
 def cockpit_brawler():
-    """70s fastback: the tallest roof, one unbroken slope from roof to tail, flared rear haunches."""
-    w, roof = 3.74, 5.9
+    """70s fastback: a wide roof and one unbroken painted slope from roof to tail. Narrow rear glass between
+    wide sail panels, flared rear haunches."""
+    w, roof = 3.74, 5.7
     p = chassis() + tub()
     p += [
         wdg(SX, w, SILL, BELT, -1.2, 0.8, PLAN_IN_BACK, m=True, note="haunch flare lead-in"),
@@ -269,36 +282,36 @@ def cockpit_brawler():
         wdg(3.0, 3.4, DECK, roof, -3.0, -0.6, RISE, m=True, note="A-pillar"),
         blk(-3.4, 3.4, roof - 0.3, roof, -0.6, 1.4, note="roof"),
         blk(-3.25, 3.25, DECK, roof - 0.3, -0.6, 1.4, "glass", note="side glass"),
-        blk(3.0, 3.4, DECK, roof - 0.3, 1.0, 1.4, m=True, note="B-pillar"),
-        wdg(-2.4, 2.4, DECK, roof, 1.4, 6.2, FALL, "glass", note="fastback glass"),
-        wdg(2.4, 3.4, DECK, roof, 1.4, 6.2, FALL, m=True, note="sail panel"),
+        wdg(-1.7, 1.7, DECK, roof, 1.4, 6.2, FALL, "glass", note="narrow fastback glass"),
+        wdg(1.7, 3.4, DECK, roof, 1.4, 6.2, FALL, m=True, note="wide sail panel"),
+        blk(3.4, 3.46, 3.7, 4.4, 1.7, 2.9, "detail", m=True, note="quarter vent on the sail panel"),
         blk(0.35, 1.35, roof, roof + 0.06, -0.6, 1.4, "secondary", m=True, note="roof stripes"),
         blk(0.35, 1.35, DECK, DECK + 0.06, -5.2, -3.0, "secondary", m=True, note="cowl stripes"),
         blk(w, w + 0.05, STRIPE - 0.15, STRIPE + 0.15, 0.8, 5.6, "secondary", m=True, note="belt stripe on the haunch"),
     ]
-    p += slats(-2.3, 2.3, roof, 1.4, DECK, 6.2, 4, depth=0.8)
-    p += driver(-1.6, 0.3, 4.6)
+    p += driver(-1.6, 0.3, 4.4)
     return p
 
 
 def cockpit_outlaw():
-    """60s notchback: three boxes. Raked screen, squared contrast roof, formal pillar, a long flat boot deck."""
-    roof = 5.6
+    """60s notchback: three boxes and the tallest roof. Upright screen, squared contrast roof with a visor,
+    a thick formal pillar with a vertical rear screen, then a long flat boot deck."""
+    roof = 6.3
     p = chassis() + tub()
     p += [
-        wdg(-2.5, 2.5, DECK, roof, -3.2, -1.4, RISE, "glass", note="raked windscreen"),
-        wdg(2.5, 2.9, DECK, roof, -3.2, -1.4, RISE, m=True, note="A-pillar"),
-        blk(-2.9, 2.9, roof - 0.35, roof, -1.4, 1.4, "secondary", note="squared contrast roof"),
-        blk(-2.75, 2.75, DECK, roof - 0.35, -1.4, 0.5, "glass", note="side glass"),
-        blk(-2.9, 2.9, DECK, roof - 0.35, 0.5, 1.4, note="formal C-pillar"),
-        wdg(-2.3, 2.3, DECK, roof, 1.4, 2.8, FALL, "glass", note="raked rear window"),
-        wdg(2.3, 2.9, DECK, roof, 1.4, 2.8, FALL, m=True, note="rear pillar"),
-        blk(-1.6, 1.6, DECK, DECK + 0.06, 3.2, 6.0, "secondary", note="boot lid panel on the flat deck (Z 2.8 to 6.2)"),
+        wdg(-2.6, 2.6, DECK, roof - 0.4, -3.0, -1.9, RISE, "glass", note="upright windscreen"),
+        wdg(2.6, 3.0, DECK, roof - 0.4, -3.0, -1.9, RISE, m=True, note="A-pillar"),
+        blk(-3.0, 3.0, roof - 0.4, roof, -2.4, 1.8, "secondary", note="squared contrast roof with a visor peak"),
+        blk(-2.85, 2.85, DECK, roof - 0.4, -1.9, 0.6, "glass", note="side glass"),
+        blk(-3.0, 3.0, DECK, roof - 0.4, 0.6, 1.8, note="thick formal C-pillar"),
+        blk(-2.1, 2.1, 4.0, roof - 0.7, 1.8, 1.88, "glass", note="vertical rear screen"),
+        blk(-2.4, 2.4, DECK, DECK + 0.08, -4.6, -3.5, "detail", note="cowl vent grille"),
+        blk(-1.6, 1.6, DECK, DECK + 0.06, 2.6, 6.0, "secondary", note="boot lid panel on the flat deck (Z 1.9 to 6.2)"),
         blk(SX, 3.7, 1.0, 2.4, 2.8, 5.4, m=True, note="quarter scoop"),
         blk(3.45, 3.65, 1.2, 2.2, 2.68, 2.8, "detail", m=True, note="scoop mouth"),
         blk(SX, SX + 0.05, STRIPE - 0.15, STRIPE + 0.15, -5.2, 2.6, "secondary", m=True, note="belt stripe"),
     ]
-    p += driver(-1.3, -0.3, 4.6)
+    p += driver(-1.3, -0.5, 4.8)
     return p
 
 
@@ -320,8 +333,8 @@ def cockpit_stiletto():
         blk(SX, 3.7, 1.2, low, 1.4, 3.6, m=True, note="side intake box"),
         blk(SX, SX + 0.05, 0.6, 0.9, -5.2, 1.2, "secondary", m=True, note="sill stripe"),
     ]
-    for z in (1.8, 3.2, 4.6):
-        p.append(blk(-1.9, 1.9, 4.1, 4.22, z, z + 0.7, "detail", note="deck louvre"))
+    for z in (2.0, 4.0):
+        p.append(blk(-1.9, 1.9, 4.1, 4.22, z, z + 1.0, "detail", note="deck louvre"))
     p += driver(-0.6, -1.0, 3.8)
     return p
 
@@ -349,47 +362,49 @@ def cockpit_mamba():
 
 
 def cockpit_nightshift():
-    """80s T-top: the lowest closed roof. Glass roof panels either side of a T-bar, tall targa hoop, glass hatch, box sills."""
-    w, roof = 3.74, 4.5
+    """80s T-top: the lowest closed roof. Glass roof panels either side of a T-bar, a raised basket-handle targa hoop,
+    a louvred glass hatch, box sills."""
+    w, roof, hoop = 3.74, 4.5, 5.2
     p = chassis() + tub()
     p += [
         blk(SX, w, 0.5, 1.3, -3.7, 3.9, "detail", m=True, note="box sill"),
         blk(w, w + 0.05, 0.8, 1.0, -3.6, 3.8, "neon", m=True, note="sill light"),
+        blk(-3.2, 3.2, DECK, DECK + 0.08, -3.7, -3.0, "detail", note="wiper cowl strip"),
         wdg(-3.0, 3.0, DECK, roof, -3.0, -1.4, RISE, "glass", note="windscreen"),
         wdg(3.0, 3.4, DECK, roof, -3.0, -1.4, RISE, m=True, note="A-pillar"),
         blk(-0.35, 0.35, roof - 0.2, roof, -1.4, 0.6, note="T-bar"),
         blk(0.35, 3.25, roof - 0.2, roof - 0.04, -1.4, 0.6, "glass", m=True, note="glass roof panel"),
         blk(-3.15, 3.15, DECK, roof - 0.2, -1.4, 0.6, "glass", note="side glass"),
-        blk(-3.4, 3.4, DECK, roof + 0.2, 0.6, 1.4, note="targa hoop"),
-        wdg(-2.9, 2.9, DECK, roof, 1.4, 3.8, FALL, "glass", note="glass hatch"),
-        wdg(2.9, 3.4, DECK, roof, 1.4, 3.8, FALL, m=True, note="hatch frame"),
-        blk(-3.0, 3.0, DECK, DECK + 0.1, 4.6, 5.0, "detail", note="rear shelf vent"),
+        blk(-3.4, 3.4, DECK, hoop, 0.6, 1.5, note="raised targa hoop"),
+        wdg(-2.9, 2.9, DECK, roof, 1.5, 4.6, FALL, "glass", note="glass hatch"),
+        wdg(2.9, 3.4, DECK, roof, 1.5, 4.6, FALL, m=True, note="hatch frame"),
+        blk(-3.0, 3.0, DECK, DECK + 0.1, 5.1, 5.5, "detail", note="rear shelf vent"),
     ]
+    p += slats(-2.7, 2.7, roof, 1.5, DECK, 4.6, 3, depth=0.6)
     p += driver(-1.5, -0.3, 3.6)
     return p
 
 
 def cockpit_regent():
-    """Grand tourer: a long low fastback. Screen set well forward, short low roof, a gentle slope to the tail, wing vents."""
+    """Grand tourer: a slim teardrop greenhouse. Screen set well forward, short low roof, a roof band,
+    then one long glass fastback that runs to the rear seam. Wing vents."""
     roof = 5.0
     p = chassis() + tub()
     p += [
-        wdg(-2.6, 2.6, DECK, roof, -3.9, -1.7, RISE, "glass", note="long raked windscreen"),
-        wdg(2.6, 3.0, DECK, roof, -3.9, -1.7, RISE, m=True, note="A-pillar"),
-        blk(-3.0, 3.0, roof - 0.25, roof, -1.7, 0.2, note="low roof"),
-        blk(-2.85, 2.85, DECK, roof - 0.25, -1.7, 0.2, "glass", note="side glass"),
-        wdg(-2.2, 2.2, DECK, roof, 0.2, 6.2, FALL, "glass", note="long fastback glass"),
-        wdg(2.2, 3.0, DECK, roof, 0.2, 6.2, FALL, m=True, note="fastback quarter"),
-        slab([4.4, 0.12, 2.6], [0, roof - 1.6 * 0.76 + 0.09, 0.2 + 6.0 * 0.76], [math.degrees(math.atan2(1.6, 6.0)), 0, 0],
-             note="painted boot lid on the slope"),
-        blk(3.0, 3.06, roof - 0.25, roof, -1.7, 0.2, "secondary", m=True, note="chrome roof rail"),
+        wdg(-2.3, 2.3, DECK, roof, -4.3, -1.7, RISE, "glass", note="long raked windscreen"),
+        wdg(2.3, 2.6, DECK, roof, -4.3, -1.7, RISE, m=True, note="A-pillar"),
+        blk(-2.6, 2.6, roof - 0.25, roof, -1.7, 0.2, note="low roof"),
+        blk(-2.45, 2.45, DECK, roof - 0.25, -1.7, -0.3, "glass", note="side glass"),
+        blk(-2.66, 2.66, DECK, roof + 0.06, -0.3, 0.2, "secondary", note="roof band"),
+        wdg(-2.3, 2.3, DECK, roof, 0.2, 6.2, FALL, "glass", note="long glass fastback to the rear seam"),
+        wdg(2.3, 2.6, DECK, roof, 0.2, 6.2, FALL, m=True, note="fastback frame"),
         blk(SX, 3.62, 1.2, 2.4, -4.5, -2.5, m=True, note="wing vent box"),
         blk(SX, SX + 0.05, 0.6, 0.85, -2.5, 6.2, "secondary", m=True, note="chrome sill strip"),
-        blk(-0.25, 0.25, DECK, DECK + 0.06, -5.2, -3.9, "secondary", note="bonnet centre line"),
+        blk(-0.25, 0.25, DECK, DECK + 0.06, -5.2, -4.3, "secondary", note="bonnet centre line"),
     ]
     for i in range(2):
         p.append(blk(3.62, 3.67, 1.4, 2.2, -4.2 + 0.9 * i, -3.7 + 0.9 * i, "detail", m=True, note="vent gill"))
-    p += driver(-1.4, -0.6, 4.1)
+    p += driver(-1.2, -0.6, 4.1)
     return p
 
 
@@ -405,6 +420,7 @@ def fb_pads(nose_x=2.9, nac_x=4.4, strut_y=1.9, strut_z=(-8.6, -11.0)):
         blk(5.4, 7.0, 3.2, BODY_TOP, -11.8, -9.4, "detail", m=True, note="intake pad on the fender top"),
         blk(4.9, 7.7, 1.0, 2.45, ZX - 0.3, ZX, "detail", m=True, note="nozzle bay bulkhead under the fender tail"),
         blk(5.6, 6.8, 1.05, 1.5, ZN, ZN + 0.3, "detail", m=True, note="front bumper hardpoint on the fender tip"),
+        blk(-1.3, 1.3, SILL, 1.4, ZN + 0.2, ZN + 0.5, "detail", note="centre bumper pad: backs any full-width bumper"),
     ]
     for z in strut_z:
         p.append(cxx(nose_x - 0.2, nac_x + 0.2, strut_y, z, 0.5, "detail", m=True, note="rift strut"))
@@ -416,13 +432,15 @@ def fb_taper(nose_x, z0=-9.0, y1=DECK):
     return [wdg(nose_x, SX, SILL, y1, z0, ZF - G - COLLAR, PLAN_IN_BACK, m=True, note="collar taper to the nose width")]
 
 
-def rb_pads(tail_x=2.9, pod_x=4.4, strut_y=1.9, strut_z=(8.2, 10.3)):
-    """Pads every Rear Clip must carry, at fixed places."""
+def rb_pads(tail_x=2.9, pod_x=4.4, strut_y=1.9, strut_z=(8.2, 10.3), collar_z=PCZ):
+    """Pads every Rear Clip must carry, at fixed places.
+    collar_z: a pod that already has the collar section further forward may start its collar there."""
     p = [
         blk(-2.2, 2.2, 0.5, 2.6, ZR, ZR + G, "detail", note="front coupler: mates with the cabin coupler flange"),
         blk(-SX, SX, SILL, DECK, ZR + G, ZR + G + COLLAR, note="shoulder collar: the shared seam section"),
         blk(-2.4, 2.4, SILL, 3.2, ZT - G, ZT, "detail", note="tail panel: afterburner pad above Y 1.0, rear bumper pad below"),
         blk(-2.0, 2.0, DECK, BODY_TOP, 11.0, 13.5, "detail", note="spoiler pad"),
+        blk(PCX0, PCX1, PCY0, PCY1, collar_z, ZP - G, m=True, note="pod end collar: the shared rear engine section"),
         blk(5.3, 7.1, 1.0, 2.6, ZP - G, ZP, "detail", m=True, note="rear engine bulkhead"),
     ]
     for z in strut_z:
@@ -476,11 +494,11 @@ def fb_longhorn():
     """Muscle. The biggest clip: tall square fenders, twin round lamps, wide nose, egg-crate grille, shaker scoop."""
     p = fb_pads(nose_x=3.0, nac_x=4.4) + fb_taper(3.0)
     p += [
-        blk(-3.0, 3.0, 0.5, BELT, -15.0, Z_FC, note="centre nose"),
+        blk(-3.0, 3.0, 0.5, BELT, -15.7, Z_FC, note="centre nose, out to the centre bumper pad"),
         blk(-3.0, 3.0, BELT, DECK, -12.8, Z_FC, note="bonnet"),
-        wdg(-3.0, 3.0, BELT, DECK, -15.0, -12.8, RISE, note="bonnet leading slope"),
-        blk(-2.7, 2.7, 0.9, 2.5, -15.3, -15.0, "detail", note="egg-crate grille"),
-        blk(1.6, 2.4, 1.4, 2.0, -15.4, -15.3, "neon", m=True, note="grille lamp"),
+        wdg(-3.0, 3.0, BELT, DECK, -15.7, -12.8, RISE, note="bonnet leading slope"),
+        blk(-2.7, 2.7, 0.9, 2.5, -16.0, -15.7, "detail", note="egg-crate grille"),
+        blk(1.6, 2.4, 1.4, 2.0, -16.1, -16.0, "neon", m=True, note="grille lamp"),
         blk(0.35, 1.35, DECK, DECK + 0.06, -12.8, ZF - G, "secondary", m=True, note="bonnet stripe"),
         blk(-1.0, 1.0, DECK, 4.2, -10.4, -7.0, note="shaker scoop"),
         blk(-0.8, 0.8, 3.6, 4.1, -10.55, -10.4, "detail", note="scoop mouth"),
@@ -490,7 +508,6 @@ def fb_longhorn():
         blk(4.5, 8.2, 1.1, 2.7, -16.2, -15.8, "detail", m=True, note="lamp bezel"),
         cz(5.45, 1.9, -16.4, -16.2, 1.0, "neon", m=True, note="headlamp"),
         cz(7.25, 1.9, -16.4, -16.2, 1.0, "neon", m=True, note="headlamp"),
-        blk(8.3, 8.36, STRIPE - 0.15, STRIPE + 0.15, -15.8, ZX, "secondary", m=True, note="belt stripe"),
     ]
     return p
 
@@ -509,8 +526,7 @@ def fb_blower_rail():
         wdg(-2.3, 2.3, 3.0, DECK, -10.6, -9.4, RISE, note="bonnet leading slope"),
         blk(-2.0, 2.0, 0.7, 3.7, -11.2, -10.6, "secondary", note="tall grille shell"),
         blk(-1.6, 1.6, 1.0, 3.4, -11.32, -11.2, "detail", note="grille"),
-        blk(1.0, 1.5, 0.6, 1.1, -15.8, -10.6, "detail", m=True, note="bare frame rail"),
-        cxx(-1.5, 1.5, 0.85, -15.5, 0.5, "detail", note="front cross tube"),
+        blk(0.8, 1.3, 0.6, 1.1, ZN + 0.5, -10.6, "detail", m=True, note="bare frame rail, out to the centre bumper pad"),
         cxx(-1.2, 1.2, 1.75, -13.6, 1.3, "secondary", note="fuel tank"),
         blk(-1.1, 1.1, DECK, 4.0, -9.0, -6.6, "detail", note="blower case"),
         blk(-0.9, 0.9, 4.0, 4.55, -8.8, -7.0, "secondary", note="blower scoop"),
@@ -523,20 +539,20 @@ def fb_popup_prongs():
     """Wedge Exotic. Arrow prongs: knife-edge wedge fenders, barbed in plan, with pop-up lamps. An arrowhead nose that flares into the collar."""
     p = fb_pads(nose_x=2.6, nac_x=4.4, strut_y=1.4, strut_z=(-8.4, -9.6))
     p += [
-        wdg(4.8, 7.8, 1.0, 3.2, -16.2, -12.0, RISE, m=True, note="prong wedge"),
+        blk(4.8, 7.8, 1.0, 1.5, -16.2, -12.0, m=True, note="prong blade: a blunt 0.5 edge behind the bumper hardpoint"),
+        wdg(4.8, 7.8, 1.5, 3.2, -16.2, -12.0, RISE, m=True, note="prong wedge"),
         blk(4.8, 7.8, 1.0, 3.2, -12.0, ZX, m=True, note="prong root"),
         blk(4.8, 7.8, 2.6, 3.2, ZX, ZF - G, m=True, note="prong tail eave"),
         wdg(7.8, 8.4, 1.0, 1.7, -14.2, ZX, PLAN_IN_BACK, m=True, note="outer barb"),
         wdg(4.4, 4.8, 1.0, 1.7, -14.2, ZX, PLAN_OUT_BACK, m=True, note="inner barb"),
         blk(5.7, 6.9, 1.9, 2.75, -14.4, -13.6, "detail", m=True, note="pop-up lamp pod"),
         blk(5.85, 6.75, 2.2, 2.65, -14.5, -14.4, "neon", m=True, note="lamp"),
-        blk(8.4, 8.46, 1.2, 1.5, -9.0, ZX, "secondary", m=True, note="low stripe"),
-        wdg(-0.9, 0.9, 0.5, DECK, -14.6, -8.0, RISE, note="dart spine"),
+        wdg(-0.9, 0.9, 0.5, DECK, ZN + 0.5, -8.0, RISE, note="dart spine: its point reaches the centre bumper pad"),
         blk(-0.9, 0.9, 0.5, DECK, -8.0, Z_FC, note="spine root"),
-        wdg(0.9, SX, 0.5, 1.9, -13.8, Z_FC, PLAN_IN_BACK, m=True, note="arrowhead flank"),
+        wdg(0.9, SX, 0.5, 1.9, -15.0, Z_FC, PLAN_IN_BACK, m=True, note="arrowhead flank"),
         wdg(0.9, SX, 1.9, DECK, -9.0, Z_FC, PLAN_IN_BACK, m=True, note="collar taper to the spine"),
     ]
-    p += slats(-0.7, 0.7, 1.6, -12.2, 3.2, -8.4, 3, depth=0.7)
+    p += slats(-0.7, 0.7, 1.88, -12.2, 3.25, -8.4, 3, depth=0.7)
     return p
 
 
@@ -592,9 +608,9 @@ def fb_long_nose():
         blk(-2.8, 2.8, 0.5, 2.6, -14.2, Z_FC, note="long nose"),
         wdg(-2.8, 2.8, 2.6, DECK, -14.2, -10.0, RISE, note="bonnet slope"),
         blk(-2.8, 2.8, 2.6, DECK, -10.0, Z_FC, note="bonnet"),
-        blk(-2.2, 2.2, 0.6, 2.4, -15.6, -14.2, note="nose tip"),
-        blk(-1.7, 1.7, 0.9, 2.1, -15.75, -15.6, "detail", note="oval grille"),
-        blk(0.5, 1.3, 1.2, 1.8, -15.85, -15.75, "neon", m=True, note="driving lamp"),
+        blk(-2.2, 2.2, 0.6, 2.4, -15.85, -14.2, note="nose tip, out to the centre bumper pad"),
+        blk(-1.7, 1.7, 0.9, 2.1, -16.0, -15.85, "detail", note="oval grille"),
+        blk(0.5, 1.3, 1.2, 1.8, -16.1, -16.0, "neon", m=True, note="driving lamp"),
         blk(-0.8, 0.8, DECK, 3.8, -12.0, -7.4, note="power bulge"),
         blk(4.6, 7.8, 1.0, 2.4, -15.2, ZX, m=True, note="fender"),
         wdg(4.6, 7.8, 1.0, 2.4, -16.3, -15.2, RISE, m=True, note="pointed fender tip"),
@@ -661,10 +677,10 @@ def e1_slot_ram():
         blk(4.6, 7.8, -1.05, -0.4, -14.35, -14.2, "detail", m=True, note="intake mouth"),
         blk(5.55, 5.75, -1.1, -0.4, -15.2, -14.2, "detail", m=True, note="intake splitter"),
         blk(6.65, 6.85, -1.1, -0.4, -15.2, -14.2, "detail", m=True, note="intake splitter"),
-        blk(4.6, 7.8, -1.1, 0.3, -7.55, -6.6, m=True, note="up-ramp base"),
-        wdg(4.6, 7.8, 0.3, 2.3, -7.55, -6.6, RISE, m=True, note="up-ramp"),
-        blk(4.6, 7.8, 0.9, 2.3, -6.6, -6.05, "detail", m=True, note="slot nozzle housing"),
-        blk(4.8, 7.6, 1.3, 1.9, -6.05, -5.8, "thrust", m=True, note="slot jet"),
+        blk(5.3, 8.1, -1.1, 0.3, -7.55, -6.6, m=True, note="up-ramp base"),
+        wdg(5.3, 8.1, 0.3, 2.3, -7.55, -6.6, RISE, m=True, note="up-ramp"),
+        blk(5.3, 8.1, 0.9, 2.3, -6.6, -6.05, "detail", m=True, note="slot nozzle housing"),
+        blk(5.5, 7.9, 1.3, 1.9, -6.05, -5.8, "thrust", m=True, note="slot jet"),
         wdg(5.0, 7.4, 3.8, 4.15, -13.8, -12.0, RISE, m=True, note="slot intake ramp on the fender top"),
         blk(5.0, 7.4, 3.8, 4.15, -12.0, -8.4, m=True, note="slot intake"),
         blk(5.2, 7.2, 4.15, 4.21, -11.6, -9.0, "neon", m=True, note="intake slot"),
@@ -701,10 +717,10 @@ def e1_cassette():
         blk(5.1, 7.3, -0.75, -0.4, -11.9, -11.8, "neon", m=True, note="grille light"),
         cxx(7.7, 8.25, -0.9, -10.5, 0.7, "detail", m=True, note="side dump pipe"),
         cxx(8.25, 8.45, -0.9, -10.5, 0.5, "thrust", m=True, note="side dump jet"),
-        blk(4.9, 7.5, -1.3, 2.3, -7.55, -6.5, m=True, note="outlet box"),
-        blk(4.9, 7.5, 0.9, 2.3, -6.5, -6.1, "detail", m=True, note="outlet face"),
-        blk(5.15, 6.0, 1.25, 1.95, -6.1, -5.85, "thrust", m=True, note="square jet"),
-        blk(6.4, 7.25, 1.25, 1.95, -6.1, -5.85, "thrust", m=True, note="square jet"),
+        blk(5.2, 7.8, -1.3, 2.3, -7.55, -6.5, m=True, note="outlet box"),
+        blk(5.2, 7.8, 0.9, 2.3, -6.5, -6.1, "detail", m=True, note="outlet face"),
+        blk(5.5, 6.35, 1.25, 1.95, -6.1, -5.85, "thrust", m=True, note="square jet"),
+        blk(6.7, 7.55, 1.25, 1.95, -6.1, -5.85, "thrust", m=True, note="square jet"),
         blk(4.9, 7.5, 3.65, 4.55, -12.4, -10.0, m=True, note="intercooler box on the fender top"),
         blk(5.1, 7.3, 3.9, 4.3, -12.5, -12.4, "neon", m=True, note="intercooler light"),
     ]
@@ -725,10 +741,10 @@ def e1_straight_six():
         blk(5.6, 6.8, -1.3, 2.35, -7.55, -6.8, "detail", m=True, note="pipe riser"),
         blk(5.85, 6.5, 3.65, 4.2, -13.6, -8.6, "secondary", m=True, note="cam cover on the fender top"),
     ]
-    for yy in (0.4, 1.75):
+    for yy in (0.95, 1.95):
         p += [
-            cz(x, yy, -6.8, -6.1, 1.1, "secondary", m=True, note="megaphone"),
-            cz(x, yy, -6.1, -5.85, 0.75, "thrust", m=True, note="jet"),
+            cz(x, yy, -6.8, -6.1, 1.0, "secondary", m=True, note="megaphone"),
+            cz(x, yy, -6.1, -5.85, 0.7, "thrust", m=True, note="jet"),
         ]
     for i in range(4):
         z = -13.0 + 1.25 * i
@@ -740,25 +756,25 @@ def e1_straight_six():
 
 
 def e2_thunder_twins():
-    """Muscle. A wide-set pair of long slim cans behind each rear-quarter pod."""
-    p = e2_flange(4.5, 8.1, 0.9, 2.9)
-    for x in (5.1, 7.5):
+    """Muscle. A close pair of long slim cans behind each rear-quarter pod, inside the collar section."""
+    p = e2_flange(4.7, 7.9, 0.9, 2.9)
+    for x in (5.4, 7.2):
         p += [
             cz(x, 1.9, ZP + 0.4, 16.4, 1.4, "primary", m=True, note="can"),
             cz(x, 1.9, 16.4, 17.2, 1.15, "detail", m=True, note="nozzle"),
             cz(x, 1.9, 17.2, 17.45, 0.85, "thrust", m=True, note="jet"),
         ]
     p += [
-        blk(4.9, 7.7, 2.6, 2.85, 12.3, 14.4, "detail", m=True, note="top intake grille"),
-        blk(5.8, 6.8, 1.5, 2.3, 12.0, 13.6, "detail", m=True, note="intake box between the cans"),
+        blk(5.0, 7.6, 2.6, 2.85, 12.3, 14.4, "detail", m=True, note="top intake grille"),
+        blk(6.1, 6.5, 1.4, 2.4, 12.0, 15.6, "detail", m=True, note="web between the cans"),
     ]
     return p
 
 
 def e2_big_bertha():
     """Pro Street. One long heavy turbine behind each pod: 2.8 across, 5.8 long, a tall ram scoop, a small petalled nozzle."""
-    x, y = 6.25, 1.5
-    p = [blk(5.0, 7.5, 0.6, 2.9, ZP + 0.05, ZP + 0.3, "detail", m=True, note="flange on the pod bulkhead")]
+    x, y = 6.3, 1.75
+    p = [blk(5.0, 7.6, 0.6, 3.0, ZP + 0.05, ZP + 0.3, "detail", m=True, note="flange on the pod bulkhead")]
     p += [
         cz(x, y, ZP + 0.3, 15.0, 2.8, "primary", m=True, note="turbine body"),
         cz(x, y, 15.0, 16.2, 2.3, "primary", m=True, note="tail cone"),
@@ -766,70 +782,73 @@ def e2_big_bertha():
         cz(x, y, 17.1, 17.4, 1.5, "thrust", m=True, note="jet"),
         blk(x - 0.45, x + 0.45, y + 0.8, y + 1.0, 16.0, 17.45, "detail", m=True, note="nozzle petal, top"),
         blk(x - 0.45, x + 0.45, y - 1.0, y - 0.8, 16.0, 17.45, "detail", m=True, note="nozzle petal, bottom"),
-        blk(x + 0.8, x + 1.0, y - 0.45, y + 0.45, 16.0, 17.45, "detail", m=True, note="nozzle petal, outer"),
-        blk(x - 1.0, x - 0.8, y - 0.45, y + 0.45, 16.0, 17.45, "detail", m=True, note="nozzle petal, inner"),
-        blk(5.55, 6.95, 2.7, 3.5, 11.9, 14.4, "primary", m=True, note="tall ram scoop"),
-        wdg(5.55, 6.95, 2.7, 3.5, 14.4, 15.6, FALL, "primary", m=True, note="scoop tail"),
-        blk(5.7, 6.8, 3.5, 3.58, 12.2, 14.0, "neon", m=True, note="scoop intake"),
+        blk(5.6, 7.0, 2.9, 3.52, 11.9, 14.4, "primary", m=True, note="ram scoop"),
+        wdg(5.6, 7.0, 2.9, 3.52, 14.4, 15.6, FALL, "primary", m=True, note="scoop tail"),
+        blk(5.75, 6.85, 3.52, 3.6, 12.2, 14.0, "neon", m=True, note="scoop intake"),
     ]
     return p
 
 
 def e2_vector_slab():
-    """Wedge Exotic. One low flat vectoring slot nozzle under a sloping fairing behind each pod."""
-    p = e2_flange()
+    """Wedge Exotic. A flat two-dimensional vectoring nozzle. A wedge fairing with an intake slot on top,
+    then an open slot on the trailing edge between two side plates, split by a vane. The upper ramp is cut back,
+    so the jet shows from behind and from above."""
+    p = e2_flange(PCX0, PCX1, 0.7, 2.9)
     p += [
-        blk(4.2, 8.4, 0.1, 1.3, ZP + 0.4, 15.0, m=True, note="slab body"),
-        wdg(4.2, 8.4, 0.9, 1.3, 15.0, 17.0, FALL, m=True, note="upper ramp"),
-        wdg(4.2, 8.4, 0.1, 0.5, 15.0, 17.0, UNDER_R, m=True, note="lower ramp"),
-        blk(4.4, 8.2, 0.5, 0.9, 15.0, 16.4, "thrust", m=True, note="slot jet"),
-        wdg(4.8, 7.8, 1.3, 2.8, ZP + 0.4, 14.6, FALL, m=True, note="sloping fairing"),
-        blk(5.4, 7.2, 1.9, 2.3, ZP + 0.3, ZP + 0.4, "detail", m=True, note="fairing intake"),
-        blk(8.4, 8.5, 0.0, 1.5, 13.6, 17.2, "detail", m=True, note="outer side plate"),
+        blk(4.8, 7.8, 0.6, 2.2, ZP + 0.4, 15.0, m=True, note="slab body"),
+        blk(4.8, 7.8, 2.2, 3.2, ZP + 0.4, 13.0, m=True, note="intake fairing"),
+        wdg(4.8, 7.8, 2.2, 3.2, 13.0, 15.0, FALL, m=True, note="sloping fairing"),
+        blk(5.2, 7.4, 3.2, 3.26, 12.0, 12.7, "detail", m=True, note="intake mouth on the fairing top"),
+        blk(5.2, 7.4, 3.2, 3.34, 12.7, 12.88, "neon", m=True, note="intake lip"),
+        wdg(4.8, 7.8, 1.9, 2.2, 15.0, 16.4, FALL, m=True, note="upper ramp, cut back 0.8"),
+        wdg(4.8, 7.8, 0.6, 1.1, 15.0, 17.2, UNDER_R, m=True, note="lower ramp"),
+        blk(4.98, 7.62, 1.1, 1.9, 14.9, 17.2, "thrust", m=True, note="slot jet, 2.6 by 0.8"),
+        blk(4.8, 4.98, 0.6, 2.2, 15.0, 17.35, "detail", m=True, note="inner side plate"),
+        blk(7.62, 7.8, 0.6, 2.2, 15.0, 17.35, "detail", m=True, note="outer side plate"),
+        blk(6.22, 6.38, 1.1, 2.0, 15.6, 17.3, "detail", m=True, note="centre vane"),
     ]
     return p
 
 
 def e2_bullet():
-    """Roadster. One slim tapered bullet behind each rear-quarter pod."""
-    x, y = 6.2, 1.9
-    p = e2_flange(5.2, 7.2, 1.0, 2.8)
+    """Roadster. One slim tapered bullet behind each rear-quarter pod, on a chrome shoulder as wide as the collar."""
+    x, y = 6.3, 1.9
+    p = e2_flange(5.1, 7.5, 0.8, 3.0)
     p += [
-        cz(x, y, ZP + 0.4, 14.6, 1.9, "primary", m=True, note="bullet body"),
-        cz(x, y, 12.4, 13.8, 2.0, "secondary", m=True, note="chrome sleeve"),
+        cz(x, y, ZP + 0.4, 13.3, 2.6, "secondary", m=True, note="chrome shoulder: as wide as the pod collar"),
+        cz(x, y, 13.3, 14.6, 1.9, "primary", m=True, note="bullet body"),
         cz(x, y, 14.6, 15.8, 1.4, "secondary", m=True, note="taper"),
         cz(x, y, 15.8, 16.5, 1.0, "detail", m=True, note="nozzle"),
         cz(x, y, 16.5, 16.75, 0.75, "thrust", m=True, note="jet"),
-        wdg(5.8, 6.6, 2.85, 3.4, 12.2, 13.8, FALL, m=True, note="top scoop"),
-        blk(5.9, 6.5, 2.9, 3.3, 12.1, 12.2, "detail", m=True, note="scoop mouth"),
+        wdg(5.9, 6.7, 2.85, 3.5, 13.3, 14.9, FALL, m=True, note="top scoop"),
+        blk(6.0, 6.6, 2.95, 3.4, 13.2, 13.3, "detail", m=True, note="scoop mouth"),
     ]
     return p
 
 
 def e2_over_under():
-    """Turbo Pony. Two cans stacked on the outer edge of each pod, intake box inboard."""
-    p = e2_flange(5.0, 7.4, 0.6, 3.0)
-    for y, z1 in ((2.6, 16.4), (0.7, 15.0)):
+    """Turbo Pony. Two cans stacked on the outer half of each pod, intake box inboard."""
+    p = e2_flange(PCX0, PCX1, 0.5, 3.2)
+    for y, z1 in ((2.5, 16.4), (0.9, 15.0)):
         p += [
-            cz(7.4, y, ZP + 0.4, z1, 1.6, "primary", m=True, note="can"),
-            cz(7.4, y, z1, z1 + 0.8, 1.3, "detail", m=True, note="nozzle"),
-            cz(7.4, y, z1 + 0.8, z1 + 1.05, 0.95, "thrust", m=True, note="jet"),
+            cz(7.0, y, ZP + 0.4, z1, 1.6, "primary", m=True, note="can"),
+            cz(7.0, y, z1, z1 + 0.8, 1.3, "detail", m=True, note="nozzle"),
+            cz(7.0, y, z1 + 0.8, z1 + 1.05, 0.95, "thrust", m=True, note="jet"),
         ]
     p += [
-        blk(7.2, 7.6, 1.2, 2.1, 12.2, 14.8, "detail", m=True, note="web"),
-        blk(5.0, 6.5, 0.8, 2.6, 11.9, 13.6, "secondary", m=True, note="intake box"),
-        blk(5.2, 6.3, 2.6, 2.75, 12.1, 13.4, "detail", m=True, note="intake grille"),
+        blk(4.9, 6.2, 0.8, 2.6, 11.9, 13.6, "secondary", m=True, note="intake box"),
+        blk(5.05, 6.05, 2.6, 2.75, 12.1, 13.4, "detail", m=True, note="intake grille"),
     ]
     return p
 
 
 def e2_trident():
     """Euro GT. Three slim pipes in a triangle behind a short painted cowl: one long on top, two short below."""
-    p = e2_flange(4.9, 7.6, 0.6, 3.2)
+    p = e2_flange(PCX0, PCX1, 0.6, 3.2)
     p += [
-        blk(4.8, 7.7, 0.5, 3.5, ZP + 0.4, 13.2, m=True, note="cowl"),
+        blk(4.8, 7.8, 0.5, 3.5, ZP + 0.4, 13.2, m=True, note="cowl"),
     ]
-    for x, y, z1 in ((6.25, 2.8, 16.3), (5.5, 1.25, 14.9), (7.0, 1.25, 14.9)):
+    for x, y, z1 in ((6.3, 2.8, 16.3), (5.55, 1.25, 14.9), (7.05, 1.25, 14.9)):
         p += [
             cz(x, y, 13.2, z1, 1.2, "secondary", m=True, note="pipe"),
             cz(x, y, z1, z1 + 0.7, 1.0, "detail", m=True, note="nozzle"),
@@ -847,50 +866,50 @@ LIFT_S = ((0.4, 0.8, "detail", "vectoring lift nozzle"), (0.5, 0.65, "thrust", "
 
 
 def st_outrigger_nacelles():
-    """Muscle. Two oblong fore-aft lift nacelles each side on one boom: 1.2 wide, 1.4 tall, 3.4 long."""
+    """Muscle. Two chunky lift nacelles each side, level with the sill and well apart, each on its own painted pylon.
+    1.7 wide, 1.8 tall, 2.9 long, joined by a slim contrast boom."""
     p = stab_mount()
-    p += [
-        blk(1.9, 7.0, -0.7, -0.3, 0.1, 0.9, "detail", m=True, note="outrigger beam"),
-        blk(7.25, 7.75, -0.65, -0.25, -2.0, 2.6, "detail", m=True, note="boom between the nacelles"),
-    ]
-    for z0, z1 in ((-5.3, -1.9), (2.3, 5.7)):
+    p.append(blk(7.1, 7.6, 1.0, 1.35, 0.3, 2.9, "secondary", m=True, note="slim boom between the nacelles"))
+    for z0, z1 in ((-2.6, 0.3), (2.9, 5.8)):
+        zc = (z0 + z1) / 2 + 0.3
         p += [
-            blk(6.9, 8.1, -1.0, 0.4, z0 + 0.7, z1, "primary", m=True, note="lift nacelle"),
-            wdg(6.9, 8.1, -1.0, 0.4, z0, z0 + 0.7, RISE, "primary", m=True, note="nacelle nose"),
-            blk(7.1, 7.9, 0.4, 0.47, z0 + 0.9, z0 + 2.3, "neon", m=True, note="top intake"),
+            blk(1.9, 7.2, -0.8, 0.0, zc - 0.6, zc + 0.6, "primary", m=True, note="painted pylon, 0.8 thick, under the rocker"),
+            blk(6.5, 8.2, 0.0, 1.8, z0 + 0.9, z1, "primary", m=True, note="lift nacelle, level with the sill"),
+            wdg(6.5, 8.2, 0.0, 1.8, z0, z0 + 0.9, RISE, "primary", m=True, note="nacelle nose"),
+            blk(6.8, 7.9, 1.8, 1.88, z0 + 1.1, z0 + 2.3, "neon", m=True, note="top intake"),
         ]
-        p += cant_jet(7.95, -0.3, z1 - 0.8, 60, 20, LIFT)
+        p += cant_jet(8.0, 0.3, z1 - 0.8, 45, 20, LIFT)
     return p
 
 
 def st_strake_rails():
-    """Pro Street. One long rail each side with three vectoring nozzles along its flank."""
+    """Pro Street. One long rail each side with three vectoring nozzles along its flank. It starts behind the exhaust lane."""
     p = stab_mount()
     p += [
-        blk(1.9, 6.9, -0.65, -0.25, -3.4, -2.6, "detail", m=True, note="outrigger beam"),
+        blk(1.9, 6.9, -0.65, -0.25, -1.2, -0.4, "detail", m=True, note="outrigger beam"),
         blk(1.9, 6.9, -0.65, -0.25, 3.6, 4.4, "detail", m=True, note="outrigger beam"),
-        cz(7.3, 0.45, -4.6, 5.6, 1.5, "primary", m=True, note="strake rail"),
-        ball(7.3, 0.45, -4.6, 1.5, "secondary", m=True, note="nose cap"),
+        cz(7.3, 0.45, -1.9, 5.6, 1.5, "primary", m=True, note="strake rail"),
+        ball(7.3, 0.45, -1.9, 1.5, "secondary", m=True, note="nose cap"),
         ball(7.3, 0.45, 5.6, 1.5, "secondary", m=True, note="tail cap"),
-        blk(7.0, 7.6, 1.17, 1.26, -2.0, 3.0, "neon", m=True, note="top intake slot"),
+        blk(7.0, 7.6, 1.17, 1.26, -0.6, 4.2, "neon", m=True, note="top intake slot"),
     ]
-    for z in (-3.0, 0.5, 4.0):
+    for z in (-0.9, 2.0, 4.9):
         p += cant_jet(7.8, 0.15, z, 60, 0, LIFT)
     return p
 
 
 def st_canard_vanes():
-    """Wedge Exotic. Swept vanes ahead of the doors with a long tip pod, a winglet and vectoring flank jets."""
+    """Wedge Exotic. Swept vanes ahead of the doors with a tip pod behind the exhaust lane, a winglet and vectoring flank jets."""
     p = stab_mount()
     p += [
         wdg(1.9, 8.2, -0.65, -0.35, -5.3, -0.8, PLAN_IN_BACK, m=True, note="swept front vane"),
-        cz(7.6, 0.05, -4.7, -0.2, 1.4, "primary", m=True, note="tip pod, 1.4 by 4.5"),
-        ball(7.6, 0.05, -4.75, 0.9, "neon", m=True, note="pod intake"),
-        cz(7.6, 0.05, -0.2, 0.1, 1.0, "thrust", m=True, note="tip jet"),
-        wdg(7.45, 7.7, 0.7, 2.4, -3.6, -0.8, RISE, m=True, note="winglet"),
+        cz(7.6, 0.05, -2.2, 1.8, 1.4, "primary", m=True, note="tip pod, 1.4 by 4.0"),
+        ball(7.6, 0.05, -2.25, 0.9, "neon", m=True, note="pod intake"),
+        cz(7.6, 0.05, 1.8, 2.1, 1.0, "thrust", m=True, note="tip jet"),
+        wdg(7.45, 7.7, 0.7, 2.4, -1.6, 1.2, RISE, m=True, note="winglet"),
         wdg(1.9, 7.4, -0.65, -0.35, 3.4, 6.3, PLAN_IN_FRONT, m=True, note="swept rear vane"),
     ]
-    p += cant_jet(7.95, -0.05, -2.4, 60, 20, LIFT)
+    p += cant_jet(7.95, -0.05, -0.6, 60, 20, LIFT)
     p += cant_jet(7.0, -0.45, 3.9, 60, 20, LIFT)
     return p
 
@@ -937,13 +956,13 @@ def st_gull_pods():
     p += [
         blk(1.9, 7.0, -0.6, -0.25, 0.1, 0.9, "detail", m=True, note="single arm"),
         blk(6.6, 7.1, -0.25, 2.3, 0.2, 0.8, "detail", m=True, note="gull upright"),
-        cz(7.5, 2.6, -2.4, 2.0, 1.5, "primary", m=True, note="shoulder pod"),
-        ball(7.5, 2.6, -2.4, 1.5, "primary", m=True, note="pod nose"),
-        ball(7.5, 2.6, -2.95, 0.7, "neon", m=True, note="pod intake"),
-        ball(7.5, 2.6, 2.0, 1.5, "secondary", m=True, note="pod tail"),
-        blk(7.2, 7.8, 3.32, 3.4, -1.4, 1.0, "neon", m=True, note="top intake"),
+        cz(7.5, 2.6, -1.7, 2.7, 1.5, "primary", m=True, note="shoulder pod, behind the exhaust lane"),
+        ball(7.5, 2.6, -1.7, 1.5, "primary", m=True, note="pod nose"),
+        ball(7.5, 2.6, -2.25, 0.7, "neon", m=True, note="pod intake"),
+        ball(7.5, 2.6, 2.7, 1.5, "secondary", m=True, note="pod tail"),
+        blk(7.2, 7.8, 3.32, 3.4, -0.7, 1.7, "neon", m=True, note="top intake"),
     ]
-    for z in (-1.2, 1.0):
+    for z in (-0.5, 1.7):
         p += cant_jet(7.85, 2.3, z, 55, 15, LIFT)
     return p
 
@@ -1034,44 +1053,46 @@ def bo_wide_pair():
 
 def rb_fastback_quarters():
     """Muscle. Rear-quarter pods with a tall sail panel that falls to the tail, a full-height square tail and a lamp bar."""
-    p = rb_pads(tail_x=2.6, pod_x=5.2, strut_z=(8.6, 10.3)) + rb_taper(2.6)
+    p = rb_pads(tail_x=2.6, pod_x=4.9, strut_z=(8.6, 10.3)) + rb_taper(2.6)
     p += [
         blk(-2.2, 2.2, 0.2, 0.5, 7.0, 13.6, "detail", note="under-tray"),
         blk(-2.6, 2.6, 0.5, DECK, Z_RC, ZT - G, note="centre tail"),
         blk(0.35, 1.35, DECK, DECK + 0.06, ZR + G, 11.0, "secondary", m=True, note="deck stripe"),
         blk(-2.4, 2.4, 3.2, DECK, ZT - G, ZT, "neon", note="tail lamp bar"),
-        blk(5.2, 7.8, 0.8, 3.2, 7.8, ZP - G, m=True, note="quarter pod"),
-        blk(5.2, 7.8, 3.2, 4.5, 7.8, 8.8, m=True, note="sail panel shoulder"),
-        wdg(5.2, 7.8, 3.2, 4.5, 8.8, ZP - G, FALL, m=True, note="sail panel"),
-        blk(7.8, 7.86, STRIPE - 0.15, STRIPE + 0.15, 7.8, ZP - G, "secondary", m=True, note="belt stripe"),
+        blk(PCX0, 7.8, 0.6, PCY1, 7.8, PCZ, m=True, note="quarter pod, on the collar section"),
+        blk(PCX0, 7.8, PCY1, 4.5, 7.8, 8.8, m=True, note="sail panel shoulder"),
+        wdg(PCX0, 7.8, PCY1, 4.5, 8.8, ZP - G, FALL, m=True, note="sail panel"),
+        blk(7.8, 7.86, STRIPE - 0.15, STRIPE + 0.15, 7.8, PCZ, "secondary", m=True, note="belt stripe"),
     ]
-    p += slats(5.6, 7.4, 4.5, 8.8, 3.2, ZP - G, 2, depth=0.6, m=True)
+    p += slats(5.4, 7.4, 4.5, 8.8, PCY1, ZP - G, 2, depth=0.6, m=True)
     return p
 
 
 def rb_tubbed():
-    """Pro Street. A narrowed painted boot, then bare rails, a fuel cell and the spoiler pad on a hoop. Huge deep square tubs."""
-    p = rb_pads(tail_x=2.2, pod_x=4.1, strut_y=0.95) + rb_taper(2.2)
+    """Pro Street. A narrowed painted boot, then bare rails, a fuel cell and the spoiler pad on a hoop.
+    Deep tubs with a chamfered shoulder and a blanked arch vent, tapered on all four sides into the pod collar."""
+    p = rb_pads(tail_x=2.2, pod_x=4.9, strut_y=0.95, collar_z=9.0) + rb_taper(2.2)
     p += [
         blk(-2.2, 2.2, 0.6, DECK, Z_RC, 10.6, note="narrowed boot"),
         blk(-1.2, 1.2, DECK, DECK + 0.06, ZR + G, 10.4, "secondary", note="boot panel"),
         blk(1.5, 2.1, 0.6, 1.2, 10.6, ZT - G, "detail", m=True, note="bare frame rail"),
         blk(-1.5, 1.5, 0.6, 0.9, 10.8, 13.5, "detail", note="cell tray"),
         blk(-1.3, 1.3, 0.9, 2.6, 11.0, 13.3, "secondary", note="fuel cell"),
-        blk(1.6, 1.9, 1.2, DECK, 11.1, 11.5, "detail", m=True, note="hoop post, front"),
-        blk(1.6, 1.9, 1.2, DECK, 13.0, 13.4, "detail", m=True, note="hoop post, rear"),
+        blk(1.6, 1.9, 1.2, DECK, 11.9, 12.6, "detail", m=True, note="hoop post"),
         blk(-2.4, 2.4, 3.2, DECK, ZT - G, ZT, "neon", note="tail lamp bar"),
-        blk(4.1, 8.5, -0.6, 3.1, ZR + G, ZP - G, m=True, note="deep tub"),
-        blk(4.1, 8.5, 3.1, BODY_TOP, 8.4, ZP - G, m=True, note="tub top"),
-        wdg(4.1, 8.5, 3.1, BODY_TOP, ZR + G, 8.4, RISE, m=True, note="tub rise"),
-        blk(8.45, 8.5, STRIPE - 0.15, STRIPE + 0.15, ZR + G, ZP - G, "secondary", m=True, note="belt stripe"),
+        blk(PCX0, 8.3, -0.2, 2.6, ZR + G, 9.0, m=True, note="deep tub"),
+        blk(PCX0, 7.4, 2.6, PCY1, ZR + G, 9.0, m=True, note="tub top"),
+        wdg(7.4, 8.3, 2.6, PCY1, ZR + G, 9.0, OUTB, m=True, note="chamfered outer shoulder"),
+        wdg(PCX1, 8.3, -0.2, 2.6, 9.0, PCZ, PLAN_IN_FRONT, m=True, note="outer taper to the collar"),
+        wdg(PCX0, PCX1, -0.2, PCY0, 9.0, PCZ, UNDER_R, m=True, note="floor taper up to the collar"),
+        blk(8.3, 8.36, 0.0, 1.5, 7.2, 8.8, "detail", m=True, note="blanked arch vent"),
     ]
     return p
 
 
 def rb_kamm_tail():
     """Wedge Exotic. A low full-width deck with a louvred spine, rising to a chopped, undercut tail. Blade fins outboard that rise to the rear."""
-    p = rb_pads(tail_x=3.4, pod_x=5.0, strut_y=1.1, strut_z=(9.0, 10.6))
+    p = rb_pads(tail_x=3.4, pod_x=4.9, strut_y=1.1, strut_z=(9.0, 10.6))
     p += [
         blk(-SX, SX, 0.5, 2.2, Z_RC, 10.5, note="low deck"),
         blk(-1.2, 1.2, 2.2, DECK, Z_RC, 10.5, note="louvred spine"),
@@ -1079,7 +1100,8 @@ def rb_kamm_tail():
         blk(-SX, SX, 1.3, DECK, 10.5, ZT - G, note="kamm block, undercut"),
         blk(2.4, 3.4, 2.2, 3.0, ZT - G, ZT - 0.1, "neon", m=True, note="tail lamp"),
         wdg(7.0, 8.5, 0.8, 4.4, 8.4, ZP - G, RISE, m=True, note="blade fin"),
-        blk(5.0, 7.0, 0.8, 1.6, 8.4, ZP - G, m=True, note="low pod shelf"),
+        blk(PCX0, 7.0, PCY0, 1.6, 8.4, PCZ, m=True, note="low pod shelf"),
+        wdg(PCX0, 7.0, 1.6, PCY1, 8.4, PCZ, RISE, m=True, note="shelf ramp up to the collar"),
         blk(8.5, 8.55, 1.0, 1.3, 9.6, ZP - G, "secondary", m=True, note="low stripe"),
     ]
     for z in (7.9, 8.7, 9.5):
@@ -1099,9 +1121,9 @@ def rb_boat_tail():
         blk(0.5, 0.8, 3.0, DECK, 11.2, 11.6, "detail", m=True, note="pad post, front"),
         blk(0.5, 0.8, 3.0, DECK, 12.8, 13.2, "detail", m=True, note="pad post, rear"),
         cz(1.7, 3.3, ZT - 0.5, ZT, 0.5, "neon", m=True, note="bullet tail lamp"),
-        cz(6.2, 1.9, 8.2, ZP - G, 2.6, m=True, note="round pontoon pod"),
-        ball(6.2, 1.9, 8.2, 2.6, m=True, note="pod nose"),
-        blk(6.0, 6.4, 3.15, 3.3, 8.4, ZP - G, "secondary", m=True, note="chrome spine"),
+        cz(6.3, 1.9, 8.2, PCZ, 2.7, m=True, note="round pontoon pod"),
+        ball(6.3, 1.9, 8.2, 2.7, m=True, note="pod nose"),
+        blk(6.1, 6.5, 3.2, 3.38, 8.4, ZP - G, "secondary", m=True, note="chrome spine"),
     ]
     return p
 
@@ -1116,11 +1138,11 @@ def rb_slab_hatch():
         blk(-2.4, 2.4, 3.2, DECK, ZT - G, ZT, "neon", note="tail lamp bar"),
         blk(2.4, 3.9, 1.9, BELT, ZT - G, ZT, "neon", m=True, note="lamp end"),
         blk(4.4, 8.4, 0.0, 1.5, 6.8, ZP - G, m=True, note="long low shelf pod"),
-        wdg(5.3, 7.1, 1.5, 2.6, 9.6, ZP - G, RISE, m=True, note="bulkhead fairing"),
+        wdg(PCX0, PCX1, 1.5, PCY1, 8.0, PCZ, RISE, m=True, note="fairing ramp up to the collar"),
         blk(8.4, 8.46, 1.0, 1.25, 6.8, ZP - G, "neon", m=True, note="shelf light"),
     ]
-    for i in range(3):
-        p.append(blk(-3.2, 3.2, BELT, BELT + 0.12, 9.4 + i * 0.65, 9.8 + i * 0.65, "detail", note="deck louvre"))
+    for i in range(2):
+        p.append(blk(-3.2, 3.2, BELT, BELT + 0.12, 9.5 + i * 0.8, 10.0 + i * 0.8, "detail", note="deck louvre"))
     return p
 
 
@@ -1133,7 +1155,7 @@ def rb_grand_tail():
         wdg(1.8, 2.9, 0.5, DECK, 11.5, ZT - G, PLAN_IN_FRONT, m=True, note="stern taper"),
         blk(-0.25, 0.25, DECK, DECK + 0.06, ZR + G, 11.0, "secondary", note="boot centre line"),
         blk(0.6, 2.2, 3.2, DECK, ZT - G, ZT, "neon", m=True, note="tail lamp"),
-        blk(4.6, 7.9, 0.8, 2.4, 7.0, ZP - G, m=True, note="hip pod"),
+        blk(4.6, 7.9, PCY0, 2.4, 7.0, ZP - G, m=True, note="hip pod"),
         wdg(4.6, 7.9, 2.4, 3.5, 7.0, 9.8, RISE, m=True, note="hip rise"),
         blk(4.6, 7.9, 2.4, 3.5, 9.8, ZP - G, m=True, note="hip top"),
         blk(7.9, 7.96, 1.75, 2.05, 7.0, ZP - G, "secondary", m=True, note="chrome side strip"),
@@ -1149,10 +1171,11 @@ def sp_door_pods():
     """Muscle. Low wide pontoons under the doors with a chrome side pipe."""
     p = sp_brackets()
     p += [
-        blk(4.0, 5.9, 0.3, 1.6, -5.2, 6.2, m=True, note="pontoon"),
-        cz(5.9, 0.7, -4.4, 5.2, 0.7, "secondary", m=True, note="side pipe"),
+        blk(4.0, 5.3, 0.3, 1.6, -5.2, -1.5, m=True, note="pontoon nose, inboard of the exhaust lane"),
+        wdg(5.3, 5.9, 0.3, 1.6, LANE_Z, -1.5, PLAN_IN_BACK, m=True, note="pontoon flare"),
+        blk(4.0, 5.9, 0.3, 1.6, -1.5, 6.2, m=True, note="pontoon"),
+        cz(5.9, 0.7, -1.3, 5.2, 0.7, "secondary", m=True, note="side pipe"),
         cz(5.9, 0.7, 5.2, 6.0, 0.8, "detail", m=True, note="pipe tip"),
-        blk(4.9, 5.5, 1.6, 1.66, -5.2, 6.2, "secondary", m=True, note="slim stripe on the painted top"),
     ]
     return p
 
@@ -1161,11 +1184,11 @@ def sp_fuel_tanks():
     """Pro Street. A short fat round tank each side on a cradle."""
     p = sp_brackets()
     p += [
-        cz(5.1, 1.4, -2.6, 3.4, 2.1, "secondary", m=True, note="tank"),
-        ball(5.1, 1.4, -2.6, 2.1, "secondary", m=True, note="tank nose"),
-        ball(5.1, 1.4, 3.4, 2.1, "secondary", m=True, note="tank tail"),
-        blk(4.4, 5.8, 0.15, 0.45, -2.4, 3.2, "detail", m=True, note="cradle"),
-        cyv(5.1, 2.4, 2.58, 0.4, 0.6, "detail", m=True, note="filler cap"),
+        cz(5.1, 1.4, -1.6, 4.4, 2.1, "secondary", m=True, note="tank, behind the exhaust lane"),
+        ball(5.1, 1.4, -1.6, 2.1, "secondary", m=True, note="tank nose"),
+        ball(5.1, 1.4, 4.4, 2.1, "secondary", m=True, note="tank tail"),
+        blk(4.4, 5.8, 0.15, 0.45, -1.4, 4.2, "detail", m=True, note="cradle"),
+        cyv(5.1, 2.4, 2.58, 1.4, 0.6, "detail", m=True, note="filler cap"),
     ]
     return p
 
@@ -1188,8 +1211,8 @@ def sp_rocker_blades():
     p = sp_brackets()
     p += [
         blk(4.0, 4.6, 0.5, 1.2, -5.2, 6.2, m=True, note="rocker blade"),
-        cz(5.2, 0.9, -4.6, 4.4, 0.7, "secondary", m=True, note="slim pipe"),
-        cz(5.2, 0.9, 4.4, 5.8, 1.05, "secondary", m=True, note="megaphone"),
+        cz(5.1, 0.9, -4.6, 4.4, 0.7, "secondary", m=True, note="slim pipe"),
+        cz(5.1, 0.9, 4.4, 5.8, 1.05, "secondary", m=True, note="megaphone"),
         blk(4.6, 5.2, 0.8, 1.0, -3.0, -2.4, "detail", m=True, note="pipe stay"),
         blk(4.6, 5.2, 0.8, 1.0, 2.8, 3.4, "detail", m=True, note="pipe stay"),
     ]
@@ -1213,7 +1236,7 @@ def sp_gill_sills():
     """Euro GT. A tall gilled vent box behind the front fender, then a slim sill with a side pipe."""
     p = sp_brackets()
     p += [
-        blk(4.0, 5.4, 0.4, 2.5, -5.2, -1.8, m=True, note="vent box"),
+        blk(4.0, 5.4, 0.4, 2.5, -5.2, -1.8, m=True, note="vent box, inboard of the exhaust lane"),
         blk(4.0, 4.9, 0.4, 1.3, -1.8, 6.2, m=True, note="slim sill"),
         cz(5.25, 0.8, -1.8, 5.0, 0.6, "secondary", m=True, note="side pipe"),
         cz(5.25, 0.8, 5.0, 5.9, 0.8, "detail", m=True, note="pipe tip"),
@@ -1231,6 +1254,7 @@ def fbm_chin_bar():
     p = fbumper_brackets()
     p += [
         blk(-8.2, 8.2, 0.9, 1.4, -17.3, -16.9, "secondary", note="bar"),
+        blk(-1.0, 1.0, 0.95, 1.35, -16.9, -16.55, "detail", note="centre bracket to the nose pad"),
         blk(5.0, 5.4, 0.9, 2.0, -17.45, -17.3, "detail", m=True, note="over-rider"),
         blk(7.0, 7.4, 0.9, 2.0, -17.45, -17.3, "detail", m=True, note="over-rider"),
     ]
@@ -1238,14 +1262,19 @@ def fbm_chin_bar():
 
 
 def fbm_push_bars():
-    """Pro Street. An upright push-bar loop on each fender tip. Nothing across the middle."""
+    """Pro Street. A low braced push-bar frame held ahead of each fender tip. A raked stay plate runs from the top bar
+    back down to the hardpoint, so the frame is tied to any nose, pointed or blunt. Nothing across the middle."""
     p = fbumper_brackets()
     p += [
-        blk(5.3, 5.7, 0.9, 3.2, -17.2, -16.9, "detail", m=True, note="upright"),
-        blk(6.7, 7.1, 0.9, 3.2, -17.2, -16.9, "detail", m=True, note="upright"),
-        blk(5.3, 7.1, 3.2, 3.5, -17.2, -16.9, "secondary", m=True, note="top bar"),
-        blk(5.3, 7.1, 1.9, 2.1, -17.2, -16.9, "secondary", m=True, note="mid bar"),
+        blk(5.5, 6.9, 1.0, 1.4, -17.3, -16.9, "detail", m=True, note="standoff and low cross-member"),
+        blk(5.2, 5.5, 0.9, 2.4, -17.55, -17.25, "detail", m=True, note="upright"),
+        blk(6.9, 7.2, 0.9, 2.4, -17.55, -17.25, "detail", m=True, note="upright"),
+        blk(5.2, 7.2, 2.15, 2.4, -17.6, -17.2, "secondary", m=True, note="top bar"),
     ]
+    ya, za, yb, zb = 2.2, -17.25, 1.4, -16.72
+    ang = math.degrees(math.atan2(ya - yb, zb - za))
+    p.append(slab([0.9, 0.2, math.hypot(ya - yb, zb - za)], [6.2, (ya + yb) / 2, (za + zb) / 2], [ang, 0, 0],
+                  "secondary", m=True, note="raked stay plate from the top bar to the hardpoint"))
     return p
 
 
@@ -1272,13 +1301,14 @@ def fbm_chrome_blades():
 
 
 def fbm_air_dam():
-    """Turbo Pony. A deep centre air dam under a full-width light bar."""
+    """Turbo Pony. A deep centre air dam under a full-width light bar. The dam is a solid box that runs back
+    to the bumper plane, so it closes onto any centre nose."""
     p = fbumper_brackets()
     p += [
         blk(-8.3, 8.3, 0.9, 1.5, -17.1, -16.9, "detail", note="light bar housing"),
         blk(-8.1, 8.1, 1.1, 1.3, -17.2, -17.1, "neon", note="light bar"),
-        blk(-3.8, 3.8, -0.9, 0.78, -17.3, -16.6, note="air dam"),
-        blk(-3.2, 3.2, -0.4, 0.3, -17.4, -17.3, "detail", note="dam slot"),
+        blk(-3.8, 3.8, -0.9, 0.78, -17.8, -16.55, note="air dam box, back to the bumper plane"),
+        blk(-3.2, 3.2, -0.4, 0.3, -17.9, -17.8, "detail", note="dam slot"),
     ]
     return p
 
@@ -1376,7 +1406,6 @@ def rs_pedestal_wing():
         blk(1.4, 1.75, Y_SP, 6.4, 11.4, 12.8, "detail", m=True, note="upright"),
         blk(-4.6, 4.6, 6.4, 6.7, 11.0, 13.4, note="blade"),
         blk(4.6, 4.8, 6.0, 7.1, 10.8, 13.6, "secondary", m=True, note="end plate"),
-        blk(-4.6, 4.6, 6.7, 6.9, 13.2, 13.4, "secondary", note="gurney"),
     ]
 
 
@@ -1573,6 +1602,18 @@ BUILDS += [
     {"name": "Mixed: Mamba night runner", "cockpit": "mamba", "kit": "turbo",
      "modules": {"Engine1": "quad_cluster", "Engine2": "thunder_twins", "Boost": "megaphones", "FrontBody": "longhorn"},
      "paint": {"primary": "#23264f", "secondary": "#d9dbe6", "neon": "#ff2bd6"}},
+]
+
+# Full-width bumpers on the two noses that stop short of the bumper plane (the second review asked to see them).
+BUILDS += [
+    {"name": "Mixed: Stiletto with air dam", "cockpit": "stiletto", "kit": "wedge",
+     "modules": {"FrontBumper": "air_dam"}, "paint": PAINT["stiletto"]},
+    {"name": "Mixed: Outlaw with air dam", "cockpit": "outlaw", "kit": "prostreet",
+     "modules": {"FrontBumper": "air_dam"}, "paint": PAINT["outlaw"]},
+    {"name": "Mixed: Regent with chin bar", "cockpit": "regent", "kit": "wedge",
+     "modules": {"FrontBumper": "chin_bar"}, "paint": PAINT["regent"]},
+    {"name": "Mixed: Nightshift with chin bar", "cockpit": "nightshift", "kit": "prostreet",
+     "modules": {"FrontBumper": "chin_bar"}, "paint": PAINT["nightshift"]},
 ]
 
 SPEC = {

@@ -1,9 +1,9 @@
-# Muscle: frame standard (round 2, after critic fixes)
+# Muscle: frame standard (round 2, after the second review)
 
-Status: design exploration, 2026-10-01, re-checked 2026-10-02. Grey-box only. Not game content and not approved.
+Status: design exploration, 2026-10-01, second review fixes 2026-10-02. Grey-box only. Not game content and not approved.
 Source: `scripts/vehicle_blockouts/gen/muscle.py` writes `scripts/vehicle_blockouts/specs/muscle.json`. Previews: `scripts/vehicle_blockouts/previews/muscle/`.
 
-American muscle and pony cars as one-piece hover jets. Long bonnet, short deck, wide haunches. No wheels: each arch is blanked, vented or filled by a lift jet. The cabin sits well back: the bonnet is 11.3 studs, the cabin 8.2 and the tail 5.4 to 6.9. The body is about 10.9 W x 6.6 H x 25.4 L. With side burners, tail engine and spoiler the 15 builds measure 12.3 to 12.6 W, 6.8 to 8.0 H and 26.1 to 27.0 L, against a 10 x 6 x 24 target.
+American muscle and pony cars as one-piece hover jets. Long bonnet, short deck, wide haunches. No wheels: each arch is blanked, vented or filled by a lift jet. The cabin sits well back: the bonnet is 11.3 studs, the cabin 8.2 and the tail 5.4 to 6.9. The body is about 10.9 W x 6.6 H x 25.4 L. With side burners, tail engine and spoiler the 15 builds measure 12.3 to 12.6 W, 6.6 to 8.0 H and 26.1 to 27.0 L, against a 10 x 6 x 24 target.
 
 Root space: +X right, +Y up, forward is -Z. Units are studs.
 
@@ -28,11 +28,11 @@ Envelopes do not overlap. `Hood`, `Roof` and `Accessory` are not used.
 ## Where the four fundamentals sit, and why
 
 - **Engine1, Hood Engine.** A turbine stands on the bonnet pad, just ahead of the cowl, where a blower would burst through. Every thrust face is 0.6 to 0.75 across and points up and back.
-- **Engine2, Tail Engine.** A turbine pack sits in an open bay between the haunch tails, where the boot was. It fills the chase camera.
-- **Stabilisers, Lift Jets.** Hardware in each arch. Each option fills, blanks or vents its arch and shows an intake, a body and a glowing nozzle.
-- **Boost, Side Burners.** Afterburners hang under the sills where side pipes ran. The glow shows from the side and the rear three-quarter.
+- **Engine2, Tail Engine.** A turbine pack sits in an open bay between the haunch tails, where the boot was. It fills the chase camera. Over-Under closes its bay with a body-colour tail panel; its two nozzles are 1.6 across.
+- **Stabilisers, Lift Jets.** Hardware in each arch. Each option fills, blanks or vents its arch and shows an intake, a body and a glowing nozzle. Every option reaches past the body skin (to X 5.7 or more; the skin is at 4.9 to 5.5). Jet bodies are `secondary`, not dark `detail`. Corner Turbines, Big 'n' Little and Vector Cans cant their nozzles outboard and have thrust faces 1.0 to 1.1 across. The other three keep 0.6 to 0.7.
+- **Boost, Side Burners.** Afterburners hang under the sills where side pipes ran. The glow shows from the side and the rear three-quarter. `thrust` marks nozzles only: the long edge strip on Sill Slots is `neon` lighting.
 
-Cylinders run fore and aft or cant down and back. Every pod and can is longer than it is wide; the arch nacelles and cans are 2.0 to 3.7 times as long as wide, except the three short cans of Skirted Triples (1.4 times). None is a disc, ring or drum.
+Cylinders run fore and aft or cant down, back and out. Every pod and can is longer than it is wide: from 1.4 times (Skirted Triples) to 3.3 times (the thin front jet of Big 'n' Little). None is a disc, ring or drum.
 
 ## Datums and hardpoint pads
 
@@ -55,16 +55,16 @@ Datums (X): door skin 4.75, arch back wall 3.3, Hood Engine pad half width 2.2 (
 
 | Kit | Native cockpit | Hood Engine | Tail Engine | Lift Jets | Side Burners | Nose and tail |
 |---|---|---|---|---|---|---|
-| Classic | Fastback | Shaker Turbine | Twin Barrel | Corner Turbines (twin tubes in the arch) | Side Pipes | Shark Nose (wing tips ahead of a recessed grille, deep brow), Coke Hips |
-| Pro Street | Hardtop | Blower Stack (low wide case, fat zoomies) | Mono Turbine | Big 'n' Little (long fat rear nacelle, skinny front jet) | Bazookas | Tilt Nose (wedge), Tubbed Tail |
-| Trans-Am | Notch | Cross-Ram Twins | Over-Under | Outriggers (louvred arch panel, outboard pod) | Megaphones (four-step flare) | Raked Nose (flat grille), Flared Kamm |
-| Modern | Modern | Cowl Slot Turbine (flat twin-rotor body, slot nozzle) | Slot Burner | Vector Cans (one long can in a square yoke) | Sill Slots (boxed intake and nozzle) | Bluff Nose (crowns, dome), High Deck |
+| Classic | Fastback | Shaker Turbine | Twin Barrel | Corner Turbines (two cans per arch, splayed and canted out) | Side Pipes | Shark Nose (wing tips ahead of a recessed grille, deep brow), Coke Hips |
+| Pro Street | Hardtop | Blower Stack (low wide case, fat zoomies) | Mono Turbine | Big 'n' Little (fat rear nacelle proud of the skin, thin canted front jet) | Bazookas | Tilt Nose (wedge), Tubbed Tail |
+| Trans-Am | Notch | Cross-Ram Twins | Over-Under (stack in a tail panel) | Outriggers (louvred arch panel, outboard pod) | Megaphones (four-step flare) | Raked Nose (flat grille), Flared Kamm |
+| Modern | Modern | Cowl Slot Turbine (flat twin-rotor body, slot nozzle) | Slot Burner | Vector Cans (one large can, yoke arm outside the skin) | Sill Slots (boxed intake and nozzle) | Bluff Nose (crowns, dome), High Deck |
 | Pony | Ragtop | Quad Pack | Quad Corners | Glide Paddles (nacelle, fin and swept paddle) | Lake Trios | Pony Beak (V prow), Slant Deck |
 | Restomod | Ute | Tunnel Ram (one tall ram stack) | Inline Four | Skirted Triples (half skirt, scoop, three cans) | Underslung Twins | Stacked Blades (lamp towers, arrow prow, power bulge), Square Tail |
 
-Each kit also has its own Rockers, bumpers and spoiler. The Restomod kit is now a clean modernised classic: Rocker Tube, Roll Pan, Tucked Pan and Fin Bar (two low fins joined by a light bar). Six kits by six cockpits gives 36 builds, all shown in `matrix.png` and, front and rear, in `row_<cockpit>.png`.
+Each kit also has its own Rockers, bumpers and spoiler. The Restomod kit is a clean modernised classic: Rocker Tube, Roll Pan, Tucked Pan and Fin Bar (two low fins joined by a light bar). Six kits by six cockpits gives 36 builds, all shown in `matrix.png` and, front and rear, in `row_<cockpit>.png`. `mix_a.png` and `mix_b.png` show twelve builds with a random option in every slot. Spoiler feet stand wholly on the haunch pads (Z 10.3 to 11.4), so they are supported on all six tails. Anything further back hangs from the blade, above Y 4.3. The Ducktail is a 9.0 wide ramp on two full-length buttresses: its ends are closed and the slot under the middle shows the tail engine.
 
-Cockpits differ behind and ahead of the B-pillar. Fastback: long roof, then louvred glass to the bulkhead. Hardtop: widest, tallest vinyl roof, tunnel-back window, buttresses. Notch: small narrow greenhouse set back, C-pillar to Z 7.0, deck about half the bonnet. Modern: high shoulder, chopped black roof, longest screen. Ragtop: open, frameless screen. Ute: upright screen under a peaked visor, sheer cab back at Z 3.1, low open bed.
+Cockpits differ in roofline and glass, not only paint. Fastback: narrow (X ±3.9), roof peak over the B-pillar, then one louvred slope from Z 2.3 to the bulkhead. Hardtop: widest and tallest (X ±4.5, Y 6.2), upright screen, long thick C-pillar, upright rear window, two flying buttresses with bare deck between. Notch: smallest greenhouse (X ±3.1, Y 5.6), screen base at Z 0.0, C-pillar ends at Z 6.7, the most flat deck. Modern: shoulder at Y 4.25, slit glass, chopped black roof at Y 5.05, screen raked from the cowl to Z 2.6, shoulders that run on to the end of the deck. Ragtop: open, frameless screen. Ute: upright screen under a peaked visor, sheer cab back at Z 3.1, low open bed. Whole-outline scores between the four closed cabins are now 0.15 to 0.18 (they were 0.08 to 0.17).
 
 ## Authoring rules for real meshes
 
@@ -72,29 +72,29 @@ Cockpits differ behind and ahead of the B-pillar. Fastback: long roof, then louv
 2. Stay inside the slot envelope. Nothing may cross into another envelope.
 3. Every cockpit ships the same chassis: sill rails, seam plates, door body to Y 3.3 and the belt stripe. Only the glass, roof and deck trim change.
 4. A cockpit that raises its shoulder above the belt must ramp back to Y 3.3 before each seam.
-5. Every Nose Clip keeps the bonnet pad, both arch roofs, the arch back wall and the cowl section. Every Tail keeps the deck pad, both arch roofs, the bulkhead and the haunch pads flat to Z 11.4.
+5. Every Nose Clip keeps the bonnet pad, both arch roofs, the arch back wall and the cowl section. Every Tail keeps the deck pad, both arch roofs, the bulkhead and the haunch pads flat to Z 11.4. Spoiler feet stay on those pads.
 6. A clip wider than the door skin tapers back to X 4.9 or less at its seam. The front wing tapers over 3.2 studs and the haunch kicks out over 1.2: that is the Coke-bottle waist. No step at either seam.
 7. Modules land on pads only, never on a styled surface. Sit within 0.1 stud of the pad, or bridge a wider shadow gap (0.6 at most) with dark `detail` linkage.
 8. The cockpit owns all glass and the roofline. Each arch, nose, hip and tail belongs to one slot only.
 9. Engines, Lift Jets and Side Burners show an intake, a body and a `thrust` nozzle from outside. A nozzle or pod is longer than it is wide. No rings, discs or drums.
-10. A Lift Jet module must leave no empty arch: fill it with the jet, or close it with a panel, skirt or liner inside the module.
+10. A Lift Jet module must leave no empty arch: fill it with the jet, or close it with a panel, skirt or liner inside the module. Part of it must stand outside the body skin, so it shows from above.
 11. Carry the belt stripe at Y 2.35..2.65 on every body part. Give every part a paint channel.
 12. Options for one slot differ in outline: length, plan shape, height or count. Detail alone is not enough.
 
 ## Validator result
 
 `SPEC muscle: 0 error(s), 0 warning(s) {'cockpits': 6, 'kits': 6, 'modules': 60, 'builds': 15, 'worst_gap': 0.1, ...}`
-`'min_distinctness': {'Engine1': 0.42, 'Engine2': 0.41, 'Stabilisers': 0.46, 'Boost': 0.37, 'FrontBody': 0.44, 'RearBody': 0.38, 'SidePods': 0.45, 'FrontBumper': 0.51, 'RearBumper': 0.47, 'RearSpoiler': 0.55, 'Cockpit': 0.27}`
-`'min_distinctness_whole': {'Engine1': 0.31, 'Engine2': 0.37, 'Stabilisers': 0.36, 'Boost': 0.32, 'FrontBody': 0.05, 'RearBody': 0.05, 'SidePods': 0.44, 'FrontBumper': 0.37, 'RearBumper': 0.27, 'RearSpoiler': 0.46, 'Cockpit': 0.08}`
+`'min_distinctness': {'Engine1': 0.42, 'Engine2': 0.4, 'Stabilisers': 0.47, 'Boost': 0.39, 'FrontBody': 0.44, 'RearBody': 0.38, 'SidePods': 0.45, 'FrontBumper': 0.51, 'RearBumper': 0.47, 'RearSpoiler': 0.6, 'Cockpit': 0.27}`
+`'min_distinctness_whole': {'Engine1': 0.31, 'Engine2': 0.37, 'Stabilisers': 0.35, 'Boost': 0.32, 'FrontBody': 0.05, 'RearBody': 0.05, 'SidePods': 0.44, 'FrontBumper': 0.37, 'RearBumper': 0.27, 'RearSpoiler': 0.44, 'Cockpit': 0.08}`
 
-The first line is the free outline: the area every option shares is removed. It is the score the targets apply to (0.35 for big slots, 0.25 for bumpers and cockpits). The second line is the whole outline. It stays low for noses, tails and cockpits because they all carry the same pads, arches and chassis by rule. Worst contact gap 0.1 studs. `gen/muscle.py --table` prints every pair.
+The first line is the free outline: the area every option shares is removed. It is the score the targets apply to (0.35 for big slots, 0.25 for bumpers and cockpits). The second line is the whole outline. It stays low for noses, tails and cockpits because they all carry the same pads, arches and chassis by rule. The whole-outline cockpit minimum (0.08) is Fastback and Ute. The lowest pair of closed cabins is Notch and Modern at 0.15. Worst contact gap 0.1 studs. `gen/muscle.py --table` prints every pair.
 
 ## Open risks
 
-- Three pairs sit close to their targets: Side Pipes and Underslung Twins (0.37), High Deck and Square Tail (0.38), Fastback and Ute (0.27 against 0.25). They read differently by eye, but there is little margin. The part count is tight too: the largest build has 219 parts against a limit of 220, and Skirted Triples is the heaviest Lift Jet option.
-- The rear arch now sits hard against the back seam and the rear overhang is short (1.4 to 2.9 studs). That gives the short deck, but tails can vary only in length, hip line and lower edge. Builds stay wider and longer than the target because the Side Burners and Tail Engine sit outside the body.
-- A short nose or tail leaves a long bumper standing clear of the body: about 1 stud with Bluff Nose or Pony Beak and the Chrome Blade, and 0.7 with Flared Kamm and Chrome Quarters or Tucked Pan. Slant Deck falls away behind Z 11.4, so a tall spoiler upright shows a gap under its trailing edge. Real meshes may want filler panels.
-- The Modern kit's tail engine and boost are still flat slot burners. Only its Hood Engine has a turbine body.
+- Three pairs sit close to their targets: Fastback and Ute (0.27 against 0.25), High Deck and Square Tail (0.38), Side Pipes and Underslung Twins (0.39). Three closed-cabin pairs sit at 0.15 whole outline, which is the review's aim, with no margin. The part count is tight too: the largest build (Ute with its Restomod kit) has 219 parts against a limit of 220. The Notch greenhouse is now narrow (6.2 wide on a 9.5 wide body) and the Modern roof is very low (1.75 above the belt). Both were pushed to separate the cabins. Real meshes may want softer numbers.
+- The rear overhang is short (1.4 to 2.9 studs), so tails vary only in length, hip line and lower edge. Builds stay wider and longer than the target because the Side Burners and Tail Engine sit outside the body.
+- A short nose or tail leaves a long bumper standing clear of the body: about 1 stud with Bluff Nose or Pony Beak and the Chrome Blade, and 0.7 with Flared Kamm and Chrome Quarters or Tucked Pan. The Ducktail also overhangs Flared Kamm by 0.9, on a raked buttress. A spoiler cannot go below Y 4.3 over the engine bay, so the Ducktail always bridges the bay one stud above the deck. Its slot is deepest over Inline Four (1.55 studs).
+- With Bazookas and Big 'n' Little the burner fires 0.2 studs ahead of the rear nacelle intake. It reads as two units, but it is close. The Modern kit's tail engine and boost are still flat slot burners. The Modern paint has a black secondary, so its Lift Jet bodies are dark; the glow and the outboard stance carry them.
 - Arch panels and skirts sit at fixed X (4.72 to 5.25). On the narrowest clip the panel is flush and the skirt stands 0.35 proud; on the widest they sit up to 0.5 recessed.
-- All 36 kit builds were checked front and rear in `matrix.png` and the row sheets (24 of them at full size). Ten builds were viewed in all four views during the fix rounds, two of them after the last change. Other mixed builds are covered by the validator's contact check only.
+- In this round all twelve mixes were viewed front and rear at full size after the last change, with 12 matrix cells, the Fastback row, parts of the Hardtop, Notch and Modern rows and the fundamentals sheet. Other pairings are covered by the validator's contact check only.
 - `docs/design/vehicle-categories/muscle.md` (concept sheet) still uses the old names Skirted Vanes, Sports Bar, Step Bumper, Nerf Rail and Bed Tail.

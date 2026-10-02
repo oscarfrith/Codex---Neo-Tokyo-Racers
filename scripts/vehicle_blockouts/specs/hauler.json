@@ -733,17 +733,32 @@
     {
      "shape": "block",
      "size": [
-      4.8,
+      6.8,
       0.6,
-      1.8
+      2.8
      ],
      "pos": [
       0.0,
       7.1,
-      -3.5
+      -3.0
      ],
-     "ch": "detail",
-     "note": "roof pad riser to Y 7.4"
+     "ch": "primary",
+     "note": "raised roof cap: the roof pad at Y 7.4, as wide as any Roof Rig"
+    },
+    {
+     "shape": "wedge",
+     "size": [
+      6.8,
+      0.6,
+      0.4
+     ],
+     "pos": [
+      0.0,
+      7.1,
+      -4.6
+     ],
+     "ch": "primary",
+     "note": "cap brow"
     },
     {
      "shape": "block",
@@ -770,42 +785,73 @@
      "shape": "block",
      "size": [
       7.6,
-      0.5,
+      3.1,
       4.4
      ],
      "pos": [
       0.0,
-      0.75,
+      2.05,
       0.6
      ],
+     "ch": "primary",
+     "note": "pack body: lower body and beltline run back to the Bed seam"
+    },
+    {
+     "shape": "block",
+     "size": [
+      7.72,
+      0.4,
+      4.4
+     ],
+     "pos": [
+      0.0,
+      3.1,
+      0.58
+     ],
+     "ch": "secondary",
+     "note": "stripe, carried back over the pack"
+    },
+    {
+     "shape": "block",
+     "size": [
+      0.07,
+      2.8,
+      0.14
+     ],
+     "pos": [
+      3.835,
+      2.2,
+      -1.55
+     ],
      "ch": "detail",
-     "note": "pack tray: keeps the Side Gear seam closed behind the short cab"
+     "mirror": true,
+     "note": "panel gap between cab and pack"
     },
     {
      "shape": "block",
      "size": [
       4.8,
-      1.6,
-      3.9
+      1.0,
+      3.7
      ],
      "pos": [
       0.0,
-      1.8,
-      0.85
+      4.1,
+      0.75
      ],
      "ch": "detail",
-     "note": "fuel cell: reaches the Bed seam"
+     "note": "fuel cell on the pack deck"
     },
     {
      "shape": "block",
      "size": [
       3.8,
-      0.8,
+      0.7,
       1.8
      ],
      "pos": [
       0.0,
-      3.0,
+      4.95,
       0.3
      ],
      "ch": "secondary",
@@ -815,12 +861,12 @@
      "shape": "block",
      "size": [
       0.5,
-      6.2,
+      3.6,
       0.5
      ],
      "pos": [
       3.15,
-      4.1,
+      5.4,
       2.15
      ],
      "ch": "detail",
@@ -1694,17 +1740,63 @@
     {
      "shape": "block",
      "size": [
-      4.8,
+      6.8,
       0.4,
-      1.8
+      3.4
      ],
      "pos": [
       0.0,
       7.2,
-      -3.5
+      -3.3
+     ],
+     "ch": "primary",
+     "note": "roof cap: the roof pad at Y 7.4, as wide as any Roof Rig; it overhangs the cab back as a shade"
+    },
+    {
+     "shape": "block",
+     "size": [
+      0.3,
+      4.5,
+      0.3
+     ],
+     "pos": [
+      3.05,
+      4.75,
+      -1.85
      ],
      "ch": "detail",
-     "note": "roof pad riser to Y 7.4"
+     "mirror": true,
+     "note": "cab guard post: holds the cap overhang"
+    },
+    {
+     "shape": "block",
+     "size": [
+      5.8,
+      0.4,
+      0.3
+     ],
+     "pos": [
+      0.0,
+      6.8,
+      -1.85
+     ],
+     "ch": "detail",
+     "note": "cab guard top bar"
+    },
+    {
+     "shape": "block",
+     "size": [
+      5.8,
+      0.25,
+      0.2
+     ],
+     "pos": [
+      0.0,
+      4.725,
+      -1.85
+     ],
+     "ch": "detail",
+     "note": "cab guard mid bar"
     },
     {
      "shape": "block",
@@ -4062,79 +4154,109 @@
    "doghouse": {
     "name": "Doghouse",
     "culture": "Courier",
-    "note": "Courier: a tall engine cover hard against the cab, fed by a low intake trunk from the nose. Two vents in its lid fire up.",
+    "note": "Courier: a low engine cover hard against the cab, open at the front. A slim turbine barrel runs out of it to a round intake at the nose. Two up-turned nozzles stand in tandem on the lid.",
     "parts": [
      {
       "shape": "block",
       "size": [
        3.4,
-       2.38,
-       3.2
+       1.78,
+       2.8
       ],
       "pos": [
        0.0,
-       4.81,
-       -8.6
+       4.51,
+       -8.4
       ],
       "ch": "secondary",
-      "note": "doghouse: engine cover against the cab"
+      "note": "doghouse: low engine cover against the cab"
      },
      {
       "shape": "block",
       "size": [
-       3.4,
-       0.98,
-       1.0
+       2.8,
+       1.35,
+       0.12
       ],
       "pos": [
        0.0,
-       4.11,
-       -10.7
+       4.525,
+       -9.86
       ],
-      "ch": "secondary",
-      "note": "doghouse nose"
-     },
-     {
-      "shape": "wedge",
-      "size": [
-       3.4,
-       1.4,
-       1.0
-      ],
-      "pos": [
-       0.0,
-       5.3,
-       -10.7
-      ],
-      "ch": "secondary",
-      "note": "sloped front"
+      "ch": "detail",
+      "note": "open mouth of the cover: the barrel comes out here"
      },
      {
       "shape": "block",
       "size": [
-       1.4,
-       0.88,
+       1.2,
+       0.23,
        2.2
       ],
       "pos": [
        0.0,
-       4.06,
-       -12.3
+       3.735,
+       -11.3
       ],
       "ch": "detail",
-      "note": "intake trunk"
+      "note": "cradle on the hood pad"
      },
      {
-      "shape": "block",
+      "shape": "cyl_z",
       "size": [
-       2.0,
-       1.28,
-       0.45
+       1.5,
+       1.5,
+       3.1
       ],
       "pos": [
        0.0,
-       4.26,
-       -13.525
+       4.5,
+       -11.35
+      ],
+      "ch": "detail",
+      "note": "turbine barrel, running out of the cover"
+     },
+     {
+      "shape": "cyl_z",
+      "size": [
+       1.7,
+       1.7,
+       1.0
+      ],
+      "pos": [
+       0.0,
+       4.5,
+       -11.4
+      ],
+      "ch": "secondary",
+      "note": "compressor band"
+     },
+     {
+      "shape": "cyl_z",
+      "size": [
+       1.75,
+       1.75,
+       0.82
+      ],
+      "pos": [
+       0.0,
+       4.5,
+       -13.31
+      ],
+      "ch": "secondary",
+      "note": "round intake bell at the nose"
+     },
+     {
+      "shape": "cyl_z",
+      "size": [
+       1.3,
+       1.3,
+       0.06
+      ],
+      "pos": [
+       0.0,
+       4.5,
+       -13.75
       ],
       "ch": "detail",
       "note": "intake mouth"
@@ -4143,48 +4265,77 @@
       "shape": "block",
       "size": [
        0.08,
-       1.2,
-       2.4
+       0.9,
+       2.0
       ],
       "pos": [
        1.74,
-       4.8,
-       -8.6
+       4.55,
+       -8.4
       ],
       "ch": "detail",
       "mirror": true,
       "note": "side louvre"
      },
      {
-      "shape": "block",
+      "shape": "cyl_y",
       "size": [
-       1.05,
-       0.17,
-       2.2
-      ],
-      "pos": [
-       0.975,
-       6.085,
-       -8.6
-      ],
-      "ch": "thrust",
-      "mirror": true,
-      "note": "lid vent jet: fires up"
-     },
-     {
-      "shape": "block",
-      "size": [
-       0.5,
-       0.12,
-       2.8
+       1.3,
+       0.4,
+       1.3
       ],
       "pos": [
        0.0,
-       6.06,
-       -8.6
+       5.6,
+       -8.95
       ],
       "ch": "detail",
-      "note": "lid spine"
+      "note": "up-turned nozzle"
+     },
+     {
+      "shape": "cyl_y",
+      "size": [
+       1.05,
+       0.35,
+       1.05
+      ],
+      "pos": [
+       0.0,
+       5.975,
+       -8.95
+      ],
+      "ch": "thrust",
+      "note": "jet: fires up, clear of the cab"
+     },
+     {
+      "shape": "cyl_y",
+      "size": [
+       1.3,
+       0.4,
+       1.3
+      ],
+      "pos": [
+       0.0,
+       5.6,
+       -7.75
+      ],
+      "ch": "detail",
+      "note": "up-turned nozzle"
+     },
+     {
+      "shape": "cyl_y",
+      "size": [
+       1.05,
+       0.35,
+       1.05
+      ],
+      "pos": [
+       0.0,
+       5.975,
+       -7.75
+      ],
+      "ch": "thrust",
+      "note": "jet: fires up, clear of the cab"
      }
     ]
    }
@@ -4490,7 +4641,7 @@
    "deck_burner": {
     "name": "Deck Burner",
     "culture": "Minitruck",
-    "note": "Minitruck: a low, wide slot burner on the deck with a turbine hump down its middle. The slot nozzle is raised at the tail and glows full width.",
+    "note": "Minitruck: a low, wide slot burner on the deck with a bright turbine hump down its dark body. The slot nozzle is raised at the tail, edged in neon, and glows full width.",
     "parts": [
      {
       "shape": "block",
@@ -4504,8 +4655,23 @@
        2.415,
        8.7
       ],
+      "ch": "detail",
+      "note": "flat burner body: dark, so it reads on a bright deck"
+     },
+     {
+      "shape": "block",
+      "size": [
+       6.0,
+       0.1,
+       6.0
+      ],
+      "pos": [
+       0.0,
+       2.85,
+       8.2
+      ],
       "ch": "secondary",
-      "note": "flat burner body"
+      "note": "body rim plate: outlines the burner on a dark deck"
      },
      {
       "shape": "wedge",
@@ -4519,8 +4685,23 @@
        2.415,
        4.7
       ],
-      "ch": "detail",
+      "ch": "secondary",
       "note": "intake ramp"
+     },
+     {
+      "shape": "block",
+      "size": [
+       5.8,
+       0.1,
+       0.6
+      ],
+      "pos": [
+       0.0,
+       3.65,
+       13.2
+      ],
+      "ch": "neon",
+      "note": "neon edge over the slot"
      },
      {
       "shape": "cyl_z",
@@ -4606,7 +4787,7 @@
       ],
       "pos": [
        2.0,
-       2.86,
+       2.96,
        7.2
       ],
       "ch": "detail",
@@ -4622,7 +4803,7 @@
       ],
       "pos": [
        2.0,
-       2.86,
+       2.96,
        8.8
       ],
       "ch": "detail",
@@ -4638,7 +4819,7 @@
       ],
       "pos": [
        2.0,
-       2.86,
+       2.96,
        10.4
       ],
       "ch": "detail",
@@ -7019,87 +7200,108 @@
    "tail_slot": {
     "name": "Tail Slots",
     "culture": "Minitruck",
-    "note": "Minitruck: two tall slot burners on the bed tail corners, one each side of the Bed Engine. Their slots stand upright.",
+    "note": "Minitruck: one flat duckbill burner on each bed tail corner, low on the deck line. A body-colour root, a wide flat bill with a neon lip and a glow strip 2 wide.",
     "parts": [
      {
       "shape": "block",
       "size": [
        1.1,
-       1.3,
-       1.45
+       0.75,
+       0.65
       ],
       "pos": [
-       3.95,
-       2.7,
-       14.775
+       4.45,
+       2.425,
+       14.375
       ],
-      "ch": "secondary",
+      "ch": "primary",
       "mirror": true,
-      "note": "slot burner body on the flank port"
+      "note": "burner root on the flank port, body colour, narrow"
      },
      {
       "shape": "block",
       "size": [
-       0.9,
-       1.1,
-       0.4
+       1.7,
+       0.55,
+       0.5
       ],
       "pos": [
-       3.95,
-       2.7,
-       15.7
+       4.45,
+       2.325,
+       14.95
       ],
       "ch": "detail",
       "mirror": true,
-      "note": "slot nozzle"
+      "note": "throat: the bill fans out from the root"
+     },
+     {
+      "shape": "wedge",
+      "size": [
+       1.1,
+       0.2,
+       0.5
+      ],
+      "pos": [
+       4.45,
+       2.7,
+       14.95
+      ],
+      "ch": "secondary",
+      "rot": [
+       0.0,
+       180.0,
+       0.0
+      ],
+      "mirror": true,
+      "note": "bill fairing"
      },
      {
       "shape": "block",
       "size": [
-       0.6,
-       0.8,
-       0.25
+       2.2,
+       0.55,
+       0.65
       ],
       "pos": [
-       3.95,
-       2.7,
-       16.025
+       4.45,
+       2.325,
+       15.525
+      ],
+      "ch": "detail",
+      "mirror": true,
+      "note": "duckbill: wide and flat"
+     },
+     {
+      "shape": "block",
+      "size": [
+       2.2,
+       0.08,
+       0.35
+      ],
+      "pos": [
+       4.45,
+       2.64,
+       15.675
+      ],
+      "ch": "neon",
+      "mirror": true,
+      "note": "neon lip"
+     },
+     {
+      "shape": "block",
+      "size": [
+       2.0,
+       0.35,
+       0.3
+      ],
+      "pos": [
+       4.45,
+       2.325,
+       16.0
       ],
       "ch": "thrust",
       "mirror": true,
-      "note": "boost jet: an upright slot"
-     },
-     {
-      "shape": "block",
-      "size": [
-       0.12,
-       0.6,
-       0.4
-      ],
-      "pos": [
-       4.56,
-       2.7,
-       14.5
-      ],
-      "ch": "detail",
-      "mirror": true,
-      "note": "intake louvre"
-     },
-     {
-      "shape": "block",
-      "size": [
-       0.12,
-       0.6,
-       0.4
-      ],
-      "pos": [
-       4.56,
-       2.7,
-       15.1
-      ],
-      "ch": "detail",
-      "mirror": true,
-      "note": "intake louvre"
+      "note": "boost jet: a flat slot 2 wide"
      }
     ]
    },
@@ -7193,50 +7395,98 @@
    "tail_cans": {
     "name": "Tail Cans",
     "culture": "Cab",
-    "note": "Cab: two afterburner cans in square shrouds, set wide on the bed tail corners, well clear of the Bed Engine.",
+    "note": "Cab: four round afterburner cans, two side by side on each bed tail corner, the outer one longer. Body colour with a neon band, no shroud.",
     "parts": [
      {
       "shape": "block",
       "size": [
-       1.6,
-       1.3,
-       1.25
+       2.08,
+       0.08,
+       0.3
       ],
       "pos": [
-       4.7,
-       2.7,
-       14.675
+       4.46,
+       3.34,
+       14.4
       ],
-      "ch": "secondary",
+      "ch": "neon",
       "mirror": true,
-      "note": "square shroud on the flank port"
-     },
-     {
-      "shape": "block",
-      "size": [
-       1.4,
-       1.1,
-       0.15
-      ],
-      "pos": [
-       4.7,
-       2.7,
-       15.375
-      ],
-      "ch": "detail",
-      "mirror": true,
-      "note": "shroud lip"
+      "note": "neon strap over both cans"
      },
      {
       "shape": "cyl_z",
       "size": [
-       1.2,
-       1.2,
+       0.95,
+       0.95,
+       0.4
+      ],
+      "pos": [
+       3.92,
+       2.85,
+       14.25
+      ],
+      "ch": "primary",
+      "mirror": true,
+      "note": "afterburner can, body colour, longer than wide, high on the flank port"
+     },
+     {
+      "shape": "cyl_z",
+      "size": [
+       0.85,
+       0.85,
        0.5
       ],
       "pos": [
-       4.7,
-       2.7,
+       3.92,
+       2.85,
+       14.7
+      ],
+      "ch": "detail",
+      "mirror": true,
+      "note": "can nozzle"
+     },
+     {
+      "shape": "cyl_z",
+      "size": [
+       0.7,
+       0.7,
+       0.35
+      ],
+      "pos": [
+       3.92,
+       2.85,
+       15.125
+      ],
+      "ch": "thrust",
+      "mirror": true,
+      "note": "boost jet"
+     },
+     {
+      "shape": "cyl_z",
+      "size": [
+       0.95,
+       0.95,
+       1.25
+      ],
+      "pos": [
+       5.0,
+       2.85,
+       14.675
+      ],
+      "ch": "primary",
+      "mirror": true,
+      "note": "afterburner can, body colour, longer than wide, high on the flank port"
+     },
+     {
+      "shape": "cyl_z",
+      "size": [
+       0.85,
+       0.85,
+       0.5
+      ],
+      "pos": [
+       5.0,
+       2.85,
        15.55
       ],
       "ch": "detail",
@@ -7246,34 +7496,18 @@
      {
       "shape": "cyl_z",
       "size": [
-       1.1,
-       1.1,
+       0.7,
+       0.7,
        0.35
       ],
       "pos": [
-       4.7,
-       2.7,
+       5.0,
+       2.85,
        15.975
       ],
       "ch": "thrust",
       "mirror": true,
       "note": "boost jet"
-     },
-     {
-      "shape": "block",
-      "size": [
-       0.08,
-       0.6,
-       0.7
-      ],
-      "pos": [
-       5.54,
-       2.7,
-       14.65
-      ],
-      "ch": "detail",
-      "mirror": true,
-      "note": "side vent"
      }
     ]
    },
@@ -7369,7 +7603,7 @@
    "flare_nose": {
     "name": "Flare Nose",
     "culture": "Prerunner",
-    "note": "Prerunner: a thin shell held high over the bare frame. Fenders slope from the cowl deck to a beak, a skid plate rises under it, wide flares cover the lift jets.",
+    "note": "Prerunner: a thin shell held high over the bare frame. Fenders slope from the cowl deck to a beak, a full-width skid plate kicks up to the nose under it, wide flares cover the lift jets.",
     "parts": [
      {
       "shape": "block",
@@ -7452,22 +7686,42 @@
      {
       "shape": "block",
       "size": [
-       5.2,
+       8.6,
        0.16,
-       5.0
+       5.072
       ],
       "pos": [
        0.0,
-       1.45,
-       -10.6
+       1.075,
+       -10.5
       ],
       "ch": "secondary",
       "rot": [
-       17.5,
+       9.648,
        0.0,
        0.0
       ],
-      "note": "skid plate rising from the frame to the nose"
+      "note": "skid plate rising from the frame, as wide as the shell"
+     },
+     {
+      "shape": "block",
+      "size": [
+       8.6,
+       0.16,
+       1.224
+      ],
+      "pos": [
+       0.0,
+       1.975,
+       -13.365
+      ],
+      "ch": "secondary",
+      "rot": [
+       59.036,
+       0.0,
+       0.0
+      ],
+      "note": "skid face kicked up to the nose: the face behind every Front Bar"
      },
      {
       "shape": "cyl_z",
@@ -8364,7 +8618,7 @@
    "stub_nose": {
     "name": "Stub Nose",
     "culture": "Courier",
-    "note": "Courier: a short, blunt van nose. The body stops 1.4 short of the other clips and its face leans back to the cowl deck. The frame prongs and the Hood Engine stand out ahead of it.",
+    "note": "Courier: a short, blunt van nose. The body stops 1.4 short of the other clips and its face leans back to the cowl deck. Ahead of it a dark porch stands on the frame prongs: an apron tray for the Front Bar and a hood shelf for the Hood Engine.",
     "parts": [
      {
       "shape": "block",
@@ -8491,6 +8745,36 @@
      {
       "shape": "block",
       "size": [
+       6.8,
+       0.6,
+       1.55
+      ],
+      "pos": [
+       0.0,
+       0.9,
+       -13.075
+      ],
+      "ch": "detail",
+      "note": "apron tray across the prongs: a face behind every Front Bar. Narrower than the body, so the nose corners stay cut back"
+     },
+     {
+      "shape": "block",
+      "size": [
+       6.8,
+       0.3,
+       0.07
+      ],
+      "pos": [
+       0.0,
+       0.9,
+       -13.885
+      ],
+      "ch": "secondary",
+      "note": "apron band"
+     },
+     {
+      "shape": "block",
+      "size": [
        8.52,
        0.2,
        0.36
@@ -8502,6 +8786,58 @@
       ],
       "ch": "secondary",
       "note": "nose band"
+     },
+     {
+      "shape": "block",
+      "size": [
+       4.6,
+       0.3,
+       1.5
+      ],
+      "pos": [
+       0.0,
+       3.45,
+       -13.05
+      ],
+      "ch": "detail",
+      "note": "hood shelf: carries the hood pad out to the nose line under every Hood Engine"
+     },
+     {
+      "shape": "block",
+      "size": [
+       0.4,
+       2.05,
+       0.4
+      ],
+      "pos": [
+       2.1,
+       2.275,
+       -13.6
+      ],
+      "ch": "detail",
+      "mirror": true,
+      "note": "shelf upright on the prong"
+     },
+     {
+      "shape": "block",
+      "size": [
+       0.3,
+       0.3,
+       1.556
+      ],
+      "pos": [
+       2.1,
+       2.75,
+       -12.85
+      ],
+      "ch": "detail",
+      "rot": [
+       45.0,
+       0.0,
+       0.0
+      ],
+      "mirror": true,
+      "note": "shelf brace back to the nose"
      },
      {
       "shape": "block",
@@ -8792,7 +9128,7 @@
    "flatbed": {
     "name": "Flatbed",
     "culture": "Lifted",
-    "note": "Lifted: thin flat deck carried high and wider than the cab, open headboard frame, stake rails. Only crossmembers under it.",
+    "note": "Lifted: thin flat deck carried high and wider than the cab. Body-colour deck wings, headboard hoop and tail sill; stake rails. Only crossmembers under it.",
     "parts": [
      {
       "shape": "block",
@@ -8852,9 +9188,40 @@
        2.175,
        9.4
       ],
-      "ch": "secondary",
+      "ch": "primary",
       "mirror": true,
-      "note": "deck wing: the flatbed is wider than the cab"
+      "note": "deck wing, body colour: the flatbed is wider than the cab"
+     },
+     {
+      "shape": "block",
+      "size": [
+       3.8,
+       0.7,
+       0.6
+      ],
+      "pos": [
+       0.0,
+       0.85,
+       13.6
+      ],
+      "ch": "primary",
+      "note": "tail sill, body colour: painted Rear Bars meet painted body"
+     },
+     {
+      "shape": "block",
+      "size": [
+       1.6,
+       0.7,
+       0.6
+      ],
+      "pos": [
+       3.5,
+       0.85,
+       13.6
+      ],
+      "ch": "primary",
+      "mirror": true,
+      "note": "tail sill"
      },
      {
       "shape": "block",
@@ -8929,9 +9296,9 @@
        4.2,
        3.55
       ],
-      "ch": "detail",
+      "ch": "primary",
       "mirror": true,
-      "note": "headboard post"
+      "note": "headboard hoop post, body colour"
      },
      {
       "shape": "block",
@@ -8945,7 +9312,8 @@
        6.15,
        3.55
       ],
-      "ch": "detail"
+      "ch": "primary",
+      "note": "headboard hoop top"
      },
      {
       "shape": "block",
@@ -9714,7 +10082,7 @@
    "parcel_box": {
     "name": "Parcel Box",
     "culture": "Courier",
-    "note": "Courier: a closed box that carries the cab roofline back, then stops at a roll-up door. Behind it an open tail deck, so the Bed Engine pokes out of the box and shows.",
+    "note": "Courier: a box that carries the cab roofline back, then stops at a roll-up door. A barred hatch low in each side shows the Bed Engine from the front. Behind the box an open tail deck shows its nozzles.",
     "parts": [
      {
       "shape": "block",
@@ -9797,17 +10165,97 @@
       "shape": "block",
       "size": [
        1.0,
-       4.2,
+       0.7,
        6.3
       ],
       "pos": [
        3.8,
-       4.1,
+       2.35,
        6.45
       ],
       "ch": "primary",
       "mirror": true,
-      "note": "box side: blank panel"
+      "note": "box side below the engine hatch"
+     },
+     {
+      "shape": "block",
+      "size": [
+       1.0,
+       1.9,
+       6.3
+      ],
+      "pos": [
+       3.8,
+       5.25,
+       6.45
+      ],
+      "ch": "primary",
+      "mirror": true,
+      "note": "box side above the engine hatch: blank panel"
+     },
+     {
+      "shape": "block",
+      "size": [
+       1.0,
+       1.6,
+       1.4
+      ],
+      "pos": [
+       3.8,
+       3.5,
+       4.0
+      ],
+      "ch": "primary",
+      "mirror": true,
+      "note": "front pillar"
+     },
+     {
+      "shape": "block",
+      "size": [
+       1.0,
+       1.6,
+       1.1
+      ],
+      "pos": [
+       3.8,
+       3.5,
+       9.05
+      ],
+      "ch": "primary",
+      "mirror": true,
+      "note": "rear pillar"
+     },
+     {
+      "shape": "block",
+      "size": [
+       0.2,
+       1.6,
+       0.2
+      ],
+      "pos": [
+       3.8,
+       3.5,
+       5.95
+      ],
+      "ch": "detail",
+      "mirror": true,
+      "note": "hatch bar: the Bed Engine shows through at engine height"
+     },
+     {
+      "shape": "block",
+      "size": [
+       0.2,
+       1.6,
+       0.2
+      ],
+      "pos": [
+       3.8,
+       3.5,
+       7.25
+      ],
+      "ch": "detail",
+      "mirror": true,
+      "note": "hatch bar"
      },
      {
       "shape": "block",
@@ -9858,17 +10306,17 @@
       "shape": "block",
       "size": [
        0.08,
-       1.2,
+       1.0,
        5.7
       ],
       "pos": [
        4.34,
-       4.8,
+       5.1,
        6.45
       ],
       "ch": "secondary",
       "mirror": true,
-      "note": "livery band"
+      "note": "livery band above the hatch"
      },
      {
       "shape": "block",
@@ -10580,6 +11028,21 @@
       "note": "hoop top"
      },
      {
+      "shape": "block",
+      "size": [
+       3.2,
+       0.3,
+       0.2
+      ],
+      "pos": [
+       0.0,
+       2.6,
+       -15.0
+      ],
+      "ch": "detail",
+      "note": "lamp bar across the hoop"
+     },
+     {
       "shape": "ball",
       "size": [
        1.0,
@@ -10593,7 +11056,7 @@
       ],
       "ch": "neon",
       "mirror": true,
-      "note": "lamp"
+      "note": "lamp on the lamp bar"
      },
      {
       "shape": "block",
@@ -12289,7 +12752,7 @@
      {
       "shape": "block",
       "size": [
-       7.6,
+       6.8,
        0.4,
        0.8
       ],
@@ -12299,7 +12762,7 @@
        -3.9
       ],
       "ch": "secondary",
-      "note": "chrome crown bar on the roof pad"
+      "note": "chrome crown bar on the roof pad, no wider than any roof cap"
      },
      {
       "shape": "ball",

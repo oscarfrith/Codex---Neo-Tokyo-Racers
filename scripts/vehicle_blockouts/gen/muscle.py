@@ -322,60 +322,62 @@ def screen(half, top, z0, z1, pillar=0.3):
 
 
 def cockpit_fastback():
-    """Late-60s fastback: a long roof, then one unbroken slope of louvred glass down to the tail."""
-    zr, ze = 5.1, Z_BULK - 0.15            # roof trailing edge, end of the slope
-    p = chassis() + screen(3.9, 5.9, -1.6, 1.3) + [
-        box(-4.1, 4.1, BELT, 5.6, 1.3, zr, "glass", "side glass"),
-        box(-4.2, 4.2, 5.6, ROOF, 1.1, zr + 0.1, "primary", "long roof"),
-        wedge(-3.0, 3.0, BELT, 5.95, zr, ze, "+z", "-y", "glass", "fastback glass runs out over the deck pad"),
-        mwedge(3.0, 4.2, BELT, ROOF, zr, ze, "+z", "-y", "primary", "wide sail panel, out to the body edge"),
-        mbox(4.2, 4.28, 3.6, 4.2, 6.5, 7.7, "detail", "sail panel vent"),
+    """Late-60s fastback: the roof peaks over the B-pillar, then one unbroken louvred slope runs to the tail."""
+    zr, ze, top = 2.3, Z_BULK - 0.15, 5.95   # roof peak (B-pillar), end of the slope, roof height
+    p = chassis() + screen(3.6, 5.85, -1.6, 0.9) + [
+        box(-3.8, 3.8, BELT, 5.6, 0.9, zr, "glass", "door glass"),
+        box(-3.9, 3.9, 5.6, top, 0.7, zr + 0.1, "primary", "short, low roof: the peak sits over the B-pillar"),
+        wedge(-2.8, 2.8, BELT, top - 0.05, zr, ze, "+z", "-y", "glass", "fastback glass, from the B-pillar to the end of the deck pad"),
+        mwedge(2.8, 3.9, BELT, top, zr, ze, "+z", "-y", "primary", "long sail panel"),
+        mwedge(3.9, 3.96, 3.55, 4.9, zr + 0.3, 5.4, "+z", "-y", "glass", "triangular quarter glass in the sail panel"),
+        mbox(3.9, 3.98, 3.6, 4.0, 6.4, 7.5, "detail", "sail panel vent"),
     ]
-    for i in range(4):  # louvres: the fastback signature
-        z = zr + 0.75 + i * 1.0
-        y = BELT + (5.95 - BELT) * (ze - z) / (ze - zr)
-        p.append(box(-2.8, 2.8, y + 0.04, y + 0.18, z - 0.1, z + 0.7, "detail", "rear window louvre"))
+    for i in range(5):  # louvres: the fastback signature
+        z = zr + 1.5 + i * 1.2
+        y = BELT + (top - 0.05 - BELT) * (ze - z) / (ze - zr)
+        p.append(box(-2.6, 2.6, y + 0.04, y + 0.18, z - 0.1, z + 0.7, "detail", "rear window louvre"))
     return p + occupants(BELT)
 
 
 def cockpit_hardtop():
-    """Coke-bottle coupe: the widest, tallest roof, a vinyl top, an upright tunnel-back window."""
-    return chassis() + screen(4.0, 6.05, -1.7, 0.8) + [
-        box(-4.25, 4.25, BELT, 5.7, 0.8, 4.6, "glass", "pillarless side glass"),
-        box(-4.4, 4.4, 5.7, 6.2, 0.6, 6.1, "secondary", "long, tall formal roof (vinyl top)"),
-        mbox(3.7, 4.4, BELT, 5.7, 4.6, 6.1, "secondary", "wide C-pillar"),
-        box(-3.7, 3.7, BELT, 5.7, 5.8, 6.0, "glass", "upright tunnel-back window"),
+    """Coke-bottle coupe: the widest, tallest, squarest roof. An upright screen, a long thick C-pillar,
+    an upright tunnel-back window and two flying buttresses with open deck between them."""
+    return chassis() + screen(4.1, 6.05, -1.2, 0.2) + [
+        box(-4.35, 4.35, BELT, 5.7, 0.2, 3.4, "glass", "pillarless side glass"),
+        box(-4.5, 4.5, 5.7, 6.2, 0.0, 6.1, "secondary", "long, tall, wide formal roof (vinyl top)"),
+        mbox(3.4, 4.5, BELT, 5.7, 3.4, 6.1, "secondary", "thick, long C-pillar"),
+        box(-3.4, 3.4, BELT, 5.7, 5.8, 6.0, "glass", "upright tunnel-back window"),
         mwedge(3.7, 4.4, BELT, 6.2, 6.1, 8.8, "+z", "-y", "secondary", "flying buttress on the deck pad"),
-        box(-3.7, 3.7, BELT, 3.4, 6.2, 8.6, "detail", "tunnel deck panel"),
     ] + occupants(BELT)
 
 
 def cockpit_notch():
-    """60s pony notchback: a small, low, narrow greenhouse set well back, then a short flat deck."""
-    return chassis() + screen(3.3, 5.6, -0.9, 1.3) + [
-        box(-3.5, 3.5, BELT, 5.3, 1.3, 4.4, "glass", "side glass"),
-        box(-3.6, 3.6, 5.3, 5.62, 1.1, 4.7, "primary", "short, low, narrow roof"),
-        wedge(-2.8, 2.8, BELT, 5.58, 4.5, 7.0, "+z", "-y", "glass", "steep notch rear window"),
-        mwedge(2.8, 3.6, BELT, 5.62, 4.5, 7.0, "+z", "-y", "primary", "C-pillar"),
-        mbox(0.35, 1.25, 5.62, 5.68, 1.1, 4.7, "secondary", "racing stripes over the roof"),
-        box(-3.2, 3.2, 3.5, 5.2, 3.6, 3.8, "detail", "roll hoop behind the seats"),
-    ] + occupants(BELT, 3.0)
+    """60s pony notchback: a small, low, narrow greenhouse set well back, then the longest flat deck."""
+    return chassis() + screen(2.8, 5.55, 0.0, 2.0) + [
+        box(-3.0, 3.0, BELT, 5.3, 2.0, 4.5, "glass", "side glass"),
+        box(-3.1, 3.1, 5.3, 5.6, 1.8, 4.7, "primary", "short, low, narrow roof"),
+        wedge(-2.3, 2.3, BELT, 5.56, 4.5, 6.7, "+z", "-y", "glass", "steep notch rear window"),
+        mwedge(2.3, 3.1, BELT, 5.6, 4.5, 6.7, "+z", "-y", "primary", "C-pillar"),
+        mbox(0.35, 1.25, 5.6, 5.66, 1.8, 4.7, "secondary", "racing stripes over the roof"),
+        box(-2.7, 2.7, 3.5, 5.2, 3.9, 4.1, "detail", "roll hoop behind the seats"),
+    ] + occupants(BELT, 3.3)
 
 
 def cockpit_modern():
-    """Retro-modern coupe: a high shoulder, a chopped black roof and the longest, flattest screen."""
-    return chassis() + screen(3.7, 5.5, -1.9, 2.1, pillar=0.35) + [
-        mbox(4.0, X_DOOR, BELT, 3.85, -0.6, 5.0, "primary", "high shoulder: the modern beltline"),
-        mwedge(4.0, X_DOOR, BELT, 3.85, -1.9, -0.6, "-z", "-y", "primary", "shoulder rises from the cowl seam"),
-        mwedge(4.4, X_DOOR, BELT, 3.85, 5.0, Z_BACK, "+z", "-y", "primary", "shoulder falls to the belt at the rear seam"),
-        mbox(3.8, 4.4, BELT, 3.85, 5.0, 8.4, "primary", "shoulder runs on over the deck pad"),
-        mwedge(3.8, 4.4, BELT, 3.85, 8.4, 9.6, "+z", "-y", "primary", "shoulder fades into the deck"),
-        box(-3.9, 3.9, BELT, 5.2, 2.1, 5.3, "glass", "shallow side glass"),
-        box(-4.05, 4.05, 5.2, 5.55, 1.9, 5.5, "detail", "low black roof panel: a chopped look"),
-        wedge(-3.1, 3.1, BELT, 5.5, 5.4, 9.0, "+z", "-y", "glass", "fast rear glass"),
-        mwedge(3.1, 4.05, BELT, 5.55, 5.4, 9.0, "+z", "-y", "primary", "thick C-pillar"),
-        box(-0.25, 0.25, 5.55, 5.8, 4.1, 5.3, "detail", "roof fin"),
-    ] + occupants(3.15, 3.3)
+    """Retro-modern coupe: a high shoulder, slit side glass, a chopped black roof and the longest, flattest screen."""
+    sh = 4.25                               # shoulder top: the high modern beltline
+    return chassis() + screen(3.7, 4.95, -1.9, 2.6, pillar=0.35) + [
+        mbox(4.0, X_DOOR, BELT, sh, -1.0, 5.0, "primary", "high shoulder: the modern beltline"),
+        mwedge(4.0, X_DOOR, BELT, sh, -1.9, -1.0, "-z", "-y", "primary", "shoulder rises from the cowl seam"),
+        mwedge(4.4, X_DOOR, BELT, sh, 5.0, Z_BACK, "+z", "-y", "primary", "shoulder falls to the belt at the rear seam"),
+        mbox(3.8, 4.4, BELT, sh, 5.0, 8.6, "primary", "shoulder runs on over the deck pad"),
+        mwedge(3.8, 4.4, BELT, sh, 8.6, Z_BULK - 0.15, "+z", "-y", "primary", "shoulder fades out at the end of the deck pad"),
+        box(-3.9, 3.9, BELT, 4.75, 2.6, 5.4, "glass", "slit side glass above the shoulder"),
+        box(-4.05, 4.05, 4.75, 5.05, 2.4, 5.6, "detail", "chopped black roof panel"),
+        wedge(-3.1, 3.1, BELT, 5.0, 5.5, 7.8, "+z", "-y", "glass", "fast rear glass"),
+        mwedge(3.1, 4.05, BELT, 5.05, 5.5, 7.8, "+z", "-y", "primary", "thick C-pillar"),
+        box(-0.25, 0.25, 5.05, 5.3, 4.3, 5.5, "detail", "roof fin"),
+    ] + occupants(2.7, 3.5)
 
 
 def cockpit_ragtop():
@@ -810,17 +812,19 @@ def e2_mono():
 
 
 def e2_overunder():
-    """Two turbines stacked on the centreline, the upper one set further back."""
+    """Two turbines stacked on the centreline, the upper one set further back. A body-colour tail panel
+    frames the stack, so the two nozzles poke through a finished tail instead of sitting in a dark bay."""
     return [
-        cylz(0, 1.25, ZE, 11.2, 1.9, "secondary", "lower intake collar"),
-        cylz(0, 1.25, 11.2, 12.4, 1.7, "detail", "lower turbine"),
-        cylz(0, 1.25, 12.25, 12.85, 1.2, "thrust", "lower jet"),
-        cylz(0, 3.2, 10.9, 11.8, 1.9, "secondary", "upper intake collar"),
-        ball(0, 3.2, 11.05, 1.0, "detail", "upper intake spinner"),
-        cylz(0, 3.2, 11.8, 13.2, 1.7, "detail", "upper turbine"),
-        cylz(0, 3.2, 13.05, 13.6, 1.2, "thrust", "upper jet"),
-        box(-0.3, 0.3, 2.0, 2.45, ZE, 12.6, "detail", "stack pylon"),
-        tube((0.7, 2.2, 10.7), (3.2, 2.9, 10.7), 0.22, "detail", "stay to the haunch", mirror=True),
+        cylz(0, 1.35, ZE, 11.3, 2.1, "secondary", "lower intake collar"),
+        cylz(0, 1.35, 11.3, 12.75, 1.9, "detail", "lower turbine"),
+        cylz(0, 1.35, 12.6, 13.2, 1.6, "thrust", "lower jet"),
+        cylz(0, 3.15, 10.8, 11.8, 2.1, "secondary", "upper intake collar"),
+        ball(0, 3.15, 10.95, 1.1, "detail", "upper intake spinner"),
+        cylz(0, 3.15, 11.8, 13.1, 1.9, "detail", "upper turbine"),
+        cylz(0, 3.15, 12.95, 13.6, 1.6, "thrust", "upper jet"),
+        box(-0.3, 0.3, 2.0, 2.5, ZE, 12.6, "detail", "stack pylon"),
+        mbox(1.0, 3.25, 0.5, BELT, 11.4, 11.6, "primary", "tail panel either side of the stack"),
+        mbox(1.45, 2.85, 1.3, 2.6, 11.6, 11.68, "detail", "cheek duct in the tail panel"),
     ]
 
 
@@ -865,44 +869,58 @@ def e2_inline():
 
 # ----------------------------------------------------------------------------- Stabilisers: lift jets in the arches
 # Each option fills, blanks or vents its arch and shows an intake, a body and a glowing nozzle.
-# Every pod and can is longer than it is wide (2.0 to 3.7 times, bar the three short skirt cans): nothing reads as a drum.
+# Every pod and can is longer than it is wide (1.4 to 3.3 times): nothing reads as a drum.
+# Every option stands partly outside the body skin, and jet bodies are secondary, so the lift jets show from above.
 def corners(fn):
     """fn(zc, rear) -> parts for the +X corner; mirrored copies give the other side."""
     return fn(FRONT_ARCH, False) + fn(REAR_ARCH, True)
 
 
+def _unit(v):
+    v = np.array(v, dtype=float)
+    return v / np.linalg.norm(v)
+
+
 def st_corner_turbines():
-    """Classic: two slim turbines side by side in each arch, lying fore and aft. They fill the arch."""
+    """Classic: a twin pair in each arch. Two lift turbines hang from a log plenum, splayed fore and aft and
+    canted outboard, so both nozzles and both plumes stand outside the body skin."""
     def one(zc, rear):
-        y = 0.72
-        p = [mbox(3.6, 5.3, 1.22, 1.66, zc - 1.0, zc + 0.6, "detail", "pylon to the arch roof pad")]
-        for x in (3.98, 4.92):
-            p += [cylz(x, y, zc - 1.85, zc - 1.25, 1.05, "detail", "intake lip", mirror=True),
-                  cylz(x, y, zc - 1.25, zc + 0.95, 0.9, "secondary", "slim turbine", mirror=True)]
-            p += jet((x, y, zc + 0.8), (x, y - 0.75, zc + 1.4), 0.85, "detail", None, 0.3, mirror=True,
-                     note="lift nozzle, down and back", glow=0.62)
+        p = [mbox(3.5, 5.0, 1.3, 1.66, zc - 1.1, zc + 1.1, "detail", "pylon to the arch roof pad"),
+             cylz(4.2, 1.05, zc - 1.3, zc + 1.4, 0.85, "detail", "log plenum under the arch roof", mirror=True),
+             cylz(4.2, 1.05, zc - 1.85, zc - 1.3, 1.05, "secondary", "plenum intake lip", mirror=True)]
+        for s in (-1, 1):
+            u = _unit((0.45, -0.75, 0.3 * s))
+            a = np.array([4.2, 1.0, zc + 0.5 * s])
+            b = a + 2.1 * u
+            p += [tube(a, b, 1.1, "secondary", "lift turbine, 1.1 across and 2.1 long, canted out", mirror=True),
+                  tube(b - 0.55 * u, b, 1.3, "detail", "nozzle", mirror=True),
+                  tube(b - 0.1 * u, b + 0.45 * u, 1.0, "thrust", "jet, outboard of the skin", mirror=True)]
         return p
     return corners(one)
 
 
 def st_big_little():
-    """Pro Street: one long fat nacelle in each rear arch, one skinny canted jet in each front arch."""
+    """Pro Street: one long fat nacelle standing proud of each rear arch, one thin canted jet in each front arch."""
     def one(zc, rear):
         if rear:
-            x, y = 4.6, 0.42
-            p = [mbox(4.0, 5.2, 1.15, 1.66, zc - 0.8, zc + 0.6, "detail", "pylon"),
-                 cylz(x, y, zc - 1.85, zc - 1.3, 1.15, "detail", "tapered intake lip", mirror=True),
-                 cylz(x, y, zc - 1.3, zc - 0.7, 1.42, "detail", "intake collar", mirror=True),
-                 cylz(x, y, zc - 0.7, zc + 0.85, 1.6, "secondary", "long fat nacelle, 1.6 across and 3.7 long", mirror=True)]
-            p += jet((x, y - 0.1, zc + 0.6), (x, y - 0.92, zc + 1.35), 1.2, "detail", None, 0.25, mirror=True,
-                     note="big lift nozzle", glow=0.9)
+            x, y = 5.1, 0.4
+            p = [mbox(3.6, 5.3, 1.2, 1.66, zc - 0.9, zc + 0.6, "detail", "pylon"),
+                 cylz(x, y, zc - 1.85, zc - 1.25, 1.3, "detail", "tapered intake lip", mirror=True),
+                 cylz(x, y, zc - 1.25, zc + 0.9, 1.7, "secondary", "long fat nacelle, 1.7 across, proud of the skin", mirror=True)]
+            p += jet((x, y - 0.1, zc + 0.55), (x + 0.2, y - 1.05, zc + 1.2), 1.35, "detail", None, 0.38, mirror=True,
+                     note="big lift nozzle: down, back and out", glow=1.1)
             return p
-        x = 4.2
-        p = [mbox(3.95, 4.45, 0.9, 1.66, zc - 0.5, zc + 0.1, "detail", "slim pylon"),
-             mbox(3.45, 3.62, SILL, 1.66, zc - 1.85, zc + 1.85, "primary", "body-colour liner blanks the front arch")]
-        p += jet((x, 1.0, zc - 0.5), (x, -0.9, zc + 0.5), 0.8, "detail", "secondary", 0.3, mirror=True,
-                 note="skinny front lift jet", glow=0.6)
-        return p
+        u = _unit((0.9, -1.85, 1.0))
+        a = np.array([4.4, 1.3, zc - 0.55])
+        b = a + 2.29 * u
+        return [
+            mbox(3.45, 3.62, SILL, 1.66, zc - 1.85, zc + 1.85, "primary", "body-colour liner blanks the front arch"),
+            mbox(3.62, 4.6, 1.25, 1.66, zc - 0.8, zc + 0.2, "detail", "slim pylon"),
+            tube(a - 0.05 * u, a + 0.45 * u, 0.95, "detail", "intake lip", mirror=True),
+            tube(a, b, 0.7, "secondary", "thin front lift jet, 0.7 across: down, back and out", mirror=True),
+            tube(b - 0.6 * u, b, 1.15, "detail", "flared nozzle", mirror=True),
+            tube(b - 0.1 * u, b + 0.4 * u, 1.0, "thrust", "jet", mirror=True),
+        ]
     return corners(one)
 
 
@@ -924,20 +942,19 @@ def st_outriggers():
 
 
 def st_vector_cans():
-    """Modern: one long can per arch, canted down and back, swinging in a square gimbal yoke."""
+    """Modern: one large can per arch, swung outboard in a yoke whose outer arm stands outside the body skin."""
     def one(zc, rear):
-        x = 4.5
-        u = np.array([0.0, -0.64, 0.768])
-        u = u / np.linalg.norm(u)
-        a = np.array([x, 0.85, zc - 0.75])
-        m, b = a + 1.4 * u, a + 2.4 * u
+        u = _unit((0.2, -0.62, 0.76))
+        a = np.array([4.8, 0.95, zc - 0.95])
+        m, b = a + 1.6 * u, a + 2.5 * u
         return [
-            mbox(3.6, 5.4, 1.05, 1.66, zc - 1.5, zc + 0.3, "detail", "square gimbal yoke under the arch roof pad"),
-            mbox(3.62, 3.88, 0.1, 1.05, zc - 1.35, zc + 0.15, "secondary", "yoke cheek"),
-            mbox(5.12, 5.38, 0.1, 1.05, zc - 1.35, zc + 0.15, "secondary", "yoke cheek"),
-            tube(a, m, 1.2, "secondary", "one long vectoring can, 1.2 across and 2.4 long", mirror=True),
-            tube(m, b, 1.1, "detail", "nozzle", mirror=True),
-            tube(b - 0.1 * u, b + 0.3 * u, 0.85, "thrust", "jet", mirror=True),
+            mbox(3.5, 5.98, 1.3, 1.66, zc - 1.5, zc + 0.3, "detail", "yoke crosshead under the arch roof pad"),
+            mbox(5.74, 5.98, 0.0, 1.3, zc - 1.0, zc - 0.2, "secondary", "outer yoke arm, outboard of the body skin"),
+            mbox(3.8, 4.04, 0.0, 1.3, zc - 1.0, zc - 0.2, "secondary", "inner yoke arm"),
+            tube(a - 0.1 * u, a + 0.4 * u, 1.6, "detail", "intake lip", mirror=True),
+            tube(a, m, 1.4, "secondary", "one large vectoring can, 1.4 across and 2.5 long", mirror=True),
+            tube(m, b, 1.25, "detail", "nozzle", mirror=True),
+            tube(b - 0.1 * u, b + 0.4 * u, 1.1, "thrust", "jet", mirror=True),
         ]
     return corners(one)
 
@@ -1020,15 +1037,16 @@ def bo_megaphones():
 
 
 def bo_sill_slots():
-    """Modern: a flat burner blade along the sill between a boxed intake at the front and a boxed nozzle at the back."""
+    """Modern: a flat burner blade along the sill between a boxed intake at the front and a boxed nozzle at the back.
+    Only the rear nozzle is a jet. The strip along the blade edge is lighting."""
     return [
         mbox(4.85, 6.2, -0.6, 0.22, BZ0, -0.8, "secondary", "boxed intake at the front of the sill"),
         mbox(4.98, 6.07, -0.48, 0.1, BZ0 - 0.06, BZ0, "detail", "intake mouth"),
-        mbox(4.85, 6.15, -0.3, 0.05, -0.8, 5.2, "detail", "flat sill burner blade"),
-        mbox(4.82, 5.4, 0.05, 0.22, -0.8, 5.2, "secondary", "blade root on the sill rail"),
-        mbox(6.15, 6.25, -0.28, 0.0, -0.4, 5.0, "thrust", "edge slot jet"),
-        mbox(4.9, 6.2, -0.65, 0.22, 5.2, 5.85, "secondary", "boxed nozzle"),
-        mbox(5.1, 6.0, -0.55, 0.1, 5.75, BZ1, "thrust", "nozzle jet, 0.9 by 0.65"),
+        mbox(4.85, 6.15, -0.3, 0.05, -0.8, 5.0, "detail", "flat sill burner blade"),
+        mbox(4.82, 5.4, 0.05, 0.22, -0.8, 5.0, "secondary", "blade root on the sill rail"),
+        mbox(6.15, 6.25, -0.28, 0.0, -0.4, 4.8, "neon", "edge light strip: lighting, not a jet"),
+        mbox(4.85, 6.3, -0.8, 0.25, 5.0, 5.8, "secondary", "boxed nozzle"),
+        mbox(4.95, 6.2, -0.67, 0.08, 5.7, BZ1, "thrust", "nozzle jet, 1.25 by 0.75"),
     ]
 
 
@@ -1231,9 +1249,9 @@ ZS = Z_BULK + 0.2      # spoiler feet start just behind the bulkhead line
 
 def rs_winged_warrior():
     return [
-        mbox(3.75, 4.05, BELT, 6.4, ZS, 11.5, "primary", "tall upright on the haunch pad"),
-        mwedge(3.75, 4.05, BELT, 6.4, 11.5, 12.9, "+z", "-y", "primary", "upright fairing"),
-        box(-4.4, 4.4, 6.4, 6.66, ZS, 12.1, "secondary", "high blade"),
+        mbox(3.75, 4.05, BELT, 6.4, ZS, 11.4, "primary", "tall upright, wholly on the haunch pad"),
+        mwedge(3.75, 4.05, 4.3, 6.4, 11.4, 12.4, "+z", "+y", "primary", "raked brace under the blade"),
+        box(-4.4, 4.4, 6.4, 6.66, ZS, 12.4, "secondary", "high blade"),
     ]
 
 
@@ -1248,10 +1266,13 @@ def rs_drag_wing():
 
 
 def rs_ducktail():
+    """Trans-Am: a ramp across the tail on two full-length buttresses, so its ends are closed.
+    The open slot under the middle shows the tail engine."""
     return [
-        mbox(3.5, 4.4, BELT, 4.3, ZS - 0.1, 11.4, "primary", "pedestal on the haunch pad"),
-        wedge(-5.2, 5.2, 4.3, 5.2, ZS - 0.1, 12.6, "-z", "-y", "primary", "ducktail ramp"),
-        box(-5.2, 5.2, 5.2, 5.32, 12.3, 12.6, "secondary", "ducktail lip"),
+        mbox(3.35, 4.5, BELT, 4.3, ZS - 0.15, 11.4, "primary", "buttress fills the haunch pad"),
+        mwedge(3.35, 4.5, BELT, 4.3, 11.4, 12.5, "+z", "+y", "primary", "buttress rakes back under the ramp"),
+        wedge(-4.5, 4.5, 4.3, 5.2, ZS - 0.15, 12.5, "-z", "-y", "primary", "ducktail ramp, 9.0 wide"),
+        box(-4.5, 4.5, 5.2, 5.34, 12.2, 12.5, "secondary", "ducktail lip"),
     ]
 
 
@@ -1278,10 +1299,10 @@ def rs_deck_rack():
 def rs_fin_bar():
     """Restomod: a low swept fin on each haunch, joined by a thin light bar across the tail."""
     return [
-        mbox(3.6, 4.2, BELT, 4.3, ZS, 12.3, "primary", "fin root on the haunch pad"),
-        mwedge(3.6, 4.2, 4.3, 5.3, ZS, 12.3, "-z", "-y", "primary", "low swept fin"),
-        box(-3.6, 3.6, 4.35, 4.62, 11.85, 12.3, "detail", "thin bar across the tail"),
-        box(-3.4, 3.4, 4.4, 4.57, 12.3, 12.37, "neon", "light bar"),
+        mbox(3.6, 4.2, BELT, 4.3, ZS, 11.4, "primary", "fin root, wholly on the haunch pad"),
+        mwedge(3.6, 4.2, 4.3, 5.3, ZS, 12.2, "-z", "-y", "primary", "low fin, swept back past its root"),
+        box(-3.6, 3.6, 4.35, 4.62, 11.75, 12.2, "detail", "thin bar across the tail"),
+        box(-3.4, 3.4, 4.4, 4.57, 12.2, 12.27, "neon", "light bar"),
     ]
 
 

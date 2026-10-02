@@ -134,6 +134,8 @@
         {"shape": "wedge", "size": [1.6, 0.9, 0.7], "pos": [0.0, 3.85, 2.95], "ch": "primary", "rot": [0.0, 180.0, 0.0], "note": "race hump: falls to the seat tail datum"},
         {"shape": "wedge", "size": [0.55, 0.6, 0.55], "pos": [1.075, 3.7, 2.325], "ch": "secondary", "mirror": true, "note": "hump shoulder: wide angular race tail"},
         {"shape": "wedge", "size": [0.55, 0.6, 0.7], "pos": [1.075, 3.7, 2.95], "ch": "secondary", "rot": [0.0, 180.0, 0.0], "mirror": true, "note": "hump shoulder: falls to the seat tail datum"},
+        {"shape": "block", "size": [0.85, 0.17, 1.4], "pos": [1.875, 1.165, -1.3], "ch": "primary", "mirror": true, "note": "aero winglet: hangs off the spar, shows under every side panel"},
+        {"shape": "block", "size": [0.1, 0.6, 1.6], "pos": [2.35, 1.0, -1.3], "ch": "secondary", "mirror": true, "note": "winglet end plate"},
         {"shape": "block", "size": [1.5, 0.8, 2.303], "pos": [0.0, 3.625, 0.725], "ch": "driver", "rot": [-27.121, 180.0, 0.0], "note": "rider torso"},
         {"shape": "ball", "size": [1.2, 1.2, 1.2], "pos": [0.0, 4.65, -0.88], "ch": "driver", "note": "helmet"},
         {"shape": "block", "size": [0.9, 0.36, 0.3], "pos": [0.0, 4.7, -1.38], "ch": "glass", "rot": [-12.0, 0.0, 0.0], "note": "visor"},
@@ -158,20 +160,23 @@
         {"shape": "block", "size": [1.4, 0.2, 0.2], "pos": [0.95, 2.05, -1.9], "ch": "detail", "mirror": true, "note": "front panel stay"},
         {"shape": "block", "size": [1.4, 0.2, 0.2], "pos": [0.95, 2.05, 3.0], "ch": "detail", "mirror": true, "note": "rear panel stay"},
         {"shape": "block", "size": [1.5, 1.2, 0.55], "pos": [0.0, 2.8, 3.025], "ch": "detail", "note": "seat tail pad: seat unit datum"},
-        {"shape": "block", "size": [1.4, 0.5, 1.3], "pos": [0.0, 2.45, 0.85], "ch": "detail", "note": "solo seat pad"},
-        {"shape": "cyl_z", "size": [1.7, 1.7, 0.85], "pos": [0.0, 3.2, 1.875], "ch": "primary", "note": "long round cafe hump: bum stop"},
-        {"shape": "ball", "size": [2.0, 2.0, 2.0], "pos": [0.0, 3.3, 2.3], "ch": "primary", "note": "round cafe hump: a dome that rolls down to the seat tail datum"},
-        {"shape": "block", "size": [1.7, 0.25, 1.3], "pos": [0.0, 2.325, 0.85], "ch": "primary", "note": "painted seat pan: slim, nothing outside the spine line"},
-        {"shape": "block", "size": [1.5, 0.8, 1.872], "pos": [0.0, 3.875, 0.425], "ch": "driver", "rot": [-55.886, 180.0, 0.0], "note": "rider torso"},
-        {"shape": "ball", "size": [1.2, 1.2, 1.2], "pos": [0.0, 5.25, -0.55], "ch": "driver", "note": "helmet"},
-        {"shape": "block", "size": [0.9, 0.36, 0.3], "pos": [0.0, 5.3, -1.05], "ch": "glass", "rot": [-12.0, 0.0, 0.0], "note": "visor"},
-        {"shape": "block", "size": [0.6, 0.62, 1.315], "pos": [1.38, 2.9, 0.3], "ch": "driver", "rot": [8.746, 180.0, 0.0], "mirror": true, "note": "thigh"},
-        {"shape": "block", "size": [0.56, 0.56, 2.0], "pos": [1.38, 2.2, 0.45], "ch": "driver", "rot": [36.87, 0.0, 0.0], "mirror": true, "note": "shin"},
-        {"shape": "block", "size": [0.6, 0.35, 1.0], "pos": [1.38, 1.375, 1.1], "ch": "driver", "mirror": true, "note": "boot"},
-        {"shape": "block", "size": [0.48, 0.48, 0.73], "pos": [1.21, 4.25, -0.35], "ch": "driver", "rot": [43.256, 160.201, 0.0], "mirror": true, "note": "upper arm"},
-        {"shape": "block", "size": [0.44, 0.44, 0.716], "pos": [1.225, 4.0, -0.95], "ch": "driver", "rot": [-0.0, -167.905, 0.0], "mirror": true, "note": "forearm"},
+        {"shape": "block", "size": [1.4, 0.5, 1.1], "pos": [0.0, 2.45, 0.75], "ch": "detail", "note": "long flat solo seat"},
+        {"shape": "block", "size": [1.7, 0.25, 1.1], "pos": [0.0, 2.325, 0.75], "ch": "primary", "note": "painted seat pan"},
+        {"shape": "cyl_z", "size": [1.7, 1.7, 1.0], "pos": [0.0, 3.2, 1.5], "ch": "primary", "note": "long round cafe hump: bum stop"},
+        {"shape": "ball", "size": [2.5, 2.5, 2.5], "pos": [0.0, 3.45, 2.0], "ch": "primary", "note": "big round cafe hump: a dome 2.5 across that rolls down to the seat tail datum"},
+        {"shape": "cyl_z", "size": [0.26, 0.26, 1.757], "pos": [1.05, 1.265, -1.45], "ch": "secondary", "rot": [51.238, 0.0, 0.0], "mirror": true, "note": "loop frame: down tube"},
+        {"shape": "cyl_z", "size": [0.26, 0.26, 3.2], "pos": [1.05, 0.58, 0.7], "ch": "secondary", "mirror": true, "note": "loop frame: lower rail, the engine shows above it"},
+        {"shape": "cyl_z", "size": [0.26, 0.26, 1.471], "pos": [1.05, 1.24, 2.625], "ch": "secondary", "rot": [-63.783, 0.0, 0.0], "mirror": true, "note": "loop frame: rear upright"},
+        {"shape": "block", "size": [1.5, 0.8, 1.845], "pos": [0.0, 3.875, 0.2], "ch": "driver", "rot": [-57.171, 180.0, 0.0], "note": "rider torso"},
+        {"shape": "ball", "size": [1.2, 1.2, 1.2], "pos": [0.0, 5.25, -0.75], "ch": "driver", "note": "helmet"},
+        {"shape": "block", "size": [0.9, 0.36, 0.3], "pos": [0.0, 5.3, -1.25], "ch": "glass", "rot": [-12.0, 0.0, 0.0], "note": "visor"},
+        {"shape": "block", "size": [0.6, 0.62, 1.266], "pos": [1.38, 2.9, 0.075], "ch": "driver", "rot": [9.09, 180.0, 0.0], "mirror": true, "note": "thigh"},
+        {"shape": "block", "size": [0.56, 0.56, 1.96], "pos": [1.38, 2.2, 0.225], "ch": "driver", "rot": [37.747, 0.0, 0.0], "mirror": true, "note": "shin"},
+        {"shape": "block", "size": [0.6, 0.35, 1.0], "pos": [1.38, 1.375, 0.85], "ch": "driver", "mirror": true, "note": "boot"},
+        {"shape": "block", "size": [0.48, 0.48, 0.665], "pos": [1.21, 4.25, -0.5], "ch": "driver", "rot": [48.741, 155.772, 0.0], "mirror": true, "note": "upper arm"},
+        {"shape": "block", "size": [0.44, 0.44, 0.618], "pos": [1.225, 4.0, -1.0], "ch": "driver", "rot": [-0.0, -165.964, 0.0], "mirror": true, "note": "forearm"},
         {"shape": "block", "size": [0.5, 0.5, 0.5], "pos": [1.15, 4.0, -1.3], "ch": "driver", "mirror": true, "note": "hand on the hand datum"},
-        {"shape": "block", "size": [0.78, 0.15, 0.45], "pos": [1.29, 1.125, 1.125], "ch": "detail", "mirror": true, "note": "foot peg"}
+        {"shape": "block", "size": [0.78, 0.15, 0.45], "pos": [1.29, 1.125, 0.875], "ch": "detail", "mirror": true, "note": "foot peg"}
       ]
     },
     "chopper": {
@@ -190,16 +195,16 @@
         {"shape": "block", "size": [1.6, 0.35, 0.9], "pos": [0.0, 2.375, 2.3], "ch": "detail", "note": "saddle tail"},
         {"shape": "block", "size": [1.45, 0.2, 2.55], "pos": [1.625, 0.84, -0.875], "ch": "secondary", "mirror": true, "note": "wide full-length running board"},
         {"shape": "block", "size": [0.15, 0.31, 2.55], "pos": [2.275, 1.095, -0.875], "ch": "detail", "mirror": true, "note": "running-board rail"},
-        {"shape": "block", "size": [2.2, 2.05, 0.4], "pos": [0.0, 3.575, 2.3], "ch": "detail", "note": "tall king backrest"},
-        {"shape": "block", "size": [3.4, 0.7, 0.5], "pos": [0.0, 4.95, 2.3], "ch": "secondary", "note": "wide backrest top roll"},
+        {"shape": "block", "size": [2.2, 2.45, 0.4], "pos": [0.0, 3.775, 2.3], "ch": "detail", "note": "tall king backrest"},
+        {"shape": "block", "size": [3.4, 0.6, 0.5], "pos": [0.0, 5.3, 2.3], "ch": "secondary", "note": "wide backrest top roll: 3.4 across, behind the neck"},
         {"shape": "block", "size": [1.5, 0.85, 0.25], "pos": [0.0, 2.975, 2.625], "ch": "detail", "note": "pillion step"},
-        {"shape": "block", "size": [1.5, 0.8, 2.136], "pos": [0.0, 3.9, 1.125], "ch": "driver", "rot": [-69.444, 0.0, 0.0], "note": "rider torso"},
-        {"shape": "ball", "size": [1.2, 1.2, 1.2], "pos": [0.0, 5.55, 1.6], "ch": "driver", "note": "helmet"},
-        {"shape": "block", "size": [0.9, 0.36, 0.3], "pos": [0.0, 5.6, 1.1], "ch": "glass", "rot": [-12.0, 0.0, 0.0], "note": "visor"},
+        {"shape": "block", "size": [1.5, 0.8, 2.103], "pos": [0.0, 3.9, 1.075], "ch": "driver", "rot": [-71.996, 0.0, 0.0], "note": "rider torso"},
+        {"shape": "ball", "size": [1.2, 1.2, 1.2], "pos": [0.0, 5.55, 1.45], "ch": "driver", "note": "helmet"},
+        {"shape": "block", "size": [0.9, 0.36, 0.3], "pos": [0.0, 5.6, 0.95], "ch": "glass", "rot": [-12.0, 0.0, 0.0], "note": "visor"},
         {"shape": "block", "size": [0.6, 0.62, 1.25], "pos": [1.38, 2.625, 0.15], "ch": "driver", "rot": [16.26, 180.0, 0.0], "mirror": true, "note": "thigh"},
         {"shape": "block", "size": [0.56, 0.56, 1.453], "pos": [1.38, 1.9, -0.925], "ch": "driver", "rot": [49.185, 180.0, 0.0], "mirror": true, "note": "shin"},
         {"shape": "block", "size": [0.6, 0.35, 1.0], "pos": [1.38, 1.125, -1.55], "ch": "driver", "mirror": true, "note": "boot"},
-        {"shape": "block", "size": [0.48, 0.48, 1.378], "pos": [1.16, 4.525, 0.85], "ch": "driver", "rot": [19.06, 176.479, 0.0], "mirror": true, "note": "upper arm"},
+        {"shape": "block", "size": [0.48, 0.48, 1.284], "pos": [1.16, 4.525, 0.8], "ch": "driver", "rot": [20.514, 176.186, 0.0], "mirror": true, "note": "upper arm"},
         {"shape": "block", "size": [0.44, 0.44, 1.531], "pos": [1.175, 4.15, -0.55], "ch": "driver", "rot": [11.304, -178.091, 0.0], "mirror": true, "note": "forearm"},
         {"shape": "block", "size": [0.5, 0.5, 0.5], "pos": [1.15, 4.0, -1.3], "ch": "driver", "mirror": true, "note": "hand on the hand datum"},
         {"shape": "block", "size": [0.78, 0.15, 0.45], "pos": [1.29, 0.875, -1.525], "ch": "detail", "mirror": true, "note": "foot peg"}
@@ -219,17 +224,18 @@
         {"shape": "block", "size": [1.5, 1.2, 0.55], "pos": [0.0, 2.8, 3.025], "ch": "detail", "note": "seat tail pad: seat unit datum"},
         {"shape": "block", "size": [1.2, 1.2, 2.55], "pos": [0.0, 2.8, 1.475], "ch": "detail", "note": "tall flat bench: level with the seat tail datum"},
         {"shape": "block", "size": [1.36, 0.6, 3.05], "pos": [0.0, 2.5, 1.725], "ch": "primary", "note": "bench side cover"},
-        {"shape": "wedge", "size": [0.25, 2.0, 0.6], "pos": [1.575, 2.4, 1.7], "ch": "primary", "mirror": true, "note": "side number board: swept leading edge"},
-        {"shape": "block", "size": [0.25, 2.0, 1.28], "pos": [1.575, 2.4, 2.64], "ch": "primary", "mirror": true, "note": "side number board: 2 studs high"},
+        {"shape": "wedge", "size": [0.25, 3.0, 0.6], "pos": [1.575, 2.9, 1.7], "ch": "primary", "mirror": true, "note": "high side number board: swept leading edge"},
+        {"shape": "block", "size": [0.25, 2.0, 1.28], "pos": [1.575, 2.4, 2.64], "ch": "primary", "mirror": true, "note": "high side number board: lower half"},
+        {"shape": "wedge", "size": [0.25, 1.0, 1.28], "pos": [1.575, 3.9, 2.64], "ch": "primary", "rot": [0.0, 180.0, 0.0], "mirror": true, "note": "high side number board: 3 studs high at the front, falls to the seat tail datum"},
         {"shape": "block", "size": [0.7, 0.2, 0.8], "pos": [1.1, 3.1, 2.8], "ch": "detail", "mirror": true, "note": "board bridge to the bench"},
-        {"shape": "block", "size": [1.5, 0.8, 1.91], "pos": [0.0, 4.65, 0.8], "ch": "driver", "rot": [-42.879, 180.0, 0.0], "note": "rider torso"},
-        {"shape": "ball", "size": [1.2, 1.2, 1.2], "pos": [0.0, 5.8, -0.45], "ch": "driver", "note": "helmet"},
-        {"shape": "block", "size": [0.9, 0.36, 0.3], "pos": [0.0, 5.85, -0.95], "ch": "glass", "rot": [-12.0, 0.0, 0.0], "note": "visor"},
-        {"shape": "block", "size": [0.6, 0.62, 1.242], "pos": [1.38, 3.425, 1.1], "ch": "driver", "rot": [49.899, 180.0, 0.0], "mirror": true, "note": "thigh"},
-        {"shape": "block", "size": [0.56, 0.56, 1.53], "pos": [1.38, 2.2, 0.85], "ch": "driver", "rot": [78.69, 0.0, 0.0], "mirror": true, "note": "shin"},
+        {"shape": "block", "size": [1.5, 0.8, 1.78], "pos": [0.0, 5.05, 0.6], "ch": "driver", "rot": [-38.157, 180.0, 0.0], "note": "rider torso"},
+        {"shape": "ball", "size": [1.2, 1.2, 1.2], "pos": [0.0, 5.95, -0.6], "ch": "driver", "note": "helmet"},
+        {"shape": "block", "size": [0.9, 0.36, 0.3], "pos": [0.0, 6.0, -1.1], "ch": "glass", "rot": [-12.0, 0.0, 0.0], "note": "visor"},
+        {"shape": "block", "size": [0.6, 0.62, 1.265], "pos": [1.38, 3.8, 1.1], "ch": "driver", "rot": [71.565, 180.0, 0.0], "mirror": true, "note": "thigh"},
+        {"shape": "block", "size": [0.56, 0.56, 1.753], "pos": [1.38, 2.325, 0.95], "ch": "driver", "rot": [86.73, 0.0, 0.0], "mirror": true, "note": "shin"},
         {"shape": "block", "size": [0.6, 0.35, 1.0], "pos": [1.38, 1.225, 0.85], "ch": "driver", "mirror": true, "note": "boot"},
-        {"shape": "block", "size": [0.48, 0.48, 1.241], "pos": [1.535, 5.05, -0.35], "ch": "driver", "rot": [9.278, 137.317, 0.0], "mirror": true, "note": "upper arm"},
-        {"shape": "block", "size": [0.44, 0.44, 1.339], "pos": [1.55, 4.475, -1.05], "ch": "driver", "rot": [45.2, -122.005, 0.0], "mirror": true, "note": "forearm"},
+        {"shape": "block", "size": [0.48, 0.48, 1.237], "pos": [1.535, 5.225, -0.5], "ch": "driver", "rot": [21.324, 133.946, 0.0], "mirror": true, "note": "upper arm"},
+        {"shape": "block", "size": [0.44, 0.44, 1.342], "pos": [1.55, 4.5, -1.1], "ch": "driver", "rot": [48.19, -116.565, 0.0], "mirror": true, "note": "forearm"},
         {"shape": "block", "size": [0.5, 0.5, 0.5], "pos": [1.15, 4.0, -1.3], "ch": "driver", "mirror": true, "note": "hand on the hand datum"},
         {"shape": "block", "size": [0.78, 0.15, 0.45], "pos": [1.29, 0.975, 0.875], "ch": "detail", "mirror": true, "note": "foot peg"}
       ]
@@ -246,11 +252,12 @@
         {"shape": "block", "size": [1.4, 0.2, 0.2], "pos": [0.95, 2.05, -1.9], "ch": "detail", "mirror": true, "note": "front panel stay"},
         {"shape": "block", "size": [1.4, 0.2, 0.2], "pos": [0.95, 2.05, 3.0], "ch": "detail", "mirror": true, "note": "rear panel stay"},
         {"shape": "block", "size": [1.5, 1.2, 0.55], "pos": [0.0, 2.8, 3.025], "ch": "detail", "note": "seat tail pad: seat unit datum"},
-        {"shape": "block", "size": [1.5, 0.5, 1.8], "pos": [0.0, 2.45, 1.1], "ch": "detail", "note": "rider pad"},
-        {"shape": "wedge", "size": [1.7, 0.7, 0.85], "pos": [0.0, 3.05, 2.325], "ch": "primary", "note": "short kicked tail pad"},
+        {"shape": "block", "size": [1.5, 0.5, 1.7], "pos": [0.0, 2.45, 1.05], "ch": "detail", "note": "rider pad: the low step"},
+        {"shape": "block", "size": [1.7, 0.7, 1.38], "pos": [0.0, 3.05, 2.59], "ch": "primary", "note": "pillion step: the seat steps up 0.7"},
+        {"shape": "wedge", "size": [2.6, 1.3, 0.9], "pos": [0.0, 4.05, 2.35], "ch": "primary", "note": "tall kicked tail: 2.6 wide"},
+        {"shape": "wedge", "size": [2.6, 1.3, 0.5], "pos": [0.0, 4.05, 3.05], "ch": "primary", "rot": [0.0, 180.0, 0.0], "note": "kicked tail back: falls to the seat tail datum"},
         {"shape": "wedge", "size": [0.8, 1.55, 1.6], "pos": [1.3, 1.375, -1.3], "ch": "primary", "rot": [0.0, 0.0, 180.0], "mirror": true, "note": "frame panel: solid front triangle, full width of the leg channel"},
         {"shape": "wedge", "size": [0.18, 1.55, 3.1], "pos": [0.99, 1.375, 1.05], "ch": "primary", "rot": [180.0, 0.0, 0.0], "mirror": true, "note": "frame panel: rear triangle, inside the leg"},
-        {"shape": "cyl_x", "size": [0.55, 0.45, 0.45], "pos": [1.975, 0.9, -1.2], "ch": "detail", "mirror": true, "note": "frame slider"},
         {"shape": "block", "size": [1.5, 0.8, 2.055], "pos": [0.0, 4.025, 0.975], "ch": "driver", "rot": [-71.565, 180.0, 0.0], "note": "rider torso"},
         {"shape": "ball", "size": [1.2, 1.2, 1.2], "pos": [0.0, 5.65, 0.4], "ch": "driver", "note": "helmet"},
         {"shape": "block", "size": [0.9, 0.36, 0.3], "pos": [0.0, 5.7, -0.1], "ch": "glass", "rot": [-12.0, 0.0, 0.0], "note": "visor"},
@@ -336,9 +343,10 @@
         "name": "Inline Turbine",
         "culture": "Supersport",
         "parts": [
-          {"shape": "cyl_z", "size": [1.5, 1.5, 0.85], "pos": [0.0, -0.3, -2.025], "ch": "detail", "note": "main turbine intake cowl"},
-          {"shape": "ball", "size": [0.7, 0.7, 0.7], "pos": [0.0, -0.3, -2.15], "ch": "secondary", "note": "intake spinner"},
-          {"shape": "cyl_z", "size": [1.36, 1.36, 2.5], "pos": [0.0, -0.3, -0.35], "ch": "secondary", "note": "main turbine body"},
+          {"shape": "cyl_z", "size": [1.05, 1.05, 0.6], "pos": [0.0, -0.3, -2.0], "ch": "primary", "note": "intake lip: body colour, narrower than the cowl"},
+          {"shape": "cyl_z", "size": [1.25, 1.25, 0.8], "pos": [0.0, -0.3, -1.3], "ch": "primary", "note": "intake cowl: lip plus cowl are 1.4 long and at most 1.25 across, never a drum"},
+          {"shape": "ball", "size": [0.9, 0.9, 0.9], "pos": [0.0, -0.3, -2.08], "ch": "secondary", "note": "intake spinner: a bright cone that stands out of the mouth"},
+          {"shape": "cyl_z", "size": [1.36, 1.36, 1.8], "pos": [0.0, -0.3, 0.0], "ch": "secondary", "note": "main turbine body"},
           {"shape": "cyl_z", "size": [1.0, 1.0, 1.511], "pos": [0.0, -0.685, 1.45], "ch": "detail", "rot": [30.639, 0.0, 0.0], "note": "jet pipe: drops into the exhaust tunnel"},
           {"shape": "block", "size": [0.6, 1.25, 0.6], "pos": [0.0, 0.925, -0.3], "ch": "detail", "note": "top mount"},
           {"shape": "cyl_z", "size": [0.9, 0.9, 3.15], "pos": [0.0, -1.07, 3.575], "ch": "secondary", "note": "long centre tailpipe"},
@@ -356,10 +364,10 @@
           {"shape": "block", "size": [0.2, 1.1, 1.1], "pos": [1.4, -0.6, -0.2], "ch": "detail", "mirror": true, "note": "finned can head"},
           {"shape": "cyl_z", "size": [0.55, 0.55, 0.9], "pos": [1.02, -0.6, -1.05], "ch": "detail", "mirror": true, "note": "intake trumpet"},
           {"shape": "cyl_z", "size": [0.82, 0.82, 0.5], "pos": [1.02, -0.6, -1.75], "ch": "secondary", "mirror": true, "note": "intake bellmouth"},
-          {"shape": "cyl_z", "size": [0.55, 0.55, 1.3], "pos": [1.02, -1.07, 0.85], "ch": "secondary", "mirror": true, "note": "megaphone stage 1"},
-          {"shape": "cyl_z", "size": [0.76, 0.76, 0.9], "pos": [1.02, -1.07, 1.95], "ch": "secondary", "mirror": true, "note": "megaphone stage 2"},
-          {"shape": "cyl_z", "size": [0.95, 0.95, 0.8], "pos": [1.02, -1.07, 2.8], "ch": "detail", "mirror": true, "note": "megaphone mouth"},
-          {"shape": "cyl_z", "size": [0.76, 0.76, 0.18], "pos": [1.02, -1.07, 3.29], "ch": "thrust", "mirror": true, "note": "megaphone thrust"}
+          {"shape": "cyl_z", "size": [0.55, 0.55, 2.2], "pos": [1.02, -1.07, 1.3], "ch": "secondary", "mirror": true, "note": "megaphone stage 1"},
+          {"shape": "cyl_z", "size": [0.76, 0.76, 1.9], "pos": [1.02, -1.07, 3.35], "ch": "secondary", "mirror": true, "note": "megaphone stage 2"},
+          {"shape": "cyl_z", "size": [0.95, 0.95, 1.3], "pos": [1.02, -1.07, 4.95], "ch": "detail", "mirror": true, "note": "megaphone mouth: out past the seat, clear of any boost pipe"},
+          {"shape": "cyl_z", "size": [0.76, 0.76, 0.18], "pos": [1.02, -1.07, 5.69], "ch": "thrust", "mirror": true, "note": "megaphone thrust"}
         ]
       },
       "vtwin": {
@@ -391,9 +399,9 @@
           {"shape": "block", "size": [2.4, 0.2, 3.2], "pos": [0.0, -1.35, -0.6], "ch": "primary", "note": "wide bash plate"},
           {"shape": "block", "size": [0.15, 0.55, 2.4], "pos": [1.125, -0.975, -1.0], "ch": "primary", "mirror": true, "note": "bash plate side wing"},
           {"shape": "cyl_z", "size": [0.8, 0.8, 1.677], "pos": [0.725, -0.96, 1.4], "ch": "detail", "rot": [7.54, 15.709, 0.0], "note": "header: right side only, under the megaphone"},
-          {"shape": "cyl_z", "size": [0.9, 0.9, 1.2], "pos": [0.95, -1.07, 2.7], "ch": "secondary", "note": "single stinger"},
-          {"shape": "cyl_z", "size": [1.0, 1.0, 0.6], "pos": [0.95, -1.07, 3.6], "ch": "detail", "note": "single stinger nozzle"},
-          {"shape": "cyl_z", "size": [0.78, 0.78, 0.18], "pos": [0.95, -1.07, 3.99], "ch": "thrust", "note": "single stinger thrust"}
+          {"shape": "cyl_z", "size": [0.9, 0.9, 2.6], "pos": [0.95, -1.07, 3.4], "ch": "secondary", "note": "single stinger"},
+          {"shape": "cyl_z", "size": [1.0, 1.0, 0.6], "pos": [0.95, -1.07, 5.0], "ch": "detail", "note": "single stinger nozzle"},
+          {"shape": "cyl_z", "size": [0.78, 0.78, 0.18], "pos": [0.95, -1.07, 5.39], "ch": "thrust", "note": "single stinger thrust"}
         ]
       },
       "fourposter": {
@@ -405,9 +413,10 @@
           {"shape": "block", "size": [2.1, 0.3, 0.6], "pos": [0.0, 0.05, -1.7], "ch": "detail", "note": "front post yoke"},
           {"shape": "block", "size": [2.1, 0.3, 0.6], "pos": [0.0, 0.05, 1.5], "ch": "detail", "note": "rear post yoke"},
           {"shape": "block", "size": [1.0, 0.9, 1.5], "pos": [0.0, -0.75, 1.65], "ch": "detail", "note": "collector duct"},
-          {"shape": "block", "size": [1.6, 0.95, 1.4], "pos": [0.0, -1.075, 3.0], "ch": "secondary", "note": "rear collector nozzle: between the back posts"},
-          {"shape": "block", "size": [1.8, 1.05, 0.3], "pos": [0.0, -1.075, 3.85], "ch": "detail", "note": "collector lip"},
-          {"shape": "block", "size": [1.4, 0.79, 0.16], "pos": [0.0, -1.075, 4.08], "ch": "thrust", "note": "collector thrust: rear-facing"},
+          {"shape": "block", "size": [1.6, 0.95, 1.3], "pos": [0.0, -1.075, 2.95], "ch": "secondary", "note": "rear collector: between the back posts"},
+          {"shape": "block", "size": [1.1, 0.75, 1.2], "pos": [0.0, -1.075, 4.2], "ch": "secondary", "note": "collector nozzle: steps in and runs out under the swingarm, a duct not a slab"},
+          {"shape": "block", "size": [1.4, 0.95, 0.3], "pos": [0.0, -1.075, 4.95], "ch": "detail", "note": "collector lip"},
+          {"shape": "block", "size": [1.1, 0.69, 0.16], "pos": [0.0, -1.075, 5.18], "ch": "thrust", "note": "collector thrust: rear-facing, 1.1 across"},
           {"shape": "cyl_z", "size": [0.85, 0.85, 0.442], "pos": [1.05, 0.059, -1.7], "ch": "detail", "rot": [90.0, 0.0, 0.0], "mirror": true, "note": "front lift post intake cowl"},
           {"shape": "cyl_z", "size": [0.765, 0.765, 0.79], "pos": [1.05, -0.557, -1.7], "ch": "secondary", "rot": [90.0, 0.0, 0.0], "mirror": true, "note": "front lift post body"},
           {"shape": "cyl_z", "size": [0.629, 0.629, 0.348], "pos": [1.05, -1.126, -1.7], "ch": "detail", "rot": [90.0, 0.0, 0.0], "mirror": true, "note": "front lift post nozzle"},
@@ -422,13 +431,19 @@
         "name": "Slot Burner",
         "culture": "Speeder",
         "parts": [
-          {"shape": "block", "size": [1.7, 2.05, 3.6], "pos": [0.0, 0.425, -0.2], "ch": "detail", "note": "plenum: hugs the spine"},
-          {"shape": "wedge", "size": [1.7, 2.05, 0.5], "pos": [0.0, 0.425, -2.25], "ch": "detail", "note": "plenum intake ramp"},
-          {"shape": "block", "size": [2.9, 0.65, 6.7], "pos": [0.0, -0.925, 1.05], "ch": "secondary", "note": "burner slab: runs out under the swingarm"},
-          {"shape": "block", "size": [2.4, 0.41, 0.2], "pos": [0.0, -0.925, -2.4], "ch": "detail", "note": "intake mouth"},
-          {"shape": "block", "size": [2.9, 0.65, 0.3], "pos": [0.0, -0.925, 4.55], "ch": "detail", "note": "slot nozzle"},
-          {"shape": "block", "size": [2.5, 0.45, 0.18], "pos": [0.0, -0.925, 4.79], "ch": "thrust", "note": "slot thrust: rear-facing"},
-          {"shape": "block", "size": [0.05, 0.25, 3.2], "pos": [1.475, -0.925, 0.0], "ch": "thrust", "mirror": true, "note": "side slot thrust"}
+          {"shape": "block", "size": [1.1, 1.3, 2.9], "pos": [0.0, 0.45, -0.25], "ch": "secondary", "note": "plenum: slim, 1.1 wide and 1.3 high, daylight either side"},
+          {"shape": "wedge", "size": [1.1, 1.3, 0.6], "pos": [0.0, 0.45, -2.0], "ch": "secondary", "note": "plenum intake ramp"},
+          {"shape": "block", "size": [0.6, 0.4, 0.6], "pos": [0.0, 1.3, -0.3], "ch": "detail", "note": "top mount"},
+          {"shape": "block", "size": [0.33, 0.65, 1.4], "pos": [0.715, 0.675, -1.3], "ch": "primary", "mirror": true, "note": "side intake scoop"},
+          {"shape": "block", "size": [0.23, 0.51, 0.2], "pos": [0.715, 0.675, -2.1], "ch": "detail", "mirror": true, "note": "scoop mouth: the visible intake"},
+          {"shape": "wedge", "size": [0.33, 0.65, 0.8], "pos": [0.715, 0.675, -0.2], "ch": "primary", "rot": [0.0, 180.0, 0.0], "mirror": true, "note": "scoop fade"},
+          {"shape": "block", "size": [0.7, 0.3, 0.9], "pos": [0.0, -0.35, 0.65], "ch": "detail", "note": "strut: bridges the 0.3 shadow gap to the slab"},
+          {"shape": "wedge", "size": [2.2, 0.65, 0.6], "pos": [0.0, -0.825, -0.2], "ch": "primary", "note": "burner slab leading edge"},
+          {"shape": "block", "size": [2.2, 0.65, 2.3], "pos": [0.0, -0.825, 1.25], "ch": "primary", "note": "burner slab: 2.2 wide, body colour"},
+          {"shape": "block", "size": [1.8, 0.6, 2.2], "pos": [0.0, -0.85, 3.5], "ch": "primary", "note": "burner slab tail: steps in, runs out under the swingarm"},
+          {"shape": "block", "size": [1.8, 0.65, 0.3], "pos": [0.0, -0.875, 4.75], "ch": "detail", "note": "slot nozzle"},
+          {"shape": "block", "size": [1.5, 0.45, 0.18], "pos": [0.0, -0.875, 4.99], "ch": "thrust", "note": "slot thrust: rear-facing"},
+          {"shape": "block", "size": [0.05, 0.25, 1.9], "pos": [1.125, -0.825, 1.25], "ch": "thrust", "mirror": true, "note": "side slot thrust"}
         ]
       }
     },
@@ -440,10 +455,10 @@
           {"shape": "block", "size": [1.4, 0.8, 0.5], "pos": [0.0, 1.0, 3.65], "ch": "detail", "note": "pivot"},
           {"shape": "block", "size": [0.3, 0.6, 1.855], "pos": [1.0, 0.775, 4.5], "ch": "secondary", "rot": [14.036, 0.0, 0.0], "note": "single-sided swingarm"},
           {"shape": "block", "size": [1.15, 0.4, 0.5], "pos": [0.575, 0.45, 5.35], "ch": "detail", "note": "thruster carrier"},
-          {"shape": "cyl_z", "size": [1.6, 1.6, 0.78], "pos": [0.0, 0.38, 4.39], "ch": "detail", "note": "mono thruster intake cowl"},
-          {"shape": "cyl_z", "size": [1.44, 1.44, 1.5], "pos": [0.0, 0.38, 5.53], "ch": "primary", "note": "mono thruster body"},
-          {"shape": "cyl_z", "size": [1.184, 1.184, 0.72], "pos": [0.0, 0.38, 6.64], "ch": "detail", "note": "mono thruster nozzle"},
-          {"shape": "cyl_z", "size": [0.864, 0.864, 0.2], "pos": [0.0, 0.38, 7.1], "ch": "thrust", "note": "mono thruster thrust"}
+          {"shape": "cyl_z", "size": [1.5, 1.5, 0.819], "pos": [0.0, 0.3, 4.409], "ch": "secondary", "note": "mono thruster intake cowl"},
+          {"shape": "cyl_z", "size": [1.35, 1.35, 1.575], "pos": [0.0, 0.3, 5.607], "ch": "primary", "note": "mono thruster body"},
+          {"shape": "cyl_z", "size": [1.11, 1.11, 0.756], "pos": [0.0, 0.3, 6.772], "ch": "detail", "note": "mono thruster nozzle"},
+          {"shape": "cyl_z", "size": [0.81, 0.81, 0.2], "pos": [0.0, 0.3, 7.25], "ch": "thrust", "note": "mono thruster thrust"}
         ]
       },
       "trident": {
@@ -490,14 +505,15 @@
           {"shape": "block", "size": [0.2, 0.5, 1.803], "pos": [0.65, 0.9, 4.35], "ch": "secondary", "rot": [19.44, 0.0, 0.0], "mirror": true, "note": "long-travel swingarm"},
           {"shape": "block", "size": [1.1, 0.8, 0.4], "pos": [0.0, 1.0, 3.6], "ch": "detail", "note": "pivot"},
           {"shape": "block", "size": [1.5, 0.4, 0.5], "pos": [0.0, 0.65, 5.15], "ch": "detail", "note": "thruster carrier"},
-          {"shape": "cyl_z", "size": [0.95, 0.95, 0.78], "pos": [0.0, 1.25, 4.39], "ch": "detail", "note": "upper thruster intake cowl"},
-          {"shape": "cyl_z", "size": [0.855, 0.855, 1.5], "pos": [0.0, 1.25, 5.53], "ch": "primary", "note": "upper thruster body"},
-          {"shape": "cyl_z", "size": [0.703, 0.703, 0.72], "pos": [0.0, 1.25, 6.64], "ch": "detail", "note": "upper thruster nozzle"},
-          {"shape": "cyl_z", "size": [0.513, 0.513, 0.2], "pos": [0.0, 1.25, 7.1], "ch": "thrust", "note": "upper thruster thrust"},
-          {"shape": "cyl_z", "size": [0.95, 0.95, 0.442], "pos": [0.0, 0.05, 4.421], "ch": "detail", "note": "lower thruster intake cowl"},
-          {"shape": "cyl_z", "size": [0.855, 0.855, 0.85], "pos": [0.0, 0.05, 5.067], "ch": "primary", "note": "lower thruster body"},
-          {"shape": "cyl_z", "size": [0.703, 0.703, 0.408], "pos": [0.0, 0.05, 5.696], "ch": "detail", "note": "lower thruster nozzle"},
-          {"shape": "cyl_z", "size": [0.513, 0.513, 0.2], "pos": [0.0, 0.05, 6.0], "ch": "thrust", "note": "lower thruster thrust"}
+          {"shape": "block", "size": [0.2, 0.8, 1.9], "pos": [0.0, 0.65, 5.45], "ch": "secondary", "note": "spine fin: ties the two barrels into one tall stack"},
+          {"shape": "cyl_z", "size": [0.8, 0.8, 0.559], "pos": [0.0, 1.38, 5.28], "ch": "detail", "note": "upper thruster intake cowl"},
+          {"shape": "cyl_z", "size": [0.72, 0.72, 1.075], "pos": [0.0, 1.38, 6.097], "ch": "primary", "note": "upper thruster body"},
+          {"shape": "cyl_z", "size": [0.592, 0.592, 0.516], "pos": [0.0, 1.38, 6.892], "ch": "detail", "note": "upper thruster nozzle"},
+          {"shape": "cyl_z", "size": [0.432, 0.432, 0.2], "pos": [0.0, 1.38, 7.25], "ch": "thrust", "note": "upper thruster thrust"},
+          {"shape": "cyl_z", "size": [0.8, 0.8, 0.442], "pos": [0.0, -0.08, 4.121], "ch": "detail", "note": "lower thruster intake cowl"},
+          {"shape": "cyl_z", "size": [0.72, 0.72, 0.85], "pos": [0.0, -0.08, 4.767], "ch": "primary", "note": "lower thruster body"},
+          {"shape": "cyl_z", "size": [0.592, 0.592, 0.408], "pos": [0.0, -0.08, 5.396], "ch": "detail", "note": "lower thruster nozzle"},
+          {"shape": "cyl_z", "size": [0.432, 0.432, 0.2], "pos": [0.0, -0.08, 5.7], "ch": "thrust", "note": "lower thruster thrust"}
         ]
       },
       "twin": {
@@ -505,11 +521,11 @@
         "culture": "Streetfighter",
         "parts": [
           {"shape": "block", "size": [0.6, 1.1, 1.1], "pos": [0.0, 0.75, 3.95], "ch": "detail", "note": "centre arm"},
-          {"shape": "block", "size": [1.8, 0.26, 0.6], "pos": [0.0, 0.85, 4.2], "ch": "secondary", "note": "cross brace"},
-          {"shape": "cyl_z", "size": [1.25, 1.25, 0.598], "pos": [0.82, 0.3, 4.199], "ch": "detail", "mirror": true, "note": "barrel intake cowl"},
-          {"shape": "cyl_z", "size": [1.125, 1.125, 1.15], "pos": [0.82, 0.3, 5.073], "ch": "primary", "mirror": true, "note": "barrel body"},
-          {"shape": "cyl_z", "size": [0.925, 0.925, 0.552], "pos": [0.82, 0.3, 5.924], "ch": "detail", "mirror": true, "note": "barrel nozzle"},
-          {"shape": "cyl_z", "size": [0.675, 0.675, 0.2], "pos": [0.82, 0.3, 6.3], "ch": "thrust", "mirror": true, "note": "barrel thrust"}
+          {"shape": "block", "size": [2.3, 0.18, 1.8], "pos": [0.0, 0.84, 4.8], "ch": "secondary", "note": "flat bridge plate: ties two barrels with a clear gap between them"},
+          {"shape": "cyl_z", "size": [0.9, 0.9, 0.728], "pos": [1.05, 0.32, 4.264], "ch": "detail", "mirror": true, "note": "barrel intake cowl"},
+          {"shape": "cyl_z", "size": [0.81, 0.81, 1.4], "pos": [1.05, 0.32, 5.328], "ch": "primary", "mirror": true, "note": "barrel body"},
+          {"shape": "cyl_z", "size": [0.666, 0.666, 0.672], "pos": [1.05, 0.32, 6.364], "ch": "detail", "mirror": true, "note": "barrel nozzle"},
+          {"shape": "cyl_z", "size": [0.486, 0.486, 0.2], "pos": [1.05, 0.32, 6.8], "ch": "thrust", "mirror": true, "note": "barrel thrust"}
         ]
       },
       "fantail": {
@@ -764,10 +780,12 @@
         "parts": [
           {"shape": "block", "size": [0.6, 0.3, 0.75], "pos": [0.0, 3.12, -3.725], "ch": "detail", "note": "bracket: lands on the fairing pad"},
           {"shape": "block", "size": [1.7, 1.4, 0.3], "pos": [0.0, 3.62, -5.0], "ch": "primary", "rot": [12.0, 0.0, 0.0], "note": "number plate"},
-          {"shape": "block", "size": [1.0, 0.35, 1.0], "pos": [0.0, 3.125, -4.5], "ch": "detail", "note": "plate mount and lamp"},
+          {"shape": "block", "size": [1.0, 0.35, 1.0], "pos": [0.0, 3.125, -4.5], "ch": "detail", "note": "plate mount"},
           {"shape": "block", "size": [1.4, 0.35, 1.2], "pos": [0.0, 4.175, -4.2], "ch": "detail", "note": "screen deck: flat top, screens sit flush on it"},
           {"shape": "block", "size": [0.6, 0.73, 0.6], "pos": [0.0, 3.635, -4.0], "ch": "detail", "note": "deck post"},
-          {"shape": "block", "size": [1.4, 0.3, 2.093], "pos": [0.0, 2.51, -6.075], "ch": "primary", "rot": [11.578, 180.0, 0.0], "note": "high beak fender"}
+          {"shape": "block", "size": [1.3, 0.2, 1.175], "pos": [0.0, 2.74, -5.625], "ch": "primary", "rot": [11.788, 180.0, 0.0], "note": "short lamp visor: tucked under the plate"},
+          {"shape": "block", "size": [0.8, 0.45, 0.55], "pos": [0.0, 2.475, -5.325], "ch": "detail", "note": "lamp pod under the visor"},
+          {"shape": "block", "size": [0.6, 0.28, 0.12], "pos": [0.0, 2.46, -5.66], "ch": "neon", "note": "lamp lens"}
         ]
       },
       "mask": {
@@ -890,7 +908,8 @@
         "parts": [
           {"shape": "block", "size": [0.6, 0.25, 3.3], "pos": [0.0, 2.025, 5.05], "ch": "detail", "note": "tail rail: lands on the cockpit rear, carries the tail kit"},
           {"shape": "wedge", "size": [1.4, 1.1, 1.95], "pos": [0.0, 2.85, 4.425], "ch": "primary", "rot": [180.0, 0.0, 0.0], "note": "airbox side: flat top at the seat tail datum"},
-          {"shape": "block", "size": [0.9, 0.3, 2.351], "pos": [0.0, 3.835, 5.5], "ch": "primary", "rot": [-20.67, 0.0, 0.0], "note": "kicked-up fender"}
+          {"shape": "block", "size": [0.9, 0.3, 2.351], "pos": [0.0, 3.835, 5.5], "ch": "primary", "rot": [-20.67, 0.0, 0.0], "note": "kicked-up fender"},
+          {"shape": "block", "size": [1.0, 0.14, 1.91], "pos": [0.0, 3.15, 6.52], "ch": "primary", "rot": [-83.991, 180.0, 0.0], "note": "rear number board: drops from the fender tip to the rail end, so every tail kit backs onto it"}
         ]
       },
       "stubtail": {
@@ -901,7 +920,8 @@
           {"shape": "wedge", "size": [2.7, 1.1, 1.65], "pos": [0.0, 2.85, 4.275], "ch": "primary", "rot": [180.0, 0.0, 0.0], "note": "stub underside"},
           {"shape": "wedge", "size": [2.7, 1.1, 1.65], "pos": [0.0, 3.95, 4.275], "ch": "primary", "note": "stub kick"},
           {"shape": "block", "size": [1.6, 0.25, 0.08], "pos": [0.0, 4.075, 5.14], "ch": "neon", "note": "slit tail lamp: 1.6 x 0.25"},
-          {"shape": "wedge", "size": [1.0, 0.6, 1.6], "pos": [0.0, 2.45, 5.9], "ch": "primary", "rot": [0.0, 180.0, 0.0], "note": "tail boom: carries the tail kit"}
+          {"shape": "block", "size": [0.9, 0.7, 1.6], "pos": [0.0, 2.95, 5.9], "ch": "primary", "note": "tail boom: at seat height to the tail, so tall tail kits back onto bodywork"},
+          {"shape": "wedge", "size": [0.9, 0.45, 1.6], "pos": [0.0, 2.375, 5.9], "ch": "primary", "rot": [180.0, 0.0, 0.0], "note": "boom underside: rises to the tip"}
         ]
       },
       "fintail": {

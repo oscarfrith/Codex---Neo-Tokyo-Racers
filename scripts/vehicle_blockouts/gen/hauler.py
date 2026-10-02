@@ -1,4 +1,4 @@
-"""Generator for the Hauler frame-class blockout spec (round 2, after critic review). Design exploration only.
+"""Generator for the Hauler frame-class blockout spec (round 2, after the second review: per-module swaps). Design exploration only.
 
 Run from the repo root:
   py -3 scripts/vehicle_blockouts/gen/hauler.py
@@ -24,7 +24,7 @@ CAB_F, CAB_R = -6.0, 3.0   # cab seams
 TUN_X, TUN_TOP = 2.0, 6.2  # engine trench half-width and top (Engine1 envelope). Nothing may roof it
 POD_Z = -10.4              # front face of a forward cab pod; the cowl deck runs from here to the cab seam
 COWL_X = 4.1               # half-width of the cowl deck every Front Clip presents at the belt
-ROOF_PAD = (-2.4, 2.4, -4.4, -2.6)   # x0, x1, z0, z1 at Y 7.4
+ROOF_PAD = (-3.4, 3.4, -4.4, -1.6)   # x0, x1, z0, z1 at Y 7.4: the plan a Roof Rig may cover on every cab
 ACC_PAD_Z = (-5.0, -4.2)             # accessory stand-off on every cab at belt height
 
 
@@ -84,6 +84,15 @@ def strut(p0, p1, t, ch="detail", m=False, round_=False, note=None):
     ry = math.degrees(math.atan2(dx, dz))
     pos = [(p0[0] + p1[0]) / 2, (p0[1] + p1[1]) / 2, (p0[2] + p1[2]) / 2]
     return part("cyl_z" if round_ else "block", [t, t, length], pos, ch, [rx, ry, 0], m, note)
+
+
+def plate(front, rear, x0, x1, t, ch="detail", note=None):
+    """A flat plate spanning x0..x1, thickness t, from front (y, z) to rear (y, z). The rear is at the greater Z."""
+    dy, dz = rear[0] - front[0], rear[1] - front[1]
+    length = math.sqrt(dy * dy + dz * dz)
+    rx = -math.degrees(math.asin(dy / length))
+    pos = [(x0 + x1) / 2, (front[0] + rear[0]) / 2, (front[1] + rear[1]) / 2]
+    return part("block", [x1 - x0, t, length], pos, ch, [rx, 0, 0], False, note)
 
 
 def up_stack(d, x, y0, y1, z, m=False, jet=None, glow=0.35):
@@ -185,7 +194,7 @@ def driver(x, z, seat_y=3.6, hide_torso=False):
 
 # ----------------------------------------------------------------------------- cockpits
 def cab_single():
-    """Prerunner. Short two-seat cab pushed to the front with a chopped roof. Behind it an open pack: fuel cell, cans, roll hoop."""
+    """Prerunner. Short two-seat cab pushed to the front with a chopped screen. Behind it a body-colour pack at belt height carrying a fuel cell, cans and a roll hoop."""
     p = chassis() + seam_plates()
     p += [
         box(-3.8, 3.8, 0.5, BELT, -5.8, -1.6, "primary", note="doors and lower cab"),
@@ -195,13 +204,16 @@ def cab_single():
         box(-3.4, 3.4, 4.1, 6.3, -4.4, -2.2, "glass"),
         box(-3.7, 3.7, 4.1, 6.3, -2.2, -1.6, "primary", note="cab back panel"),
         box(-3.7, 3.7, 6.3, 6.8, -4.8, -1.6, "primary", note="chopped roof"),
-        box(ROOF_PAD[0], ROOF_PAD[1], 6.8, ROOF, ROOF_PAD[2], ROOF_PAD[3], "detail", note="roof pad riser to Y 7.4"),
+        box(ROOF_PAD[0], ROOF_PAD[1], 6.8, ROOF, ROOF_PAD[2], ROOF_PAD[3], "primary", note="raised roof cap: the roof pad at Y 7.4, as wide as any Roof Rig"),
+        wedge(ROOF_PAD[0], ROOF_PAD[1], 6.8, ROOF, -4.8, ROOF_PAD[2], "primary", "front", note="cap brow"),
         strut((3.55, 4.1, -5.6), (3.55, 6.3, -4.4), 0.35, "primary", m=True, note="A-pillar"),
-        # behind the cab: open pack with a fuel cell and a roll hoop
-        box(-3.8, 3.8, 0.5, 1.0, -1.6, 2.8, "detail", note="pack tray: keeps the Side Gear seam closed behind the short cab"),
-        box(-2.4, 2.4, 1.0, 2.6, -1.1, 2.8, "detail", note="fuel cell: reaches the Bed seam"),
-        box(-1.9, 1.9, 2.6, 3.4, -0.6, 1.2, "secondary", note="jerry cans"),
-        box(2.9, 3.4, 1.0, 7.2, 1.9, 2.4, "detail", m=True, note="roll hoop"),
+        # behind the cab: a body-colour pack that carries the lower body, stripe and belt back to the Bed seam
+        box(-3.8, 3.8, 0.5, BELT, -1.6, 2.8, "primary", note="pack body: lower body and beltline run back to the Bed seam"),
+        box(-3.86, 3.86, STRIPE[0], STRIPE[1], -1.62, 2.78, "secondary", note="stripe, carried back over the pack"),
+        box(3.8, 3.87, 0.8, BELT, -1.62, -1.48, "detail", m=True, note="panel gap between cab and pack"),
+        box(-2.4, 2.4, BELT, 4.6, -1.1, 2.6, "detail", note="fuel cell on the pack deck"),
+        box(-1.9, 1.9, 4.6, 5.3, -0.6, 1.2, "secondary", note="jerry cans"),
+        box(2.9, 3.4, BELT, 7.2, 1.9, 2.4, "detail", m=True, note="roll hoop"),
         box(-3.4, 3.4, 6.75, 7.2, 1.9, 2.4, "detail"),
         strut((3.15, 6.9, 1.9), (3.15, 3.9, -1.4), 0.35, "detail", m=True, note="hoop brace"),
         box(0.9, 2.9, 3.1, 5.6, -2.6, -2.25, "detail", m=True, note="seat backs"),
@@ -254,7 +266,10 @@ def cab_kei():
         box(-3.2, 3.2, 4.3, 6.6, -3.2, -2.6, "primary", note="back panel"),
         box(-3.2, 3.2, 6.6, 7.0, -6.75, -2.6, "primary", note="roof"),
         box(-3.26, 3.26, 6.6, 6.9, -6.8, -6.3, "secondary", note="brow band over the screen"),
-        box(ROOF_PAD[0], ROOF_PAD[1], 7.0, ROOF, ROOF_PAD[2], ROOF_PAD[3], "detail", note="roof pad riser to Y 7.4"),
+        box(ROOF_PAD[0], ROOF_PAD[1], 7.0, ROOF, -5.0, ROOF_PAD[3], "primary", note="roof cap: the roof pad at Y 7.4, as wide as any Roof Rig; it overhangs the cab back as a shade"),
+        box(2.9, 3.2, 2.5, 7.0, -2.0, -1.7, "detail", m=True, note="cab guard post: holds the cap overhang"),
+        box(-2.9, 2.9, 6.6, 7.0, -2.0, -1.7, "detail", note="cab guard top bar"),
+        box(-2.9, 2.9, 4.6, 4.85, -1.95, -1.75, "detail", note="cab guard mid bar"),
         box(3.0, 3.2, 4.3, 6.6, -6.75, -6.45, "primary", m=True, note="corner post"),
         box(3.0, 3.2, 4.3, 6.6, -4.7, -4.4, "primary", m=True, note="door post"),
         # load on the tray
@@ -359,12 +374,13 @@ def horns(y1=1.25):
 
 
 def fb_flare_nose():
-    """Prerunner: a thin shell held high over the bare frame. Fenders slope from the cowl deck to a beak, a skid plate rises under it, wide flares cover the lift jets."""
+    """Prerunner: a thin shell held high over the bare frame. Fenders slope from the cowl deck to a beak, a full-width skid plate kicks up to the nose under it, wide flares cover the lift jets."""
     return clip_back(2.6) + horns(2.6) + [
         box(-2.1, 2.1, 2.6, BELT, -13.4, -6.25, "primary", note="hood spine: Engine1 pad at Y 3.6"),
         box(2.1, 4.3, 2.6, BELT, POD_Z, -6.25, "primary", m=True, note="cowl deck: flat at the belt, a forward cab pod stands here"),
         wedge(2.1, 4.3, 2.6, BELT, -13.6, POD_Z, "primary", "front", m=True, note="fender slopes to a point at the nose"),
-        part("block", [5.2, 0.16, 5.0], [0, 1.45, -10.6], "secondary", [17.5, 0, 0], note="skid plate rising from the frame to the nose"),
+        plate((1.5, -13.0), (0.65, -8.0), -4.3, 4.3, 0.16, "secondary", note="skid plate rising from the frame, as wide as the shell"),
+        plate((2.5, -13.68), (1.45, -13.05), -4.3, 4.3, 0.16, "secondary", note="skid face kicked up to the nose: the face behind every Front Bar"),
         strut((2.3, 0.7, -7.6), (2.3, 2.5, -12.6), 0.3, "detail", m=True, round_=True, note="tube brace under the shell"),
         box(1.9, 2.7, 0.5, 2.6, -7.4, -6.6, "detail", m=True, note="shell mount on the frame rail"),
         box(-2.0, 2.0, 2.75, 3.45, -13.56, -13.4, "detail", note="mesh grille"),
@@ -441,7 +457,7 @@ def fb_round_nose():
 
 
 def fb_stub_nose():
-    """Courier: a short, blunt van nose. The body stops 1.4 short of the other clips and its face leans back to the cowl deck. The frame prongs and the Hood Engine stand out ahead of it."""
+    """Courier: a short, blunt van nose. The body stops 1.4 short of the other clips and its face leans back to the cowl deck. Ahead of it a dark porch stands on the frame prongs: an apron tray for the Front Bar and a hood shelf for the Hood Engine."""
     return clip_back(0.9) + [
         box(1.9, 2.7, 0.55, 1.25, -13.9, -12.3, "detail", m=True, note="bumper horn on a frame prong: the Front Bar pad, the same place as every clip"),
         box(-4.2, 4.2, 0.9, BELT, POD_Z, -6.25, "primary", note="cowl block: cowl deck at Y 3.6"),
@@ -450,7 +466,12 @@ def fb_stub_nose():
         box(-2.0, 2.0, 2.3, BELT, -12.3, POD_Z, "primary", note="hood spine: Engine1 pad at Y 3.6"),
         box(-2.8, 2.8, 1.2, 2.1, -12.42, -12.3, "detail", note="grille"),
         box(3.0, 4.0, 1.2, 2.1, -12.42, -12.3, "neon", m=True, note="square lamp"),
+        box(-3.4, 3.4, 0.6, 1.2, -13.85, -12.3, "detail", note="apron tray across the prongs: a face behind every Front Bar. Narrower than the body, so the nose corners stay cut back"),
+        box(-3.4, 3.4, 0.75, 1.05, -13.92, -13.85, "secondary", note="apron band"),
         box(-4.26, 4.26, 0.95, 1.15, -12.36, -12.0, "secondary", note="nose band"),
+        box(-2.3, 2.3, 3.3, BELT, -13.8, -12.3, "detail", note="hood shelf: carries the hood pad out to the nose line under every Hood Engine"),
+        box(1.9, 2.3, 1.25, 3.3, -13.8, -13.4, "detail", m=True, note="shelf upright on the prong"),
+        strut((2.1, 3.3, -13.4), (2.1, 2.2, -12.3), 0.3, "detail", m=True, note="shelf brace back to the nose"),
         box(4.2, 4.28, STRIPE[0], STRIPE[1], POD_Z, -6.25, "secondary", m=True, note="stripe"),
         box(4.4, 5.7, 2.05, 2.5, -12.2, -8.6, "primary", m=True, note="flat step fender over the lift jet"),
         box(4.4, 5.7, 2.05, 2.5, -8.6, -8.2, "detail", m=True, note="fender bracket"),
@@ -494,17 +515,19 @@ def rb_chase_tub():
 
 
 def rb_flatbed():
-    """Lifted: thin flat deck carried high and wider than the cab, open headboard frame, stake rails. Only crossmembers under it."""
+    """Lifted: thin flat deck carried high and wider than the cab. Body-colour deck wings, headboard hoop and tail sill; stake rails. Only crossmembers under it."""
     return rear_horns(1.2) + [
         box(-4.3, 4.3, 1.2, 1.7, 3.3, 13.9, "primary", note="deck frame, carried high"),
         box(-4.2, 4.2, 1.7, DECK, 3.35, 13.85, "secondary", note="deck boards: Engine2 pad at Y 2.0"),
-        box(4.4, 6.5, DECK, 2.35, 4.9, 13.9, "secondary", m=True, note="deck wing: the flatbed is wider than the cab"),
+        box(4.4, 6.5, DECK, 2.35, 4.9, 13.9, "primary", m=True, note="deck wing, body colour: the flatbed is wider than the cab"),
+        box(-1.9, 1.9, 0.5, 1.2, 13.3, 13.9, "primary", note="tail sill, body colour: painted Rear Bars meet painted body"),
+        box(2.7, 4.3, 0.5, 1.2, 13.3, 13.9, "primary", m=True, note="tail sill"),
         box(-3.0, 3.0, 0.5, 1.2, 6.6, 7.4, "detail", note="crossmember"),
         box(-3.0, 3.0, 0.5, 1.2, 11.6, 12.4, "detail", note="crossmember"),
         box(-3.6, 3.6, 1.2, 2.6, 3.05, 3.3, "detail", note="front linkage plate"),
         box(4.4, 5.4, 2.6, 3.0, 4.9, 13.9, "detail", m=True, note="stake rail: Bed Rig feet land here at Y 3.0"),
-        box(3.5, 4.1, DECK, 6.4, 3.3, 3.8, "detail", m=True, note="headboard post"),
-        box(-4.1, 4.1, 5.9, 6.4, 3.3, 3.8, "detail"),
+        box(3.5, 4.1, DECK, 6.4, 3.3, 3.8, "primary", m=True, note="headboard hoop post, body colour"),
+        box(-4.1, 4.1, 5.9, 6.4, 3.3, 3.8, "primary", note="headboard hoop top"),
         box(-3.5, 3.5, 3.2, 3.6, 3.4, 3.7, "detail", note="headboard bar"),
         box(-3.5, 3.5, 4.5, 4.9, 3.4, 3.7, "detail"),
         box(3.0, 4.3, 0.5, 1.2, 3.6, 5.6, "secondary", m=True, note="under-deck toolbox"),
@@ -557,14 +580,19 @@ def rb_canopy():
 
 
 def rb_parcel_box():
-    """Courier: a closed box that carries the cab roofline back, then stops at a roll-up door. Behind it an open tail deck, so the Bed Engine pokes out of the box and shows."""
+    """Courier: a box that carries the cab roofline back, then stops at a roll-up door. A barred hatch low in each side shows the Bed Engine from the front. Behind the box an open tail deck shows its nozzles."""
     box_r = 9.6
     return bed_base() + rear_horns() + [
-        box(3.3, 4.3, DECK, 6.2, 3.3, box_r, "primary", m=True, note="box side: blank panel"),
+        box(3.3, 4.3, DECK, 2.7, 3.3, box_r, "primary", m=True, note="box side below the engine hatch"),
+        box(3.3, 4.3, 4.3, 6.2, 3.3, box_r, "primary", m=True, note="box side above the engine hatch: blank panel"),
+        box(3.3, 4.3, 2.7, 4.3, 3.3, 4.7, "primary", m=True, note="front pillar"),
+        box(3.3, 4.3, 2.7, 4.3, 8.5, box_r, "primary", m=True, note="rear pillar"),
+        box(3.7, 3.9, 2.7, 4.3, 5.85, 6.05, "detail", m=True, note="hatch bar: the Bed Engine shows through at engine height"),
+        box(3.7, 3.9, 2.7, 4.3, 7.15, 7.35, "detail", m=True, note="hatch bar"),
         box(-3.3, 3.3, DECK, 6.2, 3.3, 3.9, "primary", note="bulkhead"),
         box(-4.3, 4.3, 6.2, 6.95, 3.3, box_r, "primary", note="box roof: carries the cab roofline at Y 7.0"),
         box(-3.2, 3.2, 6.0, 6.2, box_r - 0.5, box_r, "detail", note="rolled-up door"),
-        box(4.3, 4.38, 4.2, 5.4, 3.6, box_r - 0.3, "secondary", m=True, note="livery band"),
+        box(4.3, 4.38, 4.6, 5.6, 3.6, box_r - 0.3, "secondary", m=True, note="livery band above the hatch"),
         box(4.3, 4.38, STRIPE[0], STRIPE[1], box_r, 13.9, "secondary", m=True, note="stripe"),
         box(3.3, 4.3, DECK, 3.4, box_r, 13.9, "primary", m=True, note="low wall of the open tail deck"),
         box(3.4, 4.2, 3.4, 5.0, 13.3, 13.9, "detail", m=True, note="tail post"),
@@ -652,17 +680,18 @@ def e1_cab_trio():
 
 
 def e1_doghouse():
-    """Courier: a tall engine cover hard against the cab, fed by a low intake trunk from the nose. Two vents in its lid fire up."""
+    """Courier: a low engine cover hard against the cab, open at the front. A slim turbine barrel runs out of it to a round intake at the nose. Two up-turned nozzles stand in tandem on the lid."""
+    y = 4.5
     return [
-        box(-1.7, 1.7, E1Y, 6.0, -10.2, -7.0, "secondary", note="doghouse: engine cover against the cab"),
-        box(-1.7, 1.7, E1Y, 4.6, -11.2, -10.2, "secondary", note="doghouse nose"),
-        wedge(-1.7, 1.7, 4.6, 6.0, -11.2, -10.2, "secondary", "front", note="sloped front"),
-        box(-0.7, 0.7, E1Y, 4.5, -13.4, -11.2, "detail", note="intake trunk"),
-        box(-1.0, 1.0, E1Y, 4.9, -13.75, -13.3, "detail", note="intake mouth"),
-        box(1.7, 1.78, 4.2, 5.4, -9.8, -7.4, "detail", m=True, note="side louvre"),
-        box(0.45, 1.5, 6.0, 6.17, -9.7, -7.5, "thrust", m=True, note="lid vent jet: fires up"),
-        box(-0.25, 0.25, 6.0, 6.12, -10.0, -7.2, "detail", note="lid spine"),
-    ]
+        box(-1.7, 1.7, E1Y, 5.4, -9.8, -7.0, "secondary", note="doghouse: low engine cover against the cab"),
+        box(-1.4, 1.4, 3.85, 5.2, -9.92, -9.8, "detail", note="open mouth of the cover: the barrel comes out here"),
+        box(-0.6, 0.6, E1Y, 3.85, -12.4, -10.2, "detail", note="cradle on the hood pad"),
+        cylz(1.5, 0, y, -12.9, -9.8, "detail", note="turbine barrel, running out of the cover"),
+        cylz(1.7, 0, y, -11.9, -10.9, "secondary", note="compressor band"),
+        cylz(1.75, 0, y, -13.72, -12.9, "secondary", note="round intake bell at the nose"),
+        cylz(1.3, 0, y, -13.78, -13.72, "detail", note="intake mouth"),
+        box(1.7, 1.78, 4.1, 5.0, -9.4, -7.4, "detail", m=True, note="side louvre"),
+    ] + up_stack(1.3, 0, 5.4, 6.15, -8.95, jet=1.05) + up_stack(1.3, 0, 5.4, 6.15, -7.75, jet=1.05)
 
 
 # ----------------------------------------------------------------------------- Engine2 (Bed Engine)
@@ -702,10 +731,12 @@ def e2_twin_barrels():
 
 
 def e2_deck_burner():
-    """Minitruck: a low, wide slot burner on the deck with a turbine hump down its middle. The slot nozzle is raised at the tail and glows full width."""
+    """Minitruck: a low, wide slot burner on the deck with a bright turbine hump down its dark body. The slot nozzle is raised at the tail, edged in neon, and glows full width."""
     p = [
-        box(-3.0, 3.0, E2Y, 2.8, 5.2, 12.2, "secondary", note="flat burner body"),
-        wedge(-3.0, 3.0, E2Y, 2.8, 4.2, 5.2, "detail", "front", note="intake ramp"),
+        box(-3.0, 3.0, E2Y, 2.8, 5.2, 12.2, "detail", note="flat burner body: dark, so it reads on a bright deck"),
+        box(-3.0, 3.0, 2.8, 2.9, 5.2, 11.2, "secondary", note="body rim plate: outlines the burner on a dark deck"),
+        wedge(-3.0, 3.0, E2Y, 2.8, 4.2, 5.2, "secondary", "front", note="intake ramp"),
+        box(-2.9, 2.9, 3.6, 3.7, 12.9, 13.5, "neon", note="neon edge over the slot"),
         cylz(2.0, 0, 3.05, 6.4, 11.4, "secondary", note="turbine hump, standing out of the burner"),
         cylz(2.1, 0, 3.1, 5.3, 6.4, "detail", note="hump intake"),
         wedge(-2.9, 2.9, 2.8, 3.6, 11.2, 12.2, "detail", "front", note="ramp up to the nozzle"),
@@ -713,7 +744,7 @@ def e2_deck_burner():
         box(-2.7, 2.7, 2.85, 3.35, 13.5, 13.85, "thrust", note="slot jet, 0.5 tall"),
     ]
     for z in (6.8, 8.4, 10.0):
-        p.append(box(1.3, 2.7, 2.8, 2.92, z, z + 0.8, "detail", m=True, note="louvre"))
+        p.append(box(1.3, 2.7, 2.9, 3.02, z, z + 0.8, "detail", m=True, note="louvre"))
     return p
 
 
@@ -898,13 +929,14 @@ def bo_shorty_stacks():
 
 
 def bo_tail_slot():
-    """Minitruck: two tall slot burners on the bed tail corners, one each side of the Bed Engine. Their slots stand upright."""
+    """Minitruck: one flat duckbill burner on each bed tail corner, low on the deck line. A body-colour root, a wide flat bill with a neon lip and a glow strip 2 wide."""
     return [
-        box(3.4, 4.5, 2.05, 3.35, 14.05, 15.5, "secondary", m=True, note="slot burner body on the flank port"),
-        box(3.5, 4.4, 2.15, 3.25, 15.5, 15.9, "detail", m=True, note="slot nozzle"),
-        box(3.65, 4.25, 2.3, 3.1, 15.9, 16.15, "thrust", m=True, note="boost jet: an upright slot"),
-        box(4.5, 4.62, 2.4, 3.0, 14.3, 14.7, "detail", m=True, note="intake louvre"),
-        box(4.5, 4.62, 2.4, 3.0, 14.9, 15.3, "detail", m=True, note="intake louvre"),
+        box(3.9, 5.0, 2.05, 2.8, 14.05, 14.7, "primary", m=True, note="burner root on the flank port, body colour, narrow"),
+        box(3.6, 5.3, 2.05, 2.6, 14.7, 15.2, "detail", m=True, note="throat: the bill fans out from the root"),
+        wedge(3.9, 5.0, 2.6, 2.8, 14.7, 15.2, "secondary", "back", m=True, note="bill fairing"),
+        box(3.35, 5.55, 2.05, 2.6, 15.2, 15.85, "detail", m=True, note="duckbill: wide and flat"),
+        box(3.35, 5.55, 2.6, 2.68, 15.5, 15.85, "neon", m=True, note="neon lip"),
+        box(3.45, 5.45, 2.15, 2.5, 15.85, 16.15, "thrust", m=True, note="boost jet: a flat slot 2 wide"),
     ]
 
 
@@ -920,14 +952,16 @@ def bo_chrome_stacks():
 
 
 def bo_tail_cans():
-    """Cab: two afterburner cans in square shrouds, set wide on the bed tail corners, well clear of the Bed Engine."""
-    return [
-        box(3.9, 5.5, 2.05, 3.35, 14.05, 15.3, "secondary", m=True, note="square shroud on the flank port"),
-        box(4.0, 5.4, 2.15, 3.25, 15.3, 15.45, "detail", m=True, note="shroud lip"),
-        cylz(1.2, 4.7, 2.7, 15.3, 15.8, "detail", m=True, note="can nozzle"),
-        cylz(1.1, 4.7, 2.7, 15.8, 16.15, "thrust", m=True, note="boost jet"),
-        box(5.5, 5.58, 2.4, 3.0, 14.3, 15.0, "detail", m=True, note="side vent"),
-    ]
+    """Cab: four round afterburner cans, two side by side on each bed tail corner, the outer one longer. Body colour with a neon band, no shroud."""
+    y = 2.85
+    out = [box(3.42, 5.5, 3.3, 3.38, 14.25, 14.55, "neon", m=True, note="neon strap over both cans")]
+    for x, z1 in ((3.92, 15.3), (5.0, 16.15)):
+        out += [
+            cylz(0.95, x, y, 14.05, z1 - 0.85, "primary", m=True, note="afterburner can, body colour, longer than wide, high on the flank port"),
+            cylz(0.85, x, y, z1 - 0.85, z1 - 0.35, "detail", m=True, note="can nozzle"),
+            cylz(0.7, x, y, z1 - 0.35, z1, "thrust", m=True, note="boost jet"),
+        ]
+    return out
 
 
 def bo_fishtails():
@@ -1008,7 +1042,8 @@ def fbu_bull_bar():
         wedge(-3.4, 3.4, -0.4, 0.6, -15.4, -14.1, "secondary", "front", flip=True, note="skid plate"),
         box(1.6, 2.0, 1.5, 4.0, -15.2, -14.8, "detail", m=True, note="hoop upright"),
         box(-2.0, 2.0, 3.6, 4.0, -15.2, -14.8, "detail", note="hoop top"),
-        ball(1.0, 0.8, 2.6, -15.1, "neon", m=True, note="lamp"),
+        box(-1.6, 1.6, 2.45, 2.75, -15.1, -14.9, "detail", note="lamp bar across the hoop"),
+        ball(1.0, 0.8, 2.6, -15.1, "neon", m=True, note="lamp on the lamp bar"),
         box(5.6, 6.6, 0.6, 1.2, -14.7, -14.1, "detail", m=True, note="corner wing"),
     ]
 
@@ -1224,7 +1259,7 @@ def ro_visor():
 
 def ro_crown():
     return [
-        box(-3.8, 3.8, 7.6, 8.0, -4.3, -3.5, "secondary", note="chrome crown bar on the roof pad"),
+        box(-3.4, 3.4, 7.6, 8.0, -4.3, -3.5, "secondary", note="chrome crown bar on the roof pad, no wider than any roof cap"),
         ball(0.55, 0, 8.25, -3.9, "neon", note="marker lamp"),
         ball(0.55, 1.5, 8.25, -3.9, "neon", m=True, note="marker lamp"),
         ball(0.55, 3.0, 8.25, -3.9, "neon", m=True, note="marker lamp"),

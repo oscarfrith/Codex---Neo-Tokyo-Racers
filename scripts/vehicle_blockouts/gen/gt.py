@@ -47,6 +47,8 @@ TRANSOM = 10.4            # lower tail face: afterburner and valance pad
 PAD1 = 10.6               # spoiler pads end here; every deck reaches it
 NOSE_MAX, TAIL_MAX = -12.8, 12.4
 STAB_Y0 = -1.6
+BOOST_Y0 = -0.25     # every afterburner sits on the transom, above this line; the valance owns the space below
+CHIN_X = 4.4         # the dark chin shelf under every nose reaches out this far
 
 # --------------------------------------------------------------------------------------
 # Part helpers
@@ -203,7 +205,8 @@ STANDARD = {
         "tailBay": {"halfWidth": BAY2_X, "floorY": BAY2_Y, "topY": E2_TOP, "z": [BAY2_Z0, Z_EXT], "nozzleEndZ": BAY2_Z1},
         "sideCove": {"y": [COVE_Y0, COVE_TOP], "z": [COVE0, Z_COWL]},
         "transomZ": TRANSOM, "spoilerPad": {"x": [BAY2_X, GLASS_X], "y": BELT, "z": [Z_EXT, PAD1]},
-        "chinPad": {"halfWidth": 2.0, "y": FLOOR, "z": [-10.8, BAY1_Z0]},
+        "chinPad": {"halfWidth": 2.0, "y": FLOOR, "z": [-10.8, BAY1_Z0], "shelfHalfWidth": CHIN_X},
+        "boostFloorY": BOOST_Y0,
     },
     "slots": {
         "FrontBody": {
@@ -256,7 +259,7 @@ STANDARD = {
             "explode": [5.5, -3.5, 0]},
         "Boost": {
             "label": "Afterburner",
-            "envelope": env(-3.4, 3.4, -0.9, 1.0, TRANSOM, 13.6),
+            "envelope": env(-3.4, 3.4, BOOST_Y0, 1.0, TRANSOM, 13.6),
             "anchor": {"to": "RearBody", "face": "-z"}, "explode": [0, -1.5, 13]},
         "SidePods": {
             "label": "Sills",
@@ -270,7 +273,7 @@ STANDARD = {
             "label": "Rear Valance",
             "envelope": [
                 env(-WIDE_X, WIDE_X, -1.5, FLOOR, RA1, TRANSOM),
-                env(-3.4, 3.4, -1.5, -0.9, TRANSOM, 13.6),
+                env(-3.4, 3.4, -1.5, BOOST_Y0, TRANSOM, 13.6),
                 env(3.4, WIDE_X, -1.5, 1.0, TRANSOM, 12.9, True),
             ],
             "anchor": {"to": "RearBody", "face": "+y"}, "explode": [0, -5, 8]},
@@ -327,22 +330,23 @@ def mirrors(z=-1.3, y=BELT, ch="primary", x0=3.9):
 
 
 def cockpit_longnose():
-    """60s long-bonnet GT: a small box cabin set far back behind a long scuttle. Upright screen, short flat roof, a notch, then a short fastback."""
+    """60s long-bonnet GT: a small, tall, upright box cabin set far back behind a long scuttle. Thin pillars, tall glass, a bright roof lip over a deep notch, then a short fastback."""
     p = tub() + mirrors(-0.7, 3.25, "secondary", x0=3.4)
     p += [
         bx(3.7, BELT, 3.25, ZC0, 0.0, "primary", "long scuttle: the bonnet line runs on into the cabin"),
         box(3.0, 3.7, 2.8, BELT, 0.0, 3.4, "primary", True, "cabin shoulder"),
-        wf(-2.7, 2.7, 3.25, 4.6, 0.0, 1.2, "glass", note="upright windscreen, set far back"),
-        wf(2.7, 3.1, 3.25, 4.6, 0.0, 1.2, "primary", True, "A-pillar"),
-        bx(3.0, 3.0, 4.6, 1.2, 3.4, "glass", "side glass"),
-        bx(2.7, 4.6, 4.9, 1.2, 4.0, "primary", "short flat roof"),
-        ts(2.7, 3.1, 4.6, 4.9, 1.2, 4.0, "inner", "primary", True, "roof edge"),
-        bx(3.1, 3.0, 4.6, 3.4, 4.0, "primary", "rear quarter panel"),
-        bx(2.9, 4.72, 4.9, 4.0, 4.35, "secondary", "bright roof lip over the notch"),
+        wf(-2.75, 2.75, 3.25, 4.9, 0.0, 1.0, "glass", note="tall upright windscreen, set far back"),
+        wf(2.75, 2.97, 3.25, 4.9, 0.0, 1.0, "primary", True, "thin A-pillar"),
+        bx(2.95, 3.0, 4.9, 1.0, 3.5, "glass", "tall side glass"),
+        box(2.94, 3.0, 3.0, 4.9, 2.25, 2.45, "primary", True, "thin B-pillar"),
+        bx(2.7, 4.9, 5.2, 1.0, 4.0, "primary", "short flat roof, tall and narrow"),
+        ts(2.7, 3.1, 4.9, 5.2, 1.0, 4.0, "inner", "primary", True, "roof edge"),
+        bx(3.1, 3.0, 4.9, 3.5, 4.0, "primary", "thin rear pillar"),
+        bx(2.9, 5.02, 5.2, 4.0, 4.35, "secondary", "bright roof lip over the notch"),
         wr(-3.1, 3.1, 3.0, 4.25, 4.0, BAY2_Z0, "primary", note="short fastback below the notch"),
         on_slope(4.0, 4.25, BAY2_Z0, 3.0, -2.3, 2.3, 4.25, 5.8, "glass", note="rear window"),
-        box(3.09, 3.15, 3.3, 4.3, 3.5, 3.6, "detail", True, "quarter gill"),
-        box(3.09, 3.15, 3.3, 4.3, 3.7, 3.8, "detail", True, "quarter gill"),
+        box(3.09, 3.15, 3.3, 4.6, 3.6, 3.7, "detail", True, "quarter gill"),
+        box(3.09, 3.15, 3.3, 4.6, 3.8, 3.9, "detail", True, "quarter gill"),
         bx(3.05, 3.0, 3.1, 6.8, BAY2_Z0, "secondary", "bright tail trim"),
     ]
     return p
@@ -377,23 +381,25 @@ def cockpit_teardrop():
 
 
 def cockpit_bruiser():
-    """Modern muscular GT: the lowest roof, chopped to 4.3. High wide shoulders, a wrap-round slit screen, double bubble, low deck rails."""
+    """Modern muscular GT: the lowest roof, chopped to 4.3 and as wide as the shoulders. Slit glass, a wrap-round screen, double bubble, and two flying buttresses that carry the roof line back beside the engine."""
     p = tub() + mirrors(-0.7, 3.5, "detail")
     p += [
         box(3.3, 4.6, BELT, 3.5, -0.8, 3.6, "primary", True, "high wide shoulder"),
         wf(3.3, 4.6, BELT, 3.5, -2.4, -0.8, "primary", True, "shoulder rising from the cowl"),
         wr(3.3, 4.6, BELT, 3.5, 3.6, 4.8, "primary", True, "shoulder falling to the back seam"),
-        wf(-3.3, 3.3, 3.0, 4.05, -2.3, 0.9, "glass", note="long raked windscreen"),
-        wf(3.3, 3.75, 3.5, 4.05, -0.78, 0.9, "glass", True, "screen wraps round the corner"),
-        bx(3.75, 3.5, 4.05, 0.9, 3.4, "glass", "slit side glass"),
-        bx(3.75, 4.05, 4.3, 0.9, 3.8, "primary", "chopped roof"),
+        wf(-3.3, 3.3, 3.0, 3.95, -2.3, 0.9, "glass", note="long raked windscreen"),
+        wf(3.3, 4.1, 3.5, 3.95, -0.62, 0.9, "glass", True, "screen wraps round the corner"),
+        bx(4.1, 3.5, 3.95, 0.9, 3.4, "glass", "slit side glass"),
+        bx(3.9, 3.95, 4.3, 0.9, 3.8, "primary", "chopped roof, out to the shoulders"),
+        ts(3.9, 4.3, 3.95, 4.3, 0.9, 3.8, "inner", "primary", True, "roof edge"),
         box(0.5, 2.9, 4.3, 4.55, 1.3, 3.2, "primary", True, "double bubble"),
         wf(0.5, 2.9, 4.3, 4.55, 0.9, 1.3, "primary", True, "bubble nose"),
         wr(0.5, 2.9, 4.3, 4.55, 3.2, 3.8, "primary", True, "bubble tail"),
-        bx(3.75, 3.5, 4.05, 3.4, 3.8, "primary", "thick C-pillar"),
-        wr(-3.3, 3.3, 3.0, 4.3, 3.8, 6.4, "glass", note="short rear window"),
-        wr(3.3, 3.7, 3.0, 4.3, 3.8, 6.4, "primary", True, "rear window frame"),
-        wr(BAY2_X, GLASS_X, BELT, 3.6, 4.8, Z_EXT, "primary", True, "low deck rail beside the engine hatch"),
+        bx(4.1, 3.5, 3.95, 3.4, 3.8, "primary", "thick C-pillar"),
+        tp(GLASS_X, 4.3, 3.5, 4.3, 3.8, 4.9, "rear", "inner", note="C-pillar closing in to the buttress"),
+        box(BAY2_X, GLASS_X, BELT, 4.3, 3.8, 6.6, "primary", True, "flying buttress at roof height"),
+        wr(BAY2_X, GLASS_X, BELT, 4.3, 6.6, Z_EXT, "primary", True, "buttress falling to the deck beside the engine hatch"),
+        wr(-BAY2_X, BAY2_X, 3.0, 4.3, 3.8, 6.4, "glass", note="sunk rear window between the buttresses"),
     ]
     return p
 
@@ -451,7 +457,6 @@ def cockpit_gullwing():
         ts(2.3, 3.75, 3.5, 5.3, 2.88, 3.2, "inner", "primary", True, "door frame"),
         bx(0.9, 5.0, 5.5, 0.3, 3.2, "primary", "raised roof spine"),
         box(0.9, 2.3, 5.0, 5.3, 0.3, 3.2, "primary", True, "door top, hinged on the spine"),
-        box(0.9, 1.02, 5.3, 5.4, 0.7, 2.8, "detail", True, "door hinge"),
         box(0.9, 2.3, 5.3, 5.36, 0.62, 0.74, "detail", True, "door cut"),
         box(0.9, 2.3, 5.3, 5.36, 2.76, 2.88, "detail", True, "door cut"),
         wr(-2.4, 2.4, 3.0, 5.0, 3.2, 5.4, "glass", note="short rear window"),
@@ -477,8 +482,9 @@ def front_core(w=SEAM_X, chin=0.2, w_arch=None):
     ]
 
 
-def chin_pad(y1=0.2):
-    return [bx(2.0, FLOOR, y1, -10.8, BAY1_Z0, "detail", "chin pad at Y 0")]
+def chin_pad(y1=0.2, xh=CHIN_X):
+    """The chin pad, widened into a dark shelf so a wide chin always has bodywork right above it."""
+    return [bx(xh, FLOOR, y1, -10.8, BAY1_Z0, "detail", "chin shelf at Y 0: chin pad in the middle, backing for wide chins outboard")]
 
 
 def nose_torpedo():
@@ -497,16 +503,22 @@ def nose_torpedo():
         bx(1.4, 0.75, 1.35, -12.27, -12.2, "detail", "small oval mouth"),
         bx(1.6, 1.35, 1.47, -12.3, -12.2, "secondary", "bright mouth trim"),
         bx(1.6, 0.63, 0.75, -12.3, -12.2, "secondary", "bright mouth trim"),
-        bx(2.0, FLOOR, 0.6, -11.0, BAY1_Z0, "detail", "keel: chin pad at Y 0"),
+        bx(2.2, FLOOR, 0.6, -11.6, BAY1_Z0, "detail", "keel: chin pad at Y 0"),
+        tp(2.2, 4.6, FLOOR, 0.6, -11.6, BAY1_Z0, "front", "inner", "detail", note="dark underbody following the nose taper: backing for wide chins"),
     ]
     return p
 
 
 def nose_frogeye():
-    """Rear-engine sports: the shortest nose. A low lid between two wings that peak over the arch, each with a round lamp pod low at the front."""
+    """Rear-engine sports: the shortest nose. A low lid between two wings that peak over the arch, each with a round lamp pod low at the front, over a wrap-round bumper."""
     w = SEAM_X
-    p = front_core(w, 0.2) + wing(BAY1_X, w, BAY1_Z0, Z_COWL) + chin_pad()
+    p = front_core(w, 0.2) + wing(BAY1_X, w, BAY1_Z0, Z_COWL)
     p += [
+        bx(3.6, FLOOR, 0.2, -11.0, -10.2, "detail", "chin shelf at Y 0, under the bumper"),
+        tp(3.6, 4.7, FLOOR, 0.2, -11.0, -10.2, "front", "inner", "detail", note="chin shelf corner: backing for wide chins"),
+        bx(4.7, FLOOR, 0.2, -10.2, BAY1_Z0, "detail", "chin shelf, back"),
+        bx(3.6, 0.2, 0.8, -11.0, -10.5, "primary", "wrap-round bumper under the lamps: it carries the short nose forward at chin height"),
+        tp(3.6, 4.7, 0.2, 0.8, -11.0, -10.2, "front", "inner", note="bumper corner, swept round to the wing"),
         box(2.9, 3.9, 0.2, 2.5, -10.5, BAY1_Z0, "primary", True, "low wing front"),
         tp(3.9, w, 0.2, 2.5, -10.5, BAY1_Z0, "front", "inner", note="front corner, rounded off in plan"),
         wf(2.9, 3.9, 2.5, BELT, -10.5, BAY1_Z0, "primary", True, "wing front rising from the lamp"),
@@ -517,7 +529,7 @@ def nose_frogeye():
         bx(2.9, 0.2, 1.6, -10.8, BAY1_Z0, "primary", "short nose"),
         wf(-2.9, 2.9, 1.6, 2.7, -10.8, BAY1_Z0, "primary", note="front lid slope"),
         box(3.0, 3.8, 0.8, 1.1, -10.56, -10.5, "neon", True, "indicator"),
-        bx(2.2, 0.5, 1.0, -10.86, -10.8, "detail", "low intake slot"),
+        bx(2.4, 0.35, 0.65, -11.06, -11.0, "detail", "low intake slot in the bumper"),
     ]
     return p
 
@@ -542,9 +554,11 @@ def nose_shark():
 
 
 def nose_clubman():
-    """Roadster: a narrow, low nose cone with open front corners. The lift jets stand in the open air and the lamps ride on posts."""
+    """Roadster: a narrow, low nose cone with open front corners over a swept dark apron. The lift jets stand in the open air and the lamps ride on posts."""
     w, y9 = SEAM_X, 2.0
-    p = chin_pad() + [
+    p = chin_pad(0.3, 3.4) + [
+        tp(3.4, CHIN_X, FLOOR, 0.3, -10.8, -10.0, "front", "inner", "detail", note="chin shelf corner, swept back beside the cone: backing for wide chins"),
+        box(3.4, CHIN_X, FLOOR, 0.3, -10.0, BAY1_Z0, "detail", True, "chin shelf, back"),
         bx(BAY1_X, FLOOR, BAY1_Y, BAY1_Z0, Z_COWL, "detail", "bonnet bay floor: Engine1 pad at Y 1.0"),
         box(BAY1_X, ARCH_X, FLOOR, y9, BAY1_Z0, Z_COWL, "primary", True, "bonnet side: lift-jet pad at X 3.3"),
         wf(BAY1_X, ARCH_X, y9, BELT, BAY1_Z0, Z_COWL, "primary", True, "bonnet side rising to the beltline"),
@@ -582,12 +596,14 @@ def nose_estate():
 
 
 def nose_works():
-    """GT3: box arches out to the limit with louvres, low short nose, bonnet duct."""
+    """GT3: box arches out to the limit with louvres, low short nose, bonnet duct. Behind the arch the box closes in to the door in a long taper."""
     w = WIDE_X - 0.05
     p = front_core(SEAM_X, 0.2, w_arch=w) + chin_pad()
-    p += wing(BAY1_X, SEAM_X, COVE0, Z_COWL)
+    p += wing(BAY1_X, SEAM_X, FA1, Z_COWL)
     p += [
-        box(BAY1_X, w, ARCH_TOP, 3.45, -10.3, COVE0, "primary", True, "box arch"),
+        box(BAY1_X, w, ARCH_TOP, 3.45, -10.3, FA1, "primary", True, "box arch"),
+        wr(BAY1_X, SEAM_X - CHAM, BELT, 3.45, FA1, -4.0, "primary", True, "arch top falling to the beltline"),
+        tp(SEAM_X, w, COVE_TOP, BELT, FA1, -3.0, "rear", "inner", note="arch closing in to the door over the cove"),
         wf(ARCH_X, w, ARCH_TOP, 3.45, -11.4, -10.3, "primary", True, "arch leading edge"),
         box(ARCH_X, w, 0.2, ARCH_TOP, -11.4, BAY1_Z0, "primary", True, "arch front corner"),
         bx(ARCH_X, 0.2, 1.6, -11.6, BAY1_Z0, "primary", "low nose"),
@@ -595,11 +611,10 @@ def nose_works():
         on_slope(BAY1_Z0, 2.8, -11.6, 1.6, -1.8, 1.8, -11.0, -10.0, "detail", note="bonnet duct"),
         bx(2.6, 0.45, 1.3, -11.67, -11.6, "detail", "radiator mouth"),
         box(4.0, 5.5, 1.0, 1.5, -11.47, -11.4, "neon", True, "lamp bar"),
-        box(1.9, 2.2, 0.6, 1.0, -11.9, -11.6, "neon", note="tow loop marker"),
         box(5.5, w, COVE_Y0, ARCH_TOP, FA1 + 0.02, COVE0 - 0.02, "secondary", True, "arch end plate"),
     ]
-    for i in range(4):
-        z = -8.9 + i * 0.85
+    for i in range(3):
+        z = -8.8 + i * 1.0
         p.append(box(3.7, 5.6, 3.45, 3.8, z, z + 0.3, "secondary", True, "arch louvre"))
     return p
 
@@ -704,19 +719,21 @@ def tail_estate():
 
 
 def tail_works():
-    """GT3: box arches out to the limit, louvres, then a narrow stripped tail."""
+    """GT3: box arches out to the limit, louvres, then a narrow stripped tail. The box swells from the door seam and closes in again behind the arch."""
     w, t = WIDE_X - 0.05, 10.7
     p = rear_core(SEAM_X, t, cham=0)
     p += [
-        box(SEAM_X, w, ARCH_TOP, BELT, Z_BACK, 9.4, "primary", True, "box arch"),
-        box(GLASS_X, w, BELT, 3.25, 5.4, 9.4, "primary", True, "box arch top"),
-        box(SEAM_X, w, 0.3, ARCH_TOP, Z_BACK, RA0, "primary", True, "arch front corner"),
+        tp(SEAM_X, w, ARCH_TOP, BELT, Z_BACK, 6.0, "front", "inner", note="box arch swelling from the seam"),
+        box(SEAM_X, w, ARCH_TOP, BELT, 6.0, 9.4, "primary", True, "box arch"),
+        box(GLASS_X, w, BELT, 3.25, 6.0, 9.4, "primary", True, "box arch top"),
+        tp(SEAM_X, w, 0.3, ARCH_TOP, Z_BACK, RA0, "front", "inner", note="arch front corner"),
         box(5.5, w, 0.3, ARCH_TOP, RA1, 9.4, "secondary", True, "arch end plate"),
+        tp(SEAM_X, w, 0.3, BELT, 9.4, TRANSOM, "rear", "inner", note="box arch closing in to the tail"),
         box(BAY2_X, SEAM_X, 1.1, 2.9, t, t + 0.07, "detail", True, "mesh tail panel"),
         box(2.6, 4.4, 2.3, 2.6, t, t + 0.14, "neon", True, "lamp bar"),
     ]
-    for i in range(4):
-        z = 5.8 + i * 0.85
+    for i in range(3):
+        z = 6.4 + i * 1.0
         p.append(box(3.9, 5.6, 3.25, 3.6, z, z + 0.3, "secondary", True, "arch louvre"))
     return p
 
@@ -813,10 +830,10 @@ def engine1_ram_slot():
         box(ARCH_X + 0.05, 5.55, 0.45, 1.7, -5.1, -3.0, "detail", True, "box vent in the cove"),
         box(5.55, 5.65, 0.65, 1.5, -4.8, -3.3, "thrust", True, "side slot jet"),
     ]
-    for z in (-5.5, -4.8, -4.1):
+    for z in (-5.3, -4.3):
         p.append(bx(1.75, 3.0, 3.5, z, z + 0.14, "secondary", "slot vane"))
-    for z in (-9.0, -8.3, -7.6):
-        p.append(bx(1.7, 3.0, 3.22, z, z + 0.3, "secondary", "intake louvre"))
+    for z in (-8.9, -7.8):
+        p.append(bx(1.7, 3.0, 3.22, z, z + 0.4, "secondary", "intake louvre"))
     return p
 
 
@@ -886,28 +903,38 @@ def engine2_triple():
 
 
 def engine2_vee():
-    """Shooting brake: a tall block at the front of the hatch with two long nozzles splayed outwards."""
+    """Shooting brake: a tall block at the front of the hatch with two tall, narrow, square-cut nozzles splayed apart in a vee."""
     p = tray2() + [
         bx(1.3, 1.12, 3.0, 7.4, 9.2, "detail", "engine block"),
         bx(1.4, 3.0, 3.45, 7.5, 9.1, "secondary", "bright top plate standing through the deck"),
         bx(1.0, 3.45, 3.5, 7.8, 8.8, "detail", "intake mesh"),
     ]
-    p += jet([0.45, 2.0, 8.9], [0, 11, 0], 1.1, 3.25, "secondary", tip=0.35, tip_d=1.0, m=True, note="splayed nozzle")
+    yaw, start, length = 15.0, [0.4, 2.0, 9.0], 3.2
+    ax = [math.sin(math.radians(yaw)), 0.0, math.cos(math.radians(yaw))]
+    mid = [start[i] + ax[i] * length / 2 for i in range(3)]
+    end = [start[i] + ax[i] * (length + 0.13) for i in range(3)]
+    p += [
+        part("block", [0.7, 1.5, length], mid, "secondary", [0, yaw, 0], True, "tall square-cut nozzle, splayed outwards"),
+        part("block", [0.48, 1.28, 0.3], end, "thrust", [0, yaw, 0], True, "jet"),
+    ]
     return p
 
 
 def engine2_slot():
-    """GT3: one wide flat vectoring nozzle held high over a plenum, a ram scoop standing through the deck, a paddle either side."""
+    """GT3: a ram scoop on a low plenum, then one thin flat nozzle the full width of the hatch, held high over open air and pitched down at the tail between two side plates."""
+    pitch, length = 14.0, 2.6
+    c, s = math.cos(math.radians(pitch)), math.sin(math.radians(pitch))
+    mid = [0.0, 2.42, 11.0]
+    tip = [0.0, mid[1] - s * (length / 2 + 0.1), mid[2] + c * (length / 2 + 0.1)]
     p = tray2() + [
-        bx(1.45, 1.12, 2.0, 7.5, 10.3, "detail", "plenum"),
-        bx(1.45, 2.0, 2.9, 7.5, 11.9, "detail", "flat nozzle"),
+        bx(1.45, 1.12, 2.2, 7.5, 10.2, "detail", "low plenum"),
+        bx(1.3, 2.2, 2.9, 7.5, 9.9, "detail", "scoop neck"),
         wr(-1.3, 1.3, 2.9, 3.5, 7.5, 9.9, "secondary", note="ram scoop standing through the deck"),
         bx(1.1, 2.95, 3.4, 7.43, 7.5, "detail", "scoop mouth"),
-        bx(1.3, 2.1, 2.8, 11.9, 12.15, "thrust", "slot jet"),
-        box(1.47, 1.68, 1.5, 2.98, 10.3, 12.5, "secondary", True, "vectoring paddle"),
+        part("block", [3.0, 0.5, length], mid, "detail", [pitch, 0, 0], note="thin flat nozzle, pitched down at the tail"),
+        part("block", [2.8, 0.34, 0.22], tip, "thrust", [pitch, 0, 0], note="slot jet, the full width of the nozzle"),
+        part("block", [0.17, 0.74, length], [1.585, mid[1], mid[2]], "secondary", [pitch, 0, 0], True, "side plate"),
     ]
-    for x in (-0.9, -0.3, 0.3, 0.9):
-        p.append(box(x - 0.06, x + 0.06, 2.05, 2.85, 11.9, 12.3, "detail", note="nozzle vane"))
     return p
 
 
@@ -961,11 +988,11 @@ def stab_vane():
 
 
 def stab_slant():
-    """Roadster: two slim nozzles per corner, splayed apart fore and aft from one yoke, reaching below the sill."""
+    """Roadster: one vee-nozzle unit per corner. A pod high in the arch with two short fat dark nozzles splayed fore and aft. The tips stop just under the sill, tucked in the arch."""
     def one(zc):
-        p = [box(ARCH_X, 4.6, 1.75, 2.25, zc - 0.55, zc + 0.55, "detail", True, "yoke")]
-        p += jet([4.75, 1.95, zc + 0.3], [68, 0, 0], 0.8, 2.4, "secondary", tip=0.3, tip_d=0.6, m=True, note="slant jet, down and back")
-        p += jet([4.75, 1.95, zc - 0.3], [112, 0, 0], 0.8, 2.4, "secondary", tip=0.3, tip_d=0.6, m=True, note="slant jet, down and forward")
+        p = [box(ARCH_X, 5.1, 1.5, 2.25, zc - 0.7, zc + 0.7, "secondary", True, "pod body on the arch wall")]
+        p += jet([4.5, 1.45, zc + 0.05], [50, 0, 0], 1.1, 1.6, "detail", tip=0.3, tip_d=0.9, m=True, note="slant nozzle, down and back")
+        p += jet([4.5, 1.45, zc - 0.05], [130, 0, 0], 1.1, 1.6, "detail", tip=0.3, tip_d=0.9, m=True, note="slant nozzle, down and forward")
         return p
     return corners(one)
 
@@ -982,13 +1009,13 @@ def stab_comb():
 
 
 def stab_outrigger():
-    """GT3: one big lift nacelle per corner, held outboard on a spar and firing straight down."""
+    """GT3: one big lift nacelle per corner, hung under its own body-colour stub winglet from the arch wall and firing straight down."""
     def one(zc):
         return [
-            box(ARCH_X, 4.5, 0.6, 1.1, zc - 0.45, zc + 0.45, "detail", True, "spar"),
-            cy(5.05, zc, -1.2, 1.7, 1.5, "secondary", True, "outboard lift nacelle"),
-            cy(5.05, zc, 1.7, 2.0, 1.1, "detail", True, "intake cap"),
-            cy(5.05, zc, -1.58, -1.2, 1.15, "thrust", True, "jet"),
+            box(ARCH_X, 5.4, 1.9, 2.3, zc - 1.0, zc + 1.0, "primary", True, "stub winglet from the arch wall, over the nacelle"),
+            box(5.0, 5.45, 1.98, 2.22, zc - 0.8, zc + 0.8, "detail", True, "intake slot in the winglet tip"),
+            cy(4.6, zc, -0.5, 1.9, 1.5, "secondary", True, "lift nacelle"),
+            cy(4.6, zc, -0.85, -0.5, 1.15, "thrust", True, "jet"),
         ]
     return corners(one)
 
@@ -1006,64 +1033,69 @@ def burner(x, y, z0, z1, d, core, m=True, ch="secondary", collar=0.4, grow=0.25)
     ]
 
 
+# Every afterburner sits on the transom between Y -0.25 and 1.0, so it never hangs below a short bumper.
+BY = 0.4     # centre height of a full-size burner (1.2 across fills the transom band)
+
+
 def boost_megaphones():
-    """Classic GT: one long slim megaphone each side, far apart."""
+    """Classic GT: one long megaphone each side, far apart. A slim pipe that flares in two steps to a wide mouth, the longest burner in the class."""
     return [
         box(2.2, 3.35, 0.0, 0.8, TRANSOM, 10.6, "detail", True, "bracket"),
-        cz(2.8, 0.4, 10.5, 11.4, 0.7, "secondary", True, "slim pipe"),
-        cz(2.8, 0.4, 11.4, 12.05, 0.95, "secondary", True, "megaphone"),
-        cz(2.8, 0.4, 12.05, 12.65, 1.15, "detail", True, "dark petal collar"),
-        cz(2.8, 0.4, 12.65, 12.8, 0.65, "thrust", True, "burner core"),
+        cz(2.8, BY, 10.5, 11.6, 0.6, "secondary", True, "slim pipe"),
+        cz(2.8, BY, 11.6, 12.7, 0.9, "secondary", True, "megaphone"),
+        cz(2.8, BY, 12.7, 13.3, 1.2, "detail", True, "dark petal collar: the megaphone mouth"),
+        cz(2.8, BY, 13.3, 13.45, 0.75, "thrust", True, "burner core"),
     ]
 
 
 def boost_stacked():
-    """Rear-engine sports: two short cans stacked one over the other each side, close in beside the engine."""
-    p = [box(1.85, 2.95, -0.88, 0.98, TRANSOM, 10.65, "detail", True, "surround plate")]
-    for y in (-0.38, 0.48):
-        p += burner(2.4, y, 10.6, 11.9, 0.75, 0.5)
+    """Rear-engine sports: two short fat cans each side, one high and inboard, one low and outboard, on one surround plate."""
+    p = [box(1.7, 3.4, -0.24, 0.99, TRANSOM, 10.65, "detail", True, "surround plate")]
+    for x, y in ((2.1, 0.55), (2.94, 0.2)):
+        p += burner(x, y, 10.6, 12.2, 0.8, 0.5, grow=0.08)
     return p
 
 
 def boost_quad_tips():
-    """Modern GT: four squared tips, two side by side each side."""
-    p = []
-    for x0, x1 in ((1.75, 2.5), (2.65, 3.4)):
-        p.append(box(x0, x1, -0.2, 0.5, TRANSOM, 11.9, "secondary", True, "squared tip"))
-        p.append(box(x0, x1, -0.3, 0.6, 11.9, 12.3, "detail", True, "dark square collar"))
-        p.append(box(x0 + 0.17, x1 - 0.17, -0.1, 0.4, 12.3, 12.45, "thrust", True, "burner core"))
+    """Modern GT: four squared tips in one row across the centre, low under the rear engine nozzles."""
+    p = [bx(1.85, 0.6, 0.95, TRANSOM, 10.7, "detail", "hanger bar across the transom")]
+    for xc in (-1.41, -0.47, 0.47, 1.41):
+        x0, x1 = xc - 0.4, xc + 0.4
+        p.append(box(x0, x1, -0.12, 0.6, TRANSOM, 11.8, "secondary", note="squared tip"))
+        p.append(box(x0 - 0.04, x1 + 0.04, -0.2, 0.68, 11.8, 12.2, "detail", note="dark square collar"))
+        p.append(box(x0 + 0.17, x1 - 0.17, 0.0, 0.48, 12.2, 12.35, "thrust", note="burner core"))
     return p
 
 
 def boost_cannon():
     """Roadster: one long dark cannon, on the right side only."""
     return [
-        box(1.7, 3.35, -0.8, 0.98, TRANSOM, 10.7, "detail", note="mount"),
-        cz(2.5, 0.05, 10.6, 11.2, 1.2, "secondary", note="cannon breech"),
-        cz(2.5, 0.05, 11.2, 12.65, 1.4, "detail", note="long dark barrel, longer than it is wide"),
-        cz(2.5, 0.05, 12.65, 12.8, 0.7, "thrust", note="burner core"),
+        box(1.7, 3.35, -0.2, 0.98, TRANSOM, 10.7, "detail", note="mount"),
+        cz(2.5, BY, 10.6, 11.2, 1.0, "secondary", note="cannon breech"),
+        cz(2.5, BY, 11.2, 12.9, 1.2, "detail", note="long dark barrel, longer than it is wide"),
+        cz(2.5, BY, 12.9, 13.05, 0.65, "thrust", note="burner core"),
     ]
 
 
 def boost_staged():
-    """Shooting brake: a long pipe with a short slim pipe outboard of it, each side."""
+    """Shooting brake: a long fat pipe close in, with a short slim pipe outboard of it, each side."""
     p = [box(1.8, 3.38, 0.0, 0.9, TRANSOM, 10.6, "detail", True, "manifold")]
-    p += burner(2.3, 0.32, 10.5, 12.6, 0.9, 0.55)
+    p += burner(2.3, BY, 10.5, 12.9, 1.0, 0.6, grow=0.2)
     p += [
-        cz(3.05, 0.45, 10.5, 11.45, 0.55, "secondary", True, "second stage"),
-        cz(3.05, 0.45, 11.45, 11.7, 0.7, "detail", True, "dark petal collar"),
-        cz(3.05, 0.45, 11.7, 11.85, 0.36, "thrust", True, "burner core"),
+        cz(3.08, 0.5, 10.5, 11.3, 0.5, "secondary", True, "second stage"),
+        cz(3.08, 0.5, 11.3, 11.55, 0.62, "detail", True, "dark petal collar"),
+        cz(3.08, 0.5, 11.55, 11.7, 0.34, "thrust", True, "burner core"),
     ]
     return p
 
 
 def boost_blades():
-    """GT3: one tall thin upright slot burner at each tail corner."""
+    """GT3: one upright slot burner at each tail corner. A long square-cut can as tall as the transom band, an intake scoop on its outboard face, a dark collar and an upright slot jet."""
     return [
-        box(2.9, 3.4, -0.85, 0.98, TRANSOM, 11.7, "detail", True, "upright slot housing"),
-        box(3.0, 3.3, -0.7, 0.85, 11.7, 12.1, "thrust", True, "upright slot burner, standing proud of the housing"),
-        box(2.85, 3.4, 0.86, 1.0, 11.7, 12.3, "secondary", True, "top vane"),
-        box(2.85, 3.4, -0.9, -0.76, 11.7, 12.3, "secondary", True, "bottom vane"),
+        box(2.45, 3.1, -0.15, 0.95, TRANSOM, 12.0, "secondary", True, "long upright can, as tall as the transom band"),
+        box(2.4, 3.15, -0.24, 1.0, 12.0, 12.45, "detail", True, "dark upright collar"),
+        box(2.58, 2.98, -0.06, 0.82, 12.45, 12.62, "thrust", True, "upright slot jet, standing proud of the collar"),
+        tp(3.1, 3.4, 0.0, 0.8, 10.6, 11.9, "rear", "inner", "detail", note="intake scoop on the outboard face, mouth forward"),
     ]
 
 
@@ -1108,10 +1140,12 @@ def sill_gills():
 
 
 def sill_floor():
+    """GT3: a flat floor standing 0.6 out from the door, tapered to a point at both ends, with a fence ramping up towards the rear arch."""
     return [
-        box(DOOR_X, 5.85, -0.3, 0.0, ZS0, ZS1, "detail", True, "flat floor"),
-        box(5.6, 5.85, 0.0, 0.9, 0.8, ZS1, "secondary", True, "floor fence"),
-        wf(5.6, 5.85, 0.0, 0.9, -1.0, 0.8, "secondary", True, "fence ramp"),
+        box(DOOR_X, 5.3, -0.3, 0.0, -1.6, 4.1, "detail", True, "flat floor"),
+        tp(DOOR_X, 5.3, -0.3, 0.0, ZS0, -1.6, "front", "inner", "detail", note="floor tapering in to the door at the front"),
+        tp(DOOR_X, 5.3, -0.3, 0.0, 4.1, ZS1, "rear", "inner", "detail", note="floor tapering in to the door at the back"),
+        wf(5.05, 5.3, 0.0, 0.9, -0.6, 4.1, "secondary", True, "floor fence, ramping up towards the rear arch"),
     ]
 
 
@@ -1126,17 +1160,21 @@ def chin_nerf():
 
 
 def chin_valance():
+    """Rear-engine sports: a body-colour valance with cut-back corners, so it follows a pointed nose as well as a square one."""
     return [
-        bx(4.6, -0.65, 0.0, -10.9, -9.6, "primary", "body-colour valance"),
-        bx(4.6, -0.4, -0.25, -10.97, -10.9, "detail", "rubber strip"),
-        box(2.6, 3.6, -0.6, -0.42, -10.97, -10.9, "neon", True, "fog lamp"),
+        bx(3.4, -0.65, 0.0, -11.0, -9.6, "primary", "body-colour valance"),
+        tp(3.4, 4.6, -0.65, 0.0, -11.0, -9.6, "front", "inner", note="valance corner, cut back in plan"),
+        bx(3.4, -0.4, -0.25, -11.07, -11.0, "detail", "rubber strip"),
+        box(2.0, 3.0, -0.6, -0.42, -11.07, -11.0, "neon", True, "fog lamp"),
     ]
 
 
 def chin_lip():
+    """Modern GT: a thin dark lip with swept corners. It shows a quarter of a stud round a blunt nose and hides under a long one."""
     return [
-        bx(5.0, -0.22, 0.0, -12.0, -9.6, "detail", "thin lip"),
-        box(4.7, 5.0, -0.8, -0.22, -11.6, -9.8, "detail", True, "lip fin"),
+        bx(4.05, -0.22, 0.0, -11.6, -10.75, "detail", "thin lip, front"),
+        tp(4.05, 4.9, -0.22, 0.0, -11.6, -10.75, "front", "inner", "detail", note="swept lip corner"),
+        bx(4.9, -0.22, 0.0, -10.75, -9.6, "detail", "thin lip, back"),
     ]
 
 
@@ -1148,20 +1186,25 @@ def chin_skid():
 
 
 def chin_dam():
+    """Shooting brake: a deep upright air dam, set back and kept inside the narrowest nose."""
     return [
-        bx(4.7, -0.9, 0.0, -10.8, -10.3, "primary", "air dam"),
-        bx(4.7, -0.2, 0.0, -10.9, -10.8, "secondary", "bright dam strip"),
-        bx(3.0, -0.75, -0.35, -10.86, -10.8, "detail", "dam slot"),
+        bx(4.2, -0.9, 0.0, -10.6, -10.1, "primary", "air dam"),
+        bx(4.2, -0.2, 0.0, -10.7, -10.6, "secondary", "bright dam strip"),
+        bx(2.8, -0.75, -0.35, -10.66, -10.6, "detail", "dam slot"),
     ]
 
 
 def chin_splitter():
+    """GT3: a dark splitter plate with swept corners and a short bright leading edge, the widest and longest chin. End fences hang under the body side, strakes under the plate."""
     p = [
-        bx(5.85, -0.22, 0.0, -12.2, -9.4, "secondary", "splitter plate"),
-        box(5.6, 5.85, -0.75, -0.22, -12.0, -9.6, "detail", True, "end fence"),
+        bx(3.95, -0.22, 0.0, -11.9, -10.75, "detail", "splitter plate, front"),
+        tp(3.95, 5.1, -0.22, 0.0, -11.9, -10.75, "front", "inner", "detail", note="swept splitter corner"),
+        bx(5.1, -0.22, 0.0, -10.75, -9.4, "detail", "splitter plate, back"),
+        bx(2.4, -0.3, -0.06, -12.05, -11.9, "secondary", "bright leading edge, centre only"),
+        box(4.6, 4.85, -0.8, -0.22, -10.5, -9.5, "secondary", True, "end fence, under the body side"),
     ]
-    for x in (-2.4, -0.8, 0.8, 2.4):
-        p.append(box(x - 0.08, x + 0.08, -0.6, -0.22, -11.8, -9.8, "detail", note="strake"))
+    for x in (-1.6, 1.6):
+        p.append(box(x - 0.08, x + 0.08, -0.6, -0.22, -11.7, -9.8, "detail", note="strake"))
     return p
 
 
@@ -1193,12 +1236,12 @@ def kick_up(xh=3.3):
 
 def rb_diffuser():
     p = [
-        bx(5.0, -0.3, 0.0, RA1 + 0.05, TRANSOM, "detail", "diffuser floor"),
-        box(3.45, 5.15, 0.0, 1.0, TRANSOM, 11.5, "primary", True, "valance corner"),
-        bx(3.3, -1.1, -0.92, TRANSOM, 12.3, "detail", "diffuser blade"),
+        bx(4.8, -0.3, 0.0, RA1 + 0.05, TRANSOM, "detail", "diffuser floor, flush with the body side"),
+        box(3.45, 5.0, 0.0, 1.0, TRANSOM, 11.5, "primary", True, "valance corner"),
+        bx(3.3, -1.1, -0.92, TRANSOM, 12.0, "detail", "short diffuser blade"),
     ] + kick_up()
-    for x in (-1.6, 0.0, 1.6):
-        p.append(box(x - 0.08, x + 0.08, -1.45, -1.1, 9.8, 12.3, "detail", note="strake"))
+    for x in (-1.6, 1.6):
+        p.append(box(x - 0.08, x + 0.08, -1.45, -1.1, 9.8, 12.0, "detail", note="strake"))
     return p
 
 
@@ -1210,22 +1253,24 @@ def rb_overriders():
 
 
 def rb_blade():
+    """Shooting brake: a bright blade bumper on each corner and a bright step plate tucked straight under the tail, a quarter of a stud below the afterburners."""
     return [
         box(3.45, 4.8, 0.0, 1.0, TRANSOM, 10.9, "primary", True, "valance corner"),
         box(3.45, 5.0, 0.3, 0.7, 10.9, 11.3, "secondary", True, "bright blade bumper"),
-        box(3.45, 4.6, -0.92, 0.0, TRANSOM, 10.9, "secondary", True, "bright step hanger under the valance corner"),
-        bx(4.6, -1.12, -0.92, TRANSOM, 11.6, "secondary", "bright step plate, hung from both corners"),
+        box(3.45, 4.6, BOOST_Y0, 0.0, TRANSOM, 11.3, "secondary", True, "step block, full depth, straight under the valance corner"),
+        bx(4.6, -0.47, BOOST_Y0, TRANSOM, 11.5, "secondary", "bright step plate, tucked under the tail"),
     ]
 
 
 def rb_race():
+    """GT3: a flat floor no wider than the body, deep end fences flush with the body side, and a long diffuser blade."""
     p = [
-        bx(5.85, -0.3, 0.0, RA1 + 0.05, TRANSOM, "detail", "flat floor"),
-        box(3.45, 4.45, 0.0, 1.0, TRANSOM, 11.4, "detail", True, "deep mesh corner"),
-        box(4.45, 4.8, -1.45, 1.0, TRANSOM, 11.8, "secondary", True, "diffuser end fence, flush with the body side"),
+        bx(4.9, -0.3, 0.0, RA1 + 0.05, TRANSOM, "detail", "flat floor, no wider than the body"),
+        box(3.45, 4.8, 0.0, 1.0, TRANSOM, 11.4, "detail", True, "deep mesh corner, flush with the body side"),
+        box(4.45, 4.8, -1.45, 0.0, TRANSOM, 11.8, "secondary", True, "diffuser end fence, hung from the mesh corner"),
         bx(4.45, -1.1, -0.92, TRANSOM, 12.8, "detail", "long diffuser blade between the fences"),
     ] + kick_up()
-    for x in (-2.6, -1.3, 0.0, 1.3, 2.6):
+    for x in (-2.4, 0.0, 2.4):
         p.append(box(x - 0.08, x + 0.08, -1.48, -1.1, 9.8, 12.8, "secondary", note="long strake"))
     return p
 

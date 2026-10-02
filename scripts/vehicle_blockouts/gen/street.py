@@ -253,19 +253,23 @@ def cab_touge():
 
 
 def cab_pocket():
-    """Hot hatch: tall, short, cab-forward two-box. Roof stops at Z 3.0; the hatch line runs down two buttresses."""
+    """Hot hatch: tall cab-forward two-box. Solid roof to the tail bay, then roof rails and a hoop to Z 6.4 and
+    steep hatch buttresses down to the deck at Z 8.8. The bay stays open under the frame."""
     hw, top = 3.6, 5.9
-    zr = 3.0   # solid roof ends here
+    zh = 6.4   # the roof frame ends here and the hatch line starts
     return chassis() + [
         ramp(-hw, hw, Y_BELT, top, -4.8, -3.2, "glass", "back", note="steep cab-forward screen on the cowl pad; 1.6 clear of the bonnet engine"),
         ramp(hw, hw + 0.25, Y_BELT, top, -4.8, -3.2, "primary", "back", mirror=True, note="A-pillars"),
-        box(-hw - 0.1, hw + 0.1, Y_BELT, top - 0.35, -3.2, zr - 1.2, "glass", note="tall side glass"),
-        box(hw + 0.1, hw + 0.25, Y_BELT, top - 0.35, 0.0, 0.4, "detail", mirror=True, note="B-pillar"),
-        box(-hw - 0.25, hw + 0.25, Y_BELT, top - 0.35, zr - 1.2, zr, "primary", note="thick C-pillar: the hot-hatch signature"),
-        box(-hw - 0.25, hw + 0.25, top - 0.35, top, -3.2, zr, "primary", note="short tall roof"),
-        ramp(-2.6, 2.6, Y_BELT, top - 0.35, zr, RA0 - 0.05, "glass", "front", note="steep hatch glass, ends at the tail bay"),
-        ramp(2.6, hw + 0.25, Y_BELT, top - 0.35, zr, 6.0, "primary", "front", mirror=True, note="buttress: carries the hatch line back beside the open bay"),
-        box(-hw, hw, top - 0.3, top, zr, zr + 0.9, "secondary", note="roof visor spoiler (cockpit owns the roofline)"),
+        box(-hw - 0.1, hw + 0.1, Y_BELT, top - 0.35, -3.2, 4.3, "glass", note="tall side glass"),
+        box(hw + 0.1, hw + 0.25, Y_BELT, top - 0.35, 0.3, 0.7, "detail", mirror=True, note="B-pillar"),
+        box(2.6, hw + 0.25, Y_BELT, top - 0.35, 4.3, RA0 - 0.05, "primary", mirror=True, note="door-shut pillar at the tail bay"),
+        box(-2.6, 2.6, Y_BELT, top - 0.35, 4.6, 4.8, "glass", note="cabin rear glass: the engine sits behind it"),
+        box(-hw - 0.25, hw + 0.25, top - 0.35, top, -3.2, RA0 - 0.05, "primary", note="tall roof, solid to the tail bay"),
+        box(2.6, hw + 0.25, top - 0.35, top, RA0 - 0.05, zh, "primary", mirror=True, note="roof side rails over the bay"),
+        box(2.6, hw + 0.25, Y_BELT, top - 0.35, 5.8, zh, "primary", mirror=True, note="C-pillar; the quarter window ahead of it is open, so the tail engine intake shows from the side"),
+        ramp(2.6, hw + 0.25, Y_BELT, top, zh, 8.8, "primary", "front", mirror=True, note="steep hatch buttress from roof height to the deck"),
+        box(-2.6, 2.6, top - 0.35, top, zh - 0.5, zh, "primary", note="open hoop: the hatch is open under it"),
+        box(-hw, hw, top - 0.3, top, zh, zh + 0.7, "secondary", note="roof spoiler over the hatch (cockpit owns the roofline)"),
     ]
 
 
@@ -421,12 +425,12 @@ def fb_arrow():
 
 
 def fb_stage():
-    """Rally: tall square nose, raised box fenders, lamp pod, bull bar."""
+    """Rally: tall square nose, raised box fenders, bull bar with four spot lamps ahead of the grille. The nose top stays clear."""
     xw = 4.8
     lamps = []
     for x in (0.65, 1.85):
-        lamps.append(cz(0.95, 0.7, [x, 3.35, -10.15], "detail", mirror=True, note="spot lamp"))
-        lamps.append(cz(0.75, 0.15, [x, 3.35, -10.55], "neon", mirror=True, note="spot lamp face"))
+        lamps.append(cz(0.9, 0.7, [x, 2.35, -11.15], "detail", mirror=True, note="spot lamp on the bull bar, top at Y 2.8: clear of the bonnet engine intake"))
+        lamps.append(cz(0.7, 0.15, [x, 2.35, -11.57], "neon", mirror=True, note="spot lamp face"))
     return front_core(xw) + lamps + [
         box(2.8, xw, Y_BONNET, 3.25, Z_CHIN + 0.05, -5.9, "primary", mirror=True, note="raised box fender, full length"),
         box(2.8, xw, Y_BONNET, 2.95, -5.9, FA1, "primary", mirror=True, note="fender tail on the cowl"),
@@ -436,7 +440,7 @@ def fb_stage():
         box(-XBAY, XBAY, Y_ARCH, Y_BONNET, Z_CHIN + 0.05, -9.55, "primary"),
         box(-2.3, 2.3, 1.5, 2.3, Z_CHIN, Z_CHIN + 0.05, "detail", note="grille"),
         box(2.7, 4.5, 1.6, 2.3, Z_CHIN - 0.02, Z_CHIN + 0.05, "neon", mirror=True, note="lamps"),
-        box(-2.5, 2.5, Y_BONNET, 2.9, -10.3, -9.75, "detail", note="lamp bar on the nose top"),
+        box(-2.4, 2.4, 2.3, Y_BONNET, -10.8, Z_CHIN, "detail", note="lamp bracket from the nose edge to the spot lamps"),
         cx(0.3, 7.6, [0, 1.9, -11.3], "detail", note="bull bar tube"),
         box(3.3, 3.6, 1.3, 2.05, -11.45, -11.15, "detail", mirror=True, note="bull bar upright"),
         box(3.3, 3.6, 1.5, 1.9, -11.15, Z_CHIN, "detail", mirror=True, note="bull bar stay"),
@@ -596,15 +600,18 @@ def e1_slot():
 
 
 def e1_snorkel():
-    """Rally: one turbine offset to the left with a leaning dump stack, a cross pipe and a tall snorkel on the right."""
+    """Rally: the snorkel is the main shape. A duct runs along the right of the bonnet, rises at the back and ends
+    in a wide scoop facing forward. A small turbine sits low on the left with a leaning dump stack."""
     return [
-        box(-1.9, -0.6, PAD1, 3.0, -9.0, -7.0, "detail", note="saddle on the bonnet pad"),
-        cz(1.35, 2.4, [-1.25, 3.5, -8.1], "secondary", note="offset turbine"),
-        cz(1.05, 0.3, [-1.25, 3.5, -9.43], "detail", note="intake"),
-        box(-0.6, 1.3, 2.9, 3.3, -7.4, -6.9, "detail", note="cross pipe to the snorkel"),
-        cy(0.7, 1.5, [1.55, 3.4, -7.15], "primary", note="snorkel"),
-        box(1.1, 2.0, 3.9, 4.38, -8.0, -6.7, "detail", note="snorkel head, mouth forward"),
-    ] + stack(-1.45, 3.55, -6.95, 0.9, 0.9, -20, 0.8, note="dump stack")
+        box(-1.9, -0.7, PAD1, 2.85, -9.0, -7.0, "detail", note="saddle on the bonnet pad"),
+        cz(1.0, 2.4, [-1.3, 3.2, -8.1], "secondary", note="small offset turbine, set low"),
+        cz(0.8, 0.3, [-1.3, 3.2, -9.43], "detail", note="intake"),
+        box(-0.8, 0.9, 2.8, 3.2, -7.4, -6.9, "detail", note="cross pipe to the snorkel"),
+        box(0.9, 2.3, PAD1, 3.0, -9.2, -7.5, "primary", note="snorkel duct along the bonnet, low: a 0.6 gap under the head"),
+        box(0.9, 2.3, PAD1, 3.6, -7.5, Z_E1, "primary", note="snorkel riser"),
+        box(0.7, 2.4, 3.6, 4.38, -8.6, Z_E1, "primary", note="snorkel head, 1.7 wide"),
+        box(0.75, 2.35, 3.68, 4.3, -8.68, -8.6, "detail", note="scoop mouth facing forward, 1.6 x 0.6"),
+    ] + stack(-1.45, 3.35, -6.95, 0.9, 0.9, -20, 0.8, note="dump stack")
 
 
 # ---------------------------------------------------------------- Engine2 (tail engine)
@@ -668,12 +675,16 @@ def e2_slot():
 
 
 def e2_over_under():
-    """Rally: two turbines stacked on the centre line behind a tall intake tower."""
+    """Rally: two turbines stacked on the centre line behind a tall intake tower, between two sloped heat shields
+    that fill the bay out to the walls."""
     out = [
         box(-0.75, 0.75, PAD2, 2.97, 7.0, 7.4, "detail", note="engine frame on the bay pad"),
-        box(-0.75, 0.75, PAD2, 2.97, 9.4, 9.8, "detail", note="engine frame on the bay pad"),
+        box(-2.2, 2.2, PAD2, 1.5, 9.4, 9.8, "detail", note="rear cradle, full bay width"),
+        box(-0.75, 0.75, 1.5, 2.97, 9.4, 9.8, "detail", note="engine frame"),
         box(-0.8, 0.8, 0.95, 4.1, 5.1, 6.1, "primary", note="intake tower, proud of the deck"),
         box(-0.6, 0.6, 3.2, 3.95, 5.02, 5.1, "detail", note="tower mouth"),
+        ramp_x(0.8, 2.25, PAD2, 2.2, 5.2, 9.4, "primary", "out", mirror=True, note="sloped heat shield: fills the bay beside the turbines, top at Y 2.2"),
+        box(1.0, 2.2, PAD2, 1.35, 5.1, 5.2, "detail", mirror=True, note="shield intake slot"),
     ]
     for y in (1.45, 2.47):
         out.append(cz(1.0, 4.3, [0, y, 8.25], "secondary", note="turbine body"))
@@ -756,16 +767,17 @@ def st_blades():
 
 
 def st_outriggers():
-    """Rally: a square jet pod hung low and outboard on a drop strut. The big flared nozzle is the main shape."""
+    """Rally: a square jet pod carried outboard on a faired stub wing, with its top inside the arch.
+    The big flared nozzle is the main shape."""
     def corner(zc):
         return [
-            box(WALL, 5.4, 0.3, 0.7, zc - 0.4, zc + 0.4, "detail", mirror=True, note="arm from the arch inner wall"),
-            box(4.9, 5.4, -0.5, 0.3, zc - 0.3, zc + 0.3, "primary", mirror=True, note="drop strut"),
-            box(4.6, 6.0, -1.5, -0.5, zc - 1.1, zc + 0.5, "secondary", mirror=True, note="pod, longer than wide"),
-            box(4.75, 5.85, -1.35, -0.65, zc - 1.18, zc - 1.1, "detail", mirror=True, note="intake mouth"),
-            box(4.5, 6.1, -1.6, -0.4, zc + 0.5, zc + 1.3, "detail", mirror=True, note="flared nozzle"),
-            box(4.65, 5.95, -1.45, -0.55, zc + 1.3, zc + 1.45, "thrust", mirror=True, note="jet, 1.3 x 0.9"),
-            box(5.65, 6.0, -0.5, -0.36, zc - 0.9, zc + 0.3, "thrust", mirror=True, note="top trim jet: shows in plan"),
+            box(WALL, 4.6, -0.1, 0.6, zc - 0.8, zc + 0.8, "primary", mirror=True, note="faired stub wing from the arch inner wall straight into the pod"),
+            ramp(WALL, 4.6, -0.1, 0.6, zc - 1.3, zc - 0.8, "primary", "back", mirror=True, note="stub wing leading edge"),
+            box(4.6, 6.0, -0.6, 0.7, zc - 1.1, zc + 0.5, "secondary", mirror=True, note="pod, longer than wide; its top sits inside the arch"),
+            box(4.75, 5.85, -0.45, 0.55, zc - 1.18, zc - 1.1, "detail", mirror=True, note="intake mouth"),
+            box(4.5, 6.1, -0.7, 0.8, zc + 0.5, zc + 1.3, "detail", mirror=True, note="flared nozzle"),
+            box(4.65, 5.95, -0.55, 0.65, zc + 1.3, zc + 1.45, "thrust", mirror=True, note="jet, 1.3 x 1.2"),
+            box(5.65, 6.0, 0.7, 0.84, zc - 0.9, zc + 0.3, "thrust", mirror=True, note="top trim jet: shows in plan"),
         ]
     return four_corners(corner)
 
@@ -965,19 +977,23 @@ def fl_skid():
 
 # ---------------------------------------------------------------- RearBumper (diffuser)
 def rd_valance():
-    """Touge: shallow valance."""
+    """Touge: deep body-colour valance with a rolled lower lip and a centre cut-out."""
     return [
-        box(-4.4, 4.4, -0.3, Y_SILL - 0.03, 8.7, Z_TAIL, "primary", note="shallow valance under the tail"),
-        box(-2.0, 2.0, -0.36, -0.3, 9.3, Z_TAIL, "detail", note="centre cut"),
+        box(1.5, 4.4, -0.7, Y_SILL - 0.03, 8.7, 10.6, "primary", mirror=True, note="deep valance, body-colour rear face"),
+        cx(0.45, 2.9, [2.95, -0.68, 10.68], "primary", mirror=True, note="rolled lower lip, out to Z 10.9"),
+        box(-1.5, 1.5, -0.2, Y_SILL - 0.03, 8.7, Z_TAIL, "primary", note="bridge over the centre cut-out"),
+        box(-1.5, 1.5, -0.7, -0.2, 8.9, 9.5, "detail", note="dark back wall of the cut-out"),
+        box(1.5, 1.62, -0.7, -0.2, 9.5, 10.62, "secondary", mirror=True, note="cut-out edge trim"),
     ]
 
 
 def rd_beam():
-    """Kanjo: bare tube and a tow hook."""
+    """Kanjo: no bumper skin. A bare tube hung low on two frame-rail stubs, tow hook on the centre line."""
     return [
-        cx(0.35, 7.6, [0, -0.05, 10.2], "detail", note="bare lower tube"),
-        box(2.9, 3.2, -0.05, Y_SILL - 0.03, 9.0, 10.2, "detail", mirror=True, note="tube stay"),
-        box(-2.5, -2.1, -0.3, 0.1, 10.2, 11.3, "neon", note="tow hook"),
+        box(2.7, 3.3, -0.35, Y_SILL - 0.03, 8.8, 10.7, "detail", mirror=True, note="frame-rail stub"),
+        box(2.8, 3.2, -0.6, -0.35, 10.3, 10.7, "detail", mirror=True, note="drop bracket"),
+        cx(0.5, 8.4, [0, -0.6, 10.85], "secondary", note="bare lower tube, 0.5 across"),
+        box(-0.2, 0.2, -0.8, -0.4, 11.0, 11.7, "neon", note="tow hook on the centre line"),
     ]
 
 
@@ -1036,13 +1052,17 @@ def wg_gt():
 
 
 def wg_swan():
-    """Time Attack: tall swan-neck wing with big end plates."""
+    """Time Attack: swan-neck wing. Raked pylons lean forward, a neck comes back over the blade and the blade hangs from it."""
+    y0, z0, y1, z1 = 3.25, 10.05, 6.5, 9.55      # pylon centre line, foot to top
+    length = math.hypot(y1 - y0, z1 - z0)
+    rake = math.degrees(math.atan2(z0 - z1, y1 - y0))
     return [
-        box(2.9, 3.08, PADW, 7.0, 9.4, 9.9, "detail", mirror=True, note="swan-neck pylon on the deck pad"),
-        box(2.9, 3.08, 6.75, 7.0, 9.9, 10.9, "detail", mirror=True, note="neck"),
-        box(2.9, 3.08, 6.45, 6.75, 10.5, 10.9, "detail", mirror=True, note="hanger"),
-        box(-5.6, 5.6, 6.2, 6.45, 9.9, 11.4, "secondary", note="blade hung from above"),
-        box(5.6, 5.78, 5.4, 7.3, 9.6, 11.58, "primary", mirror=True, note="end plate"),
+        box(2.85, 3.4, PADW, 3.3, 9.5, 10.3, "detail", mirror=True, note="pylon foot on the wing pad"),
+        P("block", [0.35, length, 0.5], [3.125, (y0 + y1) / 2, (z0 + z1) / 2], "detail", rot=[-rake, 0, 0], mirror=True, note="raked pylon, 0.35 thick, leaning forward"),
+        box(2.95, 3.3, 6.4, 6.65, 9.3, 10.9, "detail", mirror=True, note="neck, over the blade"),
+        box(2.95, 3.3, 6.15, 6.4, 10.5, 10.9, "detail", mirror=True, note="hanger"),
+        box(-5.6, 5.6, 5.9, 6.15, 10.1, 11.5, "secondary", note="blade hung from above"),
+        box(5.6, 5.78, 5.2, 6.9, 9.8, 11.58, "primary", mirror=True, note="end plate"),
     ]
 
 

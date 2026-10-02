@@ -1073,12 +1073,12 @@
      "size": [
       7.4,
       2.55,
-      5.0
+      7.5
      ],
      "pos": [
       0.0,
       4.275,
-      -0.7
+      0.55
      ],
      "ch": "glass",
      "note": "tall side glass"
@@ -1093,7 +1093,7 @@
      "pos": [
       3.775,
       4.275,
-      0.2
+      0.5
      ],
      "ch": "detail",
      "mirror": true,
@@ -1102,64 +1102,92 @@
     {
      "shape": "block",
      "size": [
-      7.7,
+      1.25,
       2.55,
-      1.2
+      0.55
+     ],
+     "pos": [
+      3.225,
+      4.275,
+      4.575
+     ],
+     "ch": "primary",
+     "mirror": true,
+     "note": "door-shut pillar at the tail bay"
+    },
+    {
+     "shape": "block",
+     "size": [
+      5.2,
+      2.55,
+      0.2
      ],
      "pos": [
       0.0,
       4.275,
-      2.4
+      4.7
      ],
-     "ch": "primary",
-     "note": "thick C-pillar: the hot-hatch signature"
+     "ch": "glass",
+     "note": "cabin rear glass: the engine sits behind it"
     },
     {
      "shape": "block",
      "size": [
       7.7,
       0.35,
-      6.2
+      8.05
      ],
      "pos": [
       0.0,
       5.725,
-      -0.1
+      0.825
      ],
      "ch": "primary",
-     "note": "short tall roof"
+     "note": "tall roof, solid to the tail bay"
     },
     {
-     "shape": "wedge",
+     "shape": "block",
      "size": [
-      5.2,
-      2.55,
-      1.85
+      1.25,
+      0.35,
+      1.55
      ],
      "pos": [
-      0.0,
+      3.225,
+      5.725,
+      5.625
+     ],
+     "ch": "primary",
+     "mirror": true,
+     "note": "roof side rails over the bay"
+    },
+    {
+     "shape": "block",
+     "size": [
+      1.25,
+      2.55,
+      0.6
+     ],
+     "pos": [
+      3.225,
       4.275,
-      3.925
+      6.1
      ],
-     "rot": [
-      0.0,
-      180.0,
-      0.0
-     ],
-     "ch": "glass",
-     "note": "steep hatch glass, ends at the tail bay"
+     "ch": "primary",
+     "mirror": true,
+     "note": "C-pillar; the quarter window ahead of it is open, so the tail engine intake shows from the side"
     },
     {
      "shape": "wedge",
      "size": [
       1.25,
-      2.55,
-      3.0
+      2.9,
+      2.4
      ],
      "pos": [
       3.225,
-      4.275,
-      4.5
+      4.45,
+      7.6
      ],
      "rot": [
       0.0,
@@ -1168,22 +1196,37 @@
      ],
      "ch": "primary",
      "mirror": true,
-     "note": "buttress: carries the hatch line back beside the open bay"
+     "note": "steep hatch buttress from roof height to the deck"
+    },
+    {
+     "shape": "block",
+     "size": [
+      5.2,
+      0.35,
+      0.5
+     ],
+     "pos": [
+      0.0,
+      5.725,
+      6.15
+     ],
+     "ch": "primary",
+     "note": "open hoop: the hatch is open under it"
     },
     {
      "shape": "block",
      "size": [
       7.2,
       0.3,
-      0.9
+      0.7
      ],
      "pos": [
       0.0,
       5.75,
-      3.45
+      6.75
      ],
      "ch": "secondary",
-     "note": "roof visor spoiler (cockpit owns the roofline)"
+     "note": "roof spoiler over the hatch (cockpit owns the roofline)"
     }
    ]
   },
@@ -2741,13 +2784,13 @@
      {
       "shape": "block",
       "size": [
-       1.3,
-       0.37,
+       1.2,
+       0.22,
        2.0
       ],
       "pos": [
-       -1.25,
-       2.815,
+       -1.3,
+       2.74,
        -8.0
       ],
       "ch": "detail",
@@ -2756,28 +2799,28 @@
      {
       "shape": "cyl_z",
       "size": [
-       1.35,
-       1.35,
+       1.0,
+       1.0,
        2.4
       ],
       "pos": [
-       -1.25,
-       3.5,
+       -1.3,
+       3.2,
        -8.1
       ],
       "ch": "secondary",
-      "note": "offset turbine"
+      "note": "small offset turbine, set low"
      },
      {
       "shape": "cyl_z",
       "size": [
-       1.05,
-       1.05,
+       0.8,
+       0.8,
        0.3
       ],
       "pos": [
-       -1.25,
-       3.5,
+       -1.3,
+       3.2,
        -9.43
       ],
       "ch": "detail",
@@ -2786,47 +2829,77 @@
      {
       "shape": "block",
       "size": [
-       1.9,
+       1.7,
        0.4,
        0.5
       ],
       "pos": [
-       0.35,
-       3.1,
+       0.05,
+       3.0,
        -7.15
       ],
       "ch": "detail",
       "note": "cross pipe to the snorkel"
      },
      {
-      "shape": "cyl_y",
+      "shape": "block",
       "size": [
-       0.7,
-       1.5,
-       0.7
+       1.4,
+       0.37,
+       1.7
       ],
       "pos": [
-       1.55,
-       3.4,
-       -7.15
+       1.6,
+       2.815,
+       -8.35
       ],
       "ch": "primary",
-      "note": "snorkel"
+      "note": "snorkel duct along the bonnet, low: a 0.6 gap under the head"
      },
      {
       "shape": "block",
       "size": [
-       0.9,
-       0.48,
-       1.3
+       1.4,
+       0.97,
+       1.05
+      ],
+      "pos": [
+       1.6,
+       3.115,
+       -6.975
+      ],
+      "ch": "primary",
+      "note": "snorkel riser"
+     },
+     {
+      "shape": "block",
+      "size": [
+       1.7,
+       0.78,
+       2.15
       ],
       "pos": [
        1.55,
-       4.14,
-       -7.35
+       3.99,
+       -7.525
+      ],
+      "ch": "primary",
+      "note": "snorkel head, 1.7 wide"
+     },
+     {
+      "shape": "block",
+      "size": [
+       1.6,
+       0.62,
+       0.08
+      ],
+      "pos": [
+       1.55,
+       3.99,
+       -8.64
       ],
       "ch": "detail",
-      "note": "snorkel head, mouth forward"
+      "note": "scoop mouth facing forward, 1.6 x 0.6"
      },
      {
       "shape": "cyl_y",
@@ -2837,7 +2910,7 @@
       ],
       "pos": [
        -1.45,
-       3.55,
+       3.35,
        -6.95
       ],
       "rot": [
@@ -2857,7 +2930,7 @@
       ],
       "pos": [
        -1.642,
-       4.076,
+       3.876,
        -6.95
       ],
       "rot": [
@@ -3479,17 +3552,32 @@
      {
       "shape": "block",
       "size": [
-       1.5,
-       2.1,
+       4.4,
+       0.63,
        0.4
       ],
       "pos": [
        0.0,
-       1.92,
+       1.185,
        9.6
       ],
       "ch": "detail",
-      "note": "engine frame on the bay pad"
+      "note": "rear cradle, full bay width"
+     },
+     {
+      "shape": "block",
+      "size": [
+       1.5,
+       1.47,
+       0.4
+      ],
+      "pos": [
+       0.0,
+       2.235,
+       9.6
+      ],
+      "ch": "detail",
+      "note": "engine frame"
      },
      {
       "shape": "block",
@@ -3520,6 +3608,43 @@
       ],
       "ch": "detail",
       "note": "tower mouth"
+     },
+     {
+      "shape": "wedge",
+      "size": [
+       4.2,
+       1.33,
+       1.45
+      ],
+      "pos": [
+       1.525,
+       1.535,
+       7.3
+      ],
+      "rot": [
+       0.0,
+       -90.0,
+       0.0
+      ],
+      "ch": "primary",
+      "mirror": true,
+      "note": "sloped heat shield: fills the bay beside the turbines, top at Y 2.2"
+     },
+     {
+      "shape": "block",
+      "size": [
+       1.2,
+       0.48,
+       0.1
+      ],
+      "pos": [
+       1.6,
+       1.11,
+       5.15
+      ],
+      "ch": "detail",
+      "mirror": true,
+      "note": "shield intake slot"
      },
      {
       "shape": "cyl_z",
@@ -4696,61 +4821,61 @@
      {
       "shape": "block",
       "size": [
-       2.65,
-       0.4,
-       0.8
+       1.85,
+       0.7,
+       1.6
       ],
       "pos": [
-       4.075,
-       0.5,
-       -6.5
-      ],
-      "ch": "detail",
-      "mirror": true,
-      "note": "arm from the arch inner wall"
-     },
-     {
-      "shape": "block",
-      "size": [
-       0.5,
-       0.8,
-       0.6
-      ],
-      "pos": [
-       5.15,
-       -0.1,
+       3.675,
+       0.25,
        -6.5
       ],
       "ch": "primary",
       "mirror": true,
-      "note": "drop strut"
+      "note": "faired stub wing from the arch inner wall straight into the pod"
+     },
+     {
+      "shape": "wedge",
+      "size": [
+       1.85,
+       0.7,
+       0.5
+      ],
+      "pos": [
+       3.675,
+       0.25,
+       -7.55
+      ],
+      "ch": "primary",
+      "mirror": true,
+      "note": "stub wing leading edge"
      },
      {
       "shape": "block",
       "size": [
        1.4,
-       1.0,
+       1.3,
        1.6
       ],
       "pos": [
        5.3,
-       -1.0,
+       0.05,
        -6.8
       ],
       "ch": "secondary",
       "mirror": true,
-      "note": "pod, longer than wide"
+      "note": "pod, longer than wide; its top sits inside the arch"
      },
      {
       "shape": "block",
       "size": [
        1.1,
-       0.7,
+       1.0,
        0.08
       ],
       "pos": [
        5.3,
-       -1.0,
+       0.05,
        -7.64
       ],
       "ch": "detail",
@@ -4761,12 +4886,12 @@
       "shape": "block",
       "size": [
        1.6,
-       1.2,
+       1.5,
        0.8
       ],
       "pos": [
        5.3,
-       -1.0,
+       0.05,
        -5.6
       ],
       "ch": "detail",
@@ -4777,17 +4902,17 @@
       "shape": "block",
       "size": [
        1.3,
-       0.9,
+       1.2,
        0.15
       ],
       "pos": [
        5.3,
-       -1.0,
+       0.05,
        -5.125
       ],
       "ch": "thrust",
       "mirror": true,
-      "note": "jet, 1.3 x 0.9"
+      "note": "jet, 1.3 x 1.2"
      },
      {
       "shape": "block",
@@ -4798,7 +4923,7 @@
       ],
       "pos": [
        5.825,
-       -0.43,
+       0.77,
        -6.8
       ],
       "ch": "thrust",
@@ -4808,61 +4933,61 @@
      {
       "shape": "block",
       "size": [
-       2.65,
-       0.4,
-       0.8
+       1.85,
+       0.7,
+       1.6
       ],
       "pos": [
-       4.075,
-       0.5,
-       6.6
-      ],
-      "ch": "detail",
-      "mirror": true,
-      "note": "arm from the arch inner wall"
-     },
-     {
-      "shape": "block",
-      "size": [
-       0.5,
-       0.8,
-       0.6
-      ],
-      "pos": [
-       5.15,
-       -0.1,
+       3.675,
+       0.25,
        6.6
       ],
       "ch": "primary",
       "mirror": true,
-      "note": "drop strut"
+      "note": "faired stub wing from the arch inner wall straight into the pod"
+     },
+     {
+      "shape": "wedge",
+      "size": [
+       1.85,
+       0.7,
+       0.5
+      ],
+      "pos": [
+       3.675,
+       0.25,
+       5.55
+      ],
+      "ch": "primary",
+      "mirror": true,
+      "note": "stub wing leading edge"
      },
      {
       "shape": "block",
       "size": [
        1.4,
-       1.0,
+       1.3,
        1.6
       ],
       "pos": [
        5.3,
-       -1.0,
+       0.05,
        6.3
       ],
       "ch": "secondary",
       "mirror": true,
-      "note": "pod, longer than wide"
+      "note": "pod, longer than wide; its top sits inside the arch"
      },
      {
       "shape": "block",
       "size": [
        1.1,
-       0.7,
+       1.0,
        0.08
       ],
       "pos": [
        5.3,
-       -1.0,
+       0.05,
        5.46
       ],
       "ch": "detail",
@@ -4873,12 +4998,12 @@
       "shape": "block",
       "size": [
        1.6,
-       1.2,
+       1.5,
        0.8
       ],
       "pos": [
        5.3,
-       -1.0,
+       0.05,
        7.5
       ],
       "ch": "detail",
@@ -4889,17 +5014,17 @@
       "shape": "block",
       "size": [
        1.3,
-       0.9,
+       1.2,
        0.15
       ],
       "pos": [
        5.3,
-       -1.0,
+       0.05,
        7.975
       ],
       "ch": "thrust",
       "mirror": true,
-      "note": "jet, 1.3 x 0.9"
+      "note": "jet, 1.3 x 1.2"
      },
      {
       "shape": "block",
@@ -4910,7 +5035,7 @@
       ],
       "pos": [
        5.825,
-       -0.43,
+       0.77,
        6.3
       ],
       "ch": "thrust",
@@ -6935,30 +7060,30 @@
      {
       "shape": "cyl_z",
       "size": [
-       0.95,
-       0.95,
+       0.9,
+       0.9,
        0.7
       ],
       "pos": [
        0.65,
-       3.35,
-       -10.15
+       2.35,
+       -11.15
       ],
       "ch": "detail",
       "mirror": true,
-      "note": "spot lamp"
+      "note": "spot lamp on the bull bar, top at Y 2.8: clear of the bonnet engine intake"
      },
      {
       "shape": "cyl_z",
       "size": [
-       0.75,
-       0.75,
+       0.7,
+       0.7,
        0.15
       ],
       "pos": [
        0.65,
-       3.35,
-       -10.55
+       2.35,
+       -11.57
       ],
       "ch": "neon",
       "mirror": true,
@@ -6967,30 +7092,30 @@
      {
       "shape": "cyl_z",
       "size": [
-       0.95,
-       0.95,
+       0.9,
+       0.9,
        0.7
       ],
       "pos": [
        1.85,
-       3.35,
-       -10.15
+       2.35,
+       -11.15
       ],
       "ch": "detail",
       "mirror": true,
-      "note": "spot lamp"
+      "note": "spot lamp on the bull bar, top at Y 2.8: clear of the bonnet engine intake"
      },
      {
       "shape": "cyl_z",
       "size": [
-       0.75,
-       0.75,
+       0.7,
+       0.7,
        0.15
       ],
       "pos": [
        1.85,
-       3.35,
-       -10.55
+       2.35,
+       -11.57
       ],
       "ch": "neon",
       "mirror": true,
@@ -7122,17 +7247,17 @@
      {
       "shape": "block",
       "size": [
-       5.0,
+       4.8,
        0.3,
-       0.55
+       0.4
       ],
       "pos": [
        0.0,
-       2.75,
-       -10.025
+       2.45,
+       -10.6
       ],
       "ch": "detail",
-      "note": "lamp bar on the nose top"
+      "note": "lamp bracket from the nose edge to the spot lamps"
      },
      {
       "shape": "cyl_x",
@@ -9302,32 +9427,80 @@
      {
       "shape": "block",
       "size": [
-       8.8,
-       0.47,
-       1.7
+       2.9,
+       0.87,
+       1.9
       ],
       "pos": [
-       0.0,
-       -0.065,
-       9.55
+       2.95,
+       -0.265,
+       9.65
       ],
       "ch": "primary",
-      "note": "shallow valance under the tail"
+      "mirror": true,
+      "note": "deep valance, body-colour rear face"
+     },
+     {
+      "shape": "cyl_x",
+      "size": [
+       2.9,
+       0.45,
+       0.45
+      ],
+      "pos": [
+       2.95,
+       -0.68,
+       10.68
+      ],
+      "ch": "primary",
+      "mirror": true,
+      "note": "rolled lower lip, out to Z 10.9"
      },
      {
       "shape": "block",
       "size": [
-       4.0,
-       0.06,
-       1.1
+       3.0,
+       0.37,
+       1.7
       ],
       "pos": [
        0.0,
-       -0.33,
-       9.85
+       -0.015,
+       9.55
+      ],
+      "ch": "primary",
+      "note": "bridge over the centre cut-out"
+     },
+     {
+      "shape": "block",
+      "size": [
+       3.0,
+       0.5,
+       0.6
+      ],
+      "pos": [
+       0.0,
+       -0.45,
+       9.2
       ],
       "ch": "detail",
-      "note": "centre cut"
+      "note": "dark back wall of the cut-out"
+     },
+     {
+      "shape": "block",
+      "size": [
+       0.12,
+       0.5,
+       1.12
+      ],
+      "pos": [
+       1.56,
+       -0.45,
+       10.06
+      ],
+      "ch": "secondary",
+      "mirror": true,
+      "note": "cut-out edge trim"
      }
     ]
    },
@@ -9336,50 +9509,66 @@
     "culture": "Kanjo",
     "parts": [
      {
-      "shape": "cyl_x",
-      "size": [
-       7.6,
-       0.35,
-       0.35
-      ],
-      "pos": [
-       0.0,
-       -0.05,
-       10.2
-      ],
-      "ch": "detail",
-      "note": "bare lower tube"
-     },
-     {
       "shape": "block",
       "size": [
-       0.3,
-       0.22,
-       1.2
+       0.6,
+       0.52,
+       1.9
       ],
       "pos": [
-       3.05,
-       0.06,
-       9.6
+       3.0,
+       -0.09,
+       9.75
       ],
       "ch": "detail",
       "mirror": true,
-      "note": "tube stay"
+      "note": "frame-rail stub"
+     },
+     {
+      "shape": "block",
+      "size": [
+       0.4,
+       0.25,
+       0.4
+      ],
+      "pos": [
+       3.0,
+       -0.475,
+       10.5
+      ],
+      "ch": "detail",
+      "mirror": true,
+      "note": "drop bracket"
+     },
+     {
+      "shape": "cyl_x",
+      "size": [
+       8.4,
+       0.5,
+       0.5
+      ],
+      "pos": [
+       0.0,
+       -0.6,
+       10.85
+      ],
+      "ch": "secondary",
+      "note": "bare lower tube, 0.5 across"
      },
      {
       "shape": "block",
       "size": [
        0.4,
        0.4,
-       1.1
+       0.7
       ],
       "pos": [
-       -2.3,
-       -0.1,
-       10.75
+       0.0,
+       -0.6,
+       11.35
       ],
       "ch": "neon",
-      "note": "tow hook"
+      "note": "tow hook on the centre line"
      }
     ]
    },
@@ -9745,45 +9934,66 @@
      {
       "shape": "block",
       "size": [
-       0.18,
-       3.97,
+       0.55,
+       0.27,
+       0.8
+      ],
+      "pos": [
+       3.125,
+       3.165,
+       9.9
+      ],
+      "ch": "detail",
+      "mirror": true,
+      "note": "pylon foot on the wing pad"
+     },
+     {
+      "shape": "block",
+      "size": [
+       0.35,
+       3.288,
        0.5
       ],
       "pos": [
-       2.99,
-       5.015,
-       9.65
+       3.125,
+       4.875,
+       9.8
+      ],
+      "rot": [
+       -8.746,
+       0.0,
+       0.0
       ],
       "ch": "detail",
       "mirror": true,
-      "note": "swan-neck pylon on the deck pad"
+      "note": "raked pylon, 0.35 thick, leaning forward"
      },
      {
       "shape": "block",
       "size": [
-       0.18,
+       0.35,
        0.25,
-       1.0
+       1.6
       ],
       "pos": [
-       2.99,
-       6.875,
-       10.4
+       3.125,
+       6.525,
+       10.1
       ],
       "ch": "detail",
       "mirror": true,
-      "note": "neck"
+      "note": "neck, over the blade"
      },
      {
       "shape": "block",
       "size": [
-       0.18,
-       0.3,
+       0.35,
+       0.25,
        0.4
       ],
       "pos": [
-       2.99,
-       6.6,
+       3.125,
+       6.275,
        10.7
       ],
       "ch": "detail",
@@ -9795,12 +10005,12 @@
       "size": [
        11.2,
        0.25,
-       1.5
+       1.4
       ],
       "pos": [
        0.0,
-       6.325,
-       10.65
+       6.025,
+       10.8
       ],
       "ch": "secondary",
       "note": "blade hung from above"
@@ -9809,13 +10019,13 @@
       "shape": "block",
       "size": [
        0.18,
-       1.9,
-       1.98
+       1.7,
+       1.78
       ],
       "pos": [
        5.69,
-       6.35,
-       10.59
+       6.05,
+       10.69
       ],
       "ch": "primary",
       "mirror": true,

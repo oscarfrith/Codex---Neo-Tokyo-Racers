@@ -620,14 +620,14 @@
     {
      "shape": "wedge",
      "size": [
-      7.8,
-      2.6,
-      2.9
+      7.2,
+      2.55,
+      2.5
      ],
      "pos": [
       0.0,
-      4.6,
-      -0.15
+      4.575,
+      -0.35
      ],
      "ch": "glass",
      "note": "windscreen"
@@ -636,13 +636,13 @@
      "shape": "wedge",
      "size": [
       0.3,
-      2.6,
-      2.9
+      2.55,
+      2.5
      ],
      "pos": [
-      4.05,
-      4.6,
-      -0.15
+      3.75,
+      4.575,
+      -0.35
      ],
      "ch": "primary",
      "mirror": true,
@@ -651,44 +651,44 @@
     {
      "shape": "block",
      "size": [
-      8.2,
+      7.6,
       2.3,
-      3.8
+      1.4
      ],
      "pos": [
       0.0,
       4.45,
-      3.2
+      1.6
      ],
      "ch": "glass",
-     "note": "side glass"
+     "note": "door glass"
     },
     {
      "shape": "block",
      "size": [
-      8.4,
-      0.4,
-      4.1
+      7.8,
+      0.35,
+      1.7
      ],
      "pos": [
       0.0,
-      5.8,
-      3.15
+      5.775,
+      1.55
      ],
      "ch": "primary",
-     "note": "long roof"
+     "note": "short, low roof: the peak sits over the B-pillar"
     },
     {
      "shape": "wedge",
      "size": [
-      6.0,
-      2.65,
-      4.95
+      5.6,
+      2.6,
+      7.75
      ],
      "pos": [
       0.0,
-      4.625,
-      7.575
+      4.6,
+      6.175
      ],
      "rot": [
       0,
@@ -696,19 +696,19 @@
       0
      ],
      "ch": "glass",
-     "note": "fastback glass runs out over the deck pad"
+     "note": "fastback glass, from the B-pillar to the end of the deck pad"
     },
     {
      "shape": "wedge",
      "size": [
-      1.2,
-      2.7,
-      4.95
+      1.1,
+      2.65,
+      7.75
      ],
      "pos": [
-      3.6,
-      4.65,
-      7.575
+      3.35,
+      4.625,
+      6.175
      ],
      "rot": [
       0,
@@ -717,19 +717,40 @@
      ],
      "ch": "primary",
      "mirror": true,
-     "note": "wide sail panel, out to the body edge"
+     "note": "long sail panel"
+    },
+    {
+     "shape": "wedge",
+     "size": [
+      0.06,
+      1.35,
+      2.8
+     ],
+     "pos": [
+      3.93,
+      4.225,
+      4.0
+     ],
+     "rot": [
+      0,
+      180,
+      0
+     ],
+     "ch": "glass",
+     "mirror": true,
+     "note": "triangular quarter glass in the sail panel"
     },
     {
      "shape": "block",
      "size": [
       0.08,
-      0.6,
-      1.2
+      0.4,
+      1.1
      ],
      "pos": [
-      4.24,
-      3.9,
-      7.1
+      3.94,
+      3.8,
+      6.95
      ],
      "ch": "detail",
      "mirror": true,
@@ -738,14 +759,14 @@
     {
      "shape": "block",
      "size": [
-      5.6,
+      5.2,
       0.14,
       0.8
      ],
      "pos": [
       0.0,
-      5.658,
-      6.15
+      5.507,
+      4.1
      ],
      "ch": "detail",
      "note": "rear window louvre"
@@ -753,14 +774,14 @@
     {
      "shape": "block",
      "size": [
-      5.6,
+      5.2,
       0.14,
       0.8
      ],
      "pos": [
       0.0,
-      5.123,
-      7.15
+      5.104,
+      5.3
      ],
      "ch": "detail",
      "note": "rear window louvre"
@@ -768,14 +789,14 @@
     {
      "shape": "block",
      "size": [
-      5.6,
+      5.2,
       0.14,
       0.8
      ],
      "pos": [
       0.0,
-      4.588,
-      8.15
+      4.702,
+      6.5
      ],
      "ch": "detail",
      "note": "rear window louvre"
@@ -783,14 +804,29 @@
     {
      "shape": "block",
      "size": [
-      5.6,
+      5.2,
       0.14,
       0.8
      ],
      "pos": [
       0.0,
-      4.052,
-      9.15
+      4.299,
+      7.7
+     ],
+     "ch": "detail",
+     "note": "rear window louvre"
+    },
+    {
+     "shape": "block",
+     "size": [
+      5.2,
+      0.14,
+      0.8
+     ],
+     "pos": [
+      0.0,
+      3.896,
+      8.9
      ],
      "ch": "detail",
      "note": "rear window louvre"
@@ -959,12 +995,12 @@
      "size": [
       8.4,
       0.08,
-      0.3
+      0.8
      ],
      "pos": [
       0.0,
       3.34,
-      -1.75
+      -1.5
      ],
      "ch": "detail",
      "note": "cowl vent"
@@ -972,14 +1008,14 @@
     {
      "shape": "wedge",
      "size": [
-      8.0,
+      8.2,
       2.75,
-      2.5
+      1.4
      ],
      "pos": [
       0.0,
       4.675,
-      -0.45
+      -0.5
      ],
      "ch": "glass",
      "note": "windscreen"
@@ -989,12 +1025,12 @@
      "size": [
       0.3,
       2.75,
-      2.5
+      1.4
      ],
      "pos": [
-      4.15,
+      4.25,
       4.675,
-      -0.45
+      -0.5
      ],
      "ch": "primary",
      "mirror": true,
@@ -1003,14 +1039,14 @@
     {
      "shape": "block",
      "size": [
-      8.5,
+      8.7,
       2.4,
-      3.8
+      3.2
      ],
      "pos": [
       0.0,
       4.5,
-      2.7
+      1.8
      ],
      "ch": "glass",
      "note": "pillarless side glass"
@@ -1018,38 +1054,38 @@
     {
      "shape": "block",
      "size": [
-      8.8,
+      9.0,
       0.5,
-      5.5
+      6.1
      ],
      "pos": [
       0.0,
       5.95,
-      3.35
+      3.05
      ],
      "ch": "secondary",
-     "note": "long, tall formal roof (vinyl top)"
+     "note": "long, tall, wide formal roof (vinyl top)"
     },
     {
      "shape": "block",
      "size": [
-      0.7,
+      1.1,
       2.4,
-      1.5
+      2.7
      ],
      "pos": [
-      4.05,
+      3.95,
       4.5,
-      5.35
+      4.75
      ],
      "ch": "secondary",
      "mirror": true,
-     "note": "wide C-pillar"
+     "note": "thick, long C-pillar"
     },
     {
      "shape": "block",
      "size": [
-      7.4,
+      6.8,
       2.4,
       0.2
      ],
@@ -1081,21 +1117,6 @@
      "ch": "secondary",
      "mirror": true,
      "note": "flying buttress on the deck pad"
-    },
-    {
-     "shape": "block",
-     "size": [
-      7.4,
-      0.1,
-      2.4
-     ],
-     "pos": [
-      0.0,
-      3.35,
-      7.4
-     ],
-     "ch": "detail",
-     "note": "tunnel deck panel"
     },
     {
      "shape": "block",
@@ -1261,12 +1282,12 @@
      "size": [
       8.4,
       0.08,
-      1.1
+      2.0
      ],
      "pos": [
       0.0,
       3.34,
-      -1.35
+      -0.9
      ],
      "ch": "detail",
      "note": "cowl vent"
@@ -1274,14 +1295,14 @@
     {
      "shape": "wedge",
      "size": [
-      6.6,
-      2.3,
-      2.2
+      5.6,
+      2.25,
+      2.0
      ],
      "pos": [
       0.0,
-      4.45,
-      0.2
+      4.425,
+      1.0
      ],
      "ch": "glass",
      "note": "windscreen"
@@ -1290,13 +1311,13 @@
      "shape": "wedge",
      "size": [
       0.3,
-      2.3,
-      2.2
+      2.25,
+      2.0
      ],
      "pos": [
-      3.45,
-      4.45,
-      0.2
+      2.95,
+      4.425,
+      1.0
      ],
      "ch": "primary",
      "mirror": true,
@@ -1305,14 +1326,14 @@
     {
      "shape": "block",
      "size": [
-      7.0,
+      6.0,
       2.0,
-      3.1
+      2.5
      ],
      "pos": [
       0.0,
       4.3,
-      2.85
+      3.25
      ],
      "ch": "glass",
      "note": "side glass"
@@ -1320,14 +1341,14 @@
     {
      "shape": "block",
      "size": [
-      7.2,
-      0.32,
-      3.6
+      6.2,
+      0.3,
+      2.9
      ],
      "pos": [
       0.0,
-      5.46,
-      2.9
+      5.45,
+      3.25
      ],
      "ch": "primary",
      "note": "short, low, narrow roof"
@@ -1335,14 +1356,14 @@
     {
      "shape": "wedge",
      "size": [
-      5.6,
-      2.28,
-      2.5
+      4.6,
+      2.26,
+      2.2
      ],
      "pos": [
       0.0,
-      4.44,
-      5.75
+      4.43,
+      5.6
      ],
      "rot": [
       0,
@@ -1356,13 +1377,13 @@
      "shape": "wedge",
      "size": [
       0.8,
-      2.32,
-      2.5
+      2.3,
+      2.2
      ],
      "pos": [
-      3.2,
-      4.46,
-      5.75
+      2.7,
+      4.45,
+      5.6
      ],
      "rot": [
       0,
@@ -1378,12 +1399,12 @@
      "size": [
       0.9,
       0.06,
-      3.6
+      2.9
      ],
      "pos": [
       0.8,
-      5.65,
-      2.9
+      5.63,
+      3.25
      ],
      "ch": "secondary",
      "mirror": true,
@@ -1392,14 +1413,14 @@
     {
      "shape": "block",
      "size": [
-      6.4,
+      5.4,
       1.7,
       0.2
      ],
      "pos": [
       0.0,
       4.35,
-      3.7
+      4.0
      ],
      "ch": "detail",
      "note": "roll hoop behind the seats"
@@ -1414,7 +1435,7 @@
      "pos": [
       -2.0,
       3.975,
-      3.25
+      3.55
      ],
      "ch": "detail",
      "note": "driver seat back"
@@ -1429,7 +1450,7 @@
      "pos": [
       2.0,
       3.975,
-      3.25
+      3.55
      ],
      "ch": "detail",
      "note": "passenger seat back"
@@ -1444,7 +1465,7 @@
      "pos": [
       -2.0,
       3.8,
-      2.6
+      2.9
      ],
      "ch": "driver",
      "note": "driver torso"
@@ -1459,7 +1480,7 @@
      "pos": [
       -2.0,
       4.8,
-      2.6
+      2.9
      ],
      "ch": "driver",
      "note": "driver head"
@@ -1582,13 +1603,13 @@
      "shape": "wedge",
      "size": [
       7.4,
-      2.2,
-      4.0
+      1.65,
+      4.5
      ],
      "pos": [
       0.0,
-      4.4,
-      0.1
+      4.125,
+      0.35
      ],
      "ch": "glass",
      "note": "windscreen"
@@ -1597,13 +1618,13 @@
      "shape": "wedge",
      "size": [
       0.35,
-      2.2,
-      4.0
+      1.65,
+      4.5
      ],
      "pos": [
       3.875,
-      4.4,
-      0.1
+      4.125,
+      0.35
      ],
      "ch": "primary",
      "mirror": true,
@@ -1613,13 +1634,13 @@
      "shape": "block",
      "size": [
       0.75,
-      0.55,
-      5.6
+      0.95,
+      6.0
      ],
      "pos": [
       4.375,
-      3.575,
-      2.2
+      3.775,
+      2.0
      ],
      "ch": "primary",
      "mirror": true,
@@ -1629,13 +1650,13 @@
      "shape": "wedge",
      "size": [
       0.75,
-      0.55,
-      1.3
+      0.95,
+      0.9
      ],
      "pos": [
       4.375,
-      3.575,
-      -1.25
+      3.775,
+      -1.45
      ],
      "ch": "primary",
      "mirror": true,
@@ -1645,12 +1666,12 @@
      "shape": "wedge",
      "size": [
       0.35,
-      0.55,
+      0.95,
       1.2
      ],
      "pos": [
       4.575,
-      3.575,
+      3.775,
       5.6
      ],
      "rot": [
@@ -1666,13 +1687,13 @@
      "shape": "block",
      "size": [
       0.6,
-      0.55,
-      3.4
+      0.95,
+      3.6
      ],
      "pos": [
       4.1,
-      3.575,
-      6.7
+      3.775,
+      6.8
      ],
      "ch": "primary",
      "mirror": true,
@@ -1682,13 +1703,13 @@
      "shape": "wedge",
      "size": [
       0.6,
-      0.55,
-      1.2
+      0.95,
+      1.45
      ],
      "pos": [
       4.1,
-      3.575,
-      9.0
+      3.775,
+      9.325
      ],
      "rot": [
       0,
@@ -1697,49 +1718,49 @@
      ],
      "ch": "primary",
      "mirror": true,
-     "note": "shoulder fades into the deck"
+     "note": "shoulder fades out at the end of the deck pad"
     },
     {
      "shape": "block",
      "size": [
       7.8,
-      1.9,
-      3.2
+      1.45,
+      2.8
      ],
      "pos": [
       0.0,
-      4.25,
-      3.7
+      4.025,
+      4.0
      ],
      "ch": "glass",
-     "note": "shallow side glass"
+     "note": "slit side glass above the shoulder"
     },
     {
      "shape": "block",
      "size": [
       8.1,
-      0.35,
-      3.6
+      0.3,
+      3.2
      ],
      "pos": [
       0.0,
-      5.375,
-      3.7
+      4.9,
+      4.0
      ],
      "ch": "detail",
-     "note": "low black roof panel: a chopped look"
+     "note": "chopped black roof panel"
     },
     {
      "shape": "wedge",
      "size": [
       6.2,
-      2.2,
-      3.6
+      1.7,
+      2.3
      ],
      "pos": [
       0.0,
-      4.4,
-      7.2
+      4.15,
+      6.65
      ],
      "rot": [
       0,
@@ -1753,13 +1774,13 @@
      "shape": "wedge",
      "size": [
       0.95,
-      2.25,
-      3.6
+      1.75,
+      2.3
      ],
      "pos": [
       3.575,
-      4.425,
-      7.2
+      4.175,
+      6.65
      ],
      "rot": [
       0,
@@ -1779,8 +1800,8 @@
      ],
      "pos": [
       0.0,
-      5.675,
-      4.7
+      5.175,
+      4.9
      ],
      "ch": "detail",
      "note": "roof fin"
@@ -1794,8 +1815,8 @@
      ],
      "pos": [
       -2.0,
-      3.825,
-      3.55
+      3.375,
+      3.75
      ],
      "ch": "detail",
      "note": "driver seat back"
@@ -1809,8 +1830,8 @@
      ],
      "pos": [
       2.0,
-      3.825,
-      3.55
+      3.375,
+      3.75
      ],
      "ch": "detail",
      "note": "passenger seat back"
@@ -1824,8 +1845,8 @@
      ],
      "pos": [
       -2.0,
-      3.65,
-      2.9
+      3.2,
+      3.1
      ],
      "ch": "driver",
      "note": "driver torso"
@@ -1839,8 +1860,8 @@
      ],
      "pos": [
       -2.0,
-      4.65,
-      2.9
+      4.2,
+      3.1
      ],
      "ch": "driver",
      "note": "driver head"
@@ -3884,14 +3905,14 @@
      {
       "shape": "cyl_z",
       "size": [
-       1.9,
-       1.9,
-       0.9
+       2.1,
+       2.1,
+       1.0
       ],
       "pos": [
        0.0,
-       1.25,
-       10.75
+       1.35,
+       10.8
       ],
       "ch": "secondary",
       "note": "lower intake collar"
@@ -3899,14 +3920,14 @@
      {
       "shape": "cyl_z",
       "size": [
-       1.7,
-       1.7,
-       1.2
+       1.9,
+       1.9,
+       1.45
       ],
       "pos": [
        0.0,
-       1.25,
-       11.8
+       1.35,
+       12.025
       ],
       "ch": "detail",
       "note": "lower turbine"
@@ -3914,14 +3935,14 @@
      {
       "shape": "cyl_z",
       "size": [
-       1.2,
-       1.2,
+       1.6,
+       1.6,
        0.6
       ],
       "pos": [
        0.0,
-       1.25,
-       12.55
+       1.35,
+       12.9
       ],
       "ch": "thrust",
       "note": "lower jet"
@@ -3929,14 +3950,14 @@
      {
       "shape": "cyl_z",
       "size": [
-       1.9,
-       1.9,
-       0.9
+       2.1,
+       2.1,
+       1.0
       ],
       "pos": [
        0.0,
-       3.2,
-       11.35
+       3.15,
+       11.3
       ],
       "ch": "secondary",
       "note": "upper intake collar"
@@ -3944,14 +3965,14 @@
      {
       "shape": "ball",
       "size": [
-       1.0,
-       1.0,
-       1.0
+       1.1,
+       1.1,
+       1.1
       ],
       "pos": [
        0.0,
-       3.2,
-       11.05
+       3.15,
+       10.95
       ],
       "ch": "detail",
       "note": "upper intake spinner"
@@ -3959,14 +3980,14 @@
      {
       "shape": "cyl_z",
       "size": [
-       1.7,
-       1.7,
-       1.4
+       1.9,
+       1.9,
+       1.3
       ],
       "pos": [
        0.0,
-       3.2,
-       12.5
+       3.15,
+       12.45
       ],
       "ch": "detail",
       "note": "upper turbine"
@@ -3974,14 +3995,14 @@
      {
       "shape": "cyl_z",
       "size": [
-       1.2,
-       1.2,
-       0.55
+       1.6,
+       1.6,
+       0.65
       ],
       "pos": [
        0.0,
-       3.2,
-       13.325
+       3.15,
+       13.275
       ],
       "ch": "thrust",
       "note": "upper jet"
@@ -3990,37 +4011,48 @@
       "shape": "block",
       "size": [
        0.6,
-       0.45,
+       0.5,
        2.3
       ],
       "pos": [
        0.0,
-       2.225,
+       2.25,
        11.45
       ],
       "ch": "detail",
       "note": "stack pylon"
      },
      {
-      "shape": "cyl_z",
+      "shape": "block",
       "size": [
-       0.22,
-       0.22,
-       2.596
+       2.25,
+       2.8,
+       0.2
       ],
       "pos": [
-       1.95,
-       2.55,
-       10.7
+       2.125,
+       1.9,
+       11.5
       ],
-      "rot": [
-       -15.642,
-       90.0,
-       0
+      "ch": "primary",
+      "mirror": true,
+      "note": "tail panel either side of the stack"
+     },
+     {
+      "shape": "block",
+      "size": [
+       1.4,
+       1.3,
+       0.08
+      ],
+      "pos": [
+       2.15,
+       1.95,
+       11.64
       ],
       "ch": "detail",
       "mirror": true,
-      "note": "stay to the haunch"
+      "note": "cheek duct in the tail panel"
      }
     ]
    },
@@ -4463,14 +4495,14 @@
      {
       "shape": "block",
       "size": [
-       1.7,
-       0.44,
-       1.6
+       1.5,
+       0.36,
+       2.2
       ],
       "pos": [
-       4.45,
-       1.44,
-       -7.8
+       4.25,
+       1.48,
+       -7.6
       ],
       "ch": "detail",
       "mirror": true,
@@ -4479,160 +4511,172 @@
      {
       "shape": "cyl_z",
       "size": [
-       1.05,
-       1.05,
-       0.6
+       0.85,
+       0.85,
+       2.7
       ],
       "pos": [
-       3.98,
-       0.72,
-       -9.15
+       4.2,
+       1.05,
+       -7.55
       ],
       "ch": "detail",
       "mirror": true,
-      "note": "intake lip"
+      "note": "log plenum under the arch roof"
      },
      {
       "shape": "cyl_z",
       "size": [
-       0.9,
-       0.9,
-       2.2
+       1.05,
+       1.05,
+       0.55
       ],
       "pos": [
-       3.98,
-       0.72,
-       -7.75
+       4.2,
+       1.05,
+       -9.175
       ],
       "ch": "secondary",
       "mirror": true,
-      "note": "slim turbine"
+      "note": "plenum intake lip"
      },
      {
       "shape": "cyl_z",
       "size": [
-       0.85,
-       0.85,
-       0.96
+       1.1,
+       1.1,
+       2.1
       ],
       "pos": [
-       3.98,
-       0.345,
-       -6.5
+       4.711,
+       0.148,
+       -8.441
       ],
       "rot": [
-       51.34,
-       0.0,
+       54.204,
+       123.69,
        0
-      ],
-      "ch": "detail",
-      "mirror": true,
-      "note": "lift nozzle, down and back"
-     },
-     {
-      "shape": "cyl_z",
-      "size": [
-       0.62,
-       0.62,
-       0.4
-      ],
-      "pos": [
-       3.98,
-       -0.108,
-       -6.138
-      ],
-      "rot": [
-       51.34,
-       0.0,
-       0
-      ],
-      "ch": "thrust",
-      "mirror": true
-     },
-     {
-      "shape": "cyl_z",
-      "size": [
-       1.05,
-       1.05,
-       0.6
-      ],
-      "pos": [
-       4.92,
-       0.72,
-       -9.15
-      ],
-      "ch": "detail",
-      "mirror": true,
-      "note": "intake lip"
-     },
-     {
-      "shape": "cyl_z",
-      "size": [
-       0.9,
-       0.9,
-       2.2
-      ],
-      "pos": [
-       4.92,
-       0.72,
-       -7.75
       ],
       "ch": "secondary",
       "mirror": true,
-      "note": "slim turbine"
+      "note": "lift turbine, 1.1 across and 2.1 long, canted out"
      },
      {
       "shape": "cyl_z",
       "size": [
-       0.85,
-       0.85,
-       0.96
+       1.3,
+       1.3,
+       0.55
       ],
       "pos": [
-       4.92,
-       0.345,
-       -6.5
+       5.088,
+       -0.48,
+       -8.692
       ],
       "rot": [
-       51.34,
-       0.0,
+       54.204,
+       123.69,
        0
       ],
       "ch": "detail",
       "mirror": true,
-      "note": "lift nozzle, down and back"
+      "note": "nozzle"
      },
      {
       "shape": "cyl_z",
       "size": [
-       0.62,
-       0.62,
-       0.4
+       1.0,
+       1.0,
+       0.55
       ],
       "pos": [
-       4.92,
-       -0.108,
-       -6.138
+       5.307,
+       -0.845,
+       -8.838
       ],
       "rot": [
-       51.34,
-       0.0,
+       54.204,
+       123.69,
        0
       ],
       "ch": "thrust",
-      "mirror": true
+      "mirror": true,
+      "note": "jet, outboard of the skin"
+     },
+     {
+      "shape": "cyl_z",
+      "size": [
+       1.1,
+       1.1,
+       2.1
+      ],
+      "pos": [
+       4.711,
+       0.148,
+       -6.759
+      ],
+      "rot": [
+       54.204,
+       56.31,
+       0
+      ],
+      "ch": "secondary",
+      "mirror": true,
+      "note": "lift turbine, 1.1 across and 2.1 long, canted out"
+     },
+     {
+      "shape": "cyl_z",
+      "size": [
+       1.3,
+       1.3,
+       0.55
+      ],
+      "pos": [
+       5.088,
+       -0.48,
+       -6.508
+      ],
+      "rot": [
+       54.204,
+       56.31,
+       0
+      ],
+      "ch": "detail",
+      "mirror": true,
+      "note": "nozzle"
+     },
+     {
+      "shape": "cyl_z",
+      "size": [
+       1.0,
+       1.0,
+       0.55
+      ],
+      "pos": [
+       5.307,
+       -0.845,
+       -6.362
+      ],
+      "rot": [
+       54.204,
+       56.31,
+       0
+      ],
+      "ch": "thrust",
+      "mirror": true,
+      "note": "jet, outboard of the skin"
      },
      {
       "shape": "block",
       "size": [
-       1.7,
-       0.44,
-       1.6
+       1.5,
+       0.36,
+       2.2
       ],
       "pos": [
-       4.45,
-       1.44,
-       8.1
+       4.25,
+       1.48,
+       8.3
       ],
       "ch": "detail",
       "mirror": true,
@@ -4641,148 +4685,160 @@
      {
       "shape": "cyl_z",
       "size": [
-       1.05,
-       1.05,
-       0.6
+       0.85,
+       0.85,
+       2.7
       ],
       "pos": [
-       3.98,
-       0.72,
-       6.75
+       4.2,
+       1.05,
+       8.35
       ],
       "ch": "detail",
       "mirror": true,
-      "note": "intake lip"
+      "note": "log plenum under the arch roof"
      },
      {
       "shape": "cyl_z",
       "size": [
-       0.9,
-       0.9,
-       2.2
+       1.05,
+       1.05,
+       0.55
       ],
       "pos": [
-       3.98,
-       0.72,
-       8.15
+       4.2,
+       1.05,
+       6.725
       ],
       "ch": "secondary",
       "mirror": true,
-      "note": "slim turbine"
+      "note": "plenum intake lip"
      },
      {
       "shape": "cyl_z",
       "size": [
-       0.85,
-       0.85,
-       0.96
+       1.1,
+       1.1,
+       2.1
       ],
       "pos": [
-       3.98,
-       0.345,
-       9.4
+       4.711,
+       0.148,
+       7.459
       ],
       "rot": [
-       51.34,
-       0.0,
+       54.204,
+       123.69,
        0
-      ],
-      "ch": "detail",
-      "mirror": true,
-      "note": "lift nozzle, down and back"
-     },
-     {
-      "shape": "cyl_z",
-      "size": [
-       0.62,
-       0.62,
-       0.4
-      ],
-      "pos": [
-       3.98,
-       -0.108,
-       9.762
-      ],
-      "rot": [
-       51.34,
-       0.0,
-       0
-      ],
-      "ch": "thrust",
-      "mirror": true
-     },
-     {
-      "shape": "cyl_z",
-      "size": [
-       1.05,
-       1.05,
-       0.6
-      ],
-      "pos": [
-       4.92,
-       0.72,
-       6.75
-      ],
-      "ch": "detail",
-      "mirror": true,
-      "note": "intake lip"
-     },
-     {
-      "shape": "cyl_z",
-      "size": [
-       0.9,
-       0.9,
-       2.2
-      ],
-      "pos": [
-       4.92,
-       0.72,
-       8.15
       ],
       "ch": "secondary",
       "mirror": true,
-      "note": "slim turbine"
+      "note": "lift turbine, 1.1 across and 2.1 long, canted out"
      },
      {
       "shape": "cyl_z",
       "size": [
-       0.85,
-       0.85,
-       0.96
+       1.3,
+       1.3,
+       0.55
       ],
       "pos": [
-       4.92,
-       0.345,
-       9.4
+       5.088,
+       -0.48,
+       7.208
       ],
       "rot": [
-       51.34,
-       0.0,
+       54.204,
+       123.69,
        0
       ],
       "ch": "detail",
       "mirror": true,
-      "note": "lift nozzle, down and back"
+      "note": "nozzle"
      },
      {
       "shape": "cyl_z",
       "size": [
-       0.62,
-       0.62,
-       0.4
+       1.0,
+       1.0,
+       0.55
       ],
       "pos": [
-       4.92,
-       -0.108,
-       9.762
+       5.307,
+       -0.845,
+       7.062
       ],
       "rot": [
-       51.34,
-       0.0,
+       54.204,
+       123.69,
        0
       ],
       "ch": "thrust",
-      "mirror": true
+      "mirror": true,
+      "note": "jet, outboard of the skin"
+     },
+     {
+      "shape": "cyl_z",
+      "size": [
+       1.1,
+       1.1,
+       2.1
+      ],
+      "pos": [
+       4.711,
+       0.148,
+       9.141
+      ],
+      "rot": [
+       54.204,
+       56.31,
+       0
+      ],
+      "ch": "secondary",
+      "mirror": true,
+      "note": "lift turbine, 1.1 across and 2.1 long, canted out"
+     },
+     {
+      "shape": "cyl_z",
+      "size": [
+       1.3,
+       1.3,
+       0.55
+      ],
+      "pos": [
+       5.088,
+       -0.48,
+       9.392
+      ],
+      "rot": [
+       54.204,
+       56.31,
+       0
+      ],
+      "ch": "detail",
+      "mirror": true,
+      "note": "nozzle"
+     },
+     {
+      "shape": "cyl_z",
+      "size": [
+       1.0,
+       1.0,
+       0.55
+      ],
+      "pos": [
+       5.307,
+       -0.845,
+       9.538
+      ],
+      "rot": [
+       54.204,
+       56.31,
+       0
+      ],
+      "ch": "thrust",
+      "mirror": true,
+      "note": "jet, outboard of the skin"
      }
     ]
    },
@@ -4790,22 +4846,6 @@
     "name": "Big 'n' Little",
     "culture": "Pro Street",
     "parts": [
-     {
-      "shape": "block",
-      "size": [
-       0.5,
-       0.76,
-       0.6
-      ],
-      "pos": [
-       4.2,
-       1.28,
-       -7.8
-      ],
-      "ch": "detail",
-      "mirror": true,
-      "note": "slim pylon"
-     },
      {
       "shape": "block",
       "size": [
@@ -4823,25 +4863,83 @@
       "note": "body-colour liner blanks the front arch"
      },
      {
-      "shape": "cyl_z",
+      "shape": "block",
       "size": [
-       0.8,
-       0.8,
-       2.147
+       0.98,
+       0.41,
+       1.0
       ],
       "pos": [
-       4.2,
-       0.05,
-       -7.6
+       4.11,
+       1.455,
+       -7.9
+      ],
+      "ch": "detail",
+      "mirror": true,
+      "note": "slim pylon"
+     },
+     {
+      "shape": "cyl_z",
+      "size": [
+       0.95,
+       0.95,
+       0.5
+      ],
+      "pos": [
+       4.479,
+       1.138,
+       -8.063
       ],
       "rot": [
-       62.241,
-       0.0,
+       53.974,
+       41.987,
        0
       ],
       "ch": "detail",
       "mirror": true,
-      "note": "skinny front lift jet"
+      "note": "intake lip"
+     },
+     {
+      "shape": "cyl_z",
+      "size": [
+       0.7,
+       0.7,
+       2.29
+      ],
+      "pos": [
+       4.85,
+       0.374,
+       -7.649
+      ],
+      "rot": [
+       53.974,
+       41.987,
+       0
+      ],
+      "ch": "secondary",
+      "mirror": true,
+      "note": "thin front lift jet, 0.7 across: down, back and out"
+     },
+     {
+      "shape": "cyl_z",
+      "size": [
+       1.15,
+       1.15,
+       0.6
+      ],
+      "pos": [
+       5.183,
+       -0.309,
+       -7.28
+      ],
+      "rot": [
+       53.974,
+       41.987,
+       0
+      ],
+      "ch": "detail",
+      "mirror": true,
+      "note": "flared nozzle"
      },
      {
       "shape": "cyl_z",
@@ -4851,49 +4949,30 @@
        0.5
       ],
       "pos": [
-       4.2,
-       0.823,
-       -8.007
+       5.36,
+       -0.673,
+       -7.083
       ],
       "rot": [
-       62.241,
-       0.0,
-       0
-      ],
-      "ch": "secondary",
-      "mirror": true
-     },
-     {
-      "shape": "cyl_z",
-      "size": [
-       0.6,
-       0.6,
-       0.4
-      ],
-      "pos": [
-       4.2,
-       -0.988,
-       -7.053
-      ],
-      "rot": [
-       62.241,
-       0.0,
+       53.974,
+       41.987,
        0
       ],
       "ch": "thrust",
-      "mirror": true
+      "mirror": true,
+      "note": "jet"
      },
      {
       "shape": "block",
       "size": [
-       1.2,
-       0.51,
-       1.4
+       1.7,
+       0.46,
+       1.5
       ],
       "pos": [
-       4.6,
-       1.405,
-       8.2
+       4.45,
+       1.43,
+       8.15
       ],
       "ch": "detail",
       "mirror": true,
@@ -4902,14 +4981,14 @@
      {
       "shape": "cyl_z",
       "size": [
-       1.15,
-       1.15,
-       0.55
+       1.3,
+       1.3,
+       0.6
       ],
       "pos": [
-       4.6,
-       0.42,
-       6.725
+       5.1,
+       0.4,
+       6.75
       ],
       "ch": "detail",
       "mirror": true,
@@ -4918,71 +4997,55 @@
      {
       "shape": "cyl_z",
       "size": [
-       1.42,
-       1.42,
-       0.6
+       1.7,
+       1.7,
+       2.15
       ],
       "pos": [
-       4.6,
-       0.42,
-       7.3
-      ],
-      "ch": "detail",
-      "mirror": true,
-      "note": "intake collar"
-     },
-     {
-      "shape": "cyl_z",
-      "size": [
-       1.6,
-       1.6,
-       1.55
-      ],
-      "pos": [
-       4.6,
-       0.42,
-       8.375
+       5.1,
+       0.4,
+       8.125
       ],
       "ch": "secondary",
       "mirror": true,
-      "note": "long fat nacelle, 1.6 across and 3.7 long"
+      "note": "long fat nacelle, 1.7 across, proud of the skin"
      },
      {
       "shape": "cyl_z",
       "size": [
-       1.2,
-       1.2,
-       1.111
+       1.35,
+       1.35,
+       1.168
       ],
       "pos": [
-       4.6,
-       -0.09,
-       9.275
+       5.2,
+       -0.175,
+       9.175
       ],
       "rot": [
-       47.553,
-       0.0,
+       54.402,
+       17.103,
        0
       ],
       "ch": "detail",
       "mirror": true,
-      "note": "big lift nozzle"
+      "note": "big lift nozzle: down, back and out"
      },
      {
       "shape": "cyl_z",
       "size": [
-       0.9,
-       0.9,
-       0.35
+       1.1,
+       1.1,
+       0.48
       ],
       "pos": [
-       4.6,
-       -0.555,
-       9.701
+       5.324,
+       -0.764,
+       9.578
       ],
       "rot": [
-       47.553,
-       0.0,
+       54.402,
+       17.103,
        0
       ],
       "ch": "thrust",
@@ -5383,87 +5446,108 @@
      {
       "shape": "block",
       "size": [
-       1.8,
-       0.61,
+       2.48,
+       0.36,
        1.8
       ],
       "pos": [
-       4.5,
-       1.355,
+       4.74,
+       1.48,
        -8.2
       ],
       "ch": "detail",
       "mirror": true,
-      "note": "square gimbal yoke under the arch roof pad"
+      "note": "yoke crosshead under the arch roof pad"
      },
      {
       "shape": "block",
       "size": [
-       0.26,
-       0.95,
-       1.5
+       0.24,
+       1.3,
+       0.8
       ],
       "pos": [
-       3.75,
-       0.575,
+       5.86,
+       0.65,
        -8.2
       ],
       "ch": "secondary",
       "mirror": true,
-      "note": "yoke cheek"
+      "note": "outer yoke arm, outboard of the body skin"
      },
      {
       "shape": "block",
       "size": [
-       0.26,
-       0.95,
-       1.5
+       0.24,
+       1.3,
+       0.8
       ],
       "pos": [
-       5.25,
-       0.575,
+       3.92,
+       0.65,
        -8.2
       ],
       "ch": "secondary",
       "mirror": true,
-      "note": "yoke cheek"
+      "note": "inner yoke arm"
      },
      {
       "shape": "cyl_z",
       "size": [
-       1.2,
-       1.2,
-       1.4
+       1.6,
+       1.6,
+       0.5
       ],
       "pos": [
-       4.5,
-       0.402,
-       -7.812
+       4.83,
+       0.857,
+       -8.436
       ],
       "rot": [
-       39.806,
-       0.0,
+       38.271,
+       14.744,
+       0
+      ],
+      "ch": "detail",
+      "mirror": true,
+      "note": "intake lip"
+     },
+     {
+      "shape": "cyl_z",
+      "size": [
+       1.4,
+       1.4,
+       1.6
+      ],
+      "pos": [
+       4.96,
+       0.454,
+       -7.943
+      ],
+      "rot": [
+       38.271,
+       14.744,
        0
       ],
       "ch": "secondary",
       "mirror": true,
-      "note": "one long vectoring can, 1.2 across and 2.4 long"
+      "note": "one large vectoring can, 1.4 across and 2.5 long"
      },
      {
       "shape": "cyl_z",
       "size": [
-       1.1,
-       1.1,
-       1.0
+       1.25,
+       1.25,
+       0.9
       ],
       "pos": [
-       4.5,
-       -0.366,
-       -6.89
+       5.21,
+       -0.32,
+       -6.994
       ],
       "rot": [
-       39.806,
-       0.0,
+       38.271,
+       14.744,
        0
       ],
       "ch": "detail",
@@ -5473,18 +5557,18 @@
      {
       "shape": "cyl_z",
       "size": [
-       0.85,
-       0.85,
-       0.4
+       1.1,
+       1.1,
+       0.5
       ],
       "pos": [
-       4.5,
-       -0.75,
-       -6.429
+       5.329,
+       -0.691,
+       -6.538
       ],
       "rot": [
-       39.806,
-       0.0,
+       38.271,
+       14.744,
        0
       ],
       "ch": "thrust",
@@ -5494,87 +5578,108 @@
      {
       "shape": "block",
       "size": [
-       1.8,
-       0.61,
+       2.48,
+       0.36,
        1.8
       ],
       "pos": [
-       4.5,
-       1.355,
+       4.74,
+       1.48,
        7.7
       ],
       "ch": "detail",
       "mirror": true,
-      "note": "square gimbal yoke under the arch roof pad"
+      "note": "yoke crosshead under the arch roof pad"
      },
      {
       "shape": "block",
       "size": [
-       0.26,
-       0.95,
-       1.5
+       0.24,
+       1.3,
+       0.8
       ],
       "pos": [
-       3.75,
-       0.575,
+       5.86,
+       0.65,
        7.7
       ],
       "ch": "secondary",
       "mirror": true,
-      "note": "yoke cheek"
+      "note": "outer yoke arm, outboard of the body skin"
      },
      {
       "shape": "block",
       "size": [
-       0.26,
-       0.95,
-       1.5
+       0.24,
+       1.3,
+       0.8
       ],
       "pos": [
-       5.25,
-       0.575,
+       3.92,
+       0.65,
        7.7
       ],
       "ch": "secondary",
       "mirror": true,
-      "note": "yoke cheek"
+      "note": "inner yoke arm"
      },
      {
       "shape": "cyl_z",
       "size": [
-       1.2,
-       1.2,
-       1.4
+       1.6,
+       1.6,
+       0.5
       ],
       "pos": [
-       4.5,
-       0.402,
-       8.088
+       4.83,
+       0.857,
+       7.464
       ],
       "rot": [
-       39.806,
-       0.0,
+       38.271,
+       14.744,
+       0
+      ],
+      "ch": "detail",
+      "mirror": true,
+      "note": "intake lip"
+     },
+     {
+      "shape": "cyl_z",
+      "size": [
+       1.4,
+       1.4,
+       1.6
+      ],
+      "pos": [
+       4.96,
+       0.454,
+       7.957
+      ],
+      "rot": [
+       38.271,
+       14.744,
        0
       ],
       "ch": "secondary",
       "mirror": true,
-      "note": "one long vectoring can, 1.2 across and 2.4 long"
+      "note": "one large vectoring can, 1.4 across and 2.5 long"
      },
      {
       "shape": "cyl_z",
       "size": [
-       1.1,
-       1.1,
-       1.0
+       1.25,
+       1.25,
+       0.9
       ],
       "pos": [
-       4.5,
-       -0.366,
-       9.01
+       5.21,
+       -0.32,
+       8.906
       ],
       "rot": [
-       39.806,
-       0.0,
+       38.271,
+       14.744,
        0
       ],
       "ch": "detail",
@@ -5584,18 +5689,18 @@
      {
       "shape": "cyl_z",
       "size": [
-       0.85,
-       0.85,
-       0.4
+       1.1,
+       1.1,
+       0.5
       ],
       "pos": [
-       4.5,
-       -0.75,
-       9.471
+       5.329,
+       -0.691,
+       9.362
       ],
       "rot": [
-       39.806,
-       0.0,
+       38.271,
+       14.744,
        0
       ],
       "ch": "thrust",
@@ -6675,12 +6780,12 @@
       "size": [
        1.3,
        0.35,
-       6.0
+       5.8
       ],
       "pos": [
        5.5,
        -0.125,
-       2.2
+       2.1
       ],
       "ch": "detail",
       "mirror": true,
@@ -6691,12 +6796,12 @@
       "size": [
        0.58,
        0.17,
-       6.0
+       5.8
       ],
       "pos": [
        5.11,
        0.135,
-       2.2
+       2.1
       ],
       "ch": "secondary",
       "mirror": true,
@@ -6707,28 +6812,28 @@
       "size": [
        0.1,
        0.28,
-       5.4
+       5.2
       ],
       "pos": [
        6.2,
        -0.14,
-       2.3
+       2.2
       ],
-      "ch": "thrust",
+      "ch": "neon",
       "mirror": true,
-      "note": "edge slot jet"
+      "note": "edge light strip: lighting, not a jet"
      },
      {
       "shape": "block",
       "size": [
-       1.3,
-       0.87,
-       0.65
+       1.45,
+       1.05,
+       0.8
       ],
       "pos": [
-       5.55,
-       -0.215,
-       5.525
+       5.575,
+       -0.275,
+       5.4
       ],
       "ch": "secondary",
       "mirror": true,
@@ -6737,18 +6842,18 @@
      {
       "shape": "block",
       "size": [
-       0.9,
-       0.65,
-       0.5
+       1.25,
+       0.75,
+       0.55
       ],
       "pos": [
-       5.55,
-       -0.225,
-       6.0
+       5.575,
+       -0.295,
+       5.975
       ],
       "ch": "thrust",
       "mirror": true,
-      "note": "nozzle jet, 0.9 by 0.65"
+      "note": "nozzle jet, 1.25 by 0.75"
      }
     ]
    },
@@ -12115,49 +12220,49 @@
       "size": [
        0.3,
        3.1,
-       1.1
+       1.0
       ],
       "pos": [
        3.9,
        4.85,
-       10.95
+       10.9
       ],
       "ch": "primary",
       "mirror": true,
-      "note": "tall upright on the haunch pad"
+      "note": "tall upright, wholly on the haunch pad"
      },
      {
       "shape": "wedge",
       "size": [
        0.3,
-       3.1,
-       1.4
+       2.1,
+       1.0
       ],
       "pos": [
        3.9,
-       4.85,
-       12.2
+       5.35,
+       11.9
       ],
       "rot": [
        0,
        180,
-       0
+       180
       ],
       "ch": "primary",
       "mirror": true,
-      "note": "upright fairing"
+      "note": "raked brace under the blade"
      },
      {
       "shape": "block",
       "size": [
        8.8,
        0.26,
-       1.7
+       2.0
       ],
       "pos": [
        0.0,
        6.53,
-       11.25
+       11.4
       ],
       "ch": "secondary",
       "note": "high blade"
@@ -12260,45 +12365,66 @@
      {
       "shape": "block",
       "size": [
-       0.9,
+       1.15,
        1.0,
-       1.1
+       1.15
       ],
       "pos": [
-       3.95,
+       3.925,
        3.8,
-       10.85
+       10.825
       ],
       "ch": "primary",
       "mirror": true,
-      "note": "pedestal on the haunch pad"
+      "note": "buttress fills the haunch pad"
      },
      {
       "shape": "wedge",
       "size": [
-       10.4,
+       1.15,
+       1.0,
+       1.1
+      ],
+      "pos": [
+       3.925,
+       3.8,
+       11.95
+      ],
+      "rot": [
+       0,
+       180,
+       180
+      ],
+      "ch": "primary",
+      "mirror": true,
+      "note": "buttress rakes back under the ramp"
+     },
+     {
+      "shape": "wedge",
+      "size": [
+       9.0,
        0.9,
-       2.3
+       2.25
       ],
       "pos": [
        0.0,
        4.75,
-       11.45
+       11.375
       ],
       "ch": "primary",
-      "note": "ducktail ramp"
+      "note": "ducktail ramp, 9.0 wide"
      },
      {
       "shape": "block",
       "size": [
-       10.4,
-       0.12,
+       9.0,
+       0.14,
        0.3
       ],
       "pos": [
        0.0,
-       5.26,
-       12.45
+       5.27,
+       12.35
       ],
       "ch": "secondary",
       "note": "ducktail lip"
@@ -12497,32 +12623,32 @@
       "size": [
        0.6,
        1.0,
-       1.9
+       1.0
       ],
       "pos": [
        3.9,
        3.8,
-       11.35
+       10.9
       ],
       "ch": "primary",
       "mirror": true,
-      "note": "fin root on the haunch pad"
+      "note": "fin root, wholly on the haunch pad"
      },
      {
       "shape": "wedge",
       "size": [
        0.6,
        1.0,
-       1.9
+       1.8
       ],
       "pos": [
        3.9,
        4.8,
-       11.35
+       11.3
       ],
       "ch": "primary",
       "mirror": true,
-      "note": "low swept fin"
+      "note": "low fin, swept back past its root"
      },
      {
       "shape": "block",
@@ -12534,7 +12660,7 @@
       "pos": [
        0.0,
        4.485,
-       12.075
+       11.975
       ],
       "ch": "detail",
       "note": "thin bar across the tail"
@@ -12549,7 +12675,7 @@
       "pos": [
        0.0,
        4.485,
-       12.335
+       12.235
       ],
       "ch": "neon",
       "note": "light bar"

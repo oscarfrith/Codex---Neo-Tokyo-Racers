@@ -353,14 +353,30 @@
      ],
      "ch": "secondary",
      "mirror": true,
-     "note": "cab rail and rear horn: same section as the frame rails, 0.3 shadow gap at the firewall"
+     "note": "cab rail and rear horn: same section as the frame rails"
+    },
+    {
+     "shape": "block",
+     "size": [
+      0.6,
+      0.9,
+      0.2
+     ],
+     "pos": [
+      2.6,
+      0.15,
+      1.1
+     ],
+     "ch": "detail",
+     "mirror": true,
+     "note": "rail coupler: dark link across the firewall seam, the frame rails butt against it"
     },
     {
      "shape": "block",
      "size": [
       3.4,
       2.2,
-      0.25
+      0.45
      ],
      "pos": [
       0.0,
@@ -368,7 +384,7 @@
       1.225
      ],
      "ch": "detail",
-     "note": "firewall plate: every engine's transfer duct lands here"
+     "note": "firewall plate and collar: every engine's transfer duct lands here; it runs back to the cowl, so no slit shows"
     },
     {
      "shape": "block",
@@ -813,14 +829,30 @@
      ],
      "ch": "secondary",
      "mirror": true,
-     "note": "cab rail and rear horn: same section as the frame rails, 0.3 shadow gap at the firewall"
+     "note": "cab rail and rear horn: same section as the frame rails"
+    },
+    {
+     "shape": "block",
+     "size": [
+      0.6,
+      0.9,
+      0.2
+     ],
+     "pos": [
+      2.6,
+      0.15,
+      1.1
+     ],
+     "ch": "detail",
+     "mirror": true,
+     "note": "rail coupler: dark link across the firewall seam, the frame rails butt against it"
     },
     {
      "shape": "block",
      "size": [
       3.4,
       2.2,
-      0.25
+      0.45
      ],
      "pos": [
       0.0,
@@ -828,7 +860,7 @@
       1.225
      ],
      "ch": "detail",
-     "note": "firewall plate: every engine's transfer duct lands here"
+     "note": "firewall plate and collar: every engine's transfer duct lands here; it runs back to the cowl, so no slit shows"
     },
     {
      "shape": "block",
@@ -1331,14 +1363,30 @@
      ],
      "ch": "secondary",
      "mirror": true,
-     "note": "cab rail and rear horn: same section as the frame rails, 0.3 shadow gap at the firewall"
+     "note": "cab rail and rear horn: same section as the frame rails"
+    },
+    {
+     "shape": "block",
+     "size": [
+      0.6,
+      0.9,
+      0.2
+     ],
+     "pos": [
+      2.6,
+      0.15,
+      1.1
+     ],
+     "ch": "detail",
+     "mirror": true,
+     "note": "rail coupler: dark link across the firewall seam, the frame rails butt against it"
     },
     {
      "shape": "block",
      "size": [
       3.4,
       2.2,
-      0.25
+      0.45
      ],
      "pos": [
       0.0,
@@ -1346,7 +1394,7 @@
       1.225
      ],
      "ch": "detail",
-     "note": "firewall plate: every engine's transfer duct lands here"
+     "note": "firewall plate and collar: every engine's transfer duct lands here; it runs back to the cowl, so no slit shows"
     },
     {
      "shape": "block",
@@ -1806,14 +1854,30 @@
      ],
      "ch": "secondary",
      "mirror": true,
-     "note": "cab rail and rear horn: same section as the frame rails, 0.3 shadow gap at the firewall"
+     "note": "cab rail and rear horn: same section as the frame rails"
+    },
+    {
+     "shape": "block",
+     "size": [
+      0.6,
+      0.9,
+      0.2
+     ],
+     "pos": [
+      2.6,
+      0.15,
+      1.1
+     ],
+     "ch": "detail",
+     "mirror": true,
+     "note": "rail coupler: dark link across the firewall seam, the frame rails butt against it"
     },
     {
      "shape": "block",
      "size": [
       3.4,
       2.2,
-      0.25
+      0.45
      ],
      "pos": [
       0.0,
@@ -1821,7 +1885,7 @@
       1.225
      ],
      "ch": "detail",
-     "note": "firewall plate: every engine's transfer duct lands here"
+     "note": "firewall plate and collar: every engine's transfer duct lands here; it runs back to the cowl, so no slit shows"
     },
     {
      "shape": "block",
@@ -2301,14 +2365,30 @@
      ],
      "ch": "secondary",
      "mirror": true,
-     "note": "cab rail and rear horn: same section as the frame rails, 0.3 shadow gap at the firewall"
+     "note": "cab rail and rear horn: same section as the frame rails"
+    },
+    {
+     "shape": "block",
+     "size": [
+      0.6,
+      0.9,
+      0.2
+     ],
+     "pos": [
+      2.6,
+      0.15,
+      1.1
+     ],
+     "ch": "detail",
+     "mirror": true,
+     "note": "rail coupler: dark link across the firewall seam, the frame rails butt against it"
     },
     {
      "shape": "block",
      "size": [
       3.4,
       2.2,
-      0.25
+      0.45
      ],
      "pos": [
       0.0,
@@ -2316,7 +2396,7 @@
       1.225
      ],
      "ch": "detail",
-     "note": "firewall plate: every engine's transfer duct lands here"
+     "note": "firewall plate and collar: every engine's transfer duct lands here; it runs back to the cowl, so no slit shows"
     },
     {
      "shape": "block",
@@ -2813,15 +2893,15 @@
       "size": [
        1.3,
        1.3,
-       3.5
+       3.65
       ],
       "pos": [
        0.0,
        2.0,
-       -0.95
+       -0.875
       ],
       "ch": "detail",
-      "note": "transfer duct to the firewall"
+      "note": "transfer duct to the firewall plate collar"
      },
      {
       "shape": "cyl_z",
@@ -2873,12 +2953,12 @@
       "size": [
        3.0,
        3.0,
-       3.1
+       2.8
       ],
       "pos": [
        0.0,
        2.25,
-       -7.05
+       -7.2
       ],
       "ch": "secondary",
       "note": "compressor barrel"
@@ -2886,9 +2966,9 @@
      {
       "shape": "cyl_z",
       "size": [
-       2.5,
-       2.5,
-       1.0
+       3.25,
+       3.25,
+       1.6
       ],
       "pos": [
        0.0,
@@ -2896,22 +2976,22 @@
        -5.0
       ],
       "ch": "thrust",
-      "note": "burner glow"
+      "note": "burner band: proud of the barrels, 3.25 across and 1.6 long, shows from the front, the side and behind"
      },
      {
       "shape": "cyl_z",
       "size": [
-       3.0,
-       3.0,
-       1.8
+       2.6,
+       2.6,
+       1.5
       ],
       "pos": [
        0.0,
        2.25,
-       -3.6
+       -3.45
       ],
       "ch": "detail",
-      "note": "turbine case"
+      "note": "turbine case: slimmer than the band, so the band's rear face glows at the chase camera"
      },
      {
       "shape": "block",
@@ -3137,15 +3217,15 @@
       "size": [
        1.4,
        1.4,
-       2.3
+       2.45
       ],
       "pos": [
        0.0,
        1.7,
-       -0.35
+       -0.275
       ],
       "ch": "detail",
-      "note": "transfer duct to the firewall"
+      "note": "transfer duct to the firewall plate collar"
      },
      {
       "shape": "block",
@@ -3421,15 +3501,15 @@
       "size": [
        1.2,
        1.2,
-       3.2
+       4.15
       ],
       "pos": [
        0.0,
-       1.6,
-       -0.8
+       1.75,
+       -1.125
       ],
       "ch": "detail",
-      "note": "transfer duct to the firewall"
+      "note": "transfer duct to the firewall plate collar"
      },
      {
       "shape": "block",
@@ -3449,14 +3529,14 @@
      {
       "shape": "cyl_z",
       "size": [
-       1.7,
-       1.7,
-       0.8
+       2.3,
+       2.3,
+       1.15
       ],
       "pos": [
-       -1.75,
-       1.95,
-       -10.5
+       0.0,
+       2.35,
+       -10.325
       ],
       "ch": "primary",
       "note": "intake bell"
@@ -3464,13 +3544,13 @@
      {
       "shape": "cyl_z",
       "size": [
-       1.2,
-       1.2,
+       1.47,
+       1.47,
        0.1
       ],
       "pos": [
-       -1.75,
-       1.95,
+       0.0,
+       2.35,
        -10.95
       ],
       "ch": "detail",
@@ -3479,13 +3559,13 @@
      {
       "shape": "ball",
       "size": [
-       0.8,
-       0.8,
-       0.8
+       1.05,
+       1.05,
+       1.05
       ],
       "pos": [
-       -1.75,
-       1.95,
+       0.0,
+       2.35,
        -10.95
       ],
       "ch": "secondary",
@@ -3494,28 +3574,28 @@
      {
       "shape": "cyl_z",
       "size": [
-       1.5,
-       1.5,
-       7.1
+       2.1,
+       2.1,
+       6.55
       ],
       "pos": [
-       -1.75,
-       1.95,
-       -6.55
+       0.0,
+       2.35,
+       -6.475
       ],
       "ch": "secondary",
-      "note": "turbine barrel, one of three abreast"
+      "note": "main turbine: fatter and higher than its helpers"
      },
      {
       "shape": "cyl_z",
       "size": [
-       1.58,
-       1.58,
+       2.18,
+       2.18,
        1.0
       ],
       "pos": [
-       -1.75,
-       1.95,
+       0.0,
+       2.35,
        -6.1
       ],
       "ch": "primary",
@@ -3524,132 +3604,18 @@
      {
       "shape": "cyl_z",
       "size": [
-       1.35,
-       1.35,
-       2.303
+       1.8,
+       1.8,
+       2.44
       ],
       "pos": [
-       -1.82,
-       2.775,
-       -2.8
+       0.0,
+       3.225,
+       -2.95
       ],
       "ch": "detail",
       "rot": [
-       -45.772,
-       -5.001,
-       0.0
-      ],
-      "note": "upswept nozzle"
-     },
-     {
-      "shape": "cyl_z",
-      "size": [
-       1.2,
-       1.2,
-       0.35
-      ],
-      "pos": [
-       -1.901,
-       3.725,
-       -1.878
-      ],
-      "ch": "thrust",
-      "rot": [
-       -45.772,
-       -5.001,
-       0.0
-      ]
-     },
-     {
-      "shape": "cyl_z",
-      "size": [
-       1.7,
-       1.7,
-       0.8
-      ],
-      "pos": [
-       0.0,
-       1.95,
-       -10.5
-      ],
-      "ch": "primary",
-      "note": "intake bell"
-     },
-     {
-      "shape": "cyl_z",
-      "size": [
-       1.2,
-       1.2,
-       0.1
-      ],
-      "pos": [
-       0.0,
-       1.95,
-       -10.95
-      ],
-      "ch": "detail",
-      "note": "intake throat"
-     },
-     {
-      "shape": "ball",
-      "size": [
-       0.8,
-       0.8,
-       0.8
-      ],
-      "pos": [
-       0.0,
-       1.95,
-       -10.95
-      ],
-      "ch": "secondary",
-      "note": "intake spike"
-     },
-     {
-      "shape": "cyl_z",
-      "size": [
-       1.5,
-       1.5,
-       7.1
-      ],
-      "pos": [
-       0.0,
-       1.95,
-       -6.55
-      ],
-      "ch": "secondary",
-      "note": "turbine barrel, one of three abreast"
-     },
-     {
-      "shape": "cyl_z",
-      "size": [
-       1.58,
-       1.58,
-       1.0
-      ],
-      "pos": [
-       0.0,
-       1.95,
-       -6.1
-      ],
-      "ch": "primary",
-      "note": "band"
-     },
-     {
-      "shape": "cyl_z",
-      "size": [
-       1.35,
-       1.35,
-       2.298
-      ],
-      "pos": [
-       0.0,
-       2.775,
-       -2.8
-      ],
-      "ch": "detail",
-      "rot": [
-       -45.881,
+       -45.83,
        0.0,
        0.0
       ],
@@ -3658,18 +3624,18 @@
      {
       "shape": "cyl_z",
       "size": [
-       1.2,
-       1.2,
+       1.602,
+       1.602,
        0.35
       ],
       "pos": [
        0.0,
-       3.726,
-       -1.878
+       4.226,
+       -1.978
       ],
       "ch": "thrust",
       "rot": [
-       -45.881,
+       -45.83,
        0.0,
        0.0
       ]
@@ -3677,14 +3643,14 @@
      {
       "shape": "cyl_z",
       "size": [
-       1.7,
-       1.7,
+       1.5,
+       1.5,
        0.8
       ],
       "pos": [
+       -1.85,
        1.75,
-       1.95,
-       -10.5
+       -9.6
       ],
       "ch": "primary",
       "note": "intake bell"
@@ -3692,14 +3658,14 @@
      {
       "shape": "cyl_z",
       "size": [
-       1.2,
-       1.2,
+       0.91,
+       0.91,
        0.1
       ],
       "pos": [
+       -1.85,
        1.75,
-       1.95,
-       -10.95
+       -10.05
       ],
       "ch": "detail",
       "note": "intake throat"
@@ -3707,14 +3673,14 @@
      {
       "shape": "ball",
       "size": [
-       0.8,
-       0.8,
-       0.8
+       0.65,
+       0.65,
+       0.65
       ],
       "pos": [
+       -1.85,
        1.75,
-       1.95,
-       -10.95
+       -10.05
       ],
       "ch": "secondary",
       "note": "intake spike"
@@ -3722,28 +3688,28 @@
      {
       "shape": "cyl_z",
       "size": [
-       1.5,
-       1.5,
-       7.1
+       1.3,
+       1.3,
+       5.8
       ],
       "pos": [
+       -1.85,
        1.75,
-       1.95,
-       -6.55
+       -6.3
       ],
       "ch": "secondary",
-      "note": "turbine barrel, one of three abreast"
+      "note": "helper turbine: slim, low and set back"
      },
      {
       "shape": "cyl_z",
       "size": [
-       1.58,
-       1.58,
+       1.38,
+       1.38,
        1.0
       ],
       "pos": [
+       -1.85,
        1.75,
-       1.95,
        -6.1
       ],
       "ch": "primary",
@@ -3752,19 +3718,19 @@
      {
       "shape": "cyl_z",
       "size": [
-       1.35,
-       1.35,
-       2.303
+       1.15,
+       1.15,
+       1.955
       ],
       "pos": [
-       1.82,
-       2.775,
-       -2.8
+       -1.95,
+       2.425,
+       -3.3
       ],
       "ch": "detail",
       "rot": [
-       -45.772,
-       5.001,
+       -43.669,
+       -8.13,
        0.0
       ],
       "note": "upswept nozzle"
@@ -3772,19 +3738,133 @@
      {
       "shape": "cyl_z",
       "size": [
-       1.2,
-       1.2,
+       1.023,
+       1.023,
        0.35
       ],
       "pos": [
-       1.901,
-       3.725,
-       -1.878
+       -2.068,
+       3.221,
+       -2.475
       ],
       "ch": "thrust",
       "rot": [
-       -45.772,
-       5.001,
+       -43.669,
+       -8.13,
+       0.0
+      ]
+     },
+     {
+      "shape": "cyl_z",
+      "size": [
+       1.5,
+       1.5,
+       0.8
+      ],
+      "pos": [
+       1.85,
+       1.75,
+       -9.6
+      ],
+      "ch": "primary",
+      "note": "intake bell"
+     },
+     {
+      "shape": "cyl_z",
+      "size": [
+       0.91,
+       0.91,
+       0.1
+      ],
+      "pos": [
+       1.85,
+       1.75,
+       -10.05
+      ],
+      "ch": "detail",
+      "note": "intake throat"
+     },
+     {
+      "shape": "ball",
+      "size": [
+       0.65,
+       0.65,
+       0.65
+      ],
+      "pos": [
+       1.85,
+       1.75,
+       -10.05
+      ],
+      "ch": "secondary",
+      "note": "intake spike"
+     },
+     {
+      "shape": "cyl_z",
+      "size": [
+       1.3,
+       1.3,
+       5.8
+      ],
+      "pos": [
+       1.85,
+       1.75,
+       -6.3
+      ],
+      "ch": "secondary",
+      "note": "helper turbine: slim, low and set back"
+     },
+     {
+      "shape": "cyl_z",
+      "size": [
+       1.38,
+       1.38,
+       1.0
+      ],
+      "pos": [
+       1.85,
+       1.75,
+       -6.1
+      ],
+      "ch": "primary",
+      "note": "band"
+     },
+     {
+      "shape": "cyl_z",
+      "size": [
+       1.15,
+       1.15,
+       1.955
+      ],
+      "pos": [
+       1.95,
+       2.425,
+       -3.3
+      ],
+      "ch": "detail",
+      "rot": [
+       -43.669,
+       8.13,
+       0.0
+      ],
+      "note": "upswept nozzle"
+     },
+     {
+      "shape": "cyl_z",
+      "size": [
+       1.023,
+       1.023,
+       0.35
+      ],
+      "pos": [
+       2.068,
+       3.221,
+       -2.475
+      ],
+      "ch": "thrust",
+      "rot": [
+       -43.669,
+       8.13,
        0.0
       ]
      }
@@ -3861,15 +3941,15 @@
       "size": [
        1.2,
        1.2,
-       2.0
+       2.15
       ],
       "pos": [
        0.0,
        1.85,
-       -0.2
+       -0.125
       ],
       "ch": "detail",
-      "note": "transfer duct to the firewall"
+      "note": "transfer duct to the firewall plate collar"
      },
      {
       "shape": "cyl_z",
@@ -4284,26 +4364,26 @@
       "size": [
        1.0,
        1.0,
-       1.4
+       1.55
       ],
       "pos": [
        0.0,
        2.2,
-       0.1
+       0.175
       ],
       "ch": "secondary",
-      "note": "transfer duct to the firewall"
+      "note": "transfer duct to the firewall plate collar"
      },
      {
       "shape": "block",
       "size": [
        1.6,
-       1.1,
+       1.15,
        7.6
       ],
       "pos": [
        0.0,
-       1.45,
+       1.475,
        -6.0
       ],
       "ch": "primary",
@@ -4313,12 +4393,12 @@
       "shape": "wedge",
       "size": [
        1.6,
-       1.1,
+       1.15,
        1.6
       ],
       "pos": [
        0.0,
-       1.45,
+       1.475,
        -10.6
       ],
       "ch": "primary",
@@ -4327,14 +4407,14 @@
      {
       "shape": "cyl_z",
       "size": [
-       2.8,
-       2.8,
-       1.4
+       2.35,
+       2.35,
+       1.2
       ],
       "pos": [
        0.0,
-       3.2,
-       -9.3
+       3.15,
+       -9.4
       ],
       "ch": "secondary",
       "note": "intake lip"
@@ -4342,28 +4422,28 @@
      {
       "shape": "cyl_z",
       "size": [
-       2.8,
-       2.8,
-       4.4
+       2.2,
+       2.2,
+       5.5
       ],
       "pos": [
        0.0,
-       3.2,
-       -6.4
+       3.15,
+       -6.05
       ],
       "ch": "primary",
-      "note": "one long smooth turbine, 2.8 across"
+      "note": "one long slim turbine, 2.2 across"
      },
      {
       "shape": "cyl_z",
       "size": [
-       1.7,
-       1.7,
+       1.4,
+       1.4,
        0.5
       ],
       "pos": [
        0.0,
-       3.2,
+       3.15,
        -10.25
       ],
       "ch": "detail",
@@ -4372,13 +4452,13 @@
      {
       "shape": "cyl_z",
       "size": [
-       1.1,
-       1.1,
+       0.9,
+       0.9,
        0.5
       ],
       "pos": [
        0.0,
-       3.2,
+       3.15,
        -10.75
       ],
       "ch": "secondary",
@@ -4387,13 +4467,13 @@
      {
       "shape": "ball",
       "size": [
-       0.8,
-       0.8,
-       0.8
+       0.7,
+       0.7,
+       0.7
       ],
       "pos": [
        0.0,
-       3.2,
+       3.15,
        -11.0
       ],
       "ch": "secondary",
@@ -4402,14 +4482,29 @@
      {
       "shape": "cyl_z",
       "size": [
-       2.3,
-       2.3,
+       2.45,
+       2.45,
        1.1
       ],
       "pos": [
        0.0,
-       3.2,
-       -3.65
+       3.15,
+       -2.75
+      ],
+      "ch": "thrust",
+      "note": "burner band: proud of the body"
+     },
+     {
+      "shape": "cyl_z",
+      "size": [
+       1.7,
+       1.7,
+       0.6
+      ],
+      "pos": [
+       0.0,
+       3.15,
+       -1.9
       ],
       "ch": "detail",
       "note": "tail cone"
@@ -4417,33 +4512,18 @@
      {
       "shape": "cyl_z",
       "size": [
-       1.9,
-       1.9,
-       0.8
+       1.1,
+       1.1,
+       1.531
       ],
       "pos": [
        0.0,
-       3.2,
-       -2.7
-      ],
-      "ch": "thrust",
-      "note": "burner band"
-     },
-     {
-      "shape": "cyl_z",
-      "size": [
-       1.1,
-       1.1,
-       2.147
-      ],
-      "pos": [
-       0.0,
-       2.7,
-       -1.45
+       2.675,
+       -1.1
       ],
       "ch": "secondary",
       "rot": [
-       27.759,
+       38.367,
        0.0,
        0.0
       ],
@@ -4452,14 +4532,14 @@
      {
       "shape": "block",
       "size": [
-       0.14,
+       0.2,
        0.3,
        4.0
       ],
       "pos": [
-       1.43,
-       3.2,
-       -6.8
+       1.15,
+       3.15,
+       -6.4
       ],
       "ch": "secondary",
       "mirror": true,
@@ -4469,16 +4549,30 @@
       "shape": "wedge",
       "size": [
        0.2,
-       0.75,
-       2.2
+       1.5,
+       2.6
       ],
       "pos": [
        0.0,
-       4.925,
-       -5.5
+       4.95,
+       -5.9
       ],
       "ch": "secondary",
-      "note": "dorsal fin"
+      "note": "tall dorsal fin"
+     },
+     {
+      "shape": "block",
+      "size": [
+       0.2,
+       1.5,
+       1.0
+      ],
+      "pos": [
+       0.0,
+       4.95,
+       -4.1
+      ],
+      "ch": "secondary"
      }
     ]
    }
@@ -4670,34 +4764,34 @@
      {
       "shape": "block",
       "size": [
-       1.4,
-       1.2,
+       0.4,
+       0.8,
        1.0
       ],
       "pos": [
-       4.2,
-       1.5,
+       3.7,
+       1.4,
        3.8
       ],
       "ch": "detail",
       "mirror": true,
-      "note": "tall pylon on the barrel pad"
+      "note": "pylon on the barrel pad"
      },
      {
       "shape": "block",
       "size": [
-       1.4,
-       1.2,
+       0.4,
+       0.8,
        1.0
       ],
       "pos": [
-       4.2,
-       1.5,
+       3.7,
+       1.4,
        8.2
       ],
       "ch": "detail",
       "mirror": true,
-      "note": "tall pylon on the barrel pad"
+      "note": "pylon on the barrel pad"
      },
      {
       "shape": "wedge",
@@ -4708,8 +4802,8 @@
       ],
       "pos": [
        5.0,
-       3.2,
-       4.2
+       2.1,
+       3.7
       ],
       "ch": "detail",
       "mirror": true,
@@ -4724,8 +4818,8 @@
       ],
       "pos": [
        3.875,
-       3.3,
-       4.3
+       2.2,
+       3.8
       ],
       "ch": "primary",
       "mirror": true,
@@ -4740,8 +4834,8 @@
       ],
       "pos": [
        6.125,
-       3.3,
-       4.3
+       2.2,
+       3.8
       ],
       "ch": "primary",
       "mirror": true,
@@ -4756,8 +4850,8 @@
       ],
       "pos": [
        5.0,
-       4.4,
-       4.3
+       3.3,
+       3.8
       ],
       "ch": "secondary",
       "mirror": true,
@@ -4768,16 +4862,16 @@
       "size": [
        2.4,
        2.4,
-       3.9
+       5.0
       ],
       "pos": [
        5.0,
-       3.3,
-       7.05
+       2.2,
+       7.1
       ],
       "ch": "primary",
       "mirror": true,
-      "note": "square box ramjet, carried high"
+      "note": "square box ramjet, below the beltline"
      },
      {
       "shape": "block",
@@ -4788,8 +4882,8 @@
       ],
       "pos": [
        5.0,
-       3.3,
-       6.8
+       2.2,
+       6.9
       ],
       "ch": "secondary",
       "mirror": true,
@@ -4800,12 +4894,12 @@
       "size": [
        2.0,
        2.0,
-       0.9
+       1.0
       ],
       "pos": [
        5.0,
-       3.3,
-       9.45
+       2.2,
+       10.1
       ],
       "ch": "detail",
       "mirror": true,
@@ -4820,8 +4914,8 @@
       ],
       "pos": [
        5.0,
-       3.3,
-       10.1
+       2.2,
+       10.8
       ],
       "ch": "thrust",
       "mirror": true,
@@ -5032,12 +5126,12 @@
      {
       "shape": "block",
       "size": [
-       0.3,
+       0.55,
        0.8,
        1.0
       ],
       "pos": [
-       3.65,
+       3.775,
        1.4,
        3.8
       ],
@@ -5048,12 +5142,12 @@
      {
       "shape": "block",
       "size": [
-       0.3,
+       0.55,
        0.8,
        1.0
       ],
       "pos": [
-       3.65,
+       3.775,
        1.4,
        8.2
       ],
@@ -5064,40 +5158,56 @@
      {
       "shape": "cyl_z",
       "size": [
-       1.7,
-       1.7,
-       8.8
+       1.3,
+       1.3,
+       8.0
       ],
       "pos": [
        4.6,
        1.4,
-       7.0
+       7.4
       ],
       "ch": "primary",
       "mirror": true,
-      "note": "slim lance"
+      "note": "thin lance, 1.3 across"
      },
      {
       "shape": "cyl_z",
       "size": [
-       0.9,
-       0.9,
-       1.0
+       0.6,
+       0.6,
+       1.8
       ],
       "pos": [
        4.6,
        1.4,
-       2.1
+       2.5
       ],
       "ch": "secondary",
       "mirror": true,
-      "note": "needle intake"
+      "note": "long needle intake"
      },
      {
       "shape": "cyl_z",
       "size": [
-       1.76,
-       1.76,
+       0.95,
+       0.95,
+       0.5
+      ],
+      "pos": [
+       4.6,
+       1.4,
+       3.15
+      ],
+      "ch": "detail",
+      "mirror": true,
+      "note": "intake cone"
+     },
+     {
+      "shape": "cyl_z",
+      "size": [
+       1.38,
+       1.38,
        1.4
       ],
       "pos": [
@@ -5112,8 +5222,8 @@
      {
       "shape": "cyl_z",
       "size": [
-       2.0,
-       2.0,
+       1.75,
+       1.75,
        1.2
       ],
       "pos": [
@@ -5144,12 +5254,12 @@
       "shape": "block",
       "size": [
        0.2,
-       1.65,
+       1.9,
        2.2
       ],
       "pos": [
        4.6,
-       3.075,
+       2.95,
        11.3
       ],
       "ch": "secondary",
@@ -5160,12 +5270,12 @@
       "shape": "wedge",
       "size": [
        0.2,
-       1.65,
+       1.9,
        1.6
       ],
       "pos": [
        4.6,
-       3.075,
+       2.95,
        9.4
       ],
       "ch": "secondary",
@@ -6678,12 +6788,12 @@
       "size": [
        1.0,
        1.0,
-       7.0
+       6.7
       ],
       "pos": [
        3.95,
        1.2,
-       -4.9
+       -5.05
       ],
       "ch": "secondary",
       "mirror": true,
@@ -6692,40 +6802,61 @@
      {
       "shape": "cyl_z",
       "size": [
-       1.3,
-       1.3,
-       1.581
+       1.1,
+       1.1,
+       0.904
       ],
       "pos": [
-       4.4,
-       1.2,
-       -0.85
+       4.12,
+       1.47,
+       -1.58
       ],
       "ch": "detail",
       "rot": [
-       -0.0,
-       34.695,
+       -36.691,
+       27.979,
        0.0
       ],
       "mirror": true,
-      "note": "megaphone, turned out clear of the side jet"
+      "note": "kick-up: turns the pipe up and out, over the side jet"
      },
      {
       "shape": "cyl_z",
       "size": [
-       1.17,
-       1.17,
+       1.7,
+       1.7,
+       1.356
+      ],
+      "pos": [
+       4.545,
+       2.145,
+       -0.78
+      ],
+      "ch": "primary",
+      "rot": [
+       -36.691,
+       27.979,
+       0.0
+      ],
+      "mirror": true,
+      "note": "megaphone, 1.7 across: fires up, out and back at the chase camera"
+     },
+     {
+      "shape": "cyl_z",
+      "size": [
+       1.598,
+       1.598,
        0.35
       ],
       "pos": [
-       4.95,
-       1.2,
-       -0.056
+       4.866,
+       2.655,
+       -0.176
       ],
       "ch": "thrust",
       "rot": [
-       -0.0,
-       34.695,
+       -36.691,
+       27.979,
        0.0
       ],
       "mirror": true
@@ -7338,14 +7469,51 @@
      {
       "shape": "block",
       "size": [
+       0.6,
+       0.12,
+       2.6
+      ],
+      "pos": [
+       3.55,
+       2.36,
+       -3.3
+      ],
+      "ch": "thrust",
+      "mirror": true,
+      "note": "top slot burner: shows from above and from the chase camera"
+     },
+     {
+      "shape": "block",
+      "size": [
+       0.14,
+       0.9,
+       1.737
+      ],
+      "pos": [
+       3.66,
+       1.65,
+       -1.04
+      ],
+      "ch": "thrust",
+      "rot": [
+       -0.0,
+       -38.454,
+       0.0
+      ],
+      "mirror": true,
+      "note": "rear slot burner on the tail wedge: faces back and out"
+     },
+     {
+      "shape": "block",
+      "size": [
        1.1,
        0.08,
-       5.4
+       2.6
       ],
       "pos": [
        3.55,
        2.34,
-       -4.7
+       -6.1
       ],
       "ch": "secondary",
       "mirror": true,
@@ -7364,12 +7532,12 @@
       "size": [
        0.6,
        0.9,
-       15.3
+       15.37
       ],
       "pos": [
        2.6,
-       -0.302,
-       -6.737
+       -0.3,
+       -6.702
       ],
       "ch": "secondary",
       "mirror": true,
@@ -7595,12 +7763,12 @@
       "size": [
        0.6,
        0.6,
-       15.3
+       15.37
       ],
       "pos": [
        2.6,
-       -0.302,
-       -6.737
+       -0.3,
+       -6.702
       ],
       "ch": "secondary",
       "mirror": true,
@@ -7724,6 +7892,22 @@
       "note": "engine pedestal: top on the sill datum"
      },
      {
+      "shape": "block",
+      "size": [
+       0.6,
+       0.46,
+       0.8
+      ],
+      "pos": [
+       2.6,
+       -0.84,
+       -12.0
+      ],
+      "ch": "detail",
+      "mirror": true,
+      "note": "axle hanger: brings the tube rail down to the box-rail underside, 0.2 over every axle perch"
+     },
+     {
       "shape": "ball",
       "size": [
        2.9,
@@ -7829,12 +8013,12 @@
       "size": [
        0.6,
        0.9,
-       15.3
+       15.37
       ],
       "pos": [
        2.6,
-       -0.302,
-       -6.737
+       -0.3,
+       -6.702
       ],
       "ch": "secondary",
       "mirror": true,
@@ -8203,12 +8387,12 @@
       "size": [
        0.5,
        0.5,
-       15.3
+       15.37
       ],
       "pos": [
        2.6,
-       -0.132,
-       -6.747
+       -0.13,
+       -6.712
       ],
       "ch": "secondary",
       "mirror": true,
@@ -8284,39 +8468,81 @@
       "size": [
        0.4,
        0.4,
-       10.05
+       4.995
       ],
       "pos": [
        2.6,
-       -0.958,
-       -4.244
+       -1.072,
+       -6.792
       ],
       "ch": "secondary",
       "rot": [
-       -2.366,
-       180.0,
-       -0.0
+       7.852,
+       0.0,
+       0.0
       ],
       "mirror": true,
-      "note": "lower chord: deep at the firewall, shallow at the front"
+      "note": "lower chord: fish-belly truss, deepest mid-bay"
+     },
+     {
+      "shape": "cyl_z",
+      "size": [
+       0.4,
+       0.4,
+       5.246
+      ],
+      "pos": [
+       2.6,
+       -0.764,
+       -1.776
+      ],
+      "ch": "secondary",
+      "rot": [
+       -14.334,
+       0.0,
+       0.0
+      ],
+      "mirror": true,
+      "note": "lower chord returns to the rail underside at the firewall"
+     },
+     {
+      "shape": "cyl_z",
+      "size": [
+       0.3,
+       0.3,
+       1.4
+      ],
+      "pos": [
+       2.6,
+       -0.714,
+       -4.359
+      ],
+      "ch": "detail",
+      "rot": [
+       86.655,
+       0.0,
+       0.0
+      ],
+      "mirror": true,
+      "note": "king post"
      },
      {
       "shape": "cyl_z",
       "size": [
        0.25,
        0.25,
-       1.54
+       0.915
       ],
       "pos": [
        2.6,
-       -0.432,
-       -0.819
+       -0.615,
+       -6.819
       ],
       "ch": "detail",
       "rot": [
-       57.591,
-       180.0,
-       -0.0
+       86.655,
+       0.0,
+       0.0
       ],
       "mirror": true,
       "note": "truss web"
@@ -8326,60 +8552,18 @@
       "size": [
        0.25,
        0.25,
-       1.345
+       0.9
       ],
       "pos": [
        2.6,
-       -0.453,
-       -3.322
+       -0.314,
+       -1.803
       ],
       "ch": "detail",
       "rot": [
-       51.358,
-       180.0,
-       -0.0
-      ],
-      "mirror": true,
-      "note": "truss web"
-     },
-     {
-      "shape": "cyl_z",
-      "size": [
-       0.25,
-       0.25,
-       1.172
-      ],
-      "pos": [
-       2.6,
-       -0.474,
-       -5.825
-      ],
-      "ch": "detail",
-      "rot": [
-       43.151,
-       180.0,
-       -0.0
-      ],
-      "mirror": true,
-      "note": "truss web"
-     },
-     {
-      "shape": "cyl_z",
-      "size": [
-       0.25,
-       0.25,
-       1.03
-      ],
-      "pos": [
-       2.6,
-       -0.495,
-       -8.328
-      ],
-      "ch": "detail",
-      "rot": [
-       32.4,
-       180.0,
-       -0.0
+       86.655,
+       0.0,
+       0.0
       ],
       "mirror": true,
       "note": "truss web"
@@ -8415,6 +8599,22 @@
       "ch": "detail",
       "mirror": true,
       "note": "engine pedestal: top on the sill datum"
+     },
+     {
+      "shape": "block",
+      "size": [
+       0.6,
+       0.63,
+       0.8
+      ],
+      "pos": [
+       2.6,
+       -0.755,
+       -12.0
+      ],
+      "ch": "detail",
+      "mirror": true,
+      "note": "axle hanger: brings the tube rail down to the box-rail underside, 0.2 over every axle perch"
      },
      {
       "shape": "wedge",
@@ -8477,12 +8677,12 @@
       "size": [
        0.6,
        0.9,
-       15.3
+       15.37
       ],
       "pos": [
        2.6,
-       -0.302,
-       -6.737
+       -0.3,
+       -6.702
       ],
       "ch": "secondary",
       "mirror": true,
@@ -8836,6 +9036,37 @@
       ],
       "ch": "secondary",
       "note": "deck spine"
+     },
+     {
+      "shape": "cyl_x",
+      "size": [
+       4.0,
+       0.4,
+       0.4
+      ],
+      "pos": [
+       0.0,
+       4.38,
+       12.2
+      ],
+      "ch": "detail",
+      "note": "rear rig bar: every Rear Rig lands here as well as on the cab rig bar"
+     },
+     {
+      "shape": "cyl_y",
+      "size": [
+       0.3,
+       2.05,
+       0.3
+      ],
+      "pos": [
+       1.6,
+       3.225,
+       12.2
+      ],
+      "ch": "detail",
+      "mirror": true,
+      "note": "rig post standing on the deck"
      }
     ]
    },
@@ -8978,6 +9209,37 @@
       ],
       "ch": "neon",
       "note": "latch lamp"
+     },
+     {
+      "shape": "cyl_x",
+      "size": [
+       4.0,
+       0.4,
+       0.4
+      ],
+      "pos": [
+       0.0,
+       4.38,
+       12.2
+      ],
+      "ch": "detail",
+      "note": "rear rig bar: every Rear Rig lands here as well as on the cab rig bar"
+     },
+     {
+      "shape": "cyl_y",
+      "size": [
+       0.3,
+       0.25,
+       0.3
+      ],
+      "pos": [
+       1.6,
+       4.125,
+       12.2
+      ],
+      "ch": "detail",
+      "mirror": true,
+      "note": "short rig post on the trunk lid"
      }
     ]
    },
@@ -9066,16 +9328,17 @@
       "shape": "block",
       "size": [
        0.3,
-       0.8,
+       1.88,
        0.3
       ],
       "pos": [
        2.15,
-       3.1,
-       12.15
+       3.64,
+       12.2
       ],
       "ch": "secondary",
-      "mirror": true
+      "mirror": true,
+      "note": "rear stake post: carries the rear rig bar"
      },
      {
       "shape": "block",
@@ -9106,6 +9369,21 @@
       ],
       "ch": "detail",
       "note": "toolbox"
+     },
+     {
+      "shape": "cyl_x",
+      "size": [
+       4.0,
+       0.4,
+       0.4
+      ],
+      "pos": [
+       0.0,
+       4.38,
+       12.2
+      ],
+      "ch": "detail",
+      "note": "rear rig bar: every Rear Rig lands here as well as on the cab rig bar"
      }
     ]
    },
@@ -9233,6 +9511,42 @@
       ],
       "mirror": true,
       "note": "strut to the horns"
+     },
+     {
+      "shape": "cyl_x",
+      "size": [
+       4.0,
+       0.4,
+       0.4
+      ],
+      "pos": [
+       0.0,
+       4.38,
+       12.2
+      ],
+      "ch": "detail",
+      "note": "rear rig bar: every Rear Rig lands here as well as on the cab rig bar"
+     },
+     {
+      "shape": "cyl_z",
+      "size": [
+       0.3,
+       0.3,
+       3.719
+      ],
+      "pos": [
+       2.225,
+       2.565,
+       12.35
+      ],
+      "ch": "detail",
+      "rot": [
+       -77.455,
+       -111.801,
+       0.0
+      ],
+      "mirror": true,
+      "note": "rig hoop leg standing on the horn"
      }
     ]
    },
@@ -9392,6 +9706,42 @@
       ],
       "ch": "detail",
       "note": "cradle on the horns"
+     },
+     {
+      "shape": "cyl_x",
+      "size": [
+       4.0,
+       0.4,
+       0.4
+      ],
+      "pos": [
+       0.0,
+       4.38,
+       12.2
+      ],
+      "ch": "detail",
+      "note": "rear rig bar: every Rear Rig lands here as well as on the cab rig bar"
+     },
+     {
+      "shape": "cyl_z",
+      "size": [
+       0.3,
+       0.3,
+       3.631
+      ],
+      "pos": [
+       2.225,
+       2.615,
+       12.0
+      ],
+      "ch": "detail",
+      "rot": [
+       -76.461,
+       -61.928,
+       0.0
+      ],
+      "mirror": true,
+      "note": "rig hoop leg standing on the cradle"
      }
     ]
    }
@@ -9644,20 +9994,20 @@
     "culture": "Rat Rod",
     "parts": [
      {
-      "shape": "cyl_z",
+      "shape": "block",
       "size": [
-       1.6,
-       1.6,
-       5.5
+       1.4,
+       1.4,
+       4.6
       ],
       "pos": [
        4.2,
-       -0.606,
-       -4.215
+       -0.758,
+       -4.256
       ],
-      "ch": "secondary",
+      "ch": "primary",
       "mirror": true,
-      "note": "saddle tank",
+      "note": "flat-sided saddle tank",
       "rot": [
        -3.345,
        0.0,
@@ -9665,56 +10015,58 @@
       ]
      },
      {
-      "shape": "ball",
+      "shape": "wedge",
       "size": [
-       1.5,
-       1.5,
-       1.5
+       1.4,
+       1.4,
+       1.0
       ],
       "pos": [
        4.2,
-       -0.766,
-       -6.96
+       -0.922,
+       -7.051
       ],
-      "ch": "secondary",
-      "mirror": true,
+      "ch": "primary",
       "rot": [
        -3.345,
        0.0,
-       0.0
-      ]
+       -90.0
+      ],
+      "mirror": true,
+      "note": "chamfered tank nose"
      },
      {
-      "shape": "ball",
+      "shape": "wedge",
       "size": [
-       1.5,
-       1.5,
-       1.5
+       1.4,
+       1.4,
+       0.8
       ],
       "pos": [
        4.2,
-       -0.445,
-       -1.469
+       -0.601,
+       -1.561
       ],
-      "ch": "secondary",
-      "mirror": true,
+      "ch": "primary",
       "rot": [
-       -3.345,
-       0.0,
-       0.0
-      ]
+       3.345,
+       180.0,
+       90.0
+      ],
+      "mirror": true,
+      "note": "chamfered tank tail"
      },
      {
       "shape": "block",
       "size": [
-       1.9,
-       1.7,
+       1.83,
+       1.6,
        0.3
       ],
       "pos": [
-       4.1,
-       -0.699,
-       -5.812
+       4.065,
+       -0.837,
+       -5.604
       ],
       "ch": "detail",
       "mirror": true,
@@ -9728,14 +10080,14 @@
      {
       "shape": "block",
       "size": [
-       1.9,
-       1.7,
+       1.83,
+       1.6,
        0.3
       ],
       "pos": [
-       4.1,
-       -0.512,
-       -2.618
+       4.065,
+       -0.679,
+       -2.908
       ],
       "ch": "detail",
       "mirror": true,
@@ -9749,15 +10101,15 @@
       "shape": "cyl_y",
       "size": [
        0.4,
-       0.1,
+       0.2,
        0.4
       ],
       "pos": [
        4.2,
-       0.246,
-       -4.214
+       0.04,
+       -4.303
       ],
-      "ch": "detail",
+      "ch": "secondary",
       "mirror": true,
       "note": "filler",
       "rot": [
@@ -10798,6 +11150,27 @@
       ],
       "ch": "neon",
       "mirror": true
+     },
+     {
+      "shape": "cyl_z",
+      "size": [
+       0.3,
+       0.3,
+       2.345
+      ],
+      "pos": [
+       1.6,
+       5.62,
+       11.425
+      ],
+      "ch": "secondary",
+      "rot": [
+       48.63,
+       0.0,
+       0.0
+      ],
+      "mirror": true,
+      "note": "back stay down to the rear rig bar"
      }
     ]
    },
@@ -10810,16 +11183,16 @@
       "size": [
        0.4,
        0.25,
-       1.95
+       2.45
       ],
       "pos": [
        1.6,
        4.775,
-       11.025
+       11.275
       ],
       "ch": "detail",
       "mirror": true,
-      "note": "fin foot on the rig bar"
+      "note": "fin foot: spans the cab rig bar and the rear rig bar"
      },
      {
       "shape": "wedge",
@@ -10918,7 +11291,7 @@
        11.325
       ],
       "ch": "secondary",
-      "note": "shelf on the rig bar"
+      "note": "shelf: spans the cab rig bar and the rear rig bar"
      },
      {
       "shape": "block",
@@ -11043,21 +11416,21 @@
       "size": [
        0.3,
        0.3,
-       5.429
+       4.083
       ],
       "pos": [
        1.6,
-       6.45,
-       12.325
+       6.48,
+       13.3
       ],
       "ch": "detail",
       "rot": [
-       -40.143,
+       -57.4,
        0.0,
        0.0
       ],
       "mirror": true,
-      "note": "rear strut"
+      "note": "rear strut on the rear rig bar"
      },
      {
       "shape": "cyl_x",
@@ -11148,17 +11521,32 @@
      {
       "shape": "block",
       "size": [
+       3.6,
+       0.2,
+       0.5
+      ],
+      "pos": [
+       0.0,
+       4.75,
+       12.2
+      ],
+      "ch": "detail",
+      "note": "rear fin foot on the rear rig bar"
+     },
+     {
+      "shape": "block",
+      "size": [
        0.6,
        0.35,
-       4.6
+       3.4
       ],
       "pos": [
        0.0,
        5.025,
-       12.5
+       11.9
       ],
       "ch": "secondary",
-      "note": "spine"
+      "note": "spine: ends with the fin, over the tail"
      },
      {
       "shape": "wedge",

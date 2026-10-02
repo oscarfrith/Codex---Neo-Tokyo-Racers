@@ -189,8 +189,9 @@ def standard():
             "SidePods": ["shoulder pad top Y 1.4, X 2.6..4.2, Z -1.5..1.5 (shoulder jet)"],
             "RearBody": ["shoulder at Z 3.25, full section, falling to the beltline by Z 4.6",
                          "engine mounts top Y 1.4, X +-1.1, Z 4.8..5.9 and 9.7..10.8", "wing pads top Y 1.4, X 2.0..2.8, Z 10.1..11.5",
+                         "frame pads top Y 1.4, X 2.0..2.4, Z 4.8..5.4 (front posts of a top wing)",
                          "rear face Z 12, X +-1.5, Y 0.3..1.3 (afterburner)", "underside Y 0.1, Z 7..11.8 (diffuser)",
-                         "rear hardpoints X +-4.0, Y 0.3..1.3, Z 7.2..8.8 (rear thrusters)"],
+                         "rear hardpoints X +-4.0, Y 0.3..1.3, Z 7.2..8.8, on a shelf Z 6.4..9.6 (rear thrusters)"],
         },
         "slots": {
             "Engine1": {"label": "Power Unit",
@@ -239,6 +240,8 @@ def standard():
                             "envelope": [{"min": [-6.6, WING_Y, 9.6], "max": [6.6, 6.8, 14.6]},
                                          {"min": [WPAD_X0, BELT, 9.6], "max": [WPAD_X1, WING_Y, DECK_END], "mirror": True},
                                          {"min": [-5.2, 4.8, -3.5], "max": [5.2, 7.6, 9.6]},
+                                         {"min": [2.0, BELT, 4.6], "max": [2.4, 4.8, 5.4], "mirror": True},
+                                         {"min": [2.0, 2.6, 5.4], "max": [2.4, 4.8, 9.6], "mirror": True},
                                          {"min": [5.0, -1.0, 11.6], "max": [6.6, WING_Y, 14.6], "mirror": True}],
                             "anchor": {"to": "RearBody", "face": "-y"}, "explode": [0, 8, 10]},
         },
@@ -464,12 +467,13 @@ def wing_mount():
 
 
 def fw_cascade():
+    """Sits back under the nose tip, with a painted centre section, so it tucks under short noses too."""
     return wing_mount() + [
-        cbox(14.2, -1.35, -1.15, -13.6, -12.0, "secondary"),            # main plane
-        cbox(1.2, -1.15, -0.75, -12.6, -10.6, "detail"),                # centre spar
-        tblock([5.2, 0.15, 1.0], [4.5, -0.85, -12.2], -18, "primary", True),    # flaps
-        box(7.0, 7.2, -1.5, 0.3, -13.8, -11.0, "primary", True),        # endplates
-        box(5.6, 7.0, 0.0, 0.12, -13.0, -11.8, "secondary", True),      # cascade winglets
+        cbox(14.2, -1.35, -1.15, -12.9, -11.3, "secondary"),            # main plane
+        cbox(2.4, -1.15, -0.75, -12.5, -10.6, "primary"),               # painted centre section under the keel
+        tblock([5.0, 0.15, 1.0], [4.6, -0.85, -11.5], -18, "primary", True),    # flaps
+        box(7.0, 7.2, -1.5, 0.3, -13.1, -10.3, "primary", True),        # endplates
+        box(5.6, 7.0, 0.0, 0.12, -12.3, -11.1, "secondary", True),      # cascade winglets
     ]
 
 
@@ -500,11 +504,17 @@ def fw_plank():
 
 
 def fw_nerf():
+    """Two-bar bumper hoop that stands ahead of and wider than a slim nose, over a painted bash plate."""
     return wing_mount() + [
-        box(0.6, 0.85, -0.95, -0.7, -12.5, -10.6, "detail", True),      # short prongs
-        tx(0.3, -1.4, 1.4, -0.82, -12.5, "secondary"),                  # bumper tube, tucked under the nose
-        cbox(2.0, -1.3, -1.15, -12.2, -10.6, "detail"),                 # skid
-        box(0.85, 2.6, -0.92, -0.8, -12.2, -11.2, "secondary", True),   # stub planes
+        box(0.6, 0.85, -0.95, -0.7, -13.6, -10.6, "detail", True),      # prongs
+        tx(0.35, -3.4, 3.4, -0.85, -13.7, "secondary"),                 # upper bumper bar, ahead of every nose
+        tx(0.3, -3.0, 3.0, -1.3, -13.6, "secondary"),                   # lower bar
+        box(3.1, 3.4, -1.45, -0.7, -13.85, -13.5, "secondary", True),   # hoop ends
+        box(1.5, 1.7, -1.3, -0.85, -13.75, -13.55, "secondary", True),  # uprights
+        box(3.15, 3.4, -0.95, -0.7, -13.5, -11.6, "secondary", True),   # returns back to the stub planes
+        box(0.85, 3.4, -0.95, -0.8, -12.4, -11.6, "secondary", True),   # stub planes
+        cbox(4.0, -1.4, -1.25, -13.3, -10.8, "primary"),                # painted bash plate
+        cbox(1.2, -1.25, -0.75, -11.6, -10.8, "detail"),                # plate hanger
     ]
 
 
@@ -568,7 +578,6 @@ def st_arch():
     out = [
         box(1.95, 4.0, 0.3, 1.84, -7.7, -3.7, "primary", True),                 # bridge panel across the front link
         box(TUB_X, 1.95, 0.5, 1.6, -7.5, -3.9, "detail", True),                 # shadow gap at the tub
-        box(2.3, 3.7, 1.84, 1.9, -6.9, -4.5, "detail", True),                   # bridge louvres
     ]
     for zc, front in ((-6.9, True), (8.0, False)):
         nz = (5.7, -0.35, zc + 0.9)
@@ -577,18 +586,17 @@ def st_arch():
             wedge(4.0, 7.2, 0.2, 1.9, zc - 3.0, zc - 1.6, "front", "bottom", "primary", True),
             box(7.0, 7.2, -0.9, 0.2, zc - 1.6, zc + 1.6, "primary", True),      # outer spat
             box(4.0, 4.2, -0.9, 0.2, zc - 1.6, zc + 1.6, "primary", True),      # inner spat
-            box(4.9, 6.5, -1.0, 0.2, zc - 2.6, zc - 1.4, "primary", True),      # square scoop under the fairing front
-            box(5.1, 6.3, -0.85, 0.05, zc - 2.66, zc - 2.6, "detail", True),    # scoop mouth
-            box(5.1, 6.3, -0.9, 0.2, zc - 1.4, zc + 1.0, "detail", True),       # duct
+            box(4.9, 6.5, -1.0, 0.2, zc - 2.6, zc + 1.0, "detail", True),       # dark square scoop and duct under the fairing
             ttz(0.9, 1.4, nz, 25, "detail", True),                              # canted nozzle
             ttz(0.65, 0.9, along(nz, 25, 1.2), 25, "thrust", True),
             box(4.6, 6.6, 1.3, 1.5, zc - 2.05, zc - 1.95, "neon", True),        # light strip
-            box(4.6, 6.6, 1.9, 1.96, zc - 0.9, zc + 0.9, "detail", True),       # arch louvres
+            box(4.7, 6.7, 1.9, 2.08, zc - 1.2, zc + 1.2, "detail", True),       # lift vent frame cut into the arch top
+            box(5.0, 6.4, 2.08, 2.14, zc - 0.95, zc + 0.95, "thrust", True),    # lift jet glow in the vent
         ]
         if front:
             out += [box(4.0, 7.2, 0.2, 1.1, zc + 1.6, -3.7, "primary", True),   # runs back to the sidepod front
                     wedge(4.0, 7.2, 1.1, 1.9, zc + 1.6, -3.7, "rear", "bottom", "primary", True),
-                    box(4.6, 7.0, 0.35, 0.95, -3.7, -3.64, "detail", True)]     # dark outlet in the rear face
+                    box(5.25, 6.15, -0.7, -0.1, zc - 2.66, zc - 2.6, "thrust", True)]   # glow in the front scoop mouth
         else:
             out.append(wedge(4.0, 7.2, 0.2, 1.9, zc + 1.6, zc + 2.8, "rear", "bottom", "primary", True))
     return out
@@ -783,7 +791,6 @@ def e2_slots():
         box(2.5, 4.5, 2.75, 2.95, -3.4, -1.6, "primary", True),         # scoop hood
         box(2.7, 4.3, 2.2, 2.75, -2.4, -1.6, "detail", True),           # dark throat
         wedge(2.5, 4.5, 2.2, 2.95, -1.6, 0.6, "rear", "bottom", "primary", True),   # hood fairing
-        box(2.9, 4.1, 2.2, 2.26, 0.7, 1.3, "detail", True),             # louvres
         wedge(2.5, 4.5, 2.2, 2.9, 1.5, 2.6, "front", "bottom", "primary", True),    # kick-up
         box(2.6, 4.4, 2.0, 2.9, 2.6, 3.6, "detail", True),              # slot nozzle
         box(2.8, 4.2, 2.15, 2.75, 3.6, 4.3, "thrust", True),            # tall slot glow, above the deck haunch
@@ -819,16 +826,16 @@ def e2_shorties():
 
 
 def e2_sidedump():
-    """Side dump: square scoop, short body, and a nozzle swept outboard so it fires out over the sidepod edge."""
-    n = (3.2, 2.2, 0.2)
+    """Side dump, rear-set: a tall square scoop, a short body, and a big nozzle turned fully sideways so it fires
+    out over the sidepod edge."""
     return [
-        box(2.8, 4.0, BELT, 1.6, -1.4, 0.2, "detail", True),
-        box(2.5, 3.7, 1.65, 2.8, -3.5, -2.6, "secondary", True),        # square scoop
-        box(2.65, 3.55, 1.8, 2.65, -3.56, -3.5, "detail", True),
-        tz(1.2, 3.1, 2.2, -2.6, 0.5, "primary", True),                  # short body
-        box(2.6, 3.9, 1.7, 2.7, 0.0, 0.7, "detail", True),              # elbow box
-        ttz(0.95, 1.4, n, 0, "detail", True, 35),                       # nozzle swept outboard
-        ttz(0.7, 0.75, along(n, 0, 1.05, 35), 0, "thrust", True, 35),
+        box(2.8, 4.0, BELT, 1.65, -0.2, 1.4, "detail", True),           # foot on the rear half of the pad
+        box(2.5, 3.7, 1.65, 3.0, 0.0, 0.9, "secondary", True),          # tall square scoop
+        box(2.65, 3.55, 2.1, 2.85, -0.06, 0.0, "detail", True),
+        tz(1.2, 3.1, 2.2, 0.9, 3.2, "primary", True),                   # short body
+        box(2.5, 3.7, 1.65, 2.75, 3.2, 4.3, "detail", True),            # elbow box
+        ttz(1.0, 1.1, (3.4, 2.2, 3.75), 0, "detail", True, 90),         # big nozzle, fully sideways
+        ttz(0.72, 0.8, (3.8, 2.2, 3.75), 0, "thrust", True, 90),
     ]
 
 
@@ -848,12 +855,15 @@ def b_twin_cans():
 
 
 def b_megaphones():
-    p = (1.6, 0.8, 12.2)
+    """One long megaphone a side, low: a thin pipe that flares in steps to a fat bell well past the tail."""
+    x, y = 2.7, 0.8
     return [
         cbox(4.2, 0.5, 1.0, DECK_END, DECK_END + 0.2, "detail", "bar on the deck rear face"),
-        ttz(0.6, 1.2, p, 0, "detail", True, 12),                        # short pipes, splayed
-        ttz(1.18, 1.3, along(p, 0, 0.95, 12), 0, "secondary", True, 12),    # one fat flared bell each side
-        ttz(0.9, 1.0, along(p, 0, 1.3, 12), 0, "thrust", True, 12),
+        box(2.1, 2.9, 0.55, 1.05, 12.2, 12.6, "detail", True),          # clamps out from the bar
+        tz(0.5, x, y, 12.2, 13.7, "secondary", True),                   # thin pipe
+        tz(0.8, x, y, 13.6, 14.6, "secondary", True),                   # first flare
+        tz(1.15, x, y, 14.5, 15.7, "secondary", True),                  # fat bell
+        glow_z(0.9, x, y, 15.7, 0.25, True),
     ]
 
 
@@ -886,14 +896,13 @@ def b_zoomies():
 
 
 def b_lakepipes():
-    """Two long straight lances low at the tail corners, reaching a stud and a half past every other option."""
+    """Side exits: a flat pipe runs outboard along the deck edge each side, then turns and fires out at 35 degrees."""
+    n = (1.9, 0.8, 12.65)
     return boost_plate() + [
-        box(1.5, 2.3, 0.5, 1.1, 12.2, 12.8, "detail", True),            # brackets out from the plate
-        tz(0.95, 2.65, 0.8, 12.2, 15.0, "secondary", True),             # long straight pipe
-        box(2.15, 3.15, 1.26, 1.38, 12.6, 14.4, "primary", True),       # heat shield
-        box(2.3, 3.0, 1.38, 1.44, 12.9, 13.2, "detail", True), box(2.3, 3.0, 1.38, 1.44, 13.7, 14.0, "detail", True),
-        tz(1.15, 2.65, 0.8, 14.5, 15.75, "detail", True),               # flared tip
-        glow_z(0.85, 2.65, 0.8, 15.75, 0.25, True),
+        box(1.2, 2.0, 0.6, 1.0, 12.2, 12.6, "secondary", True),         # flat pipe run along the deck edge
+        ttz(1.1, 1.1, n, 0, "secondary", True, 35),                     # chrome elbow, turned outboard
+        ttz(1.0, 1.0, along(n, 0, 0.8, 35), 0, "detail", True, 35),     # nozzle
+        ttz(0.72, 0.8, along(n, 0, 1.25, 35), 0, "thrust", True, 35),
     ]
 
 
@@ -914,12 +923,16 @@ def wing_pads(x_from):
 
 
 def hardpoints(x_from):
-    return [box(x_from, 3.85, 0.45, 1.15, 7.4, 8.6, "detail", True),    # stout beam out to the hardpoint
+    return [box(x_from, 3.85, 0.45, 1.15, 6.4, 9.6, "detail", True),    # shelf out to the hardpoint, as long as a thruster box
             box(3.85, HARD_X, 0.3, 1.3, 7.2, 8.8, "detail", True, "pad: rear thruster hardpoint")]
 
 
+def frame_pads(x_from):
+    return [box(x_from, 2.4, 1.2, BELT, 4.8, 5.4, "detail", True, "pad: top wing front post")]
+
+
 def rb_coke():
-    return deck_common() + neck(0.9, 5.6) + hardpoints(0.9) + [
+    return deck_common() + neck(0.9, 5.6) + hardpoints(0.9) + frame_pads(1.0) + [
         cbox(1.8, 0.1, 1.0, DS, 9.0),                                   # compact gearbox case
         wedge(-0.9, 0.9, 1.0, BELT, DS, 9.0, thin="rear"),              # top line falls away under the engine
         cbox(2.2, 1.15, BELT, EM_F0, EM_F1, "detail"),                  # front engine mount
@@ -933,7 +946,7 @@ def rb_coke():
 
 
 def rb_cradle():
-    out = deck_common() + wing_pads(1.65) + hardpoints(3.1) + [
+    out = deck_common() + wing_pads(1.65) + hardpoints(3.1) + frame_pads(1.3) + [
         cbox(3.5, 0.1, BELT, DS, 4.0),                                  # shoulder bulkhead, full section
         cbox(2.0, 0.05, 0.35, 4.0, 11.8, "detail"),                     # belly
         box(1.35, 1.65, 1.2, BELT, 4.0, 11.8, "secondary", True),       # top rails; daylight shows under them
@@ -963,7 +976,7 @@ def rb_longtail():
 
 
 def rb_tunnel():
-    return deck_common() + neck(1.2, 5.0) + wing_pads(1.0) + hardpoints(3.4) + [
+    return deck_common() + neck(1.2, 5.0) + wing_pads(1.0) + hardpoints(3.4) + frame_pads(1.1) + [
         cbox(2.4, 0.1, BELT, DS, 6.0),                                  # spine at full height under the front mount
         wedge(-1.2, 1.2, 0.9, BELT, 6.0, 7.4, thin="rear"),             # then it steps down
         cbox(2.4, 0.1, 0.9, 6.0, 11.8),                                 # low spine: the engine stands clear
@@ -977,7 +990,7 @@ def rb_tunnel():
 
 
 def rb_tank():
-    return deck_common() + neck(1.3, 5.0) + wing_pads(1.3) + hardpoints(1.3) + [
+    return deck_common() + neck(1.3, 5.0) + wing_pads(1.3) + hardpoints(1.3) + frame_pads(1.2) + [
         cbox(2.6, 0.1, BELT, DS, 11.8),                                 # narrow frame body
         box(2.9, 4.0, 0.8, 2.6, 9.6, DECK_END, "secondary", True),      # tail tanks carried high at the rear corners
         box(1.3, 2.9, 0.9, 1.25, 9.7, 10.0, "detail", True),            # tank brackets
@@ -1026,13 +1039,19 @@ def sp_pannier():
 
 
 def sp_sponson():
+    """Deep sponson with a chamfered front corner and a tail that tapers in plan and in height, so it closes
+    cleanly against a narrow engine deck."""
     return shoulder_pad() + [
         box(TUB_X, 1.95, 0.25, 1.2, -3.2, 2.6, "detail", True),
-        box(1.95, 6.3, -0.9, 1.3, -3.5, 2.9, "primary", True),          # deep full-width sponson
-        box(4.7, 6.3, 1.3, 2.1, -3.5, 2.9, "primary", True),            # fender ridge joining the arches
-        box(6.3, 6.36, 0.2, 0.9, -2.6, -0.6, "detail", True),           # side vent
-        box(6.3, 6.36, 0.3, 1.7, 0.2, 2.2, "secondary", True),          # door panel
-        box(6.3, 6.38, -0.85, -0.7, -3.3, 2.7, "neon", True),           # rocker light
+        box(1.95, 4.2, -0.9, 1.3, -3.5, 2.9, "primary", True),          # deep core, full length
+        box(4.2, 6.2, -0.9, 1.3, -2.5, 0.9, "primary", True),           # outer sponson
+        pwedge(4.2, 6.2, -0.9, 1.3, -3.5, -2.5, thin="front", base="in"),   # chamfered front corner
+        pwedge(4.2, 6.2, -0.9, 1.3, 0.9, 2.9, thin="rear", base="in"),      # tail tapers in plan to the core
+        box(4.7, 6.2, 1.3, 2.2, -2.5, 0.9, "primary", True),            # fender ridge
+        pwedge(4.7, 6.2, 1.3, 2.2, -3.25, -2.5, thin="front", base="in"),   # ridge follows the front chamfer
+        pwedge(4.7, 6.2, 1.3, 2.2, 0.9, 2.4, thin="rear", base="in"),       # and the tail taper
+        box(2.2, 4.0, -0.6, 1.0, 2.9, 2.96, "detail", True),            # dark vent panel in the rear face
+        box(6.2, 6.26, 0.1, 1.9, -1.6, 0.4, "secondary", True),         # door panel
     ]
 
 
@@ -1081,8 +1100,9 @@ def df_strake():
 
 def df_pan():
     return [cbox(3.0, -0.25, 0.0, 6.8, DECK_END, "detail"),
-            box(1.0, 1.2, -0.45, -0.25, 11.6, 13.7, "detail", True),
-            cbox(4.6, -0.5, -0.25, 13.6, 13.85, "secondary")]            # chrome bumper bar
+            wedge(-2.0, 2.0, -0.45, 0.15, DECK_END, 14.0, "rear", "top", "primary"),    # painted pan kicks up to the tail
+            cbox(6.0, -0.25, 0.1, 13.9, 14.2, "secondary"),              # wide chrome bumper bar
+            box(1.3, 1.6, -0.7, 0.2, 14.0, 14.45, "secondary", True)]    # overriders
 
 
 def df_extractor():
@@ -1104,9 +1124,12 @@ def df_venturi():
 
 def df_pushbar():
     return [cbox(3.2, -0.2, 0.0, 7.0, DECK_END, "detail"),
-            box(1.3, 1.55, -0.6, -0.35, 11.0, 14.4, "secondary", True),
-            cbox(3.1, -0.6, -0.35, 14.15, 14.4, "secondary"),
-            box(1.3, 1.55, -0.35, 0.15, 14.15, 14.4, "secondary", True)]
+            box(1.3, 1.55, -0.35, -0.2, 11.0, 11.8, "detail", True),     # rail hangers
+            box(1.3, 1.55, -0.6, -0.35, 11.0, 14.4, "secondary", True),  # rails
+            cbox(3.4, -1.15, -0.9, 14.3, 14.6, "primary"),               # painted push hoop: bottom bar
+            cbox(3.4, -0.05, 0.2, 14.3, 14.6, "primary"),                # top bar
+            box(1.45, 1.7, -1.15, 0.2, 14.3, 14.6, "primary", True),     # hoop ends
+            cbox(1.4, -0.9, -0.05, 14.35, 14.55, "secondary")]           # push pad
 
 
 def df_valance():
@@ -1161,12 +1184,16 @@ def rw_twin():
 
 
 def rw_topwing():
+    """Big slab over the roll hoop and engine intake. It stands on four posts: a front pair on the deck frame pads
+    and a rear pair on the wing pads, with a diagonal brace each side."""
+    x0, x1, xc = 2.05, 2.35, 2.2
     return wing_feet() + [
-        box(PYLON_X - 0.15, PYLON_X + 0.15, 1.55, 5.05, 10.3, 10.7, "detail", True),    # rear posts
-        box(PYLON_X - 0.15, PYLON_X + 0.15, 4.85, 5.05, -1.6, 10.3, "detail", True),    # beams forward over the engine to the cage
-        box(PYLON_X - 0.15, PYLON_X + 0.15, 5.05, 5.6, 3.0, 3.4, "detail", True),       # rear uprights
-        tblock([8.4, 0.3, 6.6], [0, 5.4, 0.3], -6, "primary"),          # huge slab over the cab, clear of the engine
-        box(4.2, 4.4, 4.85, 6.1, -2.9, 3.5, "secondary", True),         # side boards
+        box(x0, x1, 1.55, 3.2, 10.3, 10.7, "detail", True),             # rear posts on the wing pads
+        rod((xc, 3.0, 10.5), (xc, 5.6, 5.6), 0.25, 0.25, "detail", True),       # diagonal braces up to the slab
+        box(x0, x1, BELT, 5.6, 4.85, 5.15, "detail", True),             # front posts on the deck frame pads
+        tblock([0.3, 0.3, 4.8], [xc, 5.25, 3.2], -6, "detail", True),   # rails under the slab
+        tblock([7.0, 0.3, 5.4], [0, 5.5, 3.1], -6, "primary"),          # slab
+        box(3.5, 3.7, 4.9, 6.2, 0.3, 5.9, "secondary", True),           # side boards
     ]
 
 

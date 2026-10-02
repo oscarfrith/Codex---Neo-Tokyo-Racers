@@ -1,4 +1,4 @@
-"""Generator for the Dart frame-class blockout spec (round 2, after critic review). Design exploration only.
+"""Generator for the Dart frame-class blockout spec (round 2, after the second review). Design exploration only.
 
 Run from the repo root:
   py -3 scripts/vehicle_blockouts/gen/dart.py
@@ -150,25 +150,31 @@ def lift_jet(x, z, y_top, y_bot, d, body="secondary", m=False, tag="lift jet", b
     return ps
 
 
-def control_jet(x, y, z0, z1, d=1.3, m=True):
-    """A control jet along Z for the airbrakes: body 1.3 across, thrust 0.86, plus vents that glow up and outboard."""
-    return [
-        CZ(d, x, y, z0, z1 - 0.5, "secondary", m, "control jet body"),
+def control_jet(x, y, z0, z1, d=1.0, m=True, top=True, side=True):
+    """A small control jet along Z for the airbrakes: body 1.0 across, thrust 0.6. The bottom rung of the nozzle ladder.
+
+    top and side add vents that glow upward and outboard.
+    """
+    ps = [
+        CZ(d, x, y, z0, z1 - 0.4, "secondary", m, "control jet body"),
         CZ(0.7 * d, x, y, z0 - 0.25, z0 + 0.4, "detail", m, "control jet intake"),
-        CZ(0.82 * d, x, y, z1 - 0.7, z1 - 0.1, "detail", m, "control jet nozzle"),
-        CZ(0.66 * d, x, y, z1 - 0.3, z1, "thrust", m, "control jet thrust"),
-        B(x - 0.3, x + 0.3, y + d / 2 - 0.12, y + d / 2 + 0.1, z0 + 0.5, z0 + 2.2, "thrust", m, "top vent: glows upward"),
-        B(x + d / 2 - 0.12, x + d / 2 + 0.08, y - 0.22, y + 0.22, z0 + 0.5, z0 + 2.2, "thrust", m, "outboard vent"),
+        CZ(0.8 * d, x, y, z1 - 0.6, z1 - 0.1, "detail", m, "control jet nozzle"),
+        CZ(0.6 * d, x, y, z1 - 0.3, z1, "thrust", m, "control jet thrust"),
     ]
+    if top:
+        ps.append(B(x - 0.22, x + 0.22, y + d / 2 - 0.12, y + d / 2 + 0.08, z0 + 0.4, z0 + 1.8, "thrust", m, "top vent: glows upward"))
+    if side:
+        ps.append(B(x + d / 2 - 0.12, x + d / 2 + 0.08, y - 0.18, y + 0.18, z0 + 0.4, z0 + 1.8, "thrust", m, "outboard vent"))
+    return ps
 
 
-def pilot(z, y, lean=50):
+def pilot(z, y, lean=50, arm_x=0.78):
     """Reclined pilot. z is the hip station, y lifts the whole seat. Head top is y + 2.55 at lean 50."""
     return [
         B(-0.65, 0.65, y + 0.5, y + 1.05, z - 3.5, z - 1.1, "driver", note="legs"),
         RB([1.3, 1.9, 0.8], [0, y + 1.3, z - 0.35], [lean, 0, 0], "driver", note="torso"),
         BALL(1.1, 0, y + 2.0, z + 0.8, "driver", note="head"),
-        RB([0.3, 0.3, 1.6], [0.78, y + 1.4, z - 1.3], [-20, 0, 0], "driver", m=True, note="arm"),
+        RB([0.3, 0.3, 1.6], [arm_x, y + 1.4, z - 1.3], [-20, 0, 0], "driver", m=True, note="arm"),
     ]
 
 
@@ -276,32 +282,40 @@ def cockpit_manta():
 
 
 def cockpit_twinboom():
-    """Narrow pod with an upright greenhouse far forward, between two low box rails that carry a tail yoke."""
+    """Slim pod with a raked wedge canopy far forward, between two booms that run on alone to a tail yoke.
+
+    The pod is 1.8 wide and stops at Z 2. The booms sit a full stud clear of it on two thin webs, so daylight
+    shows between pod and boom and across the whole gap behind the pod.
+    """
     p = chassis()
     p += [
         B(-1.5, 1.5, 0.1, 2.5, -7.6, -6.6, "primary", note="nose stub, ring section"),
-        B(-1.1, 1.1, 0.2, 2.2, -6.6, -5.6, "primary", note="pod nose"),
-        B(-1.1, 1.1, 0.2, 0.5, -5.6, -0.6, "primary", note="tub floor"),
-        B(0.9, 1.1, 0.5, 2.2, -5.6, -0.6, "primary", m=True, note="tub wall"),
-        B(-1.1, 1.1, 0.2, 4.4, -0.6, 0.2, "primary", note="pod bulkhead"),
-        W("up_front", -1.1, 1.1, 0.2, 3.4, 0.2, 3.4, "primary", note="pod tail: the pod stops here"),
-        W("up_back", -1.0, 1.0, 2.2, 4.4, -6.4, -5.0, "glass", note="upright windscreen"),
-        B(-1.0, 1.0, 2.2, 4.4, -5.0, -0.6, "glass", note="greenhouse, far forward"),
-        B(-1.7, 1.7, 4.4, 4.65, -5.6, 0.6, "secondary", note="wide flat roof plate"),
-        B(0.92, 1.08, 2.2, 4.4, -5.1, -4.85, "detail", m=True, note="A pillar"),
-        B(0.92, 1.08, 2.2, 4.4, -2.9, -2.65, "detail", m=True, note="B pillar"),
-        B(1.7, PAD_X, 0.0, 1.4, -6.0, 5.6, "primary", m=True, note="box rail at sill height, 1.0 x 1.4"),
-        W("up_back", 1.7, PAD_X, 0.0, 1.4, -7.6, -6.0, "primary", m=True, note="rail nose"),
-        B(1.75, 2.65, 1.4, 1.48, -5.0, 3.0, "secondary", m=True, note="rail top stripe"),
-        B(1.1, 1.7, 0.3, 1.0, -4.6, -3.2, "primary", m=True, note="pod web"),
-        B(1.1, 1.7, 0.3, 1.0, -1.4, 0.2, "primary", m=True, note="pod web"),
-        B(-1.5, 1.5, 0.1, 2.5, 5.2, 7.6, "secondary", note="tail yoke hub: wraps the drive ring frame"),
-        B(-PAD_X, PAD_X, 0.2, 1.3, 4.2, 5.6, "primary", note="tail yoke beam: joins the rails"),
-        W("out_front", 1.5, PAD_X, 0.0, 1.4, 5.6, 7.6, "primary", m=True, note="yoke arm: rail tapers into the ring frame"),
-        B(1.9, 2.5, 0.5, 0.9, 5.55, 5.68, "neon", m=True, note="rail tail light"),
-        B(1.95, 2.45, -0.16, 0.0, -4.0, 4.0, "thrust", m=True, note="lift strip"),
+        W("out_front", 0.9, 1.5, 0.2, 2.2, -6.6, -5.0, "primary", m=True, note="cheek: the nose stub tapers to the pod"),
+        B(-0.9, 0.9, 0.2, 2.2, -6.6, -5.8, "primary", note="pod nose"),
+        B(-0.9, 0.9, 0.2, 0.5, -5.8, -0.9, "primary", note="tub floor"),
+        B(0.75, 0.9, 0.5, 2.2, -5.8, -0.9, "primary", m=True, note="tub wall"),
+        B(-0.9, 0.9, 0.2, 3.8, -0.9, -0.3, "primary", note="pod bulkhead"),
+        W("up_front", -0.9, 0.9, 0.2, 3.8, -0.3, 2.0, "primary", note="pod tail: the pod stops at Z 2"),
+        W("up_back", -0.8, 0.8, 2.2, 3.8, -6.2, -3.0, "glass", note="raked wedge windscreen"),
+        B(-0.8, 0.8, 2.2, 3.8, -3.0, -0.9, "glass", note="canopy"),
+        B(-0.85, 0.85, 3.8, 3.95, -3.0, -0.3, "secondary", note="low roof, no wider than the glass"),
+        B(-0.92, 0.92, 2.1, 2.25, -6.2, -0.9, "detail", note="canopy sill"),
+        W("in_back", 1.9, PAD_X, 0.1, 1.4, -7.6, -5.6, "secondary", m=True, note="boom nose: pointed, tip outboard"),
+        B(1.9, PAD_X, 0.1, 1.4, -5.6, 6.6, "primary", m=True, note="boom, 0.8 x 1.3, a full stud clear of the pod"),
+        W("up_front", 1.9, PAD_X, 0.1, 1.4, 6.6, 7.8, "primary", m=True, note="boom tail"),
+        W("up_back", 1.9, PAD_X, 1.4, 2.7, 1.4, 3.6, "primary", m=True, note="boom shoulder ramp"),
+        B(1.9, PAD_X, 1.4, 2.7, 3.6, 6.4, "primary", m=True, note="boom shoulder: backs the rear hardpoint plate"),
+        W("up_front", 1.9, PAD_X, 1.4, 2.7, 6.4, 7.4, "secondary", m=True, note="shoulder tail"),
+        B(1.95, 2.65, 1.4, 1.48, -5.0, 1.2, "secondary", m=True, note="boom top stripe"),
+        B(0.9, 1.9, 0.6, 0.9, -4.4, -3.6, "primary", m=True, note="front web: thin"),
+        B(0.9, 1.9, 0.6, 0.9, 0.2, 1.0, "primary", m=True, note="rear web: thin"),
+        B(-1.5, 1.5, 0.1, 2.5, 5.4, 7.6, "primary", note="tail yoke hub: wraps the drive ring frame"),
+        B(-0.5, 0.5, 2.5, 2.58, 5.6, 7.4, "secondary", note="hub stripe"),
+        B(-1.9, 1.9, 0.3, 1.3, 4.6, 5.8, "primary", note="tail yoke beam: joins the booms"),
+        B(2.05, 2.55, 1.8, 2.3, 7.0, 7.12, "neon", m=True, note="boom tail light"),
+        B(2.05, 2.55, -0.06, 0.1, -4.0, 4.0, "thrust", m=True, note="lift strip"),
     ]
-    p += pilot(-2.4, 0.55)
+    p += pilot(-2.4, 0.55, arm_x=0.55)
     return p
 
 
@@ -337,7 +351,7 @@ def cockpit_bubble():
 
 
 def cockpit_arrowhead():
-    """Arrow-shaped hull: point forward, full width at mid length, swept barbs. Triangular canopy, two tall fletches above and one below."""
+    """Arrow-shaped hull: point forward, full width at mid length, swept barbs. Triangular canopy, two low deck strakes, a short ventral fletch."""
     p = chassis()
     p += [
         B(-1.5, 1.5, 0.1, 2.5, -7.6, -4.6, "primary", note="shaft nose, ring section"),
@@ -354,10 +368,10 @@ def cockpit_arrowhead():
         W("out_back", 0.0, 1.9, 2.7, 3.6, -5.6, 0.2, "glass", m=True, note="arrow-shaped canopy"),
         B(-1.9, 1.9, 2.7, 3.6, 0.2, 0.8, "primary", note="canopy rear bulkhead"),
         W("up_front", -0.7, 0.7, 2.5, 3.6, 0.8, 4.6, "primary", note="spine fairing"),
-        RW([0.24, 2.8, 3.4], [1.89, 3.77, 6.1], [0, 0, -25], "secondary", m=True, note="tall canted fletch"),
+        RW([0.24, 1.5, 3.0], [1.52, 3.18, 3.5], [0, 0, -25], "secondary", m=True, note="low canted deck strake: top at Y 3.9, ends at Z 5 (tall fins belong to the Tail Fins slot)"),
         B(-0.1, 0.1, 2.7, 2.78, -7.0, -5.8, "neon", note="point light"),
         B(2.7, 2.78, 1.4, 1.9, -2.4, 0.4, "neon", m=True, note="flank light"),
-        W("dn_back", -0.12, 0.12, -1.3, 0.1, 4.2, 7.8, "secondary", note="ventral fletch: the third vane"),
+        W("dn_back", -0.12, 0.12, -1.3, 0.1, 2.4, 6.0, "secondary", note="ventral fletch: stops at Z 6"),
         B(1.7, 2.5, 0.49, 0.65, -2.6, 0.6, "thrust", m=True, note="lift strip"),
         B(-0.4, 0.4, -0.08, 0.1, -6.6, -3.6, "thrust", note="lift strip"),
     ]
@@ -484,9 +498,10 @@ def tip_sensor_blade():
 
 def tip_ram_scoop():
     return tip_base() + [
-        B(-1.0, 1.0, 0.5, 2.1, -16.4, -15.3, "primary", note="scoop"),
-        B(-0.8, 0.8, 0.7, 1.9, -16.6, -16.3, "detail", note="mouth"),
-        B(-0.8, 0.8, 0.52, 0.62, -16.62, -16.4, "neon", note="lip light"),
+        B(-0.65, 0.65, 0.7, 1.9, -15.7, -15.3, "secondary", note="tapered throat: steps the 0.9 collar out to the scoop"),
+        B(-0.9, 0.9, 0.55, 2.05, -16.5, -15.7, "primary", note="scoop, 1.8 x 1.5"),
+        B(-0.72, 0.72, 0.73, 1.87, -16.7, -16.4, "detail", note="mouth"),
+        B(-0.72, 0.72, 0.57, 0.67, -16.72, -16.5, "neon", note="lip light"),
     ]
 
 
@@ -593,8 +608,8 @@ def e2_lance():
     return lug2() + [
         B(3.3, 3.6, 2.0, 2.6, 3.9, 6.1, "primary", m=True, note="pylon"),
         CZ(0.3, 3.95, 2.45, -1.0, -0.2, "detail", m=True, note="shock probe"),
-        B(4.4, 4.8, 2.35, 2.55, 4.0, 7.0, "secondary", m=True, note="lance fin"),
-    ] + jet(3.95, 2.45, -0.4, 7.9, 1.1, m=True, tag="lance ramjet")
+        B(4.5, 5.0, 2.35, 2.55, 4.0, 7.0, "secondary", m=True, note="lance fin"),
+    ] + jet(3.95, 2.45, -0.4, 7.9, 1.3, m=True, tf=0.72, tag="lance ramjet")
 
 
 def e2_slot():
@@ -610,8 +625,8 @@ def e2_slot():
 def e2_stacked():
     """Privateer: two slim jets, over and under, the full length of the slot."""
     return lug2() + [B(3.3, 3.5, 1.95, 3.9, 4.2, 6.1, "primary", m=True, note="web plate")] + \
-        jet(3.95, 2.4, -0.6, 7.9, 1.2, m=True, tag="lower jet") + \
-        jet(3.95, 3.6, 0.6, 7.4, 1.1, body="secondary", lip="primary", m=True, tag="upper jet")
+        jet(3.95, 2.35, -0.6, 7.9, 1.25, m=True, tf=0.75, tag="lower jet") + \
+        jet(3.95, 3.55, 0.6, 7.4, 1.25, body="secondary", lip="primary", m=True, tf=0.75, tag="upper jet")
 
 
 def e2_stub_radial():
@@ -623,8 +638,8 @@ def e2_stub_radial():
         B(4.45, 4.65, 1.95, 3.95, 2.12, 2.4, "primary", m=True, note="scoop splitter"),
         CZ(1.7, 4.55, 2.95, 4.0, 5.3, "primary", m=True, note="fat burner body"),
         CZ(1.2, 4.55, 2.95, 5.3, 5.9, "secondary", m=True, note="neck"),
-        CZ(0.95, 4.55, 2.95, 5.8, 7.75, "detail", m=True, note="long thin tailpipe"),
-        CZ(0.8, 4.55, 2.95, 7.5, 7.9, "thrust", m=True, note="thrust"),
+        CZ(1.1, 4.55, 2.95, 5.8, 7.75, "detail", m=True, note="long thin tailpipe"),
+        CZ(0.9, 4.55, 2.95, 7.5, 7.9, "thrust", m=True, note="thrust"),
         CZ(0.3, 5.5, 2.1, 4.0, 7.2, "detail", m=True, note="exposed fuel pipe"),
         B(3.9, 4.9, 4.1, 4.18, 2.8, 3.6, "primary", m=True, note="patch plate"),
     ]
@@ -645,14 +660,17 @@ def e2_chine():
 
 # ---------------------------------------------------------------- Engine1: the main drive
 def drive_frame():
-    """Pads every drive carries: ring spigot, painted root fairing, burner deck, two posts with fin pads, belly pad."""
+    """Pads every drive carries: ring spigot, painted root fairing, burner deck, two posts with fin pads, belly pad.
+
+    The belly pad is 3.6 x 4.1, so any keel lands on a full-width pad. Each drive sits its body or a skirt on it.
+    """
     return [
         B(-RING_X, RING_X, RING_Y0, RING_Y1, Z_REAR, Z_REAR + 0.4, "detail", note="PAD ring spigot: lands on the drive ring frame"),
         B(-RING_X, RING_X, RING_Y0, RING_Y1, Z_REAR + 0.4, Z_REAR + 0.4 + ROOT, "primary", note="root fairing: ring section for 1.5 studs"),
         B(-1.2, 1.2, 3.0, BOOST_Y, BR_Z0, BR_Z1, "detail", note="PAD burner deck"),
         B(2.75, HULL_X, 1.3, BOOST_Y, 11.0, 12.2, "detail", m=True, note="PAD hardpoint post: airbrake lug on its flank"),
         B(FIN_X0, HULL_X, 3.0, BOOST_Y, 11.0, 12.2, "detail", m=True, note="PAD fin pad on top of the post"),
-        B(-0.8, 0.8, -0.4, -0.15, 9.5, 12.5, "detail", note="PAD belly pad"),
+        B(-1.8, 1.8, -0.4, -0.15, 9.5, 13.6, "detail", note="PAD belly pad: full keel width"),
     ]
 
 
@@ -675,7 +693,7 @@ def e1_twin_drive():
     return drive_frame() + [
         B(-1.5, 1.5, 0.5, 2.4, 9.9, 11.4, "primary", note="yoke: joins the barrels"),
         B(-0.4, 0.4, 2.4, 3.0, BR_Z0, BR_Z1, "primary", note="saddle under the burner deck"),
-        B(-0.5, 0.5, -0.15, 0.5, 10.0, 12.2, "detail", note="keel strut down to the belly pad"),
+        B(-1.7, 1.7, -0.15, 0.5, 9.9, 13.4, "primary", note="belly skirt down to the belly pad"),
         B(1.5, 2.95, 0.45, 2.75, 9.2, 10.4, "secondary", m=True, note="box intake"),
         B(1.65, 2.8, 0.6, 2.6, 9.0, 9.35, "detail", m=True, note="box intake mouth"),
         CZ(2.6, 1.7, 1.6, 10.2, 13.6, "primary", m=True, note="drive barrel"),
@@ -698,7 +716,7 @@ def e1_slot_burner():
         B(0.9, 2.5, 1.2, 1.75, 11.5, 13.2, "secondary", m=True, note="intake box on the tail block"),
         B(1.0, 2.4, 1.28, 1.68, 11.25, 11.6, "detail", m=True, note="intake mouth"),
         B(2.7, HULL_X, 1.2, 1.3, 11.0, 12.2, "detail", m=True, note="post foot"),
-        B(-0.6, 0.6, -0.15, 0.2, 9.6, 12.4, "detail", note="keel strut down to the belly pad"),
+        B(-1.7, 1.7, -0.15, 0.2, 9.6, 13.5, "primary", note="belly skirt down to the belly pad"),
         B(-0.5, 0.5, 1.2, 1.28, 12.6, 13.3, "neon", note="heat strip"),
     ]
 
@@ -711,21 +729,19 @@ def e1_quad_cluster():
         B(1.9, 2.75, 1.4, 2.0, 11.0, 12.2, "primary", m=True, note="stub to the post"),
         B(-0.3, 0.3, -0.15, 0.2, 9.6, 12.4, "detail", note="keel strut down to the belly pad"),
         B(-0.12, 0.12, 0.3, 2.4, 13.5, 13.65, "neon", note="tail light between the jets"),
-    ] + jet(1.15, 2.15, 9.9, 14.4, 1.65, body="secondary", lip="primary", m=True, tf=0.68, tag="upper jet") + \
-        jet(1.15, 0.45, 9.9, 14.4, 1.65, m=True, tf=0.68, tag="lower jet")
+    ] + jet(1.15, 2.1, 9.9, 14.4, 1.7, body="secondary", lip="primary", m=True, tf=0.85, tag="upper jet") + \
+        jet(1.15, 0.5, 9.9, 14.4, 1.7, m=True, tf=0.85, tag="lower jet")
 
 
 def e1_rack_triple():
-    """Salvage: three scavenged jets stepped across the tail: left low, centre mid, right high."""
+    """Salvage: three big scavenged jets in a shallow V. One long jet low on the centreline, a shorter one high each side."""
     return drive_frame() + [
-        B(-0.5, 0.5, 2.2, 3.0, BR_Z0, BR_Z1, "primary", note="saddle under the burner deck"),
+        B(-0.5, 0.5, 1.7, 3.0, BR_Z0, BR_Z1, "primary", note="saddle under the burner deck"),
         B(-2.75, 2.75, 1.3, 1.6, 11.0, 11.4, "secondary", note="painted ladder rung: joins the posts"),
         B(-2.75, 2.75, 1.3, 1.6, 11.8, 12.2, "secondary", note="painted ladder rung: joins the posts"),
-        B(-0.3, 0.3, -0.15, 0.6, 10.0, 12.2, "secondary", note="keel strut down to the belly pad"),
-        CZ(0.7, 1.6, 0.4, 10.2, 12.6, "detail", note="header tank (one side only)"),
-    ] + jet(-1.9, 0.5, 10.4, 14.45, 1.7, body="secondary", lip="primary", tf=0.62, tag="low jet, left") + \
-        jet(0, 1.4, 9.9, 13.9, 1.7, tf=0.62, tag="middle jet") + \
-        jet(1.9, 2.3, 9.9, 13.3, 1.7, body="secondary", lip="primary", tf=0.62, tag="high jet, right")
+        CZ(0.6, 1.3, 0.2, 10.2, 12.6, "detail", note="header tank (one side only)"),
+    ] + jet(0, 0.75, 9.9, 14.45, 1.9, body="secondary", lip="primary", tf=0.76, tag="centre jet, low") + \
+        jet(1.95, 1.85, 10.2, 13.7, 1.9, m=True, tf=0.76, tag="outer jet, high")
 
 
 def e1_vector_blade():
@@ -739,6 +755,7 @@ def e1_vector_blade():
         B(1.6, 2.3, 0.65, 2.35, 10.15, 10.5, "detail", m=True, note="ramp intake mouth"),
         W("out_front", 0.9, 2.4, 0.5, 2.5, 12.6, 13.8, "secondary", m=True, note="boat tail"),
         B(2.4, 2.75, 1.4, 2.0, 11.0, 12.2, "primary", m=True, note="stub to the post"),
+        B(-1.7, 1.7, -0.15, 0.5, 10.4, 13.2, "primary", note="belly skirt down to the belly pad"),
         B(0.9, 0.98, 0.4, 2.6, 13.0, 13.3, "neon", m=True, note="heat strip"),
     ]
 
@@ -749,21 +766,22 @@ def saddle():
 
 
 def b_stinger():
-    """Record: one long thin burner that ends in a flared bell."""
+    """Record: the one long thin tube, 0.8 across, ending in a small flared bell at the back of the slot."""
     return saddle() + [
-        B(-0.35, 0.35, 3.45, 3.7, 11.0, 12.4, "primary", note="pedestal"),
-        CZ(0.85, 0, 4.15, 10.3, 10.9, "detail", note="intake mouth"),
-        CZ(1.1, 0, 4.15, 10.45, 14.0, "secondary", note="stinger body"),
-        CZ(0.8, 0, 4.15, 14.0, 15.4, "detail", note="long nozzle"),
-        CZ(1.25, 0, 4.15, 15.2, 16.25, "detail", note="flared bell"),
-        CZ(0.95, 0, 4.15, 16.1, 16.5, "thrust", note="thrust"),
-        B(0.52, 0.62, 4.0, 4.3, 11.0, 13.6, "neon", m=True, note="heat strip"),
+        B(-0.3, 0.3, 3.45, 3.75, 11.0, 12.4, "primary", note="pedestal"),
+        CZ(0.6, 0, 4.1, 10.3, 10.9, "detail", note="intake mouth"),
+        CZ(0.8, 0, 4.1, 10.45, 14.0, "secondary", note="stinger body, 0.8 across"),
+        CZ(0.55, 0, 4.1, 14.0, 15.5, "detail", note="long nozzle"),
+        CZ(1.0, 0, 4.1, 15.3, 16.25, "detail", note="flared bell"),
+        CZ(0.7, 0, 4.1, 16.1, 16.5, "thrust", note="thrust"),
+        B(0.38, 0.48, 3.95, 4.25, 11.0, 13.6, "neon", m=True, note="heat strip"),
     ]
 
 
 def b_twin_cans():
+    """Works: two fat cans, 1.8 across, touching."""
     return saddle() + [B(-0.3, 0.3, 3.45, 4.6, 11.0, 13.2, "primary", note="yoke")] + \
-        jet(1.0, 4.3, 10.5, 15.0, 1.6, body="secondary", lip="primary", m=True, tag="burner can")
+        jet(0.92, 4.2, 10.5, 15.0, 1.8, body="secondary", lip="primary", m=True, tag="burner can")
 
 
 def b_slot():
@@ -780,43 +798,50 @@ def b_slot():
 
 
 def b_staged():
+    """Privateer: a short, fat stepped cone. Three stages grow to a bell that fills the 2.0 stud slot height."""
     return saddle() + [
-        B(-0.5, 0.5, 3.45, 3.7, 11.0, 12.4, "primary", note="pedestal"),
-        CZ(0.9, 0, 4.2, 10.4, 11.0, "detail", note="intake mouth"),
-        CZ(1.1, 0, 4.2, 10.6, 11.7, "primary", note="stage one"),
-        CZ(1.4, 0, 4.2, 11.7, 12.7, "secondary", note="stage two"),
-        CZ(1.7, 0, 4.2, 12.7, 13.7, "detail", note="stage three bell"),
-        CZ(1.05, 0, 4.2, 13.6, 14.0, "thrust", note="thrust"),
+        B(-0.5, 0.5, 3.45, 3.8, 11.0, 12.4, "primary", note="pedestal"),
+        CZ(0.8, 0, 4.24, 10.3, 10.9, "detail", note="intake mouth"),
+        CZ(1.0, 0, 4.24, 10.5, 11.6, "primary", note="stage one"),
+        CZ(1.45, 0, 4.24, 11.6, 12.8, "secondary", note="stage two"),
+        CZ(1.9, 0, 4.24, 12.8, 14.5, "primary", note="stage three bell: full slot height"),
+        CZ(1.6, 0, 4.24, 14.3, 14.8, "detail", note="bell rim"),
+        CZ(1.1, 0, 4.24, 14.6, 15.0, "thrust", note="thrust: small glow inside a thick dark rim, so it never matches a main-drive nozzle"),
     ]
 
 
 def b_bottles():
-    """Salvage: four painted rocket bottles in an arch, outer pair low, inner pair high."""
+    """Salvage: four thin painted rocket bottles in an arch. Pointed noses, no intake, tiny nozzles well aft of the drive."""
     ps = saddle() + [
         B(-2.2, 2.2, 3.45, 3.55, 11.0, 12.4, "detail", note="rack plate"),
-        B(1.2, 1.32, 3.55, 4.9, 11.9, 12.1, "detail", m=True, note="thin strap"),
+        B(1.13, 1.25, 3.55, 4.9, 11.9, 12.1, "detail", m=True, note="thin strap"),
+        B(-0.25, 0.25, 3.55, 4.4, 11.8, 12.2, "detail", note="cradle under the inner pair"),
     ]
-    for x, y, z0, z1, ch in ((1.8, 4.1, 10.8, 14.2, "secondary"), (0.72, 4.62, 11.5, 15.0, "primary")):
+    for x, y, z0, z1, ch, cap in ((1.75, 4.0, 11.0, 15.0, "secondary", "primary"), (0.62, 4.6, 11.6, 15.7, "primary", "secondary")):
         ps += [
-            CZ(1.1, x, y, z0, z1, ch, True, "rocket bottle"),
-            CZ(0.7, x, y, z0 - 0.35, z0 + 0.3, "detail", True, "bottle feed cap"),
-            CZ(0.9, x, y, z1, z1 + 0.6, "detail", True, "bottle nozzle"),
-            CZ(0.7, x, y, z1 + 0.45, z1 + 0.85, "thrust", True, "thrust"),
+            CZ(0.28, x, y, z0 - 0.8, z0 - 0.35, cap, True, "bottle nose point"),
+            CZ(0.58, x, y, z0 - 0.4, z0, cap, True, "bottle nose cap"),
+            CZ(0.9, x, y, z0, z1, ch, True, "rocket bottle, 0.9 across"),
+            CZ(0.95, x, y, z0 + 1.0, z0 + 1.35, "detail", True, "bottle band"),
+            CZ(0.55, x, y, z1, z1 + 0.4, "detail", True, "bottle neck"),
+            CZ(0.45, x, y, z1 + 0.3, z1 + 0.6, "thrust", True, "thrust"),
         ]
     return ps
 
 
 def b_aerospike():
-    """Interceptor: a fat plug body whose thrust is a glowing stepped spike."""
+    """Interceptor: a square plug body with four vanes and a square rim. Its thrust is a glowing stepped spike."""
     return saddle() + [
-        B(-0.5, 0.5, 3.45, 3.6, 11.0, 12.4, "primary", note="pedestal"),
-        CZ(1.1, 0, 4.3, 10.3, 10.9, "detail", note="intake mouth"),
-        CZ(1.7, 0, 4.3, 10.5, 13.2, "secondary", note="plug body"),
-        CZ(1.76, 0, 4.3, 11.3, 12.3, "primary", note="band"),
-        CZ(1.45, 0, 4.3, 13.1, 13.8, "detail", note="nozzle rim"),
-        CZ(1.15, 0, 4.3, 13.7, 14.7, "thrust", note="spike stage one"),
-        CZ(0.75, 0, 4.3, 14.7, 15.6, "thrust", note="spike stage two"),
-        CZ(0.38, 0, 4.3, 15.6, 16.3, "thrust", note="spike tip"),
+        B(-0.5, 0.5, 3.45, 3.55, 11.0, 12.4, "primary", note="pedestal"),
+        B(-0.5, 0.5, 3.6, 4.6, 10.3, 10.8, "detail", note="square intake mouth"),
+        B(-0.7, 0.7, 3.45, 4.75, 10.6, 13.0, "secondary", note="square plug body"),
+        B(-0.76, 0.76, 3.4, 4.8, 11.4, 12.0, "primary", note="band"),
+        W("out_back", 0.7, 2.0, 4.0, 4.2, 10.9, 13.4, "primary", m=True, note="side vane: swept delta"),
+        RB([0.16, 0.9, 2.2], [0.95, 4.8, 12.1], [0, 0, -45], "primary", m=True, note="upper vane, canted 45 degrees"),
+        B(-0.62, 0.62, 3.48, 4.72, 13.0, 13.5, "detail", note="square nozzle rim"),
+        CZ(1.0, 0, 4.1, 13.4, 14.4, "thrust", note="spike stage one"),
+        CZ(0.65, 0, 4.1, 14.4, 15.4, "thrust", note="spike stage two"),
+        CZ(0.32, 0, 4.1, 15.4, 16.3, "thrust", note="spike tip"),
     ]
 
 
@@ -825,39 +850,45 @@ def brake_lug():
     return [B(HULL_X, 3.4, 1.3, 2.1, 10.9, 12.3, "detail", m=True, note="PAD lug: lands on the drive hardpoint post")]
 
 
+# Every airbrake keeps clear of the wing-engine exhaust lane (X 3.4..5.2, Y 1.9..3.3): arms run under it at Y 1.85 or
+# lower, and slabs, flaps, louvres and paddles start at X 5.3. Each option has its own jet layout, not only its own plate.
 def s_clamshell():
-    """Works: two flaps open like a jaw. The control jet sits outboard of them on the hinge bar."""
+    """Works: a jaw. Two flaps open 30 degrees each, with the control jet between them at the hinge."""
     return brake_lug() + [
-        B(3.4, 4.0, 1.2, 1.8, 9.9, 12.0, "primary", m=True, note="hinge arm"),
-        B(3.9, 6.6, 1.32, 1.68, 9.6, 10.1, "detail", m=True, note="hinge bar: carries the jet"),
-        RB([2.4, 0.2, 4.4], [5.1, 2.1, 11.9], [-14, 0, 0], "primary", m=True, note="upper flap, open"),
-        RB([2.4, 0.2, 4.4], [5.1, 0.9, 11.9], [14, 0, 0], "secondary", m=True, note="lower flap, open"),
-    ] + control_jet(7.1, 1.5, 9.8, 14.6)
+        B(3.4, 5.3, 1.3, 1.85, 10.0, 12.2, "primary", m=True, note="hinge arm: under the exhaust lane"),
+        B(5.2, 7.8, 1.2, 1.6, 9.8, 10.3, "detail", m=True, note="hinge bar"),
+        RB([2.4, 0.3, 3.3], [6.5, 2.3, 11.43], [-30, 0, 0], "primary", m=True, note="upper flap, open 30 degrees"),
+        RB([2.4, 0.3, 3.3], [6.5, 0.5, 11.43], [30, 0, 0], "secondary", m=True, note="lower flap, open 30 degrees"),
+        B(7.8, 7.9, 1.2, 1.6, 9.8, 10.9, "thrust", m=True, note="outboard vent on the hinge bar"),
+    ] + control_jet(6.5, 1.4, 9.3, 13.6, top=False, side=False)
 
 
 def s_petal():
-    """Record: one tall slab each side, swung out, with the control jet on its trailing edge."""
+    """Record: one tall slab each side, swung out, with two small jets on its trailing edge, top and bottom. No tip pod."""
     return brake_lug() + [
-        B(3.4, 4.5, 1.35, 2.05, 11.0, 12.2, "primary", m=True, note="hinge arm"),
-        RB([0.25, 2.3, 4.0], [4.55, 1.45, 11.2], [0, 22, 0], "primary", m=True, note="petal slab, swung out"),
-        RB([0.32, 0.3, 4.0], [4.55, 2.75, 11.2], [0, 22, 0], "secondary", m=True, note="slab cap"),
-        B(5.0, 5.6, 0.7, 1.3, 12.2, 13.0, "detail", m=True, note="jet clamp on the slab trailing edge"),
-    ] + control_jet(6.2, 1.0, 11.2, 14.8)
+        B(3.4, 5.9, 1.3, 1.85, 11.0, 12.2, "primary", m=True, note="hinge arm: under the exhaust lane"),
+        RB([0.25, 2.7, 4.0], [6.2, 1.5, 12.2], [0, 22, 0], "primary", m=True, note="petal slab, swung out"),
+        RB([0.32, 0.3, 4.0], [6.2, 3.0, 12.2], [0, 22, 0], "secondary", m=True, note="slab cap"),
+    ] + control_jet(7.05, 2.4, 12.6, 15.3, d=0.9, top=True, side=False) + \
+        control_jet(7.05, 0.6, 12.6, 15.3, d=0.9, top=False, side=True)
 
 
 def s_vane_cascade():
-    """Prototype: three louvres on a boom, and a tip jet that fires up or down."""
-    ps = brake_lug() + [B(3.4, 6.1, 1.45, 1.95, 11.0, 12.2, "primary", m=True, note="boom")]
-    for x in (4.0, 4.8, 5.6):
-        ps.append(RB([0.2, 2.6, 3.0], [x, 1.7, 12.3], [0, 20, 0], "secondary", m=True, note="louvre vane"))
-    ps.append(B(7.27, 7.43, 0.6, 2.2, 11.3, 11.9, "thrust", m=True, note="outboard vent"))
-    return ps + lift_jet(6.7, 11.6, 3.1, -0.4, 1.3, body="primary", m=True, tag="tip control jet", both=True)
+    """Prototype: three louvres behind a boom, and a tip jet that fires up or down."""
+    ps = brake_lug() + [
+        B(3.4, 6.8, 1.3, 1.85, 11.0, 12.2, "primary", m=True, note="boom: under the exhaust lane"),
+        B(5.4, 6.9, 1.4, 1.8, 12.1, 12.5, "detail", m=True, note="louvre rail"),
+    ]
+    for x in (5.95, 6.6, 7.25):
+        ps.append(RB([0.2, 2.6, 2.8], [x, 1.6, 13.6], [0, 20, 0], "secondary", m=True, note="louvre vane"))
+    ps.append(B(7.82, 7.92, 0.6, 2.2, 11.3, 11.9, "thrust", m=True, note="outboard vent"))
+    return ps + lift_jet(7.25, 11.6, 3.1, -0.4, 1.2, body="primary", m=True, tag="tip control jet", both=True)
 
 
 def s_outrigger():
     """Privateer: long boom, a boxed vectoring lift jet, a weather vane. Vents glow on top and outboard."""
     return brake_lug() + [
-        B(3.4, 6.6, 1.4, 2.0, 11.0, 12.2, "primary", m=True, note="outrigger boom"),
+        B(3.4, 6.6, 1.3, 1.85, 11.0, 12.2, "primary", m=True, note="outrigger boom: under the exhaust lane"),
         B(7.2, 7.4, 0.5, 2.3, 12.5, 14.6, "primary", m=True, note="weather vane"),
         B(7.15, 7.45, 2.0, 2.3, 12.6, 14.6, "neon", m=True, note="vane light"),
         B(6.4, 7.9, 2.3, 3.1, 10.7, 12.5, "primary", m=True, note="vectoring cowl"),
@@ -867,26 +898,25 @@ def s_outrigger():
 
 
 def s_paddle():
-    """Salvage: a square paddle face on to the air, with a fat bottle jet outboard."""
+    """Salvage: a square paddle face on to the air, with the control jet behind its centre."""
     return brake_lug() + [
-        B(3.4, 5.2, 1.45, 1.95, 11.0, 12.0, "primary", m=True, note="arm"),
-        B(4.8, 5.4, 1.4, 2.0, 12.0, 12.6, "detail", m=True, note="paddle bracket"),
-        B(3.95, 6.35, 0.3, 2.9, 12.6, 12.85, "primary", m=True, note="drag paddle, face on to the air"),
-        B(4.2, 4.9, 0.6, 1.2, 12.55, 12.9, "detail", m=True, note="vent"),
-        B(5.4, 6.1, 2.0, 2.6, 12.55, 12.9, "detail", m=True, note="vent"),
-        B(4.1, 5.3, 1.9, 2.7, 12.85, 12.92, "secondary", note="patch plate (one side only)"),
-        B(6.3, 6.6, 1.2, 1.8, 11.6, 12.8, "detail", m=True, note="jet clamp"),
-    ] + control_jet(7.2, 1.5, 10.8, 14.2)
+        B(3.4, 5.4, 1.3, 1.85, 11.0, 12.0, "primary", m=True, note="arm: under the exhaust lane"),
+        B(5.3, 7.7, 0.3, 2.9, 12.0, 12.25, "primary", m=True, note="drag paddle, face on to the air"),
+        B(6.15, 6.85, 1.25, 1.95, 11.9, 12.05, "detail", m=True, note="jet intake through the paddle"),
+        B(5.5, 6.0, 0.5, 1.0, 11.95, 12.3, "detail", m=True, note="vent hole"),
+        B(7.0, 7.5, 2.2, 2.7, 11.95, 12.3, "detail", m=True, note="vent hole"),
+        B(5.5, 6.4, 2.0, 2.7, 12.25, 12.32, "secondary", note="patch plate (one side only)"),
+        B(7.7, 7.8, 1.0, 2.2, 11.9, 12.35, "thrust", m=True, note="outboard vent on the paddle edge"),
+    ] + control_jet(6.5, 1.6, 12.25, 14.9, top=True, side=False)
 
 
 def s_droop():
-    """Interceptor: drooped tailerons with a control jet low on each tip."""
+    """Interceptor: tailerons drooped 40 degrees, so the control jet pod on each tip hangs at sill height."""
     return brake_lug() + [
-        B(3.4, 4.0, 1.35, 2.05, 10.6, 12.6, "primary", m=True, note="root block"),
-        RB([3.6, 0.25, 3.4], [5.0, 1.1, 11.9], [0, 0, -25], "primary", m=True, note="drooped taileron"),
-        RB([3.6, 0.27, 0.9], [5.0, 1.1, 13.9], [0, 0, -25], "secondary", m=True, note="elevon"),
-        B(6.3, 6.6, 0.1, 0.6, 11.4, 12.6, "detail", m=True, note="pod clamp"),
-    ] + control_jet(7.15, 0.3, 10.2, 14.8)
+        B(3.4, 4.0, 1.3, 1.85, 10.6, 12.6, "primary", m=True, note="root block"),
+        RB([2.9, 0.25, 3.4], [4.97, 0.85, 11.9], [0, 0, -40], "primary", m=True, note="taileron, drooped 40 degrees"),
+        RB([2.9, 0.27, 0.9], [4.97, 0.85, 13.9], [0, 0, -40], "secondary", m=True, note="elevon"),
+    ] + control_jet(6.5, -0.05, 10.4, 14.8)
 
 
 # ---------------------------------------------------------------- RearSpoiler: tail fins
@@ -1038,11 +1068,11 @@ COCKPITS = {
     "manta": {"name": "Manta", "culture": "Prototype", "kit": "proto", "parts": cockpit_manta(),
               "note": "Flat ray. Wafer hull 1.3 thick, wide low blister, two horns above the deck reaching forward."},
     "twinboom": {"name": "Twinboom", "culture": "Privateer", "kit": "privateer", "parts": cockpit_twinboom(),
-                 "note": "Narrow pod with an upright greenhouse between two low box rails that carry a tail yoke."},
+                 "note": "Slim pod with a raked wedge canopy far forward, between two booms that run on alone to a tail yoke."},
     "bubble": {"name": "Bubble", "culture": "Salvage", "kit": "salvage", "parts": cockpit_bubble(),
                "note": "Big glass dome far forward on a keel beam, a round pressure tank behind it, side tanks on a flat shelf."},
     "arrowhead": {"name": "Arrowhead", "culture": "Interceptor", "kit": "interceptor", "parts": cockpit_arrowhead(),
-                  "note": "Arrow-shaped hull with swept barbs. Triangular canopy, two tall canted fletches and a ventral one."},
+                  "note": "Arrow-shaped hull with swept barbs. Triangular canopy, two low canted deck strakes and a short ventral fletch."},
 }
 
 
@@ -1061,7 +1091,7 @@ MODULES = {
         "twin_drive": mod("Twin Drive", WRK, e1_twin_drive(), "Two big barrels wide apart behind square box intakes."),
         "slot_burner": mod("Slot Burner", PRO, e1_slot_burner(), "One flat wide fishtail burner under a dorsal spine."),
         "quad_cluster": mod("Quad Cluster", PRI, e1_quad_cluster(), "Four jets in a 2 x 2 block."),
-        "rack_triple": mod("Rack Triple", SAL, e1_rack_triple(), "Three scavenged jets stepped across the tail, left low to right high."),
+        "rack_triple": mod("Rack Triple", SAL, e1_rack_triple(), "Three big scavenged jets in a shallow V: one low on the centreline, one high each side."),
         "vector_blade": mod("Vector Blade", INT, e1_vector_blade(), "One tall thin vertical slot nozzle with ramp intakes."),
     },
     "Engine2": {
@@ -1073,20 +1103,20 @@ MODULES = {
         "chine": mod("Chine Ramjets", INT, e2_chine(), "Faceted, sloped outer face, swept ramp lip, square nozzle."),
     },
     "Stabilisers": {
-        "petal": mod("Petal Slabs", REC, s_petal(), "One tall slab each side, swung out, jet on its trailing edge."),
-        "clamshell": mod("Clamshell", WRK, s_clamshell(), "Two flaps open like a jaw, jet outboard on the hinge bar."),
-        "vane_cascade": mod("Vane Cascade", PRO, s_vane_cascade(), "Three louvres on a boom, tip jet that fires up or down."),
+        "petal": mod("Petal Slabs", REC, s_petal(), "One tall slab each side, swung out, two small jets on its trailing edge."),
+        "clamshell": mod("Clamshell", WRK, s_clamshell(), "Two flaps open 30 degrees like a jaw, jet between them at the hinge."),
+        "vane_cascade": mod("Vane Cascade", PRO, s_vane_cascade(), "Three louvres behind a boom, tip jet that fires up or down."),
         "outrigger": mod("Outrigger Jets", PRI, s_outrigger(), "Long boom, boxed vectoring lift jet, weather vane."),
-        "paddle": mod("Drag Paddles", SAL, s_paddle(), "Square paddle face on to the air, fat bottle jet outboard."),
-        "droop": mod("Droop Tailerons", INT, s_droop(), "Drooped tailerons with a control jet low on each tip."),
+        "paddle": mod("Drag Paddles", SAL, s_paddle(), "Square paddle face on to the air, jet behind its centre."),
+        "droop": mod("Droop Tailerons", INT, s_droop(), "Tailerons drooped 40 degrees, a jet pod at sill height on each tip."),
     },
     "Boost": {
-        "stinger": mod("Stinger", REC, b_stinger(), "One long thin burner with a flared bell."),
-        "twin_cans": mod("Twin Cans", WRK, b_twin_cans(), "Two afterburner cans."),
+        "stinger": mod("Stinger", REC, b_stinger(), "One long thin tube, 0.8 across, with a small flared bell."),
+        "twin_cans": mod("Twin Cans", WRK, b_twin_cans(), "Two fat cans, touching."),
         "slot": mod("Slot Afterburner", PRO, b_slot(), "Flat fishtail burner."),
-        "staged": mod("Staged Bell", PRI, b_staged(), "Three stages, each fatter than the last."),
-        "bottles": mod("Rocket Bottles", SAL, b_bottles(), "Four painted bottles in an arch."),
-        "aerospike": mod("Aerospike", INT, b_aerospike(), "Fat plug body, glowing stepped spike."),
+        "staged": mod("Staged Bell", PRI, b_staged(), "Short fat stepped cone, three stages up to a full-height bell."),
+        "bottles": mod("Rocket Bottles", SAL, b_bottles(), "Four thin pointed bottles in an arch, firing well aft."),
+        "aerospike": mod("Aerospike", INT, b_aerospike(), "Square plug body, four vanes, glowing stepped spike."),
     },
     "FrontBody": {
         "spear": mod("Spear", REC, prow_spear(), "One stepped lance."),
@@ -1193,7 +1223,12 @@ COCKPIT_FREE_TARGET = 0.35    # free-outline score between any two fuselages (th
 COCKPIT_WHOLE_TARGET = 0.35   # whole-outline score: pairs under it are listed as notes, not failures.
 #                               Every fuselage shares the ring frames, the four pads and the wing-root width,
 #                               so the plan views overlap by design (see dart-frame.md, open risks).
-MIN_CONTROL_JET = 0.8         # smallest allowed control-jet thrust, across
+MIN_CONTROL_JET = 0.5         # smallest allowed control-jet thrust, across
+# Nozzle size ladder: allowed diameter of every round aft-facing glow, per slot. Main-drive glows are 1.4 or more,
+# boost and wing-engine glows 1.15 or less, control jets 0.65 or less, so the tail never reads as a bundle of equal pipes.
+LADDER = {"Engine1": (1.4, 9.0), "Boost": (0.3, 1.15), "Engine2": (0.85, 1.15), "Stabilisers": (0.5, 0.65)}
+BOOST_AFT = 15.0              # every afterburner glow ends at Z 15 or further aft, behind the main-drive nozzles (Z 14.5)
+LANE = (3.4, 5.2, 1.9, 3.3)   # wing-engine exhaust lane (X0, X1, Y0, Y1): no airbrake part may stand in it
 
 
 def _aabb(p):
@@ -1257,7 +1292,10 @@ def self_check(spec):
         for z in (Z_FRONT + 0.5, Z_FRONT + 1.0, Z_REAR - 1.0, Z_REAR - 0.5):
             if not _has_section(e["parts"], z, True):
                 problems.append("neck: cockpit %s is thinner than 2.2 x 1.9 at Z %.1f" % (c, z))
+    sys.path.insert(0, os.path.normpath(os.path.join(HERE, "..")))
+    import vbspec
     # 3. Airbrakes are jet hardware: a real control jet, and a glow that faces up or outboard.
+    #    They also keep out of the wing-engine exhaust lane, so the wing-engine glow shows from a low chase camera.
     for m, e in mods["Stabilisers"].items():
         glow = [p for p in e["parts"] if p["ch"] == "thrust"]
         widest = max([min(p["size"][0], p["size"][1]) if p["shape"] == "cyl_z" else min(p["size"][0], p["size"][2])
@@ -1266,9 +1304,25 @@ def self_check(spec):
             problems.append("stabiliser: %s control-jet thrust is %.2f across, want %.1f or more" % (m, widest, MIN_CONTROL_JET))
         if not any("vent" in (p.get("note") or "") for p in glow):
             problems.append("stabiliser: %s has no glow facing up or outboard" % m)
-    # 4. Fuselages differ: 0.35 or more on the free outline. Whole-outline pairs under 0.35 are reported as notes.
-    sys.path.insert(0, os.path.normpath(os.path.join(HERE, "..")))
-    import vbspec
+        for p in vbspec.expand_parts(e["parts"]):
+            w, _ = vbspec.world_mesh(p)
+            lo, hi = w.min(axis=0), w.max(axis=0)
+            if hi[0] > LANE[0] + 0.02 and lo[0] < LANE[1] - 0.02 and hi[1] > LANE[2] + 0.02 and lo[1] < LANE[3] - 0.02:
+                problems.append("stabiliser: %s part '%s' stands in the wing-engine exhaust lane" % (m, p.get("note")))
+                break
+    # 4. Nozzle size ladder: round aft-facing glows. Main drive biggest, then boost, wing engines, control jets.
+    round_glow = {s: {m: [min(p["size"][0], p["size"][1]) for p in e["parts"] if p["ch"] == "thrust" and p["shape"] == "cyl_z"]
+                      for m, e in mods[s].items()} for s in LADDER}
+    for s, (lo, hi) in LADDER.items():
+        for m, ds in round_glow[s].items():
+            for d in ds:
+                if d < lo - 1e-6 or d > hi + 1e-6:
+                    problems.append("ladder: %s/%s has a round glow %.2f across, want %.2f to %.2f" % (s, m, d, lo, hi))
+    for m, e in mods["Boost"].items():
+        aft = max(_aabb(p)[5] for p in e["parts"] if p["ch"] == "thrust")
+        if aft < BOOST_AFT - 1e-6:
+            problems.append("ladder: Boost/%s ends at Z %.1f, want %.1f or more so the boost fires behind the main drive" % (m, aft, BOOST_AFT))
+    # 5. Fuselages differ: 0.35 or more on the free outline. Whole-outline pairs under 0.35 are reported as notes.
     table = vbspec.distinct_table({c: vbspec.expand_parts(e["parts"]) for c, e in spec["cockpits"].items()})
     for (a, b), (free, raw) in sorted(table.items(), key=lambda kv: kv[1][1]):
         if free < COCKPIT_FREE_TARGET:

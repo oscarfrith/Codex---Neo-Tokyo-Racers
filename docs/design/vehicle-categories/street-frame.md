@@ -1,6 +1,6 @@
-# Street: frame standard (round 2, after critic fixes)
+# Street: frame standard (round 2, after the second review)
 
-Status: design exploration, round 2, checked 2026-10-02. Not approved, not game content. Spec: [street.json](../../../scripts/vehicle_blockouts/specs/street.json), written by [gen/street.py](../../../scripts/vehicle_blockouts/gen/street.py). Previews: `scripts/vehicle_blockouts/previews/street/`. Brief: [contract](../../../scripts/vehicle_blockouts/CONTRACT.md).
+Status: design exploration, round 2, second review fixes applied 2026-10-02. Not approved, not game content. Spec: [street.json](../../../scripts/vehicle_blockouts/specs/street.json), written by [gen/street.py](../../../scripts/vehicle_blockouts/gen/street.py). Previews: `scripts/vehicle_blockouts/previews/street/`. Brief: [contract](../../../scripts/vehicle_blockouts/CONTRACT.md).
 
 Tuner and import cars on jets. No wheels, rotors, discs or rings anywhere. One compact body: a cabin, a front clip and a rear clip. The body is 20.8 long (Z -10.4 to 10.4) and 7.9 to 11.2 wide by clip. Arch jets reach X 6.1, so every build is 12.0 to 12.2 wide. Blockout content: 5 cockpits, 5 signature kits, 50 modules (5 per slot), 15 builds. Root space: +X right, +Y up, forward is -Z, studs. Boxes read `X; Y; Z`. `±` spans both sides. "Each side" means one box per side.
 
@@ -29,7 +29,7 @@ Every cabin has the same door section. Only the greenhouse changes. No solid roo
 | Id | Name | Shape | Greenhouse |
 |---|---|---|---|
 | `touge` | Touge | 90s coupé | 6.0 wide, top Y 4.6 (crown 4.8). Raked screen Z -4.6..-1.5, short roof, rear glass to Z 4.85, low sail fairings along the boot deck |
-| `pocket` | Pocket | Hot hatch | 7.2 wide, top Y 5.9. Steep screen Z -4.8..-3.2, roof ends at Z 3.0, thick C-pillar, steep hatch glass, two buttresses down to Z 6.0, roof visor |
+| `pocket` | Pocket | Hot hatch | 7.2 wide, top Y 5.9. Steep screen Z -4.8..-3.2, solid roof to Z 4.85. Over the bay: roof rails and a hoop to Z 6.4, open quarter window, C-pillar, steep hatch buttresses down to the deck at Z 8.8, roof spoiler. Two-box profile |
 | `syndicate` | Syndicate | Sports saloon | 6.6 wide, top Y 5.25. Screen Z -4.2..-2.0, formal C-pillar, notch rear screen to Z 4.7 |
 | `kei` | Roadster | Open targa roadster | Full-width framed screen (7.2 wide, top Y 4.6), short side glass, full-width targa hoop to Y 4.75, two buttresses at X 2.7..3.85 down to Z 8.9 |
 | `estate` | Estate | Wagon | 6.3 wide, top Y 5.05 (rails 5.35). Set-back screen, solid roof to Z 4.85. Over the bay the roofline is an open frame: side rails, load-bay side glass, D-pillars, rear hoop, roof rails |
@@ -37,11 +37,11 @@ Every cabin has the same door section. Only the greenhouse changes. No solid roo
 ## The four fundamentals
 
 - **Engine1, Bonnet Engine.** Stands on a dark pad in the bonnet. Every option ends at Z -6.45, so the Pocket screen is 1.6 clear. Outlets face sideways or up and out over the fenders, 0.8 across. None fires at the screen.
-- **Engine2, Tail Engine.** Lies in the open bay. Each option has an intake that stands above the deck (scoops, airbox, ram hood, tower), a body, and a round nozzle in the rear panel. The Tail Letterbox has a slot nozzle 0.6 proud.
-- **Stabilisers, Arch Jets.** Four units, one in each blanked arch. Each has an intake at the front and a nozzle at the back. Each has a thrust part outboard of X 5.6, so it shows in plan past the widest fender.
+- **Engine2, Tail Engine.** Lies in the open bay. Each option has an intake that stands above the deck (scoops, airbox, ram hood, tower), a body, and a round nozzle in the rear panel. The Tail Letterbox has a slot nozzle 0.6 proud. Every option now fills the bay: 4.2 to 4.7 wide.
+- **Stabilisers, Arch Jets.** Four units, one in each blanked arch. Each has an intake at the front and a nozzle at the back. Each has a thrust part outboard of X 5.6, so it shows in plan past the widest fender. None hangs wholly below the sill: every unit reaches into the arch.
 - **Boost, Exhaust Burner.** Its own shape language: square cans with a flared square petal, 2.1 to 2.3 behind the tail face. Bamboo Stacks are the exception: tall pipes that lean back.
 
-Lowest free-outline scores (whole outline in brackets): Engine1 0.43 (0.26), Engine2 0.39 (0.31), Stabilisers 0.48 (0.41), Boost 0.59 (0.45). Target 0.35.
+Lowest free-outline scores (whole outline in brackets): Engine1 0.43 (0.26), Engine2 0.42 (0.31), Stabilisers 0.41 (0.31), Boost 0.59 (0.45). Target 0.35. The closest arch jets are Blade Ducts and Outrigger Pods.
 
 ## Signature kits
 
@@ -51,9 +51,9 @@ Lowest free-outline scores (whole outline in brackets): Engine1 0.43 (0.26), Eng
 | Kanjo | Pocket | ITB Four: four upright trumpets, side dumps | Quad Row: four small jets in a row, tall airbox | Twin Downjets: two upright nozzles across the arch, ram scoop outboard | Cannon: one big square burner on the right, jet 1.65 x 1.45 |
 | Drift | Syndicate | Big Single: one fat turbine, two leaning dump stacks | Missile Can: one 2.3 turbine, 0.35 above the deck | Vane Cascade: blanked arch, vanes, wide slot jet on a rail | Bamboo Stacks: four tall pipes, 0.7 across, 0.62 tips |
 | Time Attack | Roadster | Bonnet Letterbox: 1.4 tall body, 3.6 x 0.85 ram mouth, side slot jets 0.7 high | Tail Letterbox: ram hood, 3.5 x 0.8 mouth, slot jet 0.7 high | Blade Ducts: canted slot duct, end fence with a glowing rail | Slot Bar: 7.2 x 0.5 slot, 2.1 behind the tail |
-| Rally | Estate | Snorkel: offset turbine, leaning dump stack, snorkel | Over-Under: two stacked turbines, tall intake tower | Outrigger Pods: square pod low and outboard, 1.3 x 0.9 nozzle | Quad Bank: four square burners in one upright bank on the left |
+| Rally | Estate | Snorkel: L-shaped duct on the right with a 1.6 wide scoop at Y 4.4, small low turbine on the left, leaning dump stack | Over-Under: two stacked turbines, tall intake tower, sloped heat shields out to the bay walls (4.5 wide) | Outrigger Pods: square pod at X 4.6..6.0, Y -0.6..0.7, on a body-colour stub wing from the arch wall, 1.3 x 1.2 nozzle | Quad Bank: four square burners in one upright bank on the left |
 
-Body parts by kit (front clip, rear clip, side kit, lip, diffuser, wing). Touge: Pop-Up Wedge, Clean Tail, Slim Skirts, Chin Lip, Valance, Ducktail. Kanjo: Shorty, Bob Tail, Door Boards, Tow Bar, Bare Beam, Twin Fins. Drift: Wide Nose, Wide Tail, Deep Skirts, Intercooler Bumper, Bash Bar, GT Wing. Time Attack: Arrow Nose, Tunnel Tail, Sill Fairings, Splitter and Canards, Finned Diffuser, Swan Neck. Rally: Stage Nose, Stage Tail, Steps and Flaps, Skid Plate, Rear Guard, Box Wing.
+Body parts by kit (front clip, rear clip, side kit, lip, diffuser, wing). Touge: Pop-Up Wedge, Clean Tail, Slim Skirts, Chin Lip, Valance, Ducktail. Kanjo: Shorty, Bob Tail, Door Boards, Tow Bar, Bare Beam, Twin Fins. Drift: Wide Nose, Wide Tail, Deep Skirts, Intercooler Bumper, Bash Bar, GT Wing. Time Attack: Arrow Nose, Tunnel Tail, Sill Fairings, Splitter and Canards, Finned Diffuser, Swan Neck. Rally: Stage Nose, Stage Tail, Steps and Flaps, Skid Plate, Rear Guard, Box Wing. Stage Nose carries its four spot lamps on the bull bar ahead of the grille (tops at Y 2.8), not on the nose top. Valance is 0.9 deep with a rolled lip to Z 10.9 and a centre cut-out. Bare Beam is a 0.5 tube at Y -0.6 on two frame-rail stubs with a centre tow hook. Swan Neck has its blade at Y 5.9..6.15, end plates to Y 6.9 and 0.35 thick pylons raked forward.
 
 ## Datums and hardpoint pads
 
@@ -77,24 +77,24 @@ Body parts by kit (front clip, rear clip, side kit, lip, diffuser, wing). Touge:
 1. The cabin owns all glass and the roofline. Stop the solid roof and centre glass at Z 4.9. Carry a long roofline back as buttresses, side glass or an open frame.
 2. Every cabin ships the same door section and seam plates. Change only the greenhouse. Every clip starts with the collar and carries every pad at the exact position. Do not move a pad. Pads are flat and level.
 3. A short clip still reaches the chin and tail datums (bare beam on rails). A narrow clip carries an arch lip to X 4.6.
-4. Keep the arches empty. Arch jets hang from the inner wall only. Each is a nacelle, longer than wide, with an intake, a nozzle and a glowing part outboard of X 5.6. No discs, rings or hoops.
-5. Bonnet engines stop at Z -6.45 and exhaust sideways or up and out. Tail engines show an intake above the deck, a body and a round nozzle in the rear panel. Nothing above Y 3.0 behind Z 9.15.
+4. Keep the arches empty. Arch jets hang from the inner wall only. Each is a nacelle, longer than wide, with an intake, a nozzle and a glowing part outboard of X 5.6. Its top sits inside the arch, on a faired arm, never on a drop strut. No discs, rings or hoops.
+5. Bonnet engines stop at Z -6.45 and exhaust sideways or up and out. A front clip keeps the nose top clear ahead of them: nothing above Y 2.8 within X ±2.4 ahead of Z -9.6. Tail engines show an intake above the deck, a body and a round nozzle in the rear panel. Nothing above Y 3.0 behind Z 9.15.
 6. Boost is square and flared and stands about 2 studs behind the tail. Do not copy the engine's round nozzles.
 7. Side kits butt the door face along their length. No posts, no floating blades. Fences mount on the kit body.
 8. Wings stand on the wing pads only. Leave a 0.2 to 0.6 gap at every join, bridged by a dark part. Options for one slot must differ in outline: width, length, height or count.
 
 ## Validator
 
-`SPEC street: 0 error(s), 0 warning(s) {'cockpits': 5, 'kits': 5, 'modules': 50, 'builds': 15, 'worst_gap': 0.2, 'min_distinctness': {'Engine1': 0.43, 'Engine2': 0.39, 'Stabilisers': 0.48, 'Boost': 0.59, 'FrontBody': 0.42, 'RearBody': 0.42, 'SidePods': 0.48, 'FrontBumper': 0.41, 'RearBumper': 0.52, 'RearSpoiler': 0.63, 'Cockpit': 0.49}, 'min_distinctness_whole': {'Engine1': 0.26, 'Engine2': 0.31, 'Stabilisers': 0.41, 'Boost': 0.45, 'FrontBody': 0.13, 'RearBody': 0.09, 'SidePods': 0.41, 'FrontBumper': 0.3, 'RearBumper': 0.33, 'RearSpoiler': 0.62, 'Cockpit': 0.14}, ...}`
+`SPEC street: 0 error(s), 0 warning(s) {'cockpits': 5, 'kits': 5, 'modules': 50, 'builds': 15, 'worst_gap': 0.2, 'min_distinctness': {'Engine1': 0.43, 'Engine2': 0.42, 'Stabilisers': 0.41, 'Boost': 0.59, 'FrontBody': 0.42, 'RearBody': 0.42, 'SidePods': 0.48, 'FrontBumper': 0.41, 'RearBumper': 0.52, 'RearSpoiler': 0.59, 'Cockpit': 0.62}, 'min_distinctness_whole': {'Engine1': 0.26, 'Engine2': 0.31, 'Stabilisers': 0.31, 'Boost': 0.45, 'FrontBody': 0.12, 'RearBody': 0.09, 'SidePods': 0.41, 'FrontBumper': 0.3, 'RearBumper': 0.32, 'RearSpoiler': 0.57, 'Cockpit': 0.15}, ...}`
 
-`min_distinctness` is the free outline: the area all options share is removed. `min_distinctness_whole` is the whole outline. Clips and cockpits score low on the whole outline because the collar, pads and door section are shared by design. Builds use 146 to 184 parts and measure 12.0 to 12.2 wide, 5.3 to 8.9 high and 24.1 to 24.8 long. The closest cockpit pair is Pocket and Syndicate (0.49). Tunnel Tail now has an open channel right through each quarter; the closest rear clips are Wide Tail and Stage Tail (0.42).
+`min_distinctness` is the free outline: the area all options share is removed. `min_distinctness_whole` is the whole outline. Clips and cockpits score low on the whole outline because the collar, pads and door section are shared by design. Builds use 152 to 184 parts and measure 12.0 to 12.2 wide, 5.7 to 8.1 high and 24.1 to 24.8 long. The closest cockpit pair is still Pocket and Syndicate, now 0.62 free and 0.23 whole (was 0.49 and 0.14). The lowest whole-outline cockpit pairs are now Touge with Syndicate and Touge with Roadster (0.15). Tunnel Tail now has an open channel right through each quarter; the closest rear clips are Wide Tail and Stage Tail (0.42).
 
 ## Open risks
 
-- The brief lists six cockpits and six cultures. Wedgeback and an Underground kit are not built. A sixth cockpit needs a sixth full kit (ten modules).
+- The brief lists six cockpits and six cultures. Street ships five. Wedgeback and an Underground kit are not built, and Kei became Roadster. A sixth cockpit needs a sixth full kit (ten modules). The integrator should record this or commission it.
 - One body length and one door section. The cars still share a lower body, so cabins differ by roof, glass and buttresses only.
 - Builds are 24.1 to 24.8 long against a brief of about 21. Lips reach Z -12.1 and burners reach Z 12.7. Arch jet tips reach X 6.1, so every build is about 12.2 wide against a brief of about 11. On narrow clips the jets stand up to 1.5 outboard of the arch lip.
-- Wide clips (5.4 to 5.6) still step out from the 4.6 ends of the side kits. The step is a taper, not a blunt face.
-- Cannon and Quad Bank sit on one side and cover part of that side's tail lamp.
-- The Estate reads as a wagon in profile, but its load bay has no roof skin or tailgate. That is the price of an open tail engine.
+- Wide clips (5.4 to 5.6) still step out from the 4.6 ends of the side kits. The step is a taper, not a blunt face. Cannon and Quad Bank sit on one side and cover part of that side's tail lamp.
+- Outrigger Pods and Blade Ducts are now closer in outline (0.41 free, was 0.48 or more). They still differ: a tall square pod with a flared nozzle against a flat canted slot with an end fence.
+- The Estate and the Pocket read as a wagon and a hatch in profile, but the bay under their roof frames has no skin or tailgate. That is the price of an open tail engine. From the front three-quarter view their buttresses hide part of the tail engine.
 - Flat pads cost style: real meshes need curvature that still ends on the pad. Cross-kit pairs are only checked for contact. Five mixed builds give the visual check, including the narrowest clips with both wide side kits.

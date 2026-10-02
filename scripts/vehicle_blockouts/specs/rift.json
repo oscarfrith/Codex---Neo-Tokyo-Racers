@@ -28,7 +28,10 @@
    "rearSeamZ": 6.5,
    "nozzleBayZ": -7.6,
    "podBulkheadZ": 11.5,
-   "tailPanelZ": 14.0
+   "tailPanelZ": 14.0,
+   "podCollarZ": 10.399999999999999,
+   "exhaustLaneInnerX": 5.5,
+   "exhaustLaneEndZ": -2.7
   },
   "slots": {
    "FrontBody": {
@@ -535,12 +538,12 @@
      "shape": "wedge",
      "size": [
       6.0,
-      2.5,
+      2.3,
       2.4
      ],
      "pos": [
       0.0,
-      4.65,
+      4.55,
       -1.8
      ],
      "ch": "glass",
@@ -550,12 +553,12 @@
      "shape": "wedge",
      "size": [
       0.4,
-      2.5,
+      2.3,
       2.4
      ],
      "pos": [
       3.2,
-      4.65,
+      4.55,
       -1.8
      ],
      "ch": "primary",
@@ -571,7 +574,7 @@
      ],
      "pos": [
       0.0,
-      5.75,
+      5.55,
       0.4
      ],
      "ch": "primary",
@@ -581,43 +584,27 @@
      "shape": "block",
      "size": [
       6.5,
-      2.2,
+      2.0,
       2.0
      ],
      "pos": [
       0.0,
-      4.5,
+      4.4,
       0.4
      ],
      "ch": "glass",
      "note": "side glass"
     },
     {
-     "shape": "block",
-     "size": [
-      0.4,
-      2.2,
-      0.4
-     ],
-     "pos": [
-      3.2,
-      4.5,
-      1.2
-     ],
-     "ch": "primary",
-     "mirror": true,
-     "note": "B-pillar"
-    },
-    {
      "shape": "wedge",
      "size": [
-      4.8,
-      2.5,
+      3.4,
+      2.3,
       4.8
      ],
      "pos": [
       0.0,
-      4.65,
+      4.55,
       3.8
      ],
      "ch": "glass",
@@ -626,18 +613,18 @@
       180.0,
       0.0
      ],
-     "note": "fastback glass"
+     "note": "narrow fastback glass"
     },
     {
      "shape": "wedge",
      "size": [
-      1.0,
-      2.5,
+      1.7,
+      2.3,
       4.8
      ],
      "pos": [
-      2.9,
-      4.65,
+      2.55,
+      4.55,
       3.8
      ],
      "ch": "primary",
@@ -647,7 +634,23 @@
       0.0
      ],
      "mirror": true,
-     "note": "sail panel"
+     "note": "wide sail panel"
+    },
+    {
+     "shape": "block",
+     "size": [
+      0.06,
+      0.7,
+      1.2
+     ],
+     "pos": [
+      3.43,
+      4.05,
+      2.3
+     ],
+     "ch": "detail",
+     "mirror": true,
+     "note": "quarter vent on the sail panel"
     },
     {
      "shape": "block",
@@ -658,7 +661,7 @@
      ],
      "pos": [
       0.85,
-      5.93,
+      5.73,
       0.4
      ],
      "ch": "secondary",
@@ -700,89 +703,13 @@
     {
      "shape": "block",
      "size": [
-      4.6,
-      0.14,
-      0.8
-     ],
-     "pos": [
-      0.0,
-      5.602,
-      2.164
-     ],
-     "ch": "detail",
-     "rot": [
-      27.512,
-      0.0,
-      0.0
-     ]
-    },
-    {
-     "shape": "block",
-     "size": [
-      4.6,
-      0.14,
-      0.8
-     ],
-     "pos": [
-      0.0,
-      5.034,
-      3.255
-     ],
-     "ch": "detail",
-     "rot": [
-      27.512,
-      0.0,
-      0.0
-     ]
-    },
-    {
-     "shape": "block",
-     "size": [
-      4.6,
-      0.14,
-      0.8
-     ],
-     "pos": [
-      0.0,
-      4.466,
-      4.345
-     ],
-     "ch": "detail",
-     "rot": [
-      27.512,
-      0.0,
-      0.0
-     ]
-    },
-    {
-     "shape": "block",
-     "size": [
-      4.6,
-      0.14,
-      0.8
-     ],
-     "pos": [
-      0.0,
-      3.898,
-      5.436
-     ],
-     "ch": "detail",
-     "rot": [
-      27.512,
-      0.0,
-      0.0
-     ]
-    },
-    {
-     "shape": "block",
-     "size": [
       1.4,
-      2.3,
+      2.1,
       0.9
      ],
      "pos": [
       -1.6,
-      2.95,
+      2.85,
       0.35
      ],
      "ch": "driver"
@@ -796,7 +723,7 @@
      ],
      "pos": [
       -1.6,
-      4.6,
+      4.4,
       0.3
      ],
      "ch": "driver"
@@ -903,29 +830,29 @@
     {
      "shape": "wedge",
      "size": [
-      5.0,
-      2.2,
-      1.8
+      5.2,
+      2.5,
+      1.1
      ],
      "pos": [
       0.0,
-      4.5,
-      -2.3
+      4.65,
+      -2.45
      ],
      "ch": "glass",
-     "note": "raked windscreen"
+     "note": "upright windscreen"
     },
     {
      "shape": "wedge",
      "size": [
       0.4,
-      2.2,
-      1.8
+      2.5,
+      1.1
      ],
      "pos": [
-      2.7,
-      4.5,
-      -2.3
+      2.8,
+      4.65,
+      -2.45
      ],
      "ch": "primary",
      "mirror": true,
@@ -934,29 +861,29 @@
     {
      "shape": "block",
      "size": [
-      5.8,
-      0.35,
-      2.8
+      6.0,
+      0.4,
+      4.2
      ],
      "pos": [
       0.0,
-      5.425,
-      0.0
+      6.1,
+      -0.3
      ],
      "ch": "secondary",
-     "note": "squared contrast roof"
+     "note": "squared contrast roof with a visor peak"
     },
     {
      "shape": "block",
      "size": [
-      5.5,
-      1.85,
-      1.9
+      5.7,
+      2.5,
+      2.5
      ],
      "pos": [
       0.0,
-      4.325,
-      -0.45
+      4.65,
+      -0.65
      ],
      "ch": "glass",
      "note": "side glass"
@@ -964,73 +891,62 @@
     {
      "shape": "block",
      "size": [
-      5.8,
-      1.85,
-      0.9
+      6.0,
+      2.5,
+      1.2
      ],
      "pos": [
       0.0,
-      4.325,
-      0.95
+      4.65,
+      1.2
      ],
      "ch": "primary",
-     "note": "formal C-pillar"
+     "note": "thick formal C-pillar"
     },
     {
-     "shape": "wedge",
+     "shape": "block",
      "size": [
-      4.6,
-      2.2,
-      1.4
+      4.2,
+      1.6,
+      0.08
      ],
      "pos": [
       0.0,
-      4.5,
-      2.1
+      4.8,
+      1.84
      ],
      "ch": "glass",
-     "rot": [
-      0.0,
-      180.0,
-      0.0
-     ],
-     "note": "raked rear window"
+     "note": "vertical rear screen"
     },
     {
-     "shape": "wedge",
+     "shape": "block",
      "size": [
-      0.6,
-      2.2,
-      1.4
+      4.8,
+      0.08,
+      1.1
      ],
      "pos": [
-      2.6,
-      4.5,
-      2.1
-     ],
-     "ch": "primary",
-     "rot": [
       0.0,
-      180.0,
-      0.0
+      3.44,
+      -4.05
      ],
-     "mirror": true,
-     "note": "rear pillar"
+     "ch": "detail",
+     "note": "cowl vent grille"
     },
     {
      "shape": "block",
      "size": [
       3.2,
       0.06,
-      2.8
+      3.4
      ],
      "pos": [
       0.0,
       3.43,
-      4.6
+      4.3
      ],
      "ch": "secondary",
-     "note": "boot lid panel on the flat deck (Z 2.8 to 6.2)"
+     "note": "boot lid panel on the flat deck (Z 1.9 to 6.2)"
     },
     {
      "shape": "block",
@@ -1084,13 +1000,13 @@
      "shape": "block",
      "size": [
       1.4,
-      2.3,
+      2.5,
       0.9
      ],
      "pos": [
       -1.3,
-      2.95,
-      -0.25
+      3.05,
+      -0.45
      ],
      "ch": "driver"
     },
@@ -1103,8 +1019,8 @@
      ],
      "pos": [
       -1.3,
-      4.6,
-      -0.3
+      4.8,
+      -0.5
      ],
      "ch": "driver"
     }
@@ -1432,12 +1348,12 @@
      "size": [
       3.8,
       0.12,
-      0.7
+      1.0
      ],
      "pos": [
       0.0,
       4.16,
-      2.15
+      2.5
      ],
      "ch": "detail",
      "note": "deck louvre"
@@ -1447,27 +1363,12 @@
      "size": [
       3.8,
       0.12,
-      0.7
+      1.0
      ],
      "pos": [
       0.0,
       4.16,
-      3.55
-     ],
-     "ch": "detail",
-     "note": "deck louvre"
-    },
-    {
-     "shape": "block",
-     "size": [
-      3.8,
-      0.12,
-      0.7
-     ],
-     "pos": [
-      0.0,
-      4.16,
-      4.95
+      4.5
      ],
      "ch": "detail",
      "note": "deck louvre"
@@ -1602,14 +1503,14 @@
     {
      "shape": "wedge",
      "size": [
-      5.2,
+      4.6,
       1.6,
-      2.2
+      2.6
      ],
      "pos": [
       0.0,
       4.2,
-      -2.8
+      -3.0
      ],
      "ch": "glass",
      "note": "long raked windscreen"
@@ -1617,14 +1518,14 @@
     {
      "shape": "wedge",
      "size": [
-      0.4,
+      0.3,
       1.6,
-      2.2
+      2.6
      ],
      "pos": [
-      2.8,
+      2.45,
       4.2,
-      -2.8
+      -3.0
      ],
      "ch": "primary",
      "mirror": true,
@@ -1633,7 +1534,7 @@
     {
      "shape": "block",
      "size": [
-      6.0,
+      5.2,
       0.25,
       1.9
      ],
@@ -1648,22 +1549,37 @@
     {
      "shape": "block",
      "size": [
-      5.7,
+      4.9,
       1.35,
-      1.9
+      1.4
      ],
      "pos": [
       0.0,
       4.075,
-      -0.75
+      -1.0
      ],
      "ch": "glass",
      "note": "side glass"
     },
     {
+     "shape": "block",
+     "size": [
+      5.32,
+      1.66,
+      0.5
+     ],
+     "pos": [
+      0.0,
+      4.23,
+      -0.05
+     ],
+     "ch": "secondary",
+     "note": "roof band"
+    },
+    {
      "shape": "wedge",
      "size": [
-      4.4,
+      4.6,
       1.6,
       6.0
      ],
@@ -1678,17 +1594,17 @@
       180.0,
       0.0
      ],
-     "note": "long fastback glass"
+     "note": "long glass fastback to the rear seam"
     },
     {
      "shape": "wedge",
      "size": [
-      0.8,
+      0.3,
       1.6,
       6.0
      ],
      "pos": [
-      2.6,
+      2.45,
       4.2,
       3.2
      ],
@@ -1699,43 +1615,7 @@
       0.0
      ],
      "mirror": true,
-     "note": "fastback quarter"
-    },
-    {
-     "shape": "block",
-     "size": [
-      4.4,
-      0.12,
-      2.6
-     ],
-     "pos": [
-      0.0,
-      3.874,
-      4.76
-     ],
-     "ch": "primary",
-     "rot": [
-      14.931,
-      0.0,
-      0.0
-     ],
-     "note": "painted boot lid on the slope"
-    },
-    {
-     "shape": "block",
-     "size": [
-      0.06,
-      0.25,
-      1.9
-     ],
-     "pos": [
-      3.03,
-      4.875,
-      -0.75
-     ],
-     "ch": "secondary",
-     "mirror": true,
-     "note": "chrome roof rail"
+     "note": "fastback frame"
     },
     {
      "shape": "block",
@@ -1774,12 +1654,12 @@
      "size": [
       0.5,
       0.06,
-      1.3
+      0.9
      ],
      "pos": [
       0.0,
       3.43,
-      -4.55
+      -4.75
      ],
      "ch": "secondary",
      "note": "bonnet centre line"
@@ -1824,7 +1704,7 @@
       0.9
      ],
      "pos": [
-      -1.4,
+      -1.2,
       2.7,
       -0.55
      ],
@@ -1838,7 +1718,7 @@
       1.2
      ],
      "pos": [
-      -1.4,
+      -1.2,
       4.1,
       -0.6
      ],
@@ -2335,6 +2215,21 @@
      "note": "sill light"
     },
     {
+     "shape": "block",
+     "size": [
+      6.4,
+      0.08,
+      0.7
+     ],
+     "pos": [
+      0.0,
+      3.44,
+      -3.35
+     ],
+     "ch": "detail",
+     "note": "wiper cowl strip"
+    },
+    {
      "shape": "wedge",
      "size": [
       6.0,
@@ -2415,28 +2310,28 @@
      "shape": "block",
      "size": [
       6.8,
-      1.3,
-      0.8
+      1.8,
+      0.9
      ],
      "pos": [
       0.0,
-      4.05,
-      1.0
+      4.3,
+      1.05
      ],
      "ch": "primary",
-     "note": "targa hoop"
+     "note": "raised targa hoop"
     },
     {
      "shape": "wedge",
      "size": [
       5.8,
       1.1,
-      2.4
+      3.1
      ],
      "pos": [
       0.0,
       3.95,
-      2.6
+      3.05
      ],
      "ch": "glass",
      "rot": [
@@ -2451,12 +2346,12 @@
      "size": [
       0.5,
       1.1,
-      2.4
+      3.1
      ],
      "pos": [
       3.15,
       3.95,
-      2.6
+      3.05
      ],
      "ch": "primary",
      "rot": [
@@ -2477,10 +2372,67 @@
      "pos": [
       0.0,
       3.45,
-      4.8
+      5.3
      ],
      "ch": "detail",
      "note": "rear shelf vent"
+    },
+    {
+     "shape": "block",
+     "size": [
+      5.4,
+      0.14,
+      0.6
+     ],
+     "pos": [
+      0.0,
+      4.374,
+      2.138
+     ],
+     "ch": "detail",
+     "rot": [
+      19.537,
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "shape": "block",
+     "size": [
+      5.4,
+      0.14,
+      0.6
+     ],
+     "pos": [
+      0.0,
+      4.05,
+      3.05
+     ],
+     "ch": "detail",
+     "rot": [
+      19.537,
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "shape": "block",
+     "size": [
+      5.4,
+      0.14,
+      0.6
+     ],
+     "pos": [
+      0.0,
+      3.726,
+      3.962
+     ],
+     "ch": "detail",
+     "rot": [
+      19.537,
+      0.0,
+      0.0
+     ]
     },
     {
      "shape": "block",
@@ -3254,12 +3206,12 @@
      {
       "shape": "block",
       "size": [
-       3.2,
+       2.8,
        1.4,
        0.95
       ],
       "pos": [
-       6.2,
+       6.7,
        -0.4,
        -7.075
       ],
@@ -3270,12 +3222,12 @@
      {
       "shape": "wedge",
       "size": [
-       3.2,
+       2.8,
        2.0,
        0.95
       ],
       "pos": [
-       6.2,
+       6.7,
        1.3,
        -7.075
       ],
@@ -3286,12 +3238,12 @@
      {
       "shape": "block",
       "size": [
-       3.2,
+       2.8,
        1.4,
        0.55
       ],
       "pos": [
-       6.2,
+       6.7,
        1.6,
        -6.325
       ],
@@ -3302,12 +3254,12 @@
      {
       "shape": "block",
       "size": [
-       2.8,
+       2.4,
        0.6,
        0.25
       ],
       "pos": [
-       6.2,
+       6.7,
        1.6,
        -5.925
       ],
@@ -3484,13 +3436,13 @@
      {
       "shape": "cyl_z",
       "size": [
-       1.1,
-       1.1,
+       1.0,
+       1.0,
        0.7
       ],
       "pos": [
        6.2,
-       0.4,
+       0.95,
        -6.45
       ],
       "ch": "secondary",
@@ -3500,13 +3452,13 @@
      {
       "shape": "cyl_z",
       "size": [
-       0.75,
-       0.75,
+       0.7,
+       0.7,
        0.25
       ],
       "pos": [
        6.2,
-       0.4,
+       0.95,
        -5.975
       ],
       "ch": "thrust",
@@ -3516,13 +3468,13 @@
      {
       "shape": "cyl_z",
       "size": [
-       1.1,
-       1.1,
+       1.0,
+       1.0,
        0.7
       ],
       "pos": [
        6.2,
-       1.75,
+       1.95,
        -6.45
       ],
       "ch": "secondary",
@@ -3532,13 +3484,13 @@
      {
       "shape": "cyl_z",
       "size": [
-       0.75,
-       0.75,
+       0.7,
+       0.7,
        0.25
       ],
       "pos": [
        6.2,
-       1.75,
+       1.95,
        -5.975
       ],
       "ch": "thrust",
@@ -4013,7 +3965,7 @@
        1.05
       ],
       "pos": [
-       6.2,
+       6.5,
        0.5,
        -7.025
       ],
@@ -4029,7 +3981,7 @@
        0.4
       ],
       "pos": [
-       6.2,
+       6.5,
        1.6,
        -6.3
       ],
@@ -4045,7 +3997,7 @@
        0.25
       ],
       "pos": [
-       5.575,
+       5.925,
        1.6,
        -5.975
       ],
@@ -4061,7 +4013,7 @@
        0.25
       ],
       "pos": [
-       6.825,
+       7.125,
        1.6,
        -5.975
       ],
@@ -4144,7 +4096,7 @@
      {
       "shape": "block",
       "size": [
-       3.6,
+       3.2,
        2.0,
        0.35
       ],
@@ -4165,7 +4117,7 @@
        4.5
       ],
       "pos": [
-       5.1,
+       5.4,
        1.9,
        14.15
       ],
@@ -4181,7 +4133,7 @@
        0.8
       ],
       "pos": [
-       5.1,
+       5.4,
        1.9,
        16.8
       ],
@@ -4197,7 +4149,7 @@
        0.25
       ],
       "pos": [
-       5.1,
+       5.4,
        1.9,
        17.325
       ],
@@ -4213,7 +4165,7 @@
        4.5
       ],
       "pos": [
-       7.5,
+       7.2,
        1.9,
        14.15
       ],
@@ -4229,7 +4181,7 @@
        0.8
       ],
       "pos": [
-       7.5,
+       7.2,
        1.9,
        16.8
       ],
@@ -4245,7 +4197,7 @@
        0.25
       ],
       "pos": [
-       7.5,
+       7.2,
        1.9,
        17.325
       ],
@@ -4256,7 +4208,7 @@
      {
       "shape": "block",
       "size": [
-       2.8,
+       2.6,
        0.25,
        2.1
       ],
@@ -4272,18 +4224,18 @@
      {
       "shape": "block",
       "size": [
+       0.4,
        1.0,
-       0.8,
-       1.6
+       3.6
       ],
       "pos": [
        6.3,
        1.9,
-       12.8
+       13.8
       ],
       "ch": "detail",
       "mirror": true,
-      "note": "intake box between the cans"
+      "note": "web between the cans"
      }
     ]
    },
@@ -4294,13 +4246,13 @@
      {
       "shape": "block",
       "size": [
-       2.5,
-       2.3,
+       2.6,
+       2.4,
        0.25
       ],
       "pos": [
-       6.25,
-       1.75,
+       6.3,
+       1.8,
        11.675
       ],
       "ch": "detail",
@@ -4315,8 +4267,8 @@
        3.2
       ],
       "pos": [
-       6.25,
-       1.5,
+       6.3,
+       1.75,
        13.4
       ],
       "ch": "primary",
@@ -4331,8 +4283,8 @@
        1.2
       ],
       "pos": [
-       6.25,
-       1.5,
+       6.3,
+       1.75,
        15.6
       ],
       "ch": "primary",
@@ -4347,8 +4299,8 @@
        0.9
       ],
       "pos": [
-       6.25,
-       1.5,
+       6.3,
+       1.75,
        16.65
       ],
       "ch": "detail",
@@ -4363,8 +4315,8 @@
        0.3
       ],
       "pos": [
-       6.25,
-       1.5,
+       6.3,
+       1.75,
        17.25
       ],
       "ch": "thrust",
@@ -4379,8 +4331,8 @@
        1.45
       ],
       "pos": [
-       6.25,
-       2.4,
+       6.3,
+       2.65,
        16.725
       ],
       "ch": "detail",
@@ -4395,8 +4347,8 @@
        1.45
       ],
       "pos": [
-       6.25,
-       0.6,
+       6.3,
+       0.85,
        16.725
       ],
       "ch": "detail",
@@ -4406,61 +4358,29 @@
      {
       "shape": "block",
       "size": [
-       0.2,
-       0.9,
-       1.45
-      ],
-      "pos": [
-       7.15,
-       1.5,
-       16.725
-      ],
-      "ch": "detail",
-      "mirror": true,
-      "note": "nozzle petal, outer"
-     },
-     {
-      "shape": "block",
-      "size": [
-       0.2,
-       0.9,
-       1.45
-      ],
-      "pos": [
-       5.35,
-       1.5,
-       16.725
-      ],
-      "ch": "detail",
-      "mirror": true,
-      "note": "nozzle petal, inner"
-     },
-     {
-      "shape": "block",
-      "size": [
        1.4,
-       0.8,
+       0.62,
        2.5
       ],
       "pos": [
-       6.25,
-       3.1,
+       6.3,
+       3.21,
        13.15
       ],
       "ch": "primary",
       "mirror": true,
-      "note": "tall ram scoop"
+      "note": "ram scoop"
      },
      {
       "shape": "wedge",
       "size": [
        1.4,
-       0.8,
+       0.62,
        1.2
       ],
       "pos": [
-       6.25,
-       3.1,
+       6.3,
+       3.21,
        15.0
       ],
       "ch": "primary",
@@ -4480,8 +4400,8 @@
        1.8
       ],
       "pos": [
-       6.25,
-       3.54,
+       6.3,
+       3.56,
        13.1
       ],
       "ch": "neon",
@@ -4497,12 +4417,12 @@
      {
       "shape": "block",
       "size": [
-       2.4,
-       2.0,
+       2.8,
+       2.2,
        0.35
       ],
       "pos": [
-       6.2,
+       6.3,
        1.8,
        11.725
       ],
@@ -4513,13 +4433,13 @@
      {
       "shape": "block",
       "size": [
-       4.2,
-       1.2,
+       3.0,
+       1.6,
        3.1
       ],
       "pos": [
        6.3,
-       0.7,
+       1.4,
        13.45
       ],
       "ch": "primary",
@@ -4527,74 +4447,32 @@
       "note": "slab body"
      },
      {
-      "shape": "wedge",
-      "size": [
-       4.2,
-       0.4,
-       2.0
-      ],
-      "pos": [
-       6.3,
-       1.1,
-       16.0
-      ],
-      "ch": "primary",
-      "rot": [
-       0.0,
-       180.0,
-       0.0
-      ],
-      "mirror": true,
-      "note": "upper ramp"
-     },
-     {
-      "shape": "wedge",
-      "size": [
-       4.2,
-       0.4,
-       2.0
-      ],
-      "pos": [
-       6.3,
-       0.3,
-       16.0
-      ],
-      "ch": "primary",
-      "rot": [
-       180.0,
-       0.0,
-       0.0
-      ],
-      "mirror": true,
-      "note": "lower ramp"
-     },
-     {
       "shape": "block",
       "size": [
-       3.8,
-       0.4,
-       1.4
+       3.0,
+       1.0,
+       1.1
       ],
       "pos": [
        6.3,
-       0.7,
-       15.7
+       2.7,
+       12.45
       ],
-      "ch": "thrust",
+      "ch": "primary",
       "mirror": true,
-      "note": "slot jet"
+      "note": "intake fairing"
      },
      {
       "shape": "wedge",
       "size": [
        3.0,
-       1.5,
-       2.7
+       1.0,
+       2.0
       ],
       "pos": [
        6.3,
-       2.05,
-       13.25
+       2.7,
+       14.0
       ],
       "ch": "primary",
       "rot": [
@@ -4608,34 +4486,140 @@
      {
       "shape": "block",
       "size": [
-       1.8,
-       0.4,
-       0.1
+       2.2,
+       0.06,
+       0.7
       ],
       "pos": [
        6.3,
-       2.1,
-       11.85
+       3.23,
+       12.35
       ],
       "ch": "detail",
       "mirror": true,
-      "note": "fairing intake"
+      "note": "intake mouth on the fairing top"
      },
      {
       "shape": "block",
       "size": [
-       0.1,
-       1.5,
-       3.6
+       2.2,
+       0.14,
+       0.18
       ],
       "pos": [
-       8.45,
-       0.75,
-       15.4
+       6.3,
+       3.27,
+       12.79
+      ],
+      "ch": "neon",
+      "mirror": true,
+      "note": "intake lip"
+     },
+     {
+      "shape": "wedge",
+      "size": [
+       3.0,
+       0.3,
+       1.4
+      ],
+      "pos": [
+       6.3,
+       2.05,
+       15.7
+      ],
+      "ch": "primary",
+      "rot": [
+       0.0,
+       180.0,
+       0.0
+      ],
+      "mirror": true,
+      "note": "upper ramp, cut back 0.8"
+     },
+     {
+      "shape": "wedge",
+      "size": [
+       3.0,
+       0.5,
+       2.2
+      ],
+      "pos": [
+       6.3,
+       0.85,
+       16.1
+      ],
+      "ch": "primary",
+      "rot": [
+       180.0,
+       0.0,
+       0.0
+      ],
+      "mirror": true,
+      "note": "lower ramp"
+     },
+     {
+      "shape": "block",
+      "size": [
+       2.64,
+       0.8,
+       2.3
+      ],
+      "pos": [
+       6.3,
+       1.5,
+       16.05
+      ],
+      "ch": "thrust",
+      "mirror": true,
+      "note": "slot jet, 2.6 by 0.8"
+     },
+     {
+      "shape": "block",
+      "size": [
+       0.18,
+       1.6,
+       2.35
+      ],
+      "pos": [
+       4.89,
+       1.4,
+       16.175
+      ],
+      "ch": "detail",
+      "mirror": true,
+      "note": "inner side plate"
+     },
+     {
+      "shape": "block",
+      "size": [
+       0.18,
+       1.6,
+       2.35
+      ],
+      "pos": [
+       7.71,
+       1.4,
+       16.175
       ],
       "ch": "detail",
       "mirror": true,
       "note": "outer side plate"
+     },
+     {
+      "shape": "block",
+      "size": [
+       0.16,
+       0.9,
+       1.7
+      ],
+      "pos": [
+       6.3,
+       1.55,
+       16.45
+      ],
+      "ch": "detail",
+      "mirror": true,
+      "note": "centre vane"
      }
     ]
    },
@@ -4646,12 +4630,12 @@
      {
       "shape": "block",
       "size": [
-       2.7,
+       2.8,
        2.6,
        0.35
       ],
       "pos": [
-       6.25,
+       6.3,
        1.9,
        11.725
       ],
@@ -4662,12 +4646,12 @@
      {
       "shape": "block",
       "size": [
-       2.9,
+       3.0,
        3.0,
        1.3
       ],
       "pos": [
-       6.25,
+       6.3,
        2.0,
        12.55
       ],
@@ -4683,7 +4667,7 @@
        3.1
       ],
       "pos": [
-       6.25,
+       6.3,
        2.8,
        14.75
       ],
@@ -4699,7 +4683,7 @@
        0.7
       ],
       "pos": [
-       6.25,
+       6.3,
        2.8,
        16.65
       ],
@@ -4715,7 +4699,7 @@
        0.25
       ],
       "pos": [
-       6.25,
+       6.3,
        2.8,
        17.125
       ],
@@ -4731,7 +4715,7 @@
        1.7
       ],
       "pos": [
-       5.5,
+       5.55,
        1.25,
        14.05
       ],
@@ -4747,7 +4731,7 @@
        0.7
       ],
       "pos": [
-       5.5,
+       5.55,
        1.25,
        15.25
       ],
@@ -4763,7 +4747,7 @@
        0.25
       ],
       "pos": [
-       5.5,
+       5.55,
        1.25,
        15.725
       ],
@@ -4779,7 +4763,7 @@
        1.7
       ],
       "pos": [
-       7.0,
+       7.05,
        1.25,
        14.05
       ],
@@ -4795,7 +4779,7 @@
        0.7
       ],
       "pos": [
-       7.0,
+       7.05,
        1.25,
        15.25
       ],
@@ -4811,7 +4795,7 @@
        0.25
       ],
       "pos": [
-       7.0,
+       7.05,
        1.25,
        15.725
       ],
@@ -4828,12 +4812,12 @@
      {
       "shape": "block",
       "size": [
-       2.0,
-       1.8,
+       2.4,
+       2.2,
        0.35
       ],
       "pos": [
-       6.2,
+       6.3,
        1.9,
        11.725
       ],
@@ -4844,34 +4828,34 @@
      {
       "shape": "cyl_z",
       "size": [
-       1.9,
-       1.9,
-       2.7
+       2.6,
+       2.6,
+       1.4
       ],
       "pos": [
-       6.2,
+       6.3,
        1.9,
-       13.25
+       12.6
       ],
-      "ch": "primary",
+      "ch": "secondary",
       "mirror": true,
-      "note": "bullet body"
+      "note": "chrome shoulder: as wide as the pod collar"
      },
      {
       "shape": "cyl_z",
       "size": [
-       2.0,
-       2.0,
-       1.4
+       1.9,
+       1.9,
+       1.3
       ],
       "pos": [
-       6.2,
+       6.3,
        1.9,
-       13.1
+       13.95
       ],
-      "ch": "secondary",
+      "ch": "primary",
       "mirror": true,
-      "note": "chrome sleeve"
+      "note": "bullet body"
      },
      {
       "shape": "cyl_z",
@@ -4881,7 +4865,7 @@
        1.2
       ],
       "pos": [
-       6.2,
+       6.3,
        1.9,
        15.2
       ],
@@ -4897,7 +4881,7 @@
        0.7
       ],
       "pos": [
-       6.2,
+       6.3,
        1.9,
        16.15
       ],
@@ -4913,7 +4897,7 @@
        0.25
       ],
       "pos": [
-       6.2,
+       6.3,
        1.9,
        16.625
       ],
@@ -4925,13 +4909,13 @@
       "shape": "wedge",
       "size": [
        0.8,
-       0.55,
+       0.65,
        1.6
       ],
       "pos": [
-       6.2,
-       3.125,
-       13.0
+       6.3,
+       3.175,
+       14.1
       ],
       "ch": "primary",
       "rot": [
@@ -4946,13 +4930,13 @@
       "shape": "block",
       "size": [
        0.6,
-       0.4,
+       0.45,
        0.1
       ],
       "pos": [
-       6.2,
-       3.1,
-       12.15
+       6.3,
+       3.175,
+       13.25
       ],
       "ch": "detail",
       "mirror": true,
@@ -4967,13 +4951,13 @@
      {
       "shape": "block",
       "size": [
-       2.4,
-       2.4,
+       2.8,
+       2.7,
        0.35
       ],
       "pos": [
-       6.2,
-       1.8,
+       6.3,
+       1.85,
        11.725
       ],
       "ch": "detail",
@@ -4988,8 +4972,8 @@
        4.5
       ],
       "pos": [
-       7.4,
-       2.6,
+       7.0,
+       2.5,
        14.15
       ],
       "ch": "primary",
@@ -5004,8 +4988,8 @@
        0.8
       ],
       "pos": [
-       7.4,
-       2.6,
+       7.0,
+       2.5,
        16.8
       ],
       "ch": "detail",
@@ -5020,8 +5004,8 @@
        0.25
       ],
       "pos": [
-       7.4,
-       2.6,
+       7.0,
+       2.5,
        17.325
       ],
       "ch": "thrust",
@@ -5036,8 +5020,8 @@
        3.1
       ],
       "pos": [
-       7.4,
-       0.7,
+       7.0,
+       0.9,
        13.45
       ],
       "ch": "primary",
@@ -5052,8 +5036,8 @@
        0.8
       ],
       "pos": [
-       7.4,
-       0.7,
+       7.0,
+       0.9,
        15.4
       ],
       "ch": "detail",
@@ -5068,8 +5052,8 @@
        0.25
       ],
       "pos": [
-       7.4,
-       0.7,
+       7.0,
+       0.9,
        15.925
       ],
       "ch": "thrust",
@@ -5079,28 +5063,12 @@
      {
       "shape": "block",
       "size": [
-       0.4,
-       0.9,
-       2.6
-      ],
-      "pos": [
-       7.4,
-       1.65,
-       13.5
-      ],
-      "ch": "detail",
-      "mirror": true,
-      "note": "web"
-     },
-     {
-      "shape": "block",
-      "size": [
-       1.5,
+       1.3,
        1.8,
        1.7
       ],
       "pos": [
-       5.75,
+       5.55,
        1.7,
        12.75
       ],
@@ -5111,12 +5079,12 @@
      {
       "shape": "block",
       "size": [
-       1.1,
+       1.0,
        0.15,
        1.3
       ],
       "pos": [
-       5.75,
+       5.55,
        2.675,
        12.75
       ],
@@ -5150,62 +5118,62 @@
      {
       "shape": "block",
       "size": [
-       5.1,
-       0.4,
-       0.8
-      ],
-      "pos": [
-       4.45,
-       -0.5,
-       0.5
-      ],
-      "ch": "detail",
-      "mirror": true,
-      "note": "outrigger beam"
-     },
-     {
-      "shape": "block",
-      "size": [
        0.5,
-       0.4,
-       4.6
+       0.35,
+       2.6
       ],
       "pos": [
-       7.5,
-       -0.45,
-       0.3
+       7.35,
+       1.175,
+       1.6
       ],
-      "ch": "detail",
+      "ch": "secondary",
       "mirror": true,
-      "note": "boom between the nacelles"
+      "note": "slim boom between the nacelles"
      },
      {
       "shape": "block",
       "size": [
-       1.2,
-       1.4,
-       2.7
+       5.3,
+       0.8,
+       1.2
       ],
       "pos": [
-       7.5,
-       -0.3,
-       -3.25
+       4.55,
+       -0.4,
+       -0.85
       ],
       "ch": "primary",
       "mirror": true,
-      "note": "lift nacelle"
+      "note": "painted pylon, 0.8 thick, under the rocker"
+     },
+     {
+      "shape": "block",
+      "size": [
+       1.7,
+       1.8,
+       2.0
+      ],
+      "pos": [
+       7.35,
+       0.9,
+       -0.7
+      ],
+      "ch": "primary",
+      "mirror": true,
+      "note": "lift nacelle, level with the sill"
      },
      {
       "shape": "wedge",
       "size": [
-       1.2,
-       1.4,
-       0.7
+       1.7,
+       1.8,
+       0.9
       ],
       "pos": [
-       7.5,
-       -0.3,
-       -4.95
+       7.35,
+       0.9,
+       -2.15
       ],
       "ch": "primary",
       "mirror": true,
@@ -5214,14 +5182,14 @@
      {
       "shape": "block",
       "size": [
-       0.8,
-       0.07,
-       1.4
+       1.1,
+       0.08,
+       1.2
       ],
       "pos": [
-       7.5,
-       0.435,
-       -3.7
+       7.35,
+       1.84,
+       -0.9
       ],
       "ch": "neon",
       "mirror": true,
@@ -5235,15 +5203,15 @@
        0.95
       ],
       "pos": [
-       8.123,
-       -0.394,
-       -2.666
+       8.141,
+       0.167,
+       -0.452
       ],
       "ch": "detail",
       "rot": [
        -20.0,
        0.0,
-       60.0
+       45.0
       ],
       "mirror": true,
       "note": "vectoring lift nozzle"
@@ -5256,15 +5224,15 @@
        0.72
       ],
       "pos": [
-       8.535,
-       -0.617,
-       -2.585
+       8.477,
+       -0.149,
+       -0.337
       ],
       "ch": "thrust",
       "rot": [
        -20.0,
        0.0,
-       60.0
+       45.0
       ],
       "mirror": true,
       "note": "lift jet"
@@ -5272,30 +5240,46 @@
      {
       "shape": "block",
       "size": [
-       1.2,
-       1.4,
-       2.7
+       5.3,
+       0.8,
+       1.2
       ],
       "pos": [
-       7.5,
-       -0.3,
-       4.35
+       4.55,
+       -0.4,
+       4.65
       ],
       "ch": "primary",
       "mirror": true,
-      "note": "lift nacelle"
+      "note": "painted pylon, 0.8 thick, under the rocker"
+     },
+     {
+      "shape": "block",
+      "size": [
+       1.7,
+       1.8,
+       2.0
+      ],
+      "pos": [
+       7.35,
+       0.9,
+       4.8
+      ],
+      "ch": "primary",
+      "mirror": true,
+      "note": "lift nacelle, level with the sill"
      },
      {
       "shape": "wedge",
       "size": [
-       1.2,
-       1.4,
-       0.7
+       1.7,
+       1.8,
+       0.9
       ],
       "pos": [
-       7.5,
-       -0.3,
-       2.65
+       7.35,
+       0.9,
+       3.35
       ],
       "ch": "primary",
       "mirror": true,
@@ -5304,14 +5288,14 @@
      {
       "shape": "block",
       "size": [
-       0.8,
-       0.07,
-       1.4
+       1.1,
+       0.08,
+       1.2
       ],
       "pos": [
-       7.5,
-       0.435,
-       3.9
+       7.35,
+       1.84,
+       4.6
       ],
       "ch": "neon",
       "mirror": true,
@@ -5325,15 +5309,15 @@
        0.95
       ],
       "pos": [
-       8.123,
-       -0.394,
-       4.934
+       8.141,
+       0.167,
+       5.048
       ],
       "ch": "detail",
       "rot": [
        -20.0,
        0.0,
-       60.0
+       45.0
       ],
       "mirror": true,
       "note": "vectoring lift nozzle"
@@ -5346,15 +5330,15 @@
        0.72
       ],
       "pos": [
-       8.535,
-       -0.617,
-       5.015
+       8.477,
+       -0.149,
+       5.163
       ],
       "ch": "thrust",
       "rot": [
        -20.0,
        0.0,
-       60.0
+       45.0
       ],
       "mirror": true,
       "note": "lift jet"
@@ -5390,7 +5374,7 @@
       "pos": [
        4.4,
        -0.45,
-       -3.0
+       -0.8
       ],
       "ch": "detail",
       "mirror": true,
@@ -5417,12 +5401,12 @@
       "size": [
        1.5,
        1.5,
-       10.2
+       7.5
       ],
       "pos": [
        7.3,
        0.45,
-       0.5
+       1.85
       ],
       "ch": "primary",
       "mirror": true,
@@ -5438,7 +5422,7 @@
       "pos": [
        7.3,
        0.45,
-       -4.6
+       -1.9
       ],
       "ch": "secondary",
       "mirror": true,
@@ -5465,12 +5449,12 @@
       "size": [
        0.6,
        0.09,
-       5.0
+       4.8
       ],
       "pos": [
        7.3,
        1.215,
-       0.5
+       1.8
       ],
       "ch": "neon",
       "mirror": true,
@@ -5486,7 +5470,7 @@
       "pos": [
        7.973,
        0.05,
-       -3.0
+       -0.9
       ],
       "ch": "detail",
       "rot": [
@@ -5507,7 +5491,7 @@
       "pos": [
        8.385,
        -0.188,
-       -3.0
+       -0.9
       ],
       "ch": "thrust",
       "rot": [
@@ -5528,7 +5512,7 @@
       "pos": [
        7.973,
        0.05,
-       0.5
+       2.0
       ],
       "ch": "detail",
       "rot": [
@@ -5549,7 +5533,7 @@
       "pos": [
        8.385,
        -0.188,
-       0.5
+       2.0
       ],
       "ch": "thrust",
       "rot": [
@@ -5570,7 +5554,7 @@
       "pos": [
        7.973,
        0.05,
-       4.0
+       4.9
       ],
       "ch": "detail",
       "rot": [
@@ -5591,7 +5575,7 @@
       "pos": [
        8.385,
        -0.188,
-       4.0
+       4.9
       ],
       "ch": "thrust",
       "rot": [
@@ -5649,16 +5633,16 @@
       "size": [
        1.4,
        1.4,
-       4.5
+       4.0
       ],
       "pos": [
        7.6,
        0.05,
-       -2.45
+       -0.2
       ],
       "ch": "primary",
       "mirror": true,
-      "note": "tip pod, 1.4 by 4.5"
+      "note": "tip pod, 1.4 by 4.0"
      },
      {
       "shape": "ball",
@@ -5670,7 +5654,7 @@
       "pos": [
        7.6,
        0.05,
-       -4.75
+       -2.25
       ],
       "ch": "neon",
       "mirror": true,
@@ -5686,7 +5670,7 @@
       "pos": [
        7.6,
        0.05,
-       -0.05
+       1.95
       ],
       "ch": "thrust",
       "mirror": true,
@@ -5702,7 +5686,7 @@
       "pos": [
        7.575,
        1.55,
-       -2.2
+       -0.2
       ],
       "ch": "primary",
       "mirror": true,
@@ -5739,7 +5723,7 @@
       "pos": [
        8.123,
        -0.144,
-       -2.366
+       -0.566
       ],
       "ch": "detail",
       "rot": [
@@ -5760,7 +5744,7 @@
       "pos": [
        8.535,
        -0.367,
-       -2.285
+       -0.485
       ],
       "ch": "thrust",
       "rot": [
@@ -5876,11 +5860,11 @@
       "pos": [
        7.5,
        2.6,
-       -0.2
+       0.5
       ],
       "ch": "primary",
       "mirror": true,
-      "note": "shoulder pod"
+      "note": "shoulder pod, behind the exhaust lane"
      },
      {
       "shape": "ball",
@@ -5892,7 +5876,7 @@
       "pos": [
        7.5,
        2.6,
-       -2.4
+       -1.7
       ],
       "ch": "primary",
       "mirror": true,
@@ -5908,7 +5892,7 @@
       "pos": [
        7.5,
        2.6,
-       -2.95
+       -2.25
       ],
       "ch": "neon",
       "mirror": true,
@@ -5924,7 +5908,7 @@
       "pos": [
        7.5,
        2.6,
-       2.0
+       2.7
       ],
       "ch": "secondary",
       "mirror": true,
@@ -5940,7 +5924,7 @@
       "pos": [
        7.5,
        3.36,
-       -0.2
+       0.5
       ],
       "ch": "neon",
       "mirror": true,
@@ -5956,7 +5940,7 @@
       "pos": [
        8.014,
        2.189,
-       -1.17
+       -0.47
       ],
       "ch": "detail",
       "rot": [
@@ -5977,7 +5961,7 @@
       "pos": [
        8.403,
        1.926,
-       -1.1
+       -0.4
       ],
       "ch": "thrust",
       "rot": [
@@ -5998,7 +5982,7 @@
       "pos": [
        8.014,
        2.189,
-       1.03
+       1.73
       ],
       "ch": "detail",
       "rot": [
@@ -6019,7 +6003,7 @@
       "pos": [
        8.403,
        1.926,
-       1.1
+       1.8
       ],
       "ch": "thrust",
       "rot": [
@@ -7328,6 +7312,21 @@
       "note": "front bumper hardpoint on the fender tip"
      },
      {
+      "shape": "block",
+      "size": [
+       2.6,
+       1.0,
+       0.3
+      ],
+      "pos": [
+       0.0,
+       0.9,
+       -16.15
+      ],
+      "ch": "detail",
+      "note": "centre bumper pad: backs any full-width bumper"
+     },
+     {
       "shape": "cyl_x",
       "size": [
        1.8,
@@ -7385,15 +7384,15 @@
       "size": [
        6.0,
        2.3,
-       8.5
+       9.2
       ],
       "pos": [
        0.0,
        1.65,
-       -10.75
+       -11.1
       ],
       "ch": "primary",
-      "note": "centre nose"
+      "note": "centre nose, out to the centre bumper pad"
      },
      {
       "shape": "block",
@@ -7415,12 +7414,12 @@
       "size": [
        6.0,
        0.6,
-       2.2
+       2.9
       ],
       "pos": [
        0.0,
        3.1,
-       -13.9
+       -14.25
       ],
       "ch": "primary",
       "note": "bonnet leading slope"
@@ -7435,7 +7434,7 @@
       "pos": [
        0.0,
        1.7,
-       -15.15
+       -15.85
       ],
       "ch": "detail",
       "note": "egg-crate grille"
@@ -7450,7 +7449,7 @@
       "pos": [
        2.0,
        1.7,
-       -15.35
+       -16.05
       ],
       "ch": "neon",
       "mirror": true,
@@ -7597,22 +7596,6 @@
       "ch": "neon",
       "mirror": true,
       "note": "headlamp"
-     },
-     {
-      "shape": "block",
-      "size": [
-       0.06,
-       0.3,
-       8.2
-      ],
-      "pos": [
-       8.33,
-       1.9,
-       -11.7
-      ],
-      "ch": "secondary",
-      "mirror": true,
-      "note": "belt stripe"
      }
     ]
    },
@@ -7713,6 +7696,21 @@
       "ch": "detail",
       "mirror": true,
       "note": "front bumper hardpoint on the fender tip"
+     },
+     {
+      "shape": "block",
+      "size": [
+       2.6,
+       1.0,
+       0.3
+      ],
+      "pos": [
+       0.0,
+       0.9,
+       -16.15
+      ],
+      "ch": "detail",
+      "note": "centre bumper pad: backs any full-width bumper"
      },
      {
       "shape": "cyl_x",
@@ -7927,31 +7925,16 @@
       "size": [
        0.5,
        0.5,
-       5.2
+       5.4
       ],
       "pos": [
-       1.25,
+       1.05,
        0.85,
-       -13.2
+       -13.3
       ],
       "ch": "detail",
       "mirror": true,
-      "note": "bare frame rail"
-     },
-     {
-      "shape": "cyl_x",
-      "size": [
-       3.0,
-       0.5,
-       0.5
-      ],
-      "pos": [
-       0.0,
-       0.85,
-       -15.5
-      ],
-      "ch": "detail",
-      "note": "front cross tube"
+      "note": "bare frame rail, out to the centre bumper pad"
      },
      {
       "shape": "cyl_x",
@@ -8114,6 +8097,21 @@
       "note": "front bumper hardpoint on the fender tip"
      },
      {
+      "shape": "block",
+      "size": [
+       2.6,
+       1.0,
+       0.3
+      ],
+      "pos": [
+       0.0,
+       0.9,
+       -16.15
+      ],
+      "ch": "detail",
+      "note": "centre bumper pad: backs any full-width bumper"
+     },
+     {
       "shape": "cyl_x",
       "size": [
        2.2,
@@ -8146,15 +8144,31 @@
       "note": "rift strut"
      },
      {
-      "shape": "wedge",
+      "shape": "block",
       "size": [
        3.0,
-       2.2,
+       0.5,
        4.2
       ],
       "pos": [
        6.3,
-       2.1,
+       1.25,
+       -14.1
+      ],
+      "ch": "primary",
+      "mirror": true,
+      "note": "prong blade: a blunt 0.5 edge behind the bumper hardpoint"
+     },
+     {
+      "shape": "wedge",
+      "size": [
+       3.0,
+       1.7,
+       4.2
+      ],
+      "pos": [
+       6.3,
+       2.35,
        -14.1
       ],
       "ch": "primary",
@@ -8268,35 +8282,19 @@
       "note": "lamp"
      },
      {
-      "shape": "block",
-      "size": [
-       0.06,
-       0.3,
-       1.4
-      ],
-      "pos": [
-       8.43,
-       1.35,
-       -8.3
-      ],
-      "ch": "secondary",
-      "mirror": true,
-      "note": "low stripe"
-     },
-     {
       "shape": "wedge",
       "size": [
        1.8,
        2.9,
-       6.6
+       8.0
       ],
       "pos": [
        0.0,
        1.95,
-       -11.3
+       -12.0
       ],
       "ch": "primary",
-      "note": "dart spine"
+      "note": "dart spine: its point reaches the centre bumper pad"
      },
      {
       "shape": "block",
@@ -8318,12 +8316,12 @@
       "size": [
        1.4,
        2.5,
-       7.3
+       8.5
       ],
       "pos": [
        2.15,
        1.2,
-       -10.15
+       -10.75
       ],
       "ch": "primary",
       "rot": [
@@ -8364,12 +8362,12 @@
       ],
       "pos": [
        0.0,
-       2.029,
+       2.262,
        -11.418
       ],
       "ch": "detail",
       "rot": [
-       -22.834,
+       -19.826,
        0.0,
        0.0
       ]
@@ -8383,12 +8381,12 @@
       ],
       "pos": [
        0.0,
-       2.5,
+       2.665,
        -10.3
       ],
       "ch": "detail",
       "rot": [
-       -22.834,
+       -19.826,
        0.0,
        0.0
       ]
@@ -8402,12 +8400,12 @@
       ],
       "pos": [
        0.0,
-       2.971,
+       3.068,
        -9.182
       ],
       "ch": "detail",
       "rot": [
-       -22.834,
+       -19.826,
        0.0,
        0.0
       ]
@@ -8513,6 +8511,21 @@
       "note": "front bumper hardpoint on the fender tip"
      },
      {
+      "shape": "block",
+      "size": [
+       2.6,
+       1.0,
+       0.3
+      ],
+      "pos": [
+       0.0,
+       0.9,
+       -16.15
+      ],
+      "ch": "detail",
+      "note": "centre bumper pad: backs any full-width bumper"
+     },
+     {
       "shape": "cyl_x",
       "size": [
        2.2,
@@ -8615,15 +8628,15 @@
       "size": [
        4.4,
        1.8,
-       1.4
+       1.65
       ],
       "pos": [
        0.0,
        1.5,
-       -14.9
+       -15.025
       ],
       "ch": "primary",
-      "note": "nose tip"
+      "note": "nose tip, out to the centre bumper pad"
      },
      {
       "shape": "block",
@@ -8635,7 +8648,7 @@
       "pos": [
        0.0,
        1.5,
-       -15.675
+       -15.925
       ],
       "ch": "detail",
       "note": "oval grille"
@@ -8650,7 +8663,7 @@
       "pos": [
        0.9,
        1.5,
-       -15.8
+       -16.05
       ],
       "ch": "neon",
       "mirror": true,
@@ -8882,6 +8895,21 @@
       "ch": "detail",
       "mirror": true,
       "note": "front bumper hardpoint on the fender tip"
+     },
+     {
+      "shape": "block",
+      "size": [
+       2.6,
+       1.0,
+       0.3
+      ],
+      "pos": [
+       0.0,
+       0.9,
+       -16.15
+      ],
+      "ch": "detail",
+      "note": "centre bumper pad: backs any full-width bumper"
      },
      {
       "shape": "cyl_x",
@@ -9255,6 +9283,21 @@
       "note": "front bumper hardpoint on the fender tip"
      },
      {
+      "shape": "block",
+      "size": [
+       2.6,
+       1.0,
+       0.3
+      ],
+      "pos": [
+       0.0,
+       0.9,
+       -16.15
+      ],
+      "ch": "detail",
+      "note": "centre bumper pad: backs any full-width bumper"
+     },
+     {
       "shape": "cyl_x",
       "size": [
        1.6,
@@ -9592,6 +9635,22 @@
      {
       "shape": "block",
       "size": [
+       2.8,
+       2.8,
+       0.8
+      ],
+      "pos": [
+       6.3,
+       1.9,
+       10.8
+      ],
+      "ch": "primary",
+      "mirror": true,
+      "note": "pod end collar: the shared rear engine section"
+     },
+     {
+      "shape": "block",
+      "size": [
        1.8,
        1.6,
        0.3
@@ -9608,12 +9667,12 @@
      {
       "shape": "cyl_x",
       "size": [
-       3.0,
+       2.7,
        0.5,
        0.5
       ],
       "pos": [
-       3.9,
+       3.75,
        1.9,
        8.6
       ],
@@ -9624,12 +9683,12 @@
      {
       "shape": "cyl_x",
       "size": [
-       3.0,
+       2.7,
        0.5,
        0.5
       ],
       "pos": [
-       3.9,
+       3.75,
        1.9,
        10.3
       ],
@@ -9722,29 +9781,29 @@
      {
       "shape": "block",
       "size": [
-       2.6,
-       2.4,
-       3.4
+       2.9,
+       2.7,
+       2.6
       ],
       "pos": [
-       6.5,
-       2.0,
-       9.5
+       6.35,
+       1.95,
+       9.1
       ],
       "ch": "primary",
       "mirror": true,
-      "note": "quarter pod"
+      "note": "quarter pod, on the collar section"
      },
      {
       "shape": "block",
       "size": [
-       2.6,
-       1.3,
+       2.9,
+       1.2,
        1.0
       ],
       "pos": [
-       6.5,
-       3.85,
+       6.35,
+       3.9,
        8.3
       ],
       "ch": "primary",
@@ -9754,13 +9813,13 @@
      {
       "shape": "wedge",
       "size": [
-       2.6,
-       1.3,
+       2.9,
+       1.2,
        2.4
       ],
       "pos": [
-       6.5,
-       3.85,
+       6.35,
+       3.9,
        10.0
       ],
       "ch": "primary",
@@ -9777,12 +9836,12 @@
       "size": [
        0.06,
        0.3,
-       3.4
+       2.6
       ],
       "pos": [
        7.83,
        1.9,
-       9.5
+       9.1
       ],
       "ch": "secondary",
       "mirror": true,
@@ -9791,18 +9850,18 @@
      {
       "shape": "block",
       "size": [
-       1.8,
+       2.0,
        0.14,
        0.6
       ],
       "pos": [
-       6.5,
-       4.221,
+       6.4,
+       4.25,
        9.5
       ],
       "ch": "detail",
       "rot": [
-       28.443,
+       26.565,
        0.0,
        0.0
       ],
@@ -9811,18 +9870,18 @@
      {
       "shape": "block",
       "size": [
-       1.8,
+       2.0,
        0.14,
        0.6
       ],
       "pos": [
-       6.5,
-       3.679,
+       6.4,
+       3.75,
        10.5
       ],
       "ch": "detail",
       "rot": [
-       28.443,
+       26.565,
        0.0,
        0.0
       ],
@@ -9897,6 +9956,22 @@
      {
       "shape": "block",
       "size": [
+       2.8,
+       2.8,
+       2.2
+      ],
+      "pos": [
+       6.3,
+       1.9,
+       10.1
+      ],
+      "ch": "primary",
+      "mirror": true,
+      "note": "pod end collar: the shared rear engine section"
+     },
+     {
+      "shape": "block",
+      "size": [
        1.8,
        1.6,
        0.3
@@ -9913,12 +9988,12 @@
      {
       "shape": "cyl_x",
       "size": [
-       2.3,
+       3.1,
        0.5,
        0.5
       ],
       "pos": [
-       3.15,
+       3.55,
        0.95,
        8.2
       ],
@@ -9929,12 +10004,12 @@
      {
       "shape": "cyl_x",
       "size": [
-       2.3,
+       3.1,
        0.5,
        0.5
       ],
       "pos": [
-       3.15,
+       3.55,
        0.95,
        10.3
       ],
@@ -10044,32 +10119,16 @@
       "size": [
        0.3,
        2.2,
-       0.4
+       0.7
       ],
       "pos": [
        1.75,
        2.3,
-       11.3
+       12.25
       ],
       "ch": "detail",
       "mirror": true,
-      "note": "hoop post, front"
-     },
-     {
-      "shape": "block",
-      "size": [
-       0.3,
-       2.2,
-       0.4
-      ],
-      "pos": [
-       1.75,
-       2.3,
-       13.2
-      ],
-      "ch": "detail",
-      "mirror": true,
-      "note": "hoop post, rear"
+      "note": "hoop post"
      },
      {
       "shape": "block",
@@ -10089,14 +10148,14 @@
      {
       "shape": "block",
       "size": [
-       4.4,
-       3.7,
-       4.4
+       3.4,
+       2.8,
+       2.2
       ],
       "pos": [
-       6.3,
-       1.25,
-       9.0
+       6.6,
+       1.2,
+       7.9
       ],
       "ch": "primary",
       "mirror": true,
@@ -10105,14 +10164,14 @@
      {
       "shape": "block",
       "size": [
-       4.4,
-       0.5,
-       2.8
+       2.5,
+       0.7,
+       2.2
       ],
       "pos": [
-       6.3,
-       3.35,
-       9.8
+       6.15,
+       2.95,
+       7.9
       ],
       "ch": "primary",
       "mirror": true,
@@ -10121,34 +10180,81 @@
      {
       "shape": "wedge",
       "size": [
-       4.4,
-       0.5,
-       1.6
+       2.2,
+       0.7,
+       0.9
+      ],
+      "pos": [
+       7.85,
+       2.95,
+       7.9
+      ],
+      "ch": "primary",
+      "rot": [
+       0.0,
+       -90.0,
+       0.0
+      ],
+      "mirror": true,
+      "note": "chamfered outer shoulder"
+     },
+     {
+      "shape": "wedge",
+      "size": [
+       2.8,
+       0.6,
+       1.4
+      ],
+      "pos": [
+       8.0,
+       1.2,
+       9.7
+      ],
+      "ch": "primary",
+      "rot": [
+       0.0,
+       180.0,
+       90.0
+      ],
+      "mirror": true,
+      "note": "outer taper to the collar"
+     },
+     {
+      "shape": "wedge",
+      "size": [
+       2.8,
+       0.7,
+       1.4
       ],
       "pos": [
        6.3,
-       3.35,
-       7.6
+       0.15,
+       9.7
       ],
       "ch": "primary",
+      "rot": [
+       180.0,
+       0.0,
+       0.0
+      ],
       "mirror": true,
-      "note": "tub rise"
+      "note": "floor taper up to the collar"
      },
      {
       "shape": "block",
       "size": [
-       0.05,
-       0.3,
-       4.4
+       0.06,
+       1.5,
+       1.6
       ],
       "pos": [
-       8.475,
-       1.9,
-       9.0
+       8.33,
+       0.75,
+       8.0
       ],
-      "ch": "secondary",
+      "ch": "detail",
       "mirror": true,
-      "note": "belt stripe"
+      "note": "blanked arch vent"
      }
     ]
    },
@@ -10219,6 +10325,22 @@
      {
       "shape": "block",
       "size": [
+       2.8,
+       2.8,
+       0.8
+      ],
+      "pos": [
+       6.3,
+       1.9,
+       10.8
+      ],
+      "ch": "primary",
+      "mirror": true,
+      "note": "pod end collar: the shared rear engine section"
+     },
+     {
+      "shape": "block",
+      "size": [
        1.8,
        1.6,
        0.3
@@ -10235,12 +10357,12 @@
      {
       "shape": "cyl_x",
       "size": [
-       2.0,
+       1.9,
        0.5,
        0.5
       ],
       "pos": [
-       4.2,
+       4.15,
        1.1,
        9.0
       ],
@@ -10251,12 +10373,12 @@
      {
       "shape": "cyl_x",
       "size": [
-       2.0,
+       1.9,
        0.5,
        0.5
       ],
       "pos": [
-       4.2,
+       4.15,
        1.1,
        10.6
       ],
@@ -10365,18 +10487,34 @@
      {
       "shape": "block",
       "size": [
-       2.0,
-       0.8,
-       2.8
+       2.1,
+       1.1,
+       2.0
       ],
       "pos": [
-       6.0,
-       1.2,
-       9.8
+       5.95,
+       1.05,
+       9.4
       ],
       "ch": "primary",
       "mirror": true,
       "note": "low pod shelf"
+     },
+     {
+      "shape": "wedge",
+      "size": [
+       2.1,
+       1.7,
+       2.0
+      ],
+      "pos": [
+       5.95,
+       2.45,
+       9.4
+      ],
+      "ch": "primary",
+      "mirror": true,
+      "note": "shelf ramp up to the collar"
      },
      {
       "shape": "block",
@@ -10504,6 +10642,22 @@
       ],
       "ch": "detail",
       "note": "spoiler pad"
+     },
+     {
+      "shape": "block",
+      "size": [
+       2.8,
+       2.8,
+       0.8
+      ],
+      "pos": [
+       6.3,
+       1.9,
+       10.8
+      ],
+      "ch": "primary",
+      "mirror": true,
+      "note": "pod end collar: the shared rear engine section"
      },
      {
       "shape": "block",
@@ -10660,12 +10814,12 @@
       "shape": "block",
       "size": [
        3.3,
-       1.6,
+       1.9,
        4.2
       ],
       "pos": [
        6.25,
-       1.6,
+       1.45,
        9.1
       ],
       "ch": "primary",
@@ -10785,6 +10939,22 @@
       ],
       "ch": "detail",
       "note": "spoiler pad"
+     },
+     {
+      "shape": "block",
+      "size": [
+       2.8,
+       2.8,
+       0.8
+      ],
+      "pos": [
+       6.3,
+       1.9,
+       10.8
+      ],
+      "ch": "primary",
+      "mirror": true,
+      "note": "pod end collar: the shared rear engine section"
      },
      {
       "shape": "block",
@@ -10987,14 +11157,14 @@
      {
       "shape": "cyl_z",
       "size": [
-       2.6,
-       2.6,
-       3.0
+       2.7,
+       2.7,
+       2.2
       ],
       "pos": [
-       6.2,
+       6.3,
        1.9,
-       9.7
+       9.3
       ],
       "ch": "primary",
       "mirror": true,
@@ -11003,12 +11173,12 @@
      {
       "shape": "ball",
       "size": [
-       2.6,
-       2.6,
-       2.6
+       2.7,
+       2.7,
+       2.7
       ],
       "pos": [
-       6.2,
+       6.3,
        1.9,
        8.2
       ],
@@ -11020,12 +11190,12 @@
       "shape": "block",
       "size": [
        0.4,
-       0.15,
+       0.18,
        2.8
       ],
       "pos": [
-       6.2,
-       3.225,
+       6.3,
+       3.29,
        9.8
       ],
       "ch": "secondary",
@@ -11097,6 +11267,22 @@
       ],
       "ch": "detail",
       "note": "spoiler pad"
+     },
+     {
+      "shape": "block",
+      "size": [
+       2.8,
+       2.8,
+       0.8
+      ],
+      "pos": [
+       6.3,
+       1.9,
+       10.8
+      ],
+      "ch": "primary",
+      "mirror": true,
+      "note": "pod end collar: the shared rear engine section"
      },
      {
       "shape": "block",
@@ -11246,18 +11432,18 @@
      {
       "shape": "wedge",
       "size": [
+       2.8,
        1.8,
-       1.1,
-       1.6
+       2.4
       ],
       "pos": [
-       6.2,
-       2.05,
-       10.4
+       6.3,
+       2.4,
+       9.2
       ],
       "ch": "primary",
       "mirror": true,
-      "note": "bulkhead fairing"
+      "note": "fairing ramp up to the collar"
      },
      {
       "shape": "block",
@@ -11280,12 +11466,12 @@
       "size": [
        6.4,
        0.12,
-       0.4
+       0.5
       ],
       "pos": [
        0.0,
        2.86,
-       9.6
+       9.75
       ],
       "ch": "detail",
       "note": "deck louvre"
@@ -11295,27 +11481,12 @@
       "size": [
        6.4,
        0.12,
-       0.4
+       0.5
       ],
       "pos": [
        0.0,
        2.86,
-       10.25
-      ],
-      "ch": "detail",
-      "note": "deck louvre"
-     },
-     {
-      "shape": "block",
-      "size": [
-       6.4,
-       0.12,
-       0.4
-      ],
-      "pos": [
-       0.0,
-       2.86,
-       10.9
+       10.55
       ],
       "ch": "detail",
       "note": "deck louvre"
@@ -11363,14 +11534,51 @@
      {
       "shape": "block",
       "size": [
+       1.3,
+       1.3,
+       3.7
+      ],
+      "pos": [
+       4.65,
+       0.95,
+       -3.35
+      ],
+      "ch": "primary",
+      "mirror": true,
+      "note": "pontoon nose, inboard of the exhaust lane"
+     },
+     {
+      "shape": "wedge",
+      "size": [
+       1.3,
+       0.6,
+       1.2
+      ],
+      "pos": [
+       5.6,
+       0.95,
+       -2.1
+      ],
+      "ch": "primary",
+      "rot": [
+       0.0,
+       0.0,
+       -90.0
+      ],
+      "mirror": true,
+      "note": "pontoon flare"
+     },
+     {
+      "shape": "block",
+      "size": [
        1.9,
        1.3,
-       11.4
+       7.7
       ],
       "pos": [
        4.95,
        0.95,
-       0.5
+       2.35
       ],
       "ch": "primary",
       "mirror": true,
@@ -11381,12 +11589,12 @@
       "size": [
        0.7,
        0.7,
-       9.6
+       6.5
       ],
       "pos": [
        5.9,
        0.7,
-       0.4
+       1.95
       ],
       "ch": "secondary",
       "mirror": true,
@@ -11407,22 +11615,6 @@
       "ch": "detail",
       "mirror": true,
       "note": "pipe tip"
-     },
-     {
-      "shape": "block",
-      "size": [
-       0.6,
-       0.06,
-       11.4
-      ],
-      "pos": [
-       5.2,
-       1.63,
-       0.5
-      ],
-      "ch": "secondary",
-      "mirror": true,
-      "note": "slim stripe on the painted top"
      }
     ]
    },
@@ -11472,11 +11664,11 @@
       "pos": [
        5.1,
        1.4,
-       0.4
+       1.4
       ],
       "ch": "secondary",
       "mirror": true,
-      "note": "tank"
+      "note": "tank, behind the exhaust lane"
      },
      {
       "shape": "ball",
@@ -11488,7 +11680,7 @@
       "pos": [
        5.1,
        1.4,
-       -2.6
+       -1.6
       ],
       "ch": "secondary",
       "mirror": true,
@@ -11504,7 +11696,7 @@
       "pos": [
        5.1,
        1.4,
-       3.4
+       4.4
       ],
       "ch": "secondary",
       "mirror": true,
@@ -11520,7 +11712,7 @@
       "pos": [
        5.1,
        0.3,
-       0.4
+       1.4
       ],
       "ch": "detail",
       "mirror": true,
@@ -11536,7 +11728,7 @@
       "pos": [
        5.1,
        2.49,
-       0.4
+       1.4
       ],
       "ch": "detail",
       "mirror": true,
@@ -11717,7 +11909,7 @@
       ],
       "ch": "primary",
       "mirror": true,
-      "note": "vent box"
+      "note": "vent box, inboard of the exhaust lane"
      },
      {
       "shape": "block",
@@ -11861,7 +12053,7 @@
        9.0
       ],
       "pos": [
-       5.2,
+       5.1,
        0.9,
        -0.1
       ],
@@ -11877,7 +12069,7 @@
        1.4
       ],
       "pos": [
-       5.2,
+       5.1,
        0.9,
        5.1
       ],
@@ -12093,6 +12285,21 @@
      {
       "shape": "block",
       "size": [
+       2.0,
+       0.4,
+       0.35
+      ],
+      "pos": [
+       0.0,
+       1.15,
+       -16.725
+      ],
+      "ch": "detail",
+      "note": "centre bracket to the nose pad"
+     },
+     {
+      "shape": "block",
+      "size": [
        0.4,
        1.1,
        0.15
@@ -12147,46 +12354,62 @@
      {
       "shape": "block",
       "size": [
+       1.4,
        0.4,
-       2.3,
-       0.3
-      ],
-      "pos": [
-       5.5,
-       2.05,
-       -17.05
-      ],
-      "ch": "detail",
-      "mirror": true,
-      "note": "upright"
-     },
-     {
-      "shape": "block",
-      "size": [
-       0.4,
-       2.3,
-       0.3
-      ],
-      "pos": [
-       6.9,
-       2.05,
-       -17.05
-      ],
-      "ch": "detail",
-      "mirror": true,
-      "note": "upright"
-     },
-     {
-      "shape": "block",
-      "size": [
-       1.8,
-       0.3,
-       0.3
+       0.4
       ],
       "pos": [
        6.2,
-       3.35,
-       -17.05
+       1.2,
+       -17.1
+      ],
+      "ch": "detail",
+      "mirror": true,
+      "note": "standoff and low cross-member"
+     },
+     {
+      "shape": "block",
+      "size": [
+       0.3,
+       1.5,
+       0.3
+      ],
+      "pos": [
+       5.35,
+       1.65,
+       -17.4
+      ],
+      "ch": "detail",
+      "mirror": true,
+      "note": "upright"
+     },
+     {
+      "shape": "block",
+      "size": [
+       0.3,
+       1.5,
+       0.3
+      ],
+      "pos": [
+       7.05,
+       1.65,
+       -17.4
+      ],
+      "ch": "detail",
+      "mirror": true,
+      "note": "upright"
+     },
+     {
+      "shape": "block",
+      "size": [
+       2.0,
+       0.25,
+       0.4
+      ],
+      "pos": [
+       6.2,
+       2.275,
+       -17.4
       ],
       "ch": "secondary",
       "mirror": true,
@@ -12195,18 +12418,23 @@
      {
       "shape": "block",
       "size": [
-       1.8,
+       0.9,
        0.2,
-       0.3
+       0.96
       ],
       "pos": [
        6.2,
-       2.0,
-       -17.05
+       1.8,
+       -16.985
       ],
       "ch": "secondary",
+      "rot": [
+       56.476,
+       0.0,
+       0.0
+      ],
       "mirror": true,
-      "note": "mid bar"
+      "note": "raked stay plate from the top bar to the hardpoint"
      }
     ]
    },
@@ -12494,15 +12722,15 @@
       "size": [
        7.6,
        1.68,
-       0.7
+       1.25
       ],
       "pos": [
        0.0,
        -0.06,
-       -16.95
+       -17.175
       ],
       "ch": "primary",
-      "note": "air dam"
+      "note": "air dam box, back to the bumper plane"
      },
      {
       "shape": "block",
@@ -12514,7 +12742,7 @@
       "pos": [
        0.0,
        -0.05,
-       -17.35
+       -17.85
       ],
       "ch": "detail",
       "note": "dam slot"
@@ -13037,21 +13265,6 @@
       "ch": "secondary",
       "mirror": true,
       "note": "end plate"
-     },
-     {
-      "shape": "block",
-      "size": [
-       9.2,
-       0.2,
-       0.2
-      ],
-      "pos": [
-       0.0,
-       6.8,
-       13.3
-      ],
-      "ch": "secondary",
-      "note": "gurney"
      }
     ]
    },
@@ -13501,6 +13714,58 @@
     "primary": "#23264f",
     "secondary": "#d9dbe6",
     "neon": "#ff2bd6"
+   }
+  },
+  {
+   "name": "Mixed: Stiletto with air dam",
+   "cockpit": "stiletto",
+   "kit": "wedge",
+   "modules": {
+    "FrontBumper": "air_dam"
+   },
+   "paint": {
+    "primary": "#e3c21c",
+    "secondary": "#18191c",
+    "neon": "#ff5a36"
+   }
+  },
+  {
+   "name": "Mixed: Outlaw with air dam",
+   "cockpit": "outlaw",
+   "kit": "prostreet",
+   "modules": {
+    "FrontBumper": "air_dam"
+   },
+   "paint": {
+    "primary": "#5b22a8",
+    "secondary": "#e2b233",
+    "neon": "#ff4df2"
+   }
+  },
+  {
+   "name": "Mixed: Regent with chin bar",
+   "cockpit": "regent",
+   "kit": "wedge",
+   "modules": {
+    "FrontBumper": "chin_bar"
+   },
+   "paint": {
+    "primary": "#2a4f8f",
+    "secondary": "#d8d2c2",
+    "neon": "#ffd9a0"
+   }
+  },
+  {
+   "name": "Mixed: Nightshift with chin bar",
+   "cockpit": "nightshift",
+   "kit": "prostreet",
+   "modules": {
+    "FrontBumper": "chin_bar"
+   },
+   "paint": {
+    "primary": "#c21a2c",
+    "secondary": "#101114",
+    "neon": "#3df2ff"
    }
   }
  ]

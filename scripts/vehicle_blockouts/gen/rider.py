@@ -327,16 +327,21 @@ def cockpits():
             wedge((-0.8, 0.8), (3.4, 4.3), (2.6, 3.3), "tail", "primary", note="race hump: falls to the seat tail datum"),
             wedge((0.8, 1.35), (3.4, 4.0), (2.05, 2.6), "nose", "secondary", mirror=True, note="hump shoulder: wide angular race tail"),
             wedge((0.8, 1.35), (3.4, 4.0), (2.6, 3.3), "tail", "secondary", mirror=True, note="hump shoulder: falls to the seat tail datum"),
+            box((1.45, 2.3), (1.08, 1.25), (-2.0, -0.6), "primary", mirror=True, note="aero winglet: hangs off the spar, shows under every side panel"),
+            box((2.3, 2.4), (0.7, 1.3), (-2.1, -0.5), "secondary", mirror=True, note="winglet end plate"),
         ] + rider(hip=(3.1, 1.75), sho=(4.15, -0.3), head=(4.65, -0.88), knee=(2.9, 0.4), ankle=(1.95, 1.8), elbow=(3.7, -0.6), elbow_x=1.14),
     }
     c["cafe"] = {
         "name": "Cafe", "culture": "Cafe Racer", "kit": "tonup",
         "parts": chassis("secondary") + [
-            box((-0.7, 0.7), (2.2, 2.7), (0.2, 1.5), "detail", note="solo seat pad"),
-            cz(0, 3.2, 1.45, 2.3, 1.7, "primary", note="long round cafe hump: bum stop"),
-            ball(2.0, [0, 3.3, 2.3], "primary", note="round cafe hump: a dome that rolls down to the seat tail datum"),
-            box((-0.85, 0.85), (2.2, 2.45), (0.2, 1.5), "primary", note="painted seat pan: slim, nothing outside the spine line"),
-        ] + rider(hip=(3.1, 0.95), sho=(4.65, -0.1), head=(5.25, -0.55), knee=(2.8, -0.35), ankle=(1.6, 1.25), elbow=(4.0, -0.6), elbow_x=1.3),
+            box((-0.7, 0.7), (2.2, 2.7), (0.2, 1.3), "detail", note="long flat solo seat"),
+            box((-0.85, 0.85), (2.2, 2.45), (0.2, 1.3), "primary", note="painted seat pan"),
+            cz(0, 3.2, 1.0, 2.0, 1.7, "primary", note="long round cafe hump: bum stop"),
+            ball(2.5, [0, 3.45, 2.0], "primary", note="big round cafe hump: a dome 2.5 across that rolls down to the seat tail datum"),
+            tube([1.05, 1.95, -2.0], [1.05, 0.58, -0.9], 0.26, "secondary", mirror=True, note="loop frame: down tube"),
+            tube([1.05, 0.58, -0.9], [1.05, 0.58, 2.3], 0.26, "secondary", mirror=True, note="loop frame: lower rail, the engine shows above it"),
+            tube([1.05, 0.58, 2.3], [1.05, 1.9, 2.95], 0.26, "secondary", mirror=True, note="loop frame: rear upright"),
+        ] + rider(hip=(3.1, 0.7), sho=(4.65, -0.3), head=(5.25, -0.75), knee=(2.8, -0.55), ankle=(1.6, 1.0), elbow=(4.0, -0.7), elbow_x=1.3),
     }
     c["chopper"] = {
         "name": "Chopper", "culture": "Chopper", "kit": "longhaul",
@@ -345,29 +350,31 @@ def cockpits():
             box((-0.8, 0.8), (2.2, 2.55), (1.85, 2.75), "detail", note="saddle tail"),
             box((0.9, 2.35), (0.74, 0.94), (-2.15, 0.4), "secondary", mirror=True, note="wide full-length running board"),
             box((2.2, 2.35), (0.94, 1.25), (-2.15, 0.4), "detail", mirror=True, note="running-board rail"),
-            box((-1.1, 1.1), (2.55, 4.6), (2.1, 2.5), "detail", note="tall king backrest"),
-            box((-1.7, 1.7), (4.6, 5.3), (2.05, 2.55), "secondary", note="wide backrest top roll"),
+            box((-1.1, 1.1), (2.55, 5.0), (2.1, 2.5), "detail", note="tall king backrest"),
+            box((-1.7, 1.7), (5.0, 5.6), (2.05, 2.55), "secondary", note="wide backrest top roll: 3.4 across, behind the neck"),
             box((-0.75, 0.75), (2.55, 3.4), (2.5, 2.75), "detail", note="pillion step"),
-        ] + rider(hip=(2.9, 0.75), sho=(4.9, 1.5), head=(5.55, 1.6), knee=(2.45, -0.45), ankle=(1.35, -1.4), elbow=(4.3, 0.2)),
+        ] + rider(hip=(2.9, 0.75), sho=(4.9, 1.4), head=(5.55, 1.45), knee=(2.45, -0.45), ankle=(1.35, -1.4), elbow=(4.3, 0.2)),
     }
     c["scrambler"] = {
         "name": "Scrambler", "culture": "Motocross", "kit": "holeshot",
         "parts": chassis("secondary") + [
             box((-0.6, 0.6), (2.2, 3.4), (0.2, 2.75), "detail", note="tall flat bench: level with the seat tail datum"),
             box((-0.68, 0.68), (2.2, 2.8), (0.2, 3.25), "primary", note="bench side cover"),
-            wedge((1.45, 1.7), (1.4, 3.4), (1.4, 2.0), "nose", "primary", mirror=True, note="side number board: swept leading edge"),
-            box((1.45, 1.7), (1.4, 3.4), (2.0, 3.28), "primary", mirror=True, note="side number board: 2 studs high"),
+            wedge((1.45, 1.7), (1.4, 4.4), (1.4, 2.0), "nose", "primary", mirror=True, note="high side number board: swept leading edge"),
+            box((1.45, 1.7), (1.4, 3.4), (2.0, 3.28), "primary", mirror=True, note="high side number board: lower half"),
+            wedge((1.45, 1.7), (3.4, 4.4), (2.0, 3.28), "tail", "primary", mirror=True, note="high side number board: 3 studs high at the front, falls to the seat tail datum"),
             box((0.75, 1.45), (3.0, 3.2), (2.4, 3.2), "detail", mirror=True, note="board bridge to the bench"),
-        ] + rider(hip=(4.0, 1.5), sho=(5.3, 0.1), head=(5.8, -0.45), knee=(2.95, 0.7), ankle=(1.45, 1.0), elbow=(4.95, -0.8), elbow_x=1.95),
+        ] + rider(hip=(4.5, 1.3), sho=(5.6, -0.1), head=(5.95, -0.6), knee=(3.2, 0.9), ankle=(1.45, 1.0), elbow=(5.0, -0.9), elbow_x=1.95),
     }
     c["streetfighter"] = {
         "name": "Streetfighter", "culture": "Streetfighter", "kit": "bareknuckle",
         "parts": chassis("secondary") + [
-            box((-0.75, 0.75), (2.2, 2.7), (0.2, 2.0), "detail", note="rider pad"),
-            wedge((-0.85, 0.85), (2.7, 3.4), (1.9, 2.75), "nose", "primary", note="short kicked tail pad"),
+            box((-0.75, 0.75), (2.2, 2.7), (0.2, 1.9), "detail", note="rider pad: the low step"),
+            box((-0.85, 0.85), (2.7, 3.4), (1.9, 3.28), "primary", note="pillion step: the seat steps up 0.7"),
+            wedge((-1.3, 1.3), (3.4, 4.7), (1.9, 2.8), "nose", "primary", note="tall kicked tail: 2.6 wide"),
+            wedge((-1.3, 1.3), (3.4, 4.7), (2.8, 3.3), "tail", "primary", note="kicked tail back: falls to the seat tail datum"),
             wedge((0.9, 1.7), (0.6, 2.15), (-2.1, -0.5), "chin", "primary", mirror=True, note="frame panel: solid front triangle, full width of the leg channel"),
             wedge((0.9, 1.08), (0.6, 2.15), (-0.5, 2.6), "kick", "primary", mirror=True, note="frame panel: rear triangle, inside the leg"),
-            cx(0.9, -1.2, 1.7, 2.25, 0.45, "detail", mirror=True, note="frame slider"),
         ] + rider(hip=(3.05, 1.3), sho=(5.0, 0.65), head=(5.65, 0.4), knee=(2.7, 0.0), ankle=(1.45, 0.9), elbow=(4.45, -0.3), elbow_x=1.95),
     }
     c["speeder"] = {
@@ -401,9 +408,10 @@ def tailpipe(x, z0, z1, dia, glow, ch="secondary", mirror=False, name="tailpipe"
 def engine1():
     m = {}
     m["inline"] = {"name": "Inline Turbine", "culture": "Supersport", "parts": [
-            cz(0, -0.3, -2.45, -1.6, 1.5, "detail", note="main turbine intake cowl"),
-            ball(0.7, [0, -0.3, -2.15], "secondary", note="intake spinner"),
-            cz(0, -0.3, -1.6, 0.9, 1.36, "secondary", note="main turbine body"),
+            cz(0, -0.3, -2.3, -1.7, 1.05, "primary", note="intake lip: body colour, narrower than the cowl"),
+            cz(0, -0.3, -1.7, -0.9, 1.25, "primary", note="intake cowl: lip plus cowl are 1.4 long and at most 1.25 across, never a drum"),
+            ball(0.9, [0, -0.3, -2.08], "secondary", note="intake spinner: a bright cone that stands out of the mouth"),
+            cz(0, -0.3, -0.9, 0.9, 1.36, "secondary", note="main turbine body"),
             tube([0, -0.3, 0.8], [0, TUNNEL_Y, 2.1], 1.0, "detail", note="jet pipe: drops into the exhaust tunnel"),
             box((-0.3, 0.3), (0.3, 1.55), (-0.6, 0.0), "detail", note="top mount"),
         ] + tailpipe(0, 2.0, 5.75, 0.9, 0.78, name="long centre tailpipe")}
@@ -414,10 +422,10 @@ def engine1():
             box((1.3, 1.5), (-1.15, -0.05), (-0.75, 0.35), "detail", mirror=True, note="finned can head"),
             cz(1.02, -0.6, -1.5, -0.6, 0.55, "detail", mirror=True, note="intake trumpet"),
             cz(1.02, -0.6, -2.0, -1.5, 0.82, "secondary", mirror=True, note="intake bellmouth"),
-            cz(1.02, TUNNEL_Y, 0.2, 1.5, 0.55, "secondary", mirror=True, note="megaphone stage 1"),
-            cz(1.02, TUNNEL_Y, 1.5, 2.4, 0.76, "secondary", mirror=True, note="megaphone stage 2"),
-            cz(1.02, TUNNEL_Y, 2.4, 3.2, 0.95, "detail", mirror=True, note="megaphone mouth"),
-            cz(1.02, TUNNEL_Y, 3.2, 3.38, 0.76, "thrust", mirror=True, note="megaphone thrust"),
+            cz(1.02, TUNNEL_Y, 0.2, 2.4, 0.55, "secondary", mirror=True, note="megaphone stage 1"),
+            cz(1.02, TUNNEL_Y, 2.4, 4.3, 0.76, "secondary", mirror=True, note="megaphone stage 2"),
+            cz(1.02, TUNNEL_Y, 4.3, 5.6, 0.95, "detail", mirror=True, note="megaphone mouth: out past the seat, clear of any boost pipe"),
+            cz(1.02, TUNNEL_Y, 5.6, 5.78, 0.76, "thrust", mirror=True, note="megaphone thrust"),
         ]}
     m["vtwin"] = {"name": "V-Twin Jets", "culture": "Chopper", "parts": [
             box((-0.75, 0.75), (-1.25, -0.25), (-0.8, 0.8), "detail", note="small crankcase"),
@@ -438,26 +446,33 @@ def engine1():
             box((-1.2, 1.2), (-1.45, -1.25), (-2.2, 1.0), "primary", note="wide bash plate"),
             box((1.05, 1.2), (-1.25, -0.7), (-2.2, 0.2), "primary", mirror=True, note="bash plate side wing"),
             tube([0.5, -0.85, 0.6], [0.95, TUNNEL_Y, 2.2], 0.8, "detail", note="header: right side only, under the megaphone"),
-        ] + tailpipe(0.95, 2.1, 3.9, 0.9, 0.78, name="single stinger")}
+        ] + tailpipe(0.95, 2.1, 5.3, 0.9, 0.78, name="single stinger")}
     m["fourposter"] = {"name": "Four-Poster", "culture": "Streetfighter", "parts": [
             box((-0.6, 0.6), (-0.3, 1.1), (-1.9, 1.5), "detail", note="long plenum"),
             box((-0.3, 0.3), (1.1, 1.5), (-0.6, 0.0), "detail", note="top mount"),
             box((-1.05, 1.05), (-0.1, 0.2), (-2.0, -1.4), "detail", note="front post yoke"),
             box((-1.05, 1.05), (-0.1, 0.2), (1.2, 1.8), "detail", note="rear post yoke"),
             box((-0.5, 0.5), (-1.2, -0.3), (0.9, 2.4), "detail", note="collector duct"),
-            box((-0.8, 0.8), (-1.55, -0.6), (2.3, 3.7), "secondary", note="rear collector nozzle: between the back posts"),
-            box((-0.9, 0.9), (-1.6, -0.55), (3.7, 4.0), "detail", note="collector lip"),
-            box((-0.7, 0.7), (-1.47, -0.68), (4.0, 4.16), "thrust", note="collector thrust: rear-facing"),
+            box((-0.8, 0.8), (-1.55, -0.6), (2.3, 3.6), "secondary", note="rear collector: between the back posts"),
+            box((-0.55, 0.55), (-1.45, -0.7), (3.6, 4.8), "secondary", note="collector nozzle: steps in and runs out under the swingarm, a duct not a slab"),
+            box((-0.7, 0.7), (-1.55, -0.6), (4.8, 5.1), "detail", note="collector lip"),
+            box((-0.55, 0.55), (-1.42, -0.73), (5.1, 5.26), "thrust", note="collector thrust: rear-facing, 1.1 across"),
         ] + lift_jet(1.05, -1.7, 0.28, -1.3, 0.85, "secondary", True, "front lift post")
           + lift_jet(1.05, 1.5, 0.28, -1.3, 0.85, "secondary", True, "rear lift post")}
     m["slotburner"] = {"name": "Slot Burner", "culture": "Speeder", "parts": [
-            box((-0.85, 0.85), (-0.6, 1.45), (-2.0, 1.6), "detail", note="plenum: hugs the spine"),
-            wedge((-0.85, 0.85), (-0.6, 1.45), (-2.5, -2.0), "nose", "detail", note="plenum intake ramp"),
-            box((-1.45, 1.45), (-1.25, -0.6), (-2.3, 4.4), "secondary", note="burner slab: runs out under the swingarm"),
-            box((-1.2, 1.2), (-1.13, -0.72), (-2.5, -2.3), "detail", note="intake mouth"),
-            box((-1.45, 1.45), (-1.25, -0.6), (4.4, 4.7), "detail", note="slot nozzle"),
-            box((-1.25, 1.25), (-1.15, -0.7), (4.7, 4.88), "thrust", note="slot thrust: rear-facing"),
-            box((1.45, 1.5), (-1.05, -0.8), (-1.6, 1.6), "thrust", mirror=True, note="side slot thrust"),
+            box((-0.55, 0.55), (-0.2, 1.1), (-1.7, 1.2), "secondary", note="plenum: slim, 1.1 wide and 1.3 high, daylight either side"),
+            wedge((-0.55, 0.55), (-0.2, 1.1), (-2.3, -1.7), "nose", "secondary", note="plenum intake ramp"),
+            box((-0.3, 0.3), (1.1, 1.5), (-0.6, 0.0), "detail", note="top mount"),
+            box((0.55, 0.88), (0.35, 1.0), (-2.0, -0.6), "primary", mirror=True, note="side intake scoop"),
+            box((0.6, 0.83), (0.42, 0.93), (-2.2, -2.0), "detail", mirror=True, note="scoop mouth: the visible intake"),
+            wedge((0.55, 0.88), (0.35, 1.0), (-0.6, 0.2), "tail", "primary", mirror=True, note="scoop fade"),
+            box((-0.35, 0.35), (-0.5, -0.2), (0.2, 1.1), "detail", note="strut: bridges the 0.3 shadow gap to the slab"),
+            wedge((-1.1, 1.1), (-1.15, -0.5), (-0.5, 0.1), "nose", "primary", note="burner slab leading edge"),
+            box((-1.1, 1.1), (-1.15, -0.5), (0.1, 2.4), "primary", note="burner slab: 2.2 wide, body colour"),
+            box((-0.9, 0.9), (-1.15, -0.55), (2.4, 4.6), "primary", note="burner slab tail: steps in, runs out under the swingarm"),
+            box((-0.9, 0.9), (-1.2, -0.55), (4.6, 4.9), "detail", note="slot nozzle"),
+            box((-0.75, 0.75), (-1.1, -0.65), (4.9, 5.08), "thrust", note="slot thrust: rear-facing"),
+            box((1.1, 1.15), (-0.95, -0.7), (0.3, 2.2), "thrust", mirror=True, note="side slot thrust"),
         ]}
     return m
 
@@ -469,7 +484,7 @@ def engine2():
             box((-0.7, 0.7), (0.6, 1.4), (3.4, 3.9), "detail", note="pivot"),
             beam([1.0, 1.0, 3.6], [1.0, 0.55, 5.4], 0.3, 0.6, "secondary", note="single-sided swingarm"),
             box((0.0, 1.15), (0.25, 0.65), (5.1, 5.6), "detail", note="thruster carrier"),
-        ] + jet_z(0, 0.38, 4.0, 7.0, 1.6, "primary", spinner=False, name="mono thruster")}
+        ] + jet_z(0, 0.3, 4.0, 7.15, 1.5, "primary", spinner=False, name="mono thruster", cowl_ch="secondary")}
     m["trident"] = {"name": "Trident", "culture": "Cafe Racer", "parts": [
             box((-0.6, 0.6), (0.5, 1.4), (3.4, 3.9), "detail", note="pivot"),
             box((-1.3, 1.3), (0.35, 0.75), (3.9, 4.4), "secondary", note="swingarm yoke: carries three barrels"),
@@ -496,12 +511,13 @@ def engine2():
             beam([0.65, 1.2, 3.5], [0.65, 0.6, 5.2], 0.2, 0.5, "secondary", mirror=True, note="long-travel swingarm"),
             box((-0.55, 0.55), (0.6, 1.4), (3.4, 3.8), "detail", note="pivot"),
             box((-0.75, 0.75), (0.45, 0.85), (4.9, 5.4), "detail", note="thruster carrier"),
-        ] + jet_z(0, 1.25, 4.0, 7.0, 0.95, "primary", spinner=False, name="upper thruster")
-          + jet_z(0, 0.05, 4.2, 5.9, 0.95, "primary", spinner=False, name="lower thruster")}
+            box((-0.1, 0.1), (0.25, 1.05), (4.5, 6.4), "secondary", note="spine fin: ties the two barrels into one tall stack"),
+        ] + jet_z(0, 1.38, 5.0, 7.15, 0.8, "primary", spinner=False, name="upper thruster")
+          + jet_z(0, -0.08, 3.9, 5.6, 0.8, "primary", spinner=False, name="lower thruster")}
     m["twin"] = {"name": "Twin Barrels", "culture": "Streetfighter", "parts": [
             box((-0.3, 0.3), (0.2, 1.3), (3.4, 4.5), "detail", note="centre arm"),
-            box((-0.9, 0.9), (0.72, 0.98), (3.9, 4.5), "secondary", note="cross brace"),
-        ] + jet_z(0.82, 0.3, 3.9, 6.2, 1.25, "primary", True, spinner=False, name="barrel")}
+            box((-1.15, 1.15), (0.75, 0.93), (3.9, 5.7), "secondary", note="flat bridge plate: ties two barrels with a clear gap between them"),
+        ] + jet_z(1.05, 0.32, 3.9, 6.7, 0.9, "primary", True, spinner=False, name="barrel")}
     m["fantail"] = {"name": "Fan Tail", "culture": "Speeder", "parts": [
             box((-0.6, 0.6), (0.5, 1.5), (3.4, 3.9), "detail", note="pivot"),
             box((-1.2, 1.2), (0.85, 1.3), (3.7, 3.95), "detail", note="intake lip"),
@@ -654,10 +670,12 @@ def fairings():
         ]}
     m["mxplate"] = {"name": "Number Plate", "culture": "Motocross", "parts": fairing_bracket() + [
             P("block", [1.7, 1.4, 0.3], [0, 3.62, -5.0], "primary", [12, 0, 0], note="number plate"),
-            box((-0.5, 0.5), (2.95, 3.3), (-5.0, -4.0), "detail", note="plate mount and lamp"),
+            box((-0.5, 0.5), (2.95, 3.3), (-5.0, -4.0), "detail", note="plate mount"),
             deck(4.0, "detail"),
             box((-0.3, 0.3), (3.27, 4.0), (-4.3, -3.7), "detail", note="deck post"),
-            beam([0, 2.72, -5.05], [0, 2.3, -7.1], 1.4, 0.3, "primary", note="high beak fender"),
+            beam([0, 2.86, -5.05], [0, 2.62, -6.2], 1.3, 0.2, "primary", note="short lamp visor: tucked under the plate"),
+            box((-0.4, 0.4), (2.25, 2.7), (-5.6, -5.05), "detail", note="lamp pod under the visor"),
+            box((-0.3, 0.3), (2.32, 2.6), (-5.72, -5.6), "neon", note="lamp lens"),
         ]}
     m["mask"] = {"name": "Fighter Mask", "culture": "Streetfighter", "parts": fairing_bracket() + [
             wedge((-1.2, 1.2), (3.3, 4.0), (-5.5, -4.8), "nose", "primary", note="mask brow"),
@@ -845,12 +863,14 @@ def seat_units():
     m["mxfender"] = {"name": "MX Fender", "culture": "Motocross", "parts": rail() + [
             wedge((-0.7, 0.7), (2.3, top), (3.45, 5.4), "kick", "primary", note="airbox side: flat top at the seat tail datum"),
             beam([0, 3.42, 4.4], [0, 4.25, 6.6], 0.9, 0.3, "primary", note="kicked-up fender"),
+            beam([0, 2.2, 6.62], [0, 4.1, 6.42], 1.0, 0.14, "primary", note="rear number board: drops from the fender tip to the rail end, so every tail kit backs onto it"),
         ]}
     m["stubtail"] = {"name": "Stub Tail", "culture": "Streetfighter", "parts": rail() + [
             wedge((-1.35, 1.35), (2.3, top), (3.45, 5.1), "kick", "primary", note="stub underside"),
             wedge((-1.35, 1.35), (top, 4.5), (3.45, 5.1), "nose", "primary", note="stub kick"),
             box((-0.8, 0.8), (3.95, 4.2), (5.1, 5.18), "neon", note="slit tail lamp: 1.6 x 0.25"),
-            wedge((-0.5, 0.5), (2.15, 2.75), (5.1, 6.7), "tail", "primary", note="tail boom: carries the tail kit"),
+            box((-0.45, 0.45), (2.6, 3.3), (5.1, 6.7), "primary", note="tail boom: at seat height to the tail, so tall tail kits back onto bodywork"),
+            wedge((-0.45, 0.45), (2.15, 2.6), (5.1, 6.7), "kick", "primary", note="boom underside: rises to the tip"),
         ]}
     m["fintail"] = {"name": "Boat Tail", "culture": "Speeder", "parts": rail() + [
             box((-1.2, 1.2), (2.3, 3.0), (3.45, 6.0), "primary", note="tail deck"),

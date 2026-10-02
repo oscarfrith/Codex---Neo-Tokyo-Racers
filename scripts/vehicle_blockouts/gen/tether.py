@@ -244,7 +244,10 @@ def pod_sled():
         box(-0.5, 0.5, 1.9, 2.0, 6.4, 7.6, "secondary", note="deck stripe"),
         ramp(-1.1, 1.1, 1.9, 3.2, 7.6, 10.2, "glass", "up", note="long raked canopy"),
         box(-1.1, 1.1, 1.9, 3.2, 10.2, 11.0, "glass", note="canopy"),
-        ramp(-1.1, 1.1, 1.9, 3.2, 11.0, 12.6, "primary", "down", note="fairing behind the canopy"),
+        ramp(-1.1, 1.1, 2.7, 3.2, 11.0, 12.6, "primary", "down", note="fairing behind the canopy falls to deck height"),
+        box(-1.1, 1.1, 1.9, 2.7, 11.0, 12.6, "primary", note="fairing base"),
+        box(-1.5, 1.5, 1.9, 2.7, 12.6, 14.05, "primary", note="tail block under the deck"),
+        ramp(1.1, 1.5, 1.9, 2.7, 11.4, 12.6, "primary", "up", M, "shoulder rises to the tail block"),
         box(-0.3, 0.3, 3.2, 3.35, 10.2, 11.2, "secondary", note="canopy spine"),
         fin(1.5, 3.9, -0.1, 0.9, 8.0, 12.2, "secondary", "front", M, "delta sponson"),
         box(1.5, 3.9, -0.1, 0.9, 12.2, 14.05, "secondary", M, "sponson"),
@@ -356,8 +359,9 @@ def e1_long_barrels():
         box(EX + 0.85, EX + 1.0, EY - 0.15, EY + 0.15, -8.2, -4.6, "neon", M, "tailpipe light"),
         tube(2.2, -4.4, -2.7, EX, EY, "detail", M, "nozzle"),
         tube(1.7, -3.2, -2.1, EX, EY, "thrust", M, "jet"),
-        box(EX - 0.3, EX + 0.3, 3.7, 4.4, -11.0, -9.4, "primary", M, "pylon to the top pad"),
-        ramp(EX - 0.3, EX + 0.3, 3.7, 4.4, -12.0, -11.0, "primary", "up", M),
+        box(EX - 0.65, EX + 0.65, 3.6, 4.4, -11.2, -9.2, "primary", M, "dorsal fairing under the top pad, 1.3 wide"),
+        ramp(EX - 0.65, EX + 0.65, 3.6, 4.4, -12.4, -11.2, "primary", "up", M),
+        ramp(EX - 0.65, EX + 0.65, 3.2, 4.4, -9.2, -6.8, "primary", "down", M, "fairing falls to the tailpipe"),
         box(3.1, 3.6, 2.15, 2.65, -12.3, -11.7, "detail", M, "inner strut"),
         box(3.1, 4.05, 2.15, 2.65, -9.0, -8.4, "detail", M, "inner strut"),
         box(6.2, 6.7, 2.15, 2.65, -12.1, -11.5, "detail", M, "outer strut"),
@@ -430,7 +434,8 @@ def e1_bells():
         beam((EX, EY - r0, z0), (EX, EY - r1, z1), 2.3, 0.3, "primary", M, "horn petal, bottom"),
         beam((EX + r0, EY, z0), (EX + r1, EY, z1), 0.3, 2.3, "secondary", M, "horn petal, outer"),
         beam((EX - r0, EY, z0), (EX - r1, EY, z1), 0.3, 2.3, "secondary", M, "horn petal, inner"),
-        box(EX - 0.3, EX + 0.3, 3.6, 4.4, -11.0, -9.6, "primary", M, "pylon to the top pad"),
+        box(EX - 0.65, EX + 0.65, 3.5, 4.4, -11.2, -9.2, "primary", M, "dorsal fairing under the top pad, 1.3 wide"),
+        ramp(EX - 0.65, EX + 0.65, 3.3, 4.4, -12.8, -11.2, "primary", "up", M),
         box(3.1, 3.95, 2.15, 2.65, -12.3, -11.7, "detail", M, "inner strut"),
         box(3.1, 3.7, 2.15, 2.65, -9.5, -8.9, "detail", M, "inner strut"),
         box(5.85, 6.7, 2.15, 2.65, -12.0, -11.4, "detail", M, "outer strut"),
@@ -439,46 +444,68 @@ def e1_bells():
 
 
 def e1_slabs():
-    """Harbour. A twin pair each side: two torpedo jets side by side under a flat deck, like a catamaran."""
+    """Harbour. A catamaran each side: two flat-sided boat hulls with pointed bows, a bridge deck and a wheelhouse."""
     parts = engine_pads() + [
-        box(4.0, 5.8, 2.1, 2.7, -14.2, -6.8, "secondary", M, "bridge deck between the hulls"),
+        box(3.8, 6.0, 2.1, 2.7, -14.2, -6.4, "secondary", M, "bridge deck between the hulls"),
         fin(EX, EX + 0.9, 2.1, 2.7, -15.6, -14.2, "secondary", "front", M, "deck bow carries the nose collar"),
         fin(EX, EX - 0.9, 2.1, 2.7, -15.6, -14.2, "secondary", "front", M),
-        box(EX - 0.3, EX + 0.3, 2.7, 4.4, -10.8, -9.4, "primary", M, "tower to the top pad"),
-        ramp(EX - 0.3, EX + 0.3, 2.7, 4.4, -13.2, -10.8, "primary", "up", M),
+        box(4.5, 5.3, 0.5, 2.1, -13.0, -12.6, "detail", M, "tunnel intake between the hulls"),
+        # The wheelhouse fills the space under the top pad, so a slim boost never stands on a mast.
+        box(4.1, 5.7, 2.7, 4.4, -11.4, -8.8, "primary", M, "wheelhouse under the top pad, 1.6 wide"),
+        ramp(4.1, 5.7, 2.7, 4.4, -13.4, -11.4, "primary", "up", M, "wheelhouse front"),
+        ramp(4.1, 5.7, 2.7, 4.4, -8.8, -7.0, "primary", "down", M, "wheelhouse back"),
+        box(5.7, 5.78, 3.3, 3.75, -11.0, -9.2, "detail", M, "side louvre"),
+        box(4.02, 4.1, 3.3, 3.75, -11.0, -9.2, "detail", M, "side louvre"),
+        box(4.3, 5.5, 2.7, 2.78, -14.0, -13.6, "neon", M, "deck light"),
     ]
-    # The hulls hang under the deck, and the outer hull sits further back than the inner one,
-    # so the pair reads as a swept chevron from above.
-    hy = 1.5
-    for x, z0, z1 in ((3.7, -15.2, -7.4), (6.1, -13.0, -3.6)):
+    # Flat-sided hulls, no tubes. The straight side of each hull carries a rail pad and the bows open the
+    # tunnel like a funnel. The outer hull sits further back than the inner one: a swept chevron from above.
+    hy0, hy1 = 0.3, 2.5
+    for x0, x1, xs, zb, z0, z1 in ((3.1, 4.5, 3.1, -15.4, -13.2, -7.6), (5.3, 6.7, 6.7, -14.2, -12.2, -4.8)):
+        xa = x1 if xs == x0 else x0
+        xc = (x0 + x1) / 2
         parts += [
-            tube(2.0, z0, z1, x, hy, "primary", M, "torpedo hull"),
-            tube(1.6, z0 - 0.15, z0 + 1.2, x, hy, "detail", M, "intake"),
-            tube(1.6, z1 - 0.4, z1 + 1.0, x, hy, "detail", M, "nozzle"),
-            tube(1.3, z1 + 0.4, z1 + 1.3, x, hy, "thrust", M, "jet"),
-            box(x - 0.15, x + 0.15, -0.15, 0.6, z1 - 1.6, z1 - 0.4, "secondary", M, "skeg"),
-            ramp(x - 0.15, x + 0.15, -0.15, 0.6, z1 - 3.8, z1 - 1.6, "secondary", "chin", M),
+            box(x0, x1, hy0, hy1, z0, z1, "primary", M, "boat hull, flat sides"),
+            fin(xs, xa, hy0, hy1, zb, z0, "primary", "front", M, "pointed bow"),
+            box(xc - 0.45, xc + 0.45, 0.75, 2.05, z1, z1 + 0.25, "detail", M, "transom plate"),
+            tube(1.3, z1 - 0.2, z1 + 1.2, xc, 1.4, "detail", M, "nozzle"),
+            tube(1.0, z1 + 0.8, z1 + 1.7, xc, 1.4, "thrust", M, "jet"),
+            box(xc - 0.15, xc + 0.15, -0.15, hy0, z1 - 1.8, z1 - 0.4, "secondary", M, "skeg"),
+            ramp(xc - 0.15, xc + 0.15, -0.15, hy0, z1 - 4.0, z1 - 1.8, "secondary", "chin", M),
         ]
     return parts
 
 
 def e1_stack():
-    """Atomic. An over-and-under pair each side: a short upper jet and a long lower jet on a tall narrow web."""
+    """Atomic. One tall over-and-under nacelle each side: a single cowl with flat sides and a round top and
+    belly (2 across, 4 tall), the upper storey leading, both nozzles in one oval tail."""
+    w = 1.0
+    yu, yl = 3.4, 1.4     # centres of the round top and the round belly
     parts = engine_pads() + [
         box(EX - 0.4, EX + 0.4, EY - 0.4, EY + 0.4, -15.6, -14.2, "detail", M, "web bow carries the nose collar"),
-        box(EX - 0.25, EX + 0.25, 1.15, 3.45, -14.6, -5.0, "secondary", M, "tall narrow web"),
+        tube(2 * w, -14.6, -6.6, EX, yu, "primary", M, "round top of the cowl"),
+        box(EX - w, EX + w, 2.4, yu, -14.6, -6.6, "primary", M, "upper storey, flat sides, leads"),
+        tube(2 * w, -12.8, -6.6, EX, yl, "secondary", M, "round belly of the cowl"),
+        box(EX - w, EX + w, yl, 2.4, -12.8, -6.6, "secondary", M, "lower storey, flat sides, set back"),
         box(3.1, 6.7, 2.2, 2.6, -12.4, -8.6, "secondary", M, "stub wing carries both rails"),
-        fin(EX + 0.3, 6.7, 2.2, 2.6, -14.0, -12.4, "secondary", "front", M, "swept wing root"),
-        fin(EX - 0.3, 3.1, 2.2, 2.6, -14.0, -12.4, "secondary", "front", M),
-        ramp(EX - 0.15, EX + 0.15, 2.15, 4.3, -7.2, -4.2, "primary", "down", M, "tail fin falls to the lower jet"),
+        fin(EX + w, 6.7, 2.2, 2.6, -14.0, -12.4, "secondary", "front", M, "swept wing root"),
+        fin(EX - w, 3.1, 2.2, 2.6, -14.0, -12.4, "secondary", "front", M),
+        box(EX + w, EX + w + 0.06, 2.85, 3.1, -14.0, -7.2, "neon", M, "flank stripe"),
+        box(EX - w - 0.06, EX - w, 2.85, 3.1, -14.0, -7.2, "neon", M, "flank stripe"),
+        box(EX - 0.7, EX + 0.7, 3.9, 4.4, -11.2, -9.2, "primary", M, "flat seat under the top pad"),
+        ramp(EX - 0.7, EX + 0.7, 3.9, 4.4, -12.4, -11.2, "primary", "up", M),
+        ramp(EX - 0.7, EX + 0.7, 3.9, 4.4, -9.2, -8.0, "primary", "down", M),
+        # One oval tail round both nozzles: flat cheeks and a divider vane.
+        box(EX - w, EX - w + 0.2, yl, yu, -6.6, -5.0, "primary", M, "tail cheek"),
+        box(EX + w - 0.2, EX + w, yl, yu, -6.6, -5.0, "primary", M, "tail cheek"),
+        box(EX - w, EX + w, 2.3, 2.5, -6.6, -5.0, "detail", M, "divider vane"),
     ]
-    for y, z0, z1 in ((3.45, -15.4, -8.2), (1.15, -12.6, -3.6)):
+    for y, z0 in ((yu, -14.6), (yl, -12.8)):
         parts += [
-            tube(2.0, z0, z1, EX, y, "primary", M, "jet barrel"),
-            tube(1.6, z0 - 0.15, z0 + 1.2, EX, y, "detail", M, "intake"),
-            tube(0.6, z0 - 0.55, z0 + 0.4, EX, y, "neon", M, "intake spike"),
-            tube(1.6, z1 - 0.4, z1 + 0.9, EX, y, "detail", M, "nozzle"),
-            tube(1.3, z1 + 0.3, z1 + 1.2, EX, y, "thrust", M, "jet"),
+            tube(1.6, z0 - 0.15, z0 + 1.0, EX, y, "detail", M, "intake"),
+            tube(0.6, z0 - 0.9, z0 + 0.2, EX, y, "neon", M, "intake spike"),
+            tube(1.7, -7.0, -5.0, EX, y, "detail", M, "nozzle"),
+            tube(1.3, -5.4, -4.4, EX, y, "thrust", M, "jet"),
         ]
     return parts
 
@@ -557,18 +584,19 @@ def b_trumpets():
 
 
 def b_slot():
-    """Harbour. A flat full-width slot burner with tall end plates."""
+    """Harbour. A flat slot burner, 3.8 wide over its end plates, on a pedestal that steps down to the saddle."""
     return [
         _saddle(5.1),
-        box(3.0, 6.8, 5.1, 5.9, -11.4, -7.6, "primary", M, "flat burner body"),
-        ramp(3.0, 6.8, 5.1, 5.9, -13.0, -11.4, "primary", "up", M, "intake ramp"),
-        box(3.4, 6.4, 5.9, 6.02, -11.0, -9.8, "detail", M, "top intake louvre"),
-        box(3.2, 6.6, 5.2, 5.8, -7.6, -6.9, "detail", M, "slot nozzle"),
-        box(3.4, 6.4, 5.3, 5.7, -7.1, -6.5, "thrust", M, "jet"),
-        box(2.7, 3.0, 4.9, 6.7, -9.6, -6.4, "secondary", M, "end plate"),
-        ramp(2.7, 3.0, 4.9, 6.7, -11.6, -9.6, "secondary", "up", M),
-        box(6.8, 7.1, 4.9, 6.7, -9.6, -6.4, "secondary", M, "end plate"),
-        ramp(6.8, 7.1, 4.9, 6.7, -11.6, -9.6, "secondary", "up", M),
+        box(3.7, 6.1, 5.1, 5.3, -11.6, -8.4, "detail", M, "pedestal, 2.4 wide, between the saddle and the body"),
+        box(3.3, 6.5, 5.3, 6.0, -11.4, -7.6, "primary", M, "flat burner body, 3.2 wide"),
+        ramp(3.3, 6.5, 5.3, 6.0, -13.0, -11.4, "primary", "up", M, "intake ramp"),
+        box(3.6, 6.2, 6.0, 6.12, -11.0, -9.8, "detail", M, "top intake louvre"),
+        box(3.45, 6.35, 5.38, 5.92, -7.6, -6.9, "detail", M, "slot nozzle"),
+        box(3.6, 6.2, 5.45, 5.85, -7.1, -6.5, "thrust", M, "jet"),
+        box(3.0, 3.3, 5.1, 6.7, -9.6, -6.4, "secondary", M, "end plate"),
+        ramp(3.0, 3.3, 5.1, 6.7, -11.6, -9.6, "secondary", "up", M),
+        box(6.5, 6.8, 5.1, 6.7, -9.6, -6.4, "secondary", M, "end plate"),
+        ramp(6.5, 6.8, 5.1, 6.7, -11.6, -9.6, "secondary", "up", M),
     ]
 
 
@@ -1002,12 +1030,13 @@ def r_rudder():
 
 
 def r_chute():
-    """Scrapyard. A strapped brake-chute pack and a drag hook."""
+    """Scrapyard. A strapped brake-chute pack with a drogue canister on its back and a short drag hook."""
     return [
         box(-1.3, 1.3, -1.45, RY, 10.8, 13.2, "secondary", note="chute pack on the belly pad"),
         box(0.6, 0.9, -1.55, RY, 10.7, 13.3, "detail", M, "strap"),
-        rod((0, -0.9, 13.2), (0, -1.2, 17.4), 0.3, "detail", note="drag hook arm"),
-        box(-0.5, 0.5, -1.55, -1.05, 17.2, 18.0, "primary", note="hook"),
+        tube(0.9, 13.0, 15.2, 0, -1.0, "secondary", note="drogue canister fixed to the back of the pack"),
+        box(-0.3, 0.3, -1.45, -0.85, 15.0, 15.9, "detail", note="hook arm, 0.6 thick"),
+        box(-0.5, 0.5, -1.55, -1.0, 15.7, 16.4, "primary", note="drag hook, ends at Z 16.4"),
     ]
 
 

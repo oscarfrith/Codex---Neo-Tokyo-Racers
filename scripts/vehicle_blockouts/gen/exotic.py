@@ -116,6 +116,13 @@ def tube(x, y, z, dia, length, pitch, ch=P, m=False, note=None):
     return part("cyl_z", [dia, dia, length], c, ch, [pitch, 0, 0], m, note)
 
 
+def slab(x0, x1, y, z, thick, length, pitch, ch=P, m=False, note=None):
+    """A flat block pitched about X. pitch > 0 points the rear end down. (y, z) is the FRONT end of its centre line."""
+    a = math.radians(pitch)
+    c = [(x0 + x1) / 2, y - math.sin(a) * length / 2, z + math.cos(a) * length / 2]
+    return part("block", [x1 - x0, thick, length], c, ch, [pitch, 0, 0], m, note)
+
+
 def tube_end(x, y, z, length, pitch):
     a = math.radians(pitch)
     return x, y - math.sin(a) * length, z + math.cos(a) * length
@@ -242,16 +249,16 @@ def canopy(zb, zt, zre, yr, xb, xt, facet=0.6):
 
 
 def cockpit_wedge():
-    """70s-80s poster wedge: one flat line from nose to roof, low flat roof, upright tail glass, long shoulder air boxes."""
+    """70s-80s poster wedge: one flat line from nose to roof, low flat roof, upright tail glass and a hard notch down to low shoulder air boxes."""
     p = chassis(cowl_z=-4.3, shelf_z=1.9, x_belt=3.5)
     p += canopy(zb=-6.7, zt=-1.6, zre=2.6, yr=4.05, xb=3.5, xt=2.6)
     p += [
         wedge("rise_xneg", 2.6, 3.5, BELT, 4.05, -1.6, 1.0, G, m=True, note="side glass, heavy tumblehome"),
         wedge("rise_xneg", 2.6, 3.5, BELT, 4.05, 1.0, ZR - 0.12, P, m=True, note="sail panel"),
         box(-0.5, 0.5, 4.05, 4.12, -1.2, 2.4, D, note="periscope trench"),
-        box(2.1, 3.5, 2.85, 3.9, 2.9, 6.6, P, m=True, note="shoulder air box"),
-        wedge("rise_front", 2.1, 3.5, 2.85, 3.9, 6.6, 8.5, P, m=True, note="air box tail"),
-        box(2.3, 3.3, 3.9, 3.97, 3.1, 6.2, D, m=True, note="air box grille"),
+        box(2.1, 3.5, 2.85, 3.4, 2.9, 6.2, P, m=True, note="low shoulder air box: the roof drops to it in a hard notch"),
+        wedge("rise_front", 2.1, 3.5, 2.85, 3.4, 6.2, 7.6, P, m=True, note="air box tail"),
+        box(2.3, 3.3, 3.4, 3.47, 3.1, 5.8, D, m=True, note="air box grille"),
     ]
     return p
 
@@ -335,25 +342,31 @@ def cockpit_longtail():
 
 
 def cockpit_gull():
-    """Gullwing: low wide glasshouse with bulged doors that overhang the side pods, doors hinged on a roof spine, glass cover over the turbine."""
-    yr = 4.45
+    """Gullwing: short steep screen, a double-bubble glass roof either side of a raised hinge spine, bulged doors that overhang the side pods, a falling glass cover over the turbine."""
+    yb = 4.0      # top of the door glass: the bubbles stand on this line
     p = chassis(cowl_z=-4.4, shelf_z=1.8, x_belt=3.5)
     p += [
-        wedge("rise_back", -2.0, 2.0, BELT, yr, -5.1, -2.4, G, note="windscreen"),
-        wedge("rise_back", 2.0, 3.5, BELT, 3.8, -5.1, -2.4, G, m=True, note="windscreen corner facet"),
-        box(-2.0, 2.0, BELT, yr - 0.2, -2.4, 1.6, G, note="cabin glass"),
-        box(0.45, 2.0, yr - 0.2, yr, -2.4, 1.6, G, m=True, note="door roof glass"),
-        box(-0.45, 0.45, yr - 0.2, yr + 0.1, -2.4, 1.6, S, note="roof spine: the door hinge line"),
-        box(0.45, 0.7, yr, yr + 0.08, -1.6, -1.2, D, m=True, note="door hinge"),
-        box(0.45, 0.7, yr, yr + 0.08, 0.4, 0.8, D, m=True, note="door hinge"),
-        box(1.85, 2.1, yr - 0.2, yr + 0.06, -2.4, 1.6, P, m=True, note="door cant rail: frames each door roof"),
-        wedge("rise_xneg", 2.0, 4.4, BELT, yr, -2.4, 1.6, G, m=True, note="gullwing door glass: overhangs the side pod"),
+        wedge("rise_back", -2.0, 2.0, BELT, 4.3, -5.1, -2.6, G, note="windscreen: short and steep"),
+        wedge("rise_back", 2.0, 3.5, BELT, 3.7, -5.1, -2.6, G, m=True, note="windscreen corner facet"),
+        box(-2.0, 2.0, BELT, yb, -2.6, 1.6, G, note="cabin glass"),
+        cz(1.1, 3.85, -2.6, 1.2, 2.0, G, m=True, note="roof bubble over each seat: top at Y 4.85"),
+        ball(1.1, 3.85, -2.6, 2.0, G, m=True, note="bubble nose: stands proud of the screen"),
+        ball(1.1, 3.85, 1.2, 2.0, G, m=True, note="bubble tail: a round end to the cabin"),
+        box(-0.35, 0.35, yb, 5.0, -2.9, 1.6, S, note="raised roof spine: the door hinge line"),
+        wedge("rise_back", -0.35, 0.35, 4.3, 5.0, -3.7, -2.9, S, note="spine nose"),
+        box(0.35, 0.85, 4.62, 5.0, -1.8, -1.1, D, m=True, note="hinge hump"),
+        box(0.35, 0.85, 4.62, 5.0, 0.1, 0.8, D, m=True, note="hinge hump"),
+        box(1.95, 2.2, 3.85, 4.12, -2.6, 1.6, P, m=True, note="door cant rail: the door cut runs up to it"),
+        box(2.0, 2.2, BELT, 4.12, -2.72, -2.6, D, m=True, note="door cut, front: rises into the roof"),
+        box(2.0, 2.2, BELT, 4.12, 1.6, 1.72, D, m=True, note="door cut, rear"),
+        wedge("rise_xneg", 2.0, 4.4, BELT, yb, -2.6, 1.6, G, m=True, note="gullwing door glass: overhangs the side pod"),
         box(3.5, 4.4, BELT, 3.25, -2.2, 1.4, P, m=True, note="door bulge"),
-        box(-2.0, 2.0, BELT, 4.6, 1.6, ZR - 0.12, P, note="roof hoop"),
-        wedge("rise_xneg", 2.0, 3.5, BELT, 4.6, 1.6, ZR - 0.12, P, m=True, note="sail panel"),
-        box(-2.0, 2.0, 4.6, 4.72, ZR - 0.12, 6.4, G, note="glass engine cover"),
-        box(2.0, 2.2, 4.55, 4.75, ZR - 0.12, 6.4, P, m=True, note="cover rail"),
-        box(2.0, 2.2, 2.85, 4.55, 6.1, 6.4, D, m=True, note="cover strut to the deck"),
+        box(-2.0, 2.0, BELT, 4.6, 1.72, ZR - 0.12, P, note="roof hoop"),
+        wedge("rise_xneg", 2.0, 3.5, BELT, 4.3, 1.72, ZR - 0.12, P, m=True, note="sail panel"),
+        wedge("rise_front", -2.0, 2.0, 4.6, 4.95, ZR - 0.12, 6.6, G, note="glass engine cover: falls to the rear"),
+        wedge("rise_front", -0.25, 0.25, 4.62, 5.08, ZR - 0.12, 5.0, S, note="spine tail on the cover"),
+        box(2.0, 2.2, 4.55, 4.75, ZR - 0.12, 6.6, P, m=True, note="cover rail"),
+        box(2.0, 2.2, 2.85, 4.55, 6.3, 6.6, D, m=True, note="cover strut to the deck"),
     ]
     return p
 
@@ -658,13 +671,18 @@ def e1_stacks():
 
 
 def e1_long():
-    """Longtail: one slim tube the full length of the bay under a snorkel airbox, ending in a wide flat fishtail nozzle."""
+    """Longtail: one slim tube down the bay under a snorkel scoop with an open mouth, flaring in plan to a tall wide fishtail nozzle with three glowing cells."""
     return [
-        box(-0.5, 0.5, 2.85, 3.0, 3.4, 8.2, D, note="cradle on the bay pad"),
-        box(-0.8, 0.8, 4.0, 4.55, 2.9, 4.4, D, note="snorkel airbox"),
-        cz(0, 3.6, 3.0, 8.2, 1.4, S, note="lance casing"),
-        box(-1.9, 1.9, 3.2, 3.95, 8.2, 9.1, D, note="fishtail nozzle"),
-        box(-1.7, 1.7, 3.35, 3.8, 9.1, 9.3, T, note="thrust slot"),
+        box(-0.5, 0.5, 2.85, 3.0, 3.4, 8.0, D, note="cradle on the bay pad"),
+        cz(0, 3.6, 2.95, 3.4, 1.55, D, note="bellmouth"),
+        cz(0, 3.6, 3.4, 8.0, 1.4, S, note="lance casing"),
+        box(-0.5, 0.5, 4.0, 4.58, 3.5, 4.6, S, note="slim snorkel scoop"),
+        wedge("rise_front", -0.5, 0.5, 4.0, 4.58, 4.6, 5.8, S, note="scoop tail"),
+        box(-0.4, 0.4, 4.08, 4.5, 3.4, 3.5, D, note="snorkel intake mouth"),
+        wedge("plan_xneg_back", 0.6, 1.6, 3.05, 4.15, 6.8, 8.0, D, m=True, note="fishtail flare: widens in plan"),
+        box(-1.6, 1.6, 3.05, 4.15, 8.0, 9.1, D, note="fishtail nozzle: 3.2 wide, 1.1 tall"),
+        box(-1.45, 1.45, 3.2, 4.0, 9.1, 9.32, T, note="thrust slot: 2.9 wide, 0.8 tall"),
+        box(0.43, 0.55, 3.12, 4.08, 9.0, 9.36, D, m=True, note="nozzle vane"),
     ]
 
 
@@ -784,14 +802,14 @@ def st_vector():
 
 
 def st_lift():
-    """Analogue: two tall upright lift cans per corner on a short bracket."""
+    """Analogue: two short upright lift cans per corner, tucked up into the arch. The only upright-can option."""
     def corner(zc, rear):
-        p = [box(3.65, 4.2, 0.2, 0.8, zc - 0.9, zc + 0.9, D, m=True, note="bracket to the arch wall")]
+        p = [box(3.65, 4.2, 0.3, 0.9, zc - 0.9, zc + 0.9, D, m=True, note="bracket to the arch wall")]
         for dz in (-0.8, 0.8):
-            p.append(cy(4.6, zc + dz, 0.4, 1.4, 1.3, P, m=True, note="lift can shroud"))
-            p.append(cy(4.6, zc + dz, -1.1, 0.4, 1.15, D, m=True, note="lift nozzle"))
-            p.append(cy(4.6, zc + dz, 1.4, 1.6, 1.0, D, m=True, note="intake"))
-            p.append(cy(4.6, zc + dz, -1.3, -1.1, 1.0, T, m=True, note="thrust"))
+            p.append(cy(4.6, zc + dz, 0.5, 1.6, 1.3, P, m=True, note="lift can shroud, up in the arch"))
+            p.append(cy(4.6, zc + dz, -0.45, 0.5, 1.1, D, m=True, note="short lift nozzle"))
+            p.append(cy(4.6, zc + dz, 1.6, 1.75, 1.0, D, m=True, note="intake"))
+            p.append(cy(4.6, zc + dz, -0.7, -0.45, 1.0, T, m=True, note="thrust: ends level with the splitters"))
         return p
     return _corners(corner)
 
@@ -830,14 +848,17 @@ def st_out():
 
 
 def st_trio():
-    """Longtail: three lift cans in a row that hang in view below a short louvred skirt."""
+    """Longtail: a louvred skirt along the arch over a cascade of three flat slot nozzles raked down and back. No cans."""
     def corner(zc, rear):
-        p = [box(3.65, 5.3, 0.5, 0.9, zc - 1.3, zc + 1.3, D, m=True, note="manifold to the arch wall"),
-             box(5.2, 5.5, 0.9, 1.7, zc - 1.5, zc + 1.5, P, m=True, note="short skirt over the arch"),
-             box(5.5, 5.62, 1.05, 1.55, zc - 1.2, zc + 1.2, D, m=True, note="intake grille on the skirt")]
-        for dz in (-1.0, 0.0, 1.0):
-            p.append(cy(5.25, zc + dz, -1.2, 0.5, 0.9, S, m=True, note="lift can"))
-            p.append(cy(5.25, zc + dz, -1.4, -1.2, 0.7, T, m=True, note="thrust"))
+        p = [box(3.65, 5.3, 0.6, 1.0, zc - 1.4, zc + 1.4, D, m=True, note="manifold to the arch wall"),
+             box(5.3, 5.6, 0.7, 1.7, zc - 1.55, zc + 1.55, P, m=True, note="skirt along the arch"),
+             box(5.6, 5.68, 0.85, 1.0, zc - 1.3, zc + 1.3, D, m=True, note="skirt louvre"),
+             box(5.6, 5.68, 1.15, 1.3, zc - 1.3, zc + 1.3, D, m=True, note="skirt louvre"),
+             box(5.6, 5.68, 1.45, 1.6, zc - 1.3, zc + 1.3, S, m=True, note="skirt stripe")]
+        for dz in (-1.4, -0.5, 0.4):
+            _, ey, ez = tube_end(0, 0.6, zc + dz, 1.35, 55)
+            p.append(slab(4.0, 5.5, 0.6, zc + dz, 0.3, 1.35, 55, S, m=True, note="slot nozzle, raked back"))
+            p.append(slab(4.1, 5.4, ey, ez, 0.26, 0.3, 55, T, m=True, note="thrust: ends near Y -0.8"))
         return p
     return _corners(corner)
 
@@ -868,23 +889,24 @@ def b_quad():
 
 
 def b_twin():
-    """Analogue: two big cannons."""
+    """Analogue: two big long cannons."""
     return [
         box(-2.3, 2.3, 1.3, 3.1, 9.5, 9.8, D, note="back plate on the tail wall"),
-        cz(1.25, 2.2, 9.8, 11.6, 1.8, S, m=True, note="cannon"),
-        cz(1.25, 2.2, 11.6, 11.78, 1.4, T, m=True, note="thrust"),
+        cz(1.25, 2.2, 9.8, 12.4, 1.8, S, m=True, note="cannon: 2.6 long"),
+        cz(1.25, 2.2, 10.2, 11.2, 1.88, D, m=True, note="cannon collar"),
+        cz(1.25, 2.2, 12.4, 12.58, 1.4, T, m=True, note="thrust"),
     ]
 
 
 def b_tri():
-    """Hypercar: three cans in a wide triangle, one long can over two shorter ones."""
+    """Hypercar: three cans in a wide triangle, one fat short can high over two slim long ones set wide apart. All three glows show from behind."""
     return [
-        box(-1.35, 1.35, 1.4, 2.2, 9.5, 9.8, D, note="manifold on the tail wall"),
-        box(-0.45, 0.45, 2.2, 3.0, 9.5, 9.8, D, note="manifold riser"),
-        cz(0.95, 1.8, 9.8, 11.3, 1.1, D, m=True, note="lower can"),
-        cz(0, 2.6, 9.8, 12.0, 1.1, S, note="upper can: runs past the tail"),
-        cz(0.95, 1.8, 11.3, 11.45, 0.85, T, m=True, note="thrust"),
-        cz(0, 2.6, 12.0, 12.15, 0.85, T, note="thrust"),
+        box(-1.9, 1.9, 1.3, 2.2, 9.5, 9.8, D, note="manifold on the tail wall"),
+        box(-0.6, 0.6, 2.2, 3.1, 9.5, 9.8, D, note="manifold riser"),
+        cz(1.45, 1.72, 9.8, 12.0, 0.9, D, m=True, note="lower can: slim, and runs past the tail"),
+        cz(0, 2.52, 9.8, 11.2, 1.3, S, note="upper can: fat and short"),
+        cz(1.45, 1.72, 12.0, 12.15, 0.7, T, m=True, note="thrust"),
+        cz(0, 2.52, 11.2, 11.38, 1.05, T, note="thrust"),
     ]
 
 
@@ -1050,19 +1072,21 @@ def rb_smooth():
 
 def rb_venturi():
     return [
-        wedge("hang_front", 0.6, 4.6, -1.3, -0.45, 8.6, 12.0, D, m=True, note="venturi tunnel"),
-        box(-0.15, 0.15, -1.35, -0.45, 9.0, 12.2, S, note="centre fin"),
-        box(4.6, 4.8, -1.35, -0.45, 8.8, 12.2, S, m=True, note="fence"),
-        box(-0.15, 0.15, -0.4, 0.5, 11.9, 12.2, N, note="fog light"),
+        wedge("hang_front", 0.6, 4.6, -1.3, -0.45, 8.6, 11.2, D, m=True, note="venturi tunnel: ends just past the tail"),
+        box(-0.15, 0.15, -1.35, -0.45, 9.0, 11.3, S, note="centre fin"),
+        box(4.6, 4.8, -1.35, -0.45, 8.8, 11.3, S, m=True, note="fence"),
+        box(-0.15, 0.15, -1.0, -0.6, 11.3, 11.38, N, note="rain light on the fin end"),
     ]
 
 
 def rb_bar():
     return [
-        box(-3.0, 3.0, -0.6, -0.45, 8.8, 10.6, D, note="plate"),
-        box(2.2, 2.5, -0.7, -0.45, 9.0, 11.8, D, m=True, note="bar arm"),
-        box(2.2, 2.5, -0.45, 0.3, 11.4, 11.8, D, m=True, note="bar post"),
-        box(-4.4, 4.4, 0.1, 0.5, 11.4, 11.8, S, note="crash bar: square section"),
+        box(-3.0, 3.0, -0.6, -0.45, 8.8, 10.2, D, note="plate"),
+        box(-4.4, 4.4, -0.8, -0.45, 9.6, 11.4, P, note="lower valance: closes the space between the tail and the bar"),
+        box(3.6, 4.4, -1.0, -0.8, 9.0, 11.4, D, m=True, note="corner return skid"),
+        box(-4.4, 4.4, -0.4, 0.45, 11.0, 11.4, P, note="crash bar: a square beam standing on the valance, tight behind the tail"),
+        box(-3.4, 3.4, -0.1, 0.2, 11.4, 11.47, S, note="bar stripe"),
+        box(3.6, 4.2, -0.15, 0.25, 11.4, 11.47, N, m=True, note="bar lamp"),
     ]
 
 
@@ -1086,17 +1110,17 @@ def rb_fin():
 # ---------------------------------------------------------------- RearSpoiler (Wing)
 def sp_poster():
     return [
-        box(2.9, 3.3, 2.85, 4.6, 9.5, 10.1, D, m=True, note="upright on the wing pad"),
-        box(-5.2, 5.2, 4.6, 4.9, 9.5, 11.0, S, note="slab wing"),
-        box(5.2, 5.45, 4.2, 5.3, 9.45, 11.2, P, m=True, note="end plate"),
+        box(2.9, 3.3, 2.85, 4.8, 9.5, 10.1, D, m=True, note="upright on the wing pad"),
+        box(-5.2, 5.2, 4.8, 5.05, 9.5, 10.7, S, note="slab wing: short chord, above the turbine exhaust line"),
+        box(5.2, 5.45, 4.4, 5.5, 9.45, 10.9, P, m=True, note="end plate"),
     ]
 
 
 def sp_bridge():
     return [
-        box(2.9, 3.4, 2.85, 4.2, 9.5, 10.4, P, m=True, note="broad support on the wing pad"),
-        box(-3.8, 3.8, 4.2, 4.5, 9.5, 10.6, P, note="bridge wing"),
-        wedge("rise_back", -3.8, 3.8, 4.5, 4.8, 10.0, 10.6, P, note="lip"),
+        box(2.9, 3.4, 2.85, 4.85, 9.5, 10.4, P, m=True, note="broad support on the wing pad"),
+        box(-3.8, 3.8, 4.85, 5.1, 9.5, 10.4, P, note="bridge wing: high enough to clear the turbine exhaust"),
+        wedge("rise_back", -3.8, 3.8, 5.1, 5.3, 9.9, 10.4, P, note="lip"),
     ]
 
 
@@ -1117,20 +1141,21 @@ def sp_gt():
 
 
 def sp_fins():
+    """Two outboard tail planes with a rising fin on each. The centre is open so the main turbine exhaust shows."""
     return [
         box(2.9, 3.2, 2.85, 3.85, 9.5, 10.9, S, m=True, note="fin root on the wing pad"),
-        box(-5.4, 5.4, 3.85, 4.05, 9.6, 12.5, P, note="long tail deck"),
-        box(2.9, 3.2, 4.05, 5.1, 9.6, 11.4, S, m=True, note="tail fin"),
-        wedge("rise_front", 2.9, 3.2, 4.05, 5.1, 11.4, 12.5, S, m=True, note="fin trailing edge"),
+        box(2.6, 5.4, 3.85, 4.05, 9.6, 12.5, P, m=True, note="outboard tail plane: nothing inboard of X 2.6"),
+        wedge("rise_back", 2.9, 3.2, 4.05, 5.3, 10.0, 12.5, S, m=True, note="tail fin, rising to the rear"),
+        box(5.4, 5.47, 3.85, 4.05, 10.0, 12.3, S, m=True, note="plane edge stripe"),
     ]
 
 
 def sp_split():
     return [
         box(2.9, 3.3, 2.85, 3.9, 9.5, 10.1, D, m=True, note="upright on the wing pad"),
-        box(1.2, 5.5, 3.9, 4.1, 9.5, 11.3, S, m=True, note="half wing: open centre"),
+        box(2.4, 5.5, 3.9, 4.1, 9.5, 11.3, S, m=True, note="half wing: the centre is open over the turbine exhaust"),
         box(5.5, 5.75, 3.85, 5.0, 9.45, 11.5, P, m=True, note="upturned tip"),
-        box(1.2, 1.4, 3.85, 4.5, 9.5, 11.3, P, m=True, note="inner fence"),
+        box(2.4, 2.6, 3.85, 4.4, 9.5, 11.3, P, m=True, note="inner fence"),
     ]
 
 
