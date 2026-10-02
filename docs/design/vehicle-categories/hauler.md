@@ -16,7 +16,7 @@ Round 2 has no wheels and nothing wheel-shaped. A turbine sits on the bonnet and
 - **Lifted:** sky-high show-off. Tall thruster legs, winch bumper, roll bar, twin turbines.
 - **Minitruck:** slammed small pickup. Tucked slot jets, smooth bed, roll pan, candy paint.
 - **Show Truck:** decorated cab-over. Chrome, rows of lights, tall stacks, jets in blocks.
-- **Courier:** working box van. Snub nose, cargo box, ladder rack. Not in the blockout yet.
+- **Courier:** working box van. Stub nose, parcel box, top box, grab rails.
 - **Cab:** checker-striped hover taxi. Upright cab, blank glowing roof sign, chrome caps.
 
 ## Cockpits
@@ -25,12 +25,12 @@ Round 2 has no wheels and nothing wheel-shaped. A turbine sits on the bonnet and
 |---|---|---|---|---|
 | Kei Cab | Minitruck | Tiny, narrow, upright micro cab | Laid Out | E |
 | Single Cab | Prerunner | Boxy two-seat cab, upright screen | Dune Runner | D |
-| Van Nose (proposed) | Courier | Snub nose, huge screen, sliding door | Last Mile (proposed) | C |
+| Van Nose | Courier | One-box van, raked screen, high roof, blank sides | Last Mile | C |
 | Checker Cab | Cab | Tall rounded four-door, high roof | Checker Line | B |
 | Crew Cab | Lifted | Long four-door cab, two seat rows | Sky High | A |
 | Cab-Over | Show Truck | Flat face, driver over the nose | Chrome Palace | S |
 
-The blockout builds five cabs. Van Nose and its Courier kit are in the brief only.
+The blockout builds all six cabs and all six kits.
 
 ## The fundamentals
 
@@ -38,23 +38,23 @@ Every build has all four. Each shows an intake, a body and a glowing nozzle.
 
 | Slot | Player label | Where it sits | Options (look) |
 |---|---|---|---|
-| Engine1 | Hood Engine | On top of the bonnet, in the open. On Cab-Over and Kei Cab it runs into a tunnel in the cab | **Ram Single** (one long turbine). **Twin Ram** (two turbines and a scoop). **Slot Scoop** (flat slot burner). **Six Pack** (six small jets in a block). **Trio** (arrowhead of three). |
-| Engine2 | Bed Engine | Lying in the bed, nozzle at the open tail. Faces the chase camera | **Bed Turbine** (one huge turbine). **Twin Barrels** (two low, wide apart). **Deck Burner** (flat, full-width slot). **Quad Chrome** (four in a 2 x 2 block). **Over-Under** (two stacked). |
-| Stabilisers | Lift Jets | Four corners, where the wheels would be, nozzles down | **Long Travel** (long pods on A-arms). **Stilts** (tall thruster legs). **Tucked Slots** (flat slot pods under the body). **Dually Vectors** (twin tilted nozzles). **Spats** (blanked arches with rows of jet slots). |
-| Boost | Stacks | Upright behind the cab, low beside it, or a burner on the bed tail | **Side Dumps** (two cans a side). **Shorty Stacks** (four stepped pipes). **Tail Slot** (one wide burner). **Chrome Stacks** (two tall stacks). **Tail Cans** (two round cans). |
+| Engine1 | Hood Engine | On top of the bonnet, in an open trench. No cab roofs it. Jets fire up or outboard | **Ram Single** (one long turbine). **Twin Ram** (two turbines and a scoop). **Slot Scoop** (flat slot burner). **Six Pack** (six small jets in a block). **Trio** (arrowhead of three). **Doghouse** (tall cover by the cab, jets in the lid). |
+| Engine2 | Bed Engine | Lying in the bed, nozzle at the open tail. Faces the chase camera | **Bed Turbine** (one huge turbine). **Twin Barrels** (two low, wide apart). **Deck Burner** (flat, full-width slot). **Quad Chrome** (four in a 2 x 2 block). **Over-Under** (two stacked). **Tail Three** (three side by side on the tail deck). |
+| Stabilisers | Lift Jets | Four corners, where the wheels would be, nozzles down | **Long Travel** (long pods on A-arms). **Stilts** (tall thruster legs). **Tucked Slots** (flat slot pods under the body). **Dually Vectors** (twin tilted nozzles). **Jet Racks** (vented housing, three nozzles below). **Box Lifts** (square lift ducts). |
+| Boost | Stacks | Upright behind the cab, low beside it, or on the bed tail corners | **Side Dumps** (two cans a side). **Shorty Stacks** (four stepped pipes). **Tail Slots** (two upright slot burners). **Chrome Stacks** (two tall stacks). **Tail Cans** (two cans in square shrouds). **Fishtails** (riser pipes into flat blades). |
 
 ## Body and cosmetic slots
 
 | Slot id | Player label | Options (look) |
 |---|---|---|
-| FrontBody | Front Clip | **Flare Nose** (bulged fenders, mesh grille). **Square Body** (upright slab grille). **Smoothie** (shaved, no grille). **Flat Face** (flat chrome slab). **Round Nose** (rounded, tall chrome grille). |
-| RearBody | Bed | **Chase Tub** (open tub, flared sides). **Flatbed** (flat deck, headboard). **Laid Bed** (low, smooth short tub). **Show Deck** (decorated deck, fenders). **Fare Canopy** (short covered boot). |
-| SidePods | Side Gear | **Rock Sliders** (tube steps). **Toolboxes** (flank lockers). **Ground Skirts** (low smooth skirts). **Saddle Tanks** (chrome tanks). **Running Boards** (plate steps). |
-| FrontBumper | Front Bar | **Bull Bar** (tube guard, skid plate). **Winch Bumper** (heavy plate, winch). **Air Dam** (low smooth lip). **Chrome Blade** (wide blade, lamp edge). **Push Bar** (square pusher bar). |
-| RearBumper | Rear Bar | **Hitch** (step bar, tow ball). **Step Bar** (wide plate step). **Roll Pan** (smooth, no bumper). **Lamp Board** (stacked tail lamps). **Taxi Rail** (slim chrome rail). |
-| RearSpoiler | Bed Rig | **Chase Rack** (tube rack over the bed). **Roll Bar** (bar with lamps). **Whale Tail** (small flat wing). **Marker Arch** (arch of marker lights). **Luggage Rack** (flat rack, strapped cases). |
-| Roof | Roof Rig | **Light Bar** (wide lamp strip). **Roof Rack** (basket with lamps). **Roof Spoiler** (slim lip over the screen). **Crown** (chrome lamp tiara). **Taxi Sign** (blank glowing box). |
-| Accessory | Extras | **Whip Flags** (tall aerials with flags). **Tow Mirrors** (long-arm mirrors). **Slim Mirrors** (small flush mirrors). **Air Canisters** (chrome tanks on the side). **Fare Lamps** (small amber roof lamps). |
+| FrontBody | Front Clip | **Flare Nose** (bulged fenders, mesh grille). **Square Body** (upright slab grille). **Smoothie** (shaved, no grille). **Flat Face** (flat chrome slab). **Round Nose** (rounded, tall chrome grille). **Stub Nose** (short, blunt van nose). |
+| RearBody | Bed | **Chase Tub** (open tub, flared sides). **Flatbed** (flat deck, headboard). **Laid Bed** (low, smooth short tub). **Show Deck** (decorated deck, fenders). **Fare Canopy** (short covered boot). **Parcel Box** (cab roofline runs back, tail deck open). |
+| SidePods | Side Gear | **Rock Sliders** (tube steps). **Toolboxes** (flank lockers). **Ground Skirts** (low smooth skirts). **Saddle Tanks** (chrome tanks). **Running Boards** (plate steps). **Kerb Steps** (low door steps). |
+| FrontBumper | Front Bar | **Bull Bar** (tube guard, skid plate). **Winch Bumper** (heavy plate, winch). **Air Dam** (low smooth lip). **Chrome Blade** (wide blade, lamp edge). **Push Bar** (square pusher bar). **Front Rack** (flat carrier rack). |
+| RearBumper | Rear Bar | **Hitch** (step bar, tow ball). **Step Bar** (wide plate step). **Roll Pan** (smooth, no bumper). **Lamp Board** (stacked tail lamps). **Taxi Rail** (slim chrome rail). **Dock Step** (wide loading step). |
+| RearSpoiler | Bed Rig | **Chase Rack** (tube rack over the bed). **Roll Bar** (bar with lamps). **Whale Tail** (small flat wing). **Marker Arch** (arch of marker lights). **Luggage Rack** (flat rack, strapped cases). **Top Box** (cargo box over the bed). |
+| Roof | Roof Rig | **Light Bar** (wide lamp strip). **Roof Rack** (basket with lamps). **Roof Spoiler** (slim lip over the screen). **Crown** (chrome lamp tiara). **Taxi Sign** (blank glowing box). **Aerials** (cluster of tall radio masts). |
+| Accessory | Extras | **Whip Flags** (tall aerials with flags). **Tow Mirrors** (long-arm mirrors). **Slim Mirrors** (small flush mirrors). **Air Canisters** (chrome tanks on the side). **Fare Lamps** (small amber roof lamps). **Grab Rails** (door-side hand rails). |
 
 ## Signature kits
 
@@ -62,9 +62,10 @@ Every build has all four. Each shows an intake, a body and a glowing nozzle.
 |---|---|---|---|
 | Dune Runner | Prerunner | Single Cab | Flared fenders, one long bonnet turbine, one huge bed turbine, long pods on A-arms, tube bars |
 | Sky High | Lifted | Crew Cab | Tall on thruster legs, twin turbines up front and in the bed, four stepped stacks, flatbed |
-| Laid Out | Minitruck | Kei Cab | Sits on the floor. Flat slot burners front and back, flat pods, smooth shaved body |
+| Laid Out | Minitruck | Kei Cab | Sits on the floor. Flat slot burners front and back, flat pods, slot burners on the tail corners, smooth shaved body |
 | Chrome Palace | Show Truck | Cab-Over | Chrome slab face, jets in blocks of six and four, twin tall stacks, rows of lights |
-| Checker Line | Cab | Checker Cab | Rounded nose, covered boot, jets in a trio and a stacked pair, blanked arches with jet rows |
+| Checker Line | Cab | Checker Cab | Rounded nose, covered boot, jets in a trio and a stacked pair, vented jet racks at the corners |
+| Last Mile | Courier | Van Nose | Stub nose, parcel box, tall doghouse engine, three tail jets, square lift ducts, fishtail stacks |
 
 ## Handling intent versus Piercer
 
@@ -86,7 +87,7 @@ Design intent only. `+` means more than Piercer, `-` less, `0` about the same.
 | Drag | + | Tall cab and bed. More drag is the cost. |
 | Weight | + + | Heaviest class. Wins contact. |
 
-Modules move this inside the class. Tucked Slots give back steering and lose stability. Stilts add stability and drag. Bed Turbine trades grip for boost. Quad Chrome adds weight. Slot burners (Slot Scoop, Deck Burner) trade top speed for acceleration. Spats cut drag.
+Modules move this inside the class. Tucked Slots give back steering and lose stability. Stilts add stability and drag. Bed Turbine trades grip for boost. Quad Chrome adds weight. Slot burners (Slot Scoop, Deck Burner) trade top speed for acceleration. Jet Racks cut drag.
 
 ## What makes it fun to own
 
@@ -94,8 +95,8 @@ Modules move this inside the class. Tucked Slots give back steering and lose sta
 2. **Ride height is the personality.** Lift Jets set the stance. Laid Out sinks to the floor when parked. Sky High rises on its thruster legs. Long Travel shows its A-arms working over bumps.
 3. **Light show.** Chrome Palace, Crown, Marker Arch and Lamp Board use the Neon channel. A parked horn press runs a chase pattern along every lamp row.
 4. **For-hire sign.** The Taxi Sign glows when you are free and dims when a fare is on board. Fare Lamps flash on pickup. Crew Cab and Checker Cab seat the fare in the back row.
-5. **Stacks you can read.** Chrome Stacks fire straight up. Side Dumps fire low and sideways. Tail Slot lays a flat sheet of flame. Tail Cans throw two cones. You can tell the boost from behind.
-6. **Full-kit names.** Dune Runner, Sky High, Laid Out, Chrome Palace and Checker Line show on the garage card when every slot matches.
+5. **Stacks you can read.** Chrome Stacks fire straight up. Side Dumps fire low and sideways. Tail Slots lay two flat sheets of flame. Tail Cans throw two cones. Fishtails fan out flat. You can tell the boost from behind.
+6. **Full-kit names.** Dune Runner, Sky High, Laid Out, Chrome Palace, Checker Line and Last Mile show on the garage card when every slot matches.
 7. **Trade unlocks.** Cosmetic parts earned by the job: Taxi Sign and the checker band after a number of fares, Luggage Rack and Fare Lamps after a number of parcels, Crown at a high Driver Rank. Cash buys everything else.
 8. **Photo moments.** Slammed and lifted trucks side by side at the east car-meet lot. A Show Truck light show on the waterfront at night. A taxi rank outside the Dealership.
 
@@ -120,7 +121,7 @@ Modules move this inside the class. Tucked Slots give back steering and lose sta
 *06 stabilisers and boost. Single Cab, Dune Runner kit, low rear three-quarter. Side Dumps firing, Bed Turbine glowing, four Long Travel Lift Jets throwing thrust at the floor.*
 
 ![Cab](img/hauler/07-cab.jpg)
-*07 Cab. Checker Cab, Checker Line kit: Round Nose, Trio, Fare Canopy, Over-Under, Spats, Tail Cans, Taxi Sign, Luggage Rack, Running Boards, chrome front bar. The checker band lines up across the gaps.*
+*07 Cab. Checker Cab, Checker Line kit: Round Nose, Trio, Fare Canopy, Over-Under, Jet Racks, Tail Cans, Taxi Sign, Luggage Rack, Running Boards, chrome front bar. The checker band lines up across the gaps.*
 
 ![Action](img/hauler/08-action.jpg)
 *08 action. The hero Single Cab, Dune Runner kit, at night in the city. Side Dumps boosting, Light Bar on, Long Travel Lift Jets throwing spray.*
@@ -128,11 +129,11 @@ Modules move this inside the class. Tucked Slots give back steering and lose sta
 ## Risks and open points
 
 - **Height.** The blockout is 12 studs tall with the jets, against a 9 stud target. Check camera framing, skybridge and tunnel clearance, garage preview and the minimap icon.
-- **Courier is missing.** The brief has a Van Nose cab and a box-van culture. The blockout has no such cab or kit, so there is no art for it. Build it or drop the culture.
+- **No Courier art.** Van Nose and Last Mile are in the blockout, but the gallery has no image of them. Draw them before approval.
 - **Look-alike scores.** Front Clip, Bed and Cab pairs sit under the validator targets, because every part must fill the same hull and reach the same pads. Real meshes may need looser hulls.
-- **No-bonnet cabs.** Cab-Over and Kei Cab overhang the Front Clip. Low clips leave open space under the overhang. Real meshes need a clean cab underside.
-- **Hood Engine nozzle.** It points at the windscreen, or into the Cab-Over tunnel. Real meshes should turn the nozzle out or up.
-- **Bed Engine and cargo.** The engine takes the bed. Parcels need another place to show: Luggage Rack, Roof Rack or Fare Canopy. Decide before the job tie-ins.
+- **Forward pods and nose sails.** Cab-Over pods and Van Nose sails stand on the cowl deck. On low clips it is a thin shelf with daylight under it. Real meshes need a clean underside.
+- **Hood Engine nozzle.** The trench stays open on every cab. Jets must fire up or outboard, never at the screen. Check Doghouse and the Stub Nose, where the Front Bar stands well ahead of the nose.
+- **Bed Engine and cargo.** The engine takes the bed. Parcels need another place to show: Luggage Rack, Roof Rack, Fare Canopy or Parcel Box. Decide before the job tie-ins.
 - **Pods must not read as wheels.** Keep pods as long capsules with the nozzle down, or as blanked arches with slot vents. Never upright round faces. Checked in every image here.
 - **Ride height.** Laid Out and Sky High imply different body heights, but there is one hover plane. Stance comes from pod and leg length only, unless that changes.
 - **Kei Cab width.** A narrow cab on a full-width frame. It works in image 03. Check it in the blockout.

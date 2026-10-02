@@ -5059,7 +5059,7 @@
        11.4
       ],
       "ch": "secondary",
-      "note": "cannon can, 1.7 square"
+      "note": "cannon can, 1.7 x 1.6"
      },
      {
       "shape": "block",
@@ -5089,7 +5089,7 @@
        12.6
       ],
       "ch": "thrust",
-      "note": "jet, 1.6 square"
+      "note": "jet, 1.65 x 1.45"
      },
      {
       "shape": "block",

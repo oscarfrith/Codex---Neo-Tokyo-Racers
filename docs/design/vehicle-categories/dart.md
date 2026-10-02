@@ -3,7 +3,7 @@
 Status: design exploration, round 2, 2026-10-01. Nothing here is approved or game content.
 Brief: [exploration contract](../../../scripts/vehicle_blockouts/CONTRACT.md). Parent: [vehicle frame classes](../vehicle-frame-classes.md). Geometry: [frame standard](dart-frame.md). Round 1 art is kept in `output/vehicle-categories-2026-10-01/dart/v1/`.
 
-What changed from round 1: no wheels or ring parts anywhere, jets only. Engines, stabilisers and boost are real modules again (Main Drive, Wing Engines, Airbrakes, Afterburner). The prow is now a body slot (`FrontBody`), not an engine. Needle, Delta, Manta, Twinboom and Bubble are built. Each cockpit has its own signature kit. Arrowhead is not built yet.
+What changed from round 1: no wheels or ring parts anywhere, jets only. Engines, stabilisers and boost are real modules again (Main Drive, Wing Engines, Airbrakes, Afterburner). The prow is now a body slot (`FrontBody`), not an engine. Six cockpits are built: Needle, Delta, Manta, Twinboom, Bubble and Arrowhead. Each cockpit has its own signature kit. Arrowhead and the Interceptor kit were added in the review pass.
 
 ## Pitch
 
@@ -20,6 +20,7 @@ You are a racing pilot, not a driver. You sit under a small canopy at the back o
 - **Prototype:** test mules. Bare carbon, flat wide jets, sensor blades.
 - **Privateer:** self-funded racers. Clean but mismatched panels bought from three different teams.
 - **Salvage:** scrapyard builds. Patch plates, weld repairs, exposed wiring, dented shrouds.
+- **Interceptor:** pursuit craft. Violet and yellow warning paint, swept barbs, one tall vertical nozzle.
 
 Culture tags drive shop filters and kit names only. Every part fits every Dart cockpit.
 
@@ -34,8 +35,9 @@ The cockpit is the fuselage, the pilot and all the glass. Every cockpit wears it
 | Twinboom | Privateer | Upright greenhouse between two thin booms | Privateer | C |
 | Delta | Works Team | Faceted wedge, tall wedge screen | Works | B |
 | Manta | Prototype | Wide flat head with horns, tapering tail | Prototype | A |
+| Arrowhead | Interceptor | Flat arrowhead wedge, swept barbs, tall fletches | Interceptor | S |
 
-Tier S is held for Arrowhead (a flat arrowhead wedge, lowest of all) if it is built.
+Tier S is Arrowhead, the top cockpit and the only Interceptor.
 
 ## The fundamentals
 
@@ -43,22 +45,22 @@ Every Dart has all four. Each shows a dark intake, a body and a glowing nozzle f
 
 | Slot | Label | Where it sits | Options |
 |---|---|---|---|
-| `Engine1` | Main Drive | Behind the fuselage, dead astern. The biggest nozzle. | **Mono Turbine:** one big barrel, scoop on top. **Twin Drive:** two big barrels on a Y yoke. **Slot Burner:** flat wide fishtail. **Quad Cluster:** four small short jets. **Rack Triple:** three jets stepped on a ladder frame. |
-| `Engine2` | Wing Engines | A pair on the fuselage shoulders, above the wing roots. | **Lance Ramjets:** thin, full length. **Shoulder Turbines:** one round nacelle each side. **Slot Ramjets:** flat boxes. **Stacked Pair:** two small jets, over and under. **Scoop Burners:** square scoop, thin tailpipe. |
-| `Stabilisers` | Airbrakes | A pair on the flanks of the main drive, wide at the tail. | **Petal Slabs:** one tall slab, jet on its tail. **Clamshell:** two flaps round a jet. **Vane Cascade:** three louvres, lift jet at the tip. **Outrigger Jets:** a boom with a boxed lift jet and a vane. **Drag Paddles:** square paddle, bottle jet. |
-| `Boost` | Afterburner | On top of the main drive, the highest jet on the tail. | **Stinger:** one long thin burner. **Twin Cans:** two short cans. **Slot Afterburner:** flat and wide. **Staged Bell:** three growing stages. **Rocket Bottles:** two bottle burners each side. |
+| `Engine1` | Main Drive | Behind the fuselage, dead astern. The biggest nozzle. | **Mono Turbine:** one big barrel, scoop on top. **Twin Drive:** two big barrels on a Y yoke. **Slot Burner:** flat wide fishtail. **Quad Cluster:** four small short jets. **Rack Triple:** three jets stepped on a ladder frame. **Vector Blade:** one tall vertical slot nozzle. |
+| `Engine2` | Wing Engines | A pair on the fuselage shoulders, above the wing roots. | **Lance Ramjets:** thin, full length. **Shoulder Turbines:** one round nacelle each side. **Slot Ramjets:** flat boxes. **Stacked Pair:** two small jets, over and under. **Scoop Burners:** square scoop, thin tailpipe. **Chine Ramjets:** faceted, sloped outer face. |
+| `Stabilisers` | Airbrakes | A pair on the flanks of the main drive, wide at the tail. | **Petal Slabs:** one tall slab, jet on its tail. **Clamshell:** two flaps round a jet. **Vane Cascade:** three louvres, lift jet at the tip. **Outrigger Jets:** a boom with a boxed lift jet and a vane. **Drag Paddles:** square paddle, bottle jet. **Droop Tailerons:** drooped flaps, a jet low on each tip. |
+| `Boost` | Afterburner | On top of the main drive, the highest jet on the tail. | **Stinger:** one long thin burner. **Twin Cans:** two short cans. **Slot Afterburner:** flat and wide. **Staged Bell:** three growing stages. **Rocket Bottles:** two bottle burners each side. **Aerospike:** fat plug body, glowing stepped spike. |
 
 ## Body and cosmetic slots
 
 | Slot ID | Label | Options |
 |---|---|---|
-| `FrontBody` | Prow | **Spear:** one very long lance. **Twin Prong:** two parallel flat blades, open slot between. **Trident:** three prongs, centre longest. **Hammerhead:** wide crossbar, two short outboard pods. **Spade:** one flat broad blade. |
-| `FrontBumper` | Nose Tip | **Pitot Spike:** thin sensor needle. **Canards:** two small vanes. **Sensor Blade:** thin upright probe. **Ram Scoop:** blunt open intake. **Bash Bar:** heavy flat bar. |
-| `SidePods` | Wings | **Stub Winglets:** tiny fins, the narrowest build. **Delta Wings:** swept stubs, downturned tips. **Forward Swept:** thin blades angled forward. **Pontoons:** long slim pods on short struts. **Plank Wings:** wide flat slabs. |
-| `RearBumper` | Keel | **Tail Stinger:** pointed cone. **Keel Fin:** small blade under the tail. **Diffuser:** flat ribbed panel. **Drogue Pod:** capped parachute tube. **Skid:** flat ski. |
-| `RearSpoiler` | Tail Fins | **Strake Fins:** low thin strakes. **Twin Fins:** two outward-canted fins. **Box Wing:** a boxed wing between two fins. **V-Tail:** two fins in a wide V. **Plank Spoiler:** one flat wide slab. |
+| `FrontBody` | Prow | **Spear:** one very long lance. **Twin Prong:** two parallel flat blades, open slot between. **Trident:** three prongs, centre longest. **Hammerhead:** wide crossbar, two short outboard pods. **Spade:** one flat broad blade. **Broadhead:** one flat arrowhead blade with swept barbs. |
+| `FrontBumper` | Nose Tip | **Pitot Spike:** thin sensor needle. **Canards:** two small vanes. **Sensor Blade:** thin upright probe. **Ram Scoop:** blunt open intake. **Bash Bar:** heavy flat bar. **Chisel Point:** double-wedge tip with two small barbs. |
+| `SidePods` | Wings | **Stub Winglets:** tiny fins, the narrowest build. **Delta Wings:** swept stubs, downturned tips. **Forward Swept:** thin blades angled forward. **Pontoons:** long slim pods on short struts. **Plank Wings:** wide flat slabs. **Tandem Blades:** two swept-back blades each side. |
+| `RearBumper` | Keel | **Tail Stinger:** pointed cone. **Keel Fin:** small blade under the tail. **Diffuser:** flat ribbed panel. **Drogue Pod:** capped parachute tube. **Skid:** flat ski. **Ventral V:** two fins splayed outward under a small fairing. |
+| `RearSpoiler` | Tail Fins | **Strake Fins:** low thin strakes. **Twin Fins:** two outward-canted fins. **Box Wing:** a boxed wing between two fins. **V-Tail:** two fins in a wide V. **Plank Spoiler:** one flat wide slab. **A-Tail:** two fins lean inward and meet. |
 
-Hood, Roof and Accessory are not used. The canopy belongs to the cockpit.
+RearBody, Hood, Roof and Accessory are not used. The canopy belongs to the cockpit.
 
 ## Signature kits
 
@@ -69,6 +71,7 @@ Hood, Roof and Accessory are not used. The canopy belongs to the cockpit.
 | Prototype | Prototype | Manta | Flat and wide: slot burner, slot ramjets, louvre airbrakes, trident. Bare carbon. |
 | Privateer | Privateer | Twinboom | Clusters and stages: four small jets, stacked pairs, a three-stage bell. Mismatched panels. |
 | Salvage | Salvage | Bubble | Blunt and bolted: spade, planks, a ladder rack of three jets, bottle burners. Patched. |
+| Interceptor | Interceptor | Arrowhead | Sharp and swept: broadhead, vector blade, aerospike, A-tail. Violet and yellow. |
 
 ## Handling intent versus Piercer
 
@@ -98,8 +101,8 @@ Net: unbeatable on motorways and long sweepers, hard work in the dense blocks. T
 2. **Airbrake flare.** Flaps snap open on drift entry with a vapour puff and a light glint, the inside one wider. Each module flares its own way: Clamshell scissors, Petal Slabs stand up like sails, Vane Cascade fans its louvres one by one, Drag Paddles drop flat.
 3. **Prong count as identity.** One, two or three prongs read from far away and on the minimap icon. Players will say "a trident Manta".
 4. **Frankenstein builds.** Any kit fits any cockpit. A Salvage rack drive on a Works Delta is a valid hot-rod look, and Privateer culture celebrates mixing.
-5. **Full kit names.** Fitting every slot from one kit names the build: Works Spec, Record Special, Test Mule, Privateer Special, Scrap Dart. A badge on the garage card only, no stat bonus.
-6. **Afterburner flame shapes.** Stinger is a needle, Twin Cans two plumes, Slot Afterburner a flat sheet, Staged Bell shock diamonds, Rocket Bottles four short roars. Trails lengthen at top speed. Photo mode gets a low nose-on camera that frames the prongs.
+5. **Full kit names.** Fitting every slot from one kit names the build: Works Spec, Record Special, Test Mule, Privateer Special, Scrap Dart, Pursuit Spec. A badge on the garage card only, no stat bonus.
+6. **Afterburner flame shapes.** Stinger is a needle, Twin Cans two plumes, Slot Afterburner a flat sheet, Staged Bell shock diamonds, Rocket Bottles four short roars, Aerospike a stepped spike of light. Trails lengthen at top speed. Photo mode gets a low nose-on camera that frames the prongs.
 7. **Speed-trap unlocks.** Prototype parts unlock by beating speed-trap targets on the motorway. Record parts unlock through long-straight time trials. Salvage parts are cheap from the start. Works parts sit at the top of the price ladder.
 8. **Pit pose and sound.** In the garage the canopy lifts and the airbrakes rest open. Class sound is a rising turbine whine, with a sharp air-tear when the brakes open.
 
@@ -132,8 +135,8 @@ Net: unbeatable on motorways and long sweepers, hard work in the dense blocks. T
 ## Risks and open points
 
 - **Size.** About 34 studs long and 16 wide. That is twice the length of a Piercer. Check street widths, garage bays, the dealership turntable and the camera distance before any build.
-- **Cockpit variety.** The hull is only 6 studs wide, so cockpits differ mostly in canopy and plan shape. Distinctness is 0.27. Needle and Delta are the closest pair.
-- **Missing cockpit.** Arrowhead (tier S) is not built. It needs a sixth kit of nine modules.
+- **Cockpit variety.** The hull is only 6 studs wide, so cockpits differ mostly in canopy and plan shape. Distinctness is 0.24 on the whole outline and 0.46 once the shared parts are removed. The closest pairs are Bubble with Arrowhead and Delta with Bubble.
+- **Sixth kit.** Arrowhead and the Interceptor kit are blockout only. Check that the tier S cockpit reads as a step up from Manta in a real mesh.
 - **Thin parts.** Prongs, fins and booms are slender. They need simple collision boxes and must not snag on traffic or kerbs.
 - **Wheel look-alikes.** Pontoons, Hammerhead pods and corner lift jets are long tubes at the corners. Keep them slender in the mesh so they never read as wheels.
 - **Tail stack.** Keel, drive, afterburner and fins all hang off one drive module. A real mesh needs a strong visual spine there or it looks skeletal from the side.

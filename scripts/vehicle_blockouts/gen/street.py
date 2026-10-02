@@ -792,9 +792,9 @@ def bo_cannon():
     return [
         box(2.9, 3.9, 0.3, 0.8, ZB, 11.0, "detail", note="hanger on the tail face"),
         box(2.9, 4.3, 0.5, 1.7, 10.6, 10.8, "detail", note="intake collar"),
-        box(2.75, 4.45, 0.3, 1.9, 10.8, 12.0, "secondary", note="cannon can, 1.7 square"),
+        box(2.75, 4.45, 0.3, 1.9, 10.8, 12.0, "secondary", note="cannon can, 1.7 x 1.6"),
         box(2.65, 4.6, 0.25, 2.0, 12.0, 12.5, "detail", note="flared petal"),
-        box(2.8, 4.45, 0.4, 1.85, 12.5, 12.7, "thrust", note="jet, 1.6 square"),
+        box(2.8, 4.45, 0.4, 1.85, 12.5, 12.7, "thrust", note="jet, 1.65 x 1.45"),
         box(-3.8, -2.9, 0.3, 0.75, ZB, 10.8, "detail", note="blanking plate on the empty side"),
     ]
 

@@ -26,9 +26,9 @@ Five are built. Tier B is held for the Altered (Gasser) if it is added.
 | Name | Culture | Silhouette | Signature kit | Tier |
 |---|---|---|---|---|
 | Rat Cab | Rat Rod | Tall chopped pickup cab, stub bed behind | Rat Rod | E |
-| Bucket | T-Bucket | Open tub, tall flat windscreen, no roof | T-Bucket | D |
+| Bucket | T-Bucket | Open tub, tall screen, tank box behind | T-Bucket | D |
 | Deuce | Highboy | Chopped three-window coupé, slit windows, low roof | Highboy | C |
-| Lakester | Salt Flat | Riveted teardrop tank, tiny wrap bubble screen | Salt Flat | A |
+| Lakester | Salt Flat | Riveted flattened-oval tank, small bubble screen | Salt Flat | A |
 | Slingshot | Slingshot Drag | Open roll cage, driver far back | Slingshot Drag | S |
 
 ## The fundamentals
@@ -37,10 +37,10 @@ Every build has all four. Every option has an intake, a body and a glowing nozzl
 
 | Slot id | Player label | Where it sits | Options (look) |
 |---|---|---|---|
-| Engine1 | Front Engine | Level on the rails between grille shell and firewall, fully exposed | **Blown Turbine** (fat barrel, blower scoop); **Tunnel Ram** (short V block, tall tower, twin stacks); **Flat Trio** (long, low, wide, three short stacks); **Twin Mill** (two slim turbines in tandem, ram horns); **Turbine Swap** (one big turbine carried high, sloping pipe) |
-| Engine2 | Side Jets | A long barrel each side of the cab, where the slicks were | **Long Barrels** (very long and slim); **Stub Ramjets** (short, fat, carried high); **Over-Unders** (stacked pairs); **Lances** (slim, finned); **Slab Pods** (flat, slot nozzle) |
-| Stabilisers | Axle Jets | Beam axle under the front rails, pods at the outer corners | **Beam Lifters** (two upright cans); **Torpedoes** (long pods, twin down-jets); **Quad Cans** (two small cans a side); **Canard Vanes** (small vanes, jet at each tip); **Faired Spats** (teardrop covers, slot lift jets) |
-| Boost | Headers | Bolted to the engine's port rail on each side | **Lake Pipes** (long straight pipes low along the rails); **Staged Stacks** (tall stepped stacks); **Side Dumps** (short fat outlets); **Zoomies** (upswept pipes); **Slot Burners** (flat slot nozzles) |
+| Engine1 | Front Engine | Level on the rails between grille shell and firewall, fully exposed | **Blown Turbine** (fat barrel, blower scoop); **Tunnel Ram** (short V block, tall tower, twin stacks); **Flat Trio** (low and wide, three turbines abreast, three upswept nozzles); **Twin Mill** (two slim turbines in tandem, forward-leaning ram horns); **Turbine Swap** (one big turbine on a keel fairing) |
+| Engine2 | Side Jets | A long barrel each side of the cab, where the slicks were | **Long Barrels** (very long, round, slim, low); **Stub Ramjets** (short, square, carried high); **Over-Unders** (stacked pairs); **Lances** (slim, finned); **Slab Pods** (flat, dorsal scoop, slot nozzle) |
+| Stabilisers | Axle Jets | Beam axle under the front rails, pods at the outer corners | **Beam Lifters** (one tall upright can a side); **Torpedoes** (long pods, two tilted down nozzles); **Quad Cans** (two splayed cans a side, in a V); **Canard Vanes** (small vanes, jet at each tip); **Faired Spats** (raked can through a low blade) |
+| Boost | Headers | Bolted to the engine's port rail on each side | **Lake Pipes** (long straight pipes low along the rails); **Staged Stacks** (tall stepped stacks); **Side Dumps** (two low megaphones a side, angled out and back); **Zoomies** (four upswept pipes a side, swept back); **Slot Burners** (flat slot nozzles) |
 
 ## Body slots
 
@@ -60,7 +60,7 @@ Every build has all four. Every option has an intake, a body and a glowing nozzl
 | Kit | Culture | Native cockpit | What makes it look different |
 |---|---|---|---|
 | Highboy | Highboy | Deuce | Tall grille shell, chrome turbine with scoop, two very long barrels, upright cans. |
-| T-Bucket | T-Bucket | Bucket | Tall tower engine, fat short ramjets high up, long torpedo pods, trunk on a rack. |
+| T-Bucket | T-Bucket | Bucket | Tall tower engine, short square ramjets high up, long torpedo pods, trunk on a rack. |
 | Rat Rod | Rat Rod | Rat Cab | Open tube frame, low flat engine, stacked jet pairs, four small cans, bare rust. |
 | Slingshot Drag | Slingshot Drag | Slingshot | Pointed rails, two turbines in tandem, finned lances, canard vanes, tall wing. |
 | Salt Flat | Salt Flat | Lakester | Needle nose, one big raised turbine, flat slab pods, faired spats, riveted tank. |
@@ -129,15 +129,15 @@ Module bias inside the class: Front Engine and Headers carry acceleration and bo
 ## Risks and open points
 
 - **Front jets can read as wheels.** In 08 the axle jets are squat and bell-shaped, and in 03 they are short cans. Keep them long, narrow and taller than wide, with a visible nozzle, as in 01, 02 and 05.
-- **Side Jet length varies.** The blockout makes them 9 to 12 studs long. 01, 02 and the left of 05 show that; 03, 04 and the centre of 05 show short fat ones. Art direction needs one length rule.
+- **Side Jet length varies.** The blockout makes them 7 to 12 studs long. 01, 02 and the left of 05 show the long end; 03, 04 and the centre of 05 show short fat ones. Art direction needs one length rule.
 - **Five cockpits, not six.** The Altered and a Gasser kit are not built or illustrated. A Gasser can be a mixed build: tall Axle Jets on a Deuce. It fights the nose-down rake, so do not tilt the cab.
 - **Lakester drifts towards Dart.** 07 shows a long skin. It stays a Rodder only while the engine, rails and nose stay exposed.
 - **Slingshot sits far back.** The driver must sit at the back of the cab envelope (Z 1 to 10), behind the Side Jet pads.
-- **Cab and nose distinctness is on the limit.** The validator scores both exactly at target. The shared rails fill most of each outline.
+- **Cab distinctness is thin.** The free-outline score meets target (0.34 against 0.25). The whole-outline score is 0.11, with Bucket and Lakester closest. The shared rails and tail collar fill most of each outline. Real meshes must keep the Bucket open and the Lakester round.
 - **Flames, scallops and patina are not paint channels.** The game recolours Primary, Secondary, Detail, Glass and Neon. The art needs a pattern layer or shaped Secondary parts.
 - **Nose lift must be visual.** A real pitch change would upset hover and steering. It must belong to the existing vehicle visual owner, not a new one.
 - **Detail budget.** The renders carry far more engine detail than a low-poly module can. Each engine needs one strong shape: scoop, tower, tandem pair, cone.
 - **Thrust effects may merge.** Tunnel Ram with Staged Stacks, and Twin Mill with Zoomies, put many pipes close together. Side Jet exhaust needs clearance from wing end plates and Skid Bars.
-- **Size.** Builds run 30.8 to 32.9 studs long against a 30 target, up to 11.6 high with the Dragster Wing.
+- **Size.** Builds run 30.8 to 32.9 studs long against a 30 target, up to 11.5 high over the Rear Rig.
 - **Weak lateral grip in an open world.** Fun on a strip, tiring in city traffic. Needs a tuning pass first.
 - **Image notes.** In 05 the cabs are plain tubs with a seat and no windscreen, and the Bucket looks more boxy than a T-bucket. In 04 the centre cab looks boxier than the Deuce because the Bobber Bed adds a pickup bed. 08 has one small vehicle and blurred abstract signs in the background; nothing is readable.

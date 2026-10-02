@@ -882,7 +882,7 @@
           {"shape": "block", "size": [3.95, 0.3, 4.0], "pos": [5.325, 1.05, 2.6], "ch": "primary", "mirror": true, "note": "plank wing"},
           {"shape": "block", "size": [2.65, 0.17, 1.6], "pos": [4.675, 1.035, 5.8], "ch": "secondary", "mirror": true, "note": "flap plank"},
           {"shape": "block", "size": [0.3, 1.55, 5.2], "pos": [7.45, 0.875, 2.6], "ch": "secondary", "mirror": true, "note": "end plate"},
-          {"shape": "cyl_z", "size": [0.8, 0.8, 3.2], "pos": [5.3, 0.45, 2.4], "ch": "detail", "mirror": true, "note": "drop tank"},
+          {"shape": "cyl_z", "size": [0.8, 0.8, 3.2], "pos": [5.3, 0.45, 2.4], "ch": "secondary", "mirror": true, "note": "drop tank, painted"},
           {"shape": "block", "size": [1.0, 0.07, 1.2], "pos": [4.5, 1.235, 1.8], "ch": "secondary", "note": "patch plate (one side only)"},
           {"shape": "block", "size": [0.3, 0.18, 4.0], "pos": [7.45, 0.01, 2.6], "ch": "thrust", "mirror": true, "note": "lift strip"}
         ]
@@ -1009,8 +1009,8 @@
         "culture": "Salvage",
         "parts": [
           {"shape": "block", "size": [1.4, 0.25, 2.8], "pos": [0.0, -0.525, 11.0], "ch": "detail", "note": "PAD lands on the drive belly pad"},
-          {"shape": "block", "size": [3.5, 0.25, 0.6], "pos": [0.0, -0.775, 10.3], "ch": "detail", "note": "cross strut"},
-          {"shape": "block", "size": [3.5, 0.25, 0.6], "pos": [0.0, -0.775, 11.9], "ch": "detail", "note": "cross strut"},
+          {"shape": "block", "size": [3.5, 0.25, 0.6], "pos": [0.0, -0.775, 10.3], "ch": "secondary", "note": "painted cross strut"},
+          {"shape": "block", "size": [3.5, 0.25, 0.6], "pos": [0.0, -0.775, 11.9], "ch": "secondary", "note": "painted cross strut"},
           {"shape": "block", "size": [0.3, 0.4, 0.6], "pos": [1.6, -1.1, 10.3], "ch": "primary", "mirror": true, "note": "leg"},
           {"shape": "block", "size": [0.3, 0.4, 0.6], "pos": [1.6, -1.1, 11.9], "ch": "primary", "mirror": true, "note": "leg"},
           {"shape": "block", "size": [0.6, 0.2, 6.2], "pos": [1.6, -1.4, 12.1], "ch": "secondary", "mirror": true, "note": "ski"},

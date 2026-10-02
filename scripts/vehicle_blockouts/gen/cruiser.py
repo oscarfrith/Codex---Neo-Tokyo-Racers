@@ -833,7 +833,7 @@ def st_curtain_skirt():
         box(-3.6, 3.6, -0.9, -0.5, -12.74, -12.68, "detail", note="intake mouth"),
         box(-4.4, 4.4, -1.6, -1.15, -12.5, -12.1, "thrust", note="front curtain glow"),
     ]
-    for z0, z1 in ((-12.4, -5.2), (-4.6, 2.6), (3.2, 10.8)):
+    for z0, z1 in ((-12.4, -5.8), (-4.4, 2.4), (3.8, 10.8)):  # 1.4 gaps: three clear segments, not one strip
         ps += [
             box(4.6, 5.5, -1.15, -0.1, z0, z1, "detail", mirror=True, note="deep skirt wall, one of three"),
             box(5.5, 5.58, -0.55, -0.3, z0, z1, "secondary", mirror=True, note="skirt band"),
@@ -1113,9 +1113,9 @@ def rbu_jet_pods():
     return [
         box(2.6, 3.4, 0.45, 0.95, TAIL, 15.9, "detail", mirror=True, note="bracket on the bumper pad"),
         box(-4.0, 4.0, 0.5, 1.1, 15.9, 16.5, "secondary", note="chrome blade between the pods"),
-        cylz(4.6, 0.95, 1.1, 15.55, 16.5, "secondary", mirror=True, note="jet pod at the bumper end: 1.4 long, 1.1 across"),
-        cylz(4.6, 0.95, 0.85, 16.5, 16.9, "detail", mirror=True, note="pod mouth, stepped down"),
-        ball(4.6, 0.95, 16.72, 0.5, "neon", mirror=True, note="pod lamp"),
+        cylz(4.6, 0.95, 1.1, 15.55, 16.55, "secondary", mirror=True, note="jet pod at the bumper end: 1.4 long with its mouth, 1.1 across"),
+        cylz(4.6, 0.95, 0.85, 16.55, 16.95, "detail", mirror=True, note="pod mouth, stepped down"),
+        ball(4.6, 0.95, 16.74, 0.5, "neon", mirror=True, note="pod lamp"),
     ]
 
 

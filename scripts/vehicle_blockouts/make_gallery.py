@@ -8,6 +8,7 @@ import html
 import json
 import os
 import re
+import shutil
 import sys
 
 from PIL import Image
@@ -111,6 +112,7 @@ def captions_from_sheet(cid):
 
 def main():
     os.makedirs(OUT, exist_ok=True)
+    shutil.rmtree(os.path.join(OUT, "blockout"), ignore_errors=True)
     files = {}
     sections, nav = [], []
     for cid, name, pitch, cultures, strong, weak in CLASSES:
@@ -146,12 +148,11 @@ def main():
 
         blocks = ""
         for stem, title, width in (("matrix", "Interchange matrix: every cockpit (rows) wearing every signature kit (columns)", 1700),
-                                   ("studio", "The same matrix built in Roblox Studio (backup place)", 1600),
                                    ("fundamentals", "Engine, stabiliser and boost options, each highlighted on one cockpit", 1700),
                                    ("exploded", "Exploded build, one colour per slot", 1500),
                                    ("sheet", "Native, swapped and mixed builds", 1600),
                                    ("standard", "Frame standard: the slot envelopes", 1300)):
-            src = os.path.join(SHOTS, cid + ".jpg") if stem == "studio" else os.path.join(PREV, cid, stem + ".png")
+            src = os.path.join(PREV, cid, stem + ".png")
             if os.path.exists(src):
                 rel = "blockout/%s/%s.jpg" % (cid, stem)
                 to_jpg(src, os.path.join(OUT, rel), width)
@@ -182,9 +183,16 @@ def main():
         to_jpg(ov, os.path.join(OUT, "blockout", "overview.jpg"), 1600)
         files["blockout/overview.jpg"] = os.path.relpath(os.path.join(OUT, "blockout", "overview.jpg"), REPO).replace("\\", "/")
         overview = ('<figure class="wide"><button class="zoom" data-src="blockout/overview.jpg" aria-label="Enlarge image"><img src="blockout/overview.jpg" alt="Blockout showroom in Roblox Studio"></button>'
-                    '<figcaption>The blockout showroom in the backup place: the existing Piercer on the left for scale, then one row per class. Workspace.VehicleCategoryBlockouts.</figcaption></figure>')
+                    '<figcaption>The blockout showroom in the backup place: one interchange matrix per class, with the existing Piercer in the foreground for scale. This Studio copy predates the review fixes; the grey-box images below are current. Workspace.VehicleCategoryBlockouts.</figcaption></figure>')
+    overview = ""
+    ov = os.path.join(SHOTS, "_overview.jpg")
+    if os.path.exists(ov):
+        to_jpg(ov, os.path.join(OUT, "blockout", "overview.jpg"), 1600)
+        files["blockout/overview.jpg"] = os.path.relpath(os.path.join(OUT, "blockout", "overview.jpg"), REPO).replace(os.sep, "/")
+        overview = ('<figure class="wide"><button class="zoom" data-src="blockout/overview.jpg" aria-label="Enlarge image"><img src="blockout/overview.jpg" alt="Blockout showroom in Roblox Studio"></button>'
+                    '<figcaption>The blockout showroom in the backup place: one interchange matrix per class, with the existing Piercer in the foreground for scale. This Studio copy predates the review fixes; the grey-box images below are current. Workspace.VehicleCategoryBlockouts.</figcaption></figure>')
     rules = "".join("<li><strong>%s.</strong> %s</li>" % (esc(a), esc(b)) for a, b in RULES)
-    page = TEMPLATE.replace("{{NAV}}", "".join(nav)).replace("{{RULES}}", rules).replace("{{SECTIONS}}", "\n".join(sections))
+    page = TEMPLATE.replace("{{NAV}}", "".join(nav)).replace("{{RULES}}", rules).replace("{{SECTIONS}}", "\n".join(sections)).replace("{{OVERVIEW}}", overview)
     with open(os.path.join(OUT, "index.html"), "w", encoding="utf-8") as f:
         f.write(page)
     with open(os.path.join(OUT, "files.json"), "w", encoding="utf-8") as f:
@@ -259,9 +267,9 @@ tr.fund td:first-child { color: var(--cyan); }
 </style>
 <div class="wrap">
   <header class="top">
-    <p class="status">Design proposal, round 2, not approved · 1 October 2026</p>
+    <p class="status">Design proposal, round 2, not approved · 2 October 2026</p>
     <h1>Frame classes</h1>
-    <p class="lede">Twelve new vehicle categories for Space Racers, round 2. No wheels: every vehicle flies on jets. Every vehicle carries real engine, stabiliser and boost modules. Every cockpit has its own kit, and any cockpit can wear any other cockpit's kit.</p>
+    <p class="lede">Twelve new vehicle categories for Space Racers, round 2: 70 cockpits, 70 signature kits and 700 modules. No wheels: every vehicle flies on jets. Every vehicle carries real engine, stabiliser and boost modules. Every cockpit has its own kit, and any cockpit can wear any other cockpit's kit.</p>
     <p class="muted">Concept images are generated mood pieces, not final models. The grey-box images come from the same specs that built the blockouts in the backup place.</p>
     {{OVERVIEW}}
   </header>

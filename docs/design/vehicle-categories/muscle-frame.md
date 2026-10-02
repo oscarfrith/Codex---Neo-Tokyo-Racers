@@ -1,6 +1,6 @@
 # Muscle: frame standard (round 2, after critic fixes)
 
-Status: design exploration, 2026-10-01. Grey-box only. Not game content and not approved.
+Status: design exploration, 2026-10-01, re-checked 2026-10-02. Grey-box only. Not game content and not approved.
 Source: `scripts/vehicle_blockouts/gen/muscle.py` writes `scripts/vehicle_blockouts/specs/muscle.json`. Previews: `scripts/vehicle_blockouts/previews/muscle/`.
 
 American muscle and pony cars as one-piece hover jets. Long bonnet, short deck, wide haunches. No wheels: each arch is blanked, vented or filled by a lift jet. The cabin sits well back: the bonnet is 11.3 studs, the cabin 8.2 and the tail 5.4 to 6.9. The body is about 10.9 W x 6.6 H x 25.4 L. With side burners, tail engine and spoiler the 15 builds measure 12.3 to 12.6 W, 6.8 to 8.0 H and 26.1 to 27.0 L, against a 10 x 6 x 24 target.
@@ -38,7 +38,7 @@ Cylinders run fore and aft or cant down and back. Every pod and can is longer th
 
 Datums (Y): hover plane -2.0, floor -0.4, sill 0.3, arch roof 1.7, belt stripe 2.35..2.65, beltline 3.3, roof 6.0.
 Datums (Z): nose shelf -12.3, cowl seam -2.0, cabin back seam 6.2, engine bulkhead 10.2, standard tail face 12.1. Arch centres at Z -7.6 and 8.3, half length 1.9. The rear arch starts 0.2 behind the back seam and ends at the bulkhead.
-Datums (X): door skin 4.75, arch back wall 3.3, bonnet pad half width 2.3, engine bay half width 3.3.
+Datums (X): door skin 4.75, arch back wall 3.3, Hood Engine pad half width 2.2 (the bonnet pad itself is 2.3), engine bay half width 3.3.
 
 | Pad | Owner | Position | Lands here |
 |---|---|---|---|
@@ -94,6 +94,7 @@ The first line is the free outline: the area every option shares is removed. It 
 - Three pairs sit close to their targets: Side Pipes and Underslung Twins (0.37), High Deck and Square Tail (0.38), Fastback and Ute (0.27 against 0.25). They read differently by eye, but there is little margin. The part count is tight too: the largest build has 219 parts against a limit of 220, and Skirted Triples is the heaviest Lift Jet option.
 - The rear arch now sits hard against the back seam and the rear overhang is short (1.4 to 2.9 studs). That gives the short deck, but tails can vary only in length, hip line and lower edge. Builds stay wider and longer than the target because the Side Burners and Tail Engine sit outside the body.
 - A short nose or tail leaves a long bumper standing clear of the body: about 1 stud with Bluff Nose or Pony Beak and the Chrome Blade, and 0.7 with Flared Kamm and Chrome Quarters or Tucked Pan. Slant Deck falls away behind Z 11.4, so a tall spoiler upright shows a gap under its trailing edge. Real meshes may want filler panels.
-- The Modern kit's tail engine and boost are still flat slot burners. Only its Hood Engine has a turbine body.- Arch panels and skirts sit at fixed X (4.72 to 5.25). On the narrowest clip the panel is flush and the skirt stands 0.35 proud; on the widest they sit up to 0.5 recessed.
+- The Modern kit's tail engine and boost are still flat slot burners. Only its Hood Engine has a turbine body.
+- Arch panels and skirts sit at fixed X (4.72 to 5.25). On the narrowest clip the panel is flush and the skirt stands 0.35 proud; on the widest they sit up to 0.5 recessed.
 - All 36 kit builds were checked front and rear in `matrix.png` and the row sheets (24 of them at full size). Ten builds were viewed in all four views during the fix rounds, two of them after the last change. Other mixed builds are covered by the validator's contact check only.
 - `docs/design/vehicle-categories/muscle.md` (concept sheet) still uses the old names Skirted Vanes, Sports Bar, Step Bumper, Nerf Rail and Bed Tail.

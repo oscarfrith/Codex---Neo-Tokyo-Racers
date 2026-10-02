@@ -1042,7 +1042,7 @@ def sp_skirted():
         box(1.95, 5.5, 0.75, 1.3, -2.2, 2.9, "primary", True),          # thin wing-section slab
         pwedge(1.95, 5.5, 0.75, 1.3, -3.5, -2.2, thin="front", base="in"),  # swept leading edge
         box(2.2, 5.2, 0.85, 1.2, 2.9, 2.98, "detail", True),            # tunnel exit
-        box(5.5, 5.7, -1.3, 1.3, -2.2, 2.9, "secondary", True),         # sliding skirt
+        box(5.3, 5.7, -1.3, 0.75, -2.2, 2.9, "secondary", True),        # sliding skirt, hung under the slab edge
     ]
 
 

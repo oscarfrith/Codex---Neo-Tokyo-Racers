@@ -20,7 +20,7 @@ The older standalone rbx-studio-mcp server is no longer maintained by Roblox; do
 | Hierarchy / properties | search_game_tree, inspect_instance | Read-only. |
 | Script source | script_read, script_grep, script_search | Read-only. Prefer these to reading exported mirrors for current source. |
 | Output | get_console_output | Record session/time boundaries in evidence. |
-| Run Luau | execute_luau | Used for targeted capture producer, generated AUDIT/APPLY/ROLLBACK deliveries and read-only audits. Never `require` gameplay modules (AGENTS rule). |
+| Run Luau | execute_luau | Used for targeted capture producer, generated AUDIT/APPLY/ROLLBACK deliveries and read-only audits. Never `require` gameplay modules (AGENTS rule). Since 2026-10-02 the Assistant sandbox has no Network capability: `HttpService` calls fail in execute_luau, so Luau cannot pull files from a local server. Send data in the code string, or give the user a small Command Bar script (the Command Bar still has network access). |
 | Play / stop | start_stop_play | Sandbox and replay remain no-save; check TEST-01 before mutation tests. |
 | Visuals | screen_capture | Edit-time camera captures. Good for lighting/UI evidence; save under the task's roblox/captures folder. |
 | Input during Play | user_keyboard_input, user_mouse_input, character_navigation | Lets the assistant drive normal UI flow. See evidence rules below. |

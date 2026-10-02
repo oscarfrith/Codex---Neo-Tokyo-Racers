@@ -841,15 +841,15 @@
           {"shape": "block", "size": [7.6, 0.6, 0.08], "pos": [0.0, -0.7, -12.64], "ch": "secondary", "note": "intake frame"},
           {"shape": "block", "size": [7.2, 0.4, 0.06], "pos": [0.0, -0.7, -12.71], "ch": "detail", "note": "intake mouth"},
           {"shape": "block", "size": [8.8, 0.45, 0.4], "pos": [0.0, -1.375, -12.3], "ch": "thrust", "note": "front curtain glow"},
-          {"shape": "block", "size": [0.9, 1.05, 7.2], "pos": [5.05, -0.625, -8.8], "ch": "detail", "mirror": true, "note": "deep skirt wall, one of three"},
-          {"shape": "block", "size": [0.08, 0.25, 7.2], "pos": [5.54, -0.425, -8.8], "ch": "secondary", "mirror": true, "note": "skirt band"},
-          {"shape": "block", "size": [0.6, 0.45, 6.8], "pos": [5.05, -1.375, -8.8], "ch": "thrust", "mirror": true, "note": "curtain glow, 0.45 tall"},
-          {"shape": "block", "size": [0.9, 1.05, 7.2], "pos": [5.05, -0.625, -1.0], "ch": "detail", "mirror": true, "note": "deep skirt wall, one of three"},
-          {"shape": "block", "size": [0.08, 0.25, 7.2], "pos": [5.54, -0.425, -1.0], "ch": "secondary", "mirror": true, "note": "skirt band"},
-          {"shape": "block", "size": [0.6, 0.45, 6.8], "pos": [5.05, -1.375, -1.0], "ch": "thrust", "mirror": true, "note": "curtain glow, 0.45 tall"},
-          {"shape": "block", "size": [0.9, 1.05, 7.6], "pos": [5.05, -0.625, 7.0], "ch": "detail", "mirror": true, "note": "deep skirt wall, one of three"},
-          {"shape": "block", "size": [0.08, 0.25, 7.6], "pos": [5.54, -0.425, 7.0], "ch": "secondary", "mirror": true, "note": "skirt band"},
-          {"shape": "block", "size": [0.6, 0.45, 7.2], "pos": [5.05, -1.375, 7.0], "ch": "thrust", "mirror": true, "note": "curtain glow, 0.45 tall"}
+          {"shape": "block", "size": [0.9, 1.05, 6.6], "pos": [5.05, -0.625, -9.1], "ch": "detail", "mirror": true, "note": "deep skirt wall, one of three"},
+          {"shape": "block", "size": [0.08, 0.25, 6.6], "pos": [5.54, -0.425, -9.1], "ch": "secondary", "mirror": true, "note": "skirt band"},
+          {"shape": "block", "size": [0.6, 0.45, 6.2], "pos": [5.05, -1.375, -9.1], "ch": "thrust", "mirror": true, "note": "curtain glow, 0.45 tall"},
+          {"shape": "block", "size": [0.9, 1.05, 6.8], "pos": [5.05, -0.625, -1.0], "ch": "detail", "mirror": true, "note": "deep skirt wall, one of three"},
+          {"shape": "block", "size": [0.08, 0.25, 6.8], "pos": [5.54, -0.425, -1.0], "ch": "secondary", "mirror": true, "note": "skirt band"},
+          {"shape": "block", "size": [0.6, 0.45, 6.4], "pos": [5.05, -1.375, -1.0], "ch": "thrust", "mirror": true, "note": "curtain glow, 0.45 tall"},
+          {"shape": "block", "size": [0.9, 1.05, 7.0], "pos": [5.05, -0.625, 7.3], "ch": "detail", "mirror": true, "note": "deep skirt wall, one of three"},
+          {"shape": "block", "size": [0.08, 0.25, 7.0], "pos": [5.54, -0.425, 7.3], "ch": "secondary", "mirror": true, "note": "skirt band"},
+          {"shape": "block", "size": [0.6, 0.45, 6.6], "pos": [5.05, -1.375, 7.3], "ch": "thrust", "mirror": true, "note": "curtain glow, 0.45 tall"}
         ]
       },
       "splay_jets": {
@@ -1149,9 +1149,9 @@
         "parts": [
           {"shape": "block", "size": [0.8, 0.5, 0.4], "pos": [3.0, 0.7, 15.7], "ch": "detail", "mirror": true, "note": "bracket on the bumper pad"},
           {"shape": "block", "size": [8.0, 0.6, 0.6], "pos": [0.0, 0.8, 16.2], "ch": "secondary", "note": "chrome blade between the pods"},
-          {"shape": "cyl_z", "size": [1.1, 1.1, 0.95], "pos": [4.6, 0.95, 16.025], "ch": "secondary", "mirror": true, "note": "jet pod at the bumper end: 1.4 long, 1.1 across"},
-          {"shape": "cyl_z", "size": [0.85, 0.85, 0.4], "pos": [4.6, 0.95, 16.7], "ch": "detail", "mirror": true, "note": "pod mouth, stepped down"},
-          {"shape": "ball", "size": [0.5, 0.5, 0.5], "pos": [4.6, 0.95, 16.72], "ch": "neon", "mirror": true, "note": "pod lamp"}
+          {"shape": "cyl_z", "size": [1.1, 1.1, 1.0], "pos": [4.6, 0.95, 16.05], "ch": "secondary", "mirror": true, "note": "jet pod at the bumper end: 1.4 long with its mouth, 1.1 across"},
+          {"shape": "cyl_z", "size": [0.85, 0.85, 0.4], "pos": [4.6, 0.95, 16.75], "ch": "detail", "mirror": true, "note": "pod mouth, stepped down"},
+          {"shape": "ball", "size": [0.5, 0.5, 0.5], "pos": [4.6, 0.95, 16.74], "ch": "neon", "mirror": true, "note": "pod lamp"}
         ]
       },
       "diffuser": {

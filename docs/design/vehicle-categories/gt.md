@@ -1,6 +1,6 @@
 # GT (`gt`): class sheet, round 2
 
-Status: design exploration, round 2, 2026-10-01. Nothing here is approved or game content.
+Status: design exploration, round 2 after the critic's fix pass, 2026-10-02. Nothing here is approved or game content.
 Brief: [exploration contract](../../../scripts/vehicle_blockouts/CONTRACT.md). Parent: [vehicle frame classes](../vehicle-frame-classes.md). Geometry: [frame standard](gt-frame.md). Prompts and full-size art: `output/vehicle-categories-2026-10-01/gt/`.
 
 This is a new class in round 2. It follows Oscar's feedback: real cars first, then jets instead of wheels. Engines, stabilisers and boost are real modules on every build.
@@ -32,10 +32,10 @@ The cockpit is the cabin, the glass and the roofline. Every cockpit wears its ow
 |---|---|---|---|---|
 | Roadster | Roadster | Open two-seater, low screen, head fairings | Clubman | E |
 | Longnose | Classic GT | Small cabin set back, steep fastback | Classic | D |
-| Brake | Shooting Brake | Tallest roof, flat line, upright tailgate | Estate | C |
+| Brake | Shooting Brake | Longest roof, flat line, open tailgate frame | Estate | C |
 | Teardrop | Rear-Engine Sports | Screen at the cowl, one curve down | Sports | B |
-| Bruiser | Modern GT | Lowest roof, slit glass, long buttresses | Modern | A |
-| Gullwing | GT3 Racer | Small round canopy, gullwing doors | GT3 | S |
+| Bruiser | Modern GT | Lowest roof, wrap-round screen, low deck rails | Modern | A |
+| Gullwing | GT3 Racer | Narrow leaning canopy, proud door frames, roof fin | GT3 | S |
 
 ## The fundamentals
 
@@ -43,10 +43,10 @@ Every GT has all four. Each shows an intake, a body and a glowing nozzle from ou
 
 | Slot | Label | Where it sits | Options |
 |---|---|---|---|
-| `Engine1` | Front Engine | In an open bay in the bonnet, with vents behind each front arch. Reads from the front three-quarter and from above. | **Inline Stack:** six slim intakes over one long turbine. **Twin Ram:** two short fat turbines, nozzles turned up. **Big Single:** one big turbine under a power dome. **Quad Throttle:** four small jets, two by two. **Ram Scoop:** a turbine under a tall narrow scoop. **Bonnet Slot:** a low flat duct with a slot jet. |
-| `Engine2` | Rear Engine | In an open bay between the haunches. Nozzles pass out through the tail. Faces the chase camera. | **Tail Twin:** two slim turbines, wide apart. **Fat Single:** one fat turbine, one big nozzle. **Quad Square:** a square housing, four short nozzles. **Triple Tube:** three tubes in a row, set high. **Splay Vee:** a compact block, two nozzles splayed out. **Slot Vector:** one wide flat vectoring nozzle with a paddle each side. |
-| `Stabilisers` | Lift Jets | Four units, one in each blanked arch, hung from the arch wall. | **Torpedo Lifts:** one slim torpedo per corner. **Twin Columns:** two upright lift tubes per corner. **Vane Boxes:** a flat louvred box, one wide sheet of thrust. **Slant Jets:** one long nozzle canted hard back. **Comb Jets:** a tank with three small jets. **Outriggers:** two stacked jets on an outboard spar. |
-| `Boost` | Afterburner | Hangs on the tail panel under the rear engine, where the exhaust tips were. | **Twin Megaphones:** two slim megaphones, far apart. **Centre Twins:** two short fat cans, tight together. **Quad Tips:** four squared tips. **Single Cannon:** one big cannon on the centre line. **Staged Triple:** one long pipe, a short pipe each side. **Slot Burner:** one wide flat slot. |
+| `Engine1` | Front Engine | In an open bay in the bonnet, between the wings, with side exits in a cove behind each front arch. Reads from the front three-quarter and from above. | **Inline Stack:** six slim intakes over one long turbine. **Twin Ram:** two short fat turbines, nozzles turned up, flush with the bonnet. **Big Single:** one big turbine under a power dome. **Quad Throttle:** four small jets, two by two. **Ram Scoop:** a turbine under a tall narrow scoop. **Bonnet Slot:** a low flat duct with a slot jet. |
+| `Engine2` | Rear Engine | Stands through an open hatch in the tail deck, just above the deck. Nozzles run out through the open tail. Faces the chase camera. | **Tail Twin:** two slim turbines, wide apart. **Fat Single:** one fat turbine, one big nozzle. **Quad Square:** a square housing, four short nozzles. **Triple Tube:** three tubes in a row, set high. **Splay Vee:** a compact block, two nozzles splayed out. **Slot Vector:** one wide flat vectoring nozzle with a paddle each side. |
+| `Stabilisers` | Lift Jets | Four units, one in each blanked arch, hung from the arch wall. | **Torpedo Lifts:** one slim torpedo per corner. **Twin Columns:** two upright lift tubes per corner. **Vane Boxes:** a flat louvred box, one wide sheet of thrust. **Slant Jets:** one long nozzle canted hard back. **Comb Jets:** a tank with three small jets. **Outriggers:** one large nacelle per corner, on an outboard spar. |
+| `Boost` | Afterburner | Sits outboard under the tail lamps, where the exhaust tips were. The centre line is left to the rear engine. Each has a dark collar and a small glowing core. | **Twin Megaphones:** two slim megaphones, far apart. **Stacked Twins:** two short cans, one over the other, each side. **Quad Tips:** four squared tips. **Single Cannon:** one long dark cannon, right side only. **Staged Pairs:** a long pipe with a short slim pipe outboard, each side. **Blade Burners:** one tall thin upright slot at each tail corner. |
 
 ## Body and cosmetic slots
 
@@ -54,23 +54,23 @@ Every GT has all four. Each shows an intake, a body and a glowing nozzle from ou
 
 | Slot ID | Label | Options |
 |---|---|---|
-| `FrontBody` | Nose and Bonnet | **Torpedo Nose:** longest, lowest, pointed. **Frogeye Nose:** shortest, two tall lamp towers. **Shark Nose:** long and blunt, humped wings. **Clubman Nose:** narrow cone, open corners. **Square Nose:** upright, full height, big grille. **Works Nose:** low and short, louvred box arches. |
+| `FrontBody` | Nose and Bonnet | **Torpedo Nose:** longest, lowest, pointed. **Frogeye Nose:** shortest, round lamp pods, wings peaking over the arch. **Shark Nose:** long and blunt, humped wings. **Clubman Nose:** narrow low cone, open corners, lamps on posts. **Square Nose:** upright, full bonnet height. **Works Nose:** low and short, louvred box arches. |
 | `RearBody` | Tail | **Kamm Tail:** shortest, high square cut. **Wide Hips:** round hips, sloping low edge. **Muscle Haunch:** tall haunch, undercut edge. **Boat Tail:** open corners, pointed stern. **Square Tail:** longest box, tall rails and lamp columns. **Works Tail:** louvred box arches, stripped tail. |
 | `SidePods` | Sills | **Bright Sill:** slim bright strip. **Scoop Rocker:** rocker with a small scoop. **Blade Skirt:** sharp blade skirt. **Nerf Rail:** round rail along the sill. **Gill Cladding:** ribbed cladding. **Flat Floor:** flat race floor. |
 | `FrontBumper` | Chin | **Nerf Bar:** thin bar. **Valance:** deep low panel. **Lip:** thin lip. **Skid Nubs:** two small nubs. **Air Dam:** tall dam. **Splitter:** wide flat splitter. |
 | `RearBumper` | Rear Valance | **Quarter Bumpers:** two slim corner bars. **Rounded Corners:** wrap-around curve. **Diffuser:** ribbed diffuser. **Overriders:** two bullet guards. **Blade Bumper:** flat blade. **Race Diffuser:** tall ribbed diffuser. |
-| `RearSpoiler` | Spoiler | **Kamm Lip:** small lip on the deck. **Ducktail:** upturned tail. **Active Blade:** flat blade on two struts. **Twin Fins:** two small fins. **Bridge Spoiler:** a bar spanning the tail. **Swan-Neck Wing:** tall wing on swan-neck struts. |
+| `RearSpoiler` | Spoiler | **Kamm Lip:** small lip on the deck. **Ducktail:** upturned tail. **Active Blade:** flat blade on two struts. **Twin Fins:** two small fins. **Boot Rack:** a bright rack on posts, with a low lip. It needs no roof. **Swan-Neck Wing:** tall wing on swan-neck struts. |
 
 ## Signature kits
 
 | Kit | Culture | Native cockpit | What makes it look different |
 |---|---|---|---|
 | Classic | Classic GT | Longnose | Slim and long: torpedo nose, inline stack, torpedo lifts, two megaphones. Chrome trim. |
-| Sports | Rear-Engine Sports | Teardrop | Short and round: frog-eye nose, fat single, round hips, two fat centre cans. |
+| Sports | Rear-Engine Sports | Teardrop | Short and round: frog-eye nose, flush twin ram, fat single, round hips, stacked twin burners. |
 | Modern | Modern GT | Bruiser | One big single and four tips. Shark nose, flared haunches, louvred lift boxes. |
 | Clubman | Roadster | Roadster | Open and light: narrow nose, open corners, quad throttle, one cannon. |
-| Estate | Shooting Brake | Brake | Upright and boxy: square nose, ram scoop, comb jets, a staged triple of pipes. |
-| GT3 | GT3 Racer | Gullwing | Wide and flat: box arches, bonnet slot, outriggers, slot burner, swan-neck wing. |
+| Estate | Shooting Brake | Brake | Upright and boxy: square nose, ram scoop, splay vee, comb jets, staged pairs of pipes, boot rack. |
+| GT3 | GT3 Racer | Gullwing | Wide and flat: box arches, bonnet slot, outriggers, blade burners, swan-neck wing. |
 
 Any cockpit takes any kit. The nose and tail always meet the cockpit at the same seam.
 
@@ -100,12 +100,12 @@ Net: a precise point-to-point car for a driver who likes clean lines. Front Engi
 
 1. **Under the bonnet.** The front engine stands open in the bonnet. Fitting a new one is the proud moment, with a lift-the-bonnet pose in the garage and a turbine spin-up.
 2. **Engine notes.** Each Front Engine has its own sound: Inline Stack a smooth rising whine, Twin Ram a flat burble, Big Single a deep roar, Quad Throttle a four-note buzz, Bonnet Slot a sharp hiss.
-3. **Sleepers.** An Estate with the GT3 front engine and slot burner looks like a family car and goes like a racer. The Brake is the class's wolf in sheep's clothing.
+3. **Sleepers.** An Estate with the Bonnet Slot and Blade Burners looks like a family car and goes like a racer. The Brake is the class's wolf in sheep's clothing.
 4. **Count the nozzles.** Rear engine and boost make a pattern from behind: twin and twin, quad and quad, one and one. Players will say "quad-quad" or "single-cannon".
 5. **Heritage paint.** Era colourways with invented names: racing green and cream, signal orange and grey, pearl white and yellow. Geometric stripes only, no text.
-6. **Arch glow.** The lift jets sit where the wheels were, so each tells you its look through its glow: pale sheet for Vane Boxes, four thin points for Comb Jets.
+6. **Arch glow.** The lift jets sit where the wheels were, so each tells you its look through its glow: pale sheet for Vane Boxes, a row of thin points for Comb Jets.
 7. **Open-top touring.** The Roadster shows driver and passenger. A scarf and hair move at speed. The roof cannot close, which is the joke.
-8. **Spec badge.** Fit all six modules from one kit and the garage card names it: Classic Spec, GT3 Spec. A card badge only, no stat bonus.
+8. **Spec badge.** Fit all ten modules from one kit and the garage card names it: Classic Spec, GT3 Spec. A card badge only, no stat bonus.
 
 ## Gallery
 
@@ -119,7 +119,7 @@ Net: a precise point-to-point car for a driver who likes clean lines. Front Engi
 *03 One kit, three cockpits. Left Teardrop, centre Brake, right Roadster. All wear the Modern kit in grey and orange: Shark Nose, Muscle Haunch, Big Single, Quad Square, Vane Boxes, Quad Tips, Blade Skirt, Active Blade.*
 
 ![One cockpit, three kits](img/gt/04-one-cockpit-three-kits.jpg)
-*04 One cockpit, three kits. Longnose three times in burgundy and gold, with the same sloping coupé roof and glass on each. Left Classic kit. Centre Estate kit (Square Nose, Ram Scoop, Comb Jets, Staged Triple, Bridge Spoiler). Right GT3 kit (Works Nose, Bonnet Slot, Outriggers, Slot Burner, Splitter, Swan-Neck Wing). The kits change the nose, sides and tail only.*
+*04 One cockpit, three kits. Longnose three times in burgundy and gold, with the same sloping coupé roof and glass on each. Left Classic kit. Centre Estate kit (Square Nose, Ram Scoop, Comb Jets, Staged Pairs, Boot Rack). Right GT3 kit (Works Nose, Bonnet Slot, Outriggers, Blade Burners, Splitter, Swan-Neck Wing). The kits change the nose, sides and tail only.*
 
 ![Rear Engine options](img/gt/05-engines.jpg)
 *05 Rear Engine options, rear three-quarter. Longnose with Classic fittings, identical except Engine2. Left Tail Twin, centre Quad Square, right Fat Single.*
@@ -128,15 +128,15 @@ Net: a precise point-to-point car for a driver who likes clean lines. Front Engi
 *06 Lift jets and afterburner. Bruiser cockpit in the Modern kit, orange and grey. Quad Tips firing, Quad Square rear engine, Vane Boxes pushing thrust at the floor, Muscle Haunch, Active Blade. Seen very low from behind.*
 
 ![GT3 Gullwing](img/gt/07-gt3-gullwing.jpg)
-*07 GT3 racer. Gullwing cockpit in the GT3 kit, pearl white and signal yellow. Works Nose, Bonnet Slot, Outriggers, Slot Vector, Slot Burner, Splitter, Race Diffuser, Swan-Neck Wing. The Outriggers show as slim lengthways pods under blanked arches. The tail burner is hidden at this angle.*
+*07 GT3 racer. Gullwing cockpit in the GT3 kit, pearl white and signal yellow. Works Nose, Bonnet Slot, Outriggers, Slot Vector, Blade Burners, Splitter, Race Diffuser, Swan-Neck Wing. The Outriggers show as slim lengthways pods under blanked arches. The tail burner is hidden at this angle.*
 
 ![Action](img/gt/08-action.jpg)
 *08 Action. The Longnose hero build in the Classic kit at speed in a neon city at night, Inline Stack glowing in the bonnet, Torpedo Lifts under the arches, Twin Megaphones streaming behind.*
 
 ## Risks and open points
 
-- **Body look-alikes.** Nose and tail pairs score 0.09 to 0.30 against a 0.35 target, and cockpits 0.11 to 0.20 against 0.25. Shared pads and bays make up most of each outline. Reaching the target needs longer overhangs or a smaller shared core. Owner decision.
-- **Size.** Builds are 23.5 to 26.1 long against a 23 target. The GT3 kit is 11.7 wide. Check lanes, garage bays and the camera.
+- **Body look-alikes.** Whole-outline scores are 0.06 to 0.15 for bodies, engines and cockpits. Shared pads and bays make up most of each outline. With the shared area removed, the scores pass the 0.35 target (0.25 for cockpits), two of them exactly on the line. A higher whole score needs longer overhangs or a smaller shared core. Owner decision.
+- **Size.** Builds are 23.5 to 25.2 long against a 23 target, and 10.6 to 11.7 wide against 10. The GT3 kit is the widest at 11.7. Check lanes, garage bays and the camera.
 - **Wheel look-alikes.** The first hero render hung upright slabs under the arches and they read as wheels. Lift jets must stay slim and lengthways. The 07 and 04 outriggers were regenerated as slim lengthways pods, so keep them narrow in the mesh.
 - **Concept art is mood, not geometry.** The renders vary the blockout shapes: lift jets are rounder or taller, and rear nozzles face the camera as plain rounds. Use the blockout for shape.
 - **Real-car likeness.** The art leans on a Jaguar E-Type, a Porsche 911 and a Mercedes gullwing. No badges, but a legal check is wise before any model ships.

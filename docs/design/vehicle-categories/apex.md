@@ -15,6 +15,7 @@ Circuit racing cars as hover jets. A narrow central tub with the driver low and 
 - **Prototype:** endurance racer with a closed canopy and enclosed teardrop arches.
 - **Wing Car:** 80s ground-effect wedge with long skirted sidepods and a turbo slot.
 - **Speedway Sprint:** upright roll cage, staggered stacks and an enormous top wing.
+- **Stock Oval:** boxy stock car with a tall greenhouse, door slabs and a stand-up spoiler.
 
 ## Cockpits
 
@@ -22,7 +23,7 @@ Circuit racing cars as hover jets. A narrow central tub with the driver low and 
 |---|---|---|---|---|
 | Cigar | Vintage Grand Prix | Round tube hull, open cockpit, tiny screen | Garagiste | E |
 | Sprint | Speedway Sprint | Upright cage, tall driver, tank tail | Dirt Outlaw | D |
-| Oval | Speedway Sprint | Low offset tub, high cockpit sides | None yet (not built) | C |
+| Oval | Stock Oval | Tall boxy greenhouse, flat roof, wider than tub | Stocker | C |
 | Wingcar | Wing Car | Flat wedge, driver far forward, periscope airbox | Ground Effect | B |
 | Formula | Formula | Narrow angular tub, halo, reclined driver | Works | A |
 | Prototype | Prototype | Wide closed teardrop canopy, long fastback | All-Nighter | S |
@@ -33,22 +34,23 @@ Every build has all four. Each one is open jet hardware with an intake, a body a
 
 | Slot id | Player label | Where it sits | Options (look) |
 |---|---|---|---|
-| `Engine1` | Power Unit | On the engine deck behind the driver, nozzle out of the tail | **Works Turbine** (one big barrel, square intake, long nozzle); **Stack Eight** (exposed block, eight chrome trumpets, megaphone nozzles); **Twin Spool** (two slim turbines side by side, tall fin between); **Turbo Slot** (turbo box, flat duct, wide slot nozzle); **Quad Cluster** (four small jets round a tall scoop) |
-| `Engine2` | Shoulder Jets | A pair on top of the sidepods, beside the driver | **Shoulder Turbines** (short square-mouth turbines); **Ram Bullets** (bullet jets with pointed intake cones); **Slot Ducts** (flat slot-shaped ducts); **Turbo Stacks** (short upright turbo stacks); **Twin Shorties** (stubby twin jets) |
-| `Stabilisers` | Corner Thrusters | Four corners, outboard on wishbones, nozzles down and back | **Vector Pods** (slender nacelles with swivelling nozzles); **Bullet Outriggers** (pointed bullets on chrome wishbones); **Arch Fairings** (closed teardrop fairings, side vent, rear nozzle); **Vane Cascades** (glowing burner sheet under stacked vanes); **Stagger Stacks** (short stacked pods at different heights) |
-| `Boost` | Afterburner | On the rear face of the engine deck, under and beside the main nozzle | **Twin Cans** (two cans set high); **Twin Megaphones** (two flared cones, splayed); **Slot Burner** (full-width burning slot); **Staged Triple** (three nozzles in a stepped row); **Zoomie Stacks** (upswept pipes that fire upward) |
+| `Engine1` | Power Unit | On the engine deck behind the driver, nozzle out of the tail | **Works Turbine** (one big barrel, square intake, long nozzle); **Stack Eight** (exposed block, eight chrome trumpets, megaphone nozzles); **Twin Spool** (two slim turbines side by side, tall fin between); **Turbo Slot** (turbo box, flat duct, wide slot nozzle); **Quad Cluster** (four small jets round a tall scoop); **Big Bore** (low cowl, one very fat nozzle) |
+| `Engine2` | Shoulder Jets | A pair on top of the sidepods, beside the driver | **Shoulder Turbines** (short square-mouth turbines); **Ram Bullets** (bullet jets with pointed intake cones); **Slot Ducts** (flat slot-shaped ducts); **Turbo Stacks** (short upright turbo stacks); **Twin Shorties** (stubby twin jets); **Side Dumps** (square scoop, nozzle swept outboard) |
+| `Stabilisers` | Corner Thrusters | Four corners, outboard on wishbones, nozzles down and back | **Vector Pods** (slender nacelles with swivelling nozzles); **Bullet Outriggers** (pointed bullets on chrome wishbones); **Arch Fairings** (closed teardrop fairings, side vent, rear nozzle); **Vane Cascades** (glowing burner sheet under stacked vanes); **Stagger Stacks** (short stacked pods at different heights); **Triple Packs** (three small tubes at each corner) |
+| `Boost` | Afterburner | On the rear face of the engine deck, under and beside the main nozzle | **Twin Cans** (two cans set high); **Twin Megaphones** (two flared cones, splayed); **Slot Burner** (full-width burning slot); **Staged Triple** (three nozzles in a stepped row); **Zoomie Stacks** (upswept pipes that fire upward); **Lake Pipes** (two long lances, set low) |
 
 ## Body and cosmetic slots
 
 | Slot id | Player label | Options (look) |
 |---|---|---|
-| `FrontBody` | Nose | **Needle Nose** (long slim point); **Radiator Mouth** (round open mouth); **Shovel Nose** (wide scoop); **Chisel Nose** (low flat wedge); **Grille Hood** (blunt, upright grille) |
-| `RearBody` | Engine Deck | **Coke Bottle** (very slim waist); **Tube Cradle** (open tube frame); **Long Tail** (long smooth fairing); **Tunnel Deck** (flat deck with tunnels); **Tank Tail** (fat fuel-tank tail) |
-| `SidePods` | Sidepods | **Undercut** (wide inlet, tucked underneath); **Pannier Tanks** (small tanks on the flanks); **Sponsons** (slim blade pods); **Skirted** (full-length slabs with skirts); **Nerf Bars** (bare tubular rails) |
-| `FrontBumper` | Front Wing | **Cascade Wing** (many-element wing, tall endplates); **Chin Blade** (blade under the nose); **Splitter** (broad flat shelf); **Plank Wing** (one flat plank); **Nerf Bumper** (tube bumper) |
-| `RearBumper` | Diffuser | **Strake Diffuser** (short fins); **Belly Pan** (flat pan); **Long Extractor** (long upswept channels); **Venturi Tunnels** (two sculpted tunnels); **Push Bar** (bare bar) |
-| `RearSpoiler` | Rear Wing | **High Downforce** (tall two-element, deep endplates); **High Strut** (wing on tall struts); **Low Drag Blade** (thin single blade); **Twin Plane Box** (two stacked planes in a box); **Sprint Top Wing** (huge slab over the cage, side panels) |
-| `Roof` | Cabin (reserved) | Not built. The cockpit owns the halo, canopy and cage. Future roof trim would sit in the reserved cabin box. |
+| `FrontBody` | Nose | **Needle Nose** (long slim point); **Radiator Mouth** (round open mouth); **Shovel Nose** (wide scoop); **Chisel Nose** (low flat wedge); **Grille Hood** (blunt, upright grille); **Bluff Nose** (tall flat stock-car face) |
+| `RearBody` | Engine Deck | **Coke Bottle** (very slim waist); **Tube Cradle** (open tube frame); **Long Tail** (long smooth fairing); **Tunnel Deck** (flat deck with tunnels); **Tank Tail** (fat fuel-tank tail); **Trunk Deck** (boxy flat trunk lid) |
+| `SidePods` | Sidepods | **Undercut** (wide inlet, tucked underneath); **Pannier Tanks** (small tanks on the flanks); **Sponsons** (slim blade pods); **Skirted** (full-length slabs with skirts); **Nerf Bars** (bare tubular rails); **Door Slabs** (flat door-shaped slabs) |
+| `FrontBumper` | Front Wing | **Cascade Wing** (many-element wing, tall endplates); **Chin Blade** (blade under the nose); **Splitter** (broad flat shelf); **Plank Wing** (one flat plank); **Nerf Bumper** (tube bumper); **Air Dam** (short deep lip under the nose) |
+| `RearBumper` | Diffuser | **Strake Diffuser** (short fins); **Belly Pan** (flat pan); **Long Extractor** (long upswept channels); **Venturi Tunnels** (two sculpted tunnels); **Push Bar** (bare bar); **Valance** (low flat rear skirt) |
+| `RearSpoiler` | Rear Wing | **High Downforce** (tall two-element, deep endplates); **High Strut** (wing on tall struts); **Low Drag Blade** (thin single blade); **Twin Plane Box** (two stacked planes in a box); **Sprint Top Wing** (huge slab over the cage, side panels); **Stand-Up Spoiler** (upright board on the trunk) |
+
+There is no roof slot. The cockpit owns the halo, canopy, cage and roofline.
 
 ## Signature kits
 
@@ -61,6 +63,7 @@ Every kit fits every cockpit. The kit sets the culture; the cockpit sets the cab
 | All-Nighter | Prototype | Prototype | Twin turbines with a fin, closed arch fairings, full-width slot burner, long tail |
 | Ground Effect | Wing Car | Wingcar | Flat wedge, skirted slabs, turbo slot, stacked vane cascades, boxy twin-plane wing |
 | Dirt Outlaw | Speedway Sprint | Sprint | Quad jet cluster, upswept zoomie stacks, nerf bars and bumpers, huge top wing |
+| Stocker | Stock Oval | Oval | One fat big bore nozzle, bluff nose, door slabs, long lake pipes, stand-up spoiler |
 
 ## Handling intent against Piercer
 
@@ -90,7 +93,7 @@ Module trade inside the class:
 
 ## What makes it fun to own
 
-1. **Full-kit names.** Matching all ten slots to one kit earns a title: *Works Entry*, *Garagiste*, *All-Nighter*, *Ground Effect*, *Dirt Outlaw*. A mixed build is a *Privateer Special*.
+1. **Full-kit names.** Matching all ten slots to one kit earns a title: *Works Entry*, *Garagiste*, *All-Nighter*, *Ground Effect*, *Dirt Outlaw*, *Stocker*. A mixed build is a *Privateer Special*.
 2. **Working thrusters.** Nacelles lean into corners on their wishbones and the arms flex over kerbs. Vector Pod nozzles swing back under braking. In the garage the four thrusters spool up one by one.
 3. **Active aero.** The rear wing flap opens while boosting and slams shut under braking. Front wing flaps twitch with steering.
 4. **Count your jets.** The chase camera shows your Power Unit: one barrel, two spools or four jets. Rivals read your build from behind.
@@ -131,7 +134,7 @@ Module trade inside the class:
 - **Prototype arches are the highest risk.** An enclosed arch invites a wheel. Keep it blanked, louvred and carrying a visible nozzle, as in image 07.
 - **Vane Cascades are the least thruster-like.** A glowing burner sheet under vanes. Judge them in game lighting.
 - **Cockpit distinctness is at the floor.** The shared tub and pads give every top view the same plan (0.25 against a 0.25 target). The cabin carries the difference, and a softer real mesh could fall under.
-- **Oval is not built.** It needs its own kit and a cabin unlike Sprint, or the sixth slot in the tier ladder goes.
+- **Oval is closest to Wingcar.** Both have a wide body behind the driver, and the free-outline score is 0.46, the closest cockpit pair. A real mesh must keep the Oval greenhouse tall and boxy and the Wingcar wedge low.
 - **Decks differ mostly in plan.** Coke Bottle is very slim, so wide sidepods from another kit show a step at the rear bulkhead. Slim tubs show daylight to the sidepods on purpose.
 - **Height and width.** The blockout is 7 to 8 studs high, above the 5.5 in the contract. Sprint Top Wing is the tallest part. 14 studs wide in traffic means fragile must feel fair: lose shoves, but do not snag nacelles on scenery.
 - **Thin parts.** Wishbones and wing struts need a minimum thickness to survive low poly and distance. Collision should use a simple box, not the arms.

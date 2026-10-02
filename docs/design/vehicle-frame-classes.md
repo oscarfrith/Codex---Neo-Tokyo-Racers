@@ -69,7 +69,7 @@ The eight existing slot IDs keep their meaning, so the performance, upgrade and 
 | Dart | Main Drive, at the tail | Wing Engines | Airbrakes, with control jets | Afterburner |
 | Tether | Tow Engines, the big pair ahead | Pod Thruster | Engine Vanes | Afterburners |
 
-Every class has at least five options in each of the four slots (six in Muscle, Exotic and GT), and each option shows a glowing nozzle.
+Every class has six options in each of the four slots (five in Street and Rodder), and each option shows a glowing nozzle.
 
 ### The frame standard (why parts always fit)
 
@@ -97,15 +97,15 @@ Twelve new classes plus the existing Piercer. Each links to its class sheet (pit
 | **Muscle** (`muscle`) | American muscle and pony cars, one-piece bodies | Classic Muscle, Pro Street, Trans-Am, Modern Muscle, Pony, Restomod | Fastback, Hardtop, Notch, Modern, Ragtop, Ute | [class](vehicle-categories/muscle.md), [frame](vehicle-categories/muscle-frame.md) |
 | **Exotic** (`exotic`) | Mid-engined supercars and hypercars | Wedge, Analogue, Hypercar, Track Special, Longtail, Concept | Wedge, Curve, Hyper, Spider, Longtail, Gull | [class](vehicle-categories/exotic.md), [frame](vehicle-categories/exotic-frame.md) |
 | **GT** (`gt`) | Front-engined sports cars and grand tourers | Classic GT, Rear-Engine Sports, Modern GT, Roadster, Shooting Brake, GT3 | Longnose, Teardrop, Bruiser, Roadster, Brake, Gullwing | [class](vehicle-categories/gt.md), [frame](vehicle-categories/gt-frame.md) |
-| **Rift** (`rift`) | Classic coupé sliced into floating sections | Muscle, Pro Street, Wedge Exotic, Roadster, Turbo Pony | Brawler, Outlaw, Stiletto, Mamba, Nightshift | [class](vehicle-categories/rift.md), [frame](vehicle-categories/rift-frame.md) |
-| **Street** (`street`) | Tuner with clip-on aero | Touge, Kanjo, Drift, Time Attack, Rally | Touge, Pocket, Syndicate, Kei, Estate | [class](vehicle-categories/street.md), [frame](vehicle-categories/street-frame.md) |
+| **Rift** (`rift`) | Classic coupé sliced into floating sections | Muscle, Pro Street, Wedge Exotic, Euro GT, Roadster, Turbo Pony | Brawler, Outlaw, Stiletto, Regent, Mamba, Nightshift | [class](vehicle-categories/rift.md), [frame](vehicle-categories/rift-frame.md) |
+| **Street** (`street`) | Tuner with clip-on aero | Touge, Kanjo, Drift, Time Attack, Rally | Touge, Pocket, Syndicate, Roadster, Estate | [class](vehicle-categories/street.md), [frame](vehicle-categories/street-frame.md) |
 | **Rodder** (`rodder`) | Hot rod and jet dragster | Highboy, T-Bucket, Rat Rod, Slingshot Drag, Salt Flat | Deuce, Bucket, Rat Cab, Slingshot, Lakester | [class](vehicle-categories/rodder.md), [frame](vehicle-categories/rodder-frame.md) |
-| **Rider** (`rider`) | Jet hoverbike | Supersport, Chopper, Motocross, Streetfighter, Speeder | Supersport, Chopper, Scrambler, Streetfighter, Speeder | [class](vehicle-categories/rider.md), [frame](vehicle-categories/rider-frame.md) |
-| **Apex** (`apex`) | Circuit racer | Formula, Vintage Grand Prix, Prototype, Wing Car, Speedway Sprint | Formula, Cigar, Prototype, Wingcar, Sprint | [class](vehicle-categories/apex.md), [frame](vehicle-categories/apex-frame.md) |
-| **Cruiser** (`cruiser`) | Long, low land yacht | Lowrider, Lead Sled, Fin Era, VIP, Kaido Racer | Hardtop, Sled, Finliner, VIP, Kaido | [class](vehicle-categories/cruiser.md), [frame](vehicle-categories/cruiser-frame.md) |
-| **Hauler** (`hauler`) | Truck and van | Prerunner, Lifted, Minitruck, Show Truck, Cab | Single Cab, Crew Cab, Kei Cab, Cab-Over, Checker Cab | [class](vehicle-categories/hauler.md), [frame](vehicle-categories/hauler-frame.md) |
-| **Dart** (`dart`) | Anti-grav racing dart | Record Breaker, Works Team, Prototype, Privateer, Salvage | Needle, Delta, Manta, Twinboom, Bubble | [class](vehicle-categories/dart.md), [frame](vehicle-categories/dart-frame.md) |
-| **Tether** (`tether`) | Pod racer | Scrapyard, Desert, Works, Showboat, Harbour | Bucket, Sled, Capsule, Chariot, Skiff | [class](vehicle-categories/tether.md), [frame](vehicle-categories/tether-frame.md) |
+| **Rider** (`rider`) | Jet hoverbike | Supersport, Café Racer, Chopper, Motocross, Streetfighter, Speeder | Supersport, Cafe, Chopper, Scrambler, Streetfighter, Speeder | [class](vehicle-categories/rider.md), [frame](vehicle-categories/rider-frame.md) |
+| **Apex** (`apex`) | Circuit racer | Formula, Vintage Grand Prix, Prototype, Wing Car, Speedway Sprint, Stock Oval | Formula, Cigar, Prototype, Wingcar, Sprint, Oval | [class](vehicle-categories/apex.md), [frame](vehicle-categories/apex-frame.md) |
+| **Cruiser** (`cruiser`) | Long, low land yacht | Lowrider, Lead Sled, Fin Era, VIP, Kaido Racer, Surf Wagon | Hardtop, Sled, Finliner, VIP, Kaido, Longroof | [class](vehicle-categories/cruiser.md), [frame](vehicle-categories/cruiser-frame.md) |
+| **Hauler** (`hauler`) | Truck and van | Prerunner, Lifted, Minitruck, Show Truck, Cab, Courier | Single Cab, Crew Cab, Kei Cab, Cab-Over, Checker Cab, Van Nose | [class](vehicle-categories/hauler.md), [frame](vehicle-categories/hauler-frame.md) |
+| **Dart** (`dart`) | Anti-grav racing dart | Record Breaker, Works Team, Prototype, Privateer, Salvage, Interceptor | Needle, Delta, Manta, Twinboom, Bubble, Arrowhead | [class](vehicle-categories/dart.md), [frame](vehicle-categories/dart-frame.md) |
+| **Tether** (`tether`) | Pod racer | Scrapyard, Desert, Works, Showboat, Harbour, Atomic | Bucket, Sled, Capsule, Chariot, Skiff, Bubble | [class](vehicle-categories/tether.md), [frame](vehicle-categories/tether-frame.md) |
 
 Why these splits:
 
@@ -192,7 +192,7 @@ The frame standard itself lives in the repository as one JSON file per class, ne
 - **Performance model: unchanged in shape.** Engines, stabilisers and boost stay the stat carriers, as today. Body slots carry small or no stats.
 - **Stable IDs.** `CategoryId` values are lower-case and permanent. The existing mismatch (folder `PIERCER`, id `bruiser`) is preserved.
 - **Compatibility rule.** A module fits a cockpit when `CategoryId` matches and the cockpit has that `SlotId`. This must be enforced on the server at equip time for every class.
-- **Economy.** Cockpits and modules are bought with Cash through `MoneyService.Debit`, as now. A class in the blockout has 5 or 6 cockpits and 40 to 60 modules, so the Cash sink grows a lot. Job and race pay should be reviewed with ECON-01 before more than two classes ship.
+- **Economy.** Cockpits and modules are bought with Cash through `MoneyService.Debit`, as now. A class in the blockout has 5 or 6 cockpits and 48 to 72 modules, so the Cash sink grows a lot. Job and race pay should be reviewed with ECON-01 before more than two classes ship.
 - **Catalogue.** `VehicleCatalogData` and `VehiclePreviews` are regenerated together after content changes. New public attributes must be added to the catalogue's public whitelist.
 
 ## 9. More ideas that fit
@@ -242,7 +242,7 @@ Inputs, outputs and dependencies: authoring folders in ServerStorage.Assets.Vehi
 Entry, transitions, exit and cleanup: unchanged dealership and three-workshop flow; class rail and intro panel are browser states; previews stay transient.
 Client/server authority and remote validation: server validates CategoryId match and slot existence on every equip and purchase; client never decides compatibility.
 Stable IDs, saved schema/API version and migration impact: additive CategoryId, CockpitId, ModuleId and SlotId values; no renames; SchemaVersion 1 expected to hold, to be confirmed by audit.
-Expected scale and bounded performance budget: per class 5 to 6 cockpits and 40 to 60 modules; catalogue grows from 122 records to roughly 800 with all classes; preview geometry stays generated and replicated on demand; each vehicle keeps a simple collision hull.
+Expected scale and bounded performance budget: per class 5 to 6 cockpits and 48 to 72 modules; catalogue grows from 122 records to roughly 900 with all classes; preview geometry stays generated and replicated on demand; each vehicle keeps a simple collision hull.
 Mobile, touch, controller and accessibility coverage: section 5 table; 44 to 48 px targets; reflow, not shrink; controller focus order for the class rail must be defined.
 Streaming/open-world behaviour: unchanged; vehicles are spawned by the server from templates.
 Failure, cancellation, retry and observability: unknown CategoryId or SlotId in a save is kept and ignored, never deleted; a hidden class leaves owned vehicles usable; log one warning per unknown id.
@@ -263,7 +263,7 @@ Done when: a second class is live behind its flag, every part of it fits every c
 
 ## 12. Risks
 
-- **Art volume.** A full class is 5 or 6 cockpits and 40 to 60 modules. Twelve classes is over 600 meshes. Ship one pilot class with 3 cockpits and their 3 kits first (about 30 meshes).
+- **Art volume.** A full class is 5 or 6 cockpits and 48 to 72 modules. Twelve classes is about 770 meshes. Ship one pilot class with 3 cockpits and their 3 kits first (about 30 meshes).
 - **Shared chassis limits how different cockpits can be.** Every cockpit in a class carries the same pads and floor. Cockpits differ in roofline and glass, not in footprint. This is the price of guaranteed fit.
 - **Likeness.** Oscar has accepted real-car likeness. The concept images carry no logos, badges or text. Final models and names should still avoid trademarks, which matter for Roblox moderation.
 - **Collision and width.** The live root part is 7.5 x 1.2 x 10.5 studs. A bike and a pod racer need different hulls. Rift and Tether are wide; Cruiser builds reach 37 studs long.
@@ -289,8 +289,10 @@ Per-class lessons are in each frame sheet.
 
 ## 14. Evidence from this exploration
 
-- **3D blockouts** in Space Racers Backup v2 under `Workspace.VehicleCategoryBlockouts` (around X 6200 to 8100, Y 2600, clear of the world). One block per class in a 4 by 3 grid, with the existing Piercer beside it for scale. Each block is the **interchange matrix**: one row per cockpit, one column per signature kit, so every cockpit is shown wearing every kit. Each block also has the frame standard (coloured slot envelopes), an exploded build in slot colours and two mixed builds. Anchored primitives only, no scripts. Every part carries `SlotId` and `PaintChannel` attributes and each vehicle is grouped by slot in the Explorer.
-- **What the blockouts prove.** Across the twelve classes: 63 cockpits, 63 signature kits and 630 modules, giving 333 cockpit-and-kit combinations, all built and all passing the validator with zero errors. Engines, stabilisers and boost are present on every one. This is agent-verified geometry in primitive shapes. It is not a judgement of how final meshes will look, and nothing was driven.
+- **3D blockouts** in Space Racers Backup v2 under `Workspace.VehicleCategoryBlockouts` (around X 6200 to 8100, Y 2600, clear of the world). One block per class in a 4 by 3 grid, with the existing Piercer beside it for scale. Each block is the **interchange matrix**: one row per cockpit, one column per signature kit, so every cockpit is shown wearing every kit. Each block also has the frame standard (coloured slot envelopes), an exploded build in slot colours and the mixed builds. Anchored primitives only, no scripts. Every part carries `SlotId` and `PaintChannel` attributes and each vehicle is grouped by slot in the Explorer.
+- **The Studio copy is one step behind the specs.** It was built on 2026-10-01 from the round 2 specs before the independent review. The review fixes (wheel-like jet drums removed, clearer engines, width steps smoothed, a sixth cockpit and kit in seven classes) are in the specs and offline previews but not yet in Studio: on 2026-10-02 the Studio Assistant's sandbox stopped allowing local file fetches, so the assistant could not rebuild it. To refresh it, start the local server and paste [install_showroom.lua](../../scripts/vehicle_blockouts/install_showroom.lua) into the Command Bar; the steps are at the top of that file.
+- **What the blockouts prove.** Across the twelve classes: 70 cockpits, 70 signature kits and 700 modules, giving 410 cockpit-and-kit combinations, all passing the validator with zero errors and zero warnings. Engines, stabilisers and boost are present on every one. This is agent-verified geometry in primitive shapes. It is not a judgement of how final meshes will look, and nothing was driven.
+- **Independent review.** Each class was reviewed by a critic that had not built it, looking at every cockpit in every kit from front and rear. Critics scored the first builds about 3 out of 5 and found 46 high and 66 medium defects across the twelve classes: jet drums that still read as wheels, engines hidden from the chase view, hard width steps on some swaps, look-alike options. A fixer per class then worked through them (11 to 14 fixed per class). What each fixer left open is listed under open risks in each frame sheet. The fixed builds have not had a second independent review.
 - **Offline previews**: run `py -3 scripts/vehicle_blockouts/preview.py scripts/vehicle_blockouts/specs/<id>.json`. It writes the matrix, one larger sheet per cockpit (front and rear), the engine, stabiliser and boost options sheet, an exploded view and four views per build to `scripts/vehicle_blockouts/previews/<id>/` (not committed).
 - **Concept images**: 96 images, eight per class, in each class sheet (full size under `output/vehicle-categories-2026-10-01/`, with every prompt saved; round 1 images are kept under `v1/`). Each set was checked by an independent reviewer for wheels, missing jets and text. They are generated mood pieces, not model sheets.
 - **Gallery page**: all twelve classes on one page, published privately to Oscar at https://claude.ai/artifact/A3g7KKNRH27f4RQrEcr1yR. Rebuild locally with `py -3 scripts/vehicle_blockouts/make_gallery.py`.

@@ -30,7 +30,7 @@ No two envelopes overlap. The Headers envelope grew from X 5.8 to 6.4 in the fix
 |---|---|---|
 | `Engine1` Front Engine | Level on the rails between the shell and the firewall, fully exposed | It is the hot-rod engine. Blower, stacks and scoops become jet intakes. The glow is a burner band on the engine body, 1.9 to 2.5 across. Flat Trio instead has three 1.2 upswept nozzles. |
 | `Engine2` Side Jets | A long jet each side of the cab, on two outrigger pads | It takes the place of the slicks. Each is 7 to 12 long and 1.6 to 2.9 across, so it reads as a jet, not a tyre. Nozzles face the chase camera. |
-| `Stabilisers` Axle Jets | On a beam axle under the front rails, pods outboard at the front corners | It keeps the beam-axle face of a rod. Every option has a burner band 1.25 to 1.6 across that shows from above and from the front, plus a down nozzle tilted 20 to 25 degrees outward. |
+| `Stabilisers` Axle Jets | On a beam axle under the front rails, pods outboard at the front corners | It keeps the beam-axle face of a rod. Every option has a burner band 1.25 to 1.6 across that shows from above and from the front, plus a down nozzle 0.9 to 1.3 across. Four options tilt it 20 to 25 degrees outward; Faired Spats rakes the whole can back instead. |
 | `Boost` Headers | Bolted to the port rail on each side of the engine | Headers are where a rod shows fire. They carry the tip glows, are painted Primary and point out, up or back, clear of the engine and the Side Jets. |
 
 ## Datums and hardpoint pads

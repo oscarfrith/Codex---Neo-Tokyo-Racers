@@ -1,6 +1,6 @@
 # Rider: jet hoverbike frame class (round 2)
 
-Status: design exploration, round 2, 2026-10-01. Not approved, not game content. Class id `rider`. Shared rules: [exploration contract](../../../scripts/vehicle_blockouts/CONTRACT.md). Geometry and fit: [rider frame standard](rider-frame.md). Concept images are AI-generated mood pieces, not model sheets, so details may not match the modules exactly.
+Status: design exploration, round 2, 2026-10-01. Updated 2026-10-02 to match the reviewed blockout spec. Not approved, not game content. Class id `rider`. Shared rules: [exploration contract](../../../scripts/vehicle_blockouts/CONTRACT.md). Geometry and fit: [rider frame standard](rider-frame.md). Concept images are AI-generated mood pieces, not model sheets, so details may not match the modules exactly.
 
 Round 2 change: no wheels and nothing wheel-like. The front fork holds a lift-jet pod. The swingarm ends in a long thruster nozzle. A turbine sits under the tank. Round 1 images are in `output/vehicle-categories-2026-10-01/rider/v1/`.
 
@@ -13,10 +13,10 @@ Motorcycle culture as jet hoverbikes. A slim spine, a seat and a rider you can a
 ## Culture lines
 
 - **Supersport:** full fairing, bubble screen, crouched rider, race tail.
-- **Café Racer:** round lamp, long tank, humped seat, clip-ons.
-- **Chopper:** long raked fork, tall bars, sissy bar, feet forward.
+- **Cafe Racer:** dolphin nose, long tank, round dome hump, solo seat, clubmans bars.
+- **Chopper:** long raked fork, wide pullbacks, short sissy bar, feet forward.
 - **Motocross:** tall frame, high fender, blank front plate, wide braced bars.
-- **Streetfighter:** naked trellis frame, angry mask, stubby tail.
+- **Streetfighter:** naked frame, angry mask, stubby tail.
 - **Speeder:** sci-fi sled, forward booms, flat slot engine, prone rider.
 
 ## Cockpits
@@ -26,13 +26,13 @@ The cockpit is the spine, seat, frame and the rider's pose. Everything else is a
 | Cockpit | Culture | Silhouette | Signature kit | Tier |
 |---|---|---|---|---|
 | Scrambler | Motocross | Tall frame, high bench, rider standing on pegs | Holeshot | E |
-| Café | Café Racer | Level spine, humped seat, rider leaning to clip-ons | Clubman (proposed) | D |
-| Streetfighter | Streetfighter | Naked trellis frame, upright rider, elbows out | Bare Knuckle | C |
+| Cafe | Cafe Racer | Round dome hump, slim solo seat, crouched rider | Ton-Up | D |
+| Streetfighter | Streetfighter | Triangular frame panel, upright rider, elbows out | Bare Knuckle | C |
 | Chopper | Chopper | Long low spine, feet forward, rider leaning back | Long Haul | B |
 | Supersport | Supersport | Steep compact spine, rider in full tuck | Paddock | A |
 | Speeder | Speeder | Long flat sled tub, rider lying prone | Outrider | S |
 
-Café and Clubman are not in the blockout yet. The other five are.
+All six cockpits are in the blockout.
 
 ## The four fundamentals
 
@@ -40,22 +40,22 @@ Every build has all four. Each is visible jet hardware with a glowing nozzle. Sw
 
 | Slot | Player label | Where it sits | Options |
 |---|---|---|---|
-| `Engine1` | Main Turbine | Under the tank, between the rider's legs. Wide engines show below the feet. | **Inline Turbine** one slim barrel, round intake. **V-Twin Jets** two angled barrels in a V. **Big Single** one tall fat turbine. **Four-Poster** four slim barrels in a row. **Slot Burner** wide flat body, glowing slit exhaust. |
-| `Engine2` | Rear Thruster | On the swingarm behind the seat, where the rear wheel was. | **Mono Thruster** one long barrel. **Fat Block** short, fat, heavy. **Over-Under** two barrels, one stacked above the other. **Twin Barrels** two barrels side by side. **Fan Tail** wide flat slot with thin vanes. |
-| `Stabilisers` | Lift Fork | On the fork, where the front wheel was. | **Sport Fork** short fork, boxy lift pod, winglet tip jets. **Long Rake** very long fork, tall blade pod. **Lift Cans** two upright lift cans. **Girder Twin** twin pods under a small canard. **Twin Boom** two booms reaching forward, vane jets. |
-| `Boost` | Afterburner | On the flanks beside and behind the rear thruster. | **Twin Cans** two short cans. **Shotgun Pipes** two long straight low pipes. **High Megaphone** one upswept flared cone. **Quad Stubs** four short stub pipes. **Slot Blades** flat glowing slits along the flanks. |
+| `Engine1` | Main Turbine | Under the tank, between the rider's legs. Every option ends in a rear glow under the swingarm. | **Inline Turbine** one slim barrel, long centre tailpipe. **Flat Twin** two flat barrels with megaphone tails. **V-Twin Jets** two slim cans in a V, twin tailpipes. **Big Single** one tall canted can, single stinger. **Four-Poster** four lift posts and a rear collector nozzle. **Slot Burner** wide flat body, glowing slit exhaust. |
+| `Engine2` | Rear Thruster | On the swingarm behind the seat, where the rear wheel was. Set high, so the main turbine's exhaust shows below. | **Mono Thruster** one long barrel. **Trident** three barrels. **Fat Block** tall narrow block, side scoops, stepped nozzle. **Over-Under** two barrels, one stacked above the other. **Twin Barrels** two barrels side by side. **Fan Tail** wide flat slot with thin vanes. |
+| `Stabilisers` | Lift Fork | On the fork, where the front wheel was. | **Sport Fork** short fork, boxy lift pod, winglet tip jets. **Torpedo Fork** three torpedoes on a straight axle. **Long Rake** very long fork, wide pod with an open intake. **Lift Cans** two upright lift cans. **Girder Twin** twin pods under a small canard. **Twin Boom** two booms reaching forward, vane jets. |
+| `Boost` | Afterburner | On the flanks beside and behind the rear thruster. | **Twin Cans** two short cans. **Reverse Cones** two slim cones that narrow to the rear. **Shotgun Pipes** two long straight low pipes. **High Megaphone** one upswept flared cone. **Quad Stubs** four short stub pipes. **Slot Blades** flat glowing slits along the flanks. |
 
 ## Body and cosmetic slots
 
 | Slot id | Player label | Options |
 |---|---|---|
-| `FrontBumper` | Fairing | **Race Nose** pointed, slit lamps. **Round Lamp** one big bare headlamp. **Number Plate** blank flat front board. **Fighter Mask** angular twin-slit mask. **Spear Prow** long spear-shaped nose. |
-| `SidePods` | Side Panels | **Race Flanks** full flank panels with gill vents. **Saddlebags** boxy panniers. **Shrouds** short angular tank shrouds. **Ram Scoops** open-mouthed angular scoops. **Delta Strakes** thin swept strakes. |
-| `RearSpoiler` | Seat Unit | **Race Cowl** sharp single-seat tail. **Bobber Fender** short curved fender. **MX Fender** long kicked-up fender. **Stub Tail** short and abrupt. **Boat Tail** long tapered tail. |
-| `RearBumper` | Tail Kit | **Tail Tidy** tiny light strip. **Sissy Bar** tall backrest. **Rack and Roll** flat tube luggage rack. **Tail Wing** small wing. **V-Tail** twin canted fins. |
-| `Hood` | Tank | **Sculpted** angular, knee cut-outs. **Peanut** small and rounded. **Slab** flat-sided and wide. **Muscle** bulky, high shoulders. **Sled Deck** flat low deck. |
-| `Roof` | Screen | **Bubble** low race bubble. **Tourer** tall upright screen. **Rally Tower** tall flat tower. **Flyscreen** small flat tinted plate. **Canopy** low glass canopy over the nose. |
-| `Accessory` | Bars | **Clip-ons** low and narrow. **Apes** tall ape-hangers. **MX Bars** wide, crossbrace. **Drag Bars** flat and straight. **Flight Yoke** swept yoke. |
+| `FrontBumper` | Fairing | **Race Nose** pointed, slit lamps. **Dolphin Nose** smooth, rounded, low snout. **Round Lamp** one big bare headlamp. **Number Plate** blank flat front board. **Fighter Mask** angular twin-slit mask. **Spear Prow** long spear-shaped nose. |
+| `SidePods` | Side Panels | **Race Flanks** full flank panels with gill vents. **Side Covers** small smooth oval covers. **Saddlebags** boxy panniers. **Shrouds** short angular tank shrouds. **Ram Scoops** open-mouthed angular scoops. **Delta Strakes** thin swept strakes. |
+| `RearSpoiler` | Seat Unit | **Race Cowl** sharp single-seat tail. **Bullet Tail** short, round-nosed tail hump. **Bobber Fender** short curved fender. **MX Fender** long kicked-up fender. **Stub Tail** short and abrupt. **Boat Tail** long tapered tail. |
+| `RearBumper` | Tail Kit | **Tail Tidy** tiny light strip. **Bullet Lamp** one small round-nosed lamp. **Short Sissy** short backrest. **Rack and Roll** flat tube luggage rack. **Tail Wing** small wing. **V-Tail** twin canted fins. |
+| `Hood` | Tank | **Sculpted** angular, knee cut-outs. **Long Alloy** long, low teardrop. **Peanut** small and rounded. **Slab** flat-sided and wide. **Muscle** bulky, high shoulders. **Sled Deck** flat low deck. |
+| `Roof` | Screen | **Bubble** low race bubble. **Aero Screen** small swept-back screen. **Tourer** tall upright screen. **Rally Tower** tall flat tower. **Flyscreen** small flat tinted plate. **Canopy** low glass canopy over the nose. |
+| `Accessory` | Bars | **Clip-ons** low and narrow. **Clubmans** low bars swept gently back. **Pullbacks** wide, swept-back bars. **MX Bars** wide, crossbrace. **Drag Bars** flat and straight. **Flight Yoke** swept yoke. |
 
 ## Signature kits
 
@@ -64,7 +64,8 @@ Each kit has one module for every slot, 11 in all. Every kit fits every cockpit.
 | Kit | Culture | Native cockpit | What makes it look different |
 |---|---|---|---|
 | Paddock | Supersport | Supersport | Full fairing, bubble, one long rear barrel, low clip-ons |
-| Long Haul | Chopper | Chopper | Very long raked fork, round lamp, tall bars, long low pipes |
+| Ton-Up | Cafe Racer | Cafe | Dolphin nose, flat twin, torpedo fork, reverse cones, Clubmans |
+| Long Haul | Chopper | Chopper | Very long raked fork, round lamp, wide pullbacks, long low pipes |
 | Holeshot | Motocross | Scrambler | Tall and bare, big single turbine, lift cans, high megaphone |
 | Bare Knuckle | Streetfighter | Streetfighter | Naked, four-barrel turbine, twin pods under a canard, mask |
 | Outrider | Speeder | Speeder | Flat sled, forward booms, slot burner, fan tail, V-tail |
@@ -94,9 +95,9 @@ Design intent only. No numbers.
 1. **Nose lift on boost.** Boost tips the lift fork up and the nozzles glow. A Long Rake with a Fat Block lifts highest. Track "longest nose lift" as a class stat.
 2. **Lean and knee-down.** The bike banks into corners and the rider hangs off. At full lean the knee slider throws sparks. This is the class photo moment.
 3. **Rider gear garage.** Helmet shape, leathers, gloves and boots as a second customisation layer. Plain and unbranded. Gear takes the bike's paint channels so rider and bike match.
-4. **Full-kit names.** Wear all 11 modules of one kit and the build earns its name: Paddock, Clubman, Long Haul, Holeshot, Bare Knuckle or Outrider. A full kit unlocks a matching idle pose.
+4. **Full-kit names.** Wear all 11 modules of one kit and the build earns its name: Paddock, Ton-Up, Long Haul, Holeshot, Bare Knuckle or Outrider. A full kit unlocks a matching idle pose.
 5. **Flame as signature.** The four jets take the thrust colour and a flame shape (clean cone, sparking, pulsing). Pick a different flame for each jet. This is the bike's paint-shop signature.
-6. **Parked poses.** A parked bike settles onto a side skid. The rider can sit side-saddle, lean on the bars or flip the visor. Bars change the pose: Apes look relaxed, Clip-ons look hunched.
+6. **Parked poses.** A parked bike settles onto a side skid. The rider can sit side-saddle, lean on the bars or flip the visor. Bars change the pose: Pullbacks look relaxed, Clip-ons look hunched.
 7. **Filtering bonus.** Passing between two vehicles at speed gives a small boost refill. Only this class is narrow enough to earn it.
 8. **Stoppie and burnout.** Hard braking tips the tail up. Holding brake and throttle fires the rear thruster down and scorches two glowing lines on the road.
 
@@ -118,7 +119,7 @@ Design intent only. No numbers.
 *05 engines. Scrambler cockpit, low rear three-quarter, yellow and black. Main Turbine and Rear Thruster change together. Left: Inline Turbine and Mono Thruster. Centre: Four-Poster and Twin Barrels. Right: Slot Burner and Fan Tail. Lift Fork and Afterburner are the same.*
 
 ![Stabilisers and boost](img/rider/06-stabilisers-boost.jpg)
-*06 stabilisers and boost. Chopper cockpit, Long Haul kit, low rear three-quarter. Boost firing from the Shotgun Pipes. The Long Rake blade pod throws a jet down at the floor. Also shows V-Twin Jets, Fat Block, Apes, Sissy Bar, Peanut tank and Bobber Fender.*
+*06 stabilisers and boost. Chopper cockpit, Long Haul kit, low rear three-quarter. Boost firing from the Shotgun Pipes. The Long Rake blade pod throws a jet down at the floor. Also shows V-Twin Jets, Fat Block, Pullbacks, Short Sissy, Peanut tank and Bobber Fender.*
 
 ![Speeder](img/rider/07-speeder.jpg)
 *07 speeder. Speeder cockpit, Outrider kit, three-quarter front. Spear Prow, Canopy, Flight Yoke, Sled Deck, V-Tail, Boat Tail, Slot Burner, Fan Tail, Twin Boom lift jets and Slot Blades.*
@@ -128,13 +129,13 @@ Design intent only. No numbers.
 
 ## Risks and open points
 
-- **Café is not built.** The brief names six cockpits and the blockout has five. Café needs its own 11-module kit (Clubman).
-- **Cockpits look close.** A bike cockpit is mostly the rider, so the pose carries it. Image 03 shows the limit: with one kit fitted, the three frames differ only in length, height and rider pose. Real meshes must keep the five poses and the cockpit bodywork.
-- **Hidden engine.** The Main Turbine sits under the rider. From a high chase camera the legs hide half of it. Wide engines (V-Twin Jets, Four-Poster, Slot Burner) read best. Inline Turbine is the weakest.
+- **Streetfighter under a foreign kit.** It is the weakest cockpit. Its frame panel sits low and Side Panels can cover it.
+- **Cockpits look close.** A bike cockpit is mostly the rider, so the pose carries it. Image 03 shows the limit: with one kit fitted, the three frames differ only in length, height and rider pose. Real meshes must keep the six poses and the cockpit bodywork.
+- **Hidden engine.** Every Main Turbine ends in a rear glow under the swingarm. From a high chase camera the legs still hide half of the body. Wide engines (V-Twin Jets, Four-Poster, Slot Burner) read best. Inline Turbine is the weakest.
 - **Jets reading as wheels.** Round intake faces and lift-pod nozzles can look like discs. Keep every jet deep, with a visible body, and longer than it is wide.
 - **Seat animation.** The astride pose is new, and the prone Speeder pose is different again. Hands need one grip point shared by all Bars, or IK targets on each Bars module.
 - **Avatar fit.** The rider is the player's avatar. Tall hats, wings and back accessories will clip the tank and Seat Unit. Decide whether the class hides some accessories. A real R15 avatar is untested.
-- **Length.** The blockout is 14.7 to 15.8 studs long, over the brief's 14. The Lift Fork and Tail Kit account for it. Long Rake and Twin Boom reach furthest forward.
+- **Size.** The blockout is 14.1 to 15.0 studs long and 6.8 to 8.0 high, over the brief's 14 and 6. The Lift Fork, Rear Thruster and Tail Kit set the length. A 5-stud rider above the hover gap sets the height.
 - **Tight envelopes.** At about 6 studs wide, Side Panels and side Afterburners compete for space. Seat Unit, Tail Kit and Rear Thruster stack at the tail.
 - **Weak mixes.** Legal but poor: a prone Speeder rider behind a tall Tourer screen; a Tail Wing on the short Stub Tail; Saddlebags under the Speeder gunwales.
 - **Passengers.** The passenger system seats people inside a cockpit. A bike has one pillion at most. Taxi jobs may need to exclude this class.

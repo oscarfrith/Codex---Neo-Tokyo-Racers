@@ -1,6 +1,6 @@
 # Street: frame standard (round 2, after critic fixes)
 
-Status: design exploration, round 2, 2026-10-01. Not approved, not game content. Spec: [street.json](../../../scripts/vehicle_blockouts/specs/street.json), written by [gen/street.py](../../../scripts/vehicle_blockouts/gen/street.py). Previews: `scripts/vehicle_blockouts/previews/street/`. Brief: [contract](../../../scripts/vehicle_blockouts/CONTRACT.md).
+Status: design exploration, round 2, checked 2026-10-02. Not approved, not game content. Spec: [street.json](../../../scripts/vehicle_blockouts/specs/street.json), written by [gen/street.py](../../../scripts/vehicle_blockouts/gen/street.py). Previews: `scripts/vehicle_blockouts/previews/street/`. Brief: [contract](../../../scripts/vehicle_blockouts/CONTRACT.md).
 
 Tuner and import cars on jets. No wheels, rotors, discs or rings anywhere. One compact body: a cabin, a front clip and a rear clip. The body is 20.8 long (Z -10.4 to 10.4) and 7.9 to 11.2 wide by clip. Arch jets reach X 6.1, so every build is 12.0 to 12.2 wide. Blockout content: 5 cockpits, 5 signature kits, 50 modules (5 per slot), 15 builds. Root space: +X right, +Y up, forward is -Z, studs. Boxes read `X; Y; Z`. `±` spans both sides. "Each side" means one box per side.
 
@@ -39,7 +39,7 @@ Every cabin has the same door section. Only the greenhouse changes. No solid roo
 - **Engine1, Bonnet Engine.** Stands on a dark pad in the bonnet. Every option ends at Z -6.45, so the Pocket screen is 1.6 clear. Outlets face sideways or up and out over the fenders, 0.8 across. None fires at the screen.
 - **Engine2, Tail Engine.** Lies in the open bay. Each option has an intake that stands above the deck (scoops, airbox, ram hood, tower), a body, and a round nozzle in the rear panel. The Tail Letterbox has a slot nozzle 0.6 proud.
 - **Stabilisers, Arch Jets.** Four units, one in each blanked arch. Each has an intake at the front and a nozzle at the back. Each has a thrust part outboard of X 5.6, so it shows in plan past the widest fender.
-- **Boost, Exhaust Burner.** Its own shape language: square cans with a flared square petal, 2.2 to 2.4 behind the tail face. Bamboo Stacks are the exception: tall pipes that lean back.
+- **Boost, Exhaust Burner.** Its own shape language: square cans with a flared square petal, 2.1 to 2.3 behind the tail face. Bamboo Stacks are the exception: tall pipes that lean back.
 
 Lowest free-outline scores (whole outline in brackets): Engine1 0.43 (0.26), Engine2 0.39 (0.31), Stabilisers 0.48 (0.41), Boost 0.59 (0.45). Target 0.35.
 
@@ -93,7 +93,7 @@ Body parts by kit (front clip, rear clip, side kit, lip, diffuser, wing). Touge:
 
 - The brief lists six cockpits and six cultures. Wedgeback and an Underground kit are not built. A sixth cockpit needs a sixth full kit (ten modules).
 - One body length and one door section. The cars still share a lower body, so cabins differ by roof, glass and buttresses only.
-- Builds are 24.1 to 24.8 long against a brief of about 21. Lips reach Z -12.1 and burners reach Z 12.8. Arch jet tips reach X 6.1, so every build is about 12.2 wide against a brief of about 11. On narrow clips the jets stand up to 1.5 outboard of the arch lip.
+- Builds are 24.1 to 24.8 long against a brief of about 21. Lips reach Z -12.1 and burners reach Z 12.7. Arch jet tips reach X 6.1, so every build is about 12.2 wide against a brief of about 11. On narrow clips the jets stand up to 1.5 outboard of the arch lip.
 - Wide clips (5.4 to 5.6) still step out from the 4.6 ends of the side kits. The step is a taper, not a blunt face.
 - Cannon and Quad Bank sit on one side and cover part of that side's tail lamp.
 - The Estate reads as a wagon in profile, but its load bay has no roof skin or tailgate. That is the price of an open tail engine.

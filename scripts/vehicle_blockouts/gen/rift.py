@@ -1015,16 +1015,16 @@ def bo_tri_stack():
 
 
 def bo_wide_pair():
-    """Euro GT. Two long tailpipes set wide apart, low, joined by a slim painted bridge."""
+    """Euro GT. Two flat letterbox tailpipes set wide apart in painted tail pods, joined by a slim bridge.
+    Flat outlets, so the boost never reads as two more of the round rear-engine pipes beside it."""
     p = [
         blk(-3.4, 3.4, 1.0, 2.2, ZT + 0.05, ZT + 0.4, "detail", note="flange on the tail panel"),
-        blk(-2.2, 2.2, 1.2, 2.0, ZT + 0.4, 15.2, note="bridge"),
-        blk(-0.6, 0.6, 1.4, 1.8, 15.2, 15.3, "neon", note="reversing lamp"),
-    ]
-    p += [
-        cz(2.9, 1.6, ZT + 0.4, 16.5, 1.3, "secondary", m=True, note="tailpipe"),
-        cz(2.9, 1.6, 16.5, 17.15, 1.5, "detail", m=True, note="pipe tip"),
-        cz(2.9, 1.6, 17.15, 17.4, 1.05, "thrust", m=True, note="jet"),
+        blk(-2.0, 2.0, 1.25, 1.95, ZT + 0.4, 15.4, note="bridge"),
+        blk(-0.6, 0.6, 1.4, 1.8, 15.4, 15.5, "neon", note="reversing lamp"),
+        blk(2.0, 3.8, 1.0, 2.3, ZT + 0.4, 16.0, m=True, note="tail pod"),
+        wdg(2.0, 3.8, 2.3, 2.9, ZT + 0.4, 16.0, FALL, m=True, note="pod fairing"),
+        blk(2.15, 3.65, 1.1, 2.2, 16.0, 17.0, "detail", m=True, note="letterbox tailpipe"),
+        blk(2.35, 3.45, 1.3, 2.0, 17.0, 17.3, "thrust", m=True, note="flat jet"),
     ]
     return p
 
@@ -1152,7 +1152,7 @@ def sp_door_pods():
         blk(4.0, 5.9, 0.3, 1.6, -5.2, 6.2, m=True, note="pontoon"),
         cz(5.9, 0.7, -4.4, 5.2, 0.7, "secondary", m=True, note="side pipe"),
         cz(5.9, 0.7, 5.2, 6.0, 0.8, "detail", m=True, note="pipe tip"),
-        blk(4.0, 5.9, 1.6, 1.66, -5.2, 6.2, "secondary", m=True, note="stripe on the top edge"),
+        blk(4.9, 5.5, 1.6, 1.66, -5.2, 6.2, "secondary", m=True, note="slim stripe on the painted top"),
     ]
     return p
 

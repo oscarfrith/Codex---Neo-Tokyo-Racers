@@ -561,7 +561,7 @@ def wing_plank():
         B(3.35, 7.3, 0.9, 1.2, 0.6, 4.6, "primary", m=True, note="plank wing"),
         B(3.35, 6.0, 0.95, 1.12, 5.0, 6.6, "secondary", m=True, note="flap plank"),
         B(7.3, 7.6, 0.1, 1.65, 0.0, 5.2, "secondary", m=True, note="end plate"),
-        CZ(0.8, 5.3, 0.45, 0.8, 4.0, "detail", m=True, note="drop tank"),
+        CZ(0.8, 5.3, 0.45, 0.8, 4.0, "secondary", m=True, note="drop tank, painted"),
         B(4.0, 5.0, 1.2, 1.27, 1.2, 2.4, "secondary", note="patch plate (one side only)"),
         B(7.3, 7.6, -0.08, 0.1, 0.6, 4.6, "thrust", m=True, note="lift strip"),
     ]
@@ -984,8 +984,8 @@ def k_drogue():
 def k_skid():
     """Two long skis on short painted legs."""
     return keel_pad() + [
-        B(-1.75, 1.75, -0.9, -0.65, 10.0, 10.6, "detail", note="cross strut"),
-        B(-1.75, 1.75, -0.9, -0.65, 11.6, 12.2, "detail", note="cross strut"),
+        B(-1.75, 1.75, -0.9, -0.65, 10.0, 10.6, "secondary", note="painted cross strut"),
+        B(-1.75, 1.75, -0.9, -0.65, 11.6, 12.2, "secondary", note="painted cross strut"),
         B(1.45, 1.75, -1.3, -0.9, 10.0, 10.6, "primary", m=True, note="leg"),
         B(1.45, 1.75, -1.3, -0.9, 11.6, 12.2, "primary", m=True, note="leg"),
         B(1.3, 1.9, -1.5, -1.3, 9.0, 15.2, "secondary", m=True, note="ski"),

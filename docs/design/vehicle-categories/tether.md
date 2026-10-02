@@ -1,11 +1,11 @@
 # Tether (frame class `tether`)
 
-Status: design exploration, round 2, 2026-10-01. Nothing here is approved or game content.
+Status: design exploration, round 2, updated 2026-10-02 after the review pass. Nothing here is approved or game content.
 Brief: [exploration contract](../../../scripts/vehicle_blockouts/CONTRACT.md). Envelopes, pads and seams: [tether-frame.md](tether-frame.md). Round 1 art: `output/vehicle-categories-2026-10-01/tether/v1/`.
 
 ## Pitch
 
-A small open pod towed by two huge engines. The engines fly far ahead and wide apart. A glowing binder arc joins them. Cables or a rigid boom join them to the pod. Nothing touches the ground. About 24 W x 10 H x 38 L studs in the blockout.
+A small open pod towed by two huge engines. The engines fly far ahead and wide apart. A glowing binder arc joins them. Cables or a rigid boom join them to the pod. Nothing touches the ground. About 19 W x 8 H x 37 L studs in the blockout.
 
 **Player fantasy:** you are not driving a car. You are holding the reins of two rockets. You sit in the open at the back and watch your engines work ahead of you. It is the widest and fastest thing on the road. Getting it through traffic clean is the brag.
 
@@ -20,6 +20,7 @@ Round 2 changes: no wheels or ring parts anywhere. The engines are real jet modu
 | Desert | Sand-blasted paint, cloth wraps, pleated filter sleeves, open petal flaps. |
 | Showboat | Chrome, candy paint, neon strips, jewelled reins. Built to be looked at. |
 | Harbour | Twin torpedo hulls, boat-like bows, hydrofoils and navy paint. Added by the blockout. |
+| Atomic | Retro rockets: clear dome, stacked jets, upswept fins, pointed bullets. Added by the blockout. |
 
 ## Cockpits (pods)
 
@@ -28,10 +29,11 @@ Round 2 changes: no wheels or ring parts anywhere. The engines are real jet modu
 | Bucket | Scrapyard | Open scoop tub with a dark well | Scrapyard | E |
 | Sled | Desert | Low arrowhead sled, upturned prow, raked screen | Desert | D |
 | Skiff | Harbour | Narrow boat hull, long pointed bow, tall screen | Harbour | C |
+| Bubble | Atomic | Clear dome at the nose, short tapering tail | Atomic | B |
 | Chariot | Showboat | Tall curved shield on a flat open platform | Showboat | A |
 | Capsule | Works | Sleek teardrop hull under a glass barrel canopy | Works | S |
 
-The pilot is always visible. The avatar and helmet are part of the look. Each pod gives its own pose: Bucket crouches, Sled lies feet first, Skiff kneels, Chariot stands, Capsule sits.
+The pilot is always visible. The avatar and helmet are part of the look. Each pod gives its own pose: Bucket crouches, Sled lies feet first, Skiff kneels, Bubble reclines, Chariot stands, Capsule sits.
 
 ## The fundamentals
 
@@ -39,19 +41,19 @@ Every build has all four. Each shows an intake, a body and a glowing nozzle.
 
 | Slot | Player label | Where it sits | Options and look |
 |---|---|---|---|
-| `Engine1` | Tow Engines | A mirrored pair far ahead of the pod, wide apart | **Quad Cluster**: four small jets in a 2x2 bundle with clamp bands. **Fat Turbines**: one short fat barrel with a big mouth. **Long Barrels**: one slim barrel five times longer than wide. **Bell Jets**: slim chrome snout with a stepped flared bell. **Twin Hulls**: two torpedoes under a bridge deck. |
-| `Engine2` | Pod Thruster | On the back of the pod | **Skid Jet**: flat slot jet over a skid plate. **Twin Nacelles**: two small nacelles side by side with finlets. **Mono Turbine**: one turbine with cheek intakes. **Organ Pipes**: four flared pipes in a row. **Outboard**: powerhead on a leg with a low torpedo jet. |
-| `Stabilisers` | Engine Vanes | On the outer flank of each tow engine | **Outrigger Jets**: a beam with two upright lift barrels. **Petal Brakes**: splayed petal flaps round a lift jet. **Blade Vanes**: tall swept plate with jets top and bottom. **Canard Jets**: flat canards with a jet pod on each tip. **Hydro Strakes**: drooped strake with a float jet. |
-| `Boost` | Afterburners | Piggyback on top of each tow engine | **Bottle Rack**: four rocket bottles across. **Drum Burner**: one fat can with saddle tanks. **Staged Burner**: three telescoping stages. **Twin Trumpets**: two long pipes with flared bells. **Slot Burner**: flat wide body with a slot nozzle. |
+| `Engine1` | Tow Engines | A mirrored pair far ahead of the pod, wide apart | **Quad Cluster**: four slim staggered jets with clamp bands. **Fat Turbines**: one fat nacelle with flat flanks and an eyelid nozzle. **Long Barrels**: one long slim barrel with a bell, turbine and thin tailpipe. **Bell Jets**: slim chrome snout ending in a square four-petal horn. **Twin Hulls**: two torpedoes under a bridge deck. **Stack Jets**: an over-and-under pair of jets on a web. |
+| `Engine2` | Pod Thruster | On the back of the pod | **Skid Jet**: box duct with a top scoop and a tall slot. **Twin Nacelles**: two small nacelles on a stub wing. **Mono Turbine**: one turbine with cheek intakes. **Organ Pipes**: four flared pipes in a row. **Outboard**: powerhead on a leg with a low torpedo jet. **Swallow Tail**: two splayed pipes. |
+| `Stabilisers` | Engine Vanes | On the outer flank of each tow engine | **Outrigger Jets**: a beam with two upright lift barrels. **Petal Brakes**: splayed petal flaps round a lift jet. **Blade Vanes**: tall swept plate with a top jet and a vectoring jet. **Canard Jets**: thick canards with a lift jet and a jet pod on each tip. **Hydro Strakes**: drooped strake with a float jet and a lift slot. **Sky Fins**: upswept fin with a tip rocket and a lift jet. |
+| `Boost` | Afterburners | Piggyback on top of each tow engine | **Bottle Rack**: three tilted rocket bottles. **Can Burner**: one fat can with saddle tanks. **Staged Burner**: three telescoping stages. **Twin Trumpets**: two long pipes with flared bells. **Slot Burner**: flat wide body with a slot nozzle and end plates. **Fin Rocket**: one pointed rocket. |
 
 ## Body and cosmetic slots
 
 | Slot id | Player label | Options and look |
 |---|---|---|
-| `SidePods` | Binder and Cables | **Rigid Boom**: V-truss of struts, binder inside. **Twin Cable**: two tow cables with couplers. **Arc Binder**: single tether, forked bridle, thick arc. **Cross Reins**: crossed reins with a jewel, two binders. **Tow Wing**: centre boom into a swept cross-deck. |
-| `FrontBumper` | Nose Pieces | **Ram Cage**: welded bar cage. **Sand Filter**: pleated filter sleeve. **Shock Spike**: single sharp cone. **Lances**: two-pronged fork. **Cutwater**: arrowhead bow blade. |
-| `RearBumper` | Pod Tail | **Chute Pack**: drag chute pack with a hook. **Skid**: curved runner. **Rudder**: swept blade. **Glow Keel**: neon tube keel. **Hydrofoil**: strut-mounted foils. |
-| `RearSpoiler` | Pod Fins | **Plank Wing**: flat wing on a post with end plates. **Twin Fins**: two canted fins. **Tall Fin**: swept fin with a T-plane. **Swept Horns**: long raked horns with tip lights. **Dorsal Sail**: tall sail on a boom. |
+| `SidePods` | Binder and Cables | **Rigid Boom**: V-truss of struts, binder inside. **Twin Cable**: two tow cables with couplers. **Arc Binder**: single tether, forked bridle, thick arc. **Cross Reins**: crossed reins with a jewel, two binders. **Tow Wing**: centre boom into a swept cross-deck. **Spreader Rig**: one tether to a spreader bar, two straight tow lines, a chevron binder. |
+| `FrontBumper` | Nose Pieces | **Ram Cage**: welded bar cage. **Sand Filter**: pleated filter sleeve. **Shock Spike**: single sharp cone. **Lances**: two-pronged fork. **Cutwater**: arrowhead bow blade. **Twin Bullets**: chrome bar with two pointed bullets. |
+| `RearBumper` | Pod Tail | **Chute Pack**: drag chute pack with a hook. **Skid**: curved runner. **Rudder**: swept blade. **Glow Keel**: neon tube keel. **Hydrofoil**: strut-mounted foils. **Drop Tanks**: two pointed tanks on short pylons. |
+| `RearSpoiler` | Pod Fins | **Plank Wing**: flat wing on a post with end plates. **Twin Fins**: two canted fins. **Tall Fin**: swept fin with a T-plane. **Swept Horns**: long raked horns with tip lights. **Dorsal Sail**: tall sail on a boom. **Tail Boom**: slim boom with a tailplane and three fins. |
 
 Round 1 also had `Hood` (engine shrouds) and `Roof` (windscreen). The blockout drops them. Shroud and screen styles can come back as cosmetic slots.
 
@@ -66,6 +68,7 @@ Each kit also has its own binder, nose piece, pod tail and pod fins. Any pod tak
 | Works | Works | Capsule | Slim matched barrels, tall blade vanes, telescoping burners, one clean arc. |
 | Showboat | Showboat | Chariot | Chrome bell snouts, lances, trumpet pipes, crossed jewelled reins, neon. |
 | Harbour | Harbour | Skiff | Twin torpedo hulls, cutwater bows, flat slot burners, swept tow wing. |
+| Atomic | Atomic | Bubble | Stacked jet pairs, swallow-tail pipes, upswept fins, one pointed rocket, bullet noses, drop tanks. |
 
 ## Handling intent versus Piercer
 
@@ -91,8 +94,8 @@ Binder choice is the main feel dial. Twin Cable is fastest and loosest. Rigid Bo
 
 ## What makes it fun to own
 
-1. **Binder colour and style are yours.** The arc uses the Neon channel and the afterburners use thrust colour. A pink arc over green burners is a signature seen from a block away. The binder slot sets the arc look: thin, braided, truss, crossed or wing.
-2. **Engines you can hear.** Each Engine1 option gets its own sound: Quad Cluster crackles, Fat Turbines thump, Long Barrels whine, Bell Jets scream, Twin Hulls throb. You know a rival by ear.
+1. **Binder colour and style are yours.** The arc uses the Neon channel and the afterburners use thrust colour. A pink arc over green burners is a signature seen from a block away. The binder slot sets the arc look: thin, braided, truss, crossed, wing or chevron.
+2. **Engines you can hear.** Each Engine1 option gets its own sound: Quad Cluster crackles, Fat Turbines thump, Long Barrels whine, Bell Jets scream, Twin Hulls throb, Stack Jets rasp. You know a rival by ear.
 3. **Start-up ritual.** On spawn and in the garage: left engine lights, right engine lights, the arc strikes across, the cables snap taut, the pod lifts. Three seconds, skippable.
 4. **Boost and brake show.** On boost the cables stretch so the pod drops back a stud. Bottle Rack fires its bottles one by one. Staged Burner telescopes out. On brake the petals flower open.
 5. **Thread bonus.** Pass a lamp post, a gap or slow traffic between your engines and under the arc for a "Threaded" call-out. Only this class has a hole in the middle.
@@ -106,7 +109,7 @@ Binder choice is the main feel dial. Twin Cable is fastest and loosest. Rigid Bo
 *01 Hero. Works kit on the Capsule pod: Long Barrels, Mono Turbine, Blade Vanes, Staged Burner, Arc Binder (single tether, forked bridle, energy arc), Shock Spike, Rudder, Tall Fin.*
 
 ![Exploded](img/tether/02-exploded.jpg)
-*02 Exploded. Desert kit on the Sled pod: Fat Turbines, Petal Brakes, Drum Burner, Twin Cable, Sand Filter, Twin Nacelles, Skid, Twin Fins. Every module floats clear on its own axis.*
+*02 Exploded. Desert kit on the Sled pod: Fat Turbines, Petal Brakes, Can Burner, Twin Cable, Sand Filter, Twin Nacelles, Skid, Twin Fins. Every module floats clear on its own axis.*
 
 ![One kit, three pods](img/tether/03-one-kit-three-cockpits.jpg)
 *03 One kit, three pods. Works kit (Long Barrels, Blade Vanes, Staged Burner, Shock Spike, Arc Binder energy arc) on Bucket (left), Chariot (centre) and Sled (right). Same white and orange paint.*
@@ -130,18 +133,18 @@ Prompts: `output/vehicle-categories-2026-10-01/tether/prompts.json`.
 
 ## Risks and open points
 
-- **Width in traffic.** The blockout is 24 studs wide and 38 long, the full class limit. That is as wide as three Piercers side by side. Check lanes, gates and alleys. Some routes may be closed to this class.
-- **Five pods, not six.** The brief names Bubble as a sixth. The blockout has five, so tier B is empty. Bubble would need a sixth kit and room in the engine box.
-- **Harbour is not in the brief.** It is the fifth culture in the blockout. Keep it or fold it into Works.
+- **Width in traffic.** The blockout is about 19 studs wide and 37 long, close to the brief's 18 by 36. That is far wider than any road car. Check lanes, gates and alleys. Some routes may be closed to this class.
+- **Harbour and Atomic are not in the brief.** They are the fifth and sixth cultures in the blockout. They exist so Skiff and Bubble have signature kits. Keep them or fold them into Works.
+- **Bubble dome.** The preview tool drops the pole faces of every `ball`, so the blockout dome carries a second shell turned on its side. A real mesh needs one clean dome.
 - **Collision shape.** One box round the whole vehicle is unfair. Three boxes let traffic through the cable gap. Decide which, and whether cables and binder collide.
 - **Physics.** One rigid assembly with a faked pod swing is the safe option. Real cable physics is a High-Risk lane item and probably not worth it.
 - **Cables at distance.** They are thin and may vanish. A Beam may suit them.
 - **Camera.** The chase camera sits behind the pod and must pull back and up to keep both engines in frame. Engines can hide the road ahead. Test on mobile landscape.
-- **Seat far from root.** The seat sits 9 to 11 studs behind the root origin. Check the drive rig, seat weld and garage turntable.
+- **Seat far from root.** The seat sits 8.5 to 12 studs behind the root origin. Check the drive rig, seat weld and garage turntable.
 - **Binder slot never empty.** `Engine1` anchors to `SidePods`, so it needs a default binder.
 - **Stat slots far from where parts are.** `SidePods` and `FrontBumper` are engine-side parts here. Labels cover it, but check the upgrade UI text.
 - **Passengers and jobs.** The pod has one seat. Taxi jobs do not fit. Parcel jobs could hang cargo under the binder.
 - **Garage, dealership and minimap.** Bays, turntable framing and the map icon assume a 17-stud-long car.
 - **Originality.** Two engines towing a pod is a known genre shape, and image 01 sits close to it. Keep the final engine and pod shapes our own and review the models for likeness before release.
-- **Fat engines.** Fat Turbines and Bell Jets are nearly as wide as long. Real meshes must stay clearly longer than wide so they never read as wheels.
-- **Image notes.** In 01 the engines read fatter and shorter than the Long Barrels spec. In 02 the Sand Filter is a long cone, not the short blockout drum. In 03 and 05 only the pod or the engines change, as intended. In 06 the Skid Jet is a flat slot, as specced; the Quad Cluster tubes are seen from the front and show no thrust glow of their own, so the firing is carried by the Bottle Rack flames and the Outrigger Jets. In 08 the signs are abstract glyphs only. Round 1 images are in `v1/`.
+- **Fat engines.** Fat Turbines is the stubbiest engine, 4.4 wide by 12 long. Every engine must stay at least 2.2 times longer than wide so it never reads as a wheel. Break any round tail face with petals, vanes or flat eyelids.
+- **Image notes.** In 01 the engines read fatter and shorter than the Long Barrels spec. In 02 the Sand Filter is a long cone, not the short blockout drum. In 03 and 05 only the pod or the engines change, as intended. In 06 the Skid Jet is drawn as a flat slot; the final spec is a box duct with a tall slot. The Quad Cluster tubes are seen from the front and show no thrust glow of their own, so the firing is carried by the Bottle Rack flames and the Outrigger Jets. In 08 the signs are abstract glyphs only. Round 1 images are in `v1/`.

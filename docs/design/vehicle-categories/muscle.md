@@ -17,7 +17,7 @@ The fantasy is the garage build. You pick a shell, then you build the noise. You
 | Pony | Light and stylish: V beak, quad engines, slim paddles and lake pipes. |
 | Modern Muscle | Retro shape, sharp edges: slots, splitters, blade wings, flush jets. |
 | Pro Street | Drag-strip show cars: tilted nose, tall blower stack, fat bazookas. |
-| Restomod | Old shell, new guts: split grille, tunnel ram, quiet vane jets. |
+| Restomod | Old shell, new guts: split grille, tunnel ram, quiet skirted jets. |
 | Trans-Am racer | Track-spec 60s coupés: flat nose, stacked engines, megaphones, ducktail. |
 
 ## Cockpits
@@ -39,9 +39,9 @@ Every build has all four. Each one shows an intake, a body and a glowing nozzle 
 
 | Slot | Player label | Where it sits | Options |
 |---|---|---|---|
-| `Engine1` | Hood Engine | On the bonnet, where the blower burst through | **Shaker Turbine**: one round turbine in a scoop.<br>**Blower Stack**: tall chunky stack of intake trumpets.<br>**Cross-Ram Twins**: two long ram barrels side by side.<br>**Cowl Slot Burner**: low flat slot on the cowl.<br>**Quad Pack**: four small trumpets in a row.<br>**Tunnel Ram**: long boxy intake with one nozzle. |
+| `Engine1` | Hood Engine | On the bonnet, where the blower burst through | **Shaker Turbine**: one round turbine in a scoop.<br>**Blower Stack**: tall chunky stack of intake trumpets.<br>**Cross-Ram Twins**: two long ram barrels side by side.<br>**Cowl Slot Turbine**: low flat twin-rotor body with a slot nozzle.<br>**Quad Pack**: four small trumpets in a row.<br>**Tunnel Ram**: long boxy intake with one nozzle. |
 | `Engine2` | Tail Engine | In the open bay between the haunch tails, where the boot was | **Twin Barrel**: two big barrels side by side.<br>**Mono Turbine**: one huge central turbine.<br>**Over-Under**: two engines stacked.<br>**Slot Burner**: one wide flat slot across the tail.<br>**Quad Corners**: four small nozzles at the bay corners.<br>**Inline Four**: four small nozzles in a straight line. |
-| `Stabilisers` | Lift Jets | One in each blanked wheel arch | **Corner Turbines**: slim turbine cans, one per arch.<br>**Big 'n' Little**: mismatched jets, big at the back, little at the front.<br>**Outriggers**: long jets on struts, standing proud.<br>**Vector Cans**: angular nozzle cans that tilt.<br>**Glide Paddles**: flat thrust paddles on struts.<br>**Skirted Vanes**: stacked vane cascades over a nozzle. |
+| `Stabilisers` | Lift Jets | One in each blanked wheel arch | **Corner Turbines**: slim turbine cans, one per arch.<br>**Big 'n' Little**: mismatched jets, big at the back, little at the front.<br>**Outriggers**: long jets on struts, standing proud.<br>**Vector Cans**: angular nozzle cans that tilt.<br>**Glide Paddles**: flat thrust paddles on struts.<br>**Skirted Triples**: half skirt over a scoop and three short cans. |
 | `Boost` | Side Burners | Under the sills, where the side pipes ran | **Side Pipes**: long chrome afterburner cans.<br>**Bazookas**: short fat tubes with a big bore.<br>**Megaphones**: flared nozzles that throw long flames.<br>**Sill Slots**: flat slot burners flush in the sill.<br>**Lake Trios**: three slim pipes grouped each side.<br>**Underslung Twins**: two slim tubes slung under each sill. |
 
 ## Body and cosmetic slots
@@ -51,11 +51,11 @@ Every build has all four. Each one shows an intake, a body and a glowing nozzle 
 | Slot | Player label | Options |
 |---|---|---|
 | `FrontBody` | Nose Clip | **Shark Nose**: rounded, hidden lamps.<br>**Tilt Nose**: forward-tilted wedge.<br>**Raked Nose**: flat grille, raked back.<br>**Bluff Nose**: blunt, with bonnet crowns and a dome.<br>**Pony Beak**: V-shaped prow.<br>**Stacked Blades**: split grille of stacked blades. |
-| `RearBody` | Tail and Haunches | **Coke Hips**: curved Coke-bottle hips.<br>**Tubbed Tail**: wide, boxed-in back end.<br>**Flared Kamm**: flared hips, chopped tail.<br>**High Deck**: tall flat deck.<br>**Slant Deck**: deck that falls away.<br>**Bed Tail**: truck-bed end. |
-| `SidePods` | Rockers | **Rocker and Scoop**, **Heat Shield**, **Exit Vent**, **Blade Skirt**, **Side Cove**, **Nerf Rail**. |
+| `RearBody` | Tail and Haunches | **Coke Hips**: curved Coke-bottle hips.<br>**Tubbed Tail**: wide, boxed-in back end.<br>**Flared Kamm**: flared hips, chopped tail.<br>**High Deck**: tall flat deck.<br>**Slant Deck**: deck that falls away.<br>**Square Tail**: flat, square-cut end. |
+| `SidePods` | Rockers | **Rocker and Scoop**, **Heat Shield**, **Exit Vent**, **Blade Skirt**, **Side Cove**, **Rocker Tube** (a slim tube along the sill). |
 | `FrontBumper` | Front Bumper | **Chrome Blade**: thin chrome bar.<br>**Chin Scoop**: deep scoop under the nose.<br>**Air Dam**: low dam.<br>**Splitter**: flat blade.<br>**Bumperettes**: two small guards.<br>**Roll Pan**: smooth body-colour panel. |
-| `RearBumper` | Rear Bumper | **Chrome Quarters**: quarter bumpers.<br>**Skid Bars and Chutes**: bars with chute pods.<br>**Jack Valance**: plain valance.<br>**Diffuser**: finned diffuser.<br>**Rolled Valance**: smooth rolled edge.<br>**Step Bumper**: truck step. |
-| `RearSpoiler` | Spoiler | **Winged Warrior**: tall wing on struts.<br>**Drag Wing**: big flat wing.<br>**Ducktail**: small lip.<br>**Blade Wing**: thin blade.<br>**Deck Rack**: luggage rack.<br>**Sports Bar**: squared bar on two posts. |
+| `RearBumper` | Rear Bumper | **Chrome Quarters**: quarter bumpers.<br>**Skid Bars and Chutes**: bars with chute pods.<br>**Jack Valance**: plain valance.<br>**Diffuser**: finned diffuser.<br>**Rolled Valance**: smooth rolled edge.<br>**Tucked Pan**: smooth pan tucked under the tail. |
+| `RearSpoiler` | Spoiler | **Winged Warrior**: tall wing on struts.<br>**Drag Wing**: big flat wing.<br>**Ducktail**: small lip.<br>**Blade Wing**: thin blade.<br>**Deck Rack**: luggage rack.<br>**Fin Bar**: two low fins joined by a light bar. |
 
 ## Signature kits
 
@@ -64,9 +64,9 @@ Every build has all four. Each one shows an intake, a body and a glowing nozzle 
 | Classic | Classic Muscle | Fastback | Round turbine scoop, shark nose, chrome blade, twin barrels, long side pipes. |
 | Pro Street | Pro Street | Hardtop | Tall blower stack, wedge nose with chin scoop, fat bazookas, big drag wing. |
 | Trans-Am | Trans-Am racer | Notch | Flat raked nose, twin hood engines, stacked tail engines, megaphones, ducktail. |
-| Modern | Modern Muscle | Modern | Flat slot burners front and rear, bluff crowned nose, splitter, blade wing. |
+| Modern | Modern Muscle | Modern | Flat slot turbine on the cowl, slot burner at the tail, bluff crowned nose, splitter, blade wing. |
 | Pony | Pony | Ragtop | V beak, four-trumpet pack, four corner nozzles, paddles, slanted deck. |
-| Restomod | Restomod | Ute | Split blade grille, boxy tunnel ram, inline nozzle bank, skirted vanes, bed tail. |
+| Restomod | Restomod | Ute | Split blade grille, boxy tunnel ram, inline nozzle bank, skirted triples, square tail. |
 
 ## Handling intent versus Piercer
 
@@ -127,7 +127,7 @@ Design intent only. Piercer's real numbers set the size of each step.
 
 ![Restomod](img/muscle/07-restomod.jpg)
 
-*Ute cockpit, Restomod kit: Stacked Blades, Tunnel Ram, Inline Four, Skirted Vanes, Underslung Twins, Roll Pan, Step Bumper. Graphite and copper.*
+*Ute cockpit, Restomod kit: Stacked Blades, Tunnel Ram, Inline Four, Skirted Triples, Underslung Twins, Roll Pan, Tucked Pan. Graphite and copper.*
 
 ![Action](img/muscle/08-action.jpg)
 
@@ -139,8 +139,8 @@ Design intent only. Piercer's real numbers set the size of each step.
 - Option descriptions come from the module names, the frame notes and the images, not from the blockout part lists. Check them against the blockout previews.
 - Real-car likeness is welcome, but the prompts name real models only as body-style references. In game, use no brand names, badges or licensed grille shapes.
 - Lift jets in the arches can read as wheels at small size. Keep every nozzle longer than wide and keep the glow bright. Image 04 was regenerated for this: its first version had dark round ribbed cans inside the arches that looked like wheels. In the final version the arches are blanked and the jets are slim tubes below the fender.
-- Glide Paddles and Skirted Vanes read the least like jets. They may need more visible nozzles.
-- Sports Bar must stay squared. A rounded hoop would break the no-rings rule.
+- Glide Paddles and Skirted Triples read the least like jets. They may need more visible nozzles.
+- Fin Bar must stay square-edged: two low fins and a straight bar. A rounded hoop would break the no-rings rule.
 - Cabin differences in image 03 are subtle at thumbnail size. Ragtop and Ute read clearly. Fastback against Hardtop and Notch is mostly the roof.
 - The blockout notes that noses, tails and cockpits score low on silhouette because they share pads. A redesign of the shared pads needs a decision.
 - Image 05 is almost dead astern, not three-quarter. Image 04's centre tail came out as a long barrel after a regeneration.

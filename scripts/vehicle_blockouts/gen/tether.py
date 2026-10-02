@@ -329,6 +329,11 @@ def pod_bubble():
         box(1.0, 1.4, 1.2, 2.1, 5.9, 6.3, "detail", M, "tow post under the hitch lug"),
         box(1.6, 2.1, 0.3, 1.7, 6.6, 10.6, "secondary", M, "tub side"),
         ball(5.4, 0, 3.0, 8.4, "glass", note="clear bubble dome"),
+        # The preview renderer drops the pole faces of a ball, so a second shell turned on its side closes the crown.
+        P("ball", [5.3, 5.3, 5.3], [0, 3.0, 8.4], "glass", [90, 0, 0], note="dome crown (same dome, closes the preview)"),
+        beam((0, 5.1, 6.6), (0, 5.66, 7.6), 0.3, 0.12, "secondary", note="dome spine, front"),
+        beam((0, 5.66, 7.6), (0, 5.66, 9.2), 0.3, 0.12, "secondary", note="dome spine, crown"),
+        beam((0, 5.66, 9.2), (0, 5.1, 10.2), 0.3, 0.12, "secondary", note="dome spine, rear"),
         box(-0.9, 0.9, 1.2, 1.6, 7.9, 9.4, "detail", note="seat"),
         box(-0.7, 0.7, 1.6, 3.4, 9.2, 9.45, "detail", note="seat back"),
         box(-2.0, 2.0, -0.1, 2.6, 10.6, 12.6, "primary", note="engine bay behind the dome"),
@@ -376,6 +381,12 @@ def e1_fat_turbines():
         box(EX - 0.85, EX + 0.85, 4.25, 4.62, -13.52, -13.36, "detail", M, "scoop intake face"),
         ramp(EX - 1.0, EX + 1.0, 4.1, 4.7, -9.0, -7.4, "secondary", "down", M),
         box(EX - 0.5, EX + 0.5, -0.05, 0.5, -12.6, -8.6, "detail", M, "belly keel"),
+        # Flat eyelids and vanes square off the tail, so the chase view is not a set of concentric rings.
+        ramp(EX - 1.4, EX + 1.4, EY + 1.35, EY + 2.1, -7.6, -3.9, "primary", "down", M, "upper nozzle eyelid, flat"),
+        ramp(EX - 1.4, EX + 1.4, EY - 2.1, EY - 1.35, -7.6, -3.9, "primary", "tuck", M, "lower nozzle eyelid, flat"),
+        box(EX - 0.85, EX + 0.85, EY - 0.07, EY + 0.07, -3.85, -3.5, "detail", M, "vectoring vane"),
+        box(EX - 0.75, EX + 0.75, EY + 0.38, EY + 0.52, -3.85, -3.5, "detail", M, "vectoring vane"),
+        box(EX - 0.75, EX + 0.75, EY - 0.52, EY - 0.38, -3.85, -3.5, "detail", M, "vectoring vane"),
     ]
 
 

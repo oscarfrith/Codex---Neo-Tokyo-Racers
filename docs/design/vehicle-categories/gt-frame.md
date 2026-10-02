@@ -1,6 +1,6 @@
 # GT: frame standard (round 2)
 
-Status: design exploration, round 2 after the critic's fix pass, 2026-10-01. Not approved, not game content. Spec: [gt.json](../../../scripts/vehicle_blockouts/specs/gt.json), written by [gen/gt.py](../../../scripts/vehicle_blockouts/gen/gt.py). Previews: `scripts/vehicle_blockouts/previews/gt/`. Brief: [contract](../../../scripts/vehicle_blockouts/CONTRACT.md).
+Status: design exploration, round 2 after the critic's fix pass, 2026-10-02. Not approved, not game content. Spec: [gt.json](../../../scripts/vehicle_blockouts/specs/gt.json), written by [gen/gt.py](../../../scripts/vehicle_blockouts/gen/gt.py). Previews: `scripts/vehicle_blockouts/previews/gt/`. Brief: [contract](../../../scripts/vehicle_blockouts/CONTRACT.md).
 
 Front-engined sports cars and grand tourers on jets, plus the rear-engined coupé. No wheels, rings, discs or rotors anywhere. A real car body in three sections: nose and bonnet, cabin, tail. The body is 9.6 wide stock (11.7 with the GT3 arches). Builds are 10.6 to 11.7 wide and 23.5 to 25.2 long with lift jets, bumpers and burners. Blockout content: 6 cockpits, 6 signature kits, 60 modules (6 per slot), 15 builds. Root space: +X right, +Y up, forward is -Z, studs. Boxes read `X; Y; Z`. `±` spans both sides.
 
@@ -27,7 +27,7 @@ No two envelopes overlap. `Hood`, `Roof` and `Accessory` are not used: the bonne
 - **Engine1, Front Engine.** Sits in an open bay in the bonnet, between the wings. Every option carries a bright tray plate out to the bay edge, so the bay never reads as a hole. Five options stand above the bonnet line (3.4 to 3.8 high). Twin Ram is flush at 3.0 so the Sports bonnet reads as a lid. Side exits fire from a cove behind each front arch.
 - **Engine2, Rear Engine.** Stands through a framed hatch in the tail deck (3.4 wide, Z 7 to 10) up to Y 3.5, half a stud above the deck. Its nozzles run out through the open tail to Z 12.5 on every option. No cockpit roofs it over. It reads from above and from the chase camera.
 - **Stabilisers, Lift Jets.** Four units, one in each blanked arch, hung from the arch wall. All six fire downwards.
-- **Boost, Afterburner.** Sits outboard under the tail lamps (X 1.7 to 3.4), where exhaust tips were. The centre line is left to the rear engine. Every burner has a dark collar and a small glowing core, so it does not read as an engine nozzle.
+- **Boost, Afterburner.** Sits outboard under the tail lamps (X 1.7 to 3.4), where exhaust tips were. The centre line is left to the rear engine. Every burner has a dark collar and a small glowing core. Every rear engine nozzle is a bright or wide tube with a glow at least 0.88 across, so the two do not read alike.
 
 Every option has an intake, a body and a glowing `thrust` part. Every cylinder is longer than it is wide.
 
@@ -85,16 +85,16 @@ Cockpits, with roof height: Longnose 4.9 (small box cabin set back behind a long
 
 ## Validator output
 
-`SPEC gt: 0 error(s), 0 warning(s) {'cockpits': 6, 'kits': 6, 'modules': 60, 'builds': 15, 'worst_gap': 0.14, 'min_distinctness': {'Engine1': 0.55, 'Engine2': 0.35, 'Stabilisers': 0.51, 'Boost': 0.38, 'FrontBody': 0.35, 'RearBody': 0.45, 'SidePods': 0.5, 'FrontBumper': 0.31, 'RearBumper': 0.29, 'RearSpoiler': 0.5, 'Cockpit': 0.34}, 'min_distinctness_whole': {'Engine1': 0.15, 'Engine2': 0.15, 'Stabilisers': 0.45, 'Boost': 0.3, 'FrontBody': 0.1, 'RearBody': 0.06, 'SidePods': 0.4, 'FrontBumper': 0.27, 'RearBumper': 0.25, 'RearSpoiler': 0.47, 'Cockpit': 0.11}, ...}`
+`SPEC gt: 0 error(s), 0 warning(s) {'cockpits': 6, 'kits': 6, 'modules': 60, 'builds': 15, 'worst_gap': 0.14, 'min_distinctness': {'Engine1': 0.55, 'Engine2': 0.35, 'Stabilisers': 0.51, 'Boost': 0.37, 'FrontBody': 0.35, 'RearBody': 0.45, 'SidePods': 0.5, 'FrontBumper': 0.31, 'RearBumper': 0.29, 'RearSpoiler': 0.5, 'Cockpit': 0.35}, 'min_distinctness_whole': {'Engine1': 0.15, 'Engine2': 0.15, 'Stabilisers': 0.45, 'Boost': 0.3, 'FrontBody': 0.1, 'RearBody': 0.06, 'SidePods': 0.4, 'FrontBumper': 0.27, 'RearBumper': 0.25, 'RearSpoiler': 0.47, 'Cockpit': 0.11}, ...}`
 
-`min_distinctness` is the free outline: the area every option shares is removed first. `min_distinctness_whole` is the whole outline. There are no warnings of any kind. The closest pairs are Shark Nose against Square Nose (0.35 free, 0.11 whole), Triple Tube against Slot Vector (0.35, 0.16) and Teardrop against Brake (0.34, 0.13; the cockpit target is 0.25). The largest build has 218 parts (limit 220).
+`min_distinctness` is the free outline: the area every option shares is removed first. `min_distinctness_whole` is the whole outline. There are no warnings of any kind. The closest pairs are Shark Nose against Square Nose (0.35 free, 0.11 whole), Triple Tube against Slot Vector (0.35, 0.16) and Teardrop against Brake (0.35, 0.13; the cockpit target is 0.25). The largest build has 219 parts (limit 220). The validator checks contact per module, so a separate per-part pass was run over all 36 cockpit and kit pairs and the three mixed builds: every part sits within 0.12 of the rest of the vehicle.
 
 ## Open risks
 
 - **Whole-outline scores stay low.** Engines now carry a shared tray and fill the same bay, and bodies share pads and the seam section. Whole scores are 0.06 to 0.15 for bodies, engines and cockpits. The free scores pass, two of them exactly on the 0.35 line.
 - **Size.** Builds are 23.5 to 25.2 long against a 23 target, and 10.6 to 11.7 wide against 10. Rear nozzles must reach Z 12.5, so the tail cannot shrink further. The stock body was not narrowed to 9.2: that moves every seam datum and needs an owner decision.
 - **Bonnet length on the Teardrop.** The cowl is a fixed datum, so the Frogeye nose is still 8.3 long. The Sports kit reads rear-led through the flush front engine and the big rear nozzle, not through a short nose.
-- **Single Cannon.** It sits on the right side only, and its core (1.0) is larger than the Triple Tube nozzles (0.9). It reads apart by place and by its dark bell, not by size.
+- **Single Cannon.** It sits on the right side only. Its dark barrel (1.4 across, 1.45 long) is wider than a Triple Tube tube (1.05), but its core (0.7) is smaller than their glow (0.88). It reads apart by place and by the dark barrel, not by size.
 - **Outriggers.** One large down-firing nacelle per corner, not two. Two would copy Twin Columns.
 - **Open load bay on the Brake.** The roof is open behind Z 7.4 and the tailgate has no glass. Check it still reads as a shooting brake in game.
 - **Open-corner Clubman sections and GT3 width.** Lift jets stand in the open beside the Clubman nose and Boat Tail. Box arches reach X 5.85. Check lane width and camera.

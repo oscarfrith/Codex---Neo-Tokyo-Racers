@@ -325,6 +325,8 @@ def cockpits():
             wedge((-0.8, 0.8), (2.7, 4.3), (2.05, 2.6), "nose", "primary", note="race hump: bum stop face"),
             box((-0.8, 0.8), (2.7, 3.4), (2.6, 3.3), "primary", note="race hump base"),
             wedge((-0.8, 0.8), (3.4, 4.3), (2.6, 3.3), "tail", "primary", note="race hump: falls to the seat tail datum"),
+            wedge((0.8, 1.35), (3.4, 4.0), (2.05, 2.6), "nose", "secondary", mirror=True, note="hump shoulder: wide angular race tail"),
+            wedge((0.8, 1.35), (3.4, 4.0), (2.6, 3.3), "tail", "secondary", mirror=True, note="hump shoulder: falls to the seat tail datum"),
         ] + rider(hip=(3.1, 1.75), sho=(4.15, -0.3), head=(4.65, -0.88), knee=(2.9, 0.4), ankle=(1.95, 1.8), elbow=(3.7, -0.6), elbow_x=1.14),
     }
     c["cafe"] = {
@@ -363,9 +365,9 @@ def cockpits():
         "parts": chassis("secondary") + [
             box((-0.75, 0.75), (2.2, 2.7), (0.2, 2.0), "detail", note="rider pad"),
             wedge((-0.85, 0.85), (2.7, 3.4), (1.9, 2.75), "nose", "primary", note="short kicked tail pad"),
-            wedge((0.9, 1.5), (0.6, 2.15), (-2.1, -0.5), "chin", "primary", mirror=True, note="frame panel: solid front triangle"),
+            wedge((0.9, 1.7), (0.6, 2.15), (-2.1, -0.5), "chin", "primary", mirror=True, note="frame panel: solid front triangle, full width of the leg channel"),
             wedge((0.9, 1.08), (0.6, 2.15), (-0.5, 2.6), "kick", "primary", mirror=True, note="frame panel: rear triangle, inside the leg"),
-            cx(0.9, -1.2, 1.5, 2.25, 0.45, "detail", mirror=True, note="frame slider"),
+            cx(0.9, -1.2, 1.7, 2.25, 0.45, "detail", mirror=True, note="frame slider"),
         ] + rider(hip=(3.05, 1.3), sho=(5.0, 0.65), head=(5.65, 0.4), knee=(2.7, 0.0), ankle=(1.45, 0.9), elbow=(4.45, -0.3), elbow_x=1.95),
     }
     c["speeder"] = {

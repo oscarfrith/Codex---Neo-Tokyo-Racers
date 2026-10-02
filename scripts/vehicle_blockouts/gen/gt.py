@@ -316,17 +316,19 @@ def tub():
         box(DRIVER_X - 0.7, DRIVER_X + 0.7, 1.2, 1.8, -0.4, 1.2, "driver", note="legs"),
         part("ball", [1.1, 1.1, 1.1], [DRIVER_X, 3.55, 1.65], "driver", note="head, top at Y 4.1"),
         box(DRIVER_X - 0.55, DRIVER_X + 0.55, 2.5, 2.8, -0.45, -0.25, "detail", note="yoke"),
+        box(DRIVER_X - 0.15, DRIVER_X + 0.15, 2.5, 2.8, -0.7, -0.45, "detail", note="yoke column, from the dashboard"),
     ]
     return p
 
 
-def mirrors(z=-1.3, y=3.1, ch="primary"):
-    return [box(3.9, 4.65, y, y + 0.4, z, z + 0.45, ch, True, "door mirror")]
+def mirrors(z=-1.3, y=BELT, ch="primary", x0=3.9):
+    """Door mirrors. They sit on the door top or the shoulder: y and x0 must land them on a body part."""
+    return [box(x0, 4.65, y, y + 0.4, z, z + 0.45, ch, True, "door mirror")]
 
 
 def cockpit_longnose():
     """60s long-bonnet GT: a small box cabin set far back behind a long scuttle. Upright screen, short flat roof, a notch, then a short fastback."""
-    p = tub() + mirrors(-0.7, 3.25, "secondary")
+    p = tub() + mirrors(-0.7, 3.25, "secondary", x0=3.4)
     p += [
         bx(3.7, BELT, 3.25, ZC0, 0.0, "primary", "long scuttle: the bonnet line runs on into the cabin"),
         box(3.0, 3.7, 2.8, BELT, 0.0, 3.4, "primary", True, "cabin shoulder"),
@@ -348,7 +350,7 @@ def cockpit_longnose():
 
 def cockpit_teardrop():
     """Rear-engined coupe: screen right at the cowl, a tall round dome, then one curve down. The tail is open between two buttresses so the rear engine shows."""
-    p = tub() + mirrors(-1.6, 3.1)
+    p = tub() + mirrors(-1.6)
     zs, ys, ze = 3.2, 5.1, 9.8                       # the tail curve runs from (zs, ys) down to the deck at ze
     y7 = ys - (BAY2_Z0 - zs) * (ys - BELT) / (ze - zs)   # its height where the engine hatch starts
     p += [
@@ -412,7 +414,7 @@ def cockpit_roadster():
 
 def cockpit_brake():
     """Shooting brake: the longest roofline. One flat line to an upright tailgate frame. Roof and tailgate are open over the rear engine."""
-    p = tub() + mirrors(-1.4, 3.1)
+    p = tub() + mirrors(-1.4)
     p += [
         wf(-3.2, 3.2, 3.0, 5.1, -2.2, 0.4, "glass", note="windscreen"),
         wf(3.2, 3.6, 3.0, 5.1, -2.2, 0.4, "primary", True, "A-pillar"),
@@ -890,7 +892,7 @@ def engine2_vee():
         bx(1.4, 3.0, 3.45, 7.5, 9.1, "secondary", "bright top plate standing through the deck"),
         bx(1.0, 3.45, 3.5, 7.8, 8.8, "detail", "intake mesh"),
     ]
-    p += jet([0.45, 2.0, 8.9], [0, 11, 0], 1.1, 3.25, "detail", tip=0.35, tip_d=0.88, m=True, note="splayed nozzle")
+    p += jet([0.45, 2.0, 8.9], [0, 11, 0], 1.1, 3.25, "secondary", tip=0.35, tip_d=1.0, m=True, note="splayed nozzle")
     return p
 
 
@@ -1008,9 +1010,9 @@ def boost_megaphones():
     """Classic GT: one long slim megaphone each side, far apart."""
     return [
         box(2.2, 3.35, 0.0, 0.8, TRANSOM, 10.6, "detail", True, "bracket"),
-        cz(2.8, 0.4, 10.5, 11.8, 0.7, "secondary", True, "slim pipe"),
-        cz(2.8, 0.4, 11.8, 12.35, 1.0, "secondary", True, "megaphone"),
-        cz(2.8, 0.4, 12.35, 12.65, 1.2, "detail", True, "dark petal collar"),
+        cz(2.8, 0.4, 10.5, 11.4, 0.7, "secondary", True, "slim pipe"),
+        cz(2.8, 0.4, 11.4, 12.05, 0.95, "secondary", True, "megaphone"),
+        cz(2.8, 0.4, 12.05, 12.65, 1.15, "detail", True, "dark petal collar"),
         cz(2.8, 0.4, 12.65, 12.8, 0.65, "thrust", True, "burner core"),
     ]
 
@@ -1034,12 +1036,12 @@ def boost_quad_tips():
 
 
 def boost_cannon():
-    """Roadster: one big cannon, on the right side only."""
+    """Roadster: one long dark cannon, on the right side only."""
     return [
-        box(1.65, 3.35, -0.8, 0.98, TRANSOM, 10.7, "detail", note="mount"),
-        cz(2.5, 0.05, 10.6, 12.0, 1.3, "secondary", note="cannon barrel"),
-        cz(2.5, 0.05, 12.0, 12.65, 1.75, "detail", note="dark bell"),
-        cz(2.5, 0.05, 12.65, 12.8, 1.0, "thrust", note="burner core"),
+        box(1.7, 3.35, -0.8, 0.98, TRANSOM, 10.7, "detail", note="mount"),
+        cz(2.5, 0.05, 10.6, 11.2, 1.2, "secondary", note="cannon breech"),
+        cz(2.5, 0.05, 11.2, 12.65, 1.4, "detail", note="long dark barrel, longer than it is wide"),
+        cz(2.5, 0.05, 12.65, 12.8, 0.7, "thrust", note="burner core"),
     ]
 
 

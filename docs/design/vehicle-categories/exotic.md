@@ -43,9 +43,9 @@ Every Exotic has all four. Each shows an intake, a body and a glowing nozzle fro
 
 | Slot | Label | Where it sits | Options |
 |---|---|---|---|
-| `Engine1` | Main Turbine | On the deck behind the cabin, between the buttresses. The mid-engine statement. Open to the sky and the chase camera. | **Mono Turbine:** one fat turbine, bellmouth forward, nozzle out the back. **Twin Spool:** two slim turbines under a flat glass lid. **Top-Exit Core:** short compact core, twin stacks firing straight up. **Eight Stack:** a low block under eight open trumpets, twin megaphones. **Lance Turbine:** slim and low, a long pipe, a flat fishtail nozzle. **Cross Barrel:** one barrel set crossways, a periscope intake, one nozzle. |
-| `Engine2` | Side Engines | One on each rear haunch, fed by the side pods. Nozzles point straight back. Replace the side-intake radiators. | **Ram Boxes:** a tall square box per side, big square nozzle. **Round Pods:** one short round pod per side on a pylon. **Stacked Pairs:** two slim tubes per side, one above the other, four nozzles. **Stub Burners:** a short fat burner at the tail, a thin exposed pipe. **Long Lances:** a low fairing along the deck and a long can past the tail. **Ear Scoops:** a tall narrow scoop by the cabin, a small nozzle. |
-| `Stabilisers` | Stabilisers | Four units, one in each blanked arch. Read from the front three-quarter and from above. | **Vector Pods:** a fat pod per corner, nozzle vectored down and back. **Twin Lift Cans:** two tall lift cans per corner. **Aero Blades:** a tall blade outboard, a flat slot jet in the arch. **Outriggers:** a slim nacelle on two wishbone arms. **Spat Trios:** a body-colour spat over the arch, three small jets below. **Canard Tip Jets:** a flat canard from each arch, a long jet on its tip. |
+| `Engine1` | Main Turbine | On the deck behind the cabin, between the buttresses. The mid-engine statement. Open to the sky and the chase camera. | **Mono Turbine:** one fat turbine, bellmouth forward, nozzle out the back. **Twin Spool:** two slim turbines side by side, open to the sky. **Top-Exit Core:** short compact core, twin stacks firing straight up. **Eight Stack:** a low block under eight open trumpets, twin megaphones. **Lance Turbine:** slim and low, a long pipe, a flat fishtail nozzle. **Cross Plenum:** a box plenum set crossways, twin pipes out the back. |
+| `Engine2` | Side Engines | One on each rear haunch, fed by the side pods. Nozzles point straight back. Replace the side-intake radiators. | **Ram Boxes:** a tall square box per side, big square nozzle. **Round Pods:** one short round pod per side on a pylon. **Stacked Pairs:** two slim tubes per side, one above the other, four nozzles. **Stub Burners:** a painted duct to a short fat burner at the tail. **Long Lances:** a long exposed tube with a bellmouth, ending past the tail. **Ear Scoops:** a tall narrow scoop by the cabin, a small nozzle. |
+| `Stabilisers` | Stabilisers | Four units, one in each blanked arch. Read from the front three-quarter and from above. | **Vector Pods:** a slim pod per corner, nozzle angled down and back. **Twin Lift Cans:** two tall lift cans per corner. **Aero Blades:** a tall blade outboard, a flat slot jet in the arch. **Outriggers:** a slim nacelle on two wishbone arms. **Skirt Trios:** a short skirt over the arch, three small cans below. **Canard Tip Jets:** a flat canard from each arch, a long jet on its tip. |
 | `Boost` | Afterburner | In a notch in the centre of the tail, high, under the turbine nozzle. The last thing the chase camera sees. | **Quad Cans:** four long slim cans in a row. **Twin Cannons:** two big cannons. **Tri Cluster:** three small cans in a tight triangle. **Slot Burner:** one wide flat slot, very short. **Big Bore:** one long big-bore can. **Split Slots:** two tall narrow slots, wide apart. |
 
 ## Body and cosmetic slots
@@ -57,8 +57,8 @@ Every Exotic has all four. Each shows an intake, a body and a glowing nozzle fro
 | `FrontBody` | Nose | **Shovel Nose:** one flat plane from a chisel lip to the windscreen. **Droplet Nose:** short rounded bonnet, peaked fenders. **Keel Nose:** needle keel, open air channels, floating fender blades. **Blunt Nose:** short blunt face, big intake, bare arches. **Lowline Nose:** two tall lamp towers, a valley between. **Visor Nose:** flat low platform, full-width light visor. |
 | `RearBody` | Engine Deck | **Slab Deck:** boxy, full width, chopped tail. **Boat Tail:** smooth belly, round haunches, narrow rolled tail. **Tunnel Tail:** centre spine, open channels, slim longerons. **Frame Tail:** bare see-through space frame. **Streamer Tail:** swelling haunches, drooping tail corners. **Kamm Tail:** twin hulls, open tunnel, sheer cut-off tail. |
 | `SidePods` | Side Pods | **Strake Intakes:** a straked wedge rising from the door. **Torpedo Pods:** a round pod on two pylons, bullet nose. **Floating Blades:** a thin blade off two struts, no pod. **Barge Trays:** wide floor tray, upright barge board. **Full Fairings:** smooth full-height fairing, long stripe. **Waisted Cheeks:** low intake tapering to a pinched waist. |
-| `FrontBumper` | Splitter | **Chin Blade:** wide thin blade, one centre fin. **Rolled Lip:** narrow plate, rolled bar on the edge. **Keel Planes:** centre keel with small side planes, widest and flattest. **Plough:** wide plough with end posts, the tallest. **Long Tongue:** narrow plate jutting far forward. **Scoop Bib:** short deep bib, the narrowest. |
-| `RearBumper` | Diffuser | **Strake Diffuser:** sloped wedge, two upright strakes. **Rolled Valance:** wide plate, rolled bar on the lower edge. **Venturi:** wedge between tall tunnel walls. **Crash Bar:** thin plate, rail and short posts. **Tail Tray:** the widest and tallest flat tray, tall end plates. **Keel Fin:** narrow tray, one central keel fin. |
+| `FrontBumper` | Splitter | **Chin Blade:** wide thin blade, one centre fin. **Soft Lip:** narrow plate, soft rounded edge. **Keel Planes:** centre keel with small side planes, widest and flattest. **Plough:** wide plough with end posts, the tallest. **Long Tongue:** narrow plate jutting far forward. **Scoop Bib:** short deep bib, the narrowest. |
+| `RearBumper` | Diffuser | **Strake Diffuser:** sloped wedge, two upright strakes. **Smooth Valance:** wide plate, smooth lower edge. **Venturi:** wedge between tall tunnel walls. **Crash Bar:** thin plate, rail and short posts. **Tail Tray:** the widest and tallest flat tray, tall end plates. **Keel Fin:** narrow tray, one central keel fin. |
 | `RearSpoiler` | Wing | **Poster Wing:** one flat plane on two uprights. **Bridge Wing:** narrow plane, sloped trailing flap. **Active Blade:** thin full-width blade on slim struts. **Twin Element:** two stacked planes, big end plates. **Tail Fins:** deep plane, two short upright fins. **Split Winglets:** two separate short planes, tall end plates. |
 
 The splitter, diffuser and wing looks are read from the blockout's sizes and names. Check them against the meshes.
@@ -68,11 +68,11 @@ The splitter, diffuser and wing looks are read from the blockout's sizes and nam
 | Kit | Culture | Native cockpit | What makes it look different |
 |---|---|---|---|
 | Wedge | Wedge | Wedge | Boxy and sharp: Shovel Nose, Slab Deck, Mono Turbine, Ram Boxes, Vector Pods, Quad Cans, Poster Wing. |
-| Analogue | Analogue | Curve | Round and smooth: Droplet Nose, Boat Tail, glass-lid Twin Spool, Round Pods, Torpedo Pods, Twin Cannons. |
+| Analogue | Analogue | Curve | Round and smooth: Droplet Nose, Boat Tail, Torpedo Pods, Twin Spool, Round Pods, Twin Lift Cans, Twin Cannons. |
 | Hyper | Hypercar | Hyper | Open and airy: Keel Nose, Tunnel Tail, Floating Blades, Top-Exit Core, Stacked Pairs, Aero Blades, Tri Cluster. |
 | Track | Track Special | Spider | Bare and loud: Blunt Nose, Frame Tail, Eight Stack, Stub Burners, Outriggers, Slot Burner, Plough. |
-| Longtail | Longtail | Longtail | Long and low: Lowline Nose, Streamer Tail, Lance Turbine, Long Lances, Spat Trios, Big Bore, Tail Fins. |
-| Concept | Concept | Gull | Odd and clean: Visor Nose, Kamm Tail, Cross Barrel, Ear Scoops, Canard Tip Jets, Split Slots. |
+| Longtail | Longtail | Longtail | Long and low: Lowline Nose, Streamer Tail, Lance Turbine, Long Lances, Skirt Trios, Big Bore, Tail Fins. |
+| Concept | Concept | Gull | Odd and clean: Visor Nose, Kamm Tail, Cross Plenum, Ear Scoops, Canard Tip Jets, Split Slots. |
 
 Any cockpit takes any kit. The nose and the deck always meet the cockpit at the same seams. Built size is 23.6 to 25.0 long and 10.9 to 11.9 wide.
 
@@ -100,7 +100,7 @@ Net: a fast, precise car for a driver who stays tidy. It punishes sloppy slides 
 
 ## Ideas that make Exotic fun to own
 
-1. **The glass lid.** Twin Spool and Cross Barrel sit under glass. You see the turbine spin up in the garage and at red lights. Lifting the cover is the reveal.
+1. **The glass cover.** The Gull cockpit puts glass over the Main Turbine, whichever turbine you fit. You see it spin up in the garage and at red lights. Lifting the cover is the reveal.
 2. **Doors as a pose.** Wedge and Gull open upwards. Parked at a meet, doors rise and the engine idles. A free flex for every owner.
 3. **Count the cans.** The Afterburner pattern is the tail signature: four needles, two cannons, a triangle, a flat sheet, one plume, two blades. Players will say "tri-cluster" from across the street.
 4. **Active aero you can see.** Aero Blades, Active Blade and Canard Tip Jets tilt in turns and flick up on braking. The stabilisers work in view of the camera.
@@ -121,7 +121,7 @@ Net: a fast, precise car for a driver who stays tidy. It punishes sloppy slides 
 *03 One kit, three cockpits. Left Wedge, centre Spider, right Longtail. All wear the Hyper kit in pearl and electric blue: Keel Nose, Tunnel Tail, Top-Exit Core, Stacked Pairs, Aero Blades, Active Blade. Only the cabin changes. The Tri Cluster is hidden at this angle.*
 
 ![One cockpit, three kits](img/exotic/04-one-cockpit-three-kits.jpg)
-*04 One cockpit, three kits. Curve three times in deep red and silver. Left Analogue kit (Droplet Nose, Twin Spool, Round Pods, Twin Lift Cans, Twin Cannons). Centre Track kit (Blunt Nose, Frame Tail, Eight Stack, Outriggers, Plough, Slot Burner). Right Longtail kit (Lowline Nose, Lance Turbine, Long Lances, Spat Trios, Big Bore, Tail Fins).*
+*04 One cockpit, three kits. Curve three times in deep red and silver. Left Analogue kit (Droplet Nose, Twin Spool, Round Pods, Twin Lift Cans, Twin Cannons). Centre Track kit (Blunt Nose, Frame Tail, Eight Stack, Outriggers, Plough, Slot Burner). Right Longtail kit (Lowline Nose, Lance Turbine, Long Lances, Skirt Trios, Big Bore, Tail Fins).*
 
 ![Main Turbine options](img/exotic/05-engines.jpg)
 *05 Main Turbine options, rear three-quarter. Spider cockpit in racing green and gold, identical except Engine1. Left Mono Turbine, centre Eight Stack, right Lance Turbine.*
@@ -130,7 +130,7 @@ Net: a fast, precise car for a driver who stays tidy. It punishes sloppy slides 
 *06 Stabilisers and boost. Hyper cockpit in the Hyper kit, graphite and lime. Tri Cluster firing three long flames, Top-Exit Core under the glass engine cover, Aero Blades pushing thrust at the floor. Seen low from behind. The Stacked Pairs are not clearly shown in this render.*
 
 ![Longtail](img/exotic/07-longtail.jpg)
-*07 Longtail. Longtail cockpit in the Longtail kit, pale blue and orange. Lowline Nose, Streamer Tail, Long Tongue, Lance Turbine, Long Lances, Spat Trios, Tail Fins. The Big Bore is hidden at this angle.*
+*07 Longtail. Longtail cockpit in the Longtail kit, pale blue and orange. Lowline Nose, Streamer Tail, Long Tongue, Lance Turbine, Long Lances, Skirt Trios, Tail Fins. The Big Bore is hidden at this angle.*
 
 ![Action](img/exotic/08-action.jpg)
 *08 Action. The Wedge hero build at speed in a neon city at night. Mono Turbine and Quad Cans streaming behind, Vector Pods blowing mist off the wet road.*
@@ -139,7 +139,7 @@ Net: a fast, precise car for a driver who stays tidy. It punishes sloppy slides 
 
 - **Body look-alikes.** Nose and deck pairs score 0.12 to 0.38 against a 0.35 target, cockpits 0.20 to 0.30 against 0.25. The shared tub, pads and arches make up most of each outline. Reaching the target needs a smaller shared core. Owner decision.
 - **Size.** Builds are 23.6 to 25.0 long against a 23 target, and up to 11.9 wide. Check lanes, garage bays and the camera.
-- **Wheel look-alikes.** The first two renders of image 03 showed a dark round shape in the arches that read as a tyre. Prompts now say no curved arch cut-outs. Image 02 was regenerated because its cabin showed empty dark arches that read as wheel wells. Round Pods, Twin Lift Cans and Spat Trios must stay long and slim in the mesh, never round or short.
+- **Wheel look-alikes.** The first two renders of image 03 showed a dark round shape in the arches that read as a tyre. Prompts now say no curved arch cut-outs. Image 02 was regenerated because its cabin showed empty dark arches that read as wheel wells. Round Pods, Twin Lift Cans and Skirt Trios must stay long and slim in the mesh, never round or short.
 - **Concept art is not the blockout.** The images approximate the modules and do not match them part for part. Use the blockout previews for fit, the art for mood. Image 06 was regenerated after the first render read as a spaceship; it now reads as a supercar.
 - **Open decks.** Tunnel, Frame and Kamm decks are see-through. Check they look designed, not broken, in game lighting. The Curve roof is one cylinder and needs a real mesh to read as a teardrop.
 - **Hidden turbine.** From a low side view the side engines and buttresses hide part of the Main Turbine. The chase camera sees it.
