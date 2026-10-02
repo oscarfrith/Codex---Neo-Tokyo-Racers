@@ -148,6 +148,8 @@ def main():
 
         blocks = ""
         for stem, title, width in (("matrix", "Interchange matrix: every cockpit (rows) wearing every signature kit (columns)", 1700),
+                                   ("mix_a", "Per-module swap test: six builds with every slot filled at random, front (top) and rear (bottom)", 1900),
+                                   ("mix_b", "Six more random mixes", 1900),
                                    ("fundamentals", "Engine, stabiliser and boost options, each highlighted on one cockpit", 1700),
                                    ("exploded", "Exploded build, one colour per slot", 1500),
                                    ("sheet", "Native, swapped and mixed builds", 1600),
@@ -282,7 +284,7 @@ tr.fund td:first-child { color: var(--cyan); }
     <div>
       <h3>Fundamentals first, body second</h3>
       <p class="muted">Engine1, Engine2, Stabilisers and Boost are jet hardware in every class, placed wherever suits it. They are shown in cyan in each slot table. The body sections get their own slots: front body, rear body and the mid section, then bumpers, spoiler, hood, roof and extras.</p>
-      <p class="muted">The matrix under each class is the test that matters: each row is one cockpit, each column one kit. Every cell has to fit cleanly and look like a different vehicle from its neighbours.</p>
+      <p class="muted">Two tests sit under each class. The matrix shows every cockpit (rows) in every kit (columns). The mix sheets go further: twelve builds where every slot holds a random option, so parts from different kits sit side by side. Every one has to fit cleanly and still look like one vehicle.</p>
     </div>
   </section>
   {{SECTIONS}}

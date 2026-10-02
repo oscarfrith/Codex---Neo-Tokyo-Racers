@@ -415,8 +415,8 @@ def cockpit_ute():
         box(-3.2, 3.2, 3.45, 3.7, ze, ze + 0.06, "secondary", "tailgate stripe"),
         box(-3.6, 3.6, BELT, 3.42, zc, ze - 0.4, "detail", "dark bed liner: the open bed"),
     ]
-    for x in (0.7, 2.1):
-        p.append(mbox(x - 0.14, x + 0.14, 3.42, 3.5, zc + 0.3, ze - 0.6, "secondary", "bed rib"))
+    p.append(box(-0.14, 0.14, 3.42, 3.5, zc + 0.3, ze - 0.6, "secondary", "bed rib"))
+    p.append(mbox(1.6, 1.88, 3.42, 3.5, zc + 0.3, ze - 0.6, "secondary", "bed rib"))
     return p + occupants(BELT, 2.1)
 
 
@@ -829,17 +829,20 @@ def e2_overunder():
 
 
 def e2_slot():
-    """Flat full-width slot burner under a louvred lid."""
-    return [
+    """Flat full-width slot burner under a boot lid with three raised intake louvres, stepped up to the tail.
+    The last louvre stands 0.64 above the deck, so a spoiler ramp over the bay has a surface under it."""
+    p = [
         box(-3.1, 3.1, 1.9, 2.7, ZE - 0.05, 12.6, "detail", "burner box"),
         box(-3.2, 3.2, 1.95, 2.65, 12.6, 13.1, "secondary", "slot nozzle frame"),
         box(-2.9, 2.9, 2.05, 2.55, 12.95, 13.4, "thrust", "slot jet"),
         box(-3.2, 3.2, 2.7, BELT, ZE - 0.05, 12.4, "primary", "boot lid"),
-        box(-2.6, 2.6, BELT, 3.38, 10.5, 10.85, "detail", "intake louvre"),
-        box(-2.6, 2.6, BELT, 3.38, 11.15, 11.5, "detail", "intake louvre"),
-        box(-2.6, 2.6, BELT, 3.38, 11.8, 12.15, "detail", "intake louvre"),
+        box(-2.7, 2.7, BELT, 3.36, 10.4, 12.3, "detail", "louvre bed"),
         mbox(0.9, 1.0, 2.0, 2.6, 12.6, 13.2, "secondary", "nozzle vane"),
     ]
+    for i in range(3):
+        z = 10.45 + 0.65 * i
+        p.append(box(-2.9, 2.9, BELT, 3.5 + 0.22 * i, z, z + 0.45, "primary", "raised intake louvre"))
+    return p
 
 
 def e2_quad():
@@ -857,13 +860,16 @@ def e2_quad():
 
 
 def e2_inline():
-    """Four small jets in a low row under a flat plenum with open trumpets."""
-    p = [box(-3.15, 3.15, 1.65, 2.1, ZE - 0.05, 12.2, "secondary", "flat plenum")]
-    for x in (0.8, 2.4):
-        p += [cylz(x, 1.0, ZE, 12.4, 1.25, "detail", "jet body", mirror=True),
-              cylz(x, 1.0, 12.4, 13.05, 1.4, "secondary", "nozzle", mirror=True),
-              cylz(x, 1.0, 12.9, 13.45, 0.9, "thrust", "jet", mirror=True),
-              cyly(x, 11.3, 2.1, 2.75, 0.8, "detail", "intake trumpet", mirror=True)]
+    """Four small jets in a low row under a flat plenum, the outer pair set 0.7 further forward than the inner pair.
+    Four body-colour intake runners stand on the plenum and carry a body-colour deck lid, so a spoiler ramp
+    over the bay has a surface 0.55 under it and a row of lit columns below, not a deep dark hollow."""
+    p = [box(-3.15, 3.15, 1.65, 2.1, ZE - 0.05, 12.0, "secondary", "flat plenum"),
+         box(-3.1, 3.1, 3.35, 3.75, ZE, 11.9, "primary", "deck lid on the four runners")]
+    for x, dz in ((0.8, 0.0), (2.4, -0.7)):
+        p += [cylz(x, 1.0, ZE, 12.4 + dz, 1.25, "detail", "jet body", mirror=True),
+              cylz(x, 1.0, 12.4 + dz, 13.05 + dz, 1.4, "secondary", "nozzle", mirror=True),
+              cylz(x, 1.0, 12.9 + dz, 13.45 + dz, 0.9, "thrust", "jet", mirror=True),
+              cyly(x, 11.3, 2.1, 3.35, 0.9, "primary", "intake runner", mirror=True)]
     return p
 
 
@@ -889,9 +895,16 @@ def st_corner_turbines():
              cylz(4.2, 1.05, zc - 1.3, zc + 1.4, 0.85, "detail", "log plenum under the arch roof", mirror=True),
              cylz(4.2, 1.05, zc - 1.85, zc - 1.3, 1.05, "secondary", "plenum intake lip", mirror=True)]
         for s in (-1, 1):
-            u = _unit((0.45, -0.75, 0.3 * s))
-            a = np.array([4.2, 1.0, zc + 0.5 * s])
-            b = a + 2.1 * u
+            v, z0, length = (0.45, -0.75, 0.3 * s), zc + 0.5 * s, 2.1
+            if rear:
+                # Rear pair: canted out less, so both nozzles stay inboard of the Side Burner exhaust lane.
+                # The forward can stands nearly upright and sits further back, clear of the burner tip.
+                v = (0.33, -0.78, 0.3)
+                if s < 0:
+                    v, z0, length = (0.33, -0.78, -0.1), zc - 0.2, 2.0
+            u = _unit(v)
+            a = np.array([4.2, 1.0, z0])
+            b = a + length * u
             p += [tube(a, b, 1.1, "secondary", "lift turbine, 1.1 across and 2.1 long, canted out", mirror=True),
                   tube(b - 0.55 * u, b, 1.3, "detail", "nozzle", mirror=True),
                   tube(b - 0.1 * u, b + 0.45 * u, 1.0, "thrust", "jet, outboard of the skin", mirror=True)]
@@ -903,12 +916,12 @@ def st_big_little():
     """Pro Street: one long fat nacelle standing proud of each rear arch, one thin canted jet in each front arch."""
     def one(zc, rear):
         if rear:
-            x, y = 5.1, 0.4
-            p = [mbox(3.6, 5.3, 1.2, 1.66, zc - 0.9, zc + 0.6, "detail", "pylon"),
+            x, y = 5.1, 0.55      # high in the arch: the Side Burner exhaust lane runs under its outer half
+            p = [mbox(3.6, 5.3, 1.3, 1.66, zc - 0.9, zc + 0.6, "detail", "pylon"),
                  cylz(x, y, zc - 1.85, zc - 1.25, 1.3, "detail", "tapered intake lip", mirror=True),
                  cylz(x, y, zc - 1.25, zc + 0.9, 1.7, "secondary", "long fat nacelle, 1.7 across, proud of the skin", mirror=True)]
-            p += jet((x, y - 0.1, zc + 0.55), (x + 0.2, y - 1.05, zc + 1.2), 1.35, "detail", None, 0.38, mirror=True,
-                     note="big lift nozzle: down, back and out", glow=1.1)
+            p += jet((x - 0.1, y - 0.1, zc + 0.55), (x - 0.15, y - 1.1, zc + 1.2), 1.3, "detail", None, 0.38, mirror=True,
+                     note="big lift nozzle: down and back, inboard of the burner lane", glow=1.05)
             return p
         u = _unit((0.9, -1.85, 1.0))
         a = np.array([4.4, 1.3, zc - 0.55])
@@ -927,10 +940,10 @@ def st_big_little():
 def st_outriggers():
     """Trans-Am: the arch is closed by a louvred panel and a slim pod stands outboard of it on an arm."""
     def one(zc, rear):
-        x, y = 5.45, 0.15
+        x, y = 5.45, 0.45        # the pod rides above the Side Burner exhaust lane
         p = [mbox(4.72, 4.88, SILL, 1.66, zc - 1.85, zc + 1.85, "primary", "louvred blanking panel closes the arch"),
-             mbox(3.45, 5.2, -0.05, 0.3, zc - 0.45, zc + 0.45, "detail", "outrigger arm from the arch back wall"),
-             plank((4.7, 1.62, zc), (5.3, 0.5, zc), 0.5, 0.2, "detail", "brace up to the arch roof pad", mirror=True),
+             mbox(3.45, 5.2, 0.3, 0.62, zc - 0.45, zc + 0.45, "detail", "outrigger arm from the arch back wall"),
+             plank((4.75, 1.62, zc), (5.3, 0.82, zc), 0.5, 0.2, "detail", "brace up to the arch roof pad", mirror=True),
              cylz(x, y, zc - 1.85, zc - 1.4, 1.05, "detail", "intake lip", mirror=True),
              cylz(x, y, zc - 1.4, zc + 1.0, 0.9, "secondary", "slim outboard pod", mirror=True)]
         for dz in (-1.35, -0.75, 0.75, 1.35):
@@ -942,15 +955,18 @@ def st_outriggers():
 
 
 def st_vector_cans():
-    """Modern: one large can per arch, swung outboard in a yoke whose outer arm stands outside the body skin."""
+    """Modern: one large can per arch, hung in a yoke whose outer arm stands outside the body skin.
+    The can fires down and back, inboard of the Side Burner exhaust lane, and the yoke arm stops above the lane."""
     def one(zc, rear):
-        u = _unit((0.2, -0.62, 0.76))
-        a = np.array([4.8, 0.95, zc - 0.95])
+        u = _unit((0.0, -0.62, 0.76))
+        a = np.array([4.9, 0.95, zc - 0.95])
         m, b = a + 1.6 * u, a + 2.5 * u
+        piv = a + 0.55 * u
         return [
             mbox(3.5, 5.98, 1.3, 1.66, zc - 1.5, zc + 0.3, "detail", "yoke crosshead under the arch roof pad"),
-            mbox(5.74, 5.98, 0.0, 1.3, zc - 1.0, zc - 0.2, "secondary", "outer yoke arm, outboard of the body skin"),
-            mbox(3.8, 4.04, 0.0, 1.3, zc - 1.0, zc - 0.2, "secondary", "inner yoke arm"),
+            mbox(5.74, 5.98, 0.1, 1.3, zc - 1.0, zc - 0.2, "secondary", "outer yoke arm, outboard of the body skin"),
+            mbox(3.8, 4.04, 0.1, 1.3, zc - 1.0, zc - 0.2, "secondary", "inner yoke arm"),
+            cylx(piv[1], piv[2], 3.8, 5.98, 0.34, "detail", "trunnion through both yoke arms", mirror=True),
             tube(a - 0.1 * u, a + 0.4 * u, 1.6, "detail", "intake lip", mirror=True),
             tube(a, m, 1.4, "secondary", "one large vectoring can, 1.4 across and 2.5 long", mirror=True),
             tube(m, b, 1.25, "detail", "nozzle", mirror=True),
@@ -998,29 +1014,28 @@ BZ0, BZ1 = Z_COWL + 0.1, RA0 - 0.15      # usable sill length: -1.9 to 6.25
 
 
 def bo_side_pipes():
-    """Classic: one long pipe the full length of the sill with a fat afterburner can at the back."""
-    x, y = 5.55, -0.74
+    """Classic: one long pipe the full length of the sill, a fat afterburner can and a turned-out tip."""
+    x, y = 5.42, -0.64
     return [
         cylz(x, y, BZ0, -1.0, 1.15, "detail", "intake bell", mirror=True),
-        cylz(x, y, -1.0, 4.5, 0.95, "secondary", "long side pipe", mirror=True),
-        cylz(x, y, 4.5, 5.75, 1.2, "detail", "afterburner can", mirror=True),
-        cylz(x, y, 5.6, BZ1, 0.85, "thrust", "jet", mirror=True),
+        cylz(x, y, -1.0, 4.2, 0.95, "secondary", "long side pipe", mirror=True),
+        cylz(x, y, 4.2, 5.25, 1.2, "detail", "afterburner can", mirror=True),
         mbox(4.82, 5.4, -0.5, 0.2, -0.2, 0.2, "detail", "hanger on the sill rail"),
         mbox(4.82, 5.4, -0.5, 0.2, 3.4, 3.8, "detail", "hanger on the sill rail"),
-    ]
+    ] + jet((x, y, 4.95), (x + 0.42, y - 0.12, 5.9), 1.0, "detail", None, 0.2, mirror=True,
+            note="turned-out tip: fires out and back, past the rear arch", glow=0.8)
 
 
 def bo_bazookas():
-    """Pro Street: one short fat burner under the back of each door."""
-    x, y = 5.55, -0.62
+    """Pro Street: one short fat burner under the back of each door, with a turned-out nozzle."""
+    x, y = 5.52, -0.62
     return [
-        cylz(x, y, 2.2, 3.2, 1.45, "secondary", "intake collar", mirror=True),
-        ball(x, y, 2.4, 0.8, "detail", "intake spinner", mirror=True),
-        cylz(x, y, 3.2, 4.6, 1.25, "detail", "short fat burner", mirror=True),
-        cylz(x, y, 4.6, 5.7, 1.45, "detail", "nozzle bell", mirror=True),
-        cylz(x, y, 5.55, BZ1, 1.05, "thrust", "jet", mirror=True),
-        mbox(4.82, 5.2, -0.5, 0.2, 3.3, 4.5, "detail", "hanger on the sill rail"),
-    ]
+        cylz(x, y, 2.0, 3.0, 1.4, "secondary", "intake collar", mirror=True),
+        ball(x, y, 2.2, 0.8, "detail", "intake spinner", mirror=True),
+        cylz(x, y, 3.0, 4.4, 1.25, "detail", "short fat burner", mirror=True),
+        mbox(4.82, 5.2, -0.5, 0.2, 3.1, 4.3, "detail", "hanger on the sill rail"),
+    ] + jet((x - 0.05, y, 3.9), (x + 0.26, y - 0.16, 5.0), 1.08, "detail", None, 0.25, mirror=True,
+            note="turned-out nozzle: fires out and back, past the rear arch", glow=0.9)
 
 
 def bo_megaphones():
@@ -1038,15 +1053,18 @@ def bo_megaphones():
 
 def bo_sill_slots():
     """Modern: a flat burner blade along the sill between a boxed intake at the front and a boxed nozzle at the back.
-    Only the rear nozzle is a jet. The strip along the blade edge is lighting."""
+    The nozzle ends in a flat duct turned outboard. Only that duct is a jet. The strip along the blade edge is lighting."""
+    p0, p1 = np.array([5.58, -0.38, 4.9]), np.array([5.84, -0.5, 5.75])
+    u = _unit(p1 - p0)
     return [
         mbox(4.85, 6.2, -0.6, 0.22, BZ0, -0.8, "secondary", "boxed intake at the front of the sill"),
         mbox(4.98, 6.07, -0.48, 0.1, BZ0 - 0.06, BZ0, "detail", "intake mouth"),
-        mbox(4.85, 6.15, -0.3, 0.05, -0.8, 5.0, "detail", "flat sill burner blade"),
-        mbox(4.82, 5.4, 0.05, 0.22, -0.8, 5.0, "secondary", "blade root on the sill rail"),
-        mbox(6.15, 6.25, -0.28, 0.0, -0.4, 4.8, "neon", "edge light strip: lighting, not a jet"),
-        mbox(4.85, 6.3, -0.8, 0.25, 5.0, 5.8, "secondary", "boxed nozzle"),
-        mbox(4.95, 6.2, -0.67, 0.08, 5.7, BZ1, "thrust", "nozzle jet, 1.25 by 0.75"),
+        mbox(4.85, 6.15, -0.3, 0.05, -0.8, 4.6, "detail", "flat sill burner blade"),
+        mbox(4.82, 5.4, 0.05, 0.22, -0.8, 4.6, "secondary", "blade root on the sill rail"),
+        mbox(6.15, 6.25, -0.28, 0.0, -0.4, 4.4, "neon", "edge light strip: lighting, not a jet"),
+        mbox(4.85, 6.2, -0.8, 0.25, 4.6, 5.3, "secondary", "boxed nozzle"),
+        plank(p0, p1, 0.85, 0.8, "secondary", "flat duct turned outboard", mirror=True),
+        plank(p1 - 0.1 * u, p1 + 0.3 * u, 0.7, 0.58, "thrust", "nozzle jet, 0.7 by 0.58: fires out and back", mirror=True),
     ]
 
 
@@ -1065,16 +1083,19 @@ def bo_lake_trios():
 
 
 def bo_underslung():
-    """Restomod: two thin pipes slung low under the sill, the full length of the door."""
+    """Restomod: two thin pipes slung low under the sill. Both tips turn outboard, the outer one first,
+    so the two jets fire side by side past the rear arch."""
+    y = -1.02
     p = [mbox(4.82, 5.0, -0.8, 0.2, -0.4, 0.0, "detail", "hanger on the sill rail"),
-         mbox(4.82, 5.0, -0.8, 0.2, 4.0, 4.4, "detail", "hanger on the sill rail"),
-         mbox(5.0, 6.2, -0.8, -0.62, -0.4, 0.0, "detail", "hanger strap"),
-         mbox(5.0, 6.2, -0.8, -0.62, 4.0, 4.4, "detail", "hanger strap")]
-    for x in (5.22, 5.88):
-        p += [cylz(x, -0.98, BZ0, -1.5, 0.72, "secondary", "intake lip", mirror=True),
-              cylz(x, -0.98, -1.5, 5.1, 0.6, "detail", "underslung pipe", mirror=True),
-              cylz(x, -0.98, 5.1, 5.8, 0.8, "secondary", "nozzle tip", mirror=True),
-              cylz(x, -0.98, 5.65, BZ1, 0.6, "thrust", "jet", mirror=True)]
+         mbox(4.82, 5.0, -0.8, 0.2, 2.9, 3.3, "detail", "hanger on the sill rail"),
+         mbox(5.0, 5.92, -0.8, -0.62, -0.4, 0.0, "detail", "hanger strap"),
+         mbox(5.0, 5.92, -0.8, -0.62, 2.9, 3.3, "detail", "hanger strap")]
+    # (pipe X, end of the straight run, tip vector)
+    for x, z1, v in ((5.12, 5.05, (0.68, -0.04, 0.85)), (5.64, 3.65, (0.31, -0.03, 0.6))):
+        a = np.array([x, y, z1 - 0.1])
+        p += [cylz(x, y, BZ0, -1.5, 0.62, "secondary", "intake lip", mirror=True),
+              cylz(x, y, -1.5, z1, 0.5, "detail", "underslung pipe", mirror=True)]
+        p += jet(a, a + np.array(v), 0.64, "secondary", None, 0.22, mirror=True, note="turned-out tip", glow=0.5)
     return p
 
 
@@ -1125,7 +1146,7 @@ def sp_cove():
 
 def sp_rocker_tube():
     p = [cylz(5.3, 0.62, -1.7, 5.9, 0.5, "secondary", "brushed rocker tube", mirror=True)]
-    for z in (-1.0, 1.9, 4.8):
+    for z in (-0.6, 4.4):
         p.append(mbox(4.82, 5.2, 0.5, 0.75, z, z + 0.3, "detail", "standoff"))
     return p
 
@@ -1457,6 +1478,88 @@ SPEC = {
 }
 
 
+# ----------------------------------------------------------------------------- exhaust lane check
+# Side Burners end just ahead of the rear arch, so the rear Lift Jets must not sit in their exhaust.
+# Rear-exit burners end in a tip turned 16 to 39 degrees outboard, so the jet fires past the arch.
+# The lane behind them is X 5.65 and out, Y -0.35 and down. No rear Lift Jet part enters it.
+COVER_MAX = 0.25     # most of a thrust face that rear Lift Jet parts may hide or block
+PLUME = 3.0          # a boost plume is taken as 3 studs long
+REAR_EXIT_Z = RA0 - 1.5   # a burner whose jet ends behind this line is a rear-exit burner
+
+
+def _covered(face, blockers, axis, reach=None, ppu=40):
+    """Share of a thrust part's outline, seen along `axis`, that `blockers` cover.
+    Blockers wholly ahead of the nozzle exit are ignored; with `reach`, so are those further behind than that."""
+    from PIL import Image, ImageDraw
+    u = _unit(axis)
+    e1 = _unit(np.cross([0.0, 1.0, 0.0], u))
+    e2 = np.cross(u, e1)
+    fv, ff = vbspec.world_mesh(face)
+    exit_t = float((fv @ u).max())
+    meshes = []
+    for b in blockers:
+        bv, bf = vbspec.world_mesh(b)
+        t = bv @ u
+        if t.max() > exit_t and (reach is None or t.min() < exit_t + reach):
+            meshes.append((bv, bf))
+    lo = np.array([(fv @ e1).min(), (fv @ e2).min()]) - 0.1
+    hi = np.array([(fv @ e1).max(), (fv @ e2).max()]) + 0.1
+    size = tuple(int(math.ceil(v * ppu)) + 2 for v in (hi - lo))
+
+    def mask(items):
+        img = Image.new("L", size, 0)
+        d = ImageDraw.Draw(img)
+        for verts, faces in items:
+            for f in faces:
+                d.polygon([(((verts[i] @ e1) - lo[0]) * ppu + 1, ((verts[i] @ e2) - lo[1]) * ppu + 1) for i in f], fill=255)
+        return np.asarray(img) > 0
+
+    T = mask([(fv, ff)])
+    return float((T & mask(meshes)).sum()) / max(1, int(T.sum()))
+
+
+def exhaust_check(verbose=False):
+    """For every Side Burner and Lift Jet pairing, on the +X side:
+      behind = share of each thrust face hidden by rear Lift Jet parts, looking straight from behind;
+      path   = share of each thrust face whose 3 stud plume, fired along the nozzle axis, meets a rear Lift Jet part.
+    `path` must pass for all 36 pairings. `behind` must pass for the rear-exit burners. Megaphones and Lake Trios
+    exit mid-sill, 2.2 studs or more ahead of the rear arch, so `behind` is printed for them but not enforced.
+    Returns (failures, worst rear-exit behind, worst path)."""
+    fails, worst_behind, worst_path = [], 0.0, 0.0
+    for bid, bmod in MODULES["Boost"].items():
+        faces = [p for p in vbspec.expand_parts(bmod["parts"]) if p["ch"] == "thrust" and p["pos"][0] > 0]
+        row = []
+        for sid, smod in MODULES["Stabilisers"].items():
+            rear = [p for p in vbspec.expand_parts(smod["parts"]) if p["pos"][0] > 0 and p["pos"][2] > 0]
+            behind = path = 0.0
+            rear_exit = False
+            for f in faces:
+                axis = vbspec.rot_matrix(f["rot"]) @ np.array([0.0, 0.0, 1.0])
+                rear_exit = rear_exit or float(vbspec.world_mesh(f)[0][:, 2].max()) > REAR_EXIT_Z
+                behind = max(behind, _covered(f, rear, (0, 0, 1)))
+                path = max(path, _covered(f, rear, axis, PLUME))
+            row.append("%3.0f/%-3.0f" % (100 * behind, 100 * path))
+            worst_path = max(worst_path, path)
+            if rear_exit:
+                worst_behind = max(worst_behind, behind)
+            if path > COVER_MAX or (rear_exit and behind > COVER_MAX):
+                fails.append("%s with %s: %.0f%% hidden from behind, %.0f%% of the plume blocked" % (bid, sid, 100 * behind, 100 * path))
+        if verbose:
+            print("  %-18s %s" % (bid, " ".join(row)))
+    return fails, worst_behind, worst_path
+
+
+def part_counts():
+    """Largest build of the 15 listed, and the largest of all 36 cockpit and kit pairs (expanded parts)."""
+    def n(parts):
+        return len(vbspec.expand_parts(parts))
+    listed = max(n(COCKPITS[b["cockpit"]]["parts"]) + sum(n(MODULES[s][m]["parts"]) for s, m in vbspec.resolve_modules(SPEC, b).items())
+                 for b in BUILDS)
+    pairs = max(n(c["parts"]) + sum(n(MODULES[s][m]["parts"]) for s, m in k["modules"].items())
+                for c in COCKPITS.values() for k in KITS.values())
+    return listed, pairs
+
+
 def table():
     """Pairwise distinctness for every slot and for the cockpits, as the validator scores it: free outline / whole."""
     groups = {s: {m: vbspec.expand_parts(d["parts"]) for m, d in mods.items()} for s, mods in MODULES.items()}
@@ -1483,8 +1586,19 @@ def main():
         print("  warn  " + w)
     print("distinctness (free): %s" % stats.get("min_distinctness"))
     print("distinctness (whole): %s  worst gap: %s" % (stats.get("min_distinctness_whole"), stats.get("worst_gap")))
-    if "--table" in sys.argv:
+    verbose = "--table" in sys.argv
+    if verbose:
+        print("\nexhaust lane, behind/path percent (columns: %s)" % ", ".join(MODULES["Stabilisers"]))
+    fails, behind, path = exhaust_check(verbose)
+    print("exhaust lane: %d of 36 pairings fail (limit %.0f%%); worst rear-exit face hidden from behind %.0f%%, worst plume blocked %.0f%%"
+          % (len(fails), 100 * COVER_MAX, 100 * behind, 100 * path))
+    for f in fails:
+        print("  ERROR exhaust lane: " + f)
+    print("parts: largest listed build %d, largest cockpit and kit pair %d (limit %d)" % (part_counts() + (vbspec.MAX_PARTS,)))
+    if verbose:
         table()
+    if errors or fails:
+        sys.exit(1)
 
 
 if __name__ == "__main__":

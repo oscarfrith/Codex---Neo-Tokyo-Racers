@@ -1,4 +1,4 @@
-"""Generator for the Cruiser frame-class blockout spec (round 2, after the second review). Design exploration only.
+"""Generator for the Cruiser frame-class blockout spec (round 2, after the third fix round). Design exploration only.
 
 Run from the repo root:
   py -3 scripts/vehicle_blockouts/gen/cruiser.py
@@ -7,7 +7,9 @@ Run from the repo root:
 Root space: +X right, +Y up, forward is -Z. Units are studs.
 
 Layout in one paragraph: two body halves (FrontBody, RearBody) meet at a shadow gap under the cabin. Between
-PAD_F and PAD_R their tops are one flat deck at the beltline, and every pad lies in that run. The cockpit is the
+PAD_F and PAD_R their tops are one flat deck at the beltline, and every pad lies in that run. The flank pad is
+shorter: it stops at the quarter line QTR (Z 9.0). Behind it each rear half owns its own rear quarter: the flank from
+the sill to the beltline, out to X 5.6, all the way to the tail. The cockpit is the
 cabin: everything above the beltline between CAB_Z0 and CAB_Z1, up to Y 6.5. It owns the cowl, the glass, the roof
 and the rear shelf, so each cabin has its own length, height and position on the deck. Engine1 sits on the bonnet
 pad, Engine2 on the boot pad, fins on the rear fender tops, the boost unit hangs under the tail and the stabilisers
@@ -20,7 +22,9 @@ Swap rules added after the second review (each one keeps a module clean next to 
 - A front half may shape its own fender shoulder ahead of the cowl (COWL), outboard of the bonnet pad and above SHOULDER.
 - A tail burner that rises above the belly stays outboard of X 3.6, clear of every boot turbine nozzle.
 - A wing blade over the boot stays at Y 6.2 or higher. A chin shelf is flat and thin, not a ramp under the nose.
-- Flank trim that looks like a panel is pale with a dark frame and stops at Y 2.35, so it never reads as glass.
+- Flank trim that looks like a panel is pale, frame and all, and stops at Y 2.35, so it never reads as glass or a vent.
+- Flank trim stops at the quarter line. The rear arch it covers is under the cabin (Z 4.8 to 8.8), so the tail behind
+  it is pure overhang and belongs to the rear half: bat-wings, pontoons, jet tubes, flares or a wood quarter.
 """
 import json
 import math
@@ -50,7 +54,9 @@ BONNET_PAD = (PAD_F, -7.0)     # Engine1 lands here, X within 3.4. Nozzles turn 
 BOOT_PAD = (10.2, PAD_R)       # Engine2 lands here, X within 3.6. Intakes start at Z 10.2: clear air behind any cabin.
 FIN_PAD = (9.2, PAD_R)         # fins land here, X 3.6 to 4.6. Anything behind the pad must carry itself.
 BELLY_PAD = (PAD_F, PAD_R)     # stabilisers and the boost hanger hang from the flat belly in this run
-FLANK_PAD = (PAD_F, PAD_R)     # flank trim lands on the flat body side in this run
+QTR = 9.0                      # quarter line: the flank pad stops here. Behind it a rear half owns its flank, out to X 5.6.
+FLANK_PAD = (PAD_F, QTR)       # flank trim lands on the flat body side in this run
+ARCH_R = (4.8, 8.8)            # the blanked rear arch: under the cabin, inside the flank pad. The tail behind is overhang.
 
 
 # ---------------------------------------------------------------- part helpers
@@ -530,40 +536,49 @@ def fb_bullnose():
 
 # ---------------------------------------------------------------- RearBody: rear halves
 def rb_long_deck():
-    """Lowrider: the longest, flattest tail. A square deck lip overhangs a recessed cove with three round lamps a side."""
+    """Lowrider: the longest, flattest, squarest tail. Flat bat-wing blades spread out from the quarter line to the tail
+    over a full fender skirt; a square deck lip overhangs a recessed cove with three round lamps a side."""
     ps = rear_core("crease") + slab(PAD_R, 15.0, "crease") + tail_face(15.0)
     ps += [
         box(-4.7, 4.7, 2.6, BELT, 15.0, 15.45, "primary", note="overhanging deck lip"),
         box(-4.5, 4.5, BAR, 2.6, 15.0, 15.08, "secondary", note="recessed tail cove in the accent colour"),
         box(-1.0, 1.0, 1.7, 2.3, 15.08, 15.14, "detail", note="plate recess"),
+        flare(BODY_X, 5.6, 2.4, BELT, QTR + 0.1, 15.45, "primary", "back", note="bat-wing blade: a flat shoulder that spreads out to the tail, 0.9 proud at the end"),
+        flare(BODY_X, 5.6, 2.2, 2.4, QTR + 0.1, 15.45, "secondary", "back", note="chrome underside of the bat-wing: a bright line that widens to the tail"),
+        box(BODY_X, 4.95, 0.0, 1.45, 9.6, 14.6, "primary", mirror=True, note="full fender skirt over the rear quarter"),
+        box(BODY_X, 5.02, 0.0, 0.16, 9.6, 14.6, "secondary", mirror=True, note="skirt edge chrome"),
     ]
     for x in (2.2, 3.1, 4.0):
         ps.append(cylz(x, 2.0, 0.64, 15.08, 15.3, "neon", mirror=True, note="round tail lamp, three a side"))
-    return ps + arch_blank(8.4, 12.4, 1.8, 2)
+    return ps + arch_blank(ARCH_R[0], ARCH_R[1], 1.8, 2)
 
 
 def rb_turtle():
-    """Lead Sled: a turtle deck holds the beltline under the boot turbine and rolls over at the end. The droop is in the
-    two fat fenders either side, which fall away from the deck to low bullet lamps."""
+    """Lead Sled: a turtle deck holds the beltline under the boot turbine and rolls over at the end. A fat pontoon fender
+    swells out of each flank at the quarter line, runs back and droops away from the deck to a low bullet lamp."""
     ps = rear_core("round")
     ps += [
         box(-3.5, 3.5, SILL, 2.1, PAD_R, 15.3, "primary", note="centre tail"),
         box(-3.5, 3.5, 2.1, BELT, PAD_R, 14.4, "primary", note="turtle deck: stays at the beltline under any boot turbine, back to Z 14.4"),
         cylx(2.1, 14.4, 1.8, -3.5, 3.5, "primary", note="turtle roll: the deck droops in the last stud"),
         box(-1.0, 1.0, 1.5, 1.95, 15.3, 15.36, "detail", note="plate recess"),
-        ball(3.6, 1.6, 12.9, 2.8, "primary", mirror=True, note="fat rear fender shoulder: bulges past the flank, then falls away"),
-        ball(3.6, 1.35, 13.9, 2.3, "primary", mirror=True, note="fender droop"),
-        ball(3.6, 1.15, 14.55, 1.8, "primary", mirror=True, note="drooping bullet fender end"),
+        ball(3.9, 1.5, 10.5, 2.9, "primary", mirror=True, note="pontoon nose: swells out of the flank behind the quarter line"),
+        cylz(3.9, 1.5, 2.9, 10.5, 12.9, "primary", mirror=True, note="fat pontoon rear fender, 0.65 proud of the flank"),
+        ball(3.8, 1.5, 12.9, 2.9, "primary", mirror=True, note="pontoon shoulder: starts to fall away"),
+        ball(3.7, 1.3, 13.9, 2.4, "primary", mirror=True, note="fender droop"),
+        ball(3.6, 1.15, 14.6, 1.8, "primary", mirror=True, note="drooping bullet fender end"),
         cylz(3.6, 1.2, 0.8, 15.3, 15.48, "neon", mirror=True, note="frenched bullet tail lamp"),
         cylx(0.8, 14.8, 1.2, -4.5, 4.5, "primary", note="seam face: a rolled pan from sill to bar line, the rear chrome sits against it"),
         box(2.5, 3.5, 0.4, 1.0, FACE_R, TAIL - 0.04, "detail", mirror=True, note="bumper pad: Rear Chrome brackets land here"),
-        box(4.6, 4.78, 1.05, 1.3, 8.6, 12.2, "detail", mirror=True, note="blanked arch: one shaved vent slit"),
+        box(4.6, 4.78, 1.05, 1.3, ARCH_R[0] + 0.2, ARCH_R[1] - 0.2, "detail", mirror=True, note="blanked arch: one shaved vent slit"),
     ]
     return ps
 
 
 def rb_jet_tail():
-    """Fin Era: two short jet-tube fenders with afterburner lamps, the centre tail set well back between them over a solid shelf."""
+    """Fin Era: a jet-tube fender runs along each rear quarter from an intake at the quarter line to an afterburner lamp,
+    with the centre tail set well back between the two tubes over a solid shelf."""
+    x, y, d = 4.15, 1.6, 2.7
     ps = rear_core("slab") + tail_face(PAD_R)
     ps += [
         box(-3.0, 3.0, BAR, BELT, PAD_R, 13.7, "primary", note="centre tail, set back between the jet tubes"),
@@ -571,12 +586,14 @@ def rb_jet_tail():
         box(-2.9, 2.9, 1.92, 2.04, 13.85, 13.95, "secondary", note="tail chrome strip"),
         box(-3.0, 3.0, 2.7, BELT, 13.7, 14.1, "primary", note="brow"),
         box(2.9, 4.7, BAR, 1.75, PAD_R, 14.0, "primary", mirror=True, note="tube keel: lower fender"),
-        cylz(4.0, 1.75, 2.5, PAD_R, 14.2, "primary", mirror=True, note="jet-tube rear fender, bulges past the flank"),
-        cylz(4.0, 1.75, 1.7, 14.2, 14.62, "detail", mirror=True, note="tube nozzle"),
-        cylz(4.0, 1.75, 1.1, 14.62, 14.76, "neon", mirror=True, note="afterburner tail lamp"),
-        box(BODY_X, 4.8, 0.9, 2.1, 0.3, 12.5, "secondary", mirror=True, note="side cove panel in the accent colour"),
+        cylz(x, y, d + 0.08, QTR + 0.1, 10.5, "detail", mirror=True, note="tube intake band at the quarter line"),
+        cylz(x, y, d, 10.5, 14.3, "primary", mirror=True, note="jet-tube rear fender: 5 long, 0.8 proud of the flank"),
+        box(5.46, 5.57, y - 0.09, y + 0.09, 10.7, 14.1, "secondary", mirror=True, note="chrome spear along the tube"),
+        cylz(x, y, 1.7, 14.3, 14.8, "detail", mirror=True, note="tube nozzle"),
+        cylz(x, y, 1.1, 14.8, 14.95, "neon", mirror=True, note="afterburner tail lamp"),
+        box(BODY_X, 4.8, 0.9, 2.1, 0.3, QTR - 0.1, "secondary", mirror=True, note="side cove panel in the accent colour: runs into the tube intake"),
     ]
-    return ps + arch_blank(8.4, 12.4, 0.8, 0)
+    return ps + arch_blank(ARCH_R[0], ARCH_R[1], 0.8, 0)
 
 
 def rb_formal_trunk():
@@ -596,62 +613,73 @@ def rb_formal_trunk():
         box(BODY_X, 5.15, 0.3, 2.0, 12.7, 15.2, "primary", mirror=True, note="square blistered corner"),
         chamfer(BODY_X, 5.15, 2.0, 2.4, 12.7, 15.2, "primary", note="blister shoulder"),
         box(5.15, 5.2, 1.2, 1.34, 12.7, 15.2, "secondary", mirror=True, note="blister chrome"),
+        box(BODY_X, 4.86, 0.22, 1.0, QTR + 0.1, 12.7, "secondary", mirror=True, note="chrome lower quarter: a bright band from the quarter line to the blister"),
     ]
-    return ps + arch_blank(8.6, 12.2, 2.2, 3, "detail")
+    return ps + arch_blank(ARCH_R[0] + 0.2, ARCH_R[1] - 0.2, 2.2, 3, "detail")
 
 
 def rb_works_tail():
-    """Kaido: a bobbed kamm tail. The deck dips then kicks up in a ducktail; a diffuser tunnel is cut up between two solid keels."""
-    z_end = 14.6
+    """Kaido: a bobbed kamm tail, 1.5 shorter than any other. The deck dips then kicks up in a ducktail at Z 14.0, a
+    diffuser shelf carries on to the seam, and a boxed works flare on each quarter is cut off square before the tail."""
+    z_end = 14.0
     ps = rear_core("stripe")
     ps += [
-        box(-BODY_X, BODY_X, BAR, 2.4, PAD_R, z_end, "primary", note="bobbed tail upper"),
-        wedge(-BODY_X, BODY_X, 2.4, BELT, PAD_R, 13.5, "up_front", "primary", note="deck dip behind the boot pad"),
-        wedge(-BODY_X, BODY_X, 2.4, BELT, 13.5, z_end, "up_back", "primary", note="ducktail kick-up"),
+        box(-BODY_X, BODY_X, BAR, 2.45, PAD_R, z_end, "primary", note="bobbed tail upper"),
+        wedge(-BODY_X, BODY_X, 2.45, BELT, PAD_R, 13.2, "up_front", "primary", note="deck dip behind the boot pad"),
+        wedge(-BODY_X, BODY_X, 2.45, BELT, 13.2, z_end, "up_back", "primary", note="ducktail kick-up"),
         box(-BODY_X, BODY_X, BELT - 0.14, BELT, z_end - 0.1, z_end + 0.16, "secondary", note="ducktail lip"),
         box(2.2, BODY_X, SILL, BAR, PAD_R, FACE_R, "primary", mirror=True, note="seam face: solid keel from sill to bar line, the rear chrome sits against it"),
         box(2.5, 3.5, 0.4, 1.0, FACE_R, TAIL - 0.04, "detail", mirror=True, note="bumper pad: Rear Chrome brackets land here"),
         wedge(-2.2, 2.2, SILL, BAR, PAD_R, z_end, "under_back", "detail", note="diffuser tunnel: cut up between the keels"),
-        box(-0.08, 0.08, 0.3, BAR, 13.4, FACE_R, "detail", note="tunnel strake"),
-        box(1.0, 1.16, 0.3, BAR, 13.4, FACE_R, "detail", mirror=True, note="tunnel strake"),
-        flare(BODY_X, 5.4, 0.5, 2.4, PAD_R + 0.1, 14.5, "primary", "back", note="boxed works flare: grows out to the tail and is cut off square"),
-        box(5.0, 5.44, 1.3, 1.42, 14.5, 14.56, "detail", mirror=True, note="flare cut face rivet strip"),
+        box(-2.2, 2.2, 1.2, BAR, z_end, FACE_R, "detail", note="diffuser shelf: roofs the tunnel between the keels, out to the seam"),
+        box(-0.08, 0.08, 0.3, 1.2, 13.2, FACE_R, "detail", note="tunnel strake"),
+        box(1.0, 1.16, 0.3, 1.2, 13.2, FACE_R, "detail", mirror=True, note="tunnel strake"),
+        flare(BODY_X, 5.5, 0.4, 2.4, QTR + 0.1, 10.6, "primary", "back", note="boxed works flare, lead-in: grows out from the quarter line"),
+        box(BODY_X, 5.5, 0.4, 2.4, 10.6, 13.0, "primary", mirror=True, note="boxed works flare: 0.8 proud, cut off square at Z 13.0"),
+        box(5.5, 5.57, 0.55, 0.95, 10.6, 13.0, "secondary", mirror=True, note="works stripe carries over the flare"),
+        box(5.0, 5.44, 1.3, 1.42, 13.0, 13.06, "detail", mirror=True, note="flare cut face rivet strip"),
         box(-4.4, 4.4, 1.5, 2.3, z_end, z_end + 0.12, "detail", note="recessed tail panel"),
         cylz(2.2, 1.9, 0.8, z_end + 0.12, z_end + 0.35, "neon", mirror=True, note="inner round lamp"),
         cylz(3.5, 1.9, 0.8, z_end + 0.12, z_end + 0.35, "neon", mirror=True, note="outer round lamp"),
     ]
-    return ps + arch_blank(8.4, 12.4, 1.6, 0)
+    return ps + arch_blank(ARCH_R[0], ARCH_R[1], 1.6, 0)
 
 
 def rb_barrel_back():
-    """Surf Wagon: a barrel back. The tail tucks in on plan and rolls over in one curve from the deck to the bar line."""
+    """Surf Wagon: a barrel back. A pale wood quarter panel runs from the quarter line; behind the boot pad the tail tucks
+    in on plan and rolls over in one big curve from the deck to the bar line."""
     xt = 4.1
     ps = rear_core("round") + tail_face(PAD_R, xt)
     ps += [
-        box(-xt, xt, BAR, BELT, PAD_R, 14.2, "primary", note="tail upper, tucked in"),
-        flare(xt, BODY_X, SILL, BELT, PAD_R, 14.2, "primary", "front", note="plan taper: the flank tucks in behind the boot pad"),
-        cylx(1.8, 14.2, 2.4, -xt, xt, "primary", note="barrel roll: one curve from the deck to the tail face"),
-        box(-xt, xt, SILL, 1.8, 14.2, FACE_R, "primary", note="lower tail"),
+        box(-xt, xt, BAR, BELT, PAD_R, 14.0, "primary", note="tail upper, tucked in"),
+        flare(xt, BODY_X, SILL, BELT, PAD_R, 14.0, "primary", "front", note="plan taper: the flank tucks in behind the boot pad"),
+        cylx(1.6, 14.0, 2.8, -xt, xt, "primary", note="barrel roll: one curve, radius 1.4, from the deck to the tail face"),
+        box(-xt, xt, SILL, 1.6, 14.0, FACE_R, "primary", note="lower tail"),
         box(3.2, 3.9, 0.9, 2.3, 15.3, 15.46, "neon", mirror=True, note="tall tail lamp"),
         box(3.1, 4.0, 0.8, 2.4, 15.24, 15.3, "detail", mirror=True, note="lamp surround"),
-        box(-2.6, 2.6, 1.55, 1.67, FACE_R, 15.46, "secondary", note="tailgate strip"),
-        box(4.6, 4.78, 1.0, 1.3, 8.6, 12.2, "detail", mirror=True, note="blanked arch: vent slit"),
+        box(-2.6, 2.6, 1.45, 1.57, FACE_R, 15.46, "secondary", note="tailgate strip"),
+        box(BODY_X, 4.88, 0.95, 2.2, QTR + 0.3, 12.3, "secondary", mirror=True, note="wood quarter panel: pale board from the quarter line to the tuck"),
+        box(BODY_X, 5.0, 2.2, 2.35, QTR + 0.2, 12.4, "secondary", mirror=True, note="wood frame rail, top"),
+        box(BODY_X, 5.0, 0.8, 0.95, QTR + 0.2, 12.4, "secondary", mirror=True, note="wood frame rail, bottom"),
+        box(BODY_X, 4.91, 1.55, 1.63, QTR + 0.5, 12.1, "detail", mirror=True, note="plank line"),
+        box(4.6, 4.78, 1.0, 1.3, ARCH_R[0] + 0.2, ARCH_R[1] - 0.2, "detail", mirror=True, note="blanked arch: vent slit"),
     ]
     return ps
 
 
 # ---------------------------------------------------------------- Engine1: bonnet turbines (nozzles turn out or up)
 def e1_quad_stacks():
+    """Tall and square: four upright intake stacks on a deep plenum, with short fat nozzles close in at the sides."""
     ps = [
-        box(-1.9, 1.9, BELT, 3.2, -12.4, -7.6, "detail", note="plinth on the bonnet pad"),
-        box(-1.6, 1.6, 3.2, 3.75, -12.1, -7.9, "secondary", note="plenum body"),
+        box(-1.9, 1.9, BELT, 3.2, -12.2, -7.8, "detail", note="plinth on the bonnet pad"),
+        box(-1.6, 1.6, 3.2, 3.95, -11.9, -8.1, "secondary", note="deep plenum body"),
     ]
-    for z in (-11.1, -8.9):
+    for z in (-11.0, -9.0):
         ps += [
-            cyly(0.75, z, 0.9, 3.75, 4.7, "secondary", mirror=True, note="intake stack"),
-            cyly(0.75, z, 1.15, 4.7, 4.95, "detail", mirror=True, note="intake mouth"),
-            cylx(3.6, z, 1.0, 1.6, 2.7, "detail", mirror=True, note="fat side nozzle"),
-            cylx(3.6, z, 0.85, 2.7, 3.0, "thrust", mirror=True, note="thrust glow, 0.85 across: reads from the side and the front three-quarter"),
+            cyly(0.75, z, 1.05, 3.95, 4.72, "secondary", mirror=True, note="intake stack"),
+            cyly(0.75, z, 1.3, 4.72, 4.97, "detail", mirror=True, note="intake mouth"),
+            cylx(3.6, z, 1.0, 1.6, 2.15, "detail", mirror=True, note="short fat side nozzle"),
+            cylx(3.6, z, 0.85, 2.15, 2.4, "thrust", mirror=True, note="thrust glow, 0.85 across: reads from the side and the front three-quarter"),
         ]
     return ps
 
@@ -727,16 +755,18 @@ def e1_works_turbo():
 
 
 def e1_scoop_zoomies():
+    """Low and wide: a flat ram scoop 1.2 high over a flat plenum, and three zoomie pipes a side that run straight out to
+    the pad edge. The widest and lowest bonnet turbine."""
     ps = [
-        box(-1.5, 1.5, BELT, 3.2, -12.2, -8.4, "detail", note="plinth on the bonnet pad"),
-        cylz(0.0, 3.95, 1.5, -11.8, -8.6, "secondary", note="short fat turbine"),
-        box(-0.95, 0.95, 4.1, 4.95, -12.6, -9.8, "primary", note="tall ram scoop"),
-        box(-0.8, 0.8, 4.2, 4.85, -12.7, -12.6, "detail", note="scoop mouth"),
-        box(-1.0, 1.0, 4.85, 4.98, -12.74, -12.3, "secondary", note="scoop lip"),
+        box(-1.6, 1.6, BELT, 3.15, -12.0, -8.0, "detail", note="plinth on the bonnet pad"),
+        box(-1.5, 1.5, 3.15, 3.8, -11.8, -8.2, "secondary", note="low flat plenum"),
+        box(-1.8, 1.8, 3.3, 4.2, -13.2, -11.4, "primary", note="low wide ram scoop: 1.2 above the bonnet"),
+        box(-1.6, 1.6, 3.42, 4.08, -13.3, -13.2, "detail", note="scoop mouth"),
+        box(-1.9, 1.9, 4.08, 4.22, -13.36, -12.9, "secondary", note="scoop lip"),
     ]
-    for z in (-11.0, -10.0, -9.0):
-        p0, p1 = (0.6, 3.85, z), (2.5, 4.35, z + 0.5)
-        ps.append(tube(p0, p1, 0.7, "secondary", mirror=True, note="fat zoomie pipe, fires up and out"))
+    for z in (-10.7, -9.7, -8.7):
+        p0, p1 = (1.3, 3.5, z), (3.0, 3.72, z + 0.2)
+        ps.append(tube(p0, p1, 0.7, "secondary", mirror=True, note="zoomie pipe: runs out sideways to the pad edge"))
         ps.append(tip(p0, p1, 0.8, 0.25, mirror=True))
     return ps
 
@@ -829,7 +859,7 @@ def e2_fishtail():
 def st_hop_jets():
     """One long chrome lift nozzle per corner: a trough with a forward scoop and a glowing thrust skirt."""
     ps = []
-    for z in (-10.4, 9.5):
+    for z in (-10.4, 6.8):  # one under each blanked arch
         ps += [
             box(4.2, 5.4, -0.2, 0.0, z - 1.4, z + 1.4, "detail", mirror=True, note="yoke hung from the belly pad"),
             box(4.3, 5.5, -1.15, -0.2, z - 1.6, z + 1.6, "secondary", mirror=True, note="lift nozzle trough: 3.2 long, 1.2 wide"),
@@ -1005,8 +1035,8 @@ def bo_outboards():
 
 # ---------------------------------------------------------------- SidePods: flank trim
 def sp_fender_skirts():
-    ps = [box(4.8, 5.0, 0.2, 0.42, -8.0, 8.0, "secondary", mirror=True, note="sill chrome between the spats")]
-    for z0, z1 in ((PAD_F, -8.0), (8.0, PAD_R)):
+    ps = [box(4.8, 5.0, 0.2, 0.42, -8.0, ARCH_R[0] - 0.2, "secondary", mirror=True, note="sill chrome between the spats")]
+    for z0, z1 in ((PAD_F, -8.0), (ARCH_R[0] - 0.2, QTR)):  # one spat over each blanked arch
         zm = (z0 + z1) / 2
         ps += [
             box(4.8, 5.15, 0.05, 1.5, z0, z1, "primary", mirror=True, note="fender skirt over the blanked arch"),
@@ -1030,9 +1060,9 @@ def sp_lake_pipes():
 
 def sp_side_spears():
     ps = [
-        box(4.8, 5.0, 2.3, 2.55, PAD_F, PAD_R, "secondary", mirror=True, note="full-length spear on the beltline crease"),
-        part("block", [0.2, 0.25, 6.4], [4.9, 1.6, 9.2], "secondary", [12, 0, 0], mirror=True, note="sweep spear, dips to the tail"),
-        box(4.8, 5.0, 0.2, 0.45, -8.0, 8.0, "secondary", mirror=True, note="rocker chrome"),
+        box(4.8, 5.0, 2.3, 2.55, PAD_F, QTR, "secondary", mirror=True, note="full-length spear on the beltline crease, to the quarter line"),
+        part("block", [0.2, 0.25, 6.4], [4.9, 1.6, 5.7], "secondary", [12, 0, 0], mirror=True, note="sweep spear, dips to the quarter line"),
+        box(4.8, 5.0, 0.2, 0.45, -8.0, QTR, "secondary", mirror=True, note="rocker chrome"),
     ]
     for z in (-11.2, -10.2, -9.2):
         ps.append(cylx(1.3, z, 0.5, 4.8, 5.05, "detail", mirror=True, note="fender ventiport"))
@@ -1041,8 +1071,8 @@ def sp_side_spears():
 
 def sp_long_vents():
     ps = [
-        box(4.8, 5.3, 0.0, 0.62, -12.0, 11.4, "primary", mirror=True, note="deep side skirt"),
-        box(4.8, 5.36, 0.62, 0.74, -12.0, 11.4, "secondary", mirror=True, note="skirt chrome"),
+        box(4.8, 5.3, 0.0, 0.62, -12.0, QTR, "primary", mirror=True, note="deep side skirt"),
+        box(4.8, 5.36, 0.62, 0.74, -12.0, QTR, "secondary", mirror=True, note="skirt chrome"),
         box(4.8, 5.05, 1.0, 2.0, -8.6, 5.4, "detail", mirror=True, note="long side vent"),
     ]
     for y in (1.2, 1.5, 1.8):
@@ -1052,7 +1082,7 @@ def sp_long_vents():
 
 def sp_overfenders():
     ps = []
-    for z0, z1 in ((PAD_F, -7.8), (7.8, PAD_R)):
+    for z0, z1 in ((PAD_F, -7.8), (ARCH_R[0] - 0.6, QTR)):  # one over each blanked arch
         ps += [
             box(4.8, 5.55, 2.0, 2.75, z0 + 0.8, z1 - 0.8, "primary", mirror=True, note="bolt-on works flare: brow"),
             part("block", [0.75, 1.9, 0.8], [5.175, 1.2, z0 + 0.75], "primary", [-18, 0, 0], mirror=True, note="flare front leg"),
@@ -1063,16 +1093,17 @@ def sp_overfenders():
 
 
 def sp_wood_panels():
-    """Pale planked panels in a dark frame, well below the beltline, so they never read as a second row of glass."""
+    """Pale planked panels in a pale frame, well below the beltline. The board face is the main area; only two thin plank
+    lines are dark, so it reads as wood, not as glass and not as a vent."""
     ps = [
-        box(4.8, 4.95, 0.95, 2.2, -8.4, 12.2, "secondary", mirror=True, note="pale wood panel along the flank, top at Y 2.2"),
-        box(4.8, 5.1, 2.15, 2.35, -8.6, 12.4, "detail", mirror=True, note="dark frame rail, top"),
-        box(4.8, 5.1, 0.78, 1.0, -8.6, 12.4, "detail", mirror=True, note="dark frame rail, bottom"),
+        box(4.8, 4.95, 0.95, 2.2, -8.5, QTR - 0.1, "secondary", mirror=True, note="pale wood board along the flank, top at Y 2.2"),
+        box(4.8, 5.1, 2.2, 2.35, -8.6, QTR, "secondary", mirror=True, note="pale frame rail, top"),
+        box(4.8, 5.1, 0.8, 0.95, -8.6, QTR, "secondary", mirror=True, note="pale frame rail, bottom"),
     ]
-    for y in (1.4, 1.78):
-        ps.append(box(4.8, 4.99, y - 0.03, y + 0.03, -8.3, 12.1, "detail", mirror=True, note="plank line"))
-    for z in (-8.48, -3.3, 1.9, 7.1, 12.28):
-        ps.append(box(4.8, 5.1, 1.0, 2.15, z - 0.12, z + 0.12, "detail", mirror=True, note="frame post"))
+    for y in (1.37, 1.78):
+        ps.append(box(4.8, 4.98, y - 0.04, y + 0.04, -8.3, QTR - 0.3, "detail", mirror=True, note="plank line, 0.08 thick"))
+    for z in (-8.48, -2.66, 3.08, QTR - 0.12):
+        ps.append(box(4.8, 5.1, 0.95, 2.2, z - 0.12, z + 0.12, "secondary", mirror=True, note="pale frame post"))
     return ps
 
 
@@ -1281,7 +1312,7 @@ def build_spec():
     standard = {
         "cockpitEnvelope": {"min": [-4.8, BELT, CAB_Z0], "max": [4.8, ROOF, CAB_Z1]},
         "datums": {"beltline": BELT, "sill": SILL, "hoverPlane": HOVER, "barLine": BAR, "midSeam": MID,
-                   "noseSeam": NOSE, "tailSeam": TAIL, "flank": BODY_X},
+                   "noseSeam": NOSE, "tailSeam": TAIL, "flank": BODY_X, "quarterLine": QTR},
         "slots": {
             "FrontBody": {"label": "Front Half",
                           "envelope": [{"min": [-4.8, 0, NOSE], "max": [4.8, BELT, MID]},
@@ -1291,7 +1322,7 @@ def build_spec():
                           "anchor": {"to": "cockpit", "face": "+y"}, "explode": [0, 0, -7]},
             "RearBody": {"label": "Rear Half",
                          "envelope": [{"min": [-4.8, 0, MID], "max": [4.8, BELT, TAIL]},
-                                      {"min": [FLANK_X, 0, PAD_R], "max": [5.6, BELT, TAIL], "mirror": True}],
+                                      {"min": [FLANK_X, 0, QTR], "max": [5.6, BELT, TAIL], "mirror": True}],
                          "anchor": [{"to": "cockpit", "face": "+y"}, {"to": "FrontBody", "face": "-z"}], "explode": [0, 0, 7]},
             "Engine1": {"label": "Bonnet Turbine",
                         "envelope": {"min": [-3.4, BELT, -15.6], "max": [3.4, 5.0, CAB_Z0]},
@@ -1307,7 +1338,7 @@ def build_spec():
                                    {"min": [-5.6, 0, 17.0], "max": [5.6, 9.8, 19.0]}],
                       "anchor": {"to": "RearBody", "face": "+y"}, "explode": [0, -5, 13]},
             "SidePods": {"label": "Flanks",
-                         "envelope": {"min": [FLANK_X, 0, PAD_F], "max": [5.6, BELT, PAD_R], "mirror": True},
+                         "envelope": {"min": [FLANK_X, 0, PAD_F], "max": [5.6, BELT, QTR], "mirror": True},
                          "anchor": [{"to": "FrontBody", "face": "-x"}, {"to": "RearBody", "face": "-x"}], "explode": [5, 0, 0]},
             "FrontBumper": {"label": "Front Chrome",
                             "envelope": {"min": [-5.6, -1.6, -18.4], "max": [5.6, BELT, NOSE]},

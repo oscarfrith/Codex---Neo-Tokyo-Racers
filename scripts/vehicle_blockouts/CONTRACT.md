@@ -151,7 +151,7 @@ py -3 scripts/vehicle_blockouts/preview.py scripts/vehicle_blockouts/specs/<id>.
 py -3 scripts/vehicle_blockouts/preview.py scripts/vehicle_blockouts/specs/<id>.json --only matrix,fundamentals
 ```
 
-Previews land in `scripts/vehicle_blockouts/previews/<id>/`: `matrix.png` (every cockpit in every kit: the interchange proof), `fundamentals.png` (each engine, stabiliser and boost option highlighted on one cockpit), `sheet.png`, `exploded.png`, `standard.png` and four views per build. The renderer has true occlusion, so what you see is what the model is.
+Previews land in `scripts/vehicle_blockouts/previews/<id>/`: `matrix.png` (every cockpit in every kit: the interchange proof), `row_<cockpit>.png` (the same, larger, front and rear), `mix_a.png` and `mix_b.png` (twelve builds with every slot random: the per-module swap test, listed in `mix.txt`), `fundamentals.png` (each engine, stabiliser and boost option highlighted on one cockpit), `sheet.png`, `exploded.png`, `standard.png` and four views per build. The renderer has true occlusion, so what you see is what the model is.
 
 Keep your spec reproducible: write it from a generator script at `scripts/vehicle_blockouts/gen/<id>.py` (plain Python that writes the JSON). Use only your own files; the session scratchpad is shared with other agents.
 
