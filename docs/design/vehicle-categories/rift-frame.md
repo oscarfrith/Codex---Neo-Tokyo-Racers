@@ -1,90 +1,100 @@
-# Rift frame standard
+# Rift frame standard (round 2)
 
-Status: design exploration, 2026-10-01. Primitive blockout only. Nothing here is game content or approved.
-Spec: [rift.json](../../../scripts/vehicle_blockouts/specs/rift.json). Previews: [sheet](../../../scripts/vehicle_blockouts/previews/rift/sheet.png), [exploded](../../../scripts/vehicle_blockouts/previews/rift/exploded.png), [standard](../../../scripts/vehicle_blockouts/previews/rift/standard.png).
+Status: design exploration, round 2, 2026-10-01. Primitive blockout only. Nothing here is game content or approved.
+Spec: [rift.json](../../../scripts/vehicle_blockouts/specs/rift.json), written by [gen/rift.py](../../../scripts/vehicle_blockouts/gen/rift.py). Previews: [matrix](../../../scripts/vehicle_blockouts/previews/rift/matrix.png), [fundamentals](../../../scripts/vehicle_blockouts/previews/rift/fundamentals.png), [exploded](../../../scripts/vehicle_blockouts/previews/rift/exploded.png), [standard](../../../scripts/vehicle_blockouts/previews/rift/standard.png).
 
-Rift is a classic coupé cut into floating sections. A centre spine (nose, cabin, tail) carries three floating bodies per side: front nacelle, mid section, rear-quarter pod. Root space: +X right, +Y up, forward is -Z. Units are studs.
+Rift is a classic coupé cut into floating sections. A centre spine (nose, cabin, tail) carries a front nacelle, a rocker and a rear-quarter pod on each side. Round 2 has no wheels or wheel-like parts. Engines, stabilisers and boost are separate jet modules. Root space: +X right, +Y up, forward is -Z. Units are studs.
 
-## Envelopes
+## Frame standard
 
-| Slot | Player label | X | Y | Z | Anchors to |
+| Slot | Player label | X | Y | Z | Anchor |
 |---|---|---|---|---|---|
-| Cockpit | Cabin | -3.8..3.8 | 0..5.4 | -4.5..5.5 | root |
-| Engine1 | Front Half | -8.5..8.5 | -0.6..3.6 | -16.5..-4.5 | cockpit front, Z -4.5 |
-| Engine2 | Rear Half | -8.5..8.5 | -0.6..3.6 | 5.5..14.5 | cockpit rear, Z 5.5 |
-| SidePods | Mid Section | 3.8..8.5, mirrored | -0.6..3.4 | -4.5..5.5 | cockpit flank, X ±3.8 |
-| Stabilisers | Hover Fins | A: -3.8..3.8; B: -8.5..8.5 | A: -0.6..0; B: -1.7..-0.6 | A: -4.5..5.5; B: -16.5..14.5 | cockpit floor, Y 0 |
-| Boost | Afterburner | -3.0..3.0 | 1.2..3.6 | 14.5..17.5 | Rear Half tail panel, Z 14.5 |
-| FrontBumper | Front Bumper | -8.5..8.5 | -1.3..3.6 | -18.0..-16.5 | Front Half nacelle tips, Z -16.5 |
-| RearBumper | Rear Bumper | A: -8.5..8.5; B: 3.0..8.5, mirrored | A: -1.3..1.2; B: 1.2..3.6 | 14.5..16.5 | Rear Half, Z 14.5 |
-| RearSpoiler | Spoiler | -8.5..8.5 | 3.6..7.4 | 5.5..17.0 | Rear Half deck, Y 3.6 |
-| Hood | Hood | -2.8..2.8 | 3.6..5.0 | -9.0..-4.5 | Front Half deck, Y 3.6 |
-| Roof | Roof | -3.8..3.8 | 5.4..6.8 | -4.5..5.5 | cockpit roof, Y 5.4 |
+| Cockpit | Cabin | -3.8..3.8 | 0..6.6 | -5.5..6.5 | root |
+| FrontBody | Front Clip | nose -4.0..4.0; nacelles 4.0..8.5, mirrored | nose 0..4.6; nacelles 0.8..3.6 | -16.5..-5.5 | cabin front seam, Z -5.5 |
+| RearBody | Rear Clip | tail -4.0..4.0; pods 4.0..8.5, mirrored | tail 0..3.6; pods -0.8..4.6 | tail 6.5..14.0; pods 6.5..11.5 | cabin rear seam, Z 6.5 |
+| SidePods | Rockers | 3.8..6.4, mirrored | 0..2.6 | -5.5..6.5 | cabin flank, X 3.8 |
+| Engine1 | Front Engines | 4.0..8.5, mirrored | -1.7..0.8 | -18.0..-5.5 | underside of the nacelle, Y 0.8 |
+| Engine2 | Rear Engines | 4.0..8.5, mirrored | -0.8..3.6 | 11.5..17.5 | pod bulkhead, Z 11.5 |
+| Stabilisers | Stabilisers | A -9.0..9.0; B 6.4..9.0, mirrored | A -1.7..0; B 0..3.6 | -5.5..6.5 | cabin floor, Y 0 |
+| Boost | Afterburner | -4.0..4.0 | 0.8..4.6 | 14.0..17.5 | tail panel, Z 14.0 |
+| FrontBumper | Front Bumper | A -8.5..8.5; B -4.0..4.0 | A 0.8..3.6; B -1.2..0.8 | -18.0..-16.5 | nacelle tips, Z -16.5 |
+| RearBumper | Rear Bumper | -4.0..4.0 | -1.2..0.8 | 14.0..17.0 | tail panel, Z 14.0 |
+| RearSpoiler | Spoiler | A -4.0..4.0; B -8.5..8.5 | A 3.6..4.6; B 4.6..7.6 | A 6.5..14.0; B 6.5..17.5 | spoiler pad, Y 3.6 |
 
-A and B are two boxes of one envelope. No two envelopes overlap. Accessory is not used. Built size: 16.2 to 16.6 wide, 35.0 to 35.5 long, 7.0 high (8.9 with the GT Wing).
+No two envelopes overlap. Hood, Roof and Accessory are not used. Built size: 16.7 to 17.6 wide, 34.9 to 35.1 long, 6.3 to 8.8 high.
+
+## Where the four fundamentals sit
+
+| Slot | Position | Why |
+|---|---|---|
+| Engine1, Front Engines | Slung under each nacelle on a pylon. Intake at or ahead of the nacelle tip, nozzle beside the front of the cabin. | The nacelle shell stays a clean body shape. The engine shows from the front, the side and below the beltline. |
+| Engine2, Rear Engines | Behind each rear-quarter pod, bolted to its bulkhead, nozzles out the back to Z 17.5. | The chase camera sees both nozzles either side of the tail. |
+| Stabilisers | On a mount plate under the cabin floor, with outriggers into the open bay between nacelle and pod. | The bay is empty in every kit, so lift jets show from the front three-quarter and from above. |
+| Boost, Afterburner | Centre tail, on the tail panel between the rear engines. | It is the middle of the chase view and never hidden by a spoiler. |
 
 ## Datums
 
-| Datum | Y | Meaning |
+| Datum | Value | Meaning |
 |---|---|---|
-| Hover plane | -2.0 | Ground. Nothing goes below -1.7. |
-| Sill | 0.4 | Bottom edge of painted body. Below it: dark detail and hover gear only. |
-| Stripe line | 1.9 | Centre of the belt stripe on the cabin and on every outboard body. |
-| Beltline | 2.8 | Window sill. Default shoulder of nacelles, mid sections and quarter pods. |
-| Deck | 3.4 | Bonnet and boot surface. Cowl and rear deck of every cockpit. |
-| Roof pad | 5.3 | Top of every cockpit. |
+| Hover plane | Y -2.0 | Ground. Nothing goes below Y -1.7. |
+| Sill | Y 0.4 | Bottom edge of painted body on the spine. |
+| Pod floor | Y 0.8 | Underside of every nacelle. Ceiling of the front engines. |
+| Stripe | Y 1.9 | Centre of the belt stripe and of the rift struts. |
+| Beltline | Y 2.8 | Window sill and default shoulder. |
+| Deck | Y 3.4 | Cowl, bonnet and boot surface at the seams. |
+| Seams | Z -5.5 and 6.5 | Cabin to Front Clip, cabin to Rear Clip. Painted body stops 0.3 short. |
+| Bulkhead, tail panel | Z 11.5, Z 14.0 | Rear engine seam, afterburner and rear bumper seam. |
 
-## Pads and hardpoints
+## Hardpoint pads
 
-Envelopes stop clipping. Pads stop holes and floating parts. The owner must fill its pad. The user must sit on it.
+| Parent | Pad | Place |
+|---|---|---|
+| Every cockpit (shared chassis) | Floor pan | X ±1.4, Y 0..0.4, Z -4.2..5.2 |
+| | Coupler flanges | X ±2.2, Y 0.5..2.6, on Z -5.5 and Z 6.5 |
+| | Side hardpoints | X 2.0..3.8, Y 0.9..1.7, Z -3.2..-2.2 and 2.6..3.6 |
+| Every Front Clip | Rear collar | X ±2.2, Y 0.5..2.6, Z -5.8..-5.5 |
+| | Engine pad | X 5.2..7.2, Y 0.8..1.0, Z -13.5..-9.5 |
+| | Bumper hardpoint | X 5.6..6.8, Y 1.05..1.5, Z -16.5..-16.2 |
+| Every Rear Clip | Front collar | X ±2.2, Y 0.5..2.6, Z 6.5..6.8 |
+| | Tail panel | X ±2.4, Y 0.4..3.2, Z 13.7..14.0. Afterburner above Y 1.0, bumper below. |
+| | Spoiler pad | X ±2.0, Y 3.4..3.6, Z 11.0..13.5 |
+| | Engine bulkhead | X 5.3..7.1, Y 1.0..2.6, Z 11.2..11.5 |
 
-| Pad | Owner | Where | Used by |
-|---|---|---|---|
-| Bulkhead collars | Cockpit | dark, X ±3.0, Y 0.7..3.1, at Z -4.5 and Z 5.5 | Front Half, Rear Half |
-| Side hardpoints | Cockpit | X ±3.8, Y 0.8..1.8, at Z -2.6 and Z 3.2 | Mid Section |
-| Floor | Cockpit | Y 0, X ±3.5, Z -4.2..5.2 | Hover Fins |
-| Roof pad | Cockpit | top at Y 5.3, X ±2.6, header line Z -1.0 and hoop line Z 1.6 | Roof |
-| Hood pad | Front Half | top at Y 3.4, X ±2.4, Z -8.6..-4.8 | Hood |
-| Front bumper hardpoints | Front Half | X ±6.3, Y 0.9, Z -16.5 | Front Bumper |
-| Spoiler pad | Rear Half | top at Y 3.4, X ±2.4, Z 5.8..14.2 | Spoiler |
-| Boost pad | Rear Half | tail panel at Z 14.2..14.4, X ±2.0, Y 1.4..3.0 | Afterburner |
-| Rear bumper hardpoints | Rear Half | X ±6.3, Y 0.9, Z 14.2 | Rear Bumper |
+## Kits
 
-## Seam rules
-
-1. Painted surfaces stop 0.3 short of every seam plane, on both sides. The shadow gap is 0.6. Only dark `detail` parts touch the plane: collars, linkage blocks, brackets, struts.
-2. A module touches its parent only at the pad or hardpoints in the table above.
-3. Hood, Spoiler and Roof modules rest on their pad. They may overhang it by up to 1 stud. Wing blades may span wider above it.
-4. Front Bumper parts outboard of X ±4 stay below Y 1.1. This keeps the headlight window (Y 1.1..2.8) clear.
-5. Hover units under nacelles and quarter pods stay above Y -0.6. The slab below that belongs to Hover Fins.
+| Kit | Culture | Native cockpit | Front Engines | Rear Engines | Stabilisers | Afterburner | Clips, front and rear |
+|---|---|---|---|---|---|---|---|
+| Boulevard | Muscle | Brawler, 70s fastback: wide, tall, one slope to the tail | Ram Turbine: one turbine, square chin scoop | Thunder Twins: two long slim cans | Outrigger Cans: four upright lift cans | Quad Cannon: four in a row | Twin Longhorn, Fastback Quarters |
+| Quarter Mile | Pro Street | Outlaw, 60s notchback: narrow, upright, tallest | Zoomie Rails: two wide-set tubes with stacks | Big Bertha: one huge short turbine | Strake Rails: one long rail, three nozzles | Big Bell: one bell nozzle | Blower Rail, Tubbed |
+| Folded Edge | Wedge Exotic | Stiletto, 70s wedge: narrow arrowhead, high rear deck, fins | Slot Ramjet: flat slab, slot nozzle | Vector Slab: low vectoring slot | Canard Vanes: swept vanes, tip jets | Slot Burner: full-width slot | Pop-Up Prongs, Kamm Tail |
+| Riviera | Roadster | Mamba, open roadster: twin aero screens, boat tail | Quad Cluster: four small jets | Bullet: one tapered bullet | Float Pods: one round pod, keel jet | Megaphones: two flared, swept up | Grand Quad, Boat Tail |
+| Night Shift | Turbo Pony | Nightshift, 80s T-top: widest cabin, lowest roof | Turbo Cassette: box, twin barrels, side dump | Over-Under: two stacked cans | Fin Stacks: tall fin, jet at its foot | Tri-Stack: three stacked cans | Flip Nose, Slab Hatch |
 
 ## Authoring rules for real meshes
 
-- Author every mesh in cockpit root space. Never fit a module to one cockpit by eye. Keep every vertex inside the slot envelope, including rotated and curved parts. Keep pads flat and at the datum. Sculpt everything else.
-- Every Front Half has two nacelles at X 4.5..8.1 that reach Z -16.2 and carry the headlights. It also has a centre nose with the hood pad. The nose may end anywhere from Z -10 to Z -16. A short nose gives the catamaran notch.
-- Keep at least 1 stud of dark gap between centre nose and nacelle, and between tail and quarter pod. Bridge it with two struts per side.
-- Every Rear Half has two quarter pods that reach Z 14.2 and a centre tail that carries the spoiler pad and the boost pad.
-- Every cockpit ends at the deck datum front and rear: cowl at Z -4.2, rear deck at Z 5.2. Higher is allowed (Stiletto engine deck is 4.4). Lower is not.
-- Open cockpits still supply the roof pad: a screen header at Z -1.0 and braced hoops at Z 1.6, both at Y 5.3. Roof modules span from header line to hoop line and are at least 2.4 wide, so on a roadster they become a soft top.
-- Put the belt stripe at Y 1.9 on the outer face of every outboard body. Shared paint and one stripe line make mixed kits read as one car. Each module carries its own lights and hover glow.
-- Seat a 5-stud avatar: floor at 0.4, head top near 4.6, inner roof at 5.0, cabin 7.2 wide.
+1. Stay inside the slot envelope. Leave 0.05 clear at every envelope face.
+2. Carry every pad in the table at its exact place, flat and in the detail channel. Children land on pads only, never on a body shape.
+3. Stop painted bodywork 0.3 short of each seam plane. The gap is the shadow gap. Only dark pads and struts cross it.
+4. Every cockpit uses the same chassis. Put character in the cabin above it. The cockpit owns all glass and the roofline.
+5. No clip rises above the deck (Y 3.4) at a seam. Keep each nacelle underside flat at Y 0.8 over the engine pad, and reach the tip at Z -16.5.
+6. Only the rear-quarter pods may use Y -0.8..4.6. A spoiler wider than X ±4.0 stays above Y 4.6.
+7. Every fundamental shows an intake, a body and a glowing nozzle from outside. Barrels are longer than they are wide. No rings, discs, drums or tyre shapes.
+8. Join floating sections with dark struts. Do not let a body shape bridge a rift. Give every part a paint channel and keep the belt stripe at Y 1.9.
+9. A new option must differ in outline from every other option in its slot: length, height, count or plan shape.
 
-## What the blockout showed
+## Validator result
 
-- 4 cockpits: Brawler (fastback), Outlaw (notchback), Stiletto (wedge, high engine deck), Mamba (roadster). 37 modules: 4 Front Half, 4 Rear Half, 4 Mid Section, 3 Hover Fins, 3 Afterburner, 4 Front Bumper, 3 Rear Bumper, 4 Spoiler, 4 Hood, 4 Roof.
-- 8 builds of 126 to 143 parts. Builds 1 to 3: Muscle kit on three cockpits. Builds 4 to 6: Outlaw with Wedge Exotic, Euro GT and Pro Street kits. Builds 7 and 8: mixed.
-- Every module passes the envelope and seam checks alone, so every combination passes. A separate scratch check found every pad filled on all cockpits and modules. Four extra odd mixes were rendered and inspected.
-- Main lesson: envelopes alone are not enough. The first pass had zero errors but had a floating ground plate, a bumper with no bracket and a tail with no bumper hardpoint. Named pads fixed all three.
+`SPEC rift: 0 error(s), 2 warning(s) {'cockpits': 5, 'kits': 5, 'modules': 50, 'builds': 13, 'worst_gap': 0.05, ...}`
 
-Validator: `SPEC rift: 0 error(s), 1 warning(s) {'cockpits': 4, 'modules': 37, 'builds': 8, 'parts_in_builds': 1088}`
-Warning left: `cockpit brawler appears in fewer than 2 builds`. Eight builds in the required 3 + 3 + 2 pattern cannot show four cockpits twice each.
+Lowest distinctness per slot: Engine1 0.41, Engine2 0.36, Stabilisers 0.40, Boost 0.42, FrontBody 0.35, RearBody 0.35, SidePods 0.36, FrontBumper 0.47, RearBumper 0.37, RearSpoiler 0.59, Cockpit 0.21. Every module slot meets its target. Warnings left: Brawler and Stiletto score 0.22, Mamba and Nightshift score 0.21 (target 0.25). The other eight cockpit pairs pass. The shared chassis and the shared sill, beltline and deck fill most of each cabin's outline, so the score only sees the top two studs.
 
 ## Open risks
 
-- The validator does not know about pads, gap widths or strut counts. A module can pass and still float. Add pads to the spec schema and check them.
-- The cabin is small against the car: 7.6 of 16.6 wide, 10 of 35 long. In a 3/4 view the cockpits read less differently than the front halves do.
-- 35 long is 1 stud over the brief. 16.6 wide needs checking against lanes, garage bay and camera.
-- The hood pad is only 3.8 long and the roof pad 2.6 long, so Hood and Roof modules are small. Longer pads would rule out the wedge nose and the short Stiletto roof.
-- Three legal mixes look poor: Roof Scoop or Louvres on Mamba bridge open air; Light Bar crosses the Turbine Quarters exhausts; Ducktail and Louvre Deck overhang the narrow Boat Tail stern by up to 0.9 stud. Accept, or filter by tag.
-- The Afterburner envelope is low (Y 1.2..3.6). Upswept stacks are not possible, so Twin Stack is two large horizontal barrels.
-- Untested: one-sided modules (all parts are mirrored), the Nightshift and Regent cockpits, and Shark Nose.
+- Cockpit scores sit close to the target. A sixth cockpit (Regent, grand tourer) would need a new roofline and its own kit.
+- The brief suggested stabiliser jets at the nacelle tips. They are not there: the tips carry the bumper hardpoint and the engine intakes.
+- Narrow cabins (Outlaw 2.7, Mamba 2.6 half width) leave a gap of about 1.2 to the Rockers, bridged by two brackets. The house gap is 0.6.
+- Mamba between the wide Flip Nose and Slab Hatch has a narrow waist in plan. It fits but is the weakest matrix cell. Its scuttle is 0.4 below a full bonnet.
+- Tubbed, Kamm Tail and Slab Hatch sit below the deck behind tall cabins. This reads as a planned step.
+- Front engines hang under the nacelles. They show well from the front and side but only partly from the chase camera.
+- Fastback Quarters and Kamm Tail use the taller pod band (to Y 4.6). A future wide, low spoiler would collide with it.
+- `FrontBody` and `RearBody` are new slot IDs. The live game has eight slots. Quad Cluster is 44 primitives; a real mesh should merge them.
