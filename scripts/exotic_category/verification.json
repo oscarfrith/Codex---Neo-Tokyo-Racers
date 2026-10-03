@@ -70,5 +70,6 @@
     "483551a content installed, evidence and captures",
     "docs commit follows"
   ],
-  "process_note": "During Play tests the integrator called require() on VehicleCatalog and VehiclePerformanceResolver from the client through MCP (read-only data and calculation modules, Play session only). This is against the no-gameplay-require rule; no state was changed and it was not repeated."
+  "process_note": "During Play tests the integrator called require() on VehicleCatalog and VehiclePerformanceResolver from the client through MCP (read-only data and calculation modules, Play session only). This is against the no-gameplay-require rule; no state was changed and it was not repeated.",
+  "refinement_setup": "2026-10-03: blockoutCheck switch set to warn; refine.py offline loop passes (spec regenerates identically, validator 0 errors 0 warnings, balance 20 tests, content 8,369 checks); APPLY over installed-full with the new build replaced 9 roots, catalogue revision unchanged (37f47fad...), post-install checks pass; baseline capture roblox/captures/exotic-refine-baseline (projection fresh)."
 }

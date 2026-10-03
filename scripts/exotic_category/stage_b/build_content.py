@@ -798,7 +798,10 @@ def build_content(mode="AUDIT", scope="pilot", balance_path=BALANCE_PATH, catalo
     generator_sha = hashlib.sha256("\n".join(catalogue_gen.splitlines()).encode("utf-8")).hexdigest()
     # The hash covers the engine and the generator too: a repaired engine must replace earlier content on APPLY.
     canonical = json.dumps({"content": content, "scope": scope, "engine": engine_sha, "generator": generator_sha}, sort_keys=True, separators=(",", ":"), ensure_ascii=True)
-    content["meta"] = {"mode": mode, "scope": scope, "marker": ids["marker"], "placeId": ids["placeId"], "fixture": fixture,
+    blockout_check = ids.get("blockoutCheck", "strict")
+    if blockout_check not in ("strict", "warn"):
+        raise ValueError("data/ids.json blockoutCheck must be strict or warn")
+    content["meta"] = {"mode": mode, "scope": scope, "marker": ids["marker"], "placeId": ids["placeId"], "fixture": fixture, "blockoutCheck": blockout_check,
                        "contentHash": hashlib.sha256(canonical.encode("ascii")).hexdigest(), "seats": seats_state}
     report = {
         "mode": mode, "scope": scope, "fixture": fixture, "contentHash": content["meta"]["contentHash"],

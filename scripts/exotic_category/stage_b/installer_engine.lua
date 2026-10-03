@@ -533,6 +533,9 @@ local function preflightBlockout()
 			end
 		end
 	end
+	-- strict (first install): a differing showroom block stops the install. warn (refinement): the repository spec is
+	-- the source of geometry and the showroom block is design scaffolding, so a difference is reported only.
+	local report = META.blockoutCheck == "warn" and WARN or BLOCKER
 	local checked, differing = 0, 0
 	for key, want in pairs(DATA.fingerprints) do
 		local have = measured[key]
@@ -546,14 +549,14 @@ local function preflightBlockout()
 		if not same then
 			differing += 1
 			if differing <= 8 then
-				BLOCKER("blockout", key .. " differs from the spec: Studio " .. (have and table.concat(have, " ") or "absent") .. " / spec " .. table.concat(want, " "))
+				report("blockout", key .. " differs from the spec: Studio " .. (have and table.concat(have, " ") or "absent") .. " / spec " .. table.concat(want, " "))
 			end
 		end
 	end
 	if differing == 0 then
 		INFO("blockout", tostring(checked) .. " groups match the spec fingerprints (part count, position sums, size sums)")
 	elseif differing > 8 then
-		BLOCKER("blockout", tostring(differing) .. " groups differ in total")
+		report("blockout", tostring(differing) .. " groups differ in total")
 	end
 end
 

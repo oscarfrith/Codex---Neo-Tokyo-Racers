@@ -166,6 +166,10 @@ The seat height is derived from the blockout driver dummy and one assumed number
 
 Rebuild, AUDIT, APPLY. The content hash changes, so APPLY replaces the earlier content.
 
+## Refinements after the first install
+
+See [REFINE.md](../REFINE.md). `data/ids.json` `blockoutCheck` is `warn` since 2026-10-03: a Studio showroom block that differs from the spec is reported, not a BLOCKER, because the repository spec is now the source of geometry. `py -3 scripts/exotic_category/refine.py` runs the whole offline loop and builds `out/full_audit.lua`, `full_apply.lua` and `full_rollback.lua`. APPLY over an installed full scope with a new build was run on 2026-10-03 (9 roots replaced, catalogue revision unchanged for identical content).
+
 ## Read-only checks after APPLY
 
 1. `post_install_checks.lua` in Studio Edit. Expect: `PIERCER` first; unreachable=0; `Thrust=0 Driver=0`; server and preview census equal; sockets not under a part=0 and unknown template=0; `previewOnly=0 serverOnly=0`; cockpit problems none. Set `CATEGORY = "PIERCER"` for the Piercer baseline (today: 2,102 preview instances, 333 pruned).

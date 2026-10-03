@@ -2,6 +2,8 @@
   "_note": "Permanent ids and names for the Exotic category. Source: scripts/exotic_category/INTERFACE.md (IDs and slot table). Saved in player profiles: never rename.",
   "placeId": 133417340424236,
   "marker": "exotic_category/stage_b",
+  "blockoutCheck": "warn",
+  "_blockoutCheck": "strict | warn. strict: a Studio showroom block (Workspace.VehicleCategoryBlockouts.EXOTIC) that differs from the spec is a BLOCKER; used for the first install, when the showroom was what Oscar had reviewed. warn: since 2026-10-03 the repository spec is the source of geometry and the showroom block is design scaffolding, so a difference is only a WARN. Keep warn while the class is being refined.",
   "category": {
     "folder": "EXOTIC",
     "afterFolder": "PIERCER",
