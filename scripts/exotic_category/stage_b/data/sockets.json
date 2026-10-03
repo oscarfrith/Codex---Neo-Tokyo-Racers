@@ -1,0 +1,30 @@
+{
+  "_note": "VFX socket rules. Sockets are computed from the thrust-channel parts of each module shape. A socket is an Attachment under ModuleRoot_DoNotRename; the flame runs along its local +Z. Exhaust axis of a thrust part: cyl_x/cyl_y/cyl_z = the cylinder axis; block and wedge = local Z (every Exotic thrust slot is thin along Z and sits at the end of a nozzle that is long along Z).",
+  "engine": {
+    "prefix": "VFX_EngineJet_",
+    "template": "EngineJet_Exotic",
+    "mode": "cluster",
+    "mergeDistance": 1.5,
+    "direction": "back_else_up",
+    "_mergeDistance": "Thrust parts whose centres are closer than this (single linkage) share one socket at their centroid. 1.5 keeps a side-by-side pair (1.7 apart) as two jets and merges a stacked pair (1.36 apart) into one."
+  },
+  "boost": {
+    "prefix": "VFX_BoostJet_",
+    "template": "BoostJet_Exotic",
+    "mode": "cluster",
+    "mergeDistance": 2.0,
+    "direction": "back_else_up"
+  },
+  "stabiliser": {
+    "prefix": "VFX_StabiliserJet_",
+    "templateLeft": "StabiliserJet_ExoticLeft",
+    "templateRight": "StabiliserJet_ExoticRight",
+    "mode": "corner",
+    "direction": "down_else_back",
+    "_mode": "One socket per corner unit (Left/Right by X, Front/Rear by Z). When a corner has nozzles that point different ways, the group with the larger total nozzle area gets the socket."
+  },
+  "sideEpsilon": 0.05,
+  "maxSocketsPerModule": 4,
+  "overrides": {},
+  "_overrides": "Optional explicit sockets per shape, replacing the computed ones. Example: {\"Boost/quad\": [{\"name\": \"VFX_BoostJet_Back\", \"template\": \"BoostJet_Exotic\", \"position\": [0, 2, 12.35], \"orientation\": [0, 0, 0]}]}"
+}

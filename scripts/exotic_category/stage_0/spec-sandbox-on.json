@@ -1,0 +1,8 @@
+{
+  "task": "exotic-category-stage0-sandbox-on",
+  "lane": "Fast",
+  "verification": "AUDIT before/after; Play loads a default sandbox profile; StudioVehicleSandboxActive is true on the player",
+  "operations": [
+    {"kind": "attribute", "path": ["ReplicatedStorage", "Config", "Player", "Onboarding"], "key": "StudioVehicleSandboxEveryPlay", "value": true}
+  ]
+}

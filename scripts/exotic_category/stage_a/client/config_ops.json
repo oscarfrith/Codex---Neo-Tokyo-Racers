@@ -1,0 +1,40 @@
+[
+ {
+  "kind": "folder",
+  "parent": [
+   "ReplicatedStorage",
+   "Config",
+   "UI",
+   "GarageReplacement",
+   "ModuleArtwork"
+  ],
+  "name": "FrontBody",
+  "attributes": {
+   "DisplayName": "Front Body",
+   "Image": "rbxassetid://76594522686468",
+   "ShowInBuild": true,
+   "ShowInCustomise": true,
+   "SortOrder": 72,
+   "TargetId": "FrontBody"
+  }
+ },
+ {
+  "kind": "folder",
+  "parent": [
+   "ReplicatedStorage",
+   "Config",
+   "UI",
+   "GarageReplacement",
+   "ModuleArtwork"
+  ],
+  "name": "RearBody",
+  "attributes": {
+   "DisplayName": "Rear Body",
+   "Image": "rbxassetid://136042248946525",
+   "ShowInBuild": true,
+   "ShowInCustomise": true,
+   "SortOrder": 74,
+   "TargetId": "RearBody"
+  }
+ }
+]

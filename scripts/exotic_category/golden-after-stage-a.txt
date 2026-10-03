@@ -1,0 +1,7 @@
+Stage A installed, 2026-10-03, Space Racers Backup v2, fresh no-save sandbox Play.
+Lines 01-18 and X01-X06: identical to golden-before.txt (24 of 24, every length and hash).
+Expected changes (category is validated before the profile is changed):
+Z01_UnknownCategory len=12018 h=b7443598 false|Cockpit not found.
+Z02_GetInitialAfter len=181797 h=242c0538 true|nil   (equals X06_GetInitial: no CurrentCategory leak)
+Seat parity on a spawned Piercer (bruiser_02): DriverSeat (0, 1, 6), PassengerSeat (0, 1, 1.5), same as before.
+Server console: none of the new warnings.

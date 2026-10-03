@@ -1,0 +1,28 @@
+{
+  "_note": "Exotic VFX templates. Each is a clone of a stock folder in ReplicatedStorage.Assets.VFX.VehicleTemplates, scaled at install time. Stock sizes (measured live 2026-10-02): EngineJet flame beams 10-11 wide tapering to 2, 10 long, fire particles up to 1.5; BoostJet beams 20 to 5, 15 long, particles up to 2.26; StabiliserJet five jets in a row 8 studs wide, each beam 8 to 2, 3 long, particles about 1.",
+  "_scales": "beamWidthScale: Beam Width0/Width1. particleSizeScale: ParticleEmitter Size. lengthScale: attachment Z offsets, Beam CurveSize, particle Speed and Acceleration, light Range, Trail lengths. lateralScale: attachment X and Y offsets. Set lengthScale = beamWidthScale = particleSizeScale = lateralScale for a plain uniform scale.",
+  "_why": "VehiclePreviewVFXClient only treats the exact names EngineJet, BoostJet and StabiliserJet as custom-toggle templates. For any other template name it drives Beam widths from the Width0Min/Max and Width1Min/Max attributes and emitter Rate from RateMin/RateMax. The stock effects carry stale width attributes (0.55 and 0.055), so the installer rewrites those attributes to the scaled property values (Min = Max). Without that an Exotic flame would be 0.55 studs wide whatever the Beam says.",
+  "templates": [
+    {
+      "name": "EngineJet_Exotic", "source": "EngineJet",
+      "beamWidthScale": 0.125, "particleSizeScale": 0.6, "lengthScale": 0.5, "lateralScale": 0.125,
+      "_result": "flame beams 1.25 to 1.375 wide at the nozzle, 0.25 at the tip, 5 long; idle flame 3.25 long; fire particles up to 0.9"
+    },
+    {
+      "name": "BoostJet_Exotic", "source": "BoostJet",
+      "beamWidthScale": 0.09, "particleSizeScale": 0.6, "lengthScale": 0.5, "lateralScale": 0.09,
+      "_result": "flame beams 1.8 wide at the nozzle, 0.45 at the tip, 7.5 long; fire particles up to 1.36"
+    },
+    {
+      "name": "StabiliserJet_ExoticLeft", "source": "StabiliserJet", "group": "DriftLeft",
+      "beamWidthScale": 0.125, "particleSizeScale": 0.5, "lengthScale": 0.5, "lateralScale": 0.125, "keepCentreJetOnly": true,
+      "_result": "one jet (the centre one of the stock five): beam 1.0 wide at the nozzle, 0.25 at the tip, 1.5 long; particles about 0.5"
+    },
+    {
+      "name": "StabiliserJet_ExoticRight", "source": "StabiliserJet", "group": "DriftRight",
+      "beamWidthScale": 0.125, "particleSizeScale": 0.5, "lengthScale": 0.5, "lateralScale": 0.125, "keepCentreJetOnly": true,
+      "_result": "as Left"
+    }
+  ],
+  "requiredStock": ["EngineJet", "BoostJet", "StabiliserJet", "HoverDust"]
+}

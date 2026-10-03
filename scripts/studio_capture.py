@@ -7,7 +7,8 @@ import argparse, base64, collections, copy, hashlib, json, os, re, secrets, time
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import import_studio_snapshot as legacy
 # Current target is Space Racers v2 (2026-09-26); v1 remains valid for historical capture records.
-PLACE_IDS = (121304917315753, 71491191583884)
+# Backup v2 (133417340424236) is the staging place for deliveries not yet on v2 (2026-10-02).
+PLACE_IDS = (121304917315753, 71491191583884, 133417340424236)
 
 ROOT=Path(__file__).resolve().parents[1]
 SERVICES={'ReplicatedFirst','ReplicatedStorage','ServerScriptService','ServerStorage','StarterPlayer','StarterGui','Workspace','Lighting','SoundService'}
@@ -70,7 +71,7 @@ def validate(p):
     # Reuse source validation with a synthetic service envelope; no mirror mutation.
     q=dict(p,format='STUDIO_SNAPSHOT_V1',hierarchy=[{'name':s,'children':[]} for s in sorted(SERVICES)])
     q['hierarchy'][0]['children']=p['source_nodes']
-    sources=legacy.validate_payload(q)
+    sources=legacy.validate_payload(q,staging_ok=True)
     bypath={tuple(s.path_parts):s for s in sources}
     for n in p['source_nodes']:
         if n['path_parts'][0] not in SERVICES or not isinstance(n.get('tags'),list) or 'properties' not in n:raise ValueError('Incomplete source metadata')

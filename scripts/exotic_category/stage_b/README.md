@@ -1,0 +1,175 @@
+# Exotic category, Stage B: content installer
+
+Target: **Space Racers Backup v2, place 133417340424236**, Studio Edit only. The installer refuses any other place and refuses to run in a Play DataModel. Run it in Edit with Play stopped: the Edit DataModel cannot see an open Play session, and the catalogue is read once at startup.
+
+Authority: `scripts/exotic_category/INTERFACE.md`. Research: `output/exotic-impl/understand/`.
+
+Stage B installs content only: templates, VFX templates, the preview copy and the regenerated catalogue. It changes no script except the generated `VehicleCatalogData` index and its own `EXOTIC_n` chunks. **Stage A must be installed first, and the installer enforces it.** APPLY is refused until `VehicleCatalogData` is in the split form and equal to the generator output **and** the four Stage A server sources are in place (see AUDIT). The Stage A client sources are reported as warnings: they are needed before the flag is turned on.
+
+## Files
+
+| File | What it is |
+|---|---|
+| `build_content.py` | Builds `out/installer.lua` for one mode and one scope. Offline. |
+| `installer_engine.lua` | The installer logic. `build_content.py` puts the data and `catalogue_gen.lua` in front of it. |
+| `test_content.py` | Offline checks on the generated content and on the data-file rules (8,446 checks). |
+| `post_install_checks.lua` | Read-only Studio checks to run after APPLY or ROLLBACK. |
+| `measure_seat.lua` | Read-only Play (server) measurement of the seated avatar. Its result is the seat acceptance. |
+| `data/ids.json` | Permanent ids, names, slot table, donors. From INTERFACE.md. |
+| `data/colours.json` | Template colours, lamp colour rule. |
+| `data/seats.json` | Seat offset rule, optional per-cockpit overrides, and the pilot acceptance record. |
+| `data/sockets.json` | VFX socket rules and optional per-shape overrides. |
+| `data/vfx.json` | Scales for the four Exotic VFX templates. |
+| `data/cockpit_fixtures.json` | Hover dust sockets, underglow emitter, light lenses on the cockpit root. |
+| `fingerprints.json` | Generated. Part count and position sums per group, from the spec. |
+| `tests/make_fixture.py`, `tests/fixtures/` | Stand-in balance data and generator for offline tests, and the live blockout measurement. |
+| `out/` | Generated. `installer.lua`, `summary-pilot.json`, `summary-full.json`. |
+
+Inputs owned by other builders: `scripts/exotic_category/balance/balance.json` and `scripts/exotic_category/catalogue/catalogue_gen.lua`. Geometry comes from `scripts/vehicle_blockouts/specs/exotic.json`, flattened with `vbspec.py` and rounded as `export_showroom.py` does. Live Piercer attribute sets come from `roblox/captures/exotic-before/capture.json`.
+
+## Build
+
+```
+py -3 scripts/exotic_category/stage_b/build_content.py --mode AUDIT    --scope pilot
+py -3 scripts/exotic_category/stage_b/build_content.py --mode APPLY    --scope pilot
+py -3 scripts/exotic_category/stage_b/build_content.py --mode ROLLBACK --scope pilot
+py -3 scripts/exotic_category/stage_b/build_content.py --mode AUDIT    --scope full
+```
+
+- The mode and scope are baked into `out/installer.lua`. Rebuild the same file for each mode.
+- `pilot` = cockpit `exotic_03` (Wedge), its 12 core modules and 6 body modules. `full` = 6 cockpits and 108 modules.
+- The build stops with a clear list if `balance.json` or `catalogue_gen.lua` is missing, if `balance.json` does not set an attribute the Piercer donor has, or if it disagrees with INTERFACE.md (ids, types, price, tier).
+- `--mode APPLY --scope full` does not build until the seat offsets are accepted (see Seat acceptance). Every other mode and scope builds, with a warning.
+- `data/ids.json` `cockpitAttributeOverrides` is applied last to every cockpit. A name must already be a cockpit attribute and may not be one the interface fixes. Values get the same checks as every other attribute. Today it sets `OwnedByDefault=false`: every live Piercer cockpit carries `true` and `balance.json` copies it, no script reads it, and a paid cockpit should not carry it.
+- `--fill-from-donor` copies the Piercer donor value for attributes `balance.json` does not set. Each one is reported. Do not use it for stats or prices without a reason.
+- `--sample` (AUDIT only) adds `result.sample`: a short text dump of what the dry run built.
+- The content hash depends on the content and the scope, not on the mode. AUDIT, APPLY and ROLLBACK of one build share it.
+- A build from `tests/fixtures` is marked as a fixture build. It refuses to APPLY.
+
+Offline tests:
+
+```
+py -3 scripts/exotic_category/stage_b/test_content.py
+```
+
+## Run
+
+Serve the output folder and load the file in Studio Edit:
+
+```
+py -3 -m http.server 8778 --bind 127.0.0.1 --directory scripts/exotic_category/stage_b/out
+```
+
+```lua
+local Http = game:GetService("HttpService")
+return Http:JSONEncode(loadstring(Http:GetAsync("http://127.0.0.1:8778/installer.lua", true))())
+```
+
+The result is a small table: `ok`, `mode`, `scope`, `state`, `stateAfter`, `changed`, `contentHash`, `revision`, `counts`, `catalogue`, `findings` (`blockers`, `warns`, `infos`), `summary`. A refused or failed APPLY or ROLLBACK raises an error whose text holds the same table as JSON.
+
+Order: Stage A installed, then AUDIT pilot, review, APPLY pilot, `post_install_checks.lua`, restart Play, Play tests with `measure_seat.lua`, ROLLBACK, APPLY again, tune the data files if needed, record the seat acceptance, AUDIT full, APPLY full.
+
+## What each mode does
+
+### AUDIT
+
+Writes nothing. Reports:
+
+- `state`: `absent`, `installed-pilot`, `installed-full` or `partial-or-foreign`.
+- BLOCKER: wrong structure (`PIERCER` not first); a donor missing or drifted (donor cockpit root and its child list, donor mounts, donor module roots, upgrade path donors, stock VFX templates); `VehicleCatalogData` not equal to the generator output (not split, or stale); **a Stage A server source missing or unreadable**; an id or name already used by something this installer did not create, including a `VehicleCatalogData.EXOTIC_n` chunk without the installer marker; a plan fault (slot, type or folder mismatch, a `Default*ModuleId` outside the scope, non-ASCII text); a created root edited since install; the Studio blockout present but different from the spec fingerprints; in the full scope, seat offsets that are not accepted.
+- WARN: Studio blockout missing; a Stage A client source or artwork row missing; in the pilot scope, seat offsets that are not accepted; a Piercer audio profile changed; a model whose name contains an Exotic cockpit id.
+- INFO: the flag value `Flag_VehicleClass_exotic` on `ServerStorage.Config`; catalogue revision; blockout match; seat acceptance.
+- `ok` and `wouldApply` are false while any BLOCKER is open. APPLY is refused on the same list.
+
+Stage A probes (a plain text search in the installed source):
+
+| Level | Script | Text | Why |
+|---|---|---|---|
+| BLOCKER | `ServerStorage.Modules.Game.Garage.GarageCatalogService` | `FeatureFlag` | Without it the category is published with no flag gate. |
+| BLOCKER | `ServerStorage.Modules.Game.Garage.GarageServer` | `FeatureFlag` | Without it the old buy path sells Exotic content. |
+| BLOCKER | `ServerStorage.Modules.Game.Vehicles.DriverSeatServer` | `DriverSeatOffsetX` | Without it the driver sits at the global offset, in the engine bay. |
+| BLOCKER | `ServerStorage.Modules.Game.Garage.VehicleBuildService` | `PassengerSeatOffsetX` | Without it the passenger sits at the global offset, outside the body. |
+| WARN | `ReplicatedStorage.Modules.Game.Garage.GarageUI` | `RailLabel` | Slot labels. |
+| WARN | `ReplicatedStorage.Modules.Game.UI.GarageWorkspaceUI` | `FrontBody` | Nose and Engine Deck rail rows. |
+| WARN | `ReplicatedStorage.Modules.Game.UI.GarageModuleCardViewModel` | `CardTitle` | Module card titles. |
+| WARN | `ReplicatedStorage.Modules.Game.Vehicles.Performance.VehiclePerformanceResolver` | `RatingReferenceCockpitId` | Module ratings. |
+| WARN | `ReplicatedStorage.Modules.Game.Garage.PreviewCameraClient` | `FrontBody` | Preview cameras. |
+| WARN | `ReplicatedStorage.Config.UI.GarageReplacement.ModuleArtwork.FrontBody` and `.RearBody` | (folders) | Artwork rows. |
+
+The server gate keeps the category hidden while the flag is off, so the client parts do not block content. Install them before the flag is turned on.
+- Dry run: when the donors and the plan are sound, it builds the whole scope **detached**, checks it (structure, sockets, preview parity, template paths) and destroys it. Nothing enters the DataModel. `counts` come from this.
+
+### APPLY
+
+All or nothing. Refused while any BLOCKER is open. Steps:
+
+1. Build everything detached. Validate.
+2. If this installer's own content is present (any scope, any build), take it out of the tree. It is kept in memory until the end.
+3. Parent `ServerStorage.Assets.Vehicles.Categories.EXOTIC` (after `PIERCER`) and the four VFX template folders.
+4. Run the catalogue generator. Assert every non-Exotic chunk equals the installed source, every source compiles and is under 190,000 characters, and the counts are Piercer plus this scope.
+5. Clone the category to `ReplicatedStorage.Assets.VehiclePreviews.Categories.EXOTIC` without the upgrade path folders.
+6. Create `VehicleCatalogData.EXOTIC_n` (each with `InstalledBy`) and write the index source.
+7. Audit: generator output equals installed sources, preview parity, template path walk, state, signatures.
+
+On any error it destroys what it created, restores the index source and puts the earlier content back. The error text says whether recovery was complete.
+
+Repeat APPLY of the same build and scope changes nothing (`changed = 0`). APPLY with a larger scope or a new build replaces its own earlier content.
+
+Created roots carry `InstalledBy = "exotic_category/stage_b"`, `InstalledScope`, `InstalledContentHash` and a signature of their descendants. The two category folders carry identical attributes, so the preview stays an exact copy. The `EXOTIC_n` chunks carry `InstalledBy` only. The marker, not the name, makes something this installer's own: APPLY and ROLLBACK never detach an instance without it, and an `EXOTIC_n` chunk without it makes the state `partial-or-foreign`. `check_projection.py` and `check_catalogue.py` compare class and source only, so the attribute does not disturb them.
+
+**Restart Play after APPLY.** The catalogue is read once at startup.
+
+### ROLLBACK
+
+Removes exactly: both `EXOTIC` category folders, the four VFX templates, the `EXOTIC_n` chunks. Regenerates the index for what remains. It fails loudly, and changes nothing, if a created root holds something it did not create (signature mismatch), if the state is partial or foreign, or if the catalogue is stale. With nothing installed it returns `changed = 0`.
+
+Roll back Stage B before Stage A. APPLY blocks when a Stage A server source is missing; ROLLBACK does not need them.
+
+### State `partial-or-foreign`
+
+APPLY and ROLLBACK both refuse. The AUDIT `state` blockers say what is present, absent or unmarked. This state follows an incomplete recovery (the error text says `RECOVERY INCOMPLETE`) or hand edits. Clean up by hand, through the normal delivery route:
+
+1. Anything named like Exotic content **without** `InstalledBy = "exotic_category/stage_b"` is not this installer's. Do not delete it. Find out what made it.
+2. Remove what does carry the marker: `ServerStorage.Assets.Vehicles.Categories.EXOTIC`, `ReplicatedStorage.Assets.VehiclePreviews.Categories.EXOTIC`, the four Exotic folders in `ReplicatedStorage.Assets.VFX.VehicleTemplates`, and `VehicleCatalogData.EXOTIC_n`.
+3. Set the `VehicleCatalogData` index source back to the generator output for what remains. With Piercer only that is `scripts/exotic_category/catalogue/out/VehicleCatalogData.lua` (revision `469d9bd8...`).
+4. Run AUDIT. Expect `state = absent` and no `catalogue` blocker.
+
+## What is built
+
+- Category folder: `CategoryId="exotic"`, `DisplayName="Exotic"`, `FeatureFlag="VehicleClass_exotic"`, `COCKPITS_ReplaceAssetsHere` first, then `MODULES_InterchangeableWithinCategory`. No `UPGRADES_InvisiblePerformance`.
+- Cockpit `COCKPIT_EXOTIC_0N`: the Piercer child layout. `CockpitRoot_DoNotRename` is a clone of the live `bruiser_03` root (7.5 x 1.2 x 10.5). Ten slots, mounts cloned from the Piercer mounts, all at the origin. Parts in channel folders with `PaintChannel` on every part. Glass as the blockout. The driver dummy is dropped. 77 attributes: 65 as Piercer plus six new defaults and six seat offsets.
+- Module: `ModuleRoot_DoNotRename` is a clone of the Piercer root of the same type with only `MountAttachment` kept. Thrust parts go to `THRUST_COLOR_WhiteByDefault` with `PaintChannel="ThrustColor"`. Neon on `FrontBody` and `RearBody` goes to `LIGHTS_AlwaysOn` (`PaintChannel="Lights"`, part names end `_lamp`). Neon on other modules goes to `NEON_OptionalLights`. Upgrade paths are cloned from the donor in `balance.json` or built from its explicit list.
+- Sockets: computed from the thrust parts. See `out/summary-full.json`. A stock Exotic has 13 to 15 sockets (Piercer 12).
+- VFX templates `EngineJet_Exotic`, `BoostJet_Exotic`, `StabiliserJet_ExoticLeft`, `StabiliserJet_ExoticRight`: clones of the stock folders, scaled by `data/vfx.json`.
+
+## Seat acceptance
+
+The seat height is derived from the blockout driver dummy and one assumed number: the HumanoidRootPart centre sits 1.5 studs above the seat top (`data/seats.json` `rule.rootPartCentreAboveSeatTop`). That gives seat Y -0.325. INTERFACE.md says about 0.25. `data/seats.json` `_tradeOff` explains the difference: the cabin is lower than a seated avatar, so either the feet go below the tub or the head goes through the roof. The pilot Play test decides, and `pilotAcceptance` records the decision. Until then the pilot scope installs with a WARN and the full scope does not APPLY.
+
+1. APPLY pilot, restart Play, buy and spawn `exotic_03` with the flag on, sit in the driver seat.
+2. Run `measure_seat.lua` on the server. It prints, in root space: seat centre and top, HumanoidRootPart centre, `rootPartCentreAboveSeatTop`, body low Y and body high Y.
+3. Compare body low with the tub underside (about Y -0.4) and body high with the roof underside (Wedge about Y 3.83). Look at the avatar from the chase camera.
+4. Record the decision in `data/seats.json`:
+   - The derived placement is right: set `rule.rootPartCentreAboveSeatTop` to the measured number, `pilotAcceptance.decision = "measured"`, `measuredRootPartCentreAboveSeatTop` to the same number and `measuredOn` to the date and place.
+   - Another height is wanted (for example the INTERFACE.md 0.25): put explicit values for all six cockpits in `overrides` (the file holds the INTERFACE.md set ready to copy) and set `decision = "overrides"`, or `"measured"` with the measurement filled in.
+5. Rebuild. Record the chosen seat Y in INTERFACE.md (Template format, seat offsets).
+
+## Tuning after the pilot Play test
+
+| Symptom | Change |
+|---|---|
+| Driver sits too high or low | `data/seats.json` `rootPartCentreAboveSeatTop` (or `overrides`), then `pilotAcceptance` |
+| Flames too wide, short, long | `data/vfx.json` scales |
+| A flame in the wrong place | `data/sockets.json` `mergeDistance` or `overrides` |
+| Lamp colour | `data/colours.json` `lamp` |
+| Hover dust, underglow, headlight position | `data/cockpit_fixtures.json` |
+
+Rebuild, AUDIT, APPLY. The content hash changes, so APPLY replaces the earlier content.
+
+## Read-only checks after APPLY
+
+1. `post_install_checks.lua` in Studio Edit. Expect: `PIERCER` first; unreachable=0; `Thrust=0 Driver=0`; server and preview census equal; sockets not under a part=0 and unknown template=0; `previewOnly=0 serverOnly=0`; cockpit problems none. Set `CATEGORY = "PIERCER"` for the Piercer baseline (today: 2,102 preview instances, 333 pruned).
+2. Rebuild AUDIT and run it. Expect `state = installed-<scope>`, "this build", no BLOCKER, and the catalogue INFO line with the new revision. Every `VehicleCatalogData.EXOTIC_n` carries `InstalledBy`.
+3. `scripts/exotic_category/catalogue/parity_check.lua` (catalogue builder) for the merged catalogue.
+4. After the `vehicles` capture: `scripts/performance_phase4/check_projection.py` and `check_catalogue.py`.
+5. Play: buy `exotic_03` with the flag on; drive, boost, drift left and right; Paint Shop targets; owned-garage display; underglow purchase.

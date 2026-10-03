@@ -1,0 +1,46 @@
+[
+  {
+    "name": "VehicleCatalogData",
+    "path_parts": [
+      "ReplicatedStorage",
+      "Modules",
+      "Game",
+      "Vehicles",
+      "VehicleCatalogData"
+    ],
+    "class_name": "ModuleScript",
+    "file": "scripts/exotic_category/catalogue/out/VehicleCatalogData.lua",
+    "chars": 681,
+    "sha256": "058e8e64391d5e64810163861e8afd8dc40960335025fbd0e9ec6bf5407636d1"
+  },
+  {
+    "name": "PIERCER_1",
+    "path_parts": [
+      "ReplicatedStorage",
+      "Modules",
+      "Game",
+      "Vehicles",
+      "VehicleCatalogData",
+      "PIERCER_1"
+    ],
+    "class_name": "ModuleScript",
+    "file": "scripts/exotic_category/catalogue/out/PIERCER_1.lua",
+    "chars": 149842,
+    "sha256": "10bbd793c15cc4499c121fa991dcc8ad281481be488148ea0fbc1ad1dec3055b"
+  },
+  {
+    "name": "PIERCER_2",
+    "path_parts": [
+      "ReplicatedStorage",
+      "Modules",
+      "Game",
+      "Vehicles",
+      "VehicleCatalogData",
+      "PIERCER_2"
+    ],
+    "class_name": "ModuleScript",
+    "file": "scripts/exotic_category/catalogue/out/PIERCER_2.lua",
+    "chars": 47288,
+    "sha256": "a2f360615d27fc0298d9b64f71299b524d6bafa6a7639e1fe68d619ee1fdf009"
+  }
+]

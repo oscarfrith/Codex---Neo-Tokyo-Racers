@@ -1,0 +1,25 @@
+{
+  "capture": "roblox/captures/exotic-before/capture.json",
+  "captureSha256": "e70a06b4af72beceffea41cd86fc5b8672c2dbc87b8997e68e5c6f81718a4a87",
+  "placeId": 133417340424236,
+  "revision": "469d9bd81944a3d71a127ea1d5e702720b75f55524391cb27008e05e8fc2cf0e",
+  "cockpits": 6,
+  "modules": 116,
+  "before": {
+    "path_parts": [
+      "ReplicatedStorage",
+      "Modules",
+      "Game",
+      "Vehicles",
+      "VehicleCatalogData"
+    ],
+    "file": "roblox/source_store/6d7a723507340f981c853156cbaebb263f4206395ff976ae1117bb113f207477.lua",
+    "chars": 197226,
+    "sha256": "6d7a723507340f981c853156cbaebb263f4206395ff976ae1117bb113f207477"
+  },
+  "chunks": [
+    "PIERCER_1",
+    "PIERCER_2"
+  ],
+  "totalChars": 197811
+}

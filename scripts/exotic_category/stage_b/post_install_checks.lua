@@ -1,0 +1,183 @@
+-- Exotic category, Stage B: read-only checks to run in Studio Edit after APPLY (and after ROLLBACK).
+-- It changes nothing and requires no module. Paste it into execute_luau, or load it with
+--   return loadstring(game:GetService("HttpService"):GetAsync("http://127.0.0.1:<port>/post_install_checks.lua", true))()
+-- Set CATEGORY to "PIERCER" to see the same report for the live Piercer content.
+local CATEGORY = "EXOTIC"
+
+local ServerStorage = game:GetService("ServerStorage")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local categories = ServerStorage.Assets.Vehicles.Categories
+local previews = ReplicatedStorage.Assets.VehiclePreviews.Categories
+local templates = ReplicatedStorage.Assets.VFX.VehicleTemplates
+local out = {}
+local function add(text) table.insert(out, text) end
+
+local order = {}
+for _, child in ipairs(categories:GetChildren()) do table.insert(order, child.Name) end
+add("category order: " .. table.concat(order, ", ") .. (order[1] == "PIERCER" and "  (PIERCER first: ok)" or "  (PIERCER IS NOT FIRST)"))
+
+local server, preview = categories:FindFirstChild(CATEGORY), previews:FindFirstChild(CATEGORY)
+if not server or not preview then
+	add(CATEGORY .. ": server category " .. (server and "present" or "absent") .. ", preview category " .. (preview and "present" or "absent"))
+	return table.concat(out, "\n")
+end
+add(CATEGORY .. " first child: " .. tostring(server:GetChildren()[1]) .. " (must be COCKPITS_ReplaceAssetsHere)")
+
+-- 1. Template-path walk: every cockpit and module is reachable by its relative path in both trees.
+local function relative(instance, root)
+	local names, current = {}, instance
+	while current ~= root do
+		table.insert(names, 1, current.Name)
+		current = current.Parent
+	end
+	return names
+end
+local cockpits, modules, unreachable = 0, 0, {}
+for _, item in ipairs(server:GetDescendants()) do
+	if item:IsA("Model") and (item:GetAttribute("CockpitId") ~= nil or item:GetAttribute("ModuleId") ~= nil) then
+		local attribute = item:GetAttribute("CockpitId") ~= nil and "CockpitId" or "ModuleId"
+		if attribute == "CockpitId" then cockpits += 1 else modules += 1 end
+		for _, root in ipairs({ server, preview }) do
+			local current = root
+			for _, name in ipairs(relative(item, server)) do current = current and current:FindFirstChild(name) end
+			if not (current and current:IsA("Model") and current:GetAttribute(attribute) == item:GetAttribute(attribute)) then
+				table.insert(unreachable, (root == server and "server:" or "preview:") .. tostring(item:GetAttribute(attribute)))
+			end
+		end
+	end
+end
+add(string.format("1. template-path walk: cockpits=%d modules=%d unreachable=%d %s", cockpits, modules, #unreachable, table.concat(unreachable, ", ", 1, math.min(#unreachable, 8))))
+
+-- 2. Channel census, by the server rule (VehicleBuildService.resolvePaintChannel): folder names first, then attributes.
+local FOLDERS = { PRIMARY_ReplaceWithPrimaryMeshes = "Primary", SECONDARY_ReplaceWithSecondaryMeshes = "Secondary", DETAIL_ReplaceWithDetailMeshes = "Detail", NEON_OptionalLights = "Neon", THRUST_COLOR_WhiteByDefault = "ThrustColor" }
+local function channelOf(object, root)
+	local current = object
+	while current and current ~= root.Parent do
+		if FOLDERS[current.Name] then return FOLDERS[current.Name] end
+		current = current.Parent
+	end
+	current = object
+	while current and current ~= root.Parent do
+		local value = current:GetAttribute("PaintChannel")
+		if typeof(value) == "string" and value ~= "" then return value end
+		current = current.Parent
+	end
+	return "(none)"
+end
+local function census(root)
+	local counts, disagree, names = {}, 0, {}
+	for _, item in ipairs(root:GetDescendants()) do
+		if item:IsA("BasePart") then
+			local channel = channelOf(item, root)
+			counts[channel] = (counts[channel] or 0) + 1
+			local own = item:GetAttribute("PaintChannel")
+			if own ~= nil and FOLDERS[item.Parent.Name] and FOLDERS[item.Parent.Name] ~= own then disagree += 1 end
+		end
+	end
+	for name in pairs(counts) do table.insert(names, name) end
+	table.sort(names)
+	local parts = {}
+	for _, name in ipairs(names) do table.insert(parts, name .. "=" .. counts[name]) end
+	return table.concat(parts, " ") .. " | parts whose attribute disagrees with their folder=" .. disagree, counts
+end
+local serverCensus, serverCounts = census(server)
+local previewCensus = census(preview)
+add("2. channel census (server):  " .. serverCensus)
+add("   channel census (preview): " .. previewCensus .. (serverCensus == previewCensus and "  (same: ok)" or "  (DIFFERENT)"))
+add("   blockout channels left: Thrust=" .. tostring(serverCounts.Thrust or 0) .. " Driver=" .. tostring(serverCounts.Driver or 0) .. " (both must be 0)")
+
+-- 3. Sockets: parent is a part, template exists.
+local sockets, badParent, badTemplate, byTemplate = 0, 0, 0, {}
+for _, item in ipairs(server:GetDescendants()) do
+	if item:IsA("Attachment") and (item:GetAttribute("VFXSocket") == true or string.sub(item.Name, 1, 4) == "VFX_") then
+		sockets += 1
+		if not item.Parent:IsA("BasePart") then badParent += 1 end
+		local name = tostring(item:GetAttribute("VFXTemplate"))
+		byTemplate[name] = (byTemplate[name] or 0) + 1
+		if not templates:FindFirstChild(name) then badTemplate += 1 end
+	end
+end
+local templateList = {}
+for name, count in pairs(byTemplate) do table.insert(templateList, name .. "=" .. count) end
+table.sort(templateList)
+add(string.format("3. sockets: %d, not under a part=%d, unknown template=%d | %s", sockets, badParent, badTemplate, table.concat(templateList, " ")))
+
+-- 4. Preview parity (catalogue.md Appendix B, limited to this category).
+local function describe(value)
+	local kind = typeof(value)
+	if kind == "Color3" then return "C3:" .. value.R .. "," .. value.G .. "," .. value.B end
+	return kind .. ":" .. tostring(value)
+end
+local function sig(instance, root)
+	local attributes = {}
+	for name, value in pairs(instance:GetAttributes()) do table.insert(attributes, name .. "=" .. describe(value)) end
+	table.sort(attributes)
+	local extra = ""
+	if instance:IsA("BasePart") then
+		extra = tostring(instance.Size) .. "|" .. tostring(instance.CFrame) .. "|" .. instance.Material.Name .. "|" .. tostring(instance.Color) .. "|" .. tostring(instance.Transparency)
+	elseif instance:IsA("Attachment") then
+		extra = tostring(instance.CFrame)
+	end
+	return table.concat(relative(instance, root), "/") .. "<" .. instance.ClassName .. ">" .. table.concat(attributes, ";") .. "#" .. extra .. "#" .. table.concat(instance:GetTags(), ",")
+end
+local function pruned(instance, root)
+	local current = instance
+	while current ~= root do
+		if current.Name == "VehiclePerformanceV2UpgradePaths" or current.Name == "UpgradePaths" then return true end
+		current = current.Parent
+	end
+	return false
+end
+local tally, serverCount, prunedCount = {}, 0, 0
+for _, item in ipairs(server:GetDescendants()) do
+	if pruned(item, server) then
+		prunedCount += 1
+	else
+		serverCount += 1
+		local key = sig(item, server)
+		tally[key] = (tally[key] or 0) + 1
+	end
+end
+local previewCount, previewOnly, serverOnly = 0, 0, 0
+for _, item in ipairs(preview:GetDescendants()) do
+	previewCount += 1
+	local key = sig(item, preview)
+	if tally[key] and tally[key] > 0 then tally[key] -= 1 else previewOnly += 1 end
+end
+for _, left in pairs(tally) do serverOnly += left end
+local rootSame = true
+for name, value in pairs(server:GetAttributes()) do
+	if preview:GetAttribute(name) ~= value then rootSame = false end
+end
+for name in pairs(preview:GetAttributes()) do
+	if server:GetAttribute(name) == nil then rootSame = false end
+end
+add(string.format("4. preview parity: server non-pruned=%d pruned=%d preview=%d previewOnly=%d serverOnly=%d rootAttributesEqual=%s", serverCount, prunedCount, previewCount, previewOnly, serverOnly, tostring(rootSame)))
+
+-- 5. Things the game needs on every cockpit.
+local problems = {}
+for _, item in ipairs(server:GetDescendants()) do
+	if item:IsA("Model") and item:GetAttribute("CockpitId") ~= nil then
+		local root = item.PrimaryPart
+		local slots = item:FindFirstChild("ModuleSlots")
+		local underglow = false
+		for _, light in ipairs(item:GetDescendants()) do
+			if light:IsA("SurfaceLight") and (light:GetAttribute("VehicleCosmeticId") == "Underglow" or light:GetAttribute("LightChannel") == "Underglow") then underglow = true end
+		end
+		if not (root and root.Name == "CockpitRoot_DoNotRename") then table.insert(problems, item.Name .. " root") end
+		if item:GetAttribute("V2Materialised") ~= true then table.insert(problems, item.Name .. " V2Materialised") end
+		if not underglow then table.insert(problems, item.Name .. " underglow light") end
+		for name, value in pairs(item:GetAttributes()) do
+			if string.sub(name, 1, 7) == "Default" and string.sub(name, -8) == "ModuleId" then
+				local found = false
+				for _, module in ipairs(server:GetDescendants()) do
+					if module:IsA("Model") and module:GetAttribute("ModuleId") == value then found = true; break end
+				end
+				if not found then table.insert(problems, item.Name .. " " .. name .. " -> " .. tostring(value)) end
+			end
+		end
+		add("   " .. item.Name .. ": slots=" .. tostring(slots and #slots:GetChildren()) .. " root=" .. tostring(root and root.Size))
+	end
+end
+add("5. cockpit problems: " .. (#problems == 0 and "none" or table.concat(problems, "; ", 1, math.min(#problems, 10))))
+return table.concat(out, "\n")

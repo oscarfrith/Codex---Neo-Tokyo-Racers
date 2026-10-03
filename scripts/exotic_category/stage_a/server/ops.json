@@ -1,0 +1,79 @@
+[
+ {
+  "kind": "source",
+  "path": [
+   "ServerStorage",
+   "Modules",
+   "Game",
+   "Garage",
+   "GarageServer"
+  ],
+  "file": "scripts/exotic_category/stage_a/server/after/GarageServer.lua"
+ },
+ {
+  "kind": "source",
+  "path": [
+   "ServerStorage",
+   "Modules",
+   "Game",
+   "Garage",
+   "GarageCatalogLookup"
+  ],
+  "file": "scripts/exotic_category/stage_a/server/after/GarageCatalogLookup.lua"
+ },
+ {
+  "kind": "source",
+  "path": [
+   "ServerStorage",
+   "Modules",
+   "Game",
+   "Garage",
+   "GarageCatalogService"
+  ],
+  "file": "scripts/exotic_category/stage_a/server/after/GarageCatalogService.lua"
+ },
+ {
+  "kind": "source",
+  "path": [
+   "ServerStorage",
+   "Modules",
+   "Game",
+   "Garage",
+   "GarageClientProfile"
+  ],
+  "file": "scripts/exotic_category/stage_a/server/after/GarageClientProfile.lua"
+ },
+ {
+  "kind": "source",
+  "path": [
+   "ServerStorage",
+   "Modules",
+   "Game",
+   "Garage",
+   "OwnedGarageDisplay"
+  ],
+  "file": "scripts/exotic_category/stage_a/server/after/OwnedGarageDisplay.lua"
+ },
+ {
+  "kind": "source",
+  "path": [
+   "ServerStorage",
+   "Modules",
+   "Game",
+   "Garage",
+   "VehicleBuildService"
+  ],
+  "file": "scripts/exotic_category/stage_a/server/after/VehicleBuildService.lua"
+ },
+ {
+  "kind": "source",
+  "path": [
+   "ServerStorage",
+   "Modules",
+   "Game",
+   "Vehicles",
+   "DriverSeatServer"
+  ],
+  "file": "scripts/exotic_category/stage_a/server/after/DriverSeatServer.lua"
+ }
+]

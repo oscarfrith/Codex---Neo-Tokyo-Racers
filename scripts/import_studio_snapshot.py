@@ -124,9 +124,17 @@ def decode_scripts(payload: dict[str, Any]) -> list[ExportedScript]:
     return scripts
 
 
-def validate_payload(payload: dict[str, Any]) -> list[ExportedScript]:
-    """Reject incomplete/ambiguous sources before touching the current mirror."""
-    if payload.get("format") != EXPORT_START or payload.get("place_id") not in (121304917315753, 71491191583884):
+STAGING_PLACE_ID = 133417340424236  # Space Racers Backup v2: scoped captures only, never the full mirror.
+
+
+def validate_payload(payload: dict[str, Any], staging_ok: bool = False) -> list[ExportedScript]:
+    """Reject incomplete/ambiguous sources before touching the current mirror.
+
+    staging_ok is set only by the scoped capture tool: a full-mirror import from the staging place
+    would overwrite the v2 mirror, so it stays refused here.
+    """
+    places = (121304917315753, 71491191583884) + ((STAGING_PLACE_ID,) if staging_ok else ())
+    if payload.get("format") != EXPORT_START or payload.get("place_id") not in places:
         raise ValueError("BLOCKER: wrong format/place; expected Space Racers v2 (or historical v1)")
     expected = {'ReplicatedFirst', 'ReplicatedStorage', 'ServerScriptService', 'ServerStorage', 'StarterPlayer', 'StarterGui', 'Workspace', 'Lighting', 'SoundService'}
     if set(payload.get('services_scanned', [])) != expected or {n.get('name') for n in payload.get('hierarchy', [])} != expected:

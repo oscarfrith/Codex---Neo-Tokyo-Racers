@@ -52,3 +52,6 @@ roblox/exported_scripts/ServerStorage/NeoTokyoRacers_LegacyArchive/
 !CLAUDE.md
 !/.claude/
 !README.md
+# Exotic category: generated installers (rebuild with feature_installer.py / stage_b/build_content.py).
+scripts/exotic_category/stage_a/out/
+scripts/exotic_category/stage_b/out/

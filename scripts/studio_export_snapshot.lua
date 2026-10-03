@@ -20,6 +20,7 @@
 
 local HISTORICAL_EXPORT_FOLDER_NAME = "NTR_STUDIO_FULL_EXPORT_V2" -- Read-only exclusion for historical dumps, never created.
 local EXPECTED_PLACE_ID = 71491191583884 -- Space Racers v2 (current target since 2026-09-26; v1 was 121304917315753)
+local BACKUP_PLACE_ID = 133417340424236 -- Space Racers Backup v2: staging place for deliveries not yet on v2 (2026-10-02)
 local LOCAL_RECEIVER_CHUNK_URL = "http://127.0.0.1:8765/studio-snapshot-chunk"
 local HTTP_CHUNK_LIMIT = 180000 -- Headroom for JSON escaping inside the transport envelope.
 
@@ -27,7 +28,7 @@ local INCLUDE_DISABLED_SCRIPTS = true
 local INCLUDE_TEST_WIP_ASSETS = true
 
 local HttpService = game:GetService("HttpService")
-assert(game.PlaceId == EXPECTED_PLACE_ID, "BLOCKER: wrong place; select Space Racers v2")
+assert(game.PlaceId == EXPECTED_PLACE_ID or game.PlaceId == BACKUP_PLACE_ID, "BLOCKER: wrong place; select Space Racers v2 (or Backup v2)")
 assert(not game:GetService("RunService"):IsRunning(), "BLOCKER: export the Edit datamodel")
 local diagnostics = { property_read_errors = {}, duplicate_paths = {} }
 local pathCounts = {}

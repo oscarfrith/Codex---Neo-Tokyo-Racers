@@ -1,0 +1,236 @@
+{
+ "task": "exotic-category-stage-a",
+ "lane": "High-Risk",
+ "contract": "docs/architecture/exotic-category-contract.md",
+ "verification": "AUDIT -> delivery-reviewer -> APPLY -> ROLLBACK -> APPLY; after capture with check_projection (split form); golden sequence scripts/exotic_category/golden.lua: steps 01-18 and X01-X06 equal golden-before.txt, Z01-Z02 expected to differ",
+ "operations": [
+  {
+   "kind": "module",
+   "parent": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "Vehicles",
+    "VehicleCatalogData"
+   ],
+   "name": "PIERCER_1",
+   "file": "scripts/exotic_category/catalogue/out/PIERCER_1.lua"
+  },
+  {
+   "kind": "module",
+   "parent": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "Vehicles",
+    "VehicleCatalogData"
+   ],
+   "name": "PIERCER_2",
+   "file": "scripts/exotic_category/catalogue/out/PIERCER_2.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "Vehicles",
+    "VehicleCatalogData"
+   ],
+   "file": "scripts/exotic_category/catalogue/out/VehicleCatalogData.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Garage",
+    "GarageServer"
+   ],
+   "file": "scripts/exotic_category/stage_a/server/after/GarageServer.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Garage",
+    "GarageCatalogLookup"
+   ],
+   "file": "scripts/exotic_category/stage_a/server/after/GarageCatalogLookup.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Garage",
+    "GarageCatalogService"
+   ],
+   "file": "scripts/exotic_category/stage_a/server/after/GarageCatalogService.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Garage",
+    "GarageClientProfile"
+   ],
+   "file": "scripts/exotic_category/stage_a/server/after/GarageClientProfile.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Garage",
+    "OwnedGarageDisplay"
+   ],
+   "file": "scripts/exotic_category/stage_a/server/after/OwnedGarageDisplay.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Garage",
+    "VehicleBuildService"
+   ],
+   "file": "scripts/exotic_category/stage_a/server/after/VehicleBuildService.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Vehicles",
+    "DriverSeatServer"
+   ],
+   "file": "scripts/exotic_category/stage_a/server/after/DriverSeatServer.lua"
+  },
+  {
+   "kind": "folder",
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "GarageReplacement",
+    "ModuleArtwork"
+   ],
+   "name": "FrontBody",
+   "attributes": {
+    "DisplayName": "Front Body",
+    "Image": "rbxassetid://76594522686468",
+    "ShowInBuild": true,
+    "ShowInCustomise": true,
+    "SortOrder": 72,
+    "TargetId": "FrontBody"
+   }
+  },
+  {
+   "kind": "folder",
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "UI",
+    "GarageReplacement",
+    "ModuleArtwork"
+   ],
+   "name": "RearBody",
+   "attributes": {
+    "DisplayName": "Rear Body",
+    "Image": "rbxassetid://136042248946525",
+    "ShowInBuild": true,
+    "ShowInCustomise": true,
+    "SortOrder": 74,
+    "TargetId": "RearBody"
+   }
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "UI",
+    "GarageWorkspaceUI"
+   ],
+   "file": "scripts/exotic_category/stage_a/client/after/GarageWorkspaceUI.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "Garage",
+    "GarageUI"
+   ],
+   "file": "scripts/exotic_category/stage_a/client/after/GarageUI.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "UI",
+    "GarageBrowserUI"
+   ],
+   "file": "scripts/exotic_category/stage_a/client/after/GarageBrowserUI.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "UI",
+    "GarageModuleCardViewModel"
+   ],
+   "file": "scripts/exotic_category/stage_a/client/after/GarageModuleCardViewModel.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "Garage",
+    "GarageVehiclePreviewProfile"
+   ],
+   "file": "scripts/exotic_category/stage_a/client/after/GarageVehiclePreviewProfile.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "Vehicles",
+    "Performance",
+    "VehiclePerformanceResolver"
+   ],
+   "file": "scripts/exotic_category/stage_a/client/after/VehiclePerformanceResolver.lua"
+  },
+  {
+   "kind": "source",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "Garage",
+    "PreviewCameraClient"
+   ],
+   "file": "scripts/exotic_category/stage_a/client/after/PreviewCameraClient.lua"
+  }
+ ]
+}

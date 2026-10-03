@@ -1,5 +1,6 @@
 """Read-only freshness of both generated outputs against server authoring."""
 from build import ROOT,HERE,OLD,SERVER,PREVIEW,rewrite,pruned,flat,project
+from catalogue import source_form
 import collections,copy,json
 def clean(n):return {k:copy.deepcopy(v) for k,v in n.items() if k not in ('children','script_id')}
 def serial(n):return json.dumps(n,sort_keys=True,separators=(',',':'))
@@ -8,8 +9,9 @@ def check(h,manifest=None):
     authoring=copy.deepcopy(tree);rewrite(authoring,SERVER,OLD)
     data,source,_=project({'hierarchy':[authoring]})
     if manifest is None:manifest=json.loads((ROOT/'roblox/exported_scripts/manifest.json').read_text(encoding='utf8'))
-    row=next(r for r in manifest if r['path_parts']==['ReplicatedStorage','Modules','Game','Vehicles','VehicleCatalogData'])
-    assert source==(ROOT/row['file']).read_text(encoding='utf8'),'Public catalogue stale; regenerate from server authoring'
+    # Exactly one generated form: the single legacy module, or the index plus exactly its chunk children.
+    form,problems=source_form(data,source,manifest,lambda row:(ROOT/row['file']).read_text(encoding='utf8'))
+    assert form,'Public catalogue stale; regenerate from server authoring: '+'; '.join(problems)
     expected=[]
     for n in flat({'hierarchy':[tree]}):
         if pruned(n):continue
@@ -18,7 +20,7 @@ def check(h,manifest=None):
         expected.append(r)
     actual=[clean(n) for n in nodes if n['path_parts'][:3]==PREVIEW]
     assert collections.Counter(map(serial,expected))==collections.Counter(map(serial,actual)),'Preview projection stale; regenerate from server authoring'
-    return dict(publicCatalogueFresh=True,previewProjectionFresh=True,revision=data['Revision'],previewInstances=len(actual))
+    return dict(publicCatalogueFresh=True,catalogueForm=form,previewProjectionFresh=True,revision=data['Revision'],previewInstances=len(actual))
 if __name__=='__main__':
     import argparse,sys
     parser=argparse.ArgumentParser();mode=parser.add_mutually_exclusive_group(required=True);mode.add_argument('--capture');mode.add_argument('--legacy-mirror',action='store_true');args=parser.parse_args()

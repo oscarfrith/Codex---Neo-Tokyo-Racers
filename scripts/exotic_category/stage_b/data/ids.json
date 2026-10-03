@@ -1,0 +1,93 @@
+{
+  "_note": "Permanent ids and names for the Exotic category. Source: scripts/exotic_category/INTERFACE.md (IDs and slot table). Saved in player profiles: never rename.",
+  "placeId": 133417340424236,
+  "marker": "exotic_category/stage_b",
+  "category": {
+    "folder": "EXOTIC",
+    "afterFolder": "PIERCER",
+    "attributes": {
+      "CategoryId": "exotic",
+      "DisplayName": "Exotic",
+      "Description": "Mid-engined supercars and hypercars as hover jets: cab forward, turbine behind the cabin, jets at every corner.",
+      "ModuleCompatibility": "Exotic category modules fit every Exotic cockpit.",
+      "FeatureFlag": "VehicleClass_exotic"
+    }
+  },
+  "pilotCockpit": "03",
+  "ratingReferenceCockpitId": "exotic_03",
+  "variants": ["STANDARD", "LIGHTWEIGHT", "POWER"],
+  "cockpitAttributeOverrides": {"OwnedByDefault": false},
+  "_cockpitAttributeOverrides": "Applied last to every Exotic cockpit, after the Piercer constants and balance.json. A name must already be a cockpit attribute and may not be one the interface fixes; values get the same checks as every other attribute. OwnedByDefault: every live Piercer cockpit carries true and balance.json copies it, but no script reads it today (213 captured sources). Exotic cockpits are all paid, so they are installed with false: if a reader is ever added, it must not hand them out.",
+  "cockpits": [
+    {"n": "01", "cockpitId": "exotic_01", "model": "COCKPIT_EXOTIC_01", "displayName": "Spider", "specCockpit": "spider", "specKit": "track", "kitName": "Track", "tier": "E", "price": 50000, "targetStockPI": 220},
+    {"n": "02", "cockpitId": "exotic_02", "model": "COCKPIT_EXOTIC_02", "displayName": "Curve", "specCockpit": "curve", "specKit": "analogue", "kitName": "Analogue", "tier": "D", "price": 150000, "targetStockPI": 390},
+    {"n": "03", "cockpitId": "exotic_03", "model": "COCKPIT_EXOTIC_03", "displayName": "Wedge", "specCockpit": "wedge", "specKit": "wedge", "kitName": "Wedge", "tier": "C", "price": 440000, "targetStockPI": 540},
+    {"n": "04", "cockpitId": "exotic_04", "model": "COCKPIT_EXOTIC_04", "displayName": "Longtail", "specCockpit": "longtail", "specKit": "longtail", "kitName": "Longtail", "tier": "B", "price": 1400000, "targetStockPI": 675},
+    {"n": "05", "cockpitId": "exotic_05", "model": "COCKPIT_EXOTIC_05", "displayName": "Hyper", "specCockpit": "hyper", "specKit": "hyper", "kitName": "Hyper", "tier": "A", "price": 4400000, "targetStockPI": 800},
+    {"n": "06", "cockpitId": "exotic_06", "model": "COCKPIT_EXOTIC_06", "displayName": "Gull", "specCockpit": "gull", "specKit": "concept", "kitName": "Concept", "tier": "S", "price": 12500000, "targetStockPI": 938}
+  ],
+  "slots": [
+    {
+      "slotId": "Engine1", "label": "Main Turbine", "moduleType": "Engine", "moduleFolder": "Engines", "order": 1, "countLabel": "Engines",
+      "enginePosition": "Front", "kind": "core", "idPrefix": "MODULE_ENGINE_EXOTIC_", "moduleSlot": "Engine", "rearEngine": false, "moduleEnginePosition": "Front",
+      "attributeDonor": "MODULE_ENGINE_BRUISER_03_{VARIANT}", "rootDonor": "MODULE_ENGINE_BRUISER_03_STANDARD", "mountDonorSlot": "Engine1",
+      "defaultAttributes": ["DefaultEngineModuleId", "DefaultFrontEngineModuleId"], "sockets": "engine", "lamps": false
+    },
+    {
+      "slotId": "Engine2", "label": "Side Engines", "moduleType": "Engine", "moduleFolder": "Engines_B", "order": 2, "countLabel": "Engines",
+      "enginePosition": "Rear", "kind": "core", "idPrefix": "MODULE_ENGINE_B_EXOTIC_", "moduleSlot": "Engine", "rearEngine": true, "moduleEnginePosition": "Rear",
+      "attributeDonor": "MODULE_ENGINE_B_BRUISER_03_{VARIANT}", "rootDonor": "MODULE_ENGINE_B_BRUISER_03_STANDARD", "mountDonorSlot": "Engine2",
+      "defaultAttributes": ["DefaultEngineBModuleId", "DefaultRearEngineModuleId"], "sockets": "engine", "lamps": false
+    },
+    {
+      "slotId": "Stabilisers", "label": "Stabilisers", "moduleType": "Stabilisers", "moduleFolder": "Stabilisers", "order": 3, "countLabel": "Stabilisers",
+      "enginePosition": null, "kind": "core", "idPrefix": "MODULE_STABILISER_EXOTIC_", "moduleSlot": "Stabilisers", "rearEngine": false, "moduleEnginePosition": "",
+      "attributeDonor": "MODULE_STABILISER_BRUISER_03_{VARIANT}", "rootDonor": "MODULE_STABILISER_BRUISER_03_STANDARD", "mountDonorSlot": "Stabilisers",
+      "defaultAttributes": ["DefaultStabiliserModuleId", "DefaultStabilisersModuleId"], "sockets": "stabiliser", "lamps": false
+    },
+    {
+      "slotId": "Boost", "label": "Afterburner", "moduleType": "Boost", "moduleFolder": "Boost", "order": 4, "countLabel": "Boost",
+      "enginePosition": null, "kind": "core", "idPrefix": "MODULE_BOOST_EXOTIC_", "moduleSlot": "Boost", "rearEngine": false, "moduleEnginePosition": "",
+      "attributeDonor": "MODULE_BOOST_BRUISER_03_{VARIANT}", "rootDonor": "MODULE_BOOST_BRUISER_03_STANDARD", "mountDonorSlot": "Boost",
+      "defaultAttributes": ["DefaultBoostModuleId"], "sockets": "boost", "lamps": false
+    },
+    {
+      "slotId": "FrontBumper", "label": "Splitter", "moduleType": "FrontBumper", "moduleFolder": "FrontBumpers", "order": 5, "countLabel": "Splitters",
+      "enginePosition": null, "kind": "body", "idPrefix": "MODULE_FRONTBUMPER_EXOTIC_", "moduleSlot": "FrontBumper",
+      "attributeDonor": "MODULE_FRONTBUMPER_LVL1", "rootDonor": "MODULE_FRONTBUMPER_LVL1", "mountDonorSlot": "FrontBumper",
+      "defaultAttributes": ["DefaultFrontBumperModuleId"], "sockets": null, "lamps": false
+    },
+    {
+      "slotId": "RearBumper", "label": "Diffuser", "moduleType": "RearBumper", "moduleFolder": "RearBumpers", "order": 6, "countLabel": "Diffusers",
+      "enginePosition": null, "kind": "body", "idPrefix": "MODULE_REARBUMPER_EXOTIC_", "moduleSlot": "RearBumper",
+      "attributeDonor": "MODULE_REARBUMPER_LVL1", "rootDonor": "MODULE_REARBUMPER_LVL1", "mountDonorSlot": "RearBumper",
+      "defaultAttributes": ["DefaultRearBumperModuleId"], "sockets": null, "lamps": false
+    },
+    {
+      "slotId": "RearSpoiler", "label": "Wing", "moduleType": "RearSpoiler", "moduleFolder": "RearSpoilers", "order": 7, "countLabel": "Wings",
+      "enginePosition": null, "kind": "body", "idPrefix": "MODULE_REARSPOILER_EXOTIC_", "moduleSlot": "RearSpoiler",
+      "attributeDonor": "MODULE_REARSPOILER_LVL1", "rootDonor": "MODULE_REARSPOILER_LVL1", "mountDonorSlot": "RearSpoiler",
+      "defaultAttributes": ["DefaultRearSpoilerModuleId"], "sockets": null, "lamps": false
+    },
+    {
+      "slotId": "SidePods", "label": "Side Pods", "moduleType": "SidePods", "moduleFolder": "SidePods", "order": 8, "countLabel": "Side Pods",
+      "enginePosition": null, "kind": "body", "idPrefix": "MODULE_SIDEPODS_EXOTIC_", "moduleSlot": "SidePods",
+      "attributeDonor": "MODULE_SIDEPODS_LVL1", "rootDonor": "MODULE_SIDEPODS_LVL1", "mountDonorSlot": "SidePods",
+      "defaultAttributes": ["DefaultSidePodsModuleId"], "sockets": null, "lamps": false
+    },
+    {
+      "slotId": "FrontBody", "label": "Nose", "moduleType": "FrontBody", "moduleFolder": "FrontBodies", "order": 9, "countLabel": "Noses",
+      "enginePosition": null, "kind": "body", "idPrefix": "MODULE_FRONTBODY_EXOTIC_", "moduleSlot": "FrontBody",
+      "attributeDonor": "MODULE_FRONTBUMPER_LVL1", "rootDonor": "MODULE_FRONTBUMPER_LVL1", "mountDonorSlot": "FrontBumper",
+      "mountAttributes": {"SlotId": "FrontBody", "ModuleType": "FrontBody", "DisplayName": "Front Body"},
+      "defaultAttributes": ["DefaultFrontBodyModuleId"], "sockets": null, "lamps": true
+    },
+    {
+      "slotId": "RearBody", "label": "Engine Deck", "moduleType": "RearBody", "moduleFolder": "RearBodies", "order": 10, "countLabel": "Engine Decks",
+      "enginePosition": null, "kind": "body", "idPrefix": "MODULE_REARBODY_EXOTIC_", "moduleSlot": "RearBody",
+      "attributeDonor": "MODULE_REARBUMPER_LVL1", "rootDonor": "MODULE_REARBUMPER_LVL1", "mountDonorSlot": "RearBumper",
+      "mountAttributes": {"SlotId": "RearBody", "ModuleType": "RearBody", "DisplayName": "Rear Body"},
+      "defaultAttributes": ["DefaultRearBodyModuleId"], "sockets": null, "lamps": true
+    }
+  ]
+}

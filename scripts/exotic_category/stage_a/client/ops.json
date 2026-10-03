@@ -1,0 +1,80 @@
+[
+ {
+  "kind": "source",
+  "path": [
+   "ReplicatedStorage",
+   "Modules",
+   "Game",
+   "UI",
+   "GarageWorkspaceUI"
+  ],
+  "file": "scripts/exotic_category/stage_a/client/after/GarageWorkspaceUI.lua"
+ },
+ {
+  "kind": "source",
+  "path": [
+   "ReplicatedStorage",
+   "Modules",
+   "Game",
+   "Garage",
+   "GarageUI"
+  ],
+  "file": "scripts/exotic_category/stage_a/client/after/GarageUI.lua"
+ },
+ {
+  "kind": "source",
+  "path": [
+   "ReplicatedStorage",
+   "Modules",
+   "Game",
+   "UI",
+   "GarageBrowserUI"
+  ],
+  "file": "scripts/exotic_category/stage_a/client/after/GarageBrowserUI.lua"
+ },
+ {
+  "kind": "source",
+  "path": [
+   "ReplicatedStorage",
+   "Modules",
+   "Game",
+   "UI",
+   "GarageModuleCardViewModel"
+  ],
+  "file": "scripts/exotic_category/stage_a/client/after/GarageModuleCardViewModel.lua"
+ },
+ {
+  "kind": "source",
+  "path": [
+   "ReplicatedStorage",
+   "Modules",
+   "Game",
+   "Garage",
+   "GarageVehiclePreviewProfile"
+  ],
+  "file": "scripts/exotic_category/stage_a/client/after/GarageVehiclePreviewProfile.lua"
+ },
+ {
+  "kind": "source",
+  "path": [
+   "ReplicatedStorage",
+   "Modules",
+   "Game",
+   "Vehicles",
+   "Performance",
+   "VehiclePerformanceResolver"
+  ],
+  "file": "scripts/exotic_category/stage_a/client/after/VehiclePerformanceResolver.lua"
+ },
+ {
+  "kind": "source",
+  "path": [
+   "ReplicatedStorage",
+   "Modules",
+   "Game",
+   "Garage",
+   "PreviewCameraClient"
+  ],
+  "file": "scripts/exotic_category/stage_a/client/after/PreviewCameraClient.lua"
+ }
+]

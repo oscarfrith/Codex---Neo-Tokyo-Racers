@@ -1,0 +1,26 @@
+01_GetInitial len=172437 h=c596d078 true|nil
+02_BuyCockpit len=6518 h=b2b0e768 true|Cockpit instance purchased.
+03_BuyModule len=8426 h=ac6730d7 true|Module purchased and equipped.
+04_BuyCosmetic len=8421 h=5b9b8dff true|Vehicle cosmetic unlocked.
+05_CosmeticColour len=71 h=d8111490 true|Underglow colour updated.
+06_BuyNeon len=8413 h=a54aec20 true|Neon unlocked.
+07_Upgrade len=8643 h=a332bb40 true|AirflowChannels upgraded for $3850.
+08_CockpitColour len=8511 h=f3fc6818 true|Vehicle colour updated.
+09_Unaffordable len=8505 h=3dc8387e false|Not enough cash.
+10_BadField len=63 h=39cf0408 false|Unknown request field.
+11_UnknownCockpit len=8507 h=b2a2b3f8 false|Cockpit not found.
+12_GetInitial len=178286 h=94550648 true|nil
+13_Select len=8505 h=9544c638 true|Vehicle selected.
+14_Spawn len=8504 h=f8709880 true|Vehicle spawned.
+15_Exit len=8514 h=e5b7ead8 true|Exited and parked vehicle.
+16_ReEnter len=63 h=361e2580 false|Unknown garage action.
+17_Despawn len=8506 h=5b1ba988 true|Vehicle despawned.
+18_GetInitialKnownRev len=8521 h=889d9dd0 true|nil
+X01_UnknownModule len=8506 h=9f2ff9e0 false|Module not found.
+X02_WrongSlotType len=8524 h=96631628 false|That module does not fit this slot.
+X03_UnknownSlot len=8520 h=5d298927 false|Slot not found on this cockpit.
+X04_BuyNoCategory len=12026 h=e4c5cf47 true|Cockpit instance purchased.
+X05_GarageFull len=12058 h=c07acfd8 false|Garage full. Buy more garage space to store more vehicles.
+X06_GetInitial len=181797 h=242c0538 true|nil
+Z01_UnknownCategory len=12054 h=dcffc587 false|Garage full. Buy more garage space to store more vehicles.
+Z02_GetInitialAfter len=181793 h=501d62e8 true|nil
