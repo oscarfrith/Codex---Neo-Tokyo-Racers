@@ -22,8 +22,8 @@ import bpy
 PREFIX = "EXO_"
 STATE = {"car": None, "coll": None, "key": None}
 MODS = {}
-SHARP = math.radians(22)
-BEVEL = 0.03
+SHARP = math.radians(26)
+BEVEL = 0.0  # edge bevels switched off: they broke up along gently curving creases
 ET = 0.05  # wall width of a sunk region along the loft axis
 
 # Paint shown in previews. Players repaint primary, secondary and detail in game.

@@ -93,9 +93,8 @@ def a_pod(pod, z0, z1, peak, extra=(), arch_slats=0, caps=(False, False)):
     pod.build("skin", "primary", mirror=True, caps=caps, regions=[
         R(z0 + 0.25, z1 - 0.2, 1.0, 2.05, "secondary", 0.02),
         R(peak - 1.7, peak + 1.7, 1.25, 2.92, "detail", 0.35, side=1),
-        R(peak - 1.3, peak + 0.9, 4.25, 5.6, "detail", 0.12), *extra])
-    for side in (1, -1):
-        louvres(pod, f"top{side}", peak - 1.2, peak + 0.8, 4.3, 5.55, 5, side=side)
+        R(peak - 1.2, peak + 0.8, 4.18, 4.92, "detail", 0.12, side=1), *extra])
+    louvres(pod, "top", peak - 1.1, peak + 0.7, 4.24, 4.86, 4, off=-0.05)
     for i in range(4 if arch_slats else 0):
         t = peak + arch_slats * (1.58 - i * 0.13)
         pod.patch(f"arch{i}", t - 0.03, t + 0.03, 1.4, 2.85, "secondary", off=-0.18, mirror=True)
@@ -121,9 +120,9 @@ def car_a():
     # Nose: a rounded prow that leads the car, over a recessed lower grille and a curved splitter.
     # The hood sinks between the fenders and climbs to the cowl.
     K.begin(c, "NOSE")
-    nose = Hull([(-12.6, dict(w=1.5, yb=0.05, yt=0.42, rb=0.1, ys=0.2, tum=0.15, drop=0.08)),
-                 (-12.2, dict(w=2.5, yb=-0.1, yt=0.58, rb=0.2, ys=0.28, tum=0.2, drop=0.12)),
-                 (-11.4, dict(w=3.3, yb=-0.25, yt=0.82, rb=0.3, ys=0.42, tum=0.22, drop=0.2)),
+    nose = Hull([(-12.6, dict(w=1.5, yb=0.2, yt=0.45, rb=0.08, ys=0.3, tum=0.15, drop=0.06)),
+                 (-12.2, dict(w=2.5, yb=0.15, yt=0.6, rb=0.1, ys=0.34, tum=0.2, drop=0.12)),
+                 (-11.4, dict(w=3.3, yb=0.1, yt=0.82, rb=0.15, ys=0.45, tum=0.22, drop=0.2)),
                  (-10.4, dict(w=3.7, yt=1.02, ys=0.5, tum=0.25, drop=0.25)),
                  (-8.5, dict(w=3.8, yt=1.35, ys=0.8, tum=0.3, drop=0.3)),
                  (-6.6, dict(w=3.8, yt=1.85, ys=1.1, tum=0.35, drop=0.3, crown=0.05)), (-5.2, SEAM_F)],
@@ -132,14 +131,11 @@ def car_a():
         R(-12.5, -10.5, 2.86, 3.0, "lights", -0.01),
         R(-11.2, -7.0, 5.0, 6.0, "secondary", 0.03), R(-9.9, -7.4, 4.15, 4.85, "detail", 0.18)])
     louvres(nose, "hood", -9.8, -7.5, 4.2, 4.8, 6, off=-0.1)
-    jaw = rect([(-12.2, {}), (-10.5, {})], 0, 3.3, -0.4, 0.22, c=0.12)
+    jaw = rect([(-12.0, {}), (-10.5, {})], 0, 3.3, -0.4, 0.3, c=0.12)
     jaw.build("jaw", "secondary", caps=(False, True))
-    jaw.throat("grille", "min", lip="secondary", scale=0.9, depth=0.6)
-    for i, y in enumerate((-0.2, 0.02)):
-        box(f"slat{i}", (0, y, -12.05), (5.7, 0.06, 0.3), "primary")
+    jaw.throat("grille", "min", lip="secondary", scale=0.9, depth=1.0)
     Loft([(-12.7, dict(w=2.6)), (-12.35, dict(w=3.5)), (-11.5, dict(w=3.78))], yb=-0.52, yt=-0.42, nt=6,
          nb=6).build("splitter", "secondary")
-    box("keel", (1.6, -0.65, -12.0), (0.08, 0.26, 1.0), "detail", mirror=True)
 
     # Front engines: free-standing fenders with a channel to the body. Rounded prow set back from the
     # nose, slim headlight on its front face under a lid, light blade below, strake intake underneath.
@@ -153,20 +149,15 @@ def car_a():
                 (-6.8, dict(cx=5.12, w=1.2, wi=1.15, yb=-0.9, yt=1.95, ys=1.0)),
                 (-5.4, dict(SIDE_F, yb=-0.1, yt=1.35, ys=0.7, rb=0.2))], **A_POD)
     a_pod(pod, -11.9, -5.4, -8.3, caps=(True, False), extra=[
-        R(-11.65, -10.45, 3.25, 4.7, "glass", 0.1, side=1),
-        R(-11.8, -10.0, 2.84, 2.94, "lights", -0.01, side=1)])
-    pod.patch("lamp0", -11.55, -10.55, 3.45, 3.62, "lights", off=-0.05, mirror=True)
-    pod.patch("lamp1", -11.4, -10.6, 4.1, 4.2, "lights", off=-0.05, mirror=True)
-    duct = rect([(-11.7, {}), (-10.6, {})], 5.05, 1.0, -0.42, 0.35, c=0.12)
-    duct.build("corner", "primary", mirror=True, caps=(False, True))
-    duct.throat("duct", "min", lip="primary", scale=0.84, depth=0.45, mirror=True)
-    for i, y in enumerate((-0.18, 0.1)):
-        box(f"strake{i}", (5.05, y, -11.55), (1.64, 0.07, 0.25), "primary", mirror=True)
+        R(-11.65, -10.45, 3.3, 4.2, "glass", 0.1, side=1),
+        R(-11.6, -10.6, 1.25, 2.72, "detail", 0.22, side=1),
+        R(-11.8, -10.0, 2.82, 2.96, "lights", -0.01, side=1)])
+    pod.patch("lamp", -11.5, -10.6, 3.5, 3.9, "lights", off=-0.05, mirror=True)
+    for i, u in enumerate((1.5, 1.95, 2.4)):
+        pod.patch(f"strake{i}", -11.52, -10.68, u, u + 0.14, "primary", off=-0.06, mirror=True)
     pod.throat("noz", "max", lip="secondary", back="thrust", scale=0.78, depth=0.5, mirror=True)
     box("splitter", (5.15, -0.47, -11.5), (2.6, 0.1, 1.0), "secondary", mirror=True)
-    box("endplate", (6.4, -0.25, -11.4), (0.08, 0.5, 1.1), "secondary", mirror=True)
-    box("edge", (5.15, -0.4, -11.98), (2.5, 0.05, 0.05), "neon", mirror=True)
-    box("channel", (4.02, -0.05, -8.6), (0.42, 0.5, 6.2), "detail", mirror=True)
+    box("channel", (4.02, -0.05, -8.2), (0.42, 0.5, 5.2), "detail", mirror=True)
 
     K.begin(c, "TAIL")
     tail = Hull([(2.8, SEAM_R), (5.5, dict(yt=2.6)), (8.6, dict(yt=2.6, ys=1.5, tum=0.28, drop=0.3)),
