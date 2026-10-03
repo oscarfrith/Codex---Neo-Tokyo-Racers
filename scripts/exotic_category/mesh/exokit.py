@@ -1,4 +1,4 @@
-"""Exotic mesh blockout kit (runs inside Blender).
+"""Exotic mesh kit (runs inside Blender).
 
 Everything is authored in game root space: +X right, +Y up, forward is -Z, units are studs.
 P() maps that to Blender (x, -z, y), a proper rotation, so the car faces +Y in Blender.
@@ -6,9 +6,13 @@ P() maps that to Blender (x, -z, y), a proper rotation, so the car faces +Y in B
 Two section types, both lofted along an axis through stations:
   Hull  creased car-body section (rocker chamfer, shoulder line, tumblehome, top break). Crisp lines.
   Loft  superellipse section. Use for round things: nozzles, tubes, bubbles, aerofoils.
-Patches and caps are taken from the same surface, so stripes, lamps, glass and intakes follow the skin.
-Every object carries a paint channel: primary, secondary, detail, glass, lights, lights_red,
-neon, thrust.
+
+Detail is cut into the skin itself:
+  regions  rectangles in (station, ring) space. Their faces take another paint channel and can be sunk
+           into the surface with real walls: glass, two-tone panels, vents, intakes, light strips.
+  throat   an open end with a lip, a tunnel and a back face: intakes, lamp housings, nozzles.
+  patch    a thin shell that follows the surface at an offset (used inside recesses).
+Paint channels: primary, secondary, detail, glass, lights, lights_red, neon, thrust.
 """
 import math
 
@@ -19,6 +23,8 @@ PREFIX = "EXO_"
 STATE = {"car": None, "coll": None, "key": None}
 MODS = {}
 SHARP = math.radians(22)
+BEVEL = 0.03
+ET = 0.05  # wall width of a sunk region along the loft axis
 
 # Paint shown in previews. Players repaint primary, secondary and detail in game.
 PAINT = {
@@ -26,31 +32,38 @@ PAINT = {
     "B": {"primary": (0.85, 0.55, 0.02), "secondary": (0.07, 0.075, 0.09)},
 }
 
-# Frame standard, round 3. The two body seams are fixed Hull sections shared by every part.
-SEAM_F = dict(cx=0.0, w=3.5, yb=-0.4, yt=2.5, rb=0.45, ys=1.55, tum=0.3, drop=0.3, wcf=0.62, d2=0.06,
+# Frame standard, round 6 (wider and lower). The two body seams are fixed Hull sections shared by
+# every part.
+SEAM_F = dict(cx=0.0, w=3.8, yb=-0.4, yt=2.25, rb=0.45, ys=1.35, tum=0.35, drop=0.28, wcf=0.62, d2=0.06,
               crown=0.05)
-SEAM_R = dict(SEAM_F, yt=2.9, drop=0.35)
+SEAM_R = dict(SEAM_F, yt=2.6, drop=0.32)
 # Pod end sections: the rear face of a front pod and the front face of a rear pod start from these.
-SIDE_F = dict(cx=4.62, w=1.0, wi=1.0, yb=-0.9, yt=1.3, rb=0.3, ys=0.6, tum=0.25, drop=0.15, tumi=0.03,
+SIDE_F = dict(cx=5.1, w=1.1, wi=1.12, yb=-0.9, yt=1.2, rb=0.3, ys=0.55, tum=0.25, drop=0.15, tumi=0.03,
               dropi=0.08, wcf=0.5, d2=0.03, crown=0.04)
-SIDE_R = dict(SIDE_F, yt=1.7, ys=0.9)
+SIDE_R = dict(SIDE_F, yt=1.55, ys=0.8)
 GAP = 0.06  # every skin stops this far short of a body seam; a dark liner shows in the shadow gap
 # Boxes are (|x| min, |x| max, y min, y max, z min, z max).
 ENV = {
-    "COCKPIT": [(0, 3.6, -0.5, 2.75, -5.2, 2.8), (0, 3.2, 2.0, 5.3, -6.9, 7.4)],
-    "NOSE": [(0, 3.55, -0.9, 2.55, -12.6, -5.2)],
-    "TAIL": [(0, 3.55, -0.9, 3.0, 2.8, 7.4), (0, 3.55, -0.9, 3.3, 7.4, 11.6), (0, 3.55, -0.9, 0.6, 8.0, 11.8)],
-    "FPOD": [(3.2, 6.0, -1.6, 2.6, -12.4, -5.35)],
-    "RPOD": [(3.2, 6.0, -1.6, 3.2, 3.55, 10.7)],
-    "STAB": [(3.2, 5.6, -1.6, 2.0, -5.25, 3.45)],
-    "BOOST": [(0, 2.35, -0.5, 2.15, 10.6, 12.2)],
-    "WING": [(0, 5.8, 1.9, 6.0, 9.4, 12.4)],
+    "COCKPIT": [(0, 3.9, -0.5, 2.5, -5.2, 2.8), (0, 3.4, 1.8, 4.9, -6.9, 7.4)],
+    "NOSE": [(0, 3.85, -0.9, 2.3, -12.6, -5.2)],
+    "TAIL": [(0, 3.85, -0.9, 2.7, 2.8, 7.4), (0, 3.85, -0.9, 3.0, 7.4, 11.6), (0, 3.85, -0.9, 0.6, 8.0, 11.8)],
+    "FPOD": [(3.6, 6.5, -1.6, 2.4, -12.4, -5.35)],
+    "RPOD": [(3.6, 6.5, -1.6, 3.0, 3.55, 10.7)],
+    "STAB": [(3.6, 6.1, -1.6, 1.8, -5.25, 3.45)],
+    "BOOST": [(0, 2.6, -0.5, 2.0, 10.6, 12.2)],
+    "WING": [(0, 6.3, 1.2, 5.6, 9.4, 12.4)],
     "FREE": [(0, 99, -99, 99, -99, 99)],
 }
 
 
 def P(x, y, z):
     return (x, -z, y)
+
+
+def R(t0, t1, u0, u1, ch, depth=0.03, side=0):
+    """Region of a skin: stations t0..t1, ring u0..u1 (Hull u, or Loft angle). depth sinks it into the
+    surface (negative stands it proud). side: 0 both halves, 1 outboard half, -1 inboard half."""
+    return dict(t=(t0, t1), u=(u0, u1), ch=ch, depth=depth, side=side)
 
 
 def _pchip(xs, ys, x):
@@ -84,6 +97,9 @@ def _steps(t0, t1, step):
 class _Surface:
     KEYS = ()
     BASE = {}
+    EU = 0.04      # wall width of a sunk region around the ring
+    UMIN = None    # ring values where a region may run through without a wall (Hull centreline)
+    UMAX = None
 
     def __init__(self, stations, axis="z", **defaults):
         base = dict(self.BASE)
@@ -117,32 +133,103 @@ class _Surface:
             return (t, v, u)
         return (u, t, v)
 
-    def build(self, name, ch, mirror=False, caps=(True, True), step=0.25, t0=None, t1=None, scale=1.0):
+    def _umarks(self, regs, side):
+        out = set()
+        for g in regs:
+            if g["side"] in (0, side):
+                ua, ub = g["u"]
+                out.update((ua, ua + self.EU, ub - self.EU, ub))
+        return out
+
+    def _hit(self, g, t, side, u, lo, hi, inner):
+        if g["side"] and g["side"] != side:
+            return False
+        (ta, tb), (ua, ub) = g["t"], g["u"]
+        e = 1e-6
+        if not (ta - e <= t <= tb + e and ua - e <= u <= ub + e):
+            return False
+        if not inner:
+            return True
+        return ((t >= ta + ET - e or ta <= lo + e) and (t <= tb - ET + e or tb >= hi - e)
+                and (u >= ua + self.EU - e or ua == self.UMIN) and (u <= ub - self.EU + e or ub == self.UMAX))
+
+    def build(self, name, ch, mirror=False, caps=(True, True), step=0.3, t0=None, t1=None, scale=1.0,
+              regions=()):
         lo = self.ts[0] if t0 is None else t0
         hi = self.ts[-1] if t1 is None else t1
-        marks = [lo] + [m for m in self.ts if lo < m < hi] + [hi]
+        marks = {lo, hi} | {m for m in self.ts if lo < m < hi}
+        for g in regions:
+            ta, tb = g["t"]
+            marks |= {m for m in (ta, ta + ET, tb - ET, tb) if lo < m < hi}
+        marks = sorted(marks)
         ts = []
         for i in range(len(marks) - 1):
             seg = _steps(marks[i], marks[i + 1], step)
             ts.extend(seg if i == 0 else seg[1:])
-        ring = self._ring()
+        ring = self._ring(regions)
         n = len(ring)
-        verts = [self._pt(t, r, scale=scale) for t in ts for r in ring]
-        faces = []
+        verts = []
+        for t in ts:
+            for r in ring:
+                side, u = self._key(r)
+                depth = 0.0
+                for g in regions:
+                    if self._hit(g, t, side, u, lo, hi, True):
+                        depth = g["depth"]
+                verts.append(self._pt(t, r, off=-depth, scale=scale))
+        faces, fch = [], []
         for i in range(len(ts) - 1):
+            tc = (ts[i] + ts[i + 1]) / 2
             for j in range(n):
                 j2 = (j + 1) % n
                 faces.append((i * n + j, i * n + j2, (i + 1) * n + j2, (i + 1) * n + j))
+                (sa, ua), (sb, ub) = self._key(ring[j]), self._key(ring[j2])
+                side = sa if self.UMIN is None or (self.UMIN < ua < self.UMAX) else sb
+                if self.UMIN is None and abs(ub - ua) > 180:
+                    ub += 360 if ub < ua else -360
+                c = ch
+                for g in regions:
+                    if self._hit(g, tc, side, (ua + ub) / 2, lo, hi, False):
+                        c = g["ch"]
+                fch.append(c)
         if caps[0]:
             faces.append(tuple(range(n)))
+            fch.append(ch)
         if caps[1]:
             faces.append(tuple((len(ts) - 1) * n + j for j in range(n)))
-        return _add(name, verts, faces, ch, mirror)
+            fch.append(ch)
+        return _add(name, verts, faces, ch, mirror, fch=fch)
+
+    def throat(self, name, end, lip="primary", wall="detail", back="detail", scale=0.8, depth=0.5,
+               mirror=False):
+        """Open end: a lip from the skin edge to a smaller opening, a tunnel and a back face."""
+        t = self.ts[-1] if end == "max" else self.ts[0]
+        d = -depth if end == "max" else depth
+        ax = {"z": 2, "x": 0, "y": 1}[self.axis]
+        ring = self._ring(())
+        n = len(ring)
+        a = [self._pt(t, r) for r in ring]
+        b = [self._pt(t, r, scale=scale) for r in ring]
+        c = []
+        for p in b:
+            q = list(p)
+            q[ax] += d
+            c.append(tuple(q))
+        faces, fch = [], []
+        for j in range(n):
+            j2 = (j + 1) % n
+            faces.append((j, j2, n + j2, n + j))
+            fch.append(lip)
+            faces.append((n + j, n + j2, 2 * n + j2, 2 * n + j))
+            fch.append(wall)
+        faces.append(tuple(2 * n + j for j in range(n)))
+        fch.append(back)
+        return _add(name, a + b + c, faces, lip, mirror, closed=False, fch=fch)
 
     def cap(self, name, end, ch, scale=1.0, push=0.0, mirror=False):
         t = self.ts[-1] if end == "max" else self.ts[0]
         verts = []
-        for r in self._ring():
+        for r in self._ring(()):
             g = list(self._pt(t, r, scale=scale))
             g[{"z": 2, "x": 0, "y": 1}[self.axis]] += push
             verts.append(tuple(g))
@@ -160,6 +247,8 @@ class Loft(_Surface):
     """Superellipse section. Ring parameter is an angle in degrees: 0 side, 90 top, 270 bottom."""
     KEYS = ("cx", "w", "yb", "yt", "yw", "nt", "nb")
     BASE = dict(cx=0.0, w=1.0, yb=0.0, yt=1.0, yw=0.45, nt=2.5, nb=2.5)
+    EU = 1.5
+    N = 40
 
     def _uv(self, p, a):
         c, s = math.cos(a), math.sin(a)
@@ -169,8 +258,13 @@ class Loft(_Surface):
         return (p["cx"] + p["w"] * math.copysign(abs(c) ** (2 / e), c),
                 ywa + h * math.copysign(abs(s) ** (2 / e), s))
 
-    def _ring(self, n=40):
-        return [360.0 * j / n for j in range(n)]
+    def _key(self, r):
+        return 0, r
+
+    def _ring(self, regs):
+        base = {360.0 * j / self.N for j in range(self.N)}
+        base |= {a % 360.0 for a in self._umarks(regs, 0)}
+        return sorted(base)
 
     def _pt(self, t, a_deg, off=0.0, scale=1.0):
         p = self.params(t)
@@ -192,18 +286,23 @@ class Hull(_Surface):
     """Creased body section. Half profile, bottom centre to top centre, parameter u in 0..6:
     0 bottom centre, 1 floor edge, 2 top of rocker chamfer, 3 shoulder line, 4 top edge,
     5 inner top break, 6 top centre. side +1 is the outboard half, -1 the inboard half.
-    w outboard half width, wi inboard half width (defaults to w; tumi and dropi likewise), rb rocker chamfer,
-    ys shoulder height, tum tumblehome, drop top edge below yt, wcf inner break as a fraction of
-    the top edge, d2 inner break below yt, crown bulge of the upper panels."""
-    KEYS = ("cx", "w", "wi", "yb", "yt", "rb", "ys", "tum", "drop", "tumi", "dropi", "wcf", "d2", "crown")
+    w outboard half width, wi inboard half width (defaults to w; tumi and dropi likewise), rb rocker
+    chamfer, ys shoulder height, tum tumblehome, drop top edge below yt, wcf inner break as a fraction
+    of the top edge, d2 inner break below yt, crown bulge of the upper panels, cs bulge of the body
+    side below the shoulder (negative scallops it)."""
+    KEYS = ("cx", "w", "wi", "yb", "yt", "rb", "ys", "tum", "drop", "tumi", "dropi", "wcf", "d2", "crown",
+            "cs")
     BASE = dict(cx=0.0, w=1.0, yb=0.0, yt=1.0, rb=0.3, ys=0.5, tum=0.3, drop=0.2, wcf=0.6, d2=0.05,
                 crown=0.04)
-    M = 4
+    M = 5
+    UMIN = 0.0
+    UMAX = 6.0
 
     def _fill(self, row):
         row.setdefault("wi", row["w"])
         row.setdefault("tumi", row["tum"])
         row.setdefault("dropi", row["drop"])
+        row.setdefault("cs", row["crown"])
 
     def _half(self, p, side, u):
         w, tum, drop = (p["w"], p["tum"], p["drop"]) if side > 0 else (p["wi"], p["tumi"], p["dropi"])
@@ -215,15 +314,23 @@ class Hull(_Surface):
         s = u - i
         (x0, y0), (x1, y1) = k[i], k[i + 1]
         x, y = x0 + (x1 - x0) * s, y0 + (y1 - y0) * s
-        if i >= 2 and p["crown"]:
+        bulge = p["cs"] if i == 2 else p["crown"] if i > 2 else 0.0
+        if bulge:
             ln = math.hypot(x1 - x0, y1 - y0) or 1.0
-            b = p["crown"] * ln * 4 * s * (1 - s)
+            b = bulge * ln * 4 * s * (1 - s)
             x, y = x + (y1 - y0) / ln * b, y - (x1 - x0) / ln * b
         return x, y
 
-    def _ring(self):
-        m = self.M
-        return [(1, j / m) for j in range(6 * m + 1)] + [(-1, j / m) for j in range(6 * m - 1, 0, -1)]
+    def _key(self, r):
+        return r
+
+    def _ring(self, regs):
+        base = {j / self.M for j in range(6 * self.M + 1)}
+        out = []
+        for side in (1, -1):
+            us = sorted(base | {u for u in self._umarks(regs, side) if 0.0 < u < 6.0})
+            out += [(1, u) for u in us] if side > 0 else [(-1, u) for u in reversed(us) if 0.0 < u < 6.0]
+        return out
 
     def _pt(self, t, r, off=0.0, scale=1.0):
         p = self.params(t)
@@ -288,32 +395,51 @@ def _material(car, ch):
     return m
 
 
-def _add(name, verts, faces, ch, mirror=False, closed=True):
+def _add(name, verts, faces, ch, mirror=False, closed=True, fch=None):
+    fch = list(fch) if fch else [ch] * len(faces)
     if mirror:
         n = len(verts)
         verts = list(verts) + [(-x, y, z) for x, y, z in verts]
         faces = list(faces) + [tuple(reversed([i + n for i in f])) for f in faces]
+        fch = fch + fch
     full = f"{PREFIX}{STATE['key']}_{name}_{ch}"
     mesh = bpy.data.meshes.new(full)
     mesh.from_pydata([P(*v) for v in verts], [], faces)
+    slots = []
+    for c in fch:
+        if c not in slots:
+            slots.append(c)
+            mesh.materials.append(_material(STATE["car"], c))
     bm = bmesh.new()
     bm.from_mesh(mesh)
+    bm.faces.ensure_lookup_table()
+    for i, f in enumerate(bm.faces):
+        f.material_index = slots.index(fch[i])
+        f.smooth = True
     if closed:
         bmesh.ops.recalc_face_normals(bm, faces=bm.faces)
     for e in bm.edges:
         if len(e.link_faces) == 2 and e.calc_face_angle(0.0) > SHARP:
             e.smooth = False
-    for f in bm.faces:
-        f.smooth = True
     bm.to_mesh(mesh)
     bm.free()
-    mesh.materials.append(_material(STATE["car"], ch))
     ob = bpy.data.objects.new(full, mesh)
-    ob["PaintChannel"] = ch
+    ob["PaintChannel"] = ",".join(slots)
+    if closed and BEVEL:
+        try:
+            bev = ob.modifiers.new("bevel", "BEVEL")
+            bev.width = BEVEL
+            bev.segments = 2
+            bev.limit_method = "ANGLE"
+            bev.angle_limit = math.radians(30)
+            bev.harden_normals = True
+            ob.modifiers.new("normals", "WEIGHTED_NORMAL").keep_sharp = True
+        except (TypeError, AttributeError):
+            pass
     STATE["coll"].objects.link(ob)
     rec = MODS[STATE["key"]]
     rec["verts"].extend(verts)
-    rec["channels"].add(ch)
+    rec["channels"].update(slots)
     rec["tris"] += sum(len(f) - 2 for f in faces)
     return ob
 
@@ -387,6 +513,10 @@ def stage():
         scene.view_settings.view_transform = "Standard"
     except TypeError:
         pass
+    formats = [i.identifier for i in scene.render.image_settings.bl_rna.properties["file_format"].enum_items]
+    if "JPEG" in formats:
+        scene.render.image_settings.file_format = "JPEG"
+        scene.render.image_settings.quality = 90
     world = scene.world or bpy.data.worlds.new("World")
     scene.world = world
     world.use_nodes = True
