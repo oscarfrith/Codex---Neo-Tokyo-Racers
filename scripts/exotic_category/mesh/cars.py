@@ -228,17 +228,19 @@ B_POD = dict(rb=0.5, tum=0.55, drop=0.35, tumi=0.03, dropi=0.14, wcf=0.35, d2=0.
 B_END = dict(rb=0.3, wcf=0.6, d2=0.02, drop=0.2, tum=0.25, crown=0.03)
 
 
-def b_pod(pod, z0, z1, peak, caps):
-    """Round fender over a dark arch, carbon rocker, dark crest, round vented shell in the arch."""
+def b_pod(pod, z0, z1, peak, caps, extra=()):
+    """Round fender over a dark arch: carbon rocker, raised crest, louvred vent, round vented shell."""
     pod.build("skin", "primary", mirror=True, caps=caps, regions=[
         R(z0 + 0.4, z1 - 0.3, 1.0, 2.15, "secondary", 0.02),
         R(peak - 1.5, peak + 1.5, 1.3, 2.9, "detail", 0.3, side=1),
-        R(z0 + 0.8, z1 - 0.6, 5.4, 6.0, "secondary", 0.0),
-        R(z1 - 0.2, z1 - 0.07, 0.0, 6.0, "neon", -0.01)])
+        R(peak - 1.0, peak + 0.6, 4.2, 4.95, "detail", 0.12, side=1),
+        R(z0 + 0.9, z1 - 0.7, 5.62, 6.0, "secondary", -0.04),
+        R(z1 - 0.2, z1 - 0.07, 0.0, 6.0, "neon", -0.01), *extra])
+    louvres(pod, "top", peak - 0.9, peak + 0.5, 4.26, 4.89, 3, off=-0.05)
     shell(pod, peak, 1.15, -0.72, 1.0, 2.0, rim="neon")
     x = pod.params(peak)["cx"] + pod.params(peak)["w"]
-    hub = Loft([(x - 0.1, {}), (x + 0.1, {})], axis="x", cx=peak, w=0.3, yb=-0.16, yt=0.44, nt=2, nb=2, yw=0.5)
-    hub.build("hub", "secondary", mirror=True)
+    Loft([(x - 0.1, {}), (x + 0.1, {})], axis="x", cx=peak, w=0.3, yb=-0.16, yt=0.44, nt=2, nb=2,
+         yw=0.5).build("hub", "secondary", mirror=True)
     lift_glow(pod, [(peak - 1.0, peak + 1.0)])
     pod.throat("noz", "max", lip="secondary", back="thrust", scale=0.8, depth=0.4, mirror=True)
 
@@ -255,57 +257,71 @@ def car_b():
         R(-6.3, 6.8, 8, 172, "glass", 0.03), R(-2.0, 7.2, 85, 95, "secondary", -0.04),
         R(1.1, 1.6, 8, 172, "secondary", -0.04), R(-2.4, -2.0, 8, 172, "secondary", -0.04)])
 
+    # Nose: a pointed prow recessed between the fenders, round centre intake, raised spine.
+    # A rounded carbon tray and splitter lip fill the space to the fenders.
     K.begin(c, "NOSE")
     nose = Hull([(-11.2, dict(w=1.7, yb=0.0, yt=0.7, rb=0.25, ys=0.35, tum=0.3, drop=0.2, wcf=0.55, d2=0.03)),
                  (-10.3, dict(w=2.8, yb=-0.3, yt=1.15, ys=0.55, tum=0.45, drop=0.35)),
                  (-8.9, dict(w=3.6, yt=1.7, ys=0.9, tum=0.5, drop=0.42)),
                  (-7.0, dict(w=3.8, yt=2.1, ys=1.25, tum=0.38, drop=0.3, wcf=0.4, crown=0.07)),
-                 (-5.2, SEAM_F)], yb=-0.4, rb=0.5, wcf=0.2, d2=0.12, crown=0.12)
+                 (-5.2, SEAM_F)], creases=(1, 2, 3), yb=-0.4, rb=0.5, wcf=0.2, d2=0.12, crown=0.12)
     nose.build("skin", "primary", t1=-5.2 - GAP, caps=(False, True), regions=[
-        R(-10.9, -5.6, 5.0, 6.0, "secondary", 0.0), R(-8.4, -7.1, 4.3, 4.75, "detail", 0.12)])
+        R(-10.9, -5.6, 5.3, 6.0, "secondary", -0.03), R(-8.6, -7.0, 4.25, 4.85, "detail", 0.14)])
+    louvres(nose, "hood", -8.5, -7.1, 4.3, 4.8, 4, off=-0.07)
     nose.throat("mouth", "min", lip="primary", scale=0.78, depth=0.5)
-    Loft([(-11.9, dict(w=2.5)), (-11.0, dict(w=3.6)), (-8.6, dict(w=3.75))], yb=-0.42, yt=0.1, nt=5, nb=5).build(
-        "duct", "secondary")
-    Loft([(-11.85, dict(w=2.3)), (-11.0, dict(w=3.4)), (-8.7, dict(w=3.6))], yb=0.0, yt=0.14, nt=5, nb=5).build(
-        "floor", "detail")
+    Loft([(-11.75, dict(w=2.2)), (-11.2, dict(w=3.2)), (-10.3, dict(w=3.6)), (-8.8, dict(w=3.75))],
+         yb=-0.42, yt=0.1, nt=4, nb=5).build("tray", "secondary")
+    Loft([(-11.65, dict(w=2.0)), (-11.2, dict(w=3.0)), (-10.3, dict(w=3.45)), (-8.9, dict(w=3.6))],
+         yb=0.0, yt=0.14, nt=4, nb=5).build("floor", "detail")
+    Loft([(-11.95, dict(w=2.3)), (-11.4, dict(w=3.3)), (-10.5, dict(w=3.78))], yb=-0.52, yt=-0.44, nt=4,
+         nb=5).build("splitter", "secondary")
 
+    # Front engines: round fenders that lead the car. Twin round lamps set into the front face.
     K.begin(c, "FPOD")
-    pod = Hull([(-12.3, dict(cx=5.0, w=0.85, wi=0.9, yb=-0.2, yt=0.95, ys=0.4, rb=0.3)),
+    pod = Hull([(-12.3, dict(cx=5.0, w=0.85, wi=0.9, yb=-0.2, yt=0.95, ys=0.4, **B_END)),
                 (-11.3, dict(cx=5.06, w=1.1, wi=1.08, yb=-0.7, yt=1.6, ys=0.7)),
                 (-9.9, dict(cx=5.12, w=1.22, wi=1.15, yb=-1.0, yt=2.15, ys=1.0)),
                 (-8.4, dict(cx=5.15, w=1.25, wi=1.18, yb=-1.05, yt=2.3, ys=1.1)),
                 (-6.6, dict(cx=5.08, w=1.08, wi=1.1, yb=-0.6, yt=1.7, ys=0.8)),
-                (-5.4, dict(cx=4.95, w=0.78, wi=0.92, yb=0.1, yt=1.2, ys=0.65, **B_END))], **B_POD)
-    b_pod(pod, -12.3, -5.4, -8.6, (True, False))
-    pod.cap("face", "min", "detail", scale=0.94, push=-0.02, mirror=True)
-    for i, (x, y, r) in enumerate(((4.74, 0.48, 0.27), (5.37, 0.34, 0.2))):
-        lamp = tube(-12.46, -12.2, x, y, r)
-        lamp.build(f"lamp{i}", "secondary", mirror=True)
-        lamp.cap(f"lens{i}", "min", "lights", scale=0.8, push=-0.02, mirror=True)
+                (-5.4, dict(cx=4.95, w=0.78, wi=0.92, yb=0.1, yt=1.2, ys=0.65, **B_END))],
+               creases=(1, 2), **B_POD)
+    b_pod(pod, -12.3, -5.4, -8.6, (False, False))
+    pod.throat("housing", "min", lip="primary", scale=0.9, depth=0.3, mirror=True)
+    for i, (x, y, r) in enumerate(((4.7, 0.42, 0.3), (5.36, 0.36, 0.22))):
+        lamp = tube(-12.26, -12.02, x, y, r)
+        lamp.build(f"lamp{i}", "secondary", mirror=True, caps=(False, True))
+        lamp.throat(f"lens{i}", "min", lip="secondary", back="lights", scale=0.78, depth=0.06, mirror=True)
+    Loft([(-12.4, dict(w=0.7)), (-12.0, dict(w=1.2)), (-11.2, dict(w=1.38))], cx=5.08, yb=-0.52, yt=-0.44,
+         nt=4, nb=5).build("splitter", "secondary", mirror=True)
     flange(-11.9, -5.6, 0.5)
 
+    # Tail: drooping round tail with a dorsal fin, round lamps and a louvred deck.
     K.begin(c, "TAIL")
     tail = Hull([(2.8, SEAM_R), (5.5, dict(w=3.75, yt=2.55, tum=0.5, drop=0.42, crown=0.1)),
                  (8.5, dict(w=3.6, yb=-0.2, yt=2.3, ys=1.25, tum=0.7, drop=0.5, rb=0.7)),
                  (11.2, dict(w=3.4, yb=0.3, yt=2.0, ys=1.15, tum=0.8, drop=0.55, rb=0.85))],
-                **{**SEAM_R, "rb": 0.5, "wcf": 0.3, "d2": 0.1, "crown": 0.14})
+                creases=(1, 2, 3), **{**SEAM_R, "rb": 0.5, "wcf": 0.3, "d2": 0.1, "crown": 0.14})
     tail.build("skin", "primary", t0=2.8 + GAP, caps=(True, False), regions=[
-        R(8.8, 11.2, 0.0, 2.2, "secondary", 0.02), R(3.0, 7.4, 5.0, 6.0, "secondary", 0.0),
-        R(6.2, 9.6, 4.25, 4.8, "detail", 0.12)])
+        R(8.8, 11.2, 0.0, 2.2, "secondary", 0.02), R(3.0, 7.4, 5.3, 6.0, "secondary", -0.03),
+        R(6.2, 9.8, 4.25, 4.85, "detail", 0.14)])
+    louvres(tail, "deck", 6.3, 9.7, 4.3, 4.8, 7, off=-0.07)
     tail.throat("fascia", "max", lip="primary", scale=0.9, depth=0.25)
-    lamp = tube(10.96, 11.2, 2.82, 1.2, 0.22)
-    lamp.build("lamp", "secondary", mirror=True)
-    lamp.cap("lens", "max", "lights_red", scale=0.78, push=0.02, mirror=True)
+    lamp = tube(10.96, 11.2, 2.82, 1.2, 0.24)
+    lamp.build("lamp", "secondary", mirror=True, caps=(True, False))
+    lamp.throat("lens", "max", lip="secondary", back="lights_red", scale=0.78, depth=0.06, mirror=True)
     fin = Loft([(7.4, dict(yt=2.6)), (10.2, dict(yt=2.98)), (11.15, dict(yt=2.2))], w=0.09, yb=1.85, nt=2, nb=2)
     fin.build("fin", "secondary")
     box("rain", (0, 2.3, 11.2), (0.16, 0.45, 0.08), "lights_red")
+    for i, x in enumerate((2.75, 3.1)):
+        box(f"vane{i}", (x, -0.05, 10.95), (0.06, 0.6, 1.0), "detail", mirror=True)
 
     K.begin(c, "RPOD")
     pod = Hull([(3.6, dict(cx=4.98, w=0.85, wi=0.95, yb=-0.3, yt=1.35, ys=0.7, rb=0.3)),
                 (5.2, dict(cx=5.1, w=1.18, wi=1.14, yb=-0.95, yt=2.05, ys=1.0)),
                 (7.0, dict(cx=5.15, w=1.25, wi=1.18, yb=-1.05, yt=2.25, ys=1.1)),
                 (9.2, dict(cx=5.06, w=1.02, wi=1.06, yb=-0.5, yt=1.9, ys=1.0)),
-                (10.6, dict(cx=4.88, w=0.68, wi=0.8, yb=0.2, yt=1.45, ys=0.85, **B_END))], **B_POD)
+                (10.6, dict(cx=4.88, w=0.68, wi=0.8, yb=0.2, yt=1.45, ys=0.85, **B_END))],
+               creases=(1, 2), **B_POD)
     b_pod(pod, 3.6, 10.6, 6.9, (False, False))
     pod.throat("intake", "min", lip="primary", scale=0.78, depth=0.4, mirror=True)
     flange(3.8, 10.0, 0.9)
@@ -313,9 +329,10 @@ def car_b():
     K.begin(c, "STAB")
     sill = Hull([(-5.2, dict(w=0.6, yb=-0.6, yt=0.25, ys=-0.1)), (-2.5, dict(w=0.9, yt=0.7, ys=0.15)),
                  (1.0, dict(w=1.0, yt=1.3, ys=0.6)), (3.4, dict(w=0.75, yb=-0.5, yt=1.1, ys=0.5))],
-                cx=4.8, yb=-0.9, rb=0.35, tum=0.4, drop=0.25, wcf=0.4, d2=0.03, crown=0.12)
+                creases=(1, 2), cx=4.8, yb=-0.9, rb=0.35, tum=0.4, drop=0.25, wcf=0.4, d2=0.03, crown=0.12)
     sill.build("skin", "primary", mirror=True, regions=[
-        R(-4.9, 3.1, 1.0, 2.3, "secondary", 0.02), R(0.9, 2.5, 3.2, 3.8, "detail", 0.12, side=1)])
+        R(-4.9, 3.1, 1.0, 2.3, "secondary", 0.02), R(0.7, 2.7, 3.15, 3.85, "detail", 0.13, side=1)])
+    louvres(sill, "intake", 0.8, 2.6, 3.2, 3.8, 4, off=-0.07)
     lift_glow(sill, [(-4.0, -2.4), (-0.6, 1.2)])
 
     # Boost: four rings high in the tail. Small keel below.
@@ -326,12 +343,13 @@ def car_b():
         t = tube(11.2, 12.15, 0.38, 1.08 + dy, 0.31)
         t.build(f"burner{i}", "secondary", mirror=True, caps=(True, False))
         t.throat(f"noz{i}", "max", lip="secondary", back="thrust", scale=0.8, depth=0.3, mirror=True)
-    box("keel", (0, -0.05, 11.2), (0.14, 0.6, 0.9), "secondary")
+    box("keel", (0, -0.05, 11.2), (0.1, 0.6, 0.9), "secondary")
 
+    # Wing: one low gull blade across the tail on two blade pylons.
     K.begin(c, "WING")
-    Loft([(2.2, dict(w=0.5, cx=10.8)), (3.9, dict(w=0.66, cx=11.0))], axis="x", yb=2.75, yt=2.9, yw=0.6,
-         nt=2.2, nb=2.6).build("flap", "primary", mirror=True)
-    blade("pylon", 3.0, 1.25, 2.79, (10.3, 11.1), (10.6, 11.3), "secondary")
+    Loft([(-3.9, dict(cx=11.05, w=0.45, yb=2.75, yt=2.87)), (0, {}), (3.9, dict(cx=11.05, w=0.45, yb=2.75, yt=2.87))],
+         axis="x", cx=10.75, w=0.7, yb=2.85, yt=3.0, yw=0.6, nt=2.2, nb=2.6).build("blade", "primary")
+    blade("pylon", 2.6, 1.25, 2.84, (10.3, 11.0), (10.5, 11.2), "secondary")
 
 
 # ---------------------------------------------------------------- builds and sheets
@@ -379,6 +397,8 @@ def build_all(render=True):
             files.append(K.shot(j(OUT, f"{car}_side.jpg"), (x, 1.0, 0), az, 4, 60, only=only))
             files.append(K.shot(j(OUT, f"{car}_rear_close.jpg"), (x, 1.0, 3), 24, 14, 38, only=only))
             files.append(K.shot(j(OUT, f"{car}_front_close.jpg"), (x, 1.0, -3), 152, 14, 38, only=only))
+            files.append(K.shot(j(OUT, f"{car}_front_low.jpg"), (x - (0.5 if car == "a" else -0.5), 0.6, -6),
+                                180 - (22 if car == "a" else -22), 3, 30, only=only))
         files.append(K.shot(j(OUT, "pure_top.jpg"), (0, 0, 0), 180, 89, 80, only=["pure0", "pure1"]))
     stats = {k: v["tris"] for k, v in K.MODS.items()}
     return {"problems": problems, "files": files, "stats": stats}
