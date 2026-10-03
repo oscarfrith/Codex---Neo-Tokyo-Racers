@@ -660,6 +660,15 @@ ROWS = {
     "pure": (0, [kit("A"), kit("B")]),
     "trims_a": (-45, [kit("A", trim=t) for t in TRIMS]),
     "trims_b": (-90, [kit("B", trim=t) for t in TRIMS]),
+    "new4": (-140, [kit(x) for x in "CDEF"]),
+    "trims_c": (-185, [kit("C", trim=t) for t in TRIMS]),
+    "trims_d": (-230, [kit("D", trim=t) for t in TRIMS]),
+    "trims_e": (-275, [kit("E", trim=t) for t in TRIMS]),
+    "trims_f": (-320, [kit("F", trim=t) for t in TRIMS]),
+    "lineup": (140, [kit(x) for x in "CBDEAF"]),
+    "mix6": (185, [kit("C", {"NOSE": "E", "FPOD": "F", "WING": "D"}), kit("D", {"FPOD": "A", "RPOD": "C", "TAIL": "E"}),
+                   kit("E", {"NOSE": "B", "RPOD": "F", "BOOST": "D", "WING": "A"}),
+                   kit("F", {"FPOD": "D", "TAIL": "C", "STAB": "E", "BOOST": "B"})]),
     "swaps_on_a": (45, [kit("A", {"NOSE": "B"}), kit("A", {s: "B" for s in PODS}),
                         kit("A", {s: "B" for s in REAR}), kit("A", {s: "B" for s in SLOTS if s != "COCKPIT"})]),
     "swaps_on_b": (90, [kit("B", {"NOSE": "A"}), kit("B", {s: "A" for s in PODS}),
@@ -680,6 +689,8 @@ def build_all(render=True, paints=False):
     K.reset()
     car_a()
     car_b()
+    import cars2
+    cars2.build()
     problems = K.check()
     for row, (oz, builds) in ROWS.items():
         for i, keys in enumerate(builds):

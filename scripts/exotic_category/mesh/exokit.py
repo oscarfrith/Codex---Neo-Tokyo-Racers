@@ -30,6 +30,10 @@ ET = 0.05  # wall width of a sunk region along the loft axis
 PAINT = {
     "A": {"primary": (0.55, 0.015, 0.02), "secondary": (0.02, 0.02, 0.024)},
     "B": {"primary": (0.85, 0.55, 0.02), "secondary": (0.07, 0.075, 0.09)},
+    "C": {"primary": (0.8, 0.8, 0.78), "secondary": (0.03, 0.03, 0.035)},
+    "D": {"primary": (0.42, 0.45, 0.5), "secondary": (0.02, 0.02, 0.024)},
+    "E": {"primary": (0.2, 0.17, 0.13), "secondary": (0.03, 0.03, 0.035)},
+    "F": {"primary": (0.02, 0.16, 0.1), "secondary": (0.62, 0.75, 0.05)},
 }
 
 # Frame standard, round 6 (wider and lower). The two body seams are fixed Hull sections shared by
