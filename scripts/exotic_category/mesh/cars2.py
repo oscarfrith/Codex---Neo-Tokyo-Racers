@@ -14,6 +14,15 @@
 
 All four keep the flowing fender-over-arch construction of cars A and B; they differ in profile.
 
+Visual language, nose and tail:
+  C  spine and blade: long pointed shark nose, a spine from nose tip through the glass, a tall chopped
+     tail with stepped lamp blades and a red centre spine.
+  D  soft and deep: thick rounded bullnose with a big mouth and upright corner lamps; a tail that
+     slopes down to a low edge, upright lamp blades, a flared fishtail burner.
+  E  valley and bar: short low nose that droops between the tall fenders, clean, with a full-width
+     light bar front and rear and twin low intakes.
+  F  raised and open: high narrow nose over a wing, open tail.
+
 Each has three versions per slot (STD road car, GT race kit, EVO full kit), built by cars.py helpers.
 """
 import exokit as K
@@ -133,14 +142,6 @@ SILL_ST = [(-5.2, dict(yb=-0.8, yt=0.4, ys=0.0)), (-2.0, dict(yt=0.65, ys=0.15))
            (3.4, dict(yb=-0.7, yt=1.55, ys=0.9))]
 
 
-def ring_lamp(name, x, y, z0, z1, r, ch="lights_red"):
-    """Round lamp that reads as a ring: lit lens with a dark centre."""
-    t = tube(z0, z1, x, y, r)
-    t.build(name, "secondary", mirror=True, caps=(True, False))
-    t.throat(name + "l", "max", lip="secondary", back=ch, scale=0.82, depth=0.06, mirror=True)
-    t.cap(name + "c", "max", "detail", scale=0.42, push=-0.04, mirror=True)
-
-
 # ---------------------------------------------------------------- car C: clean concept coupe
 
 C_POD = dict(rb=0.45, tum=0.5, drop=0.3, tumi=0.03, dropi=0.12, wcf=0.4, d2=0.03, crown=0.11)
@@ -155,12 +156,13 @@ def car_c():
                 (0.0, dict(w=3.25, yt=4.25)), (2.2, dict(w=3.1, yt=4.05)), (5.0, dict(w=2.6, yb=2.15, yt=3.3)),
                 (7.3, dict(w=1.6, yb=2.3, yt=2.7))], yb=1.95, yw=0.1, nt=3.2, nb=3.0)
     can.build("canopy", "primary", regions=[R(-6.3, 2.5, 8, 172, "glass", 0.03),
+                                            R(-6.5, 2.7, 86.5, 93.5, "secondary", -0.05),
                                             R(2.9, 6.9, 62, 118, "secondary", 0.02)])
     for trim in TRIMS:
         lvl = LVL[trim]
         K.begin(c, "NOSE", trim)
-        nose = Hull([(-12.6, dict(w=1.2, yb=0.15, yt=0.5, rb=0.1, ys=0.3, tum=0.15, drop=0.08)),
-                     (-12.0, dict(w=2.6, yb=0.0, yt=0.72, rb=0.2, ys=0.38, tum=0.25, drop=0.15)),
+        nose = Hull([(-12.6, dict(w=0.5, yb=0.2, yt=0.52, rb=0.1, ys=0.34, tum=0.12, drop=0.08)),
+                     (-12.0, dict(w=1.9, yb=0.0, yt=0.74, rb=0.2, ys=0.4, tum=0.25, drop=0.15)),
                      (-11.0, dict(w=3.5, yb=-0.3, yt=0.98, rb=0.35, ys=0.5, tum=0.35, drop=0.25)),
                      (-8.5, dict(w=3.8, yt=1.4, ys=0.8, tum=0.4, drop=0.32)),
                      (-6.6, dict(w=3.8, yt=1.9, ys=1.15, tum=0.36, drop=0.3, crown=0.06)), (-5.2, SEAM_F)],
@@ -171,10 +173,13 @@ def car_c():
         nose.build("skin", "primary", t1=-5.2 - GAP, regions=regs)
         if lvl:
             louvres(nose, "hood", -9.7, -7.4, 4.25, 4.9, 5 + lvl, off=-0.08)
-        jaw = Loft([(-12.1, dict(w=1.9)), (-11.6, dict(w=2.9)), (-10.5, dict(w=3.5))], yb=-0.4, yt=0.3, nt=5, nb=5)
+        jaw = Loft([(-11.9, dict(w=1.5)), (-11.4, dict(w=2.6)), (-10.5, dict(w=3.4))], yb=-0.4, yt=0.3, nt=5, nb=5)
         jaw.build("jaw", "secondary", caps=(False, True))
         jaw.throat("grille", "min", lip="secondary", scale=0.88, depth=0.5)
-        nose_splitter(lvl, -12.6, 1.4, 2.6)
+        Loft([(-12.45, dict(w=0.08, yb=0.42, yt=0.66)), (-11.0, dict(w=0.2, yb=0.85, yt=1.16)),
+              (-8.5, dict(w=0.26, yb=1.3, yt=1.62)), (-6.6, dict(w=0.28, yb=1.8, yt=2.1)),
+              (-5.3, dict(w=0.28, yb=2.1, yt=2.36))], nt=2.0, nb=2.0, yw=0.2).build("spine", "secondary")
+        nose_splitter(lvl, -12.6, 0.9, 2.2)
 
         K.begin(c, "FPOD", trim)
         st = [(-12.0, dict(cx=5.0, w=0.5, wi=0.5, yb=0.2, yt=0.9, ys=0.5, rb=0.15, tum=0.15, drop=0.1, dropi=0.1)),
@@ -192,18 +197,22 @@ def car_c():
         flange(-10.6, -5.6, 0.5)
 
         K.begin(c, "TAIL", trim)
+        top = (2.72, 2.84, 2.96)[lvl]   # tall chopped tail with a kicked-up trailing edge
         tail = Hull([(2.8, SEAM_R), (5.5, dict(yt=2.58, crown=0.1)),
-                     (8.6, dict(yt=2.5, ys=1.45, tum=0.4, drop=0.35)), (10.0, dict(yb=0.0, yt=2.45, ys=1.5)),
-                     (11.2, dict(w=3.7, yb=0.4, yt=(2.4, 2.55, 2.7)[lvl], ys=1.55, tum=0.45, drop=0.35, rb=0.5))],
-                    creases=(1, 2, 3), **{**SEAM_R, "crown": 0.1})
-        regs = [R(8.6, 11.2, 0.0, 2.3, "secondary", 0.02)]
+                     (8.6, dict(yt=2.58, ys=1.6, tum=0.3, drop=0.25, crown=0.06)),
+                     (10.4, dict(yb=0.1, yt=top - 0.1, ys=1.75, tum=0.26, drop=0.2, crown=0.03)),
+                     (11.45, dict(w=3.76, yb=0.5, yt=top, ys=1.85, tum=0.22, drop=0.16, rb=0.3, crown=0.02))],
+                    **{**SEAM_R, "crown": 0.1})
+        regs = [R(8.6, 11.45, 0.0, 2.3, "secondary", 0.02), R(3.0, 11.3, 5.86, 6.0, "secondary", -0.05)]
         if lvl:
             regs.append(R(6.0, 10.2, 4.2, 4.9, "detail", 0.14))
         tail.build("skin", "primary", t0=2.8 + GAP, caps=(True, False), regions=regs)
         if lvl:
             louvres(tail, "deck", 6.1, 10.1, 4.25, 4.85, 8, off=-0.07)
-        tail.throat("fascia", "max", lip="primary", scale=0.92, depth=0.25)
-        box("strip", (0, 2.08, 11.0), (6.5, 0.07, 0.14), "lights_red")
+        tail.throat("fascia", "max", lip="primary", scale=0.93, depth=0.4)
+        for i, (x, y, w) in enumerate(((2.45, 2.2, 1.9), (2.8, 1.92, 1.2), (3.0, 1.64, 0.8))):
+            box(f"lamp{i}", (x, y, 11.2), (w, 0.1, 0.14), "lights_red", mirror=True)
+        box("spinelamp", (0, 1.75, 11.2), (0.12, 1.3, 0.14), "lights_red")
         tail_kit(lvl, (2.9,), nt=4.0)
 
         K.begin(c, "RPOD", trim)
@@ -236,8 +245,8 @@ def car_c():
 
         K.begin(c, "WING", trim)
         if lvl == 0:   # clean lip on two stubs
-            plane("lip", 3.6, 10.95, 0.35, 2.74, 2.86, "primary", tip=(11.05, 0.28))
-            blade("stub", 2.6, 1.25, 2.78, (10.5, 11.1), (10.7, 11.2), "secondary")
+            plane("lip", 3.7, 11.2, 0.4, 2.84, 2.96, "primary", tip=(11.3, 0.32))
+            blade("stub", 2.6, 1.25, 2.88, (10.7, 11.3), (10.9, 11.4), "secondary")
         elif lvl == 1:
             race_wing(4.6, 11.2, 0.85, 4.3, 2.8, plate=(3.6, 4.8))
         else:
@@ -269,20 +278,20 @@ def car_d():
     for trim in TRIMS:
         lvl = LVL[trim]
         K.begin(c, "NOSE", trim)
-        nose = Hull([(-12.3, dict(w=2.2, yb=0.0, yt=0.62, rb=0.2, ys=0.32, tum=0.3, drop=0.15)),
-                     (-11.6, dict(w=3.2, yb=-0.2, yt=0.9, rb=0.35, ys=0.45, tum=0.4, drop=0.25)),
-                     (-10.4, dict(w=3.7, yt=1.15, ys=0.58, tum=0.42, drop=0.3)),
-                     (-8.5, dict(w=3.8, yt=1.5, ys=0.85, tum=0.42, drop=0.32)),
-                     (-6.6, dict(w=3.8, yt=1.92, ys=1.15, tum=0.36, drop=0.3)), (-5.2, SEAM_F)],
-                    creases=(1, 2, 3), yb=-0.4, rb=0.5, wcf=0.5, d2=0.05, crown=0.1)
-        vent = ((-9.3, -8.3, 5.0, 5.6, 3), (-10.0, -7.6, 4.3, 5.6, 6), (-10.3, -7.2, 4.2, 5.65, 8))[lvl]
+        nose = Hull([(-12.25, dict(w=2.7, yb=-0.1, yt=1.12, rb=0.45, ys=0.6, tum=0.5, drop=0.38)),
+                     (-11.5, dict(w=3.35, yb=-0.3, yt=1.4, rb=0.5, ys=0.75, tum=0.5, drop=0.4)),
+                     (-10.2, dict(w=3.72, yt=1.6, ys=0.85, tum=0.46, drop=0.36)),
+                     (-8.2, dict(w=3.8, yt=1.8, ys=1.0, tum=0.42, drop=0.32)),
+                     (-6.6, dict(w=3.8, yt=2.0, ys=1.18, tum=0.36, drop=0.3)), (-5.2, SEAM_F)],
+                    creases=(1, 2), yb=-0.4, rb=0.5, wcf=0.5, d2=0.05, crown=0.12)
+        vent = ((-9.6, -8.4, 4.9, 5.7, 3), (-10.2, -7.6, 4.3, 5.7, 6), (-10.5, -7.2, 4.2, 5.75, 8))[lvl]
         nose.build("skin", "primary", t1=-5.2 - GAP, caps=(False, True), regions=[
             R(vent[0], vent[1], vent[2], vent[3], "detail", 0.15), R(-12.2, -10.6, 0.3, 2.2, "secondary", 0.02)])
         louvres(nose, "hood", vent[0] + 0.08, vent[1] - 0.08, vent[2] + 0.05, vent[3] - 0.05, vent[4], off=-0.08)
-        nose.throat("mouth", "min", lip="primary", scale=0.8, depth=0.5)
-        duct = Loft([(-12.0, dict(w=0.9)), (-10.6, dict(w=1.2))], cx=2.2, yb=-0.38, yt=0.22, nt=2.6, nb=2.6, yw=0.5)
-        duct.build("duct", "secondary", mirror=True, caps=(False, True))
-        duct.throat("ductin", "min", lip="secondary", scale=0.84, depth=0.5, mirror=True)
+        nose.throat("mouth", "min", lip="primary", scale=0.74, depth=0.6)
+        box("mouthbar", (0, 0.5, -11.95), (3.6, 0.07, 0.1), "secondary")
+        nose.patch("lamp", -12.15, -11.95, 2.15, 2.95, "lights", off=0.03, mirror=True)
+        nose.patch("lamp2", -11.8, -11.66, 2.3, 2.95, "lights", off=0.03, mirror=True)
         nose_splitter(lvl, -12.3, 2.4, 3.3, nt=4.0)
 
         K.begin(c, "FPOD", trim)
@@ -302,18 +311,19 @@ def car_d():
         flange(-10.4, -5.6, 0.5)
 
         K.begin(c, "TAIL", trim)
-        tail = Hull([(2.8, SEAM_R), (5.5, dict(yt=2.6, crown=0.1)),
-                     (8.6, dict(w=3.78, yt=2.5, ys=1.45, tum=0.5, drop=0.4)),
-                     (10.2, dict(yb=0.0, yt=2.4, ys=1.45, tum=0.55, drop=0.45, rb=0.6)),
-                     (11.2, dict(w=3.65, yb=0.4, yt=(2.3, 2.45, 2.6)[lvl], ys=1.4, tum=0.6, drop=0.45, rb=0.7))],
+        end = (1.55, 1.65, 1.75)[lvl]   # the deck slopes down to a low edge
+        tail = Hull([(2.8, SEAM_R), (5.5, dict(yt=2.5, crown=0.1)),
+                     (8.6, dict(w=3.78, yt=2.1, ys=1.25, tum=0.5, drop=0.4)),
+                     (10.4, dict(yb=0.0, yt=end + 0.25, ys=1.1, tum=0.55, drop=0.45, rb=0.6)),
+                     (11.5, dict(w=3.6, yb=0.35, yt=end, ys=1.0, tum=0.55, drop=0.4, rb=0.6))],
                     creases=(1, 2, 3), **{**SEAM_R, "crown": 0.1})
-        deck = (6.6, 5.6, 4.8)[lvl]
+        deck = (6.2, 5.2, 4.4)[lvl]
         tail.build("skin", "primary", t0=2.8 + GAP, caps=(True, False), regions=[
-            R(8.6, 11.2, 0.0, 2.3, "secondary", 0.02), R(deck, 10.2, 4.2, 4.9, "detail", 0.14)])
-        louvres(tail, "deck", deck + 0.1, 10.1, 4.25, 4.85, 7 + lvl * 2, off=-0.07)
-        tail.throat("fascia", "max", lip="primary", scale=0.9, depth=0.25)
-        for i, y in enumerate((0.85, 1.3, 1.75)):
-            ring_lamp(f"ring{i}", 3.0, y, 10.96, 11.2, 0.19)
+            R(8.6, 11.5, 0.0, 2.3, "secondary", 0.02), R(deck, 10.6, 4.2, 4.9, "detail", 0.14)])
+        louvres(tail, "deck", deck + 0.1, 10.5, 4.25, 4.85, 8 + lvl * 2, off=-0.07)
+        tail.throat("fascia", "max", lip="primary", scale=0.9, depth=0.3)
+        for i, (x, h) in enumerate(((3.0, 0.9), (2.68, 0.62), (2.4, 0.36))):
+            box(f"lamp{i}", (x, 0.98, 11.38), (0.14, h, 0.14), "lights_red", mirror=True)
         tail_kit(lvl, (2.8, 3.2), nt=4.0)
 
         K.begin(c, "RPOD", trim)
@@ -335,20 +345,23 @@ def car_d():
              intake=(-1.0, -1.8, -2.6), neon=False)
 
         K.begin(c, "BOOST", trim)
-        Loft([(10.8, dict(w=1.05)), (11.55, dict(w=0.95, yb=0.12, yt=1.92))], yb=0.05, yt=2.0, nt=2, nb=2,
-             yw=0.5).build("shroud", "primary")
-        burner("core", 11.2, 12.1 + lvl * 0.15, 0, 1.0, (0.6, 0.68, 0.72)[lvl])
-        if lvl == 1:
-            burner("side", 11.1, 11.9, 1.5, 1.0, 0.24)
-        elif lvl == 2:
-            burner("side", 11.1, 12.1, 1.6, 1.0, 0.4)
+        box("panel", (0, 0.85, 11.0), (4.2, 0.9, 0.1), "detail")
+        box("band", (0, 1.34, 11.1), (3.2, 0.12, 0.3), "primary")
+        out = 12.15 + lvl * 0.15   # fishtail: a flat nozzle that flares out toward the exit
+        t = Loft([(11.0, dict(w=0.75, yb=0.4, yt=1.2)), (out, dict(w=1.7 + lvl * 0.15, yb=0.42, yt=1.22))], nt=4,
+                 nb=4, yw=0.5)
+        t.build("fishtail", "secondary", caps=(True, False))
+        t.throat("noz", "max", lip="secondary", back="thrust", scale=0.88, depth=0.35)
+        box("vane", (0, 0.82, out - 0.25), (0.06, 0.7, 0.4), "detail")
+        if lvl:
+            burner("side", 11.1, 11.9 + lvl * 0.1, 2.15, 0.8, 0.2 + lvl * 0.05)
         box("keel", (0, -0.15, 11.2 + lvl * 0.2), (0.1, 0.5, 0.9 + lvl * 0.4), "secondary")
 
         K.begin(c, "WING", trim)
         if lvl == 0:   # modest wing on two pylons
-            plane("plane", 3.5, 11.0, 0.6, 3.3, 3.45, "primary", tip=(11.1, 0.48))
-            blade("pylon", 2.6, 1.25, 3.34, (10.3, 11.1), (10.7, 11.3), "secondary")
-            blade("plate", 3.52, 3.1, 3.7, (10.6, 11.6), (10.8, 11.75), "secondary", t=0.05)
+            plane("plane", 3.5, 11.1, 0.6, 2.45, 2.6, "primary", tip=(11.2, 0.48))
+            blade("pylon", 2.6, 1.25, 2.5, (10.5, 11.2), (10.8, 11.4), "secondary")
+            blade("plate", 3.52, 2.25, 2.85, (10.7, 11.7), (10.9, 11.85), "secondary", t=0.05)
         elif lvl == 1:
             race_wing(4.8, 11.2, 0.9, 4.6, 2.6, plate=(3.8, 5.1))
         else:
@@ -376,21 +389,22 @@ def car_e():
     for trim in TRIMS:
         lvl = LVL[trim]
         K.begin(c, "NOSE", trim)
-        nose = Hull([(-12.4, dict(w=3.5, yb=-0.1, yt=0.5, rb=0.2, ys=0.2, tum=0.1, drop=0.1)),
-                     (-11.2, dict(w=3.7, yb=-0.3, yt=0.85, rb=0.35, ys=0.45, tum=0.15, drop=0.15)),
-                     (-8.5, dict(w=3.8, yt=1.4, ys=0.85, tum=0.25, drop=0.25)),
-                     (-6.6, dict(w=3.8, yt=1.9, ys=1.15, tum=0.33, drop=0.28)), (-5.2, SEAM_F)],
-                    yb=-0.4, rb=0.5, wcf=0.3, d2=0.14, crown=0.01)
-        regs = [R(-11.8, -6.9, 5.0, 6.0, "secondary", 0.03), R(-12.3, -10.6, 2.9, 3.02, "lights", -0.01)]
+        nose = Hull([(-11.9, dict(w=2.3, yb=-0.12, yt=0.46, rb=0.2, ys=0.18, tum=0.25, drop=0.14)),
+                     (-11.3, dict(w=3.3, yb=-0.3, yt=0.64, rb=0.35, ys=0.32, tum=0.3, drop=0.2)),
+                     (-9.2, dict(w=3.8, yt=1.0, ys=0.58, tum=0.3, drop=0.25)),
+                     (-6.8, dict(w=3.8, yt=1.7, ys=1.05, tum=0.33, drop=0.28)), (-5.2, SEAM_F)],
+                    creases=(1, 2, 3), yb=-0.4, rb=0.5, wcf=0.45, d2=0.05, crown=0.06)
+        regs = [R(-11.7, -10.4, 0.3, 2.2, "secondary", 0.02)]
         if lvl:
-            regs.append(R(-10.2, -7.2, 4.15, 4.8, "detail", 0.18))
-        nose.build("skin", "primary", t1=-5.2 - GAP, caps=(False, True), regions=regs)
+            regs.append(R(-9.6, -7.6, 4.5, 5.2, "detail", 0.18))
+        nose.build("skin", "primary", t1=-5.2 - GAP, regions=regs)
         if lvl:
-            louvres(nose, "hood", -10.1, -7.3, 4.2, 4.75, 5 + lvl, off=-0.1)
-        nose.throat("mouth", "min", lip="primary", scale=0.86, depth=0.7)
-        for i, x in enumerate((1.1,)):
-            box(f"strut{i}", (x, 0.2, -12.2), (0.08, 0.5, 0.4), "secondary", mirror=True)
-        nose_splitter(lvl, -12.4, 3.3, 3.6, nt=7.0)
+            louvres(nose, "hood", -9.5, -7.7, 4.55, 5.15, 4 + lvl, off=-0.1)
+        nose.patch("bar", -11.62, -11.48, 4.02, 6.0, "lights", off=0.03, mirror=True)
+        duct = rect([(-11.95, {}), (-10.8, {})], 1.75, 0.95, -0.38, 0.12, c=0.1)
+        duct.build("duct", "secondary", mirror=True, caps=(False, True))
+        duct.throat("ductin", "min", lip="secondary", scale=0.86, depth=0.5, mirror=True)
+        nose_splitter(lvl, -12.3, 2.9, 3.5, nt=6.0)
 
         K.begin(c, "FPOD", trim)
         st = [(-12.3, dict(cx=5.05, w=1.0, wi=1.0, yb=-0.5, yt=1.3, ys=0.75)),
