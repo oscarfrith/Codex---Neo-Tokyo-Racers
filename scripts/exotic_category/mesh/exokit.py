@@ -141,7 +141,7 @@ class _Surface:
         for g in regs:
             if g["side"] in (0, side):
                 ua, ub = g["u"]
-                out.update((ua, ua + self.EU, ub - self.EU, ub))
+                out.update((ua, ua + self.EU, ub - self.EU, ub) if g["depth"] else (ua, ub))
         return out
 
     def _hit(self, g, t, side, u, lo, hi, inner):
@@ -156,14 +156,14 @@ class _Surface:
         return ((t >= ta + ET - e or ta <= lo + e) and (t <= tb - ET + e or tb >= hi - e)
                 and (u >= ua + self.EU - e or ua == self.UMIN) and (u <= ub - self.EU + e or ub == self.UMAX))
 
-    def build(self, name, ch, mirror=False, caps=(True, True), step=0.3, t0=None, t1=None, scale=1.0,
+    def build(self, name, ch, mirror=False, caps=(True, True), step=0.45, t0=None, t1=None, scale=1.0,
               regions=()):
         lo = self.ts[0] if t0 is None else t0
         hi = self.ts[-1] if t1 is None else t1
         marks = {lo, hi} | {m for m in self.ts if lo < m < hi}
         for g in regions:
             ta, tb = g["t"]
-            marks |= {m for m in (ta, ta + ET, tb - ET, tb) if lo < m < hi}
+            marks |= {m for m in ((ta, ta + ET, tb - ET, tb) if g["depth"] else (ta, tb)) if lo < m < hi}
         marks = sorted(marks)
         ts = []
         for i in range(len(marks) - 1):
@@ -270,7 +270,7 @@ class Loft(_Surface):
     KEYS = ("cx", "w", "yb", "yt", "yw", "nt", "nb")
     BASE = dict(cx=0.0, w=1.0, yb=0.0, yt=1.0, yw=0.45, nt=2.5, nb=2.5)
     EU = 1.5
-    N = 40
+    N = 32
 
     def _uv(self, p, a):
         c, s = math.cos(a), math.sin(a)
@@ -300,7 +300,7 @@ class Loft(_Surface):
             u, v = u + off * dv / ln, v - off * du / ln
         return self._out(t, u, v, p, scale)
 
-    def patch(self, name, t0, t1, a0, a1, ch, off=0.05, mirror=False, step=0.25, astep=3.0):
+    def patch(self, name, t0, t1, a0, a1, ch, off=0.05, mirror=False, step=0.4, astep=6.0):
         return self._grid(name, _steps(t0, t1, step), _steps(a0, a1, astep), ch, off, mirror)
 
 
@@ -316,7 +316,7 @@ class Hull(_Surface):
             "cs")
     BASE = dict(cx=0.0, w=1.0, yb=0.0, yt=1.0, rb=0.3, ys=0.5, tum=0.3, drop=0.2, wcf=0.6, d2=0.05,
                 crown=0.04)
-    M = 5
+    M = 4
     UMIN = 0.0
     UMAX = 6.0
 
@@ -385,8 +385,8 @@ class Hull(_Surface):
             x, y = x + off * dv / ln, y - off * du / ln
         return self._out(t, p["cx"] + side * x, y, p, scale)
 
-    def patch(self, name, t0, t1, u0, u1, ch, side=1, off=0.05, mirror=False, step=0.25):
-        rs = [(side, u) for u in _steps(u0, u1, 0.125)]
+    def patch(self, name, t0, t1, u0, u1, ch, side=1, off=0.05, mirror=False, step=0.4):
+        rs = [(side, u) for u in _steps(u0, u1, 0.25)]
         return self._grid(name, _steps(t0, t1, step), rs, ch, off, mirror)
 
 
@@ -491,6 +491,19 @@ def _add(name, verts, faces, ch, mirror=False, closed=True, fch=None, sharp=()):
     rec["channels"].update(slots)
     rec["tris"] += sum(len(f) - 2 for f in faces)
     return ob
+
+
+def repaint(primary=None, secondary=None):
+    """Paint every car the same colours for a preview. Call with no arguments to restore each car's own."""
+    for m in bpy.data.materials:
+        if not m.name.startswith(PREFIX):
+            continue
+        car, _, ch = m.name[len(PREFIX):].partition("_")
+        if ch not in ("primary", "secondary"):
+            continue
+        col = (primary if ch == "primary" else secondary) or PAINT.get(car, PAINT["A"])[ch]
+        bsdf = next(n for n in m.node_tree.nodes if n.type == "BSDF_PRINCIPLED")
+        bsdf.inputs["Base Color"].default_value = (*col, 1.0)
 
 
 def reset():

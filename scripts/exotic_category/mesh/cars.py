@@ -182,7 +182,7 @@ def car_a():
     for i, y in enumerate((2.1, 1.85, 1.6, 1.35, 1.1, 0.85)):
         box(f"strake{i}", (3.0, y, 11.04), (0.78, 0.09, 0.2), "primary", mirror=True)
     for i, x in enumerate((2.8, 3.25)):
-        dfin(f"fin{i}", x, ((8.8, -0.3), (10.0, 0.05), (11.3, 0.5)))
+        dfin(f"fin{i}", x, ((9.4, -0.32), (10.4, 0.0), (11.3, 0.3)))
 
     K.begin(c, "RPOD")
     pod = Hull([(3.6, dict(SIDE_R, yb=-0.5, yt=1.6)),
@@ -318,7 +318,7 @@ def car_b():
     fin = Loft([(7.4, dict(yt=2.6)), (10.2, dict(yt=2.98)), (11.15, dict(yt=2.2))], w=0.09, yb=1.85, nt=2, nb=2)
     fin.build("fin", "secondary")
     box("rain", (0, 2.3, 11.2), (0.16, 0.45, 0.08), "lights_red")
-    dfin("vane", 2.75, ((8.8, -0.05), (10.0, 0.25), (11.3, 0.6)))
+    dfin("vane", 2.75, ((9.4, -0.2), (10.4, 0.1), (11.3, 0.35)))
 
     K.begin(c, "RPOD")
     pod = Hull([(3.6, dict(cx=4.98, w=0.85, wi=0.95, yb=-0.3, yt=1.35, ys=0.7, rb=0.3)),
@@ -376,6 +376,14 @@ ROWS = {
                         kit("B", {s: "A" for s in REAR}), kit("B", {s: "A" for s in SLOTS if s != "COCKPIT"})]),
 }
 SPACING = 17.0
+# Preview paints for the mixed builds: name, primary, secondary.
+PAINTS = (
+    ("white", (0.82, 0.82, 0.8), (0.02, 0.02, 0.024)),
+    ("blue", (0.02, 0.07, 0.42), (0.55, 0.57, 0.6)),
+    ("orange", (0.9, 0.23, 0.02), (0.02, 0.02, 0.024)),
+    ("green", (0.02, 0.2, 0.09), (0.55, 0.45, 0.25)),
+    ("black", (0.015, 0.015, 0.018), (0.55, 0.03, 0.03)),
+)
 
 
 def build_all(render=True):
@@ -404,5 +412,14 @@ def build_all(render=True):
             files.append(K.shot(j(OUT, f"{car}_front_close.jpg"), (x, 1.0, -3), 152, 14, 38, only=only))
             files.append(K.shot(j(OUT, f"{car}_front_low.jpg"), (x, 0.6, -6), 158, 3, 30, only=only))
         files.append(K.shot(j(OUT, "pure_top.jpg"), (0, 0, 0), 180, 89, 80, only=["pure0", "pure1"]))
+        # Mixed builds again, every part in the same paint.
+        for name, prim, sec in PAINTS:
+            K.repaint(prim, sec)
+            for row, tag, az in (("swaps_on_a", "a_front", 150), ("swaps_on_b", "b_rear", 30)):
+                oz, builds = ROWS[row]
+                only = [f"{row}{i}" for i in range(len(builds))]
+                files.append(K.shot(j(OUT, f"paint_{name}_{tag}.jpg"), (0, 0.8, oz), az, 12, 30 + 16 * len(builds),
+                                    only=only))
+        K.repaint()
     stats = {k: v["tris"] for k, v in K.MODS.items()}
     return {"problems": problems, "files": files, "stats": stats}
