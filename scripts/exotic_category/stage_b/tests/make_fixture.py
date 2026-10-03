@@ -20,6 +20,7 @@ VARIANT_FIELDS = {"STANDARD": ("Standard", 10), "LIGHTWEIGHT": ("Lightweight", 2
 def main():
     ids = bc.load_json(os.path.join(bc.DATA_DIR, "ids.json"))
     reference = bc.capture_reference(bc.load_json(bc.CAPTURE_PATH))
+    mesh = bc.load_mesh()
     constants = bc.piercer_cockpit_constants(reference)
     tier_donor = {}
     for cid, attrs in reference["cockpits"].items():
@@ -34,7 +35,7 @@ def main():
         out["cockpits"][c["cockpitId"]] = {"attributes": attrs, "stockPI": c["targetStockPI"], "stockTier": c["tier"]}
         for slot in ids["slots"]:
             core = slot["kind"] == "core"
-            for variant in (ids["variants"] if core else [None]):
+            for variant in bc.module_variants(ids, mesh, slot, c["n"]):
                 mid = bc.module_id(slot, c["n"], variant)
                 donor_id = slot["attributeDonor"].replace("{VARIANT}", variant or "")
                 donor_attrs = reference["modules"][donor_id]
@@ -43,6 +44,8 @@ def main():
                 attrs = {k: v for k, v in donor_attrs.items() if k not in skip}
                 if core:
                     attrs["VariantName"], attrs["VariantOrder"] = VARIANT_FIELDS[variant]
+                elif variant:  # a mesh body trim (mesh/INTEGRATION.md D7): the base part at 2 x (GT) or 3.5 x (EVO) its price
+                    attrs["Price"] = int(attrs["Price"] * {"GT": 2, "EVO": 3.5}[variant] / 100 + 0.5) * 100
                 entry = {"attributes": attrs}
                 if slot["slotId"] in ("FrontBody", "RearBody"):
                     prefix = "Nose" if slot["slotId"] == "FrontBody" else "Deck"

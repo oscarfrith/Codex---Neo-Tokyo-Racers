@@ -115,6 +115,8 @@ local function sig(instance, root)
 	local extra = ""
 	if instance:IsA("BasePart") then
 		extra = tostring(instance.Size) .. "|" .. tostring(instance.CFrame) .. "|" .. instance.Material.Name .. "|" .. tostring(instance.Color) .. "|" .. tostring(instance.Transparency)
+		-- Without the MeshId two different meshes with equal bounds would count as the same part.
+		if instance:IsA("MeshPart") then extra = extra .. "|" .. instance.MeshId .. "|" .. tostring(instance.DoubleSided) end
 	elseif instance:IsA("Attachment") then
 		extra = tostring(instance.CFrame)
 	end
@@ -176,8 +178,55 @@ for _, item in ipairs(server:GetDescendants()) do
 				if not found then table.insert(problems, item.Name .. " " .. name .. " -> " .. tostring(value)) end
 			end
 		end
-		add("   " .. item.Name .. ": slots=" .. tostring(slots and #slots:GetChildren()) .. " root=" .. tostring(root and root.Size))
+		local defaults, meshes, primitives = 0, 0, 0
+		for name in pairs(item:GetAttributes()) do
+			if string.sub(name, 1, 7) == "Default" and string.sub(name, -8) == "ModuleId" then defaults += 1 end
+		end
+		for _, part in ipairs(item:GetDescendants()) do
+			if part:IsA("BasePart") and part:GetAttribute("PaintChannel") ~= nil and part:GetAttribute("PaintChannel") ~= "Underglow" then
+				if part:IsA("MeshPart") and part:GetAttribute("MeshSource") ~= nil then meshes += 1 else primitives += 1 end
+			end
+		end
+		add("   " .. item.Name .. ": slots=" .. tostring(slots and #slots:GetChildren()) .. " root=" .. tostring(root and root.Size) .. " defaultModuleAttributes=" .. defaults .. " meshParts=" .. meshes .. " primitiveParts=" .. primitives)
 	end
 end
 add("5. cockpit problems: " .. (#problems == 0 and "none" or table.concat(problems, "; ", 1, math.min(#problems, 10))))
+
+-- 6. Mesh kits (scripts/exotic_category/mesh/INTEGRATION.md): every mesh clone carries a MeshId and the D11 properties,
+-- no source part is used twice, and no template mixes mesh clones with primitive parts.
+local function meshCensus(root)
+	local count, noMeshId, badProperties, duplicates, sources, meshIds, distinctIds = 0, 0, 0, 0, {}, {}, 0
+	local meshTemplates, mixedTemplates = 0, {}
+	for _, item in ipairs(root:GetDescendants()) do
+		if item:IsA("MeshPart") and item:GetAttribute("MeshSource") ~= nil then
+			count += 1
+			if item.MeshId == "" then noMeshId += 1 end
+			if not (item.DoubleSided and item.Anchored and not item.CanCollide and not item.CanQuery and not item.CanTouch) then badProperties += 1 end
+			local source = item:GetAttribute("MeshSource")
+			if sources[source] then duplicates += 1 end
+			sources[source] = true
+			if not meshIds[item.MeshId] then
+				meshIds[item.MeshId] = true
+				distinctIds += 1
+			end
+		elseif item:IsA("Model") and (item:GetAttribute("CockpitId") ~= nil or item:GetAttribute("ModuleId") ~= nil) then
+			local meshes, primitives = 0, 0
+			for _, part in ipairs(item:GetDescendants()) do
+				if part:IsA("BasePart") and part:GetAttribute("PaintChannel") ~= nil and part:GetAttribute("PaintChannel") ~= "Underglow" then
+					if part:IsA("MeshPart") and part:GetAttribute("MeshSource") ~= nil then meshes += 1 else primitives += 1 end
+				end
+			end
+			if meshes > 0 then
+				meshTemplates += 1
+				if primitives > 0 then table.insert(mixedTemplates, item.Name) end
+			end
+		end
+	end
+	return string.format("meshParts=%d distinctMeshIds=%d noMeshId=%d badProperties=%d sourceUsedTwice=%d meshTemplates=%d mixedTemplates=%d %s", count, distinctIds, noMeshId, badProperties, duplicates, meshTemplates,
+		#mixedTemplates, table.concat(mixedTemplates, ", ", 1, math.min(#mixedTemplates, 6)))
+end
+local serverMesh, previewMesh = meshCensus(server), meshCensus(preview)
+add("6. mesh census (server):  " .. serverMesh)
+add("   mesh census (preview): " .. previewMesh .. (serverMesh == previewMesh and "  (same: ok)" or "  (DIFFERENT)"))
+add("   mesh signature attribute: " .. tostring(server:GetAttribute("InstalledMeshSignature")) .. " (server) " .. tostring(preview:GetAttribute("InstalledMeshSignature")) .. " (preview)")
 return table.concat(out, "\n")

@@ -2,7 +2,7 @@
 
     blender --background --factory-startup --python scripts/exotic_category/mesh/fbx_export.py
 
-Input: export/<car>/<SLOT>.json (see export.py). Output: export/ExoticPilot.fbx with one object per
+Input: export/<car>/<SLOT>_<TRIM>.json (see export.py). Output: export/ExoticPilot.fbx with one object per
 module and paint channel, named like A_NOSE_STD__primary. Coordinates are game root space (studs,
 +Y up, forward -Z); the round car is offset 20 studs in X.
 """
@@ -21,8 +21,8 @@ for ob in list(bpy.data.objects):
 
 made = 0
 for car, ox in (("A", 0.0), ("B", 20.0)):
-    for slot in SLOTS:
-        with open(os.path.join(ROOT, car, slot + ".json")) as f:
+    for fname in sorted(n for n in os.listdir(os.path.join(ROOT, car)) if n.endswith(".json")):
+        with open(os.path.join(ROOT, car, fname)) as f:
             data = json.load(f)
         for ch, c in data["channels"].items():
             v, n, t = c["v"], c["n"], c["t"]

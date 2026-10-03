@@ -53,7 +53,7 @@ Safeguards that follow from the lane:
 - This contract, complete, before any game write.
 - `delivery-reviewer` subagent on the spec and diff before each APPLY.
 - AUDIT, then APPLY, ROLLBACK, APPLY to prove recovery.
-- `multi_edit` and the asset or generation tools are not used for any part of this task.
+- `multi_edit` and the asset or generation tools are not used for any part of this task. Exception recorded on 2026-10-03: the mesh pilot for kits 02 and 05 loads an uploaded model asset at install, approved by Oscar. See decision D1 in [the mesh integration contract](../../scripts/exotic_category/mesh/INTEGRATION.md).
 - No gameplay module `require` through MCP.
 
 ## 3. Goal

@@ -23,6 +23,13 @@ import rating as R
 
 HERE = Path(__file__).resolve().parent
 INTERFACE_PATH = HERE.parent / "INTERFACE.md"
+MESH_DATA_PATH = HERE.parent / "stage_b" / "data" / "mesh.json"
+
+# scripts/exotic_category/mesh/INTEGRATION.md, written out again here on purpose (D6 to D9).
+MESH_KITS = (2, 5)
+MESH_STOCK_BODY_STEMS = ("MODULE_FRONTBODY_EXOTIC", "MODULE_REARBODY_EXOTIC", "MODULE_REARSPOILER_EXOTIC")
+MESH_EMPTY_DEFAULTS = {"DefaultSidePodsModuleId", "DefaultFrontBumperModuleId", "DefaultRearBumperModuleId"}
+BODY_TRIM_FACTOR = {"GT": 2.0, "EVO": 3.5}
 
 _CACHE = {}
 
@@ -64,6 +71,12 @@ def expected_module_ids():
     return core, body
 
 
+def trim_module_ids():
+    """The twelve new body ids of the mesh kits (D6): {new id: (base id, trim)}."""
+    return {"%s_%02d_%s" % (stem, n, trim): ("%s_%02d" % (stem, n), trim)
+            for n in MESH_KITS for stem in MESH_STOCK_BODY_STEMS for trim in BODY_TRIM_FACTOR}
+
+
 def kind(value):
     if isinstance(value, bool):
         return "boolean"
@@ -79,7 +92,10 @@ def stock_components(c, cockpit_id):
     names = ["DefaultEngineModuleId", "DefaultEngineBModuleId", "DefaultStabilisersModuleId", "DefaultBoostModuleId",
              "DefaultFrontBodyModuleId", "DefaultRearBodyModuleId", "DefaultSidePodsModuleId",
              "DefaultFrontBumperModuleId", "DefaultRearBumperModuleId", "DefaultRearSpoilerModuleId"]
-    return [B.as_component(c["live"], c["disk"]["modules"][attributes[name]]) for name in names]
+    # A mesh cockpit declares no default for three body slots (D8): its stock build is seven modules, not ten.
+    empty = MESH_EMPTY_DEFAULTS if int(cockpit_id[-2:]) in MESH_KITS else set()
+    assert {name for name in names if name not in attributes} == empty, cockpit_id
+    return [B.as_component(c["live"], c["disk"]["modules"][attributes[name]]) for name in names if name not in empty]
 
 
 # ---------------------------------------------------------------------------
@@ -199,10 +215,17 @@ def test_ids_counts_and_interface_table():
     rows = interface_rows()
     assert len(rows) == 6, "INTERFACE.md cockpit table not found"
     assert sorted(disk["cockpits"]) == [row["id"] for row in rows]
-    assert len(disk["cockpits"]) == 6 and len(disk["modules"]) == 108
+    assert len(disk["cockpits"]) == 6 and len(disk["modules"]) == 120
     core, body = expected_module_ids()
-    assert len(core) == 72 and len(body) == 36
-    assert sorted(disk["modules"]) == sorted(core + body)
+    trims = trim_module_ids()
+    assert len(core) == 72 and len(body) == 36 and len(trims) == 12
+    assert sorted(disk["modules"]) == sorted(core + body + list(trims))
+    # The new ids are exactly the body trims stage_b/data/mesh.json holds, and every mesh id has balance data.
+    mesh = json.loads(MESH_DATA_PATH.read_text(encoding="utf-8"))
+    assert {module_id for module_id in mesh["modules"] if module_id.endswith(("_GT", "_EVO"))} == set(trims)
+    assert set(mesh["modules"]) <= set(disk["modules"]) and len(mesh["modules"]) == 42
+    assert {entry["kit"] for entry in mesh["modules"].values()} == set(MESH_KITS)
+    assert sorted(mesh["cockpits"]) == ["exotic_%02d" % n for n in MESH_KITS]
     spec = c["live"].spec
     for row, built in zip(rows, B.COCKPITS):
         for key in ("n", "id", "model", "name", "spec_cockpit", "spec_kit", "kit_name", "tier", "price", "target"):
@@ -260,6 +283,14 @@ def test_prices():
             assert attributes["UpgradePointCapacity"] == 6 and attributes["MaxPointsPerPath"] == 3
             for i in range(1, 7):
                 assert attributes["Point%dCostGuide" % i] == donor["Point%dCostGuide" % i]
+    # Mesh body trims (D7): base price x 2 (GT) and x 3.5 (EVO), rounded to 100. NeonPrice as the base part.
+    expected_trim_prices = {2: {"GT": 22000, "EVO": 38500}, 5: {"GT": 46000, "EVO": 80500}}
+    for module_id, (base_id, trim) in trim_module_ids().items():
+        attributes, base_attributes = disk["modules"][module_id]["attributes"], disk["modules"][base_id]["attributes"]
+        assert attributes["Price"] == int(math.floor(base_attributes["Price"] * BODY_TRIM_FACTOR[trim] / 100 + 0.5)) * 100
+        assert attributes["Price"] == expected_trim_prices[int(base_id[-2:])][trim], module_id
+        assert attributes["NeonPrice"] == base_attributes["NeonPrice"]
+        assert "PurchasePrice" not in attributes and "SourceCockpitId" not in attributes and "VariantName" not in attributes
     # The 8/10/12/15/18/22 rule reproduces every live Piercer variant module.
     for module_id, module in c["live"].modules.items():
         attributes = module["attributes"]
@@ -403,6 +434,18 @@ def test_every_module_has_its_donor_attribute_set():
         donor = c["live"].modules[donor_id]["attributes"]
         for name, value in B.legacy_body_headlines(donor).items():
             assert donor[name] == value, (donor_id, name)
+    # Mesh body trims (D7): every attribute of the base part and the same upgrade path source, except the id,
+    # the names and the Price. So the attribute set is the donor set too, and no VariantName is added.
+    for module_id, (base_id, trim) in trim_module_ids().items():
+        entry, base_entry = c["disk"]["modules"][module_id], c["disk"]["modules"][base_id]
+        attributes, base_attributes = entry["attributes"], base_entry["attributes"]
+        assert set(attributes) == set(base_attributes), module_id
+        differing = {name for name in attributes if attributes[name] != base_attributes[name]}
+        assert differing == {"ModuleId", "DisplayName", "ModuleName", "CardTitle", "Price"}, (module_id, differing)
+        assert attributes["DisplayName"] == base_attributes["DisplayName"] + " " + trim
+        assert {key: value for key, value in entry.items() if key != "attributes"} == {key: value for key, value in base_entry.items() if key != "attributes"}
+        assert R.apply_to_module_raw(attributes) == R.apply_to_module_raw(base_attributes)
+        assert B.paths_for(c["live"], entry) == B.paths_for(c["live"], base_entry)
     for module_id, entry in c["disk"]["modules"].items():
         attributes = entry["attributes"]
         assert attributes["CardTitle"] == attributes["DisplayName"] == attributes["ModuleName"]
@@ -423,6 +466,9 @@ def test_display_names_come_from_the_spec():
                 ids = ["%s_%02d" % (B.BODY_SLOTS[slot][0], cockpit["n"])]
             for module_id in ids:
                 assert c["disk"]["modules"][module_id]["attributes"]["DisplayName"] == name
+                for trim in BODY_TRIM_FACTOR:
+                    if module_id + "_" + trim in trim_module_ids():
+                        assert c["disk"]["modules"][module_id + "_" + trim]["attributes"]["DisplayName"] == name + " " + trim
 
 
 def test_cockpit_attribute_set_and_defaults():
@@ -434,7 +480,9 @@ def test_cockpit_attribute_set_and_defaults():
         donor = c["live"].cockpits[cockpit["piercer"]]["attributes"]
         colours = {name for name, value in donor.items() if isinstance(value, dict)}
         assert colours == set(B.COCKPIT_COLOUR_ATTRIBUTES)
-        assert set(attributes) == (set(donor) - colours) | new_defaults
+        # A mesh cockpit keeps all ten slots but declares no default for three of them (D8).
+        empty = MESH_EMPTY_DEFAULTS if cockpit["n"] in MESH_KITS else set()
+        assert set(attributes) == (set(donor) - colours) | (new_defaults - empty)
         for name, value in donor.items():
             if name not in colours:
                 assert kind(attributes[name]) == kind(value), (cockpit["id"], name)
@@ -455,7 +503,12 @@ def test_cockpit_attribute_set_and_defaults():
             "DefaultRearSpoilerModuleId": "MODULE_REARSPOILER_EXOTIC_%02d" % n,
         }
         for name, module_id in expected.items():
-            assert attributes[name] == module_id and module_id in c["disk"]["modules"]
+            assert module_id in c["disk"]["modules"]
+            if name in empty:
+                assert name not in attributes  # the module still exists (primitive, as before); it is just not a default
+            else:
+                assert attributes[name] == module_id
+        assert len([name for name in attributes if name.startswith("Default") and name.endswith("ModuleId")]) == 13 - len(empty)
         for name in ("Acceleration", "Boost", "Braking", "Drift", "Handling", "Power"):
             assert attributes[name] == donor[name]
         assert attributes["V2Materialised"] is True and attributes["TemplateType"] == "Cockpit"
@@ -575,6 +628,16 @@ def test_body_parts_cannot_shift_a_tier():
             index = R._luau_round(R._rounded(mix[key][0], 2))
             assert c["live"].calculator.tier_for_index(index) == cockpit["tier"], (cockpit["id"], key, index)
             assert abs(index - stock) <= 3, (cockpit["id"], key, index)
+            # The mix covers the slots the stock build fills: six, or three on a mesh cockpit.
+            assert len(mix[key][1]) == (3 if cockpit["n"] in MESH_KITS else 6)
+        # Every body slot filled with the own kit. That is the stock build, except on a mesh cockpit, where the three
+        # slots that start empty add stats on top of the target total (D9): the tier must still hold.
+        full = c["analysis"]["exotic"][cockpit["id"]]["FULL_BODY"]["Overall"]
+        assert full["Tier"] == cockpit["tier"], (cockpit["id"], full["PerformanceIndex"])
+        if cockpit["n"] in MESH_KITS:
+            assert stock < full["PerformanceIndex"], (cockpit["id"], full["PerformanceIndex"])
+        else:
+            assert full["PerformanceIndex"] == stock, (cockpit["id"], full["PerformanceIndex"])
 
 
 def test_no_build_reaches_a_higher_tier_than_piercer():

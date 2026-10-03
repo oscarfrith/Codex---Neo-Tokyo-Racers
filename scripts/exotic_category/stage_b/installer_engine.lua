@@ -7,6 +7,8 @@
 -- Writes are limited to: ServerStorage.Assets.Vehicles.Categories.EXOTIC,
 -- ReplicatedStorage.Assets.VehiclePreviews.Categories.EXOTIC, the four Exotic folders in
 -- ReplicatedStorage.Assets.VFX.VehicleTemplates, the VehicleCatalogData index source and its EXOTIC_n chunks.
+-- Mesh kits (scripts/exotic_category/mesh/INTEGRATION.md): when the data names a model asset (DATA.mesh), AUDIT and
+-- APPLY load it with game:GetObjects (a read; the loaded model never enters the DataModel) and clone its MeshParts.
 local HttpService = game:GetService("HttpService")
 local RunService = game:GetService("RunService")
 local ServerStorage = game:GetService("ServerStorage")
@@ -19,6 +21,7 @@ local SCOPE = META.scope
 local MARKER = META.marker
 local CATEGORY = DATA.category.folder
 local FIX = DATA.fixtures
+local MESH = DATA.mesh -- nil when no template in scope is built from uploaded meshes
 
 assert(MODE == "AUDIT" or MODE == "APPLY" or MODE == "ROLLBACK", "Stage B: bad mode " .. tostring(MODE))
 assert(SCOPE == "pilot" or SCOPE == "full", "Stage B: bad scope " .. tostring(SCOPE))
@@ -132,6 +135,22 @@ local function signature(root)
 	return tostring(count) .. ":" .. tostring(sum)
 end
 
+-- signature() sees class and name only, so it cannot tell one mesh from another. This one covers every mesh
+-- clone under a root: its name, its source part name and its MeshId.
+local function meshSignature(root)
+	local count, sum = 0, 0
+	for _, item in ipairs(root:GetDescendants()) do
+		if item:IsA("MeshPart") and item:GetAttribute("MeshSource") ~= nil then
+			count += 1
+			local text = item.Name .. "|" .. tostring(item:GetAttribute("MeshSource")) .. "|" .. item.MeshId
+			local hash = 7
+			for i = 1, #text do hash = (hash * 31 + string.byte(text, i)) % 2147483647 end
+			sum = (sum + hash) % 2147483647
+		end
+	end
+	return tostring(count) .. ":" .. tostring(sum)
+end
+
 -- ---------------------------------------------------------------------------------------------
 -- Locations
 -- ---------------------------------------------------------------------------------------------
@@ -241,6 +260,11 @@ local function signatureProblems(found)
 	local server, preview = found.server[1], found.preview[1]
 	if signature(server) ~= server:GetAttribute("InstalledServerSignature") then table.insert(problems, server:GetFullName()) end
 	if signature(preview) ~= preview:GetAttribute("InstalledPreviewSignature") then table.insert(problems, preview:GetFullName()) end
+	-- Content installed before the mesh kits carries no mesh signature; there is nothing to compare then.
+	for _, root in ipairs({ server, preview }) do
+		local installed = root:GetAttribute("InstalledMeshSignature")
+		if installed ~= nil and meshSignature(root) ~= installed then table.insert(problems, root:GetFullName() .. " (a mesh part was added, removed, renamed or given another MeshId)") end
+	end
 	for _, name in ipairs(VFX_NAMES) do
 		local folder = found.vfx[name][1]
 		if signature(folder) ~= folder:GetAttribute("InstalledSignature") then table.insert(problems, folder:GetFullName()) end
@@ -435,11 +459,16 @@ local function preflightPlan()
 				end
 			end
 		end
+		-- A slot listed in emptySlots keeps its SLOT_ folder but starts empty: it must declare no default.
+		local emptySlots = {}
+		for _, slotId in ipairs(def.emptySlots or {}) do emptySlots[slotId] = true end
 		for _, slot in ipairs(DATA.slots) do
 			for _, name in ipairs(slot.defaultAttributes) do
 				local moduleId = def.attributes[name]
 				local module = moduleId and moduleIds[moduleId]
-				if not module then
+				if emptySlots[slot.slotId] then
+					if moduleId ~= nil then BLOCKER("plan", def.id .. " declares " .. name .. " but slot " .. slot.slotId .. " is planned to start empty") end
+				elseif not module then
 					BLOCKER("plan", def.id .. " has no " .. name)
 				elseif module.slot ~= slot.slotId then
 					BLOCKER("plan", def.id .. " " .. name .. " points at a module of slot " .. module.slot)
@@ -457,6 +486,84 @@ local function preflightPlan()
 		if not isAscii(text) then BLOCKER("ascii", "non-ASCII text in the plan: " .. string.format("%q", text)) end
 	end
 	return cockpitIds, moduleIds
+end
+
+-- Mesh kits: the source MeshParts live in one uploaded model asset. Loading it is a read: the model stays detached
+-- and is destroyed when the run ends.
+local meshSources = nil -- source part name -> MeshPart, once the asset is loaded
+local meshRoots = {}
+
+local function releaseMesh()
+	for _, root in ipairs(meshRoots) do pcall(function() root:Destroy() end) end
+	meshRoots = {}
+end
+
+-- File space to root space: turn 180 degrees about Y, then take the car's file offset off X.
+local function meshFrame(source, shape)
+	local frame = CFrame.Angles(0, math.pi, 0) * source.CFrame
+	return frame - Vector3.new(shape.mesh.fileOffsetX, 0, 0)
+end
+
+-- Every part the plan names must be in the asset, carry a mesh, and sit where data/mesh.json says (within the tolerance).
+local function preflightMesh()
+	if not MESH then return end
+	local ok, objects = pcall(function() return game:GetObjects("rbxassetid://" .. tostring(MESH.assetId)) end)
+	if not ok or type(objects) ~= "table" or #objects == 0 then
+		BLOCKER("mesh", "model asset " .. tostring(MESH.assetId) .. " could not be loaded with game:GetObjects: " .. tostring(ok and "it is empty" or objects))
+		return
+	end
+	local sources, seen = {}, {}
+	for _, object in ipairs(objects) do
+		table.insert(meshRoots, object)
+		local items = object:GetDescendants()
+		table.insert(items, object)
+		for _, item in ipairs(items) do
+			if item:IsA("MeshPart") then
+				seen[item.Name] = (seen[item.Name] or 0) + 1
+				sources[item.Name] = item
+			end
+		end
+	end
+	local tolerance = MESH.centreTolerance
+	local checked, faults, sizeNotes = 0, 0, 0
+	local function fault(text)
+		faults += 1
+		if faults <= 8 then BLOCKER("mesh", text) end
+	end
+	for key, shape in pairs(DATA.shapes) do
+		for _, record in ipairs(shape.parts) do
+			if record[1] == "mesh" then
+				checked += 1
+				local name = record[12]
+				local source = sources[name]
+				if not (shape.mesh and type(shape.mesh.fileOffsetX) == "number") then
+					fault(key .. " has mesh parts but no file offset in the data")
+				elseif not source then
+					fault(key .. ": part " .. tostring(name) .. " is not in asset " .. tostring(MESH.assetId))
+				elseif seen[name] ~= 1 then
+					fault(key .. ": the asset holds " .. tostring(seen[name]) .. " parts named " .. name)
+				elseif source.MeshId == "" then
+					fault(key .. ": part " .. name .. " has no MeshId")
+				else
+					local position = meshFrame(source, shape).Position
+					if not (near(position.X, record[5], tolerance) and near(position.Y, record[6], tolerance) and near(position.Z, record[7], tolerance)) then
+						fault(key .. ": part " .. name .. string.format(" centre is (%.3f, %.3f, %.3f) in root space, data/mesh.json says (%.3f, %.3f, %.3f)", position.X, position.Y, position.Z, record[5], record[6], record[7]))
+					elseif not (near(source.Size.X, record[2], tolerance) and near(source.Size.Y, record[3], tolerance) and near(source.Size.Z, record[4], tolerance)) then
+						-- The contract checks centres. A size difference is reported, not blocked.
+						sizeNotes += 1
+						if sizeNotes <= 5 then WARN("mesh", key .. ": part " .. name .. string.format(" size is (%.3f, %.3f, %.3f), data/mesh.json says (%.3f, %.3f, %.3f)", source.Size.X, source.Size.Y, source.Size.Z, record[2], record[3], record[4])) end
+					end
+				end
+			end
+		end
+	end
+	if checked ~= MESH.partCount then fault("the data lists " .. tostring(MESH.partCount) .. " mesh parts but the shapes hold " .. tostring(checked)) end
+	if faults > 8 then BLOCKER("mesh", tostring(faults) .. " mesh faults in total") end
+	if sizeNotes > 5 then WARN("mesh", tostring(sizeNotes) .. " mesh parts differ in size in total") end
+	if faults == 0 then
+		meshSources = sources
+		INFO("mesh", tostring(checked) .. " mesh parts found in asset " .. tostring(MESH.assetId) .. ", each with a MeshId and its centre within " .. tostring(tolerance) .. " of data/mesh.json")
+	end
 end
 
 -- No id or name may collide with anything this installer did not create.
@@ -631,12 +738,23 @@ local function paletteFrom(palette)
 end
 
 -- One part, exactly as scripts/vehicle_blockouts/builder.lua makes it, in root space.
-local function makePart(record, palette)
+-- A "mesh" record is a clone of the uploaded MeshPart it names (record[12]), placed by meshFrame; it gets the same
+-- channel properties as a primitive.
+local function makePart(record, palette, owner)
 	local shape = record[1]
 	local sx, sy, sz = record[2], record[3], record[4]
 	local part
 	local fix = CFrame.new()
-	if shape == "wedge" then
+	local frame = nil
+	if shape == "mesh" then
+		local source = meshSources and meshSources[record[12]]
+		assert(source, "Stage B: mesh source " .. tostring(record[12]) .. " is not loaded")
+		part = source:Clone()
+		frame = meshFrame(source, owner)
+		part.DoubleSided = true
+		part.CastShadow = true -- as a new primitive part
+		part:SetAttribute("MeshSource", record[12])
+	elseif shape == "wedge" then
 		part = Instance.new("WedgePart")
 		part.Size = Vector3.new(sx, sy, sz)
 	else
@@ -678,7 +796,7 @@ local function makePart(record, palette)
 	part.Color = assert(palette[record[11]], "Stage B: no colour for channel " .. tostring(record[11]))
 	part.Name = shape .. "_" .. channel.suffix
 	part:SetAttribute("PaintChannel", channel.paintChannel)
-	part.CFrame = CFrame.new(record[5], record[6], record[7]) * CFrame.fromOrientation(math.rad(record[8]), math.rad(record[9]), math.rad(record[10])) * fix
+	part.CFrame = frame or (CFrame.new(record[5], record[6], record[7]) * CFrame.fromOrientation(math.rad(record[8]), math.rad(record[9]), math.rad(record[10])) * fix)
 	return part
 end
 
@@ -695,9 +813,11 @@ end
 local function fillParts(shape, palette, byChannel, ownerName)
 	local count = 0
 	for _, record in ipairs(shape.parts) do
-		local folder = byChannel[record[11]]
+		-- A channel may name another channel's folder (the red lamp lives with the white lamp in LIGHTS_AlwaysOn).
+		local channel = CHANNELS[record[11]]
+		local folder = byChannel[record[11]] or (channel and channel.folder and byChannel[channel.folder])
 		assert(folder, "Stage B: " .. ownerName .. " has a part on channel " .. tostring(record[11]) .. " but no folder for it")
-		makePart(record, palette).Parent = folder
+		makePart(record, palette, shape).Parent = folder
 		count += 1
 	end
 	return count
@@ -822,7 +942,8 @@ local function buildModule(def)
 	local slot = SLOT_BY_ID[def.slot]
 	local model = Instance.new("Model")
 	model.Name = def.id
-	local byChannel = makeChannelFolders(DATA.moduleFolders[slot.folderSet], model)
+	-- A mesh module with always-on lamps names its own folder set; every other module uses its slot's.
+	local byChannel = makeChannelFolders(assert(DATA.moduleFolders[def.folderSet or slot.folderSet], "Stage B: " .. def.id .. " names an unknown folder set"), model)
 	local shape = DATA.shapes[def.shape]
 	local parts = fillParts(shape, paletteFrom(def.palette), byChannel, def.id)
 	assert(parts == def.partCount and parts > 0, "Stage B: " .. def.id .. " built " .. tostring(parts) .. " parts, expected " .. tostring(def.partCount))
@@ -995,8 +1116,14 @@ local function validateStaging(staging)
 	local templateNames = {}
 	for _, folder in ipairs(staging.vfx) do templateNames[folder.Name] = true end
 	for _, name in ipairs(DATA.vfx.requiredStock) do templateNames[name] = true end
-	local cockpits, modules = 0, 0
+	local cockpits, modules, meshParts = 0, 0, 0
 	for _, item in ipairs(server:GetDescendants()) do
+		if item:IsA("MeshPart") and item:GetAttribute("MeshSource") ~= nil then
+			meshParts += 1
+			local source = meshSources and meshSources[item:GetAttribute("MeshSource")]
+			if not source or item.MeshId == "" or item.MeshId ~= source.MeshId then problem(item:GetFullName() .. " does not carry the mesh of its source part " .. tostring(item:GetAttribute("MeshSource"))) end
+			if not item.DoubleSided or not item.Anchored or item.CanQuery or item.CanTouch then problem(item:GetFullName() .. " is not DoubleSided, anchored and free of queries and touches") end
+		end
 		if item:IsA("Model") and item:GetAttribute("CockpitId") ~= nil then
 			cockpits += 1
 			local root = item.PrimaryPart
@@ -1032,6 +1159,8 @@ local function validateStaging(staging)
 	end
 	if cockpits ~= #DATA.cockpits then problem("built " .. tostring(cockpits) .. " cockpits, planned " .. tostring(#DATA.cockpits)) end
 	if modules ~= #DATA.modules then problem("built " .. tostring(modules) .. " modules, planned " .. tostring(#DATA.modules)) end
+	if meshParts ~= (MESH and MESH.partCount or 0) then problem("built " .. tostring(meshParts) .. " mesh parts, planned " .. tostring(MESH and MESH.partCount or 0)) end
+	staging.counts.meshParts = meshParts
 	return problems
 end
 
@@ -1067,6 +1196,8 @@ local function previewParity(server, preview)
 		local extra = ""
 		if instance:IsA("BasePart") then
 			extra = tostring(instance.Size) .. "|" .. tostring(instance.CFrame) .. "|" .. instance.Material.Name .. "|" .. tostring(instance.Color) .. "|" .. tostring(instance.Transparency)
+			-- Without the MeshId two different meshes with equal bounds would count as the same part.
+			if instance:IsA("MeshPart") then extra = extra .. "|" .. instance.MeshId .. "|" .. tostring(instance.DoubleSided) end
 		elseif instance:IsA("Attachment") then
 			extra = tostring(instance.CFrame)
 		end
@@ -1329,7 +1460,8 @@ end
 local blockersBeforeBuildChecks = #blockers
 preflightDonors()
 local plannedCockpits, plannedModules = preflightPlan()
-local buildable = #blockers == blockersBeforeBuildChecks -- donors and plan are sound, whatever else is blocked
+preflightMesh()
+local buildable = #blockers == blockersBeforeBuildChecks -- donors, plan and mesh asset are sound, whatever else is blocked
 preflightCollisions(plannedCockpits, plannedModules, ownRoots)
 preflightBlockout()
 preflightStageA()
@@ -1357,18 +1489,22 @@ if MODE == "AUDIT" then
 		end)
 		if not ok then BLOCKER("build", "dry-run build failed: " .. tostring(message)) end
 		INFO("build", "dry run built and discarded the " .. SCOPE .. " scope detached; chunk sizes are checked during APPLY before the catalogue is written")
+		if MESH then INFO("build", "preview parity compares the MeshId of every MeshPart; the name signatures (InstalledServerSignature, InstalledPreviewSignature) do not see a MeshId, so APPLY also records InstalledMeshSignature (name, source part and MeshId of every mesh clone)") end
 	else
-		INFO("build", "dry-run build skipped because the donors or the plan have blockers")
+		INFO("build", "dry-run build skipped because the donors, the plan or the mesh asset have blockers")
 	end
+	releaseMesh()
 	if alreadyCurrent then INFO("apply", "this build is already installed; APPLY would change nothing") end
 	return finish(#blockers == 0, { wouldApply = #blockers == 0 and not alreadyCurrent })
 end
 
 -- APPLY ------------------------------------------------------------------------------------------
 if #blockers > 0 then
+	releaseMesh()
 	error("Stage B APPLY refused: " .. HttpService:JSONEncode(finish(false, {})), 0)
 end
 if alreadyCurrent then
+	releaseMesh()
 	INFO("apply", "this build is already installed; nothing changed")
 	return finish(true, { stateAfter = stateInfo.state, changed = 0 })
 end
@@ -1440,12 +1576,15 @@ local ok, message = xpcall(function()
 	-- 5. Markers (identical on both category roots so the preview stays an exact copy), then the preview.
 	staging.preview = makePreview(staging.server)
 	local serverSignature, previewSignature = signature(staging.server), signature(staging.preview)
+	local meshMark = meshSignature(staging.server)
+	assert(meshSignature(staging.preview) == meshMark, "the preview copy does not hold the same mesh parts as the server category")
 	for _, root in ipairs({ staging.server, staging.preview }) do
 		root:SetAttribute("InstalledBy", MARKER)
 		root:SetAttribute("InstalledScope", SCOPE)
 		root:SetAttribute("InstalledContentHash", META.contentHash)
 		root:SetAttribute("InstalledServerSignature", serverSignature)
 		root:SetAttribute("InstalledPreviewSignature", previewSignature)
+		root:SetAttribute("InstalledMeshSignature", meshMark)
 	end
 	place(staging.preview, previewCategories)
 	-- 6. Catalogue sources: new EXOTIC chunks, then the index.
@@ -1478,6 +1617,7 @@ local ok, message = xpcall(function()
 	result.parity = parity
 end, debug.traceback)
 
+releaseMesh()
 if not ok then
 	local incomplete = {}
 	for i = #journal.created, 1, -1 do

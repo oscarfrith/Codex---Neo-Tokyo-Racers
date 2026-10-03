@@ -6,6 +6,13 @@
   "thrust": "#ffffff",
   "optionalNeon": "#ffffff",
   "lamp": "kitNeon",
+  "meshLamp": "#ffffff",
+  "meshLampRed": [
+    255,
+    30,
+    20
+  ],
+  "_meshLamp": "mesh/INTEGRATION.md D10. Mesh modules (kits 02 and 05) do not use the kit neon for lamps: the lights channel is always this white and the lights_red channel always this red. Both go in LIGHTS_AlwaysOn with PaintChannel Lights.",
   "_lamp": "kitNeon = the native neon paint of the cockpit that owns the kit (as the blockout shows it). A hex value here gives every Nose and Engine Deck lamp that colour instead.",
   "defaultFrontLights": [
     252,

@@ -14,8 +14,10 @@ Method (see report.md for the numbers):
      minimum and never worse than the tier below) solved so the stock PI equals the target.
   2. Totals are split with the live ComponentAllocationPolicy shares. Lightweight and Power use
      the live VariantPolicy multipliers.
-  3. The cockpit's own raw values are its share minus the flat stats of its six default body
-     modules, so cockpit + four Standard + six body = target total.
+  3. The cockpit's own raw values are its share minus the flat stats of its default body
+     modules, so cockpit + four Standard + default body = target total. Six defaults, except the
+     mesh cockpits exotic_02 and exotic_05 (mesh/INTEGRATION.md D8, D9): three defaults (Nose,
+     Engine Deck, Wing); Side Pods, Splitter and Diffuser start empty and the cockpit absorbs them.
 """
 from __future__ import annotations
 
@@ -92,6 +94,20 @@ LEGACY_DEFAULTS = {
     "DefaultBoostModuleId": "Boost",
 }
 NEW_DEFAULTS = {"Default%sModuleId" % slot: slot for slot in BODY_ORDER}
+
+# Mesh kits (scripts/exotic_category/mesh/INTEGRATION.md D6 to D9). Written out here on purpose, as the
+# INTERFACE.md tables above are: test_balance.py compares the ids with stage_b/data/mesh.json.
+MESH_KITS = (2, 5)
+# The stock body parts of a mesh cockpit. Its other three body slots declare no default and start empty.
+MESH_STOCK_BODY = ["FrontBody", "RearBody", "RearSpoiler"]
+# Extra ModuleIds per mesh kit and stock body slot: <base id>_<TRIM>. Same stats and upgrade paths as the
+# base part; name = base name + " " + trim; Price = base price * percent / 100, rounded to 100.
+BODY_TRIMS = [("GT", 200), ("EVO", 350)]
+
+
+def stock_body(n):
+    """Body slots that carry a default module on cockpit n, in BODY_ORDER order."""
+    return [slot for slot in BODY_ORDER if n not in MESH_KITS or slot in MESH_STOCK_BODY]
 
 # ---------------------------------------------------------------------------
 # Balance design
@@ -623,6 +639,23 @@ def build_body_module(live, cockpit, slot, raw):
     return this_id, entry
 
 
+def build_body_trims(base_id, base_entry):
+    """The GT and EVO ids of one mesh body part (D6, D7): every attribute of the base part, except the
+    id, the three names and the Price. No VariantName; the same upgrade path source."""
+    out = []
+    for trim, percent in BODY_TRIMS:
+        attributes = dict(base_entry["attributes"])
+        name = "%s %s" % (attributes["DisplayName"], trim)
+        attributes.update({"ModuleId": "%s_%s" % (base_id, trim), "DisplayName": name, "ModuleName": name, "CardTitle": name,
+                           "Price": round_to_100(attributes["Price"], percent)})
+        entry = {"attributes": dict(sorted(attributes.items()))}
+        for key in ("upgradePaths", "upgradePathDonor"):
+            if key in base_entry:
+                entry[key] = json.loads(json.dumps(base_entry[key]))
+        out.append((attributes["ModuleId"], entry))
+    return out
+
+
 def build_cockpit(live, cockpit, raw, defaults):
     donor = live.cockpits[cockpit["piercer"]]["attributes"]
     attributes = {}
@@ -656,7 +689,8 @@ def build_cockpit(live, cockpit, raw, defaults):
             raise AssertionError("no rule for cockpit attribute %s" % key)
         attributes[key] = value
     for key, slot in NEW_DEFAULTS.items():
-        attributes[key] = defaults[slot]
+        if slot in defaults:  # a slot that starts empty declares no default (mesh cockpits)
+            attributes[key] = defaults[slot]
     return dict(sorted(attributes.items()))
 
 
@@ -710,13 +744,18 @@ def build(live=None):
             this_id, entry = build_body_module(live, cockpit, slot, body[slot][n])
             assert this_id not in balance["modules"]
             balance["modules"][this_id] = entry
-            defaults[slot] = this_id
+            if slot in stock_body(n):
+                defaults[slot] = this_id
+            if n in MESH_KITS and slot in MESH_STOCK_BODY:
+                for trim_id, trim_entry in build_body_trims(this_id, entry):
+                    assert trim_id not in balance["modules"]
+                    balance["modules"][trim_id] = trim_entry
         cockpit_raw = {}
         for name in R.RAW_ORDER:
-            others = sum(core_raw[slot][name] for slot in CORE_ORDER) + sum(body[slot][n][name] for slot in BODY_ORDER)
+            others = sum(core_raw[slot][name] for slot in CORE_ORDER) + sum(body[slot][n][name] for slot in stock_body(n))
             cockpit_raw[name] = round(totals[name] - others, VALUE_DECIMALS)
         attributes = build_cockpit(live, cockpit, cockpit_raw, defaults)
-        stock_modules = [as_component(live, balance["modules"][defaults[slot]]) for slot in CORE_ORDER + BODY_ORDER]
+        stock_modules = [as_component(live, balance["modules"][defaults[slot]]) for slot in CORE_ORDER + stock_body(n)]
         result = live.calculator.calculate(R.sum_components(attributes, stock_modules))
         balance["cockpits"][cockpit["id"]] = {
             "attributes": attributes,
@@ -989,25 +1028,65 @@ def best_upgrades(live, cockpit_attributes, positions, starts=SEARCH_STARTS):
 def build_ceiling(live, cockpit_attributes, positions):
     """A rating no build from these positions can beat.
 
-    The index never falls when a higher-is-better stat rises or a lower-is-better stat falls, so
-    taking, for every stat on its own, the best value any option of each slot offers gives a bound.
-    No single build reaches it (the best option differs from stat to stat).
+    The index never falls when a higher-is-better stat rises or a lower-is-better stat falls. So for
+    one module, taking for every stat on its own the best value any of its upgrade allocations
+    offers gives a row no allocation of that module beats. The ceiling is the highest index over
+    EVERY choice of one module (or empty) per slot, each module standing in as that row. The choice
+    of modules is exact; only the upgrade points are relaxed, so no single build reaches it.
+
+    Found by branch and bound: a branch is dropped when even the per-stat best of all its remaining
+    slots cannot beat the best choice so far, and a module whose row is no better on any stat than
+    another module of the same slot is left out. Both rest on the same monotonicity, so the result
+    is the true maximum over the choices.
+
+    (Until 2026-10-03 the ceiling also took the best value per stat ACROSS the modules of a slot.
+    That is a valid but looser bound. It stopped being enough for Hyper once the mesh cockpits
+    absorbed three body parts: mesh/INTEGRATION.md D9, report.md "Mesh kits".)
     """
-    raw = raw_list(R.read_component_raw(cockpit_attributes))
-    for rows in position_options(positions):
-        for i, name in enumerate(R.RAW_ORDER):
-            values = [row[1][i] for row in rows]
-            raw[i] += min(values) if name in R.LOWER_IS_BETTER else max(values)
-    return live.calculator.calculate(dict(zip(R.RAW_ORDER, raw)))
+    index = fast_index(live)
+    count = len(R.RAW_ORDER)
+    lower = [name in R.LOWER_IS_BETTER for name in R.RAW_ORDER]
+    base = raw_list(R.read_component_raw(cockpit_attributes))
+    slots = []
+    for position in positions:
+        rows = []
+        for component in (position if isinstance(position, list) else [position]):
+            raws = [raw_list(R.apply_to_module_raw(component["attributes"], component["paths"], allocation)) for allocation in all_allocations(component)]
+            row = tuple((min if lower[i] else max)(raw[i] for raw in raws) for i in range(count))
+            if row not in rows:
+                rows.append(row)
+        slots.append([row for row in rows if not any(
+            other is not row and all((other[i] <= row[i]) if lower[i] else (other[i] >= row[i]) for i in range(count)) for other in rows)])
+    rest = [[0.0] * count for _ in range(len(slots) + 1)]  # per-stat best of the slots from k on
+    for k in range(len(slots) - 1, -1, -1):
+        for i in range(count):
+            rest[k][i] = rest[k + 1][i] + (min if lower[i] else max)(row[i] for row in slots[k])
+    best = [None, None]
+
+    def walk(k, raw):
+        if k == len(slots):
+            value = index(raw)
+            if best[0] is None or value > best[0]:
+                best[0], best[1] = value, raw
+            return
+        if best[0] is not None and index([raw[i] + rest[k][i] for i in range(count)]) <= best[0]:
+            return
+        # Most promising module first, so the best choice is found early and the rest is dropped sooner.
+        for row in sorted(slots[k], key=lambda row: -index([raw[i] + row[i] + rest[k + 1][i] for i in range(count)])):
+            walk(k + 1, [raw[i] + row[i] for i in range(count)])
+
+    walk(0, base)
+    return live.calculator.calculate(dict(zip(R.RAW_ORDER, best[1])))
 
 
-def exotic_set(live, balance, cockpit, variant, body_kit=None, core_family=None):
-    """Components of an Exotic build: four core modules of one variant and six body parts of one kit."""
+def exotic_set(live, balance, cockpit, variant, body_kit=None, core_family=None, body_slots=None):
+    """Components of an Exotic build: four core modules of one variant and the body parts of one kit in
+    the cockpit's stock body slots (six; three on a mesh cockpit), or in body_slots."""
     n = cockpit["n"]
     family = core_family or n
     kit = body_kit or n
     ids = [module_id(CORE_SLOTS[slot][0], family, variant) for slot in CORE_ORDER]
-    ids += [module_id(BODY_SLOTS[slot][0], kit) for slot in BODY_ORDER]
+    ids += [module_id(BODY_SLOTS[slot][0], kit) for slot in (body_slots or stock_body(n))]
     return [as_component(live, balance["modules"][item]) for item in ids]
 
 
@@ -1068,6 +1147,8 @@ def analyse(balance, design, live):
         row["NO_OPTIONAL_BODY"] = rate(live, attributes, [
             as_component(live, balance["modules"][design[cid]["defaults"][slot]])
             for slot in CORE_ORDER + ["FrontBody", "RearBody"]])
+        # Every body slot filled with the cockpit's own kit. On a mesh cockpit that is three parts more than stock.
+        row["FULL_BODY"] = rate(live, attributes, exotic_set(live, balance, cockpit, "STANDARD", body_slots=BODY_ORDER))
         out["exotic"][cid] = row
         prow = {}
         for variant in VARIANTS:
@@ -1091,7 +1172,7 @@ def analyse(balance, design, live):
             row = {}
             for cockpit in COCKPITS:
                 defaults = design[cockpit["id"]]["defaults"]
-                components = [as_component(live, balance["modules"][defaults[item]]) for item in CORE_ORDER + BODY_ORDER if item != slot]
+                components = [as_component(live, balance["modules"][defaults[item]]) for item in CORE_ORDER + stock_body(cockpit["n"]) if item != slot]
                 result = rate(live, balance["cockpits"][cockpit["id"]]["attributes"], components + [part])
                 row[cockpit["id"]] = result["Overall"]
             out["body"][slot][kit] = row
@@ -1104,12 +1185,13 @@ def analyse(balance, design, live):
         for kit in range(1, 7):
             whole[kit] = rate(live, attributes, exotic_set(live, balance, cockpit, "STANDARD", body_kit=kit))["Overall"]
         core = R.sum_components(attributes, exotic_set(live, balance, cockpit, "STANDARD")[:4])
+        mix_slots = stock_body(cockpit["n"])  # the styles are swapped in the slots the stock build fills
         raws = {slot: [R.apply_to_module_raw(balance["modules"][module_id(BODY_SLOTS[slot][0], kit)]["attributes"]) for kit in range(1, 7)]
-                for slot in BODY_ORDER}
-        lists = [[raw_list(raw) for raw in raws[slot]] for slot in BODY_ORDER]
+                for slot in mix_slots}
+        lists = [[raw_list(raw) for raw in raws[slot]] for slot in mix_slots]
         core_list = raw_list(core)
         best = worst = None
-        for combo in itertools.product(range(6), repeat=6):
+        for combo in itertools.product(range(6), repeat=len(mix_slots)):
             raw = list(core_list)
             for parts, choice in zip(lists, combo):
                 part = parts[choice]
@@ -1123,7 +1205,7 @@ def analyse(balance, design, live):
         checked = []
         for value, combo in (best, worst):
             raw = dict(core)
-            for slot, choice in zip(BODY_ORDER, combo):
+            for slot, choice in zip(mix_slots, combo):
                 for name in R.RAW_ORDER:
                     raw[name] += raws[slot][choice][name]
             exact = live.calculator.calculate(raw)["Overall"]["UnroundedPerformanceIndex"]
@@ -1146,13 +1228,17 @@ def analyse(balance, design, live):
         for cockpit in COCKPITS:
             defaults = design[cockpit["id"]]["defaults"]
             attributes = balance["cockpits"][cockpit["id"]]["attributes"]
-            components = [as_component(live, balance["modules"][defaults[item]]) for item in CORE_ORDER + BODY_ORDER]
-            part = as_component(live, balance["modules"][defaults[slot]])
+            components = [as_component(live, balance["modules"][defaults[item]]) for item in CORE_ORDER + stock_body(cockpit["n"])]
+            # A slot that starts empty (mesh cockpits): the cockpit's own-kit part is fitted first.
+            part_id = defaults.get(slot) or module_id(BODY_SLOTS[slot][0], cockpit["n"])
+            part = as_component(live, balance["modules"][part_id])
+            if slot not in defaults:
+                components = components + [part]
             before = rate(live, attributes, components)["Overall"]["UnroundedPerformanceIndex"]
             for path in R.sorted_paths(part["paths"]):
                 this_id = R.path_id(path)
                 allocation = {this_id: 3}
-                after = rate(live, attributes, components, {defaults[slot]: allocation})["Overall"]["UnroundedPerformanceIndex"]
+                after = rate(live, attributes, components, {part_id: allocation})["Overall"]["UnroundedPerformanceIndex"]
                 entry = out["path_worth"][slot].setdefault(this_id, {
                     "cost": R.allocation_cost(part["attributes"], part["paths"], allocation),
                     "deltas": {key[10:]: value for key, value in path["attributes"].items() if key.startswith("DeltaFlat_")},
@@ -1226,6 +1312,31 @@ def write_report(balance, design, reductions, live, analysis):
     add("Checks: `test_balance.py` (last output in `test_output.txt`). Rebuild with `py -3 scripts/exotic_category/balance/build_balance.py`.")
     add("")
     add("Evidence label for every number here: **generated**. Nothing is installed. Ratings come from `rating.py`, a Python port of the live calculator. No number here was measured in Play.")
+    add("")
+
+    # Mesh kits --------------------------------------------------------
+    add("## Mesh kits (exotic_02 Curve, exotic_05 Hyper)")
+    add("")
+    add("From `scripts/exotic_category/mesh/INTEGRATION.md` (D6 to D9). It changes how the sections below read for these two cockpits; the other four are as before.")
+    add("")
+    add("- **Stock build**: cockpit + four Standard core modules + three body defaults (Nose, Engine Deck, Wing). `SidePods`, `FrontBumper` and `RearBumper` declare no default and start empty. The cockpit's own raw stats absorb those three parts, so the stock totals and the stock PI are unchanged. Wherever a section says \"six body parts\" or \"its six default body modules\", read three for these two cockpits.")
+    add("- **Fitting the three empty slots adds stats on top of the target total.** With all six own-kit parts: %s." % "; ".join(
+        "%s %s %d (stock %d, %+.2f unrounded)" % (c["id"], analysis["exotic"][c["id"]]["FULL_BODY"]["Overall"]["Tier"], analysis["exotic"][c["id"]]["FULL_BODY"]["Overall"]["PerformanceIndex"],
+                                                  cockpits[c["id"]]["stockPI"], analysis["exotic"][c["id"]]["FULL_BODY"]["Overall"]["UnroundedPerformanceIndex"] - analysis["exotic"][c["id"]]["STANDARD"]["Overall"]["UnroundedPerformanceIndex"])
+        for c in COCKPITS if c["n"] in MESH_KITS))
+    add("  The tier does not change. \"Highest build found\" and \"Ceiling\" (section 7) already search every body slot, filled or empty.")
+    add("- **Twelve new ModuleIds**: `_GT` and `_EVO` of the Nose, Engine Deck and Wing of kits 02 and 05. Each copies every attribute and the upgrade paths of its base part, so it rates exactly as the base part does. Only the names (base name plus the trim) and the `Price` differ: base x 2 (GT) and base x 3.5 (EVO), rounded to 100.")
+    add("")
+    rows = []
+    for n in MESH_KITS:
+        for slot in MESH_STOCK_BODY:
+            base_id = module_id(BODY_SLOTS[slot][0], n)
+            for this_id in [base_id] + ["%s_%s" % (base_id, trim) for trim, _ in BODY_TRIMS]:
+                attributes = modules[this_id]["attributes"]
+                rows.append(["`%s`" % this_id, attributes["DisplayName"], fmt(attributes["Price"]), fmt(attributes["NeonPrice"])])
+    add(table(["ModuleId", "Name", "Price", "NeonPrice"], rows))
+    add("")
+    add("- In sections 6, 8 and 10 a style swap on these two cockpits is made in the three stock slots; a part of an empty slot is rated as fitted on top of the stock build.")
     add("")
 
     # 1 ----------------------------------------------------------------
@@ -1459,7 +1570,7 @@ def write_report(balance, design, reductions, live, analysis):
                "All Lightweight, max upgrades", "All Power, max upgrades", "Highest build found", "Ceiling"], rows))
     add("")
     add("- **Highest build found**: any own-family variant in each core slot, any kit's part in each body slot (Piercer: any accessory level), the four optional slots may be empty, any upgrade allocation. It is a search (best choice per slot in turn, then one upgrade step on two slots at once, until neither helps; %d start points that are the same on every run), not a proof that nothing higher exists." % SEARCH_STARTS)
-    add("- **Ceiling**: a rating no build from the same choices can beat. Each stat takes the best value any option of each slot offers, all at once. No real build reaches it. It is the proof for the tier statement below.")
+    add("- **Ceiling**: a rating no build from the same choices can beat. Every choice of one module (or empty) per slot is rated, and each module takes, for every stat on its own, the best value any of its upgrade allocations offers. The module choice is exact; only the upgrade points are relaxed, so no real build reaches it. It is the proof for the tier statement below. (Since 2026-10-03. Before, the best value per stat was also taken across the modules of a slot: a looser bound, which gave Hyper A 849 with six default body parts and would give S 852 now that the Hyper cockpit absorbs three of them.)")
     add("")
 
     def picks(components):
@@ -1489,7 +1600,7 @@ def write_report(balance, design, reductions, live, analysis):
     proven = all("EDCBAS".index(analysis["exotic"][cockpit["id"]]["ANY_CEILING"]["Overall"]["Tier"])
                  <= "EDCBAS".index(analysis["piercer"][cockpit["piercer"]]["ANY_MAX"][0]["Overall"]["Tier"]) for cockpit in COCKPITS)
     add("No Exotic cockpit can reach a higher tier than the Piercer of its tier reaches today: %s." % (
-        "every Exotic ceiling is inside the tier its Piercer reaches, so this is proven for own-family core modules and all 36 body parts" if proven
+        "every Exotic ceiling is inside the tier its Piercer reaches, so this is proven for own-family core modules and all 36 body parts (the twelve GT and EVO ids of the mesh kits carry the stats and upgrade paths of their base part, so they are covered)" if proven
         else "NOT proven by the ceiling for every cockpit; only the search supports it"))
     add("")
 
@@ -1627,6 +1738,8 @@ def write_report(balance, design, reductions, live, analysis):
     cockpit_names = sorted(cockpits["exotic_01"]["attributes"])
     add("Cockpits carry the %d non-colour attributes of the live Piercer cockpit plus the six new `Default<Slot>ModuleId` names (%d in all): %s." % (
         len(cockpit_names) - 6, len(cockpit_names), ", ".join("`%s`" % name for name in cockpit_names)))
+    add("")
+    add("The mesh cockpits `exotic_02` and `exotic_05` carry three of the six new names (`DefaultFrontBodyModuleId`, `DefaultRearBodyModuleId`, `DefaultRearSpoilerModuleId`; %d attributes in all): a slot that starts empty has no default attribute." % len(cockpits["exotic_02"]["attributes"]))
     add("")
     add("Not in `balance.json`: the six `Default*Color` attributes (Color3, a paint decision) and the seat offsets. `MenuImage` and `PreviewImage` are empty strings. Legacy cockpit values `Acceleration=70`, `Handling=30`, `Drift=0`, `Braking=100`, `Boost=0`, `Power=40` are the constants on all six live cockpits.")
     add("")

@@ -48,14 +48,15 @@ Module IDs (model name = `ModuleId`):
 | `Engine2` | `Engine` | `Engines_B` (family folder `Exotic_0N`) | `MODULE_ENGINE_B_EXOTIC_0N_<VARIANT>` | 18 |
 | `Stabilisers` | `Stabilisers` | `Stabilisers` (family folder `Exotic_0N`) | `MODULE_STABILISER_EXOTIC_0N_<VARIANT>` | 18 |
 | `Boost` | `Boost` | `Boost` (family folder `Exotic_0N`) | `MODULE_BOOST_EXOTIC_0N_<VARIANT>` | 18 |
-| `FrontBody` | `FrontBody` | `FrontBodies` | `MODULE_FRONTBODY_EXOTIC_0N` | 6 |
-| `RearBody` | `RearBody` | `RearBodies` | `MODULE_REARBODY_EXOTIC_0N` | 6 |
+| `FrontBody` | `FrontBody` | `FrontBodies` | `MODULE_FRONTBODY_EXOTIC_0N`; kits 02 and 05 also `_GT`, `_EVO` | 6 + 4 |
+| `RearBody` | `RearBody` | `RearBodies` | `MODULE_REARBODY_EXOTIC_0N`; kits 02 and 05 also `_GT`, `_EVO` | 6 + 4 |
 | `SidePods` | `SidePods` | `SidePods` | `MODULE_SIDEPODS_EXOTIC_0N` | 6 |
 | `FrontBumper` | `FrontBumper` | `FrontBumpers` | `MODULE_FRONTBUMPER_EXOTIC_0N` | 6 |
 | `RearBumper` | `RearBumper` | `RearBumpers` | `MODULE_REARBUMPER_EXOTIC_0N` | 6 |
-| `RearSpoiler` | `RearSpoiler` | `RearSpoilers` | `MODULE_REARSPOILER_EXOTIC_0N` | 6 |
+| `RearSpoiler` | `RearSpoiler` | `RearSpoilers` | `MODULE_REARSPOILER_EXOTIC_0N`; kits 02 and 05 also `_GT`, `_EVO` | 6 + 4 |
 
-- 72 core modules and 36 body modules. The three variants of a core module share the kit's geometry.
+- 72 core modules and 48 body modules (36 plus the twelve mesh trims below): 120 in all. The three variants of a core module share the kit's geometry, except on the mesh kits.
+- **Mesh kits 02 and 05** (2026-10-03, [mesh/INTEGRATION.md](mesh/INTEGRATION.md), which is the authority for them). Cockpits `exotic_02` and `exotic_05` and their Nose, Engine Deck, Wing and core modules are clones of uploaded MeshParts (model asset `112592679936648`, listed in `stage_b/data/mesh.json`), one mesh per ModuleId. Twelve new permanent ids: `MODULE_FRONTBODY_EXOTIC_0N_GT`, `_EVO`, `MODULE_REARBODY_EXOTIC_0N_GT`, `_EVO`, `MODULE_REARSPOILER_EXOTIC_0N_GT`, `_EVO` for N in 2, 5. Each copies its base part (stats, upgrade paths, attribute set, no `VariantName`); `DisplayName`, `ModuleName` and `CardTitle` are the base name plus " GT" or " EVO"; `Price` is base x 2 or x 3.5. Their Side Pods, Splitter and Diffuser modules stay primitive.
 - Engine1 modules: `EnginePosition="Front"`, `RearEngine=false`, `ModuleSlot="Engine"`. Engine2 modules: `EnginePosition="Rear"`, `RearEngine=true`, `ModuleSlot="Engine"`.
 - Core modules mirror the live Piercer family attribute set exactly (donor: `MODULE_<TYPE>_BRUISER_03_<VARIANT>`), with `SourceCockpitId="exotic_0N"`, `CategoryId="exotic"`. Standard: `Price=0`, `PurchasePrice=0`, `UpgradePointCapacity=2`, `MaxPointsPerPath=3`, type-flat `Point1/2CostGuide`. Lightweight and Power: `Price=PurchasePrice=12%` of the cockpit price, capacity 6, `Point1..6CostGuide` = 8/10/12/15/18/22% of the variant price rounded to 100. `VariantOrder` 10/20/30. `NeonPrice` 5000/6500/8000.
 - Body modules mirror the live accessory attribute set (donor: `MODULE_<TYPE>_LVL1`; FrontBody uses the FrontBumper donor, RearBody the RearBumper donor): `Price` only (no `PurchasePrice`, no `SourceCockpitId`), each stat as raw plus `PerformanceDelta_` twin, capacity 6, `MaxPointsPerPath=3`, accessory cost guides.
@@ -133,7 +134,7 @@ Slot folders on every Exotic cockpit (`ModuleSlots/SLOT_<SlotId>`, all with `Fix
 - Body part prices by kit number 01..06: 8000, 11000, 14000, 18000, 23000, 30000. Body `NeonPrice` by kit: 6500, 7000, 7500, 8000, 8500, 9500.
 - Body stats stay at Piercer accessory LVL1 magnitude for every kit (flavour differs, size does not).
 - Character against the Piercer of the same tier: `TopSpeed` and `SteeringResponse` up; `Weight` down (lighter); `HoverStability`, `DriftControl` and `BoostDuration` down.
-- Stock build = cockpit + four Standard core modules + the six default body modules. Its PI must be within 3 of the target and inside the tier band.
+- Stock build = cockpit + four Standard core modules + the six default body modules. Its PI must be within 3 of the target and inside the tier band. Mesh cockpits `exotic_02` and `exotic_05`: three default body modules (Nose, Engine Deck, Wing); they declare no `DefaultSidePodsModuleId`, `DefaultFrontBumperModuleId` or `DefaultRearBumperModuleId`, those slots start empty, and the cockpit's raw stats absorb the three parts. Fitting them adds to the stock total (Curve D 406 with all six, Hyper A 802).
 
 ## Template format (Stage B)
 
@@ -142,12 +143,13 @@ Same as Piercer (see `authoring.md` sections 3-10, `runtime.md` 13, `paintvfx.md
 - Paint: channel folders plus `PaintChannel` attribute on each part. Spec channel `thrust` becomes `ThrustColor` under `THRUST_COLOR_WhiteByDefault`. Spec channel `driver` parts are dropped. Neon parts on `FrontBody` and `RearBody` go in a folder `LIGHTS_AlwaysOn` with `PaintChannel="Lights"`, Material Neon, part names without `neon`. Neon parts on other modules go in `NEON_OptionalLights`.
 - VFX sockets are Attachments parented to the module or cockpit root part, flame along local +Z, `VFXSocket=true`, `VFXTemplate` naming an Exotic-scaled template: `EngineJet_Exotic`, `BoostJet_Exotic`, `StabiliserJet_ExoticLeft`, `StabiliserJet_ExoticRight` (new folders in `ReplicatedStorage.Assets.VFX.VehicleTemplates`, cloned and scaled from the stock ones by the installer).
 - Seat offsets from the blockout driver position: driver about (-1.8, 0.25, 0.45), passenger mirrored (+1.8), per cockpit.
+- Mesh templates (kits 02 and 05): each part is a `MeshPart` named `mesh_<channel suffix>` in the same channel folders, with `PaintChannel` and `MeshSource` (the source part name in the asset). Always-on lamps go in `LIGHTS_AlwaysOn` on any mesh module that has them (white, and red `mesh_lampred` parts at 255, 30, 20). Sockets come from `stage_b/data/mesh.json`.
 
 ## As built (2026-10-03, after the two delivery reviews)
 
 - **Flag off.** The category is left out of the server catalogue and both buy actions refuse, as written above. `PurchaseDisabled` is a **reserved** category field: the client hunks that read it (GarageUI U7-U10, GarageBrowserUI B1) are inert plumbing and no server code sends it. Never set a `PurchaseDisabled` attribute on a category folder: folder attributes are copied to the client, so it would hide the category on the client with no server enforcement. Do not turn the flag off once any saved profile owns an Exotic; owners keep their cars, but the garage UI for that category would be missing.
 - **Seat offsets fall back per axis**, not all-or-nothing: a missing `DriverSeatOffsetY` uses the global Y. Exotic cockpits always set all six.
 - **Missing gate.** `GarageCatalogService` warns once and hides flagged categories if `GarageServer` does not pass `categoryFlagEnabled` (the two must be installed together; the installer refuses a mixed state).
-- **Defaults pre-check** covers only the defaults a cockpit declares. The Stage B installer must assert all ten on every Exotic cockpit.
+- **Defaults pre-check** covers only the defaults a cockpit declares. The Stage B installer must assert all ten on every Exotic cockpit, except the slots a cockpit lists in `stage_b/data/ids.json` `emptySlots` (mesh cockpits: `SidePods`, `FrontBumper`, `RearBumper`), where it asserts that no default is declared.
 - **Golden recorder**: `scripts/exotic_category/golden.lua`. Keys ending `AtUnix` are tokenised so runs on different days compare.
 - **Known live issue, not changed here:** a spawned vehicle's `PerformanceIndex` double-counts module TopSpeed, Weight and three boost stats (a stock Forge reads E 245 on the road against 202 in the garage). It affects Piercer today and will affect Exotic the same way.

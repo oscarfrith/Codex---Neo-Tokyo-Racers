@@ -6,6 +6,7 @@ Reads
   scripts/exotic_category/catalogue/catalogue_gen.lua  catalogue generator (another builder owns it)
   roblox/captures/exotic-before/capture.json           live Piercer attribute sets (donors and constants)
   data/*.json in this folder                           ids, colours, seats, sockets, VFX scales, cockpit fixtures
+  data/mesh.json                                       uploaded mesh parts for the mesh kits (written by mesh/make_mesh_data.py)
 and writes
   out/installer.lua       one self-contained Luau chunk: data + catalogue generator + installer_engine.lua
   out/summary-<scope>.json  what the installer will build (ids, counts, sockets, seats, warnings)
@@ -37,6 +38,7 @@ ENGINE_PATH = os.path.join(HERE, "installer_engine.lua")
 DATA_DIR = os.path.join(HERE, "data")
 OUT_DIR = os.path.join(HERE, "out")
 FINGERPRINTS_PATH = os.path.join(HERE, "fingerprints.json")
+MESH_PATH = os.path.join(DATA_DIR, "mesh.json")
 
 MODES = ("AUDIT", "APPLY", "ROLLBACK")
 SCOPES = ("pilot", "full")
@@ -81,7 +83,15 @@ MODULE_FOLDERS = {
     "core": [_PRIMARY, _SECONDARY, _DETAIL, _NEON, _VFX, _THRUST],
     "body": [_PRIMARY, _SECONDARY, _DETAIL, _NEON, _VFX],
     "bodyLamps": [_PRIMARY, _SECONDARY, _DETAIL, _NEON, _LIGHTS, _VFX],
+    # Mesh modules only (mesh/INTEGRATION.md D10): an engine, stabiliser or boost that carries always-on lamps.
+    "coreLamps": [_PRIMARY, _SECONDARY, _DETAIL, _NEON, _LIGHTS, _VFX, _THRUST],
 }
+
+# Mesh kits (mesh/INTEGRATION.md). Channel name in data/mesh.json -> part code. Modules carry no glass (D10).
+MESH_SHAPE = "mesh"
+MESH_MODULE_CODES = {"primary": "P", "secondary": "S", "detail": "D", "glass": "D", "thrust": "T", "neon": "N", "lights": "L", "lights_red": "R"}
+MESH_COCKPIT_CODES = {"primary": "P", "secondary": "S", "detail": "D", "glass": "G"}
+MESH_CENTRE_TOLERANCE = 0.05
 
 
 class BuildError(Exception):
@@ -122,7 +132,7 @@ def flatten(parts):
 def built_size(shape, size):
     """Part.Size as scripts/vehicle_blockouts/builder.lua sets it."""
     sx, sy, sz = size
-    if shape in ("block", "wedge"):
+    if shape in ("block", "wedge", MESH_SHAPE):
         return [sx, sy, sz]
     if shape == "ball":
         d = min(sx, sy, sz)
@@ -157,6 +167,17 @@ def all_fingerprints(spec):
     for slot, mods in spec["modules"].items():
         for mid, m in mods.items():
             out["%s/%s" % (slot, mid)] = fingerprint(flatten(m["parts"]))
+    return out
+
+
+def mesh_fingerprints(mesh):
+    """Per mesh group: the fingerprint of the part bounds in root space and the source part names."""
+    out = {}
+    groups = [("Cockpit/" + e["source"], e) for e in mesh.get("cockpits", {}).values()]
+    groups += [("%s/%s" % (e["slot"], e["source"]), e) for e in mesh.get("modules", {}).values()]
+    for key, entry in sorted(groups, key=lambda g: g[0]):
+        parts = [{"shape": MESH_SHAPE, "size": p["size"], "pos": p["centre"]} for _, p in sorted(entry["parts"].items())]
+        out[key] = {"fingerprint": fingerprint(parts), "parts": sorted(entry["parts"])}
     return out
 
 
@@ -453,6 +474,7 @@ def seat_acceptance(seats, cockpit_ids):
 
 
 def seat_offsets(cockpit_def, parts, seats):
+    """parts: the flattened spec cockpit. A mesh cockpit has one too: without an override its driver dummy still places the seat."""
     override = seats.get("overrides", {}).get(cockpit_def["cockpitId"])
     if override:
         return [clean(v, 3) for v in override["driver"]], [clean(v, 3) for v in override["passenger"]]
@@ -478,6 +500,70 @@ def native_paints(spec):
 
 def module_id(slot, n, variant=None):
     return slot["idPrefix"] + n + ("_" + variant if variant else "")
+
+
+def load_mesh():
+    """data/mesh.json, or an empty table when the file is absent (no mesh kits)."""
+    if not os.path.isfile(MESH_PATH):
+        return {"cockpits": {}, "modules": {}}
+    return load_json(MESH_PATH)
+
+
+def module_variants(ids, mesh, slot, n):
+    """ModuleId suffixes of one slot of one kit. Core: the three variants. Body: none, plus each body trim
+    (data/ids.json bodyTrims) that data/mesh.json holds for this kit (mesh/INTEGRATION.md D6)."""
+    if slot["kind"] == "core":
+        return list(ids["variants"])
+    return [None] + [t for t in ids.get("bodyTrims", []) if module_id(slot, n, t) in mesh.get("modules", {})]
+
+
+def mesh_records(owner, entry, codes, problems):
+    """Part records of one mesh group: ["mesh", size, centre, 0, 0, 0, code, source part name], in name order."""
+    out = []
+    for name, part in sorted(entry["parts"].items()):
+        code = codes.get(part.get("channel"))
+        good = all(isinstance(part.get(k), list) and len(part[k]) == 3 and all(isinstance(v, (int, float)) and not isinstance(v, bool) and math.isfinite(v) for v in part[k])
+                   for k in ("centre", "size"))
+        if code is None:
+            problems.append("%s: mesh part %s has channel %r, which cannot go on this template" % (owner, name, part.get("channel")))
+        elif not good or any(v <= 0 for v in part["size"]):
+            problems.append("%s: mesh part %s needs a centre and a positive size of three numbers" % (owner, name))
+        elif any(ord(ch) < 33 or ord(ch) > 126 for ch in name) or not name.startswith(entry["source"] + "__"):
+            problems.append("%s: mesh part name %r must be printable ASCII and start with %s__" % (owner, name, entry["source"]))
+        else:
+            out.append([MESH_SHAPE] + [clean(v, 4) for v in part["size"]] + [clean(v, 4) for v in part["centre"]] + [0.0, 0.0, 0.0, code, name])
+    return out
+
+
+def mesh_sockets(owner, entry, kind, rules, problems):
+    """Sockets of one mesh module from data/mesh.json (D12): name, position in root space, dir = the way the flame points."""
+    rule = rules[kind]
+    out = []
+    for s in entry.get("sockets", []):
+        d = np.array(s["dir"], dtype=float)
+        length = float(np.linalg.norm(d))
+        if length < 1e-6 or not s["name"].startswith(rule["prefix"]):
+            problems.append("%s: mesh socket %r needs a direction and a name that starts with %s" % (owner, s.get("name"), rule["prefix"]))
+            continue
+        x = s["position"][0]
+        side = "Left" if x < -rules["sideEpsilon"] else ("Right" if x > rules["sideEpsilon"] else None)
+        if kind == "stabiliser":
+            if side is None or ("_" + side) not in s["name"]:
+                problems.append("%s: stabiliser socket %s must sit on the side its name says" % (owner, s["name"]))
+                continue
+            template = rule["templateLeft"] if side == "Left" else rule["templateRight"]
+        else:
+            template = rule["template"]
+        out.append({"name": s["name"], "template": template, "position": [clean(v, 4) for v in s["position"]],
+                    "orientation": socket_orientation(d / length, side)})
+    out.sort(key=lambda s: s["name"])
+    if len({s["name"] for s in out}) != len(out):
+        problems.append("%s: socket names are not unique" % owner)
+    if len(out) > rules["maxSocketsPerModule"]:
+        problems.append("%s has %d sockets; the limit is %d" % (owner, len(out), rules["maxSocketsPerModule"]))
+    if not out:
+        problems.append("%s has no socket; every engine, boost and stabiliser needs a jet" % owner)
+    return out
 
 
 def name_problems(name, is_body_module, in_module, problems, where):
@@ -530,6 +616,8 @@ def build_content(mode="AUDIT", scope="pilot", balance_path=BALANCE_PATH, catalo
     socket_rules = load_json(os.path.join(DATA_DIR, "sockets.json"))
     vfx = load_json(os.path.join(DATA_DIR, "vfx.json"))
     fixtures = load_json(os.path.join(DATA_DIR, "cockpit_fixtures.json"))
+    mesh = load_mesh()
+    mesh_modules, mesh_cockpits = mesh.get("modules", {}), mesh.get("cockpits", {})
 
     problems, warnings = [], []
     paints = native_paints(spec)
@@ -567,6 +655,8 @@ def build_content(mode="AUDIT", scope="pilot", balance_path=BALANCE_PATH, catalo
         "G": {"material": "Glass", "transparency": colours["glassTransparency"], "suffix": "glass", "paintChannel": "Glass"},
         "N": {"material": "Neon", "transparency": 0, "suffix": "neon", "paintChannel": "Neon"},
         "L": {"material": "Neon", "transparency": 0, "suffix": "lamp", "paintChannel": "Lights"},
+        # Mesh modules only: a fixed red lamp. It lives in the folder of channel L (LIGHTS_AlwaysOn).
+        "R": {"material": "Neon", "transparency": 0, "suffix": "lampred", "paintChannel": "Lights", "folder": "L"},
         "T": {"material": "Neon", "transparency": 0, "suffix": "thrust", "paintChannel": "ThrustColor"},
     }
 
@@ -575,6 +665,13 @@ def build_content(mode="AUDIT", scope="pilot", balance_path=BALANCE_PATH, catalo
         lamp = paint["neon"] if colours["lamp"] == "kitNeon" else colours["lamp"]
         return {"P": hex_rgb(paint["primary"]), "S": hex_rgb(paint["secondary"]), "D": hex_rgb(colours["detail"]),
                 "G": hex_rgb(colours["glass"]), "N": hex_rgb(colours["optionalNeon"]), "L": hex_rgb(lamp), "T": hex_rgb(colours["thrust"])}
+
+    def mesh_palette(cockpit_key):
+        # Mesh lamps have fixed colours (D10): white, and red for the lights_red channel.
+        out = palette(cockpit_key)
+        out["L"] = hex_rgb(colours["meshLamp"])
+        out["R"] = list(colours["meshLampRed"])
+        return out
 
     def records(owner, parts, allowed, neon_code):
         out = []
@@ -595,32 +692,75 @@ def build_content(mode="AUDIT", scope="pilot", balance_path=BALANCE_PATH, catalo
 
     # Modules first: cockpits point at them.
     planned_ids = {}
+    mesh_used = set()
     for c in in_scope:
         kit = spec["kits"][c["specKit"]]
         for slot in slots:
             spec_id = kit["modules"][slot["slotId"]]
             spec_module = spec["modules"][slot["slotId"]][spec_id]
-            shape_key = "%s/%s" % (slot["slotId"], spec_id)
-            parts = flatten(spec_module["parts"])
             core = slot["kind"] == "core"
-            folder_set = "core" if core else ("bodyLamps" if slot["lamps"] else "body")
-            allowed = {f["channel"] for f in MODULE_FOLDERS[folder_set] if f["channel"]}
-            recs = records(shape_key, parts, allowed, "L" if slot["lamps"] else "N")
-            sockets = compute_sockets(shape_key, parts, slot["sockets"], socket_rules) if slot["sockets"] else []
-            if not slot["sockets"] and any(p["ch"] == "thrust" for p in parts):
-                problems.append("%s: a body module has a thrust part" % shape_key)
-            shapes[shape_key] = {"parts": recs, "sockets": sockets}
-            fingerprints[shape_key] = all_fp[shape_key]
-            for r in recs:
-                name_problems(r[0] + "_" + channels[r[10]]["suffix"], not core, True, problems, shape_key)
-            for s in sockets:
-                name_problems(s["name"], not core, True, problems, shape_key)
-            display = spec_module["name"]
-            for variant in (ids["variants"] if core else [None]):
+            slot_folder_set = "core" if core else ("bodyLamps" if slot["lamps"] else "body")
+
+            def spec_shape():
+                shape_key = "%s/%s" % (slot["slotId"], spec_id)
+                if shape_key in shapes:
+                    return shape_key
+                parts = flatten(spec_module["parts"])
+                allowed = {f["channel"] for f in MODULE_FOLDERS[slot_folder_set] if f["channel"]}
+                recs = records(shape_key, parts, allowed, "L" if slot["lamps"] else "N")
+                sockets = compute_sockets(shape_key, parts, slot["sockets"], socket_rules) if slot["sockets"] else []
+                if not slot["sockets"] and any(p["ch"] == "thrust" for p in parts):
+                    problems.append("%s: a body module has a thrust part" % shape_key)
+                shapes[shape_key] = {"parts": recs, "sockets": sockets}
+                fingerprints[shape_key] = all_fp[shape_key]
+                for r in recs:
+                    name_problems(r[0] + "_" + channels[r[10]]["suffix"], not core, True, problems, shape_key)
+                for s in sockets:
+                    name_problems(s["name"], not core, True, problems, shape_key)
+                return shape_key
+
+            def mesh_shape(mid, entry):
+                """One shape per mesh ModuleId: every trim has its own geometry (D5, D6). Returns (shape key, folder set)."""
+                shape_key = "%s/%s" % (slot["slotId"], entry["source"])
+                if entry.get("slot") != slot["slotId"] or entry.get("kit") != int(c["n"]):
+                    problems.append("%s: data/mesh.json files it under slot %r of kit %r" % (mid, entry.get("slot"), entry.get("kit")))
+                if shape_key in shapes:
+                    problems.append("%s: mesh source %s is used twice" % (mid, entry["source"]))
+                recs = mesh_records(mid, entry, MESH_MODULE_CODES, problems)
+                codes = {r[10] for r in recs}
+                folder_set = slot_folder_set
+                if codes & {"L", "R"} and folder_set != "bodyLamps":
+                    folder_set = "coreLamps" if core else "bodyLamps"
+                allowed = {f["channel"] for f in MODULE_FOLDERS[folder_set] if f["channel"]}
+                for r in recs:
+                    if channels[r[10]].get("folder", r[10]) not in allowed:
+                        problems.append("%s: mesh part %s (code %s) cannot go on this template" % (mid, r[11], r[10]))
+                    name_problems(r[0] + "_" + channels[r[10]]["suffix"], not core, True, problems, shape_key)
+                sockets = mesh_sockets(mid, entry, slot["sockets"], socket_rules, problems) if slot["sockets"] else []
+                if not slot["sockets"] and entry.get("sockets"):
+                    problems.append("%s: a body module has sockets in data/mesh.json" % mid)
+                if core != ("T" in codes):
+                    problems.append("%s: thrust parts belong on engines, stabilisers and boost, and each of those needs one" % mid)
+                for s in sockets:
+                    name_problems(s["name"], not core, True, problems, shape_key)
+                shapes[shape_key] = {"parts": recs, "sockets": sockets, "mesh": {"fileOffsetX": clean(mesh["cars"][entry["car"]]["fileOffsetX"], 4)}}
+                return shape_key, folder_set
+
+            base_display = spec_module["name"]
+            for variant in module_variants(ids, mesh, slot, c["n"]):
                 mid = module_id(slot, c["n"], variant)
                 if mid in planned_ids:
                     problems.append("duplicate ModuleId %s" % mid)
                 planned_ids[mid] = slot["slotId"]
+                # A body trim is a new ModuleId with the base name plus the trim (D7).
+                display = base_display if core or variant is None else "%s %s" % (base_display, variant)
+                mesh_entry = mesh_modules.get(mid)
+                if mesh_entry is None:
+                    shape_key, folder_set = spec_shape(), None
+                else:
+                    mesh_used.add(mid)
+                    shape_key, folder_set = mesh_shape(mid, mesh_entry)
+                recs = shapes[shape_key]["parts"]
                 entry = balance.get("modules", {}).get(mid)
                 if entry is None:
                     problems.append("balance.json has no module %s" % mid)
@@ -654,8 +794,11 @@ def build_content(mode="AUDIT", scope="pilot", balance_path=BALANCE_PATH, catalo
                 extra = sorted(set(attrs) - set(donor) - MODULE_OPT_IN)
                 if extra:
                     warnings.append("%s: attributes the Piercer donor %s does not have: %s" % (mid, donor_id, ", ".join(extra)))
-                item = {"id": mid, "slot": slot["slotId"], "shape": shape_key, "partCount": len(recs), "palette": palette(c["specCockpit"]),
+                item = {"id": mid, "slot": slot["slotId"], "shape": shape_key, "partCount": len(recs),
+                        "palette": palette(c["specCockpit"]) if mesh_entry is None else mesh_palette(c["specCockpit"]),
                         "folderPath": [slot["moduleFolder"]] + (["Exotic_" + c["n"]] if core else []), "attributes": attrs}
+                if folder_set is not None and folder_set != slot_folder_set:
+                    item["folderSet"] = folder_set
                 name_problems(mid, not core, True, problems, mid)
                 for name in item["folderPath"][1:]:
                     name_problems(name, not core, True, problems, mid)
@@ -685,17 +828,27 @@ def build_content(mode="AUDIT", scope="pilot", balance_path=BALANCE_PATH, catalo
                         paths.append({"name": folder_name, "attributes": pattrs})
                     item["upgradePaths"] = paths
                 modules_out.append(item)
+    scope_numbers = {int(c["n"]) for c in in_scope}
+    for mid, entry in sorted(mesh_modules.items()):
+        if entry.get("kit") in scope_numbers and mid not in mesh_used:
+            problems.append("data/mesh.json names %s, which is not a ModuleId of this scope" % mid)
 
     for c in in_scope:
         cid = c["cockpitId"]
         spec_cockpit = spec["cockpits"][c["specCockpit"]]
         if spec_cockpit["kit"] != c["specKit"] or spec_cockpit["name"] != c["displayName"]:
             problems.append("%s: data/ids.json disagrees with the spec (kit %s, name %s)" % (cid, spec_cockpit["kit"], spec_cockpit["name"]))
-        shape_key = "Cockpit/" + c["specCockpit"]
         parts = flatten(spec_cockpit["parts"])
-        recs = records(shape_key, parts, {"P", "S", "D", "G"}, "N")
-        shapes[shape_key] = {"parts": recs}
-        fingerprints[shape_key] = all_fp[shape_key]
+        mesh_entry = mesh_cockpits.get(cid)
+        if mesh_entry is None:
+            shape_key = "Cockpit/" + c["specCockpit"]
+            recs = records(shape_key, parts, {"P", "S", "D", "G"}, "N")
+            shapes[shape_key] = {"parts": recs}
+            fingerprints[shape_key] = all_fp[shape_key]
+        else:
+            shape_key = "Cockpit/" + mesh_entry["source"]
+            recs = mesh_records(cid, mesh_entry, MESH_COCKPIT_CODES, problems)
+            shapes[shape_key] = {"parts": recs, "mesh": {"fileOffsetX": clean(mesh["cars"][mesh_entry["car"]]["fileOffsetX"], 4)}}
         entry = balance.get("cockpits", {}).get(cid)
         if entry is None:
             problems.append("balance.json has no cockpit %s" % cid)
@@ -715,10 +868,19 @@ def build_content(mode="AUDIT", scope="pilot", balance_path=BALANCE_PATH, catalo
                     "DefaultFrontLightsColor": {"__c3": colours["defaultFrontLights"]}, "DefaultRearLightsColor": {"__c3": colours["defaultRearLights"]},
                     "DriverSeatOffsetX": driver[0], "DriverSeatOffsetY": driver[1], "DriverSeatOffsetZ": driver[2],
                     "PassengerSeatOffsetX": passenger[0], "PassengerSeatOffsetY": passenger[1], "PassengerSeatOffsetZ": passenger[2]}
+        # Slots that start empty on this cockpit declare no default (D8). FrontBody and RearBody are required by the game.
+        empty_slots = list(c.get("emptySlots", []))
+        for slot_id in empty_slots:
+            if slot_id not in slot_by_id or slot_by_id[slot_id]["kind"] == "core" or slot_by_id[slot_id]["lamps"]:
+                problems.append("%s: data/ids.json emptySlots may only name SidePods, FrontBumper, RearBumper or RearSpoiler (got %r)" % (cid, slot_id))
         for slot in slots:
             default = module_id(slot, c["n"], "STANDARD" if slot["kind"] == "core" else None)
             for name in slot["defaultAttributes"]:
-                identity[name] = default
+                if slot["slotId"] in empty_slots:
+                    if name in entry.get("attributes", {}):
+                        problems.append("%s: balance.json sets %s but data/ids.json says slot %s starts empty" % (cid, name, slot["slotId"]))
+                else:
+                    identity[name] = default
         bal = dict(entry.get("attributes", {}))
         for name, want in (("Price", c["price"]), ("TargetStockPI", c["targetStockPI"])):
             if name in bal and bal[name] != want:
@@ -747,6 +909,8 @@ def build_content(mode="AUDIT", scope="pilot", balance_path=BALANCE_PATH, catalo
                 problems.append("%s: %s=%s is not a module in the %s scope" % (cid, name, value, scope))
         cockpits_out.append({"id": cid, "model": c["model"], "shape": shape_key, "partCount": len(recs), "palette": palette(c["specCockpit"]),
                              "tierDonorCockpitId": donor_id, "attributes": attrs})
+        if empty_slots:
+            cockpits_out[-1]["emptySlots"] = empty_slots
 
     scope_cockpits = {c["cockpitId"] for c in in_scope}
     if ids["ratingReferenceCockpitId"] not in scope_cockpits:
@@ -792,6 +956,14 @@ def build_content(mode="AUDIT", scope="pilot", balance_path=BALANCE_PATH, catalo
         "vfx": vfx_out,
         "fingerprints": fingerprints,
     }
+    mesh_parts = sorted(r[11] for shape in shapes.values() for r in shape["parts"] if r[0] == MESH_SHAPE)
+    if len(set(mesh_parts)) != len(mesh_parts):
+        raise BuildError("data/mesh.json: a source part name is used by more than one template")
+    if mesh_parts:
+        # Inside the content, so the content hash covers the asset id and (through the shapes) every source part name (D15).
+        if not (isinstance(mesh.get("assetId"), int) and not isinstance(mesh["assetId"], bool) and mesh["assetId"] > 0) or mesh.get("turnYDegrees") != 180:
+            raise BuildError("data/mesh.json needs a positive integer assetId and turnYDegrees 180")
+        content["mesh"] = {"assetId": str(mesh["assetId"]), "turnYDegrees": 180, "centreTolerance": MESH_CENTRE_TOLERANCE, "partCount": len(mesh_parts)}
     fixture = bool(balance.get("fixture")) or "STAGE_B_FIXTURE" in catalogue_gen
     with open(ENGINE_PATH, "rb") as f:
         engine_sha = hashlib.sha256(b"\n".join(f.read().splitlines())).hexdigest()
@@ -807,6 +979,9 @@ def build_content(mode="AUDIT", scope="pilot", balance_path=BALANCE_PATH, catalo
         "mode": mode, "scope": scope, "fixture": fixture, "contentHash": content["meta"]["contentHash"],
         "cockpits": len(cockpits_out), "modules": len(modules_out), "shapes": len(shapes),
         "templateParts": sum(c["partCount"] for c in cockpits_out) + sum(m["partCount"] for m in modules_out),
+        "meshAssetId": content["mesh"]["assetId"] if mesh_parts else None, "meshParts": len(mesh_parts),
+        "meshCockpits": sorted(c["id"] for c in cockpits_out if c["id"] in mesh_cockpits),
+        "meshModules": sorted(mesh_used),
         "sockets": {k: [s["name"] for s in v["sockets"]] for k, v in sorted(shapes.items()) if v.get("sockets")},
         "socketsPerStockVehicle": {c["id"]: len(fixtures["hoverDust"]) + sum(len(shapes[m["shape"]].get("sockets", [])) for m in modules_out
                                                                                if m["id"] in set(v for k, v in c["attributes"].items() if k.startswith("Default") and k.endswith("ModuleId")))
@@ -871,8 +1046,11 @@ def main(argv=None):
         f.write(text)
     spec = vbspec.load(SPEC_PATH)
     with open(FINGERPRINTS_PATH, "w", encoding="ascii", newline="\n") as f:
+        mesh = load_mesh()
         json.dump({"_note": "Generated by build_content.py from scripts/vehicle_blockouts/specs/exotic.json. Per group in root space: [part count, sum x, sum |x|, sum y, sum z, sum of Part.Size components]. The installer AUDIT compares the Studio blockout with these.",
-                   "groups": all_fingerprints(spec)}, f, indent=1, sort_keys=True)
+                   "groups": all_fingerprints(spec),
+                   "_mesh": "From data/mesh.json: the uploaded asset and, per mesh group (which replaces the spec group of that cockpit or module in the installed content), the same fingerprint over the part bounds plus the source part names. The installer AUDIT checks every part against the loaded asset (name present, centre within 0.05); the Studio blockout is not compared for these groups.",
+                   "mesh": {"assetId": mesh.get("assetId"), "groups": mesh_fingerprints(mesh)}}, f, indent=1, sort_keys=True)
         f.write("\n")
     report["bytes"] = len(text)
     report["sha256"] = hashlib.sha256(text.encode("ascii")).hexdigest()
