@@ -77,23 +77,28 @@ def shell(pod, peak, half, y0, y1, nt, rim="secondary"):
 
 # ---------------------------------------------------------------- car A: sharp
 
-A_POD = dict(rb=0.3, tum=0.3, drop=0.2, tumi=0.03, dropi=0.1, wcf=0.5, d2=0.04, crown=0.025)
+A_POD = dict(rb=0.35, tum=0.42, drop=0.28, tumi=0.03, dropi=0.12, wcf=0.45, d2=0.04, crown=0.06, cs=0.03)
 
 
-def a_pod(pod, z0, z1, peak, extra=(), louvres=None):
-    """Fender over a dark arch, carbon rocker, louvred vent on top, vented shell in the arch."""
+def louvres(surf, name, t0, t1, u0, u1, n, ch="secondary", off=-0.06, side=1, w=0.5):
+    """n slats across a vent, standing between the vent floor and the skin."""
+    step = (t1 - t0) / n
+    for i in range(n):
+        a = t0 + i * step + step * (1 - w) / 2
+        surf.patch(f"{name}{i}", a, a + step * w, u0, u1, ch, side=side, off=off, mirror=True)
+
+
+def a_pod(pod, z0, z1, peak, extra=(), arch_slats=0):
+    """Flowing fender over a dark arch, carbon rocker, louvred vent on top, vented shell in the arch."""
     pod.build("skin", "primary", mirror=True, caps=(False, False), regions=[
         R(z0 + 0.25, z1 - 0.2, 1.0, 2.05, "secondary", 0.02),
-        R(peak - 1.75, peak + 1.75, 1.25, 2.95, "detail", 0.35, side=1),
-        R(peak - 1.2, peak + 0.6, 4.25, 5.6, "detail", 0.12), *extra])
-    for i in range(3):
-        pod.patch(f"top{i}", peak - 1.0 + i * 0.55, peak - 0.75 + i * 0.55, 4.3, 5.55, "secondary",
-                  off=-0.05, mirror=True)
-    if louvres:
-        for i in range(4):
-            t = peak + louvres * (1.62 - i * 0.13)
-            pod.patch(f"louvre{i}", min(t, t - 0.06), max(t, t - 0.06), 1.4, 2.85, "secondary", off=-0.18,
-                      mirror=True)
+        R(peak - 1.7, peak + 1.7, 1.25, 2.92, "detail", 0.35, side=1),
+        R(peak - 1.3, peak + 0.9, 4.25, 5.6, "detail", 0.12), *extra])
+    for side in (1, -1):
+        louvres(pod, f"top{side}", peak - 1.2, peak + 0.8, 4.3, 5.55, 5, side=side)
+    for i in range(4 if arch_slats else 0):
+        t = peak + arch_slats * (1.58 - i * 0.13)
+        pod.patch(f"arch{i}", t - 0.03, t + 0.03, 1.4, 2.85, "secondary", off=-0.18, mirror=True)
     shell(pod, peak, 1.3, -0.8, 0.95, 3.2)
     lift_glow(pod, [(peak - 1.0, peak + 1.0)])
 
@@ -102,7 +107,8 @@ def car_a():
     c = "A"
     K.begin(c, "COCKPIT")
     tub()
-    can = Hull([(-6.7, dict(w=2.6, yb=1.8, yt=2.1, ys=2.0, tum=0.3, drop=0.02)), (-4.6, dict(w=3.2, yt=3.15, tum=0.85)),
+    can = Hull([(-6.7, dict(w=2.6, yb=1.8, yt=2.1, ys=2.0, tum=0.3, drop=0.02)),
+                (-4.6, dict(w=3.2, yt=3.15, tum=0.85)),
                 (-2.4, dict(yt=4.05)), (-0.4, dict(yt=4.25)), (1.6, dict(w=3.2, yt=4.15)),
                 (4.2, dict(w=2.9, yb=2.2, yt=3.45, ys=2.35)),
                 (7.2, dict(w=2.3, yb=2.35, yt=2.75, ys=2.5, tum=0.7, drop=0.1))],
@@ -112,33 +118,44 @@ def car_a():
         R(-2.35, 1.9, 4.12, 6.0, "secondary", 0.02), R(2.2, 5.8, 3.15, 3.8, "glass", 0.03),
         *[R(2.4 + i * 0.9, 2.9 + i * 0.9, 4.2, 6.0, "detail", 0.1) for i in range(5)]])
 
+    # Nose: the hood sinks between the fenders and climbs to the cowl.
     K.begin(c, "NOSE")
     nose = Hull([(-12.5, dict(w=3.7, yb=-0.3, yt=0.45, rb=0.15, ys=0.18, tum=0.1, drop=0.08)),
-                 (-11.0, dict(w=3.75, yt=0.95, ys=0.5, tum=0.2, drop=0.2)),
-                 (-8.5, dict(w=3.8, yt=1.65, ys=0.95, tum=0.3, drop=0.28)),
-                 (-6.4, dict(w=3.8, yt=2.1, ys=1.25, tum=0.35, drop=0.28, crown=0.04)), (-5.2, SEAM_F)],
-                yb=-0.4, rb=0.45, wcf=0.62, d2=0.06, crown=0.015)
+                 (-11.0, dict(w=3.75, yt=0.8, ys=0.45, tum=0.2, drop=0.2)),
+                 (-8.5, dict(w=3.8, yt=1.35, ys=0.8, tum=0.3, drop=0.3)),
+                 (-6.6, dict(w=3.8, yt=1.85, ys=1.1, tum=0.35, drop=0.3, crown=0.05)), (-5.2, SEAM_F)],
+                yb=-0.4, rb=0.45, wcf=0.62, d2=0.06, crown=0.03)
     nose.build("skin", "primary", t1=-5.2 - GAP, caps=(False, True), regions=[
-        R(-12.5, -10.4, 0.0, 2.2, "secondary", 0.02), R(-12.42, -12.28, 2.9, 6.0, "lights", -0.01),
-        R(-11.2, -7.0, 5.0, 6.0, "secondary", 0.03), R(-9.9, -7.0, 4.15, 4.85, "detail", 0.18)])
+        R(-12.5, -10.4, 0.0, 2.2, "secondary", 0.02), R(-12.42, -12.3, 2.9, 6.0, "lights", -0.01),
+        R(-11.2, -7.0, 5.0, 6.0, "secondary", 0.03), R(-9.9, -7.4, 4.15, 4.85, "detail", 0.18)])
+    louvres(nose, "hood", -9.8, -7.5, 4.2, 4.8, 6, off=-0.1)
     nose.throat("mouth", "min", lip="primary", scale=0.86, depth=0.7)
     for i, y in enumerate((-0.1, 0.1)):
         box(f"slat{i}", (0, y, -12.3), (6.1, 0.05, 0.3), "secondary")
-    box("lip", (0, -0.38, -12.42), (7.3, 0.08, 0.36), "secondary")
+    box("splitter", (0, -0.42, -12.25), (7.5, 0.1, 0.9), "secondary")
+    box("keel", (1.6, -0.6, -12.0), (0.08, 0.3, 1.2), "detail", mirror=True)
 
+    # Front engines: tall flowing fenders that stand above the hood. Slim headlight under a lid, light
+    # blade below it, strakes in the lower opening, splitter corner with endplate.
     K.begin(c, "FPOD")
-    pod = Hull([(-12.1, dict(cx=5.05, w=1.1, wi=1.1, yb=-0.3, yt=0.58, ys=0.2, drop=0.1)),
-                (-11.0, dict(cx=5.1, w=1.2, wi=1.15, yb=-0.7, yt=1.1, ys=0.5)),
-                (-9.4, dict(cx=5.15, w=1.25, wi=1.2, yb=-1.0, yt=1.7, ys=0.9)),
-                (-7.8, dict(cx=5.17, w=1.25, wi=1.22, yb=-1.1, yt=2.0, ys=1.1)),
-                (-6.3, dict(cx=5.12, w=1.18, wi=1.16, yb=-0.8, yt=1.7, ys=0.9)),
+    pod = Hull([(-12.1, dict(cx=5.0, w=1.05, wi=1.05, yb=-0.35, yt=0.95, ys=0.35, drop=0.15)),
+                (-11.2, dict(cx=5.08, w=1.2, wi=1.12, yb=-0.75, yt=1.5, ys=0.65)),
+                (-9.8, dict(cx=5.15, w=1.28, wi=1.2, yb=-1.0, yt=2.05, ys=1.0)),
+                (-8.3, dict(cx=5.18, w=1.3, wi=1.22, yb=-1.1, yt=2.25, ys=1.15)),
+                (-6.8, dict(cx=5.12, w=1.2, wi=1.18, yb=-0.9, yt=1.95, ys=1.0)),
                 (-5.4, dict(SIDE_F, yb=-0.1, yt=1.35, ys=0.7, rb=0.2))], **A_POD)
-    a_pod(pod, -12.1, -5.4, -8.0, extra=[R(-12.04, -11.9, 3.0, 6.0, "lights", -0.01),
-                                         R(-11.9, -10.2, 3.02, 3.2, "lights", -0.01, side=1)])
-    pod.throat("lamp", "min", lip="primary", scale=0.8, depth=0.4, mirror=True)
-    box("led", (5.05, 0.14, -11.8), (1.5, 0.08, 0.08), "lights", mirror=True)
+    a_pod(pod, -12.1, -5.4, -8.3, extra=[R(-11.85, -10.45, 3.2, 3.9, "glass", 0.1, side=1),
+                                         R(-12.0, -10.1, 2.84, 2.94, "lights", -0.01, side=1)])
+    pod.patch("lampbar", -11.75, -10.55, 3.28, 3.4, "lights", off=-0.06, mirror=True)
+    for i, t in enumerate((-11.65, -11.2, -10.85)):
+        pod.patch(f"lamp{i}", t, t + 0.22, 3.52, 3.78, "lights", off=-0.06, mirror=True)
+    pod.throat("duct", "min", lip="primary", scale=0.8, depth=0.45, mirror=True)
+    for i, y in enumerate((0.02, 0.3, 0.58)):
+        box(f"strake{i}", (5.0, y, -11.95), (1.62, 0.08, 0.3), "primary", mirror=True)
     pod.throat("noz", "max", lip="secondary", back="thrust", scale=0.78, depth=0.5, mirror=True)
-    box("chin", (5.1, -0.4, -12.0), (2.3, 0.08, 0.6), "secondary", mirror=True)
+    box("splitter", (5.15, -0.45, -11.85), (2.6, 0.1, 1.0), "secondary", mirror=True)
+    box("endplate", (6.4, -0.22, -11.75), (0.08, 0.5, 1.1), "secondary", mirror=True)
+    box("edge", (5.15, -0.38, -12.33), (2.5, 0.05, 0.05), "neon", mirror=True)
     flange(-11.8, -5.6, 0.5)
 
     K.begin(c, "TAIL")
@@ -149,6 +166,7 @@ def car_a():
     tail.build("skin", "primary", t0=2.8 + GAP, caps=(True, False), regions=[
         R(8.6, 11.2, 0.0, 2.3, "secondary", 0.02), R(7.7, 10.4, 5.1, 6.0, "secondary", 0.03),
         R(6.4, 10.2, 4.2, 4.85, "detail", 0.15)])
+    louvres(tail, "deck", 6.5, 10.1, 4.25, 4.8, 8, off=-0.08)
     tail.throat("fascia", "max", lip="primary", scale=0.93, depth=0.3)
     box("blade", (0, 2.36, 11.02), (6.6, 0.1, 0.16), "lights_red")
     for i, y in enumerate((2.1, 1.85, 1.6, 1.35, 1.1, 0.85)):
@@ -158,24 +176,27 @@ def car_a():
 
     K.begin(c, "RPOD")
     pod = Hull([(3.6, dict(SIDE_R, yb=-0.5, yt=1.6)),
-                (5.0, dict(cx=5.14, w=1.25, wi=1.2, yb=-1.0, yt=2.2, ys=1.2)),
-                (7.3, dict(cx=5.17, w=1.27, wi=1.22, yb=-1.1, yt=2.7, ys=1.55)),
-                (9.4, dict(cx=5.17, w=1.25, wi=1.22, yb=-1.0, yt=2.6, ys=1.55)),
-                (10.6, dict(cx=5.14, w=1.12, wi=1.15, yb=-0.6, yt=2.25, ys=1.4))], **A_POD)
-    a_pod(pod, 3.6, 10.6, 7.3, louvres=-1)
+                (4.8, dict(cx=5.12, w=1.22, wi=1.18, yb=-1.0, yt=2.15, ys=1.15)),
+                (6.4, dict(cx=5.18, w=1.3, wi=1.22, yb=-1.1, yt=2.65, ys=1.5)),
+                (7.8, dict(cx=5.18, w=1.3, wi=1.22, yb=-1.1, yt=2.8, ys=1.6)),
+                (9.4, dict(cx=5.16, w=1.25, wi=1.2, yb=-1.0, yt=2.6, ys=1.55)),
+                (10.6, dict(cx=5.12, w=1.12, wi=1.15, yb=-0.6, yt=2.2, ys=1.4))], **A_POD)
+    a_pod(pod, 3.6, 10.6, 7.3, arch_slats=-1)
     pod.throat("intake", "min", lip="primary", scale=0.8, depth=0.5, mirror=True)
     pod.throat("noz", "max", lip="secondary", back="thrust", scale=0.82, depth=0.6, mirror=True)
     for i, y in enumerate((0.3, 0.8, 1.3)):
-        box(f"slat{i}", (5.14, y, 10.42), (1.7, 0.07, 0.3), "detail", mirror=True)
+        box(f"slat{i}", (5.12, y, 10.42), (1.7, 0.07, 0.3), "detail", mirror=True)
     flange(3.8, 10.3, 1.0)
 
     K.begin(c, "STAB")
     sill = Hull([(-5.2, dict(yb=-0.8, yt=0.4, ys=0.0)), (-2.0, dict(yt=0.65, ys=0.15)),
                  (1.5, dict(yt=1.3, ys=0.7)), (3.4, dict(yb=-0.7, yt=1.55, ys=0.9))],
-                cx=4.9, w=1.0, yb=-0.9, rb=0.25, tum=0.3, drop=0.12, wcf=0.5, d2=0.03, crown=0.02)
+                cx=4.9, w=1.0, yb=-0.9, rb=0.25, tum=0.3, drop=0.12, wcf=0.5, d2=0.03, crown=0.04)
     sill.build("skin", "primary", mirror=True, regions=[
         R(-5.2, 3.4, 1.0, 2.25, "secondary", 0.02), R(-5.0, 3.2, 2.3, 2.38, "neon", -0.01, side=1),
         R(0.5, 3.15, 3.1, 3.9, "detail", 0.15, side=1)])
+    louvres(sill, "intake", 0.6, 3.05, 3.15, 3.85, 6, off=-0.08)
+    box("skirt", (5.8, -0.95, -0.9), (0.5, 0.06, 8.2), "secondary", mirror=True)
     lift_glow(sill, [(-4.2, -2.4), (-0.6, 1.4)])
 
     # Boost: centre insert of the tail fascia. Strake panel above, burners low in the diffuser.
