@@ -22,7 +22,8 @@
     "stage_a": "feature_installer, 19 operations: AUDIT before -> APPLY 19 -> AUDIT after -> ROLLBACK 19 -> AUDIT before -> APPLY 19 -> repeat APPLY 0.",
     "stage_b_pilot": "exotic_03 with 18 modules: AUDIT -> APPLY -> ROLLBACK (Stage A AUDIT after, 0 changed; revision 469d9bd8...cf0e) -> APPLY -> Play tests -> ROLLBACK (capture compare with exotic-stage-a: no source delta; only the flag attribute differs).",
     "stage_b_full": "6 cockpits, 108 modules, 1,746 template parts, 162 module sockets: AUDIT BLOCKER=0 WARN=0 -> APPLY -> AUDIT installed-full -> repeat APPLY 0.",
-    "flag": "Flag_VehicleClass_exotic=true on ServerStorage.Config (scripts/exotic_category/flag)."
+    "flag": "Flag_VehicleClass_exotic=true on ServerStorage.Config (scripts/exotic_category/flag).",
+    "tool_tests": "scripts/test_studio_capture.py 21 tests OK; scripts/test_studio_snapshot_pipeline.py 11 tests OK (after the place-guard edits). Offline: catalogue test_chunks pass, balance 20 tests pass, content 8,446 checks pass."
   },
   "state_after": {
     "catalogue": "index plus PIERCER_1, PIERCER_2, EXOTIC_1, EXOTIC_2; 12 cockpits, 224 modules; revision 37f47fadff3d352d2bcc97399369f46044dd022e1d2e1661bcb28d642f5b986f",
@@ -60,8 +61,14 @@
   "known_issues_recorded": [
     "Spawned vehicles double-count module TopSpeed, Weight and three boost stats, so the on-road PI is higher than the garage PI (Forge 245 against 202; Wedge 566 against 540). Existing behaviour for Piercer; tiers still match.",
     "No cockpit card images (MenuImage empty): cards show the HOVERCAR text.",
-    "Neon inheritance and the legacy four-slot default re-grant are unchanged and now apply to Exotic core slots too.",
+    "The legacy four-slot default re-grant loop is unchanged and applies to Exotic core slots too. Neon mirror inheritance on the four legacy slots is unchanged for Piercer; on Exotic cockpits the mirror is reset when defaults are granted (server hunk GS6b), not yet checked in Play.",
     "Cloned accessory upgrade paths on Splitter, Diffuser, Wing and Side Pods carry Drag, which lowers the rating on S tier until the low-drag path is bought (same as Zenith)."
   ],
-  "rollback": "Stage B: build_content.py --mode ROLLBACK --scope full, run in Edit; then flag ROLLBACK (scripts/exotic_category/flag); then Stage A: feature_installer ROLLBACK from spec.json against exotic-before. Stage B must be removed before Stage A."
+  "rollback": "Stage B: build_content.py --mode ROLLBACK --scope full, run in Edit; then flag ROLLBACK (scripts/exotic_category/flag); then Stage A: feature_installer ROLLBACK from spec.json against exotic-before. Stage B must be removed before Stage A.",
+  "commits": [
+    "49ea71d Stage A checkpoint",
+    "483551a content installed, evidence and captures",
+    "docs commit follows"
+  ],
+  "process_note": "During Play tests the integrator called require() on VehicleCatalog and VehiclePerformanceResolver from the client through MCP (read-only data and calculation modules, Play session only). This is against the no-gameplay-require rule; no state was changed and it was not repeated."
 }

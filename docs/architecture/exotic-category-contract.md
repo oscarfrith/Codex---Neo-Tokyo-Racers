@@ -1,6 +1,8 @@
 # Exotic vehicle category contract
 
-Status: **Approved by Oscar 2026-10-02 for the backup place; in delivery.**
+Status: **Installed in the backup place on 2026-10-03. Agent-verified in Studio.** Approved by Oscar on 2026-10-02 for the backup place only. Not user-confirmed. Nothing is published.
+
+As-delivered record: [section 24](#24-as-delivered-2026-10-03). Evidence: `scripts/exotic_category/verification.json`.
 
 Target: **Space Racers Backup v2, place 133417340424236** (universe 10768874893). Space Racers v2 (71491191583884) is not touched. This is a recorded exception to the project rule that names v2 as the working place. Oscar's request supersedes the "Design - not approved" status of [vehicle-frame-classes](../design/vehicle-frame-classes.md) for Exotic only, in the backup place only.
 
@@ -13,7 +15,7 @@ Sources this contract is built from:
 
 Where this contract and `INTERFACE.md` differ, `INTERFACE.md` wins and this file is corrected.
 
-Lines marked **Filled by the integrator after build** are facts a builder decides later. They are not to be guessed here.
+Lines marked **As delivered** were filled by the integrator on 2026-10-03 from the build files and `verification.json`. Where a value was not measured, the line says so. Nothing is guessed.
 
 Line numbers are `script_read` numbers in the before sources.
 
@@ -29,7 +31,7 @@ The work has four stages run by the integrator with no user-run steps:
 |---|---|---|
 | 0 | Prepare: contract, capture tools accept the backup place, before capture and projection check, sandbox on, golden "before" | Capture verified, projection fresh, golden hash stable over two runs |
 | A | Remove the fixed assumptions in code. Piercer is still the only category. | Golden "after" equals golden "before" on every line that must match (section 8) |
-| B | Exotic content through one dedicated installer. Pilot (Wedge) first, then the rest. | Golden with the flag off equals golden "before" on the same lines; Exotic tests with the flag on |
+| B | Exotic content through one dedicated installer. Pilot first (Wedge and 18 modules), rolled back, then the full set. | Golden with the flag off equals golden "before" on the same lines; Exotic tests with the flag on |
 | C | Restart Play, tests, evidence, documents, commit | Sections 20 and 22 |
 
 Two installers in one task is deliberate. The design requires the fixed-assumption removal to ship alone and be proven before any content.
@@ -39,7 +41,7 @@ Two installers in one task is deliberate. The design requires the fixed-assumpti
 **High-Risk.**
 
 - It changes ownership and money code (`GarageServer` buy and grant paths).
-- It adds permanent IDs that are saved in player profiles: one `CategoryId`, six `CockpitId`s, 108 `ModuleId`s, two slot keys and new upgrade `PathId`s.
+- It adds permanent IDs that are saved in player profiles: one `CategoryId`, six `CockpitId`s, 108 `ModuleId`s, two slot keys and six new upgrade `PathId`s.
 - It changes the public catalogue format (`VehicleCatalogData` becomes an index plus chunks).
 - It becomes a dependency for every later vehicle class.
 - A small diff does not lower the lane (docs/13 section 2, docs/14 Fast Lane rule).
@@ -100,6 +102,18 @@ Approved by Oscar, 2026-10-02.
 | Body slots | `FrontBody` and `RearBody` are required slots on a cockpit that has them. |
 | Geometry source | Built from the repo spec `scripts/vehicle_blockouts/specs/exotic.json`. The Studio blockout is a part-count and position check only and is never referenced at runtime. |
 | Flag | `VehicleClass_exotic` in `Core.FeatureFlags`, default off. |
+
+Integrator decisions, recorded 2026-10-03:
+
+| Topic | Decision |
+|---|---|
+| Flag off | The category is left out of the server catalogue and both buy actions refuse. `PurchaseDisabled` is a reserved category field and must not be set. Do not turn the flag off once a saved profile owns an Exotic. See section 12. |
+| Pilot | One cockpit (`exotic_03`) and 18 modules: the three variants of its four core modules and its six body parts. It was removed with ROLLBACK before the full install. |
+| Seats | Accepted as measured in the pilot: `rootPartCentreAboveSeatTop` 1.437, which gives seat Y -0.262. The first guess of Y 0.25 was not used. Looks are Oscar's to judge. |
+| Glass | Darkened after the pilot to `#18202a` at transparency 0.3. The blockout glass (`#5f8fb0` at 0.35) read milky white under the garage lights. |
+| Cockpit lights | Exotic cockpits carry the two invisible lens light parts cloned from the Piercer root. The cockpit front and rear light colour swatches tint the light they cast. There are no visible cockpit lamp parts. |
+| Piercer hardening | Stayed out of scope. Findings are recorded, not fixed. |
+| Catalogue regeneration | After any authoring edit the route is the generator `scripts/exotic_category/catalogue/catalogue_gen.lua`, which the Stage B installer calls. The Python checkers accept the split form. |
 
 ## 6. Stable IDs
 
@@ -171,19 +185,79 @@ New saved slot keys: `FrontBody`, `RearBody`.
 | `CategoryId` | `exotic` |
 | Feature flag key | `VehicleClass_exotic` |
 | VFX template folders | `EngineJet_Exotic`, `BoostJet_Exotic`, `StabiliserJet_ExoticLeft`, `StabiliserJet_ExoticRight` |
-| Catalogue chunk modules | `VehicleCatalogData.PIERCER_1`, `PIERCER_2`, later `EXOTIC_<n>` |
+| Catalogue chunk modules | `VehicleCatalogData.PIERCER_1`, `PIERCER_2`, `EXOTIC_1`, `EXOTIC_2` as delivered. The names are generated. The number of chunks can change with content. |
+| New upgrade `PathId`s (saved keys) | `NoseCanards`, `SlipstreamNose`, `LightweightNose`, `DeckCooling`, `TailStrakes`, `LightweightDeck` (section 6.5) |
 
 ### 6.5 Values decided by builders
 
-| Item | Value |
+All values in this section are **as delivered**. Sources: `scripts/exotic_category/balance/report.md` (generated), `scripts/exotic_category/stage_b/out/summary-full.json` (generated) and `scripts/exotic_category/verification.json` (installed and agent-verified).
+
+**New upgrade `PathId`s.** Six, checked against `balance/report.md` section 10. They are saved keys in `V2UpgradePoints`. None is a live `PathId`, a legacy upgrade id or a category `UPGRADE_*` id. Each path folder is named by its `PathId`, because the live `NextPointCost` finds a path by folder name. The same three paths sit on all six parts of a slot.
+
+| Slot | PathId | DisplayName | Order | MaxPoints | Per point |
+|---|---|---|---|---|---|
+| `FrontBody` | `NoseCanards` | Nose Canards | 1 | 3 | `SteeringResponse` +2, `Downforce` +1, `TopSpeed` -1 |
+| `FrontBody` | `SlipstreamNose` | Slipstream Nose | 2 | 3 | `TopSpeed` +2, `Downforce` -1 |
+| `FrontBody` | `LightweightNose` | Lightweight Nose | 3 | 3 | `Weight` -3, `SteeringResponse` +1 |
+| `RearBody` | `DeckCooling` | Deck Cooling | 1 | 3 | `EngineOutput` +1, `BoostEfficiency` +2, `Weight` +1 |
+| `RearBody` | `TailStrakes` | Tail Strakes | 2 | 3 | `HoverStability` +2, `DriftControl` +1, `TopSpeed` -1 |
+| `RearBody` | `LightweightDeck` | Lightweight Deck | 3 | 3 | `Weight` -3, `DriftGrip` +1 |
+
+**Upgrade path donors.**
+
+| Modules | Paths come from |
 |---|---|
-| New upgrade `PathId`s for `FrontBody` and `RearBody` modules (saved keys in `V2UpgradePoints`) | **Filled by the integrator after build** (from `upgradePaths[].PathId` in `balance.json`) |
-| Upgrade path donor per core module and per body module | **Filled by the integrator after build** (from `upgradePathDonor` in `balance.json`) |
-| Cockpit and module stat values, and the stock rating of each of the six builds | **Filled by the integrator after build** (from `scripts/exotic_category/balance/balance.json` and its report) |
-| `DriverSeatOffsetX/Y/Z` and `PassengerSeatOffsetX/Y/Z` per cockpit | **Filled by the integrator after build** (starting point: driver about (-1.8, 0.25, 0.45), passenger mirrored at +1.8) |
-| VFX socket count per cockpit and per module | **Filled by the integrator after build** |
-| Number and names of `EXOTIC_<n>` catalogue chunks, and the new `Revision` | **Filled by the integrator after build** |
-| Part count per full build | **Filled by the integrator after build** |
+| Core modules of `exotic_01` | The live Piercer module of the same type and variant in family `bruiser_02` |
+| Core modules of `exotic_02` | Family `bruiser_03` |
+| Core modules of `exotic_03` | Family `bruiser_01` |
+| Core modules of `exotic_04`, `exotic_05`, `exotic_06` | Families `bruiser_04`, `bruiser_05`, `bruiser_06` |
+| Side Pods, Splitter, Diffuser, Wing | `MODULE_SIDEPODS_LVL1`, `MODULE_FRONTBUMPER_LVL1`, `MODULE_REARBUMPER_LVL1`, `MODULE_REARSPOILER_LVL1` |
+| Nose, Engine Deck | The six explicit paths above |
+
+The cloned accessory paths carry `Drag`, as on Piercer. That lowers the rating on S tier until the low-drag path is bought (`balance/report.md` section 12; EXO-04 in `docs/06_current_known_issues.md`).
+
+**Prices and stock ratings.** The dealership in Play showed the same price and rating as the balance report for all six.
+
+| Cockpit | Name | Tier | Price | Over Piercer | Stock rating | Lightweight or Power module |
+|---|---|---|---:|---:|---|---:|
+| `exotic_01` | Spider | E | 50,000 | +25.0% | E 220 | 6,000 |
+| `exotic_02` | Curve | D | 150,000 | +25.0% | D 390 | 18,000 |
+| `exotic_03` | Wedge | C | 440,000 | +25.7% | C 540 | 52,800 |
+| `exotic_04` | Longtail | B | 1,400,000 | +27.3% | B 675 | 168,000 |
+| `exotic_05` | Hyper | A | 4,400,000 | +25.7% | A 800 | 528,000 |
+| `exotic_06` | Gull | S | 12,500,000 | +25.0% | S 938 | 1,500,000 |
+
+Every stock rating equals its target. Stat values are not repeated here: stock totals are in `balance/report.md` section 3, the component split in section 5, body modules in section 6, variant sets and upgrade ceilings in section 7, and every attribute in `balance/balance.json`.
+
+**Seat offsets.** Seat centre in root local space, from `stage_b/out/summary-full.json`.
+
+| Cockpit | Driver X, Y, Z | Passenger X, Y, Z |
+|---|---|---|
+| `exotic_01` | -2.0, -0.262, 0.45 | 2.0, -0.262, 0.45 |
+| `exotic_02` | -1.5, -0.262, 0.45 | 1.5, -0.262, 0.45 |
+| `exotic_03` to `exotic_06` | -1.8, -0.262, 0.45 | 1.8, -0.262, 0.45 |
+
+The rule is in `stage_b/data/seats.json`. The seat height comes from the blockout driver dummy and one measured number: `rootPartCentreAboveSeatTop` 1.437 (2026-10-03, pilot `exotic_03`, R15 avatar, server read while seated). On the Wedge the occupant top is at Y 3.58 against the lowest closed roof underside at 3.83. The pilot record in `seats.json` notes that the feet end below the tub underside, hidden by the body.
+
+**VFX sockets.**
+
+| Where | Sockets |
+|---|---|
+| Each cockpit root | 5 (the hover dust attachments in `stage_b/data/cockpit_fixtures.json`) |
+| Main Turbine module | 1 or 2, by shape |
+| Side Engines module | 2 |
+| Stabilisers module | 4 |
+| Afterburner module | 1 or 2, by shape |
+| Body modules | 0 |
+| All 108 modules | 162 |
+| Installed category | 192, all under parts |
+| Stock vehicle | Spider 14, Curve 15, Wedge 13, Longtail 13, Hyper 14, Gull 15 (Piercer 12) |
+
+Socket names per shape are in `stage_b/out/summary-full.json`.
+
+**Catalogue.** Two Exotic chunks, `EXOTIC_1` and `EXOTIC_2`. The installed catalogue is the index plus `PIERCER_1`, `PIERCER_2`, `EXOTIC_1` and `EXOTIC_2`: 12 cockpits and 224 modules. `Revision` is `37f47fadff3d352d2bcc97399369f46044dd022e1d2e1661bcb28d642f5b986f`.
+
+**Part count.** The category holds 1,746 template parts. A spawned stock Exotic has 172 to 204 parts (all six measured in Play). A figure per cockpit is not recorded.
 
 Fixed rules (from `INTERFACE.md`, not open to builders):
 
@@ -201,10 +275,10 @@ Fixed rules (from `INTERFACE.md`, not open to builders):
 | # | Item | Owner |
 |---|---|---|
 | 0.1 | This contract | `docs/architecture/exotic-category-contract.md` |
-| 0.2 | Capture tools accept place 133417340424236 | `scripts/studio_export_snapshot.lua` (23, 31), `scripts/studio_capture.py` (11), `scripts/import_studio_snapshot.py` (129) |
+| 0.2 | Capture tools accept place 133417340424236, for scoped captures only. The full mirror is never taken from this place. | `scripts/studio_export_snapshot.lua` (23, 31), `scripts/studio_capture.py` (11), `scripts/import_studio_snapshot.py` (127) |
 | 0.3 | Before capture; projection check | `roblox/captures/exotic-before/` |
-| 0.4 | No-save sandbox on (after the capture, so the capture holds `false`) | Attribute `StudioVehicleSandboxEveryPlay = true` on `ReplicatedStorage.Config.Player.Onboarding`; spec `scripts/exotic_category/stage_0/spec-sandbox-on.json` |
-| 0.5 | Golden "before", run twice | Runner `scripts/exotic_category/golden.lua` (section 8); before output `scripts/exotic_category/golden-before.txt`; second-run evidence **Filled by the integrator after build** |
+| 0.4 | No-save sandbox on (after the capture, so the capture holds `false`) | Attribute `StudioVehicleSandboxEveryPlay = true` on `ReplicatedStorage.Config.Player.Onboarding`; spec `scripts/exotic_category/stage_0/spec-sandbox-on.json` (`sandbox_audit.lua`, `sandbox_apply.lua`) |
+| 0.5 | Golden "before", run twice | Runner `scripts/exotic_category/golden.lua` (section 8); before output `scripts/exotic_category/golden-before.txt`. **As delivered:** recorded twice in fresh sandbox sessions; the two runs were identical. The `delivery-reviewer` found that the recorder hashed `os.time()` stamps. Keys ending `AtUnix` are now tokenised, and the baseline was re-recorded twice before APPLY. |
 
 The rows are in the order they were done.
 
@@ -213,6 +287,18 @@ The sandbox is not optional here. With API access off and the sandbox off, `Prof
 ### 7.2 Stage A: every changed owner and the exact change
 
 One reversible bundle through `scripts/feature_installer.py` (source, new-module, folder and attribute operations; AUDIT, APPLY, ROLLBACK). Every new behaviour is opt-in through data that Piercer does not have.
+
+**As delivered:** the spec is `scripts/exotic_category/stage_a/spec.json`, with 19 operations.
+
+| Operations | Count | Targets |
+|---|---:|---|
+| New chunk modules | 2 | `VehicleCatalogData.PIERCER_1`, `PIERCER_2` |
+| Catalogue index (existing source) | 1 | `VehicleCatalogData` |
+| Server sources (existing) | 7 | `GarageServer`, `GarageCatalogLookup`, `GarageCatalogService`, `GarageClientProfile`, `OwnedGarageDisplay`, `VehicleBuildService`, `DriverSeatServer` |
+| `ModuleArtwork` folders (new) | 2 | `FrontBody`, `RearBody` |
+| Client sources (existing) | 7 | `GarageWorkspaceUI`, `GarageUI`, `GarageBrowserUI`, `GarageModuleCardViewModel`, `GarageVehiclePreviewProfile`, `VehiclePerformanceResolver`, `PreviewCameraClient` |
+
+That is 14 existing sources, the catalogue index, two new chunk modules and two new folders: 19 operations.
 
 **Server**
 
@@ -227,8 +313,8 @@ One reversible bundle through `scripts/feature_installer.py` (source, new-module
 | `ServerStorage.Modules.Game.Garage.GarageCatalogLookup` | 97, 123 (and 131 as built) | The two `"bruiser"` literals become the module's own `CategoryId` attribute, falling back to today's value. Line 123 is the price rule for a module with no positive price (section 14). | None. Piercer modules carry `CategoryId="bruiser"`. |
 | `ServerStorage.Modules.Game.Garage.GarageCatalogService` | 162-218 (and 225-232 as built) | A category folder with `FeatureFlag` whose flag is off is left out of the catalogue. Slot field `RailLabel` and module field `CardTitle` are passed to the client when the attributes exist. | None. `PIERCER` has no `FeatureFlag`; its slots and modules have neither attribute. |
 | `ServerStorage.Modules.Game.Garage.OwnedGarageDisplay` | 11-15 | Match the `CategoryId` attribute first, then the folder name as today | None. `bruiser` now matches by attribute and resolves to the same folder as the first-child fallback did. |
-| `ServerStorage.Modules.Game.Vehicles.DriverSeatServer` | 34-41, 131 | Use cockpit attributes `DriverSeatOffsetX/Y/Z` when present; all three absent means the global `Config.Vehicles.DriverSeat` values as today | None |
-| `ServerStorage.Modules.Game.Garage.VehicleBuildService` `addPassengerSeat` | 201-236 | Use cockpit attributes `PassengerSeatOffsetX/Y/Z` when present; absent means the global `Config.Activities.Passengers` values as today | None |
+| `ServerStorage.Modules.Game.Vehicles.DriverSeatServer` | 34-41, 131 | Use cockpit attributes `DriverSeatOffsetX/Y/Z` when present. The fallback is per axis: an axis without a numeric attribute uses the global `Config.Vehicles.DriverSeat` value as today. | None |
+| `ServerStorage.Modules.Game.Garage.VehicleBuildService` `addPassengerSeat` | 199-236 | Use cockpit attributes `PassengerSeatOffsetX/Y/Z` when present. The fallback is per axis: an axis without one uses the global `Config.Activities.Passengers` value as today. The same clamp applies. | None |
 
 **Client**
 
@@ -236,20 +322,27 @@ One reversible bundle through `scripts/feature_installer.py` (source, new-module
 |---|---|---|---|
 | `ReplicatedStorage.Modules.Game.UI.GarageWorkspaceUI` `artworkDefinitions` | 11-23 | Two new rows: `FrontBody` (label "Front Body", `SortOrder=72`) and `RearBody` (label "Rear Body", `SortOrder=74`), `ShowInBuild=true`, `ShowInCustomise=true`, images reused from existing artwork entries. A row appears only when the current category has that slot. | Eight cards as today |
 | `ReplicatedStorage.Modules.Game.Garage.GarageUI` | about 332, 385, 541 | Where a slot label is shown, use the slot's `RailLabel` when present, else today's label | None |
+| `GarageUI` and `ReplicatedStorage.Modules.Game.UI.GarageBrowserUI` | 57-59, 186; 115 | Reserved plumbing for a category field `PurchaseDisabled` (hunks U7-U10 and B1). No server code sends the field, so these hunks are inert. See section 12. | None. The same category tables reach the browser in the same order. |
 | `ReplicatedStorage.Modules.Game.UI.GarageModuleCardViewModel` (and `GarageUI` where the card is built) | 6-13 | Card title is `CardTitle` when present, else today's title. Variant tag logic is unchanged for modules without `CardTitle`. Exotic body modules must not read "Level n". | None |
 | `ReplicatedStorage.Modules.Game.Garage.GarageVehiclePreviewProfile` | 28-36 | Any cockpit key `Default<X>ModuleId` beyond the legacy ones is an optional default for slot `X` | None |
 | `ReplicatedStorage.Modules.Game.Vehicles.Performance.VehiclePerformanceResolver` | 10-15, 69, 99 | Same optional defaults. Line 99: use the module's `RatingReferenceCockpitId` when present, else `bruiser_01` as today. | Ratings unchanged |
 | `ReplicatedStorage.Modules.Game.Garage.PreviewCameraClient` | 10 | `FrontBody="Front"`, `RearBody="Rear45"` added to the view map | None |
 
-**As built.** The hunk-by-hunk record, with the reason each hunk leaves Piercer unchanged, is `scripts/exotic_category/stage_a/server/CHANGES.md` and `scripts/exotic_category/stage_a/client/CHANGES.md`. Those two files win over this summary. The builders delivered these items beyond `INTERFACE.md`. Each is opt-in. The integrator and the `delivery-reviewer` accept or drop each one before APPLY:
+**As built.** The hunk-by-hunk record, with the reason each hunk leaves Piercer unchanged, is `scripts/exotic_category/stage_a/server/CHANGES.md` and `scripts/exotic_category/stage_a/client/CHANGES.md`. Those two files win over this summary. The builders delivered these items beyond `INTERFACE.md`. Each is opt-in or cannot be reached with Piercer data. All were installed: the bundle writes the after-sources those files describe, and the `delivery-reviewer` found no blocker in any after-source before APPLY.
 
 | Owner | Hunk | Addition |
 |---|---|---|
 | `GarageCatalogLookup` `moduleLockedMessage` (131) | GL3 | The lock message looks the source cockpit up in the module's own category, so it shows the display name and not the raw id |
 | `GarageCatalogService` snapshot (225, 232) | GC5, GC5b | The cached catalogue is rebuilt under a new revision when the on/off state of a flagged category changes. With no flagged category it is built once, as today. |
 | `GarageServer` (56, 854) | GS1, GS11 | Requires `Core.FeatureFlags`; passes one gate function, `categoryFlagEnabled`, to `GarageCatalogService` so the catalogue and both buy actions cannot disagree |
-| `GarageServer` `buyCockpitInstance` | GS7 | The reply to a mismatched `CategoryId` is `"Cockpit not found."` |
-| `GarageUI` (347, 353), `GarageModuleCardViewModel` (29, 47) | U5, U6, V1-V3 | Card rows carry two display-only fields, `Title` and `Tag`. The six client sources must be installed together. |
+| `GarageCatalogService` (6) | GC1 | If `GarageServer` does not pass `categoryFlagEnabled`, the service warns once and hides every flagged category. Piercer stays listed. The two sources must be installed together. |
+| `GarageServer` `buyCockpitInstance` | GS7 | The reply to a mismatched `CategoryId` is `"Cockpit not found."`. A cockpit with no `CategoryId` attribute takes the id of the category folder that holds it. |
+| `GarageServer` default grants (507) | GS6b | On a cockpit with new-slot defaults, the session `NeonOwned` mirror entry of a granted slot is set to false. This closes free neon on the granted Exotic defaults. No new field. |
+| `GarageUI` (347, 353), `GarageModuleCardViewModel` (29, 47) | U5, U6, V1-V3 | Card rows carry two display-only fields, `Title` and `Tag`. The seven client sources are installed together. |
+| `GarageModuleCardViewModel` (8) | V4 | The name of a module with a `CardTitle` is never searched for a variant. Its sort key is its explicit `VariantName` when that is one of the three, else Standard. |
+| `GarageUI` (57-59, 186), `GarageBrowserUI` (115) | U7-U10, B1 | Reserved `PurchaseDisabled` plumbing. Inert: no server code sends the field (section 12). |
+
+Findings the builders reported and did not fix are in `stage_a/server/CHANGES.md` under "Findings not fixed". The open ones are recorded in `docs/06_current_known_issues.md` (GAR-01, EXO-02).
 
 **Catalogue**
 
@@ -261,14 +354,21 @@ One reversible bundle through `scripts/feature_installer.py` (source, new-module
 | `ReplicatedStorage.Modules.Game.Vehicles.VehicleCatalog` and every reader | **Unchanged** |
 | `scripts/performance_phase3/catalogue.py` | `project(h)` unchanged. `PUBLIC` gains the six new `Default<Slot>ModuleId` names and `RatingReferenceCockpitId` (other new names only if a reader needs them from the client data). New `chunk_sources(data)`. |
 | `scripts/performance_phase3/check_catalogue.py`, `scripts/performance_phase4/check_projection.py` | Compare every generated source with the manifest rows at and under `VehicleCatalogData` |
-| `scripts/exotic_category/catalogue/catalogue_gen.lua` | Read-only Luau generator. Returns `function() -> { index, chunks = { {name, source}, ... }, revision, cockpits, modules }` from `ServerStorage.Assets.Vehicles.Categories`. It never writes. It rejects non-ASCII text and numbers that print as `e`, `inf`, `nan` or `-0`. Both installers call it and write the sources. |
+| `scripts/exotic_category/catalogue/catalogue_gen.lua` | Read-only Luau generator. Returns `function() -> { index, chunks = { {name, source}, ... }, revision, cockpits, modules }` from `ServerStorage.Assets.Vehicles.Categories`. It never writes. It rejects non-ASCII text and numbers that print as `e`, `inf`, `nan` or `-0`. As delivered: the Stage B installer calls it and writes the sources. Stage A wrote the Python-generated files in `scripts/exotic_category/catalogue/out/` (named in `spec.json`); the Stage B AUDIT then found the installed sources equal to the generator output. |
 
 **Config**
 
 | Owner | Exact change |
 |---|---|
-| `ServerStorage.Config` | Attribute `Flag_VehicleClass_exotic` (boolean Studio override). Initial value and the stage that creates it: **Filled by the integrator after build**. Absent reads as off. |
-| `ReplicatedStorage.Config.UI.GarageReplacement.ModuleArtwork` | Two config folders, `FrontBody` and `RearBody`, are proposed in `scripts/exotic_category/stage_a/client/config_ops.json`: the same six attributes as the eleven live entries, images reused from the live `FrontBumper` and `RearBumper` entries, no upload. They only supply the card image. Whether they are installed with the Stage A bundle: **Filled by the integrator after build** |
+| `ServerStorage.Config` | Attribute `Flag_VehicleClass_exotic` (boolean Studio override). Absent reads as off. **As delivered:** neither Stage A nor Stage B creates it. It has its own Standard-lane spec, `scripts/exotic_category/flag/spec-flag-on.json` (`flag_audit.lua`, `flag_apply.lua`, `flag_rollback.lua`), which sets it to `true`. ROLLBACK removes the attribute. Value in the backup place since 2026-10-03: `true`. |
+| `ReplicatedStorage.Config.UI.GarageReplacement.ModuleArtwork` | Two config folders, `FrontBody` and `RearBody`, with the same six attributes as the eleven live entries. No upload. They only supply the card image. **As delivered:** installed with the Stage A bundle, as two folder operations in `spec.json` taken from `scripts/exotic_category/stage_a/client/config_ops.json`. Values below. |
+
+`ModuleArtwork` folders as delivered. Both also carry `ShowInBuild=true` and `ShowInCustomise=true`.
+
+| Folder | `DisplayName` | `TargetId` | `SortOrder` | `Image` (reused) |
+|---|---|---|---:|---|
+| `FrontBody` | Front Body | FrontBody | 72 | `rbxassetid://76594522686468`, the live `FrontBumper` image |
+| `RearBody` | Rear Body | RearBody | 74 | `rbxassetid://136042248946525`, the live `RearBumper` image |
 
 Opt-in data attributes read by Stage A code (absent means today's behaviour):
 
@@ -279,14 +379,18 @@ Opt-in data attributes read by Stage A code (absent means today's behaviour):
 | Module model | `CardTitle` | string | Title on the module's shop and inventory card. Set on all Exotic modules to the module `DisplayName`. |
 | Module model | `RatingReferenceCockpitId` | string | Reference chassis for the module rating. Exotic modules use `exotic_03`. |
 | Cockpit model | `Default<SlotId>ModuleId` | string | Default module for a slot other than the four legacy ones: `DefaultFrontBodyModuleId`, `DefaultRearBodyModuleId`, `DefaultSidePodsModuleId`, `DefaultFrontBumperModuleId`, `DefaultRearBumperModuleId`, `DefaultRearSpoilerModuleId` |
-| Cockpit model | `DriverSeatOffsetX/Y/Z` | number | Driver seat offset in root local space |
-| Cockpit model | `PassengerSeatOffsetX/Y/Z` | number | Passenger seat offset in root local space |
+| Cockpit model | `DriverSeatOffsetX/Y/Z` | number | Driver seat offset in root local space. The fallback is per axis: a missing `DriverSeatOffsetY` uses the global Y. |
+| Cockpit model | `PassengerSeatOffsetX/Y/Z` | number | Passenger seat offset in root local space. The fallback is per axis. |
+
+Exotic cockpits always set all six seat offsets.
 
 The four legacy slots keep their seven legacy attribute names exactly as the code reads them today (`DefaultEngineModuleId`, `DefaultFrontEngineModuleId`, `DefaultRearEngineModuleId`, `DefaultEngineBModuleId`, `DefaultStabilisersModuleId`, `DefaultStabiliserModuleId`, `DefaultBoostModuleId`). Exotic cockpits set all seven.
 
 Stage A order: build, compile every file with `loadstring` in Edit, pure tests, AUDIT (expect state "before", 0 changed), `delivery-reviewer`, APPLY, ROLLBACK, capture compare, APPLY, recapture, golden "after" against golden "before" (section 8).
 
 The capture compare after ROLLBACK must show no delta other than the Stage 0 attribute `StudioVehicleSandboxEveryPlay` (`false` in the before capture, `true` live; section 4). `ReplicatedStorage.Config` is a capture root, so that one attribute always shows.
+
+**As delivered:** AUDIT before, APPLY 19, AUDIT after, ROLLBACK 19, AUDIT before, APPLY 19, repeat APPLY 0. The state after the ROLLBACK was proved by AUDIT returning "before": the installer accepts a target only when it holds exactly its before or its after value. `verification.json` records no capture between the ROLLBACK and the second APPLY. The after capture is `roblox/captures/exotic-stage-a/capture.json` (2026-10-03 09:55:39 UTC, 215 sources).
 
 ### 7.3 Stage B: content (one dedicated installer under `scripts/exotic_category/`)
 
@@ -297,7 +401,7 @@ The capture compare after ROLLBACK must show no delta other than the Stage 0 att
 | B3 | 6 cockpit templates: root, ten slot folders, sockets, underglow mount, default colours, ten defaults, seat offsets, stats, price, `V2Materialised=true` | `...EXOTIC.COCKPITS_ReplaceAssetsHere` (first child of `EXOTIC`; `EXOTIC` added after `PIERCER`) |
 | B4 | Category folder attributes `CategoryId="exotic"`, `DisplayName="Exotic"`, `FeatureFlag="VehicleClass_exotic"`, plus `Description` and `ModuleCompatibility` as `PIERCER` has them | `...Categories.EXOTIC` |
 | B5 | Preview mirror: a clone of the category with every `VehiclePerformanceV2UpgradePaths` and `UpgradePaths` folder removed | `ReplicatedStorage.Assets.VehiclePreviews.Categories.EXOTIC` |
-| B6 | Regenerated catalogue index and chunks, new `Revision` | `VehicleCatalogData` and children, through `catalogue_gen.lua` |
+| B6 | Regenerated catalogue index and the `EXOTIC_<n>` chunks, new `Revision`. The `PIERCER_<n>` chunks are asserted equal to the generator output and are not rewritten. | `VehicleCatalogData` and children, through `catalogue_gen.lua` |
 | B7 | Read-only checks: generator output identical, preview parity, template-path walk, paint-channel census, socket parents | Integrator |
 
 Template format rules (same as Piercer):
@@ -310,11 +414,22 @@ Template format rules (same as Piercer):
 - Body modules mirror the live accessory attribute set (donor `MODULE_<TYPE>_LVL1`; `FrontBody` uses the `FrontBumper` donor, `RearBody` the `RearBumper` donor): `Price` only, no `PurchasePrice`, no `SourceCockpitId`.
 - Engine1 modules: `EnginePosition="Front"`, `RearEngine=false`. Engine2 modules: `EnginePosition="Rear"`, `RearEngine=true`. Both `ModuleSlot="Engine"`.
 
-Pilot first: Wedge (`exotic_03`) and its ten modules only. With the flag off, golden parity again. Then flag on: buy, customise, spawn and drive it. Fix the recipe (seat, flame size, lamps, camera) before building the other five cockpits and their modules.
+As delivered (`scripts/exotic_category/stage_b/README.md` and `data/*.json`):
 
-The pilot is a complete install of a declared content set: `exotic_03` and its ten default modules. It is not a partial install. It is removed with REMOVE before the full set is installed. That is allowed here because nothing is saved. The installer never extends a prior install in place.
+- `CockpitRoot_DoNotRename` is a clone of the live `bruiser_03` root. Its two invisible lens light parts come with it and are moved inside the nose and the tail wall. There are no visible cockpit lamp parts.
+- A cockpit carries 77 attributes: the 59 non-colour Piercer attributes, six default colours, the six new `Default<Slot>ModuleId` names and six seat offsets. `OwnedByDefault` is `false` on every Exotic cockpit.
+- Glass is `#18202a` at transparency 0.3. It was darkened after the pilot.
+- Lamp parts in `LIGHTS_AlwaysOn` have names that end `_lamp`. Their colour is the native neon paint of the cockpit that owns the kit.
+- The four jet templates are scaled by `data/vfx.json`. The stabiliser templates keep the centre jet only.
+- Created roots carry `InstalledBy = "exotic_category/stage_b"`, `InstalledScope`, `InstalledContentHash` and a signature of their descendants. The marker, not the name, makes something the installer's own.
+
+Pilot first. **As delivered:** the pilot scope was one cockpit, `exotic_03` (Wedge), and 18 modules: the three variants of its four core modules and its six body parts. With the flag off, golden parity again. Then flag on: buy, customise, spawn and drive it. The pilot changed two things in the recipe before the rest was built: the seat rule took the measured value (section 6.5) and the glass was darkened.
+
+The pilot is a complete install of a declared content set. It is not a partial install. It was removed with ROLLBACK before the full set was installed. That is allowed here because nothing is saved. The installer never extends a prior install in place: APPLY with a larger scope or a new build replaces the installer's own earlier content.
 
 The content installer must: assert place 133417340424236 and Edit mode; preflight unique paths; refuse a partial prior install (anything that is not exactly one declared content set, complete); create authoring, preview and catalogue together; on removal, delete exactly what it created and fail loudly if a created root was edited. It never writes to `Workspace.VehicleCategoryBlockouts`, `ServerStorage.Archive` or `ServerStorage.NeoTokyoRacers`.
+
+**As delivered:** its modes are AUDIT, APPLY and ROLLBACK, and its scopes are `pilot` and `full`. It refuses to APPLY until Stage A is installed: `VehicleCatalogData` in the split form and equal to the generator output, and the four Stage A server probes present. The `delivery-reviewer` found no blocker before APPLY. Three installer safety fixes were applied first: the content hash covers the engine and the generator; the marker is set before parenting; rollback rewrites the index before detaching chunks.
 
 ### 7.4 Builder folders
 
@@ -327,13 +442,23 @@ Builders write repo files only, one folder each, and never touch Studio state or
 | Balance | `scripts/exotic_category/balance/` |
 | Server sources | `scripts/exotic_category/stage_a/server/` (`after/`, `ops.json`, `CHANGES.md`) |
 | Client sources | `scripts/exotic_category/stage_a/client/` (`after/`, `ops.json`, `config_ops.json`, `CHANGES.md`) |
-| Content installer | `scripts/exotic_category/stage_b/`. Installer file names: **Filled by the integrator after build** |
+| Content installer | `scripts/exotic_category/stage_b/`. **As delivered:** `build_content.py` builds `out/installer.lua` for one mode and one scope from `installer_engine.lua`, `data/*.json`, `balance/balance.json` and `catalogue/catalogue_gen.lua`. Checks: `test_content.py`, `post_install_checks.lua`, `measure_seat.lua`. Guide: `README.md`. |
+
+Integrator files, as delivered:
+
+| Purpose | Files |
+|---|---|
+| Stage 0 sandbox | `scripts/exotic_category/stage_0/spec-sandbox-on.json`, `sandbox_audit.lua`, `sandbox_apply.lua` |
+| Stage A bundle | `scripts/exotic_category/stage_a/spec.json`; built bundles `stage_a/out/install_audit.lua`, `install_apply.lua`, `install_rollback.lua` |
+| Flag | `scripts/exotic_category/flag/spec-flag-on.json`, `flag_audit.lua`, `flag_apply.lua`, `flag_rollback.lua` |
+| Golden recorder | `scripts/exotic_category/golden.lua`, `golden-before.txt`, `golden-after-stage-a.txt` |
+| Evidence | `scripts/exotic_category/verification.json` |
 
 ## 8. Must preserve
 
 - **Piercer parity.** For every `GarageInvoke` request the client can send on a Piercer: same success flag, same message text, same reply content, same order of checks. `CategoryId "bruiser"` and the folder name `PIERCER` stay as they are. `PIERCER` stays the first child of `Categories`.
 - **One deliberate exception.** `BuyCockpitInstance` with a `CategoryId` that is not exactly the cockpit template's `CategoryId` attribute is refused after Stage A. That covers an unknown category (`"zzz"`) and the folder name (`"PIERCER"` or `"piercer"`). Before Stage A such a request succeeded through the lookup fallback (`GarageCatalogLookup` 15-24: folder-name match, then first child) and the client string was saved as the vehicle's `CategoryId` (`GarageServer` 378, 517). No client sends this: the UI sends the catalogue `CategoryId`, which is `"bruiser"`. A request with no `CategoryId` is unchanged.
-- **Golden sequence.** Runner: `scripts/exotic_category/golden.lua`, pasted into `execute_luau` on the client in a fresh sandbox Play. It is the 18 steps of `scripts/architecture/p5/golden.lua` plus eight crafted calls. Each reply is canonicalised (sorted keys, generated ids and the catalogue revision normalised, numbers `%.6g`) and reported as one line: label, length, FNV-1a hash, success and message. Before output: `scripts/exotic_category/golden-before.txt`.
+- **Golden sequence.** Runner: `scripts/exotic_category/golden.lua`, pasted into `execute_luau` on the client in a fresh sandbox Play. It is the 18 steps of `scripts/architecture/p5/golden.lua` plus eight crafted calls, 26 lines in all. Each reply is canonicalised (generated ids normalised before the keys are sorted, the catalogue revision normalised, keys ending `AtUnix` tokenised, numbers `%.6g`) and reported as one line: label, length, FNV-1a hash, success and message. Before output: `scripts/exotic_category/golden-before.txt`. Result after Stage A: `scripts/exotic_category/golden-after-stage-a.txt`.
   - Steps 01-18: GetInitial, BuyCockpit, BuyModule, BuyCosmetic, CosmeticColour, BuyNeon, Upgrade, CockpitColour, Unaffordable, BadField, UnknownCockpit, GetInitial, Select, Spawn, Exit, ReEnter, Despawn, GetInitialKnownRev.
   - X01-X06 (must stay identical): UnknownModule, WrongSlotType, UnknownSlot, BuyNoCategory, GarageFull, GetInitial.
   - Z01-Z02 (expected to differ after Stage A): UnknownCategory (`CategoryId="zzz"`), GetInitialAfter.
@@ -344,6 +469,8 @@ Builders write repo files only, one folder each, and never touch Studio state or
   3. before, and with Exotic installed and the flag off.
 
   Z01 and Z02 are the exception above. Before: Z01 passes the category step, is refused later with `"Garage full. ..."`, and leaves `CurrentCategory = "zzz"` on the session profile, which Z02 shows. After Stage A: Z01 is refused with `"Cockpit not found."` and writes nothing, so Z02 is expected to equal X06 (same length and hash). If it does not, find the differing field before accepting. Z01 and Z02 must then be identical between the Stage A run and the run with Exotic installed and the flag off.
+
+  **As delivered:** all three comparisons hold. After Stage A, 24 of 24 must-match lines are identical in length and hash; Z01 returns `"Cockpit not found."` and Z02 equals X06. With the pilot installed and the flag off, all 26 lines equal the Stage A result. The flag-off run was made with the pilot scope. It was not repeated with the full scope installed.
 - The merged catalogue table deep-equals the old single-source table, and `Revision` is unchanged, while Piercer is the only category.
 - Eight unchanged slot cards in the Piercer garage. Piercer ratings unchanged.
 - Saved IDs and `SchemaVersion = 1`.
@@ -356,7 +483,7 @@ Builders write repo files only, one folder each, and never touch Studio state or
 ## 9. Explicit exclusions
 
 - Space Racers v2. Nothing is installed, copied or published there.
-- Card images. No upload. Dealership cards show the text placeholder; the free-roam menu and race entry show a blank picture.
+- Card images. No upload. `MenuImage` is empty, so dealership cards show the text placeholder (the HOVERCAR text); the free-roam menu and race entry show a blank picture.
 - Final meshes. Geometry is the blockout primitives in the final template format.
 - Hardening of existing Piercer rules: blocking retired or hidden modules, the legacy-slot re-grant loop, any other tightening. Findings are recorded in `docs/06_current_known_issues.md`, not fixed.
 - Saving tests. Nothing can save in this place. Persistence stays open under DATA-01 and DATA-02.
@@ -365,7 +492,7 @@ Builders write repo files only, one folder each, and never touch Studio state or
 - A sell path, or a change to the 10-vehicle garage cap.
 - New driving mechanics, per-class physics tuning, liveries, audio profiles.
 - Job and race pay review.
-- Cockpit lamps: Exotic cockpits carry no lamps of their own, so the cockpit front and rear light swatches do nothing on an Exotic.
+- Visible cockpit lamps. Exotic cockpits have no visible lamp parts of their own. As delivered they do carry the two invisible lens light parts cloned from the Piercer root, so the cockpit front and rear light colour swatches tint the light they cast.
 - Deleting or moving `Workspace.VehicleCategoryBlockouts`.
 - Publishing.
 
@@ -414,19 +541,28 @@ No owner is added. Every concern keeps the owner it has today.
 | Key | `VehicleClass_exotic`, named by the `FeatureFlag` attribute on the `EXOTIC` folder |
 | Read | `FeatureFlags.IsEnabled(key, false)`. Default is off. |
 | Studio override | Boolean attribute `Flag_VehicleClass_exotic` on `ServerStorage.Config` |
+| Value in the backup place | `true` since 2026-10-03, set by `scripts/exotic_category/flag` |
 | Live value | Creator Dashboard config, 60-second refresh (not used in this place) |
 | Flag off: catalogue | The category is left out of the server catalogue, so the dealership does not show it |
 | Flag off: buy cockpit | `BuyCockpitInstance` for an Exotic cockpit, sent with `CategoryId="exotic"` as the UI sends it, returns `false, "Vehicle unavailable."` |
 | Flag off: buy module | `BuyModuleInstance` for an Exotic module onto an owned Exotic returns `false, "Module unavailable."`. The module is looked up in the target vehicle's category first, so the same module onto a Piercer returns today's `"Module not found."` in any flag state. In this place an Exotic can be owned with the flag off only when the flag is switched off during the session. |
-| Flag off: owned vehicles | Never hidden or blocked. Select, spawn, drive, equip owned parts, paint and upgrade are not gated. |
+| Flag off: owned vehicles | Server actions on an owned Exotic are not gated: select, spawn, drive, equip owned parts, paint and upgrade. The garage UI is not covered: see "Flag off with an owned Exotic" below. |
 | Templates | The flag never removes or hides templates |
 | A folder with no `FeatureFlag` | Today's behaviour. `PIERCER` has none. |
+| Missing gate | `GarageCatalogService` warns once and hides flagged categories if `GarageServer` does not pass `categoryFlagEnabled`. The two sources are installed together; the installer refuses a mixed state. |
+
+**Flag off with an owned Exotic (decision, 2026-10-03).** Flag off leaves the category out of the server catalogue. The client has no other source for that category's slots, modules and cockpit names. So for a player who owns an Exotic the garage UI for that category would be missing. Read from the sources, not tested in Play: the owned Exotic is not listed in the Customisation browser; if it is the current vehicle the pages show the first category's slots and modules; race entry lists it by cockpit id under `OTHER`. Nothing is lost or saved wrongly, and turning the flag on again restores everything.
+
+- **Do not turn the flag off once any saved profile owns an Exotic.** In this place nothing saves, so no saved profile can own one.
+- `PurchaseDisabled` is a **reserved** category field. The client hunks that read it (`GarageUI` U7-U10, `GarageBrowserUI` B1) are inert plumbing. No server code sends it.
+- **Never set a `PurchaseDisabled` attribute on a category folder.** Folder attributes are copied to the client, so it would hide the category on the client with no server enforcement.
+- Keeping a flagged-off category in the payload, marked not on sale, was proposed and not built. It needs a contract decision and a test in a saving place before any move to v2 (EXO-02 in `docs/06_current_known_issues.md`).
 
 Today the server catalogue is built once per server and frozen. As built (section 7.2, hunks GC5 and GC5b), Stage A rebuilds it under a new revision when the on/off state of a flagged category changes. The two buy checks read the flag when the request arrives. In Studio the override attribute is read on every call, so a change on the running server takes effect at once.
 
-Restart Play after a flag change all the same, unless the test is the mid-session switch itself. Whether an open dealership refreshes its list without a restart: **Filled by the integrator after build**.
+Restart Play after a flag change all the same, unless the test is the mid-session switch itself. **As delivered:** whether an open dealership refreshes its list without a restart was not tested. `verification.json` has no record of it.
 
-The flag gates **buying only**. It is not a rollback of content and it does not undo a sale.
+The flag gates **buying only**, and the dealership entry. It is not a rollback of content and it does not undo a sale.
 
 ## 13. Entry, transitions, exit and cleanup
 
@@ -490,7 +626,22 @@ Failed purchases leave no state behind: after Stage A, `CurrentCategory` is not 
 | Move a default body part to another Exotic, reselect the first, count instances | No extra free part |
 | Extra request field (for example a price) | `"Unknown request field."` |
 
-Rows marked "as built" take their text from `scripts/exotic_category/stage_a/server/CHANGES.md` (hunks GS7 and GS9). Text confirmed in Play: **Filled by the integrator after build**.
+Rows marked "as built" take their text from `scripts/exotic_category/stage_a/server/CHANGES.md` (hunks GS7 and GS9).
+
+**As delivered** (`verification.json`, `exotic_play_tests`; API evidence in Play, single client). Refused with Cash intact:
+
+- Exotic buys with the flag off;
+- nose into Engine Deck;
+- a Side Engines part into Main Turbine, and the reverse;
+- a Piercer part on an Exotic;
+- an Exotic cockpit under the Piercer category;
+- a locked family, with the text `"Buy Gull before buying this module family."`;
+- neon on a part without optional neon;
+- a third vehicle with a full garage.
+
+No re-grant: a default nose was moved to a second Wedge and both vehicles were reselected; nose instances stayed at three.
+
+The record quotes the reply text for the lock message only. It does not list these rows of the table: an unaffordable Exotic followed by `GetInitial`; an Exotic module onto a Piercer; an extra request field on an Exotic request; a module buy after the flag is switched off during a session. The Piercer golden steps 09, 10, 11, X01, X02, X03 and X05 return the same messages as before on Piercer data.
 
 **Charge cases** (each must debit exactly the stated amount through `MoneyService.Debit`):
 
@@ -499,6 +650,19 @@ Rows marked "as built" take their text from `scripts/exotic_category/stage_a/ser
 | Buy a second Standard Exotic core module for a cockpit that is owned | The catalogue `Price` of the module and the Cash debit both equal 12% of the cockpit price. Not 0 and not $1,000. For `exotic_03`: 52,800. |
 | Buy a Lightweight or Power module | Debit equals the module's `Price` attribute |
 | Buy a body module | Debit equals the module's `Price` attribute |
+
+**As delivered** (`verification.json`, `module_economy`):
+
+| Charge | Amount |
+|---|---:|
+| Lightweight and Power module on Wedge | 52,800 |
+| Extra Standard copy on Wedge | 52,800 |
+| Body parts, by kit | 14,000 / 23,000 / 30,000 |
+| Upgrade points | 3,025 and 3,575 |
+| Neon on a part with optional neon | 7,000 |
+| Underglow and thrust colour | 5,000 |
+
+The Wedge itself was bought through the UI: Cash went from 1,000,000 to 560,000.
 
 ## 15. Stable IDs, saved schema/API version and migration impact
 
@@ -527,7 +691,7 @@ Why no migration is needed: `CategoryId` is a free string, `InstalledModules` is
 
 **Why templates can never be removed once sold.** The profile stores IDs, not content. `VehicleModuleUpgradeRuntime` asserts that the current cockpit template exists and is materialised on every profile read, including `GetInitial`. Before Stage A a missing template fails every garage request for that player. After Stage A a missing template is skipped with a warning, so the garage still opens, but the player has paid for a vehicle they can no longer see, select or drive, and its module instances are orphaned. No installer rolls saved data back. So after the first saved sale: templates stay, IDs stay, slot folders stay, `PathId`s stay.
 
-**The flag gates buying only.** Switching the flag off stops new sales and hides the dealership entry. It does not make an owned Exotic safe to remove.
+**The flag gates buying only.** Switching the flag off stops new sales and hides the dealership entry. It also leaves the category out of the server catalogue. The client has no other source for that category, so the garage UI for an owned Exotic is missing. Do not turn it off once a saved profile owns an Exotic (section 12). It does not make an owned Exotic safe to remove.
 
 **In this place** nothing can be saved (API access off, sandbox on), so no profile will hold an Exotic and content rollback is safe here. That is a property of this place, not of the design.
 
@@ -537,14 +701,16 @@ Why no migration is needed: `CategoryId` is a free string, `InstalledModules` is
 
 **Expected scale and bounded performance budget.**
 
-| Dimension | Today | After |
+| Dimension | Before | As delivered |
 |---|---|---|
 | Categories | 1 | 2 |
-| Catalogue records | 122 | 236 |
-| `VehicleCatalogData` sources | 1 at 197,226 characters | index plus chunks, each under 190,000 (packed to 150,000) |
-| Server catalogue payload | about 173 KB JSON | larger; exact size **Filled by the integrator after build**. Cached by revision after the first fetch. |
-| Parts per full build | Piercer about 57 | Exotic about 150 to 195 (blockout primitives); exact **Filled by the integrator after build** |
-| VFX sockets per vehicle | Piercer 12 | **Filled by the integrator after build** |
+| Catalogue records | 122 | 236 (12 cockpits, 224 modules) |
+| `VehicleCatalogData` sources | 1 at 197,226 characters | index plus four chunks (`PIERCER_1`, `PIERCER_2`, `EXOTIC_1`, `EXOTIC_2`), each under 190,000 (packed to 150,000) |
+| Script sources in the scoped capture | 213 | 217 |
+| Preview instances (`check_projection.py`) | 2,105 | 5,340 |
+| Server catalogue payload | about 173 KB JSON. The canonical Piercer-only `GetInitial` reply is 172,437 characters (golden step 01). | Larger. Not measured with Exotic on. Cached by revision after the first fetch. |
+| Parts per full build | Piercer about 57 | Exotic 172 to 204 per spawned stock vehicle (blockout primitives; all six measured in Play) |
+| VFX sockets per vehicle | Piercer 12 | Exotic 13 to 15 |
 | Vehicle size | Piercer 20.5 x 29.2 | Exotic 10.94 to 11.90 wide, 23.68 to 25.47 long. Smaller in every direction, so preview pad, display bays, spawn clearance and camera distance are not at risk. |
 
 No per-frame work is added. Catalogue chunks are required once at client start. Seat offsets are read once per build. Cost that grows with parts: one weld per part at spawn, the collision-group walk, the VFX scan, paint, and preview and display clones. This is untested on low-end devices and is recorded as deferred.
@@ -580,9 +746,10 @@ Documented exception: per-cockpit seat offsets. The global seat config stays the
 
 | Stage | Installer | Before state comes from |
 |---|---|---|
-| 0 | Repo edits to three tool guards; `scripts/exotic_category/stage_0/` sandbox spec | Capture (`false`) |
-| A | `scripts/feature_installer.py`, one bundle: after-sources, new chunk modules, attribute and folder ops. Inputs delivered: `stage_a/server/ops.json`, `stage_a/client/ops.json`, `stage_a/client/config_ops.json`, `catalogue/out/manifest.json` (all under `scripts/exotic_category/`). Combined spec and bundle file names: **Filled by the integrator after build** | `roblox/captures/exotic-before` |
-| B | One dedicated canonical installer under `scripts/exotic_category/` with AUDIT, INSTALL and REMOVE in one scope. File names: **Filled by the integrator after build** | A fresh capture taken after Stage A |
+| 0 | Repo edits to three tool guards; `scripts/exotic_category/stage_0/` sandbox spec (`spec-sandbox-on.json`, `sandbox_audit.lua`, `sandbox_apply.lua`) | Capture (`false`) |
+| A | `scripts/feature_installer.py`, one bundle: after-sources, new chunk modules and folder ops. Inputs delivered: `stage_a/server/ops.json`, `stage_a/client/ops.json`, `stage_a/client/config_ops.json`, `catalogue/out/manifest.json` (all under `scripts/exotic_category/`). **As delivered:** combined spec `scripts/exotic_category/stage_a/spec.json` (19 operations); built bundles `stage_a/out/install_audit.lua`, `install_apply.lua`, `install_rollback.lua`. | `roblox/captures/exotic-before` |
+| B | One dedicated canonical installer with AUDIT, APPLY and ROLLBACK in one scope (`pilot` or `full`). **As delivered:** `scripts/exotic_category/stage_b/build_content.py` builds `stage_b/out/installer.lua` for one mode and one scope; the logic is `installer_engine.lua`. The built files for each mode are kept as `out/pilot_*.lua` and `out/full_*.lua`. | Live state, audited by the installer itself. Reference capture after Stage A: `roblox/captures/exotic-stage-a`. |
+| Flag | `scripts/exotic_category/flag/spec-flag-on.json` (`flag_audit.lua`, `flag_apply.lua`, `flag_rollback.lua`). One attribute operation, Standard lane. | The attribute is absent before |
 
 After-files are complete sources made by copying the blob and editing it. Every projected source is compiled with `loadstring` in Edit before assignment. No in-game backup folders, no fallback implementation, no patch ladder: a failed installer is repaired, not patched around.
 
@@ -593,9 +760,12 @@ Rollback runs in reverse dependency order: **B before A, A before 0.**
 | Stage | Fast switch-off | Full rollback | Proven by | Limits |
 |---|---|---|---|---|
 | 0 tools | n/a | Revert the three guard edits in the repo | Capture and pipeline tests | Do not revert while Stage A or B is installed: `studio_capture.load` rejects a capture from a place not in `PLACE_IDS`, so the Stage A ROLLBACK bundle could no longer be built from `exotic-before`. The place lock on installers is separate: `feature_installer.py` asserts `game.PlaceId == bundle.place_id`, taken from the capture. |
-| 0 sandbox | n/a | Set `StudioVehicleSandboxEveryPlay` back to `false` with the same guarded spec reversed | AUDIT state | With API access off, Play cannot load a profile once it is off. Final state at handoff: **Filled by the integrator after build** |
-| A | None needed: Stage A alone changes no Piercer behaviour that a client can reach (section 8) | `feature_installer.py --mode ROLLBACK` built from the same before capture and unchanged after-files. Restores the 13 sources and the single-source `VehicleCatalogData`, removes the chunk modules and the attribute or folder ops. | APPLY, ROLLBACK, APPLY during delivery; capture compare after ROLLBACK shows no delta other than the Stage 0 attribute `StudioVehicleSandboxEveryPlay` (`false` in the before capture, `true` live; section 4); `Revision` back to `469d9bd8...cf0e` | Refuses on any drift: every target must hold exactly its before or its after value. Stage B must be removed first, because Exotic records need the chunked catalogue. While Stage B is installed, Stage A AUDIT stops with drift on the index, which then lists the `EXOTIC_<n>` chunks. That is expected. |
-| B | `Flag_VehicleClass_exotic = false`, then restart Play. Stops sales and hides the category. | Installer REMOVE: deletes `Categories.EXOTIC`, `VehiclePreviews.Categories.EXOTIC`, the four VFX folders, every `VehicleCatalogData.EXOTIC_<n>` chunk module and (if Stage B created it) the `Flag_VehicleClass_exotic` attribute; rewrites the index and the `PIERCER_<n>` chunks for Piercer only, through `catalogue_gen.lua`. | Remove, golden parity, projection check, reinstall. After REMOVE: Stage A AUDIT reports state "after" with 0 drift (index and `PIERCER_<n>` byte-identical to the Stage A after-files in `scripts/exotic_category/catalogue/out/`) and `Revision` is `469d9bd8...cf0e`. | Allowed only while no saved profile holds an Exotic. True in this place. After a saved sale anywhere, only the flag may be used. A leftover `EXOTIC_<n>` chunk reads as a stale catalogue in `check_projection.py` and is not removed by the Stage A ROLLBACK. |
+| 0 sandbox | n/a | Set `StudioVehicleSandboxEveryPlay` back to `false` with the same guarded spec reversed | AUDIT state | With API access off, Play cannot load a profile once it is off. **As delivered:** the sandbox is on at handoff (`StudioVehicleSandboxEveryPlay = true`). It is required in this place. |
+| A | None needed: Stage A alone changes no Piercer behaviour that a client can reach (section 8) | `feature_installer.py --mode ROLLBACK` built from `stage_a/spec.json`, the same before capture and unchanged after-files. Restores the 14 sources and the single-source `VehicleCatalogData`, and removes the two chunk modules and the two `ModuleArtwork` folders. | **As delivered:** AUDIT before, APPLY 19, AUDIT after, ROLLBACK 19, AUDIT before, APPLY 19, repeat APPLY 0. The state after ROLLBACK was proved by AUDIT; no capture was taken at that point (section 7.2). | Refuses on any drift: every target must hold exactly its before or its after value. Stage B must be removed first, because Exotic records need the chunked catalogue. While Stage B is installed, Stage A AUDIT stops with drift on the index, which then lists the `EXOTIC_<n>` chunks. That is expected. |
+| B | `Flag_VehicleClass_exotic` off (flag ROLLBACK removes the attribute; absent reads as off), then restart Play. Stops sales and hides the category. Not to be used once a saved profile owns an Exotic (section 12). | Installer ROLLBACK (`build_content.py --mode ROLLBACK --scope full`, run in Edit): removes both `EXOTIC` category folders, the four VFX template folders and every `VehicleCatalogData.EXOTIC_<n>` chunk, and regenerates the index for what remains through `catalogue_gen.lua`. It does not touch the `PIERCER_<n>` chunks or the flag attribute. The flag has its own ROLLBACK, run after it. | **As delivered:** proven on the pilot scope, twice. First: ROLLBACK, then Stage A AUDIT reports "after" with 0 changed and `Revision` is `469d9bd8...cf0e`. Second, after the Play tests: ROLLBACK, then capture `exotic-pilot-removed` compared with `exotic-stage-a` shows no source delta; only the flag attribute differs. ROLLBACK of the full scope has not been run. | Allowed only while no saved profile holds an Exotic. True in this place. After a saved sale anywhere, content must stay. ROLLBACK fails loudly, and changes nothing, if a created root holds something the installer did not create, if the state is partial or foreign, or if the catalogue is stale. A leftover `EXOTIC_<n>` chunk reads as a stale catalogue in `check_projection.py` and is not removed by the Stage A ROLLBACK. |
+| Flag | n/a | `flag_rollback.lua`: removes `Flag_VehicleClass_exotic` from `ServerStorage.Config` | No flag ROLLBACK run is recorded in `verification.json` | Run after the Stage B ROLLBACK and before the Stage A ROLLBACK |
+
+**As delivered, the full order is:** Stage B ROLLBACK (full scope, in Edit), then the flag ROLLBACK, then the Stage A ROLLBACK from `spec.json` against `exotic-before`. Stage B must be removed before Stage A.
 
 Keep the before capture, the specs and the after-files unchanged in the repo for as long as rollback may be needed. Restoring source values does not undo runtime side effects; restart Play after any install or rollback.
 
@@ -604,7 +774,7 @@ Keep the before capture, the specs and the after-files unchanged in the repo for
 | # | Risk | Mitigation |
 |---|---|---|
 | 1 | The catalogue split rewrites the only client source for previews, ratings and upgrade data, and it can fail silently | Split with Piercer only first. Before install, load the generated chunks with `loadstring` in Edit and compare the merged table with the live data: 6 cockpits, 116 modules, same `Revision`. Checkers compare every generated source. |
-| 2 | Blockout geometry on a Piercer-tuned runtime: driver inside the engine, flames wider than the car, hidden lamps, low roofs, off-centre camera | Per-cockpit seat offsets. Exotic-scaled jet templates. Fixed lamps on Nose and Engine Deck. Pilot one cockpit and its ten modules, drive it, and fix the recipe before generating the rest. |
+| 2 | Blockout geometry on a Piercer-tuned runtime: driver inside the engine, flames wider than the car, hidden lamps, low roofs, off-centre camera | Per-cockpit seat offsets. Exotic-scaled jet templates. Fixed lamps on Nose and Engine Deck. Pilot one cockpit and its 18 modules, drive it, and fix the recipe before generating the rest. As delivered: the pilot caught the seat height and the glass colour. |
 | 3 | Money and ownership code changed in a place that cannot save | Sandbox on. Golden parity before and after. The crafted refusals in section 14. Persistence recorded as deferred under DATA-01. |
 | 4 | A failed cross-category purchase corrupts the session (`CurrentCategory` written before validation) | Stage A validates before mutating. Test: unaffordable Exotic, then `GetInitial`. |
 | 5 | Debit before ten grants widens ECON-01 | Every default is pre-checked before the debit. No refund logic. |
@@ -614,12 +784,12 @@ Keep the before capture, the specs and the after-files unchanged in the repo for
 | 9 | A missing `Price` makes an item free or $1,000 | The installer asserts `Price > 0` on cockpits and on Lightweight, Power and body modules, and `Price = PurchasePrice = 0` with `SourceCockpitId` and `CategoryId` set on Standard modules. The Standard extra-copy charge is tested (section 14 charge cases). |
 | 10 | The flag hides but does not block | Both buy actions check the flag on the server |
 | 11 | Catalogue cached per server | Restart Play after every install. As built, a flag change rebuilds the server catalogue (GC5); restart Play after a flag change as well, unless the mid-session switch is the test. |
-| 12 | 150 to 195 parts per car on low-end devices | Recorded as deferred. Final meshes replace primitives later in the same format. |
-| 13 | Garage holds 10 vehicles with no sell path, against 12 cockpits | Known limit, recorded. Out of scope. |
-| 14 | Garage rating may not equal the on-road rating (possible double count in `VehiclePerformanceServer`, affects Piercer equally) | Compare `PerformanceIndex` on a spawned Piercer with its garage rating in the first Play. Record the result; do not fix here. |
-| 15 | Category order: categories sort by display name, so Exotic is listed before Piercer, and `GarageUI` falls back to the first category when `State.CategoryId` matches none | Check which category the dealership and workshop open on with the flag on. Record what is seen. |
-| 16 | An owned Exotic with the flag off from server start: the category is absent from the server catalogue, so the workshop may fall back to the first category's slots and modules | From server start it cannot occur in this place, because nothing saves. The nearest case here is the flag switched off during a session with an Exotic owned (section 14 threat row); look at the workshop then and record what is seen. Must be tested in a saving place before any move to v2. Recorded under DATA-01. |
-| 17 | `execute_luau` network access may be withdrawn again | One-line localhost probe at the start of each session; fall back to data carried in the code string |
+| 12 | 150 to 195 parts per car on low-end devices (as delivered: 172 to 204 per spawned stock vehicle) | Recorded as deferred (EXO-01). Final meshes replace primitives later in the same format. |
+| 13 | Garage holds 10 vehicles with no sell path, against 12 cockpits | Known limit, recorded (EXO-01). Out of scope. |
+| 14 | Garage rating may not equal the on-road rating (possible double count in `VehiclePerformanceServer`, affects Piercer equally) | Compare `PerformanceIndex` on a spawned Piercer with its garage rating in the first Play. Record the result; do not fix here. As delivered: confirmed. A spawned vehicle double-counts module `TopSpeed`, `Weight` and three boost stats. Forge reads 245 on the road against 202 in the garage; Wedge 566 against 540. The tiers still match. Recorded as VEH-01. |
+| 15 | Category order: categories sort by display name, so Exotic is listed before Piercer, and `GarageUI` falls back to the first category when `State.CategoryId` matches none | Check which category the dealership and workshop open on with the flag on. Record what is seen. As delivered: `verification.json` does not record which category opens first. The Piercer category view lists six Piercer cards only. |
+| 16 | An owned Exotic with the flag off from server start: the category is absent from the server catalogue, so the workshop may fall back to the first category's slots and modules | From server start it cannot occur in this place, because nothing saves. The nearest case here is the flag switched off during a session with an Exotic owned (section 14 threat row); look at the workshop then and record what is seen. Must be tested in a saving place before any move to v2. Recorded under DATA-01. As delivered: not tested. It is documented as unsupported (section 12, EXO-02). |
+| 17 | `execute_luau` network access may be withdrawn again | One-line localhost probe at the start of each session; fall back to data carried in the code string. As delivered: `execute_luau` reached localhost on 2026-10-02 and 2026-10-03. |
 | 18 | Wrong place | Every installer asserts place 133417340424236 and Edit. The Studio instance is rediscovered before every write batch. |
 
 ## 20. Verification matrix
@@ -648,36 +818,44 @@ Evidence categories are kept apart: **generated**, **installed**, **agent-verifi
   - Single client, API evidence: every threat case in section 14 refused with Cash intact; `NetStats` rejection counts recorded.
   - Charge cases in section 14. Buy a second Standard Exotic core module: the catalogue `Price` and the Cash debit both equal 12% of the cockpit price, not 0 and not $1,000.
   - Two-client checks (second client sees the right modules): deferred. One Studio client cannot satisfy this.
-- **Save/rejoin/migration:** N/A in this place. API access is off, so nothing can be saved. Deferred under DATA-01 and DATA-02: a vehicle with the new slots survives rejoin, old saves load unchanged, and an owned Exotic stays usable with the flag off, all in an isolated published place before any move to v2.
-- **Device/performance/streaming:** Studio desktop only. Physical phone, tablet, controller, low-end memory with 150 to 195 parts per car, and the 15-player case are deferred (PERF-01, PERF-06). Streaming N/A: no world-size change.
-- **Rollback:** proven for Stage A and for the content installer (remove, parity, reinstall). After the content REMOVE: no `EXOTIC_<n>` chunk is left, Stage A AUDIT reports state "after" with 0 drift (index and `PIERCER_<n>` byte-identical to the Stage A after-files), `Revision` is `469d9bd8...cf0e`, and `check_projection.py` passes. This proves Stage A can still be rolled back.
-- **Evidence record:** `scripts/validation_record.py` with checks `tooling installation startup garage race errors cleanup api persistence device multiplayer`; captures under `roblox/captures/exotic-category/`. Record and file names: **Filled by the integrator after build**.
+- **Save/rejoin/migration:** N/A in this place. API access is off, so nothing can be saved. Deferred under DATA-01 and DATA-02: a vehicle with the new slots survives rejoin, old saves load unchanged, and the flag-off case for an owned Exotic, which is unsupported until the server half is decided and built (EXO-02), all in an isolated published place before any move to v2.
+- **Device/performance/streaming:** Studio desktop only. Physical phone, tablet, controller, low-end memory with 172 to 204 parts per spawned stock car, and the 15-player case are deferred (PERF-01, PERF-06). Streaming N/A: no world-size change.
+- **Rollback:** proven for Stage A and for the content installer (remove, parity, reinstall). After the content ROLLBACK: no `EXOTIC_<n>` chunk is left, Stage A AUDIT reports state "after" with 0 drift (index and `PIERCER_<n>` byte-identical to the Stage A after-files), `Revision` is `469d9bd8...cf0e`, and `check_projection.py` passes. This proves Stage A can still be rolled back. **As delivered:** proven for Stage A, and for the content installer on the pilot scope only. The full-scope ROLLBACK has not been run. The record has a capture compare after the pilot ROLLBACK, not a `check_projection.py` run (section 24.3).
+- **Evidence record:** `scripts/validation_record.py` with checks `tooling installation startup garage race errors cleanup api persistence device multiplayer`; captures under `roblox/captures/exotic-category/`. **As delivered:** the evidence record is `scripts/exotic_category/verification.json`. Screenshots are `roblox/captures/exotic-category/01-dealership-wedge-pilot.jpg` to `10-my-vehicles-hyper.jpg`. No `validation_record.py` record for this task was found in the repository on 2026-10-03.
+
+Results against this matrix are in section 24.
 
 Avoid finishing a time trial during these tests (PB-01 writes a personal best even in the sandbox), or accept the change on the dev account.
 
 ## 21. Readiness scorecard exceptions or deferred risks
 
+Final values as delivered, 2026-10-03. "PASS" here means agent-verified in Studio. It is not user confirmation.
+
 | Area | Status | Note |
 |---|---|---|
-| Ownership | PASS expected | No owner added. Confirmed at handoff. |
-| Security | PASS expected for single-client threat cases | A full exploit audit of each handler stays open under NET-01 |
+| Ownership | PASS | No owner added. No new remote, action, argument field or saved field. |
+| Security | PASS for the single-client refusals recorded in `verification.json` | Four threat rows are not in the record (section 14). A full exploit audit of each handler stays open under NET-01. |
 | Data | PASS for IDs and schema; **DEFERRED** for save and rejoin | DATA-01, DATA-02. Must close before any move to v2. |
-| Lifecycle | PASS expected | No new connections, loops or clones |
+| Lifecycle | PASS | No new connections, loops or clones. Server and client logs show no error or warning from this work. |
 | Performance | **DEFERRED** | Part count on low-end devices (PERF-01, PERF-06) |
 | Mobile/input | **DEFERRED** | Studio desktop only |
 | Streaming | N/A | No change to streamed content |
-| Failure handling | PASS expected | Validate before debit; skip-with-warning for missing templates |
-| Observability | PASS expected | Existing counters and one warning per missing ID |
-| Documentation | PASS when section 23 is done | |
+| Failure handling | PASS on the pure tests (server 28 of 28) | Validate before debit; skip-with-warning for missing templates. No template was missing in Play, so the warning paths did not run there. |
+| Observability | PASS on the pure tests | Existing counters and one warning per missing ID. `NetStats` rejection counts are not in the record. |
+| Documentation | PASS | Section 23 documents updated 2026-10-03, with the two gaps named in section 24.4 item 15. `docs/04_customisation_ui.md` needed no change. |
 
-Final values: **Filled by the integrator after build**. Each `DEFERRED` row is recorded in `docs/06_current_known_issues.md` with the point before which it must close.
+Each `DEFERRED` row is recorded in `docs/06_current_known_issues.md` (EXO-01) with the point before which it must close.
 
 Known limits after this work:
 
 - Geometry is blockout primitives.
-- No card images.
-- Cockpit light swatches do nothing on an Exotic.
+- No card images (EXO-03).
+- No visible cockpit lamp parts. The cockpit light swatches tint the cast light only.
 - Saving is untested.
+- Flag off is not supported once an Exotic is owned (EXO-02).
+- The on-road rating is higher than the garage rating. This is existing behaviour for both categories (VEH-01).
+- Neon inheritance and the legacy four-slot default re-grant are unchanged (GAR-01).
+- Cloned accessory upgrade paths carry `Drag` (EXO-04).
 - 10-vehicle cap with no sell path.
 - Driving feel and looks are Oscar's to judge. Agent evidence is not user confirmation.
 
@@ -694,13 +872,15 @@ Known limits after this work:
 9. With the flag off, golden equals golden "before" on lines 01-18 and X01-X06, and every Exotic buy is refused.
 10. With the flag on, every check in section 20 "Runtime transitions and cleanup" passes through the real UI.
 11. Every threat case in section 14 is refused with Cash intact, and every charge case debits the stated amount.
-12. Content rollback is proven: remove, parity, reinstall. After REMOVE, Stage A AUDIT reports state "after" with 0 drift and `Revision` is `469d9bd8...cf0e`.
-13. Every "Filled by the integrator after build" line in this file is filled.
+12. Content rollback is proven: remove, parity, reinstall. After ROLLBACK, Stage A AUDIT reports state "after" with 0 drift and `Revision` is `469d9bd8...cf0e`.
+13. Every integrator line in this file is filled (they now read "As delivered").
 14. The evidence record passes `validation_record.py check`, with deferred checks named.
 15. The documents in section 23 are updated.
 16. Verified work is committed with explicit paths and pushed to origin main.
 
 Not required for done: Oscar's judgement of driving feel and looks, device tests, two-client tests, saving tests. They are recorded as open.
+
+The result against each item is in section 24.
 
 ## 23. Documentation to update
 
@@ -720,3 +900,72 @@ Not required for done: Oscar's judgement of driving feel and looks, device tests
 | Evidence | `docs/architecture/<task>-validation.json` and `scripts/exotic_category/verification.json` |
 
 Current task, status and next action belong only in `docs/00_START_HERE.md`.
+
+## 24. As delivered (2026-10-03)
+
+This section records the delivery. It does not repeat the evidence. Read `scripts/exotic_category/verification.json` for what was installed, every test and its result, what is not verified, the known issues and the rollback order.
+
+### 24.1 Evidence level
+
+| Item | Level |
+|---|---|
+| Balance data, prices, ratings, upgrade paths (`balance/report.md`) | Generated. The six stock ratings and prices were then read in the dealership in Play. |
+| Stage A (19 operations) | Installed in Space Racers Backup v2 (133417340424236) |
+| Stage B, full scope (6 cockpits, 108 modules, 1,746 template parts, 162 module sockets) | Installed in the same place |
+| `Flag_VehicleClass_exotic = true`; no-save sandbox on | Installed in the same place |
+| Edit checks and Play tests | Agent-verified in Studio |
+| Oscar's play test | Not done. Nothing is user-confirmed. |
+| Space Racers v2 (71491191583884) | Untouched |
+| Publishing | None |
+
+### 24.2 Captures
+
+All four are scoped captures taken in Edit, with the five roots in section 4.
+
+| Capture | Taken (UTC) | Sources | State |
+|---|---|---:|---|
+| `roblox/captures/exotic-before/capture.json` | 2026-10-02 21:05:39 | 213 | Baseline |
+| `roblox/captures/exotic-stage-a/capture.json` | 2026-10-03 09:55:39 | 215 | Stage A installed |
+| `roblox/captures/exotic-pilot-removed/capture.json` | 2026-10-03 10:21:22 | 215 | Pilot rolled back. No source delta against `exotic-stage-a`; only the flag attribute differs. |
+| `roblox/captures/exotic-after/capture.json` | 2026-10-03 10:22:35 | 217 | Full content installed |
+
+Screenshots: `roblox/captures/exotic-category/` (ten images).
+
+### 24.3 Results against the verification matrix
+
+| Area | Result | Key in `verification.json` |
+|---|---|---|
+| Static/install | Pass. `check_projection.py` and `check_catalogue.py` pass on `exotic-after` in the split form. Post-install checks: 0 unreachable template paths, channel census equal, 192 sockets all under parts, preview parity exact. Attribute census: 0 problems across 6 cockpits and 108 modules. | `installation`, `state_after` |
+| Piercer parity | Pass. Golden 24 of 24 must-match lines. Seats unchanged on a spawned Piercer. Dealership ratings unchanged. Pure tests: server 28 of 28, client 20 of 20. | `piercer_parity` |
+| Exotic in Play | Pass for what was run. The Wedge went through the real UI: dealership, purchase, paint, garage, drive. The other five were bought and spawned through API calls. | `exotic_play_tests` |
+| Refusals and charges | Pass for the rows in the record (section 14) | `refusals_cash_intact`, `module_economy`, `no_regrant` |
+| Rollback | Stage A: proven. Stage B: proven on the pilot scope. | `installation`, `rollback` |
+| Review | Six builders, each followed by an independent reviewer and a fix pass. `delivery-reviewer` before each APPLY: no blocker. | `review` |
+| Save and rejoin, devices, two clients | Not verified | `not_verified` |
+
+Not verified, from the record: saving and rejoin; mobile and low-end devices; two-client behaviour; race entry and time trial with an Exotic; the owned-garage display bay with an Exotic; driving feel, looks and VFX taste; flag off after an Exotic is owned.
+
+Matrix lines with no entry in the record: a buy, equip, upgrade and paint pass on each of the ten slots through the UI; module browse and back; switching between a Piercer and an Exotic; the passenger seat on an Exotic; `NetStats` rejection counts; the four threat rows named in section 14; golden with the full scope installed and the flag off; a run of the two capture tool tests; eight unchanged slot cards in the Piercer garage in Play (covered by the client pure tests only); the capture compare after the Stage A ROLLBACK (AUDIT was used instead, section 7.2).
+
+### 24.4 Result against "Done when"
+
+| # | Result |
+|---|---|
+| 1 | The tools accept the backup place for scoped captures. A run of the tool tests is not recorded. |
+| 2 | Met (section 4) |
+| 3 | Met. Two identical runs, re-recorded after the recorder fix. |
+| 4 | Met |
+| 5 | Met. Catalogue split parity identical; `Revision` `469d9bd8...cf0e` with Piercer only. |
+| 6 | Met |
+| 7 | Met, through the real UI |
+| 8 | Met |
+| 9 | Met with the pilot scope installed |
+| 10 | Partly. Wedge through the real UI; the other five by API. Race entry, time trial and the owned-garage bay were not run. |
+| 11 | Partly. Every recorded row passes. Four threat rows are not in the record. |
+| 12 | Met on the pilot scope |
+| 13 | Filled. Three lines say a value was not measured: the catalogue payload with Exotic on, the open-dealership refresh after a flag change, and which category opens first. |
+| 14 | Not met. No `validation_record.py` record was found. `verification.json` is the record. |
+| 15 | Met on 2026-10-03, with two gaps: no `docs/architecture/<task>-validation.json` (item 14), and the open questions in `docs/design/vehicle-frame-classes.md` are not answered. |
+| 16 | The integrator's step. Not recorded in this file. |
+
+Open items are in `docs/06_current_known_issues.md`: EXO-01 to EXO-04, VEH-01 and GAR-01.

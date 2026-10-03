@@ -42,3 +42,14 @@ Parallel feature build lessons (2026-09-26/27, map and world jobs):
 - **Measure design choices offline before implementing.** Seven route-line options and seven upscale options were scored on metrics, with comparison crops viewed before choosing. This beat guessing and gave Oscar a clear rationale.
 - **Client state fetched once at startup can fail silently while the profile loads.** The onboarding trail showed on every session because of this. Retry until Success, and gate presentation on real state.
 - **A rendering check comes before any UI/tween/screenshot step** (studio-testing-playbook). Skipping it cost time when Studio was minimised.
+
+Exotic category lessons (2026-10-02/03, backup place; [contract](architecture/exotic-category-contract.md)):
+
+- **Script size limit.** Roblox rejects a script Source of 200,000 characters or more (measured). Split generated data into chunk modules before it nears the limit.
+- **Probe the network each session.** `execute_luau` could reach localhost again on 2026-10-02 and 2026-10-03. Do not assume either state.
+- **Staging place.** The capture tools accept the backup place for scoped captures only, never the full mirror.
+- **Golden recorders.** Tokenise `os.time()` stamps and normalise generated ids before sorting. Otherwise two runs cannot be compared across days.
+- **Mouse input.** `user_mouse_input` coordinates are in GUI AbsolutePosition space (viewport pixels without the top inset), not screenshot pixels. Clicks by `instance_path` are safer.
+- **Pilot before the full content install.** One cockpit, installed and driven first, caught the seat height and the glass colour cheaply.
+- **Independent review before each APPLY.** It found one real fault in the test recorder and three installer safety gaps.
+- **On-road rating.** A spawned vehicle's PerformanceIndex double-counts some module stats. This is an existing issue in both categories (VEH-01). Do not treat the on-road number as the garage rating.

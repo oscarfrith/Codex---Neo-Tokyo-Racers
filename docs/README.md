@@ -32,6 +32,7 @@ System-level references and latest handoffs. Prefer these over dated phase logs.
 - [racing-ui-design-system-2026-07-11.md](racing-ui-design-system-2026-07-11.md) - Racing UI design system
 - [route-guide-system.md](route-guide-system.md) - Free-roam GPS route guide: owners, tuning, destinations, graph regeneration
 - [architecture/activities-contract.md](architecture/activities-contract.md) - Street Life activities: foundation APIs, ownership and installer spec format (per-feature contracts in scripts/activities/*/CONTRACT.md)
+- [architecture/exotic-category-contract.md](architecture/exotic-category-contract.md) - Exotic vehicle category contract, as delivered 2026-10-03: second category, ten slots, catalogue split, feature flag, rollback order. Installed in Space Racers Backup v2 only; agent-verified, not user-confirmed. Build interface: scripts/exotic_category/INTERFACE.md
 - [ui-free-roam-pc-design-system-2026-07-10.md](ui-free-roam-pc-design-system-2026-07-10.md) - Free-roam PC UI design system
 - [racing-ui-final-handoff-2026-07-13.md](racing-ui-final-handoff-2026-07-13.md) - Racing UI final handoff
 - [ui-free-roam-pc-final-handoff-2026-07-11.md](ui-free-roam-pc-final-handoff-2026-07-11.md) - Free-roam PC UI final handoff
@@ -368,7 +369,7 @@ Point-in-time delivery notes. Read only when investigating a regression or recov
 ## Design proposals (not approved)
 
 - [design/street-life-update.md](design/street-life-update.md) - Street Life: rank, dailies, style meter, jobs, duels, monetisation (Design - not approved)
-- [design/vehicle-frame-classes.md](design/vehicle-frame-classes.md) - Vehicle frame classes (round 2): twelve new modular vehicle categories as hover jets, including realistic Muscle, Exotic and GT; the frame standard that makes parts interchange; signature kits; slot mapping and contract (Design - not approved). Class and frame sheets with concept images are in [design/vehicle-categories/](design/vehicle-categories/); blockout tools and the shared brief are in [scripts/vehicle_blockouts/](../scripts/vehicle_blockouts/CONTRACT.md).
+- [design/vehicle-frame-classes.md](design/vehicle-frame-classes.md) - Vehicle frame classes (round 2): twelve new modular vehicle categories as hover jets, including realistic Muscle, Exotic and GT; the frame standard that makes parts interchange; signature kits; slot mapping and contract (Design - not approved; Exotic alone is implemented, in the backup place only: see [architecture/exotic-category-contract.md](architecture/exotic-category-contract.md)). Class and frame sheets with concept images are in [design/vehicle-categories/](design/vehicle-categories/); blockout tools and the shared brief are in [scripts/vehicle_blockouts/](../scripts/vehicle_blockouts/CONTRACT.md).
 
 ## Other
 

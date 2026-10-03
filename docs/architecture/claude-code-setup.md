@@ -20,13 +20,25 @@ The older standalone rbx-studio-mcp server is no longer maintained by Roblox; do
 | Hierarchy / properties | search_game_tree, inspect_instance | Read-only. |
 | Script source | script_read, script_grep, script_search | Read-only. Prefer these to reading exported mirrors for current source. |
 | Output | get_console_output | Record session/time boundaries in evidence. |
-| Run Luau | execute_luau | Used for targeted capture producer, generated AUDIT/APPLY/ROLLBACK deliveries and read-only audits. Never `require` gameplay modules (AGENTS rule). Since 2026-10-02 the Assistant sandbox has no Network capability: `HttpService` calls fail in execute_luau, so Luau cannot pull files from a local server. Send data in the code string, or give the user a small Command Bar script (the Command Bar still has network access). |
+| Run Luau | execute_luau | Used for targeted capture producer, generated AUDIT/APPLY/ROLLBACK deliveries and read-only audits. Never `require` gameplay modules (AGENTS rule). Network access is not stable, so probe it each session. Observed: this page recorded on 2026-10-02 that `HttpService` calls failed in execute_luau (no Network capability). Later on 2026-10-02, and on 2026-10-03, execute_luau could reach localhost again. Run a one-line localhost request before relying on it, and do not assume either state. If it fails, send data in the code string, or give the user a small Command Bar script (the Command Bar has network access). |
 | Play / stop | start_stop_play | Sandbox and replay remain no-save; check TEST-01 before mutation tests. |
 | Visuals | screen_capture | Edit-time camera captures. Good for lighting/UI evidence; save under the task's roblox/captures folder. |
 | Input during Play | user_keyboard_input, user_mouse_input, character_navigation | Lets the assistant drive normal UI flow. See evidence rules below. |
 | Direct script edit | multi_edit | Text-anchor replacement or new script creation. See rules. |
 | Assets | insert_asset, search_asset, generate_mesh/material/texture/procedural_model, upload_image, store_image | Create objects or assets. See rules. |
 | Roblox skills | skill | rbx-scene-analysis, rbx-perf-profiling, rbx-debug, rbx-device-simulator-lua, rbx-unit-test and docs search. Useful for PERF-06-A, CAM-02 and device layout checks. |
+
+## Places the tools accept
+
+| Place | Role | Capture tools |
+|---|---|---|
+| Space Racers v2 (71491191583884) | Working place | Scoped captures and the full checkpoint |
+| Space Racers v1 (121304917315753) | Historical | Old scoped captures still load |
+| Space Racers Backup v2 (133417340424236) | Staging place for deliveries not yet on v2 (since 2026-10-02) | **Scoped captures only.** Never the full mirror. |
+
+- An installer asserts the place of the capture it was built from. A bundle built from a backup-place capture refuses to run on v2, and the reverse.
+- For backup-place work, pick the Studio instance for place 133417340424236 and check `get_studio_state` before every write batch.
+- The backup place has API access off. Play there needs the no-save sandbox, and nothing can be saved or tested for persistence there.
 
 ## Rules for the write tools
 

@@ -1,6 +1,9 @@
 # Exotic (`exotic`): class sheet, round 2
 
 Status: design exploration, round 2, 2026-10-01. Nothing here is approved or game content.
+
+Status note (2026-10-03): this class has been implemented as a playable category in Space Racers Backup v2 only, from the blockout spec (`scripts/vehicle_blockouts/specs/exotic.json`). It is installed and agent-verified, not user-confirmed, and not on v2. Names, prices and ratings as built are in the [Exotic category contract](../../architecture/exotic-category-contract.md). Balance readings and deviations are in `scripts/exotic_category/balance/report.md`, section 14. The design text below is unchanged.
+
 Brief: [exploration contract](../../../scripts/vehicle_blockouts/CONTRACT.md). Parent: [vehicle frame classes](../vehicle-frame-classes.md). Geometry: [frame standard](exotic-frame.md). Prompts and full-size art: `output/vehicle-categories-2026-10-01/exotic/`.
 
 This is a new class in round 2. It follows Oscar's feedback: real cars first, then jets instead of wheels. Engines, stabilisers and boost are real modules on every build.

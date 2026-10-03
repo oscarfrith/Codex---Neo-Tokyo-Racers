@@ -2,6 +2,30 @@
 
 Recent deliveries, newest first. Entries before September 2026 live in [the archive](history/patch-history-2026-05-to-2026-08.md).
 
+## 2026-10-03 - Exotic vehicle category (Backup v2 only; v2 untouched)
+
+A second vehicle category is installed in Space Racers Backup v2 (place 133417340424236). Nothing is on v2 and nothing is published. Contract: [exotic-category-contract](architecture/exotic-category-contract.md).
+
+- **Category:**
+  - Exotic (`CategoryId = "exotic"`), six cockpits, one per tier: Spider, Curve, Wedge, Longtail, Hyper, Gull.
+  - 108 modules: 72 core (Standard, Lightweight, Power) and 36 body parts.
+  - Ten slots: the eight Piercer slots plus Nose (`FrontBody`) and Engine Deck (`RearBody`).
+  - A bought Exotic arrives with its own kit in all ten slots.
+- **Prices and ratings:**
+  - Cockpits from 50,000 to 12,500,000, about 25% over the matching Piercer.
+  - Stock ratings E 220, D 390, C 540, B 675, A 800, S 938.
+  - Lightweight and Power modules cost 12% of the cockpit price. Body parts cost 8,000 to 30,000 by kit.
+- **Stage A (code, 19 operations):**
+  - `VehicleCatalogData` is now an index plus chunk modules, because Roblox rejects a script source of 200,000 characters or more.
+  - 7 server and 7 client sources lose the one-category and eight-slot assumptions. Every new behaviour is opt-in through data that Piercer does not have.
+  - `BuyCockpitInstance` now validates everything before it changes the profile or debits.
+- **Stage B (content):** one dedicated installer. A pilot (the Wedge and 18 modules) came first and was rolled back; it caught the seat height and the glass colour. The full install is 6 cockpits, 108 modules and 1,746 template parts.
+- **Flag and sandbox:** `Flag_VehicleClass_exotic` is on in that place. The no-save sandbox is on; it is required there.
+- **Piercer:** golden replies are identical on all 24 must-match lines. One deliberate change: a purchase with a `CategoryId` that is not the cockpit's own is refused with "Cockpit not found."
+- **Not verified:** saving and rejoin, devices, two clients, race entry and time trial with an Exotic, the owned-garage bay.
+
+Agent-verified in Studio; not user-confirmed. The Wedge was tested through the real UI and the other five through API calls. Evidence: scripts/exotic_category/verification.json. Specs: scripts/exotic_category/stage_a/spec.json and scripts/exotic_category/stage_b/README.md. Open items: EXO-01 to EXO-04, VEH-01 and GAR-01 in [open issues](06_current_known_issues.md).
+
 ## 2026-09-27 - Map and jobs refinements (whole-map full map, hi-res tiles, glyph icons, speed zoom, cockpit passenger)
 
 - **Full map:**

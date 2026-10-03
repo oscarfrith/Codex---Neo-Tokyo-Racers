@@ -2,6 +2,8 @@
 
 **Status: Design - not approved.** Round 2, written 2026-10-01 from the repository, the live vehicle assets in Space Racers Backup v2 (place 133417340424236, Edit, read-only inspection) and Oscar's reference images and feedback. No game code, saved data or live vehicle assets were changed. Blockout models exist in a Workspace folder in the backup place only.
 
+**Exotic status note (2026-10-03).** Exotic alone has been implemented as a playable category, in Space Racers Backup v2 only, from the blockout spec. It is installed and agent-verified, not user-confirmed, and not on v2. See the [Exotic category contract](../architecture/exotic-category-contract.md). The rest of this document is unchanged and remains a design proposal.
+
 Round 2 applies Oscar's feedback on round 1:
 
 - **No wheels and nothing wheel-like.** Lift and thrust come from jets and thrusters.

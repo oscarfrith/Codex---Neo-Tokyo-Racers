@@ -1,8 +1,26 @@
 # Space Racers — start here
 
-Target: **Space Racers v2, place 71491191583884** (since 2026-09-26; v1 121304917315753 is historical). The start screen in v2 reads "Pulse Racers 2098". Updated 2026-09-27. This is the sole current-status entry point; historical handoffs describe evidence at the time they were written.
+Target: **Space Racers v2, place 71491191583884** (since 2026-09-26; v1 121304917315753 is historical). The start screen in v2 reads "Pulse Racers 2098". Updated 2026-10-03. This is the sole current-status entry point; historical handoffs describe evidence at the time they were written.
 
 ## Current task and next action
+
+**Exotic vehicle category (2026-10-03), installed in Space Racers Backup v2 (place 133417340424236) only. Not on v2. Not published.**
+- **What:** a second vehicle category, Exotic (`CategoryId = "exotic"`). It has six cockpits, one per tier: Spider, Curve, Wedge, Longtail, Hyper and Gull. It has 108 modules and ten slots: the eight Piercer slots plus Nose and Engine Deck. Geometry is the blockout primitives. Prices are about 25% over the matching Piercer.
+- **How:** contract [exotic-category-contract](architecture/exotic-category-contract.md); tools in `scripts/exotic_category/`. Stage A is code: 19 operations through `scripts/feature_installer.py` that remove the one-category and eight-slot assumptions. Stage B is content: one dedicated installer.
+- **Studio state (backup place):**
+  - Stage A and Stage B (full scope) are installed.
+  - The feature flag `Flag_VehicleClass_exotic` is on (`ServerStorage.Config`).
+  - The no-save sandbox is on. It is required there: API access is off, so Play cannot load a profile without it.
+  - `VehicleCatalogData` is an index plus four chunk modules (`PIERCER_1`, `PIERCER_2`, `EXOTIC_1`, `EXOTIC_2`): 12 cockpits, 224 modules.
+  - v2 is untouched.
+- **Evidence:** agent-verified in Studio. Not user-confirmed.
+  - Edit checks pass. Piercer golden parity holds.
+  - Play tests: the Wedge through the real UI (dealership, purchase, paint, garage, drive); the other five through API calls.
+  - Record: `scripts/exotic_category/verification.json`.
+  - Captures: [before](../roblox/captures/exotic-before/capture.json), [after Stage A](../roblox/captures/exotic-stage-a/capture.json), [pilot removed](../roblox/captures/exotic-pilot-removed/capture.json), [after](../roblox/captures/exotic-after/capture.json). The after capture is from 2026-10-03 10:22:35 UTC: 217 sources, 5 roots. Screenshots are in `roblox/captures/exotic-category/`.
+- **Not verified:** saving and rejoin; mobile and low-end devices; two clients; race entry and time trial with an Exotic; the owned-garage display bay. See EXO-01 to EXO-04, VEH-01 and GAR-01 in [open issues](06_current_known_issues.md).
+- **Rule:** do not turn the flag off once a saved profile owns an Exotic. Never set `PurchaseDisabled` on a category folder.
+- **Next:** Oscar play-tests in the backup place and decides on card images, flames, glass and stats. A move to v2 is a separate delivery. It needs DATA-01 persistence testing first.
 
 **World build: South Grid (2026-09-28), in Oscar's test copy "09282026_3" (place 86391254062492), not on v2 yet.**
 - **What:** the 12 blockout parcels south of the bay are replaced by a mix of The Blocks and Metabolist housing, built as `Workspace.World.City["Block S9"]` (11 LOD-structured blocks), with 6 shared skybridges and streetscape. The streetscape covers kerbs, the step wall with stairs and market, the waterfront promenade and piers, the west park and the east car-meet lot.
@@ -15,11 +33,11 @@ Target: **Space Racers v2, place 71491191583884** (since 2026-09-26; v1 12130491
 - **Evidence:** agent-verified in Edit and in a Play test (streaming, LOD culling, no errors). Not yet driven or play-tested by Oscar.
 - **Next:** Oscar reviews in the copy, then copies Block S9 and its dependencies to v2. The dependencies are the kit folder, the SG variants and the LOD5 proxies.
 
-**Design proposal: vehicle frame classes, round 2 (2026-10-01). Design - not approved; nothing installed in the game.**
+**Design proposal: vehicle frame classes, round 2 (2026-10-01). Design - not approved. Exotic alone is implemented, in the backup place only (entry above). Nothing else from this proposal is installed.**
 - **What:** twelve new modular vehicle categories and the frame standard that makes parts interchange. Three are realistic cars as hover jets (Muscle, Exotic, GT); nine are refined from round 1 (Rift, Street, Rodder, Rider, Apex, Cruiser, Hauler, Dart, Tether). Round 2 rules from Oscar: jets not wheels; engine, stabiliser and boost modules on every vehicle; each cockpit has a signature kit and any cockpit can wear any kit. Contract: [vehicle-frame-classes](design/vehicle-frame-classes.md); class and frame sheets with 96 concept images in [design/vehicle-categories](design/vehicle-categories/).
-- **Studio state:** blockouts only, in **Space Racers Backup v2 (place 133417340424236)**, under `Workspace.VehicleCategoryBlockouts` (one interchange matrix per class, anchored primitives, no scripts, safe to delete). v2 is untouched. The Studio copy predates the review fixes; refresh it with `scripts/vehicle_blockouts/install_showroom.lua` from the Command Bar (the Studio Assistant can no longer fetch local files).
+- **Studio state:** blockouts for all twelve classes, in **Space Racers Backup v2 (place 133417340424236)**, under `Workspace.VehicleCategoryBlockouts` (one interchange matrix per class, anchored primitives, no scripts, safe to delete). Exotic is also installed there as a playable category, built from the repo spec and not from the blockout folder (entry above). v2 is untouched. The Studio copy predates the review fixes; refresh it with `scripts/vehicle_blockouts/install_showroom.lua` from the Command Bar (`execute_luau` network access varies by session; see [Claude Code setup](architecture/claude-code-setup.md)).
 - **Tools:** `scripts/vehicle_blockouts/` (spec format, per-class generators, validator, previewer, showroom exporter, Studio builder, Codex image helper).
-- **Next:** Oscar reviews the gallery and blockouts, answers the three open questions in the contract, and picks a pilot class. Any build starts with `/suggest` on removing the fixed `bruiser` and eight-slot assumptions (High-Risk lane).
+- **Next:** Oscar reviews the gallery and blockouts, answers the three open questions in the contract, and picks the next class. Exotic Stage A removed the fixed `bruiser` and eight-slot assumptions in the backup place only; they remain on v2. Any build on v2 starts with `/suggest` (High-Risk lane).
 
 **Feature work (Street Life, [design](design/street-life-update.md)).** Handoff 2026-09-27. Oscar's map and jobs refinement batch is complete and installed on v2 ([contract](architecture/map-markers-contract.md)). Everything is agent-verified in Studio, mostly with synthetic movement. Oscar reviewed the results as they were delivered ("looks good"); this is not a formal play-test sign-off.
 
