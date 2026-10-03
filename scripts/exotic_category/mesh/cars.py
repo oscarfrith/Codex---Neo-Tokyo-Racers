@@ -56,6 +56,12 @@ def flange(z0, z1, y1):
     box("flange", (3.92, (y1 - 0.3) / 2, (z0 + z1) / 2), (0.16, y1 + 0.3, z1 - z0), "detail", mirror=True)
 
 
+def dfin(name, x, profile, ch="detail"):
+    """Thin diffuser strake that fills the wedge under the tail kick-up. profile: (z, top y) points."""
+    Loft([(z, dict(yt=y)) for z, y in profile], cx=x, w=0.035, yb=-0.42, nt=6, nb=6, yw=0.5).build(
+        name, ch, mirror=True)
+
+
 def tub(scallop=True):
     regs = [R(-5.2 + GAP, 2.8 - GAP, 0.0, 1.9, "secondary", 0.02)]
     if scallop:
@@ -152,11 +158,11 @@ def car_a():
                 (-5.4, dict(SIDE_F, yb=-0.1, yt=1.35, ys=0.7, rb=0.2))], **A_POD)
     a_pod(pod, -11.9, -5.4, -8.3, caps=(True, False), extra=[
         R(-11.65, -10.45, 3.3, 4.2, "glass", 0.1, side=1),
-        R(-11.6, -10.6, 1.25, 2.72, "detail", 0.22, side=1),
+        R(-11.05, -10.15, 1.25, 2.72, "detail", 0.22, side=1),
         R(-11.8, -10.0, 2.82, 2.96, "lights", -0.01, side=1)])
     pod.patch("lamp", -11.5, -10.6, 3.5, 3.9, "lights", off=-0.05, mirror=True)
     for i, u in enumerate((1.5, 1.95, 2.4)):
-        pod.patch(f"strake{i}", -11.52, -10.68, u, u + 0.14, "primary", off=-0.06, mirror=True)
+        pod.patch(f"strake{i}", -10.98, -10.22, u, u + 0.14, "primary", off=-0.06, mirror=True)
     pod.throat("noz", "max", lip="secondary", back="thrust", scale=0.78, depth=0.5, mirror=True)
     Loft([(-12.05, dict(w=0.5)), (-11.7, dict(w=1.1)), (-10.9, dict(w=1.35))], cx=5.12, yb=-0.52, yt=-0.42,
          nt=5, nb=5).build("splitter", "secondary", mirror=True)
@@ -175,8 +181,8 @@ def car_a():
     box("blade", (0, 2.36, 11.02), (6.6, 0.1, 0.16), "lights_red")
     for i, y in enumerate((2.1, 1.85, 1.6, 1.35, 1.1, 0.85)):
         box(f"strake{i}", (3.0, y, 11.04), (0.78, 0.09, 0.2), "primary", mirror=True)
-    for i, x in enumerate((2.75, 3.1, 3.45)):
-        box(f"fin{i}", (x, 0.0, 10.95), (0.06, 0.7, 1.0), "detail", mirror=True)
+    for i, x in enumerate((2.8, 3.25)):
+        dfin(f"fin{i}", x, ((8.8, -0.3), (10.0, 0.05), (11.3, 0.5)))
 
     K.begin(c, "RPOD")
     pod = Hull([(3.6, dict(SIDE_R, yb=-0.5, yt=1.6)),
@@ -293,7 +299,7 @@ def car_b():
         lamp.throat(f"lens{i}", "min", lip="secondary", back="lights", scale=0.78, depth=0.06, mirror=True)
     Loft([(-12.4, dict(w=0.7)), (-12.0, dict(w=1.2)), (-11.2, dict(w=1.38))], cx=5.08, yb=-0.52, yt=-0.44,
          nt=4, nb=5).build("splitter", "secondary", mirror=True)
-    flange(-11.9, -5.6, 0.5)
+    flange(-8.8, -5.6, 0.5)
 
     # Tail: drooping round tail with a dorsal fin, round lamps and a louvred deck.
     K.begin(c, "TAIL")
@@ -312,8 +318,7 @@ def car_b():
     fin = Loft([(7.4, dict(yt=2.6)), (10.2, dict(yt=2.98)), (11.15, dict(yt=2.2))], w=0.09, yb=1.85, nt=2, nb=2)
     fin.build("fin", "secondary")
     box("rain", (0, 2.3, 11.2), (0.16, 0.45, 0.08), "lights_red")
-    for i, x in enumerate((2.75, 3.1)):
-        box(f"vane{i}", (x, -0.05, 10.95), (0.06, 0.6, 1.0), "detail", mirror=True)
+    dfin("vane", 2.75, ((8.8, -0.05), (10.0, 0.25), (11.3, 0.6)))
 
     K.begin(c, "RPOD")
     pod = Hull([(3.6, dict(cx=4.98, w=0.85, wi=0.95, yb=-0.3, yt=1.35, ys=0.7, rb=0.3)),
@@ -349,7 +354,7 @@ def car_b():
     K.begin(c, "WING")
     Loft([(-3.9, dict(cx=11.05, w=0.45, yb=2.75, yt=2.87)), (0, {}), (3.9, dict(cx=11.05, w=0.45, yb=2.75, yt=2.87))],
          axis="x", cx=10.75, w=0.7, yb=2.85, yt=3.0, yw=0.6, nt=2.2, nb=2.6).build("blade", "primary")
-    blade("pylon", 2.6, 1.25, 2.84, (10.3, 11.0), (10.5, 11.2), "secondary")
+    blade("pylon", 2.6, 1.25, 2.84, (9.9, 11.15), (10.35, 11.25), "secondary", t=0.11)
 
 
 # ---------------------------------------------------------------- builds and sheets
@@ -397,8 +402,7 @@ def build_all(render=True):
             files.append(K.shot(j(OUT, f"{car}_side.jpg"), (x, 1.0, 0), az, 4, 60, only=only))
             files.append(K.shot(j(OUT, f"{car}_rear_close.jpg"), (x, 1.0, 3), 24, 14, 38, only=only))
             files.append(K.shot(j(OUT, f"{car}_front_close.jpg"), (x, 1.0, -3), 152, 14, 38, only=only))
-            files.append(K.shot(j(OUT, f"{car}_front_low.jpg"), (x - (0.5 if car == "a" else -0.5), 0.6, -6),
-                                180 - (22 if car == "a" else -22), 3, 30, only=only))
+            files.append(K.shot(j(OUT, f"{car}_front_low.jpg"), (x, 0.6, -6), 158, 3, 30, only=only))
         files.append(K.shot(j(OUT, "pure_top.jpg"), (0, 0, 0), 180, 89, 80, only=["pure0", "pure1"]))
     stats = {k: v["tris"] for k, v in K.MODS.items()}
     return {"problems": problems, "files": files, "stats": stats}
