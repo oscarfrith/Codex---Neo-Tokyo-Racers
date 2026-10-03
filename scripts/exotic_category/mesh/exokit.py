@@ -22,7 +22,7 @@ import bpy
 PREFIX = "EXO_"
 STATE = {"car": None, "coll": None, "key": None}
 MODS = {}
-SHARP = math.radians(26)
+SHARP = math.radians(40)  # only for caps, throats and boxes; skins use explicit creases
 BEVEL = 0.0  # edge bevels switched off: they broke up along gently curving creases
 ET = 0.05  # wall width of a sunk region along the loft axis
 
@@ -117,6 +117,9 @@ class _Surface:
     def _fill(self, row):
         pass
 
+    def _crease(self, side, u):
+        return ()
+
     def params(self, t):
         key = round(t, 5)
         if key not in self._cache:
@@ -168,15 +171,34 @@ class _Surface:
             ts.extend(seg if i == 0 else seg[1:])
         ring = self._ring(regions)
         n = len(ring)
-        verts = []
+        verts, tags = [], []
         for t in ts:
             for r in ring:
                 side, u = self._key(r)
                 depth = 0.0
-                for g in regions:
+                tg = set(self._crease(side, u))
+                for gi, g in enumerate(regions):
                     if self._hit(g, t, side, u, lo, hi, True):
                         depth = g["depth"]
+                    if g["depth"] and self._hit(g, t, side, u, lo, hi, False):
+                        (ta, tb), (ua, ub) = g["t"], g["u"]
+                        for k, m in enumerate((ta, ta + ET, tb - ET, tb)):
+                            if abs(t - m) < 1e-6:
+                                tg.add(("t", gi, k))
+                        for k, m in enumerate((ua, ua + self.EU, ub - self.EU, ub)):
+                            if abs(u - m) < 1e-6:
+                                tg.add(("u", gi, k, side))
                 verts.append(self._pt(t, r, off=-depth, scale=scale))
+                tags.append(tg)
+        # An edge is a hard crease when both ends sit on the same crease line or region wall line.
+        sharp = []
+        for i in range(len(ts)):
+            for j in range(n):
+                a, b = i * n + j, i * n + (j + 1) % n
+                if tags[a] & tags[b]:
+                    sharp.append((a, b))
+                if i + 1 < len(ts) and tags[a] & tags[a + n]:
+                    sharp.append((a, a + n))
         faces, fch = [], []
         for i in range(len(ts) - 1):
             tc = (ts[i] + ts[i + 1]) / 2
@@ -198,7 +220,7 @@ class _Surface:
         if caps[1]:
             faces.append(tuple((len(ts) - 1) * n + j for j in range(n)))
             fch.append(ch)
-        return _add(name, verts, faces, ch, mirror, fch=fch)
+        return _add(name, verts, faces, ch, mirror, fch=fch, sharp=sharp)
 
     def throat(self, name, end, lip="primary", wall="detail", back="detail", scale=0.8, depth=0.5,
                mirror=False):
@@ -298,6 +320,14 @@ class Hull(_Surface):
     UMIN = 0.0
     UMAX = 6.0
 
+    def __init__(self, stations, axis="z", creases=(1, 2, 3, 4), **defaults):
+        self.creases = tuple(creases)
+        super().__init__(stations, axis, **defaults)
+
+    def _crease(self, side, u):
+        k = int(round(u))
+        return ((("c", side, k),) if abs(u - k) < 1e-9 and k in self.creases else ())
+
     def _fill(self, row):
         row.setdefault("wi", row["w"])
         row.setdefault("tumi", row["tum"])
@@ -312,6 +342,17 @@ class Hull(_Surface):
         u = min(max(u, 0.0), 6.0)
         i = min(int(u), 5)
         s = u - i
+        if i >= 4:
+            # Top edge to centre is one smooth curve, level at the centre line, so the two halves
+            # meet without a ridge and the outline has no kink at the inner break.
+            q = (u - 4.0) / 2.0
+            c0, c3 = k[4], k[6]
+            c1 = (c0[0] + (k[5][0] - c0[0]) * 0.8, c0[1] + (k[5][1] - c0[1]) * 0.8)
+            c2 = (k[5][0] * 0.45, c3[1])
+            m = 1.0 - q
+            b0, b1, b2, b3 = m * m * m, 3 * m * m * q, 3 * m * q * q, q * q * q
+            return (b0 * c0[0] + b1 * c1[0] + b2 * c2[0] + b3 * c3[0],
+                    b0 * c0[1] + b1 * c1[1] + b2 * c2[1] + b3 * c3[1])
         (x0, y0), (x1, y1) = k[i], k[i + 1]
         x, y = x0 + (x1 - x0) * s, y0 + (y1 - y0) * s
         bulge = p["cs"] if i == 2 else p["crown"] if i > 2 else 0.0
@@ -395,10 +436,12 @@ def _material(car, ch):
     return m
 
 
-def _add(name, verts, faces, ch, mirror=False, closed=True, fch=None):
+def _add(name, verts, faces, ch, mirror=False, closed=True, fch=None, sharp=()):
     fch = list(fch) if fch else [ch] * len(faces)
+    sharp = list(sharp)
     if mirror:
         n = len(verts)
+        sharp += [(a + n, b + n) for a, b in sharp]
         verts = list(verts) + [(-x, y, z) for x, y, z in verts]
         faces = list(faces) + [tuple(reversed([i + n for i in f])) for f in faces]
         fch = fch + fch
@@ -421,6 +464,12 @@ def _add(name, verts, faces, ch, mirror=False, closed=True, fch=None):
     for e in bm.edges:
         if len(e.link_faces) == 2 and e.calc_face_angle(0.0) > SHARP:
             e.smooth = False
+    if sharp:
+        bm.verts.ensure_lookup_table()
+        for a, b in sharp:
+            e = bm.edges.get((bm.verts[a], bm.verts[b]))
+            if e is not None:
+                e.smooth = False
     bm.to_mesh(mesh)
     bm.free()
     ob = bpy.data.objects.new(full, mesh)

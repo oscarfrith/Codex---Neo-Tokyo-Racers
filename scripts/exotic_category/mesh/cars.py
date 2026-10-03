@@ -131,11 +131,13 @@ def car_a():
         R(-12.5, -10.5, 2.86, 3.0, "lights", -0.01),
         R(-11.2, -7.0, 5.0, 6.0, "secondary", 0.03), R(-9.9, -7.4, 4.15, 4.85, "detail", 0.18)])
     louvres(nose, "hood", -9.8, -7.5, 4.2, 4.8, 6, off=-0.1)
-    jaw = rect([(-12.0, {}), (-10.5, {})], 0, 3.3, -0.4, 0.3, c=0.12)
+    # The grille block and the splitter follow the curve of the prow.
+    jaw = Loft([(-12.3, dict(w=1.9)), (-11.9, dict(w=2.9)), (-11.2, dict(w=3.4)), (-10.5, dict(w=3.5))],
+               yb=-0.4, yt=0.3, nt=5, nb=5)
     jaw.build("jaw", "secondary", caps=(False, True))
-    jaw.throat("grille", "min", lip="secondary", scale=0.9, depth=1.0)
-    Loft([(-12.7, dict(w=2.6)), (-12.35, dict(w=3.5)), (-11.5, dict(w=3.78))], yb=-0.52, yt=-0.42, nt=6,
-         nb=6).build("splitter", "secondary")
+    jaw.throat("grille", "min", lip="secondary", scale=0.88, depth=0.5)
+    Loft([(-12.7, dict(w=1.6)), (-12.4, dict(w=2.7)), (-11.7, dict(w=3.45)), (-10.8, dict(w=3.78))],
+         yb=-0.52, yt=-0.42, nt=5, nb=5).build("splitter", "secondary")
 
     # Front engines: free-standing fenders with a channel to the body. Rounded prow set back from the
     # nose, slim headlight on its front face under a lid, light blade below, strake intake underneath.
@@ -156,7 +158,8 @@ def car_a():
     for i, u in enumerate((1.5, 1.95, 2.4)):
         pod.patch(f"strake{i}", -11.52, -10.68, u, u + 0.14, "primary", off=-0.06, mirror=True)
     pod.throat("noz", "max", lip="secondary", back="thrust", scale=0.78, depth=0.5, mirror=True)
-    box("splitter", (5.15, -0.47, -11.5), (2.6, 0.1, 1.0), "secondary", mirror=True)
+    Loft([(-12.05, dict(w=0.5)), (-11.7, dict(w=1.1)), (-10.9, dict(w=1.35))], cx=5.12, yb=-0.52, yt=-0.42,
+         nt=5, nb=5).build("splitter", "secondary", mirror=True)
     box("channel", (4.02, -0.05, -8.2), (0.42, 0.5, 5.2), "detail", mirror=True)
 
     K.begin(c, "TAIL")
@@ -172,8 +175,8 @@ def car_a():
     box("blade", (0, 2.36, 11.02), (6.6, 0.1, 0.16), "lights_red")
     for i, y in enumerate((2.1, 1.85, 1.6, 1.35, 1.1, 0.85)):
         box(f"strake{i}", (3.0, y, 11.04), (0.78, 0.09, 0.2), "primary", mirror=True)
-    for i, x in enumerate((2.85, 3.4)):
-        box(f"fin{i}", (x, 0.05, 10.95), (0.1, 0.8, 1.1), "detail", mirror=True)
+    for i, x in enumerate((2.75, 3.1, 3.45)):
+        box(f"fin{i}", (x, 0.0, 10.95), (0.06, 0.7, 1.0), "detail", mirror=True)
 
     K.begin(c, "RPOD")
     pod = Hull([(3.6, dict(SIDE_R, yb=-0.5, yt=1.6)),
@@ -205,10 +208,12 @@ def car_a():
     box("panel", (0, 1.4, 10.98), (5.1, 1.1, 0.1), "detail")
     for i, y in enumerate((1.85, 1.6, 1.35, 1.1)):
         box(f"strake{i}", (0, y, 11.06), (5.0, 0.09, 0.2), "primary")
-    rect([(10.7, {}), (11.6, {})], 0, 2.5, -0.4, 0.82, c=0.15).build("housing", "secondary")
-    t = rect([(11.0, {}), (12.0, {})], 1.1, 0.8, -0.24, 0.66, c=0.14)
+    Hull([(10.7, dict(w=2.5, yb=-0.42, yt=0.85)), (11.5, dict(w=2.3, yb=-0.3, yt=0.8))], rb=0.3, ys=0.5,
+         tum=0.3, drop=0.0, wcf=0.5, d2=0.0, crown=0.0).build("housing", "secondary")
+    t = Loft([(11.2, {}), (12.0, {})], cx=1.1, w=0.8, yb=-0.2, yt=0.62, nt=5, nb=5, yw=0.5)
     t.build("burner", "secondary", mirror=True, caps=(True, False))
     t.throat("noz", "max", lip="secondary", back="thrust", scale=0.84, depth=0.35, mirror=True)
+    box("divider", (0, 0.2, 11.75), (0.06, 0.9, 0.7), "detail")
 
     K.begin(c, "WING")
     Loft([(-3.9, dict(w=0.6, cx=11.2)), (0, {}), (3.9, dict(w=0.6, cx=11.2))], axis="x", cx=11.05, w=0.8,
