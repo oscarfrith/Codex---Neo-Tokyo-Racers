@@ -793,7 +793,11 @@ def build_content(mode="AUDIT", scope="pilot", balance_path=BALANCE_PATH, catalo
         "fingerprints": fingerprints,
     }
     fixture = bool(balance.get("fixture")) or "STAGE_B_FIXTURE" in catalogue_gen
-    canonical = json.dumps({"content": content, "scope": scope}, sort_keys=True, separators=(",", ":"), ensure_ascii=True)
+    with open(ENGINE_PATH, "rb") as f:
+        engine_sha = hashlib.sha256(b"\n".join(f.read().splitlines())).hexdigest()
+    generator_sha = hashlib.sha256("\n".join(catalogue_gen.splitlines()).encode("utf-8")).hexdigest()
+    # The hash covers the engine and the generator too: a repaired engine must replace earlier content on APPLY.
+    canonical = json.dumps({"content": content, "scope": scope, "engine": engine_sha, "generator": generator_sha}, sort_keys=True, separators=(",", ":"), ensure_ascii=True)
     content["meta"] = {"mode": mode, "scope": scope, "marker": ids["marker"], "placeId": ids["placeId"], "fixture": fixture,
                        "contentHash": hashlib.sha256(canonical.encode("ascii")).hexdigest(), "seats": seats_state}
     report = {

@@ -1,0 +1,9 @@
+{
+  "task": "exotic-category-flag-on",
+  "lane": "Standard",
+  "contract": "docs/architecture/exotic-category-contract.md: Studio override Flag_VehicleClass_exotic=true on ServerStorage.Config turns the Exotic category on in the backup place (catalogue entry and both buy actions). ROLLBACK removes the attribute, which hides the category and refuses new buys.",
+  "verification": "AUDIT before/after; Play: dealership lists Exotic with the flag on; golden parity with the flag off",
+  "operations": [
+    {"kind": "attribute", "path": ["ServerStorage", "Config"], "key": "Flag_VehicleClass_exotic", "value": true}
+  ]
+}

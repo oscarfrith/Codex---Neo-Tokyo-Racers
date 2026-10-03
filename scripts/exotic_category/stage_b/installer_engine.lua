@@ -1285,7 +1285,6 @@ if MODE == "ROLLBACK" then
 	local ok, message = xpcall(function()
 		detach(stateInfo.found.preview[1])
 		for _, name in ipairs(VFX_NAMES) do detach(stateInfo.found.vfx[name][1]) end
-		for _, chunk in ipairs(stateInfo.found.chunks) do detach(chunk) end
 		detach(stateInfo.found.server[1])
 		local after = STAGE_B_CATALOGUE_GEN()
 		for _, chunk in ipairs(after.chunks) do
@@ -1296,6 +1295,8 @@ if MODE == "ROLLBACK" then
 		assert(loadstring(after.index, "VehicleCatalogData"), "regenerated index does not compile")
 		table.insert(journal.sources, { script = catalogueIndex, source = catalogueIndex.Source })
 		catalogueIndex.Source = after.index
+		-- The index is rewritten first, so it never names a chunk that has already gone.
+		for _, chunk in ipairs(stateInfo.found.chunks) do detach(chunk) end
 		local _, diffs = catalogueState()
 		assert(#diffs == 0, "catalogue check after rollback: " .. table.concat(diffs, "; "))
 		assert(categories:GetChildren()[1] == piercer, "PIERCER is no longer the first category")
@@ -1393,7 +1394,9 @@ local ok, message = xpcall(function()
 		for _, chunk in ipairs(stateInfo.found.chunks) do detach(chunk) end
 		detach(stateInfo.found.server[1])
 	end
-	-- 3. Authoring category and VFX templates.
+	-- 3. Authoring category and VFX templates. The marker goes on before the folder enters the tree, so a hard stop
+	-- can never leave an unmarked EXOTIC folder behind.
+	staging.server:SetAttribute("InstalledBy", MARKER)
 	place(staging.server, categories)
 	assert(categories:GetChildren()[1] == piercer, "PIERCER is no longer the first category")
 	for _, folder in ipairs(staging.vfx) do

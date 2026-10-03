@@ -1,13 +1,22 @@
 {
   "_note": "Template colours. Primary, Secondary and (cockpit) Neon come from the native build paint in scripts/vehicle_blockouts/specs/exotic.json. The game repaints Primary, Secondary, Detail, Neon and ThrustColor parts at spawn and in previews, so template colours on those channels only matter when a template is viewed raw in Studio. Glass and lamp colours are final: no script touches them.",
   "detail": "#22252b",
-  "glass": "#5f8fb0",
-  "glassTransparency": 0.35,
+  "glass": "#18202a",
+  "glassTransparency": 0.3,
   "thrust": "#ffffff",
   "optionalNeon": "#ffffff",
   "lamp": "kitNeon",
   "_lamp": "kitNeon = the native neon paint of the cockpit that owns the kit (as the blockout shows it). A hex value here gives every Nose and Engine Deck lamp that colour instead.",
-  "defaultFrontLights": [252, 250, 255],
-  "defaultRearLights": [255, 116, 116],
-  "_defaultLights": "DefaultFrontLightsColor and DefaultRearLightsColor are the values every Piercer cockpit carries. Exotic cockpits have no Neon-channel parts, so only the paint UI reads them."
+  "defaultFrontLights": [
+    252,
+    250,
+    255
+  ],
+  "defaultRearLights": [
+    255,
+    116,
+    116
+  ],
+  "_defaultLights": "DefaultFrontLightsColor and DefaultRearLightsColor are the values every Piercer cockpit carries. Exotic cockpits have no Neon-channel parts, so only the paint UI reads them.",
+  "_glass": "Pilot Play test 2026-10-03: the blockout glass (#5f8fb0 at 0.35) read milky white under the garage lights. Dark tint, as the concept art and the Piercer canopy."
 }

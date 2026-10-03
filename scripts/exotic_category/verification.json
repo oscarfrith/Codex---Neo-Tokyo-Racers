@@ -1,0 +1,67 @@
+{
+  "task": "Exotic vehicle category (second category, ten slots) in Space Racers Backup v2",
+  "date": "2026-10-03",
+  "place": "Space Racers Backup v2 (133417340424236). v2 (71491191583884) untouched.",
+  "lane": "High-Risk",
+  "contract": "docs/architecture/exotic-category-contract.md",
+  "interface": "scripts/exotic_category/INTERFACE.md",
+  "captures": {
+    "before": "roblox/captures/exotic-before/capture.json",
+    "after_stage_a": "roblox/captures/exotic-stage-a/capture.json",
+    "pilot_removed": "roblox/captures/exotic-pilot-removed/capture.json",
+    "after": "roblox/captures/exotic-after/capture.json",
+    "screenshots": "roblox/captures/exotic-category/"
+  },
+  "review": {
+    "build": "Six builders, each followed by an independent reviewer and a fix pass (catalogue split, server, client, balance, content installer, contract).",
+    "stage_a": "delivery-reviewer before APPLY: no blocker in any after-source; one fault in the golden recorder (os.time stamps) fixed and the baseline re-recorded twice before APPLY.",
+    "stage_b": "delivery-reviewer before APPLY: no blocker; three installer safety fixes applied first (content hash covers engine and generator; marker set before parenting; rollback rewrites the index before detaching chunks)."
+  },
+  "installation": {
+    "stage_0": "Capture tools accept the backup place for scoped captures only. StudioVehicleSandboxEveryPlay=true (required: API access is off, Play cannot load a profile without it).",
+    "stage_a": "feature_installer, 19 operations: AUDIT before -> APPLY 19 -> AUDIT after -> ROLLBACK 19 -> AUDIT before -> APPLY 19 -> repeat APPLY 0.",
+    "stage_b_pilot": "exotic_03 with 18 modules: AUDIT -> APPLY -> ROLLBACK (Stage A AUDIT after, 0 changed; revision 469d9bd8...cf0e) -> APPLY -> Play tests -> ROLLBACK (capture compare with exotic-stage-a: no source delta; only the flag attribute differs).",
+    "stage_b_full": "6 cockpits, 108 modules, 1,746 template parts, 162 module sockets: AUDIT BLOCKER=0 WARN=0 -> APPLY -> AUDIT installed-full -> repeat APPLY 0.",
+    "flag": "Flag_VehicleClass_exotic=true on ServerStorage.Config (scripts/exotic_category/flag)."
+  },
+  "state_after": {
+    "catalogue": "index plus PIERCER_1, PIERCER_2, EXOTIC_1, EXOTIC_2; 12 cockpits, 224 modules; revision 37f47fadff3d352d2bcc97399369f46044dd022e1d2e1661bcb28d642f5b986f",
+    "checks": "check_projection.py and check_catalogue.py pass on exotic-after (split form, preview projection fresh, 5,340 preview instances). post_install_checks: template paths 0 unreachable, channel census equal, sockets 192 all under parts, preview parity exact. Attribute census: 0 problems across 6 cockpits and 108 modules (prices, defaults, upgrade guides, lock attributes)."
+  },
+  "piercer_parity": {
+    "golden": "scripts/exotic_category/golden.lua, 26 steps. golden-before.txt recorded twice in fresh sandbox sessions (identical). After Stage A: 24 of 24 must-match lines identical; Z01 now 'Cockpit not found.' and Z02 equals X06 (the unknown-category leak is fixed). With the pilot installed and the flag off: all 26 lines identical to the Stage A result; Exotic buys refused with cash unchanged.",
+    "seats": "Spawned Piercer DriverSeat (0, 1, 6) and PassengerSeat (0, 1, 1.5) before and after.",
+    "ui": "Dealership ratings Forge E 202, Vector D 374, Viper C 525, Nightline B 662, Rally A 787, Zenith S 925. Piercer category view lists six Piercer cards only.",
+    "tests": "Server pure tests 28 of 28; client pure tests 20 of 20 plus parity on live Piercer data; catalogue split parity identical."
+  },
+  "exotic_play_tests": {
+    "interaction": "normal-ui for the dealership, purchase, paint, garage and drive of exotic_03 (start screen passed through the visible flow); api for the remaining purchases, crafted calls and the spawn cycle of the other five",
+    "dealership": "Exotic category button; six cards Spider E 220 $50,000, Curve D 390 $150,000, Wedge C 540 $440,000, Longtail B 675 $1.40M, Hyper A 800 $4.40M, Gull S 938 $12.50M; preview shows the full ten-part car.",
+    "purchase_ui": "Wedge bought through the UI: cash 1,000,000 -> 560,000; ten included modules; first-purchase onboarding advanced to stage 2.",
+    "garage_ui": "Ten slot cards with Exotic labels (Main Turbine, Side Engines, Stabilisers, Afterburner, Nose, Engine Deck, Splitter, Diffuser, Side Pods, Wing); Nose shop card reads SHOVEL NOSE / STANDARD / $14,000; whole-vehicle paint recolours cockpit and modules.",
+    "drive": "Wedge spawned from the garage: seated driver inside the cabin, 96 mph cruise, boost drains the bar with afterburner flame, drift steering, drive-to-earn pays. Engine, boost and stabiliser jets show at the nozzles.",
+    "seat": "Measured rootPartCentreAboveSeatTop 1.437; occupant top Y 3.58 against the lowest closed roof underside 3.83 (Wedge).",
+    "all_six_spawned": "Spider, Curve, Wedge, Longtail, Hyper, Gull each bought with ten installed modules and spawned: 172 to 204 parts, 13 to 15 sockets, on-road tier equal to the garage tier (on-road PI 420, 566, 699, 816, 944 for Curve to Gull).",
+    "module_economy": "Lightweight and Power 52,800 on Wedge; extra Standard copy 52,800; body parts 14,000 / 23,000 / 30,000 by kit; upgrades 3,025 and 3,575; neon 7,000 on a part with optional neon; underglow and thrust colour 5,000.",
+    "refusals_cash_intact": "Exotic buys with the flag off; nose into Engine Deck; Side Engines part into Main Turbine and the reverse; Piercer part on an Exotic; Exotic cockpit under the Piercer category; locked family ('Buy Gull before buying this module family.'); neon on a part without optional neon; third vehicle with a full garage.",
+    "no_regrant": "Default nose moved to a second Wedge, both vehicles reselected: nose instances stayed at three.",
+    "free_roam_menu": "My Vehicles lists all six Exotics with names and ratings.",
+    "errors": "Server and client logs: no error or warning from this work."
+  },
+  "not_verified": [
+    "Saving and rejoin (API access is off in this place; DATA-01 stays open before any move to v2)",
+    "Mobile and low-end devices (150 to 204 primitive parts per car)",
+    "Two-client behaviour",
+    "Race entry and time trial with an Exotic",
+    "Owned-garage display bay with an Exotic",
+    "Driving feel, looks and VFX taste: Oscar's to judge",
+    "Flag off after an Exotic is owned (documented as unsupported)"
+  ],
+  "known_issues_recorded": [
+    "Spawned vehicles double-count module TopSpeed, Weight and three boost stats, so the on-road PI is higher than the garage PI (Forge 245 against 202; Wedge 566 against 540). Existing behaviour for Piercer; tiers still match.",
+    "No cockpit card images (MenuImage empty): cards show the HOVERCAR text.",
+    "Neon inheritance and the legacy four-slot default re-grant are unchanged and now apply to Exotic core slots too.",
+    "Cloned accessory upgrade paths on Splitter, Diffuser, Wing and Side Pods carry Drag, which lowers the rating on S tier until the low-drag path is bought (same as Zenith)."
+  ],
+  "rollback": "Stage B: build_content.py --mode ROLLBACK --scope full, run in Edit; then flag ROLLBACK (scripts/exotic_category/flag); then Stage A: feature_installer ROLLBACK from spec.json against exotic-before. Stage B must be removed before Stage A."
+}

@@ -142,3 +142,12 @@ Same as Piercer (see `authoring.md` sections 3-10, `runtime.md` 13, `paintvfx.md
 - Paint: channel folders plus `PaintChannel` attribute on each part. Spec channel `thrust` becomes `ThrustColor` under `THRUST_COLOR_WhiteByDefault`. Spec channel `driver` parts are dropped. Neon parts on `FrontBody` and `RearBody` go in a folder `LIGHTS_AlwaysOn` with `PaintChannel="Lights"`, Material Neon, part names without `neon`. Neon parts on other modules go in `NEON_OptionalLights`.
 - VFX sockets are Attachments parented to the module or cockpit root part, flame along local +Z, `VFXSocket=true`, `VFXTemplate` naming an Exotic-scaled template: `EngineJet_Exotic`, `BoostJet_Exotic`, `StabiliserJet_ExoticLeft`, `StabiliserJet_ExoticRight` (new folders in `ReplicatedStorage.Assets.VFX.VehicleTemplates`, cloned and scaled from the stock ones by the installer).
 - Seat offsets from the blockout driver position: driver about (-1.8, 0.25, 0.45), passenger mirrored (+1.8), per cockpit.
+
+## As built (2026-10-03, after the two delivery reviews)
+
+- **Flag off.** The category is left out of the server catalogue and both buy actions refuse, as written above. `PurchaseDisabled` is a **reserved** category field: the client hunks that read it (GarageUI U7-U10, GarageBrowserUI B1) are inert plumbing and no server code sends it. Never set a `PurchaseDisabled` attribute on a category folder: folder attributes are copied to the client, so it would hide the category on the client with no server enforcement. Do not turn the flag off once any saved profile owns an Exotic; owners keep their cars, but the garage UI for that category would be missing.
+- **Seat offsets fall back per axis**, not all-or-nothing: a missing `DriverSeatOffsetY` uses the global Y. Exotic cockpits always set all six.
+- **Missing gate.** `GarageCatalogService` warns once and hides flagged categories if `GarageServer` does not pass `categoryFlagEnabled` (the two must be installed together; the installer refuses a mixed state).
+- **Defaults pre-check** covers only the defaults a cockpit declares. The Stage B installer must assert all ten on every Exotic cockpit.
+- **Golden recorder**: `scripts/exotic_category/golden.lua`. Keys ending `AtUnix` are tokenised so runs on different days compare.
+- **Known live issue, not changed here:** a spawned vehicle's `PerformanceIndex` double-counts module TopSpeed, Weight and three boost stats (a stock Forge reads E 245 on the road against 202 in the garage). It affects Piercer today and will affect Exotic the same way.

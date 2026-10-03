@@ -1,19 +1,23 @@
 {
   "_note": "Per-cockpit seat offsets (root local space). Stage A reads DriverSeatOffsetX/Y/Z in DriverSeatServer and PassengerSeatOffsetX/Y/Z in VehicleBuildService.addPassengerSeat; the seat part (2.2 x 0.45 x 2.2) is placed with its centre at root.CFrame * CFrame.new(offset). build_content.py derives the values from the spec driver dummy unless an override is given below.",
   "rule": {
-    "seatSize": [2.2, 0.45, 2.2],
-    "rootPartCentreAboveSeatTop": 1.5,
+    "seatSize": [
+      2.2,
+      0.45,
+      2.2
+    ],
+    "rootPartCentreAboveSeatTop": 1.437,
     "_rootPartCentreAboveSeatTop": "ASSUMPTION until pilotAcceptance says otherwise: Roblox seats a character with its HumanoidRootPart centre 1.5 studs above the seat top (SeatWeld C0 = seat top, C1 = (0,-1.5,0) for a standard 2-stud root part). The R15 torso is centred on the root part, so seat centre Y = dummy torso centre Y - 1.5 - seatSize.Y/2. measure_seat.lua reports the real number in the pilot Play test.",
     "driverX": "torso",
     "passengerX": "mirror",
     "_tradeOff": "An Exotic cabin is about 3.8 studs high inside (floor top Y 0, Wedge roof underside Y 3.83). A seated R15 avatar needs about 4.4 (feet about 2.25 below the root part centre, head top about 2.2 above it). With the torso on the dummy (seat Y -0.325, root part at Y 1.4) the head sits where the dummy head is (top about Y 3.6, under the roof) and the feet end about 0.45 below the tub underside. With INTERFACE.md's first guess (seat Y about 0.25, root part at Y 1.975) the feet stay inside and the head goes about 0.3 through the Wedge roof. This file follows the dummy torso, so the derived seat Y (-0.325) is 0.575 lower than the INTERFACE.md figure. The pilot Play test decides, and the decision is recorded in pilotAcceptance."
   },
   "pilotAcceptance": {
-    "decision": "pending",
+    "decision": "measured",
     "_decision": "pending | measured | overrides. pending: nothing measured yet; the pilot scope builds and applies (the installer reports a WARN), the full scope does not APPLY (build_content.py refuses to build it and the full AUDIT reports a BLOCKER). measured: measure_seat.lua was run in the pilot Play test; put its rootPartCentreAboveSeatTop in measuredRootPartCentreAboveSeatTop, say when and where in measuredOn, and set rule.rootPartCentreAboveSeatTop to the same number (within 0.01) unless every cockpit has an override. overrides: no measurement is used; every cockpit in scope has explicit values in overrides (for example the INTERFACE.md figure).",
-    "measuredRootPartCentreAboveSeatTop": null,
-    "measuredOn": "",
-    "note": ""
+    "measuredRootPartCentreAboveSeatTop": 1.437,
+    "measuredOn": "2026-10-03, Space Racers Backup v2 (133417340424236), pilot exotic_03, R15 avatar, server read while seated",
+    "note": "Driver HumanoidRootPart at (-1.8, 1.337, 0.45) in root space; body low Y -0.74, body high Y 3.564 (Wedge roof underside 3.83). Head inside the roof; feet 0.34 below the tub underside, hidden by the body. Accepted by the integrator; looks are Oscar's to judge."
   },
   "overrides": {},
   "_overrides": "Optional, per cockpit: {\"driver\": [x, y, z], \"passenger\": [x, y, z]} (seat centre, root local space, each number within +-40). An override replaces the derived values for that cockpit. The INTERFACE.md figure for all six would be: {\"exotic_01\": {\"driver\": [-2.0, 0.25, 0.45], \"passenger\": [2.0, 0.25, 0.45]}, \"exotic_02\": {\"driver\": [-1.5, 0.25, 0.45], \"passenger\": [1.5, 0.25, 0.45]}, \"exotic_03\": {\"driver\": [-1.8, 0.25, 0.45], \"passenger\": [1.8, 0.25, 0.45]}, \"exotic_04\": {\"driver\": [-1.8, 0.25, 0.45], \"passenger\": [1.8, 0.25, 0.45]}, \"exotic_05\": {\"driver\": [-1.8, 0.25, 0.45], \"passenger\": [1.8, 0.25, 0.45]}, \"exotic_06\": {\"driver\": [-1.8, 0.25, 0.45], \"passenger\": [1.8, 0.25, 0.45]}}"
