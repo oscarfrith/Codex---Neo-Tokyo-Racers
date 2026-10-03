@@ -2,6 +2,16 @@
 
 Recent deliveries, newest first. Entries before September 2026 live in [the archive](history/patch-history-2026-05-to-2026-08.md).
 
+## 2026-10-03 - Exotic mesh pilot: Curve and Hyper from uploaded meshes (Backup v2 only)
+
+Cockpits `exotic_02` and `exotic_05` and their modules are built from MeshParts cloned out of model asset `112592679936648`. Contract: [INTEGRATION.md](../scripts/exotic_category/mesh/INTEGRATION.md). Reviewed by `delivery-reviewer` (approve with conditions, recorded in the contract).
+
+- **Content:** seven mesh slots per car, three versions each (Standard, GT, EVO). Twelve new body ModuleIds; 120 Exotic modules. Side Pods, Splitter and Diffuser start empty on the two mesh cars.
+- **Unchanged:** every game script; Piercer; Exotic kits 01, 03, 04, 06.
+- **Installed:** content hash `4d735c74...`, catalogue revision `7a9044f3...`. AUDIT, APPLY, ROLLBACK, APPLY and post-install checks all clean.
+- **Evidence:** agent-verified, partial: dealership preview and purchase of the mesh Curve in Play. Not user-confirmed. Seats on 02 and 05 are not measured.
+- **Recovery:** build `stage_b` at commit `b9d1c8a` and APPLY to return to the primitive Exotic.
+
 ## 2026-10-03 - Exotic vehicle category (Backup v2 only; v2 untouched)
 
 A second vehicle category is installed in Space Racers Backup v2 (place 133417340424236). Nothing is on v2 and nothing is published. Contract: [exotic-category-contract](architecture/exotic-category-contract.md).
