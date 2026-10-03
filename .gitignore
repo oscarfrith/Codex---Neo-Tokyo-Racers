@@ -55,3 +55,5 @@ roblox/exported_scripts/ServerStorage/NeoTokyoRacers_LegacyArchive/
 # Exotic category: generated installers (rebuild with feature_installer.py / stage_b/build_content.py).
 scripts/exotic_category/stage_a/out/
 scripts/exotic_category/stage_b/out/
+# Exotic mesh pilot: generated exports (rebuild with scripts/exotic_category/mesh/export.py).
+scripts/exotic_category/mesh/export/
