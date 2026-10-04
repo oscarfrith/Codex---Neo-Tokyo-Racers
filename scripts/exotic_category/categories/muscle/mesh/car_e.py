@@ -2,15 +2,17 @@
 
 Design language of E: the formal, upright one. Three-box saloon (bonnet, cabin, long flat boot) with an
 upright rear window, a tall shield grille that is wider at the top, a power dome with twin slim slots,
-vertical blade lamps front and rear, tall upright-sided fenders with a bronze pinstripe, and every nozzle
-stacked or grouped vertically.
+vertical blade lamps front and rear, and every nozzle stacked or grouped vertically. Pods and sill are
+"vertical blades": tall, narrow, slab-sided, flat-topped fins standing clear of the body with a bronze spine,
+joined at the base by a thin dark plank.
 """
 import exokit as K
 from exokit import Hull, Loft, R, box
 from musclekit import GAP, POD_FZ, POD_RZ, SEAM_F, SEAM_R, SIDE_F, SIDE_R, Z_F, Z_R
-from muscle_cars import LINE, POD_LINE, barrel, bazooka, build_car, flange, lift_glow, tub
+from muscle_cars import LINE, barrel, bazooka, build_car, flange, lift_glow, tub
 
-PIN = (POD_LINE[0] + 0.11, POD_LINE[1] - 0.03)   # bronze shoulder pinstripe on the pods
+BX, BW = 5.47, 0.47   # blade pods: centre and half width (x 5.0 to 5.94, clear of the body side)
+BAND = (-0.86, -0.62)  # bronze band: the outer edge of the sill plank, carried along both blades
 
 
 def blade(name, x, y0, y1, z, face, ch, w=0.13):
@@ -67,6 +69,11 @@ def e_nose():
              "cheek", "primary", mirror=True)
     Hull([(-13.15, dict(w=3.42, yb=0.0, yt=0.6, ys=0.46)), (-12.3, dict(w=3.6, yb=-0.05, yt=0.63, ys=0.48))],
          rb=0.2, tum=0.12, drop=0.08, wcf=0.7, d2=0.0, crown=0.02).build("bumper", "primary")
+    # slim bronze surround, so the recess reads as the shield
+    sh = Hull([(-13.07, {}), (-12.97, {})], w=1.04, yb=0.58, yt=2.34, ys=0.66, rb=0.02, tum=-0.86, drop=0.0,
+              wcf=0.7, d2=0.0, crown=0.0, cs=0.0)
+    sh.build("shield", "secondary", caps=(False, False))
+    sh.throat("shieldn", "min", lip="secondary", wall="detail", back="detail", scale=0.9, depth=0.35)
     box("intake", (0, 0.3, -13.17), (3.4, 0.26, 0.08), "detail")
     Loft([(-13.5, dict(w=3.0)), (-12.9, dict(w=3.55)), (-11.2, dict(w=3.85))], yb=-0.5, yt=-0.38, nt=5,
          nb=5).build("chin", "secondary")
@@ -79,50 +86,71 @@ def e_nose():
               "dome", "primary", regions=[R(-9.6, -7.2, 4.55, 5.05, "detail", 0.05)])
 
 
-def e_pod_regions(z0, z1):
-    """Tall fender: body colour over a bronze rocker, with a bronze shoulder pinstripe."""
-    return [R(z0 + 0.15, z1 - 0.15, 1.0, 2.0, "secondary", 0.02),
-            R(z0 + 0.45, z1 - 0.25, PIN[0], PIN[1], "secondary", 0.02, side=1)]
+def port(name, z0, z1, x, y, r, ry, end, back):
+    """Upright slot in a bronze frame on a blade end face: a jet (back thrust) or an intake (back detail)."""
+    t = Loft([(z0, {}), (z1, {})], cx=x, w=r, yb=y - ry, yt=y + ry, nt=4.5, nb=4.5, yw=0.5)
+    t.build(name, "secondary", mirror=True, caps=(False, False))
+    t.throat(name + "n", end, lip="secondary", back=back, scale=0.78, depth=0.05, mirror=True)
+
+
+def slab(z0, y0, z1, y1, yb):
+    """Blade pod: a slab-sided, flat-topped upright fin standing clear of the body, with a bronze spine
+    along its top and a bronze band low on the flank at the height of the sill edge, so one line runs from
+    the front lamp to the rear nozzles. Top runs straight from y0 at z0 to y1 at z1."""
+    d = dict(cx=BX, w=BW, yb=yb, rb=0.06, tum=0.0, drop=0.0, wcf=0.7, d2=0.0, crown=0.0, cs=0.0)
+    pod = Hull([(z0, dict(yt=y0)), (z1, dict(yt=y1))], ys=BAND[1], **d)
+    u = 2.0 + (BAND[0] - yb - 0.06) / (BAND[1] - yb - 0.06)
+    pod.build("skin", "primary", mirror=True, regions=[R(z0, z1, 5.0, 6.0, "secondary", -0.05),
+                                                        R(z0, z1, u, 3.0, "secondary", 0.0, side=1)])
+    return pod
+
+
+def plinth(stations, yb):
+    """Dark buttress that carries a blade off the body: full sill height at the sill end, falling away
+    towards the far end so the blade stands free above it."""
+    Hull(stations, cx=4.56, w=0.46, yb=yb, ys=-0.9, rb=0.03, tum=0.0, drop=0.0, wcf=0.7, d2=0.0, crown=0.0,
+         cs=0.0).build("plinth", "detail", mirror=True)
 
 
 def e_fpod():
-    """Front engine fender: tall and upright-sided, with a vertical blade lamp on the outer front edge."""
+    """Front blade: lower than the bonnet, its whole leading edge a vertical lamp, the jet an upright slot
+    high on its rear face (set shallow: the blade is solid behind it). A dark plinth at the base carries it off the body and covers the sill end."""
     K.begin("E", "FPOD")
-    pod = Hull([(-12.7, dict(cx=5.38, w=1.2, yb=-0.85, yt=2.05, ys=1.5, rb=0.3, tum=0.16, drop=0.16)),
-                (-12.2, dict(cx=5.4, w=1.28, yb=-1.05, yt=2.22, ys=1.6, tum=0.18)),
-                (-10.5, dict(w=1.32, yt=2.5, ys=1.75, tum=0.2)), (-8.0, dict(w=1.32, yt=2.5, ys=1.75, tum=0.24)),
-                (POD_FZ, SIDE_F)], **SIDE_F)
-    pod.build("skin", "primary", mirror=True, caps=(True, False), regions=e_pod_regions(-12.7, POD_FZ))
-    pod.throat("noz", "max", lip="secondary", back="thrust", scale=0.5, depth=0.6, mirror=True)
-    blade("lamp", 6.16, -0.2, 1.62, -12.7, -1, "lights")
-    flange(-11.2, -6.4, -0.3, 1.9)
-    lift_glow(pod, [(-10.4, -7.4)])
+    pod = slab(-12.85, 2.3, POD_FZ, 2.5, -1.25)
+    blade("lamp", BX, -0.95, 2.0, -12.85, -1, "lights", w=0.2)
+    port("jet", POD_FZ - 0.3, POD_FZ + 0.08, BX, 1.8, 0.3, 0.5, "max", "thrust")
+    plinth([(-10.6, dict(yt=-0.5)), (-7.6, dict(yt=1.1)), (POD_FZ, dict(yt=1.1))], -1.25)
+    flange(-10.0, -6.2, -0.3, 1.0)
+    lift_glow(pod, [(-11.6, -7.4)])
 
 
 def e_rpod():
-    """Rear engine fender: upright haunch no taller than the deck, two rounded-rectangle nozzles stacked."""
+    """Rear blade: the same fin, a little taller but below the deck, ending in an upright bronze frame that
+    holds two rounded-rectangle nozzles one above the other. An intake slot on its front face."""
     K.begin("E", "RPOD")
-    pod = Hull([(POD_RZ, SIDE_R), (5.4, dict(w=1.32, yb=-1.35, yt=2.85, ys=2.1, tum=0.24)),
-                (8.6, dict(w=1.32, yb=-1.35, yt=3.05, ys=2.3, tum=0.2)),
-                (10.2, dict(w=1.3, yb=-1.25, yt=3.02, ys=2.28, tum=0.18)),
-                (11.3, dict(cx=5.4, w=1.22, yb=-1.0, yt=2.88, ys=2.18, tum=0.18))], **SIDE_R)
-    pod.build("skin", "primary", mirror=True, caps=(False, True), regions=e_pod_regions(POD_RZ, 11.3))
-    pod.throat("intake", "min", lip="primary", wall="detail", back="detail", scale=0.76, depth=0.5, mirror=True)
-    for i, y in enumerate((1.62, 0.22)):
-        barrel(f"barrel{i}", 10.6, 12.2, 5.42, y, 0.8, depth=0.6, collar=False, ry=0.56, n=4.5)
-    flange(4.4, 10.6, -0.3, 2.1)
-    lift_glow(pod, [(5.8, 9.6)])
+    pod = slab(POD_RZ, 2.85, 11.3, 3.0, -1.3)
+    port("intake", POD_RZ - 0.08, POD_RZ + 0.3, BX, 2.0, 0.3, 0.55, "min", "detail")
+    Loft([(11.3, {}), (11.6, {})], cx=BX, w=BW + 0.12, yb=-1.4, yt=3.12, nt=6, nb=6, yw=0.5).build(
+        "frame", "secondary", mirror=True)
+    for i, y in enumerate((1.81, -0.09)):
+        barrel(f"barrel{i}", 10.9, 12.15, BX, y, 0.37, depth=0.25, collar=False, ry=0.8, n=4.5)
+    plinth([(POD_RZ, dict(yt=1.1)), (5.6, dict(yt=1.1)), (9.4, dict(yt=-0.5))], -1.3)
+    flange(4.2, 9.0, -0.3, 1.0)
+    lift_glow(pod, [(5.2, 10.0)])
 
 
 def e_stab():
-    """Sill unit with three slim pipes grouped together, swept back and down."""
+    """Sill: a low, thin, flat dark plank between the blade bases with a bronze outer edge, and three slim
+    pipes grouped on a body-colour root block, swept back and down."""
     K.begin("E", "STAB")
-    sill = Hull([(POD_FZ + 0.1, {}), (POD_RZ - 0.1, {})], cx=4.95, w=0.85, yb=-1.2, yt=1.0, ys=0.6, rb=0.3, tum=0.2,
-                drop=0.12, wcf=0.6, d2=0.0, crown=0.04)
-    sill.build("skin", "primary", mirror=True, regions=[
-        R(POD_FZ + 0.1, POD_RZ - 0.1, 1.0, 2.0, "secondary", 0.02)])
+    z0, z1 = POD_FZ + 0.1, POD_RZ - 0.1
+    sill = Hull([(z0, {}), (z1, {})], cx=5.0, w=0.9, yb=-1.2, yt=BAND[1], ys=BAND[0], rb=0.08, tum=0.0, drop=0.0,
+                wcf=0.7, d2=0.0, crown=0.0, cs=0.0)
+    sill.build("skin", "detail", mirror=True, regions=[R(z0, z1, 3.0, 4.0, "secondary", 0.0, side=1)])
+    Hull([(-2.5, {}), (0.1, {})], cx=4.6, w=0.5, yb=-0.62, yt=0.0, ys=-0.35, rb=0.03, tum=0.2, drop=0.0, tumi=0.0,
+         wcf=0.7, d2=0.0, crown=0.0, cs=0.0).build("root", "primary", mirror=True)
     for i, z in enumerate((-2.1, -1.3, -0.5)):
-        bazooka(f"pipe{i}", 5.3, 6.6, z, 0.1, 0.27, back=0.9, down=0.65, wide=0.9, flat=1.25, n=3.5)
+        bazooka(f"pipe{i}", 4.9, 6.5, z, -0.22, 0.24, back=0.9, down=0.6, wide=0.9, flat=1.25, n=3.5)
     lift_glow(sill, [(-5.0, -3.6), (1.6, 3.0)])
 
 
@@ -159,11 +187,12 @@ def e_boost():
 
 
 def e_wing():
-    """Low boot lip with a small upturned trailing edge, in the secondary colour."""
+    """Boot lip that kicks up into a thin ducktail edge, in the secondary colour."""
     K.begin("E", "WING")
-    Hull([(10.9, dict(yt=3.3)), (11.8, dict(yt=3.4)), (12.25, dict(w=3.4, yb=3.14, ys=3.2, yt=3.62))], w=3.46,
-         yb=3.05, ys=3.1, rb=0.02, tum=0.1, drop=0.2, wcf=0.72, d2=0.04, crown=0.04).build(
-             "lip", "secondary", regions=[R(10.9, 11.4, 1.0, 6.0, "primary", 0.0)])
+    Hull([(10.6, dict(yt=3.3)), (11.5, dict(yt=3.4)), (12.0, dict(yt=3.62, yb=3.2, ys=3.3)),
+          (12.45, dict(w=3.4, yb=3.82, ys=3.88, yt=4.02))], w=3.46, yb=3.05, ys=3.1, rb=0.02, tum=0.1, drop=0.12,
+         wcf=0.72, d2=0.03, crown=0.03).build(
+             "lip", "secondary", regions=[R(10.6, 11.1, 1.0, 6.0, "primary", 0.0)])
 
 
 def car_e():

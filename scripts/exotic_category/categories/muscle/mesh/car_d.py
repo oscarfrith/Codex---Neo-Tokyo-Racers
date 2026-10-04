@@ -3,14 +3,15 @@
 Design language of D: long bonnet and a fastback roof that falls in one line down the longest rear glass of
 the six, small triangular quarter window over an upswept beltline, forward-leaning shark nose with a wide
 hexagonal grille, twin racing stripes over bonnet, roof and deck, one round turbine through the bonnet,
-tri-bar lamps front and rear, low pedestal spoiler, smooth fenders with broad rear hips, and round nozzles
-everywhere: two stacked on each rear pod, one flared megaphone in each sill, two wide-set overdrive tips.
+tri-bar lamps front and rear, low pedestal spoiler. Pods are "exposed barrels": short round cowls from which
+bare round metal barrels run on (one along each front flank, two stacked behind each rear cowl), a slim sill
+rail with one big megaphone under it, and two wide-set overdrive tips. The round metal tube is the theme.
 """
 import exokit as K
 import musclekit as M
 from exokit import Hull, Loft, R, box
-from musclekit import GAP, POD_FZ, POD_RZ, SEAM_F, SEAM_R, SIDE_F, SIDE_R, Z_F, Z_R
-from muscle_cars import LINE, POD_LINE, barrel, build_car, flange, lift_glow, tub, tube
+from musclekit import GAP, POD_FZ, POD_RZ, SEAM_F, SEAM_R, Z_F, Z_R
+from muscle_cars import LINE, build_car, flange, tub, tube
 
 # Twin stripes: one band each side of the centre line (ring range on the top panels). The roof is narrower
 # than the body, so its band starts further out along the ring to stay in line with bonnet and deck.
@@ -24,23 +25,37 @@ def slant_bar(name, x, y0, y1, z0, z1, w, lean, ch):
          yw=0.5).build(name, ch, mirror=True)
 
 
+def pipe(name, z0, z1, x, y, r, depth=0.6):
+    """The round bare-metal barrel of this car: a tube firing backwards that ends in a rolled lip with a
+    glowing throat. Front pod, rear pod and overdrive all use it."""
+    lip = dict(w=r * 1.1, yb=y - r * 1.1, yt=y + r * 1.1)
+    t = Loft([(z0, {}), (z1 - 0.6, {}), (z1 - 0.32, lip), (z1, lip)], cx=x, w=r, yb=y - r, yt=y + r, nt=2, nb=2,
+             yw=0.5)
+    t.build(name, "metal", mirror=True, caps=(True, False))
+    t.throat(name + "n", "max", lip="metal", back="thrust", scale=0.84, depth=depth, mirror=True)
+
+
 def megaphone(name, x0, x1, z, y, r0, r1, back=0.9, down=0.5):
-    """Drift thruster: a round tube that widens toward its mouth, swept back and down."""
+    """Drift thruster: a round tube with a bold bell mouth, swept back and down."""
     def at(x, k):
         s = (x - x0) / (x1 - x0)
-        r = (r0 + (r1 - r0) * s ** 1.6) * k
+        r = (r0 + (r1 - r0) * s ** 2.2) * k
         yc = y - down * s
         return (x, dict(cx=z + back * s, w=r, yb=yc - r, yt=yc + r))
     kw = dict(axis="x", nt=2, nb=2, yw=0.5)
-    xs = [x0 + (x1 - x0) * i / 5 for i in range(6)]
-    Loft([at(x, 1.0) for x in xs], **kw).build(name, "metal", mirror=True, caps=(True, False))
-    Loft([at(x1 - 0.42, 0.86), at(x1 - 0.38, 0.86)], **kw).build(name + "glow", "thrust", mirror=True)
-    Loft([at(x1 - 0.38, 0.86), at(x1, 0.9)], **kw).build(name + "bore", "detail", mirror=True, caps=(False, False))
+    xs = [x0 + (x1 - x0) * i / 8 for i in range(9)]
+    Loft([at(x, 1.0) for x in xs], **kw).build(name, "metal", mirror=True, caps=(True, False), step=0.2)
+    Loft([at(x1 - 0.42, 0.84), at(x1 - 0.38, 0.84)], **kw).build(name + "glow", "thrust", mirror=True)
+    Loft([at(x1 - 0.38, 0.84), at(x1, 0.92)], **kw).build(name + "bore", "detail", mirror=True, caps=(False, False))
 
 
-def d_pod_regions(z0, z1):
-    return [R(z0 + 0.15, z1 - 0.15, 1.0, 2.0, "secondary", 0.02),
-            R(z0 + 0.45, z1 - 0.25, POD_LINE[0], POD_LINE[1], "primary", 0.05, side=1)]
+# Cowl paint: body colour over a dark belly, with one white pinstripe along the outboard edge of the belly.
+COWL = dict(nt=2.6, nb=5, yw=0.45)
+
+
+def cowl_regions(z0, z1):
+    return [R(z0, z1, 198.0, 338.0, "detail", 0.0),
+            R(z0 + 0.3, z1 - 0.3, 338.0, 343.0, "secondary", 0.0)]
 
 
 def d_cockpit():
@@ -106,45 +121,57 @@ def d_nose():
 
 
 def d_fpod():
-    """Front fender, smooth on top, with the tri-bar lamp on its face."""
+    """Exposed barrel: a short round cowl carries the tri-bar lamp; behind it one bare barrel runs back
+    along the flank, half sunk in a slim fender, and exits at the pod's rear face."""
     K.begin("D", "FPOD")
-    pod = Hull([(-12.7, dict(cx=5.38, w=1.2, yb=-0.75, yt=1.7, ys=1.15, rb=0.3, tum=0.25, drop=0.18)),
-                (-12.2, dict(cx=5.4, w=1.28, yb=-1.05, yt=1.95, ys=1.35)),
-                (-10.5, dict(w=1.32, yt=2.25)), (-8.0, dict(w=1.32, yt=2.4)),
-                (POD_FZ, SIDE_F)], **SIDE_F)
-    pod.build("skin", "primary", mirror=True, caps=(True, False), regions=d_pod_regions(-12.7, POD_FZ))
-    pod.throat("noz", "max", lip="primary", back="thrust", scale=0.5, depth=0.6, mirror=True)
+    cowl = Loft([(-12.7, dict(cx=5.38, w=1.2, yb=-0.75, yt=1.7)), (-12.2, dict(yb=-1.05, yt=1.98)),
+                 (-10.8, dict(w=1.32, yb=-1.18, yt=2.3)), (-9.3, dict(yb=-1.2, yt=2.22))], cx=5.4, w=1.3, **COWL)
+    cowl.build("cowl", "primary", mirror=True, caps=(True, False), step=0.3, regions=cowl_regions(-12.7, -9.3))
+    cowl.throat("cowlend", "max", lip="primary", wall="detail", back="detail", scale=0.93, depth=0.5, mirror=True)
+    # slim fender behind the cowl: it closes the sill end and holds the barrel in its outboard side
+    core = Hull([(-9.75, {}), (POD_FZ, {})], creases=(), cx=5.0, w=0.9, yb=-1.25, yt=1.62, ys=1.0, rb=0.35,
+                tum=0.3, drop=0.22, wcf=0.7, d2=0.03, crown=0.06, cs=0.03)
+    core.build("core", "primary", mirror=True, caps=(True, True), regions=[
+        R(-9.75, POD_FZ, 0.0, 2.0, "detail", 0.0)])
+    pipe("barrel", -9.75, POD_FZ + 0.08, 5.82, 0.5, 0.76)
     Loft([(-12.8, {}), (-12.6, {})], cx=5.38, w=0.84, yb=0.28, yt=1.36, nt=5, nb=5, yw=0.5).build(
         "lamppanel", "detail", mirror=True)
     for i, x in enumerate((4.82, 5.3, 5.78)):
         slant_bar(f"bar{i}", x, 0.42, 1.22, -12.9, -12.7, 0.11, 0.16, "lights")
-    flange(-11.2, -6.4, -0.3, 1.9)
-    lift_glow(pod, [(-10.4, -7.4)])
+    flange(-11.2, -6.4, -0.3, 1.5)
+    cowl.patch("lift", -11.9, -10.0, 258.0, 282.0, "thrust", mirror=True)
 
 
 def d_rpod():
-    """Rear fender with broad hips, no taller than the deck, and two round nozzles one above the other."""
+    """Exposed barrels: a short muscular cowl, widest over its middle, stops with a clean trailing edge;
+    two large bare barrels, one above the other, run on from it to the tail."""
     K.begin("D", "RPOD")
-    pod = Hull([(POD_RZ, SIDE_R), (5.6, dict(w=1.4, yb=-1.35, yt=2.88, ys=2.0)),
-                (8.4, dict(w=1.5, yb=-1.35, yt=3.08, ys=2.15)), (10.2, dict(w=1.42, yb=-1.25, yt=2.95, ys=2.1)),
-                (11.3, dict(cx=5.4, w=1.25, wi=1.25, yb=-0.9, yt=2.65, ys=1.9))], **dict(SIDE_R, wi=1.32))
-    pod.build("skin", "primary", mirror=True, caps=(False, True), regions=d_pod_regions(POD_RZ, 11.3))
-    pod.throat("intake", "min", lip="primary", wall="detail", back="detail", scale=0.76, depth=0.5, mirror=True)
-    for i, y in enumerate((0.08, 1.6)):
-        barrel(f"barrel{i}", 10.6, 12.4, 5.42, y, 0.68, depth=0.7, collar=False)
-    flange(4.4, 10.6, -0.3, 2.1)
-    lift_glow(pod, [(5.8, 9.6)])
+    cowl = Loft([(POD_RZ, dict(cx=5.2, w=1.1, yb=-1.35, yt=2.0)), (5.4, dict(cx=5.4, w=1.3, yt=2.82)),
+                 (7.0, dict(cx=5.5, w=1.4, yb=-1.42, yt=3.1)), (8.6, dict(cx=5.42, w=1.32, yt=3.02)),
+                 (9.5, dict(cx=5.34, w=1.24, yb=-1.34, yt=2.88))], cx=5.42, w=1.32, yb=-1.4, yt=3.0, **COWL)
+    cowl.build("cowl", "primary", mirror=True, caps=(False, False), step=0.3, regions=cowl_regions(POD_RZ, 9.5))
+    cowl.throat("intake", "min", lip="primary", wall="detail", back="detail", scale=0.72, depth=0.5, mirror=True)
+    cowl.throat("cowlend", "max", lip="primary", wall="detail", back="detail", scale=0.94, depth=0.6, mirror=True)
+    for i, y in enumerate((-0.24, 1.74)):
+        pipe(f"barrel{i}", 8.8, 12.6, 5.3, y, 0.94, depth=0.7)
+    # dark web between the barrels and a pylon to the body side
+    box("web", (5.3, 0.75, 10.5), (0.7, 0.5, 2.6), "detail", mirror=True)
+    box("pylon", (4.25, 0.75, 10.3), (0.6, 1.5, 2.2), "detail", mirror=True)
+    flange(4.6, 9.3, -0.3, 2.0)
+    cowl.patch("lift", 5.6, 8.6, 258.0, 282.0, "thrust", mirror=True)
 
 
 def d_stab():
-    """Sill unit with one flared megaphone that fires sideways, swept back and down."""
+    """Slim body-colour rail tucked up high against the body, with one big megaphone hanging below it,
+    swept back and down."""
     K.begin("D", "STAB")
-    sill = Hull([(POD_FZ + 0.1, {}), (POD_RZ - 0.1, {})], cx=4.95, w=0.85, yb=-1.2, yt=1.0, ys=0.6, rb=0.3, tum=0.2,
-                drop=0.12, wcf=0.6, d2=0.0, crown=0.04)
-    sill.build("skin", "primary", mirror=True, regions=[
-        R(POD_FZ + 0.1, POD_RZ - 0.1, 1.0, 2.0, "secondary", 0.02)])
-    megaphone("megaphone", 5.3, 6.82, -1.5, 0.15, 0.36, 0.84, back=1.0, down=0.55)
-    lift_glow(sill, [(-5.0, -3.6), (1.6, 3.0)])
+    z0, z1 = POD_FZ + 0.1, POD_RZ - 0.1
+    rail = Hull([(z0, {}), (z1, {})], creases=(), cx=4.56, w=0.46, yb=0.3, yt=1.08, ys=0.8, rb=0.2, tum=0.16,
+                drop=0.1, wcf=0.6, d2=0.0, crown=0.05, cs=0.04)
+    rail.build("rail", "primary", mirror=True, regions=[
+        R(z0, z1, 0.0, 2.0, "detail", 0.0),
+        R(z0 + 0.3, z1 - 0.3, 2.0, 2.2, "secondary", 0.0, side=1)])
+    megaphone("megaphone", 4.5, 6.85, -2.2, -0.02, 0.36, 0.95, back=1.3, down=0.52)
 
 
 def d_tail():
@@ -174,8 +201,8 @@ def d_boost():
     K.begin("D", "BOOST")
     Hull([(10.8, dict(w=2.85)), (12.2, dict(w=2.6, yb=-0.25))], yb=-0.45, yt=1.3, rb=0.35, ys=0.95, tum=0.25,
          drop=0.05, wcf=0.6, d2=0.0, crown=0.02).build("housing", "detail", regions=[
-             R(10.8, 12.2, 0.0, 2.0, "secondary", 0.0), R(10.8, 12.2, 3.0, 4.0, "primary", 0.0)])
-    barrel("barrel", 11.6, 13.2, 1.78, 0.42, 0.7, depth=0.55, collar=False)
+             R(10.8, 12.2, 1.7, 2.0, "secondary", 0.0), R(10.8, 12.2, 3.0, 4.0, "primary", 0.0)])
+    pipe("barrel", 11.6, 13.2, 1.78, 0.42, 0.66, depth=0.55)
 
 
 def d_wing():

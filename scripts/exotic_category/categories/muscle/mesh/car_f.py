@@ -3,14 +3,16 @@ Standard trim only. Runs inside Blender; build with run_headless.py -- car_f.
 
 Design language: blunt nose that tapers in plan, deep full-width slot grille, halo lamp pairs on the front
 pods, twin shaker turbine through a raised bonnet bulge, long bonnet, low arched glasshouse with a fast rear
-window and a short deck, recessed tail panel with two ring lamps, squared nozzles, ducktail lip.
+window and a short deck, recessed tail panel with two ring lamps, ducktail lip.
+Pods and sill (round 2): drag-car nacelles. Round-section turbine pods with a metal intake ring and a stepped
+turbine exit with a centre cone, joined by a slim round rail. Round lamps, round shaker, round nacelles.
 Clean and minimal: shape, lamps, glass, stripe and jets only.
 """
 import exokit as K
 import musclekit as M  # noqa: F401
 from exokit import Hull, Loft, R, box
-from muscle_cars import LINE, POD_LINE, barrel, bazooka, build_car, flange, halo, lift_glow, tub, tube
-from musclekit import GAP, POD_FZ, POD_RZ, SEAM_F, SEAM_R, SIDE_F, SIDE_R, Z_F, Z_R
+from muscle_cars import LINE, barrel, bazooka, build_car, halo, tub, tube
+from musclekit import GAP, POD_FZ, POD_RZ, SEAM_F, SEAM_R, Z_F, Z_R
 
 
 def f_cockpit():
@@ -75,50 +77,79 @@ def f_nose():
 
 
 def f_pod_regions(z0, z1):
-    """Engine fender, standard trim: clean body colour over a black rocker, with one character line."""
-    return [R(z0 + 0.15, z1 - 0.15, 1.0, 2.0, "secondary", 0.02),
-            R(z0 + 0.45, z1 - 0.25, POD_LINE[0], POD_LINE[1], "primary", 0.05, side=1)]
+    """Nacelle paint, standard trim: body colour over a black belly. Loft ring angles."""
+    return [R(z0, z1, 198, 342, "secondary", 0.02)]
+
+
+def f_turbine(name, z1, x, y, r, step, tip):
+    """Turbine exit firing backwards: a metal ring, a second ring stepped inside it, a recessed glowing
+    core and a centre cone. z1 is the end of the outer ring; the inner ring ends step behind it and the
+    cone tip sits tip behind it."""
+    o = tube(z1 - 0.9 * r, z1, x, y, r)
+    o.build(name, "metal", mirror=True, caps=(True, False))
+    o.throat(name + "s", "max", lip="metal", wall="detail", back="detail", scale=0.9, depth=0.4 * r, mirror=True)
+    i = tube(z1 - 0.5 * r, z1 + step, x, y, 0.8 * r)
+    i.build(name + "i", "metal", mirror=True, caps=(False, False))
+    i.throat(name + "n", "max", lip="metal", wall="detail", back="thrust", scale=0.9, depth=0.32 * r, mirror=True)
+    z0 = z1 + step - 0.32 * r
+    Loft([(z0, dict(w=0.24 * r, yb=y - 0.24 * r, yt=y + 0.24 * r)), (z1 + tip, dict(w=0.03, yb=y - 0.03, yt=y + 0.03))],
+         cx=x, nt=2, nb=2, yw=0.5).build(name + "cone", "metal", mirror=True)
+
+
+def f_pylon(z0, z1, y0, y1):
+    """Dark pylon between a nacelle and the body side."""
+    box("pylon", (4.2, (y0 + y1) / 2, (z0 + z1) / 2), (0.6, y1 - y0, z1 - z0), "detail", mirror=True)
 
 
 def f_fpod():
-    """Front engine fender: a flat lamp face with a halo pair, low at the front and rising to the pod face."""
+    """Front nacelle: the squared lamp face with a halo pair grows back into a round turbine pod. Its jet
+    leaves through a shrouded turbine exit in the rear face."""
     K.begin("F", "FPOD")
-    pod = Hull([(-12.7, dict(cx=5.38, w=1.2, yb=-0.75, yt=1.7, ys=1.15, rb=0.3, tum=0.25, drop=0.18)),
-                (-12.2, dict(cx=5.4, w=1.28, yb=-1.05, yt=1.95, ys=1.35)),
-                (-10.5, dict(w=1.32, yt=2.25)), (-8.0, dict(w=1.32, yt=2.4)),
-                (POD_FZ, SIDE_F)], **SIDE_F)
-    pod.build("skin", "primary", mirror=True, caps=(True, False),
-              regions=f_pod_regions(-12.7, POD_FZ))
-    pod.throat("noz", "max", lip="secondary", back="thrust", scale=0.5, depth=0.6, mirror=True)
+    pod = Loft([(-12.7, dict(cx=5.38, w=1.2, yb=-0.75, yt=1.7, nt=5, nb=5)),
+                (-12.1, dict(cx=5.39, w=1.25, yb=-0.95, yt=1.8, nt=3.8, nb=3.8)),
+                (-11.0, dict(w=1.3, yb=-1.17, yt=1.93, nt=2.5, nb=2.8)),
+                (-8.4, dict(w=1.3, yb=-1.22, yt=1.97)),
+                (POD_FZ, dict(w=1.24, yb=-1.2, yt=1.82))], cx=5.4, w=1.3, yb=-1.2, yt=1.95, nt=2.2, nb=2.7, yw=0.5)
+    pod.build("skin", "primary", mirror=True, caps=(True, False), regions=f_pod_regions(-12.7, POD_FZ))
+    pod.throat("aft", "max", lip="primary", wall="detail", back="detail", scale=0.9, depth=0.65, mirror=True)
+    f_turbine("noz", -5.97, 5.45, 0.5, 0.68, 0.06, 0.1)
     for i, x in enumerate((4.9, 5.86)):
         halo(f"halo{i}", x, 0.82, -13.0, 0.42)
-    flange(-11.2, -6.4, -0.3, 1.9)
-    lift_glow(pod, [(-10.4, -7.4)])
+    f_pylon(-11.2, -6.8, -0.2, 0.9)
+    pod.patch("lift", -10.4, -7.4, 258, 282, "thrust", mirror=True)
 
 
 def f_rpod():
-    """Rear engine fender: a haunch no taller than the deck, with one squared nozzle behind."""
+    """Rear turbine nacelle, no taller than the deck: a barrel-shaped round pod with a plain dark intake
+    at the front and one large turbine exit behind."""
     K.begin("F", "RPOD")
-    pod = Hull([(POD_RZ, SIDE_R), (5.4, dict(w=1.32, yb=-1.35, yt=2.85, ys=2.0)),
-                (8.6, dict(w=1.32, yb=-1.35, yt=3.05, ys=2.15)), (10.2, dict(w=1.3, yb=-1.25, yt=2.95, ys=2.1)),
-                (11.3, dict(cx=5.4, w=1.2, yb=-0.9, yt=2.65, ys=1.9))], **SIDE_R)
-    pod.build("skin", "primary", mirror=True, caps=(False, True), regions=f_pod_regions(POD_RZ, 11.3))
-    pod.throat("intake", "min", lip="primary", wall="detail", back="detail", scale=0.76, depth=0.5, mirror=True)
-    barrel("barrel", 10.4, 12.3, 5.42, 0.85, 1.0, depth=0.7, collar=False, ry=0.7, n=4.5)
-    flange(4.4, 10.6, -0.3, 2.1)
-    lift_glow(pod, [(5.8, 9.6)])
+    pod = Loft([(POD_RZ, dict(cx=5.4, w=1.3, yb=-1.2, yt=2.1)),
+                (5.6, dict(w=1.4, yb=-1.25, yt=2.25)),
+                (8.4, dict(w=1.4, yb=-1.25, yt=2.25)),
+                (10.4, dict(w=1.22, yb=-0.95, yt=1.95, nb=2.2)),
+                (11.4, dict(w=1.04, yb=-0.62, yt=1.62, nb=2.0))], cx=5.5, nt=2.2, nb=2.7, yw=0.5)
+    pod.build("skin", "primary", mirror=True, caps=(False, True), regions=f_pod_regions(POD_RZ, 11.4))
+    # A plain body-colour lip and a dark tunnel. No bright ring and no centre spinner: a ring round a hub
+    # read as a wheel from the front three-quarter view.
+    pod.throat("intake", "min", lip="primary", wall="detail", back="detail", scale=0.82, depth=1.3, mirror=True)
+    f_turbine("noz", 12.05, 5.5, 0.5, 1.0, 0.25, 0.38)
+    f_pylon(4.8, 10.4, -0.2, 1.0)
+    pod.patch("lift", 5.8, 9.6, 258, 282, "thrust", mirror=True)
 
 
 def f_stab():
-    """Sill unit with two fat bazookas that fire sideways, swept back and down."""
+    """Sill unit: a slim round rail between the nacelles with a metal collar at each end and two
+    bazookas that fire sideways, swept back and down."""
     K.begin("F", "STAB")
-    sill = Hull([(POD_FZ + 0.1, {}), (POD_RZ - 0.1, {})], cx=4.95, w=0.85, yb=-1.2, yt=1.0, ys=0.6, rb=0.3, tum=0.2,
-                drop=0.12, wcf=0.6, d2=0.0, crown=0.04)
-    sill.build("skin", "primary", mirror=True, regions=[
-        R(POD_FZ + 0.1, POD_RZ - 0.1, 1.0, 2.0, "secondary", 0.02)])
+    z0, z1 = POD_FZ + 0.1, POD_RZ - 0.1
+    rail = Loft([(z0, {}), (z1, {})], cx=4.7, w=0.6, yb=-1.15, yt=-0.05, nt=2, nb=2, yw=0.5)
+    rail.build("skin", "primary", mirror=True, regions=[
+        R(z0, z0 + 0.3, 0, 360, "metal", 0.0), R(z1 - 0.3, z1, 0, 360, "metal", 0.0),
+        R(z0 + 0.3, z1 - 0.3, 198, 342, "secondary", 0.02)])
     for i, z in enumerate((-3.0, 0.4)):
-        bazooka(f"bazooka{i}", 5.3, 6.7, z, 0.05, 0.5)
-    lift_glow(sill, [(-5.0, -3.6), (1.6, 3.0)])
+        bazooka(f"bazooka{i}", 4.9, 6.3, z, -0.55, 0.5, down=0.5)
+    for i, (a, b) in enumerate(((-5.0, -3.6), (1.6, 3.0))):
+        rail.patch(f"lift{i}", a, b, 255, 285, "thrust", mirror=True)
 
 
 def f_tail():
