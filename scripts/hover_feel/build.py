@@ -211,6 +211,10 @@ CONFIG = [
     (CAMERA_CONFIG, "ChaseSlipRoll_RaisingThisDoes", "Leans the chase camera more while the vehicle slides or drifts."),
     (CAMERA_CONFIG, "ChaseRollResponse", 5),
     (CAMERA_CONFIG, "ChaseRollResponse_RaisingThisDoes", "Makes the chase camera lean and recover faster."),
+    (CAMERA_CONFIG, "ChaseDriftShiftStuds", 5),
+    (CAMERA_CONFIG, "ChaseDriftShiftStuds_RaisingThisDoes", "Moves the view farther toward the inside of the corner while the vehicle slides, putting the vehicle more off-centre. 0 turns the side shift off."),
+    (CAMERA_CONFIG, "ChaseDriftShiftResponse", 3.5),
+    (CAMERA_CONFIG, "ChaseDriftShiftResponse_RaisingThisDoes", "Makes the drift side shift arrive and recover faster."),
     (CAMERA_CONFIG, "ChaseSpeedLinesEnabled", True),
     (CAMERA_CONFIG, "ChaseSpeedLinesEnabled_Description", "Shows speed streaks at the screen edges at high speed and during boost."),
     (CAMERA_CONFIG, "ChaseSpeedLineCount", 64, [46]),
@@ -321,6 +325,13 @@ def main():
             where = "/".join(row["path"])
             if not where.startswith(allowed[0]) and (where, row["key"]) not in new_keys:
                 raise SystemExit("round 2 update touches config this delivery did not create: %s @%s" % (where, row["key"]))
+
+    if updates:
+        profile = ["ReplicatedStorage", "Config", "Audio", "VehicleProfiles", "EXOTIC_V10_AUDIO"]
+        for key, value in (("SuperchargerWhineGain", 0.1), ("TurboWhistleGain", 0.14), ("BoostDuckDb", 6),
+                           ("BoostLoopGain", 0.9), ("BoostBodyGain", 0.7), ("BoostIgnitionGain", 1), ("ProfileRevision", 3)):
+            updates.append({"path": profile, "key": key, "value": value})
+        updates.append({"path": profile + ["RevLayers", "StandInExhaust"], "key": "Gain", "value": 0.65})
 
     data = json.dumps({"placeId": PLACE_ID, "base": BASE, "scripts": scripts, "attributes": attributes,
                        "instances": instances, "updates": updates, "lateInstances": late}, sort_keys=True)

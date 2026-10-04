@@ -222,6 +222,7 @@ local function resetChase(root, cam)
 		Pitch = 0, PitchVelocity = 0,
 		Lag = 0, LagVelocity = 0,
 		Roll = 0, RollVelocity = 0,
+		Shift = 0, ShiftVelocity = 0,
 		ForwardSpeed = nil, Acceleration = 0, AccelerationVelocity = 0,
 		Punch = 0, PunchVelocity = 0,
 		KickPitch = 0, KickPitchVelocity = 0, KickRoll = 0, KickRollVelocity = 0, Bump = 0, BumpVelocity = 0,
@@ -513,6 +514,10 @@ local function updateChase(dt)
 	local rollTarget = (finite(yawRate) and yawRate or 0) * math.rad(number("ChaseTurnRollDegreesPerRadian", 3.2, 0, 20)) * smoothstep(8, 60, speedStuds)
 		- slip * number("ChaseSlipRoll", 0.22, 0, 1)
 	chase.Roll, chase.RollVelocity = critical(chase.Roll, chase.RollVelocity, math.clamp(rollTarget, -rollLimit, rollLimit), number("ChaseRollResponse", 5, 0.5, 30), dt)
+	-- Side shift: in a slide the view moves toward the inside of the corner, so the car sits off-centre
+	-- and the road it is turning into opens up.
+	local shiftTarget = math.clamp(slip / math.rad(40), -1, 1) * number("ChaseDriftShiftStuds", 5, 0, 20)
+	chase.Shift, chase.ShiftVelocity = critical(chase.Shift, chase.ShiftVelocity, shiftTarget, number("ChaseDriftShiftResponse", 3.5, 0.5, 30), dt)
 
 	-- Vertical: a spring riding the low-passed climb rate, so bumps are filtered and a steady grade leaves no lag.
 	chase.Climb += (velocity.Y - chase.Climb) * responseAlpha(4, dt)
@@ -569,9 +574,11 @@ local function updateChase(dt)
 	local viewYaw = chase.Yaw + look.Yaw
 	local pivot = Vector3.new(position.X, chase.Y + pivotHeight, position.Z)
 	local offset = -yawDirection(viewYaw) * (math.cos(elevation) * reach) + Vector3.new(0, math.sin(elevation) * reach, 0)
+	local viewRight = Vector3.new(math.cos(viewYaw), 0, -math.sin(viewYaw))
+	local sideShift = viewRight * chase.Shift
 
 	-- Occlusion: snap in, ease out, never closer than the minimum.
-	local clear = occlusionFraction(vehicle, pivot, offset)
+	local clear = occlusionFraction(vehicle, pivot, offset + sideShift * 0.6)
 	local minimum = math.clamp(number("ChaseMinDistanceStuds", 8, 1, 60) / reach, 0, 1)
 	clear = math.max(clear, minimum)
 	if clear < chase.Occlusion then
@@ -579,9 +586,9 @@ local function updateChase(dt)
 	else
 		chase.Occlusion = math.min(clear, lerp(chase.Occlusion, 1, responseAlpha(4, dt)))
 	end
-	local lens = pivot + offset * chase.Occlusion + Vector3.new(0, chase.Bump + buffetY, 0)
+	local lens = pivot + (offset + sideShift * 0.6) * chase.Occlusion + Vector3.new(0, chase.Bump + buffetY, 0)
 	local aim = Vector3.new(position.X, chase.Y + number("ChaseAimHeightStuds", 3.2, -5, 30), position.Z)
-		+ yawDirection(viewYaw + chase.LookAhead) * number("ChaseAimAheadStuds", 12, 0, 60)
+		+ yawDirection(viewYaw + chase.LookAhead) * number("ChaseAimAheadStuds", 12, 0, 60) + sideShift
 	if (aim - lens).Magnitude < 0.1 then return end
 	local result = CFrame.lookAt(lens, aim) * CFrame.Angles(chase.KickPitch, 0, chase.KickRoll + buffetRoll + chase.Roll)
 

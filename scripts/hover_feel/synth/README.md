@@ -28,16 +28,23 @@ are firing harmonics (dominant), the 2.5 order of each bank, and engine/half ord
 differences, shaped by a spectral tilt and exhaust formants. It is read with a jittered phase,
 scaled per firing event, mixed with firing-synchronous noise, saturated and EQ'd.
 
+Round 3 (depth and grunge): the orders under the firing line are 2.2x stronger; the firing
+sub-octave, first and half orders, a 35 to 220 Hz rumble bed and firing-pulsed exhaust rasp
+(300 to 1200 Hz) are added before a harder, more asymmetric saturator so they intermodulate
+into a growl; the exhaust formants moved down (450 / 900 / 1500 Hz); the 2 to 5 kHz band sits
+4 to 7 dB below round 2 and the ring-mod sheen dropped from -14 to -20 dB. `verify.py` prints
+the band shares against `baseline_round2.json`.
+
 | File | Rev | Firing Hz | Notes |
 | --- | --- | --- | --- |
-| v10_on_2000 / 3500 / 5000 / 6500 / 8000 | on-throttle | 166.67 / 291.67 / 416.67 / 541.67 / 666.67 | Bright and full; tilt flattens and drive rises with revs. A ring-mod sheen at -14 dB (carrier 2.76 x firing, derived from the engine phase) gives a metallic sci-fi edge that tracks the revs. |
+| v10_on_2000 / 3500 / 5000 / 6500 / 8000 | on-throttle | 166.67 / 291.67 / 416.67 / 541.67 / 666.67 | Muscular and snarling; drive rises with revs. A soft ring-mod sheen at -20 dB (carrier 2.76 x firing, derived from the engine phase) keeps a sci-fi edge that tracks the revs. |
 | v10_off_3000 / 6000 | coast | 250 / 500 | Low-passed, 700 Hz scoop, strong per-firing gain variation (burble), dense quiet pops. |
 | v10_idle_1000 | idle | 83.33 | Hybrid idle: lumpy V10 burble, a raspy energy-core hum on 125 Hz (a fifth above the firing note) throbbing at 2 Hz, and a faint 2640 Hz turbine whisper. |
 
 The manifest gives `firing_hz`, `engine_cycles` and `firing_periods` per loop. Lengths are chosen
 so the loop holds a whole number of engine cycles (2.88 to 3.0 s). If a resonance ever overtakes
 the firing line, that one FFT bin is raised and the gain is recorded as `firing_anchor_gain_db`
-(currently 0 dB for all eight).
+(round 3: 0 to 1.4 dB on the on-throttle loops, 4.0 dB on v10_off_6000, 4.4 dB on the idle, where the new low orders and the core hum compete with it).
 
 Suggested use: equal-power crossfade between neighbouring `on` loops by rpm, PlaybackSpeed =
 live rpm / loop rpm, and crossfade on/off sets by throttle.
@@ -46,12 +53,12 @@ live rpm / loop rpm, and crossfade on/off sets by throttle.
 
 | File | Main tone | Synthesis |
 | --- | --- | --- |
-| turbine_low | 1320 Hz blade pass | 24-blade wavetable (blade-pass harmonics + shaft buzz-saw lines), twin engine 3.3 Hz sharp, inharmonic second spool, shaped hiss, low rumble. Rasp: sawtooth buzz series two octaves down, band-limited fold, 60 to 120 Hz roughness. |
+| turbine_low | 1320 Hz blade pass | 24-blade wavetable (blade-pass harmonics + shaft buzz-saw lines), twin engine 3.3 Hz sharp, inharmonic second spool, shaped hiss. Rasp: sawtooth buzz series two octaves down, band-limited fold, 60 to 120 Hz roughness. Round 3: blade-pass tone about 4.6 dB lower and a 60 to 500 Hz roar bed. |
 | turbine_high | 2640 Hz | Same model one octave up, different seed. |
 | energy_hum | 80 Hz | Four buzzy pulse voices (root, +2.3 Hz, detuned fifth, sub octave) beating, a saw voice an octave up, 50 Hz ring, tanh plus fold, 60 to 120 Hz roughness, formants, arc crackle. |
-| thruster_roar | 48 Hz growl | Turbulence-modulated low noise, jittered low growl, expanded-noise crackle, saturation. Use as the lower body layer under boost_loop. |
-| boost_loop | 660 Hz | Whole-boost loop (3.5 s): afterburner roar under a raspy saw-voice energy scream (root, twin 4 Hz sharp, fifth) with a 12 Hz overdrive tremor. Pitch 0.9 to 1.15. |
-| supercharger_whine | 1002.67 Hz mesh | Mesh orders 1 to 4 phase/amplitude modulated at the 62.67 Hz shaft rate (sidebands), light air noise. Pitch +/- an octave. |
+| thruster_roar | 48 Hz growl | Body layer under boost_loop: turbulence-modulated rumble, low growl and low fire texture, low-passed at 300 Hz (98 % of its energy is below 250 Hz). |
+| boost_loop | 110 Hz chord root | Whole-boost loop (3.5 s), a different family from the engines: broadband fire with an 80 to 400 Hz body and crackle, a pulse-jet train of 42 to 67 Hz sub thumps at 10 per second (each with a detonation noise burst), and a modest saturated power chord (110 / 165 / 220 Hz). Pitch 0.9 to 1.15. |
+| supercharger_whine | 501.33 Hz mesh | Gear-drive growl-whine, an octave lower than round 2: eight mesh orders with heavy 62.67 Hz shaft sidebands, a sawtooth shaft growl underneath, fold rasp, 60 to 120 Hz roughness, pulsing air noise. |
 | stabiliser_strain | 2350 Hz | FM-warbled shrieks at 1 : 1.5 : 2 with a saw buzz an octave down, band-limited fold, narrow-band noise on the same pitches, 60 to 120 Hz roughness, jet hiss. |
 | drift_charge | 330 Hz | Just-intonation stack (330, 495, 660, 990, 1320, 1650 Hz), each a detuned pair with its own beat rate, 8 Hz pulse, shimmer. Pitch up with charge. |
 | wind_rush | none | Shaped broadband noise with mild gusting and two breathy whistles whose centres wander around 2300 and 3900 Hz (no fixed drone). Raise gain and PlaybackSpeed with speed. |
@@ -62,8 +69,8 @@ live rpm / loop rpm, and crossfade on/off sets by throttle.
 
 | File | Synthesis |
 | --- | --- |
-| boost_ignite | 100 ms reverse suck-in (hard gate), crack (click, snap, saturated body), 110 to 32 Hz sub drop, short whoosh, then a raspy shimmer that rises an octave onto the boost_loop root (660 Hz) with the same 12 Hz tremor and fades under the loop. |
-| boost_release | The scream falls from 1320 to 250 Hz with a slowing tremor, vent hiss, four flutter chuffs. |
+| boost_ignite | Afterburner lighting (2.2 s): 100 ms reverse suck-in (hard gate), cannon crack (click, snap, saturated body, low boom), 50 to 30 Hz sub drop held about 300 ms, thick fire-blast whoosh, then a power-up chord sweep that dives from 330 to 80 Hz and rises onto the boost_loop root (110 Hz) while 10 Hz pulse-jet thumps fade in. |
+| boost_release | Decisive ending (1.3 s): 30 ms roar cut-off, pressure-release pshh, thunk at 90 ms, short chord tone falling from 220 to 70 Hz, four flutter chuffs from 280 ms. |
 | pop_1 .. pop_4 | Overrun crackles (0.35 to 0.4 s): click, noise burst, saturated pitched body at 180 / 260 / 130 / 320 Hz; pop_2 and pop_4 add a ring-modulated electric zap edge. |
 | bang_1, bang_2 | Backfires (0.75 / 0.85 s): crack, saturated body (95 / 70 Hz), sub, a low whump swelling about 40 ms later, light sizzle. |
 | turbo_flutter | Eight chuffs slowing from 24 to 13 Hz, each a downward-swept noise burst plus pitched thup. |
@@ -71,8 +78,16 @@ live rpm / loop rpm, and crossfade on/off sets by throttle.
 | impact_light / medium / heavy / severe | Click, pitched thud, low noise body, inharmonic ring with beating doublets, debris grains; heavier hits are lower, longer, add crunch and a bounce. Peaks step -8 / -6 / -4 / -3.2 dBFS. |
 | land_thump | Saturated sub thump (85 to 40 Hz), low body noise, compression hiss whose centre rises then relaxes. |
 
-The raspy loops (turbines, energy_hum, stabiliser_strain, boost_loop) are low-passed at 7.8 kHz
-(8th order); `verify.py` checks that energy above 9 kHz is at least 25 dB below the total.
+The raspy loops (turbines, energy_hum, stabiliser_strain) are low-passed at 7.8 kHz (8th order)
+and boost_loop at 8 kHz; `verify.py` checks that energy above 9 kHz is at least 25 dB below the total.
+
+## Boost versus engine (family separation)
+
+`verify.py` prints, and `manifest.json` stores under `spectral_distance`, the cosine distance
+between octave-band energy distributions. boost_loop against v10_on_6500 is 0.66, against the
+turbine 0.60 and the supercharger 0.62, while neighbouring engine loops are 0.01 to 0.03 apart.
+71 % of boost_loop's energy is below 250 Hz, against 6 % for v10_on_6500. The stricter
+third-octave contour figure (1 - correlation of dB levels) is also listed.
 
 ## Visual hooks
 
@@ -80,9 +95,9 @@ All of these are in `manifest.json` (`transient_peak_ms`, `modulation_hz`, and t
 
 | Sound | Hook |
 | --- | --- |
-| boost_ignite | Suck-in starts 0 ms (pull light/particles inward), crack at 100 ms (flash; loudest sample at 126 ms), shimmer hand-over at 600 ms (boost_loop should be at full gain; shimmer has faded by about 1.6 s). |
-| boost_loop | 12 Hz tremor: pulse flame length or glow at 12 Hz x PlaybackSpeed. |
-| boost_release | Starts at 0 ms with the vent; flutter chuffs from 160 ms (peak at 164 ms): puff the vents. |
+| boost_ignite | Suck-in starts 0 ms (pull light/particles inward), crack at 100 ms (flash; loudest sample at 125 ms), sweep bottoms out at 280 ms, first pulse-jet thump at 350 ms then every 100 ms, hand-over at 700 ms (boost_loop should be at full gain; the one-shot has faded by about 1.8 s). |
+| boost_loop | 10 Hz pulse-jet thump train (`modulation_hz`): pulse flame length, shock diamonds or glow at 10 Hz x PlaybackSpeed. |
+| boost_release | Roar cuts at 0 ms with the pshh (vent puff), thunk at 90 ms (nozzle snaps shut), four chuffs from 280 ms. |
 | v10_idle_1000 | 2 Hz energy-core throb: slow glow pulse on a parked car. |
 | energy_hum | 2.33 Hz beat (x PlaybackSpeed). |
 | turbine_low / turbine_high | 3.33 Hz twin-engine beat. |

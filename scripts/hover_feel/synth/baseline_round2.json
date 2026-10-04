@@ -1,0 +1,125 @@
+{
+ "v10_on_2000": {
+  "below_250": 29.53,
+  "mid_250_2000": 56.13,
+  "above_2000": 14.34,
+  "whine_2k_5k": 13.31
+ },
+ "v10_on_3500": {
+  "below_250": 0.84,
+  "mid_250_2000": 81.46,
+  "above_2000": 17.7,
+  "whine_2k_5k": 16.0
+ },
+ "v10_on_5000": {
+  "below_250": 0.32,
+  "mid_250_2000": 71.45,
+  "above_2000": 28.24,
+  "whine_2k_5k": 26.05
+ },
+ "v10_on_6500": {
+  "below_250": 0.07,
+  "mid_250_2000": 61.69,
+  "above_2000": 38.24,
+  "whine_2k_5k": 35.88
+ },
+ "v10_on_8000": {
+  "below_250": 0.05,
+  "mid_250_2000": 64.36,
+  "above_2000": 35.6,
+  "whine_2k_5k": 31.17
+ },
+ "v10_off_3000": {
+  "below_250": 13.52,
+  "mid_250_2000": 82.53,
+  "above_2000": 3.95,
+  "whine_2k_5k": 3.91
+ },
+ "v10_off_6000": {
+  "below_250": 4.7,
+  "mid_250_2000": 84.44,
+  "above_2000": 10.86,
+  "whine_2k_5k": 10.66
+ },
+ "v10_idle_1000": {
+  "below_250": 80.1,
+  "mid_250_2000": 17.49,
+  "above_2000": 2.41,
+  "whine_2k_5k": 1.74
+ },
+ "turbine_low": {
+  "below_250": 3.02,
+  "mid_250_2000": 54.12,
+  "above_2000": 42.86,
+  "whine_2k_5k": 33.25,
+  "main_tone_db_re_total": -4.71
+ },
+ "turbine_high": {
+  "below_250": 0.78,
+  "mid_250_2000": 11.43,
+  "above_2000": 87.79,
+  "whine_2k_5k": 58.96,
+  "main_tone_db_re_total": -4.7
+ },
+ "energy_hum": {
+  "below_250": 57.8,
+  "mid_250_2000": 35.81,
+  "above_2000": 6.39,
+  "whine_2k_5k": 5.32,
+  "main_tone_db_re_total": -5.34
+ },
+ "thruster_roar": {
+  "below_250": 84.18,
+  "mid_250_2000": 13.74,
+  "above_2000": 2.08,
+  "whine_2k_5k": 1.16,
+  "main_tone_db_re_total": -9.94
+ },
+ "boost_loop": {
+  "below_250": 30.43,
+  "mid_250_2000": 55.48,
+  "above_2000": 14.09,
+  "whine_2k_5k": 10.23,
+  "main_tone_db_re_total": -7.34
+ },
+ "supercharger_whine": {
+  "below_250": 0.0,
+  "mid_250_2000": 78.23,
+  "above_2000": 21.76,
+  "whine_2k_5k": 20.92,
+  "main_tone_db_re_total": 1.63
+ },
+ "stabiliser_strain": {
+  "below_250": 0.01,
+  "mid_250_2000": 9.72,
+  "above_2000": 90.27,
+  "whine_2k_5k": 72.89,
+  "main_tone_db_re_total": -25.27
+ },
+ "drift_charge": {
+  "below_250": 0.58,
+  "mid_250_2000": 99.01,
+  "above_2000": 0.41,
+  "whine_2k_5k": 0.22,
+  "main_tone_db_re_total": 0.02
+ },
+ "wind_rush": {
+  "below_250": 12.79,
+  "mid_250_2000": 57.76,
+  "above_2000": 29.45,
+  "whine_2k_5k": 23.11
+ },
+ "wind_buffet": {
+  "below_250": 80.04,
+  "mid_250_2000": 17.06,
+  "above_2000": 2.9,
+  "whine_2k_5k": 2.69
+ },
+ "scrape_loop": {
+  "below_250": 0.1,
+  "mid_250_2000": 52.81,
+  "above_2000": 47.09,
+  "whine_2k_5k": 36.37,
+  "main_tone_db_re_total": -23.06
+ }
+}

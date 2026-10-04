@@ -162,6 +162,35 @@ def main():
                 check(o["transient_peak_ms"] <= 150.0, "peak later than 150 ms")
         print("%-24s %-7s %6.3f %7.2f %7.2f  %s" % (
             e["name"][:-4], e["kind"], len(x) / SR, lv["peak_dbfs"], lv["rms_dbfs"], "; ".join(notes)))
+    # ---- spectral balance vs the round 2 files (baseline_round2.json) ----
+    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "baseline_round2.json")) as fh:
+        base = json.load(fh)
+    audio = {name: x for name, x, _ in items}
+    print("\nengine energy share %   <250 Hz          250-2000 Hz      >2000 Hz        2-5 kHz change")
+    for e in manifest:
+        if e["family"] != "engine":
+            continue
+        n = e["name"][:-4]
+        s, o = ms.band_shares(audio[n]), base[n]
+        d = 10.0 * np.log10(s["whine_2k_5k"] / o["whine_2k_5k"])
+        print("%-16s r2 %5.1f -> %5.1f   r2 %5.1f -> %5.1f   r2 %5.1f -> %5.1f   %+5.1f dB" % (
+            n, o["below_250"], s["below_250"], o["mid_250_2000"], s["mid_250_2000"],
+            o["above_2000"], s["above_2000"], d))
+        if e["mode"] != "idle":
+            if not (s["below_250"] > o["below_250"] and -8.0 <= d <= -3.0):
+                fails.append("%s: balance target missed (2-5 kHz %+.1f dB)" % (n, d))
+    print("\nspectral distance (octave energy cosine / third-octave contour)")
+    pairs = [("boost_loop", "v10_on_6500"), ("boost_loop", "turbine_low"), ("boost_loop", "supercharger_whine"),
+             ("boost_loop", "thruster_roar"), ("v10_on_6500", "v10_on_5000"), ("v10_on_6500", "v10_on_8000")]
+    dist = {p: ms.spectral_distance(audio[p[0]], audio[p[1]]) for p in pairs}
+    for p in pairs:
+        print("  %-12s vs %-20s %.3f / %.3f" % (p[0], p[1], dist[p], ms.spectral_shape_distance(audio[p[0]], audio[p[1]])))
+    if dist[pairs[0]] < 10.0 * max(dist[pairs[4]], dist[pairs[5]]):
+        fails.append("boost_loop is not clearly a different family from the engine")
+    tb = ms.band_shares(audio["thruster_roar"])
+    print("thruster_roar energy below 250 Hz: %.1f %%; boost_loop: %s" % (tb["below_250"], ms.band_shares(audio["boost_loop"])))
+    if tb["below_250"] < 90.0:
+        fails.append("thruster_roar is not confined to the low end")
     spread = max(engine_rms) - min(engine_rms)
     print("engine loop RMS spread: %.2f dB" % spread)
     if spread > 3.0:
