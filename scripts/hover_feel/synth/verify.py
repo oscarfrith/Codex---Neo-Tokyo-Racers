@@ -191,6 +191,33 @@ def main():
     print("thruster_roar energy below 250 Hz: %.1f %%; boost_loop: %s" % (tb["below_250"], ms.band_shares(audio["boost_loop"])))
     if tb["below_250"] < 90.0:
         fails.append("thruster_roar is not confined to the low end")
+    # ---- one-shot character vs the round 3 files (baseline_round3.json) ----
+    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "baseline_round3.json")) as fh:
+        base3 = json.load(fh)
+    print("NLone-shot (r3 -> now)   attack ms        peak dBFS       crest dB        loudest 50 ms    tonality dB".replace("NL", chr(10)))
+    for e in manifest:
+        n = e["name"][:-4]
+        if e["family"] not in ("pop", "impact"):
+            continue
+        c, o = ms.oneshot_character(audio[n]), base3[n]
+        pk = ms.level_metrics(audio[n])["peak_dbfs"]
+        print("%-16s %6.2f -> %5.2f   %5.1f -> %5.1f   %5.1f -> %5.1f   %6.1f -> %6.1f   %5.1f -> %5.1f" % (
+            n, o["attack_ms"], c["attack_ms"], o["peak_dbfs"], pk, o["crest_db"], c["crest_db"],
+            o["short_term_50ms_dbfs"], c["short_term_50ms_dbfs"], o["tonality_db"], c["tonality_db"]))
+        secs = len(audio[n]) / SR
+        if n.startswith(("pop", "bang")):
+            if c["attack_ms"] >= 1.0:
+                fails.append("%s: attack %.2f ms" % (n, c["attack_ms"]))
+            if c["short_term_50ms_dbfs"] <= o["short_term_50ms_dbfs"]:
+                fails.append("%s: not louder than round 3" % n)
+        if n.startswith("pop") and not (0.2 <= secs <= 0.3):
+            fails.append("%s: length %.2f s" % (n, secs))
+        if n.startswith("bang") and not (0.5 <= secs <= 0.7):
+            fails.append("%s: length %.2f s" % (n, secs))
+        if n == "impact_light" and secs >= 0.25:
+            fails.append("impact_light: length %.2f s" % secs)
+        if n.startswith("impact") and c["tonality_db"] > 10.0:
+            fails.append("%s: tonal ring (%.1f dB)" % (n, c["tonality_db"]))
     spread = max(engine_rms) - min(engine_rms)
     print("engine loop RMS spread: %.2f dB" % spread)
     if spread > 3.0:

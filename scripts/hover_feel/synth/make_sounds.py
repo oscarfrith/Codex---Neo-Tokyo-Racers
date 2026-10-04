@@ -796,42 +796,70 @@ def boost_release(seed=111):
                                      tone_start_hz=2.0 * BOOST_CHORD_HZ, tone_end_hz=70.0)
 
 
-def pop(seed, f0, bright, zap, peak_db, seconds=0.4):
-    """Overrun crackle: click + short noise burst (brightness = upper band
-    edge) + saturated pitched body. `zap` adds a tiny electric edge: a fast
-    falling chirp ring-modulated to make it metallic."""
+def gun_crack(n, rng, t0, bright, fast=0.004, slow_=0.018):
+    """Gunshot-like crack: instant-onset noise, broadband up to `bright`,
+    with a hard 4 ms spike and a short body."""
+    tt = np.arange(n) / SR - t0
+    tp = np.maximum(tt, 0.0)
+    env = np.where(tt >= 0.0, np.exp(-tp / fast) + 0.35 * np.exp(-tp / slow_), 0.0)
+    return (bandnoise(n, rng, 400.0, bright, 1) + 0.5 * rng.standard_normal(n) * np.exp(-tp / 0.0012)) * env
+
+
+def pipe_tail(src, pipes):
+    """Exhaust-pipe resonance: convolve the crack with damped resonances
+    (freq Hz, decay s, level). Noise-excited, so it is a 'bark', not a note."""
+    n = len(src)
+    m = int(0.3 * SR)
+    ts = np.arange(m) / SR
+    ir = sum(lvl * np.exp(-ts / tau) * np.sin(TAU * f * ts) for f, tau, lvl in pipes)
+    nfft = 1 << int(np.ceil(np.log2(n + m)))
+    y = np.fft.irfft(np.fft.rfft(src, nfft) * np.fft.rfft(ir, nfft), nfft)[:n]
+    return y / (np.abs(y).max() + 1e-12)
+
+
+def low_thump(n, t0, hz, decay):
+    """Short hard low thump: a damped cosine burst (starts at full pressure)."""
+    tt = np.arange(n) / SR - t0
+    tp = np.maximum(tt, 0.0)
+    return np.where(tt >= 0.0, np.cos(TAU * hz * tp) * np.exp(-tp / decay), 0.0)
+
+
+def pop(seed, pipes, bright, thump_hz, seconds, peak_db=-3.2):
+    """Overrun / anti-lag backfire, gunshot-like: sub-millisecond crack with
+    energy to 8 kHz, a hard 80-150 Hz thump, and a tight two-resonance
+    exhaust-pipe tail (plus a very slight metallic pipe ring). Hard-clipped
+    for violence; almost no reverb."""
+    r = np.random.default_rng(seed)
+    n = int(seconds * SR)
+    crack = gun_crack(n, r, 0.0, bright)
+    tail = pipe_tail(crack, [(pipes[0], 0.026, 1.0), (pipes[1], 0.020, 0.7), (pipes[2], 0.010, 0.12)])
+    thump = np.tanh(2.0 * low_thump(n, 0.0, thump_hz, 0.018))
+    x = 1.2 * crack / np.abs(crack).max() + 0.4 * thump + 0.8 * tail
+    x = np.tanh(2.6 * x / np.abs(x).max())
+    x = reverb(x, r, decay=0.03, mix=0.04)
+    return finalize_oneshot(x, peak_db=peak_db), dict(pipe_resonances_hz=list(pipes[:2]), pipe_ring_hz=pipes[2],
+                                                      thump_hz=thump_hz, crack_bright_hz=bright)
+
+
+def bang(seed, pipes, thump_hz, gap, seconds, peak_db=-3.2):
+    """Shotgun backfire: two cracks `gap` seconds apart, each with a heavier
+    60-90 Hz thump and a pipe-resonance tail, then a short flame whoosh."""
     r = np.random.default_rng(seed)
     n = int(seconds * SR)
     t = np.arange(n) / SR
-    click = r.standard_normal(n) * ad(t, 0.0001, 0.0012)
-    burst = bandnoise(n, r, 300.0, bright) * ad(t, 0.0004, 0.016)
-    body = np.tanh(2.5 * np.sin(phase_of(f0 * (1.0 + 1.5 * np.exp(-t / 0.008))))) * ad(t, 0.0005, 0.035)
-    tail = 0.3 * bandnoise(n, r, 150.0, 1500.0) * ad(t, 0.003, 0.05)
-    x = 0.8 * click + burst + 0.9 * body + tail
-    if zap:
-        z = np.tanh(3.0 * np.sin(phase_of(700.0 + 6000.0 * np.exp(-t / 0.02)))) * np.sin(TAU * 1730.0 * t)
-        x = x + 0.5 * z * ad(t, 0.0005, 0.04)
-    x = np.tanh(1.4 * x / np.abs(x).max())
-    x = reverb(x, r, decay=0.05, mix=0.12)
-    return finalize_oneshot(x, peak_db=peak_db), dict(body_hz=f0, electric_zap=bool(zap))
-
-
-def bang(seed, f0, seconds, peak_db=-3.2):
-    """Backfire: crack (click + snap), saturated body, sub, then a short
-    low-noise 'whump' that swells 30 ms after the crack (the fireball)."""
-    r = np.random.default_rng(seed)
-    n = int(seconds * SR)
-    t = np.arange(n) / SR
-    click = r.standard_normal(n) * ad(t, 0.0002, 0.002)
-    snap = bandnoise(n, r, 700.0, 9000.0) * ad(t, 0.0004, 0.03)
-    body = np.tanh(3.0 * np.sin(phase_of(f0 * (1.0 + 1.6 * np.exp(-t / 0.02))))) * ad(t, 0.0008, 0.09)
-    sub = np.tanh(1.5 * np.sin(phase_of(35.0 + 60.0 * np.exp(-t / 0.08))) * ad(t, 0.003, 0.15))
-    whump = bandnoise(n, r, 50.0, 450.0) * ad(t, 0.03, 0.12)
-    sizzle = spiky(bandnoise(n, r, 1000.0, 6000.0), 3.0) * ad(t, 0.01, 0.09)
-    x = click + 0.8 * snap + body + 0.9 * sub + 0.7 * whump / np.abs(whump).max() + 0.06 * sizzle
-    x = np.tanh(1.8 * x / np.abs(x).max())
-    x = reverb(x, r, decay=0.12, mix=0.18)
-    return finalize_oneshot(x, peak_db=peak_db), dict(body_hz=f0, whump_peak_ms=40.0)
+    c1 = gun_crack(n, r, 0.0, 8500.0, 0.005, 0.025)
+    c2 = gun_crack(n, r, gap, 7500.0, 0.005, 0.030)
+    crack = c1 / np.abs(c1).max() + 0.9 * c2 / np.abs(c2).max()
+    tail = pipe_tail(crack, [(pipes[0], 0.034, 1.0), (pipes[1], 0.026, 0.7), (pipes[2], 0.010, 0.10)])
+    thump = np.tanh(2.2 * (low_thump(n, 0.0, thump_hz, 0.035) + low_thump(n, gap, thump_hz * 0.9, 0.040)))
+    whoosh = bandnoise(n, r, 150.0, 2500.0, 1) * ad(t - gap, 0.04, 0.10)
+    whoosh += 0.25 * spiky(bandnoise(n, r, 800.0, 5000.0), 3.0) * ad(t - gap, 0.02, 0.08)
+    x = 1.2 * crack + 0.5 * thump + 0.8 * tail + 0.30 * whoosh
+    x = np.tanh(2.8 * x / np.abs(x).max())
+    x = reverb(x, r, decay=0.05, mix=0.05)
+    return finalize_oneshot(x, peak_db=peak_db), dict(pipe_resonances_hz=list(pipes[:2]), thump_hz=thump_hz,
+                                                      second_crack_ms=gap * 1000.0,
+                                                      whoosh_peak_ms=(gap + 0.06) * 1000.0)
 
 
 def turbo_flutter(seed=121):
@@ -869,66 +897,95 @@ def drift_release(seed=131):
     return finalize_oneshot(x), {}
 
 
-def impact(seed, seconds, w, peak_db):
-    """Hull hit; w = weight 0 (light) .. 1 (severe).
-    click + pitched thud + low noise body + inharmonic plate ring (beating
-    doublets) + scattered debris grains; heavier hits add crunch and a bounce."""
-    r = np.random.default_rng(seed)
-    n = int(seconds * SR)
-    t = np.arange(n) / SR
-    click = ffilt_padded(r.standard_normal(n) * ad(t, 0.0001, 0.001 + 0.002 * w),
-                         lambda f: hp(f, 1500.0, 2))
-    f0 = 150.0 - 80.0 * w
-    thud = np.sin(phase_of(f0 * (1.0 + 1.2 * np.exp(-t / 0.018)))) * ad(t, 0.0008, 0.035 + 0.16 * w)
-    lown = bandnoise(n, r, 60.0, 900.0 - 400.0 * w) * ad(t, 0.001, 0.03 + 0.09 * w)
-    low = thud * (0.6 + 0.6 * w) + 0.6 * lown
-    if w >= 0.6:  # second, softer bounce
-        d = int((0.07 + 0.08 * w) * SR)
-        low = low + 0.45 * np.concatenate([np.zeros(d), low])[:n]
-
-    base = 1150.0 - 700.0 * w
-    ring = np.zeros(n)
-    for i, ratio in enumerate([1.0, 1.59, 2.14, 2.65, 3.16, 3.9, 4.6, 5.4]):
-        fi = base * ratio
-        a = r.uniform(0.6, 1.0) / (1.0 + i) ** 0.7
-        dec = (0.05 + 0.30 * w) / (1.0 + 0.4 * i)
-        ring += a * np.exp(-t / dec) * (np.sin(TAU * fi * t + r.uniform(0, TAU))
-                                        + 0.7 * np.sin(TAU * fi * 1.007 * t + r.uniform(0, TAU)))
-    ring *= 1.0 - np.exp(-t / 0.0006)
-
-    debris = np.zeros(n)
-    m = int(0.05 * SR)
+def crack_clicks(n, rng, times, level, decay=0.0008, hp_hz=1500.0):
+    """Plastic/carbon cracks: very short broadband clicks at the given times."""
+    out = np.zeros(n)
+    m = int(0.012 * SR)
     ts = np.arange(m) / SR
-    for when in 0.004 + r.exponential(0.04 + 0.22 * w, int(6 + 50 * w)):
+    for when in times:
+        i0 = int(when * SR)
+        if i0 + m < n:
+            out[i0:i0 + m] += rng.standard_normal(m) * np.exp(-ts / decay) * level * rng.uniform(0.4, 1.0)
+    return ffilt_padded(out, lambda f: hp(f, hp_hz, 2))
+
+
+def noise_grains(n, rng, times, f_lo, f_hi, bw_lo, bw_hi, dec_lo, dec_hi, fade):
+    """Irregular bursts of narrow NOISE bands (never sines) at random
+    inharmonic centres: each is a short damped resonance excited by noise, so
+    a dense scatter reads as crumpling metal rather than a bell."""
+    out = np.zeros(n)
+    for when in times:
+        dec = rng.uniform(dec_lo, dec_hi)
+        m = int(min(6.0 * dec, 0.3) * SR)
         i0 = int(when * SR)
         if i0 + m >= n:
             continue
-        grain = swept_noise(m, r, r.uniform(1500.0, 8000.0), 1500.0) * ad(ts, 0.0003, r.uniform(0.002, 0.012))
-        debris[i0:i0 + m] += grain * r.uniform(0.3, 1.0) * np.exp(-when / (0.08 + 0.35 * w))
-    crunch = np.tanh(4.0 * bandnoise(n, r, 200.0, 3000.0) * ad(t, 0.002, 0.05 + 0.12 * w))
+        ts = np.arange(m) / SR
+        fc = np.exp(rng.uniform(np.log(f_lo), np.log(f_hi)))
+        g = swept_noise(m, rng, fc, rng.uniform(bw_lo, bw_hi)) * ad(ts, 0.0004, dec)
+        out[i0:i0 + m] += g * rng.uniform(0.35, 1.0) * np.exp(-when / fade)
+    return out
 
-    x = (0.7 * click + low + 0.6 * ring / np.abs(ring).max()
-         + (0.3 + 0.3 * w) * debris / (np.abs(debris).max() + 1e-9) + 0.5 * w * crunch)
-    x = np.tanh((1.0 + 1.5 * w) * 1.2 * x / np.abs(x).max())
-    x = reverb(x, r, decay=0.08 + 0.25 * w, mix=0.15 + 0.10 * w)
-    return finalize_oneshot(x, peak_db=peak_db), dict(weight=w, ring_base_hz=base, thud_hz=f0)
+
+def impact(seed, seconds, w, peak_db):
+    """Real-car hull hit; w = weight 0 (light knock) .. 1 (severe crash).
+    No sine, no sweep, no ring: everything is shaped noise.
+      thud     low-passed noise burst + a fast-dying 60-120 Hz noise body
+      crumple  dense irregular 400 Hz-3 kHz noise-band bursts, 20-60 ms each
+      cracks   very short broadband clicks
+      heavy+   low whump, sparse debris/glass ticks over 0.3-0.8 s, and a
+               faint electrical fizz kept 18 dB under the crumple."""
+    r = np.random.default_rng(seed)
+    n = int(seconds * SR)
+    t = np.arange(n) / SR
+    body_lo, body_hi = 120.0 - 60.0 * w, 200.0 - 80.0 * w
+    thud = bandnoise(n, r, 30.0, 380.0 - 130.0 * w) * ad(t, 0.0006, 0.022 + 0.035 * w)
+    thud += 1.2 * bandnoise(n, r, body_lo, body_hi) * ad(t, 0.001, 0.028 + 0.045 * w)
+    knock = bandnoise(n, r, 300.0, 1400.0) * ad(t, 0.0004, 0.010 + 0.012 * w)
+
+    spread = 0.025 + 0.16 * w
+    times = np.sort(0.002 + r.exponential(spread, int(7 + 70 * w)))
+    crumple = noise_grains(n, r, times, 400.0, 3000.0, 90.0, 380.0, 0.006, 0.018, 0.05 + 0.3 * w)
+    bed = bandnoise(n, r, 400.0, 3000.0) * np.clip(0.3 + pnoise(n, r, lambda f: bp(f, 12.0, 70.0, 2)), 0.0, None)
+    crumple = crumple / (rms(crumple)) + 0.5 * bed * ad(t, 0.002, 0.03 + 0.14 * w)
+    cracks = crack_clicks(n, r, np.concatenate([[0.0], r.exponential(spread * 0.8, int(2 + 9 * w))]), 1.0)
+
+    x = (1.0 + 0.5 * w) * thud + 0.5 * knock + (0.35 + 0.5 * w) * crumple / rms(crumple) * 0.4 + 0.5 * cracks
+    fizz_db = None
+    if w >= 0.6:
+        whump = bandnoise(n, r, 35.0, 220.0) * ad(t - 0.02, 0.025, 0.11 + 0.05 * w)
+        debris_t = 0.05 + r.uniform(0.0, 0.3 + 0.5 * w, int(10 + 24 * w))
+        glass = noise_grains(n, r, debris_t, 3500.0, 8500.0, 200.0, 900.0, 0.0015, 0.005, 0.25 + 0.3 * w)
+        glass += crack_clicks(n, r, 0.05 + r.uniform(0.0, 0.3 + 0.5 * w, int(8 + 14 * w)), 0.6, 0.0006, 3000.0)
+        x = x + 0.9 * whump + 0.16 * glass / (np.abs(glass).max() + 1e-12) * np.abs(x).max()
+        # Sci-fi trace: a short electrical fizz, 18 dB under the crumple.
+        fizz = spiky(bandnoise(n, r, 3000.0, 7000.0), 3.0)
+        fizz = fizz * np.clip(pnoise(n, r, lambda f: bp(f, 20.0, 90.0, 2)), 0.0, None) * ad(t - 0.03, 0.01, 0.10)
+        seg = slice(0, int(0.3 * SR))
+        crunch_part = (0.35 + 0.5 * w) * crumple / rms(crumple) * 0.4
+        fizz_db = -18.0
+        x = x + fizz * amp(fizz_db) * rms(crunch_part[seg]) / rms(fizz[seg])
+    x = np.tanh((1.3 + 1.2 * w) * x / np.abs(x).max())
+    x = reverb(x, r, decay=0.04 + 0.05 * w, mix=0.06)
+    return finalize_oneshot(x, peak_db=peak_db), dict(weight=w, body_band_hz=[body_lo, body_hi],
+                                                      fizz_db_re_crumple=fizz_db)
 
 
 def land_thump(seed=181):
-    """Hover bottoming out: saturated sub thump + jet compression hiss whose
-    centre shoots up then relaxes."""
+    """Hover bottoming out like heavy suspension: dead low thud (noise, no
+    tone), a mechanical clunk, and a brief fixed-band air-compression huff."""
     r = np.random.default_rng(seed)
-    n = int(0.75 * SR)
+    n = int(0.6 * SR)
     t = np.arange(n) / SR
-    sub = np.tanh(2.0 * np.sin(phase_of(40.0 + 45.0 * np.exp(-t / 0.05))) * ad(t, 0.003, 0.11))
-    body = bandnoise(n, r, 50.0, 300.0) * ad(t, 0.002, 0.05)
-    fc = 1200.0 + 3800.0 * (1.0 - np.exp(-t / 0.02)) * np.exp(-t / 0.18)
-    hiss = swept_noise(n, r, fc, 2500.0) * ad(t, 0.02, 0.14)
-    click = r.standard_normal(n) * ad(t, 0.0002, 0.0015)
-    x = sub + 0.5 * body + 0.45 * hiss + 0.25 * click
-    x = np.tanh(1.3 * x / np.abs(x).max())
-    x = reverb(x, r, decay=0.10, mix=0.12)
-    return finalize_oneshot(x), {}
+    thud = bandnoise(n, r, 28.0, 190.0) * ad(t, 0.001, 0.06)
+    thud += 1.2 * bandnoise(n, r, 45.0, 95.0) * ad(t, 0.002, 0.085)
+    clunk = bandnoise(n, r, 300.0, 1000.0) * ad(t, 0.0004, 0.014)
+    clunk += 0.6 * crack_clicks(n, r, [0.0, 0.011], 1.0)
+    huff = bandnoise(n, r, 300.0, 2500.0, 1) * ad(t - 0.01, 0.03, 0.11)
+    x = 1.6 * thud + 0.45 * clunk + 0.30 * huff
+    x = np.tanh(1.6 * x / np.abs(x).max())
+    x = reverb(x, r, decay=0.05, mix=0.06)
+    return finalize_oneshot(x, hp_hz=30.0), {}
 
 
 # --------------------------------------------------------------------------
@@ -978,6 +1035,45 @@ def oneshot_metrics(x):
     tail = np.abs(x[-int(0.010 * SR):]).max()
     return dict(leading_silence_ms=round(float(lead), 3), tail_last10ms_dbfs=round(to_db(tail), 1),
                 transient_peak_ms=round(float(np.argmax(np.abs(x))) / SR * 1000.0, 2))
+
+
+def attack_ms(x):
+    """Time from 10 % of peak to the first sample at 90 % of peak."""
+    a = np.abs(x)
+    pk = a.max()
+    i0 = int(np.argmax(a > 0.1 * pk))
+    i1 = int(np.argmax(a >= 0.9 * pk))
+    return round((i1 - i0) / SR * 1000.0, 3)
+
+
+def short_term_db(x, window=0.05):
+    """Loudest 50 ms: maximum RMS over a sliding window (dBFS)."""
+    w = int(window * SR)
+    c = np.concatenate([[0.0], np.cumsum(np.square(x))])
+    return round(to_db(np.sqrt((c[w:] - c[:-w]).max() / w)), 2)
+
+
+def tonality_db(x):
+    """How far the strongest narrow spectral line (15 Hz wide) stands above
+    its 600 Hz neighbourhood, 150 Hz .. 8 kHz. Noise-like sounds score a few
+    dB; a ringing tone scores 15 dB or more."""
+    nfft = 1 << 17
+    p = np.abs(np.fft.rfft(x, nfft)) ** 2
+    hz = SR / nfft
+
+    def box(v, width_hz):
+        k = max(1, int(width_hz / hz))
+        return np.convolve(v, np.ones(k) / k, mode="same")
+
+    ratio = box(p, 15.0) / (box(p, 600.0) + 1e-20)
+    lo, hi = int(150.0 / hz), int(8000.0 / hz)
+    return round(float(10.0 * np.log10(ratio[lo:hi].max())), 1)
+
+
+def oneshot_character(x):
+    lv = level_metrics(x)
+    return dict(attack_ms=attack_ms(x), crest_db=round(lv["peak_dbfs"] - lv["rms_dbfs"], 2),
+                short_term_50ms_dbfs=short_term_db(x), tonality_db=tonality_db(x))
 
 
 def hf_ratio_db(x, above=9000.0):
@@ -1070,16 +1166,16 @@ SOUNDS = [
     ("boost_release", "oneshot", "boost", boost_release),
     ("turbo_flutter", "oneshot", "boost", turbo_flutter),
     ("drift_release", "oneshot", "boost", drift_release),
-    ("pop_1", "oneshot", "pop", lambda: pop(201, 180.0, 6000.0, False, -4.0)),
-    ("pop_2", "oneshot", "pop", lambda: pop(202, 260.0, 9000.0, True, -4.5)),
-    ("pop_3", "oneshot", "pop", lambda: pop(203, 130.0, 4000.0, False, -3.5)),
-    ("pop_4", "oneshot", "pop", lambda: pop(204, 320.0, 8000.0, True, -5.0, 0.35)),
-    ("bang_1", "oneshot", "pop", lambda: bang(211, 95.0, 0.75)),
-    ("bang_2", "oneshot", "pop", lambda: bang(212, 70.0, 0.85)),
-    ("impact_light", "oneshot", "impact", lambda: impact(141, 0.32, 0.0, -8.0)),
-    ("impact_medium", "oneshot", "impact", lambda: impact(151, 0.55, 0.33, -6.0)),
-    ("impact_heavy", "oneshot", "impact", lambda: impact(161, 0.95, 0.67, -4.0)),
-    ("impact_severe", "oneshot", "impact", lambda: impact(171, 1.45, 1.0, -3.2)),
+    ("pop_1", "oneshot", "pop", lambda: pop(201, (240.0, 410.0, 2100.0), 8000.0, 110.0, 0.26)),
+    ("pop_2", "oneshot", "pop", lambda: pop(202, (310.0, 480.0, 2600.0), 6500.0, 130.0, 0.22)),
+    ("pop_3", "oneshot", "pop", lambda: pop(203, (205.0, 350.0, 1800.0), 9000.0, 90.0, 0.30)),
+    ("pop_4", "oneshot", "pop", lambda: pop(204, (270.0, 455.0, 2350.0), 7500.0, 150.0, 0.24)),
+    ("bang_1", "oneshot", "pop", lambda: bang(211, (220.0, 380.0, 1900.0), 80.0, 0.055, 0.55)),
+    ("bang_2", "oneshot", "pop", lambda: bang(212, (190.0, 330.0, 1700.0), 65.0, 0.075, 0.68)),
+    ("impact_light", "oneshot", "impact", lambda: impact(141, 0.22, 0.0, -8.0)),
+    ("impact_medium", "oneshot", "impact", lambda: impact(151, 0.45, 0.33, -6.0)),
+    ("impact_heavy", "oneshot", "impact", lambda: impact(161, 0.90, 0.67, -4.0)),
+    ("impact_severe", "oneshot", "impact", lambda: impact(171, 1.30, 1.0, -3.2)),
     ("land_thump", "oneshot", "impact", land_thump),
 ]
 
@@ -1105,6 +1201,7 @@ def main():
                 entry["measured_peak_hz"] = round(spectral_peak_hz(q), 4)
         else:
             entry.update(oneshot_metrics(q))
+            entry.update(oneshot_character(q))
         manifest.append(entry)
         print("%-24s %-7s %6.3fs peak %6.2f rms %6.2f" % (
             name, kind, entry["seconds"], entry["peak_dbfs"], entry["rms_dbfs"]))

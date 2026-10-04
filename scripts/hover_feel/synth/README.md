@@ -71,12 +71,12 @@ live rpm / loop rpm, and crossfade on/off sets by throttle.
 | --- | --- |
 | boost_ignite | Afterburner lighting (2.2 s): 100 ms reverse suck-in (hard gate), cannon crack (click, snap, saturated body, low boom), 50 to 30 Hz sub drop held about 300 ms, thick fire-blast whoosh, then a power-up chord sweep that dives from 330 to 80 Hz and rises onto the boost_loop root (110 Hz) while 10 Hz pulse-jet thumps fade in. |
 | boost_release | Decisive ending (1.3 s): 30 ms roar cut-off, pressure-release pshh, thunk at 90 ms, short chord tone falling from 220 to 70 Hz, four flutter chuffs from 280 ms. |
-| pop_1 .. pop_4 | Overrun crackles (0.35 to 0.4 s): click, noise burst, saturated pitched body at 180 / 260 / 130 / 320 Hz; pop_2 and pop_4 add a ring-modulated electric zap edge. |
-| bang_1, bang_2 | Backfires (0.75 / 0.85 s): crack, saturated body (95 / 70 Hz), sub, a low whump swelling about 40 ms later, light sizzle. |
+| pop_1 .. pop_4 | Overrun / anti-lag backfires, gunshot-like (0.22 to 0.30 s): sub-millisecond noise crack with energy to 6.5 to 9 kHz, a hard 90 to 150 Hz thump, a tight two-resonance exhaust-pipe tail (240/410, 310/480, 205/350, 270/455 Hz, noise-excited) and a very slight metallic pipe ring; hard-clipped, almost no reverb. No electric zap (removed in round 4). Peaks -3.2 dBFS. |
+| bang_1, bang_2 | Shotgun backfire (0.55 / 0.68 s): two cracks 55 / 75 ms apart, each with a heavier 80 / 65 Hz thump and pipe tail, then a short flame whoosh with crackle. |
 | turbo_flutter | Eight chuffs slowing from 24 to 13 Hz, each a downward-swept noise burst plus pitched thup. |
 | drift_release | Pop, three-octave saturated upward zap with a fifth, pings at 2640/3960/5280 Hz, noise sparkle. |
-| impact_light / medium / heavy / severe | Click, pitched thud, low noise body, inharmonic ring with beating doublets, debris grains; heavier hits are lower, longer, add crunch and a bounce. Peaks step -8 / -6 / -4 / -3.2 dBFS. |
-| land_thump | Saturated sub thump (85 to 40 Hz), low body noise, compression hiss whose centre rises then relaxes. |
+| impact_light / medium / heavy / severe | Real-car hits built only from shaped noise (no sine, sweep or ring): dead low thud, crumpling sheet metal (dense irregular 400 Hz to 3 kHz noise-band bursts of 20 to 60 ms), plastic/carbon crack clicks; heavy and severe add a low whump, sparse debris and glass ticks over 0.3 to 0.8 s, and a faint electrical fizz 18 dB under the crumple. 0.22 / 0.45 / 0.90 / 1.30 s; peaks -8 / -6 / -4 / -3.2 dBFS. |
+| land_thump | Suspension-bottoming thud (0.6 s): dead low noise thud, mechanical clunk, brief fixed-band air-compression huff. No tone. |
 
 The raspy loops (turbines, energy_hum, stabiliser_strain) are low-passed at 7.8 kHz (8th order)
 and boost_loop at 8 kHz; `verify.py` checks that energy above 9 kHz is at least 25 dB below the total.
@@ -103,12 +103,16 @@ All of these are in `manifest.json` (`transient_peak_ms`, `modulation_hz`, and t
 | turbine_low / turbine_high | 3.33 Hz twin-engine beat. |
 | drift_charge | 8 Hz tension pulse (x PlaybackSpeed, so it speeds up as charge builds). |
 | wind_buffet | Irregular 3 to 14 Hz buffet: camera shake rather than a steady pulse. |
-| pop_1 .. pop_4 | Peak at 2 to 6 ms: fire the fireball on play. |
-| bang_1 / bang_2 | Crack peak at 9 / 14 ms, whump swell around 40 ms: flash first, fireball bloom just after. |
+| pop_1 .. pop_4 | Crack at 0 ms (attack under 0.3 ms): fire the fireball on play. |
+| bang_1 / bang_2 | First crack at 0 ms, second at 55 / 75 ms (`second_crack_ms`), flame whoosh peaks about 60 ms after the second (`whoosh_peak_ms`): two flashes, then the fireball. |
 | drift_release | Pop at 0 ms, zap tops out and pings start at about 146 ms. |
 | turbo_flutter | Eight chuffs, first at 0 ms, slowing from 24 to 13 Hz. |
-| impact_* | Hit at 0 ms. Heavy and severe have a second bounce (their loudest sample, 62 / 82 ms). |
-| land_thump | Thump peak at 15 ms; compression hiss swells over the next 100 ms. |
+| impact_* | Hit at 0 ms; crumple and debris scatter follow (heavy/severe debris lasts 0.3 to 0.8 s: sparks or shards). |
+| land_thump | Thud at 0 ms (peak about 12 ms); huff swells over the next 40 ms: dust or jet-wash puff. |
+
+Round 4 changed only the impacts, land_thump, pops and bangs; every other WAV is byte-identical to
+round 3. `verify.py` compares attack time, crest factor, loudest 50 ms and a tonality figure for
+those files against `baseline_round3.json`.
 
 ## Levels
 
