@@ -34,6 +34,19 @@ Each of these was decided late on Exotic and cost a rebuild. Put all of them in 
 9. **Card images and diagrams** are part of the first install, not a follow-up.
 10. **Place:** v3 saves. Never run the content installer's ROLLBACK there; recovery is APPLY of the previous build.
 
+## Stats-first setup (the first step of a category)
+
+Oscar's order since 2026-10-04: put the category in the game with its ids, stats, prices and locks first, on placeholder geometry; the mesh cars replace the geometry later under the same ids. Exotic went the same way (primitive blockouts first, meshes second), so the route is proven.
+
+- **Placeholder geometry** comes from the blockout generator for the class (`scripts/vehicle_blockouts/gen/<class>.py` and its spec), built by the content installer. Keep the seven mesh slots and the three empty hidden slots from day one, so the later mesh swap changes no id, slot or stat.
+- **Ids are final at this step.** Cockpit ids, ModuleIds and `CategoryId` are saved in profiles the first time someone buys a car.
+- **Character** is a table of multipliers on the reference stat totals (`CHARACTER` in `balance/build_balance.py`; Exotic: TopSpeed 1.12, SteeringResponse 1.15, Weight 0.90, and three stats down). A category must give stats back where it takes them, or it only moves up a tier. Stat names: `rating.py` `RAW_ORDER`.
+- **Tier bands** (live config, shown index): E 100, D 300, C 450, B 600, A 725, S 850. The tier is read from the rounded index, so a band starts 0.505 below its number.
+- **A capped category** (top tier below S) needs the ceiling proof against the cap: no build of any car, with any owned part of the category and any upgrade allocation, may reach the tier above. Leave at least 3 PI of room. Decide in the contract whether parts fit only their own car; if any part fits any car, the top kit is limited by the car below it.
+- **Feel check.** The rating is one number; the character must also be felt. After install, Oscar drives the cheapest and the top car against the matching Exotic or Piercer. Tuning after that is a content build (`CHARACTER` and targets), not a script change.
+- **Game scripts.** Audit whether a third category needs any script change before promising none. Any such change is High-Risk with `delivery-reviewer` and golden parity (`scripts/exotic_category/golden.lua`).
+- **Dealership.** A new category shows in the dealership as soon as its flag is on. Use `DealershipHiddenCategories` to keep it hidden until Oscar wants it seen.
+
 ## Design process (what Oscar accepts)
 
 Standing art rules are in the memory note `feedback-vehicle-design-direction` and REFINE.md: no actual wheels; engine, stabiliser and boost are visible jet hardware on every car; headlights on the front engine modules; boost where the exhausts would be; primary and secondary paint on every module; any part fits any car and still looks different.

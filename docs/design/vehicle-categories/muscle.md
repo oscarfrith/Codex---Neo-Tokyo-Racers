@@ -3,6 +3,17 @@
 Status: concept exploration, 2026-10-01. Words and concept art only. Not game content and not approved.
 Frame standard and blockout notes: [muscle-frame.md](muscle-frame.md). Prompts: `output/vehicle-categories-2026-10-01/muscle/prompts/`.
 
+## Game setup brief (Oscar, 2026-10-04) - overrides the tier column and handling notes below
+
+Approved direction for the Modern Muscle category in Space Racers v3. Route: [vehicle category playbook](../../architecture/vehicle-category-playbook.md), "Stats-first setup".
+
+- **Order:** set the category up in the game first (ids, stats, prices, locks) on placeholder geometry. Concepts and Blender models come after, in a later chat.
+- **Character, as real muscle cars:** powerful (high `EngineOutput`, strong boost), heavy (high `Weight`), bad at turning (low `SteeringResponse` and `LateralGrip`), high `TopSpeed`. The weakness must be felt in corners, not only shown in the rating.
+- **Tiers:** the category tops out at **B**. Six cars spread over E to B; no build may reach A (shown index under 725).
+- **Prices:** cheaper than Exotic and Piercer at the same tier, in line with the lower ceiling.
+- **Parts:** recommendation accepted in principle (2026-10-04): consider locking body parts to their own car so every kit can have meaningful GT and EVO gains. Final choice goes in the contract.
+- **Entry price:** new profiles start with 140,000 Cash; settle the cheapest Muscle car against that.
+
 ## Pitch and player fantasy
 
 Muscle is the American muscle car with the wheels taken off. It keeps the long bonnet, the short deck, the wide haunches and the stripes. A turbine bursts through the bonnet where the supercharger was. Lift jets sit in the blanked arches. Afterburners sit where the side pipes ran.
