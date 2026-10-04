@@ -39,27 +39,32 @@ def xtube(x0, x1, z, y, r):
     return Loft([(x0, {}), (x1, {})], axis="x", cx=z, w=r, yb=y - r, yt=y + r, nt=2, nb=2, yw=0.5)
 
 
-def barrel(name, z0, z1, x, y, r, depth=0.6, collar=True):
-    """Bare turbine barrel firing backwards: tube, a dark collar and a glowing throat."""
-    t = tube(z0, z1, x, y, r)
+def barrel(name, z0, z1, x, y, r, depth=0.6, collar=True, ry=None, n=2):
+    """Jet nozzle firing backwards: a metal tube with a glowing throat. r is the half width; ry the half
+    height (defaults to r) and n the corner sharpness (2 is round, 4 to 5 a rounded rectangle), so a nozzle
+    can take the squared shape of the car instead of a plain pipe."""
+    ry = r if ry is None else ry
+    t = Loft([(z0, {}), (z1, {})], cx=x, w=r, yb=y - ry, yt=y + ry, nt=n, nb=n, yw=0.5)
     t.build(name, "metal", mirror=x != 0, caps=(True, False))
     t.throat(name + "n", "max", lip="metal", back="thrust", scale=0.84, depth=depth, mirror=x != 0)
     if collar:
         c = z0 + (z1 - z0) * 0.45
-        tube(c, c + 0.22, x, y, r + 0.09).build(name + "c", "detail", mirror=x != 0)
+        Loft([(c, {}), (c + 0.22, {})], cx=x, w=r + 0.09, yb=y - ry - 0.09, yt=y + ry + 0.09, nt=n, nb=n,
+             yw=0.5).build(name + "c", "detail", mirror=x != 0)
 
 
-def bazooka(name, x0, x1, z, y, r, back=0.8, down=0.6):
-    """Drift thruster: a fat tube that leaves the sill sideways and sweeps back and down. The glow is a disc
-    set a little way inside the open end, square to the tube, so the mouth reads as a clean ring."""
-    def at(x, rad):
+def bazooka(name, x0, x1, z, y, r, back=0.8, down=0.6, wide=1.3, flat=0.7, n=4.5):
+    """Drift thruster: a nozzle that leaves the sill sideways and sweeps back and down. Its mouth is a
+    rounded rectangle, longer along the car than it is tall, to match the squared rear nozzles. The glow is
+    a plate set a little way inside the open end, so the mouth reads as a clean frame."""
+    def at(x, k):
         s = (x - x0) / (x1 - x0)
-        return (x, dict(cx=z + back * s, w=rad, yb=y - down * s - rad, yt=y - down * s + rad))
-    Loft([at(x0, r), at(x1, r)], axis="x", nt=2, nb=2, yw=0.5).build(name, "metal", mirror=True, caps=(True, False))
-    Loft([at(x1 - 0.34, r * 0.9), at(x1 - 0.3, r * 0.9)], axis="x", nt=2, nb=2, yw=0.5).build(
-        name + "glow", "thrust", mirror=True)
-    Loft([at(x1 - 0.3, r * 0.9), at(x1, r * 0.9)], axis="x", nt=2, nb=2, yw=0.5).build(
-        name + "bore", "detail", mirror=True, caps=(False, False))
+        yc = y - down * s
+        return (x, dict(cx=z + back * s, w=r * wide * k, yb=yc - r * flat * k, yt=yc + r * flat * k))
+    kw = dict(axis="x", nt=n, nb=n, yw=0.5)
+    Loft([at(x0, 1.0), at(x1, 1.0)], **kw).build(name, "metal", mirror=True, caps=(True, False))
+    Loft([at(x1 - 0.34, 0.88), at(x1 - 0.3, 0.88)], **kw).build(name + "glow", "thrust", mirror=True)
+    Loft([at(x1 - 0.3, 0.88), at(x1, 0.88)], **kw).build(name + "bore", "detail", mirror=True, caps=(False, False))
 
 
 def halo(name, x, y, z, r):
@@ -109,12 +114,17 @@ def f_cockpit():
                (3.0, dict(w=3.66, yt=5.5, tum=0.68)),
                (6.3, dict(w=3.5, yb=3.15, yt=3.3, ys=3.2, tum=0.2, drop=0.03))],
               w=3.68, yb=3.1, ys=3.3, rb=0.04, tum=0.65, drop=0.12, wcf=0.8, d2=0.03, crown=0.04)
+    # Each opening is a black surround with the glass set inside it, so the pillars read as slim black
+    # frames and the side glass is one long opening split by a thin pillar, as on the real car.
     gh.build("cabin", "primary", regions=[
-        R(-5.75, -3.65, 4.12, 6.0, "glass", 0.03),    # windscreen
-        R(-4.75, -0.3, 3.08, 3.9, "glass", 0.03),     # door glass, follows the screen pillar
-        R(0.0, 4.7, 3.08, 3.9, "glass", 0.03),        # quarter glass, follows the roof down
-        R(3.25, 6.0, 4.15, 6.0, "glass", 0.03),       # rear window
-        R(-3.4, 3.0, 5.1, 6.0, "secondary", 0.02)])   # roof stripe
+        R(-5.88, -3.5, 4.04, 6.0, "detail", 0.015),    # windscreen surround
+        R(-5.78, -3.62, 4.1, 6.0, "glass", 0.04),      # windscreen
+        R(-5.0, 4.95, 3.02, 3.96, "detail", 0.015),    # side glass surround, one opening
+        R(-4.88, -0.2, 3.07, 3.91, "glass", 0.04),     # door glass, follows the screen pillar
+        R(-0.02, 4.8, 3.07, 3.91, "glass", 0.04),      # quarter glass, follows the roof down
+        R(3.12, 6.12, 4.06, 6.0, "detail", 0.015),     # rear window surround
+        R(3.22, 6.02, 4.12, 6.0, "glass", 0.04),       # rear window
+        R(-3.3, 2.9, 5.2, 6.0, "secondary", 0.02)])    # roof stripe
 
 
 def f_nose():
@@ -173,14 +183,14 @@ def f_fpod():
 
 
 def f_rpod():
-    """Rear engine fender: a haunch no taller than the deck, with one round barrel behind."""
+    """Rear engine fender: a haunch no taller than the deck, with one squared nozzle behind."""
     K.begin("F", "RPOD")
     pod = Hull([(POD_RZ, SIDE_R), (5.4, dict(w=1.32, yb=-1.35, yt=2.85, ys=2.0)),
                 (8.6, dict(w=1.32, yb=-1.35, yt=3.05, ys=2.15)), (10.2, dict(w=1.3, yb=-1.25, yt=2.95, ys=2.1)),
                 (11.3, dict(cx=5.4, w=1.2, yb=-0.9, yt=2.65, ys=1.9))], **SIDE_R)
     pod.build("skin", "primary", mirror=True, caps=(False, True), regions=f_pod_regions(POD_RZ, 11.3))
     pod.throat("intake", "min", lip="primary", wall="detail", back="detail", scale=0.76, depth=0.5, mirror=True)
-    barrel("barrel", 10.4, 12.3, 5.42, 0.85, 0.9, depth=0.7, collar=False)
+    barrel("barrel", 10.4, 12.3, 5.42, 0.85, 1.0, depth=0.7, collar=False, ry=0.7, n=4.5)
     flange(4.4, 10.6, -0.3, 2.1)
     lift_glow(pod, [(5.8, 9.6)])
 
@@ -229,7 +239,7 @@ def f_boost():
     Hull([(10.8, dict(w=2.85)), (12.2, dict(w=2.55, yb=-0.25))], yb=-0.45, yt=1.3, rb=0.35, ys=0.95, tum=0.25,
          drop=0.05, wcf=0.6, d2=0.0, crown=0.02).build("housing", "secondary", regions=[
              R(10.8, 12.2, 3.0, 3.6, "primary", 0.0)])
-    barrel("barrel", 11.6, 13.2, 0.86, 0.4, 0.74, depth=0.55, collar=False)
+    barrel("barrel", 11.6, 13.2, 0.98, 0.4, 0.86, depth=0.55, collar=False, ry=0.56, n=4.5)
 
 
 def f_wing():
