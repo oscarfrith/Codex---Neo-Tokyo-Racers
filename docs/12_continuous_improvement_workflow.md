@@ -53,3 +53,4 @@ Exotic category lessons (2026-10-02/03, backup place; [contract](architecture/ex
 - **Pilot before the full content install.** One cockpit, installed and driven first, caught the seat height and the glass colour cheaply.
 - **Independent review before each APPLY.** It found one real fault in the test recorder and three installer safety gaps.
 - **On-road rating.** A spawned vehicle's PerformanceIndex double-counts some module stats. This is an existing issue in both categories (VEH-01). Do not treat the on-road number as the garage rating.
+- **New vehicle category.** Fix ids, slots, versions, locks, prices, body stats, names, default paint and images in one contract before modelling; write a per-car visual language table; show all six cars together at three gates only. Full list: [vehicle category playbook](architecture/vehicle-category-playbook.md).

@@ -32,6 +32,7 @@ System-level references and latest handoffs. Prefer these over dated phase logs.
 - [racing-ui-design-system-2026-07-11.md](racing-ui-design-system-2026-07-11.md) - Racing UI design system
 - [route-guide-system.md](route-guide-system.md) - Free-roam GPS route guide: owners, tuning, destinations, graph regeneration
 - [architecture/activities-contract.md](architecture/activities-contract.md) - Street Life activities: foundation APIs, ownership and installer spec format (per-feature contracts in scripts/activities/*/CONTRACT.md)
+- [architecture/vehicle-category-playbook.md](architecture/vehicle-category-playbook.md) - How to add a modular vehicle category after Exotic: reused tools, decisions to fix before modelling, design gates, image and install route, pitfalls. Read before starting a category.
 - [architecture/exotic-category-contract.md](architecture/exotic-category-contract.md) - Exotic vehicle category contract, as delivered 2026-10-03: second category, ten slots, catalogue split, feature flag, rollback order. Installed in Space Racers Backup v2 only; agent-verified, not user-confirmed. Build interface: scripts/exotic_category/INTERFACE.md
 - [ui-free-roam-pc-design-system-2026-07-10.md](ui-free-roam-pc-design-system-2026-07-10.md) - Free-roam PC UI design system
 - [racing-ui-final-handoff-2026-07-13.md](racing-ui-final-handoff-2026-07-13.md) - Racing UI final handoff
