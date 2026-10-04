@@ -114,6 +114,32 @@ def spiky(x, power=3.0):
     return y / rms(y)
 
 
+def rasp(x, amount=0.5, cutoff=9000.0):
+    """Controlled rasp for a tonal signal: blend of soft clip and a sine
+    wavefolder (both memoryless, so loops stay periodic), then a steep FFT
+    low-pass so the fold products never turn into fizz."""
+    u = x / rms(x)
+    y = (1.0 - amount) * np.tanh(1.2 * u) + amount * np.sin(1.9 * u)
+    return ffilt(y, lambda f: lp(f, cutoff, 4))
+
+
+def saw_table(nh):
+    """Sawtooth-like buzz partial series (1/h), band-limited to nh harmonics."""
+    h = np.arange(1, nh + 1)
+    return make_table(1.0 / h, np.full(nh, -np.pi / 2))
+
+
+def wander_band(n, rng, k_centre, bw, dev_cycles, lo=0.3, hi=3.0):
+    """N-periodic narrow noise band whose centre wanders: complex low-pass
+    noise heterodyned by a carrier with periodic phase deviation. Sounds like
+    a breathy whistle, never a fixed drone."""
+    f = np.abs(np.fft.fftfreq(n, 1.0 / SR))
+    z = np.fft.ifft((rng.standard_normal(n) + 1j * rng.standard_normal(n)) * lp(f, bw / 2.0, 2))
+    ph = TAU * (k_centre * np.arange(n) / n + dev_cycles * slow(n, rng, lo, hi))
+    x = np.real(z * np.exp(1j * ph))
+    return x / rms(x)
+
+
 def finalize_loop(x, rms_db=-17.0, ceil_db=-3.2):
     """DC-free, RMS-normalised, memoryless soft limit under the ceiling."""
     x = x - x.mean()
@@ -311,6 +337,35 @@ def engine_loop(rpm, mode, seed):
     else:
         eq = lambda fr: hp(fr, 30.0, 2) * lp(fr, 6000.0, 2)
     x = ffilt(x, eq)
+    extra = {}
+
+    if mode == "on":
+        # Sci-fi sheen: ring-modulate the engine with a carrier at an inharmonic
+        # multiple (2.76x) of the firing frequency. The carrier is derived from
+        # the engine phase, so the metallic sidebands track the revs.
+        c = int(round(27.6 * M))
+        ring = ffilt(x * np.sin(TAU * c * ph / M), lambda fr: bp(fr, 1500.0, 8000.0, 2))
+        x = x + amp(-14.0) * ring * rms(x) / rms(ring)
+        extra = dict(sheen_db=-14.0, sheen_carrier_ratio=round(c / (10.0 * M), 4))
+    elif mode == "idle":
+        # Hybrid idle: an energy-core hum a fifth above the firing note that
+        # throbs at 2 Hz, plus a faint turbine whisper.
+        k_throb = int(round(2.0 * N / SR))
+        kh = 15 * M
+        hh = np.arange(1, 41)
+        core = np.zeros(N)
+        for k, lvl in [(kh, 1.0), (kh + k_throb, 0.5), (2 * kh + 3 * k_throb, 0.35)]:
+            tab = make_table(hh ** -0.9, 0.6 * r.standard_normal(40))
+            core += lvl * read_table(tab, k * n / N + 0.003 * slow(N, r, 0.5, 20.0, -1.0))
+        core = rasp(core, 0.4, 6000.0)
+        core = ffilt(core, lambda fr: bump(fr, 400.0, 150.0, 5.0) * bump(fr, 1250.0, 350.0, 6.0))
+        core = core * (0.72 + 0.28 * np.cos(TAU * k_throb * n / N)) * (1.0 + 0.12 * slow(N, r, 60.0, 120.0))
+        kt = int(round(2640.0 * N / SR))
+        whisper = 0.6 * np.sin(TAU * kt * n / N + 1.5 * slow(N, r, 1.0, 20.0, -0.5))
+        whisper = whisper + pnoise(N, r, lambda fr: bp(fr, 2500.0, 8000.0, 2)) * (1.0 + 0.3 * slow(N, r, 3.0, 20.0))
+        x = x / rms(x) + 0.5 * core / rms(core) + 0.11 * whisper / rms(whisper)
+        extra = dict(modulation_hz=round(k_throb * SR / N, 3), modulation="energy-core throb",
+                     core_tone_hz=round(kh * SR / N, 3), whisper_tone_hz=round(kt * SR / N, 3))
 
     # Anchor: the firing line must be the strongest component (the game and the
     # verification both treat it as the loop's pitch). Raise that one FFT bin
@@ -328,12 +383,16 @@ def engine_loop(rpm, mode, seed):
 
     meta = dict(rpm=rpm, mode=mode, firing_hz=round(f_fire, 4), nominal_firing_hz=round(rpm / 12.0, 4),
                 engine_cycles=M, firing_periods=10 * M, firing_anchor_gain_db=round(anchor_db, 2))
+    meta.update(extra)
     return finalize_loop(x), meta
 
 
 # --------------------------------------------------------------------------
 # SCI-FI LAYER LOOPS
 # --------------------------------------------------------------------------
+BOOST_ROOT_HZ = 660.0  # boost_loop scream root; the ignite shimmer lands on it
+
+
 def turbine_loop(blade_hz, seed, T=3.0):
     """Jet turbine: blade-pass tone + harmonics, shaft-order 'buzz-saw' lines,
     a second detuned engine (beats), an inharmonic second spool and shaped hiss."""
@@ -361,7 +420,13 @@ def turbine_loop(blade_hz, seed, T=3.0):
     p3 = k_sp * n / N + 0.06 * slow(N, r, 0.6, 14.0, -1.0)
     spool = np.sin(TAU * p3) + 0.35 * np.sin(2 * TAU * p3 + 1.0)
 
-    tones = (eng1 + 0.75 * eng2 + 0.3 * spool) * (1.0 + 0.15 * slow(N, r, 4.0, 30.0))
+    # Rasp: a sawtooth buzz series two octaves under the blade pass, a
+    # band-limited fold over the whole tonal part, and 60-120 Hz roughness.
+    k_buzz = k_bp // 4
+    buzz = read_table(saw_table(int(min(9000.0 / (blade_hz / 4.0), 60))),
+                      k_buzz * n / N + 0.02 * slow(N, r, 0.6, 14.0, -1.0))
+    tones = (eng1 + 0.75 * eng2 + 0.3 * spool + 0.4 * buzz) * (1.0 + 0.15 * slow(N, r, 4.0, 30.0))
+    tones = rasp(tones, 0.45, 9000.0) * (1.0 + 0.22 * slow(N, r, 60.0, 120.0))
     hiss = pnoise(N, r, lambda f: bp(f, blade_hz * 0.9, 14000.0, 2)
                   * bump(f, blade_hz * 2.3, blade_hz * 0.8, 6.0))
     hiss = hiss * (1.0 + 0.3 * slow(N, r, 20.0, 200.0)) * (1.0 + 0.25 * np.cos(TAU * ps))
@@ -369,9 +434,9 @@ def turbine_loop(blade_hz, seed, T=3.0):
 
     x = tones / rms(tones) + 0.7 * hiss / rms(hiss) + (0.3 / scale) * rumble
     x = np.tanh(0.7 * x)
-    x = ffilt(x, lambda f: hp(f, 50.0, 2) * lp(f, 15000.0, 4))
+    x = ffilt(x, lambda f: hp(f, 50.0, 2) * lp(f, 7800.0, 8))
     return finalize_loop(x), dict(main_tone_hz=round(k_bp * SR / N, 3),
-                                  twin_beat_hz=round(10 * SR / N, 3))
+                                  modulation_hz=round(10 * SR / N, 3), modulation="twin-engine beat")
 
 
 def energy_hum_loop(seed=31, T=3.0):
@@ -392,15 +457,18 @@ def energy_hum_loop(seed=31, T=3.0):
     x = (voice(k0) + 0.8 * voice(k0 + 7)                 # 2.33 Hz beat
          + 0.5 * voice(int(round(1.5 * k0)) + 4)         # fifth, 1.33 Hz off
          + 0.5 * voice(k0 // 2, 6))                      # sub octave
+    x = x + 0.35 * rms(x) * read_table(saw_table(50), 2 * k0 * n / N + 0.004 * slow(N, r, 0.5, 20.0, -1.0))
     x = x * (1.0 + 0.25 * slow(N, r, 2.5, 18.0))         # instability
     x = x * (1.0 + 0.25 * np.cos(TAU * int(round(50.0 * N / SR)) * n / N))
     x = np.tanh(1.8 * x / rms(x))
-    x = ffilt(x, lambda f: hp(f, 30.0, 2) * lp(f, 9000.0, 2) * bump(f, 320.0, 120.0, 5.0)
+    x = rasp(x, 0.5, 9000.0) * (1.0 + 0.2 * slow(N, r, 60.0, 120.0))
+    x = ffilt(x, lambda f: hp(f, 30.0, 2) * lp(f, 9000.0, 3) * bump(f, 320.0, 120.0, 5.0)
               * bump(f, 1150.0, 300.0, 6.0) * bump(f, 2700.0, 600.0, 5.0))
-    crackle = spiky(pnoise(N, r, lambda f: bp(f, 2500.0, 9000.0, 2)), 3.0)
+    crackle = spiky(pnoise(N, r, lambda f: bp(f, 2500.0, 8000.0, 2)), 3.0)
     crackle = crackle * np.clip(1.0 + 0.6 * slow(N, r, 3.0, 25.0), 0.0, None)
-    x = x / rms(x) + 0.12 * crackle
-    return finalize_loop(x), dict(main_tone_hz=round(k0 * SR / N, 3), beat_hz=round(7 * SR / N, 3))
+    x = x / rms(x) + 0.12 * ffilt(crackle, lambda f: lp(f, 9000.0, 4))
+    return finalize_loop(x), dict(main_tone_hz=round(k0 * SR / N, 3),
+                                  modulation_hz=round(7 * SR / N, 3), modulation="voice beat")
 
 
 def thruster_roar_loop(seed=41, T=3.5):
@@ -420,6 +488,40 @@ def thruster_roar_loop(seed=41, T=3.5):
     x = np.tanh(1.5 * x / rms(x) * 0.6)
     x = ffilt(x, lambda f: hp(f, 28.0, 2) * bump(f, 90.0, 50.0, 4.0) * lp(f, 9000.0, 1))
     return finalize_loop(x), dict(main_tone_hz=round(k * SR / N, 3))
+
+
+def boost_loop(seed=45, T=3.5):
+    """Whole-boost loop: afterburner roar under a bright raspy energy scream
+    (saw voices on 660 Hz, a detuned twin and a fifth) with a 12 Hz
+    'overdrive' tremor."""
+    r = np.random.default_rng(seed)
+    N = int(T * SR)
+    n = np.arange(N)
+    rumble = pnoise(N, r, lambda f: hp(f, 30.0, 2) / (1.0 + (f / 160.0) ** 1.2))
+    rumble = rumble * (1.0 + 0.4 * slow(N, r, 3.0, 45.0))
+    crackle = spiky(pnoise(N, r, lambda f: bp(f, 600.0, 7000.0, 1)), 3.5)
+    crackle = crackle * np.clip(slow(N, r, 8.0, 60.0), 0.0, None)
+    roar = rumble + 0.4 * crackle / rms(crackle)
+    roar = np.tanh(0.9 * roar / rms(roar))
+
+    k = int(round(BOOST_ROOT_HZ * N / SR))
+    k_trem = int(round(12.0 * N / SR))
+
+    def voice(kk, nh):
+        return read_table(saw_table(nh), kk * n / N + 0.05 * slow(N, r, 0.6, 12.0, -1.0))
+
+    scream = voice(k, 12) + 0.8 * voice(k + 14, 12) + 0.5 * voice(int(round(1.5 * k)) + 9, 8)
+    scream = scream + 0.3 * np.sin(TAU * 2 * k * n / N)
+    scream = rasp(scream, 0.5, 9000.0)
+    tremor = 1.0 + 0.45 * np.sin(TAU * k_trem * n / N)
+    scream = scream * tremor * (1.0 + 0.2 * slow(N, r, 60.0, 120.0))
+    hiss = pnoise(N, r, lambda f: bp(f, 2000.0, 8000.0, 2)) * tremor
+
+    x = roar / rms(roar) + 0.9 * scream / rms(scream) + 0.3 * hiss / rms(hiss)
+    x = ffilt(x, lambda f: hp(f, 30.0, 2) * lp(f, 7800.0, 8))
+    return finalize_loop(x), dict(main_tone_hz=round(k * SR / N, 3),
+                                  modulation_hz=round(k_trem * SR / N, 3), modulation="overdrive tremor",
+                                  twin_beat_hz=round(14 * SR / N, 3))
 
 
 def supercharger_whine_loop(seed=51, T=3.0):
@@ -454,14 +556,17 @@ def stabiliser_strain_loop(seed=61, T=3.0):
     for ratio, lvl in [(1.0, 1.0), (1.5, 0.6), (2.0, 0.35)]:
         kk = int(round(k * ratio))
         shriek += lvl * np.sin(TAU * kk * n / N + 2.5 * ratio * slow(N, r, 4.0, 60.0, -0.5))
-    rough = 1.0 + 0.3 * slow(N, r, 50.0, 110.0)
+    shriek = shriek + 0.45 * rms(shriek) * read_table(
+        saw_table(7), (k // 2) * n / N + 0.2 * slow(N, r, 4.0, 60.0, -0.5))
+    shriek = rasp(shriek, 0.5, 9000.0)
+    rough = 1.0 + 0.3 * slow(N, r, 60.0, 120.0)
     narrow = pnoise(N, r, lambda f: np.exp(-0.5 * ((f - 2350.0) / 45.0) ** 2)
                     + 0.6 * np.exp(-0.5 * ((f - 3525.0) / 70.0) ** 2))
     hiss = pnoise(N, r, lambda f: bp(f, 1800.0, 11000.0, 2) * np.maximum(f, 1.0) ** -0.3)
     hiss = hiss * (1.0 + 0.25 * slow(N, r, 10.0, 90.0))
     x = (0.8 * shriek / rms(shriek) + 0.5 * narrow) * rough + 0.9 * hiss
     x = np.tanh(0.8 * x / rms(x))
-    x = ffilt(x, lambda f: hp(f, 500.0, 2) * lp(f, 14000.0, 2))
+    x = ffilt(x, lambda f: hp(f, 500.0, 2) * lp(f, 7800.0, 8))
     return finalize_loop(x), dict(main_tone_hz=round(k * SR / N, 3))
 
 
@@ -483,18 +588,38 @@ def drift_charge_loop(seed=71, T=3.0):
     shimmer = pnoise(N, r, lambda f: bp(f, 4000.0, 9000.0, 2)) * (1.0 + 0.6 * np.sin(TAU * 48 * n / N))
     x = x + 0.03 * shimmer
     x = ffilt(x, lambda f: hp(f, 100.0, 2) * lp(f, 12000.0, 2))
-    return finalize_loop(x), dict(main_tone_hz=round(int(round(330 * N / SR)) * SR / N, 3))
+    return finalize_loop(x), dict(main_tone_hz=round(int(round(330 * N / SR)) * SR / N, 3),
+                                  modulation_hz=round(24 * SR / N, 3), modulation="tension pulse")
 
 
 def wind_rush_loop(seed=81, T=4.0):
-    """High-speed air: shaped broadband noise with mild fast gusting."""
+    """Speed wind: shaped broadband noise, mild gusting, and two breathy
+    'moving air' whistles whose centres wander (no fixed-pitch drone), so it
+    still reads as wind when the game raises its gain and pitch."""
     r = np.random.default_rng(seed)
     N = int(T * SR)
     x = pnoise(N, r, lambda f: bp(f, 120.0, 9000.0, 1) * np.maximum(f / 600.0, 1e-3) ** -0.5
-               * bump(f, 900.0, 500.0, 5.0) * bump(f, 2800.0, 1200.0, 3.0)
-               * bump(f, 2100.0, 80.0, 4.0))
+               * bump(f, 900.0, 500.0, 5.0) * bump(f, 2800.0, 1200.0, 3.0))
     x = x * (1.0 + 0.18 * slow(N, r, 0.8, 7.0))
-    return finalize_loop(x), {}
+    w1 = wander_band(N, r, int(round(2300.0 * N / SR)), 320.0, 40.0)
+    w2 = wander_band(N, r, int(round(3900.0 * N / SR)), 500.0, 55.0)
+    x = x + 0.30 * w1 * (1.0 + 0.4 * slow(N, r, 0.5, 5.0)) + 0.20 * w2 * (1.0 + 0.4 * slow(N, r, 0.5, 5.0))
+    return finalize_loop(x), dict(whistle_centres_hz=[2300.0, 3900.0])
+
+
+def wind_buffet_loop(seed=85, T=4.0):
+    """Very-high-speed buffeting: low noise slammed by an irregular 3-14 Hz
+    envelope, with a mid 'flap' band on the same envelope so it survives
+    small speakers."""
+    r = np.random.default_rng(seed)
+    N = int(T * SR)
+    env = 0.15 + np.clip(slow(N, r, 3.0, 14.0), 0.0, None) ** 1.5
+    low = pnoise(N, r, lambda f: hp(f, 25.0, 2) / (1.0 + (f / 90.0) ** 1.5))
+    mid = pnoise(N, r, lambda f: bp(f, 180.0, 1400.0, 1))
+    x = (low + 0.35 * mid) * env
+    x = np.tanh(0.8 * x / rms(x))
+    x = ffilt(x, lambda f: hp(f, 25.0, 2) * lp(f, 4000.0, 2))
+    return finalize_loop(x), dict(modulation_band_hz=[3.0, 14.0], modulation="irregular buffet")
 
 
 def scrape_loop(seed=91, T=2.5):
@@ -544,20 +669,24 @@ def flutter_chuffs(n, rng, t0, count, rate0, rate1, amp_decay, bright=1.0):
     return out
 
 
+def saw_sum(ph, nh):
+    return sum(np.sin(h * ph) / h for h in range(1, nh + 1))
+
+
 def boost_ignite(seed=101):
-    """Suck-in (rising swept noise + tone, hard gate) -> 12 ms of vacuum ->
-    crack (click + snap + saturated body) with sub drop, falling whoosh and a
-    twin turbine scream spooling up."""
+    """100 ms reverse suck-in (hard gate) -> crack (click + snap + saturated
+    body) and sub drop -> a rising raspy shimmer that reaches the boost_loop
+    root with its tremor by the hand-over, then fades under the loop."""
     r = np.random.default_rng(seed)
-    n = int(2.4 * SR)
+    n = int(2.0 * SR)
     t = np.arange(n) / SR
-    tc = 0.26
+    tc, t_hand = 0.10, 0.60
     s = np.clip(t / tc, 0.0, 1.0)
-    gate = np.clip((tc - 0.012 - t) / 0.006, 0.0, 1.0)
-    fc = 250.0 * (6000.0 / 250.0) ** s
-    suck = 0.8 * swept_noise(n, r, fc, 900.0) + 0.4 * swept_noise(n, r, fc * 1.9, 2500.0)
-    suck += 0.35 * np.sin(phase_of(140.0 * (1500.0 / 140.0) ** s) + 3.0 * np.sin(TAU * 38.0 * t))
-    x = 0.45 * suck * (0.04 + s ** 3) * gate
+    gate = np.clip((tc - 0.008 - t) / 0.004, 0.0, 1.0)
+    fc = 400.0 * (7000.0 / 400.0) ** s
+    suck = 0.8 * swept_noise(n, r, fc, 1200.0) + 0.4 * swept_noise(n, r, fc * 1.7, 3000.0)
+    suck += 0.4 * np.sin(phase_of(200.0 * (2000.0 / 200.0) ** s))
+    x = 0.5 * suck * (0.05 + s ** 2.5) * gate
 
     tt = t - tc
     on = (tt >= 0.0).astype(float)
@@ -565,33 +694,86 @@ def boost_ignite(seed=101):
     click = r.standard_normal(n) * ad(tt, 0.0002, 0.0018)
     snap = bandnoise(n, r, 900.0, 9000.0) * ad(tt, 0.0005, 0.028)
     body = np.tanh(3.0 * np.sin(phase_of((70.0 + 170.0 * np.exp(-tp / 0.03)) * on))) * ad(tt, 0.001, 0.11)
-    sub = np.sin(phase_of((30.0 + 70.0 * np.exp(-tp / 0.30)) * on)) * ad(tt, 0.004, 0.40)
-    sub = np.tanh(1.5 * sub)
-    whoosh = swept_noise(n, r, 700.0 + 6500.0 * np.exp(-tp / 0.35), 3500.0) * ad(tt, 0.012, 0.38)
-    whoosh += 0.5 * bandnoise(n, r, 150.0, 2500.0) * ad(tt, 0.03, 0.5)
-    fs = (2300.0 - 1500.0 * np.exp(-tp / 0.10)) * on
-    p1, p2 = phase_of(fs), phase_of((fs * 1.004 + 9.0) * on)
-    scream = (np.sin(p1) + 0.5 * np.sin(2 * p1) + 0.8 * np.sin(p2) + 0.3 * np.sin(2 * p2))
-    scream = scream * ad(tt, 0.03, 0.42) * (1.0 + 0.2 * np.sin(TAU * 31.0 * t))
-    x = x + 1.0 * click + 0.8 * snap + 0.9 * body + 1.0 * sub + 0.6 * whoosh + 0.3 * scream
+    sub = np.tanh(1.5 * np.sin(phase_of((32.0 + 78.0 * np.exp(-tp / 0.25)) * on)) * ad(tt, 0.004, 0.33))
+    whoosh = swept_noise(n, r, 700.0 + 6500.0 * np.exp(-tp / 0.25), 3500.0) * ad(tt, 0.012, 0.24)
+
+    # Shimmer: pitch rises an octave onto the loop root, tremor settles at 12 Hz.
+    fs = (BOOST_ROOT_HZ - 0.5 * BOOST_ROOT_HZ * np.exp(-tp / 0.12)) * on
+    p1, p2 = phase_of(fs), phase_of(fs * 1.006)
+    sh = saw_sum(p1, 8) + 0.8 * saw_sum(p2, 8) + 0.5 * saw_sum(1.5 * p1, 6) + 0.3 * np.sin(2 * p1)
+    sh = 0.6 * np.tanh(1.2 * sh) + 0.4 * np.sin(1.9 * sh)
+    sh = ffilt_padded(sh, lambda f: lp(f, 9000.0, 4))
+    rise = 1.0 - np.exp(-tp / 0.18)
+    env = np.where(t < t_hand, rise, (1.0 - np.exp(-(t_hand - tc) / 0.18))
+                   * np.exp(-np.maximum(t - t_hand, 0.0) / 0.32)) * on
+    tremor = 1.0 + 0.45 * np.sin(phase_of(12.0 * on))
+    sparkle = bandnoise(n, r, 4500.0, 9000.0)
+    shimmer = (sh / rms(sh) + 0.35 * sparkle) * env * tremor
+
+    x = x + 1.0 * click + 0.8 * snap + 0.9 * body + 1.0 * sub + 0.5 * whoosh + 0.16 * shimmer
     x = np.tanh(1.5 * x / np.abs(x).max())
-    x = reverb(x, r, decay=0.32, mix=0.18)
-    return finalize_oneshot(x), dict(crack_at_s=tc)
+    x = reverb(x, r, decay=0.25, mix=0.15)
+    return finalize_oneshot(x), dict(suck_in_start_ms=0.0, crack_ms=tc * 1000.0,
+                                     shimmer_handover_ms=t_hand * 1000.0, shimmer_root_hz=BOOST_ROOT_HZ,
+                                     shimmer_tremor_hz=12.0)
 
 
 def boost_release(seed=111):
-    """Boost end: vent 'pssh', falling swept hiss, spool-down tone, then flutter."""
+    """Wind-down: the scream falls two octaves and its tremor slows, a vent
+    'pssh' with falling swept hiss, then a four-chuff flutter."""
     r = np.random.default_rng(seed)
-    n = int(1.3 * SR)
+    n = int(1.4 * SR)
     t = np.arange(n) / SR
-    vent = bandnoise(n, r, 2500.0, 11000.0) * ad(t, 0.004, 0.20)
+    f = 250.0 + (2.0 * BOOST_ROOT_HZ - 250.0) * np.exp(-t / 0.28)
+    p1, p2 = phase_of(f), phase_of(f * 1.008)
+    whine = np.tanh(1.3 * (saw_sum(p1, 6) + 0.7 * saw_sum(p2, 6)))
+    whine = ffilt_padded(whine, lambda fr: lp(fr, 9000.0, 4))
+    whine = whine * (1.0 + 0.35 * np.sin(phase_of(12.0 * np.exp(-t / 0.5)))) * ad(t, 0.005, 0.36)
+    vent = bandnoise(n, r, 2500.0, 10000.0) * ad(t, 0.004, 0.20)
     vent += 0.7 * swept_noise(n, r, 1500.0 + 3500.0 * np.exp(-t / 0.18), 2200.0) * ad(t, 0.006, 0.26)
-    ph = phase_of(500.0 + 1400.0 * np.exp(-t / 0.22))
-    spool = (np.sin(ph) + 0.4 * np.sin(2 * ph)) * ad(t, 0.01, 0.30)
-    x = vent + 0.18 * spool + 0.9 * flutter_chuffs(n, r, 0.13, 6, 20.0, 12.0, 0.78)
+    x = vent / np.abs(vent).max() + 0.45 * whine + 0.8 * flutter_chuffs(n, r, 0.16, 4, 18.0, 12.0, 0.75)
     x = np.tanh(1.3 * x / np.abs(x).max())
     x = reverb(x, r, decay=0.16, mix=0.12)
-    return finalize_oneshot(x), {}
+    return finalize_oneshot(x), dict(whine_start_hz=2.0 * BOOST_ROOT_HZ, whine_end_hz=250.0,
+                                     flutter_start_ms=160.0)
+
+
+def pop(seed, f0, bright, zap, peak_db, seconds=0.4):
+    """Overrun crackle: click + short noise burst (brightness = upper band
+    edge) + saturated pitched body. `zap` adds a tiny electric edge: a fast
+    falling chirp ring-modulated to make it metallic."""
+    r = np.random.default_rng(seed)
+    n = int(seconds * SR)
+    t = np.arange(n) / SR
+    click = r.standard_normal(n) * ad(t, 0.0001, 0.0012)
+    burst = bandnoise(n, r, 300.0, bright) * ad(t, 0.0004, 0.016)
+    body = np.tanh(2.5 * np.sin(phase_of(f0 * (1.0 + 1.5 * np.exp(-t / 0.008))))) * ad(t, 0.0005, 0.035)
+    tail = 0.3 * bandnoise(n, r, 150.0, 1500.0) * ad(t, 0.003, 0.05)
+    x = 0.8 * click + burst + 0.9 * body + tail
+    if zap:
+        z = np.tanh(3.0 * np.sin(phase_of(700.0 + 6000.0 * np.exp(-t / 0.02)))) * np.sin(TAU * 1730.0 * t)
+        x = x + 0.5 * z * ad(t, 0.0005, 0.04)
+    x = np.tanh(1.4 * x / np.abs(x).max())
+    x = reverb(x, r, decay=0.05, mix=0.12)
+    return finalize_oneshot(x, peak_db=peak_db), dict(body_hz=f0, electric_zap=bool(zap))
+
+
+def bang(seed, f0, seconds, peak_db=-3.2):
+    """Backfire: crack (click + snap), saturated body, sub, then a short
+    low-noise 'whump' that swells 30 ms after the crack (the fireball)."""
+    r = np.random.default_rng(seed)
+    n = int(seconds * SR)
+    t = np.arange(n) / SR
+    click = r.standard_normal(n) * ad(t, 0.0002, 0.002)
+    snap = bandnoise(n, r, 700.0, 9000.0) * ad(t, 0.0004, 0.03)
+    body = np.tanh(3.0 * np.sin(phase_of(f0 * (1.0 + 1.6 * np.exp(-t / 0.02))))) * ad(t, 0.0008, 0.09)
+    sub = np.tanh(1.5 * np.sin(phase_of(35.0 + 60.0 * np.exp(-t / 0.08))) * ad(t, 0.003, 0.15))
+    whump = bandnoise(n, r, 50.0, 450.0) * ad(t, 0.03, 0.12)
+    sizzle = spiky(bandnoise(n, r, 1000.0, 6000.0), 3.0) * ad(t, 0.01, 0.09)
+    x = click + 0.8 * snap + body + 0.9 * sub + 0.7 * whump / np.abs(whump).max() + 0.06 * sizzle
+    x = np.tanh(1.8 * x / np.abs(x).max())
+    x = reverb(x, r, decay=0.12, mix=0.18)
+    return finalize_oneshot(x, peak_db=peak_db), dict(body_hz=f0, whump_peak_ms=40.0)
 
 
 def turbo_flutter(seed=121):
@@ -709,12 +891,21 @@ def seam_metrics(x):
     fl = np.linalg.norm(np.diff(mag, axis=0), axis=1) / (nrm[1:] + nrm[:-1] + 1e-12)
     span = (idx[1:] + win > n) & (idx[:-1] < n)
     seam, other = fl[span].max(), fl[~span]
+    # Click detector: energy above 15 kHz in a short window. A real seam
+    # discontinuity is broadband, so it would tower over every other window.
+    w = 256
+    pos = np.arange(w, 2 * n - w, w // 2)
+    pos = np.concatenate([pos[np.abs(pos - n) > w], [n]])
+    seg = y[(pos - w // 2)[:, None] + np.arange(w)] * np.hanning(w)
+    hf = (np.abs(np.fft.rfft(seg, axis=1))[:, int(15000 * w / SR):] ** 2).sum(axis=1)
     return dict(jump_over_rms=round(jump / rms(x), 5),
                 jump_over_median_step=round(jump / (float(np.median(d)) + 1e-12), 3),
                 jump_over_max_step=round(jump / float(d.max()), 4),
                 flux_seam_over_median=round(float(seam / np.median(other)), 3),
                 flux_seam_over_p99=round(float(seam / np.percentile(other, 99)), 3),
-                flux_seam_over_max=round(float(seam / other.max()), 3))
+                flux_seam_over_max=round(float(seam / other.max()), 3),
+                hf_click_seam_over_median_db=round(float(10 * np.log10(hf[-1] / np.median(hf[:-1]) + 1e-20)), 1),
+                hf_click_seam_over_max_db=round(float(10 * np.log10(hf[-1] / hf[:-1].max() + 1e-20)), 1))
 
 
 def spectral_peak_hz(x, lo=20.0):
@@ -727,7 +918,15 @@ def oneshot_metrics(x):
     above = np.flatnonzero(np.abs(x) > amp(-60.0))
     lead = above[0] / SR * 1000.0 if above.size else float("inf")
     tail = np.abs(x[-int(0.010 * SR):]).max()
-    return dict(leading_silence_ms=round(float(lead), 3), tail_last10ms_dbfs=round(to_db(tail), 1))
+    return dict(leading_silence_ms=round(float(lead), 3), tail_last10ms_dbfs=round(to_db(tail), 1),
+                transient_peak_ms=round(float(np.argmax(np.abs(x))) / SR * 1000.0, 2))
+
+
+def hf_ratio_db(x, above=9000.0):
+    """Energy above `above` Hz relative to the whole signal (dB)."""
+    p = np.abs(np.fft.rfft(x)) ** 2
+    f = np.fft.rfftfreq(len(x), 1.0 / SR)
+    return round(float(10.0 * np.log10(p[f > above].sum() / p.sum() + 1e-20)), 1)
 
 
 def level_metrics(x):
@@ -762,15 +961,23 @@ SOUNDS = [
     ("turbine_high", "loop", "scifi", lambda: turbine_loop(2640.0, 22)),
     ("energy_hum", "loop", "scifi", energy_hum_loop),
     ("thruster_roar", "loop", "scifi", thruster_roar_loop),
+    ("boost_loop", "loop", "scifi", boost_loop),
     ("supercharger_whine", "loop", "scifi", supercharger_whine_loop),
     ("stabiliser_strain", "loop", "scifi", stabiliser_strain_loop),
     ("drift_charge", "loop", "scifi", drift_charge_loop),
     ("wind_rush", "loop", "scifi", wind_rush_loop),
+    ("wind_buffet", "loop", "scifi", wind_buffet_loop),
     ("scrape_loop", "loop", "scifi", scrape_loop),
     ("boost_ignite", "oneshot", "boost", boost_ignite),
     ("boost_release", "oneshot", "boost", boost_release),
     ("turbo_flutter", "oneshot", "boost", turbo_flutter),
     ("drift_release", "oneshot", "boost", drift_release),
+    ("pop_1", "oneshot", "pop", lambda: pop(201, 180.0, 6000.0, False, -4.0)),
+    ("pop_2", "oneshot", "pop", lambda: pop(202, 260.0, 9000.0, True, -4.5)),
+    ("pop_3", "oneshot", "pop", lambda: pop(203, 130.0, 4000.0, False, -3.5)),
+    ("pop_4", "oneshot", "pop", lambda: pop(204, 320.0, 8000.0, True, -5.0, 0.35)),
+    ("bang_1", "oneshot", "pop", lambda: bang(211, 95.0, 0.75)),
+    ("bang_2", "oneshot", "pop", lambda: bang(212, 70.0, 0.85)),
     ("impact_light", "oneshot", "impact", lambda: impact(141, 0.32, 0.0, -8.0)),
     ("impact_medium", "oneshot", "impact", lambda: impact(151, 0.55, 0.33, -6.0)),
     ("impact_heavy", "oneshot", "impact", lambda: impact(161, 0.95, 0.67, -4.0)),
@@ -792,6 +999,7 @@ def main():
         entry.update(meta)
         if kind == "loop":
             entry["seam"] = seam_metrics(q)
+            entry["hf_above_9k_db"] = hf_ratio_db(q)
             if family == "engine":
                 entry["measured_peak_hz"] = round(spectral_peak_hz(q), 4)
         else:

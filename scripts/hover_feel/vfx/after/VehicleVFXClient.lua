@@ -69,12 +69,23 @@ local FEEL_DEFAULTS = {
 	FeelLandFullStuds = 70,
 	FeelLandDustMin = 6,
 	FeelLandDustMax = 28,
+	FeelBackfireEnabled = true,
+	FeelBackfireCrackleMin = 4,
+	FeelBackfireCrackleMax = 8,
+	FeelBackfireBangMin = 14,
+	FeelBackfireBangMax = 24,
+	FeelBackfireCrackleFlashSeconds = 0.08,
+	FeelBackfireBangFlashSeconds = 0.16,
+	FeelBackfireFlashGain = 1.6,
 }
 local FEEL_IMPACT_LIGHT = 9
 local FEEL_IMPACT_MEDIUM = 25
 local FEEL_IMPACT_HEAVY = 55
 local FEEL_IMPACT_SEVERE = 110
 local FEEL_MPH_PER_STUD = 0.625
+local FEEL_POP_BANG = 0.8
+local FEEL_POP_CRACKLE_LOW = 0.3
+local FEEL_POP_CRACKLE_HIGH = 0.7
 local FEEL_LEGACY_HOVER_DUST = 0.45
 
 local feelConfig = table.clone(FEEL_DEFAULTS)
@@ -549,6 +560,7 @@ local function feelInputs(cache, state, dt)
 			PulseTimer = math.huge,
 			ImpactRevision = feelNumber(model, "FeelImpactRevision"),
 			LandRevision = feelNumber(model, "FeelLandRevision"),
+			PopRevision = feelNumber(model, "FeelPopRevision"),
 			LastImpactBurst = 0,
 			LastLandBurst = 0,
 			ThrottleOut = 0,
@@ -667,9 +679,32 @@ local function feelBursts(cache, feel, hiddenByRace)
 	local model = cache.Model
 	local impact = feelRevisionAdvanced(feel, "ImpactRevision", feelNumber(model, "FeelImpactRevision"))
 	local landed = feelRevisionAdvanced(feel, "LandRevision", feelNumber(model, "FeelLandRevision"))
-	if hiddenByRace or not (impact or landed) then return end
+	local popped = feelRevisionAdvanced(feel, "PopRevision", feelNumber(model, "FeelPopRevision"))
+	if hiddenByRace or not (impact or landed or popped) then return end
 	local controller = cache.Controller
-	if not controller or typeof(controller.Burst) ~= "function" then return end
+	if not controller then return end
+
+	-- Backfire: same update as the revision change, so it lands with the sound.
+	if popped and feelConfig.FeelBackfireEnabled == true and typeof(controller.Backfire) == "function" then
+		local strength = math.clamp(feelNumber(model, "FeelPopStrength") or 0, 0, 1)
+		local count
+		local flashSeconds
+		if strength >= FEEL_POP_BANG then
+			local alpha = math.clamp((strength - FEEL_POP_BANG) / (1 - FEEL_POP_BANG), 0, 1)
+			count = feelConfig.FeelBackfireBangMin + (feelConfig.FeelBackfireBangMax - feelConfig.FeelBackfireBangMin) * alpha
+			flashSeconds = feelConfig.FeelBackfireBangFlashSeconds
+		else
+			local alpha = math.clamp((strength - FEEL_POP_CRACKLE_LOW) / (FEEL_POP_CRACKLE_HIGH - FEEL_POP_CRACKLE_LOW), 0, 1)
+			count = feelConfig.FeelBackfireCrackleMin + (feelConfig.FeelBackfireCrackleMax - feelConfig.FeelBackfireCrackleMin) * alpha
+			flashSeconds = feelConfig.FeelBackfireCrackleFlashSeconds
+		end
+		local flashGain = 1 + (math.max(feelConfig.FeelBackfireFlashGain, 1) - 1) * math.max(strength, FEEL_POP_CRACKLE_LOW)
+		pcall(function()
+			controller:Backfire(count, flashSeconds, flashGain)
+		end)
+	end
+
+	if not (impact or landed) or typeof(controller.Burst) ~= "function" then return end
 
 	local now = os.clock()
 	local minInterval = math.max(feelConfig.FeelImpactMinInterval, 0.12)

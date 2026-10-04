@@ -1,81 +1,75 @@
 # Hover feel: audio part
 
-Status: **generated; both modules reported compiling in Studio; not installed, not run, not heard.** The review fixes
-(round 2, below) have not been compiled yet. The only local check is a block/bracket balance count in Python.
+Status: round 1 (with its review fixes) is installed and working in Play. **Round 2 below is generated only: not
+compiled, not run, not heard.** The only local check is a block/bracket balance count in Python.
 
 Files:
 
-- `after/VehicleAudioClient.lua` (67,839 chars) replaces `Modules.Game.Audio.VehicleAudioClient`.
-- `after/VehicleAudioCatalog.lua` (11,412 chars) replaces `Modules.Game.Audio.VehicleAudioCatalog`. Install both together: the client reads `profile.RevPitches` and `profile.Feel`, which only the new catalog provides.
-- `config_spec.json`: 20 attributes, 19 instances (18 description StringValues and the `EXOTIC_V10_AUDIO` profile folder with 173 attributes).
+- `after/VehicleAudioClient.lua` (71,249 chars) replaces `Modules.Game.Audio.VehicleAudioClient`.
+- `after/VehicleAudioCatalog.lua` (12,905 chars) replaces `Modules.Game.Audio.VehicleAudioCatalog`. Install both together.
+- `config_spec.json`: the full config for a fresh install (20 attributes, 19 instances; `EXOTIC_V10_AUDIO` has 220 attributes).
+- `config_round2.json`: only what round 2 adds or changes on the already-installed config: 53 attribute writes, 0 removals, 47 new instances (all description StringValues under `EXOTIC_V10_AUDIO.Descriptions`).
 
 No server file, remote, contract, bus or startup change.
 
-## Round 2 (review fixes)
+## Round 2 (Oscar's feedback after driving)
 
-1. **Engine stays audible if rev assets do not load.** `makeGraph` no longer drops Idle, EngineLow and EngineHigh for a rev profile. They remain the engine voice until one rev layer AudioPlayer reports `IsReady` (checked every 0.2 s), then swap equal-power to the rev layers over `Global.RevHandoverSeconds` (0.4). When the swap is complete and the standard engine loops have faded, their players are stopped. If no rev layer ever loads, nothing changes and nothing is logged. The handover needs one ready layer only; a rev layer that is still not loaded is silent until it is.
-2. **Feel step rate.** `Quality.LocalFeelUpdateHz` (60) on desktop, `Quality.LocalFeelUpdateHzMobile` (30) on small touch devices, chosen with the same `mobileBudget()` test at the 4 Hz priority pass. Only the local driver's feel voices use it; everything else stays on `ParameterUpdateHz` (15). `Bus.SetGain` is skipped for a feel voice unless its gain moved by more than about 0.1 dB (1.2 %, floor 0.002) or reached zero.
-3. **Slots match the synthesised files** (table below). `TurbineScream` became `TurbineLow` + `TurbineHigh`; `TurboFlutter` is new; the V10 rev layers are renamed and repositioned for a 1,000 to 8,000 rpm engine (`RevPitchBase = 0.125`).
+1. **Old sounds off.** A profile attribute `<Layer>Disabled=true` switches any layer off for that profile and keeps its asset id. A blank `<Layer>AssetId` also means off: `GetProfile` never inherited per attribute from the generic profile (it only uses the generic folder when the profile folder itself is missing). The Exotic now has `AccelerationDisabled`, `CoastDisabled`, `DriftLoopDisabled`, `AccelerationEnterDisabled`, `AccelerationReleaseDisabled`, `DriftEnterDisabled` = true. The generic Acceleration loop was the one old sound that was actually playing over the rev engine. Ignition and Shutdown are kept. Idle, EngineLow and EngineHigh remain only as the loading fallback (handover unchanged).
+2. **Idle.** `StandInIdle` (the rotary loop) is switched off (`AssetId=""`, `Enabled=false`; the fresh-install spec no longer has it). `StandInExhaust` is now `Load="Any"` with `PitchMin=0.5`, so idle is the exhaust loop at its lowest pitch, and it is the bottom of the thrust ladder too. `EnergyHum` (empty) plays beside it once filled. `V10Idle1000` takes the synthesised hybrid idle later.
+3. **Boost.**
+   - `BoostLoop` is the dedicated boost loop (`boost_loop`): pitch follows rev 0.9 to 1.15, full gain for a held boost, 0.7 for a mini-boost, 60 ms fade-in (`BoostFadeInSeconds`).
+   - New loop slot `BoostBody` (`thruster_roar`) under it, same gain rule, local driver only.
+   - `BoostIgnition` on entry and `BoostRelease` (`boost_release`) as before.
+   - The one deliberate inheritance: while the profile's `BoostLoopAssetId` is blank, its blank boost layers (BoostLoop, BoostEnter, BoostRelease, BoostRecharge, BoostEmpty, FullBoostSpent) borrow the fallback profile's values. Once `BoostLoopAssetId` is set, nothing is borrowed, so the generic boost loop and BoostEnter do not play. In the capture of 2026-10-04 every generic boost slot is blank, so today this borrows nothing.
+   - The rev layers duck 3 dB while boosting (30 ms in, 250 ms out), only when BoostLoop or BoostBody has an asset.
+4. **Pops and bangs.** On each `FeelPopRevision` change: `FeelPopStrength` under 0.8 draws from a shuffled bag of `Pop1..Pop4`; 0.8 and over draws from `Bang1/Bang2` (falls back to a pop if both bang slots are empty). Gain is scaled by strength, pitch jitter is plus or minus 6 %. No rate limit. **Difference from the request:** instead of a pool of 2 + 1 voices that swap assets, each slot has its own persistent voice (6 players). Swapping the asset on a playing AudioPlayer cuts it and a newly assigned asset is not ready on the same frame; the bag never repeats a slot back to back, so a run of pops overlaps.
+5. **Wind.** On a feel profile DriverWind gain is `(speed / 200) ^ 2`, faded in between 36 and 60 mph, pitch 0.85 to 1.25 with speed; `DriverWindGain` raised from 0.38 to 0.7. New loop slot `WindBuffet` enters from 160 mph, full at 220. Both local driver only. The toolbox body loop stays in `DriverWindAssetId`.
+6. `ProfileRevision` goes to 2, so a running graph rebuilds when the round-2 config is applied in Play.
 
-## What changed and why
+Four existing description StringValues have new text in `config_spec.json` (`BoostLoopAssetId`, `BoostReleaseAssetId`, `BoostEmptyAssetId`, `FullBoostSpentAssetId`). `config_round2.json` cannot express a value change on an existing instance, so on the installed place those four keep their old wording; nothing reads them at runtime.
+
+## What the code does
 
 **Catalog**
 
-- `ResolveProfileId` gains a category step (see "Profile selection"). Vehicles with no mapping resolve exactly as before.
-- `GetProfile` also returns `PitchRanges`, `RevPitches` (both empty for a standard profile) and `Feel` (nil unless the profile has `FeelDriveEnabled=true`). Feel layers use the existing `<Layer>AssetId / Gain / Pitch` attribute contract.
+- `ResolveProfileId` has a category step (see "Profile selection"). Vehicles with no mapping resolve as before.
+- `GetProfile` also returns `PitchRanges`, `RevPitches` and `Feel` (nil unless `FeelDriveEnabled=true`). `<Layer>Disabled` applies to every profile.
 
 **Client**
 
-- `newRoutedSource` takes an optional `deferPlay` argument so feel voices are created silent and stopped.
-- `buildFeel` (called from `makeGraph`) creates every feel AudioPlayer with the graph. Nothing is created per event.
-- `updateFeel` drives the feel voices: from the existing Heartbeat connection for the local driver, inside `updateGraph` (15 Hz) for other vehicles.
-- `updateGraph` keeps ownership of semantic state, cues, the remote and the standard layers. It hands `updateFeel` a small context (running, held for ignition/first drive, parked, exit-coasting, mix). Edits inside it: the standard engine loops are scaled by the handover, BoostLoop gain is scaled by boost kind, the Acceleration loop is ducked with the engine, and a loop layer with `<Layer>RevPitchMin/Max` follows rev.
-- `refreshPriorities` rebuilds a feel graph when `Global.FeelAudioEnabled` flips or the profile's `ProfileRevision` changes (so config edits can be auditioned in Play by bumping `ProfileRevision`).
-- `Controller.Counts()` gains `FeelVoices`.
+- `buildFeel` (from `makeGraph`) creates every feel AudioPlayer with the graph. Nothing is created per event.
+- `updateFeel` drives the feel voices: from the existing Heartbeat for the local driver (60 Hz desktop, 30 Hz small touch devices), inside `updateGraph` (15 Hz) for other vehicles. `Bus.SetGain` is skipped unless the gain moved by about 0.1 dB.
+- `updateGraph` keeps semantic state, cues, the remote and the standard layers, and hands `updateFeel` a small context.
+- Standard engine loops stay the voice until one rev layer is `IsReady`, then swap over `Global.RevHandoverSeconds`; if none loads they stay.
+- A profile without `FeelDriveEnabled=true` takes none of the new paths.
 
-A profile without `FeelDriveEnabled=true` takes none of the new paths: same layers, same pitches, same players.
+**Feel drive**
 
-**How the feel drive works**
+- Load: throttle followed with 22 ms attack and 85 ms release, raised to 0.8; thrust set `sin`, coast set `cos`; tip-in bark.
+- Rev: `clamp(0.25 * load + 0.75 * speed / RevReferenceMph + 0.08 * boost)`.
+- Rev layers: frequency = `RevPitchBase + (1 - RevPitchBase) * rev`; each loop plays at `frequency / frequency at its own Rev`; neighbours crossfade cos/sin on log frequency, detuned 0.3 % opposite ways. `Load="Any"` sits in both ladders.
+- Twin engine copy (1.2 % sharp, local, not on small touch devices). Life noise (0.25 % pitch, 0.6 dB).
+- Turbo spool, whistle, blow-off or flutter on lift and at boost end. Supercharger whine. Turbine pair an octave apart. Energy hum.
+- Slip strain with a 6 dB engine duck. Drift charge tone and release.
+- Impacts by tier (9 / 25 / 55 / 110), at most one per 0.12 s. Landing thump.
+- A feel loop at zero gain for 2 s stops its player. An asset that is not loaded is skipped.
+- Not read: `FeelSpeedMph`, `FeelBoostCharge`, `FeelGrounded`.
 
-- Load: throttle (`FeelThrottle`, or the `Accelerating`/reversing state when the attribute is missing) followed with 22 ms attack and 85 ms release, raised to 0.8. Thrust set gain is `sin(load * 90 deg)`, coast set gain is `cos`. Tip-in bark: `BarkGain * (load - load followed over BarkSeconds)` added to the thrust set.
-- Rev: `clamp(0.25 * load + 0.75 * speed / RevReferenceMph + 0.08 * boost)`, 0.12 s up, 0.28 s down. Speed is the root part's velocity (the same number as `FeelSpeedMph`, without the 0.5 mph steps).
-- Rev layers: engine frequency = `RevPitchBase + (1 - RevPitchBase) * rev`. Each loop plays at `frequency / frequency at its own Rev`, limited to its `PitchMin..PitchMax`. The two loops either side of the current frequency crossfade with cos/sin gains on the log of frequency. Neighbours are detuned 0.3 % in opposite directions. A layer with `Load="Any"` (the idle) sits at the bottom of both the thrust and the coast ladder.
-- Twin engine: a second copy of each on-load loop, 1.2 % sharp, at 0.6 of the main gain, started 37 % into the loop. Local driver only; off on small touch devices unless `Quality.TwinEngineOnMobile=true`.
-- Life: two slow random drifts on the local engine, about 0.25 % pitch and 0.6 dB level.
-- Turbo: spool rises toward `load * (0.35 + 0.65 * rev)` (or 1 while boosting), falls on lift. Whistle pitch `0.5 + 1.35 * spool`. A vent fires on a lift after 0.6 s of sustained load, or when a boost ends, if spool is at least 0.35; gain scales with spool. Spool below 0.7 plays `TurboFlutter`, otherwise `BlowOff`; if one slot is empty the other is used.
-- Supercharger whine follows rev. Turbine: pitch = `2 ^ (TurbineOctaveStart + TurbineOctaves * rev)` relative to the `TurbineLow` recording (-0.5 to +1.5 octaves); `TurbineHigh` plays one octave below that figure, and the pair crossfades equal-power between octave 0 and 1. Gain enters from rev 0.3. Energy hum is steady while driving and rises with `FeelHover`.
-- Slip strain: `smoothstep(0.12, 0.6, |FeelSlip|)`, with a floor of 0.35 while drifting. Pitch 0.92 to 1.06. The rev layers and the Acceleration loop duck up to 6 dB under it (60 ms in, 350 ms out). No duck when the SlipStrain slot is empty.
-- Boost: BoostLoop at 0.7 gain for a mini-boost, and its pitch follows rev (0.9 to 1.15). `BoostIgnition` fires when `FeelBoostKind` goes from `""` to `"Boost"`/`"Mini"`; the existing `BoostEnter`, `BoostRelease`, `BoostEmpty` and `FullBoostSpent` one-shots play as before.
-- Drift charge: tone gain fades in from charge 0.04 to 0.3, pitch climbs to charge 1. `DriftChargeRelease` fires when the kind becomes `"Mini"`, scaled by the peak charge.
-- Impacts: on a `FeelImpactRevision` change, tier by `FeelImpactStrength` (9 / 25 / 55 / 110). An empty tier borrows the nearest populated one, lighter first. At most one per 0.12 s. Landing: on a `FeelLandRevision` change, gain from 0.25 at 6 studs/s to 1 at 60 studs/s.
-- Sleep: a feel loop at zero gain for 2 s stops its player; it restarts when needed. An asset that is not loaded (`IsReady` false) is skipped until it is.
-- Not used: `FeelSpeedMph`, `FeelBoostCharge` (the existing `MobileDriveInputState.BoostPercent` path is untouched), `FeelGrounded`.
-
-**Other vehicles (no Feel attributes)**
-
-- Standard profile: unchanged.
-- Feel profile with rev layers, Detailed tier: at most 3 rev loops chosen evenly from the on-load ladder, driven by `AssemblyLinearVelocity` and `AudioDrive`/`AudioBoost`, plus the standard engine loops for the handover. No Acceleration, Coast, DriftLoop or BoostLoop loop, no twin, no forced induction, no slip, no impacts. Existing one-shots (Ignition, DriftEnter, BoostEnter and so on) still play. This also covers the player's own parked car.
-- Simple tier: `EngineLow` only, as today.
+**Other vehicles:** standard profile unchanged. Feel profile, Detailed tier: up to 3 on-load rev loops plus the standard engine loops for the handover; no other loop. Simple tier: `EngineLow` only.
 
 ## Profile selection
 
-The server stamps every runtime vehicle with `ResolvedAudioProfileId` = the template's `StandardAudioProfileId` or the fallback, and `AudioProfileSource="Standard"`. The server is not changed, so an Exotic arrives stamped `GENERIC_STANDARD_AUDIO`.
-
-`Catalog.ResolveProfileId` now checks first: if the vehicle has no stamp yet, or carries the default stamp (`AudioProfileSource == "Standard"` and the resolved id is the fallback id), and its `StandardAudioProfileId` is blank or the fallback, it reads the vehicle Model's `CategoryId` attribute and looks up `Config.Audio.VehicleProfiles` attribute `CategoryProfile_<CategoryId>`. If that names an existing profile folder, it wins. Otherwise the old order applies (resolved, standard, fallback). A package resolved by a future authoritative owner, or a template with its own profile id, still wins.
-
-Where `CategoryId` comes from: in the repo mirror, `ServerStorage.Modules.Game.Garage.GarageServer` `buildVehicle` sets `vehicle:SetAttribute("CategoryId", profile.CurrentCategory)` before parenting the clone into `Workspace.World.Runtime.PlayerVehicles`, so it replicates with the model. The mirror is older than live. **Check on a spawned Exotic that the Model has `CategoryId = "exotic"`.** If it does not, the car keeps the generic voice and nothing errors.
-
-The client already re-resolves the profile id every priority pass (4 Hz) and rebuilds on change, so a stamp that arrives late is picked up.
+The server stamps every runtime vehicle `ResolvedAudioProfileId` = the template's `StandardAudioProfileId` or the fallback, with `AudioProfileSource="Standard"`. `Catalog.ResolveProfileId` checks first: default stamp (or none yet) and no template-specific id, then the Model's `CategoryId` attribute, then `Config.Audio.VehicleProfiles` attribute `CategoryProfile_<CategoryId>`. Otherwise the old order applies. `CategoryId` is set by `GarageServer.buildVehicle` before the model is parented.
 
 ## Synthesised file to config slot
 
 `P` = `ReplicatedStorage.Config.Audio.VehicleProfiles.EXOTIC_V10_AUDIO`. Every id below is `""` today. Filling them is config only; bump `P.ProfileRevision` to rebuild a live graph.
 
-Engine loops (rev position = `(rpm / 8000 - 0.125) / 0.875`; already set in the spec):
+Engine loops (rev position = `(rpm / 8000 - 0.125) / 0.875`, already set):
 
 | File | Instance | Attribute | Load | Rev |
 |---|---|---|---|---|
-| `v10_idle_1000` | `P.RevLayers.V10Idle1000` | `AssetId` | Any | 0 |
+| `v10_idle_1000` (hybrid sci-fi idle) | `P.RevLayers.V10Idle1000` | `AssetId` | Any | 0 |
 | `v10_on_2000` | `P.RevLayers.V10On2000` | `AssetId` | On | 0.1429 |
 | `v10_on_3500` | `P.RevLayers.V10On3500` | `AssetId` | On | 0.3571 |
 | `v10_on_5000` | `P.RevLayers.V10On5000` | `AssetId` | On | 0.5714 |
@@ -84,78 +78,70 @@ Engine loops (rev position = `(rpm / 8000 - 0.125) / 0.875`; already set in the 
 | `v10_off_3000` | `P.RevLayers.V10Off3000` | `AssetId` | Off | 0.2857 |
 | `v10_off_6000` | `P.RevLayers.V10Off6000` | `AssetId` | Off | 0.7143 |
 
-Fill the eight together: as soon as one of them has an id, the three toolbox stand-ins (`StandInIdle`, `StandInExhaust`, `StandInRev`) are dropped.
+Fill the eight together: as soon as one has an id, the toolbox stand-ins (`StandInExhaust`, `StandInRev`) are dropped.
 
-Other loops and one-shots (attributes on `P` itself):
+Other files (attributes on `P` itself):
 
 | File | Attribute on `P` | Kind | Notes |
 |---|---|---|---|
-| `turbine_low` | `TurbineLowAssetId` | loop | new slot |
-| `turbine_high` | `TurbineHighAssetId` | loop | new slot, one octave above `turbine_low` |
-| `energy_hum` | `EnergyHumAssetId` | loop | |
-| `thruster_roar` | `BoostLoopAssetId` | loop | existing slot: plays while boosting, 0.7 gain for a mini-boost, pitch follows rev. No new slot was added because this one already is "the loop under boost". Not heard on other players' Exotics (their rev graph has no BoostLoop). |
-| `supercharger_whine` | `SuperchargerWhineAssetId` | loop | replaces toolbox 404779487 |
-| `stabiliser_strain` | `SlipStrainAssetId` | loop | replaces the toolbox tyre squeal 435752381; then set `SlipStrainPitch` to 1 and retune `SlipStrainGain` (now 0.8 and 0.2 for the squeal) |
-| `drift_charge` | `DriftChargeAssetId` | loop | plays at 0.8x to 1.7x |
-| `wind_rush` | `DriverWindAssetId` | loop | existing slot; replaces toolbox 4471836491 |
-| `scrape_loop` | none | loop | **unused.** The Feel state has impact events but no sustained-contact signal, so nothing can drive it yet. |
+| `boost_loop` | `BoostLoopAssetId` | loop | existing slot. Setting it also stops the borrowed generic boost layers. |
+| `thruster_roar` | `BoostBodyAssetId` | loop | new slot (round 1 notes pointed this file at `BoostLoopAssetId`; that is superseded) |
 | `boost_ignite` | `BoostIgnitionAssetId` | one-shot | |
-| `boost_release` | `BoostReleaseAssetId`, and the same id in `BoostEmptyAssetId` and `FullBoostSpentAssetId` | one-shot | existing slots. Release covers an early release (and the end of a mini-boost); Empty and FullBoostSpent cover a drained tank. Leave the last two blank if a drained tank should stay silent. |
-| `turbo_flutter` | `TurboFlutterAssetId` | one-shot | new slot; plays instead of the blow-off when spool is under 0.7 |
+| `boost_release` | `BoostReleaseAssetId` | one-shot | existing slot; early release and the end of a mini-boost. Put the same id in `BoostEmptyAssetId` / `FullBoostSpentAssetId` if a drained tank should sound too. |
+| `turbine_low` | `TurbineLowAssetId` | loop | |
+| `turbine_high` | `TurbineHighAssetId` | loop | one octave above `turbine_low` |
+| `energy_hum` | `EnergyHumAssetId` | loop | also part of the idle |
+| `supercharger_whine` | `SuperchargerWhineAssetId` | loop | replaces toolbox 404779487 |
+| `stabiliser_strain` | `SlipStrainAssetId` | loop | replaces the toolbox tyre squeal; then set `SlipStrainPitch` to 1 and retune `SlipStrainGain` |
+| `drift_charge` | `DriftChargeAssetId` | loop | |
+| `wind_rush` | `DriverWindAssetId` | loop | existing slot; replaces toolbox 4471836491 |
+| `wind_buffet` | `WindBuffetAssetId` | loop | new slot |
+| `scrape_loop` | none | loop | **unused**: the Feel state has no sustained-contact signal |
+| `turbo_flutter` | `TurboFlutterAssetId` | one-shot | |
 | `drift_release` | `DriftChargeReleaseAssetId` | one-shot | |
-| `impact_light` | `ImpactLightAssetId` | one-shot | |
-| `impact_medium` | `ImpactMediumAssetId` | one-shot | |
-| `impact_heavy` | `ImpactHeavyAssetId` | one-shot | |
-| `impact_severe` | `ImpactSevereAssetId` | one-shot | |
+| `pop_1` .. `pop_4` | `Pop1AssetId` .. `Pop4AssetId` | one-shot | new slots |
+| `bang_1`, `bang_2` | `Bang1AssetId`, `Bang2AssetId` | one-shot | new slots |
+| `impact_light` / `_medium` / `_heavy` / `_severe` | `ImpactLightAssetId` / `ImpactMediumAssetId` / `ImpactHeavyAssetId` / `ImpactSevereAssetId` | one-shot | |
 | `land_thump` | `LandingThumpAssetId` | one-shot | |
 
-Still from the toolbox with no synthesised replacement: `TurboWhistleAssetId` (241458901), `BlowOffAssetId` (4940167544). `EngineLowAssetId` (1323976194) and the generic `IdleAssetId`, `AccelerationAssetId` and `IgnitionAssetId` are kept.
+Still from the toolbox with no synthesised replacement: `TurboWhistleAssetId` (241458901), `BlowOffAssetId` (4940167544), `EngineLowAssetId` (1323976194, fallback and Simple tier only).
 
 ## AudioPlayer count
 
-Persistent players per vehicle (created with the graph; feel voices sleep at zero gain, the standard engine loops stop after the handover):
+Persistent players per vehicle (feel voices sleep at zero gain; the standard engine loops stop after the handover):
 
 | Case | Created |
 |---|---|
-| Local driver, hard limit in code | 40 = 8 standard loops + 16 rev + 7 feel loops + 9 feel one-shot voices |
-| Local driver, default desktop budget | 38 (rev budget 14) |
-| Local driver, small touch device | 32 (rev budget 8, no twin) |
-| Exotic, every slot filled, desktop | 34 = 5 standard (Idle, EngineLow, Acceleration, BoostLoop, DriverWind) + 13 rev (1 idle + 5 on + 2 off + 5 twin) + 7 + 9 |
-| Exotic, every slot filled, small touch device | 29 (8 rev, no twin) |
-| Exotic as specified today | 12 = Idle, EngineLow, Acceleration, DriverWind + 3 stand-ins + 1 twin + TurboWhistle, SuperchargerWhine, SlipStrain + BlowOff |
-| Other vehicle, feel profile, Detailed | up to 6 created (3 rev + up to 3 standard engine loops; Exotic: 5). At most 3 are playing except during the 0.4 s handover. |
+| Local driver, hard limit in code | 48 = 8 standard loops + 16 rev + 9 feel loops + 15 feel one-shot voices |
+| Local driver, default desktop budget | 46 (rev budget 14) |
+| Local driver, small touch device | 40 (rev budget 8, no twin) |
+| Exotic, every slot filled, desktop | 41 = 4 standard (Idle, EngineLow, BoostLoop, DriverWind) + 13 rev + 9 + 15 |
+| Exotic, every slot filled, small touch device | 36 |
+| Exotic as configured today | 10 = Idle, EngineLow, DriverWind + StandInExhaust, StandInRev, its twin + TurboWhistle, SuperchargerWhine, SlipStrain + BlowOff |
+| Other vehicle, feel profile, Detailed | up to 6 (3 rev + up to 3 standard engine loops; Exotic: 5 filled, 4 today). At most 3 playing outside the 0.4 s handover. |
 | Other vehicle, Simple | 1 |
-| Standard profile | unchanged (up to 8 loops local, 7 remote) |
+| Standard profile | unchanged |
 
-Transient, as today: the reliable ignition player (1) and up to `MaxConcurrentOneShotsPerVehicle` (8) existing one-shots.
+Transient, as today: the reliable ignition player and up to 8 existing one-shots.
 
 ## Not verified
 
-- Nothing has been run. Round 2 has not been compiled.
-- I have not heard any asset. Every gain, the stand-in `Rev` positions, the turbine sweep and the pitch limits are guesses. The tyre squeal as stabiliser strain may read as tyres; blank `SlipStrainAssetId` if so (the engine duck goes with it).
-- What `AudioPlayer.IsReady` reports for an asset the place is not authorised to use. The handover assumes it stays false.
-- `CategoryId` on the live runtime Model (mirror evidence only). Time-trial or other spawn paths may not set it.
-- `RevReferenceMph = 170` is a guess at Exotic top speed. The Feel state does not publish top speed.
-- `TimeLength` and writable `TimePosition` are used inside `pcall`. Restarting a one-shot is `Stop`, `TimePosition = 0`, `Play`; untested.
-- Twin copies start 37 % into the loop; with a 1.2 % detune the offset between the copies sweeps continuously. Whether that sounds like a beat or a flanger depends on the loops.
-- The Feel attributes are not written by the before `DrivingClient`; the Feel paths were written against `CONTRACT.md` only. If `FeelImpactRevision` is absent while `FeelThrottle` is present it is read as 0, so the first impact still plays.
-- Pre-existing, not changed: `Catalog.GlobalBool(name, true)` returns true when the attribute is false, so `VehicleAudioCueExpansionEnabled=false`, `ParkedVehicleAudioEnabled=false` (client side), `ExitCoastAudioEnabled=false`, `BoostRechargeStopAtFull=false`, `FullBoostReplacesEmpty=false` and `ExitCoastSuppressEngineHigh=false` have no effect in the client. The new switches do not use it.
+- Round 2 has not been compiled or run. I have not heard any asset; gains and curves are guesses.
+- With the rotary idle gone, today's idle is the toolbox exhaust loop at 0.5x speed. It may sound thin or rough until `v10_idle_1000` and `energy_hum` are in.
+- "Old sounds" for boost: the captured generic profile has no boost assets, so I could not tell which boost sound Oscar heard. If the live generic profile has boost assets, they play on the Exotic until `BoostLoopAssetId` is set.
+- `FeelPopRevision` / `FeelPopStrength` are read as the contract describes; the producer side was not available to test against.
+- What `AudioPlayer.IsReady` reports for an unauthorised asset; `TimePosition` rewind on retrigger.
+- `RevReferenceMph = 170` and the 200 mph wind figure are guesses at Exotic speeds.
+- Pre-existing, not changed: `Catalog.GlobalBool(name, true)` returns true when the attribute is false.
 
 ## Manual test list
 
-1. Edit: both modules compile. Apply `config_spec.json`. `Config.Audio.VehicleProfiles` has `EXOTIC_V10_AUDIO` with `RevLayers` (11 layer folders) and attribute `CategoryProfile_exotic`.
-2. Piercer (standard profile): sounds and behaves as before. `VehicleAudioClient.Counts().FeelVoices` is 0 while driving it.
-3. Spawn an Exotic. Model has `CategoryId="exotic"`; with `Global.DebugAudio=true` the log shows `graph Internal Detailed EXOTIC_V10_AUDIO`; `Counts().FeelVoices` is 8 on desktop.
-4. Ignition plays once, then the engine comes in after the usual lead: the generic idle first, swapping to the stand-in rev layers within about half a second of their loading. No engine during the first-drive Controls page.
-5. Fallback: set the three stand-in `AssetId`s to an id that cannot load (or run where the toolbox ids are not authorised) and bump `ProfileRevision`: the car keeps the generic Idle and EngineLow voice indefinitely, with no warnings in the console.
-6. Hold throttle from rest: engine pitch rises continuously with speed, with a short bark at tip-in; turbo whistle and supercharger whine rise. Lift after a second of throttle: one blow-off, exhaust stand-in while coasting. Tap the throttle quickly: no blow-off machine-gun.
-7. Drift: strain loop fades in, engine ducks and recovers. Hold the drift to a mini-boost: no error (BoostLoop, ignition and release slots are blank today).
-8. Boost to empty and release early: existing cues as before; blow-off at boost end.
-9. Hit a wall, land a jump: no error (slots blank). With a temporary id in `ImpactMediumAssetId`, one hit = one sound, repeated scraping no faster than 0.12 s.
-10. Exit while moving, then parked: the car is heard in 3D; under `SoundService.AudioRuntime_Local.Vehicle_<id>` at most 3 `Player_Rev_*` loops exist and, after the handover, `Player_Idle`/`Player_EngineLow` are not playing. Re-enter: no second ignition, feel voices return.
-11. Two clients: the other player's Exotic pitch follows its speed. Twelve cars: the 6 + 6 budget holds.
-12. `Global.FeelAudioEnabled=false` in Play: the Exotic rebuilds within 0.25 s to the standard layers only. True again: feel returns.
-13. Edit a gain on the profile and bump `ProfileRevision` in Play: the graph rebuilds with the new value.
-14. Sit idle for 5 s, inspect the graph folder: of the `Player_Rev*` and feel loop players only the idle stand-in reports `IsPlaying`.
-15. Mobile emulation (small touch viewport): no `Player_RevTwin_*` instances; no console errors.
-16. Exit and re-enter ten times, switch cars: one `Vehicle_<id>` folder per tracked vehicle, `Counts().VehicleFaders` returns to the same number.
+1. Both modules compile. Apply `config_round2.json` (or `config_spec.json` on a place without the profile).
+2. Piercer: unchanged; `Counts().FeelVoices` is 0.
+3. Exotic: `Counts().FeelVoices` is 7 on desktop. No `Player_Acceleration` under the graph folder; no `Player_Rev_StandInIdle`.
+4. Idle in the seat: exhaust stand-in at low pitch only, nothing rotary. Generic idle is heard for at most the first half second.
+5. Throttle, lift, coast: as round 1, minus the old acceleration loop. Set `AccelerationDisabled=false` and bump `ProfileRevision`: the old loop returns (proves the switch).
+6. Boost: no error with the slots blank. With temporary ids in `BoostLoopAssetId` and `BoostIgnitionAssetId`: ignition and loop land together, loop pitch follows rev, engine steps back slightly and recovers; mini-boost is quieter.
+7. Pops: with temporary ids in `Pop1..Pop4` and `Bang1`, lift after hard thrust above 40 mph: a run of crackles, no slot twice in a row; end a boost: one bang then crackles. Blank slots: silent, no error.
+8. Wind: silent below about 40 mph, clearly audible by 120, rising to 200, pitch rising with speed. Not heard from another player's car.
+9. Drift, wall hit, landing, exit, parked, re-enter, two clients, `FeelAudioEnabled=false`, mobile emulation: as round 1.

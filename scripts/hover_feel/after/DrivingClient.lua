@@ -576,7 +576,7 @@ local function updateExistingDriveUi(speedMph)
 	end
 end
 
-local FEEL_ATTRIBUTES = {"FeelThrottle", "FeelSpeedMph", "FeelSlip", "FeelBoostCharge", "FeelBoostKind", "FeelDriftCharge", "FeelGrounded", "FeelHover", "FeelImpactRevision", "FeelImpactStrength", "FeelLandRevision", "FeelLandStrength"}
+local FEEL_ATTRIBUTES = {"FeelThrottle", "FeelSpeedMph", "FeelSlip", "FeelBoostCharge", "FeelBoostKind", "FeelDriftCharge", "FeelGrounded", "FeelHover", "FeelImpactRevision", "FeelImpactStrength", "FeelLandRevision", "FeelLandStrength", "FeelPopRevision", "FeelPopStrength"}
 local function clearFeelState(vehicle)
 	if not vehicle then return end
 	for _, name in ipairs(FEEL_ATTRIBUTES) do vehicle:SetAttribute(name, nil) end
@@ -624,6 +624,36 @@ local function publishFeelState(dt, vehicle, throttle, velocity, speedMph, sideS
 	vehicle:SetAttribute("FeelDriftCharge", quantise(math.clamp(state.DriftCharge / 3.25, 0, 1), 0.02))
 	vehicle:SetAttribute("FeelGrounded", grounded)
 	vehicle:SetAttribute("FeelHover", hits > 0 and quantise(math.clamp(feel.HoverSum / hits / HOVER_HEIGHT, -1, 1), 0.02) or 0)
+	-- Pops: a short run after lifting off hard thrust; a bang, then a run, when a held boost ends.
+	if configBool("Driving", "FeelPopsEnabled", true) then
+		local now = os.clock()
+		local pop = nil
+		if feel.PreviousBoostKind == "Boost" and feel.BoostKind == "" then
+			pop = 0.85 + math.random() * 0.15
+			feel.PopsLeft = math.random(1, 3)
+			feel.NextPop = now + 0.12
+			feel.LoadTime = 0
+		elseif throttle > 0.6 and speedMph > 40 then
+			feel.LoadTime = math.min(feel.LoadTime + dt, 3)
+		elseif throttle <= 0.1 then
+			if feel.LoadTime >= 1 then
+				feel.PopsLeft = math.random(2, 4)
+				feel.NextPop = now + 0.06
+			end
+			feel.LoadTime = 0
+		end
+		if not pop and feel.PopsLeft > 0 and now >= feel.NextPop then
+			feel.PopsLeft -= 1
+			feel.NextPop = now + 0.07 + math.random() * 0.15
+			pop = 0.3 + math.random() * 0.4
+		end
+		if pop then
+			feel.PopRevision += 1
+			vehicle:SetAttribute("FeelPopStrength", quantise(pop, 0.01))
+			vehicle:SetAttribute("FeelPopRevision", feel.PopRevision)
+		end
+	end
+	feel.PreviousBoostKind = feel.BoostKind
 end
 
 local handleResetAction
@@ -684,7 +714,7 @@ function Controller.Start(context)
 	state.WobbleSeedZ = math.random() * 1000
 	state.AccelCameraActive = false
 	state.BoostCameraActive = false
-	state.Feel = { ImpactRevision = 0, LandRevision = 0, LastImpact = 0, AirTime = 0, FallSpeed = 0, HoverSum = 0, BoostKind = "", Skip = true, SkipNext = false }
+	state.Feel = { ImpactRevision = 0, LandRevision = 0, LastImpact = 0, AirTime = 0, FallSpeed = 0, HoverSum = 0, BoostKind = "", Skip = true, SkipNext = false, PopRevision = 0, PopsLeft = 0, NextPop = 0, LoadTime = 0, PreviousBoostKind = "" }
 
 	local root = state.Vehicle.PrimaryPart
 	local look = root.CFrame.LookVector

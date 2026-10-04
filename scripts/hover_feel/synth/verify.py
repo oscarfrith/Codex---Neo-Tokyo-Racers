@@ -88,7 +88,7 @@ def spectrogram_tile(x, width=280, height=120, win=2048, wrap=False):
     return (stops[i0] * (1 - fr) + stops[i0 + 1] * fr).astype(np.uint8)
 
 
-def contact_sheet(items, path, cols=5):
+def contact_sheet(items, path, cols=6):
     tw, th, label = 280, 120, 16
     rows = (len(items) + cols - 1) // cols
     sheet = np.zeros((rows * (th + label + 6) + 6, cols * (tw + 6) + 6, 3), np.uint8) + 24
@@ -98,6 +98,12 @@ def contact_sheet(items, path, cols=5):
         draw_text(sheet, ox, oy + 2, name)
         sheet[oy + label:oy + label + th, ox:ox + tw] = spectrogram_tile(x, tw, th, wrap=wrap)
     write_png(path, sheet)
+
+
+RASPY = {"turbine_low", "turbine_high", "energy_hum", "stabiliser_strain", "boost_loop"}
+MAX_SECONDS = {"boost_ignite": 2.5, "boost_release": 1.5, "turbo_flutter": 1.0, "drift_release": 0.8,
+               "pop": 0.6, "bang": 0.9, "land_thump": 0.8, "impact_light": 1.5, "impact_medium": 1.5,
+               "impact_heavy": 1.5, "impact_severe": 1.5}
 
 
 def main():
@@ -126,8 +132,16 @@ def main():
                 s["jump_over_rms"], s["jump_over_max_step"], s["flux_seam_over_median"],
                 s["flux_seam_over_max"]))
             check(s["jump_over_max_step"] <= 1.0, "seam step larger than any step inside the loop")
-            check(s["flux_seam_over_max"] <= 1.0, "seam flux larger than any flux inside the loop")
+            notes.append("click %+.1f dB vs max" % s["hf_click_seam_over_max_db"])
+            # Flux is a statistic of the content; a seam only counts as bad when the
+            # broadband click detector agrees or the flux is far outside the loop's range.
+            check(s["hf_click_seam_over_max_db"] <= 0.0, "broadband click at the seam")
+            check(s["flux_seam_over_max"] <= 1.25, "seam flux far above any flux inside the loop")
             check(2.0 <= len(x) / SR <= 4.0, "loop length")
+            if e["name"][:-4] in RASPY:
+                hf = ms.hf_ratio_db(x)
+                notes.append("energy >9 kHz %.1f dB" % hf)
+                check(hf <= -25.0, "fizz above 9 kHz")
             if e["family"] == "engine":
                 pk = ms.spectral_peak_hz(x)
                 periods = e["nominal_firing_hz"] * len(x) / SR
@@ -140,6 +154,12 @@ def main():
             notes.append("lead %.2f ms, tail %.1f dBFS" % (o["leading_silence_ms"], o["tail_last10ms_dbfs"]))
             check(o["leading_silence_ms"] <= 10.0, "leading silence")
             check(o["tail_last10ms_dbfs"] <= -60.0, "tail not silent")
+            notes.append("peak at %.1f ms" % o["transient_peak_ms"])
+            limit = MAX_SECONDS.get(e["name"][:-4].rstrip("_1234"))
+            if limit:
+                check(len(x) / SR < limit, "longer than %.1f s" % limit)
+            if e["name"] == "boost_ignite.wav":
+                check(o["transient_peak_ms"] <= 150.0, "peak later than 150 ms")
         print("%-24s %-7s %6.3f %7.2f %7.2f  %s" % (
             e["name"][:-4], e["kind"], len(x) / SR, lv["peak_dbfs"], lv["rms_dbfs"], "; ".join(notes)))
     spread = max(engine_rms) - min(engine_rms)

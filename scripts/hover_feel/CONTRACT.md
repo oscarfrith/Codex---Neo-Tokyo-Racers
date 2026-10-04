@@ -50,6 +50,8 @@ Consumers must treat a missing attribute as "not available" and fall back to the
 | `FeelImpactStrength` | number | Unexplained horizontal speed change of that impact, studs/s. Tiers: 9 light, 25 medium, 55 heavy, 110 severe. |
 | `FeelLandRevision` | integer | Incremented when the car goes from airborne (0.15 s or more) to grounded. |
 | `FeelLandStrength` | number | Downward speed at touchdown, studs/s. |
+| `FeelPopRevision` | integer | Incremented once per exhaust pop or bang (round 2). Audio and VFX both react to it, so the sound and the fireball coincide. |
+| `FeelPopStrength` | number, 0..1 | Size of that pop. 0.3 to 0.7 is a crackle; 0.8 and over is a bang. Pops come in a short run after a throttle lift that follows a second or more of hard thrust above 40 mph; a boost that ends fires one bang then a short run. |
 
 Config (attributes on `ReplicatedStorage.Config.Vehicles.Driving`): `FeelStateEnabled` (boolean, true),
 `FeelImpactMinStuds` (number, 9).

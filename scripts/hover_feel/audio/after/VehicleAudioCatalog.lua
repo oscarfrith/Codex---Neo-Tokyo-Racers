@@ -11,8 +11,10 @@ Catalog.LoopLayers = { "Idle", "EngineLow", "EngineHigh", "Acceleration", "Coast
 Catalog.OneShotLayers = { "Ignition", "Shutdown", "AccelerationEnter", "AccelerationRelease", "DriftEnter", "BoostEnter", "BoostRelease", "BoostRecharge", "BoostEmpty", "FullBoostSpent" }
 -- Feel layers exist only for a profile with FeelDriveEnabled=true. They use the same AssetId/Gain/Pitch
 -- attribute contract; a blank asset leaves the layer absent.
-Catalog.FeelLoopLayers = { "TurboWhistle", "SuperchargerWhine", "TurbineLow", "TurbineHigh", "EnergyHum", "SlipStrain", "DriftCharge" }
-Catalog.FeelOneShotLayers = { "BlowOff", "TurboFlutter", "BoostIgnition", "DriftChargeRelease", "ImpactLight", "ImpactMedium", "ImpactHeavy", "ImpactSevere", "LandingThump" }
+Catalog.FeelLoopLayers = { "TurboWhistle", "SuperchargerWhine", "TurbineLow", "TurbineHigh", "EnergyHum", "SlipStrain", "DriftCharge", "BoostBody", "WindBuffet" }
+Catalog.FeelOneShotLayers = { "BlowOff", "TurboFlutter", "BoostIgnition", "DriftChargeRelease", "ImpactLight", "ImpactMedium", "ImpactHeavy", "ImpactSevere", "LandingThump", "Pop1", "Pop2", "Pop3", "Pop4", "Bang1", "Bang2" }
+-- Until a feel profile has its own BoostLoop asset, its blank boost layers borrow the fallback profile's.
+local boostLayers = { "BoostLoop", "BoostEnter", "BoostRelease", "BoostRecharge", "BoostEmpty", "FullBoostSpent" }
 -- Speed-shaped engine loops that a profile's rev layers take over from once a rev layer has loaded.
 Catalog.RevSupersededLayers = { Idle = true, EngineLow = true, EngineHigh = true }
 
@@ -51,6 +53,14 @@ local defaultGains = {
 	ImpactHeavy = 0.9,
 	ImpactSevere = 1,
 	LandingThump = 0.7,
+	BoostBody = 0.5,
+	WindBuffet = 0.4,
+	Pop1 = 0.6,
+	Pop2 = 0.6,
+	Pop3 = 0.6,
+	Pop4 = 0.6,
+	Bang1 = 0.9,
+	Bang2 = 0.9,
 }
 
 -- PlaybackSpeed range each feel loop sweeps as its drive value goes from 0 to 1 (PitchMin/PitchMax attributes).
@@ -61,6 +71,8 @@ local defaultPitchRanges = {
 	EnergyHum = { 0.92, 1.12 },
 	SlipStrain = { 0.92, 1.06 },
 	DriftCharge = { 0.8, 1.7 },
+	BoostBody = { 0.9, 1.1 },
+	WindBuffet = { 0.9, 1.1 },
 }
 
 -- Profile-level feel tuning: attribute name = { default, minimum, maximum }. Every value is optional.
@@ -118,6 +130,19 @@ local feelDefaults = {
 	LandMinStuds = { 6, 0, 500 },
 	LandFullStuds = { 60, 1, 1000 },
 	LandMinGain = { 0.25, 0, 1 },
+	BoostFadeInSeconds = { 0.06, 0.001, 2 },
+	BoostDuckDb = { 3, 0, 24 },
+	BoostDuckInSeconds = { 0.03, 0.001, 2 },
+	BoostDuckOutSeconds = { 0.25, 0.001, 5 },
+	PopBangStrength = { 0.8, 0, 1 },
+	PopPitchJitter = { 0.06, 0, 0.5 },
+	DriverWindStartMph = { 60, 0, 1000 },
+	DriverWindFullMph = { 200, 10, 1000 },
+	DriverWindExponent = { 2, 0.1, 6 },
+	DriverWindSpeedPitchMin = { 0.85, 0.5, 2 },
+	DriverWindSpeedPitchMax = { 1.25, 0.5, 2 },
+	WindBuffetStartMph = { 160, 0, 1000 },
+	WindBuffetFullMph = { 220, 1, 1000 },
 }
 
 local function assetId(raw)
@@ -243,8 +268,9 @@ local function readFeel(folder, profile)
 	return feel
 end
 
+-- <Layer>Disabled=true switches a layer off for that profile and keeps its asset id for later.
 local function readLayer(folder, profile, layer)
-	profile.Assets[layer] = assetId(folder:GetAttribute(layer .. "AssetId"))
+	profile.Assets[layer] = folder:GetAttribute(layer .. "Disabled") ~= true and assetId(folder:GetAttribute(layer .. "AssetId")) or ""
 	profile.Gains[layer] = math.clamp(tonumber(folder:GetAttribute(layer .. "Gain")) or defaultGains[layer] or 0.5, 0, 3)
 	profile.Pitches[layer] = math.clamp(tonumber(folder:GetAttribute(layer .. "Pitch")) or 1, 0.5, 2)
 end
@@ -262,6 +288,12 @@ function Catalog.GetProfile(profileId)
 	if profile.Feel then
 		for _, layer in ipairs(Catalog.FeelLoopLayers) do readLayer(folder, profile, layer) end
 		for _, layer in ipairs(Catalog.FeelOneShotLayers) do readLayer(folder, profile, layer) end
+		local fallback = profiles:FindFirstChild(fallbackProfileId())
+		if profile.Assets.BoostLoop == "" and fallback and fallback ~= folder and fallback:IsA("Folder") then
+			for _, layer in ipairs(boostLayers) do
+				if profile.Assets[layer] == "" and folder:GetAttribute(layer .. "Disabled") ~= true then readLayer(fallback, profile, layer) end
+			end
+		end
 	end
 	return profile
 end

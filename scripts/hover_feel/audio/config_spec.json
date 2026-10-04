@@ -481,7 +481,7 @@
     "DriftLoopGain": 0.52,
     "DriftLoopPitch": 1,
     "DriverWindAssetId": "rbxassetid://4471836491",
-    "DriverWindGain": 0.38,
+    "DriverWindGain": 0.7,
     "DriverWindPitch": 1,
     "EngineHighAssetId": "",
     "EngineHighGain": 0.56,
@@ -499,10 +499,16 @@
     "IgnitionGain": 0.85,
     "IgnitionPitch": 1,
     "ProfileMasterGain": 1,
-    "ProfileRevision": 1,
+    "ProfileRevision": 2,
     "ShutdownAssetId": "",
     "ShutdownGain": 0.75,
     "ShutdownPitch": 1,
+    "AccelerationDisabled": true,
+    "CoastDisabled": true,
+    "DriftLoopDisabled": true,
+    "AccelerationEnterDisabled": true,
+    "AccelerationReleaseDisabled": true,
+    "DriftEnterDisabled": true,
     "FeelDriveEnabled": true,
     "AccelerationRevPitchMin": 0.85,
     "AccelerationRevPitchMax": 1.3,
@@ -539,6 +545,16 @@
     "DriftChargePitch": 1,
     "DriftChargePitchMin": 0.8,
     "DriftChargePitchMax": 1.7,
+    "BoostBodyAssetId": "",
+    "BoostBodyGain": 0.5,
+    "BoostBodyPitch": 1,
+    "BoostBodyPitchMin": 0.9,
+    "BoostBodyPitchMax": 1.1,
+    "WindBuffetAssetId": "",
+    "WindBuffetGain": 0.4,
+    "WindBuffetPitch": 1,
+    "WindBuffetPitchMin": 0.9,
+    "WindBuffetPitchMax": 1.1,
     "BlowOffAssetId": "rbxassetid://4940167544",
     "BlowOffGain": 0.5,
     "BlowOffPitch": 1,
@@ -566,6 +582,24 @@
     "LandingThumpAssetId": "",
     "LandingThumpGain": 0.7,
     "LandingThumpPitch": 1,
+    "Pop1AssetId": "",
+    "Pop1Gain": 0.6,
+    "Pop1Pitch": 1,
+    "Pop2AssetId": "",
+    "Pop2Gain": 0.6,
+    "Pop2Pitch": 1,
+    "Pop3AssetId": "",
+    "Pop3Gain": 0.6,
+    "Pop3Pitch": 1,
+    "Pop4AssetId": "",
+    "Pop4Gain": 0.6,
+    "Pop4Pitch": 1,
+    "Bang1AssetId": "",
+    "Bang1Gain": 0.9,
+    "Bang1Pitch": 1,
+    "Bang2AssetId": "",
+    "Bang2Gain": 0.9,
+    "Bang2Pitch": 1,
     "RevThrottleWeight": 0.25,
     "RevSpeedWeight": 0.75,
     "RevBoostWeight": 0.08,
@@ -618,7 +652,20 @@
     "DriftChargeFull": 0.3,
     "LandMinStuds": 6,
     "LandFullStuds": 60,
-    "LandMinGain": 0.25
+    "LandMinGain": 0.25,
+    "BoostFadeInSeconds": 0.06,
+    "BoostDuckDb": 3,
+    "BoostDuckInSeconds": 0.03,
+    "BoostDuckOutSeconds": 0.25,
+    "PopBangStrength": 0.8,
+    "PopPitchJitter": 0.06,
+    "DriverWindStartMph": 60,
+    "DriverWindFullMph": 200,
+    "DriverWindExponent": 2,
+    "DriverWindSpeedPitchMin": 0.85,
+    "DriverWindSpeedPitchMax": 1.25,
+    "WindBuffetStartMph": 160,
+    "WindBuffetFullMph": 220
    },
    "children": [
     {
@@ -684,7 +731,7 @@
        "class": "StringValue",
        "name": "BoostEmptyAssetId",
        "attributes": {},
-       "value": "Roblox audio asset ID for the one-shot when a non-full qualifying boost session drains the tank. Blank disables this layer without affecting the rest of the profile. Synthesised file for this profile: boost_release (use the same id in BoostRelease, BoostEmpty and FullBoostSpent so every end of a boost is heard)."
+       "value": "Roblox audio asset ID for the one-shot when a non-full qualifying boost session drains the tank. Blank disables this layer without affecting the rest of the profile."
       },
       {
        "class": "StringValue",
@@ -720,7 +767,7 @@
        "class": "StringValue",
        "name": "BoostLoopAssetId",
        "attributes": {},
-       "value": "Roblox audio asset ID for the continuous layer while boost presentation remains active. Blank disables this layer without affecting the rest of the profile. Synthesised file for this profile: thruster_roar."
+       "value": "Roblox audio asset ID for the continuous layer while boost presentation remains active. Blank disables this layer without affecting the rest of the profile. Synthesised file for this profile: boost_loop. While this is blank the profile borrows the fallback profile's boost layers; once it is set, blank boost layers (BoostEnter and so on) stay silent."
       },
       {
        "class": "StringValue",
@@ -756,7 +803,7 @@
        "class": "StringValue",
        "name": "BoostReleaseAssetId",
        "attributes": {},
-       "value": "Roblox audio asset ID for the one-shot when boost is released without emptying the tank. Blank disables this layer without affecting the rest of the profile. Synthesised file for this profile: boost_release (use the same id in BoostRelease, BoostEmpty and FullBoostSpent so every end of a boost is heard)."
+       "value": "Roblox audio asset ID for the one-shot when boost is released without emptying the tank. Blank disables this layer without affecting the rest of the profile. Synthesised file for this profile: boost_release."
       },
       {
        "class": "StringValue",
@@ -888,7 +935,7 @@
        "class": "StringValue",
        "name": "FullBoostSpentAssetId",
        "attributes": {},
-       "value": "Roblox audio asset ID for the special one-shot when a near-full tank is continuously consumed to empty. Blank disables this layer without affecting the rest of the profile. Synthesised file for this profile: boost_release (use the same id in BoostRelease, BoostEmpty and FullBoostSpent so every end of a boost is heard)."
+       "value": "Roblox audio asset ID for the special one-shot when a near-full tank is continuously consumed to empty. Blank disables this layer without affecting the rest of the profile."
       },
       {
        "class": "StringValue",
@@ -967,6 +1014,42 @@
        "name": "ShutdownPitch",
        "attributes": {},
        "value": "Base playback-speed/pitch multiplier for the one-shot when the running vehicle audio session shuts down; 1 is original, below 1 is lower/slower, and above 1 is higher/faster."
+      },
+      {
+       "class": "StringValue",
+       "name": "AccelerationDisabled",
+       "attributes": {},
+       "value": "True switches the Acceleration layer off for this profile whatever its asset id is (the rev layers and turbo carry acceleration). Any layer accepts <Layer>Disabled."
+      },
+      {
+       "class": "StringValue",
+       "name": "CoastDisabled",
+       "attributes": {},
+       "value": "True switches the Coast layer off for this profile whatever its asset id is (the off-load rev layers carry coasting). Any layer accepts <Layer>Disabled."
+      },
+      {
+       "class": "StringValue",
+       "name": "DriftLoopDisabled",
+       "attributes": {},
+       "value": "True switches the DriftLoop layer off for this profile whatever its asset id is (the stabiliser strain layer carries drifting). Any layer accepts <Layer>Disabled."
+      },
+      {
+       "class": "StringValue",
+       "name": "AccelerationEnterDisabled",
+       "attributes": {},
+       "value": "True switches the AccelerationEnter layer off for this profile whatever its asset id is (the tip-in bark replaces it). Any layer accepts <Layer>Disabled."
+      },
+      {
+       "class": "StringValue",
+       "name": "AccelerationReleaseDisabled",
+       "attributes": {},
+       "value": "True switches the AccelerationRelease layer off for this profile whatever its asset id is (the blow-off and pops replace it). Any layer accepts <Layer>Disabled."
+      },
+      {
+       "class": "StringValue",
+       "name": "DriftEnterDisabled",
+       "attributes": {},
+       "value": "True switches the DriftEnter layer off for this profile whatever its asset id is (the stabiliser strain layer replaces it). Any layer accepts <Layer>Disabled."
       },
       {
        "class": "StringValue",
@@ -1186,6 +1269,66 @@
       },
       {
        "class": "StringValue",
+       "name": "BoostBodyAssetId",
+       "attributes": {},
+       "value": "Roblox audio asset ID for the thruster roar loop under the boost loop (thruster_roar); full for a held boost, BoostLoopMiniGain for a mini-boost, pitch follows rev. Blank disables this layer without affecting the rest of the profile."
+      },
+      {
+       "class": "StringValue",
+       "name": "BoostBodyGain",
+       "attributes": {},
+       "value": "Linear mix multiplier for the thruster roar loop under the boost loop (thruster_roar); full for a held boost, BoostLoopMiniGain for a mini-boost, pitch follows rev; 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+      },
+      {
+       "class": "StringValue",
+       "name": "BoostBodyPitch",
+       "attributes": {},
+       "value": "Base playback-speed/pitch multiplier for the thruster roar loop under the boost loop (thruster_roar); full for a held boost, BoostLoopMiniGain for a mini-boost, pitch follows rev; it scales the PitchMin to PitchMax sweep."
+      },
+      {
+       "class": "StringValue",
+       "name": "BoostBodyPitchMin",
+       "attributes": {},
+       "value": "Playback speed of the thruster roar loop under the boost loop (thruster_roar); full for a held boost, BoostLoopMiniGain for a mini-boost, pitch follows rev when its drive value is 0."
+      },
+      {
+       "class": "StringValue",
+       "name": "BoostBodyPitchMax",
+       "attributes": {},
+       "value": "Playback speed of the thruster roar loop under the boost loop (thruster_roar); full for a held boost, BoostLoopMiniGain for a mini-boost, pitch follows rev when its drive value is 1."
+      },
+      {
+       "class": "StringValue",
+       "name": "WindBuffetAssetId",
+       "attributes": {},
+       "value": "Roblox audio asset ID for the high-speed wind buffet loop (wind_buffet) that enters between WindBuffetStartMph and WindBuffetFullMph. Blank disables this layer without affecting the rest of the profile."
+      },
+      {
+       "class": "StringValue",
+       "name": "WindBuffetGain",
+       "attributes": {},
+       "value": "Linear mix multiplier for the high-speed wind buffet loop (wind_buffet) that enters between WindBuffetStartMph and WindBuffetFullMph; 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+      },
+      {
+       "class": "StringValue",
+       "name": "WindBuffetPitch",
+       "attributes": {},
+       "value": "Base playback-speed/pitch multiplier for the high-speed wind buffet loop (wind_buffet) that enters between WindBuffetStartMph and WindBuffetFullMph; it scales the PitchMin to PitchMax sweep."
+      },
+      {
+       "class": "StringValue",
+       "name": "WindBuffetPitchMin",
+       "attributes": {},
+       "value": "Playback speed of the high-speed wind buffet loop (wind_buffet) that enters between WindBuffetStartMph and WindBuffetFullMph when its drive value is 0."
+      },
+      {
+       "class": "StringValue",
+       "name": "WindBuffetPitchMax",
+       "attributes": {},
+       "value": "Playback speed of the high-speed wind buffet loop (wind_buffet) that enters between WindBuffetStartMph and WindBuffetFullMph when its drive value is 1."
+      },
+      {
+       "class": "StringValue",
        "name": "BlowOffAssetId",
        "attributes": {},
        "value": "Roblox audio asset ID for the blow-off one-shot when the throttle is lifted after sustained load, or a boost ends, scaled by spool. Blank disables this layer without affecting the rest of the profile."
@@ -1345,6 +1488,114 @@
        "name": "LandingThumpPitch",
        "attributes": {},
        "value": "Base playback-speed/pitch multiplier for the synthesised landing thump one-shot on FeelLandRevision, scaled by touchdown speed; 1 is original, below 1 is lower/slower, and above 1 is higher/faster."
+      },
+      {
+       "class": "StringValue",
+       "name": "Pop1AssetId",
+       "attributes": {},
+       "value": "Roblox audio asset ID for exhaust pop 1 (pop_1); pops are drawn from a shuffled bag of Pop1..Pop4 on FeelPopRevision when FeelPopStrength is under PopBangStrength, gain scaled by strength. Blank disables this layer without affecting the rest of the profile."
+      },
+      {
+       "class": "StringValue",
+       "name": "Pop1Gain",
+       "attributes": {},
+       "value": "Linear mix multiplier for exhaust pop 1 (pop_1); pops are drawn from a shuffled bag of Pop1..Pop4 on FeelPopRevision when FeelPopStrength is under PopBangStrength, gain scaled by strength; 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+      },
+      {
+       "class": "StringValue",
+       "name": "Pop1Pitch",
+       "attributes": {},
+       "value": "Base playback-speed/pitch multiplier for exhaust pop 1 (pop_1); pops are drawn from a shuffled bag of Pop1..Pop4 on FeelPopRevision when FeelPopStrength is under PopBangStrength, gain scaled by strength; 1 is original, below 1 is lower/slower, and above 1 is higher/faster."
+      },
+      {
+       "class": "StringValue",
+       "name": "Pop2AssetId",
+       "attributes": {},
+       "value": "Roblox audio asset ID for exhaust pop 2 (pop_2). Blank disables this layer without affecting the rest of the profile."
+      },
+      {
+       "class": "StringValue",
+       "name": "Pop2Gain",
+       "attributes": {},
+       "value": "Linear mix multiplier for exhaust pop 2 (pop_2); 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+      },
+      {
+       "class": "StringValue",
+       "name": "Pop2Pitch",
+       "attributes": {},
+       "value": "Base playback-speed/pitch multiplier for exhaust pop 2 (pop_2); 1 is original, below 1 is lower/slower, and above 1 is higher/faster."
+      },
+      {
+       "class": "StringValue",
+       "name": "Pop3AssetId",
+       "attributes": {},
+       "value": "Roblox audio asset ID for exhaust pop 3 (pop_3). Blank disables this layer without affecting the rest of the profile."
+      },
+      {
+       "class": "StringValue",
+       "name": "Pop3Gain",
+       "attributes": {},
+       "value": "Linear mix multiplier for exhaust pop 3 (pop_3); 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+      },
+      {
+       "class": "StringValue",
+       "name": "Pop3Pitch",
+       "attributes": {},
+       "value": "Base playback-speed/pitch multiplier for exhaust pop 3 (pop_3); 1 is original, below 1 is lower/slower, and above 1 is higher/faster."
+      },
+      {
+       "class": "StringValue",
+       "name": "Pop4AssetId",
+       "attributes": {},
+       "value": "Roblox audio asset ID for exhaust pop 4 (pop_4). Blank disables this layer without affecting the rest of the profile."
+      },
+      {
+       "class": "StringValue",
+       "name": "Pop4Gain",
+       "attributes": {},
+       "value": "Linear mix multiplier for exhaust pop 4 (pop_4); 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+      },
+      {
+       "class": "StringValue",
+       "name": "Pop4Pitch",
+       "attributes": {},
+       "value": "Base playback-speed/pitch multiplier for exhaust pop 4 (pop_4); 1 is original, below 1 is lower/slower, and above 1 is higher/faster."
+      },
+      {
+       "class": "StringValue",
+       "name": "Bang1AssetId",
+       "attributes": {},
+       "value": "Roblox audio asset ID for exhaust bang 1 (bang_1); played on FeelPopRevision when FeelPopStrength is at or over PopBangStrength. Blank disables this layer without affecting the rest of the profile."
+      },
+      {
+       "class": "StringValue",
+       "name": "Bang1Gain",
+       "attributes": {},
+       "value": "Linear mix multiplier for exhaust bang 1 (bang_1); played on FeelPopRevision when FeelPopStrength is at or over PopBangStrength; 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+      },
+      {
+       "class": "StringValue",
+       "name": "Bang1Pitch",
+       "attributes": {},
+       "value": "Base playback-speed/pitch multiplier for exhaust bang 1 (bang_1); played on FeelPopRevision when FeelPopStrength is at or over PopBangStrength; 1 is original, below 1 is lower/slower, and above 1 is higher/faster."
+      },
+      {
+       "class": "StringValue",
+       "name": "Bang2AssetId",
+       "attributes": {},
+       "value": "Roblox audio asset ID for exhaust bang 2 (bang_2). Blank disables this layer without affecting the rest of the profile."
+      },
+      {
+       "class": "StringValue",
+       "name": "Bang2Gain",
+       "attributes": {},
+       "value": "Linear mix multiplier for exhaust bang 2 (bang_2); 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+      },
+      {
+       "class": "StringValue",
+       "name": "Bang2Pitch",
+       "attributes": {},
+       "value": "Base playback-speed/pitch multiplier for exhaust bang 2 (bang_2); 1 is original, below 1 is lower/slower, and above 1 is higher/faster."
       },
       {
        "class": "StringValue",
@@ -1663,6 +1914,84 @@
        "name": "LandMinGain",
        "attributes": {},
        "value": "Landing thump gain at LandMinStuds, relative to full."
+      },
+      {
+       "class": "StringValue",
+       "name": "BoostFadeInSeconds",
+       "attributes": {},
+       "value": "Fade-in of BoostLoop and BoostBody, so the boost lands with its ignition."
+      },
+      {
+       "class": "StringValue",
+       "name": "BoostDuckDb",
+       "attributes": {},
+       "value": "How far the rev layers are turned down while boosting, in decibels. Only applies when BoostLoop or BoostBody has an asset."
+      },
+      {
+       "class": "StringValue",
+       "name": "BoostDuckInSeconds",
+       "attributes": {},
+       "value": "How fast the engine ducks under a boost."
+      },
+      {
+       "class": "StringValue",
+       "name": "BoostDuckOutSeconds",
+       "attributes": {},
+       "value": "How fast the engine recovers after a boost."
+      },
+      {
+       "class": "StringValue",
+       "name": "PopBangStrength",
+       "attributes": {},
+       "value": "FeelPopStrength at or above which a bang (Bang1/Bang2) plays instead of a pop."
+      },
+      {
+       "class": "StringValue",
+       "name": "PopPitchJitter",
+       "attributes": {},
+       "value": "Random playback-speed spread on each pop or bang (0.06 = plus or minus 6 %)."
+      },
+      {
+       "class": "StringValue",
+       "name": "DriverWindStartMph",
+       "attributes": {},
+       "value": "Speed at which driver wind starts to be heard on this profile."
+      },
+      {
+       "class": "StringValue",
+       "name": "DriverWindFullMph",
+       "attributes": {},
+       "value": "Speed at which driver wind is at full gain and top pitch. Gain follows (speed / DriverWindFullMph) ^ DriverWindExponent."
+      },
+      {
+       "class": "StringValue",
+       "name": "DriverWindExponent",
+       "attributes": {},
+       "value": "Power curve of driver wind gain against speed."
+      },
+      {
+       "class": "StringValue",
+       "name": "DriverWindSpeedPitchMin",
+       "attributes": {},
+       "value": "Driver wind playback speed at rest."
+      },
+      {
+       "class": "StringValue",
+       "name": "DriverWindSpeedPitchMax",
+       "attributes": {},
+       "value": "Driver wind playback speed at DriverWindFullMph."
+      },
+      {
+       "class": "StringValue",
+       "name": "WindBuffetStartMph",
+       "attributes": {},
+       "value": "Speed at which the wind buffet loop starts to enter."
+      },
+      {
+       "class": "StringValue",
+       "name": "WindBuffetFullMph",
+       "attributes": {},
+       "value": "Speed at which the wind buffet loop is full."
       }
      ]
     },
@@ -1801,31 +2130,15 @@
       },
       {
        "class": "Folder",
-       "name": "StandInIdle",
-       "attributes": {
-        "AssetId": "rbxassetid://1579460811",
-        "Rev": 0,
-        "Gain": 0.45,
-        "Pitch": 1,
-        "PitchMin": 0.7,
-        "PitchMax": 1.6,
-        "Load": "Any",
-        "StandIn": true,
-        "Twin": false,
-        "Enabled": true
-       }
-      },
-      {
-       "class": "Folder",
        "name": "StandInExhaust",
        "attributes": {
         "AssetId": "rbxassetid://1324100995",
         "Rev": 0.45,
         "Gain": 0.4,
         "Pitch": 1,
-        "PitchMin": 0.6,
+        "PitchMin": 0.5,
         "PitchMax": 1.6,
-        "Load": "Off",
+        "Load": "Any",
         "StandIn": true,
         "Twin": false,
         "Enabled": true

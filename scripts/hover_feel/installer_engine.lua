@@ -124,8 +124,13 @@ for _, row in ipairs(DATA.attributes) do
 	local node = find(row.path)
 	local value = row.before
 	if MODE == "APPLY" then value = row.value end
-	if MODE == "APPLY" and row.before == nil and node:GetAttribute(row.key) ~= nil then
-		-- keep a tuned value
+	local current = node:GetAttribute(row.key)
+	local superseded = false
+	for _, old in ipairs(row.was or {}) do
+		if current == old then superseded = true end
+	end
+	if MODE == "APPLY" and row.before == nil and current ~= nil and not superseded then
+		-- keep a tuned value; an earlier default of this delivery (row.was) is replaced
 	elseif node:GetAttribute(row.key) ~= value then
 		node:SetAttribute(row.key, value)
 		attributes += 1
@@ -142,5 +147,27 @@ for _, spec in ipairs(DATA.instances) do
 		instances += 1
 	end
 end
+-- Later-round changes to config this delivery created (DATA.updates), applied after the instances exist.
+-- Each is {path, key, value}; a missing value removes the attribute. They only ever touch attributes that this
+-- delivery introduced, so ROLLBACK needs nothing here: it removes those attributes and instances above.
+-- DATA.lateInstances are new children under instances this delivery created; skipped when the parent is absent.
+local updates = 0
+if MODE == "APPLY" then
+	for _, spec in ipairs(DATA.lateInstances or {}) do
+		local parent = find(spec.parent)
+		if parent and not parent:FindFirstChild(spec.name) then
+			build(spec, parent)
+			instances += 1
+		end
+	end
+	for _, row in ipairs(DATA.updates or {}) do
+		local node = find(row.path)
+		if node and node:GetAttribute(row.key) ~= row.value then
+			node:SetAttribute(row.key, row.value)
+			updates += 1
+		end
+	end
+end
+table.insert(report, "updates=" .. updates)
 History:SetWaypoint("hover_feel " .. MODE .. " after")
 return table.concat(report, "; ") .. " | mode=" .. MODE .. " scriptsWritten=" .. wrote .. " attributesWritten=" .. attributes .. " instancesChanged=" .. instances

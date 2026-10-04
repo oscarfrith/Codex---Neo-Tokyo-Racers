@@ -225,7 +225,10 @@ local function buildFeel(graph)
 		State = {
 			Load = 0, LoadSlow = 0, LoadHeld = 0, Rev = 0, Spool = 0, Duck = 0, EngineMix = 0, LifePitch = 0, LifeLevel = 0,
 			DriftChargePeak = 0, DriftChargeIdle = 0, LastImpactAt = -math.huge, LastBlowOffAt = -math.huge, ReadyCheck = 1,
+			BoostDuck = 0,
 		},
+		PopBags = { Pop = {}, Bang = {} },
+		LastPop = {},
 		Loops = {},
 		OneShots = {},
 		Rev = nil,
@@ -794,6 +797,34 @@ local function playImpact(graph, strength)
 	if fireVoice(feel.OneShots[name], gain, pitch) then feel.State.LastImpactAt = now end
 end
 
+local popLayers = { Pop = { "Pop1", "Pop2", "Pop3", "Pop4" }, Bang = { "Bang1", "Bang2" } }
+
+-- Exhaust pops: each slot has its own persistent voice and the slots are drawn from a shuffled bag, so a
+-- run of pops overlaps without retriggering the one still sounding. The producer spaces them.
+local function playPop(graph, strength)
+	local feel = graph.Feel
+	local tuning = graph.Profile.Feel
+	if strength <= 0 then return end
+	local kind = "Pop"
+	if strength >= tuning.PopBangStrength and (feel.OneShots.Bang1 or feel.OneShots.Bang2) then kind = "Bang" end
+	local bag = feel.PopBags[kind]
+	if #bag == 0 then
+		for _, name in ipairs(popLayers[kind]) do
+			if feel.OneShots[name] then table.insert(bag, name) end
+		end
+		for index = #bag, 2, -1 do
+			local other = math.random(index)
+			bag[index], bag[other] = bag[other], bag[index]
+		end
+		if #bag > 1 and bag[#bag] == feel.LastPop[kind] then bag[#bag], bag[1] = bag[1], bag[#bag] end
+	end
+	local name = table.remove(bag)
+	if not name then return end
+	feel.LastPop[kind] = name
+	local jitter = 1 + tuning.PopPitchJitter * (2 * math.random() - 1)
+	fireVoice(feel.OneShots[name], feelOneShotGain(graph, name) * strength, (graph.Profile.Pitches[name] or 1) * jitter)
+end
+
 -- Continuous drive of the feel voices. updateGraph owns the semantic context (running, held, parked, mix);
 -- this owns load, rev, spool, slip and the Feel* events. Missing Feel* attributes fall back to that context.
 local function updateFeel(state, dt)
@@ -867,7 +898,10 @@ local function updateFeel(state, dt)
 	local slipIntensity = driving and smoothstep(tuning.SlipStart, tuning.SlipFull, slipAmount) or 0
 	local duckTarget = feel.Loops.SlipStrain and slipIntensity or 0
 	f.Duck = follow(f.Duck, duckTarget, dt, duckTarget > f.Duck and tuning.SlipDuckInSeconds or tuning.SlipDuckOutSeconds)
-	feel.EngineDuck = 10 ^ (-tuning.SlipDuckDb * f.Duck / 20)
+	-- The engine also steps back a little under a boost that has its own loop, so the boost reads clearly.
+	local boostDuckTarget = (boostAmount > 0 and (graph.Layers.BoostLoop or feel.Loops.BoostBody)) and 1 or 0
+	f.BoostDuck = follow(f.BoostDuck, boostDuckTarget, dt, boostDuckTarget > f.BoostDuck and tuning.BoostDuckInSeconds or tuning.BoostDuckOutSeconds)
+	feel.EngineDuck = 10 ^ (-(tuning.SlipDuckDb * f.Duck + tuning.BoostDuckDb * f.BoostDuck) / 20)
 
 	local engineFade
 	if context.Exited then
@@ -968,6 +1002,10 @@ local function updateFeel(state, dt)
 	driveVoice(feel.Loops.EnergyHum, graph.Profile.Gains.EnergyHum * math.max(0, 1 + tuning.EnergyHumHoverGain * math.clamp(hover or 0, -1, 1)) * driveMix,
 		feelPitch(graph, "EnergyHum", speedMph / tuning.RevReferenceMph), dt, fadeIn, fadeOut)
 	driveVoice(feel.Loops.SlipStrain, graph.Profile.Gains.SlipStrain * slipIntensity * driveMix, feelPitch(graph, "SlipStrain", slipIntensity), dt, fadeIn, fadeOut)
+	driveVoice(feel.Loops.BoostBody, graph.Profile.Gains.BoostBody * boostAmount * driveMix, feelPitch(graph, "BoostBody", revValue), dt,
+		tuning.BoostFadeInSeconds, fadeSeconds("BoostLoop", false))
+	driveVoice(feel.Loops.WindBuffet, graph.Profile.Gains.WindBuffet * smoothstep(tuning.WindBuffetStartMph, tuning.WindBuffetFullMph, speedMph) * driveMix,
+		feelPitch(graph, "WindBuffet", rangeAlpha(speedMph, tuning.WindBuffetStartMph, tuning.WindBuffetFullMph)), dt, fadeSeconds("DriverWind", true), fadeSeconds("DriverWind", false))
 
 	-- Drift charge: a tone that climbs with the charge, then a release when the mini-boost fires.
 	local charge = driving and math.clamp(driftCharge or 0, 0, 1) or 0
@@ -993,8 +1031,15 @@ local function updateFeel(state, dt)
 
 	-- Impacts and landings arrive as revision counters. The first value seen is a baseline, not an event.
 	if not feelLive then
-		f.ImpactRevision, f.LandRevision = nil, nil
+		f.ImpactRevision, f.LandRevision, f.PopRevision = nil, nil, nil
 		return
+	end
+	local popRevision = tonumber(vehicle:GetAttribute("FeelPopRevision")) or 0
+	if f.PopRevision == nil then
+		f.PopRevision = popRevision
+	elseif popRevision ~= f.PopRevision then
+		f.PopRevision = popRevision
+		playPop(graph, math.clamp(tonumber(vehicle:GetAttribute("FeelPopStrength")) or 0, 0, 1))
 	end
 	local impactRevision = tonumber(vehicle:GetAttribute("FeelImpactRevision")) or 0
 	if f.ImpactRevision == nil then
@@ -1169,16 +1214,28 @@ local function updateGraph(state, dt)
 	setTarget(graph, "Coast", coastTarget)
 	setTarget(graph, "DriftLoop", firstDriveHeld and 0 or (exitedPresentation and 0 or (drifting and gains.DriftLoop * driftGainMultiplier * mix or 0)))
 	setTarget(graph, "BoostLoop", firstDriveHeld and 0 or (exitedPresentation and 0 or (boosting and gains.BoostLoop * (feel and feel.BoostScale or 1) * mix or 0)))
-	setTarget(graph, "DriverWind", firstDriveHeld and 0 or (state.LocalDriver and gains.DriverWind * rangeAlpha(speedMph, Catalog.GlobalNumber("WindStartMph", 18), Catalog.GlobalNumber("WindFullGainMph", 128)) * mix or 0))
+	local windAlpha = rangeAlpha(speedMph, Catalog.GlobalNumber("WindStartMph", 18), Catalog.GlobalNumber("WindFullGainMph", 128))
+	if feel then
+		-- Feel profile: wind grows with the power curve (speed / DriverWindFullMph) ^ DriverWindExponent from DriverWindStartMph.
+		local tuning = graph.Profile.Feel
+		windAlpha = math.clamp(speedMph / tuning.DriverWindFullMph, 0, 1) ^ tuning.DriverWindExponent
+			* rangeAlpha(speedMph, tuning.DriverWindStartMph * 0.6, tuning.DriverWindStartMph)
+	end
+	setTarget(graph, "DriverWind", firstDriveHeld and 0 or (state.LocalDriver and gains.DriverWind * windAlpha * mix or 0))
 	for layerName, layer in pairs(graph.Layers) do
 		local rising = layer.Target > layer.Gain
 		local seconds = exitedPresentation and Catalog.GlobalNumber(rising and "ParkedFadeInSeconds" or "ParkedFadeOutSeconds", rising and 0.2 or 0.3) or fadeSeconds(layerName, rising)
+		if feel and rising and layerName == "BoostLoop" then seconds = graph.Profile.Feel.BoostFadeInSeconds end
 		local alpha = 1 - math.exp(-dt / seconds)
 		layer.Gain += (layer.Target - layer.Gain) * alpha
 		local revPitch = feel and graph.Profile.RevPitches[layerName]
 		Bus.SetGain(layer.Fader, (feel and layerName == "Acceleration") and layer.Gain * feel.EngineDuck or layer.Gain)
 		if revPitch then
 			layer.Player.PlaybackSpeed = math.clamp((graph.Profile.Pitches[layerName] or 1) * (revPitch.Min + (revPitch.Max - revPitch.Min) * feel.State.Rev), 0.5, 2)
+		elseif feel and layerName == "DriverWind" then
+			local tuning = graph.Profile.Feel
+			local multiplier = tuning.DriverWindSpeedPitchMin + (tuning.DriverWindSpeedPitchMax - tuning.DriverWindSpeedPitchMin) * math.clamp(speedMph / tuning.DriverWindFullMph, 0, 1)
+			layer.Player.PlaybackSpeed = math.clamp((graph.Profile.Pitches.DriverWind or 1) * multiplier, 0.5, 2)
 		elseif layerName == "EngineLow" then
 			local pitchAlpha = rangeAlpha(speedMph, 0, math.max(1, lowPeak))
 			local multiplier = Catalog.GlobalNumber("EngineLowPitchMin", 0.82) + (Catalog.GlobalNumber("EngineLowPitchMax", 1.2) - Catalog.GlobalNumber("EngineLowPitchMin", 0.82)) * pitchAlpha

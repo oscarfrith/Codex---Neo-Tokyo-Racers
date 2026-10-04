@@ -1,0 +1,84 @@
+{
+  "attributes": [
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "FeelBackfireEnabled",
+      "value": true
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "FeelBackfireCrackleMin",
+      "value": 4
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "FeelBackfireCrackleMax",
+      "value": 8
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "FeelBackfireBangMin",
+      "value": 14
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "FeelBackfireBangMax",
+      "value": 24
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "FeelBackfireCrackleFlashSeconds",
+      "value": 0.08
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "FeelBackfireBangFlashSeconds",
+      "value": 0.16
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "FeelBackfireFlashGain",
+      "value": 1.6
+    }
+  ]
+}

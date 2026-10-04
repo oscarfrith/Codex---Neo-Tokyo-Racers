@@ -1,0 +1,1256 @@
+{
+ "attributes": [
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "DriverWindGain",
+   "value": 0.7
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "ProfileRevision",
+   "value": 2
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "AccelerationDisabled",
+   "value": true
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "CoastDisabled",
+   "value": true
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "DriftLoopDisabled",
+   "value": true
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "AccelerationEnterDisabled",
+   "value": true
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "AccelerationReleaseDisabled",
+   "value": true
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "DriftEnterDisabled",
+   "value": true
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "BoostBodyAssetId",
+   "value": ""
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "BoostBodyGain",
+   "value": 0.5
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "BoostBodyPitch",
+   "value": 1
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "BoostBodyPitchMin",
+   "value": 0.9
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "BoostBodyPitchMax",
+   "value": 1.1
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "WindBuffetAssetId",
+   "value": ""
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "WindBuffetGain",
+   "value": 0.4
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "WindBuffetPitch",
+   "value": 1
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "WindBuffetPitchMin",
+   "value": 0.9
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "WindBuffetPitchMax",
+   "value": 1.1
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "Pop1AssetId",
+   "value": ""
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "Pop1Gain",
+   "value": 0.6
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "Pop1Pitch",
+   "value": 1
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "Pop2AssetId",
+   "value": ""
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "Pop2Gain",
+   "value": 0.6
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "Pop2Pitch",
+   "value": 1
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "Pop3AssetId",
+   "value": ""
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "Pop3Gain",
+   "value": 0.6
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "Pop3Pitch",
+   "value": 1
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "Pop4AssetId",
+   "value": ""
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "Pop4Gain",
+   "value": 0.6
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "Pop4Pitch",
+   "value": 1
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "Bang1AssetId",
+   "value": ""
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "Bang1Gain",
+   "value": 0.9
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "Bang1Pitch",
+   "value": 1
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "Bang2AssetId",
+   "value": ""
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "Bang2Gain",
+   "value": 0.9
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "Bang2Pitch",
+   "value": 1
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "BoostFadeInSeconds",
+   "value": 0.06
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "BoostDuckDb",
+   "value": 3
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "BoostDuckInSeconds",
+   "value": 0.03
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "BoostDuckOutSeconds",
+   "value": 0.25
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "PopBangStrength",
+   "value": 0.8
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "PopPitchJitter",
+   "value": 0.06
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "DriverWindStartMph",
+   "value": 60
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "DriverWindFullMph",
+   "value": 200
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "DriverWindExponent",
+   "value": 2
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "DriverWindSpeedPitchMin",
+   "value": 0.85
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "DriverWindSpeedPitchMax",
+   "value": 1.25
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "WindBuffetStartMph",
+   "value": 160
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO"
+   ],
+   "key": "WindBuffetFullMph",
+   "value": 220
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "RevLayers",
+    "StandInExhaust"
+   ],
+   "key": "PitchMin",
+   "value": 0.5
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "RevLayers",
+    "StandInExhaust"
+   ],
+   "key": "Load",
+   "value": "Any"
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "RevLayers",
+    "StandInIdle"
+   ],
+   "key": "AssetId",
+   "value": ""
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "RevLayers",
+    "StandInIdle"
+   ],
+   "key": "Enabled",
+   "value": false
+  }
+ ],
+ "remove": [],
+ "instances": [
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "AccelerationDisabled",
+   "attributes": {},
+   "value": "True switches the Acceleration layer off for this profile whatever its asset id is (the rev layers and turbo carry acceleration). Any layer accepts <Layer>Disabled."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "CoastDisabled",
+   "attributes": {},
+   "value": "True switches the Coast layer off for this profile whatever its asset id is (the off-load rev layers carry coasting). Any layer accepts <Layer>Disabled."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "DriftLoopDisabled",
+   "attributes": {},
+   "value": "True switches the DriftLoop layer off for this profile whatever its asset id is (the stabiliser strain layer carries drifting). Any layer accepts <Layer>Disabled."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "AccelerationEnterDisabled",
+   "attributes": {},
+   "value": "True switches the AccelerationEnter layer off for this profile whatever its asset id is (the tip-in bark replaces it). Any layer accepts <Layer>Disabled."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "AccelerationReleaseDisabled",
+   "attributes": {},
+   "value": "True switches the AccelerationRelease layer off for this profile whatever its asset id is (the blow-off and pops replace it). Any layer accepts <Layer>Disabled."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "DriftEnterDisabled",
+   "attributes": {},
+   "value": "True switches the DriftEnter layer off for this profile whatever its asset id is (the stabiliser strain layer replaces it). Any layer accepts <Layer>Disabled."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "BoostBodyAssetId",
+   "attributes": {},
+   "value": "Roblox audio asset ID for the thruster roar loop under the boost loop (thruster_roar); full for a held boost, BoostLoopMiniGain for a mini-boost, pitch follows rev. Blank disables this layer without affecting the rest of the profile."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "BoostBodyGain",
+   "attributes": {},
+   "value": "Linear mix multiplier for the thruster roar loop under the boost loop (thruster_roar); full for a held boost, BoostLoopMiniGain for a mini-boost, pitch follows rev; 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "BoostBodyPitch",
+   "attributes": {},
+   "value": "Base playback-speed/pitch multiplier for the thruster roar loop under the boost loop (thruster_roar); full for a held boost, BoostLoopMiniGain for a mini-boost, pitch follows rev; it scales the PitchMin to PitchMax sweep."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "BoostBodyPitchMin",
+   "attributes": {},
+   "value": "Playback speed of the thruster roar loop under the boost loop (thruster_roar); full for a held boost, BoostLoopMiniGain for a mini-boost, pitch follows rev when its drive value is 0."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "BoostBodyPitchMax",
+   "attributes": {},
+   "value": "Playback speed of the thruster roar loop under the boost loop (thruster_roar); full for a held boost, BoostLoopMiniGain for a mini-boost, pitch follows rev when its drive value is 1."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "WindBuffetAssetId",
+   "attributes": {},
+   "value": "Roblox audio asset ID for the high-speed wind buffet loop (wind_buffet) that enters between WindBuffetStartMph and WindBuffetFullMph. Blank disables this layer without affecting the rest of the profile."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "WindBuffetGain",
+   "attributes": {},
+   "value": "Linear mix multiplier for the high-speed wind buffet loop (wind_buffet) that enters between WindBuffetStartMph and WindBuffetFullMph; 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "WindBuffetPitch",
+   "attributes": {},
+   "value": "Base playback-speed/pitch multiplier for the high-speed wind buffet loop (wind_buffet) that enters between WindBuffetStartMph and WindBuffetFullMph; it scales the PitchMin to PitchMax sweep."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "WindBuffetPitchMin",
+   "attributes": {},
+   "value": "Playback speed of the high-speed wind buffet loop (wind_buffet) that enters between WindBuffetStartMph and WindBuffetFullMph when its drive value is 0."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "WindBuffetPitchMax",
+   "attributes": {},
+   "value": "Playback speed of the high-speed wind buffet loop (wind_buffet) that enters between WindBuffetStartMph and WindBuffetFullMph when its drive value is 1."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "Pop1AssetId",
+   "attributes": {},
+   "value": "Roblox audio asset ID for exhaust pop 1 (pop_1); pops are drawn from a shuffled bag of Pop1..Pop4 on FeelPopRevision when FeelPopStrength is under PopBangStrength, gain scaled by strength. Blank disables this layer without affecting the rest of the profile."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "Pop1Gain",
+   "attributes": {},
+   "value": "Linear mix multiplier for exhaust pop 1 (pop_1); pops are drawn from a shuffled bag of Pop1..Pop4 on FeelPopRevision when FeelPopStrength is under PopBangStrength, gain scaled by strength; 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "Pop1Pitch",
+   "attributes": {},
+   "value": "Base playback-speed/pitch multiplier for exhaust pop 1 (pop_1); pops are drawn from a shuffled bag of Pop1..Pop4 on FeelPopRevision when FeelPopStrength is under PopBangStrength, gain scaled by strength; 1 is original, below 1 is lower/slower, and above 1 is higher/faster."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "Pop2AssetId",
+   "attributes": {},
+   "value": "Roblox audio asset ID for exhaust pop 2 (pop_2). Blank disables this layer without affecting the rest of the profile."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "Pop2Gain",
+   "attributes": {},
+   "value": "Linear mix multiplier for exhaust pop 2 (pop_2); 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "Pop2Pitch",
+   "attributes": {},
+   "value": "Base playback-speed/pitch multiplier for exhaust pop 2 (pop_2); 1 is original, below 1 is lower/slower, and above 1 is higher/faster."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "Pop3AssetId",
+   "attributes": {},
+   "value": "Roblox audio asset ID for exhaust pop 3 (pop_3). Blank disables this layer without affecting the rest of the profile."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "Pop3Gain",
+   "attributes": {},
+   "value": "Linear mix multiplier for exhaust pop 3 (pop_3); 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "Pop3Pitch",
+   "attributes": {},
+   "value": "Base playback-speed/pitch multiplier for exhaust pop 3 (pop_3); 1 is original, below 1 is lower/slower, and above 1 is higher/faster."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "Pop4AssetId",
+   "attributes": {},
+   "value": "Roblox audio asset ID for exhaust pop 4 (pop_4). Blank disables this layer without affecting the rest of the profile."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "Pop4Gain",
+   "attributes": {},
+   "value": "Linear mix multiplier for exhaust pop 4 (pop_4); 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "Pop4Pitch",
+   "attributes": {},
+   "value": "Base playback-speed/pitch multiplier for exhaust pop 4 (pop_4); 1 is original, below 1 is lower/slower, and above 1 is higher/faster."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "Bang1AssetId",
+   "attributes": {},
+   "value": "Roblox audio asset ID for exhaust bang 1 (bang_1); played on FeelPopRevision when FeelPopStrength is at or over PopBangStrength. Blank disables this layer without affecting the rest of the profile."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "Bang1Gain",
+   "attributes": {},
+   "value": "Linear mix multiplier for exhaust bang 1 (bang_1); played on FeelPopRevision when FeelPopStrength is at or over PopBangStrength; 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "Bang1Pitch",
+   "attributes": {},
+   "value": "Base playback-speed/pitch multiplier for exhaust bang 1 (bang_1); played on FeelPopRevision when FeelPopStrength is at or over PopBangStrength; 1 is original, below 1 is lower/slower, and above 1 is higher/faster."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "Bang2AssetId",
+   "attributes": {},
+   "value": "Roblox audio asset ID for exhaust bang 2 (bang_2). Blank disables this layer without affecting the rest of the profile."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "Bang2Gain",
+   "attributes": {},
+   "value": "Linear mix multiplier for exhaust bang 2 (bang_2); 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "Bang2Pitch",
+   "attributes": {},
+   "value": "Base playback-speed/pitch multiplier for exhaust bang 2 (bang_2); 1 is original, below 1 is lower/slower, and above 1 is higher/faster."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "BoostFadeInSeconds",
+   "attributes": {},
+   "value": "Fade-in of BoostLoop and BoostBody, so the boost lands with its ignition."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "BoostDuckDb",
+   "attributes": {},
+   "value": "How far the rev layers are turned down while boosting, in decibels. Only applies when BoostLoop or BoostBody has an asset."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "BoostDuckInSeconds",
+   "attributes": {},
+   "value": "How fast the engine ducks under a boost."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "BoostDuckOutSeconds",
+   "attributes": {},
+   "value": "How fast the engine recovers after a boost."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "PopBangStrength",
+   "attributes": {},
+   "value": "FeelPopStrength at or above which a bang (Bang1/Bang2) plays instead of a pop."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "PopPitchJitter",
+   "attributes": {},
+   "value": "Random playback-speed spread on each pop or bang (0.06 = plus or minus 6 %)."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "DriverWindStartMph",
+   "attributes": {},
+   "value": "Speed at which driver wind starts to be heard on this profile."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "DriverWindFullMph",
+   "attributes": {},
+   "value": "Speed at which driver wind is at full gain and top pitch. Gain follows (speed / DriverWindFullMph) ^ DriverWindExponent."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "DriverWindExponent",
+   "attributes": {},
+   "value": "Power curve of driver wind gain against speed."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "DriverWindSpeedPitchMin",
+   "attributes": {},
+   "value": "Driver wind playback speed at rest."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "DriverWindSpeedPitchMax",
+   "attributes": {},
+   "value": "Driver wind playback speed at DriverWindFullMph."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "WindBuffetStartMph",
+   "attributes": {},
+   "value": "Speed at which the wind buffet loop starts to enter."
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles",
+    "EXOTIC_V10_AUDIO",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "WindBuffetFullMph",
+   "attributes": {},
+   "value": "Speed at which the wind buffet loop is full."
+  }
+ ]
+}

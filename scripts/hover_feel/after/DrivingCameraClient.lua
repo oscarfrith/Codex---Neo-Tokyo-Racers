@@ -27,6 +27,7 @@ local currentDistance, currentFov, accelBlend, boostBlend
 local configFolder, configValues, nextConfigRefresh = nil, {}, 0
 local initialLookFrames, debugWasEnabled, zoomIsLocked = 0, false, false
 local chaseMode, chase, look = false, nil, nil
+local speedLines = nil
 
 local function resolveFolder()
 	if configFolder and configFolder.Parent then return configFolder end
@@ -220,6 +221,7 @@ local function resetChase(root, cam)
 		Y = position.Y, YVelocity = 0, Climb = 0,
 		Pitch = 0, PitchVelocity = 0,
 		Lag = 0, LagVelocity = 0,
+		Roll = 0, RollVelocity = 0,
 		ForwardSpeed = nil, Acceleration = 0, AccelerationVelocity = 0,
 		Punch = 0, PunchVelocity = 0,
 		KickPitch = 0, KickPitchVelocity = 0, KickRoll = 0, KickRollVelocity = 0, Bump = 0, BumpVelocity = 0,
@@ -338,6 +340,93 @@ local function connectChaseInput()
 		end
 	end))
 end
+-- Speed lines: thin streaks at the screen edges that fade in with speed and boost. One ScreenGui owned by this
+-- controller for the length of a drive; a CanvasGroup carries the fade so only one property changes per frame.
+local function destroySpeedLines()
+	if speedLines then
+		speedLines.Gui:Destroy()
+		speedLines = nil
+	end
+end
+local function placeSpeedLine(line, viewport)
+	local angle = math.random() * 2 * math.pi
+	local half = viewport.Magnitude * 0.5
+	local length = half * (0.14 + math.random() * 0.26)
+	local radius = half * (0.5 + math.random() * 0.45)
+	line.Rotation = math.deg(angle)
+	line.Size = UDim2.fromOffset(length, 2 + math.random() * 2.5)
+	line.Position = UDim2.new(0.5, math.cos(angle) * radius, 0.5, math.sin(angle) * radius)
+end
+local function buildSpeedLines()
+	destroySpeedLines()
+	local player = Players.LocalPlayer
+	local playerGui = player and player:FindFirstChildOfClass("PlayerGui")
+	if not playerGui or not switch("ChaseSpeedLinesEnabled", true) then return end
+	local gui = Instance.new("ScreenGui")
+	gui.Name = "DrivingSpeedEffect"
+	gui.IgnoreGuiInset = true
+	gui.ResetOnSpawn = false
+	gui.DisplayOrder = -10
+	gui.Enabled = false
+	local group = Instance.new("CanvasGroup")
+	group.Name = "Lines"
+	group.BackgroundTransparency = 1
+	group.Size = UDim2.fromScale(1, 1)
+	group.GroupTransparency = 1
+	group.Active = false
+	group.Interactable = false
+	group.Parent = gui
+	local count = math.floor(number("ChaseSpeedLineCount", 64, 0, 120))
+	if UserInputService.TouchEnabled and not UserInputService.KeyboardEnabled then count = math.floor(count * 0.5) end
+	local cam = camera()
+	local viewport = cam and cam.ViewportSize or Vector2.new(1920, 1080)
+	local lines = {}
+	for index = 1, count do
+		local line = Instance.new("Frame")
+		line.Name = "Line"
+		line.AnchorPoint = Vector2.new(0.5, 0.5)
+		line.BorderSizePixel = 0
+		line.BackgroundColor3 = Color3.new(1, 1, 1)
+		local gradient = Instance.new("UIGradient")
+		-- Each streak fades out toward the centre of the screen.
+		gradient.Transparency = NumberSequence.new({ NumberSequenceKeypoint.new(0, 1), NumberSequenceKeypoint.new(0.7, 0.35), NumberSequenceKeypoint.new(1, 0.15) })
+		gradient.Parent = line
+		placeSpeedLine(line, viewport)
+		line.Parent = group
+		lines[index] = line
+	end
+	gui.Parent = playerGui
+	speedLines = { Gui = gui, Group = group, Lines = lines, Next = 1, Timer = 0, Shown = 0 }
+end
+local function updateSpeedLines(dt, speed, boostAmount)
+	if not speedLines or #speedLines.Lines == 0 then return end
+	local amount = smoothstep(number("ChaseSpeedLineStartMph", 110, 0, 500), number("ChaseSpeedLineFullMph", 230, 1, 600), speed) * 0.6 + boostAmount * 0.4
+	amount = math.clamp(amount, 0, 1) * number("ChaseSpeedLineOpacity", 0.7, 0, 1)
+	if amount < 0.02 then
+		if speedLines.Shown ~= 0 then
+			speedLines.Shown = 0
+			speedLines.Gui.Enabled = false
+		end
+		return
+	end
+	if speedLines.Shown == 0 then speedLines.Gui.Enabled = true end
+	if math.abs(amount - speedLines.Shown) > 0.01 then
+		speedLines.Shown = amount
+		speedLines.Group.GroupTransparency = 1 - amount
+	end
+	-- Re-place a few streaks every tick so the field flickers outward instead of sitting still.
+	speedLines.Timer += dt
+	if speedLines.Timer >= 0.04 then
+		speedLines.Timer = 0
+		local cam = camera()
+		local viewport = cam and cam.ViewportSize or Vector2.new(1920, 1080)
+		local lines = speedLines.Lines
+		for _ = 1, math.min(#lines, 6) do
+			placeSpeedLine(lines[speedLines.Next], viewport)
+			speedLines.Next = speedLines.Next % #lines + 1
+		end
+	end
+end
 local function chaseEvents(vehicle, boosting)
 	local shake = number("ChaseShakeScale", 1, 0, 4)
 	local impact = vehicle:GetAttribute("FeelImpactRevision")
@@ -418,6 +507,12 @@ local function updateChase(dt)
 	local lookAheadTarget = math.clamp(root.AssemblyAngularVelocity.Y * number("ChaseLookAheadSeconds", 0.22, 0, 2), -lookAheadLimit, lookAheadLimit)
 	if not finite(lookAheadTarget) then lookAheadTarget = 0 end
 	chase.LookAhead, chase.LookAheadVelocity = critical(chase.LookAhead, chase.LookAheadVelocity, lookAheadTarget, 2, dt)
+	-- Roll: the view leans into the turn, and further into a slide.
+	local rollLimit = math.rad(number("ChaseRollMaxDegrees", 11, 0, 30))
+	local yawRate = root.AssemblyAngularVelocity.Y
+	local rollTarget = (finite(yawRate) and yawRate or 0) * math.rad(number("ChaseTurnRollDegreesPerRadian", 3.2, 0, 20)) * smoothstep(8, 60, speedStuds)
+		- slip * number("ChaseSlipRoll", 0.22, 0, 1)
+	chase.Roll, chase.RollVelocity = critical(chase.Roll, chase.RollVelocity, math.clamp(rollTarget, -rollLimit, rollLimit), number("ChaseRollResponse", 5, 0.5, 30), dt)
 
 	-- Vertical: a spring riding the low-passed climb rate, so bumps are filtered and a steady grade leaves no lag.
 	chase.Climb += (velocity.Y - chase.Climb) * responseAlpha(4, dt)
@@ -488,7 +583,7 @@ local function updateChase(dt)
 	local aim = Vector3.new(position.X, chase.Y + number("ChaseAimHeightStuds", 3.2, -5, 30), position.Z)
 		+ yawDirection(viewYaw + chase.LookAhead) * number("ChaseAimAheadStuds", 12, 0, 60)
 	if (aim - lens).Magnitude < 0.1 then return end
-	local result = CFrame.lookAt(lens, aim) * CFrame.Angles(chase.KickPitch, 0, chase.KickRoll + buffetRoll)
+	local result = CFrame.lookAt(lens, aim) * CFrame.Angles(chase.KickPitch, 0, chase.KickRoll + buffetRoll + chase.Roll)
 
 	-- Getting in: blend from wherever the camera was.
 	if chase.EntryCFrame then
@@ -507,6 +602,7 @@ local function updateChase(dt)
 	end
 	cam.CFrame = result
 	cam.Focus = CFrame.new(pivot)
+	updateSpeedLines(dt, speed, boostBlend)
 	publishDebug(cam, speed, targetDistance, targetFov)
 end
 
@@ -517,6 +613,7 @@ local function suspend()
 	suspended = true
 	restoreZoom()
 	releaseMouse()
+	if speedLines then speedLines.Shown = 0; speedLines.Gui.Enabled = false end
 	CameraService.ClearFieldOfView("DrivingCamera") -- trailer tools own FOV while suspended
 	if ownedCamera and ownedCamera.Parent then
 		ownedCamera:SetAttribute("DrivingCameraManaged", nil)
@@ -640,6 +737,7 @@ function Controller.Start(newContext)
 		resetLook()
 		takeScriptedCamera(cam)
 		connectChaseInput()
+		buildSpeedLines()
 		RunService:BindToRenderStep(RENDER_NAME, Enum.RenderPriority.Camera.Value + 1, updateChase)
 	else
 		takeDefaultCamera(cam)
@@ -658,6 +756,7 @@ function Controller.Stop()
 	table.clear(connections)
 	restoreZoom()
 	releaseMouse()
+	destroySpeedLines()
 	CameraService.ClearFieldOfView("DrivingCamera")
 	if ownedCamera and ownedCamera.Parent then
 		local owner = ownedCamera:GetAttribute("DrivingCameraOwner")

@@ -321,6 +321,33 @@ local JET_FLOOR_GROUPS = {
 	DriftRight = true,
 }
 
+local BACKFIRE_BOOST_GROUPS = {
+	Boost = true,
+}
+
+local BACKFIRE_ENGINE_GROUPS = {
+	EngineThrust = true,
+	EngineJet = true,
+}
+
+-- Puts back what a backfire flash changed on a light or beam.
+local function restoreFlash(record)
+	local saved = record.FlashRestore
+	record.FlashRestore = nil
+	local object = record.Object
+	if not (saved and object) then return end
+	pcall(function()
+		if saved.Brightness then
+			object.Brightness = saved.Brightness
+		end
+		if saved.Width0 then
+			object.Width0 = saved.Width0
+			object.Width1 = saved.Width1
+		end
+		object.Enabled = saved.Enabled
+	end)
+end
+
 -- One-off bursts (VehicleVFXController:Burst) reuse the emitters of the
 -- BrakeSparks and HoverDust templates, including their category variants.
 local function burstKindFor(group, templateName)
@@ -576,9 +603,18 @@ function VehicleVFXController:Update(dt, state)
 	local jetFloor = math.clamp(tonumber(state.JetFloor) or 1, 0, 1)
 	local boostCeiling = math.clamp(tonumber(state.BoostCeiling) or 1, 1, 2)
 
+	local now = os.clock()
+	local flashUntil = self.FlashUntil or 0
+
 	for _, record in ipairs(self.Items) do
 		local object = record.Object
 		if object and object.Parent then
+			if record.FlashRestore then
+				-- A backfire flash owns this effect until it ends; then the saved
+				-- values are restored and the normal drive resumes on this tick.
+				if now < flashUntil then continue end
+				restoreFlash(record)
+			end
 			if isThrustFireObject(object) then
 				applyThrustFireColour(object, thrustColor)
 			end
@@ -673,9 +709,96 @@ function VehicleVFXController:Burst(kind, count)
 	return emitted
 end
 
+-- Backfire: a short fireball from the rear jets on an exhaust pop or bang.
+-- Emits from the Boost-group emitters already attached (engine-jet emitters
+-- when the vehicle has no boost emitters) and flashes the Boost-group lights
+-- and beams (engine-jet ones when there are none) for flashSeconds, then
+-- restores them. Creates nothing; does nothing when there is nothing to use.
+-- count is the desktop particle total. Returns the number of particles emitted.
+function VehicleVFXController:Backfire(count, flashSeconds, flashGain)
+	if self.Destroyed or not self:Visible() then return 0 end
+	count = tonumber(count) or 0
+	if count ~= count or count < 0 then count = 0 end
+
+	local boostEmitters, engineEmitters, boostFlashers, engineFlashers = 0, 0, 0, 0
+	for _, record in ipairs(self.Items) do
+		local object = record.Object
+		if object and object.Parent then
+			local boostGroup = BACKFIRE_BOOST_GROUPS[record.Group]
+			local engineGroup = BACKFIRE_ENGINE_GROUPS[record.Group]
+			if boostGroup or engineGroup then
+				if object:IsA("ParticleEmitter") then
+					if boostGroup then boostEmitters += 1 else engineEmitters += 1 end
+				elseif record.BaseBrightness or record.BaseWidth0 then
+					if boostGroup then boostFlashers += 1 else engineFlashers += 1 end
+				end
+			end
+		end
+	end
+
+	local emitGroups = (boostEmitters > 0 and BACKFIRE_BOOST_GROUPS) or (engineEmitters > 0 and BACKFIRE_ENGINE_GROUPS) or nil
+	local emitters = boostEmitters > 0 and boostEmitters or engineEmitters
+	local flashGroups = (boostFlashers > 0 and BACKFIRE_BOOST_GROUPS) or (engineFlashers > 0 and BACKFIRE_ENGINE_GROUPS) or nil
+
+	local emitted = 0
+	if emitGroups and count > 0 then
+		local quality = self.IsMobile and self.Globals.MobileParticleScale or self.Globals.DesktopParticleScale
+		local total = count * (tonumber(quality) or 1)
+		local cap = tonumber(self.Globals.MaxRecommendedParticlesPerVehicle) or 0
+		if cap > 0 then
+			total = math.min(total, cap)
+		end
+		for _, record in ipairs(self.Items) do
+			local object = record.Object
+			if emitGroups[record.Group] and object and object.Parent and object:IsA("ParticleEmitter") then
+				local share = total / emitters
+				if self.IsMobile then
+					share *= record.Settings.MobileScale
+				end
+				local amount = math.floor(share + 0.5)
+				if amount >= 1 then
+					object:Emit(amount)
+					emitted += amount
+				end
+			end
+		end
+	end
+
+	flashSeconds = math.clamp(tonumber(flashSeconds) or 0, 0, 0.5)
+	if flashGroups and flashSeconds > 0 then
+		local gain = math.clamp(tonumber(flashGain) or 1, 1, 4)
+		self.FlashUntil = math.max(self.FlashUntil or 0, os.clock() + flashSeconds)
+		for _, record in ipairs(self.Items) do
+			local object = record.Object
+			if flashGroups[record.Group] and object and object.Parent and (record.BaseBrightness or record.BaseWidth0) then
+				if not record.FlashRestore then
+					record.FlashRestore = {
+						Enabled = object.Enabled,
+						Brightness = record.BaseBrightness and object.Brightness or nil,
+						Width0 = record.BaseWidth0 and object.Width0 or nil,
+						Width1 = record.BaseWidth0 and object.Width1 or nil,
+					}
+				end
+				if record.BaseBrightness then
+					object.Brightness = record.BaseBrightness * gain
+				else
+					object.Width0 = record.BaseWidth0 * gain
+					object.Width1 = record.BaseWidth1 * gain
+				end
+				object.Enabled = true
+			end
+		end
+	end
+
+	return emitted
+end
+
 function VehicleVFXController:Destroy()
 	self.Destroyed = true
 	for _, record in ipairs(self.Items) do
+		if record.FlashRestore then
+			restoreFlash(record)
+		end
 		if record.Object then
 			record.Object.Enabled = false
 		end

@@ -13,6 +13,7 @@ High-Risk (driving, camera and VFX owners), reviewed by `delivery-reviewer` befo
 - **Sounds:** 26 synthesised files (`scripts/hover_feel/synth/`), not uploaded.
 - **Evidence:** Edit: compile, AUDIT, APPLY, ROLLBACK, APPLY. Play: two desktop sessions through the start screen (API spawn, keyboard driving, HUD exit). Not user-confirmed. Record: `scripts/hover_feel/verification.json`.
 - **Also:** the toolbox RX-7 was removed from `Workspace` at Oscar's request.
+- **Round 2 (same day, Oscar's feedback):** camera roll in turns and drifts, higher framing, edge speed streaks; pop and bang events with matching backfire burst; old generic layers and the rotary idle off on the Exotic; boost, wind and pop slots; sound set revised to 34 files. Same installer (APPLY over the earlier build); reviewed by reading and a Play test, not by a second `delivery-reviewer` pass.
 
 ## 2026-10-04 - Modern Muscle category, game setup on placeholders (v3)
 

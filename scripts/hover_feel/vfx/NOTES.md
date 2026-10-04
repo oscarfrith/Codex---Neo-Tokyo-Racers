@@ -93,3 +93,37 @@ Behaviour differences to know about:
 11. Set `FeelVFXEnabled = false` on `Config.Vehicles.StabiliserVFX`: within 0.5 s behaviour is the old binary one. Set `Config.Vehicles.Driving.FeelStateEnabled = false`: old behaviour plus brake sparks.
 12. Second player: their car looks as before from this client. In a race: hidden vehicles show no jets and no bursts.
 13. Mobile (or touch emulation): effects present, fewer particles, no errors.
+
+## Round 2: backfire (pops, bangs, fireballs)
+
+Status: generated on disk; not compiled, not played. Round 1 is installed and working in Play (coordinator).
+
+- `config_spec.json` now has 34 attributes; `config_round2.json` holds only the 8 new ones. No instances.
+- `VehicleVFXClient.feelBursts` also watches `FeelPopRevision` (baseline taken when the feel memory is created, as for impacts). On an increase, in the same visual update, it calls `Controller:Backfire(count, flashSeconds, flashGain)`. Local driving vehicle only; nothing when hidden by the race gate or with `FeelBackfireEnabled = false`. There is no extra rate limit; the 30 Hz visual step is the limit (two pops inside one step give one fireball).
+- `VehiclePreviewVFXClient:Backfire`:
+  - Emitters: ParticleEmitters in group `Boost`; if the vehicle has none, those in `EngineThrust` / `EngineJet`. `Emit` with the same scaling as `Burst` (particle scale, cull distance, `MaxRecommendedParticlesPerVehicle`, template `MobileScale`, shared evenly).
+  - Flash: lights and Beams in group `Boost`; if there are none, those in the engine groups. Brightness (lights) or Width0/Width1 (Beams) is set to the authored value times the gain and `Enabled = true`. The pre-flash `Enabled` and values are saved on the record.
+  - `Update` skips a flashing record until the flash time has passed, then restores the saved values and resumes the normal drive on that tick. `Destroy` restores first. Restore happens on the 30 Hz update, so a flash lasts up to 0.033 s longer than configured.
+  - Creates no instances. With no matching emitter, light or Beam it does nothing.
+
+Formulas (`s = clamp(FeelPopStrength, 0, 1)`):
+
+| | Crackle (`s < 0.8`) | Bang (`s >= 0.8`) |
+|---|---|---|
+| Particles | `FeelBackfireCrackleMin (4) + (FeelBackfireCrackleMax (8) - 4) * clamp((s - 0.3) / 0.4, 0, 1)` | `FeelBackfireBangMin (14) + (FeelBackfireBangMax (24) - 14) * clamp((s - 0.8) / 0.2, 0, 1)` |
+| Flash seconds | `FeelBackfireCrackleFlashSeconds (0.08)` | `FeelBackfireBangFlashSeconds (0.16)` |
+| Flash gain | `1 + (FeelBackfireFlashGain (1.6) - 1) * max(s, 0.3)` | same |
+
+Not verified:
+
+- Which classes the live boost and engine effects are. If they are only Fire, Smoke, Sparkles or Trail objects, there is nothing to emit or flash and the backfire is invisible.
+- The fireball uses the boost emitter's own texture, lifetime and speed; whether 4 to 24 particles of it reads as a fireball is unseen. Emitters are `LockedToPart`, so it travels with the car.
+- Boost effects with a `VFXGroup` attribute other than `Boost`, or names without "boost", are not found.
+- On mobile, small crackle shares can round to 0 particles per emitter (count x 0.55 x MobileScale, split over the emitters); the flash still shows.
+
+Manual tests:
+
+14. Hold full throttle above 40 mph for over a second, then lift: a run of small fireballs at the rear, each with its pop sound, and a short flash. End a boost: one larger fireball with the bang.
+15. After the run the boost lights and beams are off and at their normal size; boost again and they look as before.
+16. Pop while boosting: the flash brightens the boost effect and returns to the steady boost look.
+17. Exit the car during a pop run: no effect left on or enlarged. `FeelBackfireEnabled = false`: sound only, no fireball.

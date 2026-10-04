@@ -27,7 +27,7 @@ AUDIO = ["ReplicatedStorage", "Modules", "Game", "Audio"]
 CAMERA_CONFIG = ["ReplicatedStorage", "Config", "Vehicles", "Camera"]
 DRIVING_CONFIG = ["ReplicatedStorage", "Config", "Vehicles", "Driving"]
 
-FEEL_HELPERS = '''local FEEL_ATTRIBUTES = {"FeelThrottle", "FeelSpeedMph", "FeelSlip", "FeelBoostCharge", "FeelBoostKind", "FeelDriftCharge", "FeelGrounded", "FeelHover", "FeelImpactRevision", "FeelImpactStrength", "FeelLandRevision", "FeelLandStrength"}
+FEEL_HELPERS = '''local FEEL_ATTRIBUTES = {"FeelThrottle", "FeelSpeedMph", "FeelSlip", "FeelBoostCharge", "FeelBoostKind", "FeelDriftCharge", "FeelGrounded", "FeelHover", "FeelImpactRevision", "FeelImpactStrength", "FeelLandRevision", "FeelLandStrength", "FeelPopRevision", "FeelPopStrength"}
 local function clearFeelState(vehicle)
 	if not vehicle then return end
 	for _, name in ipairs(FEEL_ATTRIBUTES) do vehicle:SetAttribute(name, nil) end
@@ -75,6 +75,36 @@ local function publishFeelState(dt, vehicle, throttle, velocity, speedMph, sideS
 	vehicle:SetAttribute("FeelDriftCharge", quantise(math.clamp(state.DriftCharge / 3.25, 0, 1), 0.02))
 	vehicle:SetAttribute("FeelGrounded", grounded)
 	vehicle:SetAttribute("FeelHover", hits > 0 and quantise(math.clamp(feel.HoverSum / hits / HOVER_HEIGHT, -1, 1), 0.02) or 0)
+	-- Pops: a short run after lifting off hard thrust; a bang, then a run, when a held boost ends.
+	if configBool("Driving", "FeelPopsEnabled", true) then
+		local now = os.clock()
+		local pop = nil
+		if feel.PreviousBoostKind == "Boost" and feel.BoostKind == "" then
+			pop = 0.85 + math.random() * 0.15
+			feel.PopsLeft = math.random(1, 3)
+			feel.NextPop = now + 0.12
+			feel.LoadTime = 0
+		elseif throttle > 0.6 and speedMph > 40 then
+			feel.LoadTime = math.min(feel.LoadTime + dt, 3)
+		elseif throttle <= 0.1 then
+			if feel.LoadTime >= 1 then
+				feel.PopsLeft = math.random(2, 4)
+				feel.NextPop = now + 0.06
+			end
+			feel.LoadTime = 0
+		end
+		if not pop and feel.PopsLeft > 0 and now >= feel.NextPop then
+			feel.PopsLeft -= 1
+			feel.NextPop = now + 0.07 + math.random() * 0.15
+			pop = 0.3 + math.random() * 0.4
+		end
+		if pop then
+			feel.PopRevision += 1
+			vehicle:SetAttribute("FeelPopStrength", quantise(pop, 0.01))
+			vehicle:SetAttribute("FeelPopRevision", feel.PopRevision)
+		end
+	end
+	feel.PreviousBoostKind = feel.BoostKind
 end
 
 '''
@@ -86,7 +116,7 @@ DRIVING_EDITS = [
      '\t\tstate.Vehicle:SetAttribute("DriveReady", false)\n\t\tclearFeelState(state.Vehicle)\n', 1),
     ("\tstate.AccelCameraActive = false\n\tstate.BoostCameraActive = false\n\n\tlocal root = state.Vehicle.PrimaryPart\n",
      "\tstate.AccelCameraActive = false\n\tstate.BoostCameraActive = false\n"
-     "\tstate.Feel = { ImpactRevision = 0, LandRevision = 0, LastImpact = 0, AirTime = 0, FallSpeed = 0, HoverSum = 0, BoostKind = \"\", Skip = true, SkipNext = false }\n"
+     "\tstate.Feel = { ImpactRevision = 0, LandRevision = 0, LastImpact = 0, AirTime = 0, FallSpeed = 0, HoverSum = 0, BoostKind = \"\", Skip = true, SkipNext = false, PopRevision = 0, PopsLeft = 0, NextPop = 0, LoadTime = 0, PreviousBoostKind = \"\" }\n"
      "\n\tlocal root = state.Vehicle.PrimaryPart\n", 1),
     ("\t\tlocal lastRelativeYVelocity = 0\n",
      "\t\tlocal lastRelativeYVelocity = 0\n\t\tstate.Feel.HoverSum = 0\n\t\tstate.Feel.SkipNext = false\n\t\tstate.Feel.BoostKind = \"\"\n", 1),
@@ -124,23 +154,24 @@ DRIVING_EDITS = [
 CONFIG = [
     (DRIVING_CONFIG, "FeelStateEnabled", True),
     (DRIVING_CONFIG, "FeelImpactMinStuds", 9),
+    (DRIVING_CONFIG, "FeelPopsEnabled", True),
     (CAMERA_CONFIG, "ScriptedChaseEnabled", True),
     (CAMERA_CONFIG, "ScriptedChaseEnabled_Description", "True: scripted chase camera (lens locked to the car, springs for every relative motion). False: the V6.1 camera where Roblox owns motion, collision and orbit."),
-    (CAMERA_CONFIG, "ChaseHeightStuds", 6.5),
+    (CAMERA_CONFIG, "ChaseHeightStuds", 9, [6.5, 8]),
     (CAMERA_CONFIG, "ChaseHeightStuds_RaisingThisDoes", "Raises the chase camera above the vehicle."),
     (CAMERA_CONFIG, "ChasePivotHeightStuds", 2.5),
     (CAMERA_CONFIG, "ChasePivotHeightStuds_RaisingThisDoes", "Raises the point the chase camera orbits around."),
-    (CAMERA_CONFIG, "ChaseAimAheadStuds", 12),
+    (CAMERA_CONFIG, "ChaseAimAheadStuds", 15, [12]),
     (CAMERA_CONFIG, "ChaseAimAheadStuds_RaisingThisDoes", "Aims the chase camera farther ahead of the vehicle, which moves the vehicle lower in frame."),
-    (CAMERA_CONFIG, "ChaseAimHeightStuds", 3.2),
+    (CAMERA_CONFIG, "ChaseAimHeightStuds", 2.2, [3.2, 2.4]),
     (CAMERA_CONFIG, "ChaseAimHeightStuds_RaisingThisDoes", "Raises the point the chase camera looks at."),
     (CAMERA_CONFIG, "ChaseYawResponse", 7.5),
     (CAMERA_CONFIG, "ChaseYawResponse_RaisingThisDoes", "Makes the chase camera swing behind the vehicle faster when it turns."),
-    (CAMERA_CONFIG, "ChaseSlipFollow", 0.35),
+    (CAMERA_CONFIG, "ChaseSlipFollow", 0.5, [0.35]),
     (CAMERA_CONFIG, "ChaseSlipFollow_RaisingThisDoes", "Moves the chase camera farther toward the direction of travel while the vehicle slides, showing more of its side."),
-    (CAMERA_CONFIG, "ChaseLookAheadSeconds", 0.22),
+    (CAMERA_CONFIG, "ChaseLookAheadSeconds", 0.3, [0.22]),
     (CAMERA_CONFIG, "ChaseLookAheadSeconds_RaisingThisDoes", "Turns the view farther into a corner."),
-    (CAMERA_CONFIG, "ChaseLookAheadMaxDegrees", 9),
+    (CAMERA_CONFIG, "ChaseLookAheadMaxDegrees", 13, [9]),
     (CAMERA_CONFIG, "ChaseLookAheadMaxDegrees_RaisingThisDoes", "Allows the view to turn farther into a corner."),
     (CAMERA_CONFIG, "ChaseVerticalResponse", 6),
     (CAMERA_CONFIG, "ChaseVerticalResponse_RaisingThisDoes", "Makes the chase camera follow bumps and drops more tightly."),
@@ -172,6 +203,24 @@ CONFIG = [
     (CAMERA_CONFIG, "ChaseLookMouseRadiansPerPixel_RaisingThisDoes", "Makes right-mouse free look turn faster."),
     (CAMERA_CONFIG, "ChaseLookTouchRadiansPerPixel", 0.0075),
     (CAMERA_CONFIG, "ChaseLookTouchRadiansPerPixel_RaisingThisDoes", "Makes touch free look turn faster."),
+    (CAMERA_CONFIG, "ChaseRollMaxDegrees", 11),
+    (CAMERA_CONFIG, "ChaseRollMaxDegrees_RaisingThisDoes", "Allows the chase camera to lean farther in turns and drifts."),
+    (CAMERA_CONFIG, "ChaseTurnRollDegreesPerRadian", 3.2),
+    (CAMERA_CONFIG, "ChaseTurnRollDegreesPerRadian_RaisingThisDoes", "Leans the chase camera more for the same rate of turn."),
+    (CAMERA_CONFIG, "ChaseSlipRoll", 0.22),
+    (CAMERA_CONFIG, "ChaseSlipRoll_RaisingThisDoes", "Leans the chase camera more while the vehicle slides or drifts."),
+    (CAMERA_CONFIG, "ChaseRollResponse", 5),
+    (CAMERA_CONFIG, "ChaseRollResponse_RaisingThisDoes", "Makes the chase camera lean and recover faster."),
+    (CAMERA_CONFIG, "ChaseSpeedLinesEnabled", True),
+    (CAMERA_CONFIG, "ChaseSpeedLinesEnabled_Description", "Shows speed streaks at the screen edges at high speed and during boost."),
+    (CAMERA_CONFIG, "ChaseSpeedLineCount", 64, [46]),
+    (CAMERA_CONFIG, "ChaseSpeedLineCount_RaisingThisDoes", "Draws more speed streaks (halved on touch devices). Read when a drive starts."),
+    (CAMERA_CONFIG, "ChaseSpeedLineStartMph", 110),
+    (CAMERA_CONFIG, "ChaseSpeedLineStartMph_RaisingThisDoes", "Makes speed streaks begin at a higher speed."),
+    (CAMERA_CONFIG, "ChaseSpeedLineFullMph", 230),
+    (CAMERA_CONFIG, "ChaseSpeedLineFullMph_RaisingThisDoes", "Makes speed streaks reach full strength at a higher speed."),
+    (CAMERA_CONFIG, "ChaseSpeedLineOpacity", 0.7, [0.55]),
+    (CAMERA_CONFIG, "ChaseSpeedLineOpacity_RaisingThisDoes", "Makes speed streaks more visible."),
     (CAMERA_CONFIG, "ChaseCutDistanceStuds", 60),
     (CAMERA_CONFIG, "ChaseCutDistanceStuds_RaisingThisDoes", "Requires a longer single-frame jump before the chase camera cuts instead of following."),
 ]
@@ -238,7 +287,8 @@ def main():
         history[name] = prior + [a]
     json.dump(history, open(history_path, "w"), indent=1, sort_keys=True)
 
-    rows = list(CONFIG)
+    rows = [(row[0], row[1], row[2]) for row in CONFIG]
+    superseded = {("/".join(row[0]), row[1]): row[3] for row in CONFIG if len(row) > 3}
     instances = []
     for part in ("audio", "vfx"):
         spec_path = os.path.join(HERE, part, "config_spec.json")
@@ -253,10 +303,27 @@ def main():
         old = captured.get(("/".join(path), key))
         if old is not None:
             row["before"] = old
+        if ("/".join(path), key) in superseded:
+            row["was"] = superseded[("/".join(path), key)]
         attributes.append(row)
 
+    # Round 2 changes to config the audio part already installed: forced updates, removals and new children.
+    updates, late = [], []
+    round2 = os.path.join(HERE, "audio", "config_round2.json")
+    if os.path.exists(round2) and any(s["file"]["after"].startswith("audio/") for s in scripts.values()):
+        spec = json.load(io.open(round2, encoding="utf-8"))
+        updates += [{"path": r["path"], "key": r["key"], "value": r["value"]} for r in spec.get("attributes", [])]
+        updates += [{"path": r["path"], "key": r["key"]} for r in spec.get("remove", [])]
+        late += spec.get("instances", [])
+        allowed = ("ReplicatedStorage/Config/Audio/VehicleProfiles/EXOTIC_V10_AUDIO", "ReplicatedStorage/Config/Audio/")
+        new_keys = {("/".join(a["path"]), a["key"]) for a in attributes if "before" not in a}
+        for row in updates:
+            where = "/".join(row["path"])
+            if not where.startswith(allowed[0]) and (where, row["key"]) not in new_keys:
+                raise SystemExit("round 2 update touches config this delivery did not create: %s @%s" % (where, row["key"]))
+
     data = json.dumps({"placeId": PLACE_ID, "base": BASE, "scripts": scripts, "attributes": attributes,
-                       "instances": instances}, sort_keys=True)
+                       "instances": instances, "updates": updates, "lateInstances": late}, sort_keys=True)
     if "]==]" in data:
         raise SystemExit("config text contains the long-string terminator")
     engine = read("installer_engine.lua")
