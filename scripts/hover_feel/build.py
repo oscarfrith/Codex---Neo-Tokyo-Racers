@@ -75,28 +75,25 @@ local function publishFeelState(dt, vehicle, throttle, velocity, speedMph, sideS
 	vehicle:SetAttribute("FeelDriftCharge", quantise(math.clamp(state.DriftCharge / 3.25, 0, 1), 0.02))
 	vehicle:SetAttribute("FeelGrounded", grounded)
 	vehicle:SetAttribute("FeelHover", hits > 0 and quantise(math.clamp(feel.HoverSum / hits / HOVER_HEIGHT, -1, 1), 0.02) or 0)
-	-- Pops: a short run after lifting off hard thrust; a bang, then a run, when a held boost ends.
+	-- Pops: a bang and a hard run after lifting off sustained thrust. A boost that ends fires nothing.
 	if configBool("Driving", "FeelPopsEnabled", true) then
 		local now = os.clock()
 		local pop = nil
-		if feel.PreviousBoostKind == "Boost" and feel.BoostKind == "" then
-			pop = 0.85 + math.random() * 0.15
-			feel.PopsLeft = math.random(1, 3)
-			feel.NextPop = now + 0.12
-			feel.LoadTime = 0
-		elseif throttle > 0.6 and speedMph > 40 then
+		if throttle > 0.6 and speedMph > 40 then
 			feel.LoadTime = math.min(feel.LoadTime + dt, 3)
 		elseif throttle <= 0.1 then
-			if feel.LoadTime >= 1 then
-				feel.PopsLeft = math.random(2, 4)
-				feel.NextPop = now + 0.06
+			if feel.LoadTime >= 0.8 and feel.BoostKind == "" then
+				-- Lift-off: one bang straight away, then a fast, hard run.
+				pop = 0.9 + math.random() * 0.1
+				feel.PopsLeft = math.random(3, 6)
+				feel.NextPop = now + 0.07
 			end
 			feel.LoadTime = 0
 		end
 		if not pop and feel.PopsLeft > 0 and now >= feel.NextPop then
 			feel.PopsLeft -= 1
-			feel.NextPop = now + 0.07 + math.random() * 0.15
-			pop = 0.3 + math.random() * 0.4
+			feel.NextPop = now + 0.05 + math.random() * 0.12
+			pop = 0.5 + math.random() * 0.29
 		end
 		if pop then
 			feel.PopRevision += 1
@@ -155,6 +152,8 @@ CONFIG = [
     (DRIVING_CONFIG, "FeelStateEnabled", True),
     (DRIVING_CONFIG, "FeelImpactMinStuds", 9),
     (DRIVING_CONFIG, "FeelPopsEnabled", True),
+    (["ReplicatedStorage", "Config", "Audio", "Global"], "BoostLoopFadeOutSeconds", 2.2, [0.9]),
+    (["ReplicatedStorage", "Config", "Audio", "Global"], "BoostEndVent", 0),
     (CAMERA_CONFIG, "ScriptedChaseEnabled", True),
     (CAMERA_CONFIG, "ScriptedChaseEnabled_Description", "True: scripted chase camera (lens locked to the car, springs for every relative motion). False: the V6.1 camera where Roblox owns motion, collision and orbit."),
     (CAMERA_CONFIG, "ChaseHeightStuds", 9, [6.5, 8]),
@@ -263,6 +262,11 @@ SLOTS = {
 }
 
 
+# Uploaded but not used since round 4 (Oscar: too much going on, some of it cartoony): the rising drift-charge
+# tone and its release zap, the boost-end release sound (the boost now just fades), the high turbine layer.
+SWITCHED_OFF = {"drift_charge", "drift_release", "boost_release", "turbine_high"}
+
+
 def djb2(text):
     x = 5381
     for b in text.encode("utf-8"):
@@ -351,11 +355,19 @@ def main():
 
     if updates:
         profile = ["ReplicatedStorage", "Config", "Audio", "VehicleProfiles", "EXOTIC_V10_AUDIO"]
-        # Mix for the uploaded set, from Oscar's feedback: less whine, more depth and grit, boost that stands apart.
-        for key, value in (("SuperchargerWhineGain", 0.16), ("SuperchargerWhinePitchMax", 1.3), ("TurboWhistleGain", 0.08),
-                           ("TurbineLowGain", 0.22), ("TurbineHighGain", 0.14), ("TurbineOctaves", 1.2),
-                           ("EnergyHumGain", 0.3), ("SlipStrainPitch", 1), ("SlipStrainGain", 0.28),
-                           ("BoostDuckDb", 6), ("BoostLoopGain", 0.9), ("BoostBodyGain", 0.7), ("BoostIgnitionGain", 1),
+        # Mix for the uploaded set, from Oscar's feedback. Round 3: less whine, more depth, boost that stands
+        # apart. Round 4: fewer layers at once, nothing cartoony, boost end is a plain fade, harder pops.
+        for key, value in (("SuperchargerWhineGain", 0.12), ("SuperchargerWhinePitchMax", 1.3),
+                           ("TurbineLowGain", 0.16), ("TurbineOctaves", 1.2),
+                           ("EnergyHumGain", 0.18), ("SlipStrainPitch", 1), ("SlipStrainGain", 0.24),
+                           ("TwinEngineGain", 0.45), ("BlowOffGain", 0.25), ("TurboFlutterGain", 0.3),
+                           ("BoostDuckDb", 6), ("BoostLoopGain", 0.9), ("BoostBodyGain", 0.7),
+                           ("BoostIgnitionGain", 1), ("BoostIgnitionMiniGain", 1),
+                           ("Pop1Gain", 0.95), ("Pop2Gain", 0.95), ("Pop3Gain", 0.95), ("Pop4Gain", 0.95),
+                           ("Bang1Gain", 1), ("Bang2Gain", 1),
+                           ("ImpactLightGain", 0.3), ("ImpactMediumGain", 0.45), ("ImpactHeavyGain", 0.6),
+                           ("ImpactSevereGain", 0.7), ("LandingThumpGain", 0.45),
+                           ("TurboWhistleAssetId", ""),
                            ("ProfileRevision", 3)):
             updates.append({"path": profile, "key": key, "value": value})
         updates.append({"path": profile + ["RevLayers", "StandInExhaust"], "key": "Gain", "value": 0.65})
@@ -370,7 +382,7 @@ def main():
                 raise SystemExit("asset_ids.json: no slot for " + name)
             for layer, key in SLOTS[name]:
                 updates.append({"path": profile + (["RevLayers", layer] if layer else []), "key": key,
-                                "value": "rbxassetid://%d" % asset})
+                                "value": "" if name in SWITCHED_OFF else "rbxassetid://%d" % asset})
             filled += 1
         if filled:
             updates.append({"path": profile, "key": "ProfileRevision", "value": 3 + filled})

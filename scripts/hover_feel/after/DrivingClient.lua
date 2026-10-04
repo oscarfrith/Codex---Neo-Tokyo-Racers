@@ -624,28 +624,25 @@ local function publishFeelState(dt, vehicle, throttle, velocity, speedMph, sideS
 	vehicle:SetAttribute("FeelDriftCharge", quantise(math.clamp(state.DriftCharge / 3.25, 0, 1), 0.02))
 	vehicle:SetAttribute("FeelGrounded", grounded)
 	vehicle:SetAttribute("FeelHover", hits > 0 and quantise(math.clamp(feel.HoverSum / hits / HOVER_HEIGHT, -1, 1), 0.02) or 0)
-	-- Pops: a short run after lifting off hard thrust; a bang, then a run, when a held boost ends.
+	-- Pops: a bang and a hard run after lifting off sustained thrust. A boost that ends fires nothing.
 	if configBool("Driving", "FeelPopsEnabled", true) then
 		local now = os.clock()
 		local pop = nil
-		if feel.PreviousBoostKind == "Boost" and feel.BoostKind == "" then
-			pop = 0.85 + math.random() * 0.15
-			feel.PopsLeft = math.random(1, 3)
-			feel.NextPop = now + 0.12
-			feel.LoadTime = 0
-		elseif throttle > 0.6 and speedMph > 40 then
+		if throttle > 0.6 and speedMph > 40 then
 			feel.LoadTime = math.min(feel.LoadTime + dt, 3)
 		elseif throttle <= 0.1 then
-			if feel.LoadTime >= 1 then
-				feel.PopsLeft = math.random(2, 4)
-				feel.NextPop = now + 0.06
+			if feel.LoadTime >= 0.8 and feel.BoostKind == "" then
+				-- Lift-off: one bang straight away, then a fast, hard run.
+				pop = 0.9 + math.random() * 0.1
+				feel.PopsLeft = math.random(3, 6)
+				feel.NextPop = now + 0.07
 			end
 			feel.LoadTime = 0
 		end
 		if not pop and feel.PopsLeft > 0 and now >= feel.NextPop then
 			feel.PopsLeft -= 1
-			feel.NextPop = now + 0.07 + math.random() * 0.15
-			pop = 0.3 + math.random() * 0.4
+			feel.NextPop = now + 0.05 + math.random() * 0.12
+			pop = 0.5 + math.random() * 0.29
 		end
 		if pop then
 			feel.PopRevision += 1

@@ -969,7 +969,7 @@ local function updateFeel(state, dt)
 	local now = os.clock()
 	local lifted = loadTarget <= tuning.BlowOffLiftThreshold
 	local boostEnded = f.BoostKind ~= nil and f.BoostKind ~= "" and boostKind == ""
-	if (lifted and f.LoadHeld >= tuning.BlowOffMinLoadSeconds) or boostEnded then
+	if (lifted and f.LoadHeld >= tuning.BlowOffMinLoadSeconds) or (boostEnded and Catalog.GlobalNumber("BoostEndVent", 0) > 0) then
 		if driving and f.Spool >= tuning.BlowOffMinSpool and now - f.LastBlowOffAt >= tuning.BlowOffMinIntervalSeconds then
 			-- Below FlutterBelowSpool the vent is the flutter; either slot stands in for the other when one is empty.
 			local vent = "BlowOff"
