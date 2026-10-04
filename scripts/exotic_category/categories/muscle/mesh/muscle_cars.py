@@ -215,8 +215,8 @@ def f_tail():
     """Short deck that climbs to a high square tail. As on the real car the tail face is a recessed black
     panel under the deck lip, holding two ring lamps, above a body-colour bumper."""
     K.begin("F", "TAIL")
-    tail = Hull([(Z_R, SEAM_R), (6.5, dict(yt=3.35)), (9.8, dict(yt=3.55, ys=2.7)), (10.6, dict(yb=-0.3)),
-                 (11.3, dict(yb=1.4, rb=0.25)),
+    tail = Hull([(Z_R, SEAM_R), (6.5, dict(yt=3.35)), (9.8, dict(yt=3.55, ys=2.7)), (10.6, dict(yb=-0.3, yt=3.57, ys=2.75)),
+                 (11.3, dict(yb=1.4, rb=0.25, yt=3.59, ys=2.8)),
                  (12.0, dict(w=3.72, yb=1.5, yt=3.6, ys=2.85, rb=0.25, tum=0.28, drop=0.2))], **SEAM_R)
     tail.build("skin", "primary", t0=Z_R + GAP, caps=(False, False), regions=[
         R(Z_R + GAP, 12.0, 0.0, 2.0, "secondary", 0.02),
