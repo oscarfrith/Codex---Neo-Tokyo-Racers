@@ -2,6 +2,18 @@
 
 Recent deliveries, newest first. Entries before September 2026 live in [the archive](history/patch-history-2026-05-to-2026-08.md).
 
+## 2026-10-04 - Hover feel: scripted chase camera, Exotic voice, continuous VFX, impacts (v3)
+
+High-Risk (driving, camera and VFX owners), reviewed by `delivery-reviewer` before each APPLY (two reviews, READY WITH FIXES; fixes applied). Contract: [hover_feel/CONTRACT.md](../scripts/hover_feel/CONTRACT.md).
+
+- **State:** `DrivingClient` publishes client-local `Feel*` attributes; 75 inserted lines, no force, input or existing attribute changed.
+- **Camera:** `DrivingCameraClient` Scriptable chase mode; V6.1 kept behind `ScriptedChaseEnabled`. Oscar approved the return to a scripted camera on 2026-10-04.
+- **Audio:** `VehicleAudioClient` and `VehicleAudioCatalog`: opt-in feel drive, profile `EXOTIC_V10_AUDIO`, category mapping `CategoryProfile_exotic`. Server and remote unchanged.
+- **VFX:** `VehicleVFXClient` and `VehiclePreviewVFXClient`: continuous inputs for the local driving car, impact sparks from a runtime source, landing dust.
+- **Sounds:** 26 synthesised files (`scripts/hover_feel/synth/`), not uploaded.
+- **Evidence:** Edit: compile, AUDIT, APPLY, ROLLBACK, APPLY. Play: two desktop sessions through the start screen (API spawn, keyboard driving, HUD exit). Not user-confirmed. Record: `scripts/hover_feel/verification.json`.
+- **Also:** the toolbox RX-7 was removed from `Workspace` at Oscar's request.
+
 ## 2026-10-04 - Modern Muscle category, game setup on placeholders (v3)
 
 High-Risk (prices, locks, saved ids), reviewed by `delivery-reviewer` before APPLY (conditions met; risks recorded). Contract: [muscle-category-contract](architecture/muscle-category-contract.md).

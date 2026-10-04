@@ -1,0 +1,73 @@
+{
+ "delivery": "hover_feel",
+ "date": "2026-10-04",
+ "place": 93959280828322,
+ "lane": "High-Risk",
+ "scripts": {
+  "DrivingClient": [
+   "323b3df4",
+   "1b8c8c91"
+  ],
+  "DrivingCameraClient": [
+   "6cf42c23",
+   "e4bbeb19"
+  ],
+  "VehicleAudioClient": [
+   "332d1f61",
+   "9ecb6c08"
+  ],
+  "VehicleAudioCatalog": [
+   "5ff1b465",
+   "adea0d1b"
+  ],
+  "VehicleVFXClient": [
+   "4178dec3",
+   "b8c5fb5a"
+  ],
+  "VehiclePreviewVFXClient": [
+   "936637bb",
+   "6355b8ec"
+  ]
+ },
+ "config": {
+  "attributes": 98,
+  "instances": 19
+ },
+ "edit_checks": [
+  "all six after-sources compile (loadstring)",
+  "AUDIT blockers=0",
+  "APPLY, ROLLBACK, APPLY, repeat APPLY no-op"
+ ],
+ "reviews": [
+  "delivery-reviewer stage one: READY WITH FIXES, applied",
+  "delivery-reviewer stage two: READY WITH FIXES, applied"
+ ],
+ "play": [
+  {
+   "evidence": "agent-verified, desktop Studio, start screen passed through the visible Play button, vehicle spawned by API, keyboard driving, HUD exit button",
+   "interaction": "normal-ui except the API spawn",
+   "rendering": "RenderStepped 60/s",
+   "observed": [
+    "CameraType Scriptable, owner ScriptedChaseV1 on spawn",
+    "Feel attributes published; cleared on exit",
+    "impact detected on wall hits (strength 168 and 50 studs/s)",
+    "camera restored to Custom, Humanoid subject, FOV 70 on exit",
+    "CategoryId=exotic resolves EXOTIC_V10_AUDIO; stand-in rev layers, twin, turbo whistle, supercharger, slip strain playing with changing pitch and gain",
+    "impact sparks visible; runtime spark source created on the driven car",
+    "no errors or warnings from the changed scripts in the client log"
+   ]
+  }
+ ],
+ "not_verified": [
+  "sound and feel by ear or by a person",
+  "mobile, touch, gamepad",
+  "two clients",
+  "Piercer and Muscle after the VFX change",
+  "trailer camera keys",
+  "slopes over a long drive",
+  "published server asset loading",
+  "synthesised sounds in game (not uploaded)"
+ ],
+ "recovery": "py -3 scripts/hover_feel/serve.py, then run scripts/hover_feel/out_rollback.lua in Edit",
+ "other": "toolbox model '2002 Mazda RX-7 FD3S ' removed from Workspace (1223 descendants) at Oscar's request"
+}

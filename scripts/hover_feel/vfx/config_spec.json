@@ -1,0 +1,265 @@
+{
+  "attributes": [
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "FeelVFXEnabled",
+      "value": true
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "FeelThrottleAttackSeconds",
+      "value": 0.06
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "FeelThrottleReleaseSeconds",
+      "value": 0.28
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "FeelThrottleCutoff",
+      "value": 0.1
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "FeelJetFloor",
+      "value": 0.4
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "FeelBoostPulsePeak",
+      "value": 1.35
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "FeelBoostPulseSeconds",
+      "value": 0.15
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "FeelDriftFloor",
+      "value": 0.45
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "FeelDriftSlipFull",
+      "value": 0.5
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "FeelDustFloor",
+      "value": 0.45
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "FeelDustSpeedGain",
+      "value": 0.5
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "FeelDustSpeedFullMph",
+      "value": 140
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "FeelDustSquashGain",
+      "value": 0.45
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "FeelDustReleaseSeconds",
+      "value": 0.2
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "FeelBrakeMinMph",
+      "value": 25
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "FeelBrakeFullMph",
+      "value": 110
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "FeelBrakeFloor",
+      "value": 0.35
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "FeelImpactMinInterval",
+      "value": 0.12
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "FeelImpactSparksLight",
+      "value": 6
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "FeelImpactSparksMedium",
+      "value": 14
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "FeelImpactSparksHeavy",
+      "value": 26
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "FeelImpactSparksSevere",
+      "value": 40
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "FeelLandMinStuds",
+      "value": 12
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "FeelLandFullStuds",
+      "value": 70
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "FeelLandDustMin",
+      "value": 6
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "FeelLandDustMax",
+      "value": 28
+    }
+  ],
+  "instances": []
+}

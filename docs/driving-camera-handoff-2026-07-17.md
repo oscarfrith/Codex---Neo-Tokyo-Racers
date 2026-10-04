@@ -19,7 +19,7 @@ Active config:
 - `ReplicatedStorage.NeoTokyoRacers.Config.Runtime.DrivingCamera_Default_EditAttributes`
 - `ConfigVersion = DRIVING_CAMERA_DEFAULT_VEHICLE_V6_1`
 
-Roblox owns continuous `Camera.CFrame`, collision, desktop/mobile/controller orbit and interpolation. NTR only owns locked state distance, state FOV, restoration, and a bounded pre-camera framing setup. Do not return to the Scriptable V4/V5 design; it caused persistent hitching and reversed speed-distance behavior.
+Roblox owns continuous `Camera.CFrame`, collision, desktop/mobile/controller orbit and interpolation. NTR only owns locked state distance, state FOV, restoration, and a bounded pre-camera framing setup. Do not return to the Scriptable V4/V5 design; it caused persistent hitching and reversed speed-distance behavior. (Superseded 2026-10-04: Oscar approved a new Scriptable chase camera built the way DRIVE: Highway does it, with the lens locked to the car; see `scripts/hover_feel/CONTRACT.md`. The V6.1 design described here remains available behind `ScriptedChaseEnabled=false`.)
 
 ## Current mirrored tuning
 

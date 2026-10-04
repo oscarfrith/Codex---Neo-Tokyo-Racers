@@ -1,0 +1,1922 @@
+{
+ "attributes": [
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "Global"
+   ],
+   "key": "FeelAudioEnabled",
+   "value": true
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "Global"
+   ],
+   "key": "ImpactLightStuds",
+   "value": 9
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "Global"
+   ],
+   "key": "ImpactMediumStuds",
+   "value": 25
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "Global"
+   ],
+   "key": "ImpactHeavyStuds",
+   "value": 55
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "Global"
+   ],
+   "key": "ImpactSevereStuds",
+   "value": 110
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "Global"
+   ],
+   "key": "ImpactMinIntervalSeconds",
+   "value": 0.12
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "Global"
+   ],
+   "key": "FeelVoiceSleepSeconds",
+   "value": 2
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "Global"
+   ],
+   "key": "FeelLayerFadeInSeconds",
+   "value": 0.05
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "Global"
+   ],
+   "key": "FeelLayerFadeOutSeconds",
+   "value": 0.12
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "Global"
+   ],
+   "key": "RevHandoverSeconds",
+   "value": 0.4
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "Global"
+   ],
+   "key": "RevLayerSmoothingSeconds",
+   "value": 0.025
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "Quality"
+   ],
+   "key": "LocalFeelUpdateHz",
+   "value": 60
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "Quality"
+   ],
+   "key": "LocalFeelUpdateHzMobile",
+   "value": 30
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "Quality"
+   ],
+   "key": "TwinEngineEnabled",
+   "value": true
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "Quality"
+   ],
+   "key": "TwinEngineOnMobile",
+   "value": false
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "Quality"
+   ],
+   "key": "MaxRevLayerPlayers",
+   "value": 14
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "Quality"
+   ],
+   "key": "MaxRevLayerPlayersMobile",
+   "value": 8
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "Quality"
+   ],
+   "key": "MaxRemoteRevLayerPlayers",
+   "value": 3
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles"
+   ],
+   "key": "CategoryProfile_exotic",
+   "value": "EXOTIC_V10_AUDIO"
+  },
+  {
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles"
+   ],
+   "key": "CategoryProfileNote",
+   "value": "CategoryProfile_<CategoryId> names the audio profile for every vehicle of that category. It applies only while the vehicle carries the server's default profile stamp; a package resolved by an authoritative owner and a template's own StandardAudioProfileId still win. Blank or unknown values fall back to the normal resolution."
+  }
+ ],
+ "instances": [
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "Global",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "FeelAudioEnabled",
+   "value": "Master switch for the feel drive (rev layers, load follower, forced induction, slip strain, drift charge, impacts). False makes every profile behave as it did before, including profiles with FeelDriveEnabled.",
+   "attributes": {}
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "Global",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "ImpactLightStuds",
+   "value": "Smallest FeelImpactStrength (studs per second of unexplained speed change) that plays the light impact one-shot. Weaker impacts are silent.",
+   "attributes": {}
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "Global",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "ImpactMediumStuds",
+   "value": "FeelImpactStrength from which the medium impact one-shot is chosen.",
+   "attributes": {}
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "Global",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "ImpactHeavyStuds",
+   "value": "FeelImpactStrength from which the heavy impact one-shot is chosen.",
+   "attributes": {}
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "Global",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "ImpactSevereStuds",
+   "value": "FeelImpactStrength from which the severe impact one-shot is chosen.",
+   "attributes": {}
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "Global",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "ImpactMinIntervalSeconds",
+   "value": "Shortest time between two impact one-shots on one vehicle; impacts inside this window are dropped.",
+   "attributes": {}
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "Global",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "FeelVoiceSleepSeconds",
+   "value": "How long a feel loop stays at zero gain before its player stops. It restarts when the layer is next needed.",
+   "attributes": {}
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "Global",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "FeelLayerFadeInSeconds",
+   "value": "Response time when a feel loop (turbo, supercharger, turbine, hum, slip strain, drift charge) rises.",
+   "attributes": {}
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "Global",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "FeelLayerFadeOutSeconds",
+   "value": "Response time when a feel loop falls.",
+   "attributes": {}
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "Global",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "RevHandoverSeconds",
+   "value": "Length of the equal-power swap from the standard engine loops (Idle, EngineLow, EngineHigh) to the rev layers once the first rev layer asset has loaded. Until then, and for good if none loads, the standard engine loops stay.",
+   "attributes": {}
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "Global",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "RevLayerSmoothingSeconds",
+   "value": "Anti-click smoothing on rev layer gains. Keep it short: the load follower and the rev crossfade supply the audible shape.",
+   "attributes": {}
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "Quality",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "LocalFeelUpdateHz",
+   "value": "How often the local driver's feel voices are updated on desktop. Only that one vehicle uses it; every other vehicle and every standard layer stays on ParameterUpdateHz.",
+   "attributes": {}
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "Quality",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "LocalFeelUpdateHzMobile",
+   "value": "The same rate on small touch devices.",
+   "attributes": {}
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "Quality",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "TwinEngineEnabled",
+   "value": "Allows the detuned second copy of the on-load rev layers (twin engine beat) for the local driver.",
+   "attributes": {}
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "Quality",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "TwinEngineOnMobile",
+   "value": "Allows the twin engine copy on small touch devices. Off by default to halve the playing engine voices on mobile.",
+   "attributes": {}
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "Quality",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "MaxRevLayerPlayers",
+   "value": "Most rev layer AudioPlayers created for the local driver's vehicle, twin copies included (hard limit 16).",
+   "attributes": {}
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "Quality",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "MaxRevLayerPlayersMobile",
+   "value": "The same limit on small touch devices.",
+   "attributes": {}
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "Quality",
+    "Descriptions"
+   ],
+   "class": "StringValue",
+   "name": "MaxRemoteRevLayerPlayers",
+   "value": "Most looping AudioPlayers on any vehicle the local player is not driving when its profile has rev layers (hard limit 3).",
+   "attributes": {}
+  },
+  {
+   "parent": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "VehicleProfiles"
+   ],
+   "class": "Folder",
+   "name": "EXOTIC_V10_AUDIO",
+   "attributes": {
+    "AccelerationAssetId": "rbxassetid://96470627739499",
+    "AccelerationEnterAssetId": "",
+    "AccelerationEnterGain": 0.55,
+    "AccelerationEnterPitch": 1,
+    "AccelerationGain": 0.5,
+    "AccelerationPitch": 1,
+    "AccelerationReleaseAssetId": "",
+    "AccelerationReleaseGain": 0.45,
+    "AccelerationReleasePitch": 1,
+    "BoostEmptyAssetId": "",
+    "BoostEmptyGain": 0.65,
+    "BoostEmptyPitch": 1,
+    "BoostEnterAssetId": "",
+    "BoostEnterGain": 0.72,
+    "BoostEnterPitch": 1,
+    "BoostLoopAssetId": "",
+    "BoostLoopGain": 0.65,
+    "BoostLoopPitch": 1,
+    "BoostRechargeAssetId": "",
+    "BoostRechargeGain": 0.45,
+    "BoostRechargePitch": 1,
+    "BoostReleaseAssetId": "",
+    "BoostReleaseGain": 0.55,
+    "BoostReleasePitch": 1,
+    "CoastAssetId": "",
+    "CoastGain": 0.28,
+    "CoastPitch": 1,
+    "DisplayName": "Exotic V10",
+    "DriftEnterAssetId": "",
+    "DriftEnterGain": 0.55,
+    "DriftEnterPitch": 1,
+    "DriftLoopAssetId": "",
+    "DriftLoopGain": 0.52,
+    "DriftLoopPitch": 1,
+    "DriverWindAssetId": "rbxassetid://4471836491",
+    "DriverWindGain": 0.38,
+    "DriverWindPitch": 1,
+    "EngineHighAssetId": "",
+    "EngineHighGain": 0.56,
+    "EngineHighPitch": 1,
+    "EngineLowAssetId": "rbxassetid://1323976194",
+    "EngineLowGain": 0.45,
+    "EngineLowPitch": 1,
+    "FullBoostSpentAssetId": "",
+    "FullBoostSpentGain": 0.85,
+    "FullBoostSpentPitch": 1,
+    "IdleAssetId": "rbxassetid://131569008759588",
+    "IdleGain": 0.34,
+    "IdlePitch": 1,
+    "IgnitionAssetId": "rbxassetid://90037258119926",
+    "IgnitionGain": 0.85,
+    "IgnitionPitch": 1,
+    "ProfileMasterGain": 1,
+    "ProfileRevision": 1,
+    "ShutdownAssetId": "",
+    "ShutdownGain": 0.75,
+    "ShutdownPitch": 1,
+    "FeelDriveEnabled": true,
+    "AccelerationRevPitchMin": 0.85,
+    "AccelerationRevPitchMax": 1.3,
+    "BoostLoopRevPitchMin": 0.9,
+    "BoostLoopRevPitchMax": 1.15,
+    "TurbineLowAssetId": "",
+    "TurbineLowGain": 0.3,
+    "TurbineLowPitch": 1,
+    "TurbineHighAssetId": "",
+    "TurbineHighGain": 0.3,
+    "TurbineHighPitch": 1,
+    "TurboWhistleAssetId": "rbxassetid://241458901",
+    "TurboWhistleGain": 0.3,
+    "TurboWhistlePitch": 1,
+    "TurboWhistlePitchMin": 0.5,
+    "TurboWhistlePitchMax": 1.85,
+    "SuperchargerWhineAssetId": "rbxassetid://404779487",
+    "SuperchargerWhineGain": 0.22,
+    "SuperchargerWhinePitch": 1,
+    "SuperchargerWhinePitchMin": 0.6,
+    "SuperchargerWhinePitchMax": 1.6,
+    "EnergyHumAssetId": "",
+    "EnergyHumGain": 0.25,
+    "EnergyHumPitch": 1,
+    "EnergyHumPitchMin": 0.92,
+    "EnergyHumPitchMax": 1.12,
+    "SlipStrainAssetId": "rbxassetid://435752381",
+    "SlipStrainGain": 0.2,
+    "SlipStrainPitch": 0.8,
+    "SlipStrainPitchMin": 0.92,
+    "SlipStrainPitchMax": 1.06,
+    "DriftChargeAssetId": "",
+    "DriftChargeGain": 0.3,
+    "DriftChargePitch": 1,
+    "DriftChargePitchMin": 0.8,
+    "DriftChargePitchMax": 1.7,
+    "BlowOffAssetId": "rbxassetid://4940167544",
+    "BlowOffGain": 0.5,
+    "BlowOffPitch": 1,
+    "TurboFlutterAssetId": "",
+    "TurboFlutterGain": 0.5,
+    "TurboFlutterPitch": 1,
+    "BoostIgnitionAssetId": "",
+    "BoostIgnitionGain": 0.75,
+    "BoostIgnitionPitch": 1,
+    "DriftChargeReleaseAssetId": "",
+    "DriftChargeReleaseGain": 0.6,
+    "DriftChargeReleasePitch": 1,
+    "ImpactLightAssetId": "",
+    "ImpactLightGain": 0.5,
+    "ImpactLightPitch": 1,
+    "ImpactMediumAssetId": "",
+    "ImpactMediumGain": 0.7,
+    "ImpactMediumPitch": 1,
+    "ImpactHeavyAssetId": "",
+    "ImpactHeavyGain": 0.9,
+    "ImpactHeavyPitch": 1,
+    "ImpactSevereAssetId": "",
+    "ImpactSevereGain": 1,
+    "ImpactSeverePitch": 1,
+    "LandingThumpAssetId": "",
+    "LandingThumpGain": 0.7,
+    "LandingThumpPitch": 1,
+    "RevThrottleWeight": 0.25,
+    "RevSpeedWeight": 0.75,
+    "RevBoostWeight": 0.08,
+    "RevReferenceMph": 170,
+    "RevRiseSeconds": 0.12,
+    "RevFallSeconds": 0.28,
+    "RevPitchBase": 0.125,
+    "RevNeighbourDetune": 0.003,
+    "RevOffLoadGain": 0.6,
+    "RevMasterGain": 1,
+    "ReverseLoad": 0.6,
+    "LoadAttackSeconds": 0.022,
+    "LoadReleaseSeconds": 0.085,
+    "LoadExponent": 0.8,
+    "BarkGain": 0.55,
+    "BarkSeconds": 0.13,
+    "LifePitchDepth": 0.0025,
+    "LifeLevelDb": 0.6,
+    "LifeSeconds": 1.4,
+    "TwinEngineDetune": 0.012,
+    "TwinEngineGain": 0.6,
+    "TurboSpoolUpSeconds": 0.9,
+    "TurboSpoolDownSeconds": 0.35,
+    "TurboSpoolRevFloor": 0.35,
+    "TurboGainExponent": 1.5,
+    "BlowOffLoadThreshold": 0.6,
+    "BlowOffLiftThreshold": 0.1,
+    "BlowOffMinLoadSeconds": 0.6,
+    "BlowOffMinSpool": 0.35,
+    "BlowOffMinIntervalSeconds": 0.7,
+    "BlowOffSpoolKeep": 0.25,
+    "SuperchargerGainExponent": 1.5,
+    "SuperchargerOffLoadGain": 0.35,
+    "TurbineStartRev": 0.3,
+    "TurbineOffLoadGain": 0.3,
+    "TurbineOctaveStart": -0.5,
+    "TurbineOctaves": 2,
+    "FlutterBelowSpool": 0.7,
+    "EnergyHumHoverGain": 0.5,
+    "SlipStart": 0.12,
+    "SlipFull": 0.6,
+    "SlipDriftFloor": 0.35,
+    "SlipDuckDb": 6,
+    "SlipDuckInSeconds": 0.06,
+    "SlipDuckOutSeconds": 0.35,
+    "BoostLoopMiniGain": 0.7,
+    "BoostIgnitionMiniGain": 0.6,
+    "BoostIgnitionMiniPitch": 1.15,
+    "DriftChargeStart": 0.04,
+    "DriftChargeFull": 0.3,
+    "LandMinStuds": 6,
+    "LandFullStuds": 60,
+    "LandMinGain": 0.25
+   },
+   "children": [
+    {
+     "class": "Folder",
+     "name": "Descriptions",
+     "attributes": {},
+     "children": [
+      {
+       "class": "StringValue",
+       "name": "AccelerationAssetId",
+       "attributes": {},
+       "value": "Roblox audio asset ID for the sustained loop while conditioned forward acceleration remains active. Blank disables this layer without affecting the rest of the profile."
+      },
+      {
+       "class": "StringValue",
+       "name": "AccelerationEnterAssetId",
+       "attributes": {},
+       "value": "Roblox audio asset ID for the managed one-shot after forward acceleration passes its confirmation window. Blank disables this layer without affecting the rest of the profile."
+      },
+      {
+       "class": "StringValue",
+       "name": "AccelerationEnterGain",
+       "attributes": {},
+       "value": "Linear mix multiplier for the managed one-shot after forward acceleration passes its confirmation window; 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+      },
+      {
+       "class": "StringValue",
+       "name": "AccelerationEnterPitch",
+       "attributes": {},
+       "value": "Base playback-speed/pitch multiplier for the managed one-shot after forward acceleration passes its confirmation window; 1 is original, below 1 is lower/slower, and above 1 is higher/faster."
+      },
+      {
+       "class": "StringValue",
+       "name": "AccelerationGain",
+       "attributes": {},
+       "value": "Linear mix multiplier for the sustained loop while conditioned forward acceleration remains active; 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+      },
+      {
+       "class": "StringValue",
+       "name": "AccelerationPitch",
+       "attributes": {},
+       "value": "Base playback-speed/pitch multiplier for the sustained loop while conditioned forward acceleration remains active; 1 is original, below 1 is lower/slower, and above 1 is higher/faster."
+      },
+      {
+       "class": "StringValue",
+       "name": "AccelerationReleaseAssetId",
+       "attributes": {},
+       "value": "Roblox audio asset ID for the managed one-shot after a confirmed acceleration session remains released. Blank disables this layer without affecting the rest of the profile."
+      },
+      {
+       "class": "StringValue",
+       "name": "AccelerationReleaseGain",
+       "attributes": {},
+       "value": "Linear mix multiplier for the managed one-shot after a confirmed acceleration session remains released; 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+      },
+      {
+       "class": "StringValue",
+       "name": "AccelerationReleasePitch",
+       "attributes": {},
+       "value": "Base playback-speed/pitch multiplier for the managed one-shot after a confirmed acceleration session remains released; 1 is original, below 1 is lower/slower, and above 1 is higher/faster."
+      },
+      {
+       "class": "StringValue",
+       "name": "BoostEmptyAssetId",
+       "attributes": {},
+       "value": "Roblox audio asset ID for the one-shot when a non-full qualifying boost session drains the tank. Blank disables this layer without affecting the rest of the profile. Synthesised file for this profile: boost_release (use the same id in BoostRelease, BoostEmpty and FullBoostSpent so every end of a boost is heard)."
+      },
+      {
+       "class": "StringValue",
+       "name": "BoostEmptyGain",
+       "attributes": {},
+       "value": "Linear mix multiplier for the one-shot when a non-full qualifying boost session drains the tank; 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+      },
+      {
+       "class": "StringValue",
+       "name": "BoostEmptyPitch",
+       "attributes": {},
+       "value": "Base playback-speed/pitch multiplier for the one-shot when a non-full qualifying boost session drains the tank; 1 is original, below 1 is lower/slower, and above 1 is higher/faster."
+      },
+      {
+       "class": "StringValue",
+       "name": "BoostEnterAssetId",
+       "attributes": {},
+       "value": "Roblox audio asset ID for the one-shot when boost begins. Blank disables this layer without affecting the rest of the profile."
+      },
+      {
+       "class": "StringValue",
+       "name": "BoostEnterGain",
+       "attributes": {},
+       "value": "Linear mix multiplier for the one-shot when boost begins; 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+      },
+      {
+       "class": "StringValue",
+       "name": "BoostEnterPitch",
+       "attributes": {},
+       "value": "Base playback-speed/pitch multiplier for the one-shot when boost begins; 1 is original, below 1 is lower/slower, and above 1 is higher/faster."
+      },
+      {
+       "class": "StringValue",
+       "name": "BoostLoopAssetId",
+       "attributes": {},
+       "value": "Roblox audio asset ID for the continuous layer while boost presentation remains active. Blank disables this layer without affecting the rest of the profile. Synthesised file for this profile: thruster_roar."
+      },
+      {
+       "class": "StringValue",
+       "name": "BoostLoopGain",
+       "attributes": {},
+       "value": "Linear mix multiplier for the continuous layer while boost presentation remains active; 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+      },
+      {
+       "class": "StringValue",
+       "name": "BoostLoopPitch",
+       "attributes": {},
+       "value": "Base playback-speed/pitch multiplier for the continuous layer while boost presentation remains active; 1 is original, below 1 is lower/slower, and above 1 is higher/faster."
+      },
+      {
+       "class": "StringValue",
+       "name": "BoostRechargeAssetId",
+       "attributes": {},
+       "value": "Roblox audio asset ID for the driver-only cancellable one-shot when boost charge actually begins rising. Blank disables this layer without affecting the rest of the profile."
+      },
+      {
+       "class": "StringValue",
+       "name": "BoostRechargeGain",
+       "attributes": {},
+       "value": "Linear mix multiplier for the driver-only cancellable one-shot when boost charge actually begins rising; 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+      },
+      {
+       "class": "StringValue",
+       "name": "BoostRechargePitch",
+       "attributes": {},
+       "value": "Base playback-speed/pitch multiplier for the driver-only cancellable one-shot when boost charge actually begins rising; 1 is original, below 1 is lower/slower, and above 1 is higher/faster."
+      },
+      {
+       "class": "StringValue",
+       "name": "BoostReleaseAssetId",
+       "attributes": {},
+       "value": "Roblox audio asset ID for the one-shot when boost is released without emptying the tank. Blank disables this layer without affecting the rest of the profile. Synthesised file for this profile: boost_release (use the same id in BoostRelease, BoostEmpty and FullBoostSpent so every end of a boost is heard)."
+      },
+      {
+       "class": "StringValue",
+       "name": "BoostReleaseGain",
+       "attributes": {},
+       "value": "Linear mix multiplier for the one-shot when boost is released without emptying the tank; 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+      },
+      {
+       "class": "StringValue",
+       "name": "BoostReleasePitch",
+       "attributes": {},
+       "value": "Base playback-speed/pitch multiplier for the one-shot when boost is released without emptying the tank; 1 is original, below 1 is lower/slower, and above 1 is higher/faster."
+      },
+      {
+       "class": "StringValue",
+       "name": "CoastAssetId",
+       "attributes": {},
+       "value": "Roblox audio asset ID for the loop while running above CoastStartMph without accelerating. Blank disables this layer without affecting the rest of the profile."
+      },
+      {
+       "class": "StringValue",
+       "name": "CoastGain",
+       "attributes": {},
+       "value": "Linear mix multiplier for the loop while running above CoastStartMph without accelerating; 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+      },
+      {
+       "class": "StringValue",
+       "name": "CoastPitch",
+       "attributes": {},
+       "value": "Base playback-speed/pitch multiplier for the loop while running above CoastStartMph without accelerating; 1 is original, below 1 is lower/slower, and above 1 is higher/faster."
+      },
+      {
+       "class": "StringValue",
+       "name": "DisplayName",
+       "attributes": {},
+       "value": "Editor-facing name of this complete vehicle sound package; changing it does not change the stable profile folder ID."
+      },
+      {
+       "class": "StringValue",
+       "name": "DriftEnterAssetId",
+       "attributes": {},
+       "value": "Roblox audio asset ID for the one-shot when a drift begins. Blank disables this layer without affecting the rest of the profile."
+      },
+      {
+       "class": "StringValue",
+       "name": "DriftEnterGain",
+       "attributes": {},
+       "value": "Linear mix multiplier for the one-shot when a drift begins; 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+      },
+      {
+       "class": "StringValue",
+       "name": "DriftEnterPitch",
+       "attributes": {},
+       "value": "Base playback-speed/pitch multiplier for the one-shot when a drift begins; 1 is original, below 1 is lower/slower, and above 1 is higher/faster."
+      },
+      {
+       "class": "StringValue",
+       "name": "DriftLoopAssetId",
+       "attributes": {},
+       "value": "Roblox audio asset ID for the continuous drift layer whose gain and pitch build with uninterrupted drift duration. Blank disables this layer without affecting the rest of the profile."
+      },
+      {
+       "class": "StringValue",
+       "name": "DriftLoopGain",
+       "attributes": {},
+       "value": "Linear mix multiplier for the continuous drift layer whose gain and pitch build with uninterrupted drift duration; 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+      },
+      {
+       "class": "StringValue",
+       "name": "DriftLoopPitch",
+       "attributes": {},
+       "value": "Base playback-speed/pitch multiplier for the continuous drift layer whose gain and pitch build with uninterrupted drift duration; 1 is original, below 1 is lower/slower, and above 1 is higher/faster."
+      },
+      {
+       "class": "StringValue",
+       "name": "DriverWindAssetId",
+       "attributes": {},
+       "value": "Roblox audio asset ID for the driver-only loop faded in by vehicle speed. Blank disables this layer without affecting the rest of the profile. Synthesised file for this profile: wind_rush (the toolbox body/drag loop stands in until then)."
+      },
+      {
+       "class": "StringValue",
+       "name": "DriverWindGain",
+       "attributes": {},
+       "value": "Linear mix multiplier for the driver-only loop faded in by vehicle speed; 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+      },
+      {
+       "class": "StringValue",
+       "name": "DriverWindPitch",
+       "attributes": {},
+       "value": "Base playback-speed/pitch multiplier for the driver-only loop faded in by vehicle speed; 1 is original, below 1 is lower/slower, and above 1 is higher/faster."
+      },
+      {
+       "class": "StringValue",
+       "name": "EngineHighAssetId",
+       "attributes": {},
+       "value": "Roblox audio asset ID for the high-speed engine loop faded in between its configured speed thresholds. Blank disables this layer without affecting the rest of the profile."
+      },
+      {
+       "class": "StringValue",
+       "name": "EngineHighGain",
+       "attributes": {},
+       "value": "Linear mix multiplier for the high-speed engine loop faded in between its configured speed thresholds; 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+      },
+      {
+       "class": "StringValue",
+       "name": "EngineHighPitch",
+       "attributes": {},
+       "value": "Base playback-speed/pitch multiplier for the high-speed engine loop faded in between its configured speed thresholds; 1 is original, below 1 is lower/slower, and above 1 is higher/faster."
+      },
+      {
+       "class": "StringValue",
+       "name": "EngineLowAssetId",
+       "attributes": {},
+       "value": "Roblox audio asset ID for the low-speed engine loop shaped around EngineLowPeakMph. Blank disables this layer without affecting the rest of the profile. In this profile it is the engine voice until a rev layer has loaded (and for good if none loads), on Simple-tier remote vehicles, and when FeelAudioEnabled is false."
+      },
+      {
+       "class": "StringValue",
+       "name": "EngineLowGain",
+       "attributes": {},
+       "value": "Linear mix multiplier for the low-speed engine loop shaped around EngineLowPeakMph; 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+      },
+      {
+       "class": "StringValue",
+       "name": "EngineLowPitch",
+       "attributes": {},
+       "value": "Base playback-speed/pitch multiplier for the low-speed engine loop shaped around EngineLowPeakMph; 1 is original, below 1 is lower/slower, and above 1 is higher/faster."
+      },
+      {
+       "class": "StringValue",
+       "name": "FullBoostSpentAssetId",
+       "attributes": {},
+       "value": "Roblox audio asset ID for the special one-shot when a near-full tank is continuously consumed to empty. Blank disables this layer without affecting the rest of the profile. Synthesised file for this profile: boost_release (use the same id in BoostRelease, BoostEmpty and FullBoostSpent so every end of a boost is heard)."
+      },
+      {
+       "class": "StringValue",
+       "name": "FullBoostSpentGain",
+       "attributes": {},
+       "value": "Linear mix multiplier for the special one-shot when a near-full tank is continuously consumed to empty; 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+      },
+      {
+       "class": "StringValue",
+       "name": "FullBoostSpentPitch",
+       "attributes": {},
+       "value": "Base playback-speed/pitch multiplier for the special one-shot when a near-full tank is continuously consumed to empty; 1 is original, below 1 is lower/slower, and above 1 is higher/faster."
+      },
+      {
+       "class": "StringValue",
+       "name": "IdleAssetId",
+       "attributes": {},
+       "value": "Roblox audio asset ID for the loop strongest near stationary and reduced as vehicle speed rises. Blank disables this layer without affecting the rest of the profile. In this profile it is the idle voice until a rev layer has loaded (and for good if none loads), and when FeelAudioEnabled is false."
+      },
+      {
+       "class": "StringValue",
+       "name": "IdleGain",
+       "attributes": {},
+       "value": "Linear mix multiplier for the loop strongest near stationary and reduced as vehicle speed rises; 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+      },
+      {
+       "class": "StringValue",
+       "name": "IdlePitch",
+       "attributes": {},
+       "value": "Base playback-speed/pitch multiplier for the loop strongest near stationary and reduced as vehicle speed rises; 1 is original, below 1 is lower/slower, and above 1 is higher/faster."
+      },
+      {
+       "class": "StringValue",
+       "name": "IgnitionAssetId",
+       "attributes": {},
+       "value": "Roblox audio asset ID for the one-shot when a valid driver starts a vehicle audio session. Blank disables this layer without affecting the rest of the profile."
+      },
+      {
+       "class": "StringValue",
+       "name": "IgnitionGain",
+       "attributes": {},
+       "value": "Linear mix multiplier for the one-shot when a valid driver starts a vehicle audio session; 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+      },
+      {
+       "class": "StringValue",
+       "name": "IgnitionPitch",
+       "attributes": {},
+       "value": "Base playback-speed/pitch multiplier for the one-shot when a valid driver starts a vehicle audio session; 1 is original, below 1 is lower/slower, and above 1 is higher/faster."
+      },
+      {
+       "class": "StringValue",
+       "name": "ProfileMasterGain",
+       "attributes": {},
+       "value": "Master multiplier for every loop and one-shot in this complete vehicle sound package; use it to normalise packages without retuning every layer."
+      },
+      {
+       "class": "StringValue",
+       "name": "ProfileRevision",
+       "attributes": {},
+       "value": "Editor-managed revision number for the complete sound package's assets and tuning values."
+      },
+      {
+       "class": "StringValue",
+       "name": "ShutdownAssetId",
+       "attributes": {},
+       "value": "Roblox audio asset ID for the one-shot when the running vehicle audio session shuts down. Blank disables this layer without affecting the rest of the profile."
+      },
+      {
+       "class": "StringValue",
+       "name": "ShutdownGain",
+       "attributes": {},
+       "value": "Linear mix multiplier for the one-shot when the running vehicle audio session shuts down; 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+      },
+      {
+       "class": "StringValue",
+       "name": "ShutdownPitch",
+       "attributes": {},
+       "value": "Base playback-speed/pitch multiplier for the one-shot when the running vehicle audio session shuts down; 1 is original, below 1 is lower/slower, and above 1 is higher/faster."
+      },
+      {
+       "class": "StringValue",
+       "name": "FeelDriveEnabled",
+       "attributes": {},
+       "value": "Opts this profile into the feel drive: rev layers, load follower, forced induction, slip strain, drift charge and impact layers. False or missing keeps the standard speed-shaped behaviour."
+      },
+      {
+       "class": "StringValue",
+       "name": "AccelerationRevPitchMin",
+       "attributes": {},
+       "value": "Playback-speed multiplier of the sustained acceleration loop at rev 0. With AccelerationRevPitchMax it makes that loop follow rev; remove both to keep its pitch fixed."
+      },
+      {
+       "class": "StringValue",
+       "name": "AccelerationRevPitchMax",
+       "attributes": {},
+       "value": "Playback-speed multiplier of the sustained acceleration loop at rev 1."
+      },
+      {
+       "class": "StringValue",
+       "name": "BoostLoopRevPitchMin",
+       "attributes": {},
+       "value": "Playback-speed multiplier of the boost loop (thruster roar) at rev 0. With BoostLoopRevPitchMax it makes that loop follow rev."
+      },
+      {
+       "class": "StringValue",
+       "name": "BoostLoopRevPitchMax",
+       "attributes": {},
+       "value": "Playback-speed multiplier of the boost loop (thruster roar) at rev 1."
+      },
+      {
+       "class": "StringValue",
+       "name": "TurbineLowAssetId",
+       "attributes": {},
+       "value": "Roblox audio asset ID for the lower synthesised turbine loop (turbine_low); it carries the turbine from TurbineStartRev and crossfades into TurbineHigh one octave up. Blank disables this layer without affecting the rest of the profile."
+      },
+      {
+       "class": "StringValue",
+       "name": "TurbineLowGain",
+       "attributes": {},
+       "value": "Linear mix multiplier for the lower synthesised turbine loop (turbine_low); it carries the turbine from TurbineStartRev and crossfades into TurbineHigh one octave up; 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+      },
+      {
+       "class": "StringValue",
+       "name": "TurbineLowPitch",
+       "attributes": {},
+       "value": "Base playback-speed/pitch multiplier for the lower synthesised turbine loop (turbine_low); it carries the turbine from TurbineStartRev and crossfades into TurbineHigh one octave up. The sweep itself comes from TurbineOctaveStart and TurbineOctaves."
+      },
+      {
+       "class": "StringValue",
+       "name": "TurbineHighAssetId",
+       "attributes": {},
+       "value": "Roblox audio asset ID for the upper synthesised turbine loop (turbine_high), recorded one octave above TurbineLow. Blank disables this layer without affecting the rest of the profile."
+      },
+      {
+       "class": "StringValue",
+       "name": "TurbineHighGain",
+       "attributes": {},
+       "value": "Linear mix multiplier for the upper synthesised turbine loop (turbine_high), recorded one octave above TurbineLow; 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+      },
+      {
+       "class": "StringValue",
+       "name": "TurbineHighPitch",
+       "attributes": {},
+       "value": "Base playback-speed/pitch multiplier for the upper synthesised turbine loop (turbine_high), recorded one octave above TurbineLow. The sweep itself comes from TurbineOctaveStart and TurbineOctaves."
+      },
+      {
+       "class": "StringValue",
+       "name": "TurboWhistleAssetId",
+       "attributes": {},
+       "value": "Roblox audio asset ID for the turbo whistle loop driven by spool (spool rises with load and rev, falls on lift). Blank disables this layer without affecting the rest of the profile."
+      },
+      {
+       "class": "StringValue",
+       "name": "TurboWhistleGain",
+       "attributes": {},
+       "value": "Linear mix multiplier for the turbo whistle loop driven by spool (spool rises with load and rev, falls on lift); 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+      },
+      {
+       "class": "StringValue",
+       "name": "TurboWhistlePitch",
+       "attributes": {},
+       "value": "Base playback-speed/pitch multiplier for the turbo whistle loop driven by spool (spool rises with load and rev, falls on lift); it scales the PitchMin to PitchMax sweep."
+      },
+      {
+       "class": "StringValue",
+       "name": "TurboWhistlePitchMin",
+       "attributes": {},
+       "value": "Playback speed of the turbo whistle loop driven by spool (spool rises with load and rev, falls on lift) when its drive value is 0."
+      },
+      {
+       "class": "StringValue",
+       "name": "TurboWhistlePitchMax",
+       "attributes": {},
+       "value": "Playback speed of the turbo whistle loop driven by spool (spool rises with load and rev, falls on lift) when its drive value is 1."
+      },
+      {
+       "class": "StringValue",
+       "name": "SuperchargerWhineAssetId",
+       "attributes": {},
+       "value": "Roblox audio asset ID for the supercharger whine loop driven by rev. Blank disables this layer without affecting the rest of the profile."
+      },
+      {
+       "class": "StringValue",
+       "name": "SuperchargerWhineGain",
+       "attributes": {},
+       "value": "Linear mix multiplier for the supercharger whine loop driven by rev; 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+      },
+      {
+       "class": "StringValue",
+       "name": "SuperchargerWhinePitch",
+       "attributes": {},
+       "value": "Base playback-speed/pitch multiplier for the supercharger whine loop driven by rev; it scales the PitchMin to PitchMax sweep."
+      },
+      {
+       "class": "StringValue",
+       "name": "SuperchargerWhinePitchMin",
+       "attributes": {},
+       "value": "Playback speed of the supercharger whine loop driven by rev when its drive value is 0."
+      },
+      {
+       "class": "StringValue",
+       "name": "SuperchargerWhinePitchMax",
+       "attributes": {},
+       "value": "Playback speed of the supercharger whine loop driven by rev when its drive value is 1."
+      },
+      {
+       "class": "StringValue",
+       "name": "EnergyHumAssetId",
+       "attributes": {},
+       "value": "Roblox audio asset ID for the synthesised hover energy hum loop, steady while driving and lifted by hover compression. Blank disables this layer without affecting the rest of the profile."
+      },
+      {
+       "class": "StringValue",
+       "name": "EnergyHumGain",
+       "attributes": {},
+       "value": "Linear mix multiplier for the synthesised hover energy hum loop, steady while driving and lifted by hover compression; 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+      },
+      {
+       "class": "StringValue",
+       "name": "EnergyHumPitch",
+       "attributes": {},
+       "value": "Base playback-speed/pitch multiplier for the synthesised hover energy hum loop, steady while driving and lifted by hover compression; it scales the PitchMin to PitchMax sweep."
+      },
+      {
+       "class": "StringValue",
+       "name": "EnergyHumPitchMin",
+       "attributes": {},
+       "value": "Playback speed of the synthesised hover energy hum loop, steady while driving and lifted by hover compression when its drive value is 0."
+      },
+      {
+       "class": "StringValue",
+       "name": "EnergyHumPitchMax",
+       "attributes": {},
+       "value": "Playback speed of the synthesised hover energy hum loop, steady while driving and lifted by hover compression when its drive value is 1."
+      },
+      {
+       "class": "StringValue",
+       "name": "SlipStrainAssetId",
+       "attributes": {},
+       "value": "Roblox audio asset ID for the stabiliser strain loop driven by sideways slip and drifting; the engine ducks under it. Blank disables this layer without affecting the rest of the profile."
+      },
+      {
+       "class": "StringValue",
+       "name": "SlipStrainGain",
+       "attributes": {},
+       "value": "Linear mix multiplier for the stabiliser strain loop driven by sideways slip and drifting; the engine ducks under it; 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+      },
+      {
+       "class": "StringValue",
+       "name": "SlipStrainPitch",
+       "attributes": {},
+       "value": "Base playback-speed/pitch multiplier for the stabiliser strain loop driven by sideways slip and drifting; the engine ducks under it; it scales the PitchMin to PitchMax sweep."
+      },
+      {
+       "class": "StringValue",
+       "name": "SlipStrainPitchMin",
+       "attributes": {},
+       "value": "Playback speed of the stabiliser strain loop driven by sideways slip and drifting; the engine ducks under it when its drive value is 0."
+      },
+      {
+       "class": "StringValue",
+       "name": "SlipStrainPitchMax",
+       "attributes": {},
+       "value": "Playback speed of the stabiliser strain loop driven by sideways slip and drifting; the engine ducks under it when its drive value is 1."
+      },
+      {
+       "class": "StringValue",
+       "name": "DriftChargeAssetId",
+       "attributes": {},
+       "value": "Roblox audio asset ID for the synthesised drift charge tone whose pitch climbs with FeelDriftCharge. Blank disables this layer without affecting the rest of the profile."
+      },
+      {
+       "class": "StringValue",
+       "name": "DriftChargeGain",
+       "attributes": {},
+       "value": "Linear mix multiplier for the synthesised drift charge tone whose pitch climbs with FeelDriftCharge; 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+      },
+      {
+       "class": "StringValue",
+       "name": "DriftChargePitch",
+       "attributes": {},
+       "value": "Base playback-speed/pitch multiplier for the synthesised drift charge tone whose pitch climbs with FeelDriftCharge; it scales the PitchMin to PitchMax sweep."
+      },
+      {
+       "class": "StringValue",
+       "name": "DriftChargePitchMin",
+       "attributes": {},
+       "value": "Playback speed of the synthesised drift charge tone whose pitch climbs with FeelDriftCharge when its drive value is 0."
+      },
+      {
+       "class": "StringValue",
+       "name": "DriftChargePitchMax",
+       "attributes": {},
+       "value": "Playback speed of the synthesised drift charge tone whose pitch climbs with FeelDriftCharge when its drive value is 1."
+      },
+      {
+       "class": "StringValue",
+       "name": "BlowOffAssetId",
+       "attributes": {},
+       "value": "Roblox audio asset ID for the blow-off one-shot when the throttle is lifted after sustained load, or a boost ends, scaled by spool. Blank disables this layer without affecting the rest of the profile."
+      },
+      {
+       "class": "StringValue",
+       "name": "BlowOffGain",
+       "attributes": {},
+       "value": "Linear mix multiplier for the blow-off one-shot when the throttle is lifted after sustained load, or a boost ends, scaled by spool; 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+      },
+      {
+       "class": "StringValue",
+       "name": "BlowOffPitch",
+       "attributes": {},
+       "value": "Base playback-speed/pitch multiplier for the blow-off one-shot when the throttle is lifted after sustained load, or a boost ends, scaled by spool; 1 is original, below 1 is lower/slower, and above 1 is higher/faster."
+      },
+      {
+       "class": "StringValue",
+       "name": "TurboFlutterAssetId",
+       "attributes": {},
+       "value": "Roblox audio asset ID for the synthesised turbo flutter one-shot (turbo_flutter), played instead of the blow-off when spool is below FlutterBelowSpool, or always when the blow-off slot is empty. Blank disables this layer without affecting the rest of the profile."
+      },
+      {
+       "class": "StringValue",
+       "name": "TurboFlutterGain",
+       "attributes": {},
+       "value": "Linear mix multiplier for the synthesised turbo flutter one-shot (turbo_flutter), played instead of the blow-off when spool is below FlutterBelowSpool, or always when the blow-off slot is empty; 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+      },
+      {
+       "class": "StringValue",
+       "name": "TurboFlutterPitch",
+       "attributes": {},
+       "value": "Base playback-speed/pitch multiplier for the synthesised turbo flutter one-shot (turbo_flutter), played instead of the blow-off when spool is below FlutterBelowSpool, or always when the blow-off slot is empty; 1 is original, below 1 is lower/slower, and above 1 is higher/faster."
+      },
+      {
+       "class": "StringValue",
+       "name": "BoostIgnitionAssetId",
+       "attributes": {},
+       "value": "Roblox audio asset ID for the synthesised boost ignition one-shot when FeelBoostKind changes from none to Boost or Mini. Blank disables this layer without affecting the rest of the profile."
+      },
+      {
+       "class": "StringValue",
+       "name": "BoostIgnitionGain",
+       "attributes": {},
+       "value": "Linear mix multiplier for the synthesised boost ignition one-shot when FeelBoostKind changes from none to Boost or Mini; 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+      },
+      {
+       "class": "StringValue",
+       "name": "BoostIgnitionPitch",
+       "attributes": {},
+       "value": "Base playback-speed/pitch multiplier for the synthesised boost ignition one-shot when FeelBoostKind changes from none to Boost or Mini; 1 is original, below 1 is lower/slower, and above 1 is higher/faster."
+      },
+      {
+       "class": "StringValue",
+       "name": "DriftChargeReleaseAssetId",
+       "attributes": {},
+       "value": "Roblox audio asset ID for the synthesised release one-shot when a drift mini-boost fires, scaled by the charge that was built. Blank disables this layer without affecting the rest of the profile."
+      },
+      {
+       "class": "StringValue",
+       "name": "DriftChargeReleaseGain",
+       "attributes": {},
+       "value": "Linear mix multiplier for the synthesised release one-shot when a drift mini-boost fires, scaled by the charge that was built; 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+      },
+      {
+       "class": "StringValue",
+       "name": "DriftChargeReleasePitch",
+       "attributes": {},
+       "value": "Base playback-speed/pitch multiplier for the synthesised release one-shot when a drift mini-boost fires, scaled by the charge that was built; 1 is original, below 1 is lower/slower, and above 1 is higher/faster."
+      },
+      {
+       "class": "StringValue",
+       "name": "ImpactLightAssetId",
+       "attributes": {},
+       "value": "Roblox audio asset ID for the synthesised light impact one-shot (from ImpactLightStuds). Blank disables this layer without affecting the rest of the profile."
+      },
+      {
+       "class": "StringValue",
+       "name": "ImpactLightGain",
+       "attributes": {},
+       "value": "Linear mix multiplier for the synthesised light impact one-shot (from ImpactLightStuds); 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+      },
+      {
+       "class": "StringValue",
+       "name": "ImpactLightPitch",
+       "attributes": {},
+       "value": "Base playback-speed/pitch multiplier for the synthesised light impact one-shot (from ImpactLightStuds); 1 is original, below 1 is lower/slower, and above 1 is higher/faster."
+      },
+      {
+       "class": "StringValue",
+       "name": "ImpactMediumAssetId",
+       "attributes": {},
+       "value": "Roblox audio asset ID for the synthesised medium impact one-shot (from ImpactMediumStuds). Blank disables this layer without affecting the rest of the profile."
+      },
+      {
+       "class": "StringValue",
+       "name": "ImpactMediumGain",
+       "attributes": {},
+       "value": "Linear mix multiplier for the synthesised medium impact one-shot (from ImpactMediumStuds); 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+      },
+      {
+       "class": "StringValue",
+       "name": "ImpactMediumPitch",
+       "attributes": {},
+       "value": "Base playback-speed/pitch multiplier for the synthesised medium impact one-shot (from ImpactMediumStuds); 1 is original, below 1 is lower/slower, and above 1 is higher/faster."
+      },
+      {
+       "class": "StringValue",
+       "name": "ImpactHeavyAssetId",
+       "attributes": {},
+       "value": "Roblox audio asset ID for the synthesised heavy impact one-shot (from ImpactHeavyStuds). Blank disables this layer without affecting the rest of the profile."
+      },
+      {
+       "class": "StringValue",
+       "name": "ImpactHeavyGain",
+       "attributes": {},
+       "value": "Linear mix multiplier for the synthesised heavy impact one-shot (from ImpactHeavyStuds); 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+      },
+      {
+       "class": "StringValue",
+       "name": "ImpactHeavyPitch",
+       "attributes": {},
+       "value": "Base playback-speed/pitch multiplier for the synthesised heavy impact one-shot (from ImpactHeavyStuds); 1 is original, below 1 is lower/slower, and above 1 is higher/faster."
+      },
+      {
+       "class": "StringValue",
+       "name": "ImpactSevereAssetId",
+       "attributes": {},
+       "value": "Roblox audio asset ID for the synthesised severe impact one-shot (from ImpactSevereStuds). Blank disables this layer without affecting the rest of the profile."
+      },
+      {
+       "class": "StringValue",
+       "name": "ImpactSevereGain",
+       "attributes": {},
+       "value": "Linear mix multiplier for the synthesised severe impact one-shot (from ImpactSevereStuds); 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+      },
+      {
+       "class": "StringValue",
+       "name": "ImpactSeverePitch",
+       "attributes": {},
+       "value": "Base playback-speed/pitch multiplier for the synthesised severe impact one-shot (from ImpactSevereStuds); 1 is original, below 1 is lower/slower, and above 1 is higher/faster."
+      },
+      {
+       "class": "StringValue",
+       "name": "LandingThumpAssetId",
+       "attributes": {},
+       "value": "Roblox audio asset ID for the synthesised landing thump one-shot on FeelLandRevision, scaled by touchdown speed. Blank disables this layer without affecting the rest of the profile."
+      },
+      {
+       "class": "StringValue",
+       "name": "LandingThumpGain",
+       "attributes": {},
+       "value": "Linear mix multiplier for the synthesised landing thump one-shot on FeelLandRevision, scaled by touchdown speed; 0 is silent, 1 is the asset's base level, and values above 1 amplify it."
+      },
+      {
+       "class": "StringValue",
+       "name": "LandingThumpPitch",
+       "attributes": {},
+       "value": "Base playback-speed/pitch multiplier for the synthesised landing thump one-shot on FeelLandRevision, scaled by touchdown speed; 1 is original, below 1 is lower/slower, and above 1 is higher/faster."
+      },
+      {
+       "class": "StringValue",
+       "name": "RevThrottleWeight",
+       "attributes": {},
+       "value": "Share of rev that comes from engine load (throttle). rev = RevThrottleWeight x load + RevSpeedWeight x speed / RevReferenceMph + RevBoostWeight x boost, limited to 0..1."
+      },
+      {
+       "class": "StringValue",
+       "name": "RevSpeedWeight",
+       "attributes": {},
+       "value": "Share of rev that comes from road speed."
+      },
+      {
+       "class": "StringValue",
+       "name": "RevBoostWeight",
+       "attributes": {},
+       "value": "Rev added while boosting (scaled down for a mini-boost)."
+      },
+      {
+       "class": "StringValue",
+       "name": "RevReferenceMph",
+       "attributes": {},
+       "value": "Speed at which the speed share of rev is full. Set it near the category's top speed."
+      },
+      {
+       "class": "StringValue",
+       "name": "RevRiseSeconds",
+       "attributes": {},
+       "value": "Response time when rev rises."
+      },
+      {
+       "class": "StringValue",
+       "name": "RevFallSeconds",
+       "attributes": {},
+       "value": "Response time when rev falls."
+      },
+      {
+       "class": "StringValue",
+       "name": "RevPitchBase",
+       "attributes": {},
+       "value": "Engine frequency at rev 0 as a fraction of rev 1 (idle rpm / top rpm; 1000 / 8000 here). Rev layers are pitched and crossfaded on this scale."
+      },
+      {
+       "class": "StringValue",
+       "name": "RevNeighbourDetune",
+       "attributes": {},
+       "value": "Opposite detune applied to neighbouring rev layers so an overlap does not cancel (0.003 = 0.3 %, limit 0.6 %)."
+      },
+      {
+       "class": "StringValue",
+       "name": "RevOffLoadGain",
+       "attributes": {},
+       "value": "Off-load level of a rev layer whose Load is Any, relative to its on-load level."
+      },
+      {
+       "class": "StringValue",
+       "name": "RevMasterGain",
+       "attributes": {},
+       "value": "Multiplier for every rev layer in this profile."
+      },
+      {
+       "class": "StringValue",
+       "name": "ReverseLoad",
+       "attributes": {},
+       "value": "Engine load used while reversing, as a fraction of full throttle."
+      },
+      {
+       "class": "StringValue",
+       "name": "LoadAttackSeconds",
+       "attributes": {},
+       "value": "Load follower response when throttle is applied."
+      },
+      {
+       "class": "StringValue",
+       "name": "LoadReleaseSeconds",
+       "attributes": {},
+       "value": "Load follower response when throttle is released."
+      },
+      {
+       "class": "StringValue",
+       "name": "LoadExponent",
+       "attributes": {},
+       "value": "Curve applied to load before the thrust/coast swap; below 1 brings the thrust set in sooner."
+      },
+      {
+       "class": "StringValue",
+       "name": "BarkGain",
+       "attributes": {},
+       "value": "Extra on-load gain at tip-in (the bark). 0 disables it."
+      },
+      {
+       "class": "StringValue",
+       "name": "BarkSeconds",
+       "attributes": {},
+       "value": "How quickly the tip-in bark dies away."
+      },
+      {
+       "class": "StringValue",
+       "name": "LifePitchDepth",
+       "attributes": {},
+       "value": "Typical size of the slow random pitch drift on the local engine (0.0025 = 0.25 %). 0 disables it."
+      },
+      {
+       "class": "StringValue",
+       "name": "LifeLevelDb",
+       "attributes": {},
+       "value": "Typical size of the slow random level drift on the local engine, in decibels."
+      },
+      {
+       "class": "StringValue",
+       "name": "LifeSeconds",
+       "attributes": {},
+       "value": "Time scale of the slow drift."
+      },
+      {
+       "class": "StringValue",
+       "name": "TwinEngineDetune",
+       "attributes": {},
+       "value": "Detune of the second copy of each on-load rev layer (twin engine beat). 0 disables the copy."
+      },
+      {
+       "class": "StringValue",
+       "name": "TwinEngineGain",
+       "attributes": {},
+       "value": "Level of the twin copy relative to the main copy. 0 disables the copy."
+      },
+      {
+       "class": "StringValue",
+       "name": "TurboSpoolUpSeconds",
+       "attributes": {},
+       "value": "Response time when turbo spool rises."
+      },
+      {
+       "class": "StringValue",
+       "name": "TurboSpoolDownSeconds",
+       "attributes": {},
+       "value": "Response time when turbo spool falls."
+      },
+      {
+       "class": "StringValue",
+       "name": "TurboSpoolRevFloor",
+       "attributes": {},
+       "value": "Spool reached at full load and rev 0; it grows to 1 at rev 1."
+      },
+      {
+       "class": "StringValue",
+       "name": "TurboGainExponent",
+       "attributes": {},
+       "value": "Curve from spool to turbo whistle gain; above 1 keeps the whistle quiet until spool is high."
+      },
+      {
+       "class": "StringValue",
+       "name": "BlowOffLoadThreshold",
+       "attributes": {},
+       "value": "Throttle at or above which load counts as sustained for the blow-off."
+      },
+      {
+       "class": "StringValue",
+       "name": "BlowOffLiftThreshold",
+       "attributes": {},
+       "value": "Throttle at or below which a lift is detected."
+      },
+      {
+       "class": "StringValue",
+       "name": "BlowOffMinLoadSeconds",
+       "attributes": {},
+       "value": "Sustained load needed before a lift fires the blow-off."
+      },
+      {
+       "class": "StringValue",
+       "name": "BlowOffMinSpool",
+       "attributes": {},
+       "value": "Least spool for a blow-off; its gain scales with spool."
+      },
+      {
+       "class": "StringValue",
+       "name": "BlowOffMinIntervalSeconds",
+       "attributes": {},
+       "value": "Shortest time between two blow-offs."
+      },
+      {
+       "class": "StringValue",
+       "name": "BlowOffSpoolKeep",
+       "attributes": {},
+       "value": "Fraction of spool left after a blow-off."
+      },
+      {
+       "class": "StringValue",
+       "name": "SuperchargerGainExponent",
+       "attributes": {},
+       "value": "Curve from rev to supercharger whine gain."
+      },
+      {
+       "class": "StringValue",
+       "name": "SuperchargerOffLoadGain",
+       "attributes": {},
+       "value": "Supercharger whine level off load, relative to on load."
+      },
+      {
+       "class": "StringValue",
+       "name": "TurbineStartRev",
+       "attributes": {},
+       "value": "Rev at which the turbine pair starts to enter; it is full at rev 1."
+      },
+      {
+       "class": "StringValue",
+       "name": "TurbineOffLoadGain",
+       "attributes": {},
+       "value": "Turbine level off load, relative to on load."
+      },
+      {
+       "class": "StringValue",
+       "name": "TurbineOctaveStart",
+       "attributes": {},
+       "value": "Turbine pitch at rev 0, in octaves relative to the TurbineLow recording. TurbineLow plays at 2^octave, TurbineHigh one octave below that; the pair crossfades between octave 0 and 1."
+      },
+      {
+       "class": "StringValue",
+       "name": "TurbineOctaves",
+       "attributes": {},
+       "value": "Octaves the turbine climbs between rev 0 and rev 1."
+      },
+      {
+       "class": "StringValue",
+       "name": "FlutterBelowSpool",
+       "attributes": {},
+       "value": "Spool below which a lift plays TurboFlutter instead of BlowOff."
+      },
+      {
+       "class": "StringValue",
+       "name": "EnergyHumHoverGain",
+       "attributes": {},
+       "value": "Extra energy hum gain per unit of hover compression (FeelHover)."
+      },
+      {
+       "class": "StringValue",
+       "name": "SlipStart",
+       "attributes": {},
+       "value": "Sideways slip at which stabiliser strain starts."
+      },
+      {
+       "class": "StringValue",
+       "name": "SlipFull",
+       "attributes": {},
+       "value": "Sideways slip at which stabiliser strain is full."
+      },
+      {
+       "class": "StringValue",
+       "name": "SlipDriftFloor",
+       "attributes": {},
+       "value": "Slip assumed while a drift is active, so strain is heard through the whole drift."
+      },
+      {
+       "class": "StringValue",
+       "name": "SlipDuckDb",
+       "attributes": {},
+       "value": "Most the engine is turned down under full stabiliser strain, in decibels. Only applies when the SlipStrain layer has an asset."
+      },
+      {
+       "class": "StringValue",
+       "name": "SlipDuckInSeconds",
+       "attributes": {},
+       "value": "How fast the engine ducks."
+      },
+      {
+       "class": "StringValue",
+       "name": "SlipDuckOutSeconds",
+       "attributes": {},
+       "value": "How fast the engine recovers."
+      },
+      {
+       "class": "StringValue",
+       "name": "BoostLoopMiniGain",
+       "attributes": {},
+       "value": "BoostLoop level during a drift mini-boost, relative to a held boost."
+      },
+      {
+       "class": "StringValue",
+       "name": "BoostIgnitionMiniGain",
+       "attributes": {},
+       "value": "Boost ignition level for a mini-boost, relative to a held boost."
+      },
+      {
+       "class": "StringValue",
+       "name": "BoostIgnitionMiniPitch",
+       "attributes": {},
+       "value": "Boost ignition playback speed for a mini-boost."
+      },
+      {
+       "class": "StringValue",
+       "name": "DriftChargeStart",
+       "attributes": {},
+       "value": "FeelDriftCharge at which the charge tone starts."
+      },
+      {
+       "class": "StringValue",
+       "name": "DriftChargeFull",
+       "attributes": {},
+       "value": "FeelDriftCharge at which the charge tone reaches full gain. Its pitch keeps climbing to charge 1."
+      },
+      {
+       "class": "StringValue",
+       "name": "LandMinStuds",
+       "attributes": {},
+       "value": "Slowest touchdown (studs per second downward) that plays the landing thump."
+      },
+      {
+       "class": "StringValue",
+       "name": "LandFullStuds",
+       "attributes": {},
+       "value": "Touchdown speed at which the landing thump is at full gain."
+      },
+      {
+       "class": "StringValue",
+       "name": "LandMinGain",
+       "attributes": {},
+       "value": "Landing thump gain at LandMinStuds, relative to full."
+      }
+     ]
+    },
+    {
+     "class": "Folder",
+     "name": "RevLayers",
+     "attributes": {},
+     "children": [
+      {
+       "class": "Folder",
+       "name": "V10Idle1000",
+       "attributes": {
+        "AssetId": "",
+        "Rev": 0.0,
+        "Gain": 0.5,
+        "Pitch": 1,
+        "PitchMin": 0.6,
+        "PitchMax": 1.7,
+        "Load": "Any",
+        "StandIn": false,
+        "Twin": false,
+        "Enabled": true
+       }
+      },
+      {
+       "class": "Folder",
+       "name": "V10On2000",
+       "attributes": {
+        "AssetId": "",
+        "Rev": 0.1429,
+        "Gain": 0.6,
+        "Pitch": 1,
+        "PitchMin": 0.6,
+        "PitchMax": 1.7,
+        "Load": "On",
+        "StandIn": false,
+        "Twin": true,
+        "Enabled": true
+       }
+      },
+      {
+       "class": "Folder",
+       "name": "V10On3500",
+       "attributes": {
+        "AssetId": "",
+        "Rev": 0.3571,
+        "Gain": 0.6,
+        "Pitch": 1,
+        "PitchMin": 0.6,
+        "PitchMax": 1.7,
+        "Load": "On",
+        "StandIn": false,
+        "Twin": true,
+        "Enabled": true
+       }
+      },
+      {
+       "class": "Folder",
+       "name": "V10On5000",
+       "attributes": {
+        "AssetId": "",
+        "Rev": 0.5714,
+        "Gain": 0.6,
+        "Pitch": 1,
+        "PitchMin": 0.6,
+        "PitchMax": 1.7,
+        "Load": "On",
+        "StandIn": false,
+        "Twin": true,
+        "Enabled": true
+       }
+      },
+      {
+       "class": "Folder",
+       "name": "V10On6500",
+       "attributes": {
+        "AssetId": "",
+        "Rev": 0.7857,
+        "Gain": 0.6,
+        "Pitch": 1,
+        "PitchMin": 0.6,
+        "PitchMax": 1.7,
+        "Load": "On",
+        "StandIn": false,
+        "Twin": true,
+        "Enabled": true
+       }
+      },
+      {
+       "class": "Folder",
+       "name": "V10On8000",
+       "attributes": {
+        "AssetId": "",
+        "Rev": 1.0,
+        "Gain": 0.6,
+        "Pitch": 1,
+        "PitchMin": 0.6,
+        "PitchMax": 1.7,
+        "Load": "On",
+        "StandIn": false,
+        "Twin": true,
+        "Enabled": true
+       }
+      },
+      {
+       "class": "Folder",
+       "name": "V10Off3000",
+       "attributes": {
+        "AssetId": "",
+        "Rev": 0.2857,
+        "Gain": 0.45,
+        "Pitch": 1,
+        "PitchMin": 0.6,
+        "PitchMax": 1.7,
+        "Load": "Off",
+        "StandIn": false,
+        "Twin": false,
+        "Enabled": true
+       }
+      },
+      {
+       "class": "Folder",
+       "name": "V10Off6000",
+       "attributes": {
+        "AssetId": "",
+        "Rev": 0.7143,
+        "Gain": 0.45,
+        "Pitch": 1,
+        "PitchMin": 0.6,
+        "PitchMax": 1.7,
+        "Load": "Off",
+        "StandIn": false,
+        "Twin": false,
+        "Enabled": true
+       }
+      },
+      {
+       "class": "Folder",
+       "name": "StandInIdle",
+       "attributes": {
+        "AssetId": "rbxassetid://1579460811",
+        "Rev": 0,
+        "Gain": 0.45,
+        "Pitch": 1,
+        "PitchMin": 0.7,
+        "PitchMax": 1.6,
+        "Load": "Any",
+        "StandIn": true,
+        "Twin": false,
+        "Enabled": true
+       }
+      },
+      {
+       "class": "Folder",
+       "name": "StandInExhaust",
+       "attributes": {
+        "AssetId": "rbxassetid://1324100995",
+        "Rev": 0.45,
+        "Gain": 0.4,
+        "Pitch": 1,
+        "PitchMin": 0.6,
+        "PitchMax": 1.6,
+        "Load": "Off",
+        "StandIn": true,
+        "Twin": false,
+        "Enabled": true
+       }
+      },
+      {
+       "class": "Folder",
+       "name": "StandInRev",
+       "attributes": {
+        "AssetId": "rbxassetid://1323976194",
+        "Rev": 0.6,
+        "Gain": 0.55,
+        "Pitch": 1,
+        "PitchMin": 0.55,
+        "PitchMax": 1.7,
+        "Load": "On",
+        "StandIn": true,
+        "Twin": true,
+        "Enabled": true
+       }
+      },
+      {
+       "class": "Folder",
+       "name": "Descriptions",
+       "attributes": {},
+       "children": [
+        {
+         "class": "StringValue",
+         "name": "AssetId",
+         "attributes": {},
+         "value": "Roblox audio asset ID of this steady engine loop. Blank leaves the layer absent."
+        },
+        {
+         "class": "StringValue",
+         "name": "Rev",
+         "attributes": {},
+         "value": "Rev position (0..1) the loop was recorded at. The loop plays at its natural pitch there and crossfades equal-power with its neighbours in the same Load set."
+        },
+        {
+         "class": "StringValue",
+         "name": "Gain",
+         "attributes": {},
+         "value": "Linear mix multiplier for this loop."
+        },
+        {
+         "class": "StringValue",
+         "name": "Pitch",
+         "attributes": {},
+         "value": "Trim on the loop's playback speed; 1 means the recording matches its Rev position exactly."
+        },
+        {
+         "class": "StringValue",
+         "name": "PitchMin",
+         "attributes": {},
+         "value": "Lowest playback speed this loop may be pulled to."
+        },
+        {
+         "class": "StringValue",
+         "name": "PitchMax",
+         "attributes": {},
+         "value": "Highest playback speed this loop may be pushed to."
+        },
+        {
+         "class": "StringValue",
+         "name": "Load",
+         "attributes": {},
+         "value": "On = thrust set (heard under throttle), Off = coast set (heard off throttle), Any = both. A set with no partner set plays at every load."
+        },
+        {
+         "class": "StringValue",
+         "name": "StandIn",
+         "attributes": {},
+         "value": "True marks a temporary loop: every stand-in is dropped as soon as one layer that is not a stand-in has an asset."
+        },
+        {
+         "class": "StringValue",
+         "name": "Twin",
+         "attributes": {},
+         "value": "True lets this loop get a detuned second copy for the local driver (twin engine beat). Off-load loops never get one."
+        },
+        {
+         "class": "StringValue",
+         "name": "Enabled",
+         "attributes": {},
+         "value": "False removes this layer without clearing its asset."
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

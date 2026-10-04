@@ -1,0 +1,153 @@
+-- Canonical feature implementation; startup is owned by the composition root.
+local Service = {}
+local state
+function Service.start()
+if state then assert(state=="ready", "Service already starting or failed"); return end
+state="starting"
+local ok,message=xpcall(function()
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Workspace = game:GetService("Workspace")
+
+local kit = game:GetService("ReplicatedStorage")
+local audioConfig = game:GetService("ReplicatedStorage"):WaitForChild("Config"):WaitForChild("Audio")
+local global = game:GetService("ReplicatedStorage"):WaitForChild("Config"):WaitForChild("Audio"):WaitForChild("Global")
+local profiles = game:GetService("ReplicatedStorage"):WaitForChild("Config"):WaitForChild("Audio"):WaitForChild("VehicleProfiles")
+local Contract = require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Game"):WaitForChild("Audio"):WaitForChild("VehicleAudioStateContract"))
+local remote = game:GetService("ReplicatedStorage"):WaitForChild("Remotes").Audio:WaitForChild("VehicleAudioState")
+
+local records = setmetatable({}, { __mode = "k" })
+local rate = {}
+
+local function vehiclesRoot()
+	local world = game:GetService("Workspace"):WaitForChild("World")
+	local runtime = game:GetService("Workspace"):WaitForChild("World"):WaitForChild("Runtime")
+	return game:GetService("Workspace"):WaitForChild("World"):WaitForChild("Runtime"):WaitForChild("PlayerVehicles")
+end
+
+local root = vehiclesRoot()
+
+local function validProfileId(raw)
+	local value = tostring(raw or "")
+	return value ~= "" and profiles:FindFirstChild(value) ~= nil and value or nil
+end
+
+local function stampProfile(vehicle)
+	local fallback = validProfileId(global:GetAttribute("FallbackProfileId")) or "GENERIC_STANDARD_AUDIO"
+	local resolved = validProfileId(vehicle:GetAttribute("ResolvedAudioProfileId"))
+	local standard = validProfileId(vehicle:GetAttribute("StandardAudioProfileId")) or fallback
+	if not resolved then
+		vehicle:SetAttribute("ResolvedAudioProfileId", standard)
+		vehicle:SetAttribute("AudioProfileSource", "Standard")
+		vehicle:SetAttribute("AudioProfileRevision", math.max(1, tonumber(vehicle:GetAttribute("AudioProfileRevision")) or 0))
+	end
+end
+
+local function resetState(vehicle, running)
+	vehicle:SetAttribute("AudioIgnition", running and "Running" or "Off")
+	vehicle:SetAttribute("AudioDrive", "Idle")
+	vehicle:SetAttribute("AudioDrift", "None")
+	vehicle:SetAttribute("AudioBoost", "Off")
+	vehicle:SetAttribute("AudioCue", "")
+	vehicle:SetAttribute("AudioStateRevision", (tonumber(vehicle:GetAttribute("AudioStateRevision")) or 0) + 1)
+end
+
+local function driverSeated(player, vehicle)
+	if not player or not vehicle then return false end
+	if tonumber(vehicle:GetAttribute("DriverUserId")) ~= player.UserId then return false end
+	local character = player.Character
+	local seat = vehicle:FindFirstChild("DriverSeat", true)
+	return character ~= nil and seat ~= nil and seat:IsA("VehicleSeat") and seat.Occupant ~= nil and seat.Occupant.Parent == character
+end
+
+local function refreshOccupancy(vehicle)
+	local driverId = tonumber(vehicle:GetAttribute("DriverUserId"))
+	local player = driverId and Players:GetPlayerByUserId(driverId)
+	local seated = player ~= nil and driverSeated(player, vehicle)
+	-- Seat occupancy selects internal/external presentation; it no longer doubles as
+	-- engine power. Runtime player vehicles stay audibly powered while parked/coasting.
+	local keepRunning = seated or global:GetAttribute("ParkedVehicleAudioEnabled") ~= false
+	resetState(vehicle, keepRunning)
+end
+
+local function cleanup(vehicle)
+	local record = records[vehicle]
+	if not record then return end
+	for _, connection in ipairs(record.Connections) do connection:Disconnect() end
+	records[vehicle] = nil
+end
+
+local function bindSeat(vehicle, seat)
+	local record = records[vehicle]
+	if not record or not (seat and seat:IsA("VehicleSeat") and seat.Name == "DriverSeat") or record.Seat == seat then return end
+	if record.SeatConnection then record.SeatConnection:Disconnect() end
+	record.Seat = seat
+	record.SeatConnection = seat:GetPropertyChangedSignal("Occupant"):Connect(function() refreshOccupancy(vehicle) end)
+	table.insert(record.Connections, record.SeatConnection)
+	refreshOccupancy(vehicle)
+end
+
+local function register(vehicle)
+	if records[vehicle] or not vehicle:IsA("Model") then return end
+	stampProfile(vehicle)
+	local record = { Connections = {}, LastClientRevision = 0 }
+	records[vehicle] = record
+	table.insert(record.Connections, vehicle:GetAttributeChangedSignal("DriverUserId"):Connect(function() refreshOccupancy(vehicle) end))
+	local seat = vehicle:FindFirstChild("DriverSeat", true)
+	if seat and seat:IsA("VehicleSeat") then bindSeat(vehicle, seat) end
+	table.insert(record.Connections, vehicle.DescendantAdded:Connect(function(descendant)
+		if descendant.Name == "DriverSeat" and descendant:IsA("VehicleSeat") then bindSeat(vehicle, descendant) end
+	end))
+	table.insert(record.Connections, vehicle.Destroying:Connect(function() cleanup(vehicle) end))
+	refreshOccupancy(vehicle)
+end
+
+local function withinRate(player)
+	local now = os.clock()
+	local record = rate[player]
+	if not record or now - record.WindowStarted >= 1 then
+		record = { WindowStarted = now, Count = 0 }
+		rate[player] = record
+	end
+	record.Count += 1
+	return record.Count <= math.max(4, tonumber(global:GetAttribute("StateRateLimitPerSecond")) or 20)
+end
+
+local Net=require(game:GetService("ServerStorage"):WaitForChild("Modules"):WaitForChild("Core"):WaitForChild("Net")); local handleVehicleAudioState; remote.OnServerEvent:Connect(Net.event({name="VehicleAudioState",capacity=120,refill=60}, function(...) return handleVehicleAudioState(...) end)); handleVehicleAudioState = (function(player, vehicle, payload)
+	-- Semantic vehicle state also drives remote VFX, so validation/replication
+	-- remains active independently from audible playback settings.
+	if not withinRate(player) then return end
+	if not (vehicle and vehicle:IsA("Model") and vehicle.Parent == root and records[vehicle]) then return end
+	if tonumber(vehicle:GetAttribute("OwnerUserId")) ~= player.UserId then return end
+	if not driverSeated(player, vehicle) then return end
+	local ok, stateOrReason = Contract.Validate(payload)
+	if not ok then return end
+	local record = records[vehicle]
+	if stateOrReason.Revision <= record.LastClientRevision then return end
+	record.LastClientRevision = stateOrReason.Revision
+	vehicle:SetAttribute("AudioIgnition", stateOrReason.Ignition)
+	vehicle:SetAttribute("AudioDrive", stateOrReason.Drive)
+	vehicle:SetAttribute("AudioDrift", stateOrReason.Drift)
+	vehicle:SetAttribute("AudioBoost", stateOrReason.Boost)
+	if stateOrReason.Cue ~= "" then
+		vehicle:SetAttribute("AudioCue", stateOrReason.Cue)
+		vehicle:SetAttribute("AudioCueRevision", (tonumber(vehicle:GetAttribute("AudioCueRevision")) or 0) + 1)
+	end
+	vehicle:SetAttribute("AudioStateRevision", (tonumber(vehicle:GetAttribute("AudioStateRevision")) or 0) + 1)
+end)
+
+global:GetAttributeChangedSignal("ParkedVehicleAudioEnabled"):Connect(function()
+	for vehicle in pairs(records) do refreshOccupancy(vehicle) end
+end)
+root.ChildAdded:Connect(function(child) task.defer(register, child) end)
+root.ChildRemoved:Connect(cleanup)
+Players.PlayerRemoving:Connect(function(player) rate[player] = nil end)
+for _, vehicle in ipairs(root:GetChildren()) do register(vehicle) end
+
+print("[VehicleAudioServer] VehicleAudioStateService active.")
+
+end,debug.traceback)
+state=ok and "ready" or "failed"
+assert(ok,message)
+end
+return Service
