@@ -43,11 +43,13 @@ def tub(extra=()):
 
 
 def fender(st, peak, trim, front, style, creases=(1, 2, 3, 4), caps=(False, False), archw=1.7, vent=None,
-           extra=(), side="smooth", reach=2.2, ups=(0, 0.1, 0.2)):
+           extra=(), side="smooth", kit="exits", reach=2.2, ups=(0, 0.1, 0.2)):
     """Engine fender: rocker, optional louvred top vent, kit hardware, and one of four side designs.
 
     side: "smooth" a clean flank with one slim lit slot; "gills" a recess full of upright body-colour
     louvres; "slots" plain upright vents under a light line; "open" a deep arch showing a turbine barrel.
+    kit (GT and EVO hardware): "clean" one long slot and a low fin on the fender top; "exits" an exit
+    vent with slats; "fins" a tall fence over the arch; "vanes" exit slats, a floating outer vane and a fence.
     """
     lvl = LVL[trim]
     pod = Hull(flared(st, peak, (0, 0.3, 0.5)[lvl], ups[lvl], reach), creases=creases, **style)
@@ -67,7 +69,13 @@ def fender(st, peak, trim, front, style, creases=(1, 2, 3, 4), caps=(False, Fals
     v = vent[lvl] if vent else None
     if v:
         regs.append(R(peak + v[0], peak + v[1], v[2], v[3], "detail", 0.13, side=1))
-    regs += fender_regions(peak, lvl, front) + list(extra)
+    s = 1 if front else -1
+    if lvl and kit == "clean":
+        a, b = sorted((peak + s * 1.85, peak + s * 3.0))
+        regs.append(R(a, b, 2.5, 2.8, "detail", 0.2, side=1))
+    elif lvl and kit in ("exits", "vanes"):
+        regs += fender_regions(peak, lvl, front)
+    regs += list(extra)
     pod.build("skin", "primary", mirror=True, caps=caps, regions=regs)
     if v:
         louvres(pod, "top", peak + v[0] + 0.1, peak + v[1] - 0.1, v[2] + 0.06, v[3] - 0.06, v[4], off=-0.05)
@@ -87,7 +95,26 @@ def fender(st, peak, trim, front, style, creases=(1, 2, 3, 4), caps=(False, Fals
         for i in range(5):
             z = peak - archw + 0.5 + i * (2 * archw - 1.0) / 4
             tube(z - 0.07, z + 0.07, x, y, r + 0.07).build(f"band{i}", "neon" if i == 2 else "detail", mirror=True)
-    fender_kit(pod, peak, lvl, front)
+    q = pod.params(peak)
+    x, cap = q["cx"] + q["w"], (2.76 if front else 3.46)
+    if lvl and kit == "clean":
+        pod.patch("slotline", min(peak + s * 1.95, peak + s * 2.9), max(peak + s * 1.95, peak + s * 2.9), 2.6, 2.7,
+                  "neon", off=-0.12, mirror=True)
+        if lvl > 1:
+            blade("fin", q["cx"] + 0.2, q["yt"] - 0.1, min(q["yt"] + 0.42, cap), (peak - 1.7, peak + 1.3),
+                  (peak - 0.5, peak + 1.4), "secondary", t=0.05)
+    elif lvl and kit == "exits":
+        fender_kit(pod, peak, 1, front)
+    elif lvl and kit == "fins":
+        blade("fence", x - 0.25, q["ys"] + 0.4, min(q["yt"] + 0.25 + lvl * 0.2, cap), (peak - 2.0, peak + 1.9),
+              (peak - 1.2, peak + 2.0), "secondary", t=0.05)
+        if lvl > 1:
+            blade("fence2", q["cx"] - 0.2, q["yt"] - 0.15, min(q["yt"] + 0.45, cap), (peak - 1.6, peak + 1.6),
+                  (peak - 0.8, peak + 1.7), "secondary", t=0.05)
+    elif lvl and kit == "vanes":
+        fender_kit(pod, peak, lvl, front)
+        blade("vane", min(x + 0.12, 7.0), q["yb"] + 0.15, q["yb"] + 0.85, (peak - 1.6, peak + 1.6), (peak - 1.2, peak + 1.5),
+              "secondary", t=0.04)
     lift_glow(pod, [(peak - 1.0, peak + 1.0)])
     return pod, lvl
 
@@ -115,35 +142,40 @@ def nose_splitter(lvl, tip, w0, w1, nt=5.0):
         box(f"keel{i}", (x, -0.66, -11.8), (0.05, 0.24, 1.5), "detail", mirror=True)
 
 
-def rear_kit(pod, lvl, scoop=None):
-    """Corner diffuser strakes under a rear nozzle, and a ram scoop on the haunch for the full kit."""
+def rear_kit(pod, lvl, scoop=None, scoop_lvl=2, dz=0.0, corners=(4.6, 5.3, 6.0)):
+    """Corner diffuser strakes under a rear nozzle, and a ram scoop on the haunch."""
     if lvl:
-        for i, x in enumerate((4.6, 5.3, 6.0)[:lvl + 1]):
+        for i, x in enumerate(corners[:lvl + 1]):
             dfin(f"corner{i}", x, ((9.6, -0.5), (10.6, -0.1), (11.7 + lvl * 0.2, 0.3)))
-    if lvl > 1 and scoop:
+    if lvl >= scoop_lvl and scoop:
         y, nt = scoop
-        s = Loft([(5.4, dict(w=0.42, yt=y + 0.45)), (6.6, dict(w=0.5, yt=y + 0.72)), (8.2, dict(w=0.3, yt=y + 0.5))],
+        k = 0.8 if lvl < 2 else 1.0
+        s = Loft([(5.4 + dz, dict(w=0.42 * k, yt=y + 0.45 * k)), (6.6 + dz, dict(w=0.5 * k, yt=y + 0.72 * k)),
+                  (8.2 + dz, dict(w=0.3 * k, yt=y + 0.5 * k))],
                  cx=5.3, yb=y, nt=nt, nb=nt, yw=0.3)
         s.build("scoop", "primary", mirror=True, caps=(False, True))
         s.throat("scoopin", "min", lip="primary", scale=0.78, depth=0.4, mirror=True)
 
 
-def tail_kit(lvl, std_fins, floor_w=3.7, nt=5.0, fin_ch="primary", fin=True):
+def tail_kit(lvl, std_fins, floor_w=3.7, nt=5.0, fin_ch="primary", fin=True, kit_fins=None, plate=0.6, run=0.0):
     """Diffuser: short strakes on the road car; a floor that runs out past the tail on the kits."""
     if lvl == 0:
         for i, x in enumerate(std_fins):
             dfin(f"fin{i}", x, ((9.4, -0.32), (10.4, 0.0), (11.3, 0.3)))
         return
-    back = (0, 12.3, 12.75)[lvl]
+    back = (0, 12.3, 12.75)[lvl] - run
     slab("floor", [(9.0, floor_w), (back - 0.4, floor_w + 0.1), (back, floor_w - 0.2)], -0.5, -0.42, "secondary", nt=nt)
-    for i, x in enumerate(((), (2.75, 3.25, 3.7), (2.7, 3.05, 3.4, 3.75))[lvl]):
+    for i, x in enumerate((kit_fins or ((), (2.75, 3.25, 3.7), (2.7, 3.05, 3.4, 3.75)))[lvl]):
         dfin(f"fin{i}", x, ((9.2, -0.3), (10.6, 0.25), (back, 0.55 + lvl * 0.12)))
-    blade("sideplate", 3.8, -0.45, 0.6 + lvl * 0.1, (10.2, back), (11.0, back), "secondary", t=0.04)
+    blade("sideplate", 3.8, -0.45, plate + lvl * 0.1, (10.2, back), (11.0, back), "secondary", t=0.04)
     if lvl > 1 and fin:
         blade("fin", 0, 2.4, 3.85, (6.6, 10.2), (9.0, 10.25), fin_ch, t=0.06)
 
 
-def sill(trim, st, style, creases=(1, 2, 3, 4), intake=(0.5, -0.6, -1.6), neon=True, extra=(), cx=4.9, w=1.0):
+def sill(trim, st, style, creases=(1, 2, 3, 4), intake=(0.5, -0.6, -1.6), neon=True, extra=(), cx=4.9, w=1.0,
+         kit="kick"):
+    """Stabiliser sill. kit: "kick" a rear kick-up and bargeboards; "blade" one long low side fence;
+    "vanes" a row of upright turning vanes; "boards" bargeboards front and rear."""
     lvl = LVL[trim]
     hull = Hull(st, creases=creases, cx=cx, w=w, yb=-0.9, **style)
     start = intake[lvl]
@@ -156,11 +188,18 @@ def sill(trim, st, style, creases=(1, 2, 3, 4), intake=(0.5, -0.6, -1.6), neon=T
     out = (6.1, 6.55, 6.85)[lvl]
     slab("skirt", [(-5.1, (out - 4.6) / 2 - 0.15), (-3.6, (out - 4.6) / 2), (3.3, (out - 4.6) / 2)], -1.0, -0.92,
          "secondary", cx=(out + 4.6) / 2, mirror=True)
-    if lvl:
+    if lvl and kit == "blade":
+        blade("sideblade", out - 0.05, -0.95, -0.55 + lvl * 0.2, (-4.9, 3.35), (-3.6, 3.4), "secondary", t=0.04)
+        box("edge", (out - 0.02, -0.9, -0.8), (0.06, 0.06, 7.6), "neon", mirror=True)
+    elif lvl and kit == "vanes":
+        for i in range(2 + lvl):
+            z = -4.3 + i * (2.6 - lvl * 0.5)
+            blade(f"vane{i}", out - 0.25, -0.95, -0.1 + lvl * 0.3, (z, z + 1.0), (z + 0.35, z + 0.9), "secondary", t=0.04)
+    elif lvl:
         blade("kick", out - 0.05, -0.95, 0.5 + lvl * 0.35, (1.6, 3.35), (2.5, 3.4), "secondary", t=0.04)
-    if lvl > 1:
-        for i, x in enumerate((6.1, 6.6)):
-            blade(f"barge{i}", x, -0.95, 0.55 - i * 0.2, (-5.0, -3.4), (-4.7, -3.9), "secondary", t=0.04)
+        if lvl > 1 or kit == "boards":
+            for i, x in enumerate((6.1, 6.6)[:lvl + (kit == "boards") - (lvl < 2)]):
+                blade(f"barge{i}", min(x, out), -0.95, 0.55 - i * 0.2, (-5.0, -3.4), (-4.7, -3.9), "secondary", t=0.04)
     lift_glow(hull, [(-4.2, -2.4), (-0.6, 1.4)])
     return hull
 
@@ -216,7 +255,7 @@ def car_c():
               (-7.2, dict(cx=5.12, w=1.2, wi=1.12, yb=-0.95, yt=1.6, ys=0.85)),
               (-5.4, dict(SIDE_F, yb=-0.1, yt=1.15, ys=0.6, rb=0.2))]
         pod, _ = fender(st, -8.9, trim, True, C_POD, creases=(1, 2), caps=(True, False), vent=C_VENT,
-                        side="smooth")
+                        side="smooth", kit="clean")
         pod.cap("lampface", "min", "lights", scale=0.72, push=-0.03, mirror=True)
         for sd in (1, -1):   # a long running light down the centre of the fender top
             pod.patch(f"drl{sd}", -11.85, -9.5, 5.72, 6.0, "lights", side=sd, off=0.02, mirror=True)
@@ -241,7 +280,7 @@ def car_c():
         for i, (x, y, w) in enumerate(((2.05, 2.2, 2.5), (2.5, 1.86, 1.6))):
             box(f"lamp{i}", (x, y, 11.2), (w, 0.16, 0.14), "lights_red", mirror=True)
         box("spinelamp", (0, 1.75, 11.2), (0.14, 1.3, 0.14), "lights_red")
-        tail_kit(lvl, (2.9,), nt=4.0)
+        tail_kit(lvl, (2.9,), nt=4.0, kit_fins=((), (2.1, 3.3), (2.0, 2.7, 3.4)), plate=0.45)
 
         K.begin(c, "RPOD", trim)
         st = [(3.6, dict(SIDE_R, yb=-0.5, yt=1.4)),
@@ -250,8 +289,8 @@ def car_c():
               (8.2, dict(cx=5.19, w=1.3, wi=1.22, yb=-1.1, yt=2.62, ys=1.55)),
               (9.6, dict(cx=5.14, w=1.22, wi=1.2, yb=-1.0, yt=2.3, ys=1.4)),
               (10.6, dict(cx=5.05, w=1.0, wi=1.03, yb=-0.6, yt=1.85, ys=1.1))]
-        pod, _ = fender(st, 8.0, trim, False, C_POD, creases=(1, 2), vent=C_VENT, side="smooth", reach=3.0,
-                        ups=(0, 0.15, 0.3))
+        pod, _ = fender(st, 8.0, trim, False, C_POD, creases=(1, 2), vent=C_VENT, side="smooth", kit="clean",
+                        reach=3.0, ups=(0, 0.15, 0.3))
         pod.throat("intake", "min", lip="primary", scale=0.8, depth=0.5, mirror=True)
         pod.throat("noz", "max", lip="secondary", back="thrust", scale=(0.8, 0.85, 0.9)[lvl], depth=0.5, mirror=True)
         rear_kit(pod, lvl)
@@ -259,7 +298,7 @@ def car_c():
 
         K.begin(c, "STAB", trim)
         sill(trim, SILL_ST, dict(rb=0.35, tum=0.4, drop=0.2, wcf=0.4, d2=0.03, crown=0.1), creases=(1, 2),
-             intake=(1.4, 0.2, -1.0))
+             intake=(1.4, 0.2, -1.0), kit="blade")
 
         K.begin(c, "BOOST", trim)
         rect([(10.8, {}), (11.5, {})], 0, 2.1, 0.4, 1.3 + lvl * 0.12, c=0.2).build("shroud", "primary")
@@ -367,7 +406,7 @@ def car_d():
                         reach=3.0, ups=(0, 0.15, 0.3))
         pod.throat("intake", "min", lip="primary", scale=0.8, depth=0.5, mirror=True)
         pod.throat("noz", "max", lip="secondary", back="thrust", scale=(0.82, 0.86, 0.9)[lvl], depth=0.6, mirror=True)
-        rear_kit(pod, lvl)
+        rear_kit(pod, lvl, scoop=(2.3, 2.6), scoop_lvl=1, dz=1.6)
         flange(3.8, 10.3, 1.0)
 
         K.begin(c, "STAB", trim)
@@ -447,7 +486,7 @@ def car_e():
               (-7.4, dict(cx=5.17, w=1.27, wi=1.18, yb=-1.1, yt=2.22, ys=1.2)),
               (-6.4, dict(cx=5.12, w=1.2, wi=1.15, yb=-0.9, yt=1.95, ys=1.05)),
               (-5.4, dict(SIDE_F, yb=-0.1, yt=1.45, ys=0.7, rb=0.3))]
-        pod, _ = fender(st, -8.8, trim, True, E_POD, vent=E_VENT, side="slots")
+        pod, _ = fender(st, -8.8, trim, True, E_POD, vent=E_VENT, side="slots", kit="fins")
         pod.throat("housing", "min", lip="primary", scale=0.82, depth=0.35, mirror=True)
         for i, (dx, y) in enumerate(((-0.3, 0.72), (0.3, 0.72), (-0.3, 0.0), (0.3, 0.0))):
             box(f"point{i}", (5.05 + dx, y, -12.02), (0.1, 0.52, 0.1), "lights", mirror=True)
@@ -466,7 +505,8 @@ def car_e():
         louvres(tail, "deck", (7.1, 6.1, 5.1)[lvl], 10.1, 4.2, 4.7, 6 + lvl * 2, off=-0.08)
         tail.throat("fascia", "max", lip="primary", scale=0.93, depth=0.3)
         box("bar", (0, 2.12, 11.02), (6.9, 0.14, 0.16), "lights_red")
-        tail_kit(lvl, (2.8, 3.25), nt=7.0, fin=False)
+        tail_kit(lvl, (2.8, 3.25), nt=7.0, fin=False, kit_fins=((), (2.0, 2.8, 3.6), (2.0, 2.8, 3.6)), plate=0.7,
+                 run=-0.05)
 
         K.begin(c, "RPOD", trim)
         st = [(3.6, dict(SIDE_R, yb=-0.5, yt=1.6)),
@@ -474,7 +514,8 @@ def car_e():
               (5.6, dict(cx=5.18, w=1.3, wi=1.22, yb=-1.1, yt=2.75, ys=1.55)),
               (9.6, dict(cx=5.18, w=1.3, wi=1.22, yb=-1.1, yt=2.75, ys=1.55)),
               (10.6, dict(cx=5.14, w=1.2, wi=1.2, yb=-0.8, yt=2.55, ys=1.5))]
-        pod, _ = fender(st, 7.5, trim, False, E_POD, vent=E_VENT, side="slots", reach=3.0, ups=(0, 0.15, 0.3))
+        pod, _ = fender(st, 7.5, trim, False, E_POD, vent=E_VENT, side="slots", kit="fins", reach=3.0,
+                        ups=(0, 0.15, 0.3))
         pod.throat("intake", "min", lip="primary", scale=0.8, depth=0.5, mirror=True)
         pod.throat("noz", "max", lip="secondary", back="detail", scale=0.9, depth=0.5, mirror=True)
         p = pod.params(10.6)
@@ -483,12 +524,12 @@ def car_e():
         t.build("turbine", "secondary", mirror=True, caps=(True, False))
         t.throat("turbinen", "max", lip="secondary", back="thrust", scale=0.84, depth=0.3, mirror=True)
         box("vane", (p["cx"], y, 10.5), (0.07, 1.4, 0.2), "detail", mirror=True)
-        rear_kit(pod, lvl, scoop=(2.6, 5.0))
+        rear_kit(pod, lvl, corners=(4.4, 6.1, 5.25))
         flange(3.8, 10.3, 1.0)
 
         K.begin(c, "STAB", trim)
         sill(trim, SILL_ST, dict(rb=0.4, tum=0.15, drop=0.08, wcf=0.6, d2=0.02, crown=0.01, cs=0.0),
-             intake=(0.8, -0.4, -1.4))
+             intake=(0.8, -0.4, -1.4), kit="vanes")
 
         K.begin(c, "BOOST", trim)
         rect([(10.8, {}), (11.45, {})], 0, 2.3, 0.6, 1.95, c=0.25).build("shroud", "primary")
@@ -565,7 +606,8 @@ def car_f():
               (-7.0, dict(cx=5.15, w=1.15, wi=1.1, yb=-1.0, yt=1.8, ys=0.95)),
               (-5.4, dict(cx=5.1, w=1.0, wi=1.05, yb=-0.5, yt=1.3, ys=0.7))]
         pod, _ = fender(st, -8.6, trim, True, F_POD, caps=(True, False), vent=F_VENT, archw=1.5,
-                        extra=[R(-11.5, -10.3, 4.3, 5.8, "glass", 0.08), *f_accents(-11.8, -5.4)], side="open")
+                        extra=[R(-11.5, -10.3, 4.3, 5.8, "glass", 0.08), *f_accents(-11.8, -5.4)], side="open",
+                        kit="vanes")
         pod.cap("lampface", "min", "lights", scale=0.6, push=-0.03, mirror=True)
         for sd in (1, -1):   # slit lamps under glass on the front of the fender top
             pod.patch(f"lamp{sd}", -11.4, -10.4, 4.9, 5.3, "lights", side=sd, off=-0.04, mirror=True)
@@ -599,7 +641,7 @@ def car_f():
                (9.4, dict(cx=5.16, w=1.25, wi=1.2, yb=-1.0, yt=2.68, ys=1.5)),
                (10.6, dict(cx=5.14, w=1.16, wi=1.19, yb=-0.6, yt=2.45, ys=1.6))]
         pod, _ = fender(rst, 7.6, trim, False, F_POD, vent=F_VENT, extra=f_accents(3.6, 10.6), archw=1.5,
-                        side="open", reach=3.0, ups=(0, 0.15, 0.3))
+                        side="open", kit="vanes", reach=3.0, ups=(0, 0.15, 0.3))
         pod.throat("intake", "min", lip="primary", scale=0.8, depth=0.5, mirror=True)
         pod.throat("noz", "max", lip="secondary", back="thrust", scale=(0.84, 0.87, 0.9)[lvl], depth=0.6, mirror=True)
         p = pod.params(10.6)
@@ -612,7 +654,7 @@ def car_f():
         fst = [(-5.2, dict(yb=-0.8, yt=0.3, ys=-0.1)), (-2.0, dict(yt=0.45, ys=0.05)), (1.5, dict(yt=0.9, ys=0.4)),
                (3.4, dict(yb=-0.7, yt=1.25, ys=0.7))]
         sill(trim, fst, dict(rb=0.25, tum=0.3, drop=0.12, wcf=0.5, d2=0.03, crown=0.03), intake=(1.2, 0.0, -1.2),
-             extra=[R(-5.0, 3.2, 2.94, 3.06, "secondary", -0.02, side=1)], w=1.05)
+             extra=[R(-5.0, 3.2, 2.94, 3.06, "secondary", -0.02, side=1)], w=1.05, kit="boards")
         blade("vane", 5.5, -0.9, 0.35, (-4.8, -3.6), (-4.5, -4.0), "secondary", t=0.04)
 
         K.begin(c, "BOOST", trim)
