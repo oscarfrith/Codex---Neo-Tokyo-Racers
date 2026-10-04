@@ -45,9 +45,11 @@ def barrel(name, z0, z1, x, y, r, depth=0.6, collar=True):
         tube(c, c + 0.22, x, y, r + 0.09).build(name + "c", "detail", mirror=x != 0)
 
 
-def bazooka(name, x0, x1, z, y, r):
-    """Sideways drift thruster: a fat tube with a glowing throat at its outer end."""
-    t = xtube(x0, x1, z, y, r)
+def bazooka(name, x0, x1, z, y, r, back=0.8, down=0.6):
+    """Drift thruster: a fat tube that leaves the sill sideways and sweeps back and down, glowing at its
+    outer end. back and down are how far the outer end sits behind and below the inner end."""
+    t = Loft([(x0, dict(cx=z, yb=y - r, yt=y + r)), (x1, dict(cx=z + back, yb=y - down - r, yt=y - down + r))],
+             axis="x", w=r, nt=2, nb=2, yw=0.5)
     t.build(name, "metal", mirror=True, caps=(True, False))
     t.throat(name + "n", "max", lip="metal", back="thrust", scale=0.82, depth=0.45, mirror=True)
 
@@ -160,27 +162,27 @@ def f_fpod():
 
 
 def f_rpod():
-    """Rear engine fender: a haunch that climbs toward the tail, a giant barrel behind."""
+    """Rear engine fender: a haunch no taller than the deck, with one round barrel behind."""
     K.begin("F", "RPOD")
-    pod = Hull([(POD_RZ, SIDE_R), (5.4, dict(w=1.4, yb=-1.5, yt=3.35, ys=2.4)),
-                (8.6, dict(w=1.4, yb=-1.5, yt=3.75, ys=2.7)), (10.2, dict(w=1.4, yb=-1.4, yt=3.6, ys=2.6)),
-                (11.3, dict(cx=5.4, w=1.3, yb=-1.0, yt=3.2, ys=2.4))], **SIDE_R)
+    pod = Hull([(POD_RZ, SIDE_R), (5.4, dict(w=1.32, yb=-1.35, yt=2.85, ys=2.0)),
+                (8.6, dict(w=1.32, yb=-1.35, yt=3.05, ys=2.15)), (10.2, dict(w=1.3, yb=-1.25, yt=2.95, ys=2.1)),
+                (11.3, dict(cx=5.4, w=1.2, yb=-0.9, yt=2.65, ys=1.9))], **SIDE_R)
     pod.build("skin", "primary", mirror=True, caps=(False, True), regions=f_pod_regions(POD_RZ, 11.3))
     pod.throat("intake", "min", lip="primary", wall="detail", back="detail", scale=0.76, depth=0.5, mirror=True)
-    barrel("barrel", 10.4, 12.6, 5.45, 1.0, 1.15, depth=0.8, collar=False)
-    flange(4.4, 10.6, -0.3, 2.3)
+    barrel("barrel", 10.4, 12.3, 5.42, 0.85, 0.9, depth=0.7, collar=False)
+    flange(4.4, 10.6, -0.3, 2.1)
     lift_glow(pod, [(5.8, 9.6)])
 
 
 def f_stab():
-    """Sill unit with two fat bazookas firing sideways."""
+    """Sill unit with two fat bazookas that fire sideways, swept back and down."""
     K.begin("F", "STAB")
     sill = Hull([(POD_FZ + 0.1, {}), (POD_RZ - 0.1, {})], cx=4.95, w=0.85, yb=-1.2, yt=1.0, ys=0.6, rb=0.3, tum=0.2,
                 drop=0.12, wcf=0.6, d2=0.0, crown=0.04)
     sill.build("skin", "primary", mirror=True, regions=[
         R(POD_FZ + 0.1, POD_RZ - 0.1, 1.0, 2.0, "secondary", 0.02)])
-    for i, z in enumerate((-2.7, 0.7)):
-        bazooka(f"bazooka{i}", 5.3, 6.75, z, -0.2, 0.54)
+    for i, z in enumerate((-3.0, 0.4)):
+        bazooka(f"bazooka{i}", 5.3, 6.7, z, 0.05, 0.5)
     lift_glow(sill, [(-5.0, -3.6), (1.6, 3.0)])
 
 
