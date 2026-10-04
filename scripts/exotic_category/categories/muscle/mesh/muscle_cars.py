@@ -269,19 +269,33 @@ def car_f():
 
 VIEWS = (("front", 146, 11, 50), ("rear", 34, 12, 50), ("side", 90, 4, 46), ("top", 180, 80, 56),
          ("frontlow", 162, 5, 44), ("rearhigh", 20, 28, 52))
+CLOSE = (("c_nose", (0, 1.6, -11.5), 168, 8, 17), ("c_fpod", (5.4, 0.6, -10.0), 128, 10, 16),
+         ("c_sill", (5.2, 0.2, -1.0), 95, 12, 17), ("c_rpod", (5.4, 0.8, 8.5), 55, 12, 17),
+         ("c_tail", (0, 2.0, 12.0), 8, 8, 17), ("c_cabin", (0, 4.2, 0), 120, 18, 20),
+         ("c_cabinfront", (0, 4.2, -2), 205, 14, 20), ("c_cabinrear", (0, 4.2, 2), 40, 16, 20))
 
 
-def build_all(render=True):
+def build_car(name, letter, fn, render=True, close=True, out=None):
+    """Build one car alone (STD trim), check it against the envelopes and render it.
+    Full views go to previews/<name>_<view>.jpg, close-ups to previews/<name>_c_<part>.jpg."""
+    out = out or OUT
     K.reset()
     K.stage()
-    car_f()
+    fn()
     K.finish_library()
-    K.place("brawler", [f"F_{s}_STD" for s in SLOTS], 0, 0)
+    K.place(name, [f"{letter}_{s}_STD" for s in SLOTS], 0, 0)
     problems = K.check()
     paths = []
     if render:
-        os.makedirs(OUT, exist_ok=True)
-        for name, az, el, dist in VIEWS:
-            paths.append(K.shot(os.path.join(OUT, f"brawler_{name}.jpg"), (0, 1.6, 0), az, el, dist, res=(1600, 900)))
+        os.makedirs(out, exist_ok=True)
+        for view, az, el, dist in VIEWS:
+            paths.append(K.shot(os.path.join(out, f"{name}_{view}.jpg"), (0, 1.6, 0), az, el, dist, res=(1600, 900)))
+        if close:
+            for view, target, az, el, dist in CLOSE:
+                paths.append(K.shot(os.path.join(out, f"{name}_{view}.jpg"), target, az, el, dist, res=(1400, 800)))
     tris = {k: v["tris"] for k, v in K.MODS.items()}
     return {"problems": problems, "tris": tris, "total": sum(tris.values()), "shots": paths}
+
+
+def build_all(render=True):
+    return build_car("brawler", "F", car_f, render=render)
