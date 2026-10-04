@@ -1168,29 +1168,29 @@ def build_spec():
     W, A, H, K, L, C = "Wedge", "Analogue", "Hypercar", "Track Special", "Longtail", "Concept"
     modules = {
         "Engine1": {
-            "mono": mod("Mono Turbine", W, e1_mono), "twin": mod("Twin Spool", A, e1_twin),
-            "top": mod("Top-Exit Core", H, e1_top), "stacks": mod("Eight Stack", K, e1_stacks),
-            "long": mod("Lance Turbine", L, e1_long), "cross": mod("Cross Plenum", C, e1_cross)},
+            "mono": mod("Gill Fenders", W, e1_mono), "twin": mod("Teardrop Fenders", A, e1_twin),
+            "top": mod("Blade Fenders", H, e1_top), "stacks": mod("Arrow Fenders", K, e1_stacks),
+            "long": mod("Box Fenders", L, e1_long), "cross": mod("Turbine Fenders", C, e1_cross)},
         "Engine2": {
-            "box": mod("Ram Boxes", W, e2_box), "round": mod("Round Pods", A, e2_round),
-            "twin": mod("Stacked Pairs", H, e2_twin), "stub": mod("Stub Burners", K, e2_stub),
-            "lance": mod("Long Lances", L, e2_lance), "ear": mod("Ear Scoops", C, e2_ear)},
+            "box": mod("Gill Haunches", W, e2_box), "round": mod("Teardrop Haunches", A, e2_round),
+            "twin": mod("Blade Haunches", H, e2_twin), "stub": mod("Arrow Haunches", K, e2_stub),
+            "lance": mod("Box Haunches", L, e2_lance), "ear": mod("Turbine Pontoons", C, e2_ear)},
         "Stabilisers": {
-            "vector": mod("Vector Pods", W, st_vector), "lift": mod("Twin Lift Cans", A, st_lift),
-            "blade": mod("Aero Blades", H, st_blade), "out": mod("Outriggers", K, st_out),
-            "trio": mod("Skirt Trios", L, st_trio), "tip": mod("Canard Tip Jets", C, st_tip)},
+            "vector": mod("Scoop Sills", W, st_vector), "lift": mod("Round Sills", A, st_lift),
+            "blade": mod("Edge Sills", H, st_blade), "out": mod("Slim Sills", K, st_out),
+            "trio": mod("Square Sills", L, st_trio), "tip": mod("Channel Sills", C, st_tip)},
         "Boost": {
-            "quad": mod("Quad Cans", W, b_quad), "twin": mod("Twin Cannons", A, b_twin),
-            "tri": mod("Tri Cluster", H, b_tri), "slot": mod("Slot Burner", K, b_slot),
-            "bore": mod("Big Bore", L, b_bore), "split": mod("Split Slots", C, b_split)},
+            "quad": mod("Fishtail", W, b_quad), "twin": mod("Quad Cluster", A, b_twin),
+            "tri": mod("Twin Outlets", H, b_tri), "slot": mod("Slot Burner", K, b_slot),
+            "bore": mod("Twin Turbines", L, b_bore), "split": mod("Hex Burners", C, b_split)},
         "FrontBody": {
-            "shovel": mod("Shovel Nose", W, nose_shovel), "droplet": mod("Droplet Nose", A, nose_droplet),
-            "keel": mod("Keel Nose", H, nose_keel), "blunt": mod("Blunt Nose", K, nose_blunt),
-            "lowline": mod("Lowline Nose", L, nose_lowline), "visor": mod("Visor Nose", C, nose_visor)},
+            "shovel": mod("Bull Nose", W, nose_shovel), "droplet": mod("Droplet Nose", A, nose_droplet),
+            "keel": mod("Vented Nose", H, nose_keel), "blunt": mod("Spine Nose", K, nose_blunt),
+            "lowline": mod("Valley Nose", L, nose_lowline), "visor": mod("Raised Nose", C, nose_visor)},
         "RearBody": {
-            "slab": mod("Slab Deck", W, deck_slab), "boat": mod("Boat Tail", A, deck_boat),
-            "tunnel": mod("Tunnel Tail", H, deck_tunnel), "frame": mod("Frame Tail", K, deck_frame),
-            "streamer": mod("Streamer Tail", L, deck_streamer), "kamm": mod("Kamm Tail", C, deck_kamm)},
+            "slab": mod("Sloped Tail", W, deck_slab), "boat": mod("Boat Tail", A, deck_boat),
+            "tunnel": mod("Louvred Tail", H, deck_tunnel), "frame": mod("Chopped Tail", K, deck_frame),
+            "streamer": mod("Bar Tail", L, deck_streamer), "kamm": mod("Open Tail", C, deck_kamm)},
         "SidePods": {
             "strake": mod("Strake Intakes", W, sd_strake), "round": mod("Torpedo Pods", A, sd_round),
             "blade": mod("Floating Blades", H, sd_blade), "tray": mod("Barge Trays", K, sd_tray),
@@ -1204,9 +1204,9 @@ def build_spec():
             "venturi": mod("Venturi", H, rb_venturi), "bar": mod("Crash Bar", K, rb_bar),
             "tray": mod("Tail Tray", L, rb_tray), "fin": mod("Keel Fin", C, rb_fin)},
         "RearSpoiler": {
-            "poster": mod("Poster Wing", W, sp_poster), "bridge": mod("Bridge Wing", A, sp_bridge),
-            "active": mod("Active Blade", H, sp_active), "gt": mod("Twin Element", K, sp_gt),
-            "fins": mod("Tail Fins", L, sp_fins), "split": mod("Split Winglets", C, sp_split)},
+            "poster": mod("Drop-Tip Wing", W, sp_poster), "bridge": mod("Twin-Post Wing", A, sp_bridge),
+            "active": mod("Race Wing", H, sp_active), "gt": mod("Spine Wing", K, sp_gt),
+            "fins": mod("Bridge Wing", L, sp_fins), "split": mod("Pylon Wing", C, sp_split)},
     }
     order = ["Engine1", "Engine2", "Stabilisers", "Boost", "FrontBody", "RearBody", "SidePods",
              "FrontBumper", "RearBumper", "RearSpoiler"]

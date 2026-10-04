@@ -60,7 +60,7 @@ Module IDs (model name = `ModuleId`):
 - Engine1 modules: `EnginePosition="Front"`, `RearEngine=false`, `ModuleSlot="Engine"`. Engine2 modules: `EnginePosition="Rear"`, `RearEngine=true`, `ModuleSlot="Engine"`.
 - Core modules mirror the live Piercer family attribute set exactly (donor: `MODULE_<TYPE>_BRUISER_03_<VARIANT>`), with `SourceCockpitId="exotic_0N"`, `CategoryId="exotic"`. Standard: `Price=0`, `PurchasePrice=0`, `UpgradePointCapacity=2`, `MaxPointsPerPath=3`, type-flat `Point1/2CostGuide`. Lightweight and Power: `Price=PurchasePrice=12%` of the cockpit price, capacity 6, `Point1..6CostGuide` = 8/10/12/15/18/22% of the variant price rounded to 100. `VariantOrder` 10/20/30. `NeonPrice` 5000/6500/8000.
 - Body modules mirror the live accessory attribute set (donor: `MODULE_<TYPE>_LVL1`; FrontBody uses the FrontBumper donor, RearBody the RearBumper donor): `Price` only (no `PurchasePrice`, no `SourceCockpitId`), each stat as raw plus `PerformanceDelta_` twin, capacity 6, `MaxPointsPerPath=3`, accessory cost guides.
-- Module `DisplayName` is the spec display name ("Mono Turbine", "Shovel Nose"). Never put `cockpit`, `engineon`, `engineoff`, `booston` or `stabiliseron` in any instance name. Body module instance names must not contain `engine`, `boost`, `stabiliser` or `stabilizer`.
+- Module `DisplayName` is the spec display name ("Gill Fenders", "Bull Nose"). Never put `cockpit`, `engineon`, `engineoff`, `booston` or `stabiliseron` in any instance name. Body module instance names must not contain `engine`, `boost`, `stabiliser` or `stabilizer`.
 
 Slot folders on every Exotic cockpit (`ModuleSlots/SLOT_<SlotId>`, all with `FixedSlot=true`, child `Mount_DoNotRename` at the root origin):
 

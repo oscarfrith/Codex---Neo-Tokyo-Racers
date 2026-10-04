@@ -3171,7 +3171,7 @@
  "modules": {
   "Engine1": {
    "mono": {
-    "name": "Mono Turbine",
+    "name": "Gill Fenders",
     "culture": "Wedge",
     "note": "Wedge: one fat round turbine the full length of the bay, bellmouth forward, bleed ducts down both flanks, one big nozzle straight out the back.",
     "parts": [
@@ -3269,7 +3269,7 @@
     ]
    },
    "twin": {
-    "name": "Twin Spool",
+    "name": "Teardrop Fenders",
     "culture": "Analogue",
     "note": "Analogue: two turbines side by side the full length of the bay, a shared plenum, dark heat-shield rails, twin nozzles. No glass: the cockpit owns all glass.",
     "parts": [
@@ -3370,7 +3370,7 @@
     ]
    },
    "top": {
-    "name": "Top-Exit Core",
+    "name": "Blade Fenders",
     "culture": "Hypercar",
     "note": "Hypercar: a round core set back in the bay behind a flat ram scoop, two fat stacks beside it that fire straight up.",
     "parts": [
@@ -3499,7 +3499,7 @@
     ]
    },
    "stacks": {
-    "name": "Eight Stack",
+    "name": "Arrow Fenders",
     "culture": "Track Special",
     "note": "Track special: low block under eight open intake trumpets, twin fat megaphone nozzles.",
     "parts": [
@@ -3633,7 +3633,7 @@
     ]
    },
    "long": {
-    "name": "Lance Turbine",
+    "name": "Box Fenders",
     "culture": "Longtail",
     "note": "Longtail: one slim tube down the bay under a snorkel scoop with an open mouth, flaring in plan to a tall wide fishtail nozzle with three glowing cells.",
     "parts": [
@@ -3802,7 +3802,7 @@
     ]
    },
    "cross": {
-    "name": "Cross Plenum",
+    "name": "Turbine Fenders",
     "culture": "Concept",
     "note": "Concept: a chamfered box plenum set across the bay with a periscope intake and square side intakes, two slim pipes down the bay edges to twin nozzles.",
     "parts": [
@@ -3976,7 +3976,7 @@
   },
   "Engine2": {
    "box": {
-    "name": "Ram Boxes",
+    "name": "Gill Haunches",
     "culture": "Wedge",
     "note": "Wedge: one tall square ram box per side, hard against the cabin, big square nozzle over the arch.",
     "parts": [
@@ -4079,7 +4079,7 @@
     ]
    },
    "round": {
-    "name": "Round Pods",
+    "name": "Teardrop Haunches",
     "culture": "Analogue",
     "note": "Analogue: one short round pod per side, set back over the arch on a pylon.",
     "parts": [
@@ -4182,7 +4182,7 @@
     ]
    },
    "twin": {
-    "name": "Stacked Pairs",
+    "name": "Blade Haunches",
     "culture": "Hypercar",
     "note": "Hypercar: two tubes per side stacked one above the other, held outboard on a thin pylon. Four nozzles.",
     "parts": [
@@ -4333,7 +4333,7 @@
     ]
    },
    "stub": {
-    "name": "Stub Burners",
+    "name": "Arrow Haunches",
     "culture": "Track Special",
     "note": "Track special: fat short burner at the very tail, fed by a painted box duct from a big trumpet behind the cabin.",
     "parts": [
@@ -4468,7 +4468,7 @@
     ]
    },
    "lance": {
-    "name": "Long Lances",
+    "name": "Box Haunches",
     "culture": "Longtail",
     "note": "Longtail: one long exposed tube per side on a low narrow fairing, bellmouth behind the cabin, nozzle past the tail.",
     "parts": [
@@ -4597,7 +4597,7 @@
     ]
    },
    "ear": {
-    "name": "Ear Scoops",
+    "name": "Turbine Pontoons",
     "culture": "Concept",
     "note": "Concept: tall narrow ear scoop tight against the cabin, a duct that falls into a long pipe to the tail.",
     "parts": [
@@ -4707,7 +4707,7 @@
   },
   "Stabilisers": {
    "vector": {
-    "name": "Vector Pods",
+    "name": "Scoop Sills",
     "culture": "Wedge",
     "note": "Wedge: one long slim pod per corner with a nozzle vectored down and back, small fin on top.",
     "parts": [
@@ -4936,7 +4936,7 @@
     ]
    },
    "lift": {
-    "name": "Twin Lift Cans",
+    "name": "Round Sills",
     "culture": "Analogue",
     "note": "Analogue: two short upright lift cans per corner, tucked up into the arch. The only upright-can option.",
     "parts": [
@@ -5231,7 +5231,7 @@
     ]
    },
    "blade": {
-    "name": "Aero Blades",
+    "name": "Edge Sills",
     "culture": "Hypercar",
     "note": "Hypercar: an exposed nacelle in the arch with its nozzle angled down and back, a swept active blade standing on its outer edge.",
     "parts": [
@@ -5524,7 +5524,7 @@
     ]
    },
    "out": {
-    "name": "Outriggers",
+    "name": "Slim Sills",
     "culture": "Track Special",
     "note": "Track special: slender nacelle held out on two wishbone arms, pitched nose-up, tail fin.",
     "parts": [
@@ -5711,7 +5711,7 @@
     ]
    },
    "trio": {
-    "name": "Skirt Trios",
+    "name": "Square Sills",
     "culture": "Longtail",
     "note": "Longtail: a louvred skirt along the arch over a cascade of three flat slot nozzles raked down and back. No cans.",
     "parts": [
@@ -6130,7 +6130,7 @@
     ]
    },
    "tip": {
-    "name": "Canard Tip Jets",
+    "name": "Channel Sills",
     "culture": "Concept",
     "note": "Concept: a flat canard plane out of each arch, a long slim jet on its tip, one lift jet under it.",
     "parts": [
@@ -6363,7 +6363,7 @@
   },
   "Boost": {
    "quad": {
-    "name": "Quad Cans",
+    "name": "Fishtail",
     "culture": "Wedge",
     "note": "Wedge: four long slim cans spread in a row.",
     "parts": [
@@ -6449,7 +6449,7 @@
     ]
    },
    "twin": {
-    "name": "Twin Cannons",
+    "name": "Quad Cluster",
     "culture": "Analogue",
     "note": "Analogue: two big long cannons.",
     "parts": [
@@ -6519,7 +6519,7 @@
     ]
    },
    "tri": {
-    "name": "Tri Cluster",
+    "name": "Twin Outlets",
     "culture": "Hypercar",
     "note": "Hypercar: three cans in a wide triangle, one fat short can high over two slim long ones set wide apart. All three glows show from behind.",
     "parts": [
@@ -6715,7 +6715,7 @@
     ]
    },
    "bore": {
-    "name": "Big Bore",
+    "name": "Twin Turbines",
     "culture": "Longtail",
     "note": "Longtail: one long big-bore afterburner.",
     "parts": [
@@ -6767,7 +6767,7 @@
     ]
    },
    "split": {
-    "name": "Split Slots",
+    "name": "Hex Burners",
     "culture": "Concept",
     "note": "Concept: two tall narrow slot burners set wide apart, nothing in the middle.",
     "parts": [
@@ -6839,7 +6839,7 @@
   },
   "FrontBody": {
    "shovel": {
-    "name": "Shovel Nose",
+    "name": "Bull Nose",
     "culture": "Wedge",
     "note": "Wedge: one flat plane from a long chisel lip to the scuttle. Nothing ahead of the arches, box flares that hang over them.",
     "parts": [
@@ -7243,7 +7243,7 @@
     ]
    },
    "keel": {
-    "name": "Keel Nose",
+    "name": "Vented Nose",
     "culture": "Hypercar",
     "note": "Hypercar: raised needle keel that widens to the scuttle through faceted shoulders, open air channels under them, fender blades with prows and light bars.",
     "parts": [
@@ -7503,7 +7503,7 @@
     ]
    },
    "blunt": {
-    "name": "Blunt Nose",
+    "name": "Spine Nose",
     "culture": "Track Special",
     "note": "Track special: short blunt face with a big intake and lamps in it, bonnet extractor, half fenders over the arches, twin dive planes.",
     "parts": [
@@ -7706,7 +7706,7 @@
     ]
    },
    "lowline": {
-    "name": "Lowline Nose",
+    "name": "Valley Nose",
     "culture": "Longtail",
     "note": "Longtail: two long tall lamp towers ahead of the arches, a recessed valley between them, fenders that fall to the belt.",
     "parts": [
@@ -7884,7 +7884,7 @@
     ]
    },
    "visor": {
-    "name": "Visor Nose",
+    "name": "Raised Nose",
     "culture": "Concept",
     "note": "Concept: flat low platform the full width ahead of bare arches, full-width light visor, steep ramp to the scuttle.",
     "parts": [
@@ -8069,7 +8069,7 @@
   },
   "RearBody": {
    "slab": {
-    "name": "Slab Deck",
+    "name": "Sloped Tail",
     "culture": "Wedge",
     "note": "Wedge: boxy full-width deck, square haunches, tall square corners, tail chopped square just behind the wing pads.",
     "parts": [
@@ -8531,7 +8531,7 @@
     ]
    },
    "tunnel": {
-    "name": "Tunnel Tail",
+    "name": "Louvred Tail",
     "culture": "Hypercar",
     "note": "Hypercar: a centre spine, open channels either side, slim longerons on arms, swept intake fins and wake fins.",
     "parts": [
@@ -8830,7 +8830,7 @@
     ]
    },
    "frame": {
-    "name": "Frame Tail",
+    "name": "Chopped Tail",
     "culture": "Track Special",
     "note": "Track special: a painted engine cradle inside a bare tube frame, vented haunches that fall to the arch, short low corners, crash structure and rain light.",
     "parts": [
@@ -9218,7 +9218,7 @@
     ]
    },
    "streamer": {
-    "name": "Streamer Tail",
+    "name": "Bar Tail",
     "culture": "Longtail",
     "note": "Longtail: smooth belly with a tray under the tail only, haunches that swell in plan, drooping tail corners, twin tail booms that run far past the afterburner.",
     "parts": [
@@ -9454,7 +9454,7 @@
     ]
    },
    "kamm": {
-    "name": "Kamm Tail",
+    "name": "Open Tail",
     "culture": "Concept",
     "note": "Concept: twin hulls with an open venturi tunnel under the turbine, no haunch and no corners, sheer cut-off tail with a light band.",
     "parts": [
@@ -10959,7 +10959,7 @@
   },
   "RearSpoiler": {
    "poster": {
-    "name": "Poster Wing",
+    "name": "Drop-Tip Wing",
     "culture": "Wedge",
     "note": "",
     "parts": [
@@ -11013,7 +11013,7 @@
     ]
    },
    "bridge": {
-    "name": "Bridge Wing",
+    "name": "Twin-Post Wing",
     "culture": "Analogue",
     "note": "",
     "parts": [
@@ -11071,7 +11071,7 @@
     ]
    },
    "active": {
-    "name": "Active Blade",
+    "name": "Race Wing",
     "culture": "Hypercar",
     "note": "",
     "parts": [
@@ -11114,7 +11114,7 @@
     ]
    },
    "gt": {
-    "name": "Twin Element",
+    "name": "Spine Wing",
     "culture": "Track Special",
     "note": "",
     "parts": [
@@ -11188,7 +11188,7 @@
     ]
    },
    "fins": {
-    "name": "Tail Fins",
+    "name": "Bridge Wing",
     "culture": "Longtail",
     "note": "Two outboard tail planes with a rising fin on each. The centre is open so the main turbine exhaust shows.",
     "parts": [
@@ -11264,7 +11264,7 @@
     ]
    },
    "split": {
-    "name": "Split Winglets",
+    "name": "Pylon Wing",
     "culture": "Concept",
     "note": "",
     "parts": [
