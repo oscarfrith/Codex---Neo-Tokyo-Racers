@@ -19,8 +19,8 @@ CELLS = 256             # flakes per side: one cell is 4 pixels
 COVER = 0.4             # share of cells that hold a flake
 TILT = 0.12             # largest flake tilt, as a slope (about 7 degrees)
 BASE_COLOR, FLAKE_COLOR = 0.84, 0.06        # base coat brightness; the most a flake adds
-BASE_ROUGH, FLAKE_ROUGH = 0.2, 0.12        # glossy coat; flakes a touch glossier
-BASE_METAL, FLAKE_METAL = 0.45, 0.7
+BASE_ROUGH, FLAKE_ROUGH = 0.07, 0.03       # mirror-like coat; flakes a touch glossier
+BASE_METAL, FLAKE_METAL = 0.65, 0.9
 SEED = 2098
 
 

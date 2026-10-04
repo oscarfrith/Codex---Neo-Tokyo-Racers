@@ -649,7 +649,7 @@ def build_content(mode="AUDIT", scope="pilot", balance_path=BALANCE_PATH, catalo
         tier_donor.setdefault(attrs.get("TargetTier"), cid)
 
     channels = {
-        "P": {"material": "SmoothPlastic", "transparency": 0, "suffix": "primary", "paintChannel": "Primary", "reflectance": colours["reflectance"]["P"]},
+        "P": {"material": "SmoothPlastic", "transparency": 0, "suffix": "primary", "paintChannel": "Primary", "reflectance": colours["reflectance"]["P"], "variant": colours.get("paintVariant", "")},
         "S": {"material": "SmoothPlastic", "transparency": 0, "suffix": "secondary", "paintChannel": "Secondary", "reflectance": colours["reflectance"]["S"]},
         "D": {"material": colours["detailMaterial"], "transparency": 0, "suffix": "detail", "paintChannel": "Detail"},
         "G": {"material": "Glass", "transparency": colours["glassTransparency"], "suffix": "glass", "paintChannel": "Glass", "reflectance": colours["reflectance"]["G"]},

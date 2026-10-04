@@ -5,6 +5,8 @@
   "glassTransparency": 0.15,
   "reflectance": {"P": 0.22, "S": 0.14, "G": 0.3},
   "detailMaterial": "Plastic",
+  "paintVariant": "ExoticFlakePaint",
+  "_paintVariant": "MaterialVariant name written on every primary paint part (base SmoothPlastic). The material itself is MaterialService.ExoticFlakePaint, created by mesh/paint/install_paint_material.lua; without it the parts show plain SmoothPlastic. Empty string for no variant.",
   "_finish": "2026-10-04, Oscar: match the look of Workspace ExoticMeshPilot_WIP. Reflectance per part channel (primary, secondary, glass), glass at 0.15 transparency and Plastic detail parts. No game script writes Reflectance or these materials, so the template values carry into Play.",
   "thrust": "#ffffff",
   "optionalNeon": "#ffffff",
