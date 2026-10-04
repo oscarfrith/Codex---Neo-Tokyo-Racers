@@ -161,24 +161,6 @@ def diagrams(car="C", az=142, el=36, scale=25.0, res=(1024, 1024), oversize=(("B
             finally:
                 e.scale = (1.0, 1.0, 1.0)
                 e.location = home
-        # Thrust colour: only the glowing thrust faces (nozzle backs and lift pads), everything else see-through.
-        clear = bpy.data.materials.get(K.PREFIX + "diagram_clear") or bpy.data.materials.new(K.PREFIX + "diagram_clear")
-        clear.use_nodes = True
-        clear.node_tree.nodes.clear()
-        node_out = clear.node_tree.nodes.new("ShaderNodeOutputMaterial")
-        node_bsdf = clear.node_tree.nodes.new("ShaderNodeBsdfTransparent")
-        clear.node_tree.links.new(node_bsdf.outputs[0], node_out.inputs[0])
-        for attr, value in (("surface_render_method", "BLENDED"), ("blend_method", "BLEND")):
-            try:
-                setattr(clear, attr, value)
-            except (AttributeError, TypeError):
-                pass
-        show(list(SLOTS))
-        for slot in SLOTS:
-            for ob in colls[slot].objects:
-                for i, m in enumerate(saved[ob.name]):
-                    ob.data.materials[i] = pink if m.name.endswith("_thrust") else clear
-        out.append(_ortho(target, az, el, scale, os.path.join(raw, "ThrustColour.png"), res))
     finally:
         for c in colls.values():
             for ob in c.objects:

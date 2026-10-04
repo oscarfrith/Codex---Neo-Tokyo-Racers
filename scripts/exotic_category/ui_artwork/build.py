@@ -24,7 +24,7 @@ CATEGORY = "exotic"
 IMAGES = {"All": "128118074135601", "Cockpit": "81262312162264", "FrontBody": "83836476075409",
           "FrontEngine": "131895203472955", "Stabilisers": "105948755652652", "RearEngine": "87580925930089",
           "RearBody": "94927048868347", "Boost": "125156887089093", "Spoiler": "99681362447707",
-          "ThrustColour": "89286970939497"}
+          "ThrustColour": "127812752445338"}
 HIDDEN = ["SidePods", "FrontBumper", "RearBumper"]
 CAT = "(currentCategory() and currentCategory().CategoryId)"
 OVERRIDE = 'folder:GetAttribute("Image_"..tostring(categoryId))'
