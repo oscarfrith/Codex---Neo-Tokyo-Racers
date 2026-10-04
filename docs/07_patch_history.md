@@ -2,6 +2,16 @@
 
 Recent deliveries, newest first. Entries before September 2026 live in [the archive](history/patch-history-2026-05-to-2026-08.md).
 
+## 2026-10-04 - Exotic GT and EVO body parts add stats (v3)
+
+High-Risk (balance), reviewed by `delivery-reviewer` (approve with conditions; conditions recorded in [INTEGRATION.md](../scripts/exotic_category/mesh/INTEGRATION.md), section "GT and EVO body parts earn their price").
+
+- **Content:** 36 GT and EVO body parts gain stats (aero on Front Body and Wing, weight and cooling on Rear Body); all 72 body parts carry Standard / GT / EVO versions; count labels and kit names tidied. Prices, ids, core modules and cockpits unchanged.
+- **UI:** `ui_variant_labels` shows engine versions as GT and EVO for Exotic and clears a hidden preselected car in the dealership.
+- **Installed:** content hash `b2f4b211...`, catalogue revision `4a7229c2...`. AUDIT, APPLY (apply only), second AUDIT, post-install checks and attribute read-back clean; Play starts with no errors.
+- **Limits:** Rosso ceiling 848.12 against S at 849.495; kit 5 and kit 6 steps are small for that reason.
+- **Evidence:** agent-verified to install and start-up level. Not user-confirmed.
+
 ## 2026-10-04 - Exotic mesh cars for all six cockpits (Backup v2 only)
 
 Cockpits `exotic_01`, `03`, `04` and `06` join `02` and `05` as mesh cars, from model asset `121164261170819` (560 MeshParts, all six cars). Contract: [INTEGRATION.md](../scripts/exotic_category/mesh/INTEGRATION.md), extension section. Reviewed by `delivery-reviewer` (approve with conditions; conditions met and recorded).
