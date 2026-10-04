@@ -2,6 +2,19 @@
 
 Recent deliveries, newest first. Entries before September 2026 live in [the archive](history/patch-history-2026-05-to-2026-08.md).
 
+## 2026-10-04 - Modern Muscle category, game setup on placeholders (v3)
+
+High-Risk (prices, locks, saved ids), reviewed by `delivery-reviewer` before APPLY (conditions met; risks recorded). Contract: [muscle-category-contract](architecture/muscle-category-contract.md).
+
+- **Content:** third category `muscle`: six cars (E 230, D 330, D 410, C 480, C 565, B 630), 144 modules, Exotic structure, primitive geometry from the blockout spec. Prices 32,000 to 850,000.
+- **Cap:** no build reaches A in the garage rating (exact bound over every Muscle part of every family and every upgrade allocation; Modern ceiling 717.90).
+- **Tools:** balance and content builders take `--category`; Exotic output is byte-identical (content hash `b2f4b211...`). The installer engine and catalogue generator are unchanged.
+- **Config:** six attributes (`Hidden_muscle` on three artwork folders, `VariantLabels_muscle`, `DealershipHiddenCategories = "bruiser,muscle"`, `Flag_VehicleClass_muscle`).
+- **Installed:** content hash `ba880c2d...`, catalogue revision `1100fd98...`. AUDIT, APPLY, second AUDIT (nothing to apply), Exotic AUDIT (this build), post-install checks, attribute read-back and a before and after state probe clean; Play starts with no errors. No game script changed.
+- **Unchanged:** Piercer and Exotic content and chunks; every game script.
+- **Evidence:** agent-verified to install and start-up level. Not user-confirmed. Open: MUS-01 (on-road tier), MUS-02, TOOL-05.
+- **Recovery:** no ROLLBACK. Before any profile owns a Muscle car, remove `Flag_VehicleClass_muscle`. Content faults: new build and APPLY.
+
 ## 2026-10-04 - Exotic GT and EVO body parts add stats (v3)
 
 High-Risk (balance), reviewed by `delivery-reviewer` (approve with conditions; conditions recorded in [INTEGRATION.md](../scripts/exotic_category/mesh/INTEGRATION.md), section "GT and EVO body parts earn their price").

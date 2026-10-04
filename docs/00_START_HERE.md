@@ -4,7 +4,15 @@ Target: **Space Racers v3, place 93959280828322** (since 2026-10-04; made from B
 
 ## Current task and next action
 
-**Exotic is complete for now and user-confirmed in v3 (Oscar, 2026-10-04: "that's all good, working well"). Next: more vehicle categories, one chat each, starting with Modern Muscle.** Start from the [vehicle category playbook](architecture/vehicle-category-playbook.md): what is reused, the decisions to fix before modelling, the design gates and the install route.
+**Modern Muscle is set up in v3 on placeholder geometry (2026-10-04). Agent-verified to install and start-up level; not user-confirmed. Next: Oscar's Play test, then concepts and Blender models in a later chat, under the same ids.**
+- **What:** a third vehicle category, `CategoryId` `muscle`: six cars over tiers E, D, D, C, C, B (Notch 230, Ute 330, Ragtop 410, Hardtop 480, Fastback 565, Modern 630), 144 modules, the Exotic structure (seven slots, Standard / GT / EVO, parts locked by `SourceCockpitId`, body parts at V/4, V/2, V). Prices 32,000 to 850,000, below Piercer and Exotic of the tier. Character: powerful, heavy, fast, weak in corners. Contract, audit, review and recovery: [muscle-category-contract](architecture/muscle-category-contract.md).
+- **Cap:** no build reaches A in the garage rating (ceiling 717.90 against 724.495; `test_tier_cap`). On the road a fully built Modern probably reads A because of VEH-01: see MUS-01 in [open issues](06_current_known_issues.md).
+- **Studio state (v3):** content hash `ba880c2d...`, catalogue revision `1100fd98...` (18 cockpits, 404 modules, 8 chunks). `Flag_VehicleClass_muscle` is on. **Hidden from the dealership:** `Config.UI.GarageReplacement` `DealershipHiddenCategories = "bruiser,muscle"`; set it to `bruiser` to put Muscle on sale. Exotic is unchanged (`b2f4b211...`, still "this build"). No game script changed. **Save the place in Studio to keep this.**
+- **Tools:** the Exotic tools take a category: `py -3 scripts/exotic_category/refine.py --category muscle`; data in `scripts/exotic_category/categories/muscle/` and `balance/categories/muscle.py`. No ROLLBACK build exists for Muscle.
+- **Not verified:** anything in Play beyond start-up (dealership cards, purchase, garage rails, driving, flames, seats); the six stock ratings as the live game computes them; the on-road index. Seats are generated, not measured. No card images.
+- **Rule:** once a saved profile owns a Muscle car, keep the flag on and never rename an id.
+
+**Exotic is complete for now and user-confirmed in v3 (Oscar, 2026-10-04: "that's all good, working well").** Categories go one chat each; start from the [vehicle category playbook](architecture/vehicle-category-playbook.md): what is reused, the decisions to fix before modelling, the design gates and the install route.
 
 **Exotic vehicle category (2026-10-03), installed in Space Racers Backup v2 (place 133417340424236) only. Not on v2. Not published.**
 - **What:** a second vehicle category, Exotic (`CategoryId = "exotic"`). It has six cockpits, one per tier: Spider, Curve, Wedge, Longtail, Hyper and Gull. It has 108 modules and ten slots: the eight Piercer slots plus Nose and Engine Deck. Geometry is the blockout primitives. Prices are about 25% over the matching Piercer.

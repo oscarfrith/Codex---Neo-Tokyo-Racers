@@ -1,0 +1,45 @@
+state_probe.lua, Space Racers v3, Studio Edit, 2026-10-04, after the Modern Muscle content APPLY and the config APPLY
+place=93959280828322
+server.PIERCER 2435:7808dcc2 hash=nil
+server.EXOTIC 3098:2483b6f8 hash=b2f4b2111a0cc487f4e587cefad261ecd2677449640ce3e79402a8105aaccfe9
+server.MUSCLE 5239:4b7a127b hash=ba880c2d2b52bf223f2651600dc1cbb5ca5b614485660f621f3443fe72fde6c2
+server.order=PIERCER,EXOTIC,MUSCLE
+preview.PIERCER 2102:520a2e1e hash=nil
+preview.EXOTIC 2528:01414b14 hash=b2f4b2111a0cc487f4e587cefad261ecd2677449640ce3e79402a8105aaccfe9
+preview.MUSCLE 4669:c8d45f17 hash=ba880c2d2b52bf223f2651600dc1cbb5ca5b614485660f621f3443fe72fde6c2
+preview.order=PIERCER,EXOTIC,MUSCLE
+vfx.00_GLOBAL_VFX_SETTINGS 8:9db62df7
+vfx.HoverDust 17:7d9c5ccb
+vfx.BoostJet 25:a84d5efa
+vfx.StabiliserJet 39:4fc5e5f8
+vfx.BrakeSparks 16:131183cc
+vfx.SOCKET_GUIDE 12:f35aa7da
+vfx.EngineJet 26:6f1bb36a
+vfx.EngineJet_Exotic 26:24585147
+vfx.BoostJet_Exotic 25:2567508a
+vfx.StabiliserJet_ExoticLeft 23:840934f1
+vfx.StabiliserJet_ExoticRight 23:8d882497
+vfx.EngineJet_Muscle 26:24585147
+vfx.BoostJet_Muscle 25:2567508a
+vfx.StabiliserJet_MuscleLeft 23:840934f1
+vfx.StabiliserJet_MuscleRight 23:8d882497
+catalogue.index 747:a4611b4f revision=nil
+catalogue.EXOTIC_1 149594:39bcc077
+catalogue.EXOTIC_2 149548:f71ca186
+catalogue.EXOTIC_3 21600:8e53c52a
+catalogue.MUSCLE_1 149112:058067ea
+catalogue.MUSCLE_2 149501:a2bcf520
+catalogue.MUSCLE_3 21556:3f3ef864
+catalogue.PIERCER_1 149842:e886bb82
+catalogue.PIERCER_2 47288:904c609b
+config.GarageReplacement 6ccbb80c hidden=bruiser,muscle
+config.GarageReplacement.tree 55:b29cb88a
+config.ReplicatedStorage 1548:dae05dc2
+config.ServerStorage 13:0fe3a700 own=ad516198
+scripts.other 210:a10f0b36
+
+Compared with state-before.txt. Unchanged: PIERCER and EXOTIC (server and preview), the eleven earlier VFX templates,
+the five PIERCER and EXOTIC catalogue chunks, and the 210 other scripts. Changed, all in scope: MUSCLE added to both
+category roots (last), four *_Muscle VFX templates, three MUSCLE_n chunks, the catalogue index (five chunk names to
+eight; revision 4a7229c2... to 1100fd98...), GarageReplacement (two attributes on the folder, Hidden_muscle on three
+artwork folders) and ServerStorage.Config (Flag_VehicleClass_muscle).

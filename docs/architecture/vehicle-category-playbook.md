@@ -17,7 +17,7 @@ Reference build: `scripts/exotic_category/` ([interface](../../scripts/exotic_ca
 | Garage UI per-category display | **Config only, no script change:** `Image_<CategoryId>` and `Hidden_<CategoryId>` on `ModuleArtwork.<Slot>`, `UnderglowSidebarIcon_<CategoryId>`, `VariantLabels_<CategoryId>`, `DealershipHiddenCategories`. | `Config.UI.GarageReplacement`; installers `scripts/exotic_category/ui_*` |
 | Paint and lighting | `MaterialService.ExoticFlakePaint` on primary paint, reflectance P 0.22 / S 0.14 / glass 0.3, night `EnvironmentSpecularScale` 0.7. Reuse as is. | `stage_b/data/colours.json`, `mesh/paint/` |
 
-First engineering step for a new category: make the Exotic tools take a category config (id, names, place id, kit table) instead of forking them. Fork only if that costs more than a day.
+The Exotic tools take a category since 2026-10-04 (Modern Muscle): `--category <id>` on `balance/build_balance.py`, `balance/test_balance.py`, `stage_b/build_content.py`, `stage_b/test_content.py` and `refine.py`. A category is `balance/categories/<id>.py` plus `categories/<id>/` (`category.json`, `data/`, `out/`, `config/`). The installer engine and the catalogue generator are shared and must not be edited: their bytes are in every category's content hash. A third category needed no game script change. Worked example: [muscle-category-contract](muscle-category-contract.md).
 
 ## Decisions to fix in the contract before any modelling
 
@@ -94,6 +94,10 @@ Show Oscar the lineup of all six together at each gate. Three gates only: concep
 - A cosmetic rename after install is a full content build. Batch names, colours and reflectance into one build.
 - Envelope overruns: clamp heights in the kit, do not widen the envelope.
 - Verify claims about the server from source before telling Oscar (new profiles own no vehicle and start with 140,000 Cash).
+- A jet socket at a compound angle may not survive `Instance:Clone()` bit for bit; the installer's exact server and preview comparison then blocks the Studio dry run. Record an override in `data/sockets.json` (Muscle: tunnel ram, yaw 35.58 to 35.6).
+- Read the live handling config before promising a feel. In v3 `SteeringResponse` maps with exponent 0.1 and `LateralGrip` has a floor at raw 30.4, so E and D cars of every category grip the same.
+- The cap proof covers the garage rating. The on-road index is higher (VEH-01); check a capped category against it.
+- The scoped capture tool refuses v3 (TOOL-05). Use a read-only state probe before and after.
 
 ## Open on Exotic (do not copy as solved)
 
