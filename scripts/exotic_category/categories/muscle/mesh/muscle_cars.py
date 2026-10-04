@@ -23,7 +23,7 @@ OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "previews")
 # One crisp character line runs the length of the body side: a fine groove at the same height on the nose,
 # the tub and the tail (ring range on the body side), and one on each pod flank.
 LINE = (2.78, 2.9)
-POD_LINE = (2.72, 2.86)
+POD_LINE = (2.66, 2.86)
 SLOTS = ("COCKPIT", "NOSE", "TAIL", "FPOD", "RPOD", "STAB", "BOOST", "WING")
 
 
@@ -50,12 +50,16 @@ def barrel(name, z0, z1, x, y, r, depth=0.6, collar=True):
 
 
 def bazooka(name, x0, x1, z, y, r, back=0.8, down=0.6):
-    """Drift thruster: a fat tube that leaves the sill sideways and sweeps back and down, glowing at its
-    outer end. back and down are how far the outer end sits behind and below the inner end."""
-    t = Loft([(x0, dict(cx=z, yb=y - r, yt=y + r)), (x1, dict(cx=z + back, yb=y - down - r, yt=y - down + r))],
-             axis="x", w=r, nt=2, nb=2, yw=0.5)
-    t.build(name, "metal", mirror=True, caps=(True, False))
-    t.throat(name + "n", "max", lip="metal", back="thrust", scale=0.82, depth=0.45, mirror=True)
+    """Drift thruster: a fat tube that leaves the sill sideways and sweeps back and down. The glow is a disc
+    set a little way inside the open end, square to the tube, so the mouth reads as a clean ring."""
+    def at(x, rad):
+        s = (x - x0) / (x1 - x0)
+        return (x, dict(cx=z + back * s, w=rad, yb=y - down * s - rad, yt=y - down * s + rad))
+    Loft([at(x0, r), at(x1, r)], axis="x", nt=2, nb=2, yw=0.5).build(name, "metal", mirror=True, caps=(True, False))
+    Loft([at(x1 - 0.34, r * 0.9), at(x1 - 0.3, r * 0.9)], axis="x", nt=2, nb=2, yw=0.5).build(
+        name + "glow", "thrust", mirror=True)
+    Loft([at(x1 - 0.3, r * 0.9), at(x1, r * 0.9)], axis="x", nt=2, nb=2, yw=0.5).build(
+        name + "bore", "detail", mirror=True, caps=(False, False))
 
 
 def halo(name, x, y, z, r):
@@ -149,7 +153,7 @@ def f_nose():
 def f_pod_regions(z0, z1):
     """Engine fender, standard trim: clean body colour over a black rocker, with one character line."""
     return [R(z0 + 0.15, z1 - 0.15, 1.0, 2.0, "secondary", 0.02),
-            R(z0 + 0.7, z1 - 0.3, POD_LINE[0], POD_LINE[1], "primary", 0.025, side=1)]
+            R(z0 + 0.45, z1 - 0.25, POD_LINE[0], POD_LINE[1], "primary", 0.05, side=1)]
 
 
 def f_fpod():
@@ -213,27 +217,27 @@ def f_tail():
          tum=0.12, drop=0.08, wcf=0.7, d2=0.0, crown=0.02).build("bumper", "primary")
     box("post", (3.5, 2.72, 12.2), (0.34, 0.86, 0.42), "primary", mirror=True)
     # two ring lamps: a red rounded rectangle with a dark centre
-    Loft([(12.05, {}), (12.3, {})], cx=1.72, w=1.32, yb=2.42, yt=3.02, nt=5, nb=5, yw=0.5).build(
+    Loft([(12.05, {}), (12.3, {})], cx=1.78, w=1.5, yb=2.4, yt=3.06, nt=5, nb=5, yw=0.5).build(
         "lamp", "lights_red", mirror=True)
-    Loft([(12.28, {}), (12.33, {})], cx=1.72, w=1.13, yb=2.58, yt=2.86, nt=5, nb=5, yw=0.5).build(
+    Loft([(12.28, {}), (12.33, {})], cx=1.78, w=1.3, yb=2.58, yt=2.88, nt=5, nb=5, yw=0.5).build(
         "lampcore", "detail", mirror=True)
 
 
 def f_boost():
-    """Two huge barrels close together under the bumper."""
+    """Two barrels close together in a black valance under the bumper."""
     K.begin("F", "BOOST")
-    Hull([(10.8, {}), (12.1, {})], w=2.6, yb=-0.45, yt=1.25, rb=0.3, ys=0.9, tum=0.2, drop=0.0, wcf=0.5, d2=0.0,
-         crown=0.0).build("housing", "secondary")
-    box("trim", (0, 1.29, 11.6), (4.8, 0.08, 0.8), "primary")
-    barrel("barrel", 11.5, 13.2, 0.86, 0.38, 0.74, depth=0.55, collar=False)
+    Hull([(10.8, dict(w=2.85)), (12.2, dict(w=2.55, yb=-0.25))], yb=-0.45, yt=1.3, rb=0.35, ys=0.95, tum=0.25,
+         drop=0.05, wcf=0.6, d2=0.0, crown=0.02).build("housing", "secondary", regions=[
+             R(10.8, 12.2, 3.0, 3.6, "primary", 0.0)])
+    barrel("barrel", 11.6, 13.2, 0.86, 0.4, 0.74, depth=0.55, collar=False)
 
 
 def f_wing():
-    """One-piece ducktail lip."""
+    """One-piece ducktail lip, low on the deck edge."""
     K.begin("F", "WING")
-    Hull([(11.0, dict(yt=3.62, ys=3.5)), (12.6, dict(w=3.6, yt=4.3, ys=3.85))], w=3.7, yb=3.42, rb=0.02, tum=0.1,
-         drop=0.04, wcf=0.7, d2=0.01, crown=0.03).build("lip", "primary")
-    box("gurney", (0, 4.32, 12.56), (7.1, 0.09, 0.09), "secondary")
+    Hull([(11.2, dict(yt=3.66, ys=3.6)), (12.5, dict(w=3.6, yt=3.98, ys=3.78))], w=3.68, yb=3.5, rb=0.02, tum=0.14,
+         drop=0.04, wcf=0.72, d2=0.01, crown=0.03).build("lip", "primary", regions=[
+             R(11.2, 12.5, 5.15, 6.0, "secondary", 0.0)])
 
 
 def car_f():
