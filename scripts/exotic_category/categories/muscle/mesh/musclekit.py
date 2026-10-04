@@ -56,7 +56,7 @@ K.Loft.N = 40
 # Preview paint per car letter. Players repaint primary, secondary and detail in game.
 K.PAINT = {
     "A": {"primary": (0.80, 0.78, 0.70), "secondary": (0.02, 0.02, 0.024)},   # 01 El Camino: cream, black
-    "B": {"primary": (0.20, 0.22, 0.25), "secondary": (0.02, 0.02, 0.024)},   # 02 Charger: grey, black
+    "B": {"primary": (0.75, 0.22, 0.02), "secondary": (0.02, 0.02, 0.024)},   # 02 Maloo ute: orange, black
     "C": {"primary": (0.85, 0.62, 0.02), "secondary": (0.02, 0.02, 0.024)},   # 03 Camaro: yellow, black
     "D": {"primary": (0.02, 0.10, 0.55), "secondary": (0.80, 0.80, 0.78)},    # 04 Mustang: blue, white
     "E": {"primary": (0.01, 0.12, 0.07), "secondary": (0.30, 0.19, 0.08)},    # 05 CT5: emerald, bronze

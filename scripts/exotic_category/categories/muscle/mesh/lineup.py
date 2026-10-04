@@ -11,14 +11,12 @@ import os
 import exokit as K
 import muscle_cars as MC
 
-CARS = [("outrider", "A", "car_a"), ("enforcer", "B", "car_b"), ("slingshot", "C", "car_c"),
-        ("stallion", "D", "car_d"), ("blackjack", "E", "car_e"), ("brawler", "F", None)]
+CARS = [("outrider", "A", "car_a"), ("outlaw", "B", "car_b"), ("slingshot", "C", "car_c"),
+        ("stallion", "D", "car_d"), ("blackjack", "E", "car_e"), ("brawler", "F", "car_f")]
 DX, DZ = 21.0, 36.0
 
 
 def _fn(module, letter):
-    if module is None:
-        return MC.car_f
     mod = __import__(module)
     return getattr(mod, "car_" + letter.lower())
 

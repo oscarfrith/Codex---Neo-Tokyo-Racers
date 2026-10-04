@@ -37,6 +37,20 @@ Game space: +X right, +Y up, forward is -Z. Eight modules meet on fixed faces so
 6. Smooth lines: no kinks along the roof, bonnet or deck; no parts floating, clashing or showing cut ends; even shadow gaps.
 7. The bonnet turbine is part of the NOSE and its size is per car (your spec says what you get).
 
+## Round 2 (Oscar, 2026-10-04): the engines and side pods must be really distinctive
+
+Oscar's review of the first six: "they all look good on the whole, but the engines, side pods etc. need to look more distinctive, all the vehicles look way too similar right now. make them really distinctive but ensure they look great, sleek, follow car design principles."
+
+The cause: every car used the same fender-shaped pod and the same box sill. In this round each car gets its own POD AND SILL ARCHITECTURE (your task prompt names it). This overrides anything above that says pods are "fenders with rounded shoulders".
+
+- The hero reference is now `car_f.py` (the Brawler). Shared helpers are in `muscle_cars.py`. All six cars are in `car_a.py` to `car_f.py`; `lineup.py` builds them together.
+- Change FPOD, RPOD and STAB (and BOOST nozzles if your architecture needs it). Leave your COCKPIT, NOSE, TAIL and WING as they are unless your task prompt lists a fix.
+- **Frame rule relaxed for pod ends.** A pod no longer has to end on the exact `SIDE_F` / `SIDE_R` section. It must still end at the planes `POD_FZ` (front pod rear end) and `POD_RZ` (rear pod front end), keep its inboard face at x 4.1, stay inside its envelope, and its end face must cover the sill's end (any sill fits in the box x 4.1 to 5.9, y -1.25 to 1.1), so no hole shows when another car's sill is fitted. The sill still runs from `POD_FZ + 0.1` to `POD_RZ - 0.1` and must stay inside that same box apart from its nozzles, so it fits between any car's pods.
+- Distinctive means the silhouette of the pod itself differs: its section (round, square, hexagonal, blade, wedge), its plan shape, how it starts and ends, where its mass sits, and how the nozzle leaves it. Paint and small details do not count.
+- Car design principles to hold to: one clear theme per car, repeated in pod, sill, lamp and nozzle; lines that flow from the nose through the pods to the tail with no breaks or kinks; calm surfaces with one or two strong lines rather than many; good stance (visually planted, nose slightly lower than tail); clean highlights; pods that look designed with the body, not bolted-on boxes; and proportion: rear pods no taller than the deck and not overpowering, front pods lower than the bonnet.
+- Still clean and minimal (rule 1 above): the difference must come from form, not from added vents, bolts or greebles.
+- Headlights stay on the front pods; the front pod jet still exits at its rear face or flank; no wheels and nothing wheel-like.
+
 ## Self-check before you report (look at every render)
 
 Front, rear, side, top, front low, rear high, and the eight close-ups. For each: does it read as the real car at a glance; any wheel-like shape; any floating, intersecting or cut-off part; lamps present front and rear; glass surrounds even; nozzles glowing and clean; rear pods not too big; nothing outside the envelope. Fix, rebuild, look again. Three or more build-and-look rounds are expected.
