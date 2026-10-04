@@ -365,8 +365,8 @@ def main():
                            ("BoostIgnitionGain", 1), ("BoostIgnitionMiniGain", 1),
                            ("Pop1Gain", 0.95), ("Pop2Gain", 0.95), ("Pop3Gain", 0.95), ("Pop4Gain", 0.95),
                            ("Bang1Gain", 1), ("Bang2Gain", 1),
-                           ("ImpactLightGain", 0.3), ("ImpactMediumGain", 0.45), ("ImpactHeavyGain", 0.6),
-                           ("ImpactSevereGain", 0.7), ("LandingThumpGain", 0.45),
+                           ("ImpactLightGain", 0.45), ("ImpactMediumGain", 0.65), ("ImpactHeavyGain", 0.85),
+                           ("ImpactSevereGain", 1), ("LandingThumpGain", 0.6),
                            ("TurboWhistleAssetId", ""),
                            ("ProfileRevision", 3)):
             updates.append({"path": profile, "key": key, "value": value})
