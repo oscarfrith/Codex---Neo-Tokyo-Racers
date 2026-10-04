@@ -11,7 +11,7 @@ What changes:
                      Image_<CategoryId> (a diagram for that category only) and Hidden_<CategoryId>=true
                      (leave that slot out of the Build and Customise rails for that category).
   GarageUI           passes the current category id to those lookups; slot cards use the same image.
-  Config             Image_exotic on nine ModuleArtwork folders; Hidden_exotic on SidePods, FrontBumper
+  Config             Image_exotic on ten ModuleArtwork folders; Hidden_exotic on SidePods, FrontBumper
                      and RearBumper. Piercer is untouched: with no attribute the lookup behaves as before.
 """
 import io
@@ -23,7 +23,8 @@ PLACE_ID = 93959280828322
 CATEGORY = "exotic"
 IMAGES = {"All": "128118074135601", "Cockpit": "81262312162264", "FrontBody": "83836476075409",
           "FrontEngine": "131895203472955", "Stabilisers": "105948755652652", "RearEngine": "87580925930089",
-          "RearBody": "94927048868347", "Boost": "125156887089093", "Spoiler": "99681362447707"}
+          "RearBody": "94927048868347", "Boost": "125156887089093", "Spoiler": "99681362447707",
+          "ThrustColour": "89286970939497"}
 HIDDEN = ["SidePods", "FrontBumper", "RearBumper"]
 CAT = "(currentCategory() and currentCategory().CategoryId)"
 OVERRIDE = 'folder:GetAttribute("Image_"..tostring(categoryId))'
@@ -76,8 +77,9 @@ def main():
             after = after.replace(old, new)
         io.open(os.path.join(HERE, "after", name + ".lua"), "w", encoding="utf-8", newline="").write(after)
         scripts[name] = {"path": PATHS[name], "before": djb2(before), "after": djb2(after)}
-    attrs = [[n, "Image_" + CATEGORY, "rbxassetid://" + i] for n, i in IMAGES.items()] + [[n, "Hidden_" + CATEGORY, True] for n in HIDDEN]
-    data = json.dumps({"placeId": PLACE_ID, "scripts": scripts, "attributes": attrs}, sort_keys=True)
+    attrs = ([["ModuleArtwork/" + n, "Image_" + CATEGORY, "rbxassetid://" + i] for n, i in IMAGES.items()]
+             + [["ModuleArtwork/" + n, "Hidden_" + CATEGORY, True] for n in HIDDEN])
+    data = json.dumps({"placeId": PLACE_ID, "base": "scripts/exotic_category/ui_artwork/", "scripts": scripts, "attributes": attrs}, sort_keys=True)
     engine = io.open(os.path.join(HERE, "installer_engine.lua"), encoding="utf-8").read()
     for mode in ("AUDIT", "APPLY", "ROLLBACK"):
         out = 'local MODE = "%s"\nlocal DATA = game:GetService("HttpService"):JSONDecode([==[%s]==])\n%s' % (mode, data, engine)

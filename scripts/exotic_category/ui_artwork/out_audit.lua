@@ -1,14 +1,15 @@
 local MODE = "AUDIT"
-local DATA = game:GetService("HttpService"):JSONDecode([==[{"attributes": [["All", "Image_exotic", "rbxassetid://128118074135601"], ["Cockpit", "Image_exotic", "rbxassetid://81262312162264"], ["FrontBody", "Image_exotic", "rbxassetid://83836476075409"], ["FrontEngine", "Image_exotic", "rbxassetid://131895203472955"], ["Stabilisers", "Image_exotic", "rbxassetid://105948755652652"], ["RearEngine", "Image_exotic", "rbxassetid://87580925930089"], ["RearBody", "Image_exotic", "rbxassetid://94927048868347"], ["Boost", "Image_exotic", "rbxassetid://125156887089093"], ["Spoiler", "Image_exotic", "rbxassetid://99681362447707"], ["SidePods", "Hidden_exotic", true], ["FrontBumper", "Hidden_exotic", true], ["RearBumper", "Hidden_exotic", true]], "placeId": 93959280828322, "scripts": {"GarageUI": {"after": 3759046153, "before": 2532968798, "path": ["ReplicatedStorage", "Modules", "Game", "Garage", "GarageUI"]}, "GarageWorkspaceUI": {"after": 273635997, "before": 4159466399, "path": ["ReplicatedStorage", "Modules", "Game", "UI", "GarageWorkspaceUI"]}}}]==])
--- Category-aware slot artwork: guarded installer body. build.py prepends MODE and DATA.
+local DATA = game:GetService("HttpService"):JSONDecode([==[{"attributes": [["ModuleArtwork/All", "Image_exotic", "rbxassetid://128118074135601"], ["ModuleArtwork/Cockpit", "Image_exotic", "rbxassetid://81262312162264"], ["ModuleArtwork/FrontBody", "Image_exotic", "rbxassetid://83836476075409"], ["ModuleArtwork/FrontEngine", "Image_exotic", "rbxassetid://131895203472955"], ["ModuleArtwork/Stabilisers", "Image_exotic", "rbxassetid://105948755652652"], ["ModuleArtwork/RearEngine", "Image_exotic", "rbxassetid://87580925930089"], ["ModuleArtwork/RearBody", "Image_exotic", "rbxassetid://94927048868347"], ["ModuleArtwork/Boost", "Image_exotic", "rbxassetid://125156887089093"], ["ModuleArtwork/Spoiler", "Image_exotic", "rbxassetid://99681362447707"], ["ModuleArtwork/ThrustColour", "Image_exotic", "rbxassetid://89286970939497"], ["ModuleArtwork/SidePods", "Hidden_exotic", true], ["ModuleArtwork/FrontBumper", "Hidden_exotic", true], ["ModuleArtwork/RearBumper", "Hidden_exotic", true]], "base": "scripts/exotic_category/ui_artwork/", "placeId": 93959280828322, "scripts": {"GarageUI": {"after": 3759046153, "before": 2532968798, "path": ["ReplicatedStorage", "Modules", "Game", "Garage", "GarageUI"]}, "GarageWorkspaceUI": {"after": 273635997, "before": 4159466399, "path": ["ReplicatedStorage", "Modules", "Game", "UI", "GarageWorkspaceUI"]}}}]==])
+-- Guarded garage UI installer body, shared by ui_artwork and ui_dealership. build.py prepends MODE and DATA.
 -- AUDIT writes nothing. APPLY writes the two after-sources and the config attributes; ROLLBACK restores the
 -- before-sources and removes the attributes. A script is written only when its current source is exactly the
 -- expected one (before for APPLY, after for ROLLBACK); a script already in the target state is left alone.
--- Sources are read from the repository over http://127.0.0.1:8793 (py -3 -m http.server 8793 at the repo root).
+-- Sources are read from the repository over http://127.0.0.1:8793 (py -3 -m http.server 8793 at the repo root),
+-- from the folder DATA.base names.
 local Http = game:GetService("HttpService")
-assert(game.PlaceId == DATA.placeId, "ui_artwork: wrong place " .. tostring(game.PlaceId))
-assert(not game:GetService("RunService"):IsRunning(), "ui_artwork: stop Play first")
-local BASE = "http://127.0.0.1:8793/scripts/exotic_category/ui_artwork/"
+assert(game.PlaceId == DATA.placeId, DATA.base .. ": wrong place " .. tostring(game.PlaceId))
+assert(not game:GetService("RunService"):IsRunning(), DATA.base .. ": stop Play first")
+local BASE = "http://127.0.0.1:8793/" .. DATA.base
 local function djb2(s)
 	local x = 5381
 	for i = 1, #s do x = (x * 33 + string.byte(s, i)) % 4294967296 end
@@ -44,15 +45,17 @@ for name, info in pairs(DATA.scripts) do
 		end
 	end
 end
-local artwork = game:GetService("ReplicatedStorage").Config.UI.GarageReplacement:FindFirstChild("ModuleArtwork")
-if not artwork then
-	blockers += 1
-	table.insert(report, "ModuleArtwork folder missing")
+-- Attribute rows: {path under Config.UI.GarageReplacement ("" for the folder itself, "/"-separated), key, value}.
+local configRoot = game:GetService("ReplicatedStorage").Config.UI.GarageReplacement
+local function target(path)
+	local node = configRoot
+	for part in string.gmatch(path, "[^/]+") do node = node and node:FindFirstChild(part) end
+	return node
 end
 for _, row in ipairs(DATA.attributes) do
-	if artwork and not artwork:FindFirstChild(row[1]) then
+	if not target(row[1]) then
 		blockers += 1
-		table.insert(report, "ModuleArtwork." .. row[1] .. " missing")
+		table.insert(report, "GarageReplacement/" .. row[1] .. " missing")
 	end
 end
 if blockers > 0 or MODE == "AUDIT" then
@@ -65,9 +68,9 @@ for _, item in pairs(plan) do
 end
 for _, row in ipairs(DATA.attributes) do
 	if MODE == "APPLY" then
-		artwork[row[1]]:SetAttribute(row[2], row[3])
+		target(row[1]):SetAttribute(row[2], row[3])
 	else
-		artwork[row[1]]:SetAttribute(row[2], nil)
+		target(row[1]):SetAttribute(row[2], nil)
 	end
 end
 return table.concat(report, "; ") .. " | mode=" .. MODE .. " scriptsWritten=" .. wrote .. " attributes=" .. #DATA.attributes

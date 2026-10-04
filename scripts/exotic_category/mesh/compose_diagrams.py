@@ -12,7 +12,8 @@ from PIL import Image, ImageChops, ImageDraw, ImageFilter
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, "..", "..", "..", "output", "exotic-images", "diagrams"))
-ORDER = ["All", "Cockpit", "FrontBody", "FrontEngine", "Stabilisers", "RearEngine", "RearBody", "Boost", "Spoiler"]
+ORDER = ["All", "Cockpit", "ThrustColour", "FrontBody", "FrontEngine", "Stabilisers", "RearEngine", "RearBody", "Boost", "Spoiler"]
+GROW = {"ThrustColour": 17}   # small highlights are thickened by this many pixels (at 1024) so they read
 PINK = (233, 42, 148)
 GREY = (226, 228, 234)
 SIZE = 512   # final size; the raw passes are 1024
@@ -54,6 +55,10 @@ def main():
     tiles = []
     for slot in ORDER:
         part = flat(Image.open(os.path.join(ROOT, "raw", slot + ".png")).convert("RGBA"), PINK, keep=0.6)
+        if slot in GROW:
+            thick = part.split()[3].point(lambda v: 255 if v > 24 else 0).filter(ImageFilter.MaxFilter(GROW[slot]))
+            part = Image.new("RGBA", part.size, PINK + (0,))
+            part.putalpha(thick.filter(ImageFilter.GaussianBlur(1.2)))
         glow = Image.new("RGBA", part.size, PINK + (0,))
         glow.putalpha(part.split()[3].filter(ImageFilter.GaussianBlur(9)).point(lambda v: int(v * 0.75)))
         out = Image.new("RGBA", base.size, (0, 0, 0, 0))
