@@ -45,12 +45,12 @@ RATING_REFERENCE_COCKPIT_ID = "exotic_03"
 # N, CockpitId, model, DisplayName, spec cockpit, spec kit, kit name, tier, price, target PI,
 # Piercer cockpit of the same tier.
 COCKPITS = [
-    (1, "exotic_01", "COCKPIT_EXOTIC_01", "Stinger", "spider", "track", "Track", "E", 50000, 220, "bruiser_02"),
-    (2, "exotic_02", "COCKPIT_EXOTIC_02", "Zephyr", "curve", "analogue", "Analogue", "D", 150000, 390, "bruiser_03"),
-    (3, "exotic_03", "COCKPIT_EXOTIC_03", "Aurora", "wedge", "wedge", "Wedge", "C", 440000, 540, "bruiser_01"),
-    (4, "exotic_04", "COCKPIT_EXOTIC_04", "Endura", "longtail", "longtail", "Longtail", "B", 1400000, 675, "bruiser_04"),
-    (5, "exotic_05", "COCKPIT_EXOTIC_05", "Rosso", "hyper", "hyper", "Hyper", "A", 4400000, 800, "bruiser_05"),
-    (6, "exotic_06", "COCKPIT_EXOTIC_06", "Seraph", "gull", "concept", "Concept", "S", 12500000, 938, "bruiser_06"),
+    (1, "exotic_01", "COCKPIT_EXOTIC_01", "Stinger", "spider", "track", "Stinger", "E", 50000, 220, "bruiser_02"),
+    (2, "exotic_02", "COCKPIT_EXOTIC_02", "Zephyr", "curve", "analogue", "Zephyr", "D", 150000, 390, "bruiser_03"),
+    (3, "exotic_03", "COCKPIT_EXOTIC_03", "Aurora", "wedge", "wedge", "Aurora", "C", 440000, 540, "bruiser_01"),
+    (4, "exotic_04", "COCKPIT_EXOTIC_04", "Endura", "longtail", "longtail", "Endura", "B", 1400000, 675, "bruiser_04"),
+    (5, "exotic_05", "COCKPIT_EXOTIC_05", "Rosso", "hyper", "hyper", "Rosso", "A", 4400000, 800, "bruiser_05"),
+    (6, "exotic_06", "COCKPIT_EXOTIC_06", "Seraph", "gull", "concept", "Seraph", "S", 12500000, 938, "bruiser_06"),
 ]
 # Card image per cockpit (MenuImage and PreviewImage). The same ids are in stage_b/data/ids.json (cardImage);
 # build_content.py refuses a build where the two disagree.
@@ -112,7 +112,58 @@ MESH_STOCK_BODY = ["FrontBody", "RearBody", "RearSpoiler"]
 # positive number. The base part is never 0: on a module with a SourceCockpitId the server would then
 # charge 12% of the cockpit price for a copy (GarageCatalogLookup.modulePurchasePrice).
 STOCK_BODY_PERCENT = 25
-BODY_TRIMS = [("GT", 50), ("EVO", 100)]
+# (trim, percent of V, VariantOrder, number of stat steps). The base part is "Standard", VariantOrder 10 (F4).
+BODY_TRIMS = [("GT", 50, 20, 1), ("EVO", 100, 30, 2)]
+BODY_BASE_VARIANT = ("Standard", 10)
+
+# One stat step of a trim, by slot and kit (mesh/INTEGRATION.md F1 to F3). GT adds one step to its base
+# part and EVO two. Front Body: Downforce and SteeringResponse. Rear Body: less Weight and a little
+# EngineOutput. Wing: Downforce and LateralGrip. Nothing else changes.
+#
+# Size (F2): on its own cockpit a step is worth at least 0.3 PI, and three EVO parts 3 to 8 PI on a stock
+# car where the tier has room. A flat stat is worth less the higher the tier (one EngineOutput is 2.7 PI
+# on the E cockpit and 0.1 on the S cockpit), so the steps grow with the kit. Weight sits on its technical
+# minimum (60) on exotic_05 and exotic_06, so there the Rear Body step earns its PI from EngineOutput.
+#
+# Tier safety (F3) caps the two top kits, because any owned part fits any Exotic:
+# - exotic_05 had 3.00 PI between its ceiling (846.49 before the trims) and S, which starts at 849.495
+#   because the tier is read from the shown index. Kit 5 keeps each step just over 0.3 PI, so its three
+#   EVO parts add about 2 PI, not 3; the ceiling is now 848.12, with 1.38 PI of room left.
+# - Kit 6 cannot have 0.3 PI steps at all: a stat is worth about a quarter on exotic_06 of what it is
+#   worth at the exotic_05 ceiling, so steps of that size would lift exotic_05 into S. Kit 6 is shrunk to
+#   steps a little larger than kit 5's (BODY_TRIM_SHRUNK; test_balance.py holds the ceiling under S).
+BODY_TRIM_STEPS = {
+    "FrontBody": {
+        1: {"Downforce": 0.5, "SteeringResponse": 0.5},
+        2: {"Downforce": 0.5, "SteeringResponse": 0.5},
+        3: {"Downforce": 1, "SteeringResponse": 1},
+        4: {"Downforce": 1, "SteeringResponse": 1.5},
+        5: {"Downforce": 0.5, "SteeringResponse": 2},
+        6: {"Downforce": 0.5, "SteeringResponse": 2.5},
+    },
+    "RearBody": {
+        1: {"Weight": -0.5, "EngineOutput": 0.25},
+        2: {"Weight": -0.5, "EngineOutput": 0.5},
+        3: {"Weight": -0.5, "EngineOutput": 0.5},
+        4: {"Weight": -0.5, "EngineOutput": 0.75},
+        5: {"Weight": -0.5, "EngineOutput": 0.75},
+        6: {"Weight": -0.5, "EngineOutput": 1},
+    },
+    "RearSpoiler": {
+        1: {"Downforce": 0.5, "LateralGrip": 0.5},
+        2: {"Downforce": 0.5, "LateralGrip": 0.5},
+        3: {"Downforce": 1, "LateralGrip": 0.5},
+        4: {"Downforce": 1, "LateralGrip": 1},
+        5: {"Downforce": 1, "LateralGrip": 1},
+        6: {"Downforce": 1, "LateralGrip": 1.25},
+    },
+}
+BODY_TRIM_STATS = {"FrontBody": ("Downforce", "SteeringResponse"), "RearBody": ("EngineOutput", "Weight"),
+                   "RearSpoiler": ("Downforce", "LateralGrip")}
+BODY_TRIM_MIN_STEP_PI = 0.3
+BODY_TRIM_SET_PI = (3.0, 8.0)   # three EVO parts on the stock car of their kit
+BODY_TRIM_NO_ROOM = (5,)        # kits whose tier has no room for the 3 PI set (steps still at least 0.3 PI)
+BODY_TRIM_SHRUNK = (6,)         # kits whose steps are under 0.3 PI on their own cockpit (still strictly better)
 
 
 def stock_body(n):
@@ -637,6 +688,8 @@ def build_body_module(live, cockpit, slot, raw, variant_price):
         assert key not in attributes, "the body donor carries %s" % key
     attributes["SourceCockpitId"] = cockpit["id"]
     attributes["SourceCockpitDisplayName"] = cockpit["name"]
+    # mesh/INTEGRATION.md F4: the version name and order, as core modules have them. Still no PurchasePrice.
+    attributes["VariantName"], attributes["VariantOrder"] = BODY_BASE_VARIANT
     attributes["CardTitle"] = name
     attributes["RatingReferenceCockpitId"] = RATING_REFERENCE_COCKPIT_ID
     entry = {"attributes": dict(sorted(attributes.items()))}
@@ -669,15 +722,25 @@ def variant_share(variant_price, percent):
     return price
 
 
-def build_body_trims(base_id, base_entry, variant_price):
-    """The GT and EVO ids of one mesh body part (D6, E2): every attribute of the base part, except the
-    id, the three names and the Price. No VariantName; the same upgrade path source."""
+def build_body_trims(base_id, base_entry, variant_price, step):
+    """The GT and EVO ids of one mesh body part (D6, E2, F1, F4): the base part plus one (GT) or two (EVO)
+    stat steps, with its own id, DisplayName and ModuleName (base name plus the trim), Price, VariantName
+    and VariantOrder. CardTitle stays the base name. The raw stats keep their PerformanceDelta_ twins and
+    the legacy headline rule of the base part. The same upgrade path source."""
     out = []
-    for trim, percent in BODY_TRIMS:
+    base_raw = {name: base_entry["attributes"][name] for name in R.RAW_ORDER}
+    assert set(step) <= set(R.RAW_ORDER) and "Drag" not in step
+    for trim, percent, order, steps in BODY_TRIMS:
         attributes = dict(base_entry["attributes"])
         name = "%s %s" % (attributes["DisplayName"], trim)
-        attributes.update({"ModuleId": "%s_%s" % (base_id, trim), "DisplayName": name, "ModuleName": name, "CardTitle": name,
-                           "Price": variant_share(variant_price, percent)})
+        raw = dict(base_raw)
+        for stat, delta in step.items():
+            raw[stat] = base_raw[stat] + delta * steps
+            assert raw[stat] >= 0, "%s_%s %s falls below zero" % (base_id, trim, stat)
+            attributes[stat] = attributes["PerformanceDelta_" + stat] = num(raw[stat])
+        attributes.update(legacy_body_headlines(raw))
+        attributes.update({"ModuleId": "%s_%s" % (base_id, trim), "DisplayName": name, "ModuleName": name,
+                           "Price": variant_share(variant_price, percent), "VariantName": trim, "VariantOrder": order})
         entry = {"attributes": dict(sorted(attributes.items()))}
         for key in ("upgradePaths", "upgradePathDonor"):
             if key in base_entry:
@@ -777,7 +840,7 @@ def build(live=None):
             if slot in stock_body(n):
                 defaults[slot] = this_id
             if n in MESH_KITS and slot in MESH_STOCK_BODY:
-                for trim_id, trim_entry in build_body_trims(this_id, entry, core_variant_price(balance["modules"], n)):
+                for trim_id, trim_entry in build_body_trims(this_id, entry, core_variant_price(balance["modules"], n), BODY_TRIM_STEPS[slot][n]):
                     assert trim_id not in balance["modules"]
                     balance["modules"][trim_id] = trim_entry
         cockpit_raw = {}
@@ -1120,15 +1183,23 @@ def exotic_set(live, balance, cockpit, variant, body_kit=None, core_family=None,
     return [as_component(live, balance["modules"][item]) for item in ids]
 
 
+def body_part_ids(slot, kit, trims=True):
+    """Every ModuleId of one kit in one body slot: the base part, then its GT and EVO where the slot has them."""
+    base_id = module_id(BODY_SLOTS[slot][0], kit)
+    if not trims or kit not in MESH_KITS or slot not in MESH_STOCK_BODY:
+        return [base_id]
+    return [base_id] + ["%s_%s" % (base_id, row[0]) for row in BODY_TRIMS]
+
+
 def exotic_any_positions(live, balance, cockpit):
     """Everything one Exotic cockpit can wear: any own-family variant per core slot, any kit's part
-    per body slot, and the four optional slots may be empty."""
+    per body slot (base, GT or EVO: mesh/INTEGRATION.md F3), and the four optional slots may be empty."""
     positions = []
     for slot in CORE_ORDER:
         positions.append([as_component(live, balance["modules"][module_id(CORE_SLOTS[slot][0], cockpit["n"], variant)])
                           for variant in VARIANTS])
     for slot in BODY_ORDER:
-        candidates = [as_component(live, balance["modules"][module_id(BODY_SLOTS[slot][0], kit)]) for kit in range(1, 7)]
+        candidates = [as_component(live, balance["modules"][this_id]) for kit in range(1, 7) for this_id in body_part_ids(slot, kit)]
         if slot in OPTIONAL_BODY_SLOTS:
             candidates.append(empty_component(slot))
         positions.append(candidates)
@@ -1179,6 +1250,12 @@ def analyse(balance, design, live):
             for slot in CORE_ORDER + ["FrontBody", "RearBody"]])
         # Every body slot filled with the cockpit's own kit. On a mesh cockpit that is three parts more than stock.
         row["FULL_BODY"] = rate(live, attributes, exotic_set(live, balance, cockpit, "STANDARD", body_slots=BODY_ORDER))
+        # The same builds with the own kit's GT or EVO part in each of the three stock body slots (F2, F3).
+        for trim, _, _, _ in BODY_TRIMS:
+            for key, slots in (("STOCK_" + trim, stock_body(cockpit["n"])), ("FULL_BODY_" + trim, BODY_ORDER)):
+                ids = [module_id(CORE_SLOTS[slot][0], cockpit["n"], "STANDARD") for slot in CORE_ORDER]
+                ids += [module_id(BODY_SLOTS[slot][0], cockpit["n"]) + ("_" + trim if slot in MESH_STOCK_BODY else "") for slot in slots]
+                row[key] = rate(live, attributes, [as_component(live, balance["modules"][item]) for item in ids])
         out["exotic"][cid] = row
         prow = {}
         for variant in VARIANTS:
@@ -1206,6 +1283,21 @@ def analyse(balance, design, live):
                 result = rate(live, balance["cockpits"][cockpit["id"]]["attributes"], components + [part])
                 row[cockpit["id"]] = result["Overall"]
             out["body"][slot][kit] = row
+
+    # Trim worth (F2): each kit's GT and EVO in place of the base part, on the stock build of every cockpit.
+    out["trim"] = {}
+    for slot in MESH_STOCK_BODY:
+        out["trim"][slot] = {}
+        for kit in MESH_KITS:
+            row = {}
+            for cockpit in COCKPITS:
+                defaults = design[cockpit["id"]]["defaults"]
+                components = [as_component(live, balance["modules"][defaults[item]]) for item in CORE_ORDER + stock_body(cockpit["n"]) if item != slot]
+                row[cockpit["id"]] = {}
+                for this_id, name in zip(body_part_ids(slot, kit), ["BASE"] + [trim[0] for trim in BODY_TRIMS]):
+                    part = as_component(live, balance["modules"][this_id])
+                    row[cockpit["id"]][name] = rate(live, balance["cockpits"][cockpit["id"]]["attributes"], components + [part])["Overall"]
+            out["trim"][slot][kit] = row
 
     # Cross-kit mixes: whole foreign kits, then the best and worst part per slot (exhaustive 6^6).
     for cockpit in COCKPITS:
@@ -1242,6 +1334,46 @@ def analyse(balance, design, live):
             assert abs(exact - value) < 1e-6, "fast index differs from the port"
             checked.append((exact, combo))
         out["mix"][cid] = {"whole": whole, "best": checked[0], "worst": checked[1]}
+
+        # The same with the GT and EVO parts as options (F3). An EVO part is at least as good as its GT and
+        # its base part on every stat (checked here), and the index never falls when a stat improves, so the
+        # best mix is found among the EVO parts. "best_trim": the three stock slots, any kit's EVO part.
+        # "best_full": that, plus any kit's base part (or none) in each of the three slots that start empty.
+        lower = [name in R.LOWER_IS_BETTER for name in R.RAW_ORDER]
+        top = "_" + BODY_TRIMS[-1][0]
+        evo_lists = []
+        for slot in MESH_STOCK_BODY:
+            rows = []
+            for kit in range(1, 7):
+                ids = body_part_ids(slot, kit)
+                assert ids[-1].endswith(top)
+                parts = [raw_list(R.apply_to_module_raw(balance["modules"][this_id]["attributes"])) for this_id in ids]
+                for part in parts[:-1]:
+                    assert all((parts[-1][i] <= part[i]) if lower[i] else (parts[-1][i] >= part[i]) for i in range(len(part))), ids[-1]
+                rows.append(parts[-1])
+            evo_lists.append(rows)
+        empty_slots = [slot for slot in BODY_ORDER if slot not in MESH_STOCK_BODY]
+        zero = [0.0] * len(R.RAW_ORDER)
+        empty_lists = [[raw_list(R.apply_to_module_raw(balance["modules"][module_id(BODY_SLOTS[slot][0], kit)]["attributes"])) for kit in range(1, 7)] + [zero]
+                       for slot in empty_slots]
+
+        def best_of(lists):
+            found = None
+            for combo in itertools.product(*[range(len(parts)) for parts in lists]):
+                raw = list(core_list)
+                for parts, choice in zip(lists, combo):
+                    part = parts[choice]
+                    for i in range(len(raw)):
+                        raw[i] += part[i]
+                value = index(raw)
+                if found is None or value > found[0]:
+                    found = (value, combo, raw)
+            exact = live.calculator.calculate(dict(zip(R.RAW_ORDER, found[2])))["Overall"]
+            assert abs(exact["UnroundedPerformanceIndex"] - found[0]) < 1e-6, "fast index differs from the port"
+            return {"Overall": exact, "kits": [choice + 1 if choice < 6 else 0 for choice in found[1]]}
+
+        out["mix"][cid]["best_trim"] = best_of(evo_lists)
+        out["mix"][cid]["best_full"] = best_of(evo_lists + empty_lists)
 
     # What +1 Drag costs each stock build.
     out["drag_plus_one"] = {}
@@ -1355,13 +1487,14 @@ def write_report(balance, design, reductions, live, analysis):
                                                   cockpits[c["id"]]["stockPI"], analysis["exotic"][c["id"]]["FULL_BODY"]["Overall"]["UnroundedPerformanceIndex"] - analysis["exotic"][c["id"]]["STANDARD"]["Overall"]["UnroundedPerformanceIndex"])
         for c in COCKPITS if c["n"] in MESH_KITS))
     add("  The tier does not change. \"Highest build found\" and \"Ceiling\" (section 7) already search every body slot, filled or empty.")
-    add("- **Twelve new ModuleIds**: `_GT` and `_EVO` of the Nose, Engine Deck and Wing of kits 02 and 05. Each copies every attribute and the upgrade paths of its base part, so it rates exactly as the base part does. Only the names (base name plus the trim) and the `Price` differ. Since 2026-10-04 (INTEGRATION.md E1, E2) every body part carries `SourceCockpitId` and `SourceCockpitDisplayName` of its kit's cockpit, so it is locked until that cockpit is owned; the base part of a stock slot costs a quarter of the kit's core variant price (the first copy comes with the car), GT is half that price and EVO is the whole of it.")
+    add("- **36 GT and EVO ModuleIds**: `_GT` and `_EVO` of the Front Body, Rear Body and Wing of every kit. Each carries the upgrade paths of its base part and its attribute set. Every body part carries `SourceCockpitId` and `SourceCockpitDisplayName` of its kit's cockpit, so it is locked until that cockpit is owned (INTEGRATION.md E1); the base part of a stock slot costs a quarter of the kit's core variant price (the first copy comes with the car), GT half and EVO the whole of it (E2). `VariantName` is Standard, GT or EVO and `VariantOrder` 10, 20, 30; `CardTitle` is the base name on all three (F4).")
+    add("- **GT and EVO add stats** (F1 to F3; section 6a). GT adds one step to its base part and EVO two. Front Body: `Downforce` and `SteeringResponse`. Rear Body: less `Weight` and a little `EngineOutput`. Wing: `Downforce` and `LateralGrip`. Base parts, hidden-slot parts, core modules and cockpits are unchanged.")
     add("")
     rows = []
     for n in MESH_KITS:
         for slot in MESH_STOCK_BODY:
             base_id = module_id(BODY_SLOTS[slot][0], n)
-            for this_id in [base_id] + ["%s_%s" % (base_id, trim) for trim, _ in BODY_TRIMS]:
+            for this_id in body_part_ids(slot, n):
                 attributes = modules[this_id]["attributes"]
                 rows.append(["`%s`" % this_id, attributes["DisplayName"], fmt(attributes["Price"]), fmt(attributes["NeonPrice"])])
     add(table(["ModuleId", "Name", "Price", "NeonPrice"], rows))
@@ -1422,7 +1555,7 @@ def write_report(balance, design, reductions, live, analysis):
     add(table(["Kit", "Name", "Front Body, Rear Body, Wing: base `Price` (a quarter of the core variant price)", "GT (half the core variant price)", "EVO (the core variant price)",
                "Side Pods, Splitter, Diffuser `Price`", "Body part `NeonPrice`"], rows))
     add("")
-    add("- Body parts carry `Price`, `SourceCockpitId` and `SourceCockpitDisplayName` (the cockpit of their kit), and no `PurchasePrice`, `VariantName` or `VariantOrder`. No stock body part has `Price` 0: on a module with a `SourceCockpitId` the server would then charge 12% of the cockpit price for a copy. Upgrade guides are the live accessory guides: Nose, Splitter, Engine Deck and Diffuser 3,025 / 3,781 / 4,538 / 5,596 / 6,806 / 8,168; Wing 3,575 / 4,469 / 5,363 / 6,614 / 8,044 / 9,653; Side Pods 3,850 / 4,813 / 5,775 / 7,123 / 8,663 / 10,395.")
+    add("- Body parts carry `Price`, `SourceCockpitId` and `SourceCockpitDisplayName` (the cockpit of their kit), `VariantName` (Standard, GT or EVO) and `VariantOrder` (10, 20, 30), and no `PurchasePrice`. No stock body part has `Price` 0: on a module with a `SourceCockpitId` the server would then charge 12% of the cockpit price for a copy. Upgrade guides are the live accessory guides: Nose, Splitter, Engine Deck and Diffuser 3,025 / 3,781 / 4,538 / 5,596 / 6,806 / 8,168; Wing 3,575 / 4,469 / 5,363 / 6,614 / 8,044 / 9,653; Side Pods 3,850 / 4,813 / 5,775 / 7,123 / 8,663 / 10,395.")
     add("")
 
     # 3 ----------------------------------------------------------------
@@ -1573,14 +1706,52 @@ def write_report(balance, design, reductions, live, analysis):
     add(table(["Stat"] + ["Kit %d %s" % (cockpit["n"], cockpit["kit_name"]) for cockpit in COCKPITS], rows))
     add("")
 
+    def cell(result):
+        return "%s %d" % (result["Overall"]["Tier"], result["Overall"]["PerformanceIndex"])
+
+    # 6a ---------------------------------------------------------------
+    add("## 6a. GT and EVO body parts")
+    add("")
+    add("One stat step per slot and kit (`BODY_TRIM_STEPS`). GT is the base part plus one step, EVO plus two. PI is the unrounded gain over the base part on the stock car of the part's own kit.")
+    add("")
+    rows = []
+    for n in MESH_KITS:
+        cid = COCKPITS[n - 1]["id"]
+        for slot in MESH_STOCK_BODY:
+            worth = analysis["trim"][slot][n][cid]
+            base = worth["BASE"]["UnroundedPerformanceIndex"]
+            step = BODY_TRIM_STEPS[slot][n]
+            rows.append([n, COCKPITS[n - 1]["name"], RAIL_LABEL[slot],
+                         ", ".join("`%s` %s%s" % (stat, "+" if delta > 0 else "", fmt(delta)) for stat, delta in step.items()),
+                         ", ".join("`%s` %s%s" % (stat, "+" if delta > 0 else "", fmt(2 * delta)) for stat, delta in step.items()),
+                         "%+.2f" % (worth["GT"]["UnroundedPerformanceIndex"] - base), "%+.2f" % (worth["EVO"]["UnroundedPerformanceIndex"] - base)])
+    add(table(["Kit", "Car", "Slot", "GT adds", "EVO adds", "GT PI on its own car", "EVO PI on its own car"], rows))
+    add("")
+    rows = []
+    for cockpit in COCKPITS:
+        e = analysis["exotic"][cockpit["id"]]
+        stock = e["STANDARD"]["Overall"]["UnroundedPerformanceIndex"]
+        mix = analysis["mix"][cockpit["id"]]
+        rows.append(["%s %s" % (cockpit["id"], cockpit["name"]), cell(e["STANDARD"]),
+                     "%s (%+.2f)" % (cell(e["STOCK_GT"]), e["STOCK_GT"]["Overall"]["UnroundedPerformanceIndex"] - stock),
+                     "%s (%+.2f)" % (cell(e["STOCK_EVO"]), e["STOCK_EVO"]["Overall"]["UnroundedPerformanceIndex"] - stock),
+                     cell(e["FULL_BODY"]), cell(e["FULL_BODY_EVO"]),
+                     "%s (kits %s)" % (cell(mix["best_trim"]), "".join(str(kit) for kit in mix["best_trim"]["kits"])),
+                     "%s (kits %s)" % (cell(mix["best_full"]), "".join(str(kit) if kit else "-" for kit in mix["best_full"]["kits"]))])
+    add(table(["Cockpit", "Stock", "Three own GT parts", "Three own EVO parts", "All six own parts", "All six own parts, three EVO",
+               "Best three EVO parts of any kit", "Best of any kit in all six slots"], rows))
+    add("")
+    add("- Every build in this table stays in the cockpit's stock tier. The last two columns are exhaustive: an EVO part is at least as good as its GT and base part on every stat, so the best mix is among the EVO parts (kits as Front Body, Rear Body, Wing, then Side Pods, Splitter, Diffuser; `-` is empty).")
+    add("- Kit 5 (Rosso) keeps each step just over %s PI, so its three EVO parts add about 2 PI rather than %s: the Rosso ceiling has to stay under the S band (section 7)." % (fmt(BODY_TRIM_MIN_STEP_PI), fmt(BODY_TRIM_SET_PI[0])))
+    add("- Kit 6 (Seraph) is shrunk: its steps are worth under %s PI on its own car. A stat is worth about a quarter on Seraph of what it is worth at the Rosso ceiling, and any owned part fits any Exotic, so 0.3 PI steps on Seraph would lift Rosso into S. Each part is still strictly better than the one below it." % fmt(BODY_TRIM_MIN_STEP_PI))
+    add("- The similar-value rule of section 6 covers base parts only. GT and EVO are upgrades and are worth more.")
+    add("")
+
     # 7 ----------------------------------------------------------------
     add("## 7. Variant sets and upgrades")
     add("")
     add("Exotic rows keep the cockpit's own six body parts unless the column says otherwise. \"Max upgrades\" spends upgrade points for the highest PI found (a point that lowers PI is not bought). Piercer rows are the nearest like-for-like build.")
     add("")
-
-    def cell(result):
-        return "%s %d" % (result["Overall"]["Tier"], result["Overall"]["PerformanceIndex"])
 
     rows = []
     for cockpit in COCKPITS:
@@ -1632,7 +1803,7 @@ def write_report(balance, design, reductions, live, analysis):
     proven = all("EDCBAS".index(analysis["exotic"][cockpit["id"]]["ANY_CEILING"]["Overall"]["Tier"])
                  <= "EDCBAS".index(analysis["piercer"][cockpit["piercer"]]["ANY_MAX"][0]["Overall"]["Tier"]) for cockpit in COCKPITS)
     add("No Exotic cockpit can reach a higher tier than the Piercer of its tier reaches today: %s." % (
-        "every Exotic ceiling is inside the tier its Piercer reaches, so this is proven for own-family core modules and all 36 body parts (the twelve GT and EVO ids of the mesh kits carry the stats and upgrade paths of their base part, so they are covered)" if proven
+        "every Exotic ceiling is inside the tier its Piercer reaches, so this is proven for own-family core modules and all 72 body parts (the 36 GT and EVO parts of every kit are options in their slot on every cockpit)" if proven
         else "NOT proven by the ceiling for every cockpit; only the search supports it"))
     add("")
 
@@ -1737,7 +1908,7 @@ def write_report(balance, design, reductions, live, analysis):
     # 11 ---------------------------------------------------------------
     add("## 11. Attribute sets")
     add("")
-    add("Every module in `balance.json` carries every attribute name of its live donor, plus the two opt-in attributes from INTERFACE.md (`CardTitle` = `DisplayName`, `RatingReferenceCockpitId` = `exotic_03`). The build fails if a donor attribute has no rule.")
+    add("Every module in `balance.json` carries every attribute name of its live donor, plus the two opt-in attributes from INTERFACE.md (`CardTitle` = `DisplayName`, or the base part's `DisplayName` on a GT or EVO body part; `RatingReferenceCockpitId` = `exotic_03`). The build fails if a donor attribute has no rule.")
     add("")
     for label, donor_id in [("Engine1 Standard", "MODULE_ENGINE_BRUISER_03_STANDARD"), ("Engine2 Standard", "MODULE_ENGINE_B_BRUISER_03_STANDARD"),
                             ("Stabilisers Standard", "MODULE_STABILISER_BRUISER_03_STANDARD"), ("Boost Standard", "MODULE_BOOST_BRUISER_03_STANDARD"),
@@ -1763,7 +1934,7 @@ def write_report(balance, design, reductions, live, analysis):
         ["`Price`, `PurchasePrice`", "0 / 12% of the cockpit price", "Front Body, Rear Body, Wing: a quarter, GT half and EVO the whole core variant price; Side Pods, Splitter, Diffuser: `Price` by kit; no `PurchasePrice`"],
         ["`NeonPrice`", "5,000 / 6,500 / 8,000", "by kit"],
         ["`PointNCostGuide`, `UpgradePointCapacity`, `MaxPointsPerPath`, `UpgradePrice`", "section 2", "copied from the donor"],
-        ["`Tier`, `VariantName`, `VariantOrder`", "Standard / Lightweight / Power, 10 / 20 / 30", "`Tier` = kit name (label only, not read); no `VariantName` or `VariantOrder`, as on the donor"],
+        ["`Tier`, `VariantName`, `VariantOrder`", "Standard / Lightweight / Power, 10 / 20 / 30", "`Tier` = kit name, which is the car name (label only, not read); `VariantName` Standard / GT / EVO and `VariantOrder` 10 / 20 / 30 (not on the donor)"],
         ["`Level`, `MaxLevel`, notes, flags (`BalanceEditable`, `BalanceNote`, `BoostNotes`, `CatalogPublishReady`, `CatalogVisible`, `HiddenFromCatalog`, `RetiredFromCatalog`, `Upgradable`, `TemplateType`, `PreviewImage`, `V2*`)", "copied from the donor", "copied from the donor"],
     ]))
     add("")

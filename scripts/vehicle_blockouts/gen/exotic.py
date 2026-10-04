@@ -1215,12 +1215,12 @@ def build_spec():
         return {"name": name, "culture": culture, "modules": dict(zip(order, ids))}
 
     kits = {
-        "wedge": kit("Wedge", W, ["mono", "box", "vector", "quad", "shovel", "slab", "strake", "chin", "strake", "poster"]),
-        "analogue": kit("Analogue", A, ["twin", "round", "lift", "twin", "droplet", "boat", "round", "soft", "smooth", "bridge"]),
-        "hyper": kit("Hyper", H, ["top", "twin", "blade", "tri", "keel", "tunnel", "blade", "keel", "venturi", "active"]),
-        "track": kit("Track", K, ["stacks", "stub", "out", "slot", "blunt", "frame", "tray", "plough", "bar", "gt"]),
-        "longtail": kit("Longtail", L, ["long", "lance", "trio", "bore", "lowline", "streamer", "slab", "long", "tray", "fins"]),
-        "concept": kit("Concept", C, ["cross", "ear", "tip", "split", "visor", "kamm", "waist", "bib", "fin", "split"]),
+        "wedge": kit("Aurora", W, ["mono", "box", "vector", "quad", "shovel", "slab", "strake", "chin", "strake", "poster"]),
+        "analogue": kit("Zephyr", A, ["twin", "round", "lift", "twin", "droplet", "boat", "round", "soft", "smooth", "bridge"]),
+        "hyper": kit("Rosso", H, ["top", "twin", "blade", "tri", "keel", "tunnel", "blade", "keel", "venturi", "active"]),
+        "track": kit("Stinger", K, ["stacks", "stub", "out", "slot", "blunt", "frame", "tray", "plough", "bar", "gt"]),
+        "longtail": kit("Endura", L, ["long", "lance", "trio", "bore", "lowline", "streamer", "slab", "long", "tray", "fins"]),
+        "concept": kit("Seraph", C, ["cross", "ear", "tip", "split", "visor", "kamm", "waist", "bib", "fin", "split"]),
     }
 
     def cockpit(name, culture, kit_id, fn):

@@ -58,9 +58,11 @@ MODULE_PASSTHROUGH = {
 # Names Stage A adds; they are not on any Piercer donor.
 MODULE_OPT_IN = {"CardTitle", "RatingReferenceCockpitId"}
 # mesh/INTEGRATION.md E1: body modules are locked to the cockpit of their kit, as core modules are. The
-# accessory donors carry neither name. The core purchase and variant names stay off body modules.
-BODY_MODULE_OPT_IN = {"SourceCockpitId", "SourceCockpitDisplayName"}
-BODY_MODULE_BANNED = ("PurchasePrice", "VariantName", "VariantOrder")
+# accessory donors carry neither name. F4: body modules also carry VariantName (Standard, GT, EVO) and
+# VariantOrder (10, 20, 30), which the donors lack too. PurchasePrice stays off body modules.
+BODY_MODULE_OPT_IN = {"SourceCockpitId", "SourceCockpitDisplayName", "VariantName", "VariantOrder"}
+BODY_MODULE_BANNED = ("PurchasePrice",)
+BODY_VARIANT = {None: ("Standard", 10), "GT": ("GT", 20), "EVO": ("EVO", 30)}
 COCKPIT_OPT_IN = {
     "DefaultFrontBodyModuleId", "DefaultRearBodyModuleId", "DefaultSidePodsModuleId", "DefaultFrontBumperModuleId",
     "DefaultRearBumperModuleId", "DefaultRearSpoilerModuleId", "DriverSeatOffsetX", "DriverSeatOffsetY",
@@ -776,22 +778,26 @@ def build_content(mode="AUDIT", scope="pilot", balance_path=BALANCE_PATH, catalo
                     continue
                 identity = {"ModuleId": mid, "CategoryId": category_id, "ModuleType": slot["moduleType"], "ModuleFolder": slot["moduleFolder"],
                             "ModuleSlot": slot["moduleSlot"], "DisplayName": display, "ModuleName": display, "TemplateType": "Module",
-                            "CardTitle": display, "RatingReferenceCockpitId": ids["ratingReferenceCockpitId"]}
+                            "CardTitle": base_display, "RatingReferenceCockpitId": ids["ratingReferenceCockpitId"]}
                 derived = {}
                 if core:
                     identity.update({"V2PublishedModuleId": mid, "SourceCockpitId": c["cockpitId"],
                                      "EnginePosition": slot["moduleEnginePosition"], "RearEngine": slot["rearEngine"]})
                     derived["SourceCockpitDisplayName"] = c["displayName"]
                 else:
-                    identity.update({"SourceCockpitId": c["cockpitId"], "SourceCockpitDisplayName": c["displayName"]})
+                    if variant not in BODY_VARIANT:
+                        problems.append("%s: body trim %r has no VariantName and VariantOrder rule" % (mid, variant))
+                        continue
+                    identity.update({"SourceCockpitId": c["cockpitId"], "SourceCockpitDisplayName": c["displayName"],
+                                     "VariantName": BODY_VARIANT[variant][0], "VariantOrder": BODY_VARIANT[variant][1]})
                     for name in sorted(BODY_MODULE_OPT_IN):
                         if name not in entry.get("attributes", {}):
-                            problems.append("%s: balance.json does not set %s (INTERFACE.md: a body module is locked to the cockpit of its kit)" % (mid, name))
+                            problems.append("%s: balance.json does not set %s (INTERFACE.md: a body module carries the cockpit of its kit and its version)" % (mid, name))
                     for banned in BODY_MODULE_BANNED:
                         if banned in entry.get("attributes", {}) or banned in donor:
-                            problems.append("%s: body modules carry no %s (INTERFACE.md: Price and the source cockpit only)" % (mid, banned))
+                            problems.append("%s: body modules carry no %s (INTERFACE.md: Price, the source cockpit and the version only)" % (mid, banned))
                 attrs = merge_attributes(mid, donor, entry.get("attributes", {}), identity, MODULE_PASSTHROUGH, derived, fill_from_donor, problems, warnings)
-                required = ["Price", "NeonPrice", "UpgradePointCapacity"] + (["PurchasePrice", "VariantName", "VariantOrder"] if core else [])
+                required = ["Price", "NeonPrice", "UpgradePointCapacity"] + (["PurchasePrice", "VariantName", "VariantOrder"] if core else ["VariantName", "VariantOrder"])
                 for name in required:
                     if not isinstance(attrs.get(name), (int, float, str)) or isinstance(attrs.get(name), bool):
                         problems.append("%s: required attribute %s is missing" % (mid, name))

@@ -35,7 +35,21 @@ STOCK_BODY_BASE_PRICE = {1: 1500, 2: 4500, 3: 13200, 4: 42000, 5: 132000, 6: 375
 CORE_VARIANT_PRICE = {1: 6000, 2: 18000, 3: 52800, 4: 168000, 5: 528000, 6: 1500000}
 HIDDEN_BODY_SLOTS = ("SidePods", "FrontBumper", "RearBumper")
 STOCK_BODY_SLOTS = ("FrontBody", "RearBody", "RearSpoiler")
-BODY_ABSENT = ("PurchasePrice", "VariantName", "VariantOrder")
+BODY_ABSENT = ("PurchasePrice",)
+# mesh/INTEGRATION.md F1 to F4, written out again here on purpose.
+BODY_VARIANT = {None: ("Standard", 10), "GT": ("GT", 20), "EVO": ("EVO", 30)}
+BODY_TRIM_STEPS_OF = {"GT": 1, "EVO": 2}
+# The stats a trim may change, by id stem: (stat, direction of "better").
+BODY_TRIM_STATS = {"MODULE_FRONTBODY_EXOTIC": {"Downforce": 1, "SteeringResponse": 1},
+                   "MODULE_REARBODY_EXOTIC": {"Weight": -1, "EngineOutput": 1},
+                   "MODULE_REARSPOILER_EXOTIC": {"Downforce": 1, "LateralGrip": 1}}
+LEGACY_HEADLINES = ("Acceleration", "Braking", "Handling", "Drift")
+MIN_STEP_PI = 0.3
+SET_PI = (3.0, 8.0)
+# F3 limits F2 on the two top kits (build_balance.py BODY_TRIM_STEPS says why). Kit 5: every step is still at
+# least 0.3 PI, but the tier has no room for a 3 PI set. Kit 6: shrunk, a step is under 0.3 PI on its own car.
+NO_ROOM_KITS = (5,)
+SHRUNK_KITS = (6,)
 
 _CACHE = {}
 
@@ -296,6 +310,7 @@ def test_prices():
             # E1: locked to the cockpit of its kit, as a core module is; none of the core purchase or variant names.
             assert attributes["SourceCockpitId"] == cockpit["id"] and attributes["SourceCockpitDisplayName"] == cockpit["name"]
             assert not any(name in attributes for name in BODY_ABSENT), attributes["ModuleId"]
+            assert (attributes["VariantName"], attributes["VariantOrder"]) == BODY_VARIANT[None], attributes["ModuleId"]  # F4
             assert attributes["UpgradePointCapacity"] == 6 and attributes["MaxPointsPerPath"] == 3
             for i in range(1, 7):
                 assert attributes["Point%dCostGuide" % i] == donor["Point%dCostGuide" % i]
@@ -321,6 +336,7 @@ def test_prices():
         assert attributes["SourceCockpitId"] == base_attributes["SourceCockpitId"] == "exotic_%02d" % n
         assert attributes["SourceCockpitDisplayName"] == base_attributes["SourceCockpitDisplayName"]
         assert not any(name in attributes for name in BODY_ABSENT), module_id
+        assert (attributes["VariantName"], attributes["VariantOrder"]) == BODY_VARIANT[trim], module_id  # F4
     # No other body id exists: every body module was covered above.
     assert sum(1 for entry in disk["modules"].values() if entry["attributes"]["ModuleType"] in B.BODY_ORDER) == 36 + 36
     # The 8/10/12/15/18/22 rule reproduces every live Piercer variant module.
@@ -455,7 +471,9 @@ def test_every_module_has_its_donor_attribute_set():
             attributes = c["disk"]["modules"]["%s_%02d" % (stem, cockpit["n"])]["attributes"]
             donor = c["live"].modules[donor_id]["attributes"]
             assert not {"SourceCockpitId", "SourceCockpitDisplayName"} & set(donor)
-            assert set(attributes) == set(donor) | extra | {"SourceCockpitId", "SourceCockpitDisplayName"}, (attributes["ModuleId"], set(attributes) ^ set(donor))
+            assert not {"VariantName", "VariantOrder"} & set(donor)
+            assert set(attributes) == set(donor) | extra | {"SourceCockpitId", "SourceCockpitDisplayName", "VariantName", "VariantOrder"}, (
+                attributes["ModuleId"], set(attributes) ^ set(donor))
             for name, value in donor.items():
                 assert kind(attributes[name]) == kind(value), (attributes["ModuleId"], name)
             assert attributes["SourceCockpitId"] == cockpit["id"] and attributes["SourceCockpitDisplayName"] == cockpit["name"]
@@ -468,21 +486,43 @@ def test_every_module_has_its_donor_attribute_set():
         donor = c["live"].modules[donor_id]["attributes"]
         for name, value in B.legacy_body_headlines(donor).items():
             assert donor[name] == value, (donor_id, name)
-    # Mesh body trims (D7, E1): every attribute of the base part and the same upgrade path source, except the id,
-    # the names and the Price. So the attribute set is the donor set too, and no VariantName is added.
+    # Mesh body trims (D7, E1, F1, F4): the attribute set and the upgrade path source of the base part. Apart from
+    # the id, the two names, the Price and the version, a trim differs from its base part only in the two stats
+    # of its slot (with their PerformanceDelta_ twins and the legacy headlines the generator derives from the raw
+    # stats): one step on GT, exactly twice that on EVO, each in the direction that is better. CardTitle is the
+    # base name on all three.
     for module_id, (base_id, trim) in trim_module_ids().items():
         entry, base_entry = c["disk"]["modules"][module_id], c["disk"]["modules"][base_id]
         attributes, base_attributes = entry["attributes"], base_entry["attributes"]
         assert set(attributes) == set(base_attributes), module_id
         differing = {name for name in attributes if attributes[name] != base_attributes[name]}
-        assert differing == {"ModuleId", "DisplayName", "ModuleName", "CardTitle", "Price"}, (module_id, differing)
-        assert attributes["DisplayName"] == base_attributes["DisplayName"] + " " + trim
+        stem, kit = base_id[:-3], int(base_id[-2:])
+        stats = BODY_TRIM_STATS[stem]
+        slot = next(item for item in B.BODY_ORDER if B.BODY_SLOTS[item][0] == stem)
+        assert B.BODY_TRIM_STEPS[slot][kit].keys() == stats.keys(), module_id
+        assert {"ModuleId", "DisplayName", "ModuleName", "Price", "VariantName", "VariantOrder"} | set(stats) | {"PerformanceDelta_" + name for name in stats} <= differing, (module_id, differing)
+        assert differing <= {"ModuleId", "DisplayName", "ModuleName", "Price", "VariantName", "VariantOrder"} | set(stats) | {"PerformanceDelta_" + name for name in stats} | set(LEGACY_HEADLINES), (module_id, differing)
+        for name in R.RAW_ORDER:
+            step = B.BODY_TRIM_STEPS[slot][kit].get(name, 0)
+            assert step == 0 or step * stats[name] > 0, (module_id, name)
+            assert abs(attributes[name] - (base_attributes[name] + BODY_TRIM_STEPS_OF[trim] * step)) < 1e-9, (module_id, name)
+            assert attributes["PerformanceDelta_" + name] == attributes[name], (module_id, name)
+            assert attributes[name] >= 0 or name == "TopSpeed", (module_id, name)
+        assert attributes["Drag"] == 0
+        for name, value in B.legacy_body_headlines(attributes).items():
+            assert attributes[name] == value, (module_id, name)
+        assert attributes["DisplayName"] == attributes["ModuleName"] == base_attributes["DisplayName"] + " " + trim
+        assert attributes["CardTitle"] == base_attributes["CardTitle"] == base_attributes["DisplayName"], module_id
         assert {key: value for key, value in entry.items() if key != "attributes"} == {key: value for key, value in base_entry.items() if key != "attributes"}
-        assert R.apply_to_module_raw(attributes) == R.apply_to_module_raw(base_attributes)
         assert B.paths_for(c["live"], entry) == B.paths_for(c["live"], base_entry)
+    trims = trim_module_ids()
     for module_id, entry in c["disk"]["modules"].items():
         attributes = entry["attributes"]
-        assert attributes["CardTitle"] == attributes["DisplayName"] == attributes["ModuleName"]
+        assert attributes["DisplayName"] == attributes["ModuleName"]
+        if module_id in trims:
+            assert attributes["CardTitle"] == c["disk"]["modules"][trims[module_id][0]]["attributes"]["DisplayName"]
+        else:
+            assert attributes["CardTitle"] == attributes["DisplayName"]
         assert attributes["RatingReferenceCockpitId"] == "exotic_03"
         assert attributes["TemplateType"] == "Module" and attributes["RetiredFromCatalog"] is False
 
@@ -573,6 +613,8 @@ def test_body_modules_are_lvl1_size_and_similar_value():
             seen.add(tuple(attributes[name] for name in R.RAW_ORDER))
         assert len(seen) == 6
     # Similar value on every cockpit: swapping any style into a stock build moves PI very little.
+    # This rule is for the BASE parts only (the loops here read the ids without a trim). GT and EVO parts are
+    # upgrades and are exempt: test_body_trims_earn_their_price holds them to F2 and F3 instead.
     # The E limit is wider only because one half step of a stat is worth up to 1.3 PI on Spider.
     limit = {"E": 1.0, "D": 0.5, "C": 0.5, "B": 0.5, "A": 0.5, "S": 0.5}
     for slot in B.BODY_ORDER:
@@ -656,6 +698,49 @@ def test_upgrade_paths():
         assert deltas["Weight"] == -3 and len(deltas) == 2 and all(value > 0 for name, value in deltas.items() if name != "Weight")
 
 
+def test_body_trims_earn_their_price():
+    """mesh/INTEGRATION.md F2. Every figure is the unrounded index of a stock build with one part swapped."""
+    c = ctx()
+    assert (MIN_STEP_PI, SET_PI, NO_ROOM_KITS, SHRUNK_KITS) == (B.BODY_TRIM_MIN_STEP_PI, B.BODY_TRIM_SET_PI, B.BODY_TRIM_NO_ROOM, B.BODY_TRIM_SHRUNK)
+    assert sorted(B.BODY_TRIM_STEPS) == sorted(STOCK_BODY_SLOTS) and all(sorted(B.BODY_TRIM_STEPS[slot]) == list(MESH_KITS) for slot in STOCK_BODY_SLOTS)
+    trim = c["analysis"]["trim"]
+    minimum = c["live"].config.curves["Weight"]["TechnicalMinimum"]
+    for cockpit in B.COCKPITS:
+        n, cid = cockpit["n"], cockpit["id"]
+        for slot in STOCK_BODY_SLOTS:
+            worth = trim[slot][n][cid]
+            base, gt, evo = [worth[name]["UnroundedPerformanceIndex"] for name in ("BASE", "GT", "EVO")]
+            # Strictly better at every step, on every kit.
+            assert base < gt < evo, (cid, slot, base, gt, evo)
+            if n in SHRUNK_KITS:
+                assert gt - base < MIN_STEP_PI and evo - gt < MIN_STEP_PI, (cid, slot)  # the recorded exception is real
+                assert gt - base >= 0.05 and evo - gt >= 0.05, (cid, slot, gt - base, evo - gt)
+            else:
+                assert gt - base >= MIN_STEP_PI and evo - gt >= MIN_STEP_PI, (cid, slot, gt - base, evo - gt)
+            # A trim is never worse than its base part on ANY cockpit (a player may fit it anywhere).
+            for other in B.COCKPITS:
+                there = trim[slot][n][other["id"]]
+                assert there["BASE"]["UnroundedPerformanceIndex"] <= there["GT"]["UnroundedPerformanceIndex"] <= there["EVO"]["UnroundedPerformanceIndex"], (slot, n, other["id"])
+        exotic = c["analysis"]["exotic"][cid]
+        stock = exotic["STANDARD"]["Overall"]["UnroundedPerformanceIndex"]
+        gt_set = exotic["STOCK_GT"]["Overall"]["UnroundedPerformanceIndex"] - stock
+        evo_set = exotic["STOCK_EVO"]["Overall"]["UnroundedPerformanceIndex"] - stock
+        assert 0 < gt_set < evo_set <= SET_PI[1], (cid, gt_set, evo_set)
+        if n in SHRUNK_KITS:
+            assert evo_set < 6 * MIN_STEP_PI, (cid, evo_set)
+        elif n in NO_ROOM_KITS:
+            assert 6 * MIN_STEP_PI <= evo_set < SET_PI[0], (cid, evo_set)
+        else:
+            assert SET_PI[0] <= evo_set <= SET_PI[1], (cid, evo_set)
+        # Where Weight is pinned at its technical minimum the Rear Body step still earns its PI (from EngineOutput).
+        if c["design"][cid]["result"]["Raw"]["Weight"] <= minimum + 1e-9:
+            assert B.BODY_TRIM_STEPS["RearBody"][n]["EngineOutput"] > 0
+    assert [cockpit["id"] for cockpit in B.COCKPITS if c["design"][cockpit["id"]]["result"]["Raw"]["Weight"] <= minimum + 1e-9] == ["exotic_05", "exotic_06"]
+    # The two exceptions are forced by F3, not chosen: the exotic_05 ceiling has under 3 PI of room left.
+    hyper = c["analysis"]["exotic"]["exotic_05"]["ANY_CEILING"]["Overall"]
+    assert c["live"].config.tier_bands["S"] - hyper["UnroundedPerformanceIndex"] < SET_PI[0]
+
+
 def test_body_parts_cannot_shift_a_tier():
     c = ctx()
     for cockpit in B.COCKPITS:
@@ -680,6 +765,20 @@ def test_body_parts_cannot_shift_a_tier():
                 cockpit["id"], full["PerformanceIndex"])
         else:
             assert full["PerformanceIndex"] == stock, (cockpit["id"], full["PerformanceIndex"])
+        # F3: the same proofs with the GT and EVO parts of every kit as options. The stock build and the full-body
+        # build with the own kit's trims, the best three parts of any kit in the stock slots, and the best part of
+        # any kit in all six slots (exhaustive over the EVO parts, which are at least as good as their GT and base
+        # parts on every stat) all stay in the cockpit's stock tier.
+        exotic = c["analysis"]["exotic"][cockpit["id"]]
+        for key in ("STOCK_GT", "STOCK_EVO", "FULL_BODY_GT", "FULL_BODY_EVO"):
+            assert exotic[key]["Overall"]["Tier"] == cockpit["tier"], (cockpit["id"], key, exotic[key]["Overall"]["PerformanceIndex"])
+        for key, count in (("best_trim", 3), ("best_full", 6)):
+            best = mix[key]
+            assert best["Overall"]["Tier"] == cockpit["tier"], (cockpit["id"], key, best["Overall"]["PerformanceIndex"])
+            assert len(best["kits"]) == count
+            for other in ("STOCK_EVO", "FULL_BODY_EVO") if key == "best_full" else ("STOCK_EVO",):
+                assert exotic[other]["Overall"]["UnroundedPerformanceIndex"] <= best["Overall"]["UnroundedPerformanceIndex"] + 1e-9, (cockpit["id"], key, other)
+        assert mix["best"][0] <= mix["best_trim"]["Overall"]["UnroundedPerformanceIndex"] <= mix["best_full"]["Overall"]["UnroundedPerformanceIndex"]
 
 
 def test_no_build_reaches_a_higher_tier_than_piercer():
@@ -688,6 +787,14 @@ def test_no_build_reaches_a_higher_tier_than_piercer():
     such build can beat. The tier claim is tested on the bound, so it does not rest on the search."""
     c = ctx()
     order = "EDCBAS"
+    # F3: the search and the bound take every body ModuleId as an option in its slot, on every cockpit: 18 per
+    # stock body slot (six kits, base, GT and EVO) and six per hidden slot, plus "empty" in the four optional slots.
+    for cockpit in B.COCKPITS:
+        positions = B.exotic_any_positions(c["live"], c["disk"], cockpit)
+        seen = [component["attributes"]["ModuleId"] for position in positions[len(B.CORE_ORDER):] for component in position]
+        body_ids = [module_id for module_id, entry in c["disk"]["modules"].items() if entry["attributes"]["ModuleType"] in B.BODY_ORDER]
+        assert len(body_ids) == 72 and sorted(item for item in seen if not item.startswith("(empty")) == sorted(body_ids), cockpit["id"]
+        assert [len(position) for position in positions[len(B.CORE_ORDER):]] == [18, 18, 7, 7, 7, 19]
     for cockpit in B.COCKPITS:
         exotic = c["analysis"]["exotic"][cockpit["id"]]
         piercer = c["analysis"]["piercer"][cockpit["piercer"]]
@@ -699,6 +806,8 @@ def test_no_build_reaches_a_higher_tier_than_piercer():
         for key in ("STANDARD_MAX", "LIGHTWEIGHT_MAX", "POWER_MAX"):
             assert exotic[key][0]["Overall"]["UnroundedPerformanceIndex"] <= found["UnroundedPerformanceIndex"] + 1e-9, (cockpit["id"], key)
         assert found["UnroundedPerformanceIndex"] <= ceiling["UnroundedPerformanceIndex"]
+        mix = c["analysis"]["mix"][cockpit["id"]]
+        assert mix["best_full"]["Overall"]["UnroundedPerformanceIndex"] <= ceiling["UnroundedPerformanceIndex"] + 1e-9, cockpit["id"]
         for key in ("LIGHTWEIGHT_MAX", "POWER_MAX"):
             assert piercer[key][0]["Overall"]["UnroundedPerformanceIndex"] <= piercer_top["UnroundedPerformanceIndex"] + 1e-9
         assert piercer_top["UnroundedPerformanceIndex"] <= piercer["ANY_CEILING"]["Overall"]["UnroundedPerformanceIndex"]

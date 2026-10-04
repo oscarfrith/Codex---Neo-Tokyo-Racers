@@ -31,12 +31,12 @@ Baseline capture: `roblox/captures/exotic-before/capture.json` (213 sources; roo
 
 | N | CockpitId | Model name | DisplayName | Spec cockpit | Spec kit | Kit name | Tier | Price | Target stock PI |
 |---|---|---|---|---|---|---|---|---:|---:|
-| 01 | `exotic_01` | `COCKPIT_EXOTIC_01` | Stinger | `spider` | `track` | Track | E | 50000 | 220 |
-| 02 | `exotic_02` | `COCKPIT_EXOTIC_02` | Zephyr | `curve` | `analogue` | Analogue | D | 150000 | 390 |
-| 03 | `exotic_03` | `COCKPIT_EXOTIC_03` | Aurora | `wedge` | `wedge` | Wedge | C | 440000 | 540 |
-| 04 | `exotic_04` | `COCKPIT_EXOTIC_04` | Endura | `longtail` | `longtail` | Longtail | B | 1400000 | 675 |
-| 05 | `exotic_05` | `COCKPIT_EXOTIC_05` | Rosso | `hyper` | `hyper` | Hyper | A | 4400000 | 800 |
-| 06 | `exotic_06` | `COCKPIT_EXOTIC_06` | Seraph | `gull` | `concept` | Concept | S | 12500000 | 938 |
+| 01 | `exotic_01` | `COCKPIT_EXOTIC_01` | Stinger | `spider` | `track` | Stinger | E | 50000 | 220 |
+| 02 | `exotic_02` | `COCKPIT_EXOTIC_02` | Zephyr | `curve` | `analogue` | Zephyr | D | 150000 | 390 |
+| 03 | `exotic_03` | `COCKPIT_EXOTIC_03` | Aurora | `wedge` | `wedge` | Aurora | C | 440000 | 540 |
+| 04 | `exotic_04` | `COCKPIT_EXOTIC_04` | Endura | `longtail` | `longtail` | Endura | B | 1400000 | 675 |
+| 05 | `exotic_05` | `COCKPIT_EXOTIC_05` | Rosso | `hyper` | `hyper` | Rosso | A | 4400000 | 800 |
+| 06 | `exotic_06` | `COCKPIT_EXOTIC_06` | Seraph | `gull` | `concept` | Seraph | S | 12500000 | 938 |
 
 Spec = `scripts/vehicle_blockouts/specs/exotic.json` (`cockpits`, `kits`, `modules[slot][id]`). Kit N is the signature kit of cockpit N.
 
@@ -48,26 +48,26 @@ Module IDs (model name = `ModuleId`):
 | `Engine2` | `Engine` | `Engines_B` (family folder `Exotic_0N`) | `MODULE_ENGINE_B_EXOTIC_0N_<VARIANT>` | 18 |
 | `Stabilisers` | `Stabilisers` | `Stabilisers` (family folder `Exotic_0N`) | `MODULE_STABILISER_EXOTIC_0N_<VARIANT>` | 18 |
 | `Boost` | `Boost` | `Boost` (family folder `Exotic_0N`) | `MODULE_BOOST_EXOTIC_0N_<VARIANT>` | 18 |
-| `FrontBody` | `FrontBody` | `FrontBodies` | `MODULE_FRONTBODY_EXOTIC_0N`; kits 02 and 05 also `_GT`, `_EVO` | 6 + 4 |
-| `RearBody` | `RearBody` | `RearBodies` | `MODULE_REARBODY_EXOTIC_0N`; kits 02 and 05 also `_GT`, `_EVO` | 6 + 4 |
+| `FrontBody` | `FrontBody` | `FrontBodies` | `MODULE_FRONTBODY_EXOTIC_0N`; every kit also `_GT`, `_EVO` | 6 + 12 |
+| `RearBody` | `RearBody` | `RearBodies` | `MODULE_REARBODY_EXOTIC_0N`; every kit also `_GT`, `_EVO` | 6 + 12 |
 | `SidePods` | `SidePods` | `SidePods` | `MODULE_SIDEPODS_EXOTIC_0N` | 6 |
 | `FrontBumper` | `FrontBumper` | `FrontBumpers` | `MODULE_FRONTBUMPER_EXOTIC_0N` | 6 |
 | `RearBumper` | `RearBumper` | `RearBumpers` | `MODULE_REARBUMPER_EXOTIC_0N` | 6 |
-| `RearSpoiler` | `RearSpoiler` | `RearSpoilers` | `MODULE_REARSPOILER_EXOTIC_0N`; kits 02 and 05 also `_GT`, `_EVO` | 6 + 4 |
+| `RearSpoiler` | `RearSpoiler` | `RearSpoilers` | `MODULE_REARSPOILER_EXOTIC_0N`; every kit also `_GT`, `_EVO` | 6 + 12 |
 
-- 72 core modules and 48 body modules (36 plus the twelve mesh trims below): 120 in all. The three variants of a core module share the kit's geometry, except on the mesh kits.
-- **Mesh kits 02 and 05** (2026-10-03, [mesh/INTEGRATION.md](mesh/INTEGRATION.md), which is the authority for them). Cockpits `exotic_02` and `exotic_05` and their Nose, Engine Deck, Wing and core modules are clones of uploaded MeshParts (model asset `112592679936648`, listed in `stage_b/data/mesh.json`), one mesh per ModuleId. Twelve new permanent ids: `MODULE_FRONTBODY_EXOTIC_0N_GT`, `_EVO`, `MODULE_REARBODY_EXOTIC_0N_GT`, `_EVO`, `MODULE_REARSPOILER_EXOTIC_0N_GT`, `_EVO` for N in 2, 5. Each copies its base part (stats, upgrade paths, attribute set, no `VariantName`); `DisplayName`, `ModuleName` and `CardTitle` are the base name plus " GT" or " EVO"; `Price` is a quarter (base part), half (GT) or the whole (EVO) of the kit's core variant price (E2; all six kits since the extension). Their Side Pods, Splitter and Diffuser modules stay primitive.
+- 72 core modules and 72 body modules (36 plus the 36 GT and EVO trims below): 144 in all. The three variants of a core module share the kit's geometry, except on the mesh kits.
+- **Mesh kits 02 and 05** (2026-10-03, [mesh/INTEGRATION.md](mesh/INTEGRATION.md), which is the authority for them). Cockpits `exotic_02` and `exotic_05` and their Nose, Engine Deck, Wing and core modules are clones of uploaded MeshParts (model asset `112592679936648`, listed in `stage_b/data/mesh.json`), one mesh per ModuleId. Twelve new permanent ids: `MODULE_FRONTBODY_EXOTIC_0N_GT`, `_EVO`, `MODULE_REARBODY_EXOTIC_0N_GT`, `_EVO`, `MODULE_REARSPOILER_EXOTIC_0N_GT`, `_EVO` for N in 2, 5. Each has the attribute set and upgrade paths of its base part. Since 2026-10-04 (F1 to F4) GT adds one stat step to its base part and EVO two (Front Body: `Downforce`, `SteeringResponse`; Rear Body: less `Weight`, `EngineOutput`; Wing: `Downforce`, `LateralGrip`; sizes in `balance/build_balance.py` `BODY_TRIM_STEPS`), and every body module carries `VariantName` (Standard, GT, EVO) and `VariantOrder` (10, 20, 30). `DisplayName` and `ModuleName` are the base name plus " GT" or " EVO"; `CardTitle` is the base name on all three; `Price` is a quarter (base part), half (GT) or the whole (EVO) of the kit's core variant price (E2; all six kits since the extension). Their Side Pods, Splitter and Diffuser modules stay primitive.
 - Engine1 modules: `EnginePosition="Front"`, `RearEngine=false`, `ModuleSlot="Engine"`. Engine2 modules: `EnginePosition="Rear"`, `RearEngine=true`, `ModuleSlot="Engine"`.
 - Core modules mirror the live Piercer family attribute set exactly (donor: `MODULE_<TYPE>_BRUISER_03_<VARIANT>`), with `SourceCockpitId="exotic_0N"`, `CategoryId="exotic"`. Standard: `Price=0`, `PurchasePrice=0`, `UpgradePointCapacity=2`, `MaxPointsPerPath=3`, type-flat `Point1/2CostGuide`. Lightweight and Power: `Price=PurchasePrice=12%` of the cockpit price, capacity 6, `Point1..6CostGuide` = 8/10/12/15/18/22% of the variant price rounded to 100. `VariantOrder` 10/20/30. `NeonPrice` 5000/6500/8000.
-- Body modules mirror the live accessory attribute set (donor: `MODULE_<TYPE>_LVL1`; FrontBody uses the FrontBumper donor, RearBody the RearBumper donor): `Price`, plus `SourceCockpitId="exotic_0N"` and `SourceCockpitDisplayName` (the cockpit of the part's kit; not on the donor) since 2026-10-04; no `PurchasePrice`, `VariantName` or `VariantOrder`; each stat as raw plus `PerformanceDelta_` twin, capacity 6, `MaxPointsPerPath=3`, accessory cost guides.
+- Body modules mirror the live accessory attribute set (donor: `MODULE_<TYPE>_LVL1`; FrontBody uses the FrontBumper donor, RearBody the RearBumper donor): `Price`, plus `SourceCockpitId="exotic_0N"` and `SourceCockpitDisplayName` (the cockpit of the part's kit; not on the donor) since 2026-10-04; `VariantName` and `VariantOrder` since F4; no `PurchasePrice`; each stat as raw plus `PerformanceDelta_` twin, capacity 6, `MaxPointsPerPath=3`, accessory cost guides.
 - Module `DisplayName` is the spec display name ("Gill Fenders", "Bull Nose"). Never put `cockpit`, `engineon`, `engineoff`, `booston` or `stabiliseron` in any instance name. Body module instance names must not contain `engine`, `boost`, `stabiliser` or `stabilizer`.
 
 Slot folders on every Exotic cockpit (`ModuleSlots/SLOT_<SlotId>`, all with `FixedSlot=true`, child `Mount_DoNotRename` at the root origin):
 
 | SlotId | DisplayName and RailLabel | ModuleType | AllowedModuleFolder | Order | CountLabel | EnginePosition |
 |---|---|---|---|---|---|---|
-| `FrontBody` | Front Body | `FrontBody` | `FrontBodies` | 1 | Noses | |
-| `RearBody` | Rear Body | `RearBody` | `RearBodies` | 2 | Engine Decks | |
+| `FrontBody` | Front Body | `FrontBody` | `FrontBodies` | 1 | Front Bodies | |
+| `RearBody` | Rear Body | `RearBody` | `RearBodies` | 2 | Rear Bodies | |
 | `Engine1` | Front Engine | `Engine` | `Engines` | 3 | Engines | Front |
 | `Engine2` | Rear Engine | `Engine` | `Engines_B` | 4 | Engines | Rear |
 | `Stabilisers` | Drift Thrusters | `Stabilisers` | `Stabilisers` | 5 | Stabilisers | |
@@ -77,7 +77,7 @@ Slot folders on every Exotic cockpit (`ModuleSlots/SLOT_<SlotId>`, all with `Fix
 | `RearBumper` | Diffuser | `RearBumper` | `RearBumpers` | 9 | Diffusers | |
 | `SidePods` | Side Pods | `SidePods` | `SidePods` | 10 | Side Pods | |
 
-Labels and `Order` as of 2026-10-04 (mesh/INTEGRATION.md E3, E4). The same label is the `DisplayName` of the slot's module type folder. `CountLabel` is unchanged.
+Labels and `Order` as of 2026-10-04 (mesh/INTEGRATION.md E3, E4). The same label is the `DisplayName` of the slot's module type folder. `CountLabel` of `FrontBody` and `RearBody` follows since F5 (2026-10-04). Kit names are the car names since F5; the body module `Tier` attribute carries the kit name.
 
 (Mirror the live Piercer slot attribute set for the eight existing slots; check the live `CountLabel` values and follow their pattern.)
 
@@ -88,7 +88,7 @@ Labels and `Order` as of 2026-10-04 (mesh/INTEGRATION.md E3, E4). The same label
 | Category folder | `FeatureFlag` | string | Flag key. When present and `FeatureFlags.IsEnabled(key, false)` is false: the category is left out of the server catalogue, `BuyCockpitInstance` for its cockpits returns `false, "Vehicle unavailable."`, `BuyModuleInstance` for its modules returns `false, "Module unavailable."`. Owned vehicles are never hidden or blocked. | `GarageCatalogService`, `GarageServer` |
 | `ServerStorage.Config` | `Flag_VehicleClass_exotic` | boolean | Studio override read by `Core.FeatureFlags`. The EXOTIC folder carries `FeatureFlag="VehicleClass_exotic"`. | `Core.FeatureFlags` (unchanged) |
 | Slot folder | `RailLabel` | string | Player-facing slot label in this category (rail, slot cards, paint targets, messages that name the slot in the UI). Absent: the artwork label as today. Passed to the client as slot field `RailLabel`. | `GarageCatalogService`, `GarageUI` |
-| Module model | `CardTitle` | string | Title shown on the module's shop and inventory card. Absent: today's title. Passed to the client as module field `CardTitle`. Set on all Exotic modules to the module `DisplayName`. | `GarageCatalogService`, `GarageModuleCardViewModel` / `GarageUI` |
+| Module model | `CardTitle` | string | Title shown on the module's shop and inventory card. Absent: today's title. Passed to the client as module field `CardTitle`. Set on all Exotic modules to the module `DisplayName`; on a GT or EVO body part to the base part's `DisplayName` (the version shows as the tag). | `GarageCatalogService`, `GarageModuleCardViewModel` / `GarageUI` |
 | Module model | `RatingReferenceCockpitId` | string | Cockpit used as the reference chassis for the module's rating. Absent: `bruiser_01` as today. Exotic modules use `exotic_03`. Must be in the public catalogue list. | `VehiclePerformanceResolver` |
 | Cockpit model | `Default<SlotId>ModuleId` | string | Default module for any slot other than the four legacy ones. New names: `DefaultFrontBodyModuleId`, `DefaultRearBodyModuleId`, `DefaultSidePodsModuleId`, `DefaultFrontBumperModuleId`, `DefaultRearBumperModuleId`, `DefaultRearSpoilerModuleId`. The four legacy slots keep their legacy names exactly as `GarageServer` 413-421 and `VehiclePerformanceResolver` 10-15 read them; Exotic cockpits set all seven legacy attributes. Must be in the public catalogue list. | `GarageServer`, `GarageVehiclePreviewProfile`, `VehiclePerformanceResolver`, catalogue generator |
 | Cockpit model | `DriverSeatOffsetX/Y/Z` | number | Driver seat offset in root local space. All three absent: the global `Config.Vehicles.DriverSeat` values as today. | `DriverSeatServer` |

@@ -91,6 +91,29 @@ Review (`delivery-reviewer`, 2026-10-04): approve with conditions, both met here
 
 UI side (separate guarded installers under `scripts/exotic_category/ui_*`, client display only): the shop list breaks ties by `Price` before id, so a part's standard, GT and EVO versions read cheapest first; the Build and Customise rails put Front Body and Rear Body first.
 
+## GT and EVO body parts earn their price (2026-10-04)
+
+Oscar, after confirming the section above in Play: give GT and EVO body parts a stat benefit ("upgrade what makes the most sense ie aero, lightness etc. since these are body panels"), use GT and EVO as the version names on engines too, and tidy the leftover old names. Lane: **High-Risk** (balance). No ModuleId, SlotId or cockpit id changes. Recovery: before = commit `6e86683`, content hash `4b9eae84...`; build `stage_b` at that commit and APPLY in place. Never ROLLBACK in v3.
+
+| # | Decision |
+|---|---|
+| F1 | `_GT` and `_EVO` of `FrontBody`, `RearBody` and `RearSpoiler` add stats to their base part. Front Body: `Downforce` and `SteeringResponse`. Rear Body: lower `Weight` and a little `EngineOutput` (cooling). Wing: `Downforce` and `LateralGrip`. EVO adds twice the GT step. Base parts, hidden-slot parts, core modules and cockpits do not change. |
+| F2 | Size. On its own cockpit each GT part is strictly better than its base and each EVO strictly better than its GT (at least 0.3 PI unrounded per step). A full set of three EVO parts on a stock car adds between 3 and 8 PI where the tier has room. Where a stat is pinned at its technical limit on a cockpit (for example `Weight` at 60), the step uses the part's other stat so the rule still holds. |
+| F3 | Tier safety, hard requirement. Every existing tier proof must hold with the GT and EVO parts of every kit included as options in every body slot (a player may fit any owned part to any Exotic): stock tier, the full-body build, and the highest-build and ceiling analyses. If a tier has too little room for F2, shrink the step for that kit and say so; never raise a ceiling past the tier. |
+| F4 | Version naming on body parts: `VariantName` is "Standard", "GT" or "EVO" and `VariantOrder` 10, 20, 30, as core modules have them. `CardTitle` is the base part name on all three (the card then reads name plus version tag, like an engine card). `DisplayName` and `ModuleName` keep the " GT" / " EVO" suffix. This relaxes E1, which forbade both attributes. Still no `PurchasePrice`. |
+| F5 | Leftover names. `CountLabel`: FrontBody "Front Bodies", RearBody "Rear Bodies". Kit names become the car names (Stinger, Zephyr, Aurora, Endura, Rosso, Seraph) in the spec generator, `ids.json`, the balance table and INTERFACE.md; the body module `Tier` attribute, which carries the kit name, follows. |
+
+### Review and recovery (delivery review 2026-10-04: approve with conditions)
+
+- **Recovery.** Before: commit `4c947cd` (or `6e86683`; the commit between them touches only `ui_variant_labels`), content hash `4b9eae84...`. After: content hash `b2f4b211...`. To go back, build `stage_b` at the before commit and APPLY that build in place. **Never ROLLBACK in v3.** `stage_b/out/installer.lua` is whichever mode `refine.py` built last (ROLLBACK): run only `full_audit.lua` and `full_apply.lua`, and check the `mode` in the header first.
+- **Rosso margin.** The tier is read from the shown (rounded) index, so S starts at 849.495. The exotic_05 ceiling moves from 846.49 to 848.12: **1.38 PI of room** (3.00 before). Any later stat addition worth about 1.4 PI at that ceiling makes a maxed Rosso an S car. The ceiling covers every body part of every kit in every body slot and every upgrade allocation, with own-family core modules; another car's core modules on a lower cockpit were already outside it (report.md).
+- **F2 exceptions, for Oscar to accept.** Kit 5 (Rosso): three GT parts +1.03 PI, three EVO +2.04 (target was 3 to 8). Kit 6 (Seraph): three GT +0.29, three EVO +0.58, steps of 0.08 to 0.13 PI. Both are held down by the Rosso ceiling, because kit 6 parts fit a Rosso.
+- **On the road (VEH-01, existing issue).** The on-road index double-counts some module stats (about +16 on a Rosso, fitted estimate). A maxed Rosso already read S on the road before this change; the trims add about 2 to 3 PI there.
+- **Server effect.** Only `instanceRating` changes: when an equipped part moves to another vehicle, the spare that backfills is now base, then GT, then EVO (before: instance id). Nothing is refused on rating. No saved stat snapshot exists, so owned GT and EVO parts improve in place; prices are unchanged.
+- **Verification plan.** After APPLY: installed hash `b2f4b211`; a second AUDIT reports nothing to apply; attributes read back on a base, a GT, an EVO and a hidden-slot part (`VariantName`, `VariantOrder`, `CardTitle`, `Tier`, the two stats); `CountLabel` on the FrontBody and RearBody slot folders; post-install checks; Play starts clean. In Play (Oscar): the rating rises base to GT to EVO; a Rosso with three Seraph EVO parts still reads A; cards read name plus Standard/GT/EVO in price order; the on-road index of a high Rosso build; moving an equipped part backfills with the base spare.
+
+Core modules keep `VariantName` "Lightweight" and "Power" (game code reads those words). The garage shows them as GT and EVO through a display map in config (`VariantLabels_exotic` on `Config.UI.GarageReplacement`; guarded installer `scripts/exotic_category/ui_variant_labels/`).
+
 ## Builder rules
 
 - Write only under `scripts/exotic_category/stage_b/`, `scripts/exotic_category/balance/`, and `scripts/exotic_category/refine.py` if a step must change. Do not edit `mesh.json` by hand (re-run `py -3 scripts/exotic_category/mesh/make_mesh_data.py 112592679936648` if its generator needs a fix, and say so).

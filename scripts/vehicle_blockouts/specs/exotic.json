@@ -3072,7 +3072,7 @@
  },
  "kits": {
   "wedge": {
-   "name": "Wedge",
+   "name": "Aurora",
    "culture": "Wedge",
    "modules": {
     "Engine1": "mono",
@@ -3088,7 +3088,7 @@
    }
   },
   "analogue": {
-   "name": "Analogue",
+   "name": "Zephyr",
    "culture": "Analogue",
    "modules": {
     "Engine1": "twin",
@@ -3104,7 +3104,7 @@
    }
   },
   "hyper": {
-   "name": "Hyper",
+   "name": "Rosso",
    "culture": "Hypercar",
    "modules": {
     "Engine1": "top",
@@ -3120,7 +3120,7 @@
    }
   },
   "track": {
-   "name": "Track",
+   "name": "Stinger",
    "culture": "Track Special",
    "modules": {
     "Engine1": "stacks",
@@ -3136,7 +3136,7 @@
    }
   },
   "longtail": {
-   "name": "Longtail",
+   "name": "Endura",
    "culture": "Longtail",
    "modules": {
     "Engine1": "long",
@@ -3152,7 +3152,7 @@
    }
   },
   "concept": {
-   "name": "Concept",
+   "name": "Seraph",
    "culture": "Concept",
    "modules": {
     "Engine1": "cross",
@@ -11398,7 +11398,7 @@
    }
   },
   {
-   "name": "Aurora, Hyper kit",
+   "name": "Aurora, Rosso kit",
    "cockpit": "wedge",
    "kit": "hyper",
    "paint": {
@@ -11408,7 +11408,7 @@
    }
   },
   {
-   "name": "Zephyr, Track kit",
+   "name": "Zephyr, Stinger kit",
    "cockpit": "curve",
    "kit": "track",
    "paint": {
@@ -11418,7 +11418,7 @@
    }
   },
   {
-   "name": "Rosso, Longtail kit",
+   "name": "Rosso, Endura kit",
    "cockpit": "hyper",
    "kit": "longtail",
    "paint": {
@@ -11428,7 +11428,7 @@
    }
   },
   {
-   "name": "Stinger, Concept kit",
+   "name": "Stinger, Seraph kit",
    "cockpit": "spider",
    "kit": "concept",
    "paint": {
@@ -11438,7 +11438,7 @@
    }
   },
   {
-   "name": "Endura, Wedge kit",
+   "name": "Endura, Aurora kit",
    "cockpit": "longtail",
    "kit": "wedge",
    "paint": {
@@ -11448,7 +11448,7 @@
    }
   },
   {
-   "name": "Seraph, Analogue kit",
+   "name": "Seraph, Zephyr kit",
    "cockpit": "gull",
    "kit": "analogue",
    "paint": {

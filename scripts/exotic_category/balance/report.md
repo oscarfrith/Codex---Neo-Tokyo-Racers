@@ -14,7 +14,8 @@ From `scripts/exotic_category/mesh/INTEGRATION.md` (D6 to D9). It changes how th
 - **Stock build**: cockpit + four Standard core modules + three body defaults (Nose, Engine Deck, Wing). `SidePods`, `FrontBumper` and `RearBumper` declare no default and start empty. The cockpit's own raw stats absorb those three parts, so the stock totals and the stock PI are unchanged. Wherever a section says "six body parts" or "its six default body modules", read three for these two cockpits.
 - **Fitting the three empty slots adds stats on top of the target total.** With all six own-kit parts: exotic_01 E 244 (stock 220, +24.30 unrounded); exotic_02 D 406 (stock 390, +15.74 unrounded); exotic_03 C 550 (stock 540, +10.06 unrounded); exotic_04 B 680 (stock 675, +5.13 unrounded); exotic_05 A 802 (stock 800, +1.74 unrounded); exotic_06 S 938 (stock 938, +0.20 unrounded).
   The tier does not change. "Highest build found" and "Ceiling" (section 7) already search every body slot, filled or empty.
-- **Twelve new ModuleIds**: `_GT` and `_EVO` of the Nose, Engine Deck and Wing of kits 02 and 05. Each copies every attribute and the upgrade paths of its base part, so it rates exactly as the base part does. Only the names (base name plus the trim) and the `Price` differ. Since 2026-10-04 (INTEGRATION.md E1, E2) every body part carries `SourceCockpitId` and `SourceCockpitDisplayName` of its kit's cockpit, so it is locked until that cockpit is owned; the base part of a stock slot costs a quarter of the kit's core variant price (the first copy comes with the car), GT is half that price and EVO is the whole of it.
+- **36 GT and EVO ModuleIds**: `_GT` and `_EVO` of the Front Body, Rear Body and Wing of every kit. Each carries the upgrade paths of its base part and its attribute set. Every body part carries `SourceCockpitId` and `SourceCockpitDisplayName` of its kit's cockpit, so it is locked until that cockpit is owned (INTEGRATION.md E1); the base part of a stock slot costs a quarter of the kit's core variant price (the first copy comes with the car), GT half and EVO the whole of it (E2). `VariantName` is Standard, GT or EVO and `VariantOrder` 10, 20, 30; `CardTitle` is the base name on all three (F4).
+- **GT and EVO add stats** (F1 to F3; section 6a). GT adds one step to its base part and EVO two. Front Body: `Downforce` and `SteeringResponse`. Rear Body: less `Weight` and a little `EngineOutput`. Wing: `Downforce` and `LateralGrip`. Base parts, hidden-slot parts, core modules and cockpits are unchanged.
 
 | ModuleId | Name | Price | NeonPrice |
 |---|---|---|---|
@@ -115,14 +116,14 @@ Six Piercer stock builds, recomputed from the capture attributes (cockpit + its 
 
 | Kit | Name | Front Body, Rear Body, Wing: base `Price` (a quarter of the core variant price) | GT (half the core variant price) | EVO (the core variant price) | Side Pods, Splitter, Diffuser `Price` | Body part `NeonPrice` |
 |---|---|---|---|---|---|---|
-| 1 | Track | 1,500 | 3,000 | 6,000 | 8,000 | 6,500 |
-| 2 | Analogue | 4,500 | 9,000 | 18,000 | 11,000 | 7,000 |
-| 3 | Wedge | 13,200 | 26,400 | 52,800 | 14,000 | 7,500 |
-| 4 | Longtail | 42,000 | 84,000 | 168,000 | 18,000 | 8,000 |
-| 5 | Hyper | 132,000 | 264,000 | 528,000 | 23,000 | 8,500 |
-| 6 | Concept | 375,000 | 750,000 | 1,500,000 | 30,000 | 9,500 |
+| 1 | Stinger | 1,500 | 3,000 | 6,000 | 8,000 | 6,500 |
+| 2 | Zephyr | 4,500 | 9,000 | 18,000 | 11,000 | 7,000 |
+| 3 | Aurora | 13,200 | 26,400 | 52,800 | 14,000 | 7,500 |
+| 4 | Endura | 42,000 | 84,000 | 168,000 | 18,000 | 8,000 |
+| 5 | Rosso | 132,000 | 264,000 | 528,000 | 23,000 | 8,500 |
+| 6 | Seraph | 375,000 | 750,000 | 1,500,000 | 30,000 | 9,500 |
 
-- Body parts carry `Price`, `SourceCockpitId` and `SourceCockpitDisplayName` (the cockpit of their kit), and no `PurchasePrice`, `VariantName` or `VariantOrder`. No stock body part has `Price` 0: on a module with a `SourceCockpitId` the server would then charge 12% of the cockpit price for a copy. Upgrade guides are the live accessory guides: Nose, Splitter, Engine Deck and Diffuser 3,025 / 3,781 / 4,538 / 5,596 / 6,806 / 8,168; Wing 3,575 / 4,469 / 5,363 / 6,614 / 8,044 / 9,653; Side Pods 3,850 / 4,813 / 5,775 / 7,123 / 8,663 / 10,395.
+- Body parts carry `Price`, `SourceCockpitId` and `SourceCockpitDisplayName` (the cockpit of their kit), `VariantName` (Standard, GT or EVO) and `VariantOrder` (10, 20, 30), and no `PurchasePrice`. No stock body part has `Price` 0: on a module with a `SourceCockpitId` the server would then charge 12% of the cockpit price for a copy. Upgrade guides are the live accessory guides: Nose, Splitter, Engine Deck and Diffuser 3,025 / 3,781 / 4,538 / 5,596 / 6,806 / 8,168; Wing 3,575 / 4,469 / 5,363 / 6,614 / 8,044 / 9,653; Side Pods 3,850 / 4,813 / 5,775 / 7,123 / 8,663 / 10,395.
 
 ## 3. Stock totals and character
 
@@ -324,7 +325,7 @@ PI spread between the six styles, per tier: E 0.46, D 0.10, C 0.14, B 0.09, A 0.
 
 Sum of the six parts of each kit:
 
-| Stat | Kit 1 Track | Kit 2 Analogue | Kit 3 Wedge | Kit 4 Longtail | Kit 5 Hyper | Kit 6 Concept |
+| Stat | Kit 1 Stinger | Kit 2 Zephyr | Kit 3 Aurora | Kit 4 Endura | Kit 5 Rosso | Kit 6 Seraph |
 |---|---|---|---|---|---|---|
 | TopSpeed | -3 | 5 | -0.5 | 13.5 | 0 | 3.5 |
 | EngineOutput | 2.5 | 1 | 3.5 | 1 | 1.5 | 2 |
@@ -338,21 +339,60 @@ Sum of the six parts of each kit:
 | BrakingForce | 7 | 3 | 3.5 | 1.5 | 2 | 1 |
 | Downforce | 3 | 2 | 6.5 | 0.5 | 16.5 | 3.5 |
 
+## 6a. GT and EVO body parts
+
+One stat step per slot and kit (`BODY_TRIM_STEPS`). GT is the base part plus one step, EVO plus two. PI is the unrounded gain over the base part on the stock car of the part's own kit.
+
+| Kit | Car | Slot | GT adds | EVO adds | GT PI on its own car | EVO PI on its own car |
+|---|---|---|---|---|---|---|
+| 1 | Stinger | Front Body | `Downforce` +0.5, `SteeringResponse` +0.5 | `Downforce` +1, `SteeringResponse` +1 | +1.10 | +2.18 |
+| 1 | Stinger | Rear Body | `Weight` -0.5, `EngineOutput` +0.25 | `Weight` -1, `EngineOutput` +0.5 | +0.77 | +1.54 |
+| 1 | Stinger | Wing | `Downforce` +0.5, `LateralGrip` +0.5 | `Downforce` +1, `LateralGrip` +1 | +1.37 | +2.71 |
+| 2 | Zephyr | Front Body | `Downforce` +0.5, `SteeringResponse` +0.5 | `Downforce` +1, `SteeringResponse` +1 | +0.65 | +1.29 |
+| 2 | Zephyr | Rear Body | `Weight` -0.5, `EngineOutput` +0.5 | `Weight` -1, `EngineOutput` +1 | +1.03 | +2.06 |
+| 2 | Zephyr | Wing | `Downforce` +0.5, `LateralGrip` +0.5 | `Downforce` +1, `LateralGrip` +1 | +0.86 | +1.71 |
+| 3 | Aurora | Front Body | `Downforce` +1, `SteeringResponse` +1 | `Downforce` +2, `SteeringResponse` +2 | +0.76 | +1.50 |
+| 3 | Aurora | Rear Body | `Weight` -0.5, `EngineOutput` +0.5 | `Weight` -1, `EngineOutput` +1 | +0.74 | +1.48 |
+| 3 | Aurora | Wing | `Downforce` +1, `LateralGrip` +0.5 | `Downforce` +2, `LateralGrip` +1 | +0.61 | +1.22 |
+| 4 | Endura | Front Body | `Downforce` +1, `SteeringResponse` +1.5 | `Downforce` +2, `SteeringResponse` +3 | +0.59 | +1.17 |
+| 4 | Endura | Rear Body | `Weight` -0.5, `EngineOutput` +0.75 | `Weight` -1, `EngineOutput` +1.5 | +0.78 | +1.55 |
+| 4 | Endura | Wing | `Downforce` +1, `LateralGrip` +1 | `Downforce` +2, `LateralGrip` +2 | +0.64 | +1.27 |
+| 5 | Rosso | Front Body | `Downforce` +0.5, `SteeringResponse` +2 | `Downforce` +1, `SteeringResponse` +4 | +0.34 | +0.68 |
+| 5 | Rosso | Rear Body | `Weight` -0.5, `EngineOutput` +0.75 | `Weight` -1, `EngineOutput` +1.5 | +0.37 | +0.74 |
+| 5 | Rosso | Wing | `Downforce` +1, `LateralGrip` +1 | `Downforce` +2, `LateralGrip` +2 | +0.32 | +0.63 |
+| 6 | Seraph | Front Body | `Downforce` +0.5, `SteeringResponse` +2.5 | `Downforce` +1, `SteeringResponse` +5 | +0.08 | +0.16 |
+| 6 | Seraph | Rear Body | `Weight` -0.5, `EngineOutput` +1 | `Weight` -1, `EngineOutput` +2 | +0.13 | +0.25 |
+| 6 | Seraph | Wing | `Downforce` +1, `LateralGrip` +1.25 | `Downforce` +2, `LateralGrip` +2.5 | +0.08 | +0.17 |
+
+| Cockpit | Stock | Three own GT parts | Three own EVO parts | All six own parts | All six own parts, three EVO | Best three EVO parts of any kit | Best of any kit in all six slots |
+|---|---|---|---|---|---|---|---|
+| exotic_01 Stinger | E 220 | E 223 (+3.23) | E 226 (+6.38) | E 244 | E 250 | E 240 (kits 666) | E 266 (kits 666446) |
+| exotic_02 Zephyr | D 390 | D 393 (+2.54) | D 395 (+5.05) | D 406 | D 411 | D 403 (kits 666) | D 419 (kits 666441) |
+| exotic_03 Aurora | C 540 | C 542 (+2.11) | C 544 (+4.18) | C 550 | C 554 | C 548 (kits 666) | C 558 (kits 666141) |
+| exotic_04 Endura | B 675 | B 677 (+2.00) | B 679 (+3.98) | B 680 | B 684 | B 680 (kits 666) | B 685 (kits 666141) |
+| exotic_05 Rosso | A 800 | A 801 (+1.03) | A 802 (+2.04) | A 802 | A 804 | A 802 (kits 666) | A 805 (kits 66652-) |
+| exotic_06 Seraph | S 938 | S 938 (+0.29) | S 939 (+0.58) | S 938 | S 939 | S 939 (kits 666) | S 939 (kits 6665--) |
+
+- Every build in this table stays in the cockpit's stock tier. The last two columns are exhaustive: an EVO part is at least as good as its GT and base part on every stat, so the best mix is among the EVO parts (kits as Front Body, Rear Body, Wing, then Side Pods, Splitter, Diffuser; `-` is empty).
+- Kit 5 (Rosso) keeps each step just over 0.3 PI, so its three EVO parts add about 2 PI rather than 3: the Rosso ceiling has to stay under the S band (section 7).
+- Kit 6 (Seraph) is shrunk: its steps are worth under 0.3 PI on its own car. A stat is worth about a quarter on Seraph of what it is worth at the Rosso ceiling, and any owned part fits any Exotic, so 0.3 PI steps on Seraph would lift Rosso into S. Each part is still strictly better than the one below it.
+- The similar-value rule of section 6 covers base parts only. GT and EVO are upgrades and are worth more.
+
 ## 7. Variant sets and upgrades
 
 Exotic rows keep the cockpit's own six body parts unless the column says otherwise. "Max upgrades" spends upgrade points for the highest PI found (a point that lowers PI is not bought). Piercer rows are the nearest like-for-like build.
 
 | Cockpit | Stock | Four optional body parts removed | All Lightweight | All Power | Standard, max upgrades | All Lightweight, max upgrades | All Power, max upgrades | Highest build found | Ceiling |
 |---|---|---|---|---|---|---|---|---|---|
-| **exotic_01 Stinger** | E 220 | E 208 | E 242 | E 244 | E 276 | D 308 | D 309 | D 365 | D 393 |
+| **exotic_01 Stinger** | E 220 | E 208 | E 242 | E 244 | E 276 | D 308 | D 309 | D 378 | D 404 |
 | bruiser_02 Forge | E 202 (with four LVL1: E 237) | stock has no body parts | E 224 | E 226 | E 296 (four LVL1) | D 369 (four LVL3) | D 370 (four LVL3) | D 370 | D 382 |
-| **exotic_02 Zephyr** | D 390 | D 383 | D 411 | D 413 | D 429 | C 459 | C 462 | C 497 | C 519 |
+| **exotic_02 Zephyr** | D 390 | D 383 | D 411 | D 413 | D 429 | C 459 | C 462 | C 506 | C 527 |
 | bruiser_03 Vector | D 374 (with four LVL1: D 395) | stock has no body parts | D 395 | D 397 | D 437 (four LVL1) | C 496 (four LVL3) | C 498 (four LVL3) | C 498 | C 509 |
-| **exotic_03 Aurora** | C 540 | C 536 | C 559 | C 561 | C 567 | C 594 | C 597 | B 621 | B 639 |
+| **exotic_03 Aurora** | C 540 | C 536 | C 559 | C 561 | C 567 | C 594 | C 597 | B 627 | B 645 |
 | bruiser_01 Viper | C 525 (with four LVL1: C 538) | stock has no body parts | C 544 | C 546 | C 567 (four LVL1) | B 613 (four LVL3) | B 615 (four LVL3) | B 615 | B 627 |
-| **exotic_04 Endura** | B 675 | B 673 | B 691 | B 693 | B 695 | B 719 | B 720 | A 738 | A 752 |
+| **exotic_04 Endura** | B 675 | B 673 | B 691 | B 693 | B 695 | B 719 | B 720 | A 742 | A 755 |
 | bruiser_04 Nightline | B 662 (with four LVL1: B 669) | stock has no body parts | B 678 | B 680 | B 691 (four LVL1) | B 724 (four LVL3) | A 726 (four LVL3) | A 726 | A 736 |
-| **exotic_05 Rosso** | A 800 | A 799 | A 811 | A 814 | A 812 | A 829 | A 831 | A 840 | A 846 |
+| **exotic_05 Rosso** | A 800 | A 799 | A 811 | A 814 | A 812 | A 829 | A 831 | A 841 | A 848 |
 | bruiser_05 Rally | A 787 (with four LVL1: A 789) | stock has no body parts | A 799 | A 801 | A 806 (four LVL1) | A 829 (four LVL3) | A 830 (four LVL3) | A 830 | A 838 |
 | **exotic_06 Seraph** | S 938 | S 938 | S 943 | S 944 | S 943 | S 950 | S 951 | S 953 | S 954 |
 | bruiser_06 Zenith | S 925 (with four LVL1: S 925) | stock has no body parts | S 930 | S 931 | S 932 (four LVL1) | S 942 (four LVL3) | S 943 (four LVL3) | S 943 | S 945 |
@@ -360,17 +400,17 @@ Exotic rows keep the cockpit's own six body parts unless the column says otherwi
 - **Highest build found**: any own-family variant in each core slot, any kit's part in each body slot (Piercer: any accessory level), the four optional slots may be empty, any upgrade allocation. It is a search (best choice per slot in turn, then one upgrade step on two slots at once, until neither helps; 16 start points that are the same on every run), not a proof that nothing higher exists.
 - **Ceiling**: a rating no build from the same choices can beat. Every choice of one module (or empty) per slot is rated, and each module takes, for every stat on its own, the best value any of its upgrade allocations offers. The module choice is exact; only the upgrade points are relaxed, so no real build reaches it. It is the proof for the tier statement below. (Since 2026-10-03. Before, the best value per stat was also taken across the modules of a slot: a looser bound, which gave Hyper A 849 with six default body parts and would give S 852 now that the Hyper cockpit absorbs three of them.)
 
-Highest build found, as core variants (Main Turbine, Side Engines, Stabilisers, Afterburner: S, L or P) then kits (Nose, Deck, Pods, Splitter, Diffuser, Wing; `-` is empty): exotic_01 PPPL 434444; exotic_02 PPPP 434444; exotic_03 PPPP 434444; exotic_04 PPPP 425264; exotic_05 PPPP 133615; exotic_06 PPPP 433415.
+Highest build found, as core variants (Main Turbine, Side Engines, Stabilisers, Afterburner: S, L or P) then kits (Nose, Deck, Pods, Splitter, Diffuser, Wing; `-` is empty): exotic_01 PPPL OO444O; exotic_02 PPPP OO444O; exotic_03 PPPP OO444O; exotic_04 PPPP OO626O; exotic_05 PPPP OO361O; exotic_06 PPPP OO341O.
 
 Tier reached, stock to highest found, with the ceiling tier in brackets: Stinger E to D (D), Piercer E to D (D); Zephyr D to C (C), Piercer D to C (C); Aurora C to B (B), Piercer C to B (B); Endura B to A (A), Piercer B to A (A); Rosso A to A (A), Piercer A to A (A); Seraph S to S (S), Piercer S to S (S).
 
-No Exotic cockpit can reach a higher tier than the Piercer of its tier reaches today: every Exotic ceiling is inside the tier its Piercer reaches, so this is proven for own-family core modules and all 36 body parts (the twelve GT and EVO ids of the mesh kits carry the stats and upgrade paths of their base part, so they are covered).
+No Exotic cockpit can reach a higher tier than the Piercer of its tier reaches today: every Exotic ceiling is inside the tier its Piercer reaches, so this is proven for own-family core modules and all 72 body parts (the 36 GT and EVO parts of every kit are options in their slot on every cockpit).
 
 ## 8. Cross-kit mixes
 
 Each cockpit keeps its own four Standard core modules and wears the six body parts of one kit:
 
-| Cockpit | Kit 1 Track | Kit 2 Analogue | Kit 3 Wedge | Kit 4 Longtail | Kit 5 Hyper | Kit 6 Concept |
+| Cockpit | Kit 1 Stinger | Kit 2 Zephyr | Kit 3 Aurora | Kit 4 Endura | Kit 5 Rosso | Kit 6 Seraph |
 |---|---|---|---|---|---|---|
 | exotic_01 Stinger (E, target 220) | E 220 | E 220 | E 220 | E 221 | E 220 | E 221 |
 | exotic_02 Zephyr (D, target 390) | D 390 | D 390 | D 390 | D 390 | D 390 | D 390 |
@@ -469,7 +509,7 @@ What three points on one body path are worth: PI change on each stock cockpit (u
 
 ## 11. Attribute sets
 
-Every module in `balance.json` carries every attribute name of its live donor, plus the two opt-in attributes from INTERFACE.md (`CardTitle` = `DisplayName`, `RatingReferenceCockpitId` = `exotic_03`). The build fails if a donor attribute has no rule.
+Every module in `balance.json` carries every attribute name of its live donor, plus the two opt-in attributes from INTERFACE.md (`CardTitle` = `DisplayName`, or the base part's `DisplayName` on a GT or EVO body part; `RatingReferenceCockpitId` = `exotic_03`). The build fails if a donor attribute has no rule.
 
 - Engine1 Standard, donor `MODULE_ENGINE_BRUISER_03_STANDARD`, 64 attributes: `Acceleration`, `BalanceEditable`, `BalanceNote`, `Boost`, `BoostDuration`, `BoostEfficiency`, `BoostForce`, `BoostRecharge`, `BoostRechargeDelay`, `Braking`, `BrakingForce`, `CatalogPublishReady`, `CatalogVisible`, `CategoryId`, `DisplayName`, `Downforce`, `Drag`, `Drift`, `DriftChargeRate`, `DriftControl`, `DriftGrip`, `EngineOutput`, `EnginePosition`, `Handling`, `HiddenFromCatalog`, `HoverStability`, `LateralGrip`, `Level`, `MaxLevel`, `MaxPointsPerPath`, `ModuleFolder`, `ModuleId`, `ModuleName`, `ModuleSlot`, `ModuleType`, `NeonPrice`, `PerformanceDelta_Drag`, `PerformanceDelta_EngineOutput`, `PerformanceDelta_TopSpeed`, `PerformanceDelta_Weight`, `Point1CostGuide`, `Point2CostGuide`, `Power`, `PreviewImage`, `Price`, `PurchasePrice`, `RearEngine`, `RetiredFromCatalog`, `SourceCockpitDisplayName`, `SourceCockpitId`, `SteeringResponse`, `TemplateType`, `Tier`, `TopSpeed`, `Upgradable`, `UpgradePointCapacity`, `UpgradePrice`, `V2IntegrationReady`, `V2Materialised`, `V2Published`, `V2PublishedModuleId`, `VariantName`, `VariantOrder`, `Weight`.
 - Engine2 Standard, donor `MODULE_ENGINE_B_BRUISER_03_STANDARD`, 64 attributes: `Acceleration`, `BalanceEditable`, `BalanceNote`, `Boost`, `BoostDuration`, `BoostEfficiency`, `BoostForce`, `BoostRecharge`, `BoostRechargeDelay`, `Braking`, `BrakingForce`, `CatalogPublishReady`, `CatalogVisible`, `CategoryId`, `DisplayName`, `Downforce`, `Drag`, `Drift`, `DriftChargeRate`, `DriftControl`, `DriftGrip`, `EngineOutput`, `EnginePosition`, `Handling`, `HiddenFromCatalog`, `HoverStability`, `LateralGrip`, `Level`, `MaxLevel`, `MaxPointsPerPath`, `ModuleFolder`, `ModuleId`, `ModuleName`, `ModuleSlot`, `ModuleType`, `NeonPrice`, `PerformanceDelta_Drag`, `PerformanceDelta_EngineOutput`, `PerformanceDelta_TopSpeed`, `PerformanceDelta_Weight`, `Point1CostGuide`, `Point2CostGuide`, `Power`, `PreviewImage`, `Price`, `PurchasePrice`, `RearEngine`, `RetiredFromCatalog`, `SourceCockpitDisplayName`, `SourceCockpitId`, `SteeringResponse`, `TemplateType`, `Tier`, `TopSpeed`, `Upgradable`, `UpgradePointCapacity`, `UpgradePrice`, `V2IntegrationReady`, `V2Materialised`, `V2Published`, `V2PublishedModuleId`, `VariantName`, `VariantOrder`, `Weight`.
@@ -495,7 +535,7 @@ How each donor attribute gets its Exotic value:
 | `Price`, `PurchasePrice` | 0 / 12% of the cockpit price | Front Body, Rear Body, Wing: a quarter, GT half and EVO the whole core variant price; Side Pods, Splitter, Diffuser: `Price` by kit; no `PurchasePrice` |
 | `NeonPrice` | 5,000 / 6,500 / 8,000 | by kit |
 | `PointNCostGuide`, `UpgradePointCapacity`, `MaxPointsPerPath`, `UpgradePrice` | section 2 | copied from the donor |
-| `Tier`, `VariantName`, `VariantOrder` | Standard / Lightweight / Power, 10 / 20 / 30 | `Tier` = kit name (label only, not read); no `VariantName` or `VariantOrder`, as on the donor |
+| `Tier`, `VariantName`, `VariantOrder` | Standard / Lightweight / Power, 10 / 20 / 30 | `Tier` = kit name, which is the car name (label only, not read); `VariantName` Standard / GT / EVO and `VariantOrder` 10 / 20 / 30 (not on the donor) |
 | `Level`, `MaxLevel`, notes, flags (`BalanceEditable`, `BalanceNote`, `BoostNotes`, `CatalogPublishReady`, `CatalogVisible`, `HiddenFromCatalog`, `RetiredFromCatalog`, `Upgradable`, `TemplateType`, `PreviewImage`, `V2*`) | copied from the donor | copied from the donor |
 
 Cockpits carry the 56 non-colour attributes of the live Piercer cockpit plus the six new `Default<Slot>ModuleId` names (62 in all): `Acceleration`, `Boost`, `BoostDuration`, `BoostEfficiency`, `BoostForce`, `BoostRecharge`, `BoostRechargeDelay`, `Braking`, `BrakingForce`, `CatalogPublishReady`, `CategoryId`, `CockpitId`, `DEALERSHIP_CUSTOMISATION_SPLIT_PHASE1_BUY_ONLY`, `DefaultBoostModuleId`, `DefaultColoursEditable`, `DefaultColoursNote`, `DefaultEngineBModuleId`, `DefaultEngineModuleId`, `DefaultFrontBodyModuleId`, `DefaultFrontEngineModuleId`, `DefaultRearBodyModuleId`, `DefaultRearEngineModuleId`, `DefaultRearSpoilerModuleId`, `DefaultStabiliserModuleId`, `DefaultStabilisersModuleId`, `DisplayName`, `Downforce`, `Drag`, `Drift`, `DriftChargeRate`, `DriftControl`, `DriftGrip`, `EngineOutput`, `Handling`, `HoverStability`, `LateralGrip`, `MenuImage`, `OwnedByDefault`, `PerformanceDelta_BoostEfficiency`, `PerformanceDelta_BrakingForce`, `PerformanceDelta_Downforce`, `PerformanceDelta_Drag`, `PerformanceDelta_DriftChargeRate`, `PerformanceDelta_DriftControl`, `PerformanceDelta_DriftGrip`, `PerformanceDelta_HoverStability`, `PerformanceDelta_LateralGrip`, `PerformanceDelta_SteeringResponse`, `Power`, `PreviewImage`, `Price`, `StandardAudioProfileId`, `SteeringResponse`, `TargetStockPI`, `TargetTier`, `TemplateType`, `TopSpeed`, `V2IntegrationReady`, `V2Materialised`, `V2Published`, `V2PublishedCockpitId`, `Weight`.
@@ -514,7 +554,7 @@ Not in `balance.json`: the six `Default*Color` attributes (Color3, a paint decis
 - **The cloned accessory paths still carry Drag, as on Piercer.** Splitter, Diffuser, Wing and Side Pods clone the live LVL1 paths, as the brief asks. On a stock Gull three points of `FrontSplitter` cost 5.9 PI, `RearDiffuser` 5.8, `DownforcePackage` 8.0 and `DriftAero` 5.7, while `LowDragProfile` gains 1.5 and `AirflowChannels` 1.6. Once `LowDragProfile` is bought (Drag -9) the total sits on the minimum and the other paths stop costing. Zenith with LVL accessories behaves the same today. Decision for Oscar: keep the clones, or give the four slots Exotic paths without Drag (`balance.json` allows explicit `upgradePaths` on any module).
 - **Cloned paths that are worth nothing at stock:** none. These are pure `Weight` cuts on cockpits already at the 60 minimum, so they do nothing in the rating or on the road. Live Zenith has the same. The two new weight paths avoid it with a second stat (section 10).
 - **Cloned paths that lower PI at stock:** Splitter `FrontSplitter` (Rosso -0.6, Seraph -5.9); Splitter `LightweightMounts` (Stinger -2.5, Zephyr -1.7, Aurora -0.8, Rosso -0.4); Diffuser `RearDiffuser` (Seraph -5.8); Wing `DownforcePackage` (Rosso -0.4, Seraph -8.0); Wing `DriftAero` (Seraph -5.7); Wing `LowDragProfile` (Stinger -0.4). The Splitter `LightweightMounts` trades `BrakingForce` -1 for `Weight` -3, which is a loss where weight is cheap. Live pattern, not changed.
-- **Hyper stays in A.** A fully upgraded Hyper tops out at A 831 (highest build found: A 840). The ceiling no Hyper build can beat is A 846, under the S band at 850. Rally tops out at A 830.
+- **Hyper stays in A.** A fully upgraded Hyper tops out at A 831 (highest build found: A 841). The ceiling no Hyper build can beat is A 848, under the S band at 850. Rally tops out at A 830.
 - **Exotic has two more upgradable slots than Piercer** (12 more points per build). The lower tiers cross one tier band with a full Power set and all upgrades, as Piercer does today (section 7).
 - **A stock Exotic can be upgraded without buying anything else.** Its six body parts each take six points, so a Standard Spider reaches E 276 on upgrades alone. A stock Piercer has no body parts to upgrade; with four LVL1 accessories Forge reaches E 296.
 - **Body parts are worth more on cheap cockpits.** The same flat stat is a bigger share of an E tier total. Removing the four optional parts drops Spider to 208 but Gull only to 938 (section 7). The styles of a slot are still worth the same as each other on each cockpit.

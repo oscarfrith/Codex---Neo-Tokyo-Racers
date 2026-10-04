@@ -48,6 +48,10 @@ def main():
                     attrs["VariantName"], attrs["VariantOrder"] = VARIANT_FIELDS[variant]
                 else:  # mesh/INTEGRATION.md E1, E2: locked to the kit's cockpit; a stock slot is a quarter, GT half and EVO the whole core variant price
                     attrs["SourceCockpitId"], attrs["SourceCockpitDisplayName"] = c["cockpitId"], c["displayName"]
+                    attrs["VariantName"], attrs["VariantOrder"] = bc.BODY_VARIANT[variant]  # F4
+                    if variant:  # F1: a stand-in stat step, one on GT and two on EVO
+                        stat = "EngineOutput" if slot["slotId"] == "RearBody" else "Downforce"
+                        attrs[stat] = attrs["PerformanceDelta_" + stat] = attrs[stat] + {"GT": 1, "EVO": 2}[variant]
                     if bc.module_variants(ids, mesh, slot, c["n"]) != [None]:
                         attrs["Price"] = {None: variant_price // 4, "GT": variant_price // 2, "EVO": variant_price}[variant]
                 entry = {"attributes": attrs}

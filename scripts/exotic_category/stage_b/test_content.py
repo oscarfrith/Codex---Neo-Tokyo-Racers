@@ -31,10 +31,10 @@ COCKPITS = {
     "exotic_06": ("COCKPIT_EXOTIC_06", "Seraph", "gull", "concept", "S", 12500000, 938),
 }
 # SlotId: (label, ModuleType, folder, order, CountLabel, EnginePosition, id prefix, core?)
-# Labels and Order: mesh/INTEGRATION.md E3 and E4 (2026-10-04).
+# Labels and Order: mesh/INTEGRATION.md E3 and E4; CountLabel of the two body slots: F5 (2026-10-04).
 SLOTS = {
-    "FrontBody": ("Front Body", "FrontBody", "FrontBodies", 1, "Noses", None, "MODULE_FRONTBODY_EXOTIC_", False),
-    "RearBody": ("Rear Body", "RearBody", "RearBodies", 2, "Engine Decks", None, "MODULE_REARBODY_EXOTIC_", False),
+    "FrontBody": ("Front Body", "FrontBody", "FrontBodies", 1, "Front Bodies", None, "MODULE_FRONTBODY_EXOTIC_", False),
+    "RearBody": ("Rear Body", "RearBody", "RearBodies", 2, "Rear Bodies", None, "MODULE_REARBODY_EXOTIC_", False),
     "Engine1": ("Front Engine", "Engine", "Engines", 3, "Engines", "Front", "MODULE_ENGINE_EXOTIC_", True),
     "Engine2": ("Rear Engine", "Engine", "Engines_B", 4, "Engines", "Rear", "MODULE_ENGINE_B_EXOTIC_", True),
     "Stabilisers": ("Drift Thrusters", "Stabilisers", "Stabilisers", 5, "Stabilisers", None, "MODULE_STABILISER_EXOTIC_", True),
@@ -47,6 +47,12 @@ SLOTS = {
 # mesh/INTEGRATION.md E2: Price as a fraction of the kit's core variant price V; the base part is V / 4.
 BODY_TRIM_FRACTION = {"GT": (1, 2), "EVO": (1, 1)}
 BODY_BASE_FRACTION = (1, 4)
+# mesh/INTEGRATION.md F1 and F4: the version of a body module, and the stats a trim may change (with the direction
+# that is better). A trim keeps every other attribute of its base part.
+BODY_VARIANT = {None: ("Standard", 10), "GT": ("GT", 20), "EVO": ("EVO", 30)}
+BODY_TRIM_STATS = {"FrontBody": {"Downforce": 1, "SteeringResponse": 1}, "RearBody": {"Weight": -1, "EngineOutput": 1},
+                   "RearSpoiler": {"Downforce": 1, "LateralGrip": 1}}
+LEGACY_HEADLINES = {"Acceleration", "Braking", "Handling", "Drift"}  # derived from the raw stats by the balance builder
 HIDDEN_BODY_PRICE = (8000, 11000, 14000, 18000, 23000, 30000)  # SidePods, FrontBumper, RearBumper by kit: unchanged by E2
 VARIANTS = ("STANDARD", "LIGHTWEIGHT", "POWER")
 LEGACY_DEFAULTS = {
@@ -225,11 +231,21 @@ def check_scope(scope, args, spec, reference, live):
         display = spec["modules"][slot][spec_id]["name"]
         if not row[7] and variant:
             display += " " + variant  # D7: a body trim is the base name plus the trim
-        check(a["DisplayName"] == display and a["CardTitle"] == display and a["ModuleName"] == display, tag + mid + " DisplayName/CardTitle/ModuleName")
+        # F4: CardTitle is the base part name on a GT or EVO body part (the card shows the version as its tag).
+        check(a["DisplayName"] == display and a["CardTitle"] == spec["modules"][slot][spec_id]["name"] and a["ModuleName"] == display, tag + mid + " DisplayName/CardTitle/ModuleName")
         if not row[7] and variant:
             base = next(x for x in content["modules"] if x["id"] == mid[:-len(variant) - 1])
             differing = {k for k in set(a) | set(base["attributes"]) if a.get(k) != base["attributes"].get(k)}
-            check(differing == {"ModuleId", "DisplayName", "ModuleName", "CardTitle", "Price"} and "VariantName" not in a, tag + mid + " differs from its base part in %s" % sorted(differing))
+            fixed = {"ModuleId", "DisplayName", "ModuleName", "Price", "VariantName", "VariantOrder"}
+            stats = BODY_TRIM_STATS[slot]
+            allowed = fixed | set(stats) | {"PerformanceDelta_" + k for k in stats} | LEGACY_HEADLINES
+            check(fixed <= differing <= allowed, tag + mid + " differs from its base part in %s" % sorted(differing))
+            lower = base["attributes"] if variant == "GT" else next(x for x in content["modules"] if x["id"] == mid[:-len(variant)] + "GT")["attributes"]
+            moved = [k for k in stats if a[k] != lower[k]]
+            check(moved and all((a[k] - lower[k]) * stats[k] > 0 for k in moved), tag + mid + " is better than the version below it in %s and worse in nothing" % moved)
+            check(all(a.get("PerformanceDelta_" + k) == a[k] for k in stats), tag + mid + " PerformanceDelta_ twins follow the raw stats")
+            if variant == "EVO":
+                check(all(abs((a[k] - base["attributes"][k]) - 2 * (lower[k] - base["attributes"][k])) < 1e-9 for k in stats), tag + mid + " EVO adds twice the GT step")
             core_prices = {x["attributes"]["Price"] for x in content["modules"] if SLOTS[x["slot"]][7] and x["id"].endswith(("_" + n + "_LIGHTWEIGHT", "_" + n + "_POWER"))}
             numerator, denominator = BODY_TRIM_FRACTION[variant]
             check(len(core_prices) == 1 and min(core_prices) > 0 and a["Price"] * denominator == min(core_prices) * numerator and a["NeonPrice"] == base["attributes"]["NeonPrice"],
@@ -250,7 +266,8 @@ def check_scope(scope, args, spec, reference, live):
             check(a["ModuleSlot"] == slot, tag + mid + " ModuleSlot")
             check(a.get("SourceCockpitId") == "exotic_" + n and a.get("SourceCockpitDisplayName") == COCKPITS["exotic_" + n][1],
                   tag + mid + " a body module is locked to the cockpit of its kit (SourceCockpitId/SourceCockpitDisplayName)")
-            check(not any(name in a for name in ("PurchasePrice", "VariantName", "VariantOrder")), tag + mid + " body modules carry no PurchasePrice/VariantName/VariantOrder")
+            check("PurchasePrice" not in a, tag + mid + " body modules carry no PurchasePrice")
+            check((a.get("VariantName"), a.get("VariantOrder")) == BODY_VARIANT[variant], tag + mid + " VariantName/VariantOrder %r %r" % (a.get("VariantName"), a.get("VariantOrder")))
             check(not isinstance(a.get("Price"), bool) and isinstance(a.get("Price"), (int, float)) and a["Price"] > 0,
                   tag + mid + " a body module with a source cockpit never has Price 0 (the server would charge 12% of the cockpit price)")
             if slot in MESH_BODY_TRIM_SLOTS and not variant:
