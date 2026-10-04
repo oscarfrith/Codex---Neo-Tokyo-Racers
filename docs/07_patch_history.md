@@ -2,6 +2,16 @@
 
 Recent deliveries, newest first. Entries before September 2026 live in [the archive](history/patch-history-2026-05-to-2026-08.md).
 
+## 2026-10-04 - Exotic mesh cars for all six cockpits (Backup v2 only)
+
+Cockpits `exotic_01`, `03`, `04` and `06` join `02` and `05` as mesh cars, from model asset `121164261170819` (560 MeshParts, all six cars). Contract: [INTEGRATION.md](../scripts/exotic_category/mesh/INTEGRATION.md), extension section. Reviewed by `delivery-reviewer` (approve with conditions; conditions met and recorded).
+
+- **Content:** 24 more body ModuleIds (36 in all); 144 Exotic modules. Side Pods, Splitter and Diffuser start empty on every car.
+- **Unchanged:** every game script; Piercer; every existing ModuleId and its attributes.
+- **Installed:** content hash `c4bc69bc...`, catalogue revision `649a3f3c...`. AUDIT, APPLY, ROLLBACK, APPLY and post-install checks all clean.
+- **Evidence:** agent-verified to install level only. Not user-confirmed. Seats are not measured.
+- **Recovery:** build `stage_b` at commit `68b3ed0` and APPLY to return to the two-car state.
+
 ## 2026-10-03 - Exotic mesh pilot: Curve and Hyper from uploaded meshes (Backup v2 only)
 
 Cockpits `exotic_02` and `exotic_05` and their modules are built from MeshParts cloned out of model asset `112592679936648`. Contract: [INTEGRATION.md](../scripts/exotic_category/mesh/INTEGRATION.md). Reviewed by `delivery-reviewer` (approve with conditions, recorded in the contract).
