@@ -3,10 +3,14 @@
 Design language of A: a coupe utility. Short two-seat cab with a near vertical rear window, a long open
 load bed with a flat tailgate, a long flat bonnet with twin black stripes over a cowl-induction bulge, a
 wide blunt nose with a thin full-width grille split by one body-colour bar, slim quad rectangular lamps
-in chrome caps, one slim full-width tail light strip, plain round nozzles everywhere.
-Pods and sill (round 2): "chrome pontoons". Classic, simple and round: long low pontoons of near-round
-section, each capped by a chrome bumper blade; one straight chrome side pipe along each sill.
+in dark recessed panels, one slim full-width tail light strip, plain round nozzles everywhere.
+Pods and sill (round 3): "slab pontoons". Classic, simple and chrome, the plainest pods of the six: long
+low slab-sided fenders of soft-square section with one flank crease and a black lower band at the body's
+rocker height, each ended by a slim chrome bumper blade over a dark recessed panel; one straight chrome
+side pipe along each sill.
 """
+import math
+
 import exokit as K
 from exokit import Hull, Loft, R
 from exokit import box
@@ -81,80 +85,118 @@ def a_nose():
     bulge.throat("cowl", "max", lip="primary", wall="detail", back="detail", scale=0.82, depth=0.35)
 
 
-# Chrome pontoons: each pod is a long, low tube of near-round section, constant along its length, capped
-# by a bright metal bumper blade. (centre x, half width, bottom, top)
-PON_F = (5.25, 1.15, -1.3, 1.4)
-PON_R = (5.3, 1.2, -1.35, 1.6)
+# Slab pontoons: each pod is a long, low fender of soft-square section (flat sides, a flat top with a
+# slight crown), constant along its length. Its widest line sits at the top of the body's black rocker
+# (y 0.1), so the black lower band runs through pod, sill and body. (centre x, half width, bottom, top)
+BAND_Y = 0.1
+CREASE_Y = 1.36
+BLADE = (0.16, 0.48)
+PON_F = (5.2, 1.1, -1.3, 1.85)
+PON_R = (5.28, 1.18, -1.32, 2.0)
+PON_N = (4.0, 5.0)
 
 
-def a_pontoon(z0, z1, sec):
+def a_sec(sec, k=1.0):
+    """Section scaled about its band line, so the band stays level."""
     cx, w, yb, yt = sec
-    return Loft([(z0, {}), (z1, {})], cx=cx, w=w, yb=yb, yt=yt, nt=2.8, nb=2.8, yw=0.5)
+    return dict(w=w * k, yb=BAND_Y - (BAND_Y - yb) * k, yt=BAND_Y + (yt - BAND_Y) * k)
 
 
-def a_chrome(name, rows, sec, k0=1.035):
-    """Bright metal cap over a pontoon end. rows: (z, scale) from the pontoon outward."""
+def a_pontoon(rows, sec):
+    """rows: (z, scale)."""
     cx, w, yb, yt = sec
-    cy, h = (yb + yt) / 2, (yt - yb) / 2
-    cap = Loft([(z, dict(w=w * k * k0, yb=cy - h * k * k0, yt=cy + h * k * k0)) for z, k in rows], cx=cx, nt=2.8,
-               nb=2.8, yw=0.5)
-    cap.build(name, "metal", mirror=True, step=0.2)
-    return cy
+    return Loft([(z, a_sec(sec, k)) for z, k in rows], cx=cx, nt=PON_N[0], nb=PON_N[1],
+                yw=(BAND_Y - yb) / (yt - yb))
 
 
-def a_pylon(z0, z1, cy):
-    """Dark mount between the body side and the round pontoon."""
-    box("pylon", (4.225, cy, (z0 + z1) / 2), (0.65, 1.1, z1 - z0), "detail", mirror=True)
+def a_skin(pod, z0, z1, sec, c0, c1):
+    """Two-tone skin with one crisp crease along the outboard flank, from c0 to c1."""
+    a = math.degrees(math.asin(((CREASE_Y - BAND_Y) / (sec[3] - BAND_Y)) ** (PON_N[0] / 2)))
+    return [R(z0, z1, 180.0, 360.0, "secondary", 0.0), R(c0, c1, a - 3.2, a + 3.2, "primary", 0.03)]
 
 
-def a_belly(pod, z0, z1, spans):
-    for i, (t0, t1) in enumerate(spans):
-        pod.patch(f"lift{i}", t0, t1, 258.0, 282.0, "thrust", off=0.05, mirror=True)
-    return [R(z0, z1, 218.0, 322.0, "secondary", 0.02)]
+def a_face(pod, name, end, scale, depth, back="detail", wall="detail"):
+    """Recessed end panel: a lip in the two colours of the skin, a short wall and a back face."""
+    t = pod.ts[-1] if end == "max" else pod.ts[0]
+    d = -depth if end == "max" else depth
+    ring = pod._ring(())
+    n = len(ring)
+    a = [pod._pt(t, r) for r in ring]
+    b = [pod._pt(t, r, scale=scale) for r in ring]
+    c = [(x, y, z + d) for x, y, z in b]
+    faces, fch = [], []
+    for j in range(n):
+        j2 = (j + 1) % n
+        faces.append((j, j2, n + j2, n + j))
+        fch.append("secondary" if ring[j] >= 180.0 else "primary")
+        faces.append((n + j, n + j2, 2 * n + j2, 2 * n + j))
+        fch.append(wall)
+    faces.append(tuple(2 * n + j for j in range(n)))
+    fch.append(back)
+    K._add(name, a + b + c, faces, "primary", True, closed=False, fch=fch)
+
+
+def a_blade(sec, z0, z1):
+    """Slim chrome bumper blade: a thin bar that wraps the end of a pod and runs a little way back along
+    both flanks."""
+    cx, w = sec[0], sec[1] + 0.07
+    y0, y1 = BLADE
+    Loft([(y0, dict(w=w - 0.05)), (y0 + 0.07, {}), (y1 - 0.07, {}), (y1, dict(w=w - 0.05))], axis="y", cx=cx, w=w,
+         yb=z0, yt=z1, nt=6, nb=6, yw=0.5).build("blade", "metal", mirror=True, step=0.2)
+
+
+def a_mount(z0, z1, zend):
+    """Dark mount between the body side and the pod, and a dark end block that closes the inboard corners
+    of the sill face."""
+    box("pylon", (4.1, 0.45, (z0 + z1) / 2), (0.4, 1.1, z1 - z0), "detail", mirror=True)
+    box("endblock", (4.3, -0.08, zend), (0.4, 2.36, 0.24), "detail", mirror=True)
 
 
 def a_fpod():
-    """Front pontoon: a low round tank with a chrome bumper cap that holds two slim rectangular lamps."""
+    """Front pontoon: a low slab fender. Squared front face with a dark recessed panel holding two slim
+    rectangular lamps, and a chrome bumper blade wrapping the face below them."""
     K.begin("A", "FPOD")
-    pod = a_pontoon(-11.7, POD_FZ, PON_F)
-    pod.build("skin", "primary", mirror=True, caps=(True, False), regions=[
-        R(-11.7, POD_FZ, 218.0, 322.0, "secondary", 0.02)])
-    a_belly(pod, 0, 0, [(-10.4, -7.4)])
-    pod.throat("noz", "max", lip="secondary", back="thrust", scale=0.5, depth=0.6, mirror=True)
-    cy = a_chrome("cap", [(-12.85, 0.8), (-12.74, 0.92), (-12.58, 0.985), (-12.4, 1.0), (-11.55, 1.0)], PON_F)
-    Loft([(-12.9, {}), (-12.7, {})], cx=PON_F[0], w=0.8, yb=cy - 0.25, yt=cy + 0.25, nt=5, nb=5, yw=0.5).build(
-        "bezel", "detail", mirror=True)
-    for i, x in enumerate((PON_F[0] - 0.38, PON_F[0] + 0.38)):
-        Loft([(-12.96, {}), (-12.7, {})], cx=x, w=0.31, yb=cy - 0.15, yt=cy + 0.15, nt=5, nb=5, yw=0.5).build(
+    zf = -12.72
+    pod = a_pontoon([(zf, 0.95), (zf + 0.12, 0.985), (zf + 0.34, 1.0), (POD_FZ, 1.0)], PON_F)
+    pod.build("skin", "primary", mirror=True, caps=(False, False), step=0.3,
+              regions=a_skin(pod, zf, POD_FZ, PON_F, -11.4, -6.5))
+    a_face(pod, "face", "min", 0.86, 0.24)
+    a_face(pod, "noz", "max", 0.52, 0.6, back="thrust")
+    pod.patch("lift", -10.4, -7.4, 258.0, 282.0, "thrust", off=0.05, mirror=True)
+    for i, x in enumerate((PON_F[0] - 0.45, PON_F[0] + 0.45)):
+        Loft([(zf + 0.05, {}), (zf + 0.26, {})], cx=x, w=0.33, yb=0.88, yt=1.2, nt=6, nb=6, yw=0.5).build(
             f"lamp{i}", "lights", mirror=True)
-    a_pylon(-11.0, -6.6, cy)
+    a_blade(PON_F, zf - 0.2, -11.3)
+    a_mount(-11.0, -6.6, POD_FZ - 0.14)
 
 
 def a_rpod():
-    """Rear pontoon: the same round tank, a little bigger, ending in a chrome cap with one round nozzle."""
+    """Rear pontoon: the same slab fender, a little bigger. Squared tail face with a dark recessed panel
+    holding one plain round nozzle with a slim metal ring, above the chrome bumper blade."""
     K.begin("A", "RPOD")
-    pod = a_pontoon(POD_RZ, 11.0, PON_R)
-    pod.build("skin", "primary", mirror=True, caps=(False, True), regions=[
-        R(POD_RZ, 11.0, 218.0, 322.0, "secondary", 0.02)])
-    a_belly(pod, 0, 0, [(5.8, 9.4)])
-    pod.throat("intake", "min", lip="primary", wall="detail", back="detail", scale=0.72, depth=0.5, mirror=True)
-    cy = a_chrome("cap", [(10.85, 1.0), (11.7, 1.0), (11.88, 0.985), (12.04, 0.92), (12.15, 0.8)], PON_R)
-    tube(12.0, 12.17, PON_R[0], cy, 0.8).build("gasket", "detail", mirror=True)
-    barrel("barrel", 11.6, 12.7, PON_R[0], cy, 0.68, depth=0.5, collar=False)
-    a_pylon(4.6, 10.4, cy)
+    zr = 11.9
+    pod = a_pontoon([(POD_RZ, 1.0), (zr - 0.34, 1.0), (zr - 0.12, 0.985), (zr, 0.95)], PON_R)
+    pod.build("skin", "primary", mirror=True, caps=(False, False), step=0.3,
+              regions=a_skin(pod, POD_RZ, zr, PON_R, 4.5, 10.6))
+    a_face(pod, "intake", "min", 0.74, 0.5)
+    a_face(pod, "face", "max", 0.86, 0.24)
+    pod.patch("lift", 5.8, 9.4, 258.0, 282.0, "thrust", off=0.05, mirror=True)
+    barrel("barrel", zr - 0.3, zr + 0.14, PON_R[0], 1.14, 0.58, depth=0.28, collar=False)
+    a_blade(PON_R, 10.5, zr + 0.2)
+    a_mount(4.6, 10.4, POD_RZ + 0.14)
 
 
 def a_stab():
-    """One long straight chrome side pipe on a slim dark rail; two turned-out, turned-down pipe ends near
-    the rear are the drift thrusters."""
+    """One clean straight chrome side pipe on a slim black rail whose top is level with the body's rocker
+    line; two pipe ends near the rear leave it swept back and down: the drift thrusters."""
     K.begin("A", "STAB")
     z0, z1 = POD_FZ + 0.1, POD_RZ - 0.1
-    rail = Hull([(z0, {}), (z1, {})], cx=4.7, w=0.6, yb=-1.2, yt=-0.25, ys=-0.55, rb=0.15, tum=0.1, drop=0.05,
+    rail = Hull([(z0, {}), (z1, {})], cx=4.6, w=0.5, yb=-1.15, yt=BAND_Y, ys=-0.2, rb=0.15, tum=0.06, drop=0.04,
                 wcf=0.6, d2=0.0, crown=0.02)
     rail.build("rail", "secondary", mirror=True, regions=[R(z0, z1, 4.0, 6.0, "primary", 0.0)])
-    tube(z0, z1, 5.55, -0.82, 0.3).build("pipe", "metal", mirror=True)
-    for i, z in enumerate((1.5, 2.7)):
-        bazooka(f"tip{i}", 5.55, 6.45, z, -0.82, 0.3, back=0.7, down=0.35, wide=1.0, flat=1.0, n=2)
+    tube(z0, z1, 5.48, -0.5, 0.33).build("pipe", "metal", mirror=True)
+    for i, z in enumerate((1.1, 2.4)):
+        bazooka(f"tip{i}", 5.4, 6.35, z, -0.5, 0.31, back=0.8, down=0.28, wide=1.35, flat=1.0, n=2)
     lift_glow(rail, [(-5.0, -3.6), (-2.4, -1.0)])
 
 

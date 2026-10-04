@@ -6,9 +6,10 @@ roof of the family over a narrow band of side glass and very high shoulders, bla
 Kamm tail with four small red lamps on a dark panel, a thin blade wing on two short uprights, and square
 nozzles everywhere: one flat wide slot per rear pod, three small squares per sill, four in the overdrive.
 
-Pods and sill (round 2): arrowheads. A hexagonal section with one knife-edge chine at mid height that runs
-in a straight line from the pointed prow of the front pod, along the wedge sill, to the square Kamm end of
-the rear pod. Yellow above the chine, black below. Slit lamps are sunk in the upper facet at the prow.
+Pods and sill (round 3): blades. Three surfaces and one chine: a taut crowned top, one crisp chine that
+runs in a straight line from the swept prow of the front pod, through the slim sill, to the square Kamm end
+of the rear pod, and a clean undercut below it. Yellow above the chine, black below. The chine face opens up
+at the prow to carry two thin level slit lamps.
 """
 import exokit as K
 from exokit import Hull, Loft, R, box
@@ -66,12 +67,15 @@ def c_nose():
          nb=6).build("chin", "secondary")
 
 
-class Facet(Hull):
-    """Faceted pod section for C: a hexagon with a knife-edge chine. Absolute x per station: xi inboard wall,
-    xo chine, xf floor edge, xt top edge. yc is the chine height; the top falls by drop from the inboard
-    edge to the outboard one. Ring u: 0 to 1 floor, 1 to 2 lower facet, 2 chine, 2 to 3 upper facet, 3 to 6 top."""
-    KEYS = ("xi", "xo", "xf", "xt", "yb", "yt", "yc", "drop")
-    BASE = dict(xi=4.1, xo=6.0, xf=5.5, xt=5.5, yb=-1.0, yt=1.0, yc=0.0, drop=0.12)
+class Blade(Hull):
+    """Blade pod section for C: three surfaces and one chine. A taut crowned top falls from the inboard edge
+    (level there) to the chine; a clean undercut runs from the chine in to the floor edge; flat floor.
+    Absolute x per station: xi inboard wall, xo chine. uc is how far the floor edge sits inboard of the
+    chine, yc the chine height, hb the height of the chine face (a hair line along the pod, opened up at
+    the prow to carry the lamp), n the fullness of the top (higher is flatter with a firmer shoulder).
+    Ring u: 0 to 1 floor, 1 to 2 undercut, 2 to 3 chine face, 3 to 6 top."""
+    KEYS = ("xi", "xo", "uc", "yb", "yt", "yc", "hb", "n")
+    BASE = dict(xi=4.1, xo=6.0, uc=0.5, yb=-1.0, yt=1.0, yc=0.0, hb=0.04, n=3.0)
 
     def __init__(self, stations, **defaults):
         Hull.__init__(self, stations, "z", (1, 2, 3), **defaults)
@@ -86,90 +90,93 @@ class Facet(Hull):
         return p
 
     def _half(self, p, side, u):
-        cx, xi = p["cx"], p["xi"]
-        xt = max(p["xt"], cx + 0.01)
-        top = (0.0, p["yt"] - p["drop"] * (cx - xi) / (xt - xi))
-        if side > 0:
-            k = ((0.0, p["yb"]), (max(p["xf"] - cx, 0.01), p["yb"]), (p["xo"] - cx, p["yc"]),
-                 (xt - cx, p["yt"] - p["drop"]), top)
-        else:
-            k = ((0.0, p["yb"]), (cx - xi, p["yb"]), (cx - xi, p["yc"]), (cx - xi, p["yt"]), top)
+        cx, xi, xo = p["cx"], p["xi"], p["xo"]
+        lo, hi = p["yc"] - p["hb"] / 2, p["yc"] + p["hb"] / 2
+        yt = max(p["yt"], hi + 0.01)
         u = min(max(u, 0.0), 6.0)
         if u >= 3.0:
-            i, s = 3, (u - 3.0) / 3.0
+            # one curve across the whole top, so the two halves meet without a ridge
+            q = (u - 3.0) / 3.0
+            x = (xo if side > 0 else xi) + (cx - (xo if side > 0 else xi)) * q
+            s = min(max((xo - x) / (xo - xi), 0.0), 1.0)
+            return abs(x - cx), hi + (yt - hi) * (1.0 - (1.0 - s) ** p["n"])
+        if side > 0:
+            k = ((0.0, p["yb"]), (max(xo - p["uc"] - cx, 0.01), p["yb"]), (xo - cx, lo), (xo - cx, hi))
         else:
-            i = int(u)
-            s = u - i
+            k = ((0.0, p["yb"]), (cx - xi, p["yb"]), (cx - xi, p["yc"]), (cx - xi, yt))
+        i = min(int(u), 2)
+        s = u - i
         (x0, y0), (x1, y1) = k[i], k[i + 1]
         return x0 + (x1 - x0) * s, y0 + (y1 - y0) * s
 
 
 def chine(z):
-    """One straight chine line from the prow to the Kamm tail, rising a little toward the back."""
-    return 0.3 + 0.024 * z
+    """One straight chine line from the prow to the Kamm tail, parallel to the body line and rising a
+    little toward the back."""
+    return 1.0 + 0.012 * z
 
 
-def fs(z, xi, xo, xf, xt, yb, yt, drop=0.12):
-    return (z, dict(xi=xi, xo=xo, xf=xf, xt=xt, yb=yb, yt=yt, yc=chine(z), drop=drop))
-
-
-def flat(keys, e=0.12):
-    """Stations for straight-edged facets: every value runs in a straight line between the key stations
-    (an extra station just each side of a key and one mid span keep the spline from rounding the breaks)."""
-    out = []
-    for (z0, a), (z1, b) in zip(keys, keys[1:]):
-        for z in (z0, z0 + e, (z0 + z1) / 2, z1 - e):
-            s = (z - z0) / (z1 - z0)
-            out.append((z, {k: a[k] + (b[k] - a[k]) * s for k in a}))
-    return out + [keys[-1]]
+def bs(z, xo, uc, yb, yt, hb=0.04, n=1.3):
+    """Station on the chine. The top edge of the chine face stays on the chine line; a taller face (the
+    lamp face at the prow) hangs below it."""
+    return (z, dict(xo=xo, uc=uc, yb=yb, yt=yt, yc=chine(z) + 0.02 - hb / 2, hb=hb, n=n))
 
 
 def c_fpod():
-    """Arrowhead: flat facets run from a pointed prow at chine height to the widest point two thirds back,
-    then draw in again to the sill. Yellow above the chine, black below. Slit lamps are sunk in the upper
-    facet at the prow."""
+    """Blade: a slim leading edge at the body side sweeps back in plan to the widest point, then draws in
+    to the sill. The crowned top rises with the bonnet, the keel falls away from the prow, and the chine
+    runs straight through. The chine face opens up at the prow to carry two level slit lamps."""
     K.begin("C", "FPOD")
-    c = chine(-13.0)
-    pod = Facet(flat([fs(-13.0, 4.46, 4.56, 4.53, 4.53, c - 0.04, c + 0.04, drop=0.01),
-                      fs(-11.0, 4.1, 5.72, 5.2, 5.05, -0.78, 0.95, drop=0.06),
-                      fs(-8.8, 4.1, 6.8, 5.95, 5.72, -1.4, 1.85),
-                      fs(POD_FZ, 4.1, 6.2, 5.92, 5.75, -1.4, 2.02)]))
-    pod.build("skin", "primary", mirror=True, caps=(True, False), regions=[
+    pod = Blade([bs(-13.0, 4.32, 0.05, 0.3, 0.92, hb=0.46),
+                 bs(-12.4, 4.85, 0.25, 0.08, 1.03, hb=0.46),
+                 bs(-11.8, 5.35, 0.45, -0.14, 1.14, hb=0.46),
+                 bs(-11.2, 5.8, 0.62, -0.36, 1.25, hb=0.46),
+                 bs(-10.4, 6.18, 0.8, -0.62, 1.39, hb=0.3),
+                 bs(-9.6, 6.36, 0.9, -0.85, 1.52, hb=0.14),
+                 bs(-8.8, 6.42, 0.92, -1.02, 1.63),
+                 bs(-7.8, 6.4, 0.82, -1.15, 1.73),
+                 bs(-6.8, 6.3, 0.55, -1.22, 1.8),
+                 bs(POD_FZ, 6.2, 0.28, -1.25, 1.84)])
+    pod.build("skin", "primary", mirror=True, caps=(True, False), step=0.3, regions=[
         R(-13.0, POD_FZ, 0.0, 2.0, "secondary", 0.0),
-        R(-12.5, -10.5, 2.1, 2.5, "detail", 0.015, side=1),     # lamp surround in the facet
-        R(-12.4, -10.6, 2.16, 2.44, "lights", 0.04, side=1),    # slit lamp
-        R(-11.5, -10.6, 2.6, 2.74, "lights", 0.03, side=1)])    # short slit above it
+        R(-12.92, -11.2, 2.06, 2.94, "detail", 0.015, side=1),   # lamp surround in the chine face
+        R(-12.82, -11.3, 2.5, 2.86, "lights", 0.04, side=1),     # slit lamp
+        R(-12.82, -12.1, 2.14, 2.34, "lights", 0.03, side=1)])   # short slit under it
     pod.cap("end", "max", "secondary", mirror=True)
-    barrel("noz", -7.0, -5.94, 5.0, 1.42, 0.6, depth=0.5, collar=False, ry=0.27, n=7)
-    flange(-10.6, -6.4, -0.3, 1.0)
-    lift_glow(pod, [(-10.0, -7.4)])
+    barrel("noz", -7.0, -5.94, 4.85, 1.3, 0.38, depth=0.4, collar=False, ry=0.13, n=7)
+    flange(-10.4, -6.4, -0.3, 1.0)
+    lift_glow(pod, [(-9.6, -7.2)])
 
 
 def c_rpod():
-    """The same diamond section, low and flat, cut off square as a Kamm tail: a black faceted end frame
-    round one flat wide slot nozzle."""
+    """The same blade section, low and flat, cut off square as a Kamm tail: a slim black end frame with
+    one flat wide slot nozzle set flush in it."""
     K.begin("C", "RPOD")
-    pod = Facet(flat([fs(POD_RZ, 4.1, 6.2, 5.92, 5.75, -1.4, 2.08),
-                      fs(6.4, 4.1, 6.8, 6.0, 5.85, -1.4, 2.18),
-                      fs(12.2, 4.1, 6.85, 6.05, 5.9, -1.1, 2.1)]))
-    pod.build("skin", "primary", mirror=True, caps=(False, False), regions=[
-        R(POD_RZ, 12.2, 0.0, 2.0, "secondary", 0.0)])
-    pod.throat("intake", "min", lip="primary", wall="detail", back="detail", scale=0.76, depth=0.5, mirror=True)
-    pod.throat("frame", "max", lip="secondary", wall="detail", back="detail", scale=0.74, depth=0.3, mirror=True)
-    barrel("slot", 11.4, 12.4, 5.475, 0.5, 0.92, depth=0.3, collar=False, ry=0.36, n=7)
-    flange(4.4, 10.6, -0.3, 1.9)
-    lift_glow(pod, [(5.8, 9.6)])
+    pod = Blade([bs(POD_RZ, 6.2, 0.28, -1.25, 1.9),
+                 bs(4.8, 6.3, 0.55, -1.23, 1.93),
+                 bs(5.8, 6.4, 0.82, -1.17, 1.96),
+                 bs(7.2, 6.48, 0.9, -1.05, 2.0),
+                 bs(9.4, 6.5, 0.86, -0.85, 2.03),
+                 bs(11.2, 6.46, 0.76, -0.62, 2.03),
+                 bs(12.3, 6.4, 0.68, -0.48, 2.02)])
+    pod.build("skin", "primary", mirror=True, caps=(False, False), step=0.3, regions=[
+        R(POD_RZ, 12.3, 0.0, 2.0, "secondary", 0.0)])
+    pod.throat("intake", "min", lip="secondary", wall="detail", back="detail", scale=0.8, depth=0.4, mirror=True)
+    pod.throat("frame", "max", lip="secondary", wall="detail", back="detail", scale=0.87, depth=0.3, mirror=True)
+    barrel("slot", 11.5, 12.29, 5.22, 0.72, 0.68, depth=0.2, collar=False, ry=0.3, n=7)
+    flange(4.4, 10.6, -0.3, 1.6)
+    lift_glow(pod, [(5.6, 9.2)])
 
 
 def c_stab():
-    """Faceted wedge sill that carries the chine between the pods; three small square thrusters set in
-    its lower facet, swept back and down."""
+    """Slim blade sill that carries the chine between the pods; three small square thrusters set in its
+    undercut, swept back and down."""
     K.begin("C", "STAB")
     z0, z1 = POD_FZ + 0.1, POD_RZ - 0.1
-    sill = Facet([fs(z0, 4.1, 5.9, 5.25, 5.06, -1.2, 1.0), fs(z1, 4.1, 5.9, 5.25, 5.06, -1.2, 1.0)], drop=0.1)
+    sill = Blade([bs(z0, 5.9, 0.9, -0.85, 1.1), bs(z1, 5.9, 0.9, -0.85, 1.1)])
     sill.build("skin", "primary", mirror=True, regions=[R(z0, z1, 0.0, 2.0, "secondary", 0.0)])
-    for i, z in enumerate((-2.9, -1.7, -0.5)):
-        bazooka(f"jet{i}", 5.2, 6.3, z, -0.3, 0.34, back=0.7, down=0.5, wide=1.0, flat=1.0, n=7)
+    for i, z in enumerate((-2.9, -1.8, -0.7)):
+        bazooka(f"jet{i}", 5.15, 6.15, z, -0.05, 0.3, back=0.6, down=0.42, wide=1.0, flat=1.0, n=7)
     lift_glow(sill, [(-5.0, -3.8), (1.8, 3.0)])
 
 

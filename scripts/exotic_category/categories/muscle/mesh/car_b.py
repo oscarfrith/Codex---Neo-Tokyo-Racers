@@ -5,8 +5,9 @@ Design language of B: a modern coupe utility. Raked two-seat cab; two tall body-
 buttresses sweep from the roof's rear edge down onto the bed sides, with a low hoop bar between them and a
 hard black tonneau closing the bed. Wide low one-piece grille with a centre bar over a deep chin, a nose that
 tapers in plan, twin low snorkel intakes on a black bonnet insert, a flat tailgate with tall vertical lamps.
-Pods and sill are "wedge and saddle": angular wedge front pods with slanted lamps on a raked face, long
-flat-topped saddle pods beside the bed, a thin blade skirt with one wide slot thruster, one wide burner.
+Pods and sill are "wedge and saddle", surfaced like the body: slim forward-leaning wedge front pods with a
+swept light blade, long saddle pods beside the bed that rise slightly to the tail, a thin blade skirt with one
+wide slot thruster, one wide burner. One shoulder line runs front pod, sill top, rear pod.
 """
 import exokit as K
 import musclekit as M  # noqa: F401  (sets the frame up)
@@ -17,10 +18,16 @@ from muscle_cars import LINE, barrel, bazooka, build_car, flange, lift_glow, tub
 # Tonneau and bonnet insert: ring ranges on a body-width top panel.
 TONNEAU = (4.3, 6.0)
 INSERT = (5.3, 6.0)
-# Angular pod section: flat planes, a chamfered shoulder, crisp edges, no crown.
-FLAT = dict(wcf=0.7, d2=0.0, crown=0.0, cs=0.0)
-WEDGE = dict(rb=0.25, tum=0.4, drop=0.02, **FLAT)
-SADDLE = dict(cx=5.35, w=1.25, rb=0.2, tum=0.16, drop=0.02, **FLAT)
+# Pod section, in the body's own language: a crowned flank under one shoulder crease, a taut upper panel
+# leaning in to a small-radius top edge, a flat inboard face at x 4.1.
+POD = dict(rb=0.3, tum=0.42, drop=0.3, tumi=0.03, dropi=0.05, wcf=0.72, d2=0.03, crown=0.04, cs=0.025)
+# Fine groove under the pod shoulder, the same cut as the body's character line.
+SHOULDER = (2.84, 2.96)
+
+
+def b_sec(xo, yb, yt, ys, **kw):
+    """Pod station: inboard face at x 4.1, outboard face at xo."""
+    return dict(cx=(4.1 + xo) / 2, w=(xo - 4.1) / 2, yb=yb, yt=yt, ys=ys, **kw)
 
 
 def b_cockpit():
@@ -43,11 +50,13 @@ def b_cockpit():
         R(-4.74, 0.89, 3.085, 3.835, "glass", 0.04),    # door glass
         R(1.5, 2.5, 4.55, 6.0, "detail", 0.0),          # rear window surround
         R(1.56, 2.44, 4.63, 6.0, "glass", 0.04)])       # rear window
-    # Sail-plane buttress: a thin plate lofted upward, leaning in with the cab side; its rear edge sweeps
-    # from the roof edge down to the bed side.
-    Loft([(2.95, dict(cx=3.27, yt=6.6)), (3.3, dict(cx=3.27, yt=5.8)), (4.2, dict(cx=2.92, yt=3.85)),
-          (5.2, dict(cx=2.54, yt=1.55))], axis="y", w=0.25, yb=1.0, nt=6, nb=6, yw=0.5).build(
-        "buttress", "primary", mirror=True)
+    # Sail-plane buttress: a thin plate lofted upward; its rear edge sweeps from the roof edge down to the
+    # bed side. Its outer face follows the cab side's own curve, a hair proud of it, and starts at the rear
+    # edge of the door glass surround, so the plate is the rear pillar surface and no crease shows where it
+    # leaves the cab.
+    Loft([(2.95, dict(cx=3.32, yt=6.6)), (3.3, dict(cx=3.365, yt=5.8)), (3.82, dict(cx=3.27, yt=4.67)),
+          (4.31, dict(cx=3.105, yt=3.58)), (4.78, dict(cx=2.885, yt=2.4)), (5.2, dict(cx=2.6, yt=1.35))],
+         axis="y", w=0.25, yb=1.02, nt=6, nb=6, yw=0.5).build("buttress", "primary", mirror=True)
     box("hoop", (0, 4.3, 3.0), (5.4, 0.3, 0.42), "secondary")
 
 
@@ -82,45 +91,56 @@ def b_nose():
 
 
 def b_fpod():
-    """Wedge: flat planes with a chamfered shoulder, thin at the front and rising to the back, tapering in
-    plan. The sharply raked front face carries one slanted trapezoid lamp."""
+    """Wedge: a slim forward-leaning pod. Its top line falls with the bonnet, its belly rakes up to a narrow
+    tip, and its flank sweeps back in plan from that tip. The shoulder crease runs on into the sill top. A slim
+    light blade lies along the swept flank above the shoulder, in a thin dark surround."""
     K.begin("B", "FPOD")
-    front = dict(cx=5.2, w=1.1, yb=-0.35, yt=1.35, ys=0.93)
-    pod = Hull([(-12.1, front), (POD_FZ, dict(cx=5.4, w=1.3, yb=-1.25, yt=2.2, ys=1.78))], **WEDGE)
-    pod.build("skin", "primary", mirror=True, caps=(False, False), regions=[
-        R(-11.95, POD_FZ - 0.15, 1.0, 2.0, "secondary", 0.02)])
-    pod.throat("noz", "max", lip="secondary", back="thrust", scale=0.5, depth=0.6, mirror=True)
-    face = Hull([(-13.0, dict(cx=5.1, w=0.86, yb=0.0, yt=0.3, ys=0.2, rb=0.08, tum=0.1)), (-12.1, front)], **WEDGE)
-    face.build("face", "primary", mirror=True, caps=(True, False), regions=[
-        R(-12.78, -12.34, 4.3, 6.0, "detail", 0.015),
-        R(-12.7, -12.42, 4.5, 6.0, "lights", 0.04)])
-    flange(-11.0, -6.4, -0.2, 1.5)
+    pod = Hull([(-13.0, b_sec(4.9, 0.15, 0.74, 0.5, rb=0.1, tum=0.12, drop=0.08)),
+                (-12.2, b_sec(5.7, -0.35, 1.2, 0.7, rb=0.2, tum=0.25, drop=0.16)),
+                (-10.6, b_sec(6.15, -0.95, 1.5, 0.85)),
+                (-8.4, b_sec(6.25, -1.2, 1.7, 0.94)),
+                (POD_FZ, b_sec(6.2, -1.25, 1.85, 1.0))], **POD)
+    pod.build("skin", "primary", mirror=True, caps=(True, False), regions=[
+        R(-12.6, POD_FZ - 0.15, 0.0, 2.0, "secondary", 0.02),
+        R(-12.3, POD_FZ - 0.3, SHOULDER[0], SHOULDER[1], "primary", 0.025, side=1),
+        R(-12.85, -11.48, 3.08, 3.92, "detail", 0.015, side=1),
+        R(-12.76, -11.57, 3.24, 3.76, "lights", 0.04, side=1)])
+    pod.throat("noz", "max", lip="secondary", back="thrust", scale=0.55, depth=0.6, mirror=True)
+    flange(-10.6, -6.4, -0.2, 1.3)
     lift_glow(pod, [(-10.4, -7.4)])
 
 
+def b_slot(name, z0, z1, x, y, r, ry):
+    """Slot nozzle: a slim dark frame round a metal tunnel with a glowing back."""
+    t = Loft([(z0, {}), (z1, {})], cx=x, w=r, yb=y - ry, yt=y + ry, nt=5, nb=5, yw=0.5)
+    t.build(name, "detail", mirror=True, caps=(True, False))
+    t.throat(name + "n", "max", lip="detail", wall="metal", back="thrust", scale=0.88, depth=0.2, mirror=True)
+
+
 def b_rpod():
-    """Saddle: a long, low, level-topped rectangular pod beside the bed, lower than the bed rail, with a
-    raked leading face, a slight boat-tail and one wide rectangular slot nozzle."""
+    """Saddle: a long, sleek pod beside the bed. A raked leading face lifts the sill line up to a top that
+    runs with the bed rail and rises slightly to the tail; the belly kicks up into a slight boat-tail that
+    carries one wide slot nozzle. Lower than the bed rail."""
     K.begin("B", "RPOD")
-    top = dict(yb=-1.3, yt=1.95, ys=1.77)
-    lead = Hull([(POD_RZ, dict(yb=-1.3, yt=1.15, ys=0.97)), (5.0, top)], **SADDLE)
-    lead.build("lead", "primary", mirror=True, caps=(True, False), regions=[
-        R(POD_RZ + 0.15, 4.85, 1.0, 2.0, "secondary", 0.02),
-        R(4.2, 4.8, 4.3, 6.0, "detail", 0.05)])
-    pod = Hull([(5.0, top), (9.2, top), (11.8, dict(cx=5.25, w=1.02, yb=-0.75, yt=1.8, ys=1.62))], **SADDLE)
-    pod.build("skin", "primary", mirror=True, caps=(False, True), regions=[
-        R(5.0, 11.65, 1.0, 2.0, "secondary", 0.02)])
-    barrel("slot", 10.8, 12.5, 5.25, 0.52, 0.86, depth=0.6, collar=False, ry=0.4, n=5)
-    flange(4.6, 10.6, -0.3, 1.7)
-    lift_glow(pod, [(5.8, 9.6)])
+    pod = Hull([(POD_RZ, b_sec(6.2, -1.3, 1.3, 1.1, tum=0.15, drop=0.06)),
+                (5.0, b_sec(6.3, -1.3, 1.95, 1.16)),
+                (9.0, b_sec(6.3, -1.3, 2.1, 1.34)),
+                (10.6, b_sec(6.24, -1.0, 2.16, 1.42)),
+                (12.2, b_sec(5.86, -0.1, 2.2, 1.5, rb=0.2, tum=0.34, drop=0.24))], **POD)
+    pod.build("skin", "primary", mirror=True, regions=[
+        R(POD_RZ + 0.15, 12.05, 0.0, 2.0, "secondary", 0.02),
+        R(POD_RZ + 0.5, 11.9, SHOULDER[0], SHOULDER[1], "primary", 0.025, side=1)])
+    b_slot("slot", 11.6, 12.5, 4.98, 0.92, 0.74, 0.42)
+    flange(5.2, 10.6, -0.3, 1.5)
+    lift_glow(pod, [(5.8, 9.4)])
 
 
 def b_stab():
-    """Flat blade skirt: a thin vertical blade along the sill, with one wide slot thruster swept back and
-    down."""
+    """Blade skirt: a thin vertical blade along the sill whose top edge carries the pod shoulder line from
+    the front pod to the rear pod, with one wide slot thruster swept back and down."""
     K.begin("B", "STAB")
-    blade = Hull([(POD_FZ + 0.1, {}), (POD_RZ - 0.1, {})], cx=4.4, w=0.3, yb=-1.2, yt=1.0, ys=0.88, rb=0.08,
-                 tum=0.1, drop=0.02, **FLAT)
+    blade = Hull([(POD_FZ + 0.1, dict(yt=1.0, ys=0.88)), (POD_RZ - 0.1, dict(yt=1.1, ys=0.98))], cx=4.4, w=0.3,
+                 yb=-1.2, rb=0.08, tum=0.1, drop=0.02, wcf=0.7, d2=0.0, crown=0.0, cs=0.02)
     blade.build("blade", "primary", mirror=True, regions=[
         R(POD_FZ + 0.1, POD_RZ - 0.1, 0.0, 2.4, "secondary", 0.0)])
     bazooka("slot", 4.5, 6.3, -0.6, 0.1, 0.5, back=1.0, down=0.55, wide=2.0, flat=0.4, n=5)
