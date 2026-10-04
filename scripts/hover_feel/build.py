@@ -351,8 +351,12 @@ def main():
 
     if updates:
         profile = ["ReplicatedStorage", "Config", "Audio", "VehicleProfiles", "EXOTIC_V10_AUDIO"]
-        for key, value in (("SuperchargerWhineGain", 0.1), ("TurboWhistleGain", 0.14), ("BoostDuckDb", 6),
-                           ("BoostLoopGain", 0.9), ("BoostBodyGain", 0.7), ("BoostIgnitionGain", 1), ("ProfileRevision", 3)):
+        # Mix for the uploaded set, from Oscar's feedback: less whine, more depth and grit, boost that stands apart.
+        for key, value in (("SuperchargerWhineGain", 0.16), ("SuperchargerWhinePitchMax", 1.3), ("TurboWhistleGain", 0.08),
+                           ("TurbineLowGain", 0.22), ("TurbineHighGain", 0.14), ("TurbineOctaves", 1.2),
+                           ("EnergyHumGain", 0.3), ("SlipStrainPitch", 1), ("SlipStrainGain", 0.28),
+                           ("BoostDuckDb", 6), ("BoostLoopGain", 0.9), ("BoostBodyGain", 0.7), ("BoostIgnitionGain", 1),
+                           ("ProfileRevision", 3)):
             updates.append({"path": profile, "key": key, "value": value})
         updates.append({"path": profile + ["RevLayers", "StandInExhaust"], "key": "Gain", "value": 0.65})
         # Uploaded sounds: audio/asset_ids.json (file name -> asset id) written into their slots.
