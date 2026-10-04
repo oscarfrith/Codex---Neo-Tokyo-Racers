@@ -1,5 +1,5 @@
 {
- "assetId": 112592679936648,
+ "assetId": 121164261170819,
  "cars": {
   "A": {
    "cockpit": "exotic_05",
@@ -10,9 +10,91 @@
    "cockpit": "exotic_02",
    "fileOffsetX": 20.0,
    "kit": 2
+  },
+  "C": {
+   "cockpit": "exotic_01",
+   "fileOffsetX": 40.0,
+   "kit": 1
+  },
+  "D": {
+   "cockpit": "exotic_03",
+   "fileOffsetX": 60.0,
+   "kit": 3
+  },
+  "E": {
+   "cockpit": "exotic_04",
+   "fileOffsetX": 80.0,
+   "kit": 4
+  },
+  "F": {
+   "cockpit": "exotic_06",
+   "fileOffsetX": 100.0,
+   "kit": 6
   }
  },
  "cockpits": {
+  "exotic_01": {
+   "car": "C",
+   "parts": {
+    "C_COCKPIT_STD__detail": {
+     "centre": [
+      0.0,
+      1.0965,
+      -1.2
+     ],
+     "channel": "detail",
+     "size": [
+      7.4208,
+      2.887,
+      8.16
+     ],
+     "triangles": 1916
+    },
+    "C_COCKPIT_STD__glass": {
+     "centre": [
+      0.0,
+      3.1098,
+      -1.9
+     ],
+     "channel": "glass",
+     "size": [
+      6.4604,
+      2.2157,
+      8.8
+     ],
+     "triangles": 1012
+    },
+    "C_COCKPIT_STD__primary": {
+     "centre": [
+      0.0,
+      1.8097,
+      0.3
+     ],
+     "channel": "primary",
+     "size": [
+      7.73,
+      4.3797,
+      14.0
+     ],
+     "triangles": 3796
+    },
+    "C_COCKPIT_STD__secondary": {
+     "centre": [
+      0.0,
+      1.9599,
+      0.2
+     ],
+     "channel": "secondary",
+     "size": [
+      7.51,
+      4.6801,
+      13.4
+     ],
+     "triangles": 1344
+    }
+   },
+   "source": "C_COCKPIT_STD"
+  },
   "exotic_02": {
    "car": "B",
    "parts": {
@@ -75,6 +157,130 @@
    },
    "source": "B_COCKPIT_STD"
   },
+  "exotic_03": {
+   "car": "D",
+   "parts": {
+    "D_COCKPIT_STD__detail": {
+     "centre": [
+      0.0,
+      2.0965,
+      -1.2
+     ],
+     "channel": "detail",
+     "size": [
+      7.4208,
+      4.887,
+      8.16
+     ],
+     "triangles": 2010
+    },
+    "D_COCKPIT_STD__glass": {
+     "centre": [
+      0.0,
+      3.1565,
+      0.075
+     ],
+     "channel": "glass",
+     "size": [
+      6.5534,
+      2.227,
+      13.05
+     ],
+     "triangles": 2216
+    },
+    "D_COCKPIT_STD__primary": {
+     "centre": [
+      0.0,
+      2.21,
+      0.25
+     ],
+     "channel": "primary",
+     "size": [
+      7.73,
+      5.1801,
+      13.9
+     ],
+     "triangles": 6130
+    },
+    "D_COCKPIT_STD__secondary": {
+     "centre": [
+      0.0,
+      -0.1875,
+      -1.2
+     ],
+     "channel": "secondary",
+     "size": [
+      7.51,
+      0.3851,
+      7.88
+     ],
+     "triangles": 960
+    }
+   },
+   "source": "D_COCKPIT_STD"
+  },
+  "exotic_04": {
+   "car": "E",
+   "parts": {
+    "E_COCKPIT_STD__detail": {
+     "centre": [
+      0.0,
+      1.0965,
+      -1.2
+     ],
+     "channel": "detail",
+     "size": [
+      7.4208,
+      2.887,
+      8.16
+     ],
+     "triangles": 1916
+    },
+    "E_COCKPIT_STD__glass": {
+     "centre": [
+      0.0,
+      3.0731,
+      -0.3
+     ],
+     "channel": "glass",
+     "size": [
+      6.2528,
+      2.1897,
+      12.0
+     ],
+     "triangles": 1432
+    },
+    "E_COCKPIT_STD__primary": {
+     "centre": [
+      0.0,
+      1.2277,
+      -0.25
+     ],
+     "channel": "primary",
+     "size": [
+      7.73,
+      3.2157,
+      12.9
+     ],
+     "triangles": 3536
+    },
+    "E_COCKPIT_STD__secondary": {
+     "centre": [
+      0.0,
+      1.9349,
+      -0.05
+     ],
+     "channel": "secondary",
+     "size": [
+      7.73,
+      4.6301,
+      11.5
+     ],
+     "triangles": 2416
+    }
+   },
+   "source": "E_COCKPIT_STD"
+  },
   "exotic_05": {
    "car": "A",
    "parts": {
@@ -136,9 +342,376 @@
     }
    },
    "source": "A_COCKPIT_STD"
+  },
+  "exotic_06": {
+   "car": "F",
+   "parts": {
+    "F_COCKPIT_STD__detail": {
+     "centre": [
+      0.0,
+      2.1105,
+      -1.2
+     ],
+     "channel": "detail",
+     "size": [
+      7.73,
+      4.915,
+      8.16
+     ],
+     "triangles": 2442
+    },
+    "F_COCKPIT_STD__glass": {
+     "centre": [
+      0.0,
+      3.1888,
+      -2.05
+     ],
+     "channel": "glass",
+     "size": [
+      4.6584,
+      2.4623,
+      8.5
+     ],
+     "triangles": 1012
+    },
+    "F_COCKPIT_STD__primary": {
+     "centre": [
+      0.0,
+      2.24,
+      0.25
+     ],
+     "channel": "primary",
+     "size": [
+      7.73,
+      5.2401,
+      13.9
+     ],
+     "triangles": 4546
+    },
+    "F_COCKPIT_STD__secondary": {
+     "centre": [
+      0.0,
+      2.12,
+      0.93
+     ],
+     "channel": "secondary",
+     "size": [
+      7.6394,
+      5.0001,
+      12.14
+     ],
+     "triangles": 1480
+    }
+   },
+   "source": "F_COCKPIT_STD"
   }
  },
  "modules": {
+  "MODULE_BOOST_EXOTIC_01_LIGHTWEIGHT": {
+   "car": "C",
+   "kit": 1,
+   "parts": {
+    "C_BOOST_GT__detail": {
+     "centre": [
+      0.0,
+      0.85,
+      11.54
+     ],
+     "channel": "detail",
+     "size": [
+      4.6,
+      1.5,
+      1.22
+     ],
+     "triangles": 76
+    },
+    "C_BOOST_GT__primary": {
+     "centre": [
+      0.0,
+      0.91,
+      11.15
+     ],
+     "channel": "primary",
+     "size": [
+      4.2,
+      1.02,
+      0.7
+     ],
+     "triangles": 284
+    },
+    "C_BOOST_GT__secondary": {
+     "centre": [
+      0.0,
+      0.85,
+      11.675
+     ],
+     "channel": "secondary",
+     "size": [
+      3.34,
+      0.56,
+      0.95
+     ],
+     "triangles": 286
+    },
+    "C_BOOST_GT__thrust": {
+     "centre": [
+      0.0,
+      0.85,
+      11.85
+     ],
+     "channel": "thrust",
+     "size": [
+      2.8724,
+      0.4816,
+      0.001
+     ],
+     "triangles": 30
+    }
+   },
+   "slot": "Boost",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_BoostJet_Left",
+     "position": [
+      -0.8,
+      0.85,
+      12.15
+     ]
+    },
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_BoostJet_Right",
+     "position": [
+      0.8,
+      0.85,
+      12.15
+     ]
+    }
+   ],
+   "source": "C_BOOST_GT",
+   "trim": "GT"
+  },
+  "MODULE_BOOST_EXOTIC_01_POWER": {
+   "car": "C",
+   "kit": 1,
+   "parts": {
+    "C_BOOST_EVO__detail": {
+     "centre": [
+      0.0,
+      0.85,
+      11.615
+     ],
+     "channel": "detail",
+     "size": [
+      4.6,
+      1.5,
+      1.37
+     ],
+     "triangles": 140
+    },
+    "C_BOOST_EVO__primary": {
+     "centre": [
+      0.0,
+      0.97,
+      11.15
+     ],
+     "channel": "primary",
+     "size": [
+      4.2,
+      1.14,
+      0.7
+     ],
+     "triangles": 284
+    },
+    "C_BOOST_EVO__secondary": {
+     "centre": [
+      0.0,
+      0.75,
+      11.75
+     ],
+     "channel": "secondary",
+     "size": [
+      3.58,
+      1.36,
+      1.1
+     ],
+     "triangles": 572
+    },
+    "C_BOOST_EVO__thrust": {
+     "centre": [
+      0.0,
+      0.75,
+      12.0
+     ],
+     "channel": "thrust",
+     "size": [
+      3.0788,
+      1.2816,
+      0.001
+     ],
+     "triangles": 60
+    }
+   },
+   "slot": "Boost",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_BoostJet_Left",
+     "position": [
+      -0.8,
+      1.15,
+      12.3
+     ]
+    },
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_BoostJet_Right",
+     "position": [
+      0.8,
+      1.15,
+      12.3
+     ]
+    },
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_BoostJet_Top",
+     "position": [
+      0.8,
+      0.35,
+      12.3
+     ]
+    },
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_BoostJet_Back",
+     "position": [
+      -0.8,
+      0.35,
+      12.3
+     ]
+    }
+   ],
+   "source": "C_BOOST_EVO",
+   "trim": "EVO"
+  },
+  "MODULE_BOOST_EXOTIC_01_STANDARD": {
+   "car": "C",
+   "kit": 1,
+   "parts": {
+    "C_BOOST_STD__detail": {
+     "centre": [
+      0.0,
+      0.85,
+      11.465
+     ],
+     "channel": "detail",
+     "size": [
+      4.6,
+      1.5,
+      1.07
+     ],
+     "triangles": 76
+    },
+    "C_BOOST_STD__primary": {
+     "centre": [
+      0.0,
+      0.85,
+      11.15
+     ],
+     "channel": "primary",
+     "size": [
+      4.2,
+      0.9,
+      0.7
+     ],
+     "triangles": 284
+    },
+    "C_BOOST_STD__secondary": {
+     "centre": [
+      0.0,
+      0.85,
+      11.6
+     ],
+     "channel": "secondary",
+     "size": [
+      3.1,
+      0.56,
+      0.8
+     ],
+     "triangles": 222
+    },
+    "C_BOOST_STD__thrust": {
+     "centre": [
+      0.0,
+      0.85,
+      11.7
+     ],
+     "channel": "thrust",
+     "size": [
+      2.666,
+      0.4816,
+      0.001
+     ],
+     "triangles": 30
+    }
+   },
+   "slot": "Boost",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_BoostJet_Left",
+     "position": [
+      -0.8,
+      0.85,
+      12.0
+     ]
+    },
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_BoostJet_Right",
+     "position": [
+      0.8,
+      0.85,
+      12.0
+     ]
+    }
+   ],
+   "source": "C_BOOST_STD",
+   "trim": "STD"
+  },
   "MODULE_BOOST_EXOTIC_02_LIGHTWEIGHT": {
    "car": "B",
    "kit": 2,
@@ -483,6 +1056,590 @@
    "source": "B_BOOST_STD",
    "trim": "STD"
   },
+  "MODULE_BOOST_EXOTIC_03_LIGHTWEIGHT": {
+   "car": "D",
+   "kit": 3,
+   "parts": {
+    "D_BOOST_GT__detail": {
+     "centre": [
+      0.0,
+      0.85,
+      11.625
+     ],
+     "channel": "detail",
+     "size": [
+      4.2,
+      0.9,
+      1.35
+     ],
+     "triangles": 112
+    },
+    "D_BOOST_GT__primary": {
+     "centre": [
+      0.0,
+      1.34,
+      11.1
+     ],
+     "channel": "primary",
+     "size": [
+      3.2,
+      0.12,
+      0.3
+     ],
+     "triangles": 12
+    },
+    "D_BOOST_GT__secondary": {
+     "centre": [
+      0.0,
+      0.41,
+      11.525
+     ],
+     "channel": "secondary",
+     "size": [
+      3.7,
+      1.62,
+      1.55
+     ],
+     "triangles": 298
+    },
+    "D_BOOST_GT__thrust": {
+     "centre": [
+      0.0,
+      0.82,
+      11.95
+     ],
+     "channel": "thrust",
+     "size": [
+      3.256,
+      0.704,
+      0.001
+     ],
+     "triangles": 30
+    }
+   },
+   "slot": "Boost",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_BoostJet_Left",
+     "position": [
+      -0.7999999999999999,
+      0.82,
+      12.3
+     ]
+    },
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_BoostJet_Right",
+     "position": [
+      0.7999999999999999,
+      0.82,
+      12.3
+     ]
+    }
+   ],
+   "source": "D_BOOST_GT",
+   "trim": "GT"
+  },
+  "MODULE_BOOST_EXOTIC_03_POWER": {
+   "car": "D",
+   "kit": 3,
+   "parts": {
+    "D_BOOST_EVO__detail": {
+     "centre": [
+      0.0,
+      0.85,
+      11.7
+     ],
+     "channel": "detail",
+     "size": [
+      4.2,
+      0.9,
+      1.5
+     ],
+     "triangles": 136
+    },
+    "D_BOOST_EVO__primary": {
+     "centre": [
+      0.0,
+      1.34,
+      11.1
+     ],
+     "channel": "primary",
+     "size": [
+      3.2,
+      0.12,
+      0.3
+     ],
+     "triangles": 12
+    },
+    "D_BOOST_EVO__secondary": {
+     "centre": [
+      0.0,
+      0.41,
+      11.6
+     ],
+     "channel": "secondary",
+     "size": [
+      4.0,
+      1.62,
+      1.7
+     ],
+     "triangles": 362
+    },
+    "D_BOOST_EVO__thrust": {
+     "centre": [
+      0.0,
+      0.82,
+      12.1
+     ],
+     "channel": "thrust",
+     "size": [
+      3.52,
+      0.704,
+      0.001
+     ],
+     "triangles": 30
+    }
+   },
+   "slot": "Boost",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_BoostJet_Left",
+     "position": [
+      -0.8999999999999999,
+      0.82,
+      12.450000000000001
+     ]
+    },
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_BoostJet_Right",
+     "position": [
+      0.8999999999999999,
+      0.82,
+      12.450000000000001
+     ]
+    }
+   ],
+   "source": "D_BOOST_EVO",
+   "trim": "EVO"
+  },
+  "MODULE_BOOST_EXOTIC_03_STANDARD": {
+   "car": "D",
+   "kit": 3,
+   "parts": {
+    "D_BOOST_STD__detail": {
+     "centre": [
+      0.0,
+      0.85,
+      11.55
+     ],
+     "channel": "detail",
+     "size": [
+      4.2,
+      0.9,
+      1.2
+     ],
+     "triangles": 88
+    },
+    "D_BOOST_STD__primary": {
+     "centre": [
+      0.0,
+      1.34,
+      11.1
+     ],
+     "channel": "primary",
+     "size": [
+      3.2,
+      0.12,
+      0.3
+     ],
+     "triangles": 12
+    },
+    "D_BOOST_STD__secondary": {
+     "centre": [
+      0.0,
+      0.41,
+      11.45
+     ],
+     "channel": "secondary",
+     "size": [
+      3.4,
+      1.62,
+      1.4
+     ],
+     "triangles": 298
+    },
+    "D_BOOST_STD__thrust": {
+     "centre": [
+      0.0,
+      0.82,
+      11.8
+     ],
+     "channel": "thrust",
+     "size": [
+      2.992,
+      0.704,
+      0.001
+     ],
+     "triangles": 30
+    }
+   },
+   "slot": "Boost",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_BoostJet_Left",
+     "position": [
+      -0.7,
+      0.82,
+      12.15
+     ]
+    },
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_BoostJet_Right",
+     "position": [
+      0.7,
+      0.82,
+      12.15
+     ]
+    }
+   ],
+   "source": "D_BOOST_STD",
+   "trim": "STD"
+  },
+  "MODULE_BOOST_EXOTIC_04_LIGHTWEIGHT": {
+   "car": "E",
+   "kit": 4,
+   "parts": {
+    "E_BOOST_GT__detail": {
+     "centre": [
+      0.0,
+      1.25,
+      11.54
+     ],
+     "channel": "detail",
+     "size": [
+      4.8,
+      1.2,
+      1.22
+     ],
+     "triangles": 164
+    },
+    "E_BOOST_GT__primary": {
+     "centre": [
+      0.0,
+      1.275,
+      11.125
+     ],
+     "channel": "primary",
+     "size": [
+      4.6,
+      1.35,
+      0.65
+     ],
+     "triangles": 284
+    },
+    "E_BOOST_GT__secondary": {
+     "centre": [
+      0.0,
+      1.28,
+      11.625
+     ],
+     "channel": "secondary",
+     "size": [
+      3.0,
+      1.0,
+      1.05
+     ],
+     "triangles": 572
+    },
+    "E_BOOST_GT__thrust": {
+     "centre": [
+      0.0,
+      1.28,
+      11.85
+     ],
+     "channel": "thrust",
+     "size": [
+      2.8,
+      0.8,
+      0.001
+     ],
+     "triangles": 60
+    }
+   },
+   "slot": "Boost",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_BoostJet_Left",
+     "position": [
+      -1.0,
+      1.28,
+      12.15
+     ]
+    },
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_BoostJet_Right",
+     "position": [
+      1.0,
+      1.28,
+      12.15
+     ]
+    }
+   ],
+   "source": "E_BOOST_GT",
+   "trim": "GT"
+  },
+  "MODULE_BOOST_EXOTIC_04_POWER": {
+   "car": "E",
+   "kit": 4,
+   "parts": {
+    "E_BOOST_EVO__detail": {
+     "centre": [
+      0.0,
+      1.25,
+      11.615
+     ],
+     "channel": "detail",
+     "size": [
+      4.8,
+      1.2,
+      1.37
+     ],
+     "triangles": 292
+    },
+    "E_BOOST_EVO__primary": {
+     "centre": [
+      0.0,
+      1.275,
+      11.125
+     ],
+     "channel": "primary",
+     "size": [
+      4.6,
+      1.35,
+      0.65
+     ],
+     "triangles": 284
+    },
+    "E_BOOST_EVO__secondary": {
+     "centre": [
+      0.0,
+      1.28,
+      11.7
+     ],
+     "channel": "secondary",
+     "size": [
+      4.5,
+      1.0,
+      1.2
+     ],
+     "triangles": 1144
+    },
+    "E_BOOST_EVO__thrust": {
+     "centre": [
+      0.0,
+      1.28,
+      11.85
+     ],
+     "channel": "thrust",
+     "size": [
+      4.38,
+      0.8,
+      0.3
+     ],
+     "triangles": 120
+    }
+   },
+   "slot": "Boost",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_BoostJet_Left",
+     "position": [
+      -1.0,
+      1.28,
+      12.3
+     ]
+    },
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_BoostJet_Right",
+     "position": [
+      1.0,
+      1.28,
+      12.3
+     ]
+    },
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_BoostJet_Top",
+     "position": [
+      1.95,
+      1.28,
+      12.0
+     ]
+    },
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_BoostJet_Back",
+     "position": [
+      -1.95,
+      1.28,
+      12.0
+     ]
+    }
+   ],
+   "source": "E_BOOST_EVO",
+   "trim": "EVO"
+  },
+  "MODULE_BOOST_EXOTIC_04_STANDARD": {
+   "car": "E",
+   "kit": 4,
+   "parts": {
+    "E_BOOST_STD__detail": {
+     "centre": [
+      0.0,
+      1.25,
+      11.465
+     ],
+     "channel": "detail",
+     "size": [
+      4.8,
+      1.2,
+      1.07
+     ],
+     "triangles": 164
+    },
+    "E_BOOST_STD__primary": {
+     "centre": [
+      0.0,
+      1.275,
+      11.125
+     ],
+     "channel": "primary",
+     "size": [
+      4.6,
+      1.35,
+      0.65
+     ],
+     "triangles": 284
+    },
+    "E_BOOST_STD__secondary": {
+     "centre": [
+      0.0,
+      1.28,
+      11.55
+     ],
+     "channel": "secondary",
+     "size": [
+      2.9,
+      0.9,
+      0.9
+     ],
+     "triangles": 572
+    },
+    "E_BOOST_STD__thrust": {
+     "centre": [
+      0.0,
+      1.28,
+      11.7
+     ],
+     "channel": "thrust",
+     "size": [
+      2.72,
+      0.72,
+      0.001
+     ],
+     "triangles": 60
+    }
+   },
+   "slot": "Boost",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_BoostJet_Left",
+     "position": [
+      -1.0,
+      1.28,
+      12.0
+     ]
+    },
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_BoostJet_Right",
+     "position": [
+      1.0,
+      1.28,
+      12.0
+     ]
+    }
+   ],
+   "source": "E_BOOST_STD",
+   "trim": "STD"
+  },
   "MODULE_BOOST_EXOTIC_05_LIGHTWEIGHT": {
    "car": "A",
    "kit": 5,
@@ -816,6 +1973,620 @@
    "source": "A_BOOST_STD",
    "trim": "STD"
   },
+  "MODULE_BOOST_EXOTIC_06_LIGHTWEIGHT": {
+   "car": "F",
+   "kit": 6,
+   "parts": {
+    "F_BOOST_GT__detail": {
+     "centre": [
+      0.0,
+      0.765,
+      11.425
+     ],
+     "channel": "detail",
+     "size": [
+      4.8,
+      2.37,
+      1.45
+     ],
+     "triangles": 524
+    },
+    "F_BOOST_GT__primary": {
+     "centre": [
+      0.0,
+      1.5,
+      11.04
+     ],
+     "channel": "primary",
+     "size": [
+      4.6,
+      0.5,
+      0.16
+     ],
+     "triangles": 12
+    },
+    "F_BOOST_GT__secondary": {
+     "centre": [
+      0.0,
+      0.29,
+      11.625
+     ],
+     "channel": "secondary",
+     "size": [
+      3.82,
+      0.98,
+      1.05
+     ],
+     "triangles": 860
+    },
+    "F_BOOST_GT__thrust": {
+     "centre": [
+      0.0,
+      0.29,
+      11.8
+     ],
+     "channel": "thrust",
+     "size": [
+      3.5544,
+      0.8232,
+      0.001
+     ],
+     "triangles": 92
+    }
+   },
+   "slot": "Boost",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_BoostJet_Left",
+     "position": [
+      -1.08,
+      0.29,
+      12.15
+     ]
+    },
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_BoostJet_Right",
+     "position": [
+      1.08,
+      0.29,
+      12.15
+     ]
+    }
+   ],
+   "source": "F_BOOST_GT",
+   "trim": "GT"
+  },
+  "MODULE_BOOST_EXOTIC_06_POWER": {
+   "car": "F",
+   "kit": 6,
+   "parts": {
+    "F_BOOST_EVO__detail": {
+     "centre": [
+      0.0,
+      0.765,
+      11.5
+     ],
+     "channel": "detail",
+     "size": [
+      4.8,
+      2.37,
+      1.6
+     ],
+     "triangles": 524
+    },
+    "F_BOOST_EVO__lights_red": {
+     "centre": [
+      0.0,
+      1.5,
+      11.14
+     ],
+     "channel": "lights_red",
+     "size": [
+      0.5,
+      0.14,
+      0.08
+     ],
+     "triangles": 12
+    },
+    "F_BOOST_EVO__primary": {
+     "centre": [
+      0.0,
+      1.5,
+      11.04
+     ],
+     "channel": "primary",
+     "size": [
+      4.6,
+      0.5,
+      0.16
+     ],
+     "triangles": 12
+    },
+    "F_BOOST_EVO__secondary": {
+     "centre": [
+      0.0,
+      0.33,
+      11.7
+     ],
+     "channel": "secondary",
+     "size": [
+      3.92,
+      1.06,
+      1.2
+     ],
+     "triangles": 860
+    },
+    "F_BOOST_EVO__thrust": {
+     "centre": [
+      0.0,
+      0.33,
+      11.95
+     ],
+     "channel": "thrust",
+     "size": [
+      3.6384,
+      0.8904,
+      0.001
+     ],
+     "triangles": 92
+    }
+   },
+   "slot": "Boost",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_BoostJet_Left",
+     "position": [
+      -1.08,
+      0.33,
+      12.3
+     ]
+    },
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_BoostJet_Right",
+     "position": [
+      1.08,
+      0.33,
+      12.3
+     ]
+    }
+   ],
+   "source": "F_BOOST_EVO",
+   "trim": "EVO"
+  },
+  "MODULE_BOOST_EXOTIC_06_STANDARD": {
+   "car": "F",
+   "kit": 6,
+   "parts": {
+    "F_BOOST_STD__detail": {
+     "centre": [
+      0.0,
+      0.765,
+      11.425
+     ],
+     "channel": "detail",
+     "size": [
+      4.8,
+      2.37,
+      1.45
+     ],
+     "triangles": 500
+    },
+    "F_BOOST_STD__primary": {
+     "centre": [
+      0.0,
+      1.5,
+      11.04
+     ],
+     "channel": "primary",
+     "size": [
+      4.6,
+      0.5,
+      0.16
+     ],
+     "triangles": 12
+    },
+    "F_BOOST_STD__secondary": {
+     "centre": [
+      0.0,
+      0.25,
+      11.55
+     ],
+     "channel": "secondary",
+     "size": [
+      3.72,
+      0.9,
+      0.9
+     ],
+     "triangles": 860
+    },
+    "F_BOOST_STD__thrust": {
+     "centre": [
+      0.0,
+      0.25,
+      11.65
+     ],
+     "channel": "thrust",
+     "size": [
+      3.4704,
+      0.756,
+      0.001
+     ],
+     "triangles": 92
+    }
+   },
+   "slot": "Boost",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_BoostJet_Left",
+     "position": [
+      -1.08,
+      0.25,
+      12.0
+     ]
+    },
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_BoostJet_Right",
+     "position": [
+      1.08,
+      0.25,
+      12.0
+     ]
+    }
+   ],
+   "source": "F_BOOST_STD",
+   "trim": "STD"
+  },
+  "MODULE_ENGINE_B_EXOTIC_01_LIGHTWEIGHT": {
+   "car": "C",
+   "kit": 1,
+   "parts": {
+    "C_RPOD_GT__detail": {
+     "centre": [
+      0.0,
+      1.1023,
+      7.75
+     ],
+     "channel": "detail",
+     "size": [
+      13.6712,
+      3.2046,
+      8.3
+     ],
+     "triangles": 2944
+    },
+    "C_RPOD_GT__neon": {
+     "centre": [
+      0.0,
+      0.2977,
+      7.3
+     ],
+     "channel": "neon",
+     "size": [
+      13.3782,
+      0.7572,
+      4.4
+     ],
+     "triangles": 44
+    },
+    "C_RPOD_GT__primary": {
+     "centre": [
+      0.0,
+      0.83,
+      7.1
+     ],
+     "channel": "primary",
+     "size": [
+      13.672,
+      3.86,
+      7.0
+     ],
+     "triangles": 5344
+    },
+    "C_RPOD_GT__secondary": {
+     "centre": [
+      0.0,
+      0.773,
+      7.25
+     ],
+     "channel": "secondary",
+     "size": [
+      13.5846,
+      3.746,
+      6.7
+     ],
+     "triangles": 1992
+    },
+    "C_RPOD_GT__thrust": {
+     "centre": [
+      0.0,
+      0.2674,
+      8.55
+     ],
+     "channel": "thrust",
+     "size": [
+      12.343,
+      2.8347,
+      3.1
+     ],
+     "triangles": 212
+    }
+   },
+   "slot": "Engine2",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Left",
+     "position": [
+      -5.05,
+      0.62,
+      10.6
+     ]
+    },
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Right",
+     "position": [
+      5.05,
+      0.62,
+      10.6
+     ]
+    }
+   ],
+   "source": "C_RPOD_GT",
+   "trim": "GT"
+  },
+  "MODULE_ENGINE_B_EXOTIC_01_POWER": {
+   "car": "C",
+   "kit": 1,
+   "parts": {
+    "C_RPOD_EVO__detail": {
+     "centre": [
+      0.0,
+      1.1836,
+      7.85
+     ],
+     "channel": "detail",
+     "size": [
+      14.0044,
+      3.3671,
+      8.5
+     ],
+     "triangles": 4164
+    },
+    "C_RPOD_EVO__neon": {
+     "centre": [
+      0.0,
+      0.2977,
+      7.3
+     ],
+     "channel": "neon",
+     "size": [
+      13.747,
+      0.7572,
+      4.4
+     ],
+     "triangles": 44
+    },
+    "C_RPOD_EVO__primary": {
+     "centre": [
+      0.0,
+      0.9,
+      7.1
+     ],
+     "channel": "primary",
+     "size": [
+      14.04,
+      4.0,
+      7.0
+     ],
+     "triangles": 4732
+    },
+    "C_RPOD_EVO__secondary": {
+     "centre": [
+      0.0,
+      0.8545,
+      7.25
+     ],
+     "channel": "secondary",
+     "size": [
+      14.04,
+      3.9091,
+      6.7
+     ],
+     "triangles": 2436
+    },
+    "C_RPOD_EVO__thrust": {
+     "centre": [
+      0.0,
+      0.3078,
+      8.55
+     ],
+     "channel": "thrust",
+     "size": [
+      12.6884,
+      2.9155,
+      3.1
+     ],
+     "triangles": 212
+    }
+   },
+   "slot": "Engine2",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Left",
+     "position": [
+      -5.05,
+      0.62,
+      10.6
+     ]
+    },
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Right",
+     "position": [
+      5.05,
+      0.62,
+      10.6
+     ]
+    }
+   ],
+   "source": "C_RPOD_EVO",
+   "trim": "EVO"
+  },
+  "MODULE_ENGINE_B_EXOTIC_01_STANDARD": {
+   "car": "C",
+   "kit": 1,
+   "parts": {
+    "C_RPOD_STD__detail": {
+     "centre": [
+      0.0,
+      0.625,
+      7.1
+     ],
+     "channel": "detail",
+     "size": [
+      13.1112,
+      1.96,
+      7.0
+     ],
+     "triangles": 660
+    },
+    "C_RPOD_STD__neon": {
+     "centre": [
+      0.0,
+      0.0563,
+      8.0
+     ],
+     "channel": "neon",
+     "size": [
+      12.8242,
+      0.2744,
+      3.0
+     ],
+     "triangles": 32
+    },
+    "C_RPOD_STD__primary": {
+     "centre": [
+      0.0,
+      0.76,
+      7.1
+     ],
+     "channel": "primary",
+     "size": [
+      13.112,
+      3.72,
+      7.0
+     ],
+     "triangles": 4192
+    },
+    "C_RPOD_STD__secondary": {
+     "centre": [
+      0.0,
+      0.375,
+      7.25
+     ],
+     "channel": "secondary",
+     "size": [
+      13.005,
+      2.95,
+      6.7
+     ],
+     "triangles": 1368
+    },
+    "C_RPOD_STD__thrust": {
+     "centre": [
+      0.0,
+      0.2275,
+      8.55
+     ],
+     "channel": "thrust",
+     "size": [
+      11.825,
+      2.755,
+      3.1
+     ],
+     "triangles": 212
+    }
+   },
+   "slot": "Engine2",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Left",
+     "position": [
+      -5.05,
+      0.62,
+      10.6
+     ]
+    },
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Right",
+     "position": [
+      5.05,
+      0.62,
+      10.6
+     ]
+    }
+   ],
+   "source": "C_RPOD_STD",
+   "trim": "STD"
+  },
   "MODULE_ENGINE_B_EXOTIC_02_LIGHTWEIGHT": {
    "car": "B",
    "kit": 2,
@@ -1137,6 +2908,606 @@
    "source": "B_RPOD_STD",
    "trim": "STD"
   },
+  "MODULE_ENGINE_B_EXOTIC_03_LIGHTWEIGHT": {
+   "car": "D",
+   "kit": 3,
+   "parts": {
+    "D_RPOD_GT__detail": {
+     "centre": [
+      0.0,
+      1.129,
+      7.75
+     ],
+     "channel": "detail",
+     "size": [
+      13.6394,
+      3.7787,
+      8.3
+     ],
+     "triangles": 3448
+    },
+    "D_RPOD_GT__primary": {
+     "centre": [
+      0.0,
+      0.985,
+      7.1
+     ],
+     "channel": "primary",
+     "size": [
+      13.7354,
+      4.17,
+      7.0
+     ],
+     "triangles": 6652
+    },
+    "D_RPOD_GT__secondary": {
+     "centre": [
+      0.0,
+      0.9307,
+      7.25
+     ],
+     "channel": "secondary",
+     "size": [
+      13.6006,
+      4.0615,
+      6.7
+     ],
+     "triangles": 2252
+    },
+    "D_RPOD_GT__thrust": {
+     "centre": [
+      0.0,
+      0.248,
+      7.9
+     ],
+     "channel": "thrust",
+     "size": [
+      12.334,
+      2.796,
+      4.2
+     ],
+     "triangles": 212
+    }
+   },
+   "slot": "Engine2",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Left",
+     "position": [
+      -5.05,
+      0.7,
+      10.6
+     ]
+    },
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Right",
+     "position": [
+      5.05,
+      0.7,
+      10.6
+     ]
+    }
+   ],
+   "source": "D_RPOD_GT",
+   "trim": "GT"
+  },
+  "MODULE_ENGINE_B_EXOTIC_03_POWER": {
+   "car": "D",
+   "kit": 3,
+   "parts": {
+    "D_RPOD_EVO__detail": {
+     "centre": [
+      0.0,
+      1.1998,
+      7.85
+     ],
+     "channel": "detail",
+     "size": [
+      13.9594,
+      3.9204,
+      8.5
+     ],
+     "triangles": 4752
+    },
+    "D_RPOD_EVO__primary": {
+     "centre": [
+      0.0,
+      1.045,
+      7.1
+     ],
+     "channel": "primary",
+     "size": [
+      14.054,
+      4.29,
+      7.0
+     ],
+     "triangles": 6284
+    },
+    "D_RPOD_EVO__secondary": {
+     "centre": [
+      0.0,
+      1.0021,
+      7.25
+     ],
+     "channel": "secondary",
+     "size": [
+      13.9206,
+      4.2042,
+      6.7
+     ],
+     "triangles": 2376
+    },
+    "D_RPOD_EVO__thrust": {
+     "centre": [
+      0.0,
+      0.27,
+      7.9
+     ],
+     "channel": "thrust",
+     "size": [
+      12.63,
+      2.84,
+      4.2
+     ],
+     "triangles": 212
+    }
+   },
+   "slot": "Engine2",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Left",
+     "position": [
+      -5.05,
+      0.7,
+      10.6
+     ]
+    },
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Right",
+     "position": [
+      5.05,
+      0.7,
+      10.6
+     ]
+    }
+   ],
+   "source": "D_RPOD_EVO",
+   "trim": "EVO"
+  },
+  "MODULE_ENGINE_B_EXOTIC_03_STANDARD": {
+   "car": "D",
+   "kit": 3,
+   "parts": {
+    "D_RPOD_STD__detail": {
+     "centre": [
+      0.0,
+      1.2388,
+      7.1
+     ],
+     "channel": "detail",
+     "size": [
+      13.1958,
+      3.2475,
+      7.0
+     ],
+     "triangles": 980
+    },
+    "D_RPOD_STD__primary": {
+     "centre": [
+      0.0,
+      0.925,
+      7.1
+     ],
+     "channel": "primary",
+     "size": [
+      13.2554,
+      4.05,
+      7.0
+     ],
+     "triangles": 4900
+    },
+    "D_RPOD_STD__secondary": {
+     "centre": [
+      0.0,
+      0.8525,
+      7.25
+     ],
+     "channel": "secondary",
+     "size": [
+      13.0386,
+      3.9051,
+      6.7
+     ],
+     "triangles": 1572
+    },
+    "D_RPOD_STD__thrust": {
+     "centre": [
+      0.0,
+      0.226,
+      7.9
+     ],
+     "channel": "thrust",
+     "size": [
+      11.89,
+      2.752,
+      4.2
+     ],
+     "triangles": 212
+    }
+   },
+   "slot": "Engine2",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Left",
+     "position": [
+      -5.05,
+      0.7,
+      10.6
+     ]
+    },
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Right",
+     "position": [
+      5.05,
+      0.7,
+      10.6
+     ]
+    }
+   ],
+   "source": "D_RPOD_STD",
+   "trim": "STD"
+  },
+  "MODULE_ENGINE_B_EXOTIC_04_LIGHTWEIGHT": {
+   "car": "E",
+   "kit": 4,
+   "parts": {
+    "E_RPOD_GT__detail": {
+     "centre": [
+      0.0,
+      1.0766,
+      7.75
+     ],
+     "channel": "detail",
+     "size": [
+      13.1798,
+      3.4181,
+      8.3
+     ],
+     "triangles": 3484
+    },
+    "E_RPOD_GT__neon": {
+     "centre": [
+      0.0,
+      1.4783,
+      7.5
+     ],
+     "channel": "neon",
+     "size": [
+      13.2198,
+      0.1025,
+      3.0
+     ],
+     "triangles": 32
+    },
+    "E_RPOD_GT__primary": {
+     "centre": [
+      0.0,
+      0.8525,
+      7.1
+     ],
+     "channel": "primary",
+     "size": [
+      13.18,
+      3.905,
+      7.0
+     ],
+     "triangles": 5980
+    },
+    "E_RPOD_GT__secondary": {
+     "centre": [
+      0.0,
+      1.0267,
+      7.25
+     ],
+     "channel": "secondary",
+     "size": [
+      13.18,
+      4.2533,
+      6.7
+     ],
+     "triangles": 3380
+    },
+    "E_RPOD_GT__thrust": {
+     "centre": [
+      0.0,
+      0.2069,
+      8.375
+     ],
+     "channel": "thrust",
+     "size": [
+      11.7522,
+      2.7138,
+      3.75
+     ],
+     "triangles": 180
+    }
+   },
+   "slot": "Engine2",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Left",
+     "position": [
+      -5.14,
+      0.88,
+      10.6
+     ]
+    },
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Right",
+     "position": [
+      5.14,
+      0.88,
+      10.6
+     ]
+    }
+   ],
+   "source": "E_RPOD_GT",
+   "trim": "GT"
+  },
+  "MODULE_ENGINE_B_EXOTIC_04_POWER": {
+   "car": "E",
+   "kit": 4,
+   "parts": {
+    "E_RPOD_EVO__detail": {
+     "centre": [
+      0.0,
+      1.1083,
+      7.85
+     ],
+     "channel": "detail",
+     "size": [
+      13.3264,
+      3.4815,
+      8.5
+     ],
+     "triangles": 4816
+    },
+    "E_RPOD_EVO__neon": {
+     "centre": [
+      0.0,
+      1.4783,
+      7.5
+     ],
+     "channel": "neon",
+     "size": [
+      13.3662,
+      0.1025,
+      3.0
+     ],
+     "triangles": 32
+    },
+    "E_RPOD_EVO__primary": {
+     "centre": [
+      0.0,
+      0.88,
+      7.1
+     ],
+     "channel": "primary",
+     "size": [
+      13.3266,
+      3.96,
+      7.0
+     ],
+     "triangles": 5716
+    },
+    "E_RPOD_EVO__secondary": {
+     "centre": [
+      0.0,
+      1.1282,
+      7.25
+     ],
+     "channel": "secondary",
+     "size": [
+      13.3266,
+      4.4565,
+      6.7
+     ],
+     "triangles": 3748
+    },
+    "E_RPOD_EVO__thrust": {
+     "centre": [
+      0.0,
+      0.2237,
+      8.375
+     ],
+     "channel": "thrust",
+     "size": [
+      11.887,
+      2.7474,
+      3.75
+     ],
+     "triangles": 180
+    }
+   },
+   "slot": "Engine2",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Left",
+     "position": [
+      -5.14,
+      0.88,
+      10.6
+     ]
+    },
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Right",
+     "position": [
+      5.14,
+      0.88,
+      10.6
+     ]
+    }
+   ],
+   "source": "E_RPOD_EVO",
+   "trim": "EVO"
+  },
+  "MODULE_ENGINE_B_EXOTIC_04_STANDARD": {
+   "car": "E",
+   "kit": 4,
+   "parts": {
+    "E_RPOD_STD__detail": {
+     "centre": [
+      0.0,
+      0.875,
+      7.1
+     ],
+     "channel": "detail",
+     "size": [
+      12.96,
+      3.015,
+      7.0
+     ],
+     "triangles": 1032
+    },
+    "E_RPOD_STD__neon": {
+     "centre": [
+      0.0,
+      1.4783,
+      7.5
+     ],
+     "channel": "neon",
+     "size": [
+      13.0,
+      0.1025,
+      3.0
+     ],
+     "triangles": 32
+    },
+    "E_RPOD_STD__primary": {
+     "centre": [
+      0.0,
+      0.825,
+      7.1
+     ],
+     "channel": "primary",
+     "size": [
+      12.96,
+      3.85,
+      7.0
+     ],
+     "triangles": 5472
+    },
+    "E_RPOD_STD__secondary": {
+     "centre": [
+      0.0,
+      0.725,
+      7.25
+     ],
+     "channel": "secondary",
+     "size": [
+      12.96,
+      3.65,
+      6.7
+     ],
+     "triangles": 2260
+    },
+    "E_RPOD_STD__thrust": {
+     "centre": [
+      0.0,
+      0.1901,
+      8.375
+     ],
+     "channel": "thrust",
+     "size": [
+      11.5904,
+      2.6802,
+      3.75
+     ],
+     "triangles": 180
+    }
+   },
+   "slot": "Engine2",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Left",
+     "position": [
+      -5.14,
+      0.88,
+      10.6
+     ]
+    },
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Right",
+     "position": [
+      5.14,
+      0.88,
+      10.6
+     ]
+    }
+   ],
+   "source": "E_RPOD_STD",
+   "trim": "STD"
+  },
   "MODULE_ENGINE_B_EXOTIC_05_LIGHTWEIGHT": {
    "car": "A",
    "kit": 5,
@@ -1456,6 +3827,690 @@
     }
    ],
    "source": "A_RPOD_STD",
+   "trim": "STD"
+  },
+  "MODULE_ENGINE_B_EXOTIC_06_LIGHTWEIGHT": {
+   "car": "F",
+   "kit": 6,
+   "parts": {
+    "F_RPOD_GT__detail": {
+     "centre": [
+      0.0,
+      0.9817,
+      7.75
+     ],
+     "channel": "detail",
+     "size": [
+      13.8318,
+      3.9353,
+      8.3
+     ],
+     "triangles": 4776
+    },
+    "F_RPOD_GT__neon": {
+     "centre": [
+      0.0,
+      0.423,
+      7.6
+     ],
+     "channel": "neon",
+     "size": [
+      13.6118,
+      1.14,
+      0.14
+     ],
+     "triangles": 248
+    },
+    "F_RPOD_GT__primary": {
+     "centre": [
+      0.0,
+      0.945,
+      7.1
+     ],
+     "channel": "primary",
+     "size": [
+      13.573,
+      4.09,
+      7.0
+     ],
+     "triangles": 6216
+    },
+    "F_RPOD_GT__secondary": {
+     "centre": [
+      0.0,
+      0.8963,
+      7.25
+     ],
+     "channel": "secondary",
+     "size": [
+      13.5736,
+      3.9927,
+      6.7
+     ],
+     "triangles": 3792
+    },
+    "F_RPOD_GT__thrust": {
+     "centre": [
+      0.0,
+      0.5509,
+      8.3
+     ],
+     "channel": "thrust",
+     "size": [
+      12.4236,
+      3.4017,
+      3.4
+     ],
+     "triangles": 212
+    }
+   },
+   "slot": "Engine2",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Left",
+     "position": [
+      -5.14,
+      0.92,
+      10.6
+     ]
+    },
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Right",
+     "position": [
+      5.14,
+      0.92,
+      10.6
+     ]
+    }
+   ],
+   "source": "F_RPOD_GT",
+   "trim": "GT"
+  },
+  "MODULE_ENGINE_B_EXOTIC_06_POWER": {
+   "car": "F",
+   "kit": 6,
+   "parts": {
+    "F_RPOD_EVO__detail": {
+     "centre": [
+      0.0,
+      1.0601,
+      7.85
+     ],
+     "channel": "detail",
+     "size": [
+      14.08,
+      4.0921,
+      8.5
+     ],
+     "triangles": 6008
+    },
+    "F_RPOD_EVO__neon": {
+     "centre": [
+      0.0,
+      0.423,
+      7.6
+     ],
+     "channel": "neon",
+     "size": [
+      13.9802,
+      1.14,
+      0.14
+     ],
+     "triangles": 248
+    },
+    "F_RPOD_EVO__primary": {
+     "centre": [
+      0.0,
+      1.015,
+      7.1
+     ],
+     "channel": "primary",
+     "size": [
+      13.9464,
+      4.23,
+      7.0
+     ],
+     "triangles": 5824
+    },
+    "F_RPOD_EVO__secondary": {
+     "centre": [
+      0.0,
+      1.1484,
+      7.25
+     ],
+     "channel": "secondary",
+     "size": [
+      13.947,
+      4.4969,
+      6.7
+     ],
+     "triangles": 4328
+    },
+    "F_RPOD_EVO__thrust": {
+     "centre": [
+      0.0,
+      0.5737,
+      8.3
+     ],
+     "channel": "thrust",
+     "size": [
+      12.7534,
+      3.4475,
+      3.4
+     ],
+     "triangles": 212
+    }
+   },
+   "slot": "Engine2",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Left",
+     "position": [
+      -5.14,
+      0.92,
+      10.6
+     ]
+    },
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Right",
+     "position": [
+      5.14,
+      0.92,
+      10.6
+     ]
+    }
+   ],
+   "source": "F_RPOD_EVO",
+   "trim": "EVO"
+  },
+  "MODULE_ENGINE_B_EXOTIC_06_STANDARD": {
+   "car": "F",
+   "kit": 6,
+   "parts": {
+    "F_RPOD_STD__detail": {
+     "centre": [
+      0.0,
+      0.8982,
+      7.1
+     ],
+     "channel": "detail",
+     "size": [
+      13.0586,
+      3.7683,
+      7.0
+     ],
+     "triangles": 2324
+    },
+    "F_RPOD_STD__neon": {
+     "centre": [
+      0.0,
+      0.423,
+      7.6
+     ],
+     "channel": "neon",
+     "size": [
+      13.0586,
+      1.14,
+      0.14
+     ],
+     "triangles": 248
+    },
+    "F_RPOD_STD__primary": {
+     "centre": [
+      0.0,
+      0.875,
+      7.1
+     ],
+     "channel": "primary",
+     "size": [
+      13.0272,
+      3.95,
+      7.0
+     ],
+     "triangles": 5964
+    },
+    "F_RPOD_STD__secondary": {
+     "centre": [
+      0.0,
+      0.8126,
+      7.25
+     ],
+     "channel": "secondary",
+     "size": [
+      13.0136,
+      3.8253,
+      6.7
+     ],
+     "triangles": 3416
+    },
+    "F_RPOD_STD__thrust": {
+     "centre": [
+      0.0,
+      0.528,
+      8.3
+     ],
+     "channel": "thrust",
+     "size": [
+      12.3498,
+      3.356,
+      3.4
+     ],
+     "triangles": 212
+    }
+   },
+   "slot": "Engine2",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Left",
+     "position": [
+      -5.14,
+      0.92,
+      10.6
+     ]
+    },
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Right",
+     "position": [
+      5.14,
+      0.92,
+      10.6
+     ]
+    }
+   ],
+   "source": "F_RPOD_STD",
+   "trim": "STD"
+  },
+  "MODULE_ENGINE_EXOTIC_01_LIGHTWEIGHT": {
+   "car": "C",
+   "kit": 1,
+   "parts": {
+    "C_FPOD_GT__detail": {
+     "centre": [
+      0.0,
+      0.9004,
+      -8.0
+     ],
+     "channel": "detail",
+     "size": [
+      13.585,
+      2.4301,
+      5.2
+     ],
+     "triangles": 856
+    },
+    "C_FPOD_GT__lights": {
+     "centre": [
+      0.0,
+      1.2285,
+      -10.765
+     ],
+     "channel": "lights",
+     "size": [
+      10.7266,
+      1.8609,
+      2.53
+     ],
+     "triangles": 188
+    },
+    "C_FPOD_GT__neon": {
+     "centre": [
+      0.0,
+      0.1316,
+      -8.2
+     ],
+     "channel": "neon",
+     "size": [
+      13.2828,
+      0.6119,
+      4.4
+     ],
+     "triangles": 44
+    },
+    "C_FPOD_GT__primary": {
+     "centre": [
+      0.0,
+      0.5354,
+      -8.7
+     ],
+     "channel": "primary",
+     "size": [
+      13.5856,
+      3.2709,
+      6.6
+     ],
+     "triangles": 5494
+    },
+    "C_FPOD_GT__secondary": {
+     "centre": [
+      0.0,
+      0.4787,
+      -9.025
+     ],
+     "channel": "secondary",
+     "size": [
+      13.54,
+      3.1574,
+      7.25
+     ],
+     "triangles": 3328
+    },
+    "C_FPOD_GT__thrust": {
+     "centre": [
+      0.0,
+      -0.05,
+      -7.9
+     ],
+     "channel": "thrust",
+     "size": [
+      12.2896,
+      2.2,
+      4.0
+     ],
+     "triangles": 212
+    }
+   },
+   "slot": "Engine1",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Left",
+     "position": [
+      -5.1,
+      0.52,
+      -5.4
+     ]
+    },
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Right",
+     "position": [
+      5.1,
+      0.52,
+      -5.4
+     ]
+    }
+   ],
+   "source": "C_FPOD_GT",
+   "trim": "GT"
+  },
+  "MODULE_ENGINE_EXOTIC_01_POWER": {
+   "car": "C",
+   "kit": 1,
+   "parts": {
+    "C_FPOD_EVO__detail": {
+     "centre": [
+      0.0,
+      0.9571,
+      -8.0
+     ],
+     "channel": "detail",
+     "size": [
+      13.9086,
+      2.5435,
+      5.2
+     ],
+     "triangles": 848
+    },
+    "C_FPOD_EVO__lights": {
+     "centre": [
+      0.0,
+      1.2692,
+      -10.765
+     ],
+     "channel": "lights",
+     "size": [
+      10.9006,
+      1.9424,
+      2.53
+     ],
+     "triangles": 188
+    },
+    "C_FPOD_EVO__neon": {
+     "centre": [
+      0.0,
+      0.1316,
+      -8.2
+     ],
+     "channel": "neon",
+     "size": [
+      13.6394,
+      0.6119,
+      4.4
+     ],
+     "triangles": 44
+    },
+    "C_FPOD_EVO__primary": {
+     "centre": [
+      0.0,
+      0.5809,
+      -8.7
+     ],
+     "channel": "primary",
+     "size": [
+      13.9452,
+      3.3618,
+      6.6
+     ],
+     "triangles": 5002
+    },
+    "C_FPOD_EVO__secondary": {
+     "centre": [
+      0.0,
+      0.5356,
+      -9.225
+     ],
+     "channel": "secondary",
+     "size": [
+      14.14,
+      3.2712,
+      7.65
+     ],
+     "triangles": 3996
+    },
+    "C_FPOD_EVO__thrust": {
+     "centre": [
+      0.0,
+      -0.0375,
+      -7.9
+     ],
+     "channel": "thrust",
+     "size": [
+      12.626,
+      2.225,
+      4.0
+     ],
+     "triangles": 212
+    }
+   },
+   "slot": "Engine1",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Left",
+     "position": [
+      -5.1,
+      0.52,
+      -5.4
+     ]
+    },
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Right",
+     "position": [
+      5.1,
+      0.52,
+      -5.4
+     ]
+    }
+   ],
+   "source": "C_FPOD_EVO",
+   "trim": "EVO"
+  },
+  "MODULE_ENGINE_EXOTIC_01_STANDARD": {
+   "car": "C",
+   "kit": 1,
+   "parts": {
+    "C_FPOD_STD__detail": {
+     "centre": [
+      0.0,
+      0.3482,
+      -8.0
+     ],
+     "channel": "detail",
+     "size": [
+      13.0396,
+      1.3285,
+      5.2
+     ],
+     "triangles": 376
+    },
+    "C_FPOD_STD__lights": {
+     "centre": [
+      0.0,
+      1.1876,
+      -10.765
+     ],
+     "channel": "lights",
+     "size": [
+      10.7264,
+      1.7792,
+      2.53
+     ],
+     "triangles": 188
+    },
+    "C_FPOD_STD__neon": {
+     "centre": [
+      0.0,
+      -0.0435,
+      -8.9
+     ],
+     "channel": "neon",
+     "size": [
+      12.7476,
+      0.2619,
+      3.0
+     ],
+     "triangles": 32
+    },
+    "C_FPOD_STD__primary": {
+     "centre": [
+      0.0,
+      0.49,
+      -8.7
+     ],
+     "channel": "primary",
+     "size": [
+      13.0402,
+      3.18,
+      6.6
+     ],
+     "triangles": 4112
+    },
+    "C_FPOD_STD__secondary": {
+     "centre": [
+      0.0,
+      0.025,
+      -8.725
+     ],
+     "channel": "secondary",
+     "size": [
+      12.959,
+      2.25,
+      6.65
+     ],
+     "triangles": 1872
+    },
+    "C_FPOD_STD__thrust": {
+     "centre": [
+      0.0,
+      -0.0687,
+      -7.9
+     ],
+     "channel": "thrust",
+     "size": [
+      11.9394,
+      2.1625,
+      4.0
+     ],
+     "triangles": 212
+    }
+   },
+   "slot": "Engine1",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Left",
+     "position": [
+      -5.1,
+      0.52,
+      -5.4
+     ]
+    },
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Right",
+     "position": [
+      5.1,
+      0.52,
+      -5.4
+     ]
+    }
+   ],
+   "source": "C_FPOD_STD",
    "trim": "STD"
   },
   "MODULE_ENGINE_EXOTIC_02_LIGHTWEIGHT": {
@@ -1819,6 +4874,732 @@
     }
    ],
    "source": "B_FPOD_STD",
+   "trim": "STD"
+  },
+  "MODULE_ENGINE_EXOTIC_03_LIGHTWEIGHT": {
+   "car": "D",
+   "kit": 3,
+   "parts": {
+    "D_FPOD_GT__detail": {
+     "centre": [
+      0.0,
+      0.8162,
+      -7.9
+     ],
+     "channel": "detail",
+     "size": [
+      13.6918,
+      2.6642,
+      5.0
+     ],
+     "triangles": 1164
+    },
+    "D_FPOD_GT__glass": {
+     "centre": [
+      0.0,
+      1.2991,
+      -11.225
+     ],
+     "channel": "glass",
+     "size": [
+      11.3872,
+      0.8878,
+      1.25
+     ],
+     "triangles": 528
+    },
+    "D_FPOD_GT__lights": {
+     "centre": [
+      0.0,
+      1.315,
+      -11.22
+     ],
+     "channel": "lights",
+     "size": [
+      11.124,
+      0.6745,
+      1.0
+     ],
+     "triangles": 168
+    },
+    "D_FPOD_GT__primary": {
+     "centre": [
+      0.0,
+      0.55,
+      -8.75
+     ],
+     "channel": "primary",
+     "size": [
+      13.7348,
+      3.3,
+      6.7
+     ],
+     "triangles": 5852
+    },
+    "D_FPOD_GT__secondary": {
+     "centre": [
+      0.0,
+      0.4955,
+      -9.05
+     ],
+     "channel": "secondary",
+     "size": [
+      13.8,
+      3.191,
+      7.3
+     ],
+     "triangles": 3764
+    },
+    "D_FPOD_GT__thrust": {
+     "centre": [
+      0.0,
+      0.1123,
+      -7.55
+     ],
+     "channel": "thrust",
+     "size": [
+      12.4106,
+      2.5195,
+      3.3
+     ],
+     "triangles": 212
+    }
+   },
+   "slot": "Engine1",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Left",
+     "position": [
+      -5.1,
+      0.7,
+      -5.4
+     ]
+    },
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Right",
+     "position": [
+      5.1,
+      0.7,
+      -5.4
+     ]
+    }
+   ],
+   "source": "D_FPOD_GT",
+   "trim": "GT"
+  },
+  "MODULE_ENGINE_EXOTIC_03_POWER": {
+   "car": "D",
+   "kit": 3,
+   "parts": {
+    "D_FPOD_EVO__detail": {
+     "centre": [
+      0.0,
+      0.877,
+      -7.9
+     ],
+     "channel": "detail",
+     "size": [
+      14.0918,
+      2.7859,
+      5.0
+     ],
+     "triangles": 1304
+    },
+    "D_FPOD_EVO__glass": {
+     "centre": [
+      0.0,
+      1.2989,
+      -11.225
+     ],
+     "channel": "glass",
+     "size": [
+      11.3972,
+      0.8883,
+      1.25
+     ],
+     "triangles": 528
+    },
+    "D_FPOD_EVO__lights": {
+     "centre": [
+      0.0,
+      1.3143,
+      -11.22
+     ],
+     "channel": "lights",
+     "size": [
+      11.131,
+      0.6745,
+      1.0
+     ],
+     "triangles": 168
+    },
+    "D_FPOD_EVO__primary": {
+     "centre": [
+      0.0,
+      0.6,
+      -8.75
+     ],
+     "channel": "primary",
+     "size": [
+      14.137,
+      3.4,
+      6.7
+     ],
+     "triangles": 5808
+    },
+    "D_FPOD_EVO__secondary": {
+     "centre": [
+      0.0,
+      0.5567,
+      -9.25
+     ],
+     "channel": "secondary",
+     "size": [
+      14.14,
+      3.3134,
+      7.7
+     ],
+     "triangles": 4776
+    },
+    "D_FPOD_EVO__thrust": {
+     "centre": [
+      0.0,
+      0.1282,
+      -7.55
+     ],
+     "channel": "thrust",
+     "size": [
+      12.773,
+      2.5515,
+      3.3
+     ],
+     "triangles": 212
+    }
+   },
+   "slot": "Engine1",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Left",
+     "position": [
+      -5.1,
+      0.7,
+      -5.4
+     ]
+    },
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Right",
+     "position": [
+      5.1,
+      0.7,
+      -5.4
+     ]
+    }
+   ],
+   "source": "D_FPOD_EVO",
+   "trim": "EVO"
+  },
+  "MODULE_ENGINE_EXOTIC_03_STANDARD": {
+   "car": "D",
+   "kit": 3,
+   "parts": {
+    "D_FPOD_STD__detail": {
+     "centre": [
+      0.0,
+      0.7788,
+      -7.9
+     ],
+     "channel": "detail",
+     "size": [
+      13.0918,
+      2.4675,
+      5.0
+     ],
+     "triangles": 672
+    },
+    "D_FPOD_STD__glass": {
+     "centre": [
+      0.0,
+      1.2999,
+      -11.225
+     ],
+     "channel": "glass",
+     "size": [
+      11.3832,
+      0.8886,
+      1.25
+     ],
+     "triangles": 528
+    },
+    "D_FPOD_STD__lights": {
+     "centre": [
+      0.0,
+      1.3161,
+      -11.22
+     ],
+     "channel": "lights",
+     "size": [
+      11.1232,
+      0.6756,
+      1.0
+     ],
+     "triangles": 168
+    },
+    "D_FPOD_STD__primary": {
+     "centre": [
+      0.0,
+      0.5,
+      -8.75
+     ],
+     "channel": "primary",
+     "size": [
+      13.1396,
+      3.2,
+      6.7
+     ],
+     "triangles": 5016
+    },
+    "D_FPOD_STD__secondary": {
+     "centre": [
+      0.0,
+      0.4275,
+      -8.75
+     ],
+     "channel": "secondary",
+     "size": [
+      12.9998,
+      3.055,
+      6.7
+     ],
+     "triangles": 2020
+    },
+    "D_FPOD_STD__thrust": {
+     "centre": [
+      0.0,
+      0.0883,
+      -7.55
+     ],
+     "channel": "thrust",
+     "size": [
+      11.9566,
+      2.4715,
+      3.3
+     ],
+     "triangles": 212
+    }
+   },
+   "slot": "Engine1",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Left",
+     "position": [
+      -5.1,
+      0.7,
+      -5.4
+     ]
+    },
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Right",
+     "position": [
+      5.1,
+      0.7,
+      -5.4
+     ]
+    }
+   ],
+   "source": "D_FPOD_STD",
+   "trim": "STD"
+  },
+  "MODULE_ENGINE_EXOTIC_04_LIGHTWEIGHT": {
+   "car": "E",
+   "kit": 4,
+   "parts": {
+    "E_FPOD_GT__detail": {
+     "centre": [
+      0.0,
+      0.9495,
+      -8.85
+     ],
+     "channel": "detail",
+     "size": [
+      13.0982,
+      2.575,
+      6.9
+     ],
+     "triangles": 1496
+    },
+    "E_FPOD_GT__lights": {
+     "centre": [
+      0.0,
+      0.36,
+      -12.02
+     ],
+     "channel": "lights",
+     "size": [
+      10.8,
+      1.24,
+      0.1
+     ],
+     "triangles": 96
+    },
+    "E_FPOD_GT__neon": {
+     "centre": [
+      0.0,
+      1.1395,
+      -8.8
+     ],
+     "channel": "neon",
+     "size": [
+      13.1376,
+      0.087,
+      3.0
+     ],
+     "triangles": 32
+    },
+    "E_FPOD_GT__primary": {
+     "centre": [
+      0.0,
+      0.5782,
+      -8.85
+     ],
+     "channel": "primary",
+     "size": [
+      13.0982,
+      3.3564,
+      6.9
+     ],
+     "triangles": 5964
+    },
+    "E_FPOD_GT__secondary": {
+     "centre": [
+      0.0,
+      0.7528,
+      -9.15
+     ],
+     "channel": "secondary",
+     "size": [
+      13.54,
+      3.7055,
+      7.5
+     ],
+     "triangles": 4184
+    },
+    "E_FPOD_GT__thrust": {
+     "centre": [
+      0.0,
+      0.088,
+      -7.85
+     ],
+     "channel": "thrust",
+     "size": [
+      12.048,
+      2.476,
+      3.9
+     ],
+     "triangles": 212
+    }
+   },
+   "slot": "Engine1",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Left",
+     "position": [
+      -5.1,
+      0.68,
+      -5.4
+     ]
+    },
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Right",
+     "position": [
+      5.1,
+      0.68,
+      -5.4
+     ]
+    }
+   ],
+   "source": "E_FPOD_GT",
+   "trim": "GT"
+  },
+  "MODULE_ENGINE_EXOTIC_04_POWER": {
+   "car": "E",
+   "kit": 4,
+   "parts": {
+    "E_FPOD_EVO__detail": {
+     "centre": [
+      0.0,
+      0.9719,
+      -8.85
+     ],
+     "channel": "detail",
+     "size": [
+      13.2436,
+      2.6198,
+      6.9
+     ],
+     "triangles": 1556
+    },
+    "E_FPOD_EVO__lights": {
+     "centre": [
+      0.0,
+      0.36,
+      -12.02
+     ],
+     "channel": "lights",
+     "size": [
+      10.8,
+      1.24,
+      0.1
+     ],
+     "triangles": 96
+    },
+    "E_FPOD_EVO__neon": {
+     "centre": [
+      0.0,
+      1.1395,
+      -8.8
+     ],
+     "channel": "neon",
+     "size": [
+      13.283,
+      0.087,
+      3.0
+     ],
+     "triangles": 32
+    },
+    "E_FPOD_EVO__primary": {
+     "centre": [
+      0.0,
+      0.5963,
+      -8.85
+     ],
+     "channel": "primary",
+     "size": [
+      13.2436,
+      3.3927,
+      6.9
+     ],
+     "triangles": 5704
+    },
+    "E_FPOD_EVO__secondary": {
+     "centre": [
+      0.0,
+      0.83,
+      -9.35
+     ],
+     "channel": "secondary",
+     "size": [
+      14.14,
+      3.86,
+      7.9
+     ],
+     "triangles": 4676
+    },
+    "E_FPOD_EVO__thrust": {
+     "centre": [
+      0.0,
+      0.1035,
+      -7.85
+     ],
+     "channel": "thrust",
+     "size": [
+      12.136,
+      2.507,
+      3.9
+     ],
+     "triangles": 212
+    }
+   },
+   "slot": "Engine1",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Left",
+     "position": [
+      -5.1,
+      0.68,
+      -5.4
+     ]
+    },
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Right",
+     "position": [
+      5.1,
+      0.68,
+      -5.4
+     ]
+    }
+   ],
+   "source": "E_FPOD_EVO",
+   "trim": "EVO"
+  },
+  "MODULE_ENGINE_EXOTIC_04_STANDARD": {
+   "car": "E",
+   "kit": 4,
+   "parts": {
+    "E_FPOD_STD__detail": {
+     "centre": [
+      0.0,
+      0.4708,
+      -8.85
+     ],
+     "channel": "detail",
+     "size": [
+      12.88,
+      1.6175,
+      6.9
+     ],
+     "triangles": 788
+    },
+    "E_FPOD_STD__lights": {
+     "centre": [
+      0.0,
+      0.36,
+      -12.02
+     ],
+     "channel": "lights",
+     "size": [
+      10.8,
+      1.24,
+      0.1
+     ],
+     "triangles": 96
+    },
+    "E_FPOD_STD__neon": {
+     "centre": [
+      0.0,
+      1.1395,
+      -8.8
+     ],
+     "channel": "neon",
+     "size": [
+      12.9196,
+      0.087,
+      3.0
+     ],
+     "triangles": 32
+    },
+    "E_FPOD_STD__primary": {
+     "centre": [
+      0.0,
+      0.56,
+      -8.85
+     ],
+     "channel": "primary",
+     "size": [
+      12.88,
+      3.32,
+      6.9
+     ],
+     "triangles": 5472
+    },
+    "E_FPOD_STD__secondary": {
+     "centre": [
+      0.0,
+      0.175,
+      -8.85
+     ],
+     "channel": "secondary",
+     "size": [
+      12.94,
+      2.55,
+      6.9
+     ],
+     "triangles": 2448
+    },
+    "E_FPOD_STD__thrust": {
+     "centre": [
+      0.0,
+      0.0648,
+      -7.85
+     ],
+     "channel": "thrust",
+     "size": [
+      11.916,
+      2.4295,
+      3.9
+     ],
+     "triangles": 212
+    }
+   },
+   "slot": "Engine1",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Left",
+     "position": [
+      -5.1,
+      0.68,
+      -5.4
+     ]
+    },
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Right",
+     "position": [
+      5.1,
+      0.68,
+      -5.4
+     ]
+    }
+   ],
+   "source": "E_FPOD_STD",
    "trim": "STD"
   },
   "MODULE_ENGINE_EXOTIC_05_LIGHTWEIGHT": {
@@ -2226,6 +6007,609 @@
    "source": "A_FPOD_STD",
    "trim": "STD"
   },
+  "MODULE_ENGINE_EXOTIC_06_LIGHTWEIGHT": {
+   "car": "F",
+   "kit": 6,
+   "parts": {
+    "F_FPOD_GT__detail": {
+     "centre": [
+      0.0,
+      0.6595,
+      -7.9
+     ],
+     "channel": "detail",
+     "size": [
+      13.7878,
+      3.2908,
+      5.0
+     ],
+     "triangles": 2708
+    },
+    "F_FPOD_GT__glass": {
+     "centre": [
+      0.0,
+      1.5752,
+      -10.9
+     ],
+     "channel": "glass",
+     "size": [
+      11.6908,
+      0.8565,
+      1.2
+     ],
+     "triangles": 560
+    },
+    "F_FPOD_GT__lights": {
+     "centre": [
+      0.0,
+      1.0563,
+      -11.115
+     ],
+     "channel": "lights",
+     "size": [
+      11.0796,
+      1.7126,
+      1.43
+     ],
+     "triangles": 140
+    },
+    "F_FPOD_GT__neon": {
+     "centre": [
+      0.0,
+      0.2249,
+      -8.6
+     ],
+     "channel": "neon",
+     "size": [
+      13.5678,
+      1.14,
+      0.14
+     ],
+     "triangles": 248
+    },
+    "F_FPOD_GT__primary": {
+     "centre": [
+      0.0,
+      0.6227,
+      -8.6
+     ],
+     "channel": "primary",
+     "size": [
+      13.5162,
+      3.4455,
+      6.4
+     ],
+     "triangles": 6210
+    },
+    "F_FPOD_GT__secondary": {
+     "centre": [
+      0.0,
+      0.5749,
+      -8.95
+     ],
+     "channel": "secondary",
+     "size": [
+      13.8,
+      3.3499,
+      7.1
+     ],
+     "triangles": 5104
+    },
+    "F_FPOD_GT__thrust": {
+     "centre": [
+      0.0,
+      0.0168,
+      -7.8
+     ],
+     "channel": "thrust",
+     "size": [
+      12.3628,
+      2.3324,
+      3.6
+     ],
+     "triangles": 212
+    }
+   },
+   "slot": "Engine1",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Left",
+     "position": [
+      -5.1,
+      0.4,
+      -5.4
+     ]
+    },
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Right",
+     "position": [
+      5.1,
+      0.4,
+      -5.4
+     ]
+    }
+   ],
+   "source": "F_FPOD_GT",
+   "trim": "GT"
+  },
+  "MODULE_ENGINE_EXOTIC_06_POWER": {
+   "car": "F",
+   "kit": 6,
+   "parts": {
+    "F_FPOD_EVO__detail": {
+     "centre": [
+      0.0,
+      0.7156,
+      -7.9
+     ],
+     "channel": "detail",
+     "size": [
+      14.08,
+      3.403,
+      5.0
+     ],
+     "triangles": 2676
+    },
+    "F_FPOD_EVO__glass": {
+     "centre": [
+      0.0,
+      1.5865,
+      -10.9
+     ],
+     "channel": "glass",
+     "size": [
+      11.7758,
+      0.8853,
+      1.2
+     ],
+     "triangles": 560
+    },
+    "F_FPOD_EVO__lights": {
+     "centre": [
+      0.0,
+      1.0673,
+      -11.115
+     ],
+     "channel": "lights",
+     "size": [
+      11.1346,
+      1.7345,
+      1.43
+     ],
+     "triangles": 140
+    },
+    "F_FPOD_EVO__neon": {
+     "centre": [
+      0.0,
+      0.2249,
+      -8.6
+     ],
+     "channel": "neon",
+     "size": [
+      13.9472,
+      1.14,
+      0.14
+     ],
+     "triangles": 248
+    },
+    "F_FPOD_EVO__primary": {
+     "centre": [
+      0.0,
+      0.6704,
+      -8.6
+     ],
+     "channel": "primary",
+     "size": [
+      13.8982,
+      3.5409,
+      6.4
+     ],
+     "triangles": 5746
+    },
+    "F_FPOD_EVO__secondary": {
+     "centre": [
+      0.0,
+      0.8093,
+      -9.15
+     ],
+     "channel": "secondary",
+     "size": [
+      14.14,
+      3.8185,
+      7.5
+     ],
+     "triangles": 5768
+    },
+    "F_FPOD_EVO__thrust": {
+     "centre": [
+      0.0,
+      0.0303,
+      -7.8
+     ],
+     "channel": "thrust",
+     "size": [
+      12.7134,
+      2.3594,
+      3.6
+     ],
+     "triangles": 212
+    }
+   },
+   "slot": "Engine1",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Left",
+     "position": [
+      -5.1,
+      0.4,
+      -5.4
+     ]
+    },
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Right",
+     "position": [
+      5.1,
+      0.4,
+      -5.4
+     ]
+    }
+   ],
+   "source": "F_FPOD_EVO",
+   "trim": "EVO"
+  },
+  "MODULE_ENGINE_EXOTIC_06_STANDARD": {
+   "car": "F",
+   "kit": 6,
+   "parts": {
+    "F_FPOD_STD__detail": {
+     "centre": [
+      0.0,
+      0.5982,
+      -7.9
+     ],
+     "channel": "detail",
+     "size": [
+      12.9984,
+      3.1683,
+      5.0
+     ],
+     "triangles": 1972
+    },
+    "F_FPOD_STD__glass": {
+     "centre": [
+      0.0,
+      1.5639,
+      -10.9
+     ],
+     "channel": "glass",
+     "size": [
+      11.5634,
+      0.8276,
+      1.2
+     ],
+     "triangles": 560
+    },
+    "F_FPOD_STD__lights": {
+     "centre": [
+      0.0,
+      1.0453,
+      -11.115
+     ],
+     "channel": "lights",
+     "size": [
+      10.9962,
+      1.6905,
+      1.43
+     ],
+     "triangles": 140
+    },
+    "F_FPOD_STD__neon": {
+     "centre": [
+      0.0,
+      0.2249,
+      -8.6
+     ],
+     "channel": "neon",
+     "size": [
+      12.9984,
+      1.14,
+      0.14
+     ],
+     "triangles": 248
+    },
+    "F_FPOD_STD__primary": {
+     "centre": [
+      0.0,
+      0.575,
+      -8.6
+     ],
+     "channel": "primary",
+     "size": [
+      12.9436,
+      3.35,
+      6.4
+     ],
+     "triangles": 5710
+    },
+    "F_FPOD_STD__secondary": {
+     "centre": [
+      0.0,
+      0.5132,
+      -8.65
+     ],
+     "channel": "secondary",
+     "size": [
+      12.9512,
+      3.2265,
+      6.5
+     ],
+     "triangles": 3668
+    },
+    "F_FPOD_STD__thrust": {
+     "centre": [
+      0.0,
+      0.0033,
+      -7.8
+     ],
+     "channel": "thrust",
+     "size": [
+      11.9338,
+      2.3054,
+      3.6
+     ],
+     "triangles": 212
+    }
+   },
+   "slot": "Engine1",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Left",
+     "position": [
+      -5.1,
+      0.4,
+      -5.4
+     ]
+    },
+    {
+     "dir": [
+      0,
+      0,
+      1
+     ],
+     "name": "VFX_EngineJet_Right",
+     "position": [
+      5.1,
+      0.4,
+      -5.4
+     ]
+    }
+   ],
+   "source": "F_FPOD_STD",
+   "trim": "STD"
+  },
+  "MODULE_FRONTBODY_EXOTIC_01": {
+   "car": "C",
+   "kit": 1,
+   "parts": {
+    "C_NOSE_STD__detail": {
+     "centre": [
+      0.0,
+      -0.05,
+      -11.65
+     ],
+     "channel": "detail",
+     "size": [
+      2.64,
+      0.616,
+      0.5
+     ],
+     "triangles": 94
+    },
+    "C_NOSE_STD__lights": {
+     "centre": [
+      0.0,
+      0.447,
+      -11.45
+     ],
+     "channel": "lights",
+     "size": [
+      7.3176,
+      0.2154,
+      2.1
+     ],
+     "triangles": 132
+    },
+    "C_NOSE_STD__primary": {
+     "centre": [
+      0.0,
+      0.9175,
+      -8.93
+     ],
+     "channel": "primary",
+     "size": [
+      7.747,
+      2.635,
+      7.34
+     ],
+     "triangles": 2912
+    },
+    "C_NOSE_STD__secondary": {
+     "centre": [
+      0.0,
+      0.91,
+      -9.0
+     ],
+     "channel": "secondary",
+     "size": [
+      7.6,
+      2.9,
+      7.4
+     ],
+     "triangles": 2286
+    }
+   },
+   "slot": "FrontBody",
+   "sockets": [],
+   "source": "C_NOSE_STD",
+   "trim": "STD"
+  },
+  "MODULE_FRONTBODY_EXOTIC_01_EVO": {
+   "car": "C",
+   "kit": 1,
+   "parts": {
+    "C_NOSE_EVO__detail": {
+     "centre": [
+      0.0,
+      0.4141,
+      -9.925
+     ],
+     "channel": "detail",
+     "size": [
+      6.05,
+      2.3881,
+      5.25
+     ],
+     "triangles": 358
+    },
+    "C_NOSE_EVO__lights": {
+     "centre": [
+      0.0,
+      0.447,
+      -11.45
+     ],
+     "channel": "lights",
+     "size": [
+      7.3176,
+      0.2154,
+      2.1
+     ],
+     "triangles": 132
+    },
+    "C_NOSE_EVO__primary": {
+     "centre": [
+      0.0,
+      0.9175,
+      -8.93
+     ],
+     "channel": "primary",
+     "size": [
+      7.7472,
+      2.635,
+      7.34
+     ],
+     "triangles": 3424
+    },
+    "C_NOSE_EVO__secondary": {
+     "centre": [
+      0.0,
+      0.91,
+      -9.375
+     ],
+     "channel": "secondary",
+     "size": [
+      7.6,
+      2.9,
+      8.15
+     ],
+     "triangles": 2498
+    }
+   },
+   "slot": "FrontBody",
+   "sockets": [],
+   "source": "C_NOSE_EVO",
+   "trim": "EVO"
+  },
+  "MODULE_FRONTBODY_EXOTIC_01_GT": {
+   "car": "C",
+   "kit": 1,
+   "parts": {
+    "C_NOSE_GT__detail": {
+     "centre": [
+      0.0,
+      0.4141,
+      -9.925
+     ],
+     "channel": "detail",
+     "size": [
+      5.5384,
+      2.3881,
+      5.25
+     ],
+     "triangles": 334
+    },
+    "C_NOSE_GT__lights": {
+     "centre": [
+      0.0,
+      0.447,
+      -11.45
+     ],
+     "channel": "lights",
+     "size": [
+      7.3176,
+      0.2154,
+      2.1
+     ],
+     "triangles": 132
+    },
+    "C_NOSE_GT__primary": {
+     "centre": [
+      0.0,
+      0.9175,
+      -8.93
+     ],
+     "channel": "primary",
+     "size": [
+      7.7472,
+      2.635,
+      7.34
+     ],
+     "triangles": 3424
+    },
+    "C_NOSE_GT__secondary": {
+     "centre": [
+      0.0,
+      0.91,
+      -9.25
+     ],
+     "channel": "secondary",
+     "size": [
+      7.6,
+      2.9,
+      7.9
+     ],
+     "triangles": 2422
+    }
+   },
+   "slot": "FrontBody",
+   "sockets": [],
+   "source": "C_NOSE_GT",
+   "trim": "GT"
+  },
   "MODULE_FRONTBODY_EXOTIC_02": {
    "car": "B",
    "kit": 2,
@@ -2380,6 +6764,360 @@
    "slot": "FrontBody",
    "sockets": [],
    "source": "B_NOSE_GT",
+   "trim": "GT"
+  },
+  "MODULE_FRONTBODY_EXOTIC_03": {
+   "car": "D",
+   "kit": 3,
+   "parts": {
+    "D_NOSE_STD__detail": {
+     "centre": [
+      0.0,
+      0.915,
+      -10.325
+     ],
+     "channel": "detail",
+     "size": [
+      4.0404,
+      1.7128,
+      3.85
+     ],
+     "triangles": 262
+    },
+    "D_NOSE_STD__primary": {
+     "centre": [
+      0.0,
+      0.9196,
+      -8.755
+     ],
+     "channel": "primary",
+     "size": [
+      7.8592,
+      2.6392,
+      6.99
+     ],
+     "triangles": 2742
+    },
+    "D_NOSE_STD__secondary": {
+     "centre": [
+      0.0,
+      0.566,
+      -10.4834
+     ],
+     "channel": "secondary",
+     "size": [
+      7.6,
+      2.2121,
+      3.8333
+     ],
+     "triangles": 604
+    }
+   },
+   "slot": "FrontBody",
+   "sockets": [],
+   "source": "D_NOSE_STD",
+   "trim": "STD"
+  },
+  "MODULE_FRONTBODY_EXOTIC_03_EVO": {
+   "car": "D",
+   "kit": 3,
+   "parts": {
+    "D_NOSE_EVO__detail": {
+     "centre": [
+      0.0,
+      0.5665,
+      -9.875
+     ],
+     "channel": "detail",
+     "size": [
+      6.05,
+      2.693,
+      5.35
+     ],
+     "triangles": 610
+    },
+    "D_NOSE_EVO__primary": {
+     "centre": [
+      0.0,
+      0.9196,
+      -8.755
+     ],
+     "channel": "primary",
+     "size": [
+      7.8592,
+      2.6392,
+      6.99
+     ],
+     "triangles": 2496
+    },
+    "D_NOSE_EVO__secondary": {
+     "centre": [
+      0.0,
+      0.6343,
+      -10.2641
+     ],
+     "channel": "secondary",
+     "size": [
+      7.6,
+      2.3486,
+      5.7719
+     ],
+     "triangles": 888
+    }
+   },
+   "slot": "FrontBody",
+   "sockets": [],
+   "source": "D_NOSE_EVO",
+   "trim": "EVO"
+  },
+  "MODULE_FRONTBODY_EXOTIC_03_GT": {
+   "car": "D",
+   "kit": 3,
+   "parts": {
+    "D_NOSE_GT__detail": {
+     "centre": [
+      0.0,
+      0.5408,
+      -10.075
+     ],
+     "channel": "detail",
+     "size": [
+      5.5962,
+      2.6417,
+      4.95
+     ],
+     "triangles": 478
+    },
+    "D_NOSE_GT__primary": {
+     "centre": [
+      0.0,
+      0.9196,
+      -8.755
+     ],
+     "channel": "primary",
+     "size": [
+      7.8592,
+      2.6392,
+      6.99
+     ],
+     "triangles": 2574
+    },
+    "D_NOSE_GT__secondary": {
+     "centre": [
+      0.0,
+      0.609,
+      -10.3408
+     ],
+     "channel": "secondary",
+     "size": [
+      7.6,
+      2.298,
+      5.1183
+     ],
+     "triangles": 840
+    }
+   },
+   "slot": "FrontBody",
+   "sockets": [],
+   "source": "D_NOSE_GT",
+   "trim": "GT"
+  },
+  "MODULE_FRONTBODY_EXOTIC_04": {
+   "car": "E",
+   "kit": 4,
+   "parts": {
+    "E_NOSE_STD__detail": {
+     "centre": [
+      0.0,
+      -0.13,
+      -11.7
+     ],
+     "channel": "detail",
+     "size": [
+      5.134,
+      0.43,
+      0.5
+     ],
+     "triangles": 284
+    },
+    "E_NOSE_STD__lights": {
+     "centre": [
+      0.0,
+      0.516,
+      -11.55
+     ],
+     "channel": "lights",
+     "size": [
+      5.5552,
+      0.2124,
+      0.14
+     ],
+     "triangles": 32
+    },
+    "E_NOSE_STD__primary": {
+     "centre": [
+      0.0,
+      0.9146,
+      -8.58
+     ],
+     "channel": "primary",
+     "size": [
+      7.7296,
+      2.6293,
+      6.64
+     ],
+     "triangles": 2036
+    },
+    "E_NOSE_STD__secondary": {
+     "centre": [
+      0.0,
+      -0.1948,
+      -11.4
+     ],
+     "channel": "secondary",
+     "size": [
+      7.6,
+      0.6904,
+      2.0
+     ],
+     "triangles": 1376
+    }
+   },
+   "slot": "FrontBody",
+   "sockets": [],
+   "source": "E_NOSE_STD",
+   "trim": "STD"
+  },
+  "MODULE_FRONTBODY_EXOTIC_04_EVO": {
+   "car": "E",
+   "kit": 4,
+   "parts": {
+    "E_NOSE_EVO__detail": {
+     "centre": [
+      0.0,
+      0.3095,
+      -10.075
+     ],
+     "channel": "detail",
+     "size": [
+      6.05,
+      2.1789,
+      4.95
+     ],
+     "triangles": 496
+    },
+    "E_NOSE_EVO__lights": {
+     "centre": [
+      0.0,
+      0.516,
+      -11.55
+     ],
+     "channel": "lights",
+     "size": [
+      5.5552,
+      0.2124,
+      0.14
+     ],
+     "triangles": 32
+    },
+    "E_NOSE_EVO__primary": {
+     "centre": [
+      0.0,
+      0.9146,
+      -8.58
+     ],
+     "channel": "primary",
+     "size": [
+      7.7296,
+      2.6293,
+      6.64
+     ],
+     "triangles": 2384
+    },
+    "E_NOSE_EVO__secondary": {
+     "centre": [
+      0.0,
+      0.3492,
+      -10.4625
+     ],
+     "channel": "secondary",
+     "size": [
+      7.64,
+      1.7785,
+      5.375
+     ],
+     "triangles": 1576
+    }
+   },
+   "slot": "FrontBody",
+   "sockets": [],
+   "source": "E_NOSE_EVO",
+   "trim": "EVO"
+  },
+  "MODULE_FRONTBODY_EXOTIC_04_GT": {
+   "car": "E",
+   "kit": 4,
+   "parts": {
+    "E_NOSE_GT__detail": {
+     "centre": [
+      0.0,
+      0.3095,
+      -10.075
+     ],
+     "channel": "detail",
+     "size": [
+      5.134,
+      2.1789,
+      4.95
+     ],
+     "triangles": 472
+    },
+    "E_NOSE_GT__lights": {
+     "centre": [
+      0.0,
+      0.516,
+      -11.55
+     ],
+     "channel": "lights",
+     "size": [
+      5.5552,
+      0.2124,
+      0.14
+     ],
+     "triangles": 32
+    },
+    "E_NOSE_GT__primary": {
+     "centre": [
+      0.0,
+      0.9146,
+      -8.58
+     ],
+     "channel": "primary",
+     "size": [
+      7.7296,
+      2.6293,
+      6.64
+     ],
+     "triangles": 2384
+    },
+    "E_NOSE_GT__secondary": {
+     "centre": [
+      0.0,
+      0.3469,
+      -10.345
+     ],
+     "channel": "secondary",
+     "size": [
+      7.6,
+      1.7739,
+      5.11
+     ],
+     "triangles": 1564
+    }
+   },
+   "slot": "FrontBody",
+   "sockets": [],
+   "source": "E_NOSE_GT",
    "trim": "GT"
   },
   "MODULE_FRONTBODY_EXOTIC_05": {
@@ -2580,6 +7318,402 @@
    "source": "A_NOSE_GT",
    "trim": "GT"
   },
+  "MODULE_FRONTBODY_EXOTIC_06": {
+   "car": "F",
+   "kit": 6,
+   "parts": {
+    "F_NOSE_STD__detail": {
+     "centre": [
+      0.0,
+      -0.39,
+      -8.75
+     ],
+     "channel": "detail",
+     "size": [
+      7.5,
+      0.1,
+      6.5
+     ],
+     "triangles": 1084
+    },
+    "F_NOSE_STD__lights": {
+     "centre": [
+      0.0,
+      0.5879,
+      -11.1
+     ],
+     "channel": "lights",
+     "size": [
+      3.733,
+      0.091,
+      1.4
+     ],
+     "triangles": 72
+    },
+    "F_NOSE_STD__primary": {
+     "centre": [
+      0.0,
+      0.9175,
+      -8.78
+     ],
+     "channel": "primary",
+     "size": [
+      7.7026,
+      2.6349,
+      7.04
+     ],
+     "triangles": 2672
+    },
+    "F_NOSE_STD__secondary": {
+     "centre": [
+      0.0,
+      0.8077,
+      -9.0
+     ],
+     "channel": "secondary",
+     "size": [
+      7.6,
+      2.6955,
+      6.8
+     ],
+     "triangles": 1044
+    }
+   },
+   "slot": "FrontBody",
+   "sockets": [],
+   "source": "F_NOSE_STD",
+   "trim": "STD"
+  },
+  "MODULE_FRONTBODY_EXOTIC_06_EVO": {
+   "car": "F",
+   "kit": 6,
+   "parts": {
+    "F_NOSE_EVO__detail": {
+     "centre": [
+      0.0,
+      -0.56,
+      -9.025
+     ],
+     "channel": "detail",
+     "size": [
+      7.5,
+      0.44,
+      7.05
+     ],
+     "triangles": 1156
+    },
+    "F_NOSE_EVO__lights": {
+     "centre": [
+      0.0,
+      0.5879,
+      -11.1
+     ],
+     "channel": "lights",
+     "size": [
+      3.733,
+      0.091,
+      1.4
+     ],
+     "triangles": 72
+    },
+    "F_NOSE_EVO__primary": {
+     "centre": [
+      0.0,
+      0.9175,
+      -9.18
+     ],
+     "channel": "primary",
+     "size": [
+      7.7026,
+      2.6349,
+      7.84
+     ],
+     "triangles": 3884
+    },
+    "F_NOSE_EVO__secondary": {
+     "centre": [
+      0.0,
+      0.8077,
+      -9.375
+     ],
+     "channel": "secondary",
+     "size": [
+      7.64,
+      2.6955,
+      7.55
+     ],
+     "triangles": 1172
+    }
+   },
+   "slot": "FrontBody",
+   "sockets": [],
+   "source": "F_NOSE_EVO",
+   "trim": "EVO"
+  },
+  "MODULE_FRONTBODY_EXOTIC_06_GT": {
+   "car": "F",
+   "kit": 6,
+   "parts": {
+    "F_NOSE_GT__detail": {
+     "centre": [
+      0.0,
+      -0.56,
+      -9.025
+     ],
+     "channel": "detail",
+     "size": [
+      7.5,
+      0.44,
+      7.05
+     ],
+     "triangles": 1132
+    },
+    "F_NOSE_GT__lights": {
+     "centre": [
+      0.0,
+      0.5879,
+      -11.1
+     ],
+     "channel": "lights",
+     "size": [
+      3.733,
+      0.091,
+      1.4
+     ],
+     "triangles": 72
+    },
+    "F_NOSE_GT__primary": {
+     "centre": [
+      0.0,
+      0.9175,
+      -9.03
+     ],
+     "channel": "primary",
+     "size": [
+      7.7026,
+      2.6349,
+      7.54
+     ],
+     "triangles": 3884
+    },
+    "F_NOSE_GT__secondary": {
+     "centre": [
+      0.0,
+      0.8077,
+      -9.25
+     ],
+     "channel": "secondary",
+     "size": [
+      7.6,
+      2.6955,
+      7.3
+     ],
+     "triangles": 1172
+    }
+   },
+   "slot": "FrontBody",
+   "sockets": [],
+   "source": "F_NOSE_GT",
+   "trim": "GT"
+  },
+  "MODULE_REARBODY_EXOTIC_01": {
+   "car": "C",
+   "kit": 1,
+   "parts": {
+    "C_TAIL_STD__detail": {
+     "centre": [
+      0.0,
+      1.1112,
+      10.425
+     ],
+     "channel": "detail",
+     "size": [
+      7.0326,
+      3.0623,
+      2.05
+     ],
+     "triangles": 1030
+    },
+    "C_TAIL_STD__lights_red": {
+     "centre": [
+      0.0,
+      1.75,
+      11.2
+     ],
+     "channel": "lights_red",
+     "size": [
+      6.6,
+      1.3,
+      0.14
+     ],
+     "triangles": 60
+    },
+    "C_TAIL_STD__primary": {
+     "centre": [
+      0.0,
+      1.16,
+      7.155
+     ],
+     "channel": "primary",
+     "size": [
+      7.86,
+      3.12,
+      8.59
+     ],
+     "triangles": 2410
+    },
+    "C_TAIL_STD__secondary": {
+     "centre": [
+      0.0,
+      1.1746,
+      7.225
+     ],
+     "channel": "secondary",
+     "size": [
+      7.7562,
+      3.1492,
+      8.45
+     ],
+     "triangles": 744
+    }
+   },
+   "slot": "RearBody",
+   "sockets": [],
+   "source": "C_TAIL_STD",
+   "trim": "STD"
+  },
+  "MODULE_REARBODY_EXOTIC_01_EVO": {
+   "car": "C",
+   "kit": 1,
+   "parts": {
+    "C_TAIL_EVO__detail": {
+     "centre": [
+      0.0,
+      1.2269,
+      9.375
+     ],
+     "channel": "detail",
+     "size": [
+      7.0326,
+      3.2939,
+      6.75
+     ],
+     "triangles": 4270
+    },
+    "C_TAIL_EVO__lights_red": {
+     "centre": [
+      0.0,
+      1.75,
+      11.2
+     ],
+     "channel": "lights_red",
+     "size": [
+      6.6,
+      1.3,
+      0.14
+     ],
+     "triangles": 60
+    },
+    "C_TAIL_EVO__primary": {
+     "centre": [
+      0.0,
+      1.725,
+      7.155
+     ],
+     "channel": "primary",
+     "size": [
+      7.86,
+      4.25,
+      8.59
+     ],
+     "triangles": 3222
+    },
+    "C_TAIL_EVO__secondary": {
+     "centre": [
+      0.0,
+      1.2458,
+      7.875
+     ],
+     "channel": "secondary",
+     "size": [
+      7.7562,
+      3.4916,
+      9.75
+     ],
+     "triangles": 2124
+    }
+   },
+   "slot": "RearBody",
+   "sockets": [],
+   "source": "C_TAIL_EVO",
+   "trim": "EVO"
+  },
+  "MODULE_REARBODY_EXOTIC_01_GT": {
+   "car": "C",
+   "kit": 1,
+   "parts": {
+    "C_TAIL_GT__detail": {
+     "centre": [
+      0.0,
+      1.1691,
+      9.15
+     ],
+     "channel": "detail",
+     "size": [
+      7.0326,
+      3.1781,
+      6.3
+     ],
+     "triangles": 2742
+    },
+    "C_TAIL_GT__lights_red": {
+     "centre": [
+      0.0,
+      1.75,
+      11.2
+     ],
+     "channel": "lights_red",
+     "size": [
+      6.6,
+      1.3,
+      0.14
+     ],
+     "triangles": 60
+    },
+    "C_TAIL_GT__primary": {
+     "centre": [
+      0.0,
+      1.22,
+      7.155
+     ],
+     "channel": "primary",
+     "size": [
+      7.86,
+      3.24,
+      8.59
+     ],
+     "triangles": 2906
+    },
+    "C_TAIL_GT__secondary": {
+     "centre": [
+      0.0,
+      1.1854,
+      7.65
+     ],
+     "channel": "secondary",
+     "size": [
+      7.7562,
+      3.3709,
+      9.3
+     ],
+     "triangles": 2060
+    }
+   },
+   "slot": "RearBody",
+   "sockets": [],
+   "source": "C_TAIL_GT",
+   "trim": "GT"
+  },
   "MODULE_REARBODY_EXOTIC_02": {
    "car": "B",
    "kit": 2,
@@ -2776,6 +7910,402 @@
    "slot": "RearBody",
    "sockets": [],
    "source": "B_TAIL_GT",
+   "trim": "GT"
+  },
+  "MODULE_REARBODY_EXOTIC_03": {
+   "car": "D",
+   "kit": 3,
+   "parts": {
+    "D_TAIL_STD__detail": {
+     "centre": [
+      0.0,
+      0.9607,
+      8.85
+     ],
+     "channel": "detail",
+     "size": [
+      6.489,
+      2.7614,
+      5.3
+     ],
+     "triangles": 2254
+    },
+    "D_TAIL_STD__lights_red": {
+     "centre": [
+      0.0,
+      0.88,
+      11.3
+     ],
+     "channel": "lights_red",
+     "size": [
+      5.2,
+      0.62,
+      0.14
+     ],
+     "triangles": 48
+    },
+    "D_TAIL_STD__primary": {
+     "centre": [
+      0.0,
+      1.0989,
+      7.18
+     ],
+     "channel": "primary",
+     "size": [
+      7.86,
+      2.9978,
+      8.64
+     ],
+     "triangles": 2440
+    },
+    "D_TAIL_STD__secondary": {
+     "centre": [
+      0.0,
+      0.9177,
+      8.9657
+     ],
+     "channel": "secondary",
+     "size": [
+      7.7616,
+      2.6353,
+      5.0687
+     ],
+     "triangles": 576
+    }
+   },
+   "slot": "RearBody",
+   "sockets": [],
+   "source": "D_TAIL_STD",
+   "trim": "STD"
+  },
+  "MODULE_REARBODY_EXOTIC_03_EVO": {
+   "car": "D",
+   "kit": 3,
+   "parts": {
+    "D_TAIL_EVO__detail": {
+     "centre": [
+      0.0,
+      1.0147,
+      8.575
+     ],
+     "channel": "detail",
+     "size": [
+      7.57,
+      2.8694,
+      8.35
+     ],
+     "triangles": 5662
+    },
+    "D_TAIL_EVO__lights_red": {
+     "centre": [
+      0.0,
+      0.88,
+      11.3
+     ],
+     "channel": "lights_red",
+     "size": [
+      5.2,
+      0.62,
+      0.14
+     ],
+     "triangles": 48
+    },
+    "D_TAIL_EVO__primary": {
+     "centre": [
+      0.0,
+      1.725,
+      7.18
+     ],
+     "channel": "primary",
+     "size": [
+      7.86,
+      4.25,
+      8.64
+     ],
+     "triangles": 2660
+    },
+    "D_TAIL_EVO__secondary": {
+     "centre": [
+      0.0,
+      0.9313,
+      8.6875
+     ],
+     "channel": "secondary",
+     "size": [
+      7.7616,
+      2.8626,
+      8.125
+     ],
+     "triangles": 1764
+    }
+   },
+   "slot": "RearBody",
+   "sockets": [],
+   "source": "D_TAIL_EVO",
+   "trim": "EVO"
+  },
+  "MODULE_REARBODY_EXOTIC_03_GT": {
+   "car": "D",
+   "kit": 3,
+   "parts": {
+    "D_TAIL_GT__detail": {
+     "centre": [
+      0.0,
+      0.9984,
+      8.75
+     ],
+     "channel": "detail",
+     "size": [
+      7.47,
+      2.8368,
+      7.1
+     ],
+     "triangles": 3958
+    },
+    "D_TAIL_GT__lights_red": {
+     "centre": [
+      0.0,
+      0.88,
+      11.3
+     ],
+     "channel": "lights_red",
+     "size": [
+      5.2,
+      0.62,
+      0.14
+     ],
+     "triangles": 48
+    },
+    "D_TAIL_GT__primary": {
+     "centre": [
+      0.0,
+      1.0989,
+      7.18
+     ],
+     "channel": "primary",
+     "size": [
+      7.86,
+      2.9978,
+      8.64
+     ],
+     "triangles": 2392
+    },
+    "D_TAIL_GT__secondary": {
+     "centre": [
+      0.0,
+      0.9131,
+      8.865
+     ],
+     "channel": "secondary",
+     "size": [
+      7.7616,
+      2.8262,
+      6.87
+     ],
+     "triangles": 1676
+    }
+   },
+   "slot": "RearBody",
+   "sockets": [],
+   "source": "D_TAIL_GT",
+   "trim": "GT"
+  },
+  "MODULE_REARBODY_EXOTIC_04": {
+   "car": "E",
+   "kit": 4,
+   "parts": {
+    "E_TAIL_STD__detail": {
+     "centre": [
+      0.0,
+      1.0768,
+      7.75
+     ],
+     "channel": "detail",
+     "size": [
+      6.989,
+      2.9936,
+      7.1
+     ],
+     "triangles": 2726
+    },
+    "E_TAIL_STD__lights_red": {
+     "centre": [
+      0.0,
+      2.12,
+      11.02
+     ],
+     "channel": "lights_red",
+     "size": [
+      6.9,
+      0.14,
+      0.16
+     ],
+     "triangles": 12
+    },
+    "E_TAIL_STD__primary": {
+     "centre": [
+      0.0,
+      1.0995,
+      7.03
+     ],
+     "channel": "primary",
+     "size": [
+      7.7276,
+      2.9989,
+      8.34
+     ],
+     "triangles": 2388
+    },
+    "E_TAIL_STD__secondary": {
+     "centre": [
+      0.0,
+      0.9659,
+      9.2125
+     ],
+     "channel": "secondary",
+     "size": [
+      7.6244,
+      2.7318,
+      3.975
+     ],
+     "triangles": 576
+    }
+   },
+   "slot": "RearBody",
+   "sockets": [],
+   "source": "E_TAIL_STD",
+   "trim": "STD"
+  },
+  "MODULE_REARBODY_EXOTIC_04_EVO": {
+   "car": "E",
+   "kit": 4,
+   "parts": {
+    "E_TAIL_EVO__detail": {
+     "centre": [
+      0.0,
+      1.1248,
+      8.5
+     ],
+     "channel": "detail",
+     "size": [
+      7.27,
+      3.0895,
+      8.6
+     ],
+     "triangles": 4866
+    },
+    "E_TAIL_EVO__lights_red": {
+     "centre": [
+      0.0,
+      2.12,
+      11.02
+     ],
+     "channel": "lights_red",
+     "size": [
+      6.9,
+      0.14,
+      0.16
+     ],
+     "triangles": 12
+    },
+    "E_TAIL_EVO__primary": {
+     "centre": [
+      0.0,
+      1.175,
+      7.03
+     ],
+     "channel": "primary",
+     "size": [
+      7.7276,
+      3.15,
+      8.34
+     ],
+     "triangles": 2288
+    },
+    "E_TAIL_EVO__secondary": {
+     "centre": [
+      0.0,
+      0.9189,
+      9.0125
+     ],
+     "channel": "secondary",
+     "size": [
+      7.68,
+      2.8378,
+      7.575
+     ],
+     "triangles": 1748
+    }
+   },
+   "slot": "RearBody",
+   "sockets": [],
+   "source": "E_TAIL_EVO",
+   "trim": "EVO"
+  },
+  "MODULE_REARBODY_EXOTIC_04_GT": {
+   "car": "E",
+   "kit": 4,
+   "parts": {
+    "E_TAIL_GT__detail": {
+     "centre": [
+      0.0,
+      1.0768,
+      8.275
+     ],
+     "channel": "detail",
+     "size": [
+      7.27,
+      2.9936,
+      8.15
+     ],
+     "triangles": 4422
+    },
+    "E_TAIL_GT__lights_red": {
+     "centre": [
+      0.0,
+      2.12,
+      11.02
+     ],
+     "channel": "lights_red",
+     "size": [
+      6.9,
+      0.14,
+      0.16
+     ],
+     "triangles": 12
+    },
+    "E_TAIL_GT__primary": {
+     "centre": [
+      0.0,
+      1.1,
+      7.03
+     ],
+     "channel": "primary",
+     "size": [
+      7.7276,
+      3.0,
+      8.34
+     ],
+     "triangles": 2348
+    },
+    "E_TAIL_GT__secondary": {
+     "centre": [
+      0.0,
+      0.9159,
+      9.2875
+     ],
+     "channel": "secondary",
+     "size": [
+      7.68,
+      2.8318,
+      6.125
+     ],
+     "triangles": 1668
+    }
+   },
+   "slot": "RearBody",
+   "sockets": [],
+   "source": "E_TAIL_GT",
    "trim": "GT"
   },
   "MODULE_REARBODY_EXOTIC_05": {
@@ -2976,6 +8506,318 @@
    "source": "A_TAIL_GT",
    "trim": "GT"
   },
+  "MODULE_REARBODY_EXOTIC_06": {
+   "car": "F",
+   "kit": 6,
+   "parts": {
+    "F_TAIL_STD__detail": {
+     "centre": [
+      0.0,
+      0.9204,
+      8.65
+     ],
+     "channel": "detail",
+     "size": [
+      7.5,
+      2.8407,
+      6.1
+     ],
+     "triangles": 3442
+    },
+    "F_TAIL_STD__lights_red": {
+     "centre": [
+      0.0,
+      1.05,
+      11.53
+     ],
+     "channel": "lights_red",
+     "size": [
+      7.2,
+      0.9,
+      0.06
+     ],
+     "triangles": 24
+    },
+    "F_TAIL_STD__primary": {
+     "centre": [
+      0.0,
+      1.0987,
+      7.03
+     ],
+     "channel": "primary",
+     "size": [
+      7.7068,
+      2.9973,
+      8.34
+     ],
+     "triangles": 2684
+    },
+    "F_TAIL_STD__secondary": {
+     "centre": [
+      0.0,
+      1.0795,
+      7.25
+     ],
+     "channel": "secondary",
+     "size": [
+      7.2,
+      3.059,
+      8.5
+     ],
+     "triangles": 1228
+    }
+   },
+   "slot": "RearBody",
+   "sockets": [],
+   "source": "F_TAIL_STD",
+   "trim": "STD"
+  },
+  "MODULE_REARBODY_EXOTIC_06_EVO": {
+   "car": "F",
+   "kit": 6,
+   "parts": {
+    "F_TAIL_EVO__detail": {
+     "centre": [
+      0.0,
+      0.9178,
+      9.175
+     ],
+     "channel": "detail",
+     "size": [
+      7.5,
+      2.8355,
+      7.15
+     ],
+     "triangles": 7394
+    },
+    "F_TAIL_EVO__lights_red": {
+     "centre": [
+      0.0,
+      1.05,
+      11.53
+     ],
+     "channel": "lights_red",
+     "size": [
+      7.2,
+      0.9,
+      0.06
+     ],
+     "triangles": 24
+    },
+    "F_TAIL_EVO__primary": {
+     "centre": [
+      0.0,
+      1.725,
+      7.03
+     ],
+     "channel": "primary",
+     "size": [
+      7.7068,
+      4.25,
+      8.34
+     ],
+     "triangles": 3000
+    },
+    "F_TAIL_EVO__secondary": {
+     "centre": [
+      0.0,
+      1.0795,
+      7.25
+     ],
+     "channel": "secondary",
+     "size": [
+      7.2,
+      3.059,
+      8.5
+     ],
+     "triangles": 1380
+    }
+   },
+   "slot": "RearBody",
+   "sockets": [],
+   "source": "F_TAIL_EVO",
+   "trim": "EVO"
+  },
+  "MODULE_REARBODY_EXOTIC_06_GT": {
+   "car": "F",
+   "kit": 6,
+   "parts": {
+    "F_TAIL_GT__detail": {
+     "centre": [
+      0.0,
+      0.9193,
+      8.95
+     ],
+     "channel": "detail",
+     "size": [
+      7.5,
+      2.8387,
+      6.7
+     ],
+     "triangles": 5418
+    },
+    "F_TAIL_GT__lights_red": {
+     "centre": [
+      0.0,
+      1.05,
+      11.53
+     ],
+     "channel": "lights_red",
+     "size": [
+      7.2,
+      0.9,
+      0.06
+     ],
+     "triangles": 24
+    },
+    "F_TAIL_GT__primary": {
+     "centre": [
+      0.0,
+      1.0987,
+      7.03
+     ],
+     "channel": "primary",
+     "size": [
+      7.7068,
+      2.9973,
+      8.34
+     ],
+     "triangles": 2684
+    },
+    "F_TAIL_GT__secondary": {
+     "centre": [
+      0.0,
+      1.0795,
+      7.25
+     ],
+     "channel": "secondary",
+     "size": [
+      7.2,
+      3.059,
+      8.5
+     ],
+     "triangles": 1368
+    }
+   },
+   "slot": "RearBody",
+   "sockets": [],
+   "source": "F_TAIL_GT",
+   "trim": "GT"
+  },
+  "MODULE_REARSPOILER_EXOTIC_01": {
+   "car": "C",
+   "kit": 1,
+   "parts": {
+    "C_WING_STD__primary": {
+     "centre": [
+      0.0,
+      2.82,
+      11.21
+     ],
+     "channel": "primary",
+     "size": [
+      7.4,
+      0.12,
+      0.82
+     ],
+     "triangles": 1212
+    },
+    "C_WING_STD__secondary": {
+     "centre": [
+      0.0,
+      2.65,
+      11.05
+     ],
+     "channel": "secondary",
+     "size": [
+      5.38,
+      0.3,
+      0.7
+     ],
+     "triangles": 248
+    }
+   },
+   "slot": "RearSpoiler",
+   "sockets": [],
+   "source": "C_WING_STD",
+   "trim": "STD"
+  },
+  "MODULE_REARSPOILER_EXOTIC_01_EVO": {
+   "car": "C",
+   "kit": 1,
+   "parts": {
+    "C_WING_EVO__primary": {
+     "centre": [
+      0.0,
+      5.16,
+      11.445
+     ],
+     "channel": "primary",
+     "size": [
+      11.6,
+      0.52,
+      2.39
+     ],
+     "triangles": 3192
+    },
+    "C_WING_EVO__secondary": {
+     "centre": [
+      0.0,
+      3.33,
+      11.025
+     ],
+     "channel": "secondary",
+     "size": [
+      11.7,
+      4.16,
+      2.65
+     ],
+     "triangles": 1088
+    }
+   },
+   "slot": "RearSpoiler",
+   "sockets": [],
+   "source": "C_WING_EVO",
+   "trim": "EVO"
+  },
+  "MODULE_REARSPOILER_EXOTIC_01_GT": {
+   "car": "C",
+   "kit": 1,
+   "parts": {
+    "C_WING_GT__primary": {
+     "centre": [
+      0.0,
+      4.4,
+      11.3
+     ],
+     "channel": "primary",
+     "size": [
+      8.8,
+      0.2,
+      1.8
+     ],
+     "triangles": 1340
+    },
+    "C_WING_GT__secondary": {
+     "centre": [
+      0.0,
+      3.03,
+      11.025
+     ],
+     "channel": "secondary",
+     "size": [
+      8.9,
+      3.56,
+      2.65
+     ],
+     "triangles": 960
+    }
+   },
+   "slot": "RearSpoiler",
+   "sockets": [],
+   "source": "C_WING_GT",
+   "trim": "GT"
+  },
   "MODULE_REARSPOILER_EXOTIC_02": {
    "car": "B",
    "kit": 2,
@@ -3088,6 +8930,234 @@
    "slot": "RearSpoiler",
    "sockets": [],
    "source": "B_WING_GT",
+   "trim": "GT"
+  },
+  "MODULE_REARSPOILER_EXOTIC_03": {
+   "car": "D",
+   "kit": 3,
+   "parts": {
+    "D_WING_STD__primary": {
+     "centre": [
+      0.0,
+      2.525,
+      11.1
+     ],
+     "channel": "primary",
+     "size": [
+      7.0,
+      0.15,
+      1.2
+     ],
+     "triangles": 1084
+    },
+    "D_WING_STD__secondary": {
+     "centre": [
+      0.0,
+      2.05,
+      11.175
+     ],
+     "channel": "secondary",
+     "size": [
+      7.14,
+      1.6,
+      1.35
+     ],
+     "triangles": 880
+    }
+   },
+   "slot": "RearSpoiler",
+   "sockets": [],
+   "source": "D_WING_STD",
+   "trim": "STD"
+  },
+  "MODULE_REARSPOILER_EXOTIC_03_EVO": {
+   "car": "D",
+   "kit": 3,
+   "parts": {
+    "D_WING_EVO__primary": {
+     "centre": [
+      0.0,
+      4.96,
+      11.46
+     ],
+     "channel": "primary",
+     "size": [
+      12.4,
+      0.52,
+      2.52
+     ],
+     "triangles": 3704
+    },
+    "D_WING_EVO__secondary": {
+     "centre": [
+      0.0,
+      3.125,
+      11.1
+     ],
+     "channel": "secondary",
+     "size": [
+      12.52,
+      3.75,
+      2.2
+     ],
+     "triangles": 1916
+    }
+   },
+   "slot": "RearSpoiler",
+   "sockets": [],
+   "source": "D_WING_EVO",
+   "trim": "EVO"
+  },
+  "MODULE_REARSPOILER_EXOTIC_03_GT": {
+   "car": "D",
+   "kit": 3,
+   "parts": {
+    "D_WING_GT__primary": {
+     "centre": [
+      0.0,
+      4.2,
+      11.2
+     ],
+     "channel": "primary",
+     "size": [
+      9.4,
+      0.2,
+      1.8
+     ],
+     "triangles": 1468
+    },
+    "D_WING_GT__secondary": {
+     "centre": [
+      0.0,
+      2.825,
+      11.1
+     ],
+     "channel": "secondary",
+     "size": [
+      9.52,
+      3.15,
+      2.2
+     ],
+     "triangles": 1660
+    }
+   },
+   "slot": "RearSpoiler",
+   "sockets": [],
+   "source": "D_WING_GT",
+   "trim": "GT"
+  },
+  "MODULE_REARSPOILER_EXOTIC_04": {
+   "car": "E",
+   "kit": 4,
+   "parts": {
+    "E_WING_STD__primary": {
+     "centre": [
+      0.0,
+      3.015,
+      11.0
+     ],
+     "channel": "primary",
+     "size": [
+      7.7,
+      0.13,
+      1.0
+     ],
+     "triangles": 1212
+    },
+    "E_WING_STD__secondary": {
+     "centre": [
+      0.0,
+      2.825,
+      11.075
+     ],
+     "channel": "secondary",
+     "size": [
+      7.82,
+      1.05,
+      1.35
+     ],
+     "triangles": 880
+    }
+   },
+   "slot": "RearSpoiler",
+   "sockets": [],
+   "source": "E_WING_STD",
+   "trim": "STD"
+  },
+  "MODULE_REARSPOILER_EXOTIC_04_EVO": {
+   "car": "E",
+   "kit": 4,
+   "parts": {
+    "E_WING_EVO__primary": {
+     "centre": [
+      0.0,
+      5.26,
+      11.53
+     ],
+     "channel": "primary",
+     "size": [
+      7.5,
+      0.52,
+      2.36
+     ],
+     "triangles": 2424
+    },
+    "E_WING_EVO__secondary": {
+     "centre": [
+      0.0,
+      3.5,
+      10.85
+     ],
+     "channel": "secondary",
+     "size": [
+      7.64,
+      4.5,
+      2.9
+     ],
+     "triangles": 2624
+    }
+   },
+   "slot": "RearSpoiler",
+   "sockets": [],
+   "source": "E_WING_EVO",
+   "trim": "EVO"
+  },
+  "MODULE_REARSPOILER_EXOTIC_04_GT": {
+   "car": "E",
+   "kit": 4,
+   "parts": {
+    "E_WING_GT__primary": {
+     "centre": [
+      0.0,
+      4.4,
+      11.3
+     ],
+     "channel": "primary",
+     "size": [
+      7.4,
+      0.2,
+      1.6
+     ],
+     "triangles": 1212
+    },
+    "E_WING_GT__secondary": {
+     "centre": [
+      0.0,
+      3.15,
+      10.85
+     ],
+     "channel": "secondary",
+     "size": [
+      7.54,
+      3.8,
+      2.9
+     ],
+     "triangles": 1284
+    }
+   },
+   "slot": "RearSpoiler",
+   "sockets": [],
+   "source": "E_WING_GT",
    "trim": "GT"
   },
   "MODULE_REARSPOILER_EXOTIC_05": {
@@ -3203,6 +9273,519 @@
    "sockets": [],
    "source": "A_WING_GT",
    "trim": "GT"
+  },
+  "MODULE_REARSPOILER_EXOTIC_06": {
+   "car": "F",
+   "kit": 6,
+   "parts": {
+    "F_WING_STD__primary": {
+     "centre": [
+      0.0,
+      3.475,
+      11.0
+     ],
+     "channel": "primary",
+     "size": [
+      7.8,
+      0.15,
+      1.3
+     ],
+     "triangles": 1212
+    },
+    "F_WING_STD__secondary": {
+     "centre": [
+      0.0,
+      2.55,
+      11.025
+     ],
+     "channel": "secondary",
+     "size": [
+      7.94,
+      2.6,
+      1.65
+     ],
+     "triangles": 1136
+    }
+   },
+   "slot": "RearSpoiler",
+   "sockets": [],
+   "source": "F_WING_STD",
+   "trim": "STD"
+  },
+  "MODULE_REARSPOILER_EXOTIC_06_EVO": {
+   "car": "F",
+   "kit": 6,
+   "parts": {
+    "F_WING_EVO__primary": {
+     "centre": [
+      0.0,
+      5.46,
+      11.57
+     ],
+     "channel": "primary",
+     "size": [
+      13.2,
+      0.52,
+      2.54
+     ],
+     "triangles": 3960
+    },
+    "F_WING_EVO__secondary": {
+     "centre": [
+      0.0,
+      3.625,
+      11.525
+     ],
+     "channel": "secondary",
+     "size": [
+      13.36,
+      4.75,
+      2.95
+     ],
+     "triangles": 3280
+    }
+   },
+   "slot": "RearSpoiler",
+   "sockets": [],
+   "source": "F_WING_EVO",
+   "trim": "EVO"
+  },
+  "MODULE_REARSPOILER_EXOTIC_06_GT": {
+   "car": "F",
+   "kit": 6,
+   "parts": {
+    "F_WING_GT__primary": {
+     "centre": [
+      0.0,
+      4.8,
+      11.2
+     ],
+     "channel": "primary",
+     "size": [
+      10.0,
+      0.2,
+      1.8
+     ],
+     "triangles": 1596
+    },
+    "F_WING_GT__secondary": {
+     "centre": [
+      0.0,
+      3.23,
+      11.375
+     ],
+     "channel": "secondary",
+     "size": [
+      10.16,
+      3.96,
+      2.85
+     ],
+     "triangles": 1940
+    }
+   },
+   "slot": "RearSpoiler",
+   "sockets": [],
+   "source": "F_WING_GT",
+   "trim": "GT"
+  },
+  "MODULE_STABILISER_EXOTIC_01_LIGHTWEIGHT": {
+   "car": "C",
+   "kit": 1,
+   "parts": {
+    "C_STAB_GT__detail": {
+     "centre": [
+      0.0,
+      0.8883,
+      1.675
+     ],
+     "channel": "detail",
+     "size": [
+      11.752,
+      0.7988,
+      2.95
+     ],
+     "triangles": 240
+    },
+    "C_STAB_GT__neon": {
+     "centre": [
+      0.0,
+      -0.4126,
+      -0.9
+     ],
+     "channel": "neon",
+     "size": [
+      13.12,
+      1.0348,
+      8.2
+     ],
+     "triangles": 216
+    },
+    "C_STAB_GT__primary": {
+     "centre": [
+      0.0,
+      0.325,
+      -0.9
+     ],
+     "channel": "primary",
+     "size": [
+      12.0464,
+      2.45,
+      8.6
+     ],
+     "triangles": 4476
+    },
+    "C_STAB_GT__secondary": {
+     "centre": [
+      0.0,
+      0.0887,
+      -0.9
+     ],
+     "channel": "secondary",
+     "size": [
+      13.1,
+      2.1774,
+      8.6
+     ],
+     "triangles": 5288
+    },
+    "C_STAB_GT__thrust": {
+     "centre": [
+      0.0,
+      -0.919,
+      -1.4
+     ],
+     "channel": "thrust",
+     "size": [
+      10.905,
+      0.062,
+      5.6
+     ],
+     "triangles": 240
+    }
+   },
+   "slot": "Stabilisers",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Left_Front",
+     "position": [
+      -4.9,
+      -0.9,
+      -3.3
+     ]
+    },
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Left_Rear",
+     "position": [
+      -4.9,
+      -0.9,
+      0.4
+     ]
+    },
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Right_Front",
+     "position": [
+      4.9,
+      -0.9,
+      -3.3
+     ]
+    },
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Right_Rear",
+     "position": [
+      4.9,
+      -0.9,
+      0.4
+     ]
+    }
+   ],
+   "source": "C_STAB_GT",
+   "trim": "GT"
+  },
+  "MODULE_STABILISER_EXOTIC_01_POWER": {
+   "car": "C",
+   "kit": 1,
+   "parts": {
+    "C_STAB_EVO__detail": {
+     "centre": [
+      0.0,
+      0.7742,
+      1.075
+     ],
+     "channel": "detail",
+     "size": [
+      11.752,
+      1.027,
+      4.15
+     ],
+     "triangles": 312
+    },
+    "C_STAB_EVO__neon": {
+     "centre": [
+      0.0,
+      -0.4126,
+      -0.9
+     ],
+     "channel": "neon",
+     "size": [
+      13.72,
+      1.0348,
+      8.2
+     ],
+     "triangles": 224
+    },
+    "C_STAB_EVO__primary": {
+     "centre": [
+      0.0,
+      0.325,
+      -0.9
+     ],
+     "channel": "primary",
+     "size": [
+      12.01,
+      2.45,
+      8.6
+     ],
+     "triangles": 4332
+    },
+    "C_STAB_EVO__secondary": {
+     "centre": [
+      0.0,
+      0.089,
+      -0.9
+     ],
+     "channel": "secondary",
+     "size": [
+      13.7,
+      2.178,
+      8.6
+     ],
+     "triangles": 5632
+    },
+    "C_STAB_EVO__thrust": {
+     "centre": [
+      0.0,
+      -0.919,
+      -1.4
+     ],
+     "channel": "thrust",
+     "size": [
+      10.905,
+      0.062,
+      5.6
+     ],
+     "triangles": 240
+    }
+   },
+   "slot": "Stabilisers",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Left_Front",
+     "position": [
+      -4.9,
+      -0.9,
+      -3.3
+     ]
+    },
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Left_Rear",
+     "position": [
+      -4.9,
+      -0.9,
+      0.4
+     ]
+    },
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Right_Front",
+     "position": [
+      4.9,
+      -0.9,
+      -3.3
+     ]
+    },
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Right_Rear",
+     "position": [
+      4.9,
+      -0.9,
+      0.4
+     ]
+    }
+   ],
+   "source": "C_STAB_EVO",
+   "trim": "EVO"
+  },
+  "MODULE_STABILISER_EXOTIC_01_STANDARD": {
+   "car": "C",
+   "kit": 1,
+   "parts": {
+    "C_STAB_STD__detail": {
+     "centre": [
+      0.0,
+      0.9919,
+      2.275
+     ],
+     "channel": "detail",
+     "size": [
+      11.752,
+      0.5917,
+      1.75
+     ],
+     "triangles": 192
+    },
+    "C_STAB_STD__neon": {
+     "centre": [
+      0.0,
+      -0.122,
+      -0.9
+     ],
+     "channel": "neon",
+     "size": [
+      12.0502,
+      0.4496,
+      8.2
+     ],
+     "triangles": 200
+    },
+    "C_STAB_STD__primary": {
+     "centre": [
+      0.0,
+      0.325,
+      -0.9
+     ],
+     "channel": "primary",
+     "size": [
+      12.0566,
+      2.45,
+      8.6
+     ],
+     "triangles": 5056
+    },
+    "C_STAB_STD__secondary": {
+     "centre": [
+      0.0,
+      0.0878,
+      -0.9
+     ],
+     "channel": "secondary",
+     "size": [
+      12.2,
+      2.1756,
+      8.6
+     ],
+     "triangles": 4340
+    },
+    "C_STAB_STD__thrust": {
+     "centre": [
+      0.0,
+      -0.919,
+      -1.4
+     ],
+     "channel": "thrust",
+     "size": [
+      10.905,
+      0.062,
+      5.6
+     ],
+     "triangles": 240
+    }
+   },
+   "slot": "Stabilisers",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Left_Front",
+     "position": [
+      -4.9,
+      -0.9,
+      -3.3
+     ]
+    },
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Left_Rear",
+     "position": [
+      -4.9,
+      -0.9,
+      0.4
+     ]
+    },
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Right_Front",
+     "position": [
+      4.9,
+      -0.9,
+      -3.3
+     ]
+    },
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Right_Rear",
+     "position": [
+      4.9,
+      -0.9,
+      0.4
+     ]
+    }
+   ],
+   "source": "C_STAB_STD",
+   "trim": "STD"
   },
   "MODULE_STABILISER_EXOTIC_02_LIGHTWEIGHT": {
    "car": "B",
@@ -3587,6 +10170,762 @@
     }
    ],
    "source": "B_STAB_STD",
+   "trim": "STD"
+  },
+  "MODULE_STABILISER_EXOTIC_03_LIGHTWEIGHT": {
+   "car": "D",
+   "kit": 3,
+   "parts": {
+    "D_STAB_GT__detail": {
+     "centre": [
+      0.0,
+      0.7132,
+      0.675
+     ],
+     "channel": "detail",
+     "size": [
+      11.7488,
+      1.1462,
+      4.95
+     ],
+     "triangles": 336
+    },
+    "D_STAB_GT__primary": {
+     "centre": [
+      0.0,
+      0.325,
+      -0.9
+     ],
+     "channel": "primary",
+     "size": [
+      12.0304,
+      2.45,
+      8.6
+     ],
+     "triangles": 4048
+    },
+    "D_STAB_GT__secondary": {
+     "centre": [
+      0.0,
+      0.0887,
+      -0.9
+     ],
+     "channel": "secondary",
+     "size": [
+      13.1,
+      2.1773,
+      8.6
+     ],
+     "triangles": 5316
+    },
+    "D_STAB_GT__thrust": {
+     "centre": [
+      0.0,
+      -0.919,
+      -1.4
+     ],
+     "channel": "thrust",
+     "size": [
+      10.99,
+      0.062,
+      5.6
+     ],
+     "triangles": 240
+    }
+   },
+   "slot": "Stabilisers",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Left_Front",
+     "position": [
+      -4.9,
+      -0.9,
+      -3.3
+     ]
+    },
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Left_Rear",
+     "position": [
+      -4.9,
+      -0.9,
+      0.4
+     ]
+    },
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Right_Front",
+     "position": [
+      4.9,
+      -0.9,
+      -3.3
+     ]
+    },
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Right_Rear",
+     "position": [
+      4.9,
+      -0.9,
+      0.4
+     ]
+    }
+   ],
+   "source": "D_STAB_GT",
+   "trim": "GT"
+  },
+  "MODULE_STABILISER_EXOTIC_03_POWER": {
+   "car": "D",
+   "kit": 3,
+   "parts": {
+    "D_STAB_EVO__detail": {
+     "centre": [
+      0.0,
+      0.6803,
+      0.275
+     ],
+     "channel": "detail",
+     "size": [
+      11.7488,
+      1.2121,
+      5.75
+     ],
+     "triangles": 384
+    },
+    "D_STAB_EVO__primary": {
+     "centre": [
+      0.0,
+      0.325,
+      -0.9
+     ],
+     "channel": "primary",
+     "size": [
+      11.994,
+      2.45,
+      8.6
+     ],
+     "triangles": 3640
+    },
+    "D_STAB_EVO__secondary": {
+     "centre": [
+      0.0,
+      0.1,
+      -0.9
+     ],
+     "channel": "secondary",
+     "size": [
+      13.7,
+      2.2,
+      8.6
+     ],
+     "triangles": 6732
+    },
+    "D_STAB_EVO__thrust": {
+     "centre": [
+      0.0,
+      -0.919,
+      -1.4
+     ],
+     "channel": "thrust",
+     "size": [
+      10.99,
+      0.062,
+      5.6
+     ],
+     "triangles": 240
+    }
+   },
+   "slot": "Stabilisers",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Left_Front",
+     "position": [
+      -4.9,
+      -0.9,
+      -3.3
+     ]
+    },
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Left_Rear",
+     "position": [
+      -4.9,
+      -0.9,
+      0.4
+     ]
+    },
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Right_Front",
+     "position": [
+      4.9,
+      -0.9,
+      -3.3
+     ]
+    },
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Right_Rear",
+     "position": [
+      4.9,
+      -0.9,
+      0.4
+     ]
+    }
+   ],
+   "source": "D_STAB_EVO",
+   "trim": "EVO"
+  },
+  "MODULE_STABILISER_EXOTIC_03_STANDARD": {
+   "car": "D",
+   "kit": 3,
+   "parts": {
+    "D_STAB_STD__detail": {
+     "centre": [
+      0.0,
+      0.7709,
+      1.075
+     ],
+     "channel": "detail",
+     "size": [
+      11.7488,
+      1.0309,
+      4.15
+     ],
+     "triangles": 288
+    },
+    "D_STAB_STD__primary": {
+     "centre": [
+      0.0,
+      0.325,
+      -0.9
+     ],
+     "channel": "primary",
+     "size": [
+      12.04,
+      2.45,
+      8.6
+     ],
+     "triangles": 4296
+    },
+    "D_STAB_STD__secondary": {
+     "centre": [
+      0.0,
+      0.0886,
+      -0.9
+     ],
+     "channel": "secondary",
+     "size": [
+      12.2,
+      2.1771,
+      8.6
+     ],
+     "triangles": 4244
+    },
+    "D_STAB_STD__thrust": {
+     "centre": [
+      0.0,
+      -0.919,
+      -1.4
+     ],
+     "channel": "thrust",
+     "size": [
+      10.99,
+      0.062,
+      5.6
+     ],
+     "triangles": 240
+    }
+   },
+   "slot": "Stabilisers",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Left_Front",
+     "position": [
+      -4.9,
+      -0.9,
+      -3.3
+     ]
+    },
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Left_Rear",
+     "position": [
+      -4.9,
+      -0.9,
+      0.4
+     ]
+    },
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Right_Front",
+     "position": [
+      4.9,
+      -0.9,
+      -3.3
+     ]
+    },
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Right_Rear",
+     "position": [
+      4.9,
+      -0.9,
+      0.4
+     ]
+    }
+   ],
+   "source": "D_STAB_STD",
+   "trim": "STD"
+  },
+  "MODULE_STABILISER_EXOTIC_04_LIGHTWEIGHT": {
+   "car": "E",
+   "kit": 4,
+   "parts": {
+    "E_STAB_GT__detail": {
+     "centre": [
+      0.0,
+      0.8955,
+      1.375
+     ],
+     "channel": "detail",
+     "size": [
+      11.774,
+      0.9728,
+      3.55
+     ],
+     "triangles": 288
+    },
+    "E_STAB_GT__neon": {
+     "centre": [
+      0.0,
+      -0.089,
+      -0.9
+     ],
+     "channel": "neon",
+     "size": [
+      11.82,
+      0.4456,
+      8.2
+     ],
+     "triangles": 200
+    },
+    "E_STAB_GT__primary": {
+     "centre": [
+      0.0,
+      0.325,
+      -0.9
+     ],
+     "channel": "primary",
+     "size": [
+      11.8,
+      2.45,
+      8.6
+     ],
+     "triangles": 4588
+    },
+    "E_STAB_GT__secondary": {
+     "centre": [
+      0.0,
+      0.153,
+      -0.9
+     ],
+     "channel": "secondary",
+     "size": [
+      13.1,
+      2.3059,
+      8.6
+     ],
+     "triangles": 6524
+    },
+    "E_STAB_GT__thrust": {
+     "centre": [
+      0.0,
+      -0.919,
+      -1.4
+     ],
+     "channel": "thrust",
+     "size": [
+      10.82,
+      0.062,
+      5.6
+     ],
+     "triangles": 240
+    }
+   },
+   "slot": "Stabilisers",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Left_Front",
+     "position": [
+      -4.9,
+      -0.9,
+      -3.3
+     ]
+    },
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Left_Rear",
+     "position": [
+      -4.9,
+      -0.9,
+      0.4
+     ]
+    },
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Right_Front",
+     "position": [
+      4.9,
+      -0.9,
+      -3.3
+     ]
+    },
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Right_Rear",
+     "position": [
+      4.9,
+      -0.9,
+      0.4
+     ]
+    }
+   ],
+   "source": "E_STAB_GT",
+   "trim": "GT"
+  },
+  "MODULE_STABILISER_EXOTIC_04_POWER": {
+   "car": "E",
+   "kit": 4,
+   "parts": {
+    "E_STAB_EVO__detail": {
+     "centre": [
+      0.0,
+      0.8095,
+      0.875
+     ],
+     "channel": "detail",
+     "size": [
+      11.774,
+      1.1447,
+      4.55
+     ],
+     "triangles": 336
+    },
+    "E_STAB_EVO__neon": {
+     "centre": [
+      0.0,
+      -0.089,
+      -0.9
+     ],
+     "channel": "neon",
+     "size": [
+      11.82,
+      0.4456,
+      8.2
+     ],
+     "triangles": 200
+    },
+    "E_STAB_EVO__primary": {
+     "centre": [
+      0.0,
+      0.325,
+      -0.9
+     ],
+     "channel": "primary",
+     "size": [
+      11.8,
+      2.45,
+      8.6
+     ],
+     "triangles": 4308
+    },
+    "E_STAB_EVO__secondary": {
+     "centre": [
+      0.0,
+      0.1527,
+      -0.9
+     ],
+     "channel": "secondary",
+     "size": [
+      13.7,
+      2.3054,
+      8.6
+     ],
+     "triangles": 7796
+    },
+    "E_STAB_EVO__thrust": {
+     "centre": [
+      0.0,
+      -0.919,
+      -1.4
+     ],
+     "channel": "thrust",
+     "size": [
+      10.82,
+      0.062,
+      5.6
+     ],
+     "triangles": 240
+    }
+   },
+   "slot": "Stabilisers",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Left_Front",
+     "position": [
+      -4.9,
+      -0.9,
+      -3.3
+     ]
+    },
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Left_Rear",
+     "position": [
+      -4.9,
+      -0.9,
+      0.4
+     ]
+    },
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Right_Front",
+     "position": [
+      4.9,
+      -0.9,
+      -3.3
+     ]
+    },
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Right_Rear",
+     "position": [
+      4.9,
+      -0.9,
+      0.4
+     ]
+    }
+   ],
+   "source": "E_STAB_EVO",
+   "trim": "EVO"
+  },
+  "MODULE_STABILISER_EXOTIC_04_STANDARD": {
+   "car": "E",
+   "kit": 4,
+   "parts": {
+    "E_STAB_STD__detail": {
+     "centre": [
+      0.0,
+      1.0091,
+      1.975
+     ],
+     "channel": "detail",
+     "size": [
+      11.774,
+      0.7457,
+      2.35
+     ],
+     "triangles": 216
+    },
+    "E_STAB_STD__neon": {
+     "centre": [
+      0.0,
+      -0.089,
+      -0.9
+     ],
+     "channel": "neon",
+     "size": [
+      11.82,
+      0.4456,
+      8.2
+     ],
+     "triangles": 200
+    },
+    "E_STAB_STD__primary": {
+     "centre": [
+      0.0,
+      0.325,
+      -0.9
+     ],
+     "channel": "primary",
+     "size": [
+      11.8,
+      2.45,
+      8.6
+     ],
+     "triangles": 5032
+    },
+    "E_STAB_STD__secondary": {
+     "centre": [
+      0.0,
+      0.1528,
+      -0.9
+     ],
+     "channel": "secondary",
+     "size": [
+      12.2,
+      2.3056,
+      8.6
+     ],
+     "triangles": 4364
+    },
+    "E_STAB_STD__thrust": {
+     "centre": [
+      0.0,
+      -0.919,
+      -1.4
+     ],
+     "channel": "thrust",
+     "size": [
+      10.82,
+      0.062,
+      5.6
+     ],
+     "triangles": 240
+    }
+   },
+   "slot": "Stabilisers",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Left_Front",
+     "position": [
+      -4.9,
+      -0.9,
+      -3.3
+     ]
+    },
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Left_Rear",
+     "position": [
+      -4.9,
+      -0.9,
+      0.4
+     ]
+    },
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Right_Front",
+     "position": [
+      4.9,
+      -0.9,
+      -3.3
+     ]
+    },
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Right_Rear",
+     "position": [
+      4.9,
+      -0.9,
+      0.4
+     ]
+    }
+   ],
+   "source": "E_STAB_STD",
    "trim": "STD"
   },
   "MODULE_STABILISER_EXOTIC_05_LIGHTWEIGHT": {
@@ -3986,6 +11325,405 @@
     }
    ],
    "source": "A_STAB_STD",
+   "trim": "STD"
+  },
+  "MODULE_STABILISER_EXOTIC_06_LIGHTWEIGHT": {
+   "car": "F",
+   "kit": 6,
+   "parts": {
+    "F_STAB_GT__detail": {
+     "centre": [
+      0.0,
+      0.047,
+      -0.8
+     ],
+     "channel": "detail",
+     "size": [
+      13.08,
+      1.994,
+      8.4
+     ],
+     "triangles": 1528
+    },
+    "F_STAB_GT__neon": {
+     "centre": [
+      0.0,
+      -0.2421,
+      -0.9
+     ],
+     "channel": "neon",
+     "size": [
+      11.9814,
+      0.4052,
+      8.2
+     ],
+     "triangles": 400
+    },
+    "F_STAB_GT__primary": {
+     "centre": [
+      0.0,
+      0.175,
+      -0.9
+     ],
+     "channel": "primary",
+     "size": [
+      11.969,
+      2.15,
+      8.6
+     ],
+     "triangles": 4940
+    },
+    "F_STAB_GT__secondary": {
+     "centre": [
+      0.0,
+      -0.0332,
+      -0.9
+     ],
+     "channel": "secondary",
+     "size": [
+      13.1,
+      1.9336,
+      8.6
+     ],
+     "triangles": 5456
+    },
+    "F_STAB_GT__thrust": {
+     "centre": [
+      0.0,
+      -0.919,
+      -1.4
+     ],
+     "channel": "thrust",
+     "size": [
+      11.16,
+      0.062,
+      5.6
+     ],
+     "triangles": 240
+    }
+   },
+   "slot": "Stabilisers",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Left_Front",
+     "position": [
+      -4.9,
+      -0.9,
+      -3.3
+     ]
+    },
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Left_Rear",
+     "position": [
+      -4.9,
+      -0.9,
+      0.4
+     ]
+    },
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Right_Front",
+     "position": [
+      4.9,
+      -0.9,
+      -3.3
+     ]
+    },
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Right_Rear",
+     "position": [
+      4.9,
+      -0.9,
+      0.4
+     ]
+    }
+   ],
+   "source": "F_STAB_GT",
+   "trim": "GT"
+  },
+  "MODULE_STABILISER_EXOTIC_06_POWER": {
+   "car": "F",
+   "kit": 6,
+   "parts": {
+    "F_STAB_EVO__detail": {
+     "centre": [
+      0.0,
+      0.125,
+      -0.8
+     ],
+     "channel": "detail",
+     "size": [
+      13.68,
+      2.15,
+      8.4
+     ],
+     "triangles": 2208
+    },
+    "F_STAB_EVO__neon": {
+     "centre": [
+      0.0,
+      -0.2418,
+      -0.9
+     ],
+     "channel": "neon",
+     "size": [
+      11.9814,
+      0.4058,
+      8.2
+     ],
+     "triangles": 192
+    },
+    "F_STAB_EVO__primary": {
+     "centre": [
+      0.0,
+      0.175,
+      -0.9
+     ],
+     "channel": "primary",
+     "size": [
+      11.969,
+      2.15,
+      8.6
+     ],
+     "triangles": 4708
+    },
+    "F_STAB_EVO__secondary": {
+     "centre": [
+      0.0,
+      -0.0331,
+      -0.9
+     ],
+     "channel": "secondary",
+     "size": [
+      13.7,
+      1.9339,
+      8.6
+     ],
+     "triangles": 5624
+    },
+    "F_STAB_EVO__thrust": {
+     "centre": [
+      0.0,
+      -0.919,
+      -1.4
+     ],
+     "channel": "thrust",
+     "size": [
+      11.16,
+      0.062,
+      5.6
+     ],
+     "triangles": 240
+    }
+   },
+   "slot": "Stabilisers",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Left_Front",
+     "position": [
+      -4.9,
+      -0.9,
+      -3.3
+     ]
+    },
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Left_Rear",
+     "position": [
+      -4.9,
+      -0.9,
+      0.4
+     ]
+    },
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Right_Front",
+     "position": [
+      4.9,
+      -0.9,
+      -3.3
+     ]
+    },
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Right_Rear",
+     "position": [
+      4.9,
+      -0.9,
+      0.4
+     ]
+    }
+   ],
+   "source": "F_STAB_EVO",
+   "trim": "EVO"
+  },
+  "MODULE_STABILISER_EXOTIC_06_STANDARD": {
+   "car": "F",
+   "kit": 6,
+   "parts": {
+    "F_STAB_STD__detail": {
+     "centre": [
+      0.0,
+      0.6928,
+      2.175
+     ],
+     "channel": "detail",
+     "size": [
+      11.8492,
+      0.7023,
+      1.95
+     ],
+     "triangles": 192
+    },
+    "F_STAB_STD__neon": {
+     "centre": [
+      0.0,
+      -0.2426,
+      -0.9
+     ],
+     "channel": "neon",
+     "size": [
+      11.9814,
+      0.4062,
+      8.2
+     ],
+     "triangles": 200
+    },
+    "F_STAB_STD__primary": {
+     "centre": [
+      0.0,
+      0.175,
+      -0.9
+     ],
+     "channel": "primary",
+     "size": [
+      11.969,
+      2.15,
+      8.6
+     ],
+     "triangles": 5136
+    },
+    "F_STAB_STD__secondary": {
+     "centre": [
+      0.0,
+      -0.0336,
+      -0.9
+     ],
+     "channel": "secondary",
+     "size": [
+      12.2,
+      1.9328,
+      8.6
+     ],
+     "triangles": 5256
+    },
+    "F_STAB_STD__thrust": {
+     "centre": [
+      0.0,
+      -0.919,
+      -1.4
+     ],
+     "channel": "thrust",
+     "size": [
+      11.16,
+      0.062,
+      5.6
+     ],
+     "triangles": 240
+    }
+   },
+   "slot": "Stabilisers",
+   "sockets": [
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Left_Front",
+     "position": [
+      -4.9,
+      -0.9,
+      -3.3
+     ]
+    },
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Left_Rear",
+     "position": [
+      -4.9,
+      -0.9,
+      0.4
+     ]
+    },
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Right_Front",
+     "position": [
+      4.9,
+      -0.9,
+      -3.3
+     ]
+    },
+    {
+     "dir": [
+      0,
+      -1,
+      0
+     ],
+     "name": "VFX_StabiliserJet_Right_Rear",
+     "position": [
+      4.9,
+      -0.9,
+      0.4
+     ]
+    }
+   ],
+   "source": "F_STAB_STD",
    "trim": "STD"
   }
  },

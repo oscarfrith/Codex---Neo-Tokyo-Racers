@@ -1,10 +1,10 @@
-"""Write the exported pilot modules into one FBX. Runs in a headless Blender, not the open session:
+"""Write the exported modules of all six cars into one FBX. Runs in a headless Blender, not the open session:
 
     blender --background --factory-startup --python scripts/exotic_category/mesh/fbx_export.py
 
-Input: export/<car>/<SLOT>_<TRIM>.json (see export.py). Output: export/ExoticPilot.fbx with one object per
+Input: export/<car>/<SLOT>_<TRIM>.json (see export.py). Output: export/ExoticCars.fbx with one object per
 module and paint channel, named like A_NOSE_STD__primary. Coordinates are game root space (studs,
-+Y up, forward -Z); the round car is offset 20 studs in X.
++Y up, forward -Z); each car after the first is offset a further 20 studs in X.
 """
 import json
 import os
@@ -20,7 +20,7 @@ for ob in list(bpy.data.objects):
     bpy.data.objects.remove(ob, do_unlink=True)
 
 made = 0
-for car, ox in (("A", 0.0), ("B", 20.0)):
+for car, ox in (("A", 0.0), ("B", 20.0), ("C", 40.0), ("D", 60.0), ("E", 80.0), ("F", 100.0)):
     for fname in sorted(n for n in os.listdir(os.path.join(ROOT, car)) if n.endswith(".json")):
         with open(os.path.join(ROOT, car, fname)) as f:
             data = json.load(f)
@@ -52,7 +52,7 @@ for car, ox in (("A", 0.0), ("B", 20.0)):
             ob.select_set(True)
             made += 1
 
-out = os.path.join(ROOT, "ExoticPilot.fbx")
+out = os.path.join(ROOT, "ExoticCars.fbx")
 bpy.ops.export_scene.fbx(filepath=out, use_selection=True, global_scale=0.01, axis_forward="-Z", axis_up="Y",
                          object_types={"MESH"}, mesh_smooth_type="OFF", bake_anim=False, add_leaf_bones=False)
 print("FBX_DONE", made, os.path.getsize(out) // 1024, "KB")

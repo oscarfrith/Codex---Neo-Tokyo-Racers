@@ -12,12 +12,21 @@ Evidence label for every number here: **generated**. Nothing is installed. Ratin
 From `scripts/exotic_category/mesh/INTEGRATION.md` (D6 to D9). It changes how the sections below read for these two cockpits; the other four are as before.
 
 - **Stock build**: cockpit + four Standard core modules + three body defaults (Nose, Engine Deck, Wing). `SidePods`, `FrontBumper` and `RearBumper` declare no default and start empty. The cockpit's own raw stats absorb those three parts, so the stock totals and the stock PI are unchanged. Wherever a section says "six body parts" or "its six default body modules", read three for these two cockpits.
-- **Fitting the three empty slots adds stats on top of the target total.** With all six own-kit parts: exotic_02 D 406 (stock 390, +15.74 unrounded); exotic_05 A 802 (stock 800, +1.74 unrounded).
+- **Fitting the three empty slots adds stats on top of the target total.** With all six own-kit parts: exotic_01 E 244 (stock 220, +24.30 unrounded); exotic_02 D 406 (stock 390, +15.74 unrounded); exotic_03 C 550 (stock 540, +10.06 unrounded); exotic_04 B 680 (stock 675, +5.13 unrounded); exotic_05 A 802 (stock 800, +1.74 unrounded); exotic_06 S 938 (stock 938, +0.20 unrounded).
   The tier does not change. "Highest build found" and "Ceiling" (section 7) already search every body slot, filled or empty.
 - **Twelve new ModuleIds**: `_GT` and `_EVO` of the Nose, Engine Deck and Wing of kits 02 and 05. Each copies every attribute and the upgrade paths of its base part, so it rates exactly as the base part does. Only the names (base name plus the trim) and the `Price` differ: base x 2 (GT) and base x 3.5 (EVO), rounded to 100.
 
 | ModuleId | Name | Price | NeonPrice |
 |---|---|---|---|
+| `MODULE_FRONTBODY_EXOTIC_01` | Blunt Nose | 8,000 | 6,500 |
+| `MODULE_FRONTBODY_EXOTIC_01_GT` | Blunt Nose GT | 16,000 | 6,500 |
+| `MODULE_FRONTBODY_EXOTIC_01_EVO` | Blunt Nose EVO | 28,000 | 6,500 |
+| `MODULE_REARBODY_EXOTIC_01` | Frame Tail | 8,000 | 6,500 |
+| `MODULE_REARBODY_EXOTIC_01_GT` | Frame Tail GT | 16,000 | 6,500 |
+| `MODULE_REARBODY_EXOTIC_01_EVO` | Frame Tail EVO | 28,000 | 6,500 |
+| `MODULE_REARSPOILER_EXOTIC_01` | Twin Element | 8,000 | 6,500 |
+| `MODULE_REARSPOILER_EXOTIC_01_GT` | Twin Element GT | 16,000 | 6,500 |
+| `MODULE_REARSPOILER_EXOTIC_01_EVO` | Twin Element EVO | 28,000 | 6,500 |
 | `MODULE_FRONTBODY_EXOTIC_02` | Droplet Nose | 11,000 | 7,000 |
 | `MODULE_FRONTBODY_EXOTIC_02_GT` | Droplet Nose GT | 22,000 | 7,000 |
 | `MODULE_FRONTBODY_EXOTIC_02_EVO` | Droplet Nose EVO | 38,500 | 7,000 |
@@ -27,6 +36,24 @@ From `scripts/exotic_category/mesh/INTEGRATION.md` (D6 to D9). It changes how th
 | `MODULE_REARSPOILER_EXOTIC_02` | Bridge Wing | 11,000 | 7,000 |
 | `MODULE_REARSPOILER_EXOTIC_02_GT` | Bridge Wing GT | 22,000 | 7,000 |
 | `MODULE_REARSPOILER_EXOTIC_02_EVO` | Bridge Wing EVO | 38,500 | 7,000 |
+| `MODULE_FRONTBODY_EXOTIC_03` | Shovel Nose | 14,000 | 7,500 |
+| `MODULE_FRONTBODY_EXOTIC_03_GT` | Shovel Nose GT | 28,000 | 7,500 |
+| `MODULE_FRONTBODY_EXOTIC_03_EVO` | Shovel Nose EVO | 49,000 | 7,500 |
+| `MODULE_REARBODY_EXOTIC_03` | Slab Deck | 14,000 | 7,500 |
+| `MODULE_REARBODY_EXOTIC_03_GT` | Slab Deck GT | 28,000 | 7,500 |
+| `MODULE_REARBODY_EXOTIC_03_EVO` | Slab Deck EVO | 49,000 | 7,500 |
+| `MODULE_REARSPOILER_EXOTIC_03` | Poster Wing | 14,000 | 7,500 |
+| `MODULE_REARSPOILER_EXOTIC_03_GT` | Poster Wing GT | 28,000 | 7,500 |
+| `MODULE_REARSPOILER_EXOTIC_03_EVO` | Poster Wing EVO | 49,000 | 7,500 |
+| `MODULE_FRONTBODY_EXOTIC_04` | Lowline Nose | 18,000 | 8,000 |
+| `MODULE_FRONTBODY_EXOTIC_04_GT` | Lowline Nose GT | 36,000 | 8,000 |
+| `MODULE_FRONTBODY_EXOTIC_04_EVO` | Lowline Nose EVO | 63,000 | 8,000 |
+| `MODULE_REARBODY_EXOTIC_04` | Streamer Tail | 18,000 | 8,000 |
+| `MODULE_REARBODY_EXOTIC_04_GT` | Streamer Tail GT | 36,000 | 8,000 |
+| `MODULE_REARBODY_EXOTIC_04_EVO` | Streamer Tail EVO | 63,000 | 8,000 |
+| `MODULE_REARSPOILER_EXOTIC_04` | Tail Fins | 18,000 | 8,000 |
+| `MODULE_REARSPOILER_EXOTIC_04_GT` | Tail Fins GT | 36,000 | 8,000 |
+| `MODULE_REARSPOILER_EXOTIC_04_EVO` | Tail Fins EVO | 63,000 | 8,000 |
 | `MODULE_FRONTBODY_EXOTIC_05` | Keel Nose | 23,000 | 8,500 |
 | `MODULE_FRONTBODY_EXOTIC_05_GT` | Keel Nose GT | 46,000 | 8,500 |
 | `MODULE_FRONTBODY_EXOTIC_05_EVO` | Keel Nose EVO | 80,500 | 8,500 |
@@ -36,6 +63,15 @@ From `scripts/exotic_category/mesh/INTEGRATION.md` (D6 to D9). It changes how th
 | `MODULE_REARSPOILER_EXOTIC_05` | Active Blade | 23,000 | 8,500 |
 | `MODULE_REARSPOILER_EXOTIC_05_GT` | Active Blade GT | 46,000 | 8,500 |
 | `MODULE_REARSPOILER_EXOTIC_05_EVO` | Active Blade EVO | 80,500 | 8,500 |
+| `MODULE_FRONTBODY_EXOTIC_06` | Visor Nose | 30,000 | 9,500 |
+| `MODULE_FRONTBODY_EXOTIC_06_GT` | Visor Nose GT | 60,000 | 9,500 |
+| `MODULE_FRONTBODY_EXOTIC_06_EVO` | Visor Nose EVO | 105,000 | 9,500 |
+| `MODULE_REARBODY_EXOTIC_06` | Kamm Tail | 30,000 | 9,500 |
+| `MODULE_REARBODY_EXOTIC_06_GT` | Kamm Tail GT | 60,000 | 9,500 |
+| `MODULE_REARBODY_EXOTIC_06_EVO` | Kamm Tail EVO | 105,000 | 9,500 |
+| `MODULE_REARSPOILER_EXOTIC_06` | Split Winglets | 30,000 | 9,500 |
+| `MODULE_REARSPOILER_EXOTIC_06_GT` | Split Winglets GT | 60,000 | 9,500 |
+| `MODULE_REARSPOILER_EXOTIC_06_EVO` | Split Winglets EVO | 105,000 | 9,500 |
 
 - In sections 6, 8 and 10 a style swap on these two cockpits is made in the three stock slots; a part of an empty slot is rated as fitted on top of the stock build.
 
@@ -160,23 +196,23 @@ The cockpit attribute is its share minus the six default body parts, so cockpit 
 
 | Stat | exotic_01 | exotic_02 | exotic_03 | exotic_04 | exotic_05 | exotic_06 |
 |---|---|---|---|---|---|---|
-| TopSpeed | 25.4174 (22.4175) | 33.09 (37.59) | 55.3694 (54.8695) | 63.43 (76.93) | 112.6554 (113.6555) | 153.538 (157.038) |
-| EngineOutput | 7.1494 (9.6495) | 13.2124 (13.2125) | 14.3814 (17.8815) | 21.54 (22.54) | 29.796 (30.296) | 56.0336 (58.0335) |
-| Weight | 121.23 (135.73) | 130.23 (135.73) | 99.956 (113.456) | 55.063 (66.563) | 36 (42) | 31.5 (42) |
-| LateralGrip | 1.433 (6.433) | 7.639 (9.639) | 9.0905 (13.5905) | 15.4595 (18.9595) | 24.9725 (28.4725) | 63.8785 (67.3785) |
-| SteeringResponse | 1.667 (6.167) | 6.356 (9.856) | 9.805 (14.805) | 17.718 (22.218) | 33.1825 (35.6825) | 87.059 (94.059) |
-| HoverStability | 1.038 (3.038) | 3.569 (6.069) | 7.3355 (10.3355) | 11.5275 (17.0275) | 29.408 (30.408) | 68.3315 (72.8315) |
-| DriftControl | 1.2525 (4.2525) | 6.678 (6.678) | 8.3355 (10.3355) | 14.922 (16.422) | 28.546 (28.546) | 66.0205 (69.5205) |
-| DriftGrip | 2.933 (6.433) | 8.639 (9.639) | 11.5905 (13.5905) | 17.32 (19.32) | 29.568 (29.568) | 59.9255 (61.9255) |
-| DriftChargeRate | 3.719 (5.719) | 8.568 (8.568) | 10.873 (12.873) | 18.32 (19.32) | 30.6635 (30.6635) | 68.8855 (70.8855) |
-| BrakingForce | 3.0065 (10.0065) | 13.2125 (13.2125) | 13.664 (17.164) | 21.04 (22.54) | 30.1635 (30.6635) | 56.6415 (57.6415) |
+| TopSpeed | 24.9174 (22.4175) | 33.09 (37.59) | 54.8694 (54.8695) | 68.93 (76.93) | 112.6554 (113.6555) | 154.038 (157.038) |
+| EngineOutput | 8.1494 (9.6495) | 13.2124 (13.2125) | 16.3814 (17.8815) | 22.54 (22.54) | 29.796 (30.296) | 57.5336 (58.0335) |
+| Weight | 128.73 (135.73) | 130.23 (135.73) | 106.456 (113.456) | 61.063 (66.563) | 36 (42) | 36.5 (42) |
+| LateralGrip | 3.933 (6.433) | 7.639 (9.639) | 11.0905 (13.5905) | 17.4595 (18.9595) | 24.9725 (28.4725) | 65.8785 (67.3785) |
+| SteeringResponse | 3.667 (6.167) | 6.356 (9.856) | 11.805 (14.805) | 19.718 (22.218) | 33.1825 (35.6825) | 89.559 (94.059) |
+| HoverStability | 2.038 (3.038) | 3.569 (6.069) | 8.8355 (10.3355) | 15.0275 (17.0275) | 29.408 (30.408) | 70.8315 (72.8315) |
+| DriftControl | 2.7525 (4.2525) | 6.678 (6.678) | 10.3355 (10.3355) | 15.922 (16.422) | 28.546 (28.546) | 69.0205 (69.5205) |
+| DriftGrip | 5.433 (6.433) | 8.639 (9.639) | 13.5905 (13.5905) | 18.82 (19.32) | 29.568 (29.568) | 61.9255 (61.9255) |
+| DriftChargeRate | 5.719 (5.719) | 8.568 (8.568) | 12.873 (12.873) | 19.32 (19.32) | 30.6635 (30.6635) | 70.8855 (70.8855) |
+| BrakingForce | 8.0065 (10.0065) | 13.2125 (13.2125) | 16.164 (17.164) | 22.54 (22.54) | 30.1635 (30.6635) | 57.6415 (57.6415) |
 | BoostForce | 3.2165 (3.2165) | 5.355 (5.355) | 8.225 (8.225) | 11.4485 (11.4485) | 16.793 (16.793) | 41.6745 (41.6745) |
 | BoostDuration | 0.1572 (0.1571) | 0.274 (0.2741) | 0.4119 (0.4119) | 0.6325 (0.6324) | 0.9898 (0.9898) | 1.8693 (1.8693) |
 | BoostRecharge | 4.7985 (4.7985) | 4.7985 (4.7985) | 4.1108 (4.1107) | 2.8353 (2.8354) | 1.8893 (1.8893) | 1.4 (1.4) |
 | BoostRechargeDelay | 0.5141 (0.5141) | 0.4428 (0.4427) | 0.2604 (0.2604) | 0.1575 (0.1575) | 0.084 (0.084) | 0.0269 (0.0269) |
 | BoostEfficiency | 5.362 (5.362) | 8.568 (8.568) | 12.873 (12.873) | 18.9595 (18.9595) | 30.6635 (30.6635) | 79.065 (79.065) |
 | Drag | 68.5496 (68.5496) | 68.5496 (68.5496) | 50.6996 (50.6996) | 30.8176 (30.8175) | 16.7796 (16.7797) | 0.9276 (0.9275) |
-| Downforce | 0.9305 (3.9305) | 6.283 (6.783) | 5.302 (11.802) | 18.82 (19.32) | 28.1375 (36.1375) | 82.1835 (85.6835) |
+| Downforce | 1.9305 (3.9305) | 6.283 (6.783) | 8.802 (11.802) | 19.32 (19.32) | 28.1375 (36.1375) | 83.1835 (85.6835) |
 
 Floor rule used: no cockpit raw value is negative; higher-is-better stats stay at or above their technical minimum (0, and 0.1 for `BoostDuration`); for `Weight`, `BoostRecharge`, `BoostRechargeDelay` and `Drag` the minimum is checked on the stock total, because that is where the live calculator applies it (live Zenith cockpit `Weight` is 42 against a minimum of 60).
 
@@ -204,7 +240,7 @@ Rule: the six styles of a slot are worth about the same on every cockpit, so the
 - **No body part carries `Drag`.** A flat Drag value cannot be worth the same on every tier. Gull's stock `Drag` is 1.325 against a minimum of 1, so +1 Drag costs Gull 2.9 PI, while it costs 0.3 PI or less on every other cockpit. The live LVL1 accessories carry no Drag either. A draggy shape is a small `TopSpeed` penalty; a slippery shape is `TopSpeed`.
 - **Each part mixes stats that gain value with tier and stats that lose it.** `EngineOutput` and `BrakingForce` are worth relatively more on fast cockpits; `HoverStability`, `DriftControl` and `Downforce` relatively more on slow ones.
 
-Measured below: the PI spread between the six styles of a slot is at most 0.81 on Spider and at most 0.28 on the other five cockpits.
+Measured below: the PI spread between the six styles of a slot is at most 1.14 on Spider and at most 0.28 on the other five cockpits.
 
 ### Nose (`FrontBody`, donor `MODULE_FRONTBUMPER_LVL1`: Weight +2, BrakingForce +2)
 
@@ -236,40 +272,40 @@ PI spread between the six styles, per tier: E 0.59, D 0.14, C 0.28, B 0.21, A 0.
 
 | ModuleId | Name | Price | Flavour | Raw stats | Card rating (on `exotic_03`) | On E | On D | On C | On B | On A | On S |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| `MODULE_SIDEPODS_EXOTIC_01` | Barge Trays | 8,000 | wide floor tray and barge boards. Grip, drift bite and braking. | EngineOutput +1, Weight +2.5, LateralGrip +2, SteeringResponse +2, HoverStability +0.5, DriftControl +1.5, DriftGrip +2, DriftChargeRate +2, BrakingForce +1.5 | 540 | 220 | 402 | 540 | 675 | 802 | 938 |
-| `MODULE_SIDEPODS_EXOTIC_02` | Torpedo Pods | 11,000 | round pods on pylons. All-round, close to the Piercer pods. | EngineOutput +1, Weight +2, LateralGrip +2, SteeringResponse +2, HoverStability +1, DriftControl +2, DriftGrip +2, DriftChargeRate +2, BrakingForce +0.5 | 540 | 220 | 402 | 540 | 675 | 802 | 938 |
-| `MODULE_SIDEPODS_EXOTIC_03` | Strake Intakes | 14,000 | straked intake wedge that feeds the side engines. Most output. | TopSpeed -0.5, EngineOutput +2, Weight +2.5, LateralGrip +2, SteeringResponse +1.5, HoverStability +1.5, DriftControl +1, DriftGrip +2, DriftChargeRate +2, Downforce +0.5 | 540 | 220 | 402 | 540 | 675 | 802 | 938 |
-| `MODULE_SIDEPODS_EXOTIC_04` | Full Fairings | 18,000 | smooth full-height fairing. Slippery and steady. | TopSpeed +2.5, EngineOutput +1, Weight +2, LateralGrip +2, SteeringResponse +2, HoverStability +2, DriftControl +1, DriftGrip +1.5, DriftChargeRate +1 | 540 | 221 | 402 | 540 | 675 | 802 | 938 |
-| `MODULE_SIDEPODS_EXOTIC_05` | Floating Blades | 23,000 | thin blade on struts, air runs behind it. Light, sharp, with downforce. | EngineOutput +1, Weight +1.5, LateralGrip +2.5, SteeringResponse +2.5, HoverStability +1, DriftControl +1.5, DriftGrip +2, DriftChargeRate +0.5, Downforce +2.5 | 540 | 220 | 402 | 540 | 675 | 802 | 938 |
-| `MODULE_SIDEPODS_EXOTIC_06` | Waisted Cheeks | 30,000 | low cheek intake that pinches to nothing. Light and quick to turn. | EngineOutput +1, Weight +1.5, LateralGrip +2, SteeringResponse +2.5, HoverStability +1, DriftControl +2, DriftGrip +2, DriftChargeRate +2 | 540 | 220 | 402 | 540 | 675 | 802 | 938 |
+| `MODULE_SIDEPODS_EXOTIC_01` | Barge Trays | 8,000 | wide floor tray and barge boards. Grip, drift bite and braking. | EngineOutput +1, Weight +2.5, LateralGrip +2, SteeringResponse +2, HoverStability +0.5, DriftControl +1.5, DriftGrip +2, DriftChargeRate +2, BrakingForce +1.5 | 548 | 239 | 402 | 548 | 679 | 802 | 938 |
+| `MODULE_SIDEPODS_EXOTIC_02` | Torpedo Pods | 11,000 | round pods on pylons. All-round, close to the Piercer pods. | EngineOutput +1, Weight +2, LateralGrip +2, SteeringResponse +2, HoverStability +1, DriftControl +2, DriftGrip +2, DriftChargeRate +2, BrakingForce +0.5 | 547 | 239 | 402 | 547 | 679 | 802 | 938 |
+| `MODULE_SIDEPODS_EXOTIC_03` | Strake Intakes | 14,000 | straked intake wedge that feeds the side engines. Most output. | TopSpeed -0.5, EngineOutput +2, Weight +2.5, LateralGrip +2, SteeringResponse +1.5, HoverStability +1.5, DriftControl +1, DriftGrip +2, DriftChargeRate +2, Downforce +0.5 | 548 | 239 | 402 | 548 | 679 | 802 | 938 |
+| `MODULE_SIDEPODS_EXOTIC_04` | Full Fairings | 18,000 | smooth full-height fairing. Slippery and steady. | TopSpeed +2.5, EngineOutput +1, Weight +2, LateralGrip +2, SteeringResponse +2, HoverStability +2, DriftControl +1, DriftGrip +1.5, DriftChargeRate +1 | 547 | 240 | 402 | 547 | 679 | 802 | 938 |
+| `MODULE_SIDEPODS_EXOTIC_05` | Floating Blades | 23,000 | thin blade on struts, air runs behind it. Light, sharp, with downforce. | EngineOutput +1, Weight +1.5, LateralGrip +2.5, SteeringResponse +2.5, HoverStability +1, DriftControl +1.5, DriftGrip +2, DriftChargeRate +0.5, Downforce +2.5 | 547 | 239 | 402 | 547 | 679 | 802 | 938 |
+| `MODULE_SIDEPODS_EXOTIC_06` | Waisted Cheeks | 30,000 | low cheek intake that pinches to nothing. Light and quick to turn. | EngineOutput +1, Weight +1.5, LateralGrip +2, SteeringResponse +2.5, HoverStability +1, DriftControl +2, DriftGrip +2, DriftChargeRate +2 | 547 | 239 | 402 | 547 | 679 | 802 | 938 |
 
-PI spread between the six styles, per tier: E 0.81, D 0.25, C 0.19, B 0.10, A 0.08, S 0.06.
+PI spread between the six styles, per tier: E 0.90, D 0.25, C 0.21, B 0.12, A 0.08, S 0.05.
 
 ### Splitter (`FrontBumper`, donor `MODULE_FRONTBUMPER_LVL1`: Weight +2, BrakingForce +2)
 
 | ModuleId | Name | Price | Flavour | Raw stats | Card rating (on `exotic_03`) | On E | On D | On C | On B | On A | On S |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| `MODULE_FRONTBUMPER_EXOTIC_01` | Plough | 8,000 | deep plough splitter. Bites, and costs a little top speed. | TopSpeed -0.5, Weight +2, LateralGrip +0.5, BrakingForce +1.5, Downforce +1 | 540 | 220 | 392 | 540 | 675 | 800 | 938 |
-| `MODULE_FRONTBUMPER_EXOTIC_02` | Soft Lip | 11,000 | small rounded lip. Light. | Weight +1.5, HoverStability +0.5, BrakingForce +1.5, Downforce +0.5 | 540 | 220 | 392 | 540 | 675 | 800 | 938 |
-| `MODULE_FRONTBUMPER_EXOTIC_03` | Chin Blade | 14,000 | flat chin blade. | Weight +2, SteeringResponse +0.5, BrakingForce +1.5, Downforce +0.5 | 540 | 220 | 392 | 540 | 675 | 800 | 938 |
-| `MODULE_FRONTBUMPER_EXOTIC_04` | Long Tongue | 18,000 | long low tongue. Slippery: top speed. | TopSpeed +2, Weight +2, BrakingForce +1 | 540 | 220 | 392 | 540 | 675 | 800 | 938 |
-| `MODULE_FRONTBUMPER_EXOTIC_05` | Keel Planes | 23,000 | stacked keel planes. Most front downforce, less top speed. | TopSpeed -1, Weight +1.5, SteeringResponse +1, BrakingForce +1, Downforce +3 | 540 | 220 | 392 | 540 | 675 | 800 | 938 |
-| `MODULE_FRONTBUMPER_EXOTIC_06` | Scoop Bib | 30,000 | bib scoop that feeds the brakes and intake. | EngineOutput +0.5, Weight +2, BrakingForce +1, Downforce +1 | 540 | 220 | 392 | 540 | 675 | 800 | 938 |
+| `MODULE_FRONTBUMPER_EXOTIC_01` | Plough | 8,000 | deep plough splitter. Bites, and costs a little top speed. | TopSpeed -0.5, Weight +2, LateralGrip +0.5, BrakingForce +1.5, Downforce +1 | 541 | 223 | 392 | 541 | 676 | 800 | 938 |
+| `MODULE_FRONTBUMPER_EXOTIC_02` | Soft Lip | 11,000 | small rounded lip. Light. | Weight +1.5, HoverStability +0.5, BrakingForce +1.5, Downforce +0.5 | 541 | 223 | 392 | 541 | 676 | 800 | 938 |
+| `MODULE_FRONTBUMPER_EXOTIC_03` | Chin Blade | 14,000 | flat chin blade. | Weight +2, SteeringResponse +0.5, BrakingForce +1.5, Downforce +0.5 | 541 | 223 | 392 | 541 | 676 | 800 | 938 |
+| `MODULE_FRONTBUMPER_EXOTIC_04` | Long Tongue | 18,000 | long low tongue. Slippery: top speed. | TopSpeed +2, Weight +2, BrakingForce +1 | 541 | 223 | 392 | 541 | 676 | 800 | 938 |
+| `MODULE_FRONTBUMPER_EXOTIC_05` | Keel Planes | 23,000 | stacked keel planes. Most front downforce, less top speed. | TopSpeed -1, Weight +1.5, SteeringResponse +1, BrakingForce +1, Downforce +3 | 541 | 223 | 392 | 541 | 675 | 800 | 938 |
+| `MODULE_FRONTBUMPER_EXOTIC_06` | Scoop Bib | 30,000 | bib scoop that feeds the brakes and intake. | EngineOutput +0.5, Weight +2, BrakingForce +1, Downforce +1 | 541 | 223 | 392 | 541 | 676 | 800 | 938 |
 
-PI spread between the six styles, per tier: E 0.32, D 0.25, C 0.11, B 0.10, A 0.11, S 0.06.
+PI spread between the six styles, per tier: E 0.59, D 0.25, C 0.12, B 0.10, A 0.11, S 0.04.
 
 ### Diffuser (`RearBumper`, donor `MODULE_REARBUMPER_LVL1`: Weight +2, BrakingForce +2)
 
 | ModuleId | Name | Price | Flavour | Raw stats | Card rating (on `exotic_03`) | On E | On D | On C | On B | On A | On S |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| `MODULE_REARBUMPER_EXOTIC_01` | Crash Bar | 8,000 | crash structure and rain light. Most braking. Heavy. | Weight +3, HoverStability +0.5, DriftGrip +0.5, BrakingForce +2 | 540 | 220 | 392 | 540 | 675 | 800 | 938 |
-| `MODULE_REARBUMPER_EXOTIC_02` | Smooth Valance | 11,000 | clean valance. A little of everything. | TopSpeed +0.5, Weight +2, HoverStability +0.5, DriftControl +0.5, BrakingForce +1, Downforce +1 | 540 | 220 | 392 | 540 | 675 | 800 | 938 |
-| `MODULE_REARBUMPER_EXOTIC_03` | Strake Diffuser | 14,000 | straked diffuser. Downforce and drift control. | Weight +2, DriftControl +1, BrakingForce +1, Downforce +2.5 | 540 | 220 | 392 | 540 | 675 | 800 | 938 |
-| `MODULE_REARBUMPER_EXOTIC_04` | Tail Tray | 18,000 | tray under the long tail. Steady, with some top speed. | TopSpeed +1, Weight +2, HoverStability +1.5, BrakingForce +0.5, Downforce +0.5 | 540 | 220 | 392 | 540 | 675 | 800 | 938 |
-| `MODULE_REARBUMPER_EXOTIC_05` | Venturi | 23,000 | deep venturi tunnels. Most rear downforce. | Weight +2, HoverStability +0.5, DriftControl +1, BrakingForce +0.5, Downforce +3 | 540 | 220 | 392 | 540 | 675 | 800 | 938 |
-| `MODULE_REARBUMPER_EXOTIC_06` | Keel Fin | 30,000 | centre keel fin. Stability. Light. | TopSpeed +0.5, Weight +1.5, HoverStability +1.5, DriftControl +1 | 540 | 221 | 392 | 540 | 675 | 800 | 938 |
+| `MODULE_REARBUMPER_EXOTIC_01` | Crash Bar | 8,000 | crash structure and rain light. Most braking. Heavy. | Weight +3, HoverStability +0.5, DriftGrip +0.5, BrakingForce +2 | 542 | 223 | 392 | 542 | 675 | 800 | 938 |
+| `MODULE_REARBUMPER_EXOTIC_02` | Smooth Valance | 11,000 | clean valance. A little of everything. | TopSpeed +0.5, Weight +2, HoverStability +0.5, DriftControl +0.5, BrakingForce +1, Downforce +1 | 541 | 224 | 392 | 541 | 676 | 800 | 938 |
+| `MODULE_REARBUMPER_EXOTIC_03` | Strake Diffuser | 14,000 | straked diffuser. Downforce and drift control. | Weight +2, DriftControl +1, BrakingForce +1, Downforce +2.5 | 541 | 224 | 392 | 541 | 676 | 800 | 938 |
+| `MODULE_REARBUMPER_EXOTIC_04` | Tail Tray | 18,000 | tray under the long tail. Steady, with some top speed. | TopSpeed +1, Weight +2, HoverStability +1.5, BrakingForce +0.5, Downforce +0.5 | 541 | 224 | 392 | 541 | 675 | 800 | 938 |
+| `MODULE_REARBUMPER_EXOTIC_05` | Venturi | 23,000 | deep venturi tunnels. Most rear downforce. | Weight +2, HoverStability +0.5, DriftControl +1, BrakingForce +0.5, Downforce +3 | 541 | 224 | 392 | 541 | 675 | 800 | 938 |
+| `MODULE_REARBUMPER_EXOTIC_06` | Keel Fin | 30,000 | centre keel fin. Stability. Light. | TopSpeed +0.5, Weight +1.5, HoverStability +1.5, DriftControl +1 | 541 | 224 | 392 | 541 | 675 | 800 | 938 |
 
-PI spread between the six styles, per tier: E 0.60, D 0.22, C 0.28, B 0.10, A 0.11, S 0.08.
+PI spread between the six styles, per tier: E 1.14, D 0.22, C 0.26, B 0.09, A 0.11, S 0.08.
 
 ### Wing (`RearSpoiler`, donor `MODULE_REARSPOILER_LVL1`: TopSpeed +1, Weight +2, LateralGrip +2, SteeringResponse +2, HoverStability +2)
 
@@ -308,23 +344,23 @@ Exotic rows keep the cockpit's own six body parts unless the column says otherwi
 
 | Cockpit | Stock | Four optional body parts removed | All Lightweight | All Power | Standard, max upgrades | All Lightweight, max upgrades | All Power, max upgrades | Highest build found | Ceiling |
 |---|---|---|---|---|---|---|---|---|---|
-| **exotic_01 Spider** | E 220 | E 177 | E 242 | E 244 | D 315 | D 344 | D 345 | D 349 | D 378 |
+| **exotic_01 Spider** | E 220 | E 208 | E 242 | E 244 | E 276 | D 308 | D 309 | D 365 | D 393 |
 | bruiser_02 Forge | E 202 (with four LVL1: E 237) | stock has no body parts | E 224 | E 226 | E 296 (four LVL1) | D 369 (four LVL3) | D 370 (four LVL3) | D 370 | D 382 |
 | **exotic_02 Curve** | D 390 | D 383 | D 411 | D 413 | D 429 | C 459 | C 462 | C 497 | C 519 |
 | bruiser_03 Vector | D 374 (with four LVL1: D 395) | stock has no body parts | D 395 | D 397 | D 437 (four LVL1) | C 496 (four LVL3) | C 498 (four LVL3) | C 498 | C 509 |
-| **exotic_03 Wedge** | C 540 | C 525 | C 559 | C 561 | C 585 | B 611 | B 613 | B 614 | B 633 |
+| **exotic_03 Wedge** | C 540 | C 536 | C 559 | C 561 | C 567 | C 594 | C 597 | B 621 | B 639 |
 | bruiser_01 Viper | C 525 (with four LVL1: C 538) | stock has no body parts | C 544 | C 546 | C 567 (four LVL1) | B 613 (four LVL3) | B 615 (four LVL3) | B 615 | B 627 |
-| **exotic_04 Longtail** | B 675 | B 668 | B 691 | B 693 | B 710 | A 732 | A 734 | A 734 | A 748 |
+| **exotic_04 Longtail** | B 675 | B 673 | B 691 | B 693 | B 695 | B 719 | B 720 | A 738 | A 752 |
 | bruiser_04 Nightline | B 662 (with four LVL1: B 669) | stock has no body parts | B 678 | B 680 | B 691 (four LVL1) | B 724 (four LVL3) | A 726 (four LVL3) | A 726 | A 736 |
 | **exotic_05 Hyper** | A 800 | A 799 | A 811 | A 814 | A 812 | A 829 | A 831 | A 840 | A 846 |
 | bruiser_05 Rally | A 787 (with four LVL1: A 789) | stock has no body parts | A 799 | A 801 | A 806 (four LVL1) | A 829 (four LVL3) | A 830 (four LVL3) | A 830 | A 838 |
-| **exotic_06 Gull** | S 938 | S 937 | S 943 | S 944 | S 944 | S 951 | S 952 | S 952 | S 954 |
+| **exotic_06 Gull** | S 938 | S 938 | S 943 | S 944 | S 943 | S 950 | S 951 | S 953 | S 954 |
 | bruiser_06 Zenith | S 925 (with four LVL1: S 925) | stock has no body parts | S 930 | S 931 | S 932 (four LVL1) | S 942 (four LVL3) | S 943 (four LVL3) | S 943 | S 945 |
 
 - **Highest build found**: any own-family variant in each core slot, any kit's part in each body slot (Piercer: any accessory level), the four optional slots may be empty, any upgrade allocation. It is a search (best choice per slot in turn, then one upgrade step on two slots at once, until neither helps; 16 start points that are the same on every run), not a proof that nothing higher exists.
 - **Ceiling**: a rating no build from the same choices can beat. Every choice of one module (or empty) per slot is rated, and each module takes, for every stat on its own, the best value any of its upgrade allocations offers. The module choice is exact; only the upgrade points are relaxed, so no real build reaches it. It is the proof for the tier statement below. (Since 2026-10-03. Before, the best value per stat was also taken across the modules of a slot: a looser bound, which gave Hyper A 849 with six default body parts and would give S 852 now that the Hyper cockpit absorbs three of them.)
 
-Highest build found, as core variants (Main Turbine, Side Engines, Stabilisers, Afterburner: S, L or P) then kits (Nose, Deck, Pods, Splitter, Diffuser, Wing; `-` is empty): exotic_01 PPPL 434444; exotic_02 PPPP 434444; exotic_03 PPPP 414444; exotic_04 PPPP 433414; exotic_05 PPPP 133615; exotic_06 PPPP 433415.
+Highest build found, as core variants (Main Turbine, Side Engines, Stabilisers, Afterburner: S, L or P) then kits (Nose, Deck, Pods, Splitter, Diffuser, Wing; `-` is empty): exotic_01 PPPL 434444; exotic_02 PPPP 434444; exotic_03 PPPP 434444; exotic_04 PPPP 425264; exotic_05 PPPP 133615; exotic_06 PPPP 433415.
 
 Tier reached, stock to highest found, with the ceiling tier in brackets: Spider E to D (D), Piercer E to D (D); Curve D to C (C), Piercer D to C (C); Wedge C to B (B), Piercer C to B (B); Longtail B to A (A), Piercer B to A (A); Hyper A to A (A), Piercer A to A (A); Gull S to S (S), Piercer S to S (S).
 
@@ -336,7 +372,7 @@ Each cockpit keeps its own four Standard core modules and wears the six body par
 
 | Cockpit | Kit 1 Track | Kit 2 Analogue | Kit 3 Wedge | Kit 4 Longtail | Kit 5 Hyper | Kit 6 Concept |
 |---|---|---|---|---|---|---|
-| exotic_01 Spider (E, target 220) | E 220 | E 221 | E 220 | E 221 | E 220 | E 221 |
+| exotic_01 Spider (E, target 220) | E 220 | E 220 | E 220 | E 221 | E 220 | E 221 |
 | exotic_02 Curve (D, target 390) | D 390 | D 390 | D 390 | D 390 | D 390 | D 390 |
 | exotic_03 Wedge (C, target 540) | C 540 | C 540 | C 540 | C 540 | C 540 | C 540 |
 | exotic_04 Longtail (B, target 675) | B 675 | B 675 | B 675 | B 675 | B 675 | B 675 |
@@ -349,12 +385,12 @@ Best and worst part per slot (all 46,656 combinations checked per cockpit):
 
 | Cockpit | Tier | Stock PI | Best mix | Kits used (Nose, Deck, Pods, Splitter, Diffuser, Wing) | Worst mix | Kits used |
 |---|---|---|---|---|---|---|
-| exotic_01 | E | 220 | 222 (+2), tier E | 544451 | 220 (+0), tier E | 333625 |
+| exotic_01 | E | 220 | 221 (+1), tier E | 546 | 220 (+0), tier E | 131 |
 | exotic_02 | D | 390 | 390 (+0), tier D | 546 | 390 (+0), tier D | 321 |
-| exotic_03 | C | 540 | 540 (+0), tier C | 513411 | 539 (-1), tier C | 226562 |
-| exotic_04 | B | 675 | 675 (+0), tier B | 415214 | 675 (+0), tier B | 161311 |
+| exotic_03 | C | 540 | 540 (+0), tier C | 111 | 540 (+0), tier C | 222 |
+| exotic_04 | B | 675 | 675 (+0), tier B | 414 | 675 (+0), tier B | 263 |
 | exotic_05 | A | 800 | 800 (+0), tier A | 415 | 800 (+0), tier A | 226 |
-| exotic_06 | S | 938 | 938 (+0), tier S | 414264 | 938 (+0), tier S | 131111 |
+| exotic_06 | S | 938 | 938 (+0), tier S | 414 | 938 (+0), tier S | 131 |
 
 Core modules are a different matter, and behave as on Piercer. A player who owns both cockpits can fit the top family's core set on the cheapest cockpit: Spider with the Gull Standard set rates A 847 (Power set: S 864). Live Piercer today: Forge with the Zenith Standard set rates A 822 (Power set: A 841).
 
@@ -364,12 +400,12 @@ Stock = the cockpit price (four Standard core modules and the six signature body
 
 | Cockpit | Stock (cockpit) | Upgrades on the stock build | Four Power modules | Upgrades on the Power build (ten modules) | Full Power build | PI | Piercer full Power build (four LVL3 accessories) | Exotic over Piercer | Optional: dearest foreign body kit (six parts) |
 |---|---|---|---|---|---|---|---|---|---|
-| exotic_01 | 50,000 | 203,369 | 24,000 | 160,842 | 234,842 | D 345 | 248,266 | -5.4% | 180,000 |
+| exotic_01 | 50,000 | 129,117 | 24,000 | 85,077 | 159,077 | D 309 | 248,266 | -35.9% | 180,000 |
 | exotic_02 | 150,000 | 126,091 | 72,000 | 113,877 | 335,877 | C 462 | 389,066 | -13.7% | 180,000 |
-| exotic_03 | 440,000 | 201,856 | 211,200 | 271,329 | 922,529 | B 613 | 795,866 | +15.9% | 180,000 |
-| exotic_04 | 1,400,000 | 199,931 | 672,000 | 547,717 | 2,619,717 | A 734 | 2,121,866 | +23.5% | 180,000 |
+| exotic_03 | 440,000 | 127,604 | 211,200 | 197,077 | 848,277 | C 597 | 795,866 | +6.6% | 180,000 |
+| exotic_04 | 1,400,000 | 127,604 | 672,000 | 475,390 | 2,547,390 | B 720 | 2,121,866 | +20.1% | 180,000 |
 | exotic_05 | 4,400,000 | 111,171 | 2,112,000 | 1,324,470 | 7,836,470 | A 831 | 6,340,315 | +23.6% | 180,000 |
-| exotic_06 | 12,500,000 | 177,380 | 6,000,000 | 3,733,310 | 22,233,310 | S 952 | 17,855,278 | +24.5% | 180,000 |
+| exotic_06 | 12,500,000 | 125,816 | 6,000,000 | 3,668,889 | 22,168,889 | S 951 | 17,855,278 | +24.2% | 180,000 |
 
 - The Piercer figure includes four LVL3 accessories at 19,000 each. The Exotic body parts come with the cockpit, which is why the Spider build is cheaper than the Forge build.
 - Body and Standard upgrade guides do not scale with the cockpit (live pattern). On Spider a Standard engine point (6,050) costs more than a Lightweight engine (6,000). Forge has the same pattern today (4,800).
@@ -415,14 +451,14 @@ What three points on one body path are worth: PI change on each stock cockpit (u
 | Engine Deck | `DeckCooling` | new | BoostEfficiency +2, EngineOutput +1, Weight +1 | 11,344 | +10.28 | +7.15 | +4.65 | +2.61 | +1.00 | +0.15 |
 | Engine Deck | `LightweightDeck` | new | DriftGrip +1, Weight -3 | 11,344 | +4.72 | +3.39 | +2.74 | +3.04 | +0.35 | +0.07 |
 | Engine Deck | `TailStrakes` | new | DriftControl +1, HoverStability +2, TopSpeed -1 | 11,344 | +10.13 | +5.57 | +3.10 | +1.56 | +0.62 | +0.08 |
-| Side Pods | `AirflowChannels` | cloned | Drag -1, HoverStability +1 | 14,438 | +5.60 | +2.92 | +1.93 | +1.44 | +1.30 | +1.58 |
-| Side Pods | `CorneringVanes` | cloned | DriftGrip +2, LateralGrip +2 | 14,438 | +17.40 | +10.45 | +7.54 | +4.61 | +2.30 | +0.51 |
-| Side Pods | `LightweightShells` | cloned | Weight -3 | 14,438 | +1.93 | +1.61 | +1.58 | +2.35 | +0.42 | +0.00 |
-| Splitter | `BrakeDucts` | cloned | BrakingForce +3, Weight +1 | 11,344 | +10.04 | +7.08 | +5.22 | +2.98 | +1.22 | +0.22 |
-| Splitter | `FrontSplitter` | cloned | Downforce +3, Drag +1 | 11,344 | +3.30 | +1.82 | +0.79 | +0.03 | -0.58 | -5.92 |
-| Splitter | `LightweightMounts` | cloned | BrakingForce -1, Weight -3 | 11,344 | -2.96 | -1.69 | -0.83 | +0.79 | -0.45 | -0.19 |
-| Diffuser | `LightweightMounts` | cloned | Weight -3 | 11,344 | +1.93 | +1.61 | +1.58 | +2.35 | +0.56 | +0.00 |
-| Diffuser | `RearDiffuser` | cloned | Drag +1, DriftControl +1, HoverStability +2 | 11,344 | +12.96 | +6.79 | +3.90 | +1.69 | +0.15 | -5.78 |
+| Side Pods | `AirflowChannels` | cloned | Drag -1, HoverStability +1 | 14,438 | +5.05 | +2.92 | +1.85 | +1.40 | +1.30 | +1.57 |
+| Side Pods | `CorneringVanes` | cloned | DriftGrip +2, LateralGrip +2 | 14,438 | +15.43 | +10.45 | +7.24 | +4.47 | +2.30 | +0.50 |
+| Side Pods | `LightweightShells` | cloned | Weight -3 | 14,438 | +1.86 | +1.61 | +1.53 | +2.26 | +0.42 | +0.15 |
+| Splitter | `BrakeDucts` | cloned | BrakingForce +3, Weight +1 | 11,344 | +9.81 | +7.08 | +4.94 | +2.87 | +1.22 | +0.23 |
+| Splitter | `FrontSplitter` | cloned | Downforce +3, Drag +1 | 11,344 | +3.35 | +1.82 | +0.78 | +0.03 | -0.58 | -5.93 |
+| Splitter | `LightweightMounts` | cloned | BrakingForce -1, Weight -3 | 11,344 | -2.54 | -1.69 | -0.82 | +0.74 | -0.45 | +0.02 |
+| Diffuser | `LightweightMounts` | cloned | Weight -3 | 11,344 | +1.89 | +1.61 | +1.55 | +2.28 | +0.56 | +0.15 |
+| Diffuser | `RearDiffuser` | cloned | Drag +1, DriftControl +1, HoverStability +2 | 11,344 | +12.52 | +6.79 | +3.86 | +1.65 | +0.15 | -5.79 |
 | Wing | `DownforcePackage` | cloned | BrakingForce +1, Downforce +4, Drag +2 | 13,407 | +7.93 | +4.98 | +3.04 | +1.12 | -0.42 | -8.00 |
 | Wing | `DriftAero` | cloned | Drag +1, DriftControl +2, DriftGrip +1 | 13,407 | +9.26 | +5.92 | +3.52 | +1.70 | +0.25 | -5.74 |
 | Wing | `LowDragProfile` | cloned | Downforce -1, Drag -3 | 13,407 | -0.40 | +0.38 | +1.08 | +2.04 | +3.57 | +1.51 |
@@ -462,7 +498,7 @@ How each donor attribute gets its Exotic value:
 | `Tier`, `VariantName`, `VariantOrder` | Standard / Lightweight / Power, 10 / 20 / 30 | `Tier` = kit name (label only, not read); no `VariantName` or `VariantOrder`, as on the donor |
 | `Level`, `MaxLevel`, notes, flags (`BalanceEditable`, `BalanceNote`, `BoostNotes`, `CatalogPublishReady`, `CatalogVisible`, `HiddenFromCatalog`, `RetiredFromCatalog`, `Upgradable`, `TemplateType`, `PreviewImage`, `V2*`) | copied from the donor | copied from the donor |
 
-Cockpits carry the 59 non-colour attributes of the live Piercer cockpit plus the six new `Default<Slot>ModuleId` names (65 in all): `Acceleration`, `Boost`, `BoostDuration`, `BoostEfficiency`, `BoostForce`, `BoostRecharge`, `BoostRechargeDelay`, `Braking`, `BrakingForce`, `CatalogPublishReady`, `CategoryId`, `CockpitId`, `DEALERSHIP_CUSTOMISATION_SPLIT_PHASE1_BUY_ONLY`, `DefaultBoostModuleId`, `DefaultColoursEditable`, `DefaultColoursNote`, `DefaultEngineBModuleId`, `DefaultEngineModuleId`, `DefaultFrontBodyModuleId`, `DefaultFrontBumperModuleId`, `DefaultFrontEngineModuleId`, `DefaultRearBodyModuleId`, `DefaultRearBumperModuleId`, `DefaultRearEngineModuleId`, `DefaultRearSpoilerModuleId`, `DefaultSidePodsModuleId`, `DefaultStabiliserModuleId`, `DefaultStabilisersModuleId`, `DisplayName`, `Downforce`, `Drag`, `Drift`, `DriftChargeRate`, `DriftControl`, `DriftGrip`, `EngineOutput`, `Handling`, `HoverStability`, `LateralGrip`, `MenuImage`, `OwnedByDefault`, `PerformanceDelta_BoostEfficiency`, `PerformanceDelta_BrakingForce`, `PerformanceDelta_Downforce`, `PerformanceDelta_Drag`, `PerformanceDelta_DriftChargeRate`, `PerformanceDelta_DriftControl`, `PerformanceDelta_DriftGrip`, `PerformanceDelta_HoverStability`, `PerformanceDelta_LateralGrip`, `PerformanceDelta_SteeringResponse`, `Power`, `PreviewImage`, `Price`, `StandardAudioProfileId`, `SteeringResponse`, `TargetStockPI`, `TargetTier`, `TemplateType`, `TopSpeed`, `V2IntegrationReady`, `V2Materialised`, `V2Published`, `V2PublishedCockpitId`, `Weight`.
+Cockpits carry the 56 non-colour attributes of the live Piercer cockpit plus the six new `Default<Slot>ModuleId` names (62 in all): `Acceleration`, `Boost`, `BoostDuration`, `BoostEfficiency`, `BoostForce`, `BoostRecharge`, `BoostRechargeDelay`, `Braking`, `BrakingForce`, `CatalogPublishReady`, `CategoryId`, `CockpitId`, `DEALERSHIP_CUSTOMISATION_SPLIT_PHASE1_BUY_ONLY`, `DefaultBoostModuleId`, `DefaultColoursEditable`, `DefaultColoursNote`, `DefaultEngineBModuleId`, `DefaultEngineModuleId`, `DefaultFrontBodyModuleId`, `DefaultFrontEngineModuleId`, `DefaultRearBodyModuleId`, `DefaultRearEngineModuleId`, `DefaultRearSpoilerModuleId`, `DefaultStabiliserModuleId`, `DefaultStabilisersModuleId`, `DisplayName`, `Downforce`, `Drag`, `Drift`, `DriftChargeRate`, `DriftControl`, `DriftGrip`, `EngineOutput`, `Handling`, `HoverStability`, `LateralGrip`, `MenuImage`, `OwnedByDefault`, `PerformanceDelta_BoostEfficiency`, `PerformanceDelta_BrakingForce`, `PerformanceDelta_Downforce`, `PerformanceDelta_Drag`, `PerformanceDelta_DriftChargeRate`, `PerformanceDelta_DriftControl`, `PerformanceDelta_DriftGrip`, `PerformanceDelta_HoverStability`, `PerformanceDelta_LateralGrip`, `PerformanceDelta_SteeringResponse`, `Power`, `PreviewImage`, `Price`, `StandardAudioProfileId`, `SteeringResponse`, `TargetStockPI`, `TargetTier`, `TemplateType`, `TopSpeed`, `V2IntegrationReady`, `V2Materialised`, `V2Published`, `V2PublishedCockpitId`, `Weight`.
 
 The mesh cockpits `exotic_02` and `exotic_05` carry three of the six new names (`DefaultFrontBodyModuleId`, `DefaultRearBodyModuleId`, `DefaultRearSpoilerModuleId`; 62 attributes in all): a slot that starts empty has no default attribute.
 
@@ -474,15 +510,15 @@ Not in `balance.json`: the six `Default*Color` attributes (Color3, a paint decis
 - **Gull needed a larger scale (1.113; the others 1.020 to 1.043).** At S tier `Weight` and `BoostRecharge` are pinned at their minimum and the index curve is flat, so the other stats carry the 13 points over Zenith. Gull `TopSpeed` is 448.68 against Zenith 360.
 - **Curve shares three totals with Spider.** `Weight`, `Drag` and `BoostRecharge` are equal on the E and D cockpits (section 3), as they are on Forge and Vector. Every other stat rises with the tier.
 - **Gull is sensitive to Drag.** Its stock `Drag` is 1.325 (minimum 1). +1 Drag costs it 2.9 PI (Hyper 0.30, the rest 0.22 or less). The live Zenith (`Drag` 1.475) has the same sensitivity. It is a rating effect only: the road drag factor is clamped at 0.65, which is reached at Drag 16.9 (runtime.md 7.4, read from source, not measured).
-- **So nothing authored here carries Drag.** No body part and no new upgrade path has a Drag value. With that, any whole kit and any mix of parts moves a stock build by -1 to +2 PI at most (section 8).
+- **So nothing authored here carries Drag.** No body part and no new upgrade path has a Drag value. With that, any whole kit and any mix of parts moves a stock build by +0 to +1 PI at most (section 8).
 - **The cloned accessory paths still carry Drag, as on Piercer.** Splitter, Diffuser, Wing and Side Pods clone the live LVL1 paths, as the brief asks. On a stock Gull three points of `FrontSplitter` cost 5.9 PI, `RearDiffuser` 5.8, `DownforcePackage` 8.0 and `DriftAero` 5.7, while `LowDragProfile` gains 1.5 and `AirflowChannels` 1.6. Once `LowDragProfile` is bought (Drag -9) the total sits on the minimum and the other paths stop costing. Zenith with LVL accessories behaves the same today. Decision for Oscar: keep the clones, or give the four slots Exotic paths without Drag (`balance.json` allows explicit `upgradePaths` on any module).
-- **Cloned paths that are worth nothing at stock:** Side Pods `LightweightShells` on Gull; Diffuser `LightweightMounts` on Gull. These are pure `Weight` cuts on cockpits already at the 60 minimum, so they do nothing in the rating or on the road. Live Zenith has the same. The two new weight paths avoid it with a second stat (section 10).
-- **Cloned paths that lower PI at stock:** Splitter `FrontSplitter` (Hyper -0.6, Gull -5.9); Splitter `LightweightMounts` (Spider -3.0, Curve -1.7, Wedge -0.8, Hyper -0.4, Gull -0.2); Diffuser `RearDiffuser` (Gull -5.8); Wing `DownforcePackage` (Hyper -0.4, Gull -8.0); Wing `DriftAero` (Gull -5.7); Wing `LowDragProfile` (Spider -0.4). The Splitter `LightweightMounts` trades `BrakingForce` -1 for `Weight` -3, which is a loss where weight is cheap. Live pattern, not changed.
+- **Cloned paths that are worth nothing at stock:** none. These are pure `Weight` cuts on cockpits already at the 60 minimum, so they do nothing in the rating or on the road. Live Zenith has the same. The two new weight paths avoid it with a second stat (section 10).
+- **Cloned paths that lower PI at stock:** Splitter `FrontSplitter` (Hyper -0.6, Gull -5.9); Splitter `LightweightMounts` (Spider -2.5, Curve -1.7, Wedge -0.8, Hyper -0.4); Diffuser `RearDiffuser` (Gull -5.8); Wing `DownforcePackage` (Hyper -0.4, Gull -8.0); Wing `DriftAero` (Gull -5.7); Wing `LowDragProfile` (Spider -0.4). The Splitter `LightweightMounts` trades `BrakingForce` -1 for `Weight` -3, which is a loss where weight is cheap. Live pattern, not changed.
 - **Hyper stays in A.** A fully upgraded Hyper tops out at A 831 (highest build found: A 840). The ceiling no Hyper build can beat is A 846, under the S band at 850. Rally tops out at A 830.
 - **Exotic has two more upgradable slots than Piercer** (12 more points per build). The lower tiers cross one tier band with a full Power set and all upgrades, as Piercer does today (section 7).
-- **A stock Exotic can be upgraded without buying anything else.** Its six body parts each take six points, so a Standard Spider reaches D 315 on upgrades alone. A stock Piercer has no body parts to upgrade; with four LVL1 accessories Forge reaches E 296.
-- **Body parts are worth more on cheap cockpits.** The same flat stat is a bigger share of an E tier total. Removing the four optional parts drops Spider to 177 but Gull only to 937 (section 7). The styles of a slot are still worth the same as each other on each cockpit.
-- **Cockpit raw values are lower than a Piercer cockpit's.** The body parts carry part of the cockpit share. The smallest remainder is exotic_01 `LateralGrip` at 22% of its share. No value is negative.
+- **A stock Exotic can be upgraded without buying anything else.** Its six body parts each take six points, so a Standard Spider reaches E 276 on upgrades alone. A stock Piercer has no body parts to upgrade; with four LVL1 accessories Forge reaches E 296.
+- **Body parts are worth more on cheap cockpits.** The same flat stat is a bigger share of an E tier total. Removing the four optional parts drops Spider to 208 but Gull only to 938 (section 7). The styles of a slot are still worth the same as each other on each cockpit.
+- **Cockpit raw values are lower than a Piercer cockpit's.** The body parts carry part of the cockpit share. The smallest remainder is exotic_01 `Downforce` at 49% of its share. No value is negative.
 - **Dealership rating depends on Stage A.** Until `VehiclePerformanceResolver` counts the six body defaults, the dealership shows less than the stock PI (at most the "optional body parts removed" figure).
 - **Extra Standard copies.** With `Price=0` and `PurchasePrice=0` the live `modulePurchasePrice` charges 12% of the source cockpit price, looked up in category `bruiser` (`GarageCatalogLookup` line 123). Stage A changes that lookup to the module's own category. Without it an extra Exotic Standard copy would cost 1,000.
 - **`Point4CostGuide` to `Point6CostGuide` are never charged live.** `NextPointCost` is always called with a path id and uses the next point on that path (1 to 3). This is live behaviour for Piercer too. Reported, not changed. The guides are still written, as on the donors.

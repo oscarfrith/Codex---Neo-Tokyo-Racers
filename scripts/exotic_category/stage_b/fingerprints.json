@@ -532,7 +532,7 @@
   ]
  },
  "mesh": {
-  "assetId": 112592679936648,
+  "assetId": 121164261170819,
   "groups": {
    "Boost/A_BOOST_EVO": {
     "fingerprint": [
@@ -632,6 +632,199 @@
      "B_BOOST_STD__thrust"
     ]
    },
+   "Boost/C_BOOST_EVO": {
+    "fingerprint": [
+     4,
+     0.0,
+     0.0,
+     3.32,
+     46.515,
+     23.911
+    ],
+    "parts": [
+     "C_BOOST_EVO__detail",
+     "C_BOOST_EVO__primary",
+     "C_BOOST_EVO__secondary",
+     "C_BOOST_EVO__thrust"
+    ]
+   },
+   "Boost/C_BOOST_GT": {
+    "fingerprint": [
+     4,
+     0.0,
+     0.0,
+     3.46,
+     46.215,
+     21.445
+    ],
+    "parts": [
+     "C_BOOST_GT__detail",
+     "C_BOOST_GT__primary",
+     "C_BOOST_GT__secondary",
+     "C_BOOST_GT__thrust"
+    ]
+   },
+   "Boost/C_BOOST_STD": {
+    "fingerprint": [
+     4,
+     0.0,
+     0.0,
+     3.4,
+     45.915,
+     20.579
+    ],
+    "parts": [
+     "C_BOOST_STD__detail",
+     "C_BOOST_STD__primary",
+     "C_BOOST_STD__secondary",
+     "C_BOOST_STD__thrust"
+    ]
+   },
+   "Boost/D_BOOST_EVO": {
+    "fingerprint": [
+     4,
+     0.0,
+     0.0,
+     3.42,
+     46.5,
+     21.765
+    ],
+    "parts": [
+     "D_BOOST_EVO__detail",
+     "D_BOOST_EVO__primary",
+     "D_BOOST_EVO__secondary",
+     "D_BOOST_EVO__thrust"
+    ]
+   },
+   "Boost/D_BOOST_GT": {
+    "fingerprint": [
+     4,
+     0.0,
+     0.0,
+     3.42,
+     46.2,
+     20.901
+    ],
+    "parts": [
+     "D_BOOST_GT__detail",
+     "D_BOOST_GT__primary",
+     "D_BOOST_GT__secondary",
+     "D_BOOST_GT__thrust"
+    ]
+   },
+   "Boost/D_BOOST_STD": {
+    "fingerprint": [
+     4,
+     0.0,
+     0.0,
+     3.42,
+     45.9,
+     20.037
+    ],
+    "parts": [
+     "D_BOOST_STD__detail",
+     "D_BOOST_STD__primary",
+     "D_BOOST_STD__secondary",
+     "D_BOOST_STD__thrust"
+    ]
+   },
+   "Boost/E_BOOST_EVO": {
+    "fingerprint": [
+     4,
+     0.0,
+     0.0,
+     5.085,
+     46.29,
+     26.15
+    ],
+    "parts": [
+     "E_BOOST_EVO__detail",
+     "E_BOOST_EVO__primary",
+     "E_BOOST_EVO__secondary",
+     "E_BOOST_EVO__thrust"
+    ]
+   },
+   "Boost/E_BOOST_GT": {
+    "fingerprint": [
+     4,
+     0.0,
+     0.0,
+     5.085,
+     46.14,
+     22.471
+    ],
+    "parts": [
+     "E_BOOST_GT__detail",
+     "E_BOOST_GT__primary",
+     "E_BOOST_GT__secondary",
+     "E_BOOST_GT__thrust"
+    ]
+   },
+   "Boost/E_BOOST_STD": {
+    "fingerprint": [
+     4,
+     0.0,
+     0.0,
+     5.085,
+     45.84,
+     21.811
+    ],
+    "parts": [
+     "E_BOOST_STD__detail",
+     "E_BOOST_STD__primary",
+     "E_BOOST_STD__secondary",
+     "E_BOOST_STD__thrust"
+    ]
+   },
+   "Boost/F_BOOST_EVO": {
+    "fingerprint": [
+     5,
+     0.0,
+     0.0,
+     4.425,
+     57.33,
+     25.46
+    ],
+    "parts": [
+     "F_BOOST_EVO__detail",
+     "F_BOOST_EVO__lights_red",
+     "F_BOOST_EVO__primary",
+     "F_BOOST_EVO__secondary",
+     "F_BOOST_EVO__thrust"
+    ]
+   },
+   "Boost/F_BOOST_GT": {
+    "fingerprint": [
+     4,
+     0.0,
+     0.0,
+     2.845,
+     45.89,
+     24.109
+    ],
+    "parts": [
+     "F_BOOST_GT__detail",
+     "F_BOOST_GT__primary",
+     "F_BOOST_GT__secondary",
+     "F_BOOST_GT__thrust"
+    ]
+   },
+   "Boost/F_BOOST_STD": {
+    "fingerprint": [
+     4,
+     0.0,
+     0.0,
+     2.765,
+     45.665,
+     23.627
+    ],
+    "parts": [
+     "F_BOOST_STD__detail",
+     "F_BOOST_STD__primary",
+     "F_BOOST_STD__secondary",
+     "F_BOOST_STD__thrust"
+    ]
+   },
    "Cockpit/A_COCKPIT_STD": {
     "fingerprint": [
      4,
@@ -662,6 +855,70 @@
      "B_COCKPIT_STD__glass",
      "B_COCKPIT_STD__primary",
      "B_COCKPIT_STD__secondary"
+    ]
+   },
+   "Cockpit/C_COCKPIT_STD": {
+    "fingerprint": [
+     4,
+     0.0,
+     0.0,
+     7.976,
+     -2.6,
+     87.644
+    ],
+    "parts": [
+     "C_COCKPIT_STD__detail",
+     "C_COCKPIT_STD__glass",
+     "C_COCKPIT_STD__primary",
+     "C_COCKPIT_STD__secondary"
+    ]
+   },
+   "Cockpit/D_COCKPIT_STD": {
+    "fingerprint": [
+     4,
+     0.0,
+     0.0,
+     7.275,
+     -2.075,
+     84.883
+    ],
+    "parts": [
+     "D_COCKPIT_STD__detail",
+     "D_COCKPIT_STD__glass",
+     "D_COCKPIT_STD__primary",
+     "D_COCKPIT_STD__secondary"
+    ]
+   },
+   "Cockpit/E_COCKPIT_STD": {
+    "fingerprint": [
+     4,
+     0.0,
+     0.0,
+     7.332,
+     -1.8,
+     86.616
+    ],
+    "parts": [
+     "E_COCKPIT_STD__detail",
+     "E_COCKPIT_STD__glass",
+     "E_COCKPIT_STD__primary",
+     "E_COCKPIT_STD__secondary"
+    ]
+   },
+   "Cockpit/F_COCKPIT_STD": {
+    "fingerprint": [
+     4,
+     0.0,
+     0.0,
+     9.659,
+     -2.07,
+     88.075
+    ],
+    "parts": [
+     "F_COCKPIT_STD__detail",
+     "F_COCKPIT_STD__glass",
+     "F_COCKPIT_STD__primary",
+     "F_COCKPIT_STD__secondary"
     ]
    },
    "Engine1/A_FPOD_EVO": {
@@ -775,6 +1032,225 @@
      "B_FPOD_STD__thrust"
     ]
    },
+   "Engine1/C_FPOD_EVO": {
+    "fingerprint": [
+     6,
+     0.0,
+     0.0,
+     3.437,
+     -52.79,
+     123.496
+    ],
+    "parts": [
+     "C_FPOD_EVO__detail",
+     "C_FPOD_EVO__lights",
+     "C_FPOD_EVO__neon",
+     "C_FPOD_EVO__primary",
+     "C_FPOD_EVO__secondary",
+     "C_FPOD_EVO__thrust"
+    ]
+   },
+   "Engine1/C_FPOD_GT": {
+    "fingerprint": [
+     6,
+     0.0,
+     0.0,
+     3.225,
+     -52.59,
+     120.521
+    ],
+    "parts": [
+     "C_FPOD_GT__detail",
+     "C_FPOD_GT__lights",
+     "C_FPOD_GT__neon",
+     "C_FPOD_GT__primary",
+     "C_FPOD_GT__secondary",
+     "C_FPOD_GT__thrust"
+    ]
+   },
+   "Engine1/C_FPOD_STD": {
+    "fingerprint": [
+     6,
+     0.0,
+     0.0,
+     1.939,
+     -52.99,
+     113.394
+    ],
+    "parts": [
+     "C_FPOD_STD__detail",
+     "C_FPOD_STD__lights",
+     "C_FPOD_STD__neon",
+     "C_FPOD_STD__primary",
+     "C_FPOD_STD__secondary",
+     "C_FPOD_STD__thrust"
+    ]
+   },
+   "Engine1/D_FPOD_EVO": {
+    "fingerprint": [
+     6,
+     0.0,
+     0.0,
+     4.775,
+     -55.895,
+     116.234
+    ],
+    "parts": [
+     "D_FPOD_EVO__detail",
+     "D_FPOD_EVO__glass",
+     "D_FPOD_EVO__lights",
+     "D_FPOD_EVO__primary",
+     "D_FPOD_EVO__secondary",
+     "D_FPOD_EVO__thrust"
+    ]
+   },
+   "Engine1/D_FPOD_GT": {
+    "fingerprint": [
+     6,
+     0.0,
+     0.0,
+     4.588,
+     -55.695,
+     113.935
+    ],
+    "parts": [
+     "D_FPOD_GT__detail",
+     "D_FPOD_GT__glass",
+     "D_FPOD_GT__lights",
+     "D_FPOD_GT__primary",
+     "D_FPOD_GT__secondary",
+     "D_FPOD_GT__thrust"
+    ]
+   },
+   "Engine1/D_FPOD_STD": {
+    "fingerprint": [
+     6,
+     0.0,
+     0.0,
+     4.411,
+     -55.395,
+     110.402
+    ],
+    "parts": [
+     "D_FPOD_STD__detail",
+     "D_FPOD_STD__glass",
+     "D_FPOD_STD__lights",
+     "D_FPOD_STD__primary",
+     "D_FPOD_STD__secondary",
+     "D_FPOD_STD__thrust"
+    ]
+   },
+   "Engine1/E_FPOD_EVO": {
+    "fingerprint": [
+     6,
+     0.0,
+     0.0,
+     4.001,
+     -55.72,
+     119.253
+    ],
+    "parts": [
+     "E_FPOD_EVO__detail",
+     "E_FPOD_EVO__lights",
+     "E_FPOD_EVO__neon",
+     "E_FPOD_EVO__primary",
+     "E_FPOD_EVO__secondary",
+     "E_FPOD_EVO__thrust"
+    ]
+   },
+   "Engine1/E_FPOD_GT": {
+    "fingerprint": [
+     6,
+     0.0,
+     0.0,
+     3.868,
+     -55.52,
+     117.462
+    ],
+    "parts": [
+     "E_FPOD_GT__detail",
+     "E_FPOD_GT__lights",
+     "E_FPOD_GT__neon",
+     "E_FPOD_GT__primary",
+     "E_FPOD_GT__secondary",
+     "E_FPOD_GT__thrust"
+    ]
+   },
+   "Engine1/E_FPOD_STD": {
+    "fingerprint": [
+     6,
+     0.0,
+     0.0,
+     2.77,
+     -55.22,
+     113.28
+    ],
+    "parts": [
+     "E_FPOD_STD__detail",
+     "E_FPOD_STD__lights",
+     "E_FPOD_STD__neon",
+     "E_FPOD_STD__primary",
+     "E_FPOD_STD__secondary",
+     "E_FPOD_STD__thrust"
+    ]
+   },
+   "Engine1/F_FPOD_EVO": {
+    "fingerprint": [
+     7,
+     0.0,
+     0.0,
+     5.104,
+     -64.065,
+     133.841
+    ],
+    "parts": [
+     "F_FPOD_EVO__detail",
+     "F_FPOD_EVO__glass",
+     "F_FPOD_EVO__lights",
+     "F_FPOD_EVO__neon",
+     "F_FPOD_EVO__primary",
+     "F_FPOD_EVO__secondary",
+     "F_FPOD_EVO__thrust"
+    ]
+   },
+   "Engine1/F_FPOD_GT": {
+    "fingerprint": [
+     7,
+     0.0,
+     0.0,
+     4.73,
+     -63.865,
+     130.803
+    ],
+    "parts": [
+     "F_FPOD_GT__detail",
+     "F_FPOD_GT__glass",
+     "F_FPOD_GT__lights",
+     "F_FPOD_GT__neon",
+     "F_FPOD_GT__primary",
+     "F_FPOD_GT__secondary",
+     "F_FPOD_GT__thrust"
+    ]
+   },
+   "Engine1/F_FPOD_STD": {
+    "fingerprint": [
+     7,
+     0.0,
+     0.0,
+     4.524,
+     -63.565,
+     126.363
+    ],
+    "parts": [
+     "F_FPOD_STD__detail",
+     "F_FPOD_STD__glass",
+     "F_FPOD_STD__lights",
+     "F_FPOD_STD__neon",
+     "F_FPOD_STD__primary",
+     "F_FPOD_STD__secondary",
+     "F_FPOD_STD__thrust"
+    ]
+   },
    "Engine2/A_RPOD_EVO": {
     "fingerprint": [
      5,
@@ -877,6 +1353,207 @@
      "B_RPOD_STD__thrust"
     ]
    },
+   "Engine2/C_RPOD_EVO": {
+    "fingerprint": [
+     5,
+     0.0,
+     0.0,
+     3.544,
+     38.05,
+     113.169
+    ],
+    "parts": [
+     "C_RPOD_EVO__detail",
+     "C_RPOD_EVO__neon",
+     "C_RPOD_EVO__primary",
+     "C_RPOD_EVO__secondary",
+     "C_RPOD_EVO__thrust"
+    ]
+   },
+   "Engine2/C_RPOD_GT": {
+    "fingerprint": [
+     5,
+     0.0,
+     0.0,
+     3.27,
+     37.95,
+     110.552
+    ],
+    "parts": [
+     "C_RPOD_GT__detail",
+     "C_RPOD_GT__neon",
+     "C_RPOD_GT__primary",
+     "C_RPOD_GT__secondary",
+     "C_RPOD_GT__thrust"
+    ]
+   },
+   "Engine2/C_RPOD_STD": {
+    "fingerprint": [
+     5,
+     0.0,
+     0.0,
+     2.044,
+     38.0,
+     102.337
+    ],
+    "parts": [
+     "C_RPOD_STD__detail",
+     "C_RPOD_STD__neon",
+     "C_RPOD_STD__primary",
+     "C_RPOD_STD__secondary",
+     "C_RPOD_STD__thrust"
+    ]
+   },
+   "Engine2/D_RPOD_EVO": {
+    "fingerprint": [
+     4,
+     0.0,
+     0.0,
+     3.517,
+     30.1,
+     96.219
+    ],
+    "parts": [
+     "D_RPOD_EVO__detail",
+     "D_RPOD_EVO__primary",
+     "D_RPOD_EVO__secondary",
+     "D_RPOD_EVO__thrust"
+    ]
+   },
+   "Engine2/D_RPOD_GT": {
+    "fingerprint": [
+     4,
+     0.0,
+     0.0,
+     3.293,
+     30.0,
+     94.316
+    ],
+    "parts": [
+     "D_RPOD_GT__detail",
+     "D_RPOD_GT__primary",
+     "D_RPOD_GT__secondary",
+     "D_RPOD_GT__thrust"
+    ]
+   },
+   "Engine2/D_RPOD_STD": {
+    "fingerprint": [
+     4,
+     0.0,
+     0.0,
+     3.242,
+     29.35,
+     90.234
+    ],
+    "parts": [
+     "D_RPOD_STD__detail",
+     "D_RPOD_STD__primary",
+     "D_RPOD_STD__secondary",
+     "D_RPOD_STD__thrust"
+    ]
+   },
+   "Engine2/E_RPOD_EVO": {
+    "fingerprint": [
+     5,
+     0.0,
+     0.0,
+     4.819,
+     38.075,
+     108.931
+    ],
+    "parts": [
+     "E_RPOD_EVO__detail",
+     "E_RPOD_EVO__neon",
+     "E_RPOD_EVO__primary",
+     "E_RPOD_EVO__secondary",
+     "E_RPOD_EVO__thrust"
+    ]
+   },
+   "Engine2/E_RPOD_GT": {
+    "fingerprint": [
+     5,
+     0.0,
+     0.0,
+     4.641,
+     37.975,
+     107.654
+    ],
+    "parts": [
+     "E_RPOD_GT__detail",
+     "E_RPOD_GT__neon",
+     "E_RPOD_GT__primary",
+     "E_RPOD_GT__secondary",
+     "E_RPOD_GT__thrust"
+    ]
+   },
+   "Engine2/E_RPOD_STD": {
+    "fingerprint": [
+     5,
+     0.0,
+     0.0,
+     4.093,
+     37.325,
+     104.218
+    ],
+    "parts": [
+     "E_RPOD_STD__detail",
+     "E_RPOD_STD__neon",
+     "E_RPOD_STD__primary",
+     "E_RPOD_STD__secondary",
+     "E_RPOD_STD__thrust"
+    ]
+   },
+   "Engine2/F_RPOD_EVO": {
+    "fingerprint": [
+     5,
+     0.0,
+     0.0,
+     4.22,
+     38.1,
+     111.853
+    ],
+    "parts": [
+     "F_RPOD_EVO__detail",
+     "F_RPOD_EVO__neon",
+     "F_RPOD_EVO__primary",
+     "F_RPOD_EVO__secondary",
+     "F_RPOD_EVO__thrust"
+    ]
+   },
+   "Engine2/F_RPOD_GT": {
+    "fingerprint": [
+     5,
+     0.0,
+     0.0,
+     3.797,
+     38.0,
+     109.114
+    ],
+    "parts": [
+     "F_RPOD_GT__detail",
+     "F_RPOD_GT__neon",
+     "F_RPOD_GT__primary",
+     "F_RPOD_GT__secondary",
+     "F_RPOD_GT__thrust"
+    ]
+   },
+   "Engine2/F_RPOD_STD": {
+    "fingerprint": [
+     5,
+     0.0,
+     0.0,
+     3.537,
+     37.35,
+     104.787
+    ],
+    "parts": [
+     "F_RPOD_STD__detail",
+     "F_RPOD_STD__neon",
+     "F_RPOD_STD__primary",
+     "F_RPOD_STD__secondary",
+     "F_RPOD_STD__thrust"
+    ]
+   },
    "FrontBody/A_NOSE_EVO": {
     "fingerprint": [
      4,
@@ -968,6 +1645,195 @@
      "B_NOSE_STD__detail",
      "B_NOSE_STD__primary",
      "B_NOSE_STD__secondary"
+    ]
+   },
+   "FrontBody/C_NOSE_EVO": {
+    "fingerprint": [
+     4,
+     0.0,
+     0.0,
+     2.689,
+     -39.68,
+     59.693
+    ],
+    "parts": [
+     "C_NOSE_EVO__detail",
+     "C_NOSE_EVO__lights",
+     "C_NOSE_EVO__primary",
+     "C_NOSE_EVO__secondary"
+    ]
+   },
+   "FrontBody/C_NOSE_GT": {
+    "fingerprint": [
+     4,
+     0.0,
+     0.0,
+     2.689,
+     -39.555,
+     58.932
+    ],
+    "parts": [
+     "C_NOSE_GT__detail",
+     "C_NOSE_GT__lights",
+     "C_NOSE_GT__primary",
+     "C_NOSE_GT__secondary"
+    ]
+   },
+   "FrontBody/C_NOSE_STD": {
+    "fingerprint": [
+     4,
+     0.0,
+     0.0,
+     2.224,
+     -41.03,
+     49.011
+    ],
+    "parts": [
+     "C_NOSE_STD__detail",
+     "C_NOSE_STD__lights",
+     "C_NOSE_STD__primary",
+     "C_NOSE_STD__secondary"
+    ]
+   },
+   "FrontBody/D_NOSE_EVO": {
+    "fingerprint": [
+     3,
+     0.0,
+     0.0,
+     2.12,
+     -28.894,
+     47.302
+    ],
+    "parts": [
+     "D_NOSE_EVO__detail",
+     "D_NOSE_EVO__primary",
+     "D_NOSE_EVO__secondary"
+    ]
+   },
+   "FrontBody/D_NOSE_GT": {
+    "fingerprint": [
+     3,
+     0.0,
+     0.0,
+     2.069,
+     -29.171,
+     45.693
+    ],
+    "parts": [
+     "D_NOSE_GT__detail",
+     "D_NOSE_GT__primary",
+     "D_NOSE_GT__secondary"
+    ]
+   },
+   "FrontBody/D_NOSE_STD": {
+    "fingerprint": [
+     3,
+     0.0,
+     0.0,
+     2.401,
+     -29.563,
+     40.737
+    ],
+    "parts": [
+     "D_NOSE_STD__detail",
+     "D_NOSE_STD__primary",
+     "D_NOSE_STD__secondary"
+    ]
+   },
+   "FrontBody/E_NOSE_EVO": {
+    "fingerprint": [
+     4,
+     0.0,
+     0.0,
+     2.089,
+     -40.668,
+     50.879
+    ],
+    "parts": [
+     "E_NOSE_EVO__detail",
+     "E_NOSE_EVO__lights",
+     "E_NOSE_EVO__primary",
+     "E_NOSE_EVO__secondary"
+    ]
+   },
+   "FrontBody/E_NOSE_GT": {
+    "fingerprint": [
+     4,
+     0.0,
+     0.0,
+     2.087,
+     -40.55,
+     49.653
+    ],
+    "parts": [
+     "E_NOSE_GT__detail",
+     "E_NOSE_GT__lights",
+     "E_NOSE_GT__primary",
+     "E_NOSE_GT__secondary"
+    ]
+   },
+   "FrontBody/E_NOSE_STD": {
+    "fingerprint": [
+     4,
+     0.0,
+     0.0,
+     1.106,
+     -43.23,
+     39.261
+    ],
+    "parts": [
+     "E_NOSE_STD__detail",
+     "E_NOSE_STD__lights",
+     "E_NOSE_STD__primary",
+     "E_NOSE_STD__secondary"
+    ]
+   },
+   "FrontBody/F_NOSE_EVO": {
+    "fingerprint": [
+     4,
+     0.0,
+     0.0,
+     1.753,
+     -38.68,
+     56.277
+    ],
+    "parts": [
+     "F_NOSE_EVO__detail",
+     "F_NOSE_EVO__lights",
+     "F_NOSE_EVO__primary",
+     "F_NOSE_EVO__secondary"
+    ]
+   },
+   "FrontBody/F_NOSE_GT": {
+    "fingerprint": [
+     4,
+     0.0,
+     0.0,
+     1.753,
+     -38.405,
+     55.687
+    ],
+    "parts": [
+     "F_NOSE_GT__detail",
+     "F_NOSE_GT__lights",
+     "F_NOSE_GT__primary",
+     "F_NOSE_GT__secondary"
+    ]
+   },
+   "FrontBody/F_NOSE_STD": {
+    "fingerprint": [
+     4,
+     0.0,
+     0.0,
+     1.923,
+     -37.63,
+     53.797
+    ],
+    "parts": [
+     "F_NOSE_STD__detail",
+     "F_NOSE_STD__lights",
+     "F_NOSE_STD__primary",
+     "F_NOSE_STD__secondary"
     ]
    },
    "RearBody/A_TAIL_EVO": {
@@ -1066,6 +1932,198 @@
      "B_TAIL_STD__secondary"
     ]
    },
+   "RearBody/C_TAIL_EVO": {
+    "fingerprint": [
+     4,
+     0.0,
+     0.0,
+     5.948,
+     35.605,
+     66.814
+    ],
+    "parts": [
+     "C_TAIL_EVO__detail",
+     "C_TAIL_EVO__lights_red",
+     "C_TAIL_EVO__primary",
+     "C_TAIL_EVO__secondary"
+    ]
+   },
+   "RearBody/C_TAIL_GT": {
+    "fingerprint": [
+     4,
+     0.0,
+     0.0,
+     5.325,
+     35.155,
+     64.668
+    ],
+    "parts": [
+     "C_TAIL_GT__detail",
+     "C_TAIL_GT__lights_red",
+     "C_TAIL_GT__primary",
+     "C_TAIL_GT__secondary"
+    ]
+   },
+   "RearBody/C_TAIL_STD": {
+    "fingerprint": [
+     4,
+     0.0,
+     0.0,
+     5.196,
+     36.005,
+     59.11
+    ],
+    "parts": [
+     "C_TAIL_STD__detail",
+     "C_TAIL_STD__lights_red",
+     "C_TAIL_STD__primary",
+     "C_TAIL_STD__secondary"
+    ]
+   },
+   "RearBody/D_TAIL_EVO": {
+    "fingerprint": [
+     4,
+     0.0,
+     0.0,
+     4.551,
+     35.742,
+     64.249
+    ],
+    "parts": [
+     "D_TAIL_EVO__detail",
+     "D_TAIL_EVO__lights_red",
+     "D_TAIL_EVO__primary",
+     "D_TAIL_EVO__secondary"
+    ]
+   },
+   "RearBody/D_TAIL_GT": {
+    "fingerprint": [
+     4,
+     0.0,
+     0.0,
+     3.89,
+     36.095,
+     60.322
+    ],
+    "parts": [
+     "D_TAIL_GT__detail",
+     "D_TAIL_GT__lights_red",
+     "D_TAIL_GT__primary",
+     "D_TAIL_GT__secondary"
+    ]
+   },
+   "RearBody/D_TAIL_STD": {
+    "fingerprint": [
+     4,
+     0.0,
+     0.0,
+     3.857,
+     36.296,
+     55.474
+    ],
+    "parts": [
+     "D_TAIL_STD__detail",
+     "D_TAIL_STD__lights_red",
+     "D_TAIL_STD__primary",
+     "D_TAIL_STD__secondary"
+    ]
+   },
+   "RearBody/E_TAIL_EVO": {
+    "fingerprint": [
+     4,
+     0.0,
+     0.0,
+     5.339,
+     35.562,
+     63.47
+    ],
+    "parts": [
+     "E_TAIL_EVO__detail",
+     "E_TAIL_EVO__lights_red",
+     "E_TAIL_EVO__primary",
+     "E_TAIL_EVO__secondary"
+    ]
+   },
+   "RearBody/E_TAIL_GT": {
+    "fingerprint": [
+     4,
+     0.0,
+     0.0,
+     5.213,
+     35.612,
+     61.318
+    ],
+    "parts": [
+     "E_TAIL_GT__detail",
+     "E_TAIL_GT__lights_red",
+     "E_TAIL_GT__primary",
+     "E_TAIL_GT__secondary"
+    ]
+   },
+   "RearBody/E_TAIL_STD": {
+    "fingerprint": [
+     4,
+     0.0,
+     0.0,
+     5.262,
+     35.013,
+     57.68
+    ],
+    "parts": [
+     "E_TAIL_STD__detail",
+     "E_TAIL_STD__lights_red",
+     "E_TAIL_STD__primary",
+     "E_TAIL_STD__secondary"
+    ]
+   },
+   "RearBody/F_TAIL_EVO": {
+    "fingerprint": [
+     4,
+     0.0,
+     0.0,
+     4.772,
+     34.985,
+     64.701
+    ],
+    "parts": [
+     "F_TAIL_EVO__detail",
+     "F_TAIL_EVO__lights_red",
+     "F_TAIL_EVO__primary",
+     "F_TAIL_EVO__secondary"
+    ]
+   },
+   "RearBody/F_TAIL_GT": {
+    "fingerprint": [
+     4,
+     0.0,
+     0.0,
+     4.147,
+     34.76,
+     63.002
+    ],
+    "parts": [
+     "F_TAIL_GT__detail",
+     "F_TAIL_GT__lights_red",
+     "F_TAIL_GT__primary",
+     "F_TAIL_GT__secondary"
+    ]
+   },
+   "RearBody/F_TAIL_STD": {
+    "fingerprint": [
+     4,
+     0.0,
+     0.0,
+     4.149,
+     34.46,
+     62.404
+    ],
+    "parts": [
+     "F_TAIL_STD__detail",
+     "F_TAIL_STD__lights_red",
+     "F_TAIL_STD__primary",
+     "F_TAIL_STD__secondary"
+    ]
+   },
    "RearSpoiler/A_WING_EVO": {
     "fingerprint": [
      2,
@@ -1148,6 +2206,174 @@
     "parts": [
      "B_WING_STD__primary",
      "B_WING_STD__secondary"
+    ]
+   },
+   "RearSpoiler/C_WING_EVO": {
+    "fingerprint": [
+     2,
+     0.0,
+     0.0,
+     8.49,
+     22.47,
+     33.02
+    ],
+    "parts": [
+     "C_WING_EVO__primary",
+     "C_WING_EVO__secondary"
+    ]
+   },
+   "RearSpoiler/C_WING_GT": {
+    "fingerprint": [
+     2,
+     0.0,
+     0.0,
+     7.43,
+     22.325,
+     25.91
+    ],
+    "parts": [
+     "C_WING_GT__primary",
+     "C_WING_GT__secondary"
+    ]
+   },
+   "RearSpoiler/C_WING_STD": {
+    "fingerprint": [
+     2,
+     0.0,
+     0.0,
+     5.47,
+     22.26,
+     14.72
+    ],
+    "parts": [
+     "C_WING_STD__primary",
+     "C_WING_STD__secondary"
+    ]
+   },
+   "RearSpoiler/D_WING_EVO": {
+    "fingerprint": [
+     2,
+     0.0,
+     0.0,
+     8.085,
+     22.56,
+     33.91
+    ],
+    "parts": [
+     "D_WING_EVO__primary",
+     "D_WING_EVO__secondary"
+    ]
+   },
+   "RearSpoiler/D_WING_GT": {
+    "fingerprint": [
+     2,
+     0.0,
+     0.0,
+     7.025,
+     22.3,
+     26.27
+    ],
+    "parts": [
+     "D_WING_GT__primary",
+     "D_WING_GT__secondary"
+    ]
+   },
+   "RearSpoiler/D_WING_STD": {
+    "fingerprint": [
+     2,
+     0.0,
+     0.0,
+     4.575,
+     22.275,
+     18.44
+    ],
+    "parts": [
+     "D_WING_STD__primary",
+     "D_WING_STD__secondary"
+    ]
+   },
+   "RearSpoiler/E_WING_EVO": {
+    "fingerprint": [
+     2,
+     0.0,
+     0.0,
+     8.76,
+     22.38,
+     25.42
+    ],
+    "parts": [
+     "E_WING_EVO__primary",
+     "E_WING_EVO__secondary"
+    ]
+   },
+   "RearSpoiler/E_WING_GT": {
+    "fingerprint": [
+     2,
+     0.0,
+     0.0,
+     7.55,
+     22.15,
+     23.44
+    ],
+    "parts": [
+     "E_WING_GT__primary",
+     "E_WING_GT__secondary"
+    ]
+   },
+   "RearSpoiler/E_WING_STD": {
+    "fingerprint": [
+     2,
+     0.0,
+     0.0,
+     5.84,
+     22.075,
+     19.05
+    ],
+    "parts": [
+     "E_WING_STD__primary",
+     "E_WING_STD__secondary"
+    ]
+   },
+   "RearSpoiler/F_WING_EVO": {
+    "fingerprint": [
+     2,
+     0.0,
+     0.0,
+     9.085,
+     23.095,
+     37.32
+    ],
+    "parts": [
+     "F_WING_EVO__primary",
+     "F_WING_EVO__secondary"
+    ]
+   },
+   "RearSpoiler/F_WING_GT": {
+    "fingerprint": [
+     2,
+     0.0,
+     0.0,
+     8.03,
+     22.575,
+     28.97
+    ],
+    "parts": [
+     "F_WING_GT__primary",
+     "F_WING_GT__secondary"
+    ]
+   },
+   "RearSpoiler/F_WING_STD": {
+    "fingerprint": [
+     2,
+     0.0,
+     0.0,
+     6.025,
+     22.025,
+     21.44
+    ],
+    "parts": [
+     "F_WING_STD__primary",
+     "F_WING_STD__secondary"
     ]
    },
    "Stabilisers/A_STAB_EVO": {
@@ -1249,6 +2475,207 @@
      "B_STAB_STD__primary",
      "B_STAB_STD__secondary",
      "B_STAB_STD__thrust"
+    ]
+   },
+   "Stabilisers/C_STAB_EVO": {
+    "fingerprint": [
+     5,
+     0.0,
+     0.0,
+     -0.143,
+     -3.025,
+     103.989
+    ],
+    "parts": [
+     "C_STAB_EVO__detail",
+     "C_STAB_EVO__neon",
+     "C_STAB_EVO__primary",
+     "C_STAB_EVO__secondary",
+     "C_STAB_EVO__thrust"
+    ]
+   },
+   "Stabilisers/C_STAB_GT": {
+    "fingerprint": [
+     5,
+     0.0,
+     0.0,
+     -0.03,
+     -2.425,
+     101.396
+    ],
+    "parts": [
+     "C_STAB_GT__detail",
+     "C_STAB_GT__neon",
+     "C_STAB_GT__primary",
+     "C_STAB_GT__secondary",
+     "C_STAB_GT__thrust"
+    ]
+   },
+   "Stabilisers/C_STAB_STD": {
+    "fingerprint": [
+     5,
+     0.0,
+     0.0,
+     0.364,
+     -1.825,
+     97.443
+    ],
+    "parts": [
+     "C_STAB_STD__detail",
+     "C_STAB_STD__neon",
+     "C_STAB_STD__primary",
+     "C_STAB_STD__secondary",
+     "C_STAB_STD__thrust"
+    ]
+   },
+   "Stabilisers/D_STAB_EVO": {
+    "fingerprint": [
+     4,
+     0.0,
+     0.0,
+     0.186,
+     -2.925,
+     82.907
+    ],
+    "parts": [
+     "D_STAB_EVO__detail",
+     "D_STAB_EVO__primary",
+     "D_STAB_EVO__secondary",
+     "D_STAB_EVO__thrust"
+    ]
+   },
+   "Stabilisers/D_STAB_GT": {
+    "fingerprint": [
+     4,
+     0.0,
+     0.0,
+     0.208,
+     -2.525,
+     81.455
+    ],
+    "parts": [
+     "D_STAB_GT__detail",
+     "D_STAB_GT__primary",
+     "D_STAB_GT__secondary",
+     "D_STAB_GT__thrust"
+    ]
+   },
+   "Stabilisers/D_STAB_STD": {
+    "fingerprint": [
+     4,
+     0.0,
+     0.0,
+     0.266,
+     -2.125,
+     79.649
+    ],
+    "parts": [
+     "D_STAB_STD__detail",
+     "D_STAB_STD__primary",
+     "D_STAB_STD__secondary",
+     "D_STAB_STD__thrust"
+    ]
+   },
+   "Stabilisers/E_STAB_EVO": {
+    "fingerprint": [
+     5,
+     0.0,
+     0.0,
+     0.279,
+     -3.225,
+     101.872
+    ],
+    "parts": [
+     "E_STAB_EVO__detail",
+     "E_STAB_EVO__neon",
+     "E_STAB_EVO__primary",
+     "E_STAB_EVO__secondary",
+     "E_STAB_EVO__thrust"
+    ]
+   },
+   "Stabilisers/E_STAB_GT": {
+    "fingerprint": [
+     5,
+     0.0,
+     0.0,
+     0.365,
+     -2.725,
+     100.1
+    ],
+    "parts": [
+     "E_STAB_GT__detail",
+     "E_STAB_GT__neon",
+     "E_STAB_GT__primary",
+     "E_STAB_GT__secondary",
+     "E_STAB_GT__thrust"
+    ]
+   },
+   "Stabilisers/E_STAB_STD": {
+    "fingerprint": [
+     5,
+     0.0,
+     0.0,
+     0.479,
+     -2.125,
+     97.773
+    ],
+    "parts": [
+     "E_STAB_STD__detail",
+     "E_STAB_STD__neon",
+     "E_STAB_STD__primary",
+     "E_STAB_STD__secondary",
+     "E_STAB_STD__thrust"
+    ]
+   },
+   "Stabilisers/F_STAB_EVO": {
+    "fingerprint": [
+     5,
+     0.0,
+     0.0,
+     -0.894,
+     -4.9,
+     108.592
+    ],
+    "parts": [
+     "F_STAB_EVO__detail",
+     "F_STAB_EVO__neon",
+     "F_STAB_EVO__primary",
+     "F_STAB_EVO__secondary",
+     "F_STAB_EVO__thrust"
+    ]
+   },
+   "Stabilisers/F_STAB_GT": {
+    "fingerprint": [
+     5,
+     0.0,
+     0.0,
+     -0.972,
+     -4.9,
+     107.235
+    ],
+    "parts": [
+     "F_STAB_GT__detail",
+     "F_STAB_GT__neon",
+     "F_STAB_GT__primary",
+     "F_STAB_GT__secondary",
+     "F_STAB_GT__thrust"
+    ]
+   },
+   "Stabilisers/F_STAB_STD": {
+    "fingerprint": [
+     5,
+     0.0,
+     0.0,
+     -0.327,
+     -1.925,
+     97.363
+    ],
+    "parts": [
+     "F_STAB_STD__detail",
+     "F_STAB_STD__neon",
+     "F_STAB_STD__primary",
+     "F_STAB_STD__secondary",
+     "F_STAB_STD__thrust"
     ]
    }
   }

@@ -20,15 +20,79 @@
     "note": "Driver HumanoidRootPart at (-1.8, 1.337, 0.45) in root space; body low Y -0.74, body high Y 3.564 (Wedge roof underside 3.83). Head inside the roof; feet 0.34 below the tub underside, hidden by the body. Accepted by the integrator; looks are Oscar's to judge."
   },
   "overrides": {
+    "exotic_01": {
+      "driver": [
+        -1.5,
+        -0.1,
+        0.45
+      ],
+      "passenger": [
+        1.5,
+        -0.1,
+        0.45
+      ]
+    },
     "exotic_02": {
-      "driver": [-1.5, -0.1, 0.45],
-      "passenger": [1.5, -0.1, 0.45]
+      "driver": [
+        -1.5,
+        -0.1,
+        0.45
+      ],
+      "passenger": [
+        1.5,
+        -0.1,
+        0.45
+      ]
+    },
+    "exotic_03": {
+      "driver": [
+        -1.5,
+        -0.1,
+        0.45
+      ],
+      "passenger": [
+        1.5,
+        -0.1,
+        0.45
+      ]
+    },
+    "exotic_04": {
+      "driver": [
+        -1.5,
+        -0.1,
+        0.45
+      ],
+      "passenger": [
+        1.5,
+        -0.1,
+        0.45
+      ]
     },
     "exotic_05": {
-      "driver": [-1.5, -0.1, 0.45],
-      "passenger": [1.5, -0.1, 0.45]
+      "driver": [
+        -1.5,
+        -0.1,
+        0.45
+      ],
+      "passenger": [
+        1.5,
+        -0.1,
+        0.45
+      ]
+    },
+    "exotic_06": {
+      "driver": [
+        -1.1,
+        -0.1,
+        0.45
+      ],
+      "passenger": [
+        1.1,
+        -0.1,
+        0.45
+      ]
     }
   },
-  "_meshOverrides": "mesh/INTEGRATION.md D13. exotic_02 and exotic_05 are built from uploaded meshes with lower roofs (tops at 4.64 and 4.23), so they carry explicit starting values. They have NOT been measured in Play: the integrator runs measure_seat.lua on both and corrects these numbers here (a data-only change; rebuild afterwards). Remove an entry to fall back to the spec driver dummy rule.",
+  "_meshOverrides": "mesh/INTEGRATION.md D13. All six cockpits are built from uploaded meshes with lower roofs (tops between 4.2 and 4.64), so they carry explicit starting values; exotic_06 has a narrow canopy, so its seats sit closer together. They have NOT been measured in Play: the integrator runs measure_seat.lua on each and corrects these numbers here (a data-only change; rebuild afterwards). Remove an entry to fall back to the spec driver dummy rule.",
   "_overrides": "Optional, per cockpit: {\"driver\": [x, y, z], \"passenger\": [x, y, z]} (seat centre, root local space, each number within +-40). An override replaces the derived values for that cockpit. The INTERFACE.md figure for all six would be: {\"exotic_01\": {\"driver\": [-2.0, 0.25, 0.45], \"passenger\": [2.0, 0.25, 0.45]}, \"exotic_02\": {\"driver\": [-1.5, 0.25, 0.45], \"passenger\": [1.5, 0.25, 0.45]}, \"exotic_03\": {\"driver\": [-1.8, 0.25, 0.45], \"passenger\": [1.8, 0.25, 0.45]}, \"exotic_04\": {\"driver\": [-1.8, 0.25, 0.45], \"passenger\": [1.8, 0.25, 0.45]}, \"exotic_05\": {\"driver\": [-1.8, 0.25, 0.45], \"passenger\": [1.8, 0.25, 0.45]}, \"exotic_06\": {\"driver\": [-1.8, 0.25, 0.45], \"passenger\": [1.8, 0.25, 0.45]}}"
 }

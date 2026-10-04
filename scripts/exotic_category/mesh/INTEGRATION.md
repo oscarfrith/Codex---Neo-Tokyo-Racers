@@ -45,6 +45,31 @@ Cockpits `exotic_02` (Curve, round car, mesh car B) and `exotic_05` (Hyper, shar
 - **Accepted risks.** Stock Curve has 17 jet sockets against a guideline of 16. Fitting the three empty slots raises PI above target but inside the tier (Curve 383 to 407, Hyper 799 to 802). The Hyper tier ceiling is A 846, 3.5 PI below S; the proof covers own-family core modules only.
 - **Asset hygiene.** Checked on 2026-10-03: the 189 source MeshParts have no children, no TextureID, no MaterialVariant and no attributes. The installer does not check this itself.
 
+## Extension to all six cockpits (2026-10-04)
+
+Oscar confirmed the two pilot cars in Play and asked for the other four in game ("ok lets get them in game now"). Same place (Backup v2 only), same lane (High-Risk: 24 more saved ModuleIds), same decisions D1 to D16, now read for every kit. What changes:
+
+| # | Now |
+|---|---|
+| D1 | Asset `121164261170819` ("Space Racers Exotic cars") replaces `112592679936648`. It holds all six cars: 560 MeshParts. Car letters: A `exotic_05`, B `exotic_02`, C `exotic_01`, D `exotic_03`, E `exotic_04`, F `exotic_06`. Cars A and B are re-exported from unchanged source (`mesh/cars.py`). |
+| D3 | `fileOffsetX` is 0, 20, 40, 60, 80, 100 for A to F. |
+| D6 | 24 more ModuleIds, same pattern, for N in 1, 3, 4, 6: 36 new ids and 144 modules in total. |
+| D8 | Every cockpit declares no default for `SidePods`, `FrontBumper`, `RearBumper`. Those 18 modules stay primitive. |
+| D9 | Stock PI on target for all six (220, 390, 540, 675, 800, 938). |
+| D13 | Seat overrides for all six: driver `[-1.5, -0.1, 0.45]`, passenger mirrored; `exotic_06` uses X 1.1 (narrow canopy). None is measured in Play. |
+
+This section supersedes the earlier text wherever the two disagree: the Goal and "Not in scope" lines that say kits 01, 03, 04 and 06 do not change, the builder rule that asks for proof of that, and the old asset id in the regenerate command (now `py -3 scripts/exotic_category/mesh/make_mesh_data.py 121164261170819`). `balance/report.md` and `stage_b/README.md` still word the mesh kits as "two cockpits" and "twelve ids" in places; the numbers in them are current.
+
+Recovery to the two-car state (content hash `4d735c74...`): build `scripts/exotic_category/stage_b` at commit `68b3ed0` and APPLY that build. The old asset `112592679936648` stays in Oscar's inventory for that.
+
+Asset hygiene, checked in Studio on 2026-10-04: the 560 MeshParts of `121164261170819` have a MeshId and no children, TextureID, MaterialVariant or attributes. The old asset still loads (189 parts).
+
+Accepted risks added by the extension:
+- Fitting the three empty slots with own-kit parts raises PI inside the tier on every cockpit: 220 to 244 (E), 390 to 406 (D), 540 to 550 (C), 675 to 680 (B), 800 to 802 (A), 938 to 938 (S).
+- On `exotic_01` the Rear Bumpers of the six kits differ by 1.14 PI unrounded (limit was 1.0); shown indices stay within 1. `test_balance.py` records the wider limit for that case only.
+- Stock socket counts: 15 on every cockpit except `exotic_02` (17, the recorded exception). Full-kit boosts carry up to 4 sockets.
+- The primitive geometry of kits 01, 03, 04, 06 (cockpits and core/stock-body modules) is no longer installed. The 24 new ids are one-way in the same sense as the first twelve.
+
 ## Builder rules
 
 - Write only under `scripts/exotic_category/stage_b/`, `scripts/exotic_category/balance/`, and `scripts/exotic_category/refine.py` if a step must change. Do not edit `mesh.json` by hand (re-run `py -3 scripts/exotic_category/mesh/make_mesh_data.py 112592679936648` if its generator needs a fix, and say so).

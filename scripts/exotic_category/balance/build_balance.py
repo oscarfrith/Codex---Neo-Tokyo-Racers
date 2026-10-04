@@ -97,7 +97,7 @@ NEW_DEFAULTS = {"Default%sModuleId" % slot: slot for slot in BODY_ORDER}
 
 # Mesh kits (scripts/exotic_category/mesh/INTEGRATION.md D6 to D9). Written out here on purpose, as the
 # INTERFACE.md tables above are: test_balance.py compares the ids with stage_b/data/mesh.json.
-MESH_KITS = (2, 5)
+MESH_KITS = (1, 2, 3, 4, 5, 6)
 # The stock body parts of a mesh cockpit. Its other three body slots declare no default and start empty.
 MESH_STOCK_BODY = ["FrontBody", "RearBody", "RearSpoiler"]
 # Extra ModuleIds per mesh kit and stock body slot: <base id>_<TRIM>. Same stats and upgrade paths as the

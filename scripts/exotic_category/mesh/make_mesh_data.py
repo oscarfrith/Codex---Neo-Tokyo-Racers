@@ -16,7 +16,14 @@ EXPORT = os.path.join(HERE, "export")
 OUT = os.path.join(HERE, "..", "stage_b", "data", "mesh.json")
 
 CARS = {"A": {"cockpit": "exotic_05", "kit": 5, "fileOffsetX": 0.0},
-        "B": {"cockpit": "exotic_02", "kit": 2, "fileOffsetX": 20.0}}
+        "B": {"cockpit": "exotic_02", "kit": 2, "fileOffsetX": 20.0},
+        "C": {"cockpit": "exotic_01", "kit": 1, "fileOffsetX": 40.0},
+        "D": {"cockpit": "exotic_03", "kit": 3, "fileOffsetX": 60.0},
+        "E": {"cockpit": "exotic_04", "kit": 4, "fileOffsetX": 80.0},
+        "F": {"cockpit": "exotic_06", "kit": 6, "fileOffsetX": 100.0}}
+# Cars C to F (cars2.py): nozzle centres of the engines, and the boost nozzles per version.
+ENGINE1 = {"C": (5.1, 0.52), "D": (5.1, 0.7), "E": (5.1, 0.68), "F": (5.1, 0.4)}
+ENGINE2 = {"C": (5.05, 0.62), "D": (5.05, 0.7), "E": (5.14, 0.88), "F": (5.14, 0.92)}
 SLOT_MAP = {"NOSE": "FrontBody", "TAIL": "RearBody", "FPOD": "Engine1", "RPOD": "Engine2", "STAB": "Stabilisers",
             "BOOST": "Boost", "WING": "RearSpoiler"}
 TRIM_MAP = {"STD": "STANDARD", "GT": "LIGHTWEIGHT", "EVO": "POWER"}
@@ -42,6 +49,35 @@ def sockets(car, slot, trim):
         return [{"name": f"{name}_Left", "position": [-x, y, z], "dir": d},
                 {"name": f"{name}_Right", "position": [x, y, z], "dir": d}]
 
+    if car in ENGINE1:
+        if slot == "Engine1":
+            return pair("VFX_EngineJet", ENGINE1[car][0], ENGINE1[car][1], -5.4, REAR)
+        if slot == "Engine2":
+            return pair("VFX_EngineJet", ENGINE2[car][0], ENGINE2[car][1], 10.6, REAR)
+        if slot == "Stabilisers":
+            out = []
+            for side, sx in (("Left", -4.9), ("Right", 4.9)):
+                out.append({"name": f"VFX_StabiliserJet_{side}_Front", "position": [sx, -0.9, -3.3], "dir": DOWN})
+                out.append({"name": f"VFX_StabiliserJet_{side}_Rear", "position": [sx, -0.9, 0.4], "dir": DOWN})
+            return out
+        if slot == "Boost":
+            z = 12.0 + lvl * 0.15
+            if car == "C":      # one wide slot burner; the full kit stacks a second one below it
+                if lvl < 2:
+                    return pair("VFX_BoostJet", 0.8, 0.85, z, REAR)
+                return (pair("VFX_BoostJet", 0.8, 1.15, z, REAR)
+                        + [{"name": "VFX_BoostJet_Top", "position": [0.8, 0.35, z], "dir": REAR},
+                           {"name": "VFX_BoostJet_Back", "position": [-0.8, 0.35, z], "dir": REAR}])
+            if car == "D":      # fishtail nozzle
+                return pair("VFX_BoostJet", 0.7 + lvl * 0.1, 0.82, z + 0.15, REAR)
+            if car == "E":      # twin turbines; the full kit adds an outer pair
+                out = pair("VFX_BoostJet", 1.0, 1.28, z, REAR)
+                if lvl == 2:
+                    out += [{"name": "VFX_BoostJet_Top", "position": [1.95, 1.28, 12.0], "dir": REAR},
+                            {"name": "VFX_BoostJet_Back", "position": [-1.95, 1.28, 12.0], "dir": REAR}]
+                return out
+            return pair("VFX_BoostJet", 1.08, 0.25 + lvl * 0.04, z, REAR)
+        return []
     if slot == "Engine1":
         return pair("VFX_EngineJet", 5.1 if a else 4.95, 0.68 if a else 0.65, -5.4, REAR)
     if slot == "Engine2":
