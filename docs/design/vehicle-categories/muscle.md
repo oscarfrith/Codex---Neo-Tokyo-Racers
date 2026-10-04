@@ -14,6 +14,32 @@ Approved direction for the Modern Muscle category in Space Racers v3. Route: [ve
 - **Parts:** recommendation accepted in principle (2026-10-04): consider locking body parts to their own car so every kit can have meaningful GT and EVO gains. Final choice goes in the contract.
 - **Entry price:** new profiles start with 140,000 Cash; settle the cheapest Muscle car against that.
 
+## Modern Muscle concept round (2026-10-04) - proposed, not approved
+
+Six hover cars, each copying one real modern muscle car, for the installed ids `muscle_01` to `muscle_06`. Images: Codex, front and rear three-quarter (`scripts/exotic_category/categories/muscle/concepts/make_concepts.py`; full size under `output/muscle-concepts-2026-10-04/`). Names are working names. This is gate 1 of the playbook (concepts); nothing here is modelled or installed.
+
+Visual language table. No two cars share a cell.
+
+| Id, tier | Working name | Real car | Nose and lights (Front Body, Front Engine) | Front engine | Tail and rear engine | Overdrive | Drift thrusters | Wing | Paint |
+|---|---|---|---|---|---|---|---|---|---|
+| `muscle_01` E | Brawler | Dodge Challenger Scat Pack Widebody | Blunt slot grille, four round halo lamps | Twin shaker turbine through the bonnet | Square tail, one full-width light bar, two round barrels | Long chrome side pipes | Round turbine cans | Ducktail lip | Plum purple, satin black |
+| `muscle_02` D | Slingshot | Chevrolet Camaro SS | Low wedge, slit lamps, huge lower mouth | Flat heat-extractor slot in the bonnet | Kamm tail, four small square lamps, one wide slot burner | Flush sill slots | Angular box nozzles | Blade wing on two uprights | Yellow, gloss black |
+| `muscle_03` D | Stallion | Ford Mustang GT (S650) | Shark nose, hexagonal grille, three-bar lamps | Round ram turbine in the grille, twin bonnet vents | Concave tail, three vertical bars each side, four corner nozzles | Megaphones behind the front arch | Slim round jets | Low pedestal spoiler | Blue, white stripes |
+| `muscle_04` C | Blackjack | Cadillac CT5-V Blackwing | Shield mesh grille, tall vertical blade lamps | Carbon power dome with twin slot intakes | Upright tail, vertical blade lamps, two stacked turbines | Triple slim pipes per sill | Twin cans per corner | Carbon lip | Emerald green, carbon, bronze |
+| `muscle_05` C | Voltage | Dodge Charger Daytona (2024) | Flat nose, one full-width light bar, pass-through slot | Twin-rotor turbine inside the nose slot | Fastback hatch, one red light ring, one huge central turbine | Short fat twin tubes | Flat thrust paddles | Integrated lip with flap | Red, gloss black |
+| `muscle_06` B | Apex | Ford Mustang GTD | Gaping grille, long splitter with canards | Exposed turbine between louvred extractors | Wide tail, lamps at the edges, twin titanium afterburners, finned diffuser | Underslung twin tubes | Exposed strut jets behind louvred fenders | Tall swan-neck wing | Gunmetal, carbon, orange |
+
+| | Front | Rear |
+|---|---|---|
+| Brawler | ![Brawler front](img/muscle-modern/01-brawler-front.jpg) | ![Brawler rear](img/muscle-modern/01-brawler-rear.jpg) |
+| Slingshot | ![Slingshot front](img/muscle-modern/02-slingshot-front.jpg) | ![Slingshot rear](img/muscle-modern/02-slingshot-rear.jpg) |
+| Stallion | ![Stallion front](img/muscle-modern/03-stallion-front.jpg) | ![Stallion rear](img/muscle-modern/03-stallion-rear.jpg) |
+| Blackjack | ![Blackjack front](img/muscle-modern/04-blackjack-front.jpg) | ![Blackjack rear](img/muscle-modern/04-blackjack-rear.jpg) |
+| Voltage | ![Voltage front](img/muscle-modern/05-voltage-front.jpg) | ![Voltage rear](img/muscle-modern/05-voltage-rear.jpg) |
+| Apex | ![Apex front](img/muscle-modern/06-apex-front.jpg) | ![Apex rear](img/muscle-modern/06-apex-rear.jpg) |
+
+To fix before modelling: the Slingshot, Stallion, Blackjack and Apex fronts show a faint grille emblem (remove); the Slingshot's bonnet engine and the Voltage's nose turbine need to read more clearly as jet hardware; the Apex's exposed strut jets must stay longer than wide so they do not read as wheels; the installed placeholder names and blockout shapes (Notch, Ute, Ragtop, Hardtop, Fastback, Modern) do not match these cars, which is expected: ids, stats and prices stay, names and geometry change with the mesh build.
+
 ## Pitch and player fantasy
 
 Muscle is the American muscle car with the wheels taken off. It keeps the long bonnet, the short deck, the wide haunches and the stripes. A turbine bursts through the bonnet where the supercharger was. Lift jets sit in the blanked arches. Afterburners sit where the side pipes ran.
