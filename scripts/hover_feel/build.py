@@ -240,6 +240,29 @@ SCRIPTS = {
 }
 
 
+# Synthesised file -> [(rev layer folder or None, attribute)] on EXOTIC_V10_AUDIO (table in audio/NOTES.md).
+SLOTS = {
+    "v10_idle_1000": [("V10Idle1000", "AssetId")],
+    "v10_on_2000": [("V10On2000", "AssetId")], "v10_on_3500": [("V10On3500", "AssetId")],
+    "v10_on_5000": [("V10On5000", "AssetId")], "v10_on_6500": [("V10On6500", "AssetId")],
+    "v10_on_8000": [("V10On8000", "AssetId")],
+    "v10_off_3000": [("V10Off3000", "AssetId")], "v10_off_6000": [("V10Off6000", "AssetId")],
+    "boost_loop": [(None, "BoostLoopAssetId")], "thruster_roar": [(None, "BoostBodyAssetId")],
+    "boost_ignite": [(None, "BoostIgnitionAssetId")],
+    "boost_release": [(None, "BoostReleaseAssetId"), (None, "BoostEmptyAssetId"), (None, "FullBoostSpentAssetId")],
+    "turbine_low": [(None, "TurbineLowAssetId")], "turbine_high": [(None, "TurbineHighAssetId")],
+    "energy_hum": [(None, "EnergyHumAssetId")], "supercharger_whine": [(None, "SuperchargerWhineAssetId")],
+    "stabiliser_strain": [(None, "SlipStrainAssetId")], "drift_charge": [(None, "DriftChargeAssetId")],
+    "wind_rush": [(None, "DriverWindAssetId")], "wind_buffet": [(None, "WindBuffetAssetId")],
+    "turbo_flutter": [(None, "TurboFlutterAssetId")], "drift_release": [(None, "DriftChargeReleaseAssetId")],
+    "pop_1": [(None, "Pop1AssetId")], "pop_2": [(None, "Pop2AssetId")], "pop_3": [(None, "Pop3AssetId")],
+    "pop_4": [(None, "Pop4AssetId")], "bang_1": [(None, "Bang1AssetId")], "bang_2": [(None, "Bang2AssetId")],
+    "impact_light": [(None, "ImpactLightAssetId")], "impact_medium": [(None, "ImpactMediumAssetId")],
+    "impact_heavy": [(None, "ImpactHeavyAssetId")], "impact_severe": [(None, "ImpactSevereAssetId")],
+    "land_thump": [(None, "LandingThumpAssetId")],
+}
+
+
 def djb2(text):
     x = 5381
     for b in text.encode("utf-8"):
@@ -332,6 +355,21 @@ def main():
                            ("BoostLoopGain", 0.9), ("BoostBodyGain", 0.7), ("BoostIgnitionGain", 1), ("ProfileRevision", 3)):
             updates.append({"path": profile, "key": key, "value": value})
         updates.append({"path": profile + ["RevLayers", "StandInExhaust"], "key": "Gain", "value": 0.65})
+        # Uploaded sounds: audio/asset_ids.json (file name -> asset id) written into their slots.
+        ids_path = os.path.join(HERE, "audio", "asset_ids.json")
+        ids = json.load(io.open(ids_path, encoding="utf-8")) if os.path.exists(ids_path) else {}
+        filled = 0
+        for name, asset in sorted(ids.items()):
+            if name.startswith("_"):
+                continue
+            if name not in SLOTS:
+                raise SystemExit("asset_ids.json: no slot for " + name)
+            for layer, key in SLOTS[name]:
+                updates.append({"path": profile + (["RevLayers", layer] if layer else []), "key": key,
+                                "value": "rbxassetid://%d" % asset})
+            filled += 1
+        if filled:
+            updates.append({"path": profile, "key": "ProfileRevision", "value": 3 + filled})
 
     data = json.dumps({"placeId": PLACE_ID, "base": BASE, "scripts": scripts, "attributes": attributes,
                        "instances": instances, "updates": updates, "lateInstances": late}, sort_keys=True)

@@ -1,0 +1,9 @@
+{
+ "_note": "Uploaded synthesised sounds: file name (without .wav) to Roblox asset id. build.py writes each id into its slot on EXOTIC_V10_AUDIO (mapping: SLOTS in build.py, table in NOTES.md). Uploaded by Oscar to his own inventory on 2026-10-04.",
+ "_held_until_all_eight_engine_files_are_uploaded": {
+  "v10_idle_1000": 125173679945815,
+  "v10_on_5000": 123674696611624
+ },
+ "boost_ignite": 133020167141632,
+ "boost_loop": 139035470369920
+}
