@@ -56,12 +56,12 @@ def fender(st, peak, trim, front, style, creases=(1, 2, 3, 4), caps=(False, Fals
     if side == "smooth":
         regs.append(R(peak - 1.6, peak + 1.6, 2.2, 2.46, "detail", 0.22, side=1))
     elif side == "gills":
-        regs.append(R(peak - archw, peak + archw, 1.55, 2.86, "detail", 0.28, side=1))
+        regs.append(R(peak - archw, peak + archw, 2.14, 2.86, "detail", 0.28, side=1))
     elif side == "slots":
         n = 3 + (lvl > 0)
         for i in range(n):
             a = peak - (1.35 if n == 3 else 1.6) + i * (1.05 if n == 3 else 0.87)
-            regs.append(R(a, a + 0.6, 1.5, 2.88, "detail", 0.3, side=1))
+            regs.append(R(a, a + 0.6, 2.14, 2.88, "detail", 0.3, side=1))
     else:
         regs.append(R(peak - archw, peak + archw, 1.25, 2.92, "detail", 0.36, side=1))
     v = vent[lvl] if vent else None
@@ -74,7 +74,7 @@ def fender(st, peak, trim, front, style, creases=(1, 2, 3, 4), caps=(False, Fals
     if side == "smooth":
         pod.patch("flank", peak - 1.5, peak + 1.5, 2.28, 2.38, "neon", off=-0.14, mirror=True)
     elif side == "gills":
-        louvres(pod, "gill", peak - archw + 0.12, peak + archw - 0.12, 1.62, 2.8, 7 + lvl, ch="primary", off=-0.05,
+        louvres(pod, "gill", peak - archw + 0.12, peak + archw - 0.12, 2.18, 2.82, 7 + lvl, ch="primary", off=-0.05,
                 w=0.42)
     elif side == "slots":
         pod.patch("flank", peak - 1.5, peak + 1.5, 2.94, 2.99, "neon", off=0.02, mirror=True)
@@ -347,8 +347,8 @@ def car_d():
             R(8.6, 11.5, 0.0, 2.3, "secondary", 0.02), R(deck, 10.6, 4.2, 4.9, "detail", 0.14)])
         louvres(tail, "deck", deck + 0.1, 10.5, 4.25, 4.85, 8 + lvl * 2, off=-0.07)
         tail.throat("fascia", "max", lip="primary", scale=0.9, depth=0.3)
-        for i, (x, h) in enumerate(((2.5, 0.5), (2.15, 0.38), (1.8, 0.26))):
-            box(f"lamp{i}", (x, 0.85, 11.3), (0.2, h, 0.14), "lights_red", mirror=True)
+        for i, (x, h) in enumerate(((2.55, 0.62), (2.3, 0.44))):
+            box(f"lamp{i}", (x, 0.88, 11.3), (0.1, h, 0.14), "lights_red", mirror=True)
         tail_kit(lvl, (2.8, 3.2), nt=4.0)
 
         K.begin(c, "RPOD", trim)
@@ -444,7 +444,7 @@ def car_e():
             box(f"point{i}", (5.05 + dx, y, -12.02), (0.1, 0.52, 0.1), "lights", mirror=True)
         pod.throat("noz", "max", lip="secondary", back="thrust", scale=(0.78, 0.84, 0.88)[lvl], depth=0.5, mirror=True)
         front_aero(lvl, -12.3, nt=7.0)
-        flange(-12.0, -5.6, 0.5)
+        flange(-11.2, -5.6, 0.5)
 
         K.begin(c, "TAIL", trim)
         tail = Hull([(2.8, SEAM_R), (5.5, dict(yt=2.55)), (8.6, dict(yt=2.5, ys=1.5, tum=0.2, drop=0.2)),
@@ -456,8 +456,7 @@ def car_e():
             R((7.0, 6.0, 5.0)[lvl], 10.2, 4.15, 4.75, "detail", 0.15)])
         louvres(tail, "deck", (7.1, 6.1, 5.1)[lvl], 10.1, 4.2, 4.7, 6 + lvl * 2, off=-0.08)
         tail.throat("fascia", "max", lip="primary", scale=0.93, depth=0.3)
-        box("bar", (0, 2.12, 11.02), (6.9, 0.16, 0.16), "lights_red")
-        box("plate", (0, 2.12, 11.06), (2.0, 0.22, 0.12), "secondary")
+        box("bar", (0, 2.12, 11.02), (6.9, 0.14, 0.16), "lights_red")
         tail_kit(lvl, (2.8, 3.25), nt=7.0)
 
         K.begin(c, "RPOD", trim)
@@ -484,7 +483,7 @@ def car_e():
 
         K.begin(c, "BOOST", trim)
         rect([(10.8, {}), (11.45, {})], 0, 2.3, 0.6, 1.95, c=0.25).build("shroud", "primary")
-        box("panel", (0, 0.5, 10.98), (4.8, 1.6, 0.1), "detail")
+        box("panel", (0, 1.25, 10.98), (4.8, 1.2, 0.1), "detail")
         r = (0.45, 0.5, 0.5)[lvl]
         burner("turbine", 11.1, 12.0 + lvl * 0.15, 1.0, 1.28, r)
         box("vane", (1.0, 1.28, 11.9 + lvl * 0.15), (0.06, r * 1.7, 0.2), "detail", mirror=True)
@@ -495,7 +494,7 @@ def car_e():
         if lvl == 0:   # full-width low blade with end fences
             plane("plane", 3.85, 11.0, 0.5, 2.95, 3.08, "primary")
             blade("fence", 3.86, 2.3, 3.35, (10.4, 11.6), (10.55, 11.75), "secondary", t=0.05)
-            blade("stub", 2.7, 1.25, 2.98, (10.6, 11.2), (10.75, 11.3), "secondary")
+            blade("stub", 2.7, 2.38, 2.98, (10.6, 11.2), (10.75, 11.3), "secondary")
         elif lvl == 1:
             race_wing(4.7, 11.2, 0.85, 4.4, 2.7, plate=(3.6, 4.95))
         else:
@@ -537,7 +536,7 @@ def car_f():
                     yb=-0.4, rb=0.45, wcf=0.5, d2=0.05, crown=0.04)
         nose.build("skin", "primary", t1=-5.2 - GAP, regions=[
             R(-12.2, -5.6, 5.55, 6.0, "secondary", -0.02), R(-11.8, -10.4, 2.86, 2.98, "lights", -0.01)])
-        slab("floor", [(-12.0, 2.0), (-11.0, 3.6), (-5.5, 3.75)], -0.44, -0.34, "secondary", nt=6.0)
+        slab("floor", [(-12.0, 2.0), (-11.0, 3.6), (-5.5, 3.75)], -0.44, -0.34, "detail", nt=6.0)
         for i, x in enumerate((1.3, 2.6)[:1 + (lvl > 0)]):
             blade(f"strut{i}", x, -0.36, 0.5, (-11.9 + i * 0.8, -10.6 + i * 0.8), (-11.3 + i * 0.8, -10.4 + i * 0.8),
                   "secondary", t=0.04)
@@ -571,7 +570,7 @@ def car_f():
         louvres(tail, "deck", 5.7, 9.9, 4.25, 4.85, 7 + lvl, off=-0.07)
         tail.throat("fascia", "max", lip="primary", scale=0.9, depth=0.25)
         back = (11.7, 12.3, 12.75)[lvl]
-        slab("floor", [(7.6, 3.6), (back - 0.4, 3.75), (back, 3.5)], -0.5, -0.42, "secondary", nt=7.0)
+        slab("floor", [(7.6, 3.6), (back - 0.4, 3.75), (back, 3.5)], -0.5, -0.42, "detail", nt=7.0)
         for i, x in enumerate(((1.0, 2.9), (1.0, 2.2, 3.1), (0.9, 1.7, 2.5, 3.2))[lvl]):
             dfin(f"fin{i}", x, ((8.6, -0.3), (10.4, 0.2), (back, 0.4 + lvl * 0.12)))
         blade("endplate", 3.55, -0.45, 1.7 + lvl * 0.15, (9.9, 11.5), (10.7, 11.5), "secondary", t=0.05)
@@ -605,7 +604,7 @@ def car_f():
 
         K.begin(c, "BOOST", trim)
         Hull([(10.7, dict(w=2.35, yb=-0.42, yt=0.95)), (11.5, dict(w=2.2, yb=-0.3, yt=0.9))], rb=0.35, ys=0.55,
-             tum=0.35, drop=0.0, wcf=0.5, d2=0.0, crown=0.0).build("housing", "secondary")
+             tum=0.35, drop=0.0, wcf=0.5, d2=0.0, crown=0.0).build("housing", "detail")
         box("band", (0, 1.5, 11.04), (4.6, 0.5, 0.16), "primary")
         box("panel", (0, 1.4, 10.98), (4.8, 1.1, 0.1), "detail")
         t = rect([(11.1, {}), (12.0 + lvl * 0.15, {})], 1.08, 0.78 + lvl * 0.05, -0.2, 0.7 + lvl * 0.08, c=0.3)
