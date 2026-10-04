@@ -1,5 +1,5 @@
-local MODE = "ROLLBACK"
-local DATA = game:GetService("HttpService"):JSONDecode([==[{"attributes": [["NavigationIcons", "UnderglowSidebarIcon_exotic", "rbxassetid://137313031963928"], ["ModuleArtwork/ThrustColour", "Image_exotic", "rbxassetid://127812752445338"]], "base": "scripts/exotic_category/ui_underglow/", "placeId": 93959280828322, "scripts": {"GarageUI": {"after": 2437680978, "before": 3774331228, "path": ["ReplicatedStorage", "Modules", "Game", "Garage", "GarageUI"]}}}]==])
+local MODE = "APPLY"
+local DATA = game:GetService("HttpService"):JSONDecode([==[{"attributes": [["ModuleArtwork/FrontBody", "SortOrder", 32], ["ModuleArtwork/RearBody", "SortOrder", 34]], "base": "scripts/exotic_category/ui_shop_order/", "placeId": 93959280828322, "scripts": {"GarageModuleCardViewModel": {"after": 2841705015, "before": 2287884197, "path": ["ReplicatedStorage", "Modules", "Game", "UI", "GarageModuleCardViewModel"]}}}]==])
 -- Guarded garage UI installer body, shared by ui_artwork and ui_dealership. build.py prepends MODE and DATA.
 -- AUDIT writes nothing. APPLY writes the two after-sources and the config attributes; ROLLBACK restores the
 -- before-sources and removes the attributes. A script is written only when its current source is exactly the

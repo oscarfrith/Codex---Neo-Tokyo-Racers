@@ -87,9 +87,9 @@ def drawn(slot):
             pen.ellipse([base[0] - rad, base[1] - rad, base[0] + rad, base[1] + rad], fill=255)
         layer = layer.filter(ImageFilter.GaussianBlur(5)).point(lambda v: 255 if v > 110 else 0).filter(ImageFilter.GaussianBlur(1.5))
         return layer, False
-    corners = [(-5.4, -1.9, -11.6), (5.4, -1.9, -11.6), (5.4, -1.9, 11.0), (-5.4, -1.9, 11.0)]
+    corners = [(-6.3, -2.3, -12.4), (6.3, -2.3, -12.4), (6.3, -2.3, 12.0), (-6.3, -2.3, 12.0)]
     pen.polygon([project(c) for c in corners], fill=255)
-    return layer.filter(ImageFilter.GaussianBlur(20)), True
+    return layer.filter(ImageFilter.GaussianBlur(22)), True
 
 
 def main():

@@ -20,7 +20,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 BEFORE = os.path.join(HERE, "..", "ui_dealership", "after", "GarageUI.lua")
 PLACE_ID = 93959280828322
 CATEGORY = "exotic"
-UNDERGLOW = "rbxassetid://98896438353266"
+UNDERGLOW = "rbxassetid://137313031963928"
 THRUST = "rbxassetid://127812752445338"
 OLD = 'Image=navIcon("UnderglowSidebarIcon")'
 KEY = '"UnderglowSidebarIcon_"..tostring(currentCategory() and currentCategory().CategoryId)'
