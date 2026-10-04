@@ -77,8 +77,8 @@ def flange(z0, z1, y0, y1):
         "detail", mirror=True)
 
 
-def tub(doors=(-2.1, 1.3)):
-    """The body between the two seams, with door shut lines. Every cockpit uses the same section."""
+def tub(doors=()):
+    """The body between the two seams. Every cockpit uses the same section. doors: optional shut lines."""
     regs = [R(Z_F + GAP, Z_R - GAP, 0.0, 2.0, "secondary", 0.02)]
     regs += [R(z, z + 0.14, 2.05, 3.95, "detail", 0.03) for z in doors]
     Hull([(Z_F, SEAM_F), (Z_R, SEAM_R)]).build("tub", "primary", t0=Z_F + GAP, t1=Z_R - GAP, regions=regs)
@@ -88,21 +88,22 @@ def tub(doors=(-2.1, 1.3)):
 # ---------------------------------------------------------------- car F: Brawler (muscle_06)
 
 def f_cockpit():
-    """Low glasshouse: raked windscreen, long doors, a fast rear window down to a short deck."""
+    """Wide, long glasshouse nearly the full width of the body: raked windscreen, long roof, a fast rear
+    window down to a short deck."""
     K.begin("F", "COCKPIT")
     tub()
-    gh = Hull([(-5.9, dict(w=3.42, yb=3.1, yt=3.2, ys=3.14, tum=0.15, drop=0.02)),
-               (-3.7, dict(w=3.5, yt=5.2, tum=0.9)),
-               (-2.6, dict(yt=5.48)), (1.8, dict(yt=5.48)),
-               (2.9, dict(w=3.5, yt=5.3, tum=0.95)),
-               (5.9, dict(w=3.3, yb=3.15, yt=3.3, ys=3.2, tum=0.25, drop=0.03))],
-              w=3.55, yb=3.1, ys=3.3, rb=0.04, tum=0.95, drop=0.12, wcf=0.78, d2=0.03, crown=0.04)
+    gh = Hull([(-6.0, dict(w=3.55, yb=3.1, yt=3.2, ys=3.14, tum=0.12, drop=0.02)),
+               (-3.5, dict(w=3.66, yt=5.4, tum=0.62)),
+               (-2.4, dict(yt=5.7)), (1.9, dict(yt=5.7)),
+               (3.0, dict(w=3.66, yt=5.5, tum=0.68)),
+               (6.3, dict(w=3.5, yb=3.15, yt=3.3, ys=3.2, tum=0.2, drop=0.03))],
+              w=3.68, yb=3.1, ys=3.3, rb=0.04, tum=0.65, drop=0.12, wcf=0.8, d2=0.03, crown=0.04)
     gh.build("cabin", "primary", regions=[
-        R(-5.65, -3.85, 4.12, 6.0, "glass", 0.03),    # windscreen
-        R(-4.7, -0.35, 3.08, 3.9, "glass", 0.03),     # door glass, follows the screen pillar
-        R(0.0, 4.4, 3.08, 3.9, "glass", 0.03),        # quarter glass, follows the roof down
-        R(3.15, 5.6, 4.15, 6.0, "glass", 0.03),       # rear window
-        R(-3.6, 2.9, 5.1, 6.0, "secondary", 0.02)])   # roof stripe
+        R(-5.75, -3.65, 4.12, 6.0, "glass", 0.03),    # windscreen
+        R(-4.75, -0.3, 3.08, 3.9, "glass", 0.03),     # door glass, follows the screen pillar
+        R(0.0, 4.7, 3.08, 3.9, "glass", 0.03),        # quarter glass, follows the roof down
+        R(3.25, 6.0, 4.15, 6.0, "glass", 0.03),       # rear window
+        R(-3.4, 3.0, 5.1, 6.0, "secondary", 0.02)])   # roof stripe
 
 
 def f_nose():

@@ -65,7 +65,7 @@ GAP = K.GAP
 
 # Body seams: fixed Hull sections shared by every cockpit, nose and tail. Round 2 of the frame (2026-10-04):
 # taller, with real tumblehome and crown, so the body reads as a car and not a slab.
-SEAM_F = dict(cx=0.0, w=BODY_W, yb=-0.4, yt=3.2, rb=0.5, ys=2.45, tum=0.42, drop=0.3, wcf=0.72, d2=0.06,
+SEAM_F = dict(cx=0.0, w=BODY_W, yb=-0.4, yt=3.2, rb=0.5, ys=2.45, tum=0.25, drop=0.24, wcf=0.72, d2=0.06,
               crown=0.05, cs=0.035)
 SEAM_R = dict(SEAM_F)
 # Pod end faces: the back of a front pod and the front of a rear pod start from these, so a sill unit
@@ -78,7 +78,7 @@ POD_FZ, POD_RZ = -6.0, 4.0    # where those faces sit
 # Boxes are (|x| min, |x| max, y min, y max, z min, z max).
 K.ENV = {
     # tub, then the greenhouse (it laps onto the cowl and the deck)
-    "COCKPIT": [(0, 4.0, -0.6, 3.3, -4.7, 3.5), (0, 3.8, 2.9, 6.1, -6.1, 6.6)],
+    "COCKPIT": [(0, 4.0, -0.6, 3.3, -4.7, 3.5), (0, 3.95, 2.9, 6.2, -6.2, 6.7)],
     # body, chin and splitter zone, bonnet turbine zone
     "NOSE": [(0, 3.95, -0.6, 3.4, -13.4, -4.5), (0, 3.95, -1.0, 0.6, -13.9, -10.5), (0, 2.2, 3.0, 5.2, -11.0, -5.2)],
     # body, bed and buttress zone above the deck, diffuser zone
