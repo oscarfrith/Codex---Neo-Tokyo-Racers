@@ -7,6 +7,8 @@ Design language of F: blunt nose that tapers in plan, deep full-width slot grill
 front pods, twin shaker turbine through a raised bonnet bulge, long bonnet, low glasshouse with a fast rear
 window and a short deck, hips that rise over the rear pods, square tail with one full-width light bar,
 giant round barrels on the rear pods, fat bazookas in the sills, ducktail lip.
+Pass 4 (2026-10-04, Oscar): clean and minimal. The standard trim carries shape, lamps, glass, stripe and
+jets only. Vents, louvres, bolts, scoops and pipes are kept for the GT and EVO upgrade modules.
 Pass 2 (2026-10-04): less boxy. The body has tumblehome and crown, the pods are fenders with rounded
 shoulders instead of plain boxes, and the cabin is longer and lower at the back.
 """
@@ -48,7 +50,6 @@ def bazooka(name, x0, x1, z, y, r):
     t = xtube(x0, x1, z, y, r)
     t.build(name, "metal", mirror=True, caps=(True, False))
     t.throat(name + "n", "max", lip="metal", back="thrust", scale=0.82, depth=0.45, mirror=True)
-    xtube(x1 - 0.5, x1 - 0.32, z, y, r + 0.07).build(name + "c", "detail", mirror=True)
 
 
 def halo(name, x, y, z, r):
@@ -82,7 +83,6 @@ def tub(doors=(-2.1, 1.3)):
     regs += [R(z, z + 0.14, 2.05, 3.95, "detail", 0.03) for z in doors]
     Hull([(Z_F, SEAM_F), (Z_R, SEAM_R)]).build("tub", "primary", t0=Z_F + GAP, t1=Z_R - GAP, regions=regs)
     Hull([(Z_F - 0.08, SEAM_F), (Z_R + 0.08, SEAM_R)]).build("liner", "detail", scale=0.96)
-    box("handle", (M.BODY_W - 0.02, 2.62, doors[1] - 0.6), (0.08, 0.1, 0.6), "metal", mirror=True)
 
 
 # ---------------------------------------------------------------- car F: Brawler (muscle_06)
@@ -123,15 +123,10 @@ def f_nose():
          tum=0.2, drop=0.1, wcf=0.7, d2=0.02, crown=0.03).build("brow", "primary")
     Hull([(-13.25, dict(w=3.36, yb=0.45, yt=1.3, ys=1.05)), (-12.2, dict(w=3.55, yb=0.15, yt=1.42, ys=1.15))], rb=0.3,
          tum=0.15, drop=0.1, wcf=0.7, d2=0.0, crown=0.02).build("bumper", "primary")
-    for i, y in enumerate((1.56, 1.74)):
-        box(f"bar{i}", (0, y, -12.7), (6.9, 0.06, 0.12), "metal")
+    box("bar", (0, 1.66, -12.7), (6.9, 0.07, 0.12), "metal")
     box("intake", (0, 0.86, -13.27), (4.4, 0.44, 0.08), "detail")
-    for i, y in enumerate((0.76, 0.96)):
-        box(f"intakebar{i}", (0, y, -13.3), (4.3, 0.05, 0.08), "metal")
-    box("corner", (2.82, 0.86, -13.22), (0.6, 0.3, 0.08), "detail", mirror=True)
     Loft([(-13.6, dict(w=3.0)), (-12.9, dict(w=3.6)), (-11.2, dict(w=3.85))], yb=-0.5, yt=-0.38, nt=5,
          nb=5).build("chin", "secondary")
-    box("stay", (1.5, 0.02, -13.2), (0.06, 0.86, 0.06), "metal", mirror=True)
     # twin shaker turbine through the bonnet
     y = 3.95
     box("shakerbase", (0, y - 0.72, -7.75), (2.9, 0.34, 3.3), "detail")
@@ -140,34 +135,11 @@ def f_nose():
     t.build("shaker", "metal", mirror=True, caps=(False, True))
     t.throat("shakerin", "min", lip="metal", wall="detail", back="detail", scale=0.86, depth=0.7, mirror=True)
     tube(-10.0, -9.5, 0.74, y, 0.2).build("shakerhub", "metal", mirror=True)
-    for i, z in enumerate((-9.1, -7.9)):
-        tube(z, z + 0.2, 0.74, y, 0.71).build(f"shakerband{i}", "detail", mirror=True)
-    box("shakertie", (0, y, -8.3), (0.5, 0.5, 2.2), "detail")
 
 
-def f_pod_regions(z0, z1, shield, vent=None):
-    """Engine fender: black rocker, a black shoulder stripe, a sunk heat shield on the flank, a vent on top."""
-    regs = [R(z0 + 0.15, z1 - 0.15, 1.0, 2.0, "secondary", 0.02),
-            R(z0 + 0.5, z1 - 0.3, 3.15, 3.5, "secondary", 0.0, side=1),
-            R(shield[0], shield[1], 2.25, 2.9, "detail", 0.1, side=1)]
-    if vent:
-        regs.append(R(vent[0], vent[1], 4.6, 6.0, "detail", 0.12))
-    return regs
-
-
-def f_pod_hardware(pod, shield, bolt_y):
-    """Louvres standing in the heat shield, bolts at its corners and a metal strap either side of it."""
-    n = int(round((shield[1] - shield[0]) / 0.42))
-    step = (shield[1] - shield[0]) / n
-    for i in range(n):
-        t = shield[0] + (i + 0.5) * step
-        pod.patch(f"louvre{i}", t - 0.07, t + 0.07, 2.32, 2.83, "secondary", side=1, off=-0.03, mirror=True)
-    for i, z in enumerate((shield[0] - 0.42, shield[1] + 0.42)):
-        p = pod.params(z)
-        y0, y1 = p["yb"] + p["rb"] + 0.1, p["ys"] - 0.05
-        box(f"strap{i}", (p["cx"] + p["w"] + 0.005, (y0 + y1) / 2, z), (0.07, y1 - y0, 0.16), "metal", mirror=True)
-    x = pod.params((shield[0] + shield[1]) / 2)
-    bolts("bolt", x["cx"] + x["w"] - 0.06, bolt_y, (shield[0] + 0.22, shield[1] - 0.22))
+def f_pod_regions(z0, z1):
+    """Engine fender, standard trim: clean body colour over a black rocker. Nothing else."""
+    return [R(z0 + 0.15, z1 - 0.15, 1.0, 2.0, "secondary", 0.02)]
 
 
 def f_fpod():
@@ -177,40 +149,24 @@ def f_fpod():
                 (-12.2, dict(cx=5.4, w=1.28, yb=-1.05, yt=1.95, ys=1.35)),
                 (-10.5, dict(w=1.32, yt=2.25)), (-8.0, dict(w=1.32, yt=2.4)),
                 (POD_FZ, SIDE_F)], **SIDE_F)
-    shield = (-10.3, -7.4)
     pod.build("skin", "primary", mirror=True, caps=(True, False),
-              regions=f_pod_regions(-12.7, POD_FZ, shield, (-10.0, -7.7)))
+              regions=f_pod_regions(-12.7, POD_FZ))
     pod.throat("noz", "max", lip="secondary", back="thrust", scale=0.62, depth=0.5, mirror=True)
     for i, x in enumerate((4.9, 5.86)):
         halo(f"halo{i}", x, 0.82, -13.0, 0.42)
-    box("mouth", (5.38, -0.3, -12.74), (1.7, 0.36, 0.1), "detail", mirror=True)
-    box("mouthbar", (5.38, -0.3, -12.78), (1.7, 0.05, 0.1), "metal", mirror=True)
-    for i in range(4):
-        box(f"slat{i}", (5.4, 2.3, -9.75 + i * 0.6), (1.3, 0.06, 0.2), "secondary", mirror=True)
-    f_pod_hardware(pod, shield, (0.1, 1.2))
-    xt = xtube(6.3, 6.9, -6.75, -0.35, 0.48)
-    xt.build("sidepipe", "metal", mirror=True, caps=(True, False))
-    xt.throat("sidepipen", "max", lip="metal", wall="detail", back="detail", scale=0.8, depth=0.4, mirror=True)
     flange(-11.2, -6.4, -0.3, 1.9)
     lift_glow(pod, [(-10.4, -7.4)])
 
 
 def f_rpod():
-    """Rear engine fender: a haunch that climbs toward the tail, a ram scoop on top, a giant barrel behind."""
+    """Rear engine fender: a haunch that climbs toward the tail, a giant barrel behind."""
     K.begin("F", "RPOD")
     pod = Hull([(POD_RZ, SIDE_R), (5.4, dict(w=1.4, yb=-1.5, yt=3.35, ys=2.4)),
                 (8.6, dict(w=1.4, yb=-1.5, yt=3.75, ys=2.7)), (10.2, dict(w=1.4, yb=-1.4, yt=3.6, ys=2.6)),
                 (11.3, dict(cx=5.4, w=1.3, yb=-1.0, yt=3.2, ys=2.4))], **SIDE_R)
-    shield = (5.9, 9.5)
-    pod.build("skin", "primary", mirror=True, caps=(False, True), regions=f_pod_regions(POD_RZ, 11.3, shield))
+    pod.build("skin", "primary", mirror=True, caps=(False, True), regions=f_pod_regions(POD_RZ, 11.3))
     pod.throat("intake", "min", lip="primary", wall="detail", back="detail", scale=0.76, depth=0.5, mirror=True)
-    scoop = Loft([(5.9, dict(w=0.5, yt=3.9)), (7.5, dict(w=0.6, yt=4.2)), (9.6, dict(w=0.42, yt=3.95))], cx=5.45,
-                 yb=3.3, nt=3, nb=3, yw=0.3)
-    scoop.build("scoop", "primary", mirror=True, caps=(False, True))
-    scoop.throat("scoopin", "min", lip="metal", wall="detail", back="detail", scale=0.8, depth=0.4, mirror=True)
-    f_pod_hardware(pod, shield, (0.0, 1.9))
-    tube(10.0, 10.5, 5.45, 1.0, 1.3).build("housing", "detail", mirror=True)
-    barrel("barrel", 10.4, 12.6, 5.45, 1.0, 1.15, depth=0.8)
+    barrel("barrel", 10.4, 12.6, 5.45, 1.0, 1.15, depth=0.8, collar=False)
     flange(4.4, 10.6, -0.3, 2.3)
     lift_glow(pod, [(5.8, 9.6)])
 
@@ -221,11 +177,9 @@ def f_stab():
     sill = Hull([(POD_FZ + 0.1, {}), (POD_RZ - 0.1, {})], cx=4.95, w=0.85, yb=-1.2, yt=1.0, ys=0.6, rb=0.3, tum=0.2,
                 drop=0.12, wcf=0.6, d2=0.0, crown=0.04)
     sill.build("skin", "primary", mirror=True, regions=[
-        R(POD_FZ + 0.1, POD_RZ - 0.1, 1.0, 2.0, "secondary", 0.02),
-        R(-4.3, 2.3, 2.2, 2.9, "detail", 0.08, side=1)])
+        R(POD_FZ + 0.1, POD_RZ - 0.1, 1.0, 2.0, "secondary", 0.02)])
     for i, z in enumerate((-2.7, 0.7)):
         bazooka(f"bazooka{i}", 5.3, 6.75, z, -0.2, 0.54)
-    bolts("bolt", 5.76, (0.38,), (-4.1, -1.0, 2.1), size=0.12)
     lift_glow(sill, [(-5.0, -3.6), (1.6, 3.0)])
 
 
@@ -249,7 +203,7 @@ def f_boost():
     Hull([(10.8, {}), (12.1, {})], w=2.6, yb=-0.45, yt=1.25, rb=0.3, ys=0.9, tum=0.2, drop=0.0, wcf=0.5, d2=0.0,
          crown=0.0).build("housing", "secondary")
     box("trim", (0, 1.29, 11.6), (4.8, 0.08, 0.8), "primary")
-    barrel("barrel", 11.5, 13.2, 0.86, 0.38, 0.74, depth=0.55)
+    barrel("barrel", 11.5, 13.2, 0.86, 0.38, 0.74, depth=0.55, collar=False)
 
 
 def f_wing():

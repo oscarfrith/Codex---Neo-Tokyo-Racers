@@ -70,8 +70,8 @@ SEAM_F = dict(cx=0.0, w=BODY_W, yb=-0.4, yt=3.2, rb=0.5, ys=2.45, tum=0.42, drop
 SEAM_R = dict(SEAM_F)
 # Pod end faces: the back of a front pod and the front of a rear pod start from these, so a sill unit
 # always meets the same two faces.
-SIDE_F = dict(cx=5.4, w=1.3, yb=-1.2, yt=2.3, rb=0.45, ys=1.6, tum=0.4, drop=0.28, wcf=0.6, d2=0.03, crown=0.08,
-              cs=0.04)
+SIDE_F = dict(cx=5.4, w=1.3, yb=-1.2, yt=2.3, rb=0.38, ys=1.6, tum=0.32, drop=0.2, wcf=0.78, d2=0.02, crown=0.025,
+              cs=0.0)
 SIDE_R = dict(SIDE_F, cx=5.45, w=1.35, yb=-1.4, yt=2.8, ys=2.0)
 POD_FZ, POD_RZ = -6.0, 4.0    # where those faces sit
 
