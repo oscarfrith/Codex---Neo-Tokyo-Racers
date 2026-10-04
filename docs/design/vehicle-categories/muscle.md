@@ -20,6 +20,10 @@ Six hover cars, each copying one real modern muscle car, for the installed ids `
 
 Round 2 changes (Oscar, 2026-10-04): engines are separate pods at the four corners, as on Exotic; drift thrusters sit in the sills and fire sideways; overdrive is at the centre of the tail; the bonnet turbine stays as a look and may become an upgrade module later; the Mustang GTD and Charger Daytona are replaced by lower-end cars for E and D. Round 1 images (bonnet engine, lift jets under blanked arches) are in `img/muscle-modern/` without the `r2-` prefix.
 
+Change after round 2 (Oscar, 2026-10-04): `muscle_01` becomes a modernised Chevrolet El Camino, working name Outrider, in place of the Charger saloon (Enforcer). Images: [front](img/muscle-modern/r2-01-outrider-front.jpg), [rear](img/muscle-modern/r2-01-outrider-rear.jpg). This leaves two coupe utilities (Outrider and the Maloo-based Outlaw); which car takes `muscle_02` is open.
+
+Modelling has started (gate 1: frame and hero car). The frame standard is `scripts/exotic_category/categories/muscle/mesh/musclekit.py`; the hero car (Brawler, `muscle_06`, STD trim, first pass) is in `muscle_cars.py`, with renders in `mesh/previews/`. Bare metal hardware uses a new preview paint channel `metal`, which the content installer does not map yet.
+
 Layout, the same seven slots as Exotic:
 
 | Slot | Where | Muscle look |
