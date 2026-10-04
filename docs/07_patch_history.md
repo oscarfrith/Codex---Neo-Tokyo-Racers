@@ -10,6 +10,7 @@ Cockpits `exotic_01`, `03`, `04` and `06` join `02` and `05` as mesh cars, from 
 - **Unchanged:** every game script; Piercer; every existing ModuleId and its attributes.
 - **Installed:** content hash `c4bc69bc...`, catalogue revision `649a3f3c...`. AUDIT, APPLY, ROLLBACK, APPLY and post-install checks all clean.
 - **Evidence:** agent-verified to install level only. Not user-confirmed. Seats are not measured.
+- **Same day, second build (Standard lane, content only):** cars renamed Stinger, Zephyr, Aurora, Endura, Rosso, Seraph (display names only); glossy finish (Reflectance on paint and glass, darker glass, Plastic detail) to match the workspace WIP cars. `installer_engine.lua` now writes `Reflectance` from the channel table. Installed: content hash `f34e9503...`, catalogue revision `79fad2e6...`; AUDIT, APPLY and post-install checks clean. No live script writes `Reflectance` (216 scripts searched).
 - **Recovery:** build `stage_b` at commit `68b3ed0` and APPLY to return to the two-car state.
 
 ## 2026-10-03 - Exotic mesh pilot: Curve and Hyper from uploaded meshes (Backup v2 only)

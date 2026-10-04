@@ -102,12 +102,12 @@ Six Piercer stock builds, recomputed from the capture attributes (cockpit + its 
 
 | Cockpit | Name | Tier | Price | Piercer price | Over Piercer | Lightweight or Power module (12%) | `Point1..6CostGuide` on those modules |
 |---|---|---|---|---|---|---|---|
-| exotic_01 | Spider | E | 50,000 | 40,000 | +25.0% | 6,000 | 500 / 600 / 700 / 900 / 1,100 / 1,300 |
-| exotic_02 | Curve | D | 150,000 | 120,000 | +25.0% | 18,000 | 1,400 / 1,800 / 2,200 / 2,700 / 3,200 / 4,000 |
-| exotic_03 | Wedge | C | 440,000 | 350,000 | +25.7% | 52,800 | 4,200 / 5,300 / 6,300 / 7,900 / 9,500 / 11,600 |
-| exotic_04 | Longtail | B | 1,400,000 | 1,100,000 | +27.3% | 168,000 | 13,400 / 16,800 / 20,200 / 25,200 / 30,200 / 37,000 |
-| exotic_05 | Hyper | A | 4,400,000 | 3,500,000 | +25.7% | 528,000 | 42,200 / 52,800 / 63,400 / 79,200 / 95,000 / 116,200 |
-| exotic_06 | Gull | S | 12,500,000 | 10,000,000 | +25.0% | 1,500,000 | 120,000 / 150,000 / 180,000 / 225,000 / 270,000 / 330,000 |
+| exotic_01 | Stinger | E | 50,000 | 40,000 | +25.0% | 6,000 | 500 / 600 / 700 / 900 / 1,100 / 1,300 |
+| exotic_02 | Zephyr | D | 150,000 | 120,000 | +25.0% | 18,000 | 1,400 / 1,800 / 2,200 / 2,700 / 3,200 / 4,000 |
+| exotic_03 | Aurora | C | 440,000 | 350,000 | +25.7% | 52,800 | 4,200 / 5,300 / 6,300 / 7,900 / 9,500 / 11,600 |
+| exotic_04 | Endura | B | 1,400,000 | 1,100,000 | +27.3% | 168,000 | 13,400 / 16,800 / 20,200 / 25,200 / 30,200 / 37,000 |
+| exotic_05 | Rosso | A | 4,400,000 | 3,500,000 | +25.7% | 528,000 | 42,200 / 52,800 / 63,400 / 79,200 / 95,000 / 116,200 |
+| exotic_06 | Seraph | S | 12,500,000 | 10,000,000 | +25.0% | 1,500,000 | 120,000 / 150,000 / 180,000 / 225,000 / 270,000 / 330,000 |
 
 - Standard core modules: `Price=0`, `PurchasePrice=0`, with the live type-flat guides (engine 6,050 / 7,563, stabilisers 4,950 / 6,188, boost 8,250 / 10,313).
 - Variant guides are 8 / 10 / 12 / 15 / 18 / 22 percent of the module price, rounded to 100. The same rule reproduces all six live Piercer families.
@@ -128,20 +128,20 @@ Six Piercer stock builds, recomputed from the capture attributes (cockpit + its 
 
 Target stock totals = Piercer stock profile of the same tier x character x scale. Character multipliers: `TopSpeed` x1.12, `SteeringResponse` x1.15, `Weight` x0.9, `HoverStability` x0.85, `DriftControl` x0.85, `BoostDuration` x0.8. Higher-is-better stats are multiplied by the scale, lower-is-better stats are divided by it, no total goes under its technical minimum, and no lower-is-better total is worse than on the tier below.
 
-Totals held at the value of the tier below: Curve `Weight`, `BoostRecharge`, `Drag`. Forge and Vector have the same `Weight`, `Drag` and `BoostRecharge`, and each tier solves its own scale, so without this rule the D cockpit came out slightly heavier and draggier than the E cockpit. The scale is solved with the rule applied, so the stock PI still lands on the target.
+Totals held at the value of the tier below: Zephyr `Weight`, `BoostRecharge`, `Drag`. Forge and Vector have the same `Weight`, `Drag` and `BoostRecharge`, and each tier solves its own scale, so without this rule the D cockpit came out slightly heavier and draggier than the E cockpit. The scale is solved with the rule applied, so the stock PI still lands on the target.
 
 | Cockpit | Name | Tier | Piercer base | Solved scale | Target PI | Stock PI | Internal | Stock tier |
 |---|---|---|---|---|---|---|---|---|
-| exotic_01 | Spider | E | bruiser_02 | 1.021159 | 220 | 220 | 220 | E |
-| exotic_02 | Curve | D | bruiser_03 | 1.020135 | 390 | 390 | 390.01 | D |
-| exotic_03 | Wedge | C | bruiser_01 | 1.021711 | 540 | 540 | 540.01 | C |
-| exotic_04 | Longtail | B | bruiser_04 | 1.022143 | 675 | 675 | 675 | B |
-| exotic_05 | Hyper | A | bruiser_05 | 1.042935 | 800 | 800 | 800 | A |
-| exotic_06 | Gull | S | bruiser_06 | 1.112788 | 938 | 938 | 938 | S |
+| exotic_01 | Stinger | E | bruiser_02 | 1.021159 | 220 | 220 | 220 | E |
+| exotic_02 | Zephyr | D | bruiser_03 | 1.020135 | 390 | 390 | 390.01 | D |
+| exotic_03 | Aurora | C | bruiser_01 | 1.021711 | 540 | 540 | 540.01 | C |
+| exotic_04 | Endura | B | bruiser_04 | 1.022143 | 675 | 675 | 675 | B |
+| exotic_05 | Rosso | A | bruiser_05 | 1.042935 | 800 | 800 | 800 | A |
+| exotic_06 | Seraph | S | bruiser_06 | 1.112788 | 938 | 938 | 938 | S |
 
 Exotic stock total, with the Piercer total of the same tier in brackets:
 
-| Stat | E Spider | D Curve | C Wedge | B Longtail | A Hyper | S Gull |
+| Stat | E Stinger | D Zephyr | C Aurora | B Endura | A Rosso | S Seraph |
 |---|---|---|---|---|---|---|
 | TopSpeed | 64.05 (56) | 107.4 (94) | 156.77 (137) | 219.8 (192) | 324.73 (278) | 448.68 (360) |
 | EngineOutput | 27.57 (27) | 37.75 (37) | 51.09 (50) | 64.4 (63) | 86.56 (83) | 165.81 (149) |
@@ -165,17 +165,17 @@ Exotic stock total, with the Piercer total of the same tier in brackets:
 
 | Cockpit | Price | Stock | Speed | Acceleration | Handling | Drift | Braking | Boost |
 |---|---|---|---|---|---|---|---|---|
-| **exotic_01 Spider** | 50,000 | E 220 | 63.6 | 62 | 60.9 | 59.5 | 60.8 | 60 |
+| **exotic_01 Stinger** | 50,000 | E 220 | 63.6 | 62 | 60.9 | 59.5 | 60.8 | 60 |
 | bruiser_02 Forge | 40,000 | E 202 | 60.2 | 60.5 | 59.7 | 59.7 | 60.2 | 60.5 |
-| **exotic_02 Curve** | 150,000 | D 390 | 76.9 | 73.7 | 73.9 | 72 | 72.9 | 71.5 |
+| **exotic_02 Zephyr** | 150,000 | D 390 | 76.9 | 73.7 | 73.9 | 72 | 72.9 | 71.5 |
 | bruiser_03 Vector | 120,000 | D 374 | 72.7 | 72.1 | 72.6 | 72.3 | 72.4 | 72.2 |
-| **exotic_03 Wedge** | 440,000 | C 540 | 91.4 | 88.7 | 87.9 | 86 | 86.6 | 85.6 |
+| **exotic_03 Aurora** | 440,000 | C 540 | 91.4 | 88.7 | 87.9 | 86 | 86.6 | 85.6 |
 | bruiser_01 Viper | 350,000 | C 525 | 86.2 | 86.7 | 86.3 | 86.3 | 85.9 | 86.4 |
-| **exotic_04 Longtail** | 1,400,000 | B 675 | 109.8 | 106 | 105.3 | 103.2 | 104.4 | 102.8 |
+| **exotic_04 Endura** | 1,400,000 | B 675 | 109.8 | 106 | 105.3 | 103.2 | 104.4 | 102.8 |
 | bruiser_04 Nightline | 1,100,000 | B 662 | 103.6 | 103.6 | 103.4 | 103.5 | 103.5 | 103.7 |
-| **exotic_05 Hyper** | 4,400,000 | A 800 | 135.3 | 130.1 | 130 | 127.9 | 128.7 | 126.7 |
+| **exotic_05 Rosso** | 4,400,000 | A 800 | 135.3 | 130.1 | 130 | 127.9 | 128.7 | 126.7 |
 | bruiser_05 Rally | 3,500,000 | A 787 | 127 | 127 | 127.1 | 127.1 | 126.7 | 126.6 |
-| **exotic_06 Gull** | 12,500,000 | S 938 | 196 | 190.9 | 189.1 | 186.6 | 189.9 | 184 |
+| **exotic_06 Seraph** | 12,500,000 | S 938 | 196 | 190.9 | 189.1 | 186.6 | 189.9 | 184 |
 | bruiser_06 Zenith | 10,000,000 | S 925 | 180 | 179.6 | 179.6 | 180 | 180.1 | 179.6 |
 
 The garage bar is full at a headline of 180 (`Config.UI.GarageReplacement.StatReference`), so Gull fills every bar, as Zenith does.
@@ -344,17 +344,17 @@ Exotic rows keep the cockpit's own six body parts unless the column says otherwi
 
 | Cockpit | Stock | Four optional body parts removed | All Lightweight | All Power | Standard, max upgrades | All Lightweight, max upgrades | All Power, max upgrades | Highest build found | Ceiling |
 |---|---|---|---|---|---|---|---|---|---|
-| **exotic_01 Spider** | E 220 | E 208 | E 242 | E 244 | E 276 | D 308 | D 309 | D 365 | D 393 |
+| **exotic_01 Stinger** | E 220 | E 208 | E 242 | E 244 | E 276 | D 308 | D 309 | D 365 | D 393 |
 | bruiser_02 Forge | E 202 (with four LVL1: E 237) | stock has no body parts | E 224 | E 226 | E 296 (four LVL1) | D 369 (four LVL3) | D 370 (four LVL3) | D 370 | D 382 |
-| **exotic_02 Curve** | D 390 | D 383 | D 411 | D 413 | D 429 | C 459 | C 462 | C 497 | C 519 |
+| **exotic_02 Zephyr** | D 390 | D 383 | D 411 | D 413 | D 429 | C 459 | C 462 | C 497 | C 519 |
 | bruiser_03 Vector | D 374 (with four LVL1: D 395) | stock has no body parts | D 395 | D 397 | D 437 (four LVL1) | C 496 (four LVL3) | C 498 (four LVL3) | C 498 | C 509 |
-| **exotic_03 Wedge** | C 540 | C 536 | C 559 | C 561 | C 567 | C 594 | C 597 | B 621 | B 639 |
+| **exotic_03 Aurora** | C 540 | C 536 | C 559 | C 561 | C 567 | C 594 | C 597 | B 621 | B 639 |
 | bruiser_01 Viper | C 525 (with four LVL1: C 538) | stock has no body parts | C 544 | C 546 | C 567 (four LVL1) | B 613 (four LVL3) | B 615 (four LVL3) | B 615 | B 627 |
-| **exotic_04 Longtail** | B 675 | B 673 | B 691 | B 693 | B 695 | B 719 | B 720 | A 738 | A 752 |
+| **exotic_04 Endura** | B 675 | B 673 | B 691 | B 693 | B 695 | B 719 | B 720 | A 738 | A 752 |
 | bruiser_04 Nightline | B 662 (with four LVL1: B 669) | stock has no body parts | B 678 | B 680 | B 691 (four LVL1) | B 724 (four LVL3) | A 726 (four LVL3) | A 726 | A 736 |
-| **exotic_05 Hyper** | A 800 | A 799 | A 811 | A 814 | A 812 | A 829 | A 831 | A 840 | A 846 |
+| **exotic_05 Rosso** | A 800 | A 799 | A 811 | A 814 | A 812 | A 829 | A 831 | A 840 | A 846 |
 | bruiser_05 Rally | A 787 (with four LVL1: A 789) | stock has no body parts | A 799 | A 801 | A 806 (four LVL1) | A 829 (four LVL3) | A 830 (four LVL3) | A 830 | A 838 |
-| **exotic_06 Gull** | S 938 | S 938 | S 943 | S 944 | S 943 | S 950 | S 951 | S 953 | S 954 |
+| **exotic_06 Seraph** | S 938 | S 938 | S 943 | S 944 | S 943 | S 950 | S 951 | S 953 | S 954 |
 | bruiser_06 Zenith | S 925 (with four LVL1: S 925) | stock has no body parts | S 930 | S 931 | S 932 (four LVL1) | S 942 (four LVL3) | S 943 (four LVL3) | S 943 | S 945 |
 
 - **Highest build found**: any own-family variant in each core slot, any kit's part in each body slot (Piercer: any accessory level), the four optional slots may be empty, any upgrade allocation. It is a search (best choice per slot in turn, then one upgrade step on two slots at once, until neither helps; 16 start points that are the same on every run), not a proof that nothing higher exists.
@@ -362,7 +362,7 @@ Exotic rows keep the cockpit's own six body parts unless the column says otherwi
 
 Highest build found, as core variants (Main Turbine, Side Engines, Stabilisers, Afterburner: S, L or P) then kits (Nose, Deck, Pods, Splitter, Diffuser, Wing; `-` is empty): exotic_01 PPPL 434444; exotic_02 PPPP 434444; exotic_03 PPPP 434444; exotic_04 PPPP 425264; exotic_05 PPPP 133615; exotic_06 PPPP 433415.
 
-Tier reached, stock to highest found, with the ceiling tier in brackets: Spider E to D (D), Piercer E to D (D); Curve D to C (C), Piercer D to C (C); Wedge C to B (B), Piercer C to B (B); Longtail B to A (A), Piercer B to A (A); Hyper A to A (A), Piercer A to A (A); Gull S to S (S), Piercer S to S (S).
+Tier reached, stock to highest found, with the ceiling tier in brackets: Stinger E to D (D), Piercer E to D (D); Zephyr D to C (C), Piercer D to C (C); Aurora C to B (B), Piercer C to B (B); Endura B to A (A), Piercer B to A (A); Rosso A to A (A), Piercer A to A (A); Seraph S to S (S), Piercer S to S (S).
 
 No Exotic cockpit can reach a higher tier than the Piercer of its tier reaches today: every Exotic ceiling is inside the tier its Piercer reaches, so this is proven for own-family core modules and all 36 body parts (the twelve GT and EVO ids of the mesh kits carry the stats and upgrade paths of their base part, so they are covered).
 
@@ -372,12 +372,12 @@ Each cockpit keeps its own four Standard core modules and wears the six body par
 
 | Cockpit | Kit 1 Track | Kit 2 Analogue | Kit 3 Wedge | Kit 4 Longtail | Kit 5 Hyper | Kit 6 Concept |
 |---|---|---|---|---|---|---|
-| exotic_01 Spider (E, target 220) | E 220 | E 220 | E 220 | E 221 | E 220 | E 221 |
-| exotic_02 Curve (D, target 390) | D 390 | D 390 | D 390 | D 390 | D 390 | D 390 |
-| exotic_03 Wedge (C, target 540) | C 540 | C 540 | C 540 | C 540 | C 540 | C 540 |
-| exotic_04 Longtail (B, target 675) | B 675 | B 675 | B 675 | B 675 | B 675 | B 675 |
-| exotic_05 Hyper (A, target 800) | A 800 | A 800 | A 800 | A 800 | A 800 | A 800 |
-| exotic_06 Gull (S, target 938) | S 938 | S 938 | S 938 | S 938 | S 938 | S 938 |
+| exotic_01 Stinger (E, target 220) | E 220 | E 220 | E 220 | E 221 | E 220 | E 221 |
+| exotic_02 Zephyr (D, target 390) | D 390 | D 390 | D 390 | D 390 | D 390 | D 390 |
+| exotic_03 Aurora (C, target 540) | C 540 | C 540 | C 540 | C 540 | C 540 | C 540 |
+| exotic_04 Endura (B, target 675) | B 675 | B 675 | B 675 | B 675 | B 675 | B 675 |
+| exotic_05 Rosso (A, target 800) | A 800 | A 800 | A 800 | A 800 | A 800 | A 800 |
+| exotic_06 Seraph (S, target 938) | S 938 | S 938 | S 938 | S 938 | S 938 | S 938 |
 
 No cockpit moves more than 1 PI in any whole kit.
 
@@ -443,7 +443,7 @@ Each path folder carries `PathId`, `DisplayName`, `MaxPoints`, `Order` and the `
 
 What three points on one body path are worth: PI change on each stock cockpit (unrounded), and the cash for the three points.
 
-| Slot | PathId | Source | Per point | Cash | E Spider | D Curve | C Wedge | B Longtail | A Hyper | S Gull |
+| Slot | PathId | Source | Per point | Cash | E Stinger | D Zephyr | C Aurora | B Endura | A Rosso | S Seraph |
 |---|---|---|---|---|---|---|---|---|---|---|
 | Nose | `LightweightNose` | new | SteeringResponse +1, Weight -3 | 11,344 | +6.73 | +4.53 | +3.37 | +3.36 | +0.49 | +0.09 |
 | Nose | `NoseCanards` | new | Downforce +1, SteeringResponse +2, TopSpeed -1 | 11,344 | +7.29 | +4.53 | +2.69 | +1.48 | +0.66 | +0.10 |
@@ -513,7 +513,7 @@ Not in `balance.json`: the six `Default*Color` attributes (Color3, a paint decis
 - **So nothing authored here carries Drag.** No body part and no new upgrade path has a Drag value. With that, any whole kit and any mix of parts moves a stock build by +0 to +1 PI at most (section 8).
 - **The cloned accessory paths still carry Drag, as on Piercer.** Splitter, Diffuser, Wing and Side Pods clone the live LVL1 paths, as the brief asks. On a stock Gull three points of `FrontSplitter` cost 5.9 PI, `RearDiffuser` 5.8, `DownforcePackage` 8.0 and `DriftAero` 5.7, while `LowDragProfile` gains 1.5 and `AirflowChannels` 1.6. Once `LowDragProfile` is bought (Drag -9) the total sits on the minimum and the other paths stop costing. Zenith with LVL accessories behaves the same today. Decision for Oscar: keep the clones, or give the four slots Exotic paths without Drag (`balance.json` allows explicit `upgradePaths` on any module).
 - **Cloned paths that are worth nothing at stock:** none. These are pure `Weight` cuts on cockpits already at the 60 minimum, so they do nothing in the rating or on the road. Live Zenith has the same. The two new weight paths avoid it with a second stat (section 10).
-- **Cloned paths that lower PI at stock:** Splitter `FrontSplitter` (Hyper -0.6, Gull -5.9); Splitter `LightweightMounts` (Spider -2.5, Curve -1.7, Wedge -0.8, Hyper -0.4); Diffuser `RearDiffuser` (Gull -5.8); Wing `DownforcePackage` (Hyper -0.4, Gull -8.0); Wing `DriftAero` (Gull -5.7); Wing `LowDragProfile` (Spider -0.4). The Splitter `LightweightMounts` trades `BrakingForce` -1 for `Weight` -3, which is a loss where weight is cheap. Live pattern, not changed.
+- **Cloned paths that lower PI at stock:** Splitter `FrontSplitter` (Rosso -0.6, Seraph -5.9); Splitter `LightweightMounts` (Stinger -2.5, Zephyr -1.7, Aurora -0.8, Rosso -0.4); Diffuser `RearDiffuser` (Seraph -5.8); Wing `DownforcePackage` (Rosso -0.4, Seraph -8.0); Wing `DriftAero` (Seraph -5.7); Wing `LowDragProfile` (Stinger -0.4). The Splitter `LightweightMounts` trades `BrakingForce` -1 for `Weight` -3, which is a loss where weight is cheap. Live pattern, not changed.
 - **Hyper stays in A.** A fully upgraded Hyper tops out at A 831 (highest build found: A 840). The ceiling no Hyper build can beat is A 846, under the S band at 850. Rally tops out at A 830.
 - **Exotic has two more upgradable slots than Piercer** (12 more points per build). The lower tiers cross one tier band with a full Power set and all upgrades, as Piercer does today (section 7).
 - **A stock Exotic can be upgraded without buying anything else.** Its six body parts each take six points, so a Standard Spider reaches E 276 on upgrades alone. A stock Piercer has no body parts to upgrade; with four LVL1 accessories Forge reaches E 296.

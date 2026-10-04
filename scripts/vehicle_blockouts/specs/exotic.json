@@ -535,7 +535,7 @@
  },
  "cockpits": {
   "wedge": {
-   "name": "Wedge",
+   "name": "Aurora",
    "culture": "Wedge",
    "kit": "wedge",
    "note": "70s-80s poster wedge: one flat line from nose to roof, low flat roof, upright tail glass and a hard notch down to low shoulder air boxes.",
@@ -892,7 +892,7 @@
    ]
   },
   "curve": {
-   "name": "Curve",
+   "name": "Zephyr",
    "culture": "Analogue",
    "kit": "analogue",
    "note": "90s teardrop: long raked screen from far forward, a short thin roof at the peak, glass fastback that tapers in plan, flying buttresses that carry the roofline down the deck.",
@@ -1365,7 +1365,7 @@
    ]
   },
   "hyper": {
-   "name": "Hyper",
+   "name": "Rosso",
    "culture": "Hypercar",
    "kit": "hyper",
    "note": "Modern hypercar: very narrow fighter canopy on wide flat shoulder wings, roof snorkel, dorsal fin over the turbine.",
@@ -1822,7 +1822,7 @@
    ]
   },
   "spider": {
-   "name": "Spider",
+   "name": "Stinger",
    "culture": "Track Special",
    "kit": "track",
    "note": "Open spider: low wrap screen, no roof, driver in the open, two slim roll humps with short tails behind the seats.",
@@ -2123,7 +2123,7 @@
    ]
   },
   "longtail": {
-   "name": "Longtail",
+   "name": "Endura",
    "culture": "Longtail",
    "kit": "longtail",
    "note": "Endurance longtail: low bubble, small side glass, long roof scoop, thick twin tail fins that rise from the deck to the rear.",
@@ -2530,7 +2530,7 @@
    ]
   },
   "gull": {
-   "name": "Gull",
+   "name": "Seraph",
    "culture": "Concept",
    "kit": "concept",
    "note": "Gullwing: short steep screen, a double-bubble glass roof either side of a raised hinge spine, bulged doors that overhang the side pods, a falling glass cover over the turbine.",
@@ -11338,7 +11338,7 @@
  },
  "builds": [
   {
-   "name": "Wedge, own kit",
+   "name": "Aurora, own kit",
    "cockpit": "wedge",
    "kit": "wedge",
    "paint": {
@@ -11348,7 +11348,7 @@
    }
   },
   {
-   "name": "Curve, own kit",
+   "name": "Zephyr, own kit",
    "cockpit": "curve",
    "kit": "analogue",
    "paint": {
@@ -11358,7 +11358,7 @@
    }
   },
   {
-   "name": "Hyper, own kit",
+   "name": "Rosso, own kit",
    "cockpit": "hyper",
    "kit": "hyper",
    "paint": {
@@ -11368,7 +11368,7 @@
    }
   },
   {
-   "name": "Spider, own kit",
+   "name": "Stinger, own kit",
    "cockpit": "spider",
    "kit": "track",
    "paint": {
@@ -11378,7 +11378,7 @@
    }
   },
   {
-   "name": "Longtail, own kit",
+   "name": "Endura, own kit",
    "cockpit": "longtail",
    "kit": "longtail",
    "paint": {
@@ -11388,7 +11388,7 @@
    }
   },
   {
-   "name": "Gull, own kit",
+   "name": "Seraph, own kit",
    "cockpit": "gull",
    "kit": "concept",
    "paint": {
@@ -11398,7 +11398,7 @@
    }
   },
   {
-   "name": "Wedge, Hyper kit",
+   "name": "Aurora, Hyper kit",
    "cockpit": "wedge",
    "kit": "hyper",
    "paint": {
@@ -11408,7 +11408,7 @@
    }
   },
   {
-   "name": "Curve, Track kit",
+   "name": "Zephyr, Track kit",
    "cockpit": "curve",
    "kit": "track",
    "paint": {
@@ -11418,7 +11418,7 @@
    }
   },
   {
-   "name": "Hyper, Longtail kit",
+   "name": "Rosso, Longtail kit",
    "cockpit": "hyper",
    "kit": "longtail",
    "paint": {
@@ -11428,7 +11428,7 @@
    }
   },
   {
-   "name": "Spider, Concept kit",
+   "name": "Stinger, Concept kit",
    "cockpit": "spider",
    "kit": "concept",
    "paint": {
@@ -11438,7 +11438,7 @@
    }
   },
   {
-   "name": "Longtail, Wedge kit",
+   "name": "Endura, Wedge kit",
    "cockpit": "longtail",
    "kit": "wedge",
    "paint": {
@@ -11448,7 +11448,7 @@
    }
   },
   {
-   "name": "Gull, Analogue kit",
+   "name": "Seraph, Analogue kit",
    "cockpit": "gull",
    "kit": "analogue",
    "paint": {

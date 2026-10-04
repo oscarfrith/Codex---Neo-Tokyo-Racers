@@ -793,6 +793,7 @@ local function makePart(record, palette, owner)
 	part.BottomSurface = Enum.SurfaceType.Smooth
 	part.Material = Enum.Material[channel.material]
 	part.Transparency = channel.transparency
+	part.Reflectance = channel.reflectance or 0
 	part.Color = assert(palette[record[11]], "Stage B: no colour for channel " .. tostring(record[11]))
 	part.Name = shape .. "_" .. channel.suffix
 	part:SetAttribute("PaintChannel", channel.paintChannel)

@@ -649,10 +649,10 @@ def build_content(mode="AUDIT", scope="pilot", balance_path=BALANCE_PATH, catalo
         tier_donor.setdefault(attrs.get("TargetTier"), cid)
 
     channels = {
-        "P": {"material": "SmoothPlastic", "transparency": 0, "suffix": "primary", "paintChannel": "Primary"},
-        "S": {"material": "SmoothPlastic", "transparency": 0, "suffix": "secondary", "paintChannel": "Secondary"},
-        "D": {"material": "SmoothPlastic", "transparency": 0, "suffix": "detail", "paintChannel": "Detail"},
-        "G": {"material": "Glass", "transparency": colours["glassTransparency"], "suffix": "glass", "paintChannel": "Glass"},
+        "P": {"material": "SmoothPlastic", "transparency": 0, "suffix": "primary", "paintChannel": "Primary", "reflectance": colours["reflectance"]["P"]},
+        "S": {"material": "SmoothPlastic", "transparency": 0, "suffix": "secondary", "paintChannel": "Secondary", "reflectance": colours["reflectance"]["S"]},
+        "D": {"material": colours["detailMaterial"], "transparency": 0, "suffix": "detail", "paintChannel": "Detail"},
+        "G": {"material": "Glass", "transparency": colours["glassTransparency"], "suffix": "glass", "paintChannel": "Glass", "reflectance": colours["reflectance"]["G"]},
         "N": {"material": "Neon", "transparency": 0, "suffix": "neon", "paintChannel": "Neon"},
         "L": {"material": "Neon", "transparency": 0, "suffix": "lamp", "paintChannel": "Lights"},
         # Mesh modules only: a fixed red lamp. It lives in the folder of channel L (LIGHTS_AlwaysOn).

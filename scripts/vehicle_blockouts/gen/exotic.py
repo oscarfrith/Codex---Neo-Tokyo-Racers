@@ -1227,12 +1227,12 @@ def build_spec():
         return {"name": name, "culture": culture, "kit": kit_id, "note": (fn.__doc__ or "").strip(), "parts": fn()}
 
     cockpits = {
-        "wedge": cockpit("Wedge", W, "wedge", cockpit_wedge),
-        "curve": cockpit("Curve", A, "analogue", cockpit_curve),
-        "hyper": cockpit("Hyper", H, "hyper", cockpit_hyper),
-        "spider": cockpit("Spider", K, "track", cockpit_spider),
-        "longtail": cockpit("Longtail", L, "longtail", cockpit_longtail),
-        "gull": cockpit("Gull", C, "concept", cockpit_gull),
+        "wedge": cockpit("Aurora", W, "wedge", cockpit_wedge),
+        "curve": cockpit("Zephyr", A, "analogue", cockpit_curve),
+        "hyper": cockpit("Rosso", H, "hyper", cockpit_hyper),
+        "spider": cockpit("Stinger", K, "track", cockpit_spider),
+        "longtail": cockpit("Endura", L, "longtail", cockpit_longtail),
+        "gull": cockpit("Seraph", C, "concept", cockpit_gull),
     }
 
     paint = {

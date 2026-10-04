@@ -23,12 +23,12 @@ FIXTURES = os.path.join(HERE, "tests", "fixtures")
 
 # INTERFACE.md, written out again here on purpose: the test must not read the same data file as the builder.
 COCKPITS = {
-    "exotic_01": ("COCKPIT_EXOTIC_01", "Spider", "spider", "track", "E", 50000, 220),
-    "exotic_02": ("COCKPIT_EXOTIC_02", "Curve", "curve", "analogue", "D", 150000, 390),
-    "exotic_03": ("COCKPIT_EXOTIC_03", "Wedge", "wedge", "wedge", "C", 440000, 540),
-    "exotic_04": ("COCKPIT_EXOTIC_04", "Longtail", "longtail", "longtail", "B", 1400000, 675),
-    "exotic_05": ("COCKPIT_EXOTIC_05", "Hyper", "hyper", "hyper", "A", 4400000, 800),
-    "exotic_06": ("COCKPIT_EXOTIC_06", "Gull", "gull", "concept", "S", 12500000, 938),
+    "exotic_01": ("COCKPIT_EXOTIC_01", "Stinger", "spider", "track", "E", 50000, 220),
+    "exotic_02": ("COCKPIT_EXOTIC_02", "Zephyr", "curve", "analogue", "D", 150000, 390),
+    "exotic_03": ("COCKPIT_EXOTIC_03", "Aurora", "wedge", "wedge", "C", 440000, 540),
+    "exotic_04": ("COCKPIT_EXOTIC_04", "Endura", "longtail", "longtail", "B", 1400000, 675),
+    "exotic_05": ("COCKPIT_EXOTIC_05", "Rosso", "hyper", "hyper", "A", 4400000, 800),
+    "exotic_06": ("COCKPIT_EXOTIC_06", "Seraph", "gull", "concept", "S", 12500000, 938),
 }
 # SlotId: (label, ModuleType, folder, order, CountLabel, EnginePosition, id prefix, core?)
 SLOTS = {

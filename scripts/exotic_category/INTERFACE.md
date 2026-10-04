@@ -31,12 +31,12 @@ Baseline capture: `roblox/captures/exotic-before/capture.json` (213 sources; roo
 
 | N | CockpitId | Model name | DisplayName | Spec cockpit | Spec kit | Kit name | Tier | Price | Target stock PI |
 |---|---|---|---|---|---|---|---|---:|---:|
-| 01 | `exotic_01` | `COCKPIT_EXOTIC_01` | Spider | `spider` | `track` | Track | E | 50000 | 220 |
-| 02 | `exotic_02` | `COCKPIT_EXOTIC_02` | Curve | `curve` | `analogue` | Analogue | D | 150000 | 390 |
-| 03 | `exotic_03` | `COCKPIT_EXOTIC_03` | Wedge | `wedge` | `wedge` | Wedge | C | 440000 | 540 |
-| 04 | `exotic_04` | `COCKPIT_EXOTIC_04` | Longtail | `longtail` | `longtail` | Longtail | B | 1400000 | 675 |
-| 05 | `exotic_05` | `COCKPIT_EXOTIC_05` | Hyper | `hyper` | `hyper` | Hyper | A | 4400000 | 800 |
-| 06 | `exotic_06` | `COCKPIT_EXOTIC_06` | Gull | `gull` | `concept` | Concept | S | 12500000 | 938 |
+| 01 | `exotic_01` | `COCKPIT_EXOTIC_01` | Stinger | `spider` | `track` | Track | E | 50000 | 220 |
+| 02 | `exotic_02` | `COCKPIT_EXOTIC_02` | Zephyr | `curve` | `analogue` | Analogue | D | 150000 | 390 |
+| 03 | `exotic_03` | `COCKPIT_EXOTIC_03` | Aurora | `wedge` | `wedge` | Wedge | C | 440000 | 540 |
+| 04 | `exotic_04` | `COCKPIT_EXOTIC_04` | Endura | `longtail` | `longtail` | Longtail | B | 1400000 | 675 |
+| 05 | `exotic_05` | `COCKPIT_EXOTIC_05` | Rosso | `hyper` | `hyper` | Hyper | A | 4400000 | 800 |
+| 06 | `exotic_06` | `COCKPIT_EXOTIC_06` | Seraph | `gull` | `concept` | Concept | S | 12500000 | 938 |
 
 Spec = `scripts/vehicle_blockouts/specs/exotic.json` (`cockpits`, `kits`, `modules[slot][id]`). Kit N is the signature kit of cockpit N.
 
