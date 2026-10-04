@@ -49,7 +49,7 @@ def main():
         run("build %s (full)" % mode, ["scripts/exotic_category/stage_b/build_content.py", "--mode", mode, "--scope", "full"], tail=1)
         shutil.copyfile(os.path.join(OUT, "installer.lua"), os.path.join(OUT, "full_%s.lua" % mode.lower()))
     print("""
-Offline loop passed. In Studio (Space Racers Backup v2, Edit, Play stopped):
+Offline loop passed. In Studio (Space Racers v3, Edit, Play stopped):
   1. Serve the repo:  py -3 -m http.server 8793 --bind 127.0.0.1   (from the repo root, in the background)
   2. Run stage_b/out/full_audit.lua, read the findings, then full_apply.lua (REFINE.md has the snippet).
      APPLY replaces this installer's earlier content; Piercer chunks must not change.

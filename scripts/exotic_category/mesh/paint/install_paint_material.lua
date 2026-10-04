@@ -1,4 +1,4 @@
--- Exotic flake paint: creates or updates MaterialService.ExoticFlakePaint in Space Racers Backup v2.
+-- Exotic flake paint: creates or updates MaterialService.ExoticFlakePaint in Space Racers v3.
 -- Run in Studio Edit mode (Command Bar or execute_luau). Safe to run again: it updates the one instance.
 -- The Stage B content installer only writes the name "ExoticFlakePaint" on primary paint parts
 -- (stage_b/data/colours.json paintVariant); this script owns the material itself. If the material is
@@ -6,7 +6,7 @@
 -- StudsPerTile is left as it is when the material already exists (Oscar tunes it in Studio).
 -- Texture source: scripts/exotic_category/mesh/paint/make_flake_paint.py.
 
-local PLACE_ID = 133417340424236
+local PLACE_ID = 93959280828322
 local NAME = "ExoticFlakePaint"
 local MAPS = {
 	ColorMap = "rbxassetid://70984984863269",

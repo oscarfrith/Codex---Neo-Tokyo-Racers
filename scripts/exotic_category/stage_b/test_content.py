@@ -476,7 +476,7 @@ def check_scope(scope, args, spec, reference, live):
     match = re.search(r"local STAGE_B_DATA_JSON = \[=====\[\n(.*?)\]=====\]\n", text, re.S)
     check(bool(match) and json.loads(match.group(1)) == json.loads(json.dumps(content)), tag + "embedded data parses back to the content")
     check("local STAGE_B_CATALOGUE_GEN = (function()" in text and text.rstrip().endswith('return finish(true, { stateAfter = "installed-" .. SCOPE, changed = #journal.created + 1 })'), tag + "installer holds the generator and the engine")
-    check(content["meta"]["mode"] == "AUDIT" and content["meta"]["scope"] == scope and content["meta"]["placeId"] == 133417340424236, tag + "meta")
+    check(content["meta"]["mode"] == "AUDIT" and content["meta"]["scope"] == scope and content["meta"]["placeId"] == 93959280828322, tag + "meta")
     other, _ = bc.build_content("ROLLBACK", scope, args.balance, args.catalogue_gen, bc.CAPTURE_PATH, args.fill_from_donor)
     check(other["meta"]["contentHash"] == content["meta"]["contentHash"] and other["meta"]["mode"] == "ROLLBACK", tag + "content hash does not depend on the mode")
     # Seat acceptance (data/seats.json pilotAcceptance): the pilot may be applied unmeasured, the full scope may not.
@@ -737,7 +737,7 @@ def main():
     depth, brackets = lua_balance(engine)
     check(depth == 0, "engine block structure is balanced (function/do/if/repeat against end/until): %d" % depth)
     check(brackets["("] == brackets[")"] and brackets["{"] == brackets["}"] and brackets["["] == brackets["]"], "engine brackets are balanced: %r" % brackets)
-    check("133417340424236" not in engine and "META.placeId" in engine, "the place id comes from the data, and the engine asserts it")
+    check("93959280828322" not in engine and "META.placeId" in engine, "the place id comes from the data, and the engine asserts it")
     # Mesh kits: the asset is loaded once (a read), checked against the data (D16), and the checks see the MeshId (D15).
     check(engine.count("game:GetObjects(") == 1 and 'BLOCKER("mesh"' in engine and "MESH.centreTolerance" in engine, "the engine loads the mesh asset once and blocks on a missing or misplaced part")
     check("CFrame.Angles(0, math.pi, 0) * source.CFrame" in engine and "Vector3.new(shape.mesh.fileOffsetX, 0, 0)" in engine, "file space to root space as D3")
