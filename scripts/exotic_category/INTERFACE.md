@@ -22,7 +22,7 @@ Baseline capture: `roblox/captures/exotic-before/capture.json` (213 sources; roo
 | Topic | Decision |
 |---|---|
 | Category | Folder `ServerStorage.Assets.Vehicles.Categories.EXOTIC`, after `PIERCER`. `CategoryId="exotic"`, `DisplayName="Exotic"`. |
-| Selling | Performance parts as Piercer: Standard free with the cockpit, Lightweight and Power at 12% of the cockpit price, family locked by `SourceCockpitId`. Body parts open to any Exotic owner. |
+| Selling | Performance parts as Piercer: Standard free with the cockpit, Lightweight and Power at 12% of the cockpit price, family locked by `SourceCockpitId`. Body parts are locked the same way since 2026-10-04 ([mesh/INTEGRATION.md](mesh/INTEGRATION.md) E1, E2): each carries the `SourceCockpitId` of its kit's cockpit; the base Front Body, Rear Body and Wing cost a quarter of the core variant price (the first copy comes with the car), GT half and EVO the whole of it. An owned part still fits any Exotic. |
 | Prices | Premium, about 25% over the matching Piercer. |
 | Lights | Nose and Engine Deck lamps always on. Neon on other modules is buyable neon. |
 | Images | One card image per cockpit since 2026-10-04 (`stage_b/data/ids.json` `cardImage`), written to `MenuImage` and `PreviewImage`. |
@@ -56,26 +56,28 @@ Module IDs (model name = `ModuleId`):
 | `RearSpoiler` | `RearSpoiler` | `RearSpoilers` | `MODULE_REARSPOILER_EXOTIC_0N`; kits 02 and 05 also `_GT`, `_EVO` | 6 + 4 |
 
 - 72 core modules and 48 body modules (36 plus the twelve mesh trims below): 120 in all. The three variants of a core module share the kit's geometry, except on the mesh kits.
-- **Mesh kits 02 and 05** (2026-10-03, [mesh/INTEGRATION.md](mesh/INTEGRATION.md), which is the authority for them). Cockpits `exotic_02` and `exotic_05` and their Nose, Engine Deck, Wing and core modules are clones of uploaded MeshParts (model asset `112592679936648`, listed in `stage_b/data/mesh.json`), one mesh per ModuleId. Twelve new permanent ids: `MODULE_FRONTBODY_EXOTIC_0N_GT`, `_EVO`, `MODULE_REARBODY_EXOTIC_0N_GT`, `_EVO`, `MODULE_REARSPOILER_EXOTIC_0N_GT`, `_EVO` for N in 2, 5. Each copies its base part (stats, upgrade paths, attribute set, no `VariantName`); `DisplayName`, `ModuleName` and `CardTitle` are the base name plus " GT" or " EVO"; `Price` is base x 2 or x 3.5. Their Side Pods, Splitter and Diffuser modules stay primitive.
+- **Mesh kits 02 and 05** (2026-10-03, [mesh/INTEGRATION.md](mesh/INTEGRATION.md), which is the authority for them). Cockpits `exotic_02` and `exotic_05` and their Nose, Engine Deck, Wing and core modules are clones of uploaded MeshParts (model asset `112592679936648`, listed in `stage_b/data/mesh.json`), one mesh per ModuleId. Twelve new permanent ids: `MODULE_FRONTBODY_EXOTIC_0N_GT`, `_EVO`, `MODULE_REARBODY_EXOTIC_0N_GT`, `_EVO`, `MODULE_REARSPOILER_EXOTIC_0N_GT`, `_EVO` for N in 2, 5. Each copies its base part (stats, upgrade paths, attribute set, no `VariantName`); `DisplayName`, `ModuleName` and `CardTitle` are the base name plus " GT" or " EVO"; `Price` is a quarter (base part), half (GT) or the whole (EVO) of the kit's core variant price (E2; all six kits since the extension). Their Side Pods, Splitter and Diffuser modules stay primitive.
 - Engine1 modules: `EnginePosition="Front"`, `RearEngine=false`, `ModuleSlot="Engine"`. Engine2 modules: `EnginePosition="Rear"`, `RearEngine=true`, `ModuleSlot="Engine"`.
 - Core modules mirror the live Piercer family attribute set exactly (donor: `MODULE_<TYPE>_BRUISER_03_<VARIANT>`), with `SourceCockpitId="exotic_0N"`, `CategoryId="exotic"`. Standard: `Price=0`, `PurchasePrice=0`, `UpgradePointCapacity=2`, `MaxPointsPerPath=3`, type-flat `Point1/2CostGuide`. Lightweight and Power: `Price=PurchasePrice=12%` of the cockpit price, capacity 6, `Point1..6CostGuide` = 8/10/12/15/18/22% of the variant price rounded to 100. `VariantOrder` 10/20/30. `NeonPrice` 5000/6500/8000.
-- Body modules mirror the live accessory attribute set (donor: `MODULE_<TYPE>_LVL1`; FrontBody uses the FrontBumper donor, RearBody the RearBumper donor): `Price` only (no `PurchasePrice`, no `SourceCockpitId`), each stat as raw plus `PerformanceDelta_` twin, capacity 6, `MaxPointsPerPath=3`, accessory cost guides.
+- Body modules mirror the live accessory attribute set (donor: `MODULE_<TYPE>_LVL1`; FrontBody uses the FrontBumper donor, RearBody the RearBumper donor): `Price`, plus `SourceCockpitId="exotic_0N"` and `SourceCockpitDisplayName` (the cockpit of the part's kit; not on the donor) since 2026-10-04; no `PurchasePrice`, `VariantName` or `VariantOrder`; each stat as raw plus `PerformanceDelta_` twin, capacity 6, `MaxPointsPerPath=3`, accessory cost guides.
 - Module `DisplayName` is the spec display name ("Gill Fenders", "Bull Nose"). Never put `cockpit`, `engineon`, `engineoff`, `booston` or `stabiliseron` in any instance name. Body module instance names must not contain `engine`, `boost`, `stabiliser` or `stabilizer`.
 
 Slot folders on every Exotic cockpit (`ModuleSlots/SLOT_<SlotId>`, all with `FixedSlot=true`, child `Mount_DoNotRename` at the root origin):
 
 | SlotId | DisplayName and RailLabel | ModuleType | AllowedModuleFolder | Order | CountLabel | EnginePosition |
 |---|---|---|---|---|---|---|
-| `Engine1` | Main Turbine | `Engine` | `Engines` | 1 | Engines | Front |
-| `Engine2` | Side Engines | `Engine` | `Engines_B` | 2 | Engines | Rear |
-| `Stabilisers` | Stabilisers | `Stabilisers` | `Stabilisers` | 3 | Stabilisers | |
-| `Boost` | Afterburner | `Boost` | `Boost` | 4 | Boost | |
-| `FrontBumper` | Splitter | `FrontBumper` | `FrontBumpers` | 5 | Splitters | |
-| `RearBumper` | Diffuser | `RearBumper` | `RearBumpers` | 6 | Diffusers | |
+| `FrontBody` | Front Body | `FrontBody` | `FrontBodies` | 1 | Noses | |
+| `RearBody` | Rear Body | `RearBody` | `RearBodies` | 2 | Engine Decks | |
+| `Engine1` | Front Engine | `Engine` | `Engines` | 3 | Engines | Front |
+| `Engine2` | Rear Engine | `Engine` | `Engines_B` | 4 | Engines | Rear |
+| `Stabilisers` | Drift Thrusters | `Stabilisers` | `Stabilisers` | 5 | Stabilisers | |
+| `Boost` | Overdrive | `Boost` | `Boost` | 6 | Boost | |
 | `RearSpoiler` | Wing | `RearSpoiler` | `RearSpoilers` | 7 | Wings | |
-| `SidePods` | Side Pods | `SidePods` | `SidePods` | 8 | Side Pods | |
-| `FrontBody` | Nose | `FrontBody` | `FrontBodies` | 9 | Noses | |
-| `RearBody` | Engine Deck | `RearBody` | `RearBodies` | 10 | Engine Decks | |
+| `FrontBumper` | Splitter | `FrontBumper` | `FrontBumpers` | 8 | Splitters | |
+| `RearBumper` | Diffuser | `RearBumper` | `RearBumpers` | 9 | Diffusers | |
+| `SidePods` | Side Pods | `SidePods` | `SidePods` | 10 | Side Pods | |
+
+Labels and `Order` as of 2026-10-04 (mesh/INTEGRATION.md E3, E4). The same label is the `DisplayName` of the slot's module type folder. `CountLabel` is unchanged.
 
 (Mirror the live Piercer slot attribute set for the eight existing slots; check the live `CountLabel` values and follow their pattern.)
 
@@ -131,7 +133,7 @@ Slot folders on every Exotic cockpit (`ModuleSlots/SLOT_<SlotId>`, all with `Fix
 ```
 
 - Either `upgradePathDonor` or explicit `upgradePaths` per module. FrontBody and RearBody need explicit new paths with new `PathId`s (saved keys): fix them here and list them in the report.
-- Body part prices by kit number 01..06: 8000, 11000, 14000, 18000, 23000, 30000. Body `NeonPrice` by kit: 6500, 7000, 7500, 8000, 8500, 9500.
+- Body part prices by kit number 01..06: 8000, 11000, 14000, 18000, 23000, 30000. Since 2026-10-04 these apply to `SidePods`, `FrontBumper` and `RearBumper` only; `FrontBody`, `RearBody` and `RearSpoiler` are V / 4 for the base part, V / 2 for `_GT` and V for `_EVO`, where V is the `Price` of the kit's Lightweight and Power core modules (6000, 18000, 52800, 168000, 528000, 1500000). No body module with a `SourceCockpitId` has `Price` 0: the server would then charge 12% of the cockpit price for a copy. Body `NeonPrice` by kit: 6500, 7000, 7500, 8000, 8500, 9500.
 - Body stats stay at Piercer accessory LVL1 magnitude for every kit (flavour differs, size does not).
 - Character against the Piercer of the same tier: `TopSpeed` and `SteeringResponse` up; `Weight` down (lighter); `HoverStability`, `DriftControl` and `BoostDuration` down.
 - Stock build = cockpit + four Standard core modules + the six default body modules. Its PI must be within 3 of the target and inside the tier band. Mesh cockpits `exotic_02` and `exotic_05`: three default body modules (Nose, Engine Deck, Wing); they declare no `DefaultSidePodsModuleId`, `DefaultFrontBumperModuleId` or `DefaultRearBumperModuleId`, those slots start empty, and the cockpit's raw stats absorb the three parts. Fitting them adds to the stock total (Curve D 406 with all six, Hyper A 802).

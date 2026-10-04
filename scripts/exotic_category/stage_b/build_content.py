@@ -57,6 +57,10 @@ MODULE_PASSTHROUGH = {
 }
 # Names Stage A adds; they are not on any Piercer donor.
 MODULE_OPT_IN = {"CardTitle", "RatingReferenceCockpitId"}
+# mesh/INTEGRATION.md E1: body modules are locked to the cockpit of their kit, as core modules are. The
+# accessory donors carry neither name. The core purchase and variant names stay off body modules.
+BODY_MODULE_OPT_IN = {"SourceCockpitId", "SourceCockpitDisplayName"}
+BODY_MODULE_BANNED = ("PurchasePrice", "VariantName", "VariantOrder")
 COCKPIT_OPT_IN = {
     "DefaultFrontBodyModuleId", "DefaultRearBodyModuleId", "DefaultSidePodsModuleId", "DefaultFrontBumperModuleId",
     "DefaultRearBumperModuleId", "DefaultRearSpoilerModuleId", "DriverSeatOffsetX", "DriverSeatOffsetY",
@@ -779,9 +783,13 @@ def build_content(mode="AUDIT", scope="pilot", balance_path=BALANCE_PATH, catalo
                                      "EnginePosition": slot["moduleEnginePosition"], "RearEngine": slot["rearEngine"]})
                     derived["SourceCockpitDisplayName"] = c["displayName"]
                 else:
-                    for banned in ("SourceCockpitId", "PurchasePrice"):
-                        if banned in entry.get("attributes", {}):
-                            problems.append("%s: body modules carry no %s (INTERFACE.md: open to any Exotic owner, Price only)" % (mid, banned))
+                    identity.update({"SourceCockpitId": c["cockpitId"], "SourceCockpitDisplayName": c["displayName"]})
+                    for name in sorted(BODY_MODULE_OPT_IN):
+                        if name not in entry.get("attributes", {}):
+                            problems.append("%s: balance.json does not set %s (INTERFACE.md: a body module is locked to the cockpit of its kit)" % (mid, name))
+                    for banned in BODY_MODULE_BANNED:
+                        if banned in entry.get("attributes", {}) or banned in donor:
+                            problems.append("%s: body modules carry no %s (INTERFACE.md: Price and the source cockpit only)" % (mid, banned))
                 attrs = merge_attributes(mid, donor, entry.get("attributes", {}), identity, MODULE_PASSTHROUGH, derived, fill_from_donor, problems, warnings)
                 required = ["Price", "NeonPrice", "UpgradePointCapacity"] + (["PurchasePrice", "VariantName", "VariantOrder"] if core else [])
                 for name in required:
@@ -791,7 +799,7 @@ def build_content(mode="AUDIT", scope="pilot", balance_path=BALANCE_PATH, catalo
                     problems.append("%s: V2Materialised must be true" % mid)
                 if attrs.get("RetiredFromCatalog") is not False:
                     problems.append("%s: RetiredFromCatalog must be false" % mid)
-                extra = sorted(set(attrs) - set(donor) - MODULE_OPT_IN)
+                extra = sorted(set(attrs) - set(donor) - MODULE_OPT_IN - (set() if core else BODY_MODULE_OPT_IN))
                 if extra:
                     warnings.append("%s: attributes the Piercer donor %s does not have: %s" % (mid, donor_id, ", ".join(extra)))
                 item = {"id": mid, "slot": slot["slotId"], "shape": shape_key, "partCount": len(recs),

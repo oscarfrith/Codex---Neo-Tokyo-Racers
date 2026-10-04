@@ -70,6 +70,27 @@ Accepted risks added by the extension:
 - Stock socket counts: 15 on every cockpit except `exotic_02` (17, the recorded exception). Full-kit boosts carry up to 4 sockets.
 - The primitive geometry of kits 01, 03, 04, 06 (cockpits and core/stock-body modules) is no longer installed. The 24 new ids are one-way in the same sense as the first twelve.
 
+## Body parts behave like core parts (2026-10-04)
+
+Oscar, after testing in Space Racers v3 (93959280828322): Nose and Tail modules "need to be locked until you buy the car, like the engine etc modules"; "if any other modules are not behaving like the engine modules in this way then fix"; "organised by price like the engines"; "the higher tier vehicles need to have more expensive body panels, aligned with engines"; slots renamed and reordered. Lane: **High-Risk** (economy and purchase rule). No ModuleId, SlotId, cockpit id or saved field changes. This section supersedes D7 (trim prices) and the INTERFACE.md rule "body modules: open to any Exotic owner, Price only".
+
+| # | Decision |
+|---|---|
+| E1 | Every Exotic body module (all six body slots, base and `_GT` / `_EVO`) carries `SourceCockpitId` = the cockpit of its kit, and `SourceCockpitDisplayName` as core modules do. The existing purchase rule then locks it until the player owns that cockpit. It carries no `PurchasePrice`, `VariantName` or `VariantOrder`. Fitting an owned part to another Exotic is unchanged. |
+| E2 | Prices of the three stock body slots (`FrontBody`, `RearBody`, `RearSpoiler`), per kit, from the kit's core variant price V (the `Price` of its Lightweight and Power core modules: 6,000 / 18,000 / 52,800 / 168,000 / 528,000 / 1,500,000): base part `Price` = V / 4; `_GT` = V / 2; `_EVO` = V. (Revised the same day: a `Price` of 0 on a module with a `SourceCockpitId` makes the server charge 12% of the cockpit price for a copy, `GarageCatalogLookup.modulePurchasePrice`, which would have priced the base part the same as EVO and listed it after GT. The first copy still comes with the car.) `NeonPrice` unchanged. The three hidden slots (`SidePods`, `FrontBumper`, `RearBumper`) keep their prices. |
+| E3 | Slot labels (slot `DisplayName` and `RailLabel`, and the `DisplayName` attribute of the module type folder; folder names do not change): `FrontBody` "Front Body", `RearBody` "Rear Body", `Engine1` "Front Engine", `Engine2` "Rear Engine", `Stabilisers` "Drift Thrusters", `Boost` "Overdrive". `RearSpoiler` and the hidden slots keep theirs. |
+| E4 | Slot `Order`: FrontBody 1, RearBody 2, Engine1 3, Engine2 4, Stabilisers 5, Boost 6, RearSpoiler 7, then FrontBumper, RearBumper, SidePods (8 to 10). |
+| E5 | Stats, upgrade paths, ratings, stock PI targets and every id are unchanged. Piercer is unchanged. |
+
+Review (`delivery-reviewer`, 2026-10-04): approve with conditions, both met here.
+
+- **Recovery.** Before: commit `8b8bd63`, content hash `51e7eb79...`. After: content hash `4b9eae84...`. To go back, build `scripts/exotic_category/stage_b` at `8b8bd63` and APPLY that build in place. **Never run ROLLBACK in v3:** it removes the whole Exotic category, and v3 saves profiles that own Exotics. The older gate line "AUDIT, APPLY, ROLLBACK, APPLY" applies to a no-save place only.
+- **What the lock gates (read from the server sources).** Purchase only (`buyModuleInstance` and the legacy `BuyModule`). Equipping an owned part on another Exotic, default grants on buying a car and the catalogue are unchanged. The charge is exactly `Price` because every body `Price` is above 0.
+- **Verification plan.** After APPLY: installed hash `4b9eae84`; a second AUDIT reports nothing to apply; attributes read back on a base, a GT, an EVO and a hidden-slot module and on a slot folder; post-install checks. In Play (spends real Cash on a real profile, so it is Oscar's test or needs his go-ahead): a part of an unowned car is refused with Cash unchanged; a part of an owned car debits exactly `Price`; a new Exotic comes with its three stock parts; an owned part fits another Exotic; the shop lists locked cards last and base, GT, EVO in price order; the rails read Front Body, Rear Body, Front Engine, Rear Engine, Drift Thrusters, Overdrive, Wing.
+- **Accepted, for Oscar to confirm.** No refund or top-up for parts bought at the old prices. Prices fall on kits 01 to 03 and rise up to 14 times on kits 04 to 06. GT and EVO body parts have the same stats as the base part, so the price buys the look. Hidden-slot parts are locked too and keep their old prices.
+
+UI side (separate guarded installers under `scripts/exotic_category/ui_*`, client display only): the shop list breaks ties by `Price` before id, so a part's standard, GT and EVO versions read cheapest first; the Build and Customise rails put Front Body and Rear Body first.
+
 ## Builder rules
 
 - Write only under `scripts/exotic_category/stage_b/`, `scripts/exotic_category/balance/`, and `scripts/exotic_category/refine.py` if a step must change. Do not edit `mesh.json` by hand (re-run `py -3 scripts/exotic_category/mesh/make_mesh_data.py 112592679936648` if its generator needs a fix, and say so).

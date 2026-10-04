@@ -14,64 +14,64 @@ From `scripts/exotic_category/mesh/INTEGRATION.md` (D6 to D9). It changes how th
 - **Stock build**: cockpit + four Standard core modules + three body defaults (Nose, Engine Deck, Wing). `SidePods`, `FrontBumper` and `RearBumper` declare no default and start empty. The cockpit's own raw stats absorb those three parts, so the stock totals and the stock PI are unchanged. Wherever a section says "six body parts" or "its six default body modules", read three for these two cockpits.
 - **Fitting the three empty slots adds stats on top of the target total.** With all six own-kit parts: exotic_01 E 244 (stock 220, +24.30 unrounded); exotic_02 D 406 (stock 390, +15.74 unrounded); exotic_03 C 550 (stock 540, +10.06 unrounded); exotic_04 B 680 (stock 675, +5.13 unrounded); exotic_05 A 802 (stock 800, +1.74 unrounded); exotic_06 S 938 (stock 938, +0.20 unrounded).
   The tier does not change. "Highest build found" and "Ceiling" (section 7) already search every body slot, filled or empty.
-- **Twelve new ModuleIds**: `_GT` and `_EVO` of the Nose, Engine Deck and Wing of kits 02 and 05. Each copies every attribute and the upgrade paths of its base part, so it rates exactly as the base part does. Only the names (base name plus the trim) and the `Price` differ: base x 2 (GT) and base x 3.5 (EVO), rounded to 100.
+- **Twelve new ModuleIds**: `_GT` and `_EVO` of the Nose, Engine Deck and Wing of kits 02 and 05. Each copies every attribute and the upgrade paths of its base part, so it rates exactly as the base part does. Only the names (base name plus the trim) and the `Price` differ. Since 2026-10-04 (INTEGRATION.md E1, E2) every body part carries `SourceCockpitId` and `SourceCockpitDisplayName` of its kit's cockpit, so it is locked until that cockpit is owned; the base part of a stock slot costs a quarter of the kit's core variant price (the first copy comes with the car), GT is half that price and EVO is the whole of it.
 
 | ModuleId | Name | Price | NeonPrice |
 |---|---|---|---|
-| `MODULE_FRONTBODY_EXOTIC_01` | Spine Nose | 8,000 | 6,500 |
-| `MODULE_FRONTBODY_EXOTIC_01_GT` | Spine Nose GT | 16,000 | 6,500 |
-| `MODULE_FRONTBODY_EXOTIC_01_EVO` | Spine Nose EVO | 28,000 | 6,500 |
-| `MODULE_REARBODY_EXOTIC_01` | Chopped Tail | 8,000 | 6,500 |
-| `MODULE_REARBODY_EXOTIC_01_GT` | Chopped Tail GT | 16,000 | 6,500 |
-| `MODULE_REARBODY_EXOTIC_01_EVO` | Chopped Tail EVO | 28,000 | 6,500 |
-| `MODULE_REARSPOILER_EXOTIC_01` | Spine Wing | 8,000 | 6,500 |
-| `MODULE_REARSPOILER_EXOTIC_01_GT` | Spine Wing GT | 16,000 | 6,500 |
-| `MODULE_REARSPOILER_EXOTIC_01_EVO` | Spine Wing EVO | 28,000 | 6,500 |
-| `MODULE_FRONTBODY_EXOTIC_02` | Droplet Nose | 11,000 | 7,000 |
-| `MODULE_FRONTBODY_EXOTIC_02_GT` | Droplet Nose GT | 22,000 | 7,000 |
-| `MODULE_FRONTBODY_EXOTIC_02_EVO` | Droplet Nose EVO | 38,500 | 7,000 |
-| `MODULE_REARBODY_EXOTIC_02` | Boat Tail | 11,000 | 7,000 |
-| `MODULE_REARBODY_EXOTIC_02_GT` | Boat Tail GT | 22,000 | 7,000 |
-| `MODULE_REARBODY_EXOTIC_02_EVO` | Boat Tail EVO | 38,500 | 7,000 |
-| `MODULE_REARSPOILER_EXOTIC_02` | Twin-Post Wing | 11,000 | 7,000 |
-| `MODULE_REARSPOILER_EXOTIC_02_GT` | Twin-Post Wing GT | 22,000 | 7,000 |
-| `MODULE_REARSPOILER_EXOTIC_02_EVO` | Twin-Post Wing EVO | 38,500 | 7,000 |
-| `MODULE_FRONTBODY_EXOTIC_03` | Bull Nose | 14,000 | 7,500 |
-| `MODULE_FRONTBODY_EXOTIC_03_GT` | Bull Nose GT | 28,000 | 7,500 |
-| `MODULE_FRONTBODY_EXOTIC_03_EVO` | Bull Nose EVO | 49,000 | 7,500 |
-| `MODULE_REARBODY_EXOTIC_03` | Sloped Tail | 14,000 | 7,500 |
-| `MODULE_REARBODY_EXOTIC_03_GT` | Sloped Tail GT | 28,000 | 7,500 |
-| `MODULE_REARBODY_EXOTIC_03_EVO` | Sloped Tail EVO | 49,000 | 7,500 |
-| `MODULE_REARSPOILER_EXOTIC_03` | Drop-Tip Wing | 14,000 | 7,500 |
-| `MODULE_REARSPOILER_EXOTIC_03_GT` | Drop-Tip Wing GT | 28,000 | 7,500 |
-| `MODULE_REARSPOILER_EXOTIC_03_EVO` | Drop-Tip Wing EVO | 49,000 | 7,500 |
-| `MODULE_FRONTBODY_EXOTIC_04` | Valley Nose | 18,000 | 8,000 |
-| `MODULE_FRONTBODY_EXOTIC_04_GT` | Valley Nose GT | 36,000 | 8,000 |
-| `MODULE_FRONTBODY_EXOTIC_04_EVO` | Valley Nose EVO | 63,000 | 8,000 |
-| `MODULE_REARBODY_EXOTIC_04` | Bar Tail | 18,000 | 8,000 |
-| `MODULE_REARBODY_EXOTIC_04_GT` | Bar Tail GT | 36,000 | 8,000 |
-| `MODULE_REARBODY_EXOTIC_04_EVO` | Bar Tail EVO | 63,000 | 8,000 |
-| `MODULE_REARSPOILER_EXOTIC_04` | Bridge Wing | 18,000 | 8,000 |
-| `MODULE_REARSPOILER_EXOTIC_04_GT` | Bridge Wing GT | 36,000 | 8,000 |
-| `MODULE_REARSPOILER_EXOTIC_04_EVO` | Bridge Wing EVO | 63,000 | 8,000 |
-| `MODULE_FRONTBODY_EXOTIC_05` | Vented Nose | 23,000 | 8,500 |
-| `MODULE_FRONTBODY_EXOTIC_05_GT` | Vented Nose GT | 46,000 | 8,500 |
-| `MODULE_FRONTBODY_EXOTIC_05_EVO` | Vented Nose EVO | 80,500 | 8,500 |
-| `MODULE_REARBODY_EXOTIC_05` | Louvred Tail | 23,000 | 8,500 |
-| `MODULE_REARBODY_EXOTIC_05_GT` | Louvred Tail GT | 46,000 | 8,500 |
-| `MODULE_REARBODY_EXOTIC_05_EVO` | Louvred Tail EVO | 80,500 | 8,500 |
-| `MODULE_REARSPOILER_EXOTIC_05` | Race Wing | 23,000 | 8,500 |
-| `MODULE_REARSPOILER_EXOTIC_05_GT` | Race Wing GT | 46,000 | 8,500 |
-| `MODULE_REARSPOILER_EXOTIC_05_EVO` | Race Wing EVO | 80,500 | 8,500 |
-| `MODULE_FRONTBODY_EXOTIC_06` | Raised Nose | 30,000 | 9,500 |
-| `MODULE_FRONTBODY_EXOTIC_06_GT` | Raised Nose GT | 60,000 | 9,500 |
-| `MODULE_FRONTBODY_EXOTIC_06_EVO` | Raised Nose EVO | 105,000 | 9,500 |
-| `MODULE_REARBODY_EXOTIC_06` | Open Tail | 30,000 | 9,500 |
-| `MODULE_REARBODY_EXOTIC_06_GT` | Open Tail GT | 60,000 | 9,500 |
-| `MODULE_REARBODY_EXOTIC_06_EVO` | Open Tail EVO | 105,000 | 9,500 |
-| `MODULE_REARSPOILER_EXOTIC_06` | Pylon Wing | 30,000 | 9,500 |
-| `MODULE_REARSPOILER_EXOTIC_06_GT` | Pylon Wing GT | 60,000 | 9,500 |
-| `MODULE_REARSPOILER_EXOTIC_06_EVO` | Pylon Wing EVO | 105,000 | 9,500 |
+| `MODULE_FRONTBODY_EXOTIC_01` | Spine Nose | 1,500 | 6,500 |
+| `MODULE_FRONTBODY_EXOTIC_01_GT` | Spine Nose GT | 3,000 | 6,500 |
+| `MODULE_FRONTBODY_EXOTIC_01_EVO` | Spine Nose EVO | 6,000 | 6,500 |
+| `MODULE_REARBODY_EXOTIC_01` | Chopped Tail | 1,500 | 6,500 |
+| `MODULE_REARBODY_EXOTIC_01_GT` | Chopped Tail GT | 3,000 | 6,500 |
+| `MODULE_REARBODY_EXOTIC_01_EVO` | Chopped Tail EVO | 6,000 | 6,500 |
+| `MODULE_REARSPOILER_EXOTIC_01` | Spine Wing | 1,500 | 6,500 |
+| `MODULE_REARSPOILER_EXOTIC_01_GT` | Spine Wing GT | 3,000 | 6,500 |
+| `MODULE_REARSPOILER_EXOTIC_01_EVO` | Spine Wing EVO | 6,000 | 6,500 |
+| `MODULE_FRONTBODY_EXOTIC_02` | Droplet Nose | 4,500 | 7,000 |
+| `MODULE_FRONTBODY_EXOTIC_02_GT` | Droplet Nose GT | 9,000 | 7,000 |
+| `MODULE_FRONTBODY_EXOTIC_02_EVO` | Droplet Nose EVO | 18,000 | 7,000 |
+| `MODULE_REARBODY_EXOTIC_02` | Boat Tail | 4,500 | 7,000 |
+| `MODULE_REARBODY_EXOTIC_02_GT` | Boat Tail GT | 9,000 | 7,000 |
+| `MODULE_REARBODY_EXOTIC_02_EVO` | Boat Tail EVO | 18,000 | 7,000 |
+| `MODULE_REARSPOILER_EXOTIC_02` | Twin-Post Wing | 4,500 | 7,000 |
+| `MODULE_REARSPOILER_EXOTIC_02_GT` | Twin-Post Wing GT | 9,000 | 7,000 |
+| `MODULE_REARSPOILER_EXOTIC_02_EVO` | Twin-Post Wing EVO | 18,000 | 7,000 |
+| `MODULE_FRONTBODY_EXOTIC_03` | Bull Nose | 13,200 | 7,500 |
+| `MODULE_FRONTBODY_EXOTIC_03_GT` | Bull Nose GT | 26,400 | 7,500 |
+| `MODULE_FRONTBODY_EXOTIC_03_EVO` | Bull Nose EVO | 52,800 | 7,500 |
+| `MODULE_REARBODY_EXOTIC_03` | Sloped Tail | 13,200 | 7,500 |
+| `MODULE_REARBODY_EXOTIC_03_GT` | Sloped Tail GT | 26,400 | 7,500 |
+| `MODULE_REARBODY_EXOTIC_03_EVO` | Sloped Tail EVO | 52,800 | 7,500 |
+| `MODULE_REARSPOILER_EXOTIC_03` | Drop-Tip Wing | 13,200 | 7,500 |
+| `MODULE_REARSPOILER_EXOTIC_03_GT` | Drop-Tip Wing GT | 26,400 | 7,500 |
+| `MODULE_REARSPOILER_EXOTIC_03_EVO` | Drop-Tip Wing EVO | 52,800 | 7,500 |
+| `MODULE_FRONTBODY_EXOTIC_04` | Valley Nose | 42,000 | 8,000 |
+| `MODULE_FRONTBODY_EXOTIC_04_GT` | Valley Nose GT | 84,000 | 8,000 |
+| `MODULE_FRONTBODY_EXOTIC_04_EVO` | Valley Nose EVO | 168,000 | 8,000 |
+| `MODULE_REARBODY_EXOTIC_04` | Bar Tail | 42,000 | 8,000 |
+| `MODULE_REARBODY_EXOTIC_04_GT` | Bar Tail GT | 84,000 | 8,000 |
+| `MODULE_REARBODY_EXOTIC_04_EVO` | Bar Tail EVO | 168,000 | 8,000 |
+| `MODULE_REARSPOILER_EXOTIC_04` | Bridge Wing | 42,000 | 8,000 |
+| `MODULE_REARSPOILER_EXOTIC_04_GT` | Bridge Wing GT | 84,000 | 8,000 |
+| `MODULE_REARSPOILER_EXOTIC_04_EVO` | Bridge Wing EVO | 168,000 | 8,000 |
+| `MODULE_FRONTBODY_EXOTIC_05` | Vented Nose | 132,000 | 8,500 |
+| `MODULE_FRONTBODY_EXOTIC_05_GT` | Vented Nose GT | 264,000 | 8,500 |
+| `MODULE_FRONTBODY_EXOTIC_05_EVO` | Vented Nose EVO | 528,000 | 8,500 |
+| `MODULE_REARBODY_EXOTIC_05` | Louvred Tail | 132,000 | 8,500 |
+| `MODULE_REARBODY_EXOTIC_05_GT` | Louvred Tail GT | 264,000 | 8,500 |
+| `MODULE_REARBODY_EXOTIC_05_EVO` | Louvred Tail EVO | 528,000 | 8,500 |
+| `MODULE_REARSPOILER_EXOTIC_05` | Race Wing | 132,000 | 8,500 |
+| `MODULE_REARSPOILER_EXOTIC_05_GT` | Race Wing GT | 264,000 | 8,500 |
+| `MODULE_REARSPOILER_EXOTIC_05_EVO` | Race Wing EVO | 528,000 | 8,500 |
+| `MODULE_FRONTBODY_EXOTIC_06` | Raised Nose | 375,000 | 9,500 |
+| `MODULE_FRONTBODY_EXOTIC_06_GT` | Raised Nose GT | 750,000 | 9,500 |
+| `MODULE_FRONTBODY_EXOTIC_06_EVO` | Raised Nose EVO | 1,500,000 | 9,500 |
+| `MODULE_REARBODY_EXOTIC_06` | Open Tail | 375,000 | 9,500 |
+| `MODULE_REARBODY_EXOTIC_06_GT` | Open Tail GT | 750,000 | 9,500 |
+| `MODULE_REARBODY_EXOTIC_06_EVO` | Open Tail EVO | 1,500,000 | 9,500 |
+| `MODULE_REARSPOILER_EXOTIC_06` | Pylon Wing | 375,000 | 9,500 |
+| `MODULE_REARSPOILER_EXOTIC_06_GT` | Pylon Wing GT | 750,000 | 9,500 |
+| `MODULE_REARSPOILER_EXOTIC_06_EVO` | Pylon Wing EVO | 1,500,000 | 9,500 |
 
 - In sections 6, 8 and 10 a style swap on these two cockpits is made in the three stock slots; a part of an empty slot is rated as fitted on top of the stock build.
 
@@ -113,16 +113,16 @@ Six Piercer stock builds, recomputed from the capture attributes (cockpit + its 
 - Variant guides are 8 / 10 / 12 / 15 / 18 / 22 percent of the module price, rounded to 100. The same rule reproduces all six live Piercer families.
 - `NeonPrice` on core modules: 5,000 / 6,500 / 8,000 (Standard / Lightweight / Power), as live.
 
-| Kit | Name | Body part `Price` | Body part `NeonPrice` | Six body parts |
-|---|---|---|---|---|
-| 1 | Track | 8,000 | 6,500 | 48,000 |
-| 2 | Analogue | 11,000 | 7,000 | 66,000 |
-| 3 | Wedge | 14,000 | 7,500 | 84,000 |
-| 4 | Longtail | 18,000 | 8,000 | 108,000 |
-| 5 | Hyper | 23,000 | 8,500 | 138,000 |
-| 6 | Concept | 30,000 | 9,500 | 180,000 |
+| Kit | Name | Front Body, Rear Body, Wing: base `Price` (a quarter of the core variant price) | GT (half the core variant price) | EVO (the core variant price) | Side Pods, Splitter, Diffuser `Price` | Body part `NeonPrice` |
+|---|---|---|---|---|---|---|
+| 1 | Track | 1,500 | 3,000 | 6,000 | 8,000 | 6,500 |
+| 2 | Analogue | 4,500 | 9,000 | 18,000 | 11,000 | 7,000 |
+| 3 | Wedge | 13,200 | 26,400 | 52,800 | 14,000 | 7,500 |
+| 4 | Longtail | 42,000 | 84,000 | 168,000 | 18,000 | 8,000 |
+| 5 | Hyper | 132,000 | 264,000 | 528,000 | 23,000 | 8,500 |
+| 6 | Concept | 375,000 | 750,000 | 1,500,000 | 30,000 | 9,500 |
 
-- Body parts carry `Price` only. Upgrade guides are the live accessory guides: Nose, Splitter, Engine Deck and Diffuser 3,025 / 3,781 / 4,538 / 5,596 / 6,806 / 8,168; Wing 3,575 / 4,469 / 5,363 / 6,614 / 8,044 / 9,653; Side Pods 3,850 / 4,813 / 5,775 / 7,123 / 8,663 / 10,395.
+- Body parts carry `Price`, `SourceCockpitId` and `SourceCockpitDisplayName` (the cockpit of their kit), and no `PurchasePrice`, `VariantName` or `VariantOrder`. No stock body part has `Price` 0: on a module with a `SourceCockpitId` the server would then charge 12% of the cockpit price for a copy. Upgrade guides are the live accessory guides: Nose, Splitter, Engine Deck and Diffuser 3,025 / 3,781 / 4,538 / 5,596 / 6,806 / 8,168; Wing 3,575 / 4,469 / 5,363 / 6,614 / 8,044 / 9,653; Side Pods 3,850 / 4,813 / 5,775 / 7,123 / 8,663 / 10,395.
 
 ## 3. Stock totals and character
 
@@ -242,29 +242,29 @@ Rule: the six styles of a slot are worth about the same on every cockpit, so the
 
 Measured below: the PI spread between the six styles of a slot is at most 1.14 on Spider and at most 0.28 on the other five cockpits.
 
-### Nose (`FrontBody`, donor `MODULE_FRONTBUMPER_LVL1`: Weight +2, BrakingForce +2)
+### Front Body (`FrontBody`, donor `MODULE_FRONTBUMPER_LVL1`: Weight +2, BrakingForce +2)
 
 | ModuleId | Name | Price | Flavour | Raw stats | Card rating (on `exotic_03`) | On E | On D | On C | On B | On A | On S |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| `MODULE_FRONTBODY_EXOTIC_01` | Spine Nose | 8,000 | long pointed nose with a raised centre spine and a wide jaw intake. Grip and braking; the big intake costs a little top speed. | TopSpeed -0.5, EngineOutput +0.5, Weight +2.5, SteeringResponse +1, HoverStability +0.5, BrakingForce +0.5, Downforce +0.5 | 540 | 220 | 390 | 540 | 675 | 800 | 938 |
-| `MODULE_FRONTBODY_EXOTIC_02` | Droplet Nose | 11,000 | short and round. Calm and direct. | TopSpeed +1, Weight +2, SteeringResponse +1.5, HoverStability +0.5 | 540 | 220 | 390 | 540 | 675 | 800 | 938 |
-| `MODULE_FRONTBODY_EXOTIC_03` | Bull Nose | 14,000 | deep rounded nose with a large mouth. Front downforce. | TopSpeed +1, Weight +2, SteeringResponse +1, BrakingForce +0.5, Downforce +1.5 | 540 | 220 | 390 | 540 | 675 | 800 | 938 |
-| `MODULE_FRONTBODY_EXOTIC_04` | Valley Nose | 18,000 | short and low between the fenders, with a full-width light bar. Slippery: the most top speed. | TopSpeed +2.5, Weight +2, SteeringResponse +1 | 540 | 220 | 390 | 540 | 675 | 800 | 938 |
-| `MODULE_FRONTBODY_EXOTIC_05` | Vented Nose | 23,000 | sharp nose with louvred bonnet vents. Most front downforce. | Weight +2, LateralGrip +0.5, SteeringResponse +1.5, Downforce +2 | 540 | 220 | 390 | 540 | 675 | 800 | 938 |
-| `MODULE_FRONTBODY_EXOTIC_06` | Raised Nose | 30,000 | narrow raised nose over an open floor. Sharpest turn-in. | TopSpeed +1, Weight +2, SteeringResponse +2 | 540 | 220 | 390 | 540 | 675 | 800 | 938 |
+| `MODULE_FRONTBODY_EXOTIC_01` | Spine Nose | 1,500 | long pointed nose with a raised centre spine and a wide jaw intake. Grip and braking; the big intake costs a little top speed. | TopSpeed -0.5, EngineOutput +0.5, Weight +2.5, SteeringResponse +1, HoverStability +0.5, BrakingForce +0.5, Downforce +0.5 | 540 | 220 | 390 | 540 | 675 | 800 | 938 |
+| `MODULE_FRONTBODY_EXOTIC_02` | Droplet Nose | 4,500 | short and round. Calm and direct. | TopSpeed +1, Weight +2, SteeringResponse +1.5, HoverStability +0.5 | 540 | 220 | 390 | 540 | 675 | 800 | 938 |
+| `MODULE_FRONTBODY_EXOTIC_03` | Bull Nose | 13,200 | deep rounded nose with a large mouth. Front downforce. | TopSpeed +1, Weight +2, SteeringResponse +1, BrakingForce +0.5, Downforce +1.5 | 540 | 220 | 390 | 540 | 675 | 800 | 938 |
+| `MODULE_FRONTBODY_EXOTIC_04` | Valley Nose | 42,000 | short and low between the fenders, with a full-width light bar. Slippery: the most top speed. | TopSpeed +2.5, Weight +2, SteeringResponse +1 | 540 | 220 | 390 | 540 | 675 | 800 | 938 |
+| `MODULE_FRONTBODY_EXOTIC_05` | Vented Nose | 132,000 | sharp nose with louvred bonnet vents. Most front downforce. | Weight +2, LateralGrip +0.5, SteeringResponse +1.5, Downforce +2 | 540 | 220 | 390 | 540 | 675 | 800 | 938 |
+| `MODULE_FRONTBODY_EXOTIC_06` | Raised Nose | 375,000 | narrow raised nose over an open floor. Sharpest turn-in. | TopSpeed +1, Weight +2, SteeringResponse +2 | 540 | 220 | 390 | 540 | 675 | 800 | 938 |
 
 PI spread between the six styles, per tier: E 0.29, D 0.14, C 0.11, B 0.08, A 0.07, S 0.05.
 
-### Engine Deck (`RearBody`, donor `MODULE_REARBUMPER_LVL1`: Weight +2, BrakingForce +2)
+### Rear Body (`RearBody`, donor `MODULE_REARBUMPER_LVL1`: Weight +2, BrakingForce +2)
 
 | ModuleId | Name | Price | Flavour | Raw stats | Card rating (on `exotic_03`) | On E | On D | On C | On B | On A | On S |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| `MODULE_REARBODY_EXOTIC_01` | Chopped Tail | 8,000 | tall tail cut off flat, with blade lamps and a centre spine. More output and a loose tail, less top speed. | TopSpeed -1, EngineOutput +1, Weight +2, LateralGrip +0.5, DriftControl +1, Downforce +0.5 | 540 | 220 | 390 | 540 | 675 | 800 | 938 |
-| `MODULE_REARBODY_EXOTIC_02` | Boat Tail | 11,000 | narrow drooping tail. Smooth air and top speed. Lightest. | TopSpeed +2.5, Weight +1.5, HoverStability +1, Downforce +0.5 | 540 | 220 | 390 | 540 | 675 | 800 | 938 |
-| `MODULE_REARBODY_EXOTIC_03` | Sloped Tail | 14,000 | louvred deck that slopes to a low edge. Most output. Heavy. | TopSpeed -0.5, EngineOutput +1.5, Weight +3, HoverStability +0.5, Downforce +0.5 | 540 | 220 | 390 | 540 | 675 | 800 | 938 |
-| `MODULE_REARBODY_EXOTIC_04` | Bar Tail | 18,000 | square tail with a full-width light bar. The slipperiest: most top speed. | TopSpeed +3, Weight +2, HoverStability +1 | 540 | 220 | 390 | 540 | 675 | 800 | 938 |
-| `MODULE_REARBODY_EXOTIC_05` | Louvred Tail | 23,000 | slatted tail face over a deep diffuser. Most rear downforce. | EngineOutput +0.5, Weight +2, LateralGrip +0.5, HoverStability +0.5, Downforce +3 | 540 | 220 | 390 | 540 | 675 | 800 | 938 |
-| `MODULE_REARBODY_EXOTIC_06` | Open Tail | 30,000 | narrow tail over an open diffuser floor. Downforce and calm. | TopSpeed +0.5, EngineOutput +0.5, Weight +2, HoverStability +1, Downforce +2.5 | 540 | 220 | 390 | 540 | 675 | 800 | 938 |
+| `MODULE_REARBODY_EXOTIC_01` | Chopped Tail | 1,500 | tall tail cut off flat, with blade lamps and a centre spine. More output and a loose tail, less top speed. | TopSpeed -1, EngineOutput +1, Weight +2, LateralGrip +0.5, DriftControl +1, Downforce +0.5 | 540 | 220 | 390 | 540 | 675 | 800 | 938 |
+| `MODULE_REARBODY_EXOTIC_02` | Boat Tail | 4,500 | narrow drooping tail. Smooth air and top speed. Lightest. | TopSpeed +2.5, Weight +1.5, HoverStability +1, Downforce +0.5 | 540 | 220 | 390 | 540 | 675 | 800 | 938 |
+| `MODULE_REARBODY_EXOTIC_03` | Sloped Tail | 13,200 | louvred deck that slopes to a low edge. Most output. Heavy. | TopSpeed -0.5, EngineOutput +1.5, Weight +3, HoverStability +0.5, Downforce +0.5 | 540 | 220 | 390 | 540 | 675 | 800 | 938 |
+| `MODULE_REARBODY_EXOTIC_04` | Bar Tail | 42,000 | square tail with a full-width light bar. The slipperiest: most top speed. | TopSpeed +3, Weight +2, HoverStability +1 | 540 | 220 | 390 | 540 | 675 | 800 | 938 |
+| `MODULE_REARBODY_EXOTIC_05` | Louvred Tail | 132,000 | slatted tail face over a deep diffuser. Most rear downforce. | EngineOutput +0.5, Weight +2, LateralGrip +0.5, HoverStability +0.5, Downforce +3 | 540 | 220 | 390 | 540 | 675 | 800 | 938 |
+| `MODULE_REARBODY_EXOTIC_06` | Open Tail | 375,000 | narrow tail over an open diffuser floor. Downforce and calm. | TopSpeed +0.5, EngineOutput +0.5, Weight +2, HoverStability +1, Downforce +2.5 | 540 | 220 | 390 | 540 | 675 | 800 | 938 |
 
 PI spread between the six styles, per tier: E 0.59, D 0.14, C 0.28, B 0.21, A 0.21, S 0.06.
 
@@ -311,12 +311,12 @@ PI spread between the six styles, per tier: E 1.14, D 0.22, C 0.26, B 0.09, A 0.
 
 | ModuleId | Name | Price | Flavour | Raw stats | Card rating (on `exotic_03`) | On E | On D | On C | On B | On A | On S |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| `MODULE_REARSPOILER_EXOTIC_01` | Spine Wing | 8,000 | lip wing on the tail edge; the kits carry a plane on one centre pylon. Downforce, grip and braking, a little less top speed. | TopSpeed -1, Weight +2.5, LateralGrip +2, SteeringResponse +1.5, HoverStability +0.5, DriftControl +0.5, DriftGrip +1, BrakingForce +1.5, Downforce +1 | 540 | 220 | 390 | 540 | 675 | 800 | 938 |
-| `MODULE_REARSPOILER_EXOTIC_02` | Twin-Post Wing | 11,000 | low wing on two posts. All-round, close to the Piercer spoiler. | TopSpeed +1, Weight +2, LateralGrip +2, SteeringResponse +2, HoverStability +1, DriftGrip +1 | 540 | 220 | 390 | 540 | 675 | 800 | 938 |
-| `MODULE_REARSPOILER_EXOTIC_03` | Drop-Tip Wing | 14,000 | wing with tips that turn down. Grip, a little less top speed. | TopSpeed -0.5, Weight +2, LateralGrip +2.5, SteeringResponse +2, HoverStability +1, BrakingForce +0.5, Downforce +1 | 540 | 220 | 390 | 540 | 675 | 800 | 938 |
-| `MODULE_REARSPOILER_EXOTIC_04` | Bridge Wing | 18,000 | low blade between two fins. Slippery: most top speed. | TopSpeed +2.5, Weight +1.5, LateralGrip +1.5, SteeringResponse +1.5, HoverStability +1, DriftControl +0.5, DriftGrip +0.5 | 540 | 220 | 390 | 540 | 675 | 800 | 938 |
-| `MODULE_REARSPOILER_EXOTIC_05` | Race Wing | 23,000 | swan-neck race wing. Most downforce. | TopSpeed +1, Weight +2, LateralGrip +2.5, SteeringResponse +1, HoverStability +0.5, BrakingForce +0.5, Downforce +3 | 540 | 220 | 390 | 540 | 675 | 800 | 938 |
-| `MODULE_REARSPOILER_EXOTIC_06` | Pylon Wing | 30,000 | wide wing on two pylons. Light and sharp. | TopSpeed +1.5, Weight +1.5, LateralGrip +1.5, SteeringResponse +2.5, HoverStability +1, DriftControl +0.5 | 540 | 220 | 390 | 540 | 675 | 800 | 938 |
+| `MODULE_REARSPOILER_EXOTIC_01` | Spine Wing | 1,500 | lip wing on the tail edge; the kits carry a plane on one centre pylon. Downforce, grip and braking, a little less top speed. | TopSpeed -1, Weight +2.5, LateralGrip +2, SteeringResponse +1.5, HoverStability +0.5, DriftControl +0.5, DriftGrip +1, BrakingForce +1.5, Downforce +1 | 540 | 220 | 390 | 540 | 675 | 800 | 938 |
+| `MODULE_REARSPOILER_EXOTIC_02` | Twin-Post Wing | 4,500 | low wing on two posts. All-round, close to the Piercer spoiler. | TopSpeed +1, Weight +2, LateralGrip +2, SteeringResponse +2, HoverStability +1, DriftGrip +1 | 540 | 220 | 390 | 540 | 675 | 800 | 938 |
+| `MODULE_REARSPOILER_EXOTIC_03` | Drop-Tip Wing | 13,200 | wing with tips that turn down. Grip, a little less top speed. | TopSpeed -0.5, Weight +2, LateralGrip +2.5, SteeringResponse +2, HoverStability +1, BrakingForce +0.5, Downforce +1 | 540 | 220 | 390 | 540 | 675 | 800 | 938 |
+| `MODULE_REARSPOILER_EXOTIC_04` | Bridge Wing | 42,000 | low blade between two fins. Slippery: most top speed. | TopSpeed +2.5, Weight +1.5, LateralGrip +1.5, SteeringResponse +1.5, HoverStability +1, DriftControl +0.5, DriftGrip +0.5 | 540 | 220 | 390 | 540 | 675 | 800 | 938 |
+| `MODULE_REARSPOILER_EXOTIC_05` | Race Wing | 132,000 | swan-neck race wing. Most downforce. | TopSpeed +1, Weight +2, LateralGrip +2.5, SteeringResponse +1, HoverStability +0.5, BrakingForce +0.5, Downforce +3 | 540 | 220 | 390 | 540 | 675 | 800 | 938 |
+| `MODULE_REARSPOILER_EXOTIC_06` | Pylon Wing | 375,000 | wide wing on two pylons. Light and sharp. | TopSpeed +1.5, Weight +1.5, LateralGrip +1.5, SteeringResponse +2.5, HoverStability +1, DriftControl +0.5 | 540 | 220 | 390 | 540 | 675 | 800 | 938 |
 
 PI spread between the six styles, per tier: E 0.46, D 0.10, C 0.14, B 0.09, A 0.10, S 0.10.
 
@@ -398,14 +398,14 @@ Core modules are a different matter, and behave as on Piercer. A player who owns
 
 Stock = the cockpit price (four Standard core modules and the six signature body parts are granted with it). Upgrade cost is the cash for the max-PI allocation of section 7, under the live rule in `PerformanceUpgradeRuntime.NextPointCost` (the charge is the guide for the next point on that path).
 
-| Cockpit | Stock (cockpit) | Upgrades on the stock build | Four Power modules | Upgrades on the Power build (ten modules) | Full Power build | PI | Piercer full Power build (four LVL3 accessories) | Exotic over Piercer | Optional: dearest foreign body kit (six parts) |
+| Cockpit | Stock (cockpit) | Upgrades on the stock build | Four Power modules | Upgrades on the Power build (ten modules) | Full Power build | PI | Piercer full Power build (four LVL3 accessories) | Exotic over Piercer | Optional: its three EVO body parts |
 |---|---|---|---|---|---|---|---|---|---|
-| exotic_01 | 50,000 | 129,117 | 24,000 | 85,077 | 159,077 | D 309 | 248,266 | -35.9% | 180,000 |
-| exotic_02 | 150,000 | 126,091 | 72,000 | 113,877 | 335,877 | C 462 | 389,066 | -13.7% | 180,000 |
-| exotic_03 | 440,000 | 127,604 | 211,200 | 197,077 | 848,277 | C 597 | 795,866 | +6.6% | 180,000 |
-| exotic_04 | 1,400,000 | 127,604 | 672,000 | 475,390 | 2,547,390 | B 720 | 2,121,866 | +20.1% | 180,000 |
-| exotic_05 | 4,400,000 | 111,171 | 2,112,000 | 1,324,470 | 7,836,470 | A 831 | 6,340,315 | +23.6% | 180,000 |
-| exotic_06 | 12,500,000 | 125,816 | 6,000,000 | 3,668,889 | 22,168,889 | S 951 | 17,855,278 | +24.2% | 180,000 |
+| exotic_01 | 50,000 | 129,117 | 24,000 | 85,077 | 159,077 | D 309 | 248,266 | -35.9% | 18,000 |
+| exotic_02 | 150,000 | 126,091 | 72,000 | 113,877 | 335,877 | C 462 | 389,066 | -13.7% | 54,000 |
+| exotic_03 | 440,000 | 127,604 | 211,200 | 197,077 | 848,277 | C 597 | 795,866 | +6.6% | 158,400 |
+| exotic_04 | 1,400,000 | 127,604 | 672,000 | 475,390 | 2,547,390 | B 720 | 2,121,866 | +20.1% | 504,000 |
+| exotic_05 | 4,400,000 | 111,171 | 2,112,000 | 1,324,470 | 7,836,470 | A 831 | 6,340,315 | +23.6% | 1,584,000 |
+| exotic_06 | 12,500,000 | 125,816 | 6,000,000 | 3,668,889 | 22,168,889 | S 951 | 17,855,278 | +24.2% | 4,500,000 |
 
 - The Piercer figure includes four LVL3 accessories at 19,000 each. The Exotic body parts come with the cockpit, which is why the Spider build is cheaper than the Forge build.
 - Body and Standard upgrade guides do not scale with the cockpit (live pattern). On Spider a Standard engine point (6,050) costs more than a Lightweight engine (6,000). Forge has the same pattern today (4,800).
@@ -445,12 +445,12 @@ What three points on one body path are worth: PI change on each stock cockpit (u
 
 | Slot | PathId | Source | Per point | Cash | E Stinger | D Zephyr | C Aurora | B Endura | A Rosso | S Seraph |
 |---|---|---|---|---|---|---|---|---|---|---|
-| Nose | `LightweightNose` | new | SteeringResponse +1, Weight -3 | 11,344 | +6.73 | +4.53 | +3.37 | +3.36 | +0.49 | +0.09 |
-| Nose | `NoseCanards` | new | Downforce +1, SteeringResponse +2, TopSpeed -1 | 11,344 | +7.29 | +4.53 | +2.69 | +1.48 | +0.66 | +0.10 |
-| Nose | `SlipstreamNose` | new | Downforce -1, TopSpeed +2 | 11,344 | +4.48 | +3.01 | +2.02 | +1.27 | +0.68 | +0.20 |
-| Engine Deck | `DeckCooling` | new | BoostEfficiency +2, EngineOutput +1, Weight +1 | 11,344 | +10.28 | +7.15 | +4.65 | +2.61 | +1.00 | +0.15 |
-| Engine Deck | `LightweightDeck` | new | DriftGrip +1, Weight -3 | 11,344 | +4.72 | +3.39 | +2.74 | +3.04 | +0.35 | +0.07 |
-| Engine Deck | `TailStrakes` | new | DriftControl +1, HoverStability +2, TopSpeed -1 | 11,344 | +10.13 | +5.57 | +3.10 | +1.56 | +0.62 | +0.08 |
+| Front Body | `LightweightNose` | new | SteeringResponse +1, Weight -3 | 11,344 | +6.73 | +4.53 | +3.37 | +3.36 | +0.49 | +0.09 |
+| Front Body | `NoseCanards` | new | Downforce +1, SteeringResponse +2, TopSpeed -1 | 11,344 | +7.29 | +4.53 | +2.69 | +1.48 | +0.66 | +0.10 |
+| Front Body | `SlipstreamNose` | new | Downforce -1, TopSpeed +2 | 11,344 | +4.48 | +3.01 | +2.02 | +1.27 | +0.68 | +0.20 |
+| Rear Body | `DeckCooling` | new | BoostEfficiency +2, EngineOutput +1, Weight +1 | 11,344 | +10.28 | +7.15 | +4.65 | +2.61 | +1.00 | +0.15 |
+| Rear Body | `LightweightDeck` | new | DriftGrip +1, Weight -3 | 11,344 | +4.72 | +3.39 | +2.74 | +3.04 | +0.35 | +0.07 |
+| Rear Body | `TailStrakes` | new | DriftControl +1, HoverStability +2, TopSpeed -1 | 11,344 | +10.13 | +5.57 | +3.10 | +1.56 | +0.62 | +0.08 |
 | Side Pods | `AirflowChannels` | cloned | Drag -1, HoverStability +1 | 14,438 | +5.05 | +2.92 | +1.85 | +1.40 | +1.30 | +1.57 |
 | Side Pods | `CorneringVanes` | cloned | DriftGrip +2, LateralGrip +2 | 14,438 | +15.43 | +10.45 | +7.24 | +4.47 | +2.30 | +0.50 |
 | Side Pods | `LightweightShells` | cloned | Weight -3 | 14,438 | +1.86 | +1.61 | +1.53 | +2.26 | +0.42 | +0.15 |
@@ -490,9 +490,9 @@ How each donor attribute gets its Exotic value:
 | `DisplayName`, `ModuleName` | spec display name, the same on the three variants | spec display name |
 | `CategoryId` | `exotic` | `exotic` |
 | `ModuleFolder`, `ModuleType`, `ModuleSlot`, `EnginePosition`, `RearEngine` | INTERFACE.md | folder from INTERFACE.md; type and slot = slot id |
-| `SourceCockpitId` | `exotic_0N` | absent, as on the donor |
-| `SourceCockpitDisplayName` (engines only) | the cockpit `DisplayName` (live value is the placeholder "Bruiser Origin") | absent |
-| `Price`, `PurchasePrice` | 0 / 12% of the cockpit price | `Price` by kit; no `PurchasePrice` |
+| `SourceCockpitId` | `exotic_0N` | `exotic_0N`, the cockpit of the part's kit (not on the donor) |
+| `SourceCockpitDisplayName` (core: engines only) | the cockpit `DisplayName` (live value is the placeholder "Bruiser Origin") | the cockpit `DisplayName`, on every body part (not on the donor) |
+| `Price`, `PurchasePrice` | 0 / 12% of the cockpit price | Front Body, Rear Body, Wing: a quarter, GT half and EVO the whole core variant price; Side Pods, Splitter, Diffuser: `Price` by kit; no `PurchasePrice` |
 | `NeonPrice` | 5,000 / 6,500 / 8,000 | by kit |
 | `PointNCostGuide`, `UpgradePointCapacity`, `MaxPointsPerPath`, `UpgradePrice` | section 2 | copied from the donor |
 | `Tier`, `VariantName`, `VariantOrder` | Standard / Lightweight / Power, 10 / 20 / 30 | `Tier` = kit name (label only, not read); no `VariantName` or `VariantOrder`, as on the donor |

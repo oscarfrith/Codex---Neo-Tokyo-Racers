@@ -29,7 +29,13 @@ MESH_DATA_PATH = HERE.parent / "stage_b" / "data" / "mesh.json"
 MESH_KITS = (1, 2, 3, 4, 5, 6)
 MESH_STOCK_BODY_STEMS = ("MODULE_FRONTBODY_EXOTIC", "MODULE_REARBODY_EXOTIC", "MODULE_REARSPOILER_EXOTIC")
 MESH_EMPTY_DEFAULTS = {"DefaultSidePodsModuleId", "DefaultFrontBumperModuleId", "DefaultRearBumperModuleId"}
-BODY_TRIM_FACTOR = {"GT": 2.0, "EVO": 3.5}
+# mesh/INTEGRATION.md E2: Price as a fraction of the kit's core variant price V. The base part is V / 4.
+BODY_TRIM_FACTOR = {"GT": (1, 2), "EVO": (1, 1)}
+STOCK_BODY_BASE_PRICE = {1: 1500, 2: 4500, 3: 13200, 4: 42000, 5: 132000, 6: 375000}
+CORE_VARIANT_PRICE = {1: 6000, 2: 18000, 3: 52800, 4: 168000, 5: 528000, 6: 1500000}
+HIDDEN_BODY_SLOTS = ("SidePods", "FrontBumper", "RearBumper")
+STOCK_BODY_SLOTS = ("FrontBody", "RearBody", "RearSpoiler")
+BODY_ABSENT = ("PurchasePrice", "VariantName", "VariantOrder")
 
 _CACHE = {}
 
@@ -252,11 +258,13 @@ def test_prices():
     body_neon = [int(x) for x in re.search(r"Body `NeonPrice` by kit: ([\d, ]+)\.", text).group(1).split(", ")]
     assert body_prices == [8000, 11000, 14000, 18000, 23000, 30000] and body_neon == [6500, 7000, 7500, 8000, 8500, 9500]
     piercer = c["live"].cockpits
+    assert sorted(HIDDEN_BODY_SLOTS + STOCK_BODY_SLOTS) == sorted(B.BODY_ORDER) and list(STOCK_BODY_SLOTS) == B.MESH_STOCK_BODY
     for cockpit in B.COCKPITS:
         n = cockpit["n"]
         ratio = cockpit["price"] / piercer[cockpit["piercer"]]["attributes"]["Price"]
         assert 1.24 <= ratio <= 1.28, (cockpit["id"], ratio)  # about 25% over the matching Piercer
         variant_price = cockpit["price"] * 12 // 100
+        assert variant_price == CORE_VARIANT_PRICE[n] == B.core_variant_price(disk["modules"], n)
         for slot in B.CORE_ORDER:
             stem, donor_stem = B.CORE_SLOTS[slot][0], B.CORE_SLOTS[slot][1]
             standard = disk["modules"]["%s_%02d_STANDARD" % (stem, n)]["attributes"]
@@ -278,20 +286,43 @@ def test_prices():
         for slot in B.BODY_ORDER:
             attributes = disk["modules"]["%s_%02d" % (B.BODY_SLOTS[slot][0], n)]["attributes"]
             donor = c["live"].modules[B.BODY_SLOTS[slot][1]]["attributes"]
-            assert attributes["Price"] == body_prices[n - 1] and attributes["NeonPrice"] == body_neon[n - 1]
-            assert "PurchasePrice" not in attributes and "SourceCockpitId" not in attributes
+            # E2: the base part of a stock slot is exactly V / 4; the hidden slots keep the price by kit.
+            if slot in STOCK_BODY_SLOTS:
+                assert attributes["Price"] * 4 == variant_price and attributes["Price"] == STOCK_BODY_BASE_PRICE[n], attributes["ModuleId"]
+            else:
+                assert attributes["Price"] == body_prices[n - 1], attributes["ModuleId"]
+            assert attributes["Price"] > 0, attributes["ModuleId"]  # 0 would make the server charge 12% of the cockpit price
+            assert kind(attributes["Price"]) == "number" and attributes["NeonPrice"] == body_neon[n - 1]
+            # E1: locked to the cockpit of its kit, as a core module is; none of the core purchase or variant names.
+            assert attributes["SourceCockpitId"] == cockpit["id"] and attributes["SourceCockpitDisplayName"] == cockpit["name"]
+            assert not any(name in attributes for name in BODY_ABSENT), attributes["ModuleId"]
             assert attributes["UpgradePointCapacity"] == 6 and attributes["MaxPointsPerPath"] == 3
             for i in range(1, 7):
                 assert attributes["Point%dCostGuide" % i] == donor["Point%dCostGuide" % i]
-    # Mesh body trims (D7): base price x 2 (GT) and x 3.5 (EVO), rounded to 100. NeonPrice as the base part.
-    expected_trim_prices = {1: {"GT": 16000, "EVO": 28000}, 2: {"GT": 22000, "EVO": 38500}, 3: {"GT": 28000, "EVO": 49000},
-                            4: {"GT": 36000, "EVO": 63000}, 5: {"GT": 46000, "EVO": 80500}, 6: {"GT": 60000, "EVO": 105000}}
+    # Mesh body trims (E2): GT is exactly half the kit's core variant price V and EVO is exactly V; the base part
+    # is exactly V / 4, so base < GT < EVO. V is read from the generated core modules. NeonPrice as the base part.
+    expected_trim_prices = {1: {"GT": 3000, "EVO": 6000}, 2: {"GT": 9000, "EVO": 18000}, 3: {"GT": 26400, "EVO": 52800},
+                            4: {"GT": 84000, "EVO": 168000}, 5: {"GT": 264000, "EVO": 528000}, 6: {"GT": 750000, "EVO": 1500000}}
+    assert len(trim_module_ids()) == 36
     for module_id, (base_id, trim) in trim_module_ids().items():
         attributes, base_attributes = disk["modules"][module_id]["attributes"], disk["modules"][base_id]["attributes"]
-        assert attributes["Price"] == int(math.floor(base_attributes["Price"] * BODY_TRIM_FACTOR[trim] / 100 + 0.5)) * 100
-        assert attributes["Price"] == expected_trim_prices[int(base_id[-2:])][trim], module_id
+        n = int(base_id[-2:])
+        core_prices = {disk["modules"]["%s_%02d_%s" % (B.CORE_SLOTS[slot][0], n, variant)]["attributes"]["Price"]
+                       for slot in B.CORE_ORDER for variant in ("LIGHTWEIGHT", "POWER")}
+        assert len(core_prices) == 1
+        core_price = core_prices.pop()
+        numerator, denominator = BODY_TRIM_FACTOR[trim]
+        assert attributes["Price"] * denominator == core_price * numerator and kind(attributes["Price"]) == "number", module_id
+        assert attributes["Price"] == expected_trim_prices[n][trim], module_id
+        assert base_attributes["Price"] * 4 == core_price and base_attributes["Price"] == STOCK_BODY_BASE_PRICE[n], base_id
+        gt, evo = [disk["modules"]["%s_%s" % (base_id, name)]["attributes"]["Price"] for name in ("GT", "EVO")]
+        assert 0 < base_attributes["Price"] < gt < evo, base_id
         assert attributes["NeonPrice"] == base_attributes["NeonPrice"]
-        assert "PurchasePrice" not in attributes and "SourceCockpitId" not in attributes and "VariantName" not in attributes
+        assert attributes["SourceCockpitId"] == base_attributes["SourceCockpitId"] == "exotic_%02d" % n
+        assert attributes["SourceCockpitDisplayName"] == base_attributes["SourceCockpitDisplayName"]
+        assert not any(name in attributes for name in BODY_ABSENT), module_id
+    # No other body id exists: every body module was covered above.
+    assert sum(1 for entry in disk["modules"].values() if entry["attributes"]["ModuleType"] in B.BODY_ORDER) == 36 + 36
     # The 8/10/12/15/18/22 rule reproduces every live Piercer variant module.
     for module_id, module in c["live"].modules.items():
         attributes = module["attributes"]
@@ -423,9 +454,11 @@ def test_every_module_has_its_donor_attribute_set():
             stem, donor_id, folder = B.BODY_SLOTS[slot]
             attributes = c["disk"]["modules"]["%s_%02d" % (stem, cockpit["n"])]["attributes"]
             donor = c["live"].modules[donor_id]["attributes"]
-            assert set(attributes) == set(donor) | extra, (attributes["ModuleId"], set(attributes) ^ set(donor))
+            assert not {"SourceCockpitId", "SourceCockpitDisplayName"} & set(donor)
+            assert set(attributes) == set(donor) | extra | {"SourceCockpitId", "SourceCockpitDisplayName"}, (attributes["ModuleId"], set(attributes) ^ set(donor))
             for name, value in donor.items():
                 assert kind(attributes[name]) == kind(value), (attributes["ModuleId"], name)
+            assert attributes["SourceCockpitId"] == cockpit["id"] and attributes["SourceCockpitDisplayName"] == cockpit["name"]
             assert attributes["ModuleFolder"] == folder and attributes["ModuleType"] == slot and attributes["ModuleSlot"] == slot
             for name in R.RAW_ORDER:
                 assert attributes["PerformanceDelta_" + name] == attributes[name], (attributes["ModuleId"], name)
@@ -435,7 +468,7 @@ def test_every_module_has_its_donor_attribute_set():
         donor = c["live"].modules[donor_id]["attributes"]
         for name, value in B.legacy_body_headlines(donor).items():
             assert donor[name] == value, (donor_id, name)
-    # Mesh body trims (D7): every attribute of the base part and the same upgrade path source, except the id,
+    # Mesh body trims (D7, E1): every attribute of the base part and the same upgrade path source, except the id,
     # the names and the Price. So the attribute set is the donor set too, and no VariantName is added.
     for module_id, (base_id, trim) in trim_module_ids().items():
         entry, base_entry = c["disk"]["modules"][module_id], c["disk"]["modules"][base_id]

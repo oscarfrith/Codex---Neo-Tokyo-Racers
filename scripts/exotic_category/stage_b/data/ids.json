@@ -34,40 +34,42 @@
   ],
   "slots": [
     {
-      "slotId": "Engine1", "label": "Main Turbine", "moduleType": "Engine", "moduleFolder": "Engines", "order": 1, "countLabel": "Engines",
+      "slotId": "FrontBody", "label": "Front Body", "moduleType": "FrontBody", "moduleFolder": "FrontBodies", "order": 1, "countLabel": "Noses",
+      "enginePosition": null, "kind": "body", "idPrefix": "MODULE_FRONTBODY_EXOTIC_", "moduleSlot": "FrontBody",
+      "attributeDonor": "MODULE_FRONTBUMPER_LVL1", "rootDonor": "MODULE_FRONTBUMPER_LVL1", "mountDonorSlot": "FrontBumper",
+      "mountAttributes": {"SlotId": "FrontBody", "ModuleType": "FrontBody", "DisplayName": "Front Body"},
+      "defaultAttributes": ["DefaultFrontBodyModuleId"], "sockets": null, "lamps": true
+    },
+    {
+      "slotId": "RearBody", "label": "Rear Body", "moduleType": "RearBody", "moduleFolder": "RearBodies", "order": 2, "countLabel": "Engine Decks",
+      "enginePosition": null, "kind": "body", "idPrefix": "MODULE_REARBODY_EXOTIC_", "moduleSlot": "RearBody",
+      "attributeDonor": "MODULE_REARBUMPER_LVL1", "rootDonor": "MODULE_REARBUMPER_LVL1", "mountDonorSlot": "RearBumper",
+      "mountAttributes": {"SlotId": "RearBody", "ModuleType": "RearBody", "DisplayName": "Rear Body"},
+      "defaultAttributes": ["DefaultRearBodyModuleId"], "sockets": null, "lamps": true
+    },
+    {
+      "slotId": "Engine1", "label": "Front Engine", "moduleType": "Engine", "moduleFolder": "Engines", "order": 3, "countLabel": "Engines",
       "enginePosition": "Front", "kind": "core", "idPrefix": "MODULE_ENGINE_EXOTIC_", "moduleSlot": "Engine", "rearEngine": false, "moduleEnginePosition": "Front",
       "attributeDonor": "MODULE_ENGINE_BRUISER_03_{VARIANT}", "rootDonor": "MODULE_ENGINE_BRUISER_03_STANDARD", "mountDonorSlot": "Engine1",
       "defaultAttributes": ["DefaultEngineModuleId", "DefaultFrontEngineModuleId"], "sockets": "engine", "lamps": false
     },
     {
-      "slotId": "Engine2", "label": "Side Engines", "moduleType": "Engine", "moduleFolder": "Engines_B", "order": 2, "countLabel": "Engines",
+      "slotId": "Engine2", "label": "Rear Engine", "moduleType": "Engine", "moduleFolder": "Engines_B", "order": 4, "countLabel": "Engines",
       "enginePosition": "Rear", "kind": "core", "idPrefix": "MODULE_ENGINE_B_EXOTIC_", "moduleSlot": "Engine", "rearEngine": true, "moduleEnginePosition": "Rear",
       "attributeDonor": "MODULE_ENGINE_B_BRUISER_03_{VARIANT}", "rootDonor": "MODULE_ENGINE_B_BRUISER_03_STANDARD", "mountDonorSlot": "Engine2",
       "defaultAttributes": ["DefaultEngineBModuleId", "DefaultRearEngineModuleId"], "sockets": "engine", "lamps": false
     },
     {
-      "slotId": "Stabilisers", "label": "Stabilisers", "moduleType": "Stabilisers", "moduleFolder": "Stabilisers", "order": 3, "countLabel": "Stabilisers",
+      "slotId": "Stabilisers", "label": "Drift Thrusters", "moduleType": "Stabilisers", "moduleFolder": "Stabilisers", "order": 5, "countLabel": "Stabilisers",
       "enginePosition": null, "kind": "core", "idPrefix": "MODULE_STABILISER_EXOTIC_", "moduleSlot": "Stabilisers", "rearEngine": false, "moduleEnginePosition": "",
       "attributeDonor": "MODULE_STABILISER_BRUISER_03_{VARIANT}", "rootDonor": "MODULE_STABILISER_BRUISER_03_STANDARD", "mountDonorSlot": "Stabilisers",
       "defaultAttributes": ["DefaultStabiliserModuleId", "DefaultStabilisersModuleId"], "sockets": "stabiliser", "lamps": false
     },
     {
-      "slotId": "Boost", "label": "Afterburner", "moduleType": "Boost", "moduleFolder": "Boost", "order": 4, "countLabel": "Boost",
+      "slotId": "Boost", "label": "Overdrive", "moduleType": "Boost", "moduleFolder": "Boost", "order": 6, "countLabel": "Boost",
       "enginePosition": null, "kind": "core", "idPrefix": "MODULE_BOOST_EXOTIC_", "moduleSlot": "Boost", "rearEngine": false, "moduleEnginePosition": "",
       "attributeDonor": "MODULE_BOOST_BRUISER_03_{VARIANT}", "rootDonor": "MODULE_BOOST_BRUISER_03_STANDARD", "mountDonorSlot": "Boost",
       "defaultAttributes": ["DefaultBoostModuleId"], "sockets": "boost", "lamps": false
-    },
-    {
-      "slotId": "FrontBumper", "label": "Splitter", "moduleType": "FrontBumper", "moduleFolder": "FrontBumpers", "order": 5, "countLabel": "Splitters",
-      "enginePosition": null, "kind": "body", "idPrefix": "MODULE_FRONTBUMPER_EXOTIC_", "moduleSlot": "FrontBumper",
-      "attributeDonor": "MODULE_FRONTBUMPER_LVL1", "rootDonor": "MODULE_FRONTBUMPER_LVL1", "mountDonorSlot": "FrontBumper",
-      "defaultAttributes": ["DefaultFrontBumperModuleId"], "sockets": null, "lamps": false
-    },
-    {
-      "slotId": "RearBumper", "label": "Diffuser", "moduleType": "RearBumper", "moduleFolder": "RearBumpers", "order": 6, "countLabel": "Diffusers",
-      "enginePosition": null, "kind": "body", "idPrefix": "MODULE_REARBUMPER_EXOTIC_", "moduleSlot": "RearBumper",
-      "attributeDonor": "MODULE_REARBUMPER_LVL1", "rootDonor": "MODULE_REARBUMPER_LVL1", "mountDonorSlot": "RearBumper",
-      "defaultAttributes": ["DefaultRearBumperModuleId"], "sockets": null, "lamps": false
     },
     {
       "slotId": "RearSpoiler", "label": "Wing", "moduleType": "RearSpoiler", "moduleFolder": "RearSpoilers", "order": 7, "countLabel": "Wings",
@@ -76,24 +78,22 @@
       "defaultAttributes": ["DefaultRearSpoilerModuleId"], "sockets": null, "lamps": false
     },
     {
-      "slotId": "SidePods", "label": "Side Pods", "moduleType": "SidePods", "moduleFolder": "SidePods", "order": 8, "countLabel": "Side Pods",
+      "slotId": "FrontBumper", "label": "Splitter", "moduleType": "FrontBumper", "moduleFolder": "FrontBumpers", "order": 8, "countLabel": "Splitters",
+      "enginePosition": null, "kind": "body", "idPrefix": "MODULE_FRONTBUMPER_EXOTIC_", "moduleSlot": "FrontBumper",
+      "attributeDonor": "MODULE_FRONTBUMPER_LVL1", "rootDonor": "MODULE_FRONTBUMPER_LVL1", "mountDonorSlot": "FrontBumper",
+      "defaultAttributes": ["DefaultFrontBumperModuleId"], "sockets": null, "lamps": false
+    },
+    {
+      "slotId": "RearBumper", "label": "Diffuser", "moduleType": "RearBumper", "moduleFolder": "RearBumpers", "order": 9, "countLabel": "Diffusers",
+      "enginePosition": null, "kind": "body", "idPrefix": "MODULE_REARBUMPER_EXOTIC_", "moduleSlot": "RearBumper",
+      "attributeDonor": "MODULE_REARBUMPER_LVL1", "rootDonor": "MODULE_REARBUMPER_LVL1", "mountDonorSlot": "RearBumper",
+      "defaultAttributes": ["DefaultRearBumperModuleId"], "sockets": null, "lamps": false
+    },
+    {
+      "slotId": "SidePods", "label": "Side Pods", "moduleType": "SidePods", "moduleFolder": "SidePods", "order": 10, "countLabel": "Side Pods",
       "enginePosition": null, "kind": "body", "idPrefix": "MODULE_SIDEPODS_EXOTIC_", "moduleSlot": "SidePods",
       "attributeDonor": "MODULE_SIDEPODS_LVL1", "rootDonor": "MODULE_SIDEPODS_LVL1", "mountDonorSlot": "SidePods",
       "defaultAttributes": ["DefaultSidePodsModuleId"], "sockets": null, "lamps": false
-    },
-    {
-      "slotId": "FrontBody", "label": "Nose", "moduleType": "FrontBody", "moduleFolder": "FrontBodies", "order": 9, "countLabel": "Noses",
-      "enginePosition": null, "kind": "body", "idPrefix": "MODULE_FRONTBODY_EXOTIC_", "moduleSlot": "FrontBody",
-      "attributeDonor": "MODULE_FRONTBUMPER_LVL1", "rootDonor": "MODULE_FRONTBUMPER_LVL1", "mountDonorSlot": "FrontBumper",
-      "mountAttributes": {"SlotId": "FrontBody", "ModuleType": "FrontBody", "DisplayName": "Front Body"},
-      "defaultAttributes": ["DefaultFrontBodyModuleId"], "sockets": null, "lamps": true
-    },
-    {
-      "slotId": "RearBody", "label": "Engine Deck", "moduleType": "RearBody", "moduleFolder": "RearBodies", "order": 10, "countLabel": "Engine Decks",
-      "enginePosition": null, "kind": "body", "idPrefix": "MODULE_REARBODY_EXOTIC_", "moduleSlot": "RearBody",
-      "attributeDonor": "MODULE_REARBUMPER_LVL1", "rootDonor": "MODULE_REARBUMPER_LVL1", "mountDonorSlot": "RearBumper",
-      "mountAttributes": {"SlotId": "RearBody", "ModuleType": "RearBody", "DisplayName": "Rear Body"},
-      "defaultAttributes": ["DefaultRearBodyModuleId"], "sockets": null, "lamps": true
     }
   ]
 }

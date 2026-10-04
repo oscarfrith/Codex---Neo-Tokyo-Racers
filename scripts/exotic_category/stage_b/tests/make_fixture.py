@@ -33,6 +33,8 @@ def main():
         attrs = {k: v for k, v in donor.items() if k not in constants and k not in identity_like and not k.startswith("Default")}
         attrs.update({"Price": c["price"], "TargetStockPI": c["targetStockPI"], "TargetTier": c["tier"]})
         out["cockpits"][c["cockpitId"]] = {"attributes": attrs, "stockPI": c["targetStockPI"], "stockTier": c["tier"]}
+        # The stand-in core modules carry their donor's Price, so that is the core variant price here.
+        variant_price = reference["modules"][next(s for s in ids["slots"] if s["kind"] == "core")["attributeDonor"].replace("{VARIANT}", "POWER")]["Price"]
         for slot in ids["slots"]:
             core = slot["kind"] == "core"
             for variant in bc.module_variants(ids, mesh, slot, c["n"]):
@@ -44,8 +46,10 @@ def main():
                 attrs = {k: v for k, v in donor_attrs.items() if k not in skip}
                 if core:
                     attrs["VariantName"], attrs["VariantOrder"] = VARIANT_FIELDS[variant]
-                elif variant:  # a mesh body trim (mesh/INTEGRATION.md D7): the base part at 2 x (GT) or 3.5 x (EVO) its price
-                    attrs["Price"] = int(attrs["Price"] * {"GT": 2, "EVO": 3.5}[variant] / 100 + 0.5) * 100
+                else:  # mesh/INTEGRATION.md E1, E2: locked to the kit's cockpit; a stock slot is a quarter, GT half and EVO the whole core variant price
+                    attrs["SourceCockpitId"], attrs["SourceCockpitDisplayName"] = c["cockpitId"], c["displayName"]
+                    if bc.module_variants(ids, mesh, slot, c["n"]) != [None]:
+                        attrs["Price"] = {None: variant_price // 4, "GT": variant_price // 2, "EVO": variant_price}[variant]
                 entry = {"attributes": attrs}
                 if slot["slotId"] in ("FrontBody", "RearBody"):
                     prefix = "Nose" if slot["slotId"] == "FrontBody" else "Deck"

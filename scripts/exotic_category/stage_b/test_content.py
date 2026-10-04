@@ -31,18 +31,23 @@ COCKPITS = {
     "exotic_06": ("COCKPIT_EXOTIC_06", "Seraph", "gull", "concept", "S", 12500000, 938),
 }
 # SlotId: (label, ModuleType, folder, order, CountLabel, EnginePosition, id prefix, core?)
+# Labels and Order: mesh/INTEGRATION.md E3 and E4 (2026-10-04).
 SLOTS = {
-    "Engine1": ("Main Turbine", "Engine", "Engines", 1, "Engines", "Front", "MODULE_ENGINE_EXOTIC_", True),
-    "Engine2": ("Side Engines", "Engine", "Engines_B", 2, "Engines", "Rear", "MODULE_ENGINE_B_EXOTIC_", True),
-    "Stabilisers": ("Stabilisers", "Stabilisers", "Stabilisers", 3, "Stabilisers", None, "MODULE_STABILISER_EXOTIC_", True),
-    "Boost": ("Afterburner", "Boost", "Boost", 4, "Boost", None, "MODULE_BOOST_EXOTIC_", True),
-    "FrontBumper": ("Splitter", "FrontBumper", "FrontBumpers", 5, "Splitters", None, "MODULE_FRONTBUMPER_EXOTIC_", False),
-    "RearBumper": ("Diffuser", "RearBumper", "RearBumpers", 6, "Diffusers", None, "MODULE_REARBUMPER_EXOTIC_", False),
+    "FrontBody": ("Front Body", "FrontBody", "FrontBodies", 1, "Noses", None, "MODULE_FRONTBODY_EXOTIC_", False),
+    "RearBody": ("Rear Body", "RearBody", "RearBodies", 2, "Engine Decks", None, "MODULE_REARBODY_EXOTIC_", False),
+    "Engine1": ("Front Engine", "Engine", "Engines", 3, "Engines", "Front", "MODULE_ENGINE_EXOTIC_", True),
+    "Engine2": ("Rear Engine", "Engine", "Engines_B", 4, "Engines", "Rear", "MODULE_ENGINE_B_EXOTIC_", True),
+    "Stabilisers": ("Drift Thrusters", "Stabilisers", "Stabilisers", 5, "Stabilisers", None, "MODULE_STABILISER_EXOTIC_", True),
+    "Boost": ("Overdrive", "Boost", "Boost", 6, "Boost", None, "MODULE_BOOST_EXOTIC_", True),
     "RearSpoiler": ("Wing", "RearSpoiler", "RearSpoilers", 7, "Wings", None, "MODULE_REARSPOILER_EXOTIC_", False),
-    "SidePods": ("Side Pods", "SidePods", "SidePods", 8, "Side Pods", None, "MODULE_SIDEPODS_EXOTIC_", False),
-    "FrontBody": ("Nose", "FrontBody", "FrontBodies", 9, "Noses", None, "MODULE_FRONTBODY_EXOTIC_", False),
-    "RearBody": ("Engine Deck", "RearBody", "RearBodies", 10, "Engine Decks", None, "MODULE_REARBODY_EXOTIC_", False),
+    "FrontBumper": ("Splitter", "FrontBumper", "FrontBumpers", 8, "Splitters", None, "MODULE_FRONTBUMPER_EXOTIC_", False),
+    "RearBumper": ("Diffuser", "RearBumper", "RearBumpers", 9, "Diffusers", None, "MODULE_REARBUMPER_EXOTIC_", False),
+    "SidePods": ("Side Pods", "SidePods", "SidePods", 10, "Side Pods", None, "MODULE_SIDEPODS_EXOTIC_", False),
 }
+# mesh/INTEGRATION.md E2: Price as a fraction of the kit's core variant price V; the base part is V / 4.
+BODY_TRIM_FRACTION = {"GT": (1, 2), "EVO": (1, 1)}
+BODY_BASE_FRACTION = (1, 4)
+HIDDEN_BODY_PRICE = (8000, 11000, 14000, 18000, 23000, 30000)  # SidePods, FrontBumper, RearBumper by kit: unchanged by E2
 VARIANTS = ("STANDARD", "LIGHTWEIGHT", "POWER")
 LEGACY_DEFAULTS = {
     "DefaultEngineModuleId": "Engine1", "DefaultFrontEngineModuleId": "Engine1", "DefaultEngineBModuleId": "Engine2",
@@ -151,6 +156,7 @@ def check_scope(scope, args, spec, reference, live):
         return
     catalogue_gen = report.pop("catalogueGen")
     tag = "[%s] " % scope
+    fixture = bc.load_json(args.balance).get("fixture") is True  # the stand-in copies Piercer donor prices for the hidden slots
     numbers = ["01", "02", "03", "04", "05", "06"] if scope == "full" else ["03"]
     mesh_data = bc.load_json(bc.MESH_PATH)
     mesh_numbers = [n for n in numbers if n in MESH_CARS]
@@ -190,6 +196,8 @@ def check_scope(scope, args, spec, reference, live):
             want["EnginePosition"] = row[5]
         check(a == want, tag + "slot %s attributes %r" % (s["slotId"], a))
     check([f["name"] for f in content["moduleTypeFolders"]] == [SLOTS[k][2] for k in sorted(SLOTS, key=lambda k: SLOTS[k][3])], tag + "module type folders")
+    for f, k in zip(content["moduleTypeFolders"], sorted(SLOTS, key=lambda k: SLOTS[k][3])):
+        check(f["attributes"] == {"DisplayName": SLOTS[k][0], "InterchangeableWithinCategory": True, "ModuleType": SLOTS[k][1]}, tag + "module type folder %s attributes %r" % (f["name"], f["attributes"]))
 
     # Modules.
     kit_of = {n: COCKPITS["exotic_" + n][3] for n in numbers}
@@ -222,8 +230,12 @@ def check_scope(scope, args, spec, reference, live):
             base = next(x for x in content["modules"] if x["id"] == mid[:-len(variant) - 1])
             differing = {k for k in set(a) | set(base["attributes"]) if a.get(k) != base["attributes"].get(k)}
             check(differing == {"ModuleId", "DisplayName", "ModuleName", "CardTitle", "Price"} and "VariantName" not in a, tag + mid + " differs from its base part in %s" % sorted(differing))
-            check(a["Price"] == int(math.floor({"GT": 2, "EVO": 3.5}[variant] * base["attributes"]["Price"] / 100 + 0.5)) * 100 and a["NeonPrice"] == base["attributes"]["NeonPrice"],
-                  tag + mid + " Price is base x 2 (GT) or x 3.5 (EVO), rounded to 100")
+            core_prices = {x["attributes"]["Price"] for x in content["modules"] if SLOTS[x["slot"]][7] and x["id"].endswith(("_" + n + "_LIGHTWEIGHT", "_" + n + "_POWER"))}
+            numerator, denominator = BODY_TRIM_FRACTION[variant]
+            check(len(core_prices) == 1 and min(core_prices) > 0 and a["Price"] * denominator == min(core_prices) * numerator and a["NeonPrice"] == base["attributes"]["NeonPrice"],
+                  tag + mid + " Price is exactly half (GT) or the whole (EVO) of the kit's core variant price %r, got %r" % (sorted(core_prices), a["Price"]))
+            check(len(core_prices) == 1 and base["attributes"]["Price"] * BODY_BASE_FRACTION[1] == min(core_prices) * BODY_BASE_FRACTION[0] and 0 < base["attributes"]["Price"] < a["Price"],
+                  tag + mid + " its base part is exactly a quarter of the core variant price and cheaper than the trim, got %r" % base["attributes"]["Price"])
             check(m.get("upgradePathDonor") == base.get("upgradePathDonor") and m.get("upgradePaths") == base.get("upgradePaths"), tag + mid + " upgrade paths as its base part")
         check(a["RatingReferenceCockpitId"] == "exotic_03", tag + mid + " RatingReferenceCockpitId")
         check(a.get("V2Materialised") is True and a.get("RetiredFromCatalog") is False, tag + mid + " V2Materialised/RetiredFromCatalog")
@@ -236,7 +248,16 @@ def check_scope(scope, args, spec, reference, live):
             donor = reference["modules"]["MODULE_%s_BRUISER_03_%s" % ({"Engine1": "ENGINE", "Engine2": "ENGINE_B", "Stabilisers": "STABILISER", "Boost": "BOOST"}[slot], variant)]
         else:
             check(a["ModuleSlot"] == slot, tag + mid + " ModuleSlot")
-            check("SourceCockpitId" not in a and "PurchasePrice" not in a, tag + mid + " body modules carry no SourceCockpitId/PurchasePrice")
+            check(a.get("SourceCockpitId") == "exotic_" + n and a.get("SourceCockpitDisplayName") == COCKPITS["exotic_" + n][1],
+                  tag + mid + " a body module is locked to the cockpit of its kit (SourceCockpitId/SourceCockpitDisplayName)")
+            check(not any(name in a for name in ("PurchasePrice", "VariantName", "VariantOrder")), tag + mid + " body modules carry no PurchasePrice/VariantName/VariantOrder")
+            check(not isinstance(a.get("Price"), bool) and isinstance(a.get("Price"), (int, float)) and a["Price"] > 0,
+                  tag + mid + " a body module with a source cockpit never has Price 0 (the server would charge 12% of the cockpit price)")
+            if slot in MESH_BODY_TRIM_SLOTS and not variant:
+                trims = [x["attributes"]["Price"] for t in MESH_BODY_TRIMS for x in content["modules"] if x["id"] == mid + "_" + t]
+                check(len(trims) == 2 and a["Price"] < trims[0] < trims[1] and a["Price"] * 4 == trims[1], tag + mid + " base < GT < EVO and base is a quarter of EVO: %r %r" % (a["Price"], trims))
+            if not fixture and slot in MESH_EMPTY_SLOTS:
+                check(a["Price"] == HIDDEN_BODY_PRICE[int(n) - 1], tag + mid + " a hidden-slot part keeps its price by kit, got %r" % a["Price"])
             donor = reference["modules"]["MODULE_%s_LVL1" % {"FrontBody": "FRONTBUMPER", "RearBody": "REARBUMPER"}.get(slot, slot.upper())]
         missing = sorted(set(donor) - set(a))
         check(not missing, tag + mid + " lacks donor attributes %s" % missing)
