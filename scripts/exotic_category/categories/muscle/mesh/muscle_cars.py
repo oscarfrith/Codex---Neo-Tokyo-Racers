@@ -108,23 +108,28 @@ def f_cockpit():
     window down to a short deck."""
     K.begin("F", "COCKPIT")
     tub()
-    gh = Hull([(-6.0, dict(w=3.55, yb=3.1, yt=3.2, ys=3.14, tum=0.12, drop=0.02)),
-               (-3.5, dict(w=3.66, yt=5.4, tum=0.62)),
-               (-2.4, dict(yt=5.7)), (1.9, dict(yt=5.7)),
-               (3.0, dict(w=3.66, yt=5.5, tum=0.68)),
-               (6.3, dict(w=3.5, yb=3.15, yt=3.3, ys=3.2, tum=0.2, drop=0.03))],
-              w=3.68, yb=3.1, ys=3.3, rb=0.04, tum=0.65, drop=0.12, wcf=0.8, d2=0.03, crown=0.04)
-    # Each opening is a black surround with the glass set inside it, so the pillars read as slim black
-    # frames and the side glass is one long opening split by a thin pillar, as on the real car.
+    # One continuous arc from cowl to deck, crowned across the roof and rounded at the roof edge, and
+    # narrower toward the back in plan: a low arched coupe roof, not a box.
+    gh = Hull([(-6.0, dict(w=3.5, yb=3.1, yt=3.2, ys=3.14, tum=0.12, drop=0.02, crown=0.02)),
+               (-4.6, dict(w=3.6, yt=4.5, tum=0.55, drop=0.2)),
+               (-3.2, dict(w=3.62, yt=5.45, tum=0.78)),
+               (-1.2, dict(w=3.62, yt=5.72, tum=0.82)),
+               (1.0, dict(w=3.58, yt=5.66, tum=0.85)),
+               (2.8, dict(w=3.5, yt=5.35, tum=0.9)),
+               (4.6, dict(w=3.4, yt=4.4, tum=0.7, drop=0.22)),
+               (6.3, dict(w=3.3, yb=3.15, yt=3.3, ys=3.2, tum=0.2, drop=0.03, crown=0.02))],
+              w=3.6, yb=3.1, ys=3.3, rb=0.04, tum=0.8, drop=0.3, wcf=0.7, d2=0.06, crown=0.09)
+    # Body-colour pillars with real width, as on the real car: a thick screen pillar and rear pillar, a
+    # roof rail over the side glass, and a black centre pillar. Each glass sits in a thin black surround.
     gh.build("cabin", "primary", regions=[
-        R(-5.88, -3.5, 4.04, 6.0, "detail", 0.015),    # windscreen surround
-        R(-5.78, -3.62, 4.1, 6.0, "glass", 0.04),      # windscreen
-        R(-5.0, 4.95, 3.02, 3.96, "detail", 0.015),    # side glass surround, one opening
-        R(-4.88, -0.2, 3.07, 3.91, "glass", 0.04),     # door glass, follows the screen pillar
-        R(-0.02, 4.8, 3.07, 3.91, "glass", 0.04),      # quarter glass, follows the roof down
-        R(3.12, 6.12, 4.06, 6.0, "detail", 0.015),     # rear window surround
-        R(3.22, 6.02, 4.12, 6.0, "glass", 0.04),       # rear window
-        R(-3.3, 2.9, 5.2, 6.0, "secondary", 0.02)])    # roof stripe
+        R(-5.8, -3.5, 4.22, 6.0, "detail", 0.015),     # windscreen surround
+        R(-5.72, -3.6, 4.27, 6.0, "glass", 0.04),      # windscreen
+        R(-4.7, 4.3, 3.06, 3.8, "detail", 0.015),      # side glass surround, one opening
+        R(-4.6, -0.35, 3.1, 3.76, "glass", 0.04),      # door glass
+        R(0.1, 4.2, 3.1, 3.76, "glass", 0.04),         # quarter glass
+        R(3.3, 6.0, 4.22, 6.0, "detail", 0.015),       # rear window surround
+        R(3.4, 5.9, 4.27, 6.0, "glass", 0.04),         # rear window
+        R(-2.9, 2.6, 5.25, 6.0, "secondary", 0.02)])   # roof stripe
 
 
 def f_nose():
