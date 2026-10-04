@@ -48,6 +48,11 @@ def _material(car, ch):
 
 K._material = _material
 
+# Finer sections than Exotic, so highlights run smoothly along the body: ring segments per profile span,
+# and points round a tube.
+K.Hull.M = 6
+K.Loft.N = 40
+
 # Preview paint per car letter. Players repaint primary, secondary and detail in game.
 K.PAINT = {
     "A": {"primary": (0.80, 0.78, 0.70), "secondary": (0.02, 0.02, 0.024)},   # 01 El Camino: cream, black

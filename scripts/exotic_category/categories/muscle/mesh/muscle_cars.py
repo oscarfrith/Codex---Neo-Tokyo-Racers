@@ -20,6 +20,10 @@ from exokit import Hull, Loft, R, box
 from musclekit import GAP, POD_FZ, POD_RZ, SEAM_F, SEAM_R, SIDE_F, SIDE_R, Z_F, Z_R
 
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "previews")
+# One crisp character line runs the length of the body side: a fine groove at the same height on the nose,
+# the tub and the tail (ring range on the body side), and one on each pod flank.
+LINE = (2.78, 2.9)
+POD_LINE = (2.72, 2.86)
 SLOTS = ("COCKPIT", "NOSE", "TAIL", "FPOD", "RPOD", "STAB", "BOOST", "WING")
 
 
@@ -81,7 +85,8 @@ def flange(z0, z1, y0, y1):
 
 def tub(doors=()):
     """The body between the two seams. Every cockpit uses the same section. doors: optional shut lines."""
-    regs = [R(Z_F + GAP, Z_R - GAP, 0.0, 2.0, "secondary", 0.02)]
+    regs = [R(Z_F + GAP, Z_R - GAP, 0.0, 2.0, "secondary", 0.02),
+            R(Z_F + GAP, Z_R - GAP, LINE[0], LINE[1], "primary", 0.025)]
     regs += [R(z, z + 0.14, 2.05, 3.95, "detail", 0.03) for z in doors]
     Hull([(Z_F, SEAM_F), (Z_R, SEAM_R)]).build("tub", "primary", t0=Z_F + GAP, t1=Z_R - GAP, regions=regs)
     Hull([(Z_F - 0.08, SEAM_F), (Z_R + 0.08, SEAM_R)]).build("liner", "detail", scale=0.96)
@@ -118,6 +123,7 @@ def f_nose():
                  (Z_F, SEAM_F)], **SEAM_F)
     nose.build("skin", "primary", t1=Z_F - GAP, caps=(False, False), regions=[
         R(-12.2, Z_F - GAP, 0.0, 2.0, "secondary", 0.02),
+        R(-11.6, Z_F - GAP, LINE[0], LINE[1], "primary", 0.025),
         R(-12.0, Z_F - GAP, 5.15, 6.0, "secondary", -0.07),   # raised bonnet bulge, in the stripe colour
         R(-9.6, -5.9, 5.5, 6.0, "detail", 0.1)])
     nose.cap("grilleback", "min", "detail")
@@ -141,8 +147,9 @@ def f_nose():
 
 
 def f_pod_regions(z0, z1):
-    """Engine fender, standard trim: clean body colour over a black rocker. Nothing else."""
-    return [R(z0 + 0.15, z1 - 0.15, 1.0, 2.0, "secondary", 0.02)]
+    """Engine fender, standard trim: clean body colour over a black rocker, with one character line."""
+    return [R(z0 + 0.15, z1 - 0.15, 1.0, 2.0, "secondary", 0.02),
+            R(z0 + 0.7, z1 - 0.3, POD_LINE[0], POD_LINE[1], "primary", 0.025, side=1)]
 
 
 def f_fpod():
@@ -154,7 +161,7 @@ def f_fpod():
                 (POD_FZ, SIDE_F)], **SIDE_F)
     pod.build("skin", "primary", mirror=True, caps=(True, False),
               regions=f_pod_regions(-12.7, POD_FZ))
-    pod.throat("noz", "max", lip="secondary", back="thrust", scale=0.62, depth=0.5, mirror=True)
+    pod.throat("noz", "max", lip="secondary", back="thrust", scale=0.5, depth=0.6, mirror=True)
     for i, x in enumerate((4.9, 5.86)):
         halo(f"halo{i}", x, 0.82, -13.0, 0.42)
     flange(-11.2, -6.4, -0.3, 1.9)
@@ -187,17 +194,29 @@ def f_stab():
 
 
 def f_tail():
-    """Short deck that climbs to a high square tail (drag-car rake), with one full-width light bar."""
+    """Short deck that climbs to a high square tail. As on the real car the tail face is a recessed black
+    panel under the deck lip, holding two ring lamps, above a body-colour bumper."""
     K.begin("F", "TAIL")
     tail = Hull([(Z_R, SEAM_R), (6.5, dict(yt=3.35)), (9.8, dict(yt=3.55, ys=2.7)), (10.6, dict(yb=-0.3)),
                  (11.3, dict(yb=1.4, rb=0.25)),
-                 (12.4, dict(w=3.7, yb=1.5, yt=3.62, ys=2.9, rb=0.25, tum=0.3, drop=0.2))], **SEAM_R)
+                 (12.0, dict(w=3.72, yb=1.5, yt=3.6, ys=2.85, rb=0.25, tum=0.28, drop=0.2))], **SEAM_R)
     tail.build("skin", "primary", t0=Z_R + GAP, caps=(False, False), regions=[
-        R(Z_R + GAP, 12.4, 0.0, 2.0, "secondary", 0.02),
-        R(6.2, 12.4, 5.15, 6.0, "secondary", 0.02)])
-    tail.throat("fascia", "max", lip="primary", wall="detail", back="detail", scale=0.9, depth=0.25)
-    box("lightbar", (0, 2.75, 12.22), (6.2, 0.3, 0.14), "lights_red")
-    box("lightbarframe", (0, 2.75, 12.19), (6.5, 0.5, 0.1), "secondary")
+        R(Z_R + GAP, 12.0, 0.0, 2.0, "secondary", 0.02),
+        R(Z_R + GAP, 11.6, LINE[0], LINE[1], "primary", 0.025),
+        R(6.2, 12.0, 5.15, 6.0, "secondary", 0.02)])
+    tail.cap("panel", "max", "detail")
+    # deck lip above and bumper below stand behind the panel, with a post at each end: the lamps sit in a recess
+    Hull([(12.0, dict(w=3.72, yb=3.12, yt=3.6, ys=3.3)), (12.45, dict(w=3.66, yb=3.2, yt=3.56, ys=3.34))], rb=0.04,
+         tum=0.28, drop=0.18, wcf=0.72, d2=0.05, crown=0.05).build("decklip", "primary", regions=[
+             R(12.0, 12.45, 5.15, 6.0, "secondary", 0.0)])
+    Hull([(12.0, dict(w=3.72, yb=1.5, yt=2.32, ys=2.1)), (12.55, dict(w=3.62, yb=1.62, yt=2.26, ys=2.05))], rb=0.25,
+         tum=0.12, drop=0.08, wcf=0.7, d2=0.0, crown=0.02).build("bumper", "primary")
+    box("post", (3.5, 2.72, 12.2), (0.34, 0.86, 0.42), "primary", mirror=True)
+    # two ring lamps: a red rounded rectangle with a dark centre
+    Loft([(12.05, {}), (12.3, {})], cx=1.72, w=1.32, yb=2.42, yt=3.02, nt=5, nb=5, yw=0.5).build(
+        "lamp", "lights_red", mirror=True)
+    Loft([(12.28, {}), (12.33, {})], cx=1.72, w=1.13, yb=2.58, yt=2.86, nt=5, nb=5, yw=0.5).build(
+        "lampcore", "detail", mirror=True)
 
 
 def f_boost():
