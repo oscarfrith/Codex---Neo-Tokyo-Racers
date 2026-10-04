@@ -1,3 +1,4 @@
+category exotic
 ok    test_ascii_and_plain_numbers
 ok    test_body_modules_are_lvl1_size_and_similar_value
 ok    test_body_parts_cannot_shift_a_tier
@@ -17,6 +18,7 @@ ok    test_rating_port_keeps_luau_semantics
 ok    test_rating_port_reproduces_the_six_piercer_stock_builds
 ok    test_stock_build_sums_to_the_target_total_and_follows_the_live_shares
 ok    test_stock_pi_hits_target_inside_tier_band
+ok    test_tier_cap
 ok    test_upgrade_paths
 ok    test_variants_use_the_live_multipliers
-21 tests, 0 failed
+22 tests, 0 failed

@@ -1,0 +1,36 @@
+{
+  "_note": "VFX socket rules for Modern Muscle: the Exotic rules (stage_b/data/sockets.json) with the Muscle template names. Sockets are computed from the thrust-channel parts of each module shape. A socket is an Attachment under ModuleRoot_DoNotRename; the flame runs along its local +Z. Exhaust axis of a thrust part: cyl_x/cyl_y/cyl_z = the cylinder axis; block and wedge = local Z.",
+  "engine": {
+    "prefix": "VFX_EngineJet_",
+    "template": "EngineJet_Muscle",
+    "mode": "cluster",
+    "mergeDistance": 1.5,
+    "direction": "back_else_up",
+    "_mergeDistance": "Thrust parts whose centres are closer than this (single linkage) share one socket at their centroid."
+  },
+  "boost": {
+    "prefix": "VFX_BoostJet_",
+    "template": "BoostJet_Muscle",
+    "mode": "cluster",
+    "mergeDistance": 2.0,
+    "direction": "back_else_up"
+  },
+  "stabiliser": {
+    "prefix": "VFX_StabiliserJet_",
+    "templateLeft": "StabiliserJet_MuscleLeft",
+    "templateRight": "StabiliserJet_MuscleRight",
+    "mode": "corner",
+    "direction": "down_else_back",
+    "_mode": "One socket per corner unit (Left/Right by X, Front/Rear by Z). When a corner has nozzles that point different ways, the group with the larger total nozzle area gets the socket."
+  },
+  "sideEpsilon": 0.05,
+  "maxSocketsPerModule": 4,
+  "overrides": {
+    "Engine1/tunnel_ram": [
+      {"name": "VFX_EngineJet_Left", "template": "EngineJet_Muscle", "position": [-1.8507, 4.2138, -4.0621], "orientation": [-12.35, -35.6, 0.0]},
+      {"name": "VFX_EngineJet_Right", "template": "EngineJet_Muscle", "position": [1.8507, 4.2138, -4.0621], "orientation": [-12.35, 35.6, 0.0]}
+    ]
+  },
+  "_overrideTunnelRam": "The computed sockets (yaw 35.58) do not survive Instance:Clone() bit for bit, so the installer's exact server and preview comparison failed in the Studio dry run (2026-10-04). Yaw 35.6 does. Positions are the computed ones.",
+  "_overrides": "Optional explicit sockets per shape, replacing the computed ones. Example: {\"Boost/bazookas\": [{\"name\": \"VFX_BoostJet_Back\", \"template\": \"BoostJet_Muscle\", \"position\": [0, 0, 5.4], \"orientation\": [0, 0, 0]}]}"
+}

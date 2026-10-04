@@ -1,0 +1,30 @@
+state_probe.lua, Space Racers v3, Studio Edit, 2026-10-04, before the Modern Muscle install
+place=93959280828322
+server.PIERCER 2435:7808dcc2 hash=nil
+server.EXOTIC 3098:2483b6f8 hash=b2f4b2111a0cc487f4e587cefad261ecd2677449640ce3e79402a8105aaccfe9
+server.order=PIERCER,EXOTIC
+preview.PIERCER 2102:520a2e1e hash=nil
+preview.EXOTIC 2528:01414b14 hash=b2f4b2111a0cc487f4e587cefad261ecd2677449640ce3e79402a8105aaccfe9
+preview.order=PIERCER,EXOTIC
+vfx.00_GLOBAL_VFX_SETTINGS 8:9db62df7
+vfx.HoverDust 17:7d9c5ccb
+vfx.BoostJet 25:a84d5efa
+vfx.StabiliserJet 39:4fc5e5f8
+vfx.BrakeSparks 16:131183cc
+vfx.SOCKET_GUIDE 12:f35aa7da
+vfx.EngineJet 26:6f1bb36a
+vfx.EngineJet_Exotic 26:24585147
+vfx.BoostJet_Exotic 25:2567508a
+vfx.StabiliserJet_ExoticLeft 23:840934f1
+vfx.StabiliserJet_ExoticRight 23:8d882497
+catalogue.index 714:375d194d revision=nil
+catalogue.EXOTIC_1 149594:39bcc077
+catalogue.EXOTIC_2 149548:f71ca186
+catalogue.EXOTIC_3 21600:8e53c52a
+catalogue.PIERCER_1 149842:e886bb82
+catalogue.PIERCER_2 47288:904c609b
+config.GarageReplacement d2010528 hidden=bruiser
+config.GarageReplacement.tree 55:acf54646
+config.ReplicatedStorage 1548:d96bae1a
+config.ServerStorage 13:0fe3a700 own=54b86269
+scripts.other 210:a10f0b36

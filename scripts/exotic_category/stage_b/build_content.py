@@ -12,10 +12,15 @@ and writes
   out/summary-<scope>.json  what the installer will build (ids, counts, sockets, seats, warnings)
   fingerprints.json       per-group part counts and position sums, to compare with the Studio blockout
 
-Usage:  py -3 scripts/exotic_category/stage_b/build_content.py --mode AUDIT|APPLY|ROLLBACK --scope pilot|full
+Usage:  py -3 scripts/exotic_category/stage_b/build_content.py --mode AUDIT|APPLY|ROLLBACK --scope pilot|full [--category ID]
 
 The mode and scope are baked into out/installer.lua, so the same canonical installer is rebuilt per mode.
 Nothing here touches Studio.
+
+Categories. Without --category the build is the Exotic one, from the paths above. Any other category reads
+  scripts/exotic_category/categories/<id>/category.json   {"spec": ..., "balance": ..., "headerTitle": ...} (repo-relative paths)
+  scripts/exotic_category/categories/<id>/data/*.json     the same data files as data/ here (mesh.json is optional)
+and writes categories/<id>/out/ and categories/<id>/fingerprints.json. set_category() does the switch.
 """
 import argparse
 import hashlib
@@ -39,6 +44,14 @@ DATA_DIR = os.path.join(HERE, "data")
 OUT_DIR = os.path.join(HERE, "out")
 FINGERPRINTS_PATH = os.path.join(HERE, "fingerprints.json")
 MESH_PATH = os.path.join(DATA_DIR, "mesh.json")
+
+# The category being built. Exotic is the default and keeps the paths above; set_category() re-points them.
+DEFAULT_CATEGORY = "exotic"
+CATEGORIES_DIR = os.path.join(REPO, "scripts", "exotic_category", "categories")
+CATEGORY = DEFAULT_CATEGORY
+HEADER_TITLE = "Exotic category, Stage B content installer."
+_EXOTIC_PATHS = {"SPEC_PATH": SPEC_PATH, "BALANCE_PATH": BALANCE_PATH, "DATA_DIR": DATA_DIR, "OUT_DIR": OUT_DIR,
+                 "FINGERPRINTS_PATH": FINGERPRINTS_PATH, "MESH_PATH": MESH_PATH, "HEADER_TITLE": HEADER_TITLE}
 
 MODES = ("AUDIT", "APPLY", "ROLLBACK")
 SCOPES = ("pilot", "full")
@@ -102,6 +115,38 @@ MESH_CENTRE_TOLERANCE = 0.05
 
 class BuildError(Exception):
     pass
+
+
+def set_category(name):
+    """Point the module at one category: the spec, the balance data, the data folder, the outputs and the header text.
+
+    Call it before anything else reads the paths. "exotic" restores the built-in paths. Any other name must have
+    categories/<name>/category.json.
+    """
+    global CATEGORY, SPEC_PATH, BALANCE_PATH, DATA_DIR, OUT_DIR, FINGERPRINTS_PATH, MESH_PATH, HEADER_TITLE
+    if not (isinstance(name, str) and name and name.isascii() and all(ch.islower() or ch.isdigit() or ch == "_" for ch in name)):
+        raise BuildError("category id %r must be lower-case letters, digits and underscores" % (name,))
+    if name == DEFAULT_CATEGORY:
+        values = dict(_EXOTIC_PATHS)
+    else:
+        root = os.path.join(CATEGORIES_DIR, name)
+        config_path = os.path.join(root, "category.json")
+        if not os.path.isfile(config_path):
+            raise BuildError("unknown category %r: %s is missing" % (name, config_path))
+        config = load_json(config_path)
+        for key in ("spec", "balance", "headerTitle"):
+            if not (isinstance(config.get(key), str) and config[key].strip()):
+                raise BuildError("%s needs a text value for %r" % (config_path, key))
+        if any(ord(ch) < 32 or ord(ch) > 126 for ch in config["headerTitle"]):
+            raise BuildError("%s headerTitle must be one line of printable ASCII" % config_path)
+        data_dir = os.path.join(root, "data")
+        values = {"SPEC_PATH": os.path.normpath(os.path.join(REPO, config["spec"])), "BALANCE_PATH": os.path.normpath(os.path.join(REPO, config["balance"])),
+                  "DATA_DIR": data_dir, "OUT_DIR": os.path.join(root, "out"), "FINGERPRINTS_PATH": os.path.join(root, "fingerprints.json"),
+                  "MESH_PATH": os.path.join(data_dir, "mesh.json"), "HEADER_TITLE": config["headerTitle"]}
+    CATEGORY = name
+    SPEC_PATH, BALANCE_PATH, DATA_DIR, OUT_DIR = values["SPEC_PATH"], values["BALANCE_PATH"], values["DATA_DIR"], values["OUT_DIR"]
+    FINGERPRINTS_PATH, MESH_PATH, HEADER_TITLE = values["FINGERPRINTS_PATH"], values["MESH_PATH"], values["HEADER_TITLE"]
+    _SPEC_CACHE.clear()
 
 
 def load_json(path):
@@ -517,9 +562,14 @@ def load_mesh():
 
 def module_variants(ids, mesh, slot, n):
     """ModuleId suffixes of one slot of one kit. Core: the three variants. Body: none, plus each body trim
-    (data/ids.json bodyTrims) that data/mesh.json holds for this kit (mesh/INTEGRATION.md D6)."""
+    (data/ids.json bodyTrims) that data/mesh.json holds for this kit (mesh/INTEGRATION.md D6).
+    A category without meshes names its trim slots in data/ids.json bodyTrimSlots instead: each of those slots gets
+    every body trim, and a trim without a mesh entry is built from the primitive shape of its base part."""
     if slot["kind"] == "core":
         return list(ids["variants"])
+    trim_slots = ids.get("bodyTrimSlots")
+    if trim_slots is not None:
+        return [None] + (list(ids.get("bodyTrims", [])) if slot["slotId"] in trim_slots else [])
     return [None] + [t for t in ids.get("bodyTrims", []) if module_id(slot, n, t) in mesh.get("modules", {})]
 
 
@@ -592,23 +642,25 @@ _SPEC_CACHE = {}
 def load_spec():
     """The validated spec, kept per file state: validation takes about 1.5 s and the tests build many times."""
     stat = os.stat(SPEC_PATH)
-    key = (stat.st_size, stat.st_mtime_ns)
+    key = (SPEC_PATH, stat.st_size, stat.st_mtime_ns)
     if key not in _SPEC_CACHE:
         spec = vbspec.load(SPEC_PATH)
         errors, _, _ = vbspec.validate(spec)
         if errors:
-            raise BuildError("exotic.json does not validate: " + "; ".join(errors[:5]))
+            raise BuildError("%s does not validate: " % os.path.basename(SPEC_PATH) + "; ".join(errors[:5]))
         _SPEC_CACHE.clear()
         _SPEC_CACHE[key] = spec
     return _SPEC_CACHE[key]
 
 
-def build_content(mode="AUDIT", scope="pilot", balance_path=BALANCE_PATH, catalogue_gen_path=CATALOGUE_GEN_PATH,
+def build_content(mode="AUDIT", scope="pilot", balance_path=None, catalogue_gen_path=CATALOGUE_GEN_PATH,
                   capture_path=CAPTURE_PATH, fill_from_donor=False):
-    """Returns (content, report). Raises BuildError with every problem found."""
+    """Returns (content, report). Raises BuildError with every problem found. balance_path None: the category's own."""
     if mode not in MODES or scope not in SCOPES:
         raise BuildError("mode must be one of %s and scope one of %s" % (MODES, SCOPES))
-    for label, path in (("balance.json", balance_path), ("catalogue_gen.lua", catalogue_gen_path), ("capture.json", capture_path), ("exotic.json", SPEC_PATH)):
+    if balance_path is None:
+        balance_path = BALANCE_PATH
+    for label, path in (("balance.json", balance_path), ("catalogue_gen.lua", catalogue_gen_path), ("capture.json", capture_path), (os.path.basename(SPEC_PATH), SPEC_PATH)):
         if not os.path.isfile(path):
             raise BuildError("%s is missing: %s\nStage B cannot be built without it. For offline tests use tests/fixtures (see README.md)." % (label, path))
     spec = load_spec()
@@ -635,6 +687,10 @@ def build_content(mode="AUDIT", scope="pilot", balance_path=BALANCE_PATH, catalo
     if set(slot_by_id) != set(spec["modules"]):
         raise BuildError("slot ids in data/ids.json do not match the spec: %s vs %s" % (sorted(slot_by_id), sorted(spec["modules"])))
 
+    for slot_id in ids.get("bodyTrimSlots") or []:
+        if slot_id not in slot_by_id or slot_by_id[slot_id]["kind"] == "core":
+            raise BuildError("data/ids.json bodyTrimSlots may only name body slots (got %r)" % (slot_id,))
+    core_folder_prefix = ids.get("coreFolderPrefix", "Exotic_")
     cockpit_defs = ids["cockpits"]
     in_scope = [c for c in cockpit_defs if scope == "full" or c["n"] == ids["pilotCockpit"]]
     seat_problems = seat_override_problems(seats, {c["cockpitId"] for c in cockpit_defs})
@@ -810,7 +866,7 @@ def build_content(mode="AUDIT", scope="pilot", balance_path=BALANCE_PATH, catalo
                     warnings.append("%s: attributes the Piercer donor %s does not have: %s" % (mid, donor_id, ", ".join(extra)))
                 item = {"id": mid, "slot": slot["slotId"], "shape": shape_key, "partCount": len(recs),
                         "palette": palette(c["specCockpit"]) if mesh_entry is None else mesh_palette(c["specCockpit"]),
-                        "folderPath": [slot["moduleFolder"]] + (["Exotic_" + c["n"]] if core else []), "attributes": attrs}
+                        "folderPath": [slot["moduleFolder"]] + ([core_folder_prefix + c["n"]] if core else []), "attributes": attrs}
                 if folder_set is not None and folder_set != slot_folder_set:
                     item["folderSet"] = folder_set
                 name_problems(mid, not core, True, problems, mid)
@@ -1017,7 +1073,7 @@ def render_installer(content, catalogue_gen):
     meta = content["meta"]
     lines = [
         "-- GENERATED by scripts/exotic_category/stage_b/build_content.py. Do not edit: rebuild it.",
-        "-- Exotic category, Stage B content installer. mode=%s scope=%s contentHash=%s%s" % (meta["mode"], meta["scope"], meta["contentHash"], " FIXTURE BUILD: NOT INSTALLABLE" if meta["fixture"] else ""),
+        "-- %s mode=%s scope=%s contentHash=%s%s" % (HEADER_TITLE, meta["mode"], meta["scope"], meta["contentHash"], " FIXTURE BUILD: NOT INSTALLABLE" if meta["fixture"] else ""),
         "-- Run in Studio Edit (place %d): return loadstring(game:GetService(\"HttpService\"):GetAsync(url, true))()" % meta["placeId"],
         "local STAGE_B_DATA_JSON = [=====[",
         data + "]=====]",
@@ -1034,17 +1090,43 @@ def render_installer(content, catalogue_gen):
     return text
 
 
+POST_CHECKS_PATH = os.path.join(HERE, "post_install_checks.lua")
+POST_CHECKS_CATEGORY_LINE = 'local CATEGORY = "EXOTIC"\n'
+
+
+def render_post_install_checks(folder):
+    """post_install_checks.lua for another category: the same read-only report with that category folder on its CATEGORY line."""
+    with open(POST_CHECKS_PATH, "r", encoding="utf-8") as f:
+        text = f.read().replace("\r\n", "\n")
+    if text.count(POST_CHECKS_CATEGORY_LINE) != 1:
+        raise BuildError("post_install_checks.lua must hold the line %r exactly once" % POST_CHECKS_CATEGORY_LINE.strip())
+    if not (isinstance(folder, str) and folder and all(ch.isupper() or ch.isdigit() or ch == "_" for ch in folder) and folder.isascii()):
+        raise BuildError("category folder %r must be upper-case letters, digits and underscores" % (folder,))
+    return ("-- GENERATED by scripts/exotic_category/stage_b/build_content.py --category %s from stage_b/post_install_checks.lua. Do not edit: rebuild it.\n" % CATEGORY
+            + text.replace(POST_CHECKS_CATEGORY_LINE, 'local CATEGORY = "%s"\n' % folder))
+
+
 def main(argv=None):
-    parser = argparse.ArgumentParser(description="Build the Exotic Stage B content installer.")
+    parser = argparse.ArgumentParser(description="Build the Stage B content installer of one vehicle category (default: Exotic).")
+    parser.add_argument("--category", default=DEFAULT_CATEGORY, help="exotic (default), or a folder name under scripts/exotic_category/categories")
     parser.add_argument("--mode", choices=MODES, default="AUDIT")
     parser.add_argument("--scope", choices=SCOPES, default="pilot")
-    parser.add_argument("--balance", default=BALANCE_PATH)
+    parser.add_argument("--balance", help="default: the category's balance.json")
     parser.add_argument("--catalogue-gen", default=CATALOGUE_GEN_PATH)
     parser.add_argument("--capture", default=CAPTURE_PATH)
-    parser.add_argument("--out", default=os.path.join(OUT_DIR, "installer.lua"))
+    parser.add_argument("--out", help="default: installer.lua in the category's out folder")
+    parser.add_argument("--fingerprints", help="default: the category's fingerprints.json (give a scratch path to leave that file alone)")
     parser.add_argument("--fill-from-donor", action="store_true", help="copy Piercer donor values for attributes balance.json does not set (reported as warnings)")
     parser.add_argument("--sample", action="store_true", help="AUDIT only: the result also carries a short text dump of what the dry run built (result.sample)")
     args = parser.parse_args(argv)
+    try:
+        set_category(args.category)
+    except BuildError as error:
+        print("BUILD FAILED: %s" % error, file=sys.stderr)
+        return 1
+    args.balance = args.balance or BALANCE_PATH
+    args.out = args.out or os.path.join(OUT_DIR, "installer.lua")
+    args.fingerprints = args.fingerprints or FINGERPRINTS_PATH
     try:
         content, report = build_content(args.mode, args.scope, args.balance, args.catalogue_gen, args.capture, args.fill_from_donor)
         if args.sample:
@@ -1052,16 +1134,22 @@ def main(argv=None):
                 raise BuildError("--sample is for AUDIT builds only")
             content["meta"]["sample"] = True
         text = render_installer(content, report.pop("catalogueGen"))
+        post_checks = None if CATEGORY == DEFAULT_CATEGORY else render_post_install_checks(content["category"]["folder"])
     except BuildError as error:
         print("BUILD FAILED: %s" % error, file=sys.stderr)
         return 1
     os.makedirs(os.path.dirname(os.path.abspath(args.out)), exist_ok=True)
     with open(args.out, "w", encoding="ascii", newline="\n") as f:
         f.write(text)
+    if post_checks is not None:
+        # Exotic runs stage_b/post_install_checks.lua itself; another category gets its own copy beside its installer.
+        with open(os.path.join(os.path.dirname(os.path.abspath(args.out)), "post_install_checks.lua"), "w", encoding="ascii", newline="\n") as f:
+            f.write(post_checks)
     spec = vbspec.load(SPEC_PATH)
-    with open(FINGERPRINTS_PATH, "w", encoding="ascii", newline="\n") as f:
+    os.makedirs(os.path.dirname(os.path.abspath(args.fingerprints)), exist_ok=True)
+    with open(args.fingerprints, "w", encoding="ascii", newline="\n") as f:
         mesh = load_mesh()
-        json.dump({"_note": "Generated by build_content.py from scripts/vehicle_blockouts/specs/exotic.json. Per group in root space: [part count, sum x, sum |x|, sum y, sum z, sum of Part.Size components]. The installer AUDIT compares the Studio blockout with these.",
+        json.dump({"_note": "Generated by build_content.py from %s. Per group in root space: [part count, sum x, sum |x|, sum y, sum z, sum of Part.Size components]. The installer AUDIT compares the Studio blockout with these." % os.path.relpath(SPEC_PATH, REPO).replace("\\", "/"),
                    "groups": all_fingerprints(spec),
                    "_mesh": "From data/mesh.json: the uploaded asset and, per mesh group (which replaces the spec group of that cockpit or module in the installed content), the same fingerprint over the part bounds plus the source part names. The installer AUDIT checks every part against the loaded asset (name present, centre within 0.05); the Studio blockout is not compared for these groups.",
                    "mesh": {"assetId": mesh.get("assetId"), "groups": mesh_fingerprints(mesh)}}, f, indent=1, sort_keys=True)

@@ -1,0 +1,6 @@
+{
+  "_note": "Modern Muscle category: what scripts/exotic_category/stage_b/build_content.py --category muscle reads. Paths are relative to the repository root. The data files are in data/ beside this file (same files and rules as stage_b/data; there is no mesh.json because Muscle is built from the primitive placeholder geometry of the spec). Outputs go to out/ and fingerprints.json beside this file.",
+  "spec": "scripts/vehicle_blockouts/specs/muscle.json",
+  "balance": "scripts/exotic_category/balance/muscle/balance.json",
+  "headerTitle": "Modern Muscle category, Stage B content installer."
+}

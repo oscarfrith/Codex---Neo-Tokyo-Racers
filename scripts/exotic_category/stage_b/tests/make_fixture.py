@@ -4,8 +4,11 @@ It copies live Piercer donor numbers from the baseline capture so that build_con
 can run before the real balance data exists. It is marked "fixture": true; an installer built from it refuses
 to APPLY. Never use these numbers in the game.
 
-Usage: py -3 scripts/exotic_category/stage_b/tests/make_fixture.py
+Usage: py -3 scripts/exotic_category/stage_b/tests/make_fixture.py [--category ID]
+
+Exotic writes tests/fixtures/balance.json; another category writes tests/fixtures/balance-<id>.json.
 """
+import argparse
 import json
 import os
 import sys
@@ -17,7 +20,15 @@ import build_content as bc  # noqa: E402
 VARIANT_FIELDS = {"STANDARD": ("Standard", 10), "LIGHTWEIGHT": ("Lightweight", 20), "POWER": ("Power", 30)}
 
 
+def fixture_path(category):
+    """tests/fixtures/balance.json for Exotic, balance-<id>.json for any other category."""
+    return os.path.join(HERE, "fixtures", "balance.json" if category == bc.DEFAULT_CATEGORY else "balance-%s.json" % category)
+
+
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--category", default=bc.DEFAULT_CATEGORY)
+    bc.set_category(parser.parse_args().category)
     ids = bc.load_json(os.path.join(bc.DATA_DIR, "ids.json"))
     reference = bc.capture_reference(bc.load_json(bc.CAPTURE_PATH))
     mesh = bc.load_mesh()
@@ -64,7 +75,7 @@ def main():
                 else:
                     entry["upgradePathDonor"] = donor_id
                 out["modules"][mid] = entry
-    path = os.path.join(HERE, "fixtures", "balance.json")
+    path = fixture_path(bc.CATEGORY)
     with open(path, "w", encoding="ascii", newline="\n") as f:
         json.dump(out, f, indent=1, sort_keys=True)
         f.write("\n")

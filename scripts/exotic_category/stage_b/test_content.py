@@ -1,9 +1,12 @@
 """Offline checks on the Stage B content (no Studio needed).
 
-Usage:  py -3 scripts/exotic_category/stage_b/test_content.py [--balance PATH] [--catalogue-gen PATH] [--fill-from-donor]
+Usage:  py -3 scripts/exotic_category/stage_b/test_content.py [--category ID] [--balance PATH] [--catalogue-gen PATH] [--fill-from-donor]
 
 With no arguments it uses the real balance.json and catalogue_gen.lua when both exist, else the stand-ins in
 tests/fixtures (run tests/make_fixture.py first). Exit code 0 means every check passed.
+
+--category muscle checks the Modern Muscle content (scripts/exotic_category/categories/muscle) against the Muscle
+tables below. The Exotic tables and checks are unchanged; the mesh sections run only for a category with data/mesh.json.
 """
 import argparse
 import copy
@@ -79,6 +82,94 @@ SOCKET_RULES = {"Engine1": ("VFX_EngineJet_", {"EngineJet_Exotic"}), "Engine2": 
                 "Boost": ("VFX_BoostJet_", {"BoostJet_Exotic"}),
                 "Stabilisers": ("VFX_StabiliserJet_", {"StabiliserJet_ExoticLeft", "StabiliserJet_ExoticRight"})}
 
+VFX_TEMPLATES = ["EngineJet_Exotic", "BoostJet_Exotic", "StabiliserJet_ExoticLeft", "StabiliserJet_ExoticRight"]
+
+# What else differs per category. The values here are Exotic's; use_category() swaps them (and the tables above)
+# for another category's, which are written out below in the same way.
+CATEGORY = "exotic"  # CategoryId; a cockpit id is <CategoryId>_<n>
+FOLDER = "EXOTIC"  # category folder, and the word in every ModuleId and cockpit model name
+CATEGORY_DISPLAY = "Exotic"
+CORE_FOLDER_PREFIX = "Exotic_"
+PILOT = "03"
+RATING_REFERENCE = "exotic_03"
+FULL_SHAPES = 150  # cockpit + module shape groups in the full scope
+TRIM_KITS = set(MESH_CARS)  # kits whose FrontBody, RearBody and RearSpoiler carry GT and EVO
+EMPTY_KITS = set(MESH_CARS)  # kits whose cockpit starts with MESH_EMPTY_SLOTS empty
+CORE_PRIMITIVE_CODES = set("PSDT")  # channels a primitive engine, stabiliser or boost shape may hold
+SEAT_OVERRIDES = {"exotic_" + n: MESH_SEATS_BY_COCKPIT.get("exotic_" + n, MESH_SEATS) for n in MESH_CARS}
+DUMMY_TORSO_Y = {cid: 1.4 for cid in COCKPITS}  # centre of the spec driver dummy torso
+SEAT_RULE = 1.437  # data/seats.json rule.rootPartCentreAboveSeatTop
+SEAT_RULE_FALLBACK = {}  # seats.json changes a build without overrides needs (none: the Exotic rule is measured)
+SPLAYED_JETS = None  # None: every engine and boost socket fires straight back or up (exotic.md 7.7). Else: the shapes that may lean sideways
+
+# Modern Muscle (category contract 2026-10-04), written out again here on purpose. Primitive placeholder geometry
+# from specs/muscle.json: no mesh kits. The slot table is Exotic's with MUSCLE in the id prefixes.
+MUSCLE = {
+    "CATEGORY": "muscle", "FOLDER": "MUSCLE", "CATEGORY_DISPLAY": "Modern Muscle", "CORE_FOLDER_PREFIX": "Muscle_", "PILOT": "04",
+    "RATING_REFERENCE": "muscle_04", "FULL_SHAPES": 66,
+    "COCKPITS": {
+        "muscle_01": ("COCKPIT_MUSCLE_01", "Notch", "notch", "transam", "E", 32000, 230),
+        "muscle_02": ("COCKPIT_MUSCLE_02", "Ute", "ute", "restomod", "D", 85000, 330),
+        "muscle_03": ("COCKPIT_MUSCLE_03", "Ragtop", "ragtop", "pony", "D", 110000, 410),
+        "muscle_04": ("COCKPIT_MUSCLE_04", "Hardtop", "hardtop", "prostreet", "C", 240000, 480),
+        "muscle_05": ("COCKPIT_MUSCLE_05", "Fastback", "fastback", "classic", "C", 310000, 565),
+        "muscle_06": ("COCKPIT_MUSCLE_06", "Modern", "modern", "modern", "B", 850000, 630),
+    },
+    "SLOTS": {k: v[:6] + (v[6].replace("_EXOTIC_", "_MUSCLE_"),) + v[7:] for k, v in SLOTS.items()},
+    "MESH_CARS": {},
+    "HIDDEN_BODY_PRICE": (5000, 7000, 8000, 10000, 12000, 16000),  # SidePods, FrontBumper, RearBumper by kit
+    "TRIM_KITS": {"01", "02", "03", "04", "05", "06"},
+    "EMPTY_KITS": {"01", "02", "03", "04", "05", "06"},
+    # Sill Slots (the Modern boost) has a neon strip; the core template has NEON_OptionalLights for it.
+    "CORE_PRIMITIVE_CODES": set("PSDNT"),
+    # Stock builds over the 16-socket guard. muscle_02 (Ute, Restomod kit): 5 hover dust + 2 + 4 engine + 4 stabiliser + 2 boost.
+    "SOCKET_GUARD_EXCEPTIONS": {"muscle_02": 17},
+    # The Muscle spec angles its pipes: zoomies, side pipes and lake pipes point out and back. These engine and boost
+    # shapes have sockets with a sideways component; every other one fires in the centre plane.
+    "SPLAYED_JETS": {"Boost/bazookas", "Boost/lake_trios", "Boost/side_pipes", "Boost/sill_slots", "Boost/underslung_twins",
+                     "Engine1/blower_stack", "Engine1/shaker_turbine", "Engine1/tunnel_ram"},
+    "SOCKET_RULES": {"Engine1": ("VFX_EngineJet_", {"EngineJet_Muscle"}), "Engine2": ("VFX_EngineJet_", {"EngineJet_Muscle"}),
+                     "Boost": ("VFX_BoostJet_", {"BoostJet_Muscle"}),
+                     "Stabilisers": ("VFX_StabiliserJet_", {"StabiliserJet_MuscleLeft", "StabiliserJet_MuscleRight"})},
+    "VFX_TEMPLATES": ["EngineJet_Muscle", "BoostJet_Muscle", "StabiliserJet_MuscleLeft", "StabiliserJet_MuscleRight"],
+    # Generated from the spec, not measured (data/seats.json pilotAcceptance.note).
+    "SEAT_OVERRIDES": {
+        "muscle_01": {"driver": [-2.0, 1.175, 2.9], "passenger": [2.0, 1.175, 2.9]},
+        "muscle_02": {"driver": [-2.0, 1.575, 1.7], "passenger": [2.0, 1.575, 1.7]},
+        "muscle_03": {"driver": [-2.0, 1.395, 2.45], "passenger": [2.0, 1.395, 2.45]},
+        "muscle_04": {"driver": [-2.0, 1.575, 2.45], "passenger": [2.0, 1.575, 2.45]},
+        "muscle_05": {"driver": [-2.0, 1.475, 2.45], "passenger": [2.0, 1.475, 2.45]},
+        "muscle_06": {"driver": [-2.0, 0.625, 3.1], "passenger": [2.0, 0.625, 3.1]},
+    },
+    "DUMMY_TORSO_Y": {"muscle_01": 3.8, "muscle_02": 3.8, "muscle_03": 3.12, "muscle_04": 3.8, "muscle_05": 3.8, "muscle_06": 3.2},
+    "SEAT_RULE": 1.5,
+    # Muscle seats are accepted by overrides, so a build without them needs a measured rule.
+    "SEAT_RULE_FALLBACK": {"decision": "measured", "measuredRootPartCentreAboveSeatTop": 1.5, "measuredOn": "test"},
+}
+# Muscle only. Roof underside above the driver (None: open cockpit), from the spec roof panels.
+MUSCLE_ROOF_UNDERSIDE = {"muscle_01": 5.3, "muscle_02": 5.7, "muscle_03": None, "muscle_04": 5.7, "muscle_05": 5.6, "muscle_06": 4.75}
+MUSCLE_FEET_BELOW_FLOOR = {"muscle_06"}  # the low Modern roof: the head under the roof wins over the feet on the floor
+MUSCLE_CATEGORY_ATTRIBUTES = {
+    "CategoryId": "muscle", "DisplayName": "Modern Muscle",
+    "Description": "American muscle as hover jets: long bonnet, short deck, a turbine through the bonnet and afterburners along the sills.",
+    "ModuleCompatibility": "Modern Muscle category modules fit every Modern Muscle cockpit.", "FeatureFlag": "VehicleClass_muscle",
+}
+CATEGORIES = {"exotic": None, "muscle": MUSCLE}
+
+
+def use_category(name):
+    """Point the checks (and build_content) at one category. Exotic keeps the tables as written above."""
+    if name not in CATEGORIES:
+        raise SystemExit("test_content.py has no expectations for category %r (known: %s)" % (name, ", ".join(sorted(CATEGORIES))))
+    bc.set_category(name)
+    if CATEGORIES[name]:
+        globals().update(CATEGORIES[name])
+
+
+def numbers_of(scope):
+    return ["01", "02", "03", "04", "05", "06"] if scope == "full" else [PILOT]
+
+
 EXPECTED_PARTS = {}  # filled in main(): (primitive, mesh) part counts for the full scope
 
 failures = []
@@ -99,7 +190,7 @@ def expected_module_ids(numbers):
         for slot, row in SLOTS.items():
             for variant in (VARIANTS if row[7] else (None,)):
                 out[row[6] + n + ("_" + variant if variant else "")] = (slot, n, variant)
-            if n in MESH_CARS and slot in MESH_BODY_TRIM_SLOTS:  # D6: two new ids per body slot per mesh kit
+            if n in TRIM_KITS and slot in MESH_BODY_TRIM_SLOTS:  # D6: two new ids per body slot per mesh kit (Exotic: every mesh kit)
                 for trim in MESH_BODY_TRIMS:
                     out[row[6] + n + "_" + trim] = (slot, n, trim)
     return out
@@ -163,24 +254,26 @@ def check_scope(scope, args, spec, reference, live):
     catalogue_gen = report.pop("catalogueGen")
     tag = "[%s] " % scope
     fixture = bc.load_json(args.balance).get("fixture") is True  # the stand-in copies Piercer donor prices for the hidden slots
-    numbers = ["01", "02", "03", "04", "05", "06"] if scope == "full" else ["03"]
-    mesh_data = bc.load_json(bc.MESH_PATH)
+    numbers = numbers_of(scope)
+    mesh_data = bc.load_mesh()  # data/mesh.json, or empty tables for a category without mesh kits
     mesh_numbers = [n for n in numbers if n in MESH_CARS]
-    want_cockpits = {"exotic_" + n for n in numbers}
+    trim_numbers = [n for n in numbers if n in TRIM_KITS]
+    want_cockpits = {CATEGORY + "_" + n for n in numbers}
     want_modules = expected_module_ids(numbers)
 
     # Counts and ids.
     check(len(content["cockpits"]) == len(numbers), tag + "cockpit count %d" % len(content["cockpits"]))
-    # A kit has 18 modules; a mesh kit has 6 more (GT and EVO of three body slots). Groups: a kit has a cockpit and ten
-    # module shapes; a mesh kit has a cockpit, 21 mesh module shapes (one per ModuleId) and its three primitive body shapes.
-    check(len(content["modules"]) == 18 * len(numbers) + 6 * len(mesh_numbers), tag + "module count %d" % len(content["modules"]))
+    # A kit has 18 modules; a kit with body trims has 6 more (GT and EVO of three body slots; Exotic: every mesh kit).
+    # Groups: a kit has a cockpit and ten module shapes; a mesh kit has a cockpit, 21 mesh module shapes (one per
+    # ModuleId) and its three primitive body shapes. A primitive trim shares the shape of its base part.
+    check(len(content["modules"]) == 18 * len(numbers) + 6 * len(trim_numbers), tag + "module count %d" % len(content["modules"]))
     check(len(content["shapes"]) == 11 * (len(numbers) - len(mesh_numbers)) + 25 * len(mesh_numbers), tag + "cockpit+shape group count %d" % len(content["shapes"]))
     if scope == "full":
-        check(len(content["modules"]) == 144 and len(content["shapes"]) == 150, tag + "full scope must hold 144 modules and 150 groups")
+        check(len(content["modules"]) == 144 and len(content["shapes"]) == FULL_SHAPES, tag + "full scope must hold 144 modules and %d groups" % FULL_SHAPES)
         check(sum(1 for m in content["modules"] if SLOTS[m["slot"]][7]) == 72, tag + "72 core modules")
-        check(sum(1 for m in content["modules"] if not SLOTS[m["slot"]][7]) == 72, tag + "72 body modules (36 plus the 36 mesh trims)")
+        check(sum(1 for m in content["modules"] if not SLOTS[m["slot"]][7]) == 72, tag + "72 body modules (36 plus the 36 trims)")
         check(sorted(m["id"] for m in content["modules"] if m["id"].endswith(("_GT", "_EVO"))) == sorted(
-            "MODULE_%s_EXOTIC_%s_%s" % (stem, n, trim) for stem in ("FRONTBODY", "REARBODY", "REARSPOILER") for n in numbers for trim in ("GT", "EVO")),
+            "MODULE_%s_%s_%s_%s" % (stem, FOLDER, n, trim) for stem in ("FRONTBODY", "REARBODY", "REARSPOILER") for n in numbers for trim in ("GT", "EVO")),
             tag + "the 36 new ModuleIds of D6")
     else:
         check(sum(1 for m in content["modules"] if SLOTS[m["slot"]][7]) == 12, tag + "pilot has 12 core modules")
@@ -191,8 +284,8 @@ def check_scope(scope, args, spec, reference, live):
 
     # Category and slots.
     cat = content["category"]
-    check(cat["folder"] == "EXOTIC" and cat["afterFolder"] == "PIERCER", tag + "category folder")
-    check(cat["attributes"]["CategoryId"] == "exotic" and cat["attributes"]["DisplayName"] == "Exotic" and cat["attributes"]["FeatureFlag"] == "VehicleClass_exotic", tag + "category attributes")
+    check(cat["folder"] == FOLDER and cat["afterFolder"] == "PIERCER", tag + "category folder")
+    check(cat["attributes"]["CategoryId"] == CATEGORY and cat["attributes"]["DisplayName"] == CATEGORY_DISPLAY and cat["attributes"]["FeatureFlag"] == "VehicleClass_" + CATEGORY, tag + "category attributes")
     check([s["slotId"] for s in content["slots"]] == sorted(SLOTS, key=lambda k: SLOTS[k][3]), tag + "slot order")
     for s in content["slots"]:
         row, a = SLOTS[s["slotId"]], s["attributes"]
@@ -206,7 +299,7 @@ def check_scope(scope, args, spec, reference, live):
         check(f["attributes"] == {"DisplayName": SLOTS[k][0], "InterchangeableWithinCategory": True, "ModuleType": SLOTS[k][1]}, tag + "module type folder %s attributes %r" % (f["name"], f["attributes"]))
 
     # Modules.
-    kit_of = {n: COCKPITS["exotic_" + n][3] for n in numbers}
+    kit_of = {n: COCKPITS[CATEGORY + "_" + n][3] for n in numbers}
     shape_parts_spec = {}
     mesh_shapes = {}  # shape key -> (slot, entry of data/mesh.json, is core)
     for m in content["modules"]:
@@ -214,9 +307,9 @@ def check_scope(scope, args, spec, reference, live):
         row, a = SLOTS[slot], m["attributes"]
         mid = m["id"]
         check(m["slot"] == slot, tag + mid + " slot")
-        check(a["ModuleId"] == mid and a["CategoryId"] == "exotic" and a["TemplateType"] == "Module", tag + mid + " identity")
+        check(a["ModuleId"] == mid and a["CategoryId"] == CATEGORY and a["TemplateType"] == "Module", tag + mid + " identity")
         check(a["ModuleType"] == row[1] and a["ModuleFolder"] == row[2], tag + mid + " ModuleType/ModuleFolder match its slot")
-        check(m["folderPath"] == [row[2]] + (["Exotic_" + n] if row[7] else []), tag + mid + " folder path %r" % m["folderPath"])
+        check(m["folderPath"] == [row[2]] + ([CORE_FOLDER_PREFIX + n] if row[7] else []), tag + mid + " folder path %r" % m["folderPath"])
         spec_id = spec["kits"][kit_of[n]]["modules"][slot]
         source = mesh_source(slot, n, variant)
         check((source is not None) == (mid in mesh_data["modules"]), tag + mid + " is a mesh module exactly when the contract says so")
@@ -253,18 +346,18 @@ def check_scope(scope, args, spec, reference, live):
             check(len(core_prices) == 1 and base["attributes"]["Price"] * BODY_BASE_FRACTION[1] == min(core_prices) * BODY_BASE_FRACTION[0] and 0 < base["attributes"]["Price"] < a["Price"],
                   tag + mid + " its base part is exactly a quarter of the core variant price and cheaper than the trim, got %r" % base["attributes"]["Price"])
             check(m.get("upgradePathDonor") == base.get("upgradePathDonor") and m.get("upgradePaths") == base.get("upgradePaths"), tag + mid + " upgrade paths as its base part")
-        check(a["RatingReferenceCockpitId"] == "exotic_03", tag + mid + " RatingReferenceCockpitId")
+        check(a["RatingReferenceCockpitId"] == RATING_REFERENCE, tag + mid + " RatingReferenceCockpitId")
         check(a.get("V2Materialised") is True and a.get("RetiredFromCatalog") is False, tag + mid + " V2Materialised/RetiredFromCatalog")
         check(isinstance(a.get("Price"), (int, float)) and isinstance(a.get("NeonPrice"), (int, float)), tag + mid + " Price/NeonPrice")
         if row[7]:
             check(a["ModuleSlot"] == {"Engine": "Engine", "Stabilisers": "Stabilisers", "Boost": "Boost"}[row[1]], tag + mid + " ModuleSlot")
-            check(a["SourceCockpitId"] == "exotic_" + n and a["V2PublishedModuleId"] == mid, tag + mid + " SourceCockpitId/V2PublishedModuleId")
+            check(a["SourceCockpitId"] == CATEGORY + "_" + n and a["V2PublishedModuleId"] == mid, tag + mid + " SourceCockpitId/V2PublishedModuleId")
             check(a["EnginePosition"] == (row[5] or "") and a["RearEngine"] is (slot == "Engine2"), tag + mid + " EnginePosition/RearEngine")
             check("PurchasePrice" in a and "VariantName" in a and "VariantOrder" in a, tag + mid + " PurchasePrice/Variant attributes")
             donor = reference["modules"]["MODULE_%s_BRUISER_03_%s" % ({"Engine1": "ENGINE", "Engine2": "ENGINE_B", "Stabilisers": "STABILISER", "Boost": "BOOST"}[slot], variant)]
         else:
             check(a["ModuleSlot"] == slot, tag + mid + " ModuleSlot")
-            check(a.get("SourceCockpitId") == "exotic_" + n and a.get("SourceCockpitDisplayName") == COCKPITS["exotic_" + n][1],
+            check(a.get("SourceCockpitId") == CATEGORY + "_" + n and a.get("SourceCockpitDisplayName") == COCKPITS[CATEGORY + "_" + n][1],
                   tag + mid + " a body module is locked to the cockpit of its kit (SourceCockpitId/SourceCockpitDisplayName)")
             check("PurchasePrice" not in a, tag + mid + " body modules carry no PurchasePrice")
             check((a.get("VariantName"), a.get("VariantOrder")) == BODY_VARIANT[variant], tag + mid + " VariantName/VariantOrder %r %r" % (a.get("VariantName"), a.get("VariantOrder")))
@@ -298,7 +391,7 @@ def check_scope(scope, args, spec, reference, live):
         check(len(recs) == len([p for p in flat if p["ch"] != "driver"]) == len(flat), tag + key + " part count equals the spec")
         codes = {r[10] for r in recs}
         core = SLOTS[slot][7]
-        allowed = set("PSDT") if core else (set("PSDL") if slot in ("FrontBody", "RearBody") else set("PSDN"))
+        allowed = CORE_PRIMITIVE_CODES if core else (set("PSDL") if slot in ("FrontBody", "RearBody") else set("PSDN"))
         check(codes <= allowed, tag + key + " channels %s" % sorted(codes))
         check(("T" in codes) == core, tag + key + " thrust parts only on engines, stabilisers and boost")
         for p, r in zip(flat, recs):
@@ -340,7 +433,8 @@ def check_scope(scope, args, spec, reference, live):
         else:
             check(c["shape"] == "Cockpit/" + row[2], tag + c["id"] + " shape")
             check(len(recs) == len(flat) - 2 == c["partCount"], tag + c["id"] + " part count equals the spec minus the two driver dummy parts")
-            check("emptySlots" not in c and "mesh" not in content["shapes"][c["shape"]], tag + c["id"] + " a primitive cockpit is planned as before")
+            check(c.get("emptySlots") == (list(MESH_EMPTY_SLOTS) if n in EMPTY_KITS else None) and "mesh" not in content["shapes"][c["shape"]],
+                  tag + c["id"] + " a primitive cockpit is planned as before (its slots start empty only where the category says so)")
         check({r[10] for r in recs} <= set("PSDG"), tag + c["id"] + " cockpit channels")
         check(not content["shapes"][c["shape"]].get("sockets"), tag + c["id"] + " cockpit shape has no module sockets")
     mesh_records = [r for v in content["shapes"].values() for r in v["parts"] if r[0] == "mesh"]
@@ -361,7 +455,10 @@ def check_scope(scope, args, spec, reference, live):
             sum(1 for r in cockpit_parts if r[0] != "mesh"), sum(1 for r in cockpit_parts if r[0] == "mesh")))
         check((sum(1 for r in module_parts if r[0] != "mesh"), sum(1 for r in module_parts if r[0] == "mesh")) == EXPECTED_PARTS["module"], tag + "unique module parts %d primitive + %d mesh" % (
             sum(1 for r in module_parts if r[0] != "mesh"), sum(1 for r in module_parts if r[0] == "mesh")))
-        check(len(mesh_data["modules"]) == 126 and len(mesh_shapes) == 126 and len(mesh_records) == 560, tag + "126 mesh modules, 560 mesh parts")
+        if MESH_CARS:
+            check(len(mesh_data["modules"]) == 126 and len(mesh_shapes) == 126 and len(mesh_records) == 560, tag + "126 mesh modules, 560 mesh parts")
+        else:
+            check(not mesh_data["modules"] and not mesh_data["cockpits"] and not mesh_shapes, tag + "a category without mesh kits has no mesh data")
 
     # Sockets.
     for key, shape in content["shapes"].items():
@@ -393,11 +490,16 @@ def check_scope(scope, args, spec, reference, live):
                 if slot == "Stabilisers":
                     left = s["position"][0] < 0
                     check(("_Left" in s["name"]) == left and ("_Right" in s["name"]) == (not left), tag + key + " socket %s side" % s["name"])
-                    check(s["template"] == ("StabiliserJet_ExoticLeft" if left else "StabiliserJet_ExoticRight"), tag + key + " socket %s template side" % s["name"])
+                    check(s["template"] == (VFX_TEMPLATES[2] if left else VFX_TEMPLATES[3]), tag + key + " socket %s template side" % s["name"])
                     check(d[1] < -0.2 or d[2] > 0.9, tag + key + " stabiliser socket %s fires down or back (%s)" % (s["name"], np.round(d, 2)))
-                else:
+                elif SPLAYED_JETS is None:
                     check(d[2] > 0.9 or d[1] > 0.9, tag + key + " socket %s fires back or up (%s)" % (s["name"], np.round(d, 2)))
                     check(abs(d[0]) < 1e-6, tag + key + " socket %s has no sideways component" % s["name"])
+                else:
+                    # A category whose spec angles its pipes: every engine and boost jet still fires mainly backwards, and
+                    # only the recorded shapes lean sideways, away from the car.
+                    check(d[2] > 0.55, tag + key + " socket %s fires mainly backwards (%s)" % (s["name"], np.round(d, 2)))
+                    check((abs(d[0]) > 1e-6) == (key in SPLAYED_JETS) and d[0] * s["position"][0] >= 0, tag + key + " socket %s leans sideways only outwards, and only on a shape recorded as splayed (%s)" % (s["name"], np.round(d, 2)))
             if slot == "Stabilisers":
                 check(len(sockets) == 4 and sum(1 for s in sockets if "_Left" in s["name"]) == 2, tag + key + " one socket per corner unit")
             xs = sorted(round(s["position"][0], 3) for s in sockets)
@@ -420,12 +522,12 @@ def check_scope(scope, args, spec, reference, live):
         row, a = COCKPITS[c["id"]], c["attributes"]
         cid, n = c["id"], c["id"][-2:]
         check(c["model"] == row[0] and a["DisplayName"] == row[1], tag + cid + " names")
-        check(a["CockpitId"] == cid and a["V2PublishedCockpitId"] == cid and a["CategoryId"] == "exotic" and a["TemplateType"] == "Cockpit", tag + cid + " identity")
+        check(a["CockpitId"] == cid and a["V2PublishedCockpitId"] == cid and a["CategoryId"] == CATEGORY and a["TemplateType"] == "Cockpit", tag + cid + " identity")
         check(a["MenuImage"] == a["PreviewImage"] and (a["MenuImage"] == "" or re.fullmatch(r"rbxassetid://\d+", a["MenuImage"])), tag + cid + " card image is empty or one content id on both attributes")
         check(a.get("V2Materialised") is True, tag + cid + " V2Materialised")
         check(a["TargetTier"] == row[4] and a["Price"] == row[5] and a["TargetStockPI"] == row[6], tag + cid + " tier, price and target")
         check(a["StandardAudioProfileId"] == "GENERIC_STANDARD_AUDIO", tag + cid + " audio profile")
-        empty = MESH_EMPTY_SLOTS if n in MESH_CARS else ()
+        empty = MESH_EMPTY_SLOTS if n in EMPTY_KITS else ()
         for name, slot in list(LEGACY_DEFAULTS.items()) + list(NEW_DEFAULTS.items()):
             want = SLOTS[slot][6] + n + ("_STANDARD" if SLOTS[slot][7] else "")
             if slot in empty:
@@ -434,8 +536,8 @@ def check_scope(scope, args, spec, reference, live):
             else:
                 check(a.get(name) == want and module_slot.get(want) == slot, tag + cid + " %s" % name)
         check(len([k for k in a if k.startswith("Default") and k.endswith("ModuleId")]) == 13 - len(empty), tag + cid + " has %d default module attributes" % (13 - len(empty)))
-        if n in MESH_CARS:
-            check(seats.get("overrides", {}).get(cid) == MESH_SEATS_BY_COCKPIT.get(cid, MESH_SEATS), tag + cid + " data/seats.json holds the D13 starting override")
+        if cid in SEAT_OVERRIDES:
+            check(seats.get("overrides", {}).get(cid) == SEAT_OVERRIDES[cid], tag + cid + " data/seats.json holds the D13 starting override")
         paint = paints[row[2]]
         check(a["DefaultPrimaryColor"] == {"__c3": bc.hex_rgb(paint["primary"])} and a["DefaultSecondaryColor"] == {"__c3": bc.hex_rgb(paint["secondary"])}
               and a["DefaultNeonColor"] == {"__c3": bc.hex_rgb(paint["neon"])}, tag + cid + " default colours come from the native paint")
@@ -562,14 +664,15 @@ def check_data_rules(args):
     refused("a non-ASCII override", ids_override({"OwnedByDefault": "caf\u00e9"}), "not printable ASCII")
     refused("an override number the generator rejects", ids_override({"TopSpeed": 1e-7}), "not safe for the catalogue generator")
     refused("an override of an unsupported type", ids_override({"OwnedByDefault": [1]}), "unsupported attribute type")
-    refused("an override of an interface attribute", ids_override({"CockpitId": "exotic_99"}), "may not change CockpitId")
-    refused("an override of a default module", ids_override({"DefaultBoostModuleId": "MODULE_BOOST_EXOTIC_03_POWER"}), "may not change DefaultBoostModuleId")
+    refused("an override of an interface attribute", ids_override({"CockpitId": CATEGORY + "_99"}), "may not change CockpitId")
+    refused("an override of a default module", ids_override({"DefaultBoostModuleId": "MODULE_BOOST_%s_%s_POWER" % (FOLDER, PILOT)}), "may not change DefaultBoostModuleId")
     refused("an override of an unknown attribute", ids_override({"NotACockpitAttribute": 1}), "not an attribute of this cockpit")
     result, error = with_data(ids_override({}), build("AUDIT", "pilot"))
     check(error is None and result[0]["cockpits"][0]["attributes"].get("OwnedByDefault") is True, "without the override OwnedByDefault is the balance.json value (true): %r" % (error and error[:200]))
 
     # Seat acceptance.
-    six = {"exotic_0%d" % n: {"driver": [-1.8, 0.25, 0.45], "passenger": [1.8, 0.25, 0.45]} for n in range(1, 7)}
+    pilot_id = CATEGORY + "_" + PILOT
+    six = {"%s_0%d" % (CATEGORY, n): {"driver": [-1.8, 0.25, 0.45], "passenger": [1.8, 0.25, 0.45]} for n in range(1, 7)}
     refused("pending seats", seats_change(decision="pending"), "seat offsets are not accepted, so the full scope cannot be applied", "APPLY", "full")
     for mode, scope in (("AUDIT", "pilot"), ("APPLY", "pilot"), ("AUDIT", "full"), ("ROLLBACK", "full")):
         result, error = with_data(seats_change(decision="pending"), build(mode, scope))
@@ -577,7 +680,7 @@ def check_data_rules(args):
     result, error = with_data(seats_change(decision="measured", measuredRootPartCentreAboveSeatTop=1.5, measuredOn="test", rule=1.5, overrides={}), build("APPLY", "full"))
     check(error is None and result[0]["meta"]["seats"] == {"accepted": True, "decision": "measured", "summary": "measured rootPartCentreAboveSeatTop=1.5 (test)"}, "measured seats let APPLY full build: %r" % (error and error[:200]))
     result, error = with_data(seats_change(decision="measured", measuredRootPartCentreAboveSeatTop=1.2, measuredOn="test", rule=1.2, overrides={}), build("APPLY", "full"))
-    check(error is None and all(abs(c["attributes"]["DriverSeatOffsetY"] - (1.4 - 1.2 - 0.225)) < 1e-9 for c in result[0]["cockpits"]), "a measured rule value moves every seat: %r" % (error and error[:200]))
+    check(error is None and all(abs(c["attributes"]["DriverSeatOffsetY"] - (DUMMY_TORSO_Y[c["id"]] - 1.2 - 0.225)) < 1e-9 for c in result[0]["cockpits"]), "a measured rule value moves every seat: %r" % (error and error[:200]))
     refused("a measurement that the rule does not hold", seats_change(decision="measured", measuredRootPartCentreAboveSeatTop=1.2, measuredOn="test", rule=1.5, overrides={}), "but the rule still says", "APPLY", "full")
     refused("a measurement without a number", seats_change(decision="measured", measuredRootPartCentreAboveSeatTop=None, measuredOn="test"), "is not a number")
     refused("a measurement without a date", seats_change(decision="measured", measuredRootPartCentreAboveSeatTop=1.5, measuredOn=" "), "does not say when")
@@ -588,12 +691,12 @@ def check_data_rules(args):
           "explicit overrides for all six let APPLY full build with those values: %r" % (error and error[:200]))
     result, error = with_data(seats_change(decision="measured", measuredRootPartCentreAboveSeatTop=1.2, measuredOn="test", rule=1.5, overrides=six), build("APPLY", "full"))
     check(error is None, "a measurement plus overrides for every cockpit builds: %r" % (error and error[:200]))
-    result, error = with_data(seats_change(decision="overrides", overrides={"exotic_03": six["exotic_03"]}), build("APPLY", "pilot"))
+    result, error = with_data(seats_change(decision="overrides", overrides={pilot_id: six[pilot_id]}), build("APPLY", "pilot"))
     check(error is None and result[0]["meta"]["seats"]["accepted"] is True, "an override for the pilot cockpit accepts the pilot scope: %r" % (error and error[:200]))
-    refused("overrides that miss cockpits", seats_change(decision="overrides", overrides={"exotic_03": six["exotic_03"]}), "there is no override for exotic_01", "AUDIT", "full")
-    refused("an override for an unknown cockpit", seats_change(overrides={"exotic_3": six["exotic_03"]}), "unknown cockpit")
-    refused("an override without a passenger", seats_change(overrides={"exotic_03": {"driver": [-1.8, 0.25, 0.45]}}), "overrides.exotic_03.passenger must be three numbers")
-    refused("an override outside the clamp", seats_change(overrides={"exotic_03": {"driver": [-1.8, 41, 0.45], "passenger": [1.8, 0.25, 0.45]}}), "overrides.exotic_03.driver must be three numbers")
+    refused("overrides that miss cockpits", seats_change(decision="overrides", overrides={pilot_id: six[pilot_id]}), "there is no override for %s_01" % CATEGORY, "AUDIT", "full")
+    refused("an override for an unknown cockpit", seats_change(overrides={CATEGORY + "_" + PILOT[1:]: six[pilot_id]}), "unknown cockpit")
+    refused("an override without a passenger", seats_change(overrides={pilot_id: {"driver": [-1.8, 0.25, 0.45]}}), "overrides.%s.passenger must be three numbers" % pilot_id)
+    refused("an override outside the clamp", seats_change(overrides={pilot_id: {"driver": [-1.8, 41, 0.45], "passenger": [1.8, 0.25, 0.45]}}), "overrides.%s.driver must be three numbers" % pilot_id)
 
     # Mesh kits (mesh/INTEGRATION.md).
     def ids_cockpit(n, **fields):
@@ -606,9 +709,31 @@ def check_data_rules(args):
     check(error is None, "the full scope builds: %r" % (error and error[:200]))
     refused("an empty core slot", ids_cockpit("02", emptySlots=["Boost"]), "emptySlots may only name", "AUDIT", "full")
     refused("an empty Nose slot", ids_cockpit("02", emptySlots=["FrontBody"]), "emptySlots may only name", "AUDIT", "full")
-    if "DefaultRearSpoilerModuleId" in bc.load_json(args.balance)["cockpits"]["exotic_01"]["attributes"]:  # the stand-in fixture sets no defaults
+    if "DefaultRearSpoilerModuleId" in bc.load_json(args.balance)["cockpits"][CATEGORY + "_01"]["attributes"]:  # the stand-in fixture sets no defaults
         # Every cockpit already starts with SidePods, FrontBumper and RearBumper empty; the Wing is the one slot left that may be emptied.
         refused("an empty slot that balance.json still defaults", ids_cockpit("01", emptySlots=list(MESH_EMPTY_SLOTS) + ["RearSpoiler"]), "balance.json sets DefaultRearSpoilerModuleId", "AUDIT", "full")
+    if MESH_CARS:
+        check_mesh_data_rules(build, refused, mesh_change, real_full)
+    else:
+        check_trim_slot_rules(build, refused, real_full)
+    # A mesh cockpit without a seat override falls back to the spec driver dummy rule (D13: a data-only change either way).
+    # SEAT_RULE_FALLBACK: a category whose seats are accepted by overrides needs a measured rule to build without them.
+    result, error = with_data(seats_change(overrides={}, **SEAT_RULE_FALLBACK), build("AUDIT", "full"))
+    check(error is None and all(abs(c["attributes"]["DriverSeatOffsetY"] - (DUMMY_TORSO_Y[c["id"]] - SEAT_RULE - 0.225)) < 1e-9 for c in result[0]["cockpits"]), "without overrides every cockpit, mesh or not, follows the driver dummy: %r" % (error and error[:200]))
+    # Every shipped cockpit has an override now, so the seat X and Z of the dummy rule are checked here.
+    spec = vbspec.load(bc.SPEC_PATH)
+    for c in (result[0]["cockpits"] if result else []):
+        torso = [p for p in bc.flatten(spec["cockpits"][COCKPITS[c["id"]][2]]["parts"]) if p["ch"] == "driver" and p["shape"] == "block"][0]
+        a = c["attributes"]
+        check(a["DriverSeatOffsetX"] == torso["pos"][0] and a["PassengerSeatOffsetX"] == -torso["pos"][0], c["id"] + " without an override: seat X")
+        check(a["DriverSeatOffsetZ"] == torso["pos"][2] == a["PassengerSeatOffsetZ"] and a["PassengerSeatOffsetY"] == a["DriverSeatOffsetY"], c["id"] + " without an override: seat Z, and the passenger at the driver's height")
+    fifth = CATEGORY + "_05"
+    result, error = with_data(seats_change(overrides={fifth: {"driver": [-1.6, 0.05, 0.5], "passenger": [1.6, 0.05, 0.5]}}, **SEAT_RULE_FALLBACK), build("AUDIT", "full"))
+    check(error is None and [[c["attributes"]["DriverSeatOffset" + axis] for axis in "XYZ"] for c in result[0]["cockpits"] if c["id"] == fifth] == [[-1.6, 0.05, 0.5]], "a corrected mesh seat override reaches the cockpit attributes: %r" % (error and error[:200]))
+
+
+def check_mesh_data_rules(build, refused, mesh_change, real_full):
+    """Rules of data/mesh.json (mesh/INTEGRATION.md), on the Exotic mesh kits. build, refused: from check_data_rules."""
     result, error = with_data(mesh_change(lambda d: d.__setitem__("assetId", d["assetId"] + 1)), build("AUDIT", "full"))
     check(error is None and real_full and result[0]["meta"]["contentHash"] != real_full[0]["meta"]["contentHash"], "the content hash covers the mesh asset id (D15): %r" % (error and error[:200]))
 
@@ -624,18 +749,28 @@ def check_data_rules(args):
     refused("a mesh id outside the id rules", mesh_change(lambda d: d["modules"].__setitem__("MODULE_SIDEPODS_EXOTIC_02_GTX", d["modules"]["MODULE_REARSPOILER_EXOTIC_02_GT"])), "is not a ModuleId of this scope", "AUDIT", "full")
     refused("a mesh part without a size", mesh_change(lambda d: d["modules"]["MODULE_BOOST_EXOTIC_02_STANDARD"]["parts"]["B_BOOST_STD__primary"].__setitem__("size", [1, 0, 1])), "needs a centre and a positive size", "AUDIT", "full")
     refused("a body trim that balance.json does not hold", {"ids.json": lambda d: d.__setitem__("bodyTrims", ["GT"])}, "is not a ModuleId of this scope", "AUDIT", "full")
-    # A mesh cockpit without a seat override falls back to the spec driver dummy rule (D13: a data-only change either way).
-    result, error = with_data(seats_change(overrides={}), build("AUDIT", "full"))
-    check(error is None and all(abs(c["attributes"]["DriverSeatOffsetY"] - (1.4 - 1.437 - 0.225)) < 1e-9 for c in result[0]["cockpits"]), "without overrides every cockpit, mesh or not, follows the driver dummy: %r" % (error and error[:200]))
-    # Every shipped cockpit has an override now, so the seat X and Z of the dummy rule are checked here.
-    spec = vbspec.load(bc.SPEC_PATH)
-    for c in (result[0]["cockpits"] if result else []):
-        torso = [p for p in bc.flatten(spec["cockpits"][COCKPITS[c["id"]][2]]["parts"]) if p["ch"] == "driver" and p["shape"] == "block"][0]
-        a = c["attributes"]
-        check(a["DriverSeatOffsetX"] == torso["pos"][0] and a["PassengerSeatOffsetX"] == -torso["pos"][0], c["id"] + " without an override: seat X")
-        check(a["DriverSeatOffsetZ"] == torso["pos"][2] == a["PassengerSeatOffsetZ"] and a["PassengerSeatOffsetY"] == a["DriverSeatOffsetY"], c["id"] + " without an override: seat Z, and the passenger at the driver's height")
-    result, error = with_data(seats_change(overrides={"exotic_05": {"driver": [-1.6, 0.05, 0.5], "passenger": [1.6, 0.05, 0.5]}}), build("AUDIT", "full"))
-    check(error is None and [[c["attributes"]["DriverSeatOffset" + axis] for axis in "XYZ"] for c in result[0]["cockpits"] if c["id"] == "exotic_05"] == [[-1.6, 0.05, 0.5]], "a corrected mesh seat override reaches the cockpit attributes: %r" % (error and error[:200]))
+
+
+def check_trim_slot_rules(build, refused, real_full):
+    """Rules of data/ids.json bodyTrimSlots, on a category whose body trims are primitive (no data/mesh.json)."""
+    def ids_set(key, value):
+        return {"ids.json": lambda d: d.__setitem__(key, value)}
+
+    refused("a body trim that balance.json does not hold", ids_set("bodyTrims", ["GT", "EVO", "RS"]), "balance.json has no module MODULE_FRONTBODY_%s_01_RS" % FOLDER, "AUDIT", "full")
+    refused("a core slot in bodyTrimSlots", ids_set("bodyTrimSlots", ["FrontBody", "Boost"]), "bodyTrimSlots may only name body slots", "AUDIT", "full")
+    refused("an unknown slot in bodyTrimSlots", ids_set("bodyTrimSlots", ["Bonnet"]), "bodyTrimSlots may only name body slots", "AUDIT", "full")
+    # The trim slots are data: one slot fewer drops exactly its twelve trims and changes the content hash.
+    result, error = with_data(ids_set("bodyTrimSlots", ["FrontBody", "RearBody"]), build("AUDIT", "full"))
+    check(error is None and real_full and len(result[0]["modules"]) == 132 and not any(m["slot"] == "RearSpoiler" and m["id"].endswith(("_GT", "_EVO")) for m in result[0]["modules"])
+          and result[0]["meta"]["contentHash"] != real_full[0]["meta"]["contentHash"], "bodyTrimSlots decides which slots carry trims: %r" % (error and error[:200]))
+    # Without bodyTrimSlots a trim exists only where data/mesh.json holds it (the Exotic rule): none here.
+    result, error = with_data({"ids.json": lambda d: d.pop("bodyTrimSlots")}, build("AUDIT", "full"))
+    check(error is None and len(result[0]["modules"]) == 108 and not any(m["id"].endswith(("_GT", "_EVO")) for m in result[0]["modules"]), "without bodyTrimSlots and without meshes there are no trims: %r" % (error and error[:200]))
+    result, error = with_data(ids_set("coreFolderPrefix", "Other_"), build("AUDIT", "full"))
+    check(error is None and real_full and all(m["folderPath"][1:] in ([], ["Other_" + m["id"].split("_")[-2]]) for m in result[0]["modules"])
+          and result[0]["meta"]["contentHash"] != real_full[0]["meta"]["contentHash"], "coreFolderPrefix names the core family folders and is inside the content hash: %r" % (error and error[:200]))
+    result, error = with_data({"ids.json": lambda d: d.pop("coreFolderPrefix")}, build("AUDIT", "full"))
+    check(error is None and all(m["folderPath"][1:] in ([], ["Exotic_" + m["id"].split("_")[-2]]) for m in result[0]["modules"]), "without coreFolderPrefix the folders keep the Exotic default: %r" % (error and error[:200]))
 
 
 def lua_balance(source):
@@ -672,15 +807,148 @@ def lua_balance(source):
     return depth, brackets
 
 
+def check_muscle(full, pilot, spec, args):
+    """Modern Muscle only: what the category contract fixes and the shared checks do not cover."""
+    # Pilot against full, as for Exotic.
+    by_id = {m["id"]: m for m in full["modules"]}
+    check(all(by_id[m["id"]]["attributes"] == m["attributes"] and by_id[m["id"]]["shape"] == m["shape"] for m in pilot["modules"]), "pilot modules equal the same modules in the full scope")
+    check(set(pilot["shapes"]) <= set(full["shapes"]) and all(full["shapes"][k] == v for k, v in pilot["shapes"].items()), "pilot geometry and sockets equal the full scope")
+    check(sorted(pilot["shapes"]) == sorted(["Cockpit/hardtop"] + ["%s/%s" % (slot, spec["kits"]["prostreet"]["modules"][slot]) for slot in SLOTS]), "the pilot is the Hardtop with the Pro Street kit: %r" % sorted(pilot["shapes"]))
+    check(full["meta"]["contentHash"] != pilot["meta"]["contentHash"], "pilot and full have different content hashes")
+
+    # Identity of the category and of this installer.
+    check(full["category"] == {"folder": "MUSCLE", "afterFolder": "PIERCER", "attributes": MUSCLE_CATEGORY_ATTRIBUTES}, "category folder and attributes: %r" % full["category"])
+    check(full["meta"]["marker"] == "muscle_category/stage_b" and full["meta"]["placeId"] == 93959280828322 and full["meta"]["blockoutCheck"] == "warn", "marker, place id and blockout check: %r" % full["meta"])
+    check("mesh" not in full and all(len(r) == 11 and r[0] != "mesh" for v in full["shapes"].values() for r in v["parts"]), "no mesh parts: every part is a primitive record")
+    check(all(c["attributes"]["MenuImage"] == "" and c["attributes"]["PreviewImage"] == "" for c in full["cockpits"]), "no card images yet")
+    check(all(c.get("emptySlots") == ["SidePods", "FrontBumper", "RearBumper"] for c in full["cockpits"]), "SidePods, FrontBumper and RearBumper start empty on all six")
+    check(all(m["palette"] == next(c for c in full["cockpits"] if c["id"] == m["attributes"]["SourceCockpitId"])["palette"] for m in full["modules"]), "every module wears the paint of the cockpit of its kit")
+
+    # Body trims: no mesh, so a trim is its base part's shape with other attributes.
+    trims = [m for m in full["modules"] if m["id"].endswith(("_GT", "_EVO"))]
+    check(len(trims) == 36 and all(m["shape"] == by_id[m["id"].rsplit("_", 1)[0]]["shape"] and m["partCount"] == by_id[m["id"].rsplit("_", 1)[0]]["partCount"] for m in trims), "the 36 trims share the primitive shape of their base part")
+    check(len({m["shape"] for m in full["modules"]}) == 60 and sum(1 for k in full["shapes"] if k.startswith("Cockpit/")) == 6, "60 module shapes and 6 cockpit shapes")
+    core_neon = sorted(k for k, v in full["shapes"].items() if k.split("/")[0] in SOCKET_RULES and any(r[10] == "N" for r in v["parts"]))
+    check(core_neon == ["Boost/sill_slots"], "the one core shape with optional neon is Sill Slots: %r" % core_neon)
+
+    # Sockets: worked examples from the spec geometry, and the stock totals (5 hover dust + the four Standard core modules).
+    shapes = full["shapes"]
+    check(shapes["Engine2/mono_turbine"]["sockets"] == [{"name": "VFX_EngineJet_Back", "template": "EngineJet_Muscle", "position": [0.0, 2.05, 13.6], "orientation": [0.0, 0.0, 0.0]}], "Mono Turbine fires straight back from one socket: %r" % shapes["Engine2/mono_turbine"]["sockets"])
+    check(shapes["Engine1/cowl_slot"]["sockets"] == [{"name": "VFX_EngineJet_Back", "template": "EngineJet_Muscle", "position": [0.0, 4.6, -2.8], "orientation": [0.0, 0.0, 0.0]}], "Cowl Slot Turbine: %r" % shapes["Engine1/cowl_slot"]["sockets"])
+    check(shapes["Boost/megaphones"]["sockets"] == [{"name": "VFX_BoostJet_Left", "template": "BoostJet_Muscle", "position": [-5.55, -0.58, 2.2], "orientation": [0.0, 0.0, 0.0]},
+                                                     {"name": "VFX_BoostJet_Right", "template": "BoostJet_Muscle", "position": [5.55, -0.58, 2.2], "orientation": [0.0, 0.0, 0.0]}], "Megaphones: %r" % shapes["Boost/megaphones"]["sockets"])
+    paddles = {s["name"]: s for s in shapes["Stabilisers/glide_paddles"]["sockets"]}
+    check(sorted(paddles) == ["VFX_StabiliserJet_Left_Front", "VFX_StabiliserJet_Left_Rear", "VFX_StabiliserJet_Right_Front", "VFX_StabiliserJet_Right_Rear"]
+          and paddles["VFX_StabiliserJet_Left_Front"] == {"name": "VFX_StabiliserJet_Left_Front", "template": "StabiliserJet_MuscleLeft", "position": [-4.5, -0.5967, -6.0033], "orientation": [45.0, 0.0, 0.0]}
+          and paddles["VFX_StabiliserJet_Right_Rear"]["template"] == "StabiliserJet_MuscleRight", "Glide Paddles fire 45 degrees down and back: %r" % paddles)
+    names = {key: [s["name"] for s in shapes[key]["sockets"]] for key in ("Engine2/over_under", "Engine2/inline_four", "Engine1/blower_stack")}
+    check(names == {"Engine2/over_under": ["VFX_EngineJet_Back", "VFX_EngineJet_Back2"], "Engine2/inline_four": ["VFX_EngineJet_Left", "VFX_EngineJet_Left2", "VFX_EngineJet_Right", "VFX_EngineJet_Right2"],
+                    "Engine1/blower_stack": ["VFX_EngineJet_Left", "VFX_EngineJet_Left2", "VFX_EngineJet_Right", "VFX_EngineJet_Right2"]}, "a second jet on one side gets the suffix 2: %r" % names)
+    stock = {}
+    for c in full["cockpits"]:
+        defaults = {v for k, v in c["attributes"].items() if k.startswith("Default") and k.endswith("ModuleId")}
+        stock[c["id"]] = 5 + sum(len(shapes[m["shape"]].get("sockets", [])) for m in full["modules"] if m["id"] in defaults)
+    check(stock == {"muscle_01": 15, "muscle_02": 17, "muscle_03": 16, "muscle_04": 16, "muscle_05": 15, "muscle_06": 13}, "sockets per stock car: %r" % stock)
+
+    # The paths this run used: nothing of Exotic's is read or written.
+    here = os.path.join(bc.REPO, "scripts", "exotic_category", "categories", "muscle")
+    check(os.path.abspath(bc.DATA_DIR) == os.path.join(here, "data") and os.path.abspath(bc.OUT_DIR) == os.path.join(here, "out")
+          and os.path.abspath(bc.FINGERPRINTS_PATH) == os.path.join(here, "fingerprints.json") and not os.path.isfile(bc.MESH_PATH), "data, outputs and fingerprints are Muscle's own, and there is no mesh.json")
+    check(os.path.abspath(bc.SPEC_PATH) == os.path.join(bc.REPO, "scripts", "vehicle_blockouts", "specs", "muscle.json")
+          and os.path.abspath(bc.BALANCE_PATH) == os.path.join(bc.REPO, "scripts", "exotic_category", "balance", "muscle", "balance.json"), "spec and balance paths")
+    ids = bc.load_json(os.path.join(bc.DATA_DIR, "ids.json"))
+    check(ids["coreFolderPrefix"] == "Muscle_" and ids["bodyTrims"] == ["GT", "EVO"] and ids["bodyTrimSlots"] == ["FrontBody", "RearBody", "RearSpoiler"]
+          and ids["pilotCockpit"] == "04" and ids["cockpitAttributeOverrides"] == {"OwnedByDefault": False} and ids["variants"] == list(VARIANTS), "data/ids.json category keys")
+    check(all("cardImage" not in c and c["kitName"] == c["displayName"] for c in ids["cockpits"]), "no card image; the kit is named after the car")
+    exotic_slots = bc.load_json(os.path.join(os.path.dirname(os.path.abspath(bc.__file__)), "data", "ids.json"))["slots"]
+    check(json.loads(json.dumps(ids["slots"]).replace("_MUSCLE_", "_EXOTIC_")) == exotic_slots, "the slot table is Exotic's with MUSCLE in the id prefixes (labels, order, donors)")
+    text = bc.render_installer(full, "return function() end")
+    check(text.split("\n")[1].startswith("-- Modern Muscle category, Stage B content installer. mode=AUDIT scope=full contentHash=" + full["meta"]["contentHash"]), "installer header: %r" % text.split("\n")[1][:120])
+
+    # The category's own copy of the read-only report: the Exotic file with one line changed.
+    with open(bc.POST_CHECKS_PATH, "r", encoding="utf-8") as f:
+        source_lines = f.read().replace("\r\n", "\n").split("\n")
+    copy_lines = bc.render_post_install_checks("MUSCLE").split("\n")
+    changed = [(a, b) for a, b in zip(source_lines, copy_lines[1:]) if a != b]
+    check(copy_lines[0].startswith("-- GENERATED by ") and len(copy_lines) == len(source_lines) + 1 and changed == [('local CATEGORY = "EXOTIC"', 'local CATEGORY = "MUSCLE"')],
+          "post_install_checks.lua for Muscle is the Exotic report with only the CATEGORY line changed: %r" % changed)
+    for bad in ("muscle", "MUSCLE\"", ""):
+        try:
+            bc.render_post_install_checks(bad)
+            check(False, "a category folder %r must be refused" % bad)
+        except bc.BuildError:
+            check(True, "")
+
+    # Seats: explicit overrides for all six, from the spec. Seated R15 figure of the contract: root part centre 1.5
+    # above the seat top, head top 2.2 above the root part centre; feet about 2.25 below it (Exotic seat notes).
+    seats = bc.load_json(os.path.join(bc.DATA_DIR, "seats.json"))
+    check(seats["pilotAcceptance"]["decision"] == "overrides" and "not measured" in seats["pilotAcceptance"]["note"] and sorted(seats["overrides"]) == sorted(COCKPITS), "seats: overrides for all six, recorded as not measured")
+    check(full["meta"]["seats"] == {"accepted": True, "decision": "overrides", "summary": "explicit overrides for every cockpit in scope"}, "seat acceptance: %r" % full["meta"]["seats"])
+    for c in full["cockpits"]:
+        cid, a = c["id"], c["attributes"]
+        flat = bc.flatten(spec["cockpits"][COCKPITS[cid][2]]["parts"])
+        torso = [p for p in flat if p["ch"] == "driver" and p["shape"] == "block"][0]
+        check(torso["pos"][1] == DUMMY_TORSO_Y[cid], cid + " dummy torso height %r" % torso["pos"][1])
+        check(a["DriverSeatOffsetX"] == torso["pos"][0] and -2.0 <= a["DriverSeatOffsetX"] <= -1.8 and a["PassengerSeatOffsetX"] == -torso["pos"][0], cid + " seat X is the dummy torso X, mirrored for the passenger")
+        check(a["DriverSeatOffsetZ"] == torso["pos"][2] == a["PassengerSeatOffsetZ"] and a["PassengerSeatOffsetY"] == a["DriverSeatOffsetY"], cid + " seat Z is the dummy torso Z; the passenger sits at the driver's height")
+        seat_y = a["DriverSeatOffsetY"]
+        root_y = seat_y + 0.225 + 1.5
+        head_top, feet = root_y + 2.2, root_y - 2.25
+        roof = MUSCLE_ROOF_UNDERSIDE[cid]
+        if roof is None:
+            check(abs(root_y - torso["pos"][1]) < 1e-9, cid + " open cockpit: the root part sits on the dummy torso")
+        else:
+            # The roof panel: the lowest non-glass block over any part of the head (a 1.2 cube above the seat) whose
+            # underside is above the dummy head centre.
+            over = [p["pos"][1] - p["size"][1] / 2 for p in flat if p["shape"] == "block" and p["ch"] not in ("glass", "driver") and p["rot"] == [0.0, 0.0, 0.0]
+                    and abs(p["pos"][0] - torso["pos"][0]) < p["size"][0] / 2 + 0.6 and abs(p["pos"][2] - torso["pos"][2]) < p["size"][2] / 2 + 0.6
+                    and p["pos"][1] - p["size"][1] / 2 > torso["pos"][1] + 0.9]
+            check(over and abs(min(over) - roof) < 1e-9, cid + " roof underside %r in the spec, %r here" % (over, roof))
+            check(abs(head_top - (roof - 0.2)) < 1e-9 and root_y < torso["pos"][1], cid + " head top %.3f is 0.2 under the roof underside %.2f (the dummy rule would be higher)" % (head_top, roof))
+        check((feet >= 0.3 - 1e-9) == (cid not in MUSCLE_FEET_BELOW_FLOOR) and feet > -0.4, cid + " feet at %.3f against the tub floor (top 0.3, underside -0.4)" % feet)
+
+    # Cockpit fixtures follow the Muscle frame datums, not Exotic's.
+    datums = spec["standard"]["datums"]
+    fixtures = bc.load_json(os.path.join(bc.DATA_DIR, "cockpit_fixtures.json"))
+    dust = {d["name"]: d["position"] for d in fixtures["hoverDust"]}
+    check((datums["frontArchZ"], datums["rearArchZ"], datums["noseShelfZ"], datums["tailFaceZ"], datums["floor"]) == (-7.6, 8.3, -12.3, 12.1, -0.4), "Muscle frame datums: %r" % datums)
+    check(dust == {"VFX_HoverDust_FrontLeft": [-4.7, -1.375, -7.6], "VFX_HoverDust_FrontRight": [4.7, -1.375, -7.6], "VFX_HoverDust_RearLeft": [-4.7, -1.375, 8.3],
+                   "VFX_HoverDust_RearRight": [4.7, -1.375, 8.3], "VFX_HoverDust_Center": [0, -1.375, 0]}, "hover dust under the four arches and the centre: %r" % dust)
+    check(fixtures["lenses"] == {"cockpit front spotlight lens ": {"position": [0, 2.0, -12.3]}, "cockpit rear spotlight lens ": {"position": [0, 2.2, 12.1]}}, "lenses at the nose shelf and the tail face")
+    emitter = fixtures["underglow"]["emitters"]
+    check(len(emitter) == 1 and emitter[0]["size"] == [9.0, 0.5, 24.0] and emitter[0]["position"] == [0, -0.2, -0.1] and emitter[0]["face"] == "Bottom"
+          and abs(emitter[0]["position"][1] - emitter[0]["size"][1] / 2 - (datums["floor"] - 0.05)) < 1e-9, "one underglow slab just under the Muscle floor: %r" % emitter)
+    exotic_fixtures = bc.load_json(os.path.join(os.path.dirname(os.path.abspath(bc.__file__)), "data", "cockpit_fixtures.json"))
+    check(all(fixtures[k] == exotic_fixtures[k] for k in ("rootDonorCockpitId", "rootDonorChildren", "rootSize")), "the cockpit root donor is the one Exotic uses")
+    colours, exotic_colours = bc.load_json(os.path.join(bc.DATA_DIR, "colours.json")), bc.load_json(os.path.join(os.path.dirname(os.path.abspath(bc.__file__)), "data", "colours.json"))
+    check({k: v for k, v in colours.items() if not k.startswith("_")} == {k: v for k, v in exotic_colours.items() if not k.startswith("_")}, "colour rules and finish as Exotic (ExoticFlakePaint reused)")
+    vfx, exotic_vfx = bc.load_json(os.path.join(bc.DATA_DIR, "vfx.json")), bc.load_json(os.path.join(os.path.dirname(os.path.abspath(bc.__file__)), "data", "vfx.json"))
+    strip = lambda t: {k: v for k, v in t.items() if not k.startswith("_") and k != "name"}  # noqa: E731
+    check([strip(t) for t in vfx["templates"]] == [strip(t) for t in exotic_vfx["templates"]] and vfx["requiredStock"] == exotic_vfx["requiredStock"], "VFX scales as Exotic")
+    rules, exotic_rules = bc.load_json(os.path.join(bc.DATA_DIR, "sockets.json")), bc.load_json(os.path.join(os.path.dirname(os.path.abspath(bc.__file__)), "data", "sockets.json"))
+    same = lambda d: json.loads(json.dumps({k: v for k, v in d.items() if not k.startswith("_")}).replace("Muscle", "Exotic"))  # noqa: E731
+    check({k: ({a: b for a, b in v.items() if not a.startswith("_")} if isinstance(v, dict) else v) for k, v in same(rules).items() if k != "overrides"}
+          == {k: ({a: b for a, b in v.items() if not a.startswith("_")} if isinstance(v, dict) else v) for k, v in same(exotic_rules).items() if k != "overrides"}, "socket rules as Exotic, with the Muscle template names")
+    # One recorded override: the computed tunnel ram sockets (yaw 35.58) do not survive Instance:Clone() bit for bit,
+    # which fails the installer's exact preview comparison. The override keeps the computed position and moves yaw 0.02.
+    check(exotic_rules["overrides"] == {} and rules["overrides"] == {"Engine1/tunnel_ram": [
+        {"name": "VFX_EngineJet_Left", "template": "EngineJet_Muscle", "position": [-1.8507, 4.2138, -4.0621], "orientation": [-12.35, -35.6, 0.0]},
+        {"name": "VFX_EngineJet_Right", "template": "EngineJet_Muscle", "position": [1.8507, 4.2138, -4.0621], "orientation": [-12.35, 35.6, 0.0]}]},
+        "the only socket override is the tunnel ram pair, at the computed position")
+
+
 def main():
     parser = argparse.ArgumentParser()
+    parser.add_argument("--category", default=bc.DEFAULT_CATEGORY, help="exotic (default) or muscle")
     parser.add_argument("--balance")
     parser.add_argument("--catalogue-gen")
     parser.add_argument("--fill-from-donor", action="store_true")
     args = parser.parse_args()
+    use_category(args.category)
+    exotic = CATEGORY == bc.DEFAULT_CATEGORY
     real = os.path.isfile(bc.BALANCE_PATH) and os.path.isfile(bc.CATALOGUE_GEN_PATH)
     if not args.balance:
-        args.balance = bc.BALANCE_PATH if real else os.path.join(FIXTURES, "balance.json")
+        args.balance = bc.BALANCE_PATH if real else os.path.join(FIXTURES, "balance.json" if exotic else "balance-%s.json" % CATEGORY)
     if not args.catalogue_gen:
         args.catalogue_gen = bc.CATALOGUE_GEN_PATH if os.path.isfile(bc.CATALOGUE_GEN_PATH) else os.path.join(FIXTURES, "catalogue_gen.lua")
     print("balance: %s\ncatalogue_gen: %s" % (os.path.relpath(args.balance, bc.REPO), os.path.relpath(args.catalogue_gen, bc.REPO)))
@@ -688,18 +956,24 @@ def main():
     spec = vbspec.load(bc.SPEC_PATH)
     reference = bc.capture_reference(bc.load_json(bc.CAPTURE_PATH))
     live = {}
-    with open(os.path.join(FIXTURES, "blockout_live_2026-10-02.txt"), "r", encoding="ascii") as f:
-        for line in f:
-            if line.strip() and not line.startswith("#"):
-                cells = line.strip().split("|")
-                live[cells[0].split("@")[0]] = [int(cells[1])] + [float(v) for v in cells[2:]]
-    # Module parts before the mesh kits: 793 primitive. The 42 shapes the mesh kits replace are counted from the spec here.
-    replaced = sum(len(bc.flatten(spec["modules"][slot][spec["kits"][COCKPITS["exotic_" + n][3]]["modules"][slot]]["parts"])) for n in MESH_CARS for slot in MESH_SLOT_TAGS)
-    replaced_cockpits = sum(len(bc.flatten(spec["cockpits"][COCKPITS["exotic_" + n][2]]["parts"])) - 2 for n in MESH_CARS)
-    EXPECTED_PARTS["cockpit"] = (199 - replaced_cockpits, 24)
-    EXPECTED_PARTS["module"] = (793 - replaced, 536)
-    check(replaced_cockpits == 199 and 793 - replaced == 118, "every cockpit is a mesh cockpit; 118 primitive module parts stay (the three slots that start empty)")
-    check(len(live) == 66, "66 live blockout groups in the fixture")
+    if exotic:
+        with open(os.path.join(FIXTURES, "blockout_live_2026-10-02.txt"), "r", encoding="ascii") as f:
+            for line in f:
+                if line.strip() and not line.startswith("#"):
+                    cells = line.strip().split("|")
+                    live[cells[0].split("@")[0]] = [int(cells[1])] + [float(v) for v in cells[2:]]
+        # Module parts before the mesh kits: 793 primitive. The 42 shapes the mesh kits replace are counted from the spec here.
+        replaced = sum(len(bc.flatten(spec["modules"][slot][spec["kits"][COCKPITS["exotic_" + n][3]]["modules"][slot]]["parts"])) for n in MESH_CARS for slot in MESH_SLOT_TAGS)
+        replaced_cockpits = sum(len(bc.flatten(spec["cockpits"][COCKPITS["exotic_" + n][2]]["parts"])) - 2 for n in MESH_CARS)
+        EXPECTED_PARTS["cockpit"] = (199 - replaced_cockpits, 24)
+        EXPECTED_PARTS["module"] = (793 - replaced, 536)
+        check(replaced_cockpits == 199 and 793 - replaced == 118, "every cockpit is a mesh cockpit; 118 primitive module parts stay (the three slots that start empty)")
+        check(len(live) == 66, "66 live blockout groups in the fixture")
+    else:
+        # Muscle: 155 cockpit parts (the driver dummies dropped) and 978 parts over the 60 module shapes, all primitive.
+        # There is no live blockout measurement: the place has no Muscle showroom block (data/ids.json blockoutCheck warn).
+        EXPECTED_PARTS["cockpit"] = (155, 0)
+        EXPECTED_PARTS["module"] = (978, 0)
     check(len(bc.all_fingerprints(spec)) == 66, "66 cockpit+shape groups in the spec")
 
     # A missing input must fail clearly.
@@ -711,7 +985,9 @@ def main():
 
     full = check_scope("full", args, spec, reference, live)
     pilot = check_scope("pilot", args, spec, reference, live)
-    if full and pilot:
+    if full and pilot and not exotic:
+        check_muscle(full, pilot, spec, args)
+    if full and pilot and exotic:
         by_id = {m["id"]: m for m in full["modules"]}
         check(all(by_id[m["id"]]["attributes"] == m["attributes"] and by_id[m["id"]]["shape"] == m["shape"] for m in pilot["modules"]), "pilot modules equal the same modules in the full scope")
         check("Cockpit/wedge" not in full["shapes"] and full["shapes"]["Cockpit/D_COCKPIT_STD"] == pilot["shapes"]["Cockpit/D_COCKPIT_STD"], "pilot cockpit geometry equals the full scope")
@@ -761,8 +1037,8 @@ def main():
 
     # Data files and engine.
     vfx = bc.load_json(os.path.join(bc.DATA_DIR, "vfx.json"))
-    check([t["name"] for t in vfx["templates"]] == ["EngineJet_Exotic", "BoostJet_Exotic", "StabiliserJet_ExoticLeft", "StabiliserJet_ExoticRight"], "the four Exotic VFX template names")
-    check({t["name"]: t.get("group") for t in vfx["templates"]} == {"EngineJet_Exotic": None, "BoostJet_Exotic": None, "StabiliserJet_ExoticLeft": "DriftLeft", "StabiliserJet_ExoticRight": "DriftRight"}, "stabiliser templates carry DriftLeft / DriftRight")
+    check([t["name"] for t in vfx["templates"]] == VFX_TEMPLATES, "the four %s VFX template names" % CATEGORY_DISPLAY)
+    check({t["name"]: t.get("group") for t in vfx["templates"]} == dict(zip(VFX_TEMPLATES, (None, None, "DriftLeft", "DriftRight"))), "stabiliser templates carry DriftLeft / DriftRight")
     for t in vfx["templates"]:
         stock_beam = {"EngineJet": 11, "BoostJet": 20, "StabiliserJet": 8}[t["source"]]
         lo, hi = {"EngineJet": (1.0, 1.5), "BoostJet": (1.5, 2.0), "StabiliserJet": (0.9, 1.1)}[t["source"]]

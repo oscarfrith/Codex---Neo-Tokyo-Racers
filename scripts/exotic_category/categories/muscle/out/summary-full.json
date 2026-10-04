@@ -1,0 +1,217 @@
+{
+ "bytes": 521277,
+ "cockpits": 6,
+ "contentHash": "ba880c2d2b52bf223f2651600dc1cbb5ca5b614485660f621f3443fe72fde6c2",
+ "fixture": false,
+ "meshAssetId": null,
+ "meshCockpits": [],
+ "meshModules": [],
+ "meshParts": 0,
+ "mode": "APPLY",
+ "modules": 144,
+ "output": "scripts/exotic_category/categories/muscle/out/full_apply.lua",
+ "scope": "full",
+ "seatAcceptance": {
+  "accepted": true,
+  "decision": "overrides",
+  "summary": "explicit overrides for every cockpit in scope"
+ },
+ "seats": {
+  "muscle_01": {
+   "driver": [
+    -2.0,
+    1.175,
+    2.9
+   ],
+   "passenger": [
+    2.0,
+    1.175,
+    2.9
+   ]
+  },
+  "muscle_02": {
+   "driver": [
+    -2.0,
+    1.575,
+    1.7
+   ],
+   "passenger": [
+    2.0,
+    1.575,
+    1.7
+   ]
+  },
+  "muscle_03": {
+   "driver": [
+    -2.0,
+    1.395,
+    2.45
+   ],
+   "passenger": [
+    2.0,
+    1.395,
+    2.45
+   ]
+  },
+  "muscle_04": {
+   "driver": [
+    -2.0,
+    1.575,
+    2.45
+   ],
+   "passenger": [
+    2.0,
+    1.575,
+    2.45
+   ]
+  },
+  "muscle_05": {
+   "driver": [
+    -2.0,
+    1.475,
+    2.45
+   ],
+   "passenger": [
+    2.0,
+    1.475,
+    2.45
+   ]
+  },
+  "muscle_06": {
+   "driver": [
+    -2.0,
+    0.625,
+    3.1
+   ],
+   "passenger": [
+    2.0,
+    0.625,
+    3.1
+   ]
+  }
+ },
+ "sha256": "f9c40d46bfe38db7ff15e45c03330ff2a05b3d431697e9e2b5e5b6881f15d0ae",
+ "shapes": 66,
+ "sockets": {
+  "Boost/bazookas": [
+   "VFX_BoostJet_Left",
+   "VFX_BoostJet_Right"
+  ],
+  "Boost/lake_trios": [
+   "VFX_BoostJet_Left",
+   "VFX_BoostJet_Right"
+  ],
+  "Boost/megaphones": [
+   "VFX_BoostJet_Left",
+   "VFX_BoostJet_Right"
+  ],
+  "Boost/side_pipes": [
+   "VFX_BoostJet_Left",
+   "VFX_BoostJet_Right"
+  ],
+  "Boost/sill_slots": [
+   "VFX_BoostJet_Left",
+   "VFX_BoostJet_Right"
+  ],
+  "Boost/underslung_twins": [
+   "VFX_BoostJet_Left",
+   "VFX_BoostJet_Right"
+  ],
+  "Engine1/blower_stack": [
+   "VFX_EngineJet_Left",
+   "VFX_EngineJet_Left2",
+   "VFX_EngineJet_Right",
+   "VFX_EngineJet_Right2"
+  ],
+  "Engine1/cowl_slot": [
+   "VFX_EngineJet_Back"
+  ],
+  "Engine1/crossram_twins": [
+   "VFX_EngineJet_Left",
+   "VFX_EngineJet_Right"
+  ],
+  "Engine1/quad_pack": [
+   "VFX_EngineJet_Back"
+  ],
+  "Engine1/shaker_turbine": [
+   "VFX_EngineJet_Left",
+   "VFX_EngineJet_Right"
+  ],
+  "Engine1/tunnel_ram": [
+   "VFX_EngineJet_Left",
+   "VFX_EngineJet_Right"
+  ],
+  "Engine2/inline_four": [
+   "VFX_EngineJet_Left",
+   "VFX_EngineJet_Left2",
+   "VFX_EngineJet_Right",
+   "VFX_EngineJet_Right2"
+  ],
+  "Engine2/mono_turbine": [
+   "VFX_EngineJet_Back"
+  ],
+  "Engine2/over_under": [
+   "VFX_EngineJet_Back",
+   "VFX_EngineJet_Back2"
+  ],
+  "Engine2/quad_corners": [
+   "VFX_EngineJet_Left",
+   "VFX_EngineJet_Left2",
+   "VFX_EngineJet_Right",
+   "VFX_EngineJet_Right2"
+  ],
+  "Engine2/slot_burner": [
+   "VFX_EngineJet_Back"
+  ],
+  "Engine2/twin_barrel": [
+   "VFX_EngineJet_Left",
+   "VFX_EngineJet_Right"
+  ],
+  "Stabilisers/big_n_little": [
+   "VFX_StabiliserJet_Left_Front",
+   "VFX_StabiliserJet_Left_Rear",
+   "VFX_StabiliserJet_Right_Front",
+   "VFX_StabiliserJet_Right_Rear"
+  ],
+  "Stabilisers/corner_turbines": [
+   "VFX_StabiliserJet_Left_Front",
+   "VFX_StabiliserJet_Left_Rear",
+   "VFX_StabiliserJet_Right_Front",
+   "VFX_StabiliserJet_Right_Rear"
+  ],
+  "Stabilisers/glide_paddles": [
+   "VFX_StabiliserJet_Left_Front",
+   "VFX_StabiliserJet_Left_Rear",
+   "VFX_StabiliserJet_Right_Front",
+   "VFX_StabiliserJet_Right_Rear"
+  ],
+  "Stabilisers/outriggers": [
+   "VFX_StabiliserJet_Left_Front",
+   "VFX_StabiliserJet_Left_Rear",
+   "VFX_StabiliserJet_Right_Front",
+   "VFX_StabiliserJet_Right_Rear"
+  ],
+  "Stabilisers/skirted_triples": [
+   "VFX_StabiliserJet_Left_Front",
+   "VFX_StabiliserJet_Left_Rear",
+   "VFX_StabiliserJet_Right_Front",
+   "VFX_StabiliserJet_Right_Rear"
+  ],
+  "Stabilisers/vector_cans": [
+   "VFX_StabiliserJet_Left_Front",
+   "VFX_StabiliserJet_Left_Rear",
+   "VFX_StabiliserJet_Right_Front",
+   "VFX_StabiliserJet_Right_Rear"
+  ]
+ },
+ "socketsPerStockVehicle": {
+  "muscle_01": 15,
+  "muscle_02": 17,
+  "muscle_03": 16,
+  "muscle_04": 16,
+  "muscle_05": 15,
+  "muscle_06": 13
+ },
+ "templateParts": 2845,
+ "warnings": []
+}

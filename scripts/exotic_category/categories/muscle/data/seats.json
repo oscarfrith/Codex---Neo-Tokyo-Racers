@@ -1,0 +1,33 @@
+{
+  "_note": "Per-cockpit seat offsets (root local space) for Modern Muscle. DriverSeatServer reads DriverSeatOffsetX/Y/Z and VehicleBuildService.addPassengerSeat reads PassengerSeatOffsetX/Y/Z; the seat part (2.2 x 0.45 x 2.2) is placed with its centre at root.CFrame * CFrame.new(offset). Every Muscle cockpit has an explicit override below. They are GENERATED from the spec geometry, NOT measured in Play (the status the Exotic mesh cars had before their Play test).",
+  "rule": {
+    "seatSize": [2.2, 0.45, 2.2],
+    "rootPartCentreAboveSeatTop": 1.5,
+    "_rootPartCentreAboveSeatTop": "Only used for a cockpit without an override (none today). The Muscle driver dummy is a small torso high in the cabin, so this rule alone would put heads through the roofs: keep the overrides.",
+    "driverX": "torso",
+    "passengerX": "mirror"
+  },
+  "pilotAcceptance": {
+    "decision": "overrides",
+    "_decision": "pending | measured | overrides. overrides: no measurement is used; every cockpit in scope has explicit values in overrides.",
+    "note": "Generated, not measured. Seated R15 figure used: HumanoidRootPart centre 1.5 above the seat top (seat centre Y + 0.225 + 1.5), head top 2.2 above the root part centre, feet about 2.25 below it. So head top = seat Y + 3.925 and feet = seat Y - 0.525. X = the dummy torso X (-2.0 on all six), passenger mirrored. Z = the dummy torso Z. Y = the lower of (a) the dummy rule, torso centre Y - 1.725, and (b) roof underside - 0.2 - 3.925, so the head stays at least 0.2 under the roof. Floor = the tub floor top, Y 0.3. Run stage_b/measure_seat.lua in Play on each car and correct the numbers here (a data-only change; rebuild afterwards).",
+    "perCockpit": {
+      "muscle_01": "Notch: roof underside Y 5.3 (roof panel 5.45 centre, 0.3 thick). Dummy rule 2.075 would put the head top at 6.0. Y = 5.3 - 0.2 - 3.925 = 1.175. Head top 5.1, feet 0.65 (above the floor).",
+      "muscle_02": "Ute: roof underside Y 5.7. Y = 1.575. Head top 5.5, feet 1.05.",
+      "muscle_03": "Ragtop: open cockpit, no roof. Y = dummy torso 3.12 - 1.725 = 1.395. Head top 5.32, just under the windscreen header (5.5). The cabin floor of this car is at Y 2.62, so the hips sit about 0.5 into the floor panel; the body sides hide it.",
+      "muscle_04": "Hardtop: roof underside Y 5.7. Y = 1.575. Head top 5.5, feet 1.05.",
+      "muscle_05": "Fastback: roof underside Y 5.6. Y = 1.475. Head top 5.4, feet 0.95.",
+      "muscle_06": "Modern: low roof, underside Y 4.75. Y = 0.625. Head top 4.55. Feet 0.1: 0.2 below the tub floor top (0.3), inside the floor slab (underside -0.4). Both rules cannot hold here; the head under the roof wins."
+    },
+    "placeholderCabins": "The placeholder cabins are solid blocks (a body block from Y 0.3 to 3.3 and glass blocks above it), so a seated avatar is inside them whatever the height. The values above set the head height; legs and torso will clip until the real models come."
+  },
+  "overrides": {
+    "muscle_01": {"driver": [-2.0, 1.175, 2.9], "passenger": [2.0, 1.175, 2.9]},
+    "muscle_02": {"driver": [-2.0, 1.575, 1.7], "passenger": [2.0, 1.575, 1.7]},
+    "muscle_03": {"driver": [-2.0, 1.395, 2.45], "passenger": [2.0, 1.395, 2.45]},
+    "muscle_04": {"driver": [-2.0, 1.575, 2.45], "passenger": [2.0, 1.575, 2.45]},
+    "muscle_05": {"driver": [-2.0, 1.475, 2.45], "passenger": [2.0, 1.475, 2.45]},
+    "muscle_06": {"driver": [-2.0, 0.625, 3.1], "passenger": [2.0, 0.625, 3.1]}
+  },
+  "_overrides": "Per cockpit: {\"driver\": [x, y, z], \"passenger\": [x, y, z]} (seat centre, root local space, each number within +-40). An override replaces the derived values for that cockpit."
+}

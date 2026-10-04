@@ -1,0 +1,39 @@
+{
+  "_note": "Things every Modern Muscle cockpit root carries. CockpitRoot_DoNotRename is cloned at install time from the live Piercer cockpit named in rootDonorCockpitId, so size (7.5 x 1.2 x 10.5), material, physical properties and the TemplateRole attribute match. Its children are then moved or rebuilt as listed here. Positions are root local (+X right, +Y up, forward -Z). The Z and X values come from the frame datums in scripts/vehicle_blockouts/specs/muscle.json (standard.datums), not from the Exotic file.",
+  "rootDonorCockpitId": "bruiser_03",
+  "rootDonorChildren": [
+    {"name": "VFX_HoverDust_FrontLeft", "class": "Attachment"},
+    {"name": "VFX_HoverDust_FrontRight", "class": "Attachment"},
+    {"name": "VFX_HoverDust_RearLeft", "class": "Attachment"},
+    {"name": "VFX_HoverDust_RearRight", "class": "Attachment"},
+    {"name": "VFX_HoverDust_Center", "class": "Attachment"},
+    {"name": "UNDERGLOW_MOUNT_DoNotRename", "class": "Attachment"},
+    {"name": "UNDERGLOW_EMITTERS_DoNotRename", "class": "Folder"},
+    {"name": "cockpit front spotlight lens ", "class": "Part"},
+    {"name": "cockpit rear spotlight lens ", "class": "Part"}
+  ],
+  "_rootDonorChildren": "The exact child list of the donor root, verified live 2026-10-02 (the same donor as Exotic). The audit stops if the live donor differs. The two lens names end in a space, as on the live Piercer.",
+  "rootSize": [7.5, 1.2, 10.5],
+  "hoverDust": [
+    {"name": "VFX_HoverDust_FrontLeft", "position": [-4.7, -1.375, -7.6]},
+    {"name": "VFX_HoverDust_FrontRight", "position": [4.7, -1.375, -7.6]},
+    {"name": "VFX_HoverDust_RearLeft", "position": [-4.7, -1.375, 8.3]},
+    {"name": "VFX_HoverDust_RearRight", "position": [4.7, -1.375, 8.3]},
+    {"name": "VFX_HoverDust_Center", "position": [0, -1.375, 0]}
+  ],
+  "_hoverDust": "Under the four lift-jet arches: Z = frontArchZ -7.6 and rearArchZ 8.3; X 4.7 is the middle of the lift-jet envelope (3.4 to 6.0). Height as Piercer and Exotic (-1.375).",
+  "underglow": {
+    "mountPosition": [0, -1, 0],
+    "removeLightsUnderMount": true,
+    "_removeLightsUnderMount": "The donor (bruiser_03) has a SurfaceLight parented straight to the mount Attachment. A SurfaceLight needs a part face, so emitter Parts under UNDERGLOW_EMITTERS_DoNotRename are used instead (as COCKPIT_BRUISER_02 and Exotic).",
+    "emitters": [
+      {"size": [9.0, 0.5, 24.0], "position": [0, -0.2, -0.1], "brightness": 3.5, "range": 16, "angle": 180, "face": "Bottom"}
+    ],
+    "_emitters": "One invisible slab just under the floor (floor datum Y -0.4; bottom face at Y -0.45). Length 24: nose shelf Z -12.3 to tail face Z 12.1 (centre -0.1). Width 9: inside the door skins (X 4.75). Light values as Exotic. Enabled=false in the template; VehicleCosmeticCatalog.ApplyPresentation sets Enabled and Color from the saved cosmetic state."
+  },
+  "lenses": {
+    "cockpit front spotlight lens ": {"position": [0, 2.0, -12.3]},
+    "cockpit rear spotlight lens ": {"position": [0, 2.2, 12.1]}
+  },
+  "_lenses": "The two invisible light-source parts cloned with the donor root. Rotation and light properties stay as the donor has them; only the position moves: the nose shelf (noseShelfZ -12.3) and the tail face (tailFaceZ 12.1), at lamp height between the sill (0.3) and the beltline (3.3)."
+}

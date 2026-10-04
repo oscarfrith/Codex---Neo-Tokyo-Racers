@@ -1,0 +1,21 @@
+{
+  "_note": "Template colours for Modern Muscle: the Exotic rules and finish (stage_b/data/colours.json). Primary, Secondary and (cockpit) Neon come from the native build paint in scripts/vehicle_blockouts/specs/muscle.json. The game repaints Primary, Secondary, Detail, Neon and ThrustColor parts at spawn and in previews, so template colours on those channels only matter when a template is viewed raw in Studio. Glass and lamp colours are final: no script touches them.",
+  "detail": "#22252b",
+  "glass": "#18202a",
+  "glassTransparency": 0.15,
+  "reflectance": {"P": 0.22, "S": 0.14, "G": 0.3},
+  "detailMaterial": "Plastic",
+  "paintVariant": "ExoticFlakePaint",
+  "_paintVariant": "MaterialVariant name written on every primary paint part (base SmoothPlastic). Muscle reuses MaterialService.ExoticFlakePaint, which the Exotic install created; without it the parts show plain SmoothPlastic.",
+  "thrust": "#ffffff",
+  "optionalNeon": "#ffffff",
+  "lamp": "kitNeon",
+  "_lamp": "kitNeon = the native neon paint of the cockpit that owns the kit (as the blockout shows it). A hex value here gives every Front Body and Rear Body lamp that colour instead.",
+  "meshLamp": "#ffffff",
+  "meshLampRed": [255, 30, 20],
+  "_meshLamp": "Only read for mesh modules. Muscle has none yet; kept so that a later data/mesh.json needs no change here.",
+  "defaultFrontLights": [252, 250, 255],
+  "defaultRearLights": [255, 116, 116],
+  "_defaultLights": "DefaultFrontLightsColor and DefaultRearLightsColor are the values every Piercer cockpit carries.",
+  "_glass": "Dark tint at 0.15 transparency, as Exotic. The placeholder cabins are solid glass blocks, so a seated driver is mostly hidden until the real models come."
+}

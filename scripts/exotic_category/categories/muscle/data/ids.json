@@ -1,0 +1,103 @@
+{
+  "_note": "Permanent ids and names for the Modern Muscle category. Source: the category contract (2026-10-04). Saved in player profiles: never rename.",
+  "placeId": 93959280828322,
+  "marker": "muscle_category/stage_b",
+  "blockoutCheck": "warn",
+  "_blockoutCheck": "strict | warn. Muscle has no reviewed showroom block in the place: the repository spec is the source of the placeholder geometry, so a missing or different Workspace.VehicleCategoryBlockouts.MUSCLE is only a WARN.",
+  "category": {
+    "folder": "MUSCLE",
+    "afterFolder": "PIERCER",
+    "attributes": {
+      "CategoryId": "muscle",
+      "DisplayName": "Modern Muscle",
+      "Description": "American muscle as hover jets: long bonnet, short deck, a turbine through the bonnet and afterburners along the sills.",
+      "ModuleCompatibility": "Modern Muscle category modules fit every Modern Muscle cockpit.",
+      "FeatureFlag": "VehicleClass_muscle"
+    }
+  },
+  "_afterFolder": "PIERCER is the donor category the installer engine reads (it checks CategoryId bruiser). It is not a position: the MUSCLE folder is added as the last child of Categories.",
+  "pilotCockpit": "04",
+  "ratingReferenceCockpitId": "muscle_04",
+  "variants": ["STANDARD", "LIGHTWEIGHT", "POWER"],
+  "coreFolderPrefix": "Muscle_",
+  "_coreFolderPrefix": "Engines, stabilisers and boost of kit n live in <type folder>/Muscle_<n>. Inside the content hash.",
+  "bodyTrims": ["GT", "EVO"],
+  "bodyTrimSlots": ["FrontBody", "RearBody", "RearSpoiler"],
+  "_bodyTrims": "Each slot in bodyTrimSlots gets the extra ModuleIds <idPrefix><n>_GT and <idPrefix><n>_EVO on every kit. There are no meshes yet, so a trim shares the primitive shape of its base part; only its attributes differ. Its DisplayName is the base name plus the trim. Saved in player profiles: never rename.",
+  "_emptySlots": "Per cockpit: body slots that keep their SLOT_ folder but declare no Default<Slot>ModuleId, so they start empty. balance.json must not set those defaults.",
+  "cockpitAttributeOverrides": {"OwnedByDefault": false},
+  "_cockpitAttributeOverrides": "Applied last to every cockpit, as for Exotic. Muscle cockpits are all paid, so they are installed with OwnedByDefault false.",
+  "_cockpits": "displayName and specKit must equal the cockpit name and kit in specs/muscle.json (build_content.py checks both). kitName is the name the game shows for the kit (the car name); it is documentation here: the shown value is the Tier attribute of the body modules in balance.json. targetStockPI must equal TargetStockPI in balance.json. No cardImage yet (MenuImage and PreviewImage are empty).",
+  "cockpits": [
+    {"n": "01", "cockpitId": "muscle_01", "model": "COCKPIT_MUSCLE_01", "displayName": "Notch", "specCockpit": "notch", "specKit": "transam", "kitName": "Notch", "tier": "E", "price": 32000, "targetStockPI": 230, "emptySlots": ["SidePods", "FrontBumper", "RearBumper"]},
+    {"n": "02", "cockpitId": "muscle_02", "model": "COCKPIT_MUSCLE_02", "displayName": "Ute", "specCockpit": "ute", "specKit": "restomod", "kitName": "Ute", "tier": "D", "price": 85000, "targetStockPI": 330, "emptySlots": ["SidePods", "FrontBumper", "RearBumper"]},
+    {"n": "03", "cockpitId": "muscle_03", "model": "COCKPIT_MUSCLE_03", "displayName": "Ragtop", "specCockpit": "ragtop", "specKit": "pony", "kitName": "Ragtop", "tier": "D", "price": 110000, "targetStockPI": 410, "emptySlots": ["SidePods", "FrontBumper", "RearBumper"]},
+    {"n": "04", "cockpitId": "muscle_04", "model": "COCKPIT_MUSCLE_04", "displayName": "Hardtop", "specCockpit": "hardtop", "specKit": "prostreet", "kitName": "Hardtop", "tier": "C", "price": 240000, "targetStockPI": 480, "emptySlots": ["SidePods", "FrontBumper", "RearBumper"]},
+    {"n": "05", "cockpitId": "muscle_05", "model": "COCKPIT_MUSCLE_05", "displayName": "Fastback", "specCockpit": "fastback", "specKit": "classic", "kitName": "Fastback", "tier": "C", "price": 310000, "targetStockPI": 565, "emptySlots": ["SidePods", "FrontBumper", "RearBumper"]},
+    {"n": "06", "cockpitId": "muscle_06", "model": "COCKPIT_MUSCLE_06", "displayName": "Modern", "specCockpit": "modern", "specKit": "modern", "kitName": "Modern", "tier": "B", "price": 850000, "targetStockPI": 630, "emptySlots": ["SidePods", "FrontBumper", "RearBumper"]}
+  ],
+  "slots": [
+    {
+      "slotId": "FrontBody", "label": "Front Body", "moduleType": "FrontBody", "moduleFolder": "FrontBodies", "order": 1, "countLabel": "Front Bodies",
+      "enginePosition": null, "kind": "body", "idPrefix": "MODULE_FRONTBODY_MUSCLE_", "moduleSlot": "FrontBody",
+      "attributeDonor": "MODULE_FRONTBUMPER_LVL1", "rootDonor": "MODULE_FRONTBUMPER_LVL1", "mountDonorSlot": "FrontBumper",
+      "mountAttributes": {"SlotId": "FrontBody", "ModuleType": "FrontBody", "DisplayName": "Front Body"},
+      "defaultAttributes": ["DefaultFrontBodyModuleId"], "sockets": null, "lamps": true
+    },
+    {
+      "slotId": "RearBody", "label": "Rear Body", "moduleType": "RearBody", "moduleFolder": "RearBodies", "order": 2, "countLabel": "Rear Bodies",
+      "enginePosition": null, "kind": "body", "idPrefix": "MODULE_REARBODY_MUSCLE_", "moduleSlot": "RearBody",
+      "attributeDonor": "MODULE_REARBUMPER_LVL1", "rootDonor": "MODULE_REARBUMPER_LVL1", "mountDonorSlot": "RearBumper",
+      "mountAttributes": {"SlotId": "RearBody", "ModuleType": "RearBody", "DisplayName": "Rear Body"},
+      "defaultAttributes": ["DefaultRearBodyModuleId"], "sockets": null, "lamps": true
+    },
+    {
+      "slotId": "Engine1", "label": "Front Engine", "moduleType": "Engine", "moduleFolder": "Engines", "order": 3, "countLabel": "Engines",
+      "enginePosition": "Front", "kind": "core", "idPrefix": "MODULE_ENGINE_MUSCLE_", "moduleSlot": "Engine", "rearEngine": false, "moduleEnginePosition": "Front",
+      "attributeDonor": "MODULE_ENGINE_BRUISER_03_{VARIANT}", "rootDonor": "MODULE_ENGINE_BRUISER_03_STANDARD", "mountDonorSlot": "Engine1",
+      "defaultAttributes": ["DefaultEngineModuleId", "DefaultFrontEngineModuleId"], "sockets": "engine", "lamps": false
+    },
+    {
+      "slotId": "Engine2", "label": "Rear Engine", "moduleType": "Engine", "moduleFolder": "Engines_B", "order": 4, "countLabel": "Engines",
+      "enginePosition": "Rear", "kind": "core", "idPrefix": "MODULE_ENGINE_B_MUSCLE_", "moduleSlot": "Engine", "rearEngine": true, "moduleEnginePosition": "Rear",
+      "attributeDonor": "MODULE_ENGINE_B_BRUISER_03_{VARIANT}", "rootDonor": "MODULE_ENGINE_B_BRUISER_03_STANDARD", "mountDonorSlot": "Engine2",
+      "defaultAttributes": ["DefaultEngineBModuleId", "DefaultRearEngineModuleId"], "sockets": "engine", "lamps": false
+    },
+    {
+      "slotId": "Stabilisers", "label": "Drift Thrusters", "moduleType": "Stabilisers", "moduleFolder": "Stabilisers", "order": 5, "countLabel": "Stabilisers",
+      "enginePosition": null, "kind": "core", "idPrefix": "MODULE_STABILISER_MUSCLE_", "moduleSlot": "Stabilisers", "rearEngine": false, "moduleEnginePosition": "",
+      "attributeDonor": "MODULE_STABILISER_BRUISER_03_{VARIANT}", "rootDonor": "MODULE_STABILISER_BRUISER_03_STANDARD", "mountDonorSlot": "Stabilisers",
+      "defaultAttributes": ["DefaultStabiliserModuleId", "DefaultStabilisersModuleId"], "sockets": "stabiliser", "lamps": false
+    },
+    {
+      "slotId": "Boost", "label": "Overdrive", "moduleType": "Boost", "moduleFolder": "Boost", "order": 6, "countLabel": "Boost",
+      "enginePosition": null, "kind": "core", "idPrefix": "MODULE_BOOST_MUSCLE_", "moduleSlot": "Boost", "rearEngine": false, "moduleEnginePosition": "",
+      "attributeDonor": "MODULE_BOOST_BRUISER_03_{VARIANT}", "rootDonor": "MODULE_BOOST_BRUISER_03_STANDARD", "mountDonorSlot": "Boost",
+      "defaultAttributes": ["DefaultBoostModuleId"], "sockets": "boost", "lamps": false
+    },
+    {
+      "slotId": "RearSpoiler", "label": "Wing", "moduleType": "RearSpoiler", "moduleFolder": "RearSpoilers", "order": 7, "countLabel": "Wings",
+      "enginePosition": null, "kind": "body", "idPrefix": "MODULE_REARSPOILER_MUSCLE_", "moduleSlot": "RearSpoiler",
+      "attributeDonor": "MODULE_REARSPOILER_LVL1", "rootDonor": "MODULE_REARSPOILER_LVL1", "mountDonorSlot": "RearSpoiler",
+      "defaultAttributes": ["DefaultRearSpoilerModuleId"], "sockets": null, "lamps": false
+    },
+    {
+      "slotId": "FrontBumper", "label": "Splitter", "moduleType": "FrontBumper", "moduleFolder": "FrontBumpers", "order": 8, "countLabel": "Splitters",
+      "enginePosition": null, "kind": "body", "idPrefix": "MODULE_FRONTBUMPER_MUSCLE_", "moduleSlot": "FrontBumper",
+      "attributeDonor": "MODULE_FRONTBUMPER_LVL1", "rootDonor": "MODULE_FRONTBUMPER_LVL1", "mountDonorSlot": "FrontBumper",
+      "defaultAttributes": ["DefaultFrontBumperModuleId"], "sockets": null, "lamps": false
+    },
+    {
+      "slotId": "RearBumper", "label": "Diffuser", "moduleType": "RearBumper", "moduleFolder": "RearBumpers", "order": 9, "countLabel": "Diffusers",
+      "enginePosition": null, "kind": "body", "idPrefix": "MODULE_REARBUMPER_MUSCLE_", "moduleSlot": "RearBumper",
+      "attributeDonor": "MODULE_REARBUMPER_LVL1", "rootDonor": "MODULE_REARBUMPER_LVL1", "mountDonorSlot": "RearBumper",
+      "defaultAttributes": ["DefaultRearBumperModuleId"], "sockets": null, "lamps": false
+    },
+    {
+      "slotId": "SidePods", "label": "Side Pods", "moduleType": "SidePods", "moduleFolder": "SidePods", "order": 10, "countLabel": "Side Pods",
+      "enginePosition": null, "kind": "body", "idPrefix": "MODULE_SIDEPODS_MUSCLE_", "moduleSlot": "SidePods",
+      "attributeDonor": "MODULE_SIDEPODS_LVL1", "rootDonor": "MODULE_SIDEPODS_LVL1", "mountDonorSlot": "SidePods",
+      "defaultAttributes": ["DefaultSidePodsModuleId"], "sockets": null, "lamps": false
+    }
+  ]
+}
