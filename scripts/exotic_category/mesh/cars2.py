@@ -92,16 +92,17 @@ def fender(st, peak, trim, front, style, creases=(1, 2, 3, 4), caps=(False, Fals
     return pod, lvl
 
 
-def front_aero(lvl, tip, cx=5.12, nt=5.0, y=0.35):
-    """Splitter corner under a front fender, with an endplate and dive planes on the kits."""
+def front_aero(lvl, tip, cx=5.12, nt=5.0, y=0.35, canards=True, plate=(0.25, 0.3, 0.5)):
+    """Splitter corner under a front fender, with an endplate and (optionally) dive planes on the kits."""
     reach = tip - (0.0, 0.6, 1.0)[lvl]
     slab("splitter", [(reach, 0.5 + lvl * 0.4), (reach + 0.35, 1.1 + lvl * 0.25), (-10.9, 1.35 + lvl * 0.2)],
          -0.54, -0.42, "secondary", cx=cx + lvl * 0.1, nt=nt, mirror=True)
     if lvl:
-        blade("endplate", 6.5 + lvl * 0.12, -0.5, (0.25, 0.3, 0.5)[lvl], (reach + 0.3, -10.9), (reach + 0.8, -11.0),
+        blade("endplate", 6.5 + lvl * 0.12, -0.5, plate[lvl], (reach + 0.3, -10.9), (reach + 0.8, -11.0),
               "secondary", t=0.04)
+    if lvl and canards:
         canard("canard0", 6.1, 6.9, -11.5, -10.2, y, y + 0.45)
-    if lvl > 1:
+    if lvl > 1 and canards:
         canard("canard1", 6.2, 6.95, -11.1, -9.9, y + 0.6, y + 1.1)
 
 
@@ -220,7 +221,7 @@ def car_c():
         for sd in (1, -1):   # a long running light down the centre of the fender top
             pod.patch(f"drl{sd}", -11.85, -9.5, 5.72, 6.0, "lights", side=sd, off=0.02, mirror=True)
         pod.throat("noz", "max", lip="secondary", back="thrust", scale=(0.78, 0.84, 0.88)[lvl], depth=0.5, mirror=True)
-        front_aero(lvl, -12.05, nt=4.0)
+        front_aero(lvl, -12.05, nt=4.0, canards=False, plate=(0.25, 0.45, 0.7))
         flange(-10.6, -5.6, 0.5)
 
         K.begin(c, "TAIL", trim)
@@ -274,10 +275,14 @@ def car_c():
         if lvl == 0:   # clean lip on two stubs
             plane("lip", 3.7, 11.2, 0.4, 2.76, 2.88, "primary", tip=(11.3, 0.32))
             blade("stub", 2.6, 2.5, 2.8, (10.7, 11.3), (10.9, 11.4), "secondary")
-        elif lvl == 1:
-            race_wing(4.6, 11.2, 0.85, 4.3, 2.8, plate=(3.6, 4.8))
-        else:
-            race_wing(6.2, 11.3, 0.95, 4.9, 2.8, elements=2, plate=(3.1, 5.75), beam=True)
+        else:          # one centre swan pylon carrying a tapered plane, in line with the spine
+            span, y, chord = ((0, 0, 0), (4.4, 4.3, 0.9), (5.8, 4.9, 1.05))[lvl]
+            plane("plane", span, 11.3, chord, y, y + 0.2, "primary", tip=(11.6, chord * 0.5))
+            blade("pylon", 0, 1.25, y + 0.5, (9.7, 11.1), (10.7, 11.2), "secondary", t=0.09)
+            box("hook", (0, y + 0.36, 11.25), (0.18, 0.3, 0.6), "secondary")
+            blade("plate", span, y - 0.25, y + 0.5, (11.1, 12.2), (11.4, 12.35), "secondary", t=0.05)
+            if lvl > 1:
+                plane("flap", span * 0.8, 12.3, 0.34, y + 0.4, y + 0.52, "primary", tip=(12.4, 0.2))
 
 
 # ---------------------------------------------------------------- car D: wraparound-visor supercar
@@ -387,10 +392,14 @@ def car_d():
             plane("plane", 3.5, 11.1, 0.6, 2.45, 2.6, "primary", tip=(11.2, 0.48))
             blade("pylon", 2.6, 1.25, 2.5, (10.5, 11.2), (10.8, 11.4), "secondary")
             blade("plate", 3.52, 2.25, 2.85, (10.7, 11.7), (10.9, 11.85), "secondary", t=0.05)
-        elif lvl == 1:
-            race_wing(4.8, 11.2, 0.9, 4.6, 2.6, plate=(3.8, 5.1))
-        else:
-            race_wing(6.4, 11.3, 1.0, 5.05, 2.6, elements=2, plate=(3.2, 5.9), beam=True)
+        else:          # high wing with tips that turn down toward the rear engines
+            span, y, chord = ((0, 0, 0), (4.7, 4.1, 0.9), (6.2, 4.7, 1.0))[lvl]
+            plane("plane", span, 11.2, chord, y, y + 0.2, "primary", tip=(11.45, chord * 0.7))
+            blade("pylon", 2.4, 1.25, y + 0.05, (10.0, 11.0), (10.7, 11.5), "secondary", t=0.08)
+            blade("tip", span, y - 1.3 - lvl * 0.3, y + 0.15, (11.2, 12.0), (10.9, 12.2), "secondary", t=0.06)
+            box("gurney", (0, y + 0.25, 11.2 + chord - 0.04), (span * 2, 0.1, 0.05), "secondary")
+            if lvl > 1:
+                plane("flap", span, 11.2 + chord + 0.12, 0.4, y + 0.4, y + 0.52, "primary")
 
 
 # ---------------------------------------------------------------- car E: faceted endurance car
@@ -443,7 +452,7 @@ def car_e():
         for i, (dx, y) in enumerate(((-0.3, 0.72), (0.3, 0.72), (-0.3, 0.0), (0.3, 0.0))):
             box(f"point{i}", (5.05 + dx, y, -12.02), (0.1, 0.52, 0.1), "lights", mirror=True)
         pod.throat("noz", "max", lip="secondary", back="thrust", scale=(0.78, 0.84, 0.88)[lvl], depth=0.5, mirror=True)
-        front_aero(lvl, -12.3, nt=7.0)
+        front_aero(lvl, -12.3, nt=7.0, canards=False, plate=(0.25, 0.6, 0.95))
         flange(-11.2, -5.6, 0.5)
 
         K.begin(c, "TAIL", trim)
@@ -457,7 +466,7 @@ def car_e():
         louvres(tail, "deck", (7.1, 6.1, 5.1)[lvl], 10.1, 4.2, 4.7, 6 + lvl * 2, off=-0.08)
         tail.throat("fascia", "max", lip="primary", scale=0.93, depth=0.3)
         box("bar", (0, 2.12, 11.02), (6.9, 0.14, 0.16), "lights_red")
-        tail_kit(lvl, (2.8, 3.25), nt=7.0)
+        tail_kit(lvl, (2.8, 3.25), nt=7.0, fin=False)
 
         K.begin(c, "RPOD", trim)
         st = [(3.6, dict(SIDE_R, yb=-0.5, yt=1.6)),
@@ -488,17 +497,21 @@ def car_e():
         burner("turbine", 11.1, 12.0 + lvl * 0.15, 1.0, 1.28, r)
         box("vane", (1.0, 1.28, 11.9 + lvl * 0.15), (0.06, r * 1.7, 0.2), "detail", mirror=True)
         if lvl > 1:
-            burner("lower", 11.1, 12.0, 1.0, 0.3, 0.3)
+            burner("outer", 11.1, 12.0, 1.95, 1.28, 0.3)
 
         K.begin(c, "WING", trim)
         if lvl == 0:   # full-width low blade with end fences
             plane("plane", 3.85, 11.0, 0.5, 2.95, 3.08, "primary")
             blade("fence", 3.86, 2.3, 3.35, (10.4, 11.6), (10.55, 11.75), "secondary", t=0.05)
             blade("stub", 2.7, 2.38, 2.98, (10.6, 11.2), (10.75, 11.3), "secondary")
-        elif lvl == 1:
-            race_wing(4.7, 11.2, 0.85, 4.4, 2.7, plate=(3.6, 4.95))
-        else:
-            race_wing(6.3, 11.3, 0.95, 4.9, 2.7, elements=2, plate=(3.1, 5.8), beam=True)
+        else:          # bridge wing: the plane spans two tall fins that stand at the edges of the tail
+            span, y, chord = ((0, 0, 0), (3.7, 4.3, 0.8), (3.75, 5.0, 0.95))[lvl]
+            plane("plane", span, 11.3, chord, y, y + 0.2, "primary")
+            blade("fin", span, 1.25, y + 0.75, (9.4, 11.9), (10.7, 12.3), "secondary", t=0.07)
+            box("gurney", (0, y + 0.25, 11.3 + chord - 0.04), (span * 2, 0.1, 0.05), "secondary")
+            if lvl > 1:
+                plane("flap", span, 11.3 + chord + 0.1, 0.36, y + 0.4, y + 0.52, "primary")
+                plane("beam", span, 10.9, 0.3, 3.3, 3.42, "secondary")
 
 
 # ---------------------------------------------------------------- car F: aero hypercar
