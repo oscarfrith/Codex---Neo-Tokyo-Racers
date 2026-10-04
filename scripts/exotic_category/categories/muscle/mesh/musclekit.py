@@ -63,29 +63,30 @@ BODY_W = 3.9                  # half width of the body side
 POD_IN = 4.1                  # inboard face of every pod and sill unit
 GAP = K.GAP
 
-# Body seams: fixed Hull sections shared by every cockpit, nose and tail.
-SEAM_F = dict(cx=0.0, w=BODY_W, yb=-0.4, yt=3.0, rb=0.4, ys=2.4, tum=0.22, drop=0.2, wcf=0.7, d2=0.05,
-              crown=0.03, cs=0.0)
-SEAM_R = dict(SEAM_F, yt=3.0)
+# Body seams: fixed Hull sections shared by every cockpit, nose and tail. Round 2 of the frame (2026-10-04):
+# taller, with real tumblehome and crown, so the body reads as a car and not a slab.
+SEAM_F = dict(cx=0.0, w=BODY_W, yb=-0.4, yt=3.2, rb=0.5, ys=2.45, tum=0.42, drop=0.3, wcf=0.72, d2=0.06,
+              crown=0.05, cs=0.035)
+SEAM_R = dict(SEAM_F)
 # Pod end faces: the back of a front pod and the front of a rear pod start from these, so a sill unit
 # always meets the same two faces.
-SIDE_F = dict(cx=5.4, w=1.3, yb=-1.2, yt=2.2, rb=0.32, ys=1.75, tum=0.24, drop=0.16, wcf=0.6, d2=0.0, crown=0.0,
-              cs=0.0)
-SIDE_R = dict(SIDE_F, cx=5.45, w=1.35, yb=-1.4, yt=2.6, ys=2.15)
+SIDE_F = dict(cx=5.4, w=1.3, yb=-1.2, yt=2.3, rb=0.45, ys=1.6, tum=0.4, drop=0.28, wcf=0.6, d2=0.03, crown=0.08,
+              cs=0.04)
+SIDE_R = dict(SIDE_F, cx=5.45, w=1.35, yb=-1.4, yt=2.8, ys=2.0)
 POD_FZ, POD_RZ = -6.0, 4.0    # where those faces sit
 
 # Boxes are (|x| min, |x| max, y min, y max, z min, z max).
 K.ENV = {
     # tub, then the greenhouse (it laps onto the cowl and the deck)
-    "COCKPIT": [(0, 4.0, -0.6, 3.1, -4.7, 3.5), (0, 3.8, 2.7, 5.9, -5.9, 6.4)],
+    "COCKPIT": [(0, 4.0, -0.6, 3.3, -4.7, 3.5), (0, 3.8, 2.9, 6.1, -6.1, 6.6)],
     # body, chin and splitter zone, bonnet turbine zone
-    "NOSE": [(0, 3.95, -0.6, 3.2, -13.3, -4.5), (0, 3.95, -1.0, 0.6, -13.9, -10.5), (0, 2.2, 2.8, 4.9, -11.0, -5.2)],
+    "NOSE": [(0, 3.95, -0.6, 3.4, -13.4, -4.5), (0, 3.95, -1.0, 0.6, -13.9, -10.5), (0, 2.2, 3.0, 5.2, -11.0, -5.2)],
     # body, bed and buttress zone above the deck, diffuser zone
-    "TAIL": [(0, 3.95, -0.6, 3.5, 3.3, 12.6), (0, 3.95, 2.8, 5.7, 3.3, 9.0), (0, 3.95, -1.0, 1.0, 9.5, 13.4)],
-    "FPOD": [(3.95, 6.95, -1.7, 3.0, -13.0, -5.9)],
-    "RPOD": [(3.95, 6.95, -1.8, 3.8, 3.9, 12.6)],
+    "TAIL": [(0, 3.95, -0.6, 3.7, 3.3, 12.7), (0, 3.95, 3.0, 5.9, 3.3, 9.0), (0, 3.95, -1.0, 1.0, 9.5, 13.4)],
+    "FPOD": [(3.95, 6.95, -1.7, 3.1, -13.1, -5.9)],
+    "RPOD": [(3.95, 6.95, -1.8, 3.9, 3.9, 12.7)],
     "STAB": [(3.95, 6.95, -1.6, 1.9, -5.95, 3.95)],
     "BOOST": [(0, 2.9, -0.8, 1.5, 10.6, 13.4)],
-    "WING": [(0, 6.9, 2.6, 6.8, 8.5, 13.4)],
+    "WING": [(0, 6.9, 2.8, 6.9, 8.5, 13.4)],
     "FREE": [(0, 99, -99, 99, -99, 99)],
 }
