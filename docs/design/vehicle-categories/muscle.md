@@ -14,31 +14,47 @@ Approved direction for the Modern Muscle category in Space Racers v3. Route: [ve
 - **Parts:** recommendation accepted in principle (2026-10-04): consider locking body parts to their own car so every kit can have meaningful GT and EVO gains. Final choice goes in the contract.
 - **Entry price:** new profiles start with 140,000 Cash; settle the cheapest Muscle car against that.
 
-## Modern Muscle concept round (2026-10-04) - proposed, not approved
+## Modern Muscle concept round 2 (2026-10-04) - proposed, not approved
 
 Six hover cars, each copying one real modern muscle car, for the installed ids `muscle_01` to `muscle_06`. Images: Codex, front and rear three-quarter (`scripts/exotic_category/categories/muscle/concepts/make_concepts.py`; full size under `output/muscle-concepts-2026-10-04/`). Names are working names. This is gate 1 of the playbook (concepts); nothing here is modelled or installed.
 
+Round 2 changes (Oscar, 2026-10-04): engines are separate pods at the four corners, as on Exotic; drift thrusters sit in the sills and fire sideways; overdrive is at the centre of the tail; the bonnet turbine stays as a look and may become an upgrade module later; the Mustang GTD and Charger Daytona are replaced by lower-end cars for E and D. Round 1 images (bonnet engine, lift jets under blanked arches) are in `img/muscle-modern/` without the `r2-` prefix.
+
+Layout, the same seven slots as Exotic:
+
+| Slot | Where | Muscle look |
+|---|---|---|
+| Front Body | Nose clip and bonnet | Real-car grille; the bonnet turbine lives here for now |
+| Front Engine | Two pods at the front corners | Square boxes carrying the headlights, side-exit on the outer face |
+| Rear Engine | Two pods at the rear corners, bigger than the front | The haunches become engines; nozzles fire backwards |
+| Drift Thrusters | In the sill between the pods, each side | Side pipes that fire sideways |
+| Overdrive | Centre of the tail, under the bumper | Where the exhaust tips would be |
+| Rear Body | Deck and tail between the rear pods | Real-car tail lamps |
+| Wing | On the deck | Per car |
+
+Kept apart from Exotic on purpose: tall, boxy and front-engined against low and cab-forward; a real cabin with pillars against a bubble canopy; square bolted-on pods with bare metal hardware against smooth rounded pods; grilles, stripes and chrome pipes; a nose-down rake.
+
 Visual language table. No two cars share a cell.
 
-| Id, tier | Working name | Real car | Nose and lights (Front Body, Front Engine) | Front engine | Tail and rear engine | Overdrive | Drift thrusters | Wing | Paint |
+| Id, tier | Working name | Real car | Nose and lights | Engine pods | Drift thrusters | Overdrive | Bonnet | Tail and wing | Paint |
 |---|---|---|---|---|---|---|---|---|---|
-| `muscle_01` E | Brawler | Dodge Challenger Scat Pack Widebody | Blunt slot grille, four round halo lamps | Twin shaker turbine through the bonnet | Square tail, one full-width light bar, two round barrels | Long chrome side pipes | Round turbine cans | Ducktail lip | Plum purple, satin black |
-| `muscle_02` D | Slingshot | Chevrolet Camaro SS | Low wedge, slit lamps, huge lower mouth | Flat heat-extractor slot in the bonnet | Kamm tail, four small square lamps, one wide slot burner | Flush sill slots | Angular box nozzles | Blade wing on two uprights | Yellow, gloss black |
-| `muscle_03` D | Stallion | Ford Mustang GT (S650) | Shark nose, hexagonal grille, three-bar lamps | Round ram turbine in the grille, twin bonnet vents | Concave tail, three vertical bars each side, four corner nozzles | Megaphones behind the front arch | Slim round jets | Low pedestal spoiler | Blue, white stripes |
-| `muscle_04` C | Blackjack | Cadillac CT5-V Blackwing | Shield mesh grille, tall vertical blade lamps | Carbon power dome with twin slot intakes | Upright tail, vertical blade lamps, two stacked turbines | Triple slim pipes per sill | Twin cans per corner | Carbon lip | Emerald green, carbon, bronze |
-| `muscle_05` C | Voltage | Dodge Charger Daytona (2024) | Flat nose, one full-width light bar, pass-through slot | Twin-rotor turbine inside the nose slot | Fastback hatch, one red light ring, one huge central turbine | Short fat twin tubes | Flat thrust paddles | Integrated lip with flap | Red, gloss black |
-| `muscle_06` B | Apex | Ford Mustang GTD | Gaping grille, long splitter with canards | Exposed turbine between louvred extractors | Wide tail, lamps at the edges, twin titanium afterburners, finned diffuser | Underslung twin tubes | Exposed strut jets behind louvred fenders | Tall swan-neck wing | Gunmetal, carbon, orange |
+| `muscle_01` E | Enforcer | Dodge Charger R/T saloon | Crosshair grille, slim lamps, bull bar | Plain steel boxes, one round nozzle each | Two plain pipes | Two small tips | Shallow bulge only | Racetrack light loop, lip spoiler | White, satin black |
+| `muscle_02` D | Outlaw | HSV Maloo ute | Twin-nostril grille, angular lamps | Wedge-fronted boxes; long rear pods beside the load bed, rectangular nozzles | One wide slot | One wide flat burner | Twin-snorkel ram intake | Tailgate, vertical lamps, open bed with sail plane and hoop | Burnt orange, gloss black |
+| `muscle_03` D | Slingshot | Chevrolet Camaro SS | Wedge, slit lamps, huge mouth | Faceted pods with gills, wide slot nozzles | Three square nozzles in a row | Four square tips | Flat extractor slot | Kamm tail, four square lamps, blade wing | Yellow, gloss black |
+| `muscle_04` C | Stallion | Ford Mustang GT (S650) | Shark nose, hexagonal grille, three-bar lamps | Smooth-topped boxes with side megaphones, two stacked round nozzles | One megaphone | Two large tips set wide | Round ram turbine | Three vertical bars each side, pedestal spoiler | Blue, white stripes |
+| `muscle_05` C | Blackjack | Cadillac CT5-V Blackwing | Shield mesh grille, vertical blade lamps | Tall carbon boxes with bronze plates; lamps on the pod edges; stacked nozzles | Three slim titanium pipes | Four stacked titanium tips | Carbon power dome | Vertical blades on the pods, carbon lip | Emerald, carbon, bronze |
+| `muscle_06` B | Brawler | Dodge Challenger SRT Demon Widebody | Slot grille, four halo lamps | Massive drag-car boxes, giant round barrels | Two fat chrome bazookas | Two huge chrome barrels | Giant twin shaker turbine | Full-width light bar, ducktail | Plum purple, satin black |
 
 | | Front | Rear |
 |---|---|---|
-| Brawler | ![Brawler front](img/muscle-modern/01-brawler-front.jpg) | ![Brawler rear](img/muscle-modern/01-brawler-rear.jpg) |
-| Slingshot | ![Slingshot front](img/muscle-modern/02-slingshot-front.jpg) | ![Slingshot rear](img/muscle-modern/02-slingshot-rear.jpg) |
-| Stallion | ![Stallion front](img/muscle-modern/03-stallion-front.jpg) | ![Stallion rear](img/muscle-modern/03-stallion-rear.jpg) |
-| Blackjack | ![Blackjack front](img/muscle-modern/04-blackjack-front.jpg) | ![Blackjack rear](img/muscle-modern/04-blackjack-rear.jpg) |
-| Voltage | ![Voltage front](img/muscle-modern/05-voltage-front.jpg) | ![Voltage rear](img/muscle-modern/05-voltage-rear.jpg) |
-| Apex | ![Apex front](img/muscle-modern/06-apex-front.jpg) | ![Apex rear](img/muscle-modern/06-apex-rear.jpg) |
+| Enforcer | ![Enforcer front](img/muscle-modern/r2-01-enforcer-front.jpg) | ![Enforcer rear](img/muscle-modern/r2-01-enforcer-rear.jpg) |
+| Outlaw | ![Outlaw front](img/muscle-modern/r2-02-outlaw-front.jpg) | ![Outlaw rear](img/muscle-modern/r2-02-outlaw-rear.jpg) |
+| Slingshot | ![Slingshot front](img/muscle-modern/r2-03-slingshot-front.jpg) | ![Slingshot rear](img/muscle-modern/r2-03-slingshot-rear.jpg) |
+| Stallion | ![Stallion front](img/muscle-modern/r2-04-stallion-front.jpg) | ![Stallion rear](img/muscle-modern/r2-04-stallion-rear.jpg) |
+| Blackjack | ![Blackjack front](img/muscle-modern/r2-05-blackjack-front.jpg) | ![Blackjack rear](img/muscle-modern/r2-05-blackjack-rear.jpg) |
+| Brawler | ![Brawler front](img/muscle-modern/r2-06-brawler-front.jpg) | ![Brawler rear](img/muscle-modern/r2-06-brawler-rear.jpg) |
 
-To fix before modelling: the Slingshot, Stallion, Blackjack and Apex fronts show a faint grille emblem (remove); the Slingshot's bonnet engine and the Voltage's nose turbine need to read more clearly as jet hardware; the Apex's exposed strut jets must stay longer than wide so they do not read as wheels; the installed placeholder names and blockout shapes (Notch, Ute, Ragtop, Hardtop, Fastback, Modern) do not match these cars, which is expected: ids, stats and prices stay, names and geometry change with the mesh build.
+To fix before modelling: the Outlaw's nose came out with a twin-kidney grille that reads as a different brand (redraw it wide and single); the Outlaw front shows no bonnet-to-pod headlight split yet; the Slingshot and Stallion front pods leave an open arch with round hardware behind them, which must be closed so nothing reads as a wheel; pods need a primary paint face on every car (the Enforcer's and Outlaw's are all black); the installed placeholder names and blockout shapes do not match these cars, which is expected: ids, stats and prices stay, names and geometry change with the mesh build.
 
 ## Pitch and player fantasy
 
