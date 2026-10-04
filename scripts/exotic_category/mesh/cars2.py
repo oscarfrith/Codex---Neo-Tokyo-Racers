@@ -108,7 +108,7 @@ def fender(st, peak, trim, front, style, creases=(1, 2, 3, 4), caps=(False, Fals
     elif lvl and kit == "vanes":
         fender_kit(pod, peak, lvl, front)
         blade("vane", min(x + 0.12, 7.0), q["yb"] + 0.15, q["yb"] + 0.85, (peak - 1.6, peak + 1.6), (peak - 1.2, peak + 1.5),
-              "secondary", t=0.04)
+              "detail", t=0.04)
     lift_glow(pod, [(peak - 1.0, peak + 1.0)])
     return pod, lvl
 
@@ -167,7 +167,7 @@ def tail_kit(lvl, std_fins, floor_w=3.7, nt=5.0, fin_ch="primary", fin=True, kit
 
 
 def sill(trim, st, style, creases=(1, 2, 3, 4), intake=(0.5, -0.6, -1.6), neon=True, extra=(), cx=4.9, w=1.0,
-         kit="kick", band=(2.25, 2.6, 2.95)):
+         kit="kick", band=(2.25, 2.6, 2.95), hw="secondary"):
     """Stabiliser sill. kit: "kick" a rear kick-up and bargeboards; "blade" one long low side fence;
     "vanes" a row of upright turning vanes; "boards" bargeboards front and rear."""
     lvl = LVL[trim]
@@ -190,10 +190,10 @@ def sill(trim, st, style, creases=(1, 2, 3, 4), intake=(0.5, -0.6, -1.6), neon=T
             z = -4.3 + i * (2.6 - lvl * 0.5)
             blade(f"vane{i}", out - 0.25, -0.95, -0.1 + lvl * 0.3, (z, z + 1.0), (z + 0.35, z + 0.9), "secondary", t=0.04)
     elif lvl:
-        blade("kick", out - 0.05, -0.95, 0.5 + lvl * 0.35, (1.6, 3.35), (2.5, 3.4), "secondary", t=0.04)
+        blade("kick", out - 0.05, -0.95, 0.5 + lvl * 0.35, (1.6, 3.35), (2.5, 3.4), hw, t=0.04)
         if lvl > 1 or kit == "boards":
             for i, x in enumerate((6.1, 6.6)[:lvl + (kit == "boards") - (lvl < 2)]):
-                blade(f"barge{i}", min(x, out), -0.95, 0.55 - i * 0.2, (-5.0, -3.4), (-4.7, -3.9), "secondary", t=0.04)
+                blade(f"barge{i}", min(x, out), -0.95, 0.55 - i * 0.2, (-5.0, -3.4), (-4.7, -3.9), hw, t=0.04)
     lift_glow(hull, [(-4.2, -2.4), (-0.6, 1.4)])
     return hull
 
@@ -646,7 +646,7 @@ def car_f():
                (3.4, dict(yb=-0.7, yt=1.25, ys=0.7))]
         sill(trim, fst, dict(rb=0.25, tum=0.3, drop=0.12, wcf=0.5, d2=0.03, crown=0.03), intake=(1.2, 0.0, -1.2),
              extra=[R(-5.0, 3.2, 2.94, 3.06, "secondary", -0.02, side=1)], w=1.05, kit="boards",
-             band=(2.25, 2.35, 2.45))
+             band=(2.25, 2.35, 2.45), hw="detail")
         blade("vane", 5.5, -0.9, 0.35, (-4.8, -3.6), (-4.5, -4.0), "secondary", t=0.04)
 
         K.begin(c, "BOOST", trim)
