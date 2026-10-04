@@ -238,7 +238,7 @@ def test_ids_counts_and_interface_table():
         assert attributes["CategoryId"] == "exotic"
         assert attributes["Price"] == row["price"]
         assert attributes["TargetStockPI"] == row["target"] and attributes["TargetTier"] == row["tier"]
-        assert attributes["MenuImage"] == ""
+        assert attributes["MenuImage"] == attributes["PreviewImage"] == B.CARD_IMAGES[built["n"]]
     for module_id, entry in disk["modules"].items():
         assert entry["attributes"]["ModuleId"] == module_id
         assert entry["attributes"]["CategoryId"] == "exotic"

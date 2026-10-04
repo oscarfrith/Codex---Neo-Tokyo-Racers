@@ -383,7 +383,7 @@ def check_scope(scope, args, spec, reference, live):
         cid, n = c["id"], c["id"][-2:]
         check(c["model"] == row[0] and a["DisplayName"] == row[1], tag + cid + " names")
         check(a["CockpitId"] == cid and a["V2PublishedCockpitId"] == cid and a["CategoryId"] == "exotic" and a["TemplateType"] == "Cockpit", tag + cid + " identity")
-        check(a["MenuImage"] == "" and a["PreviewImage"] == "", tag + cid + " images are empty")
+        check(a["MenuImage"] == a["PreviewImage"] and (a["MenuImage"] == "" or re.fullmatch(r"rbxassetid://\d+", a["MenuImage"])), tag + cid + " card image is empty or one content id on both attributes")
         check(a.get("V2Materialised") is True, tag + cid + " V2Materialised")
         check(a["TargetTier"] == row[4] and a["Price"] == row[5] and a["TargetStockPI"] == row[6], tag + cid + " tier, price and target")
         check(a["StandardAudioProfileId"] == "GENERIC_STANDARD_AUDIO", tag + cid + " audio profile")

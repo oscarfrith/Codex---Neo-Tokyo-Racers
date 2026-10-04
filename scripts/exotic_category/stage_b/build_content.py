@@ -861,7 +861,7 @@ def build_content(mode="AUDIT", scope="pilot", balance_path=BALANCE_PATH, catalo
         paint = paints[c["specCockpit"]]
         driver, passenger = seat_offsets(c, parts, seats)
         identity = {"CockpitId": cid, "V2PublishedCockpitId": cid, "CategoryId": category_id, "DisplayName": c["displayName"],
-                    "TemplateType": "Cockpit", "MenuImage": "", "PreviewImage": "", "TargetTier": c["tier"],
+                    "TemplateType": "Cockpit", "MenuImage": c.get("cardImage", ""), "PreviewImage": c.get("cardImage", ""), "TargetTier": c["tier"],
                     "StandardAudioProfileId": donor["StandardAudioProfileId"],
                     "DefaultPrimaryColor": {"__c3": hex_rgb(paint["primary"])}, "DefaultSecondaryColor": {"__c3": hex_rgb(paint["secondary"])},
                     "DefaultDetailColor": {"__c3": hex_rgb(colours["detail"])}, "DefaultNeonColor": {"__c3": hex_rgb(paint["neon"])},

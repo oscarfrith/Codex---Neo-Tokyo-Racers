@@ -25,7 +25,7 @@ Baseline capture: `roblox/captures/exotic-before/capture.json` (213 sources; roo
 | Selling | Performance parts as Piercer: Standard free with the cockpit, Lightweight and Power at 12% of the cockpit price, family locked by `SourceCockpitId`. Body parts open to any Exotic owner. |
 | Prices | Premium, about 25% over the matching Piercer. |
 | Lights | Nose and Engine Deck lamps always on. Neon on other modules is buyable neon. |
-| Images | None uploaded. `MenuImage=""`. |
+| Images | One card image per cockpit since 2026-10-04 (`stage_b/data/ids.json` `cardImage`), written to `MenuImage` and `PreviewImage`. |
 
 ## IDs (permanent, saved in profiles)
 

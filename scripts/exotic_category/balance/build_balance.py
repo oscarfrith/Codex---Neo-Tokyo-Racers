@@ -52,6 +52,10 @@ COCKPITS = [
     (5, "exotic_05", "COCKPIT_EXOTIC_05", "Rosso", "hyper", "hyper", "Hyper", "A", 4400000, 800, "bruiser_05"),
     (6, "exotic_06", "COCKPIT_EXOTIC_06", "Seraph", "gull", "concept", "Concept", "S", 12500000, 938, "bruiser_06"),
 ]
+# Card image per cockpit (MenuImage and PreviewImage). The same ids are in stage_b/data/ids.json (cardImage);
+# build_content.py refuses a build where the two disagree.
+CARD_IMAGES = {1: "rbxassetid://109265876230687", 2: "rbxassetid://83032945669952", 3: "rbxassetid://101056947506601",
+               4: "rbxassetid://87472007004585", 5: "rbxassetid://138661557393114", 6: "rbxassetid://135623705599137"}
 COCKPIT_FIELDS = ["n", "id", "model", "name", "spec_cockpit", "spec_kit", "kit_name", "tier", "price", "target", "piercer"]
 COCKPITS = [dict(zip(COCKPIT_FIELDS, row)) for row in COCKPITS]
 
@@ -680,7 +684,7 @@ def build_cockpit(live, cockpit, raw, defaults):
         elif key == "TargetTier":
             value = cockpit["tier"]
         elif key in ("MenuImage", "PreviewImage"):
-            value = ""
+            value = CARD_IMAGES.get(cockpit["n"], "")
         elif key in LEGACY_DEFAULTS:
             value = defaults[LEGACY_DEFAULTS[key]]
         elif key in COCKPIT_COPY:
