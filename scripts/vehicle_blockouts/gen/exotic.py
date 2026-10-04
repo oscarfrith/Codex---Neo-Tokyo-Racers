@@ -1236,12 +1236,12 @@ def build_spec():
     }
 
     paint = {
-        "wedge": {"primary": "#d3222a", "secondary": "#17181c", "neon": "#ffd84a"},
-        "curve": {"primary": "#f47a1f", "secondary": "#20242b", "neon": "#ffe9b0"},
-        "hyper": {"primary": "#1c2f5e", "secondary": "#c6f23a", "neon": "#7df9ff"},
-        "spider": {"primary": "#f1f1ee", "secondary": "#d62828", "neon": "#ff5a3c"},
-        "longtail": {"primary": "#9fc9e8", "secondary": "#f26a1b", "neon": "#fff2c0"},
-        "gull": {"primary": "#1f6f54", "secondary": "#e9e4d4", "neon": "#ffe9b0"},
+        "wedge": {"primary": "#f26a12", "secondary": "#101114", "neon": "#fff2c0"},      # Aurora: orange over carbon
+        "curve": {"primary": "#f2b705", "secondary": "#17181c", "neon": "#fff2c0"},      # Zephyr: yellow over black
+        "hyper": {"primary": "#b3121a", "secondary": "#101114", "neon": "#ffe9b0"},      # Rosso: deep red over black
+        "spider": {"primary": "#eeeeea", "secondary": "#2a2d33", "neon": "#ffffff"},     # Stinger: white over dark grey
+        "longtail": {"primary": "#6b6253", "secondary": "#15161a", "neon": "#fff2c0"},   # Endura: bronze grey over black
+        "gull": {"primary": "#0f6b5a", "secondary": "#cfe01e", "neon": "#ffe9b0"},       # Seraph: racing green with lime
     }
     swaps = {"wedge": "hyper", "curve": "track", "hyper": "longtail", "spider": "concept", "longtail": "wedge",
              "gull": "analogue"}
