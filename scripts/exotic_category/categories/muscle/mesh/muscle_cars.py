@@ -16,6 +16,25 @@ OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "previews")
 LINE = (2.78, 2.9)
 POD_LINE = (2.66, 2.86)
 SLOTS = ("COCKPIT", "NOSE", "TAIL", "FPOD", "RPOD", "STAB", "BOOST", "WING")
+# Every module slot except the cockpit has three versions on the same mounting: STD, GT and EVO.
+TRIMS = ("STD", "GT", "EVO")
+LVL = {"STD": 0, "GT": 1, "EVO": 2}
+
+
+def pick(trim, std, gt=None, evo=None):
+    """The value for a trim. GT defaults to STD, EVO defaults to GT."""
+    gt = std if gt is None else gt
+    return {"STD": std, "GT": gt, "EVO": gt if evo is None else evo}[trim]
+
+
+def keys(letter, trim="STD", **swap):
+    """Module keys of one build: every slot in one trim, the cockpit always STD. swap overrides single
+    slots with (letter, trim), for example keys("F", "GT", WING=("C", "EVO"))."""
+    out = []
+    for slot in SLOTS:
+        l, tr = swap.get(slot, (letter, trim))
+        out.append(f"{l}_{slot}_{'STD' if slot == 'COCKPIT' else tr}")
+    return out
 
 
 # ---------------------------------------------------------------- shared hardware
@@ -102,23 +121,55 @@ CLOSE = (("c_nose", (0, 1.6, -11.5), 168, 8, 17), ("c_fpod", (5.4, 0.6, -10.0), 
          ("c_cabinfront", (0, 4.2, -2), 205, 14, 20), ("c_cabinrear", (0, 4.2, 2), 40, 16, 20))
 
 
+TRIM_VIEWS = (("front", 146, 11, 50), ("rear", 34, 12, 50), ("side", 90, 4, 46), ("rearhigh", 20, 28, 52))
+TRIM_CLOSE = (("c_nose", (0, 2.2, -10.5), 160, 14, 19), ("c_fpod", (5.4, 0.6, -10.0), 128, 10, 16),
+              ("c_rpod", (5.4, 0.8, 8.5), 55, 12, 17), ("c_tail", (0, 2.4, 12.0), 12, 12, 19))
+ROW_DX = 19.0
+
+
 def build_car(name, letter, fn, render=True, close=True, out=None):
-    """Build one car alone (STD trim), check it against the envelopes and render it.
-    Full views go to previews/<name>_<view>.jpg, close-ups to previews/<name>_c_<part>.jpg."""
+    """Build one car alone in every trim it has, check it against the envelopes and render it.
+
+    Per trim: previews/<name>_<trim>_<view>.jpg (front, rear, side, rearhigh) and, for GT and EVO, four
+    close-ups previews/<name>_<trim>_c_<part>.jpg. STD also gets the full set of views and close-ups under
+    the old names previews/<name>_<view>.jpg. previews/<name>_kits_front.jpg and _kits_rear.jpg show
+    STD, GT and EVO side by side (STD on the left seen from the front)."""
     out = out or OUT
     K.reset()
     K.stage()
     fn()
     K.finish_library()
-    K.place(name, [f"{letter}_{s}_STD" for s in SLOTS], 0, 0)
+    trims = [tr for tr in TRIMS if f"{letter}_NOSE_{tr}" in K.MODS]
+    for tr in trims:
+        K.place(f"{name}{tr.lower()}", keys(letter, tr), 0, 0)
+    for i, tr in enumerate(trims):
+        K.place(f"{name}row{tr.lower()}", keys(letter, tr), (i - (len(trims) - 1) / 2) * -ROW_DX, 0)
     problems = K.check()
     paths = []
     if render:
         os.makedirs(out, exist_ok=True)
+
+        def shot(fname, target, az, el, dist, only, res=(1600, 900), lens=50):
+            paths.append(K.shot(os.path.join(out, fname), target, az, el, dist, lens=lens, res=res, only=only))
+
+        std = [f"{name}std"]
         for view, az, el, dist in VIEWS:
-            paths.append(K.shot(os.path.join(out, f"{name}_{view}.jpg"), (0, 1.6, 0), az, el, dist, res=(1600, 900)))
+            shot(f"{name}_{view}.jpg", (0, 1.6, 0), az, el, dist, std)
         if close:
             for view, target, az, el, dist in CLOSE:
-                paths.append(K.shot(os.path.join(out, f"{name}_{view}.jpg"), target, az, el, dist, res=(1400, 800)))
+                shot(f"{name}_{view}.jpg", target, az, el, dist, std, res=(1400, 800))
+        for tr in trims[1:]:
+            one = [f"{name}{tr.lower()}"]
+            for view, az, el, dist in TRIM_VIEWS:
+                shot(f"{name}_{tr.lower()}_{view}.jpg", (0, 1.8, 0), az, el, dist + 4, one)
+            if close:
+                for view, target, az, el, dist in TRIM_CLOSE:
+                    shot(f"{name}_{tr.lower()}_{view}.jpg", target, az, el, dist, one, res=(1400, 800))
+        if len(trims) > 1:
+            row = [f"{name}row{tr.lower()}" for tr in trims]
+            shot(f"{name}_kits_front.jpg", (0, 1.6, 0), 160, 14, 92, row, res=(2400, 1000), lens=60)
+            shot(f"{name}_kits_rear.jpg", (0, 1.6, 0), 20, 14, 92, row, res=(2400, 1000), lens=60)
     tris = {k: v["tris"] for k, v in K.MODS.items()}
-    return {"problems": problems, "tris": tris, "total": sum(tris.values()), "shots": paths}
+    by_trim = {tr: sum(v for k, v in tris.items() if k.endswith("_" + tr) or (k.endswith("COCKPIT_STD")))
+               for tr in trims}
+    return {"problems": problems, "trims": trims, "tris_per_build": by_trim, "shots": paths}

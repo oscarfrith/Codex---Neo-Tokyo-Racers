@@ -21,11 +21,6 @@ def _fn(module, letter):
     return getattr(mod, "car_" + letter.lower())
 
 
-def _keys(parts):
-    """parts: slot -> letter. Returns the module keys of a build."""
-    return [f"{parts[s]}_{s}_STD" for s in MC.SLOTS]
-
-
 def _grid(i):
     return ((i % 3) - 1) * DX, (i // 3) * DZ - DZ / 2
 
@@ -46,27 +41,32 @@ def build(out=None):
     K.finish_library()
     problems = K.check()
     letters = [c[1] for c in CARS]
+    n = len(letters)
+    have = [tr for tr in MC.TRIMS if all(f"{l}_NOSE_{tr}" in K.MODS for l in letters)]
     paths = []
 
-    def stage_builds(prefix, mapping):
-        builds = K.bpy.data.collections[K.PREFIX + "BUILDS"]
-        for ob in list(builds.objects):
+    def stage_builds(prefix, builds):
+        coll = K.bpy.data.collections[K.PREFIX + "BUILDS"]
+        for ob in list(coll.objects):
             K.bpy.data.objects.remove(ob)
-        for i, parts in enumerate(mapping):
+        for i, build_keys in enumerate(builds):
             x, z = _grid(i)
-            K.place(f"{prefix}{i}", _keys(parts), x, z)
+            K.place(f"{prefix}{i}", build_keys, x, z)
         _shots(prefix, out, paths)
 
-    # 1. the six cars as built
-    stage_builds("lineup", [{s: letter for s in MC.SLOTS} for letter in letters])
-    # 2. every body wearing the next car's engine pods and drift thrusters
-    nxt = lambda i, k=1: letters[(i + k) % len(letters)]  # noqa: E731
-    stage_builds("swap_pods", [{**{s: letters[i] for s in MC.SLOTS}, "FPOD": nxt(i), "RPOD": nxt(i), "STAB": nxt(i)}
-                               for i in range(len(letters))])
-    # 3. every cockpit and pod set wearing the next car's nose and the car after that's tail, overdrive and wing
-    stage_builds("swap_body", [{**{s: letters[i] for s in MC.SLOTS}, "NOSE": nxt(i), "TAIL": nxt(i, 2),
-                                "BOOST": nxt(i, 2), "WING": nxt(i, 2)} for i in range(len(letters))])
+    nxt = lambda i, k=1: letters[(i + k) % n]  # noqa: E731
+    # 1. the six cars as built, once per trim
+    for tr in have:
+        stage_builds("lineup" if tr == "STD" else "lineup_" + tr.lower(), [MC.keys(l, tr) for l in letters])
+    top = have[-1]
+    mid = have[len(have) // 2]
+    # 2. every standard body wearing the next car's engine pods and drift thrusters in the top trim
+    stage_builds("swap_pods", [MC.keys(letters[i], "STD", FPOD=(nxt(i), top), RPOD=(nxt(i), top),
+                                       STAB=(nxt(i), top)) for i in range(n)])
+    # 3. every car wearing the next car's nose (top trim) and the car after that's tail, overdrive and wing
+    stage_builds("swap_body", [MC.keys(letters[i], mid, NOSE=(nxt(i), top), TAIL=(nxt(i, 2), top),
+                                       BOOST=(nxt(i, 2), top), WING=(nxt(i, 2), top)) for i in range(n)])
     tris = {}
     for key, rec in K.MODS.items():
         tris[key[0]] = tris.get(key[0], 0) + rec["tris"]
-    return {"problems": problems, "tris": tris, "total": sum(tris.values()), "shots": paths}
+    return {"problems": problems, "trims": have, "tris": tris, "shots": paths}
