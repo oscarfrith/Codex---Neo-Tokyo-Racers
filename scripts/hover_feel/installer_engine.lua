@@ -91,6 +91,36 @@ for _, spec in ipairs(DATA.instances) do
 	end
 end
 
+-- Builders: {file, parent, textures}. The file returns function(textures) -> { Instance, ... }: pure construction
+-- of new instances (the Exotic V2 effect templates). They are built here, before anything is written, so a
+-- builder that fails or collides with an instance this delivery did not create blocks the whole run.
+local built = {}
+for _, spec in ipairs(DATA.builders or {}) do
+	local parent = find(spec.parent)
+	if not parent then
+		block(table.concat(spec.parent, ".") .. " missing for builder " .. spec.file)
+	elseif MODE ~= "ROLLBACK" then
+		local text = Http:GetAsync(BASE .. spec.file .. "?t=" .. os.clock(), true)
+		local chunk, err = loadstring(text, spec.file)
+		local ok, result = false, err
+		if chunk then
+			ok, result = pcall(function() return chunk()(spec.textures or {}) end)
+		end
+		if not ok or type(result) ~= "table" then
+			block(spec.file .. " failed: " .. tostring(result))
+		else
+			for _, instance in ipairs(result) do
+				local existing = parent:FindFirstChild(instance.Name)
+				if existing and existing:GetAttribute("HoverFeelBuilder") ~= spec.file then
+					block(instance.Name .. " already exists and was not made by " .. spec.file)
+				end
+			end
+			built[spec.file] = { parent = parent, instances = result }
+			table.insert(report, spec.file .. ": builds " .. #result)
+		end
+	end
+end
+
 if blockers > 0 or MODE == "AUDIT" then
 	return table.concat(report, "; ") .. " | blockers=" .. blockers .. " mode=" .. MODE .. " (nothing written)"
 end
@@ -168,6 +198,24 @@ if MODE == "APPLY" then
 		end
 	end
 end
-table.insert(report, "updates=" .. updates)
+-- Built instances replace this builder's earlier output; ROLLBACK removes it.
+local builderChanges = 0
+for _, spec in ipairs(DATA.builders or {}) do
+	local parent = find(spec.parent)
+	for _, child in ipairs(parent:GetChildren()) do
+		if child:GetAttribute("HoverFeelBuilder") == spec.file then
+			child:Destroy()
+			builderChanges += 1
+		end
+	end
+	if MODE == "APPLY" then
+		for _, instance in ipairs(built[spec.file].instances) do
+			instance:SetAttribute("HoverFeelBuilder", spec.file)
+			instance.Parent = parent
+			builderChanges += 1
+		end
+	end
+end
+table.insert(report, "updates=" .. updates .. " builderChanges=" .. builderChanges)
 History:SetWaypoint("hover_feel " .. MODE .. " after")
 return table.concat(report, "; ") .. " | mode=" .. MODE .. " scriptsWritten=" .. wrote .. " attributesWritten=" .. attributes .. " instancesChanged=" .. instances

@@ -9,6 +9,73 @@ VehicleVFXController.__index = VehicleVFXController
 local CONFIG_ROOT_NAME = "Editable"
 local CONFIG_NAME = "STABILISER_VFX_DIRECTION_DoNotRename"
 
+-- Exotic V2 effects (VFX rework). Tunables are attributes on
+-- ReplicatedStorage.Config.Vehicles.StabiliserVFX; these are the fallbacks.
+local Players = game:GetService("Players")
+
+local V2_DEFAULTS = {
+	ExoticVFXV2Enabled = true,
+	ExoticV2BoostIntakeSeconds = 0.1,
+	ExoticV2BoostHandoverSeconds = 0.6,
+	ExoticV2BoostFadeSeconds = 0.6,
+	ExoticV2BoostPulseHz = 10,
+	ExoticV2MiniBoostScale = 0.7,
+	ExoticV2PadBase = 0.55,
+	ExoticV2PadSquashGain = 0.35,
+	ExoticV2PadSpeedGain = 0.1,
+	ExoticV2PadAirborne = 0.3,
+	ExoticV2PadStandby = 0.25,
+	ExoticV2DustBase = 0.15,
+	ExoticV2DustSpeedGain = 0.6,
+	ExoticV2DustSquashGain = 0.5,
+	ExoticV2DustSpeedFullMph = 140,
+	ExoticV2PreviewDust = 0.2,
+	ExoticV2RemoteDust = 0.3,
+	ExoticV2GroundRayStuds = 12,
+	ExoticV2GroundFallbackStuds = 3,
+	ExoticV2GroundPadGapStuds = 1.6,
+	ExoticV2GroundTintMix = 0.55,
+	ExoticV2GroundLightEnabled = true,
+	ExoticV2SlipSparkMin = 0.12,
+	ExoticV2SlipSparkSign = 1,
+	ExoticV2ScrapeMin = 0.1,
+	ExoticV2VapourMinMph = 150,
+}
+
+local V2_SHARED_TEMPLATES = {
+	HoverDust = "HoverDust_ExoticV2",
+	BrakeSparks = "BrakeSparks_ExoticV2",
+}
+local V2_HOVER_TEMPLATE = "HoverDust_ExoticV2"
+local V2_GROUND_TEMPLATE = "GroundFX_ExoticV2"
+local V2_IMPACT_TEMPLATE = "BrakeSparks_ExoticV2"
+local V2_TRAILS_TEMPLATE = "SpeedTrails_ExoticV2"
+local V2_GROUND_SOCKET_NAME = "VFX_FeelGroundFX"
+local V2_TRAILS_SOCKET_NAME = "VFX_FeelSpeedTrails"
+local V2_CHANNEL_CEILING = 2
+local V2_MOVER_CEILING = 1.5
+local V2_FLASH_TAU = 0.07
+local V2_GROUND_LIGHT_HEIGHT = 1.4
+
+local v2Config = table.clone(V2_DEFAULTS)
+local v2ConfigClock = -math.huge
+
+local function refreshV2Config(now)
+	if now - v2ConfigClock < 0.5 then return end
+	v2ConfigClock = now
+	local config = ReplicatedStorage:FindFirstChild("Config")
+	local vehicles = config and config:FindFirstChild("Vehicles")
+	local folder = vehicles and vehicles:FindFirstChild("StabiliserVFX")
+	for name, fallback in pairs(V2_DEFAULTS) do
+		local value = folder and folder:GetAttribute(name)
+		if typeof(value) == typeof(fallback) and value == value and value ~= math.huge and value ~= -math.huge then
+			v2Config[name] = value
+		else
+			v2Config[name] = fallback
+		end
+	end
+end
+
 local function readValue(folder, name, fallback)
 	local item = folder and folder:FindFirstChild(name)
 	if not item then return fallback end
@@ -167,6 +234,12 @@ local function inferredDriftSide(self, state)
 end
 
 local function intensityForGroup(self, group, state)
+	-- Exotic V2 channels (set by updateV2) take precedence; nil for other vehicles.
+	local channels = self.Channels
+	if channels then
+		local value = channels[group]
+		if value ~= nil then return value end
+	end
 	if group == "EngineIdle" then
 		return (state.Throttle or 0) > 0.05 and 0 or 1
 	end
@@ -357,7 +430,13 @@ local function burstKindFor(group, templateName)
 	return nil
 end
 
-local function trackEffect(self, effect, templateName, settings, socketSide)
+local function numberAttribute(instance, name)
+	local value = instance:GetAttribute(name)
+	if type(value) == "number" and value == value then return value end
+	return nil
+end
+
+local function trackEffect(self, effect, templateName, settings, socketSide, isV2)
 	local group = effectGroup(effect, templateName)
 	if templateName == "StabiliserJet" then
 		if socketSide == "Left" then
@@ -369,19 +448,49 @@ local function trackEffect(self, effect, templateName, settings, socketSide)
 		end
 	end
 
-	if effect:IsA("ParticleEmitter") then
+	local isEmitter = effect:IsA("ParticleEmitter")
+	-- V2 templates may leave particles in the world (dust, embers, sparks, smoke).
+	if isEmitter and not (isV2 and effect:GetAttribute("WorldSpace") == true) then
 		effect.LockedToPart = true
 		effect.VelocityInheritance = 0
 	end
 
 	local isLight = effect:IsA("PointLight") or effect:IsA("SpotLight") or effect:IsA("SurfaceLight")
+	local burstKind = nil
+	if isEmitter then
+		local explicit = effect:GetAttribute("VFXBurst")
+		if type(explicit) == "string" then
+			burstKind = explicit ~= "None" and explicit or nil
+		else
+			burstKind = burstKindFor(group, templateName)
+		end
+	end
+	local tintStart = isV2 and numberAttribute(effect, "TintStart") or nil
 	local record = {
 		Object = effect,
 		Group = group,
 		TemplateName = templateName,
 		Settings = settings,
 		CustomToggle = isCustomToggleTemplate(templateName),
-		BurstKind = effect:IsA("ParticleEmitter") and burstKindFor(group, templateName) or nil,
+		BurstKind = burstKind,
+		-- Exotic V2 drive data (all nil on older templates).
+		V2 = isV2 == true,
+		IsLight = isLight,
+		Seed = (#self.Items + 1) * 1.37,
+		Flicker = isV2 and numberAttribute(effect, "Flicker") or nil,
+		FlickerHz = isV2 and numberAttribute(effect, "FlickerHz") or 8,
+		BurstCount = isEmitter and numberAttribute(effect, "BurstCount") or nil,
+		BurstShare = isEmitter and numberAttribute(effect, "BurstShare") or nil,
+		SpeedScaleMin = isEmitter and isV2 and numberAttribute(effect, "SpeedScaleMin") or nil,
+		SpeedScaleMax = isEmitter and isV2 and numberAttribute(effect, "SpeedScaleMax") or nil,
+		BaseSpeed = isEmitter and effect.Speed or nil,
+		LastSpeedScale = 1,
+		GlowMin = isV2 and (isEmitter or effect:IsA("Beam")) and numberAttribute(effect, "GlowMin") or nil,
+		GlowMax = isV2 and (isEmitter or effect:IsA("Beam")) and numberAttribute(effect, "GlowMax") or nil,
+		TintStart = tintStart,
+		TintEnd = tintStart and (numberAttribute(effect, "TintEnd") or tintStart) or nil,
+		GroundTint = isV2 and isEmitter and effect:GetAttribute("GroundTint") == true or nil,
+		BaseColor = isV2 and effect.Color or nil,
 		-- Authored values of custom-toggle effects; scaled only when the caller passes JetFloor.
 		BaseRate = effect:IsA("ParticleEmitter") and effect.Rate or nil,
 		BaseWidth0 = effect:IsA("Beam") and effect.Width0 or nil,
@@ -401,13 +510,35 @@ local function trackEffect(self, effect, templateName, settings, socketSide)
 		RangeMax = (effect:IsA("PointLight") or effect:IsA("SpotLight") or effect:IsA("SurfaceLight")) and (effect:GetAttribute("RangeMax") or effect.Range) or nil,
 	}
 
+	if burstKind == "Backfire" then
+		self.HasV2Backfire = true
+	end
+
 	effect.Enabled = false
 	table.insert(self.Items, record)
+end
+
+-- Exotic V2: an Attachment with VFXGroup and ZMin/ZMax is a beam end whose Z
+-- follows its channel, so the jet gets longer with thrust.
+local function trackMover(self, attachment)
+	local group = attachment:GetAttribute("VFXGroup")
+	local zMin = numberAttribute(attachment, "ZMin")
+	local zMax = numberAttribute(attachment, "ZMax")
+	if type(group) ~= "string" or not (zMin and zMax) then return end
+	table.insert(self.Movers, {
+		Object = attachment,
+		Group = group,
+		ZMin = zMin,
+		ZMax = zMax,
+		Base = attachment.Position,
+		Last = -1,
+	})
 end
 
 local function attachWholeTemplate(self, socket, template, templateName)
 	local settings = templateSettings(template)
 	if self.IsMobile and not settings.EnabledOnMobile then return end
+	local isV2 = template:GetAttribute("VFXVersion") == 2
 
 	local socketSide = templateName == "StabiliserJet" and stabiliserSideFromSocket(socket) or nil
 	local parts = topLevelTemplateParts(template)
@@ -441,10 +572,117 @@ local function attachWholeTemplate(self, socket, template, templateName)
 
 		for _, descendant in ipairs(clone:GetDescendants()) do
 			if isToggleable(descendant) then
-				trackEffect(self, descendant, templateName, settings, socketSide)
+				-- V2 detail tiers: lights and other desktop-only effects are not kept
+				-- on mobile; "Full" effects are not kept on remote players' vehicles.
+				if isV2 and ((self.IsMobile and descendant:GetAttribute("DesktopOnly") == true)
+					or (self.Reduced and descendant:GetAttribute("VFXTier") == "Full")) then
+					descendant:Destroy()
+				else
+					trackEffect(self, descendant, templateName, settings, socketSide, isV2)
+				end
+			elseif isV2 and descendant:IsA("Attachment") then
+				trackMover(self, descendant)
 			end
 		end
 	end
+
+	if isV2 then
+		self.HasV2 = true
+		self.Channels = self.Channels or {}
+		self.TintColour = nil
+	end
+end
+
+-- Exotic V2: attaches one template to a runtime Attachment at the centre of the
+-- root part (so positions inside the clone are root-local). Returns the cloned
+-- host part, or nil when the template is missing or nothing was attached. The
+-- Attachment and the clone are destroyed with the controller's other hosts.
+local function attachRuntimeTemplate(self, socketName, templateName)
+	local template = self.Templates and self.Templates:FindFirstChild(templateName)
+	local root = self.Root
+	if not (template and root and root.Parent and root:IsA("BasePart")) then return nil end
+
+	local socket = Instance.new("Attachment")
+	socket.Name = socketName
+	socket.Parent = root
+
+	local firstHost = #self.CreatedHosts + 1
+	attachWholeTemplate(self, socket, template, templateName)
+	local host = self.CreatedHosts[firstHost]
+	if not host then
+		socket:Destroy()
+		return nil
+	end
+	table.insert(self.CreatedHosts, socket)
+	return host
+end
+
+local function isExoticId(value)
+	return type(value) == "string" and string.find(string.lower(value), "exotic", 1, true) ~= nil
+end
+
+-- A socket's VFXTemplate "X_Exotic..." (and the shared HoverDust / BrakeSparks)
+-- resolves to its V2 template when the vehicle is Exotic, the switch is on and
+-- that template exists. Otherwise the name is returned unchanged.
+local function resolveTemplateName(self, templateName)
+	if not self.ExoticV2 or type(templateName) ~= "string" then return templateName end
+	local candidate = V2_SHARED_TEMPLATES[templateName]
+	if not candidate and string.find(templateName, "_Exotic", 1, true) and string.sub(templateName, -2) ~= "V2" then
+		candidate = templateName .. "V2"
+	end
+	if candidate and self.Templates:FindFirstChild(candidate) then
+		return candidate
+	end
+	return templateName
+end
+
+-- Root-local bounds of the vehicle, measured once: centre and half size.
+local function vehicleBounds(self)
+	if self.Bounds then return self.Bounds end
+	local root = self.Root
+	local vehicle = self.Vehicle
+	local center = Vector3.new(0, 0, 0)
+	local half = root.Size * 0.5
+	if vehicle and vehicle.PrimaryPart == root then
+		-- With a PrimaryPart the box is aligned to it, so it is root-aligned.
+		local ok, boxCFrame, boxSize = pcall(function()
+			return vehicle:GetBoundingBox()
+		end)
+		if ok and boxCFrame and boxSize then
+			center = root.CFrame:PointToObjectSpace(boxCFrame.Position)
+			half = boxSize * 0.5
+		end
+	elseif self.HoverExtent then
+		half = Vector3.new(
+			math.max(half.X, self.HoverExtent.X + 1.5),
+			math.max(half.Y, 1.4),
+			math.max(half.Z, self.HoverExtent.Z + 2)
+		)
+	end
+	self.Bounds = { Center = center, Half = half }
+	return self.Bounds
+end
+
+local function placeGroundFixed(self)
+	self.GroundFixed = true
+	local groundPoint = self.GroundPoint
+	if groundPoint and groundPoint.Parent then
+		groundPoint.CFrame = CFrame.new(self.GroundLocal)
+	end
+	local lightPoint = self.GroundLightPoint
+	if lightPoint and lightPoint.Parent then
+		lightPoint.Position = self.GroundLocal + Vector3.new(0, V2_GROUND_LIGHT_HEIGHT, 0)
+	end
+end
+
+-- One ground-effects template per Exotic V2 vehicle, under the hover sockets.
+local function attachGroundFX(self, hoverCentre)
+	local host = attachRuntimeTemplate(self, V2_GROUND_SOCKET_NAME, V2_GROUND_TEMPLATE)
+	if not host then return end
+	self.GroundPoint = host:FindFirstChild("GroundPoint")
+	self.GroundLightPoint = host:FindFirstChild("GroundLightPoint")
+	self.GroundLocal = hoverCentre - Vector3.new(0, math.max(v2Config.ExoticV2GroundPadGapStuds, 0), 0)
+	placeGroundFixed(self)
 end
 
 local function isRuntimeHostDescendant(instance)
@@ -469,22 +707,108 @@ local function attachVehicleSocketsOnce(self)
 	end
 
 	self.Root = vehicle.PrimaryPart or vehicle:FindFirstChild("CockpitRoot_DoNotRename", true) or self.Root
+	local root = self.Root
 
+	-- Collect the sockets first. A vehicle is Exotic when its model says so
+	-- (CategoryId / CockpitId) or any socket asks for an "_Exotic" template.
+	local sockets = {}
+	local templateNames = {}
+	local exotic = isExoticId(vehicle:GetAttribute("CategoryId")) or isExoticId(vehicle:GetAttribute("CockpitId"))
 	for _, socket in ipairs(vehicle:GetDescendants()) do
 		if socket:IsA("Attachment")
 			and not isRuntimeHostDescendant(socket)
 			and (socket:GetAttribute("VFXSocket") == true or string.sub(socket.Name, 1, 4) == "VFX_") then
 			local templateName = templateNameFromSocket(socket)
-			local template = templateName and templates:FindFirstChild(templateName)
-			if template then
-				attachWholeTemplate(self, socket, template, templateName)
+			if templateName then
+				table.insert(sockets, socket)
+				templateNames[#sockets] = templateName
+				if type(templateName) == "string" and string.find(templateName, "_Exotic", 1, true) then
+					exotic = true
+				end
 			end
 		end
+	end
+
+	refreshV2Config(os.clock())
+	self.ExoticV2 = exotic and v2Config.ExoticVFXV2Enabled == true
+
+	local hoverSum = Vector3.new(0, 0, 0)
+	local hoverCount = 0
+	local hoverExtentX, hoverExtentZ = 0, 0
+	for index, socket in ipairs(sockets) do
+		local templateName = resolveTemplateName(self, templateNames[index])
+		local template = templates:FindFirstChild(templateName)
+		if template then
+			attachWholeTemplate(self, socket, template, templateName)
+			if templateName == V2_HOVER_TEMPLATE and root and root:IsA("BasePart") then
+				local localPosition = root.CFrame:PointToObjectSpace(socket.WorldPosition)
+				hoverSum += localPosition
+				hoverCount += 1
+				hoverExtentX = math.max(hoverExtentX, math.abs(localPosition.X))
+				hoverExtentZ = math.max(hoverExtentZ, math.abs(localPosition.Z))
+			end
+		end
+	end
+
+	if hoverCount > 0 then
+		self.HoverExtent = Vector3.new(hoverExtentX, 0, hoverExtentZ)
+		attachGroundFX(self, hoverSum / hoverCount)
 	end
 end
 
 local IMPACT_SPARK_SOCKET_NAME = "VFX_FeelImpactSparks"
 local IMPACT_SPARK_TEMPLATE_NAME = "BrakeSparks"
+
+-- Exotic V2: puts the trail attachment pairs on the rear upper corners and the
+-- tail of the vehicle's bounds (rear is +Z).
+local function placeSpeedTrails(self, host)
+	local bounds = vehicleBounds(self)
+	local center, half = bounds.Center, bounds.Half
+	local function place(name, x, y, z)
+		local attachment = host:FindFirstChild(name)
+		if attachment and attachment:IsA("Attachment") then
+			attachment.Position = center + Vector3.new(x, y, z)
+		end
+	end
+	local cornerX = half.X * 0.9
+	local cornerY = half.Y * 0.7
+	local cornerZ = half.Z * 0.85
+	place("VapourLeftA", -cornerX, cornerY, cornerZ)
+	place("VapourLeftB", -cornerX, cornerY - 0.2, cornerZ)
+	place("VapourRightA", cornerX, cornerY, cornerZ)
+	place("VapourRightB", cornerX, cornerY - 0.2, cornerZ)
+	place("TailA", -0.9, half.Y * 0.1, half.Z)
+	place("TailB", 0.9, half.Y * 0.1, half.Z)
+end
+
+-- Exotic V2: moves the impact spark source to the side of the car that was hit.
+-- x, z is the car-local direction toward the obstacle (+X right, -Z forward).
+-- Without a direction it sits at the front-bottom, as before the rework.
+function VehicleVFXController:SetImpactSide(x, z)
+	local point = self.ImpactPoint
+	if not (point and point.Parent and self.Root) then return end
+	x = tonumber(x)
+	z = tonumber(z)
+	local key = (x and z) and (math.floor(x * 20 + 0.5) * 100 + math.floor(z * 20 + 0.5)) or -1e6
+	if key == self.ImpactSideKey then return end
+	self.ImpactSideKey = key
+
+	local bounds = vehicleBounds(self)
+	local half = bounds.Half
+	local position, away
+	if x and z and (x * x + z * z) > 0.01 then
+		local direction = Vector3.new(x, 0, z).Unit
+		local reachX = math.abs(direction.X) > 0.001 and half.X / math.abs(direction.X) or math.huge
+		local reachZ = math.abs(direction.Z) > 0.001 and half.Z / math.abs(direction.Z) or math.huge
+		position = bounds.Center + direction * math.min(reachX, reachZ) + Vector3.new(0, -0.5 * half.Y, 0)
+		away = -direction
+	else
+		position = bounds.Center + Vector3.new(0, -half.Y, -half.Z)
+		away = Vector3.new(0, 0, 1)
+	end
+	-- Front (-Z) of the attachment points away from the obstacle and a little up.
+	point.CFrame = CFrame.lookAt(position, position + away + Vector3.new(0, 0.35, 0))
+end
 
 -- Burst-only spark source for a vehicle with no authored BrakeSparks socket.
 -- The caller (VehicleVFXClient) asks for it only on the local driving vehicle.
@@ -497,6 +821,21 @@ function VehicleVFXController:EnsureImpactSparks()
 	if self.ImpactSparksResolved then return true end
 	if not self.SocketAttachDone then return false end
 	self.ImpactSparksResolved = true
+
+	-- Exotic V2: a directional spark source (moved by SetImpactSide) and the
+	-- speed trails. Both are local-car extras, so they are attached here.
+	if self.ExoticV2 then
+		local trailsHost = attachRuntimeTemplate(self, V2_TRAILS_SOCKET_NAME, V2_TRAILS_TEMPLATE)
+		if trailsHost then
+			placeSpeedTrails(self, trailsHost)
+		end
+		local sparksHost = attachRuntimeTemplate(self, IMPACT_SPARK_SOCKET_NAME, V2_IMPACT_TEMPLATE)
+		if sparksHost then
+			self.ImpactPoint = sparksHost:FindFirstChild("ImpactPoint")
+			self:SetImpactSide(nil, nil)
+			return true
+		end
+	end
 
 	for _, record in ipairs(self.Items) do
 		if record.BurstKind == "Sparks" then return true end
@@ -527,11 +866,29 @@ function VehicleVFXController:EnsureImpactSparks()
 	return true
 end
 
-function VehicleVFXController.Attach(vehicle, templates, isMobile)
+-- options (optional): { Reduced = true } for a remote player's vehicle, which
+-- drops the Exotic V2 "Full" tier effects when its templates are attached.
+function VehicleVFXController.Attach(vehicle, templates, isMobile, options)
 	local self = setmetatable({
 		Vehicle = vehicle,
 		Templates = templates,
 		IsMobile = isMobile == true,
+		Reduced = type(options) == "table" and options.Reduced == true,
+		Movers = {},
+		V2 = {
+			BoostOn = false,
+			BoostTime = 0,
+			BoostScale = 1,
+			Ignited = false,
+			Plume = 0,
+			FadeFrom = 0,
+			FadeTime = 0,
+			Flash = 0,
+			PopFlash = 0,
+			PopTau = 0.05,
+			PeakCharge = 0,
+			LastBoostKind = "",
+		},
 		Items = {},
 		CreatedHosts = {},
 		Elapsed = 0,
@@ -588,10 +945,341 @@ local function applyThrustFireColour(object, color)
 	end
 end
 
+-- ---------------------------------------------------------------------------
+-- Exotic V2 drive. Everything below runs only for a controller that attached
+-- at least one V2 template (self.HasV2); other vehicles never reach it.
+-- ---------------------------------------------------------------------------
+
+local function tintedSequence(base, target, mixStart, mixEnd)
+	local keypoints = {}
+	for index, keypoint in ipairs(base.Keypoints) do
+		local mix = math.clamp(mixStart + (mixEnd - mixStart) * keypoint.Time, 0, 1)
+		keypoints[index] = ColorSequenceKeypoint.new(keypoint.Time, keypoint.Value:Lerp(target, mix))
+	end
+	return ColorSequence.new(keypoints)
+end
+
+-- Thrust colour: energy effects follow it fully, fire keeps its colours with a
+-- tint at the core (TintStart / TintEnd on each effect). Applied on change only.
+local function applyV2Tint(self, thrust)
+	for _, record in ipairs(self.Items) do
+		local object = record.Object
+		if record.TintStart and object and object.Parent then
+			if record.IsLight then
+				object.Color = record.BaseColor:Lerp(thrust, math.clamp(record.TintStart, 0, 1))
+			else
+				object.Color = tintedSequence(record.BaseColor, thrust, record.TintStart, record.TintEnd)
+			end
+		end
+	end
+end
+
+-- Dust takes some of the colour of the surface under the car.
+local function updateGroundTint(self, result)
+	local instance = result.Instance
+	local colour = nil
+	if instance:IsA("Terrain") then
+		local ok, value = pcall(function()
+			return instance:GetMaterialColor(result.Material)
+		end)
+		if ok then colour = value end
+	elseif instance:IsA("BasePart") then
+		colour = instance.Color
+	end
+	if typeof(colour) ~= "Color3" then return end
+
+	local key = math.floor(colour.R * 31 + 0.5) * 1024 + math.floor(colour.G * 31 + 0.5) * 32 + math.floor(colour.B * 31 + 0.5)
+	if key == self.GroundTintKey then return end
+	self.GroundTintKey = key
+
+	local mix = math.clamp(v2Config.ExoticV2GroundTintMix, 0, 1)
+	for _, record in ipairs(self.Items) do
+		local object = record.Object
+		if record.GroundTint and object and object.Parent then
+			object.Color = tintedSequence(record.BaseColor, colour, mix, mix)
+		end
+	end
+end
+
+-- Puts the ground effects on the ground. Local driving car: one downward
+-- raycast per visual update. Every other vehicle (parked, remote, preview):
+-- a fixed offset below the hover sockets, no raycast. Returns 0..1, how much
+-- ground there is to show effects on.
+local function updateGround(self, feel, now, visible)
+	local groundPoint = self.GroundPoint
+	if not (groundPoint and groundPoint.Parent) then return 1 end
+	local root = self.Root
+	if not (feel and feel.Local == true and visible and root and root.Parent) then
+		if not self.GroundFixed then
+			placeGroundFixed(self)
+		end
+		return 1
+	end
+	self.GroundFixed = false
+
+	local params = self.RayParams
+	if not params then
+		params = RaycastParams.new()
+		params.FilterType = Enum.RaycastFilterType.Exclude
+		params.IgnoreWater = true
+		params.RespectCanCollide = true
+		self.RayParams = params
+		self.RayFilterClock = -math.huge
+	end
+	if now - self.RayFilterClock > 1 then
+		self.RayFilterClock = now
+		-- The whole vehicles folder: another car under this one is not ground.
+		local filter = { self.Vehicle, self.Vehicle.Parent }
+		for _, player in ipairs(Players:GetPlayers()) do
+			if player.Character then
+				table.insert(filter, player.Character)
+			end
+		end
+		params.FilterDescendantsInstances = filter
+	end
+
+	local rayLength = math.max(v2Config.ExoticV2GroundRayStuds, 1)
+	local fallback = math.clamp(v2Config.ExoticV2GroundFallbackStuds, 0, rayLength)
+	local origin = root.Position
+	local result = Workspace:Raycast(origin, Vector3.new(0, -rayLength, 0), params)
+
+	local position, up, presence
+	if result then
+		up = result.Normal
+		position = result.Position + up * 0.12
+		-- Fade the ground effects out as the car climbs away from the ground.
+		local gap = origin.Y - result.Position.Y
+		local fadeStart = fallback * 1.6
+		presence = math.clamp(1 - (gap - fadeStart) / math.max(rayLength - fadeStart, 0.5), 0, 1)
+		updateGroundTint(self, result)
+	else
+		up = Vector3.new(0, 1, 0)
+		position = origin - up * fallback
+		presence = feel.Grounded == false and 0 or 1
+	end
+
+	local right = root.CFrame.RightVector
+	right = right - up * right:Dot(up)
+	if right.Magnitude < 0.01 then
+		right = Vector3.new(1, 0, 0)
+	else
+		right = right.Unit
+	end
+	groundPoint.WorldCFrame = CFrame.fromMatrix(position, right, up)
+	local lightPoint = self.GroundLightPoint
+	if lightPoint and lightPoint.Parent then
+		lightPoint.WorldPosition = position + up * V2_GROUND_LIGHT_HEIGHT
+	end
+	return presence
+end
+
+-- Fires the burst emitters of one kind (BurstCount particles each at scale 1).
+local function emitV2Burst(self, kind, scale)
+	local quality = self.IsMobile and self.Globals.MobileParticleScale or self.Globals.DesktopParticleScale
+	quality = tonumber(quality) or 1
+	local cap = tonumber(self.Globals.MaxRecommendedParticlesPerVehicle) or 0
+	local emitted = 0
+	for _, record in ipairs(self.Items) do
+		local object = record.Object
+		if record.BurstKind == kind and record.BurstCount and object and object.Parent then
+			local amount = record.BurstCount * scale * quality
+			if self.IsMobile then
+				amount *= record.Settings.MobileScale
+			end
+			amount = math.max(1, math.floor(amount + 0.5))
+			if cap > 0 and emitted + amount > cap then break end
+			object:Emit(amount)
+			emitted += amount
+		end
+	end
+	return emitted
+end
+
+-- Computes this update's V2 channels (self.Channels) from the state table.
+-- Inputs every caller sends: Throttle, Boost, Drift, DriftLeft, DriftRight,
+-- HoverDust. Optional: Powered, Hidden, Preview, NoLights, ThrustColor, and
+-- Feel = { Local, Hover, SpeedMph, Slip, DriftCharge, BoostKind, Scrape,
+-- Grounded, ImpactX, ImpactZ } for the local driving vehicle.
+local function updateV2(self, dt, state, now, visible)
+	refreshV2Config(now)
+	local config = v2Config
+	local channels = self.Channels
+	local v2 = self.V2
+	local feel = type(state.Feel) == "table" and state.Feel or nil
+	local hidden = state.Hidden == true
+	local powered = state.Powered ~= false and not hidden
+	local throttle = math.clamp(tonumber(state.Throttle) or 0, 0, 1)
+	local boostOn = not hidden and (tonumber(state.Boost) or 0) > 0.05
+	local drifting = math.max(tonumber(state.Drift) or 0, tonumber(state.DriftLeft) or 0, tonumber(state.DriftRight) or 0) > 0.05
+
+	-- Thrust colour ------------------------------------------------------------
+	local thrust = state.ThrustColor
+	if typeof(thrust) ~= "Color3" then
+		thrust = self.Vehicle and self.Vehicle:GetAttribute("ThrustColor")
+	end
+	if typeof(thrust) ~= "Color3" then
+		thrust = Color3.new(1, 1, 1)
+	end
+	if thrust ~= self.TintColour then
+		self.TintColour = thrust
+		applyV2Tint(self, thrust)
+	end
+
+	-- Boost sequence -----------------------------------------------------------
+	-- 0 .. intake: intake streaks, engines dim. At intake: flash, ring, fireball.
+	-- intake .. handover: plume overshoots and settles, arcs and the pulsing
+	-- light fade in. Boost end: the plume shrinks and sputters out with smoke.
+	v2.Flash *= math.exp(-dt / V2_FLASH_TAU)
+	if v2.Flash < 0.01 then v2.Flash = 0 end
+	v2.PopFlash *= math.exp(-dt / math.max(v2.PopTau, 0.01))
+	if v2.PopFlash < 0.01 then v2.PopFlash = 0 end
+
+	if boostOn and not v2.BoostOn then
+		v2.BoostOn = true
+		v2.BoostTime = 0
+		v2.Ignited = false
+		v2.BoostScale = (feel and feel.BoostKind == "Mini") and math.clamp(config.ExoticV2MiniBoostScale, 0.2, 1) or 1
+	elseif not boostOn and v2.BoostOn then
+		v2.BoostOn = false
+		v2.FadeTime = 0
+		v2.FadeFrom = v2.Ignited and v2.Plume or 0
+	end
+
+	local intake, plume, light, arcs, smoke = 0, 0, 0, 0, 0
+	local intakeSeconds = math.max(config.ExoticV2BoostIntakeSeconds, 0)
+	if v2.BoostOn then
+		v2.BoostTime += dt
+		local scale = v2.BoostScale
+		if v2.BoostTime < intakeSeconds then
+			intake = 1
+		else
+			if not v2.Ignited then
+				v2.Ignited = true
+				v2.Flash = 2 * scale
+				if visible then
+					emitV2Burst(self, "BoostIgnite", scale)
+				end
+			end
+			local sinceIgnition = v2.BoostTime - intakeSeconds
+			local handover = math.max(config.ExoticV2BoostHandoverSeconds - intakeSeconds, 0.05)
+			local settle = math.clamp(sinceIgnition / handover, 0, 1)
+			local sustain = 0.6 + 0.4 * scale
+			plume = sustain * (1 + 0.3 * (1 - settle) * (1 - settle))
+			arcs = settle * scale
+			light = sustain * settle * (0.7 + 0.3 * math.sin(sinceIgnition * 2 * math.pi * config.ExoticV2BoostPulseHz))
+		end
+		v2.Plume = plume
+	elseif v2.FadeFrom > 0 then
+		v2.FadeTime += dt
+		local fade = v2.FadeTime / math.max(config.ExoticV2BoostFadeSeconds, 0.05)
+		if fade < 1 then
+			local sputter = 0.55 + 0.45 * math.clamp(0.5 + 1.6 * math.noise(now * 14, 3.1), 0, 1)
+			plume = v2.FadeFrom * (1 - fade) * sputter
+			smoke = math.sin(math.pi * fade)
+			light = plume * 0.5
+		else
+			v2.FadeFrom = 0
+		end
+	end
+
+	channels.EngineThrust = throttle * (intake > 0 and 0.6 or 1)
+	channels.V2Idle = powered and 1 or 0
+	channels.V2BoostIntake = intake
+	channels.V2BoostPlume = plume
+	channels.V2BoostArcs = arcs
+	channels.V2BoostSmoke = smoke
+	channels.V2BoostLight = math.min(light + v2.Flash + v2.PopFlash, V2_CHANNEL_CEILING)
+	channels.V2TailRibbon = (feel and feel.Local == true and v2.BoostOn and v2.Ignited) and 1 or 0
+
+	-- Drift: slide sparks, charge glow and arcs, release burst -----------------
+	local grounded = not (feel and feel.Grounded == false)
+	local charge = feel and math.clamp(tonumber(feel.DriftCharge) or 0, 0, 1) or 0
+	if not feel and state.Preview == true and drifting then
+		charge = 0.6
+	end
+	local slip = feel and (tonumber(feel.Slip) or 0) or 0
+	local slipLevel = 0
+	if drifting and grounded and not hidden then
+		slipLevel = math.clamp((math.abs(slip) - config.ExoticV2SlipSparkMin) / 0.4, 0, 1)
+	end
+	local slipToRight = slip * config.ExoticV2SlipSparkSign > 0
+	channels.V2SlipSparksLeft = slipToRight and 0 or slipLevel
+	channels.V2SlipSparksRight = slipToRight and slipLevel or 0
+	channels.V2DriftCharge = (not hidden and charge > 0.04) and charge or 0
+	channels.V2DriftChargeArcs = hidden and 0 or math.clamp((charge - 0.35) / 0.65, 0, 1)
+
+	if charge > v2.PeakCharge then
+		v2.PeakCharge = charge
+	end
+	local boostKind = feel and feel.BoostKind or ""
+	if boostKind == "Mini" and v2.LastBoostKind ~= "Mini" then
+		if visible and not hidden then
+			emitV2Burst(self, "DriftRelease", math.clamp(v2.PeakCharge, 0.4, 1))
+		end
+		v2.PeakCharge = 0
+	end
+	v2.LastBoostKind = boostKind
+	v2.PeakCharge = math.max(0, v2.PeakCharge - dt)
+	if charge > v2.PeakCharge then
+		v2.PeakCharge = charge
+	end
+
+	-- Hover pads and ground effects --------------------------------------------
+	local squash = feel and math.clamp(tonumber(feel.Hover) or 0, 0, 1) or 0
+	local speedMph = feel and (tonumber(feel.SpeedMph) or 0) or 0
+	local speedAlpha = math.clamp(speedMph / math.max(config.ExoticV2DustSpeedFullMph, 1), 0, 1)
+
+	local pad
+	if hidden then
+		pad = 0
+	elseif not powered then
+		pad = config.ExoticV2PadStandby
+	elseif grounded then
+		pad = math.clamp(config.ExoticV2PadBase + config.ExoticV2PadSquashGain * squash + config.ExoticV2PadSpeedGain * speedAlpha, 0, 1)
+	else
+		pad = config.ExoticV2PadAirborne
+	end
+	-- A little instability at speed, on top of each effect's own flicker.
+	pad *= 1 - 0.15 * speedAlpha * math.clamp(0.5 + math.noise(now * 13, 9.7), 0, 1)
+	if self.Reduced then
+		pad *= 0.6
+	end
+
+	local presence = updateGround(self, feel, now, visible)
+
+	local dust
+	if hidden or not powered or not grounded then
+		dust = 0
+	elseif feel then
+		dust = math.clamp(config.ExoticV2DustBase + config.ExoticV2DustSpeedGain * speedAlpha + config.ExoticV2DustSquashGain * squash, 0, 1)
+	elseif state.Preview == true then
+		dust = config.ExoticV2PreviewDust
+	else
+		dust = (tonumber(state.HoverDust) or 0) > 0.05 and config.ExoticV2RemoteDust or 0
+	end
+
+	channels.V2HoverPad = pad
+	channels.V2HoverTight = (powered and grounded) and squash or 0
+	channels.V2GroundDust = dust * presence
+	channels.V2GroundGlow = pad * presence
+	channels.V2GroundLight = config.ExoticV2GroundLightEnabled and pad * presence or 0
+
+	-- Scrape sparks and speed trails (local driving vehicle) -------------------
+	local scrape = feel and (tonumber(feel.Scrape) or 0) or 0
+	if not hidden and scrape > config.ExoticV2ScrapeMin then
+		channels.V2Scrape = math.clamp(scrape, 0, 1)
+		self:SetImpactSide(feel.ImpactX, feel.ImpactZ)
+	else
+		channels.V2Scrape = 0
+	end
+	channels.V2Vapour = (feel and feel.Local == true and not hidden and speedMph >= config.ExoticV2VapourMinMph) and 1 or 0
+end
+
 function VehicleVFXController:Update(dt, state)
 	self.Elapsed += dt
 	local interval = 1 / self.Globals.UpdateRateHz
 	if self.Elapsed < interval then return end
+	local stepSeconds = self.Elapsed
 	self.Elapsed = 0
 
 	state = state or {}
@@ -605,6 +1293,23 @@ function VehicleVFXController:Update(dt, state)
 
 	local now = os.clock()
 	local flashUntil = self.FlashUntil or 0
+	-- Previews switch lights off when several are shown at once (set by the caller).
+	local noLights = state.NoLights == true
+
+	if self.HasV2 then
+		-- A failure here must not stop the rest of the vehicle's effects.
+		local ok, message = pcall(updateV2, self, stepSeconds, state, now, visible)
+		if not ok then
+			-- Do not leave the plume, pads or lights held at their last level.
+			for key in pairs(self.Channels) do
+				self.Channels[key] = key ~= "EngineThrust" and 0 or nil
+			end
+			if not self.V2Warned then
+				self.V2Warned = true
+				warn("[VehicleVFX] Exotic V2 update failed: " .. tostring(message))
+			end
+		end
+	end
 
 	for _, record in ipairs(self.Items) do
 		local object = record.Object
@@ -618,8 +1323,11 @@ function VehicleVFXController:Update(dt, state)
 			if isThrustFireObject(object) then
 				applyThrustFireColour(object, thrustColor)
 			end
-			local ceiling = record.Group == "Boost" and boostCeiling or 1
+			local ceiling = record.Group == "Boost" and boostCeiling or (record.V2 and V2_CHANNEL_CEILING or 1)
 			local drive = visible and math.clamp(intensityForGroup(self, record.Group, state), 0, ceiling) or 0
+			if noLights and record.V2 and record.IsLight then
+				drive = 0
+			end
 			local intensity = drive
 			if self.IsMobile then
 				intensity *= record.Settings.MobileScale
@@ -648,10 +1356,33 @@ function VehicleVFXController:Update(dt, state)
 				-- Category variants (EngineJet_Exotic and so on) scale from their
 				-- RateMin/Width0Min, which default to 0. With JetFloor passed, a jet
 				-- group that is on never drops below the floor.
+				local shaped = drive
 				if jetFloor < 1 and drive < 1 and JET_FLOOR_GROUPS[record.Group] then
-					intensity = jetFloor + (1 - jetFloor) * drive
+					shaped = jetFloor + (1 - jetFloor) * drive
+					intensity = shaped
 					if self.IsMobile then
 						intensity *= record.Settings.MobileScale
+					end
+				end
+				if record.V2 then
+					-- Exotic V2 extras, all optional per effect: flicker, flame
+					-- length through particle speed, and emitter / beam brightness.
+					if record.Flicker then
+						intensity *= 1 - record.Flicker * math.clamp(0.5 + math.noise(now * record.FlickerHz, record.Seed), 0, 1)
+					end
+					if record.SpeedScaleMax and record.SpeedScaleMin and record.BaseSpeed then
+						local speedScale = record.SpeedScaleMin + (record.SpeedScaleMax - record.SpeedScaleMin) * math.min(shaped, V2_MOVER_CEILING)
+						if math.abs(speedScale - record.LastSpeedScale) > 0.03 then
+							record.LastSpeedScale = speedScale
+							object.Speed = NumberRange.new(record.BaseSpeed.Min * speedScale, record.BaseSpeed.Max * speedScale)
+						end
+					end
+					if record.GlowMax and record.GlowMin then
+						local glow = record.GlowMin + (record.GlowMax - record.GlowMin) * intensity
+						if math.abs(glow - (record.LastGlow or -1)) > 0.02 then
+							record.LastGlow = glow
+							object.Brightness = glow
+						end
 					end
 				end
 				if object:IsA("ParticleEmitter") and record.RateMax then
@@ -666,6 +1397,39 @@ function VehicleVFXController:Update(dt, state)
 			end
 		end
 	end
+
+	-- Exotic V2 beam ends: jet length follows the channel (empty on other vehicles).
+	for _, mover in ipairs(self.Movers) do
+		local object = mover.Object
+		if object and object.Parent then
+			local value = visible and math.clamp(intensityForGroup(self, mover.Group, state), 0, V2_MOVER_CEILING) or 0
+			if jetFloor < 1 and value > 0.05 and value < 1 and JET_FLOOR_GROUPS[mover.Group] then
+				value = jetFloor + (1 - jetFloor) * value
+			end
+			if math.abs(value - mover.Last) > 0.01 then
+				mover.Last = value
+				local base = mover.Base
+				object.Position = Vector3.new(base.X, base.Y, mover.ZMin + (mover.ZMax - mover.ZMin) * value)
+			end
+		end
+	end
+end
+
+-- Exotic V2 backfire: fireball puffs and sparks from the boost jets, a flame
+-- tongue on a bang, and a flash through the V2BoostLight channel.
+local function v2Backfire(self, count, flashSeconds, strength)
+	strength = math.clamp(tonumber(strength) or 0.5, 0, 1)
+	-- count is the caller's configured particle total (crackle 4..8, bang 14..24);
+	-- 12 is the count at which each emitter fires its authored BurstCount.
+	local scale = math.clamp((tonumber(count) or 6) / 12, 0.25, 2)
+	local emitted = emitV2Burst(self, "Backfire", scale)
+	if strength >= 0.8 then
+		emitted += emitV2Burst(self, "BackfireBang", scale)
+	end
+	local v2 = self.V2
+	v2.PopFlash = math.max(v2.PopFlash, 0.5 + 1.2 * strength)
+	v2.PopTau = math.clamp((tonumber(flashSeconds) or 0.08) * 0.6, 0.03, 0.3)
+	return emitted
 end
 
 -- One-off burst on this vehicle's existing emitters. kind is "Sparks"
@@ -683,19 +1447,20 @@ function VehicleVFXController:Burst(kind, count)
 		total = math.min(total, cap)
 	end
 
+	-- Each emitter takes an equal share unless it carries a BurstShare weight (V2).
 	local emitters = 0
 	for _, record in ipairs(self.Items) do
 		if record.BurstKind == kind and record.Object and record.Object.Parent then
-			emitters += 1
+			emitters += record.BurstShare or 1
 		end
 	end
-	if emitters == 0 then return 0 end
+	if emitters <= 0 then return 0 end
 
 	local emitted = 0
 	for _, record in ipairs(self.Items) do
 		local object = record.Object
 		if record.BurstKind == kind and object and object.Parent then
-			local share = total / emitters
+			local share = total * (record.BurstShare or 1) / emitters
 			if self.IsMobile then
 				share *= record.Settings.MobileScale
 			end
@@ -715,8 +1480,12 @@ end
 -- and beams (engine-jet ones when there are none) for flashSeconds, then
 -- restores them. Creates nothing; does nothing when there is nothing to use.
 -- count is the desktop particle total. Returns the number of particles emitted.
-function VehicleVFXController:Backfire(count, flashSeconds, flashGain)
+-- strength (optional, 0..1) is the pop strength; Exotic V2 vehicles use it.
+function VehicleVFXController:Backfire(count, flashSeconds, flashGain, strength)
 	if self.Destroyed or not self:Visible() then return 0 end
+	if self.HasV2Backfire then
+		return v2Backfire(self, count, flashSeconds, strength)
+	end
 	count = tonumber(count) or 0
 	if count ~= count or count < 0 then count = 0 end
 
@@ -810,6 +1579,10 @@ function VehicleVFXController:Destroy()
 	end
 	self.Items = {}
 	self.CreatedHosts = {}
+	self.Movers = {}
+	self.GroundPoint = nil
+	self.GroundLightPoint = nil
+	self.ImpactPoint = nil
 end
 
 return VehicleVFXController

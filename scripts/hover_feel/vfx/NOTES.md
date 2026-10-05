@@ -127,3 +127,153 @@ Manual tests:
 15. After the run the boost lights and beams are off and at their normal size; boost again and they look as before.
 16. Pop while boosting: the flash brightens the boost effect and returns to the steady boost look.
 17. Exit the car during a pop run: no effect left on or enlarged. `FeelBackfireEnabled = false`: sound only, no fireball.
+
+## VFX rework (Exotic V2)
+
+Status: generated on disk; not compiled, not installed, not seen. Only a keyword/bracket balance script was run on the three Lua files. Everything visual below is a first pass for Oscar to judge.
+
+### Files
+
+- `templates_exotic.lua`: returns `function(textures)`; builds eight unparented template Folders.
+- `after/VehiclePreviewVFXClient.lua`: template resolution, V2 channels, boost sequence, ground placement, tint, bursts.
+- `after/VehicleVFXClient.lua`: passes the extra state (below) and the remote/preview flags. Nothing else changed.
+- `config_round_v2.json`: the 27 new attributes. `config_spec.json`: all 61.
+
+### Templates
+
+| Template | Attached to | Effects (emitters / beams / lights / trails) | Of which "Full" tier | Desktop only |
+|---|---|---|---|---|
+| `EngineJet_ExoticV2` | each `EngineJet_Exotic` socket (4 per car) | 9 (4 / 4 / 1 / 0) | 3 | 1 |
+| `BoostJet_ExoticV2` | each `BoostJet_Exotic` socket (2 or 3 per car) | 15 (11 / 3 / 1 / 0) | 10 | 1 |
+| `StabiliserJet_ExoticLeftV2`, `...RightV2` | each stabiliser socket (4 per car) | 8 (6 / 2 / 0 / 0) | 5 | 0 |
+| `HoverDust_ExoticV2` | each `HoverDust` socket (5 per car) | 4 (3 / 1 / 0 / 0) | 1 | 0 |
+| `GroundFX_ExoticV2` | one runtime socket at the root, every V2 vehicle | 6 (5 / 0 / 1 / 0) | 2 | 1 |
+| `BrakeSparks_ExoticV2` | one runtime socket, local driving car only | 6 (6 / 0 / 0 / 0) | 0 | 0 |
+| `SpeedTrails_ExoticV2` | one runtime socket, local driving car only | 3 (0 / 0 / 0 / 3) | 0 | 0 |
+
+Backfire emitters live in `BoostJet_ExoticV2` (the boost sockets are the rear jets), so there is no separate backfire template. The old templates are untouched.
+
+### Template selection and category detection
+
+At socket attach the controller collects the vehicle's sockets, then decides once per vehicle:
+
+- Exotic = the model's `CategoryId` or `CockpitId` attribute contains "exotic" (case-insensitive), **or** any socket's `VFXTemplate` contains `_Exotic`. The second test is what I rely on: every Exotic module socket in the dump has it, and preview models are built from the same module templates. The first covers a cockpit with no modules (the dump's cockpit templates carry `CategoryId = "exotic"`; the repository export shows the garage preview is a clone of that template named `LOCAL_PREVIEW_<cockpitId>`).
+- With `ExoticVFXV2Enabled` true, `X_Exotic...` resolves to `X_Exotic...V2`, `HoverDust` to `HoverDust_ExoticV2` and `BrakeSparks` to `BrakeSparks_ExoticV2`, each only if that template exists. Otherwise the name is unchanged, which is today's behaviour. The switch is read at attach, so toggling it affects vehicles spawned afterwards.
+- No socket or vehicle template is edited.
+
+### State the controller now accepts
+
+Existing fields are unchanged. New optional fields, ignored by vehicles without V2 templates: `Powered`, `Hidden`, `Preview`, `NoLights`, `ThrustColor`, and `Feel = { Local, Hover, SpeedMph, Slip, DriftCharge, BoostKind, Scrape, Grounded, ImpactX, ImpactZ }` (local driving car only). `Attach` takes a fourth argument `{ Reduced = true }` for a remote player's vehicle. `Backfire` takes a fourth argument, the pop strength. New method `SetImpactSide(x, z)`.
+
+Feel attributes used: `FeelThrottle`, `FeelBoostKind`, `FeelSlip`, `FeelGrounded`, `FeelHover`, `FeelSpeedMph`, `FeelDriftCharge`, `FeelScrape`, `FeelImpactX`, `FeelImpactZ`, `FeelImpactRevision/Strength`, `FeelLandRevision/Strength`, `FeelPopRevision/Strength`.
+
+### How an effect is driven
+
+Each effect names a channel in `VFXGroup`. Per update the controller computes the channels, then for each effect: `Enabled = value > 0.05`; Rate, Beam width, light brightness and range interpolate between their `...Min` and `...Max` attributes (the existing convention). V2 adds, per effect and all optional: `Flicker`/`FlickerHz` (noise removes up to that fraction), `SpeedScaleMin/Max` (flame length through particle speed), `GlowMin/Max` (emitter or beam Brightness), `ZMin/ZMax` on a beam-end Attachment (jet length), `TintStart/TintEnd`, `WorldSpace`, `VFXBurst`/`BurstCount`/`BurstShare`, `VFXTier`, `DesktopOnly`, `GroundTint`. V2 channels may reach 2 (flashes); beam ends stop at 1.5.
+
+Thrust colour: read from the state (`thrustColour(cache)`, the same model or preview-root `ThrustColor` attribute the old path uses), else the vehicle attribute, else white. Each effect's authored colour sequence is blended toward it by `TintStart` at the start of the sequence and `TintEnd` at the end: 1/1 for energy (ion rim, pads, arcs, charge glow, ground glow and light, tail ribbon), about 0.45/0 for fire (tinted core, fire-coloured body), nothing for sparks, smoke and dust. Applied only when the colour changes. The old path (name-matched `EngineOn_Fire` and so on, recoloured wholesale) is not used by V2 effects, which is why their names avoid those fragments. Note the default thrust colour is white, so energy effects are white until a colour is chosen.
+
+### Effects, drivers and formulas
+
+`T` = throttle input (already smoothed, cut off and floored by `FeelJetFloor` for the local car), `squash = clamp(FeelHover, 0, 1)`, `speed = clamp(FeelSpeedMph / ExoticV2DustSpeedFullMph, 0, 1)`.
+
+1. **Engine jets.** Channel `EngineThrust = T` (x 0.6 during the boost intake). Core and shock-diamond beams, heat sheath and ion rim widen, brighten and lengthen with it (core 1.4 to 4.6 studs, flame 2.0 to 5.4); the flipbook flame body goes from rate 10 to 36 and 45 % to 100 % speed; embers 0 to 8/s; the light 0.3 to 2.2 brightness with a slow 15 % breathing flicker. `V2Idle = 1` while powered drives the idle flicker (50 % flicker at 9 Hz) and the nozzle ion glow, which stay on under thrust.
+2. **Boost.** A state machine on the Boost input's rising and falling edge (see the timing table). A mini-boost (`FeelBoostKind == "Mini"` at the rising edge) uses scale `ExoticV2MiniBoostScale` (0.7) for the ignition burst and flash, and 0.88 for the sustained plume.
+3. **Pops and bangs.** `Backfire` on a V2 car fires the `Backfire` burst (fireball puffs, spark streaks) at `scale = clamp(count / 12, 0.25, 2)` where `count` is the existing configured count (crackle 4..8, bang 14..24), adds the `BackfireBang` flame tongue when strength >= 0.8, and adds `0.5 + 1.2 * strength` to the boost light with decay time `0.6 * flashSeconds`.
+4. **Under the car.**
+   - Pads (`V2HoverPad`): parked `ExoticV2PadStandby` (0.25); airborne `ExoticV2PadAirborne` (0.3); grounded `clamp(ExoticV2PadBase (0.55) + ExoticV2PadSquashGain (0.35) * squash + ExoticV2PadSpeedGain (0.1) * speed)`; then `x (1 - 0.15 * speed * noise)`, and x 0.6 on remote cars. `V2HoverTight = squash` brings in the smaller, brighter pad. Discs are particles moving 0.05 studs/s straight down with `VelocityPerpendicular`, so they lie flat.
+   - Ground point: local driving car, one `Workspace:Raycast` straight down from the root per visual update (30 Hz), `ExoticV2GroundRayStuds` (12) long, excluding the vehicle and all player characters (filter list rebuilt once a second). Hit: 0.12 above the surface, aligned to its normal. Miss: `ExoticV2GroundFallbackStuds` (3) below the root, and hidden when `FeelGrounded` is false. `presence` fades the ground effects from 1 to 0 as the gap grows from 1.6 x fallback to the ray length. Every other vehicle: the mean hover-socket position minus `ExoticV2GroundPadGapStuds` (1.6), set once, no raycast.
+   - Dust ring (`V2GroundDust`): local `clamp(ExoticV2DustBase (0.15) + ExoticV2DustSpeedGain (0.6) * speed + ExoticV2DustSquashGain (0.5) * squash) * presence`; preview `ExoticV2PreviewDust` (0.2); other driving cars `ExoticV2RemoteDust` (0.3); 0 when parked or airborne.
+   - Glow pool (`V2GroundGlow`) and the single light (`V2GroundLight`) = pad level x presence. The light is off with `ExoticV2GroundLightEnabled = false`.
+   - Dust tint: the hit part's `Color`, or `Terrain:GetMaterialColor`, blended `ExoticV2GroundTintMix` (0.55) into the authored dust colours, rewritten only when the colour changes.
+   - Landing: the existing `Burst("Dust", count)` now reaches `LandDust` (share 1) and `LandRing` (share 0.08) at the ground point.
+5. **Drift.** Stabiliser jets use the existing `DriftLeft/DriftRight` inputs. Slide sparks: `clamp((|FeelSlip| - ExoticV2SlipSparkMin (0.12)) / 0.4)` while drifting and grounded, on the side the car slides toward (`FeelSlip > 0` = right; `ExoticV2SlipSparkSign = -1` swaps). Charge glow `V2DriftCharge = FeelDriftCharge`; arcs from 0.35 charge up. When `FeelBoostKind` becomes "Mini" the `DriftRelease` burst fires at the recent peak charge (minimum 0.4).
+6. **Impacts.** `SetImpactSide(FeelImpactX, FeelImpactZ)` moves the spark source to where that direction leaves the car's bounds, half-way down, pointing away from the obstacle and slightly up; then the existing `Burst("Sparks", count)` is split sparks 1 : embers 0.45 : smoke 0.12 : flash 0.05. Without the attributes it sits front-bottom as before. `V2Scrape = FeelScrape` when above `ExoticV2ScrapeMin` (0.1) runs the scrape stream and keeps the source on that side.
+7. **Speed.** Two vapour trails at the rear upper corners when `FeelSpeedMph >= ExoticV2VapourMinMph` (150); a tail ribbon in the thrust colour while the boost is ignited. Bounds come from `Model:GetBoundingBox()` when the root is the PrimaryPart (measured once), else from the hover-socket spread.
+
+Sustained brake sparks are unchanged (still nothing on cars without an authored BrakeSparks socket); `BrakeSparks_ExoticV2` has no `Brake` channel.
+
+### Boost timing
+
+Times are from the rising edge of the Boost input, which the 30 Hz visual step sees up to 33 ms late.
+
+| Time | What happens |
+|---|---|
+| 0 to `ExoticV2BoostIntakeSeconds` (0.1 s) | `V2BoostIntake = 1`: streaks rush into the nozzle. Engine jets at 60 %. Plume and light off. |
+| 0.1 s | `BoostIgnite` burst (3 fireballs, 1 shock ring, 14 embers per boost socket, x scale). Light flash +2 x scale, decaying with a 0.07 s time constant. |
+| 0.1 to `ExoticV2BoostHandoverSeconds` (0.6 s) | `settle` runs 0 to 1. Plume `= sustain * (1 + 0.3 * (1 - settle)^2)`. Arcs and the pulsing light fade in with `settle`. |
+| 0.6 s onward | Plume = sustain. Light `= sustain * (0.7 + 0.3 * sin(2 pi * ExoticV2BoostPulseHz (10) * t))`. Arcs on. Tail ribbon on. |
+| Boost ends | No burst. For `ExoticV2BoostFadeSeconds` (0.6 s): plume `= last * (1 - fade) * sputter`, sputter a 14 Hz noise between 0.55 and 1; smoke `= sin(pi * fade)`; light = half the plume. |
+
+`sustain = 0.6 + 0.4 * scale`. At 30 Hz a 10 Hz pulse is sampled three times per cycle, so it reads as a flicker rather than a smooth sine.
+
+### Budgets (per vehicle, two boost sockets; add 15 effects for a third)
+
+Particle figures are my arithmetic from rate x lifetime, not measurements.
+
+| | Effect instances | Lights | Raycast | Particles alive, cruising / worst case |
+|---|---|---|---|---|
+| Local, desktop | 133 (was 58) | 7 | 1 per update | about 110 / 270 |
+| Local, mobile | 126 | 0 | 1 per update | about 60 / 145 |
+| Remote, desktop | 65 | 0 | none | about 70 / 100 |
+| Preview | 124 (no sparks, no trails) | 7, or 0 when more than `ExoticV2PreviewLightMax` (2) previews are tracked | none | about 45 idle / 180 in thrust-colour mode |
+
+- Plus 18 host parts and 3 runtime sockets on a local car. All created at attach; nothing is created per frame. Per-update work is property writes, and a `NumberRange` only when a speed scale moves by more than 0.03.
+- Worst case = full throttle, sustained boost, drifting with sparks and full charge, scraping, full dust: about 1000 particles/s emitted. `MaxRecommendedParticlesPerVehicle` (1000 live) caps each burst; sustained rates sit well under it.
+- Mobile: rates x `MobileParticleScale` (0.8) x template `MobileScale` (0.7 jets, 0.6 hover and sparks); widths and brightness x `MobileScale`; all lights dropped at attach.
+- Remote: the "Full" tier is dropped at attach (heat sheaths, embers, arcs, smoke, all lights, pad columns, mist, intake, slide sparks, charge and backfire emitters), pads at 60 %, no sparks source, no trails.
+- Culling: beyond `CullDistanceStuds` every channel reads 0, bursts are skipped and the raycast is skipped.
+
+### Preview rule
+
+Previews get the same controller with no `Feel` table: no raycast, no trails, no impact source, ground effects at the fixed offset, pads at the base level, dust at 0.2. Idle mode shows the idle flicker, nozzle glow, pads and glow pool; thrust-colour mode adds the engine jets, plays the boost ignition once and then the sustained plume, fires both stabiliser sides and shows the charge glow at 0.6. Lights (engine, boost, ground) are on only while at most two preview models are tracked.
+
+### Not verified (needs Studio)
+
+- No property name or enum has been compiled. The ones to watch: `FlipbookLayout/Mode/Framerate/StartRandom`, `Enum.ParticleFlipbookMode.Random`, `Orientation`, `Trail.Brightness`, `Beam.Brightness`, `RaycastParams.FilterType = Enum.RaycastFilterType.Exclude`.
+- **Dust ring direction**: `EmissionDirection = Right` with `SpreadAngle = (4, 180)` is meant to give a flat ring in the ground plane. If it comes out as a vertical fan, swap the two SpreadAngle components (`RING_SPREAD`).
+- **Flame direction**: `VelocityParallel` is assumed to put the top of the fire_loop frame downstream. If the tongues point into the nozzle, add `Rotation = NumberRange.new(180, 180)` to the flame emitters.
+- **Pad discs**: flat under the car as intended, and not clipping into the body (0.1 below the socket).
+- **Stabiliser socket orientation**: I assumed +Z leaves the car sideways (rotation 90, -90, 0 in the dump). Sparks rely on world gravity, so they fall whichever way it points.
+- Sizes: all tuned from the old templates' numbers (jet 5 studs by 1.3, boost 7 by 1.8, stabiliser 1.5 by 1), not from seeing the nozzles.
+- Whether a runtime vehicle's root is its `PrimaryPart`, and whether `GetBoundingBox` gives sensible bounds (it includes everything in the model). Spark side placement and trail corners depend on it.
+- Whether a parked local vehicle should show standby pads (set `ExoticV2PadStandby = 0` if not).
+- What should count as ground: the VFX ray uses default params, like the driving rays.
+- The textures; with a missing id the effect uses the old fire, beam, smoke or sparkle texture and no flipbook.
+- Preview modules: the controller attaches sockets once. If a preview swaps modules in place rather than rebuilding the model, the new module gets no effects; that is how it already works.
+- A V2 error is caught and warned once as `[VehicleVFX] Exotic V2 update failed: ...`; look for it in the console.
+
+### Please check live
+
+1. A spawned Exotic and a garage preview both resolve to V2: `VFX_EngineJet_Left_TemplateHost_Invisible_Runtime` should contain `JetCore`, and `VFX_FeelGroundFX` should exist under the root.
+2. The dealership preview model (`Workspace.ClientOnly.VehiclePreview`): confirm it keeps the module sockets with `VFXTemplate = "..._Exotic..."`, or has `CategoryId` or `CockpitId` on the model that `VehicleVFXClient` tracks. If it is a nested Model, tell me which Model carries the attributes.
+3. `vehicle.PrimaryPart` on a spawned Exotic, and the size `GetBoundingBox` returns.
+
+### Manual test list
+
+1. Compile all three; install templates; no console errors or `[VehicleVFX]` warnings.
+2. `ExoticVFXV2Enabled = false`, respawn: exactly the previous look. True, respawn: V2.
+3. Parked: dim pads, no jets. Enter: idle flicker and nozzle glow, pads brighten, glow pool on the ground.
+4. Throttle: jets lengthen and brighten smoothly, shock diamonds visible, light breathes; ion rim in the thrust colour. Change the thrust colour in the garage: rim, pads, arcs and glow follow; fire keeps its colours with a tinted core.
+5. Boost: intake, flash with ring and fireball on the ignition sound, long plume with arcs and a pulsing light, tail ribbon. Release: shrink and sputter with smoke, no bang. Mini-boost: the same, smaller.
+6. Lift after hard thrust: puffs and sparks with each pop; bangs clearly bigger with a flame tongue.
+7. Drive over different surfaces and a ramp: dust ring sits on the ground, takes the surface colour, grows with speed, disappears in the air, bursts on landing. Compress the hover (landing, dips): pads tighten and brighten.
+8. Drift: side jets on the correct side, sparks from the side the car slides toward, charge glow and arcs build, burst when the mini-boost fires.
+9. Hit a wall on the left, right and front: sparks and smoke from that side. Scrape along a wall: continuous stream that stops when clear.
+10. Above 150 mph: two vapour trails; below: none.
+11. Garage and dealership previews in idle and thrust-colour modes; open several previews and confirm lights drop out.
+12. Second player: their Exotic shows jets, pads, glow pool and boost ignition, without arcs, lights or trails. Non-Exotic cars are unchanged.
+13. Mobile or touch emulation: no lights, fewer particles, no errors. Race gate: hidden vehicles show nothing.
+14. Exit and despawn: no `_Runtime` hosts or `VFX_Feel*` sockets left.
+
+### Ideas for a later pass
+
+- Heat-haze distortion behind the jets.
+- A short scorch streak on the ground behind a boost launch.
+- Wet-surface variant: spray instead of dust on water or wet materials, chosen from the same raycast.
+- A quick ripple through the five pads on boost ignition and on landing.
+- Nozzle glow that lingers and cools (orange to dull red) for a second after a long boost.
+- A camera-facing lens streak on the ignition flash and on bangs.
+- Wingtip vortices that curl and thicken in drifts.
+- Drive the engine-jet light from the audio RPM so sound and glow breathe together.
+- The same V2 attributes for Muscle and the other categories; only templates are needed.

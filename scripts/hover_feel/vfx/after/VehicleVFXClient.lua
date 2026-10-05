@@ -77,6 +77,7 @@ local FEEL_DEFAULTS = {
 	FeelBackfireCrackleFlashSeconds = 0.08,
 	FeelBackfireBangFlashSeconds = 0.16,
 	FeelBackfireFlashGain = 1.6,
+	ExoticV2PreviewLightMax = 2,
 }
 local FEEL_IMPACT_LIGHT = 9
 local FEEL_IMPACT_MEDIUM = 25
@@ -89,6 +90,9 @@ local FEEL_POP_CRACKLE_HIGH = 0.7
 local FEEL_LEGACY_HOVER_DUST = 0.45
 
 local feelConfig = table.clone(FEEL_DEFAULTS)
+-- Preview models tracked at the last scan; Exotic V2 lights are off in
+-- previews when there are more than ExoticV2PreviewLightMax of them.
+local previewCount = 0
 
 local function refreshFeelConfig()
 	local config = ReplicatedStorage:FindFirstChild("Config")
@@ -330,6 +334,7 @@ local function runtimeState(cache)
 		local mode=tostring(readAttr(cache,"PreviewVFXMode") or "Idle")
 		local full=mode=="ThrustColour"
 		return {
+			Preview=true,
 			Driving=true,
 			ForcePreview=false,
 			Accelerating=full,
@@ -524,7 +529,9 @@ local function attachTemplateController(cache)
 	if cache.Controller or not (vfxControllerModule and templates) then return end
 	if typeof(vfxControllerModule) ~= "table" or typeof(vfxControllerModule.Attach) ~= "function" then return end
 	local ok, controller = pcall(function()
-		return vfxControllerModule.Attach(cache.Model, templates, UserInputService.TouchEnabled)
+		-- A remote player's vehicle gets the reduced Exotic V2 effect set.
+		local reduced = not isPreviewModel(cache.Model) and modelOwnerUserId(cache.Model) ~= LOCAL_PLAYER.UserId
+		return vfxControllerModule.Attach(cache.Model, templates, UserInputService.TouchEnabled, { Reduced = reduced })
 	end)
 	if ok and controller then
 		cache.Controller = controller
@@ -561,6 +568,8 @@ local function feelInputs(cache, state, dt)
 			ImpactRevision = feelNumber(model, "FeelImpactRevision"),
 			LandRevision = feelNumber(model, "FeelLandRevision"),
 			PopRevision = feelNumber(model, "FeelPopRevision"),
+			-- Raw Feel values handed to the template controller (Exotic V2 effects).
+			Controller = { Local = true },
 			LastImpactBurst = 0,
 			LastLandBurst = 0,
 			ThrottleOut = 0,
@@ -663,6 +672,21 @@ local function feelInputs(cache, state, dt)
 	end
 	feel.BrakeOut = brake
 
+	local forController = feel.Controller
+	forController.Hover = feelNumber(model, "FeelHover")
+	forController.SpeedMph = speedMph
+	forController.Slip = slip
+	forController.DriftCharge = feelNumber(model, "FeelDriftCharge")
+	forController.BoostKind = type(boostKind) == "string" and boostKind or nil
+	forController.Scrape = feelNumber(model, "FeelScrape")
+	if type(grounded) == "boolean" then
+		forController.Grounded = grounded
+	else
+		forController.Grounded = nil
+	end
+	forController.ImpactX = feelNumber(model, "FeelImpactX")
+	forController.ImpactZ = feelNumber(model, "FeelImpactZ")
+
 	return feel
 end
 
@@ -700,7 +724,7 @@ local function feelBursts(cache, feel, hiddenByRace)
 		end
 		local flashGain = 1 + (math.max(feelConfig.FeelBackfireFlashGain, 1) - 1) * math.max(strength, FEEL_POP_CRACKLE_LOW)
 		pcall(function()
-			controller:Backfire(count, flashSeconds, flashGain)
+			controller:Backfire(count, flashSeconds, flashGain, strength)
 		end)
 	end
 
@@ -724,6 +748,9 @@ local function feelBursts(cache, feel, hiddenByRace)
 		if count > 0 then
 			feel.LastImpactBurst = now
 			pcall(function()
+				if typeof(controller.SetImpactSide) == "function" then
+					controller:SetImpactSide(feelNumber(model, "FeelImpactX"), feelNumber(model, "FeelImpactZ"))
+				end
 				controller:Burst("Sparks", count)
 			end)
 		end
@@ -801,6 +828,13 @@ local function updateTemplateController(cache, state, dt)
 			Brake = brake,
 			JetFloor = jetFloor,
 			BoostCeiling = boostCeiling,
+			-- Exotic V2 inputs; ignored by vehicles without V2 templates.
+			Powered = state.Driving == true,
+			Hidden = hiddenByRace,
+			Preview = state.Preview == true,
+			NoLights = state.Preview == true and previewCount > feelConfig.ExoticV2PreviewLightMax,
+			ThrustColor = thrustColour(cache),
+			Feel = (feel and not hiddenByRace) and feel.Controller or nil,
 		})
 	end)
 end
@@ -953,13 +987,18 @@ local function scanCandidates()
 	refreshFeelConfig()
 	runtimeVehicles()
 	previewVehicles()
+	local previews = 0
 	for model, cache in pairs(tracked) do
 		if not model.Parent then
 			destroyCache(cache)
 		else
 			cleanupDead(cache)
+			if isPreviewModel(model) then
+				previews += 1
+			end
 		end
 	end
+	previewCount = previews
 end
 
 local function playerVehicle()

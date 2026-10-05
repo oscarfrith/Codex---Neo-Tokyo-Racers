@@ -27,7 +27,9 @@ AUDIO = ["ReplicatedStorage", "Modules", "Game", "Audio"]
 CAMERA_CONFIG = ["ReplicatedStorage", "Config", "Vehicles", "Camera"]
 DRIVING_CONFIG = ["ReplicatedStorage", "Config", "Vehicles", "Driving"]
 
-FEEL_HELPERS = '''local FEEL_ATTRIBUTES = {"FeelThrottle", "FeelSpeedMph", "FeelSlip", "FeelBoostCharge", "FeelBoostKind", "FeelDriftCharge", "FeelGrounded", "FeelHover", "FeelImpactRevision", "FeelImpactStrength", "FeelLandRevision", "FeelLandStrength", "FeelPopRevision", "FeelPopStrength"}
+FEEL_HELPERS = '''local FEEL_ATTRIBUTES = {"FeelThrottle", "FeelSpeedMph", "FeelSlip", "FeelBoostCharge", "FeelBoostKind", "FeelDriftCharge", "FeelGrounded", "FeelHover", "FeelImpactRevision", "FeelImpactStrength", "FeelLandRevision", "FeelLandStrength", "FeelPopRevision", "FeelPopStrength", "FeelImpactX", "FeelImpactZ", "FeelScrape"}
+-- Car-local directions probed for a wall: left, right, ahead (-Z is forward).
+local FEEL_WALL_PROBES = { { -1, 0 }, { 1, 0 }, { 0, -1 } }
 local function clearFeelState(vehicle)
 	if not vehicle then return end
 	for _, name in ipairs(FEEL_ATTRIBUTES) do vehicle:SetAttribute(name, nil) end
@@ -42,15 +44,48 @@ local function publishFeelState(dt, vehicle, throttle, velocity, speedMph, sideS
 	if not feel then return end
 	local horizontal = Vector3.new(velocity.X, 0, velocity.Z)
 	-- Impact: horizontal speed change that last frame's drive force does not explain.
+	local root = vehicle.PrimaryPart
+	local unexplained = Vector3.zero
 	if feel.PreviousVelocity and not feel.Skip and dt <= 0.05 then
-		local strength = (horizontal - feel.PreviousVelocity - feel.PreviousAcceleration * dt).Magnitude
+		unexplained = horizontal - feel.PreviousVelocity - feel.PreviousAcceleration * dt
+		local strength = unexplained.Magnitude
 		if strength >= configNumber("Driving", "FeelImpactMinStuds", 9, 1, 200) and os.clock() - feel.LastImpact > 0.12 then
 			feel.ImpactRevision += 1
 			feel.LastImpact = os.clock()
+			if root then
+				-- The car was pushed along the unexplained change, so the thing it hit lies the other way.
+				local toward = root.CFrame:VectorToObjectSpace(-unexplained.Unit)
+				vehicle:SetAttribute("FeelImpactX", quantise(toward.X, 0.05))
+				vehicle:SetAttribute("FeelImpactZ", quantise(toward.Z, 0.05))
+			end
 			vehicle:SetAttribute("FeelImpactStrength", strength)
 			vehicle:SetAttribute("FeelImpactRevision", feel.ImpactRevision)
 		end
 	end
+	-- Scrape: something solid beside or ahead of the car while an unexplained force keeps acting on it.
+	feel.ScrapeTimer += dt
+	if root and feel.ScrapeTimer >= 0.1 then
+		feel.ScrapeTimer = 0
+		feel.WallX, feel.WallZ = nil, nil
+		if speedMph > 15 and state.RayParams then
+			local frame = root.CFrame
+			local half = root.Size * 0.5
+			for _, probe in ipairs(FEEL_WALL_PROBES) do
+				local reach = frame:VectorToWorldSpace(Vector3.new(probe[1] * (half.X + 2), 0, probe[2] * (half.Z + 2)))
+				if Workspace:Raycast(frame.Position, reach, state.RayParams) then
+					feel.WallX, feel.WallZ = probe[1], probe[2]
+					break
+				end
+			end
+		end
+	end
+	local rubbing = feel.WallX ~= nil and math.clamp((unexplained.Magnitude / math.max(dt, 1 / 240) - 12) / 60, 0, 1) or 0
+	feel.Scrape += (rubbing - feel.Scrape) * math.clamp(dt * 10, 0, 1)
+	if feel.Scrape > 0.1 and feel.WallX then
+		vehicle:SetAttribute("FeelImpactX", feel.WallX)
+		vehicle:SetAttribute("FeelImpactZ", feel.WallZ)
+	end
+	vehicle:SetAttribute("FeelScrape", quantise(feel.Scrape, 0.05))
 	feel.PreviousVelocity = horizontal
 	feel.PreviousAcceleration = Vector3.new(driveForce.X, 0, driveForce.Z) / mass
 	feel.Skip = feel.SkipNext
@@ -113,7 +148,7 @@ DRIVING_EDITS = [
      '\t\tstate.Vehicle:SetAttribute("DriveReady", false)\n\t\tclearFeelState(state.Vehicle)\n', 1),
     ("\tstate.AccelCameraActive = false\n\tstate.BoostCameraActive = false\n\n\tlocal root = state.Vehicle.PrimaryPart\n",
      "\tstate.AccelCameraActive = false\n\tstate.BoostCameraActive = false\n"
-     "\tstate.Feel = { ImpactRevision = 0, LandRevision = 0, LastImpact = 0, AirTime = 0, FallSpeed = 0, HoverSum = 0, BoostKind = \"\", Skip = true, SkipNext = false, PopRevision = 0, PopsLeft = 0, NextPop = 0, LoadTime = 0, PreviousBoostKind = \"\" }\n"
+     "\tstate.Feel = { ImpactRevision = 0, LandRevision = 0, LastImpact = 0, AirTime = 0, FallSpeed = 0, HoverSum = 0, BoostKind = \"\", Skip = true, SkipNext = false, PopRevision = 0, PopsLeft = 0, NextPop = 0, LoadTime = 0, PreviousBoostKind = \"\", ScrapeTimer = 0, Scrape = 0 }\n"
      "\n\tlocal root = state.Vehicle.PrimaryPart\n", 1),
     ("\t\tlocal lastRelativeYVelocity = 0\n",
      "\t\tlocal lastRelativeYVelocity = 0\n\t\tstate.Feel.HoverSum = 0\n\t\tstate.Feel.SkipNext = false\n\t\tstate.Feel.BoostKind = \"\"\n", 1),
@@ -387,8 +422,27 @@ def main():
         if filled:
             updates.append({"path": profile, "key": "ProfileRevision", "value": 3 + filled})
 
+    # Exotic V2 tuning changed after the first install (new attributes of this delivery, so forced here).
+    stabiliser = ["ReplicatedStorage", "Config", "Vehicles", "StabiliserVFX"]
+    if any(sc["file"]["after"].startswith("vfx/") for sc in scripts.values()):
+        for key, value in (("ExoticV2DustBase", 0.32), ("ExoticV2PadBase", 0.7)):
+            updates.append({"path": stabiliser, "key": key, "value": value})
+
+    # Exotic V2 effect templates: built in Studio by vfx/templates_exotic.lua from the uploaded texture ids
+    # (vfx/texture_ids.json: texture name -> asset id).
+    builders = []
+    if os.path.exists(os.path.join(HERE, "vfx", "templates_exotic.lua")) and any(
+            s["file"]["after"].startswith("vfx/") for s in scripts.values()):
+        ids_path = os.path.join(HERE, "vfx", "texture_ids.json")
+        texture_ids = json.load(io.open(ids_path, encoding="utf-8")) if os.path.exists(ids_path) else {}
+        builders.append({"file": "vfx/templates_exotic.lua",
+                         "parent": ["ReplicatedStorage", "Assets", "VFX", "VehicleTemplates"],
+                         "textures": {name: "rbxassetid://%d" % asset for name, asset in texture_ids.items()
+                                      if not name.startswith("_")}})
+
     data = json.dumps({"placeId": PLACE_ID, "base": BASE, "scripts": scripts, "attributes": attributes,
-                       "instances": instances, "updates": updates, "lateInstances": late}, sort_keys=True)
+                       "instances": instances, "updates": updates, "lateInstances": late,
+                       "builders": builders}, sort_keys=True)
     if "]==]" in data:
         raise SystemExit("config text contains the long-string terminator")
     engine = read("installer_engine.lua")

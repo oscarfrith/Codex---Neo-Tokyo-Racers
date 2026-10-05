@@ -1,0 +1,274 @@
+{
+  "attributes": [
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "ExoticVFXV2Enabled",
+      "value": true
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "ExoticV2BoostIntakeSeconds",
+      "value": 0.1
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "ExoticV2BoostHandoverSeconds",
+      "value": 0.6
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "ExoticV2BoostFadeSeconds",
+      "value": 0.6
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "ExoticV2BoostPulseHz",
+      "value": 10
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "ExoticV2MiniBoostScale",
+      "value": 0.7
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "ExoticV2PadBase",
+      "value": 0.55
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "ExoticV2PadSquashGain",
+      "value": 0.35
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "ExoticV2PadSpeedGain",
+      "value": 0.1
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "ExoticV2PadAirborne",
+      "value": 0.3
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "ExoticV2PadStandby",
+      "value": 0.25
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "ExoticV2DustBase",
+      "value": 0.15
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "ExoticV2DustSpeedGain",
+      "value": 0.6
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "ExoticV2DustSquashGain",
+      "value": 0.5
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "ExoticV2DustSpeedFullMph",
+      "value": 140
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "ExoticV2PreviewDust",
+      "value": 0.2
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "ExoticV2RemoteDust",
+      "value": 0.3
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "ExoticV2GroundRayStuds",
+      "value": 12
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "ExoticV2GroundFallbackStuds",
+      "value": 3
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "ExoticV2GroundPadGapStuds",
+      "value": 1.6
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "ExoticV2GroundTintMix",
+      "value": 0.55
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "ExoticV2GroundLightEnabled",
+      "value": true
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "ExoticV2SlipSparkMin",
+      "value": 0.12
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "ExoticV2SlipSparkSign",
+      "value": 1
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "ExoticV2ScrapeMin",
+      "value": 0.1
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "ExoticV2VapourMinMph",
+      "value": 150
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "ExoticV2PreviewLightMax",
+      "value": 2
+    }
+  ]
+}
