@@ -277,3 +277,104 @@ Previews get the same controller with no `Feel` table: no raycast, no trails, no
 - Wingtip vortices that curl and thicken in drifts.
 - Drive the engine-jet light from the audio RPM so sound and glow breathe together.
 - The same V2 attributes for Muscle and the other categories; only templates are needed.
+
+## Exotic V2, round 3 (Oscar's first look)
+
+Status: generated on disk; not compiled, not installed, not seen. The bracket/keyword balance script passes on the three Lua files. Built on the installed files including the coordinator's review fixes and tuning, which are kept. The boost templates and the boost sequence are untouched. `after/VehicleVFXClient.lua` is unchanged in this round.
+
+Where this section disagrees with "VFX rework (Exotic V2)" above, this section is current: the engine and stabiliser descriptions, the under-car look, the counts and the budgets.
+
+### 1. Engine jets (bigger, the hero)
+
+`EngineJet_ExoticV2` rebuilt, 11 effects (was 9). Full thrust against the previous pass:
+
+| | Before | Now | Boost, for reference |
+|---|---|---|---|
+| Core length / width | 4.6 / 0.55 | 5.2 / 0.82 | 6.0 / 0.95 |
+| Shock diamond width | 0.95 | 1.3, brighter (transparency 0.12 at the nozzle) | 1.5 |
+| Flame length / particle size | 5.4 / 1.15 | 6.2 / 1.55 | 7.0 / 1.8 |
+| Heat sheath width | 1.5 | 2.0 | 2.3 |
+| Ion rim width | 1.25 | 1.75, driven brighter | none |
+| Flame rate | 36 | 48, plus 16 turbulence | 52 |
+| Embers per second | 8 | 22, flickering | 36 |
+| Light | 2.2 / 11 | 3.2 / 13 | 3 / 14 |
+
+- Idle looks alive: a new short `IdleCore` beam (1.3 studs) with 35 % flicker, a larger idle flame and a larger nozzle glow, all on whenever the car is powered.
+- Bigger spread between states: the thrust layers' minimum values are low (core width 0.22 to 0.82, diamonds 0.4 to 1.3, flame speed 30 % to 100 %), so cruise is clearly smaller than full thrust.
+- Turbulence: a second flame emitter (`FlameTurbulence`, 10 degree spread, 60 % flicker at 6 Hz, slight random rotation) throws irregular licks; the flame body, diamonds, core, sheath, rim, embers and light all carry their own flicker at different rates.
+
+### 2. Under the car (clean underglow)
+
+New templates `Underglow_ExoticV2` (6 effects) and `UnderglowSmall_ExoticV2` (3 effects). The controller attaches one unit per V2 socket, as a runtime socket on the root so it is car-aligned and points down whatever the jet socket's rotation is:
+
+| Under | Template | Position relative to the socket | Pool across |
+|---|---|---|---|
+| each HoverDust socket (5) | full | 0.05 below | 3.6 |
+| each engine jet (4) | full | 0.75 below, 1.6 back along the pod from the nozzle | 3.6 front, 4.5 rear |
+| each boost jet (2 or 3) | small | 0.6 below, 1.2 back | 3.0 |
+| each stabiliser (4) | small | 0.3 below, 0.4 inboard | 2.55 |
+
+A unit is: `BellyGlow` (soft glow hugging the underside, thrust colour), `BellyStrip` (a near-white light strip 2.2 studs long along the car, the hot core), `GroundPool` (a flat soft pool on the ground under the unit); the full unit adds `Bloom` (a soft column fading toward the ground), `Motes` (fine slow sparkles drifting down in the gap) and `PoolCore` (a near-white centre to the pool).
+
+- Channels: `V2Underglow = hoverLevel * ExoticV2Underglow`, where `hoverLevel` is the pad formula as before (0.55 + 0.35 x squash + 0.1 x speed when grounded, 0.3 airborne, 0.25 parked, x 0.6 on remote cars, slight speed flicker). Pools use `V2UnderglowPool = V2Underglow * presence`. Engine units use the same two with `x (0.7 + ExoticV2UnderglowThrustGain (0.6) * throttle)`, so they brighten with thrust.
+- Ground height: one shared height. Local driving car: the existing raycast's hit, converted to root-local Y. Everything else: the mean hover-socket height minus `ExoticV2GroundPadGapStuds`. Each pool attachment (`GroundSnap`) gets that Y; written only when it moves by 0.04. Pools lie flat to the car, not to the ground normal.
+- Default look changes: pad graphics off (`ExoticV2PadGraphic = 0` scales `V2HoverPad` and `V2HoverTight`; the pad emitters are still attached and can be brought back by config), dust ring off (`ExoticV2DustBase`, `...SpeedGain`, `...SquashGain`, `ExoticV2PreviewDust`, `ExoticV2RemoteDust` all 0), ground mist on its own channel `V2GroundMist = ExoticV2MistSpeedGain (0.5) * speed * presence` (local car only, so it reads as a faint streak at speed), the single large glow pool scaled by `ExoticV2GroundGlow` (0.35). The landing burst and the one ground PointLight are unchanged.
+- Previews show the underglow with the fixed offset; no raycast.
+
+### 3. Drift thrusters
+
+`StabiliserJet_ExoticLeftV2/RightV2` rebuilt, 11 effects each (was 8).
+
+- **Direction.** The stabiliser sockets are rotated (90, +/-90, 0). If that is Roblox `Orientation` order, their +Z points straight down, which would explain why the old jets could not be seen; I cannot tell from the dump which order it used. The template now carries `VehicleAlign = "Left"/"Right"` and the controller turns its host to the car: +Z straight out of that side, +Y the car's up, at the socket's position. The socket itself is not edited.
+- **Size.** Jet 2.4 to 5.5 studs long; white-hot core 0.55 to 1.0 wide; shock diamonds to 1.5; thrust-colour rim to 1.9; flame body particles 1.5 across at 30 to 40 studs/s, rate 16 to 50.
+- **Flash light** on each firing unit (desktop, local and preview): brightness 1 to 4, range 9 to 14.
+- **Ground sparks**: emitted from a `GroundSnap` attachment on the ground 1 stud outboard of the unit, world-space, so they are left in a stream along the ground. Rate 12 to 70 with `|FeelSlip|`, on the side the car slides toward.
+- **Start puff**: `DriftStartLeft/Right` burst (2 fireball puffs per unit) when a side's thrust channel rises above 0.05.
+- **Which side fires.** `DriftingLeft` is set by DrivingClient as drifting with steering input left. Before this round the left units lit for a left drift, thrusting left, which pushes the car out of the turn. With `ExoticV2DriftThrustersOutside = true` (default) the controller swaps the two channels for V2 vehicles: a left drift fires the right-side units, thrusting right, pushing the car into the turn. Both front and rear units of a side use the same template and channel, so both fire. Set it to false for the old mapping.
+- **Charge**: `V2DriftCharge = max(ExoticV2ChargeIdle (0.12), FeelDriftCharge)` while drifting or charged. The glow is larger (1.5 to 2.4) and its brightness runs 0.3 to 5, so it is dim at 0 and obvious by half. Arcs run from half charge to full (`(charge - 0.5) / 0.5`), larger and up to 26/s. Release burst 6 arcs and a bigger ring.
+
+### Config
+
+`config_round_v3.json`: 7 new attributes. `config_spec.json`: 68, with the changed defaults below written in.
+
+Existing attributes whose default changed (the installer must be told):
+
+| Attribute | Old | New |
+|---|---|---|
+| `ExoticV2DustBase` | 0.15 | 0 |
+| `ExoticV2DustSpeedGain` | 0.6 | 0 |
+| `ExoticV2DustSquashGain` | 0.5 | 0 |
+| `ExoticV2PreviewDust` | 0.2 | 0 |
+| `ExoticV2RemoteDust` | 0.3 | 0 |
+
+### Counts and budgets (two boost sockets)
+
+| | Effect instances | Lights | Particles alive, cruising / worst case (arithmetic, not measured) |
+|---|---|---|---|
+| Local, desktop | 225 (was 133) | 11 | about 250 / 460 |
+| Local, mobile | 214 | 0 | about 140 / 260 |
+| Remote, desktop | 95 (was 65) | 0 | about 110 / 150 |
+| Preview | 216 | 11, or 0 above two previews | about 150 idle / 330 thrust-colour |
+
+- Per template: engine 11 x 4, boost 15 x 2, stabiliser 11 x 4, hover pad 4 x 5 (attached but driven to zero), ground 6, impact 6, trails 3, underglow full 6 x 9 and small 3 x 6.
+- Remote cars get underglow only under the hover sockets and engines, core tier (belly glow and pool): 18 effects.
+- Still nothing created per frame. Extra per-update work: up to 19 attachment Y writes when the ground height changes.
+- The 20 idle pad effects could be skipped at attach when `ExoticV2PadGraphic` is 0; I left them so the look can be switched back without a respawn rule.
+
+### To check live (round 3)
+
+1. Drift thrusters point straight out of the car's sides and are visible from the chase camera; in a left drift the right-side pair fires (flip `ExoticV2DriftThrustersOutside` if Oscar wants the other).
+2. Underglow units sit under the pods, not inside them or floating: adjust `Drop` and `Inset` in `V2_UNDERGLOW_UNITS` (controller) per kind. The engine figure assumes the pod body is ahead of its nozzle socket.
+3. Pools lie on the road under each unit for the driving car and under parked, remote and preview cars; they extend a little beyond the body from the chase camera; brightness on a lit road and at night (`ExoticV2Underglow`, and `GlowMax` on `GroundPool` / `PoolCore`).
+4. `BellyStrip` reads as a light strip (it uses the jet_core texture stretched once along 2.2 studs); if it looks like a jet, swap its texture to glow_soft.
+5. Engine jets at full thrust stay just under the boost plume, and the car is not hidden behind four plumes from the chase camera.
+6. Ground sparks in a drift start at ground level beside the car.
+
+### Manual tests (round 3)
+
+1. Idle, cruise, full thrust: three clearly different engine states; plume shape visibly unsteady.
+2. Under the car: glow under every pod, a pool under each, motes in the gap; no discs, no dust ring. Brightens on hover compression, dims in the air, engine pools brighten with throttle.
+3. Garage and dealership previews show the underglow and pools.
+4. Left and right drifts: long side jets on the outside of the turn, front and rear, with a flash light, a puff at the start and sparks along the ground; charge glow dim at first, obvious by half, arcing at full, burst on the mini-boost.
+5. `ExoticV2PadGraphic = 1` and `ExoticV2DustBase = 0.15`: the old pads and dust ring return.
+6. Mobile: no lights, fewer particles. Remote car: underglow under hover sockets and engines only.

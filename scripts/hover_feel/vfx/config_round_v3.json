@@ -1,0 +1,74 @@
+{
+  "attributes": [
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "ExoticV2PadGraphic",
+      "value": 0
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "ExoticV2Underglow",
+      "value": 1
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "ExoticV2UnderglowThrustGain",
+      "value": 0.6
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "ExoticV2GroundGlow",
+      "value": 0.35
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "ExoticV2MistSpeedGain",
+      "value": 0.5
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "ExoticV2DriftThrustersOutside",
+      "value": true
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "ExoticV2ChargeIdle",
+      "value": 0.12
+    }
+  ]
+}

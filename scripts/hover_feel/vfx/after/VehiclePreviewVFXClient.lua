@@ -25,12 +25,12 @@ local V2_DEFAULTS = {
 	ExoticV2PadSpeedGain = 0.1,
 	ExoticV2PadAirborne = 0.3,
 	ExoticV2PadStandby = 0.25,
-	ExoticV2DustBase = 0.15,
-	ExoticV2DustSpeedGain = 0.6,
-	ExoticV2DustSquashGain = 0.5,
+	ExoticV2DustBase = 0,
+	ExoticV2DustSpeedGain = 0,
+	ExoticV2DustSquashGain = 0,
 	ExoticV2DustSpeedFullMph = 140,
-	ExoticV2PreviewDust = 0.2,
-	ExoticV2RemoteDust = 0.3,
+	ExoticV2PreviewDust = 0,
+	ExoticV2RemoteDust = 0,
 	ExoticV2GroundRayStuds = 12,
 	ExoticV2GroundFallbackStuds = 3,
 	ExoticV2GroundPadGapStuds = 1.6,
@@ -40,6 +40,14 @@ local V2_DEFAULTS = {
 	ExoticV2SlipSparkSign = 1,
 	ExoticV2ScrapeMin = 0.1,
 	ExoticV2VapourMinMph = 150,
+	-- Round 3: clean underglow instead of pad graphics and a dust ring.
+	ExoticV2PadGraphic = 0,
+	ExoticV2Underglow = 1,
+	ExoticV2UnderglowThrustGain = 0.6,
+	ExoticV2GroundGlow = 0.35,
+	ExoticV2MistSpeedGain = 0.5,
+	ExoticV2DriftThrustersOutside = true,
+	ExoticV2ChargeIdle = 0.12,
 }
 
 local V2_SHARED_TEMPLATES = {
@@ -52,6 +60,19 @@ local V2_IMPACT_TEMPLATE = "BrakeSparks_ExoticV2"
 local V2_TRAILS_TEMPLATE = "SpeedTrails_ExoticV2"
 local V2_GROUND_SOCKET_NAME = "VFX_FeelGroundFX"
 local V2_TRAILS_SOCKET_NAME = "VFX_FeelSpeedTrails"
+local V2_UNDERGLOW_SOCKET_NAME = "VFX_FeelUnderglow"
+local V2_UNDERGLOW_TEMPLATE = "Underglow_ExoticV2"
+local V2_UNDERGLOW_SMALL_TEMPLATE = "UnderglowSmall_ExoticV2"
+-- One underglow unit per V2 socket. Drop: studs below the socket (the belly of
+-- the pod). Inset: studs back along the pod from its nozzle. Scale: particle
+-- size (pool width). Suffix: channel suffix, so engine units follow thrust.
+-- LocalOnly units are not attached on remote players' vehicles.
+local V2_UNDERGLOW_UNITS = {
+	Hover = { Template = V2_UNDERGLOW_TEMPLATE, Drop = 0.05, Inset = 0, Scale = 1 },
+	Engine = { Template = V2_UNDERGLOW_TEMPLATE, Drop = 0.75, Inset = 1.6, Scale = 1, RearScale = 1.25, Suffix = "Engine" },
+	Boost = { Template = V2_UNDERGLOW_SMALL_TEMPLATE, Drop = 0.6, Inset = 1.2, Scale = 1, LocalOnly = true },
+	Stabiliser = { Template = V2_UNDERGLOW_SMALL_TEMPLATE, Drop = 0.3, Inset = 0.4, Scale = 0.85, LocalOnly = true },
+}
 local V2_CHANNEL_CEILING = 2
 local V2_MOVER_CEILING = 1.5
 local V2_FLASH_TAU = 0.07
@@ -557,7 +578,20 @@ local function attachWholeTemplate(self, socket, template, templateName)
 		local clone = templatePart:Clone()
 		clone.Name = socket.Name .. "_" .. templatePart.Name .. "_Runtime"
 		prepRuntimeHost(clone)
-		clone.CFrame = socket.WorldCFrame * relative
+		-- V2 "VehicleAlign" templates ignore the socket's rotation: +Z points out
+		-- of that side of the car and +Y is the car's up (drift thrusters).
+		local hostCFrame = socket.WorldCFrame
+		local alignRoot = self.Root
+		local hasRoot = alignRoot ~= nil and alignRoot:IsA("BasePart")
+		local align = isV2 and template:GetAttribute("VehicleAlign") or nil
+		if hasRoot and (align == "Left" or align == "Right") then
+			local rootCFrame = alignRoot.CFrame
+			local outward = align == "Left" and -rootCFrame.RightVector or rootCFrame.RightVector
+			local up = rootCFrame.UpVector
+			hostCFrame = CFrame.fromMatrix(socket.WorldPosition, up:Cross(outward), up, outward)
+		end
+		clone.CFrame = hostCFrame * relative
+		local hostY = hasRoot and alignRoot.CFrame:PointToObjectSpace(clone.Position).Y or 0
 		clone.Parent = parentPart
 		weldNestedParts(clone)
 
@@ -582,6 +616,17 @@ local function attachWholeTemplate(self, socket, template, templateName)
 				end
 			elseif isV2 and descendant:IsA("Attachment") then
 				trackMover(self, descendant)
+				-- Kept on the ground by applyGroundSnaps. Only used in hosts whose
+				-- up axis is the car's (runtime sockets and VehicleAlign templates).
+				if descendant:GetAttribute("GroundSnap") == true then
+					table.insert(self.GroundSnaps, {
+						Object = descendant,
+						Base = descendant.Position,
+						HostY = hostY,
+						Lift = numberAttribute(descendant, "GroundLift") or 0.1,
+					})
+					self.SnapY = nil
+				end
 			end
 		end
 	end
@@ -597,13 +642,16 @@ end
 -- root part (so positions inside the clone are root-local). Returns the cloned
 -- host part, or nil when the template is missing or nothing was attached. The
 -- Attachment and the clone are destroyed with the controller's other hosts.
-local function attachRuntimeTemplate(self, socketName, templateName)
+local function attachRuntimeTemplate(self, socketName, templateName, position)
 	local template = self.Templates and self.Templates:FindFirstChild(templateName)
 	local root = self.Root
 	if not (template and root and root.Parent and root:IsA("BasePart")) then return nil end
 
 	local socket = Instance.new("Attachment")
 	socket.Name = socketName
+	if position then
+		socket.Position = position
+	end
 	socket.Parent = root
 
 	local firstHost = #self.CreatedHosts + 1
@@ -685,6 +733,59 @@ local function attachGroundFX(self, hoverCentre)
 	placeGroundFixed(self)
 end
 
+-- Which underglow unit a resolved V2 template gets (nil = none).
+local function underglowKind(templateName)
+	if type(templateName) ~= "string" then return nil end
+	if templateName == V2_HOVER_TEMPLATE then return "Hover" end
+	if string.sub(templateName, -2) ~= "V2" then return nil end
+	if string.find(templateName, "EngineJet", 1, true) then return "Engine" end
+	if string.find(templateName, "BoostJet", 1, true) then return "Boost" end
+	if string.find(templateName, "StabiliserJet", 1, true) then return "Stabiliser" end
+	return nil
+end
+
+local function scaledSequence(sequence, scale)
+	local keypoints = {}
+	for index, keypoint in ipairs(sequence.Keypoints) do
+		keypoints[index] = NumberSequenceKeypoint.new(keypoint.Time, keypoint.Value * scale, keypoint.Envelope * scale)
+	end
+	return NumberSequence.new(keypoints)
+end
+
+-- Exotic V2 underglow: one car-aligned unit under every hover socket and jet.
+-- units = { { Kind, Position (root-local socket position), Back (root-local jet
+-- direction) }, ... }. Each unit is a runtime socket on the root, so it is
+-- destroyed with the controller's other hosts.
+local function attachUnderglowUnits(self, units)
+	for _, unit in ipairs(units) do
+		local spec = V2_UNDERGLOW_UNITS[unit.Kind]
+		if spec and not (self.Reduced and spec.LocalOnly) then
+			local back = Vector3.new(unit.Back.X, 0, unit.Back.Z)
+			local position = unit.Position - Vector3.new(0, spec.Drop, 0)
+			if back.Magnitude > 0.3 then
+				position -= back.Unit * spec.Inset
+			end
+			local firstItem = #self.Items + 1
+			local host = attachRuntimeTemplate(self, V2_UNDERGLOW_SOCKET_NAME, spec.Template, position)
+			if host then
+				local scale = spec.Scale
+				if spec.RearScale and unit.Position.Z > 0 then
+					scale = spec.RearScale
+				end
+				for index = firstItem, #self.Items do
+					local record = self.Items[index]
+					if spec.Suffix and string.sub(record.Group, 1, 11) == "V2Underglow" then
+						record.Group = record.Group .. spec.Suffix
+					end
+					if scale ~= 1 and record.Object:IsA("ParticleEmitter") then
+						record.Object.Size = scaledSequence(record.Object.Size, scale)
+					end
+				end
+			end
+		end
+	end
+end
+
 local function isRuntimeHostDescendant(instance)
 	local current = instance
 	while current do
@@ -735,11 +836,20 @@ local function attachVehicleSocketsOnce(self)
 	local hoverSum = Vector3.new(0, 0, 0)
 	local hoverCount = 0
 	local hoverExtentX, hoverExtentZ = 0, 0
+	local underglowUnits = {}
 	for index, socket in ipairs(sockets) do
 		local templateName = resolveTemplateName(self, templateNames[index])
 		local template = templates:FindFirstChild(templateName)
 		if template then
 			attachWholeTemplate(self, socket, template, templateName)
+			local unitKind = self.ExoticV2 and underglowKind(templateName) or nil
+			if unitKind and root and root:IsA("BasePart") then
+				table.insert(underglowUnits, {
+					Kind = unitKind,
+					Position = root.CFrame:PointToObjectSpace(socket.WorldPosition),
+					Back = root.CFrame:VectorToObjectSpace(-socket.WorldCFrame.LookVector),
+				})
+			end
 			if templateName == V2_HOVER_TEMPLATE and root and root:IsA("BasePart") then
 				local localPosition = root.CFrame:PointToObjectSpace(socket.WorldPosition)
 				hoverSum += localPosition
@@ -750,9 +860,17 @@ local function attachVehicleSocketsOnce(self)
 		end
 	end
 
+	-- Fixed ground height (root-local Y) for everything that is not the local
+	-- driving car: below the hover sockets, or the fallback gap below the root.
+	local padGap = math.max(v2Config.ExoticV2GroundPadGapStuds, 0)
+	self.GroundSnapFixedY = hoverCount > 0 and (hoverSum.Y / hoverCount - padGap) or -v2Config.ExoticV2GroundFallbackStuds
+
 	if hoverCount > 0 then
 		self.HoverExtent = Vector3.new(hoverExtentX, 0, hoverExtentZ)
 		attachGroundFX(self, hoverSum / hoverCount)
+	end
+	if #underglowUnits > 0 then
+		attachUnderglowUnits(self, underglowUnits)
 	end
 end
 
@@ -875,6 +993,7 @@ function VehicleVFXController.Attach(vehicle, templates, isMobile, options)
 		IsMobile = isMobile == true,
 		Reduced = type(options) == "table" and options.Reduced == true,
 		Movers = {},
+		GroundSnaps = {},
 		V2 = {
 			BoostOn = false,
 			BoostTime = 0,
@@ -1005,14 +1124,31 @@ end
 -- raycast per visual update. Every other vehicle (parked, remote, preview):
 -- a fixed offset below the hover sockets, no raycast. Returns 0..1, how much
 -- ground there is to show effects on.
+local function applyGroundSnaps(self, groundY)
+	if self.SnapY and math.abs(groundY - self.SnapY) < 0.04 then return end
+	self.SnapY = groundY
+	for _, snap in ipairs(self.GroundSnaps) do
+		local object = snap.Object
+		if object.Parent then
+			local base = snap.Base
+			object.Position = Vector3.new(base.X, groundY + snap.Lift - snap.HostY, base.Z)
+		end
+	end
+end
+
 local function updateGround(self, feel, now, visible)
 	local groundPoint = self.GroundPoint
-	if not (groundPoint and groundPoint.Parent) then return 1 end
+	local fixedY = self.GroundSnapFixedY or -3
+	if not (groundPoint and groundPoint.Parent) then
+		applyGroundSnaps(self, fixedY)
+		return 1
+	end
 	local root = self.Root
 	if not (feel and feel.Local == true and visible and root and root.Parent) then
 		if not self.GroundFixed then
 			placeGroundFixed(self)
 		end
+		applyGroundSnaps(self, fixedY)
 		return 1
 	end
 	self.GroundFixed = false
@@ -1070,6 +1206,8 @@ local function updateGround(self, feel, now, visible)
 	if lightPoint and lightPoint.Parent then
 		lightPoint.WorldPosition = position + up * V2_GROUND_LIGHT_HEIGHT
 	end
+	-- Pools and ground sparks share this one ground height (root-local).
+	applyGroundSnaps(self, root.CFrame:PointToObjectSpace(position).Y)
 	return presence
 end
 
@@ -1205,8 +1343,37 @@ local function updateV2(self, dt, state, now, visible)
 	local slipToRight = slip * config.ExoticV2SlipSparkSign > 0
 	channels.V2SlipSparksLeft = slipToRight and 0 or slipLevel
 	channels.V2SlipSparksRight = slipToRight and slipLevel or 0
-	channels.V2DriftCharge = (not hidden and charge > 0.04) and charge or 0
-	channels.V2DriftChargeArcs = hidden and 0 or math.clamp((charge - 0.35) / 0.65, 0, 1)
+	-- Dim while drifting at no charge, obvious by half, arcs from half to full.
+	local chargeLevel = 0
+	if not hidden and (drifting or charge > 0.04) then
+		chargeLevel = math.max(math.clamp(config.ExoticV2ChargeIdle, 0, 1), charge)
+	end
+	channels.V2DriftCharge = chargeLevel
+	channels.V2DriftChargeArcs = hidden and 0 or math.clamp((charge - 0.5) / 0.5, 0, 1)
+
+	-- Drift thrusters. DriftingLeft means drifting while steering left. With
+	-- ExoticV2DriftThrustersOutside the units on the outside of the turn fire
+	-- (right side for a left drift): thrusting outward, they push the car into
+	-- the turn. Front and rear units of a side share one template, so both fire.
+	local thrustLeft = hidden and 0 or math.clamp(tonumber(state.DriftLeft) or 0, 0, 1)
+	local thrustRight = hidden and 0 or math.clamp(tonumber(state.DriftRight) or 0, 0, 1)
+	if config.ExoticV2DriftThrustersOutside then
+		thrustLeft, thrustRight = thrustRight, thrustLeft
+	end
+	channels.DriftLeft = thrustLeft
+	channels.DriftRight = thrustRight
+	local leftOn = thrustLeft > 0.05
+	local rightOn = thrustRight > 0.05
+	if visible then
+		if leftOn and not v2.ThrustLeftOn then
+			emitV2Burst(self, "DriftStartLeft", 1)
+		end
+		if rightOn and not v2.ThrustRightOn then
+			emitV2Burst(self, "DriftStartRight", 1)
+		end
+	end
+	v2.ThrustLeftOn = leftOn
+	v2.ThrustRightOn = rightOn
 
 	if charge > v2.PeakCharge then
 		v2.PeakCharge = charge
@@ -1258,10 +1425,27 @@ local function updateV2(self, dt, state, now, visible)
 		dust = (tonumber(state.HoverDust) or 0) > 0.05 and config.ExoticV2RemoteDust or 0
 	end
 
-	channels.V2HoverPad = pad
-	channels.V2HoverTight = (powered and grounded) and squash or 0
+	local mist = 0
+	if feel and powered and grounded then
+		mist = math.clamp(config.ExoticV2MistSpeedGain * speedAlpha, 0, 1)
+	end
+
+	-- Underglow: the same hover level drives the belly glow and the ground
+	-- pools; engine units also brighten with thrust. The pad graphics and the
+	-- large glow pool are scaled by config (pad graphics off by default).
+	local padGraphic = math.max(config.ExoticV2PadGraphic, 0)
+	local underglow = pad * math.max(config.ExoticV2Underglow, 0)
+	local engineGain = 0.7 + math.max(config.ExoticV2UnderglowThrustGain, 0) * throttle
+
+	channels.V2HoverPad = pad * padGraphic
+	channels.V2HoverTight = (powered and grounded) and squash * padGraphic or 0
+	channels.V2Underglow = math.min(underglow, V2_CHANNEL_CEILING)
+	channels.V2UnderglowEngine = math.min(underglow * engineGain, V2_CHANNEL_CEILING)
+	channels.V2UnderglowPool = math.min(underglow * presence, V2_CHANNEL_CEILING)
+	channels.V2UnderglowPoolEngine = math.min(underglow * engineGain * presence, V2_CHANNEL_CEILING)
 	channels.V2GroundDust = dust * presence
-	channels.V2GroundGlow = pad * presence
+	channels.V2GroundMist = mist * presence
+	channels.V2GroundGlow = pad * presence * math.max(config.ExoticV2GroundGlow, 0)
 	channels.V2GroundLight = config.ExoticV2GroundLightEnabled and pad * presence or 0
 
 	-- Scrape sparks and speed trails (local driving vehicle) -------------------
@@ -1302,7 +1486,9 @@ function VehicleVFXController:Update(dt, state)
 		if not ok then
 			-- Do not leave the plume, pads or lights held at their last level.
 			for key in pairs(self.Channels) do
-				self.Channels[key] = key ~= "EngineThrust" and 0 or nil
+				-- Engine and drift channels fall back to the plain inputs instead.
+				local passThrough = key == "EngineThrust" or key == "DriftLeft" or key == "DriftRight"
+				self.Channels[key] = (not passThrough) and 0 or nil
 			end
 			if not self.V2Warned then
 				self.V2Warned = true
@@ -1580,6 +1766,7 @@ function VehicleVFXController:Destroy()
 	self.Items = {}
 	self.CreatedHosts = {}
 	self.Movers = {}
+	self.GroundSnaps = {}
 	self.GroundPoint = nil
 	self.GroundLightPoint = nil
 	self.ImpactPoint = nil

@@ -27,6 +27,8 @@
 --   VFXTier = "Full"           dropped on remote players' vehicles
 --   DesktopOnly = true         dropped on mobile
 --   GroundTint = true          colour follows the ground under the car
+--   GroundSnap = true (on an Attachment), GroundLift   kept on the ground by the driver
+--   VehicleAlign = "Left"/"Right" (on the Folder)   host turned to the car: +Z out of that side
 --
 -- Effect names must never contain "engineon", "engineoff", "booston" or
 -- "stabiliseron": VehicleVFXClient toggles and recolours anything so named.
@@ -39,18 +41,21 @@ local MOBILE_SCALE_JET = 0.7
 local MOBILE_SCALE_HOVER = 0.6
 local MOBILE_SCALE_SPARKS = 0.6
 
--- Engine jet (four per car). Existing Exotic jet: 5 studs long, about 1.3 wide.
-local ENGINE_CORE_LENGTH_MIN = 1.4
-local ENGINE_CORE_LENGTH_MAX = 4.6
+-- Engine jet (four per car). The hero at all times; at full thrust it approaches
+-- the boost plume (core 6 long and 0.95 wide, flame 7 long) but stays below it.
+local ENGINE_CORE_LENGTH_MIN = 1.2
+local ENGINE_CORE_LENGTH_MAX = 5.2
 local ENGINE_FLAME_LENGTH_MIN = 2.0
-local ENGINE_FLAME_LENGTH_MAX = 5.4
+local ENGINE_FLAME_LENGTH_MAX = 6.2
 local ENGINE_SHEATH_LENGTH_MIN = 2.6
-local ENGINE_SHEATH_LENGTH_MAX = 6.4
-local ENGINE_FLAME_RATE = 36
-local ENGINE_IDLE_RATE = 14
-local ENGINE_EMBER_RATE = 8
-local ENGINE_LIGHT_BRIGHTNESS = 2.2
-local ENGINE_LIGHT_RANGE = 11
+local ENGINE_SHEATH_LENGTH_MAX = 6.6
+local ENGINE_FLAME_RATE = 48
+local ENGINE_IDLE_RATE = 20
+local ENGINE_EMBER_RATE = 22
+local ENGINE_LIGHT_BRIGHTNESS = 3.2
+local ENGINE_LIGHT_RANGE = 13
+local ENGINE_TURBULENCE_RATE = 16
+local ENGINE_IDLE_LENGTH = 1.3
 
 -- Boost jet (two or three per car). Existing Exotic boost: 7 studs long, 1.8 wide.
 local BOOST_CORE_LENGTH_MIN = 2.5
@@ -70,14 +75,18 @@ local BACKFIRE_PUFFS = 2
 local BACKFIRE_SPARKS = 7
 local BACKFIRE_TONGUES = 5
 
--- Stabiliser jet (four per car). Existing: 1.5 studs long, 1 wide.
-local STAB_LENGTH_MIN = 0.7
-local STAB_LENGTH_MAX = 2.0
-local STAB_FLAME_RATE = 30
-local STAB_SPARK_RATE = 45
-local STAB_CHARGE_GLOW_RATE = 16
-local STAB_CHARGE_ARC_RATE = 12
-local STAB_RELEASE_ARCS = 4
+-- Drift thruster (four per car): a hard side jet, 2.4 to 5.5 studs long and up
+-- to 1.5 wide, turned to the car's side by the driver.
+local STAB_LENGTH_MIN = 2.4
+local STAB_LENGTH_MAX = 5.5
+local STAB_FLAME_RATE = 75
+local STAB_SPARK_RATE = 70
+local STAB_CHARGE_GLOW_RATE = 22
+local STAB_CHARGE_ARC_RATE = 26
+local STAB_RELEASE_ARCS = 6
+local STAB_START_PUFFS = 2
+local STAB_LIGHT_BRIGHTNESS = 4
+local STAB_LIGHT_RANGE = 14
 
 -- Hover pad (five per car) and ground effects (one per car).
 local PAD_SIZE = 3.0
@@ -89,6 +98,13 @@ local GROUND_MIST_RATE = 16
 local GROUND_GLOW_SIZE = 12
 local GROUND_LIGHT_BRIGHTNESS = 2.6
 local GROUND_LIGHT_RANGE = 18
+
+-- Underglow units (one under every hover socket and every jet).
+local UNDERGLOW_POOL_SIZE = 3.6
+local UNDERGLOW_SMALL_POOL_SIZE = 3.0
+local UNDERGLOW_STRIP_HALF_LENGTH = 1.1
+local UNDERGLOW_BLOOM_LENGTH = 1.5
+local UNDERGLOW_MOTE_RATE = 7
 
 -- Impact and scrape sparks (one runtime source on the local car).
 local SCRAPE_SPARK_RATE = 70
@@ -353,11 +369,12 @@ return function(textures)
 	local function buildEngineJet()
 		local folder, host = newTemplate(
 			"EngineJet_ExoticV2",
-			"Exotic V2 engine jet: core, shock diamonds, flame body, heat sheath, ion rim, idle flicker, light.",
+			"Exotic V2 engine jet: white-hot core, shock diamonds, turbulent flame body, heat sheath, ion rim, live idle, light.",
 			MOBILE_SCALE_JET
 		)
 
 		local nozzle = newAttachment(host, "Nozzle", Vector3.new(0, 0, -0.3))
+		local idleEnd = newAttachment(host, "IdleEnd", Vector3.new(0, 0, ENGINE_IDLE_LENGTH))
 		local coreEnd = newAttachment(host, "CoreEnd", Vector3.new(0, 0, ENGINE_CORE_LENGTH_MAX), {
 			VFXGroup = "EngineThrust",
 			ZMin = ENGINE_CORE_LENGTH_MIN,
@@ -374,118 +391,205 @@ return function(textures)
 			ZMax = ENGINE_SHEATH_LENGTH_MAX,
 		})
 
+		-- Thrust layers: off at idle, small at cruise, violent at full thrust. The
+		-- Min values are deliberately low so the three states read differently.
 		newBeam(nozzle, coreEnd, "JetCore", "jet_core", {
-			Width0 = 0.55,
-			Width1 = 0.1,
-			Brightness = 3,
-			TextureLength = 3,
-			TextureSpeed = 6,
+			Width0 = 0.82,
+			Width1 = 0.16,
+			Brightness = 5,
+			TextureLength = 3.2,
+			TextureSpeed = 9,
 			Color = WHITE_COLOURS,
-			Transparency = numbers({ { 0, 0.05 }, { 0.7, 0.3 }, { 1, 1 } }),
+			Transparency = numbers({ { 0, 0 }, { 0.75, 0.2 }, { 1, 1 } }),
 		}, {
 			VFXGroup = "EngineThrust",
-			Width0Min = 0.24,
-			Width0Max = 0.55,
-			Width1Min = 0.05,
-			Width1Max = 0.1,
-			GlowMin = 1.5,
-			GlowMax = 3.5,
-			TintStart = 0.3,
-			TintEnd = 0.85,
-			Flicker = 0.08,
-			FlickerHz = 19,
+			Width0Min = 0.22,
+			Width0Max = 0.82,
+			Width1Min = 0.04,
+			Width1Max = 0.16,
+			GlowMin = 1.6,
+			GlowMax = 5.5,
+			TintStart = 0.15,
+			TintEnd = 0.8,
+			Flicker = 0.12,
+			FlickerHz = 23,
 		})
 
 		newBeam(nozzle, flameEnd, "ShockDiamonds", "shock_diamonds", {
-			Width0 = 0.95,
-			Width1 = 0.4,
-			Brightness = 2,
-			TextureLength = 1.6,
-			TextureSpeed = 0.35,
+			Width0 = 1.3,
+			Width1 = 0.5,
+			Brightness = 3.2,
+			TextureLength = 1.9,
+			TextureSpeed = 0.5,
 			Color = colours({ { 0, FIRE_CORE }, { 1, FIRE_MID } }),
-			Transparency = numbers({ { 0, 0.35 }, { 0.6, 0.55 }, { 1, 1 } }),
+			Transparency = numbers({ { 0, 0.12 }, { 0.6, 0.35 }, { 1, 1 } }),
 		}, {
 			VFXGroup = "EngineThrust",
-			Width0Min = 0.45,
-			Width0Max = 0.95,
-			Width1Min = 0.2,
-			Width1Max = 0.4,
+			Width0Min = 0.4,
+			Width0Max = 1.3,
+			Width1Min = 0.16,
+			Width1Max = 0.5,
+			GlowMin = 1.2,
+			GlowMax = 3.6,
 			TintStart = 0.25,
 			TintEnd = 0.6,
+			Flicker = 0.14,
+			FlickerHz = 17,
 		})
 
 		newBeam(nozzle, sheathEnd, "HeatSheath", "heat_streak", {
-			Width0 = 1.5,
-			Width1 = 0.9,
-			Brightness = 1,
-			LightEmission = 0.7,
-			TextureLength = 2.4,
-			TextureSpeed = 4,
+			Width0 = 2.0,
+			Width1 = 1.25,
+			Brightness = 1.4,
+			LightEmission = 0.75,
+			TextureLength = 2.6,
+			TextureSpeed = 6,
 			Color = colours({ { 0, FIRE_MID }, { 1, FIRE_EDGE } }),
-			Transparency = numbers({ { 0, 0.8 }, { 0.3, 0.72 }, { 1, 1 } }),
+			Transparency = numbers({ { 0, 0.68 }, { 0.3, 0.6 }, { 1, 1 } }),
 		}, {
 			VFXGroup = "EngineThrust",
 			VFXTier = "Full",
-			Width0Min = 0.8,
-			Width0Max = 1.5,
-			Width1Min = 0.5,
-			Width1Max = 0.9,
+			Width0Min = 0.7,
+			Width0Max = 2.0,
+			Width1Min = 0.45,
+			Width1Max = 1.25,
 			TintStart = 0.1,
-			TintEnd = 0.35,
-			Flicker = 0.2,
-			FlickerHz = 11,
+			TintEnd = 0.4,
+			Flicker = 0.3,
+			FlickerHz = 12,
 		})
 
 		newBeam(nozzle, flameEnd, "IonRim", "energy_ribbon", {
-			Width0 = 1.25,
-			Width1 = 0.5,
-			Brightness = 2,
-			TextureLength = 2,
-			TextureSpeed = 9,
+			Width0 = 1.75,
+			Width1 = 0.7,
+			Brightness = 3,
+			TextureLength = 2.2,
+			TextureSpeed = 11,
 			Color = WHITE_COLOURS,
-			Transparency = numbers({ { 0, 0.5 }, { 0.5, 0.7 }, { 1, 1 } }),
+			Transparency = numbers({ { 0, 0.3 }, { 0.5, 0.55 }, { 1, 1 } }),
 		}, {
 			VFXGroup = "EngineThrust",
-			Width0Min = 0.7,
-			Width0Max = 1.25,
-			Width1Min = 0.3,
-			Width1Max = 0.5,
+			Width0Min = 0.6,
+			Width0Max = 1.75,
+			Width1Min = 0.25,
+			Width1Max = 0.7,
+			GlowMin = 1.2,
+			GlowMax = 3.4,
 			TintStart = 1,
 			TintEnd = 1,
+			Flicker = 0.1,
+			FlickerHz = 9,
 		})
 
 		newEmitter(nozzle, "FlameBody", "fire_loop", FLAME_LOOP, {
 			Rate = ENGINE_FLAME_RATE,
-			Lifetime = NumberRange.new(0.16, 0.24),
-			Speed = NumberRange.new(15, 21),
-			SpreadAngle = Vector2.new(3, 3),
+			Lifetime = NumberRange.new(0.2, 0.28),
+			Speed = NumberRange.new(22, 30),
+			SpreadAngle = Vector2.new(4, 4),
 			Orientation = Enum.ParticleOrientation.VelocityParallel,
-			Brightness = 2,
+			Brightness = 2.6,
 			LightEmission = 0.9,
 			Color = FIRE_COLOURS,
-			Size = numbers({ { 0, 0.7 }, { 0.3, 1.15 }, { 1, 0.45 } }),
-			Transparency = numbers({ { 0, 0.35 }, { 0.2, 0.15 }, { 0.7, 0.5 }, { 1, 1 } }),
+			Size = numbers({ { 0, 0.85 }, { 0.3, 1.55 }, { 1, 0.6 } }),
+			Transparency = numbers({ { 0, 0.3 }, { 0.2, 0.08 }, { 0.7, 0.45 }, { 1, 1 } }),
 		}, {
 			VFXGroup = "EngineThrust",
 			VFXBurst = "None",
-			RateMin = 10,
+			RateMin = 8,
 			RateMax = ENGINE_FLAME_RATE,
-			SpeedScaleMin = 0.45,
+			SpeedScaleMin = 0.3,
 			SpeedScaleMax = 1,
+			GlowMin = 1.4,
+			GlowMax = 2.8,
 			TintStart = 0.45,
 			TintEnd = 0,
+			Flicker = 0.25,
+			FlickerHz = 14,
+		})
+
+		-- Wider, slower, heavily flickering licks so the plume is not a clean cone.
+		newEmitter(nozzle, "FlameTurbulence", "fire_loop", FLAME_LOOP, {
+			Rate = ENGINE_TURBULENCE_RATE,
+			Lifetime = NumberRange.new(0.22, 0.32),
+			Speed = NumberRange.new(14, 24),
+			SpreadAngle = Vector2.new(10, 10),
+			Orientation = Enum.ParticleOrientation.VelocityParallel,
+			Rotation = NumberRange.new(-12, 12),
+			Brightness = 2,
+			LightEmission = 0.85,
+			Color = FIRE_COLOURS,
+			Size = numbers({ { 0, 0.7 }, { 0.4, 1.9 }, { 1, 0.9 } }),
+			Transparency = numbers({ { 0, 0.5 }, { 0.3, 0.3 }, { 0.7, 0.6 }, { 1, 1 } }),
+		}, {
+			VFXGroup = "EngineThrust",
+			VFXBurst = "None",
+			VFXTier = "Full",
+			RateMin = 0,
+			RateMax = ENGINE_TURBULENCE_RATE,
+			SpeedScaleMin = 0.35,
+			SpeedScaleMax = 1,
+			TintStart = 0.3,
+			TintEnd = 0,
+			Flicker = 0.6,
+			FlickerHz = 6,
+		})
+
+		newEmitter(nozzle, "Embers", "ember", nil, {
+			Rate = ENGINE_EMBER_RATE,
+			Lifetime = NumberRange.new(0.3, 0.65),
+			Speed = NumberRange.new(22, 40),
+			SpreadAngle = Vector2.new(11, 11),
+			Drag = 1.4,
+			Acceleration = Vector3.new(0, -8, 0),
+			LockedToPart = false,
+			Brightness = 2.6,
+			Color = SPARK_COLOURS,
+			Size = numbers({ { 0, 0.12 }, { 1, 0.03 } }),
+			Transparency = numbers({ { 0, 0 }, { 0.7, 0.3 }, { 1, 1 } }),
+		}, {
+			VFXGroup = "EngineThrust",
+			VFXBurst = "None",
+			VFXTier = "Full",
+			WorldSpace = true,
+			RateMin = 0,
+			RateMax = ENGINE_EMBER_RATE,
+			Flicker = 0.5,
+			FlickerHz = 5,
+		})
+
+		-- Idle layers: on whenever the car is powered, under the thrust layers too.
+		newBeam(nozzle, idleEnd, "IdleCore", "jet_core", {
+			Width0 = 0.5,
+			Width1 = 0.08,
+			Brightness = 2.4,
+			TextureLength = 1.4,
+			TextureSpeed = 5,
+			Color = WHITE_COLOURS,
+			Transparency = numbers({ { 0, 0.15 }, { 0.6, 0.45 }, { 1, 1 } }),
+		}, {
+			VFXGroup = "V2Idle",
+			Width0Min = 0.3,
+			Width0Max = 0.5,
+			Width1Min = 0.05,
+			Width1Max = 0.08,
+			GlowMin = 1,
+			GlowMax = 2.4,
+			TintStart = 0.35,
+			TintEnd = 0.9,
+			Flicker = 0.35,
+			FlickerHz = 11,
 		})
 
 		newEmitter(nozzle, "IdleFlicker", "fire_loop", FLAME_LOOP, {
 			Rate = ENGINE_IDLE_RATE,
-			Lifetime = NumberRange.new(0.1, 0.16),
-			Speed = NumberRange.new(4, 7),
-			SpreadAngle = Vector2.new(6, 6),
+			Lifetime = NumberRange.new(0.11, 0.17),
+			Speed = NumberRange.new(6, 10),
+			SpreadAngle = Vector2.new(7, 7),
 			Orientation = Enum.ParticleOrientation.VelocityParallel,
-			Brightness = 1.4,
+			Brightness = 1.8,
 			Color = FIRE_COLOURS,
-			Size = numbers({ { 0, 0.3 }, { 0.4, 0.55 }, { 1, 0.1 } }),
-			Transparency = numbers({ { 0, 0.5 }, { 0.3, 0.3 }, { 1, 1 } }),
+			Size = numbers({ { 0, 0.4 }, { 0.4, 0.8 }, { 1, 0.15 } }),
+			Transparency = numbers({ { 0, 0.45 }, { 0.3, 0.22 }, { 1, 1 } }),
 		}, {
 			VFXGroup = "V2Idle",
 			VFXBurst = "None",
@@ -501,42 +605,21 @@ return function(textures)
 			Rate = 12,
 			Lifetime = NumberRange.new(0.1, 0.14),
 			Speed = NumberRange.new(0.2, 0.4),
-			Brightness = 1.5,
+			Brightness = 2,
 			Color = WHITE_COLOURS,
-			Size = numbers({ { 0, 0.9 }, { 1, 1.2 } }),
-			Transparency = numbers({ { 0, 0.55 }, { 1, 1 } }),
+			Size = numbers({ { 0, 1.3 }, { 1, 1.75 } }),
+			Transparency = numbers({ { 0, 0.45 }, { 1, 1 } }),
 		}, {
 			VFXGroup = "V2Idle",
 			VFXBurst = "None",
 			RateMin = 0,
 			RateMax = 12,
-			GlowMin = 0.6,
-			GlowMax = 1.5,
-			TintStart = 1,
+			GlowMin = 0.8,
+			GlowMax = 2.2,
+			TintStart = 0.85,
 			TintEnd = 1,
 			Flicker = 0.25,
 			FlickerHz = 6,
-		})
-
-		newEmitter(nozzle, "Embers", "ember", nil, {
-			Rate = ENGINE_EMBER_RATE,
-			Lifetime = NumberRange.new(0.3, 0.6),
-			Speed = NumberRange.new(18, 30),
-			SpreadAngle = Vector2.new(9, 9),
-			Drag = 1.2,
-			Acceleration = Vector3.new(0, -8, 0),
-			LockedToPart = false,
-			Brightness = 2,
-			Color = SPARK_COLOURS,
-			Size = numbers({ { 0, 0.1 }, { 1, 0.03 } }),
-			Transparency = numbers({ { 0, 0 }, { 0.7, 0.3 }, { 1, 1 } }),
-		}, {
-			VFXGroup = "EngineThrust",
-			VFXBurst = "None",
-			VFXTier = "Full",
-			WorldSpace = true,
-			RateMin = 0,
-			RateMax = ENGINE_EMBER_RATE,
 		})
 
 		newLight(nozzle, "ThrustLight", {
@@ -551,8 +634,8 @@ return function(textures)
 			RangeMin = 5,
 			RangeMax = ENGINE_LIGHT_RANGE,
 			TintStart = 0.6,
-			Flicker = 0.15,
-			FlickerHz = 3,
+			Flicker = 0.22,
+			FlickerHz = 7,
 		})
 
 		return folder
@@ -897,118 +980,186 @@ return function(textures)
 	local function buildStabiliserJet(side)
 		local folder, host = newTemplate(
 			"StabiliserJet_Exotic" .. side .. "V2",
-			"Exotic V2 stabiliser jet (" .. side .. "): side thrust, slide sparks, drift charge glow and arcs.",
+			"Exotic V2 drift thruster (" .. side .. "): hard side jet, flash light, ground sparks, start puff, drift charge glow and arcs.",
 			MOBILE_SCALE_JET
 		)
+		-- The driver turns this template to the car, not to the socket: +Z points
+		-- straight out of this side of the car and +Y is the car's up.
+		folder:SetAttribute("VehicleAlign", side)
 		local driftGroup = "Drift" .. side
 		local sparkGroup = "V2SlipSparks" .. side
 
-		local nozzle = newAttachment(host, "Nozzle", Vector3.new(0, 0, -0.3))
+		local nozzle = newAttachment(host, "Nozzle", Vector3.new(0, 0, 0.2))
 		local thrustEnd = newAttachment(host, "ThrustEnd", Vector3.new(0, 0, STAB_LENGTH_MAX), {
 			VFXGroup = driftGroup,
 			ZMin = STAB_LENGTH_MIN,
 			ZMax = STAB_LENGTH_MAX,
 		})
+		-- The driver keeps this attachment on the ground beside the car.
+		local groundSparkPoint = newAttachment(host, "GroundSparkPoint", Vector3.new(0, -2, 1.0), {
+			GroundSnap = true,
+			GroundLift = 0.2,
+		})
 
 		newBeam(nozzle, thrustEnd, "ThrustCore", "jet_core", {
-			Width0 = 0.6,
-			Width1 = 0.12,
-			Brightness = 3.5,
-			TextureLength = 1.5,
-			TextureSpeed = 8,
+			Width0 = 1.0,
+			Width1 = 0.2,
+			Brightness = 8,
+			TextureLength = 2.6,
+			TextureSpeed = 12,
 			Color = WHITE_COLOURS,
-			Transparency = numbers({ { 0, 0.05 }, { 0.7, 0.3 }, { 1, 1 } }),
+			Transparency = numbers({ { 0, 0 }, { 0.75, 0.2 }, { 1, 1 } }),
 		}, {
 			VFXGroup = driftGroup,
-			Width0Min = 0.3,
-			Width0Max = 0.6,
-			Width1Min = 0.06,
-			Width1Max = 0.12,
-			TintStart = 0.3,
-			TintEnd = 0.85,
+			Width0Min = 0.55,
+			Width0Max = 1.0,
+			Width1Min = 0.1,
+			Width1Max = 0.2,
+			TintStart = 0,
+			TintEnd = 0.35,
 			Flicker = 0.15,
 			FlickerHz = 21,
 		})
 
-		newBeam(nozzle, thrustEnd, "ThrustRim", "energy_ribbon", {
-			Width0 = 1.0,
-			Width1 = 0.4,
-			Brightness = 2,
-			TextureLength = 1.2,
-			TextureSpeed = 10,
-			Color = WHITE_COLOURS,
-			Transparency = numbers({ { 0, 0.45 }, { 0.5, 0.65 }, { 1, 1 } }),
+		newBeam(nozzle, thrustEnd, "ThrustDiamonds", "shock_diamonds", {
+			Width0 = 1.5,
+			Width1 = 0.55,
+			Brightness = 5,
+			TextureLength = 1.5,
+			TextureSpeed = 0.6,
+			Color = colours({ { 0, FIRE_CORE }, { 1, FIRE_MID } }),
+			Transparency = numbers({ { 0, 0.12 }, { 0.6, 0.35 }, { 1, 1 } }),
 		}, {
 			VFXGroup = driftGroup,
-			Width0Min = 0.5,
-			Width0Max = 1.0,
-			Width1Min = 0.2,
-			Width1Max = 0.4,
+			Width0Min = 0.9,
+			Width0Max = 1.5,
+			Width1Min = 0.3,
+			Width1Max = 0.55,
+			TintStart = 0.25,
+			TintEnd = 0.6,
+			Flicker = 0.15,
+			FlickerHz = 17,
+		})
+
+		newBeam(nozzle, thrustEnd, "ThrustRim", "energy_ribbon", {
+			Width0 = 1.9,
+			Width1 = 0.8,
+			Brightness = 2,
+			TextureLength = 1.8,
+			TextureSpeed = 12,
+			Color = WHITE_COLOURS,
+			Transparency = numbers({ { 0, 0.6 }, { 0.5, 0.8 }, { 1, 1 } }),
+		}, {
+			VFXGroup = driftGroup,
+			Width0Min = 1.1,
+			Width0Max = 1.9,
+			Width1Min = 0.45,
+			Width1Max = 0.8,
 			TintStart = 1,
 			TintEnd = 1,
 		})
 
 		newEmitter(nozzle, "ThrustFlame", "fire_loop", FLAME_LOOP, {
 			Rate = STAB_FLAME_RATE,
-			Lifetime = NumberRange.new(0.1, 0.14),
-			Speed = NumberRange.new(11, 15),
-			SpreadAngle = Vector2.new(5, 5),
+			Lifetime = NumberRange.new(0.14, 0.2),
+			Speed = NumberRange.new(30, 40),
+			SpreadAngle = Vector2.new(7, 7),
 			Orientation = Enum.ParticleOrientation.VelocityParallel,
-			Brightness = 2,
+			Brightness = 4,
 			LightEmission = 0.9,
 			Color = FIRE_COLOURS,
-			Size = numbers({ { 0, 0.4 }, { 0.3, 0.8 }, { 1, 0.3 } }),
-			Transparency = numbers({ { 0, 0.3 }, { 0.2, 0.15 }, { 0.7, 0.5 }, { 1, 1 } }),
+			Size = numbers({ { 0, 1.5 }, { 0.3, 2.6 }, { 1, 1.1 } }),
+			Transparency = numbers({ { 0, 0.25 }, { 0.2, 0.08 }, { 0.7, 0.45 }, { 1, 1 } }),
 		}, {
 			VFXGroup = driftGroup,
 			VFXBurst = "None",
-			RateMin = 8,
+			RateMin = 16,
 			RateMax = STAB_FLAME_RATE,
-			SpeedScaleMin = 0.5,
+			SpeedScaleMin = 0.55,
 			SpeedScaleMax = 1,
 			TintStart = 0.45,
 			TintEnd = 0,
+			Flicker = 0.2,
+			FlickerHz = 15,
 		})
 
-		newEmitter(nozzle, "SlideSparks", "spark_streak", nil, {
-			Rate = STAB_SPARK_RATE,
-			Lifetime = NumberRange.new(0.2, 0.4),
-			Speed = NumberRange.new(12, 26),
-			SpreadAngle = Vector2.new(30, 30),
-			Orientation = Enum.ParticleOrientation.VelocityParallel,
-			Drag = 1.5,
-			Acceleration = Vector3.new(0, -60, 0),
-			LockedToPart = false,
+		newLight(nozzle, "ThrustFlash", {
+			Brightness = STAB_LIGHT_BRIGHTNESS,
+			Range = STAB_LIGHT_RANGE,
+		}, {
+			VFXGroup = driftGroup,
+			VFXTier = "Full",
+			DesktopOnly = true,
+			BrightnessMin = 1,
+			BrightnessMax = STAB_LIGHT_BRIGHTNESS,
+			RangeMin = 9,
+			RangeMax = STAB_LIGHT_RANGE,
+			TintStart = 0.5,
+			Flicker = 0.2,
+			FlickerHz = 15,
+		})
+
+		-- A short puff as the thruster lights (fired by the driver on drift start).
+		newEmitter(nozzle, "StartPuff", "fireball_burst", ONE_SHOT, {
+			Lifetime = NumberRange.new(0.25, 0.35),
+			Speed = NumberRange.new(10, 18),
+			SpreadAngle = Vector2.new(12, 12),
+			Rotation = NumberRange.new(0, 360),
 			Brightness = 3,
+			LightEmission = 0.9,
+			Color = colours({ { 0, FIRE_CORE }, { 0.4, FIRE_MID }, { 0.8, FIRE_EDGE }, { 1, SMOKE_DARK } }),
+			Size = numbers({ { 0, 1.0 }, { 0.4, 2.1 }, { 1, 2.6 } }),
+			Transparency = numbers({ { 0, 0.1 }, { 0.6, 0.35 }, { 1, 1 } }),
+		}, {
+			VFXGroup = "Manual",
+			VFXBurst = "DriftStart" .. side,
+			BurstCount = STAB_START_PUFFS,
+			TintStart = 0.3,
+			TintEnd = 0,
+		})
+
+		-- Sparks left on the ground beside the car while it slides.
+		newEmitter(groundSparkPoint, "SlideSparks", "spark_streak", nil, {
+			Rate = STAB_SPARK_RATE,
+			Lifetime = NumberRange.new(0.3, 0.6),
+			Speed = NumberRange.new(10, 24),
+			SpreadAngle = Vector2.new(28, 28),
+			Orientation = Enum.ParticleOrientation.VelocityParallel,
+			Drag = 1.2,
+			Acceleration = Vector3.new(0, -22, 0),
+			LockedToPart = false,
+			Brightness = 4,
 			Color = SPARK_COLOURS,
-			Size = numbers({ { 0, 0.35 }, { 1, 0.08 } }),
+			Size = numbers({ { 0, 0.5 }, { 1, 0.1 } }),
 			Transparency = numbers({ { 0, 0 }, { 0.7, 0.2 }, { 1, 1 } }),
 		}, {
 			VFXGroup = sparkGroup,
 			VFXTier = "Full",
 			VFXBurst = "None",
 			WorldSpace = true,
-			RateMin = 0,
+			RateMin = 12,
 			RateMax = STAB_SPARK_RATE,
 		})
 
+		-- Drift charge: dim while drifting at no charge, obvious by half charge,
+		-- crackling with arcs at full.
 		newEmitter(nozzle, "ChargeGlow", "glow_soft", nil, {
 			Rate = STAB_CHARGE_GLOW_RATE,
 			Lifetime = NumberRange.new(0.14, 0.18),
 			Speed = NumberRange.new(0.2, 0.5),
 			Brightness = 2,
 			Color = WHITE_COLOURS,
-			Size = numbers({ { 0, 0.8 }, { 1, 1.4 } }),
-			Transparency = numbers({ { 0, 0.5 }, { 1, 1 } }),
+			Size = numbers({ { 0, 1.5 }, { 1, 2.4 } }),
+			Transparency = numbers({ { 0, 0.35 }, { 1, 1 } }),
 		}, {
 			VFXGroup = "V2DriftCharge",
 			VFXTier = "Full",
 			VFXBurst = "None",
-			RateMin = 4,
+			RateMin = 5,
 			RateMax = STAB_CHARGE_GLOW_RATE,
-			GlowMin = 0.6,
-			GlowMax = 3,
-			TintStart = 1,
+			GlowMin = 0.3,
+			GlowMax = 5,
+			TintStart = 0.8,
 			TintEnd = 1,
 			Flicker = 0.2,
 			FlickerHz = 12,
@@ -1016,14 +1167,14 @@ return function(textures)
 
 		newEmitter(nozzle, "ChargeArcs", "arc_flipbook", ARC_RANDOM, {
 			Rate = STAB_CHARGE_ARC_RATE,
-			Lifetime = NumberRange.new(0.06, 0.1),
-			Speed = NumberRange.new(0.5, 1.5),
+			Lifetime = NumberRange.new(0.06, 0.11),
+			Speed = NumberRange.new(0.5, 2),
 			SpreadAngle = Vector2.new(180, 180),
 			Rotation = NumberRange.new(0, 360),
-			Brightness = 3,
+			Brightness = 4,
 			Color = WHITE_COLOURS,
-			Size = numbers({ { 0, 0.7 }, { 1, 1.2 } }),
-			Transparency = numbers({ { 0, 0.1 }, { 0.6, 0.2 }, { 1, 1 } }),
+			Size = numbers({ { 0, 1.4 }, { 1, 2.3 } }),
+			Transparency = numbers({ { 0, 0.05 }, { 0.6, 0.15 }, { 1, 1 } }),
 		}, {
 			VFXGroup = "V2DriftChargeArcs",
 			VFXBurst = "None",
@@ -1036,12 +1187,12 @@ return function(textures)
 
 		newEmitter(nozzle, "ReleaseArcs", "arc_flipbook", ARC_RANDOM, {
 			Lifetime = NumberRange.new(0.1, 0.18),
-			Speed = NumberRange.new(2, 6),
+			Speed = NumberRange.new(3, 8),
 			SpreadAngle = Vector2.new(180, 180),
 			Rotation = NumberRange.new(0, 360),
-			Brightness = 4,
+			Brightness = 4.5,
 			Color = WHITE_COLOURS,
-			Size = numbers({ { 0, 1.2 }, { 1, 2.4 } }),
+			Size = numbers({ { 0, 1.8 }, { 1, 3.4 } }),
 			Transparency = numbers({ { 0, 0 }, { 0.6, 0.2 }, { 1, 1 } }),
 		}, {
 			VFXGroup = "Manual",
@@ -1056,9 +1207,9 @@ return function(textures)
 			Lifetime = NumberRange.new(0.18, 0.24),
 			Speed = NumberRange.new(2, 2),
 			Orientation = Enum.ParticleOrientation.VelocityPerpendicular,
-			Brightness = 3,
+			Brightness = 3.5,
 			Color = WHITE_COLOURS,
-			Size = numbers({ { 0, 0.4 }, { 1, 3.2 } }),
+			Size = numbers({ { 0, 0.6 }, { 1, 4.4 } }),
 			Transparency = numbers({ { 0, 0.1 }, { 0.5, 0.45 }, { 1, 1 } }),
 		}, {
 			VFXGroup = "Manual",
@@ -1068,6 +1219,171 @@ return function(textures)
 			TintStart = 0.8,
 			TintEnd = 1,
 		})
+
+		return folder
+	end
+
+	-- -----------------------------------------------------------------------
+	-- Underglow_ExoticV2 / UnderglowSmall_ExoticV2
+	-- The clean luminous underside: the belly of each pod glows like a light
+	-- strip, a soft bloom falls toward the ground, fine motes drift in the gap,
+	-- and a soft pool of the same colour lies on the ground beneath the unit.
+	-- The driver attaches one unit, car-aligned, under every hover socket and
+	-- engine jet (full) and every boost and stabiliser jet (small), and keeps
+	-- PoolPoint on the ground. Thrust colour throughout, near-white at the core.
+	-- -----------------------------------------------------------------------
+	local function buildUnderglow(name, poolSize, full)
+		local folder, host = newTemplate(
+			name,
+			"Exotic V2 underglow unit: belly glow and strip, bloom, motes and a ground pool under one pod.",
+			MOBILE_SCALE_HOVER
+		)
+
+		local glowPoint = newAttachment(host, "GlowPoint", Vector3.new(0, 0, 0))
+		local stripA = newAttachment(host, "StripA", Vector3.new(0, 0, -UNDERGLOW_STRIP_HALF_LENGTH))
+		local stripB = newAttachment(host, "StripB", Vector3.new(0, 0, UNDERGLOW_STRIP_HALF_LENGTH))
+		local poolPoint = newAttachment(host, "PoolPoint", Vector3.new(0, -1.6, 0), {
+			GroundSnap = true,
+			GroundLift = 0.1,
+		})
+
+		newEmitter(glowPoint, "BellyGlow", "glow_soft", nil, {
+			Rate = 10,
+			EmissionDirection = Enum.NormalId.Bottom,
+			Lifetime = NumberRange.new(0.22, 0.28),
+			Speed = NumberRange.new(0.2, 0.5),
+			Brightness = 2,
+			Color = WHITE_COLOURS,
+			Size = numbers({ { 0, poolSize * 0.5 }, { 1, poolSize * 0.66 } }),
+			Transparency = numbers({ { 0, 0.6 }, { 0.3, 0.42 }, { 1, 1 } }),
+		}, {
+			VFXGroup = "V2Underglow",
+			VFXBurst = "None",
+			RateMin = 5,
+			RateMax = 10,
+			GlowMin = 0.6,
+			GlowMax = 2.6,
+			TintStart = 0.8,
+			TintEnd = 1,
+			Flicker = 0.12,
+			FlickerHz = 6,
+		})
+
+		-- The light strip along the belly: near-white, so the glow has a hot core.
+		newBeam(stripA, stripB, "BellyStrip", "jet_core", {
+			Width0 = 0.55,
+			Width1 = 0.55,
+			Brightness = 3,
+			TextureLength = UNDERGLOW_STRIP_HALF_LENGTH * 2,
+			TextureSpeed = 0,
+			Color = WHITE_COLOURS,
+			Transparency = numbers({ { 0, 1 }, { 0.2, 0.12 }, { 0.8, 0.12 }, { 1, 1 } }),
+		}, {
+			VFXGroup = "V2Underglow",
+			VFXTier = "Full",
+			Width0Min = 0.3,
+			Width0Max = 0.55,
+			Width1Min = 0.3,
+			Width1Max = 0.55,
+			GlowMin = 1,
+			GlowMax = 3.6,
+			TintStart = 0.3,
+			TintEnd = 0.3,
+			Flicker = 0.08,
+			FlickerHz = 9,
+		})
+
+		newEmitter(poolPoint, "GroundPool", "glow_soft", nil, {
+			Rate = 6,
+			EmissionDirection = Enum.NormalId.Top,
+			Orientation = Enum.ParticleOrientation.VelocityPerpendicular,
+			Lifetime = NumberRange.new(0.3, 0.36),
+			Speed = NumberRange.new(0.05, 0.05),
+			Brightness = 1.6,
+			Color = WHITE_COLOURS,
+			Size = numbers({ { 0, poolSize }, { 1, poolSize } }),
+			Transparency = numbers({ { 0, 1 }, { 0.3, 0.5 }, { 0.7, 0.5 }, { 1, 1 } }),
+		}, {
+			VFXGroup = "V2UnderglowPool",
+			VFXBurst = "None",
+			RateMin = 4,
+			RateMax = 6,
+			GlowMin = 0.5,
+			GlowMax = 2.4,
+			TintStart = 0.85,
+			TintEnd = 1,
+			Flicker = 0.1,
+			FlickerHz = 5,
+		})
+
+		if full then
+			local columnEnd = newAttachment(host, "ColumnEnd", Vector3.new(0, -UNDERGLOW_BLOOM_LENGTH, 0))
+
+			newBeam(glowPoint, columnEnd, "Bloom", "heat_streak", {
+				Width0 = 1.2,
+				Width1 = 2.2,
+				Brightness = 1.2,
+				TextureLength = UNDERGLOW_BLOOM_LENGTH,
+				TextureSpeed = 1.5,
+				Color = WHITE_COLOURS,
+				Transparency = numbers({ { 0, 0.62 }, { 0.6, 0.82 }, { 1, 1 } }),
+			}, {
+				VFXGroup = "V2Underglow",
+				VFXTier = "Full",
+				Width0Min = 0.8,
+				Width0Max = 1.2,
+				Width1Min = 1.6,
+				Width1Max = 2.2,
+				GlowMin = 0.5,
+				GlowMax = 1.8,
+				TintStart = 1,
+				TintEnd = 1,
+				Flicker = 0.15,
+				FlickerHz = 7,
+			})
+
+			newEmitter(glowPoint, "Motes", "ember", nil, {
+				Rate = UNDERGLOW_MOTE_RATE,
+				EmissionDirection = Enum.NormalId.Bottom,
+				SpreadAngle = Vector2.new(55, 55),
+				Lifetime = NumberRange.new(0.5, 0.9),
+				Speed = NumberRange.new(0.4, 1.4),
+				Brightness = 2.5,
+				Color = WHITE_COLOURS,
+				Size = numbers({ { 0, 0.07 }, { 1, 0.02 } }),
+				Transparency = numbers({ { 0, 1 }, { 0.2, 0.1 }, { 0.7, 0.3 }, { 1, 1 } }),
+			}, {
+				VFXGroup = "V2Underglow",
+				VFXTier = "Full",
+				VFXBurst = "None",
+				RateMin = 2,
+				RateMax = UNDERGLOW_MOTE_RATE,
+				TintStart = 0.6,
+				TintEnd = 0.9,
+			})
+
+			newEmitter(poolPoint, "PoolCore", "glow_soft", nil, {
+				Rate = 6,
+				EmissionDirection = Enum.NormalId.Top,
+				Orientation = Enum.ParticleOrientation.VelocityPerpendicular,
+				Lifetime = NumberRange.new(0.3, 0.36),
+				Speed = NumberRange.new(0.05, 0.05),
+				Brightness = 2,
+				Color = WHITE_COLOURS,
+				Size = numbers({ { 0, poolSize * 0.45 }, { 1, poolSize * 0.45 } }),
+				Transparency = numbers({ { 0, 1 }, { 0.3, 0.45 }, { 0.7, 0.45 }, { 1, 1 } }),
+			}, {
+				VFXGroup = "V2UnderglowPool",
+				VFXTier = "Full",
+				VFXBurst = "None",
+				RateMin = 4,
+				RateMax = 6,
+				GlowMin = 0.6,
+				GlowMax = 2.6,
+				TintStart = 0.3,
+				TintEnd = 0.3,
+			})
+		end
 
 		return folder
 	end
@@ -1247,7 +1563,7 @@ return function(textures)
 			Size = numbers({ { 0, 2.2 }, { 1, 5.5 } }),
 			Transparency = numbers({ { 0, 0.82 }, { 0.5, 0.88 }, { 1, 1 } }),
 		}, {
-			VFXGroup = "V2GroundDust",
+			VFXGroup = "V2GroundMist",
 			VFXBurst = "None",
 			VFXTier = "Full",
 			WorldSpace = true,
@@ -1527,6 +1843,8 @@ return function(textures)
 		buildStabiliserJet("Left"),
 		buildStabiliserJet("Right"),
 		buildHoverPad(),
+		buildUnderglow("Underglow_ExoticV2", UNDERGLOW_POOL_SIZE, true),
+		buildUnderglow("UnderglowSmall_ExoticV2", UNDERGLOW_SMALL_POOL_SIZE, false),
 		buildGroundFX(),
 		buildImpactSparks(),
 		buildSpeedTrails(),

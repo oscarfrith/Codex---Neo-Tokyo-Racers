@@ -425,7 +425,8 @@ def main():
     # Exotic V2 tuning changed after the first install (new attributes of this delivery, so forced here).
     stabiliser = ["ReplicatedStorage", "Config", "Vehicles", "StabiliserVFX"]
     if any(sc["file"]["after"].startswith("vfx/") for sc in scripts.values()):
-        for key, value in (("ExoticV2DustBase", 0.32), ("ExoticV2PadBase", 0.7)):
+        for key, value in (("ExoticV2DustBase", 0), ("ExoticV2DustSpeedGain", 0), ("ExoticV2DustSquashGain", 0),
+                           ("ExoticV2PreviewDust", 0), ("ExoticV2RemoteDust", 0), ("ExoticV2PadBase", 0.55)):
             updates.append({"path": stabiliser, "key": key, "value": value})
 
     # Exotic V2 effect templates: built in Studio by vfx/templates_exotic.lua from the uploaded texture ids
