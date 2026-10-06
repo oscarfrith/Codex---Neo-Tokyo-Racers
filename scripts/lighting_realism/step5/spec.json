@@ -1,0 +1,27 @@
+{
+ "_note": "Step 5 (2026-10-06, Oscar's third drive: 'straight blue for a short second' from twilight to night). The haze now stays up from dusk until the sky change and only clears afterwards, so there is no rise-and-fall. Cycle set to 3 minutes for testing (normal is 720).",
+ "config": {
+  "ContinuousCycleDurationSeconds": 180,
+  "NightSkyVeilColorBefore": [
+   90,
+   66,
+   125
+  ],
+  "NightSkyVeilColorAfter": [
+   95,
+   72,
+   190
+  ]
+ },
+ "milestones": {
+  "Dusk": {
+   "HazeFadeStart": 0.9,
+   "ColourFadeStart": 0.5
+  },
+  "NightEnd": {
+   "HazeFadeEnd": 0.1,
+   "ColourFadeEnd": 0.5
+  }
+ },
+ "looks": {}
+}

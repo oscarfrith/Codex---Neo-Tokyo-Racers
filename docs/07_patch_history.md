@@ -2,6 +2,14 @@
 
 Recent deliveries, newest first. Entries before September 2026 live in [the archive](history/patch-history-2026-05-to-2026-08.md).
 
+## 2026-10-06 - Lighting realism mix, step 5: haze held through the sky change; 3 minute test cycle (v3)
+
+Fast lane (7 attributes). From Oscar's third drive.
+
+- **Changed:** Dusk and NightEnd haze/colour fades, both veil colours, `ContinuousCycleDurationSeconds` 720 to 180 (testing only).
+- **Checked:** live preview of evening (21.4, 21.98, 22.02, 22.18) and morning (1.98, 2.02, 2.5) before install; after install one full 180 s cycle running on its own: no server or render error, sky changes at 22:00 and 02:00 only, haze has a single peak at each change (was fall, rise, fall).
+- **Recovery:** `scripts/lighting_realism/step5/install.lua` `ROLLBACK`.
+
 ## 2026-10-06 - Lighting realism mix, step 4: no black at nightfall, bluer day, less bloom, visible blur (v3)
 
 Standard lane (two lighting sources and config). From Oscar's second drive.

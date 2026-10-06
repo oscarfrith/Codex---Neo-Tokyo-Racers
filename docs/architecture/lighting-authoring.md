@@ -89,6 +89,8 @@ Each look under `ContinuousPresets` has a `Clouds` section: `Cover` (0 = none), 
 
 While the night art is shown, `Lighting.ClockTime` is twelve hours ahead of game time and the sun is drawn as the moon. Roblox dims every skybox when the sun is down, so this is the only way to show night art. Tune ClearNight knowing its key light is the engine's sun: `Brightness` 0.6 there is moonlight. Do not read `Lighting.ClockTime` for game time; use the `LightingPreset`, `StreetLightsOn` and `WindowMode` attributes.
 
+Keep the haze up across the sky change: `Dusk` HazeFadeStart 0.9 and `NightEnd` HazeFadeEnd 0.1 hold the twilight haze until the change and release it once. If the haze clears first, the veil shows as a flat blue pulse.
+
 The moon at night is `StarNightSky.SunTextureId`. Keep that texture dark (peak about 0.45): the engine sun draws it and a normal moon image blows out. The far blur is each look's `DepthOfField` section; `Enabled` must be the same in all six.
 
 New night art: edit and run `scripts/lighting_realism/step2/sky/make_night.py`, upload the six faces, put the ids on the `StarNightSky` template. Stars must be painted in; Roblox's own stars do not draw in day-for-night.
