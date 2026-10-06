@@ -1,0 +1,6 @@
+[
+ "ReplicatedStorage.Modules.Game.World.LightingClient",
+ "ReplicatedStorage.Modules.Game.World.LightingCycle",
+ "ReplicatedStorage.Modules.Game.World.LightingCycleDefinition",
+ "ServerStorage.Modules.Game.World.LightingServer"
+]

@@ -72,6 +72,24 @@ Evening blends red-orange through rose-pink into violet; morning reverses that p
 
 The v3 values of the six looks now come from `scripts/lighting_realism/looks.json`, which supersedes the numbers quoted in the paragraphs above for v3. Hues are kept; the fill is lower and less blue by day, bloom thresholds are higher, saturation is lower, and twilight and night take some light from the sky (`EnvironmentDiffuseScale` 0.25 to 0.4). The older `scripts/continuous_lighting` installer is bound to the v1 place and its `REFINE` modes do not run in v3. Restore the earlier v3 values with `scripts/lighting_realism/install.lua` `ROLLBACK`.
 
+### Sky, night sky and clouds (v3, 2026-10-06)
+
+These settings supersede the "Sky and context" notes below for v3. All are Attributes on `Config.World.Lighting`:
+
+| Attribute | Meaning |
+|---|---|
+| `ContinuousSkyName` | Day sky template (`HorizonDaySky`). `ContinuousSky` is the old flat sky. |
+| `ContinuousNightSkyName` | Night sky template (`StarNightSky`). Delete the attribute for one sky all day. |
+| `NightSkyStartClockTime` / `NightSkyEndClockTime` | When the night art is shown (20.5 to 3.5). Must be after sunset and before sunrise. Keep them on the Dusk and Dawn milestones, where the haze is thickest. |
+| `NightSkyVeilHours` | Half-length of the dark veil that hides the change (0.4 = 12 real seconds each side at 720 s). 0 turns it off and the change becomes visible. |
+| `ContinuousSkyFollowsSun` | Turns the day art so its baked glow is on the sunrise side in the morning and the sunset side in the evening. |
+
+Each look under `ContinuousPresets` has a `Clouds` section: `Cover` (0 = none), `Density`, `Color`. Keep `Enabled` true in every look.
+
+While the night art is shown, `Lighting.ClockTime` is twelve hours ahead of game time and the sun is drawn as the moon. Roblox dims every skybox when the sun is down, so this is the only way to show night art. Tune ClearNight knowing its key light is the engine's sun: `Brightness` 0.6 there is moonlight. Do not read `Lighting.ClockTime` for game time; use the `LightingPreset`, `StreetLightsOn` and `WindowMode` attributes.
+
+New night art: edit and run `scripts/lighting_realism/step2/sky/make_night.py`, upload the six faces, put the ids on the `StarNightSky` template. Stars must be painted in; Roblox's own stars do not draw in day-for-night.
+
 ## Different fade speeds
 
 Each milestone folder now has six pairs of Attributes named `LightFadeStart/End`, `ColourFadeStart/End`, `HazeFadeStart/End`, `GlareFadeStart/End`, `DistanceFadeStart/End` and `PostFadeStart/End`. They control the transition **from this milestone to the next**, after the current hold and before the next hold. Fractions are 0–1: start 0/end 0.7 finishes a group's fade in the first 70% of that interval; start 0.3/end 1 delays it until 30% through. Smooth easing applies within the interval. Require `0 <= start < end <= 1`; invalid edits retain the last good runtime configuration.

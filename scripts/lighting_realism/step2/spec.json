@@ -1,0 +1,126 @@
+{
+ "_note": "Step 2 of the realism mix. Colours are 0-255 RGB. looks = further changes to existing look values; clouds = new Clouds section per look.",
+ "config": {
+  "ContinuousSkyName": "HorizonDaySky",
+  "ContinuousNightSkyName": "StarNightSky",
+  "NightSkyStartClockTime": 20.5,
+  "NightSkyEndClockTime": 3.5,
+  "NightSkyVeilHours": 0.4,
+  "ContinuousSkyFollowsSun": true
+ },
+ "skies": {
+  "HorizonDaySky": {
+   "_source": "DRIVE: Highway SKY_GOLDEN (gen_sky.py sky_v1), glow baked at azimuth 0",
+   "faces": {
+    "Ft": "78467252649493",
+    "Bk": "118382132934347",
+    "Lf": "93767805444140",
+    "Rt": "72590013721834",
+    "Up": "102601618868638",
+    "Dn": "115725959961880"
+   },
+   "SunTextureId": "rbxasset://sky/sun.jpg",
+   "MoonTextureId": "rbxasset://sky/moon.jpg",
+   "SunAngularSize": 9,
+   "MoonAngularSize": 11,
+   "StarCount": 0
+  },
+  "StarNightSky": {
+   "_source": "scripts/lighting_realism/step2/sky/make_night.py; shown day-for-night, so the sun is drawn as the moon",
+   "faces": {
+    "Ft": "103887416673615",
+    "Bk": "80455285162871",
+    "Lf": "89465431458538",
+    "Rt": "78906896978192",
+    "Up": "80673734375908",
+    "Dn": "119715030263442"
+   },
+   "SunTextureId": "rbxasset://sky/moon.jpg",
+   "MoonTextureId": "rbxasset://sky/moon.jpg",
+   "SunAngularSize": 11,
+   "MoonAngularSize": 0,
+   "StarCount": 0
+  }
+ },
+ "clouds": {
+  "Day": {
+   "Cover": 0.5,
+   "Density": 0.3,
+   "Color": [
+    255,
+    255,
+    255
+   ]
+  },
+  "SevenAM": {
+   "Cover": 0.58,
+   "Density": 0.26,
+   "Color": [
+    255,
+    200,
+    170
+   ]
+  },
+  "FivePM": {
+   "Cover": 0.58,
+   "Density": 0.26,
+   "Color": [
+    255,
+    200,
+    170
+   ]
+  },
+  "FourAM": {
+   "Cover": 0.5,
+   "Density": 0.22,
+   "Color": [
+    190,
+    150,
+    200
+   ]
+  },
+  "EightPM": {
+   "Cover": 0.5,
+   "Density": 0.22,
+   "Color": [
+    190,
+    150,
+    200
+   ]
+  },
+  "ClearNight": {
+   "Cover": 0.15,
+   "Density": 0.12,
+   "Color": [
+    60,
+    62,
+    100
+   ]
+  }
+ },
+ "looks": {
+  "ClearNight": {
+   "Lighting": {
+    "Brightness": 0.6,
+    "Ambient": [
+     80,
+     90,
+     140
+    ],
+    "OutdoorAmbient": [
+     95,
+     105,
+     160
+    ],
+    "EnvironmentDiffuseScale": 0.5,
+    "EnvironmentSpecularScale": 1,
+    "ExposureCompensation": 0.25
+   },
+   "Atmosphere": {
+    "Haze": 1.2,
+    "Density": 0.25,
+    "Glare": 0.2
+   }
+  }
+ }
+}

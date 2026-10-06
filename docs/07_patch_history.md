@@ -2,6 +2,16 @@
 
 Recent deliveries, newest first. Entries before September 2026 live in [the archive](history/patch-history-2026-05-to-2026-08.md).
 
+## 2026-10-06 - Lighting realism mix, step 2: day sky, night sky, clouds (v3)
+
+Standard lane (lighting renderer and config; no remote, saved data or economy). Oscar approved the step.
+
+- **Changed:** sources `LightingCycle`, `LightingClient`, `LightingCycleDefinition`, `LightingServer`; new sky templates `HorizonDaySky` and `StarNightSky`; a `Clouds` folder in each of the six looks; six cycle attributes on `Config.World.Lighting`; eight ClearNight values. Lighting service Edit state and existing sky templates unchanged.
+- **Behaviour:** with the new attributes absent the new code matches the old output exactly (2,400 samples, zero difference). With them: night art 20:30 to 03:30 shown day-for-night, change hidden by a veil, day art turned by clock, clouds blended per look.
+- **Route:** `scripts/lighting_realism/step2/build.py` on the continuous-lighting installer engine. AUDIT, APPLY, ROLLBACK, re-APPLY with tuned values (26 operations).
+- **Checked:** pure cycle test in Edit before install; Play: startup, full-day scrub with no server or render error, sky changes at 20:30 and 03:30 only, frames either side of the change match. Evidence: `scripts/lighting_realism/evidence/step2-*.jpg`.
+- **Recovery:** `step2/install.lua` `ROLLBACK`.
+
 ## 2026-10-06 - Lighting realism mix, step 1: Continuous looks retuned (v3)
 
 Fast lane (tuning attributes only; no source, remote or saved data). Oscar approved the plan and asked for a fallback.
