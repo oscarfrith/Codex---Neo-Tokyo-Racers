@@ -378,3 +378,68 @@ Existing attributes whose default changed (the installer must be told):
 4. Left and right drifts: long side jets on the outside of the turn, front and rear, with a flash light, a puff at the start and sparks along the ground; charge glow dim at first, obvious by half, arcing at full, burst on the mini-boost.
 5. `ExoticV2PadGraphic = 1` and `ExoticV2DustBase = 0.15`: the old pads and dust ring return.
 6. Mobile: no lights, fewer particles. Remote car: underglow under hover sockets and engines only.
+
+## Exotic V2, round 4 (hover jets under the engines)
+
+Status: generated on disk; not compiled, not installed, not seen. The bracket/keyword balance script passes. `after/VehicleVFXClient.lua` was not edited by me this round. The coordinator's drift-thruster retune in `templates_exotic.lua` is kept as found. This section replaces "2. Under the car (clean underglow)" of round 3 and the round 3 counts.
+
+Oscar: "for the under car vfx, can these only be underneath the engines, and be more obvious jet vfx."
+
+### What changed
+
+- The underglow templates (`Underglow_ExoticV2`, `UnderglowSmall_ExoticV2`) are no longer built or attached. Nothing is attached under the hover, boost or stabiliser sockets. Copies already installed in `VehicleTemplates` are unused and can be deleted.
+- New template `HoverJet_ExoticV2`, 8 effects. The controller attaches one under each `EngineJet` socket (four per car) as a car-aligned runtime socket on the root: 0.75 below the socket and 1.6 back along the pod from the nozzle (`V2_UNDERGLOW_UNITS.Engine`). Rear engines (root-local Z > 0) are scaled 1.2 in beam width and particle size.
+- The landing burst, the single ground light and the faint large glow pool are unchanged. Pad graphics and the dust ring stay off by config.
+
+| Effect | What it is | Tier |
+|---|---|---|
+| `HoverCore` | jet_core beam from the belly to the ground point, 0.95 wide at the top and 1.4 at the road, near-white with a thrust-colour tail | every car, every device |
+| `SplashPool` | flat glow on the road, 3.4 across, tighter and hotter than the old pool | every car, every device |
+| `HoverDiamonds` | shock_diamonds beam, 1.4 to 1.9 wide | local and preview, desktop |
+| `HoverRim` | energy_ribbon beam in the thrust colour, 1.9 to 2.6 wide | local and preview, desktop |
+| `HoverFlame` | fire_loop flame body pointing down, particles 1.8 across | local and preview, desktop |
+| `SplashFan` | short flame streaks pushed outward along the ground in a flat ring, world space | local and preview, desktop |
+| `SplashSparks` | a few embers thrown up from the splash, world space | local and preview, desktop |
+| `SplashMist` | thin heat mist drifting off the splash, world space | local and preview, desktop |
+
+- Length follows the real gap: the beam's lower end (`GroundEnd`) and the splash (`SplashPoint`) are `GroundSnap` attachments, set to the shared ground height each update (raycast hit for the local driving car, fixed offset for parked, remote and preview cars). The jet therefore always ends on the road.
+- Splash particles are in world space, so at speed the fan, sparks and mist are left behind and the splash streaks backward. At rest the mist drifts outward.
+
+### Drive
+
+`V2HoverJet`:
+
+- hidden by the race gate: 0
+- not powered (parked): `ExoticV2HoverJetStandby` (0.2), a pilot flame
+- grounded: `ExoticV2HoverJetBase (0.6) + ExoticV2HoverJetSquashGain (0.4) * squash + ExoticV2HoverJetThrottleGain (0.15) * throttle + ExoticV2HoverJetLandGain (0.6) * landPulse`
+- airborne: `ExoticV2HoverJetAirborne (0.3) * presence`, so it fades as the ground falls away while the beam stretches down to it
+- then `x ExoticV2HoverJet (1)`, clamped to 1.5, and x 0.8 on remote cars.
+
+`V2HoverSplash = V2HoverJet * presence` when grounded, else 0. `landPulse` is set by the existing landing burst (`count / 28`, at least 0.3) and decays with a 0.25 s time constant. Every effect has its own flicker (14 to 25 % at 13 to 19 Hz).
+
+### Config
+
+`config_round_v4.json`: 7 new attributes (`ExoticV2HoverJet`, `...Base`, `...SquashGain`, `...ThrottleGain`, `...LandGain`, `...Airborne`, `...Standby`). `config_spec.json`: 73.
+
+No existing attribute changed its default. Two round 3 attributes are no longer read and were removed from `config_spec.json`: `ExoticV2Underglow`, `ExoticV2UnderglowThrustGain` (installed copies are harmless).
+
+### Counts and budgets (two boost sockets)
+
+| | Effect instances | Was (round 3) | Particles alive, cruising / worst case (arithmetic) |
+|---|---|---|---|
+| Local, desktop | 185 | 225 | about 210 / 420 |
+| Local, mobile | 150 | 214 | about 90 / 190 |
+| Remote, desktop | 85 | 95 | about 100 / 140 |
+| Preview | 176 | 216 | about 120 idle / 300 thrust-colour |
+
+Under-car units fell from 15 (72 effects) to 4 (32 effects; 8 on mobile and on remote cars). Per-update attachment writes when the ground height changes: 12 (was 19). Lights unchanged at 11 on desktop.
+
+### To check live
+
+1. The four jets sit under the engine bellies and end on the road, driving, parked and in both previews. If they start inside a pod or beside it, change `Drop` and `Inset` in `V2_UNDERGLOW_UNITS.Engine` (controller).
+2. They read from the chase camera as four hot jets at the car's edges. If too thin: `HOVER_JET_CORE_WIDTH` and `HOVER_JET_POOL_SIZE` (template constants).
+3. `SplashFan` is a flat ring on the ground, not a vertical fan (same `SpreadAngle` assumption as the old dust ring; swap its two components if wrong).
+4. `HoverFlame` tongues point down, not up into the pod.
+5. In the air the jets lengthen and fade; on landing they surge.
+6. Parked car: low pilot flames (`ExoticV2HoverJetStandby = 0` turns them off).
+7. Mobile and a second player's car: core beam and pool only.

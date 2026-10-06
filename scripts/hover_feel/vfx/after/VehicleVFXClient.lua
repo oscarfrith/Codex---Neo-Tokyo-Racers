@@ -167,8 +167,13 @@ local function modelOwnerUserId(model)
 	return tonumber(model and model:GetAttribute("OwnerUserId"))
 end
 
+local connectRaceVisibility
+
 local function shouldRenderVehicleVFX(model)
 	local ownerId = modelOwnerUserId(model)
+	-- A player always sees their own car's effects. The race lists arrive by remote and the RaceParticipant
+	-- attribute by replication, so for a moment (or for good, if one of them is missed) they can disagree.
+	if ownerId == LOCAL_PLAYER.UserId then return true end
 	local vehicleIsParticipant = ownerId and raceParticipants[ownerId] == true
 	local modelClaimsRace = model and model:GetAttribute("RaceParticipant") == true
 	if raceVisibilityActive == true then
@@ -324,6 +329,12 @@ local function runtimeState(cache)
 	local ownerUserId = tonumber(cache.Model and cache.Model:GetAttribute("OwnerUserId"))
 	local localVehicle = ownerUserId == LOCAL_PLAYER.UserId
 	local driving = driveReady or forcePreview
+	if localVehicle and not driving and cache.Model:GetAttribute("FeelSpeedMph") ~= nil then
+		-- DriveReady is written by the server (spawn, teleports, race staging) as well as by DrivingClient.
+		-- If the server's false arrives after the client has started driving, it stays false while the car
+		-- is driven. The Feel attributes exist only while DrivingClient is running this vehicle.
+		driving = true
+	end
 	local accelerating = readAttr(cache, "Accelerating") == true
 	local boosting = readAttr(cache, "Boosting") == true
 	local driftLeft = readAttr(cache, "DriftingLeft") == true
@@ -856,6 +867,17 @@ end
 
 local function updateCache(cache, dt)
 	if not cache.Model.Parent then return false end
+	if cache.LateSocketAt and os.clock() - cache.LateSocketAt > 0.4 then
+		-- Sockets arrived late and have stopped arriving: rebuild this vehicle's effects once.
+		cache.LateSocketAt = nil
+		cache.SocketRebuilds = (cache.SocketRebuilds or 0) + 1
+		if cache.Controller and typeof(cache.Controller.Destroy) == "function" then
+			pcall(function() cache.Controller:Destroy() end)
+		end
+		cache.Controller = nil
+		cache.FeelMemory = nil
+		cache.LastStateKey = nil
+	end
 	attachTemplateController(cache)
 	local state = runtimeState(cache)
 	updateTemplateController(cache, state, dt)
@@ -924,6 +946,15 @@ local function trackModel(model)
 		scanTree(cache, descendant)
 		cache.NeedsColour = true
 		cache.LastStateKey = nil
+		-- An authored effect socket that arrives after the controller was attached (slow replication or
+		-- streaming) would otherwise never get its effects. Runtime attachments made by the controller
+		-- itself (names starting VFX_Feel, or inside a _Runtime host) do not count.
+		if cache.Controller and descendant:IsA("Attachment") and string.sub(descendant.Name, 1, 8) ~= "VFX_Feel"
+			and (descendant:GetAttribute("VFXSocket") == true or string.sub(descendant.Name, 1, 4) == "VFX_")
+			and not string.find(descendant.Parent and descendant.Parent.Name or "", "_Runtime", 1, true) then
+			-- At most three rebuilds per vehicle, so nothing can make this loop.
+			if (cache.SocketRebuilds or 0) < 3 then cache.LateSocketAt = os.clock() end
+		end
 	end))
 	table.insert(cache.Connections, model.DescendantRemoving:Connect(function(descendant)
 		forgetTree(cache, descendant)
@@ -985,6 +1016,7 @@ end
 
 local function scanCandidates()
 	refreshFeelConfig()
+	connectRaceVisibility()
 	runtimeVehicles()
 	previewVehicles()
 	local previews = 0
@@ -1061,7 +1093,7 @@ local function initControls()
 	end)
 end
 
-local function connectRaceVisibility()
+function connectRaceVisibility()
 	if raceEvent then return end
 	local remotes = game:GetService("ReplicatedStorage")
 		and game:GetService("ReplicatedStorage"):FindFirstChild("Remotes")

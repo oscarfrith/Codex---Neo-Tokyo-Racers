@@ -99,12 +99,15 @@ local GROUND_GLOW_SIZE = 12
 local GROUND_LIGHT_BRIGHTNESS = 2.6
 local GROUND_LIGHT_RANGE = 18
 
--- Underglow units (one under every hover socket and every jet).
-local UNDERGLOW_POOL_SIZE = 3.6
-local UNDERGLOW_SMALL_POOL_SIZE = 3.0
-local UNDERGLOW_STRIP_HALF_LENGTH = 1.1
-local UNDERGLOW_BLOOM_LENGTH = 1.5
-local UNDERGLOW_MOTE_RATE = 7
+-- Hover jet (one under each engine). The gap to the road is small, so the jet
+-- is wide and bright rather than long. Rear engines are scaled up by the driver.
+local HOVER_JET_DEFAULT_GAP = 1.2
+local HOVER_JET_CORE_WIDTH = 0.95
+local HOVER_JET_POOL_SIZE = 3.4
+local HOVER_JET_FLAME_RATE = 34
+local HOVER_JET_FAN_RATE = 40
+local HOVER_JET_SPARK_RATE = 10
+local HOVER_JET_MIST_RATE = 6
 
 -- Impact and scrape sparks (one runtime source on the local car).
 local SCRAPE_SPARK_RATE = 70
@@ -1224,166 +1227,228 @@ return function(textures)
 	end
 
 	-- -----------------------------------------------------------------------
-	-- Underglow_ExoticV2 / UnderglowSmall_ExoticV2
-	-- The clean luminous underside: the belly of each pod glows like a light
-	-- strip, a soft bloom falls toward the ground, fine motes drift in the gap,
-	-- and a soft pool of the same colour lies on the ground beneath the unit.
-	-- The driver attaches one unit, car-aligned, under every hover socket and
-	-- engine jet (full) and every boost and stabiliser jet (small), and keeps
-	-- PoolPoint on the ground. Thrust colour throughout, near-white at the core.
+	-- HoverJet_ExoticV2 (one under each engine, attached by the driver)
+	-- The thruster that holds the car up: a wide white-hot core with shock
+	-- diamonds and a flame body firing straight down from the engine's belly,
+	-- and a splash where it meets the road: a hot pool, a low fan of flame
+	-- streaks pushed outward along the ground, sparks and a little heat mist.
+	-- The driver attaches it car-aligned (+Y is the car's up) and keeps
+	-- GroundEnd and SplashPoint on the ground, so the jet always ends on the
+	-- road whatever the gap. Splash particles are in world space, so at speed
+	-- the splash streaks backward. Mobile and remote cars keep the core beam
+	-- and the pool only.
 	-- -----------------------------------------------------------------------
-	local function buildUnderglow(name, poolSize, full)
+	local function buildHoverJet()
 		local folder, host = newTemplate(
-			name,
-			"Exotic V2 underglow unit: belly glow and strip, bloom, motes and a ground pool under one pod.",
+			"HoverJet_ExoticV2",
+			"Exotic V2 hover jet: downward thruster under an engine with a splash on the road.",
 			MOBILE_SCALE_HOVER
 		)
 
-		local glowPoint = newAttachment(host, "GlowPoint", Vector3.new(0, 0, 0))
-		local stripA = newAttachment(host, "StripA", Vector3.new(0, 0, -UNDERGLOW_STRIP_HALF_LENGTH))
-		local stripB = newAttachment(host, "StripB", Vector3.new(0, 0, UNDERGLOW_STRIP_HALF_LENGTH))
-		local poolPoint = newAttachment(host, "PoolPoint", Vector3.new(0, -1.6, 0), {
+		local jetPoint = newAttachment(host, "JetPoint", Vector3.new(0, 0, 0))
+		local groundEnd = newAttachment(host, "GroundEnd", Vector3.new(0, -HOVER_JET_DEFAULT_GAP, 0), {
 			GroundSnap = true,
-			GroundLift = 0.1,
+			GroundLift = 0.05,
+		})
+		local splashPoint = newAttachment(host, "SplashPoint", Vector3.new(0, -HOVER_JET_DEFAULT_GAP, 0), {
+			GroundSnap = true,
+			GroundLift = 0.12,
 		})
 
-		newEmitter(glowPoint, "BellyGlow", "glow_soft", nil, {
-			Rate = 10,
-			EmissionDirection = Enum.NormalId.Bottom,
-			Lifetime = NumberRange.new(0.22, 0.28),
-			Speed = NumberRange.new(0.2, 0.5),
-			Brightness = 2,
+		-- Core tier (every car, every device): the core beam and the pool.
+		newBeam(jetPoint, groundEnd, "HoverCore", "jet_core", {
+			Width0 = HOVER_JET_CORE_WIDTH,
+			Width1 = HOVER_JET_CORE_WIDTH * 1.45,
+			Brightness = 6,
+			TextureLength = 1.6,
+			TextureSpeed = 7,
 			Color = WHITE_COLOURS,
-			Size = numbers({ { 0, poolSize * 0.5 }, { 1, poolSize * 0.66 } }),
-			Transparency = numbers({ { 0, 0.6 }, { 0.3, 0.42 }, { 1, 1 } }),
+			Transparency = numbers({ { 0, 0 }, { 0.7, 0.15 }, { 1, 0.55 } }),
 		}, {
-			VFXGroup = "V2Underglow",
-			VFXBurst = "None",
-			RateMin = 5,
-			RateMax = 10,
-			GlowMin = 0.6,
-			GlowMax = 2.6,
-			TintStart = 0.8,
-			TintEnd = 1,
-			Flicker = 0.12,
-			FlickerHz = 6,
+			VFXGroup = "V2HoverJet",
+			Width0Min = HOVER_JET_CORE_WIDTH * 0.4,
+			Width0Max = HOVER_JET_CORE_WIDTH,
+			Width1Min = HOVER_JET_CORE_WIDTH * 0.55,
+			Width1Max = HOVER_JET_CORE_WIDTH * 1.45,
+			GlowMin = 1.5,
+			GlowMax = 6.5,
+			TintStart = 0.05,
+			TintEnd = 0.5,
+			Flicker = 0.14,
+			FlickerHz = 19,
 		})
 
-		-- The light strip along the belly: near-white, so the glow has a hot core.
-		newBeam(stripA, stripB, "BellyStrip", "jet_core", {
-			Width0 = 0.55,
-			Width1 = 0.55,
-			Brightness = 3,
-			TextureLength = UNDERGLOW_STRIP_HALF_LENGTH * 2,
-			TextureSpeed = 0,
-			Color = WHITE_COLOURS,
-			Transparency = numbers({ { 0, 1 }, { 0.2, 0.12 }, { 0.8, 0.12 }, { 1, 1 } }),
-		}, {
-			VFXGroup = "V2Underglow",
-			VFXTier = "Full",
-			Width0Min = 0.3,
-			Width0Max = 0.55,
-			Width1Min = 0.3,
-			Width1Max = 0.55,
-			GlowMin = 1,
-			GlowMax = 3.6,
-			TintStart = 0.3,
-			TintEnd = 0.3,
-			Flicker = 0.08,
-			FlickerHz = 9,
-		})
-
-		newEmitter(poolPoint, "GroundPool", "glow_soft", nil, {
-			Rate = 6,
+		newEmitter(splashPoint, "SplashPool", "glow_soft", nil, {
+			Rate = 8,
 			EmissionDirection = Enum.NormalId.Top,
 			Orientation = Enum.ParticleOrientation.VelocityPerpendicular,
-			Lifetime = NumberRange.new(0.3, 0.36),
+			Lifetime = NumberRange.new(0.22, 0.28),
 			Speed = NumberRange.new(0.05, 0.05),
-			Brightness = 1.6,
+			Brightness = 3,
 			Color = WHITE_COLOURS,
-			Size = numbers({ { 0, poolSize }, { 1, poolSize } }),
-			Transparency = numbers({ { 0, 1 }, { 0.3, 0.5 }, { 0.7, 0.5 }, { 1, 1 } }),
+			Size = numbers({ { 0, HOVER_JET_POOL_SIZE * 0.85 }, { 1, HOVER_JET_POOL_SIZE } }),
+			Transparency = numbers({ { 0, 1 }, { 0.25, 0.28 }, { 0.7, 0.34 }, { 1, 1 } }),
 		}, {
-			VFXGroup = "V2UnderglowPool",
+			VFXGroup = "V2HoverSplash",
 			VFXBurst = "None",
-			RateMin = 4,
-			RateMax = 6,
-			GlowMin = 0.5,
-			GlowMax = 2.4,
-			TintStart = 0.85,
-			TintEnd = 1,
-			Flicker = 0.1,
-			FlickerHz = 5,
+			RateMin = 5,
+			RateMax = 8,
+			GlowMin = 0.8,
+			GlowMax = 3.8,
+			TintStart = 0.45,
+			TintEnd = 0.9,
+			Flicker = 0.16,
+			FlickerHz = 13,
 		})
 
-		if full then
-			local columnEnd = newAttachment(host, "ColumnEnd", Vector3.new(0, -UNDERGLOW_BLOOM_LENGTH, 0))
+		-- Full tier (local and preview, desktop): everything that makes it a jet.
+		newBeam(jetPoint, groundEnd, "HoverDiamonds", "shock_diamonds", {
+			Width0 = HOVER_JET_CORE_WIDTH * 1.5,
+			Width1 = HOVER_JET_CORE_WIDTH * 2.0,
+			Brightness = 4,
+			TextureLength = 0.9,
+			TextureSpeed = 0.6,
+			Color = colours({ { 0, FIRE_CORE }, { 1, FIRE_MID } }),
+			Transparency = numbers({ { 0, 0.1 }, { 0.7, 0.3 }, { 1, 0.7 } }),
+		}, {
+			VFXGroup = "V2HoverJet",
+			VFXTier = "Full",
+			DesktopOnly = true,
+			Width0Min = HOVER_JET_CORE_WIDTH * 0.7,
+			Width0Max = HOVER_JET_CORE_WIDTH * 1.5,
+			Width1Min = HOVER_JET_CORE_WIDTH * 0.9,
+			Width1Max = HOVER_JET_CORE_WIDTH * 2.0,
+			TintStart = 0.25,
+			TintEnd = 0.6,
+			Flicker = 0.15,
+			FlickerHz = 16,
+		})
 
-			newBeam(glowPoint, columnEnd, "Bloom", "heat_streak", {
-				Width0 = 1.2,
-				Width1 = 2.2,
-				Brightness = 1.2,
-				TextureLength = UNDERGLOW_BLOOM_LENGTH,
-				TextureSpeed = 1.5,
-				Color = WHITE_COLOURS,
-				Transparency = numbers({ { 0, 0.62 }, { 0.6, 0.82 }, { 1, 1 } }),
-			}, {
-				VFXGroup = "V2Underglow",
-				VFXTier = "Full",
-				Width0Min = 0.8,
-				Width0Max = 1.2,
-				Width1Min = 1.6,
-				Width1Max = 2.2,
-				GlowMin = 0.5,
-				GlowMax = 1.8,
-				TintStart = 1,
-				TintEnd = 1,
-				Flicker = 0.15,
-				FlickerHz = 7,
-			})
+		newBeam(jetPoint, groundEnd, "HoverRim", "energy_ribbon", {
+			Width0 = HOVER_JET_CORE_WIDTH * 2.0,
+			Width1 = HOVER_JET_CORE_WIDTH * 2.7,
+			Brightness = 2,
+			TextureLength = 1.2,
+			TextureSpeed = 9,
+			Color = WHITE_COLOURS,
+			Transparency = numbers({ { 0, 0.55 }, { 0.6, 0.75 }, { 1, 1 } }),
+		}, {
+			VFXGroup = "V2HoverJet",
+			VFXTier = "Full",
+			DesktopOnly = true,
+			Width0Min = HOVER_JET_CORE_WIDTH * 1.0,
+			Width0Max = HOVER_JET_CORE_WIDTH * 2.0,
+			Width1Min = HOVER_JET_CORE_WIDTH * 1.4,
+			Width1Max = HOVER_JET_CORE_WIDTH * 2.7,
+			TintStart = 1,
+			TintEnd = 1,
+		})
 
-			newEmitter(glowPoint, "Motes", "ember", nil, {
-				Rate = UNDERGLOW_MOTE_RATE,
-				EmissionDirection = Enum.NormalId.Bottom,
-				SpreadAngle = Vector2.new(55, 55),
-				Lifetime = NumberRange.new(0.5, 0.9),
-				Speed = NumberRange.new(0.4, 1.4),
-				Brightness = 2.5,
-				Color = WHITE_COLOURS,
-				Size = numbers({ { 0, 0.07 }, { 1, 0.02 } }),
-				Transparency = numbers({ { 0, 1 }, { 0.2, 0.1 }, { 0.7, 0.3 }, { 1, 1 } }),
-			}, {
-				VFXGroup = "V2Underglow",
-				VFXTier = "Full",
-				VFXBurst = "None",
-				RateMin = 2,
-				RateMax = UNDERGLOW_MOTE_RATE,
-				TintStart = 0.6,
-				TintEnd = 0.9,
-			})
+		-- Flame body filling the gap; its length follows the jet level.
+		newEmitter(jetPoint, "HoverFlame", "fire_loop", FLAME_LOOP, {
+			Rate = HOVER_JET_FLAME_RATE,
+			EmissionDirection = Enum.NormalId.Bottom,
+			Lifetime = NumberRange.new(0.12, 0.17),
+			Speed = NumberRange.new(10, 14),
+			SpreadAngle = Vector2.new(7, 7),
+			Orientation = Enum.ParticleOrientation.VelocityParallel,
+			Brightness = 3.4,
+			LightEmission = 0.9,
+			Color = FIRE_COLOURS,
+			Size = numbers({ { 0, 1.0 }, { 0.35, 1.8 }, { 1, 1.1 } }),
+			Transparency = numbers({ { 0, 0.3 }, { 0.2, 0.08 }, { 0.75, 0.4 }, { 1, 1 } }),
+		}, {
+			VFXGroup = "V2HoverJet",
+			VFXTier = "Full",
+			DesktopOnly = true,
+			VFXBurst = "None",
+			RateMin = 10,
+			RateMax = HOVER_JET_FLAME_RATE,
+			SpeedScaleMin = 0.6,
+			SpeedScaleMax = 1.1,
+			TintStart = 0.45,
+			TintEnd = 0,
+			Flicker = 0.25,
+			FlickerHz = 14,
+		})
 
-			newEmitter(poolPoint, "PoolCore", "glow_soft", nil, {
-				Rate = 6,
-				EmissionDirection = Enum.NormalId.Top,
-				Orientation = Enum.ParticleOrientation.VelocityPerpendicular,
-				Lifetime = NumberRange.new(0.3, 0.36),
-				Speed = NumberRange.new(0.05, 0.05),
-				Brightness = 2,
-				Color = WHITE_COLOURS,
-				Size = numbers({ { 0, poolSize * 0.45 }, { 1, poolSize * 0.45 } }),
-				Transparency = numbers({ { 0, 1 }, { 0.3, 0.45 }, { 0.7, 0.45 }, { 1, 1 } }),
-			}, {
-				VFXGroup = "V2UnderglowPool",
-				VFXTier = "Full",
-				VFXBurst = "None",
-				RateMin = 4,
-				RateMax = 6,
-				GlowMin = 0.6,
-				GlowMax = 2.6,
-				TintStart = 0.3,
-				TintEnd = 0.3,
-			})
-		end
+		-- Splash: short flame streaks pushed outward along the ground. Emission
+		-- along +X with a full yaw spread is a flat ring in the ground plane.
+		newEmitter(splashPoint, "SplashFan", "spark_streak", nil, {
+			Rate = HOVER_JET_FAN_RATE,
+			EmissionDirection = Enum.NormalId.Right,
+			SpreadAngle = Vector2.new(5, 180),
+			Lifetime = NumberRange.new(0.12, 0.22),
+			Speed = NumberRange.new(10, 19),
+			Orientation = Enum.ParticleOrientation.VelocityParallel,
+			Drag = 3,
+			LockedToPart = false,
+			Brightness = 3.5,
+			Color = colours({ { 0, FIRE_CORE }, { 0.5, FIRE_MID }, { 1, FIRE_EDGE } }),
+			Size = numbers({ { 0, 0.75 }, { 1, 0.2 } }),
+			Transparency = numbers({ { 0, 0.1 }, { 0.6, 0.3 }, { 1, 1 } }),
+		}, {
+			VFXGroup = "V2HoverSplash",
+			VFXTier = "Full",
+			DesktopOnly = true,
+			VFXBurst = "None",
+			WorldSpace = true,
+			RateMin = 8,
+			RateMax = HOVER_JET_FAN_RATE,
+			TintStart = 0.35,
+			TintEnd = 0,
+		})
+
+		newEmitter(splashPoint, "SplashSparks", "ember", nil, {
+			Rate = HOVER_JET_SPARK_RATE,
+			EmissionDirection = Enum.NormalId.Top,
+			SpreadAngle = Vector2.new(72, 72),
+			Lifetime = NumberRange.new(0.25, 0.5),
+			Speed = NumberRange.new(6, 16),
+			Drag = 1.5,
+			Acceleration = Vector3.new(0, -40, 0),
+			LockedToPart = false,
+			Brightness = 3,
+			Color = SPARK_COLOURS,
+			Size = numbers({ { 0, 0.12 }, { 1, 0.03 } }),
+			Transparency = numbers({ { 0, 0 }, { 0.7, 0.3 }, { 1, 1 } }),
+		}, {
+			VFXGroup = "V2HoverSplash",
+			VFXTier = "Full",
+			DesktopOnly = true,
+			VFXBurst = "None",
+			WorldSpace = true,
+			RateMin = 0,
+			RateMax = HOVER_JET_SPARK_RATE,
+			Flicker = 0.5,
+			FlickerHz = 4,
+		})
+
+		newEmitter(splashPoint, "SplashMist", "smoke_puff", ONE_SHOT, {
+			Rate = HOVER_JET_MIST_RATE,
+			EmissionDirection = Enum.NormalId.Right,
+			SpreadAngle = Vector2.new(10, 180),
+			Lifetime = NumberRange.new(0.6, 1.0),
+			Speed = NumberRange.new(2, 5),
+			Rotation = NumberRange.new(0, 360),
+			Drag = 2.5,
+			Acceleration = Vector3.new(0, 1.5, 0),
+			LockedToPart = false,
+			LightEmission = 0.35,
+			LightInfluence = 0.6,
+			Brightness = 1.2,
+			Color = colours({ { 0, FIRE_MID }, { 0.3, SMOKE_LIGHT }, { 1, SMOKE_DARK } }),
+			Size = numbers({ { 0, 0.9 }, { 1, 2.8 } }),
+			Transparency = numbers({ { 0, 0.8 }, { 0.4, 0.86 }, { 1, 1 } }),
+		}, {
+			VFXGroup = "V2HoverSplash",
+			VFXTier = "Full",
+			DesktopOnly = true,
+			VFXBurst = "None",
+			WorldSpace = true,
+			RateMin = 2,
+			RateMax = HOVER_JET_MIST_RATE,
+		})
 
 		return folder
 	end
@@ -1843,8 +1908,7 @@ return function(textures)
 		buildStabiliserJet("Left"),
 		buildStabiliserJet("Right"),
 		buildHoverPad(),
-		buildUnderglow("Underglow_ExoticV2", UNDERGLOW_POOL_SIZE, true),
-		buildUnderglow("UnderglowSmall_ExoticV2", UNDERGLOW_SMALL_POOL_SIZE, false),
+		buildHoverJet(),
 		buildGroundFX(),
 		buildImpactSparks(),
 		buildSpeedTrails(),

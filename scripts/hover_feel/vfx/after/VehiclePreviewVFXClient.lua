@@ -42,8 +42,14 @@ local V2_DEFAULTS = {
 	ExoticV2VapourMinMph = 150,
 	-- Round 3: clean underglow instead of pad graphics and a dust ring.
 	ExoticV2PadGraphic = 0,
-	ExoticV2Underglow = 1,
-	ExoticV2UnderglowThrustGain = 0.6,
+	-- Round 4: hover jets under the engines (replace the round 3 underglow).
+	ExoticV2HoverJet = 1,
+	ExoticV2HoverJetBase = 0.6,
+	ExoticV2HoverJetSquashGain = 0.4,
+	ExoticV2HoverJetThrottleGain = 0.15,
+	ExoticV2HoverJetLandGain = 0.6,
+	ExoticV2HoverJetAirborne = 0.3,
+	ExoticV2HoverJetStandby = 0.2,
 	ExoticV2GroundGlow = 0.35,
 	ExoticV2MistSpeedGain = 0.5,
 	ExoticV2DriftThrustersOutside = true,
@@ -60,18 +66,14 @@ local V2_IMPACT_TEMPLATE = "BrakeSparks_ExoticV2"
 local V2_TRAILS_TEMPLATE = "SpeedTrails_ExoticV2"
 local V2_GROUND_SOCKET_NAME = "VFX_FeelGroundFX"
 local V2_TRAILS_SOCKET_NAME = "VFX_FeelSpeedTrails"
-local V2_UNDERGLOW_SOCKET_NAME = "VFX_FeelUnderglow"
-local V2_UNDERGLOW_TEMPLATE = "Underglow_ExoticV2"
-local V2_UNDERGLOW_SMALL_TEMPLATE = "UnderglowSmall_ExoticV2"
--- One underglow unit per V2 socket. Drop: studs below the socket (the belly of
--- the pod). Inset: studs back along the pod from its nozzle. Scale: particle
--- size (pool width). Suffix: channel suffix, so engine units follow thrust.
--- LocalOnly units are not attached on remote players' vehicles.
+local V2_UNDERGLOW_SOCKET_NAME = "VFX_FeelHoverJet"
+local V2_HOVER_JET_TEMPLATE = "HoverJet_ExoticV2"
+local V2_LAND_PULSE_TAU = 0.25
+-- One hover jet under each engine, and nowhere else. Drop: studs below the
+-- engine's jet socket (the belly of the pod). Inset: studs back along the pod
+-- from its nozzle. Scale: beam width and particle size; rear engines are larger.
 local V2_UNDERGLOW_UNITS = {
-	Hover = { Template = V2_UNDERGLOW_TEMPLATE, Drop = 0.05, Inset = 0, Scale = 1 },
-	Engine = { Template = V2_UNDERGLOW_TEMPLATE, Drop = 0.75, Inset = 1.6, Scale = 1, RearScale = 1.25, Suffix = "Engine" },
-	Boost = { Template = V2_UNDERGLOW_SMALL_TEMPLATE, Drop = 0.6, Inset = 1.2, Scale = 1, LocalOnly = true },
-	Stabiliser = { Template = V2_UNDERGLOW_SMALL_TEMPLATE, Drop = 0.3, Inset = 0.4, Scale = 0.85, LocalOnly = true },
+	Engine = { Template = V2_HOVER_JET_TEMPLATE, Drop = 0.75, Inset = 1.6, Scale = 1, RearScale = 1.2 },
 }
 local V2_CHANNEL_CEILING = 2
 local V2_MOVER_CEILING = 1.5
@@ -733,7 +735,8 @@ local function attachGroundFX(self, hoverCentre)
 	placeGroundFixed(self)
 end
 
--- Which underglow unit a resolved V2 template gets (nil = none).
+-- Which under-car unit a resolved V2 template gets (nil = none). Only kinds
+-- listed in V2_UNDERGLOW_UNITS are attached: the engines.
 local function underglowKind(templateName)
 	if type(templateName) ~= "string" then return nil end
 	if templateName == V2_HOVER_TEMPLATE then return "Hover" end
@@ -752,7 +755,7 @@ local function scaledSequence(sequence, scale)
 	return NumberSequence.new(keypoints)
 end
 
--- Exotic V2 underglow: one car-aligned unit under every hover socket and jet.
+-- Exotic V2 hover jets: one car-aligned unit under every engine jet socket.
 -- units = { { Kind, Position (root-local socket position), Back (root-local jet
 -- direction) }, ... }. Each unit is a runtime socket on the root, so it is
 -- destroyed with the controller's other hosts.
@@ -774,11 +777,16 @@ local function attachUnderglowUnits(self, units)
 				end
 				for index = firstItem, #self.Items do
 					local record = self.Items[index]
-					if spec.Suffix and string.sub(record.Group, 1, 11) == "V2Underglow" then
-						record.Group = record.Group .. spec.Suffix
-					end
-					if scale ~= 1 and record.Object:IsA("ParticleEmitter") then
-						record.Object.Size = scaledSequence(record.Object.Size, scale)
+					local object = record.Object
+					if scale ~= 1 and object:IsA("ParticleEmitter") then
+						object.Size = scaledSequence(object.Size, scale)
+					elseif scale ~= 1 and object:IsA("Beam") then
+						object.Width0 *= scale
+						object.Width1 *= scale
+						record.Width0Min *= scale
+						record.Width0Max *= scale
+						record.Width1Min *= scale
+						record.Width1Max *= scale
 					end
 				end
 			end
@@ -1430,19 +1438,38 @@ local function updateV2(self, dt, state, now, visible)
 		mist = math.clamp(config.ExoticV2MistSpeedGain * speedAlpha, 0, 1)
 	end
 
-	-- Underglow: the same hover level drives the belly glow and the ground
-	-- pools; engine units also brighten with thrust. The pad graphics and the
-	-- large glow pool are scaled by config (pad graphics off by default).
+	-- Hover jets under the engines: on whenever the car is powered (they hold it
+	-- up). Stronger with hover squash, a little with throttle, and for a moment
+	-- after a landing; a low pilot flame when parked; dimmer in the air, where
+	-- the jet lengthens (its end stays on the ground) and fades with the gap.
+	v2.LandPulse = (v2.LandPulse or 0) * math.exp(-dt / V2_LAND_PULSE_TAU)
+	if v2.LandPulse < 0.01 then v2.LandPulse = 0 end
+	local hoverJet
+	if hidden then
+		hoverJet = 0
+	elseif not powered then
+		hoverJet = config.ExoticV2HoverJetStandby
+	elseif grounded then
+		hoverJet = config.ExoticV2HoverJetBase
+			+ config.ExoticV2HoverJetSquashGain * squash
+			+ config.ExoticV2HoverJetThrottleGain * throttle
+			+ config.ExoticV2HoverJetLandGain * v2.LandPulse
+	else
+		hoverJet = config.ExoticV2HoverJetAirborne * presence
+	end
+	hoverJet = math.clamp(hoverJet * math.max(config.ExoticV2HoverJet, 0), 0, V2_MOVER_CEILING)
+	if self.Reduced then
+		hoverJet *= 0.8
+	end
+
+	-- The pad graphics and the large glow pool are scaled by config (pad
+	-- graphics off by default).
 	local padGraphic = math.max(config.ExoticV2PadGraphic, 0)
-	local underglow = pad * math.max(config.ExoticV2Underglow, 0)
-	local engineGain = 0.7 + math.max(config.ExoticV2UnderglowThrustGain, 0) * throttle
 
 	channels.V2HoverPad = pad * padGraphic
 	channels.V2HoverTight = (powered and grounded) and squash * padGraphic or 0
-	channels.V2Underglow = math.min(underglow, V2_CHANNEL_CEILING)
-	channels.V2UnderglowEngine = math.min(underglow * engineGain, V2_CHANNEL_CEILING)
-	channels.V2UnderglowPool = math.min(underglow * presence, V2_CHANNEL_CEILING)
-	channels.V2UnderglowPoolEngine = math.min(underglow * engineGain * presence, V2_CHANNEL_CEILING)
+	channels.V2HoverJet = hoverJet
+	channels.V2HoverSplash = grounded and hoverJet * presence or 0
 	channels.V2GroundDust = dust * presence
 	channels.V2GroundMist = mist * presence
 	channels.V2GroundGlow = pad * presence * math.max(config.ExoticV2GroundGlow, 0)
@@ -1625,6 +1652,10 @@ function VehicleVFXController:Burst(kind, count)
 	if self.Destroyed or not self:Visible() then return 0 end
 	count = tonumber(count) or 0
 	if count ~= count or count <= 0 then return 0 end
+	if kind == "Dust" and self.HasV2 then
+		-- Exotic V2: a landing also surges the hover jets (count is 6..28).
+		self.V2.LandPulse = math.clamp(count / 28, 0.3, 1)
+	end
 
 	local quality = self.IsMobile and self.Globals.MobileParticleScale or self.Globals.DesktopParticleScale
 	local total = count * (tonumber(quality) or 1)

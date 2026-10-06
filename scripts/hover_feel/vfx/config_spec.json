@@ -627,26 +627,6 @@
         "Vehicles",
         "StabiliserVFX"
       ],
-      "key": "ExoticV2Underglow",
-      "value": 1
-    },
-    {
-      "path": [
-        "ReplicatedStorage",
-        "Config",
-        "Vehicles",
-        "StabiliserVFX"
-      ],
-      "key": "ExoticV2UnderglowThrustGain",
-      "value": 0.6
-    },
-    {
-      "path": [
-        "ReplicatedStorage",
-        "Config",
-        "Vehicles",
-        "StabiliserVFX"
-      ],
       "key": "ExoticV2GroundGlow",
       "value": 0.35
     },
@@ -679,6 +659,76 @@
       ],
       "key": "ExoticV2ChargeIdle",
       "value": 0.12
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "ExoticV2HoverJet",
+      "value": 1
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "ExoticV2HoverJetBase",
+      "value": 0.6
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "ExoticV2HoverJetSquashGain",
+      "value": 0.4
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "ExoticV2HoverJetThrottleGain",
+      "value": 0.15
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "ExoticV2HoverJetLandGain",
+      "value": 0.6
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "ExoticV2HoverJetAirborne",
+      "value": 0.3
+    },
+    {
+      "path": [
+        "ReplicatedStorage",
+        "Config",
+        "Vehicles",
+        "StabiliserVFX"
+      ],
+      "key": "ExoticV2HoverJetStandby",
+      "value": 0.2
     }
   ],
   "instances": []
