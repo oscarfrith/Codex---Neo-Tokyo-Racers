@@ -2,6 +2,14 @@
 
 Recent deliveries, newest first. Entries before September 2026 live in [the archive](history/patch-history-2026-05-to-2026-08.md).
 
+## 2026-10-06 - Driving tune: tier nerf, speed readout, settle, bank lift, parked sway, steering direction (v3)
+
+Standard lane, driving owner, client only. Four scripts (`DrivingClient`, `VehicleDynamics`, `FreeRoamParkedHoverClient`, `DesktopFreeRoamHudUI`), three new config folders, 12 attributes. Contract, review and evidence: `scripts/driving_tune/`.
+
+- **Changed:** balance multipliers from `PerformanceIndex` where stats become forces (10% at E to 25% at S, extra 15% on acceleration and braking, extra 20% on drift terms); HUD speed curve; ride height that sinks at rest, rises with the lean and bobs; corner springs that follow the commanded lean; local sway for the anchored parked car; no-throttle steering assumes forwards.
+- **Checked:** compile, AUDIT, APPLY, ROLLBACK, APPLY; `delivery-reviewer` READY WITH FIXES (two applied); three Play sessions with the S-tier Seraph: 0 to 100 mph 1.65 s to 2.7 s, full-lean clearance from about 1.5 studs under the road to 0.3 to 1.0 above it, no errors. Not user-confirmed; no other tier driven.
+- **Recovery:** `py -3 scripts/driving_tune/serve.py`, then run `scripts/driving_tune/out_rollback.lua` in v3 Edit. Switches: `BalanceEnabled` 0, `SettleEnabled`, `BankLiftEnabled`, `ParkedAnchoredPresentationEnabled`, `SpeedDisplayCurveEnabled`, `SteeringCoastAssumeForward`.
+
 ## 2026-10-06 - Lighting realism mix, step 6: painted night sky off, day restyled from the original (v3)
 
 Fast lane (30 attributes, one removed attribute, one sky property; no source change). From Oscar's fourth drive.
