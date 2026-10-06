@@ -426,7 +426,9 @@ def main():
     stabiliser = ["ReplicatedStorage", "Config", "Vehicles", "StabiliserVFX"]
     if any(sc["file"]["after"].startswith("vfx/") for sc in scripts.values()):
         for key, value in (("ExoticV2DustBase", 0), ("ExoticV2DustSpeedGain", 0), ("ExoticV2DustSquashGain", 0),
-                           ("ExoticV2PreviewDust", 0), ("ExoticV2RemoteDust", 0), ("ExoticV2PadBase", 0.55)):
+                           ("ExoticV2PreviewDust", 0), ("ExoticV2RemoteDust", 0), ("ExoticV2PadBase", 0.55),
+                           # Oscar, 2026-10-06: drift left fires the left-side thrusters, right the right.
+                           ("ExoticV2DriftThrustersOutside", False)):
             updates.append({"path": stabiliser, "key": key, "value": value})
 
     # Exotic V2 effect templates: built in Studio by vfx/templates_exotic.lua from the uploaded texture ids
