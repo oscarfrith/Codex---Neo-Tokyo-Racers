@@ -1,0 +1,206 @@
+{
+ "Day.Lighting.Ambient": [
+  [
+   95,
+   108,
+   128
+  ],
+  [
+   100,
+   160,
+   235
+  ]
+ ],
+ "Day.Lighting.OutdoorAmbient": [
+  [
+   140,
+   160,
+   182
+  ],
+  [
+   150,
+   195,
+   228
+  ]
+ ],
+ "Day.Atmosphere.Color": [
+  [
+   199,
+   208,
+   222
+  ],
+  [
+   175,
+   208,
+   245
+  ]
+ ],
+ "Day.Atmosphere.Decay": [
+  [
+   106,
+   122,
+   150
+  ],
+  [
+   120,
+   160,
+   220
+  ]
+ ],
+ "Day.Atmosphere.Haze": [
+  1,
+  1.2
+ ],
+ "Day.Clouds.Cover": [
+  0.5,
+  0.55
+ ],
+ "Day.Clouds.Density": [
+  0.3,
+  0.55
+ ],
+ "Day.Bloom.Intensity": [
+  0.6,
+  0.45
+ ],
+ "Day.Bloom.Threshold": [
+  1.8,
+  2.0
+ ],
+ "Day.DepthOfField.FarIntensity": [
+  0.05,
+  0.12
+ ],
+ "Day.DepthOfField.FocusDistance": [
+  60,
+  50
+ ],
+ "Day.DepthOfField.InFocusRadius": [
+  200,
+  120
+ ],
+ "Day.ColorCorrection.Saturation": [
+  0.32,
+  0.36
+ ],
+ "SevenAM.Bloom.Intensity": [
+  0.6,
+  0.48
+ ],
+ "SevenAM.Bloom.Threshold": [
+  1,
+  1.15
+ ],
+ "SevenAM.DepthOfField.FarIntensity": [
+  0.05,
+  0.12
+ ],
+ "SevenAM.DepthOfField.FocusDistance": [
+  60,
+  50
+ ],
+ "SevenAM.DepthOfField.InFocusRadius": [
+  200,
+  120
+ ],
+ "FivePM.Bloom.Intensity": [
+  0.6,
+  0.48
+ ],
+ "FivePM.Bloom.Threshold": [
+  1,
+  1.15
+ ],
+ "FivePM.DepthOfField.FarIntensity": [
+  0.05,
+  0.12
+ ],
+ "FivePM.DepthOfField.FocusDistance": [
+  60,
+  50
+ ],
+ "FivePM.DepthOfField.InFocusRadius": [
+  200,
+  120
+ ],
+ "FourAM.Bloom.Intensity": [
+  0.5,
+  0.4
+ ],
+ "FourAM.Bloom.Threshold": [
+  0.75,
+  0.85
+ ],
+ "FourAM.DepthOfField.FarIntensity": [
+  0.05,
+  0.12
+ ],
+ "FourAM.DepthOfField.FocusDistance": [
+  60,
+  50
+ ],
+ "FourAM.DepthOfField.InFocusRadius": [
+  200,
+  120
+ ],
+ "EightPM.Bloom.Intensity": [
+  0.5,
+  0.4
+ ],
+ "EightPM.Bloom.Threshold": [
+  0.75,
+  0.85
+ ],
+ "EightPM.DepthOfField.FarIntensity": [
+  0.05,
+  0.12
+ ],
+ "EightPM.DepthOfField.FocusDistance": [
+  60,
+  50
+ ],
+ "EightPM.DepthOfField.InFocusRadius": [
+  200,
+  120
+ ],
+ "ClearNight.Bloom.Intensity": [
+  0.55,
+  0.42
+ ],
+ "ClearNight.Bloom.Threshold": [
+  0.7,
+  0.8
+ ],
+ "ClearNight.DepthOfField.FarIntensity": [
+  0.05,
+  0.12
+ ],
+ "ClearNight.DepthOfField.FocusDistance": [
+  60,
+  50
+ ],
+ "ClearNight.DepthOfField.InFocusRadius": [
+  200,
+  120
+ ],
+ "config.NightSkyVeilHours": [
+  0.2,
+  0.3
+ ],
+ "config.NightSkyVeilColorBefore": [
+  null,
+  [
+   125,
+   92,
+   168
+  ]
+ ],
+ "config.NightSkyVeilColorAfter": [
+  null,
+  [
+   155,
+   108,
+   240
+  ]
+ ]
+}

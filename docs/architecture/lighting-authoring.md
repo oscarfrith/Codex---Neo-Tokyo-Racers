@@ -81,7 +81,8 @@ These settings supersede the "Sky and context" notes below for v3. All are Attri
 | `ContinuousSkyName` | Day sky template (`HorizonDaySky`). `ContinuousSky` is the old flat sky. |
 | `ContinuousNightSkyName` | Night sky template (`StarNightSky`). Delete the attribute for one sky all day. |
 | `NightSkyStartClockTime` / `NightSkyEndClockTime` | When the night art is shown (22 to 2). Must be after sunset and before sunrise. Keep them on the NightStart and NightEnd milestones: inside twilight the veil reads as a blackout between two bright states. |
-| `NightSkyVeilHours` | Half-length of the dark veil that hides the change (0.2 = 6 real seconds each side at 720 s). 0 turns it off and the change becomes visible. |
+| `NightSkyVeilColorBefore` / `NightSkyVeilColorAfter` | Haze colour at the change, under the old sky and under the night sky. The after colour needs to be brighter to look the same. Compare 21.98 and 22.02 with `ContinuousManualClockTime` and adjust until they match. Delete both for a black veil. |
+| `NightSkyVeilHours` | Half-length of the veil that hides the change (0.3 = 9 real seconds each side at 720 s). 0 turns it off and the change becomes visible. |
 | `ContinuousSkyFollowsSun` | Turns the day art so its baked glow is on the sunrise side in the morning and the sunset side in the evening. |
 
 Each look under `ContinuousPresets` has a `Clouds` section: `Cover` (0 = none), `Density`, `Color`. Keep `Enabled` true in every look.

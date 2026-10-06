@@ -1,0 +1,116 @@
+{
+ "_note": "Step 4 (2026-10-06, Oscar's second drive): no black at the sky change, bluer Ghibli-style day, less bloom, far blur you can see. Colours 0-255 RGB.",
+ "config": {
+  "NightSkyVeilHours": 0.3,
+  "NightSkyVeilColorBefore": [
+   125,
+   92,
+   168
+  ],
+  "NightSkyVeilColorAfter": [
+   155,
+   108,
+   240
+  ]
+ },
+ "looks": {
+  "Day": {
+   "Lighting": {
+    "Ambient": [
+     100,
+     160,
+     235
+    ],
+    "OutdoorAmbient": [
+     150,
+     195,
+     228
+    ]
+   },
+   "Atmosphere": {
+    "Color": [
+     175,
+     208,
+     245
+    ],
+    "Decay": [
+     120,
+     160,
+     220
+    ],
+    "Haze": 1.2
+   },
+   "Clouds": {
+    "Cover": 0.55,
+    "Density": 0.55
+   },
+   "Bloom": {
+    "Intensity": 0.45,
+    "Threshold": 2.0
+   },
+   "DepthOfField": {
+    "FarIntensity": 0.12,
+    "FocusDistance": 50,
+    "InFocusRadius": 120
+   },
+   "ColorCorrection": {
+    "Saturation": 0.36
+   }
+  },
+  "SevenAM": {
+   "Bloom": {
+    "Intensity": 0.48,
+    "Threshold": 1.15
+   },
+   "DepthOfField": {
+    "FarIntensity": 0.12,
+    "FocusDistance": 50,
+    "InFocusRadius": 120
+   }
+  },
+  "FivePM": {
+   "Bloom": {
+    "Intensity": 0.48,
+    "Threshold": 1.15
+   },
+   "DepthOfField": {
+    "FarIntensity": 0.12,
+    "FocusDistance": 50,
+    "InFocusRadius": 120
+   }
+  },
+  "FourAM": {
+   "Bloom": {
+    "Intensity": 0.4,
+    "Threshold": 0.85
+   },
+   "DepthOfField": {
+    "FarIntensity": 0.12,
+    "FocusDistance": 50,
+    "InFocusRadius": 120
+   }
+  },
+  "EightPM": {
+   "Bloom": {
+    "Intensity": 0.4,
+    "Threshold": 0.85
+   },
+   "DepthOfField": {
+    "FarIntensity": 0.12,
+    "FocusDistance": 50,
+    "InFocusRadius": 120
+   }
+  },
+  "ClearNight": {
+   "Bloom": {
+    "Intensity": 0.42,
+    "Threshold": 0.8
+   },
+   "DepthOfField": {
+    "FarIntensity": 0.12,
+    "FocusDistance": 50,
+    "InFocusRadius": 120
+   }
+  }
+ }
+}

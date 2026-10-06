@@ -2,6 +2,15 @@
 
 Recent deliveries, newest first. Entries before September 2026 live in [the archive](history/patch-history-2026-05-to-2026-08.md).
 
+## 2026-10-06 - Lighting realism mix, step 4: no black at nightfall, bluer day, less bloom, visible blur (v3)
+
+Standard lane (two lighting sources and config). From Oscar's second drive.
+
+- **Changed:** `LightingCycle` and `LightingCycleDefinition` (veil colour per side of the sky change; absent attributes keep black); three cycle attributes; 38 look attributes (Day lighting, haze, clouds and saturation; bloom and `DepthOfField` in all six looks).
+- **Measured:** the same haze colour is dimmer on screen under the day-for-night sky than under the real night before it, so the after colour is the brighter of the pair (125,92,168 before, 155,108,240 after).
+- **Checked:** live preview and colour matching in Play; ROLLBACK then re-APPLY with final values (43 operations); startup and full-day scrub with no server or render error; sky changes at 22:00 and 02:00 only; darkest haze channel over the day 0.31 (was 0 at the change).
+- **Recovery:** `scripts/lighting_realism/step4/install.lua` `ROLLBACK`.
+
 ## 2026-10-06 - Lighting realism mix, step 3: twilight fix, stylised grade, far blur (v3)
 
 Fast lane (58 attributes and one sky property; no source change). From Oscar's first drive.
