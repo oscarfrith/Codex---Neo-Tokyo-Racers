@@ -1,0 +1,1497 @@
+{
+ "clouds": [],
+ "config": {
+  "attributes": {
+   "AutoCycleEnabled": true,
+   "BaseDurationSeconds": 90,
+   "ContinuousCycleDurationSeconds": 720,
+   "ContinuousGeographicLatitude": 35,
+   "ContinuousManualClockTime": 12,
+   "ContinuousRayFadeHours": 0.4,
+   "ContinuousSkyName": "ContinuousSky",
+   "CycleMode": "Continuous",
+   "DefaultStreetLightBrightness": 2,
+   "ManualStage": "Day",
+   "SteppedGeographicLatitude": 189,
+   "SunriseClockTime": 6,
+   "SunsetClockTime": 18,
+   "SynchronizeAcrossServers": true
+  },
+  "children": [
+   {
+    "attributes": [],
+    "children": [
+     {
+      "attributes": {
+       "Anchor": "Sunrise",
+       "ColourFadeEnd": 0.8,
+       "ColourFadeStart": 0,
+       "DistanceFadeEnd": 1,
+       "DistanceFadeStart": 0,
+       "GlareFadeEnd": 1,
+       "GlareFadeStart": 0,
+       "HazeFadeEnd": 1,
+       "HazeFadeStart": 0,
+       "HoldHours": 0.4,
+       "LightFadeEnd": 1,
+       "LightFadeStart": 0,
+       "OffsetHours": -2.5,
+       "PostFadeEnd": 1,
+       "PostFadeStart": 0,
+       "Preset": "FourAM"
+      },
+      "children": [],
+      "class_name": "Folder",
+      "name": "Dawn"
+     },
+     {
+      "attributes": {
+       "Anchor": "Sunset",
+       "ColourFadeEnd": 0.85,
+       "ColourFadeStart": 0,
+       "DistanceFadeEnd": 1,
+       "DistanceFadeStart": 0,
+       "GlareFadeEnd": 1,
+       "GlareFadeStart": 0.4,
+       "HazeFadeEnd": 1,
+       "HazeFadeStart": 0.3,
+       "HoldHours": 0,
+       "LightFadeEnd": 0.7,
+       "LightFadeStart": 0,
+       "OffsetHours": -3.5,
+       "PostFadeEnd": 0.8,
+       "PostFadeStart": 0,
+       "Preset": "Day"
+      },
+      "children": [],
+      "class_name": "Folder",
+      "name": "DayEnd"
+     },
+     {
+      "attributes": {
+       "Anchor": "Sunrise",
+       "ColourFadeEnd": 1,
+       "ColourFadeStart": 0,
+       "DistanceFadeEnd": 1,
+       "DistanceFadeStart": 0,
+       "GlareFadeEnd": 1,
+       "GlareFadeStart": 0,
+       "HazeFadeEnd": 1,
+       "HazeFadeStart": 0,
+       "HoldHours": 0,
+       "LightFadeEnd": 1,
+       "LightFadeStart": 0,
+       "OffsetHours": 3.5,
+       "PostFadeEnd": 1,
+       "PostFadeStart": 0,
+       "Preset": "Day"
+      },
+      "children": [],
+      "class_name": "Folder",
+      "name": "DayStart"
+     },
+     {
+      "attributes": {
+       "Anchor": "Sunset",
+       "ColourFadeEnd": 1,
+       "ColourFadeStart": 0,
+       "DistanceFadeEnd": 1,
+       "DistanceFadeStart": 0,
+       "GlareFadeEnd": 1,
+       "GlareFadeStart": 0,
+       "HazeFadeEnd": 1,
+       "HazeFadeStart": 0,
+       "HoldHours": 0.4,
+       "LightFadeEnd": 1,
+       "LightFadeStart": 0,
+       "OffsetHours": 2.5,
+       "PostFadeEnd": 1,
+       "PostFadeStart": 0,
+       "Preset": "EightPM"
+      },
+      "children": [],
+      "class_name": "Folder",
+      "name": "Dusk"
+     },
+     {
+      "attributes": {
+       "Anchor": "Sunrise",
+       "ColourFadeEnd": 1,
+       "ColourFadeStart": 0,
+       "DistanceFadeEnd": 1,
+       "DistanceFadeStart": 0,
+       "GlareFadeEnd": 1,
+       "GlareFadeStart": 0,
+       "HazeFadeEnd": 1,
+       "HazeFadeStart": 0,
+       "HoldHours": 0,
+       "LightFadeEnd": 1,
+       "LightFadeStart": 0,
+       "OffsetHours": -4,
+       "PostFadeEnd": 1,
+       "PostFadeStart": 0,
+       "Preset": "ClearNight"
+      },
+      "children": [],
+      "class_name": "Folder",
+      "name": "NightEnd"
+     },
+     {
+      "attributes": {
+       "Anchor": "Sunset",
+       "ColourFadeEnd": 1,
+       "ColourFadeStart": 0,
+       "DistanceFadeEnd": 1,
+       "DistanceFadeStart": 0,
+       "GlareFadeEnd": 1,
+       "GlareFadeStart": 0,
+       "HazeFadeEnd": 1,
+       "HazeFadeStart": 0,
+       "HoldHours": 0,
+       "LightFadeEnd": 1,
+       "LightFadeStart": 0,
+       "OffsetHours": 4,
+       "PostFadeEnd": 1,
+       "PostFadeStart": 0,
+       "Preset": "ClearNight"
+      },
+      "children": [],
+      "class_name": "Folder",
+      "name": "NightStart"
+     },
+     {
+      "attributes": {
+       "Anchor": "Sunrise",
+       "ColourFadeEnd": 1,
+       "ColourFadeStart": 0.15,
+       "DistanceFadeEnd": 1,
+       "DistanceFadeStart": 0,
+       "GlareFadeEnd": 0.6,
+       "GlareFadeStart": 0,
+       "HazeFadeEnd": 0.7,
+       "HazeFadeStart": 0,
+       "HoldHours": 0.16666666666666666,
+       "LightFadeEnd": 1,
+       "LightFadeStart": 0.3,
+       "OffsetHours": 0,
+       "PostFadeEnd": 1,
+       "PostFadeStart": 0.2,
+       "Preset": "SevenAM"
+      },
+      "children": [],
+      "class_name": "Folder",
+      "name": "Sunrise"
+     },
+     {
+      "attributes": {
+       "Anchor": "Sunset",
+       "ColourFadeEnd": 1,
+       "ColourFadeStart": 0.2,
+       "DistanceFadeEnd": 1,
+       "DistanceFadeStart": 0,
+       "GlareFadeEnd": 1,
+       "GlareFadeStart": 0,
+       "HazeFadeEnd": 1,
+       "HazeFadeStart": 0,
+       "HoldHours": 0.16666666666666666,
+       "LightFadeEnd": 1,
+       "LightFadeStart": 0,
+       "OffsetHours": 0,
+       "PostFadeEnd": 1,
+       "PostFadeStart": 0,
+       "Preset": "FivePM"
+      },
+      "children": [],
+      "class_name": "Folder",
+      "name": "Sunset"
+     }
+    ],
+    "class_name": "Folder",
+    "name": "ContinuousLooks"
+   },
+   {
+    "attributes": [],
+    "children": [
+     {
+      "attributes": [],
+      "children": [
+       {
+        "attributes": {
+         "Color": {
+          "B": 0.30980393290519714,
+          "G": 0.250980406999588,
+          "R": 0.21568629145622253,
+          "Type": "Color3"
+         },
+         "Decay": {
+          "B": 0.5333333611488342,
+          "G": 0.41960787773132324,
+          "R": 0.4117647409439087,
+          "Type": "Color3"
+         },
+         "Density": 0.3070000112056732,
+         "Glare": 0.45,
+         "Haze": 4.090000152587891,
+         "Offset": 0
+        },
+        "children": [],
+        "class_name": "Folder",
+        "name": "Atmosphere"
+       },
+       {
+        "attributes": {
+         "Enabled": true,
+         "Intensity": 0.5,
+         "Size": 18,
+         "Threshold": 0.8
+        },
+        "children": [],
+        "class_name": "Folder",
+        "name": "Bloom"
+       },
+       {
+        "attributes": {
+         "Brightness": 0.05000000074505806,
+         "Contrast": 0.2,
+         "Enabled": true,
+         "Saturation": 0.20000000298023224,
+         "TintColor": {
+          "B": 1,
+          "G": 0.8196079134941101,
+          "R": 0.7921569347381592,
+          "Type": "Color3"
+         }
+        },
+        "children": [],
+        "class_name": "Folder",
+        "name": "ColorCorrection"
+       },
+       {
+        "attributes": {
+         "Enabled": false,
+         "FarIntensity": 0.08399999886751175,
+         "FocusDistance": 0.05000000074505806,
+         "InFocusRadius": 10,
+         "NearIntensity": 0.75
+        },
+        "children": [],
+        "class_name": "Folder",
+        "name": "DepthOfField"
+       },
+       {
+        "attributes": {
+         "Ambient": {
+          "B": 0.6470588445663452,
+          "G": 0.4627451002597809,
+          "R": 0.4117647111415863,
+          "Type": "Color3"
+         },
+         "Brightness": 2.2,
+         "ColorShift_Bottom": {
+          "B": 0.3529411852359772,
+          "G": 0.3529411852359772,
+          "R": 0.3529411852359772,
+          "Type": "Color3"
+         },
+         "ColorShift_Top": {
+          "B": 1,
+          "G": 0.7647058963775635,
+          "R": 0.7058823704719543,
+          "Type": "Color3"
+         },
+         "EnvironmentDiffuseScale": 0.25,
+         "EnvironmentSpecularScale": 0.85,
+         "ExposureCompensation": 0.25,
+         "FogColor": {
+          "B": 0.7529411911964417,
+          "G": 0.7529411911964417,
+          "R": 0.7529411911964417,
+          "Type": "Color3"
+         },
+         "FogEnd": 100000,
+         "FogStart": 0,
+         "GlobalShadows": true,
+         "OutdoorAmbient": {
+          "B": 0.8039215803146362,
+          "G": 0.5803921818733215,
+          "R": 0.5490196347236633,
+          "Type": "Color3"
+         },
+         "ShadowSoftness": 0.20000000298023224
+        },
+        "children": [],
+        "class_name": "Folder",
+        "name": "Lighting"
+       },
+       {
+        "attributes": {
+         "Enabled": true,
+         "Intensity": 0,
+         "Spread": 0.9
+        },
+        "children": [],
+        "class_name": "Folder",
+        "name": "SunRays"
+       }
+      ],
+      "class_name": "Folder",
+      "name": "ClearNight"
+     },
+     {
+      "attributes": [],
+      "children": [
+       {
+        "attributes": {
+         "Color": {
+          "B": 0.8705882430076599,
+          "G": 0.8156862854957581,
+          "R": 0.7803921699523926,
+          "Type": "Color3"
+         },
+         "Decay": {
+          "B": 0.5882353186607361,
+          "G": 0.47843137383461,
+          "R": 0.4156862795352936,
+          "Type": "Color3"
+         },
+         "Density": 0.26,
+         "Glare": 0.1,
+         "Haze": 1,
+         "Offset": 0.15
+        },
+        "children": [],
+        "class_name": "Folder",
+        "name": "Atmosphere"
+       },
+       {
+        "attributes": {
+         "Enabled": true,
+         "Intensity": 0.5,
+         "Size": 20,
+         "Threshold": 2.2
+        },
+        "children": [],
+        "class_name": "Folder",
+        "name": "Bloom"
+       },
+       {
+        "attributes": {
+         "Brightness": 0.02,
+         "Contrast": 0.08,
+         "Enabled": true,
+         "Saturation": 0.22,
+         "TintColor": {
+          "B": 0.9725490212440491,
+          "G": 0.9882352948188782,
+          "R": 1,
+          "Type": "Color3"
+         }
+        },
+        "children": [],
+        "class_name": "Folder",
+        "name": "ColorCorrection"
+       },
+       {
+        "attributes": {
+         "Enabled": false,
+         "FarIntensity": 0.084,
+         "FocusDistance": 0.05,
+         "InFocusRadius": 10,
+         "NearIntensity": 0.75
+        },
+        "children": [],
+        "class_name": "Folder",
+        "name": "DepthOfField"
+       },
+       {
+        "attributes": {
+         "Ambient": {
+          "B": 0.501960813999176,
+          "G": 0.42352941632270813,
+          "R": 0.37254902720451355,
+          "Type": "Color3"
+         },
+         "Brightness": 3.8,
+         "ColorShift_Bottom": {
+          "B": 0,
+          "G": 0,
+          "R": 0,
+          "Type": "Color3"
+         },
+         "ColorShift_Top": {
+          "B": 0.8156862854957581,
+          "G": 0.9333333373069763,
+          "R": 1,
+          "Type": "Color3"
+         },
+         "EnvironmentDiffuseScale": 0.4,
+         "EnvironmentSpecularScale": 1,
+         "ExposureCompensation": 0.2,
+         "FogColor": {
+          "B": 0.7529411911964417,
+          "G": 0.7529411911964417,
+          "R": 0.7529411911964417,
+          "Type": "Color3"
+         },
+         "FogEnd": 100000,
+         "FogStart": 0,
+         "GlobalShadows": true,
+         "OutdoorAmbient": {
+          "B": 0.7137255072593689,
+          "G": 0.6274510025978088,
+          "R": 0.5490196347236633,
+          "Type": "Color3"
+         },
+         "ShadowSoftness": 0.20000000298023224
+        },
+        "children": [],
+        "class_name": "Folder",
+        "name": "Lighting"
+       },
+       {
+        "attributes": {
+         "Enabled": true,
+         "Intensity": 0.07,
+         "Spread": 0.9
+        },
+        "children": [],
+        "class_name": "Folder",
+        "name": "SunRays"
+       }
+      ],
+      "class_name": "Folder",
+      "name": "Day"
+     },
+     {
+      "attributes": [],
+      "children": [
+       {
+        "attributes": {
+         "Color": {
+          "B": 0.6078431606292725,
+          "G": 0.3921568691730499,
+          "R": 0.5686274766921997,
+          "Type": "Color3"
+         },
+         "Decay": {
+          "B": 0.7254902124404907,
+          "G": 0.5098039507865906,
+          "R": 0.6470588445663452,
+          "Type": "Color3"
+         },
+         "Density": 0.3070000112056732,
+         "Glare": 1.5,
+         "Haze": 4.090000152587891,
+         "Offset": 0
+        },
+        "children": [],
+        "class_name": "Folder",
+        "name": "Atmosphere"
+       },
+       {
+        "attributes": {
+         "Enabled": true,
+         "Intensity": 0.45,
+         "Size": 18,
+         "Threshold": 0.9
+        },
+        "children": [],
+        "class_name": "Folder",
+        "name": "Bloom"
+       },
+       {
+        "attributes": {
+         "Brightness": 0,
+         "Contrast": 0.14,
+         "Enabled": true,
+         "Saturation": 0.20000000298023224,
+         "TintColor": {
+          "B": 1,
+          "G": 0.8509804606437683,
+          "R": 0.988235354423523,
+          "Type": "Color3"
+         }
+        },
+        "children": [],
+        "class_name": "Folder",
+        "name": "ColorCorrection"
+       },
+       {
+        "attributes": {
+         "Enabled": false,
+         "FarIntensity": 0.08399999886751175,
+         "FocusDistance": 0.05000000074505806,
+         "InFocusRadius": 10,
+         "NearIntensity": 0.75
+        },
+        "children": [],
+        "class_name": "Folder",
+        "name": "DepthOfField"
+       },
+       {
+        "attributes": {
+         "Ambient": {
+          "B": 0.8627451062202454,
+          "G": 0.45098039507865906,
+          "R": 0.37254902720451355,
+          "Type": "Color3"
+         },
+         "Brightness": 2,
+         "ColorShift_Bottom": {
+          "B": 0,
+          "G": 0,
+          "R": 0,
+          "Type": "Color3"
+         },
+         "ColorShift_Top": {
+          "B": 1,
+          "G": 0.7058823704719543,
+          "R": 0.7843137383460999,
+          "Type": "Color3"
+         },
+         "EnvironmentDiffuseScale": 0.3,
+         "EnvironmentSpecularScale": 0.85,
+         "ExposureCompensation": 0.3,
+         "FogColor": {
+          "B": 0.7529411911964417,
+          "G": 0.7529411911964417,
+          "R": 0.7529411911964417,
+          "Type": "Color3"
+         },
+         "FogEnd": 100000,
+         "FogStart": 0,
+         "GlobalShadows": true,
+         "OutdoorAmbient": {
+          "B": 0.8235294222831726,
+          "G": 0.6078431606292725,
+          "R": 0.7450980544090271,
+          "Type": "Color3"
+         },
+         "ShadowSoftness": 0.20000000298023224
+        },
+        "children": [],
+        "class_name": "Folder",
+        "name": "Lighting"
+       },
+       {
+        "attributes": {
+         "Enabled": true,
+         "Intensity": 0,
+         "Spread": 0.9
+        },
+        "children": [],
+        "class_name": "Folder",
+        "name": "SunRays"
+       }
+      ],
+      "class_name": "Folder",
+      "name": "EightPM"
+     },
+     {
+      "attributes": [],
+      "children": [
+       {
+        "attributes": {
+         "Color": {
+          "B": 0.3921568691730499,
+          "G": 0.5686274766921997,
+          "R": 1,
+          "Type": "Color3"
+         },
+         "Decay": {
+          "B": 0.5490196347236633,
+          "G": 0.4901960790157318,
+          "R": 0.7058823704719543,
+          "Type": "Color3"
+         },
+         "Density": 0.2669999897480011,
+         "Glare": 1,
+         "Haze": 2.2,
+         "Offset": 0
+        },
+        "children": [],
+        "class_name": "Folder",
+        "name": "Atmosphere"
+       },
+       {
+        "attributes": {
+         "Enabled": true,
+         "Intensity": 0.550000011920929,
+         "Size": 16,
+         "Threshold": 1.2
+        },
+        "children": [],
+        "class_name": "Folder",
+        "name": "Bloom"
+       },
+       {
+        "attributes": {
+         "Brightness": 0.055,
+         "Contrast": 0.1,
+         "Enabled": true,
+         "Saturation": 0.32,
+         "TintColor": {
+          "B": 0.9019607901573181,
+          "G": 0.9215686321258545,
+          "R": 1,
+          "Type": "Color3"
+         }
+        },
+        "children": [],
+        "class_name": "Folder",
+        "name": "ColorCorrection"
+       },
+       {
+        "attributes": {
+         "Enabled": false,
+         "FarIntensity": 0.08399999886751175,
+         "FocusDistance": 0.05000000074505806,
+         "InFocusRadius": 10,
+         "NearIntensity": 0.75
+        },
+        "children": [],
+        "class_name": "Folder",
+        "name": "DepthOfField"
+       },
+       {
+        "attributes": {
+         "Ambient": {
+          "B": 0.529411792755127,
+          "G": 0.5882353186607361,
+          "R": 0.843137264251709,
+          "Type": "Color3"
+         },
+         "Brightness": 1.2,
+         "ColorShift_Bottom": {
+          "B": 0,
+          "G": 0,
+          "R": 0,
+          "Type": "Color3"
+         },
+         "ColorShift_Top": {
+          "B": 0.3921568691730499,
+          "G": 0.5882353186607361,
+          "R": 1,
+          "Type": "Color3"
+         },
+         "EnvironmentDiffuseScale": 0.4,
+         "EnvironmentSpecularScale": 1,
+         "ExposureCompensation": 0.5,
+         "FogColor": {
+          "B": 0.7529411911964417,
+          "G": 0.7529411911964417,
+          "R": 0.7529411911964417,
+          "Type": "Color3"
+         },
+         "FogEnd": 100000,
+         "FogStart": 0,
+         "GlobalShadows": true,
+         "OutdoorAmbient": {
+          "B": 0.5882353186607361,
+          "G": 0.5411764979362488,
+          "R": 0.7843137383460999,
+          "Type": "Color3"
+         },
+         "ShadowSoftness": 0.20000000298023224
+        },
+        "children": [],
+        "class_name": "Folder",
+        "name": "Lighting"
+       },
+       {
+        "attributes": {
+         "Enabled": true,
+         "Intensity": 0.2,
+         "Spread": 0.9
+        },
+        "children": [],
+        "class_name": "Folder",
+        "name": "SunRays"
+       }
+      ],
+      "class_name": "Folder",
+      "name": "FivePM"
+     },
+     {
+      "attributes": [],
+      "children": [
+       {
+        "attributes": {
+         "Color": {
+          "B": 0.6078431606292725,
+          "G": 0.3921568691730499,
+          "R": 0.5686274766921997,
+          "Type": "Color3"
+         },
+         "Decay": {
+          "B": 0.7254902124404907,
+          "G": 0.5098039507865906,
+          "R": 0.6470588445663452,
+          "Type": "Color3"
+         },
+         "Density": 0.3070000112056732,
+         "Glare": 1.5,
+         "Haze": 4.090000152587891,
+         "Offset": 0
+        },
+        "children": [],
+        "class_name": "Folder",
+        "name": "Atmosphere"
+       },
+       {
+        "attributes": {
+         "Enabled": true,
+         "Intensity": 0.45,
+         "Size": 18,
+         "Threshold": 0.9
+        },
+        "children": [],
+        "class_name": "Folder",
+        "name": "Bloom"
+       },
+       {
+        "attributes": {
+         "Brightness": 0,
+         "Contrast": 0.14,
+         "Enabled": true,
+         "Saturation": 0.20000000298023224,
+         "TintColor": {
+          "B": 1,
+          "G": 0.8509804606437683,
+          "R": 0.988235354423523,
+          "Type": "Color3"
+         }
+        },
+        "children": [],
+        "class_name": "Folder",
+        "name": "ColorCorrection"
+       },
+       {
+        "attributes": {
+         "Enabled": false,
+         "FarIntensity": 0.08399999886751175,
+         "FocusDistance": 0.05000000074505806,
+         "InFocusRadius": 10,
+         "NearIntensity": 0.75
+        },
+        "children": [],
+        "class_name": "Folder",
+        "name": "DepthOfField"
+       },
+       {
+        "attributes": {
+         "Ambient": {
+          "B": 0.8627451062202454,
+          "G": 0.45098039507865906,
+          "R": 0.37254902720451355,
+          "Type": "Color3"
+         },
+         "Brightness": 2,
+         "ColorShift_Bottom": {
+          "B": 0,
+          "G": 0,
+          "R": 0,
+          "Type": "Color3"
+         },
+         "ColorShift_Top": {
+          "B": 1,
+          "G": 0.7058823704719543,
+          "R": 0.7843137383460999,
+          "Type": "Color3"
+         },
+         "EnvironmentDiffuseScale": 0.3,
+         "EnvironmentSpecularScale": 0.85,
+         "ExposureCompensation": 0.3,
+         "FogColor": {
+          "B": 0.7529411911964417,
+          "G": 0.7529411911964417,
+          "R": 0.7529411911964417,
+          "Type": "Color3"
+         },
+         "FogEnd": 100000,
+         "FogStart": 0,
+         "GlobalShadows": true,
+         "OutdoorAmbient": {
+          "B": 0.8235294222831726,
+          "G": 0.6078431606292725,
+          "R": 0.7450980544090271,
+          "Type": "Color3"
+         },
+         "ShadowSoftness": 0.20000000298023224
+        },
+        "children": [],
+        "class_name": "Folder",
+        "name": "Lighting"
+       },
+       {
+        "attributes": {
+         "Enabled": true,
+         "Intensity": 0,
+         "Spread": 0.9
+        },
+        "children": [],
+        "class_name": "Folder",
+        "name": "SunRays"
+       }
+      ],
+      "class_name": "Folder",
+      "name": "FourAM"
+     },
+     {
+      "attributes": [],
+      "children": [
+       {
+        "attributes": {
+         "Color": {
+          "B": 0.3921568691730499,
+          "G": 0.5686274766921997,
+          "R": 1,
+          "Type": "Color3"
+         },
+         "Decay": {
+          "B": 0.5490196347236633,
+          "G": 0.4901960790157318,
+          "R": 0.7058823704719543,
+          "Type": "Color3"
+         },
+         "Density": 0.2370000034570694,
+         "Glare": 1,
+         "Haze": 2.2,
+         "Offset": 0
+        },
+        "children": [],
+        "class_name": "Folder",
+        "name": "Atmosphere"
+       },
+       {
+        "attributes": {
+         "Enabled": true,
+         "Intensity": 0.550000011920929,
+         "Size": 16,
+         "Threshold": 1.2
+        },
+        "children": [],
+        "class_name": "Folder",
+        "name": "Bloom"
+       },
+       {
+        "attributes": {
+         "Brightness": 0.055,
+         "Contrast": 0.1,
+         "Enabled": true,
+         "Saturation": 0.32,
+         "TintColor": {
+          "B": 0.9019607901573181,
+          "G": 0.9215686321258545,
+          "R": 1,
+          "Type": "Color3"
+         }
+        },
+        "children": [],
+        "class_name": "Folder",
+        "name": "ColorCorrection"
+       },
+       {
+        "attributes": {
+         "Enabled": false,
+         "FarIntensity": 0.08399999886751175,
+         "FocusDistance": 0.05000000074505806,
+         "InFocusRadius": 10,
+         "NearIntensity": 0.75
+        },
+        "children": [],
+        "class_name": "Folder",
+        "name": "DepthOfField"
+       },
+       {
+        "attributes": {
+         "Ambient": {
+          "B": 0.529411792755127,
+          "G": 0.5882353186607361,
+          "R": 0.843137264251709,
+          "Type": "Color3"
+         },
+         "Brightness": 1.2,
+         "ColorShift_Bottom": {
+          "B": 0,
+          "G": 0,
+          "R": 0,
+          "Type": "Color3"
+         },
+         "ColorShift_Top": {
+          "B": 0.3921568691730499,
+          "G": 0.5882353186607361,
+          "R": 1,
+          "Type": "Color3"
+         },
+         "EnvironmentDiffuseScale": 0.4,
+         "EnvironmentSpecularScale": 1,
+         "ExposureCompensation": 0.5,
+         "FogColor": {
+          "B": 0.7529411911964417,
+          "G": 0.7529411911964417,
+          "R": 0.7529411911964417,
+          "Type": "Color3"
+         },
+         "FogEnd": 100000,
+         "FogStart": 0,
+         "GlobalShadows": true,
+         "OutdoorAmbient": {
+          "B": 0.5882353186607361,
+          "G": 0.5411764979362488,
+          "R": 0.7843137383460999,
+          "Type": "Color3"
+         },
+         "ShadowSoftness": 0.20000000298023224
+        },
+        "children": [],
+        "class_name": "Folder",
+        "name": "Lighting"
+       },
+       {
+        "attributes": {
+         "Enabled": true,
+         "Intensity": 0.2,
+         "Spread": 0.9
+        },
+        "children": [],
+        "class_name": "Folder",
+        "name": "SunRays"
+       }
+      ],
+      "class_name": "Folder",
+      "name": "SevenAM"
+     }
+    ],
+    "class_name": "Folder",
+    "name": "ContinuousPresets"
+   },
+   {
+    "attributes": {
+     "CapturedAtUTC": "2026-08-09T11:32:54Z",
+     "CapturedPreset": "Day",
+     "Format": "NTRLightingTextCaptureV1"
+    },
+    "children": [],
+    "class_name": "StringValue",
+    "name": "CurrentLightingCaptureText",
+    "value": "return {\n\tAtmosphere = {\n\t\tColor = Color3.new(0.78039216995239258, 0.78039216995239258, 0.78039216995239258),\n\t\tDecay = Color3.new(0.41568627953529358, 0.43921568989753723, 0.49019607901573181),\n\t\tDensity = 0.2199999988079071,\n\t\tGlare = 0,\n\t\tHaze = 0,\n\t\tOffset = 0.20000000298023224,\n\t},\n\tBloom = {\n\t\tEnabled = true,\n\t\tIntensity = 0.6499999761581421,\n\t\tSize = 10,\n\t\tThreshold = 1.9040000438690186,\n\t},\n\tCapturedAtUTC = \"2026-08-09T11:32:54Z\",\n\tColorCorrection = {\n\t\tBrightness = 0.05000000074505806,\n\t\tContrast = 0,\n\t\tEnabled = true,\n\t\tSaturation = 0.4000000059604645,\n\t\tTintColor = Color3.new(1, 1, 1),\n\t},\n\tCurrentPreset = \"Day\",\n\tDepthOfField = {\n\t\tEnabled = false,\n\t\tFarIntensity = 0.08399999886751175,\n\t\tFocusDistance = 0.05000000074505806,\n\t\tInFocusRadius = 10,\n\t\tNearIntensity = 0.75,\n\t},\n\tFormat = \"NTRLightingTextCaptureV1\",\n\tLighting = {\n\t\tAmbient = Color3.new(0.4117647111415863, 0.73333334922790527, 1),\n\t\tBrightness = 5.150000095367432,\n\t\tClockTime = 12,\n\t\tColorShift_Bottom = Color3.new(0, 0, 0),\n\t\tColorShift_Top = Color3.new(1, 0.9529411792755127, 0.83137255907058716),\n\t\tEnvironmentDiffuseScale = 0.47099998593330383,\n\t\tEnvironmentSpecularScale = 1,\n\t\tExposureCompensation = 0.10000000149011612,\n\t\tFogColor = Color3.new(0.75294119119644165, 0.75294119119644165, 0.75294119119644165),\n\t\tFogEnd = 100000,\n\t\tFogStart = 0,\n\t\tGeographicLatitude = 189,\n\t\tGlobalShadows = true,\n\t\tOutdoorAmbient = Color3.new(0.61176472902297974, 0.83921569585800171, 0.90980392694473267),\n\t\tShadowSoftness = 0.20000000298023224,\n\t},\n\tSky = {\n\t\tCelestialBodiesShown = true,\n\t\tMoonAngularSize = 11,\n\t\tMoonTextureId = \"rbxasset://sky/moon.jpg\",\n\t\tSkyboxBk = \"rbxassetid://18351376859\",\n\t\tSkyboxDn = \"rbxassetid://18351374919\",\n\t\tSkyboxFt = \"rbxassetid://18351376800\",\n\t\tSkyboxLf = \"rbxassetid://18351376469\",\n\t\tSkyboxOrientation = Vector3.new(0, 0, 0),\n\t\tSkyboxRt = \"rbxassetid://18351376457\",\n\t\tSkyboxUp = \"rbxassetid://18351377189\",\n\t\tSourceName = \"ActiveSky\",\n\t\tStarCount = 3000,\n\t\tSunAngularSize = 21,\n\t\tSunTextureId = \"rbxasset://sky/sun.jpg\",\n\t},\n\tStageVisualConfig = {\n\t\tStreetLightBrightness = 2,\n\t\tStreetLightsEnabled = false,\n\t\tWindowMode = \"Day\",\n\t},\n\tSunRays = {\n\t\tEnabled = false,\n\t\tIntensity = 0.05000000074505806,\n\t\tSpread = 0.7129999995231628,\n\t},\n}\n"
+   },
+   {
+    "attributes": {
+     "Purpose": "Edit each child stage: WindowMode, StreetLightsEnabled, StreetLightBrightness"
+    },
+    "children": [
+     {
+      "attributes": {
+       "StreetLightBrightness": 2,
+       "StreetLightsEnabled": true,
+       "WindowMode": "Night"
+      },
+      "children": [],
+      "class_name": "Folder",
+      "name": "ClearNight"
+     },
+     {
+      "attributes": {
+       "StreetLightBrightness": 2,
+       "StreetLightsEnabled": false,
+       "WindowMode": "Day"
+      },
+      "children": [],
+      "class_name": "Folder",
+      "name": "Day"
+     },
+     {
+      "attributes": {
+       "StreetLightBrightness": 2,
+       "StreetLightsEnabled": true,
+       "WindowMode": "Night"
+      },
+      "children": [],
+      "class_name": "Folder",
+      "name": "EightPM"
+     },
+     {
+      "attributes": {
+       "StreetLightBrightness": 2,
+       "StreetLightsEnabled": true,
+       "WindowMode": "Night"
+      },
+      "children": [],
+      "class_name": "Folder",
+      "name": "FivePM"
+     },
+     {
+      "attributes": {
+       "StreetLightBrightness": 2,
+       "StreetLightsEnabled": true,
+       "WindowMode": "Night"
+      },
+      "children": [],
+      "class_name": "Folder",
+      "name": "FourAM"
+     },
+     {
+      "attributes": {
+       "StreetLightBrightness": 2,
+       "StreetLightsEnabled": true,
+       "WindowMode": "Night"
+      },
+      "children": [],
+      "class_name": "Folder",
+      "name": "SevenAM"
+     },
+     {
+      "attributes": {
+       "StreetLightBrightness": 2,
+       "StreetLightsEnabled": false,
+       "WindowMode": "Day"
+      },
+      "children": [],
+      "class_name": "Folder",
+      "name": "TenAM"
+     },
+     {
+      "attributes": {
+       "StreetLightBrightness": 2,
+       "StreetLightsEnabled": false,
+       "WindowMode": "Day"
+      },
+      "children": [],
+      "class_name": "Folder",
+      "name": "ThreePM"
+     }
+    ],
+    "class_name": "Folder",
+    "name": "StageVisuals"
+   }
+  ],
+  "class_name": "Folder",
+  "name": "Lighting"
+ },
+ "lighting_service": {
+  "attributes": {
+   "LightingPreset": "Day",
+   "RBX_LightingTechnologyUnifiedMigration": true,
+   "RBX_OriginalTechnologyOnFileLoad": 3,
+   "StreetLightBrightness": 2,
+   "StreetLightsOn": false,
+   "WindowMode": "Day"
+  },
+  "children": [
+   {
+    "attributes": [],
+    "class_name": "ColorCorrectionEffect",
+    "name": "ColorCorrection",
+    "properties": {
+     "Brightness": 0.05000000074505806,
+     "Contrast": 0,
+     "Enabled": true,
+     "Saturation": 0.4000000059604645,
+     "TintColor": {
+      "B": 1,
+      "G": 1,
+      "R": 1,
+      "Type": "Color3"
+     }
+    }
+   },
+   {
+    "attributes": [],
+    "class_name": "DepthOfFieldEffect",
+    "name": "DepthOfField",
+    "properties": {
+     "Enabled": false,
+     "FarIntensity": 0.08399999886751175,
+     "FocusDistance": 0.05000000074505806,
+     "InFocusRadius": 10,
+     "NearIntensity": 0.75
+    }
+   },
+   {
+    "attributes": [],
+    "class_name": "SunRaysEffect",
+    "name": "SunRays",
+    "properties": {
+     "Enabled": true,
+     "Intensity": 0.5659999847412109,
+     "Spread": 1
+    }
+   },
+   {
+    "attributes": [],
+    "class_name": "ColorGradingEffect",
+    "name": "ColorGrading",
+    "properties": {
+     "Enabled": true,
+     "TonemapperPreset": {
+      "Type": "Enum",
+      "Value": "Enum.TonemapperPreset.Default"
+     }
+    }
+   },
+   {
+    "attributes": [],
+    "class_name": "BloomEffect",
+    "name": "Bloom",
+    "properties": {
+     "Enabled": true,
+     "Intensity": 0.6499999761581421,
+     "Size": 10,
+     "Threshold": 1.9040000438690186
+    }
+   },
+   {
+    "attributes": [],
+    "class_name": "Atmosphere",
+    "name": "Atmosphere",
+    "properties": {
+     "Color": {
+      "B": 0.7803921699523926,
+      "G": 0.7803921699523926,
+      "R": 0.7803921699523926,
+      "Type": "Color3"
+     },
+     "Decay": {
+      "B": 0.4901960790157318,
+      "G": 0.43921568989753723,
+      "R": 0.4156862795352936,
+      "Type": "Color3"
+     },
+     "Density": 0.2199999988079071,
+     "Glare": 0,
+     "Haze": 0,
+     "Offset": 0.20000000298023224
+    }
+   },
+   {
+    "attributes": [],
+    "class_name": "Sky",
+    "name": "ActiveSky",
+    "properties": {
+     "CelestialBodiesShown": true,
+     "MoonAngularSize": 11,
+     "MoonTextureId": "rbxasset://sky/moon.jpg",
+     "SkyboxBk": "rbxassetid://18351376859",
+     "SkyboxDn": "rbxassetid://18351374919",
+     "SkyboxFt": "rbxassetid://18351376800",
+     "SkyboxLf": "rbxassetid://18351376469",
+     "SkyboxOrientation": {
+      "Type": "Vector3",
+      "X": 0,
+      "Y": 0,
+      "Z": 0
+     },
+     "SkyboxRt": "rbxassetid://18351376457",
+     "SkyboxUp": "rbxassetid://18351377189",
+     "StarCount": 3000,
+     "SunAngularSize": 21,
+     "SunTextureId": "rbxasset://sky/sun.jpg"
+    }
+   }
+  ],
+  "properties": {
+   "Ambient": {
+    "B": 1,
+    "G": 0.7333333492279053,
+    "R": 0.4117647111415863,
+    "Type": "Color3"
+   },
+   "Brightness": 5.150000095367432,
+   "ClockTime": 12,
+   "ColorShift_Bottom": {
+    "B": 0,
+    "G": 0,
+    "R": 0,
+    "Type": "Color3"
+   },
+   "ColorShift_Top": {
+    "B": 0.8313725590705872,
+    "G": 0.9529411792755127,
+    "R": 1,
+    "Type": "Color3"
+   },
+   "EnvironmentDiffuseScale": 0.47099998593330383,
+   "EnvironmentSpecularScale": 1,
+   "ExposureCompensation": 0.10000000149011612,
+   "FogColor": {
+    "B": 0.7529411911964417,
+    "G": 0.7529411911964417,
+    "R": 0.7529411911964417,
+    "Type": "Color3"
+   },
+   "FogEnd": 100000,
+   "FogStart": 0,
+   "GeographicLatitude": 189,
+   "GlobalShadows": true,
+   "LightingStyle": {
+    "Type": "Enum",
+    "Value": "Enum.LightingStyle.Realistic"
+   },
+   "OutdoorAmbient": {
+    "B": 0.9098039269447327,
+    "G": 0.8392156958580017,
+    "R": 0.6117647290229797,
+    "Type": "Color3"
+   },
+   "PrioritizeLightingQuality": true,
+   "ShadowSoftness": 0.20000000298023224
+  }
+ },
+ "mode": "Edit",
+ "place_id": 93959280828322,
+ "skies": [
+  {
+   "attributes": [],
+   "class_name": "Sky",
+   "name": "DaySky",
+   "properties": {
+    "CelestialBodiesShown": true,
+    "MoonAngularSize": 11,
+    "MoonTextureId": "rbxasset://sky/moon.jpg",
+    "SkyboxBk": "rbxassetid://18351376859",
+    "SkyboxDn": "rbxassetid://18351374919",
+    "SkyboxFt": "rbxassetid://18351376800",
+    "SkyboxLf": "rbxassetid://18351376469",
+    "SkyboxOrientation": {
+     "Type": "Vector3",
+     "X": 0,
+     "Y": 0,
+     "Z": 0
+    },
+    "SkyboxRt": "rbxassetid://18351376457",
+    "SkyboxUp": "rbxassetid://18351377189",
+    "StarCount": 3000,
+    "SunAngularSize": 21,
+    "SunTextureId": "rbxasset://sky/sun.jpg"
+   }
+  },
+  {
+   "attributes": [],
+   "class_name": "Sky",
+   "name": "ActiveSky",
+   "properties": {
+    "CelestialBodiesShown": true,
+    "MoonAngularSize": 11,
+    "MoonTextureId": "rbxasset://sky/moon.jpg",
+    "SkyboxBk": "rbxassetid://18351376859",
+    "SkyboxDn": "rbxassetid://18351374919",
+    "SkyboxFt": "rbxassetid://18351376800",
+    "SkyboxLf": "rbxassetid://18351376469",
+    "SkyboxOrientation": {
+     "Type": "Vector3",
+     "X": 0,
+     "Y": 0,
+     "Z": 0
+    },
+    "SkyboxRt": "rbxassetid://18351376457",
+    "SkyboxUp": "rbxassetid://18351377189",
+    "StarCount": 3000,
+    "SunAngularSize": 21,
+    "SunTextureId": "rbxasset://sky/sun.jpg"
+   }
+  },
+  {
+   "attributes": [],
+   "class_name": "Sky",
+   "name": "SevenAMSky",
+   "properties": {
+    "CelestialBodiesShown": true,
+    "MoonAngularSize": 11,
+    "MoonTextureId": "rbxasset://sky/moon.jpg",
+    "SkyboxBk": "rbxassetid://18351376859",
+    "SkyboxDn": "rbxassetid://18351374919",
+    "SkyboxFt": "rbxassetid://18351376800",
+    "SkyboxLf": "rbxassetid://18351376469",
+    "SkyboxOrientation": {
+     "Type": "Vector3",
+     "X": 0,
+     "Y": 90,
+     "Z": 0
+    },
+    "SkyboxRt": "rbxassetid://18351376457",
+    "SkyboxUp": "rbxassetid://18351377189",
+    "StarCount": 3000,
+    "SunAngularSize": 21,
+    "SunTextureId": "rbxasset://sky/sun.jpg"
+   }
+  },
+  {
+   "attributes": [],
+   "class_name": "Sky",
+   "name": "FivePMSky",
+   "properties": {
+    "CelestialBodiesShown": true,
+    "MoonAngularSize": 11,
+    "MoonTextureId": "rbxasset://sky/moon.jpg",
+    "SkyboxBk": "rbxassetid://18351376859",
+    "SkyboxDn": "rbxassetid://18351374919",
+    "SkyboxFt": "rbxassetid://18351376800",
+    "SkyboxLf": "rbxassetid://18351376469",
+    "SkyboxOrientation": {
+     "Type": "Vector3",
+     "X": 0,
+     "Y": 90,
+     "Z": 0
+    },
+    "SkyboxRt": "rbxassetid://18351376457",
+    "SkyboxUp": "rbxassetid://18351377189",
+    "StarCount": 3000,
+    "SunAngularSize": 21,
+    "SunTextureId": "rbxasset://sky/sun.jpg"
+   }
+  },
+  {
+   "attributes": [],
+   "class_name": "Sky",
+   "name": "ThreePMSky",
+   "properties": {
+    "CelestialBodiesShown": true,
+    "MoonAngularSize": 11,
+    "MoonTextureId": "rbxasset://sky/moon.jpg",
+    "SkyboxBk": "rbxassetid://18351376859",
+    "SkyboxDn": "rbxassetid://18351374919",
+    "SkyboxFt": "rbxassetid://18351376800",
+    "SkyboxLf": "rbxassetid://18351376469",
+    "SkyboxOrientation": {
+     "Type": "Vector3",
+     "X": 0,
+     "Y": 0,
+     "Z": 0
+    },
+    "SkyboxRt": "rbxassetid://18351376457",
+    "SkyboxUp": "rbxassetid://18351377189",
+    "StarCount": 3000,
+    "SunAngularSize": 21,
+    "SunTextureId": "rbxasset://sky/sun.jpg"
+   }
+  },
+  {
+   "attributes": [],
+   "class_name": "Sky",
+   "name": "TenAMSky",
+   "properties": {
+    "CelestialBodiesShown": true,
+    "MoonAngularSize": 11,
+    "MoonTextureId": "rbxasset://sky/moon.jpg",
+    "SkyboxBk": "rbxassetid://18351376859",
+    "SkyboxDn": "rbxassetid://18351374919",
+    "SkyboxFt": "rbxassetid://18351376800",
+    "SkyboxLf": "rbxassetid://18351376469",
+    "SkyboxOrientation": {
+     "Type": "Vector3",
+     "X": 0,
+     "Y": 0,
+     "Z": 0
+    },
+    "SkyboxRt": "rbxassetid://18351376457",
+    "SkyboxUp": "rbxassetid://18351377189",
+    "StarCount": 3000,
+    "SunAngularSize": 21,
+    "SunTextureId": "rbxasset://sky/sun.jpg"
+   }
+  },
+  {
+   "attributes": [],
+   "class_name": "Sky",
+   "name": "ClearNightSky",
+   "properties": {
+    "CelestialBodiesShown": true,
+    "MoonAngularSize": 11,
+    "MoonTextureId": "rbxasset://sky/moon.jpg",
+    "SkyboxBk": "rbxassetid://18351376859",
+    "SkyboxDn": "rbxassetid://18351374919",
+    "SkyboxFt": "rbxassetid://18351376800",
+    "SkyboxLf": "rbxassetid://18351376469",
+    "SkyboxOrientation": {
+     "Type": "Vector3",
+     "X": 0,
+     "Y": 90,
+     "Z": 0
+    },
+    "SkyboxRt": "rbxassetid://18351376457",
+    "SkyboxUp": "rbxassetid://18351377189",
+    "StarCount": 3000,
+    "SunAngularSize": 0,
+    "SunTextureId": "rbxasset://sky/sun.jpg"
+   }
+  },
+  {
+   "attributes": [],
+   "class_name": "Sky",
+   "name": "FourAMSky",
+   "properties": {
+    "CelestialBodiesShown": true,
+    "MoonAngularSize": 11,
+    "MoonTextureId": "rbxasset://sky/moon.jpg",
+    "SkyboxBk": "rbxassetid://18351376859",
+    "SkyboxDn": "rbxassetid://18351374919",
+    "SkyboxFt": "rbxassetid://18351376800",
+    "SkyboxLf": "rbxassetid://18351376469",
+    "SkyboxOrientation": {
+     "Type": "Vector3",
+     "X": 0,
+     "Y": 90,
+     "Z": 0
+    },
+    "SkyboxRt": "rbxassetid://18351376457",
+    "SkyboxUp": "rbxassetid://18351377189",
+    "StarCount": 3000,
+    "SunAngularSize": 0,
+    "SunTextureId": "rbxasset://sky/sun.jpg"
+   }
+  },
+  {
+   "attributes": [],
+   "class_name": "Sky",
+   "name": "EightPMSky",
+   "properties": {
+    "CelestialBodiesShown": true,
+    "MoonAngularSize": 11,
+    "MoonTextureId": "rbxasset://sky/moon.jpg",
+    "SkyboxBk": "rbxassetid://18351376859",
+    "SkyboxDn": "rbxassetid://18351374919",
+    "SkyboxFt": "rbxassetid://18351376800",
+    "SkyboxLf": "rbxassetid://18351376469",
+    "SkyboxOrientation": {
+     "Type": "Vector3",
+     "X": 0,
+     "Y": 90,
+     "Z": 0
+    },
+    "SkyboxRt": "rbxassetid://18351376457",
+    "SkyboxUp": "rbxassetid://18351377189",
+    "StarCount": 3000,
+    "SunAngularSize": 0,
+    "SunTextureId": "rbxasset://sky/sun.jpg"
+   }
+  },
+  {
+   "attributes": [],
+   "class_name": "Sky",
+   "name": "ContinuousSky",
+   "properties": {
+    "CelestialBodiesShown": true,
+    "MoonAngularSize": 11,
+    "MoonTextureId": "rbxasset://sky/moon.jpg",
+    "SkyboxBk": "rbxassetid://6444884337",
+    "SkyboxDn": "rbxassetid://6444884785",
+    "SkyboxFt": "rbxassetid://6444884337",
+    "SkyboxLf": "rbxassetid://6444884337",
+    "SkyboxOrientation": {
+     "Type": "Vector3",
+     "X": 0,
+     "Y": 0,
+     "Z": 0
+    },
+    "SkyboxRt": "rbxassetid://6444884337",
+    "SkyboxUp": "rbxassetid://6412503613",
+    "StarCount": 3000,
+    "SunAngularSize": 9,
+    "SunTextureId": "rbxasset://sky/sun.jpg"
+   }
+  }
+ ],
+ "taken_utc": "2026-10-06 15:01:04"
+}

@@ -2,6 +2,15 @@
 
 Recent deliveries, newest first. Entries before September 2026 live in [the archive](history/patch-history-2026-05-to-2026-08.md).
 
+## 2026-10-06 - Lighting realism mix, step 1: Continuous looks retuned (v3)
+
+Fast lane (tuning attributes only; no source, remote or saved data). Oscar approved the plan and asked for a fallback.
+
+- **Changed:** 71 attributes in `ReplicatedStorage.Config.World.Lighting.ContinuousPresets` (all six looks). Lighting service, skies, `ContinuousLooks` timing, `LightingPresets` and garage/dealership looks are untouched (before/after dumps compared).
+- **Route:** `scripts/lighting_realism/build.py` builds `install.lua` from `backup/before.json` and `looks.json` on the existing continuous-lighting installer engine. AUDIT before, APPLY 71, AUDIT installed.
+- **Checked:** values previewed live in Play before install; normal startup after install with no `LightingCycleError`; before/after screenshots in `scripts/lighting_realism/evidence/`.
+- **Recovery:** `install.lua` `ROLLBACK`.
+
 ## 2026-10-04 - Hover feel: scripted chase camera, Exotic voice, continuous VFX, impacts (v3)
 
 High-Risk (driving, camera and VFX owners), reviewed by `delivery-reviewer` before each APPLY (two reviews, READY WITH FIXES; fixes applied). Contract: [hover_feel/CONTRACT.md](../scripts/hover_feel/CONTRACT.md).

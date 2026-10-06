@@ -1,0 +1,454 @@
+{
+ "Day.Lighting.Brightness": [
+  5.15,
+  3.8
+ ],
+ "Day.Lighting.Ambient": [
+  [
+   105,
+   187,
+   255
+  ],
+  [
+   95,
+   108,
+   128
+  ]
+ ],
+ "Day.Lighting.OutdoorAmbient": [
+  [
+   156,
+   214,
+   232
+  ],
+  [
+   140,
+   160,
+   182
+  ]
+ ],
+ "Day.Lighting.ColorShift_Top": [
+  [
+   255,
+   243,
+   212
+  ],
+  [
+   255,
+   238,
+   208
+  ]
+ ],
+ "Day.Lighting.EnvironmentDiffuseScale": [
+  0.471,
+  0.4
+ ],
+ "Day.Lighting.ExposureCompensation": [
+  0.1,
+  0.2
+ ],
+ "Day.Atmosphere.Density": [
+  0.22,
+  0.26
+ ],
+ "Day.Atmosphere.Offset": [
+  0.2,
+  0.15
+ ],
+ "Day.Atmosphere.Color": [
+  [
+   199,
+   199,
+   199
+  ],
+  [
+   199,
+   208,
+   222
+  ]
+ ],
+ "Day.Atmosphere.Decay": [
+  [
+   106,
+   112,
+   125
+  ],
+  [
+   106,
+   122,
+   150
+  ]
+ ],
+ "Day.Atmosphere.Glare": [
+  0,
+  0.1
+ ],
+ "Day.Atmosphere.Haze": [
+  0,
+  1.0
+ ],
+ "Day.Bloom.Intensity": [
+  0.65,
+  0.5
+ ],
+ "Day.Bloom.Size": [
+  10,
+  20
+ ],
+ "Day.Bloom.Threshold": [
+  1.904,
+  2.2
+ ],
+ "Day.ColorCorrection.Brightness": [
+  0.05,
+  0.02
+ ],
+ "Day.ColorCorrection.Contrast": [
+  0,
+  0.08
+ ],
+ "Day.ColorCorrection.Saturation": [
+  0.4,
+  0.22
+ ],
+ "Day.ColorCorrection.TintColor": [
+  [
+   255,
+   255,
+   255
+  ],
+  [
+   255,
+   252,
+   248
+  ]
+ ],
+ "SevenAM.Lighting.Brightness": [
+  0.65,
+  1.2
+ ],
+ "SevenAM.Lighting.Ambient": [
+  [
+   255,
+   180,
+   160
+  ],
+  [
+   215,
+   150,
+   135
+  ]
+ ],
+ "SevenAM.Lighting.OutdoorAmbient": [
+  [
+   240,
+   155,
+   140
+  ],
+  [
+   200,
+   138,
+   150
+  ]
+ ],
+ "SevenAM.Lighting.ColorShift_Top": [
+  [
+   255,
+   145,
+   100
+  ],
+  [
+   255,
+   150,
+   100
+  ]
+ ],
+ "SevenAM.Lighting.EnvironmentDiffuseScale": [
+  0.201,
+  0.4
+ ],
+ "SevenAM.Lighting.ExposureCompensation": [
+  0.15,
+  0.5
+ ],
+ "SevenAM.Bloom.Size": [
+  10,
+  16
+ ],
+ "SevenAM.Bloom.Threshold": [
+  0.7,
+  1.2
+ ],
+ "SevenAM.ColorCorrection.Contrast": [
+  0.12,
+  0.1
+ ],
+ "SevenAM.ColorCorrection.Saturation": [
+  0.4,
+  0.32
+ ],
+ "FivePM.Lighting.Brightness": [
+  0.65,
+  1.2
+ ],
+ "FivePM.Lighting.Ambient": [
+  [
+   255,
+   180,
+   160
+  ],
+  [
+   215,
+   150,
+   135
+  ]
+ ],
+ "FivePM.Lighting.OutdoorAmbient": [
+  [
+   240,
+   155,
+   140
+  ],
+  [
+   200,
+   138,
+   150
+  ]
+ ],
+ "FivePM.Lighting.ColorShift_Top": [
+  [
+   255,
+   145,
+   100
+  ],
+  [
+   255,
+   150,
+   100
+  ]
+ ],
+ "FivePM.Lighting.EnvironmentDiffuseScale": [
+  0.201,
+  0.4
+ ],
+ "FivePM.Lighting.ExposureCompensation": [
+  0.15,
+  0.5
+ ],
+ "FivePM.Bloom.Size": [
+  10,
+  16
+ ],
+ "FivePM.Bloom.Threshold": [
+  0.7,
+  1.2
+ ],
+ "FivePM.ColorCorrection.Contrast": [
+  0.12,
+  0.1
+ ],
+ "FivePM.ColorCorrection.Saturation": [
+  0.4,
+  0.32
+ ],
+ "FourAM.Lighting.Brightness": [
+  2.4,
+  2.0
+ ],
+ "FourAM.Lighting.Ambient": [
+  [
+   107,
+   134,
+   255
+  ],
+  [
+   95,
+   115,
+   220
+  ]
+ ],
+ "FourAM.Lighting.OutdoorAmbient": [
+  [
+   219,
+   179,
+   232
+  ],
+  [
+   190,
+   155,
+   210
+  ]
+ ],
+ "FourAM.Lighting.ColorShift_Top": [
+  [
+   255,
+   242,
+   212
+  ],
+  [
+   200,
+   180,
+   255
+  ]
+ ],
+ "FourAM.Lighting.EnvironmentDiffuseScale": [
+  0,
+  0.3
+ ],
+ "FourAM.Lighting.EnvironmentSpecularScale": [
+  0.7,
+  0.85
+ ],
+ "FourAM.Lighting.ExposureCompensation": [
+  0.11,
+  0.3
+ ],
+ "FourAM.Bloom.Intensity": [
+  0.4,
+  0.45
+ ],
+ "FourAM.Bloom.Size": [
+  16,
+  18
+ ],
+ "FourAM.Bloom.Threshold": [
+  0.3,
+  0.9
+ ],
+ "FourAM.ColorCorrection.Contrast": [
+  0.2,
+  0.14
+ ],
+ "EightPM.Lighting.Brightness": [
+  2.4,
+  2.0
+ ],
+ "EightPM.Lighting.Ambient": [
+  [
+   107,
+   134,
+   255
+  ],
+  [
+   95,
+   115,
+   220
+  ]
+ ],
+ "EightPM.Lighting.OutdoorAmbient": [
+  [
+   219,
+   179,
+   232
+  ],
+  [
+   190,
+   155,
+   210
+  ]
+ ],
+ "EightPM.Lighting.ColorShift_Top": [
+  [
+   255,
+   242,
+   212
+  ],
+  [
+   200,
+   180,
+   255
+  ]
+ ],
+ "EightPM.Lighting.EnvironmentDiffuseScale": [
+  0,
+  0.3
+ ],
+ "EightPM.Lighting.EnvironmentSpecularScale": [
+  0.7,
+  0.85
+ ],
+ "EightPM.Lighting.ExposureCompensation": [
+  0.11,
+  0.3
+ ],
+ "EightPM.Bloom.Intensity": [
+  0.4,
+  0.45
+ ],
+ "EightPM.Bloom.Size": [
+  16,
+  18
+ ],
+ "EightPM.Bloom.Threshold": [
+  0.3,
+  0.9
+ ],
+ "EightPM.ColorCorrection.Contrast": [
+  0.2,
+  0.14
+ ],
+ "ClearNight.Lighting.Brightness": [
+  2.71,
+  2.2
+ ],
+ "ClearNight.Lighting.Ambient": [
+  [
+   123,
+   138,
+   189
+  ],
+  [
+   105,
+   118,
+   165
+  ]
+ ],
+ "ClearNight.Lighting.OutdoorAmbient": [
+  [
+   161,
+   167,
+   226
+  ],
+  [
+   140,
+   148,
+   205
+  ]
+ ],
+ "ClearNight.Lighting.ColorShift_Top": [
+  [
+   255,
+   242,
+   212
+  ],
+  [
+   180,
+   195,
+   255
+  ]
+ ],
+ "ClearNight.Lighting.EnvironmentDiffuseScale": [
+  0,
+  0.25
+ ],
+ "ClearNight.Lighting.EnvironmentSpecularScale": [
+  0.7,
+  0.85
+ ],
+ "ClearNight.Lighting.ExposureCompensation": [
+  0,
+  0.25
+ ],
+ "ClearNight.Bloom.Size": [
+  16,
+  18
+ ],
+ "ClearNight.Bloom.Threshold": [
+  0.3,
+  0.8
+ ],
+ "ClearNight.ColorCorrection.Contrast": [
+  0.3,
+  0.2
+ ]
+}

@@ -1,0 +1,211 @@
+{
+ "_note": "Step 1 of the realism mix (2026-10-06). Only the values listed here change; everything else keeps its captured value. Colours are 0-255 RGB.",
+ "Day": {
+  "Lighting": {
+   "Brightness": 3.8,
+   "Ambient": [
+    95,
+    108,
+    128
+   ],
+   "OutdoorAmbient": [
+    140,
+    160,
+    182
+   ],
+   "ColorShift_Top": [
+    255,
+    238,
+    208
+   ],
+   "EnvironmentDiffuseScale": 0.4,
+   "ExposureCompensation": 0.2
+  },
+  "Atmosphere": {
+   "Density": 0.26,
+   "Offset": 0.15,
+   "Color": [
+    199,
+    208,
+    222
+   ],
+   "Decay": [
+    106,
+    122,
+    150
+   ],
+   "Glare": 0.1,
+   "Haze": 1.0
+  },
+  "Bloom": {
+   "Intensity": 0.5,
+   "Size": 20,
+   "Threshold": 2.2
+  },
+  "ColorCorrection": {
+   "Brightness": 0.02,
+   "Contrast": 0.08,
+   "Saturation": 0.22,
+   "TintColor": [
+    255,
+    252,
+    248
+   ]
+  }
+ },
+ "SevenAM": {
+  "Lighting": {
+   "Brightness": 1.2,
+   "Ambient": [
+    215,
+    150,
+    135
+   ],
+   "OutdoorAmbient": [
+    200,
+    138,
+    150
+   ],
+   "ColorShift_Top": [
+    255,
+    150,
+    100
+   ],
+   "EnvironmentDiffuseScale": 0.4,
+   "ExposureCompensation": 0.5
+  },
+  "Bloom": {
+   "Intensity": 0.55,
+   "Size": 16,
+   "Threshold": 1.2
+  },
+  "ColorCorrection": {
+   "Contrast": 0.1,
+   "Saturation": 0.32
+  }
+ },
+ "FivePM": {
+  "Lighting": {
+   "Brightness": 1.2,
+   "Ambient": [
+    215,
+    150,
+    135
+   ],
+   "OutdoorAmbient": [
+    200,
+    138,
+    150
+   ],
+   "ColorShift_Top": [
+    255,
+    150,
+    100
+   ],
+   "EnvironmentDiffuseScale": 0.4,
+   "ExposureCompensation": 0.5
+  },
+  "Bloom": {
+   "Intensity": 0.55,
+   "Size": 16,
+   "Threshold": 1.2
+  },
+  "ColorCorrection": {
+   "Contrast": 0.1,
+   "Saturation": 0.32
+  }
+ },
+ "FourAM": {
+  "Lighting": {
+   "Brightness": 2.0,
+   "Ambient": [
+    95,
+    115,
+    220
+   ],
+   "OutdoorAmbient": [
+    190,
+    155,
+    210
+   ],
+   "ColorShift_Top": [
+    200,
+    180,
+    255
+   ],
+   "EnvironmentDiffuseScale": 0.3,
+   "EnvironmentSpecularScale": 0.85,
+   "ExposureCompensation": 0.3
+  },
+  "Bloom": {
+   "Intensity": 0.45,
+   "Size": 18,
+   "Threshold": 0.9
+  },
+  "ColorCorrection": {
+   "Contrast": 0.14
+  }
+ },
+ "EightPM": {
+  "Lighting": {
+   "Brightness": 2.0,
+   "Ambient": [
+    95,
+    115,
+    220
+   ],
+   "OutdoorAmbient": [
+    190,
+    155,
+    210
+   ],
+   "ColorShift_Top": [
+    200,
+    180,
+    255
+   ],
+   "EnvironmentDiffuseScale": 0.3,
+   "EnvironmentSpecularScale": 0.85,
+   "ExposureCompensation": 0.3
+  },
+  "Bloom": {
+   "Intensity": 0.45,
+   "Size": 18,
+   "Threshold": 0.9
+  },
+  "ColorCorrection": {
+   "Contrast": 0.14
+  }
+ },
+ "ClearNight": {
+  "Lighting": {
+   "Brightness": 2.2,
+   "Ambient": [
+    105,
+    118,
+    165
+   ],
+   "OutdoorAmbient": [
+    140,
+    148,
+    205
+   ],
+   "ColorShift_Top": [
+    180,
+    195,
+    255
+   ],
+   "EnvironmentDiffuseScale": 0.25,
+   "EnvironmentSpecularScale": 0.85,
+   "ExposureCompensation": 0.25
+  },
+  "Bloom": {
+   "Intensity": 0.5,
+   "Size": 18,
+   "Threshold": 0.8
+  },
+  "ColorCorrection": {
+   "Contrast": 0.2
+  }
+ }
+}

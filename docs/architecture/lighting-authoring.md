@@ -68,6 +68,10 @@ The red/pink refinement changes the Continuous SevenAM/FivePM copies: Atmosphere
 
 Evening blends red-orange through rose-pink into violet; morning reverses that path. The full warm look holds five seconds at the twelve-minute speed, while its colours also blend through the shoulders. Sunset's outgoing `ColourFadeStart=0.2`, `ColourFadeEnd=1` retain warmth while the other properties begin changing; Dawn mirrors this with `ColourFadeStart=0`, `ColourFadeEnd=0.8`. Original shared artwork is untouched. The user-approved orange V4 palette remains in `roblox/captures/lighting-red-pink-before/capture.json`; earlier exact-value copies remain in their historical captures.
 
+## Realism mix (v3, 2026-10-06)
+
+The v3 values of the six looks now come from `scripts/lighting_realism/looks.json`, which supersedes the numbers quoted in the paragraphs above for v3. Hues are kept; the fill is lower and less blue by day, bloom thresholds are higher, saturation is lower, and twilight and night take some light from the sky (`EnvironmentDiffuseScale` 0.25 to 0.4). The older `scripts/continuous_lighting` installer is bound to the v1 place and its `REFINE` modes do not run in v3. Restore the earlier v3 values with `scripts/lighting_realism/install.lua` `ROLLBACK`.
+
 ## Different fade speeds
 
 Each milestone folder now has six pairs of Attributes named `LightFadeStart/End`, `ColourFadeStart/End`, `HazeFadeStart/End`, `GlareFadeStart/End`, `DistanceFadeStart/End` and `PostFadeStart/End`. They control the transition **from this milestone to the next**, after the current hold and before the next hold. Fractions are 0–1: start 0/end 0.7 finishes a group's fade in the first 70% of that interval; start 0.3/end 1 delays it until 30% through. Smooth easing applies within the interval. Require `0 <= start < end <= 1`; invalid edits retain the last good runtime configuration.
