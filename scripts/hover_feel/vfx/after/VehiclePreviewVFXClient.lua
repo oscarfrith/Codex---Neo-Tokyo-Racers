@@ -755,6 +755,51 @@ local function scaledSequence(sequence, scale)
 	return NumberSequence.new(keypoints)
 end
 
+-- Root-local point under the centre of the engine pod a jet socket belongs to: the middle of the pod's
+-- visible parts in X and Z, and their lowest point in Y. One engine module holds a left and a right pod, so
+-- only parts lying wholly on the socket's side of the car are measured; if there are none (a single central
+-- engine) the whole module is used. Returns nil when the socket is not inside a module model.
+local function enginePodBelly(root, vehicle, socket)
+	local module = socket:FindFirstAncestorOfClass("Model")
+	if not module or module == vehicle or module:GetAttribute("ModuleType") == nil then return nil end
+	local side = root.CFrame:PointToObjectSpace(socket.WorldPosition).X
+	local function measure(sameSideOnly)
+		local low, high = nil, nil
+		for _, part in ipairs(module:GetDescendants()) do
+			if part:IsA("BasePart") and part.Transparency < 0.95 and not string.find(part.Name, "_Runtime", 1, true) then
+				local frame = root.CFrame:ToObjectSpace(part.CFrame)
+				local half = part.Size * 0.5
+				local partLow, partHigh = nil, nil
+				for x = -1, 1, 2 do
+					for y = -1, 1, 2 do
+						for z = -1, 1, 2 do
+							local corner = frame * Vector3.new(half.X * x, half.Y * y, half.Z * z)
+							partLow = partLow and partLow:Min(corner) or corner
+							partHigh = partHigh and partHigh:Max(corner) or corner
+						end
+					end
+				end
+				local onSide = math.abs(side) < 0.5 or (side > 0 and partLow.X > -0.25) or (side < 0 and partHigh.X < 0.25)
+				if onSide or not sameSideOnly then
+					low = low and low:Min(partLow) or partLow
+					high = high and high:Max(partHigh) or partHigh
+				end
+			end
+		end
+		return low, high
+	end
+	local low, high = measure(true)
+	local centreX = nil
+	if low then
+		centreX = (low.X + high.X) * 0.5
+	else
+		low, high = measure(false)
+		centreX = side
+	end
+	if not low then return nil end
+	return Vector3.new(centreX, low.Y, (low.Z + high.Z) * 0.5)
+end
+
 -- Exotic V2 hover jets: one car-aligned unit under every engine jet socket.
 -- units = { { Kind, Position (root-local socket position), Back (root-local jet
 -- direction) }, ... }. Each unit is a runtime socket on the root, so it is
@@ -765,7 +810,10 @@ local function attachUnderglowUnits(self, units)
 		if spec and not (self.Reduced and spec.LocalOnly) then
 			local back = Vector3.new(unit.Back.X, 0, unit.Back.Z)
 			local position = unit.Position - Vector3.new(0, spec.Drop, 0)
-			if back.Magnitude > 0.3 then
+			if unit.Belly then
+				-- Measured: under the centre of the pod, at its lowest point.
+				position = unit.Belly
+			elseif back.Magnitude > 0.3 then
 				position -= back.Unit * spec.Inset
 			end
 			local firstItem = #self.Items + 1
@@ -856,6 +904,7 @@ local function attachVehicleSocketsOnce(self)
 					Kind = unitKind,
 					Position = root.CFrame:PointToObjectSpace(socket.WorldPosition),
 					Back = root.CFrame:VectorToObjectSpace(-socket.WorldCFrame.LookVector),
+					Belly = unitKind == "Engine" and enginePodBelly(root, vehicle, socket) or nil,
 				})
 			end
 			if templateName == V2_HOVER_TEMPLATE and root and root:IsA("BasePart") then
