@@ -2,6 +2,15 @@
 
 Recent deliveries, newest first. Entries before September 2026 live in [the archive](history/patch-history-2026-05-to-2026-08.md).
 
+## 2026-10-06 - Lighting realism mix, step 3: twilight fix, stylised grade, far blur (v3)
+
+Fast lane (58 attributes and one sky property; no source change). From Oscar's first drive.
+
+- **Cause found:** the sky change sat inside the bright violet twilight, so the veil read as pitch black between two bright states; after it the moon was drawn by the engine sun at full strength and bloomed.
+- **Changed:** `NightSkyStartClockTime` 22, `NightSkyEndClockTime` 2, `NightSkyVeilHours` 0.2; `StarNightSky.SunTextureId` to a dim moon; Dusk and NightEnd haze/colour fades; saturation and bloom in all looks; `DepthOfField` enabled in all looks with a light far blur.
+- **Checked:** live preview in Play before install; after install, startup and a full-day scrub with no server or render error; sky changes at 22:00 and 02:00 only.
+- **Recovery:** `scripts/lighting_realism/step3/install.lua` `ROLLBACK`.
+
 ## 2026-10-06 - Lighting realism mix, step 2: day sky, night sky, clouds (v3)
 
 Standard lane (lighting renderer and config; no remote, saved data or economy). Oscar approved the step.

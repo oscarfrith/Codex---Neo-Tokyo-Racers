@@ -1,0 +1,124 @@
+{
+ "_note": "Step 3 (2026-10-06, after Oscar's first drive): sky change moved to nightfall, dim moon, more stylised grade, light far blur. Colours 0-255 RGB.",
+ "config": {
+  "NightSkyStartClockTime": 22,
+  "NightSkyEndClockTime": 2,
+  "NightSkyVeilHours": 0.2
+ },
+ "skies": {
+  "StarNightSky": {
+   "SunTextureId": "rbxassetid://128324056265952",
+   "SunAngularSize": 11
+  }
+ },
+ "looks": {
+  "Day": {
+   "ColorCorrection": {
+    "Saturation": 0.32,
+    "Contrast": 0.1
+   },
+   "Bloom": {
+    "Threshold": 1.8,
+    "Intensity": 0.6
+   },
+   "DepthOfField": {
+    "Enabled": true,
+    "FarIntensity": 0.05,
+    "FocusDistance": 60,
+    "InFocusRadius": 200,
+    "NearIntensity": 0
+   }
+  },
+  "SevenAM": {
+   "ColorCorrection": {
+    "Saturation": 0.42
+   },
+   "Bloom": {
+    "Threshold": 1.0,
+    "Intensity": 0.6
+   },
+   "DepthOfField": {
+    "Enabled": true,
+    "FarIntensity": 0.05,
+    "FocusDistance": 60,
+    "InFocusRadius": 200,
+    "NearIntensity": 0
+   }
+  },
+  "FivePM": {
+   "ColorCorrection": {
+    "Saturation": 0.42
+   },
+   "Bloom": {
+    "Threshold": 1.0,
+    "Intensity": 0.6
+   },
+   "DepthOfField": {
+    "Enabled": true,
+    "FarIntensity": 0.05,
+    "FocusDistance": 60,
+    "InFocusRadius": 200,
+    "NearIntensity": 0
+   }
+  },
+  "FourAM": {
+   "ColorCorrection": {
+    "Saturation": 0.32
+   },
+   "Bloom": {
+    "Threshold": 0.75,
+    "Intensity": 0.5
+   },
+   "DepthOfField": {
+    "Enabled": true,
+    "FarIntensity": 0.05,
+    "FocusDistance": 60,
+    "InFocusRadius": 200,
+    "NearIntensity": 0
+   }
+  },
+  "EightPM": {
+   "ColorCorrection": {
+    "Saturation": 0.32
+   },
+   "Bloom": {
+    "Threshold": 0.75,
+    "Intensity": 0.5
+   },
+   "DepthOfField": {
+    "Enabled": true,
+    "FarIntensity": 0.05,
+    "FocusDistance": 60,
+    "InFocusRadius": 200,
+    "NearIntensity": 0
+   }
+  },
+  "ClearNight": {
+   "ColorCorrection": {
+    "Saturation": 0.34,
+    "Contrast": 0.24
+   },
+   "Bloom": {
+    "Threshold": 0.7,
+    "Intensity": 0.55
+   },
+   "DepthOfField": {
+    "Enabled": true,
+    "FarIntensity": 0.05,
+    "FocusDistance": 60,
+    "InFocusRadius": 200,
+    "NearIntensity": 0
+   }
+  }
+ },
+ "milestones": {
+  "Dusk": {
+   "HazeFadeStart": 0.5,
+   "ColourFadeStart": 0.4
+  },
+  "NightEnd": {
+   "HazeFadeEnd": 0.5,
+   "ColourFadeEnd": 0.6
+  }
+ }
+}

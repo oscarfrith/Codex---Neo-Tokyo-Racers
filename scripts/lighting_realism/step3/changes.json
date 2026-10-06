@@ -1,0 +1,234 @@
+{
+ "Day.ColorCorrection.Saturation": [
+  0.22,
+  0.32
+ ],
+ "Day.ColorCorrection.Contrast": [
+  0.08,
+  0.1
+ ],
+ "Day.Bloom.Threshold": [
+  2.2,
+  1.8
+ ],
+ "Day.Bloom.Intensity": [
+  0.5,
+  0.6
+ ],
+ "Day.DepthOfField.Enabled": [
+  false,
+  true
+ ],
+ "Day.DepthOfField.FarIntensity": [
+  0.084,
+  0.05
+ ],
+ "Day.DepthOfField.FocusDistance": [
+  0.05,
+  60
+ ],
+ "Day.DepthOfField.InFocusRadius": [
+  10,
+  200
+ ],
+ "Day.DepthOfField.NearIntensity": [
+  0.75,
+  0
+ ],
+ "SevenAM.ColorCorrection.Saturation": [
+  0.32,
+  0.42
+ ],
+ "SevenAM.Bloom.Threshold": [
+  1.2,
+  1.0
+ ],
+ "SevenAM.Bloom.Intensity": [
+  0.550000011920929,
+  0.6
+ ],
+ "SevenAM.DepthOfField.Enabled": [
+  false,
+  true
+ ],
+ "SevenAM.DepthOfField.FarIntensity": [
+  0.08399999886751175,
+  0.05
+ ],
+ "SevenAM.DepthOfField.FocusDistance": [
+  0.05000000074505806,
+  60
+ ],
+ "SevenAM.DepthOfField.InFocusRadius": [
+  10,
+  200
+ ],
+ "SevenAM.DepthOfField.NearIntensity": [
+  0.75,
+  0
+ ],
+ "FivePM.ColorCorrection.Saturation": [
+  0.32,
+  0.42
+ ],
+ "FivePM.Bloom.Threshold": [
+  1.2,
+  1.0
+ ],
+ "FivePM.Bloom.Intensity": [
+  0.550000011920929,
+  0.6
+ ],
+ "FivePM.DepthOfField.Enabled": [
+  false,
+  true
+ ],
+ "FivePM.DepthOfField.FarIntensity": [
+  0.08399999886751175,
+  0.05
+ ],
+ "FivePM.DepthOfField.FocusDistance": [
+  0.05000000074505806,
+  60
+ ],
+ "FivePM.DepthOfField.InFocusRadius": [
+  10,
+  200
+ ],
+ "FivePM.DepthOfField.NearIntensity": [
+  0.75,
+  0
+ ],
+ "FourAM.ColorCorrection.Saturation": [
+  0.20000000298023224,
+  0.32
+ ],
+ "FourAM.Bloom.Threshold": [
+  0.9,
+  0.75
+ ],
+ "FourAM.Bloom.Intensity": [
+  0.45,
+  0.5
+ ],
+ "FourAM.DepthOfField.Enabled": [
+  false,
+  true
+ ],
+ "FourAM.DepthOfField.FarIntensity": [
+  0.08399999886751175,
+  0.05
+ ],
+ "FourAM.DepthOfField.FocusDistance": [
+  0.05000000074505806,
+  60
+ ],
+ "FourAM.DepthOfField.InFocusRadius": [
+  10,
+  200
+ ],
+ "FourAM.DepthOfField.NearIntensity": [
+  0.75,
+  0
+ ],
+ "EightPM.ColorCorrection.Saturation": [
+  0.20000000298023224,
+  0.32
+ ],
+ "EightPM.Bloom.Threshold": [
+  0.9,
+  0.75
+ ],
+ "EightPM.Bloom.Intensity": [
+  0.45,
+  0.5
+ ],
+ "EightPM.DepthOfField.Enabled": [
+  false,
+  true
+ ],
+ "EightPM.DepthOfField.FarIntensity": [
+  0.08399999886751175,
+  0.05
+ ],
+ "EightPM.DepthOfField.FocusDistance": [
+  0.05000000074505806,
+  60
+ ],
+ "EightPM.DepthOfField.InFocusRadius": [
+  10,
+  200
+ ],
+ "EightPM.DepthOfField.NearIntensity": [
+  0.75,
+  0
+ ],
+ "ClearNight.ColorCorrection.Saturation": [
+  0.20000000298023224,
+  0.34
+ ],
+ "ClearNight.ColorCorrection.Contrast": [
+  0.2,
+  0.24
+ ],
+ "ClearNight.Bloom.Threshold": [
+  0.8,
+  0.7
+ ],
+ "ClearNight.Bloom.Intensity": [
+  0.5,
+  0.55
+ ],
+ "ClearNight.DepthOfField.Enabled": [
+  false,
+  true
+ ],
+ "ClearNight.DepthOfField.FarIntensity": [
+  0.08399999886751175,
+  0.05
+ ],
+ "ClearNight.DepthOfField.FocusDistance": [
+  0.05000000074505806,
+  60
+ ],
+ "ClearNight.DepthOfField.InFocusRadius": [
+  10,
+  200
+ ],
+ "ClearNight.DepthOfField.NearIntensity": [
+  0.75,
+  0
+ ],
+ "milestone.Dusk.HazeFadeStart": [
+  0,
+  0.5
+ ],
+ "milestone.Dusk.ColourFadeStart": [
+  0,
+  0.4
+ ],
+ "milestone.NightEnd.HazeFadeEnd": [
+  1,
+  0.5
+ ],
+ "milestone.NightEnd.ColourFadeEnd": [
+  1,
+  0.6
+ ],
+ "sky.StarNightSky.SunTextureId": [
+  "rbxasset://sky/moon.jpg",
+  "rbxassetid://128324056265952"
+ ],
+ "config.NightSkyStartClockTime": [
+  20.5,
+  22
+ ],
+ "config.NightSkyEndClockTime": [
+  3.5,
+  2
+ ],
+ "config.NightSkyVeilHours": [
+  0.4,
+  0.2
+ ]
+}
