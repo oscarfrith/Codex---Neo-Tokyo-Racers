@@ -1,0 +1,220 @@
+{
+ "Day.Lighting.Brightness": [
+  3.8,
+  4.4
+ ],
+ "Day.Lighting.Ambient": [
+  {
+   "B": 0.9215686321258545,
+   "G": 0.6274510025978088,
+   "R": 0.3921568691730499,
+   "Type": "Color3"
+  },
+  {
+   "Type": "Color3",
+   "R": 0.37254901960784315,
+   "G": 0.4235294117647059,
+   "B": 0.5019607843137255
+  }
+ ],
+ "Day.Lighting.OutdoorAmbient": [
+  {
+   "B": 0.8941176533699036,
+   "G": 0.7647058963775635,
+   "R": 0.5882353186607361,
+   "Type": "Color3"
+  },
+  {
+   "Type": "Color3",
+   "R": 0.5490196078431373,
+   "G": 0.6274509803921569,
+   "B": 0.7137254901960784
+  }
+ ],
+ "Day.Lighting.ColorShift_Top": [
+  {
+   "B": 0.8156862854957581,
+   "G": 0.9333333373069763,
+   "R": 1,
+   "Type": "Color3"
+  },
+  {
+   "Type": "Color3",
+   "R": 1.0,
+   "G": 0.9529411764705882,
+   "B": 0.8313725490196079
+  }
+ ],
+ "Day.Atmosphere.Color": [
+  {
+   "B": 0.9607843160629272,
+   "G": 0.8156862854957581,
+   "R": 0.686274528503418,
+   "Type": "Color3"
+  },
+  {
+   "Type": "Color3",
+   "R": 0.7803921568627451,
+   "G": 0.8156862745098039,
+   "B": 0.8705882352941177
+  }
+ ],
+ "Day.Atmosphere.Decay": [
+  {
+   "B": 0.8627451062202454,
+   "G": 0.6274510025978088,
+   "R": 0.47058823704719543,
+   "Type": "Color3"
+  },
+  {
+   "Type": "Color3",
+   "R": 0.41568627450980394,
+   "G": 0.47843137254901963,
+   "B": 0.5882352941176471
+  }
+ ],
+ "Day.Atmosphere.Haze": [
+  1.2,
+  0.5
+ ],
+ "Day.Clouds.Cover": [
+  0.55,
+  0.5
+ ],
+ "Day.Clouds.Density": [
+  0.55,
+  0.3
+ ],
+ "Day.Bloom.Intensity": [
+  0.45,
+  0.5
+ ],
+ "Day.Bloom.Size": [
+  20,
+  12
+ ],
+ "Day.Bloom.Threshold": [
+  2,
+  1.9
+ ],
+ "Day.ColorCorrection.Saturation": [
+  0.36,
+  0.4
+ ],
+ "Day.ColorCorrection.Brightness": [
+  0.02,
+  0.04
+ ],
+ "Day.ColorCorrection.Contrast": [
+  0.1,
+  0.06
+ ],
+ "ClearNight.Lighting.Brightness": [
+  0.6,
+  2.2
+ ],
+ "ClearNight.Lighting.Ambient": [
+  {
+   "B": 0.5490196347236633,
+   "G": 0.3529411852359772,
+   "R": 0.3137255012989044,
+   "Type": "Color3"
+  },
+  {
+   "Type": "Color3",
+   "R": 0.4117647058823529,
+   "G": 0.4627450980392157,
+   "B": 0.6470588235294118
+  }
+ ],
+ "ClearNight.Lighting.OutdoorAmbient": [
+  {
+   "B": 0.6274510025978088,
+   "G": 0.4117647111415863,
+   "R": 0.37254902720451355,
+   "Type": "Color3"
+  },
+  {
+   "Type": "Color3",
+   "R": 0.5490196078431373,
+   "G": 0.5803921568627451,
+   "B": 0.803921568627451
+  }
+ ],
+ "ClearNight.Lighting.EnvironmentDiffuseScale": [
+  0.5,
+  0.25
+ ],
+ "ClearNight.Lighting.EnvironmentSpecularScale": [
+  1,
+  0.85
+ ],
+ "ClearNight.Lighting.ExposureCompensation": [
+  0.25,
+  0.4
+ ],
+ "ClearNight.Atmosphere.Haze": [
+  1.2,
+  2.3
+ ],
+ "ClearNight.Atmosphere.Glare": [
+  0.2,
+  0.3
+ ],
+ "ClearNight.Atmosphere.Offset": [
+  0,
+  0.25
+ ],
+ "ClearNight.Atmosphere.Color": [
+  {
+   "B": 0.30980393290519714,
+   "G": 0.250980406999588,
+   "R": 0.21568629145622253,
+   "Type": "Color3"
+  },
+  {
+   "Type": "Color3",
+   "R": 0.3137254901960784,
+   "G": 0.25882352941176473,
+   "B": 0.6470588235294118
+  }
+ ],
+ "ClearNight.Atmosphere.Decay": [
+  {
+   "B": 0.5333333611488342,
+   "G": 0.41960787773132324,
+   "R": 0.4117647409439087,
+   "Type": "Color3"
+  },
+  {
+   "Type": "Color3",
+   "R": 0.47058823529411764,
+   "G": 0.29411764705882354,
+   "B": 0.6666666666666666
+  }
+ ],
+ "milestone.Dusk.HazeFadeStart": [
+  0.9,
+  0
+ ],
+ "milestone.Dusk.ColourFadeStart": [
+  0.5,
+  0
+ ],
+ "milestone.NightEnd.HazeFadeEnd": [
+  0.1,
+  1
+ ],
+ "milestone.NightEnd.ColourFadeEnd": [
+  0.5,
+  1
+ ],
+ "sky.HorizonDaySky.StarCount": [
+  0,
+  3000
+ ],
+ "config.ContinuousNightSkyName": [
+  "StarNightSky",
+  null
+ ]
+}

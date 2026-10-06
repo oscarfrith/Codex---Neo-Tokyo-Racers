@@ -1,0 +1,114 @@
+{
+ "_note": "Step 6 (2026-10-06, Oscar's fourth drive). The painted night sky is switched off: its art change could not be hidden. One sky all day; the engine's own night (stars, moon) fades in with no change point. Day goes back to the step 3 look plus the original day's traits: brighter key, saturation 0.4, crisp air, tight bloom. Colours 0-255 RGB.",
+ "config_remove": [
+  "ContinuousNightSkyName"
+ ],
+ "config": {},
+ "skies": {
+  "HorizonDaySky": {
+   "StarCount": 3000
+  }
+ },
+ "milestones": {
+  "Dusk": {
+   "HazeFadeStart": 0,
+   "ColourFadeStart": 0
+  },
+  "NightEnd": {
+   "HazeFadeEnd": 1,
+   "ColourFadeEnd": 1
+  }
+ },
+ "looks": {
+  "Day": {
+   "Lighting": {
+    "Brightness": 4.4,
+    "Ambient": [
+     95,
+     108,
+     128
+    ],
+    "OutdoorAmbient": [
+     140,
+     160,
+     182
+    ],
+    "ColorShift_Top": [
+     255,
+     243,
+     212
+    ]
+   },
+   "Atmosphere": {
+    "Color": [
+     199,
+     208,
+     222
+    ],
+    "Decay": [
+     106,
+     122,
+     150
+    ],
+    "Haze": 0.5
+   },
+   "Clouds": {
+    "Cover": 0.5,
+    "Density": 0.3
+   },
+   "Bloom": {
+    "Intensity": 0.5,
+    "Size": 12,
+    "Threshold": 1.9
+   },
+   "ColorCorrection": {
+    "Saturation": 0.4,
+    "Brightness": 0.04,
+    "Contrast": 0.06
+   }
+  },
+  "ClearNight": {
+   "Lighting": {
+    "Brightness": 2.2,
+    "Ambient": [
+     105,
+     118,
+     165
+    ],
+    "OutdoorAmbient": [
+     140,
+     148,
+     205
+    ],
+    "EnvironmentDiffuseScale": 0.25,
+    "EnvironmentSpecularScale": 0.85,
+    "ExposureCompensation": 0.4
+   },
+   "Atmosphere": {
+    "Haze": 2.3,
+    "Density": 0.25,
+    "Glare": 0.3,
+    "Offset": 0.25,
+    "Color": [
+     80,
+     66,
+     165
+    ],
+    "Decay": [
+     120,
+     75,
+     170
+    ]
+   },
+   "Clouds": {
+    "Cover": 0.15,
+    "Density": 0.12,
+    "Color": [
+     60,
+     62,
+     100
+    ]
+   }
+  }
+ }
+}

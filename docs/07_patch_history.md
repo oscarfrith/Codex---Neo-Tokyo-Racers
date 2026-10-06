@@ -2,6 +2,14 @@
 
 Recent deliveries, newest first. Entries before September 2026 live in [the archive](history/patch-history-2026-05-to-2026-08.md).
 
+## 2026-10-06 - Lighting realism mix, step 6: painted night sky off, day restyled from the original (v3)
+
+Fast lane (30 attributes, one removed attribute, one sky property; no source change). From Oscar's fourth drive.
+
+- **Changed:** `ContinuousNightSkyName` removed (single sky, no day-for-night, no veil); `HorizonDaySky.StarCount` 3000; ClearNight lighting, atmosphere and clouds; Day lighting, atmosphere, clouds, bloom and grade; Dusk and NightEnd fades to defaults.
+- **Checked:** live preview of night and day before install; after install one full 180 s cycle on its own: no server or render error, no sky art change, and no per-frame jump (largest steps: haze 0.006, key brightness 0.005, haze colour 0.002, engine clock 0.003 h).
+- **Recovery:** `scripts/lighting_realism/step6/install.lua` `ROLLBACK`.
+
 ## 2026-10-06 - Lighting realism mix, step 5: haze held through the sky change; 3 minute test cycle (v3)
 
 Fast lane (7 attributes). From Oscar's third drive.

@@ -74,7 +74,7 @@ The v3 values of the six looks now come from `scripts/lighting_realism/looks.jso
 
 ### Sky, night sky and clouds (v3, 2026-10-06)
 
-These settings supersede the "Sky and context" notes below for v3. All are Attributes on `Config.World.Lighting`:
+**Since step 6 (2026-10-06) the night sky is off in v3: `ContinuousNightSkyName` is deleted, so the night-sky rows below are idle and night is the engine's own (dimmed day art, moon, stars, colour from the ClearNight atmosphere).** Swapping skybox art could not be hidden well enough in motion. These settings supersede the "Sky and context" notes below for v3. All are Attributes on `Config.World.Lighting`:
 
 | Attribute | Meaning |
 |---|---|
