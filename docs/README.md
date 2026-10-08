@@ -370,6 +370,7 @@ Point-in-time delivery notes. Read only when investigating a regression or recov
 
 ## Design proposals (not approved)
 
+- [design/pulse-racers-ui-style-sheet.md](design/pulse-racers-ui-style-sheet.md) - Pulse Racers UI style sheet: five colour roles, one typeface, components, screens, build order (Design - not approved; mockups in assets/ui/mockups/pulse_restyle)
 - [design/street-life-update.md](design/street-life-update.md) - Street Life: rank, dailies, style meter, jobs, duels, monetisation (Design - not approved)
 - [design/vehicle-frame-classes.md](design/vehicle-frame-classes.md) - Vehicle frame classes (round 2): twelve new modular vehicle categories as hover jets, including realistic Muscle, Exotic and GT; the frame standard that makes parts interchange; signature kits; slot mapping and contract (Design - not approved; Exotic alone is implemented, in the backup place only: see [architecture/exotic-category-contract.md](architecture/exotic-category-contract.md)). Class and frame sheets with concept images are in [design/vehicle-categories/](design/vehicle-categories/); blockout tools and the shared brief are in [scripts/vehicle_blockouts/](../scripts/vehicle_blockouts/CONTRACT.md).
 
