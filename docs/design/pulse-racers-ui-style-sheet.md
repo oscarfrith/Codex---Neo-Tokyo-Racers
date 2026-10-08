@@ -5,6 +5,17 @@
 **Scope:** every player-facing screen: free-roam HUD, car panel, race menu and entry, in-race HUD, results, dealership, customisation, paint shop, owned garage, full map, modals and settings.
 **Game title:** Pulse Racers (the Studio place is still named Space Racers v3).
 
+> **Corrections pending (audit of 2026-10-09, [working folder](../../scripts/ui_restyle/README.md)).** Do not build from the items below until this sheet is revised:
+> - **Type sizes** are web sizes. Roblox `TextSize` is line height and is capped at 100, so every size needs converting and the 136 and 200 roles cannot be plain text.
+> - **Typeface:** Titillium Web has no italic heavier than Bold. Creator Store Barlow has the heavy italics and is the closer match; the choice needs a Studio capture.
+> - **Switch:** `Core.FeatureFlags` is server-side and cannot be read by UI clients.
+> - **Shared card:** the real component is `GarageComponents.VehicleCard`, not `GarageReplacementComponents`.
+> - **Delivery:** `scripts/studio_delivery.py` refuses the v3 place. The token, component and switch step is High-Risk, not Standard.
+> - **Phone:** the phone minimap is top-right today, and phone and controller layouts must be designed with each screen, not as a last step.
+> - **Results:** driver XP is not in the race result payload.
+> - **Acceptance:** "instance counts within 10% of today" is wrong; the rebuild should lower them.
+> - **Not covered:** Roblox's player list, chat, top-bar inset, proximity prompts and gamepad selection box, which overlap these layouts.
+
 This sheet turns the direction Oscar chose on 2026-10-08 into rules a build can follow. The direction is Need for Speed Heat's structure and palette, with a small amount of neon glow, reduced to five colour roles and one typeface.
 
 ## Accepted mockups
