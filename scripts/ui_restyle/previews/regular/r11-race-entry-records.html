@@ -9,8 +9,8 @@ P.page(`
   ${P.title("SHOWROOM LOOP","RECORDS")}
   ${P.tabs([{l:"TIME TRIAL",on:1},{l:"RACE"}])}
   ${P.status({tier:"S",rating:939,cash:"$3,613,709"})}
-  <div class="abs flex g8" style="left:100px;top:204px">${tiers.map(t => `<div class="btn ${t === "C" ? "focus" : ""} ${t === "A" || t === "S" ? "dis" : ""}" style="width:100px;height:66px;padding:0;font-size:var(--fs-status)">${t}</div>`).join("")}</div>
-  <div class="abs col" style="left:100px;top:290px;width:800px;gap:10px">
+  <div class="abs flex g8" style="left:68px;top:204px">${tiers.map(t => `<div class="btn ${t === "C" ? "focus" : ""} ${t === "A" || t === "S" ? "dis" : ""}" style="width:100px;height:66px;padding:0;font-size:var(--fs-status)">${t}</div>`).join("")}</div>
+  <div class="abs col" style="left:68px;top:290px;width:832px;gap:10px">
     <div class="panel flex ac g24" style="height:176px">
       <div style="width:120px;height:120px;background:#221f3a;display:flex;align-items:center;justify-content:center" class="t-sect c-muted">?</div>
       <div class="grow"><div class="t-label c-2">WORLD RECORD &middot; TIER C</div><div class="num" style="font-size:76px;margin:14px 0 10px">00:57.412</div><div class="t-value">NEONRIDER <span class="c-2">&middot; SERAPH</span></div></div>
@@ -21,7 +21,7 @@ P.page(`
       <div class="flex ac g12">${P.medal("")}<span class="t-status">GOLD</span></div>
     </div>
   </div>
-  <div class="panel abs" style="left:912px;top:290px;width:908px;height:634px;padding:14px 22px;overflow:hidden">
+  <div class="panel abs" style="left:912px;top:290px;width:940px;height:634px;padding:14px 22px;overflow:hidden">
     <div class="row bare" style="min-height:44px;border-bottom:0"><span class="t-label c-muted" style="width:54px">#</span><span class="t-label c-muted grow">GLOBAL TOP 20</span><span class="t-label c-muted" style="width:170px">TIME</span><span class="t-label c-muted" style="width:150px;text-align:right">VEHICLE</span></div>
     <div class="hairline"></div>
     ${board.map(trow).join("")}

@@ -11,11 +11,11 @@ P.page(`
   ${P.status({garage:"3 / 4",plus:1})}
   ${P.railhead("WING 4/4",P.sw([{l:"SHOP"},{l:"OWNED",on:1}]))}
   <div class="rail">${mods.map(m=>P.tile({...m,vis:w})).join("")}</div>
-  ${P.btnrow([P.btn("BACK","back"),P.btn("DRIVE","wheel"),P.btn("EQUIP","tick","main")])}
+  ${P.btnrow([P.btn("BACK","back"),P.btn("DRIVE","wheel"),P.btn("EQUIP","tick","main")],"mid")}
   <div class="scrim-modal"></div>
   ${P.modal("MOVE THIS PART?",
     `<div class="t-body" style="font-size:26px">Blade Wing Standard is fitted to your Zephyr. Moving it here leaves the Zephyr without a wing.</div>`,
-    [P.btn("NO","","md focus"),P.btn("YES","","md main nochev")],"width:760px;top:43%")}
-  <div class="abs note above" style="left:50%;transform:translateX(-50%);top:236px;width:760px;text-align:center">Kit.Confirm: NO on the left and focused on open, YES on the right. Escape and gamepad B cancel; a click on the dimmed scene does not.</div>
+    [P.btn("NO","","md focus"),P.btn("YES","","md main nochev")],"width:760px;top:39%")}
+  <div class="abs note above" style="left:50%;transform:translateX(-50%);top:196px;width:760px;text-align:center">Kit.Confirm: NO on the left and focused on open, YES on the right. Escape and gamepad B cancel; a click on the dimmed scene does not.</div>
 `);
 </script></body></html>

@@ -9,10 +9,10 @@ P.page(`
   ${P.scene("garage")}<div class="scrim-garage"></div>
   ${P.title("CUSTOMISE")}${P.customiseTabs(0)}
   ${P.status({garage:"3 / 4",plus:1})}
-  ${P.statpanel({name:"STINGER",badge:"<span>D</span><span>321</span>",sub:[["FITTED WING","Spine Wing Standard"],["PREVIEWING","Spine Wing EVO"]],
+  ${P.statpanel({slot:1,name:"STINGER",badge:"<span>D</span><span>321</span>",sub:[["FITTED WING","Spine Wing Standard"],["PREVIEWING","Spine Wing EVO"]],
      stats:[["SPEED",80],["ACCEL",74],["HANDLING",66,3],["DRIFT",63,2],["BRAKING",62],["BOOST",59,-2]]})}
   ${P.railhead("WING 2/4",P.sw([{l:"SHOP"},{l:"OWNED",on:1}]))}
   <div class="rail">${mods.map(m=>P.tile({...m,vis:w})).join("")}</div>
-  ${P.btnrow([P.btn("BACK","back"),P.btn("DRIVE","wheel"),P.btn("EQUIP","tick","main")])}
+  ${P.btnrow([P.btn("BACK","back"),P.btn("DRIVE","wheel"),P.btn("EQUIP","tick","main")],"mid")}
 `);
 </script></body></html>

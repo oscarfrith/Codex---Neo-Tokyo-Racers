@@ -9,16 +9,15 @@
     ${P.scene("city")}<div class="scrim-hud"></div>
     ${P.status({ hud: 1, tier: o.onfoot ? null : (o.tier || "S"), rating: o.rating || 939, cash: o.cash || "$3,613,709", rank: 6 })}
     ${P.actionbar(o.open ?? -1)}
-    ${P.minimap({ label: o.district || "AKANE DISTRICT", route: !!o.route })}
-    ${P.rank({})}
+    ${o.sidePanel ? "" : P.minimap({ label: o.district || "AKANE DISTRICT", route: !!o.route }) + P.rankarc({ rank: 6, p: o.xp ?? 22 })}
     ${o.onfoot ? "" : P.gauge(o.speed ?? 0, o.boost ?? 100)}
-    ${o.noRow ? "" : `<div class="btnrow centre" style="bottom:40px">${P.btn("CONTROLS", "gamepad", "sm")}${o.onfoot ? "" : P.btn("EXIT VEHICLE", "exit", "sm")}</div>`}
+    ${o.noRow ? "" : `<div class="btnrow centre" style="bottom:28px">${P.btn("CONTROLS", "gamepad", "sm")}${o.onfoot ? "" : P.btn("EXIT VEHICLE", "exit", "sm")}</div>`}
     ${o.dimmed ? `<div class="scrim-modal"></div>` : ""}`;
 
   /* paint panel (left column of the garage frame) */
   const SW = ["#FFFFFF", "#FF8A80", "#FFB980", "#FFE680", "#9CFF80", "#80FFD0", "#80E8FF", "#80A8FF", "#C080FF", "#3A3A44", "#8A1A1A", "#8A4A12", "#86801A", "#1E7A1E", "#167A5A", "#16707A", "#1A2470", "#4A1680"];
   P.paintPanel = (channels, on = 0, top = 196) => `
-    <div class="panel abs" style="left:100px;top:${top}px;width:480px">
+    <div class="panel abs" style="left:var(--margin);top:${top}px;width:480px">
       ${P.segswitch(channels.map((c, i) => ({ l: c, on: i === on })))}
       ${[["HUE", "236&deg;", 66, "linear-gradient(90deg,#f00,#ff0,#0f0,#0ff,#00f,#f0f,#f00)"], ["SATURATION", "52%", 52, "linear-gradient(90deg,#F3F0FF,#3040ff)"], ["BRIGHTNESS", "26%", 26, "linear-gradient(90deg,#000,#F3F0FF)"]].map((s) => `
         <div class="flex jb" style="margin:22px 0 12px"><span class="t-label">${s[0]}</span><span class="t-label c-2">${s[1]}</span></div>
@@ -34,11 +33,11 @@
 
   /* race HUD pieces */
   P.routeMap = (kind, label) => `
-    <div class="panel flush abs" style="left:58px;bottom:92px;width:360px;height:236px;display:flex;align-items:center;justify-content:center">
+    <div class="panel flush abs" style="left:40px;bottom:80px;width:360px;height:236px;display:flex;align-items:center;justify-content:center">
       <div style="position:relative">${P.route(kind, "var(--white)", 300, 9, null)}
         <div class="abs round" style="left:98px;top:76px;width:22px;height:22px;background:var(--cyan);border:4px solid var(--ink)"></div></div>
     </div>
-    <div class="abs t-label c-2 shadow" style="left:58px;width:360px;text-align:center;bottom:52px">${label}</div>`;
+    <div class="abs t-label c-2 shadow" style="left:40px;width:360px;text-align:center;bottom:36px">${label}</div>`;
   P.pips = (n, done) => `<div class="pips">${Array.from({ length: n }, (_, i) => `<div class="pip ${i < done ? "on" : ""}"></div>`).join("")}</div>`;
   P.timer = (label, time, delta, deltaCls, n, done) => `
     <div class="abs col ac" style="left:50%;transform:translateX(-50%);top:44px;align-items:center">
@@ -49,11 +48,11 @@
       ${delta ? `<div class="chip ${deltaCls} lg" style="margin-top:8px">${delta}</div>` : ""}
       ${n ? `<div style="margin-top:12px">${P.pips(n, done)}</div>` : ""}
     </div>`;
-  P.raceButtons = () => `<div class="btnrow centre" style="bottom:40px">${P.btn("RESET", "undo", "sm")}${P.btn("EXIT", "exit", "sm")}</div>`;
+  P.raceButtons = () => `<div class="btnrow centre" style="bottom:28px">${P.btn("RESET", "undo", "sm")}${P.btn("EXIT", "exit", "sm")}</div>`;
 
   /* event card (race start). o:{name, sub, route, you, entry, entryLabel, prize, prizeLabel, x, y} */
   P.eventCard = (o) => `
-    <div class="abs" style="left:${o.x ?? 58}px;top:${o.y ?? 58}px;width:500px">
+    <div class="abs" style="left:${o.x ?? 40}px;top:${o.y ?? 58}px;width:500px">
       <div class="panel" style="border-bottom:0;padding:22px 24px 20px">
         <div class="t-tile" style="font-size:44px">${o.name}</div>
         <div class="t-label c-2" style="margin-top:10px">${o.sub}</div>

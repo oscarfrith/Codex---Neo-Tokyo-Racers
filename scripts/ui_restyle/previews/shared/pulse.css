@@ -28,7 +28,8 @@
   --fs-value:26px;   /* cap 18 */
   --fs-label:21px;   /* cap 15 */
   /* spacing */
-  --margin:100px; --hud-margin:58px; --pad:22px; --gap:10px;
+  --margin:68px; --hud-margin:40px; --margin-bottom:30px; --hud-bottom:28px; /* review 1, 2026-10-09: were 100 / 58 / 44 / 40 */
+  --pad:22px; --gap:10px;
   --glow-tile:0 0 46px rgba(255,45,149,.55);
   --glow-btn:0 0 42px rgba(255,45,149,.60);
   --glow-ring:0 0 10px rgba(34,228,255,.45);
@@ -168,9 +169,9 @@ body{font-family:"Barlow",sans-serif;color:var(--white);-webkit-font-smoothing:a
 .t7 .sil{width:150px;height:56px}
 
 /* ---- Rail --------------------------------------------------------------- */
-.rail{position:absolute;left:var(--margin);right:0;bottom:158px;height:242px;display:flex;gap:var(--gap);align-items:flex-end}
+.rail{position:absolute;left:var(--margin);right:0;bottom:var(--margin-bottom);height:242px;display:flex;gap:var(--gap);align-items:flex-end}
 .rail.inset{right:var(--margin)}
-.railhead{position:absolute;left:var(--margin);bottom:424px;display:flex;align-items:flex-end;gap:26px}
+.railhead{position:absolute;left:var(--margin);bottom:296px;display:flex;align-items:flex-end;gap:26px}
 .railhead .t-label{padding-bottom:6px}
 .railhead .switch{padding-bottom:0;margin-bottom:-4px}
 
@@ -194,10 +195,16 @@ body{font-family:"Barlow",sans-serif;color:var(--white);-webkit-font-smoothing:a
 .btn.icon .ic{font-size:34px}
 .btn.icon.on{background:var(--white);color:var(--ink)}
 .btn.block{display:flex;width:100%}
-.btnrow{position:absolute;right:var(--margin);bottom:44px;display:flex;gap:12px;align-items:center}
+.btnrow{position:absolute;right:var(--margin);bottom:var(--margin-bottom);display:flex;gap:12px;align-items:center}
 .btnrow.centre{right:auto;left:50%;transform:translateX(-50%)}
 .btnrow.static{position:static}
-.actionbar{position:absolute;right:var(--hud-margin);top:134px;display:flex;gap:8px}
+/* review 1: on rail screens the row sits under the stat panel (y 612 to 700), the rail takes the bottom */
+.btnrow.mid{bottom:380px}
+.statpanel.slot{height:448px}
+/* review 1: on rail screens the row sits under the stat panel (y 612 to 700), the rail takes the bottom */
+.btnrow.mid{bottom:380px}
+.statpanel.slot{height:448px}
+.actionbar{position:absolute;right:var(--hud-margin);top:116px;display:flex;gap:8px}
 
 /* ---- ListRow ------------------------------------------------------------ */
 .row{position:relative;display:flex;align-items:center;gap:18px;min-height:64px;padding:0 20px;background:var(--slate);border-bottom:2px solid var(--hair-bot);color:var(--white)}
@@ -281,3 +288,18 @@ body{font-family:"Barlow",sans-serif;color:var(--white);-webkit-font-smoothing:a
 .cash .plusbtn{background:var(--ink);color:var(--yellow);margin-left:6px}
 .cash .plusbtn .ic{font-size:20px}.status .seg .plusbtn .ic{font-size:20px}
 .toast.money{border-left-color:var(--yellow)}
+
+/* ---- review 1 (2026-10-09): rank arc round the minimap, free-roam vehicles side panel ---- */
+.rankarc{position:absolute;width:355px;height:355px;pointer-events:none}
+.rankarc svg{position:absolute;inset:0}
+.rankarc .rk{position:absolute;width:120px;text-align:center;transform:translate(-50%,-50%)}
+.sidepanel{position:absolute;left:0;top:0;bottom:0;width:600px;background:var(--slate);border-right:2px solid var(--hair-bot);padding:64px 22px var(--hud-bottom) var(--hud-margin);display:flex;flex-direction:column;z-index:4}
+.sidepanel .list{position:relative;flex:1;min-height:0;overflow:hidden;display:flex;flex-direction:column;gap:4px;margin-right:-12px;padding-right:12px}
+.sidepanel .list .row{flex:none;height:116px;padding:0 16px 0 0;gap:16px}
+.sidepanel .list .row.sel{box-shadow:none}
+.sidepanel .thumb{flex:none;width:170px;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(243,240,255,.07)}
+.sidepanel .row.sel .thumb{background:rgba(7,6,13,.08)}
+.sidepanel .row.sel .sil{background:var(--ink)}
+.sidepanel .row.sel .tierrating{background:var(--ink);color:var(--white)}
+.sidepanel .row.sel .chip{background:var(--ink);color:var(--white)}
+.sidepanel .scrollbar{position:absolute;right:0;top:0;width:5px;height:42%;background:var(--cyan)}

@@ -1,42 +1,40 @@
 # Compact type roles (proposal from the Phase 0 phone previews)
 
-Status: proposal for Oscar. Nothing is installed. Source: `compact.css` (`.cx` variables) and frames c01 to c19.
+Status: proposal for Oscar, revised after review 1 (2026-10-09: "a lot of the ui looks too big"). Nothing is installed. Source: `compact.css` (`.cx` variables) and frames c01 to c19.
 
 ## Scale used in the previews
 
 - Compact design unit = 1 dp at 844x390. `scale = clamp(viewportHeight / 390, 0.85, 1.10)`.
 - 568x320 gives 0.85 (raw 0.82, clamped: the canvas gets smaller, not the UI), 640x360 gives 0.92, 844x390 gives 1.00, 932x430 gives 1.10.
-- Touch target `T = max(48, 48 / scale)` design units and gap `G = max(8, 8 / scale)`, so a target is never under 48 dp and a gap never under 8 dp. At 568x320 that is 56.5 and 9.4 design units; every layout was fitted with those values.
+- Touch target `T = max(48, 48 / scale)` design units and gap `G = max(8, 8 / scale)`, so a hit box is never under 48 dp and a gap never under 8 dp.
+- **New: what is drawn is smaller than the hit box.** Buttons, tabs, tier buttons and segment options are 36 units tall inside a `T`-tall hit box; nav icons are 32 in 48; the boost ring is 44 in 52; pedal rings are 68 and 44 inside 96 x 112 and 80 x 64 hit boxes. Rows of controls are spaced by their hit boxes, not by what is drawn.
 - Roblox top bar reserve: 120 x 52 dp, converted to design units.
 
 ## Table
 
-Cap height in dp at scale 1. `TextSize = round(cap x scale / 0.583)` for Barlow (CSS font-size = cap / 0.70).
+`TextSize = round(CSS px x 1.2 x scale)` for Barlow. Cap height is 0.70 of the CSS size.
 
-| Role | Cap (dp) | TextSize at 0.85 / 1.00 / 1.10 | Weight | Used for |
-|---|---:|---|---|---|
-| ScreenTitle | 22 | 32 / 38 / 42 | 900 italic | CUSTOMISE, RACES, track name, RACE COMPLETE |
-| SectionHead | 17 | 25 / 29 / 32 | 900 italic | PARTS 7/7, stat panel car name, modal title, tier letters |
-| ButtonMain | 14 | 20 / 24 / 26 | 800 italic | Main and Buy buttons, Start banner |
-| Button, TileName, Status | 13 | 19 / 22 / 25 | 800 italic | Other buttons, list row names, status strip, cash chip |
-| Tab, Value, RailTileName | 12 | 17 / 21 / 23 | 800 italic | Tabs, Shop/Owned, stat numbers, facts, medal times, names on rail tiles |
-| Label | 10 | 15 / 17 / 19 | 600 italic (800 on chips) | Small labels, tile sub-lines, chips, board rows |
-| Body (sentence case) | 10 | 15 / 17 / 19 | 500 upright | Toasts, callout copy, modal sentences |
-| TimerNumber | 21 | sprite | Barlow Condensed 800 italic | Race timer, personal best |
-| SpeedNumber | 35 | sprite | same | Gauge speed |
-| PositionNumber | 40 | sprite | same | Race position, tier letter on the prize panel |
-| HeroNumber | 46 | sprite | same | Results cash and XP |
-| CountdownNumber | 88 | sprite | same | 3, 2, 1, GO |
+| Role | CSS px (was) | Cap (dp) | TextSize at 0.85 / 1.00 / 1.10 | Weight | Used for |
+|---|---:|---:|---|---|---|
+| ScreenTitle | 22 (31.4) | 15.4 | 22 / 26 / 29 | 900 italic | CUSTOMISE, DEALERSHIP, track name, RACE COMPLETE |
+| SectionHead | 18 (24.3) | 12.6 | 18 / 22 / 24 | 900 italic | PARTS 3/7, modal title, tier letters, 2ND |
+| ButtonMain | 16.5 (20) | 11.6 | 17 / 20 / 22 | 800 italic | Main and Buy buttons, START prompt |
+| Text | 15 (17.1 to 18.6) | 10.5 | 15 / 18 / 20 | 800 italic | Other buttons, tabs, status strip, cash, row names, values, stat numbers |
+| Label | 13.8 (14.3) | 9.7 | 14 / 17 / 18 | 600 italic (800 on chips, tile names, board rows) | Rail tile names, small labels, chips, prices, MPH |
+| Body (sentence case) | 13.8 (14.3) | 9.7 | 14 / 17 / 18 | 500 upright | Toasts, callout copy, modal sentences |
+| TimerNumber | 24 (30) | 17 | sprite | Barlow Condensed 800 italic | Race timer, personal best |
+| SpeedNumber | 34 (50) | 24 | sprite | same | Speed readout |
+| PositionNumber | 40 (57) | 28 | sprite | same | Race position, tier letter on the prize panel |
+| HeroNumber | 44 (66) | 31 | sprite | same | Results cash and XP |
+| CountdownNumber | 96 (126) | 67 | sprite | same | 3, 2, 1, GO |
 
-Six text sizes plus body, under the plan's limit of twelve on screen.
+Five text sizes (four word roles plus Label/Body), down from six. The rank number on the minimap arc is Label; the minimap's N is part of the ring image.
 
 ## Reasoning
 
-- **Label sets the floor.** Cap 10 is the smallest value that stays at or above TextSize 14 at scale 0.85 (it gives 15). Cap 9 would give 13.
-- **The ratio between roles is flatter than Regular.** Regular runs 15 to 56 (3.7x); Compact runs 10 to 22 (2.2x). A phone has 320 to 430 dp of height, and a 48 dp button row, a 52 dp top bar band and a rail must all fit, so the title cannot keep its desktop share.
-- **ScreenTitle 22** is the largest cap that lets the longest title (SHOWROOM LOOP, DEALERSHIP) sit in the top-bar band beside the Roblox buttons with the status strip on the right at 568x320.
-- **Button 13 inside a 48 dp target** leaves room for an icon and two buttons side by side in the 212 dp action block.
-- **RailTileName 12** fits FRONT ENGINE on one line of a 128 dp tile; DRIFT THRUSTERS wraps to two lines as on desktop.
-- **Value and Tab share cap 12** to keep the glyph atlas small.
-- **Numbers above cap 21 are image digits**, as on Regular. None of the word roles reaches TextSize 100.
+- **Label sets the floor.** 13.8 px is the smallest size that stays at TextSize 14 at scale 0.85 (13.8 x 1.2 x 0.85 = 14.08). The render check prints the smallest TextSize on every frame: 14.1 at 568x320, 15.3 at 640x360, 16.6 at 844x390, 18.2 at 932x430.
+- **Everything above the floor moved down toward it.** The old table ran 14.3 to 31.4 px (2.2x). The new one runs 13.8 to 22 px (1.6x). On a 390 dp tall screen hierarchy comes from weight, colour and position more than from size; the title sits beside the Roblox buttons and does not need to be the biggest thing on the screen.
+- **Text 15** is one size for buttons, tabs, values and the status line, which removes three near-identical roles (17.1, 18.6, 18.6) and keeps a 36-tall button comfortable.
+- **Rail tile names are Label, one line.** Tiles size to their name (minimum 88 units), so DRIFT THRUSTERS stays on one line and all seven part slots fit an 844 dp screen.
+- **Numbers at 24 px and above are image digits**, as on Regular. The speed number dropped from cap 35 to cap 24 because it no longer sits inside a dial.
 - **Not tested here:** the player Text Size setting at Largest, and Barlow's real Roblox metrics (the previews assume cap 0.70 em and TextSize = CSS size x 1.2).

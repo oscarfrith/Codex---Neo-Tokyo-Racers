@@ -1,45 +1,45 @@
 /* ==========================================================================
-   Pulse Racers preview kit, Compact class (phones, landscape only). Phase 0.
+   Pulse Racers preview kit, Compact class (phones, landscape only). Phase 0,
+   reworked after review 1 (2026-10-09): smaller UI pushed to the edges.
    Loaded AFTER ../shared/pulse.css (read-only import: tokens, icons, base
-   component classes). This file re-points the type-role variables to the
-   Compact table and re-sizes the shared components inside the .cx stage.
+   component classes). Every phone-specific rule is in this file.
    Units inside .cx are Compact design units: 1 unit = 1 dp at scale 1
    (844x390). The stage is zoomed by scale = clamp(height/390, 0.85, 1.10).
-   --t  touch target  = max(48, 48/scale) units  -> never under 48 dp
-   --g  target gap    = max(8, 8/scale) units    -> never under 8 dp
-   --tbw / --tbh      = Roblox top bar reserve (120 x 52 dp) in units
-   Roblox subset only: rectangles, hairlines, images, text, sparing glow.
+   --t   touch target   = max(48, 48/scale) units  -> never under 48 dp
+   --g   target gap     = max(8, 8/scale) units    -> never under 8 dp
+   --bh  visible height of a button (36); its hit box is --t tall
+   --hx  = (--t - --bh) / 2, the invisible part of the hit box above and below
+   --sw  steering arrow width (set by compact.js, 48 to 52 dp)
+   --tbw / --tbh        = Roblox top bar reserve (120 x 52 dp) in units
+   Dashed outlines are hit boxes (guides, not UI).
+   Roblox subset only: rectangles, circles, hairlines, images, text.
    ========================================================================== */
 html,body{width:100%;height:100%;background:#000}
 .device{position:relative;overflow:hidden;background:#15131f}
 .device .scene{background-position:center;background-size:cover}
 .device .scrim-menu::after{width:320px;height:230px}
+.device .scrim-hud{background:linear-gradient(180deg,rgba(7,6,13,.42) 0,rgba(7,6,13,0) 16%,rgba(7,6,13,0) 74%,rgba(7,6,13,.42) 100%)}
+.device .scrim-garage{background:linear-gradient(180deg,rgba(7,6,13,.55) 0,rgba(7,6,13,0) 20%),linear-gradient(0deg,rgba(7,6,13,.72) 0,rgba(7,6,13,0) 34%)}
 .safe{position:absolute;top:0}
 .cx{position:absolute;left:0;top:0;transform-origin:0 0;
-  --m:8px; --t:48px; --g:8px; --tbw:120px; --tbh:52px;
-  /* Compact type roles: cap height (dp at scale 1) / 0.70 */
-  --fs-title:31.4px;   /* cap 22 */
-  --fs-sect:24.3px;    /* cap 17 */
-  --fs-btnmain:20px;   /* cap 14 */
-  --fs-btn:18.6px;     /* cap 13 */
-  --fs-tile:18.6px;    /* cap 13 */
-  --fs-tile7:17.1px;   /* cap 12  rail tiles */
-  --fs-status:18.6px;  /* cap 13 */
-  --fs-tab:17.1px;     /* cap 12 */
-  --fs-value:17.1px;   /* cap 12 */
-  --fs-label:14.3px;   /* cap 10  floor: TextSize 15 at scale 0.85 */
-  --fs-speed:50px;     /* cap 35  image digits */
-  --fs-pos:57px;       /* cap 40  image digits */
-  --fs-hero:66px;      /* cap 46  image digits */
-  --fs-count:126px;    /* cap 88  image digits */
-  --fs-timer:30px;     /* cap 21  image digits */
-  --hair:1px; --pad:10px; --gap:8px;
-  --glow-tile:0 0 18px rgba(255,45,149,.55);
-  --glow-btn:0 0 16px rgba(255,45,149,.60);
+  --m:8px; --t:48px; --g:8px; --sw:52px; --tbw:120px; --tbh:52px; --bh:36px; --hx:calc((var(--t) - var(--bh)) / 2);
+  /* Compact type roles (CSS px at scale 1; TextSize = px x 1.2 x scale) */
+  --fs-title:22px;     /* ScreenTitle   TextSize 22 / 26 / 29 */
+  --fs-sect:18px;      /* SectionHead   18 / 22 / 24 */
+  --fs-btnmain:16.5px; /* ButtonMain    17 / 20 / 22 */
+  --fs-btn:15px;       /* Text          15 / 18 / 20 */
+  --fs-tile:15px; --fs-status:15px; --fs-tab:15px; --fs-value:15px;
+  --fs-tile7:13.8px;   /* Label         14 / 17 / 18  (floor) */
+  --fs-label:13.8px;
+  --fs-timer:24px; --fs-speed:34px; --fs-pos:40px; --fs-hero:44px; --fs-count:96px;   /* image digits */
+  --hair:1px; --pad:8px; --gap:8px;
+  --glow-tile:0 0 12px rgba(255,45,149,.5);
+  --glow-btn:0 0 12px rgba(255,45,149,.55);
   --glow-ring:0 0 5px rgba(34,228,255,.45);
 }
-.cx .shadow{text-shadow:0 1px 0 rgba(7,6,13,.6),0 2px 6px rgba(7,6,13,.55)}
+.cx .shadow{text-shadow:0 1px 0 rgba(7,6,13,.7),0 1px 5px rgba(7,6,13,.7)}
 .cx .t-body{line-height:1.25}
+.cx .num{line-height:.8}
 .fill{position:absolute;inset:0}
 
 /* ---- guides (not UI): safe area, Roblox top bar, Roblox touch controls, hit boxes */
@@ -48,195 +48,225 @@ html,body{width:100%;height:100%;background:#000}
 .guide-safe .line{position:absolute;border:0 dashed rgba(34,228,255,.55)}
 .guide-safe .bezel{position:absolute;inset:0;border:1px solid rgba(243,240,255,.25);border-radius:38px}
 .guide-safe .notch{position:absolute;left:0;top:50%;width:30px;height:150px;margin-top:-75px;background:#000;border-radius:0 18px 18px 0;opacity:.85}
-.guide-safe .home{position:absolute;left:50%;bottom:7px;width:150px;height:5px;margin-left:-75px;border-radius:3px;background:rgba(243,240,255,.45)}
-.guide-safe .tag{position:absolute;font:500 8px/1 Barlow;color:rgba(34,228,255,.8);white-space:nowrap}
+.guide-safe .home{position:absolute;left:50%;bottom:7px;width:150px;height:5px;margin-left:-75px;border-radius:3px;background:rgba(243,240,255,.45);opacity:.5}
+.guide-safe .tag{position:absolute;font:500 8px/1 Barlow;color:rgba(34,228,255,.95);white-space:nowrap;background:rgba(7,6,13,.6);padding:1px 3px}
+.guide-safe .tag b{font-weight:600;color:#FFE433}
 .guide-top{position:absolute;top:4px;height:44px;width:104px;border:1px dashed rgba(243,240,255,.45);display:flex;gap:12px;align-items:center;justify-content:center;pointer-events:none}
 .guide-top i{width:40px;height:40px;border-radius:50%;border:1px solid rgba(243,240,255,.5);background:rgba(7,6,13,.35)}
 .guide-top b{position:absolute;left:0;top:46px;font:500 8px/1 Barlow;color:rgba(243,240,255,.6);white-space:nowrap}
 .guide-rbx{position:absolute;border-radius:50%;border:1px dashed rgba(243,240,255,.5);background:rgba(243,240,255,.10);display:flex;align-items:center;justify-content:center;font:500 9px/1.1 Barlow;color:rgba(243,240,255,.7);text-align:center}
 .guide-rbx.inner{border-style:solid;background:rgba(243,240,255,.22)}
-.cx .hit{outline:1px dashed rgba(243,240,255,.30);outline-offset:-1px}
+.cx .hit{outline:1px dashed rgba(243,240,255,.20);outline-offset:-1px}
 
 /* ---- shared components re-sized for Compact ----------------------------- */
 .cx .panel{padding:var(--pad)}
 .cx .panel.flush{padding:0}
-.cx .hairline{height:1px}
-.cx .rule-pink{height:2px}
-.cx .titlemark{width:13px;height:24px;background:repeating-linear-gradient(135deg,var(--pink) 0 3px,transparent 3px 6px)}
-.cx .c-title{position:absolute;left:var(--tbw);top:0;height:var(--tbh);display:flex;align-items:center;gap:8px}
-.cx .c-title .sub{align-self:center;margin-left:4px;padding-top:8px}
-/* tabs: visible text + pink underline; the hit box is a full --t tall button */
-.cx .tabs{left:var(--m);top:var(--tbh);gap:var(--g)}
-.cx .tab{position:relative;height:var(--t);padding:0 8px 0 6px;gap:5px;border-bottom:0}
-.cx .tab .ic{font-size:17px}
-.cx .tab.on::after{content:"";position:absolute;left:6px;right:8px;top:calc(50% + 12px);height:2px;background:var(--pink)}
-.cx .switch{gap:var(--g)}
-.cx .switch .opt{position:relative;height:var(--t);padding:0 8px;border-bottom:0;align-items:flex-end;padding-bottom:7px}
-.cx .switch .opt.on::after{content:"";position:absolute;left:8px;right:8px;bottom:2px;height:2px;background:var(--pink)}
+.cx .titlemark{width:9px;height:17px;background:repeating-linear-gradient(135deg,var(--pink) 0 2.5px,transparent 2.5px 5px)}
+.cx .c-title{position:absolute;left:calc(var(--tbw) + 2px);top:0;height:var(--tbh);display:flex;align-items:center;gap:6px}
+.cx .c-title .sub{margin-left:4px;padding-top:4px}
+/* tabs: text plus a pink underline; the hit box is a full --t tall */
+.cx .c-tabs{position:absolute;left:var(--m);top:calc(var(--tbh) - 6px);display:flex;gap:var(--g)}
+.cx .c-tab{position:relative;height:var(--t);display:flex;align-items:center;gap:4px;padding:0 5px;color:var(--text2);font:italic 800 var(--fs-tab)/1 Barlow;text-transform:uppercase;white-space:nowrap}
+.cx .c-tab .ic{font-size:13px}
+.cx .c-tab.on{color:var(--white)}
+.cx .c-tab.on::after{content:"";position:absolute;left:5px;right:5px;top:calc(50% + 10px);height:2px;background:var(--pink)}
+.cx .c-tab.sm{font-size:var(--fs-label)}
 .cx .segswitch{gap:var(--g)}
-.cx .segswitch .opt{height:var(--t);padding:0 6px}
+.cx .segswitch .opt{position:relative;height:var(--bh);padding:0 6px}
 
-/* status cluster */
-.cx .status{right:var(--m);top:calc((var(--tbh) - 32px) / 2);height:32px;padding:3px 3px 3px 9px}
-.cx .status.static{position:relative;right:auto;top:auto}
-.cx .status .seg{gap:6px;padding:0 9px 0 0}
-.cx .status .seg + .seg{border-left:1px solid var(--hair-bot);padding-left:9px}
-.cx .status .seg .ic{font-size:17px}
-.cx .status .plus{width:18px;height:18px;font-size:12px}
-.cx .rankring{width:24px;height:24px;border-width:2px;font:italic 800 14.3px/1 Barlow;padding-right:1px}
-.cx .cash{height:26px;gap:5px;padding:0 7px 0 6px}
-.cx .cash .ic{font-size:17px}
-.cx .cash.fixed{min-width:0;margin-left:auto}
+/* one-line status strip (top-right) */
+.cx .c-strip{position:absolute;right:var(--m);top:calc((var(--tbh) - 26px) / 2);height:26px;display:flex;gap:var(--g);align-items:stretch}
+.cx .c-seg{display:flex;align-items:center;gap:5px;padding:0 7px;background:var(--slate);font:italic 800 var(--fs-status)/1 Barlow;text-transform:uppercase;white-space:nowrap}
+.cx .c-seg .ic{font-size:14px}
+.cx .c-seg .chev{font-size:9px;color:var(--text2)}
+.cx .c-seg.on{background:var(--white);color:var(--ink)}
+.cx .c-seg.on .c-tr{background:var(--ink);color:var(--white)}
+.cx .c-seg.on .chev{color:var(--ink)}
+.cx .c-tr{display:inline-flex;align-items:center;height:18px;padding:0 5px 0 4px;background:var(--white);color:var(--ink);font:italic 900 var(--fs-status)/1 Barlow;white-space:nowrap}
+.cx .c-cash{display:flex;align-items:center;gap:4px;padding:0 7px 0 6px;background:var(--yellow);color:var(--ink);font:italic 800 var(--fs-status)/1 Barlow;white-space:nowrap}
+.cx .c-cash .ic{font-size:14px}
+/* expanded stat card */
+.cx .c-stats{position:absolute;right:var(--m);top:calc(var(--tbh) - 9px);width:186px;background:var(--slate);border-top:1px solid var(--hair-top);border-bottom:1px solid var(--hair-bot);padding:6px 8px 5px}
+.cx .c-stat{display:flex;align-items:center;height:17px;gap:6px}
+.cx .c-stat .lab{width:62px;flex:none}
+.cx .c-stat .bar{flex:none;width:46px;height:5px;background:repeating-linear-gradient(90deg,rgba(243,240,255,.22) 0 4px,transparent 4px 6px);display:flex}
+.cx .c-stat .bar i{height:100%;background:repeating-linear-gradient(90deg,var(--white) 0 4px,transparent 4px 6px)}
+.cx .c-stat .bar i.gain{background:repeating-linear-gradient(90deg,var(--cyan) 0 4px,transparent 4px 6px)}
+.cx .c-stat .val{width:20px;text-align:right;font:italic 800 var(--fs-value)/1 Barlow;margin-left:auto}
+.cx .c-stat .gn{width:26px;flex:none;display:flex}
+.cx .c-stat .gn .chip{width:26px;height:15px;padding:0;justify-content:center}
 
 /* chips, tier */
-.cx .chip{height:18px;gap:3px;padding:0 6px 0 5px}
-.cx .chip.price{height:20px}
-.cx .chip.lg{height:24px;padding:0 8px 0 7px}
-.cx .tier{width:20px;height:24px;padding-right:2px}
-.cx .tier.sm{width:17px;height:20px;font-size:15.7px}
-.cx .tierrating{height:24px;gap:5px;padding:0 6px}
+.cx .chip{height:17px;gap:3px;padding:0 5px 0 4px}
+.cx .chip.price{height:17px;font-size:var(--fs-label)}
+.cx .chip.lg{height:22px;padding:0 7px 0 6px}
+.cx .chip .ic{font-size:11px}
 
-/* buttons */
-.cx .btn{height:var(--t);padding:0 13px 0 11px;gap:6px}
-.cx .btn .ic{font-size:19px}
-.cx .btn.main{padding:0 14px 0 12px;min-width:0}
-.cx .btn.main .ic{font-size:21px}
-.cx .btn.buy{padding:0 14px 0 12px}
-.cx .btn.icon{width:var(--t);height:var(--t)}
-.cx .btn.icon .ic{font-size:22px}
+/* buttons: 36 visible, --t hit box */
+.cx .btn{position:relative;height:var(--bh);padding:0 11px 0 9px;gap:5px;font-size:var(--fs-btn)}
+.cx .btn::before{content:"";position:absolute;left:0;right:0;top:calc(var(--hx) * -1);bottom:calc(var(--hx) * -1);outline:1px dashed rgba(243,240,255,.20);outline-offset:-1px}
+.cx .btn .ic{font-size:15px}
+.cx .btn.main{padding:0 12px 0 10px;min-width:0;font-size:var(--fs-btnmain)}
+.cx .btn.main .ic{font-size:16px}
+.cx .btn.buy{padding:0 12px 0 10px;font-size:var(--fs-btnmain)}
+.cx .btn.icon{width:var(--bh);height:var(--bh);padding:0;border:0}
+.cx .btn.icon::before{left:calc(var(--hx) * -1);right:calc(var(--hx) * -1)}
+.cx .btn.icon .ic{font-size:17px}
 .cx .btn.focus,.cx .btn.main.focus{outline-width:2px}
-.cx .btn.sec{font-size:var(--fs-tab)}
-/* action block: the Compact form of the button row. Bottom-right, two rows:
-   back/exit and secondary on the top row, the main action on the bottom row. */
-.cx .c-actions{position:absolute;right:var(--m);bottom:var(--m);display:flex;flex-direction:column;gap:var(--g);align-items:stretch}
-.cx .c-actions .r{display:flex;gap:var(--g)}
-.cx .c-actions .r .btn{flex:1 1 auto}
+.cx .btn.lg{height:var(--t);padding:0 20px 0 16px}
+.cx .btn.lg::before{display:none}
+.cx .btn.block{display:flex}
+.cx .btn.dd{flex:1;padding:0 6px;gap:4px;justify-content:space-between}
+.cx .btn.dd .ic{font-size:9px}
+/* button row: back / secondary / main. Above the rail on garage screens, on the bottom edge elsewhere. */
+.cx .c-actions{position:absolute;right:var(--m);bottom:calc(var(--m) + 66px + var(--hx) + var(--g));display:flex;gap:var(--g);align-items:center}
+.cx .c-actions.low{bottom:var(--m)}
 
-/* tile (rail tile on Compact) */
-.cx .tile{width:128px;height:100px;border-bottom-width:1px}
-.cx .tile .idx{left:7px;top:6px}
-.cx .tile .var{left:6px;top:6px}
-.cx .tile .vis{top:22px;height:24px}
-.cx .tile .sub{left:7px;right:5px;bottom:27px}
-.cx .tile .name{left:7px;right:4px;bottom:7px;line-height:.95}
-.cx .tile.two .sub{bottom:42px}
-.cx .tile.sel{height:106px;margin-top:-6px;border-bottom:3px solid var(--pink)}
-.cx .tile.sel .vis{top:25px}
-.cx .tile.sel .name{bottom:6px}.cx .tile.sel .sub{bottom:26px}.cx .tile.sel.two .sub{bottom:41px}
-.cx .tile .lockicon{top:22px;font-size:22px}
-.cx .sil{width:66px;height:22px}
-.cx .sil.car{width:84px;height:26px}
-.cx .tile.car .vis{top:30px}
-.cx .c-rail{position:absolute;left:var(--m);bottom:var(--m);height:106px;display:flex;gap:var(--g);align-items:flex-end;overflow:hidden;padding-top:6px}
-.cx .c-railhead{position:absolute;left:var(--m);bottom:calc(var(--m) + 106px);display:flex;align-items:flex-end;gap:10px}
-.cx .c-railhead .t-label{padding-bottom:6px}
+/* rail: small tiles, image plus one line */
+.cx .c-rail{position:absolute;left:var(--m);right:var(--m);bottom:var(--m);height:66px;display:flex;gap:var(--g);align-items:flex-end;overflow:hidden}
+.cx .ct{position:relative;flex:none;min-width:88px;height:60px;padding:0 8px;background:var(--slate);border-bottom:1px solid var(--hair-bot);color:var(--white);display:flex;flex-direction:column;align-items:center;justify-content:flex-end}
+.cx .ct .vis{position:absolute;left:0;right:0;top:9px;height:26px;display:flex;align-items:center;justify-content:center}
+.cx .ct .vis .ic{font-size:18px;color:var(--text2)}
+.cx .ct .nm{font:italic 800 var(--fs-label)/1 Barlow;text-transform:uppercase;white-space:nowrap;padding-bottom:6px}
+.cx .ct .cr{position:absolute;right:0;top:0}
+.cx .ct .tl{position:absolute;left:0;top:0;display:flex}
+.cx .ct .tk{width:15px;height:15px;background:var(--cyan);color:var(--ink);display:flex;align-items:center;justify-content:center}
+.cx .ct .tk .ic{font-size:10px}
+.cx .ct .sil{width:54px;height:19px}
+.cx .ct .sil.car{width:66px;height:21px}
+.cx .ct.sel{height:66px;background:var(--white);color:var(--ink);border-bottom:3px solid var(--pink)}
+.cx .ct.sel .vis{top:11px}
+.cx .ct.sel .nm{padding-bottom:5px}
+.cx .ct.sel .sil{background:var(--ink)}
+.cx .ct.sel .c-tr,.cx .ct.sel .chip:not(.price){background:var(--ink);color:var(--white)}
+.cx .ct.locked{background:rgba(14,13,26,.6)}
+.cx .ct.locked .nm{color:var(--muted)}
+.cx .ct.car{min-width:100px}
+.cx .ct.car .vis{top:14px}
+.cx .ct.car.sel .vis{top:17px}
+.cx .c-railhead{position:absolute;left:var(--m);bottom:calc(var(--m) + 66px + var(--hx) + var(--g));height:var(--bh);display:flex;align-items:center;gap:8px}
 
 /* list rows */
-.cx .row{min-height:var(--t);gap:9px;padding:0 9px;border-bottom-width:1px}
+.cx .row{min-height:var(--t);gap:8px;padding:0 8px;border-bottom-width:1px}
 .cx .row.sel{border-bottom-width:3px}
-
-/* stat panel */
-.cx .statpanel{right:var(--m);top:var(--tbh);width:212px;padding:8px 8px 7px 10px}
-.cx .statpanel .subline{margin-top:4px;gap:5px}
-.cx .stat{height:19px;gap:5px}
-.cx .stat .lab{flex:none;width:68px}
-.cx .stat .val{width:24px;height:18px;background:none;justify-content:flex-end;margin-left:auto}
-.cx .stat .chip.gain{flex:none;width:26px;height:17px;padding:0;justify-content:center}
-.cx .segbar{height:6px;background:repeating-linear-gradient(90deg,rgba(243,240,255,.2) 0 5px,transparent 5px 7px)}
-.cx .segbar > i{background:repeating-linear-gradient(90deg,var(--white) 0 5px,transparent 5px 7px)}
-.cx .segbar > i.gain{background:repeating-linear-gradient(90deg,var(--cyan) 0 5px,transparent 5px 7px)}
-.cx .segbar > i.loss{background:repeating-linear-gradient(90deg,var(--pink) 0 5px,transparent 5px 7px)}
-.cx .fact{height:27px;gap:7px;border-bottom-width:1px}
-.cx .fact .ic{font-size:16px}
+.cx .row.ev{height:var(--t);padding:0 8px 0 0;gap:10px;flex:none}
+.cx .row.ev .rt{width:72px;height:100%;background:rgba(7,6,13,.55);display:flex;align-items:center;justify-content:center;flex:none}
+.cx .fact{height:26px;gap:6px;border-bottom-width:1px}
+.cx .fact .ic{font-size:14px}
 
 /* modal */
-.cx .modal{padding:12px 14px 14px;width:auto}
-.cx .modal .mhead{gap:8px;margin-bottom:8px}
-.cx .modal .mhead .titlemark{width:11px;height:20px;background:repeating-linear-gradient(135deg,var(--pink) 0 3px,transparent 3px 6px)}
-.cx .modal .mbody{margin-bottom:var(--g)}
-.cx .modal .mbtns{gap:var(--g)}
+.cx .modal{padding:10px 12px 10px;width:auto}
+.cx .modal .mhead{gap:6px;margin-bottom:calc(var(--hx) + 4px)}
+.cx .modal .mhead .titlemark{width:9px;height:17px;background:repeating-linear-gradient(135deg,var(--pink) 0 2.5px,transparent 2.5px 5px)}
+.cx .modal .mbody{margin-bottom:calc(var(--hx) + var(--g))}
+.cx .modal .mbtns{gap:var(--g);margin-bottom:var(--hx)}
 .cx .modal .ic.close{position:static}
-.cx .setrow{display:flex;align-items:center;gap:10px;margin-bottom:var(--g)}
-.cx .setrow .lab{width:118px;white-space:normal;line-height:1.05}
+.cx .setrow{display:flex;align-items:center;gap:8px;margin-bottom:calc(var(--hx) * 2 + var(--g))}
+.cx .setrow:last-child{margin-bottom:0}
+.cx .setrow .lab{width:112px;white-space:normal;line-height:1.05}
 .cx .setrow .segswitch{flex:1}
 
 /* toast, prompt */
-.cx .toast{min-height:34px;gap:8px;padding:0 13px 0 10px;border-left-width:3px}
-.cx .toast .ic{font-size:17px}
-.cx .toastslot{top:calc(var(--m) + var(--t) + var(--g) + 32px + 8px);gap:6px}
-.cx .toastslot.menu{top:calc(var(--tbh) + 4px)}
-.cx .prompt{height:var(--t);gap:9px;padding:0 16px;min-width:210px}
-.cx .promptstack{bottom:calc(var(--m) + 124px + var(--g));gap:var(--g)}
+.cx .toast{min-height:26px;gap:6px;padding:0 10px 0 8px;border-left-width:3px}
+.cx .toast .ic{font-size:14px}
+.cx .toast .t-value{font-size:var(--fs-label)}
+.cx .toastslot{top:var(--t);gap:4px}
+.cx .c-prompt{position:absolute;right:var(--m);bottom:calc(var(--m) + 112px + var(--g) + var(--hx));height:var(--bh);display:flex;align-items:center;gap:6px;padding:0 11px 0 9px;background:var(--white);color:var(--ink);font:italic 800 var(--fs-btnmain)/1 Barlow}
+.cx .c-prompt .ic{font-size:16px}
 
 /* medals, pips, progress, slider */
-.cx .medal{width:10px;height:10px}
-.cx .pip{width:13px;height:5px}
+.cx .medal{width:9px;height:9px}
+.cx .pip{width:11px;height:4px}
 .cx .pips{gap:3px}
 .cx .progress{height:3px}
-.cx .slider{height:6px}
-.cx .slider > b{top:-8px;width:8px;height:22px;margin-left:-4px}
-
-/* ---- HUD (free roam and race) ------------------------------------------- */
-.cx .minimap{left:auto;bottom:auto;right:var(--m);top:var(--m);width:104px;height:104px;border-width:3px}
-.cx .c-north{position:absolute;right:calc(var(--m) + 43px);top:calc(var(--m) + 95px);width:18px;height:18px;border-radius:50%;background:var(--ink);border:1px solid var(--hair-bot);display:flex;align-items:center;justify-content:center;font:italic 800 11px/1 Barlow}
-.cx .c-district{position:absolute;right:var(--m);top:calc(var(--m) + 116px);width:104px;text-align:center}
-.cx .actionbar{right:calc(var(--m) + 104px + var(--g));top:var(--m);gap:var(--g)}
-.cx .c-hudstatus{position:absolute;right:calc(var(--m) + 104px + var(--g));top:calc(var(--m) + var(--t) + var(--g));width:calc(var(--t) * 5 + var(--g) * 4)}
-.cx .c-hudstatus .status{width:100%}
-.cx .c-cashhit{position:absolute;right:0;top:0;height:var(--t);width:128px}
-.cx .c-rightcol{position:absolute;right:var(--m);top:calc(var(--m) + 104px + 22px + var(--g));width:104px;display:flex;flex-direction:column;gap:var(--g)}
-.cx .c-leftzone{position:absolute;left:var(--m);top:calc(var(--tbh) + 4px)}
-.cx .c-gauge{position:absolute;left:50%;bottom:var(--m);width:124px;height:124px;margin-left:-62px}
-.cx .num{line-height:.8}
-
-/* touch drive controls (restyled MobileDriveControls_Phase1; names kept) */
-.cx .tc{position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;background:rgba(14,13,26,.62);border-top:1px solid var(--hair-top);border-bottom:1px solid var(--hair-bot);color:var(--white)}
-.cx .tc .ic{font-size:26px}
-.cx .tc.on{background:var(--white);color:var(--ink)}
-.cx .tc.off{opacity:.4}
-.cx .tc-left{position:absolute;left:var(--m);bottom:var(--m);width:calc(88px * 2 + var(--g));height:calc(64px + var(--g) + max(52px,var(--t)) + var(--g) + var(--t))}
-.cx .tc-left .turn{width:88px;height:64px;bottom:0}
-.cx .tc-left .drift{width:88px;height:max(52px,var(--t));bottom:calc(64px + var(--g));flex-direction:row;gap:5px}
-.cx .tc-left .drift .ic{font-size:18px}
-.cx .tc-left .boost{left:0;right:0;top:0;height:var(--t);flex-direction:row;gap:6px;color:var(--cyan);border-top-color:var(--cyan)}
-.cx .tc-left .boost .ic{font-size:20px}
-.cx .tc-left .boost .lvl{position:absolute;left:0;bottom:-1px;height:3px;background:var(--cyan)}
-.cx .tc-right{position:absolute;right:var(--m);bottom:var(--m);width:calc(92px + var(--g) + 104px);height:116px}
-.cx .tc-right .brake{left:0;bottom:0;width:92px;height:96px}
-.cx .tc-right .accel{right:0;bottom:0;width:104px;height:116px}
-.cx .tc-right .accel .ic{font-size:34px}
-
-/* in-race */
-.cx .c-board{position:absolute;right:var(--m);top:var(--m);width:196px;display:flex;flex-direction:column;gap:2px}
-.cx .c-board .row{min-height:23px;height:23px;padding:0 7px 0 0;gap:7px;border-bottom:0}
-.cx .c-board .row .p{width:22px;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(243,240,255,.14)}
-.cx .c-board .row.you .p{background:var(--pink);color:var(--white)}
-.cx .c-timer{position:absolute;left:50%;top:var(--m);transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:4px}
-.cx .c-timer .box{background:var(--slate);padding:6px 12px 5px;border-bottom:2px solid var(--pink)}
-
-/* map */
-.cx .legendrow{display:flex;align-items:center;gap:7px;height:24px}
-.cx .mapicon{width:20px;height:20px;border-radius:50%;background:var(--ink);border:1px solid var(--hair-top);display:flex;align-items:center;justify-content:center;flex:none}
-.cx .mapicon .ic{font-size:12px}
-
-/* onboarding */
-.cx .c-highlight{position:absolute;border:2px solid var(--white);box-shadow:0 0 0 2000px rgba(7,6,13,.62)} /* dimmer = four frames in Roblox */
-.cx .c-connector{position:absolute;background:var(--pink)}
-.cx .c-objective{display:flex;align-items:center;gap:8px;height:48px;padding:0 12px 0 8px;background:var(--slate);border-top:1px solid var(--hair-top);border-bottom:1px solid var(--hair-bot);border-left:3px solid var(--pink)}
-
-/* small tile (car panel grid) */
-.cx .tile.mini{width:120px;height:84px}
-.cx .tile.mini .vis{top:30px}
-.cx .tile.mini.sel{height:84px;margin-top:0}
-.cx .tile.mini.sel .vis{top:30px}
-/* tier rail buttons (race entry) */
-.cx .tierbtn{width:var(--t);height:var(--t);display:flex;align-items:center;justify-content:center;background:var(--slate);border-bottom:2px solid transparent;font:italic 900 var(--fs-sect)/1 Barlow;padding-right:2px}
-.cx .tierbtn.done{border-bottom-color:var(--white)}
-.cx .tierbtn.on{background:var(--white);color:var(--ink)}
-.cx .tierbtn.locked{opacity:.45}
-.cx .swatch{flex:none;width:var(--t);height:var(--t)}
-.cx .swatch.on{outline:2px solid var(--white);outline-offset:-2px;box-shadow:inset 0 0 0 4px var(--ink)}
+.cx .slider{height:4px}
+.cx .slider > b{top:-7px;width:6px;height:18px;margin-left:-3px}
 .cx .slider.hue{background:linear-gradient(90deg,#f00,#ff0,#0f0,#0ff,#00f,#f0f,#f00)}
 .cx .slider.sat{background:linear-gradient(90deg,#fff,#3a38ff)}
 .cx .slider.bri{background:linear-gradient(90deg,#000,#fff)}
-.cx .chk{flex:none;width:30px;height:20px;background:conic-gradient(var(--white) 25%,var(--ink) 0 50%,var(--white) 0 75%,var(--ink) 0) 0 0/10px 10px}
+
+/* ---- HUD (free roam and race) ------------------------------------------- */
+.cx .c-map{position:absolute;right:calc(var(--m) - 2px);top:var(--m);width:112px;height:104px}
+.cx .c-nav{position:absolute;right:calc(var(--m) + 110px + var(--g));top:0;display:flex;gap:var(--g)}
+.cx .nb{width:var(--t);height:var(--t);display:flex;align-items:flex-start;justify-content:center;padding-top:var(--m)}
+.cx .nbv{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:rgba(14,13,26,.62);color:var(--white)}
+.cx .nbv .ic{font-size:18px}
+.cx .nbv.on{background:var(--white);color:var(--ink)}
+.cx .c-hudcash{position:absolute;right:var(--m);top:calc(var(--m) + 104px + 4px);width:92px;height:22px;justify-content:center}
+.cx .c-shift .c-nav{right:calc(var(--m) + 232px + var(--g))}
+.cx .c-shift .c-hudcash{right:calc(var(--m) + 232px + var(--g));top:var(--t)}
+.cx .c-speed{position:absolute;left:50%;bottom:var(--m);width:104px;height:64px;margin-left:-52px}
+.cx .c-speed .n{position:absolute;left:0;right:3px;top:12px;text-align:center;font-size:var(--fs-speed)}
+.cx .c-speed .u{position:absolute;left:0;right:0;top:43px;text-align:center}
+.cx .c-speed .bst{position:absolute;left:16px;right:16px;bottom:0;height:3px;background:rgba(243,240,255,.25)}
+.cx .c-speed .bst i{display:block;height:100%;background:var(--cyan)}
+.cx .c-exit{position:absolute;right:calc(50% + 60px);bottom:var(--m);height:var(--t);display:flex;align-items:flex-end}
+.cx .c-exit .tc{position:static;height:28px;padding:0 8px 0 7px;gap:5px;font:italic 800 var(--fs-btn)/1 Barlow}
+.cx .c-exit .tc .ic{font-size:14px}
+
+/* touch drive controls (MobileDriveControls_Phase1 names kept): outlined, no slabs, no labels */
+.cx .tc{position:absolute;display:flex;align-items:center;justify-content:center;background:rgba(14,13,26,.26);border:1px solid rgba(243,240,255,.55);color:var(--white)}
+.cx .tc .ic{font-size:22px}
+.cx .tc.on{background:rgba(243,240,255,.92);color:var(--ink);border-color:var(--white)}
+.cx .tc.off{opacity:.4}
+.cx .tc-left{position:absolute;left:var(--m);bottom:var(--m);width:calc(var(--sw) * 2 + var(--g));height:calc(60px + var(--g) + var(--t))}
+.cx .tc-left .turn{width:var(--sw);height:60px;bottom:0}
+.cx .tc-left .drift{width:var(--sw);height:var(--bh);bottom:calc(60px + var(--g) + var(--hx))}  /* 36 visible in a --t hit box */
+.cx .tc-left .drift::before{content:"";position:absolute;left:-1px;right:-1px;top:calc(var(--hx) * -1);bottom:calc(var(--hx) * -1);outline:1px dashed rgba(243,240,255,.20);outline-offset:-1px}
+.cx .tc-left .l{left:0}.cx .tc-left .r{right:0}
+.cx .boosthit{position:absolute;left:50%;width:max(52px,var(--t));height:max(52px,var(--t));margin-left:calc(max(52px,var(--t)) / -2);bottom:calc(100% + var(--g));display:flex;align-items:center;justify-content:center}
+.cx .boosthit .tc{position:static;width:44px;height:44px;border-radius:50%;border-color:var(--cyan);color:var(--cyan)}
+.cx .boosthit .tc.on{background:var(--cyan);color:var(--ink)}
+.cx .tc-right{position:absolute;right:var(--m);bottom:var(--m);width:calc(96px + var(--g) + 80px);height:112px}
+.cx .pd{position:absolute;bottom:0;display:flex;align-items:flex-end;justify-content:center}
+.cx .pd .tc{position:static;border-radius:50%}
+.cx .pd.accel{right:0;width:96px;height:112px;justify-content:flex-end;padding:0 4px 2px 0}
+.cx .pd.accel .tc{width:68px;height:68px}
+.cx .pd.accel .ic{font-size:28px}
+.cx .pd.brake{left:0;width:80px;height:max(64px,var(--t));padding-bottom:2px}
+.cx .pd.brake .tc{width:44px;height:44px}
+
+/* vehicles list (side panel; hides the minimap and rank while open) */
+.cx .c-side{position:absolute;right:var(--m);top:var(--m);bottom:var(--m);width:232px;background:var(--slate);border-top:1px solid var(--hair-top);border-bottom:1px solid var(--hair-bot);padding:var(--hx) 8px;display:flex;flex-direction:column;gap:calc(var(--hx) + var(--g))}
+.cx .c-side .grid{flex:1;min-height:0;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;gap:var(--g);align-content:start}
+.cx .c-side .ct{min-width:0;height:70px;background:rgba(243,240,255,.08)}
+.cx .c-side .ct .vis{top:14px;height:30px}
+.cx .c-side .ct.sel{height:70px;background:var(--white)}
+.cx .c-side .ct.sel .vis{top:14px}
+
+/* in-race */
+.cx .c-leftzone{position:absolute;left:var(--m);top:var(--tbh)}
+.cx .c-board{position:absolute;right:var(--m);top:var(--m);width:150px;display:flex;flex-direction:column;gap:2px}
+.cx .c-board .row{min-height:20px;height:20px;padding:0 6px 0 0;gap:6px;border-bottom:0}
+.cx .c-board .row .p{width:18px;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(243,240,255,.14)}
+.cx .c-board .row.you .p{background:var(--pink);color:var(--white)}
+.cx .c-timer{position:absolute;left:50%;top:var(--m);transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:3px}
+.cx .c-timer .box{background:var(--slate);padding:5px 9px 4px;border-bottom:2px solid var(--pink)}
+
+/* race entry */
+.cx .tierbtn{position:relative;width:var(--bh);height:var(--bh);display:flex;align-items:center;justify-content:center;background:var(--slate);border-bottom:2px solid transparent;font:italic 900 var(--fs-sect)/1 Barlow;padding-right:2px}
+.cx .tierbtn.done{border-bottom-color:var(--white)}
+.cx .tierbtn.on{background:var(--white);color:var(--ink)}
+.cx .tierbtn.locked{opacity:.45}
+
+/* paint */
+.cx .c-swrail{position:absolute;left:var(--m);right:var(--m);bottom:var(--m);height:40px;display:flex;gap:var(--g);overflow:hidden}
+.cx .c-swrail .segswitch{flex:none;gap:2px}
+.cx .c-swrail .segswitch .opt{height:40px;width:62px}
+.cx .swatch{flex:none;width:40px;height:40px}
+.cx .swatch.on{outline:2px solid var(--white);outline-offset:-2px;box-shadow:inset 0 0 0 4px var(--ink)}
+.cx .c-sliders{position:absolute;left:var(--m);bottom:calc(var(--m) + 40px + 4px + var(--hx) + var(--g));display:flex;gap:var(--g)}
+.cx .c-sl{flex:1;height:var(--bh);background:var(--slate);padding:5px 8px 0}
+.cx .c-sl .slider{margin-top:7px}
+
+/* map */
+.cx .legendrow{display:flex;align-items:center;gap:6px;height:21px}
+.cx .mapicon{width:18px;height:18px;border-radius:50%;background:var(--ink);border:1px solid var(--hair-top);display:flex;align-items:center;justify-content:center;flex:none}
+.cx .mapicon .ic{font-size:10px}
+
+/* onboarding */
+.cx .c-highlight{position:absolute;border:2px solid var(--white);box-shadow:0 0 0 2000px rgba(7,6,13,.6)} /* dimmer = four frames in Roblox */
+.cx .c-connector{position:absolute;background:var(--pink)}
+.cx .c-objective{position:absolute;left:calc(var(--tbw) + 4px);top:calc((var(--tbh) - 26px) / 2);height:26px;display:flex;align-items:center;gap:6px;padding:0 9px 0 6px;background:var(--slate);border-left:3px solid var(--pink)}
+.cx .c-event{position:absolute;left:calc(var(--tbw) + 4px);top:5px;background:var(--slate);border-top:1px solid var(--hair-top);border-bottom:1px solid var(--hair-bot);padding:5px 8px 5px}
+.cx .chk{flex:none;width:18px;height:12px;background:conic-gradient(var(--white) 25%,var(--ink) 0 50%,var(--white) 0 75%,var(--ink) 0) 0 0/6px 6px}

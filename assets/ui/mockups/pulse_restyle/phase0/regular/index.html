@@ -22,6 +22,9 @@
   figure{margin:0}figcaption{font-size:13px;color:var(--muted);margin-top:4px}
   h3{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:10px 0 4px}
   ul{margin:0;padding-left:20px}li{margin:2px 0}
+  .changes{max-width:1500px;margin:8px auto 0;padding:0 16px}
+  .changes div{background:var(--panel);border-left:4px solid var(--pink);padding:12px 16px}
+  .changes h2{font-size:17px}.changes li{color:var(--muted)}.changes b{color:var(--text)}
   .none{color:var(--muted)}
 </style></head><body>
 <header>
@@ -29,34 +32,46 @@
   <p>Every screen the ten accepted mockups do not cover, drawn at 1920x1080 in Barlow (the face Roblox can load; about 22% wider than the mockups' Barlow Condensed) with only shapes Roblox can draw: rectangles, hairlines, images and text. Big numbers use Barlow Condensed because they will be image digits.</p>
   <p>Backgrounds are blurred placeholders, not game art. Names, prices and times are example values. Where the audit did not record the live wording, the text is a draft and is listed under the frame. Sources: <code>scripts/ui_restyle/previews/</code>.</p>
 </header>
+<div class="changes"><div>
+  <h2>Changes after review 1 (2026-10-09)</h2>
+  <ul>
+    <li><b>Driver rank bends round the minimap.</b> A 10 px arc just outside the map ring, from 9 o'clock to 12 o'clock, filled in cyan to the XP fraction; the rank number sits outside it at about 10 o'clock. The DRIVER RANK block beside the map is gone. See <a href="#r00" style="color:var(--text)">r00</a>.</li>
+    <li><b>Button row above the rail.</b> On every screen with a bottom rail the row (back, secondary, main) sits right-aligned directly under the stat or info panel, and the rail with its heading takes the bottom of the screen: r01, r02, r03, r04, r06, r12, r21.</li>
+    <li><b>UI pushed out to the edges.</b> Menu side margin 100 to 68 px, HUD margin 58 to 40 px, menu bottom margin 44 to 30 px, HUD bottom margin 40 to 28 px (at 1920x1080). Top-left items keep their height so they stay below Roblox's top-bar buttons. Every frame was re-rendered.</li>
+    <li><b>My Vehicles is a side panel</b> (r09): full height on the left, as in the current game, in the new style. While it is open the minimap, district name and rank arc are hidden.</li>
+    <li><b>New frame r00</b>: the free-roam HUD while driving. <b>r12</b> changed most: its four-column grid became a bottom rail so the button row has room.</li>
+  </ul>
+</div></div>
 <nav id="nav"></nav>
 <main id="main"></main>
 <script>
 const F = [
- {id:"r01", t:"Dealership", img:["r01-dealership.jpg"], c:"Categories as tabs, vehicle rail on the shared Tile, stat panel, Buy button in yellow. Final form of sketch 07.",
+ {id:"r00", t:"Free-roam HUD, driving", img:["r00-free-roam-hud.jpg"], c:"New after review 1. Status cluster and action bar top-right, round minimap bottom-left with the driver-rank arc round its upper-left edge, gauge bottom-right, Controls and Exit Vehicle bottom-centre. HUD margin is 40 px; the minimap sits 18 px further in so the arc's outer edge lands on the margin.",
+  q:["The arc is drawn for a ring image revealed by a gradient: 10 px wide, 8 px outside the map ring, a quarter circle. Long enough to read progress, or extend it past 12 o'clock?","A small RANK label sits above the number. Keep it, or the number alone?","The rank ring in the status cluster still shows the rank number too. Keep both?"]},
+ {id:"r01", t:"Dealership", img:["r01-dealership.jpg"], c:"Categories as tabs, vehicle rail on the shared Tile, stat panel, Buy button in yellow. Final form of sketch 07. Review 1: the button row now sits under the stat panel and the rail takes the bottom of the screen.",
   q:["Sketch 07 had a FOR SALE / OWNED switch. The live dealership has no such filter, so it is left out. Add it?","Owned vehicle selected: the button row would read EXIT, CUSTOMISE, BUY ANOTHER (the live popup's three actions). Agreed?","Stat label ACCELERATION does not fit beside the bar in Barlow; ACCEL is used, as in the mockups.","Unaffordable price is muted grey on the tile and the Buy button dims. Is that enough without red?","Category names (Exotic, Piercer, Muscle) come from the sketch, not the audit."]},
- {id:"r02", t:"Customise: Upgrades tab", img:["r02-customise-upgrades.jpg"], c:"Second level of the Upgrades tab (one slot chosen). Upgrade budget pips beside the heading; previewed pips in cyan. The action spends Cash, so it is a yellow button.",
+ {id:"r02", t:"Customise: Upgrades tab", img:["r02-customise-upgrades.jpg"], c:"Second level of the Upgrades tab (one slot chosen). Upgrade budget pips beside the heading; previewed pips in cyan. The action spends Cash, so it is a yellow button. Review 1: the button row now sits under the stat panel and the rail takes the bottom of the screen.",
   q:["First level is the same slot rail as mockup 04. Agreed?","Upgrade names, level chips, pip costs and lock reasons are drafts; the audit records only the card fields.","Budget shown as pips plus 4 / 10. Pips only, or number only?"]},
- {id:"r03", t:"Customise: Parts tab, Owned", img:["r03-customise-parts-owned.jpg"], c:"Mockup 05 with the switch on OWNED. Chips: FITTED, OWNED X2, IN USE. A loss shows as a pink chip with a down arrow.",
+ {id:"r03", t:"Customise: Parts tab, Owned", img:["r03-customise-parts-owned.jpg"], c:"Mockup 05 with the switch on OWNED. Chips: FITTED, OWNED X2, IN USE. A loss shows as a pink chip with a down arrow. Review 1: the button row now sits under the stat panel and the rail takes the bottom of the screen.",
   q:["A part in use on another vehicle stays selectable and asks for confirmation (r04b). Or show it locked?","STD for the standard variant is from the mockups; live config names only GT and EVO."]},
- {id:"r04", t:"Post-purchase paint, and the confirm modal", img:["r04a-post-purchase-paint.jpg","r04b-confirm-modal.jpg"], c:"Left: the Paint Vehicle page shown straight after buying (three channels, one button). Right: Kit.Confirm, NO left and focused, YES right.",
-  q:["Buying a vehicle has no confirmation today (Buy goes straight to Paint Vehicle). Keep it that way, or add this modal before spending?","Confirm wording is a draft; the live body text was not in the audit.","Title PAINT VEHICLE with a one-line subtitle in place of tabs. Agreed?"]},
+ {id:"r04", t:"Post-purchase paint, and the confirm modal", img:["r04a-post-purchase-paint.jpg","r04b-confirm-modal.jpg"], c:"Left: the Paint Vehicle page shown straight after buying (three channels, one button). Right: Kit.Confirm, NO left and focused, YES right. Review 1: on both, the button row is in the slot under the stat panel, the same place as on the Customise tabs.",
+  q:["Paint Vehicle has no rail, so with the button under the stat panel the lower half of the screen is empty. Keep the button in the shared slot, or return it to the bottom-right on this page?","Buying a vehicle has no confirmation today (Buy goes straight to Paint Vehicle). Keep it that way, or add this modal before spending?","Confirm wording is a draft; the live body text was not in the audit.","Title PAINT VEHICLE with a one-line subtitle in place of tabs. Agreed?"]},
  {id:"r05", t:"Owned-garage browser", img:["r05-owned-garage-browser.jpg"], c:"Same structure as the race menu: list left, detail right, pink rule under the image, fact list.",
   q:["Title GARAGES with tabs MY GARAGES and VISIT: the live title and tab texts were not in the audit.","The ABOUT text and the ACCESS row are drafts (Description and access mode exist as data)."]},
- {id:"r06", t:"Owned-garage desk", img:["r06-owned-garage-desk.jpg"], c:"Desk home: the three live cards on the shared Tile, with icons in place of pictures.",
+ {id:"r06", t:"Owned-garage desk", img:["r06-owned-garage-desk.jpg"], c:"Desk home: the three live cards on the shared Tile, with icons in place of pictures. Review 1: rail at the bottom, button row above it on the right in the same slot as the other rail screens (this page has no stat panel above it).",
   q:["Home stays a three-tile page (turning it into tabs is not in the plan's navigation list). Agreed?","Sub-pages (Display, Build, Style) would use the same rail with price chips; not drawn because item names were not in the audit. Draw one with placeholders?"]},
  {id:"r07", t:"Garage interior HUD", img:["r07-garage-interior-hud.jpg"], c:"Owner controls top-left (ACCESS open), status cluster, a status toast and a world-prompt banner.",
   q:["Should the action bar and minimap show inside a garage? Left out here.","Access labels PRIVATE, FRIENDS ONLY, INVITE ONLY, PUBLIC are derived from the mode names.","Emoji icons on the two buttons are replaced by kit icons."]},
  {id:"r08", t:"Full map", img:["r08-full-map.jpg"], c:"Map fills the screen; title, status, legend panel, zoom stack, route chip, and the key hints the plan keeps.",
   q:["Key hints show keyboard or gamepad, never both; both are drawn here for review.","Marker colours: all white-on-ink here. The plan allows marker colours as an exception; keep white or colour by type?","Legend labels other than COURIER DROP-OFF are derived from the icon type names.","Route chip text (ROUTE SET, distance) is a draft format."]},
- {id:"r09", t:"Free-roam car panel", img:["r09-freeroam-car-panel.jpg"], c:"Opens under the action bar. One row on the shared Rail, Buy more first, no prices, Despawn fixed bottom-right.",
-  q:["One scrolling row instead of today's grid, so the panel clears the gauge. Agreed, or a two-row grid that covers the gauge?","The OUT chip on the spawned vehicle is new. Keep?","Category and Sort option names were not in the audit."]},
+ {id:"r09", t:"Free-roam My Vehicles side panel", img:["r09-freeroam-car-panel.jpg"], c:"Redrawn after review 1 as a full-height side panel on the left, where the current game's car panel opens from the Car button. Title, Category and Sort, then a vertical scrolling list on the shared ListRow: Buy more first, then each owned vehicle with picture, tier badge, name and state (SPAWNED or PARKED); no prices. Despawn is fixed at the bottom. While the panel is open the minimap, district name and driver-rank arc are hidden, as are any top-left cards (event card, objectives); the status cluster, action bar, gauge and bottom buttons stay.",
+  q:["One vehicle per row (600 px panel) in place of today's two-column card grid. Agreed?","SPAWNED and PARKED are new state words; today the spawned card is only highlighted.","Buy more opens the existing teleport-to-dealership confirmation. Category and Sort option names other than RATING, PRICE, A-Z were not in the audit."]},
  {id:"r10", t:"HUD modals: Controls, Settings, Get Cash", img:["r10a-modal-controls.jpg","r10b-modal-settings.jpg","r10c-modal-get-cash.jpg"], c:"Three modals on Kit.Modal over a dimmed HUD.",
   q:["Controls: the eleven rows are drafts; the live list was not in the audit.","Settings shows only the two working rows. Passenger options (EVERYONE, FRIENDS, NO ONE) are drafts.","Get Cash: pack names and prices are not configured, so tiles are placeholders with the live not-enabled line."]},
  {id:"r11", t:"Race entry: records", img:["r11-race-entry-records.jpg"], c:"World record, medal targets and your record on the left; Global Top 20 on the right; your row white with a pink edge.",
   q:["Column headers and the RANK 7 OF 214 line are drafts.","Tier rail is read-only on this page today. Shown as buttons with the viewed tier white; should locked tiers look different from unvisited ones?"]},
- {id:"r12", t:"Race entry: vehicle choice", img:["r12-race-entry-vehicle.jpg"], c:"Four-column grid of the shared Tile, ineligible vehicles locked with the reason, entry summary on the right.",
-  q:["Lock reason TIER C ONLY is a draft for the live UnavailableText.","The right-hand summary (route, laps, your best, prize) is added so the main button has context. Keep?"]},
+ {id:"r12", t:"Race entry: vehicle choice", img:["r12-race-entry-vehicle.jpg"], c:"Changed after review 1: the four-column grid became a bottom rail of the shared Tile (it scrolls sideways), so the button row can sit under the entry summary without crossing tiles. Ineligible vehicles are locked with the reason. The freed area shows the selected vehicle's picture, large.",
+  q:["The grid became a one-row rail to make room for the button row. Agreed, or keep a grid and leave the buttons at the bottom on this page?","The large picture of the selected vehicle is new (the tile image, bigger). Keep, or leave the area empty?","Lock reason TIER C ONLY is a draft for the live UnavailableText.","The right-hand summary (route, laps, your best, prize) is added so the main button has context. Keep?"]},
  {id:"r13", t:"In-race HUD", img:["r13a-race-hud.jpg","r13b-time-trial-hud.jpg"], c:"Race: position, lap, timer with lap delta chip and checkpoint pips, live order, route map, gauge. Time trial: lap number takes the position slot; the board lists personal best and laps.",
   q:["Route map stays a square panel (the free-roam minimap is paused in races). Agreed?","Delta chip compares the last lap with your best lap only, and shows after each lap.","Time trial: the TIER C, GOLD PACE line is new. Keep or drop?","Seventeen pips fit; a route with many more checkpoints would need a bar instead."]},
  {id:"r14", t:"Countdown, queue banner, wrong-way", img:["r14-countdown-queue-wrongway.jpg"], c:"Three states on one sheet.",
@@ -74,7 +89,7 @@ const F = [
  {id:"r20", t:"Component sheet", img:["r20a-components-tile-listrow.jpg","r20b-components-controls.jpg","r20c-components-data-overlay.jpg"], c:"Every kit component in every state, with the gamepad-focus look.",
   q:["Focus is white fill everywhere; filled buttons keep a base line in their role colour when focused. Agreed?","Selected tile grows 16 px upward and its picture 10%.","Tier badges stay white with dark letters (no tier colours)."]},
  {id:"r21", t:"Customise Parts in Barlow, three scales", img:["../../04-customise-parts.jpg","r21-customise-parts-scale_1280x720.jpg","r21-customise-parts-scale_1920x1080.jpg","r21-customise-parts-scale_2560x1440.jpg"],
-  caps:["Accepted mockup 04 (Barlow Condensed)","1280x720, scale 0.667","1920x1080, scale 1.0","2560x1440, scale 1.333"], c:"Mockup 04 redrawn in Barlow with the plan 3.2 scale rule.",
+  caps:["Accepted mockup 04 (Barlow Condensed)","1280x720, scale 0.667","1920x1080, scale 1.0","2560x1440, scale 1.333"], c:"Mockup 04 redrawn in Barlow with the plan 3.2 scale rule. Review 1: button row under the stat panel, rail at the bottom, 68 px side margin; the three renders are the same layout at three scales.",
   q:["On a rail of seven, FRONT ENGINE just fits and DRIFT THRUSTERS wraps to two lines. Accept, or go to six tiles visible?","Is 0.667 at 1280x720 readable enough (Label is 14 px there)?"]},
 ];
 const nav = document.getElementById("nav"), main = document.getElementById("main");

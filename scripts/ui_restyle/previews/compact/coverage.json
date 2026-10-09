@@ -1,0 +1,242 @@
+{
+ "c01-free-roam-HUD-on-foot": {
+  "ui": 5.7,
+  "centre": 0,
+  "minTextSize": 18,
+  "minText": "$3.61M",
+  "w": 844,
+  "h": 390
+ },
+ "c02-free-roam-HUD-driving": {
+  "ui": 13.2,
+  "centre": 0,
+  "minTextSize": 16.6,
+  "minText": "MPH",
+  "w": 844,
+  "h": 390
+ },
+ "c02-free-roam-HUD-driving_568x320": {
+  "ui": 17.5,
+  "centre": 0,
+  "minTextSize": 14.1,
+  "minText": "MPH",
+  "w": 568,
+  "h": 320
+ },
+ "c02-free-roam-HUD-driving_640x360": {
+  "ui": 16.1,
+  "centre": 0,
+  "minTextSize": 15.3,
+  "minText": "MPH",
+  "w": 640,
+  "h": 360
+ },
+ "c02-free-roam-HUD-driving_932x430": {
+  "ui": 12.9,
+  "centre": 0.1,
+  "minTextSize": 18.2,
+  "minText": "MPH",
+  "w": 932,
+  "h": 430
+ },
+ "c03-car-panel": {
+  "ui": 27.2,
+  "centre": 23.3,
+  "minTextSize": 16.6,
+  "minText": "CLASS",
+  "w": 844,
+  "h": 390
+ },
+ "c04a-settings-modal": {
+  "ui": 36.6,
+  "centre": 78.5,
+  "minTextSize": 16.6,
+  "minText": "TOUCH CONTROLS",
+  "w": 844,
+  "h": 390
+ },
+ "c04b-get-cash-modal": {
+  "ui": 31.4,
+  "centre": 70.4,
+  "minTextSize": 16.6,
+  "minText": "BALANCE",
+  "w": 844,
+  "h": 390
+ },
+ "c05-race-menu-list": {
+  "ui": 56.8,
+  "centre": 91.5,
+  "minTextSize": 16.6,
+  "minText": "CIRCUIT \u00b7 TIME TRI",
+  "w": 844,
+  "h": 390
+ },
+ "c05-race-menu-list_568x320": {
+  "ui": 65.3,
+  "centre": 93.8,
+  "minTextSize": 14.1,
+  "minText": "CIRCUIT \u00b7 TIME TRI",
+  "w": 568,
+  "h": 320
+ },
+ "c05-race-menu-list_640x360": {
+  "ui": 68.5,
+  "centre": 93.1,
+  "minTextSize": 15.3,
+  "minText": "CIRCUIT \u00b7 TIME TRI",
+  "w": 640,
+  "h": 360
+ },
+ "c05-race-menu-list_932x430": {
+  "ui": 55.7,
+  "centre": 89.1,
+  "minTextSize": 18.2,
+  "minText": "CIRCUIT \u00b7 TIME TRI",
+  "w": 932,
+  "h": 430
+ },
+ "c06-race-menu-detail": {
+  "ui": 53.8,
+  "centre": 84.9,
+  "minTextSize": 16.6,
+  "minText": "EVENT 1 OF 2",
+  "w": 844,
+  "h": 390
+ },
+ "c07-race-entry-setup": {
+  "ui": 55.7,
+  "centre": 88.9,
+  "minTextSize": 16.6,
+  "minText": "3 LAPS \u00b7 17 CP",
+  "w": 844,
+  "h": 390
+ },
+ "c08-in-race-HUD": {
+  "ui": 12.7,
+  "centre": 0,
+  "minTextSize": 16.6,
+  "minText": "/ 8",
+  "w": 844,
+  "h": 390
+ },
+ "c09-countdown": {
+  "ui": 12.8,
+  "centre": 0,
+  "minTextSize": 16.6,
+  "minText": "SHOWROOM LOOP \u00b7 RA",
+  "w": 844,
+  "h": 390
+ },
+ "c10-results": {
+  "ui": 26.3,
+  "centre": 23.3,
+  "minTextSize": 16.6,
+  "minText": "SHIFTED CANAL SPRI",
+  "w": 844,
+  "h": 390
+ },
+ "c11-dealership": {
+  "ui": 20.3,
+  "centre": 9.3,
+  "minTextSize": 16.6,
+  "minText": "OWNED",
+  "w": 844,
+  "h": 390
+ },
+ "c12-customise-parts": {
+  "ui": 20.3,
+  "centre": 9.9,
+  "minTextSize": 16.6,
+  "minText": "FRONT ENGINE \u00b7 STA",
+  "w": 844,
+  "h": 390
+ },
+ "c12-customise-parts_568x320": {
+  "ui": 24.4,
+  "centre": 7.5,
+  "minTextSize": 14.1,
+  "minText": "FRONT ENGINE \u00b7 STA",
+  "w": 568,
+  "h": 320
+ },
+ "c12-customise-parts_640x360": {
+  "ui": 23.6,
+  "centre": 5.8,
+  "minTextSize": 15.3,
+  "minText": "FRONT ENGINE \u00b7 STA",
+  "w": 640,
+  "h": 360
+ },
+ "c12-customise-parts_932x430": {
+  "ui": 19.9,
+  "centre": 9.1,
+  "minTextSize": 18.2,
+  "minText": "FRONT ENGINE \u00b7 STA",
+  "w": 932,
+  "h": 430
+ },
+ "c13-module-shop": {
+  "ui": 27,
+  "centre": 16.3,
+  "minTextSize": 16.6,
+  "minText": "PREVIEW \u00b7 SPINE WI",
+  "w": 844,
+  "h": 390
+ },
+ "c14-paint": {
+  "ui": 20.2,
+  "centre": 14.3,
+  "minTextSize": 16.6,
+  "minText": "HUE",
+  "w": 844,
+  "h": 390
+ },
+ "c15-purchase-confirm": {
+  "ui": 39.8,
+  "centre": 63.6,
+  "minTextSize": 16.6,
+  "minText": "OWNED",
+  "w": 844,
+  "h": 390
+ },
+ "c16-full-map": {
+  "ui": 13.6,
+  "centre": 6.2,
+  "minTextSize": 16.6,
+  "minText": "640 M",
+  "w": 844,
+  "h": 390
+ },
+ "c17-world-prompt-and-event-card": {
+  "ui": 16.6,
+  "centre": 0,
+  "minTextSize": 16.6,
+  "minText": "MPH",
+  "w": 844,
+  "h": 390
+ },
+ "c18-toast-and-onboarding-callout": {
+  "ui": 21.8,
+  "centre": 13.1,
+  "minTextSize": 16.6,
+  "minText": "MPH",
+  "w": 844,
+  "h": 390
+ },
+ "c19a-loading": {
+  "ui": 14.6,
+  "centre": 27.8,
+  "minTextSize": 16.6,
+  "minText": "LOGO ART UNCHANGED",
+  "w": 844,
+  "h": 390
+ },
+ "c19b-start-screen": {
+  "ui": 12.4,
+  "centre": 27.8,
+  "minTextSize": 16.6,
+  "minText": "LOGO ART UNCHANGED",
+  "w": 844,
+  "h": 390
+ }
+}

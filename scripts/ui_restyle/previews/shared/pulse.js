@@ -83,7 +83,7 @@
   /* stat panel. o: {name, badge, sub:[[label,value]], stats:[[label,value,gain]], style, extra} */
   P.statpanel = (o) => {
     const anyGain = o.stats.some((s) => s[2]);
-    let h = `<div class="statpanel panel" style="${o.style || ""}"><div class="head"><div class="t-sect" style="font-size:46px">${o.name}</div>${o.badge ? `<span class="tierrating">${o.badge}</span>` : ""}</div>`;
+    let h = `<div class="statpanel panel ${o.slot ? "slot" : ""}" style="${o.style || ""}"><div class="head"><div class="t-sect" style="font-size:46px">${o.name}</div>${o.badge ? `<span class="tierrating">${o.badge}</span>` : ""}</div>`;
     (o.sub || []).forEach((s) => { h += `<div class="subline"><span class="t-label">${s[0]}</span><span class="t-body" style="line-height:1">${s[1] || ""}</span></div>`; });
     h += `<div style="height:10px"></div>`;
     o.stats.forEach((s) => {
@@ -109,8 +109,25 @@
   };
 
   /* minimap (round CanvasGroup + ring image in Roblox). o:{label, style, route} */
+  /* review 1: the minimap sits 18 px inside the HUD margin so the rank arc's outer edge lands on the margin.
+     rank arc = ring image revealed by a gradient in Roblox: constant 10 px width, 8 px outside the map ring,
+     from 9 o'clock to 12 o'clock, filled clockwise to the XP fraction; rank number outside it at about 10 o'clock. */
+  P.rankarc = (o = {}) => {
+    const x = o.x ?? 58, b = o.b ?? 80, C = 177.5, R = 166.5, f = Math.max(0, Math.min(1, (o.p ?? 22) / 100));
+    const pt = (a, r = R) => [C + r * Math.cos(a * Math.PI / 180), C + r * Math.sin(a * Math.PI / 180)];
+    const arc = (a0, a1) => { const [x0, y0] = pt(a0), [x1, y1] = pt(a1); return `M${x0.toFixed(1)} ${y0.toFixed(1)} A${R} ${R} 0 0 1 ${x1.toFixed(1)} ${y1.toFixed(1)}`; };
+    const A0 = 180, A1 = 270, [nx, ny] = pt(o.numAngle ?? 225, 205);
+    return `<div class="rankarc" style="left:${x - 24}px;bottom:${b - 24}px">
+      <svg viewBox="0 0 355 355" width="355" height="355">
+        <path d="${arc(A0, A1)}" stroke="rgba(7,6,13,.55)" stroke-width="14" fill="none"/>
+        <path d="${arc(A0, A1)}" stroke="rgba(243,240,255,.30)" stroke-width="10" fill="none"/>
+        ${f > 0 ? `<path d="${arc(A0, A0 + (A1 - A0) * f)}" stroke="#22E4FF" stroke-width="10" fill="none"/>` : ""}
+      </svg>
+      <div class="rk" style="left:${nx.toFixed(0)}px;top:${ny.toFixed(0)}px"><div class="t-label c-2 shadow" style="font-size:17px">RANK</div><div class="t-status shadow" style="margin-top:4px">${o.rank ?? 6}</div></div>
+    </div>`;
+  };
   P.minimap = (o = {}) => `
-    <div class="minimap" style="${o.style || ""}">
+    <div class="minimap" style="left:${o.x ?? 58}px;bottom:${o.b ?? 80}px;${o.style || ""}">
       <svg viewBox="0 0 300 300" width="297" height="297" style="display:block">
         <rect width="300" height="300" fill="#1b1932"/>
         <g stroke="#5a5680" stroke-width="22" fill="none"><path d="M-10 70 L320 240"/><path d="M190 -10 V320"/><path d="M90 320 L260 20"/><path d="M-10 222 H320" stroke-width="10"/></g>
@@ -119,8 +136,8 @@
         <path d="M148 150 L164 186 L148 178 L132 186 Z" fill="#F3F0FF" transform="rotate(20 148 170)"/>
       </svg>
     </div>
-    <div class="abs round" style="left:${(o.x ?? 58) + 136}px;bottom:${(o.b ?? 92) - 14}px;width:34px;height:34px;background:var(--ink);border:2px solid var(--hair-bot);display:flex;align-items:center;justify-content:center;font:italic 800 20px Barlow">N</div>
-    ${o.label ? `<div class="abs t-label c-2 shadow" style="left:${o.x ?? 58}px;width:307px;text-align:center;bottom:${(o.b ?? 92) - 52}px">${o.label}</div>` : ""}`;
+    <div class="abs round" style="left:${(o.x ?? 58) + 136}px;bottom:${(o.b ?? 80) - 14}px;width:34px;height:34px;background:var(--ink);border:2px solid var(--hair-bot);display:flex;align-items:center;justify-content:center;font:italic 800 20px Barlow">N</div>
+    ${o.label ? `<div class="abs t-label c-2 shadow" style="left:${o.x ?? 58}px;width:307px;text-align:center;bottom:${(o.b ?? 80) - 52}px">${o.label}</div>` : ""}`;
 
   /* speed gauge (image arcs in Roblox). */
   P.gauge = (speed, boost, o = {}) => {
@@ -132,7 +149,7 @@
     const A0 = 135, A1 = 405, f = Math.min(1, speed / 240), sEnd = A0 + (A1 - A0) * f, hot = A0 + (A1 - A0) * 0.8;
     let ticks = "";
     for (let i = 0; i <= 18; i++) { const a = (A0 + i * 15) * Math.PI / 180; ticks += `<path d="M${C + 190 * Math.cos(a)} ${C + 190 * Math.sin(a)} L${C + 200 * Math.cos(a)} ${C + 200 * Math.sin(a)}" stroke="rgba(243,240,255,.45)" stroke-width="3"/>`; }
-    return `<div class="abs" style="right:${o.r ?? 58}px;bottom:${o.b ?? 40}px;width:403px;height:403px">
+    return `<div class="abs" style="right:${o.r ?? 40}px;bottom:${o.b ?? 28}px;width:403px;height:403px">
       <svg viewBox="0 0 403 403" width="403" height="403" style="position:absolute;inset:0">
         <circle cx="${C}" cy="${C}" r="186" fill="rgba(14,13,26,.72)"/>${ticks}
         <path d="${arc(R, A0, A1)}" stroke="rgba(243,240,255,.18)" stroke-width="12" fill="none"/>

@@ -155,18 +155,18 @@ Each component is built once in the kit and reused. Screens place components in 
 | Component | Spec | States |
 |---|---|---|
 | **Panel** | `Slate` 0.86, hairlines, square, padding 22 px | - |
-| **Screen title** | Title mark + `ScreenTitle`, top-left at the screen margin (100 px) | - |
+| **Screen title** | Title mark + `ScreenTitle`, top-left at the screen margin (68 px; review 1, 2026-10-09) | - |
 | **Tabs** | Row under the title, `Tab` size, icon + label, 34 px gap | Active: `White` with 4 px `Pink` underline. Inactive: `TextMuted`. Locked: 0.45 opacity |
 | **Status cluster** | Top-right. One slate strip: car icon + tier badge + rating, rank ring, cash chip. Garage screens show garage spaces in place of the car rating | - |
 | **Cash chip** | `Yellow` fill, `Ink` text, coin icon. Same position on every screen. Uses the shared money formatter and the existing cash binding | Counts up on change; width fixed during a count |
 | **Tile** | The one shared card for parts, vehicles, events and listings. 315 x 242 px, `Slate`, 2 px bottom line at 0.22. Name bottom-left, `Label` sub-line above it, index or variant chip top-left, status chip top-right, silhouette or card image centred. A designed state for a missing image | Selected: `White` fill, `Ink` text, 6 px `Pink` base line, pink glow, inner image 10% larger; slot diagrams turn ink. Owned/fitted: neutral chip (white 0.16 fill). Locked: 0.6 opacity, lock icon, reason in the sub-line. Unaffordable: muted price. Focus (controller) = selected |
 | **Price chip** | `Ink` fill, `Yellow` text, top-right corner of a tile | Unaffordable: `TextMuted` text |
-| **Tile rail** | One horizontal row at the bottom, 10 px gap, section head above it with a count ("WING 3/9"). Scrolls horizontally; clipped at the right edge to show there is more | - |
+| **Tile rail** | One horizontal row along the bottom edge of the screen, at the 30 px bottom margin, below the button row (review 1, 2026-10-09), 10 px gap, section head above it with a count ("WING 3/9"). Scrolls horizontally; clipped at the right edge to show there is more | - |
 | **Button** | `Slate` strip with hairlines, icon + label, about 72 px tall | Hover/focus: `White` fill, `Ink` text. Disabled: 0.4 opacity, no hairline, not clickable. Pressed: the inner fill changes; the hit box and text do not scale |
 | **Main button** | `Pink` to `Violet` gradient, white text, pink glow, trailing chevrons. One per screen, right-most | Same hover/disabled rules |
 | **Buy button** | `Yellow` fill, `Ink` text, price in the label. Used only where the action spends Cash | Unaffordable: disabled style, label unchanged |
 | **Destructive button** | `Danger` fill, white text | - |
-| **Button row** | Bottom-right at the screen margin; centred on results and in the free-roam HUD. Order: back or exit, secondary, main. No key caps | - |
+| **Button row** | On a screen with a tile rail: right-aligned directly under the stat or info panel, above the rail (y 612 to 700 at 1080p), never under the rail (review 1, 2026-10-09). On screens without a rail: bottom-right at the screen margin. Centred on results and in the free-roam HUD. Order: back or exit, secondary, main. No key caps | - |
 | **Stat panel** | 480 px wide panel, top-right under the status cluster. Car name + tier badge, one or two sub-lines, six rows: label, segmented bar, value | Preview: gained part of the bar in `Cyan`, a `Cyan` chip with the gain. A loss uses a `Pink` chip |
 | **Segmented bar** | Segments 10 px wide, 3 px gap, 10 px tall. Filled `White`, empty white at 0.2. Drawn as tiled image strips | - |
 | **Tier badge** | `White` fill, `Ink` letter | On a selected tile: `Ink` fill, `White` letter |
@@ -196,17 +196,17 @@ The 14 map icons have baked colours. A redrawn white set tinted by role is part 
 
 ## Screens
 
-Positions are at 1920x1080. Screen margin is 100 px for menus and 58 px for the in-play HUD.
+Positions are at 1920x1080. Outer margins (review 1, 2026-10-09, reduced to about two thirds): menus 68 px at the sides and 30 px at the bottom (were 100 and 44); in-play HUD 40 px at the sides and top-right and 28 px at the bottom (were 58 and 40). Top-left items keep their height (title at 64 px, HUD cards at 58 px) so they stay clear of Roblox's top-bar buttons.
 
 ### Free-roam HUD
 
 - **Top-right:** status cluster, then the action bar: five 77 x 60 px icon tiles. The open one is white.
-- **Bottom-left:** round minimap, 307 px, with a 5 px ring (pink to cyan gradient) and a soft glow. North marker on the rim. District name beneath. Driver rank and its progress line to the right of the map.
+- **Bottom-left:** round minimap, 307 px, with a 5 px ring (pink to cyan gradient) and a soft glow. North marker on the rim. District name beneath. Driver rank is an arc round the map (review 1, 2026-10-09): a constant 10 px arc 8 px outside the ring, from 9 o'clock to 12 o'clock, track in white at 0.30, filled clockwise in `Cyan` to the XP fraction, with the rank number outside the arc at about 10 o'clock. It is a ring image revealed by a gradient. There is no separate rank block beside the map. The map sits 18 px inside the HUD margin so the arc's outer edge is on the margin.
 - **Bottom-right:** one speed gauge, 403 px. Outer arc is speed (white, turning pink in the last fifth), inner arc is boost (cyan). Speed number and unit inside, boost percentage beneath.
 - **Bottom-centre:** two small buttons, Controls and Exit vehicle (driving only).
 - **At a race start:** event card top-left (name, type and laps, route, YOU against ENTRY in a diagonal split, prize in a yellow corner) and a Start banner. The banner carries the single interact key cap.
 - **On a touch device** the minimap is top-right and the gauge bottom-centre, because steering holds the bottom-left. Touch drive controls are redrawn in white; their input behaviour is unchanged.
-- The car panel, settings, controls and cash-store modals use Panel, Tile and Button as above. The car panel keeps its rules: Buy more first, no prices, Despawn fixed. Settings shows only rows that do something: passenger access, minimap mode and, on touch, control mode.
+- The car panel, settings, controls and cash-store modals use Panel, Tile and Button as above. The car panel ("My Vehicles") is a full-height side panel on the left, 600 px wide, opened by the Car button as today (review 1, 2026-10-09): title, Category and Sort, a vertical scrolling list of ListRows (picture, tier badge, name, SPAWNED or PARKED), Despawn fixed at the bottom. While it is open the minimap, district name and rank arc are hidden, and so is any top-left card. It keeps its rules: Buy more first, no prices, Despawn fixed. Settings shows only rows that do something: passenger access, minimap mode and, on touch, control mode.
 
 ### Race menu and race entry
 
@@ -221,7 +221,7 @@ Positions are at 1920x1080. Screen margin is 100 px for menus and 58 px for the 
 
 ### Dealership, customisation and paint
 
-- **Shared frame:** title top-left with tabs, status cluster top-right, stat panel beneath it, tile rail along the bottom, button row bottom-right.
+- **Shared frame:** title top-left with tabs, status cluster top-right, stat panel beneath it (fixed height, ending at y 600), button row directly under the stat panel, tile rail with its heading along the bottom of the screen (review 1, 2026-10-09; the row used to sit under the rail).
 - **Dealership:** tabs are the categories. Rail of cars with tier badge, rating, name and price chip. Buttons: Exit, Buy (yellow).
 - **Customise:** Add Modules, Upgrade Modules and Paint Shop become three tabs (Parts, Upgrades, Paint), removing the hub screen. Parts shows one rail of the car's slots, each naming the fitted part. Buttons: Back, Drive (main).
 - **Module shop:** Owned Modules and Buy Modules become a Shop / Owned switch beside the section head. Tiles carry a variant chip (STD, GT, EVO) and a price or Fitted chip. The stat panel names the fitted and previewed part and shows gains. Buttons: Back, Drive, Equip or Buy.

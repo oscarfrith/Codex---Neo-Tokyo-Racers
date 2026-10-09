@@ -1,4 +1,6 @@
 <!doctype html><html><head><meta charset="utf-8"><title>r12 Race entry: vehicle choice</title><script src="../shared/boot.js"></script></head><body><script>
+/* Review 1 (2026-10-09): the four-column grid became a bottom rail so the button row can sit under the entry
+   summary without crossing tiles. The freed area shows the selected vehicle's picture. */
 const car = P.sil("car");
 const v = [
   {tier:"C",rating:540,sub:"EXOTIC",name:"AURORA",sel:1},
@@ -12,20 +14,18 @@ P.page(`
   ${P.title("SHOWROOM LOOP")}
   <div class="tabs"><div class="t-tab shadow" style="height:46px;display:flex;align-items:center">CHOOSE TIME TRIAL VEHICLE</div></div>
   ${P.status({tier:"S",rating:939,cash:"$3,613,709"})}
-  <div class="abs flex ac jb" style="left:100px;top:210px;width:1290px">
-    <div class="flex ac g12"><span class="tier">C</span><span class="t-status">TIER C</span><span class="t-label c-2" style="margin-left:8px">3 LAPS &middot; 17 CHECKPOINTS &middot; 3 OF 6 VEHICLES ELIGIBLE</span></div>
-    <div class="flex g8">${P.dropdown("CATEGORY","ALL",270)}${P.dropdown("SORT","RATING",250)}</div>
+  <div class="abs" style="left:68px;top:222px;width:1280px;height:478px;display:flex;align-items:center;justify-content:center">
+    <div class="sil car" style="width:760px;height:250px;background:rgba(243,240,255,.14)"></div>
+    <div class="abs t-label c-muted" style="left:0;right:0;bottom:26px;text-align:center;opacity:.7">PICTURE OF THE SELECTED VEHICLE (THE TILE IMAGE, LARGE)</div>
+    <div class="abs flex ac g12" style="left:0;top:0"><span class="tierrating"><span>C</span><span>540</span></span><span class="t-sect" style="font-size:46px">AURORA</span><span class="t-label c-2" style="margin-left:6px">EXOTIC &middot; ELIGIBLE</span></div>
   </div>
-  <div class="abs" style="left:100px;top:306px;width:1290px;display:grid;grid-template-columns:repeat(4,315px);gap:26px 10px;align-items:end">
-    ${v.map(x => P.tile({...x, vis:car})).join("")}
+  <div class="statpanel panel slot" style="padding:0 22px 0">
+    <div style="height:192px;margin:0 -22px;display:flex;align-items:center;justify-content:center;border-bottom:2px solid var(--hair-bot)">${P.route("loop","var(--cyan)",270,9)}</div>
+    ${P.fact("flag","MODE","TIME TRIAL")}${P.fact("laps","LAPS","3 &middot; 17 CHECKPOINTS")}${P.fact("clock","YOUR BEST","01:03.275")}
+    <div class="fact"><span class="t-label c-2">PLATINUM PRIZE</span><span class="v chip yellow lg">$25,000</span></div>
   </div>
-  <div class="abs col" style="left:1400px;top:290px;width:420px;gap:10px">
-    <div class="panel flush" style="height:220px;display:flex;align-items:center;justify-content:center">${P.route("loop","var(--cyan)",300,9)}</div>
-    <div class="panel" style="padding:8px 22px">
-      ${P.fact("flag","MODE","TIME TRIAL")}${P.fact("laps","LAPS","3")}${P.fact("clock","YOUR BEST","01:03.275")}
-      <div class="fact"><span class="t-label c-2">PLATINUM PRIZE</span><span class="v chip yellow lg">$25,000</span></div>
-    </div>
-  </div>
-  ${P.btnrow([P.btn("BACK","back"),P.btn("START TIME TRIAL","flag","main")])}
+  ${P.btnrow([P.btn("BACK","back"),P.btn("START TIME TRIAL","flag","main")],"mid")}
+  ${P.railhead("TIER C 1/6",`<div class="t-label c-2 shadow">3 OF 6 VEHICLES ELIGIBLE</div><div class="flex g8" style="margin-left:20px">${P.dropdown("CATEGORY","ALL",270)}${P.dropdown("SORT","RATING",250)}</div>`)}
+  <div class="rail">${v.map(x => P.tile({...x, vis:car})).join("")}</div>
 `);
 </script></body></html>

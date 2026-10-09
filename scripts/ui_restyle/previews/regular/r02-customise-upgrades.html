@@ -11,10 +11,10 @@ P.page(`
   ${P.scene("garage")}<div class="scrim-garage"></div>
   ${P.title("CUSTOMISE")}${P.customiseTabs(1)}
   ${P.status({garage:"3 / 4",plus:1})}
-  ${P.statpanel({name:"STINGER",badge:"<span>D</span><span>321</span>",sub:[["FRONT ENGINE","Standard"],["PREVIEWING","Injectors"]],
+  ${P.statpanel({slot:1,name:"STINGER",badge:"<span>D</span><span>321</span>",sub:[["FRONT ENGINE","Standard"],["PREVIEWING","Injectors"]],
      stats:[["SPEED",83,3],["ACCEL",78,4],["HANDLING",63],["DRIFT",61],["BRAKING",62],["BOOST",61]]})}
   ${P.railhead("FRONT ENGINE 3/6",`<div class="col g8" style="padding-bottom:6px"><div class="t-label c-2 shadow">UPGRADE BUDGET &middot; 4 / 10</div><div class="flex g4">${pips}</div></div>`)}
   <div class="rail">${ups.map(u=>P.tile({...u,vis:P.sil("eng")})).join("")}</div>
-  ${P.btnrow([P.btn("BACK","back"),P.btn("DRIVE","wheel"),P.btn("UPGRADE $12,000","","buy")])}
+  ${P.btnrow([P.btn("BACK","back"),P.btn("DRIVE","wheel"),P.btn("UPGRADE $12,000","","buy")],"mid")}
 `);
 </script></body></html>

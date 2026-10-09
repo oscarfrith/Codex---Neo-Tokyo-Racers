@@ -19,21 +19,21 @@ P.page(`
   ${P.title("MAP","AKANE DISTRICT")}
   ${P.status({tier:"S",rating:939,cash:"$3,613,709"})}
   <div class="abs flex ac g12" style="left:50%;transform:translateX(-50%);top:74px"><span class="chip cyan lg">${P.ic("route")}ROUTE SET &middot; 0.8 MI</span></div>
-  <div class="panel abs" style="right:100px;top:152px;width:400px;padding:16px 22px 10px">
+  <div class="panel abs" style="right:68px;top:152px;width:400px;padding:16px 22px 10px">
     <div class="flex ac jb" style="margin-bottom:8px"><span class="t-status">MAP KEY</span><span class="t-label c-muted">LEGEND</span></div>
     ${leg.map(l => `<div class="fact" style="height:48px">${P.ic(l[0])}<span class="t-label">${l[1]}</span></div>`).join("")}
   </div>
-  <div class="abs col g8" style="left:100px;top:420px">
+  <div class="abs col g8" style="left:68px;top:420px">
     <div class="btn icon">${P.ic("plus")}</div><div class="btn icon">${P.ic("minus")}</div>
     <div class="btn icon t-tab" style="font-size:24px">ME</div><div class="btn icon t-tab" style="font-size:24px">ALL</div>
   </div>
-  <div class="abs flex ac g24" style="left:100px;bottom:160px">
+  <div class="abs flex ac g24" style="left:68px;bottom:146px">
     ${hint(["W","A","S","D"],"PAN")}${hint(["Q","E"],"ZOOM")}${hint(["C"],"CENTRE ON ME")}${hint(["F"],"WHOLE MAP")}
   </div>
-  <div class="abs flex ac g24" style="left:100px;bottom:106px">
+  <div class="abs flex ac g24" style="left:68px;bottom:92px">
     ${hint(["CLICK"],"SET WAYPOINT")}${hint(["BACKSPACE"],"CLEAR")}${hint(["M"],"CLOSE")}
   </div>
-  <div class="abs flex ac g16" style="left:100px;bottom:46px">
+  <div class="abs flex ac g16" style="left:68px;bottom:32px">
     <span class="t-label c-muted">ON GAMEPAD</span>
     ${[["A","WAYPOINT"],["X","CLEAR"],["Y","CENTRE"]].map(g=>`<span class="flex ac g8"><span class="glyph" style="width:34px;height:34px;font-size:20px">${g[0]}</span><span class="t-label c-2">${g[1]}</span></span>`).join("")}
     <span class="flex ac g8"><span class="glyph bumper" style="height:30px;min-width:44px;font-size:18px">LB</span><span class="glyph bumper" style="height:30px;min-width:44px;font-size:18px">RB</span><span class="t-label c-2">ZOOM</span></span>
