@@ -2,6 +2,14 @@
 
 Recent deliveries, newest first. Entries before September 2026 live in [the archive](history/patch-history-2026-05-to-2026-08.md).
 
+## 2026-10-09 - UI restyle Phase 1: switch, kit core, Pulse toasts, gallery (v3, default Classic)
+
+High-Risk lane. One existing script edited (`ClientBase`, eight inserted lines), 20 ModuleScripts and two config folders created, three attributes added. Contract, review and evidence: `scripts/ui_restyle/phase1/`.
+
+- **Changed:** nothing a player sees while `Config.UI@UIStyle` is `Classic`. With `Pulse`, `SharedTopNotificationUI` is routed to the Pulse toast owner and the Studio gallery tool entry is added.
+- **Checked:** 21 sources compile; 554 pure tests; lint clean; `delivery-reviewer` READY WITH FIXES (applied); create proof with a save and reopen; AUDIT, APPLY, ROLLBACK, APPLY; Classic verify; one Play session in each style in the no-save sandbox. Not user-confirmed.
+- **Recovery:** `py -3 scripts/ui_restyle/tools/serve.py`, then `scripts/ui_restyle/phase1/out_rollback.lua` twice in v3 Edit. Switch: `UIStyle` = `Classic`.
+
 ## 2026-10-09 - UI restyle Phase 0: contract, Classic record, spikes, previews, asset batch (v3, nothing installed)
 
 Read-only in the place apart from the sandbox test window, which was opened and restored. Contract and results: `scripts/ui_restyle/CONTRACT.md`, `scripts/ui_restyle/phase0/RESULTS.md`.

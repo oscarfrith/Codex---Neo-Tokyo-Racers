@@ -1,0 +1,59 @@
+{
+  "phase": "phase1",
+  "date": "2026-10-09",
+  "place": "Space Racers v3 (93959280828322)",
+  "status": "installed, agent-verified in Studio; not user-confirmed; second save-and-reopen (M5) pending",
+  "edit": {
+    "compile": "21 of 21 after-sources compile",
+    "pure_tests": "554 of 554 pass (results/edit_tests_3.json)",
+    "lint": "0 findings",
+    "review": "delivery-reviewer READY WITH FIXES; fixes applied, not re-reviewed"
+  },
+  "create_proof": {
+    "P1_audit_before": "pass", "P2_apply_audit": "pass",
+    "P3_save_close_reopen": "done by Oscar",
+    "P4_audit_after_reopen": "pass: module, install mark and source length unchanged; verify 221 same, 1 declared",
+    "P5_rollback_audit": "pass", "P6_apply_audit_rollback_audit": "pass"
+  },
+  "installer": {
+    "M1_audit": "30 hierarchy ops and 1 source op before; verify 221 same, 0 failures",
+    "M2_apply_hierarchy": "wrote 30", "M3_apply_sources": "wrote 1",
+    "M4_rollback_sources_then_hierarchy": "wrote 1 then 30; audit all before; verify 221 same",
+    "M4_apply_twice_then_again": "wrote 30, 1, then 0",
+    "final_audit": "all after; verify 220 same plus 1 declared edit, 0 failures, 0 config diffs",
+    "M5_save_reopen_audit": "pending (Oscar)"
+  },
+  "play_classic": {
+    "sandbox": true,
+    "startup": "42 ready, 4 skipped, none failed (same as Phase 0)",
+    "latch": "UIStyleResolved Classic, reason attribute:Classic, UIStyleLoadedAtRead true, not committed, no claims",
+    "pulse_screenguis": 0,
+    "toast": "Classic toast shown in Michroma through ShowTopNotification",
+    "record_vs_phase0_start": "18 of 20 ScreenGuis hash-identical; DesktopFreeRoamHud (712 vs 687 instances: job map icons) and LoadingSafeContent differ, both on the known-unstable list",
+    "console": "one warning present before the install (Player:Move with no character)"
+  },
+  "play_pulse": {
+    "sandbox": true,
+    "startup": "43 ready (42 plus the gallery tool entry), 4 skipped, none failed",
+    "latch": "UIStyleResolved Pulse, committed, claims Toasts,Gallery",
+    "pulse_screenguis": ["SharedTopNotification (order 1100, DeviceSafeInsets)", "PulseGallery (order 1400)"],
+    "toast_owner_count": 1,
+    "toast": "two toasts shown stacked, Barlow Medium TextSize 27, TextFits true (captures/pulse_toasts.jpg)",
+    "gallery": "opens with BackSlash; 19 entries; Tile, Rail and ButtonRow seen at the 1920x1080 preset (captures/)",
+    "errors": "none in the log history read"
+  },
+  "restored": "UIStyle Classic, PulseGalleryEnabled false, sandbox false, both markers removed, relay folder absent",
+  "not_verified": [
+    "second save and reopen (M5)",
+    "forced Routes failure (UIStyleDevFamilies = Nope) and missing-latch paths in Play",
+    "toast after character respawn; toast in the first seconds of a cold start; onboarding with a toast pending",
+    "Confirm and Modal in Play; gamepad focus; Compact presets; layout lint and census on the gallery",
+    "every gallery entry other than Tile, Rail and ButtonRow",
+    "full 14-point Classic Play record; touch, phone and live client",
+    "images: no asset is uploaded, components render flat"
+  ],
+  "seen_issues": [
+    "Default buttons and default tiles have no visible plate on the gallery's dark stage (slate on near-black, no hairlines on Default buttons by the 4-instance budget); judge on a scene backdrop",
+    "Toast text is Barlow Medium upright, not the heavy italic of headings (body role by API)"
+  ]
+}
