@@ -1,0 +1,20 @@
+{
+ "_note": "Create proof of phase1/CONTRACT.md 7.2 (steps P1 to P6). One inert ModuleScript that nothing requires. Not part of the Phase 1 spec; its own ROLLBACK removes it.",
+ "phase": "phase1_proof",
+ "classicVerify": "scripts/ui_restyle/phase1_proof/out_verify_classic_proof.lua",
+ "installable": true,
+ "ops": [
+  {
+   "id": "proof",
+   "kind": "create",
+   "class": "ModuleScript",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "UIPulseCreateProof"
+   ],
+   "after": "after/ReplicatedStorage.Modules.Game.UIPulseCreateProof.lua"
+  }
+ ]
+}

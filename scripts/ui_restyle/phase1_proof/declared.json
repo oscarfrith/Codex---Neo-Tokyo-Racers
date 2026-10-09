@@ -1,0 +1,8 @@
+{
+ "addedScripts": {
+  "ReplicatedStorage.Modules.Game.UIPulseCreateProof": {
+   "file": "after/ReplicatedStorage.Modules.Game.UIPulseCreateProof.lua",
+   "class": "ModuleScript"
+  }
+ }
+}

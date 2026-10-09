@@ -3,8 +3,13 @@
 The one canonical installer for the Pulse UI programme (recommended-plan.md section 10). Nothing has been installed
 with it yet. Phase 1 uses it first, starting with the `create` rehearsal.
 
-Status: **generated and offline-tested only.** No Luau in this folder has run. Run `selftest.lua` in Studio Edit
-before the first real AUDIT.
+Status: **self-tested in Studio; create op exercised against the place; nothing left installed.**
+
+- `selftest.lua` ran in Studio Edit on 2026-10-09: 30 of 30 cases passed
+  (`scripts/ui_restyle/phase0/results/engine_selftest_result.json`).
+- The `create` op was exercised against the place the same day by `scripts/ui_restyle/phase1_proof` (AUDIT before,
+  APPLY, AUDIT after).
+- Still pending: save-and-reopen of a created module, and ROLLBACK of a created module.
 
 ## Files
 
@@ -42,7 +47,7 @@ or run the Classic verify.
 ```json
 {
  "phase": "phase1",                     // must equal the folder name
- "classicVerify": true,                 // AUDIT also runs classic/out_verify_classic.lua
+ "classicVerify": true,                 // AUDIT also runs classic/out_verify_classic.lua; or a repo path (below)
  "installable": true,                   // false: APPLY and ROLLBACK refuse (sample_phase)
  "ops": [
   {"id": "kit", "kind": "create", "class": "Folder", "path": ["ReplicatedStorage", "Modules", "Game", "UIPulse"],
@@ -65,6 +70,9 @@ or run the Classic verify.
   It expands to one create op per node (ids `id/Child`).
 - `attribute`: `before` must be written down. `null` means absent. `was` lists earlier values of this delivery.
 - `source`: files sit in `before/` and `after/`. After-sources are limited to 150,000 characters, LF only.
+- `classicVerify`: `true` runs `classic/out_verify_classic.lua`. A string is the repo path of a phase's own declared
+  verify build, made with `classic/build_verify.py --declared <phase>/declared.json --out <path>`, for example
+  `"scripts/ui_restyle/phase1/out_verify_classic_phase1.lua"`; AUDIT runs that file instead.
 - Keys starting with `_` are notes. Values are booleans, numbers, strings, or `{"Type": "Color3" | "Vector3" |
   "Vector2" | "UDim" | "UDim2", ...}`.
 - A fingerprint is `<djb2>-<fnv1a32>-<bytes>`. Each build adds the after-fingerprints to `applied_hashes.json`, so a
@@ -101,11 +109,15 @@ A full install is APPLY, AUDIT, APPLY, AUDIT. The `next` field of the report say
 
 ## Untested until Studio
 
-- All Luau. `test_engine.py` checks block balance and names only.
+This list was written before the runs in Status and has not been re-checked item by item against their results:
+the self-test (detached tree) and the proof's AUDIT, APPLY, AUDIT exercised several of these. The save-and-reopen
+and created-module ROLLBACK item is certainly still open. `test_engine.py` checks block balance and names only.
+
 - `ModuleScript.Source` read and write on an unparented instance (selftest and the create op both rely on it).
 - `RunService:IsEdit()`, `loadstring` with a chunk name, `string.format("%d")` on values above 2^31.
 - `shared` persisting between `execute_luau` calls (inline mode). If it does not, APPLY blocks with "inline source
   not loaded".
 - `HttpService:GetAsync` returning the file bytes unchanged. A changed byte shows as a `mismatch` block.
-- Whether a created ModuleScript survives save and reopen with its mark (the Phase 1 rehearsal).
+- Whether a created ModuleScript survives save and reopen with its mark, and ROLLBACK of a created module (the
+  Phase 1 rehearsal, CONTRACT 7.2 P3 to P6).
 - `out_verify_classic.lua` run through `loadstring` inside AUDIT, and the size of its result in the report.

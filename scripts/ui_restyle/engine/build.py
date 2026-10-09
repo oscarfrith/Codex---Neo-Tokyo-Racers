@@ -171,7 +171,7 @@ def validate(spec, phase_dir):
     if spec.get("placeId", PLACE_ID) != PLACE_ID:
         fail("placeId must be %d (Space Racers v3)" % PLACE_ID)
     for key in ("classicVerify", "installable"):
-        if key in spec and not isinstance(spec[key], bool):
+        if key in spec and not isinstance(spec[key], bool) and not (key == "classicVerify" and isinstance(spec[key], str)):
             fail(key + " must be true or false")
     raw_ops = spec.get("ops")
     if not isinstance(raw_ops, list) or not raw_ops:
@@ -418,7 +418,8 @@ def emit(phase_dir, inline=False, base=None, record=True, write=True, max_part_c
             "markAttribute": MARK_ATTRIBUTE, "installable": spec.get("installable", True), "inline": inline,
             "ops": ops}
     if spec.get("classicVerify"):
-        data["classicVerify"] = CLASSIC_VERIFY
+        # True uses the baseline verify; a repo path names a phase's own build with its declared changes.
+        data["classicVerify"] = spec["classicVerify"] if isinstance(spec["classicVerify"], str) else CLASSIC_VERIFY
     library = lua_library()
     bootstrap = read_text(os.path.join(HERE, "bootstrap.lua"))
     digest = plan.djb2("|".join("%s=%s/%s" % (op["id"], op.get("before"), op.get("after")) for op in ops).encode())

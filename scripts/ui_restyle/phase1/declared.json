@@ -1,0 +1,98 @@
+{
+ "scripts": {
+  "StarterPlayer.StarterPlayerScripts.ClientBase": {
+   "file": "after/StarterPlayer.StarterPlayerScripts.ClientBase.lua"
+  }
+ },
+ "addedScripts": {
+  "ReplicatedFirst.UIStyleSwitch": {
+   "file": "after/ReplicatedFirst.UIStyleSwitch.lua",
+   "class": "ModuleScript"
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Routes": {
+   "file": "after/ReplicatedStorage.Modules.Game.UIPulse.Routes.lua",
+   "class": "ModuleScript"
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Kit.Tokens": {
+   "file": "after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Tokens.lua",
+   "class": "ModuleScript"
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Kit.Metrics": {
+   "file": "after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Metrics.lua",
+   "class": "ModuleScript"
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Kit.Perf": {
+   "file": "after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Perf.lua",
+   "class": "ModuleScript"
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Kit.Layers": {
+   "file": "after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Layers.lua",
+   "class": "ModuleScript"
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Kit.Input": {
+   "file": "after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Input.lua",
+   "class": "ModuleScript"
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Kit.Contracts": {
+   "file": "after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Contracts.lua",
+   "class": "ModuleScript"
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Kit.Text": {
+   "file": "after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Text.lua",
+   "class": "ModuleScript"
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Kit.Surface": {
+   "file": "after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Surface.lua",
+   "class": "ModuleScript"
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Kit.Controls": {
+   "file": "after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Controls.lua",
+   "class": "ModuleScript"
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Kit.Collections": {
+   "file": "after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Collections.lua",
+   "class": "ModuleScript"
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Kit.Overlay": {
+   "file": "after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Overlay.lua",
+   "class": "ModuleScript"
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Toasts.ToastClient": {
+   "file": "after/ReplicatedStorage.Modules.Game.UIPulse.Toasts.ToastClient.lua",
+   "class": "ModuleScript"
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Dev.Gallery": {
+   "file": "after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Gallery.lua",
+   "class": "ModuleScript"
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Text": {
+   "file": "after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Text.lua",
+   "class": "ModuleScript"
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Surface": {
+   "file": "after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Surface.lua",
+   "class": "ModuleScript"
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Controls": {
+   "file": "after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Controls.lua",
+   "class": "ModuleScript"
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Collections": {
+   "file": "after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Collections.lua",
+   "class": "ModuleScript"
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Overlay": {
+   "file": "after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Overlay.lua",
+   "class": "ModuleScript"
+  }
+ },
+ "configNodes": [
+  "UI.Pulse",
+  "UI.Pulse.Assets"
+ ],
+ "configAttrs": [
+  "UI@UIStyle",
+  "UI@UIStyleDevFamilies",
+  "Development.ClientTools@PulseGalleryEnabled"
+ ]
+}
