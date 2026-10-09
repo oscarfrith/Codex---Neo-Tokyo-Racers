@@ -1,0 +1,131 @@
+{
+ "account": "Oscar's (via Studio upload_image)",
+ "assets": {
+  "BoostArc": {
+   "file": "out/boost_arc_gradient.png",
+   "id": "rbxassetid://85006661533728"
+  },
+  "ChequerCorner": {
+   "file": "out/chequer_corner_two_tone.png",
+   "id": "rbxassetid://126153133988621"
+  },
+  "Digits128": {
+   "file": "out/digits_128.png",
+   "id": "rbxassetid://89916985549941"
+  },
+  "Digits256": {
+   "file": "out/digits_256.png",
+   "id": "rbxassetid://117641527848974"
+  },
+  "DigitsPunct": {
+   "file": "out/digits_punct.png",
+   "id": "rbxassetid://114689344233116"
+  },
+  "GaugeArc": {
+   "file": "out/gauge_arc_gradient.png",
+   "id": "rbxassetid://134100466725449"
+  },
+  "GaugeGlow": {
+   "file": "out/gauge_glow.png",
+   "id": "rbxassetid://129960207022537"
+  },
+  "GaugeTicks": {
+   "file": "out/gauge_ticks.png",
+   "id": "rbxassetid://120114645008415"
+  },
+  "GaugeTrack": {
+   "file": "out/gauge_track.png",
+   "id": "rbxassetid://119781443712293"
+  },
+  "GlowLine": {
+   "file": "out/glow_line.png",
+   "id": "rbxassetid://97131611895302"
+  },
+  "GlowSoft": {
+   "file": "out/glow_soft.png",
+   "id": "rbxassetid://135935339855364"
+  },
+  "GlowTight": {
+   "file": "out/glow_tight.png",
+   "id": "rbxassetid://117888228227601"
+  },
+  "IconSheet": {
+   "file": "out/icons.png",
+   "id": "rbxassetid://118261730871486"
+  },
+  "KeyCap": {
+   "file": "out/keycap_9slice.png",
+   "id": "rbxassetid://133811090176849"
+  },
+  "MapIconSheet": {
+   "file": "out/map_icons.png",
+   "id": "rbxassetid://118485943810175"
+  },
+  "MapPlayerArrow": {
+   "file": "out/map_player_arrow.png",
+   "id": "rbxassetid://75887661537180"
+  },
+  "MinimapRing": {
+   "file": "out/minimap_ring_gradient.png",
+   "id": "rbxassetid://95228721424881"
+  },
+  "MinimapVignette": {
+   "file": "out/minimap_vignette.png",
+   "id": "rbxassetid://125852027354743"
+  },
+  "RankArc": {
+   "file": "out/rank_arc_gradient.png",
+   "id": "rbxassetid://92721778595093"
+  },
+  "SegmentStrip": {
+   "file": "out/segment_strip.png",
+   "id": "rbxassetid://137798736993531"
+  },
+  "TitleSlash": {
+   "file": "out/title_slash_gradient.png",
+   "id": "rbxassetid://72834960725330"
+  },
+  "TouchAccelerate": {
+   "file": "out/touch_accelerate.png",
+   "id": "rbxassetid://115016705420726"
+  },
+  "TouchAcceleratePressed": {
+   "file": "out/touch_accelerate_pressed.png",
+   "id": "rbxassetid://107490452051578"
+  },
+  "TouchBoost": {
+   "file": "out/touch_boost.png",
+   "id": "rbxassetid://101855778919480"
+  },
+  "TouchBoostPressed": {
+   "file": "out/touch_boost_pressed.png",
+   "id": "rbxassetid://113577162843584"
+  },
+  "TouchBrake": {
+   "file": "out/touch_brake.png",
+   "id": "rbxassetid://89939196452811"
+  },
+  "TouchBrakePressed": {
+   "file": "out/touch_brake_pressed.png",
+   "id": "rbxassetid://131499606862418"
+  },
+  "TouchDrift": {
+   "file": "out/touch_drift.png",
+   "id": "rbxassetid://104833602550371"
+  },
+  "TouchDriftPressed": {
+   "file": "out/touch_drift_pressed.png",
+   "id": "rbxassetid://95736832686150"
+  },
+  "TouchTurn": {
+   "file": "out/touch_turn.png",
+   "id": "rbxassetid://138576169890684"
+  },
+  "TouchTurnPressed": {
+   "file": "out/touch_turn_pressed.png",
+   "id": "rbxassetid://110129011146232"
+  }
+ },
+ "note": "Uploads cannot be edited; a revision is a new id. Not uploaded: wordmark_placeholder.png (placeholder, start screen keeps its logo), chequer_corner.png (two-tone chosen).",
+ "uploaded": "2026-10-09"
+}
